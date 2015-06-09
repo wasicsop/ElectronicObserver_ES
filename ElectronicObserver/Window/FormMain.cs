@@ -17,6 +17,8 @@ using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Text;
+using System.Globalization;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
@@ -56,6 +58,8 @@ namespace ElectronicObserver.Window {
 
 
 		public FormMain() {
+            Thread.CurrentThread.CurrentCulture = CultureInfo.CurrentCulture;
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.CurrentUICulture;
 			InitializeComponent();
 		}
 

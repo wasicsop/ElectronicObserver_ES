@@ -12,8 +12,10 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.ServiceModel;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Globalization;
 
 namespace Browser {
 	/// <summary>
@@ -36,7 +38,7 @@ namespace Browser {
 		private BrowserLib.BrowserConfiguration Configuration;
 
 		// 親プロセスが生きているか定期的に確認するためのタイマー
-		private Timer HeartbeatTimer = new Timer();
+		private System.Windows.Forms.Timer HeartbeatTimer = new System.Windows.Forms.Timer();
 		private IntPtr HostWindow;
 
 		private bool _styleSheetApplied;
@@ -78,6 +80,8 @@ namespace Browser {
 		/// </summary>
 		/// <param name="serverUri">ホストプロセスとの通信用URL</param>
 		public FormBrowser( string serverUri ) {
+            Thread.CurrentThread.CurrentCulture = CultureInfo.CurrentCulture;
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.CurrentUICulture;
 			InitializeComponent();
 
 			ServerUri = serverUri;
@@ -542,6 +546,16 @@ namespace Browser {
 
 		}
 
+        private void SetCookie()
+        {
+            HtmlElement head = Browser.Document.GetElementsByTagName("head")[0];
+            HtmlElement script = Browser.Document.CreateElement("script");
+            IHTMLScriptElement element = (IHTMLScriptElement)script.DomElement;
+            element.text = "function setCookie() { document.cookie = 'ckcy=1;expires=Sun, 09 Feb 2019 09:00:09 GMT;domain=osapi.dmm.com;path=/'; document.cookie = 'ckcy=1;expires=Sun, 09 Feb 2019 09:00:09 GMT;domain=203.104.209.7;path=/'; document.cookie = 'ckcy=1;expires=Sun, 09 Feb 2019 09:00:09 GMT;domain=www.dmm.com;path=/netgame/'; document.cookie = 'ckcy=1;expires=Sun, 09 Feb 2019 09:00:09 GMT;domain=log-netgame.dmm.com;path=/';}";
+            head.AppendChild(script);
+            Browser.Document.InvokeScript("setCookie");
+        }
+
 
 		public void SetIconResource( byte[] canvas ) {
 
@@ -759,8 +773,10 @@ namespace Browser {
 			}
 		}
 
-
-
+        private void ToolMenu_Other_RegionCookie_Click(object sender, EventArgs e)
+        {
+            BeginInvoke((MethodInvoker)(() => { SetCookie(); }));
+        }
 
 		private void SizeAdjuster_Click( object sender, EventArgs e ) {
 			ToolMenu.Visible =
