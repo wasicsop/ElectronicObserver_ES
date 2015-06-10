@@ -118,30 +118,30 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AskForUpdate" xml:space="preserve">
-    <value>新しいバージョンがリリースされています！ : {0}\r\n更新内容 : \r\n{1}\r\nダウンロードページを開きますか？\r\n(キャンセルすると以降表示しません)</value>
+    <value>A new version has been released - {0}\r\nNew version details:\r\n{1}\r\nOpen the download page?\r\n(This dialog will not appear again if you cancel.)</value>
   </data>
   <data name="BadUpdateURI" xml:space="preserve">
-    <value>アップデート情報の URI が無効です。</value>
+    <value>Update data URI was not successful.</value>
   </data>
   <data name="NewVersionFound" xml:space="preserve">
-    <value>新しいバージョンがリリースされています！ :</value>
+    <value>A new version has been released! - </value>
   </data>
   <data name="SoftwareName" xml:space="preserve">
-    <value>七四式電子観測儀</value>
+    <value>Type 74 Electronic Observer</value>
   </data>
   <data name="Update" xml:space="preserve">
-    <value>アップデート情報</value>
+    <value>Update</value>
   </data>
   <data name="UpdateCheckFailed" xml:space="preserve">
-    <value>アップデート情報の取得に失敗しました。</value>
+    <value>Failed to obtain update data.</value>
   </data>
   <data name="UpdateConnectionFailed" xml:space="preserve">
-    <value>アップデート情報の処理に失敗しました。</value>
+    <value>Failed to process update data.</value>
   </data>
   <data name="Version" xml:space="preserve">
-    <value>一三型</value>
+    <value>1.3.0</value>
   </data>
   <data name="VersionCurrent" xml:space="preserve">
-    <value>お使いのバージョンは最新です。</value>
+    <value>You are currently using the latest version.</value>
   </data>
 </root>

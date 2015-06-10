@@ -472,6 +472,7 @@
     <Compile Include="Window\Support\ControlHelper.cs" />
     <Compile Include="Window\Support\CustomFloatWindowFactory.cs" />
     <Compile Include="Window\Support\WindowPlacementManager.cs" />
+    <EmbeddedResource Include="Properties\Resources.en.resx" />
     <EmbeddedResource Include="Window\Control\ImageLabel.resx">
       <DependentUpon>ImageLabel.cs</DependentUpon>
     </EmbeddedResource>
@@ -579,6 +580,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Window\FormQuest.resx">
       <DependentUpon>FormQuest.cs</DependentUpon>

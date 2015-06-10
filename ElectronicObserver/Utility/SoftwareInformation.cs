@@ -1,4 +1,5 @@
-﻿using ElectronicObserver.Utility.Mathematics;
+﻿using ElectronicObserver.Properties;
+using ElectronicObserver.Utility.Mathematics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace ElectronicObserver.Utility {
 		/// </summary>
 		public static string SoftwareNameJapanese {
 			get {
-				return "七四式電子観測儀";
+				return Resources.SoftwareName;
 			}
 		}
 
@@ -26,7 +27,7 @@ namespace ElectronicObserver.Utility {
 		/// </summary>
 		public static string SoftwareNameEnglish {
 			get {
-				return "ElectronicObserver";
+				return Resources.SoftwareName;
 			}
 		}
 
@@ -35,7 +36,7 @@ namespace ElectronicObserver.Utility {
 		/// </summary>
 		public static string VersionJapanese {
 			get {
-				return SoftwareNameJapanese + "一三型";
+				return SoftwareNameJapanese + Resources.Version;
 			}
 		}
 
@@ -44,7 +45,7 @@ namespace ElectronicObserver.Utility {
 		/// </summary>
 		public static string VersionEnglish {
 			get {
-				return "1.3.0";
+				return Resources.Version;
 			}
 		}
 
@@ -82,14 +83,14 @@ namespace ElectronicObserver.Utility {
 
 			if ( e.Error != null ) {
 
-				Utility.ErrorReporter.SendErrorReport( e.Error, "アップデート情報の取得に失敗しました。" );
+				Utility.ErrorReporter.SendErrorReport( e.Error, Resources.UpdateCheckFailed );
 				return;
 
 			}
 
 			if ( e.Result.StartsWith( "<!DOCTYPE html>" ) ) {
 
-				Utility.Logger.Add( 3, "アップデート情報の URI が無効です。" );
+				Utility.Logger.Add( 3, Resources.BadUpdateURI );
 				return;
 
 			}
@@ -105,12 +106,12 @@ namespace ElectronicObserver.Utility {
 
 					if ( UpdateTime < date ) {
 
-						Utility.Logger.Add( 3, "新しいバージョンがリリースされています！ : " + version );
+						Utility.Logger.Add( 3, Resources.NewVersionFound + version );
 
 						var result = System.Windows.Forms.MessageBox.Show(
-							string.Format( "新しいバージョンがリリースされています！ : {0}\r\n更新内容 : \r\n{1}\r\nダウンロードページを開きますか？\r\n(キャンセルすると以降表示しません)",
+							string.Format( Resources.AskForUpdate,
 							version, description ),
-							"アップデート情報", System.Windows.Forms.MessageBoxButtons.YesNoCancel, System.Windows.Forms.MessageBoxIcon.Information,
+							Resources.Update, System.Windows.Forms.MessageBoxButtons.YesNoCancel, System.Windows.Forms.MessageBoxIcon.Information,
 							System.Windows.Forms.MessageBoxDefaultButton.Button1 );
 
 
@@ -126,7 +127,7 @@ namespace ElectronicObserver.Utility {
 
 					} else {
 
-						Utility.Logger.Add( 1, "お使いのバージョンは最新です。" );
+						Utility.Logger.Add( 1, Resources.VersionCurrent );
 
 					}
 
@@ -134,7 +135,7 @@ namespace ElectronicObserver.Utility {
 
 			} catch ( Exception ex ) {
 
-				Utility.ErrorReporter.SendErrorReport( ex, "アップデート情報の処理に失敗しました。" );
+				Utility.ErrorReporter.SendErrorReport( ex, Resources.UpdateConnectionFailed );
 			}
 
 		}
