@@ -218,7 +218,7 @@ Useful to prevent mistakes.</value>
     <value>Debug</value>
   </data>
   <data name="Delete" xml:space="preserve">
-    <value>Delete</value>
+    <value>Clear</value>
   </data>
   <data name="DeleteRegistryHint" xml:space="preserve">
     <value>Clears registry.</value>
@@ -314,7 +314,7 @@ May increase speed depending on environment.</value>
     <value>Login URL</value>
   </data>
   <data name="LosFormula" xml:space="preserve">
-    <value>LoS calculation formula</value>
+    <value>LoS formula</value>
   </data>
   <data name="Mainfont" xml:space="preserve">
     <value>Main font</value>
@@ -338,7 +338,7 @@ May increase speed depending on environment.</value>
     <value>Show the amount of XP required to level up.
 Disabling may save space.</value>
   </data>
-  <data name="Nofitication" xml:space="preserve">
+  <data name="Notification" xml:space="preserve">
     <value>Notification</value>
   </data>
   <data name="NotificationSetting" xml:space="preserve">
@@ -495,7 +495,7 @@ Can increase the number of status bar messages.</value>
     <value>Window</value>
   </data>
   <data name="ZoomRate" xml:space="preserve">
-    <value>Zoom rate</value>
+    <value>Zoom</value>
   </data>
   <data name="ZoomToFit" xml:space="preserve">
     <value>Zoom to fit</value>

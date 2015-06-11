@@ -262,7 +262,7 @@
 			// label4
 			// 
 			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(138, 69);
+			this.label4.Location = new System.Drawing.Point(188, 69);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(201, 15);
 			this.label4.TabIndex = 6;
@@ -367,9 +367,9 @@
 			this.Connection_SaveDataPath.AllowDrop = true;
 			this.Connection_SaveDataPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.Connection_SaveDataPath.Location = new System.Drawing.Point(67, 32);
+			this.Connection_SaveDataPath.Location = new System.Drawing.Point(117, 32);
 			this.Connection_SaveDataPath.Name = "Connection_SaveDataPath";
-			this.Connection_SaveDataPath.Size = new System.Drawing.Size(334, 23);
+			this.Connection_SaveDataPath.Size = new System.Drawing.Size(284, 23);
 			this.Connection_SaveDataPath.TabIndex = 3;
 			this.Connection_SaveDataPath.TextChanged += new System.EventHandler(this.Connection_SaveDataPath_TextChanged);
 			// 
@@ -660,7 +660,7 @@
 			// 
 			// Control_ConditionBorder
 			// 
-			this.Control_ConditionBorder.Location = new System.Drawing.Point(106, 6);
+			this.Control_ConditionBorder.Location = new System.Drawing.Point(110, 6);
 			this.Control_ConditionBorder.Maximum = new decimal(new int[] {
             49,
             0,
@@ -1265,9 +1265,9 @@
 			// 
 			this.FormBrowser_ScreenShotPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.FormBrowser_ScreenShotPath.Location = new System.Drawing.Point(76, 48);
+			this.FormBrowser_ScreenShotPath.Location = new System.Drawing.Point(126, 48);
 			this.FormBrowser_ScreenShotPath.Name = "FormBrowser_ScreenShotPath";
-			this.FormBrowser_ScreenShotPath.Size = new System.Drawing.Size(310, 23);
+			this.FormBrowser_ScreenShotPath.Size = new System.Drawing.Size(260, 23);
 			this.FormBrowser_ScreenShotPath.TabIndex = 3;
 			// 
 			// FormBrowser_ScreenShotFormat_JPEG
@@ -1431,7 +1431,7 @@
 			this.tabPage11.Padding = new System.Windows.Forms.Padding(3);
 			this.tabPage11.Size = new System.Drawing.Size(456, 253);
 			this.tabPage11.TabIndex = 7;
-			this.tabPage11.Text = ConfigRes.NotificationSetting;
+			this.tabPage11.Text = ConfigRes.Notification;
 			this.tabPage11.UseVisualStyleBackColor = true;
 			// 
 			// label10
@@ -1447,7 +1447,7 @@
 			// 
 			this.Notification_Damage.Location = new System.Drawing.Point(8, 122);
 			this.Notification_Damage.Name = "Notification_Damage";
-			this.Notification_Damage.Size = new System.Drawing.Size(150, 23);
+			this.Notification_Damage.Size = new System.Drawing.Size(300, 23);
 			this.Notification_Damage.TabIndex = 4;
 			this.Notification_Damage.Text = ConfigRes.TaihaAdvance + ConfigRes.NotificationSetting;
 			this.Notification_Damage.UseVisualStyleBackColor = true;
@@ -1457,7 +1457,7 @@
 			// 
 			this.Notification_Condition.Location = new System.Drawing.Point(8, 93);
 			this.Notification_Condition.Name = "Notification_Condition";
-			this.Notification_Condition.Size = new System.Drawing.Size(150, 23);
+			this.Notification_Condition.Size = new System.Drawing.Size(300, 23);
 			this.Notification_Condition.TabIndex = 3;
 			this.Notification_Condition.Text = ConfigRes.FatigueRestore + ConfigRes.NotificationSetting;
 			this.Notification_Condition.UseVisualStyleBackColor = true;
@@ -1467,7 +1467,7 @@
 			// 
 			this.Notification_Repair.Location = new System.Drawing.Point(8, 64);
 			this.Notification_Repair.Name = "Notification_Repair";
-			this.Notification_Repair.Size = new System.Drawing.Size(150, 23);
+			this.Notification_Repair.Size = new System.Drawing.Size(300, 23);
 			this.Notification_Repair.TabIndex = 2;
 			this.Notification_Repair.Text = ConfigRes.DockEnd + ConfigRes.NotificationSetting;
 			this.Notification_Repair.UseVisualStyleBackColor = true;
@@ -1477,7 +1477,7 @@
 			// 
 			this.Notification_Construction.Location = new System.Drawing.Point(8, 35);
 			this.Notification_Construction.Name = "Notification_Construction";
-			this.Notification_Construction.Size = new System.Drawing.Size(150, 23);
+			this.Notification_Construction.Size = new System.Drawing.Size(300, 23);
 			this.Notification_Construction.TabIndex = 1;
 			this.Notification_Construction.Text = ConfigRes.ConstructEnd + ConfigRes.NotificationSetting;
 			this.Notification_Construction.UseVisualStyleBackColor = true;
@@ -1487,7 +1487,7 @@
 			// 
 			this.Notification_Expedition.Location = new System.Drawing.Point(8, 6);
 			this.Notification_Expedition.Name = "Notification_Expedition";
-			this.Notification_Expedition.Size = new System.Drawing.Size(150, 23);
+			this.Notification_Expedition.Size = new System.Drawing.Size(300, 23);
 			this.Notification_Expedition.TabIndex = 0;
 			this.Notification_Expedition.Text = ConfigRes.ExpedReturn + ConfigRes.NotificationSetting;
 			this.Notification_Expedition.UseVisualStyleBackColor = true;

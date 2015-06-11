@@ -337,7 +337,7 @@ direct にするとパフォーマンスが向上する可能性があります�
     <value>「次のレベルまでに必要な経験値」を表示するかを指定します。
 省略した場合スペースを節約できます。</value>
   </data>
-  <data name="Nofitication" xml:space="preserve">
+  <data name="Notification" xml:space="preserve">
     <value>通知</value>
   </data>
   <data name="NotificationSetting" xml:space="preserve">

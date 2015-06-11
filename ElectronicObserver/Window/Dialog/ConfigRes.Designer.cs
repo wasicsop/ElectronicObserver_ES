@@ -697,9 +697,9 @@ namespace ElectronicObserver.Window.Dialog {
         /// <summary>
         ///   Looks up a localized string similar to 通知.
         /// </summary>
-        internal static string Nofitication {
+        internal static string Notification {
             get {
-                return ResourceManager.GetString("Nofitication", resourceCulture);
+                return ResourceManager.GetString("Notification", resourceCulture);
             }
         }
         
