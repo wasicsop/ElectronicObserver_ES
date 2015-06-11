@@ -177,34 +177,6 @@
   <data name="Fleets" xml:space="preserve">
     <value>Fleets (&amp;F)</value>
   </data>
-  <data name="FrameScript" xml:space="preserve">
-    <value>// KCRDBと競合しないように同じように処理
-try {
-	var hideStyle = {width:"0px",height:"0px",visibility:"hidden",display:"none"};
-	var fillStyle = {margin:"0px",padding:"0px",position:"fixed",left:"0px",top:"0px",width:"100%",height:"100%",overflow:"hidden"};
-	var jqBody=document.body;
-	$(jqBody).css("zoom","normal");
-	$(jqBody).css({margin:"0px",padding:"0px",overflow:"hidden"});
-	$("#spacing_top").css(hideStyle);
-	$("#adFlashWrap").css(fillStyle);
-	$("#wsFlashWrap").css(fillStyle);
-	$("#flashWrap").css(fillStyle);
-	var elmExternalSwf=document.getElementById("externalswf");
-	if(elmExternalSwf != null) {
-		elmExternalSwf.setAttribute("width","100%");
-		elmExternalSwf.setAttribute("height","100%");
-	}
-	$("#sectionWrap").css(hideStyle);
-	$("#globalNavi").css(hideStyle);
-	$(".rollover").css(hideStyle);
-	$("img").css(hideStyle);
-	$(".badge").css(hideStyle);
-	$("#contentsWrap").css(hideStyle);
-}
-catch(e) {
-	alert("フレームCSS適用に失敗しました: "+e);
-}</value>
-  </data>
   <data name="Headquarters" xml:space="preserve">
     <value>Headquarters (&amp;H)</value>
   </data>
@@ -277,31 +249,6 @@ catch(e) {
   <data name="Other_Zoom_Fit" xml:space="preserve">
     <value>Zoom To Fit</value>
   </data>
-  <data name="PageScript" xml:space="preserve">
-    <value>// KCRDBと競合しないように同じように処理
-try {
-	var hideStyle = {width:"0px",height:"0px",visibility:"hidden",display:"none"};
-	var fillStyle = {margin:"0px",padding:"0px",position:"fixed",left:"0px",top:"0px",width:"100%",height:"100%",overflow:"hidden"};
-	$(document.body).css({margin:"0px",padding:"0px",overflow:"hidden"});
-	$("img").css(hideStyle);
-	//$("#dmm_ntgnavi").css(hideStyle);
-	$("#dmm-ntgnavi-renew").css(hideStyle);
-	$("#w").css(fillStyle);
-	$("#main-ntg").css(fillStyle);
-	$("#page").css(fillStyle);
-	$("#area-game").css(fillStyle);
-	var jqGameFrame=$("#game_frame");
-	jqGameFrame.css(fillStyle);
-	jqGameFrame.attr("scrolling","no");
-	jqGameFrame.attr("width","100%");
-	jqGameFrame.attr("height","100%");
-	$("[class^=area-naviapp]").css(hideStyle);
-	$("#foot").css(hideStyle);
-}
-catch(e) {
-	alert("ページCSS適用に失敗しました: "+e);
-}</value>
-  </data>
   <data name="Quest" xml:space="preserve">
     <value>Quests (&amp;Q)</value>
   </data>
@@ -328,21 +275,6 @@ catch(e) {
   </data>
   <data name="ShowToolMenu" xml:space="preserve">
     <value>Display Tool Menu</value>
-  </data>
-  <data name="Strip_Mute" xml:space="preserve">
-    <value>Mute</value>
-  </data>
-  <data name="Strip_NavigateToLogInPage" xml:space="preserve">
-    <value>Go To Login Page</value>
-  </data>
-  <data name="Strip_Refresh" xml:space="preserve">
-    <value>Refresh</value>
-  </data>
-  <data name="Strip_ScreenShot" xml:space="preserve">
-    <value>Screenshot</value>
-  </data>
-  <data name="Strip_Zoom" xml:space="preserve">
-    <value>Zoom</value>
   </data>
   <data name="Title" xml:space="preserve">
     <value>Type 74 Electronic Observation Device</value>

@@ -241,25 +241,6 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to // KCRDBと競合しないように同じように処理
-        ///try {
-        ///	var hideStyle = {width:&quot;0px&quot;,height:&quot;0px&quot;,visibility:&quot;hidden&quot;,display:&quot;none&quot;};
-        ///	var fillStyle = {margin:&quot;0px&quot;,padding:&quot;0px&quot;,position:&quot;fixed&quot;,left:&quot;0px&quot;,top:&quot;0px&quot;,width:&quot;100%&quot;,height:&quot;100%&quot;,overflow:&quot;hidden&quot;};
-        ///	var jqBody=document.body;
-        ///	$(jqBody).css(&quot;zoom&quot;,&quot;normal&quot;);
-        ///	$(jqBody).css({margin:&quot;0px&quot;,padding:&quot;0px&quot;,overflow:&quot;hidden&quot;});
-        ///	$(&quot;#spacing_top&quot;).css(hideStyle);
-        ///	$(&quot;#adFlashWrap&quot;).css(fillStyle);
-        ///	$(&quot;#wsFlashWrap&quot;).css(fillStyle);
-        ///	$(&quot;#flashWrap&quot;).css(fillStyle); [rest of string was truncated]&quot;;.
-        /// </summary>
-        internal static string FrameScript {
-            get {
-                return ResourceManager.GetString("FrameScript", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 司令部(&amp;H).
         /// </summary>
         internal static string Headquarters {
@@ -476,26 +457,6 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to // KCRDBと競合しないように同じように処理
-        ///try {
-        ///	var hideStyle = {width:&quot;0px&quot;,height:&quot;0px&quot;,visibility:&quot;hidden&quot;,display:&quot;none&quot;};
-        ///	var fillStyle = {margin:&quot;0px&quot;,padding:&quot;0px&quot;,position:&quot;fixed&quot;,left:&quot;0px&quot;,top:&quot;0px&quot;,width:&quot;100%&quot;,height:&quot;100%&quot;,overflow:&quot;hidden&quot;};
-        ///	$(document.body).css({margin:&quot;0px&quot;,padding:&quot;0px&quot;,overflow:&quot;hidden&quot;});
-        ///	$(&quot;img&quot;).css(hideStyle);
-        ///	//$(&quot;#dmm_ntgnavi&quot;).css(hideStyle);
-        ///	$(&quot;#dmm-ntgnavi-renew&quot;).css(hideStyle);
-        ///	$(&quot;#w&quot;).css(fillStyle);
-        ///	$(&quot;#main-ntg&quot;).css(fillStyle);
-        ///	$(&quot;#page&quot;).css(fillStyle);
-        /// [rest of string was truncated]&quot;;.
-        /// </summary>
-        internal static string PageScript {
-            get {
-                return ResourceManager.GetString("PageScript", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 任務(&amp;Q).
         /// </summary>
         internal static string Quest {
@@ -573,51 +534,6 @@ namespace ElectronicObserver.Window {
         internal static string ShowToolMenu {
             get {
                 return ResourceManager.GetString("ShowToolMenu", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to ミュート.
-        /// </summary>
-        internal static string Strip_Mute {
-            get {
-                return ResourceManager.GetString("Strip_Mute", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to ログインページへ移動.
-        /// </summary>
-        internal static string Strip_NavigateToLogInPage {
-            get {
-                return ResourceManager.GetString("Strip_NavigateToLogInPage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 更新.
-        /// </summary>
-        internal static string Strip_Refresh {
-            get {
-                return ResourceManager.GetString("Strip_Refresh", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to スクリーンショット.
-        /// </summary>
-        internal static string Strip_ScreenShot {
-            get {
-                return ResourceManager.GetString("Strip_ScreenShot", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to ズーム.
-        /// </summary>
-        internal static string Strip_Zoom {
-            get {
-                return ResourceManager.GetString("Strip_Zoom", resourceCulture);
             }
         }
         

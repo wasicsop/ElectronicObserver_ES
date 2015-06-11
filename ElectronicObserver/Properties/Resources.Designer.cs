@@ -61,11 +61,62 @@ namespace ElectronicObserver.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 新しいバージョンがリリースされています！ : {0}\r\n更新内容 : \r\n{1}\r\nダウンロードページを開きますか？\r\n(キャンセルすると以降表示しません).
+        ///   Looks up a localized string similar to  を終了しますか？.
+        /// </summary>
+        internal static string AskClose {
+            get {
+                return ResourceManager.GetString("AskClose", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 新しいバージョンがリリースされています！ : {0}\
+        ///更新内容 : 
+        ///{1}
+        ///ダウンロードページを開きますか？
+        ///(キャンセルすると以降表示しません).
         /// </summary>
         internal static string AskForUpdate {
             get {
                 return ResourceManager.GetString("AskForUpdate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to セーブしていないレコードが失われる可能性があります。
+        ///ロードしますか？.
+        /// </summary>
+        internal static string AskLoad {
+            get {
+                return ResourceManager.GetString("AskLoad", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ログインページへ移動します。
+        ///よろしいですか？.
+        /// </summary>
+        internal static string AskLogin {
+            get {
+                return ResourceManager.GetString("AskLogin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 移動先の URL を入力してください。.
+        /// </summary>
+        internal static string AskNavText {
+            get {
+                return ResourceManager.GetString("AskNavText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 移動先の入力.
+        /// </summary>
+        internal static string AskNavTitle {
+            get {
+                return ResourceManager.GetString("AskNavTitle", resourceCulture);
             }
         }
         
@@ -79,6 +130,107 @@ namespace ElectronicObserver.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 終了処理が完了しました。.
+        /// </summary>
+        internal static string ClosingComplete {
+            get {
+                return ResourceManager.GetString("ClosingComplete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 確認.
+        /// </summary>
+        internal static string Confirm {
+            get {
+                return ResourceManager.GetString("Confirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to エラー.
+        /// </summary>
+        internal static string Error {
+            get {
+                return ResourceManager.GetString("Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ヘルプ.
+        /// </summary>
+        internal static string Help {
+            get {
+                return ResourceManager.GetString("Help", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to https://github.com/andanteyk/ElectronicObserver/wiki.
+        /// </summary>
+        internal static string HelpAddress {
+            get {
+                return ResourceManager.GetString("HelpAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 外部ブラウザでオンラインヘルプを開きます。
+        ///よろしいですか？.
+        /// </summary>
+        internal static string HelpAsk {
+            get {
+                return ResourceManager.GetString("HelpAsk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to レイアウトが初期化されました。
+        ///「表示」メニューからお好みのウィンドウを追加してください。.
+        /// </summary>
+        internal static string InitLayout {
+            get {
+                return ResourceManager.GetString("InitLayout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  を終了しています….
+        /// </summary>
+        internal static string IsClosing {
+            get {
+                return ResourceManager.GetString("IsClosing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  を起動しています….
+        /// </summary>
+        internal static string IsStarting {
+            get {
+                return ResourceManager.GetString("IsStarting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ウィンドウ レイアウトを復元しました。.
+        /// </summary>
+        internal static string LayoutLoaded {
+            get {
+                return ResourceManager.GetString("LayoutLoaded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ウィンドウ レイアウトを保存しました。.
+        /// </summary>
+        internal static string LayoutSaved {
+            get {
+                return ResourceManager.GetString("LayoutSaved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 新しいバージョンがリリースされています！ :.
         /// </summary>
         internal static string NewVersionFound {
@@ -88,11 +240,56 @@ namespace ElectronicObserver.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 装備データが読み込まれていません。.
+        /// </summary>
+        internal static string NoEquipData {
+            get {
+                return ResourceManager.GetString("NoEquipData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ウィンドウ レイアウト ファイルは存在しません。.
+        /// </summary>
+        internal static string NoLayoutFound {
+            get {
+                return ResourceManager.GetString("NoLayoutFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 艦船データが読み込まれていません。.
+        /// </summary>
+        internal static string NoShipData {
+            get {
+                return ResourceManager.GetString("NoShipData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to レイアウト ファイルを開く.
+        /// </summary>
+        internal static string OpenLayout {
+            get {
+                return ResourceManager.GetString("OpenLayout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 七四式電子観測儀.
         /// </summary>
         internal static string SoftwareName {
             get {
                 return ResourceManager.GetString("SoftwareName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 起動処理が完了しました。.
+        /// </summary>
+        internal static string StartupComplete {
+            get {
+                return ResourceManager.GetString("StartupComplete", resourceCulture);
             }
         }
         
@@ -138,6 +335,15 @@ namespace ElectronicObserver.Properties {
         internal static string VersionCurrent {
             get {
                 return ResourceManager.GetString("VersionCurrent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 現在.
+        /// </summary>
+        internal static string ZoomCurrent {
+            get {
+                return ResourceManager.GetString("ZoomCurrent", resourceCulture);
             }
         }
     }

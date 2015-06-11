@@ -51,7 +51,7 @@ namespace ElectronicObserver.Window.Dialog {
 				ToolTipInfo.SetToolTip( Connection_SaveDataPath, null );
 			} else {
 				Connection_SaveDataPath.BackColor = Color.MistyRose;
-				ToolTipInfo.SetToolTip( Connection_SaveDataPath, "指定されたフォルダは存在しません。" );
+				ToolTipInfo.SetToolTip( Connection_SaveDataPath, ConfigRes.SavePathDoesNotExist );
 			}
 		}
 
@@ -139,13 +139,13 @@ namespace ElectronicObserver.Window.Dialog {
 
 			string serverAddress = APIObserver.Instance.ServerAddress;
 			if ( serverAddress == null ) {
-				MessageBox.Show( "艦これに接続してから操作してください。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
+				MessageBox.Show( ConfigRes.TryAgainAfterConnect, ConfigRes.Error, MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
 				return;
 			}
 
 			using ( var dialog = new SaveFileDialog() ) {
 				dialog.Filter = "Proxy Script|*.pac|File|*";
-				dialog.Title = "自動プロキシ設定スクリプトを保存する";
+				dialog.Title = ConfigRes.SaveProxyScriptDialog;
 				dialog.InitialDirectory = System.IO.Directory.GetCurrentDirectory();
 				dialog.FileName = System.IO.Directory.GetCurrentDirectory() + "\\proxy.pac";
 
@@ -166,14 +166,14 @@ namespace ElectronicObserver.Window.Dialog {
 
 						Clipboard.SetData( DataFormats.StringFormat, "file:///" + dialog.FileName.Replace( '\\', '/' ) );
 
-						MessageBox.Show( "自動プロキシ設定スクリプトを保存し、設定用URLをクリップボードにコピーしました。\r\n所定の位置に貼り付けてください。",
-							"作成完了", MessageBoxButtons.OK, MessageBoxIcon.Information );
+						MessageBox.Show( ConfigRes.ProxyScriptSaved,
+							ConfigRes.CreationComplete, MessageBoxButtons.OK, MessageBoxIcon.Information );
 
 
 					} catch ( Exception ex ) {
 
-						Utility.ErrorReporter.SendErrorReport( ex, "自動プロキシ設定スクリプトの保存に失敗しました。" );
-						MessageBox.Show( "自動プロキシ設定スクリプトの保存に失敗しました。\r\n" + ex.Message, "エラー",
+						Utility.ErrorReporter.SendErrorReport( ex, ConfigRes.FailedSaveProxy );
+						MessageBox.Show( ConfigRes.FailedSaveProxy + ex.Message, ConfigRes.Error,
 							MessageBoxButtons.OK, MessageBoxIcon.Error );
 
 					}
@@ -352,7 +352,7 @@ namespace ElectronicObserver.Window.Dialog {
 					FormBrowser_BrowserVersion.Text = DefaultBrowserVersion.ToString();
 					FormBrowser_GPURendering.Checked = DefaultGPURendering;
 
-					Utility.Logger.Add( 3, "レジストリからの読み込みに失敗しました。" + ex.Message );
+					Utility.Logger.Add( 3, ConfigRes.FailedLoadRegistry + ex.Message );
 
 				} finally {
 					if ( reg != null )
@@ -466,7 +466,7 @@ namespace ElectronicObserver.Window.Dialog {
 
 		private void FormBrowser_ApplyRegistry_Click( object sender, EventArgs e ) {
 
-			if ( MessageBox.Show( "レジストリに登録します。よろしいですか？\r\n＊完全に適用するには再起動が必要です。", "確認",
+			if ( MessageBox.Show( ConfigRes.ApplyingRegistry, ConfigRes.Confirm,
 				MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2 )
 				== System.Windows.Forms.DialogResult.Yes ) {
 
@@ -482,8 +482,8 @@ namespace ElectronicObserver.Window.Dialog {
 
 				} catch ( Exception ex ) {
 
-					Utility.ErrorReporter.SendErrorReport( ex, "レジストリへの書き込みに失敗しました。" );
-					MessageBox.Show( "レジストリへの書き込みに失敗しました。\r\n" + ex.Message, "エラー",
+					Utility.ErrorReporter.SendErrorReport( ex, ConfigRes.FailedSaveRegistry );
+					MessageBox.Show( ConfigRes.FailedSaveRegistry + ex.Message, ConfigRes.Error,
 						MessageBoxButtons.OK, MessageBoxIcon.Error );
 
 				} finally {
@@ -496,7 +496,7 @@ namespace ElectronicObserver.Window.Dialog {
 
 		private void FormBrowser_DeleteRegistry_Click( object sender, EventArgs e ) {
 
-			if ( MessageBox.Show( "レジストリを削除します。よろしいですか？\r\n＊完全に適用するには再起動が必要です。", "確認",
+			if ( MessageBox.Show( ConfigRes.ClearingRegistry, ConfigRes.Confirm,
 				MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2 )
 				== System.Windows.Forms.DialogResult.Yes ) {
 
@@ -512,8 +512,8 @@ namespace ElectronicObserver.Window.Dialog {
 
 				} catch ( Exception ex ) {
 
-					Utility.ErrorReporter.SendErrorReport( ex, "レジストリの削除に失敗しました。" );
-					MessageBox.Show( "レジストリの削除に失敗しました。\r\n" + ex.Message, "エラー",
+					Utility.ErrorReporter.SendErrorReport( ex, ConfigRes.FailedClearRegistry );
+					MessageBox.Show( ConfigRes.FailedClearRegistry + ex.Message, ConfigRes.Error,
 						MessageBoxButtons.OK, MessageBoxIcon.Error );
 
 				} finally {
