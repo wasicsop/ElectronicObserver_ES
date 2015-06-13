@@ -117,8 +117,21 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AACITooltip" xml:space="preserve">
+    <value>AA Cut-in: {0}
+Cut-in type: {1} ({2})</value>
+  </data>
+  <data name="AACutIn" xml:space="preserve">
+    <value>AA Cut-in</value>
+  </data>
+  <data name="AAPower" xml:space="preserve">
+    <value>AA Firepower</value>
+  </data>
   <data name="AirPower" xml:space="preserve">
     <value>Air Power</value>
+  </data>
+  <data name="AirSuperiority" xml:space="preserve">
+    <value>Superiority</value>
   </data>
   <data name="AntiAir" xml:space="preserve">
     <value>AA</value>
@@ -142,11 +155,23 @@ Denial: {3}
   <data name="ASW" xml:space="preserve">
     <value>ASW</value>
   </data>
+  <data name="Battle" xml:space="preserve">
+    <value>Battle</value>
+  </data>
   <data name="Complete" xml:space="preserve">
     <value>Complete</value>
   </data>
+  <data name="Contacting" xml:space="preserve">
+    <value>Made contact</value>
+  </data>
   <data name="CopyToClipboard" xml:space="preserve">
     <value>Copy to Clipboard (&amp;C)</value>
+  </data>
+  <data name="DamageDone" xml:space="preserve">
+    <value>Damage done</value>
+  </data>
+  <data name="DamagePct" xml:space="preserve">
+    <value>Damage %</value>
   </data>
   <data name="DayBattle" xml:space="preserve">
     <value>Day Battle</value>
@@ -156,6 +181,21 @@ Denial: {3}
   </data>
   <data name="DockTime" xml:space="preserve">
     <value>Dock Time</value>
+  </data>
+  <data name="EncounterType" xml:space="preserve">
+    <value>Encounter</value>
+  </data>
+  <data name="EnemyFleet" xml:space="preserve">
+    <value>Enemy</value>
+  </data>
+  <data name="EnemyFormation" xml:space="preserve">
+    <value>Enemy Formation</value>
+  </data>
+  <data name="EnemyScout" xml:space="preserve">
+    <value>Enemy Scout</value>
+  </data>
+  <data name="EscortFleet" xml:space="preserve">
+    <value>Escort</value>
   </data>
   <data name="Evasion" xml:space="preserve">
     <value>Evasion</value>
@@ -173,6 +213,15 @@ Drum Canisters: {3} ({4} Ships)
 Daihatsu: {5}
 Total Consumption: Fuel {6} / Ammo {7}
 (1 Battle: Fuel {8} / Ammo {9})</value>
+  </data>
+  <data name="FriendlyFleet" xml:space="preserve">
+    <value>Friendly</value>
+  </data>
+  <data name="FriendlyFormation" xml:space="preserve">
+    <value>Friendly Formation</value>
+  </data>
+  <data name="FriendlyScout" xml:space="preserve">
+    <value>Friendly Scout</value>
   </data>
   <data name="IsTaiha" xml:space="preserve">
     <value>Critically damaged!</value>
@@ -192,6 +241,15 @@ New 2-5: {2}
   <data name="NightBattle" xml:space="preserve">
     <value>Night Battle</value>
   </data>
+  <data name="NightContact" xml:space="preserve">
+    <value>Night Contact</value>
+  </data>
+  <data name="NightContacting" xml:space="preserve">
+    <value>Made night contact</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>(none)</value>
+  </data>
   <data name="Range" xml:space="preserve">
     <value>Range</value>
   </data>
@@ -201,8 +259,17 @@ New 2-5: {2}
   <data name="Retreating" xml:space="preserve">
     <value>Retreating</value>
   </data>
+  <data name="Scouting" xml:space="preserve">
+    <value>Scouting</value>
+  </data>
   <data name="ScreenCapture" xml:space="preserve">
     <value>Capture this Screen (&amp;S)</value>
+  </data>
+  <data name="SearchlightUsed" xml:space="preserve">
+    <value>Searchlight used</value>
+  </data>
+  <data name="SecondStage" xml:space="preserve">
+    <value>Stage 2</value>
   </data>
   <data name="ShipGirl" xml:space="preserve">
     <value>Ship Girl</value>
@@ -221,8 +288,33 @@ Range: {17} / Speed: {18}
 (Right-click for encyclopedia)
 </value>
   </data>
+  <data name="ShotDown" xml:space="preserve">
+    <value>Shot Down</value>
+  </data>
   <data name="Speed" xml:space="preserve">
     <value>Speed</value>
+  </data>
+  <data name="Stage2AATooltip" xml:space="preserve">
+    <value>Stage 1: -{0}/{1}
+Stage 2: -{2}/{3}
+</value>
+  </data>
+  <data name="Stage2ContactTooltip" xml:space="preserve">
+    <value>{0} made contact
+Stage 1: {1}
+Stage 2: {2}</value>
+  </data>
+  <data name="StageXAACI" xml:space="preserve">
+    <value>Stage {0}: {1}
+Cut-in type: {2} ({3})
+</value>
+  </data>
+  <data name="StageXAACIFail" xml:space="preserve">
+    <value>Stage {0}: (did not activate)
+</value>
+  </data>
+  <data name="StarShellUsed" xml:space="preserve">
+    <value>Star Shell used</value>
   </data>
   <data name="TimeToCompletion" xml:space="preserve">
     <value>Completion time</value>
@@ -250,5 +342,24 @@ Range: {17} / Speed: {18}
   </data>
   <data name="TotalLoS" xml:space="preserve">
     <value>Total LoS</value>
+  </data>
+  <data name="WCWarningTitle" xml:space="preserve">
+    <value>Confirm Window Capture</value>
+  </data>
+  <data name="WindowCapture" xml:space="preserve">
+    <value>Window Capture</value>
+  </data>
+  <data name="WindowCaptureInst" xml:space="preserve">
+    <value>Drag and drop this icon to the window you wish to capture.</value>
+  </data>
+  <data name="WindowCaptureWarning" xml:space="preserve">
+    <value>This window will be captured. Are you sure?
+
+Warning: the captured window may become unstable and lead to loss of data.
+Save your data and return to port before capturing.
+</value>
+  </data>
+  <data name="WinRank" xml:space="preserve">
+    <value>Battle Rank</value>
   </data>
 </root>

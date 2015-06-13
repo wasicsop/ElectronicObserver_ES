@@ -61,11 +61,48 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 対空カットイン: {0}
+        ///カットイン種別: {1} ({2}).
+        /// </summary>
+        internal static string AACITooltip {
+            get {
+                return ResourceManager.GetString("AACITooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 対空カットイン.
+        /// </summary>
+        internal static string AACutIn {
+            get {
+                return ResourceManager.GetString("AACutIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 対空砲火.
+        /// </summary>
+        internal static string AAPower {
+            get {
+                return ResourceManager.GetString("AAPower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 制空戦力.
         /// </summary>
         internal static string AirPower {
             get {
                 return ResourceManager.GetString("AirPower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 制空権.
+        /// </summary>
+        internal static string AirSuperiority {
+            get {
+                return ResourceManager.GetString("AirSuperiority", resourceCulture);
             }
         }
         
@@ -124,6 +161,15 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 戦闘.
+        /// </summary>
+        internal static string Battle {
+            get {
+                return ResourceManager.GetString("Battle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 完成.
         /// </summary>
         internal static string Complete {
@@ -133,11 +179,38 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 触接中.
+        /// </summary>
+        internal static string Contacting {
+            get {
+                return ResourceManager.GetString("Contacting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to クリップボードにコピー(&amp;C).
         /// </summary>
         internal static string CopyToClipboard {
             get {
                 return ResourceManager.GetString("CopyToClipboard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 与ダメージ.
+        /// </summary>
+        internal static string DamageDone {
+            get {
+                return ResourceManager.GetString("DamageDone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 損害率.
+        /// </summary>
+        internal static string DamagePct {
+            get {
+                return ResourceManager.GetString("DamagePct", resourceCulture);
             }
         }
         
@@ -165,6 +238,51 @@ namespace ElectronicObserver.Window {
         internal static string DockTime {
             get {
                 return ResourceManager.GetString("DockTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 交戦形態.
+        /// </summary>
+        internal static string EncounterType {
+            get {
+                return ResourceManager.GetString("EncounterType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 敵軍艦隊.
+        /// </summary>
+        internal static string EnemyFleet {
+            get {
+                return ResourceManager.GetString("EnemyFleet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 敵陣形.
+        /// </summary>
+        internal static string EnemyFormation {
+            get {
+                return ResourceManager.GetString("EnemyFormation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 敵索敵.
+        /// </summary>
+        internal static string EnemyScout {
+            get {
+                return ResourceManager.GetString("EnemyScout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 随伴艦隊.
+        /// </summary>
+        internal static string EscortFleet {
+            get {
+                return ResourceManager.GetString("EscortFleet", resourceCulture);
             }
         }
         
@@ -201,6 +319,33 @@ namespace ElectronicObserver.Window {
         internal static string FleetTooltip {
             get {
                 return ResourceManager.GetString("FleetTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 自軍艦隊.
+        /// </summary>
+        internal static string FriendlyFleet {
+            get {
+                return ResourceManager.GetString("FriendlyFleet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 味方陣形.
+        /// </summary>
+        internal static string FriendlyFormation {
+            get {
+                return ResourceManager.GetString("FriendlyFormation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 味方索敵.
+        /// </summary>
+        internal static string FriendlyScout {
+            get {
+                return ResourceManager.GetString("FriendlyScout", resourceCulture);
             }
         }
         
@@ -250,6 +395,33 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 夜間触接.
+        /// </summary>
+        internal static string NightContact {
+            get {
+                return ResourceManager.GetString("NightContact", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 夜間触接中.
+        /// </summary>
+        internal static string NightContacting {
+            get {
+                return ResourceManager.GetString("NightContacting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (なし).
+        /// </summary>
+        internal static string None {
+            get {
+                return ResourceManager.GetString("None", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 射程.
         /// </summary>
         internal static string Range {
@@ -277,11 +449,38 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 索敵.
+        /// </summary>
+        internal static string Scouting {
+            get {
+                return ResourceManager.GetString("Scouting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to この画面をキャプチャ(&amp;S).
         /// </summary>
         internal static string ScreenCapture {
             get {
                 return ResourceManager.GetString("ScreenCapture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 探照灯照射.
+        /// </summary>
+        internal static string SearchlightUsed {
+            get {
+                return ResourceManager.GetString("SearchlightUsed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 第2次.
+        /// </summary>
+        internal static string SecondStage {
+            get {
+                return ResourceManager.GetString("SecondStage", resourceCulture);
             }
         }
         
@@ -304,11 +503,65 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 撃墜.
+        /// </summary>
+        internal static string ShotDown {
+            get {
+                return ResourceManager.GetString("ShotDown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 速力.
         /// </summary>
         internal static string Speed {
             get {
                 return ResourceManager.GetString("Speed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 第1次: -{0}/{1}\r\n第2次: -{2}/{3}\r\n.
+        /// </summary>
+        internal static string Stage2AATooltip {
+            get {
+                return ResourceManager.GetString("Stage2AATooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}触接中\r\n第1次: {1}\r\n第2次: {2}.
+        /// </summary>
+        internal static string Stage2ContactTooltip {
+            get {
+                return ResourceManager.GetString("Stage2ContactTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 第{0}次: {1}\r\nカットイン種別: {2} ({3})\r\n.
+        /// </summary>
+        internal static string StageXAACI {
+            get {
+                return ResourceManager.GetString("StageXAACI", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 第{0}次: (発動せず)\r\n.
+        /// </summary>
+        internal static string StageXAACIFail {
+            get {
+                return ResourceManager.GetString("StageXAACIFail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 照明弾投射.
+        /// </summary>
+        internal static string StarShellUsed {
+            get {
+                return ResourceManager.GetString("StarShellUsed", resourceCulture);
             }
         }
         
@@ -390,6 +643,55 @@ namespace ElectronicObserver.Window {
         internal static string TotalLoS {
             get {
                 return ResourceManager.GetString("TotalLoS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ウィンドウキャプチャの確認.
+        /// </summary>
+        internal static string WCWarningTitle {
+            get {
+                return ResourceManager.GetString("WCWarningTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ウィンドウキャプチャ.
+        /// </summary>
+        internal static string WindowCapture {
+            get {
+                return ResourceManager.GetString("WindowCapture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 取り込みたいウィンドウへボタンをドラッグ＆ドロップしてください。.
+        /// </summary>
+        internal static string WindowCaptureInst {
+            get {
+                return ResourceManager.GetString("WindowCaptureInst", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to このウィンドウをキャプチャします。よろしいですか？
+        ///
+        ///注意: ウィンドウによっては正常に取り込めず、不安定になる可能性があります。
+        ///データを保存する・母港に戻るなど、安全を確保してから実行してください。
+        ///.
+        /// </summary>
+        internal static string WindowCaptureWarning {
+            get {
+                return ResourceManager.GetString("WindowCaptureWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 戦績判定.
+        /// </summary>
+        internal static string WinRank {
+            get {
+                return ResourceManager.GetString("WinRank", resourceCulture);
             }
         }
     }

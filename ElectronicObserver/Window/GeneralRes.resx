@@ -117,8 +117,21 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AACITooltip" xml:space="preserve">
+    <value>対空カットイン: {0}
+カットイン種別: {1} ({2})</value>
+  </data>
+  <data name="AACutIn" xml:space="preserve">
+    <value>対空カットイン</value>
+  </data>
+  <data name="AAPower" xml:space="preserve">
+    <value>対空砲火</value>
+  </data>
   <data name="AirPower" xml:space="preserve">
     <value>制空戦力</value>
+  </data>
+  <data name="AirSuperiority" xml:space="preserve">
+    <value>制空権</value>
   </data>
   <data name="AntiAir" xml:space="preserve">
     <value>対空</value>
@@ -138,11 +151,23 @@
   <data name="ASW" xml:space="preserve">
     <value>対潜</value>
   </data>
+  <data name="Battle" xml:space="preserve">
+    <value>戦闘</value>
+  </data>
   <data name="Complete" xml:space="preserve">
     <value>完成</value>
   </data>
+  <data name="Contacting" xml:space="preserve">
+    <value>触接中</value>
+  </data>
   <data name="CopyToClipboard" xml:space="preserve">
     <value>クリップボードにコピー(&amp;C)</value>
+  </data>
+  <data name="DamageDone" xml:space="preserve">
+    <value>与ダメージ</value>
+  </data>
+  <data name="DamagePct" xml:space="preserve">
+    <value>損害率</value>
   </data>
   <data name="DayBattle" xml:space="preserve">
     <value>昼戦</value>
@@ -152,6 +177,21 @@
   </data>
   <data name="DockTime" xml:space="preserve">
     <value>入渠時間</value>
+  </data>
+  <data name="EncounterType" xml:space="preserve">
+    <value>交戦形態</value>
+  </data>
+  <data name="EnemyFleet" xml:space="preserve">
+    <value>敵軍艦隊</value>
+  </data>
+  <data name="EnemyFormation" xml:space="preserve">
+    <value>敵陣形</value>
+  </data>
+  <data name="EnemyScout" xml:space="preserve">
+    <value>敵索敵</value>
+  </data>
+  <data name="EscortFleet" xml:space="preserve">
+    <value>随伴艦隊</value>
   </data>
   <data name="Evasion" xml:space="preserve">
     <value>回避</value>
@@ -164,6 +204,15 @@
   </data>
   <data name="FleetTooltip" xml:space="preserve">
     <value>Lv合計: {0} / 平均: {1:0.00}\r\n{2}艦隊\r\nドラム缶搭載: {3}個 ({4}艦)\r\n大発動艇搭載: {5}個\r\n総積載: 燃 {6} / 弾 {7}\r\n(1戦当たり 燃 {8} / 弾 {9})</value>
+  </data>
+  <data name="FriendlyFleet" xml:space="preserve">
+    <value>自軍艦隊</value>
+  </data>
+  <data name="FriendlyFormation" xml:space="preserve">
+    <value>味方陣形</value>
+  </data>
+  <data name="FriendlyScout" xml:space="preserve">
+    <value>味方索敵</value>
   </data>
   <data name="IsTaiha" xml:space="preserve">
     <value>大破しています！</value>
@@ -180,6 +229,15 @@
   <data name="NightBattle" xml:space="preserve">
     <value>夜戦</value>
   </data>
+  <data name="NightContact" xml:space="preserve">
+    <value>夜間触接</value>
+  </data>
+  <data name="NightContacting" xml:space="preserve">
+    <value>夜間触接中</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>(なし)</value>
+  </data>
   <data name="Range" xml:space="preserve">
     <value>射程</value>
   </data>
@@ -189,8 +247,17 @@
   <data name="Retreating" xml:space="preserve">
     <value>退避中</value>
   </data>
+  <data name="Scouting" xml:space="preserve">
+    <value>索敵</value>
+  </data>
   <data name="ScreenCapture" xml:space="preserve">
     <value>この画面をキャプチャ(&amp;S)</value>
+  </data>
+  <data name="SearchlightUsed" xml:space="preserve">
+    <value>探照灯照射</value>
+  </data>
+  <data name="SecondStage" xml:space="preserve">
+    <value>第2次</value>
   </data>
   <data name="ShipGirl" xml:space="preserve">
     <value>艦娘</value>
@@ -198,8 +265,26 @@
   <data name="ShipTooltip" xml:space="preserve">
     <value>{0} {1}\n火力: {2}/{3}\n雷装: {4}/{5}\n対空: {6}/{7}\n装甲: {8}/{9}\n対潜: {10}/{11}\n回避: {12}/{13}\n索敵: {14}/{15}\n運: {16}\n射程: {17} / 速力: {18}\n(右クリックで図鑑)\n</value>
   </data>
+  <data name="ShotDown" xml:space="preserve">
+    <value>撃墜</value>
+  </data>
   <data name="Speed" xml:space="preserve">
     <value>速力</value>
+  </data>
+  <data name="Stage2AATooltip" xml:space="preserve">
+    <value>第1次: -{0}/{1}\r\n第2次: -{2}/{3}\r\n</value>
+  </data>
+  <data name="Stage2ContactTooltip" xml:space="preserve">
+    <value>{0}触接中\r\n第1次: {1}\r\n第2次: {2}</value>
+  </data>
+  <data name="StageXAACI" xml:space="preserve">
+    <value>第{0}次: {1}\r\nカットイン種別: {2} ({3})\r\n</value>
+  </data>
+  <data name="StageXAACIFail" xml:space="preserve">
+    <value>第{0}次: (発動せず)\r\n</value>
+  </data>
+  <data name="StarShellUsed" xml:space="preserve">
+    <value>照明弾投射</value>
   </data>
   <data name="TimeToCompletion" xml:space="preserve">
     <value>完了日時</value>
@@ -227,5 +312,24 @@
   </data>
   <data name="TotalLoS" xml:space="preserve">
     <value>索敵能力</value>
+  </data>
+  <data name="WCWarningTitle" xml:space="preserve">
+    <value>ウィンドウキャプチャの確認</value>
+  </data>
+  <data name="WindowCapture" xml:space="preserve">
+    <value>ウィンドウキャプチャ</value>
+  </data>
+  <data name="WindowCaptureInst" xml:space="preserve">
+    <value>取り込みたいウィンドウへボタンをドラッグ＆ドロップしてください。</value>
+  </data>
+  <data name="WindowCaptureWarning" xml:space="preserve">
+    <value>このウィンドウをキャプチャします。よろしいですか？
+
+注意: ウィンドウによっては正常に取り込めず、不安定になる可能性があります。
+データを保存する・母港に戻るなど、安全を確保してから実行してください。
+</value>
+  </data>
+  <data name="WinRank" xml:space="preserve">
+    <value>戦績判定</value>
   </data>
 </root>
