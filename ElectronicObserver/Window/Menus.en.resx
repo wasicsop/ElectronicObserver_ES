@@ -291,4 +291,7 @@
   <data name="WindowCapture" xml:space="preserve">
     <value>Window Capture (&amp;W)</value>
   </data>
+  <data name="ShowShipName" xml:space="preserve">
+    <value>Show Ship Name (&amp;V)</value>
+  </data>
 </root>

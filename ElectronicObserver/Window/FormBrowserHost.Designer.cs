@@ -1,4 +1,5 @@
-﻿namespace ElectronicObserver.Window {
+﻿using ElectronicObserver.Properties;
+namespace ElectronicObserver.Window {
 	partial class FormBrowserHost {
 		/// <summary>
 		/// Required designer variable.
@@ -35,7 +36,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.HideOnClose = true;
             this.Name = "FormBrowserHost";
-            this.Text = "ブラウザ";
+            this.Text = Resources.Browser;
             this.Load += new System.EventHandler(this.FormBrowser_Load);
             this.Resize += new System.EventHandler(this.FormBrowserHost_Resize);
             this.ResumeLayout(false);

@@ -88,14 +88,14 @@
 			// 
 			this.ContextMenuFleet_CopyFleet.Name = "ContextMenuFleet_CopyFleet";
 			this.ContextMenuFleet_CopyFleet.Size = new System.Drawing.Size(226, 22);
-			this.ContextMenuFleet_CopyFleet.Text = "クリップボードにコピー(&C)";
+			this.ContextMenuFleet_CopyFleet.Text = GeneralRes.CopyToClipboard;
 			this.ContextMenuFleet_CopyFleet.Click += new System.EventHandler(this.ContextMenuFleet_CopyFleet_Click);
 			// 
 			// ContextMenuFleet_Capture
 			// 
 			this.ContextMenuFleet_Capture.Name = "ContextMenuFleet_Capture";
 			this.ContextMenuFleet_Capture.Size = new System.Drawing.Size(226, 22);
-			this.ContextMenuFleet_Capture.Text = "この画面をキャプチャ(&S)";
+			this.ContextMenuFleet_Capture.Text = GeneralRes.ScreenCapture;
 			this.ContextMenuFleet_Capture.Click += new System.EventHandler(this.ContextMenuFleet_Capture_Click);
 			// 
 			// toolStripSeparator1
@@ -110,7 +110,7 @@
 			this.ContextMenuFleet_IsScrollable.Enabled = false;
 			this.ContextMenuFleet_IsScrollable.Name = "ContextMenuFleet_IsScrollable";
 			this.ContextMenuFleet_IsScrollable.Size = new System.Drawing.Size(226, 22);
-			this.ContextMenuFleet_IsScrollable.Text = "スクロール可能";
+			this.ContextMenuFleet_IsScrollable.Text = Dialog.ConfigRes.IsScrollable;
 			this.ContextMenuFleet_IsScrollable.Visible = false;
 			this.ContextMenuFleet_IsScrollable.Click += new System.EventHandler(this.ContextMenuFleet_IsScrollable_Click);
 			// 
@@ -120,7 +120,7 @@
 			this.ContextMenuFleet_FixShipNameWidth.Enabled = false;
 			this.ContextMenuFleet_FixShipNameWidth.Name = "ContextMenuFleet_FixShipNameWidth";
 			this.ContextMenuFleet_FixShipNameWidth.Size = new System.Drawing.Size(226, 22);
-			this.ContextMenuFleet_FixShipNameWidth.Text = "艦名の幅を固定する";
+			this.ContextMenuFleet_FixShipNameWidth.Text = Dialog.ConfigRes.FixShipNameWidth;
 			this.ContextMenuFleet_FixShipNameWidth.Visible = false;
 			this.ContextMenuFleet_FixShipNameWidth.Click += new System.EventHandler(this.ContextMenuFleet_FixShipNameWidth_Click);
 			// 

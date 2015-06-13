@@ -273,6 +273,9 @@
   <data name="ShipGroup" xml:space="preserve">
     <value>艦船グループ(&amp;G)</value>
   </data>
+  <data name="ShowShipName" xml:space="preserve">
+    <value>艦名を表示(&amp;V)</value>
+  </data>
   <data name="ShowToolMenu" xml:space="preserve">
     <value>ツールメニューを表示</value>
   </data>

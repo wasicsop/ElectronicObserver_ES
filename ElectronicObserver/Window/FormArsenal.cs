@@ -115,14 +115,14 @@ namespace ElectronicObserver.Window {
 					tooltip.SetToolTip( ShipName, name );
 					CompletionTime.Text = DateTimeHelper.ToTimeRemainString( arsenal.CompletionTime );
 					CompletionTime.Tag = arsenal.CompletionTime;
-					tooltip.SetToolTip( CompletionTime, "完了日時 : " + arsenal.CompletionTime.ToString() );
+					tooltip.SetToolTip( CompletionTime, GeneralRes.TimeToCompletion + ":" + arsenal.CompletionTime.ToString() );
 
 				} else if ( arsenal.State == 3 ) {
 					//complete!
 					string name = showShipName ? db.MasterShips[arsenal.ShipID].Name : "???";
 					ShipName.Text = name;
 					tooltip.SetToolTip( ShipName, name );
-					CompletionTime.Text = "完成！";
+					CompletionTime.Text = GeneralRes.Complete + "!";
 					CompletionTime.Tag = null;
 					
 				}
@@ -195,10 +195,10 @@ namespace ElectronicObserver.Window {
 
 				} else {
 
-					name = "艦娘";
+					name = GeneralRes.ShipGirl;
 				}
 
-				Utility.Logger.Add( 2, string.Format( "工廠ドック #{0}で {1}の建造を開始しました。({2}/{3}/{4}/{5}-{6} 秘書艦: {7})",
+				Utility.Logger.Add( 2, string.Format( GeneralRes.ArsenalLog,
 					_buildingID,
 					name,
 					arsenal.Fuel,

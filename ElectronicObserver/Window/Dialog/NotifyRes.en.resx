@@ -1,0 +1,346 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ActivationHint" xml:space="preserve">
+    <value>Make the dialog active on display.
+Disabling will decrease interference but make notifications easier to miss.</value>
+  </data>
+  <data name="AlignBottom" xml:space="preserve">
+    <value>Bottom</value>
+  </data>
+  <data name="AlignBottomLeft" xml:space="preserve">
+    <value>Bottom Left</value>
+  </data>
+  <data name="AlignBottomRight" xml:space="preserve">
+    <value>Bottom Right</value>
+  </data>
+  <data name="AlignCenter" xml:space="preserve">
+    <value>Center</value>
+  </data>
+  <data name="AlignHint" xml:space="preserve">
+    <value>Set the location where the notifications appear.</value>
+  </data>
+  <data name="AlignLeft" xml:space="preserve">
+    <value>Left</value>
+  </data>
+  <data name="AlignManualAbs" xml:space="preserve">
+    <value>Manual (Absolute)</value>
+  </data>
+  <data name="AlignManualRel" xml:space="preserve">
+    <value>Manual (Relative)</value>
+  </data>
+  <data name="Alignment" xml:space="preserve">
+    <value>Alignment</value>
+  </data>
+  <data name="AlignRight" xml:space="preserve">
+    <value>Right</value>
+  </data>
+  <data name="AlignTop" xml:space="preserve">
+    <value>Top</value>
+  </data>
+  <data name="AlignTopLeft" xml:space="preserve">
+    <value>Top Left</value>
+  </data>
+  <data name="AlignTopRight" xml:space="preserve">
+    <value>Top Right</value>
+  </data>
+  <data name="AlignUnset" xml:space="preserve">
+    <value>Unset</value>
+  </data>
+  <data name="AutoClose" xml:space="preserve">
+    <value>Auto-close</value>
+  </data>
+  <data name="BackColorDispHint" xml:space="preserve">
+    <value>See the background color of the notification dialog.
+The square (■) allows you to preview.
+</value>
+  </data>
+  <data name="BackColorDisplay" xml:space="preserve">
+    <value>■BG</value>
+  </data>
+  <data name="BackColorSelect" xml:space="preserve">
+    <value>Set the background color of the notification dialog.
+The square to the left (■) allows you to preview.
+</value>
+  </data>
+  <data name="CloseOn" xml:space="preserve">
+    <value>Close on</value>
+  </data>
+  <data name="DamageOptions" xml:space="preserve">
+    <value>Damage Options</value>
+  </data>
+  <data name="DisplayMessage" xml:space="preserve">
+    <value>Display message</value>
+  </data>
+  <data name="DisplayMessageHint" xml:space="preserve">
+    <value>Displays the notification text in the dialog.
+Disabling allows you to see an image only.</value>
+  </data>
+  <data name="DisplayWindowBorder" xml:space="preserve">
+    <value>Display border</value>
+  </data>
+  <data name="Enable" xml:space="preserve">
+    <value>Enable</value>
+  </data>
+  <data name="EnableNotify" xml:space="preserve">
+    <value>Enable notification</value>
+  </data>
+  <data name="FailedLoadImage" xml:space="preserve">
+    <value>Failed to load image file.</value>
+  </data>
+  <data name="FailedLoadSound" xml:space="preserve">
+    <value>Failed to load sound file.</value>
+  </data>
+  <data name="ForeColorDispHint" xml:space="preserve">
+    <value>See the foreground color of the notification dialog.
+The square (■) allows you to preview.</value>
+  </data>
+  <data name="ForeColorDisplay" xml:space="preserve">
+    <value>■FG</value>
+  </data>
+  <data name="ForeColorSelect" xml:space="preserve">
+    <value>Set the foreground color of the notification dialog.
+The square to the left (■) allows you to preview.</value>
+  </data>
+  <data name="HurryBy" xml:space="preserve">
+    <value>Hurry by</value>
+  </data>
+  <data name="HurryHint" xml:space="preserve">
+    <value>Allows you to display notification before timer end.
+Hurrying dock and expedition notifications by 60 seconds is recommended.</value>
+  </data>
+  <data name="Image" xml:space="preserve">
+    <value>Image</value>
+  </data>
+  <data name="IncludeDamecon" xml:space="preserve">
+    <value>Include damecon</value>
+  </data>
+  <data name="IncludeFlagship" xml:space="preserve">
+    <value>Include flagship</value>
+  </data>
+  <data name="IncludeUnlocked" xml:space="preserve">
+    <value>Include unlocked</value>
+  </data>
+  <data name="IntervalHint" xml:space="preserve">
+    <value>Specify the number of second the dialog will stay open until automatically closing.
+Setting 0 seconds will cause the notification to never automatically close.</value>
+  </data>
+  <data name="LeftClick" xml:space="preserve">
+    <value>Left click</value>
+  </data>
+  <data name="LeftDoubleClick" xml:space="preserve">
+    <value>Left double-click</value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>Location</value>
+  </data>
+  <data name="LocXHint" xml:space="preserve">
+    <value>Set the X coordinate of the manual location.</value>
+  </data>
+  <data name="LocYHint" xml:space="preserve">
+    <value>Set the Y coordinate of the manual location.</value>
+  </data>
+  <data name="LvHint" xml:space="preserve">
+    <value>Set the lowest level a critical damage warning will appear.
+Be careful, lower levels will not display</value>
+  </data>
+  <data name="MiddleClick" xml:space="preserve">
+    <value>Middle click</value>
+  </data>
+  <data name="MiddleDoubleClick" xml:space="preserve">
+    <value>Middle double-click</value>
+  </data>
+  <data name="MinLv" xml:space="preserve">
+    <value>Min. Lv.</value>
+  </data>
+  <data name="MouseOver" xml:space="preserve">
+    <value>Mouseover</value>
+  </data>
+  <data name="NotifyAfter" xml:space="preserve">
+    <value>Notify after advance</value>
+  </data>
+  <data name="NotifyAfterHint" xml:space="preserve">
+    <value>Notifies when advancing at critical.</value>
+  </data>
+  <data name="NotifyBefore" xml:space="preserve">
+    <value>Notify before.</value>
+  </data>
+  <data name="NotifyBeforeHint" xml:space="preserve">
+    <value>Notify before sortie or at the start of battle.</value>
+  </data>
+  <data name="NotifyDialog" xml:space="preserve">
+    <value>Notification Dialog</value>
+  </data>
+  <data name="NotifyDisplayError" xml:space="preserve">
+    <value>Notification system: failed to display notification image.</value>
+  </data>
+  <data name="NotifyEndHint" xml:space="preserve">
+    <value>Notify even on the end nodes of maps.</value>
+  </data>
+  <data name="NotifyEndNodes" xml:space="preserve">
+    <value>Notify on end nodes</value>
+  </data>
+  <data name="NotifyNow" xml:space="preserve">
+    <value>Notify now</value>
+  </data>
+  <data name="NotifyNowHint" xml:space="preserve">
+    <value>Notify before sortie or at the end of battle.</value>
+  </data>
+  <data name="OpenImage" xml:space="preserve">
+    <value>Open Image File</value>
+  </data>
+  <data name="OpenSound" xml:space="preserve">
+    <value>Open Sound File</value>
+  </data>
+  <data name="RightClick" xml:space="preserve">
+    <value>Right click</value>
+  </data>
+  <data name="RightDoubleClick" xml:space="preserve">
+    <value>Right double-click</value>
+  </data>
+  <data name="Sec" xml:space="preserve">
+    <value>sec.</value>
+  </data>
+  <data name="ShowOnTop" xml:space="preserve">
+    <value>Show on Top</value>
+  </data>
+  <data name="ShowWithActivation" xml:space="preserve">
+    <value>Show with activation</value>
+  </data>
+  <data name="Sound" xml:space="preserve">
+    <value>Sound</value>
+  </data>
+  <data name="Test" xml:space="preserve">
+    <value>Test</value>
+  </data>
+  <data name="TestHint" xml:space="preserve">
+    <value>Carry out a notification test.
+Check to make sure you have applied or saved settings first.</value>
+  </data>
+  <data name="TestNotification" xml:space="preserve">
+    <value>This is a test notification.</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Notification Settings</value>
+  </data>
+  <data name="WindowBorderHint" xml:space="preserve">
+    <value>Display the border to the notification dialog.
+Disabling allows you to only show an image.</value>
+  </data>
+</root>

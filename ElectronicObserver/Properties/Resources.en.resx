@@ -144,14 +144,35 @@ Okay?</value>
   <data name="BadUpdateURI" xml:space="preserve">
     <value>Update data URI was not successful.</value>
   </data>
+  <data name="Browser" xml:space="preserve">
+    <value>Browser</value>
+  </data>
+  <data name="BrowserClosedWithoutWarning" xml:space="preserve">
+    <value>The browser process closed unexpectedly.</value>
+  </data>
+  <data name="BrowserCloseError" xml:space="preserve">
+    <value>The browser had an error during closing.</value>
+  </data>
+  <data name="BrowserThrewError" xml:space="preserve">
+    <value>The browser process had a communication error.</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
   <data name="ClosingComplete" xml:space="preserve">
     <value>Closing complete.</value>
   </data>
   <data name="Confirm" xml:space="preserve">
     <value>Confirm</value>
   </data>
+  <data name="DevelopedBy" xml:space="preserve">
+    <value>Original</value>
+  </data>
   <data name="Error" xml:space="preserve">
     <value>Error</value>
+  </data>
+  <data name="FailedBrowserStart" xml:space="preserve">
+    <value>Failed to start the browser process.</value>
   </data>
   <data name="Help" xml:space="preserve">
     <value>Help</value>
@@ -194,11 +215,20 @@ Add windows of your choosing using the "View" menu.</value>
   <data name="OpenLayout" xml:space="preserve">
     <value>Open Layout File</value>
   </data>
+  <data name="OriginalSite" xml:space="preserve">
+    <value>Original Site (bug reports, contact)</value>
+  </data>
   <data name="SoftwareName" xml:space="preserve">
-    <value>Type 74 Electronic Observer</value>
+    <value>Type 74 Electronic Observer </value>
   </data>
   <data name="StartupComplete" xml:space="preserve">
     <value>Startup complete.</value>
+  </data>
+  <data name="TranslatedSite" xml:space="preserve">
+    <value>Translation Site</value>
+  </data>
+  <data name="TranslatedVer" xml:space="preserve">
+    <value>Translation</value>
   </data>
   <data name="Update" xml:space="preserve">
     <value>Update</value>
@@ -214,6 +244,9 @@ Add windows of your choosing using the "View" menu.</value>
   </data>
   <data name="VersionCurrent" xml:space="preserve">
     <value>You are currently using the latest version.</value>
+  </data>
+  <data name="VersionTitle" xml:space="preserve">
+    <value>Version</value>
   </data>
   <data name="ZoomCurrent" xml:space="preserve">
     <value>Current</value>

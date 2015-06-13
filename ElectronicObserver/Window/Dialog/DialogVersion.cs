@@ -40,5 +40,15 @@ namespace ElectronicObserver.Window.Dialog {
 
 			this.Icon = ResourceManager.Instance.AppIcon;
 		}
-	}
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://tumblr.rkitsune.com/elecobs");
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://tumblr.rkitsune.com/");
+        }
+    }
 }

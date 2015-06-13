@@ -529,6 +529,15 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 艦名を表示(&amp;V).
+        /// </summary>
+        internal static string ShowShipName {
+            get {
+                return ResourceManager.GetString("ShowShipName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ツールメニューを表示.
         /// </summary>
         internal static string ShowToolMenu {

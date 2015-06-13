@@ -117,138 +117,115 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AskClose" xml:space="preserve">
-    <value> を終了しますか？</value>
+  <data name="AirPower" xml:space="preserve">
+    <value>制空戦力</value>
   </data>
-  <data name="AskForUpdate" xml:space="preserve">
-    <value>新しいバージョンがリリースされています！ : {0}\
-更新内容 : 
-{1}
-ダウンロードページを開きますか？
-(キャンセルすると以降表示しません)</value>
+  <data name="AntiAir" xml:space="preserve">
+    <value>対空</value>
   </data>
-  <data name="AskLoad" xml:space="preserve">
-    <value>セーブしていないレコードが失われる可能性があります。
-ロードしますか？</value>
+  <data name="Armor" xml:space="preserve">
+    <value>装甲</value>
   </data>
-  <data name="AskLogin" xml:space="preserve">
-    <value>ログインページへ移動します。
-よろしいですか？</value>
+  <data name="Arsenal" xml:space="preserve">
+    <value>工廠</value>
   </data>
-  <data name="AskNavText" xml:space="preserve">
-    <value>移動先の URL を入力してください。</value>
+  <data name="ArsenalLog" xml:space="preserve">
+    <value>工廠ドック #{0}で {1}の建造を開始しました。({2}/{3}/{4}/{5}-{6} 秘書艦: {7})</value>
   </data>
-  <data name="AskNavTitle" xml:space="preserve">
-    <value>移動先の入力</value>
+  <data name="ASTooltip" xml:space="preserve">
+    <value>確保: {0}\r\n優勢: {1}\r\n均衡: {2}\r\n劣勢: {3}\r\n</value>
   </data>
-  <data name="BadUpdateURI" xml:space="preserve">
-    <value>アップデート情報の URI が無効です。</value>
+  <data name="ASW" xml:space="preserve">
+    <value>対潜</value>
   </data>
-  <data name="Browser" xml:space="preserve">
-    <value>ブラウザ</value>
+  <data name="Complete" xml:space="preserve">
+    <value>完成</value>
   </data>
-  <data name="BrowserClosedWithoutWarning" xml:space="preserve">
-    <value>ブラウザプロセスが予期せず終了しました。</value>
+  <data name="CopyToClipboard" xml:space="preserve">
+    <value>クリップボードにコピー(&amp;C)</value>
   </data>
-  <data name="BrowserCloseError" xml:space="preserve">
-    <value>ブラウザの終了中にエラーが発生しました。</value>
+  <data name="DayBattle" xml:space="preserve">
+    <value>昼戦</value>
   </data>
-  <data name="BrowserThrewError" xml:space="preserve">
-    <value>ブラウザプロセス間で通信エラーが発生しました。</value>
+  <data name="Dock" xml:space="preserve">
+    <value>入渠</value>
   </data>
-  <data name="Close" xml:space="preserve">
-    <value>閉じる</value>
+  <data name="DockTime" xml:space="preserve">
+    <value>入渠時間</value>
   </data>
-  <data name="ClosingComplete" xml:space="preserve">
-    <value>終了処理が完了しました。</value>
+  <data name="Evasion" xml:space="preserve">
+    <value>回避</value>
   </data>
-  <data name="Confirm" xml:space="preserve">
-    <value>確認</value>
+  <data name="FatigueRestoreTime" xml:space="preserve">
+    <value>完全回復まで 約 {0:D2}:{1:D2}</value>
   </data>
-  <data name="DevelopedBy" xml:space="preserve">
-    <value>開発</value>
+  <data name="Firepower" xml:space="preserve">
+    <value>火力</value>
   </data>
-  <data name="Error" xml:space="preserve">
-    <value>エラー</value>
+  <data name="FleetTooltip" xml:space="preserve">
+    <value>Lv合計: {0} / 平均: {1:0.00}\r\n{2}艦隊\r\nドラム缶搭載: {3}個 ({4}艦)\r\n大発動艇搭載: {5}個\r\n総積載: 燃 {6} / 弾 {7}\r\n(1戦当たり 燃 {8} / 弾 {9})</value>
   </data>
-  <data name="FailedBrowserStart" xml:space="preserve">
-    <value>ブラウザプロセスの起動に失敗しました。</value>
+  <data name="IsTaiha" xml:space="preserve">
+    <value>大破しています！</value>
   </data>
-  <data name="Help" xml:space="preserve">
-    <value>ヘルプ</value>
+  <data name="LoS" xml:space="preserve">
+    <value>索敵</value>
   </data>
-  <data name="HelpAddress" xml:space="preserve">
-    <value>https://github.com/andanteyk/ElectronicObserver/wiki</value>
+  <data name="LoSTooltip" xml:space="preserve">
+    <value>(旧)2-5式: {0}\r\n2-5式(秋): {1}\r\n2-5新秋簡易式: {2}\r\n</value>
   </data>
-  <data name="HelpAsk" xml:space="preserve">
-    <value>外部ブラウザでオンラインヘルプを開きます。
-よろしいですか？</value>
+  <data name="Luck" xml:space="preserve">
+    <value>運</value>
   </data>
-  <data name="InitLayout" xml:space="preserve">
-    <value>レイアウトが初期化されました。
-「表示」メニューからお好みのウィンドウを追加してください。</value>
+  <data name="NightBattle" xml:space="preserve">
+    <value>夜戦</value>
   </data>
-  <data name="IsClosing" xml:space="preserve">
-    <value> を終了しています…</value>
+  <data name="Range" xml:space="preserve">
+    <value>射程</value>
   </data>
-  <data name="IsStarting" xml:space="preserve">
-    <value> を起動しています…</value>
+  <data name="RemainingExpeds" xml:space="preserve">
+    <value>あと {0} 回遠征可能</value>
   </data>
-  <data name="LayoutLoaded" xml:space="preserve">
-    <value>ウィンドウ レイアウトを復元しました。</value>
+  <data name="Retreating" xml:space="preserve">
+    <value>退避中</value>
   </data>
-  <data name="LayoutSaved" xml:space="preserve">
-    <value>ウィンドウ レイアウトを保存しました。</value>
+  <data name="ScreenCapture" xml:space="preserve">
+    <value>この画面をキャプチャ(&amp;S)</value>
   </data>
-  <data name="NewVersionFound" xml:space="preserve">
-    <value>新しいバージョンがリリースされています！ :</value>
+  <data name="ShipGirl" xml:space="preserve">
+    <value>艦娘</value>
   </data>
-  <data name="NoEquipData" xml:space="preserve">
-    <value>装備データが読み込まれていません。</value>
+  <data name="ShipTooltip" xml:space="preserve">
+    <value>{0} {1}\n火力: {2}/{3}\n雷装: {4}/{5}\n対空: {6}/{7}\n装甲: {8}/{9}\n対潜: {10}/{11}\n回避: {12}/{13}\n索敵: {14}/{15}\n運: {16}\n射程: {17} / 速力: {18}\n(右クリックで図鑑)\n</value>
   </data>
-  <data name="NoLayoutFound" xml:space="preserve">
-    <value>ウィンドウ レイアウト ファイルは存在しません。</value>
+  <data name="Speed" xml:space="preserve">
+    <value>速力</value>
   </data>
-  <data name="NoShipData" xml:space="preserve">
-    <value>艦船データが読み込まれていません。</value>
+  <data name="TimeToCompletion" xml:space="preserve">
+    <value>完了日時</value>
   </data>
-  <data name="OpenLayout" xml:space="preserve">
-    <value>レイアウト ファイルを開く</value>
+  <data name="To150" xml:space="preserve">
+    <value>Lv150まで: {0}</value>
   </data>
-  <data name="OriginalSite" xml:space="preserve">
-    <value>配布元(不具合報告・連絡はこちらへ)</value>
+  <data name="To99" xml:space="preserve">
+    <value>Lv99まで: {0}</value>
   </data>
-  <data name="SoftwareName" xml:space="preserve">
-    <value>七四式電子観測儀</value>
+  <data name="ToHeavy" xml:space="preserve">
+    <value>大破まで: {0}</value>
   </data>
-  <data name="StartupComplete" xml:space="preserve">
-    <value>起動処理が完了しました。</value>
+  <data name="ToMidAndHeavy" xml:space="preserve">
+    <value>中破まで: {0} / 大破まで: {1}\n</value>
   </data>
-  <data name="TranslatedSite" xml:space="preserve">
-    <value>翻訳版元</value>
+  <data name="ToNextLevel" xml:space="preserve">
+    <value>次のレベルまで: {0}</value>
   </data>
-  <data name="TranslatedVer" xml:space="preserve">
-    <value>翻訳版</value>
+  <data name="ToRemodel" xml:space="preserve">
+    <value>改装まで: {0}</value>
   </data>
-  <data name="Update" xml:space="preserve">
-    <value>アップデート情報</value>
+  <data name="Torpedo" xml:space="preserve">
+    <value>雷装</value>
   </data>
-  <data name="UpdateCheckFailed" xml:space="preserve">
-    <value>アップデート情報の取得に失敗しました。</value>
-  </data>
-  <data name="UpdateConnectionFailed" xml:space="preserve">
-    <value>アップデート情報の処理に失敗しました。</value>
-  </data>
-  <data name="Version" xml:space="preserve">
-    <value>一三型</value>
-  </data>
-  <data name="VersionCurrent" xml:space="preserve">
-    <value>お使いのバージョンは最新です。</value>
-  </data>
-  <data name="VersionTitle" xml:space="preserve">
-    <value>バージョン</value>
-  </data>
-  <data name="ZoomCurrent" xml:space="preserve">
-    <value>現在</value>
+  <data name="TotalLoS" xml:space="preserve">
+    <value>索敵能力</value>
   </data>
 </root>
