@@ -65,7 +65,7 @@
 			this.HideOnClose = true;
 			this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.Name = "FormFleetOverview";
-			this.Text = "艦隊";
+			this.Text = GeneralRes.FleetList;
 			this.Load += new System.EventHandler(this.FormFleetOverview_Load);
 			this.ResumeLayout(false);
 			this.PerformLayout();

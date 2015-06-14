@@ -127,11 +127,38 @@ Cut-in type: {1} ({2})</value>
   <data name="AAPower" xml:space="preserve">
     <value>AA Firepower</value>
   </data>
+  <data name="Achieved" xml:space="preserve">
+    <value>Complete!</value>
+  </data>
+  <data name="AddFleetToGroupMenu" xml:space="preserve">
+    <value>Add current fleet to group (&amp;G)...</value>
+  </data>
+  <data name="AddGroup" xml:space="preserve">
+    <value>Add Group</value>
+  </data>
+  <data name="AddGroupMenu" xml:space="preserve">
+    <value>Add Group(&amp;A)</value>
+  </data>
+  <data name="AddToGroupMenu" xml:space="preserve">
+    <value>Add to group (&amp;A)...</value>
+  </data>
+  <data name="AdmiralXP" xml:space="preserve">
+    <value>Admiral XP</value>
+  </data>
   <data name="AirPower" xml:space="preserve">
     <value>Air Power</value>
   </data>
   <data name="AirSuperiority" xml:space="preserve">
     <value>Superiority</value>
+  </data>
+  <data name="AllAssignedShips" xml:space="preserve">
+    <value>All Assigned Ships</value>
+  </data>
+  <data name="AllComplete" xml:space="preserve">
+    <value>(All quests complete!)</value>
+  </data>
+  <data name="Ammo" xml:space="preserve">
+    <value>Ammo</value>
   </data>
   <data name="AntiAir" xml:space="preserve">
     <value>AA</value>
@@ -145,6 +172,9 @@ Cut-in type: {1} ({2})</value>
   <data name="ArsenalLog" xml:space="preserve">
     <value>{1} has started construction in arsenal dock #{0}. ({2}/{3}/{4}/{5}-{6} Secretary: {7})</value>
   </data>
+  <data name="AssignedCount" xml:space="preserve">
+    <value>{0} Ships Assigned</value>
+  </data>
   <data name="ASTooltip" xml:space="preserve">
     <value>Supremacy: {0}
 Superiority: {1}
@@ -155,8 +185,59 @@ Denial: {3}
   <data name="ASW" xml:space="preserve">
     <value>ASW</value>
   </data>
+  <data name="AutoAdjustColumns" xml:space="preserve">
+    <value>Automatically adjust columns (&amp;D)</value>
+  </data>
+  <data name="AutoUpdate" xml:space="preserve">
+    <value>Automatically update</value>
+  </data>
+  <data name="AverageLevel" xml:space="preserve">
+    <value>Average Level: {0:F2}</value>
+  </data>
   <data name="Battle" xml:space="preserve">
     <value>Battle</value>
+  </data>
+  <data name="BranchChoice" xml:space="preserve">
+    <value>Branch Choice</value>
+  </data>
+  <data name="CannotChangeGroup" xml:space="preserve">
+    <value>Could not change the name of the group.</value>
+  </data>
+  <data name="CannotChangeGroupName" xml:space="preserve">
+    <value>Could not change the group name.</value>
+  </data>
+  <data name="CannotDeleteGroup" xml:space="preserve">
+    <value>Could not delete the group.</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="CategoryFilter" xml:space="preserve">
+    <value>Category (&amp;C)</value>
+  </data>
+  <data name="ChangeGroupName" xml:space="preserve">
+    <value>Change Group Name</value>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>Clear (&amp;C)</value>
+  </data>
+  <data name="Compass" xml:space="preserve">
+    <value>Compass</value>
+  </data>
+  <data name="CompassShipTooltip" xml:space="preserve">
+    <value>{0} {1}{2}
+HP: {3}
+Firepower: {4}/{5}
+Torpedo: {6}/{7}
+AA: {8}/{9}
+Armor: {10}/{11}
+ASW: {12}/{13}
+Evasion: {14}/{15}
+LoS: {16}/{17}
+Luck: {18}/{19}
+Range: {20} / Speed: {21}
+(Right click for encyclopedia)
+</value>
   </data>
   <data name="Complete" xml:space="preserve">
     <value>Complete</value>
@@ -167,6 +248,21 @@ Denial: {3}
   <data name="CopyToClipboard" xml:space="preserve">
     <value>Copy to Clipboard (&amp;C)</value>
   </data>
+  <data name="CreateGroup" xml:space="preserve">
+    <value>Create Group</value>
+  </data>
+  <data name="CreateGroupMenu" xml:space="preserve">
+    <value>Create a new group (&amp;C)...</value>
+  </data>
+  <data name="CreateGroupName" xml:space="preserve">
+    <value>Please enter the name of the group you wish to create:</value>
+  </data>
+  <data name="CurrentHealth" xml:space="preserve">
+    <value>Current Health</value>
+  </data>
+  <data name="DamagedArtUnseen" xml:space="preserve">
+    <value>[Damaged Art Unseen]</value>
+  </data>
   <data name="DamageDone" xml:space="preserve">
     <value>Damage done</value>
   </data>
@@ -176,23 +272,63 @@ Denial: {3}
   <data name="DayBattle" xml:space="preserve">
     <value>Day Battle</value>
   </data>
+  <data name="Defeated" xml:space="preserve">
+    <value>Defeated</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete (&amp;D)</value>
+  </data>
+  <data name="DeleteGroup" xml:space="preserve">
+    <value>Delete the group [{0}]?
+This action cannot be undone.</value>
+  </data>
+  <data name="DeleteGroupMenu" xml:space="preserve">
+    <value>Delete group (&amp;D)</value>
+  </data>
+  <data name="DevelopmentFailed" xml:space="preserve">
+    <value>[Development Failed]</value>
+  </data>
   <data name="Dock" xml:space="preserve">
     <value>Dock</value>
   </data>
   <data name="DockTime" xml:space="preserve">
     <value>Dock Time</value>
   </data>
+  <data name="DontScrollNames" xml:space="preserve">
+    <value>Do not scroll ship names (&amp;S)</value>
+  </data>
   <data name="EncounterType" xml:space="preserve">
     <value>Encounter</value>
+  </data>
+  <data name="EndNode" xml:space="preserve">
+    <value> (End)</value>
   </data>
   <data name="EnemyFleet" xml:space="preserve">
     <value>Enemy</value>
   </data>
+  <data name="EnemyFleetID" xml:space="preserve">
+    <value>Enemy Fleet ID</value>
+  </data>
+  <data name="EnemyFleetName" xml:space="preserve">
+    <value>(Enemy Fleet Name)</value>
+  </data>
   <data name="EnemyFormation" xml:space="preserve">
     <value>Enemy Formation</value>
   </data>
+  <data name="EnemyPlaneSighted" xml:space="preserve">
+    <value>Enemy plane sighted!</value>
+  </data>
   <data name="EnemyScout" xml:space="preserve">
     <value>Enemy Scout</value>
+  </data>
+  <data name="EnemySighted" xml:space="preserve">
+    <value>Enemy sighted!</value>
+  </data>
+  <data name="EnemyUnknown" xml:space="preserve">
+    <value>(Enemy Unknown)</value>
+  </data>
+  <data name="Equipment" xml:space="preserve">
+    <value>Equipment</value>
   </data>
   <data name="EscortFleet" xml:space="preserve">
     <value>Escort</value>
@@ -200,11 +336,26 @@ Denial: {3}
   <data name="Evasion" xml:space="preserve">
     <value>Evasion</value>
   </data>
+  <data name="ExpeditionReturned" xml:space="preserve">
+    <value>[Expedition Returned]</value>
+  </data>
+  <data name="FailedToCreateCSV" xml:space="preserve">
+    <value>Failed to create a ship group CSV.</value>
+  </data>
   <data name="FatigueRestoreTime" xml:space="preserve">
     <value>Approx. {0:D2}:{1:D2} before morale fully restored.</value>
   </data>
+  <data name="FilterBy" xml:space="preserve">
+    <value>Filter By (&amp;C)</value>
+  </data>
   <data name="Firepower" xml:space="preserve">
     <value>Firepower</value>
+  </data>
+  <data name="Fleet" xml:space="preserve">
+    <value>Fleet</value>
+  </data>
+  <data name="FleetList" xml:space="preserve">
+    <value>Fleet List</value>
   </data>
   <data name="FleetTooltip" xml:space="preserve">
     <value>Lv. Total {0} / Average: {1:0.00}
@@ -223,8 +374,40 @@ Total Consumption: Fuel {6} / Ammo {7}
   <data name="FriendlyScout" xml:space="preserve">
     <value>Friendly Scout</value>
   </data>
+  <data name="Fuel" xml:space="preserve">
+    <value>Fuel</value>
+  </data>
+  <data name="Group" xml:space="preserve">
+    <value>Group</value>
+  </data>
+  <data name="Headquarters" xml:space="preserve">
+    <value>Headquarters</value>
+  </data>
+  <data name="Information" xml:space="preserve">
+    <value>Information</value>
+  </data>
+  <data name="Initialize" xml:space="preserve">
+    <value>Initialize (&amp;I)</value>
+  </data>
+  <data name="InitializeQuestData" xml:space="preserve">
+    <value>This will initialize all quest data.
+Use outside of a demonstrated inconsistency is not recommended.
+Are you sure?</value>
+  </data>
+  <data name="InitQuestTitle" xml:space="preserve">
+    <value>Confirm Quest Data Initialization</value>
+  </data>
+  <data name="InProgressFilter" xml:space="preserve">
+    <value>In Progress (&amp;S)</value>
+  </data>
   <data name="IsTaiha" xml:space="preserve">
     <value>Critically damaged!</value>
+  </data>
+  <data name="Lock" xml:space="preserve">
+    <value>Lock</value>
+  </data>
+  <data name="Log" xml:space="preserve">
+    <value>Log</value>
   </data>
   <data name="LoS" xml:space="preserve">
     <value>LoS</value>
@@ -238,6 +421,27 @@ New 2-5: {2}
   <data name="Luck" xml:space="preserve">
     <value>Luck</value>
   </data>
+  <data name="Map" xml:space="preserve">
+    <value>Map</value>
+  </data>
+  <data name="MapGauges" xml:space="preserve">
+    <value>[Map Gauges]</value>
+  </data>
+  <data name="MaxHealth" xml:space="preserve">
+    <value>Max Health</value>
+  </data>
+  <data name="ModRemaining" xml:space="preserve">
+    <value> remaining</value>
+  </data>
+  <data name="MysteriousItem" xml:space="preserve">
+    <value>Mysterious Item</value>
+  </data>
+  <data name="NameFilter" xml:space="preserve">
+    <value>Name (&amp;N)</value>
+  </data>
+  <data name="NextNode" xml:space="preserve">
+    <value>Next node</value>
+  </data>
   <data name="NightBattle" xml:space="preserve">
     <value>Night Battle</value>
   </data>
@@ -250,14 +454,56 @@ New 2-5: {2}
   <data name="None" xml:space="preserve">
     <value>(none)</value>
   </data>
+  <data name="NonexistentGroup" xml:space="preserve">
+    <value>Error: attempted to access a nonexistent group. Please contact the developer.</value>
+  </data>
+  <data name="OutputCSV" xml:space="preserve">
+    <value>Output CSV (&amp;O)...</value>
+  </data>
+  <data name="Over50" xml:space="preserve">
+    <value>Over 50%</value>
+  </data>
+  <data name="Over80" xml:space="preserve">
+    <value>Over 80%</value>
+  </data>
+  <data name="Practice" xml:space="preserve">
+    <value>Practice</value>
+  </data>
+  <data name="PracticeReport" xml:space="preserve">
+    <value>[Practice Report]</value>
+  </data>
+  <data name="Progress" xml:space="preserve">
+    <value>Progress</value>
+  </data>
+  <data name="ProgressFilter" xml:space="preserve">
+    <value>Progress (&amp;P)</value>
+  </data>
+  <data name="Quest" xml:space="preserve">
+    <value>Quests</value>
+  </data>
+  <data name="QuestName" xml:space="preserve">
+    <value>Name</value>
+  </data>
   <data name="Range" xml:space="preserve">
     <value>Range</value>
+  </data>
+  <data name="RankPoints" xml:space="preserve">
+    <value>Rank Points</value>
   </data>
   <data name="RemainingExpeds" xml:space="preserve">
     <value>{0} effective expeditions</value>
   </data>
+  <data name="RenameGroupMenu" xml:space="preserve">
+    <value>Change group name (&amp;R)...</value>
+  </data>
+  <data name="Result" xml:space="preserve">
+    <value>Result</value>
+  </data>
   <data name="Retreating" xml:space="preserve">
     <value>Retreating</value>
+  </data>
+  <data name="SawNoEnemy" xml:space="preserve">
+    <value>Saw no enemy.</value>
   </data>
   <data name="Scouting" xml:space="preserve">
     <value>Scouting</value>
@@ -271,8 +517,17 @@ New 2-5: {2}
   <data name="SecondStage" xml:space="preserve">
     <value>Stage 2</value>
   </data>
+  <data name="SelectGroup" xml:space="preserve">
+    <value>Select Group</value>
+  </data>
   <data name="ShipGirl" xml:space="preserve">
     <value>Ship Girl</value>
+  </data>
+  <data name="ShipID" xml:space="preserve">
+    <value>Ship ID</value>
+  </data>
+  <data name="ShipName" xml:space="preserve">
+    <value>Name</value>
   </data>
   <data name="ShipTooltip" xml:space="preserve">
     <value>{0} {1}
@@ -288,8 +543,41 @@ Range: {17} / Speed: {18}
 (Right-click for encyclopedia)
 </value>
   </data>
+  <data name="ShipType" xml:space="preserve">
+    <value>Ship Type</value>
+  </data>
+  <data name="ShipXP" xml:space="preserve">
+    <value>Ship XP</value>
+  </data>
   <data name="ShotDown" xml:space="preserve">
     <value>Shot Down</value>
+  </data>
+  <data name="ShowDaily" xml:space="preserve">
+    <value>Show Dailies (&amp;D)</value>
+  </data>
+  <data name="ShowInProgressOnly" xml:space="preserve">
+    <value>Show In Progress Only (&amp;R)</value>
+  </data>
+  <data name="ShowMonthly" xml:space="preserve">
+    <value>Show Monthlies (&amp;M)</value>
+  </data>
+  <data name="ShowOneTime" xml:space="preserve">
+    <value>Show One-time Quests (&amp;O)</value>
+  </data>
+  <data name="ShowStatusBar" xml:space="preserve">
+    <value>Show status bar</value>
+  </data>
+  <data name="ShowWeekly" xml:space="preserve">
+    <value>Show Weeklies (&amp;W)</value>
+  </data>
+  <data name="SortiePlace" xml:space="preserve">
+    <value>Sortie Location</value>
+  </data>
+  <data name="SpecifyGroupName" xml:space="preserve">
+    <value>Please enter the group name:</value>
+  </data>
+  <data name="SpecifySelectGroup" xml:space="preserve">
+    <value>Select the group to add to:</value>
   </data>
   <data name="Speed" xml:space="preserve">
     <value>Speed</value>
@@ -316,6 +604,21 @@ Cut-in type: {2} ({3})
   <data name="StarShellUsed" xml:space="preserve">
     <value>Star Shell used</value>
   </data>
+  <data name="SVictory" xml:space="preserve">
+    <value>S Rank</value>
+  </data>
+  <data name="TargetSighted" xml:space="preserve">
+    <value>Target sighted!</value>
+  </data>
+  <data name="ThisMonth" xml:space="preserve">
+    <value>This Month</value>
+  </data>
+  <data name="ThisTime" xml:space="preserve">
+    <value>This Session</value>
+  </data>
+  <data name="Times" xml:space="preserve">
+    <value>times</value>
+  </data>
   <data name="TimeToCompletion" xml:space="preserve">
     <value>Completion time</value>
   </data>
@@ -324,6 +627,9 @@ Cut-in type: {2} ({3})
   </data>
   <data name="To99" xml:space="preserve">
     <value>To Level 99: {0}</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>Today</value>
   </data>
   <data name="ToHeavy" xml:space="preserve">
     <value>To Critical Damage: {0}</value>
@@ -340,11 +646,41 @@ Cut-in type: {2} ({3})
   <data name="Torpedo" xml:space="preserve">
     <value>Torpedo</value>
   </data>
+  <data name="TotalExperienceGained" xml:space="preserve">
+    <value>XP Gain</value>
+  </data>
+  <data name="TotalLevel" xml:space="preserve">
+    <value>Total Level: {0}</value>
+  </data>
   <data name="TotalLoS" xml:space="preserve">
     <value>Total LoS</value>
   </data>
+  <data name="Type" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="TypeFilter" xml:space="preserve">
+    <value>Type (&amp;T)</value>
+  </data>
+  <data name="Unacquired" xml:space="preserve">
+    <value>(Unacquired)</value>
+  </data>
+  <data name="UnacquiredQuests" xml:space="preserve">
+    <value>(Unacquired Quests)</value>
+  </data>
+  <data name="UniqueID" xml:space="preserve">
+    <value>Unique ID</value>
+  </data>
+  <data name="UnseenEquips" xml:space="preserve">
+    <value>[Unseen Equipment]</value>
+  </data>
+  <data name="UnseenShips" xml:space="preserve">
+    <value>[Unseen Ships]</value>
+  </data>
   <data name="WCWarningTitle" xml:space="preserve">
     <value>Confirm Window Capture</value>
+  </data>
+  <data name="WhyDidThisHappen" xml:space="preserve">
+    <value>Why did this happen.</value>
   </data>
   <data name="WindowCapture" xml:space="preserve">
     <value>Window Capture</value>

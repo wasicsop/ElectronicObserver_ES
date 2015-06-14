@@ -127,11 +127,38 @@
   <data name="AAPower" xml:space="preserve">
     <value>対空砲火</value>
   </data>
+  <data name="Achieved" xml:space="preserve">
+    <value>達成！</value>
+  </data>
+  <data name="AddFleetToGroupMenu" xml:space="preserve">
+    <value>現在の艦隊を追加(&amp;G)</value>
+  </data>
+  <data name="AddGroup" xml:space="preserve">
+    <value>グループを追加</value>
+  </data>
+  <data name="AddGroupMenu" xml:space="preserve">
+    <value>グループを追加(&amp;A)</value>
+  </data>
+  <data name="AddToGroupMenu" xml:space="preserve">
+    <value>グループへ追加(&amp;A)...</value>
+  </data>
+  <data name="AdmiralXP" xml:space="preserve">
+    <value>提督経験値</value>
+  </data>
   <data name="AirPower" xml:space="preserve">
     <value>制空戦力</value>
   </data>
   <data name="AirSuperiority" xml:space="preserve">
     <value>制空権</value>
+  </data>
+  <data name="AllAssignedShips" xml:space="preserve">
+    <value>全所属艦</value>
+  </data>
+  <data name="AllComplete" xml:space="preserve">
+    <value>(任務完遂！)</value>
+  </data>
+  <data name="Ammo" xml:space="preserve">
+    <value>弾薬</value>
   </data>
   <data name="AntiAir" xml:space="preserve">
     <value>対空</value>
@@ -145,14 +172,68 @@
   <data name="ArsenalLog" xml:space="preserve">
     <value>工廠ドック #{0}で {1}の建造を開始しました。({2}/{3}/{4}/{5}-{6} 秘書艦: {7})</value>
   </data>
+  <data name="AssignedCount" xml:space="preserve">
+    <value>所属: {0}隻</value>
+  </data>
   <data name="ASTooltip" xml:space="preserve">
     <value>確保: {0}\r\n優勢: {1}\r\n均衡: {2}\r\n劣勢: {3}\r\n</value>
   </data>
   <data name="ASW" xml:space="preserve">
     <value>対潜</value>
   </data>
+  <data name="AutoAdjustColumns" xml:space="preserve">
+    <value>列の自動調整(&amp;D)</value>
+  </data>
+  <data name="AutoUpdate" xml:space="preserve">
+    <value>自動更新する</value>
+  </data>
+  <data name="AverageLevel" xml:space="preserve">
+    <value>平均Lv: {0:F2}</value>
+  </data>
   <data name="Battle" xml:space="preserve">
     <value>戦闘</value>
+  </data>
+  <data name="BranchChoice" xml:space="preserve">
+    <value>能動分岐</value>
+  </data>
+  <data name="CannotChangeGroup" xml:space="preserve">
+    <value>このグループは変更できません。</value>
+  </data>
+  <data name="CannotChangeGroupName" xml:space="preserve">
+    <value>このグループの名前を変更することはできません。</value>
+  </data>
+  <data name="CannotDeleteGroup" xml:space="preserve">
+    <value>このグループは削除できません。</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>分類</value>
+  </data>
+  <data name="CategoryFilter" xml:space="preserve">
+    <value>分類(&amp;C)</value>
+  </data>
+  <data name="ChangeGroupName" xml:space="preserve">
+    <value>グループ名の変更</value>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>クリア(&amp;C)</value>
+  </data>
+  <data name="Compass" xml:space="preserve">
+    <value>羅針盤</value>
+  </data>
+  <data name="CompassShipTooltip" xml:space="preserve">
+    <value>{0} {1}{2}
+耐久: {3}
+火力: {4}/{5}
+雷装: {6}/{7}
+対空: {8}/{9}
+装甲: {10}/{11}
+対潜: {12}/{13}
+回避: {14}/{15}
+索敵: {16}/{17}
+運: {18}/{19}
+射程: {20} / 速力: {21}
+(右クリックで図鑑)
+</value>
   </data>
   <data name="Complete" xml:space="preserve">
     <value>完成</value>
@@ -163,6 +244,21 @@
   <data name="CopyToClipboard" xml:space="preserve">
     <value>クリップボードにコピー(&amp;C)</value>
   </data>
+  <data name="CreateGroup" xml:space="preserve">
+    <value>グループの追加</value>
+  </data>
+  <data name="CreateGroupMenu" xml:space="preserve">
+    <value>新規グループを作成(&amp;C)...</value>
+  </data>
+  <data name="CreateGroupName" xml:space="preserve">
+    <value>追加するグループの名前を入力してください：</value>
+  </data>
+  <data name="CurrentHealth" xml:space="preserve">
+    <value>耐久現在</value>
+  </data>
+  <data name="DamagedArtUnseen" xml:space="preserve">
+    <value>[中破絵未回収]</value>
+  </data>
   <data name="DamageDone" xml:space="preserve">
     <value>与ダメージ</value>
   </data>
@@ -172,23 +268,63 @@
   <data name="DayBattle" xml:space="preserve">
     <value>昼戦</value>
   </data>
+  <data name="Defeated" xml:space="preserve">
+    <value>撃破</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>削除(&amp;D)</value>
+  </data>
+  <data name="DeleteGroup" xml:space="preserve">
+    <value>グループ [{0}] を削除しますか？
+この操作は元に戻せません。</value>
+  </data>
+  <data name="DeleteGroupMenu" xml:space="preserve">
+    <value>グループを削除(&amp;D)</value>
+  </data>
+  <data name="DevelopmentFailed" xml:space="preserve">
+    <value>[開発失敗]</value>
+  </data>
   <data name="Dock" xml:space="preserve">
     <value>入渠</value>
   </data>
   <data name="DockTime" xml:space="preserve">
     <value>入渠時間</value>
   </data>
+  <data name="DontScrollNames" xml:space="preserve">
+    <value>艦名をスクロールしない(&amp;S)</value>
+  </data>
   <data name="EncounterType" xml:space="preserve">
     <value>交戦形態</value>
+  </data>
+  <data name="EndNode" xml:space="preserve">
+    <value> (終点)</value>
   </data>
   <data name="EnemyFleet" xml:space="preserve">
     <value>敵軍艦隊</value>
   </data>
+  <data name="EnemyFleetID" xml:space="preserve">
+    <value>敵艦隊ID</value>
+  </data>
+  <data name="EnemyFleetName" xml:space="preserve">
+    <value>敵艦隊名</value>
+  </data>
   <data name="EnemyFormation" xml:space="preserve">
     <value>敵陣形</value>
   </data>
+  <data name="EnemyPlaneSighted" xml:space="preserve">
+    <value>索敵機発艦！</value>
+  </data>
   <data name="EnemyScout" xml:space="preserve">
     <value>敵索敵</value>
+  </data>
+  <data name="EnemySighted" xml:space="preserve">
+    <value>敵艦隊発見！</value>
+  </data>
+  <data name="EnemyUnknown" xml:space="preserve">
+    <value>(敵艦隊情報不明)</value>
+  </data>
+  <data name="Equipment" xml:space="preserve">
+    <value>装備</value>
   </data>
   <data name="EscortFleet" xml:space="preserve">
     <value>随伴艦隊</value>
@@ -196,11 +332,26 @@
   <data name="Evasion" xml:space="preserve">
     <value>回避</value>
   </data>
+  <data name="ExpeditionReturned" xml:space="preserve">
+    <value>[遠征帰投]</value>
+  </data>
+  <data name="FailedToCreateCSV" xml:space="preserve">
+    <value>艦船グループ CSVの出力に失敗しました。</value>
+  </data>
   <data name="FatigueRestoreTime" xml:space="preserve">
     <value>完全回復まで 約 {0:D2}:{1:D2}</value>
   </data>
+  <data name="FilterBy" xml:space="preserve">
+    <value>列フィルタ(&amp;C)</value>
+  </data>
   <data name="Firepower" xml:space="preserve">
     <value>火力</value>
+  </data>
+  <data name="Fleet" xml:space="preserve">
+    <value>艦隊</value>
+  </data>
+  <data name="FleetList" xml:space="preserve">
+    <value>艦隊</value>
   </data>
   <data name="FleetTooltip" xml:space="preserve">
     <value>Lv合計: {0} / 平均: {1:0.00}\r\n{2}艦隊\r\nドラム缶搭載: {3}個 ({4}艦)\r\n大発動艇搭載: {5}個\r\n総積載: 燃 {6} / 弾 {7}\r\n(1戦当たり 燃 {8} / 弾 {9})</value>
@@ -214,8 +365,40 @@
   <data name="FriendlyScout" xml:space="preserve">
     <value>味方索敵</value>
   </data>
+  <data name="Fuel" xml:space="preserve">
+    <value>燃料</value>
+  </data>
+  <data name="Group" xml:space="preserve">
+    <value>グループ</value>
+  </data>
+  <data name="Headquarters" xml:space="preserve">
+    <value>司令部</value>
+  </data>
+  <data name="Information" xml:space="preserve">
+    <value>情報</value>
+  </data>
+  <data name="Initialize" xml:space="preserve">
+    <value>初期化(&amp;I)</value>
+  </data>
+  <data name="InitializeQuestData" xml:space="preserve">
+    <value>任務データを初期化します。
+データに齟齬が生じている場合以外での使用は推奨しません。
+よろしいですか？</value>
+  </data>
+  <data name="InitQuestTitle" xml:space="preserve">
+    <value>任務初期化の確認</value>
+  </data>
+  <data name="InProgressFilter" xml:space="preserve">
+    <value>遂行中(&amp;S)</value>
+  </data>
   <data name="IsTaiha" xml:space="preserve">
     <value>大破しています！</value>
+  </data>
+  <data name="Lock" xml:space="preserve">
+    <value>ロック</value>
+  </data>
+  <data name="Log" xml:space="preserve">
+    <value>ログ</value>
   </data>
   <data name="LoS" xml:space="preserve">
     <value>索敵</value>
@@ -225,6 +408,27 @@
   </data>
   <data name="Luck" xml:space="preserve">
     <value>運</value>
+  </data>
+  <data name="Map" xml:space="preserve">
+    <value>出撃海域</value>
+  </data>
+  <data name="MapGauges" xml:space="preserve">
+    <value>[海域ゲージ]</value>
+  </data>
+  <data name="MaxHealth" xml:space="preserve">
+    <value>耐久最大</value>
+  </data>
+  <data name="ModRemaining" xml:space="preserve">
+    <value>改修</value>
+  </data>
+  <data name="MysteriousItem" xml:space="preserve">
+    <value>謎のアイテム</value>
+  </data>
+  <data name="NameFilter" xml:space="preserve">
+    <value>任務名(&amp;N)</value>
+  </data>
+  <data name="NextNode" xml:space="preserve">
+    <value>次のセル</value>
   </data>
   <data name="NightBattle" xml:space="preserve">
     <value>夜戦</value>
@@ -238,14 +442,56 @@
   <data name="None" xml:space="preserve">
     <value>(なし)</value>
   </data>
+  <data name="NonexistentGroup" xml:space="preserve">
+    <value>エラー：存在しないグループを参照しようとしました。開発者に連絡してください</value>
+  </data>
+  <data name="OutputCSV" xml:space="preserve">
+    <value>CSV出力(&amp;O)...</value>
+  </data>
+  <data name="Over50" xml:space="preserve">
+    <value>50%以上</value>
+  </data>
+  <data name="Over80" xml:space="preserve">
+    <value>80%以上</value>
+  </data>
+  <data name="Practice" xml:space="preserve">
+    <value>演習</value>
+  </data>
+  <data name="PracticeReport" xml:space="preserve">
+    <value>[演習情報]</value>
+  </data>
+  <data name="Progress" xml:space="preserve">
+    <value>進捗</value>
+  </data>
+  <data name="ProgressFilter" xml:space="preserve">
+    <value>進捗(&amp;P)</value>
+  </data>
+  <data name="Quest" xml:space="preserve">
+    <value>任務</value>
+  </data>
+  <data name="QuestName" xml:space="preserve">
+    <value>任務名</value>
+  </data>
   <data name="Range" xml:space="preserve">
     <value>射程</value>
+  </data>
+  <data name="RankPoints" xml:space="preserve">
+    <value>戦果</value>
   </data>
   <data name="RemainingExpeds" xml:space="preserve">
     <value>あと {0} 回遠征可能</value>
   </data>
+  <data name="RenameGroupMenu" xml:space="preserve">
+    <value>グループ名の変更(&amp;R)...</value>
+  </data>
+  <data name="Result" xml:space="preserve">
+    <value>結果</value>
+  </data>
   <data name="Retreating" xml:space="preserve">
     <value>退避中</value>
+  </data>
+  <data name="SawNoEnemy" xml:space="preserve">
+    <value>敵影を見ず</value>
   </data>
   <data name="Scouting" xml:space="preserve">
     <value>索敵</value>
@@ -259,14 +505,56 @@
   <data name="SecondStage" xml:space="preserve">
     <value>第2次</value>
   </data>
+  <data name="SelectGroup" xml:space="preserve">
+    <value>グループの選択</value>
+  </data>
   <data name="ShipGirl" xml:space="preserve">
     <value>艦娘</value>
+  </data>
+  <data name="ShipID" xml:space="preserve">
+    <value>艦船ID</value>
+  </data>
+  <data name="ShipName" xml:space="preserve">
+    <value>艦名</value>
   </data>
   <data name="ShipTooltip" xml:space="preserve">
     <value>{0} {1}\n火力: {2}/{3}\n雷装: {4}/{5}\n対空: {6}/{7}\n装甲: {8}/{9}\n対潜: {10}/{11}\n回避: {12}/{13}\n索敵: {14}/{15}\n運: {16}\n射程: {17} / 速力: {18}\n(右クリックで図鑑)\n</value>
   </data>
+  <data name="ShipType" xml:space="preserve">
+    <value>艦種</value>
+  </data>
+  <data name="ShipXP" xml:space="preserve">
+    <value>艦娘経験値</value>
+  </data>
   <data name="ShotDown" xml:space="preserve">
     <value>撃墜</value>
+  </data>
+  <data name="ShowDaily" xml:space="preserve">
+    <value>デイリー任務を表示(&amp;D)</value>
+  </data>
+  <data name="ShowInProgressOnly" xml:space="preserve">
+    <value>遂行中のみ表示(&amp;R)</value>
+  </data>
+  <data name="ShowMonthly" xml:space="preserve">
+    <value>マンスリー任務を表示(&amp;M)</value>
+  </data>
+  <data name="ShowOneTime" xml:space="preserve">
+    <value>一回限りの任務を表示(&amp;O)</value>
+  </data>
+  <data name="ShowStatusBar" xml:space="preserve">
+    <value>ステータスバーを表示する</value>
+  </data>
+  <data name="ShowWeekly" xml:space="preserve">
+    <value>ウィークリー任務を表示(&amp;W)</value>
+  </data>
+  <data name="SortiePlace" xml:space="preserve">
+    <value>出撃先</value>
+  </data>
+  <data name="SpecifyGroupName" xml:space="preserve">
+    <value>グループ名を入力してください：</value>
+  </data>
+  <data name="SpecifySelectGroup" xml:space="preserve">
+    <value>追加するグループを選択してください：</value>
   </data>
   <data name="Speed" xml:space="preserve">
     <value>速力</value>
@@ -286,6 +574,21 @@
   <data name="StarShellUsed" xml:space="preserve">
     <value>照明弾投射</value>
   </data>
+  <data name="SVictory" xml:space="preserve">
+    <value>S勝利</value>
+  </data>
+  <data name="TargetSighted" xml:space="preserve">
+    <value>攻撃目標発見！</value>
+  </data>
+  <data name="ThisMonth" xml:space="preserve">
+    <value>今月</value>
+  </data>
+  <data name="ThisTime" xml:space="preserve">
+    <value>今回</value>
+  </data>
+  <data name="Times" xml:space="preserve">
+    <value>回</value>
+  </data>
   <data name="TimeToCompletion" xml:space="preserve">
     <value>完了日時</value>
   </data>
@@ -294,6 +597,9 @@
   </data>
   <data name="To99" xml:space="preserve">
     <value>Lv99まで: {0}</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>今日</value>
   </data>
   <data name="ToHeavy" xml:space="preserve">
     <value>大破まで: {0}</value>
@@ -310,11 +616,41 @@
   <data name="Torpedo" xml:space="preserve">
     <value>雷装</value>
   </data>
+  <data name="TotalExperienceGained" xml:space="preserve">
+    <value>獲得経験値</value>
+  </data>
+  <data name="TotalLevel" xml:space="preserve">
+    <value>合計Lv: {0}</value>
+  </data>
   <data name="TotalLoS" xml:space="preserve">
     <value>索敵能力</value>
   </data>
+  <data name="Type" xml:space="preserve">
+    <value>種</value>
+  </data>
+  <data name="TypeFilter" xml:space="preserve">
+    <value>出現種別(&amp;T)</value>
+  </data>
+  <data name="Unaquired" xml:space="preserve">
+    <value>(未取得)</value>
+  </data>
+  <data name="UnaquiredQuests" xml:space="preserve">
+    <value>未取得の任務</value>
+  </data>
+  <data name="UniqueID" xml:space="preserve">
+    <value>固有ID</value>
+  </data>
+  <data name="UnseenEquips" xml:space="preserve">
+    <value>[未保有装備]</value>
+  </data>
+  <data name="UnseenShips" xml:space="preserve">
+    <value>[未保有艦]</value>
+  </data>
   <data name="WCWarningTitle" xml:space="preserve">
     <value>ウィンドウキャプチャの確認</value>
+  </data>
+  <data name="WhyDidThisHappen" xml:space="preserve">
+    <value>どうしてこうなった</value>
   </data>
   <data name="WindowCapture" xml:space="preserve">
     <value>ウィンドウキャプチャ</value>

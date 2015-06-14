@@ -128,7 +128,7 @@ namespace ElectronicObserver.Window {
 
 			if ( !groups.ShipGroups.ContainsKey( -1 ) ) {
 				var master = new ShipGroupData( -1 );
-				master.Name = "全所属艦";
+				master.Name = GeneralRes.AllAssignedShips;
 				master.ColumnFilter = Enumerable.Repeat<bool>( true, ShipView.Columns.Count ).ToList();
 				master.ColumnWidth = ShipView.Columns.OfType<DataGridViewColumn>().Select( c => c.Width ).ToList();
 
@@ -435,9 +435,9 @@ namespace ElectronicObserver.Window {
 
 			//status bar
 			if ( KCDatabase.Instance.Ships.Count > 0 ) {
-				Status_ShipCount.Text = string.Format( "所属: {0}隻", group.Members.Count );
-				Status_LevelTotal.Text = string.Format( "合計Lv: {0}", group.MembersInstance.Where( s => s != null ).Sum( s => s.Level ) );
-				Status_LevelAverage.Text = string.Format( "平均Lv: {0:F2}", group.Members.Count > 0 ? group.MembersInstance.Where( s => s != null ).Average( s => s.Level ) : 0 );
+				Status_ShipCount.Text = string.Format( GeneralRes.AssignedCount, group.Members.Count );
+				Status_LevelTotal.Text = string.Format( GeneralRes.TotalLevel, group.MembersInstance.Where( s => s != null ).Sum( s => s.Level ) );
+				Status_LevelAverage.Text = string.Format( GeneralRes.AverageLevel, group.Members.Count > 0 ? group.MembersInstance.Where( s => s != null ).Average( s => s.Level ) : 0 );
 			}
 		}
 
@@ -458,7 +458,7 @@ namespace ElectronicObserver.Window {
 
 
 			if ( group == null ) {
-				Utility.Logger.Add( 3, "エラー：存在しないグループを参照しようとしました。開発者に連絡してください" );
+				Utility.Logger.Add( 3, GeneralRes.NonexistentGroup );
 				return;
 			}
 			if ( group.GroupID < 0 ) {
@@ -483,7 +483,7 @@ namespace ElectronicObserver.Window {
 
 			int current = ship.Aircraft[index];
 			int max = ship.MasterShip.Aircraft[index];
-			string name = ship.SlotInstance[index] != null ? ship.SlotInstance[index].NameWithLevel : "(なし)";
+			string name = ship.SlotInstance[index] != null ? ship.SlotInstance[index].NameWithLevel : GeneralRes.None;
 
 			if ( index >= ship.MasterShip.SlotSize && ship.Slot[index] == -1 ) {
 				return "";
@@ -503,7 +503,7 @@ namespace ElectronicObserver.Window {
 
 		private string GetEquipmentOnlyString( ShipData ship, int index ) {
 
-			string name = ship.SlotInstance[index] != null ? ship.SlotInstance[index].NameWithLevel : "(なし)";
+			string name = ship.SlotInstance[index] != null ? ship.SlotInstance[index].NameWithLevel : GeneralRes.None;
 
 			if ( index >= ship.MasterShip.SlotSize && ship.Slot[index] == -1 ) {
 				return "";
@@ -529,7 +529,7 @@ namespace ElectronicObserver.Window {
 			} else if ( e.ColumnIndex == ShipView_RepairTime.Index ) {
 
 				if ( (int)e.Value < 0 ) {
-					e.Value = "入渠 #" + ( (int)e.Value + 1000 );
+					e.Value = GeneralRes.Dock + " #" + ( (int)e.Value + 1000 );
 				} else {
 					e.Value = DateTimeHelper.ToTimeRemainString( DateTimeHelper.FromAPITimeSpan( (int)e.Value ) );
 				}
@@ -630,7 +630,7 @@ namespace ElectronicObserver.Window {
 
 		private void MenuGroup_Add_Click( object sender, EventArgs e ) {
 
-			using ( var dialog = new DialogTextInput( "グループを追加", "グループ名を入力してください：" ) ) {
+			using ( var dialog = new DialogTextInput( GeneralRes.AddGroup, GeneralRes.SpecifyGroupName ) ) {
 
 				if ( dialog.ShowDialog( this ) == System.Windows.Forms.DialogResult.OK ) {
 
@@ -660,7 +660,7 @@ namespace ElectronicObserver.Window {
 			ShipGroupData group = KCDatabase.Instance.ShipGroup[(int)senderLabel.Tag];
 
 			if ( group != null && group.GroupID >= 0 ) {
-				if ( MessageBox.Show( string.Format( "グループ [{0}] を削除しますか？\r\nこの操作は元に戻せません。", group.Name ), "確認",
+				if ( MessageBox.Show( string.Format( GeneralRes.DeleteGroup, group.Name ), Properties.Resources.Confirm,
 					MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2 )
 					== System.Windows.Forms.DialogResult.Yes ) {
 
@@ -674,7 +674,7 @@ namespace ElectronicObserver.Window {
 				}
 
 			} else {
-				MessageBox.Show( "このグループは削除できません。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
+				MessageBox.Show( GeneralRes.CannotDeleteGroup, Properties.Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
 			}
 		}
 
@@ -687,7 +687,7 @@ namespace ElectronicObserver.Window {
 
 			if ( group != null && group.GroupID >= 0 ) {
 
-				using ( var dialog = new DialogTextInput( "グループ名の変更", "グループ名を入力してください：" ) ) {
+				using ( var dialog = new DialogTextInput( GeneralRes.ChangeGroupName, GeneralRes.SpecifyGroupName ) ) {
 
 					dialog.InputtedText = group.Name;
 
@@ -699,7 +699,7 @@ namespace ElectronicObserver.Window {
 				}
 
 			} else {
-				MessageBox.Show( "このグループの名前を変更することはできません。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
+				MessageBox.Show( GeneralRes.CannotChangeGroupName, Properties.Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
 			}
 
 		}
@@ -792,7 +792,7 @@ namespace ElectronicObserver.Window {
 
 		private void MenuMember_AddToGroup_Click( object sender, EventArgs e ) {
 
-			using ( var dialog = new DialogTextSelect( "グループの選択", "追加するグループを選択してください：",
+			using ( var dialog = new DialogTextSelect( GeneralRes.SelectGroup, GeneralRes.SpecifySelectGroup,
 				KCDatabase.Instance.ShipGroup.ShipGroups.Values.Where( g => g.GroupID >= 0 ).ToArray() ) ) {
 
 				if ( dialog.ShowDialog( this ) == System.Windows.Forms.DialogResult.OK ) {
@@ -818,7 +818,7 @@ namespace ElectronicObserver.Window {
 
 		private void MenuMember_CreateGroup_Click( object sender, EventArgs e ) {
 
-			using ( var dialog = new DialogTextInput( "グループの追加", "追加するグループの名前を入力してください：" ) ) {
+			using ( var dialog = new DialogTextInput( GeneralRes.CreateGroup,  GeneralRes.CreateGroupName) ) {
 
 				if ( dialog.ShowDialog( this ) == System.Windows.Forms.DialogResult.OK ) {
 
@@ -849,7 +849,7 @@ namespace ElectronicObserver.Window {
 
 
 			if ( group == null || group.GroupID < 0 ) {
-				MessageBox.Show( "このグループは変更できません。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Asterisk );
+				MessageBox.Show( GeneralRes.CannotChangeGroup, Properties.Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Asterisk );
 				return;
 			}
 
@@ -871,7 +871,7 @@ namespace ElectronicObserver.Window {
 			ShipGroupData group = SelectedTab != null ? KCDatabase.Instance.ShipGroup[(int)SelectedTab.Tag] : null;
 
 			if ( group == null ) {
-				MessageBox.Show( "このグループは変更できません。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Asterisk );
+				MessageBox.Show( GeneralRes.CannotChangeGroup, Properties.Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Asterisk );
 				return;
 			}
 
@@ -900,84 +900,79 @@ namespace ElectronicObserver.Window {
 
 		#region ColumnHeader
 		private readonly string[] ShipCSVHeaderUser = {
-			"固有ID",
-			"艦種",
-			"艦名",
+			GeneralRes.UniqueID,
+			GeneralRes.ShipType,
+			GeneralRes.ShipName,
 			"Lv",
 			"Exp",
 			"next",
-			"改装まで",
-			"耐久現在",
-			"耐久最大",
+			GeneralRes.ToRemodel,
+			GeneralRes.CurrentHealth,
+			GeneralRes.MaxHealth,
 			"Cond",
-			"燃料",
-			"弾薬",
-			"装備1",
-			"装備2",
-			"装備3",
-			"装備4",
-			"装備5",
-			"入渠",
-			"火力",
-			"火力改修",
-			"雷装",
-			"雷装改修",
-			"対空",
-			"対空改修",
-			"装甲",
-			"装甲改修",
-			"対潜",
-			"回避",
-			"索敵",
-			"運",
-			"運改修",
-			"射程",
-			"ロック",
-			"出撃先"
+			GeneralRes.Fuel,
+			GeneralRes.Ammo,
+			GeneralRes.Equipment + "1",
+			GeneralRes.Equipment + "2",
+			GeneralRes.Equipment + "3",
+			GeneralRes.Equipment + "4",
+			GeneralRes.Equipment + "5",
+			GeneralRes.Dock,
+			GeneralRes.Firepower,
+			GeneralRes.Firepower + GeneralRes.ModRemaining,
+			GeneralRes.Torpedo,
+			GeneralRes.Torpedo + GeneralRes.ModRemaining,
+			GeneralRes.AntiAir,
+			GeneralRes.AntiAir + GeneralRes.ModRemaining,
+			GeneralRes.Armor,
+			GeneralRes.Armor + GeneralRes.ModRemaining,
+			GeneralRes.ASW,
+			GeneralRes.Evasion,
+			GeneralRes.LoS,
+			GeneralRes.Luck,
+			GeneralRes.Luck + GeneralRes.ModRemaining,
+			GeneralRes.Range,
+			GeneralRes.Lock,
+			GeneralRes.SortiePlace
 			};
 
 		private readonly string[] ShipCSVHeaderData = {
-			"固有ID",
-			"艦種",
-			"艦名",
-			"艦船ID",
-			"Lv",
-			"Exp",
-			"next",
-			"改装まで",
-			"耐久現在",
-			"耐久最大",
-			"Cond",
-			"燃料",
-			"弾薬",
-			"装備1",
-			"装備2",
-			"装備3",
-			"装備4",
-			"装備5",
-			"艦載機1",
-			"艦載機2",
-			"艦載機3",
-			"艦載機4",
-			"艦載機5",
-			"入渠",
-			"火力",
-			"火力改修",
-			"雷装",
-			"雷装改修",
-			"対空",
-			"対空改修",
-			"装甲",
-			"装甲改修",
-			"対潜",
-			"回避",
-			"索敵",
-			"運",
-			"運改修",
-			"射程",
-			"ロック",
-			"出撃先"
-			};
+            GeneralRes.UniqueID,
+            GeneralRes.ShipType,
+            GeneralRes.ShipName,
+            GeneralRes.ShipID,
+            "Lv",
+            "Exp",
+            "next",
+            GeneralRes.ToRemodel,
+            GeneralRes.CurrentHealth,
+            GeneralRes.MaxHealth,
+            "Cond",
+            GeneralRes.Fuel,
+            GeneralRes.Ammo,
+            GeneralRes.Equipment + "1",
+            GeneralRes.Equipment + "2",
+            GeneralRes.Equipment + "3",
+            GeneralRes.Equipment + "4",
+            GeneralRes.Equipment + "5",
+            GeneralRes.Dock,
+            GeneralRes.Firepower,
+            GeneralRes.Firepower + GeneralRes.ModRemaining,
+            GeneralRes.Torpedo,
+            GeneralRes.Torpedo + GeneralRes.ModRemaining,
+            GeneralRes.AntiAir,
+            GeneralRes.AntiAir + GeneralRes.ModRemaining,
+            GeneralRes.Armor,
+            GeneralRes.Armor + GeneralRes.ModRemaining,
+            GeneralRes.ASW,
+            GeneralRes.Evasion,
+            GeneralRes.LoS,
+            GeneralRes.Luck,
+            GeneralRes.Luck + GeneralRes.ModRemaining,
+            GeneralRes.Range,
+            GeneralRes.Lock,
+            GeneralRes.SortiePlace
+            };
 
 		#endregion
 
@@ -1112,8 +1107,8 @@ namespace ElectronicObserver.Window {
 
 					} catch ( Exception ex ) {
 
-						Utility.ErrorReporter.SendErrorReport( ex, "艦船グループ CSVの出力に失敗しました。" );
-						MessageBox.Show( "艦船グループ CSVの出力に失敗しました。\r\n" + ex.Message, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error );
+						Utility.ErrorReporter.SendErrorReport( ex, GeneralRes.FailedToCreateCSV );
+						MessageBox.Show( GeneralRes.FailedToCreateCSV + "\r\n" + ex.Message, Properties.Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error );
 
 					}
 
