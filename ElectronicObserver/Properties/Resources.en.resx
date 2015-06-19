@@ -118,137 +118,137 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AskClose" xml:space="preserve">
-    <value> を終了しますか？</value>
+    <value> will close. Are you sure?</value>
   </data>
   <data name="AskForUpdate" xml:space="preserve">
-    <value>新しいバージョンがリリースされています！ : {0}\
-更新内容 : 
+    <value>A new version has been released - {0}
+New version details:
 {1}
-ダウンロードページを開きますか？
-(キャンセルすると以降表示しません)</value>
+Open the download page?
+(This dialog will not appear again if you cancel.)</value>
   </data>
   <data name="AskLoad" xml:space="preserve">
-    <value>セーブしていないレコードが失われる可能性があります。
-ロードしますか？</value>
+    <value>All unsaved records will be lost.
+Load records?</value>
   </data>
   <data name="AskLogin" xml:space="preserve">
-    <value>ログインページへ移動します。
-よろしいですか？</value>
+    <value>You will return to the login page.
+Okay?</value>
   </data>
   <data name="AskNavText" xml:space="preserve">
-    <value>移動先の URL を入力してください。</value>
+    <value>Enter the URL to which you want to navigate.</value>
   </data>
   <data name="AskNavTitle" xml:space="preserve">
-    <value>移動先の入力</value>
+    <value>Go to...</value>
   </data>
   <data name="BadUpdateURI" xml:space="preserve">
-    <value>アップデート情報の URI が無効です。</value>
+    <value>Update data URI was not successful.</value>
   </data>
   <data name="Browser" xml:space="preserve">
-    <value>ブラウザ</value>
+    <value>Browser</value>
   </data>
   <data name="BrowserClosedWithoutWarning" xml:space="preserve">
-    <value>ブラウザプロセスが予期せず終了しました。</value>
+    <value>The browser process closed unexpectedly.</value>
   </data>
   <data name="BrowserCloseError" xml:space="preserve">
-    <value>ブラウザの終了中にエラーが発生しました。</value>
+    <value>The browser had an error during closing.</value>
   </data>
   <data name="BrowserThrewError" xml:space="preserve">
-    <value>ブラウザプロセス間で通信エラーが発生しました。</value>
+    <value>The browser process had a communication error.</value>
   </data>
   <data name="Close" xml:space="preserve">
-    <value>閉じる</value>
+    <value>Close</value>
   </data>
   <data name="ClosingComplete" xml:space="preserve">
-    <value>終了処理が完了しました。</value>
+    <value>Closing complete.</value>
   </data>
   <data name="Confirm" xml:space="preserve">
-    <value>確認</value>
+    <value>Confirm</value>
   </data>
   <data name="DevelopedBy" xml:space="preserve">
-    <value>開発</value>
+    <value>Original</value>
   </data>
   <data name="Error" xml:space="preserve">
-    <value>エラー</value>
+    <value>Error</value>
   </data>
   <data name="FailedBrowserStart" xml:space="preserve">
-    <value>ブラウザプロセスの起動に失敗しました。</value>
+    <value>Failed to start the browser process.</value>
   </data>
   <data name="Help" xml:space="preserve">
-    <value>ヘルプ</value>
+    <value>Help</value>
   </data>
   <data name="HelpAddress" xml:space="preserve">
-    <value>https://github.com/andanteyk/ElectronicObserver/wiki</value>
+    <value>https://github.com/RyuuKitsune/ElectronicObserver/wiki</value>
   </data>
   <data name="HelpAsk" xml:space="preserve">
-    <value>外部ブラウザでオンラインヘルプを開きます。
-よろしいですか？</value>
+    <value>Online help will open your web browser.
+Continue?</value>
   </data>
   <data name="InitLayout" xml:space="preserve">
-    <value>レイアウトが初期化されました。
-「表示」メニューからお好みのウィンドウを追加してください。</value>
+    <value>Your window layout has been set to initial defaults.
+Add windows of your choosing using the "View" menu.</value>
   </data>
   <data name="IsClosing" xml:space="preserve">
-    <value> を終了しています…</value>
+    <value> is closing...</value>
   </data>
   <data name="IsStarting" xml:space="preserve">
-    <value> を起動しています…</value>
+    <value> is starting...</value>
   </data>
   <data name="LayoutLoaded" xml:space="preserve">
-    <value>ウィンドウ レイアウトを復元しました。</value>
+    <value>Successfully loaded window layout.</value>
   </data>
   <data name="LayoutSaved" xml:space="preserve">
-    <value>ウィンドウ レイアウトを保存しました。</value>
+    <value>Successfully saved window layout.</value>
   </data>
   <data name="NewVersionFound" xml:space="preserve">
-    <value>新しいバージョンがリリースされています！ :</value>
+    <value>A new version has been released! - </value>
   </data>
   <data name="NoEquipData" xml:space="preserve">
-    <value>装備データが読み込まれていません。</value>
+    <value>Equipment data has not been loaded</value>
   </data>
   <data name="NoLayoutFound" xml:space="preserve">
-    <value>ウィンドウ レイアウト ファイルは存在しません。</value>
+    <value>No window layout found.</value>
   </data>
   <data name="NoShipData" xml:space="preserve">
-    <value>艦船データが読み込まれていません。</value>
+    <value>Ship data has not been loaded.</value>
   </data>
   <data name="OpenLayout" xml:space="preserve">
-    <value>レイアウト ファイルを開く</value>
+    <value>Open Layout File</value>
   </data>
   <data name="OriginalSite" xml:space="preserve">
-    <value>配布元(不具合報告・連絡はこちらへ)</value>
+    <value>Original Site (bug reports, contact)</value>
   </data>
   <data name="SoftwareName" xml:space="preserve">
-    <value>七四式電子観測儀</value>
+    <value>Type 74 Electronic Observer </value>
   </data>
   <data name="StartupComplete" xml:space="preserve">
-    <value>起動処理が完了しました。</value>
+    <value>Startup complete.</value>
   </data>
   <data name="TranslatedSite" xml:space="preserve">
-    <value>翻訳版元</value>
+    <value>Translation Site</value>
   </data>
   <data name="TranslatedVer" xml:space="preserve">
-    <value>翻訳版</value>
+    <value>Translation</value>
   </data>
   <data name="Update" xml:space="preserve">
-    <value>アップデート情報</value>
+    <value>Update</value>
   </data>
   <data name="UpdateCheckFailed" xml:space="preserve">
-    <value>アップデート情報の取得に失敗しました。</value>
+    <value>Failed to obtain update data.</value>
   </data>
   <data name="UpdateConnectionFailed" xml:space="preserve">
-    <value>アップデート情報の処理に失敗しました。</value>
+    <value>Failed to process update data.</value>
   </data>
   <data name="Version" xml:space="preserve">
-    <value>一三型</value>
+    <value>1.3.0</value>
   </data>
   <data name="VersionCurrent" xml:space="preserve">
-    <value>お使いのバージョンは最新です。</value>
+    <value>You are currently using the latest version.</value>
   </data>
   <data name="VersionTitle" xml:space="preserve">
-    <value>バージョン</value>
+    <value>Version</value>
   </data>
   <data name="ZoomCurrent" xml:space="preserve">
-    <value>現在</value>
+    <value>Current</value>
   </data>
 </root>

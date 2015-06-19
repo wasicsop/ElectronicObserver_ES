@@ -110,6 +110,16 @@
     <Compile Include="Data\Battle\Phase\PhaseSupport.cs" />
     <Compile Include="Data\Battle\Phase\PhaseTorpedo.cs" />
     <Compile Include="Data\Constants.cs" />
+    <Compile Include="Data\ConstantsRes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ConstantsRes.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Data\ConstantsRes.en.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ConstantsRes.en.resx</DependentUpon>
+    </Compile>
     <Compile Include="Data\DockData.cs" />
     <Compile Include="Data\EquipmentData.cs" />
     <Compile Include="Data\EquipmentDataMaster.cs" />
@@ -147,6 +157,26 @@
     <Compile Include="Data\UseItem.cs" />
     <Compile Include="Data\UseItemMaster.cs" />
     <Compile Include="Data\DatabaseUpdatedEventArgs.cs" />
+    <Compile Include="Window\Dialog\ConfigRes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ConfigRes.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Window\Dialog\NotifyRes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NotifyRes.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Window\GeneralRes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GeneralRes.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Window\Menus.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Menus.resx</DependentUpon>
+    </Compile>
     <Compile Include="Notifier\NotifierBase.cs" />
     <Compile Include="Notifier\NotifierCondition.cs" />
     <Compile Include="Notifier\NotifierConstruction.cs" />
@@ -472,6 +502,35 @@
     <Compile Include="Window\Support\ControlHelper.cs" />
     <Compile Include="Window\Support\CustomFloatWindowFactory.cs" />
     <Compile Include="Window\Support\WindowPlacementManager.cs" />
+    <EmbeddedResource Include="Data\ConstantsRes.en.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ConstantsRes.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Data\ConstantsRes.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ConstantsRes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Window\Dialog\ConfigRes.en.resx" />
+    <EmbeddedResource Include="Window\Dialog\ConfigRes.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ConfigRes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Window\Dialog\NotifyRes.en.resx" />
+    <EmbeddedResource Include="Window\Dialog\NotifyRes.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>NotifyRes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Window\GeneralRes.en.resx" />
+    <EmbeddedResource Include="Window\GeneralRes.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>GeneralRes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Window\Menus.en.resx" />
+    <EmbeddedResource Include="Window\Menus.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Menus.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.en.resx" />
     <EmbeddedResource Include="Window\Control\ImageLabel.resx">
       <DependentUpon>ImageLabel.cs</DependentUpon>
     </EmbeddedResource>
@@ -579,6 +638,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Window\FormQuest.resx">
       <DependentUpon>FormQuest.cs</DependentUpon>
@@ -639,6 +699,10 @@
     <ProjectReference Include="..\BrowserLib\BrowserLib.csproj">
       <Project>{8bb3e37d-09fb-40b9-958a-8cdcd18ef1f5}</Project>
       <Name>BrowserLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Browser\Browser.csproj">
+      <Project>{87a2b596-57d0-48bb-b522-895782d7a6fc}</Project>
+      <Name>Browser</Name>
     </ProjectReference>
     <ProjectReference Include="..\DockPanelSuite\WinFormsUI\WinFormsUI.csproj">
       <Project>{c75532c4-765b-418e-b09b-46d36b2abdb1}</Project>

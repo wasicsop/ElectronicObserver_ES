@@ -117,138 +117,181 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AskClose" xml:space="preserve">
-    <value> を終了しますか？</value>
+  <data name="Alignment_Bottom" xml:space="preserve">
+    <value>Bottom (&amp;B)</value>
   </data>
-  <data name="AskForUpdate" xml:space="preserve">
-    <value>新しいバージョンがリリースされています！ : {0}\
-更新内容 : 
-{1}
-ダウンロードページを開きますか？
-(キャンセルすると以降表示しません)</value>
+  <data name="Alignment_Invisible" xml:space="preserve">
+    <value>Invisible (&amp;I)</value>
   </data>
-  <data name="AskLoad" xml:space="preserve">
-    <value>セーブしていないレコードが失われる可能性があります。
-ロードしますか？</value>
+  <data name="Alignment_Left" xml:space="preserve">
+    <value>Left (&amp;L)</value>
   </data>
-  <data name="AskLogin" xml:space="preserve">
-    <value>ログインページへ移動します。
-よろしいですか？</value>
+  <data name="Alignment_Right" xml:space="preserve">
+    <value>Right (&amp;R)</value>
   </data>
-  <data name="AskNavText" xml:space="preserve">
-    <value>移動先の URL を入力してください。</value>
+  <data name="Alignment_Top" xml:space="preserve">
+    <value>Top (&amp;T)</value>
   </data>
-  <data name="AskNavTitle" xml:space="preserve">
-    <value>移動先の入力</value>
+  <data name="Arsenal" xml:space="preserve">
+    <value>Arsenal (&amp;A)</value>
   </data>
-  <data name="BadUpdateURI" xml:space="preserve">
-    <value>アップデート情報の URI が無効です。</value>
+  <data name="Battle" xml:space="preserve">
+    <value>Battle (&amp;B)</value>
   </data>
   <data name="Browser" xml:space="preserve">
-    <value>ブラウザ</value>
-  </data>
-  <data name="BrowserClosedWithoutWarning" xml:space="preserve">
-    <value>ブラウザプロセスが予期せず終了しました。</value>
-  </data>
-  <data name="BrowserCloseError" xml:space="preserve">
-    <value>ブラウザの終了中にエラーが発生しました。</value>
-  </data>
-  <data name="BrowserThrewError" xml:space="preserve">
-    <value>ブラウザプロセス間で通信エラーが発生しました。</value>
+    <value>Browser</value>
   </data>
   <data name="Close" xml:space="preserve">
-    <value>閉じる</value>
+    <value>Quit (&amp;X)</value>
   </data>
-  <data name="ClosingComplete" xml:space="preserve">
-    <value>終了処理が完了しました。</value>
+  <data name="Compass" xml:space="preserve">
+    <value>Compass (&amp;C)</value>
   </data>
-  <data name="Confirm" xml:space="preserve">
-    <value>確認</value>
+  <data name="ControlWindow" xml:space="preserve">
+    <value>Controls (&amp;C)</value>
   </data>
-  <data name="DevelopedBy" xml:space="preserve">
-    <value>開発</value>
+  <data name="Debug" xml:space="preserve">
+    <value>Debug (&amp;D)</value>
   </data>
-  <data name="Error" xml:space="preserve">
-    <value>エラー</value>
+  <data name="DeleteOldAPI" xml:space="preserve">
+    <value>Delete Old API Data (&amp;D)</value>
   </data>
-  <data name="FailedBrowserStart" xml:space="preserve">
-    <value>ブラウザプロセスの起動に失敗しました。</value>
+  <data name="DetachAll" xml:space="preserve">
+    <value>Detatch All Captured Windows (&amp;R)</value>
+  </data>
+  <data name="Dock" xml:space="preserve">
+    <value>Dock (&amp;D)</value>
+  </data>
+  <data name="EquipEncyclopedia" xml:space="preserve">
+    <value>Equipment Encyclopedia (&amp;E)</value>
+  </data>
+  <data name="EquipmentList" xml:space="preserve">
+    <value>Equipment List (&amp;Q)</value>
+  </data>
+  <data name="File" xml:space="preserve">
+    <value>File (&amp;F)</value>
+  </data>
+  <data name="FleetList" xml:space="preserve">
+    <value>Fleet List (&amp;O)</value>
+  </data>
+  <data name="Fleets" xml:space="preserve">
+    <value>Fleets (&amp;F)</value>
+  </data>
+  <data name="Headquarters" xml:space="preserve">
+    <value>Headquarters (&amp;H)</value>
   </data>
   <data name="Help" xml:space="preserve">
-    <value>ヘルプ</value>
+    <value>Help (&amp;H)</value>
   </data>
-  <data name="HelpAddress" xml:space="preserve">
-    <value>https://github.com/andanteyk/ElectronicObserver/wiki</value>
+  <data name="Information" xml:space="preserve">
+    <value>Information (&amp;I)</value>
   </data>
-  <data name="HelpAsk" xml:space="preserve">
-    <value>外部ブラウザでオンラインヘルプを開きます。
-よろしいですか？</value>
+  <data name="Layout" xml:space="preserve">
+    <value>Layout (&amp;L)</value>
   </data>
-  <data name="InitLayout" xml:space="preserve">
-    <value>レイアウトが初期化されました。
-「表示」メニューからお好みのウィンドウを追加してください。</value>
+  <data name="LayoutOpen" xml:space="preserve">
+    <value>Open from another file (&amp;O)...</value>
   </data>
-  <data name="IsClosing" xml:space="preserve">
-    <value> を終了しています…</value>
+  <data name="Load" xml:space="preserve">
+    <value>Load(&amp;L)</value>
   </data>
-  <data name="IsStarting" xml:space="preserve">
-    <value> を起動しています…</value>
+  <data name="LoadAPIFromFile" xml:space="preserve">
+    <value>Load API data from file (&amp;L)...</value>
   </data>
-  <data name="LayoutLoaded" xml:space="preserve">
-    <value>ウィンドウ レイアウトを復元しました。</value>
+  <data name="LoadAPIList" xml:space="preserve">
+    <value>Load API List (&amp;I)...</value>
   </data>
-  <data name="LayoutSaved" xml:space="preserve">
-    <value>ウィンドウ レイアウトを保存しました。</value>
+  <data name="LoadOldAPIRecord" xml:space="preserve">
+    <value>Load from old api_start2 (&amp;O)...</value>
   </data>
-  <data name="NewVersionFound" xml:space="preserve">
-    <value>新しいバージョンがリリースされています！ :</value>
+  <data name="Log" xml:space="preserve">
+    <value>Log (&amp;L)</value>
   </data>
-  <data name="NoEquipData" xml:space="preserve">
-    <value>装備データが読み込まれていません。</value>
+  <data name="OnlineHelp" xml:space="preserve">
+    <value>Online Help (&amp;H)...</value>
   </data>
-  <data name="NoLayoutFound" xml:space="preserve">
-    <value>ウィンドウ レイアウト ファイルは存在しません。</value>
+  <data name="Other" xml:space="preserve">
+    <value>Other</value>
   </data>
-  <data name="NoShipData" xml:space="preserve">
-    <value>艦船データが読み込まれていません。</value>
+  <data name="Other_Alignment" xml:space="preserve">
+    <value>Alignment (&amp;A)</value>
   </data>
-  <data name="OpenLayout" xml:space="preserve">
-    <value>レイアウト ファイルを開く</value>
+  <data name="Other_ApplyStyleSheet" xml:space="preserve">
+    <value>Apply Style Sheet</value>
   </data>
-  <data name="OriginalSite" xml:space="preserve">
-    <value>配布元(不具合報告・連絡はこちらへ)</value>
+  <data name="Other_ClearCache" xml:space="preserve">
+    <value>Clear Browser Cache (&amp;C)</value>
   </data>
-  <data name="SoftwareName" xml:space="preserve">
-    <value>七四式電子観測儀</value>
+  <data name="Other_Mute" xml:space="preserve">
+    <value>Mute (&amp;M)</value>
   </data>
-  <data name="StartupComplete" xml:space="preserve">
-    <value>起動処理が完了しました。</value>
+  <data name="Other_Navigate" xml:space="preserve">
+    <value>Go to... (&amp;N)</value>
   </data>
-  <data name="TranslatedSite" xml:space="preserve">
-    <value>翻訳版元</value>
+  <data name="Other_NavigateToLogInPage" xml:space="preserve">
+    <value>Go to Login Page (&amp;L)</value>
   </data>
-  <data name="TranslatedVer" xml:space="preserve">
-    <value>翻訳版</value>
+  <data name="Other_Refresh" xml:space="preserve">
+    <value>Refresh (&amp;R)</value>
   </data>
-  <data name="Update" xml:space="preserve">
-    <value>アップデート情報</value>
+  <data name="Other_RegionCookie" xml:space="preserve">
+    <value>Set Region Cookie</value>
   </data>
-  <data name="UpdateCheckFailed" xml:space="preserve">
-    <value>アップデート情報の取得に失敗しました。</value>
+  <data name="Other_Screenshot" xml:space="preserve">
+    <value>Screenshot (&amp;S)</value>
   </data>
-  <data name="UpdateConnectionFailed" xml:space="preserve">
-    <value>アップデート情報の処理に失敗しました。</value>
+  <data name="Other_Zoom" xml:space="preserve">
+    <value>Zoom (&amp;Z)</value>
   </data>
-  <data name="Version" xml:space="preserve">
-    <value>一三型</value>
+  <data name="Other_Zoom_current" xml:space="preserve">
+    <value>Current%</value>
   </data>
-  <data name="VersionCurrent" xml:space="preserve">
-    <value>お使いのバージョンは最新です。</value>
+  <data name="Other_Zoom_Fit" xml:space="preserve">
+    <value>Zoom To Fit</value>
   </data>
-  <data name="VersionTitle" xml:space="preserve">
-    <value>バージョン</value>
+  <data name="Quest" xml:space="preserve">
+    <value>Quests (&amp;Q)</value>
   </data>
-  <data name="ZoomCurrent" xml:space="preserve">
-    <value>現在</value>
+  <data name="ReattachAll" xml:space="preserve">
+    <value>Reattach All Captured Windows (&amp;S)</value>
+  </data>
+  <data name="Record" xml:space="preserve">
+    <value>Record (&amp;R)</value>
+  </data>
+  <data name="RenameShipResource" xml:space="preserve">
+    <value>Rename Ship Resource (&amp;R)...</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save (&amp;S)</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Settings (&amp;C)...</value>
+  </data>
+  <data name="ShipEncyclopedia" xml:space="preserve">
+    <value>Ship Encylopedia (&amp;S)</value>
+  </data>
+  <data name="ShipGroup" xml:space="preserve">
+    <value>Ship Groups (&amp;G)</value>
+  </data>
+  <data name="ShowToolMenu" xml:space="preserve">
+    <value>Display Tool Menu</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Type 74 Electronic Observation Device</value>
+  </data>
+  <data name="Tools" xml:space="preserve">
+    <value>Tools (&amp;T)</value>
+  </data>
+  <data name="VersionInfo" xml:space="preserve">
+    <value>Version Info (&amp;V)</value>
+  </data>
+  <data name="View" xml:space="preserve">
+    <value>View (&amp;V)</value>
+  </data>
+  <data name="WindowCapture" xml:space="preserve">
+    <value>Window Capture (&amp;W)</value>
+  </data>
+  <data name="ShowShipName" xml:space="preserve">
+    <value>Show Ship Name (&amp;V)</value>
   </data>
 </root>

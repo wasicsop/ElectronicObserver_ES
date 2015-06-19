@@ -202,7 +202,7 @@ namespace ElectronicObserver.Window {
 				}
 
 				return string.Format(
-							"{0} {1}{2}\n耐久: {3}\n火力: {4}/{5}\n雷装: {6}/{7}\n対空: {8}/{9}\n装甲: {10}/{11}\n対潜: {12}/{13}\n回避: {14}/{15}\n索敵: {16}/{17}\n運: {18}/{19}\n射程: {20} / 速力: {21}\n(右クリックで図鑑)\n",
+							GeneralRes.CompassShipTooltip,
 							ship.ShipTypeName, ship.NameWithClass, level < 1 ? "" : string.Format( " Lv. {0}", level ),
 							hp,
 							firepower_c, firepower,
@@ -229,20 +229,20 @@ namespace ElectronicObserver.Window {
 						sb.AppendFormat( "[{0}] {1}\r\n", ship.Aircraft[i], KCDatabase.Instance.MasterEquipments[slot[i]].Name );
 				}
 
-				sb.AppendFormat( "\r\n昼戦: {0}\r\n夜戦: {1}\r\n",
+				sb.AppendFormat( "\r\n" + GeneralRes.DayBattle + ": {0}\r\n" + GeneralRes.NightBattle +": {1}\r\n",
 					Constants.GetDayAttackKind( Calculator.GetDayAttackKind( slot, ship.ShipID, -1 ) ),
 					Constants.GetNightAttackKind( Calculator.GetNightAttackKind( slot, ship.ShipID, -1 ) ) );
 
 				{
 					int aacutin = Calculator.GetAACutinKind( shipID, slot );
 					if ( aacutin != 0 ) {
-						sb.AppendFormat( "対空: {0}\r\n", Constants.GetAACutinKind( aacutin ) );
+						sb.AppendFormat( GeneralRes.AntiAir + ": {0}\r\n", Constants.GetAACutinKind( aacutin ) );
 					}
 				}
 				{
 					int airsup = Calculator.GetAirSuperiority( slot, ship.Aircraft.ToArray() );
 					if ( airsup > 0 ) {
-						sb.AppendFormat( "制空戦力: {0}\r\n", airsup );
+						sb.AppendFormat( GeneralRes.AirPower + ": {0}\r\n", airsup );
 					}
 				}
 
@@ -367,7 +367,7 @@ namespace ElectronicObserver.Window {
 
 			} else if ( apiname == "api_req_member/get_practice_enemyinfo" ) {
 
-				TextMapArea.Text = "演習";
+				TextMapArea.Text = GeneralRes.Practice;
 				TextDestination.Text = string.Format( "{0} {1}", data.api_nickname, Constants.GetAdmiralRank( (int)data.api_rank ) );
 				TextEventKind.Text = data.api_cmt;
 				TextEventKind.ForeColor = getColorFromEventKind( 0 );
@@ -383,9 +383,9 @@ namespace ElectronicObserver.Window {
 				PanelEnemyFleet.Visible = false;
 
 
-				TextMapArea.Text = string.Format( "出撃海域 : {0}-{1}", compass.MapAreaID, compass.MapInfoID );
+				TextMapArea.Text = string.Format( GeneralRes.Map + ": {0}-{1}", compass.MapAreaID, compass.MapInfoID );
 
-				TextDestination.Text = string.Format( "次のセル : {0}{1}", compass.Destination, ( compass.IsEndPoint ? " (終点)" : "" ) );
+				TextDestination.Text = string.Format( GeneralRes.NextNode + ": {0}{1}", compass.Destination, ( compass.IsEndPoint ? GeneralRes.EndNode : "" ) );
 				if ( compass.LaunchedRecon != 0 ) {
 					TextDestination.ImageAlign = ContentAlignment.MiddleRight;
 					TextDestination.ImageIndex = (int)ResourceManager.EquipmentContent.Seaplane;
@@ -393,13 +393,13 @@ namespace ElectronicObserver.Window {
 					string tiptext;
 					switch ( compass.CommentID ) {
 						case 1:
-							tiptext = "敵艦隊発見！";
+							tiptext = GeneralRes.EnemySighted;
 							break;
 						case 2:
-							tiptext = "攻撃目標発見！";
+							tiptext = GeneralRes.TargetSighted;
 							break;
 						default:
-							tiptext = "索敵機発艦！";
+							tiptext = GeneralRes.EnemyPlaneSighted;
 							break;
 					}
 					ToolTipInfo.SetToolTip( TextDestination, tiptext );
@@ -420,7 +420,7 @@ namespace ElectronicObserver.Window {
 
 						case 0:		//初期位置
 						case 1:		//不明
-							TextEventDetail.Text = "どうしてこうなった";
+							TextEventDetail.Text = GeneralRes.WhyDidThisHappen;
 							break;
 
 						case 2:		//資源
@@ -436,7 +436,7 @@ namespace ElectronicObserver.Window {
 									if ( item != null )
 										materialname = item.Name;
 									else
-										materialname = "謎のアイテム";
+										materialname = GeneralRes.MysteriousItem;
 								}
 
 								TextEventDetail.Text = materialname + " x " + compass.GetItemAmount;
@@ -490,11 +490,11 @@ namespace ElectronicObserver.Window {
 									TextEventDetail.Text = "";
 									break;
 								case 1:		//敵影を見ず
-									eventkind = "敵影を見ず";
+									eventkind = GeneralRes.SawNoEnemy;
 									TextEventDetail.Text = "";
 									break;
 								case 2:		//能動分岐
-									eventkind = "能動分岐";
+									eventkind = GeneralRes.BranchChoice;
 									TextEventDetail.Text = string.Join( "/", compass.RouteChoices );
 									break;
 							}
@@ -536,7 +536,7 @@ namespace ElectronicObserver.Window {
 
 		private void UpdateEnemyFleet( int fleetID ) {
 
-			TextEventDetail.Text = string.Format( "敵艦隊ID : {0}", fleetID );
+			TextEventDetail.Text = string.Format( GeneralRes.EnemyFleetID + ": {0}", fleetID );
 
 
 			var efleet = RecordManager.Instance.EnemyFleet;
@@ -544,7 +544,7 @@ namespace ElectronicObserver.Window {
 			if ( !efleet.Record.ContainsKey( fleetID ) ) {
 
 				//unknown
-				TextEnemyFleetName.Text = "(敵艦隊情報不明)";
+				TextEnemyFleetName.Text = GeneralRes.EnemyUnknown;
 				TextFormation.Visible = false;
 				TextAirSuperiority.Visible = false;
 				TableEnemyMember.Visible = false;

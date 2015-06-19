@@ -176,7 +176,7 @@
 			dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
 			this.ShipView_ShipType.DefaultCellStyle = dataGridViewCellStyle1;
 			this.ShipView_ShipType.Frozen = true;
-			this.ShipView_ShipType.HeaderText = "艦種";
+			this.ShipView_ShipType.HeaderText = GeneralRes.ShipType;
 			this.ShipView_ShipType.Name = "ShipView_ShipType";
 			this.ShipView_ShipType.ReadOnly = true;
 			this.ShipView_ShipType.Width = 80;
@@ -186,7 +186,7 @@
 			dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
 			this.ShipView_Name.DefaultCellStyle = dataGridViewCellStyle2;
 			this.ShipView_Name.Frozen = true;
-			this.ShipView_Name.HeaderText = "艦名";
+			this.ShipView_Name.HeaderText = GeneralRes.ShipName;
 			this.ShipView_Name.Name = "ShipView_Name";
 			this.ShipView_Name.ReadOnly = true;
 			// 
@@ -213,7 +213,7 @@
 			// 
 			// ShipView_NextRemodel
 			// 
-			this.ShipView_NextRemodel.HeaderText = "改装まで";
+			this.ShipView_NextRemodel.HeaderText = GeneralRes.ToRemodel;
 			this.ShipView_NextRemodel.Name = "ShipView_NextRemodel";
 			this.ShipView_NextRemodel.ReadOnly = true;
 			this.ShipView_NextRemodel.Width = 60;
@@ -234,14 +234,14 @@
 			// 
 			// ShipView_Fuel
 			// 
-			this.ShipView_Fuel.HeaderText = "燃料";
+			this.ShipView_Fuel.HeaderText = GeneralRes.Fuel;
 			this.ShipView_Fuel.Name = "ShipView_Fuel";
 			this.ShipView_Fuel.ReadOnly = true;
 			this.ShipView_Fuel.Width = 60;
 			// 
 			// ShipView_Ammo
 			// 
-			this.ShipView_Ammo.HeaderText = "弾薬";
+			this.ShipView_Ammo.HeaderText = GeneralRes.Ammo;
 			this.ShipView_Ammo.Name = "ShipView_Ammo";
 			this.ShipView_Ammo.ReadOnly = true;
 			this.ShipView_Ammo.Width = 60;
@@ -250,7 +250,7 @@
 			// 
 			dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
 			this.ShipView_Equipment1.DefaultCellStyle = dataGridViewCellStyle3;
-			this.ShipView_Equipment1.HeaderText = "装備1";
+			this.ShipView_Equipment1.HeaderText = GeneralRes.Equipment + "1";
 			this.ShipView_Equipment1.Name = "ShipView_Equipment1";
 			this.ShipView_Equipment1.ReadOnly = true;
 			this.ShipView_Equipment1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -260,7 +260,7 @@
 			// 
 			dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
 			this.ShipView_Equipment2.DefaultCellStyle = dataGridViewCellStyle4;
-			this.ShipView_Equipment2.HeaderText = "装備2";
+			this.ShipView_Equipment2.HeaderText = GeneralRes.Equipment + "2";
 			this.ShipView_Equipment2.Name = "ShipView_Equipment2";
 			this.ShipView_Equipment2.ReadOnly = true;
 			this.ShipView_Equipment2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -270,7 +270,7 @@
 			// 
 			dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
 			this.ShipView_Equipment3.DefaultCellStyle = dataGridViewCellStyle5;
-			this.ShipView_Equipment3.HeaderText = "装備3";
+			this.ShipView_Equipment3.HeaderText = GeneralRes.Equipment + "3";
 			this.ShipView_Equipment3.Name = "ShipView_Equipment3";
 			this.ShipView_Equipment3.ReadOnly = true;
 			this.ShipView_Equipment3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -280,7 +280,7 @@
 			// 
 			dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
 			this.ShipView_Equipment4.DefaultCellStyle = dataGridViewCellStyle6;
-			this.ShipView_Equipment4.HeaderText = "装備4";
+			this.ShipView_Equipment4.HeaderText = GeneralRes.Equipment + "4";
 			this.ShipView_Equipment4.Name = "ShipView_Equipment4";
 			this.ShipView_Equipment4.ReadOnly = true;
 			this.ShipView_Equipment4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -290,7 +290,7 @@
 			// 
 			dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
 			this.ShipView_Equipment5.DefaultCellStyle = dataGridViewCellStyle7;
-			this.ShipView_Equipment5.HeaderText = "装備5";
+			this.ShipView_Equipment5.HeaderText = GeneralRes.Equipment + "5";
 			this.ShipView_Equipment5.Name = "ShipView_Equipment5";
 			this.ShipView_Equipment5.ReadOnly = true;
 			this.ShipView_Equipment5.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -298,119 +298,119 @@
 			// 
 			// ShipView_Fleet
 			// 
-			this.ShipView_Fleet.HeaderText = "艦隊";
+			this.ShipView_Fleet.HeaderText = GeneralRes.Fleet;
 			this.ShipView_Fleet.Name = "ShipView_Fleet";
 			this.ShipView_Fleet.ReadOnly = true;
 			this.ShipView_Fleet.Width = 40;
 			// 
 			// ShipView_RepairTime
 			// 
-			this.ShipView_RepairTime.HeaderText = "入渠";
+			this.ShipView_RepairTime.HeaderText = GeneralRes.Dock;
 			this.ShipView_RepairTime.Name = "ShipView_RepairTime";
 			this.ShipView_RepairTime.ReadOnly = true;
 			this.ShipView_RepairTime.Width = 60;
 			// 
 			// ShipView_Firepower
 			// 
-			this.ShipView_Firepower.HeaderText = "火力";
+			this.ShipView_Firepower.HeaderText = GeneralRes.Firepower;
 			this.ShipView_Firepower.Name = "ShipView_Firepower";
 			this.ShipView_Firepower.ReadOnly = true;
 			this.ShipView_Firepower.Width = 40;
 			// 
 			// ShipView_FirepowerRemain
 			// 
-			this.ShipView_FirepowerRemain.HeaderText = "火力改修";
+			this.ShipView_FirepowerRemain.HeaderText = GeneralRes.Firepower + GeneralRes.ModRemaining;
 			this.ShipView_FirepowerRemain.Name = "ShipView_FirepowerRemain";
 			this.ShipView_FirepowerRemain.ReadOnly = true;
 			this.ShipView_FirepowerRemain.Width = 40;
 			// 
 			// ShipView_Torpedo
 			// 
-			this.ShipView_Torpedo.HeaderText = "雷装";
+			this.ShipView_Torpedo.HeaderText = GeneralRes.Torpedo;
 			this.ShipView_Torpedo.Name = "ShipView_Torpedo";
 			this.ShipView_Torpedo.ReadOnly = true;
 			this.ShipView_Torpedo.Width = 40;
 			// 
 			// ShipView_TorpedoRemain
 			// 
-			this.ShipView_TorpedoRemain.HeaderText = "雷装改修";
+			this.ShipView_TorpedoRemain.HeaderText = GeneralRes.Torpedo + GeneralRes.ModRemaining;
 			this.ShipView_TorpedoRemain.Name = "ShipView_TorpedoRemain";
 			this.ShipView_TorpedoRemain.ReadOnly = true;
 			this.ShipView_TorpedoRemain.Width = 40;
 			// 
 			// ShipView_AA
 			// 
-			this.ShipView_AA.HeaderText = "対空";
+			this.ShipView_AA.HeaderText = GeneralRes.AntiAir;
 			this.ShipView_AA.Name = "ShipView_AA";
 			this.ShipView_AA.ReadOnly = true;
 			this.ShipView_AA.Width = 40;
 			// 
 			// ShipView_AARemain
 			// 
-			this.ShipView_AARemain.HeaderText = "対空改修";
+			this.ShipView_AARemain.HeaderText = GeneralRes.AntiAir + GeneralRes.ModRemaining;
 			this.ShipView_AARemain.Name = "ShipView_AARemain";
 			this.ShipView_AARemain.ReadOnly = true;
 			this.ShipView_AARemain.Width = 40;
 			// 
 			// ShipView_Armor
 			// 
-			this.ShipView_Armor.HeaderText = "装甲";
+			this.ShipView_Armor.HeaderText = GeneralRes.Armor;
 			this.ShipView_Armor.Name = "ShipView_Armor";
 			this.ShipView_Armor.ReadOnly = true;
 			this.ShipView_Armor.Width = 40;
 			// 
 			// ShipView_ArmorRemain
 			// 
-			this.ShipView_ArmorRemain.HeaderText = "装甲改修";
+			this.ShipView_ArmorRemain.HeaderText = GeneralRes.Armor + GeneralRes.ModRemaining;
 			this.ShipView_ArmorRemain.Name = "ShipView_ArmorRemain";
 			this.ShipView_ArmorRemain.ReadOnly = true;
 			this.ShipView_ArmorRemain.Width = 40;
 			// 
 			// ShipView_ASW
 			// 
-			this.ShipView_ASW.HeaderText = "対潜";
+			this.ShipView_ASW.HeaderText = GeneralRes.ASW;
 			this.ShipView_ASW.Name = "ShipView_ASW";
 			this.ShipView_ASW.ReadOnly = true;
 			this.ShipView_ASW.Width = 40;
 			// 
 			// ShipView_Evasion
 			// 
-			this.ShipView_Evasion.HeaderText = "回避";
+			this.ShipView_Evasion.HeaderText = GeneralRes.Evasion;
 			this.ShipView_Evasion.Name = "ShipView_Evasion";
 			this.ShipView_Evasion.ReadOnly = true;
 			this.ShipView_Evasion.Width = 40;
 			// 
 			// ShipView_LOS
 			// 
-			this.ShipView_LOS.HeaderText = "索敵";
+			this.ShipView_LOS.HeaderText = GeneralRes.LoS;
 			this.ShipView_LOS.Name = "ShipView_LOS";
 			this.ShipView_LOS.ReadOnly = true;
 			this.ShipView_LOS.Width = 40;
 			// 
 			// ShipView_Luck
 			// 
-			this.ShipView_Luck.HeaderText = "運";
+			this.ShipView_Luck.HeaderText = GeneralRes.Luck;
 			this.ShipView_Luck.Name = "ShipView_Luck";
 			this.ShipView_Luck.ReadOnly = true;
 			this.ShipView_Luck.Width = 40;
 			// 
 			// ShipView_LuckRemain
 			// 
-			this.ShipView_LuckRemain.HeaderText = "運改修";
+			this.ShipView_LuckRemain.HeaderText = GeneralRes.Luck + GeneralRes.ModRemaining;
 			this.ShipView_LuckRemain.Name = "ShipView_LuckRemain";
 			this.ShipView_LuckRemain.ReadOnly = true;
 			this.ShipView_LuckRemain.Width = 40;
 			// 
 			// ShipView_Locked
 			// 
-			this.ShipView_Locked.HeaderText = "ロック";
+			this.ShipView_Locked.HeaderText = GeneralRes.Lock;
 			this.ShipView_Locked.Name = "ShipView_Locked";
 			this.ShipView_Locked.ReadOnly = true;
 			this.ShipView_Locked.Width = 40;
 			// 
 			// ShipView_SallyArea
 			// 
-			this.ShipView_SallyArea.HeaderText = "出撃先";
+			this.ShipView_SallyArea.HeaderText = GeneralRes.SortiePlace;
 			this.ShipView_SallyArea.Name = "ShipView_SallyArea";
 			this.ShipView_SallyArea.ReadOnly = true;
 			this.ShipView_SallyArea.Width = 40;
@@ -438,7 +438,7 @@
 			this.MenuMember_AddToGroup.Name = "MenuMember_AddToGroup";
 			this.MenuMember_AddToGroup.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D)));
 			this.MenuMember_AddToGroup.Size = new System.Drawing.Size(501, 34);
-			this.MenuMember_AddToGroup.Text = "グループへ追加(&A)...";
+			this.MenuMember_AddToGroup.Text = GeneralRes.AddToGroupMenu;
 			this.MenuMember_AddToGroup.Click += new System.EventHandler(this.MenuMember_AddToGroup_Click);
 			// 
 			// MenuMember_CreateGroup
@@ -447,14 +447,14 @@
 			this.MenuMember_CreateGroup.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
             | System.Windows.Forms.Keys.D)));
 			this.MenuMember_CreateGroup.Size = new System.Drawing.Size(501, 34);
-			this.MenuMember_CreateGroup.Text = "新規グループを作成(&C)...";
+			this.MenuMember_CreateGroup.Text = GeneralRes.CreateGroupMenu;
 			this.MenuMember_CreateGroup.Click += new System.EventHandler(this.MenuMember_CreateGroup_Click);
 			// 
 			// MenuMember_AddCurrentFleet_Group
 			// 
 			this.MenuMember_AddCurrentFleet_Group.Name = "MenuMember_AddCurrentFleet_Group";
 			this.MenuMember_AddCurrentFleet_Group.Size = new System.Drawing.Size(501, 34);
-			this.MenuMember_AddCurrentFleet_Group.Text = "現在の艦隊を追加(&G)";
+			this.MenuMember_AddCurrentFleet_Group.Text = GeneralRes.AddFleetToGroupMenu;
 			// 
 			// toolStripSeparator1
 			// 
@@ -465,7 +465,7 @@
 			// 
 			this.MenuMember_ColumnFilter.Name = "MenuMember_ColumnFilter";
 			this.MenuMember_ColumnFilter.Size = new System.Drawing.Size(501, 34);
-			this.MenuMember_ColumnFilter.Text = "列フィルタ(&F)...";
+			this.MenuMember_ColumnFilter.Text = GeneralRes.FilterBy;
 			this.MenuMember_ColumnFilter.Click += new System.EventHandler(this.MenuMember_ColumnFilter_Click);
 			// 
 			// MenuMember_ColumnAutoSize
@@ -473,7 +473,7 @@
 			this.MenuMember_ColumnAutoSize.CheckOnClick = true;
 			this.MenuMember_ColumnAutoSize.Name = "MenuMember_ColumnAutoSize";
 			this.MenuMember_ColumnAutoSize.Size = new System.Drawing.Size(501, 34);
-			this.MenuMember_ColumnAutoSize.Text = "列の自動調整(&D)";
+			this.MenuMember_ColumnAutoSize.Text = GeneralRes.AutoAdjustColumns;
 			this.MenuMember_ColumnAutoSize.Click += new System.EventHandler(this.MenuMember_ColumnAutoSize_Click);
 			// 
 			// MenuMember_LockShipNameScroll
@@ -481,7 +481,7 @@
 			this.MenuMember_LockShipNameScroll.CheckOnClick = true;
 			this.MenuMember_LockShipNameScroll.Name = "MenuMember_LockShipNameScroll";
 			this.MenuMember_LockShipNameScroll.Size = new System.Drawing.Size(501, 34);
-			this.MenuMember_LockShipNameScroll.Text = "艦名をスクロールしない(&S)";
+			this.MenuMember_LockShipNameScroll.Text = GeneralRes.DontScrollNames;
 			this.MenuMember_LockShipNameScroll.Click += new System.EventHandler(this.MenuMember_LockShipNameScroll_Click);
 			// 
 			// toolStripSeparator2
@@ -493,7 +493,7 @@
 			// 
 			this.MenuMember_CSVOutput.Name = "MenuMember_CSVOutput";
 			this.MenuMember_CSVOutput.Size = new System.Drawing.Size(501, 34);
-			this.MenuMember_CSVOutput.Text = "CSV出力(&O)...";
+			this.MenuMember_CSVOutput.Text = GeneralRes.OutputCSV;
 			this.MenuMember_CSVOutput.Click += new System.EventHandler(this.MenuMember_CSVOutput_Click);
 			// 
 			// toolStripSeparator3
@@ -506,7 +506,7 @@
 			this.MenuMember_Delete.Name = "MenuMember_Delete";
 			this.MenuMember_Delete.ShortcutKeys = System.Windows.Forms.Keys.Delete;
 			this.MenuMember_Delete.Size = new System.Drawing.Size(501, 34);
-			this.MenuMember_Delete.Text = "削除(&D)";
+			this.MenuMember_Delete.Text = GeneralRes.Delete;
 			this.MenuMember_Delete.Click += new System.EventHandler(this.MenuMember_Delete_Click);
 			// 
 			// MenuGroup
@@ -526,21 +526,21 @@
 			// 
 			this.MenuGroup_Add.Name = "MenuGroup_Add";
 			this.MenuGroup_Add.Size = new System.Drawing.Size(321, 38);
-			this.MenuGroup_Add.Text = "グループを追加(&A)";
+			this.MenuGroup_Add.Text = GeneralRes.AddGroupMenu;
 			this.MenuGroup_Add.Click += new System.EventHandler(this.MenuGroup_Add_Click);
 			// 
 			// MenuGroup_Rename
 			// 
 			this.MenuGroup_Rename.Name = "MenuGroup_Rename";
 			this.MenuGroup_Rename.Size = new System.Drawing.Size(321, 38);
-			this.MenuGroup_Rename.Text = "グループ名の変更(&R)...";
+			this.MenuGroup_Rename.Text = GeneralRes.RenameGroupMenu;
 			this.MenuGroup_Rename.Click += new System.EventHandler(this.MenuGroup_Rename_Click);
 			// 
 			// MenuGroup_Delete
 			// 
 			this.MenuGroup_Delete.Name = "MenuGroup_Delete";
 			this.MenuGroup_Delete.Size = new System.Drawing.Size(321, 38);
-			this.MenuGroup_Delete.Text = "グループを削除(&D)";
+			this.MenuGroup_Delete.Text = GeneralRes.DeleteGroupMenu;
 			this.MenuGroup_Delete.Click += new System.EventHandler(this.MenuGroup_Delete_Click);
 			// 
 			// toolStripSeparator4
@@ -553,7 +553,7 @@
 			this.MenuGroup_AutoUpdate.CheckOnClick = true;
 			this.MenuGroup_AutoUpdate.Name = "MenuGroup_AutoUpdate";
 			this.MenuGroup_AutoUpdate.Size = new System.Drawing.Size(321, 38);
-			this.MenuGroup_AutoUpdate.Text = "自動更新する";
+			this.MenuGroup_AutoUpdate.Text = GeneralRes.AutoUpdate;
 			// 
 			// MenuGroup_ShowStatusBar
 			// 
@@ -562,7 +562,7 @@
 			this.MenuGroup_ShowStatusBar.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.MenuGroup_ShowStatusBar.Name = "MenuGroup_ShowStatusBar";
 			this.MenuGroup_ShowStatusBar.Size = new System.Drawing.Size(321, 38);
-			this.MenuGroup_ShowStatusBar.Text = "ステータスバーを表示する";
+			this.MenuGroup_ShowStatusBar.Text = GeneralRes.ShowStatusBar;
 			this.MenuGroup_ShowStatusBar.CheckedChanged += new System.EventHandler(this.MenuGroup_ShowStatusBar_CheckedChanged);
 			// 
 			// splitContainer1
@@ -641,7 +641,7 @@
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 			this.HideOnClose = true;
 			this.Name = "FormShipGroup";
-			this.Text = "グループ";
+			this.Text = GeneralRes.Group;
 			this.Load += new System.EventHandler(this.FormShipGroup_Load);
 			((System.ComponentModel.ISupportInitialize)(this.ShipView)).EndInit();
 			this.MenuMember.ResumeLayout(false);

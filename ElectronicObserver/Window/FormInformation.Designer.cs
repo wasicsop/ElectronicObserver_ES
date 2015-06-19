@@ -52,7 +52,7 @@
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 			this.HideOnClose = true;
 			this.Name = "FormInformation";
-			this.Text = "情報";
+			this.Text = GeneralRes.Information;
 			this.Load += new System.EventHandler(this.FormInformation_Load);
 			this.ResumeLayout(false);
 

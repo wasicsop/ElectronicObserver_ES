@@ -1,5 +1,6 @@
 ﻿using BrowserLib;
 using ElectronicObserver.Resource;
+using ElectronicObserver.Properties;
 using ElectronicObserver.Utility.Mathematics;
 using mshtml;
 using System;
@@ -91,9 +92,9 @@ namespace ElectronicObserver.Window {
 				// 残りはサーバに接続してきたブラウザプロセスがドライブする
 
 			} catch ( Exception ex ) {
-				Utility.ErrorReporter.SendErrorReport( ex, "ブラウザプロセスの起動に失敗しました。" );
-				MessageBox.Show( "ブラウザプロセスの起動に失敗しました。\r\n" + ex.Message,
-					"エラー", MessageBoxButtons.OK, MessageBoxIcon.Error );
+				Utility.ErrorReporter.SendErrorReport( ex, Resources.FailedBrowserStart );
+				MessageBox.Show( Resources.FailedBrowserStart + ex.Message,
+					Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error );
 			}
 		}
 
@@ -241,7 +242,7 @@ namespace ElectronicObserver.Window {
 
 		public void RequestNavigation( string baseurl ) {
 
-			using ( var dialog = new Window.Dialog.DialogTextInput( "移動先の入力", "移動先の URL を入力してください。" ) ) {
+			using ( var dialog = new Window.Dialog.DialogTextInput( Resources.AskNavTitle, Resources.AskNavText ) ) {
 				dialog.InputtedText = baseurl;
 
 				if ( dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK ) {
@@ -295,9 +296,9 @@ namespace ElectronicObserver.Window {
 
 		void Browser_Faulted( Exception e ) {
 			if ( Browser.Proxy == null ) {
-				Utility.Logger.Add( 3, "ブラウザプロセスが予期せず終了しました。" );
+				Utility.Logger.Add( 3, Resources.BrowserClosedWithoutWarning );
 			} else {
-				Utility.ErrorReporter.SendErrorReport( e, "ブラウザプロセス間で通信エラーが発生しました。" );
+				Utility.ErrorReporter.SendErrorReport( e, Resources.BrowserThrewError );
 			}
 		}
 
@@ -333,7 +334,7 @@ namespace ElectronicObserver.Window {
 
 			} catch ( Exception ex ) {		//ブラウザプロセスが既に終了していた場合など
 
-				Utility.ErrorReporter.SendErrorReport( ex, "ブラウザの終了中にエラーが発生しました。" );
+				Utility.ErrorReporter.SendErrorReport( ex, Resources.BrowserCloseError );
 			}
 
 		}

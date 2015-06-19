@@ -111,7 +111,7 @@
 			this.TextEnemyFleetName.Name = "TextEnemyFleetName";
 			this.TextEnemyFleetName.Size = new System.Drawing.Size(59, 16);
 			this.TextEnemyFleetName.TabIndex = 0;
-			this.TextEnemyFleetName.Text = "(敵艦隊名)";
+			this.TextEnemyFleetName.Text = GeneralRes.EnemyFleetName;
 			// 
 			// TextFormation
 			// 
@@ -122,7 +122,7 @@
 			this.TextFormation.Name = "TextFormation";
 			this.TextFormation.Size = new System.Drawing.Size(35, 16);
 			this.TextFormation.TabIndex = 1;
-			this.TextFormation.Text = "(陣形)";
+			this.TextFormation.Text = GeneralRes.EnemyFormation;
 			// 
 			// TextAirSuperiority
 			// 
@@ -132,7 +132,7 @@
 			this.TextAirSuperiority.Name = "TextAirSuperiority";
 			this.TextAirSuperiority.Size = new System.Drawing.Size(78, 16);
 			this.TextAirSuperiority.TabIndex = 2;
-			this.TextAirSuperiority.Text = "(制空戦力)";
+			this.TextAirSuperiority.Text = GeneralRes.AirPower;
 			// 
 			// ToolTipInfo
 			// 
@@ -191,7 +191,7 @@
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 			this.HideOnClose = true;
 			this.Name = "FormCompass";
-			this.Text = "羅針盤";
+			this.Text = GeneralRes.Compass;
 			this.Load += new System.EventHandler(this.FormCompass_Load);
 			this.BasePanel.ResumeLayout(false);
 			this.BasePanel.PerformLayout();

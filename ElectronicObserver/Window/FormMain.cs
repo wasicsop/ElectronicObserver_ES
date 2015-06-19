@@ -1,4 +1,5 @@
 ﻿using Codeplex.Data;
+using ElectronicObserver.Properties;
 using ElectronicObserver.Data;
 using ElectronicObserver.Notifier;
 using ElectronicObserver.Observer;
@@ -80,7 +81,7 @@ namespace ElectronicObserver.Window {
 			} );
 			Utility.Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
 
-			Utility.Logger.Add( 2, SoftwareInformation.SoftwareNameJapanese + " を起動しています…" );
+			Utility.Logger.Add( 2, SoftwareInformation.SoftwareNameJapanese + Resources.IsStarting );
 
 
 			this.Text = SoftwareInformation.VersionJapanese;
@@ -145,7 +146,7 @@ namespace ElectronicObserver.Window {
 
 			UIUpdateTimer.Start();
 
-			Utility.Logger.Add( 2, "起動処理が完了しました。" );
+			Utility.Logger.Add( 2, Resources.StartupComplete );
 		}
 
 
@@ -211,7 +212,7 @@ namespace ElectronicObserver.Window {
 		private void FormMain_FormClosing( object sender, FormClosingEventArgs e ) {
 
 			if ( Utility.Configuration.Config.Life.ConfirmOnClosing ) {
-				if ( MessageBox.Show( SoftwareInformation.SoftwareNameJapanese + " を終了しますか？", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2 )
+				if ( MessageBox.Show( SoftwareInformation.SoftwareNameJapanese + Resources.AskClose, Resources.Confirm, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2 )
 					== System.Windows.Forms.DialogResult.No ) {
 					e.Cancel = true;
 					return;
@@ -219,7 +220,7 @@ namespace ElectronicObserver.Window {
 			}
 
 
-			Utility.Logger.Add( 2, SoftwareInformation.SoftwareNameJapanese + " を終了しています…" );
+			Utility.Logger.Add( 2, SoftwareInformation.SoftwareNameJapanese + Resources.IsClosing );
 
 			UIUpdateTimer.Stop();
 
@@ -244,7 +245,7 @@ namespace ElectronicObserver.Window {
 			KCDatabase.Instance.Save();
 
 
-			Utility.Logger.Add( 2, "終了処理が完了しました。" );
+			Utility.Logger.Add( 2, Resources.ClosingComplete );
 
 			if ( Utility.Configuration.Config.Log.SaveLogFlag )
 				Utility.Logger.Save( @"eolog.log" );
@@ -381,20 +382,20 @@ namespace ElectronicObserver.Window {
 				}
 
 
-				Utility.Logger.Add( 2, "ウィンドウ レイアウトを復元しました。" );
+				Utility.Logger.Add( 2, Resources.LayoutLoaded );
 
 			} catch ( FileNotFoundException ) {
 
-				Utility.Logger.Add( 3, string.Format( "ウィンドウ レイアウト ファイルは存在しません。" ) );
-				MessageBox.Show( "レイアウトが初期化されました。\r\n「表示」メニューからお好みのウィンドウを追加してください。", "ウィンドウ レイアウト ファイルが存在しません",
+				Utility.Logger.Add( 3, string.Format( Resources.NoLayoutFound ) );
+				MessageBox.Show( Resources.InitLayout, Resources.NoLayoutFound,
 					MessageBoxButtons.OK, MessageBoxIcon.Information );
 
 				fBrowser.Show( MainDockPanel );
 
 			} catch ( DirectoryNotFoundException ) {
 
-				Utility.Logger.Add( 3, string.Format( "ウィンドウ レイアウト ファイルは存在しません。" ) );
-				MessageBox.Show( "レイアウトが初期化されました。\r\n「表示」メニューからお好みのウィンドウを追加してください。", "ウィンドウ レイアウト ファイルが存在しません",
+				Utility.Logger.Add( 3, string.Format( Resources.NoLayoutFound ) );
+				MessageBox.Show( Resources.InitLayout, Resources.NoLayoutFound,
 					MessageBoxButtons.OK, MessageBoxIcon.Information );
 
 				fBrowser.Show( MainDockPanel );
@@ -424,7 +425,7 @@ namespace ElectronicObserver.Window {
 				}
 
 
-				Utility.Logger.Add( 2, "ウィンドウ レイアウトを保存しました。" );
+				Utility.Logger.Add( 2, Resources.LayoutSaved );
 
 			} catch ( Exception ex ) {
 
@@ -484,7 +485,7 @@ namespace ElectronicObserver.Window {
 
 		private void StripMenu_File_SaveData_Load_Click( object sender, EventArgs e ) {
 
-			if ( MessageBox.Show( "セーブしていないレコードが失われる可能性があります。\r\nロードしますか？", "確認",
+			if ( MessageBox.Show( Resources.AskLoad, Resources.Confirm,
 					MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2 )
 				== System.Windows.Forms.DialogResult.Yes ) {
 
@@ -635,7 +636,7 @@ namespace ElectronicObserver.Window {
 		private void StripMenu_Tool_AlbumMasterShip_Click( object sender, EventArgs e ) {
 
 			if ( KCDatabase.Instance.MasterShips.Count == 0 ) {
-				MessageBox.Show( "艦船データが読み込まれていません。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error );
+				MessageBox.Show( Resources.NoShipData, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error );
 
 			} else {
 				new DialogAlbumMasterShip().Show( this );
@@ -646,7 +647,7 @@ namespace ElectronicObserver.Window {
 		private void StripMenu_Tool_AlbumMasterEquipment_Click( object sender, EventArgs e ) {
 
 			if ( KCDatabase.Instance.MasterEquipments.Count == 0 ) {
-				MessageBox.Show( "装備データが読み込まれていません。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error );
+				MessageBox.Show( Resources.NoEquipData, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error );
 
 			} else {
 				new DialogAlbumMasterEquipment().Show( this );
@@ -828,11 +829,11 @@ namespace ElectronicObserver.Window {
 
 		private void StripMenu_Help_Help_Click( object sender, EventArgs e ) {
 
-			if ( MessageBox.Show( "外部ブラウザでオンラインヘルプを開きます。\r\nよろしいですか？", "ヘルプ",
+			if ( MessageBox.Show( Resources.HelpAsk, Resources.Help,
 				MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1 )
 				== System.Windows.Forms.DialogResult.Yes ) {
 
-				System.Diagnostics.Process.Start( "https://github.com/andanteyk/ElectronicObserver/wiki" );
+				System.Diagnostics.Process.Start( Resources.HelpAddress );
 			}
 
 		}
@@ -861,7 +862,7 @@ namespace ElectronicObserver.Window {
 			using ( var dialog = new OpenFileDialog() ) {
 
 				dialog.Filter = "Layout Archive|*.zip|File|*";
-				dialog.Title = "レイアウト ファイルを開く";
+				dialog.Title = Resources.OpenLayout;
 
 
 				PathHelper.InitOpenFileDialog( Utility.Configuration.Config.Life.LayoutFilePath, dialog );
@@ -894,7 +895,7 @@ namespace ElectronicObserver.Window {
 
 		private void StripMenu_Browser_NavigateToLogInPage_Click( object sender, EventArgs e ) {
 
-			if ( MessageBox.Show( "ログインページへ移動します。\r\nよろしいですか？", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question )
+			if ( MessageBox.Show( Resources.AskLogin, Resources.Confirm, MessageBoxButtons.YesNo, MessageBoxIcon.Question )
 				== System.Windows.Forms.DialogResult.Yes ) {
 
 				fBrowser.NavigateToLogInPage();
@@ -903,7 +904,7 @@ namespace ElectronicObserver.Window {
 
 		private void StripMenu_Browser_Navigate_Click( object sender, EventArgs e ) {
 
-			using ( var dialog = new Window.Dialog.DialogTextInput( "移動先の入力", "移動先の URL を入力してください。" ) ) {
+			using ( var dialog = new Window.Dialog.DialogTextInput( Resources.AskNavTitle, Resources.AskNavText ) ) {
 
 				if ( dialog.ShowDialog( this ) == System.Windows.Forms.DialogResult.OK ) {
 
@@ -962,7 +963,7 @@ namespace ElectronicObserver.Window {
 
 		private void StripMenu_Browser_Zoom_DropDownOpening( object sender, EventArgs e ) {
 
-			StripMenu_Browser_Zoom_Current.Text = string.Format( "現在: {0}%",
+			StripMenu_Browser_Zoom_Current.Text = string.Format( Resources.ZoomCurrent + ": {0}%",
 				Utility.Configuration.Config.FormBrowser.ZoomRate );
 
 		}

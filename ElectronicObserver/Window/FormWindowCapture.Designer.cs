@@ -35,7 +35,7 @@
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(243, 50);
 			this.label1.TabIndex = 1;
-			this.label1.Text = "取り込みたいウィンドウへボタンをドラッグ＆ドロップしてください。";
+			this.label1.Text = GeneralRes.WindowCaptureInst;
 			// 
 			// windowCaptureButton
 			// 
@@ -57,7 +57,7 @@
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 			this.HideOnClose = true;
 			this.Name = "FormWindowCapture";
-			this.Text = "ウィンドウキャプチャ";
+			this.Text = GeneralRes.WindowCapture;
 			this.ResumeLayout(false);
 
 		}
