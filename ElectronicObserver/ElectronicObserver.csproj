@@ -110,6 +110,16 @@
     <Compile Include="Data\Battle\Phase\PhaseSupport.cs" />
     <Compile Include="Data\Battle\Phase\PhaseTorpedo.cs" />
     <Compile Include="Data\Constants.cs" />
+    <Compile Include="Data\ConstantsRes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ConstantsRes.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Data\ConstantsRes.en.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ConstantsRes.en.resx</DependentUpon>
+    </Compile>
     <Compile Include="Data\DockData.cs" />
     <Compile Include="Data\EquipmentData.cs" />
     <Compile Include="Data\EquipmentDataMaster.cs" />
@@ -492,6 +502,14 @@
     <Compile Include="Window\Support\ControlHelper.cs" />
     <Compile Include="Window\Support\CustomFloatWindowFactory.cs" />
     <Compile Include="Window\Support\WindowPlacementManager.cs" />
+    <EmbeddedResource Include="Data\ConstantsRes.en.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ConstantsRes.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Data\ConstantsRes.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ConstantsRes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Window\Dialog\ConfigRes.en.resx" />
     <EmbeddedResource Include="Window\Dialog\ConfigRes.resx">
       <Generator>ResXFileCodeGenerator</Generator>
