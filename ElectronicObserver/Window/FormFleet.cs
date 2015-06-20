@@ -366,9 +366,9 @@ namespace ElectronicObserver.Window {
 							tip.AppendFormat( GeneralRes.ToNextLevel + "\r\n", ship.ExpNext );
 
 						if ( ship.MasterShip.RemodelAfterShipID != 0 && ship.Level < ship.MasterShip.RemodelAfterLevel ) {
-							tip.AppendFormat( GeneralRes.ToRemodel, ship.ExpNextRemodel );
+							tip.AppendFormat( GeneralRes.ToRemodel, ship.MasterShip.RemodelAfterLevel - ship.Level, ship.ExpNextRemodel);
 
-						} else if ( ship.Level <= 99 ) {
+                        } else if ( ship.Level <= 99 ) {
 							tip.AppendFormat( GeneralRes.To99, Math.Max( ExpTable.GetExpToLevelShip( ship.ExpTotal, 99 ), 0 ) );
 
 						} else {
