@@ -493,6 +493,15 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 資源チャート(&amp;C).
+        /// </summary>
+        internal static string ResourceChart {
+            get {
+                return ResourceManager.GetString("ResourceChart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to セーブ(&amp;S).
         /// </summary>
         internal static string Save {

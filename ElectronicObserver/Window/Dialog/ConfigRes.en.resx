@@ -500,4 +500,23 @@ Can increase the number of status bar messages.</value>
   <data name="ZoomToFit" xml:space="preserve">
     <value>Zoom to fit</value>
   </data>
+  <data name="AccessKey" xml:space="preserve">
+    <value>Access key:</value>
+  </data>
+  <data name="BlinkAtMaximum" xml:space="preserve">
+    <value>Blink ship/equipment slots when full.</value>
+  </data>
+  <data name="Database" xml:space="preserve">
+    <value>Database</value>
+  </data>
+  <data name="DatabaseDescription" xml:space="preserve">
+    <value>Sends your data to the Kancolle Statistics Database.
+More details, as well as an access key, can be found on the site below. (opens your web browser, Japanese only)</value>
+  </data>
+  <data name="Headquarters" xml:space="preserve">
+    <value>Headquarters</value>
+  </data>
+  <data name="SendData" xml:space="preserve">
+    <value>Send data to Kancolle Statistics Database</value>
+  </data>
 </root>

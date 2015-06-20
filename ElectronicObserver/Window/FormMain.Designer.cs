@@ -845,7 +845,7 @@
 			// 
 			this.StripMenu_Tool_ResourceChart.Name = "StripMenu_Tool_ResourceChart";
 			this.StripMenu_Tool_ResourceChart.Size = new System.Drawing.Size(244, 34);
-			this.StripMenu_Tool_ResourceChart.Text = "資源チャート(&C)";
+			this.StripMenu_Tool_ResourceChart.Text = Menus.ResourceChart;
 			this.StripMenu_Tool_ResourceChart.Click += new System.EventHandler(this.StripMenu_Tool_ResourceChart_Click);
 			// 
 			// toolStripSeparator15

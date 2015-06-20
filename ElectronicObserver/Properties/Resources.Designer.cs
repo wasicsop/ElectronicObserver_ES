@@ -411,7 +411,7 @@ namespace ElectronicObserver.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 一三型.
+        ///   Looks up a localized string similar to 一四型.
         /// </summary>
         internal static string Version {
             get {

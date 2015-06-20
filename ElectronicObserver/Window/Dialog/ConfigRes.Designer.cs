@@ -61,6 +61,15 @@ namespace ElectronicObserver.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to アクセスキー：.
+        /// </summary>
+        internal static string AccessKey {
+            get {
+                return ResourceManager.GetString("AccessKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to バージョン名をファイルに追加します。.
         /// </summary>
         internal static string AddVersionToFile {
@@ -177,6 +186,15 @@ namespace ElectronicObserver.Window.Dialog {
         internal static string Behavior {
             get {
                 return ResourceManager.GetString("Behavior", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 艦船/装備が満タンの時点滅する.
+        /// </summary>
+        internal static string BlinkAtMaximum {
+            get {
+                return ResourceManager.GetString("BlinkAtMaximum", resourceCulture);
             }
         }
         
@@ -334,6 +352,24 @@ namespace ElectronicObserver.Window.Dialog {
         internal static string Daily {
             get {
                 return ResourceManager.GetString("Daily", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to データベース.
+        /// </summary>
+        internal static string Database {
+            get {
+                return ResourceManager.GetString("Database", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 「艦これ統計データベース」へデータを送信できます。\r\n詳細やアクセスキーの取得は以下のサイトを参照してください。(外部ブラウザが開きます).
+        /// </summary>
+        internal static string DatabaseDescription {
+            get {
+                return ResourceManager.GetString("DatabaseDescription", resourceCulture);
             }
         }
         
@@ -564,6 +600,15 @@ namespace ElectronicObserver.Window.Dialog {
         internal static string Group {
             get {
                 return ResourceManager.GetString("Group", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 司令部.
+        /// </summary>
+        internal static string Headquarters {
+            get {
+                return ResourceManager.GetString("Headquarters", resourceCulture);
             }
         }
         
@@ -940,6 +985,15 @@ namespace ElectronicObserver.Window.Dialog {
         internal static string ScrollableHint {
             get {
                 return ResourceManager.GetString("ScrollableHint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 艦これ統計データベースに送信する.
+        /// </summary>
+        internal static string SendData {
+            get {
+                return ResourceManager.GetString("SendData", resourceCulture);
             }
         }
         
