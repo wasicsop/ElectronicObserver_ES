@@ -117,25 +117,139 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="ShipView_ShipID.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="ShipView_ShipType.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="ShipView_Name.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="ToolTipInfo.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>139, 17</value>
-  </metadata>
-  <metadata name="LevelTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>259, 17</value>
-  </metadata>
-  <metadata name="SaveCSVDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>377, 17</value>
-  </metadata>
+  <data name="Accuracy" xml:space="preserve">
+    <value>命中</value>
+  </data>
+  <data name="AfterRemodel" xml:space="preserve">
+    <value>改装後</value>
+  </data>
+  <data name="AirPower" xml:space="preserve">
+    <value>制空戦力</value>
+  </data>
+  <data name="AntiAir" xml:space="preserve">
+    <value>対空</value>
+  </data>
+  <data name="Armor" xml:space="preserve">
+    <value>装甲</value>
+  </data>
+  <data name="ASW" xml:space="preserve">
+    <value>対潜</value>
+  </data>
+  <data name="BaseValue" xml:space="preserve">
+    <value>基本値</value>
+  </data>
+  <data name="BeforeRemodel" xml:space="preserve">
+    <value>改装前</value>
+  </data>
+  <data name="ConstructionTime" xml:space="preserve">
+    <value>建造時間</value>
+  </data>
+  <data name="Consumption" xml:space="preserve">
+    <value>消費</value>
+  </data>
+  <data name="CSVDataFormat" xml:space="preserve">
+    <value>艦船ID,図鑑番号,艦名,読み,艦種,改装前,改装後,改装Lv,改装弾薬,改装鋼材,改装設計図,耐久初期,耐久最大,耐久結婚,火力初期,火力最大,雷装初期,雷装最大,対空初期,対空最大,装甲初期,装甲最大,対潜初期最小,対潜初期最大,対潜最大,対潜150最小,対潜150最大,回避初期最小,回避初期最大,回避最大,回避150最小,回避150最大,索敵初期最小,索敵初期最大,索敵最大,索敵150最小,索敵150最大,運初期,運最大,速力,射程,レア,スロット数,搭載機数1,搭載機数2,搭載機数3,搭載機数4,搭載機数5,初期装備1,初期装備2,初期装備3,初期装備4,初期装備5,建造時間,解体燃料,解体弾薬,解体鋼材,解体ボーキ,改修火力,改修雷装,改修対空,改修装甲,ドロップ文章,図鑑文章,搭載燃料,搭載弾薬,ボイス,リソース名,バージョン</value>
+  </data>
+  <data name="CSVTitle" xml:space="preserve">
+    <value>CSVに出力</value>
+  </data>
+  <data name="CSVUserFormat" xml:space="preserve">
+    <value>艦船ID,図鑑番号,艦種,艦名,読み,改装前,改装後,改装Lv,改装弾薬,改装鋼材,改装設計図,耐久初期,耐久結婚,火力初期,火力最大,雷装初期,雷装最大,対空初期,対空最大,装甲初期,装甲最大,対潜初期,対潜最大,回避初期,回避最大,索敵初期,索敵最大,運初期,運最大,速力,射程,レア,スロット数,搭載機数1,搭載機数2,搭載機数3,搭載機数4,搭載機数5,初期装備1,初期装備2,初期装備3,初期装備4,初期装備5,建造時間,解体燃料,解体弾薬,解体鋼材,解体ボーキ,改修火力,改修雷装,改修対空,改修装甲,ドロップ文章,図鑑文章,搭載燃料,搭載弾薬,ボイス,リソース名,バージョン"</value>
+  </data>
+  <data name="DayAttack" xml:space="preserve">
+    <value>昼戦攻撃</value>
+  </data>
+  <data name="Dismantling" xml:space="preserve">
+    <value>解体</value>
+  </data>
+  <data name="DiveBomb" xml:space="preserve">
+    <value>爆装</value>
+  </data>
+  <data name="EncyclopediaNumber" xml:space="preserve">
+    <value>図鑑番号:</value>
+  </data>
+  <data name="Evasion" xml:space="preserve">
+    <value>回避</value>
+  </data>
+  <data name="FailedToOutputCSV" xml:space="preserve">
+    <value>艦船図鑑 CSVの出力に失敗しました。</value>
+  </data>
+  <data name="Firepower" xml:space="preserve">
+    <value>火力</value>
+  </data>
+  <data name="HP" xml:space="preserve">
+    <value>耐久</value>
+  </data>
+  <data name="Initial" xml:space="preserve">
+    <value>初期値</value>
+  </data>
+  <data name="LandBase" xml:space="preserve">
+    <value>陸上基地</value>
+  </data>
+  <data name="LevelTooltip" xml:space="preserve">
+    <value>レベルを指定すると予測値が表示されます。</value>
+  </data>
+  <data name="LoS" xml:space="preserve">
+    <value>索敵</value>
+  </data>
+  <data name="Luck" xml:space="preserve">
+    <value>運</value>
+  </data>
+  <data name="Maximum" xml:space="preserve">
+    <value>最大値</value>
+  </data>
+  <data name="Modernization" xml:space="preserve">
+    <value>改修</value>
+  </data>
+  <data name="NightAttack" xml:space="preserve">
+    <value>夜戦攻撃</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>(なし)</value>
+  </data>
+  <data name="OutputCSVData" xml:space="preserve">
+    <value>CSV出力(データ用)(&amp;D)...</value>
+  </data>
+  <data name="OutputCSVUser" xml:space="preserve">
+    <value>CSV出力(閲覧用)(&amp;U)...</value>
+  </data>
+  <data name="Range" xml:space="preserve">
+    <value>射程</value>
+  </data>
+  <data name="Rarity" xml:space="preserve">
+    <value>レア</value>
+  </data>
+  <data name="RepairTooltip" xml:space="preserve">
+    <value>入渠時の消費:
+HP1あたり: 鋼 {0:F2} / 燃 {1:F2}
+最大: 鋼 {2} / 燃 {3}
+</value>
+  </data>
+  <data name="RightClickForMore" xml:space="preserve">
+    <value>(右クリックで図鑑)</value>
+  </data>
+  <data name="Sheets" xml:space="preserve">
+    <value>枚</value>
+  </data>
+  <data name="ShipEncyclopedia" xml:space="preserve">
+    <value>艦船図鑑</value>
+  </data>
+  <data name="ShipID" xml:space="preserve">
+    <value>艦船ID:</value>
+  </data>
+  <data name="ShipName" xml:space="preserve">
+    <value>艦名</value>
+  </data>
+  <data name="ShipType" xml:space="preserve">
+    <value>艦種</value>
+  </data>
+  <data name="Speed" xml:space="preserve">
+    <value>速力</value>
+  </data>
+  <data name="Torpedo" xml:space="preserve">
+    <value>雷装</value>
+  </data>
+  <data name="WithEquipValue" xml:space="preserve">
+    <value>装備込</value>
+  </data>
 </root>

@@ -71,6 +71,7 @@ namespace ElectronicObserver.Window {
             }
             Thread.CurrentThread.CurrentCulture = c;
             Thread.CurrentThread.CurrentUICulture = ui;
+
             InitializeComponent();
 		}
 
