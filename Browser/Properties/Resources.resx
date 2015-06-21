@@ -132,6 +132,37 @@
   <data name="Alignment_Top" xml:space="preserve">
     <value>上(&amp;T)</value>
   </data>
+  <data name="ClearCacheDialog" xml:space="preserve">
+    <value>ブラウザのキャッシュを削除します。
+よろしいですか？</value>
+  </data>
+  <data name="ClearCacheTitle" xml:space="preserve">
+    <value>キャッシュの削除</value>
+  </data>
+  <data name="ClearComplete" xml:space="preserve">
+    <value>削除完了</value>
+  </data>
+  <data name="ClearCompleteDialog" xml:space="preserve">
+    <value>キャッシュの削除が完了しました。</value>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>確認</value>
+  </data>
+  <data name="CouldntFindSWF" xml:space="preserve">
+    <value>対象の swf が見つかりませんでした。</value>
+  </data>
+  <data name="CouldntLoadEmbed" xml:space="preserve">
+    <value>embed 要素の取得に失敗しました。</value>
+  </data>
+  <data name="CurrentZoom" xml:space="preserve">
+    <value>現在: </value>
+  </data>
+  <data name="FailedToApplyStylesheet" xml:space="preserve">
+    <value>スタイルシートの適用に失敗しました。</value>
+  </data>
+  <data name="FailedToApplyZoom" xml:space="preserve">
+    <value>ズームの適用に失敗しました。</value>
+  </data>
   <data name="FrameScript" xml:space="preserve">
     <value>// KCRDBと競合しないように同じように処理
 try {
@@ -159,6 +190,13 @@ try {
 catch(e) {
 	alert("フレームCSS適用に失敗しました: "+e);
 }</value>
+  </data>
+  <data name="LoginDialog" xml:space="preserve">
+    <value>ログインページへ移動します。
+よろしいですか？</value>
+  </data>
+  <data name="NoScreenshotUnloaded" xml:space="preserve">
+    <value>艦これが読み込まれていないため、スクリーンショットを撮ることはできません。</value>
   </data>
   <data name="Other" xml:space="preserve">
     <value>その他</value>
@@ -194,7 +232,7 @@ catch(e) {
     <value>ズーム(&amp;Z)</value>
   </data>
   <data name="Other_Zoom_Current" xml:space="preserve">
-    <value>現在%</value>
+    <value>現在% </value>
   </data>
   <data name="Other_Zoom_Fit" xml:space="preserve">
     <value>ぴったり</value>
@@ -223,6 +261,16 @@ try {
 catch(e) {
 	alert("ページCSS適用に失敗しました: "+e);
 }</value>
+  </data>
+  <data name="ReloadDialog" xml:space="preserve">
+    <value>再読み込みします。
+よろしいですか？</value>
+  </data>
+  <data name="ScreenshotError" xml:space="preserve">
+    <value>スクリーンショットの保存時にエラーが発生しました。</value>
+  </data>
+  <data name="ScreenshotSaved" xml:space="preserve">
+    <value>スクリーンショットを {0} に保存しました。</value>
   </data>
   <data name="ShowToolMenu" xml:space="preserve">
     <value>ツールメニューを表示</value>

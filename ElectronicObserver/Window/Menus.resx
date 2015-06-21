@@ -261,6 +261,9 @@
   <data name="RenameShipResource" xml:space="preserve">
     <value>艦船リソースをリネーム(&amp;R)...</value>
   </data>
+  <data name="ResourceChart" xml:space="preserve">
+    <value>資源チャート(&amp;C)</value>
+  </data>
   <data name="Save" xml:space="preserve">
     <value>セーブ(&amp;S)</value>
   </data>

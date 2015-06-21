@@ -294,4 +294,7 @@
   <data name="ShowShipName" xml:space="preserve">
     <value>Show Ship Name (&amp;V)</value>
   </data>
+  <data name="ResourceChart" xml:space="preserve">
+    <value>Resource Chart (&amp;C)</value>
+  </data>
 </root>

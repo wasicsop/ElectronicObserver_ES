@@ -1517,7 +1517,7 @@
 			this.tabPage15.Padding = new System.Windows.Forms.Padding(3);
 			this.tabPage15.Size = new System.Drawing.Size(456, 233);
 			this.tabPage15.TabIndex = 8;
-			this.tabPage15.Text = "データベース";
+			this.tabPage15.Text = ConfigRes.Database;
 			this.tabPage15.UseVisualStyleBackColor = true;
 			// 
 			// Database_LinkKCDB
@@ -1538,7 +1538,7 @@
 			this.label22.Name = "label22";
 			this.label22.Size = new System.Drawing.Size(414, 30);
 			this.label22.TabIndex = 16;
-			this.label22.Text = "「艦これ統計データベース」へデータを送信できます。\r\n詳細やアクセスキーの取得は以下のサイトを参照してください。(外部ブラウザが開きます)";
+			this.label22.Text = ConfigRes.DatabaseDescription;
 			// 
 			// Database_SendKancolleOAuth
 			// 
@@ -1556,7 +1556,7 @@
 			this.labelKdb.Name = "labelKdb";
 			this.labelKdb.Size = new System.Drawing.Size(75, 15);
 			this.labelKdb.TabIndex = 13;
-			this.labelKdb.Text = "アクセスキー：";
+			this.labelKdb.Text = ConfigRes.AccessKey;
 			// 
 			// Database_SendDataToKancolleDB
 			// 
@@ -1565,7 +1565,7 @@
 			this.Database_SendDataToKancolleDB.Name = "Database_SendDataToKancolleDB";
 			this.Database_SendDataToKancolleDB.Size = new System.Drawing.Size(203, 27);
 			this.Database_SendDataToKancolleDB.TabIndex = 12;
-			this.Database_SendDataToKancolleDB.Text = "艦これ統計データベースに送信する";
+			this.Database_SendDataToKancolleDB.Text = ConfigRes.SendData;
 			this.Database_SendDataToKancolleDB.UseVisualStyleBackColor = true;
 			// 
 			// ToolTipInfo
@@ -1623,7 +1623,7 @@
 			this.tabPage16.Padding = new System.Windows.Forms.Padding(3);
 			this.tabPage16.Size = new System.Drawing.Size(442, 199);
 			this.tabPage16.TabIndex = 6;
-			this.tabPage16.Text = "司令部";
+			this.tabPage16.Text = ConfigRes.Headquarters;
 			this.tabPage16.UseVisualStyleBackColor = true;
 			// 
 			// FormHeadquarters_BlinkAtMaximum
@@ -1633,7 +1633,7 @@
 			this.FormHeadquarters_BlinkAtMaximum.Name = "FormHeadquarters_BlinkAtMaximum";
 			this.FormHeadquarters_BlinkAtMaximum.Size = new System.Drawing.Size(196, 27);
 			this.FormHeadquarters_BlinkAtMaximum.TabIndex = 0;
-			this.FormHeadquarters_BlinkAtMaximum.Text = "艦船/装備が満タンの時点滅する";
+			this.FormHeadquarters_BlinkAtMaximum.Text = ConfigRes.BlinkAtMaximum;
 			this.FormHeadquarters_BlinkAtMaximum.UseVisualStyleBackColor = true;
 			// 
 			// DialogConfiguration

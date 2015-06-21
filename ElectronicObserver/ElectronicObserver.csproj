@@ -126,6 +126,11 @@
     <Compile Include="Data\EquipmentDataMaster.cs" />
     <Compile Include="Data\EquipmentType.cs" />
     <Compile Include="Data\FleetManager.cs" />
+    <Compile Include="Data\FleetRes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FleetRes.resx</DependentUpon>
+    </Compile>
     <Compile Include="Data\IDDictionary.cs" />
     <Compile Include="Data\IIdentifiable.cs" />
     <Compile Include="Data\KCDatabase.cs" />
@@ -158,6 +163,11 @@
     <Compile Include="Data\UseItem.cs" />
     <Compile Include="Data\UseItemMaster.cs" />
     <Compile Include="Data\DatabaseUpdatedEventArgs.cs" />
+    <Compile Include="Notifier\NotifierRes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NotifierRes.resx</DependentUpon>
+    </Compile>
     <Compile Include="Window\Dialog\ConfigRes.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -517,6 +527,16 @@
     <EmbeddedResource Include="Data\ConstantsRes.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ConstantsRes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Data\FleetRes.en.resx" />
+    <EmbeddedResource Include="Data\FleetRes.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>FleetRes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Notifier\NotifierRes.en.resx" />
+    <EmbeddedResource Include="Notifier\NotifierRes.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>NotifierRes.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Window\Dialog\ConfigRes.en.resx" />
     <EmbeddedResource Include="Window\Dialog\ConfigRes.resx">

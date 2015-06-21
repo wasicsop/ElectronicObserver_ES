@@ -301,7 +301,7 @@
     <value>Improvement Material</value>
   </data>
   <data name="Indigo" xml:space="preserve">
-    <value>Dark Blue</value>
+    <value>Indigo</value>
   </data>
   <data name="Injured" xml:space="preserve">
     <value>Injured</value>
@@ -439,7 +439,7 @@
     <value>Rocket Artillery</value>
   </data>
   <data name="Sakura" xml:space="preserve">
-    <value>Sakura Holo</value>
+    <value>Sakura</value>
   </data>
   <data name="SecondPatrolFormation" xml:space="preserve">
     <value>Second Cruising Formation</value>
@@ -463,7 +463,7 @@
     <value>Sortie</value>
   </data>
   <data name="SRainbow" xml:space="preserve">
-    <value>Sparkling Holo</value>
+    <value>S-Holo</value>
   </data>
   <data name="SSHolo" xml:space="preserve">
     <value>SS-Holo</value>

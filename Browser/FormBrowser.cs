@@ -16,6 +16,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Globalization;
+using Browser.Properties;
 
 namespace Browser {
 	/// <summary>
@@ -249,7 +250,7 @@ namespace Browser {
 			} catch ( Exception ex ) {
 
 				BrowserHost.AsyncRemoteRun( () =>
-					BrowserHost.Proxy.SendErrorReport( ex.ToString(), "スタイルシートの適用に失敗しました。" ) );
+					BrowserHost.Proxy.SendErrorReport( ex.ToString(), Resources.FailedToApplyStylesheet ) );
 			}
 
 		}
@@ -310,14 +311,14 @@ namespace Browser {
 				}
 
 				if ( fit ) {
-					ToolMenu_Other_Zoom_Current.Text = string.Format( "現在: ぴったり" );
+					ToolMenu_Other_Zoom_Current.Text = string.Format( Resources.CurrentZoom + Resources.Other_Zoom_Fit );
 				} else {
-					ToolMenu_Other_Zoom_Current.Text = string.Format( "現在: {0}%", zoomRate );
+					ToolMenu_Other_Zoom_Current.Text = string.Format( Resources.CurrentZoom + " {0}%", zoomRate );
 				}
 
 
 			} catch ( Exception ex ) {
-				AddLog( 3, "ズームの適用に失敗しました。" + ex.Message );
+				AddLog( 3, Resources.FailedToApplyZoom + ex.Message );
 			}
 
 		}
@@ -396,7 +397,7 @@ namespace Browser {
 			var wb = Browser;
 
 			if ( !IsKanColleLoaded ) {
-				AddLog( 3, string.Format( "艦これが読み込まれていないため、スクリーンショットを撮ることはできません。" ) );
+				AddLog( 3, string.Format( Resources.NoScreenshotUnloaded ) );
 				return;
 			}
 
@@ -408,7 +409,7 @@ namespace Browser {
 
 					viewobj = wb.Document.GetElementsByTagName( "embed" )[0].DomElement as IViewObject;
 					if ( viewobj == null ) {
-						throw new InvalidOperationException( "embed 要素の取得に失敗しました。" );
+						throw new InvalidOperationException( Resources.CouldntLoadEmbed );
 					}
 
 					//width = ( (HTMLEmbed)viewobj ).clientWidth;
@@ -418,7 +419,7 @@ namespace Browser {
 
 					var swf = getFrameElementById( wb.Document, "externalswf" );
 					if ( swf == null ) {
-						throw new InvalidOperationException( "対象の swf が見つかりませんでした。" );
+						throw new InvalidOperationException( Resources.CouldntFindSWF );
 					}
 
 					Func<dynamic, bool> isvalid = target => {
@@ -432,7 +433,7 @@ namespace Browser {
 					};
 
 					if ( !isvalid( swf.DomElement as HTMLEmbed ) && !isvalid( swf.DomElement as HTMLObjectElement ) ) {
-						throw new InvalidOperationException( "対象の swf が見つかりませんでした。" );
+						throw new InvalidOperationException( Resources.CouldntFindSWF );
 					}
 				}
 
@@ -456,12 +457,12 @@ namespace Browser {
 				}
 
 
-				AddLog( 2, string.Format( "スクリーンショットを {0} に保存しました。", path ) );
+				AddLog( 2, string.Format( Resources.ScreenshotSaved, path ) );
 
 			} catch ( Exception ex ) {
 
 				BrowserHost.AsyncRemoteRun( () =>
-					BrowserHost.Proxy.SendErrorReport( ex.ToString(), "スクリーンショットの保存時にエラーが発生しました。" ) );
+					BrowserHost.Proxy.SendErrorReport( ex.ToString(), Resources.ScreenshotError ) );
 			}
 
 
@@ -709,7 +710,7 @@ namespace Browser {
 		private void ToolMenu_Other_Refresh_Click( object sender, EventArgs e ) {
 
 			if ( !Configuration.ConfirmAtRefresh ||
-				MessageBox.Show( "再読み込みします。\r\nよろしいですか？", "確認",
+				MessageBox.Show( Resources.ReloadDialog, Resources.Confirm,
 				MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2 )
 				== System.Windows.Forms.DialogResult.OK ) {
 
@@ -719,7 +720,7 @@ namespace Browser {
 
 		private void ToolMenu_Other_NavigateToLogInPage_Click( object sender, EventArgs e ) {
 
-			if ( MessageBox.Show( "ログインページへ移動します。\r\nよろしいですか？", "確認",
+			if ( MessageBox.Show( Resources.LoginDialog, Resources.Confirm,
 				MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2 )
 				== System.Windows.Forms.DialogResult.OK ) {
 
@@ -762,12 +763,12 @@ namespace Browser {
 
 		private void ToolMenu_Other_ClearCache_Click( object sender, EventArgs e ) {
 
-			if ( MessageBox.Show( "ブラウザのキャッシュを削除します。\nよろしいですか？", "キャッシュの削除", MessageBoxButtons.OKCancel, MessageBoxIcon.Question )
+			if ( MessageBox.Show( Resources.ClearCacheDialog, Resources.ClearCacheTitle, MessageBoxButtons.OKCancel, MessageBoxIcon.Question )
 				== System.Windows.Forms.DialogResult.OK ) {
 
 				BeginInvoke( (MethodInvoker)( () => {
 					ClearCache();
-					MessageBox.Show( "キャッシュの削除が完了しました。", "削除完了", MessageBoxButtons.OK, MessageBoxIcon.Information );
+					MessageBox.Show( Resources.ClearCompleteDialog, Resources.ClearComplete, MessageBoxButtons.OK, MessageBoxIcon.Information );
 				} ) );
 
 			}
