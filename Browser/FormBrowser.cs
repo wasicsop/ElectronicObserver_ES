@@ -81,8 +81,19 @@ namespace Browser {
 		/// </summary>
 		/// <param name="serverUri">ホストプロセスとの通信用URL</param>
 		public FormBrowser( string serverUri ) {
-            Thread.CurrentThread.CurrentCulture = CultureInfo.CurrentCulture;
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.CurrentUICulture;
+            CultureInfo c = CultureInfo.CurrentCulture;
+            CultureInfo ui = CultureInfo.CurrentUICulture;
+            if(c.Name != "en-US" && c.Name != "ja-JP")
+            {
+                c = new CultureInfo("en-US");
+            }
+            if(ui.Name != "en-US" && ui.Name != "ja-JP")
+            {
+                ui = new CultureInfo("en-US");
+            }
+            Thread.CurrentThread.CurrentCulture = c;
+            Thread.CurrentThread.CurrentUICulture = ui;
+
 			InitializeComponent();
 
 			ServerUri = serverUri;
