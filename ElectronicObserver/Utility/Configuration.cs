@@ -11,6 +11,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ElectronicObserver.Properties;
 
 namespace ElectronicObserver.Utility {
 
@@ -800,8 +801,8 @@ namespace ElectronicObserver.Utility {
 				_config = temp;
 				OnConfigurationChanged();
 			} else {
-				MessageBox.Show( SoftwareInformation.SoftwareNameJapanese + " をご利用いただきありがとうございます。\r\n設定や使用方法については「ヘルプ」→「オンラインヘルプ」を参照してください。\r\nご使用の前に必ずご一読ください。",
-					"初回起動メッセージ", MessageBoxButtons.OK, MessageBoxIcon.Information );
+				MessageBox.Show( String.Format(Resources.FirstTimeDialog, SoftwareInformation.SoftwareNameJapanese),
+					Resources.FirstTimeTitle, MessageBoxButtons.OK, MessageBoxIcon.Information );
 			}
 		}
 

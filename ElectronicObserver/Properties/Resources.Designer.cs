@@ -220,6 +220,25 @@ namespace ElectronicObserver.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} をご利用いただきありがとうございます。
+        ///設定や使用方法については「ヘルプ」→「オンラインヘルプ」を参照してください。\r\nご使用の前に必ずご一読ください。.
+        /// </summary>
+        internal static string FirstTimeDialog {
+            get {
+                return ResourceManager.GetString("FirstTimeDialog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 初回起動メッセージ.
+        /// </summary>
+        internal static string FirstTimeTitle {
+            get {
+                return ResourceManager.GetString("FirstTimeTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ヘルプ.
         /// </summary>
         internal static string Help {

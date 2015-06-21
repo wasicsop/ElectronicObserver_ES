@@ -240,7 +240,7 @@ Add windows of your choosing using the "View" menu.</value>
     <value>Failed to process update data.</value>
   </data>
   <data name="Version" xml:space="preserve">
-    <value>1.4.0 (translation ver. 0.1a)</value>
+    <value>1.4.0 [TL 0.1a]</value>
   </data>
   <data name="VersionCurrent" xml:space="preserve">
     <value>You are currently using the latest version.</value>
@@ -250,5 +250,13 @@ Add windows of your choosing using the "View" menu.</value>
   </data>
   <data name="ZoomCurrent" xml:space="preserve">
     <value>Current</value>
+  </data>
+  <data name="FirstTimeDialog" xml:space="preserve">
+    <value>Thank you for using {0}.
+For settings and usage information, please see the "Help" → "Online Help" option in the menus.。
+Reading is recommended before use.</value>
+  </data>
+  <data name="FirstTimeTitle" xml:space="preserve">
+    <value>First Time Start</value>
   </data>
 </root>

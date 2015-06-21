@@ -641,7 +641,7 @@ Cut-in type: {2} ({3})
     <value>To Next Level: {0}</value>
   </data>
   <data name="ToRemodel" xml:space="preserve">
-    <value>To Remodel: {0}</value>
+    <value>To Remodel: {0} levels / {1} exp.</value>
   </data>
   <data name="Torpedo" xml:space="preserve">
     <value>Torpedo</value>
@@ -697,5 +697,62 @@ Save your data and return to port before capturing.
   </data>
   <data name="WinRank" xml:space="preserve">
     <value>Battle Rank</value>
+  </data>
+  <data name="AllData" xml:space="preserve">
+    <value>All Data (&amp;A)</value>
+  </data>
+  <data name="Baux" xml:space="preserve">
+    <value>Bauxite</value>
+  </data>
+  <data name="Bucket" xml:space="preserve">
+    <value>Instant Repair</value>
+  </data>
+  <data name="Day" xml:space="preserve">
+    <value>Day (&amp;D)</value>
+  </data>
+  <data name="DevMat" xml:space="preserve">
+    <value>Development Material</value>
+  </data>
+  <data name="Difference" xml:space="preserve">
+    <value>(difference) </value>
+  </data>
+  <data name="Experience" xml:space="preserve">
+    <value>Experience </value>
+  </data>
+  <data name="Flamethrower" xml:space="preserve">
+    <value>Instant Construction</value>
+  </data>
+  <data name="ImpMat" xml:space="preserve">
+    <value>Improvement Material</value>
+  </data>
+  <data name="Materials" xml:space="preserve">
+    <value>Materials </value>
+  </data>
+  <data name="Month" xml:space="preserve">
+    <value>Month (&amp;M)</value>
+  </data>
+  <data name="ResourceChart" xml:space="preserve">
+    <value>Resource Chart</value>
+  </data>
+  <data name="Resources" xml:space="preserve">
+    <value>Resources </value>
+  </data>
+  <data name="SelectGraph" xml:space="preserve">
+    <value>Select Graph (&amp;G)</value>
+  </data>
+  <data name="Span" xml:space="preserve">
+    <value>Span (&amp;S)</value>
+  </data>
+  <data name="Steel" xml:space="preserve">
+    <value>Steel</value>
+  </data>
+  <data name="ThreeMonths" xml:space="preserve">
+    <value>3 Months (&amp;S)</value>
+  </data>
+  <data name="Week" xml:space="preserve">
+    <value>Week (&amp;W)</value>
+  </data>
+  <data name="Year" xml:space="preserve">
+    <value>Year (&amp;Y)</value>
   </data>
 </root>

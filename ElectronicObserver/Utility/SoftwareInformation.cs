@@ -55,14 +55,14 @@ namespace ElectronicObserver.Utility {
 		/// </summary>
 		public static DateTime UpdateTime {
 			get {
-				return DateTimeHelper.CSVStringToTime( "2015/06/17 23:00:00" );
+				return DateTimeHelper.CSVStringToTime( "2015/06/20 23:00:00" );
 			}
 		}
 
 
 
 		private static System.Net.WebClient client;
-		private static readonly Uri uri = new Uri( "https://www.dropbox.com/s/vk073iw1wvktq4d/version.txt?dl=1" );
+		private static readonly Uri uri = new Uri("https://www.dropbox.com/s/0xvbhtxnh5wfk5s/version.txt?dl=1");
 
 		public static void CheckUpdate() {
 
@@ -117,7 +117,7 @@ namespace ElectronicObserver.Utility {
 
 						if ( result == System.Windows.Forms.DialogResult.Yes ) {
 
-							System.Diagnostics.Process.Start( "http://electronicobserver.blog.fc2.com/" );
+							System.Diagnostics.Process.Start( "http://tumblr.rkitsune.com/elecobs" );
 
 						} else if ( result == System.Windows.Forms.DialogResult.Cancel ) {
 

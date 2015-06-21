@@ -97,19 +97,19 @@ namespace ElectronicObserver.Window.Dialog {
 
 			setSeries( fuel );
 			fuel.Color = Color.FromArgb( 0, 128, 0 );
-			fuel.LegendText = "燃料";
+			fuel.LegendText = GeneralRes.Fuel;
 
 			setSeries( ammo );
 			ammo.Color = Color.FromArgb( 255, 128, 0 );
-			ammo.LegendText = "弾薬";
+			ammo.LegendText = GeneralRes.Ammo;
 
 			setSeries( steel );
 			steel.Color = Color.FromArgb( 64, 64, 64 );
-			steel.LegendText = "鋼材";
+			steel.LegendText = GeneralRes.Steel;
 
 			setSeries( bauxite );
 			bauxite.Color = Color.FromArgb( 255, 0, 0 );
-			bauxite.LegendText = "ボーキ";
+			bauxite.LegendText = GeneralRes.Baux;
 
 
 			//データ設定
@@ -181,19 +181,19 @@ namespace ElectronicObserver.Window.Dialog {
 
 			setSeries( fuel );
 			fuel.Color = Color.FromArgb( 64, 0, 128, 0 );
-			fuel.LegendText = "燃料";
+			fuel.LegendText = GeneralRes.Fuel;
 
 			setSeries( ammo );
 			ammo.Color = Color.FromArgb( 64, 255, 128, 0 );
-			ammo.LegendText = "弾薬";
+			ammo.LegendText = GeneralRes.Ammo;
 
 			setSeries( steel );
 			steel.Color = Color.FromArgb( 64, 64, 64, 64 );
-			steel.LegendText = "鋼材";
+			steel.LegendText = GeneralRes.Steel;
 
 			setSeries( bauxite );
 			bauxite.Color = Color.FromArgb( 64, 255, 0, 0 );
-			bauxite.LegendText = "ボーキ";
+			bauxite.LegendText = GeneralRes.Baux;
 
 
 			//データ設定
@@ -266,19 +266,19 @@ namespace ElectronicObserver.Window.Dialog {
 
 			setSeries( instantConstruction );
 			instantConstruction.Color = Color.FromArgb( 255, 128, 0 );
-			instantConstruction.LegendText = "高速建造材";
+			instantConstruction.LegendText = GeneralRes.Flamethrower;
 
 			setSeries( instantRepair );
 			instantRepair.Color = Color.FromArgb( 0, 128, 0 );
-			instantRepair.LegendText = "高速修復材";
+			instantRepair.LegendText = GeneralRes.Bucket;
 
 			setSeries( developmentMaterial );
 			developmentMaterial.Color = Color.FromArgb( 0, 0, 255 );
-			developmentMaterial.LegendText = "開発資材";
+			developmentMaterial.LegendText = GeneralRes.DevMat;
 
 			setSeries( moddingMaterial );
 			moddingMaterial.Color = Color.FromArgb( 64, 64, 64 );
-			moddingMaterial.LegendText = "改修資材";
+			moddingMaterial.LegendText = GeneralRes.ImpMat;
 
 
 			//データ設定
@@ -350,19 +350,19 @@ namespace ElectronicObserver.Window.Dialog {
 
 			setSeries( instantConstruction );
 			instantConstruction.Color = Color.FromArgb( 64, 255, 128, 0 );
-			instantConstruction.LegendText = "高速建造材";
+			instantConstruction.LegendText = GeneralRes.Flamethrower;
 
 			setSeries( instantRepair );
 			instantRepair.Color = Color.FromArgb( 64, 0, 128, 0 );
-			instantRepair.LegendText = "高速修復材";
+			instantRepair.LegendText = GeneralRes.ImpMat;
 
 			setSeries( developmentMaterial );
 			developmentMaterial.Color = Color.FromArgb( 64, 0, 0, 255 );
-			developmentMaterial.LegendText = "開発資材";
+			developmentMaterial.LegendText = GeneralRes.DevMat;
 
 			setSeries( moddingMaterial );
 			moddingMaterial.Color = Color.FromArgb( 64, 64, 64, 64 );
-			moddingMaterial.LegendText = "改修資材";
+			moddingMaterial.LegendText = GeneralRes.ImpMat;
 
 
 			//データ設定
@@ -432,7 +432,7 @@ namespace ElectronicObserver.Window.Dialog {
 
 			setSeries( exp );
 			exp.Color = Color.FromArgb( 0, 0, 255 );
-			exp.LegendText = "提督経験値";
+			exp.LegendText = GeneralRes.AdmiralXP;
 
 
 			//データ設定
@@ -495,7 +495,7 @@ namespace ElectronicObserver.Window.Dialog {
 
 			setSeries( exp );
 			exp.Color = Color.FromArgb( 192, 0, 0, 255 );
-			exp.LegendText = "提督経験値";
+			exp.LegendText = GeneralRes.AdmiralXP;
 
 
 			//データ設定

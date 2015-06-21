@@ -117,145 +117,43 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AskClose" xml:space="preserve">
-    <value> を終了しますか？</value>
+  <data name="ConditionText" xml:space="preserve">
+    <value>All ship girls in Fleet {0} [{1}] have restored morale.</value>
   </data>
-  <data name="AskForUpdate" xml:space="preserve">
-    <value>新しいバージョンがリリースされています！ : {0}\
-更新内容 : 
-{1}
-ダウンロードページを開きますか？
-(キャンセルすると以降表示しません)</value>
+  <data name="ConditionTitle" xml:space="preserve">
+    <value>Morale Restored</value>
   </data>
-  <data name="AskLoad" xml:space="preserve">
-    <value>セーブしていないレコードが失われる可能性があります。
-ロードしますか？</value>
+  <data name="ConstructionText" xml:space="preserve">
+    <value>Construction of {1} in Arsenal dock #{0} is complete.</value>
   </data>
-  <data name="AskLogin" xml:space="preserve">
-    <value>ログインページへ移動します。
-よろしいですか？</value>
+  <data name="ConstructionTitle" xml:space="preserve">
+    <value>Construction Complete</value>
   </data>
-  <data name="AskNavText" xml:space="preserve">
-    <value>移動先の URL を入力してください。</value>
+  <data name="DamagedText" xml:space="preserve">
+    <value>{0} is critically damaged!</value>
   </data>
-  <data name="AskNavTitle" xml:space="preserve">
-    <value>移動先の入力</value>
+  <data name="DamagedTitle" xml:space="preserve">
+    <value>! Critical Damage !</value>
   </data>
-  <data name="BadUpdateURI" xml:space="preserve">
-    <value>アップデート情報の URI が無効です。</value>
+  <data name="ExpeditionText" xml:space="preserve">
+    <value>Fleet {0} [{1}] has returned from expedition [{2}: {3}]</value>
   </data>
-  <data name="Browser" xml:space="preserve">
-    <value>ブラウザ</value>
+  <data name="ExpeditionTitle" xml:space="preserve">
+    <value>Expedition Returned</value>
   </data>
-  <data name="BrowserClosedWithoutWarning" xml:space="preserve">
-    <value>ブラウザプロセスが予期せず終了しました。</value>
+  <data name="FailedPlaySound" xml:space="preserve">
+    <value>Notification system: failed to play back sound file.</value>
   </data>
-  <data name="BrowserCloseError" xml:space="preserve">
-    <value>ブラウザの終了中にエラーが発生しました。</value>
+  <data name="FailedToLoadImage" xml:space="preserve">
+    <value>Notification system: failed to load image file {1}.</value>
   </data>
-  <data name="BrowserThrewError" xml:space="preserve">
-    <value>ブラウザプロセス間で通信エラーが発生しました。</value>
+  <data name="FailedToLoadSound" xml:space="preserve">
+    <value>Notification system: failed to load sound file {0}.</value>
   </data>
-  <data name="Close" xml:space="preserve">
-    <value>閉じる</value>
+  <data name="RepairText" xml:space="preserve">
+    <value>Repair of {1} in dock #{0} is complete.</value>
   </data>
-  <data name="ClosingComplete" xml:space="preserve">
-    <value>終了処理が完了しました。</value>
-  </data>
-  <data name="Confirm" xml:space="preserve">
-    <value>確認</value>
-  </data>
-  <data name="DevelopedBy" xml:space="preserve">
-    <value>開発</value>
-  </data>
-  <data name="Error" xml:space="preserve">
-    <value>エラー</value>
-  </data>
-  <data name="FailedBrowserStart" xml:space="preserve">
-    <value>ブラウザプロセスの起動に失敗しました。</value>
-  </data>
-  <data name="Help" xml:space="preserve">
-    <value>ヘルプ</value>
-  </data>
-  <data name="HelpAddress" xml:space="preserve">
-    <value>https://github.com/andanteyk/ElectronicObserver/wiki</value>
-  </data>
-  <data name="HelpAsk" xml:space="preserve">
-    <value>外部ブラウザでオンラインヘルプを開きます。
-よろしいですか？</value>
-  </data>
-  <data name="InitLayout" xml:space="preserve">
-    <value>レイアウトが初期化されました。
-「表示」メニューからお好みのウィンドウを追加してください。</value>
-  </data>
-  <data name="IsClosing" xml:space="preserve">
-    <value> を終了しています…</value>
-  </data>
-  <data name="IsStarting" xml:space="preserve">
-    <value> を起動しています…</value>
-  </data>
-  <data name="LayoutLoaded" xml:space="preserve">
-    <value>ウィンドウ レイアウトを復元しました。</value>
-  </data>
-  <data name="LayoutSaved" xml:space="preserve">
-    <value>ウィンドウ レイアウトを保存しました。</value>
-  </data>
-  <data name="NewVersionFound" xml:space="preserve">
-    <value>新しいバージョンがリリースされています！ :</value>
-  </data>
-  <data name="NoEquipData" xml:space="preserve">
-    <value>装備データが読み込まれていません。</value>
-  </data>
-  <data name="NoLayoutFound" xml:space="preserve">
-    <value>ウィンドウ レイアウト ファイルは存在しません。</value>
-  </data>
-  <data name="NoShipData" xml:space="preserve">
-    <value>艦船データが読み込まれていません。</value>
-  </data>
-  <data name="OpenLayout" xml:space="preserve">
-    <value>レイアウト ファイルを開く</value>
-  </data>
-  <data name="OriginalSite" xml:space="preserve">
-    <value>配布元(不具合報告・連絡はこちらへ)</value>
-  </data>
-  <data name="SoftwareName" xml:space="preserve">
-    <value>七四式電子観測儀</value>
-  </data>
-  <data name="StartupComplete" xml:space="preserve">
-    <value>起動処理が完了しました。</value>
-  </data>
-  <data name="TranslatedSite" xml:space="preserve">
-    <value>翻訳版元</value>
-  </data>
-  <data name="TranslatedVer" xml:space="preserve">
-    <value>翻訳版</value>
-  </data>
-  <data name="Update" xml:space="preserve">
-    <value>アップデート情報</value>
-  </data>
-  <data name="UpdateCheckFailed" xml:space="preserve">
-    <value>アップデート情報の取得に失敗しました。</value>
-  </data>
-  <data name="UpdateConnectionFailed" xml:space="preserve">
-    <value>アップデート情報の処理に失敗しました。</value>
-  </data>
-  <data name="Version" xml:space="preserve">
-    <value>一四型</value>
-  </data>
-  <data name="VersionCurrent" xml:space="preserve">
-    <value>お使いのバージョンは最新です。</value>
-  </data>
-  <data name="VersionTitle" xml:space="preserve">
-    <value>バージョン</value>
-  </data>
-  <data name="ZoomCurrent" xml:space="preserve">
-    <value>現在</value>
-  </data>
-  <data name="FirstTimeDialog" xml:space="preserve">
-    <value>{0} をご利用いただきありがとうございます。
-設定や使用方法については「ヘルプ」→「オンラインヘルプ」を参照してください。\r\nご使用の前に必ずご一読ください。</value>
-  </data>
-  <data name="FirstTimeTitle" xml:space="preserve">
-    <value>初回起動メッセージ</value>
+  <data name="RepairTitle" xml:space="preserve">
+    <value>Repair Complete</value>
   </data>
 </root>

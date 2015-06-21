@@ -106,6 +106,97 @@ namespace Browser.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ブラウザのキャッシュを削除します。
+        ///よろしいですか？.
+        /// </summary>
+        internal static string ClearCacheDialog {
+            get {
+                return ResourceManager.GetString("ClearCacheDialog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to キャッシュの削除.
+        /// </summary>
+        internal static string ClearCacheTitle {
+            get {
+                return ResourceManager.GetString("ClearCacheTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 削除完了.
+        /// </summary>
+        internal static string ClearComplete {
+            get {
+                return ResourceManager.GetString("ClearComplete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to キャッシュの削除が完了しました。.
+        /// </summary>
+        internal static string ClearCompleteDialog {
+            get {
+                return ResourceManager.GetString("ClearCompleteDialog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 確認.
+        /// </summary>
+        internal static string Confirm {
+            get {
+                return ResourceManager.GetString("Confirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 対象の swf が見つかりませんでした。.
+        /// </summary>
+        internal static string CouldntFindSWF {
+            get {
+                return ResourceManager.GetString("CouldntFindSWF", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to embed 要素の取得に失敗しました。.
+        /// </summary>
+        internal static string CouldntLoadEmbed {
+            get {
+                return ResourceManager.GetString("CouldntLoadEmbed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 現在: .
+        /// </summary>
+        internal static string CurrentZoom {
+            get {
+                return ResourceManager.GetString("CurrentZoom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to スタイルシートの適用に失敗しました。.
+        /// </summary>
+        internal static string FailedToApplyStylesheet {
+            get {
+                return ResourceManager.GetString("FailedToApplyStylesheet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ズームの適用に失敗しました。.
+        /// </summary>
+        internal static string FailedToApplyZoom {
+            get {
+                return ResourceManager.GetString("FailedToApplyZoom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to // KCRDBと競合しないように同じように処理
         ///try {
         ///	var hideStyle = {width:&quot;0px&quot;,height:&quot;0px&quot;,visibility:&quot;hidden&quot;,display:&quot;none&quot;};
@@ -116,12 +207,30 @@ namespace Browser.Properties {
         ///	$(&quot;#spacing_top&quot;).css(hideStyle);
         ///	$(&quot;#adFlashWrap&quot;).css(fillStyle);
         ///	$(&quot;#wsFlashWrap&quot;).css(fillStyle);
-        ///	$(&quot;#flashWrap&quot;).css(fillStyle);
-        ///	var elmE [rest of string was truncated]&quot;;.
+        ///	$(&quot;#flashWrap&quot;).css(fillStyle); [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string FrameScript {
             get {
                 return ResourceManager.GetString("FrameScript", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ログインページへ移動します。
+        ///よろしいですか？.
+        /// </summary>
+        internal static string LoginDialog {
+            get {
+                return ResourceManager.GetString("LoginDialog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 艦これが読み込まれていないため、スクリーンショットを撮ることはできません。.
+        /// </summary>
+        internal static string NoScreenshotUnloaded {
+            get {
+                return ResourceManager.GetString("NoScreenshotUnloaded", resourceCulture);
             }
         }
         
@@ -225,7 +334,7 @@ namespace Browser.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 現在%.
+        ///   Looks up a localized string similar to 現在% .
         /// </summary>
         internal static string Other_Zoom_Current {
             get {
@@ -254,11 +363,39 @@ namespace Browser.Properties {
         ///	$(&quot;#w&quot;).css(fillStyle);
         ///	$(&quot;#main-ntg&quot;).css(fillStyle);
         ///	$(&quot;#page&quot;).css(fillStyle);
-        ///	$(&quot;#area-g [rest of string was truncated]&quot;;.
+        /// [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string PageScript {
             get {
                 return ResourceManager.GetString("PageScript", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 再読み込みします。
+        ///よろしいですか？.
+        /// </summary>
+        internal static string ReloadDialog {
+            get {
+                return ResourceManager.GetString("ReloadDialog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to スクリーンショットの保存時にエラーが発生しました。.
+        /// </summary>
+        internal static string ScreenshotError {
+            get {
+                return ResourceManager.GetString("ScreenshotError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to スクリーンショットを {0} に保存しました。.
+        /// </summary>
+        internal static string ScreenshotSaved {
+            get {
+                return ResourceManager.GetString("ScreenshotSaved", resourceCulture);
             }
         }
         

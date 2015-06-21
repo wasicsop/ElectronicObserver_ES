@@ -611,7 +611,7 @@
     <value>次のレベルまで: {0}</value>
   </data>
   <data name="ToRemodel" xml:space="preserve">
-    <value>改装まで: {0}</value>
+    <value>改装まで: Lv. {0} / {1} exp.</value>
   </data>
   <data name="Torpedo" xml:space="preserve">
     <value>雷装</value>
@@ -667,5 +667,62 @@
   </data>
   <data name="WinRank" xml:space="preserve">
     <value>戦績判定</value>
+  </data>
+  <data name="AllData" xml:space="preserve">
+    <value>すべて(&amp;A)</value>
+  </data>
+  <data name="Baux" xml:space="preserve">
+    <value>ボーキ</value>
+  </data>
+  <data name="Bucket" xml:space="preserve">
+    <value>高速修復材</value>
+  </data>
+  <data name="Day" xml:space="preserve">
+    <value>日(&amp;D)</value>
+  </data>
+  <data name="DevMat" xml:space="preserve">
+    <value>開発資材</value>
+  </data>
+  <data name="Difference" xml:space="preserve">
+    <value>(差分)</value>
+  </data>
+  <data name="Experience" xml:space="preserve">
+    <value>経験値</value>
+  </data>
+  <data name="Flamethrower" xml:space="preserve">
+    <value>高速建造材</value>
+  </data>
+  <data name="ImpMat" xml:space="preserve">
+    <value>改修資材</value>
+  </data>
+  <data name="Materials" xml:space="preserve">
+    <value>資材</value>
+  </data>
+  <data name="Month" xml:space="preserve">
+    <value>月(&amp;M)</value>
+  </data>
+  <data name="ResourceChart" xml:space="preserve">
+    <value>資源チャート</value>
+  </data>
+  <data name="Resources" xml:space="preserve">
+    <value>資源</value>
+  </data>
+  <data name="SelectGraph" xml:space="preserve">
+    <value>グラフの選択(&amp;G)</value>
+  </data>
+  <data name="Span" xml:space="preserve">
+    <value>範囲(&amp;S)</value>
+  </data>
+  <data name="Steel" xml:space="preserve">
+    <value>鋼材</value>
+  </data>
+  <data name="ThreeMonths" xml:space="preserve">
+    <value>3ヵ月(&amp;S)</value>
+  </data>
+  <data name="Week" xml:space="preserve">
+    <value>週(&amp;W)</value>
+  </data>
+  <data name="Year" xml:space="preserve">
+    <value>年(&amp;Y)</value>
   </data>
 </root>
