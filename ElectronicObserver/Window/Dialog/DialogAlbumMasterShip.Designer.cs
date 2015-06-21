@@ -630,7 +630,7 @@
             this.TableConsumption.Name = "TableConsumption";
             this.TableConsumption.RowCount = 1;
             this.TableConsumption.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.TableConsumption.Size = new System.Drawing.Size(170, 22);
+            this.TableConsumption.Size = new System.Drawing.Size(265, 22);
             this.TableConsumption.TabIndex = 16;
             this.TableConsumption.CellPaint += new System.Windows.Forms.TableLayoutCellPaintEventHandler(this.TableConsumption_CellPaint);
             // 
