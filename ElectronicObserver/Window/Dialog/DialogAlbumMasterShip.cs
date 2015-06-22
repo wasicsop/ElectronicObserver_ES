@@ -136,7 +136,7 @@ namespace ElectronicObserver.Window.Dialog {
 
 				DataGridViewRow row = new DataGridViewRow();
 				row.CreateCells( ShipView );
-				row.SetValues( ship.ShipID, KCDatabase.Instance.ShipTypes[ship.ShipType].Name, ship.NameWithClass );
+				row.SetValues( ship.ShipID, FormMain.Instance.Translator.GetTranslation(KCDatabase.Instance.ShipTypes[ship.ShipType].Name, Utility.TranslationType.ShipTypes), ship.NameWithClass );
 				rows.Add( row );
 
 			}
@@ -238,7 +238,7 @@ namespace ElectronicObserver.Window.Dialog {
 			ToolTipInfo.SetToolTip( ShipID, ship.ResourceName );
 			AlbumNo.Text = ship.AlbumNo.ToString();
 
-			ShipType.Text = ship.IsLandBase ? EncycloRes.LandBase : db.ShipTypes[ship.ShipType].Name;
+			ShipType.Text = ship.IsLandBase ? EncycloRes.LandBase : FormMain.Instance.Translator.GetTranslation(db.ShipTypes[ship.ShipType].Name, Utility.TranslationType.ShipTypes);
 			ShipName.Text = ship.NameWithClass;
 			ToolTipInfo.SetToolTip( ShipName, !ship.IsAbyssalShip ? ship.NameReading : null );
 			TableShipName.ResumeLayout();
@@ -707,7 +707,7 @@ namespace ElectronicObserver.Window.Dialog {
 							sw.WriteLine( arg,
 								ship.ShipID,
 								ship.AlbumNo,
-								KCDatabase.Instance.ShipTypes[ship.ShipType].Name,
+                                FormMain.Instance.Translator.GetTranslation(KCDatabase.Instance.ShipTypes[ship.ShipType].Name, Utility.TranslationType.ShipTypes),
 								ship.Name,
 								ship.NameReading,
 								ship.RemodelBeforeShipID > 0 ? ship.RemodelBeforeShip.Name : "-",

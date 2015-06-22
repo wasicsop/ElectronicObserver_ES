@@ -32,12 +32,14 @@ namespace ElectronicObserver.Window {
 		public DockPanel MainPanel { get { return MainDockPanel; } }
 		public FormWindowCapture WindowCapture { get { return fWindowCapture; } }
 
-		#endregion
+        #endregion
 
+        //Singleton
+        public static FormMain Instance;
 
-		#region Forms
+        #region Forms
 
-		public List<DockContent> SubForms { get; private set; }
+        public List<DockContent> SubForms { get; private set; }
 
 		public FormFleet[] fFleet;
 		public FormDock fDock;
@@ -55,7 +57,7 @@ namespace ElectronicObserver.Window {
 
 		#endregion
 
-
+        public DynamicTranslator Translator { get; private set; }
 
 
 		public FormMain() {
@@ -72,6 +74,8 @@ namespace ElectronicObserver.Window {
             Thread.CurrentThread.CurrentCulture = c;
             Thread.CurrentThread.CurrentUICulture = ui;
 
+            Translator = new DynamicTranslator();
+            Instance = this;
             InitializeComponent();
 		}
 

@@ -972,7 +972,7 @@
             this.TableEquipment.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.TableEquipment.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.TableEquipment.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.TableEquipment.Size = new System.Drawing.Size(134, 110);
+            this.TableEquipment.Size = new System.Drawing.Size(265, 110);
             this.TableEquipment.TabIndex = 8;
             this.TableEquipment.CellPaint += new System.Windows.Forms.TableLayoutCellPaintEventHandler(this.TableEquipment_CellPaint);
             // 

@@ -168,6 +168,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>NotifierRes.resx</DependentUpon>
     </Compile>
+    <Compile Include="Utility\DynamicTranslator.cs" />
     <Compile Include="Window\Dialog\ConfigRes.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

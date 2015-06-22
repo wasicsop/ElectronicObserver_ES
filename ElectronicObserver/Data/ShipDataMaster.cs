@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ElectronicObserver.Window;
 
 namespace ElectronicObserver.Data {
 
@@ -34,7 +35,7 @@ namespace ElectronicObserver.Data {
 		/// 名前
 		/// </summary>
 		public string Name {
-			get { return RawData.api_name; }
+			get { return FormMain.Instance.Translator.GetTranslation(RawData.api_name, Utility.TranslationType.Ships); }
 		}
 
 		/// <summary>
@@ -448,7 +449,7 @@ namespace ElectronicObserver.Data {
 		/// 艦種名
 		/// </summary>
 		public string ShipTypeName {
-			get { return KCDatabase.Instance.ShipTypes[ShipType].Name; }
+			get { return FormMain.Instance.Translator.GetTranslation(KCDatabase.Instance.ShipTypes[ShipType].Name, Utility.TranslationType.ShipTypes); }
 		}
 
 
