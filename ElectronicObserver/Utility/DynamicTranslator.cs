@@ -14,6 +14,7 @@ namespace ElectronicObserver.Utility
         private XDocument shipsXml;
         private XDocument shipTypesXml;
         private XDocument equipmentXml;
+        private XDocument equipTypesXML;
         private XDocument operationsXml;
         private XDocument questsXml;
         private XDocument expeditionsXml;
@@ -25,6 +26,7 @@ namespace ElectronicObserver.Utility
                 if (File.Exists("Translations\\Ships.xml")) this.shipsXml = XDocument.Load("Translations\\Ships.xml");
                 if (File.Exists("Translations\\ShipTypes.xml")) this.shipTypesXml = XDocument.Load("Translations\\ShipTypes.xml");
                 if (File.Exists("Translations\\Equipment.xml")) this.equipmentXml = XDocument.Load("Translations\\Equipment.xml");
+                if (File.Exists("Translations\\EquipmentTypes.xml")) this.equipTypesXML = XDocument.Load("Translations\\EquipmentTYpes.xml");
                 if (File.Exists("Translations\\Operations.xml")) this.operationsXml = XDocument.Load("Translations\\Operations.xml");
                 if (File.Exists("Translations\\Quests.xml")) this.questsXml = XDocument.Load("Translations\\Quests.xml");
                 if (File.Exists("Translations\\Expeditions.xml")) this.expeditionsXml = XDocument.Load("Translations\\Expeditions.xml");
@@ -50,6 +52,10 @@ namespace ElectronicObserver.Utility
                 case TranslationType.Equipment:
                     if (this.equipmentXml != null)
                         return this.equipmentXml.Descendants("Item");
+                    break;
+                case TranslationType.EquipmentType:
+                    if (this.equipTypesXML != null)
+                        return this.equipTypesXML.Descendants("Type");
                     break;
                 case TranslationType.OperationMaps:
                     if (this.operationsXml != null)
@@ -202,6 +208,7 @@ namespace ElectronicObserver.Utility
     {
         App,
         Equipment,
+        EquipmentType,
         Operations,
         Quests,
         Ships,

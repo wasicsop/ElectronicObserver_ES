@@ -252,4 +252,61 @@ Maximum: {2} Steel / {3} Fuel
   <data name="WithEquipValue" xml:space="preserve">
     <value>With Equipment</value>
   </data>
+  <data name="CountAll" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="CountExtra" xml:space="preserve">
+    <value>Spare</value>
+  </data>
+  <data name="EquipCSVDataFormat" xml:space="preserve">
+    <value>装備ID,図鑑番号,装備名,装備種1,装備種2,装備種3,装備種4,火力,雷装,対空,装甲,対潜,回避,索敵,運,命中,爆装,射程,レア,廃棄燃料,廃棄弾薬,廃棄鋼材,廃棄ボーキ,図鑑文章,バージョン</value>
+  </data>
+  <data name="EquipCSVUserFormat" xml:space="preserve">
+    <value>装備ID,図鑑番号,装備種,装備名,装備種1,装備種2,装備種3,装備種4,火力,雷装,対空,装甲,対潜,回避,索敵,運,命中,爆装,射程,レア,廃棄燃料,廃棄弾薬,廃棄鋼材,廃棄ボーキ,図鑑文章,バージョン</value>
+  </data>
+  <data name="EquipListCSVFormat" xml:space="preserve">
+    <value>固有ID,装備ID,装備名,改修Lv,ロック,装備艦ID,装備艦</value>
+  </data>
+  <data name="EquipmentEncyclopedia" xml:space="preserve">
+    <value>Equipment Encyclopedia</value>
+  </data>
+  <data name="EquipmentList" xml:space="preserve">
+    <value>Equipment List</value>
+  </data>
+  <data name="EquipName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="EquippableShips" xml:space="preserve">
+    <value>Equippable Ships:</value>
+  </data>
+  <data name="EquippedShips" xml:space="preserve">
+    <value>Equipped Ships</value>
+  </data>
+  <data name="EquipScrap" xml:space="preserve">
+    <value>Scrap</value>
+  </data>
+  <data name="EquipStats" xml:space="preserve">
+    <value>Stats</value>
+  </data>
+  <data name="EquipType" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="FailedOutputEqListCSV" xml:space="preserve">
+    <value>Failed to output equipment list CSV.</value>
+  </data>
+  <data name="FailedOutputEquipCSV" xml:space="preserve">
+    <value>Failed to output equipment encyclopedia CSV file.</value>
+  </data>
+  <data name="InitiallyEquippedShips" xml:space="preserve">
+    <value>Initially Equipped:</value>
+  </data>
+  <data name="OutputCSV" xml:space="preserve">
+    <value>Output CSV (&amp;C)...</value>
+  </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>Refresh (&amp;U)...</value>
+  </data>
+  <data name="StarLevel" xml:space="preserve">
+    <value>Level</value>
+  </data>
 </root>

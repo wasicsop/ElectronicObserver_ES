@@ -151,11 +151,20 @@ namespace ElectronicObserver.Window.Dialog {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 艦船ID,図鑑番号,艦名,読み,艦種,改装前,改装後,改装Lv,改装弾薬,改装鋼材,改装設計図,耐久初期,耐久最大,耐久結婚,火力初期,火力最大,雷装初期,雷装最大,対空初期,対空最大,装甲初期,装甲最大,対潜初期最小,対潜初期最大,対潜最大,対潜150最小,対潜150最大,回避初期最小,回避初期最大,回避最大,回避150最小,回避150最大,索敵初期最小,索敵初期最大,索敵最大,索敵150最小,索敵150最大,運初期,運最大,速力,射程,レア,スロット数,搭載機数1,搭載機数2,搭載機数3,搭載機数4,搭載機数5,初期装備1,初期装備2,初期装備3,初期装備4,初期装備5,建造時間,解体燃料,解体弾薬,解体鋼材,解体ボーキ,改修火力,改修雷装,改修対空,改修装甲,ドロップ文章,図鑑文章,搭載燃料,搭載弾薬,ボイス,リソース名,バージョン.
+        ///   Looks up a localized string similar to 全個数.
         /// </summary>
-        internal static string CSVDataFormat {
+        internal static string CountAll {
             get {
-                return ResourceManager.GetString("CSVDataFormat", resourceCulture);
+                return ResourceManager.GetString("CountAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 余個数.
+        /// </summary>
+        internal static string CountExtra {
+            get {
+                return ResourceManager.GetString("CountExtra", resourceCulture);
             }
         }
         
@@ -165,15 +174,6 @@ namespace ElectronicObserver.Window.Dialog {
         internal static string CSVTitle {
             get {
                 return ResourceManager.GetString("CSVTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 艦船ID,図鑑番号,艦種,艦名,読み,改装前,改装後,改装Lv,改装弾薬,改装鋼材,改装設計図,耐久初期,耐久結婚,火力初期,火力最大,雷装初期,雷装最大,対空初期,対空最大,装甲初期,装甲最大,対潜初期,対潜最大,回避初期,回避最大,索敵初期,索敵最大,運初期,運最大,速力,射程,レア,スロット数,搭載機数1,搭載機数2,搭載機数3,搭載機数4,搭載機数5,初期装備1,初期装備2,初期装備3,初期装備4,初期装備5,建造時間,解体燃料,解体弾薬,解体鋼材,解体ボーキ,改修火力,改修雷装,改修対空,改修装甲,ドロップ文章,図鑑文章,搭載燃料,搭載弾薬,ボイス,リソース名,バージョン&quot;.
-        /// </summary>
-        internal static string CSVUserFormat {
-            get {
-                return ResourceManager.GetString("CSVUserFormat", resourceCulture);
             }
         }
         
@@ -214,11 +214,128 @@ namespace ElectronicObserver.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 装備ID,図鑑番号,装備名,装備種1,装備種2,装備種3,装備種4,火力,雷装,対空,装甲,対潜,回避,索敵,運,命中,爆装,射程,レア,廃棄燃料,廃棄弾薬,廃棄鋼材,廃棄ボーキ,図鑑文章,バージョン.
+        /// </summary>
+        internal static string EquipCSVDataFormat {
+            get {
+                return ResourceManager.GetString("EquipCSVDataFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 装備ID,図鑑番号,装備種,装備名,装備種1,装備種2,装備種3,装備種4,火力,雷装,対空,装甲,対潜,回避,索敵,運,命中,爆装,射程,レア,廃棄燃料,廃棄弾薬,廃棄鋼材,廃棄ボーキ,図鑑文章,バージョン.
+        /// </summary>
+        internal static string EquipCSVUserFormat {
+            get {
+                return ResourceManager.GetString("EquipCSVUserFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 固有ID,装備ID,装備名,改修Lv,ロック,装備艦ID,装備艦.
+        /// </summary>
+        internal static string EquipListCSVFormat {
+            get {
+                return ResourceManager.GetString("EquipListCSVFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 装備図鑑.
+        /// </summary>
+        internal static string EquipmentEncyclopedia {
+            get {
+                return ResourceManager.GetString("EquipmentEncyclopedia", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 装備一覧.
+        /// </summary>
+        internal static string EquipmentList {
+            get {
+                return ResourceManager.GetString("EquipmentList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 装備名.
+        /// </summary>
+        internal static string EquipName {
+            get {
+                return ResourceManager.GetString("EquipName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 装備可能艦種:.
+        /// </summary>
+        internal static string EquippableShips {
+            get {
+                return ResourceManager.GetString("EquippableShips", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 装備艦.
+        /// </summary>
+        internal static string EquippedShips {
+            get {
+                return ResourceManager.GetString("EquippedShips", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 廃棄.
+        /// </summary>
+        internal static string EquipScrap {
+            get {
+                return ResourceManager.GetString("EquipScrap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 性能.
+        /// </summary>
+        internal static string EquipStats {
+            get {
+                return ResourceManager.GetString("EquipStats", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 装備種.
+        /// </summary>
+        internal static string EquipType {
+            get {
+                return ResourceManager.GetString("EquipType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 回避.
         /// </summary>
         internal static string Evasion {
             get {
                 return ResourceManager.GetString("Evasion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 装備一覧 CSVの出力に失敗しました。.
+        /// </summary>
+        internal static string FailedOutputEqListCSV {
+            get {
+                return ResourceManager.GetString("FailedOutputEqListCSV", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 装備図鑑 CSVの出力に失敗しました。.
+        /// </summary>
+        internal static string FailedOutputEquipCSV {
+            get {
+                return ResourceManager.GetString("FailedOutputEquipCSV", resourceCulture);
             }
         }
         
@@ -255,6 +372,15 @@ namespace ElectronicObserver.Window.Dialog {
         internal static string Initial {
             get {
                 return ResourceManager.GetString("Initial", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 初期装備艦：.
+        /// </summary>
+        internal static string InitiallyEquippedShips {
+            get {
+                return ResourceManager.GetString("InitiallyEquippedShips", resourceCulture);
             }
         }
         
@@ -331,6 +457,15 @@ namespace ElectronicObserver.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to CSV出力(&amp;C)....
+        /// </summary>
+        internal static string OutputCSV {
+            get {
+                return ResourceManager.GetString("OutputCSV", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to CSV出力(データ用)(&amp;D)....
         /// </summary>
         internal static string OutputCSVData {
@@ -367,6 +502,15 @@ namespace ElectronicObserver.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 更新(&amp;U).
+        /// </summary>
+        internal static string Refresh {
+            get {
+                return ResourceManager.GetString("Refresh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 入渠時の消費:
         ///HP1あたり: 鋼 {0:F2} / 燃 {1:F2}
         ///最大: 鋼 {2} / 燃 {3}
@@ -393,6 +537,24 @@ namespace ElectronicObserver.Window.Dialog {
         internal static string Sheets {
             get {
                 return ResourceManager.GetString("Sheets", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 艦船ID,図鑑番号,艦名,読み,艦種,改装前,改装後,改装Lv,改装弾薬,改装鋼材,改装設計図,耐久初期,耐久最大,耐久結婚,火力初期,火力最大,雷装初期,雷装最大,対空初期,対空最大,装甲初期,装甲最大,対潜初期最小,対潜初期最大,対潜最大,対潜150最小,対潜150最大,回避初期最小,回避初期最大,回避最大,回避150最小,回避150最大,索敵初期最小,索敵初期最大,索敵最大,索敵150最小,索敵150最大,運初期,運最大,速力,射程,レア,スロット数,搭載機数1,搭載機数2,搭載機数3,搭載機数4,搭載機数5,初期装備1,初期装備2,初期装備3,初期装備4,初期装備5,建造時間,解体燃料,解体弾薬,解体鋼材,解体ボーキ,改修火力,改修雷装,改修対空,改修装甲,ドロップ文章,図鑑文章,搭載燃料,搭載弾薬,ボイス,リソース名,バージョン.
+        /// </summary>
+        internal static string ShipCSVDataFormat {
+            get {
+                return ResourceManager.GetString("ShipCSVDataFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 艦船ID,図鑑番号,艦種,艦名,読み,改装前,改装後,改装Lv,改装弾薬,改装鋼材,改装設計図,耐久初期,耐久結婚,火力初期,火力最大,雷装初期,雷装最大,対空初期,対空最大,装甲初期,装甲最大,対潜初期,対潜最大,回避初期,回避最大,索敵初期,索敵最大,運初期,運最大,速力,射程,レア,スロット数,搭載機数1,搭載機数2,搭載機数3,搭載機数4,搭載機数5,初期装備1,初期装備2,初期装備3,初期装備4,初期装備5,建造時間,解体燃料,解体弾薬,解体鋼材,解体ボーキ,改修火力,改修雷装,改修対空,改修装甲,ドロップ文章,図鑑文章,搭載燃料,搭載弾薬,ボイス,リソース名,バージョン&quot;.
+        /// </summary>
+        internal static string ShipCSVUserFormat {
+            get {
+                return ResourceManager.GetString("ShipCSVUserFormat", resourceCulture);
             }
         }
         
@@ -438,6 +600,15 @@ namespace ElectronicObserver.Window.Dialog {
         internal static string Speed {
             get {
                 return ResourceManager.GetString("Speed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 改修.
+        /// </summary>
+        internal static string StarLevel {
+            get {
+                return ResourceManager.GetString("StarLevel", resourceCulture);
             }
         }
         
