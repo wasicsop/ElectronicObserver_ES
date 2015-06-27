@@ -43,7 +43,7 @@ namespace ElectronicObserver.Window {
 				ShipName.ImageAlign = ContentAlignment.MiddleCenter;
 				ShipName.Padding = new Padding( 0, 1, 0, 1 );
 				ShipName.Margin = new Padding( 2, 0, 2, 0 );
-				ShipName.MaximumSize = new Size( 60, 20 );
+				ShipName.MaximumSize = new Size( 120, 20 );
 				ShipName.AutoEllipsis = true;
 				ShipName.AutoSize = true;
 				ShipName.Cursor = Cursors.Help;

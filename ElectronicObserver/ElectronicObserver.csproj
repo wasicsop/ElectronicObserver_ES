@@ -168,10 +168,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>NotifierRes.resx</DependentUpon>
     </Compile>
+    <Compile Include="Utility\DynamicTranslator.cs" />
     <Compile Include="Window\Dialog\ConfigRes.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ConfigRes.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Window\Dialog\EncycloRes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EncycloRes.resx</DependentUpon>
     </Compile>
     <Compile Include="Window\Dialog\NotifyRes.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -542,6 +548,11 @@
     <EmbeddedResource Include="Window\Dialog\ConfigRes.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ConfigRes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Window\Dialog\EncycloRes.en.resx" />
+    <EmbeddedResource Include="Window\Dialog\EncycloRes.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>EncycloRes.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Window\Dialog\NotifyRes.en.resx" />
     <EmbeddedResource Include="Window\Dialog\NotifyRes.resx">

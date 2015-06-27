@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ElectronicObserver.Window;
 
 namespace ElectronicObserver.Data {
 	
@@ -29,14 +30,14 @@ namespace ElectronicObserver.Data {
 		/// 遠征名
 		/// </summary>
 		public string Name {
-			get { return RawData.api_name; }
+			get { return FormMain.Instance.Translator.GetTranslation(RawData.api_name, Utility.TranslationType.ExpeditionTitle); }
 		}
 
 		/// <summary>
 		/// 説明文
 		/// </summary>
 		public string Detail {
-			get { return RawData.api_details; }
+			get { return FormMain.Instance.Translator.GetTranslation(RawData.api_details, Utility.TranslationType.ExpeditionDetail); }
 		}
 
 		/// <summary>
