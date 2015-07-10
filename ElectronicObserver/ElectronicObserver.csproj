@@ -560,11 +560,13 @@
       <LastGenOutput>NotifyRes.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Window\GeneralRes.en.resx" />
+    <EmbeddedResource Include="Window\GeneralRes.ko.resx" />
     <EmbeddedResource Include="Window\GeneralRes.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>GeneralRes.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Window\Menus.en.resx" />
+    <EmbeddedResource Include="Window\Menus.ko.resx" />
     <EmbeddedResource Include="Window\Menus.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Menus.Designer.cs</LastGenOutput>
