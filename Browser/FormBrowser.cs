@@ -83,11 +83,11 @@ namespace Browser {
 		public FormBrowser( string serverUri ) {
             CultureInfo c = CultureInfo.CurrentCulture;
             CultureInfo ui = CultureInfo.CurrentUICulture;
-            if(c.Name != "en-US" && c.Name != "ja-JP")
+            if(c.Name != "en-US" && c.Name != "ja-JP" && c.Name != "ko-KR")
             {
                 c = new CultureInfo("en-US");
             }
-            if(ui.Name != "en-US" && ui.Name != "ja-JP")
+            if(ui.Name != "en-US" && ui.Name != "ja-JP" && ui.Name != "ko-KR")
             {
                 ui = new CultureInfo("en-US");
             }
@@ -242,7 +242,7 @@ namespace Browser {
 				var document = Browser.Document;
 				if ( document == null ) return;
 
-				if ( document.Url.AbsolutePath.Contains( ".swf?" ) ) {
+				if ( document.Url.AbsolutePath.Contains( ".swf" ) ) {
 
 					document.Body.SetAttribute( "width", "100%" );
 					document.Body.SetAttribute( "height", "100%" );
@@ -416,7 +416,7 @@ namespace Browser {
 				IViewObject viewobj = null;
 				//int width = 0, height = 0;
 
-				if ( wb.Document.Url.AbsolutePath.Contains( ".swf?" ) ) {
+				if ( wb.Document.Url.AbsolutePath.Contains( ".swf" ) ) {
 
 					viewobj = wb.Document.GetElementsByTagName( "embed" )[0].DomElement as IViewObject;
 					if ( viewobj == null ) {
