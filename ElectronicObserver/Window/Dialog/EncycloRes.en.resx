@@ -309,4 +309,7 @@ Maximum: {2} Steel / {3} Fuel
   <data name="StarLevel" xml:space="preserve">
     <value>Level</value>
   </data>
+  <data name="Resource" xml:space="preserve">
+    <value>Resource:</value>
+  </data>
 </root>
