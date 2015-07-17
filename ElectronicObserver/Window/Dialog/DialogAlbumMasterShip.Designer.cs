@@ -24,8 +24,8 @@
 		/// </summary>
 		private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.StripMenu_File = new System.Windows.Forms.ToolStripMenuItem();
             this.StripMenu_File_OutputCSVUser = new System.Windows.Forms.ToolStripMenuItem();
@@ -36,6 +36,8 @@
             this.ShipView_ShipType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ShipView_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BasePanelShipGirl = new System.Windows.Forms.Panel();
+            this.imageLabel1 = new ElectronicObserver.Window.Control.ImageLabel();
+            this.ResourceName = new ElectronicObserver.Window.Control.ImageLabel();
             this.TableBattle = new System.Windows.Forms.TableLayoutPanel();
             this.TitleDayAttack = new ElectronicObserver.Window.Control.ImageLabel();
             this.NightAttack = new ElectronicObserver.Window.Control.ImageLabel();
@@ -170,11 +172,12 @@
             // 
             // menuStrip1
             // 
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.StripMenu_File});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(884, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(900, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -184,20 +187,20 @@
             this.StripMenu_File_OutputCSVUser,
             this.StripMenu_File_OutputCSVData});
             this.StripMenu_File.Name = "StripMenu_File";
-            this.StripMenu_File.Size = new System.Drawing.Size(70, 20);
+            this.StripMenu_File.Size = new System.Drawing.Size(85, 20);
             this.StripMenu_File.Text = Menus.File;
             // 
             // StripMenu_File_OutputCSVUser
             // 
             this.StripMenu_File_OutputCSVUser.Name = "StripMenu_File_OutputCSVUser";
-            this.StripMenu_File_OutputCSVUser.Size = new System.Drawing.Size(198, 22);
+            this.StripMenu_File_OutputCSVUser.Size = new System.Drawing.Size(206, 22);
             this.StripMenu_File_OutputCSVUser.Text = EncycloRes.OutputCSVUser;
             this.StripMenu_File_OutputCSVUser.Click += new System.EventHandler(this.StripMenu_File_OutputCSVUser_Click);
             // 
             // StripMenu_File_OutputCSVData
             // 
             this.StripMenu_File_OutputCSVData.Name = "StripMenu_File_OutputCSVData";
-            this.StripMenu_File_OutputCSVData.Size = new System.Drawing.Size(198, 22);
+            this.StripMenu_File_OutputCSVData.Size = new System.Drawing.Size(206, 22);
             this.StripMenu_File_OutputCSVData.Text = EncycloRes.OutputCSVData;
             this.StripMenu_File_OutputCSVData.Click += new System.EventHandler(this.StripMenu_File_OutputCSVData_Click);
             // 
@@ -215,7 +218,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.BasePanelShipGirl);
-            this.splitContainer1.Size = new System.Drawing.Size(884, 457);
+            this.splitContainer1.Size = new System.Drawing.Size(900, 456);
             this.splitContainer1.SplitterDistance = 250;
             this.splitContainer1.TabIndex = 1;
             // 
@@ -231,14 +234,14 @@
             this.ShipView_ShipID,
             this.ShipView_ShipType,
             this.ShipView_Name});
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Meiryo UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.ShipView.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.ShipView.DefaultCellStyle = dataGridViewCellStyle8;
             this.ShipView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ShipView.Location = new System.Drawing.Point(0, 0);
             this.ShipView.MultiSelect = false;
@@ -247,7 +250,7 @@
             this.ShipView.RowHeadersVisible = false;
             this.ShipView.RowTemplate.Height = 21;
             this.ShipView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.ShipView.Size = new System.Drawing.Size(250, 457);
+            this.ShipView.Size = new System.Drawing.Size(250, 456);
             this.ShipView.TabIndex = 0;
             this.ShipView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.ShipView_CellMouseClick);
             this.ShipView.SortCompare += new System.Windows.Forms.DataGridViewSortCompareEventHandler(this.ShipView_SortCompare);
@@ -256,8 +259,8 @@
             // ShipView_ShipID
             // 
             this.ShipView_ShipID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.ShipView_ShipID.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.ShipView_ShipID.DefaultCellStyle = dataGridViewCellStyle7;
             this.ShipView_ShipID.HeaderText = "ID";
             this.ShipView_ShipID.Name = "ShipView_ShipID";
             this.ShipView_ShipID.ReadOnly = true;
@@ -280,6 +283,8 @@
             // 
             // BasePanelShipGirl
             // 
+            this.BasePanelShipGirl.Controls.Add(this.imageLabel1);
+            this.BasePanelShipGirl.Controls.Add(this.ResourceName);
             this.BasePanelShipGirl.Controls.Add(this.TableBattle);
             this.BasePanelShipGirl.Controls.Add(this.AlbumNo);
             this.BasePanelShipGirl.Controls.Add(this.imageLabel2);
@@ -299,8 +304,29 @@
             this.BasePanelShipGirl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BasePanelShipGirl.Location = new System.Drawing.Point(0, 0);
             this.BasePanelShipGirl.Name = "BasePanelShipGirl";
-            this.BasePanelShipGirl.Size = new System.Drawing.Size(630, 457);
+            this.BasePanelShipGirl.Size = new System.Drawing.Size(646, 456);
             this.BasePanelShipGirl.TabIndex = 0;
+            // 
+            // imageLabel1
+            // 
+            this.imageLabel1.BackColor = System.Drawing.Color.Transparent;
+            this.imageLabel1.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.imageLabel1.Location = new System.Drawing.Point(211, 6);
+            this.imageLabel1.Name = "imageLabel1";
+            this.imageLabel1.Size = new System.Drawing.Size(29, 16);
+            this.imageLabel1.TabIndex = 25;
+            this.imageLabel1.Text = EncycloRes.Resource;
+            // 
+            // ResourceName
+            // 
+            this.ResourceName.BackColor = System.Drawing.Color.Transparent;
+            this.ResourceName.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.ResourceName.Location = new System.Drawing.Point(258, 6);
+            this.ResourceName.Name = "ResourceName";
+            this.ResourceName.Size = new System.Drawing.Size(106, 16);
+            this.ResourceName.TabIndex = 24;
+            this.ResourceName.Text = "abcdefghijkl ver. 99";
+            this.ResourceName.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ResourceName_MouseClick);
             // 
             // TableBattle
             // 
@@ -315,13 +341,13 @@
             this.TableBattle.Controls.Add(this.DayAttack, 1, 1);
             this.TableBattle.Controls.Add(this.AirSuperiority, 1, 0);
             this.TableBattle.Controls.Add(this.TitleAirSuperiority, 0, 0);
-            this.TableBattle.Location = new System.Drawing.Point(351, 278);
+            this.TableBattle.Location = new System.Drawing.Point(258, 300);
             this.TableBattle.Name = "TableBattle";
             this.TableBattle.RowCount = 3;
             this.TableBattle.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.TableBattle.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.TableBattle.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.TableBattle.Size = new System.Drawing.Size(134, 66);
+            this.TableBattle.Size = new System.Drawing.Size(108, 66);
             this.TableBattle.TabIndex = 20;
             // 
             // TitleDayAttack
@@ -330,7 +356,7 @@
             this.TitleDayAttack.BackColor = System.Drawing.Color.Transparent;
             this.TitleDayAttack.Location = new System.Drawing.Point(3, 25);
             this.TitleDayAttack.Name = "TitleDayAttack";
-            this.TitleDayAttack.Size = new System.Drawing.Size(68, 16);
+            this.TitleDayAttack.Size = new System.Drawing.Size(56, 16);
             this.TitleDayAttack.TabIndex = 24;
             this.TitleDayAttack.Text = EncycloRes.DayAttack;
             this.TitleDayAttack.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -340,9 +366,9 @@
             this.NightAttack.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.NightAttack.BackColor = System.Drawing.Color.Transparent;
             this.NightAttack.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.NightAttack.Location = new System.Drawing.Point(77, 47);
+            this.NightAttack.Location = new System.Drawing.Point(65, 47);
             this.NightAttack.Name = "NightAttack";
-            this.NightAttack.Size = new System.Drawing.Size(25, 16);
+            this.NightAttack.Size = new System.Drawing.Size(19, 16);
             this.NightAttack.TabIndex = 19;
             this.NightAttack.Text = "連撃";
             // 
@@ -352,7 +378,7 @@
             this.TitleNightAttack.BackColor = System.Drawing.Color.Transparent;
             this.TitleNightAttack.Location = new System.Drawing.Point(3, 47);
             this.TitleNightAttack.Name = "TitleNightAttack";
-            this.TitleNightAttack.Size = new System.Drawing.Size(68, 16);
+            this.TitleNightAttack.Size = new System.Drawing.Size(56, 16);
             this.TitleNightAttack.TabIndex = 19;
             this.TitleNightAttack.Text = EncycloRes.NightAttack;
             this.TitleNightAttack.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -362,9 +388,9 @@
             this.DayAttack.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.DayAttack.BackColor = System.Drawing.Color.Transparent;
             this.DayAttack.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.DayAttack.Location = new System.Drawing.Point(77, 25);
+            this.DayAttack.Location = new System.Drawing.Point(65, 25);
             this.DayAttack.Name = "DayAttack";
-            this.DayAttack.Size = new System.Drawing.Size(54, 16);
+            this.DayAttack.Size = new System.Drawing.Size(40, 16);
             this.DayAttack.TabIndex = 18;
             this.DayAttack.Text = "主砲/主砲";
             // 
@@ -373,7 +399,7 @@
             this.AirSuperiority.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.AirSuperiority.BackColor = System.Drawing.Color.Transparent;
             this.AirSuperiority.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.AirSuperiority.Location = new System.Drawing.Point(77, 3);
+            this.AirSuperiority.Location = new System.Drawing.Point(65, 3);
             this.AirSuperiority.Name = "AirSuperiority";
             this.AirSuperiority.Size = new System.Drawing.Size(16, 16);
             this.AirSuperiority.TabIndex = 18;
@@ -385,7 +411,7 @@
             this.TitleAirSuperiority.BackColor = System.Drawing.Color.Transparent;
             this.TitleAirSuperiority.Location = new System.Drawing.Point(3, 3);
             this.TitleAirSuperiority.Name = "TitleAirSuperiority";
-            this.TitleAirSuperiority.Size = new System.Drawing.Size(68, 16);
+            this.TitleAirSuperiority.Size = new System.Drawing.Size(56, 16);
             this.TitleAirSuperiority.TabIndex = 18;
             this.TitleAirSuperiority.Text = EncycloRes.AirPower;
             this.TitleAirSuperiority.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -407,7 +433,7 @@
             this.imageLabel2.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.imageLabel2.Location = new System.Drawing.Point(105, 6);
             this.imageLabel2.Name = "imageLabel2";
-            this.imageLabel2.Size = new System.Drawing.Size(54, 16);
+            this.imageLabel2.Size = new System.Drawing.Size(40, 16);
             this.imageLabel2.TabIndex = 22;
             this.imageLabel2.Text = EncycloRes.EncyclopediaNumber;
             // 
@@ -420,9 +446,9 @@
             this.Description.AutoWrap = true;
             this.Description.BackColor = System.Drawing.Color.Transparent;
             this.Description.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.Description.Location = new System.Drawing.Point(60, 380);
+            this.Description.Location = new System.Drawing.Point(9, 380);
             this.Description.Name = "Description";
-            this.Description.Size = new System.Drawing.Size(425, 0);
+            this.Description.Size = new System.Drawing.Size(625, 64);
             this.Description.TabIndex = 21;
             this.Description.Text = "私が重雷装巡洋艦…？冗談じゃないわ！\r\nえ、デバッグ用ですって？…仕方ないわね、早く終わらせるのよ！";
             this.Description.TextAlign = System.Drawing.ContentAlignment.TopLeft;
@@ -436,7 +462,7 @@
             this.TableShipName.Controls.Add(this.ShipName);
             this.TableShipName.Location = new System.Drawing.Point(3, 25);
             this.TableShipName.Name = "TableShipName";
-            this.TableShipName.Size = new System.Drawing.Size(189, 22);
+            this.TableShipName.Size = new System.Drawing.Size(166, 22);
             this.TableShipName.TabIndex = 19;
             // 
             // ShipType
@@ -444,7 +470,7 @@
             this.ShipType.BackColor = System.Drawing.Color.Transparent;
             this.ShipType.Location = new System.Drawing.Point(3, 3);
             this.ShipType.Name = "ShipType";
-            this.ShipType.Size = new System.Drawing.Size(92, 16);
+            this.ShipType.Size = new System.Drawing.Size(74, 16);
             this.ShipType.TabIndex = 7;
             this.ShipType.Text = "重雷装巡洋艦";
             // 
@@ -452,9 +478,9 @@
             // 
             this.ShipName.BackColor = System.Drawing.Color.Transparent;
             this.ShipName.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.ShipName.Location = new System.Drawing.Point(101, 3);
+            this.ShipName.Location = new System.Drawing.Point(83, 3);
             this.ShipName.Name = "ShipName";
-            this.ShipName.Size = new System.Drawing.Size(85, 16);
+            this.ShipName.Size = new System.Drawing.Size(80, 16);
             this.ShipName.TabIndex = 8;
             this.ShipName.Text = "Bismarck zwei";
             // 
@@ -487,14 +513,14 @@
             this.TableRemodel.Controls.Add(this.RemodelBeforeAmmo, 2, 1);
             this.TableRemodel.Controls.Add(this.RemodelBeforeShipName, 1, 0);
             this.TableRemodel.Controls.Add(this.RemodelBefore, 0, 0);
-            this.TableRemodel.Location = new System.Drawing.Point(351, 278);
+            this.TableRemodel.Location = new System.Drawing.Point(411, 275);
             this.TableRemodel.Name = "TableRemodel";
             this.TableRemodel.RowCount = 4;
             this.TableRemodel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.TableRemodel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.TableRemodel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.TableRemodel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.TableRemodel.Size = new System.Drawing.Size(267, 88);
+            this.TableRemodel.Size = new System.Drawing.Size(223, 88);
             this.TableRemodel.TabIndex = 17;
             this.TableRemodel.CellPaint += new System.Windows.Forms.TableLayoutCellPaintEventHandler(this.TableRemodel_CellPaint);
             // 
@@ -502,7 +528,7 @@
             // 
             this.RemodelAfterSteel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.RemodelAfterSteel.BackColor = System.Drawing.Color.Transparent;
-            this.RemodelAfterSteel.Location = new System.Drawing.Point(166, 69);
+            this.RemodelAfterSteel.Location = new System.Drawing.Point(157, 69);
             this.RemodelAfterSteel.Name = "RemodelAfterSteel";
             this.RemodelAfterSteel.Size = new System.Drawing.Size(41, 16);
             this.RemodelAfterSteel.TabIndex = 19;
@@ -512,7 +538,7 @@
             // 
             this.RemodelAfterAmmo.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.RemodelAfterAmmo.BackColor = System.Drawing.Color.Transparent;
-            this.RemodelAfterAmmo.Location = new System.Drawing.Point(106, 69);
+            this.RemodelAfterAmmo.Location = new System.Drawing.Point(97, 69);
             this.RemodelAfterAmmo.Name = "RemodelAfterAmmo";
             this.RemodelAfterAmmo.Size = new System.Drawing.Size(41, 16);
             this.RemodelAfterAmmo.TabIndex = 19;
@@ -523,9 +549,9 @@
             this.RemodelAfterLevel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.RemodelAfterLevel.BackColor = System.Drawing.Color.Transparent;
             this.RemodelAfterLevel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.RemodelAfterLevel.Location = new System.Drawing.Point(46, 69);
+            this.RemodelAfterLevel.Location = new System.Drawing.Point(37, 69);
             this.RemodelAfterLevel.Name = "RemodelAfterLevel";
-            this.RemodelAfterLevel.Size = new System.Drawing.Size(54, 16);
+            this.RemodelAfterLevel.Size = new System.Drawing.Size(52, 16);
             this.RemodelAfterLevel.TabIndex = 19;
             this.RemodelAfterLevel.Text = "Lv. 80";
             // 
@@ -536,9 +562,9 @@
             this.TableRemodel.SetColumnSpan(this.RemodelAfterShipName, 3);
             this.RemodelAfterShipName.Cursor = System.Windows.Forms.Cursors.Hand;
             this.RemodelAfterShipName.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.RemodelAfterShipName.Location = new System.Drawing.Point(46, 47);
+            this.RemodelAfterShipName.Location = new System.Drawing.Point(37, 47);
             this.RemodelAfterShipName.Name = "RemodelAfterShipName";
-            this.RemodelAfterShipName.Size = new System.Drawing.Size(81, 16);
+            this.RemodelAfterShipName.Size = new System.Drawing.Size(76, 16);
             this.RemodelAfterShipName.TabIndex = 19;
             this.RemodelAfterShipName.Text = "Bismarck drei";
             this.RemodelAfterShipName.MouseClick += new System.Windows.Forms.MouseEventHandler(this.RemodelAfterShipName_MouseClick);
@@ -551,7 +577,7 @@
             this.RemodelAfter.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.RemodelAfter.Location = new System.Drawing.Point(3, 47);
             this.RemodelAfter.Name = "RemodelAfter";
-            this.RemodelAfter.Size = new System.Drawing.Size(37, 16);
+            this.RemodelAfter.Size = new System.Drawing.Size(28, 16);
             this.RemodelAfter.TabIndex = 19;
             this.RemodelAfter.Text = EncycloRes.AfterRemodel;
             this.RemodelAfter.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -562,9 +588,9 @@
             this.RemodelBeforeLevel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.RemodelBeforeLevel.BackColor = System.Drawing.Color.Transparent;
             this.RemodelBeforeLevel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.RemodelBeforeLevel.Location = new System.Drawing.Point(46, 25);
+            this.RemodelBeforeLevel.Location = new System.Drawing.Point(37, 25);
             this.RemodelBeforeLevel.Name = "RemodelBeforeLevel";
-            this.RemodelBeforeLevel.Size = new System.Drawing.Size(54, 16);
+            this.RemodelBeforeLevel.Size = new System.Drawing.Size(52, 16);
             this.RemodelBeforeLevel.TabIndex = 18;
             this.RemodelBeforeLevel.Text = "Lv. 50";
             // 
@@ -572,7 +598,7 @@
             // 
             this.RemodelBeforeSteel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.RemodelBeforeSteel.BackColor = System.Drawing.Color.Transparent;
-            this.RemodelBeforeSteel.Location = new System.Drawing.Point(166, 25);
+            this.RemodelBeforeSteel.Location = new System.Drawing.Point(157, 25);
             this.RemodelBeforeSteel.Name = "RemodelBeforeSteel";
             this.RemodelBeforeSteel.Size = new System.Drawing.Size(41, 16);
             this.RemodelBeforeSteel.TabIndex = 18;
@@ -582,7 +608,7 @@
             // 
             this.RemodelBeforeAmmo.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.RemodelBeforeAmmo.BackColor = System.Drawing.Color.Transparent;
-            this.RemodelBeforeAmmo.Location = new System.Drawing.Point(106, 25);
+            this.RemodelBeforeAmmo.Location = new System.Drawing.Point(97, 25);
             this.RemodelBeforeAmmo.Name = "RemodelBeforeAmmo";
             this.RemodelBeforeAmmo.Size = new System.Drawing.Size(41, 16);
             this.RemodelBeforeAmmo.TabIndex = 18;
@@ -595,9 +621,9 @@
             this.TableRemodel.SetColumnSpan(this.RemodelBeforeShipName, 3);
             this.RemodelBeforeShipName.Cursor = System.Windows.Forms.Cursors.Hand;
             this.RemodelBeforeShipName.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.RemodelBeforeShipName.Location = new System.Drawing.Point(46, 3);
+            this.RemodelBeforeShipName.Location = new System.Drawing.Point(37, 3);
             this.RemodelBeforeShipName.Name = "RemodelBeforeShipName";
-            this.RemodelBeforeShipName.Size = new System.Drawing.Size(55, 16);
+            this.RemodelBeforeShipName.Size = new System.Drawing.Size(52, 16);
             this.RemodelBeforeShipName.TabIndex = 18;
             this.RemodelBeforeShipName.Text = "Bismarck";
             this.RemodelBeforeShipName.MouseClick += new System.Windows.Forms.MouseEventHandler(this.RemodelBeforeShipName_MouseClick);
@@ -610,7 +636,7 @@
             this.RemodelBefore.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.RemodelBefore.Location = new System.Drawing.Point(3, 3);
             this.RemodelBefore.Name = "RemodelBefore";
-            this.RemodelBefore.Size = new System.Drawing.Size(37, 16);
+            this.RemodelBefore.Size = new System.Drawing.Size(28, 16);
             this.RemodelBefore.TabIndex = 18;
             this.RemodelBefore.Text = EncycloRes.BeforeRemodel;
             this.RemodelBefore.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -630,7 +656,7 @@
             this.TableConsumption.Name = "TableConsumption";
             this.TableConsumption.RowCount = 1;
             this.TableConsumption.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.TableConsumption.Size = new System.Drawing.Size(265, 22);
+            this.TableConsumption.Size = new System.Drawing.Size(246, 22);
             this.TableConsumption.TabIndex = 16;
             this.TableConsumption.CellPaint += new System.Windows.Forms.TableLayoutCellPaintEventHandler(this.TableConsumption_CellPaint);
             // 
@@ -638,7 +664,7 @@
             // 
             this.Ammo.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.Ammo.BackColor = System.Drawing.Color.Transparent;
-            this.Ammo.Location = new System.Drawing.Point(126, 3);
+            this.Ammo.Location = new System.Drawing.Point(202, 3);
             this.Ammo.Name = "Ammo";
             this.Ammo.Size = new System.Drawing.Size(41, 16);
             this.Ammo.TabIndex = 19;
@@ -649,7 +675,7 @@
             // 
             this.Fuel.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.Fuel.BackColor = System.Drawing.Color.Transparent;
-            this.Fuel.Location = new System.Drawing.Point(66, 3);
+            this.Fuel.Location = new System.Drawing.Point(60, 3);
             this.Fuel.Name = "Fuel";
             this.Fuel.Size = new System.Drawing.Size(41, 16);
             this.Fuel.TabIndex = 18;
@@ -662,7 +688,7 @@
             this.TitleConsumption.BackColor = System.Drawing.Color.Transparent;
             this.TitleConsumption.Location = new System.Drawing.Point(3, 3);
             this.TitleConsumption.Name = "TitleConsumption";
-            this.TitleConsumption.Size = new System.Drawing.Size(44, 16);
+            this.TitleConsumption.Size = new System.Drawing.Size(38, 16);
             this.TitleConsumption.TabIndex = 17;
             this.TitleConsumption.Text = EncycloRes.Consumption;
             this.TitleConsumption.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -672,9 +698,9 @@
             this.TableParameterSub.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.TableParameterSub.ColumnCount = 4;
             this.TableParameterSub.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.TableParameterSub.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
             this.TableParameterSub.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.TableParameterSub.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.TableParameterSub.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.TableParameterSub.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.TableParameterSub.Controls.Add(this.imageLabel76, 3, 1);
             this.TableParameterSub.Controls.Add(this.Rarity, 3, 0);
             this.TableParameterSub.Controls.Add(this.Range, 1, 1);
@@ -688,7 +714,7 @@
             this.TableParameterSub.RowCount = 2;
             this.TableParameterSub.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.TableParameterSub.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.TableParameterSub.Size = new System.Drawing.Size(265, 44);
+            this.TableParameterSub.Size = new System.Drawing.Size(249, 44);
             this.TableParameterSub.TabIndex = 15;
             this.TableParameterSub.CellPaint += new System.Windows.Forms.TableLayoutCellPaintEventHandler(this.TableParameterSub_CellPaint);
             // 
@@ -697,7 +723,7 @@
             this.imageLabel76.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.imageLabel76.BackColor = System.Drawing.Color.Transparent;
             this.imageLabel76.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.imageLabel76.Location = new System.Drawing.Point(240, 25);
+            this.imageLabel76.Location = new System.Drawing.Point(224, 25);
             this.imageLabel76.Name = "imageLabel76";
             this.imageLabel76.Size = new System.Drawing.Size(22, 16);
             this.imageLabel76.TabIndex = 17;
@@ -709,9 +735,9 @@
             // 
             this.Rarity.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.Rarity.BackColor = System.Drawing.Color.Transparent;
-            this.Rarity.Location = new System.Drawing.Point(157, 3);
+            this.Rarity.Location = new System.Drawing.Point(152, 3);
             this.Rarity.Name = "Rarity";
-            this.Rarity.Size = new System.Drawing.Size(105, 16);
+            this.Rarity.Size = new System.Drawing.Size(94, 16);
             this.Rarity.TabIndex = 16;
             this.Rarity.Text = "123";
             this.Rarity.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -733,11 +759,11 @@
             this.Speed.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.Speed.BackColor = System.Drawing.Color.Transparent;
             this.Speed.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.Speed.Location = new System.Drawing.Point(85, 3);
+            this.Speed.Location = new System.Drawing.Point(47, 3);
             this.Speed.Name = "Speed";
-            this.Speed.Size = new System.Drawing.Size(22, 16);
+            this.Speed.Size = new System.Drawing.Size(60, 16);
             this.Speed.TabIndex = 16;
-            this.Speed.Text = "123";
+            this.Speed.Text = "Land Base";
             this.Speed.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // imageLabel72
@@ -746,7 +772,7 @@
             this.imageLabel72.BackColor = System.Drawing.Color.Transparent;
             this.imageLabel72.Location = new System.Drawing.Point(113, 25);
             this.imageLabel72.Name = "imageLabel72";
-            this.imageLabel72.Size = new System.Drawing.Size(38, 16);
+            this.imageLabel72.Size = new System.Drawing.Size(33, 16);
             this.imageLabel72.TabIndex = 16;
             this.imageLabel72.Text = "-";
             this.imageLabel72.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -758,7 +784,7 @@
             this.imageLabel71.BackColor = System.Drawing.Color.Transparent;
             this.imageLabel71.Location = new System.Drawing.Point(113, 3);
             this.imageLabel71.Name = "imageLabel71";
-            this.imageLabel71.Size = new System.Drawing.Size(38, 16);
+            this.imageLabel71.Size = new System.Drawing.Size(33, 16);
             this.imageLabel71.TabIndex = 16;
             this.imageLabel71.Text = EncycloRes.Rarity;
             this.imageLabel71.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -769,7 +795,7 @@
             this.TitleRange.BackColor = System.Drawing.Color.Transparent;
             this.TitleRange.Location = new System.Drawing.Point(3, 25);
             this.TitleRange.Name = "TitleRange";
-            this.TitleRange.Size = new System.Drawing.Size(44, 16);
+            this.TitleRange.Size = new System.Drawing.Size(38, 16);
             this.TitleRange.TabIndex = 16;
             this.TitleRange.Text = EncycloRes.Range;
             this.TitleRange.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -780,7 +806,7 @@
             this.TitleSpeed.BackColor = System.Drawing.Color.Transparent;
             this.TitleSpeed.Location = new System.Drawing.Point(3, 3);
             this.TitleSpeed.Name = "TitleSpeed";
-            this.TitleSpeed.Size = new System.Drawing.Size(44, 16);
+            this.TitleSpeed.Size = new System.Drawing.Size(38, 16);
             this.TitleSpeed.TabIndex = 14;
             this.TitleSpeed.Text = EncycloRes.Speed;
             this.TitleSpeed.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -789,9 +815,9 @@
             // 
             this.BuildingTime.BackColor = System.Drawing.Color.Transparent;
             this.BuildingTime.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.BuildingTime.Location = new System.Drawing.Point(432, 190);
+            this.BuildingTime.Location = new System.Drawing.Point(492, 188);
             this.BuildingTime.Name = "BuildingTime";
-            this.BuildingTime.Size = new System.Drawing.Size(53, 16);
+            this.BuildingTime.Size = new System.Drawing.Size(49, 16);
             this.BuildingTime.TabIndex = 14;
             this.BuildingTime.Text = "06:00:00";
             this.BuildingTime.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -799,9 +825,9 @@
             // TitleBuildingTime
             // 
             this.TitleBuildingTime.BackColor = System.Drawing.Color.Transparent;
-            this.TitleBuildingTime.Location = new System.Drawing.Point(351, 190);
+            this.TitleBuildingTime.Location = new System.Drawing.Point(411, 188);
             this.TitleBuildingTime.Name = "TitleBuildingTime";
-            this.TitleBuildingTime.Size = new System.Drawing.Size(68, 16);
+            this.TitleBuildingTime.Size = new System.Drawing.Size(56, 16);
             this.TitleBuildingTime.TabIndex = 13;
             this.TitleBuildingTime.Text = EncycloRes.ConstructionTime;
             this.TitleBuildingTime.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -825,7 +851,7 @@
             this.TableArsenal.Controls.Add(this.imageLabel60, 0, 1);
             this.TableArsenal.Controls.Add(this.MaterialAmmo, 2, 0);
             this.TableArsenal.Controls.Add(this.imageLabel59, 0, 0);
-            this.TableArsenal.Location = new System.Drawing.Point(351, 213);
+            this.TableArsenal.Location = new System.Drawing.Point(411, 211);
             this.TableArsenal.Name = "TableArsenal";
             this.TableArsenal.RowCount = 2;
             this.TableArsenal.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -838,7 +864,7 @@
             // 
             this.PowerUpArmor.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.PowerUpArmor.BackColor = System.Drawing.Color.Transparent;
-            this.PowerUpArmor.Location = new System.Drawing.Point(178, 25);
+            this.PowerUpArmor.Location = new System.Drawing.Point(172, 25);
             this.PowerUpArmor.Name = "PowerUpArmor";
             this.PowerUpArmor.Size = new System.Drawing.Size(41, 16);
             this.PowerUpArmor.TabIndex = 19;
@@ -849,7 +875,7 @@
             // 
             this.MaterialBauxite.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.MaterialBauxite.BackColor = System.Drawing.Color.Transparent;
-            this.MaterialBauxite.Location = new System.Drawing.Point(178, 3);
+            this.MaterialBauxite.Location = new System.Drawing.Point(172, 3);
             this.MaterialBauxite.Name = "MaterialBauxite";
             this.MaterialBauxite.Size = new System.Drawing.Size(41, 16);
             this.MaterialBauxite.TabIndex = 18;
@@ -860,7 +886,7 @@
             // 
             this.PowerUpAA.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.PowerUpAA.BackColor = System.Drawing.Color.Transparent;
-            this.PowerUpAA.Location = new System.Drawing.Point(130, 25);
+            this.PowerUpAA.Location = new System.Drawing.Point(124, 25);
             this.PowerUpAA.Name = "PowerUpAA";
             this.PowerUpAA.Size = new System.Drawing.Size(41, 16);
             this.PowerUpAA.TabIndex = 18;
@@ -871,7 +897,7 @@
             // 
             this.MaterialFuel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.MaterialFuel.BackColor = System.Drawing.Color.Transparent;
-            this.MaterialFuel.Location = new System.Drawing.Point(34, 3);
+            this.MaterialFuel.Location = new System.Drawing.Point(28, 3);
             this.MaterialFuel.Name = "MaterialFuel";
             this.MaterialFuel.Size = new System.Drawing.Size(41, 16);
             this.MaterialFuel.TabIndex = 15;
@@ -882,7 +908,7 @@
             // 
             this.PowerUpTorpedo.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.PowerUpTorpedo.BackColor = System.Drawing.Color.Transparent;
-            this.PowerUpTorpedo.Location = new System.Drawing.Point(82, 25);
+            this.PowerUpTorpedo.Location = new System.Drawing.Point(76, 25);
             this.PowerUpTorpedo.Name = "PowerUpTorpedo";
             this.PowerUpTorpedo.Size = new System.Drawing.Size(41, 16);
             this.PowerUpTorpedo.TabIndex = 17;
@@ -893,7 +919,7 @@
             // 
             this.MaterialSteel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.MaterialSteel.BackColor = System.Drawing.Color.Transparent;
-            this.MaterialSteel.Location = new System.Drawing.Point(130, 3);
+            this.MaterialSteel.Location = new System.Drawing.Point(124, 3);
             this.MaterialSteel.Name = "MaterialSteel";
             this.MaterialSteel.Size = new System.Drawing.Size(41, 16);
             this.MaterialSteel.TabIndex = 17;
@@ -904,7 +930,7 @@
             // 
             this.PowerUpFirepower.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.PowerUpFirepower.BackColor = System.Drawing.Color.Transparent;
-            this.PowerUpFirepower.Location = new System.Drawing.Point(34, 25);
+            this.PowerUpFirepower.Location = new System.Drawing.Point(28, 25);
             this.PowerUpFirepower.Name = "PowerUpFirepower";
             this.PowerUpFirepower.Size = new System.Drawing.Size(41, 16);
             this.PowerUpFirepower.TabIndex = 16;
@@ -918,7 +944,7 @@
             this.imageLabel60.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.imageLabel60.Location = new System.Drawing.Point(3, 25);
             this.imageLabel60.Name = "imageLabel60";
-            this.imageLabel60.Size = new System.Drawing.Size(25, 16);
+            this.imageLabel60.Size = new System.Drawing.Size(19, 16);
             this.imageLabel60.TabIndex = 15;
             this.imageLabel60.Text = EncycloRes.Modernization;
             this.imageLabel60.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -927,7 +953,7 @@
             // 
             this.MaterialAmmo.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.MaterialAmmo.BackColor = System.Drawing.Color.Transparent;
-            this.MaterialAmmo.Location = new System.Drawing.Point(82, 3);
+            this.MaterialAmmo.Location = new System.Drawing.Point(76, 3);
             this.MaterialAmmo.Name = "MaterialAmmo";
             this.MaterialAmmo.Size = new System.Drawing.Size(41, 16);
             this.MaterialAmmo.TabIndex = 16;
@@ -941,7 +967,7 @@
             this.imageLabel59.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.imageLabel59.Location = new System.Drawing.Point(3, 3);
             this.imageLabel59.Name = "imageLabel59";
-            this.imageLabel59.Size = new System.Drawing.Size(25, 16);
+            this.imageLabel59.Size = new System.Drawing.Size(19, 16);
             this.imageLabel59.TabIndex = 15;
             this.imageLabel59.Text = EncycloRes.Dismantling;
             this.imageLabel59.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -964,7 +990,7 @@
             this.TableEquipment.Controls.Add(this.Equipment1, 1, 0);
             this.TableEquipment.Controls.Add(this.Aircraft3, 0, 2);
             this.TableEquipment.Controls.Add(this.Aircraft2, 0, 1);
-            this.TableEquipment.Location = new System.Drawing.Point(351, 49);
+            this.TableEquipment.Location = new System.Drawing.Point(365, 49);
             this.TableEquipment.Name = "TableEquipment";
             this.TableEquipment.RowCount = 5;
             this.TableEquipment.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -972,7 +998,7 @@
             this.TableEquipment.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.TableEquipment.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.TableEquipment.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.TableEquipment.Size = new System.Drawing.Size(265, 110);
+            this.TableEquipment.Size = new System.Drawing.Size(365, 110);
             this.TableEquipment.TabIndex = 8;
             this.TableEquipment.CellPaint += new System.Windows.Forms.TableLayoutCellPaintEventHandler(this.TableEquipment_CellPaint);
             // 
@@ -1102,7 +1128,7 @@
             this.imageLabel45.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.imageLabel45.Location = new System.Drawing.Point(9, 6);
             this.imageLabel45.Name = "imageLabel45";
-            this.imageLabel45.Size = new System.Drawing.Size(44, 16);
+            this.imageLabel45.Size = new System.Drawing.Size(34, 16);
             this.imageLabel45.TabIndex = 6;
             this.imageLabel45.Text = EncycloRes.ShipID;
             // 
@@ -1174,7 +1200,7 @@
             this.TableParameterMain.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.TableParameterMain.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.TableParameterMain.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.TableParameterMain.Size = new System.Drawing.Size(299, 227);
+            this.TableParameterMain.Size = new System.Drawing.Size(339, 227);
             this.TableParameterMain.TabIndex = 5;
             this.TableParameterMain.CellPaint += new System.Windows.Forms.TableLayoutCellPaintEventHandler(this.TableParameterMain_CellPaint);
             // 
@@ -1184,9 +1210,9 @@
             this.LOSSeparater.BackColor = System.Drawing.Color.Transparent;
             this.LOSSeparater.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.LOSSeparater.ImageSize = new System.Drawing.Size(0, 0);
-            this.LOSSeparater.Location = new System.Drawing.Point(163, 186);
+            this.LOSSeparater.Location = new System.Drawing.Point(174, 184);
             this.LOSSeparater.Name = "LOSSeparater";
-            this.LOSSeparater.Size = new System.Drawing.Size(6, 15);
+            this.LOSSeparater.Size = new System.Drawing.Size(4, 15);
             this.LOSSeparater.TabIndex = 15;
             this.LOSSeparater.Text = "/";
             this.LOSSeparater.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1196,7 +1222,7 @@
             this.FirepowerMax.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.FirepowerMax.BackColor = System.Drawing.Color.Transparent;
             this.FirepowerMax.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.FirepowerMax.Location = new System.Drawing.Point(135, 54);
+            this.FirepowerMax.Location = new System.Drawing.Point(146, 52);
             this.FirepowerMax.Name = "FirepowerMax";
             this.FirepowerMax.Size = new System.Drawing.Size(22, 16);
             this.FirepowerMax.TabIndex = 14;
@@ -1209,9 +1235,9 @@
             this.EvasionSeparater.BackColor = System.Drawing.Color.Transparent;
             this.EvasionSeparater.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.EvasionSeparater.ImageSize = new System.Drawing.Size(0, 0);
-            this.EvasionSeparater.Location = new System.Drawing.Point(163, 164);
+            this.EvasionSeparater.Location = new System.Drawing.Point(174, 162);
             this.EvasionSeparater.Name = "EvasionSeparater";
-            this.EvasionSeparater.Size = new System.Drawing.Size(6, 15);
+            this.EvasionSeparater.Size = new System.Drawing.Size(4, 15);
             this.EvasionSeparater.TabIndex = 14;
             this.EvasionSeparater.Text = "/";
             this.EvasionSeparater.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1221,7 +1247,7 @@
             this.LOSLevel.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.LOSLevel.BackColor = System.Drawing.Color.Transparent;
             this.LOSLevel.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.LOSLevel.Location = new System.Drawing.Point(274, 186);
+            this.LOSLevel.Location = new System.Drawing.Point(314, 184);
             this.LOSLevel.Name = "LOSLevel";
             this.LOSLevel.Size = new System.Drawing.Size(22, 16);
             this.LOSLevel.TabIndex = 23;
@@ -1234,9 +1260,9 @@
             this.imageLabel42.BackColor = System.Drawing.Color.Transparent;
             this.imageLabel42.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.imageLabel42.ImageSize = new System.Drawing.Size(0, 0);
-            this.imageLabel42.Location = new System.Drawing.Point(102, 208);
+            this.imageLabel42.Location = new System.Drawing.Point(124, 207);
             this.imageLabel42.Name = "imageLabel42";
-            this.imageLabel42.Size = new System.Drawing.Size(6, 15);
+            this.imageLabel42.Size = new System.Drawing.Size(4, 15);
             this.imageLabel42.TabIndex = 13;
             this.imageLabel42.Text = "/";
             this.imageLabel42.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1245,9 +1271,9 @@
             // 
             this.TitleLuck.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.TitleLuck.BackColor = System.Drawing.Color.Transparent;
-            this.TitleLuck.Location = new System.Drawing.Point(3, 208);
+            this.TitleLuck.Location = new System.Drawing.Point(3, 207);
             this.TitleLuck.Name = "TitleLuck";
-            this.TitleLuck.Size = new System.Drawing.Size(44, 16);
+            this.TitleLuck.Size = new System.Drawing.Size(75, 16);
             this.TitleLuck.TabIndex = 13;
             this.TitleLuck.Text = EncycloRes.Luck;
             this.TitleLuck.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1258,9 +1284,9 @@
             this.imageLabel41.BackColor = System.Drawing.Color.Transparent;
             this.imageLabel41.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.imageLabel41.ImageSize = new System.Drawing.Size(0, 0);
-            this.imageLabel41.Location = new System.Drawing.Point(102, 186);
+            this.imageLabel41.Location = new System.Drawing.Point(124, 184);
             this.imageLabel41.Name = "imageLabel41";
-            this.imageLabel41.Size = new System.Drawing.Size(6, 15);
+            this.imageLabel41.Size = new System.Drawing.Size(4, 15);
             this.imageLabel41.TabIndex = 12;
             this.imageLabel41.Text = "/";
             this.imageLabel41.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1270,7 +1296,7 @@
             this.EvasionLevel.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.EvasionLevel.BackColor = System.Drawing.Color.Transparent;
             this.EvasionLevel.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.EvasionLevel.Location = new System.Drawing.Point(274, 164);
+            this.EvasionLevel.Location = new System.Drawing.Point(314, 162);
             this.EvasionLevel.Name = "EvasionLevel";
             this.EvasionLevel.Size = new System.Drawing.Size(22, 16);
             this.EvasionLevel.TabIndex = 22;
@@ -1283,9 +1309,9 @@
             this.imageLabel40.BackColor = System.Drawing.Color.Transparent;
             this.imageLabel40.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.imageLabel40.ImageSize = new System.Drawing.Size(0, 0);
-            this.imageLabel40.Location = new System.Drawing.Point(102, 164);
+            this.imageLabel40.Location = new System.Drawing.Point(124, 162);
             this.imageLabel40.Name = "imageLabel40";
-            this.imageLabel40.Size = new System.Drawing.Size(6, 15);
+            this.imageLabel40.Size = new System.Drawing.Size(4, 15);
             this.imageLabel40.TabIndex = 11;
             this.imageLabel40.Text = "/";
             this.imageLabel40.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1295,7 +1321,7 @@
             this.LuckMin.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.LuckMin.BackColor = System.Drawing.Color.Transparent;
             this.LuckMin.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.LuckMin.Location = new System.Drawing.Point(74, 208);
+            this.LuckMin.Location = new System.Drawing.Point(96, 207);
             this.LuckMin.Name = "LuckMin";
             this.LuckMin.Size = new System.Drawing.Size(22, 16);
             this.LuckMin.TabIndex = 13;
@@ -1308,9 +1334,9 @@
             this.imageLabel39.BackColor = System.Drawing.Color.Transparent;
             this.imageLabel39.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.imageLabel39.ImageSize = new System.Drawing.Size(0, 0);
-            this.imageLabel39.Location = new System.Drawing.Point(102, 142);
+            this.imageLabel39.Location = new System.Drawing.Point(124, 140);
             this.imageLabel39.Name = "imageLabel39";
-            this.imageLabel39.Size = new System.Drawing.Size(6, 15);
+            this.imageLabel39.Size = new System.Drawing.Size(4, 15);
             this.imageLabel39.TabIndex = 10;
             this.imageLabel39.Text = "/";
             this.imageLabel39.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1320,7 +1346,7 @@
             this.LuckMax.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.LuckMax.BackColor = System.Drawing.Color.Transparent;
             this.LuckMax.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.LuckMax.Location = new System.Drawing.Point(135, 208);
+            this.LuckMax.Location = new System.Drawing.Point(146, 207);
             this.LuckMax.Name = "LuckMax";
             this.LuckMax.Size = new System.Drawing.Size(22, 16);
             this.LuckMax.TabIndex = 21;
@@ -1333,9 +1359,9 @@
             this.imageLabel38.BackColor = System.Drawing.Color.Transparent;
             this.imageLabel38.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.imageLabel38.ImageSize = new System.Drawing.Size(0, 0);
-            this.imageLabel38.Location = new System.Drawing.Point(102, 120);
+            this.imageLabel38.Location = new System.Drawing.Point(124, 118);
             this.imageLabel38.Name = "imageLabel38";
-            this.imageLabel38.Size = new System.Drawing.Size(6, 15);
+            this.imageLabel38.Size = new System.Drawing.Size(4, 15);
             this.imageLabel38.TabIndex = 9;
             this.imageLabel38.Text = "/";
             this.imageLabel38.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1343,17 +1369,17 @@
             // ParameterLevel
             // 
             this.ParameterLevel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.ParameterLevel.Location = new System.Drawing.Point(175, 3);
+            this.ParameterLevel.Location = new System.Drawing.Point(184, 3);
             this.ParameterLevel.Maximum = new decimal(new int[] {
             150,
             0,
             0,
             0});
             this.ParameterLevel.Name = "ParameterLevel";
-            this.ParameterLevel.Size = new System.Drawing.Size(121, 23);
+            this.ParameterLevel.Size = new System.Drawing.Size(152, 21);
             this.ParameterLevel.TabIndex = 6;
             this.ParameterLevel.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.ToolTipInfo.SetToolTip(this.ParameterLevel, EncycloRes.LevelTooltip);
+            this.ToolTipInfo.SetToolTip(this.ParameterLevel, global::ElectronicObserver.Window.Dialog.EncycloRes.LevelTooltip);
             this.ParameterLevel.Value = new decimal(new int[] {
             150,
             0,
@@ -1367,9 +1393,9 @@
             this.imageLabel37.BackColor = System.Drawing.Color.Transparent;
             this.imageLabel37.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.imageLabel37.ImageSize = new System.Drawing.Size(0, 0);
-            this.imageLabel37.Location = new System.Drawing.Point(102, 98);
+            this.imageLabel37.Location = new System.Drawing.Point(124, 96);
             this.imageLabel37.Name = "imageLabel37";
-            this.imageLabel37.Size = new System.Drawing.Size(6, 15);
+            this.imageLabel37.Size = new System.Drawing.Size(4, 15);
             this.imageLabel37.TabIndex = 8;
             this.imageLabel37.Text = "/";
             this.imageLabel37.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1379,7 +1405,7 @@
             this.LOSMax.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.LOSMax.BackColor = System.Drawing.Color.Transparent;
             this.LOSMax.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.LOSMax.Location = new System.Drawing.Point(135, 186);
+            this.LOSMax.Location = new System.Drawing.Point(146, 184);
             this.LOSMax.Name = "LOSMax";
             this.LOSMax.Size = new System.Drawing.Size(22, 16);
             this.LOSMax.TabIndex = 20;
@@ -1392,9 +1418,9 @@
             this.imageLabel36.BackColor = System.Drawing.Color.Transparent;
             this.imageLabel36.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.imageLabel36.ImageSize = new System.Drawing.Size(0, 0);
-            this.imageLabel36.Location = new System.Drawing.Point(102, 76);
+            this.imageLabel36.Location = new System.Drawing.Point(124, 74);
             this.imageLabel36.Name = "imageLabel36";
-            this.imageLabel36.Size = new System.Drawing.Size(6, 15);
+            this.imageLabel36.Size = new System.Drawing.Size(4, 15);
             this.imageLabel36.TabIndex = 7;
             this.imageLabel36.Text = "/";
             this.imageLabel36.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1404,7 +1430,7 @@
             this.LOSMin.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.LOSMin.BackColor = System.Drawing.Color.Transparent;
             this.LOSMin.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.LOSMin.Location = new System.Drawing.Point(74, 186);
+            this.LOSMin.Location = new System.Drawing.Point(96, 184);
             this.LOSMin.Name = "LOSMin";
             this.LOSMin.Size = new System.Drawing.Size(22, 16);
             this.LOSMin.TabIndex = 12;
@@ -1417,9 +1443,9 @@
             this.imageLabel35.BackColor = System.Drawing.Color.Transparent;
             this.imageLabel35.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.imageLabel35.ImageSize = new System.Drawing.Size(0, 0);
-            this.imageLabel35.Location = new System.Drawing.Point(102, 54);
+            this.imageLabel35.Location = new System.Drawing.Point(124, 52);
             this.imageLabel35.Name = "imageLabel35";
-            this.imageLabel35.Size = new System.Drawing.Size(6, 15);
+            this.imageLabel35.Size = new System.Drawing.Size(4, 15);
             this.imageLabel35.TabIndex = 6;
             this.imageLabel35.Text = "/";
             this.imageLabel35.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1429,7 +1455,7 @@
             this.EvasionMax.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.EvasionMax.BackColor = System.Drawing.Color.Transparent;
             this.EvasionMax.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.EvasionMax.Location = new System.Drawing.Point(135, 164);
+            this.EvasionMax.Location = new System.Drawing.Point(146, 162);
             this.EvasionMax.Name = "EvasionMax";
             this.EvasionMax.Size = new System.Drawing.Size(22, 16);
             this.EvasionMax.TabIndex = 19;
@@ -1442,10 +1468,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TitleParameterMax.BackColor = System.Drawing.Color.Transparent;
             this.TitleParameterMax.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.TitleParameterMax.Location = new System.Drawing.Point(117, 10);
+            this.TitleParameterMax.Location = new System.Drawing.Point(137, 8);
             this.TitleParameterMax.Margin = new System.Windows.Forms.Padding(6, 3, 6, 3);
             this.TitleParameterMax.Name = "TitleParameterMax";
-            this.TitleParameterMax.Size = new System.Drawing.Size(37, 16);
+            this.TitleParameterMax.Size = new System.Drawing.Size(28, 16);
             this.TitleParameterMax.TabIndex = 7;
             this.TitleParameterMax.Text = EncycloRes.Maximum;
             this.TitleParameterMax.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1455,7 +1481,7 @@
             this.ASWMax.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.ASWMax.BackColor = System.Drawing.Color.Transparent;
             this.ASWMax.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.ASWMax.Location = new System.Drawing.Point(135, 142);
+            this.ASWMax.Location = new System.Drawing.Point(146, 140);
             this.ASWMax.Name = "ASWMax";
             this.ASWMax.Size = new System.Drawing.Size(22, 16);
             this.ASWMax.TabIndex = 18;
@@ -1467,7 +1493,7 @@
             this.ASWMin.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.ASWMin.BackColor = System.Drawing.Color.Transparent;
             this.ASWMin.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.ASWMin.Location = new System.Drawing.Point(74, 142);
+            this.ASWMin.Location = new System.Drawing.Point(96, 140);
             this.ASWMin.Name = "ASWMin";
             this.ASWMin.Size = new System.Drawing.Size(22, 16);
             this.ASWMin.TabIndex = 10;
@@ -1479,7 +1505,7 @@
             this.ArmorMax.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.ArmorMax.BackColor = System.Drawing.Color.Transparent;
             this.ArmorMax.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.ArmorMax.Location = new System.Drawing.Point(135, 120);
+            this.ArmorMax.Location = new System.Drawing.Point(146, 118);
             this.ArmorMax.Name = "ArmorMax";
             this.ArmorMax.Size = new System.Drawing.Size(22, 16);
             this.ArmorMax.TabIndex = 17;
@@ -1492,12 +1518,12 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TitleParameterMin.BackColor = System.Drawing.Color.Transparent;
             this.TitleParameterMin.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.TitleParameterMin.Location = new System.Drawing.Point(56, 10);
+            this.TitleParameterMin.Location = new System.Drawing.Point(87, 8);
             this.TitleParameterMin.Margin = new System.Windows.Forms.Padding(6, 3, 6, 3);
             this.TitleParameterMin.Name = "TitleParameterMin";
-            this.TitleParameterMin.Size = new System.Drawing.Size(37, 16);
+            this.TitleParameterMin.Size = new System.Drawing.Size(28, 16);
             this.TitleParameterMin.TabIndex = 6;
-            this.TitleParameterMin.Text = EncycloRes.BaseValue;
+            this.TitleParameterMin.Text = EncycloRes.Initial;
             this.TitleParameterMin.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // AAMax
@@ -1505,7 +1531,7 @@
             this.AAMax.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.AAMax.BackColor = System.Drawing.Color.Transparent;
             this.AAMax.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.AAMax.Location = new System.Drawing.Point(135, 98);
+            this.AAMax.Location = new System.Drawing.Point(146, 96);
             this.AAMax.Name = "AAMax";
             this.AAMax.Size = new System.Drawing.Size(22, 16);
             this.AAMax.TabIndex = 16;
@@ -1516,9 +1542,9 @@
             // 
             this.TitleLOS.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.TitleLOS.BackColor = System.Drawing.Color.Transparent;
-            this.TitleLOS.Location = new System.Drawing.Point(3, 186);
+            this.TitleLOS.Location = new System.Drawing.Point(3, 184);
             this.TitleLOS.Name = "TitleLOS";
-            this.TitleLOS.Size = new System.Drawing.Size(44, 16);
+            this.TitleLOS.Size = new System.Drawing.Size(38, 16);
             this.TitleLOS.TabIndex = 12;
             this.TitleLOS.Text = EncycloRes.LoS;
             this.TitleLOS.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1528,7 +1554,7 @@
             this.TorpedoMax.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.TorpedoMax.BackColor = System.Drawing.Color.Transparent;
             this.TorpedoMax.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.TorpedoMax.Location = new System.Drawing.Point(135, 76);
+            this.TorpedoMax.Location = new System.Drawing.Point(146, 74);
             this.TorpedoMax.Name = "TorpedoMax";
             this.TorpedoMax.Size = new System.Drawing.Size(22, 16);
             this.TorpedoMax.TabIndex = 15;
@@ -1540,7 +1566,7 @@
             this.ArmorMin.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.ArmorMin.BackColor = System.Drawing.Color.Transparent;
             this.ArmorMin.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.ArmorMin.Location = new System.Drawing.Point(74, 120);
+            this.ArmorMin.Location = new System.Drawing.Point(96, 118);
             this.ArmorMin.Name = "ArmorMin";
             this.ArmorMin.Size = new System.Drawing.Size(22, 16);
             this.ArmorMin.TabIndex = 9;
@@ -1551,9 +1577,9 @@
             // 
             this.TitleHP.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.TitleHP.BackColor = System.Drawing.Color.Transparent;
-            this.TitleHP.Location = new System.Drawing.Point(3, 32);
+            this.TitleHP.Location = new System.Drawing.Point(3, 30);
             this.TitleHP.Name = "TitleHP";
-            this.TitleHP.Size = new System.Drawing.Size(44, 16);
+            this.TitleHP.Size = new System.Drawing.Size(38, 16);
             this.TitleHP.TabIndex = 0;
             this.TitleHP.Text = EncycloRes.HP;
             this.TitleHP.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1563,7 +1589,7 @@
             this.AAMin.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.AAMin.BackColor = System.Drawing.Color.Transparent;
             this.AAMin.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.AAMin.Location = new System.Drawing.Point(74, 98);
+            this.AAMin.Location = new System.Drawing.Point(96, 96);
             this.AAMin.Name = "AAMin";
             this.AAMin.Size = new System.Drawing.Size(22, 16);
             this.AAMin.TabIndex = 8;
@@ -1575,7 +1601,7 @@
             this.HPMin.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.HPMin.BackColor = System.Drawing.Color.Transparent;
             this.HPMin.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.HPMin.Location = new System.Drawing.Point(74, 32);
+            this.HPMin.Location = new System.Drawing.Point(96, 30);
             this.HPMin.Name = "HPMin";
             this.HPMin.Size = new System.Drawing.Size(22, 16);
             this.HPMin.TabIndex = 1;
@@ -1587,7 +1613,7 @@
             this.TorpedoMin.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.TorpedoMin.BackColor = System.Drawing.Color.Transparent;
             this.TorpedoMin.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.TorpedoMin.Location = new System.Drawing.Point(74, 76);
+            this.TorpedoMin.Location = new System.Drawing.Point(96, 74);
             this.TorpedoMin.Name = "TorpedoMin";
             this.TorpedoMin.Size = new System.Drawing.Size(22, 16);
             this.TorpedoMin.TabIndex = 7;
@@ -1600,9 +1626,9 @@
             this.imageLabel3.BackColor = System.Drawing.Color.Transparent;
             this.imageLabel3.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.imageLabel3.ImageSize = new System.Drawing.Size(0, 0);
-            this.imageLabel3.Location = new System.Drawing.Point(102, 32);
+            this.imageLabel3.Location = new System.Drawing.Point(124, 30);
             this.imageLabel3.Name = "imageLabel3";
-            this.imageLabel3.Size = new System.Drawing.Size(6, 15);
+            this.imageLabel3.Size = new System.Drawing.Size(4, 15);
             this.imageLabel3.TabIndex = 2;
             this.imageLabel3.Text = "/";
             this.imageLabel3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1612,7 +1638,7 @@
             this.FirepowerMin.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.FirepowerMin.BackColor = System.Drawing.Color.Transparent;
             this.FirepowerMin.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.FirepowerMin.Location = new System.Drawing.Point(74, 54);
+            this.FirepowerMin.Location = new System.Drawing.Point(96, 52);
             this.FirepowerMin.Name = "FirepowerMin";
             this.FirepowerMin.Size = new System.Drawing.Size(22, 16);
             this.FirepowerMin.TabIndex = 6;
@@ -1624,7 +1650,7 @@
             this.HPMax.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.HPMax.BackColor = System.Drawing.Color.Transparent;
             this.HPMax.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.HPMax.Location = new System.Drawing.Point(135, 32);
+            this.HPMax.Location = new System.Drawing.Point(146, 30);
             this.HPMax.Name = "HPMax";
             this.HPMax.Size = new System.Drawing.Size(22, 16);
             this.HPMax.TabIndex = 3;
@@ -1635,9 +1661,9 @@
             // 
             this.TitleFirepower.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.TitleFirepower.BackColor = System.Drawing.Color.Transparent;
-            this.TitleFirepower.Location = new System.Drawing.Point(3, 54);
+            this.TitleFirepower.Location = new System.Drawing.Point(3, 52);
             this.TitleFirepower.Name = "TitleFirepower";
-            this.TitleFirepower.Size = new System.Drawing.Size(44, 16);
+            this.TitleFirepower.Size = new System.Drawing.Size(75, 16);
             this.TitleFirepower.TabIndex = 6;
             this.TitleFirepower.Text = EncycloRes.Firepower;
             this.TitleFirepower.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1646,9 +1672,9 @@
             // 
             this.TitleTorpedo.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.TitleTorpedo.BackColor = System.Drawing.Color.Transparent;
-            this.TitleTorpedo.Location = new System.Drawing.Point(3, 76);
+            this.TitleTorpedo.Location = new System.Drawing.Point(3, 74);
             this.TitleTorpedo.Name = "TitleTorpedo";
-            this.TitleTorpedo.Size = new System.Drawing.Size(44, 16);
+            this.TitleTorpedo.Size = new System.Drawing.Size(38, 16);
             this.TitleTorpedo.TabIndex = 7;
             this.TitleTorpedo.Text = EncycloRes.Torpedo;
             this.TitleTorpedo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1657,9 +1683,9 @@
             // 
             this.TitleAA.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.TitleAA.BackColor = System.Drawing.Color.Transparent;
-            this.TitleAA.Location = new System.Drawing.Point(3, 98);
+            this.TitleAA.Location = new System.Drawing.Point(3, 96);
             this.TitleAA.Name = "TitleAA";
-            this.TitleAA.Size = new System.Drawing.Size(44, 16);
+            this.TitleAA.Size = new System.Drawing.Size(38, 16);
             this.TitleAA.TabIndex = 8;
             this.TitleAA.Text = EncycloRes.AntiAir;
             this.TitleAA.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1668,9 +1694,9 @@
             // 
             this.TitleArmor.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.TitleArmor.BackColor = System.Drawing.Color.Transparent;
-            this.TitleArmor.Location = new System.Drawing.Point(3, 120);
+            this.TitleArmor.Location = new System.Drawing.Point(3, 118);
             this.TitleArmor.Name = "TitleArmor";
-            this.TitleArmor.Size = new System.Drawing.Size(44, 16);
+            this.TitleArmor.Size = new System.Drawing.Size(38, 16);
             this.TitleArmor.TabIndex = 9;
             this.TitleArmor.Text = EncycloRes.Armor;
             this.TitleArmor.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1679,9 +1705,9 @@
             // 
             this.TitleASW.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.TitleASW.BackColor = System.Drawing.Color.Transparent;
-            this.TitleASW.Location = new System.Drawing.Point(3, 142);
+            this.TitleASW.Location = new System.Drawing.Point(3, 140);
             this.TitleASW.Name = "TitleASW";
-            this.TitleASW.Size = new System.Drawing.Size(44, 16);
+            this.TitleASW.Size = new System.Drawing.Size(38, 16);
             this.TitleASW.TabIndex = 10;
             this.TitleASW.Text = EncycloRes.ASW;
             this.TitleASW.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1690,9 +1716,9 @@
             // 
             this.TitleEvasion.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.TitleEvasion.BackColor = System.Drawing.Color.Transparent;
-            this.TitleEvasion.Location = new System.Drawing.Point(3, 164);
+            this.TitleEvasion.Location = new System.Drawing.Point(3, 162);
             this.TitleEvasion.Name = "TitleEvasion";
-            this.TitleEvasion.Size = new System.Drawing.Size(44, 16);
+            this.TitleEvasion.Size = new System.Drawing.Size(38, 16);
             this.TitleEvasion.TabIndex = 11;
             this.TitleEvasion.Text = EncycloRes.Evasion;
             this.TitleEvasion.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1703,9 +1729,9 @@
             this.ASWSeparater.BackColor = System.Drawing.Color.Transparent;
             this.ASWSeparater.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.ASWSeparater.ImageSize = new System.Drawing.Size(0, 0);
-            this.ASWSeparater.Location = new System.Drawing.Point(163, 142);
+            this.ASWSeparater.Location = new System.Drawing.Point(174, 140);
             this.ASWSeparater.Name = "ASWSeparater";
-            this.ASWSeparater.Size = new System.Drawing.Size(6, 15);
+            this.ASWSeparater.Size = new System.Drawing.Size(4, 15);
             this.ASWSeparater.TabIndex = 4;
             this.ASWSeparater.Text = "/";
             this.ASWSeparater.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1715,7 +1741,7 @@
             this.ASWLevel.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.ASWLevel.BackColor = System.Drawing.Color.Transparent;
             this.ASWLevel.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.ASWLevel.Location = new System.Drawing.Point(274, 142);
+            this.ASWLevel.Location = new System.Drawing.Point(314, 140);
             this.ASWLevel.Name = "ASWLevel";
             this.ASWLevel.Size = new System.Drawing.Size(22, 16);
             this.ASWLevel.TabIndex = 5;
@@ -1727,7 +1753,7 @@
             this.EvasionMin.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.EvasionMin.BackColor = System.Drawing.Color.Transparent;
             this.EvasionMin.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.EvasionMin.Location = new System.Drawing.Point(74, 164);
+            this.EvasionMin.Location = new System.Drawing.Point(96, 162);
             this.EvasionMin.Name = "EvasionMin";
             this.EvasionMin.Size = new System.Drawing.Size(22, 16);
             this.EvasionMin.TabIndex = 11;
@@ -1737,7 +1763,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox1.Location = new System.Drawing.Point(334, 3);
+            this.pictureBox1.Location = new System.Drawing.Point(483, 3);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(160, 40);
             this.pictureBox1.TabIndex = 4;
@@ -1758,18 +1784,18 @@
             // SaveCSVDialog
             // 
             this.SaveCSVDialog.Filter = "CSV|*.csv|File|*";
-            this.SaveCSVDialog.Title = EncycloRes.CSVTitle;
+            this.SaveCSVDialog.Title = EncycloRes.OutputCSV;
             // 
             // DialogAlbumMasterShip
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(884, 481);
+            this.ClientSize = new System.Drawing.Size(900, 480);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.menuStrip1);
             this.DoubleBuffered = true;
-            this.Font = new System.Drawing.Font("Meiryo UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.MainMenuStrip = this.menuStrip1;
-            this.MinimumSize = new System.Drawing.Size(900, 520);
+            this.MinimumSize = new System.Drawing.Size(916, 518);
             this.Name = "DialogAlbumMasterShip";
             this.Text = EncycloRes.ShipEncyclopedia;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.DialogAlbumMasterShip_FormClosed);
@@ -1931,5 +1957,7 @@
 		private Control.ImageLabel DayAttack;
 		private Control.ImageLabel AirSuperiority;
 		private Control.ImageLabel TitleAirSuperiority;
+		private Control.ImageLabel ResourceName;
+		private Control.ImageLabel imageLabel1;
 	}
 }

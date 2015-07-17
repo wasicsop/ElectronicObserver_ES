@@ -240,7 +240,7 @@ Add windows of your choosing using the "View" menu.</value>
     <value>Failed to process update data.</value>
   </data>
   <data name="Version" xml:space="preserve">
-    <value>1.4.0 [TL 0.2b]</value>
+    <value>1.4.1 [TL 0.3b]</value>
   </data>
   <data name="VersionCurrent" xml:space="preserve">
     <value>You are currently using the latest version.</value>

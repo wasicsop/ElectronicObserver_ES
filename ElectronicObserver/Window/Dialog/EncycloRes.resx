@@ -309,4 +309,7 @@ HP1あたり: 鋼 {0:F2} / 燃 {1:F2}
   <data name="StarLevel" xml:space="preserve">
     <value>改修</value>
   </data>
+  <data name="Resource" xml:space="preserve">
+    <value>リソース:</value>
+  </data>
 </root>
