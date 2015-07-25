@@ -919,5 +919,5 @@ namespace ElectronicObserver.Window.Dialog {
 			}
 
 		}
-    }
+	}
 }

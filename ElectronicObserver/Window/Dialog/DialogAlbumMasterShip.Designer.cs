@@ -1,28 +1,33 @@
-﻿namespace ElectronicObserver.Window.Dialog {
-	partial class DialogAlbumMasterShip {
-		/// <summary>
-		/// Required designer variable.
-		/// </summary>
-		private System.ComponentModel.IContainer components = null;
+﻿namespace ElectronicObserver.Window.Dialog
+{
+    partial class DialogAlbumMasterShip
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
 
-		/// <summary>
-		/// Clean up any resources being used.
-		/// </summary>
-		/// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-		protected override void Dispose( bool disposing ) {
-			if ( disposing && ( components != null ) ) {
-				components.Dispose();
-			}
-			base.Dispose( disposing );
-		}
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
 
-		#region Windows Form Designer generated code
+        #region Windows Form Designer generated code
 
-		/// <summary>
-		/// Required method for Designer support - do not modify
-		/// the contents of this method with the code editor.
-		/// </summary>
-		private void InitializeComponent() {
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -439,8 +444,8 @@
             // 
             // Description
             // 
-            this.Description.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.Description.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Description.AutoSize = false;
             this.Description.AutoWrap = true;
@@ -974,7 +979,7 @@
             // 
             // TableEquipment
             // 
-            this.TableEquipment.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.TableEquipment.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TableEquipment.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.TableEquipment.ColumnCount = 2;
@@ -1464,7 +1469,7 @@
             // 
             // TitleParameterMax
             // 
-            this.TitleParameterMax.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.TitleParameterMax.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TitleParameterMax.BackColor = System.Drawing.Color.Transparent;
             this.TitleParameterMax.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1514,7 +1519,7 @@
             // 
             // TitleParameterMin
             // 
-            this.TitleParameterMin.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.TitleParameterMin.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TitleParameterMin.BackColor = System.Drawing.Color.Transparent;
             this.TitleParameterMin.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1830,134 +1835,134 @@
             this.ResumeLayout(false);
             this.PerformLayout();
 
-		}
+        }
 
-		#endregion
+        #endregion
 
-		private System.Windows.Forms.MenuStrip menuStrip1;
-		private System.Windows.Forms.SplitContainer splitContainer1;
-		private System.Windows.Forms.DataGridView ShipView;
-		private System.Windows.Forms.Panel BasePanelShipGirl;
-		private System.Windows.Forms.PictureBox pictureBox1;
-		private System.Windows.Forms.TableLayoutPanel TableParameterMain;
-		private Control.ImageLabel TitleLuck;
-		private System.Windows.Forms.NumericUpDown ParameterLevel;
-		private Control.ImageLabel TitleParameterMax;
-		private Control.ImageLabel TitleParameterMin;
-		private Control.ImageLabel TitleLOS;
-		private Control.ImageLabel TitleHP;
-		private Control.ImageLabel HPMin;
-		private Control.ImageLabel imageLabel3;
-		private Control.ImageLabel HPMax;
-		private Control.ImageLabel ASWSeparater;
-		private Control.ImageLabel ASWLevel;
-		private Control.ImageLabel TitleFirepower;
-		private Control.ImageLabel TitleTorpedo;
-		private Control.ImageLabel TitleAA;
-		private Control.ImageLabel TitleArmor;
-		private Control.ImageLabel TitleASW;
-		private Control.ImageLabel TitleEvasion;
-		private Control.ImageLabel ShipType;
-		private Control.ImageLabel imageLabel45;
-		private Control.ImageLabel LOSSeparater;
-		private Control.ImageLabel FirepowerMax;
-		private Control.ImageLabel EvasionSeparater;
-		private Control.ImageLabel LOSLevel;
-		private Control.ImageLabel imageLabel42;
-		private Control.ImageLabel imageLabel41;
-		private Control.ImageLabel EvasionLevel;
-		private Control.ImageLabel imageLabel40;
-		private Control.ImageLabel LuckMin;
-		private Control.ImageLabel imageLabel39;
-		private Control.ImageLabel LuckMax;
-		private Control.ImageLabel imageLabel38;
-		private Control.ImageLabel imageLabel37;
-		private Control.ImageLabel LOSMax;
-		private Control.ImageLabel imageLabel36;
-		private Control.ImageLabel LOSMin;
-		private Control.ImageLabel imageLabel35;
-		private Control.ImageLabel EvasionMax;
-		private Control.ImageLabel ASWMax;
-		private Control.ImageLabel ASWMin;
-		private Control.ImageLabel ArmorMax;
-		private Control.ImageLabel AAMax;
-		private Control.ImageLabel TorpedoMax;
-		private Control.ImageLabel ArmorMin;
-		private Control.ImageLabel AAMin;
-		private Control.ImageLabel TorpedoMin;
-		private Control.ImageLabel FirepowerMin;
-		private Control.ImageLabel EvasionMin;
-		private Control.ImageLabel ShipID;
-		private System.Windows.Forms.TableLayoutPanel TableRemodel;
-		private Control.ImageLabel RemodelAfterSteel;
-		private Control.ImageLabel RemodelAfterAmmo;
-		private Control.ImageLabel RemodelAfterLevel;
-		private Control.ImageLabel RemodelAfterShipName;
-		private Control.ImageLabel RemodelAfter;
-		private Control.ImageLabel RemodelBeforeLevel;
-		private Control.ImageLabel RemodelBeforeSteel;
-		private Control.ImageLabel RemodelBeforeAmmo;
-		private Control.ImageLabel RemodelBeforeShipName;
-		private Control.ImageLabel RemodelBefore;
-		private System.Windows.Forms.TableLayoutPanel TableConsumption;
-		private Control.ImageLabel Ammo;
-		private Control.ImageLabel Fuel;
-		private Control.ImageLabel TitleConsumption;
-		private System.Windows.Forms.TableLayoutPanel TableParameterSub;
-		private Control.ImageLabel imageLabel76;
-		private Control.ImageLabel Rarity;
-		private Control.ImageLabel Range;
-		private Control.ImageLabel Speed;
-		private Control.ImageLabel imageLabel72;
-		private Control.ImageLabel imageLabel71;
-		private Control.ImageLabel TitleRange;
-		private Control.ImageLabel TitleSpeed;
-		private Control.ImageLabel BuildingTime;
-		private Control.ImageLabel TitleBuildingTime;
-		private System.Windows.Forms.TableLayoutPanel TableArsenal;
-		private Control.ImageLabel PowerUpArmor;
-		private Control.ImageLabel MaterialBauxite;
-		private Control.ImageLabel PowerUpAA;
-		private Control.ImageLabel MaterialFuel;
-		private Control.ImageLabel PowerUpTorpedo;
-		private Control.ImageLabel MaterialSteel;
-		private Control.ImageLabel PowerUpFirepower;
-		private Control.ImageLabel imageLabel60;
-		private Control.ImageLabel MaterialAmmo;
-		private Control.ImageLabel imageLabel59;
-		private System.Windows.Forms.TableLayoutPanel TableEquipment;
-		private Control.ImageLabel Equipment5;
-		private Control.ImageLabel Aircraft5;
-		private Control.ImageLabel Equipment4;
-		private Control.ImageLabel Aircraft4;
-		private Control.ImageLabel Equipment3;
-		private Control.ImageLabel Aircraft1;
-		private Control.ImageLabel Equipment2;
-		private Control.ImageLabel Equipment1;
-		private Control.ImageLabel Aircraft3;
-		private Control.ImageLabel Aircraft2;
-		private System.Windows.Forms.FlowLayoutPanel TableShipName;
-		private Control.ImageLabel ShipName;
-		private System.Windows.Forms.DataGridViewTextBoxColumn ShipView_ShipID;
-		private System.Windows.Forms.DataGridViewTextBoxColumn ShipView_ShipType;
-		private System.Windows.Forms.DataGridViewTextBoxColumn ShipView_Name;
-		private Control.ImageLabel Description;
-		private System.Windows.Forms.ToolTip ToolTipInfo;
-		private System.Windows.Forms.Timer LevelTimer;
-		private System.Windows.Forms.ToolStripMenuItem StripMenu_File;
-		private System.Windows.Forms.ToolStripMenuItem StripMenu_File_OutputCSVUser;
-		private System.Windows.Forms.ToolStripMenuItem StripMenu_File_OutputCSVData;
-		private System.Windows.Forms.SaveFileDialog SaveCSVDialog;
-		private Control.ImageLabel AlbumNo;
-		private Control.ImageLabel imageLabel2;
-		private System.Windows.Forms.TableLayoutPanel TableBattle;
-		private Control.ImageLabel TitleDayAttack;
-		private Control.ImageLabel NightAttack;
-		private Control.ImageLabel TitleNightAttack;
-		private Control.ImageLabel DayAttack;
-		private Control.ImageLabel AirSuperiority;
-		private Control.ImageLabel TitleAirSuperiority;
-		private Control.ImageLabel ResourceName;
-		private Control.ImageLabel imageLabel1;
-	}
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.DataGridView ShipView;
+        private System.Windows.Forms.Panel BasePanelShipGirl;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.TableLayoutPanel TableParameterMain;
+        private Control.ImageLabel TitleLuck;
+        private System.Windows.Forms.NumericUpDown ParameterLevel;
+        private Control.ImageLabel TitleParameterMax;
+        private Control.ImageLabel TitleParameterMin;
+        private Control.ImageLabel TitleLOS;
+        private Control.ImageLabel TitleHP;
+        private Control.ImageLabel HPMin;
+        private Control.ImageLabel imageLabel3;
+        private Control.ImageLabel HPMax;
+        private Control.ImageLabel ASWSeparater;
+        private Control.ImageLabel ASWLevel;
+        private Control.ImageLabel TitleFirepower;
+        private Control.ImageLabel TitleTorpedo;
+        private Control.ImageLabel TitleAA;
+        private Control.ImageLabel TitleArmor;
+        private Control.ImageLabel TitleASW;
+        private Control.ImageLabel TitleEvasion;
+        private Control.ImageLabel ShipType;
+        private Control.ImageLabel imageLabel45;
+        private Control.ImageLabel LOSSeparater;
+        private Control.ImageLabel FirepowerMax;
+        private Control.ImageLabel EvasionSeparater;
+        private Control.ImageLabel LOSLevel;
+        private Control.ImageLabel imageLabel42;
+        private Control.ImageLabel imageLabel41;
+        private Control.ImageLabel EvasionLevel;
+        private Control.ImageLabel imageLabel40;
+        private Control.ImageLabel LuckMin;
+        private Control.ImageLabel imageLabel39;
+        private Control.ImageLabel LuckMax;
+        private Control.ImageLabel imageLabel38;
+        private Control.ImageLabel imageLabel37;
+        private Control.ImageLabel LOSMax;
+        private Control.ImageLabel imageLabel36;
+        private Control.ImageLabel LOSMin;
+        private Control.ImageLabel imageLabel35;
+        private Control.ImageLabel EvasionMax;
+        private Control.ImageLabel ASWMax;
+        private Control.ImageLabel ASWMin;
+        private Control.ImageLabel ArmorMax;
+        private Control.ImageLabel AAMax;
+        private Control.ImageLabel TorpedoMax;
+        private Control.ImageLabel ArmorMin;
+        private Control.ImageLabel AAMin;
+        private Control.ImageLabel TorpedoMin;
+        private Control.ImageLabel FirepowerMin;
+        private Control.ImageLabel EvasionMin;
+        private Control.ImageLabel ShipID;
+        private System.Windows.Forms.TableLayoutPanel TableRemodel;
+        private Control.ImageLabel RemodelAfterSteel;
+        private Control.ImageLabel RemodelAfterAmmo;
+        private Control.ImageLabel RemodelAfterLevel;
+        private Control.ImageLabel RemodelAfterShipName;
+        private Control.ImageLabel RemodelAfter;
+        private Control.ImageLabel RemodelBeforeLevel;
+        private Control.ImageLabel RemodelBeforeSteel;
+        private Control.ImageLabel RemodelBeforeAmmo;
+        private Control.ImageLabel RemodelBeforeShipName;
+        private Control.ImageLabel RemodelBefore;
+        private System.Windows.Forms.TableLayoutPanel TableConsumption;
+        private Control.ImageLabel Ammo;
+        private Control.ImageLabel Fuel;
+        private Control.ImageLabel TitleConsumption;
+        private System.Windows.Forms.TableLayoutPanel TableParameterSub;
+        private Control.ImageLabel imageLabel76;
+        private Control.ImageLabel Rarity;
+        private Control.ImageLabel Range;
+        private Control.ImageLabel Speed;
+        private Control.ImageLabel imageLabel72;
+        private Control.ImageLabel imageLabel71;
+        private Control.ImageLabel TitleRange;
+        private Control.ImageLabel TitleSpeed;
+        private Control.ImageLabel BuildingTime;
+        private Control.ImageLabel TitleBuildingTime;
+        private System.Windows.Forms.TableLayoutPanel TableArsenal;
+        private Control.ImageLabel PowerUpArmor;
+        private Control.ImageLabel MaterialBauxite;
+        private Control.ImageLabel PowerUpAA;
+        private Control.ImageLabel MaterialFuel;
+        private Control.ImageLabel PowerUpTorpedo;
+        private Control.ImageLabel MaterialSteel;
+        private Control.ImageLabel PowerUpFirepower;
+        private Control.ImageLabel imageLabel60;
+        private Control.ImageLabel MaterialAmmo;
+        private Control.ImageLabel imageLabel59;
+        private System.Windows.Forms.TableLayoutPanel TableEquipment;
+        private Control.ImageLabel Equipment5;
+        private Control.ImageLabel Aircraft5;
+        private Control.ImageLabel Equipment4;
+        private Control.ImageLabel Aircraft4;
+        private Control.ImageLabel Equipment3;
+        private Control.ImageLabel Aircraft1;
+        private Control.ImageLabel Equipment2;
+        private Control.ImageLabel Equipment1;
+        private Control.ImageLabel Aircraft3;
+        private Control.ImageLabel Aircraft2;
+        private System.Windows.Forms.FlowLayoutPanel TableShipName;
+        private Control.ImageLabel ShipName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ShipView_ShipID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ShipView_ShipType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ShipView_Name;
+        private Control.ImageLabel Description;
+        private System.Windows.Forms.ToolTip ToolTipInfo;
+        private System.Windows.Forms.Timer LevelTimer;
+        private System.Windows.Forms.ToolStripMenuItem StripMenu_File;
+        private System.Windows.Forms.ToolStripMenuItem StripMenu_File_OutputCSVUser;
+        private System.Windows.Forms.ToolStripMenuItem StripMenu_File_OutputCSVData;
+        private System.Windows.Forms.SaveFileDialog SaveCSVDialog;
+        private Control.ImageLabel AlbumNo;
+        private Control.ImageLabel imageLabel2;
+        private System.Windows.Forms.TableLayoutPanel TableBattle;
+        private Control.ImageLabel TitleDayAttack;
+        private Control.ImageLabel NightAttack;
+        private Control.ImageLabel TitleNightAttack;
+        private Control.ImageLabel DayAttack;
+        private Control.ImageLabel AirSuperiority;
+        private Control.ImageLabel TitleAirSuperiority;
+        private Control.ImageLabel ResourceName;
+        private Control.ImageLabel imageLabel1;
+    }
 }
