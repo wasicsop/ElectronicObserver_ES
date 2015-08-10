@@ -7,6 +7,8 @@ using System.Xml.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
+using System.Globalization;
 
 namespace ElectronicObserver.Utility
 {
@@ -32,13 +34,16 @@ namespace ElectronicObserver.Utility
         {
             try
             {
-                if (File.Exists("Translations\\Ships.xml")) this.shipsXml = XDocument.Load("Translations\\Ships.xml");
-                if (File.Exists("Translations\\ShipTypes.xml")) this.shipTypesXml = XDocument.Load("Translations\\ShipTypes.xml");
-                if (File.Exists("Translations\\Equipment.xml")) this.equipmentXml = XDocument.Load("Translations\\Equipment.xml");
-                if (File.Exists("Translations\\EquipmentTypes.xml")) this.equipTypesXML = XDocument.Load("Translations\\EquipmentTYpes.xml");
-                if (File.Exists("Translations\\Operations.xml")) this.operationsXml = XDocument.Load("Translations\\Operations.xml");
-                if (File.Exists("Translations\\Quests.xml")) this.questsXml = XDocument.Load("Translations\\Quests.xml");
-                if (File.Exists("Translations\\Expeditions.xml")) this.expeditionsXml = XDocument.Load("Translations\\Expeditions.xml");
+                if (Thread.CurrentThread.CurrentCulture.Name != "ja-JP")
+                {
+                    if (File.Exists("Translations\\Ships.xml")) this.shipsXml = XDocument.Load("Translations\\Ships.xml");
+                    if (File.Exists("Translations\\ShipTypes.xml")) this.shipTypesXml = XDocument.Load("Translations\\ShipTypes.xml");
+                    if (File.Exists("Translations\\Equipment.xml")) this.equipmentXml = XDocument.Load("Translations\\Equipment.xml");
+                    if (File.Exists("Translations\\EquipmentTypes.xml")) this.equipTypesXML = XDocument.Load("Translations\\EquipmentTYpes.xml");
+                    if (File.Exists("Translations\\Operations.xml")) this.operationsXml = XDocument.Load("Translations\\Operations.xml");
+                    if (File.Exists("Translations\\Quests.xml")) this.questsXml = XDocument.Load("Translations\\Quests.xml");
+                    if (File.Exists("Translations\\Expeditions.xml")) this.expeditionsXml = XDocument.Load("Translations\\Expeditions.xml");
+                }
             }
             catch (Exception ex)
             {
@@ -117,106 +122,110 @@ namespace ElectronicObserver.Utility
         private void CheckForUpdates()
         {
             Directory.CreateDirectory("Translations");
-            WebRequest rq = HttpWebRequest.Create("http://ryuukitsune.github.io/Translations/VersionManifest.xml");
-            using (WebResponse resp = rq.GetResponse())
+            string locale = Thread.CurrentThread.CurrentCulture.Name;
+            if (locale != "ja-JP")
             {
-                Stream responseStream = resp.GetResponseStream();
-                this.versionManifest = XDocument.Load(responseStream);
-            }
-            string newShipVer = versionManifest.Root.Element("Ships").Attribute("version").Value;
-            string newShipTypeVer = versionManifest.Root.Element("ShipTypes").Attribute("version").Value;
-            string newEquipVer = versionManifest.Root.Element("Equipment").Attribute("version").Value;
-            string newEquipTypeVer = versionManifest.Root.Element("EquipmentTypes").Attribute("version").Value;
-            string newOperationVer = versionManifest.Root.Element("Operations").Attribute("version").Value;
-            string newQuestVer = versionManifest.Root.Element("Quests").Attribute("version").Value;
-            string newExpedVer = versionManifest.Root.Element("Expeditions").Attribute("version").Value;
+                WebRequest rq = HttpWebRequest.Create("http://ryuukitsune.github.io/Translations/" + locale + "/VersionManifest.xml");
+                using (WebResponse resp = rq.GetResponse())
+                {
+                    Stream responseStream = resp.GetResponseStream();
+                    this.versionManifest = XDocument.Load(responseStream);
+                }
+                string newShipVer = versionManifest.Root.Element("Ships").Attribute("version").Value;
+                string newShipTypeVer = versionManifest.Root.Element("ShipTypes").Attribute("version").Value;
+                string newEquipVer = versionManifest.Root.Element("Equipment").Attribute("version").Value;
+                string newEquipTypeVer = versionManifest.Root.Element("EquipmentTypes").Attribute("version").Value;
+                string newOperationVer = versionManifest.Root.Element("Operations").Attribute("version").Value;
+                string newQuestVer = versionManifest.Root.Element("Quests").Attribute("version").Value;
+                string newExpedVer = versionManifest.Root.Element("Expeditions").Attribute("version").Value;
 
-            if(newShipVer != shipsVersion)
-            {
-                shipsXml = null;
-                WebRequest r2 = HttpWebRequest.Create("http://ryuukitsune.github.io/Translations/Ships.xml");
-                using (WebResponse resp = r2.GetResponse())
+                if (newShipVer != shipsVersion)
                 {
-                    Stream responseStream = resp.GetResponseStream();
-                    this.shipsXml = XDocument.Load(responseStream);
-                    shipsXml.Save("Translations\\Ships.xml");
+                    shipsXml = null;
+                    WebRequest r2 = HttpWebRequest.Create("http://ryuukitsune.github.io/Translations/" + locale + "/Ships.xml");
+                    using (WebResponse resp = r2.GetResponse())
+                    {
+                        Stream responseStream = resp.GetResponseStream();
+                        this.shipsXml = XDocument.Load(responseStream);
+                        shipsXml.Save("Translations\\Ships.xml");
+                    }
+                    Logger.Add(2, "Updated ship translations to version " + newShipVer + ".");
                 }
-                Logger.Add(2, "Updated ship translations to version " + newShipVer + ".");
-            }
-            if (newShipTypeVer != shipTypesVersion)
-            {
-                shipTypesXml = null;
-                WebRequest r2 = HttpWebRequest.Create("http://ryuukitsune.github.io/Translations/ShipTypes.xml");
-                using (WebResponse resp = r2.GetResponse())
+                if (newShipTypeVer != shipTypesVersion)
                 {
-                    Stream responseStream = resp.GetResponseStream();
-                    this.shipTypesXml = XDocument.Load(responseStream);
-                    shipTypesXml.Save("Translations\\ShipTypes.xml");
+                    shipTypesXml = null;
+                    WebRequest r2 = HttpWebRequest.Create("http://ryuukitsune.github.io/Translations/" + locale + "/ShipTypes.xml");
+                    using (WebResponse resp = r2.GetResponse())
+                    {
+                        Stream responseStream = resp.GetResponseStream();
+                        this.shipTypesXml = XDocument.Load(responseStream);
+                        shipTypesXml.Save("Translations\\ShipTypes.xml");
+                    }
+                    Logger.Add(2, "Updated ship type translations to version " + newShipTypeVer + ".");
                 }
-                Logger.Add(2, "Updated ship type translations to version " + newShipTypeVer + ".");
-            }
-            if (newEquipVer != equipmentVersion)
-            {
-                equipmentXml = null;
-                WebRequest r2 = HttpWebRequest.Create("http://ryuukitsune.github.io/Translations/Equipment.xml");
-                using (WebResponse resp = r2.GetResponse())
+                if (newEquipVer != equipmentVersion)
                 {
-                    Stream responseStream = resp.GetResponseStream();
-                    this.equipmentXml = XDocument.Load(responseStream);
-                    equipmentXml.Save("Translations\\Equipment.xml");
+                    equipmentXml = null;
+                    WebRequest r2 = HttpWebRequest.Create("http://ryuukitsune.github.io/Translations/" + locale + "/Equipment.xml");
+                    using (WebResponse resp = r2.GetResponse())
+                    {
+                        Stream responseStream = resp.GetResponseStream();
+                        this.equipmentXml = XDocument.Load(responseStream);
+                        equipmentXml.Save("Translations\\Equipment.xml");
+                    }
+                    Logger.Add(2, "Updated equipment translations to version " + newEquipVer + ".");
                 }
-                Logger.Add(2, "Updated equipment translations to version " + newEquipVer + ".");
-            }
-            if (newEquipTypeVer != equipTypesVersion)
-            {
-                equipTypesXML = null;
-                WebRequest r2 = HttpWebRequest.Create("http://ryuukitsune.github.io/Translations/EquipmentTypes.xml");
-                using (WebResponse resp = r2.GetResponse())
+                if (newEquipTypeVer != equipTypesVersion)
                 {
-                    Stream responseStream = resp.GetResponseStream();
-                    this.equipTypesXML = XDocument.Load(responseStream);
-                    equipTypesXML.Save("Translations\\EquipmentTypes.xml");
+                    equipTypesXML = null;
+                    WebRequest r2 = HttpWebRequest.Create("http://ryuukitsune.github.io/Translations/" + locale + "/EquipmentTypes.xml");
+                    using (WebResponse resp = r2.GetResponse())
+                    {
+                        Stream responseStream = resp.GetResponseStream();
+                        this.equipTypesXML = XDocument.Load(responseStream);
+                        equipTypesXML.Save("Translations\\EquipmentTypes.xml");
+                    }
+                    Logger.Add(2, "Updated equipment type translations to version " + newEquipTypeVer + ".");
                 }
-                Logger.Add(2, "Updated equipment type translations to version " + newEquipTypeVer + ".");
-            }
-            if (newOperationVer != operationsVersion)
-            {
-                operationsXml = null;
-                WebRequest r2 = HttpWebRequest.Create("http://ryuukitsune.github.io/Translations/Operations.xml");
-                using (WebResponse resp = r2.GetResponse())
+                if (newOperationVer != operationsVersion)
                 {
-                    Stream responseStream = resp.GetResponseStream();
-                    this.operationsXml = XDocument.Load(responseStream);
-                    shipsXml.Save("Translations\\Operations.xml");
+                    operationsXml = null;
+                    WebRequest r2 = HttpWebRequest.Create("http://ryuukitsune.github.io/Translations/" + locale + "/Operations.xml");
+                    using (WebResponse resp = r2.GetResponse())
+                    {
+                        Stream responseStream = resp.GetResponseStream();
+                        this.operationsXml = XDocument.Load(responseStream);
+                        operationsXml.Save("Translations\\Operations.xml");
+                    }
+                    Logger.Add(2, "Updated operation translations to version " + newOperationVer + ".");
                 }
-                Logger.Add(2, "Updated operation translations to version " + newOperationVer + ".");
-            }
-            if (newQuestVer != questsVersion)
-            {
-                questsXml = null;
-                WebRequest r2 = HttpWebRequest.Create("http://ryuukitsune.github.io/Translations/Quests.xml");
-                using (WebResponse resp = r2.GetResponse())
+                if (newQuestVer != questsVersion)
                 {
-                    Stream responseStream = resp.GetResponseStream();
-                    this.questsXml = XDocument.Load(responseStream);
-                    questsXml.Save("Translations\\Quests.xml");
+                    questsXml = null;
+                    WebRequest r2 = HttpWebRequest.Create("http://ryuukitsune.github.io/Translations/" + locale + "/Quests.xml");
+                    using (WebResponse resp = r2.GetResponse())
+                    {
+                        Stream responseStream = resp.GetResponseStream();
+                        this.questsXml = XDocument.Load(responseStream);
+                        questsXml.Save("Translations\\Quests.xml");
+                    }
+                    Logger.Add(2, "Updated quest translations to version " + newQuestVer + ".");
                 }
-                Logger.Add(2, "Updated quest translations to version " + newQuestVer + ".");
-            }
-            if (newExpedVer != expeditionsVersion)
-            {
-                expeditionsXml = null;
-                WebRequest r2 = HttpWebRequest.Create("http://ryuukitsune.github.io/Translations/Expeditions.xml");
-                using (WebResponse resp = r2.GetResponse())
+                if (newExpedVer != expeditionsVersion)
                 {
-                    Stream responseStream = resp.GetResponseStream();
-                    this.expeditionsXml = XDocument.Load(responseStream);
-                    expeditionsXml.Save("Translations\\Expeditions.xml");
+                    expeditionsXml = null;
+                    WebRequest r2 = HttpWebRequest.Create("http://ryuukitsune.github.io/Translations/" + locale + "/Expeditions.xml");
+                    using (WebResponse resp = r2.GetResponse())
+                    {
+                        Stream responseStream = resp.GetResponseStream();
+                        this.expeditionsXml = XDocument.Load(responseStream);
+                        expeditionsXml.Save("Translations\\Expeditions.xml");
+                    }
+                    Logger.Add(2, "Updated expedition translations to version " + newExpedVer + ".");
                 }
-                Logger.Add(2, "Updated expedition translations to version " + newExpedVer + ".");
-            }
 
-            GetVersions();
+                GetVersions();
+            }
         }
 
         private IEnumerable<XElement> GetTranslationList(TranslationType type)
