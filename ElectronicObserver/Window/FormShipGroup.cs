@@ -113,6 +113,7 @@ namespace ElectronicObserver.Window {
 			ShipView_Equipment3.DefaultCellStyle = CSDefaultLeft;
 			ShipView_Equipment4.DefaultCellStyle = CSDefaultLeft;
 			ShipView_Equipment5.DefaultCellStyle = CSDefaultLeft;
+            ShipView_ExEquipment.DefaultCellStyle = CSDefaultLeft;
 
 			#endregion
 
@@ -284,23 +285,24 @@ namespace ElectronicObserver.Window {
 			DataGridViewRow row = new DataGridViewRow();
 			row.CreateCells( ShipView );
 
-			row.SetValues(
-				ship.MasterID,
-				ship.MasterShip.ShipType,
-				ship.MasterShip.Name,
-				ship.Level,
-				ship.ExpTotal,
-				ship.ExpNext,
-				ship.ExpNextRemodel,
-				new Fraction( ship.HPCurrent, ship.HPMax ),
-				ship.Condition,
-				new Fraction( ship.Fuel, ship.MasterShip.Fuel ),
-				new Fraction( ship.Ammo, ship.MasterShip.Ammo ),
-				GetEquipmentString( ship, 0 ),
-				GetEquipmentString( ship, 1 ),
-				GetEquipmentString( ship, 2 ),
-				GetEquipmentString( ship, 3 ),
-				GetEquipmentString( ship, 4 ),
+            row.SetValues(
+                ship.MasterID,
+                ship.MasterShip.ShipType,
+                ship.MasterShip.Name,
+                ship.Level,
+                ship.ExpTotal,
+                ship.ExpNext,
+                ship.ExpNextRemodel,
+                new Fraction(ship.HPCurrent, ship.HPMax),
+                ship.Condition,
+                new Fraction(ship.Fuel, ship.MasterShip.Fuel),
+                new Fraction(ship.Ammo, ship.MasterShip.Ammo),
+                GetEquipmentString(ship, 0),
+                GetEquipmentString(ship, 1),
+                GetEquipmentString(ship, 2),
+                GetEquipmentString(ship, 3),
+                GetEquipmentString(ship, 4),
+                GetExEquipmentString(ship),
 				ship.FleetWithIndex,
 				ship.RepairingDockID == -1 ? ship.RepairTime : -1000 + ship.RepairingDockID,
 				ship.FirepowerBase,
@@ -501,6 +503,19 @@ namespace ElectronicObserver.Window {
 
 		}
 
+        private string GetExEquipmentString(ShipData ship)
+        {
+            switch (ship.ExSlot)
+            {
+                case 0:
+                    return "Locked";
+                case -1:
+                    return GeneralRes.None;
+                default:
+                    return ship.ExSlotInstance.NameWithLevel;
+            }
+        }
+
 		private string GetEquipmentOnlyString( ShipData ship, int index ) {
 
 			string name = ship.SlotInstance[index] != null ? ship.SlotInstance[index].NameWithLevel : GeneralRes.None;
@@ -518,7 +533,7 @@ namespace ElectronicObserver.Window {
 		private void ShipView_CellFormatting( object sender, DataGridViewCellFormattingEventArgs e ) {
 
 			if ( e.ColumnIndex == ShipView_ShipType.Index ) {
-				e.Value = KCDatabase.Instance.ShipTypes[(int)e.Value].Name;
+				e.Value = FormMain.Instance.Translator.GetTranslation(KCDatabase.Instance.ShipTypes[(int)e.Value].Name, TranslationType.ShipTypes);
 				e.FormattingApplied = true;
 
 			} else if ( e.ColumnIndex == ShipView_Fleet.Index ) {

@@ -45,12 +45,40 @@ namespace ElectronicObserver.Window.Control {
 			}
 		}
 
+        private class ExSlotItem
+        {
+            public int EquipmentId { get; set; }
+            
+            public EquipmentDataMaster Equipment
+            {
+                get; set;
+            }
+
+            public int EquipmentIconId
+            {
+                get
+                {
+                    var eq = Equipment;
+
+                    if (eq != null)
+                        return eq.IconType;
+                    else
+                        return -1;
+                }
+            }
+
+            public ExSlotItem()
+            {
+                EquipmentId = -1;
+            }
+        }
 
 
 		#region Properties
 
 
 		private SlotItem[] SlotList;
+        private ExSlotItem ExSlot;
 		private int SlotSize { get; set; }
 
 
@@ -171,6 +199,7 @@ namespace ElectronicObserver.Window.Control {
 				SlotList[i] = new SlotItem();
 			}
 			SlotSize = 0;
+            ExSlot = new ExSlotItem();
 
 
 			base.Font = new Font( "Meiryo UI", 10, FontStyle.Regular, GraphicsUnit.Pixel );
@@ -211,6 +240,10 @@ namespace ElectronicObserver.Window.Control {
 				SlotList[i].AircraftCurrent = ship.Aircraft[i];
 				SlotList[i].AircraftMax = ship.MasterShip.Aircraft[i];
 			}
+
+            ExSlot = new ExSlotItem();
+            ExSlot.EquipmentId = ship.ExSlot;
+            ExSlot.Equipment = ship.ExSlotInstanceMaster;
 
 			SlotSize = ship.MasterShip.SlotSize;
 
@@ -335,8 +368,11 @@ namespace ElectronicObserver.Window.Control {
 
 				} else {
 					int imageID = slot.EquipmentIconID;
-					if ( imageID <= 0 || (int)ResourceManager.EquipmentContent.Locked <= imageID )
-						imageID = (int)ResourceManager.EquipmentContent.Unknown;
+                    if (imageID <= 0 || (int)ResourceManager.EquipmentContent.Locked <= imageID)
+                    {
+                        Utility.Logger.Add(2, "Image ID " + imageID + " not found for item " + slot.Equipment.Name);
+                        imageID = (int)ResourceManager.EquipmentContent.Unknown;
+                    }
 
 					image = eqimages.Images[imageID];
 				}
@@ -414,7 +450,31 @@ namespace ElectronicObserver.Window.Control {
 				}
 
 			}
-
+            
+            Image exImage = null;
+            switch (ExSlot.EquipmentId)
+            {
+                case 0:
+                    exImage = eqimages.Images[(int)ResourceManager.EquipmentContent.Locked];
+                    break;
+                case -1:
+                    exImage = eqimages.Images[(int)ResourceManager.EquipmentContent.Nothing];
+                    break;
+                default:
+                    int imageId = ExSlot.EquipmentIconId;
+                    if (imageId <= 0 || (int)ResourceManager.EquipmentContent.Locked <= imageId)
+                    {
+                        Utility.Logger.Add(2, "Image ID " + imageId + " not found for item " + ExSlot.Equipment.Name);
+                        imageId = (int)ResourceManager.EquipmentContent.Unknown;
+                    }
+                    exImage = eqimages.Images[imageId];
+                    break;
+            }
+            if (exImage != null)
+            {
+                Rectangle exImageArea = new Rectangle(basearea.X + sz_unit.Width * SlotList.Length, basearea.Y, eqimages.ImageSize.Width, eqimages.ImageSize.Height);
+                e.Graphics.DrawImage(exImage, exImageArea);
+            }
 		}
 
 
@@ -443,7 +503,7 @@ namespace ElectronicObserver.Window.Control {
 			}
 
 
-			return new Size( Padding.Horizontal + sz_unit.Width * SlotList.Length, Padding.Vertical + Math.Max( eqimages.ImageSize.Height, sz_unit.Height ) );
+			return new Size( Padding.Horizontal + sz_unit.Width * (SlotList.Length + 1), Padding.Vertical + Math.Max( eqimages.ImageSize.Height, sz_unit.Height ) );
 
 		}
 

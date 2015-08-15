@@ -385,17 +385,22 @@ namespace ElectronicObserver.Resource.Record {
 		/// </summary>
 		/// <param name="ship">対象の艦船。入手直後・改装直後のものに限ります。</param>
 		public void UpdateDefaultSlot( ShipData ship ) {
+            try {
+                int[] slot = new int[ship.Slot.Count];
 
-			int[] slot = new int[ship.Slot.Count];
+                for (int i = 0; i < slot.Length; i++) {
+                    if (ship.Slot[i] == -1)
+                        slot[i] = -1;
+                    else
+                        slot[i] = KCDatabase.Instance.Equipments[ship.Slot[i]].EquipmentID;
+                }
 
-			for ( int i = 0; i < slot.Length; i++ ) {
-				if ( ship.Slot[i] == -1 )
-					slot[i] = -1;
-				else
-					slot[i] = KCDatabase.Instance.Equipments[ship.Slot[i]].EquipmentID;
-			}
-
-			UpdateDefaultSlot( ship.ShipID, slot );
+                UpdateDefaultSlot(ship.ShipID, slot);
+            }
+            catch(NullReferenceException rex)
+            {
+                ElectronicObserver.Utility.ErrorReporter.SendErrorReport(rex, "Error updating data for ship ID " + ship.ShipID + " who is " + ship.NameWithLevel + "and has unique ID " + ship.MasterID + ".");
+            }
 		}
 
 		/// <summary>
