@@ -755,4 +755,16 @@ Save your data and return to port before capturing.
   <data name="Year" xml:space="preserve">
     <value>Year (&amp;Y)</value>
   </data>
+  <data name="AerialRecon" xml:space="preserve">
+    <value>Aerial Recon</value>
+  </data>
+  <data name="Failure" xml:space="preserve">
+    <value>Failure</value>
+  </data>
+  <data name="GreatSuccess" xml:space="preserve">
+    <value>Great Success</value>
+  </data>
+  <data name="Success" xml:space="preserve">
+    <value>Success</value>
+  </data>
 </root>

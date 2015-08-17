@@ -700,7 +700,12 @@ namespace ElectronicObserver.Data {
 
 		}
 
-	}
+        public override string ToString()
+        {
+            return NameWithLevel;
+        }
+
+    }
 
 }
 

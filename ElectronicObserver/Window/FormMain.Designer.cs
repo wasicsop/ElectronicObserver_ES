@@ -60,6 +60,7 @@
 			this.StripMenu_View_Fleet_4 = new System.Windows.Forms.ToolStripMenuItem();
 			this.StripMenu_View_FleetOverview = new System.Windows.Forms.ToolStripMenuItem();
 			this.StripMenu_View_ShipGroup = new System.Windows.Forms.ToolStripMenuItem();
+            this.StripMenu_View_XPCalculator = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
 			this.StripMenu_View_Dock = new System.Windows.Forms.ToolStripMenuItem();
 			this.StripMenu_View_Arsenal = new System.Windows.Forms.ToolStripMenuItem();
@@ -242,6 +243,7 @@
             this.StripMenu_View_Fleet,
             this.StripMenu_View_FleetOverview,
             this.StripMenu_View_ShipGroup,
+            this.StripMenu_View_XPCalculator,
             this.toolStripSeparator1,
             this.StripMenu_View_Dock,
             this.StripMenu_View_Arsenal,
@@ -312,7 +314,14 @@
 			this.StripMenu_View_ShipGroup.Size = new System.Drawing.Size(306, 34);
 			this.StripMenu_View_ShipGroup.Text = Menus.ShipGroup;
 			this.StripMenu_View_ShipGroup.Click += new System.EventHandler(this.StripMenu_View_ShipGroup_Click);
-			// 
+            //
+            // StripMenu_View_XPCalculator
+            //
+            // 
+            this.StripMenu_View_XPCalculator.Name = "StripMenu_View_XPCalculator";
+            this.StripMenu_View_XPCalculator.Size = new System.Drawing.Size(306, 34);
+            this.StripMenu_View_XPCalculator.Text = "XP Calculator";
+            this.StripMenu_View_XPCalculator.Click += new System.EventHandler(this.StripMenu_View_XPCalculator_Click);
 			// toolStripSeparator1
 			// 
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
@@ -894,6 +903,7 @@
 		private System.Windows.Forms.ToolStripMenuItem StripMenu_View_Fleet_2;
 		private System.Windows.Forms.ToolStripMenuItem StripMenu_View_Fleet_3;
 		private System.Windows.Forms.ToolStripMenuItem StripMenu_View_Fleet_4;
+        private System.Windows.Forms.ToolStripMenuItem StripMenu_View_XPCalculator;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
 		private System.Windows.Forms.ToolStripMenuItem StripMenu_View_Dock;
 		private System.Windows.Forms.ToolStripMenuItem StripMenu_View_Arsenal;

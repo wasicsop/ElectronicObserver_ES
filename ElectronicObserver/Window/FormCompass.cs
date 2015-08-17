@@ -499,18 +499,18 @@ namespace ElectronicObserver.Window {
 
 							switch ( compass.EventKind ) {
 								case 0:		//航空偵察
-									eventkind = "航空偵察";
+									eventkind = GeneralRes.AerialRecon;
 
 									switch ( compass.AirReconnaissanceResult ) {
 										case 0:
 										default:
-											TextEventDetail.Text = "失敗";
+											TextEventDetail.Text = GeneralRes.Failure;
 											break;
 										case 1:
-											TextEventDetail.Text = "成功";
+											TextEventDetail.Text = GeneralRes.Success;
 											break;
 										case 2:
-											TextEventDetail.Text = "大成功";
+											TextEventDetail.Text = GeneralRes.GreatSuccess;
 											break;
 									}
 

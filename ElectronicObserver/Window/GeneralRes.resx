@@ -725,4 +725,16 @@
   <data name="Year" xml:space="preserve">
     <value>年(&amp;Y)</value>
   </data>
+  <data name="AerialRecon" xml:space="preserve">
+    <value>航空偵察</value>
+  </data>
+  <data name="Failure" xml:space="preserve">
+    <value>失敗</value>
+  </data>
+  <data name="GreatSuccess" xml:space="preserve">
+    <value>大成功</value>
+  </data>
+  <data name="Success" xml:space="preserve">
+    <value>成功</value>
+  </data>
 </root>

@@ -54,6 +54,7 @@ namespace ElectronicObserver.Window {
 		public FormShipGroup fShipGroup;
 		public FormBrowserHost fBrowser;
 		public FormWindowCapture fWindowCapture;
+        public FormXPCalculator fXPCalculator;
 
 		#endregion
 
@@ -136,6 +137,7 @@ namespace ElectronicObserver.Window {
 			SubForms.Add( fShipGroup = new FormShipGroup( this ) );
 			SubForms.Add( fBrowser = new FormBrowserHost( this ) );
 			SubForms.Add( fWindowCapture = new FormWindowCapture( this ) );
+            SubForms.Add(fXPCalculator = new FormXPCalculator(this));
 
 			LoadLayout( Configuration.Config.Life.LayoutFilePath );
 
@@ -1074,6 +1076,11 @@ namespace ElectronicObserver.Window {
 		private void StripMenu_WindowCapture_SubWindow_Click( object sender, EventArgs e ) {
 			fWindowCapture.Show( MainDockPanel );
 		}
+
+        private void StripMenu_View_XPCalculator_Click(object sender, EventArgs e)
+        {
+            fXPCalculator.Show(MainDockPanel);
+        }
 
 		#endregion
 

@@ -184,6 +184,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>NotifyRes.resx</DependentUpon>
     </Compile>
+    <Compile Include="Window\FormXPCalculator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Window\FormXPCalculator.Designer.cs">
+      <DependentUpon>FormXPCalculator.cs</DependentUpon>
+    </Compile>
     <Compile Include="Window\GeneralRes.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -558,6 +564,12 @@
     <EmbeddedResource Include="Window\Dialog\NotifyRes.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>NotifyRes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Window\FormXPCalculator.en.resx">
+      <DependentUpon>FormXPCalculator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Window\FormXPCalculator.resx">
+      <DependentUpon>FormXPCalculator.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Window\GeneralRes.en.resx" />
     <EmbeddedResource Include="Window\GeneralRes.ko.resx" />
