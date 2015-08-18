@@ -463,6 +463,8 @@ namespace ElectronicObserver.Data {
 					return ConstantsRes.HAGun + "/" + ConstantsRes.AAGun;
 				case 12:
 					return ConstantsRes.AAGun + "/" + ConstantsRes.AAGun + ConstantsRes.Radar;
+				case 14:
+					return ConstantsRes.HAGun + "/" + ConstantsRes.AAGun + "/" + ConstantsRes.Radar;
 				default:
 					return ConstantsRes.Unknown;
 			}

@@ -265,7 +265,7 @@ HP1あたり: 鋼 {0:F2} / 燃 {1:F2}
     <value>装備ID,図鑑番号,装備種,装備名,装備種1,装備種2,装備種3,装備種4,火力,雷装,対空,装甲,対潜,回避,索敵,運,命中,爆装,射程,レア,廃棄燃料,廃棄弾薬,廃棄鋼材,廃棄ボーキ,図鑑文章,バージョン</value>
   </data>
   <data name="EquipListCSVFormat" xml:space="preserve">
-    <value>固有ID,装備ID,装備名,改修Lv,ロック,装備艦ID,装備艦</value>
+    <value>固有ID,装備ID,装備名,改修Lv,艦載機Lv,ロック,装備艦ID,装備艦</value>
   </data>
   <data name="EquipmentEncyclopedia" xml:space="preserve">
     <value>装備図鑑</value>
@@ -311,5 +311,8 @@ HP1あたり: 鋼 {0:F2} / 燃 {1:F2}
   </data>
   <data name="Resource" xml:space="preserve">
     <value>リソース:</value>
+  </data>
+  <data name="SkillLevel" xml:space="preserve">
+    <value>練度</value>
   </data>
 </root>

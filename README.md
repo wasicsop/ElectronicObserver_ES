@@ -38,6 +38,7 @@ None of these functions interfere with Kancolle's normal, legal operation.
 Please see the latest download information at the releases page on GitHub.
 That can be found [here](https://github.com/RyuuKitsune/ElectronicObserver/Releases).
 
+
 ### For Developers
 ---
 
