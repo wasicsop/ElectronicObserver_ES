@@ -43,16 +43,7 @@ namespace ElectronicObserver.Data {
 			get { return (int)RawData.api_level; }
 		}
 
-        /// <summary>
-        /// 艦載機練度Level
-        /// </summary>
-        public int PlaneXP
-        {
-            get {
-                try { return (int)RawData.api_alv; }
-                catch { return 0; }
-                }
-        }
+
 
 		/// <summary>
 		/// 装備のマスターデータへの参照
@@ -73,14 +64,10 @@ namespace ElectronicObserver.Data {
 		/// </summary>
 		public string NameWithLevel {
 			get {
-                if (Level > 0 && PlaneXP > 0)
-                    return string.Format("{0} +{1} - Lv {2}", Name, Level, PlaneXP);
-                else if (Level <= 0 && PlaneXP > 0)
-                    return string.Format("{0} - Lv {1}", Name, PlaneXP);
-                else if (Level > 0)
-                    return string.Format("{0} +{1}", Name, Level, PlaneXP);
-                else
-                    return Name;
+				if ( Level > 0 )
+					return string.Format( "{0}+{1}", Name, Level );
+				else
+					return Name;
 			}
 		}
 

@@ -167,7 +167,7 @@ namespace ElectronicObserver.Window.Dialog {
 		/// <summary>
 		/// DetailView 内の行が同じレベルであるかを判定します。
 		/// </summary>
-		private bool AreEqual( int rowIndex1, int rowIndex2) {
+		private bool AreEqual( int rowIndex1, int rowIndex2 ) {
 
 			if ( rowIndex1 < 0 ||
 				rowIndex1 >= DetailView.Rows.Count ||
@@ -175,10 +175,8 @@ namespace ElectronicObserver.Window.Dialog {
 				rowIndex2 >= DetailView.Rows.Count )
 				return false;
 
-			return (( (IComparable)DetailView[DetailView_Level.Index, rowIndex1].Value )
-				.CompareTo( DetailView[DetailView_Level.Index, rowIndex2].Value ) == 0) && 
-                (( (IComparable)DetailView[DetailView_XP.Index, rowIndex1].Value)
-                .CompareTo(DetailView[DetailView_XP.Index, rowIndex2].Value) == 0);
+			return ( (IComparable)DetailView[DetailView_Level.Index, rowIndex1].Value )
+				.CompareTo( DetailView[DetailView_Level.Index, rowIndex2].Value ) == 0;
 		}
 
 
@@ -276,23 +274,21 @@ namespace ElectronicObserver.Window.Dialog {
 		private class DetailCounter : IIdentifiable {
 
 			public int level;
-            public int exp;
 			public int countAll;
 			public int countRemain;
 			public int countRemainPrev;
 
 			public List<string> equippedShips;
 
-			public DetailCounter( int lv, int xp ) {
+			public DetailCounter( int lv ) {
 				level = lv;
-                exp = xp;
 				countAll = 0;
 				countRemainPrev = 0;
 				countRemain = 0;
 				equippedShips = new List<string>();
 			}
 
-			public int ID { get { return level + (exp * 100); } }
+			public int ID { get { return level; } }
 		}
 
 
@@ -310,23 +306,22 @@ namespace ElectronicObserver.Window.Dialog {
 			var countlist = new IDDictionary<DetailCounter>();
 
 			foreach ( var eq in eqs ) {
-                int hackID = eq.Level + (eq.PlaneXP * 100);
-				var c = countlist[hackID];
+				var c = countlist[eq.Level];
 				if ( c == null ) {
-					countlist.Add( new DetailCounter( eq.Level, eq.PlaneXP ) );
-					c = countlist[hackID];
+					countlist.Add( new DetailCounter( eq.Level ) );
+					c = countlist[eq.Level];
 				}
 				c.countAll++;
 				c.countRemain++;
 				c.countRemainPrev++;
-            }
+			}
 
 			//装備艦集計
 			foreach ( var ship in KCDatabase.Instance.Ships.Values ) {
 
 				foreach ( var eq in ship.SlotInstance.Where( s => s != null && s.EquipmentID == equipmentID ) ) {
-                    int hackID = eq.Level + (eq.PlaneXP * 100);
-                    countlist[hackID].countRemain--;
+
+					countlist[eq.Level].countRemain--;
 
 				}
 
@@ -347,7 +342,9 @@ namespace ElectronicObserver.Window.Dialog {
 						c.countRemainPrev = c.countRemain;
 					}
 				}
+
 			}
+
 
 			//行に反映
 			var rows = new List<DataGridViewRow>( eqs.Count() );
@@ -362,7 +359,7 @@ namespace ElectronicObserver.Window.Dialog {
 
 					var row = new DataGridViewRow();
 					row.CreateCells( DetailView );
-					row.SetValues( c.level, c.exp, c.countAll, c.countRemain, s );
+					row.SetValues( c.level, c.countAll, c.countRemain, s );
 					rows.Add( row );
 				}
 

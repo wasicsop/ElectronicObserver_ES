@@ -37,8 +37,7 @@
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
 			this.DetailView = new System.Windows.Forms.DataGridView();
 			this.DetailView_Level = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DetailView_XP = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DetailView_CountAll = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.DetailView_CountAll = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.DetailView_CountRemain = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.DetailView_EquippedShip = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			((System.ComponentModel.ISupportInitialize)(this.EquipmentView)).BeginInit();
@@ -179,9 +178,8 @@
 			this.DetailView.AllowUserToResizeRows = false;
 			this.DetailView.BackgroundColor = System.Drawing.SystemColors.Control;
 			this.DetailView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.DetailView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+			this.DetailView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.DetailView_Level,
-            this.DetailView_XP,
             this.DetailView_CountAll,
             this.DetailView_CountRemain,
             this.DetailView_EquippedShip});
@@ -217,13 +215,6 @@
 			this.DetailView_CountRemain.Name = "DetailView_CountRemain";
 			this.DetailView_CountRemain.ReadOnly = true;
 			this.DetailView_CountRemain.Width = 40;
-            //
-            //
-            //
-            this.DetailView_XP.HeaderText = "XP";
-            this.DetailView_XP.Name = "DetailView_XP";
-            this.DetailView_XP.ReadOnly = true;
-            this.DetailView_XP.Width = 40;
 			// 
 			// DetailView_EquippedShip
 			// 
@@ -275,7 +266,6 @@
 		private System.Windows.Forms.SplitContainer splitContainer1;
 		private System.Windows.Forms.DataGridView DetailView;
 		private System.Windows.Forms.DataGridViewTextBoxColumn DetailView_Level;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DetailView_XP;
 		private System.Windows.Forms.DataGridViewTextBoxColumn DetailView_CountAll;
 		private System.Windows.Forms.DataGridViewTextBoxColumn DetailView_CountRemain;
 		private System.Windows.Forms.DataGridViewTextBoxColumn DetailView_EquippedShip;
