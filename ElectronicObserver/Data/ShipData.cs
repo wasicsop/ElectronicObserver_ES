@@ -90,15 +90,6 @@ namespace ElectronicObserver.Data {
 			get { return Array.AsReadOnly<int>( _slot ); }
 		}
 
-        /// <summary>
-        /// Expansion slot equipment (raw ID).
-        /// Notes: 0 = no expansion. -1 = expansion empty.
-        /// All else is raw equipment ID.
-        /// </summary>
-        public int ExSlot
-        {
-            get { return (int)RawData.api_slot_ex; }
-        }
 
 		/// <summary>
 		/// 装備スロット(マスターID)
@@ -121,27 +112,6 @@ namespace ElectronicObserver.Data {
 			}
 		}
 
-        /// <summary>
-        /// Expansion slot equipment (Master ID).
-        /// Notes: 0 = no expansion, -1 = expansion empty.
-        /// Else is Master ID of equipment.
-        /// </summary>
-        public int ExSlotMaster
-        {
-            get
-            {
-                int s = 0;
-                if (ExSlot != 0)
-                {
-                    EquipmentData eq = KCDatabase.Instance.Equipments[ExSlot];
-                    if (eq != null)
-                        s = eq.EquipmentID;
-                    else s = -1;    
-                }
-                return s;
-            }
-        }
-
 		/// <summary>
 		/// 装備スロット(装備データ)
 		/// </summary>
@@ -158,22 +128,6 @@ namespace ElectronicObserver.Data {
 				return Array.AsReadOnly<EquipmentData>( s );
  			}
 		}
-
-        /// <summary>
-        /// Expansion slot equipments (unique data).
-        /// If slot is empty or doesn't exist, throw out null.
-        /// </summary>
-        public EquipmentData ExSlotInstance
-        {
-            get
-            {
-                if (ExSlot == 0 || ExSlot == -1) return null;
-                else
-                {
-                    return KCDatabase.Instance.Equipments[ExSlot];
-                }
-            }
-        }
 
 		/// <summary>
 		/// 装備スロット(装備マスターデータ)
@@ -193,22 +147,6 @@ namespace ElectronicObserver.Data {
 			}
 		}
 
-        /// <summary>
-        /// Expansion slot equipment (master data).
-        /// If slot is empty or doesn't exist, throw out null.
-        /// </summary>
-        public EquipmentDataMaster ExSlotInstanceMaster
-        {
-            get
-            {
-                if (ExSlot == 0 || ExSlot == -1) return null;
-                else
-                {
-                    EquipmentData eq = KCDatabase.Instance.Equipments[ExSlot];
-                    return eq != null ? eq.MasterEquipment : null;
-                }
-            }
-        }
 
 		private int[] _aircraft;
 		/// <summary>

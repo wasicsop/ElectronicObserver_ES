@@ -481,17 +481,6 @@ namespace ElectronicObserver.Window {
 					if ( ship.SlotInstance[i] != null )
 						sb.AppendFormat( "[{0}/{1}] {2}\r\n", ship.Aircraft[i], ship.MasterShip.Aircraft[i], KCDatabase.Instance.Equipments[ship.Slot[i]].NameWithLevel );
 				}
-                switch(ship.ExSlot)
-                {
-                    case 0:
-                        break;
-                    case -1:
-                        sb.Append("Expansion Slot: " + "(empty)\r\n");
-                        break;
-                    default:
-                        sb.AppendFormat("Expansion Slot: {0}\r\n", KCDatabase.Instance.Equipments[ship.ExSlot].NameWithLevel);
-                        break;
-                }
 
 
 				int[] slotmaster = ship.SlotMaster.ToArray();

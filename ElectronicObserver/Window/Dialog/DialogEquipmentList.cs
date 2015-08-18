@@ -221,12 +221,7 @@ namespace ElectronicObserver.Window.Dialog {
 					remainCount[eqids[i]]--;
 				}
 
-                if (ship.ExSlot != 0 && ship.ExSlot != -1)
-                {
-                    remainCount[ship.ExSlotInstance.EquipmentID]--;
-                }
-
-            }
+			}
 
 
 			//表示処理
@@ -324,13 +319,6 @@ namespace ElectronicObserver.Window.Dialog {
 					countlist[eq.Level].countRemain--;
 
 				}
-
-                if (ship.ExSlot != 0 && ship.ExSlot != -1 && ship.ExSlotInstance.EquipmentID == equipmentID)
-                {
-                    var exq = ship.ExSlotInstance;
-                    int hackID = exq.Level + (exq.PlaneXP * 100);
-                    countlist[hackID].countRemain--;
-                }
 
 				foreach ( var c in countlist.Values ) {
 					if ( c.countRemain != c.countRemainPrev ) {
