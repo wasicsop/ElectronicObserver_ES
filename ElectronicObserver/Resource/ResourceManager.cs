@@ -182,8 +182,8 @@ namespace ElectronicObserver.Resource {
 
 			} catch ( Exception ex ) {
 
-				Utility.ErrorReporter.SendErrorReport( ex, "リソースファイルの読み込みに失敗しました。" );
-				MessageBox.Show( "リソースファイルの読み込みに失敗しました。\r\n" + ex.Message, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error );
+				Utility.ErrorReporter.SendErrorReport( ex, LoggerRes.FailedLoadingResource);
+                MessageBox.Show( LoggerRes.FailedLoadingResource + "\r\n" + ex.Message, LoggerRes.Error, MessageBoxButtons.OK, MessageBoxIcon.Error );
 
 				FillWithBlankImage( Icons, Enum.GetValues( typeof( IconContent ) ).Length );
 				FillWithBlankImage( Equipments, Enum.GetValues( typeof( EquipmentContent ) ).Length );
@@ -352,7 +352,7 @@ namespace ElectronicObserver.Resource {
 			var entry = arc.GetEntry( path );
 
 			if ( entry == null ) {
-				Utility.Logger.Add( 3, string.Format( "画像リソース {0} は存在しません。", path ) );
+				Utility.Logger.Add( 3, string.Format( LoggerRes.ImageDoesNotExist, path ) );
 				imglist.Images.Add( name, new Bitmap( imglist.ImageSize.Width, imglist.ImageSize.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb ) );
 				return;
 			}
@@ -374,7 +374,7 @@ namespace ElectronicObserver.Resource {
 
 			} catch ( Exception ) {
 
-				Utility.Logger.Add( 3, string.Format( "画像リソース {0} の読み込みに失敗しました。" ) );
+				Utility.Logger.Add( 3, string.Format( LoggerRes.ImageCantBeLoaded ) );
 				imglist.Images.Add( name, CreateBlankImage() );
 				return;
 			}
@@ -386,7 +386,7 @@ namespace ElectronicObserver.Resource {
 			var entry = arc.GetEntry( path );
 
 			if ( entry == null ) {
-				Utility.Logger.Add( 3, string.Format( "画像リソース {0} は存在しません。", path ) );
+				Utility.Logger.Add( 3, string.Format( LoggerRes.ImageDoesNotExist, path ) );
 				return null;
 			}
 
@@ -408,7 +408,7 @@ namespace ElectronicObserver.Resource {
 
 			} catch ( Exception ) {
 
-				Utility.Logger.Add( 3, string.Format( "画像リソース {0} の読み込みに失敗しました。" ) );
+				Utility.Logger.Add( 3, string.Format( LoggerRes.ImageCantBeLoaded ) );
 			}
 
 			return null;

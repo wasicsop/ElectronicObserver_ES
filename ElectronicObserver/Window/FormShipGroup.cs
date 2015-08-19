@@ -533,7 +533,7 @@ namespace ElectronicObserver.Window {
 		private void ShipView_CellFormatting( object sender, DataGridViewCellFormattingEventArgs e ) {
 
 			if ( e.ColumnIndex == ShipView_ShipType.Index ) {
-				e.Value = KCDatabase.Instance.ShipTypes[(int)e.Value].Name;
+				e.Value = FormMain.Instance.Translator.GetTranslation(KCDatabase.Instance.ShipTypes[(int)e.Value].Name, TranslationType.ShipTypes);
 				e.FormattingApplied = true;
 
 			} else if ( e.ColumnIndex == ShipView_Fleet.Index ) {

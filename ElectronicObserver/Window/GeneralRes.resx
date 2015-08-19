@@ -740,4 +740,9 @@
   <data name="Expansion" xml:space="preserve">
     <value>補強</value>
   </data>
+  <data name="ChangeTooltip" xml:space="preserve">
+    <value>今日: {0:+##;-##;±0}
+今週: {1:+##;-##;±0}
+今月: {2:+##;-##;±0}</value>
+  </data>
 </root>

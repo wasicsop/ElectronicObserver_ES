@@ -130,12 +130,12 @@ namespace ElectronicObserver.Observer {
 			*/
 			ProxyStarted();
 
-			Utility.Logger.Add( 2, string.Format( "APIObserver: ポート {0} 番で受信を開始しました。", Fiddler.FiddlerApplication.oProxy.ListenPort ) );
+			Utility.Logger.Add( 2, string.Format( LoggerRes.APIObserverStarted, Fiddler.FiddlerApplication.oProxy.ListenPort ) );
 
 
 			//checkme: 一応警告をつけてみる
 			if ( portID != Fiddler.FiddlerApplication.oProxy.ListenPort ) {
-				Utility.Logger.Add( 3, "APIObserver: 実際に受信を開始したポート番号が指定されたポート番号とは異なります。" );
+				Utility.Logger.Add( 3, LoggerRes.ObserverWrongPort );
 			}
 
 			return Fiddler.FiddlerApplication.oProxy.ListenPort;
@@ -150,7 +150,7 @@ namespace ElectronicObserver.Observer {
 			Fiddler.URLMonInterop.ResetProxyInProcessToDefault();
 			Fiddler.FiddlerApplication.Shutdown();
 
-			Utility.Logger.Add( 2, "APIObserver: 受信を停止しました。" );
+			Utility.Logger.Add( 2, LoggerRes.APIObserverStopped );
 		}
 
 
@@ -224,11 +224,11 @@ namespace ElectronicObserver.Observer {
 										}
 									}
 
-									Utility.Logger.Add( 1, string.Format( "通信からファイル {0} を保存しました。", tpath.Remove( 0, saveDataPath.Length + 1 ) ) );
+									Utility.Logger.Add( 1, string.Format( LoggerRes.SavedAPI, tpath.Remove( 0, saveDataPath.Length + 1 ) ) );
 
 								} catch ( IOException ex ) {	//ファイルがロックされている; 頻繁に出るのでエラーレポートを残さない
 
-									Utility.Logger.Add( 3, "通信内容の保存に失敗しました。 " + ex.Message );
+									Utility.Logger.Add( 3, LoggerRes.FailedSaveAPI + ex.Message );
 								}
 							} ) );
 
@@ -236,7 +236,7 @@ namespace ElectronicObserver.Observer {
 
 					} catch ( Exception ex ) {
 
-						Utility.ErrorReporter.SendErrorReport( ex, "通信内容の保存に失敗しました。" );
+						Utility.ErrorReporter.SendErrorReport( ex, LoggerRes.FailedSaveAPI );
 					}
 
 				}
@@ -303,7 +303,7 @@ namespace ElectronicObserver.Observer {
 				if ( flag ) {
 					oSession.utilSetResponseBody( js );
 
-					Utility.Logger.Add( 1, "flashの品質設定を行いました。" );
+					Utility.Logger.Add( 1, LoggerRes.ExecutedFlashQualitySetting );
 				}
 			}
 		}
@@ -356,7 +356,7 @@ namespace ElectronicObserver.Observer {
 
 			try {
 
-				Utility.Logger.Add( 1, "Request を受信しました : " + shortpath );
+				Utility.Logger.Add( 1, LoggerRes.RecievedRequest + shortpath );
 
 				SystemEvents.UpdateTimerEnabled = false;
 
@@ -375,7 +375,7 @@ namespace ElectronicObserver.Observer {
 
 			} catch ( Exception ex ) {
 
-				ErrorReporter.SendErrorReport( ex, "Request の受信中にエラーが発生しました。", shortpath, data );
+				ErrorReporter.SendErrorReport( ex, LoggerRes.RequestError, shortpath, data );
 
 			} finally {
 
@@ -392,7 +392,7 @@ namespace ElectronicObserver.Observer {
 
 			try {
 
-				Utility.Logger.Add( 1, "Responseを受信しました : " + shortpath );
+				Utility.Logger.Add( 1, LoggerRes.RecievedResponse + shortpath );
 
 				SystemEvents.UpdateTimerEnabled = false;
 
@@ -401,8 +401,8 @@ namespace ElectronicObserver.Observer {
 
 				if ( (int)json.api_result != 1 ) {
 
-					var ex = new ArgumentException( "エラーコードを含むメッセージを受信しました。" );
-					Utility.ErrorReporter.SendErrorReport( ex, "エラーコードを含むメッセージを受信しました。" );
+					var ex = new ArgumentException( LoggerRes.ResponseHadErrorCode );
+					Utility.ErrorReporter.SendErrorReport( ex, LoggerRes.ResponseHadErrorCode );
 					throw ex;
 				}
 
@@ -417,7 +417,7 @@ namespace ElectronicObserver.Observer {
 
 			} catch ( Exception ex ) {
 
-				ErrorReporter.SendErrorReport( ex, "Responseの受信中にエラーが発生しました。", shortpath, data );
+				ErrorReporter.SendErrorReport( ex, LoggerRes.ResponseError, shortpath, data );
 
 			} finally {
 
@@ -441,7 +441,7 @@ namespace ElectronicObserver.Observer {
 
 			} catch ( Exception ex ) {
 
-				Utility.ErrorReporter.SendErrorReport( ex, "Requestの保存に失敗しました。" );
+				Utility.ErrorReporter.SendErrorReport( ex, LoggerRes.FailedSavingRequest );
 
 			}
 		}
@@ -459,7 +459,7 @@ namespace ElectronicObserver.Observer {
 
 			} catch ( Exception ex ) {
 
-				Utility.ErrorReporter.SendErrorReport( ex, "Responseの保存に失敗しました。" );
+				Utility.ErrorReporter.SendErrorReport( ex, LoggerRes.FailedSavingResponse );
 
 			}
 

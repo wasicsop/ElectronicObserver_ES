@@ -1,0 +1,315 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AdditionalInfo" xml:space="preserve">
+    <value>追加情報 : {0}</value>
+  </data>
+  <data name="APIData" xml:space="preserve">
+    <value>通信内容 : {0}</value>
+  </data>
+  <data name="APIObserverStarted" xml:space="preserve">
+    <value>APIObserver: ポート {0} 番で受信を開始しました。</value>
+  </data>
+  <data name="APIObserverStopped" xml:space="preserve">
+    <value>APIObserver: 受信を停止しました。</value>
+  </data>
+  <data name="ChangedParameters" xml:space="preserve">
+    <value>のパラメータを更新しました。</value>
+  </data>
+  <data name="CreatedItem" xml:space="preserve">
+    <value>{0}「{1}」の開発に成功しました。({2}/{3}/{4}/{5} 秘書艦: {6})</value>
+  </data>
+  <data name="DoesNotExist" xml:space="preserve">
+    <value>は存在しません。</value>
+  </data>
+  <data name="EquipmentObtained" xml:space="preserve">
+    <value>{0}「{1}」を入手しました。</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>エラー</value>
+  </data>
+  <data name="ErrorDatabaseSending" xml:space="preserve">
+    <value>艦これ統計データベースへの送信中にエラーが発生しました。</value>
+  </data>
+  <data name="ErrorField" xml:space="preserve">
+    <value>エラー : {0}</value>
+  </data>
+  <data name="ErrorReport" xml:space="preserve">
+    <value>エラーレポート : {0}</value>
+  </data>
+  <data name="ExecutedFlashQualitySetting" xml:space="preserve">
+    <value>flashの品質設定を行いました。</value>
+  </data>
+  <data name="ExpedReturned" xml:space="preserve">
+    <value>#{0}「{1}」が遠征「{2}: {3}」から帰投しました。({4})</value>
+  </data>
+  <data name="ExpedStarted" xml:space="preserve">
+    <value>#{0}「{1}」が遠征「{2}: {3}」へ出撃しました。</value>
+  </data>
+  <data name="Failed" xml:space="preserve">
+    <value>に失敗しました。</value>
+  </data>
+  <data name="FailedDatabaseSend" xml:space="preserve">
+    <value>艦これ統計データベースへの {0} の送信に失敗しました。{1}</value>
+  </data>
+  <data name="FailedLoadAPI" xml:space="preserve">
+    <value>API読み込みに失敗しました。</value>
+  </data>
+  <data name="FailedLoading" xml:space="preserve">
+    <value>の読み込みに失敗しました。</value>
+  </data>
+  <data name="FailedLoadingRecords" xml:space="preserve">
+    <value>レコードのロードに失敗しました。</value>
+  </data>
+  <data name="FailedLoadingResource" xml:space="preserve">
+    <value>リソースファイルの読み込みに失敗しました。</value>
+  </data>
+  <data name="FailedLoadingStorage" xml:space="preserve">
+    <value>DataStorage の読み込みに失敗しました。</value>
+  </data>
+  <data name="FailedLoadLayout" xml:space="preserve">
+    <value>ウィンドウ レイアウトの復元に失敗しました。</value>
+  </data>
+  <data name="FailedLoadSubLayout" xml:space="preserve">
+    <value>サブウィンドウ レイアウトの復元に失敗しました。</value>
+  </data>
+  <data name="FailedLoadWindowPlacement" xml:space="preserve">
+    <value>ウィンドウ状態の復元に失敗しました。</value>
+  </data>
+  <data name="FailedResourceRename" xml:space="preserve">
+    <value>艦船リソースのリネームに失敗しました。</value>
+  </data>
+  <data name="FailedSaveAPI" xml:space="preserve">
+    <value>通信内容の保存に失敗しました。 </value>
+  </data>
+  <data name="FailedSaveLayout" xml:space="preserve">
+    <value>サブウィンドウ レイアウトの保存に失敗しました。</value>
+  </data>
+  <data name="FailedSaveWindowPlacement" xml:space="preserve">
+    <value>ウィンドウ状態の保存に失敗しました。</value>
+  </data>
+  <data name="FailedSaving" xml:space="preserve">
+    <value>の書き込みに失敗しました。</value>
+  </data>
+  <data name="FailedSavingErrorReport" xml:space="preserve">
+    <value>エラーレポートの書き込みに失敗しました。\r\n{0}\r\n{1}</value>
+  </data>
+  <data name="FailedSavingRecords" xml:space="preserve">
+    <value>レコードのセーブに失敗しました。</value>
+  </data>
+  <data name="FailedSavingRequest" xml:space="preserve">
+    <value>Requestの保存に失敗しました。</value>
+  </data>
+  <data name="FailedSavingResponse" xml:space="preserve">
+    <value>Responseの保存に失敗しました。</value>
+  </data>
+  <data name="FailedSavingStorage" xml:space="preserve">
+    <value>DataStorage の書き込みに失敗しました。</value>
+  </data>
+  <data name="FailedToLoadAPIFile" xml:space="preserve">
+    <value>APIファイル {0} の読み込みに失敗しました。{1}</value>
+  </data>
+  <data name="GameStart" xml:space="preserve">
+    <value>提督が鎮守府に着任しました。これより艦隊の指揮を執ります。</value>
+  </data>
+  <data name="ImageCantBeLoaded" xml:space="preserve">
+    <value>画像リソース {0} の読み込みに失敗しました。</value>
+  </data>
+  <data name="ImageDoesNotExist" xml:space="preserve">
+    <value>画像リソース {0} は存在しません。</value>
+  </data>
+  <data name="ImprovedFailure" xml:space="preserve">
+    <value>{0} の改修に失敗しました。</value>
+  </data>
+  <data name="ImprovedSuccess" xml:space="preserve">
+    <value>{0} の改修に成功しました。</value>
+  </data>
+  <data name="InitialEquipChanged" xml:space="preserve">
+    <value>の初期装備を更新しました。</value>
+  </data>
+  <data name="InitialEquipRegistered" xml:space="preserve">
+    <value>の初期装備を記録しました。</value>
+  </data>
+  <data name="ItemCreationFailed" xml:space="preserve">
+    <value>開発に失敗しました。({0}/{1}/{2}/{3} 秘書艦: {4})</value>
+  </data>
+  <data name="ItemObtained" xml:space="preserve">
+    <value>アイテム「{0}」を入手しました。</value>
+  </data>
+  <data name="JustMarried" xml:space="preserve">
+    <value>{0} とケッコンカッコカリしました。おめでとうございます！</value>
+  </data>
+  <data name="LoadedRecords" xml:space="preserve">
+    <value>レコードをロードしました。</value>
+  </data>
+  <data name="ObserverWrongPort" xml:space="preserve">
+    <value>APIObserver: 実際に受信を開始したポート番号が指定されたポート番号とは異なります。</value>
+  </data>
+  <data name="RecievedRequest" xml:space="preserve">
+    <value>Request を受信しました :</value>
+  </data>
+  <data name="RecievedResponse" xml:space="preserve">
+    <value>Responseを受信しました :</value>
+  </data>
+  <data name="Record" xml:space="preserve">
+    <value>レコード</value>
+  </data>
+  <data name="RegisteredParameters" xml:space="preserve">
+    <value>のパラメータを記録しました。</value>
+  </data>
+  <data name="RequestError" xml:space="preserve">
+    <value>Request の受信中にエラーが発生しました。</value>
+  </data>
+  <data name="ResponseError" xml:space="preserve">
+    <value>Responseの受信中にエラーが発生しました。</value>
+  </data>
+  <data name="ResponseHadErrorCode" xml:space="preserve">
+    <value>エラーコードを含むメッセージを受信しました。</value>
+  </data>
+  <data name="SavedAPI" xml:space="preserve">
+    <value>通信からファイル {0} を保存しました。</value>
+  </data>
+  <data name="SavedRecords" xml:space="preserve">
+    <value>レコードをセーブしました。</value>
+  </data>
+  <data name="SentDatabase" xml:space="preserve">
+    <value>艦これ統計データベースへ {0} を送信しました。</value>
+  </data>
+  <data name="ShipAdded" xml:space="preserve">
+    <value>{0}「{1}」が戦列に加わりました。</value>
+  </data>
+  <data name="ShipConstructed" xml:space="preserve">
+    <value>{0}「{1}」の建造が完了しました。</value>
+  </data>
+  <data name="ShipScrapped" xml:space="preserve">
+    <value>を解体しました。</value>
+  </data>
+  <data name="SortiedTo" xml:space="preserve">
+    <value>#{0}「{1}」が「{2}-{3} {4}」へ出撃しました。</value>
+  </data>
+  <data name="StackTrace" xml:space="preserve">
+    <value>スタックトレース：</value>
+  </data>
+  <data name="StorageDoesNotExist" xml:space="preserve">
+    <value>DataStorage {0} は存在しません。</value>
+  </data>
+  <data name="StorageFileDoesNotExist" xml:space="preserve">
+    <value>DataStorage ファイルは存在しません。</value>
+  </data>
+</root>

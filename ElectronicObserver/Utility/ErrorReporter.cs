@@ -35,23 +35,23 @@ namespace ElectronicObserver.Utility {
 			try {
 				using ( StreamWriter sw = new StreamWriter( path, false, new System.Text.UTF8Encoding( false ) ) ) {
 
-					sw.WriteLine( "エラーレポート : {0}", DateTime.Now );
-					sw.WriteLine( "エラー : {0}", ex.GetType().Name );
+					sw.WriteLine( LoggerRes.ErrorReport, DateTime.Now );
+					sw.WriteLine( LoggerRes.ErrorField, ex.GetType().Name );
 					sw.WriteLine( ex.Message );
-					sw.WriteLine( "追加情報 : {0}", message );
-					sw.WriteLine( "スタックトレース：" );
+					sw.WriteLine( LoggerRes.AdditionalInfo, message );
+					sw.WriteLine( LoggerRes.StackTrace );
 					sw.WriteLine( ex.StackTrace );
 					
 					if ( connectionName != null && connectionData != null ) {
 						sw.WriteLine();
-						sw.WriteLine( "通信内容 : {0}", connectionName );
+						sw.WriteLine( LoggerRes.APIData, connectionName );
 						sw.WriteLine( connectionData );
 					}
 				}
 
 			} catch ( Exception ) {
 
-				Utility.Logger.Add( 3, string.Format( "エラーレポートの書き込みに失敗しました。\r\n{0}\r\n{1}", ex.Message, ex.StackTrace ) );
+				Utility.Logger.Add( 3, string.Format( LoggerRes.FailedSavingErrorReport, ex.Message, ex.StackTrace ) );
 			}
 
 		}

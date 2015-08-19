@@ -770,4 +770,9 @@ Save your data and return to port before capturing.
   <data name="Expansion" xml:space="preserve">
     <value>Expansion</value>
   </data>
+  <data name="ChangeTooltip" xml:space="preserve">
+    <value>Today:  {0:+##;-##;±0}
+This week: {1:+##;-##;±0}
+This month: {2:+##;-##;±0}</value>
+  </data>
 </root>

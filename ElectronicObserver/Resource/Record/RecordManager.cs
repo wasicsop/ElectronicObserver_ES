@@ -57,9 +57,9 @@ namespace ElectronicObserver.Resource.Record {
 			successed &= Resource.Load( MasterPath );
 
 			if ( successed )
-				Utility.Logger.Add( 2, "レコードをロードしました。" );
+				Utility.Logger.Add( 2, LoggerRes.LoadedRecords );
 			else
-				Utility.Logger.Add( 3, "レコードのロードに失敗しました。" );
+				Utility.Logger.Add( 3, LoggerRes.FailedLoadingRecords );
 		}
 
 		public void Save() {
@@ -78,9 +78,9 @@ namespace ElectronicObserver.Resource.Record {
 			successed &= Resource.Save( MasterPath );
 
 			if ( successed )
-				Utility.Logger.Add( 2, "レコードをセーブしました。" );
+				Utility.Logger.Add( 2, LoggerRes.SavedRecords );
 			else
-				Utility.Logger.Add( 2, "レコードのセーブに失敗しました。" );
+				Utility.Logger.Add( 3, LoggerRes.FailedSavingRecords );
 
 		}
 

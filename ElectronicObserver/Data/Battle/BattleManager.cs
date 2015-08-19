@@ -210,7 +210,7 @@ namespace ElectronicObserver.Data.Battle {
 						DroppedEquipmentCount += defaultSlot.Count( id => id != -1 );
 
 					if ( showLog )
-						Utility.Logger.Add( 2, string.Format( "{0}「{1}」が戦列に加わりました。", ship.ShipTypeName, ship.NameWithClass ) );
+						Utility.Logger.Add( 2, string.Format( LoggerRes.ShipAdded, ship.ShipTypeName, ship.NameWithClass ) );
 				}
 
 				if ( dropID == -1 ) {
@@ -220,7 +220,7 @@ namespace ElectronicObserver.Data.Battle {
 					if ( itemID != -1 ) {
 						dropID = itemID + 1000;
 						if ( showLog )
-							Utility.Logger.Add( 2, string.Format( "アイテム「{0}」を入手しました。", KCDatabase.Instance.MasterUseItems[itemID].Name ) );
+							Utility.Logger.Add( 2, string.Format( LoggerRes.ItemObtained, KCDatabase.Instance.MasterUseItems[itemID].Name ) );
 					}
 				}
 
@@ -232,7 +232,7 @@ namespace ElectronicObserver.Data.Battle {
 						dropID = eqID + 2000;
 						if ( showLog ) {
 							EquipmentDataMaster eq = KCDatabase.Instance.MasterEquipments[eqID];
-							Utility.Logger.Add( 2, string.Format( "{0}「{1}」を入手しました。", eq.CategoryTypeInstance.Name, eq.Name ) );
+							Utility.Logger.Add( 2, string.Format( LoggerRes.EquipmentObtained, eq.CategoryTypeInstance.Name, eq.Name ) );
 						}
 
 						DroppedEquipmentCount++;

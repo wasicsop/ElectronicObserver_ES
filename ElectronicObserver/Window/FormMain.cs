@@ -154,7 +154,7 @@ namespace ElectronicObserver.Window {
 
 				} catch ( Exception ex ) {
 
-					Utility.Logger.Add( 3, "API読み込みに失敗しました。" + ex.Message );
+					Utility.Logger.Add( 3, LoggerRes.FailedLoadAPI + ex.Message );
 				}
 			}
 
@@ -363,7 +363,7 @@ namespace ElectronicObserver.Window {
 
 			} catch ( Exception ex ) {
 
-				Utility.ErrorReporter.SendErrorReport( ex, "サブウィンドウ レイアウトの復元に失敗しました。" );
+				Utility.ErrorReporter.SendErrorReport( ex, LoggerRes.FailedLoadSubLayout );
 			}
 
 		}
@@ -377,7 +377,7 @@ namespace ElectronicObserver.Window {
 
 			} catch ( Exception ex ) {
 
-				Utility.ErrorReporter.SendErrorReport( ex, "サブウィンドウ レイアウトの保存に失敗しました。" );
+				Utility.ErrorReporter.SendErrorReport( ex, LoggerRes.FailedSaveLayout );
 			}
 
 		}
@@ -419,7 +419,7 @@ namespace ElectronicObserver.Window {
 
 			} catch ( Exception ex ) {
 
-				Utility.ErrorReporter.SendErrorReport( ex, "ウィンドウ レイアウトの復元に失敗しました。" );
+				Utility.ErrorReporter.SendErrorReport( ex, LoggerRes.FailedLoadLayout );
 			}
 
 		}
@@ -446,7 +446,7 @@ namespace ElectronicObserver.Window {
 
 			} catch ( Exception ex ) {
 
-				Utility.ErrorReporter.SendErrorReport( ex, "ウィンドウ レイアウトの保存に失敗しました。" );
+				Utility.ErrorReporter.SendErrorReport( ex, LoggerRes.FailedSaveLayout );
 			}
 
 		}
@@ -817,8 +817,8 @@ namespace ElectronicObserver.Window {
 
 				} catch ( Exception ex ) {
 
-					Utility.ErrorReporter.SendErrorReport( ex, "艦船リソースのリネームに失敗しました。" );
-					MessageBox.Show( "艦船リソースのリネームに失敗しました。\r\n" + ex.Message, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error );
+					Utility.ErrorReporter.SendErrorReport( ex, LoggerRes.FailedResourceRename );
+					MessageBox.Show( LoggerRes.FailedResourceRename + "\r\n" + ex.Message, LoggerRes.Error, MessageBoxButtons.OK, MessageBoxIcon.Error );
 
 				}
 

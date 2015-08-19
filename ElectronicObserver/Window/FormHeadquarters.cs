@@ -220,28 +220,28 @@ namespace ElectronicObserver.Window {
 
 				Fuel.Text = db.Material.Fuel.ToString();
 				Fuel.BackColor = db.Material.Fuel < db.Admiral.MaxResourceRegenerationAmount ? Color.Transparent : overcolor;
-				ToolTipInfo.SetToolTip( Fuel, string.Format( "今日: {0:+##;-##;±0}\n今週: {1:+##;-##;±0}\n今月: {2:+##;-##;±0}",
+				ToolTipInfo.SetToolTip( Fuel, string.Format( GeneralRes.ChangeTooltip,
 					resday == null ? 0 : ( db.Material.Fuel - resday.Fuel ),
 					resweek == null ? 0 : ( db.Material.Fuel - resweek.Fuel ),
 					resmonth == null ? 0 : ( db.Material.Fuel - resmonth.Fuel ) ) );
 
 				Ammo.Text = db.Material.Ammo.ToString();
 				Ammo.BackColor = db.Material.Ammo < db.Admiral.MaxResourceRegenerationAmount ? Color.Transparent : overcolor;
-				ToolTipInfo.SetToolTip( Ammo, string.Format( "今日: {0:+##;-##;±0}\n今週: {1:+##;-##;±0}\n今月: {2:+##;-##;±0}",
+				ToolTipInfo.SetToolTip( Ammo, string.Format( GeneralRes.ChangeTooltip,
 					resday == null ? 0 : ( db.Material.Ammo - resday.Ammo ),
 					resweek == null ? 0 : ( db.Material.Ammo - resweek.Ammo ),
 					resmonth == null ? 0 : ( db.Material.Ammo - resmonth.Ammo ) ) );
 
 				Steel.Text = db.Material.Steel.ToString();
 				Steel.BackColor = db.Material.Steel < db.Admiral.MaxResourceRegenerationAmount ? Color.Transparent : overcolor;
-				ToolTipInfo.SetToolTip( Steel, string.Format( "今日: {0:+##;-##;±0}\n今週: {1:+##;-##;±0}\n今月: {2:+##;-##;±0}",
+				ToolTipInfo.SetToolTip( Steel, string.Format( GeneralRes.ChangeTooltip,
 					resday == null ? 0 : ( db.Material.Steel - resday.Steel ),
 					resweek == null ? 0 : ( db.Material.Steel - resweek.Steel ),
 					resmonth == null ? 0 : ( db.Material.Steel - resmonth.Steel ) ) );
 
 				Bauxite.Text = db.Material.Bauxite.ToString();
 				Bauxite.BackColor = db.Material.Bauxite < db.Admiral.MaxResourceRegenerationAmount ? Color.Transparent : overcolor;
-				ToolTipInfo.SetToolTip( Bauxite, string.Format( "今日: {0:+##;-##;±0}\n今週: {1:+##;-##;±0}\n今月: {2:+##;-##;±0}",
+				ToolTipInfo.SetToolTip( Bauxite, string.Format( GeneralRes.ChangeTooltip,
 					resday == null ? 0 : ( db.Material.Bauxite - resday.Bauxite ),
 					resweek == null ? 0 : ( db.Material.Bauxite - resweek.Bauxite ),
 					resmonth == null ? 0 : ( db.Material.Bauxite - resmonth.Bauxite ) ) );

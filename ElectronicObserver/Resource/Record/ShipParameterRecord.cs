@@ -369,7 +369,7 @@ namespace ElectronicObserver.Resource.Record {
 			if ( e == null ) {
 				e = new ShipParameterElement();
 				e.ShipID = shipID;
-				Utility.Logger.Add( 2, KCDatabase.Instance.MasterShips[shipID].NameWithClass + "のパラメータを記録しました。" );
+				Utility.Logger.Add( 2, KCDatabase.Instance.MasterShips[shipID].NameWithClass + LoggerRes.RegisteredParameters );
 			}
 
 			e.ASW.SetEstParameter( level, aswMin, aswMax );
@@ -377,7 +377,7 @@ namespace ElectronicObserver.Resource.Record {
 			e.LOS.SetEstParameter( level, losMin, losMax );
 
 			Update( e );
-			Utility.Logger.Add( 1, KCDatabase.Instance.MasterShips[shipID].NameWithClass + "のパラメータを更新しました。" );
+			Utility.Logger.Add( 1, KCDatabase.Instance.MasterShips[shipID].NameWithClass + LoggerRes.ChangedParameters );
 		}
 
 
@@ -410,13 +410,13 @@ namespace ElectronicObserver.Resource.Record {
 			if ( e == null ) {
 				e = new ShipParameterElement();
 				e.ShipID = shipID;
-				Utility.Logger.Add( 2, KCDatabase.Instance.MasterShips[shipID].NameWithClass + "の初期装備を記録しました。" );
+				Utility.Logger.Add( 2, KCDatabase.Instance.MasterShips[shipID].NameWithClass + LoggerRes.InitialEquipRegistered );
 			}
 
 			e.DefaultSlot = slot;
 
 			Update( e );
-			Utility.Logger.Add( 1, KCDatabase.Instance.MasterShips[shipID].NameWithClass + "の初期装備を更新しました。" );
+			Utility.Logger.Add( 1, KCDatabase.Instance.MasterShips[shipID].NameWithClass + LoggerRes.InitialEquipChanged );
 		}
 
 
@@ -472,7 +472,7 @@ namespace ElectronicObserver.Resource.Record {
 				if ( e == null ) {
 					e = new ShipParameterElement();
 					e.ShipID = shipID;
-					Utility.Logger.Add( 2, KCDatabase.Instance.MasterShips[shipID].NameWithClass + "のパラメータを記録しました。" );
+					Utility.Logger.Add( 2, KCDatabase.Instance.MasterShips[shipID].NameWithClass + LoggerRes.RegisteredParameters );
 				}
 
 				e.ASW.SetEstParameter( 1, (int)elem.api_tais, Parameter.MaximumDefault );
@@ -500,7 +500,7 @@ namespace ElectronicObserver.Resource.Record {
 				
 
 				Update( e );
-				Utility.Logger.Add( 1, KCDatabase.Instance.MasterShips[shipID].NameWithClass + "のパラメータを更新しました。" );
+				Utility.Logger.Add( 1, KCDatabase.Instance.MasterShips[shipID].NameWithClass + LoggerRes.ChangedParameters );
 			}
 		}
 

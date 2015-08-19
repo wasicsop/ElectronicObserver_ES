@@ -386,6 +386,17 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 今日: {0:+##;-##;±0}
+        ///今週: {1:+##;-##;±0}
+        ///今月: {2:+##;-##;±0}.
+        /// </summary>
+        internal static string ChangeTooltip {
+            get {
+                return ResourceManager.GetString("ChangeTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to クリア(&amp;C).
         /// </summary>
         internal static string Clear {

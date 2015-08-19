@@ -162,6 +162,11 @@
     <Compile Include="Data\ShipGroupManager.cs" />
     <Compile Include="Data\UseItem.cs" />
     <Compile Include="Data\UseItemMaster.cs" />
+    <Compile Include="LoggerRes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LoggerRes.resx</DependentUpon>
+    </Compile>
     <Compile Include="Notifier\NotifierRes.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -545,6 +550,11 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>FleetRes.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoggerRes.en.resx" />
+    <EmbeddedResource Include="LoggerRes.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>LoggerRes.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Notifier\NotifierRes.en.resx" />
     <EmbeddedResource Include="Notifier\NotifierRes.resx">
