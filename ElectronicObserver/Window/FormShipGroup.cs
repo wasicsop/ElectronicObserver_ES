@@ -113,6 +113,7 @@ namespace ElectronicObserver.Window {
 			ShipView_Equipment3.DefaultCellStyle = CSDefaultLeft;
 			ShipView_Equipment4.DefaultCellStyle = CSDefaultLeft;
 			ShipView_Equipment5.DefaultCellStyle = CSDefaultLeft;
+            ShipView_ExEquipment.DefaultCellStyle = CSDefaultLeft;
 
 			#endregion
 
@@ -301,6 +302,7 @@ namespace ElectronicObserver.Window {
 				GetEquipmentString( ship, 2 ),
 				GetEquipmentString( ship, 3 ),
 				GetEquipmentString( ship, 4 ),
+
 				ship.FleetWithIndex,
 				ship.RepairingDockID == -1 ? ship.RepairTime : -1000 + ship.RepairingDockID,
 				ship.FirepowerBase,
@@ -513,6 +515,19 @@ namespace ElectronicObserver.Window {
 
 			}
 		}
+
+        private string GetExEqupimentString(ShipData ship)
+        {
+            switch (ship.ExpansionSlot)
+            {
+                case 0:
+                    return "Locked";
+                case -1:
+                    return GeneralRes.None;
+                default:
+                    return ship.ExpansionSlotInstance.NameWithLevel;
+            }
+        }
 
 
 		private void ShipView_CellFormatting( object sender, DataGridViewCellFormattingEventArgs e ) {

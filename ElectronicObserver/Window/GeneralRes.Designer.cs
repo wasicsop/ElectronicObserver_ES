@@ -741,6 +741,15 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 補強.
+        /// </summary>
+        internal static string Expansion {
+            get {
+                return ResourceManager.GetString("Expansion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to [遠征帰投].
         /// </summary>
         internal static string ExpeditionReturned {

@@ -737,4 +737,7 @@
   <data name="Success" xml:space="preserve">
     <value>成功</value>
   </data>
+  <data name="Expansion" xml:space="preserve">
+    <value>補強</value>
+  </data>
 </root>

@@ -32,6 +32,7 @@
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.ShipView = new System.Windows.Forms.DataGridView();
 			this.ShipView_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.ShipView_ShipType = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -49,6 +50,7 @@
 			this.ShipView_Equipment3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.ShipView_Equipment4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.ShipView_Equipment5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ShipView_ExEquipment = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.ShipView_Fleet = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.ShipView_RepairTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.ShipView_Firepower = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -108,7 +110,7 @@
 			this.ShipView.AllowUserToResizeRows = false;
 			this.ShipView.BackgroundColor = System.Drawing.SystemColors.Control;
 			this.ShipView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-			this.ShipView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ShipView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ShipView_ID,
             this.ShipView_ShipType,
             this.ShipView_Name,
@@ -125,6 +127,7 @@
             this.ShipView_Equipment3,
             this.ShipView_Equipment4,
             this.ShipView_Equipment5,
+            this.ShipView_ExEquipment,
             this.ShipView_Fleet,
             this.ShipView_RepairTime,
             this.ShipView_Firepower,
@@ -250,7 +253,7 @@
 			// 
 			dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
 			this.ShipView_Equipment1.DefaultCellStyle = dataGridViewCellStyle3;
-			this.ShipView_Equipment1.HeaderText = GeneralRes.Equipment + "1";
+			this.ShipView_Equipment1.HeaderText = GeneralRes.Equipment + " 1";
 			this.ShipView_Equipment1.Name = "ShipView_Equipment1";
 			this.ShipView_Equipment1.ReadOnly = true;
 			this.ShipView_Equipment1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -260,7 +263,7 @@
 			// 
 			dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
 			this.ShipView_Equipment2.DefaultCellStyle = dataGridViewCellStyle4;
-			this.ShipView_Equipment2.HeaderText = GeneralRes.Equipment + "2";
+			this.ShipView_Equipment2.HeaderText = GeneralRes.Equipment + " 2";
 			this.ShipView_Equipment2.Name = "ShipView_Equipment2";
 			this.ShipView_Equipment2.ReadOnly = true;
 			this.ShipView_Equipment2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -270,7 +273,7 @@
 			// 
 			dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
 			this.ShipView_Equipment3.DefaultCellStyle = dataGridViewCellStyle5;
-			this.ShipView_Equipment3.HeaderText = GeneralRes.Equipment + "3";
+			this.ShipView_Equipment3.HeaderText = GeneralRes.Equipment + " 3";
 			this.ShipView_Equipment3.Name = "ShipView_Equipment3";
 			this.ShipView_Equipment3.ReadOnly = true;
 			this.ShipView_Equipment3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -280,7 +283,7 @@
 			// 
 			dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
 			this.ShipView_Equipment4.DefaultCellStyle = dataGridViewCellStyle6;
-			this.ShipView_Equipment4.HeaderText = GeneralRes.Equipment + "4";
+			this.ShipView_Equipment4.HeaderText = GeneralRes.Equipment + " 4";
 			this.ShipView_Equipment4.Name = "ShipView_Equipment4";
 			this.ShipView_Equipment4.ReadOnly = true;
 			this.ShipView_Equipment4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -290,11 +293,21 @@
 			// 
 			dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
 			this.ShipView_Equipment5.DefaultCellStyle = dataGridViewCellStyle7;
-			this.ShipView_Equipment5.HeaderText = GeneralRes.Equipment + "5";
+			this.ShipView_Equipment5.HeaderText = GeneralRes.Equipment + " 5";
 			this.ShipView_Equipment5.Name = "ShipView_Equipment5";
 			this.ShipView_Equipment5.ReadOnly = true;
 			this.ShipView_Equipment5.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
 			this.ShipView_Equipment5.Width = 150;
+            //
+            // ShipView_ExEquipment
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.ShipView_ExEquipment.DefaultCellStyle = dataGridViewCellStyle9;
+            this.ShipView_ExEquipment.HeaderText = GeneralRes.Expansion;
+            this.ShipView_ExEquipment.Name = "ShipView_ExEquipment";
+            this.ShipView_ExEquipment.ReadOnly = true;
+            this.ShipView_ExEquipment.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ShipView_ExEquipment.Width = 150;
+            //
 			// 
 			// ShipView_Fleet
 			// 
@@ -689,6 +702,7 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn ShipView_Equipment3;
 		private System.Windows.Forms.DataGridViewTextBoxColumn ShipView_Equipment4;
 		private System.Windows.Forms.DataGridViewTextBoxColumn ShipView_Equipment5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ShipView_ExEquipment;
 		private System.Windows.Forms.DataGridViewTextBoxColumn ShipView_Fleet;
 		private System.Windows.Forms.DataGridViewTextBoxColumn ShipView_RepairTime;
 		private System.Windows.Forms.DataGridViewTextBoxColumn ShipView_Firepower;

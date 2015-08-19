@@ -486,7 +486,7 @@ namespace ElectronicObserver.Window {
 				{
 					var exslot = ship.ExpansionSlotInstance;
 					if ( exslot != null )
-						sb.AppendFormat( "補強: {0}\r\n", exslot.NameWithLevel );
+						sb.AppendFormat( GeneralRes.Expansion + ": {0}\r\n", exslot.NameWithLevel );
 				}
 
 				int[] slotmaster = ship.SlotMaster.ToArray();
