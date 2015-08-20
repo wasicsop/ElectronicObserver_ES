@@ -20,6 +20,9 @@ namespace ElectronicObserver.Window.Dialog {
 		private static readonly string RegistryPathMaster = @"Software\Microsoft\Internet Explorer\Main\FeatureControl\";
 		private static readonly string RegistryPathBrowserVersion = @"FEATURE_BROWSER_EMULATION\";
 		private static readonly string RegistryPathGPURendering = @"FEATURE_GPU_RENDERING\";
+        private Color mainColor;
+        private Color subColor;
+        private Color backColor;
 
 		private static readonly int DefaultBrowserVersion = 7000;
 		private static readonly bool DefaultGPURendering = false;
@@ -248,9 +251,36 @@ namespace ElectronicObserver.Window.Dialog {
 			FormBrowser_ScreenShotPath.Text = PathHelper.ProcessFolderBrowserDialog( FormBrowser_ScreenShotPath.Text, FolderBrowser );
 		}
 
+        private void ButtonMainFontColor_Click(object sender, EventArgs e)
+        {
+            DialogColor.Color = mainFontPreview.ForeColor;
+            if (DialogColor.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                mainFontPreview.ForeColor = DialogColor.Color;
+                mainColor = DialogColor.Color;
+            }
+        }
 
+        private void ButtonSubFontColor_Click(object sender, EventArgs e)
+        {
+            DialogColor.Color = subFontPreview.ForeColor;
+            if (DialogColor.ShowDialog() == DialogResult.OK)
+            {
+                subFontPreview.ForeColor = DialogColor.Color;
+                subColor = DialogColor.Color;
+            }
+        }
 
-
+        private void ButtonBackgroundColor_Click(object sender, EventArgs e)
+        {
+            DialogColor.Color = mainFontPreview.BackColor;
+            if(DialogColor.ShowDialog() == DialogResult.OK)
+            {
+                mainFontPreview.BackColor = DialogColor.Color;
+                subFontPreview.BackColor = DialogColor.Color;
+                backColor = DialogColor.Color;
+            }
+        }
 
 		/// <summary>
 		/// 設定からUIを初期化します。
@@ -276,6 +306,13 @@ namespace ElectronicObserver.Window.Dialog {
 			UI_MainFont.Text = config.UI.MainFont.SerializeFontAttribute;
 			UI_SubFont.Font = config.UI.SubFont.FontData;
 			UI_SubFont.Text = config.UI.SubFont.SerializeFontAttribute;
+            mainFontPreview.BackColor = config.UI.BackgroundColor;
+            mainFontPreview.ForeColor = config.UI.MainFontColor;
+            subFontPreview.BackColor = config.UI.BackgroundColor;
+            subFontPreview.ForeColor = config.UI.SubFontColor;
+            mainColor = config.UI.MainFontColor;
+            subColor = config.UI.SubFontColor;
+            backColor = config.UI.SubFontColor;
 
 			//[ログ]
 			Log_LogLevel.Value = config.Log.LogLevel;
@@ -415,6 +452,9 @@ namespace ElectronicObserver.Window.Dialog {
 			//[UI]
 			config.UI.MainFont = UI_MainFont.Font;
 			config.UI.SubFont = UI_SubFont.Font;
+            config.UI.BackgroundColor = backColor;
+            config.UI.MainFontColor = mainColor;
+            config.UI.SubFontColor = subColor;
 
 			//[ログ]
 			config.Log.LogLevel = (int)Log_LogLevel.Value;

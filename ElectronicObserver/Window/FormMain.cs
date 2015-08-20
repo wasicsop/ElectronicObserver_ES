@@ -77,6 +77,7 @@ namespace ElectronicObserver.Window {
 
             Translator = new DynamicTranslator();
             Instance = this;
+            this.SetStyle(ControlStyles.SupportsTransparentBackColor, true);
             InitializeComponent();
 		}
 
@@ -174,18 +175,31 @@ namespace ElectronicObserver.Window {
 
 			StripMenu_Debug.Enabled = StripMenu_Debug.Visible = c.Debug.EnableDebugMenu;
 			StripStatus.Visible = c.Life.ShowStatusBar;
-
 			TopMost = c.Life.TopMost;
 
-			Font = c.UI.MainFont;
+            
+
+            Font = c.UI.MainFont;
 			//StripMenu.Font = Font;
 			StripStatus.Font = Font;
-			MainDockPanel.Skin.AutoHideStripSkin.TextFont = Font;
+            DockPanelSkin test = VS2012LightTheme.CreateVisualStudio2012Light();
+            MainDockPanel.Skin = test;
+            MainDockPanel.Skin.AutoHideStripSkin.TextFont = Font;
 			MainDockPanel.Skin.DockPaneStripSkin.TextFont = Font;
-
+            
 		}
 
-
+        private static Color CorrectColor(Color color)
+        {
+            float correctionFactor = -0.3f;
+            float red = (255 - color.R) * correctionFactor + color.R;
+            float green = (255 - color.G) * correctionFactor + color.G;
+            float blue = (255 - color.B) * correctionFactor + color.B;
+            if (red < 0) red = 0;
+            if (green < 0) green = 0;
+            if (blue < 0) blue = 0;
+            return Color.FromArgb(color.A, (int)red, (int)green, (int)blue);
+        }
 
 
 

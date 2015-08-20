@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using ElectronicObserver;
 using ElectronicObserver.Observer;
 using ElectronicObserver.Data;
+using ElectronicObserver.Utility;
 
 namespace ElectronicObserver.Window
 {
@@ -33,16 +34,20 @@ namespace ElectronicObserver.Window
             {"6-1", 400}, {"6-2", 420},
         };
 
+        public Font MainFont { get; set; }
+        public Font SubFont { get; set; }
+
         public FormXPCalculator(FormMain parent)
         {
             InitializeComponent();
+            ConfigurationChanged();
             selectMap.SelectedIndex = 0;
             selectResult.SelectedIndex = 0;
             selectStartLevel.SelectedIndex = 0;
 
             this.Load += FormXPCalculator_Load;
+            Utility.Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
         }
-
 
         public void FormXPCalculator_Load(object sender, EventArgs e)
         {
@@ -152,6 +157,16 @@ namespace ElectronicObserver.Window
         private void checkMVP_CheckedChanged(object sender, EventArgs e)
         {
             PropertyUpdated();
+        }
+
+        private void ConfigurationChanged()
+        {
+            var c = Utility.Configuration.Config;
+
+            MainFont = Font = c.UI.MainFont;
+            SubFont = c.UI.SubFont;
+            BackColor = Utility.Configuration.Config.UI.BackgroundColor;
+            ForeColor = Utility.Configuration.Config.UI.MainFontColor;
         }
     }
 }
