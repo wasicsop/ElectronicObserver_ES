@@ -182,10 +182,6 @@ namespace ElectronicObserver.Window {
             Font = c.UI.MainFont;
 			//StripMenu.Font = Font;
 			StripStatus.Font = Font;
-            DockPanelSkin test = VS2012LightTheme.CreateVisualStudio2012Light();
-            MainDockPanel.Skin = test;
-            MainDockPanel.Skin.AutoHideStripSkin.TextFont = Font;
-			MainDockPanel.Skin.DockPaneStripSkin.TextFont = Font;
             
 		}
 
