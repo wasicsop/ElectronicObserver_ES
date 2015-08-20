@@ -34,9 +34,9 @@ namespace ElectronicObserver.Window {
 			CSDefaultLeft = new DataGridViewCellStyle();
 			CSDefaultLeft.Alignment = DataGridViewContentAlignment.MiddleLeft;
 			CSDefaultLeft.BackColor =
-			CSDefaultLeft.SelectionBackColor = SystemColors.Control;
-			CSDefaultLeft.ForeColor = SystemColors.ControlText;
-			CSDefaultLeft.SelectionForeColor = SystemColors.ControlText;
+			CSDefaultLeft.SelectionBackColor = Utility.Configuration.Config.UI.Theme == "Dark" ? Color.FromArgb(0x22, 0x22, 0x22) : SystemColors.Control;
+			CSDefaultLeft.ForeColor = Utility.Configuration.Config.UI.Theme == "Dark" ?  SystemColors.Control : SystemColors.ControlText;
+			CSDefaultLeft.SelectionForeColor = Utility.Configuration.Config.UI.Theme == "Dark" ? SystemColors.Control : SystemColors.ControlText;
 			CSDefaultLeft.WrapMode = DataGridViewTriState.False;
 
 			CSDefaultCenter = new DataGridViewCellStyle( CSDefaultLeft );
@@ -77,7 +77,9 @@ namespace ElectronicObserver.Window {
 
 				CSCategories[i].BackColor =
 				CSCategories[i].SelectionBackColor = c;
-			}
+                CSCategories[i].ForeColor =
+                CSCategories[i].SelectionForeColor = SystemColors.ControlText;
+            }
 
 			QuestView.DefaultCellStyle = CSDefaultCenter;
 			QuestView_Category.DefaultCellStyle = CSCategories[8 - 1];
@@ -119,8 +121,25 @@ namespace ElectronicObserver.Window {
 			var c = Utility.Configuration.Config;
 
 			QuestView.Font = Font = c.UI.MainFont;
+            switch (Utility.Configuration.Config.UI.Theme)
+            {
+                default:
+                case "Light":
+                    BackColor = SystemColors.Control;
+                    ForeColor = SystemColors.ControlText;
+                    QuestView.ForeColor = SystemColors.ControlText;
+                    QuestView.BackgroundColor = SystemColors.Control;
+                    break;
+                case "Dark":
+                    var charcoal = Color.FromArgb(0x22, 0x22, 0x22);
+                    BackColor = charcoal;
+                    ForeColor = SystemColors.Control;
+                    QuestView.ForeColor = SystemColors.Control;
+                    QuestView.BackgroundColor = charcoal;
+                    break;
+            }
 
-			MenuMain_ShowRunningOnly.Checked = c.FormQuest.ShowRunningOnly;
+            MenuMain_ShowRunningOnly.Checked = c.FormQuest.ShowRunningOnly;
 			MenuMain_ShowOnce.Checked = c.FormQuest.ShowOnce;
 			MenuMain_ShowDaily.Checked = c.FormQuest.ShowDaily;
 			MenuMain_ShowWeekly.Checked = c.FormQuest.ShowWeekly;

@@ -49,7 +49,24 @@ namespace ElectronicObserver.Window {
 		void ConfigurationChanged() {
 
 			LogList.Font = Font = Utility.Configuration.Config.UI.MainFont;
-		}
+            switch (Utility.Configuration.Config.UI.Theme)
+            {
+                default:
+                case "Light":
+                    BackColor = SystemColors.Control;
+                    ForeColor = SystemColors.ControlText;
+                    LogList.ForeColor = SystemColors.ControlText;
+                    LogList.BackColor = SystemColors.Control;
+                    break;
+                case "Dark":
+                    var charcoal = Color.FromArgb(0x22, 0x22, 0x22);
+                    BackColor = charcoal;
+                    ForeColor = SystemColors.Control;
+                    LogList.BackColor = charcoal;
+                    LogList.ForeColor = SystemColors.Control;
+                    break;
+            }
+        }
 
 
 		void Logger_LogAdded( Utility.Logger.LogData data ) {

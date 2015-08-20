@@ -55,15 +55,6 @@
 			this.UI_MainFontSelect = new System.Windows.Forms.Button();
 			this.UI_MainFont = new System.Windows.Forms.TextBox();
 			this.label5 = new System.Windows.Forms.Label();
-            this.DialogColor = new System.Windows.Forms.ColorDialog();
-            this.mainFontColorLabel = new System.Windows.Forms.Label();
-            this.subFontColorLabel = new System.Windows.Forms.Label();
-            this.backgroundColorLabel = new System.Windows.Forms.Label();
-            this.mainFontPreview = new System.Windows.Forms.Label();
-            this.subFontPreview = new System.Windows.Forms.Label();
-            this.ButtonMainFontColor = new System.Windows.Forms.Button();
-            this.ButtonSubFontColor = new System.Windows.Forms.Button();
-            this.ButtonBackgroundColor = new System.Windows.Forms.Button();
 			this.tabPage3 = new System.Windows.Forms.TabPage();
 			this.Log_ShowSpoiler = new System.Windows.Forms.CheckBox();
 			this.label12 = new System.Windows.Forms.Label();
@@ -461,14 +452,6 @@
 			this.tabPage2.Controls.Add(this.UI_MainFontSelect);
 			this.tabPage2.Controls.Add(this.UI_MainFont);
 			this.tabPage2.Controls.Add(this.label5);
-            this.tabPage2.Controls.Add(this.mainFontColorLabel);
-            this.tabPage2.Controls.Add(this.subFontColorLabel);
-            this.tabPage2.Controls.Add(this.ButtonSubFontColor);
-            this.tabPage2.Controls.Add(this.ButtonMainFontColor);
-            this.tabPage2.Controls.Add(this.mainFontPreview);
-            this.tabPage2.Controls.Add(this.subFontPreview);
-            this.tabPage2.Controls.Add(this.backgroundColorLabel);
-            this.tabPage2.Controls.Add(this.ButtonBackgroundColor);
 			this.tabPage2.Location = new System.Drawing.Point(4, 24);
 			this.tabPage2.Name = "tabPage2";
 			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -567,92 +550,6 @@
 			this.label5.Size = new System.Drawing.Size(78, 15);
 			this.label5.TabIndex = 0;
 			this.label5.Text = ConfigRes.Mainfont + ":";
-            // 
-            // DialogColor
-            // 
-            this.DialogColor.AnyColor = true;
-            this.DialogColor.FullOpen = true;
-            //
-            // mainFontColorLabel
-            //
-            this.mainFontColorLabel.AutoSize = true;
-            this.mainFontColorLabel.Location = new System.Drawing.Point(8,80);
-            this.mainFontColorLabel.Name = "mainFontColorLabel";
-            this.mainFontColorLabel.Size = new System.Drawing.Size(78,15);
-            this.mainFontColorLabel.TabIndex = 0;
-            this.mainFontColorLabel.Text = "Main Font Color:";
-            //
-            // subFontColorLabel
-            //
-            this.subFontColorLabel.AutoSize = true;
-            this.subFontColorLabel.Location = new System.Drawing.Point(160,80);
-            this.subFontColorLabel.Name = "subFontColorLabel";
-            this.subFontColorLabel.Size = new System.Drawing.Size(78,15);
-            this.subFontColorLabel.TabIndex = 0;
-            this.subFontColorLabel.Text = "Secondary Color:";
-            //
-            // backgroundColorLabel
-            //
-            this.backgroundColorLabel.AutoSize = true;
-            this.backgroundColorLabel.Location = new System.Drawing.Point(8, 110);
-            this.backgroundColorLabel.Name = "backgroundColorLabel";
-            this.backgroundColorLabel.Size = new System.Drawing.Size(78, 15);
-            this.backgroundColorLabel.TabIndex = 0;
-            this.backgroundColorLabel.Text = "Background Color:";
-            //
-            // mainFontPreview
-            //
-            this.mainFontPreview.AutoSize = true;
-            this.mainFontPreview.Location = new System.Drawing.Point(8,140);
-            this.mainFontPreview.Name = "mainFontPreview";
-            this.mainFontPreview.Size = new System.Drawing.Size(78,15);
-            this.mainFontPreview.TabIndex = 0;
-            this.mainFontPreview.Text = "Main Font Preview";
-            //
-            // subFontPreview
-            //
-            this.subFontPreview.AutoSize = true;
-            this.subFontPreview.Location = new System.Drawing.Point(160, 140);
-            this.subFontPreview.Name = "mainFontColorLabel";
-            this.subFontPreview.Size = new System.Drawing.Size(78,15);
-            this.subFontPreview.TabIndex = 0;
-            this.subFontPreview.Text = "Secondary Preview";
-            // 
-            // ButtonMainFontColor
-            // 
-            this.ButtonMainFontColor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)));
-            this.ButtonMainFontColor.Location = new System.Drawing.Point(110, 76);
-            this.ButtonMainFontColor.Name = "ButtonMainFontColor";
-            this.ButtonMainFontColor.Size = new System.Drawing.Size(32, 23);
-            this.ButtonMainFontColor.TabIndex = 4;
-            this.ButtonMainFontColor.Text = "...";
-            this.ToolTipInfo.SetToolTip(this.ButtonMainFontColor, "Set the color for main font text.");
-            this.ButtonMainFontColor.UseVisualStyleBackColor = true;
-            this.ButtonMainFontColor.Click += ButtonMainFontColor_Click;
-            // 
-            // ButtonSubFontColor
-            // 
-            this.ButtonSubFontColor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)));
-            this.ButtonSubFontColor.Location = new System.Drawing.Point(270, 76);
-            this.ButtonSubFontColor.Name = "ButtonMainFontColor";
-            this.ButtonSubFontColor.Size = new System.Drawing.Size(32, 23);
-            this.ButtonSubFontColor.TabIndex = 4;
-            this.ButtonSubFontColor.Text = "...";
-            this.ToolTipInfo.SetToolTip(this.ButtonSubFontColor, "Set the color for secondary font text.");
-            this.ButtonSubFontColor.UseVisualStyleBackColor = true;
-            this.ButtonSubFontColor.Click += ButtonSubFontColor_Click;
-            // 
-            // ButtonBackgroundColor
-            // 
-            this.ButtonBackgroundColor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)));
-            this.ButtonBackgroundColor.Location = new System.Drawing.Point(124, 106);
-            this.ButtonBackgroundColor.Name = "ButtonBackgroundColor";
-            this.ButtonBackgroundColor.Size = new System.Drawing.Size(32, 23);
-            this.ButtonBackgroundColor.TabIndex = 4;
-            this.ButtonBackgroundColor.Text = "...";
-            this.ToolTipInfo.SetToolTip(this.ButtonBackgroundColor, "Set the color for window backgrounds.");
-            this.ButtonBackgroundColor.UseVisualStyleBackColor = true;
-            this.ButtonBackgroundColor.Click += ButtonBackgroundColor_Click;
             // 
             // tabPage3
             // 
@@ -1838,15 +1735,6 @@
 		private System.Windows.Forms.FontDialog FontSelector;
 		private System.Windows.Forms.Button UI_SubFontApply;
 		private System.Windows.Forms.Button UI_MainFontApply;
-        private System.Windows.Forms.ColorDialog DialogColor;
-        private System.Windows.Forms.Label mainFontColorLabel;
-        private System.Windows.Forms.Label subFontColorLabel;
-        private System.Windows.Forms.Button ButtonMainFontColor;
-        private System.Windows.Forms.Button ButtonSubFontColor;
-        private System.Windows.Forms.Label mainFontPreview;
-        private System.Windows.Forms.Label subFontPreview;
-        private System.Windows.Forms.Label backgroundColorLabel;
-        private System.Windows.Forms.Button ButtonBackgroundColor;
 		private System.Windows.Forms.Button Connection_OutputConnectionScript;
 		private System.Windows.Forms.TabPage tabPage7;
 		private System.Windows.Forms.TabControl tabControl2;

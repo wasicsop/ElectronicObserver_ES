@@ -244,8 +244,20 @@ namespace ElectronicObserver.Window {
 
 			Font = Utility.Configuration.Config.UI.MainFont;
 			MenuMain_ShowShipName.Checked = Utility.Configuration.Config.FormArsenal.ShowShipName;
-
-		}
+            switch (Utility.Configuration.Config.UI.Theme)
+            {
+                default:
+                case "Light":
+                    BackColor = SystemColors.Control;
+                    ForeColor = SystemColors.ControlText;
+                    break;
+                case "Dark":
+                    var charcoal = Color.FromArgb(0x22, 0x22, 0x22);
+                    BackColor = charcoal;
+                    ForeColor = SystemColors.Control;
+                    break;
+            }
+        }
 
 
 		private void MenuMain_ShowShipName_CheckedChanged( object sender, EventArgs e ) {

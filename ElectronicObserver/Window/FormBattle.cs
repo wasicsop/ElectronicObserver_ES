@@ -20,7 +20,7 @@ namespace ElectronicObserver.Window {
 
 	public partial class FormBattle : DockContent {
 
-		private readonly Color WinRankColor_Win = SystemColors.ControlText;
+		private Color WinRankColor_Win = SystemColors.ControlText;
 		private readonly Color WinRankColor_Lose = Color.Red;
 
 
@@ -51,6 +51,8 @@ namespace ElectronicObserver.Window {
 				HPBars[i].Anchor = AnchorStyles.None;
 				HPBars[i].MainFont = MainFont;
 				HPBars[i].SubFont = SubFont;
+                HPBars[i].MainFontColor = ForeColor;
+                HPBars[i].BackColor = BackColor;
 				HPBars[i].UsePrevValue = true;
 				HPBars[i].ShowDifference = true;
 				HPBars[i].MaximumDigit = 9999;
@@ -291,7 +293,7 @@ namespace ElectronicObserver.Window {
 				if ( planeFriend[1] > 0 && planeFriend[0] == planeFriend[1] )
 					AirStage1Friend.ForeColor = Color.Red;
 				else
-					AirStage1Friend.ForeColor = SystemColors.ControlText;
+					AirStage1Friend.ForeColor = Utility.Configuration.Config.UI.Theme == "Dark" ? SystemColors.Control : SystemColors.ControlText;
 
 				int[] planeEnemy = { pd.AircraftLostStage1Enemy, pd.AircraftTotalStage1Enemy };
 				AirStage1Enemy.Text = string.Format( "-{0}/{1}", planeEnemy[0], planeEnemy[1] );
@@ -299,7 +301,7 @@ namespace ElectronicObserver.Window {
 				if ( planeEnemy[1] > 0 && planeEnemy[0] == planeEnemy[1] )
 					AirStage1Enemy.ForeColor = Color.Red;
 				else
-					AirStage1Enemy.ForeColor = SystemColors.ControlText;
+					AirStage1Enemy.ForeColor = Utility.Configuration.Config.UI.Theme == "Dark" ? SystemColors.Control : SystemColors.ControlText;
 
 
 				//触接
@@ -330,13 +332,13 @@ namespace ElectronicObserver.Window {
 				AirSuperiority.Text = Constants.GetAirSuperiority( -1 );
 
 				AirStage1Friend.Text = "-";
-				AirStage1Friend.ForeColor = SystemColors.ControlText;
+				AirStage1Friend.ForeColor = Utility.Configuration.Config.UI.Theme == "Dark" ? SystemColors.Control : SystemColors.ControlText;
 				AirStage1Friend.ImageAlign = ContentAlignment.MiddleCenter;
 				AirStage1Friend.ImageIndex = -1;
 				ToolTipInfo.SetToolTip( AirStage1Friend, null );
 
 				AirStage1Enemy.Text = "-";
-				AirStage1Enemy.ForeColor = SystemColors.ControlText;
+				AirStage1Enemy.ForeColor = Utility.Configuration.Config.UI.Theme == "Dark" ? SystemColors.Control : SystemColors.ControlText;
 				AirStage1Enemy.ImageAlign = ContentAlignment.MiddleCenter;
 				AirStage1Enemy.ImageIndex = -1;
 				ToolTipInfo.SetToolTip( AirStage1Enemy, null );
@@ -351,7 +353,7 @@ namespace ElectronicObserver.Window {
 				if ( planeFriend[1] > 0 && planeFriend[0] == planeFriend[1] )
 					AirStage2Friend.ForeColor = Color.Red;
 				else
-					AirStage2Friend.ForeColor = SystemColors.ControlText;
+					AirStage2Friend.ForeColor = Utility.Configuration.Config.UI.Theme == "Dark" ? SystemColors.Control : SystemColors.ControlText;
 
 				int[] planeEnemy = { pd.AircraftLostStage2Enemy, pd.AircraftTotalStage2Enemy };
 				AirStage2Enemy.Text = string.Format( "-{0}/{1}", planeEnemy[0], planeEnemy[1] );
@@ -359,7 +361,7 @@ namespace ElectronicObserver.Window {
 				if ( planeEnemy[1] > 0 && planeEnemy[0] == planeEnemy[1] )
 					AirStage2Enemy.ForeColor = Color.Red;
 				else
-					AirStage2Enemy.ForeColor = SystemColors.ControlText;
+					AirStage2Enemy.ForeColor = Utility.Configuration.Config.UI.Theme == "Dark" ? SystemColors.Control : SystemColors.ControlText;
 
 
 				//対空カットイン
@@ -385,9 +387,9 @@ namespace ElectronicObserver.Window {
 
 			} else {	//艦対空戦闘発生せず
 				AirStage2Friend.Text = "-";
-				AirStage2Friend.ForeColor = SystemColors.ControlText;
+				AirStage2Friend.ForeColor = Utility.Configuration.Config.UI.Theme == "Dark" ? SystemColors.Control : SystemColors.ControlText;
 				AirStage2Enemy.Text = "-";
-				AirStage2Enemy.ForeColor = SystemColors.ControlText;
+				AirStage2Enemy.ForeColor = Utility.Configuration.Config.UI.Theme == "Dark" ? SystemColors.Control : SystemColors.ControlText;
 				AACutin.Text = GeneralRes.AAPower;
 				AACutin.ImageAlign = ContentAlignment.MiddleCenter;
 				AACutin.ImageIndex = -1;
@@ -438,7 +440,7 @@ namespace ElectronicObserver.Window {
 				if ( planeFriend[1] > 0 && ( planeFriend[0] == planeFriend[1] || planeFriend[2] == planeFriend[3] ) )
 					AirStage1Friend.ForeColor = Color.Red;
 				else
-					AirStage1Friend.ForeColor = SystemColors.ControlText;
+					AirStage1Friend.ForeColor = Utility.Configuration.Config.UI.Theme == "Dark" ? SystemColors.Control : SystemColors.ControlText;
 
 
 				int[] planeEnemy = { 
@@ -454,7 +456,7 @@ namespace ElectronicObserver.Window {
 				if ( planeEnemy[1] > 0 && ( planeEnemy[0] == planeEnemy[1] || planeEnemy[2] == planeEnemy[3] ) )
 					AirStage1Enemy.ForeColor = Color.Red;
 				else
-					AirStage1Enemy.ForeColor = SystemColors.ControlText;
+					AirStage1Enemy.ForeColor = Utility.Configuration.Config.UI.Theme == "Dark" ? SystemColors.Control : SystemColors.ControlText;
 
 
 				//触接
@@ -504,10 +506,10 @@ namespace ElectronicObserver.Window {
 				AirSuperiority.Text = Constants.GetAirSuperiority( -1 );
 				ToolTipInfo.SetToolTip( AirSuperiority, null );
 				AirStage1Friend.Text = "-";
-				AirStage1Friend.ForeColor = SystemColors.ControlText;
+				AirStage1Friend.ForeColor = Utility.Configuration.Config.UI.Theme == "Dark" ? SystemColors.Control : SystemColors.ControlText;
 				ToolTipInfo.SetToolTip( AirStage1Friend, null );
 				AirStage1Enemy.Text = "-";
-				AirStage1Enemy.ForeColor = SystemColors.ControlText;
+				AirStage1Enemy.ForeColor = Utility.Configuration.Config.UI.Theme == "Dark" ? SystemColors.Control : SystemColors.ControlText;
 				ToolTipInfo.SetToolTip( AirStage1Enemy, null );
 			}
 
@@ -531,7 +533,7 @@ namespace ElectronicObserver.Window {
 				if ( planeFriend[1] > 0 && ( planeFriend[0] == planeFriend[1] || planeFriend[2] == planeFriend[3] ) )
 					AirStage2Friend.ForeColor = Color.Red;
 				else
-					AirStage2Friend.ForeColor = SystemColors.ControlText;
+					AirStage2Friend.ForeColor = Utility.Configuration.Config.UI.Theme == "Dark" ? SystemColors.Control : SystemColors.ControlText;
 
 
 				int[] planeEnemy = { 
@@ -547,7 +549,7 @@ namespace ElectronicObserver.Window {
 				if ( planeEnemy[1] > 0 && ( planeEnemy[0] == planeEnemy[1] || planeEnemy[2] == planeEnemy[3] ) )
 					AirStage2Enemy.ForeColor = Color.Red;
 				else
-					AirStage2Enemy.ForeColor = SystemColors.ControlText;
+					AirStage2Enemy.ForeColor = Utility.Configuration.Config.UI.Theme == "Dark" ? SystemColors.Control : SystemColors.ControlText;
 
 
 				//対空カットイン
@@ -594,10 +596,10 @@ namespace ElectronicObserver.Window {
 
 			} else {	//艦対空戦闘発生せず
 				AirStage2Friend.Text = "-";
-				AirStage2Friend.ForeColor = SystemColors.ControlText;
+				AirStage2Friend.ForeColor = Utility.Configuration.Config.UI.Theme == "Dark" ? SystemColors.Control : SystemColors.ControlText;
 				ToolTipInfo.SetToolTip( AirStage2Friend, null );
 				AirStage2Enemy.Text = "-";
-				AirStage2Enemy.ForeColor = SystemColors.ControlText;
+				AirStage2Enemy.ForeColor = Utility.Configuration.Config.UI.Theme == "Dark" ? SystemColors.Control : SystemColors.ControlText;
 				ToolTipInfo.SetToolTip( AirStage2Enemy, null );
 				AACutin.Text = GeneralRes.AAPower;
 				AACutin.ImageAlign = ContentAlignment.MiddleCenter;
@@ -665,7 +667,7 @@ namespace ElectronicObserver.Window {
 					HPBars[i].Value = resultHPs[i];
 					HPBars[i].PrevValue = initialHPs[i];
 					HPBars[i].MaximumValue = maxHPs[i];
-					HPBars[i].BackColor = SystemColors.Control;
+					HPBars[i].BackColor = Utility.Configuration.Config.UI.Theme == "Dark" ? Color.FromArgb(0x22,0x22,0x22) : SystemColors.Control;
 					HPBars[i].Visible = true;
 				} else {
 					HPBars[i].Visible = false;
@@ -710,7 +712,7 @@ namespace ElectronicObserver.Window {
 				}
 			}
 
-			HPBars[bd.MVPShipIndex].BackColor = Color.Moccasin;
+			HPBars[bd.MVPShipIndex].BackColor = Color.FromArgb(0xFF, 0xCC, 0x00);
 
 			FleetCombined.Visible = false;
 			for ( int i = 12; i < 18; i++ ) {
@@ -765,7 +767,7 @@ namespace ElectronicObserver.Window {
 						);
 
 					if ( isEscaped ) HPBars[i].BackColor = Color.Silver;
-					else HPBars[i].BackColor = SystemColors.Control;
+					else HPBars[i].BackColor = Utility.Configuration.Config.UI.Theme == "Dark" ? Color.FromArgb(0x22,0x22,0x22) : SystemColors.Control;
 				}
 			}
 
@@ -806,14 +808,14 @@ namespace ElectronicObserver.Window {
 						);
 
 					if ( isEscaped ) HPBars[i + 12].BackColor = Color.Silver;
-					else HPBars[i + 12].BackColor = SystemColors.Control;
+					else HPBars[i + 12].BackColor = Utility.Configuration.Config.UI.Theme == "Dark" ? Color.FromArgb(0x22,0x22,0x22) : SystemColors.Control;
 				}
 			}
 
 
-			HPBars[bd.MVPShipIndex].BackColor = Color.Moccasin;
-			HPBars[12 + bd.MVPShipCombinedIndex].BackColor = Color.Moccasin;
-		}
+            HPBars[bd.MVPShipIndex].BackColor = Color.FromArgb(0xFF, 0xCC, 0x00);
+            HPBars[12 + bd.MVPShipCombinedIndex].BackColor = Color.FromArgb(0xFF, 0xCC, 0x00);
+        }
 
 
 		/// <summary>
@@ -1069,8 +1071,21 @@ namespace ElectronicObserver.Window {
 
 			MainFont = TableTop.Font = TableBottom.Font = Font = Utility.Configuration.Config.UI.MainFont;
 			SubFont = Utility.Configuration.Config.UI.SubFont;
-
-		}
+            switch (Utility.Configuration.Config.UI.Theme)
+            {
+                default:
+                case "Light":
+                    BackColor = SystemColors.Control;
+                    ForeColor = SystemColors.ControlText;
+                    break;
+                case "Dark":
+                    var charcoal = Color.FromArgb(0x22, 0x22, 0x22);
+                    BackColor = charcoal;
+                    ForeColor = SystemColors.Control;
+                    WinRankColor_Win = SystemColors.Control;
+                    break;
+            }
+        }
 
 
 

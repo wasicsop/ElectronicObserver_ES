@@ -74,17 +74,14 @@ namespace ElectronicObserver.Window {
             }
             Thread.CurrentThread.CurrentCulture = c;
             Thread.CurrentThread.CurrentUICulture = ui;
-
             Translator = new DynamicTranslator();
             Instance = this;
             this.SetStyle(ControlStyles.SupportsTransparentBackColor, true);
+            Utility.Configuration.Instance.Load();
             InitializeComponent();
 		}
 
 		private async void FormMain_Load( object sender, EventArgs e ) {
-
-			Utility.Configuration.Instance.Load();
-
 
 			Utility.Logger.Instance.LogAdded += new Utility.LogAddedEventHandler( ( Utility.Logger.LogData data ) => {
 				if ( InvokeRequired ) {
@@ -180,9 +177,29 @@ namespace ElectronicObserver.Window {
             
 
             Font = c.UI.MainFont;
-			//StripMenu.Font = Font;
-			StripStatus.Font = Font;
-            
+            //StripMenu.Font = Font;
+            StripStatus.Font = Font;
+            switch (c.UI.Theme)
+            {
+                default:
+                case "Light":
+                    BackColor = SystemColors.Control;
+                    ForeColor = SystemColors.ControlText;
+                    StripMenu.BackColor = SystemColors.Control;
+                    StripMenu.ForeColor = SystemColors.ControlText;
+                    StripStatus.BackColor = SystemColors.Control;
+                    StripStatus.ForeColor = SystemColors.ControlText;
+                    break;
+                case "Dark":
+                    var charcoal = Color.FromArgb(0x22, 0x22, 0x22);
+                    BackColor = charcoal;
+                    ForeColor = SystemColors.Control;
+                    StripStatus.BackColor = charcoal;
+                    StripStatus.ForeColor = SystemColors.Control;
+                    StripMenu.BackColor = charcoal;
+                    StripMenu.ForeColor = SystemColors.ControlDark;
+                    break;
+            }
 		}
 
         private static Color CorrectColor(Color color)

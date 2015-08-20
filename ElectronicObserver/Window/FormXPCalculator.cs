@@ -165,8 +165,19 @@ namespace ElectronicObserver.Window
 
             MainFont = Font = c.UI.MainFont;
             SubFont = c.UI.SubFont;
-            BackColor = Utility.Configuration.Config.UI.BackgroundColor;
-            ForeColor = Utility.Configuration.Config.UI.MainFontColor;
+            switch (Utility.Configuration.Config.UI.Theme)
+            {
+                default:
+                case "Light":
+                    BackColor = SystemColors.Control;
+                    ForeColor = SystemColors.ControlText;
+                    break;
+                case "Dark":
+                    var charcoal = Color.FromArgb(0x22, 0x22, 0x22);
+                    BackColor = charcoal;
+                    ForeColor = SystemColors.Control;
+                    break;
+            }
         }
     }
 }

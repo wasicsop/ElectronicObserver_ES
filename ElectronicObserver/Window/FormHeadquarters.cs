@@ -109,15 +109,31 @@ namespace ElectronicObserver.Window {
 			Font = FlowPanelMaster.Font = Utility.Configuration.Config.UI.MainFont;
 			HQLevel.MainFont = Utility.Configuration.Config.UI.MainFont;
 			HQLevel.SubFont = Utility.Configuration.Config.UI.SubFont;
-
-			// 点滅しない設定にしたときに消灯状態で固定されるのを防ぐ
-			if ( !Utility.Configuration.Config.FormHeadquarters.BlinkAtMaximum ) {
+            switch (Utility.Configuration.Config.UI.Theme)
+            {
+                default:
+                case "Light":
+                    BackColor = SystemColors.Control;
+                    ForeColor = SystemColors.ControlText;
+                    HQLevel.MainFontColor = SystemColors.ControlText;
+                    HQLevel.SubFontColor = SystemColors.ControlDarkDark;
+                    break;
+                case "Dark":
+                    var charcoal = Color.FromArgb(0x22, 0x22, 0x22);
+                    BackColor = charcoal;
+                    ForeColor = SystemColors.Control;
+                    HQLevel.MainFontColor = SystemColors.Control;
+                    HQLevel.SubFontColor = SystemColors.ControlDark;
+                    break;
+            }
+            // 点滅しない設定にしたときに消灯状態で固定されるのを防ぐ
+            if ( !Utility.Configuration.Config.FormHeadquarters.BlinkAtMaximum ) {
 				if ( ShipCount.Tag as bool? ?? false ) {
-					ShipCount.BackColor = Color.LightCoral;
+					ShipCount.BackColor = Color.IndianRed;
 				}
 
 				if ( EquipmentCount.Tag as bool? ?? false ) {
-					EquipmentCount.BackColor = Color.LightCoral;
+                    EquipmentCount.BackColor = Color.IndianRed;
 				}
 			}
 		}
@@ -181,7 +197,7 @@ namespace ElectronicObserver.Window {
 
 				ShipCount.Text = string.Format( "{0}/{1}", RealShipCount, db.Admiral.MaxShipCount );
 				if ( RealShipCount > db.Admiral.MaxShipCount - 5 ) {
-					ShipCount.BackColor = Color.LightCoral;
+					ShipCount.BackColor = Color.IndianRed;
 				} else {
 					ShipCount.BackColor = Color.Transparent;
 				}
@@ -189,7 +205,7 @@ namespace ElectronicObserver.Window {
 
 				EquipmentCount.Text = string.Format( "{0}/{1}", RealEquipmentCount, db.Admiral.MaxEquipmentCount );
 				if ( RealEquipmentCount > db.Admiral.MaxEquipmentCount + 3 - 20 ) {
-					EquipmentCount.BackColor = Color.LightCoral;
+					EquipmentCount.BackColor = Color.IndianRed;
 				} else {
 					EquipmentCount.BackColor = Color.Transparent;
 				}
@@ -211,7 +227,7 @@ namespace ElectronicObserver.Window {
 			//Resources
 			FlowPanelResource.SuspendLayout();
 			{
-				Color overcolor = Color.Moccasin;
+				Color overcolor = Color.FromArgb(0xE5, 0x68, 0);
 
 				var resday = RecordManager.Instance.Resource.GetRecord( DateTime.Now.AddHours( -5 ).Date.AddHours( 5 ) );
 				var resweek = RecordManager.Instance.Resource.GetRecord( DateTime.Now.AddHours( -5 ).Date.AddDays( -( ( (int)DateTime.Now.AddHours( -5 ).DayOfWeek + 6 ) % 7 ) ).AddHours( 5 ) );	//月曜日起点
@@ -266,11 +282,11 @@ namespace ElectronicObserver.Window {
 
 			if ( Utility.Configuration.Config.FormHeadquarters.BlinkAtMaximum ) {
 				if ( ShipCount.Tag as bool? ?? false ) {
-					ShipCount.BackColor = DateTime.Now.Second % 2 == 0 ? Color.LightCoral : Color.Transparent;
+					ShipCount.BackColor = DateTime.Now.Second % 2 == 0 ? Color.IndianRed : Color.Transparent;
 				}
 
 				if ( EquipmentCount.Tag as bool? ?? false ) {
-					EquipmentCount.BackColor = DateTime.Now.Second % 2 == 0 ? Color.LightCoral : Color.Transparent;
+					EquipmentCount.BackColor = DateTime.Now.Second % 2 == 0 ? Color.IndianRed : Color.Transparent;
 				}
 			}
 		}

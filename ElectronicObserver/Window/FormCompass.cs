@@ -118,7 +118,7 @@ namespace ElectronicObserver.Window {
 						case 0:
 						case 1:		//normal
 						default:
-							ShipName.ForeColor = Color.FromArgb( 0x00, 0x00, 0x00 ); break;
+							ShipName.ForeColor = Utility.Configuration.Config.UI.Theme == "Dark" ? SystemColors.Control : Color.FromArgb( 0x00, 0x00, 0x00 ); break;
 						case 2:		//elite
 							ShipName.ForeColor = Color.FromArgb( 0xFF, 0x00, 0x00 ); break;
 						case 3:		//flagship
@@ -358,12 +358,12 @@ namespace ElectronicObserver.Window {
 					case 0:
 					case 1:
 					default:	//昼夜戦・その他
-						return SystemColors.ControlText;
+						return Utility.Configuration.Config.UI.Theme == "Dark" ? SystemColors.Control : SystemColors.ControlText;
 					case 2:
 					case 3:		//夜戦・夜昼戦
-						return Color.Navy;
+						return Color.Blue;
 					case 4:		//航空戦
-						return Color.DarkGreen;
+						return Color.Green;
 				}
 			};
 
@@ -684,7 +684,20 @@ namespace ElectronicObserver.Window {
 					ControlMember[i].Equipments.ShowAircraft = flag;
 				}
 			}
-		}
+            switch (Utility.Configuration.Config.UI.Theme)
+            {
+                default:
+                case "Light":
+                    BackColor = SystemColors.Control;
+                    ForeColor = SystemColors.ControlText;
+                    break;
+                case "Dark":
+                    var charcoal = Color.FromArgb(0x22, 0x22, 0x22);
+                    BackColor = charcoal;
+                    ForeColor = SystemColors.Control;
+                    break;
+            }
+        }
 
 
 

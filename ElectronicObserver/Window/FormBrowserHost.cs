@@ -99,8 +99,22 @@ namespace ElectronicObserver.Window {
 		}
 
 		internal void ConfigurationChanged() {
-			Browser.AsyncRemoteRun( () => Browser.Proxy.ConfigurationChanged( Configuration ) );
-		}
+            switch (Utility.Configuration.Config.UI.Theme)
+            {
+                default:
+                case "Light":
+                    BackColor = SystemColors.Control;
+                    ForeColor = SystemColors.ControlText;
+                    break;
+                case "Dark":
+                    var charcoal = Color.FromArgb(0x22, 0x22, 0x22);
+                    BackColor = charcoal;
+                    ForeColor = SystemColors.Control;
+                    break;
+            }
+            Configuration.Theme = Utility.Configuration.Config.UI.Theme;
+            Browser.AsyncRemoteRun(() => Browser.Proxy.ConfigurationChanged(Configuration));
+        }
 
 
 		//ロード直後の適用ではレイアウトがなぜか崩れるのでこのタイミングでも適用
@@ -181,6 +195,7 @@ namespace ElectronicObserver.Window {
 				config.ToolMenuDockStyle = (int)c.ToolMenuDockStyle;
 				config.IsToolMenuVisible = c.IsToolMenuVisible;
 				config.ConfirmAtRefresh = c.ConfirmAtRefresh;
+                config.Theme = Utility.Configuration.Config.UI.Theme;
 
 				return config;
 			}

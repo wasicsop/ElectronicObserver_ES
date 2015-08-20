@@ -160,17 +160,13 @@ namespace ElectronicObserver.Utility {
 				/// </summary>
 				public SerializableFont SubFont { get; set; }
 
-                public Color MainFontColor { get; set; }
-                public Color SubFontColor { get; set; }
-                public Color BackgroundColor { get; set; }
+                public String Theme { get; set; }
 
 				public ConfigUI() {
 					//*/
 					MainFont = new Font( "Meiryo UI", 12, FontStyle.Regular, GraphicsUnit.Pixel );
 					SubFont = new Font( "Meiryo UI", 10, FontStyle.Regular, GraphicsUnit.Pixel );
-                    MainFontColor = Color.FromArgb(0x00, 0x00, 0x00);
-                    SubFontColor = Color.FromArgb(0x66, 0x66, 0x66);
-                    BackgroundColor = Color.FromArgb(0xF0, 0xF0, 0xF0);
+                    Theme = "Light";
 					//*/
 				}
 			}

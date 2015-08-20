@@ -43,6 +43,7 @@ namespace ElectronicObserver.Window {
 				Name.Anchor = AnchorStyles.Left;
 				Name.Font = parent.MainFont;
 				Name.ForeColor = parent.MainFontColor;
+                Name.BackColor = parent.BackColor;
 				Name.Padding = new Padding( 0, 1, 0, 1 );
 				Name.Margin = new Padding( 2, 0, 2, 0 );
 				Name.AutoSize = true;
@@ -52,6 +53,7 @@ namespace ElectronicObserver.Window {
 				StateMain.Anchor = AnchorStyles.Left;
 				StateMain.Font = parent.MainFont;
 				StateMain.ForeColor = parent.MainFontColor;
+                StateMain.BackColor = parent.BackColor;
 				StateMain.ImageList = ResourceManager.Instance.Icons;
 				StateMain.Padding = new Padding( 2, 2, 2, 2 );
 				StateMain.Margin = new Padding( 2, 0, 2, 0 );
@@ -61,6 +63,7 @@ namespace ElectronicObserver.Window {
 				AirSuperiority.Anchor = AnchorStyles.Left;
 				AirSuperiority.Font = parent.MainFont;
 				AirSuperiority.ForeColor = parent.MainFontColor;
+                AirSuperiority.BackColor = parent.BackColor;
 				AirSuperiority.ImageList = ResourceManager.Instance.Equipments;
 				AirSuperiority.ImageIndex = (int)ResourceManager.EquipmentContent.CarrierBasedFighter;
 				AirSuperiority.Padding = new Padding( 2, 2, 2, 2 );
@@ -71,6 +74,7 @@ namespace ElectronicObserver.Window {
 				SearchingAbility.Anchor = AnchorStyles.Left;
 				SearchingAbility.Font = parent.MainFont;
 				SearchingAbility.ForeColor = parent.MainFontColor;
+                SearchingAbility.BackColor = parent.BackColor;
 				SearchingAbility.ImageList = ResourceManager.Instance.Equipments;
 				SearchingAbility.ImageIndex = (int)ResourceManager.EquipmentContent.CarrierBasedRecon;
 				SearchingAbility.Padding = new Padding( 2, 2, 2, 2 );
@@ -207,6 +211,7 @@ namespace ElectronicObserver.Window {
 				Name.ImageAlign = ContentAlignment.MiddleCenter;
 				Name.Font = parent.MainFont;
 				Name.ForeColor = parent.MainFontColor;
+                Name.BackColor = parent.BackColor;
 				Name.Padding = new Padding( 0, 1, 0, 1 );
 				Name.Margin = new Padding( 2, 0, 2, 0 );
 				Name.AutoSize = true;
@@ -244,6 +249,7 @@ namespace ElectronicObserver.Window {
 				HP.SubFont = parent.SubFont;
 				HP.MainFontColor = parent.MainFontColor;
 				HP.SubFontColor = parent.SubFontColor;
+                HP.BackColor = parent.BackColor;
 				HP.Padding = new Padding( 0, 0, 0, 0 );
 				HP.Margin = new Padding( 2, 1, 2, 2 );
 				HP.AutoSize = true;
@@ -256,6 +262,7 @@ namespace ElectronicObserver.Window {
 				Condition.Anchor = AnchorStyles.Left | AnchorStyles.Right;
 				Condition.Font = parent.MainFont;
 				Condition.ForeColor = parent.MainFontColor;
+                Condition.BackColor = parent.BackColor;
 				Condition.TextAlign = ContentAlignment.BottomRight;
 				Condition.ImageAlign = ContentAlignment.MiddleLeft;
 				Condition.ImageList = ResourceManager.Instance.Icons;
@@ -393,8 +400,8 @@ namespace ElectronicObserver.Window {
 					if ( isEscaped ) {
 						HP.BackColor = Color.Silver;
 					} else {
-						HP.BackColor = SystemColors.Control;
-					}
+						HP.BackColor = Utility.Configuration.Config.UI.Theme == "Dark" ? Color.FromArgb(0x22, 0x22, 0x22) : SystemColors.Control;
+                    }
 					{
 						StringBuilder sb = new StringBuilder();
 						double hprate = (double)ship.HPCurrent / ship.HPMax;
@@ -536,9 +543,19 @@ namespace ElectronicObserver.Window {
 			Utility.SystemEvents.UpdateTimerTick += UpdateTimerTick;
 
 			ConfigurationChanged();
-
-			MainFontColor = Color.FromArgb( 0x00, 0x00, 0x00 );
-			SubFontColor = Color.FromArgb( 0x88, 0x88, 0x88 );
+            
+            switch(Utility.Configuration.Config.UI.Theme)
+            {
+                default:
+                case "Light":
+                    MainFontColor = Color.FromArgb(0x00, 0x00, 0x00);
+                    SubFontColor = Color.FromArgb(0x88, 0x88, 0x88);
+                    break;
+                case "Dark":
+                    MainFontColor = SystemColors.Control;
+                    SubFontColor = Color.FromArgb(0xAA, 0xAA, 0xAA);
+                    break;
+            }
 
 
 			//ui init
@@ -751,8 +768,24 @@ namespace ElectronicObserver.Window {
 
 			MainFont = Font = c.UI.MainFont;
 			SubFont = c.UI.SubFont;
-
-			AutoScroll = ContextMenuFleet_IsScrollable.Checked = c.FormFleet.IsScrollable;
+            switch (Utility.Configuration.Config.UI.Theme)
+            {
+                default:
+                case "Light":
+                    BackColor = SystemColors.Control;
+                    ForeColor = SystemColors.ControlText;
+                    MainFontColor = Color.FromArgb(0x00, 0x00, 0x00);
+                    SubFontColor = Color.FromArgb(0x88, 0x88, 0x88);
+                    break;
+                case "Dark":
+                    var charcoal = Color.FromArgb(0x22, 0x22, 0x22);
+                    BackColor = charcoal;
+                    ForeColor = SystemColors.Control;
+                    MainFontColor = SystemColors.Control;
+                    SubFontColor = Color.FromArgb(0xAA, 0xAA, 0xAA);
+                    break;
+            }
+            AutoScroll = ContextMenuFleet_IsScrollable.Checked = c.FormFleet.IsScrollable;
 			ContextMenuFleet_FixShipNameWidth.Checked = c.FormFleet.FixShipNameWidth;
 
 			if ( ControlFleet != null && KCDatabase.Instance.Fleet[FleetID] != null ) {

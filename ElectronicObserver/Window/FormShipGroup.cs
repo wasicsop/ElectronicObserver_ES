@@ -23,20 +23,20 @@ namespace ElectronicObserver.Window {
 
 
 		/// <summary>タブ背景色(アクティブ)</summary>
-		private readonly Color TabActiveColor = Color.FromArgb( 0xFF, 0xFF, 0xCC );
+		private readonly Color TabActiveColor = Utility.Configuration.Config.UI.Theme == "Dark" ? Color.FromArgb(0x44, 0x44, 0x44) : Color.FromArgb( 0xFF, 0xFF, 0xCC );
 
 		/// <summary>タブ背景色(非アクティブ)</summary>
-		private readonly Color TabInactiveColor = SystemColors.Control;
+		private readonly Color TabInactiveColor = Utility.Configuration.Config.UI.Theme == "Dark" ? Color.FromArgb(0x22, 0x22, 0x22) : SystemColors.Control;
 
 
 
-		// セル背景色
-		private readonly Color CellColorRed = Color.FromArgb( 0xFF, 0xBB, 0xBB );
-		private readonly Color CellColorOrange = Color.FromArgb( 0xFF, 0xDD, 0xBB );
-		private readonly Color CellColorYellow = Color.FromArgb( 0xFF, 0xFF, 0xBB );
-		private readonly Color CellColorGreen = Color.FromArgb( 0xBB, 0xFF, 0xBB );
-		private readonly Color CellColorGray = Color.FromArgb( 0xBB, 0xBB, 0xBB );
-		private readonly Color CellColorCherry = Color.FromArgb( 0xFF, 0xDD, 0xDD );
+        // セル背景色
+        private readonly Color CellColorRed = Color.IndianRed;
+        private readonly Color CellColorOrange = Color.FromArgb(0xE5, 0x68, 0);
+        private readonly Color CellColorYellow = Color.FromArgb(0xFF, 0xCC, 0x00);
+        private readonly Color CellColorGreen = Color.LimeGreen;
+        private readonly Color CellColorGray = Color.DarkGray;
+		private readonly Color CellColorCherry = Color.LightCoral;
 
 		//セルスタイル
 		private DataGridViewCellStyle CSDefaultLeft, CSDefaultCenter, CSDefaultRight,
@@ -64,9 +64,9 @@ namespace ElectronicObserver.Window {
 
 			CSDefaultLeft = new DataGridViewCellStyle();
 			CSDefaultLeft.Alignment = DataGridViewContentAlignment.MiddleLeft;
-			CSDefaultLeft.BackColor = SystemColors.Control;
+			CSDefaultLeft.BackColor = Utility.Configuration.Config.UI.Theme == "Dark" ? Color.FromArgb(0x22, 0x22, 0x22) : SystemColors.Control;
 			CSDefaultLeft.Font = Font;
-			CSDefaultLeft.ForeColor = SystemColors.ControlText;
+			CSDefaultLeft.ForeColor = Utility.Configuration.Config.UI.Theme == "Dark" ?  SystemColors.Control : SystemColors.ControlText;
 			CSDefaultLeft.SelectionBackColor = Color.FromArgb( 0xFF, 0xFF, 0xCC );
 			CSDefaultLeft.SelectionForeColor = SystemColors.ControlText;
 			CSDefaultLeft.WrapMode = DataGridViewTriState.False;
@@ -188,8 +188,28 @@ namespace ElectronicObserver.Window {
 			splitContainer1.SplitterDistance = config.FormShipGroup.SplitterDistance;
 			MenuGroup_AutoUpdate.Checked = config.FormShipGroup.AutoUpdate;
 			MenuGroup_ShowStatusBar.Checked = config.FormShipGroup.ShowStatusBar;
-
-		}
+            switch (Utility.Configuration.Config.UI.Theme)
+            {
+                default:
+                case "Light":
+                    BackColor = SystemColors.Control;
+                    ForeColor = SystemColors.ControlText;
+                    ShipView.ForeColor = SystemColors.ControlText;
+                    ShipView.BackgroundColor = SystemColors.Control;
+                    StatusBar.ForeColor = SystemColors.ControlText;
+                    StatusBar.BackColor = SystemColors.Control;
+                    break;
+                case "Dark":
+                    var charcoal = Color.FromArgb(0x22, 0x22, 0x22);
+                    BackColor = charcoal;
+                    ForeColor = SystemColors.Control;
+                    ShipView.BackgroundColor = charcoal;
+                    ShipView.ForeColor = SystemColors.Control;
+                    StatusBar.ForeColor = SystemColors.Control;
+                    StatusBar.BackColor = charcoal;
+                    break;
+            }
+        }
 
 
 
@@ -302,7 +322,7 @@ namespace ElectronicObserver.Window {
 				GetEquipmentString( ship, 2 ),
 				GetEquipmentString( ship, 3 ),
 				GetEquipmentString( ship, 4 ),
-
+                GetExEqupimentString(ship),
 				ship.FleetWithIndex,
 				ship.RepairingDockID == -1 ? ship.RepairTime : -1000 + ship.RepairingDockID,
 				ship.FirepowerBase,

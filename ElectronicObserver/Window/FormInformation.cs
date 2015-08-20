@@ -52,7 +52,24 @@ namespace ElectronicObserver.Window {
 		void ConfigurationChanged() {
 
 			Font = TextInformation.Font = Utility.Configuration.Config.UI.MainFont;
-		}
+            switch (Utility.Configuration.Config.UI.Theme)
+            {
+                default:
+                case "Light":
+                    BackColor = SystemColors.Control;
+                    ForeColor = SystemColors.ControlText;
+                    TextInformation.BackColor = SystemColors.Control;
+                    TextInformation.ForeColor = SystemColors.ControlText;
+                    break;
+                case "Dark":
+                    var charcoal = Color.FromArgb(0x22, 0x22, 0x22);
+                    BackColor = charcoal;
+                    ForeColor = SystemColors.Control;
+                    TextInformation.BackColor = charcoal;
+                    TextInformation.ForeColor = SystemColors.Control;
+                    break;
+            }
+        }
 
 
 		void Updated( string apiname, dynamic data ) {
