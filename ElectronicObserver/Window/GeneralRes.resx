@@ -631,10 +631,10 @@
   <data name="TypeFilter" xml:space="preserve">
     <value>出現種別(&amp;T)</value>
   </data>
-  <data name="Unaquired" xml:space="preserve">
+  <data name="Unacquired" xml:space="preserve">
     <value>(未取得)</value>
   </data>
-  <data name="UnaquiredQuests" xml:space="preserve">
+  <data name="UnacquiredQuests" xml:space="preserve">
     <value>未取得の任務</value>
   </data>
   <data name="UniqueID" xml:space="preserve">
@@ -724,5 +724,35 @@
   </data>
   <data name="Year" xml:space="preserve">
     <value>年(&amp;Y)</value>
+  </data>
+  <data name="AerialRecon" xml:space="preserve">
+    <value>航空偵察</value>
+  </data>
+  <data name="Failure" xml:space="preserve">
+    <value>失敗</value>
+  </data>
+  <data name="GreatSuccess" xml:space="preserve">
+    <value>大成功</value>
+  </data>
+  <data name="Success" xml:space="preserve">
+    <value>成功</value>
+  </data>
+  <data name="Expansion" xml:space="preserve">
+    <value>補強</value>
+  </data>
+  <data name="ChangeTooltip" xml:space="preserve">
+    <value>今日: {0:+##;-##;±0}
+今週: {1:+##;-##;±0}
+今月: {2:+##;-##;±0}</value>
+  </data>
+  <data name="BattleComplete" xml:space="preserve">
+    <value>戦闘終了</value>
+  </data>
+  <data name="EnemyName" xml:space="preserve">
+    <value>敵艦隊名: {0}
+</value>
+  </data>
+  <data name="NoSecondAirStage" xml:space="preserve">
+    <value>(第二次戦発生せず)</value>
   </data>
 </root>

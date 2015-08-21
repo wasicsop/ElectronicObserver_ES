@@ -139,5 +139,10 @@ namespace BrowserLib {
 		[DataMember]
 		public bool ConfirmAtRefresh { get; set; }
 
+        /// <summary>
+        /// Visual style for browser.
+        /// </summary>
+        [DataMember]
+        public uint Theme { get; set; }
 	}
 }

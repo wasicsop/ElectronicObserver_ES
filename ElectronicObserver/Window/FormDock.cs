@@ -203,7 +203,9 @@ namespace ElectronicObserver.Window {
 		void ConfigurationChanged() {
 
 			Font = Utility.Configuration.Config.UI.MainFont;
-		}
+            ForeColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.MainFontColor);
+            BackColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.BackgroundColor);
+        }
 
 
 		protected override string GetPersistString() {

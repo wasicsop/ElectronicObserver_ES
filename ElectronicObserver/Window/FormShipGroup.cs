@@ -23,23 +23,23 @@ namespace ElectronicObserver.Window {
 
 
 		/// <summary>タブ背景色(アクティブ)</summary>
-		private readonly Color TabActiveColor = Color.FromArgb( 0xFF, 0xFF, 0xCC );
+		private readonly Color TabActiveColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.SubFontColor);
 
-		/// <summary>タブ背景色(非アクティブ)</summary>
-		private readonly Color TabInactiveColor = SystemColors.Control;
+        /// <summary>タブ背景色(非アクティブ)</summary>
+        private readonly Color TabInactiveColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.BackgroundColor);
 
 
 
-		// セル背景色
-		private readonly Color CellColorRed = Color.FromArgb( 0xFF, 0xBB, 0xBB );
-		private readonly Color CellColorOrange = Color.FromArgb( 0xFF, 0xDD, 0xBB );
-		private readonly Color CellColorYellow = Color.FromArgb( 0xFF, 0xFF, 0xBB );
-		private readonly Color CellColorGreen = Color.FromArgb( 0xBB, 0xFF, 0xBB );
-		private readonly Color CellColorGray = Color.FromArgb( 0xBB, 0xBB, 0xBB );
-		private readonly Color CellColorCherry = Color.FromArgb( 0xFF, 0xDD, 0xDD );
+        // セル背景色
+        private readonly Color CellColorRed = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.RedHighlight);
+        private readonly Color CellColorOrange = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.OrangeHighlight);
+        private readonly Color CellColorYellow = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.YellowHighlight);
+        private readonly Color CellColorGreen = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.GreenHighlight);
+        private readonly Color CellColorGray = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.GrayHighlight);
+        private readonly Color CellColorCherry = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.PinkHighlight);
 
-		//セルスタイル
-		private DataGridViewCellStyle CSDefaultLeft, CSDefaultCenter, CSDefaultRight,
+        //セルスタイル
+        private DataGridViewCellStyle CSDefaultLeft, CSDefaultCenter, CSDefaultRight,
 			CSRedRight, CSOrangeRight, CSYellowRight, CSGreenRight, CSGrayRight, CSCherryRight,
 			CSIsLocked;
 
@@ -64,10 +64,10 @@ namespace ElectronicObserver.Window {
 
 			CSDefaultLeft = new DataGridViewCellStyle();
 			CSDefaultLeft.Alignment = DataGridViewContentAlignment.MiddleLeft;
-			CSDefaultLeft.BackColor = SystemColors.Control;
-			CSDefaultLeft.Font = Font;
-			CSDefaultLeft.ForeColor = SystemColors.ControlText;
-			CSDefaultLeft.SelectionBackColor = Color.FromArgb( 0xFF, 0xFF, 0xCC );
+			CSDefaultLeft.BackColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.BackgroundColor);
+            CSDefaultLeft.Font = Font;
+			CSDefaultLeft.ForeColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.MainFontColor);
+            CSDefaultLeft.SelectionBackColor = Color.FromArgb( 0xFF, 0xFF, 0xCC );
 			CSDefaultLeft.SelectionForeColor = SystemColors.ControlText;
 			CSDefaultLeft.WrapMode = DataGridViewTriState.False;
 
@@ -113,6 +113,7 @@ namespace ElectronicObserver.Window {
 			ShipView_Equipment3.DefaultCellStyle = CSDefaultLeft;
 			ShipView_Equipment4.DefaultCellStyle = CSDefaultLeft;
 			ShipView_Equipment5.DefaultCellStyle = CSDefaultLeft;
+            ShipView_ExEquipment.DefaultCellStyle = CSDefaultLeft;
 
 			#endregion
 
@@ -187,8 +188,13 @@ namespace ElectronicObserver.Window {
 			splitContainer1.SplitterDistance = config.FormShipGroup.SplitterDistance;
 			MenuGroup_AutoUpdate.Checked = config.FormShipGroup.AutoUpdate;
 			MenuGroup_ShowStatusBar.Checked = config.FormShipGroup.ShowStatusBar;
-
-		}
+            BackColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.BackgroundColor);
+            ForeColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.MainFontColor);
+            ShipView.ForeColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.MainFontColor);
+            ShipView.BackgroundColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.BackgroundColor);
+            StatusBar.ForeColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.MainFontColor);
+            StatusBar.BackColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.BackgroundColor);
+        }
 
 
 
@@ -301,6 +307,7 @@ namespace ElectronicObserver.Window {
 				GetEquipmentString( ship, 2 ),
 				GetEquipmentString( ship, 3 ),
 				GetEquipmentString( ship, 4 ),
+                GetExEqupimentString(ship),
 				ship.FleetWithIndex,
 				ship.RepairingDockID == -1 ? ship.RepairTime : -1000 + ship.RepairingDockID,
 				ship.FirepowerBase,
@@ -514,11 +521,24 @@ namespace ElectronicObserver.Window {
 			}
 		}
 
+        private string GetExEqupimentString(ShipData ship)
+        {
+            switch (ship.ExpansionSlot)
+            {
+                case 0:
+                    return "Locked";
+                case -1:
+                    return GeneralRes.None;
+                default:
+                    return ship.ExpansionSlotInstance.NameWithLevel;
+            }
+        }
+
 
 		private void ShipView_CellFormatting( object sender, DataGridViewCellFormattingEventArgs e ) {
 
 			if ( e.ColumnIndex == ShipView_ShipType.Index ) {
-				e.Value = KCDatabase.Instance.ShipTypes[(int)e.Value].Name;
+				e.Value = FormMain.Instance.Translator.GetTranslation(KCDatabase.Instance.ShipTypes[(int)e.Value].Name, TranslationType.ShipTypes);
 				e.FormattingApplied = true;
 
 			} else if ( e.ColumnIndex == ShipView_Fleet.Index ) {

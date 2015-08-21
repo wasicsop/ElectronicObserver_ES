@@ -244,8 +244,8 @@ namespace ElectronicObserver.Window.Control {
 			_subFont = new Font( "Meiryo UI", 10, FontStyle.Regular, GraphicsUnit.Pixel );
 			_subFontColor = FromArgb( 0xFF888888 );
 
-			_repairFontColor = FromArgb( 0xFF000088 );
-			_text = "HP:";
+            _repairFontColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.RepairColor);
+            _text = "HP:";
 
 			_HPBar.UsePrevValue = true;
 			_showDifference = false;
@@ -261,7 +261,7 @@ namespace ElectronicObserver.Window.Control {
 
 
 			Graphics g = e.Graphics;
-			Rectangle basearea = new Rectangle( Padding.Left, Padding.Top, Width - Padding.Horizontal, Height - Padding.Vertical );
+            Rectangle basearea = new Rectangle( Padding.Left, Padding.Top, Width - Padding.Horizontal, Height - Padding.Vertical );
 			Size barSize = _HPBar.GetPreferredSize( new Size( basearea.Width, 0 ) );
 
 

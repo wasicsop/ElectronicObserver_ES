@@ -43,6 +43,7 @@ namespace ElectronicObserver.Window {
 				Name.Anchor = AnchorStyles.Left;
 				Name.Font = parent.MainFont;
 				Name.ForeColor = parent.MainFontColor;
+                Name.BackColor = parent.BackColor;
 				Name.Padding = new Padding( 0, 1, 0, 1 );
 				Name.Margin = new Padding( 2, 0, 2, 0 );
 				Name.AutoSize = true;
@@ -52,6 +53,7 @@ namespace ElectronicObserver.Window {
 				StateMain.Anchor = AnchorStyles.Left;
 				StateMain.Font = parent.MainFont;
 				StateMain.ForeColor = parent.MainFontColor;
+                StateMain.BackColor = parent.BackColor;
 				StateMain.ImageList = ResourceManager.Instance.Icons;
 				StateMain.Padding = new Padding( 2, 2, 2, 2 );
 				StateMain.Margin = new Padding( 2, 0, 2, 0 );
@@ -61,6 +63,7 @@ namespace ElectronicObserver.Window {
 				AirSuperiority.Anchor = AnchorStyles.Left;
 				AirSuperiority.Font = parent.MainFont;
 				AirSuperiority.ForeColor = parent.MainFontColor;
+                AirSuperiority.BackColor = parent.BackColor;
 				AirSuperiority.ImageList = ResourceManager.Instance.Equipments;
 				AirSuperiority.ImageIndex = (int)ResourceManager.EquipmentContent.CarrierBasedFighter;
 				AirSuperiority.Padding = new Padding( 2, 2, 2, 2 );
@@ -71,6 +74,7 @@ namespace ElectronicObserver.Window {
 				SearchingAbility.Anchor = AnchorStyles.Left;
 				SearchingAbility.Font = parent.MainFont;
 				SearchingAbility.ForeColor = parent.MainFontColor;
+                SearchingAbility.BackColor = parent.BackColor;
 				SearchingAbility.ImageList = ResourceManager.Instance.Equipments;
 				SearchingAbility.ImageIndex = (int)ResourceManager.EquipmentContent.CarrierBasedRecon;
 				SearchingAbility.Padding = new Padding( 2, 2, 2, 2 );
@@ -207,6 +211,7 @@ namespace ElectronicObserver.Window {
 				Name.ImageAlign = ContentAlignment.MiddleCenter;
 				Name.Font = parent.MainFont;
 				Name.ForeColor = parent.MainFontColor;
+                Name.BackColor = parent.BackColor;
 				Name.Padding = new Padding( 0, 1, 0, 1 );
 				Name.Margin = new Padding( 2, 0, 2, 0 );
 				Name.AutoSize = true;
@@ -244,6 +249,7 @@ namespace ElectronicObserver.Window {
 				HP.SubFont = parent.SubFont;
 				HP.MainFontColor = parent.MainFontColor;
 				HP.SubFontColor = parent.SubFontColor;
+                HP.BackColor = parent.BackColor;
 				HP.Padding = new Padding( 0, 0, 0, 0 );
 				HP.Margin = new Padding( 2, 1, 2, 2 );
 				HP.AutoSize = true;
@@ -256,6 +262,7 @@ namespace ElectronicObserver.Window {
 				Condition.Anchor = AnchorStyles.Left | AnchorStyles.Right;
 				Condition.Font = parent.MainFont;
 				Condition.ForeColor = parent.MainFontColor;
+                Condition.BackColor = parent.BackColor;
 				Condition.TextAlign = ContentAlignment.BottomRight;
 				Condition.ImageAlign = ContentAlignment.MiddleLeft;
 				Condition.ImageList = ResourceManager.Instance.Icons;
@@ -393,8 +400,8 @@ namespace ElectronicObserver.Window {
 					if ( isEscaped ) {
 						HP.BackColor = Color.Silver;
 					} else {
-						HP.BackColor = SystemColors.Control;
-					}
+						HP.BackColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.BackgroundColor);
+                    }
 					{
 						StringBuilder sb = new StringBuilder();
 						double hprate = (double)ship.HPCurrent / ship.HPMax;
@@ -478,10 +485,16 @@ namespace ElectronicObserver.Window {
 				StringBuilder sb = new StringBuilder();
 
 				for ( int i = 0; i < ship.Slot.Count; i++ ) {
-					if ( ship.SlotInstance[i] != null )
-						sb.AppendFormat( "[{0}/{1}] {2}\r\n", ship.Aircraft[i], ship.MasterShip.Aircraft[i], KCDatabase.Instance.Equipments[ship.Slot[i]].NameWithLevel );
+					var eq = ship.SlotInstance[i];
+					if ( eq != null )
+						sb.AppendFormat( "[{0}/{1}] {2}\r\n", ship.Aircraft[i], ship.MasterShip.Aircraft[i], eq.NameWithLevel );
 				}
 
+				{
+					var exslot = ship.ExpansionSlotInstance;
+					if ( exslot != null )
+						sb.AppendFormat( GeneralRes.Expansion + ": {0}\r\n", exslot.NameWithLevel );
+				}
 
 				int[] slotmaster = ship.SlotMaster.ToArray();
 
@@ -530,14 +543,14 @@ namespace ElectronicObserver.Window {
 			Utility.SystemEvents.UpdateTimerTick += UpdateTimerTick;
 
 			ConfigurationChanged();
+            
+            MainFontColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.MainFontColor);
+            SubFontColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.SubFontColor);
 
-			MainFontColor = Color.FromArgb( 0x00, 0x00, 0x00 );
-			SubFontColor = Color.FromArgb( 0x88, 0x88, 0x88 );
 
+            //ui init
 
-			//ui init
-
-			ControlHelper.SetDoubleBuffered( TableFleet );
+            ControlHelper.SetDoubleBuffered( TableFleet );
 			ControlHelper.SetDoubleBuffered( TableMember );
 
 
@@ -686,7 +699,7 @@ namespace ElectronicObserver.Window {
 
 				sb.AppendFormat( "{0}/{1}\t", ship.MasterShip.Name, ship.Level );
 
-				var eq = ship.SlotInstance;
+				var eq = ship.AllSlotInstance;
 
 
 				if ( eq != null ) {
@@ -696,7 +709,7 @@ namespace ElectronicObserver.Window {
 
 						int count = 1;
 						for ( int k = j + 1; k < eq.Count; k++ ) {
-							if ( eq[k] != null && eq[k].EquipmentID == eq[j].EquipmentID && eq[k].Level == eq[j].Level ) {
+							if ( eq[k] != null && eq[k].EquipmentID == eq[j].EquipmentID && eq[k].Level == eq[j].Level && eq[k].AircraftLevel == eq[j].AircraftLevel ) {
 								count++;
 							} else {
 								break;
@@ -745,8 +758,11 @@ namespace ElectronicObserver.Window {
 
 			MainFont = Font = c.UI.MainFont;
 			SubFont = c.UI.SubFont;
-
-			AutoScroll = ContextMenuFleet_IsScrollable.Checked = c.FormFleet.IsScrollable;
+            BackColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.BackgroundColor);
+            ForeColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.MainFontColor);
+            MainFontColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.MainFontColor);
+            SubFontColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.SubFontColor);
+            AutoScroll = ContextMenuFleet_IsScrollable.Checked = c.FormFleet.IsScrollable;
 			ContextMenuFleet_FixShipNameWidth.Checked = c.FormFleet.FixShipNameWidth;
 
 			if ( ControlFleet != null && KCDatabase.Instance.Fleet[FleetID] != null ) {

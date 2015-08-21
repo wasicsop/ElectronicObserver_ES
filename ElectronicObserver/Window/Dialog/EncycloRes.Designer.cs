@@ -232,7 +232,7 @@ namespace ElectronicObserver.Window.Dialog {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 固有ID,装備ID,装備名,改修Lv,ロック,装備艦ID,装備艦.
+        ///   Looks up a localized string similar to 固有ID,装備ID,装備名,改修Lv,艦載機Lv,ロック,装備艦ID,装備艦.
         /// </summary>
         internal static string EquipListCSVFormat {
             get {
@@ -600,6 +600,15 @@ namespace ElectronicObserver.Window.Dialog {
         internal static string ShipType {
             get {
                 return ResourceManager.GetString("ShipType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 練度.
+        /// </summary>
+        internal static string SkillLevel {
+            get {
+                return ResourceManager.GetString("SkillLevel", resourceCulture);
             }
         }
         

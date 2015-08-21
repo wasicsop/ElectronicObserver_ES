@@ -117,13 +117,18 @@ namespace ElectronicObserver.Window {
 					switch ( ship.AbyssalShipClass ) {
 						case 0:
 						case 1:		//normal
-							ShipName.ForeColor = Color.FromArgb( 0x00, 0x00, 0x00 ); break;
+						default:
+							ShipName.ForeColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.MainFontColor); break;
 						case 2:		//elite
 							ShipName.ForeColor = Color.FromArgb( 0xFF, 0x00, 0x00 ); break;
 						case 3:		//flagship
 							ShipName.ForeColor = Color.FromArgb( 0xFF, 0x88, 0x00 ); break;
-						case 4:		//latemodel
+						case 4:		//latemodel / flagship kai
 							ShipName.ForeColor = Color.FromArgb( 0x00, 0x88, 0xFF ); break;
+						case 5:		//latemodel elite
+							ShipName.ForeColor = Color.FromArgb( 0x88, 0x00, 0x00 ); break;
+						case 6:		//latemodel flagship
+							ShipName.ForeColor = Color.FromArgb( 0x88, 0x44, 0x00 ); break;
 					}
 					ToolTipInfo.SetToolTip( ShipName, GetShipString( shipID, slot ) );
 
@@ -135,9 +140,9 @@ namespace ElectronicObserver.Window {
 			}
 
 
-			public void UpdateEquipmentToolTip( int shipID, int[] slot, int level, int firepower, int torpedo, int aa, int armor ) {
+			public void UpdateEquipmentToolTip( int shipID, int[] slot, int level, int hp, int firepower, int torpedo, int aa, int armor ) {
 
-				ToolTipInfo.SetToolTip( ShipName, GetShipString( shipID, slot, level, firepower, torpedo, aa, armor ) );
+				ToolTipInfo.SetToolTip( ShipName, GetShipString( shipID, slot, level, hp, firepower, torpedo, aa, armor ) );
 			}
 
 
@@ -153,11 +158,11 @@ namespace ElectronicObserver.Window {
 					 ship.LuckMin );
 			}
 
-			private string GetShipString( int shipID, int[] slot, int level, int firepower, int torpedo, int aa, int armor ) {
+			private string GetShipString( int shipID, int[] slot, int level, int hp, int firepower, int torpedo, int aa, int armor ) {
 				ShipDataMaster ship = KCDatabase.Instance.MasterShips[shipID];
 				if ( ship == null ) return null;
 
-				return GetShipString( shipID, slot, level, level > 99 ? ship.HPMaxMarried : ship.HPMin, firepower, torpedo, aa, armor,
+				return GetShipString( shipID, slot, level, hp, firepower, torpedo, aa, armor,
 					ship.ASW != null && ship.ASW.IsAvailable ? ship.ASW.GetParameter( level ) : -1,
 					ship.Evasion != null && ship.Evasion.IsAvailable ? ship.Evasion.GetParameter( level ) : -1,
 					ship.LOS != null && ship.LOS.IsAvailable ? ship.LOS.GetParameter( level ) : -1,
@@ -280,11 +285,11 @@ namespace ElectronicObserver.Window {
 			InitializeComponent();
 
 
-			ConfigurationChanged();
+			
 
 			MainFontColor = Color.FromArgb( 0x00, 0x00, 0x00 );
 			SubFontColor = Color.FromArgb( 0x88, 0x88, 0x88 );
-
+            ConfigurationChanged();
 
 			ControlHelper.SetDoubleBuffered( BasePanel );
 			ControlHelper.SetDoubleBuffered( TableEnemyFleet );
@@ -353,12 +358,12 @@ namespace ElectronicObserver.Window {
 					case 0:
 					case 1:
 					default:	//昼夜戦・その他
-						return SystemColors.ControlText;
-					case 2:
+						return Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.MainFontColor);
+                    case 2:
 					case 3:		//夜戦・夜昼戦
-						return Color.Navy;
+						return Color.Blue;
 					case 4:		//航空戦
-						return Color.DarkGreen;
+						return Color.Green;
 				}
 			};
 
@@ -499,18 +504,18 @@ namespace ElectronicObserver.Window {
 
 							switch ( compass.EventKind ) {
 								case 0:		//航空偵察
-									eventkind = "航空偵察";
+									eventkind = GeneralRes.AerialRecon;
 
 									switch ( compass.AirReconnaissanceResult ) {
 										case 0:
 										default:
-											TextEventDetail.Text = "失敗";
+											TextEventDetail.Text = GeneralRes.Failure;
 											break;
 										case 1:
-											TextEventDetail.Text = "成功";
+											TextEventDetail.Text = GeneralRes.Success;
 											break;
 										case 2:
-											TextEventDetail.Text = "大成功";
+											TextEventDetail.Text = GeneralRes.GreatSuccess;
 											break;
 									}
 
@@ -642,6 +647,7 @@ namespace ElectronicObserver.Window {
 			int[][] slots = bd.Initial.EnemySlots;
 			int[] levels = bd.Initial.EnemyLevels;
 			int[][] parameters = bd.Initial.EnemyParameters;
+			int[] hps = bd.Initial.MaxHPs;
 
 			TextFormation.Text = Constants.GetFormationShort( (int)bd.Searching.FormationEnemy );
 			TextFormation.Visible = true;
@@ -654,7 +660,7 @@ namespace ElectronicObserver.Window {
 				ControlMember[i].Update( shipID, shipID != -1 ? slots[i] : null );
 
 				if ( shipID != -1 )
-					ControlMember[i].UpdateEquipmentToolTip( shipID, slots[i], levels[i], parameters[i][0], parameters[i][1], parameters[i][2], parameters[i][3] );
+					ControlMember[i].UpdateEquipmentToolTip( shipID, slots[i], levels[i], hps[i + 6], parameters[i][0], parameters[i][1], parameters[i][2], parameters[i][3] );
 			}
 			TableEnemyMember.ResumeLayout();
 			TableEnemyMember.Visible = true;
@@ -678,7 +684,11 @@ namespace ElectronicObserver.Window {
 					ControlMember[i].Equipments.ShowAircraft = flag;
 				}
 			}
-		}
+            ForeColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.MainFontColor);
+            BackColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.BackgroundColor);
+            MainFontColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.MainFontColor);
+            SubFontColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.SubFontColor);
+        }
 
 
 

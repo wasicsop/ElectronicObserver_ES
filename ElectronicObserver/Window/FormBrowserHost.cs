@@ -99,8 +99,11 @@ namespace ElectronicObserver.Window {
 		}
 
 		internal void ConfigurationChanged() {
-			Browser.AsyncRemoteRun( () => Browser.Proxy.ConfigurationChanged( Configuration ) );
-		}
+            BackColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.BackgroundColor);
+            ForeColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.MainFontColor);
+            Configuration.Theme = (uint)Utility.Configuration.Config.UI.Theme;
+            Browser.AsyncRemoteRun(() => Browser.Proxy.ConfigurationChanged(Configuration));
+        }
 
 
 		//ロード直後の適用ではレイアウトがなぜか崩れるのでこのタイミングでも適用
@@ -181,6 +184,7 @@ namespace ElectronicObserver.Window {
 				config.ToolMenuDockStyle = (int)c.ToolMenuDockStyle;
 				config.IsToolMenuVisible = c.IsToolMenuVisible;
 				config.ConfirmAtRefresh = c.ConfirmAtRefresh;
+                config.Theme = (uint)Utility.Configuration.Config.UI.Theme;
 
 				return config;
 			}
@@ -202,7 +206,6 @@ namespace ElectronicObserver.Window {
 			c.ToolMenuDockStyle = (DockStyle)config.ToolMenuDockStyle;
 			c.IsToolMenuVisible = config.IsToolMenuVisible;
 			c.ConfirmAtRefresh = config.ConfirmAtRefresh;
-
 		}
 
 		public void GetIconResource() {

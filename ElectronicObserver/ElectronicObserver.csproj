@@ -156,18 +156,28 @@
     <Compile Include="Data\Quest\ProgressSlaughter.cs" />
     <Compile Include="Data\Quest\ProgressSupply.cs" />
     <Compile Include="Data\Quest\QuestProgressManager.cs" />
+    <Compile Include="Data\Quest\QuestTracking.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuestTracking.resx</DependentUpon>
+    </Compile>
     <Compile Include="Data\ResponseWrapper.cs" />
     <Compile Include="Data\CompassData.cs" />
     <Compile Include="Data\ShipGroupData.cs" />
     <Compile Include="Data\ShipGroupManager.cs" />
     <Compile Include="Data\UseItem.cs" />
     <Compile Include="Data\UseItemMaster.cs" />
-    <Compile Include="Data\DatabaseUpdatedEventArgs.cs" />
+    <Compile Include="LoggerRes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LoggerRes.resx</DependentUpon>
+    </Compile>
     <Compile Include="Notifier\NotifierRes.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>NotifierRes.resx</DependentUpon>
     </Compile>
+    <Compile Include="Utility\ThemeManager.cs" />
     <Compile Include="Utility\DynamicTranslator.cs" />
     <Compile Include="Window\Dialog\ConfigRes.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -183,6 +193,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>NotifyRes.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Window\FormXPCalculator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Window\FormXPCalculator.Designer.cs">
+      <DependentUpon>FormXPCalculator.cs</DependentUpon>
     </Compile>
     <Compile Include="Window\GeneralRes.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -206,6 +222,7 @@
     <Compile Include="Observer\kcsapi\api_get_member\material.cs" />
     <Compile Include="Observer\kcsapi\api_get_member\ship_deck.cs" />
     <Compile Include="Observer\kcsapi\api_req_kaisou\marriage.cs" />
+    <Compile Include="Observer\kcsapi\api_req_kaisou\open_exslot.cs" />
     <Compile Include="Observer\kcsapi\api_req_mission\result.cs" />
     <Compile Include="Observer\kcsapi\api_req_ranking\getlist.cs" />
     <Compile Include="Observer\kcsapi\api_req_sortie\airbattle.cs" />
@@ -538,6 +555,17 @@
     <EmbeddedResource Include="Data\FleetRes.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>FleetRes.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Data\Quest\QuestTracking.en.resx" />
+    <EmbeddedResource Include="Data\Quest\QuestTracking.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>QuestTracking.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoggerRes.en.resx" />
+    <EmbeddedResource Include="LoggerRes.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>LoggerRes.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Notifier\NotifierRes.en.resx" />
     <EmbeddedResource Include="Notifier\NotifierRes.resx">
@@ -558,6 +586,12 @@
     <EmbeddedResource Include="Window\Dialog\NotifyRes.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>NotifyRes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Window\FormXPCalculator.en.resx">
+      <DependentUpon>FormXPCalculator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Window\FormXPCalculator.resx">
+      <DependentUpon>FormXPCalculator.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Window\GeneralRes.en.resx" />
     <EmbeddedResource Include="Window\GeneralRes.ko.resx" />

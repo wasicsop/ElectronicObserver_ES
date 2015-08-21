@@ -20,7 +20,6 @@ namespace ElectronicObserver.Window.Dialog {
 		private static readonly string RegistryPathMaster = @"Software\Microsoft\Internet Explorer\Main\FeatureControl\";
 		private static readonly string RegistryPathBrowserVersion = @"FEATURE_BROWSER_EMULATION\";
 		private static readonly string RegistryPathGPURendering = @"FEATURE_GPU_RENDERING\";
-
 		private static readonly int DefaultBrowserVersion = 7000;
 		private static readonly bool DefaultGPURendering = false;
 
@@ -247,10 +246,7 @@ namespace ElectronicObserver.Window.Dialog {
 
 			FormBrowser_ScreenShotPath.Text = PathHelper.ProcessFolderBrowserDialog( FormBrowser_ScreenShotPath.Text, FolderBrowser );
 		}
-
-
-
-
+        
 
 		/// <summary>
 		/// 設定からUIを初期化します。
@@ -276,6 +272,8 @@ namespace ElectronicObserver.Window.Dialog {
 			UI_MainFont.Text = config.UI.MainFont.SerializeFontAttribute;
 			UI_SubFont.Font = config.UI.SubFont.FontData;
 			UI_SubFont.Text = config.UI.SubFont.SerializeFontAttribute;
+            selectTheme.DataSource = Enum.GetValues(typeof(Theme));
+            selectTheme.SelectedItem = config.UI.Theme;
 
 			//[ログ]
 			Log_LogLevel.Value = config.Log.LogLevel;
@@ -415,6 +413,9 @@ namespace ElectronicObserver.Window.Dialog {
 			//[UI]
 			config.UI.MainFont = UI_MainFont.Font;
 			config.UI.SubFont = UI_SubFont.Font;
+            Theme theme;
+            Enum.TryParse<Utility.Theme>(selectTheme.SelectedValue.ToString(), out theme);
+            config.UI.Theme = theme;
 
 			//[ログ]
 			config.Log.LogLevel = (int)Log_LogLevel.Value;

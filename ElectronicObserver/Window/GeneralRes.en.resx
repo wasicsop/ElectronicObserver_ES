@@ -662,10 +662,10 @@ Cut-in type: {2} ({3})
     <value>Type (&amp;T)</value>
   </data>
   <data name="Unacquired" xml:space="preserve">
-    <value>(Unacquired)</value>
+    <value>(Unacquired - open your quests page in game.)</value>
   </data>
   <data name="UnacquiredQuests" xml:space="preserve">
-    <value>(Unacquired Quests)</value>
+    <value>Unacquired Quests</value>
   </data>
   <data name="UniqueID" xml:space="preserve">
     <value>Unique ID</value>
@@ -754,5 +754,35 @@ Save your data and return to port before capturing.
   </data>
   <data name="Year" xml:space="preserve">
     <value>Year (&amp;Y)</value>
+  </data>
+  <data name="AerialRecon" xml:space="preserve">
+    <value>Aerial Recon</value>
+  </data>
+  <data name="Failure" xml:space="preserve">
+    <value>Failure</value>
+  </data>
+  <data name="GreatSuccess" xml:space="preserve">
+    <value>Great Success</value>
+  </data>
+  <data name="Success" xml:space="preserve">
+    <value>Success</value>
+  </data>
+  <data name="Expansion" xml:space="preserve">
+    <value>Expansion</value>
+  </data>
+  <data name="ChangeTooltip" xml:space="preserve">
+    <value>Today:  {0:+##;-##;±0}
+This week: {1:+##;-##;±0}
+This month: {2:+##;-##;±0}</value>
+  </data>
+  <data name="BattleComplete" xml:space="preserve">
+    <value>Battle Complete</value>
+  </data>
+  <data name="EnemyName" xml:space="preserve">
+    <value>Enemy Name: {0}
+</value>
+  </data>
+  <data name="NoSecondAirStage" xml:space="preserve">
+    <value>(Second air stage did not activate.)</value>
   </data>
 </root>

@@ -190,7 +190,9 @@ namespace ElectronicObserver.Window {
 
 		void ConfigurationChanged() {
 			Font = Utility.Configuration.Config.UI.MainFont;
-		}
+            BackColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.BackgroundColor);
+            ForeColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.MainFontColor);
+        }
 
 
 		private void Updated( string apiname, dynamic data ) {

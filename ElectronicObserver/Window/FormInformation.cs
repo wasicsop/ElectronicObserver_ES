@@ -52,7 +52,11 @@ namespace ElectronicObserver.Window {
 		void ConfigurationChanged() {
 
 			Font = TextInformation.Font = Utility.Configuration.Config.UI.MainFont;
-		}
+            BackColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.BackgroundColor);
+            ForeColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.MainFontColor);
+            TextInformation.BackColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.BackgroundColor);
+            TextInformation.ForeColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.MainFontColor);
+        }
 
 
 		void Updated( string apiname, dynamic data ) {
@@ -146,7 +150,10 @@ namespace ElectronicObserver.Window {
 						dynamic[] state = elem.api_state;
 						for ( int i = 0; i < state.Length; i++ ) {
 							if ( (int)state[i][1] == 0 ) {
-								sb.AppendLine( KCDatabase.Instance.MasterShips[(int)elem.api_table_id[i]].Name );
+
+								var target = KCDatabase.Instance.MasterShips[(int)elem.api_table_id[i]];
+								if ( target != null )		//季節の衣替え艦娘の場合存在しないことがある
+									sb.AppendLine( target.Name );
 							}
 						}
 
@@ -240,7 +247,7 @@ namespace ElectronicObserver.Window {
 			StringBuilder sb = new StringBuilder();
 
 			sb.AppendLine( GeneralRes.ExpeditionReturned );
-			sb.AppendLine( data.api_quest_name );
+			sb.AppendLine( FormMain.Instance.Translator.GetTranslation(data.api_quest_name, Utility.TranslationType.ExpeditionTitle) + "\r\n" );
 			sb.AppendFormat( GeneralRes.Result + ": {0}\r\n", Constants.GetExpeditionResult( (int)data.api_clear_result ) );
 			sb.AppendFormat( GeneralRes.AdmiralXP + ": +{0}\r\n", (int)data.api_get_exp );
 			sb.AppendFormat( GeneralRes.ShipXP + ": +{0}\r\n", ( (int[])data.api_get_ship_exp ).Min() );
@@ -272,10 +279,10 @@ namespace ElectronicObserver.Window {
 		private string GetBattleResult( dynamic data ) {
 			StringBuilder sb = new StringBuilder();
 
-			sb.AppendLine( "[戦闘終了]" );
-			sb.AppendFormat( "敵艦隊名: {0}\r\n", data.api_enemy_info.api_deck_name );
-			sb.AppendFormat( "勝敗判定: {0}\r\n", data.api_win_rank );
-			sb.AppendFormat( "提督経験値: +{0}\r\n", (int)data.api_get_exp );
+			sb.AppendLine( "[" + GeneralRes.BattleComplete +  "]" );
+			sb.AppendFormat( GeneralRes.EnemyName, FormMain.Instance.Translator.GetTranslation(data.api_enemy_info.api_deck_name, Utility.TranslationType.Operations) );
+			sb.AppendFormat( GeneralRes.WinRank + ": {0}\r\n", data.api_win_rank );
+			sb.AppendFormat( GeneralRes.AdmiralXP + ": +{0}\r\n", (int)data.api_get_exp );
 
 			return sb.ToString();
 		}
