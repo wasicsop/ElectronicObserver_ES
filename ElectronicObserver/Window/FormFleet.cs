@@ -400,7 +400,7 @@ namespace ElectronicObserver.Window {
 					if ( isEscaped ) {
 						HP.BackColor = Color.Silver;
 					} else {
-						HP.BackColor = Utility.Configuration.Config.UI.Theme == "Dark" ? Color.FromArgb(0x22, 0x22, 0x22) : SystemColors.Control;
+						HP.BackColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.BackgroundColor);
                     }
 					{
 						StringBuilder sb = new StringBuilder();
@@ -544,23 +544,13 @@ namespace ElectronicObserver.Window {
 
 			ConfigurationChanged();
             
-            switch(Utility.Configuration.Config.UI.Theme)
-            {
-                default:
-                case "Light":
-                    MainFontColor = Color.FromArgb(0x00, 0x00, 0x00);
-                    SubFontColor = Color.FromArgb(0x88, 0x88, 0x88);
-                    break;
-                case "Dark":
-                    MainFontColor = SystemColors.Control;
-                    SubFontColor = Color.FromArgb(0xAA, 0xAA, 0xAA);
-                    break;
-            }
+            MainFontColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.MainFontColor);
+            SubFontColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.SubFontColor);
 
 
-			//ui init
+            //ui init
 
-			ControlHelper.SetDoubleBuffered( TableFleet );
+            ControlHelper.SetDoubleBuffered( TableFleet );
 			ControlHelper.SetDoubleBuffered( TableMember );
 
 
@@ -768,23 +758,10 @@ namespace ElectronicObserver.Window {
 
 			MainFont = Font = c.UI.MainFont;
 			SubFont = c.UI.SubFont;
-            switch (Utility.Configuration.Config.UI.Theme)
-            {
-                default:
-                case "Light":
-                    BackColor = SystemColors.Control;
-                    ForeColor = SystemColors.ControlText;
-                    MainFontColor = Color.FromArgb(0x00, 0x00, 0x00);
-                    SubFontColor = Color.FromArgb(0x88, 0x88, 0x88);
-                    break;
-                case "Dark":
-                    var charcoal = Color.FromArgb(0x22, 0x22, 0x22);
-                    BackColor = charcoal;
-                    ForeColor = SystemColors.Control;
-                    MainFontColor = SystemColors.Control;
-                    SubFontColor = Color.FromArgb(0xAA, 0xAA, 0xAA);
-                    break;
-            }
+            BackColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.BackgroundColor);
+            ForeColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.MainFontColor);
+            MainFontColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.MainFontColor);
+            SubFontColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.SubFontColor);
             AutoScroll = ContextMenuFleet_IsScrollable.Checked = c.FormFleet.IsScrollable;
 			ContextMenuFleet_FixShipNameWidth.Checked = c.FormFleet.FixShipNameWidth;
 

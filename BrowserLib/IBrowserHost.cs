@@ -143,6 +143,6 @@ namespace BrowserLib {
         /// Visual style for browser.
         /// </summary>
         [DataMember]
-        public string Theme { get; set; }
+        public uint Theme { get; set; }
 	}
 }

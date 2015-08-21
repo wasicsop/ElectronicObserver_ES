@@ -161,13 +161,13 @@ namespace Browser {
             switch (conf.Theme)
             {
                 default:
-                case "Light":
+                case 0:
                     BackColor = SystemColors.Control;
                     ForeColor = SystemColors.ControlText;
                     ToolMenu.BackColor = SystemColors.Control;
                     ToolMenu.ForeColor = SystemColors.ControlText;
                     break;
-                case "Dark":
+                case 1:
                     var charcoal = Color.FromArgb(0x22, 0x22, 0x22);
                     BackColor = charcoal;
                     ForeColor = SystemColors.Control;

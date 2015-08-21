@@ -23,23 +23,23 @@ namespace ElectronicObserver.Window {
 
 
 		/// <summary>タブ背景色(アクティブ)</summary>
-		private readonly Color TabActiveColor = Utility.Configuration.Config.UI.Theme == "Dark" ? Color.FromArgb(0x44, 0x44, 0x44) : Color.FromArgb( 0xFF, 0xFF, 0xCC );
+		private readonly Color TabActiveColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.SubFontColor);
 
-		/// <summary>タブ背景色(非アクティブ)</summary>
-		private readonly Color TabInactiveColor = Utility.Configuration.Config.UI.Theme == "Dark" ? Color.FromArgb(0x22, 0x22, 0x22) : SystemColors.Control;
+        /// <summary>タブ背景色(非アクティブ)</summary>
+        private readonly Color TabInactiveColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.BackgroundColor);
 
 
 
         // セル背景色
-        private readonly Color CellColorRed = Color.IndianRed;
-        private readonly Color CellColorOrange = Color.FromArgb(0xE5, 0x68, 0);
-        private readonly Color CellColorYellow = Color.FromArgb(0xFF, 0xCC, 0x00);
-        private readonly Color CellColorGreen = Color.LimeGreen;
-        private readonly Color CellColorGray = Color.DarkGray;
-		private readonly Color CellColorCherry = Color.LightCoral;
+        private readonly Color CellColorRed = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.RedHighlight);
+        private readonly Color CellColorOrange = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.OrangeHighlight);
+        private readonly Color CellColorYellow = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.YellowHighlight);
+        private readonly Color CellColorGreen = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.GreenHighlight);
+        private readonly Color CellColorGray = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.GrayHighlight);
+        private readonly Color CellColorCherry = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.PinkHighlight);
 
-		//セルスタイル
-		private DataGridViewCellStyle CSDefaultLeft, CSDefaultCenter, CSDefaultRight,
+        //セルスタイル
+        private DataGridViewCellStyle CSDefaultLeft, CSDefaultCenter, CSDefaultRight,
 			CSRedRight, CSOrangeRight, CSYellowRight, CSGreenRight, CSGrayRight, CSCherryRight,
 			CSIsLocked;
 
@@ -64,10 +64,10 @@ namespace ElectronicObserver.Window {
 
 			CSDefaultLeft = new DataGridViewCellStyle();
 			CSDefaultLeft.Alignment = DataGridViewContentAlignment.MiddleLeft;
-			CSDefaultLeft.BackColor = Utility.Configuration.Config.UI.Theme == "Dark" ? Color.FromArgb(0x22, 0x22, 0x22) : SystemColors.Control;
-			CSDefaultLeft.Font = Font;
-			CSDefaultLeft.ForeColor = Utility.Configuration.Config.UI.Theme == "Dark" ?  SystemColors.Control : SystemColors.ControlText;
-			CSDefaultLeft.SelectionBackColor = Color.FromArgb( 0xFF, 0xFF, 0xCC );
+			CSDefaultLeft.BackColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.BackgroundColor);
+            CSDefaultLeft.Font = Font;
+			CSDefaultLeft.ForeColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.MainFontColor);
+            CSDefaultLeft.SelectionBackColor = Color.FromArgb( 0xFF, 0xFF, 0xCC );
 			CSDefaultLeft.SelectionForeColor = SystemColors.ControlText;
 			CSDefaultLeft.WrapMode = DataGridViewTriState.False;
 
@@ -188,27 +188,12 @@ namespace ElectronicObserver.Window {
 			splitContainer1.SplitterDistance = config.FormShipGroup.SplitterDistance;
 			MenuGroup_AutoUpdate.Checked = config.FormShipGroup.AutoUpdate;
 			MenuGroup_ShowStatusBar.Checked = config.FormShipGroup.ShowStatusBar;
-            switch (Utility.Configuration.Config.UI.Theme)
-            {
-                default:
-                case "Light":
-                    BackColor = SystemColors.Control;
-                    ForeColor = SystemColors.ControlText;
-                    ShipView.ForeColor = SystemColors.ControlText;
-                    ShipView.BackgroundColor = SystemColors.Control;
-                    StatusBar.ForeColor = SystemColors.ControlText;
-                    StatusBar.BackColor = SystemColors.Control;
-                    break;
-                case "Dark":
-                    var charcoal = Color.FromArgb(0x22, 0x22, 0x22);
-                    BackColor = charcoal;
-                    ForeColor = SystemColors.Control;
-                    ShipView.BackgroundColor = charcoal;
-                    ShipView.ForeColor = SystemColors.Control;
-                    StatusBar.ForeColor = SystemColors.Control;
-                    StatusBar.BackColor = charcoal;
-                    break;
-            }
+            BackColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.BackgroundColor);
+            ForeColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.MainFontColor);
+            ShipView.ForeColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.MainFontColor);
+            ShipView.BackgroundColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.BackgroundColor);
+            StatusBar.ForeColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.MainFontColor);
+            StatusBar.BackColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.BackgroundColor);
         }
 
 

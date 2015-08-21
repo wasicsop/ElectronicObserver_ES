@@ -179,44 +179,14 @@ namespace ElectronicObserver.Window {
             Font = c.UI.MainFont;
             //StripMenu.Font = Font;
             StripStatus.Font = Font;
-            switch (c.UI.Theme)
-            {
-                default:
-                case "Light":
-                    BackColor = SystemColors.Control;
-                    ForeColor = SystemColors.ControlText;
-                    StripMenu.BackColor = SystemColors.Control;
-                    StripMenu.ForeColor = SystemColors.ControlText;
-                    StripStatus.BackColor = SystemColors.Control;
-                    StripStatus.ForeColor = SystemColors.ControlText;
-                    break;
-                case "Dark":
-                    var charcoal = Color.FromArgb(0x22, 0x22, 0x22);
-                    BackColor = charcoal;
-                    ForeColor = SystemColors.Control;
-                    StripStatus.BackColor = charcoal;
-                    StripStatus.ForeColor = SystemColors.Control;
-                    StripMenu.BackColor = charcoal;
-                    StripMenu.ForeColor = SystemColors.ControlDark;
-                    break;
-            }
-		}
-
-        private static Color CorrectColor(Color color)
-        {
-            float correctionFactor = -0.3f;
-            float red = (255 - color.R) * correctionFactor + color.R;
-            float green = (255 - color.G) * correctionFactor + color.G;
-            float blue = (255 - color.B) * correctionFactor + color.B;
-            if (red < 0) red = 0;
-            if (green < 0) green = 0;
-            if (blue < 0) blue = 0;
-            return Color.FromArgb(color.A, (int)red, (int)green, (int)blue);
+            BackColor = Utility.ThemeManager.GetColor(c.UI.Theme, Utility.ThemeColors.BackgroundColor);
+            ForeColor = Utility.ThemeManager.GetColor(c.UI.Theme, Utility.ThemeColors.MainFontColor);
+            StripMenu.BackColor = Utility.ThemeManager.GetColor(c.UI.Theme, Utility.ThemeColors.BackgroundColor);
+            StripMenu.ForeColor = Utility.ThemeManager.GetColor(c.UI.Theme, Utility.ThemeColors.MainFontColor);
+            StripStatus.BackColor = Utility.ThemeManager.GetColor(c.UI.Theme, Utility.ThemeColors.BackgroundColor);
+            StripStatus.ForeColor = Utility.ThemeManager.GetColor(c.UI.Theme, Utility.ThemeColors.MainFontColor);
         }
-
-
-
-
+        
 		private void StripMenu_Debug_LoadAPIFromFile_Click( object sender, EventArgs e ) {
 
 			/*/

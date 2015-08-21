@@ -244,7 +244,7 @@ namespace ElectronicObserver.Window.Control {
 			_subFont = new Font( "Meiryo UI", 10, FontStyle.Regular, GraphicsUnit.Pixel );
 			_subFontColor = FromArgb( 0xFF888888 );
 
-            _repairFontColor = Utility.Configuration.Config.UI.Theme == "Dark" ? Color.LightBlue : FromArgb(0xFF000088);
+            _repairFontColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.RepairColor);
             _text = "HP:";
 
 			_HPBar.UsePrevValue = true;

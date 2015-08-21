@@ -160,13 +160,13 @@ namespace ElectronicObserver.Utility {
 				/// </summary>
 				public SerializableFont SubFont { get; set; }
 
-                public String Theme { get; set; }
+                public Theme Theme { get; set; }
 
 				public ConfigUI() {
 					//*/
 					MainFont = new Font( "Meiryo UI", 12, FontStyle.Regular, GraphicsUnit.Pixel );
 					SubFont = new Font( "Meiryo UI", 10, FontStyle.Regular, GraphicsUnit.Pixel );
-                    Theme = "Light";
+                    Theme = Theme.Light;
 					//*/
 				}
 			}

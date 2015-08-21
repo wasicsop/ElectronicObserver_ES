@@ -99,20 +99,9 @@ namespace ElectronicObserver.Window {
 		}
 
 		internal void ConfigurationChanged() {
-            switch (Utility.Configuration.Config.UI.Theme)
-            {
-                default:
-                case "Light":
-                    BackColor = SystemColors.Control;
-                    ForeColor = SystemColors.ControlText;
-                    break;
-                case "Dark":
-                    var charcoal = Color.FromArgb(0x22, 0x22, 0x22);
-                    BackColor = charcoal;
-                    ForeColor = SystemColors.Control;
-                    break;
-            }
-            Configuration.Theme = Utility.Configuration.Config.UI.Theme;
+            BackColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.BackgroundColor);
+            ForeColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.MainFontColor);
+            Configuration.Theme = (uint)Utility.Configuration.Config.UI.Theme;
             Browser.AsyncRemoteRun(() => Browser.Proxy.ConfigurationChanged(Configuration));
         }
 
@@ -195,7 +184,7 @@ namespace ElectronicObserver.Window {
 				config.ToolMenuDockStyle = (int)c.ToolMenuDockStyle;
 				config.IsToolMenuVisible = c.IsToolMenuVisible;
 				config.ConfirmAtRefresh = c.ConfirmAtRefresh;
-                config.Theme = Utility.Configuration.Config.UI.Theme;
+                config.Theme = (uint)Utility.Configuration.Config.UI.Theme;
 
 				return config;
 			}
@@ -217,7 +206,6 @@ namespace ElectronicObserver.Window {
 			c.ToolMenuDockStyle = (DockStyle)config.ToolMenuDockStyle;
 			c.IsToolMenuVisible = config.IsToolMenuVisible;
 			c.ConfirmAtRefresh = config.ConfirmAtRefresh;
-
 		}
 
 		public void GetIconResource() {

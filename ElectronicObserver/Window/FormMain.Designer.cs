@@ -597,10 +597,10 @@
             WeifenLuo.WinFormsUI.Docking.ThemeBase thm;
             switch(Utility.Configuration.Config.UI.Theme)
             {
-                case "Light":
+                case Utility.Theme.Light:
                     thm = new WeifenLuo.WinFormsUI.Docking.VS2012LightTheme();
                     break;
-                case "Dark":
+                case Utility.Theme.Dark:
                     thm = new WeifenLuo.WinFormsUI.Docking.VS2012DarkTheme();
                     break;
                 default:
