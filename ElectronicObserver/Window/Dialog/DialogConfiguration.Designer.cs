@@ -55,6 +55,9 @@
 			this.UI_MainFontSelect = new System.Windows.Forms.Button();
 			this.UI_MainFont = new System.Windows.Forms.TextBox();
 			this.label5 = new System.Windows.Forms.Label();
+            this.labelThemeSelect = new System.Windows.Forms.Label();
+            this.labelThemeRestartWarning = new System.Windows.Forms.Label();
+            this.selectTheme = new System.Windows.Forms.ComboBox();
 			this.tabPage3 = new System.Windows.Forms.TabPage();
 			this.Log_ShowSpoiler = new System.Windows.Forms.CheckBox();
 			this.label12 = new System.Windows.Forms.Label();
@@ -452,6 +455,9 @@
 			this.tabPage2.Controls.Add(this.UI_MainFontSelect);
 			this.tabPage2.Controls.Add(this.UI_MainFont);
 			this.tabPage2.Controls.Add(this.label5);
+            this.tabPage2.Controls.Add(this.labelThemeSelect);
+            this.tabPage2.Controls.Add(this.selectTheme);
+            this.tabPage2.Controls.Add(this.labelThemeRestartWarning);
 			this.tabPage2.Location = new System.Drawing.Point(4, 24);
 			this.tabPage2.Name = "tabPage2";
 			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -550,6 +556,33 @@
 			this.label5.Size = new System.Drawing.Size(78, 15);
 			this.label5.TabIndex = 0;
 			this.label5.Text = ConfigRes.Mainfont + ":";
+            // 
+            // labelThemeSelect
+            // 
+            this.labelThemeSelect.AutoSize = true;
+            this.labelThemeSelect.Location = new System.Drawing.Point(8, 70);
+            this.labelThemeSelect.Name = "labelThemeSelect";
+            this.labelThemeSelect.Size = new System.Drawing.Size(78, 15);
+            this.labelThemeSelect.TabIndex = 0;
+            this.labelThemeSelect.Text = ConfigRes.Theme + ":";
+            //
+            // selectTheme
+            //
+            this.selectTheme.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.selectTheme.FormattingEnabled = true;
+            this.selectTheme.Name = "selectTheme";
+            this.selectTheme.Location = new System.Drawing.Point(70,66);
+            this.selectTheme.Size = new System.Drawing.Size(68,23);
+            this.selectTheme.TabIndex = 8;
+            //
+            // labelThemeRestartWarning
+            //
+            this.labelThemeRestartWarning.AutoSize = true;
+            this.labelThemeRestartWarning.Location = new System.Drawing.Point(8, 100);
+            this.labelThemeRestartWarning.Name = "labelThemeRestartWarning";
+            this.labelThemeRestartWarning.Size = new System.Drawing.Size(78, 15);
+            this.labelThemeRestartWarning.TabIndex = 0;
+            this.labelThemeRestartWarning.Text = ConfigRes.ThemeRestartWarning;
             // 
             // tabPage3
             // 
@@ -1735,6 +1768,9 @@
 		private System.Windows.Forms.FontDialog FontSelector;
 		private System.Windows.Forms.Button UI_SubFontApply;
 		private System.Windows.Forms.Button UI_MainFontApply;
+        private System.Windows.Forms.Label labelThemeSelect;
+        private System.Windows.Forms.ComboBox selectTheme;
+        private System.Windows.Forms.Label labelThemeRestartWarning;
 		private System.Windows.Forms.Button Connection_OutputConnectionScript;
 		private System.Windows.Forms.TabPage tabPage7;
 		private System.Windows.Forms.TabControl tabControl2;

@@ -305,6 +305,15 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 戦闘終了.
+        /// </summary>
+        internal static string BattleComplete {
+            get {
+                return ResourceManager.GetString("BattleComplete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ボーキ.
         /// </summary>
         internal static string Baux {
@@ -685,6 +694,16 @@ namespace ElectronicObserver.Window {
         internal static string EnemyFormation {
             get {
                 return ResourceManager.GetString("EnemyFormation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 敵艦隊名: {0}
+        ///.
+        /// </summary>
+        internal static string EnemyName {
+            get {
+                return ResourceManager.GetString("EnemyName", resourceCulture);
             }
         }
         

@@ -48,8 +48,8 @@ namespace ElectronicObserver.Utility
     public enum Theme
     {
         Light = 0,
-        Dark = 1,
-        Pink = 2
+        Dark = 1 //,
+        //Pink = 2
     }
 
     [Serializable]

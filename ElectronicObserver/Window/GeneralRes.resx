@@ -745,4 +745,11 @@
 今週: {1:+##;-##;±0}
 今月: {2:+##;-##;±0}</value>
   </data>
+  <data name="BattleComplete" xml:space="preserve">
+    <value>戦闘終了</value>
+  </data>
+  <data name="EnemyName" xml:space="preserve">
+    <value>敵艦隊名: {0}
+</value>
+  </data>
 </root>

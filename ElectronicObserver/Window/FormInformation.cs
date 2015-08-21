@@ -279,10 +279,10 @@ namespace ElectronicObserver.Window {
 		private string GetBattleResult( dynamic data ) {
 			StringBuilder sb = new StringBuilder();
 
-			sb.AppendLine( "[戦闘終了]" );
-			sb.AppendFormat( "敵艦隊名: {0}\r\n", data.api_enemy_info.api_deck_name );
-			sb.AppendFormat( "勝敗判定: {0}\r\n", data.api_win_rank );
-			sb.AppendFormat( "提督経験値: +{0}\r\n", (int)data.api_get_exp );
+			sb.AppendLine( "[" + GeneralRes.BattleComplete +  "]" );
+			sb.AppendFormat( GeneralRes.EnemyName, FormMain.Instance.Translator.GetTranslation(data.api_enemy_info.api_deck_name, Utility.TranslationType.Operations) );
+			sb.AppendFormat( GeneralRes.WinRank + ": {0}\r\n", data.api_win_rank );
+			sb.AppendFormat( GeneralRes.AdmiralXP + ": +{0}\r\n", (int)data.api_get_exp );
 
 			return sb.ToString();
 		}

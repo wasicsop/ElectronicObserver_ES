@@ -519,4 +519,10 @@ More details, as well as an access key, can be found on the site below. (opens y
   <data name="SendData" xml:space="preserve">
     <value>Send data to Kancolle Statistics Database</value>
   </data>
+  <data name="Theme" xml:space="preserve">
+    <value>Theme</value>
+  </data>
+  <data name="ThemeRestartWarning" xml:space="preserve">
+    <value>A restart will be required for theme changes to take full effect.</value>
+  </data>
 </root>

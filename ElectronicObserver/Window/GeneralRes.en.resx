@@ -775,4 +775,11 @@ Save your data and return to port before capturing.
 This week: {1:+##;-##;±0}
 This month: {2:+##;-##;±0}</value>
   </data>
+  <data name="BattleComplete" xml:space="preserve">
+    <value>Battle Complete</value>
+  </data>
+  <data name="EnemyName" xml:space="preserve">
+    <value>Enemy Name: {0}
+</value>
+  </data>
 </root>
