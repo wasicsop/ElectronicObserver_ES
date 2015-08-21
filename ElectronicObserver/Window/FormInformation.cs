@@ -247,7 +247,7 @@ namespace ElectronicObserver.Window {
 			StringBuilder sb = new StringBuilder();
 
 			sb.AppendLine( GeneralRes.ExpeditionReturned );
-			sb.AppendLine( data.api_quest_name );
+			sb.AppendLine( FormMain.Instance.Translator.GetTranslation(data.api_quest_name, Utility.TranslationType.ExpeditionTitle) + "\r\n" );
 			sb.AppendFormat( GeneralRes.Result + ": {0}\r\n", Constants.GetExpeditionResult( (int)data.api_clear_result ) );
 			sb.AppendFormat( GeneralRes.AdmiralXP + ": +{0}\r\n", (int)data.api_get_exp );
 			sb.AppendFormat( GeneralRes.ShipXP + ": +{0}\r\n", ( (int[])data.api_get_ship_exp ).Min() );

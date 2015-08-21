@@ -117,146 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AskClose" xml:space="preserve">
-    <value>will close. Are you sure?</value>
+  <data name="Boss" xml:space="preserve">
+    <value>Boss</value>
   </data>
-  <data name="AskForUpdate" xml:space="preserve">
-    <value>A new version has been released - {0}
-New version details:
-{1}
-Open the download page?
-(This dialog will not appear again if you cancel.)</value>
+  <data name="BossVictory" xml:space="preserve">
+    <value>Boss Victories</value>
   </data>
-  <data name="AskLoad" xml:space="preserve">
-    <value>All unsaved records will be lost.
-Load records?</value>
+  <data name="Complete" xml:space="preserve">
+    <value>Complete</value>
   </data>
-  <data name="AskLogin" xml:space="preserve">
-    <value>You will return to the login page.
-Okay?</value>
+  <data name="Sortie" xml:space="preserve">
+    <value>Sorties</value>
   </data>
-  <data name="AskNavText" xml:space="preserve">
-    <value>Enter the URL to which you want to navigate.</value>
-  </data>
-  <data name="AskNavTitle" xml:space="preserve">
-    <value>Go to...</value>
-  </data>
-  <data name="BadUpdateURI" xml:space="preserve">
-    <value>Update data URI was not successful.</value>
-  </data>
-  <data name="Browser" xml:space="preserve">
-    <value>Browser</value>
-  </data>
-  <data name="BrowserClosedWithoutWarning" xml:space="preserve">
-    <value>The browser process closed unexpectedly.</value>
-  </data>
-  <data name="BrowserCloseError" xml:space="preserve">
-    <value>The browser had an error during closing.</value>
-  </data>
-  <data name="BrowserThrewError" xml:space="preserve">
-    <value>The browser process had a communication error.</value>
-  </data>
-  <data name="Close" xml:space="preserve">
-    <value>Close</value>
-  </data>
-  <data name="ClosingComplete" xml:space="preserve">
-    <value>Closing complete.</value>
-  </data>
-  <data name="Confirm" xml:space="preserve">
-    <value>Confirm</value>
-  </data>
-  <data name="DevelopedBy" xml:space="preserve">
-    <value>Original</value>
-  </data>
-  <data name="Error" xml:space="preserve">
-    <value>Error</value>
-  </data>
-  <data name="FailedBrowserStart" xml:space="preserve">
-    <value>Failed to start the browser process.</value>
-  </data>
-  <data name="Help" xml:space="preserve">
-    <value>Help</value>
-  </data>
-  <data name="HelpAddress" xml:space="preserve">
-    <value>https://github.com/RyuuKitsune/ElectronicObserver/wiki</value>
-  </data>
-  <data name="HelpAsk" xml:space="preserve">
-    <value>Online help will open your web browser.
-Continue?</value>
-  </data>
-  <data name="InitLayout" xml:space="preserve">
-    <value>Your window layout has been set to initial defaults.
-Add windows of your choosing using the "View" menu.</value>
-  </data>
-  <data name="IsClosing" xml:space="preserve">
-    <value> is closing...</value>
-  </data>
-  <data name="IsStarting" xml:space="preserve">
-    <value> is starting...</value>
-  </data>
-  <data name="LayoutLoaded" xml:space="preserve">
-    <value>Successfully loaded window layout.</value>
-  </data>
-  <data name="LayoutSaved" xml:space="preserve">
-    <value>Successfully saved window layout.</value>
-  </data>
-  <data name="NewVersionFound" xml:space="preserve">
-    <value>A new version has been released! - </value>
-  </data>
-  <data name="NoEquipData" xml:space="preserve">
-    <value>Equipment data has not been loaded</value>
-  </data>
-  <data name="NoLayoutFound" xml:space="preserve">
-    <value>No window layout found.</value>
-  </data>
-  <data name="NoShipData" xml:space="preserve">
-    <value>Ship data has not been loaded.</value>
-  </data>
-  <data name="OpenLayout" xml:space="preserve">
-    <value>Open Layout File</value>
-  </data>
-  <data name="OriginalSite" xml:space="preserve">
-    <value>Original Site (bug reports, contact)</value>
-  </data>
-  <data name="SoftwareName" xml:space="preserve">
-    <value>Type 74 Electronic Observer </value>
-  </data>
-  <data name="StartupComplete" xml:space="preserve">
-    <value>Startup complete.</value>
-  </data>
-  <data name="TranslatedSite" xml:space="preserve">
-    <value>Translation Site</value>
-  </data>
-  <data name="TranslatedVer" xml:space="preserve">
-    <value>Translation</value>
-  </data>
-  <data name="Update" xml:space="preserve">
-    <value>Update</value>
-  </data>
-  <data name="UpdateCheckFailed" xml:space="preserve">
-    <value>Failed to obtain update data.</value>
-  </data>
-  <data name="UpdateConnectionFailed" xml:space="preserve">
-    <value>Failed to process update data.</value>
-  </data>
-  <data name="Version" xml:space="preserve">
-    <value>1.4.4 [TL 1.0]</value>
-  </data>
-  <data name="VersionCurrent" xml:space="preserve">
-    <value>You are currently using the latest version.</value>
-  </data>
-  <data name="VersionTitle" xml:space="preserve">
-    <value>Version</value>
-  </data>
-  <data name="ZoomCurrent" xml:space="preserve">
-    <value>Current</value>
-  </data>
-  <data name="FirstTimeDialog" xml:space="preserve">
-    <value>Thank you for using {0}.
-For settings and usage information, please see the "Help" → "Online Help" option in the menus.。
-Reading is recommended before use.</value>
-  </data>
-  <data name="FirstTimeTitle" xml:space="preserve">
-    <value>First Time Start</value>
+  <data name="SRank" xml:space="preserve">
+    <value>S Ranks</value>
   </data>
 </root>

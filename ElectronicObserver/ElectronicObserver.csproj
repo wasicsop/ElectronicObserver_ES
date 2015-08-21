@@ -156,6 +156,11 @@
     <Compile Include="Data\Quest\ProgressSlaughter.cs" />
     <Compile Include="Data\Quest\ProgressSupply.cs" />
     <Compile Include="Data\Quest\QuestProgressManager.cs" />
+    <Compile Include="Data\Quest\QuestTracking.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuestTracking.resx</DependentUpon>
+    </Compile>
     <Compile Include="Data\ResponseWrapper.cs" />
     <Compile Include="Data\CompassData.cs" />
     <Compile Include="Data\ShipGroupData.cs" />
@@ -551,6 +556,11 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>FleetRes.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Data\Quest\QuestTracking.en.resx" />
+    <EmbeddedResource Include="Data\Quest\QuestTracking.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>QuestTracking.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="LoggerRes.en.resx" />
     <EmbeddedResource Include="LoggerRes.resx">

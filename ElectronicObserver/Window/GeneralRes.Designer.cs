@@ -1810,18 +1810,18 @@ namespace ElectronicObserver.Window {
         /// <summary>
         ///   Looks up a localized string similar to (未取得).
         /// </summary>
-        internal static string Unaquired {
+        internal static string Unacquired {
             get {
-                return ResourceManager.GetString("Unaquired", resourceCulture);
+                return ResourceManager.GetString("Unacquired", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to 未取得の任務.
         /// </summary>
-        internal static string UnaquiredQuests {
+        internal static string UnacquiredQuests {
             get {
-                return ResourceManager.GetString("UnaquiredQuests", resourceCulture);
+                return ResourceManager.GetString("UnacquiredQuests", resourceCulture);
             }
         }
         

@@ -631,10 +631,10 @@
   <data name="TypeFilter" xml:space="preserve">
     <value>出現種別(&amp;T)</value>
   </data>
-  <data name="Unaquired" xml:space="preserve">
+  <data name="Unacquired" xml:space="preserve">
     <value>(未取得)</value>
   </data>
-  <data name="UnaquiredQuests" xml:space="preserve">
+  <data name="UnacquiredQuests" xml:space="preserve">
     <value>未取得の任務</value>
   </data>
   <data name="UniqueID" xml:space="preserve">

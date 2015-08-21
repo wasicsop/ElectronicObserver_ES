@@ -241,7 +241,7 @@ namespace ElectronicObserver.Window {
 			if ( KCDatabase.Instance.Quest.Quests.Count != KCDatabase.Instance.Quest.Count ) {
 				int index = QuestView.Rows.Add();
 				QuestView.Rows[index].Cells[QuestView_State.Index].Value = null;
-				QuestView.Rows[index].Cells[QuestView_Name.Index].Value = string.Format( "(" + GeneralRes.UnaquiredQuests + " x {0})", ( KCDatabase.Instance.Quest.Count - KCDatabase.Instance.Quest.Quests.Count ) );
+				QuestView.Rows[index].Cells[QuestView_Name.Index].Value = string.Format( "(" + GeneralRes.UnacquiredQuests + " x {0})", ( KCDatabase.Instance.Quest.Count - KCDatabase.Instance.Quest.Quests.Count ) );
 			}
 
 			if ( KCDatabase.Instance.Quest.Quests.Count == 0 ) {
@@ -398,7 +398,7 @@ namespace ElectronicObserver.Window {
 			{
 				DataGridViewRow row = new DataGridViewRow();
 				row.CreateCells( QuestView );
-				row.SetValues( null, null, null, GeneralRes.Unaquired, null );
+				row.SetValues( null, null, null, GeneralRes.Unacquired, null );
 				QuestView.Rows.Add( row );
 			}
 
