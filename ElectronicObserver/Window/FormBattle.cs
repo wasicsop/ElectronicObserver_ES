@@ -437,7 +437,8 @@ namespace ElectronicObserver.Window {
 				ToolTipInfo.SetToolTip( AirStage1Friend, string.Format( GeneralRes.Stage2AATooltip,
 					planeFriend[0], planeFriend[1], planeFriend[2], planeFriend[3] ) );
 
-				if ( planeFriend[1] > 0 && ( planeFriend[0] == planeFriend[1] || planeFriend[2] == planeFriend[3] ) )
+				if ( ( planeFriend[1] > 0 && planeFriend[0] == planeFriend[1] ) ||
+					 ( planeFriend[3] > 0 && planeFriend[2] == planeFriend[3] ) )
 					AirStage1Friend.ForeColor = Color.Red;
 				else
 					AirStage1Friend.ForeColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.MainFontColor);
@@ -453,7 +454,8 @@ namespace ElectronicObserver.Window {
 				ToolTipInfo.SetToolTip( AirStage1Enemy, string.Format( GeneralRes.Stage2AATooltip,
 					planeEnemy[0], planeEnemy[1], planeEnemy[2], planeEnemy[3] ) );
 
-				if ( planeEnemy[1] > 0 && ( planeEnemy[0] == planeEnemy[1] || planeEnemy[2] == planeEnemy[3] ) )
+				if ( ( planeEnemy[1] > 0 && planeEnemy[0] == planeEnemy[1] ) ||
+					 ( planeEnemy[3] > 0 && planeEnemy[2] == planeEnemy[3] ) )
 					AirStage1Enemy.ForeColor = Color.Red;
 				else
 					AirStage1Enemy.ForeColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.MainFontColor);
@@ -482,8 +484,8 @@ namespace ElectronicObserver.Window {
 				}
 
 				int[] touchEnemy = {
-					pd1.TouchAircraftFriend,
-					isBattle2Enabled ? pd2.TouchAircraftFriend : -1
+					pd1.TouchAircraftEnemy,
+					isBattle2Enabled ? pd2.TouchAircraftEnemy : -1
 					};
 				if ( touchEnemy[0] != -1 || touchEnemy[1] != -1 ) {
 					AirStage1Enemy.ImageAlign = ContentAlignment.MiddleLeft;
@@ -530,7 +532,8 @@ namespace ElectronicObserver.Window {
 				ToolTipInfo.SetToolTip( AirStage2Friend, string.Format( GeneralRes.Stage2AATooltip,
 					planeFriend[0], planeFriend[1], planeFriend[2], planeFriend[3] ) );
 
-				if ( planeFriend[1] > 0 && ( planeFriend[0] == planeFriend[1] || planeFriend[2] == planeFriend[3] ) )
+				if ( ( planeFriend[1] > 0 && planeFriend[0] == planeFriend[1] ) ||
+					 ( planeFriend[3] > 0 && planeFriend[2] == planeFriend[3] ) )
 					AirStage2Friend.ForeColor = Color.Red;
 				else
 					AirStage2Friend.ForeColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.MainFontColor);
@@ -544,9 +547,11 @@ namespace ElectronicObserver.Window {
 				};
 				AirStage2Enemy.Text = string.Format( "-{0}/{1}", planeEnemy[0] + planeEnemy[2], planeEnemy[1] );
 				ToolTipInfo.SetToolTip( AirStage2Enemy, string.Format( GeneralRes.Stage2AATooltip,
-					planeEnemy[0], planeEnemy[1], planeEnemy[2], planeEnemy[3] ) );
+					planeEnemy[0], planeEnemy[1], planeEnemy[2], planeEnemy[3],
+					isBattle2Enabled ? "" : GeneralRes.NoSecondAirStage ) );			
 
-				if ( planeEnemy[1] > 0 && ( planeEnemy[0] == planeEnemy[1] || planeEnemy[2] == planeEnemy[3] ) )
+				if ( ( planeEnemy[1] > 0 && planeEnemy[0] == planeEnemy[1] ) ||
+					 ( planeEnemy[3] > 0 && planeEnemy[2] == planeEnemy[3] ) )
 					AirStage2Enemy.ForeColor = Color.Red;
 				else
 					AirStage2Enemy.ForeColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.MainFontColor);

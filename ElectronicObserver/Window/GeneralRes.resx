@@ -752,4 +752,7 @@
     <value>敵艦隊名: {0}
 </value>
   </data>
+  <data name="NoSecondAirStage" xml:space="preserve">
+    <value>(第二次戦発生せず)</value>
+  </data>
 </root>

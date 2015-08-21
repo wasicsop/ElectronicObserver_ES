@@ -1178,6 +1178,15 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to (第二次戦発生せず).
+        /// </summary>
+        internal static string NoSecondAirStage {
+            get {
+                return ResourceManager.GetString("NoSecondAirStage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to CSV出力(&amp;O)....
         /// </summary>
         internal static string OutputCSV {
