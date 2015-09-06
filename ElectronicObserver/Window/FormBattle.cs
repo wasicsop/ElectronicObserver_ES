@@ -628,22 +628,26 @@ namespace ElectronicObserver.Window {
 			ToolTipInfo.SetToolTip( AirSuperiority, null );
 
 			AirStage1Friend.Text = "-";
+			AirStage1Friend.ForeColor = SystemColors.ControlText;
 			AirStage1Friend.ImageAlign = ContentAlignment.MiddleCenter;
 			AirStage1Friend.ImageIndex = -1;
 			ToolTipInfo.SetToolTip( AirStage1Friend, null );
 
 			AirStage1Enemy.Text = "-";
+			AirStage1Enemy.ForeColor = SystemColors.ControlText;
 			AirStage1Enemy.ImageAlign = ContentAlignment.MiddleCenter;
 			AirStage1Enemy.ImageIndex = -1;
 			ToolTipInfo.SetToolTip( AirStage1Enemy, null );
 
 			AirStage2Friend.Text = "-";
+			AirStage2Friend.ForeColor = SystemColors.ControlText;
 			AirStage2Friend.ImageAlign = ContentAlignment.MiddleCenter;
 			AirStage2Friend.ImageIndex = -1;
 			ToolTipInfo.SetToolTip( AirStage2Friend, null );
 
 			AirStage2Enemy.Text = "-";
 			AirStage2Enemy.ImageAlign = ContentAlignment.MiddleCenter;
+			AirStage2Enemy.ForeColor = SystemColors.ControlText;
 			AirStage2Enemy.ImageIndex = -1;
 			ToolTipInfo.SetToolTip( AirStage2Enemy, null );
 
@@ -1000,6 +1004,7 @@ namespace ElectronicObserver.Window {
 					ShipData ship = fleet.MembersInstance[index];
 
 					AirStage1Friend.Text = "#" + ( index + 1 );
+					AirStage1Friend.ForeColor = SystemColors.ControlText;
 					AirStage1Friend.ImageAlign = ContentAlignment.MiddleLeft;
 					AirStage1Friend.ImageIndex = (int)ResourceManager.EquipmentContent.Searchlight;
 					ToolTipInfo.SetToolTip( AirStage1Friend, GeneralRes.SearchlightUsed + ": " + ship.NameWithLevel );
@@ -1013,6 +1018,7 @@ namespace ElectronicObserver.Window {
 				int index = pd.SearchlightIndexEnemy;
 				if ( index != -1 ) {
 					AirStage1Enemy.Text = "#" + ( index + 1 );
+					AirStage1Enemy.ForeColor = SystemColors.ControlText;	
 					AirStage1Enemy.ImageAlign = ContentAlignment.MiddleLeft;
 					AirStage1Enemy.ImageIndex = (int)ResourceManager.EquipmentContent.Searchlight;
 					ToolTipInfo.SetToolTip( AirStage1Enemy, GeneralRes.SearchlightUsed + ": " + pd.SearchlightEnemyInstance.NameWithClass );
@@ -1047,6 +1053,7 @@ namespace ElectronicObserver.Window {
 
 				if ( index != -1 ) {
 					AirStage2Friend.Text = "#" + ( index + 1 );
+					AirStage2Friend.ForeColor = SystemColors.ControlText;
 					AirStage2Friend.ImageAlign = ContentAlignment.MiddleLeft;
 					AirStage2Friend.ImageIndex = (int)ResourceManager.EquipmentContent.Flare;
 					ToolTipInfo.SetToolTip( AirStage2Friend, GeneralRes.StarShellUsed + ": " + fleet.MembersInstance[index].NameWithLevel );
@@ -1061,6 +1068,7 @@ namespace ElectronicObserver.Window {
 
 				if ( index != -1 ) {
 					AirStage2Enemy.Text = "#" + ( index + 1 );
+					AirStage2Enemy.ForeColor = SystemColors.ControlText;
 					AirStage2Enemy.ImageAlign = ContentAlignment.MiddleLeft;
 					AirStage2Enemy.ImageIndex = (int)ResourceManager.EquipmentContent.Flare;
 					ToolTipInfo.SetToolTip( AirStage2Enemy, GeneralRes.StarShellUsed + ": " + pd.FlareEnemyInstance.NameWithClass );
