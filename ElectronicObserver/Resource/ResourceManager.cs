@@ -341,7 +341,6 @@ namespace ElectronicObserver.Resource {
 					LoadImageFromArchive( Equipments, archive, mstpath + @"Equipment/Locked.png", "Equipment_Locked" );
 					LoadImageFromArchive( Equipments, archive, mstpath + @"Equipment/Unknown.png", "Equipment_Unknown" );
 
-
 				}
 			}
 

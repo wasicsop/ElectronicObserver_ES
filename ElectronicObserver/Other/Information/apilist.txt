@@ -512,7 +512,7 @@ api_port/port		：母港情報
 		api_state			：
 		api_message			：メッセージ
 	
-	api_combined_flag		：連合艦隊フラグ 0=未結成, 1=機動部隊, 2=水上部隊
+	api_combined_flag		：連合艦隊フラグ 0=未結成, 1=機動部隊, 2=水上部隊, -x=強制解隊(-1=機動部隊解隊, -2=水上部隊解隊 解体等で編成が変わった時に発生)
 	api_p_bgm_id			：母港BGMのID
 	api_event_object		：'14 秋イベで追加、'15 夏イベでも復活
 		0					：'15 夏イベで追加　'14 秋イベ 攻略順記録?　名前が数値なので注意
@@ -584,7 +584,7 @@ api_req_kousyou/createship			：建造開始
 	(情報なし)
 
 Request.api_req_kousyou/createship_speedchage	：高速建造材使用
-	api_highspeed		：使用フラグ？
+	api_highspeed		：使用フラグ
 	api_kdock_id		：工廠ドックID
 
 api_req_kousyou/createship_speedchage			：高速建造材使用
@@ -771,11 +771,16 @@ api_req_quest/clearitemget		：任務達成
 	api_material		：獲得資源量(基本4種)
 	api_bounus_count	：api_bounus の数 *スペルミス注意*
 	api_bounus			：アイテム *スペルミス注意*
-		api_type		：1=資源(バケツその他4種？), 2=艦隊解放, 3=家具箱, 4=大型艦建造解放, 11=艦船, 12=装備, 13=アイテム, 14=家具, 15=機種転換
+		api_type		：1=資源(バケツその他4種？), 2=艦隊解放, 3=家具箱, 4=大型艦建造解放, 11=艦船, 12=装備, 13=アイテム, 14=家具, 15=機種転換, 99=イベント海域解放
 		api_count		：取得個数
-		api_item		：アイテム追加情報 一般アイテムはnull
+		api_item		：アイテム追加情報 一般アイテムはnull イベント海域解放時は api_count = 1 にもかかわらず null
+			(アイテムの場合)
 			api_id		：装備アイテム=ID、家具箱=0
 			api_name	：アイテム名 家具箱系/装備のみ
+			(機種転換の場合)
+			api_id_from	：転換前の装備ID(マスター)
+			api_id_to	：転換後の装備ID
+			api_message	：メッセージ
 
 
 Request.api_get_member/picture_book	：図鑑
@@ -861,6 +866,11 @@ api_req_mission/result		：遠征帰投
 		api_useitem_count	：取得アイテム数？
 	api_get_item2			：上に同じ
 
+
+Request.api_req_hokyu/charge	：補給
+	api_kind			：1=燃料のみ 2=弾薬のみ 3=まとめて補給
+	api_onslot			：艦載機を補充するか?
+	api_id_items		：補給艦船IDリスト　,区切り文字列
 
 api_req_hokyu/charge	：補給
 	api_ship			：補給を受けた艦船リスト
@@ -1129,7 +1139,7 @@ api_req_sortie/battle	：戦闘(昼戦)
 	api_nowhps			：味方/敵艦船の現在HP -1から
 	api_maxhps			：〃最大HP
 	api_midnight_flag	：夜戦突入可否　昼戦で全滅させれば0(不可)になる
-	api_eSlot			：敵艦船装備スロット　空欄は-1
+	api_eSlot			：敵艦船装備スロット　[6][5]　空きスロットは-1
 	api_eKyouka			：敵艦船パラメータ強化(近代化改修)
 	api_fParam			：味方艦船基礎ステータス [0]=火力, [1]=雷装, [2]=対空, [3]=装甲
 	api_eParam			：敵艦船基礎ステータス
@@ -1362,7 +1372,7 @@ api_req_combined_battle/airbattle	：連合艦隊-機動部隊 航空戦
 	api_fParam			：味方艦船基礎ステータス
 	api_eParam			：敵艦船基礎ステータス
 	api_fParam_combined	：味方随伴護衛艦隊基礎ステータス
-	api_escape_idx?		：機動部隊本隊退避艦座標
+	api_escape_idx		：機動部隊本隊退避艦座標(1-6)
 	api_escape_idx_combined		：随伴護衛艦隊退避艦座標(1-6)
 	api_search			：索敵　[0]=味方, [1]=敵	1=成功, 2=失敗?, 5=失敗
 	api_formation		：陣形/交戦形態?　[0]=味方, [1]=敵, [2]=交戦形態
@@ -1417,6 +1427,10 @@ api_req_combined_battle/battle	：連合艦隊-機動部隊 戦闘
 	api_fParam			：味方艦船基礎ステータス
 	api_eParam			：敵艦船基礎ステータス
 	api_fParam_combined	：味方随伴護衛艦隊基礎ステータス
+	api_escape_idx		：機動部隊本隊退避艦座標(1-6)
+	api_escape_idx_combined		：随伴護衛艦隊退避艦座標(1-6)
+	api_combat_ration	：本隊戦闘糧食補給　発動時のみ存在　艦船IDの数値配列
+	api_combat_ration_combined	：随伴艦隊戦闘糧食補給　発動時のみ存在　艦船IDの数値配列
 	api_search			：索敵　[0]=味方, [1]=敵	1=成功, 2=失敗?, 5=失敗
 	api_formation		：陣形/交戦形態?　[0]=味方, [1]=敵, [2]=交戦形態
 							[0|1]：1=単縦陣 2=複縦陣, 3=輪形陣, 4=梯形陣?, 5=単横陣?, "11"-"14"=第n警戒航行序列
@@ -1486,15 +1500,17 @@ api_req_combined_battle/midnight_battle		：連合艦隊-機動部隊/水上部�
 	api_deck_id			：こちらの出撃艦隊ID 文字列
 	api_ship_ke			：敵艦船ID -1から始まる
 	api_ship_lv			：敵艦船Lv.
-	api_nowhps			：味方/敵艦船の現在HP -1から始まる
-	api_maxhps			：〃最大HP
+	api_nowhps			：味方/敵艦船の現在HP -1から始まる 敵の空きは省略される(敵が6隻の場合は[13]、5隻の場合[12]になる)
+	api_maxhps			：〃最大HP　api_nowhpsの長さにかかわらず[13]
 	api_nowhps_combined	：味方随伴護衛艦隊の現在HP
 	api_maxhps_combined	：〃最大HP
-	api_eSlot			：敵艦船装備スロット　空欄は-1, 艦がいれば[5], いなければ[4]
+	api_eSlot			：敵艦船装備スロット　存在する艦の分のみ存在
 	api_eKyouka			：敵艦船パラメータ強化(近代化改修)
 	api_fParam			：味方艦船基礎ステータス
-	api_eParam			：敵艦船基礎ステータス
+	api_eParam			：敵艦船基礎ステータス　存在する艦の分のみ存在
 	api_fParam_combined	：味方随伴護衛艦隊基礎ステータス
+	api_escape_idx		：本隊退避艦座標(1-6)
+	api_escape_idx_combined		：随伴護衛艦隊退避艦座標(1-6)
 	api_touch_plane		：夜間触接装備ID [0]=味方, [1]=敵
 	api_flare_pos		：照明弾発射艦 [0]=味方, [1]=敵
 	api_hougeki			：夜間砲撃戦
@@ -1535,7 +1551,6 @@ api_req_combined_battle/battleresult	：連合艦隊 戦闘結果
 	api_get_exp_lvup_combined	：随伴護衛艦隊各艦の[0]獲得前経験値, [1]次のレベルの経験値, (レベルアップしたなら)[2]その次のレベルの経験値, ...
 	api_dests				：
 	api_destsf				：
-	api_lost_flag			：撃沈フラグ？
 	api_quest_name			：出撃海域名
 	api_quest_level			：難易度？
 	api_enemy_info			：敵艦隊情報
@@ -1543,16 +1558,17 @@ api_req_combined_battle/battleresult	：連合艦隊 戦闘結果
 		api_rank			：
 		api_deck_name		：敵艦隊名
 	api_first_clear			：初回クリアフラグ
-	api_get_flag			：
+	api_get_flag			：[1]=1 ならドロップ艦あり
 	api_get_ship			：ドロップ艦情報
 		api_ship_id			：艦船ID
-		api_ship_type		：艦種
+		api_ship_type		：艦種名
 		api_ship_name		：艦船名
 		api_ship_getmes		：メッセージ
 	api_get_eventitem		：海域攻略報酬
 		api_type			：1=汎用アイテム(勲章等), 2=艦娘, 3=装備
 		api_id				：各種ID
 		api_value			：個数？
+	api_get_eventflag		：?
 	api_get_exmap_rate		：
 	api_get_exmap_useitem_id：
 	api_escape_flag			：退避艦の有無
@@ -1566,6 +1582,9 @@ Request.api_req_combined_battle/goback_port		：護衛退避
 api_req_combined_battle/goback_port				：護衛退避
 	(情報なし)				：退避したときのみ呼ばれる; 退避艦等の情報はbattleresultに含まれている
 
+
+Request.api_req_hensei/combined		：連合艦隊結成
+	api_combined_type		：連合艦隊フラグ 0=解隊, 1=機動部隊, 2=水上部隊
 
 api_req_hensei/combined		：連合艦隊結成
 	api_combined			：連合艦隊フラグ 0=解隊, 1=結成
