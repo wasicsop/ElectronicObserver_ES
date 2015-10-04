@@ -319,8 +319,8 @@ namespace ElectronicObserver.Window {
 
 			StringBuilder sb = new StringBuilder();
 
-			sb.AppendLine( "[補給完了]" );
-			sb.AppendFormat( "ボーキサイト: {0} ( {1}機 )\r\n", (int)data.api_use_bou, (int)data.api_use_bou / 5 );
+			sb.AppendLine( GeneralRes.ResupplyComplete );
+			sb.AppendFormat( GeneralRes.BauxiteUsage, (int)data.api_use_bou, (int)data.api_use_bou / 5 );
 
 			return sb.ToString();
 		}
@@ -336,7 +336,7 @@ namespace ElectronicObserver.Window {
 				bauxite = 0;
 
 
-			sb.AppendLine( "[艦隊帰投]" );
+			sb.AppendLine( GeneralRes.FleetReturned );
 
 			foreach ( var f in KCDatabase.Instance.Fleet.Fleets.Values.Where( f => _inSortie.Contains( f.FleetID ) ) ) {
 
@@ -349,7 +349,7 @@ namespace ElectronicObserver.Window {
 
 			}
 
-			sb.AppendFormat( "燃料: {0} (補給) + {1} (入渠) = {2}\r\n弾薬: {3}\r\n鋼材: {4}\r\nボーキ: {5} ( {6}機 )\r\n",
+			sb.AppendFormat( GeneralRes.ResupplyString,
 				fuel_supply, fuel_repair, fuel_supply + fuel_repair, ammo, steel, bauxite, bauxite / 5 );
 
 			return sb.ToString();

@@ -259,4 +259,24 @@ Reading is recommended before use.</value>
   <data name="FirstTimeTitle" xml:space="preserve">
     <value>First Time Start</value>
   </data>
+  <data name="FailedNewRecords" xml:space="preserve">
+    <value>Conversion of record files failed.</value>
+  </data>
+  <data name="FailedRecordDialog" xml:space="preserve">
+    <value>Conversion failed with error:
+{0}
+Continue starting Electronic Observer?
+(Continuing may corrupt your current records.)
+</value>
+  </data>
+  <data name="NewRecordFormat" xml:space="preserve">
+    <value>It is detected that you are upgrading from a previous version.
+We will now convert your current record files into a new format.
+(Your original files will be moved to the Record_Backup folder.)
+Continue?
+(If you do not convert your records, they may become unreadable.)</value>
+  </data>
+  <data name="NewRecordTitle" xml:space="preserve">
+    <value>Upgrade Confirmation (~1.4.6)</value>
+  </data>
 </root>

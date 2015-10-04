@@ -846,8 +846,8 @@ namespace ElectronicObserver.Utility {
 			if ( dt <= DateTimeHelper.CSVStringToTime( "2015/08/27 21:00:00" ) ) {
 
 				if ( MessageBox.Show(
-					"バージョンアップが検出されました。\r\n古いレコードファイルを新しいフォーマットにコンバートします。\r\n(元のファイルは Record_Backup フォルダに残されます。)\r\nよろしいですか？\r\n(コンバートせずに続行した場合、読み込めなくなる可能性があります。)\r\n",
-					"バージョンアップに伴う確認(～1.4.6)",
+					Resources.NewRecordFormat,
+					Resources.NewRecordTitle,
 					MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1 )
 					 == DialogResult.Yes ) {
 
@@ -956,10 +956,10 @@ namespace ElectronicObserver.Utility {
 
 					} catch ( Exception ex ) {
 
-						Utility.ErrorReporter.SendErrorReport( ex, "バージョンアップに伴うレコードのコンバートに失敗しました。" );
+						Utility.ErrorReporter.SendErrorReport( ex, Resources.FailedNewRecords );
 
-						if ( MessageBox.Show( "コンバートに失敗しました。\r\n" + ex.Message + "\r\n起動処理を続行しますか？\r\n(データが破壊される可能性があります)\r\n",
-							"エラー", MessageBoxButtons.YesNo, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2 )
+						if ( MessageBox.Show( String.Format(Resources.FailedRecordDialog, ex.Message),
+							Resources.Error, MessageBoxButtons.YesNo, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2 )
 							== DialogResult.No )
 							Environment.Exit( -1 );
 

@@ -229,17 +229,17 @@ namespace ElectronicObserver.Data {
 
 			switch ( value ) {
 				case -1:
-					return "なし";
+					return ConstantsRes.NoNode;
 				case 0:
-					return "未選択";
+					return ConstantsRes.Unselected;
 				case 1:
-					return "丙";
+					return ConstantsRes.EasyDifficulty;
 				case 2:
-					return "乙";
+					return ConstantsRes.MediumDifficulty;
 				case 3:
-					return "甲";
+					return ConstantsRes.HardDifficulty;
 				default:
-					return "不明";
+					return ConstantsRes.Unknown;
 			}
 		}
 
@@ -250,11 +250,15 @@ namespace ElectronicObserver.Data {
 
 			switch ( value ) {
 				case "未選択":
+                case "Unselected":
 					return 0;
 				case "丙":
+                case "Easy":
 					return 1;
 				case "乙":
+                case "Medium":
 					return 2;
+                case "Hard":
 				case "甲":
 					return 3;
 				default:
@@ -302,22 +306,31 @@ namespace ElectronicObserver.Data {
 		public static int GetFormation( string value ) {
 			switch ( value ) {
 				case "単縦陣":
+                case "Line Ahead":
 					return 1;
 				case "複縦陣":
+                case "Double Line":
 					return 2;
 				case "輪形陣":
+                case "Diamond":
 					return 3;
 				case "梯形陣":
+                case "Echelon":
 					return 4;
 				case "単横陣":
+                case "Line Abreast":
 					return 5;
 				case "第一警戒航行序列":
+                case "First Cruising Formation":
 					return 11;
 				case "第二警戒航行序列":
+                case "Second Cruising Formation":
 					return 12;
 				case "第三警戒航行序列":
+                case "Third Cruising Formation":
 					return 13;
 				case "第四警戒航行序列":
+                case "Fourth Cruising Formation":
 					return 14;
 				default:
 					return -1;

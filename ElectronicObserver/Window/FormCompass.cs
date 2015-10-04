@@ -297,10 +297,10 @@ namespace ElectronicObserver.Window {
 			InitializeComponent();
 
 
-			
 
-			MainFontColor = Color.FromArgb( 0x00, 0x00, 0x00 );
-			SubFontColor = Color.FromArgb( 0x88, 0x88, 0x88 );
+
+            MainFontColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.MainFontColor);
+			SubFontColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.SubFontColor);
             ConfigurationChanged();
 
 			ControlHelper.SetDoubleBuffered( BasePanel );
@@ -618,7 +618,7 @@ namespace ElectronicObserver.Window {
             
 				//unknown
 			if ( _enemyFleetCandidate.Count == 0 ) {
-				TextEventDetail.Text = "(敵艦隊候補なし)";
+				TextEventDetail.Text = GeneralRes.NoFleetCandidates;
                 TextEnemyFleetName.Text = GeneralRes.EnemyUnknown;
                 TextFormation.Visible = false;
 				TextAirSuperiority.Visible = false;
@@ -667,7 +667,7 @@ namespace ElectronicObserver.Window {
 				if ( efrecord != null ) {
 					TextEnemyFleetName.Text = efrecord.FleetName;
 				}
-				TextEventDetail.Text = "敵艦隊ID: " + efcurrent.FleetID.ToString( "x8" );
+				TextEventDetail.Text = GeneralRes.EnemyFleetID + ": " + efcurrent.FleetID.ToString( "x8" );
 			}
 
 			TextFormation.Text = Constants.GetFormationShort( (int)bd.Searching.FormationEnemy );
@@ -713,7 +713,7 @@ namespace ElectronicObserver.Window {
 				var candidate = _enemyFleetCandidate[_enemyFleetCandidateIndex];
 
 
-				TextEventDetail.Text = string.Format( "敵艦隊候補 : {0} / {1}", _enemyFleetCandidateIndex + 1, _enemyFleetCandidate.Count );
+				TextEventDetail.Text = string.Format(  GeneralRes.EnemyCandidate + ": {0} / {1}", _enemyFleetCandidateIndex + 1, _enemyFleetCandidate.Count );
 
 				TextEnemyFleetName.Text = candidate.FleetName;
 				TextFormation.Text = Constants.GetFormationShort( candidate.Formation );

@@ -323,6 +323,16 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ボーキサイト: {0} ( {1}機 )
+        ///.
+        /// </summary>
+        internal static string BauxiteUsage {
+            get {
+                return ResourceManager.GetString("BauxiteUsage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 能動分岐.
         /// </summary>
         internal static string BranchChoice {
@@ -662,6 +672,15 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 敵艦隊候補.
+        /// </summary>
+        internal static string EnemyCandidate {
+            get {
+                return ResourceManager.GetString("EnemyCandidate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 敵軍艦隊.
         /// </summary>
         internal static string EnemyFleet {
@@ -866,6 +885,15 @@ namespace ElectronicObserver.Window {
         internal static string FleetList {
             get {
                 return ResourceManager.GetString("FleetList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [艦隊帰投].
+        /// </summary>
+        internal static string FleetReturned {
+            get {
+                return ResourceManager.GetString("FleetReturned", resourceCulture);
             }
         }
         
@@ -1160,6 +1188,15 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to (敵艦隊候補なし).
+        /// </summary>
+        internal static string NoFleetCandidates {
+            get {
+                return ResourceManager.GetString("NoFleetCandidates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to (なし).
         /// </summary>
         internal static string None {
@@ -1327,6 +1364,28 @@ namespace ElectronicObserver.Window {
         internal static string Result {
             get {
                 return ResourceManager.GetString("Result", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [補給完了].
+        /// </summary>
+        internal static string ResupplyComplete {
+            get {
+                return ResourceManager.GetString("ResupplyComplete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 燃料: {0} (補給) + {1} (入渠) = {2}
+        ///弾薬: {3}
+        ///鋼材: {4}
+        ///ボーキ: {5} ( {6}機 )
+        ///.
+        /// </summary>
+        internal static string ResupplyString {
+            get {
+                return ResourceManager.GetString("ResupplyString", resourceCulture);
             }
         }
         

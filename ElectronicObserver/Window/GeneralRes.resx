@@ -755,4 +755,27 @@
   <data name="NoSecondAirStage" xml:space="preserve">
     <value>(第二次戦発生せず)</value>
   </data>
+  <data name="EnemyCandidate" xml:space="preserve">
+    <value>敵艦隊候補</value>
+  </data>
+  <data name="NoFleetCandidates" xml:space="preserve">
+    <value>(敵艦隊候補なし)</value>
+  </data>
+  <data name="BauxiteUsage" xml:space="preserve">
+    <value>ボーキサイト: {0} ( {1}機 )
+</value>
+  </data>
+  <data name="FleetReturned" xml:space="preserve">
+    <value>[艦隊帰投]</value>
+  </data>
+  <data name="ResupplyComplete" xml:space="preserve">
+    <value>[補給完了]</value>
+  </data>
+  <data name="ResupplyString" xml:space="preserve">
+    <value>燃料: {0} (補給) + {1} (入渠) = {2}
+弾薬: {3}
+鋼材: {4}
+ボーキ: {5} ( {6}機 )
+</value>
+  </data>
 </root>

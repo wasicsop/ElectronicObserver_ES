@@ -310,7 +310,7 @@ This action cannot be undone.</value>
     <value>Enemy Fleet ID</value>
   </data>
   <data name="EnemyFleetName" xml:space="preserve">
-    <value>(Enemy Fleet Name)</value>
+    <value>Enemy Fleet Name</value>
   </data>
   <data name="EnemyFormation" xml:space="preserve">
     <value>Enemy Formation</value>
@@ -784,5 +784,28 @@ This month: {2:+##;-##;±0}</value>
   </data>
   <data name="NoSecondAirStage" xml:space="preserve">
     <value>(Second air stage did not activate.)</value>
+  </data>
+  <data name="EnemyCandidate" xml:space="preserve">
+    <value>Fleet Candidate</value>
+  </data>
+  <data name="NoFleetCandidates" xml:space="preserve">
+    <value>(No Enemy Fleet Candidates)</value>
+  </data>
+  <data name="BauxiteUsage" xml:space="preserve">
+    <value>Bauxite: {0} ( {1} planes )
+</value>
+  </data>
+  <data name="FleetReturned" xml:space="preserve">
+    <value>[Fleet Returned]</value>
+  </data>
+  <data name="ResupplyComplete" xml:space="preserve">
+    <value>[Resupply Complete]</value>
+  </data>
+  <data name="ResupplyString" xml:space="preserve">
+    <value>Fuel: {0} (resupply) + {1} (repair) = {2}
+Ammo: {3}
+Steel: {4}
+Bauxite: {5} ( {6} planes )
+</value>
   </data>
 </root>

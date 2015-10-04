@@ -220,6 +220,28 @@ namespace ElectronicObserver.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to バージョンアップに伴うレコードのコンバートに失敗しました。.
+        /// </summary>
+        internal static string FailedNewRecords {
+            get {
+                return ResourceManager.GetString("FailedNewRecords", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to コンバートに失敗しました。
+        ///{0}
+        ///起動処理を続行しますか？
+        ///(データが破壊される可能性があります)
+        ///.
+        /// </summary>
+        internal static string FailedRecordDialog {
+            get {
+                return ResourceManager.GetString("FailedRecordDialog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} をご利用いただきありがとうございます。
         ///設定や使用方法については「ヘルプ」→「オンラインヘルプ」を参照してください。\r\nご使用の前に必ずご一読ください。.
         /// </summary>
@@ -309,6 +331,28 @@ namespace ElectronicObserver.Properties {
         internal static string LayoutSaved {
             get {
                 return ResourceManager.GetString("LayoutSaved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to バージョンアップが検出されました。
+        ///古いレコードファイルを新しいフォーマットにコンバートします。
+        ///(元のファイルは Record_Backup フォルダに残されます。)
+        ///よろしいですか？
+        ///(コンバートせずに続行した場合、読み込めなくなる可能性があります。).
+        /// </summary>
+        internal static string NewRecordFormat {
+            get {
+                return ResourceManager.GetString("NewRecordFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to バージョンアップに伴う確認(～1.4.6).
+        /// </summary>
+        internal static string NewRecordTitle {
+            get {
+                return ResourceManager.GetString("NewRecordTitle", resourceCulture);
             }
         }
         

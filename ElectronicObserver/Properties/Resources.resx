@@ -258,4 +258,24 @@
   <data name="FirstTimeTitle" xml:space="preserve">
     <value>初回起動メッセージ</value>
   </data>
+  <data name="FailedNewRecords" xml:space="preserve">
+    <value>バージョンアップに伴うレコードのコンバートに失敗しました。</value>
+  </data>
+  <data name="FailedRecordDialog" xml:space="preserve">
+    <value>コンバートに失敗しました。
+{0}
+起動処理を続行しますか？
+(データが破壊される可能性があります)
+</value>
+  </data>
+  <data name="NewRecordFormat" xml:space="preserve">
+    <value>バージョンアップが検出されました。
+古いレコードファイルを新しいフォーマットにコンバートします。
+(元のファイルは Record_Backup フォルダに残されます。)
+よろしいですか？
+(コンバートせずに続行した場合、読み込めなくなる可能性があります。)</value>
+  </data>
+  <data name="NewRecordTitle" xml:space="preserve">
+    <value>バージョンアップに伴う確認(～1.4.6)</value>
+  </data>
 </root>

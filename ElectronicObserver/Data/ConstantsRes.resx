@@ -534,4 +534,16 @@
   <data name="Withdrawn" xml:space="preserve">
     <value>離脱</value>
   </data>
+  <data name="EasyDifficulty" xml:space="preserve">
+    <value>丙</value>
+  </data>
+  <data name="HardDifficulty" xml:space="preserve">
+    <value>甲</value>
+  </data>
+  <data name="MediumDifficulty" xml:space="preserve">
+    <value>乙</value>
+  </data>
+  <data name="Unselected" xml:space="preserve">
+    <value>未選択</value>
+  </data>
 </root>
