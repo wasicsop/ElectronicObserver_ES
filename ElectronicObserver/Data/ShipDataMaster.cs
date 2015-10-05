@@ -109,6 +109,11 @@ namespace ElectronicObserver.Data {
 		/// </summary>
 		public int NeedBlueprint { get; internal set; }
 
+		/// <summary>
+		/// 改装に試製甲板カタパルトが必要かどうか
+		/// </summary>
+		public int NeedCatapult { get; internal set; }
+
 
 		#region Parameters
 
@@ -407,6 +412,14 @@ namespace ElectronicObserver.Data {
 				}
 			}
 		}
+
+		/// <summary>
+		/// 搭載
+		/// </summary>
+		public int AircraftTotal {
+			get { return Aircraft.Sum( a => Math.Max( a, 0 ) ); }
+		}
+
 
 		/// <summary>
 		/// 初期装備のID
