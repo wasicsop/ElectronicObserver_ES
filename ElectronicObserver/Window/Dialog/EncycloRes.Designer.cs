@@ -133,6 +133,15 @@ namespace ElectronicObserver.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 改装設計図.
+        /// </summary>
+        internal static string Blueprint {
+            get {
+                return ResourceManager.GetString("Blueprint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 建造時間.
         /// </summary>
         internal static string ConstructionTime {
@@ -480,6 +489,15 @@ namespace ElectronicObserver.Window.Dialog {
         internal static string OutputCSVUser {
             get {
                 return ResourceManager.GetString("OutputCSVUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 試製甲板カタパルト.
+        /// </summary>
+        internal static string PrototypeCatapult {
+            get {
+                return ResourceManager.GetString("PrototypeCatapult", resourceCulture);
             }
         }
         

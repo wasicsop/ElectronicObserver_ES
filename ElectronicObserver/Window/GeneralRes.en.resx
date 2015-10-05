@@ -808,4 +808,13 @@ Steel: {4}
 Bauxite: {5} ( {6} planes )
 </value>
   </data>
+  <data name="Bombers" xml:space="preserve">
+    <value>Bombers</value>
+  </data>
+  <data name="Planes" xml:space="preserve">
+    <value>Aircraft</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value> Total</value>
+  </data>
 </root>

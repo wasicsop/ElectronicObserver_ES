@@ -778,4 +778,13 @@
 ボーキ: {5} ( {6}機 )
 </value>
   </data>
+  <data name="Bombers" xml:space="preserve">
+    <value>爆装</value>
+  </data>
+  <data name="Planes" xml:space="preserve">
+    <value>艦載機</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>合計</value>
+  </data>
 </root>

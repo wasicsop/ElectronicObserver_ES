@@ -315,4 +315,10 @@ HP1あたり: 鋼 {0:F2} / 燃 {1:F2}
   <data name="SkillLevel" xml:space="preserve">
     <value>練度</value>
   </data>
+  <data name="Blueprint" xml:space="preserve">
+    <value>改装設計図</value>
+  </data>
+  <data name="PrototypeCatapult" xml:space="preserve">
+    <value>試製甲板カタパルト</value>
+  </data>
 </root>

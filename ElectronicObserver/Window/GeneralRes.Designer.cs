@@ -333,6 +333,15 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 爆装.
+        /// </summary>
+        internal static string Bombers {
+            get {
+                return ResourceManager.GetString("Bombers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 能動分岐.
         /// </summary>
         internal static string BranchChoice {
@@ -1251,6 +1260,15 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 艦載機.
+        /// </summary>
+        internal static string Planes {
+            get {
+                return ResourceManager.GetString("Planes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 演習.
         /// </summary>
         internal static string Practice {
@@ -1818,6 +1836,15 @@ namespace ElectronicObserver.Window {
         internal static string Torpedo {
             get {
                 return ResourceManager.GetString("Torpedo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 合計.
+        /// </summary>
+        internal static string Total {
+            get {
+                return ResourceManager.GetString("Total", resourceCulture);
             }
         }
         

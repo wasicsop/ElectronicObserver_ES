@@ -1,3 +1,4 @@
 [submodule "DockPanelSuite"]
 	path = DockPanelSuite
 	url = https://github.com/ryuukitsune/dockpanelsuite.git
+	ignore = dirty
