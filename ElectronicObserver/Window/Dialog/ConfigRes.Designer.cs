@@ -79,6 +79,15 @@ namespace ElectronicObserver.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 制空戦力計算式：.
+        /// </summary>
+        internal static string AirSuperiorityMethod {
+            get {
+                return ResourceManager.GetString("AirSuperiorityMethod", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 適用.
         /// </summary>
         internal static string Apply {
@@ -401,6 +410,25 @@ namespace ElectronicObserver.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 改修レベル・熟練度を表示する.
+        /// </summary>
+        internal static string DisplayEquipLevels {
+            get {
+                return ResourceManager.GetString("DisplayEquipLevels", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 装備の改修レベルと艦載機熟練度を表示するかを指定します。
+        ///.
+        /// </summary>
+        internal static string DisplayEquipLevelsTooltip {
+            get {
+                return ResourceManager.GetString("DisplayEquipLevelsTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 入渠完了.
         /// </summary>
         internal static string DockEnd {
@@ -609,6 +637,15 @@ namespace ElectronicObserver.Window.Dialog {
         internal static string Headquarters {
             get {
                 return ResourceManager.GetString("Headquarters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 熟練度を無視.
+        /// </summary>
+        internal static string IgnorePlaneXP {
+            get {
+                return ResourceManager.GetString("IgnorePlaneXP", resourceCulture);
             }
         }
         
@@ -1194,6 +1231,15 @@ namespace ElectronicObserver.Window.Dialog {
         internal static string UseProxyHint {
             get {
                 return ResourceManager.GetString("UseProxyHint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 熟練度あり(仮).
+        /// </summary>
+        internal static string UsingPlaneXPBeta {
+            get {
+                return ResourceManager.GetString("UsingPlaneXPBeta", resourceCulture);
             }
         }
         

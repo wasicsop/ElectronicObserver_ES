@@ -932,8 +932,8 @@
 			this.FormFleet_AirSuperiorityMethod.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.FormFleet_AirSuperiorityMethod.FormattingEnabled = true;
 			this.FormFleet_AirSuperiorityMethod.Items.AddRange(new object[] {
-            "熟練度を無視",
-            "熟練度あり(仮)"});
+            ConfigRes.IgnorePlaneXP,
+            ConfigRes.UsingPlaneXPBeta});
 			this.FormFleet_AirSuperiorityMethod.Location = new System.Drawing.Point(115, 59);
 			this.FormFleet_AirSuperiorityMethod.Name = "FormFleet_AirSuperiorityMethod";
 			this.FormFleet_AirSuperiorityMethod.Size = new System.Drawing.Size(121, 23);
@@ -946,7 +946,7 @@
 			this.label23.Name = "label23";
 			this.label23.Size = new System.Drawing.Size(103, 15);
 			this.label23.TabIndex = 8;
-			this.label23.Text = "制空戦力計算式：";
+			this.label23.Text = ConfigRes.AirSuperiorityMethod;
 			// 
 			// FormFleet_ShowEquipmentLevel
 			// 
@@ -955,8 +955,8 @@
 			this.FormFleet_ShowEquipmentLevel.Name = "FormFleet_ShowEquipmentLevel";
 			this.FormFleet_ShowEquipmentLevel.Size = new System.Drawing.Size(173, 19);
 			this.FormFleet_ShowEquipmentLevel.TabIndex = 7;
-			this.FormFleet_ShowEquipmentLevel.Text = "改修レベル・熟練度を表示する";
-			this.ToolTipInfo.SetToolTip(this.FormFleet_ShowEquipmentLevel, "装備の改修レベルと艦載機熟練度を表示するかを指定します。\r\n");
+			this.FormFleet_ShowEquipmentLevel.Text = ConfigRes.DisplayEquipLevels;
+			this.ToolTipInfo.SetToolTip(this.FormFleet_ShowEquipmentLevel, ConfigRes.DisplayEquipLevelsTooltip);
 			this.FormFleet_ShowEquipmentLevel.UseVisualStyleBackColor = true;
 			// 
 			// FormFleet_ShowNextExp

@@ -278,4 +278,16 @@
   <data name="NewRecordTitle" xml:space="preserve">
     <value>バージョンアップに伴う確認(～1.4.6)</value>
   </data>
+  <data name="FailedToDelete" xml:space="preserve">
+    <value>削除に失敗しました。\r\n</value>
+  </data>
+  <data name="GroupUpgradeFailed" xml:space="preserve">
+    <value>バージョンアップに伴うグループデータの削除に失敗しました。</value>
+  </data>
+  <data name="NewGroupFormat" xml:space="preserve">
+    <value>バージョンアップが検出されました。\r\n艦船グループデータの互換性がなくなったため、当該データを初期化します。\r\n(古いファイルは Settings_Backup フォルダに退避されます。)\r\nよろしいですか？\r\n(初期化せずに続行した場合、エラーが発生します。)\r\n</value>
+  </data>
+  <data name="NewGroupFormatTitle" xml:space="preserve">
+    <value>バージョンアップに伴う確認(～1.5.0)</value>
+  </data>
 </root>

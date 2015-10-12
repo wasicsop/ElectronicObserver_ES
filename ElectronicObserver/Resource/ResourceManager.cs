@@ -447,7 +447,7 @@ namespace ElectronicObserver.Resource {
 					var entry = archive.GetEntry( entrypath );
 
 					if ( entry == null ) {
-						Utility.Logger.Add( 3, string.Format( "{0} は存在しません。", entrypath ) );
+						Utility.Logger.Add( 3, string.Format( "{0} " + LoggerRes.DoesNotExist, entrypath ) );
 						return false;
 					}
 
@@ -455,11 +455,11 @@ namespace ElectronicObserver.Resource {
 					try {
 
 						entry.ExtractToFile( destination );
-						Utility.Logger.Add( 2, string.Format( "{0} をコピーしました。", entrypath ) );
+						Utility.Logger.Add( 2, string.Format( LoggerRes.Copied, entrypath ) );
 
 					} catch ( Exception ex ) {
 
-						Utility.Logger.Add( 3, string.Format( "{0} のコピーに失敗しました。{1}", entrypath, ex.Message ) );
+						Utility.Logger.Add( 3, string.Format( LoggerRes.FailedToCopy, entrypath, ex.Message ) );
 						return false;
 					}
 				}

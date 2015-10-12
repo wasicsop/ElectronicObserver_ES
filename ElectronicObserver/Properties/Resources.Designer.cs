@@ -242,6 +242,15 @@ namespace ElectronicObserver.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 削除に失敗しました。\r\n.
+        /// </summary>
+        internal static string FailedToDelete {
+            get {
+                return ResourceManager.GetString("FailedToDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} をご利用いただきありがとうございます。
         ///設定や使用方法については「ヘルプ」→「オンラインヘルプ」を参照してください。\r\nご使用の前に必ずご一読ください。.
         /// </summary>
@@ -257,6 +266,15 @@ namespace ElectronicObserver.Properties {
         internal static string FirstTimeTitle {
             get {
                 return ResourceManager.GetString("FirstTimeTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to バージョンアップに伴うグループデータの削除に失敗しました。.
+        /// </summary>
+        internal static string GroupUpgradeFailed {
+            get {
+                return ResourceManager.GetString("GroupUpgradeFailed", resourceCulture);
             }
         }
         
@@ -331,6 +349,24 @@ namespace ElectronicObserver.Properties {
         internal static string LayoutSaved {
             get {
                 return ResourceManager.GetString("LayoutSaved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to バージョンアップが検出されました。\r\n艦船グループデータの互換性がなくなったため、当該データを初期化します。\r\n(古いファイルは Settings_Backup フォルダに退避されます。)\r\nよろしいですか？\r\n(初期化せずに続行した場合、エラーが発生します。)\r\n.
+        /// </summary>
+        internal static string NewGroupFormat {
+            get {
+                return ResourceManager.GetString("NewGroupFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to バージョンアップに伴う確認(～1.5.0).
+        /// </summary>
+        internal static string NewGroupFormatTitle {
+            get {
+                return ResourceManager.GetString("NewGroupFormatTitle", resourceCulture);
             }
         }
         

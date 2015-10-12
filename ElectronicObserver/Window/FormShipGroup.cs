@@ -546,14 +546,14 @@ namespace ElectronicObserver.Window {
 			if ( KCDatabase.Instance.Ships.Count > 0 && group != null ) {
 				if ( ShipView.Rows.GetRowCount( DataGridViewElementStates.Selected ) >= 2 ) {
 					var ships = ShipView.SelectedRows.Cast<DataGridViewRow>().Select( r => KCDatabase.Instance.Ships[(int)r.Cells[ShipView_ID.Index].Value] );
-					Status_ShipCount.Text = string.Format( "選択: {0} / {1}隻", ShipView.Rows.GetRowCount( DataGridViewElementStates.Selected ), group.Members.Count );
-					Status_LevelTotal.Text = string.Format( "合計Lv: {0}", ships.Sum( s => s.Level ) );
-					Status_LevelAverage.Text = string.Format( "平均Lv: {0:F2}", ships.Average( s => s.Level ) );
+					Status_ShipCount.Text = string.Format( GeneralRes.SelectedShips, ShipView.Rows.GetRowCount( DataGridViewElementStates.Selected ), group.Members.Count );
+					Status_LevelTotal.Text = string.Format( GeneralRes.TotalLevel, ships.Sum( s => s.Level ) );
+					Status_LevelAverage.Text = string.Format( GeneralRes.AverageLevel, ships.Average( s => s.Level ) );
 
 				} else {
-					Status_ShipCount.Text = string.Format( "所属: {0}隻", group.Members.Count );
-					Status_LevelTotal.Text = string.Format( "合計Lv: {0}", group.MembersInstance.Where( s => s != null ).Sum( s => s.Level ) );
-					Status_LevelAverage.Text = string.Format( "平均Lv: {0:F2}", group.Members.Count > 0 ? group.MembersInstance.Where( s => s != null ).Average( s => s.Level ) : 0 );
+					Status_ShipCount.Text = string.Format( GeneralRes.TotalShips, group.Members.Count );
+					Status_LevelTotal.Text = string.Format( GeneralRes.TotalLevel, group.MembersInstance.Where( s => s != null ).Sum( s => s.Level ) );
+					Status_LevelAverage.Text = string.Format( GeneralRes.AverageLevel, group.Members.Count > 0 ? group.MembersInstance.Where( s => s != null ).Average( s => s.Level ) : 0 );
 				}
 
 			} else {
@@ -785,7 +785,7 @@ namespace ElectronicObserver.Window {
 			if ( senderLabel == null )
 				return;		//想定外
 
-			using ( var dialog = new DialogTextInput( "グループをコピー", "グループ名を入力してください：" ) ) {
+			using ( var dialog = new DialogTextInput( GeneralRes.CopyGroupTitle, GeneralRes.CopyGroupText ) ) {
 
 				if ( dialog.ShowDialog( this ) == System.Windows.Forms.DialogResult.OK ) {
 
@@ -926,7 +926,7 @@ namespace ElectronicObserver.Window {
 			ShipGroupData group = CurrentGroup;
 
 			if ( group == null ) {
-				MessageBox.Show( "このグループは変更できません。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Asterisk );
+				MessageBox.Show( GeneralRes.CannotChangeGroup, Properties.Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Asterisk );
 				return;
 			}
 
@@ -947,7 +947,7 @@ namespace ElectronicObserver.Window {
 				}
 			} catch ( Exception ex ) {
 
-				Utility.ErrorReporter.SendErrorReport( ex, "ShipGroup: 列の設定ダイアログでエラーが発生しました。" );
+				Utility.ErrorReporter.SendErrorReport( ex, GeneralRes.ColumnDialogError );
 			}
 		}
 
@@ -978,7 +978,7 @@ namespace ElectronicObserver.Window {
 					}
 				} catch ( Exception ex ) {
 
-					Utility.ErrorReporter.SendErrorReport( ex, "ShipGroup: フィルタダイアログでエラーが発生しました。" );
+					Utility.ErrorReporter.SendErrorReport( ex, GeneralRes.FilterDialogError );
 				}
 
 			}
@@ -1031,7 +1031,7 @@ namespace ElectronicObserver.Window {
 					}
 				} catch ( Exception ex ) {
 
-					Utility.ErrorReporter.SendErrorReport( ex, "ShipGroup: 自動ソート順設定ダイアログでエラーが発生しました。" );
+					Utility.ErrorReporter.SendErrorReport( ex, GeneralRes.AutoSortDialogError );
 				}
 			}
 
@@ -1059,7 +1059,7 @@ namespace ElectronicObserver.Window {
 
 		private void MenuMember_AddToGroup_Click( object sender, EventArgs e ) {
 
-			using ( var dialog = new DialogTextSelect( "グループの選択", "追加するグループを選択してください：",
+			using ( var dialog = new DialogTextSelect( GeneralRes.SelectGroup, GeneralRes.CreateGroupName,
 				KCDatabase.Instance.ShipGroup.ShipGroups.Values.ToArray() ) ) {
 
 				if ( dialog.ShowDialog( this ) == System.Windows.Forms.DialogResult.OK ) {
@@ -1083,7 +1083,7 @@ namespace ElectronicObserver.Window {
 			if ( ships.Count() == 0 )
 				return;
 
-			using ( var dialog = new DialogTextInput( "グループの追加", "グループ名を入力してください：" ) ) {
+			using ( var dialog = new DialogTextInput( GeneralRes.AddGroup, GeneralRes.SpecifyGroupName ) ) {
 
 				if ( dialog.ShowDialog( this ) == System.Windows.Forms.DialogResult.OK ) {
 
@@ -1175,12 +1175,12 @@ namespace ElectronicObserver.Window {
 			GeneralRes.Speed,
 			GeneralRes.Lock,
 			GeneralRes.SortiePlace,
-			"航空威力",
-			"砲撃威力",
-			"空撃威力",
-			"対潜威力",
-			"雷撃威力",
-			"夜戦威力",
+			GeneralRes.Air + GeneralRes.Power,
+			GeneralRes.Shelling + GeneralRes.Power,
+			GeneralRes.Bombing + GeneralRes.Power,
+			GeneralRes.ASW + GeneralRes.Power,
+			GeneralRes.Torpedo + GeneralRes.Power,
+			GeneralRes.NightBattle + GeneralRes.Power,
 			};
 
 		private static readonly string[] ShipCSVHeaderData = {

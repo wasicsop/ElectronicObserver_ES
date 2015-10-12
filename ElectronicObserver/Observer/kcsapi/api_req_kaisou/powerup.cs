@@ -29,7 +29,7 @@ namespace ElectronicObserver.Observer.kcsapi.api_req_kaisou {
 						db.Equipments.Remove( ship.Slot[i] );
 				}
 
-				Utility.Logger.Add( 2, ship.NameWithLevel + " を除籍しました。" );
+				Utility.Logger.Add( 2, ship.NameWithLevel + LoggerRes.Decomissioned );
 				db.Ships.Remove( shipID );
 
 			}
@@ -50,7 +50,7 @@ namespace ElectronicObserver.Observer.kcsapi.api_req_kaisou {
 
 
 			if ( Utility.Configuration.Config.Log.ShowSpoiler )
-				Utility.Logger.Add( 2, string.Format( "{0} の近代化改修に{1}しました。", ship.NameWithLevel, ( (int)data.api_powerup_flag ) != 0 ? "成功" : "失敗" ) );
+				Utility.Logger.Add( 2, string.Format( LoggerRes.ModernizationResult, ship.NameWithLevel, ( (int)data.api_powerup_flag ) != 0 ? Window.GeneralRes.Success : Window.GeneralRes.Failure ) );
 
 			base.OnResponseReceived( (object)data );
 		}

@@ -502,25 +502,25 @@ namespace ElectronicObserver.Window {
 				}
 
 				int[] slotmaster = ship.SlotMaster.ToArray();
-				sb.AppendFormat( "\r\n昼戦: {0}", Constants.GetDayAttackKind( Calculator.GetDayAttackKind( slotmaster, ship.ShipID, -1 ) ) );
+				sb.AppendFormat( "\r\n" + GeneralRes.DayBattle + ": {0}", Constants.GetDayAttackKind( Calculator.GetDayAttackKind( slotmaster, ship.ShipID, -1 ) ) );
 				{
 					int shelling = ship.ShellingPower;
 					int aircraft = ship.AircraftPower;
 					if ( shelling > 0 ) {
 						if ( aircraft > 0 )
-							sb.AppendFormat( " - 砲撃: {0} / 空撃: {1}", shelling, aircraft );
+							sb.AppendFormat( " - " + GeneralRes.Shelling + ": {0} / " + GeneralRes.Bombing + ": {1}", shelling, aircraft );
 						else
-							sb.AppendFormat( " - 威力: {0}", shelling );
+							sb.AppendFormat( " - " + GeneralRes.Power +  ": {0}", shelling );
 					} else if ( aircraft > 0 )
-							sb.AppendFormat( " - 威力: {0}", aircraft );
+							sb.AppendFormat( " - " + GeneralRes.Power + ": {0}", aircraft );
 				}
 				sb.AppendLine();
 
-				sb.AppendFormat( "夜戦: {0}", Constants.GetNightAttackKind( Calculator.GetNightAttackKind( slotmaster, ship.ShipID, -1 ) ) );
+				sb.AppendFormat( GeneralRes.NightBattle + ": {0}", Constants.GetNightAttackKind( Calculator.GetNightAttackKind( slotmaster, ship.ShipID, -1 ) ) );
 				{
 					int night = ship.NightBattlePower;
 					if ( night > 0 ) {
-						sb.AppendFormat( " - 威力: {0}", night );
+						sb.AppendFormat( " - " + GeneralRes.Power +  ": {0}", night );
 					}
 				}
 				sb.AppendLine();
@@ -530,11 +530,11 @@ namespace ElectronicObserver.Window {
 					int asw = ship.AntiSubmarinePower;
 					if ( torpedo > 0 ) {
 						if ( asw > 0 )
-							sb.AppendFormat( "雷撃: {0} / 対潜: {1}\r\n", torpedo, asw );
+							sb.AppendFormat( GeneralRes.Torpedo + ": {0} / " + GeneralRes.ASW + ": {1}\r\n", torpedo, asw );
 						else
-							sb.AppendFormat( "雷撃: {0}\r\n", torpedo );
+							sb.AppendFormat( GeneralRes.Torpedo + ": {0}\r\n", torpedo );
 					} else if ( asw > 0 )
-						sb.AppendFormat( "対潜: {0}\r\n", asw );
+						sb.AppendFormat( GeneralRes.ASW + ": {0}\r\n", asw );
 				}
 
 				{
@@ -548,11 +548,11 @@ namespace ElectronicObserver.Window {
 					int airbattle = ship.AirBattlePower;
 					if ( airsup > 0 ) {
 						if ( airbattle > 0 )
-							sb.AppendFormat( "制空戦力: {0} / 航空威力: {1}\r\n", airsup, airbattle );
+							sb.AppendFormat( GeneralRes.AirPower + ": {0} / " + GeneralRes.Bombing + GeneralRes.Power + ": {1}\r\n", airsup, airbattle );
 						else
-							sb.AppendFormat( "制空戦力: {0}\r\n", airsup );
+							sb.AppendFormat( GeneralRes.AirPower + ": {0}\r\n", airsup );
 					} else if ( airbattle > 0 )
-						sb.AppendFormat( "航空威力: {0}\r\n", airbattle );
+						sb.AppendFormat( GeneralRes.Bombing + GeneralRes.Power + ": {0}\r\n", airbattle );
 				}
 
 				return sb.ToString();

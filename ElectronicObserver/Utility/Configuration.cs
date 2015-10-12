@@ -979,8 +979,8 @@ namespace ElectronicObserver.Utility {
 			if ( dt <= DateTimeHelper.CSVStringToTime( "2015/09/04 21:00:00" ) ) {
 
 				if ( MessageBox.Show(
-					"バージョンアップが検出されました。\r\n艦船グループデータの互換性がなくなったため、当該データを初期化します。\r\n(古いファイルは Settings_Backup フォルダに退避されます。)\r\nよろしいですか？\r\n(初期化せずに続行した場合、エラーが発生します。)\r\n",
-					"バージョンアップに伴う確認(～1.5.0)",
+					Resources.NewGroupFormat,
+					Resources.NewGroupFormatTitle,
 					MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1 )
 					 == DialogResult.Yes ) {
 
@@ -991,11 +991,11 @@ namespace ElectronicObserver.Utility {
 
 					} catch ( Exception ex ) {
 
-						Utility.ErrorReporter.SendErrorReport( ex, "バージョンアップに伴うグループデータの削除に失敗しました。" );
+						Utility.ErrorReporter.SendErrorReport( ex, Resources.GroupUpgradeFailed );
 
 						// エラーが出るだけなのでシャットダウンは不要
-						MessageBox.Show( "削除に失敗しました。\r\n" + ex.Message,
-							"エラー", MessageBoxButtons.OK, MessageBoxIcon.Error );
+						MessageBox.Show( Resources.FailedToDelete + ex.Message,
+							Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error );
 
 					}
 				}

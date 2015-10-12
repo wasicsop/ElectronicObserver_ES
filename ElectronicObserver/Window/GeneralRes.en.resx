@@ -146,7 +146,7 @@ Cut-in type: {1} ({2})</value>
     <value>Admiral XP</value>
   </data>
   <data name="AirPower" xml:space="preserve">
-    <value>Air Power</value>
+    <value>Air Superiority</value>
   </data>
   <data name="AirSuperiority" xml:space="preserve">
     <value>Superiority</value>
@@ -816,5 +816,53 @@ Bauxite: {5} ( {6} planes )
   </data>
   <data name="Total" xml:space="preserve">
     <value> Total</value>
+  </data>
+  <data name="Air" xml:space="preserve">
+    <value>Air</value>
+  </data>
+  <data name="AutoSort" xml:space="preserve">
+    <value>Automatic Sort Settings (&amp;S)...</value>
+  </data>
+  <data name="Bombing" xml:space="preserve">
+    <value>Bombing</value>
+  </data>
+  <data name="ColumnSettings" xml:space="preserve">
+    <value>Column Display Settings (&amp;C)...</value>
+  </data>
+  <data name="CopyGroup" xml:space="preserve">
+    <value>Copy Group (&amp;C)</value>
+  </data>
+  <data name="FilterSettings" xml:space="preserve">
+    <value>Filter Settings (&amp;F)...</value>
+  </data>
+  <data name="Power" xml:space="preserve">
+    <value> Power</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Remove (&amp;E)</value>
+  </data>
+  <data name="Shelling" xml:space="preserve">
+    <value>Shelling</value>
+  </data>
+  <data name="AutoSortDialogError" xml:space="preserve">
+    <value>ShipGroup: There was an error with the auto-sort settings dialog.</value>
+  </data>
+  <data name="ColumnDialogError" xml:space="preserve">
+    <value>ShipGroup: There was an error with the column settings dialog.</value>
+  </data>
+  <data name="CopyGroupText" xml:space="preserve">
+    <value>Enter the desired group name:</value>
+  </data>
+  <data name="CopyGroupTitle" xml:space="preserve">
+    <value>Copy Group</value>
+  </data>
+  <data name="FilterDialogError" xml:space="preserve">
+    <value>ShipGroup: There was an error with the filter dialog.</value>
+  </data>
+  <data name="SelectedShips" xml:space="preserve">
+    <value>Selected: {0} / {1} ships</value>
+  </data>
+  <data name="TotalShips" xml:space="preserve">
+    <value>Total: {0} ships</value>
   </data>
 </root>

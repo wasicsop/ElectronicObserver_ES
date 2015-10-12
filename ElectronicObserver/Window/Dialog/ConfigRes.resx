@@ -522,4 +522,20 @@ direct にするとパフォーマンスが向上する可能性があります�
   <data name="ThemeRestartWarning" xml:space="preserve">
     <value>テーマ変更は再起動後にすべて反映されます。</value>
   </data>
+  <data name="AirSuperiorityMethod" xml:space="preserve">
+    <value>制空戦力計算式：</value>
+  </data>
+  <data name="DisplayEquipLevels" xml:space="preserve">
+    <value>改修レベル・熟練度を表示する</value>
+  </data>
+  <data name="DisplayEquipLevelsTooltip" xml:space="preserve">
+    <value>装備の改修レベルと艦載機熟練度を表示するかを指定します。
+</value>
+  </data>
+  <data name="IgnorePlaneXP" xml:space="preserve">
+    <value>熟練度を無視</value>
+  </data>
+  <data name="UsingPlaneXPBeta" xml:space="preserve">
+    <value>熟練度あり(仮)</value>
+  </data>
 </root>

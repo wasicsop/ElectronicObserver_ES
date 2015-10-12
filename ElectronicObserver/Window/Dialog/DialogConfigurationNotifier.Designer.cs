@@ -260,24 +260,6 @@
 			this.label5.TabIndex = 21;
 			this.label5.Text = "閉じる：";
 			// 
-			// CloseList
-			// 
-			this.CloseList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.CloseList.CheckOnClick = true;
-			this.CloseList.FormattingEnabled = true;
-			this.CloseList.Items.AddRange(new object[] {
-            "左クリック",
-            "左ダブルクリック",
-            "右クリック",
-            "右ダブルクリック",
-            "中クリック",
-            "中ダブルクリック",
-            "マウスオーバー"});
-			this.CloseList.Location = new System.Drawing.Point(476, 35);
-			this.CloseList.Name = "CloseList";
-			this.CloseList.Size = new System.Drawing.Size(120, 130);
-			this.CloseList.TabIndex = 20;
-			// 
 			// ShowWithActivation
 			// 
 			this.ShowWithActivation.AutoSize = true;

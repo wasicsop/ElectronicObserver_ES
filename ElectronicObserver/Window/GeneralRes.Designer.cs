@@ -152,6 +152,15 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 航空.
+        /// </summary>
+        internal static string Air {
+            get {
+                return ResourceManager.GetString("Air", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 制空戦力.
         /// </summary>
         internal static string AirPower {
@@ -278,6 +287,24 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 自動ソート設定(&amp;S)....
+        /// </summary>
+        internal static string AutoSort {
+            get {
+                return ResourceManager.GetString("AutoSort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ShipGroup: 自動ソート順設定ダイアログでエラーが発生しました。.
+        /// </summary>
+        internal static string AutoSortDialogError {
+            get {
+                return ResourceManager.GetString("AutoSortDialogError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 自動更新する.
         /// </summary>
         internal static string AutoUpdate {
@@ -338,6 +365,15 @@ namespace ElectronicObserver.Window {
         internal static string Bombers {
             get {
                 return ResourceManager.GetString("Bombers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 空撃.
+        /// </summary>
+        internal static string Bombing {
+            get {
+                return ResourceManager.GetString("Bombing", resourceCulture);
             }
         }
         
@@ -434,6 +470,24 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ShipGroup: 列の設定ダイアログでエラーが発生しました。.
+        /// </summary>
+        internal static string ColumnDialogError {
+            get {
+                return ResourceManager.GetString("ColumnDialogError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 列の表示設定(&amp;C)....
+        /// </summary>
+        internal static string ColumnSettings {
+            get {
+                return ResourceManager.GetString("ColumnSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 羅針盤.
         /// </summary>
         internal static string Compass {
@@ -478,6 +532,33 @@ namespace ElectronicObserver.Window {
         internal static string Contacting {
             get {
                 return ResourceManager.GetString("Contacting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to グループをコピー(&amp;C).
+        /// </summary>
+        internal static string CopyGroup {
+            get {
+                return ResourceManager.GetString("CopyGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to グループ名を入力してください：.
+        /// </summary>
+        internal static string CopyGroupText {
+            get {
+                return ResourceManager.GetString("CopyGroupText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to グループをコピー.
+        /// </summary>
+        internal static string CopyGroupTitle {
+            get {
+                return ResourceManager.GetString("CopyGroupTitle", resourceCulture);
             }
         }
         
@@ -858,6 +939,24 @@ namespace ElectronicObserver.Window {
         internal static string FilterBy {
             get {
                 return ResourceManager.GetString("FilterBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ShipGroup: フィルタダイアログでエラーが発生しました。.
+        /// </summary>
+        internal static string FilterDialogError {
+            get {
+                return ResourceManager.GetString("FilterDialogError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to フィルタ設定(&amp;F)....
+        /// </summary>
+        internal static string FilterSettings {
+            get {
+                return ResourceManager.GetString("FilterSettings", resourceCulture);
             }
         }
         
@@ -1269,6 +1368,15 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 威力.
+        /// </summary>
+        internal static string Power {
+            get {
+                return ResourceManager.GetString("Power", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 演習.
         /// </summary>
         internal static string Practice {
@@ -1346,6 +1454,15 @@ namespace ElectronicObserver.Window {
         internal static string RemainingExpeds {
             get {
                 return ResourceManager.GetString("RemainingExpeds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 除外(&amp;E).
+        /// </summary>
+        internal static string Remove {
+            get {
+                return ResourceManager.GetString("Remove", resourceCulture);
             }
         }
         
@@ -1462,6 +1579,15 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 選択: {0} / {1}隻.
+        /// </summary>
+        internal static string SelectedShips {
+            get {
+                return ResourceManager.GetString("SelectedShips", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to グラフの選択(&amp;G).
         /// </summary>
         internal static string SelectGraph {
@@ -1476,6 +1602,15 @@ namespace ElectronicObserver.Window {
         internal static string SelectGroup {
             get {
                 return ResourceManager.GetString("SelectGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 砲撃.
+        /// </summary>
+        internal static string Shelling {
+            get {
+                return ResourceManager.GetString("Shelling", resourceCulture);
             }
         }
         
@@ -1872,6 +2007,15 @@ namespace ElectronicObserver.Window {
         internal static string TotalLoS {
             get {
                 return ResourceManager.GetString("TotalLoS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 所属: {0}隻.
+        /// </summary>
+        internal static string TotalShips {
+            get {
+                return ResourceManager.GetString("TotalShips", resourceCulture);
             }
         }
         

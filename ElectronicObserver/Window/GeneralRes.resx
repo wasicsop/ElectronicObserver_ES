@@ -787,4 +787,52 @@
   <data name="Total" xml:space="preserve">
     <value>合計</value>
   </data>
+  <data name="Air" xml:space="preserve">
+    <value>航空</value>
+  </data>
+  <data name="AutoSort" xml:space="preserve">
+    <value>自動ソート設定(&amp;S)...</value>
+  </data>
+  <data name="Bombing" xml:space="preserve">
+    <value>空撃</value>
+  </data>
+  <data name="ColumnSettings" xml:space="preserve">
+    <value>列の表示設定(&amp;C)...</value>
+  </data>
+  <data name="CopyGroup" xml:space="preserve">
+    <value>グループをコピー(&amp;C)</value>
+  </data>
+  <data name="FilterSettings" xml:space="preserve">
+    <value>フィルタ設定(&amp;F)...</value>
+  </data>
+  <data name="Power" xml:space="preserve">
+    <value>威力</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>除外(&amp;E)</value>
+  </data>
+  <data name="Shelling" xml:space="preserve">
+    <value>砲撃</value>
+  </data>
+  <data name="AutoSortDialogError" xml:space="preserve">
+    <value>ShipGroup: 自動ソート順設定ダイアログでエラーが発生しました。</value>
+  </data>
+  <data name="ColumnDialogError" xml:space="preserve">
+    <value>ShipGroup: 列の設定ダイアログでエラーが発生しました。</value>
+  </data>
+  <data name="CopyGroupText" xml:space="preserve">
+    <value>グループ名を入力してください：</value>
+  </data>
+  <data name="CopyGroupTitle" xml:space="preserve">
+    <value>グループをコピー</value>
+  </data>
+  <data name="FilterDialogError" xml:space="preserve">
+    <value>ShipGroup: フィルタダイアログでエラーが発生しました。</value>
+  </data>
+  <data name="SelectedShips" xml:space="preserve">
+    <value>選択: {0} / {1}隻</value>
+  </data>
+  <data name="TotalShips" xml:space="preserve">
+    <value>所属: {0}隻</value>
+  </data>
 </root>

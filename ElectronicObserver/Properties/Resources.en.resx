@@ -240,7 +240,7 @@ Add windows of your choosing using the "View" menu.</value>
     <value>Failed to process update data.</value>
   </data>
   <data name="Version" xml:space="preserve">
-    <value>1.6.3 [TL 1.5]</value>
+    <value>1.6.3 [TL 1.2b]</value>
   </data>
   <data name="VersionCurrent" xml:space="preserve">
     <value>You are currently using the latest version.</value>
@@ -278,5 +278,22 @@ Continue?
   </data>
   <data name="NewRecordTitle" xml:space="preserve">
     <value>Upgrade Confirmation (~1.4.6)</value>
+  </data>
+  <data name="FailedToDelete" xml:space="preserve">
+    <value>Failed to clear data.
+</value>
+  </data>
+  <data name="GroupUpgradeFailed" xml:space="preserve">
+    <value>Failed to clear data related to the group data update.</value>
+  </data>
+  <data name="NewGroupFormat" xml:space="preserve">
+    <value>It is detected that you are upgreading from a previous version.
+Previous ship group data has become incompatible, so it must be initialized (currently existing files will be moved to Settings_Backup).
+Continue?
+If you continue without initializing, errors may occur.
+</value>
+  </data>
+  <data name="NewGroupFormatTitle" xml:space="preserve">
+    <value>Upgrade Confirmation (~1.5.0)</value>
   </data>
 </root>

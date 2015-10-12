@@ -401,7 +401,7 @@ namespace Browser
 			// 
 			this.ToolMenu_Other_Volume.Name = "ToolMenu_Other_Volume";
 			this.ToolMenu_Other_Volume.Size = new System.Drawing.Size(191, 22);
-			this.ToolMenu_Other_Volume.Text = "音量(&V)";
+			this.ToolMenu_Other_Volume.Text = Resources.Volume;
 			// 
 			// ToolMenu_Other_Mute
 			// 

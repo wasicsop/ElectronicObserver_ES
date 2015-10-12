@@ -594,20 +594,6 @@
 			this.MainDockPanel.Name = "MainDockPanel";
 			this.MainDockPanel.ShowDocumentIcon = true;
 			this.MainDockPanel.Size = new System.Drawing.Size(640, 403);
-            WeifenLuo.WinFormsUI.Docking.ThemeBase thm;
-            switch(Utility.Configuration.Config.UI.Theme)
-            {
-                case Utility.Theme.Light:
-                    thm = new WeifenLuo.WinFormsUI.Docking.VS2012LightTheme();
-                    break;
-                case Utility.Theme.Dark:
-                    thm = new WeifenLuo.WinFormsUI.Docking.VS2012DarkTheme();
-                    break;
-                default:
-                    thm = new WeifenLuo.WinFormsUI.Docking.VS2012LightTheme();
-                    break;
-            }
-            thm.Apply(MainDockPanel);
 			//dockPanelGradient4.EndColor = System.Drawing.SystemColors.ControlLight;
 			//dockPanelGradient4.StartColor = System.Drawing.SystemColors.ControlLight;
 			//autoHideStripSkin2.DockStripGradient = dockPanelGradient4;

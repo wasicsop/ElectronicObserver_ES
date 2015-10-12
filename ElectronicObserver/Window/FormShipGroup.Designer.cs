@@ -597,42 +597,42 @@
 			// 
 			// ShipView_AirBattlePower
 			// 
-			this.ShipView_AirBattlePower.HeaderText = "航空威力";
+			this.ShipView_AirBattlePower.HeaderText = GeneralRes.Air + GeneralRes.Power;
 			this.ShipView_AirBattlePower.Name = "ShipView_AirBattlePower";
 			this.ShipView_AirBattlePower.ReadOnly = true;
 			this.ShipView_AirBattlePower.Width = 40;
 			// 
 			// ShipView_ShellingPower
 			// 
-			this.ShipView_ShellingPower.HeaderText = "砲撃威力";
+			this.ShipView_ShellingPower.HeaderText = GeneralRes.Shelling + GeneralRes.Power;
 			this.ShipView_ShellingPower.Name = "ShipView_ShellingPower";
 			this.ShipView_ShellingPower.ReadOnly = true;
 			this.ShipView_ShellingPower.Width = 40;
 			// 
 			// ShipView_AircraftPower
 			// 
-			this.ShipView_AircraftPower.HeaderText = "空撃威力";
+			this.ShipView_AircraftPower.HeaderText = GeneralRes.Bombing + GeneralRes.Power;
 			this.ShipView_AircraftPower.Name = "ShipView_AircraftPower";
 			this.ShipView_AircraftPower.ReadOnly = true;
 			this.ShipView_AircraftPower.Width = 40;
 			// 
 			// ShipView_AntiSubmarinePower
 			// 
-			this.ShipView_AntiSubmarinePower.HeaderText = "対潜威力";
+			this.ShipView_AntiSubmarinePower.HeaderText = GeneralRes.ASW + GeneralRes.Power;
 			this.ShipView_AntiSubmarinePower.Name = "ShipView_AntiSubmarinePower";
 			this.ShipView_AntiSubmarinePower.ReadOnly = true;
 			this.ShipView_AntiSubmarinePower.Width = 40;
 			// 
 			// ShipView_TorpedoPower
 			// 
-			this.ShipView_TorpedoPower.HeaderText = "雷撃威力";
+			this.ShipView_TorpedoPower.HeaderText = GeneralRes.Torpedo + GeneralRes.Power;
 			this.ShipView_TorpedoPower.Name = "ShipView_TorpedoPower";
 			this.ShipView_TorpedoPower.ReadOnly = true;
 			this.ShipView_TorpedoPower.Width = 40;
 			// 
 			// ShipView_NightBattlePower
 			// 
-			this.ShipView_NightBattlePower.HeaderText = "夜戦威力";
+			this.ShipView_NightBattlePower.HeaderText = GeneralRes.NightBattle + GeneralRes.Power;
 			this.ShipView_NightBattlePower.Name = "ShipView_NightBattlePower";
 			this.ShipView_NightBattlePower.ReadOnly = true;
 			this.ShipView_NightBattlePower.Width = 40;
@@ -688,7 +688,7 @@
 			// 
 			this.MenuMember_Exclude.Name = "MenuMember_Exclude";
 			this.MenuMember_Exclude.Size = new System.Drawing.Size(201, 22);
-			this.MenuMember_Exclude.Text = "除外(&E)";
+			this.MenuMember_Exclude.Text = GeneralRes.Remove;
 			this.MenuMember_Exclude.Click += new System.EventHandler(this.MenuMember_Exclude_Click);
 			// 
 			// toolStripSeparator2
@@ -700,21 +700,21 @@
 			// 
 			this.MenuMember_Filter.Name = "MenuMember_Filter";
 			this.MenuMember_Filter.Size = new System.Drawing.Size(201, 22);
-			this.MenuMember_Filter.Text = "フィルタ設定(&F)...";
+			this.MenuMember_Filter.Text = GeneralRes.FilterSettings;
 			this.MenuMember_Filter.Click += new System.EventHandler(this.MenuMember_Filter_Click);
 			// 
 			// MenuMember_ColumnFilter
 			// 
 			this.MenuMember_ColumnFilter.Name = "MenuMember_ColumnFilter";
 			this.MenuMember_ColumnFilter.Size = new System.Drawing.Size(201, 22);
-			this.MenuMember_ColumnFilter.Text = "列の表示設定(&C)...";
+			this.MenuMember_ColumnFilter.Text = GeneralRes.ColumnSettings;
 			this.MenuMember_ColumnFilter.Click += new System.EventHandler(this.MenuMember_ColumnFilter_Click);
 			// 
 			// MenuMember_SortOrder
 			// 
 			this.MenuMember_SortOrder.Name = "MenuMember_SortOrder";
 			this.MenuMember_SortOrder.Size = new System.Drawing.Size(201, 22);
-			this.MenuMember_SortOrder.Text = "自動ソート設定(&S)...";
+			this.MenuMember_SortOrder.Text = GeneralRes.AutoSort;
 			this.MenuMember_SortOrder.Click += new System.EventHandler(this.MenuMember_SortOrder_Click);
 			// 
 			// toolStripSeparator3
@@ -726,7 +726,7 @@
 			// 
 			this.MenuMember_CSVOutput.Name = "MenuMember_CSVOutput";
 			this.MenuMember_CSVOutput.Size = new System.Drawing.Size(201, 22);
-			this.MenuMember_CSVOutput.Text = "CSV出力(&O)...";
+			this.MenuMember_CSVOutput.Text = GeneralRes.OutputCSV;
 			this.MenuMember_CSVOutput.Click += new System.EventHandler(this.MenuMember_CSVOutput_Click);
 			// 
 			// MenuGroup
@@ -754,7 +754,7 @@
 			// 
 			this.MenuGroup_Copy.Name = "MenuGroup_Copy";
 			this.MenuGroup_Copy.Size = new System.Drawing.Size(191, 22);
-			this.MenuGroup_Copy.Text = "グループをコピー(&C)";
+			this.MenuGroup_Copy.Text = GeneralRes.CopyGroup;
 			this.MenuGroup_Copy.Click += new System.EventHandler(this.MenuGroup_Copy_Click);
 			// 
 			// MenuGroup_Rename
