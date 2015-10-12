@@ -315,4 +315,10 @@ Maximum: {2} Steel / {3} Fuel
   <data name="SkillLevel" xml:space="preserve">
     <value>XP</value>
   </data>
+  <data name="Blueprint" xml:space="preserve">
+    <value>Blueprint</value>
+  </data>
+  <data name="PrototypeCatapult" xml:space="preserve">
+    <value>Protoype Catapult</value>
+  </data>
 </root>

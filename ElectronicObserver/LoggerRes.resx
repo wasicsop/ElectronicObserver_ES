@@ -312,4 +312,16 @@
   <data name="StorageFileDoesNotExist" xml:space="preserve">
     <value>DataStorage ファイルは存在しません。</value>
   </data>
+  <data name="Copied" xml:space="preserve">
+    <value>{0} をコピーしました。</value>
+  </data>
+  <data name="Decomissioned" xml:space="preserve">
+    <value> を除籍しました。</value>
+  </data>
+  <data name="FailedToCopy" xml:space="preserve">
+    <value>{0} のコピーに失敗しました。{1}</value>
+  </data>
+  <data name="ModernizationResult" xml:space="preserve">
+    <value>{0} の近代化改修に{1}しました。</value>
+  </data>
 </root>

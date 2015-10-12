@@ -534,4 +534,16 @@
   <data name="Withdrawn" xml:space="preserve">
     <value>Withdrawn</value>
   </data>
+  <data name="EasyDifficulty" xml:space="preserve">
+    <value>Easy</value>
+  </data>
+  <data name="HardDifficulty" xml:space="preserve">
+    <value>Hard</value>
+  </data>
+  <data name="MediumDifficulty" xml:space="preserve">
+    <value>Medium</value>
+  </data>
+  <data name="Unselected" xml:space="preserve">
+    <value>Unselected</value>
+  </data>
 </root>

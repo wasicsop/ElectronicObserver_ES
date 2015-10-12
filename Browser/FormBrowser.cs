@@ -76,6 +76,12 @@ namespace Browser {
 		private VolumeManager _volumeManager;
 
 
+		private NumericUpDown ToolMenu_Other_Volume_VolumeControl {
+			get { return (NumericUpDown)( (ToolStripControlHost)ToolMenu_Other_Volume.DropDownItems["ToolMenu_Other_Volume_VolumeControlHost"] ).Control; }
+		}
+
+
+
 
 		/// <summary>
 		/// </summary>
@@ -100,6 +106,26 @@ namespace Browser {
 			StyleSheetApplied = false;
 			_volumeManager = new VolumeManager( (uint)System.Diagnostics.Process.GetCurrentProcess().Id );
 			Browser.ReplacedKeyDown += Browser_ReplacedKeyDown;
+
+			// 音量設定用コントロールの追加
+			{
+				var control = new NumericUpDown();
+				control.Name = "ToolMenu_Other_Volume_VolumeControl";
+				control.Maximum = 100;
+				control.TextAlign = HorizontalAlignment.Right;
+				control.Font = ToolMenu_Other_Volume.Font;
+
+				control.ValueChanged += ToolMenu_Other_Volume_ValueChanged;
+				control.Tag = false;
+			
+				var host = new ToolStripControlHost( control, "ToolMenu_Other_Volume_VolumeControlHost" );
+
+				control.Size = new Size( host.Width - control.Margin.Horizontal, host.Height - control.Margin.Vertical );
+				control.Location = new Point( control.Margin.Left, control.Margin.Top );
+				
+
+				ToolMenu_Other_Volume.DropDownItems.Add( host );
+			}
 		}
 
 
@@ -195,7 +221,7 @@ namespace Browser {
 			ApplyZoom();
 
 			//起動直後はまだ音声が鳴っていないのでミュートできないため、この時点で有効化
-			SetMuteIcon();
+			SetVolumeState();
 		}
 
 
@@ -257,8 +283,7 @@ namespace Browser {
 
 				var document = Browser.Document;
 				if ( document == null ) return;
-
-				if ( document.Url.AbsolutePath.Contains( ".swf" ) ) {
+				if ( document.Url.ToString().Contains( ".swf?" ) ) {
 
 					document.Body.SetAttribute( "width", "100%" );
 					document.Body.SetAttribute( "height", "100%" );
@@ -425,6 +450,7 @@ namespace Browser {
 
 			if ( !IsKanColleLoaded ) {
 				AddLog( 3, string.Format( Resources.NoScreenshotUnloaded ) );
+				System.Media.SystemSounds.Beep.Play();
 				return;
 			}
 
@@ -432,7 +458,7 @@ namespace Browser {
 				IViewObject viewobj = null;
 				//int width = 0, height = 0;
 
-				if ( wb.Document.Url.AbsolutePath.Contains( ".swf" ) ) {
+				if ( wb.Document.Url.ToString().Contains( ".swf?" ) ) {
 
 					viewobj = wb.Document.GetElementsByTagName( "embed" )[0].DomElement as IViewObject;
 					if ( viewobj == null ) {
@@ -488,8 +514,8 @@ namespace Browser {
 
 			} catch ( Exception ex ) {
 
-				BrowserHost.AsyncRemoteRun( () =>
-					BrowserHost.Proxy.SendErrorReport( ex.ToString(), Resources.ScreenshotError ) );
+				BrowserHost.AsyncRemoteRun( () => BrowserHost.Proxy.SendErrorReport( ex.ToString(), Resources.ScreenshotError ) );
+				System.Media.SystemSounds.Beep.Play();
 			}
 
 
@@ -627,31 +653,35 @@ namespace Browser {
 				Icons.Images["Browser_Navigate"];
 			ToolMenu_Other.Image =
 				Icons.Images["Browser_Other"];
-			SetMuteIcon();
+
+			SetVolumeState();
 		}
 
 
-		private void SetMuteIcon() {
+		private void SetVolumeState() {
 
 			bool mute;
-			bool isEnabled;
+			float volume;
 
 			try {
 				mute = _volumeManager.IsMute;
-				isEnabled = true;
+				volume = _volumeManager.Volume * 100;
 
 			} catch ( Exception ) {
 				// 音量データ取得不能時
 				mute = false;
-				isEnabled = false;
+				volume = 100;
 			}
 
 			ToolMenu_Mute.Image = ToolMenu_Other_Mute.Image =
 				Icons.Images[mute ? "Browser_Mute" : "Browser_Unmute"];
 
-
-			ToolMenu_Mute.Enabled = ToolMenu_Other_Mute.Enabled =
-				isEnabled;
+			{
+				var control = ToolMenu_Other_Volume_VolumeControl;
+				control.Tag = false;
+				control.Value = (decimal)volume;
+				control.Tag = true;
+			}
 		}
 
 
@@ -729,10 +759,28 @@ namespace Browser {
 				_volumeManager.ToggleMute();
 
 			} catch ( Exception ) {
+				System.Media.SystemSounds.Beep.Play();
 			}
 
-			SetMuteIcon();
+			SetVolumeState();
 		}
+
+		void ToolMenu_Other_Volume_ValueChanged( object sender, EventArgs e ) {
+
+			var control = ToolMenu_Other_Volume_VolumeControl;
+				
+			try {
+				if ( (bool)control.Tag )
+					_volumeManager.Volume = (float)( control.Value / 100 );
+				control.BackColor = SystemColors.Window;
+
+			} catch ( Exception ) {
+				control.BackColor = Color.MistyRose;
+				
+			}
+
+		}
+
 
 		private void ToolMenu_Other_Refresh_Click( object sender, EventArgs e ) {
 

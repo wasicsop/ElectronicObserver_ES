@@ -1,6 +1,7 @@
 ﻿using ElectronicObserver.Data;
 using ElectronicObserver.Observer;
 using ElectronicObserver.Resource;
+using ElectronicObserver.Utility;
 using ElectronicObserver.Window.Support;
 using System;
 using System.Collections.Generic;
@@ -87,7 +88,11 @@ namespace ElectronicObserver.Window {
 			QuestView_Progress.DefaultCellStyle = CSDefaultLeft;
 
 			#endregion
+
+
+			SystemEvents.SystemShuttingDown += SystemEvents_SystemShuttingDown;
 		}
+
 
 
 		private void FormQuest_Load( object sender, EventArgs e ) {
@@ -106,7 +111,16 @@ namespace ElectronicObserver.Window {
 
 
 			ClearQuestView();
-			QuestView.Sort( QuestView_Name, ListSortDirection.Ascending );
+
+			try {
+				int sort = Utility.Configuration.Config.FormQuest.SortParameter;
+
+				QuestView.Sort( QuestView.Columns[sort >> 1], ( sort & 1 ) == 0 ? ListSortDirection.Ascending : ListSortDirection.Descending );
+
+			} catch ( Exception ) {
+
+				QuestView.Sort( QuestView_Name, ListSortDirection.Ascending );
+			}
 
 
 			Utility.Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
@@ -132,19 +146,40 @@ namespace ElectronicObserver.Window {
 			MenuMain_ShowWeekly.Checked = c.FormQuest.ShowWeekly;
 			MenuMain_ShowMonthly.Checked = c.FormQuest.ShowMonthly;
 
-			if ( c.FormQuest.ColumnFilter == null ) {
-				c.FormQuest.ColumnFilter = new Utility.Storage.SerializableList<bool>( Enumerable.Repeat( true, QuestView.Columns.Count ).ToList() );
+			if ( c.FormQuest.ColumnFilter == null || ( (List<bool>)c.FormQuest.ColumnFilter ).Count != QuestView.Columns.Count ) {
+				c.FormQuest.ColumnFilter = Enumerable.Repeat( true, QuestView.Columns.Count ).ToList();
+			}
+			if ( c.FormQuest.ColumnWidth == null || ( (List<int>)c.FormQuest.ColumnWidth ).Count != QuestView.Columns.Count ) {
+				c.FormQuest.ColumnWidth = QuestView.Columns.Cast<DataGridViewColumn>().Select( column => column.Width ).ToList();
 			}
 			{
 				List<bool> list = c.FormQuest.ColumnFilter;
+				List<int> width = c.FormQuest.ColumnWidth;
 
 				for ( int i = 0; i < QuestView.Columns.Count; i++ ) {
 					QuestView.Columns[i].Visible =
-					((ToolStripMenuItem)MenuMain_ColumnFilter.DropDownItems[i]).Checked = list[i];
+					( (ToolStripMenuItem)MenuMain_ColumnFilter.DropDownItems[i] ).Checked = list[i];
+					QuestView.Columns[i].Width = width[i];
 				}
 			}
+
 			Updated();
 
+		}
+
+
+		void SystemEvents_SystemShuttingDown() {
+
+			try {
+
+				if ( QuestView.SortedColumn != null )
+					Utility.Configuration.Config.FormQuest.SortParameter = QuestView.SortedColumn.Index << 1 | ( QuestView.SortOrder == SortOrder.Ascending ? 0 : 1 );
+
+				Utility.Configuration.Config.FormQuest.ColumnWidth = QuestView.Columns.Cast<DataGridViewColumn>().Select( c => c.Width ).ToList();
+
+			} catch ( Exception ) {
+				// *ぷちっ*				
+			}
 		}
 
 

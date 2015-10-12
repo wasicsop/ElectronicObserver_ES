@@ -755,4 +755,84 @@
   <data name="NoSecondAirStage" xml:space="preserve">
     <value>(第二次戦発生せず)</value>
   </data>
+  <data name="EnemyCandidate" xml:space="preserve">
+    <value>敵艦隊候補</value>
+  </data>
+  <data name="NoFleetCandidates" xml:space="preserve">
+    <value>(敵艦隊候補なし)</value>
+  </data>
+  <data name="BauxiteUsage" xml:space="preserve">
+    <value>ボーキサイト: {0} ( {1}機 )
+</value>
+  </data>
+  <data name="FleetReturned" xml:space="preserve">
+    <value>[艦隊帰投]</value>
+  </data>
+  <data name="ResupplyComplete" xml:space="preserve">
+    <value>[補給完了]</value>
+  </data>
+  <data name="ResupplyString" xml:space="preserve">
+    <value>燃料: {0} (補給) + {1} (入渠) = {2}
+弾薬: {3}
+鋼材: {4}
+ボーキ: {5} ( {6}機 )
+</value>
+  </data>
+  <data name="Bombers" xml:space="preserve">
+    <value>爆装</value>
+  </data>
+  <data name="Planes" xml:space="preserve">
+    <value>艦載機</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>合計</value>
+  </data>
+  <data name="Air" xml:space="preserve">
+    <value>航空</value>
+  </data>
+  <data name="AutoSort" xml:space="preserve">
+    <value>自動ソート設定(&amp;S)...</value>
+  </data>
+  <data name="Bombing" xml:space="preserve">
+    <value>空撃</value>
+  </data>
+  <data name="ColumnSettings" xml:space="preserve">
+    <value>列の表示設定(&amp;C)...</value>
+  </data>
+  <data name="CopyGroup" xml:space="preserve">
+    <value>グループをコピー(&amp;C)</value>
+  </data>
+  <data name="FilterSettings" xml:space="preserve">
+    <value>フィルタ設定(&amp;F)...</value>
+  </data>
+  <data name="Power" xml:space="preserve">
+    <value>威力</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>除外(&amp;E)</value>
+  </data>
+  <data name="Shelling" xml:space="preserve">
+    <value>砲撃</value>
+  </data>
+  <data name="AutoSortDialogError" xml:space="preserve">
+    <value>ShipGroup: 自動ソート順設定ダイアログでエラーが発生しました。</value>
+  </data>
+  <data name="ColumnDialogError" xml:space="preserve">
+    <value>ShipGroup: 列の設定ダイアログでエラーが発生しました。</value>
+  </data>
+  <data name="CopyGroupText" xml:space="preserve">
+    <value>グループ名を入力してください：</value>
+  </data>
+  <data name="CopyGroupTitle" xml:space="preserve">
+    <value>グループをコピー</value>
+  </data>
+  <data name="FilterDialogError" xml:space="preserve">
+    <value>ShipGroup: フィルタダイアログでエラーが発生しました。</value>
+  </data>
+  <data name="SelectedShips" xml:space="preserve">
+    <value>選択: {0} / {1}隻</value>
+  </data>
+  <data name="TotalShips" xml:space="preserve">
+    <value>所属: {0}隻</value>
+  </data>
 </root>

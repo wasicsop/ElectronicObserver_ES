@@ -884,7 +884,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.EquipmentImage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
-
 		}
 
 		#endregion

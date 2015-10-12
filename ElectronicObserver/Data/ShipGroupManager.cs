@@ -1,4 +1,5 @@
-﻿using ElectronicObserver.Utility.Storage;
+﻿using ElectronicObserver.Resource;
+using ElectronicObserver.Utility.Storage;
 using Microsoft.VisualBasic.FileIO;
 using System;
 using System.Collections.Generic;
@@ -52,15 +53,21 @@ namespace ElectronicObserver.Data {
 
 		public ShipGroupData Add() {
 
-			int key = ShipGroups.Count > 0 ? ShipGroups.Keys.Max() + 1 : 1;
+			int key = GetUniqueID();
 			var group = new ShipGroupData( key );
 			ShipGroups.Add( group );
 			return group;
 
 		}
 
+		public int GetUniqueID() {
+			return ShipGroups.Count > 0 ? ShipGroups.Keys.Max() + 1 : 1;
+		}
+
 
 		public ShipGroupManager Load() {
+			ResourceManager.CopyFromArchive( DefaultFilePath.Replace( "\\", "/" ), DefaultFilePath );
+
 			return (ShipGroupManager)Load( DefaultFilePath );
 		}
 

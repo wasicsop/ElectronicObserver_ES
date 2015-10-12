@@ -79,7 +79,21 @@ namespace ElectronicObserver.Window {
             this.SetStyle(ControlStyles.SupportsTransparentBackColor, true);
             Utility.Configuration.Instance.Load();
             InitializeComponent();
-		}
+            ThemeBase thm;
+            switch (Configuration.Config.UI.Theme)
+            {
+                case Theme.Light:
+                    thm = new VS2012LightTheme();
+                    break;
+                case Theme.Dark:
+                    thm = new VS2012DarkTheme();
+                    break;
+                default:
+                    thm = new VS2012LightTheme();
+                    break;
+            }
+            thm.Apply(MainDockPanel);
+        }
 
 		private async void FormMain_Load( object sender, EventArgs e ) {
 

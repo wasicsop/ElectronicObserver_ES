@@ -221,6 +221,52 @@ namespace ElectronicObserver.Data {
 			}
 		}
 
+
+		/// <summary>
+		/// 海域難易度を表す文字列を取得します。
+		/// </summary>
+		public static string GetDifficulty( int value ) {
+
+			switch ( value ) {
+				case -1:
+					return ConstantsRes.NoNode;
+				case 0:
+					return ConstantsRes.Unselected;
+				case 1:
+					return ConstantsRes.EasyDifficulty;
+				case 2:
+					return ConstantsRes.MediumDifficulty;
+				case 3:
+					return ConstantsRes.HardDifficulty;
+				default:
+					return ConstantsRes.Unknown;
+			}
+		}
+
+		/// <summary>
+		/// 海域難易度を表す数値を取得します。
+		/// </summary>
+		public static int GetDifficulty( string value ) {
+
+			switch ( value ) {
+				case "未選択":
+                case "Unselected":
+					return 0;
+				case "丙":
+                case "Easy":
+					return 1;
+				case "乙":
+                case "Medium":
+					return 2;
+                case "Hard":
+				case "甲":
+					return 3;
+				default:
+					return -1;
+			}
+
+		}
+
 		#endregion
 
 
@@ -251,6 +297,43 @@ namespace ElectronicObserver.Data {
 					return ConstantsRes.FourthPatrolFormation;
 				default:
 					return ConstantsRes.Unknown;
+			}
+		}
+
+		/// <summary>
+		/// 陣形を表す数値を取得します。
+		/// </summary>
+		public static int GetFormation( string value ) {
+			switch ( value ) {
+				case "単縦陣":
+                case "Line Ahead":
+					return 1;
+				case "複縦陣":
+                case "Double Line":
+					return 2;
+				case "輪形陣":
+                case "Diamond":
+					return 3;
+				case "梯形陣":
+                case "Echelon":
+					return 4;
+				case "単横陣":
+                case "Line Abreast":
+					return 5;
+				case "第一警戒航行序列":
+                case "First Cruising Formation":
+					return 11;
+				case "第二警戒航行序列":
+                case "Second Cruising Formation":
+					return 12;
+				case "第三警戒航行序列":
+                case "Third Cruising Formation":
+					return 13;
+				case "第四警戒航行序列":
+                case "Fourth Cruising Formation":
+					return 14;
+				default:
+					return -1;
 			}
 		}
 

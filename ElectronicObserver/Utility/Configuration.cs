@@ -1,5 +1,8 @@
 ﻿using Codeplex.Data;
+using ElectronicObserver.Data;
 using ElectronicObserver.Observer;
+using ElectronicObserver.Resource.Record;
+using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.Utility.Storage;
 using ElectronicObserver.Window.Dialog;
 using System;
@@ -411,6 +414,16 @@ namespace ElectronicObserver.Utility {
 				/// </summary>
 				public bool ShowNextExp { get; set; }
 
+				/// <summary>
+				/// 装備の改修レベル・艦載機熟練度を表示するか
+				/// </summary>
+				public bool ShowEquipmentLevel { get; set; }
+
+				/// <summary>
+				/// 制空戦力の計算方法
+				/// </summary>
+				public int AirSuperiorityMethod { get; set; }
+
 				public ConfigFormFleet() {
 					ShowAircraft = true;
 					SearchingAbilityMethod = 0;
@@ -418,6 +431,8 @@ namespace ElectronicObserver.Utility {
 					FixShipNameWidth = false;
 					ShortenHPBar = false;
 					ShowNextExp = true;
+					ShowEquipmentLevel = true;
+					AirSuperiorityMethod = 1;
 				}
 			}
 			/// <summary>[艦隊]ウィンドウ</summary>
@@ -461,6 +476,15 @@ namespace ElectronicObserver.Utility {
 				/// </summary>
 				public SerializableList<bool> ColumnFilter { get; set; }
 
+				/// <summary>
+				/// 列の幅
+				/// </summary>
+				public SerializableList<int> ColumnWidth { get; set; }
+
+				/// <summary>
+				/// どの行をソートしていたか
+				/// </summary>
+				public int SortParameter { get; set; }
 
 				public ConfigFormQuest() {
 					ShowRunningOnly = false;
@@ -469,6 +493,8 @@ namespace ElectronicObserver.Utility {
 					ShowWeekly = true;
 					ShowMonthly = true;
 					ColumnFilter = null;		//実際の初期化は FormQuest で行う
+					ColumnWidth = null;			//上に同じ
+					SortParameter = 3 << 1 | 0;
 				}
 			}
 			/// <summary>[任務]ウィンドウ</summary>
@@ -751,6 +777,10 @@ namespace ElectronicObserver.Utility {
 			}
 
 
+			[DataMember]
+			public string VersionUpdateTime { get; set; }
+
+
 			public override void Initialize() {
 
 				Connection = new ConfigConnection();
@@ -801,6 +831,7 @@ namespace ElectronicObserver.Utility {
 			var temp = (ConfigurationData)_config.Load( SaveFileName );
 			if ( temp != null ) {
 				_config = temp;
+				CheckUpdate();
 				OnConfigurationChanged();
 			} else {
 				MessageBox.Show( String.Format(Resources.FirstTimeDialog, SoftwareInformation.SoftwareNameJapanese),
@@ -811,6 +842,170 @@ namespace ElectronicObserver.Utility {
 		public void Save() {
 			_config.Save( SaveFileName );
 		}
+
+
+
+		private void CheckUpdate() {
+			DateTime dt = Config.VersionUpdateTime == null ? new DateTime( 0 ) : DateTimeHelper.CSVStringToTime( Config.VersionUpdateTime );
+
+			// version 1.4.6 or earlier
+			if ( dt <= DateTimeHelper.CSVStringToTime( "2015/08/27 21:00:00" ) ) {
+
+				if ( MessageBox.Show(
+					Resources.NewRecordFormat,
+					Resources.NewRecordTitle,
+					MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1 )
+					 == DialogResult.Yes ) {
+
+					try {
+
+						Directory.CreateDirectory( "Record_Backup" );
+
+						if ( File.Exists( RecordManager.Instance.MasterPath + "\\EnemyFleetRecord.csv" ) ) {
+							File.Copy( RecordManager.Instance.MasterPath + "\\EnemyFleetRecord.csv", "Record_Backup\\EnemyFleetRecord.csv", false );
+
+							//ヒャッハー！！
+							using ( var writer = new StreamWriter( RecordManager.Instance.MasterPath + "\\EnemyFleetRecord.csv", false, Config.Log.FileEncoding ) ) {
+								writer.WriteLine();
+							}
+						}
+
+
+						if ( File.Exists( RecordManager.Instance.MasterPath + "\\ShipDropRecord.csv" ) ) {
+							File.Copy( RecordManager.Instance.MasterPath + "\\ShipDropRecord.csv", "Record_Backup\\ShipDropRecord.csv", false );
+
+							using ( var reader = new StreamReader( "Record_Backup\\ShipDropRecord.csv", Config.Log.FileEncoding ) ) {
+								using ( var writer = new StreamWriter( RecordManager.Instance.MasterPath + "\\ShipDropRecord.csv", false, Config.Log.FileEncoding ) ) {
+
+									while ( !reader.EndOfStream ) {
+										string line = reader.ReadLine();
+										var elem = line.Split( ",".ToCharArray() ).ToList();
+
+										elem.Insert( 6, Constants.GetDifficulty( -1 ) );	//difficulty
+										elem[8] = "0";		//EnemyFleetID
+
+
+										writer.WriteLine( string.Join( ",", elem ) );
+									}
+								}
+							}
+						}
+
+
+						if ( File.Exists( RecordManager.Instance.MasterPath + "\\ShipParameterRecord.csv" ) ) {
+							File.Copy( RecordManager.Instance.MasterPath + "\\ShipParameterRecord.csv", "Record_Backup\\ShipParameterRecord.csv", false );
+
+							using ( var reader = new StreamReader( "Record_Backup\\ShipParameterRecord.csv", Config.Log.FileEncoding ) ) {
+								using ( var writer = new StreamWriter( RecordManager.Instance.MasterPath + "\\ShipParameterRecord.csv", false, Config.Log.FileEncoding ) ) {
+
+									while ( !reader.EndOfStream ) {
+										string line = reader.ReadLine();
+										var elem = line.Split( ",".ToCharArray() ).ToList();
+
+										elem.InsertRange( 2, Enumerable.Repeat( "0", 10 ) );
+										elem.InsertRange( 21, Enumerable.Repeat( "0", 3 ) );
+										elem.InsertRange( 29, Enumerable.Repeat( "null", 5 ) );
+										elem.Insert( 34, "null" );
+
+										writer.WriteLine( string.Join( ",", elem ) );
+									}
+								}
+							}
+						}
+
+
+
+						if ( File.Exists( RecordManager.Instance.MasterPath + "\\ConstructionRecord.csv" ) ) {
+							File.Copy( RecordManager.Instance.MasterPath + "\\ConstructionRecord.csv", "Record_Backup\\ConstructionRecord.csv", false );
+
+							using ( var reader = new StreamReader( "Record_Backup\\ConstructionRecord.csv", Config.Log.FileEncoding ) ) {
+								using ( var writer = new StreamWriter( RecordManager.Instance.MasterPath + "\\ConstructionRecord.csv", false, Config.Log.FileEncoding ) ) {
+
+									string[] prev = null;
+
+									while ( !reader.EndOfStream ) {
+										string line = reader.ReadLine();
+										var elem = line.Split( ",".ToCharArray() );
+
+										// 以前のバージョンのバグによる無効行・重複行の削除
+										if ( prev != null ) {
+											if ( elem[0] == "0" || (	//invalid id
+												elem[0] == prev[0] &&	//id
+												elem[1] == prev[1] &&	//name
+												elem[3] == prev[3] &&	//fuel
+												elem[4] == prev[4] &&	//ammo
+												elem[5] == prev[5] &&	//steel
+												elem[6] == prev[6] &&	//bauxite
+												elem[7] == prev[7] &&	//dev.mat
+												elem[8] == prev[8] &&	//islarge
+												elem[9] == prev[9]		//emptydock
+												) ) {
+
+												prev = elem;
+												continue;
+											}
+										}
+
+										writer.WriteLine( string.Join( ",", elem ) );
+										prev = elem;
+									}
+								}
+							}
+						}
+
+
+						// 読み書き方式が変わったので念のため
+						if ( File.Exists( RecordManager.Instance.MasterPath + "\\DevelopmentRecord.csv" ) ) {
+							File.Copy( RecordManager.Instance.MasterPath + "\\DevelopmentRecord.csv", "Record_Backup\\DevelopmentRecord.csv", false );
+						}
+
+
+					} catch ( Exception ex ) {
+
+						Utility.ErrorReporter.SendErrorReport( ex, Resources.FailedNewRecords );
+
+						if ( MessageBox.Show( String.Format(Resources.FailedRecordDialog, ex.Message),
+							Resources.Error, MessageBoxButtons.YesNo, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2 )
+							== DialogResult.No )
+							Environment.Exit( -1 );
+
+					}
+				}
+
+
+			}
+
+			// version 1.5.0 or earlier
+			if ( dt <= DateTimeHelper.CSVStringToTime( "2015/09/04 21:00:00" ) ) {
+
+				if ( MessageBox.Show(
+					Resources.NewGroupFormat,
+					Resources.NewGroupFormatTitle,
+					MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1 )
+					 == DialogResult.Yes ) {
+
+					try {
+
+						Directory.CreateDirectory( "Settings_Backup" );
+						File.Move( "Settings\\ShipGroups.xml", "Settings_Backup\\ShipGroups.xml" );
+
+					} catch ( Exception ex ) {
+
+						Utility.ErrorReporter.SendErrorReport( ex, Resources.GroupUpgradeFailed );
+
+						// エラーが出るだけなのでシャットダウンは不要
+						MessageBox.Show( Resources.FailedToDelete + ex.Message,
+							Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error );
+
+					}
+				}
+			}
+
+
+
+			Config.VersionUpdateTime = DateTimeHelper.TimeToCSVString( SoftwareInformation.UpdateTime );
+		}
+
 	}
 
 

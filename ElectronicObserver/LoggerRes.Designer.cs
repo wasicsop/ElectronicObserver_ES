@@ -106,11 +106,29 @@ namespace ElectronicObserver {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} をコピーしました。.
+        /// </summary>
+        internal static string Copied {
+            get {
+                return ResourceManager.GetString("Copied", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0}「{1}」の開発に成功しました。({2}/{3}/{4}/{5} 秘書艦: {6}).
         /// </summary>
         internal static string CreatedItem {
             get {
                 return ResourceManager.GetString("CreatedItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  を除籍しました。.
+        /// </summary>
+        internal static string Decomissioned {
+            get {
+                return ResourceManager.GetString("Decomissioned", resourceCulture);
             }
         }
         
@@ -376,6 +394,15 @@ namespace ElectronicObserver {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} のコピーに失敗しました。{1}.
+        /// </summary>
+        internal static string FailedToCopy {
+            get {
+                return ResourceManager.GetString("FailedToCopy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to APIファイル {0} の読み込みに失敗しました。{1}.
         /// </summary>
         internal static string FailedToLoadAPIFile {
@@ -480,6 +507,15 @@ namespace ElectronicObserver {
         internal static string LoadedRecords {
             get {
                 return ResourceManager.GetString("LoadedRecords", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} の近代化改修に{1}しました。.
+        /// </summary>
+        internal static string ModernizationResult {
+            get {
+                return ResourceManager.GetString("ModernizationResult", resourceCulture);
             }
         }
         

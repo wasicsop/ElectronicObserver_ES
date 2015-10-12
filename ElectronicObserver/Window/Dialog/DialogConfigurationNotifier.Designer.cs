@@ -37,6 +37,8 @@
 			this.ImagePathSearch = new System.Windows.Forms.Button();
 			this.ImagePath = new System.Windows.Forms.TextBox();
 			this.GroupDialog = new System.Windows.Forms.GroupBox();
+			this.label5 = new System.Windows.Forms.Label();
+			this.CloseList = new System.Windows.Forms.CheckedListBox();
 			this.ShowWithActivation = new System.Windows.Forms.CheckBox();
 			this.label4 = new System.Windows.Forms.Label();
 			this.DrawsMessage = new System.Windows.Forms.CheckBox();
@@ -71,8 +73,6 @@
 			this.DialogOpenSound = new System.Windows.Forms.OpenFileDialog();
 			this.DialogOpenImage = new System.Windows.Forms.OpenFileDialog();
 			this.ToolTipText = new System.Windows.Forms.ToolTip(this.components);
-			this.CloseList = new System.Windows.Forms.CheckedListBox();
-			this.label5 = new System.Windows.Forms.Label();
 			this.GroupSound.SuspendLayout();
 			this.GroupImage.SuspendLayout();
 			this.GroupDialog.SuspendLayout();
@@ -250,6 +250,15 @@
 			this.GroupDialog.TabIndex = 3;
 			this.GroupDialog.TabStop = false;
 			this.GroupDialog.Text = NotifyRes.NotifyDialog;
+			// 
+			// label5
+			// 
+			this.label5.AutoSize = true;
+			this.label5.Location = new System.Drawing.Point(473, 18);
+			this.label5.Name = "label5";
+			this.label5.Size = new System.Drawing.Size(49, 15);
+			this.label5.TabIndex = 21;
+			this.label5.Text = "閉じる：";
 			// 
 			// ShowWithActivation
 			// 
@@ -696,6 +705,7 @@
 			this.Name = "DialogConfigurationNotifier";
 			this.ShowInTaskbar = false;
 			this.Text = NotifyRes.Title;
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Load += new System.EventHandler(this.DialogConfigurationNotifier_Load);
 			this.GroupSound.ResumeLayout(false);
 			this.GroupSound.PerformLayout();
