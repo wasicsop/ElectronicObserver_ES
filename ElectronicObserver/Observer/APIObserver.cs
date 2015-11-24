@@ -2,6 +2,7 @@
 using ElectronicObserver.Observer.kcsapi;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Utility.Mathematics;
+using Nekoxy;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -32,7 +33,7 @@ namespace ElectronicObserver.Observer {
 		public APIDictionary APIList { get; private set; }
 
 		public string ServerAddress { get; private set; }
-		public int ProxyPort { get { return Fiddler.FiddlerApplication.oProxy.ListenPort; } }
+		public int ProxyPort { get; private set; }
 
 		public delegate void ProxyStartedEventHandler();
 		public event ProxyStartedEventHandler ProxyStarted = delegate { };
@@ -89,6 +90,8 @@ namespace ElectronicObserver.Observer {
 			APIList.Add( new kcsapi.api_req_sortie.airbattle() );
 			APIList.Add( new kcsapi.api_get_member.ship_deck() );
 			APIList.Add( new kcsapi.api_req_kaisou.marriage() );
+			APIList.Add( new kcsapi.api_req_hensei.preset_select() );
+			APIList.Add( new kcsapi.api_req_kaisou.slot_exchange_index() );
 
 			APIList.Add( new kcsapi.api_req_quest.clearitemget() );
 			APIList.Add( new kcsapi.api_req_nyukyo.start() );
@@ -101,17 +104,18 @@ namespace ElectronicObserver.Observer {
 			APIList.Add( new kcsapi.api_req_kaisou.open_exslot() );
 			APIList.Add( new kcsapi.api_req_map.select_eventmap_rank() );
 			APIList.Add( new kcsapi.api_req_hensei.combined() );
+			APIList.Add( new kcsapi.api_req_member.updatecomment() );
 
 
 			ServerAddress = null;
 
 			DBSender = new APIKancolleDB();
 
-			Fiddler.FiddlerApplication.BeforeRequest += FiddlerApplication_BeforeRequest;
-			Fiddler.FiddlerApplication.BeforeResponse += FiddlerApplication_BeforeResponse;
-			Fiddler.FiddlerApplication.AfterSessionComplete += FiddlerApplication_AfterSessionComplete;
-
+			HttpProxy.AfterSessionComplete += HttpProxy_AfterSessionComplete;
 		}
+
+
+
 
 
 		/// <summary>
@@ -121,26 +125,38 @@ namespace ElectronicObserver.Observer {
 		/// <param name="UIControl">GUI スレッドで実行するためのオブジェクト。中身は何でもいい</param>
 		/// <returns>実際に使用されるポート番号。</returns>
 		public int Start( int portID, Control UIControl ) {
+
+			Utility.Configuration.ConfigurationData.ConfigConnection c = Utility.Configuration.Config.Connection;
+
+
 			this.UIControl = UIControl;
 
-			Fiddler.FiddlerApplication.Startup( portID, Fiddler.FiddlerCoreStartupFlags.ChainToUpstreamGateway |
-				( Utility.Configuration.Config.Connection.RegisterAsSystemProxy ? Fiddler.FiddlerCoreStartupFlags.RegisterAsSystemProxy : 0 ) );
 
 			/*
-			Fiddler.URLMonInterop.SetProxyInProcess( string.Format( "127.0.0.1:{0}",
-						Fiddler.FiddlerApplication.oProxy.ListenPort ), "<local>" );
+			Fiddler.FiddlerApplication.Startup( portID, Fiddler.FiddlerCoreStartupFlags.ChainToUpstreamGateway |
+				( Utility.Configuration.Config.Connection.RegisterAsSystemProxy ? Fiddler.FiddlerCoreStartupFlags.RegisterAsSystemProxy : 0 ) );
 			*/
-			ProxyStarted();
+			HttpProxy.Shutdown();
+			try {
+				// checkme
+				HttpProxy.Startup( portID, false, true /*Utility.Configuration.Config.Connection.RegisterAsSystemProxy*/ );
 
-			Utility.Logger.Add( 2, string.Format( LoggerRes.APIObserverStarted, Fiddler.FiddlerApplication.oProxy.ListenPort ) );
+				if ( c.UseUpstreamProxy )
+					HttpProxy.UpstreamProxyConfig = new ProxyConfig( ProxyConfigType.SpecificProxy, c.UpstreamProxyAddress, c.UpstreamProxyPort );
+				else
+					HttpProxy.UpstreamProxyConfig = new ProxyConfig( ProxyConfigType.SystemProxy );
 
+				ProxyStarted();
+				Utility.Logger.Add( 2, string.Format( LoggerRes.APIObserverStarted, portID ) );
+				ProxyPort = portID;
+			} catch ( Exception ex ) {
 
-			//checkme: 一応警告をつけてみる
-			if ( portID != Fiddler.FiddlerApplication.oProxy.ListenPort ) {
-				Utility.Logger.Add( 3, LoggerRes.ObserverWrongPort );
+				Utility.Logger.Add( 3, LoggerRes.APIObserverFailed + ex.Message );
+				ProxyPort = 0;
 			}
 
-			return Fiddler.FiddlerApplication.oProxy.ListenPort;
+
+			return ProxyPort;
 		}
 
 
@@ -149,8 +165,7 @@ namespace ElectronicObserver.Observer {
 		/// </summary>
 		public void Stop() {
 
-			Fiddler.URLMonInterop.ResetProxyInProcessToDefault();
-			Fiddler.FiddlerApplication.Shutdown();
+			HttpProxy.Shutdown();
 
 			Utility.Logger.Add( 2, LoggerRes.APIObserverStopped );
 		}
@@ -165,187 +180,130 @@ namespace ElectronicObserver.Observer {
 		}
 
 
-		private void FiddlerApplication_AfterSessionComplete( Fiddler.Session oSession ) {
 
-			//保存
-			{
-				Utility.Configuration.ConfigurationData.ConfigConnection c = Utility.Configuration.Config.Connection;
 
-				if ( c.SaveReceivedData ) {
 
-					try {
+		void HttpProxy_AfterSessionComplete( Session session ) {
 
-						if ( c.SaveResponse && oSession.fullUrl.Contains( "/kcsapi/" ) ) {
+			Utility.Configuration.ConfigurationData.ConfigConnection c = Utility.Configuration.Config.Connection;
 
-							// 非同期で書き出し処理するので取っておく
-							// stringはイミュータブルなのでOK
-							string url = oSession.fullUrl;
-							string body = oSession.GetResponseBodyAsString();
+			string baseurl = session.Request.PathAndQuery;
 
-							Task.Run( (Action)( () => {
-								SaveResponse( url, body );
-							} ) );
+			// request
+			if ( baseurl.Contains( "/kcsapi/" ) ) {
 
-						} else if ( oSession.fullUrl.Contains( "/kcs/" ) &&
-							( ( c.SaveSWF && oSession.oResponse.MIMEType == "application/x-shockwave-flash" ) || c.SaveOtherFile ) ) {
+				string url = baseurl;
+				string body = session.Request.BodyAsString;
 
-							string saveDataPath = c.SaveDataPath; // スレッド間の競合を避けるため取っておく
-							string tpath = string.Format( "{0}\\{1}", saveDataPath, oSession.fullUrl.Substring( oSession.fullUrl.IndexOf( "/kcs/" ) + 5 ).Replace( "/", "\\" ) );
-							{
-								int index = tpath.IndexOf( "?" );
-								if ( index != -1 ) {
-									if ( Utility.Configuration.Config.Connection.ApplyVersion ) {
-										string over = tpath.Substring( index + 1 );
-										int vindex = over.LastIndexOf( "VERSION=", StringComparison.CurrentCultureIgnoreCase );
-										if ( vindex != -1 ) {
-											string version = over.Substring( vindex + 8 ).Replace( '.', '_' );
-											tpath = tpath.Insert( tpath.LastIndexOf( '.', index ), "_v" + version );
-											index += version.Length + 2;
-										}
-
-									}
-
-									tpath = tpath.Remove( index );
-								}
-							}
-
-							// 非同期で書き出し処理するので取っておく
-							byte[] responseCopy = new byte[oSession.ResponseBody.Length];
-							Array.Copy( oSession.ResponseBody, responseCopy, oSession.ResponseBody.Length );
-
-							Task.Run( (Action)( () => {
-								try {
-									lock ( this ) {
-										// 同時に書き込みが走るとアレなのでロックしておく
-
-										Directory.CreateDirectory( Path.GetDirectoryName( tpath ) );
-
-										//System.Diagnostics.Debug.WriteLine( oSession.fullUrl + " => " + tpath );
-										using ( var sw = new System.IO.BinaryWriter( System.IO.File.OpenWrite( tpath ) ) ) {
-											sw.Write( responseCopy );
-										}
-									}
-
-									Utility.Logger.Add( 1, string.Format( LoggerRes.SavedAPI, tpath.Remove( 0, saveDataPath.Length + 1 ) ) );
-
-								} catch ( IOException ex ) {	//ファイルがロックされている; 頻繁に出るのでエラーレポートを残さない
-
-									Utility.Logger.Add( 3, LoggerRes.FailedSaveAPI + ex.Message );
-								}
-							} ) );
-
-						}
-
-					} catch ( Exception ex ) {
-
-						Utility.ErrorReporter.SendErrorReport( ex, LoggerRes.FailedSaveAPI );
-					}
-
+				//保存
+				if ( c.SaveReceivedData && c.SaveRequest ) {
+					Task.Run( (Action)( () => {
+						SaveRequest( url, body );
+					} ) );
 				}
-
+				UIControl.BeginInvoke( (Action)( () => { LoadRequest( url, body ); } ) );
 			}
 
 
-			if ( oSession.fullUrl.Contains( "/kcsapi/" ) && oSession.oResponse.MIMEType == "text/plain" ) {
+			//response
+			//保存
+			if ( c.SaveReceivedData ) {
+
+				try {
+
+					if ( !Directory.Exists( c.SaveDataPath ) )
+						Directory.CreateDirectory( c.SaveDataPath );
+
+
+					if ( c.SaveResponse && baseurl.Contains( "/kcsapi/" ) ) {
+
+						// 非同期で書き出し処理するので取っておく
+						// stringはイミュータブルなのでOK
+						string url = baseurl;
+						string body = session.Response.BodyAsString;
+
+						Task.Run( (Action)( () => {
+							SaveResponse( url, body );
+						} ) );
+
+					} else if ( baseurl.Contains( "/kcs/" ) &&
+						( ( c.SaveSWF && session.Response.MimeType == "application/x-shockwave-flash" ) || c.SaveOtherFile ) ) {
+
+						string saveDataPath = c.SaveDataPath; // スレッド間の競合を避けるため取っておく
+						string tpath = string.Format( "{0}\\{1}", saveDataPath, baseurl.Substring( baseurl.IndexOf( "/kcs/" ) + 5 ).Replace( "/", "\\" ) );
+						{
+							int index = tpath.IndexOf( "?" );
+							if ( index != -1 ) {
+								if ( Utility.Configuration.Config.Connection.ApplyVersion ) {
+									string over = tpath.Substring( index + 1 );
+									int vindex = over.LastIndexOf( "VERSION=", StringComparison.CurrentCultureIgnoreCase );
+									if ( vindex != -1 ) {
+										string version = over.Substring( vindex + 8 ).Replace( '.', '_' );
+										tpath = tpath.Insert( tpath.LastIndexOf( '.', index ), "_v" + version );
+										index += version.Length + 2;
+									}
+
+								}
+
+								tpath = tpath.Remove( index );
+							}
+						}
+
+						// 非同期で書き出し処理するので取っておく
+						byte[] responseCopy = new byte[session.Response.Body.Length];
+						Array.Copy( session.Response.Body, responseCopy, session.Response.Body.Length );
+
+						Task.Run( (Action)( () => {
+							try {
+								lock ( this ) {
+									// 同時に書き込みが走るとアレなのでロックしておく
+
+									Directory.CreateDirectory( Path.GetDirectoryName( tpath ) );
+
+									//System.Diagnostics.Debug.WriteLine( oSession.fullUrl + " => " + tpath );
+									using ( var sw = new System.IO.BinaryWriter( System.IO.File.OpenWrite( tpath ) ) ) {
+										sw.Write( responseCopy );
+									}
+								}
+
+								Utility.Logger.Add( 1, string.Format( LoggerRes.SavedAPI, tpath.Remove( 0, saveDataPath.Length + 1 ) ) );
+
+							} catch ( IOException ex ) {	//ファイルがロックされている; 頻繁に出るのでエラーレポートを残さない
+
+								Utility.Logger.Add( 3, LoggerRes.FailedSaveAPI + ex.Message );
+							}
+						} ) );
+
+					}
+
+				} catch ( Exception ex ) {
+
+					Utility.ErrorReporter.SendErrorReport( ex, LoggerRes.FailedSaveAPI );
+				}
+			}
+
+
+
+
+			if ( baseurl.Contains( "/kcsapi/" ) && session.Response.MimeType == "text/plain" ) {
 
 				// 非同期でGUIスレッドに渡すので取っておく
 				// stringはイミュータブルなのでOK
-				string url = oSession.fullUrl;
-				string body = oSession.GetResponseBodyAsString();
+				string url = baseurl;
+				string body = session.Response.BodyAsString;
 				UIControl.BeginInvoke( (Action)( () => { LoadResponse( url, body ); } ) );
 
 				// kancolle-db.netに送信する
 				if ( Utility.Configuration.Config.Connection.SendDataToKancolleDB ) {
-					Task.Run( (Action)( () => DBSender.ExecuteSession( oSession ) ) );
+					Task.Run( (Action)( () => DBSender.ExecuteSession( session ) ) );
 				}
 
 			}
 
 
 
-			if ( ServerAddress == null ) {
-				string url = oSession.fullUrl;
-
-				int idxb = url.IndexOf( "/kcsapi/" );
-
-				if ( idxb != -1 ) {
-					int idxa = url.LastIndexOf( "/", idxb - 1 );
-
-					ServerAddress = url.Substring( idxa + 1, idxb - idxa - 1 );
-				}
-			}
-
-		}
-
-
-		// regex
-		private Regex _wmodeRegex = new Regex( @"""wmode""[\s]*?:[\s]*?""[^""]+?""", RegexOptions.Compiled );
-		private Regex _qualityRegex = new Regex( @"""quality""[\s]*?:[\s]*?""[^""]+?""", RegexOptions.Compiled );
-
-		private void FiddlerApplication_BeforeResponse( Fiddler.Session oSession ) {
-
-			//flash 品質設定
-			if ( oSession.bBufferResponse && oSession.fullUrl.Contains( "/gadget/js/kcs_flash.js" ) ) {
-
-				string js = oSession.GetResponseBodyAsString();
-				bool flag = false;
-
-				var wmode = _wmodeRegex.Match( js );
-				if ( wmode.Success ) {
-					js = js.Replace( wmode.Value, string.Format( @"""wmode"":""{0}""", Utility.Configuration.Config.FormBrowser.FlashWMode ) );
-					flag = true;
-				}
-
-				var quality = _qualityRegex.Match( js );
-				if ( quality.Success ) {
-					js = js.Replace( quality.Value, string.Format( @"""quality"":""{0}""", Utility.Configuration.Config.FormBrowser.FlashQuality ) );
-					flag = true;
-				}
-
-				if ( flag ) {
-					oSession.utilSetResponseBody( js );
-
-					Utility.Logger.Add( 1, LoggerRes.ExecutedFlashQualitySetting );
-				}
-			}
-		}
-
-
-		private void FiddlerApplication_BeforeRequest( Fiddler.Session oSession ) {
-
-			Utility.Configuration.ConfigurationData.ConfigConnection c = Utility.Configuration.Config.Connection;
-
-
-			// 上流プロキシ設定
-			if ( c.UseUpstreamProxy ) {
-				oSession["X-OverrideGateway"] = string.Format( "{0}:{1}", c.UpstreamProxyAddress, c.UpstreamProxyPort );
-			}
-
-
-			if ( oSession.fullUrl.Contains( "/kcsapi/" ) ) {
-
-				string url = oSession.fullUrl;
-				string body = oSession.GetRequestBodyAsString();
-
-				//保存
-				{
-					if ( c.SaveReceivedData && c.SaveRequest ) {
-
-						Task.Run( (Action)( () => {
-							SaveRequest( url, body );
-						} ) );
-					}
-				}
-
-				UIControl.BeginInvoke( (Action)( () => { LoadRequest( url, body ); } ) );
-			}
-
-			// flash wmode & quality
-			{
-				if ( oSession.fullUrl.Contains( "/gadget/js/kcs_flash.js" ) ) {
-
-					oSession.bBufferResponse = true;
-				}
+			if ( ServerAddress == null && baseurl.Contains( "/kcsapi/" ) ) {
+				ServerAddress = session.Request.Headers.Host;
 			}
 
 		}
@@ -401,9 +359,9 @@ namespace ElectronicObserver.Observer {
 
 				var json = DynamicJson.Parse( data.Substring( 7 ) );		//remove "svdata="
 
-				if ( (int)json.api_result != 1 ) {
-
-					var ex = new ArgumentException( LoggerRes.ResponseHadErrorCode );
+				int result = (int)json.api_result;
+				if ( result != 1 ) {
+					var ex = new ArgumentException( LoggerRes.ResponseHadErrorCode + result );
 					Utility.ErrorReporter.SendErrorReport( ex, LoggerRes.ResponseHadErrorCode );
 					throw ex;
 				}
@@ -443,7 +401,7 @@ namespace ElectronicObserver.Observer {
 
 			} catch ( Exception ex ) {
 
-				Utility.ErrorReporter.SendErrorReport( ex, LoggerRes.FailedSavingRequest );
+				Utility.ErrorReporter.SendErrorReport( ex, LoggerRes.FailedSaveAPI );
 
 			}
 		}
@@ -461,7 +419,7 @@ namespace ElectronicObserver.Observer {
 
 			} catch ( Exception ex ) {
 
-				Utility.ErrorReporter.SendErrorReport( ex, LoggerRes.FailedSavingResponse );
+				Utility.ErrorReporter.SendErrorReport( ex, LoggerRes.FailedSaveAPI );
 
 			}
 

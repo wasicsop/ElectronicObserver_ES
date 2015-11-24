@@ -1146,11 +1146,7 @@ namespace ElectronicObserver.Data {
 		public override void LoadFromResponse( string apiname, dynamic data ) {
 
 			switch ( apiname ) {
-				case "api_port/port":
-				case "api_get_member/ship2":
-				case "api_get_member/ship3":
-				case "api_req_kousyou/getship":
-				case "api_get_member/ship_deck":
+				default:
 					base.LoadFromResponse( apiname, (object)data );
 
 					HPCurrent = (int)RawData.api_nowhp;
@@ -1166,6 +1162,10 @@ namespace ElectronicObserver.Data {
 					Fuel = (int)data.api_fuel;
 					Ammo = (int)data.api_bull;
 					_aircraft = (int[])data.api_onslot;
+					break;
+
+				case "api_req_kaisou/slot_exchange_index":
+					_slot = (int[])data.api_slot;
 					break;
 			}
 

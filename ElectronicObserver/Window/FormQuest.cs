@@ -20,7 +20,7 @@ namespace ElectronicObserver.Window {
 
 		private DataGridViewCellStyle CSDefaultLeft, CSDefaultCenter;
 		private DataGridViewCellStyle[] CSCategories;
-
+		private bool IsLoaded = false;
 
 		public FormQuest( FormMain parent ) {
 			InitializeComponent();
@@ -127,6 +127,7 @@ namespace ElectronicObserver.Window {
 
 			Icon = ResourceManager.ImageToIcon( ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormQuest] );
 
+			IsLoaded = true;
 		}
 
 
@@ -224,8 +225,10 @@ namespace ElectronicObserver.Window {
 				row.Cells[QuestView_Category.Index].Value = q.Category;
 				row.Cells[QuestView_Category.Index].Style = CSCategories[Math.Min( q.Category - 1, 8 - 1 )];
 				row.Cells[QuestView_Name.Index].Value = q.QuestID;
-				row.Cells[QuestView_Name.Index].ToolTipText = string.Format( "{0} : {1}\r\n{2}", q.QuestID, q.Name, q.Description );
-
+				{
+					var progress = KCDatabase.Instance.QuestProgress[q.QuestID];
+					row.Cells[QuestView_Name.Index].ToolTipText = string.Format( "{0} : {1}\r\n{2}\r\n{3}", q.QuestID, q.Name, q.Description, progress != null ? progress.GetClearCondition() : "" );
+				}
 				{
 					string value;
 					double tag;
@@ -237,7 +240,7 @@ namespace ElectronicObserver.Window {
 					} else {
 
 						if ( KCDatabase.Instance.QuestProgress.Progresses.ContainsKey( q.QuestID ) ) {
-							var p = KCDatabase.Instance.QuestProgress.Progresses[q.QuestID];
+							var p = KCDatabase.Instance.QuestProgress[q.QuestID];
 
 							value = p.ToString();
 							tag = p.ProgressPercentage;
@@ -273,7 +276,7 @@ namespace ElectronicObserver.Window {
 			}
 
 
-			if ( KCDatabase.Instance.Quest.Quests.Count != KCDatabase.Instance.Quest.Count ) {
+			if ( KCDatabase.Instance.Quest.Quests.Count < KCDatabase.Instance.Quest.Count ) {
 				int index = QuestView.Rows.Add();
 				QuestView.Rows[index].Cells[QuestView_State.Index].Value = null;
 				QuestView.Rows[index].Cells[QuestView_Name.Index].Value = string.Format( "(" + GeneralRes.UnacquiredQuests + " x {0})", ( KCDatabase.Instance.Quest.Count - KCDatabase.Instance.Quest.Quests.Count ) );
@@ -439,11 +442,6 @@ namespace ElectronicObserver.Window {
 
 		}
 
-		protected override string GetPersistString() {
-			return "Quest";
-		}
-
-
 
 		private void MenuMain_ColumnFilter_Click( object sender, EventArgs e ) {
 
@@ -464,6 +462,19 @@ namespace ElectronicObserver.Window {
 			Utility.Configuration.Config.FormQuest.ColumnFilter.List[index] = menu.Checked;
 		}
 
+
+		private void QuestView_ColumnWidthChanged( object sender, DataGridViewColumnEventArgs e ) {
+
+			if ( IsLoaded )
+				Utility.Configuration.Config.FormQuest.ColumnWidth = QuestView.Columns.Cast<DataGridViewColumn>().Select( c => c.Width ).ToList();
+
+		}
+
+
+
+		protected override string GetPersistString() {
+			return "Quest";
+		}
 
 
 	}

@@ -79,6 +79,15 @@ namespace ElectronicObserver {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to APIObserver: 受信開始に失敗しました。.
+        /// </summary>
+        internal static string APIObserverFailed {
+            get {
+                return ResourceManager.GetString("APIObserverFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to APIObserver: ポート {0} 番で受信を開始しました。.
         /// </summary>
         internal static string APIObserverStarted {
@@ -367,24 +376,6 @@ namespace ElectronicObserver {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Requestの保存に失敗しました。.
-        /// </summary>
-        internal static string FailedSavingRequest {
-            get {
-                return ResourceManager.GetString("FailedSavingRequest", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Responseの保存に失敗しました。.
-        /// </summary>
-        internal static string FailedSavingResponse {
-            get {
-                return ResourceManager.GetString("FailedSavingResponse", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to DataStorage の書き込みに失敗しました。.
         /// </summary>
         internal static string FailedSavingStorage {
@@ -448,7 +439,7 @@ namespace ElectronicObserver {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} の改修に成功しました。.
+        ///   Looks up a localized string similar to の改修に成功しました。( .
         /// </summary>
         internal static string ImprovedSuccess {
             get {
@@ -484,7 +475,7 @@ namespace ElectronicObserver {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to アイテム「{0}」を入手しました。.
+        ///   Looks up a localized string similar to アイテム「{0}」を入手しました。( 合計: {1}個 ).
         /// </summary>
         internal static string ItemObtained {
             get {
@@ -516,6 +507,15 @@ namespace ElectronicObserver {
         internal static string ModernizationResult {
             get {
                 return ResourceManager.GetString("ModernizationResult", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MVP候補が複数存在します。ログを確認してください。.
+        /// </summary>
+        internal static string MultiplePossibleMvps {
+            get {
+                return ResourceManager.GetString("MultiplePossibleMvps", resourceCulture);
             }
         }
         
@@ -552,6 +552,24 @@ namespace ElectronicObserver {
         internal static string Record {
             get {
                 return ResourceManager.GetString("Record", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to レコードのオートセーブに失敗しました。.
+        /// </summary>
+        internal static string RecordAutosaveFailure {
+            get {
+                return ResourceManager.GetString("RecordAutosaveFailure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to レコードのオートセーブを行いました。.
+        /// </summary>
+        internal static string RecordAutosaveSuccess {
+            get {
+                return ResourceManager.GetString("RecordAutosaveSuccess", resourceCulture);
             }
         }
         

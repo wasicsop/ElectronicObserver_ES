@@ -20,14 +20,12 @@ namespace ElectronicObserver.Data.Quest {
 		private bool WinOnly { get; set; }
 
 
-		public ProgressPractice( int questID, int maxCount, bool winOnly )
-			: base( questID, maxCount ) {
+		public ProgressPractice( QuestData quest, int maxCount, bool winOnly )
+			: base( quest, maxCount ) {
 
 			WinOnly = winOnly;
 		}
 
-
-		
 
 		public void Increment( string rank ) {
 
@@ -37,5 +35,9 @@ namespace ElectronicObserver.Data.Quest {
 			Increment();
 		}
 
+
+		public override string GetClearCondition() {
+			return "演習" + ( WinOnly ? "勝利" : "" ) + ProgressMax;
+		}
 	}
 }

@@ -193,7 +193,7 @@ namespace ElectronicObserver.Window {
 
 				} else {
 					//装備図鑑
-					const int bound = 50;		// 図鑑1ページあたりの装備数
+					const int bound = 70;		// 図鑑1ページあたりの装備数
 					int startIndex = ( ( (int)data.api_list[0].api_index_no - 1 ) / bound ) * bound + 1;
 					bool[] flags = Enumerable.Repeat<bool>( false, bound ).ToArray();
 
@@ -260,7 +260,10 @@ namespace ElectronicObserver.Window {
 							difficulty = "[" + Constants.GetDifficulty( (int)elem.api_eventmap.api_selected_rank ) + "] ";
 						}
 
-						sb.AppendFormat( "{0}-{1} {2}: HP {3}/{4}\r\n", map.MapAreaID, map.MapInfoID, difficulty, (int)elem.api_eventmap.api_now_maphp, (int)elem.api_eventmap.api_max_maphp );
+						sb.AppendFormat( "{0}-{1} {2}: {3} {4}/{5}\r\n", 
+							map.MapAreaID, map.MapInfoID, difficulty, 
+							elem.api_eventmap.api_gauge_type() && (int)elem.api_eventmap.api_gauge_type == 3 ? "TP" : "HP",
+							(int)elem.api_eventmap.api_now_maphp, (int)elem.api_eventmap.api_max_maphp );
 
 					}
 				}

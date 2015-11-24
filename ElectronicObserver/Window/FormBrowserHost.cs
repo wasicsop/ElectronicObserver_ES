@@ -56,6 +56,7 @@ namespace ElectronicObserver.Window {
 		public FormBrowserHost( FormMain parent ) {
 			InitializeComponent();
 
+			LabelWarning.Text = "ブラウザを起動しています。\r\nしばらくお待ちください。\r\n";
 			Icon = ResourceManager.ImageToIcon( ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormBrowser] );
 		}
 
@@ -65,6 +66,8 @@ namespace ElectronicObserver.Window {
 				if ( Utility.Configuration.Config.FormBrowser.IsEnabled ) {
 					NavigateToLogInPage();
 				}
+
+				LabelWarning.Text = "何らかの原因によってブラウザプロセスの起動に失敗したか、通信が途絶しました。\r\n申し訳ありませんが再起動してください。\r\n";
 			}
 		}
 
@@ -103,8 +106,9 @@ namespace ElectronicObserver.Window {
             ForeColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.MainFontColor);
             Configuration.Theme = (uint)Utility.Configuration.Config.UI.Theme;
             Browser.AsyncRemoteRun(() => Browser.Proxy.ConfigurationChanged(Configuration));
-        }
-
+			Font = LabelWarning.Font = Utility.Configuration.Config.UI.MainFont;
+			Browser.AsyncRemoteRun( () => Browser.Proxy.ConfigurationChanged( Configuration ) );
+		}
 
 		//ロード直後の適用ではレイアウトがなぜか崩れるのでこのタイミングでも適用
 		void InitialAPIReceived( string apiname, dynamic data ) {

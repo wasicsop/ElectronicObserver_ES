@@ -626,15 +626,15 @@ namespace ElectronicObserver.Window.Dialog {
 
 
 
-		// 選択を基にUIの更新
-		private void ExpressionView_SelectionChanged( object sender, EventArgs e ) {
-
-			int index = ExpressionView.SelectedRows.Count == 0 ? -1 : ExpressionView.SelectedRows[0].Index;
+		/// <summary>
+		/// 選択された行をもとに、 ExpressionDetailView を更新します。
+		/// </summary>
+		/// <param name="index">対象となる行のインデックス。</param>
+		private void UpdateExpressionDetailView( int index ) {
 
 			if ( index < 0 || _group.Expressions.Expressions.Count <= index ) return;
 
 			var ex = _group.Expressions.Expressions[index];
-
 
 
 			// detail の更新と expression の初期化
@@ -647,6 +647,13 @@ namespace ElectronicObserver.Window.Dialog {
 			}
 
 			ExpressionDetailView.Rows.AddRange( rows );
+		}
+
+
+		// 選択を基にUIの更新
+		private void ExpressionView_SelectionChanged( object sender, EventArgs e ) {
+
+			UpdateExpressionDetailView( ExpressionView.SelectedRows.Count == 0 ? -1 : ExpressionView.SelectedRows[0].Index );
 
 		}
 
@@ -690,11 +697,11 @@ namespace ElectronicObserver.Window.Dialog {
 				return;
 			}
 
+			ExpressionDetailView.Rows.Clear();
+
 			_group.Expressions.Expressions.RemoveAt( selectedrow );
 			ExpressionView.Rows.RemoveAt( selectedrow );
 
-			if ( ExpressionView.Rows.Count == 0 )
-				ExpressionDetailView.Rows.Clear();
 
 			ExpressionUpdated();
 		}
@@ -928,6 +935,9 @@ namespace ElectronicObserver.Window.Dialog {
 
 				ExpressionUpdated();
 			}
+
+			
+			UpdateExpressionDetailView( e.RowIndex );
 		}
 
 		private void ConstFilterView_CellContentClick( object sender, DataGridViewCellEventArgs e ) {
@@ -976,7 +986,8 @@ namespace ElectronicObserver.Window.Dialog {
 			if ( e.RowIndex < 0 ) return;
 
 			int procrow = GetSelectedRow( ExpressionView );
-			if ( procrow == -1 ) {
+			if ( procrow < 0 || procrow >= _group.Expressions.Expressions.Count ||
+				e.RowIndex >= _group.Expressions[procrow].Expressions.Count ) {
 				return;
 			}
 
@@ -1158,7 +1169,7 @@ namespace ElectronicObserver.Window.Dialog {
 
 
 		private void ButtonMenu_Click( object sender, EventArgs e ) {
-			Menu.Show( ButtonMenu, ButtonMenu.Width / 2, ButtonMenu.Height / 2 );
+			SubMenu.Show( ButtonMenu, ButtonMenu.Width / 2, ButtonMenu.Height / 2 );
 		}
 
 		private void Menu_ImportFilter_Click( object sender, EventArgs e ) {

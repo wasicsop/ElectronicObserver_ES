@@ -240,7 +240,7 @@ Add windows of your choosing using the "View" menu.</value>
     <value>Failed to process update data.</value>
   </data>
   <data name="Version" xml:space="preserve">
-    <value>1.6.3 [TL 1.2b]</value>
+    <value>2.0.0 [TL 2.0b]</value>
   </data>
   <data name="VersionCurrent" xml:space="preserve">
     <value>You are currently using the latest version.</value>
@@ -253,7 +253,7 @@ Add windows of your choosing using the "View" menu.</value>
   </data>
   <data name="FirstTimeDialog" xml:space="preserve">
     <value>Thank you for using {0}.
-For settings and usage information, please see the "Help" → "Online Help" option in the menus.。
+For settings and usage information, please see the "Help" → "Online Help" option in the menus.
 Reading is recommended before use.</value>
   </data>
   <data name="FirstTimeTitle" xml:space="preserve">
@@ -287,7 +287,7 @@ Continue?
     <value>Failed to clear data related to the group data update.</value>
   </data>
   <data name="NewGroupFormat" xml:space="preserve">
-    <value>It is detected that you are upgreading from a previous version.
+    <value>It is detected that you are upgrading from a previous version.
 Previous ship group data has become incompatible, so it must be initialized (currently existing files will be moved to Settings_Backup).
 Continue?
 If you continue without initializing, errors may occur.

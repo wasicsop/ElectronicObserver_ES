@@ -1,6 +1,7 @@
 ﻿using ElectronicObserver.Data;
 using ElectronicObserver.Observer;
 using ElectronicObserver.Resource;
+using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.Window.Control;
 using ElectronicObserver.Window.Support;
 using System;
@@ -32,18 +33,18 @@ namespace ElectronicObserver.Window {
 				Number = new ImageLabel();
 				Number.Anchor = AnchorStyles.Left;
 				Number.ImageAlign = ContentAlignment.MiddleCenter;
-				Number.Font = parent.Font;
 				Number.Margin = new Padding( 3, 2, 3, 2 );
 				Number.Text = string.Format( "#{0}:", fleetID );
 				Number.Tag = null;
 
 				State = new ImageLabel();
 				State.Anchor = AnchorStyles.Left;
-				State.Font = parent.Font;
 				State.Margin = new Padding( 3, 2, 3, 2 );
 				State.ImageList = ResourceManager.Instance.Icons;
 				State.Text = "-";
 				State.Tag = FleetData.FleetStates.NoShip;
+
+				ConfigurationChanged( parent );
 
 				this.fleetID = fleetID;
 				ToolTipInfo = parent.ToolTipInfo;
@@ -96,18 +97,23 @@ namespace ElectronicObserver.Window {
 
 				FleetData.RefreshFleetState( State, (FleetData.FleetStates)State.Tag, (DateTime?)Number.Tag ?? DateTime.Now );
 			}
+
+
+			public void ConfigurationChanged( FormFleetOverview parent ) {
+				Number.Font = parent.Font;
+				State.Font = parent.Font;
+
+			}
 		}
 
 
 		private List<TableFleetControl> ControlFleet;
 		private ImageLabel CombinedTag;
+		private ImageLabel AnchorageRepairingTimer;
 
 
 		public FormFleetOverview( FormMain parent ) {
 			InitializeComponent();
-
-
-			ConfigurationChanged();
 
 			ControlHelper.SetDoubleBuffered( TableFleet );
 
@@ -117,20 +123,16 @@ namespace ElectronicObserver.Window {
 				ControlFleet.Add( new TableFleetControl( this, i + 1, TableFleet ) );
 			}
 
-
-			#region CombinedTag
 			{
-				CombinedTag = new ImageLabel();
-				CombinedTag.Anchor = AnchorStyles.Left;
-				CombinedTag.Font = Utility.Configuration.Config.UI.MainFont;
-				CombinedTag.Margin = new Padding( 3, 2, 3, 2 );
-				CombinedTag.ImageList = ResourceManager.Instance.Icons;
-				CombinedTag.ImageIndex = (int)ResourceManager.IconContent.FleetCombined;
-				CombinedTag.Text = "-";
-				CombinedTag.Visible = false;
+				AnchorageRepairingTimer = new ImageLabel();
+				AnchorageRepairingTimer.Anchor = AnchorStyles.Left;
+				AnchorageRepairingTimer.Margin = new Padding( 3, 2, 3, 2 );
+				AnchorageRepairingTimer.ImageList = ResourceManager.Instance.Icons;
+				AnchorageRepairingTimer.ImageIndex = (int)ResourceManager.IconContent.FleetDocking;
+				AnchorageRepairingTimer.Text = "-";
+				//AnchorageRepairingTimer.Visible = false;
 
-
-				TableFleet.Controls.Add( CombinedTag, 1, 4 );
+				TableFleet.Controls.Add( AnchorageRepairingTimer, 1, 4 );
 
 				#region set RowStyle
 				RowStyle rs = new RowStyle( SizeType.AutoSize, 0 );
@@ -141,10 +143,36 @@ namespace ElectronicObserver.Window {
 					while ( TableFleet.RowStyles.Count <= 4 )
 						TableFleet.RowStyles.Add( rs );
 				#endregion
+			}
+
+			#region CombinedTag
+			{
+				CombinedTag = new ImageLabel();
+				CombinedTag.Anchor = AnchorStyles.Left;
+				CombinedTag.Margin = new Padding( 3, 2, 3, 2 );
+				CombinedTag.ImageList = ResourceManager.Instance.Icons;
+				CombinedTag.ImageIndex = (int)ResourceManager.IconContent.FleetCombined;
+				CombinedTag.Text = "-";
+				CombinedTag.Visible = false;
+
+				TableFleet.Controls.Add( CombinedTag, 1, 5 );
+
+				#region set RowStyle
+				RowStyle rs = new RowStyle( SizeType.AutoSize, 0 );
+
+				if ( TableFleet.RowStyles.Count > 5 )
+					TableFleet.RowStyles[5] = rs;
+				else
+					while ( TableFleet.RowStyles.Count <= 5 )
+						TableFleet.RowStyles.Add( rs );
+				#endregion
 
 			}
 			#endregion
 
+
+
+			ConfigurationChanged();
 
 			Icon = ResourceManager.ImageToIcon( ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormFleet] );
 
@@ -164,6 +192,7 @@ namespace ElectronicObserver.Window {
 			o.APIList["api_req_kousyou/destroyship"].RequestReceived += ChangeOrganization;
 			o.APIList["api_req_kaisou/remodeling"].RequestReceived += ChangeOrganization;
 			o.APIList["api_req_kaisou/powerup"].ResponseReceived += ChangeOrganization;
+			o.APIList["api_req_hensei/preset_select"].ResponseReceived += ChangeOrganization;
 
 			o.APIList["api_req_nyukyo/start"].RequestReceived += Updated;
 			o.APIList["api_req_nyukyo/speedchange"].RequestReceived += Updated;
@@ -185,6 +214,8 @@ namespace ElectronicObserver.Window {
 			o.APIList["api_req_map/start"].ResponseReceived += Updated;
 			o.APIList["api_req_map/next"].ResponseReceived += Updated;
 			o.APIList["api_get_member/ship_deck"].ResponseReceived += Updated;
+			o.APIList["api_req_hensei/preset_select"].ResponseReceived += Updated;
+			o.APIList["api_req_kaisou/slot_exchange_index"].ResponseReceived += Updated;
 
 			Utility.Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
 		}
@@ -193,7 +224,14 @@ namespace ElectronicObserver.Window {
 			Font = Utility.Configuration.Config.UI.MainFont;
             BackColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.BackgroundColor);
             ForeColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.MainFontColor);
-        }
+
+			foreach ( var c in ControlFleet )
+				c.ConfigurationChanged( this );
+
+			CombinedTag.Font = Font;
+			AnchorageRepairingTimer.Font = Font;
+			AnchorageRepairingTimer.Visible = Utility.Configuration.Config.FormFleet.ShowAnchorageRepairingTimer;
+		}
 
 
 		private void Updated( string apiname, dynamic data ) {
@@ -204,10 +242,27 @@ namespace ElectronicObserver.Window {
 
 			if ( KCDatabase.Instance.Fleet.CombinedFlag > 0 ) {
 				CombinedTag.Text = Constants.GetCombinedFleet( KCDatabase.Instance.Fleet.CombinedFlag );
+
+				if ( KCDatabase.Instance.Fleet.CombinedFlag == 3 ) {
+					ToolTipInfo.SetToolTip( CombinedTag, string.Format( "ドラム缶搭載: {0}個\r\n大発動艇搭載: {1}個\r\n",
+						KCDatabase.Instance.Fleet[1].MembersWithoutEscaped.Sum( s => s == null ? 0 : s.AllSlotInstanceMaster.Count( eq => eq != null && eq.CategoryType == 30 ) ) +
+						KCDatabase.Instance.Fleet[2].MembersWithoutEscaped.Sum( s => s == null ? 0 : s.AllSlotInstanceMaster.Count( eq => eq != null && eq.CategoryType == 30 ) ),
+						KCDatabase.Instance.Fleet[1].MembersWithoutEscaped.Sum( s => s == null ? 0 : s.AllSlotInstanceMaster.Count( eq => eq != null && eq.CategoryType == 24 ) ) +
+						KCDatabase.Instance.Fleet[2].MembersWithoutEscaped.Sum( s => s == null ? 0 : s.AllSlotInstanceMaster.Count( eq => eq != null && eq.CategoryType == 24 ) )
+						) );
+				} else {
+					ToolTipInfo.SetToolTip( CombinedTag, null );
+				}
+
 				CombinedTag.Visible = true;
 			} else {
 				CombinedTag.Visible = false;
 			}
+
+			AnchorageRepairingTimer.Text = DateTimeHelper.ToTimeElapsedString( KCDatabase.Instance.Fleet.AnchorageRepairingTimer );
+			AnchorageRepairingTimer.Tag = KCDatabase.Instance.Fleet.AnchorageRepairingTimer;
+			ToolTipInfo.SetToolTip( AnchorageRepairingTimer, "泊地修理タイマ\r\n開始: " + DateTimeHelper.TimeToCSVString( KCDatabase.Instance.Fleet.AnchorageRepairingTimer ) + "\r\n回復: " + DateTimeHelper.TimeToCSVString( KCDatabase.Instance.Fleet.AnchorageRepairingTimer.AddMinutes( 20 ) ) );
+
 		}
 
 		void ChangeOrganization( string apiname, dynamic data ) {
@@ -222,6 +277,9 @@ namespace ElectronicObserver.Window {
 			for ( int i = 0; i < ControlFleet.Count; i++ ) {
 				ControlFleet[i].Refresh();
 			}
+
+			if ( AnchorageRepairingTimer.Visible && AnchorageRepairingTimer.Tag != null )
+				AnchorageRepairingTimer.Text = DateTimeHelper.ToTimeElapsedString( (DateTime)AnchorageRepairingTimer.Tag );
 		}
 
 

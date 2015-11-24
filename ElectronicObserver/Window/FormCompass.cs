@@ -38,7 +38,6 @@ namespace ElectronicObserver.Window {
 
 				ShipName = new ImageLabel();
 				ShipName.Anchor = AnchorStyles.Left;
-				ShipName.Font = parent.MainFont;
 				ShipName.ForeColor = parent.MainFontColor;
 				ShipName.ImageAlign = ContentAlignment.MiddleCenter;
 				ShipName.Padding = new Padding( 0, 1, 0, 1 );
@@ -52,12 +51,13 @@ namespace ElectronicObserver.Window {
 				Equipments = new ShipStatusEquipment();
 				Equipments.SuspendLayout();
 				Equipments.Anchor = AnchorStyles.Left;
-				Equipments.Font = parent.SubFont;
 				Equipments.Padding = new Padding( 0, 2, 0, 1 );
 				Equipments.Margin = new Padding( 2, 0, 2, 0 );
 				Equipments.Size = new Size( 40, 20 );	//checkme: 要る？
 				Equipments.AutoSize = true;
 				Equipments.ResumeLayout();
+
+				ConfigurationChanged( parent );
 
 				Parent = parent;
 				ToolTipInfo = parent.ToolTipInfo;
@@ -267,6 +267,12 @@ namespace ElectronicObserver.Window {
 			}
 
 
+			public void ConfigurationChanged( FormCompass parent ) {
+				ShipName.Font = parent.MainFont;
+				Equipments.Font = parent.SubFont;
+
+			}
+
 		}
 
 
@@ -323,6 +329,10 @@ namespace ElectronicObserver.Window {
 
 			TextDestination.ImageList = ResourceManager.Instance.Equipments;
 			TextEventDetail.ImageList = ResourceManager.Instance.Equipments;
+
+
+			ConfigurationChanged();
+
 			Icon = ResourceManager.ImageToIcon( ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormCompass] );
 
 		}
@@ -567,6 +577,9 @@ namespace ElectronicObserver.Window {
 							}
 							break;
 
+						case 9:		//揚陸地点
+							TextEventDetail.Text = "";
+							break;
 
 						default:
 							TextEventDetail.Text = "";
@@ -603,7 +616,7 @@ namespace ElectronicObserver.Window {
 
 
 		private void BattleStarted( string apiname, dynamic data ) {
-			UpdateEnemyFleetInstant();
+			UpdateEnemyFleetInstant( apiname.Contains( "practice" ) );
 		}
 
 		private void UpdateEnemyFleet() {
@@ -637,7 +650,7 @@ namespace ElectronicObserver.Window {
 		}
 
 
-		private void UpdateEnemyFleetInstant() {
+		private void UpdateEnemyFleetInstant( bool isPractice = false ) {
 
 			BattleManager bm = KCDatabase.Instance.Battle;
 			BattleData bd;
@@ -675,7 +688,9 @@ namespace ElectronicObserver.Window {
 
 			TextFormation.Text = Constants.GetFormationShort( (int)bd.Searching.FormationEnemy );
 			TextFormation.Visible = true;
-			TextAirSuperiority.Text = Calculator.GetAirSuperiority( enemies, slots ).ToString();
+			TextAirSuperiority.Text = isPractice ?
+				Calculator.GetAirSuperiority( enemies, slots ).ToString() + " ～ " + Calculator.GetAirSuperiorityAtMaxLevel( enemies, slots ).ToString() :
+				Calculator.GetAirSuperiority( enemies, slots ).ToString();
 			TextAirSuperiority.Visible = true;
 
 			TableEnemyMember.SuspendLayout();
@@ -745,11 +760,16 @@ namespace ElectronicObserver.Window {
 			Font = PanelEnemyFleet.Font = MainFont = Utility.Configuration.Config.UI.MainFont;
 			SubFont = Utility.Configuration.Config.UI.SubFont;
 
+			TextMapArea.Font =
+			TextDestination.Font =
+			TextEventKind.Font =
+			TextEventDetail.Font = Font;
 
 			if ( ControlMember != null ) {
 				bool flag = Utility.Configuration.Config.FormFleet.ShowAircraft;
 				for ( int i = 0; i < ControlMember.Length; i++ ) {
 					ControlMember[i].Equipments.ShowAircraft = flag;
+					ControlMember[i].ConfigurationChanged( this );
 				}
 			}
             ForeColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.MainFontColor);

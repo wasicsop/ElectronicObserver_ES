@@ -20,14 +20,12 @@ namespace ElectronicObserver.Data.Quest {
 		private HashSet<int> TargetArea { get; set; }
 
 
-		public ProgressExpedition( int questID, int maxCount, int[] targetArea )
-			: base( questID, maxCount ) {
+		public ProgressExpedition( QuestData quest, int maxCount, int[] targetArea )
+			: base( quest, maxCount ) {
 
 			TargetArea = targetArea == null ? null : new HashSet<int>( targetArea );
 		}
 
-
-		
 
 		public void Increment( int areaID ) {
 
@@ -37,5 +35,17 @@ namespace ElectronicObserver.Data.Quest {
 			Increment();
 		}
 
+
+		public override string GetClearCondition() {
+			StringBuilder sb = new StringBuilder();
+			if ( TargetArea != null ) {
+				sb.Append( string.Join( "・", TargetArea.OrderBy( s => s ).Select( s => KCDatabase.Instance.Mission[s].Name ) ) );
+			} else {
+				sb.Append( "遠征" );
+			}
+			sb.Append( ProgressMax );
+
+			return sb.ToString();
+		}
 	}
 }

@@ -195,6 +195,8 @@ namespace ElectronicObserver.Data {
 					return ConstantsRes.AirBattle;
 				case 8:
 					return ConstantsRes.LargeResourceNode;
+				case 9:
+					return ConstantsRes.LandNode;
 				default:
 					return ConstantsRes.Unknown;
 			}
@@ -747,6 +749,8 @@ namespace ElectronicObserver.Data {
 					return ConstantsRes.TaskForce;
 				case 2:
 					return ConstantsRes.SurfaceFleet;
+				case 3:
+					return ConstantsRes.TransportFleet;
 				default:
 					return ConstantsRes.Unknown;
 			}
