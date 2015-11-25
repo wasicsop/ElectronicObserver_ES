@@ -690,7 +690,7 @@ namespace ElectronicObserver.Window {
 					ShipData ship = bd.Initial.FriendFleet.MembersInstance[i];
 
 					ToolTipInfo.SetToolTip( HPBars[i],
-						string.Format( "{0} {1} Lv. {1}\r\nHP: ({2} → {3})/{4} ({5}) [{6}]\r\n" + GeneralRes.DamageDone + ": {7}",
+						string.Format( "{0} {1} Lv. {2}\r\nHP: ({3} → {4})/{5} ({6}) [{7}]\r\n" + GeneralRes.DamageDone + ": {8}",
 							ship.MasterShip.ShipTypeName,
 							ship.MasterShip.NameWithClass,
 							ship.Level,
