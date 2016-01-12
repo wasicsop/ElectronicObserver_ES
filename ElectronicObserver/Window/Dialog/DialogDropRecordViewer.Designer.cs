@@ -494,7 +494,7 @@
 			this.Font = new System.Drawing.Font("Meiryo UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
 			this.Name = "DialogDropRecordViewer";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-			this.Text = "ドロップ記録";
+			this.Text = "Drop log";
 			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.DialogDropRecordViewer_FormClosed);
 			this.Load += new System.EventHandler(this.DialogDropRecordViewer_Load);
 			((System.ComponentModel.ISupportInitialize)(this.RecordView)).EndInit();

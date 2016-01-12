@@ -525,4 +525,20 @@ More details, as well as an access key, can be found on the site below. (opens y
   <data name="ThemeRestartWarning" xml:space="preserve">
     <value>A restart will be required for theme changes to take full effect.</value>
   </data>
+  <data name="AirSuperiorityMethod" xml:space="preserve">
+    <value>Air Calc：</value>
+  </data>
+  <data name="DisplayEquipLevels" xml:space="preserve">
+    <value>Display proficiency and improvement level</value>
+  </data>
+  <data name="DisplayEquipLevelsTooltip" xml:space="preserve">
+    <value>Displays aircraft proficiency and equipment improvement level.
+</value>
+  </data>
+  <data name="IgnorePlaneXP" xml:space="preserve">
+    <value>Without Proficiency</value>
+  </data>
+  <data name="UsingPlaneXPBeta" xml:space="preserve">
+    <value>Aircraft Proficiency (Beta)</value>
+  </data>
 </root>

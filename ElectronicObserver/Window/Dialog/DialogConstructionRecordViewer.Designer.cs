@@ -416,7 +416,7 @@
 			this.Controls.Add(this.statusStrip1);
 			this.Font = new System.Drawing.Font("Meiryo UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
 			this.Name = "DialogConstructionRecordViewer";
-			this.Text = "建造記録";
+			this.Text = "Construction Log";
 			this.Load += new System.EventHandler(this.DialogConstructionRecordViewer_Load);
 			this.statusStrip1.ResumeLayout(false);
 			this.statusStrip1.PerformLayout();

@@ -365,7 +365,7 @@
 			this.Font = new System.Drawing.Font("Meiryo UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
 			this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.Name = "DialogDevelopmentRecordViewer";
-			this.Text = "開発記録";
+			this.Text = "Development Log";
 			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.DialogDevelopmentRecordViewer_FormClosed);
 			this.Load += new System.EventHandler(this.DialogDevelopmentRecordViewer_Load);
 			this.splitContainer1.Panel1.ResumeLayout(false);
