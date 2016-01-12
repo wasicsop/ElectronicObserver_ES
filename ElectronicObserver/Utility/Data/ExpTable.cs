@@ -275,12 +275,12 @@ namespace ElectronicObserver.Utility.Data {
 				new Experience( 147, 3799000, 179000 ), 
 				new Experience( 148, 3978000, 187000 ), 
 				new Experience( 149, 4165000, 195000 ), 
-				new Experience( 150, 4360000, 201400 ),
-                new Experience( 151, 4360000, 213000 ),
-                new Experience( 152, 4360000, 222000 ),
-                new Experience( 153, 4360000, 231000 ),
-                new Experience( 154, 4360000, 240000 ),
-                new Experience( 155, 4360000, 0 )
+				new Experience( 150, 4360000, 204000 ),
+				new Experience( 151, 4564000, 213000 ),
+				new Experience( 152, 4777000, 222000 ),
+				new Experience( 153, 4999000, 231000 ),
+				new Experience( 154, 5230000, 240000 ),
+				new Experience( 155, 5470000, 0 )
             };
 
 

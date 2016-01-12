@@ -714,6 +714,8 @@ namespace ElectronicObserver.Data {
 				case 7:
 					return ConstantsRes.Modernization;
 				case 8:
+					return ConstantsRes.Sortie;
+				case 9:
 					return ConstantsRes.Other;
 				default:
 					return ConstantsRes.Unknown;
