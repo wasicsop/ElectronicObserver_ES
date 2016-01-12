@@ -707,12 +707,12 @@
 			this.Control_RecordAutoSaving.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.Control_RecordAutoSaving.FormattingEnabled = true;
 			this.Control_RecordAutoSaving.Items.AddRange(new object[] {
-            "Disable",
-            "Hourly",
-            "Daily"});
+            ConfigRes.RecordAutoSaving_Disable,
+            ConfigRes.RecordAutoSaving_Hourly,
+            ConfigRes.RecordAutoSaving_Daily});
 			this.Control_RecordAutoSaving.Location = new System.Drawing.Point(124, 35);
 			this.Control_RecordAutoSaving.Name = "Control_RecordAutoSaving";
-			this.Control_RecordAutoSaving.Size = new System.Drawing.Size(121, 23);
+			this.Control_RecordAutoSaving.Size = new System.Drawing.Size(80, 23);
 			this.Control_RecordAutoSaving.TabIndex = 3;
 			// 
 			// label9
@@ -722,7 +722,7 @@
 			this.label9.Name = "label9";
 			this.label9.Size = new System.Drawing.Size(112, 15);
 			this.label9.TabIndex = 2;
-			this.label9.Text = "Logging interval：";
+			this.label9.Text = ConfigRes.LoggingInterval;
 			// 
 			// Control_ConditionBorder
 			// 
@@ -955,8 +955,8 @@
 			this.FormFleet_ShowAnchorageRepairingTimer.Name = "FormFleet_ShowAnchorageRepairingTimer";
 			this.FormFleet_ShowAnchorageRepairingTimer.Size = new System.Drawing.Size(152, 19);
 			this.FormFleet_ShowAnchorageRepairingTimer.TabIndex = 10;
-			this.FormFleet_ShowAnchorageRepairingTimer.Text = "Display repair timer";
-			this.ToolTipInfo.SetToolTip(this.FormFleet_ShowAnchorageRepairingTimer, "Display repair timer in the fleet list window.");
+			this.FormFleet_ShowAnchorageRepairingTimer.Text = ConfigRes.ShowAnchorageRepairingTimer;
+			this.ToolTipInfo.SetToolTip(this.FormFleet_ShowAnchorageRepairingTimer, ConfigRes.ShowAnchorageRepairingTimer_Tooltip);
 			this.FormFleet_ShowAnchorageRepairingTimer.UseVisualStyleBackColor = true;
 			// 
 			// FormFleet_AirSuperiorityMethod
@@ -1744,10 +1744,10 @@
 			this.Life_ClockFormat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.Life_ClockFormat.FormattingEnabled = true;
 			this.Life_ClockFormat.Items.AddRange(new object[] {
-            "Current time",
-            "Until PVP Reset",
-            "Until Quest Reset"});
-			this.Life_ClockFormat.Location = new System.Drawing.Point(81, 135);
+            ConfigRes.Life_ClockFormat_Current,
+            ConfigRes.Life_ClockFormat_Excercise,
+            ConfigRes.Life_ClockFormat_Quest});
+			this.Life_ClockFormat.Location = new System.Drawing.Point(103, 135);
 			this.Life_ClockFormat.Name = "Life_ClockFormat";
 			this.Life_ClockFormat.Size = new System.Drawing.Size(121, 23);
 			this.Life_ClockFormat.TabIndex = 7;
@@ -1759,7 +1759,7 @@
 			this.label24.Name = "label24";
 			this.label24.Size = new System.Drawing.Size(67, 15);
 			this.label24.TabIndex = 8;
-			this.label24.Text = "Time display：";
+			this.label24.Text = ConfigRes.Life_Clock;
 			// 
 			// DialogConfiguration
 			// 

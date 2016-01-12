@@ -538,4 +538,34 @@ direct にするとパフォーマンスが向上する可能性があります�
   <data name="UsingPlaneXPBeta" xml:space="preserve">
     <value>熟練度あり(仮)</value>
   </data>
+  <data name="Life_Clock" xml:space="preserve">
+    <value>時計表示：</value>
+  </data>
+  <data name="Life_ClockFormat_Current" xml:space="preserve">
+    <value>現在時刻</value>
+  </data>
+  <data name="Life_ClockFormat_Excercise" xml:space="preserve">
+    <value>演習更新まで</value>
+  </data>
+  <data name="Life_ClockFormat_Quest" xml:space="preserve">
+    <value>任務更新まで</value>
+  </data>
+  <data name="RecordAutoSaving_Daily" xml:space="preserve">
+    <value>1日ごと</value>
+  </data>
+  <data name="RecordAutoSaving_Disable" xml:space="preserve">
+    <value>しない</value>
+  </data>
+  <data name="RecordAutoSaving_Hourly" xml:space="preserve">
+    <value>1時間ごと</value>
+  </data>
+  <data name="LoggingInterval" xml:space="preserve">
+    <value>レコードの自動保存：</value>
+  </data>
+  <data name="ShowAnchorageRepairingTimer" xml:space="preserve">
+    <value>泊地修理タイマを表示する</value>
+  </data>
+  <data name="ShowAnchorageRepairingTimer_Tooltip" xml:space="preserve">
+    <value>艦隊一覧の泊地修理タイマを表示するかを指定します。</value>
+  </data>
 </root>

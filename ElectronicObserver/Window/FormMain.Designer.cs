@@ -445,21 +445,21 @@
 			// 
 			this.StripMenu_Tool_DropRecord.Name = "StripMenu_Tool_DropRecord";
 			this.StripMenu_Tool_DropRecord.Size = new System.Drawing.Size(151, 22);
-			this.StripMenu_Tool_DropRecord.Text = "Drop Log (&D)";
+			this.StripMenu_Tool_DropRecord.Text = Menus.DropRecord;
 			this.StripMenu_Tool_DropRecord.Click += new System.EventHandler(this.StripMenu_Tool_DropRecord_Click);
 			// 
 			// StripMenu_Tool_DevelopmentRecord
 			// 
 			this.StripMenu_Tool_DevelopmentRecord.Name = "StripMenu_Tool_DevelopmentRecord";
 			this.StripMenu_Tool_DevelopmentRecord.Size = new System.Drawing.Size(151, 22);
-			this.StripMenu_Tool_DevelopmentRecord.Text = "Development Log (&V)";
+			this.StripMenu_Tool_DevelopmentRecord.Text = Menus.DevelopmentRecord;
 			this.StripMenu_Tool_DevelopmentRecord.Click += new System.EventHandler(this.StripMenu_Tool_DevelopmentRecord_Click);
 			// 
 			// StripMenu_Tool_ConstructionRecord
 			// 
 			this.StripMenu_Tool_ConstructionRecord.Name = "StripMenu_Tool_ConstructionRecord";
 			this.StripMenu_Tool_ConstructionRecord.Size = new System.Drawing.Size(151, 22);
-			this.StripMenu_Tool_ConstructionRecord.Text = "Construction Log (&R)";
+			this.StripMenu_Tool_ConstructionRecord.Text = Menus.ConstructionRecord;
 			this.StripMenu_Tool_ConstructionRecord.Click += new System.EventHandler(this.StripMenu_Tool_ConstructionRecord_Click);
 			// 
 			// StripMenu_Tool_ResourceChart
@@ -546,7 +546,7 @@
 			// 
 			this.StripMenu_Debug_LoadDataFromOld.Name = "StripMenu_Debug_LoadDataFromOld";
 			this.StripMenu_Debug_LoadDataFromOld.Size = new System.Drawing.Size(278, 22);
-			this.StripMenu_Debug_LoadDataFromOld.Text = "旧 api_start2から深海棲艦を復元(&A)...";
+			this.StripMenu_Debug_LoadDataFromOld.Text = Menus.LoadDataFromOld;
 			this.StripMenu_Debug_LoadDataFromOld.Click += new System.EventHandler(this.StripMenu_Debug_LoadDataFromOld_Click);
 			// 
 			// StripMenu_Help

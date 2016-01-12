@@ -677,11 +677,56 @@ namespace ElectronicObserver.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 時計表示：.
+        /// </summary>
+        internal static string Life_Clock {
+            get {
+                return ResourceManager.GetString("Life_Clock", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 現在時刻.
+        /// </summary>
+        internal static string Life_ClockFormat_Current {
+            get {
+                return ResourceManager.GetString("Life_ClockFormat_Current", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 演習更新まで.
+        /// </summary>
+        internal static string Life_ClockFormat_Excercise {
+            get {
+                return ResourceManager.GetString("Life_ClockFormat_Excercise", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 任務更新まで.
+        /// </summary>
+        internal static string Life_ClockFormat_Quest {
+            get {
+                return ResourceManager.GetString("Life_ClockFormat_Quest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ログ.
         /// </summary>
         internal static string Log {
             get {
                 return ResourceManager.GetString("Log", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to レコードの自動保存：.
+        /// </summary>
+        internal static string LoggingInterval {
+            get {
+                return ResourceManager.GetString("LoggingInterval", resourceCulture);
             }
         }
         
@@ -878,6 +923,33 @@ namespace ElectronicObserver.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 1日ごと.
+        /// </summary>
+        internal static string RecordAutoSaving_Daily {
+            get {
+                return ResourceManager.GetString("RecordAutoSaving_Daily", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to しない.
+        /// </summary>
+        internal static string RecordAutoSaving_Disable {
+            get {
+                return ResourceManager.GetString("RecordAutoSaving_Disable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1時間ごと.
+        /// </summary>
+        internal static string RecordAutoSaving_Hourly {
+            get {
+                return ResourceManager.GetString("RecordAutoSaving_Hourly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to レジストリ.
         /// </summary>
         internal static string Registry {
@@ -1067,6 +1139,24 @@ namespace ElectronicObserver.Window.Dialog {
         internal static string ShowAircraft {
             get {
                 return ResourceManager.GetString("ShowAircraft", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 泊地修理タイマを表示する.
+        /// </summary>
+        internal static string ShowAnchorageRepairingTimer {
+            get {
+                return ResourceManager.GetString("ShowAnchorageRepairingTimer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 艦隊一覧の泊地修理タイマを表示するかを指定します。.
+        /// </summary>
+        internal static string ShowAnchorageRepairingTimer_Tooltip {
+            get {
+                return ResourceManager.GetString("ShowAnchorageRepairingTimer_Tooltip", resourceCulture);
             }
         }
         

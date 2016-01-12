@@ -297,4 +297,13 @@
   <data name="ResourceChart" xml:space="preserve">
     <value>Resource Chart (&amp;C)</value>
   </data>
+  <data name="ConstructionRecord" xml:space="preserve">
+    <value>Construction Log (&amp;R)</value>
+  </data>
+  <data name="DevelopmentRecord" xml:space="preserve">
+    <value>Development Log (&amp;V)</value>
+  </data>
+  <data name="DropRecord" xml:space="preserve">
+    <value>Drop Log (&amp;D)</value>
+  </data>
 </root>
