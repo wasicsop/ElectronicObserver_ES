@@ -125,7 +125,7 @@ namespace ElectronicObserver.Utility.Data {
 
 			#region Initialize table
 
-			Experience[] shipexp = new Experience[150] {
+			Experience[] shipexp = new Experience[155] {
 				new Experience( 1, 0, 100 ), 
 				new Experience( 2, 100, 200 ), 
 				new Experience( 3, 300, 300 ), 
@@ -275,8 +275,13 @@ namespace ElectronicObserver.Utility.Data {
 				new Experience( 147, 3799000, 179000 ), 
 				new Experience( 148, 3978000, 187000 ), 
 				new Experience( 149, 4165000, 195000 ), 
-				new Experience( 150, 4360000, 0 )
-			};
+				new Experience( 150, 4360000, 201400 ),
+                new Experience( 151, 4360000, 213000 ),
+                new Experience( 152, 4360000, 222000 ),
+                new Experience( 153, 4360000, 231000 ),
+                new Experience( 154, 4360000, 240000 ),
+                new Experience( 155, 4360000, 0 )
+            };
 
 
 			Experience[] admiralexp = new Experience[120] {

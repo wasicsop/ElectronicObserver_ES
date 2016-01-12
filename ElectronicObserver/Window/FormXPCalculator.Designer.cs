@@ -224,7 +224,12 @@
             resources.GetString("selectStartLevel.Items146"),
             resources.GetString("selectStartLevel.Items147"),
             resources.GetString("selectStartLevel.Items148"),
-            resources.GetString("selectStartLevel.Items149")});
+            resources.GetString("selectStartLevel.Items149"),
+            resources.GetString("selectStartLevel.Items150"),
+            resources.GetString("selectStartLevel.Items151"),
+            resources.GetString("selectStartLevel.Items152"),
+            resources.GetString("selectStartLevel.Items153"),
+            resources.GetString("selectStartLevel.Items154")});
             resources.ApplyResources(this.selectStartLevel, "selectStartLevel");
             this.selectStartLevel.Name = "selectStartLevel";
             this.selectStartLevel.SelectedIndexChanged += new System.EventHandler(this.selectStartLevel_SelectedIndexChanged);
@@ -395,7 +400,12 @@
             resources.GetString("selectEndLevel.Items146"),
             resources.GetString("selectEndLevel.Items147"),
             resources.GetString("selectEndLevel.Items148"),
-            resources.GetString("selectEndLevel.Items149")});
+            resources.GetString("selectEndLevel.Items149"),
+            resources.GetString("selectEndLevel.Items150"),
+            resources.GetString("selectEndLevel.Items151"),
+            resources.GetString("selectEndLevel.Items152"),
+            resources.GetString("selectEndLevel.Items153"),
+            resources.GetString("selectEndLevel.Items154")});
             resources.ApplyResources(this.selectEndLevel, "selectEndLevel");
             this.selectEndLevel.Name = "selectEndLevel";
             this.selectEndLevel.SelectedIndexChanged += new System.EventHandler(this.selectEndLevel_SelectedIndexChanged);

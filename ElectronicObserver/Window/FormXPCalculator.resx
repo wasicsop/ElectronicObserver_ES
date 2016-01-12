@@ -644,6 +644,21 @@
   <data name="selectStartLevel.Items149" xml:space="preserve">
     <value>150</value>
   </data>
+  <data name="selectStartLevel.Items150" xml:space="preserve">
+    <value>151</value>
+  </data>
+  <data name="selectStartLevel.Items151" xml:space="preserve">
+    <value>152</value>
+  </data>
+  <data name="selectStartLevel.Items152" xml:space="preserve">
+    <value>153</value>
+  </data>
+  <data name="selectStartLevel.Items153" xml:space="preserve">
+    <value>154</value>
+  </data>
+  <data name="selectStartLevel.Items154" xml:space="preserve">
+    <value>155</value>
+  </data>
   <data name="selectStartLevel.Location" type="System.Drawing.Point, System.Drawing">
     <value>96, 40</value>
   </data>
@@ -1156,6 +1171,21 @@
   </data>
   <data name="selectEndLevel.Items149" xml:space="preserve">
     <value>150</value>
+  </data>
+  <data name="selectEndLevel.Items150" xml:space="preserve">
+    <value>151</value>
+  </data>
+  <data name="selectEndLevel.Items151" xml:space="preserve">
+    <value>152</value>
+  </data>
+  <data name="selectEndLevel.Items152" xml:space="preserve">
+    <value>153</value>
+  </data>
+  <data name="selectEndLevel.Items153" xml:space="preserve">
+    <value>154</value>
+  </data>
+  <data name="selectEndLevel.Items154" xml:space="preserve">
+    <value>155</value>
   </data>
   <data name="selectEndLevel.Location" type="System.Drawing.Point, System.Drawing">
     <value>96, 70</value>
