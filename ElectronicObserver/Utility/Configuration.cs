@@ -621,7 +621,7 @@ namespace ElectronicObserver.Utility {
 				public ConfigFormBrowser() {
 					ZoomRate = 100;
 					ZoomFit = false;
-					LogInPageURL = @"http://www.dmm.com/netgame_s/kancolle/";
+					LogInPageURL = @"http://www.dmm.com/netgame/social/-/gadgets/=/app_id=854854/";
 					IsEnabled = true;
 					ScreenShotPath = "ScreenShot";
 					ScreenShotFormat = 2;
