@@ -1,4 +1,5 @@
 ﻿using ElectronicObserver.Data;
+using ElectronicObserver.Window;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,15 +44,48 @@ namespace ElectronicObserver.Observer.kcsapi.api_req_kaisou {
 			KCDatabase db = KCDatabase.Instance;
 
 			var ship = db.Ships[(int)data.api_ship.api_id];
-			if ( ship != null )
+			
+
+			if ( ship != null ) {
+
+				if ( Utility.Configuration.Config.Log.ShowSpoiler ) {
+					if ( (int)data.api_powerup_flag == 0 ) {
+						Utility.Logger.Add( 2, string.Format(LoggerRes.ImprovedFailure, ship.NameWithLevel));
+
+					} else {
+						var updated_ship = new ShipData();
+						updated_ship.LoadFromResponse( APIName, data.api_ship );
+
+						StringBuilder sb = new StringBuilder();
+						sb.Append( ship.NameWithLevel + LoggerRes.ImprovedSuccess );
+
+						var contents = new LinkedList<string>();
+
+						int firepower = updated_ship.FirepowerBase - ship.FirepowerBase;
+						if ( firepower > 0 )
+							contents.AddLast( GeneralRes.Firepower + "+" + firepower );
+						int torpedo = updated_ship.TorpedoBase - ship.TorpedoBase;
+						if ( torpedo > 0 )
+							contents.AddLast( GeneralRes.Torpedo + "+" + torpedo );
+						int aa = updated_ship.AABase - ship.AABase;
+						if ( aa > 0 )
+							contents.AddLast( GeneralRes.AntiAir + "+" + aa );
+						int armor = updated_ship.ArmorBase - ship.ArmorBase;
+						if ( armor > 0 )
+							contents.AddLast( GeneralRes.Armor + "+" + armor );
+						int luck = updated_ship.LuckBase - ship.LuckBase;
+						if ( luck > 0 )
+							contents.AddLast( GeneralRes.Luck + "+" + luck );
+
+						sb.AppendFormat( string.Join( ", ", contents ) + " )" );
+						Utility.Logger.Add( 2, sb.ToString() );
+					}
+				}
 				ship.LoadFromResponse( APIName, data.api_ship );
+			}
 
 			db.Fleet.LoadFromResponse( APIName, data.api_deck );
-
-
-			if ( Utility.Configuration.Config.Log.ShowSpoiler )
-				Utility.Logger.Add( 2, string.Format( LoggerRes.ModernizationResult, ship.NameWithLevel, ( (int)data.api_powerup_flag ) != 0 ? Window.GeneralRes.Success : Window.GeneralRes.Failure ) );
-
+            
 			base.OnResponseReceived( (object)data );
 		}
 

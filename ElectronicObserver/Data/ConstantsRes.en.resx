@@ -546,4 +546,10 @@
   <data name="Unselected" xml:space="preserve">
     <value>Unselected</value>
   </data>
+  <data name="LandNode" xml:space="preserve">
+    <value>Land Transport Node</value>
+  </data>
+  <data name="TransportFleet" xml:space="preserve">
+    <value>Transport Fleet</value>
+  </data>
 </root>

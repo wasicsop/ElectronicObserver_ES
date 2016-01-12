@@ -525,4 +525,50 @@ More details, as well as an access key, can be found on the site below. (opens y
   <data name="ThemeRestartWarning" xml:space="preserve">
     <value>A restart will be required for theme changes to take full effect.</value>
   </data>
+  <data name="AirSuperiorityMethod" xml:space="preserve">
+    <value>Air Superiority:</value>
+  </data>
+  <data name="DisplayEquipLevels" xml:space="preserve">
+    <value>Display proficiency and improvement level</value>
+  </data>
+  <data name="DisplayEquipLevelsTooltip" xml:space="preserve">
+    <value>Displays aircraft proficiency and equipment improvement level.
+</value>
+  </data>
+  <data name="IgnorePlaneXP" xml:space="preserve">
+    <value>Ignore Proficiency</value>
+  </data>
+  <data name="UsingPlaneXPBeta" xml:space="preserve">
+    <value>w/ Proficiency (Beta)</value>
+  </data>
+  <data name="Life_Clock" xml:space="preserve">
+    <value>Time display:</value>
+  </data>
+  <data name="Life_ClockFormat_Current" xml:space="preserve">
+    <value>Current time</value>
+  </data>
+  <data name="Life_ClockFormat_Excercise" xml:space="preserve">
+    <value>Until PVP Reset</value>
+  </data>
+  <data name="Life_ClockFormat_Quest" xml:space="preserve">
+    <value>Until Quest Reset</value>
+  </data>
+  <data name="RecordAutoSaving_Daily" xml:space="preserve">
+    <value>Daily</value>
+  </data>
+  <data name="RecordAutoSaving_Disable" xml:space="preserve">
+    <value>Disable</value>
+  </data>
+  <data name="RecordAutoSaving_Hourly" xml:space="preserve">
+    <value>Hourly</value>
+  </data>
+  <data name="LoggingInterval" xml:space="preserve">
+    <value>Logging Interval:</value>
+  </data>
+  <data name="ShowAnchorageRepairingTimer" xml:space="preserve">
+    <value>Display repair timer</value>
+  </data>
+  <data name="ShowAnchorageRepairingTimer_Tooltip" xml:space="preserve">
+    <value>Display repair timer in the fleet list window.</value>
+  </data>
 </root>

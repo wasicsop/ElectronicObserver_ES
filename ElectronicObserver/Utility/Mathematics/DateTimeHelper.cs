@@ -98,6 +98,11 @@ namespace ElectronicObserver.Utility.Mathematics {
 		}
 
 
+		/// <summary>
+		/// 毎時0分をまたいだかを取得します。
+		/// </summary>
+		/// <param name="prev">前回処理したときの日時。</param>
+		/// <returns>またいでいるか。</returns>
 		public static bool IsCrossedHour( DateTime prev ) {
 
 			DateTime nexthour = prev.Date.AddHours( prev.Hour + 1 );
@@ -188,13 +193,13 @@ namespace ElectronicObserver.Utility.Mathematics {
 		/// <returns>変換結果の文字列。</returns>
 		public static string GetTimeStamp( DateTime time ) {
 
-			return time.ToString( "yyyyMMdd_HHmmssff" );
+			return time.ToString( "yyyyMMdd_HHmmssff", System.Globalization.CultureInfo.InvariantCulture );
 		}
 
 
 
 		public static string TimeToCSVString( DateTime time ) {
-			return time.ToString( "yyyy\\/MM\\/dd HH\\:mm\\:ss" );
+			return time.ToString( "yyyy\\/MM\\/dd HH\\:mm\\:ss", System.Globalization.CultureInfo.InvariantCulture );
 		}
 
 		public static DateTime CSVStringToTime( string str ) {
@@ -215,7 +220,7 @@ namespace ElectronicObserver.Utility.Mathematics {
 		/// 現在地点と東京標準時(艦これ時間)との時差を取得します。
 		/// </summary>
 		public static TimeSpan GetTimeDifference() {
-			return TimeZoneInfo.Local.BaseUtcOffset - TimeZoneInfo.FindSystemTimeZoneById( "Tokyo Standard Time" ).BaseUtcOffset;
+			return TimeZoneInfo.Local.BaseUtcOffset - new TimeSpan( 9, 0, 0 );
 		}
 
 

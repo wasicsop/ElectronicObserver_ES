@@ -147,6 +147,9 @@
   <data name="Compass" xml:space="preserve">
     <value>羅針盤(&amp;C)</value>
   </data>
+  <data name="ConstructionRecord" xml:space="preserve">
+    <value>建造記録(&amp;R)</value>
+  </data>
   <data name="ControlWindow" xml:space="preserve">
     <value>コントロールウィンドウ(&amp;C)</value>
   </data>
@@ -159,8 +162,14 @@
   <data name="DetachAll" xml:space="preserve">
     <value>全てのウィンドウを開放(&amp;R)</value>
   </data>
+  <data name="DevelopmentRecord" xml:space="preserve">
+    <value>開発記録(&amp;V)</value>
+  </data>
   <data name="Dock" xml:space="preserve">
     <value>入渠(&amp;D)</value>
+  </data>
+  <data name="DropRecord" xml:space="preserve">
+    <value>ドロップ記録(&amp;D)</value>
   </data>
   <data name="EquipEncyclopedia" xml:space="preserve">
     <value>装備図鑑(&amp;E)</value>
@@ -200,6 +209,9 @@
   </data>
   <data name="LoadAPIList" xml:space="preserve">
     <value>APIリストをロード(&amp;I)...</value>
+  </data>
+  <data name="LoadDataFromOld" xml:space="preserve">
+    <value>旧 api_start2から深海棲艦を復元(&amp;A)...</value>
   </data>
   <data name="LoadOldAPIRecord" xml:space="preserve">
     <value>旧 api_start2 からレコードを構築(&amp;O)...</value>

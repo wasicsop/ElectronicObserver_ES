@@ -38,8 +38,6 @@ namespace ElectronicObserver.Window {
 			ControlHelper.SetDoubleBuffered( TableBottom );
 
 
-			ConfigurationChanged();
-
 			HPBars = new List<ShipStatusHP>( 18 );
 
 
@@ -77,6 +75,9 @@ namespace ElectronicObserver.Window {
 			AirStage2Enemy.ImageList =
 				ResourceManager.Instance.Equipments;
 
+
+			ConfigurationChanged();
+			
 			BaseLayoutPanel.Visible = false;
 
 
@@ -689,7 +690,7 @@ namespace ElectronicObserver.Window {
 					ShipData ship = bd.Initial.FriendFleet.MembersInstance[i];
 
 					ToolTipInfo.SetToolTip( HPBars[i],
-						string.Format( "{0} {1} Lv. {1}\r\nHP: ({2} → {3})/{4} ({5}) [{6}]\r\n" + GeneralRes.DamageDone + ": {7}",
+						string.Format( "{0} {1} Lv. {2}\r\nHP: ({3} → {4})/{5} ({6}) [{7}]\r\n" + GeneralRes.DamageDone + ": {8}",
 							ship.MasterShip.ShipTypeName,
 							ship.MasterShip.NameWithClass,
 							ship.Level,
@@ -813,7 +814,7 @@ namespace ElectronicObserver.Window {
 							Math.Max( HPBars[i + 12].Value, 0 ),
 							HPBars[i + 12].MaximumValue,
 							HPBars[i + 12].Value - HPBars[i + 12].PrevValue,
-							Constants.GetDamageState( (double)HPBars[i + 12].Value / HPBars[i + 12].MaximumValue, ship.MasterShip.IsLandBase, isEscaped ),
+							Constants.GetDamageState( (double)HPBars[i + 12].Value / HPBars[i + 12].MaximumValue, isPractice, ship.MasterShip.IsLandBase, isEscaped ),
 							attackDamages[i + 12]
 							)
 						);
@@ -1088,8 +1089,14 @@ namespace ElectronicObserver.Window {
 			SubFont = Utility.Configuration.Config.UI.SubFont;
             ForeColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.MainFontColor);
             BackColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.BackgroundColor);
-        }
 
+			if ( HPBars != null ) {
+				foreach ( var b in HPBars ) {
+					b.MainFont = MainFont;
+					b.SubFont = SubFont;
+				}
+			}
+		}
 
 
 		private void TableTop_CellPaint( object sender, TableLayoutCellPaintEventArgs e ) {

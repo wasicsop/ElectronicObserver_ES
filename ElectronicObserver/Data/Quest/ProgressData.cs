@@ -20,19 +20,24 @@ namespace ElectronicObserver.Data.Quest {
 		[DataMember]
 		public int QuestID { get; protected set; }
 
-	
+
 		/// <summary>
 		/// 進捗現在値
 		/// </summary>
 		[DataMember]
 		public int Progress { get; protected set; }
-		
+
 		/// <summary>
 		/// 進捗最大値
 		/// </summary>
 		[DataMember]
 		public virtual int ProgressMax { get; protected set; }
 
+		/// <summary>
+		/// 任務出現タイプ
+		/// </summary>
+		[DataMember]
+		public int QuestType { get; protected set; }
 
 		/// <summary>
 		/// 未ロード時の進捗
@@ -65,9 +70,10 @@ namespace ElectronicObserver.Data.Quest {
 		}
 
 
-		public ProgressData( int questID, int maxCount ) {
-			QuestID = questID;
+		public ProgressData( QuestData quest, int maxCount ) {
+			QuestID = quest.QuestID;
 			ProgressMax = maxCount;
+			QuestType = quest.Type;
 			TemporaryProgress = 0;
 			SharedCounterShift = 0;
 		}
@@ -78,13 +84,13 @@ namespace ElectronicObserver.Data.Quest {
 		/// 進捗を1増やします。
 		/// </summary>
 		public virtual void Increment() {
-			
+
 			var q = KCDatabase.Instance.Quest[QuestID];
 
 			if ( q == null ) {
 				TemporaryProgress++;
 				return;
-			} 
+			}
 
 			if ( q.State != 2 )
 				return;
@@ -95,7 +101,7 @@ namespace ElectronicObserver.Data.Quest {
 
 
 			Progress = Math.Min( Progress + 1, ProgressMax );
-			
+
 			//DEBUG
 			//Utility.Logger.Add( 1, string.Format( "Quest++: [{0}] {1} {2}/{3}", QuestID, this.GetType().Name, Progress, ProgressMax ) );
 		}
@@ -117,6 +123,9 @@ namespace ElectronicObserver.Data.Quest {
 				TemporaryProgress = 0;
 			}
 
+			if ( QuestType == 0 )		// ver. 1.6.6 以前のデータとの互換性維持
+				QuestType = q.Type;
+
 			switch ( q.Progress ) {
 				case 1:		//50%
 					Progress = (int)Math.Max( Progress, Math.Ceiling( ( ProgressMax + SharedCounterShift ) * 0.5 ) - SharedCounterShift );
@@ -128,6 +137,12 @@ namespace ElectronicObserver.Data.Quest {
 
 		}
 
+
+		/// <summary>
+		/// この任務の達成に必要な条件を表す文字列を返します。
+		/// </summary>
+		/// <returns></returns>
+		public abstract string GetClearCondition();
 
 		[IgnoreDataMember]
 		public int ID {

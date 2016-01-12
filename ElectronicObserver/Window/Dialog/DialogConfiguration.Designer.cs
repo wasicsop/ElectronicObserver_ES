@@ -48,7 +48,6 @@
 			this.tabPage2 = new System.Windows.Forms.TabPage();
 			this.UI_SubFontApply = new System.Windows.Forms.Button();
 			this.UI_MainFontApply = new System.Windows.Forms.Button();
-			this.label9 = new System.Windows.Forms.Label();
 			this.UI_SubFontSelect = new System.Windows.Forms.Button();
 			this.UI_SubFont = new System.Windows.Forms.TextBox();
 			this.label8 = new System.Windows.Forms.Label();
@@ -68,6 +67,8 @@
 			this.Log_LogLevel = new System.Windows.Forms.NumericUpDown();
 			this.label6 = new System.Windows.Forms.Label();
 			this.tabPage4 = new System.Windows.Forms.TabPage();
+			this.Control_RecordAutoSaving = new System.Windows.Forms.ComboBox();
+			this.label9 = new System.Windows.Forms.Label();
 			this.Control_ConditionBorder = new System.Windows.Forms.NumericUpDown();
 			this.label7 = new System.Windows.Forms.Label();
 			this.tabPage5 = new System.Windows.Forms.TabPage();
@@ -87,6 +88,7 @@
 			this.tabPage7 = new System.Windows.Forms.TabPage();
 			this.tabControl2 = new System.Windows.Forms.TabControl();
 			this.tabPage8 = new System.Windows.Forms.TabPage();
+			this.FormFleet_ShowAnchorageRepairingTimer = new System.Windows.Forms.CheckBox();
 			this.FormFleet_AirSuperiorityMethod = new System.Windows.Forms.ComboBox();
 			this.label23 = new System.Windows.Forms.Label();
 			this.FormFleet_ShowEquipmentLevel = new System.Windows.Forms.CheckBox();
@@ -159,6 +161,8 @@
 			this.FontSelector = new System.Windows.Forms.FontDialog();
 			this.LayoutFileBrowser = new System.Windows.Forms.OpenFileDialog();
 			this.APIListBrowser = new System.Windows.Forms.OpenFileDialog();
+			this.Life_ClockFormat = new System.Windows.Forms.ComboBox();
+			this.label24 = new System.Windows.Forms.Label();
 			this.tabControl1.SuspendLayout();
 			this.tabPage1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.Connection_UpstreamProxyPort)).BeginInit();
@@ -265,6 +269,7 @@
 			this.Connection_RegisterAsSystemProxy.Text = ConfigRes.RegSystemProxy;
 			this.ToolTipInfo.SetToolTip(this.Connection_RegisterAsSystemProxy, ConfigRes.RegSystemProxyHint);
 			this.Connection_RegisterAsSystemProxy.UseVisualStyleBackColor = true;
+			this.Connection_RegisterAsSystemProxy.Visible = false;
 			// 
 			// Connection_OutputConnectionScript
 			// 
@@ -451,7 +456,6 @@
 			// 
 			this.tabPage2.Controls.Add(this.UI_SubFontApply);
 			this.tabPage2.Controls.Add(this.UI_MainFontApply);
-			this.tabPage2.Controls.Add(this.label9);
 			this.tabPage2.Controls.Add(this.UI_SubFontSelect);
 			this.tabPage2.Controls.Add(this.UI_SubFont);
 			this.tabPage2.Controls.Add(this.label8);
@@ -492,15 +496,6 @@
 			this.ToolTipInfo.SetToolTip(this.UI_MainFontApply, ConfigRes.ApplyEffectsOfBox);
 			this.UI_MainFontApply.UseVisualStyleBackColor = true;
 			this.UI_MainFontApply.Click += new System.EventHandler(this.UI_MainFontApply_Click);
-			// 
-			// label9
-			// 
-			this.label9.AutoSize = true;
-			this.label9.Location = new System.Drawing.Point(6, 215);
-			this.label9.Name = "label9";
-			this.label9.Size = new System.Drawing.Size(146, 15);
-			this.label9.TabIndex = 8;
-			this.label9.Text = ConfigRes.TakeEffectOnRestart;
 			// 
 			// UI_SubFontSelect
 			// 
@@ -611,7 +606,7 @@
 			this.Log_ShowSpoiler.Location = new System.Drawing.Point(197, 32);
 			this.Log_ShowSpoiler.Name = "Log_ShowSpoiler";
 			this.Log_ShowSpoiler.Size = new System.Drawing.Size(115, 19);
-			this.Log_ShowSpoiler.TabIndex = 7;
+			this.Log_ShowSpoiler.TabIndex = 3;
 			this.Log_ShowSpoiler.Text = ConfigRes.ShowSpoilers;
 			this.ToolTipInfo.SetToolTip(this.Log_ShowSpoiler, ConfigRes.ShowSpoilersHint);
 			this.Log_ShowSpoiler.UseVisualStyleBackColor = true;
@@ -622,7 +617,7 @@
 			this.label12.Location = new System.Drawing.Point(6, 111);
 			this.label12.Name = "label12";
 			this.label12.Size = new System.Drawing.Size(318, 15);
-			this.label12.TabIndex = 6;
+			this.label12.TabIndex = 7;
 			this.label12.Text = ConfigRes.CorruptLogs;
 			// 
 			// label11
@@ -647,7 +642,7 @@
 			this.Log_FileEncodingID.Location = new System.Drawing.Point(80, 85);
 			this.Log_FileEncodingID.Name = "Log_FileEncodingID";
 			this.Log_FileEncodingID.Size = new System.Drawing.Size(112, 23);
-			this.Log_FileEncodingID.TabIndex = 4;
+			this.Log_FileEncodingID.TabIndex = 6;
 			this.ToolTipInfo.SetToolTip(this.Log_FileEncodingID, ConfigRes.EncodingHint);
 			// 
 			// Log_SaveErrorReport
@@ -656,7 +651,7 @@
 			this.Log_SaveErrorReport.Location = new System.Drawing.Point(8, 60);
 			this.Log_SaveErrorReport.Name = "Log_SaveErrorReport";
 			this.Log_SaveErrorReport.Size = new System.Drawing.Size(142, 19);
-			this.Log_SaveErrorReport.TabIndex = 3;
+			this.Log_SaveErrorReport.TabIndex = 4;
 			this.Log_SaveErrorReport.Text = ConfigRes.SaveErrorReport;
 			this.ToolTipInfo.SetToolTip(this.Log_SaveErrorReport, ConfigRes.SaveErrorHint);
 			this.Log_SaveErrorReport.UseVisualStyleBackColor = true;
@@ -695,6 +690,8 @@
 			// 
 			// tabPage4
 			// 
+			this.tabPage4.Controls.Add(this.Control_RecordAutoSaving);
+			this.tabPage4.Controls.Add(this.label9);
 			this.tabPage4.Controls.Add(this.Control_ConditionBorder);
 			this.tabPage4.Controls.Add(this.label7);
 			this.tabPage4.Location = new System.Drawing.Point(4, 24);
@@ -705,9 +702,31 @@
 			this.tabPage4.Text = ConfigRes.Behavior;
 			this.tabPage4.UseVisualStyleBackColor = true;
 			// 
+			// Control_RecordAutoSaving
+			// 
+			this.Control_RecordAutoSaving.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.Control_RecordAutoSaving.FormattingEnabled = true;
+			this.Control_RecordAutoSaving.Items.AddRange(new object[] {
+            ConfigRes.RecordAutoSaving_Disable,
+            ConfigRes.RecordAutoSaving_Hourly,
+            ConfigRes.RecordAutoSaving_Daily});
+			this.Control_RecordAutoSaving.Location = new System.Drawing.Point(124, 35);
+			this.Control_RecordAutoSaving.Name = "Control_RecordAutoSaving";
+			this.Control_RecordAutoSaving.Size = new System.Drawing.Size(80, 23);
+			this.Control_RecordAutoSaving.TabIndex = 3;
+			// 
+			// label9
+			// 
+			this.label9.AutoSize = true;
+			this.label9.Location = new System.Drawing.Point(6, 38);
+			this.label9.Name = "label9";
+			this.label9.Size = new System.Drawing.Size(112, 15);
+			this.label9.TabIndex = 2;
+			this.label9.Text = ConfigRes.LoggingInterval;
+			// 
 			// Control_ConditionBorder
 			// 
-			this.Control_ConditionBorder.Location = new System.Drawing.Point(110, 6);
+			this.Control_ConditionBorder.Location = new System.Drawing.Point(124, 6);
 			this.Control_ConditionBorder.Maximum = new decimal(new int[] {
             49,
             0,
@@ -747,7 +766,7 @@
 			this.Debug_SealingPanel.Location = new System.Drawing.Point(0, 31);
 			this.Debug_SealingPanel.Name = "Debug_SealingPanel";
 			this.Debug_SealingPanel.Size = new System.Drawing.Size(456, 222);
-			this.Debug_SealingPanel.TabIndex = 7;
+			this.Debug_SealingPanel.TabIndex = 1;
 			// 
 			// Debug_APIListPath
 			// 
@@ -757,7 +776,7 @@
 			this.Debug_APIListPath.Location = new System.Drawing.Point(8, 28);
 			this.Debug_APIListPath.Name = "Debug_APIListPath";
 			this.Debug_APIListPath.Size = new System.Drawing.Size(402, 23);
-			this.Debug_APIListPath.TabIndex = 5;
+			this.Debug_APIListPath.TabIndex = 1;
 			// 
 			// Debug_LoadAPIListOnLoad
 			// 
@@ -765,7 +784,7 @@
 			this.Debug_LoadAPIListOnLoad.Location = new System.Drawing.Point(8, 3);
 			this.Debug_LoadAPIListOnLoad.Name = "Debug_LoadAPIListOnLoad";
 			this.Debug_LoadAPIListOnLoad.Size = new System.Drawing.Size(151, 19);
-			this.Debug_LoadAPIListOnLoad.TabIndex = 1;
+			this.Debug_LoadAPIListOnLoad.TabIndex = 0;
 			this.Debug_LoadAPIListOnLoad.Text = "起動時にAPIリストをロード";
 			this.ToolTipInfo.SetToolTip(this.Debug_LoadAPIListOnLoad, "起動時に、下記テキストボックスで指定されるAPIリストを自動的に読み込みます。\r\nAPIリストの書式や用法はオンラインヘルプを参照してください。");
 			this.Debug_LoadAPIListOnLoad.UseVisualStyleBackColor = true;
@@ -776,7 +795,7 @@
 			this.Debug_APIListPathSearch.Location = new System.Drawing.Point(416, 28);
 			this.Debug_APIListPathSearch.Name = "Debug_APIListPathSearch";
 			this.Debug_APIListPathSearch.Size = new System.Drawing.Size(32, 23);
-			this.Debug_APIListPathSearch.TabIndex = 6;
+			this.Debug_APIListPathSearch.TabIndex = 2;
 			this.Debug_APIListPathSearch.Text = "...";
 			this.Debug_APIListPathSearch.UseVisualStyleBackColor = true;
 			this.Debug_APIListPathSearch.Click += new System.EventHandler(this.Debug_APIListPathSearch_Click);
@@ -788,7 +807,7 @@
 			this.Debug_EnableDebugMenu.Name = "Debug_EnableDebugMenu";
 			this.Debug_EnableDebugMenu.Size = new System.Drawing.Size(162, 19);
 			this.Debug_EnableDebugMenu.TabIndex = 0;
-			this.Debug_EnableDebugMenu.Text = "デバッグ メニューを有効にする";
+			this.Debug_EnableDebugMenu.Text = "Enable debug menu";
 			this.ToolTipInfo.SetToolTip(this.Debug_EnableDebugMenu, "メインウィンドウの[デバッグ]メニューを有効にします。\r\nデバッグ用の機能であるため、通常ユーザーの操作は推奨されません。\r\n使用時の動作は保証されないので、＊自" +
         "己責任で＊使用してください。");
 			this.Debug_EnableDebugMenu.UseVisualStyleBackColor = true;
@@ -796,6 +815,8 @@
 			// 
 			// tabPage6
 			// 
+			this.tabPage6.Controls.Add(this.label24);
+			this.tabPage6.Controls.Add(this.Life_ClockFormat);
 			this.tabPage6.Controls.Add(this.Life_ShowStatusBar);
 			this.tabPage6.Controls.Add(this.Life_CheckUpdateInformation);
 			this.tabPage6.Controls.Add(this.Life_LayoutFilePathSearch);
@@ -803,10 +824,10 @@
 			this.tabPage6.Controls.Add(this.label14);
 			this.tabPage6.Controls.Add(this.Life_TopMost);
 			this.tabPage6.Controls.Add(this.Life_ConfirmOnClosing);
-			this.tabPage6.Location = new System.Drawing.Point(4, 24);
+			this.tabPage6.Location = new System.Drawing.Point(4, 44);
 			this.tabPage6.Name = "tabPage6";
 			this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage6.Size = new System.Drawing.Size(456, 253);
+			this.tabPage6.Size = new System.Drawing.Size(456, 233);
 			this.tabPage6.TabIndex = 5;
 			this.tabPage6.Text = ConfigRes.Window;
 			this.tabPage6.UseVisualStyleBackColor = true;
@@ -837,7 +858,7 @@
 			this.Life_LayoutFilePathSearch.Location = new System.Drawing.Point(416, 6);
 			this.Life_LayoutFilePathSearch.Name = "Life_LayoutFilePathSearch";
 			this.Life_LayoutFilePathSearch.Size = new System.Drawing.Size(32, 23);
-			this.Life_LayoutFilePathSearch.TabIndex = 4;
+			this.Life_LayoutFilePathSearch.TabIndex = 2;
 			this.Life_LayoutFilePathSearch.Text = "...";
 			this.Life_LayoutFilePathSearch.UseVisualStyleBackColor = true;
 			this.Life_LayoutFilePathSearch.Click += new System.EventHandler(this.Life_LayoutFilePathSearch_Click);
@@ -849,7 +870,7 @@
 			this.Life_LayoutFilePath.Location = new System.Drawing.Point(103, 6);
 			this.Life_LayoutFilePath.Name = "Life_LayoutFilePath";
 			this.Life_LayoutFilePath.Size = new System.Drawing.Size(307, 23);
-			this.Life_LayoutFilePath.TabIndex = 3;
+			this.Life_LayoutFilePath.TabIndex = 1;
 			// 
 			// label14
 			// 
@@ -857,7 +878,7 @@
 			this.label14.Location = new System.Drawing.Point(8, 9);
 			this.label14.Name = "label14";
 			this.label14.Size = new System.Drawing.Size(97, 15);
-			this.label14.TabIndex = 2;
+            this.label14.TabIndex = 0;
 			this.label14.Text = ConfigRes.LayoutFile + ":";
 			// 
 			// Life_TopMost
@@ -866,7 +887,7 @@
 			this.Life_TopMost.Location = new System.Drawing.Point(11, 60);
 			this.Life_TopMost.Name = "Life_TopMost";
 			this.Life_TopMost.Size = new System.Drawing.Size(114, 19);
-			this.Life_TopMost.TabIndex = 1;
+			this.Life_TopMost.TabIndex = 4;
 			this.Life_TopMost.Text = ConfigRes.StayOnTop;
 			this.Life_TopMost.UseVisualStyleBackColor = true;
 			// 
@@ -875,8 +896,7 @@
 			this.Life_ConfirmOnClosing.AutoSize = true;
 			this.Life_ConfirmOnClosing.Location = new System.Drawing.Point(11, 35);
 			this.Life_ConfirmOnClosing.Name = "Life_ConfirmOnClosing";
-			this.Life_ConfirmOnClosing.Size = new System.Drawing.Size(114, 19);
-			this.Life_ConfirmOnClosing.TabIndex = 0;
+			this.Life_ConfirmOnClosing.TabIndex = 3;
 			this.Life_ConfirmOnClosing.Text = ConfigRes.ConfirmClose;
 			this.Life_ConfirmOnClosing.UseVisualStyleBackColor = true;
 			// 
@@ -909,6 +929,7 @@
 			// 
 			// tabPage8
 			// 
+			this.tabPage8.Controls.Add(this.FormFleet_ShowAnchorageRepairingTimer);
 			this.tabPage8.Controls.Add(this.FormFleet_AirSuperiorityMethod);
 			this.tabPage8.Controls.Add(this.label23);
 			this.tabPage8.Controls.Add(this.FormFleet_ShowEquipmentLevel);
@@ -927,6 +948,17 @@
 			this.tabPage8.Text = ConfigRes.Fleet;
 			this.tabPage8.UseVisualStyleBackColor = true;
 			// 
+			// FormFleet_ShowAnchorageRepairingTimer
+			// 
+			this.FormFleet_ShowAnchorageRepairingTimer.AutoSize = true;
+			this.FormFleet_ShowAnchorageRepairingTimer.Location = new System.Drawing.Point(156, 113);
+			this.FormFleet_ShowAnchorageRepairingTimer.Name = "FormFleet_ShowAnchorageRepairingTimer";
+			this.FormFleet_ShowAnchorageRepairingTimer.Size = new System.Drawing.Size(152, 19);
+			this.FormFleet_ShowAnchorageRepairingTimer.TabIndex = 10;
+			this.FormFleet_ShowAnchorageRepairingTimer.Text = ConfigRes.ShowAnchorageRepairingTimer;
+			this.ToolTipInfo.SetToolTip(this.FormFleet_ShowAnchorageRepairingTimer, ConfigRes.ShowAnchorageRepairingTimer_Tooltip);
+			this.FormFleet_ShowAnchorageRepairingTimer.UseVisualStyleBackColor = true;
+			// 
 			// FormFleet_AirSuperiorityMethod
 			// 
 			this.FormFleet_AirSuperiorityMethod.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -937,7 +969,7 @@
 			this.FormFleet_AirSuperiorityMethod.Location = new System.Drawing.Point(115, 59);
 			this.FormFleet_AirSuperiorityMethod.Name = "FormFleet_AirSuperiorityMethod";
 			this.FormFleet_AirSuperiorityMethod.Size = new System.Drawing.Size(121, 23);
-			this.FormFleet_AirSuperiorityMethod.TabIndex = 9;
+			this.FormFleet_AirSuperiorityMethod.TabIndex = 4;
 			// 
 			// label23
 			// 
@@ -945,7 +977,7 @@
 			this.label23.Location = new System.Drawing.Point(6, 62);
 			this.label23.Name = "label23";
 			this.label23.Size = new System.Drawing.Size(103, 15);
-			this.label23.TabIndex = 8;
+			this.label23.TabIndex = 3;
 			this.label23.Text = ConfigRes.AirSuperiorityMethod;
 			// 
 			// FormFleet_ShowEquipmentLevel
@@ -954,7 +986,7 @@
 			this.FormFleet_ShowEquipmentLevel.Location = new System.Drawing.Point(156, 88);
 			this.FormFleet_ShowEquipmentLevel.Name = "FormFleet_ShowEquipmentLevel";
 			this.FormFleet_ShowEquipmentLevel.Size = new System.Drawing.Size(173, 19);
-			this.FormFleet_ShowEquipmentLevel.TabIndex = 7;
+            this.FormFleet_ShowEquipmentLevel.TabIndex = 9;
 			this.FormFleet_ShowEquipmentLevel.Text = ConfigRes.DisplayEquipLevels;
 			this.ToolTipInfo.SetToolTip(this.FormFleet_ShowEquipmentLevel, ConfigRes.DisplayEquipLevelsTooltip);
 			this.FormFleet_ShowEquipmentLevel.UseVisualStyleBackColor = true;
@@ -965,7 +997,7 @@
 			this.FormFleet_ShowNextExp.Location = new System.Drawing.Point(6, 163);
 			this.FormFleet_ShowNextExp.Name = "FormFleet_ShowNextExp";
 			this.FormFleet_ShowNextExp.Size = new System.Drawing.Size(112, 19);
-			this.FormFleet_ShowNextExp.TabIndex = 6;
+			this.FormFleet_ShowNextExp.TabIndex = 8;
 			this.FormFleet_ShowNextExp.Text = ConfigRes.ShowNextXP;
 			this.ToolTipInfo.SetToolTip(this.FormFleet_ShowNextExp, ConfigRes.NextXPHint);
 			this.FormFleet_ShowNextExp.UseVisualStyleBackColor = true;
@@ -976,7 +1008,7 @@
 			this.FormFleet_ShortenHPBar.Location = new System.Drawing.Point(6, 138);
 			this.FormFleet_ShortenHPBar.Name = "FormFleet_ShortenHPBar";
 			this.FormFleet_ShortenHPBar.Size = new System.Drawing.Size(114, 19);
-			this.FormFleet_ShortenHPBar.TabIndex = 5;
+			this.FormFleet_ShortenHPBar.TabIndex = 7;
 			this.FormFleet_ShortenHPBar.Text = ConfigRes.ShortenHPBar;
 			this.ToolTipInfo.SetToolTip(this.FormFleet_ShortenHPBar, ConfigRes.ShortenHPHint);
 			this.FormFleet_ShortenHPBar.UseVisualStyleBackColor = true;
@@ -987,7 +1019,7 @@
 			this.FormFleet_FixShipNameWidth.Location = new System.Drawing.Point(6, 113);
 			this.FormFleet_FixShipNameWidth.Name = "FormFleet_FixShipNameWidth";
 			this.FormFleet_FixShipNameWidth.Size = new System.Drawing.Size(136, 19);
-			this.FormFleet_FixShipNameWidth.TabIndex = 4;
+			this.FormFleet_FixShipNameWidth.TabIndex = 6;
 			this.FormFleet_FixShipNameWidth.Text = ConfigRes.FixShipNameWidth;
 			this.ToolTipInfo.SetToolTip(this.FormFleet_FixShipNameWidth, ConfigRes.FixWidthHint);
 			this.FormFleet_FixShipNameWidth.UseVisualStyleBackColor = true;
@@ -998,7 +1030,7 @@
 			this.FormFleet_IsScrollable.Location = new System.Drawing.Point(6, 88);
 			this.FormFleet_IsScrollable.Name = "FormFleet_IsScrollable";
 			this.FormFleet_IsScrollable.Size = new System.Drawing.Size(144, 19);
-			this.FormFleet_IsScrollable.TabIndex = 3;
+			this.FormFleet_IsScrollable.TabIndex = 5;
 			this.FormFleet_IsScrollable.Text = ConfigRes.IsScrollable;
 			this.ToolTipInfo.SetToolTip(this.FormFleet_IsScrollable, ConfigRes.ScrollableHint);
 			this.FormFleet_IsScrollable.UseVisualStyleBackColor = true;
@@ -1041,7 +1073,7 @@
 			this.tabPage9.Location = new System.Drawing.Point(4, 22);
 			this.tabPage9.Name = "tabPage9";
 			this.tabPage9.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage9.Size = new System.Drawing.Size(442, 201);
+			this.tabPage9.Size = new System.Drawing.Size(442, 221);
 			this.tabPage9.TabIndex = 1;
 			this.tabPage9.Text = ConfigRes.Arsenal;
 			this.tabPage9.UseVisualStyleBackColor = true;
@@ -1062,7 +1094,7 @@
             this.tabPage16.Location = new System.Drawing.Point(4, 24);
             this.tabPage16.Name = "tabPage16";
             this.tabPage16.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage16.Size = new System.Drawing.Size(442, 199);
+            this.tabPage16.Size = new System.Drawing.Size(442, 221);
             this.tabPage16.TabIndex = 6;
             this.tabPage16.Text = ConfigRes.Headquarters;
             this.tabPage16.UseVisualStyleBackColor = true;
@@ -1084,7 +1116,7 @@
 			this.tabPage10.Location = new System.Drawing.Point(4, 22);
 			this.tabPage10.Name = "tabPage10";
 			this.tabPage10.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage10.Size = new System.Drawing.Size(442, 201);
+			this.tabPage10.Size = new System.Drawing.Size(442, 221);
 			this.tabPage10.TabIndex = 2;
 			this.tabPage10.Text = ConfigRes.Quests;
 			this.tabPage10.UseVisualStyleBackColor = true;
@@ -1159,7 +1191,7 @@
 			this.tabPage13.Location = new System.Drawing.Point(4, 22);
 			this.tabPage13.Name = "tabPage13";
 			this.tabPage13.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage13.Size = new System.Drawing.Size(442, 201);
+			this.tabPage13.Size = new System.Drawing.Size(442, 221);
 			this.tabPage13.TabIndex = 4;
 			this.tabPage13.Text = ConfigRes.Group;
 			this.tabPage13.UseVisualStyleBackColor = true;
@@ -1201,7 +1233,7 @@
 			this.tabPage12.Location = new System.Drawing.Point(4, 22);
 			this.tabPage12.Name = "tabPage12";
 			this.tabPage12.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage12.Size = new System.Drawing.Size(442, 201);
+			this.tabPage12.Size = new System.Drawing.Size(442, 221);
 			this.tabPage12.TabIndex = 3;
 			this.tabPage12.Text = ConfigRes.Browser;
 			this.tabPage12.UseVisualStyleBackColor = true;
@@ -1212,7 +1244,7 @@
 			this.FormBrowser_ZoomFit.Location = new System.Drawing.Point(173, 31);
             this.FormBrowser_ZoomFit.Name = "FormBrowser_ZoomFit";
 			this.FormBrowser_ZoomFit.Size = new System.Drawing.Size(74, 27);
-			this.FormBrowser_ZoomFit.TabIndex = 4;
+			this.FormBrowser_ZoomFit.TabIndex = 5;
 			this.FormBrowser_ZoomFit.Text = ConfigRes.ZoomToFit;
 			this.ToolTipInfo.SetToolTip(this.FormBrowser_ZoomFit, ConfigRes.FitHint);
 			this.FormBrowser_ZoomFit.UseVisualStyleBackColor = true;
@@ -1223,7 +1255,7 @@
 			this.FormBrowser_AppliesStyleSheet.Location = new System.Drawing.Point(282, 31);
 			this.FormBrowser_AppliesStyleSheet.Name = "FormBrowser_AppliesStyleSheet";
 			this.FormBrowser_AppliesStyleSheet.Size = new System.Drawing.Size(142, 19);
-			this.FormBrowser_AppliesStyleSheet.TabIndex = 6;
+			this.FormBrowser_AppliesStyleSheet.TabIndex = 7;
 			this.FormBrowser_AppliesStyleSheet.Text = ConfigRes.ApplyStyleSheet;
 			this.ToolTipInfo.SetToolTip(this.FormBrowser_AppliesStyleSheet, ConfigRes.ApplyStyleSheetHint);
 			this.FormBrowser_AppliesStyleSheet.UseVisualStyleBackColor = true;
@@ -1234,7 +1266,7 @@
 			this.FormBrowser_ConfirmAtRefresh.Location = new System.Drawing.Point(282, 6);
 			this.FormBrowser_ConfirmAtRefresh.Name = "FormBrowser_ConfirmAtRefresh";
 			this.FormBrowser_ConfirmAtRefresh.Size = new System.Drawing.Size(148, 19);
-			this.FormBrowser_ConfirmAtRefresh.TabIndex = 5;
+			this.FormBrowser_ConfirmAtRefresh.TabIndex = 6;
 			this.FormBrowser_ConfirmAtRefresh.Text = ConfigRes.ConfirmRefresh;
 			this.ToolTipInfo.SetToolTip(this.FormBrowser_ConfirmAtRefresh, ConfigRes.ConfirmRefreshHint);
 			this.FormBrowser_ConfirmAtRefresh.UseVisualStyleBackColor = true;
@@ -1251,7 +1283,7 @@
 			this.groupBox2.Location = new System.Drawing.Point(6, 88);
 			this.groupBox2.Name = "groupBox2";
 			this.groupBox2.Size = new System.Drawing.Size(430, 77);
-			this.groupBox2.TabIndex = 9;
+			this.groupBox2.TabIndex = 0;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = ConfigRes.Screenshot;
 			// 
@@ -1312,7 +1344,7 @@
 			this.label17.Location = new System.Drawing.Point(6, 62);
 			this.label17.Name = "label17";
 			this.label17.Size = new System.Drawing.Size(72, 15);
-			this.label17.TabIndex = 7;
+			this.label17.TabIndex = 8;
 			this.label17.Text = ConfigRes.LoginURL + ":";
 			// 
 			// label16
@@ -1321,7 +1353,7 @@
 			this.label16.Location = new System.Drawing.Point(148, 32);
 			this.label16.Name = "label16";
 			this.label16.Size = new System.Drawing.Size(19, 15);
-			this.label16.TabIndex = 3;
+			this.label16.TabIndex = 4;
 			this.label16.Text = "％";
 			// 
 			// FormBrowser_IsEnabled
@@ -1341,7 +1373,7 @@
 			this.FormBrowser_LogInPageURL.Location = new System.Drawing.Point(82, 59);
 			this.FormBrowser_LogInPageURL.Name = "FormBrowser_LogInPageURL";
 			this.FormBrowser_LogInPageURL.Size = new System.Drawing.Size(354, 23);
-			this.FormBrowser_LogInPageURL.TabIndex = 8;
+			this.FormBrowser_LogInPageURL.TabIndex = 9;
 			// 
 			// FormBrowser_ZoomRate
 			// 
@@ -1382,7 +1414,7 @@
 			this.tabPage14.Location = new System.Drawing.Point(4, 22);
 			this.tabPage14.Name = "tabPage14";
 			this.tabPage14.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage14.Size = new System.Drawing.Size(442, 201);
+			this.tabPage14.Size = new System.Drawing.Size(442, 221);
 			this.tabPage14.TabIndex = 5;
 			this.tabPage14.Text = ConfigRes.Browser2;
 			this.tabPage14.UseVisualStyleBackColor = true;
@@ -1396,7 +1428,7 @@
 			this.groupBox4.Location = new System.Drawing.Point(6, 58);
 			this.groupBox4.Name = "groupBox4";
 			this.groupBox4.Size = new System.Drawing.Size(200, 80);
-			this.groupBox4.TabIndex = 0;
+			this.groupBox4.TabIndex = 1;
 			this.groupBox4.TabStop = false;
 			this.groupBox4.Text = ConfigRes.FlashQuality;
 			// 
@@ -1405,8 +1437,8 @@
 			this.label21.AutoSize = true;
 			this.label21.Location = new System.Drawing.Point(6, 54);
 			this.label21.Name = "label21";
-			this.label21.Size = new System.Drawing.Size(46, 15);
-			this.label21.TabIndex = 3;
+            this.label21.Size = new System.Drawing.Size(46, 15);
+			this.label21.TabIndex = 2;
 			this.label21.Text = ConfigRes.Mode + ":";
 			// 
 			// FormBrowser_FlashWMode
@@ -1418,7 +1450,7 @@
 			this.FormBrowser_FlashWMode.Location = new System.Drawing.Point(73, 51);
 			this.FormBrowser_FlashWMode.Name = "FormBrowser_FlashWMode";
 			this.FormBrowser_FlashWMode.Size = new System.Drawing.Size(121, 23);
-			this.FormBrowser_FlashWMode.TabIndex = 2;
+			this.FormBrowser_FlashWMode.TabIndex = 3;
 			this.ToolTipInfo.SetToolTip(this.FormBrowser_FlashWMode, ConfigRes.FlashModeHint);
 			// 
 			// label20
@@ -1427,7 +1459,7 @@
 			this.label20.Location = new System.Drawing.Point(6, 25);
 			this.label20.Name = "label20";
 			this.label20.Size = new System.Drawing.Size(43, 15);
-			this.label20.TabIndex = 1;
+			this.label20.TabIndex = 0;
 			this.label20.Text = ConfigRes.QualitySelect + ":";
 			// 
 			// FormBrowser_FlashQuality
@@ -1454,7 +1486,7 @@
             this.groupBox3.Location = new System.Drawing.Point(6, 165);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(430, 46);
-            this.groupBox3.TabIndex = 10;
+            this.groupBox3.TabIndex = 0;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = ConfigRes.Registry;
             // 
@@ -1618,7 +1650,7 @@
 			this.Database_LinkKCDB.Location = new System.Drawing.Point(8, 35);
 			this.Database_LinkKCDB.Name = "Database_LinkKCDB";
 			this.Database_LinkKCDB.Size = new System.Drawing.Size(141, 15);
-			this.Database_LinkKCDB.TabIndex = 17;
+			this.Database_LinkKCDB.TabIndex = 1;
 			this.Database_LinkKCDB.TabStop = true;
 			this.Database_LinkKCDB.Text = "http://kancolle-db.net/";
 			this.Database_LinkKCDB.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.Database_LinkKCDB_LinkClicked);
@@ -1629,7 +1661,7 @@
 			this.label22.Location = new System.Drawing.Point(8, 3);
 			this.label22.Name = "label22";
 			this.label22.Size = new System.Drawing.Size(414, 30);
-			this.label22.TabIndex = 16;
+			this.label22.TabIndex = 0;
 			this.label22.Text = ConfigRes.DatabaseDescription;
 			// 
 			// Database_SendKancolleOAuth
@@ -1639,7 +1671,7 @@
 			this.Database_SendKancolleOAuth.Location = new System.Drawing.Point(89, 75);
 			this.Database_SendKancolleOAuth.Name = "Database_SendKancolleOAuth";
 			this.Database_SendKancolleOAuth.Size = new System.Drawing.Size(359, 23);
-			this.Database_SendKancolleOAuth.TabIndex = 14;
+			this.Database_SendKancolleOAuth.TabIndex = 4;
 			// 
 			// labelKdb
 			// 
@@ -1647,7 +1679,7 @@
 			this.labelKdb.Location = new System.Drawing.Point(8, 78);
 			this.labelKdb.Name = "labelKdb";
 			this.labelKdb.Size = new System.Drawing.Size(75, 15);
-			this.labelKdb.TabIndex = 13;
+			this.labelKdb.TabIndex = 3;
 			this.labelKdb.Text = ConfigRes.AccessKey;
 			// 
 			// Database_SendDataToKancolleDB
@@ -1656,7 +1688,7 @@
 			this.Database_SendDataToKancolleDB.Location = new System.Drawing.Point(6, 53);
 			this.Database_SendDataToKancolleDB.Name = "Database_SendDataToKancolleDB";
 			this.Database_SendDataToKancolleDB.Size = new System.Drawing.Size(190, 19);
-			this.Database_SendDataToKancolleDB.TabIndex = 12;
+			this.Database_SendDataToKancolleDB.TabIndex = 2;
 			this.Database_SendDataToKancolleDB.Text = ConfigRes.SendData;
 			this.Database_SendDataToKancolleDB.UseVisualStyleBackColor = true;
 			// 
@@ -1706,6 +1738,28 @@
 			// 
 			this.APIListBrowser.Filter = "Text File|*.txt|File|*";
 			this.APIListBrowser.Title = "API リストを開く";
+			// 
+			// Life_ClockFormat
+			// 
+			this.Life_ClockFormat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.Life_ClockFormat.FormattingEnabled = true;
+			this.Life_ClockFormat.Items.AddRange(new object[] {
+            ConfigRes.Life_ClockFormat_Current,
+            ConfigRes.Life_ClockFormat_Excercise,
+            ConfigRes.Life_ClockFormat_Quest});
+			this.Life_ClockFormat.Location = new System.Drawing.Point(103, 135);
+			this.Life_ClockFormat.Name = "Life_ClockFormat";
+			this.Life_ClockFormat.Size = new System.Drawing.Size(121, 23);
+			this.Life_ClockFormat.TabIndex = 7;
+			// 
+			// label24
+			// 
+			this.label24.AutoSize = true;
+			this.label24.Location = new System.Drawing.Point(8, 138);
+			this.label24.Name = "label24";
+			this.label24.Size = new System.Drawing.Size(67, 15);
+			this.label24.TabIndex = 8;
+			this.label24.Text = ConfigRes.Life_Clock;
 			// 
 			// DialogConfiguration
 			// 
@@ -1883,7 +1937,6 @@
 		private System.Windows.Forms.Label label18;
 		private System.Windows.Forms.TextBox FormBrowser_ScreenShotPath;
 		private System.Windows.Forms.Button FormBrowser_ScreenShotPathSearch;
-		private System.Windows.Forms.Label label9;
 		private System.Windows.Forms.CheckBox FormBrowser_ConfirmAtRefresh;
 		private System.Windows.Forms.CheckBox FormBrowser_AppliesStyleSheet;
 		private System.Windows.Forms.CheckBox FormFleet_FixShipNameWidth;
@@ -1916,5 +1969,10 @@
 		private System.Windows.Forms.CheckBox FormFleet_ShowEquipmentLevel;
 		private System.Windows.Forms.ComboBox FormFleet_AirSuperiorityMethod;
 		private System.Windows.Forms.Label label23;
+		private System.Windows.Forms.CheckBox FormFleet_ShowAnchorageRepairingTimer;
+		private System.Windows.Forms.ComboBox Control_RecordAutoSaving;
+		private System.Windows.Forms.Label label9;
+		private System.Windows.Forms.Label label24;
+		private System.Windows.Forms.ComboBox Life_ClockFormat;
 	}
 }

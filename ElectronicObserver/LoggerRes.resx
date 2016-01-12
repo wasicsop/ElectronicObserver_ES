@@ -213,12 +213,6 @@
   <data name="FailedSavingRecords" xml:space="preserve">
     <value>レコードのセーブに失敗しました。</value>
   </data>
-  <data name="FailedSavingRequest" xml:space="preserve">
-    <value>Requestの保存に失敗しました。</value>
-  </data>
-  <data name="FailedSavingResponse" xml:space="preserve">
-    <value>Responseの保存に失敗しました。</value>
-  </data>
   <data name="FailedSavingStorage" xml:space="preserve">
     <value>DataStorage の書き込みに失敗しました。</value>
   </data>
@@ -238,7 +232,7 @@
     <value>{0} の改修に失敗しました。</value>
   </data>
   <data name="ImprovedSuccess" xml:space="preserve">
-    <value>{0} の改修に成功しました。</value>
+    <value>の改修に成功しました。( </value>
   </data>
   <data name="InitialEquipChanged" xml:space="preserve">
     <value>の初期装備を更新しました。</value>
@@ -250,7 +244,7 @@
     <value>開発に失敗しました。({0}/{1}/{2}/{3} 秘書艦: {4})</value>
   </data>
   <data name="ItemObtained" xml:space="preserve">
-    <value>アイテム「{0}」を入手しました。</value>
+    <value>アイテム「{0}」を入手しました。( 合計: {1}個 )</value>
   </data>
   <data name="JustMarried" xml:space="preserve">
     <value>{0} とケッコンカッコカリしました。おめでとうございます！</value>
@@ -323,5 +317,17 @@
   </data>
   <data name="ModernizationResult" xml:space="preserve">
     <value>{0} の近代化改修に{1}しました。</value>
+  </data>
+  <data name="APIObserverFailed" xml:space="preserve">
+    <value>APIObserver: 受信開始に失敗しました。</value>
+  </data>
+  <data name="MultiplePossibleMvps" xml:space="preserve">
+    <value>MVP候補が複数存在します。ログを確認してください。</value>
+  </data>
+  <data name="RecordAutosaveFailure" xml:space="preserve">
+    <value>レコードのオートセーブに失敗しました。</value>
+  </data>
+  <data name="RecordAutosaveSuccess" xml:space="preserve">
+    <value>レコードのオートセーブを行いました。</value>
   </data>
 </root>

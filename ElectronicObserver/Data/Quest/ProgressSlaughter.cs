@@ -19,19 +19,30 @@ namespace ElectronicObserver.Data.Quest {
 		[DataMember]
 		private HashSet<int> TargetShipType { get; set; }
 
-		public ProgressSlaughter( int questID, int maxCount, int[] targetShipType )
-			: base( questID, maxCount ) {
+		public ProgressSlaughter( QuestData quest, int maxCount, int[] targetShipType )
+			: base( quest, maxCount ) {
 
 			TargetShipType = targetShipType == null ? null : new HashSet<int>( targetShipType );
 
 		}
 
 
-	
 		public void Increment( int shipTypeID ) {
 			if ( TargetShipType.Contains( shipTypeID ) )
 				Increment();
 		}
 
+
+		public override string GetClearCondition() {
+			StringBuilder sb = new StringBuilder();
+			if ( TargetShipType != null ) {
+				sb.Append( string.Join( "・", TargetShipType.OrderBy( s => s ).Select( s => KCDatabase.Instance.ShipTypes[s].Name ) ) );
+			}
+
+			sb.Append( "撃沈" );
+			sb.Append( ProgressMax );
+
+			return sb.ToString();
+		}
 	}
 }

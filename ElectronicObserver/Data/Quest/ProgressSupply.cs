@@ -13,8 +13,12 @@ namespace ElectronicObserver.Data.Quest {
 	[DataContract( Name = "ProgressSupply" )]
 	public class ProgressSupply : ProgressData {
 
-		public ProgressSupply( int questID, int maxCount )
-			: base( questID, maxCount ) {
+		public ProgressSupply( QuestData quest, int maxCount )
+			: base( quest, maxCount ) {
+		}
+
+		public override string GetClearCondition() {
+			return "補給" + ProgressMax;
 		}
 	}
 }

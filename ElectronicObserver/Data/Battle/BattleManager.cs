@@ -181,19 +181,19 @@ namespace ElectronicObserver.Data.Battle {
 				RecordManager.Instance.EnemyFleet.Update( enemyFleetData );
 
 
-
 			//ドロップ艦記録
 			if ( ( BattleMode & BattleModes.BattlePhaseMask ) != BattleModes.Practice ) {
 
 				//checkme: とてもアレな感じ
 
-				int dropID = Result.DroppedShipID;
+				int shipID = Result.DroppedShipID;
+				int itemID  = Result.DroppedItemID;
+				int eqID = Result.DroppedEquipmentID;
 				bool showLog = Utility.Configuration.Config.Log.ShowSpoiler;
 
-				if ( dropID != -1 ) {
+				if ( shipID != -1 ) {
 
-					ShipDataMaster ship = KCDatabase.Instance.MasterShips[dropID];
-
+					ShipDataMaster ship = KCDatabase.Instance.MasterShips[shipID];
 					DroppedShipCount++;
 
 					var defaultSlot = ship.DefaultSlot;
@@ -203,42 +203,55 @@ namespace ElectronicObserver.Data.Battle {
 					if ( showLog )
 						Utility.Logger.Add( 2, string.Format( LoggerRes.ShipAdded, ship.ShipTypeName, ship.NameWithClass ) );
 				}
-
-				if ( dropID == -1 ) {
-
-					int itemID = Result.DroppedItemID;
-
-					if ( itemID != -1 ) {
-						dropID = itemID + 1000;
-						if ( showLog )
-							Utility.Logger.Add( 2, string.Format( LoggerRes.ItemObtained, KCDatabase.Instance.MasterUseItems[itemID].Name ) );
+				if ( itemID != -1 ) {
+					if ( showLog ) {
+						var item = KCDatabase.Instance.UseItems[itemID];
+						Utility.Logger.Add( 2, string.Format( LoggerRes.ItemObtained, KCDatabase.Instance.MasterUseItems[itemID].Name, item != null ? item.Count + 1 : 1 ) );
 					}
 				}
 
-				if ( dropID == -1 ) {
+				if ( eqID != -1 ) {
 
-					int eqID = Result.DroppedEquipmentID;
-
-					if ( eqID != -1 ) {
-						dropID = eqID + 2000;
-						if ( showLog ) {
-							EquipmentDataMaster eq = KCDatabase.Instance.MasterEquipments[eqID];
-							Utility.Logger.Add( 2, string.Format( LoggerRes.EquipmentObtained, eq.CategoryTypeInstance.Name, eq.Name ) );
-						}
-
-						DroppedEquipmentCount++;
+					EquipmentDataMaster eq = KCDatabase.Instance.MasterEquipments[eqID];
+					DroppedEquipmentCount++;
+					if ( showLog ) {
+						Utility.Logger.Add( 2, string.Format( LoggerRes.EquipmentObtained, eq.CategoryTypeInstance.Name, eq.Name ) );
 					}
-
 				}
 
 
-				if ( dropID == -1 && (
+				// 満員判定
+				if ( shipID == -1 && (
 					KCDatabase.Instance.Admiral.MaxShipCount - ( KCDatabase.Instance.Ships.Count + DroppedShipCount ) <= 0 ||
 					KCDatabase.Instance.Admiral.MaxEquipmentCount - ( KCDatabase.Instance.Equipments.Count + DroppedEquipmentCount ) <= 0 ) ) {
-					dropID = -2;
+					shipID = -2;
 				}
 
-				RecordManager.Instance.ShipDrop.Add( dropID, Compass.MapAreaID, Compass.MapInfoID, Compass.Destination, Compass.MapInfo.EventDifficulty, Compass.EventID == 5, enemyFleetData.FleetID, Result.Rank, KCDatabase.Instance.Admiral.Level );
+				RecordManager.Instance.ShipDrop.Add( shipID, itemID, eqID, Compass.MapAreaID, Compass.MapInfoID, Compass.Destination, Compass.MapInfo.EventDifficulty, Compass.EventID == 5, enemyFleetData.FleetID, Result.Rank, KCDatabase.Instance.Admiral.Level );
+			}
+
+
+			//DEBUG
+			if ( Utility.Configuration.Config.Log.LogLevel <= 1 && Utility.Configuration.Config.Connection.SaveReceivedData ) {
+				IEnumerable<int> damages;
+				switch ( BattleMode & BattleModes.BattlePhaseMask ) {
+					case BattleModes.Normal:
+					case BattleModes.AirBattle:
+					case BattleModes.Practice:
+					default:
+						damages = ( (BattleData)BattleNight ?? BattleDay ).AttackDamages;
+						break;
+					case BattleModes.NightOnly:
+					case BattleModes.NightDay:
+						damages = ( (BattleData)BattleDay ?? BattleNight ).AttackDamages;
+						break;
+				}
+
+				damages = damages.Take( 6 ).Where( i => i > 0 );
+
+				if ( damages.Count( i => i == damages.Max() ) > 1 ) {
+					Utility.Logger.Add( 1, LoggerRes.MultiplePossibleMvps );
+				}
 			}
 
 		}

@@ -32,8 +32,8 @@ namespace ElectronicObserver.Data.Quest {
 		private bool IsBossOnly { get; set; }
 
 
-		public ProgressBattle( int questID, int maxCount, string lowestRank, int[] targetArea, bool isBossOnly )
-			: base( questID, maxCount ) {
+		public ProgressBattle( QuestData quest, int maxCount, string lowestRank, int[] targetArea, bool isBossOnly )
+			: base( quest, maxCount ) {
 
 			LowestRank = Constants.GetWinRank( lowestRank );
 			TargetArea = targetArea == null ? null : new HashSet<int>( targetArea );
@@ -58,6 +58,36 @@ namespace ElectronicObserver.Data.Quest {
 		}
 
 
+
+		public override string GetClearCondition() {
+			StringBuilder sb = new StringBuilder();
+			if ( TargetArea != null ) {
+				sb.Append( string.Join( "・", TargetArea.OrderBy( s => s ).Select( s => string.Format( "{0}-{1}", s / 10, s % 10 ) ) ) );
+			}
+			if ( IsBossOnly )
+				sb.Append( "ボス" );
+			switch ( LowestRank ) {
+				case 1:
+				default:
+					sb.Append( "戦闘" );
+					break;
+				case 2:
+				case 3:
+					sb.Append( Constants.GetWinRank( LowestRank ) + "以上" );
+					break;
+				case 4:
+					sb.Append( "勝利" );
+					break;
+				case 5:
+				case 6:
+				case 7:
+					sb.Append( Constants.GetWinRank( LowestRank ) + "勝利" );
+					break;
+			}
+			sb.Append( ProgressMax );
+
+			return sb.ToString();
+		}
 	}
 
 }

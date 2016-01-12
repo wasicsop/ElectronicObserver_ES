@@ -546,4 +546,10 @@
   <data name="Unselected" xml:space="preserve">
     <value>未選択</value>
   </data>
+  <data name="LandNode" xml:space="preserve">
+    <value>揚陸地点</value>
+  </data>
+  <data name="TransportFleet" xml:space="preserve">
+    <value>輸送部隊</value>
+  </data>
 </root>

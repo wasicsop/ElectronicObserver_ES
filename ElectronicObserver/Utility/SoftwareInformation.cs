@@ -44,9 +44,10 @@ namespace ElectronicObserver.Utility {
 		/// バージョン(英語)
 		/// </summary>
 		public static string VersionEnglish {
-			get {
-				return Resources.Version;
-			}
+			get
+            {
+                return Resources.Version;
+            }
 		}
 
 

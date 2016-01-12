@@ -664,6 +664,15 @@ namespace ElectronicObserver.Data {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 揚陸地点.
+        /// </summary>
+        internal static string LandNode {
+            get {
+                return ResourceManager.GetString("LandNode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 船団護衛成功.
         /// </summary>
         internal static string LargeResourceNode {
@@ -1263,6 +1272,15 @@ namespace ElectronicObserver.Data {
         internal static string TorpTorp {
             get {
                 return ResourceManager.GetString("TorpTorp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 輸送部隊.
+        /// </summary>
+        internal static string TransportFleet {
+            get {
+                return ResourceManager.GetString("TransportFleet", resourceCulture);
             }
         }
         
