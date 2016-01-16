@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System.Globalization;
+using AppSettings = ElectronicObserver.Properties.Settings;
 
 namespace ElectronicObserver.Utility
 {
@@ -125,7 +126,7 @@ namespace ElectronicObserver.Utility
             string locale = Thread.CurrentThread.CurrentCulture.Name;
             if (locale != "ja-JP")
             {
-                WebRequest rq = HttpWebRequest.Create("http://raw.githubusercontent.com/silfumus/ryuukitsune.github.io/master/Translations/" + locale + "/VersionManifest.xml");
+                WebRequest rq = HttpWebRequest.Create(AppSettings.Default.EOTranslations.AbsoluteUri + locale + "/VersionManifest.xml");
                 using (WebResponse resp = rq.GetResponse())
                 {
                     Stream responseStream = resp.GetResponseStream();
@@ -142,7 +143,7 @@ namespace ElectronicObserver.Utility
                 if (newShipVer != shipsVersion)
                 {
                     shipsXml = null;
-                    WebRequest r2 = HttpWebRequest.Create("http://raw.githubusercontent.com/silfumus/ryuukitsune.github.io/master/Translations/" + locale + "/Ships.xml");
+                    WebRequest r2 = HttpWebRequest.Create(AppSettings.Default.EOTranslations.AbsoluteUri + locale + "/Ships.xml");
                     using (WebResponse resp = r2.GetResponse())
                     {
                         Stream responseStream = resp.GetResponseStream();
@@ -154,7 +155,7 @@ namespace ElectronicObserver.Utility
                 if (newShipTypeVer != shipTypesVersion)
                 {
                     shipTypesXml = null;
-                    WebRequest r2 = HttpWebRequest.Create("http://raw.githubusercontent.com/silfumus/ryuukitsune.github.io/master/Translations/" + locale + "/ShipTypes.xml");
+                    WebRequest r2 = HttpWebRequest.Create(AppSettings.Default.EOTranslations.AbsoluteUri + locale + "/ShipTypes.xml");
                     using (WebResponse resp = r2.GetResponse())
                     {
                         Stream responseStream = resp.GetResponseStream();
@@ -166,7 +167,7 @@ namespace ElectronicObserver.Utility
                 if (newEquipVer != equipmentVersion)
                 {
                     equipmentXml = null;
-                    WebRequest r2 = HttpWebRequest.Create("http://raw.githubusercontent.com/silfumus/ryuukitsune.github.io/master/Translations/" + locale + "/Equipment.xml");
+                    WebRequest r2 = HttpWebRequest.Create(AppSettings.Default.EOTranslations.AbsoluteUri + locale + "/Equipment.xml");
                     using (WebResponse resp = r2.GetResponse())
                     {
                         Stream responseStream = resp.GetResponseStream();
@@ -178,7 +179,7 @@ namespace ElectronicObserver.Utility
                 if (newEquipTypeVer != equipTypesVersion)
                 {
                     equipTypesXML = null;
-                    WebRequest r2 = HttpWebRequest.Create("http://raw.githubusercontent.com/silfumus/ryuukitsune.github.io/master/Translations/" + locale + "/EquipmentTypes.xml");
+                    WebRequest r2 = HttpWebRequest.Create(AppSettings.Default.EOTranslations.AbsoluteUri + locale + "/EquipmentTypes.xml");
                     using (WebResponse resp = r2.GetResponse())
                     {
                         Stream responseStream = resp.GetResponseStream();
@@ -190,7 +191,7 @@ namespace ElectronicObserver.Utility
                 if (newOperationVer != operationsVersion)
                 {
                     operationsXml = null;
-                    WebRequest r2 = HttpWebRequest.Create("http://raw.githubusercontent.com/silfumus/ryuukitsune.github.io/master/Translations/" + locale + "/Operations.xml");
+                    WebRequest r2 = HttpWebRequest.Create(AppSettings.Default.EOTranslations.AbsoluteUri + locale + "/Operations.xml");
                     using (WebResponse resp = r2.GetResponse())
                     {
                         Stream responseStream = resp.GetResponseStream();
@@ -202,7 +203,7 @@ namespace ElectronicObserver.Utility
                 if (newQuestVer != questsVersion)
                 {
                     questsXml = null;
-                    WebRequest r2 = HttpWebRequest.Create("http://raw.githubusercontent.com/silfumus/ryuukitsune.github.io/master/Translations/" + locale + "/Quests.xml");
+                    WebRequest r2 = HttpWebRequest.Create(AppSettings.Default.EOTranslations.AbsoluteUri + locale + "/Quests.xml");
                     using (WebResponse resp = r2.GetResponse())
                     {
                         Stream responseStream = resp.GetResponseStream();
@@ -214,7 +215,7 @@ namespace ElectronicObserver.Utility
                 if (newExpedVer != expeditionsVersion)
                 {
                     expeditionsXml = null;
-                    WebRequest r2 = HttpWebRequest.Create("http://raw.githubusercontent.com/silfumus/ryuukitsune.github.io/master/Translations/" + locale + "/Expeditions.xml");
+                    WebRequest r2 = HttpWebRequest.Create(AppSettings.Default.EOTranslations.AbsoluteUri + locale + "/Expeditions.xml");
                     using (WebResponse resp = r2.GetResponse())
                     {
                         Stream responseStream = resp.GetResponseStream();
