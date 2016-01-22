@@ -17,9 +17,9 @@ namespace ElectronicObserver.Window.Dialog {
 
 		private DevelopmentRecord _record;
 
-		private const string NameAny = "(全て)";
-		private const string NameNotExist = "(失敗)";
-		private const string NameExist = "(成功)";
+		private string NameAny = EncycloRes.Any;
+		private string NameNotExist = GeneralRes.Failure;
+		private string NameExist = GeneralRes.Success;
 
 
 		private class SearchArgument {
@@ -185,7 +185,7 @@ namespace ElectronicObserver.Window.Dialog {
 		private void ButtonRun_Click( object sender, EventArgs e ) {
 
 			if ( Searcher.IsBusy ) {
-				if ( MessageBox.Show( "検索を中止しますか?", "検索中です", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2 )
+				if ( MessageBox.Show( EncycloRes.InterruptSearch, EncycloRes.Searching, MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2 )
 					== System.Windows.Forms.DialogResult.Yes ) {
 					Searcher.CancelAsync();
 				}
@@ -214,7 +214,7 @@ namespace ElectronicObserver.Window.Dialog {
 				RecordView_Header.Width = 50;
 				RecordView_Header.HeaderText = "";
 				RecordView_Name.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-				RecordView_Name.HeaderText = "装備";
+				RecordView_Name.HeaderText = GeneralRes.Equipment;
 				RecordView_Date.Width = 140;
 				RecordView_Date.Visible = true;
 				RecordView_Recipe.Width = 120;
@@ -226,7 +226,7 @@ namespace ElectronicObserver.Window.Dialog {
 				RecordView_Detail.Visible = false;
 			} else {
 				RecordView_Header.Width = 150;
-				RecordView_Header.HeaderText = "回数";
+				RecordView_Header.HeaderText = EncycloRes.Times;
 				RecordView_Name.AutoSizeMode = DataGridViewAutoSizeColumnMode.NotSet;
 				RecordView_Name.Width = 160;
 				RecordView_Name.HeaderText = ( ( EquipmentName.Text != NameAny && EquipmentName.Text != NameExist ) || (int)EquipmentCategory.SelectedValue != -1 ) ? "レシピ" : "装備";
@@ -239,7 +239,7 @@ namespace ElectronicObserver.Window.Dialog {
 			}
 			RecordView.ColumnHeadersVisible = true;
 
-			StatusInfo.Text = "検索中です...";
+			StatusInfo.Text = EncycloRes.Searching + "...";
 			StatusInfo.Tag = DateTime.Now;
 
 			Searcher.RunWorkerAsync( args );
@@ -370,13 +370,16 @@ namespace ElectronicObserver.Window.Dialog {
 					continue;
 
 				switch ( args.EquipmentName ) {
-					case NameAny:
+					case "(Any)":
+                    case "(全て)":
 						break;
-					case NameExist:
+					case "Success":
+                    case "成功":
 						if ( r.EquipmentID == -1 )
 							continue;
 						break;
-					case NameNotExist:
+					case "Failure":
+                    case "失敗":
 						if ( r.EquipmentID != -1 )
 							continue;
 						break;
@@ -400,7 +403,7 @@ namespace ElectronicObserver.Window.Dialog {
 						r.EquipmentName,
 						r.Date,
 						GetRecipeString( r ),
-						shiptype != null ? shiptype.Name : "(不明)",
+						shiptype != null ? shiptype.Name : EncycloRes.Unknown,
 						r.FlagshipName,
 						null
 						);
@@ -438,7 +441,7 @@ namespace ElectronicObserver.Window.Dialog {
 					if ( prioritySecretary > 0 )
 						key2 = currentRecipe;
 					else
-						key2 = shiptype != null ? shiptype.Name : "(不明)";
+						key2 = shiptype != null ? shiptype.Name : EncycloRes.Unknown;
 
 					if ( !countsdetail.ContainsKey( key ) ) {
 						countsdetail.Add( key, new Dictionary<string, int>() );
@@ -520,11 +523,11 @@ namespace ElectronicObserver.Window.Dialog {
 				RecordView.Sort( RecordView.SortedColumn ?? RecordView_Header,
 					RecordView.SortOrder == SortOrder.Ascending ? ListSortDirection.Ascending : ListSortDirection.Descending );
 
-				StatusInfo.Text = "検索が完了しました。(" + (int)( DateTime.Now - (DateTime)StatusInfo.Tag ).TotalMilliseconds + " ms)";
+				StatusInfo.Text = EncycloRes.SearchComplete + "(" + (int)( DateTime.Now - (DateTime)StatusInfo.Tag ).TotalMilliseconds + " ms)";
 
 			} else {
 
-				StatusInfo.Text = "検索がキャンセルされました。";
+				StatusInfo.Text = EncycloRes.SearchCancelled;
 			}
 
 		}
@@ -604,7 +607,5 @@ namespace ElectronicObserver.Window.Dialog {
 			}
 
 		}
-
-
-	}
+    }
 }

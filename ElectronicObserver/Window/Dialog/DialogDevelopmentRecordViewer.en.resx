@@ -117,193 +117,107 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Alignment_Bottom" xml:space="preserve">
-    <value>Bottom (&amp;B)</value>
+  <data name="ButtonRun.Text" xml:space="preserve">
+    <value>Search</value>
   </data>
-  <data name="Alignment_Invisible" xml:space="preserve">
-    <value>Invisible (&amp;I)</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="MergeRows.Location" type="System.Drawing.Point, System.Drawing">
+    <value>454, 71</value>
   </data>
-  <data name="Alignment_Left" xml:space="preserve">
-    <value>Left (&amp;L)</value>
+  <data name="MergeRows.Size" type="System.Drawing.Size, System.Drawing">
+    <value>77, 19</value>
   </data>
-  <data name="Alignment_Right" xml:space="preserve">
-    <value>Right (&amp;R)</value>
+  <data name="MergeRows.Text" xml:space="preserve">
+    <value>Combine</value>
   </data>
-  <data name="Alignment_Top" xml:space="preserve">
-    <value>Top (&amp;T)</value>
+  <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
+    <value>389, 13</value>
   </data>
-  <data name="Arsenal" xml:space="preserve">
-    <value>Arsenal (&amp;A)</value>
+  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>45, 15</value>
   </data>
-  <data name="Battle" xml:space="preserve">
-    <value>Battle (&amp;B)</value>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Recipe</value>
   </data>
-  <data name="Browser" xml:space="preserve">
-    <value>Browser</value>
+  <data name="Recipe.Location" type="System.Drawing.Point, System.Drawing">
+    <value>440, 10</value>
   </data>
-  <data name="Close" xml:space="preserve">
-    <value>Quit (&amp;X)</value>
+  <data name="Recipe.Size" type="System.Drawing.Size, System.Drawing">
+    <value>172, 23</value>
   </data>
-  <data name="Compass" xml:space="preserve">
-    <value>Compass (&amp;C)</value>
+  <data name="SecretaryName.Location" type="System.Drawing.Point, System.Drawing">
+    <value>212, 67</value>
   </data>
-  <data name="ControlWindow" xml:space="preserve">
-    <value>Controls (&amp;C)</value>
+  <data name="SecretaryCategory.Location" type="System.Drawing.Point, System.Drawing">
+    <value>78, 67</value>
   </data>
-  <data name="Debug" xml:space="preserve">
-    <value>Debug (&amp;D)</value>
+  <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>64, 15</value>
   </data>
-  <data name="DeleteOldAPI" xml:space="preserve">
-    <value>Delete Old API Data (&amp;D)</value>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Secretary</value>
   </data>
-  <data name="DetachAll" xml:space="preserve">
-    <value>Detatch All Captured Windows (&amp;R)</value>
+  <data name="DateEnd.Location" type="System.Drawing.Point, System.Drawing">
+    <value>243, 39</value>
   </data>
-  <data name="Dock" xml:space="preserve">
-    <value>Dock (&amp;D)</value>
+  <data name="DateBegin.Location" type="System.Drawing.Point, System.Drawing">
+    <value>243, 10</value>
   </data>
-  <data name="EquipEncyclopedia" xml:space="preserve">
-    <value>Equipment Encyclopedia (&amp;E)</value>
+  <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>209, 42</value>
   </data>
-  <data name="EquipmentList" xml:space="preserve">
-    <value>Equipment List (&amp;Q)</value>
+  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>28, 15</value>
   </data>
-  <data name="File" xml:space="preserve">
-    <value>File (&amp;F)</value>
+  <data name="label4.Text" xml:space="preserve">
+    <value>End</value>
   </data>
-  <data name="FleetList" xml:space="preserve">
-    <value>Fleet List (&amp;O)</value>
+  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>200, 13</value>
   </data>
-  <data name="Fleets" xml:space="preserve">
-    <value>Fleets (&amp;F)</value>
+  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>37, 15</value>
   </data>
-  <data name="Headquarters" xml:space="preserve">
-    <value>Headquarters (&amp;H)</value>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Start</value>
   </data>
-  <data name="Help" xml:space="preserve">
-    <value>Help (&amp;H)</value>
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 15</value>
   </data>
-  <data name="Information" xml:space="preserve">
-    <value>Information (&amp;I)</value>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Category</value>
   </data>
-  <data name="Layout" xml:space="preserve">
-    <value>Layout (&amp;L)</value>
+  <data name="EquipmentCategory.Location" type="System.Drawing.Point, System.Drawing">
+    <value>78, 10</value>
   </data>
-  <data name="LayoutOpen" xml:space="preserve">
-    <value>Open from another file (&amp;O)...</value>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>42, 15</value>
   </data>
-  <data name="Load" xml:space="preserve">
-    <value>Load (&amp;L)</value>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Name</value>
   </data>
-  <data name="LoadAPIFromFile" xml:space="preserve">
-    <value>Load API data from file (&amp;L)...</value>
+  <data name="EquipmentName.Location" type="System.Drawing.Point, System.Drawing">
+    <value>78, 39</value>
   </data>
-  <data name="LoadAPIList" xml:space="preserve">
-    <value>Load API List (&amp;I)...</value>
+  <data name="RecordView_Name.HeaderText" xml:space="preserve">
+    <value>Name</value>
   </data>
-  <data name="LoadOldAPIRecord" xml:space="preserve">
-    <value>Load from old api_start2 (&amp;O)...</value>
+  <data name="RecordView_Date.HeaderText" xml:space="preserve">
+    <value>Date</value>
   </data>
-  <data name="Log" xml:space="preserve">
-    <value>Log (&amp;L)</value>
+  <data name="RecordView_Recipe.HeaderText" xml:space="preserve">
+    <value>Recipe</value>
   </data>
-  <data name="OnlineHelp" xml:space="preserve">
-    <value>Online Help (&amp;H)...</value>
+  <data name="RecordView_FlagshipType.HeaderText" xml:space="preserve">
+    <value>Type</value>
   </data>
-  <data name="Other" xml:space="preserve">
-    <value>Other</value>
+  <data name="RecordView_Flagship.HeaderText" xml:space="preserve">
+    <value>Secretary</value>
   </data>
-  <data name="Other_Alignment" xml:space="preserve">
-    <value>Alignment (&amp;A)</value>
+  <data name="RecordView_Detail.HeaderText" xml:space="preserve">
+    <value>Details</value>
   </data>
-  <data name="Other_ApplyStyleSheet" xml:space="preserve">
-    <value>Apply Style Sheet</value>
-  </data>
-  <data name="Other_ClearCache" xml:space="preserve">
-    <value>Clear Browser Cache (&amp;C)</value>
-  </data>
-  <data name="Other_Mute" xml:space="preserve">
-    <value>Mute (&amp;M)</value>
-  </data>
-  <data name="Other_Navigate" xml:space="preserve">
-    <value>Go to... (&amp;N)</value>
-  </data>
-  <data name="Other_NavigateToLogInPage" xml:space="preserve">
-    <value>Go to Login Page (&amp;L)</value>
-  </data>
-  <data name="Other_Refresh" xml:space="preserve">
-    <value>Refresh (&amp;R)</value>
-  </data>
-  <data name="Other_RegionCookie" xml:space="preserve">
-    <value>Set Region Cookie</value>
-  </data>
-  <data name="Other_Screenshot" xml:space="preserve">
-    <value>Screenshot (&amp;S)</value>
-  </data>
-  <data name="Other_Zoom" xml:space="preserve">
-    <value>Zoom (&amp;Z)</value>
-  </data>
-  <data name="Other_Zoom_current" xml:space="preserve">
-    <value>Current%</value>
-  </data>
-  <data name="Other_Zoom_Fit" xml:space="preserve">
-    <value>Zoom To Fit</value>
-  </data>
-  <data name="Quest" xml:space="preserve">
-    <value>Quests (&amp;Q)</value>
-  </data>
-  <data name="ReattachAll" xml:space="preserve">
-    <value>Reattach All Captured Windows (&amp;S)</value>
-  </data>
-  <data name="Record" xml:space="preserve">
-    <value>Record (&amp;R)</value>
-  </data>
-  <data name="RenameShipResource" xml:space="preserve">
-    <value>Rename Ship Resource (&amp;R)...</value>
-  </data>
-  <data name="Save" xml:space="preserve">
-    <value>Save (&amp;S)</value>
-  </data>
-  <data name="Settings" xml:space="preserve">
-    <value>Settings (&amp;C)...</value>
-  </data>
-  <data name="ShipEncyclopedia" xml:space="preserve">
-    <value>Ship Encylopedia (&amp;S)</value>
-  </data>
-  <data name="ShipGroup" xml:space="preserve">
-    <value>Ship Groups (&amp;G)</value>
-  </data>
-  <data name="ShowToolMenu" xml:space="preserve">
-    <value>Display Tool Menu</value>
-  </data>
-  <data name="Title" xml:space="preserve">
-    <value>Type 74 Electronic Observation Device</value>
-  </data>
-  <data name="Tools" xml:space="preserve">
-    <value>Tools (&amp;T)</value>
-  </data>
-  <data name="VersionInfo" xml:space="preserve">
-    <value>Version Info (&amp;V)</value>
-  </data>
-  <data name="View" xml:space="preserve">
-    <value>View (&amp;V)</value>
-  </data>
-  <data name="WindowCapture" xml:space="preserve">
-    <value>Window Capture (&amp;W)</value>
-  </data>
-  <data name="ShowShipName" xml:space="preserve">
-    <value>Show Ship Name (&amp;V)</value>
-  </data>
-  <data name="ResourceChart" xml:space="preserve">
-    <value>Resource Chart (&amp;C)</value>
-  </data>
-  <data name="BuildRecord" xml:space="preserve">
-    <value>Construction Record (&amp;R)</value>
-  </data>
-  <data name="DevRecord" xml:space="preserve">
-    <value>Development Record (&amp;V)</value>
-  </data>
-  <data name="DropRecord" xml:space="preserve">
-    <value>Drop Record (&amp;D)</value>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Development Record</value>
   </data>
 </root>

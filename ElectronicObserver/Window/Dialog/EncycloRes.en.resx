@@ -321,4 +321,34 @@ Maximum: {2} Steel / {3} Fuel
   <data name="PrototypeCatapult" xml:space="preserve">
     <value>Protoype Catapult</value>
   </data>
+  <data name="Any" xml:space="preserve">
+    <value>(Any)</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="Flagship" xml:space="preserve">
+    <value>Flagship</value>
+  </data>
+  <data name="InterruptSearch" xml:space="preserve">
+    <value>Interrupt search?</value>
+  </data>
+  <data name="Recipe" xml:space="preserve">
+    <value>Recipe</value>
+  </data>
+  <data name="SearchCancelled" xml:space="preserve">
+    <value>Search was cancelled.</value>
+  </data>
+  <data name="SearchComplete" xml:space="preserve">
+    <value>Search complete.</value>
+  </data>
+  <data name="Searching" xml:space="preserve">
+    <value>Searching</value>
+  </data>
+  <data name="Times" xml:space="preserve">
+    <value>Times</value>
+  </data>
+  <data name="Unknown" xml:space="preserve">
+    <value>(Unknown)</value>
+  </data>
 </root>

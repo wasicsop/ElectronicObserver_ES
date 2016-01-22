@@ -1030,12 +1030,12 @@ namespace ElectronicObserver.Window {
 		private void StripMenu_Tool_DropRecord_Click( object sender, EventArgs e ) {
 
 			if ( KCDatabase.Instance.MasterShips.Count == 0 ) {
-				MessageBox.Show( "艦これを読み込んでから開いてください。", "マスターデータがありません", MessageBoxButtons.OK, MessageBoxIcon.Error );
+				MessageBox.Show( GeneralRes.KancolleMustBeLoaded, GeneralRes.NoMasterData, MessageBoxButtons.OK, MessageBoxIcon.Error );
 				return;
 			}
 
 			if ( RecordManager.Instance.ShipDrop.Record.Count == 0 ) {
-				MessageBox.Show( "ドロップレコードがありません。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error );
+				MessageBox.Show( GeneralRes.NoDropData, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error );
 				return;
 			}
 
@@ -1047,12 +1047,12 @@ namespace ElectronicObserver.Window {
 		private void StripMenu_Tool_DevelopmentRecord_Click( object sender, EventArgs e ) {
 
 			if ( KCDatabase.Instance.MasterShips.Count == 0 ) {
-				MessageBox.Show( "艦これを読み込んでから開いてください。", "マスターデータがありません", MessageBoxButtons.OK, MessageBoxIcon.Error );
+				MessageBox.Show( GeneralRes.KancolleMustBeLoaded, GeneralRes.NoMasterData, MessageBoxButtons.OK, MessageBoxIcon.Error );
 				return;
 			}
 
 			if ( RecordManager.Instance.Development.Record.Count == 0 ) {
-				MessageBox.Show( "開発レコードがありません。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error );
+				MessageBox.Show( GeneralRes.NoDevData, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error );
 				return;
 			}
 			new Dialog.DialogDevelopmentRecordViewer().Show( this );
@@ -1062,12 +1062,12 @@ namespace ElectronicObserver.Window {
 		private void StripMenu_Tool_ConstructionRecord_Click( object sender, EventArgs e ) {
 
 			if ( KCDatabase.Instance.MasterShips.Count == 0 ) {
-				MessageBox.Show( "艦これを読み込んでから開いてください。", "マスターデータがありません", MessageBoxButtons.OK, MessageBoxIcon.Error );
+				MessageBox.Show( GeneralRes.KancolleMustBeLoaded, GeneralRes.NoMasterData, MessageBoxButtons.OK, MessageBoxIcon.Error );
 				return;
 			}
 
 			if ( RecordManager.Instance.Construction.Record.Count == 0 ) {
-				MessageBox.Show( "建造レコードがありません。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error );
+				MessageBox.Show( GeneralRes.NoBuildData, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error );
 				return;
 			}
 

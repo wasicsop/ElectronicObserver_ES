@@ -1143,6 +1143,15 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 艦これを読み込んでから開いてください。.
+        /// </summary>
+        internal static string KancolleMustBeLoaded {
+            get {
+                return ResourceManager.GetString("KancolleMustBeLoaded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ロック.
         /// </summary>
         internal static string Lock {
@@ -1296,11 +1305,47 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 建造レコードがありません。.
+        /// </summary>
+        internal static string NoBuildData {
+            get {
+                return ResourceManager.GetString("NoBuildData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 開発レコードがありません。.
+        /// </summary>
+        internal static string NoDevData {
+            get {
+                return ResourceManager.GetString("NoDevData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ドロップレコードがありません。.
+        /// </summary>
+        internal static string NoDropData {
+            get {
+                return ResourceManager.GetString("NoDropData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to (敵艦隊候補なし).
         /// </summary>
         internal static string NoFleetCandidates {
             get {
                 return ResourceManager.GetString("NoFleetCandidates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to マスターデータがありません.
+        /// </summary>
+        internal static string NoMasterData {
+            get {
+                return ResourceManager.GetString("NoMasterData", resourceCulture);
             }
         }
         

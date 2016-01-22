@@ -324,7 +324,7 @@ namespace ElectronicObserver.Utility
                         }
                     }
                 }
-                catch (Exception e)
+                catch
                 {
                     return false;
                 }

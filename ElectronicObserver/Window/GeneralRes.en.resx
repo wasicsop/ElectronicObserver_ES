@@ -865,4 +865,19 @@ Bauxite: {5} ( {6} planes )
   <data name="TotalShips" xml:space="preserve">
     <value>Total: {0} ships</value>
   </data>
+  <data name="KancolleMustBeLoaded" xml:space="preserve">
+    <value>Please load Kancolle before opening the records.</value>
+  </data>
+  <data name="NoBuildData" xml:space="preserve">
+    <value>There is no construction data.</value>
+  </data>
+  <data name="NoDevData" xml:space="preserve">
+    <value>There is no development data.</value>
+  </data>
+  <data name="NoDropData" xml:space="preserve">
+    <value>There is no drop data.</value>
+  </data>
+  <data name="NoMasterData" xml:space="preserve">
+    <value>No Master Data</value>
+  </data>
 </root>
