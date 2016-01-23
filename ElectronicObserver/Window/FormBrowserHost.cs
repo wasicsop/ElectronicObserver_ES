@@ -208,6 +208,10 @@ namespace ElectronicObserver.Window {
 			c.ToolMenuDockStyle = (DockStyle)config.ToolMenuDockStyle;
 			c.IsToolMenuVisible = config.IsToolMenuVisible;
 			c.ConfirmAtRefresh = config.ConfirmAtRefresh;
+			// volume
+			if ( Utility.Configuration.Config.BGMPlayer.SyncBrowserMute ) {
+				Utility.SyncBGMPlayer.Instance.IsMute = config.IsMute;
+			}
 		}
 
 		public void GetIconResource() {

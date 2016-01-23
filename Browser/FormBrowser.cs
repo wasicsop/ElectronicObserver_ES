@@ -260,7 +260,11 @@ namespace Browser {
 
 		private void Browser_Navigating( object sender, WebBrowserNavigatingEventArgs e ) {
 
-			IsKanColleLoaded = false;
+			// note: ここを有効にすると別ページに切り替えた際にきちんとセーフティが働くが、代わりにまれに誤検知して撮影できなくなる時がある
+			// 無効にするとセーフティは働かなくなるが誤検知がなくなる
+			// セーフティを切ってでも誤検知しなくしたほうがいいので無効化
+
+			//IsKanColleLoaded = false;
 
 		}
 
@@ -690,6 +694,10 @@ namespace Browser {
 				control.Value = (decimal)volume;
 				control.Tag = true;
 			}
+
+			Configuration.Volume = volume;
+			Configuration.IsMute = mute;
+			ConfigurationUpdated();
 		}
 
 
@@ -865,7 +873,7 @@ namespace Browser {
             BeginInvoke((MethodInvoker)(() => { SetCookie(); }));
         }
 
-		private void SizeAdjuster_Click( object sender, EventArgs e ) {
+		private void SizeAdjuster_DoubleClick( object sender, EventArgs e ) {
 			ToolMenu.Visible =
 			Configuration.IsToolMenuVisible = true;
 			ConfigurationUpdated();

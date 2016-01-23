@@ -872,6 +872,7 @@
 			this.Name = "FormShipGroup";
 			this.Text = GeneralRes.Group;
 			this.Load += new System.EventHandler(this.FormShipGroup_Load);
+			this.Resize += new System.EventHandler(this.FormShipGroup_Resize);
 			((System.ComponentModel.ISupportInitialize)(this.ShipView)).EndInit();
 			this.MenuMember.ResumeLayout(false);
 			this.MenuGroup.ResumeLayout(false);

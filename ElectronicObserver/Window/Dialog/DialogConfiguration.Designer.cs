@@ -24,6 +24,7 @@
 		/// </summary>
 		private void InitializeComponent() {
 			this.components = new System.ComponentModel.Container();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.tabPage1 = new System.Windows.Forms.TabPage();
 			this.Connection_UpstreamProxyAddress = new System.Windows.Forms.TextBox();
@@ -48,6 +49,7 @@
 			this.Connection_Port = new System.Windows.Forms.NumericUpDown();
 			this.label1 = new System.Windows.Forms.Label();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
+			this.UI_BarColorMorphing = new System.Windows.Forms.CheckBox();
 			this.UI_SubFontApply = new System.Windows.Forms.Button();
 			this.UI_MainFontApply = new System.Windows.Forms.Button();
 			this.UI_SubFontSelect = new System.Windows.Forms.Button();
@@ -69,6 +71,7 @@
 			this.Log_LogLevel = new System.Windows.Forms.NumericUpDown();
 			this.label6 = new System.Windows.Forms.Label();
 			this.tabPage4 = new System.Windows.Forms.TabPage();
+			this.Control_UseSystemVolume = new System.Windows.Forms.CheckBox();
 			this.Control_RecordAutoSaving = new System.Windows.Forms.ComboBox();
 			this.label9 = new System.Windows.Forms.Label();
 			this.Control_ConditionBorder = new System.Windows.Forms.NumericUpDown();
@@ -80,6 +83,8 @@
 			this.Debug_APIListPathSearch = new System.Windows.Forms.Button();
 			this.Debug_EnableDebugMenu = new System.Windows.Forms.CheckBox();
 			this.tabPage6 = new System.Windows.Forms.TabPage();
+			this.Life_CanCloseFloatWindowInLock = new System.Windows.Forms.CheckBox();
+			this.Life_LockLayout = new System.Windows.Forms.CheckBox();
 			this.label24 = new System.Windows.Forms.Label();
 			this.Life_ClockFormat = new System.Windows.Forms.ComboBox();
 			this.Life_ShowStatusBar = new System.Windows.Forms.CheckBox();
@@ -158,6 +163,15 @@
 			this.Database_SendKancolleOAuth = new System.Windows.Forms.TextBox();
 			this.labelKdb = new System.Windows.Forms.Label();
 			this.Database_SendDataToKancolleDB = new System.Windows.Forms.CheckBox();
+			this.tabPage17 = new System.Windows.Forms.TabPage();
+			this.BGMPlayer_SetVolumeAll = new System.Windows.Forms.Button();
+			this.BGMPlayer_VolumeAll = new System.Windows.Forms.NumericUpDown();
+			this.BGMPlayer_Enabled = new System.Windows.Forms.CheckBox();
+			this.BGMPlayer_ControlGrid = new System.Windows.Forms.DataGridView();
+			this.BGMPlayer_ColumnEnabled = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+			this.BGMPlayer_ColumnContent = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.BGMPlayer_ColumnPath = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.BGMPlayer_ColumnSetting = new System.Windows.Forms.DataGridViewButtonColumn();
 			this.ToolTipInfo = new System.Windows.Forms.ToolTip(this.components);
 			this.ButtonOK = new System.Windows.Forms.Button();
 			this.ButtonCancel = new System.Windows.Forms.Button();
@@ -165,7 +179,7 @@
 			this.FontSelector = new System.Windows.Forms.FontDialog();
 			this.LayoutFileBrowser = new System.Windows.Forms.OpenFileDialog();
 			this.APIListBrowser = new System.Windows.Forms.OpenFileDialog();
-			this.FormFleet_BarColorMorphing = new System.Windows.Forms.CheckBox();
+			this.BGMPlayer_SyncBrowserMute = new System.Windows.Forms.CheckBox();
 			this.tabControl1.SuspendLayout();
 			this.tabPage1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.Connection_UpstreamProxyPort)).BeginInit();
@@ -195,6 +209,9 @@
 			this.groupBox3.SuspendLayout();
 			this.tabPage11.SuspendLayout();
 			this.tabPage15.SuspendLayout();
+			this.tabPage17.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.BGMPlayer_VolumeAll)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.BGMPlayer_ControlGrid)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// tabControl1
@@ -211,6 +228,7 @@
 			this.tabControl1.Controls.Add(this.tabPage7);
 			this.tabControl1.Controls.Add(this.tabPage11);
 			this.tabControl1.Controls.Add(this.tabPage15);
+			this.tabControl1.Controls.Add(this.tabPage17);
 			this.tabControl1.Location = new System.Drawing.Point(0, 0);
 			this.tabControl1.Multiline = true;
 			this.tabControl1.Name = "tabControl1";
@@ -477,6 +495,7 @@
 			// 
 			// tabPage2
 			// 
+			this.tabPage2.Controls.Add(this.UI_BarColorMorphing);
 			this.tabPage2.Controls.Add(this.UI_SubFontApply);
 			this.tabPage2.Controls.Add(this.UI_MainFontApply);
 			this.tabPage2.Controls.Add(this.UI_SubFontSelect);
@@ -495,6 +514,17 @@
 			this.tabPage2.TabIndex = 1;
 			this.tabPage2.Text = "UI";
 			this.tabPage2.UseVisualStyleBackColor = true;
+			// 
+			// UI_BarColorMorphing
+			// 
+			this.UI_BarColorMorphing.AutoSize = true;
+			this.UI_BarColorMorphing.Location = new System.Drawing.Point(8, 64);
+			this.UI_BarColorMorphing.Name = "UI_BarColorMorphing";
+			this.UI_BarColorMorphing.Size = new System.Drawing.Size(167, 19);
+			this.UI_BarColorMorphing.TabIndex = 11;
+			this.UI_BarColorMorphing.Text = "バーの色を滑らかに変化させる";
+			this.ToolTipInfo.SetToolTip(this.UI_BarColorMorphing, "HP・資源等のバーの色を、艦これUIと同様に滑らかに変化させるか指定します。");
+			this.UI_BarColorMorphing.UseVisualStyleBackColor = true;
 			// 
 			// UI_SubFontApply
 			// 
@@ -615,10 +645,10 @@
 			this.tabPage3.Controls.Add(this.Log_SaveLogFlag);
 			this.tabPage3.Controls.Add(this.Log_LogLevel);
 			this.tabPage3.Controls.Add(this.label6);
-			this.tabPage3.Location = new System.Drawing.Point(4, 24);
+			this.tabPage3.Location = new System.Drawing.Point(4, 44);
 			this.tabPage3.Name = "tabPage3";
 			this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage3.Size = new System.Drawing.Size(456, 253);
+			this.tabPage3.Size = new System.Drawing.Size(456, 233);
 			this.tabPage3.TabIndex = 2;
 			this.tabPage3.Text = ConfigRes.Log;
 			this.tabPage3.UseVisualStyleBackColor = true;
@@ -713,6 +743,7 @@
 			// 
 			// tabPage4
 			// 
+			this.tabPage4.Controls.Add(this.Control_UseSystemVolume);
 			this.tabPage4.Controls.Add(this.Control_RecordAutoSaving);
 			this.tabPage4.Controls.Add(this.label9);
 			this.tabPage4.Controls.Add(this.Control_ConditionBorder);
@@ -724,6 +755,18 @@
 			this.tabPage4.TabIndex = 3;
 			this.tabPage4.Text = ConfigRes.Behavior;
 			this.tabPage4.UseVisualStyleBackColor = true;
+			// 
+			// Control_UseSystemVolume
+			// 
+			this.Control_UseSystemVolume.AutoSize = true;
+			this.Control_UseSystemVolume.Location = new System.Drawing.Point(6, 64);
+			this.Control_UseSystemVolume.Name = "Control_UseSystemVolume";
+			this.Control_UseSystemVolume.Size = new System.Drawing.Size(230, 19);
+			this.Control_UseSystemVolume.TabIndex = 4;
+			this.Control_UseSystemVolume.Text = "通知・BGM音量にシステム設定を利用する";
+			this.ToolTipInfo.SetToolTip(this.Control_UseSystemVolume, "通知・BGM等の本体音量設定に、システム音量設定を利用するかを指定します。\r\n無効の場合は個別に音量を設定できますが、音量ミキサ等で調整できなくなります。\r\n有効" +
+        "の場合は音量ミキサ等で調整できますが、個別の音量設定は無視されます。");
+			this.Control_UseSystemVolume.UseVisualStyleBackColor = true;
 			// 
 			// Control_RecordAutoSaving
 			// 
@@ -838,6 +881,8 @@
 			// 
 			// tabPage6
 			// 
+			this.tabPage6.Controls.Add(this.Life_CanCloseFloatWindowInLock);
+			this.tabPage6.Controls.Add(this.Life_LockLayout);
 			this.tabPage6.Controls.Add(this.label24);
 			this.tabPage6.Controls.Add(this.Life_ClockFormat);
 			this.tabPage6.Controls.Add(this.Life_ShowStatusBar);
@@ -854,6 +899,29 @@
 			this.tabPage6.TabIndex = 5;
 			this.tabPage6.Text = ConfigRes.Window;
 			this.tabPage6.UseVisualStyleBackColor = true;
+			// 
+			// Life_CanCloseFloatWindowInLock
+			// 
+			this.Life_CanCloseFloatWindowInLock.AutoSize = true;
+			this.Life_CanCloseFloatWindowInLock.Location = new System.Drawing.Point(213, 60);
+			this.Life_CanCloseFloatWindowInLock.Name = "Life_CanCloseFloatWindowInLock";
+			this.Life_CanCloseFloatWindowInLock.Size = new System.Drawing.Size(197, 19);
+			this.Life_CanCloseFloatWindowInLock.TabIndex = 10;
+			this.Life_CanCloseFloatWindowInLock.Text = "ロック中でもフロートウィンドウを閉じる";
+			this.ToolTipInfo.SetToolTip(this.Life_CanCloseFloatWindowInLock, "上記「レイアウトをロックする」が有効な時でも、\r\nフロートウィンドウ(本体とは分離したウィンドウ)を閉じられるようにするかを指定します。\r\nよくウィンドウを一時的" +
+        "に開く方は有効にすると便利です。");
+			this.Life_CanCloseFloatWindowInLock.UseVisualStyleBackColor = true;
+			// 
+			// Life_LockLayout
+			// 
+			this.Life_LockLayout.AutoSize = true;
+			this.Life_LockLayout.Location = new System.Drawing.Point(213, 35);
+			this.Life_LockLayout.Name = "Life_LockLayout";
+			this.Life_LockLayout.Size = new System.Drawing.Size(122, 19);
+			this.Life_LockLayout.TabIndex = 9;
+			this.Life_LockLayout.Text = "レイアウトをロックする";
+			this.ToolTipInfo.SetToolTip(this.Life_LockLayout, "サイズやレイアウトの変更を防止するかを指定します。");
+			this.Life_LockLayout.UseVisualStyleBackColor = true;
 			// 
 			// label24
 			// 
@@ -948,10 +1016,10 @@
 			// tabPage7
 			// 
 			this.tabPage7.Controls.Add(this.tabControl2);
-			this.tabPage7.Location = new System.Drawing.Point(4, 44);
+			this.tabPage7.Location = new System.Drawing.Point(4, 24);
 			this.tabPage7.Name = "tabPage7";
 			this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage7.Size = new System.Drawing.Size(456, 233);
+			this.tabPage7.Size = new System.Drawing.Size(456, 253);
 			this.tabPage7.TabIndex = 6;
 			this.tabPage7.Text = ConfigRes.SubWindow;
 			this.tabPage7.UseVisualStyleBackColor = true;
@@ -969,12 +1037,11 @@
 			this.tabControl2.Location = new System.Drawing.Point(3, 3);
 			this.tabControl2.Name = "tabControl2";
 			this.tabControl2.SelectedIndex = 0;
-			this.tabControl2.Size = new System.Drawing.Size(450, 227);
+			this.tabControl2.Size = new System.Drawing.Size(450, 247);
 			this.tabControl2.TabIndex = 0;
 			// 
 			// tabPage8
 			// 
-			this.tabPage8.Controls.Add(this.FormFleet_BarColorMorphing);
 			this.tabPage8.Controls.Add(this.FormFleet_ShowAnchorageRepairingTimer);
 			this.tabPage8.Controls.Add(this.FormFleet_AirSuperiorityMethod);
 			this.tabPage8.Controls.Add(this.label23);
@@ -989,7 +1056,7 @@
 			this.tabPage8.Location = new System.Drawing.Point(4, 24);
 			this.tabPage8.Name = "tabPage8";
 			this.tabPage8.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage8.Size = new System.Drawing.Size(442, 199);
+			this.tabPage8.Size = new System.Drawing.Size(442, 219);
 			this.tabPage8.TabIndex = 0;
 			this.tabPage8.Text = ConfigRes.Fleet;
 			this.tabPage8.UseVisualStyleBackColor = true;
@@ -1119,7 +1186,7 @@
 			this.tabPage9.Location = new System.Drawing.Point(4, 22);
 			this.tabPage9.Name = "tabPage9";
 			this.tabPage9.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage9.Size = new System.Drawing.Size(442, 221);
+			this.tabPage9.Size = new System.Drawing.Size(442, 201);
 			this.tabPage9.TabIndex = 1;
 			this.tabPage9.Text = ConfigRes.Arsenal;
 			this.tabPage9.UseVisualStyleBackColor = true;
@@ -1133,36 +1200,36 @@
 			this.FormArsenal_ShowShipName.TabIndex = 1;
             this.FormArsenal_ShowShipName.Text = ConfigRes.ShowShipNames;
 			this.FormArsenal_ShowShipName.UseVisualStyleBackColor = true;
-            // 
-            // tabPage16
-            // 
-            this.tabPage16.Controls.Add(this.FormHeadquarters_BlinkAtMaximum);
-            this.tabPage16.Location = new System.Drawing.Point(4, 24);
-            this.tabPage16.Name = "tabPage16";
-            this.tabPage16.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage16.Size = new System.Drawing.Size(442, 221);
-            this.tabPage16.TabIndex = 6;
-            this.tabPage16.Text = ConfigRes.Headquarters;
-            this.tabPage16.UseVisualStyleBackColor = true;
-            // 
-            // FormHeadquarters_BlinkAtMaximum
-            // 
-            this.FormHeadquarters_BlinkAtMaximum.AutoSize = true;
-            this.FormHeadquarters_BlinkAtMaximum.Location = new System.Drawing.Point(6, 6);
-            this.FormHeadquarters_BlinkAtMaximum.Name = "FormHeadquarters_BlinkAtMaximum";
-            this.FormHeadquarters_BlinkAtMaximum.Size = new System.Drawing.Size(196, 27);
-            this.FormHeadquarters_BlinkAtMaximum.TabIndex = 0;
-            this.FormHeadquarters_BlinkAtMaximum.Text = ConfigRes.BlinkAtMaximum;
-            this.FormHeadquarters_BlinkAtMaximum.UseVisualStyleBackColor = true;
-            // 
-            // tabPage10
-            // 
-            this.tabPage10.Controls.Add(this.groupBox1);
+			// 
+			// tabPage16
+			// 
+			this.tabPage16.Controls.Add(this.FormHeadquarters_BlinkAtMaximum);
+			this.tabPage16.Location = new System.Drawing.Point(4, 22);
+			this.tabPage16.Name = "tabPage16";
+			this.tabPage16.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPage16.Size = new System.Drawing.Size(442, 201);
+			this.tabPage16.TabIndex = 6;
+			this.tabPage16.Text = ConfigRes.Headquarters;
+			this.tabPage16.UseVisualStyleBackColor = true;
+			// 
+			// FormHeadquarters_BlinkAtMaximum
+			// 
+			this.FormHeadquarters_BlinkAtMaximum.AutoSize = true;
+			this.FormHeadquarters_BlinkAtMaximum.Location = new System.Drawing.Point(6, 6);
+			this.FormHeadquarters_BlinkAtMaximum.Name = "FormHeadquarters_BlinkAtMaximum";
+			this.FormHeadquarters_BlinkAtMaximum.Size = new System.Drawing.Size(183, 19);
+			this.FormHeadquarters_BlinkAtMaximum.TabIndex = 0;
+			this.FormHeadquarters_BlinkAtMaximum.Text = ConfigRes.BlinkAtMaximum;
+			this.FormHeadquarters_BlinkAtMaximum.UseVisualStyleBackColor = true;
+			// 
+			// tabPage10
+			// 
+			this.tabPage10.Controls.Add(this.groupBox1);
 			this.tabPage10.Controls.Add(this.FormQuest_ShowRunningOnly);
 			this.tabPage10.Location = new System.Drawing.Point(4, 22);
 			this.tabPage10.Name = "tabPage10";
 			this.tabPage10.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage10.Size = new System.Drawing.Size(442, 221);
+			this.tabPage10.Size = new System.Drawing.Size(442, 201);
 			this.tabPage10.TabIndex = 2;
 			this.tabPage10.Text = ConfigRes.Quests;
 			this.tabPage10.UseVisualStyleBackColor = true;
@@ -1234,10 +1301,10 @@
 			// 
 			this.tabPage13.Controls.Add(this.FormShipGroup_ShowStatusBar);
 			this.tabPage13.Controls.Add(this.FormShipGroup_AutoUpdate);
-			this.tabPage13.Location = new System.Drawing.Point(4, 24);
+			this.tabPage13.Location = new System.Drawing.Point(4, 22);
 			this.tabPage13.Name = "tabPage13";
 			this.tabPage13.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage13.Size = new System.Drawing.Size(442, 199);
+			this.tabPage13.Size = new System.Drawing.Size(442, 201);
 			this.tabPage13.TabIndex = 4;
 			this.tabPage13.Text = ConfigRes.Group;
 			this.tabPage13.UseVisualStyleBackColor = true;
@@ -1276,10 +1343,10 @@
 			this.tabPage12.Controls.Add(this.FormBrowser_LogInPageURL);
 			this.tabPage12.Controls.Add(this.FormBrowser_ZoomRate);
 			this.tabPage12.Controls.Add(this.label15);
-			this.tabPage12.Location = new System.Drawing.Point(4, 24);
+			this.tabPage12.Location = new System.Drawing.Point(4, 22);
 			this.tabPage12.Name = "tabPage12";
 			this.tabPage12.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage12.Size = new System.Drawing.Size(442, 199);
+			this.tabPage12.Size = new System.Drawing.Size(442, 201);
 			this.tabPage12.TabIndex = 3;
 			this.tabPage12.Text = ConfigRes.Browser;
 			this.tabPage12.UseVisualStyleBackColor = true;
@@ -1460,7 +1527,7 @@
 			this.tabPage14.Location = new System.Drawing.Point(4, 22);
 			this.tabPage14.Name = "tabPage14";
 			this.tabPage14.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage14.Size = new System.Drawing.Size(442, 221);
+			this.tabPage14.Size = new System.Drawing.Size(442, 201);
 			this.tabPage14.TabIndex = 5;
 			this.tabPage14.Text = ConfigRes.Browser2;
 			this.tabPage14.UseVisualStyleBackColor = true;
@@ -1739,6 +1806,119 @@
 			this.Database_SendDataToKancolleDB.Text = ConfigRes.SendData;
 			this.Database_SendDataToKancolleDB.UseVisualStyleBackColor = true;
 			// 
+			// tabPage17
+			// 
+			this.tabPage17.Controls.Add(this.BGMPlayer_SyncBrowserMute);
+			this.tabPage17.Controls.Add(this.BGMPlayer_SetVolumeAll);
+			this.tabPage17.Controls.Add(this.BGMPlayer_VolumeAll);
+			this.tabPage17.Controls.Add(this.BGMPlayer_Enabled);
+			this.tabPage17.Controls.Add(this.BGMPlayer_ControlGrid);
+			this.tabPage17.Location = new System.Drawing.Point(4, 44);
+			this.tabPage17.Name = "tabPage17";
+			this.tabPage17.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPage17.Size = new System.Drawing.Size(456, 233);
+			this.tabPage17.TabIndex = 9;
+			this.tabPage17.Text = "BGM";
+			this.tabPage17.UseVisualStyleBackColor = true;
+			// 
+			// BGMPlayer_SetVolumeAll
+			// 
+			this.BGMPlayer_SetVolumeAll.Location = new System.Drawing.Point(353, 6);
+			this.BGMPlayer_SetVolumeAll.Name = "BGMPlayer_SetVolumeAll";
+			this.BGMPlayer_SetVolumeAll.Size = new System.Drawing.Size(100, 23);
+			this.BGMPlayer_SetVolumeAll.TabIndex = 3;
+			this.BGMPlayer_SetVolumeAll.Text = "音量一括適用";
+			this.BGMPlayer_SetVolumeAll.UseVisualStyleBackColor = true;
+			this.BGMPlayer_SetVolumeAll.Click += new System.EventHandler(this.BGMPlayer_SetVolumeAll_Click);
+			// 
+			// BGMPlayer_VolumeAll
+			// 
+			this.BGMPlayer_VolumeAll.Location = new System.Drawing.Point(287, 6);
+			this.BGMPlayer_VolumeAll.Name = "BGMPlayer_VolumeAll";
+			this.BGMPlayer_VolumeAll.Size = new System.Drawing.Size(60, 23);
+			this.BGMPlayer_VolumeAll.TabIndex = 2;
+			this.BGMPlayer_VolumeAll.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+			this.BGMPlayer_VolumeAll.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+			// 
+			// BGMPlayer_Enabled
+			// 
+			this.BGMPlayer_Enabled.AutoSize = true;
+			this.BGMPlayer_Enabled.Location = new System.Drawing.Point(8, 9);
+			this.BGMPlayer_Enabled.Name = "BGMPlayer_Enabled";
+			this.BGMPlayer_Enabled.Size = new System.Drawing.Size(161, 19);
+			this.BGMPlayer_Enabled.TabIndex = 1;
+			this.BGMPlayer_Enabled.Text = "BGMプレイヤーを有効にする";
+			this.ToolTipInfo.SetToolTip(this.BGMPlayer_Enabled, "現在の場面に合わせてお好みのBGMを再生する機能です。");
+			this.BGMPlayer_Enabled.UseVisualStyleBackColor = true;
+			// 
+			// BGMPlayer_ControlGrid
+			// 
+			this.BGMPlayer_ControlGrid.AllowUserToAddRows = false;
+			this.BGMPlayer_ControlGrid.AllowUserToDeleteRows = false;
+			this.BGMPlayer_ControlGrid.AllowUserToResizeColumns = false;
+			this.BGMPlayer_ControlGrid.AllowUserToResizeRows = false;
+			this.BGMPlayer_ControlGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.BGMPlayer_ControlGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.BGMPlayer_ControlGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.BGMPlayer_ColumnEnabled,
+            this.BGMPlayer_ColumnContent,
+            this.BGMPlayer_ColumnPath,
+            this.BGMPlayer_ColumnSetting});
+			dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+			dataGridViewCellStyle1.Font = new System.Drawing.Font("Meiryo UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+			dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+			dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Window;
+			dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+			dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+			this.BGMPlayer_ControlGrid.DefaultCellStyle = dataGridViewCellStyle1;
+			this.BGMPlayer_ControlGrid.Location = new System.Drawing.Point(6, 35);
+			this.BGMPlayer_ControlGrid.MultiSelect = false;
+			this.BGMPlayer_ControlGrid.Name = "BGMPlayer_ControlGrid";
+			this.BGMPlayer_ControlGrid.RowHeadersVisible = false;
+			this.BGMPlayer_ControlGrid.RowTemplate.Height = 21;
+			this.BGMPlayer_ControlGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+			this.BGMPlayer_ControlGrid.Size = new System.Drawing.Size(444, 176);
+			this.BGMPlayer_ControlGrid.TabIndex = 0;
+			this.BGMPlayer_ControlGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.BGMPlayer_ControlGrid_CellContentClick);
+			this.BGMPlayer_ControlGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.BGMPlayer_ControlGrid_CellFormatting);
+			this.BGMPlayer_ControlGrid.CurrentCellDirtyStateChanged += new System.EventHandler(this.BGMPlayer_ControlGrid_CurrentCellDirtyStateChanged);
+			// 
+			// BGMPlayer_ColumnEnabled
+			// 
+			this.BGMPlayer_ColumnEnabled.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+			this.BGMPlayer_ColumnEnabled.HeaderText = "○";
+			this.BGMPlayer_ColumnEnabled.Name = "BGMPlayer_ColumnEnabled";
+			this.BGMPlayer_ColumnEnabled.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+			this.BGMPlayer_ColumnEnabled.Width = 25;
+			// 
+			// BGMPlayer_ColumnContent
+			// 
+			this.BGMPlayer_ColumnContent.HeaderText = "シーン";
+			this.BGMPlayer_ColumnContent.Name = "BGMPlayer_ColumnContent";
+			this.BGMPlayer_ColumnContent.ReadOnly = true;
+			this.BGMPlayer_ColumnContent.Width = 80;
+			// 
+			// BGMPlayer_ColumnPath
+			// 
+			this.BGMPlayer_ColumnPath.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.BGMPlayer_ColumnPath.HeaderText = "ファイル名";
+			this.BGMPlayer_ColumnPath.Name = "BGMPlayer_ColumnPath";
+			this.BGMPlayer_ColumnPath.ReadOnly = true;
+			this.BGMPlayer_ColumnPath.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+			// 
+			// BGMPlayer_ColumnSetting
+			// 
+			this.BGMPlayer_ColumnSetting.HeaderText = "設定";
+			this.BGMPlayer_ColumnSetting.Name = "BGMPlayer_ColumnSetting";
+			this.BGMPlayer_ColumnSetting.Width = 40;
+			// 
 			// ToolTipInfo
 			// 
 			this.ToolTipInfo.AutoPopDelay = 60000;
@@ -1786,16 +1966,16 @@
 			this.APIListBrowser.Filter = "Text File|*.txt|File|*";
 			this.APIListBrowser.Title = "API リストを開く";
 			// 
-			// FormFleet_BarColorMorphing
+			// BGMPlayer_SyncBrowserMute
 			// 
-			this.FormFleet_BarColorMorphing.AutoSize = true;
-			this.FormFleet_BarColorMorphing.Location = new System.Drawing.Point(156, 138);
-			this.FormFleet_BarColorMorphing.Name = "FormFleet_BarColorMorphing";
-			this.FormFleet_BarColorMorphing.Size = new System.Drawing.Size(167, 19);
-			this.FormFleet_BarColorMorphing.TabIndex = 11;
-			this.FormFleet_BarColorMorphing.Text = "バーの色を滑らかに変化させる";
-			this.ToolTipInfo.SetToolTip(this.FormFleet_BarColorMorphing, "HP・資源等のバーの色を、艦これUIと同様に滑らかに変化させるか指定します。");
-			this.FormFleet_BarColorMorphing.UseVisualStyleBackColor = true;
+			this.BGMPlayer_SyncBrowserMute.AutoSize = true;
+			this.BGMPlayer_SyncBrowserMute.Location = new System.Drawing.Point(175, 9);
+			this.BGMPlayer_SyncBrowserMute.Name = "BGMPlayer_SyncBrowserMute";
+			this.BGMPlayer_SyncBrowserMute.Size = new System.Drawing.Size(92, 19);
+			this.BGMPlayer_SyncBrowserMute.TabIndex = 4;
+			this.BGMPlayer_SyncBrowserMute.Text = "ミュートを同期";
+			this.ToolTipInfo.SetToolTip(this.BGMPlayer_SyncBrowserMute, "ブラウザのミュートと連動させるかを指定します。");
+			this.BGMPlayer_SyncBrowserMute.UseVisualStyleBackColor = true;
 			// 
 			// DialogConfiguration
 			// 
@@ -1865,6 +2045,10 @@
 			this.tabPage11.PerformLayout();
 			this.tabPage15.ResumeLayout(false);
 			this.tabPage15.PerformLayout();
+			this.tabPage17.ResumeLayout(false);
+			this.tabPage17.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.BGMPlayer_VolumeAll)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.BGMPlayer_ControlGrid)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -2012,6 +2196,19 @@
 		private System.Windows.Forms.Label Connection_DownstreamProxyLabel;
 		private System.Windows.Forms.TextBox Connection_DownstreamProxy;
 		private System.Windows.Forms.TextBox Connection_UpstreamProxyAddress;
-		private System.Windows.Forms.CheckBox FormFleet_BarColorMorphing;
+		private System.Windows.Forms.CheckBox Life_LockLayout;
+		private System.Windows.Forms.CheckBox Life_CanCloseFloatWindowInLock;
+		private System.Windows.Forms.CheckBox UI_BarColorMorphing;
+		private System.Windows.Forms.TabPage tabPage17;
+		private System.Windows.Forms.CheckBox BGMPlayer_Enabled;
+		private System.Windows.Forms.DataGridView BGMPlayer_ControlGrid;
+		private System.Windows.Forms.DataGridViewCheckBoxColumn BGMPlayer_ColumnEnabled;
+		private System.Windows.Forms.DataGridViewTextBoxColumn BGMPlayer_ColumnContent;
+		private System.Windows.Forms.DataGridViewTextBoxColumn BGMPlayer_ColumnPath;
+		private System.Windows.Forms.DataGridViewButtonColumn BGMPlayer_ColumnSetting;
+		private System.Windows.Forms.Button BGMPlayer_SetVolumeAll;
+		private System.Windows.Forms.NumericUpDown BGMPlayer_VolumeAll;
+		private System.Windows.Forms.CheckBox Control_UseSystemVolume;
+		private System.Windows.Forms.CheckBox BGMPlayer_SyncBrowserMute;
 	}
 }

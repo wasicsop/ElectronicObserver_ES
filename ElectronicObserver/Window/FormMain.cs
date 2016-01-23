@@ -32,6 +32,12 @@ namespace ElectronicObserver.Window {
 		public DockPanel MainPanel { get { return MainDockPanel; } }
 		public FormWindowCapture WindowCapture { get { return fWindowCapture; } }
 		private int ClockFormat;
+		
+		/// <summary>
+		/// 音量設定用フラグ
+		/// -1 = 無効, そうでなければ現在の試行回数
+		/// </summary>
+		private int _volumeUpdateState = 0;
 
 		#endregion
 
@@ -123,7 +129,7 @@ namespace ElectronicObserver.Window {
 			RecordManager.Instance.Load();
 			KCDatabase.Instance.Load();
 			NotifierManager.Instance.Initialize( this );
-
+			SyncBGMPlayer.Instance.ConfigurationChanged();
 
 			#region Icon settings
 			Icon = ResourceManager.Instance.AppIcon;
@@ -185,9 +191,11 @@ namespace ElectronicObserver.Window {
 			SubForms.Add( fWindowCapture = new FormWindowCapture( this ) );
             SubForms.Add(fXPCalculator = new FormXPCalculator(this));
 
-			LoadLayout( Configuration.Config.Life.LayoutFilePath );
 
 			ConfigurationChanged();		//設定から初期化
+
+			LoadLayout( Configuration.Config.Life.LayoutFilePath );
+
 
 			SoftwareInformation.CheckUpdate();
 
@@ -209,7 +217,6 @@ namespace ElectronicObserver.Window {
 			if ( DateTime.Now.Month == 10 && DateTime.Now.Day == 31 ) {
 				APIObserver.Instance.APIList["api_port/port"].ResponseReceived += CallPumpkinHead;
 			}
-
 
 			// 完了通知（ログインページを開く）
 			fBrowser.InitializeApiCompleted();
@@ -242,6 +249,20 @@ namespace ElectronicObserver.Window {
 			MainDockPanel.Skin.AutoHideStripSkin.TextFont = Font;
 			MainDockPanel.Skin.DockPaneStripSkin.TextFont = Font;
 
+
+			if ( c.Life.LockLayout ) {
+				MainDockPanel.AllowChangeLayout = false;
+				FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+			} else {
+				MainDockPanel.AllowChangeLayout = true;
+				FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
+			}
+
+			StripMenu_File_Layout_LockLayout.Checked = c.Life.LockLayout;
+			MainDockPanel.CanCloseFloatWindowInLock = c.Life.CanCloseFloatWindowInLock;
+
+			if ( !c.Control.UseSystemVolume )
+				_volumeUpdateState = -1;
 		}
         
 		private void StripMenu_Debug_LoadAPIFromFile_Click( object sender, EventArgs e ) {
@@ -306,6 +327,26 @@ namespace ElectronicObserver.Window {
 
 					} break;
 			}
+
+
+			// WMP コントロールによって音量が勝手に変えられてしまうため、前回終了時の音量の再設定を試みる。
+			// 10回試行してダメなら諦める(例外によるラグを防ぐため)
+			// 起動直後にやらないのはちょっと待たないと音量設定が有効にならないから
+			if ( _volumeUpdateState != -1 && _volumeUpdateState < 10 && Utility.Configuration.Config.Control.UseSystemVolume ) {
+				
+				try {
+					uint id = (uint)System.Diagnostics.Process.GetCurrentProcess().Id;
+					BrowserLib.VolumeManager.SetApplicationVolume( id, Utility.Configuration.Config.Control.LastVolume );
+					BrowserLib.VolumeManager.SetApplicationMute( id, Utility.Configuration.Config.Control.LastIsMute );
+
+					_volumeUpdateState = -1;
+
+				} catch ( Exception ) {
+
+					_volumeUpdateState++;
+				}
+			}
+			
 		}
 
 
@@ -333,7 +374,20 @@ namespace ElectronicObserver.Window {
 
 
 			SaveLayout( Configuration.Config.Life.LayoutFilePath );
+			
 
+			// 音量の保存
+			{
+				try {
+					uint id = (uint)System.Diagnostics.Process.GetCurrentProcess().Id;
+					Utility.Configuration.Config.Control.LastVolume = BrowserLib.VolumeManager.GetApplicationVolume( id );
+					Utility.Configuration.Config.Control.LastIsMute = BrowserLib.VolumeManager.GetApplicationMute( id );
+
+				} catch ( Exception ) {
+					/* ぷちっ */
+				}
+				
+			}
 		}
 
 		private void FormMain_FormClosed( object sender, FormClosedEventArgs e ) {
@@ -383,18 +437,23 @@ namespace ElectronicObserver.Window {
 					return fBattle;
 				case "FleetOverview":
 					return fFleetOverview;
-				case "ShipGroup":
-					return fShipGroup;
+				//case "ShipGroup":
+				//	return fShipGroup;
 				case "Browser":
 					return fBrowser;
 				case "WindowCapture":
 					return fWindowCapture;
 				default:
+					if ( persistString.StartsWith( "ShipGroup" ) ) {
+						fShipGroup.ConfigureFromPersistString( persistString );
+						return fShipGroup;
+					}
 					if ( persistString.StartsWith( FormIntegrate.PREFIX ) ) {
 						return FormIntegrate.FromPersistString( this, persistString );
 					}
 					return null;
 			}
+
 		}
 
 
@@ -415,21 +474,6 @@ namespace ElectronicObserver.Window {
 
 					MainDockPanel.LoadFromXml( stream, new DeserializeDockContent( GetDockContentFromPersistString ) );
 
-					//一度全ウィンドウを読み込むことでフォームを初期化する
-					foreach ( var x in MainDockPanel.Contents ) {
-						if ( x.DockHandler.DockState == DockState.Hidden ) {
-							x.DockHandler.Show( MainDockPanel );
-							x.DockHandler.Hide();
-						} else {
-							x.DockHandler.Activate();
-						}
-					}
-
-					// checkme: このコードの存在意義
-					/*/
-					if ( MainDockPanel.Contents.Count > 0 )
-						MainDockPanel.Contents.First().DockHandler.Activate();
-					//*/
 
 					fWindowCapture.AttachAll();
 
@@ -475,9 +519,10 @@ namespace ElectronicObserver.Window {
 
 					using ( var archive = new ZipArchive( stream, ZipArchiveMode.Read ) ) {
 
+						MainDockPanel.SuspendLayout( true );
+
 						WindowPlacementManager.LoadWindowPlacement( this, archive.GetEntry( "WindowPlacement.xml" ).Open() );
 						LoadSubWindowsLayout( archive.GetEntry( "SubWindowLayout.xml" ).Open() );
-
 					}
 				}
 
@@ -501,8 +546,10 @@ namespace ElectronicObserver.Window {
 				fBrowser.Show( MainDockPanel );
 
 			} catch ( Exception ex ) {
-
 				Utility.ErrorReporter.SendErrorReport( ex, LoggerRes.FailedLoadLayout );
+			} finally {
+
+				MainDockPanel.ResumeLayout( true, true );
 			}
 
 		}
@@ -1031,7 +1078,7 @@ namespace ElectronicObserver.Window {
 				dialog.Title = "レイアウト ファイルの保存";
 
 
-				PathHelper.InitSaveFileDialog ( Utility.Configuration.Config.Life.LayoutFilePath, dialog );
+				PathHelper.InitSaveFileDialog( Utility.Configuration.Config.Life.LayoutFilePath, dialog );
 
 				if ( dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK ) {
 
@@ -1098,6 +1145,14 @@ namespace ElectronicObserver.Window {
 
 		}
 
+
+
+		private void StripMenu_File_Layout_LockLayout_Click( object sender, EventArgs e ) {
+
+			Utility.Configuration.Config.Life.LockLayout = StripMenu_File_Layout_LockLayout.Checked;
+			ConfigurationChanged();
+
+		}
 
 
 
@@ -1191,7 +1246,8 @@ namespace ElectronicObserver.Window {
 
 		#endregion
 
-		
+
+
 
 
 	}
