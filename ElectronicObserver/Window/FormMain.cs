@@ -251,15 +251,15 @@ namespace ElectronicObserver.Window {
 
 
 			if ( c.Life.LockLayout ) {
-				MainDockPanel.AllowChangeLayout = false;
+				//MainDockPanel.AllowChangeLayout = false;
 				FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			} else {
-				MainDockPanel.AllowChangeLayout = true;
+				//MainDockPanel.AllowChangeLayout = true;
 				FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
 			}
 
 			StripMenu_File_Layout_LockLayout.Checked = c.Life.LockLayout;
-			MainDockPanel.CanCloseFloatWindowInLock = c.Life.CanCloseFloatWindowInLock;
+			//MainDockPanel.CanCloseFloatWindowInLock = c.Life.CanCloseFloatWindowInLock;
 
 			if ( !c.Control.UseSystemVolume )
 				_volumeUpdateState = -1;
