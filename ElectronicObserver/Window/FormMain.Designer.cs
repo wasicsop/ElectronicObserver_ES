@@ -106,6 +106,7 @@
 			this.StripStatus_Clock = new System.Windows.Forms.ToolStripStatusLabel();
 			this.UIUpdateTimer = new System.Windows.Forms.Timer(this.components);
 			this.MainDockPanel = new WeifenLuo.WinFormsUI.Docking.DockPanel();
+			this.StripMenu_File_Layout_Change = new System.Windows.Forms.ToolStripMenuItem();
 			this.StripMenu.SuspendLayout();
 			this.StripStatus.SuspendLayout();
 			this.SuspendLayout();
@@ -143,7 +144,7 @@
             this.StripMenu_File_Record_Save,
             this.StripMenu_File_Record_Load});
 			this.StripMenu_File_Record.Name = "StripMenu_File_Record";
-			this.StripMenu_File_Record.Size = new System.Drawing.Size(135, 22);
+			this.StripMenu_File_Record.Size = new System.Drawing.Size(152, 22);
 			this.StripMenu_File_Record.Text = Menus.Record;
 			// 
 			// StripMenu_File_Record_Save
@@ -164,9 +165,10 @@
 			this.StripMenu_File_Layout.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.StripMenu_File_Layout_Load,
             this.StripMenu_File_Layout_Save,
-            this.StripMenu_File_Layout_Open});
+            this.StripMenu_File_Layout_Open,
+            this.StripMenu_File_Layout_Change});
 			this.StripMenu_File_Layout.Name = "StripMenu_File_Layout";
-			this.StripMenu_File_Layout.Size = new System.Drawing.Size(135, 22);
+			this.StripMenu_File_Layout.Size = new System.Drawing.Size(152, 22);
 			this.StripMenu_File_Layout.Text = Menus.Layout;
 			// 
 			// StripMenu_File_Layout_Load
@@ -193,24 +195,24 @@
 			// toolStripSeparator6
 			// 
 			this.toolStripSeparator6.Name = "toolStripSeparator6";
-			this.toolStripSeparator6.Size = new System.Drawing.Size(132, 6);
+			this.toolStripSeparator6.Size = new System.Drawing.Size(149, 6);
 			// 
 			// StripMenu_File_Configuration
 			// 
 			this.StripMenu_File_Configuration.Name = "StripMenu_File_Configuration";
-			this.StripMenu_File_Configuration.Size = new System.Drawing.Size(135, 22);
+			this.StripMenu_File_Configuration.Size = new System.Drawing.Size(152, 22);
 			this.StripMenu_File_Configuration.Text = Menus.Settings;
 			this.StripMenu_File_Configuration.Click += new System.EventHandler(this.StripMenu_File_Configuration_Click);
 			// 
 			// toolStripSeparator5
 			// 
 			this.toolStripSeparator5.Name = "toolStripSeparator5";
-			this.toolStripSeparator5.Size = new System.Drawing.Size(132, 6);
+			this.toolStripSeparator5.Size = new System.Drawing.Size(149, 6);
 			// 
 			// StripMenu_File_Close
 			// 
 			this.StripMenu_File_Close.Name = "StripMenu_File_Close";
-			this.StripMenu_File_Close.Size = new System.Drawing.Size(135, 22);
+			this.StripMenu_File_Close.Size = new System.Drawing.Size(152, 22);
             this.StripMenu_File_Close.Text = Menus.Close;
 			this.StripMenu_File_Close.Click += new System.EventHandler(this.StripMenu_File_Close_Click);
 			// 
@@ -601,7 +603,7 @@
 			// StripStatus_Padding
 			// 
 			this.StripStatus_Padding.Name = "StripStatus_Padding";
-			this.StripStatus_Padding.Size = new System.Drawing.Size(452, 17);
+			this.StripStatus_Padding.Size = new System.Drawing.Size(483, 17);
 			this.StripStatus_Padding.Spring = true;
 			// 
 			// StripStatus_Clock
@@ -675,6 +677,13 @@
 			//dockPanelSkin2.DockPaneStripSkin = dockPaneStripSkin2;
 			//this.MainDockPanel.Skin = dockPanelSkin2;
 			this.MainDockPanel.TabIndex = 0;
+			// 
+			// StripMenu_File_Layout_Change
+			// 
+			this.StripMenu_File_Layout_Change.Name = "StripMenu_File_Layout_Change";
+			this.StripMenu_File_Layout_Change.Size = new System.Drawing.Size(203, 22);
+			this.StripMenu_File_Layout_Change.Text = "別のファイルへ保存(&C)...";
+			this.StripMenu_File_Layout_Change.Click += new System.EventHandler(this.StripMenu_File_Layout_Change_Click);
 			// 
 			// FormMain
 			// 
@@ -769,5 +778,6 @@
 		private System.Windows.Forms.ToolStripMenuItem StripMenu_Tool_DropRecord;
 		private System.Windows.Forms.ToolStripMenuItem StripMenu_Tool_DevelopmentRecord;
 		private System.Windows.Forms.ToolStripMenuItem StripMenu_Tool_ConstructionRecord;
+		private System.Windows.Forms.ToolStripMenuItem StripMenu_File_Layout_Change;
 	}
 }

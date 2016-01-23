@@ -622,8 +622,8 @@ Cut-in type: {2} ({3})
   <data name="TimeToCompletion" xml:space="preserve">
     <value>Completion time</value>
   </data>
-  <data name="To150" xml:space="preserve">
-    <value>To Level 150: {0}</value>
+  <data name="ToX" xml:space="preserve">
+    <value>To Level {0}: {1}</value>
   </data>
   <data name="To99" xml:space="preserve">
     <value>To Level 99: {0}</value>

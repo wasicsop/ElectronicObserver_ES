@@ -118,12 +118,12 @@ namespace Browser {
 
 				control.ValueChanged += ToolMenu_Other_Volume_ValueChanged;
 				control.Tag = false;
-			
+
 				var host = new ToolStripControlHost( control, "ToolMenu_Other_Volume_VolumeControlHost" );
 
 				control.Size = new Size( host.Width - control.Margin.Horizontal, host.Height - control.Margin.Vertical );
 				control.Location = new Point( control.Margin.Left, control.Margin.Top );
-				
+
 
 				ToolMenu_Other_Volume.DropDownItems.Add( host );
 			}
@@ -523,8 +523,15 @@ namespace Browser {
 		}
 
 
-		public void SetProxy( string address, int port ) {
-			WinInetUtil.SetProxyInProcess( string.Format( "http={0}:{1}", address, port ), "local" );
+		public void SetProxy( string proxy ) {
+			ushort port;
+			if ( ushort.TryParse( proxy, out port ) ) {
+				WinInetUtil.SetProxyInProcessForNekoxy( port );
+			} else {
+				WinInetUtil.SetProxyInProcess( proxy, "local" );
+			}
+
+			//AddLog( 1, "setproxy:" + proxy );
 		}
 
 
@@ -769,7 +776,7 @@ namespace Browser {
 		void ToolMenu_Other_Volume_ValueChanged( object sender, EventArgs e ) {
 
 			var control = ToolMenu_Other_Volume_VolumeControl;
-				
+
 			try {
 				if ( (bool)control.Tag )
 					_volumeManager.Volume = (float)( control.Value / 100 );
@@ -777,7 +784,7 @@ namespace Browser {
 
 			} catch ( Exception ) {
 				control.BackColor = Color.MistyRose;
-				
+
 			}
 
 		}

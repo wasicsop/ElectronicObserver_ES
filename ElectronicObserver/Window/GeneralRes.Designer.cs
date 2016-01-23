@@ -1948,15 +1948,6 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Lv150まで: {0}.
-        /// </summary>
-        internal static string To150 {
-            get {
-                return ResourceManager.GetString("To150", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Lv99まで: {0}.
         /// </summary>
         internal static string To99 {
@@ -2061,6 +2052,15 @@ namespace ElectronicObserver.Window {
         internal static string TotalShips {
             get {
                 return ResourceManager.GetString("TotalShips", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lv{0}まで: {1}.
+        /// </summary>
+        internal static string ToX {
+            get {
+                return ResourceManager.GetString("ToX", resourceCulture);
             }
         }
         

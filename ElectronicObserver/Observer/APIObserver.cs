@@ -43,8 +43,6 @@ namespace ElectronicObserver.Observer {
 
 		private APIObserver() {
 
-			// 注：重複登録するとあらぬところで落ちるので十分注意すること
-
 			APIList = new APIDictionary();
 			APIList.Add( new kcsapi.api_start2() );
 			APIList.Add( new kcsapi.api_get_member.basic() );
@@ -117,7 +115,6 @@ namespace ElectronicObserver.Observer {
 
 
 
-
 		/// <summary>
 		/// 通信の受信を開始します。
 		/// </summary>
@@ -130,25 +127,22 @@ namespace ElectronicObserver.Observer {
 
 
 			this.UIControl = UIControl;
-
-
-			/*
-			Fiddler.FiddlerApplication.Startup( portID, Fiddler.FiddlerCoreStartupFlags.ChainToUpstreamGateway |
-				( Utility.Configuration.Config.Connection.RegisterAsSystemProxy ? Fiddler.FiddlerCoreStartupFlags.RegisterAsSystemProxy : 0 ) );
-			*/
 			HttpProxy.Shutdown();
 			try {
-				// checkme
-				HttpProxy.Startup( portID, false, true /*Utility.Configuration.Config.Connection.RegisterAsSystemProxy*/ );
 
 				if ( c.UseUpstreamProxy )
 					HttpProxy.UpstreamProxyConfig = new ProxyConfig( ProxyConfigType.SpecificProxy, c.UpstreamProxyAddress, c.UpstreamProxyPort );
-				else
+				else if ( c.UseSystemProxy )
 					HttpProxy.UpstreamProxyConfig = new ProxyConfig( ProxyConfigType.SystemProxy );
+				else
+					HttpProxy.UpstreamProxyConfig = new ProxyConfig( ProxyConfigType.DirectAccess );
+
+				HttpProxy.Startup( portID, false, false );
+				ProxyPort = portID;
+
 
 				ProxyStarted();
 				Utility.Logger.Add( 2, string.Format( LoggerRes.APIObserverStarted, portID ) );
-				ProxyPort = portID;
 			} catch ( Exception ex ) {
 
 				Utility.Logger.Add( 3, LoggerRes.APIObserverFailed + ex.Message );
@@ -182,12 +176,15 @@ namespace ElectronicObserver.Observer {
 
 
 
-
 		void HttpProxy_AfterSessionComplete( Session session ) {
 
 			Utility.Configuration.ConfigurationData.ConfigConnection c = Utility.Configuration.Config.Connection;
 
 			string baseurl = session.Request.PathAndQuery;
+
+			//debug
+			//Utility.Logger.Add( 1, baseurl );
+
 
 			// request
 			if ( baseurl.Contains( "/kcsapi/" ) ) {
@@ -203,6 +200,7 @@ namespace ElectronicObserver.Observer {
 				}
 				UIControl.BeginInvoke( (Action)( () => { LoadRequest( url, body ); } ) );
 			}
+
 
 
 			//response

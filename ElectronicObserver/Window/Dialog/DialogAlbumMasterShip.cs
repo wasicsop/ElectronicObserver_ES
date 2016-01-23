@@ -103,6 +103,9 @@ namespace ElectronicObserver.Window.Dialog {
 			TitleDayAttack.ImageIndex = (int)ResourceManager.EquipmentContent.Seaplane;
 			TitleNightAttack.ImageIndex = (int)ResourceManager.EquipmentContent.Torpedo;
 
+			ParameterLevel.Value = ParameterLevel.Maximum = ExpTable.ShipMaximumLevel;
+			
+
 			TableBattle.Visible = false;
 			BasePanelShipGirl.Visible = false;
 
@@ -533,6 +536,9 @@ namespace ElectronicObserver.Window.Dialog {
 
 			ShipDataMaster ship = KCDatabase.Instance.MasterShips[shipID];
 
+			if ( ship == null )
+				return;
+
 			if ( !ship.IsAbyssalShip ) {
 				ASWLevel.Text = EstimateParameter( (int)ParameterLevel.Value, ship.ASW );
 				EvasionLevel.Text = EstimateParameter( (int)ParameterLevel.Value, ship.Evasion );
@@ -801,7 +807,7 @@ namespace ElectronicObserver.Window.Dialog {
 				try {
 
 					using ( StreamWriter sw = new StreamWriter( SaveCSVDialog.FileName, false, Utility.Configuration.Config.Log.FileEncoding ) ) {
-
+                        
 						sw.WriteLine( EncycloRes.ShipCSVDataFormat );
 						string arg = string.Format( "{{{0}}}", string.Join( "},{", Enumerable.Range( 0, 69 ) ) );
 
@@ -833,18 +839,18 @@ namespace ElectronicObserver.Window.Dialog {
 								ship.ASW != null ? ship.ASW.MinimumEstMin : ShipParameterRecord.Parameter.MinimumDefault,
 								ship.ASW != null ? ship.ASW.MinimumEstMax : ShipParameterRecord.Parameter.MaximumDefault,
 								ship.ASW != null ? ship.ASW.Maximum : ShipParameterRecord.Parameter.MaximumDefault,
-								ship.ASW != null ? ship.ASW.GetEstParameterMin( 150 ) : ShipParameterRecord.Parameter.MinimumDefault,
-								ship.ASW != null ? ship.ASW.GetEstParameterMax( 150 ) : ShipParameterRecord.Parameter.MaximumDefault,
+								ship.ASW != null ? ship.ASW.GetEstParameterMin( ExpTable.ShipMaximumLevel ) : ShipParameterRecord.Parameter.MinimumDefault,
+								ship.ASW != null ? ship.ASW.GetEstParameterMax( ExpTable.ShipMaximumLevel ) : ShipParameterRecord.Parameter.MaximumDefault,
 								ship.Evasion != null ? ship.Evasion.MinimumEstMin : ShipParameterRecord.Parameter.MinimumDefault,
 								ship.Evasion != null ? ship.Evasion.MinimumEstMax : ShipParameterRecord.Parameter.MaximumDefault,
 								ship.Evasion != null ? ship.Evasion.Maximum : ShipParameterRecord.Parameter.MaximumDefault,
-								ship.Evasion != null ? ship.Evasion.GetEstParameterMin( 150 ) : ShipParameterRecord.Parameter.MinimumDefault,
-								ship.Evasion != null ? ship.Evasion.GetEstParameterMax( 150 ) : ShipParameterRecord.Parameter.MaximumDefault,
+								ship.Evasion != null ? ship.Evasion.GetEstParameterMin( ExpTable.ShipMaximumLevel ) : ShipParameterRecord.Parameter.MinimumDefault,
+								ship.Evasion != null ? ship.Evasion.GetEstParameterMax( ExpTable.ShipMaximumLevel ) : ShipParameterRecord.Parameter.MaximumDefault,
 								ship.LOS != null ? ship.LOS.MinimumEstMin : ShipParameterRecord.Parameter.MinimumDefault,
 								ship.LOS != null ? ship.LOS.MinimumEstMax : ShipParameterRecord.Parameter.MaximumDefault,
 								ship.LOS != null ? ship.LOS.Maximum : ShipParameterRecord.Parameter.MaximumDefault,
-								ship.LOS != null ? ship.LOS.GetEstParameterMin( 150 ) : ShipParameterRecord.Parameter.MinimumDefault,
-								ship.LOS != null ? ship.LOS.GetEstParameterMax( 150 ) : ShipParameterRecord.Parameter.MaximumDefault,
+								ship.LOS != null ? ship.LOS.GetEstParameterMin( ExpTable.ShipMaximumLevel ) : ShipParameterRecord.Parameter.MinimumDefault,
+								ship.LOS != null ? ship.LOS.GetEstParameterMax( ExpTable.ShipMaximumLevel ) : ShipParameterRecord.Parameter.MaximumDefault,
 								ship.LuckMin,
 								ship.LuckMax,
 								ship.Speed,

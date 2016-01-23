@@ -97,7 +97,11 @@ namespace ElectronicObserver.Window {
         }
 
 		private async void FormMain_Load( object sender, EventArgs e ) {
+			if ( !Directory.Exists( "Settings" ) )
+				Directory.CreateDirectory( "Settings" );
 
+
+			Utility.Configuration.Instance.Load();
 			Utility.Logger.Instance.LogAdded += new Utility.LogAddedEventHandler( ( Utility.Logger.LogData data ) => {
 				if ( InvokeRequired ) {
 					// Invokeはメッセージキューにジョブを投げて待つので、別のBeginInvokeされたジョブが既にキューにあると、
@@ -324,8 +328,6 @@ namespace ElectronicObserver.Window {
 
 			fBrowser.CloseBrowser();
 
-			if ( !Directory.Exists( "Settings" ) )
-				Directory.CreateDirectory( "Settings" );
 
 			SystemEvents.OnSystemShuttingDown();
 
@@ -479,8 +481,8 @@ namespace ElectronicObserver.Window {
 					}
 				}
 
-
-				Utility.Logger.Add( 2, Resources.LayoutLoaded );
+                
+				Utility.Logger.Add( 2, string.Format(Resources.LayoutLoaded, path) );
 
 			} catch ( FileNotFoundException ) {
 
@@ -522,8 +524,8 @@ namespace ElectronicObserver.Window {
 					}
 				}
 
-
-				Utility.Logger.Add( 2, Resources.LayoutSaved );
+                
+				Utility.Logger.Add( 2, string.Format(Resources.LayoutSaved, path) );
 
 			} catch ( Exception ex ) {
 
@@ -1021,6 +1023,27 @@ namespace ElectronicObserver.Window {
 
 		}
 
+		private void StripMenu_File_Layout_Change_Click( object sender, EventArgs e ) {
+
+			using ( var dialog = new SaveFileDialog() ) {
+
+				dialog.Filter = "Layout Archive|*.zip|File|*";
+				dialog.Title = "レイアウト ファイルの保存";
+
+
+				PathHelper.InitSaveFileDialog ( Utility.Configuration.Config.Life.LayoutFilePath, dialog );
+
+				if ( dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK ) {
+
+					Utility.Configuration.Config.Life.LayoutFilePath = PathHelper.GetPathFromSaveFileDialog( dialog );
+					SaveLayout( Utility.Configuration.Config.Life.LayoutFilePath );
+
+				}
+			}
+
+		}
+
+
 		private void StripMenu_Tool_ResourceChart_Click( object sender, EventArgs e ) {
 
 			new Dialog.DialogResourceChart().Show( this );
@@ -1168,8 +1191,7 @@ namespace ElectronicObserver.Window {
 
 		#endregion
 
-
-
+		
 
 
 	}

@@ -62,6 +62,7 @@ namespace ElectronicObserver.Utility {
 				/// <summary>
 				/// 通信内容保存：フィルタ
 				/// </summary>
+				[Obsolete]
 				public string SaveDataFilter { get; set; }
 
 				/// <summary>
@@ -94,6 +95,7 @@ namespace ElectronicObserver.Utility {
 				/// </summary>
 				public bool ApplyVersion { get; set; }
 
+
 				/// <summary>
 				/// システムプロキシに登録するか
 				/// </summary>
@@ -113,6 +115,18 @@ namespace ElectronicObserver.Utility {
 				/// 上流プロキシのアドレス
 				/// </summary>
 				public string UpstreamProxyAddress { get; set; }
+
+				/// <summary>
+				/// システムプロキシを利用するか
+				/// </summary>
+				public bool UseSystemProxy { get; set; }
+
+				/// <summary>
+				/// 下流プロキシ設定
+				/// 空なら他の設定から自動生成する
+				/// </summary>
+				public string DownstreamProxy { get; set; }
+
 
 				/// <summary>
 				/// kancolle-db.netに送信する
@@ -140,6 +154,8 @@ namespace ElectronicObserver.Utility {
 					UseUpstreamProxy = false;
 					UpstreamProxyPort = 0;
 					UpstreamProxyAddress = "127.0.0.1";
+					UseSystemProxy = false;
+					DownstreamProxy = "";
 					SendDataToKancolleDB = false;
 					SendKancolleOAuth = "";
 
@@ -437,7 +453,16 @@ namespace ElectronicObserver.Utility {
 				/// </summary>
 				public int AirSuperiorityMethod { get; set; }
 
+				/// <summary>
+				/// 泊地修理タイマを表示するか
+				/// </summary>
 				public bool ShowAnchorageRepairingTimer { get; set; }
+
+				/// <summary>
+				/// バーの色を滑らかに変化させるか
+				/// </summary>
+				public bool BarColorMorphing { get; set; }
+
 
 				public ConfigFormFleet() {
 					ShowAircraft = true;
@@ -449,6 +474,7 @@ namespace ElectronicObserver.Utility {
 					ShowEquipmentLevel = true;
 					AirSuperiorityMethod = 1;
 					ShowAnchorageRepairingTimer = true;
+					BarColorMorphing = false;
 				}
 			}
 			/// <summary>[艦隊]ウィンドウ</summary>
