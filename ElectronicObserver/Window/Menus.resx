@@ -141,6 +141,9 @@
   <data name="Browser" xml:space="preserve">
     <value>ブラウザ</value>
   </data>
+  <data name="BuildRecord" xml:space="preserve">
+    <value>建造記録(&amp;R)</value>
+  </data>
   <data name="Close" xml:space="preserve">
     <value>終了(&amp;X)</value>
   </data>
@@ -162,7 +165,7 @@
   <data name="DetachAll" xml:space="preserve">
     <value>全てのウィンドウを開放(&amp;R)</value>
   </data>
-  <data name="DevelopmentRecord" xml:space="preserve">
+  <data name="DevRecord" xml:space="preserve">
     <value>開発記録(&amp;V)</value>
   </data>
   <data name="Dock" xml:space="preserve">

@@ -236,7 +236,7 @@ namespace ElectronicObserver.Window {
 				Level.SuspendLayout();
 				Level.Anchor = AnchorStyles.Left | AnchorStyles.Bottom;
 				Level.Value = 0;
-				Level.MaximumValue = 150;
+				Level.MaximumValue = ExpTable.ShipMaximumLevel;
 				Level.ValueNext = 0;
 				Level.MainFontColor = parent.MainFontColor;
 				Level.SubFontColor = parent.SubFontColor;
@@ -386,7 +386,7 @@ namespace ElectronicObserver.Window {
 							tip.AppendFormat( GeneralRes.To99, Math.Max( ExpTable.GetExpToLevelShip( ship.ExpTotal, 99 ), 0 ) );
 
 						} else {
-							tip.AppendFormat( GeneralRes.To150, Math.Max( ExpTable.GetExpToLevelShip( ship.ExpTotal, 150 ), 0 ) );
+							tip.AppendFormat( GeneralRes.ToX, ExpTable.ShipMaximumLevel, Math.Max( ExpTable.GetExpToLevelShip( ship.ExpTotal, ExpTable.ShipMaximumLevel ), 0 ) );
 
 						}
 
@@ -891,6 +891,8 @@ namespace ElectronicObserver.Window {
 				bool showAircraft = c.FormFleet.ShowAircraft;
 				bool fixShipNameWidth = c.FormFleet.FixShipNameWidth;
 				bool shortHPBar = c.FormFleet.ShortenHPBar;
+				bool colorMorphing = c.UI.BarColorMorphing;
+				Color[] colorScheme = c.UI.BarColorScheme.Select( col => col.ColorData ).ToArray();
 				bool showNext = c.FormFleet.ShowNextExp;
 				bool showEquipmentLevel = c.FormFleet.ShowEquipmentLevel;
 
@@ -904,8 +906,14 @@ namespace ElectronicObserver.Window {
 					}
 
 					ControlMember[i].HP.Text = shortHPBar ? "" : "HP:";
+					ControlMember[i].HP.HPBar.ColorMorphing = colorMorphing;
+					ControlMember[i].HP.HPBar.SetBarColorScheme( colorScheme );
 					ControlMember[i].Level.TextNext = showNext ? "next:" : null;
 					ControlMember[i].Equipments.ShowEquipmentLevel = showEquipmentLevel;
+					ControlMember[i].ShipResource.BarFuel.ColorMorphing =
+					ControlMember[i].ShipResource.BarAmmo.ColorMorphing = colorMorphing;
+					ControlMember[i].ShipResource.BarFuel.SetBarColorScheme( colorScheme );
+					ControlMember[i].ShipResource.BarAmmo.SetBarColorScheme( colorScheme );
 
 					ControlMember[i].ConfigurationChanged( this );
 				}

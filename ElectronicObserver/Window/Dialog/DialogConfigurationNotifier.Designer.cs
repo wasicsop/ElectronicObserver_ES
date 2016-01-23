@@ -27,6 +27,9 @@
 			this.ButtonCancel = new System.Windows.Forms.Button();
 			this.ButtonOK = new System.Windows.Forms.Button();
 			this.GroupSound = new System.Windows.Forms.GroupBox();
+			this.LoopsSound = new System.Windows.Forms.CheckBox();
+			this.label9 = new System.Windows.Forms.Label();
+			this.SoundVolume = new System.Windows.Forms.NumericUpDown();
 			this.PlaysSound = new System.Windows.Forms.CheckBox();
 			this.SoundPathSearch = new System.Windows.Forms.Button();
 			this.SoundPath = new System.Windows.Forms.TextBox();
@@ -73,7 +76,10 @@
 			this.DialogOpenSound = new System.Windows.Forms.OpenFileDialog();
 			this.DialogOpenImage = new System.Windows.Forms.OpenFileDialog();
 			this.ToolTipText = new System.Windows.Forms.ToolTip(this.components);
+			this.label10 = new System.Windows.Forms.Label();
+			this.SoundPathDirectorize = new System.Windows.Forms.Button();
 			this.GroupSound.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.SoundVolume)).BeginInit();
 			this.GroupImage.SuspendLayout();
 			this.GroupDialog.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.ClosingInterval)).BeginInit();
@@ -108,6 +114,10 @@
 			// 
 			// GroupSound
 			// 
+			this.GroupSound.Controls.Add(this.SoundPathDirectorize);
+			this.GroupSound.Controls.Add(this.LoopsSound);
+			this.GroupSound.Controls.Add(this.label9);
+			this.GroupSound.Controls.Add(this.SoundVolume);
 			this.GroupSound.Controls.Add(this.PlaysSound);
 			this.GroupSound.Controls.Add(this.SoundPathSearch);
 			this.GroupSound.Controls.Add(this.SoundPath);
@@ -119,6 +129,34 @@
 			this.GroupSound.Text = NotifyRes.Sound;
 			this.GroupSound.DragDrop += new System.Windows.Forms.DragEventHandler(this.GroupSound_DragDrop);
 			this.GroupSound.DragEnter += new System.Windows.Forms.DragEventHandler(this.GroupSound_DragEnter);
+			// 
+			// LoopsSound
+			// 
+			this.LoopsSound.AutoSize = true;
+			this.LoopsSound.Location = new System.Drawing.Point(90, 22);
+			this.LoopsSound.Name = "LoopsSound";
+			this.LoopsSound.Size = new System.Drawing.Size(55, 19);
+			this.LoopsSound.TabIndex = 5;
+			this.LoopsSound.Text = "ループ";
+			this.LoopsSound.UseVisualStyleBackColor = true;
+			// 
+			// label9
+			// 
+			this.label9.AutoSize = true;
+			this.label9.Location = new System.Drawing.Point(163, 23);
+			this.label9.Name = "label9";
+			this.label9.Size = new System.Drawing.Size(43, 15);
+			this.label9.TabIndex = 1;
+			this.label9.Text = "音量：";
+			// 
+			// SoundVolume
+			// 
+			this.SoundVolume.Location = new System.Drawing.Point(212, 18);
+			this.SoundVolume.Name = "SoundVolume";
+			this.SoundVolume.Size = new System.Drawing.Size(80, 23);
+			this.SoundVolume.TabIndex = 2;
+			this.SoundVolume.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+			this.ToolTipText.SetToolTip(this.SoundVolume, "通知音の音量を指定します。\r\n0が無音で100が最大音量です。");
 			// 
 			// PlaysSound
 			// 
@@ -133,10 +171,10 @@
 			// SoundPathSearch
 			// 
 			this.SoundPathSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.SoundPathSearch.Location = new System.Drawing.Point(260, 47);
+			this.SoundPathSearch.Location = new System.Drawing.Point(222, 47);
 			this.SoundPathSearch.Name = "SoundPathSearch";
 			this.SoundPathSearch.Size = new System.Drawing.Size(32, 23);
-			this.SoundPathSearch.TabIndex = 2;
+			this.SoundPathSearch.TabIndex = 4;
 			this.SoundPathSearch.Text = "...";
 			this.SoundPathSearch.UseVisualStyleBackColor = true;
 			this.SoundPathSearch.Click += new System.EventHandler(this.SoundPathSearch_Click);
@@ -148,8 +186,8 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.SoundPath.Location = new System.Drawing.Point(6, 47);
 			this.SoundPath.Name = "SoundPath";
-			this.SoundPath.Size = new System.Drawing.Size(248, 23);
-			this.SoundPath.TabIndex = 1;
+			this.SoundPath.Size = new System.Drawing.Size(210, 23);
+			this.SoundPath.TabIndex = 3;
 			this.SoundPath.TextChanged += new System.EventHandler(this.SoundPath_TextChanged);
 			// 
 			// ButtonTest
@@ -257,8 +295,26 @@
 			this.label5.Location = new System.Drawing.Point(473, 18);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(49, 15);
-			this.label5.TabIndex = 21;
+			this.label5.TabIndex = 20;
 			this.label5.Text = "閉じる：";
+			// 
+			// CloseList
+			// 
+			this.CloseList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.CloseList.CheckOnClick = true;
+			this.CloseList.FormattingEnabled = true;
+			this.CloseList.Items.AddRange(new object[] {
+            NotifyRes.LeftClick,
+            NotifyRes.LeftDoubleClick,
+            NotifyRes.RightClick,
+            NotifyRes.RightDoubleClick,
+            NotifyRes.MiddleClick,
+            NotifyRes.MiddleDoubleClick,
+            NotifyRes.MouseOver});
+			this.CloseList.Location = new System.Drawing.Point(476, 35);
+			this.CloseList.Name = "CloseList";
+			this.CloseList.Size = new System.Drawing.Size(120, 130);
+			this.CloseList.TabIndex = 21;
 			// 
 			// ShowWithActivation
 			// 
@@ -266,9 +322,9 @@
 			this.ShowWithActivation.Location = new System.Drawing.Point(6, 137);
 			this.ShowWithActivation.Name = "ShowWithActivation";
 			this.ShowWithActivation.Size = new System.Drawing.Size(151, 19);
-			this.ShowWithActivation.TabIndex = 1;
-			this.ShowWithActivation.Text = NotifyRes.ShowWithActivation;
-			this.ToolTipText.SetToolTip(this.ShowWithActivation, NotifyRes.ActivationHint);
+			this.ShowWithActivation.TabIndex = 8;
+			this.ShowWithActivation.Text = "表示時にアクティベートする";
+			this.ToolTipText.SetToolTip(this.ShowWithActivation, "表示時にダイアログをアクティブにします。\r\n無効にすると操作を妨げない代わりにダイアログが隠れやすくなります。");
 			this.ShowWithActivation.UseVisualStyleBackColor = true;
 			// 
 			// label4
@@ -277,7 +333,7 @@
 			this.label4.Location = new System.Drawing.Point(6, 78);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(43, 15);
-			this.label4.TabIndex = 4;
+			this.label4.TabIndex = 3;
 			this.label4.Text = NotifyRes.Location + ":";
 			// 
 			// DrawsMessage
@@ -286,7 +342,7 @@
 			this.DrawsMessage.Location = new System.Drawing.Point(6, 108);
 			this.DrawsMessage.Name = "DrawsMessage";
 			this.DrawsMessage.Size = new System.Drawing.Size(123, 19);
-			this.DrawsMessage.TabIndex = 7;
+			this.DrawsMessage.TabIndex = 6;
 			this.DrawsMessage.Text = NotifyRes.DisplayMessage;
 			this.ToolTipText.SetToolTip(this.DrawsMessage, NotifyRes.DisplayMessageHint);
 			this.DrawsMessage.UseVisualStyleBackColor = true;
@@ -297,7 +353,7 @@
 			this.HasFormBorder.Location = new System.Drawing.Point(135, 108);
 			this.HasFormBorder.Name = "HasFormBorder";
 			this.HasFormBorder.Size = new System.Drawing.Size(102, 19);
-			this.HasFormBorder.TabIndex = 8;
+			this.HasFormBorder.TabIndex = 7;
 			this.HasFormBorder.Text = NotifyRes.DisplayWindowBorder;
 			this.ToolTipText.SetToolTip(this.HasFormBorder, NotifyRes.WindowBorderHint);
 			this.HasFormBorder.UseVisualStyleBackColor = true;
@@ -418,7 +474,7 @@
 			this.TopMostFlag.Location = new System.Drawing.Point(268, 77);
 			this.TopMostFlag.Name = "TopMostFlag";
 			this.TopMostFlag.Size = new System.Drawing.Size(114, 19);
-			this.TopMostFlag.TabIndex = 1;
+			this.TopMostFlag.TabIndex = 15;
 			this.TopMostFlag.Text = NotifyRes.ShowOnTop;
 			this.TopMostFlag.UseVisualStyleBackColor = true;
 			// 
@@ -437,7 +493,7 @@
             -2147483648});
 			this.LocationY.Name = "LocationY";
 			this.LocationY.Size = new System.Drawing.Size(80, 23);
-			this.LocationY.TabIndex = 6;
+			this.LocationY.TabIndex = 5;
 			this.LocationY.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
 			this.ToolTipText.SetToolTip(this.LocationY, NotifyRes.LocYHint);
 			this.LocationY.Value = new decimal(new int[] {
@@ -461,7 +517,7 @@
             -2147483648});
 			this.LocationX.Name = "LocationX";
 			this.LocationX.Size = new System.Drawing.Size(80, 23);
-			this.LocationX.TabIndex = 5;
+			this.LocationX.TabIndex = 4;
 			this.LocationX.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
 			this.ToolTipText.SetToolTip(this.LocationX, NotifyRes.LocXHint);
 			this.LocationX.Value = new decimal(new int[] {
@@ -476,7 +532,7 @@
 			this.label1.Location = new System.Drawing.Point(6, 50);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(43, 15);
-			this.label1.TabIndex = 2;
+			this.label1.TabIndex = 1;
 			this.label1.Text = NotifyRes.Alignment + ":";
 			// 
 			// Alignment
@@ -499,7 +555,7 @@
 			this.Alignment.Location = new System.Drawing.Point(80, 47);
 			this.Alignment.Name = "Alignment";
 			this.Alignment.Size = new System.Drawing.Size(121, 23);
-			this.Alignment.TabIndex = 3;
+			this.Alignment.TabIndex = 2;
 			this.ToolTipText.SetToolTip(this.Alignment, NotifyRes.AlignHint);
 			// 
 			// ShowsDialog
@@ -659,37 +715,32 @@
 			this.ToolTipText.InitialDelay = 500;
 			this.ToolTipText.ReshowDelay = 100;
 			// 
-			// CloseList
+			// label10
 			// 
-			this.CloseList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.CloseList.CheckOnClick = true;
-			this.CloseList.FormattingEnabled = true;
-			this.CloseList.Items.AddRange(new object[] {
-            NotifyRes.LeftClick,
-            NotifyRes.LeftDoubleClick,
-            NotifyRes.RightClick,
-            NotifyRes.RightDoubleClick,
-            NotifyRes.MiddleClick,
-            NotifyRes.MiddleDoubleClick,
-            NotifyRes.MouseOver});
-			this.CloseList.Location = new System.Drawing.Point(476, 35);
-			this.CloseList.Name = "CloseList";
-			this.CloseList.Size = new System.Drawing.Size(120, 130);
-			this.CloseList.TabIndex = 20;
+			this.label10.AutoSize = true;
+			this.label10.Location = new System.Drawing.Point(93, 411);
+			this.label10.Name = "label10";
+			this.label10.Size = new System.Drawing.Size(213, 15);
+			this.label10.TabIndex = 8;
+			this.label10.Text = "＊テストを行った時点で設定が適用されます";
 			// 
-			// label5
+			// SoundPathDirectorize
 			// 
-			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(473, 18);
-			this.label5.Name = "label5";
-			this.label5.Size = new System.Drawing.Size(49, 15);
-			this.label5.TabIndex = 21;
-			this.label5.Text = NotifyRes.CloseOn + ":";
+			this.SoundPathDirectorize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.SoundPathDirectorize.Location = new System.Drawing.Point(260, 47);
+			this.SoundPathDirectorize.Name = "SoundPathDirectorize";
+			this.SoundPathDirectorize.Size = new System.Drawing.Size(32, 23);
+			this.SoundPathDirectorize.TabIndex = 6;
+			this.SoundPathDirectorize.Text = "Dir";
+			this.ToolTipText.SetToolTip(this.SoundPathDirectorize, "パスのファイル名部分を削除し、フォルダ指定にします。\r\nパスにフォルダを指定した場合、そのフォルダに含まれる音声ファイルがランダムに再生されます。");
+			this.SoundPathDirectorize.UseVisualStyleBackColor = true;
+			this.SoundPathDirectorize.Click += new System.EventHandler(this.SoundPathDirectorize_Click);
 			// 
 			// DialogConfigurationNotifier
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.ClientSize = new System.Drawing.Size(624, 442);
+			this.Controls.Add(this.label10);
 			this.Controls.Add(this.GroupDamage);
 			this.Controls.Add(this.GroupDialog);
 			this.Controls.Add(this.GroupImage);
@@ -709,6 +760,7 @@
 			this.Load += new System.EventHandler(this.DialogConfigurationNotifier_Load);
 			this.GroupSound.ResumeLayout(false);
 			this.GroupSound.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.SoundVolume)).EndInit();
 			this.GroupImage.ResumeLayout(false);
 			this.GroupImage.PerformLayout();
 			this.GroupDialog.ResumeLayout(false);
@@ -776,5 +828,10 @@
 		private System.Windows.Forms.CheckBox ShowWithActivation;
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.CheckedListBox CloseList;
+		private System.Windows.Forms.Label label9;
+		private System.Windows.Forms.NumericUpDown SoundVolume;
+		private System.Windows.Forms.Label label10;
+		private System.Windows.Forms.CheckBox LoopsSound;
+		private System.Windows.Forms.Button SoundPathDirectorize;
 	}
 }

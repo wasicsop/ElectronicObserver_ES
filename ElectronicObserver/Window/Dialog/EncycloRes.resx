@@ -321,4 +321,34 @@ HP1あたり: 鋼 {0:F2} / 燃 {1:F2}
   <data name="PrototypeCatapult" xml:space="preserve">
     <value>試製甲板カタパルト</value>
   </data>
+  <data name="Any" xml:space="preserve">
+    <value>(全て)</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>日付</value>
+  </data>
+  <data name="Flagship" xml:space="preserve">
+    <value>旗艦</value>
+  </data>
+  <data name="InterruptSearch" xml:space="preserve">
+    <value>検索を中止しますか?</value>
+  </data>
+  <data name="Recipe" xml:space="preserve">
+    <value>レシピ</value>
+  </data>
+  <data name="SearchCancelled" xml:space="preserve">
+    <value>検索がキャンセルされました。</value>
+  </data>
+  <data name="SearchComplete" xml:space="preserve">
+    <value>検索が完了しました。</value>
+  </data>
+  <data name="Searching" xml:space="preserve">
+    <value>検索中です</value>
+  </data>
+  <data name="Times" xml:space="preserve">
+    <value>回数</value>
+  </data>
+  <data name="Unknown" xml:space="preserve">
+    <value>(不明)</value>
+  </data>
 </root>

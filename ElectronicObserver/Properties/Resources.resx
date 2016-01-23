@@ -195,10 +195,10 @@
     <value> を起動しています…</value>
   </data>
   <data name="LayoutLoaded" xml:space="preserve">
-    <value>ウィンドウ レイアウトを復元しました。</value>
+    <value>{0}からウィンドウ レイアウトを復元しました。</value>
   </data>
   <data name="LayoutSaved" xml:space="preserve">
-    <value>ウィンドウ レイアウトを保存しました。</value>
+    <value>{0}へウィンドウ レイアウトを保存しました。</value>
   </data>
   <data name="NewVersionFound" xml:space="preserve">
     <value>新しいバージョンがリリースされています！ :</value>

@@ -62,6 +62,17 @@ namespace ElectronicObserver.Data.Battle {
 		/// </summary>
 		public int DroppedEquipmentCount { get; internal set; }
 
+		/// <summary>
+		/// 出撃中に入手したアイテム - ID と 個数 のペア
+		/// </summary>
+		public Dictionary<int, int> DroppedItemCount { get; internal set; }
+
+
+
+		public BattleManager() {
+			DroppedItemCount = new Dictionary<int, int>();
+		}
+
 
 		public override void LoadFromResponse( string apiname, dynamic data ) {
 			//base.LoadFromResponse( apiname, data );	//不要
@@ -158,6 +169,7 @@ namespace ElectronicObserver.Data.Battle {
 					Result = null;
 					BattleMode = BattleModes.Undefined;
 					DroppedShipCount = DroppedEquipmentCount = 0;
+					DroppedItemCount.Clear();
 					break;
 
 				case "api_get_member/slot_item":
@@ -204,9 +216,15 @@ namespace ElectronicObserver.Data.Battle {
 						Utility.Logger.Add( 2, string.Format( LoggerRes.ShipAdded, ship.ShipTypeName, ship.NameWithClass ) );
 				}
 				if ( itemID != -1 ) {
+
+					if ( !DroppedItemCount.ContainsKey( itemID ) )
+						DroppedItemCount.Add( itemID, 0 );
+					DroppedItemCount[itemID]++;
+
 					if ( showLog ) {
-						var item = KCDatabase.Instance.UseItems[itemID];
-						Utility.Logger.Add( 2, string.Format( LoggerRes.ItemObtained, KCDatabase.Instance.MasterUseItems[itemID].Name, item != null ? item.Count + 1 : 1 ) );
+                        var item = KCDatabase.Instance.UseItems[itemID];
+                        var itemmaster = KCDatabase.Instance.MasterUseItems[itemID];
+						Utility.Logger.Add( 2, string.Format( LoggerRes.ItemObtained, itemmaster != null ? itemmaster.Name : ( "Unknown item - ID: " + itemID), ( item != null ? item.Count : 0 ) + DroppedItemCount[itemID] ) );
 					}
 				}
 
@@ -232,6 +250,7 @@ namespace ElectronicObserver.Data.Battle {
 
 
 			//DEBUG
+			/*/
 			if ( Utility.Configuration.Config.Log.LogLevel <= 1 && Utility.Configuration.Config.Connection.SaveReceivedData ) {
 				IEnumerable<int> damages;
 				switch ( BattleMode & BattleModes.BattlePhaseMask ) {
@@ -253,6 +272,7 @@ namespace ElectronicObserver.Data.Battle {
 					Utility.Logger.Add( 1, LoggerRes.MultiplePossibleMvps );
 				}
 			}
+			//*/
 
 		}
 

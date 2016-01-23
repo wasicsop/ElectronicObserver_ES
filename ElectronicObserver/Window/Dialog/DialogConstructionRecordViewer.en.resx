@@ -117,183 +117,128 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AskClose" xml:space="preserve">
-    <value>will close. Are you sure?</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 15</value>
   </data>
-  <data name="AskForUpdate" xml:space="preserve">
-    <value>A new version has been released - {0}
-New version details:
-{1}
-Open the download page?
-(This dialog will not appear again if you cancel.)</value>
+  <data name="label8.Text" xml:space="preserve">
+    <value>Devmats</value>
   </data>
-  <data name="AskLoad" xml:space="preserve">
-    <value>All unsaved records will be lost.
-Load records?</value>
+  <data name="IsLargeConstruction.Location" type="System.Drawing.Point, System.Drawing">
+    <value>399, 69</value>
   </data>
-  <data name="AskLogin" xml:space="preserve">
-    <value>You will return to the login page.
-Okay?</value>
+  <data name="IsLargeConstruction.Size" type="System.Drawing.Size, System.Drawing">
+    <value>49, 19</value>
   </data>
-  <data name="AskNavText" xml:space="preserve">
-    <value>Enter the URL to which you want to navigate.</value>
+  <data name="IsLargeConstruction.Text" xml:space="preserve">
+    <value>LSC</value>
   </data>
-  <data name="AskNavTitle" xml:space="preserve">
-    <value>Go to...</value>
+  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>42, 15</value>
   </data>
-  <data name="BadUpdateURI" xml:space="preserve">
-    <value>Update data URI was not successful.</value>
+  <data name="label7.Text" xml:space="preserve">
+    <value>Docks</value>
   </data>
-  <data name="Browser" xml:space="preserve">
-    <value>Browser</value>
+  <data name="ButtonRun.Text" xml:space="preserve">
+    <value>Search</value>
   </data>
-  <data name="BrowserClosedWithoutWarning" xml:space="preserve">
-    <value>The browser process closed unexpectedly.</value>
+  <data name="MergeRows.Location" type="System.Drawing.Point, System.Drawing">
+    <value>454, 69</value>
   </data>
-  <data name="BrowserCloseError" xml:space="preserve">
-    <value>The browser had an error during closing.</value>
+  <data name="MergeRows.Size" type="System.Drawing.Size, System.Drawing">
+    <value>77, 19</value>
   </data>
-  <data name="BrowserThrewError" xml:space="preserve">
-    <value>The browser process had a communication error.</value>
+  <data name="MergeRows.Text" xml:space="preserve">
+    <value>Combine</value>
   </data>
-  <data name="Close" xml:space="preserve">
-    <value>Close</value>
+  <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
+    <value>378, 13</value>
   </data>
-  <data name="ClosingComplete" xml:space="preserve">
-    <value>Closing complete.</value>
+  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>45, 15</value>
   </data>
-  <data name="Confirm" xml:space="preserve">
-    <value>Confirm</value>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Recipe</value>
   </data>
-  <data name="DevelopedBy" xml:space="preserve">
-    <value>Original</value>
+  <data name="Recipe.Location" type="System.Drawing.Point, System.Drawing">
+    <value>429, 10</value>
   </data>
-  <data name="Error" xml:space="preserve">
-    <value>Error</value>
+  <data name="Recipe.Size" type="System.Drawing.Size, System.Drawing">
+    <value>183, 23</value>
   </data>
-  <data name="FailedBrowserStart" xml:space="preserve">
-    <value>Failed to start the browser process.</value>
+  <data name="SecretaryName.Location" type="System.Drawing.Point, System.Drawing">
+    <value>203, 65</value>
   </data>
-  <data name="Help" xml:space="preserve">
-    <value>Help</value>
+  <data name="SecretaryCategory.Location" type="System.Drawing.Point, System.Drawing">
+    <value>76, 65</value>
   </data>
-  <data name="HelpAddress" xml:space="preserve">
-    <value>https://github.com/RyuuKitsune/ElectronicObserver/wiki</value>
+  <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>64, 15</value>
   </data>
-  <data name="HelpAsk" xml:space="preserve">
-    <value>Online help will open your web browser.
-Continue?</value>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Secretary</value>
   </data>
-  <data name="InitLayout" xml:space="preserve">
-    <value>Your window layout has been set to initial defaults.
-Add windows of your choosing using the "View" menu.</value>
+  <data name="DateEnd.Location" type="System.Drawing.Point, System.Drawing">
+    <value>246, 39</value>
   </data>
-  <data name="IsClosing" xml:space="preserve">
-    <value> is closing...</value>
+  <data name="DateEnd.Size" type="System.Drawing.Size, System.Drawing">
+    <value>119, 23</value>
   </data>
-  <data name="IsStarting" xml:space="preserve">
-    <value> is starting...</value>
+  <data name="DateBegin.Location" type="System.Drawing.Point, System.Drawing">
+    <value>246, 10</value>
   </data>
-  <data name="LayoutLoaded" xml:space="preserve">
-    <value>Successfully loaded window layout from {0}.</value>
+  <data name="DateBegin.Size" type="System.Drawing.Size, System.Drawing">
+    <value>119, 23</value>
   </data>
-  <data name="LayoutSaved" xml:space="preserve">
-    <value>Successfully saved window layout from {0}.</value>
+  <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>212, 42</value>
   </data>
-  <data name="NewVersionFound" xml:space="preserve">
-    <value>A new version has been released! - </value>
+  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>28, 15</value>
   </data>
-  <data name="NoEquipData" xml:space="preserve">
-    <value>Equipment data has not been loaded</value>
+  <data name="label4.Text" xml:space="preserve">
+    <value>End</value>
   </data>
-  <data name="NoLayoutFound" xml:space="preserve">
-    <value>No window layout found.</value>
+  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>203, 13</value>
   </data>
-  <data name="NoShipData" xml:space="preserve">
-    <value>Ship data has not been loaded.</value>
+  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>37, 15</value>
   </data>
-  <data name="OpenLayout" xml:space="preserve">
-    <value>Open Layout File</value>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Start</value>
   </data>
-  <data name="OriginalSite" xml:space="preserve">
-    <value>Original Site (bug reports, contact)</value>
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 15</value>
   </data>
-  <data name="SoftwareName" xml:space="preserve">
-    <value>Type 74 Electronic Observer </value>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Category</value>
   </data>
-  <data name="StartupComplete" xml:space="preserve">
-    <value>Startup complete.</value>
+  <data name="ShipCategory.Location" type="System.Drawing.Point, System.Drawing">
+    <value>76, 10</value>
   </data>
-  <data name="TranslatedSite" xml:space="preserve">
-    <value>Translation Site</value>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>42, 15</value>
   </data>
-  <data name="TranslatedVer" xml:space="preserve">
-    <value>Translation</value>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Name</value>
   </data>
-  <data name="Update" xml:space="preserve">
-    <value>Update</value>
+  <data name="ShipName.Location" type="System.Drawing.Point, System.Drawing">
+    <value>76, 39</value>
   </data>
-  <data name="UpdateCheckFailed" xml:space="preserve">
-    <value>Failed to obtain update data.</value>
+  <data name="RecordView_Name.HeaderText" xml:space="preserve">
+    <value>Name</value>
   </data>
-  <data name="UpdateConnectionFailed" xml:space="preserve">
-    <value>Failed to process update data.</value>
+  <data name="RecordView_Date.HeaderText" xml:space="preserve">
+    <value>Date</value>
   </data>
-  <data name="Version" xml:space="preserve">
-    <value>2.0.0 [TL 2.0b]</value>
+  <data name="RecordView_Recipe.HeaderText" xml:space="preserve">
+    <value>Recipe</value>
   </data>
-  <data name="VersionCurrent" xml:space="preserve">
-    <value>You are currently using the latest version.</value>
+  <data name="RecordView_SecretaryShip.HeaderText" xml:space="preserve">
+    <value>Secretary</value>
   </data>
-  <data name="VersionTitle" xml:space="preserve">
-    <value>Version</value>
-  </data>
-  <data name="ZoomCurrent" xml:space="preserve">
-    <value>Current</value>
-  </data>
-  <data name="FirstTimeDialog" xml:space="preserve">
-    <value>Thank you for using {0}.
-For settings and usage information, please see the "Help" → "Online Help" option in the menus.
-Reading is recommended before use.</value>
-  </data>
-  <data name="FirstTimeTitle" xml:space="preserve">
-    <value>First Time Start</value>
-  </data>
-  <data name="FailedNewRecords" xml:space="preserve">
-    <value>Conversion of record files failed.</value>
-  </data>
-  <data name="FailedRecordDialog" xml:space="preserve">
-    <value>Conversion failed with error:
-{0}
-Continue starting Electronic Observer?
-(Continuing may corrupt your current records.)
-</value>
-  </data>
-  <data name="NewRecordFormat" xml:space="preserve">
-    <value>It is detected that you are upgrading from a previous version.
-We will now convert your current record files into a new format.
-(Your original files will be moved to the Record_Backup folder.)
-Continue?
-(If you do not convert your records, they may become unreadable.)</value>
-  </data>
-  <data name="NewRecordTitle" xml:space="preserve">
-    <value>Upgrade Confirmation (~1.4.6)</value>
-  </data>
-  <data name="FailedToDelete" xml:space="preserve">
-    <value>Failed to clear data.
-</value>
-  </data>
-  <data name="GroupUpgradeFailed" xml:space="preserve">
-    <value>Failed to clear data related to the group data update.</value>
-  </data>
-  <data name="NewGroupFormat" xml:space="preserve">
-    <value>It is detected that you are upgrading from a previous version.
-Previous ship group data has become incompatible, so it must be initialized (currently existing files will be moved to Settings_Backup).
-Continue?
-If you continue without initializing, errors may occur.
-</value>
-  </data>
-  <data name="NewGroupFormatTitle" xml:space="preserve">
-    <value>Upgrade Confirmation (~1.5.0)</value>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Construction Record</value>
   </data>
 </root>

@@ -60,11 +60,6 @@ namespace ElectronicObserver.Utility {
 				public bool SaveReceivedData { get; set; }
 
 				/// <summary>
-				/// 通信内容保存：フィルタ
-				/// </summary>
-				public string SaveDataFilter { get; set; }
-
-				/// <summary>
 				/// 通信内容保存：保存先
 				/// </summary>
 				public string SaveDataPath { get; set; }
@@ -94,6 +89,7 @@ namespace ElectronicObserver.Utility {
 				/// </summary>
 				public bool ApplyVersion { get; set; }
 
+
 				/// <summary>
 				/// システムプロキシに登録するか
 				/// </summary>
@@ -115,6 +111,18 @@ namespace ElectronicObserver.Utility {
 				public string UpstreamProxyAddress { get; set; }
 
 				/// <summary>
+				/// システムプロキシを利用するか
+				/// </summary>
+				public bool UseSystemProxy { get; set; }
+
+				/// <summary>
+				/// 下流プロキシ設定
+				/// 空なら他の設定から自動生成する
+				/// </summary>
+				public string DownstreamProxy { get; set; }
+
+
+				/// <summary>
 				/// kancolle-db.netに送信する
 				/// </summary>
 				public bool SendDataToKancolleDB { get; set; }
@@ -129,7 +137,6 @@ namespace ElectronicObserver.Utility {
 
 					Port = 40620;
 					SaveReceivedData = false;
-					SaveDataFilter = "";
 					SaveDataPath = @"KCAPI";
 					SaveRequest = false;
 					SaveResponse = true;
@@ -140,6 +147,8 @@ namespace ElectronicObserver.Utility {
 					UseUpstreamProxy = false;
 					UpstreamProxyPort = 0;
 					UpstreamProxyAddress = "127.0.0.1";
+					UseSystemProxy = false;
+					DownstreamProxy = "";
 					SendDataToKancolleDB = false;
 					SendKancolleOAuth = "";
 
@@ -162,15 +171,87 @@ namespace ElectronicObserver.Utility {
 				/// サブフォント
 				/// </summary>
 				public SerializableFont SubFont { get; set; }
-
+                
                 public Theme Theme { get; set; }
 
-				public ConfigUI() {
+				[IgnoreDataMember]
+				private bool _barColorMorphing;
+
+				/// <summary>
+				/// HPバーの色を滑らかに変化させるか
+				/// </summary>
+				public bool BarColorMorphing {
+					get { return _barColorMorphing; }
+					set {
+						_barColorMorphing = value;
+
+						if ( !_barColorMorphing )
+							BarColorScheme = new List<SerializableColor>( DefaultBarColorScheme[0] );
+						else
+							BarColorScheme = new List<SerializableColor>( DefaultBarColorScheme[1] );
+					}
+				}
+
+				/// <summary>
+				/// HPバーのカラーリング
+				/// </summary>
+				public List<SerializableColor> BarColorScheme { get; set; }
+
+
+				[IgnoreDataMember]
+				private readonly List<SerializableColor>[] DefaultBarColorScheme = new List<SerializableColor>[] {
+					new List<SerializableColor>() {
+						SerializableColor.UIntToColor( 0xFFFF0000 ),
+						SerializableColor.UIntToColor( 0xFFFF0000 ),
+						SerializableColor.UIntToColor( 0xFFFF8800 ),
+						SerializableColor.UIntToColor( 0xFFFF8800 ),
+						SerializableColor.UIntToColor( 0xFFFFCC00 ),
+						SerializableColor.UIntToColor( 0xFFFFCC00 ),
+						SerializableColor.UIntToColor( 0xFF00CC00 ),
+						SerializableColor.UIntToColor( 0xFF00CC00 ),
+						SerializableColor.UIntToColor( 0xFF0044CC ),
+						SerializableColor.UIntToColor( 0xFF44FF00 ),
+						SerializableColor.UIntToColor( 0xFF882222 ),
+						SerializableColor.UIntToColor( 0xFF888888 ),
+					},
+					/*/// recognize
+					new List<SerializableColor>() {
+						SerializableColor.UIntToColor( 0xFFFF0000 ),
+						SerializableColor.UIntToColor( 0xFFFF0000 ),
+						SerializableColor.UIntToColor( 0xFFFF6600 ),
+						SerializableColor.UIntToColor( 0xFFFF9900 ),
+						SerializableColor.UIntToColor( 0xFFFFCC00 ),
+						SerializableColor.UIntToColor( 0xFFEEEE00 ),
+						SerializableColor.UIntToColor( 0xFFAAEE00 ),
+						SerializableColor.UIntToColor( 0xFF00CC00 ),
+						SerializableColor.UIntToColor( 0xFF0044CC ),
+						SerializableColor.UIntToColor( 0xFF00FF44 ),
+						SerializableColor.UIntToColor( 0xFF882222 ),
+						SerializableColor.UIntToColor( 0xFF888888 ),
+					},
+					/*/// gradation
+					new List<SerializableColor>() {
+						SerializableColor.UIntToColor( 0xFFFF0000 ),
+						SerializableColor.UIntToColor( 0xFFFF0000 ),
+						SerializableColor.UIntToColor( 0xFFFF4400 ),
+						SerializableColor.UIntToColor( 0xFFFF8800 ),
+						SerializableColor.UIntToColor( 0xFFFFAA00 ),
+						SerializableColor.UIntToColor( 0xFFEEEE00 ),
+						SerializableColor.UIntToColor( 0xFFCCEE00 ),
+						SerializableColor.UIntToColor( 0xFF00CC00 ),
+						SerializableColor.UIntToColor( 0xFF0044CC ),
+						SerializableColor.UIntToColor( 0xFF00FF44 ),
+						SerializableColor.UIntToColor( 0xFF882222 ),
+						SerializableColor.UIntToColor( 0xFF888888 ),
+					},
 					//*/
+				};
+
+				public ConfigUI() {
 					MainFont = new Font( "Meiryo UI", 12, FontStyle.Regular, GraphicsUnit.Pixel );
 					SubFont = new Font( "Meiryo UI", 10, FontStyle.Regular, GraphicsUnit.Pixel );
                     Theme = Theme.Light;
-					//*/
+					BarColorMorphing = false;
 				}
 			}
 			/// <summary>UI</summary>
@@ -262,9 +343,27 @@ namespace ElectronicObserver.Utility {
 				/// </summary>
 				public int RecordAutoSaving { get; set; }
 
+				/// <summary>
+				/// システムの音量設定を利用するか
+				/// </summary>
+				public bool UseSystemVolume { get; set; }
+
+				/// <summary>
+				/// 前回終了時の音量
+				/// </summary>
+				public float LastVolume { get; set; }
+
+				/// <summary>
+				/// 前回終了時にミュート状態だったか
+				/// </summary>
+				public bool LastIsMute { get; set; }
+
 				public ConfigControl() {
 					ConditionBorder = 40;
 					RecordAutoSaving = 1;
+					UseSystemVolume = true;
+					LastVolume = 0.8f;
+					LastIsMute = false;
 				}
 			}
 			/// <summary>動作</summary>
@@ -339,6 +438,16 @@ namespace ElectronicObserver.Utility {
 				/// </summary>
 				public int ClockFormat { get; set; }
 
+				/// <summary>
+				/// レイアウトをロックするか
+				/// </summary>
+				public bool LockLayout { get; set; }
+
+				/// <summary>
+				/// レイアウトロック中でもフロートウィンドウを閉じられるようにするか
+				/// </summary>
+				public bool CanCloseFloatWindowInLock { get; set; }
+
 				public ConfigLife() {
 					ConfirmOnClosing = true;
 					TopMost = false;
@@ -346,6 +455,8 @@ namespace ElectronicObserver.Utility {
 					CheckUpdateInformation = true;
 					ShowStatusBar = true;
 					ClockFormat = 0;
+					LockLayout = false;
+					CanCloseFloatWindowInLock = false;
 				}
 			}
 			/// <summary>起動と終了</summary>
@@ -437,7 +548,11 @@ namespace ElectronicObserver.Utility {
 				/// </summary>
 				public int AirSuperiorityMethod { get; set; }
 
+				/// <summary>
+				/// 泊地修理タイマを表示するか
+				/// </summary>
 				public bool ShowAnchorageRepairingTimer { get; set; }
+
 
 				public ConfigFormFleet() {
 					ShowAircraft = true;
@@ -523,14 +638,11 @@ namespace ElectronicObserver.Utility {
 			/// </summary>
 			public class ConfigFormShipGroup : ConfigPartBase {
 
-				public int SplitterDistance { get; set; }
-
 				public bool AutoUpdate { get; set; }
 
 				public bool ShowStatusBar { get; set; }
 
 				public ConfigFormShipGroup() {
-					SplitterDistance = 40;
 					AutoUpdate = true;
 					ShowStatusBar = true;
 				}
@@ -658,6 +770,10 @@ namespace ElectronicObserver.Utility {
 
 				public bool PlaysSound { get; set; }
 
+				public int SoundVolume { get; set; }
+
+				public bool LoopsSound { get; set; }
+
 				public bool DrawsMessage { get; set; }
 
 				public int ClosingInterval { get; set; }
@@ -690,6 +806,8 @@ namespace ElectronicObserver.Utility {
 					DrawsImage = false;
 					SoundPath = "";
 					PlaysSound = false;
+					SoundVolume = 100;
+					LoopsSound = false;
 					DrawsMessage = true;
 					ClosingInterval = 10000;
 					AccelInterval = 0;
@@ -755,6 +873,28 @@ namespace ElectronicObserver.Utility {
 			public ConfigNotifierDamage NotifierDamage { get; private set; }
 
 
+			/// <summary>
+			/// SyncBGMPlayer の設定を扱います。
+			/// </summary>
+			public class ConfigBGMPlayer : ConfigPartBase {
+
+				public bool Enabled { get; set; }
+				public List<SyncBGMPlayer.SoundHandle> Handles { get; set; }
+				public bool SyncBrowserMute { get; set; }
+
+				public ConfigBGMPlayer()
+					: base() {
+					// 初期値定義は SyncBGMPlayer 内でも
+					Enabled = false;
+					Handles = new List<SyncBGMPlayer.SoundHandle>();
+					foreach ( SyncBGMPlayer.SoundHandleID id in Enum.GetValues( typeof( SyncBGMPlayer.SoundHandleID ) ) )
+						Handles.Add( new SyncBGMPlayer.SoundHandle( id ) );
+					SyncBrowserMute = false;
+				}
+			}
+			[DataMember]
+			public ConfigBGMPlayer BGMPlayer { get; private set; }
+
 
 			public class ConfigWhitecap : ConfigPartBase {
 
@@ -819,6 +959,7 @@ namespace ElectronicObserver.Utility {
 				NotifierCondition = new ConfigNotifierBase();
 				NotifierDamage = new ConfigNotifierDamage();
 
+				BGMPlayer = new ConfigBGMPlayer();
 				Whitecap = new ConfigWhitecap();
 
 				VersionUpdateTime = DateTimeHelper.TimeToCSVString( SoftwareInformation.UpdateTime );

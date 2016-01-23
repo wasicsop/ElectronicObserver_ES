@@ -24,6 +24,13 @@ namespace ElectronicObserver.Window.Dialog {
 		private static readonly bool DefaultGPURendering = false;
 
 
+		private System.Windows.Forms.Control _UIControl;
+
+		private Dictionary<SyncBGMPlayer.SoundHandleID, SyncBGMPlayer.SoundHandle> BGMHandles;
+
+
+
+
 		public DialogConfiguration() {
 			InitializeComponent();
 
@@ -111,7 +118,7 @@ namespace ElectronicObserver.Window.Dialog {
 
 			this.Icon = ResourceManager.ImageToIcon( ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormConfiguration] );
 
-
+			_UIControl = Owner;
 
 		}
 
@@ -238,7 +245,11 @@ namespace ElectronicObserver.Window.Dialog {
 
 		private void Debug_EnableDebugMenu_CheckedChanged( object sender, EventArgs e ) {
 
-			Debug_SealingPanel.Visible = Debug_EnableDebugMenu.Checked;
+			Debug_SealingPanel.Visible =
+			Connection_UpstreamProxyAddress.Visible =
+			Connection_DownstreamProxy.Visible =
+			Connection_DownstreamProxyLabel.Visible =
+				Debug_EnableDebugMenu.Checked;
 		}
 
 
@@ -256,7 +267,6 @@ namespace ElectronicObserver.Window.Dialog {
 			//[通信]
 			Connection_Port.Value = config.Connection.Port;
 			Connection_SaveReceivedData.Checked = config.Connection.SaveReceivedData;
-			Connection_SaveDataFilter.Text = config.Connection.SaveDataFilter;
 			Connection_SaveDataPath.Text = config.Connection.SaveDataPath;
 			Connection_SaveRequest.Checked = config.Connection.SaveRequest;
 			Connection_SaveResponse.Checked = config.Connection.SaveResponse;
@@ -266,6 +276,9 @@ namespace ElectronicObserver.Window.Dialog {
 			Connection_RegisterAsSystemProxy.Checked = config.Connection.RegisterAsSystemProxy;
 			Connection_UseUpstreamProxy.Checked = config.Connection.UseUpstreamProxy;
 			Connection_UpstreamProxyPort.Value = config.Connection.UpstreamProxyPort;
+			Connection_UpstreamProxyAddress.Text = config.Connection.UpstreamProxyAddress;
+			Connection_UseSystemProxy.Checked = config.Connection.UseSystemProxy;
+			Connection_DownstreamProxy.Text = config.Connection.DownstreamProxy;
 
 			//[UI]
 			UI_MainFont.Font = config.UI.MainFont.FontData;
@@ -274,6 +287,7 @@ namespace ElectronicObserver.Window.Dialog {
 			UI_SubFont.Text = config.UI.SubFont.SerializeFontAttribute;
             selectTheme.DataSource = Enum.GetValues(typeof(Theme));
             selectTheme.SelectedItem = config.UI.Theme;
+			UI_BarColorMorphing.Checked = config.UI.BarColorMorphing;
 
 			//[ログ]
 			Log_LogLevel.Value = config.Log.LogLevel;
@@ -285,6 +299,7 @@ namespace ElectronicObserver.Window.Dialog {
 			//[動作]
 			Control_ConditionBorder.Value = config.Control.ConditionBorder;
 			Control_RecordAutoSaving.SelectedIndex = config.Control.RecordAutoSaving;
+			Control_UseSystemVolume.Checked = config.Control.UseSystemVolume;
 
 			//[デバッグ]
 			Debug_EnableDebugMenu.Checked = config.Debug.EnableDebugMenu;
@@ -298,6 +313,8 @@ namespace ElectronicObserver.Window.Dialog {
 			Life_CheckUpdateInformation.Checked = config.Life.CheckUpdateInformation;
 			Life_ShowStatusBar.Checked = config.Life.ShowStatusBar;
 			Life_ClockFormat.SelectedIndex = config.Life.ClockFormat;
+			Life_LockLayout.Checked = config.Life.LockLayout;
+			Life_CanCloseFloatWindowInLock.Checked = config.Life.CanCloseFloatWindowInLock;
 
 			//[サブウィンドウ]
 			FormArsenal_ShowShipName.Checked = config.FormArsenal.ShowShipName;
@@ -343,7 +360,8 @@ namespace ElectronicObserver.Window.Dialog {
 					} else {
 						FormBrowser_BrowserVersion.Text = ( reg.GetValue( FormBrowserHost.BrowserExeName ) ?? DefaultBrowserVersion ).ToString();
 					}
-					reg.Close();
+					if ( reg != null )
+						reg.Close();
 
 					reg = Microsoft.Win32.Registry.CurrentUser.OpenSubKey( RegistryPathMaster + RegistryPathGPURendering );
 					if ( reg == null ) {
@@ -374,6 +392,11 @@ namespace ElectronicObserver.Window.Dialog {
 			Database_SendDataToKancolleDB.Checked = config.Connection.SendDataToKancolleDB;
 			Database_SendKancolleOAuth.Text = config.Connection.SendKancolleOAuth;
 
+			//[BGM]
+			BGMPlayer_Enabled.Checked = config.BGMPlayer.Enabled;
+			BGMHandles = config.BGMPlayer.Handles.ToDictionary( h => h.HandleID );
+			BGMPlayer_SyncBrowserMute.Checked = config.BGMPlayer.SyncBrowserMute;
+			UpdateBGMPlayerUI();
 
 			//finalize
 			UpdateParameter();
@@ -394,7 +417,6 @@ namespace ElectronicObserver.Window.Dialog {
 				config.Connection.Port = (ushort)Connection_Port.Value;
 
 				config.Connection.SaveReceivedData = Connection_SaveReceivedData.Checked;
-				config.Connection.SaveDataFilter = Connection_SaveDataFilter.Text;
 				config.Connection.SaveDataPath = Connection_SaveDataPath.Text.Trim( @"\ """.ToCharArray() );
 				config.Connection.SaveRequest = Connection_SaveRequest.Checked;
 				config.Connection.SaveResponse = Connection_SaveResponse.Checked;
@@ -409,10 +431,17 @@ namespace ElectronicObserver.Window.Dialog {
 				config.Connection.UseUpstreamProxy = Connection_UseUpstreamProxy.Checked;
 				changed |= config.Connection.UpstreamProxyPort != (ushort)Connection_UpstreamProxyPort.Value;
 				config.Connection.UpstreamProxyPort = (ushort)Connection_UpstreamProxyPort.Value;
+				changed |= config.Connection.UpstreamProxyAddress != Connection_UpstreamProxyAddress.Text;
+				config.Connection.UpstreamProxyAddress = Connection_UpstreamProxyAddress.Text;
+
+				changed |= config.Connection.UseSystemProxy != Connection_UseSystemProxy.Checked;
+				config.Connection.UseSystemProxy = Connection_UseSystemProxy.Checked;
+
+				changed |= config.Connection.DownstreamProxy != Connection_DownstreamProxy.Text;
+				config.Connection.DownstreamProxy = Connection_DownstreamProxy.Text;
 
 				if ( changed ) {
-					APIObserver.Instance.Stop();
-					APIObserver.Instance.Start( config.Connection.Port, this );
+					APIObserver.Instance.Start( config.Connection.Port, _UIControl );
 				}
 
 			}
@@ -421,8 +450,9 @@ namespace ElectronicObserver.Window.Dialog {
 			config.UI.MainFont = UI_MainFont.Font;
 			config.UI.SubFont = UI_SubFont.Font;
             Theme theme;
-            Enum.TryParse<Utility.Theme>(selectTheme.SelectedValue.ToString(), out theme);
+            Enum.TryParse(selectTheme.SelectedValue.ToString(), out theme);
             config.UI.Theme = theme;
+			config.UI.BarColorMorphing = UI_BarColorMorphing.Checked;
 
 			//[ログ]
 			config.Log.LogLevel = (int)Log_LogLevel.Value;
@@ -434,6 +464,7 @@ namespace ElectronicObserver.Window.Dialog {
 			//[動作]
 			config.Control.ConditionBorder = (int)Control_ConditionBorder.Value;
 			config.Control.RecordAutoSaving = Control_RecordAutoSaving.SelectedIndex;
+			config.Control.UseSystemVolume = Control_UseSystemVolume.Checked;
 
 			//[デバッグ]
 			config.Debug.EnableDebugMenu = Debug_EnableDebugMenu.Checked;
@@ -447,6 +478,8 @@ namespace ElectronicObserver.Window.Dialog {
 			config.Life.CheckUpdateInformation = Life_CheckUpdateInformation.Checked;
 			config.Life.ShowStatusBar = Life_ShowStatusBar.Checked;
 			config.Life.ClockFormat = Life_ClockFormat.SelectedIndex;
+			config.Life.LockLayout = Life_LockLayout.Checked;
+			config.Life.CanCloseFloatWindowInLock = Life_CanCloseFloatWindowInLock.Checked;
 
 			//[サブウィンドウ]
 			config.FormArsenal.ShowShipName = FormArsenal_ShowShipName.Checked;
@@ -490,6 +523,32 @@ namespace ElectronicObserver.Window.Dialog {
 			config.Connection.SendDataToKancolleDB = Database_SendDataToKancolleDB.Checked;
 			config.Connection.SendKancolleOAuth = Database_SendKancolleOAuth.Text;
 
+			//[BGM]
+			config.BGMPlayer.Enabled = BGMPlayer_Enabled.Checked;
+			for ( int i = 0; i < BGMPlayer_ControlGrid.Rows.Count; i++ ) {
+				BGMHandles[(SyncBGMPlayer.SoundHandleID)BGMPlayer_ControlGrid[BGMPlayer_ColumnContent.Index, i].Value].Enabled = (bool)BGMPlayer_ControlGrid[BGMPlayer_ColumnEnabled.Index, i].Value;
+			}
+			config.BGMPlayer.Handles = new List<SyncBGMPlayer.SoundHandle>( BGMHandles.Values.ToList() );
+			config.BGMPlayer.SyncBrowserMute = BGMPlayer_SyncBrowserMute.Checked;
+		}
+
+
+		private void UpdateBGMPlayerUI() {
+
+			BGMPlayer_ControlGrid.Rows.Clear();
+
+			var rows = new DataGridViewRow[BGMHandles.Count];
+
+			int i = 0;
+			foreach ( var h in BGMHandles.Values ) {
+				var row = new DataGridViewRow();
+				row.CreateCells( BGMPlayer_ControlGrid );
+				row.SetValues( h.Enabled, h.HandleID, h.Path );
+				rows[i] = row;
+				i++;
+			}
+
+			BGMPlayer_ControlGrid.Rows.AddRange( rows );
 		}
 
 
@@ -555,6 +614,56 @@ namespace ElectronicObserver.Window.Dialog {
 
 		private void Database_LinkKCDB_LinkClicked( object sender, LinkLabelLinkClickedEventArgs e ) {
 			System.Diagnostics.Process.Start( "http://kancolle-db.net/" );
+		}
+
+
+
+		// BGMPlayer
+		private void BGMPlayer_ControlGrid_CellContentClick( object sender, DataGridViewCellEventArgs e ) {
+			if ( e.ColumnIndex == BGMPlayer_ColumnSetting.Index ) {
+
+				var handleID = (SyncBGMPlayer.SoundHandleID)BGMPlayer_ControlGrid[BGMPlayer_ColumnContent.Index, e.RowIndex].Value;
+
+				using ( var dialog = new DialogConfigurationBGMPlayer( BGMHandles[handleID] ) ) {
+					if ( dialog.ShowDialog( this ) == System.Windows.Forms.DialogResult.OK ) {
+						BGMHandles[handleID] = dialog.ResultHandle;
+					}
+				}
+
+				UpdateBGMPlayerUI();
+			}
+		}
+
+		private void BGMPlayer_ControlGrid_CellFormatting( object sender, DataGridViewCellFormattingEventArgs e ) {
+
+			if ( e.ColumnIndex == BGMPlayer_ColumnContent.Index ) {
+				e.Value = SyncBGMPlayer.SoundHandleIDToString( (SyncBGMPlayer.SoundHandleID)e.Value );
+				e.FormattingApplied = true;
+			}
+
+		}
+
+		//for checkbox
+		private void BGMPlayer_ControlGrid_CurrentCellDirtyStateChanged( object sender, EventArgs e ) {
+			if ( BGMPlayer_ControlGrid.Columns[BGMPlayer_ControlGrid.CurrentCellAddress.X] is DataGridViewCheckBoxColumn ) {
+				if ( BGMPlayer_ControlGrid.IsCurrentCellDirty ) {
+					BGMPlayer_ControlGrid.CommitEdit( DataGridViewDataErrorContexts.Commit );
+				}
+			}
+		}
+
+		private void BGMPlayer_SetVolumeAll_Click( object sender, EventArgs e ) {
+
+			if ( MessageBox.Show( "すべてのBGMに対して音量 " + (int)BGMPlayer_VolumeAll.Value + " を適用します。\r\nよろしいですか？\r\n", "音量一括設定の確認",
+				MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1 ) == System.Windows.Forms.DialogResult.Yes ) {
+
+				foreach ( var h in BGMHandles.Values ) {
+					h.Volume = (int)BGMPlayer_VolumeAll.Value;
+				}
+
+				UpdateBGMPlayerUI();
+			}
+
 		}
 
 	}

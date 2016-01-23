@@ -1,4 +1,5 @@
 ﻿using BrowserLib;
+using ElectronicObserver.Observer;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Properties;
 using ElectronicObserver.Utility.Mathematics;
@@ -56,7 +57,6 @@ namespace ElectronicObserver.Window {
 		public FormBrowserHost( FormMain parent ) {
 			InitializeComponent();
 
-			LabelWarning.Text = "ブラウザを起動しています。\r\nしばらくお待ちください。\r\n";
 			Icon = ResourceManager.ImageToIcon( ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormBrowser] );
 		}
 
@@ -66,8 +66,6 @@ namespace ElectronicObserver.Window {
 				if ( Utility.Configuration.Config.FormBrowser.IsEnabled ) {
 					NavigateToLogInPage();
 				}
-
-				LabelWarning.Text = "何らかの原因によってブラウザプロセスの起動に失敗したか、通信が途絶しました。\r\n申し訳ありませんが再起動してください。\r\n";
 			}
 		}
 
@@ -106,7 +104,7 @@ namespace ElectronicObserver.Window {
             ForeColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.MainFontColor);
             Configuration.Theme = (uint)Utility.Configuration.Config.UI.Theme;
             Browser.AsyncRemoteRun(() => Browser.Proxy.ConfigurationChanged(Configuration));
-			Font = LabelWarning.Font = Utility.Configuration.Config.UI.MainFont;
+			Font = Utility.Configuration.Config.UI.MainFont;
 			Browser.AsyncRemoteRun( () => Browser.Proxy.ConfigurationChanged( Configuration ) );
 		}
 
@@ -210,6 +208,10 @@ namespace ElectronicObserver.Window {
 			c.ToolMenuDockStyle = (DockStyle)config.ToolMenuDockStyle;
 			c.IsToolMenuVisible = config.IsToolMenuVisible;
 			c.ConfirmAtRefresh = config.ConfirmAtRefresh;
+			// volume
+			if ( Utility.Configuration.Config.BGMPlayer.SyncBrowserMute ) {
+				Utility.SyncBGMPlayer.Instance.IsMute = config.IsMute;
+			}
 		}
 
 		public void GetIconResource() {
@@ -281,15 +283,13 @@ namespace ElectronicObserver.Window {
 
 				Utility.Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
 
-				Observer.APIObserver.Instance.APIList["api_start2"].ResponseReceived +=
+				APIObserver.Instance.APIList["api_start2"].ResponseReceived +=
 					( string apiname, dynamic data ) => InitialAPIReceived( apiname, data );
 
 				// プロキシをセット
-				Browser.AsyncRemoteRun( () =>
-					Browser.Proxy.SetProxy( Utility.Configuration.Config.Connection.UpstreamProxyAddress, Observer.APIObserver.Instance.ProxyPort ) );
-				Observer.APIObserver.Instance.ProxyStarted += () => {
-					Browser.AsyncRemoteRun( () =>
-						Browser.Proxy.SetProxy( Utility.Configuration.Config.Connection.UpstreamProxyAddress, Observer.APIObserver.Instance.ProxyPort ) );
+				Browser.AsyncRemoteRun( () => Browser.Proxy.SetProxy( BuildDownstreamProxy() ) );
+				APIObserver.Instance.ProxyStarted += () => {
+					Browser.AsyncRemoteRun( () => Browser.Proxy.SetProxy( BuildDownstreamProxy() ) );
 				};
 
 				++initializeCompletionCount;
@@ -300,6 +300,21 @@ namespace ElectronicObserver.Window {
 				}
 			} ) );
 		}
+
+		private string BuildDownstreamProxy() {
+			var config = Utility.Configuration.Config.Connection;
+
+			if ( !string.IsNullOrEmpty( config.DownstreamProxy ) ) {
+				return config.DownstreamProxy;
+
+			} else if ( config.UseSystemProxy ) {
+				return APIObserver.Instance.ProxyPort.ToString();
+
+			} else {
+				return string.Format( "http=127.0.0.1:{0}", APIObserver.Instance.ProxyPort );
+			}
+		}
+
 
 		void Browser_Faulted( Exception e ) {
 			if ( Browser.Proxy == null ) {
