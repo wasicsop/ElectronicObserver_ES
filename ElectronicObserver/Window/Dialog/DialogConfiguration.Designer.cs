@@ -307,8 +307,8 @@
 			this.Connection_UseSystemProxy.Name = "Connection_UseSystemProxy";
 			this.Connection_UseSystemProxy.Size = new System.Drawing.Size(135, 19);
 			this.Connection_UseSystemProxy.TabIndex = 9;
-			this.Connection_UseSystemProxy.Text = "システムプロキシを利用";
-			this.ToolTipInfo.SetToolTip(this.Connection_UseSystemProxy, "システムのプロキシ設定を利用します。");
+			this.Connection_UseSystemProxy.Text = ConfigRes.UseSystemProxy;
+			this.ToolTipInfo.SetToolTip(this.Connection_UseSystemProxy, ConfigRes.UseSystemProxyTooltip);
 			this.Connection_UseSystemProxy.UseVisualStyleBackColor = true;
 			//
 			// Connection_UpstreamProxyPort
@@ -932,7 +932,7 @@
 			this.Life_CanCloseFloatWindowInLock.Name = "Life_CanCloseFloatWindowInLock";
 			this.Life_CanCloseFloatWindowInLock.Size = new System.Drawing.Size(197, 19);
 			this.Life_CanCloseFloatWindowInLock.TabIndex = 10;
-			this.Life_CanCloseFloatWindowInLock.Text = "ロック中でもフロートウィンドウを閉じる";
+			this.Life_CanCloseFloatWindowInLock.Text = ConfigRes.Life_CanCloseFloatWindowInLock;
 			this.ToolTipInfo.SetToolTip(this.Life_CanCloseFloatWindowInLock, "上記「レイアウトをロックする」が有効な時でも、\r\nフロートウィンドウ(本体とは分離したウィンドウ)を閉じられるようにするかを指定します。\r\nよくウィンドウを一時的" +
         "に開く方は有効にすると便利です。");
 			this.Life_CanCloseFloatWindowInLock.UseVisualStyleBackColor = true;
@@ -944,8 +944,8 @@
 			this.Life_LockLayout.Name = "Life_LockLayout";
 			this.Life_LockLayout.Size = new System.Drawing.Size(122, 19);
 			this.Life_LockLayout.TabIndex = 9;
-			this.Life_LockLayout.Text = "レイアウトをロックする";
-			this.ToolTipInfo.SetToolTip(this.Life_LockLayout, "サイズやレイアウトの変更を防止するかを指定します。");
+			this.Life_LockLayout.Text = ConfigRes.Life_LockLayout;
+			this.ToolTipInfo.SetToolTip(this.Life_LockLayout, ConfigRes.Life_LockLayout_Tooltip);
 			this.Life_LockLayout.UseVisualStyleBackColor = true;
 			//
 			// label24
@@ -955,16 +955,16 @@
 			this.label24.Name = "label24";
 			this.label24.Size = new System.Drawing.Size(67, 15);
 			this.label24.TabIndex = 8;
-			this.label24.Text = "時計表示：";
+			this.label24.Text = ConfigRes.Life_Clock;
 			//
 			// Life_ClockFormat
 			//
 			this.Life_ClockFormat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.Life_ClockFormat.FormattingEnabled = true;
 			this.Life_ClockFormat.Items.AddRange(new object[] {
-            "現在時刻",
-            "演習更新まで",
-            "任務更新まで"});
+            ConfigRes.Life_ClockFormat_Current,
+            ConfigRes.Life_ClockFormat_Excercise,
+            ConfigRes.Life_ClockFormat_Quest});
 			this.Life_ClockFormat.Location = new System.Drawing.Point(81, 135);
 			this.Life_ClockFormat.Name = "Life_ClockFormat";
 			this.Life_ClockFormat.Size = new System.Drawing.Size(121, 23);
@@ -1096,8 +1096,8 @@
 			this.FormFleet_ShowAnchorageRepairingTimer.Name = "FormFleet_ShowAnchorageRepairingTimer";
 			this.FormFleet_ShowAnchorageRepairingTimer.Size = new System.Drawing.Size(152, 19);
 			this.FormFleet_ShowAnchorageRepairingTimer.TabIndex = 10;
-			this.FormFleet_ShowAnchorageRepairingTimer.Text = "泊地修理タイマを表示する";
-			this.ToolTipInfo.SetToolTip(this.FormFleet_ShowAnchorageRepairingTimer, "艦隊一覧の泊地修理タイマを表示するかを指定します。");
+			this.FormFleet_ShowAnchorageRepairingTimer.Text = ConfigRes.ShowAnchorageRepairingTimer;
+			this.ToolTipInfo.SetToolTip(this.FormFleet_ShowAnchorageRepairingTimer, ConfigRes.ShowAnchorageRepairingTimer_Tooltip);
 			this.FormFleet_ShowAnchorageRepairingTimer.UseVisualStyleBackColor = true;
 			//
 			// FormFleet_AirSuperiorityMethod
@@ -1261,7 +1261,7 @@
 			this.tabPage18.Padding = new System.Windows.Forms.Padding(3);
 			this.tabPage18.Size = new System.Drawing.Size(442, 199);
 			this.tabPage18.TabIndex = 7;
-			this.tabPage18.Text = "羅針盤";
+			this.tabPage18.Text = GeneralRes.Compass;
 			this.tabPage18.UseVisualStyleBackColor = true;
 			//
 			// FormCompass_CandidateDisplayCount
@@ -1294,7 +1294,7 @@
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(131, 15);
 			this.label2.TabIndex = 3;
-			this.label2.Text = "一度に表示する候補数：";
+			this.label2.Text = ConfigRes.CompassCandidate;
 			//
 			// tabPage10
 			//
@@ -1902,8 +1902,8 @@
 			this.BGMPlayer_SyncBrowserMute.Name = "BGMPlayer_SyncBrowserMute";
 			this.BGMPlayer_SyncBrowserMute.Size = new System.Drawing.Size(92, 19);
 			this.BGMPlayer_SyncBrowserMute.TabIndex = 4;
-			this.BGMPlayer_SyncBrowserMute.Text = "ミュートを同期";
-			this.ToolTipInfo.SetToolTip(this.BGMPlayer_SyncBrowserMute, "ブラウザのミュートと連動させるかを指定します。");
+			this.BGMPlayer_SyncBrowserMute.Text = ConfigRes.BGMPlayer_SyncBrowserMute;
+			this.ToolTipInfo.SetToolTip(this.BGMPlayer_SyncBrowserMute, ConfigRes.BGMPlayer_SyncBrowserMute_Tooltip);
 			this.BGMPlayer_SyncBrowserMute.UseVisualStyleBackColor = true;
 			//
 			// BGMPlayer_SetVolumeAll
@@ -1912,7 +1912,7 @@
 			this.BGMPlayer_SetVolumeAll.Name = "BGMPlayer_SetVolumeAll";
 			this.BGMPlayer_SetVolumeAll.Size = new System.Drawing.Size(100, 23);
 			this.BGMPlayer_SetVolumeAll.TabIndex = 3;
-			this.BGMPlayer_SetVolumeAll.Text = "音量一括適用";
+			this.BGMPlayer_SetVolumeAll.Text = ConfigRes.BGMPlayer_SetVolumeAll;
 			this.BGMPlayer_SetVolumeAll.UseVisualStyleBackColor = true;
 			this.BGMPlayer_SetVolumeAll.Click += new System.EventHandler(this.BGMPlayer_SetVolumeAll_Click);
 			//
@@ -1936,8 +1936,8 @@
 			this.BGMPlayer_Enabled.Name = "BGMPlayer_Enabled";
 			this.BGMPlayer_Enabled.Size = new System.Drawing.Size(161, 19);
 			this.BGMPlayer_Enabled.TabIndex = 1;
-			this.BGMPlayer_Enabled.Text = "BGMプレイヤーを有効にする";
-			this.ToolTipInfo.SetToolTip(this.BGMPlayer_Enabled, "現在の場面に合わせてお好みのBGMを再生する機能です。");
+			this.BGMPlayer_Enabled.Text = ConfigRes.BGMPlayer_Enabled;
+			this.ToolTipInfo.SetToolTip(this.BGMPlayer_Enabled, ConfigRes.BGMPlayer_Enabled_Tooltip);
 			this.BGMPlayer_Enabled.UseVisualStyleBackColor = true;
 			//
 			// BGMPlayer_ControlGrid
@@ -1985,7 +1985,7 @@
 			//
 			// BGMPlayer_ColumnContent
 			//
-			this.BGMPlayer_ColumnContent.HeaderText = "シーン";
+			this.BGMPlayer_ColumnContent.HeaderText = ConfigRes.Scene;
 			this.BGMPlayer_ColumnContent.Name = "BGMPlayer_ColumnContent";
 			this.BGMPlayer_ColumnContent.ReadOnly = true;
 			this.BGMPlayer_ColumnContent.Width = 80;
@@ -1993,14 +1993,14 @@
 			// BGMPlayer_ColumnPath
 			//
 			this.BGMPlayer_ColumnPath.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.BGMPlayer_ColumnPath.HeaderText = "ファイル名";
+			this.BGMPlayer_ColumnPath.HeaderText = ConfigRes.FileName;
 			this.BGMPlayer_ColumnPath.Name = "BGMPlayer_ColumnPath";
 			this.BGMPlayer_ColumnPath.ReadOnly = true;
 			this.BGMPlayer_ColumnPath.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
 			//
 			// BGMPlayer_ColumnSetting
 			//
-			this.BGMPlayer_ColumnSetting.HeaderText = "設定";
+			this.BGMPlayer_ColumnSetting.HeaderText = ConfigRes.Settings;
 			this.BGMPlayer_ColumnSetting.Name = "BGMPlayer_ColumnSetting";
 			this.BGMPlayer_ColumnSetting.Width = 40;
 			//
@@ -2058,7 +2058,7 @@
 			this.FormFleet_BlinkAtCompletion.Name = "FormFleet_BlinkAtCompletion";
 			this.FormFleet_BlinkAtCompletion.Size = new System.Drawing.Size(158, 19);
 			this.FormFleet_BlinkAtCompletion.TabIndex = 11;
-			this.FormFleet_BlinkAtCompletion.Text = "タイマー完了時に点滅させる";
+			this.FormFleet_BlinkAtCompletion.Text = ConfigRes.FleetBlinkAtCompletion;
 			this.FormFleet_BlinkAtCompletion.UseVisualStyleBackColor = true;
 			//
 			// FormArsenal_BlinkAtCompletion
@@ -2068,7 +2068,7 @@
 			this.FormArsenal_BlinkAtCompletion.Name = "FormArsenal_BlinkAtCompletion";
 			this.FormArsenal_BlinkAtCompletion.Size = new System.Drawing.Size(122, 19);
 			this.FormArsenal_BlinkAtCompletion.TabIndex = 2;
-			this.FormArsenal_BlinkAtCompletion.Text = "完了時に点滅させる";
+			this.FormArsenal_BlinkAtCompletion.Text = ConfigRes.BlinkAtCompletion;
 			this.FormArsenal_BlinkAtCompletion.UseVisualStyleBackColor = true;
 			//
 			// tabPage19
@@ -2079,7 +2079,7 @@
 			this.tabPage19.Padding = new System.Windows.Forms.Padding(3);
 			this.tabPage19.Size = new System.Drawing.Size(442, 199);
 			this.tabPage19.TabIndex = 8;
-			this.tabPage19.Text = "入渠";
+			this.tabPage19.Text = GeneralRes.Dock;
 			this.tabPage19.UseVisualStyleBackColor = true;
 			//
 			// FormDock_BlinkAtCompletion
@@ -2089,7 +2089,7 @@
 			this.FormDock_BlinkAtCompletion.Name = "FormDock_BlinkAtCompletion";
 			this.FormDock_BlinkAtCompletion.Size = new System.Drawing.Size(122, 19);
 			this.FormDock_BlinkAtCompletion.TabIndex = 3;
-			this.FormDock_BlinkAtCompletion.Text = "完了時に点滅させる";
+			this.FormDock_BlinkAtCompletion.Text = ConfigRes.BlinkAtCompletion;
 			this.FormDock_BlinkAtCompletion.UseVisualStyleBackColor = true;
 			//
 			// DialogConfiguration

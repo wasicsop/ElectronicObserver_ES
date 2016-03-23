@@ -396,6 +396,15 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to キャンセル.
+        /// </summary>
+        internal static string Cancel {
+            get {
+                return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to このグループは変更できません。.
         /// </summary>
         internal static string CannotChangeGroup {

@@ -79,16 +79,16 @@ namespace ElectronicObserver.Observer.kcsapi.api_req_mission {
 				{
 					int admiralExp = (int)data.api_get_exp;
 					if ( admiralExp > 0 ) {
-						sb.AddLast( "提督Exp+" + admiralExp );
+						sb.AddLast( ConstantsRes.Admiral+ " Exp+" + admiralExp );
 					}
 
 					int shipExp = ( (int[])data.api_get_ship_exp ).Min();
 					if ( shipExp > 0 ) {
-						sb.AddLast( "艦娘Exp+" + shipExp );
+						sb.AddLast( ConstantsRes.ShipGirl + " Exp+" + shipExp );
 					}
 				}
 
-				Utility.Logger.Add( 2, "遠征結果 - " + Constants.GetExpeditionResult( (int)data.api_clear_result ) + ": " + ( sb.Count == 0 ? "獲得資源なし" : string.Join( ", ", sb ) ) );
+				Utility.Logger.Add( 2, ConstantsRes.ExpeditionResult + " - " + Constants.GetExpeditionResult( (int)data.api_clear_result ) + ": " + ( sb.Count == 0 ? ConstantsRes.NoResources : string.Join( ", ", sb ) ) );
 			}
 
 			base.OnResponseReceived( (object)data );

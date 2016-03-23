@@ -862,4 +862,7 @@
   <data name="Encyclopedia" xml:space="preserve">
     <value>(右クリックで図鑑)</value>
   </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>キャンセル</value>
+  </data>
 </root>

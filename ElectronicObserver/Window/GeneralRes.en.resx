@@ -893,4 +893,7 @@ Bauxite: {5} ( {6} planes )
   <data name="Encyclopedia" xml:space="preserve">
     <value>(Right-click for encyclopedia)</value>
   </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
 </root>

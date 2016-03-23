@@ -299,17 +299,17 @@ namespace ElectronicObserver.Utility {
 		public static string SoundHandleIDToString( SoundHandleID id ) {
 			switch ( id ) {
 				case SoundHandleID.Port:
-					return "母港";
+					return ConstantsRes.Port;
 				case SoundHandleID.Sortie:
-					return "出撃中";
+					return ConstantsRes.BGM_Sortie;
 				case SoundHandleID.BattleDay:
-					return "昼戦";
+					return ConstantsRes.BGM_BattleDay;
 				case SoundHandleID.BattleNight:
-					return "夜戦";
+					return ConstantsRes.BGM_BattleNight;
 				case SoundHandleID.BattleAir:
-					return "航空戦";
+					return ConstantsRes.BGM_BattleAir;
 				case SoundHandleID.BattleBoss:
-					return "ボス戦";
+					return ConstantsRes.BGM_BattleBoss;
 				case SoundHandleID.BattlePracticeDay:
 					return "演習昼戦";
 				case SoundHandleID.BattlePracticeNight:

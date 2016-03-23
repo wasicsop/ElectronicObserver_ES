@@ -571,4 +571,70 @@ direct にするとパフォーマンスが向上する可能性があります�
   <data name="Formula33" xml:space="preserve">
     <value>判定式(33)</value>
   </data>
+  <data name="BlinkAtCompletion" xml:space="preserve">
+    <value>完了時に点滅させる</value>
+  </data>
+  <data name="CompassCandidate" xml:space="preserve">
+    <value>一度に表示する候補数：</value>
+  </data>
+  <data name="FileName" xml:space="preserve">
+    <value>ファイル名</value>
+  </data>
+  <data name="FleetBlinkAtCompletion" xml:space="preserve">
+    <value>タイマー完了時に点滅させる</value>
+  </data>
+  <data name="Life_CanCloseFloatWindowInLock" xml:space="preserve">
+    <value>ロック中でもフロートウィンドウを閉じる</value>
+  </data>
+  <data name="Life_LockLayout" xml:space="preserve">
+    <value>レイアウトをロックする</value>
+  </data>
+  <data name="Life_LockLayout_Tooltip" xml:space="preserve">
+    <value>サイズやレイアウトの変更を防止するかを指定します。</value>
+  </data>
+  <data name="Scene" xml:space="preserve">
+    <value>シーン</value>
+  </data>
+  <data name="UseSystemProxy" xml:space="preserve">
+    <value>システムプロキシを利用</value>
+  </data>
+  <data name="UseSystemProxyTooltip" xml:space="preserve">
+    <value>システムのプロキシ設定を利用します。</value>
+  </data>
+  <data name="BGMPlayer_Enabled" xml:space="preserve">
+    <value>BGMプレイヤーを有効にする</value>
+  </data>
+  <data name="BGMPlayer_Enabled_Tooltip" xml:space="preserve">
+    <value>現在の場面に合わせてお好みのBGMを再生する機能です。</value>
+  </data>
+  <data name="BGMPlayer_OpenMusicFile" xml:space="preserve">
+    <value>音楽ファイルを開く</value>
+  </data>
+  <data name="BGMPlayer_Settings" xml:space="preserve">
+    <value>BGMの設定</value>
+  </data>
+  <data name="BGMPlayer_SetVolumeAll" xml:space="preserve">
+    <value>音量一括適用</value>
+  </data>
+  <data name="BGMPlayer_SyncBrowserMute" xml:space="preserve">
+    <value>ミュートを同期</value>
+  </data>
+  <data name="BGMPlayer_SyncBrowserMute_Tooltip" xml:space="preserve">
+    <value>ブラウザのミュートと連動させるかを指定します。</value>
+  </data>
+  <data name="Lead" xml:space="preserve">
+    <value>先頭：</value>
+  </data>
+  <data name="Loop" xml:space="preserve">
+    <value>ループ</value>
+  </data>
+  <data name="Path" xml:space="preserve">
+    <value>パス：</value>
+  </data>
+  <data name="Second" xml:space="preserve">
+    <value>秒</value>
+  </data>
+  <data name="Volume" xml:space="preserve">
+    <value>音量：</value>
+  </data>
 </root>
