@@ -54,6 +54,9 @@ namespace ElectronicObserver.Utility {
 				Utility.Logger.Add( 3, string.Format( LoggerRes.FailedSavingErrorReport, ex.Message, ex.StackTrace ) );
 			}
 
+
+			if ( Utility.Configuration.Config.Debug.AlertOnError )
+				System.Media.SystemSounds.Hand.Play();
 		}
 
 	}

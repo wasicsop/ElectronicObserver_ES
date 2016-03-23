@@ -52,26 +52,6 @@
   <PropertyGroup>
     <NoWin32Manifest>true</NoWin32Manifest>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\x64\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <DebugType>full</DebugType>
-    <PlatformTarget>x64</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-    <Prefer32Bit>true</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
-    <OutputPath>bin\x64\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>x64</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-    <Prefer32Bit>true</Prefer32Bit>
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="DynamicJson">
       <HintPath>..\Libraries\DynamicJson.dll</HintPath>
@@ -113,12 +93,14 @@
     <Compile Include="Data\ArsenalData.cs" />
     <Compile Include="Data\Battle\BattleAirBattle.cs" />
     <Compile Include="Data\Battle\BattleCombinedAirBattle.cs" />
+    <Compile Include="Data\Battle\BattleCombinedAirRaid.cs" />
     <Compile Include="Data\Battle\BattleCombinedNightOnly.cs" />
     <Compile Include="Data\Battle\BattleCombinedNormalDay.cs" />
     <Compile Include="Data\Battle\BattleCombinedNormalNight.cs" />
     <Compile Include="Data\Battle\BattleCombinedWater.cs" />
     <Compile Include="Data\Battle\BattleData.cs" />
     <Compile Include="Data\Battle\BattleDay.cs" />
+    <Compile Include="Data\Battle\BattleAirRaid.cs" />
     <Compile Include="Data\Battle\BattleManager.cs" />
     <Compile Include="Data\Battle\BattleNight.cs" />
     <Compile Include="Data\Battle\BattleNightOnly.cs" />
@@ -136,26 +118,11 @@
     <Compile Include="Data\Battle\Phase\PhaseSupport.cs" />
     <Compile Include="Data\Battle\Phase\PhaseTorpedo.cs" />
     <Compile Include="Data\Constants.cs" />
-    <Compile Include="Data\ConstantsRes.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ConstantsRes.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Data\ConstantsRes.en.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ConstantsRes.en.resx</DependentUpon>
-    </Compile>
     <Compile Include="Data\DockData.cs" />
     <Compile Include="Data\EquipmentData.cs" />
     <Compile Include="Data\EquipmentDataMaster.cs" />
     <Compile Include="Data\EquipmentType.cs" />
     <Compile Include="Data\FleetManager.cs" />
-    <Compile Include="Data\FleetRes.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>FleetRes.resx</DependentUpon>
-    </Compile>
     <Compile Include="Data\IDDictionary.cs" />
     <Compile Include="Data\IIdentifiable.cs" />
     <Compile Include="Data\KCDatabase.cs" />
@@ -181,11 +148,6 @@
     <Compile Include="Data\Quest\ProgressSlaughter.cs" />
     <Compile Include="Data\Quest\ProgressSupply.cs" />
     <Compile Include="Data\Quest\QuestProgressManager.cs" />
-    <Compile Include="Data\Quest\QuestTracking.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>QuestTracking.resx</DependentUpon>
-    </Compile>
     <Compile Include="Data\ResponseWrapper.cs" />
     <Compile Include="Data\CompassData.cs" />
     <Compile Include="Data\ShipGroupData.cs" />
@@ -195,49 +157,6 @@
     <Compile Include="Data\ShipGroup\ExpressionManager.cs" />
     <Compile Include="Data\UseItem.cs" />
     <Compile Include="Data\UseItemMaster.cs" />
-    <Compile Include="LoggerRes.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>LoggerRes.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Notifier\NotifierRes.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>NotifierRes.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Utility\ThemeManager.cs" />
-    <Compile Include="Utility\DynamicTranslator.cs" />
-    <Compile Include="Window\Dialog\ConfigRes.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ConfigRes.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Window\Dialog\EncycloRes.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>EncycloRes.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Window\Dialog\NotifyRes.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>NotifyRes.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Window\FormXPCalculator.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Window\FormXPCalculator.Designer.cs">
-      <DependentUpon>FormXPCalculator.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Window\GeneralRes.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>GeneralRes.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Window\Menus.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Menus.resx</DependentUpon>
-    </Compile>
     <Compile Include="Notifier\NotifierBase.cs" />
     <Compile Include="Notifier\NotifierCondition.cs" />
     <Compile Include="Notifier\NotifierConstruction.cs" />
@@ -251,6 +170,7 @@
     <Compile Include="Observer\kcsapi\api_get_member\payitem.cs" />
     <Compile Include="Observer\kcsapi\api_get_member\record.cs" />
     <Compile Include="Observer\kcsapi\api_get_member\ship_deck.cs" />
+    <Compile Include="Observer\kcsapi\api_req_combined_battle\ld_airbattle.cs" />
     <Compile Include="Observer\kcsapi\api_req_hensei\combined.cs" />
     <Compile Include="Observer\kcsapi\api_req_hensei\preset_select.cs" />
     <Compile Include="Observer\kcsapi\api_req_kaisou\marriage.cs" />
@@ -262,6 +182,7 @@
     <Compile Include="Observer\kcsapi\api_req_mission\result.cs" />
     <Compile Include="Observer\kcsapi\api_req_ranking\getlist.cs" />
     <Compile Include="Observer\kcsapi\api_req_sortie\airbattle.cs" />
+    <Compile Include="Observer\kcsapi\api_req_sortie\ld_airbattle.cs" />
     <Compile Include="Resource\Record\ResourceRecord.cs" />
     <Compile Include="Utility\SyncBGMPlayer.cs" />
     <Compile Include="Utility\MediaPlayer.cs" />
@@ -615,77 +536,10 @@
       <DependentUpon>FormIntegrated.cs</DependentUpon>
     </Compile>
     <Compile Include="Window\Support\ControlHelper.cs" />
-    <Compile Include="Window\Support\CustomFloatWindowFactory.cs" />
+    <Compile Include="Window\Support\CustomFloatWindowFactory.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Window\Support\WindowPlacementManager.cs" />
-    <EmbeddedResource Include="Data\ConstantsRes.en.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>ConstantsRes.en.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Data\ConstantsRes.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>ConstantsRes.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Data\FleetRes.en.resx" />
-    <EmbeddedResource Include="Data\FleetRes.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>FleetRes.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Data\Quest\QuestTracking.en.resx" />
-    <EmbeddedResource Include="Data\Quest\QuestTracking.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>QuestTracking.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="LoggerRes.en.resx" />
-    <EmbeddedResource Include="LoggerRes.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>LoggerRes.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Notifier\NotifierRes.en.resx" />
-    <EmbeddedResource Include="Notifier\NotifierRes.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>NotifierRes.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Window\Dialog\ConfigRes.en.resx" />
-    <EmbeddedResource Include="Window\Dialog\ConfigRes.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>ConfigRes.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Window\Dialog\DialogConstructionRecordViewer.en.resx">
-      <DependentUpon>DialogConstructionRecordViewer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Window\Dialog\DialogDevelopmentRecordViewer.en.resx">
-      <DependentUpon>DialogDevelopmentRecordViewer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Window\Dialog\EncycloRes.en.resx" />
-    <EmbeddedResource Include="Window\Dialog\EncycloRes.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>EncycloRes.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Window\Dialog\NotifyRes.en.resx" />
-    <EmbeddedResource Include="Window\Dialog\NotifyRes.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>NotifyRes.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Window\FormXPCalculator.en.resx">
-      <DependentUpon>FormXPCalculator.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Window\FormXPCalculator.resx">
-      <DependentUpon>FormXPCalculator.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Window\GeneralRes.en.resx" />
-    <EmbeddedResource Include="Window\GeneralRes.ko.resx" />
-    <EmbeddedResource Include="Window\GeneralRes.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>GeneralRes.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Window\Menus.en.resx" />
-    <EmbeddedResource Include="Window\Menus.ko.resx" />
-    <EmbeddedResource Include="Window\Menus.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Menus.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.en.resx" />
     <EmbeddedResource Include="Window\Control\ImageLabel.resx">
       <DependentUpon>ImageLabel.cs</DependentUpon>
     </EmbeddedResource>
@@ -814,7 +668,6 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Window\FormQuest.resx">
       <DependentUpon>FormQuest.cs</DependentUpon>
@@ -831,6 +684,9 @@
     <EmbeddedResource Include="Window\Integrate\FormIntegrated.resx">
       <DependentUpon>FormIntegrated.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Assets.zip">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -876,17 +732,13 @@
       <Project>{8bb3e37d-09fb-40b9-958a-8cdcd18ef1f5}</Project>
       <Name>BrowserLib</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Browser\Browser.csproj">
-      <Project>{87a2b596-57d0-48bb-b522-895782d7a6fc}</Project>
-      <Name>Browser</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DockPanelSuite\WinFormsUI\WinFormsUI.csproj">
       <Project>{c75532c4-765b-418e-b09b-46d36b2abdb1}</Project>
       <Name>WinFormsUI</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>

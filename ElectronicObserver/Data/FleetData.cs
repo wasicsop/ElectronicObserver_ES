@@ -493,9 +493,23 @@ namespace ElectronicObserver.Data {
 
 				case 2:
 					return Calculator.GetSearchingAbility_TinyAutumn( this ).ToString();
+
+				case 3:
+					return Calculator.GetSearchingAbility_33( this ).ToString( "F2" );
 			}
 		}
 
+		/// <summary>
+		/// 触接開始率を取得します。
+		/// </summary>
+		/// <returns></returns>
+		public double GetContactProbability() {
+			return Calculator.GetContactProbability( this );
+		}
+
+		public Dictionary<int, double> GetContactSelectionProbability() {
+			return Calculator.GetContactSelectionProbability( this );
+		}
 
 
 		/// <summary>
@@ -718,12 +732,18 @@ namespace ElectronicObserver.Data {
 					break;
 				case FleetStates.Docking:
 					label.Text = FleetRes.Docking + DateTimeHelper.ToTimeRemainString( timer );
+					if ( Utility.Configuration.Config.FormFleet.BlinkAtCompletion && ( timer - DateTime.Now ).TotalMilliseconds <= Utility.Configuration.Config.NotifierRepair.AccelInterval )
+						label.BackColor = DateTime.Now.Second % 2 == 0 ? Color.LightGreen : Color.Transparent;
 					break;
 				case FleetStates.Expedition:
 					label.Text = FleetRes.OnExped + DateTimeHelper.ToTimeRemainString( timer );
+					if ( Utility.Configuration.Config.FormFleet.BlinkAtCompletion && ( timer - DateTime.Now ).TotalMilliseconds <= Utility.Configuration.Config.NotifierExpedition.AccelInterval )
+						label.BackColor = DateTime.Now.Second % 2 == 0 ? Color.LightGreen : Color.Transparent;
 					break;
 				case FleetStates.Tired:
 					label.Text = FleetRes.Fatigued + DateTimeHelper.ToTimeRemainString( timer );
+					if ( Utility.Configuration.Config.FormFleet.BlinkAtCompletion && ( timer - DateTime.Now ).TotalMilliseconds <= 0 )
+						label.BackColor = DateTime.Now.Second % 2 == 0 ? Color.LightGreen : Color.Transparent;
 					break;
 				case FleetStates.AnchorageRepairing:
 					label.Text = FleetRes.AnchorageRepairing + DateTimeHelper.ToTimeElapsedString( KCDatabase.Instance.Fleet.AnchorageRepairingTimer );

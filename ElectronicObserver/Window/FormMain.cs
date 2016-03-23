@@ -32,7 +32,7 @@ namespace ElectronicObserver.Window {
 		public DockPanel MainPanel { get { return MainDockPanel; } }
 		public FormWindowCapture WindowCapture { get { return fWindowCapture; } }
 		private int ClockFormat;
-		
+
 		/// <summary>
 		/// 音量設定用フラグ
 		/// -1 = 無効, そうでなければ現在の試行回数
@@ -171,7 +171,7 @@ namespace ElectronicObserver.Window {
 			SubForms = new List<DockContent>();
 
 			//form init
-			//注：一度全てshowしないとイベントを受け取れないので注意	
+			//注：一度全てshowしないとイベントを受け取れないので注意
 			fFleet = new FormFleet[4];
 			for ( int i = 0; i < fFleet.Length; i++ ) {
 				SubForms.Add( fFleet[i] = new FormFleet( this, i + 1 ) );
@@ -195,6 +195,7 @@ namespace ElectronicObserver.Window {
 			ConfigurationChanged();		//設定から初期化
 
 			LoadLayout( Configuration.Config.Life.LayoutFilePath );
+
 
 
 			SoftwareInformation.CheckUpdate();
@@ -222,9 +223,21 @@ namespace ElectronicObserver.Window {
 			fBrowser.InitializeApiCompleted();
 
 			UIUpdateTimer.Start();
-            
-			Utility.Logger.Add( 2, Resources.StartupComplete );
+
+
+			Utility.Logger.Add( 3, Resources.StartupComplete );
+
 		}
+
+
+		private void FormMain_Shown( object sender, EventArgs e ) {
+			// Load で設定すると無視されるかバグる(タスクバーに出なくなる)のでここで設定
+			TopMost = Utility.Configuration.Config.Life.TopMost;
+
+			// HACK: タスクバーに表示されなくなる不具合への応急処置　効くかは知らない
+			Show();
+		}
+
 
 
 		private void ConfigurationChanged() {
@@ -233,18 +246,11 @@ namespace ElectronicObserver.Window {
 
 			StripMenu_Debug.Enabled = StripMenu_Debug.Visible = c.Debug.EnableDebugMenu;
 			StripStatus.Visible = c.Life.ShowStatusBar;
-			TopMost = c.Life.TopMost;
-            
 
-            Font = c.UI.MainFont;
-            //StripMenu.Font = Font;
-            StripStatus.Font = Font;
-            BackColor = Utility.ThemeManager.GetColor(c.UI.Theme, Utility.ThemeColors.BackgroundColor);
-            ForeColor = Utility.ThemeManager.GetColor(c.UI.Theme, Utility.ThemeColors.MainFontColor);
-            StripMenu.BackColor = Utility.ThemeManager.GetColor(c.UI.Theme, Utility.ThemeColors.BackgroundColor);
-            StripMenu.ForeColor = Utility.ThemeManager.GetColor(c.UI.Theme, Utility.ThemeColors.MainFontColor);
-            StripStatus.BackColor = Utility.ThemeManager.GetColor(c.UI.Theme, Utility.ThemeColors.BackgroundColor);
-            StripStatus.ForeColor = Utility.ThemeManager.GetColor(c.UI.Theme, Utility.ThemeColors.MainFontColor);
+			// Load で TopMost を変更するとバグるため(前述)
+			if ( UIUpdateTimer.Enabled )
+				TopMost = c.Life.TopMost;
+
 			ClockFormat = c.Life.ClockFormat;
 			MainDockPanel.Skin.AutoHideStripSkin.TextFont = Font;
 			MainDockPanel.Skin.DockPaneStripSkin.TextFont = Font;
@@ -264,7 +270,7 @@ namespace ElectronicObserver.Window {
 			if ( !c.Control.UseSystemVolume )
 				_volumeUpdateState = -1;
 		}
-        
+
 		private void StripMenu_Debug_LoadAPIFromFile_Click( object sender, EventArgs e ) {
 
 			/*/
@@ -333,11 +339,18 @@ namespace ElectronicObserver.Window {
 			// 10回試行してダメなら諦める(例外によるラグを防ぐため)
 			// 起動直後にやらないのはちょっと待たないと音量設定が有効にならないから
 			if ( _volumeUpdateState != -1 && _volumeUpdateState < 10 && Utility.Configuration.Config.Control.UseSystemVolume ) {
-				
+
 				try {
 					uint id = (uint)System.Diagnostics.Process.GetCurrentProcess().Id;
-					BrowserLib.VolumeManager.SetApplicationVolume( id, Utility.Configuration.Config.Control.LastVolume );
-					BrowserLib.VolumeManager.SetApplicationMute( id, Utility.Configuration.Config.Control.LastIsMute );
+					float volume =  Utility.Configuration.Config.Control.LastVolume;
+					bool mute = Utility.Configuration.Config.Control.LastIsMute;
+
+					BrowserLib.VolumeManager.SetApplicationVolume( id, volume );
+					BrowserLib.VolumeManager.SetApplicationMute( id, mute );
+
+					SyncBGMPlayer.Instance.SetInitialVolume( (int)( volume * 100 ) );
+					foreach ( var not in NotifierManager.Instance.GetNotifiers() )
+						not.SetInitialVolume( (int)( volume * 100 ) );
 
 					_volumeUpdateState = -1;
 
@@ -346,7 +359,7 @@ namespace ElectronicObserver.Window {
 					_volumeUpdateState++;
 				}
 			}
-			
+
 		}
 
 
@@ -374,7 +387,7 @@ namespace ElectronicObserver.Window {
 
 
 			SaveLayout( Configuration.Config.Life.LayoutFilePath );
-			
+
 
 			// 音量の保存
 			{
@@ -386,7 +399,7 @@ namespace ElectronicObserver.Window {
 				} catch ( Exception ) {
 					/* ぷちっ */
 				}
-				
+
 			}
 		}
 
@@ -526,7 +539,7 @@ namespace ElectronicObserver.Window {
 					}
 				}
 
-                
+
 				Utility.Logger.Add( 2, string.Format(Resources.LayoutLoaded, path) );
 
 			} catch ( FileNotFoundException ) {
@@ -571,7 +584,7 @@ namespace ElectronicObserver.Window {
 					}
 				}
 
-                
+
 				Utility.Logger.Add( 2, string.Format(Resources.LayoutSaved, path) );
 
 			} catch ( Exception ex ) {
@@ -1128,7 +1141,7 @@ namespace ElectronicObserver.Window {
 			new Dialog.DialogDevelopmentRecordViewer().Show( this );
 
 		}
-        
+
 		private void StripMenu_Tool_ConstructionRecord_Click( object sender, EventArgs e ) {
 
 			if ( KCDatabase.Instance.MasterShips.Count == 0 ) {
@@ -1163,7 +1176,7 @@ namespace ElectronicObserver.Window {
 			new DialogHalloween().Show( this );
 			APIObserver.Instance.APIList["api_port/port"].ResponseReceived -= CallPumpkinHead;
 		}
-        
+
 		private void StripMenu_WindowCapture_AttachAll_Click( object sender, EventArgs e ) {
 			fWindowCapture.AttachAll();
 		}

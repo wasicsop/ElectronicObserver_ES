@@ -153,7 +153,7 @@ namespace ElectronicObserver.Window {
 				State = FleetData.UpdateFleetState( fleet, StateMain, ToolTipInfo, State, ref Timer );
 
 
-				//制空戦力計算	
+				//制空戦力計算
 				{
 					int airSuperiority = fleet.GetAirSuperiority();
 					AirSuperiority.Text = airSuperiority.ToString();
@@ -168,12 +168,29 @@ namespace ElectronicObserver.Window {
 
 				//索敵能力計算
 				SearchingAbility.Text = fleet.GetSearchingAbilityString();
-				ToolTipInfo.SetToolTip( SearchingAbility,
-					string.Format( GeneralRes.LoSTooltip,
-					fleet.GetSearchingAbilityString( 0 ),
-					fleet.GetSearchingAbilityString( 1 ),
-					fleet.GetSearchingAbilityString( 2 ) ) );
+				{
+					StringBuilder sb = new StringBuilder();
+					double probStart = fleet.GetContactProbability();
+					var probSelect = fleet.GetContactSelectionProbability();
 
+					sb.AppendFormat( GeneralRes.LoSTooltip,
+						fleet.GetSearchingAbilityString( 0 ),
+						fleet.GetSearchingAbilityString( 1 ),
+						fleet.GetSearchingAbilityString( 2 ),
+						fleet.GetSearchingAbilityString( 3 ),
+						probStart,
+						probStart * 0.6 );
+
+					if ( probSelect.Count > 0 ) {
+						sb.AppendLine( "触接選択率: " );
+
+						foreach ( var p in probSelect.OrderBy( p => p.Key ) ) {
+							sb.AppendFormat( "　命中{0} : {1:p1}\r\n", p.Key, p.Value );
+						}
+					}
+
+					ToolTipInfo.SetToolTip( SearchingAbility, sb.ToString() );
+				}
 			}
 
 
@@ -190,10 +207,11 @@ namespace ElectronicObserver.Window {
 			public void ConfigurationChanged( FormFleet parent ) {
 				Name.Font = parent.MainFont;
 				StateMain.Font = parent.MainFont;
+				StateMain.BackColor = Color.Transparent;
 				AirSuperiority.Font = parent.MainFont;
 				AirSuperiority.Font = parent.MainFont;
 				SearchingAbility.Font = parent.MainFont;
-				
+
 			}
 
 		}
@@ -511,7 +529,7 @@ namespace ElectronicObserver.Window {
 						else
 							sb.AppendFormat( " - " + GeneralRes.Power +  ": {0}", shelling );
 					} else if ( aircraft > 0 )
-							sb.AppendFormat( " - " + GeneralRes.Power + ": {0}", aircraft );
+						sb.AppendFormat( " - " + GeneralRes.Power + ": {0}", aircraft );
 				}
 				sb.AppendLine();
 
@@ -593,7 +611,7 @@ namespace ElectronicObserver.Window {
 			Utility.SystemEvents.UpdateTimerTick += UpdateTimerTick;
 
 			ConfigurationChanged();
-            
+
             MainFontColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.MainFontColor);
             SubFontColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.SubFontColor);
 
@@ -638,7 +656,7 @@ namespace ElectronicObserver.Window {
 			o.APIList["api_req_kaisou/remodeling"].RequestReceived += ChangeOrganization;
 			o.APIList["api_req_kaisou/powerup"].ResponseReceived += ChangeOrganization;
 			o.APIList["api_req_hensei/preset_select"].ResponseReceived += ChangeOrganization;
-			
+
 			o.APIList["api_req_nyukyo/start"].RequestReceived += Updated;
 			o.APIList["api_req_nyukyo/speedchange"].RequestReceived += Updated;
 			o.APIList["api_req_hensei/change"].RequestReceived += Updated;
@@ -832,7 +850,9 @@ namespace ElectronicObserver.Window {
 					int eqcount = 1;
 					foreach ( var eq in ship.SlotInstance ) {
 						if ( eq == null ) break;
-						sb.AppendFormat( @"""i{0}"":{{""id"":{1},""rf"":{2}}},", eqcount, eq.EquipmentID, Math.Max( eq.Level, eq.AircraftLevel ) );
+
+						// 水偵は改修レベル優先(熟練度にすると改修レベルに誤解されて 33式 の結果がずれるため)
+						sb.AppendFormat( @"""i{0}"":{{""id"":{1},""rf"":{2}}},", eqcount, eq.EquipmentID, eq.MasterEquipment.CategoryType == 10 ? eq.Level : Math.Max( eq.Level, eq.AircraftLevel ) );
 
 						eqcount++;
 					}

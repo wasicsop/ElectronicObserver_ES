@@ -305,6 +305,7 @@ namespace ElectronicObserver.Window.Dialog {
 			Debug_EnableDebugMenu.Checked = config.Debug.EnableDebugMenu;
 			Debug_LoadAPIListOnLoad.Checked = config.Debug.LoadAPIListOnLoad;
 			Debug_APIListPath.Text = config.Debug.APIListPath;
+			Debug_AlertOnError.Checked = config.Debug.AlertOnError;
 
 			//[起動と終了]
 			Life_ConfirmOnClosing.Checked = config.Life.ConfirmOnClosing;
@@ -318,6 +319,9 @@ namespace ElectronicObserver.Window.Dialog {
 
 			//[サブウィンドウ]
 			FormArsenal_ShowShipName.Checked = config.FormArsenal.ShowShipName;
+			FormArsenal_BlinkAtCompletion.Checked = config.FormArsenal.BlinkAtCompletion;
+
+			FormDock_BlinkAtCompletion.Checked = config.FormDock.BlinkAtCompletion;
 
 			FormFleet_ShowAircraft.Checked = config.FormFleet.ShowAircraft;
 			FormFleet_SearchingAbilityMethod.SelectedIndex = config.FormFleet.SearchingAbilityMethod;
@@ -328,6 +332,7 @@ namespace ElectronicObserver.Window.Dialog {
 			FormFleet_ShowEquipmentLevel.Checked = config.FormFleet.ShowEquipmentLevel;
 			FormFleet_AirSuperiorityMethod.SelectedIndex = config.FormFleet.AirSuperiorityMethod;
 			FormFleet_ShowAnchorageRepairingTimer.Checked = config.FormFleet.ShowAnchorageRepairingTimer;
+			FormFleet_BlinkAtCompletion.Checked = config.FormFleet.BlinkAtCompletion;
 
 			FormHeadquarters_BlinkAtMaximum.Checked = config.FormHeadquarters.BlinkAtMaximum;
 
@@ -387,6 +392,8 @@ namespace ElectronicObserver.Window.Dialog {
 			}
 			FormBrowser_FlashQuality.Text = config.FormBrowser.FlashQuality;
 			FormBrowser_FlashWMode.Text = config.FormBrowser.FlashWMode;
+
+			FormCompass_CandidateDisplayCount.Value = config.FormCompass.CandidateDisplayCount;
 
 			//[データベース]
 			Database_SendDataToKancolleDB.Checked = config.Connection.SendDataToKancolleDB;
@@ -470,6 +477,7 @@ namespace ElectronicObserver.Window.Dialog {
 			config.Debug.EnableDebugMenu = Debug_EnableDebugMenu.Checked;
 			config.Debug.LoadAPIListOnLoad = Debug_LoadAPIListOnLoad.Checked;
 			config.Debug.APIListPath = Debug_APIListPath.Text;
+			config.Debug.AlertOnError = Debug_AlertOnError.Checked;
 
 			//[起動と終了]
 			config.Life.ConfirmOnClosing = Life_ConfirmOnClosing.Checked;
@@ -483,6 +491,9 @@ namespace ElectronicObserver.Window.Dialog {
 
 			//[サブウィンドウ]
 			config.FormArsenal.ShowShipName = FormArsenal_ShowShipName.Checked;
+			config.FormArsenal.BlinkAtCompletion = FormArsenal_BlinkAtCompletion.Checked;
+
+			config.FormDock.BlinkAtCompletion = FormDock_BlinkAtCompletion.Checked;
 
 			config.FormFleet.ShowAircraft = FormFleet_ShowAircraft.Checked;
 			config.FormFleet.SearchingAbilityMethod = FormFleet_SearchingAbilityMethod.SelectedIndex;
@@ -493,6 +504,7 @@ namespace ElectronicObserver.Window.Dialog {
 			config.FormFleet.ShowEquipmentLevel = FormFleet_ShowEquipmentLevel.Checked;
 			config.FormFleet.AirSuperiorityMethod = FormFleet_AirSuperiorityMethod.SelectedIndex;
 			config.FormFleet.ShowAnchorageRepairingTimer = FormFleet_ShowAnchorageRepairingTimer.Checked;
+			config.FormFleet.BlinkAtCompletion = FormFleet_BlinkAtCompletion.Checked;
 
 			config.FormHeadquarters.BlinkAtMaximum = FormHeadquarters_BlinkAtMaximum.Checked;
 
@@ -518,6 +530,8 @@ namespace ElectronicObserver.Window.Dialog {
 			config.FormBrowser.AppliesStyleSheet = FormBrowser_AppliesStyleSheet.Checked;
 			config.FormBrowser.FlashQuality = FormBrowser_FlashQuality.Text;
 			config.FormBrowser.FlashWMode = FormBrowser_FlashWMode.Text;
+
+			config.FormCompass.CandidateDisplayCount = (int)FormCompass_CandidateDisplayCount.Value;
 
 			//[データベース]
 			config.Connection.SendDataToKancolleDB = Database_SendDataToKancolleDB.Checked;
@@ -549,6 +563,8 @@ namespace ElectronicObserver.Window.Dialog {
 			}
 
 			BGMPlayer_ControlGrid.Rows.AddRange( rows );
+
+			BGMPlayer_VolumeAll.Value = (int)BGMHandles.Values.Average( h => h.Volume );
 		}
 
 

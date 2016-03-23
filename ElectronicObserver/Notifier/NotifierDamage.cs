@@ -95,11 +95,13 @@ namespace ElectronicObserver.Notifier {
 			o["api_req_battle_midnight/battle"].ResponseReceived += BattleStarted;
 			o["api_req_battle_midnight/sp_midnight"].ResponseReceived += BattleStarted;
 			o["api_req_sortie/airbattle"].ResponseReceived += BattleStarted;
+			o["api_req_sortie/ld_airbattle"].ResponseReceived += BattleStarted;
 			o["api_req_combined_battle/battle"].ResponseReceived += BattleStarted;
 			o["api_req_combined_battle/battle_water"].ResponseReceived += BattleStarted;
 			o["api_req_combined_battle/airbattle"].ResponseReceived += BattleStarted;
 			o["api_req_combined_battle/midnight_battle"].ResponseReceived += BattleStarted;
 			o["api_req_combined_battle/sp_midnight"].ResponseReceived += BattleStarted;
+			o["api_req_combined_battle/ld_airbattle"].ResponseReceived += BattleStarted;
 
 		}
 
@@ -167,6 +169,8 @@ namespace ElectronicObserver.Notifier {
 			switch ( bm.BattleMode & BattleManager.BattleModes.BattlePhaseMask ) {
 				case BattleManager.BattleModes.Normal:
 				case BattleManager.BattleModes.AirBattle:
+				case BattleManager.BattleModes.AirRaid:
+				default:
 					if ( bm.BattleNight != null ) {
 						list.AddRange( GetDamagedShips( bm.BattleNight.Initial.FriendFleet, bm.BattleNight.ResultHPs.ToArray() ) );
 					} else {
@@ -188,6 +192,8 @@ namespace ElectronicObserver.Notifier {
 				switch ( bm.BattleMode & BattleManager.BattleModes.BattlePhaseMask ) {
 					case BattleManager.BattleModes.Normal:
 					case BattleManager.BattleModes.AirBattle:
+					case BattleManager.BattleModes.AirRaid:
+					default:
 						if ( bm.BattleNight != null ) {
 							list.AddRange( GetDamagedShips( KCDatabase.Instance.Fleet[2], bm.BattleNight.ResultHPs.Skip( 12 ).ToArray() ) );
 						} else {
