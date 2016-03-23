@@ -552,4 +552,7 @@
   <data name="TransportFleet" xml:space="preserve">
     <value>Transport Fleet</value>
   </data>
+  <data name="AirRaid" xml:space="preserve">
+    <value>Air Raid</value>
+  </data>
 </root>

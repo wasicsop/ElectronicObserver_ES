@@ -571,4 +571,7 @@ More details, as well as an access key, can be found on the site below. (opens y
   <data name="ShowAnchorageRepairingTimer_Tooltip" xml:space="preserve">
     <value>Display repair timer in the fleet list window.</value>
   </data>
+  <data name="Formula33" xml:space="preserve">
+    <value>Formula 33</value>
+  </data>
 </root>

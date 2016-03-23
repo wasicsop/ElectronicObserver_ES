@@ -552,4 +552,7 @@
   <data name="TransportFleet" xml:space="preserve">
     <value>輸送部隊</value>
   </data>
+  <data name="AirRaid" xml:space="preserve">
+    <value>空襲戦</value>
+  </data>
 </root>

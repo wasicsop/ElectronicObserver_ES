@@ -415,55 +415,55 @@ namespace ElectronicObserver.Window {
 				sb.Append( " Lv. " ).Append( level );
 			sb.AppendLine();
 
-			sb.Append( "耐久: " ).Append( hp ).AppendLine();
+			sb.Append( EncycloRes.HP + ": " ).Append( hp ).AppendLine();
 
-			sb.Append( "火力: " ).Append( firepower_c );
+			sb.Append( GeneralRes.Firepower + ": " ).Append( firepower_c );
 			if ( firepower_c != firepower )
 				sb.Append( "/" ).Append( firepower );
 			sb.AppendLine();
 
-			sb.Append( "雷装: " ).Append( torpedo_c );
+			sb.Append( GeneralRes.Torpedo + ": " ).Append( torpedo_c );
 			if ( torpedo_c != torpedo )
 				sb.Append( "/" ).Append( torpedo );
 			sb.AppendLine();
 
-			sb.Append( "対空: " ).Append( aa_c );
+			sb.Append( GeneralRes.AntiAir + ": " ).Append( aa_c );
 			if ( aa_c != aa )
 				sb.Append( "/" ).Append( aa );
 			sb.AppendLine();
 
-			sb.Append( "装甲: " ).Append( armor_c );
+			sb.Append( GeneralRes.Armor + ": " ).Append( armor_c );
 			if ( armor_c != armor )
 				sb.Append( "/" ).Append( armor );
 			sb.AppendLine();
 
-			sb.Append( "対潜: " );
+			sb.Append( GeneralRes.ASW + ": " );
 			if ( asw_c < 0 ) sb.Append( "???" );
 			else sb.Append( asw_c );
 			if ( asw_c != asw )
 				sb.Append( "/" ).Append( asw );
 			sb.AppendLine();
 
-			sb.Append( "回避: " );
+			sb.Append( GeneralRes.Evasion + ": " );
 			if ( evasion_c < 0 ) sb.Append( "???" );
 			else sb.Append( evasion_c );
 			if ( evasion_c != evasion )
 				sb.Append( "/" ).Append( evasion );
 			sb.AppendLine();
 
-			sb.Append( "索敵: " );
+			sb.Append( GeneralRes.LoS + ": " );
 			if ( los_c < 0 ) sb.Append( "???" );
 			else sb.Append( los_c );
 			if ( los_c != los )
 				sb.Append( "/" ).Append( los );
 			sb.AppendLine();
 
-			sb.Append( "運: " ).Append( luck_c );
+			sb.Append( GeneralRes.Luck + ": " ).Append( luck_c );
 			if ( luck_c != luck )
 				sb.Append( "/" ).Append( luck );
 			sb.AppendLine();
 
-			sb.AppendFormat( "射程: {0} / 速力: {1}\r\n(右クリックで図鑑)\r\n",
+			sb.AppendFormat( GeneralRes.Range + ": {0} / " + GeneralRes.Speed + ": {1}\r\n" + GeneralRes.Encyclopedia + "\r\n",
 				Constants.GetRange( range ),
 				Constants.GetSpeed( ship.Speed ) );
 
@@ -685,12 +685,8 @@ namespace ElectronicObserver.Window {
 				_enemyFleetCandidate = null;
 				_enemyFleetCandidateIndex = -1;
 
-				TextMapArea.Text = string.Format( GeneralRes.Map + ": {0}-{1} {2}", compass.MapAreaID, compass.MapInfoID,
-                    compass.MapInfo.EventDifficulty > 0 ? " [" + Constants.GetDifficulty(compass.MapInfo.EventDifficulty) + "] " : "");
 
-
-
-				TextMapArea.Text = string.Format( "出撃海域 : {0}-{1}{2}", compass.MapAreaID, compass.MapInfoID,
+				TextMapArea.Text = string.Format( GeneralRes.Map + ": {0}-{1}{2}", compass.MapAreaID, compass.MapInfoID,
 					compass.MapInfo.EventDifficulty > 0 ? " [" + Constants.GetDifficulty( compass.MapInfo.EventDifficulty ) + "]" : "" );
 				{
 					var mapinfo = compass.MapInfo;
@@ -699,7 +695,7 @@ namespace ElectronicObserver.Window {
 						ToolTipInfo.SetToolTip( TextMapArea, null );
 
 					} else if ( mapinfo.RequiredDefeatedCount != -1 ) {
-						ToolTipInfo.SetToolTip( TextMapArea, string.Format( "撃破: {0} / {1} 回", mapinfo.CurrentDefeatedCount, mapinfo.RequiredDefeatedCount ) );
+						ToolTipInfo.SetToolTip( TextMapArea, string.Format( GeneralRes.Defeated + ": {0} / {1} 回", mapinfo.CurrentDefeatedCount, mapinfo.RequiredDefeatedCount ) );
 
 					} else if ( mapinfo.MapHPMax > 0 ) {
 						ToolTipInfo.SetToolTip( TextMapArea, string.Format( "{0}: {1} / {2}", mapinfo.GaugeType == 3 ? "TP" : "HP", mapinfo.MapHPCurrent, mapinfo.MapHPMax ) );

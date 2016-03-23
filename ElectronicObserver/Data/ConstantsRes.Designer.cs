@@ -133,6 +133,15 @@ namespace ElectronicObserver.Data {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 空襲戦.
+        /// </summary>
+        internal static string AirRaid {
+            get {
+                return ResourceManager.GetString("AirRaid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 航空優勢.
         /// </summary>
         internal static string AirSuperiority {

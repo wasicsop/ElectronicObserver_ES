@@ -568,4 +568,7 @@ direct にするとパフォーマンスが向上する可能性があります�
   <data name="ShowAnchorageRepairingTimer_Tooltip" xml:space="preserve">
     <value>艦隊一覧の泊地修理タイマを表示するかを指定します。</value>
   </data>
+  <data name="Formula33" xml:space="preserve">
+    <value>判定式(33)</value>
+  </data>
 </root>

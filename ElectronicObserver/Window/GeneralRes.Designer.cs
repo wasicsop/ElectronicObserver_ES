@@ -653,6 +653,15 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 進捗 -1(&amp;D).
+        /// </summary>
+        internal static string DecrementByOne {
+            get {
+                return ResourceManager.GetString("DecrementByOne", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 撃破.
         /// </summary>
         internal static string Defeated {
@@ -749,6 +758,15 @@ namespace ElectronicObserver.Window {
         internal static string EncounterType {
             get {
                 return ResourceManager.GetString("EncounterType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (右クリックで図鑑).
+        /// </summary>
+        internal static string Encyclopedia {
+            get {
+                return ResourceManager.GetString("Encyclopedia", resourceCulture);
             }
         }
         
@@ -1087,6 +1105,15 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 進捗 +1(&amp;I).
+        /// </summary>
+        internal static string IncrementByOne {
+            get {
+                return ResourceManager.GetString("IncrementByOne", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 情報.
         /// </summary>
         internal static string Information {
@@ -1179,7 +1206,7 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to (旧)2-5式: {0}\r\n2-5式(秋): {1}\r\n2-5新秋簡易式: {2}\r\n.
+        ///   Looks up a localized string similar to (旧)2-5式: {0}\r\n2-5式(秋): {1}\r\n2-5新秋簡易式: {2}\r\n判定式(33): {3}\r\n\r\n触接開始率: \r\n　確保 {4:p1} / 優勢 {5:p1}\r\n.
         /// </summary>
         internal static string LoSTooltip {
             get {
@@ -1647,6 +1674,15 @@ namespace ElectronicObserver.Window {
         internal static string SelectGroup {
             get {
                 return ResourceManager.GetString("SelectGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 触接選択率: .
+        /// </summary>
+        internal static string SelectionRate {
+            get {
+                return ResourceManager.GetString("SelectionRate", resourceCulture);
             }
         }
         

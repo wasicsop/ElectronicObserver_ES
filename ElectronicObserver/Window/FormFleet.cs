@@ -182,10 +182,10 @@ namespace ElectronicObserver.Window {
 						probStart * 0.6 );
 
 					if ( probSelect.Count > 0 ) {
-						sb.AppendLine( "触接選択率: " );
+						sb.AppendLine( GeneralRes.SelectionRate );
 
 						foreach ( var p in probSelect.OrderBy( p => p.Key ) ) {
-							sb.AppendFormat( "　命中{0} : {1:p1}\r\n", p.Key, p.Value );
+							sb.AppendFormat( "  " + EncycloRes.Accuracy + "+{0} : {1:p1}\r\n", p.Key, p.Value );
 						}
 					}
 

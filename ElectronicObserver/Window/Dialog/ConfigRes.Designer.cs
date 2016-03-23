@@ -605,6 +605,15 @@ namespace ElectronicObserver.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 判定式(33).
+        /// </summary>
+        internal static string Formula33 {
+            get {
+                return ResourceManager.GetString("Formula33", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to GPUレンダリング.
         /// </summary>
         internal static string GPURendering {
