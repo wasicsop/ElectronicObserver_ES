@@ -296,4 +296,10 @@ Are you sure?</value>
   <data name="Volume" xml:space="preserve">
     <value>Volume (&amp;V)</value>
   </data>
+  <data name="Information" xml:space="preserve">
+    <value>Information</value>
+  </data>
+  <data name="SubProgramWarning" xml:space="preserve">
+    <value>This is a subprogram and cannot be run independently. Please start the main program instead.</value>
+  </data>
 </root>

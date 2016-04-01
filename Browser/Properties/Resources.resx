@@ -191,6 +191,9 @@ catch(e) {
 	alert("フレームCSS適用に失敗しました: "+e);
 }</value>
   </data>
+  <data name="Information" xml:space="preserve">
+    <value>情報</value>
+  </data>
   <data name="LoginDialog" xml:space="preserve">
     <value>ログインページへ移動します。
 よろしいですか？</value>
@@ -289,6 +292,9 @@ catch(e) {
   </data>
   <data name="Strip_Zoom" xml:space="preserve">
     <value>ズーム</value>
+  </data>
+  <data name="SubProgramWarning" xml:space="preserve">
+    <value>これは七四式電子観測儀のサブプログラムであり、単体では起動できません。\r\n本体から起動してください。</value>
   </data>
   <data name="Title" xml:space="preserve">
     <value>七四式電子観測儀 ブラウザ</value>

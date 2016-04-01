@@ -216,6 +216,15 @@ namespace Browser.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 情報.
+        /// </summary>
+        internal static string Information {
+            get {
+                return ResourceManager.GetString("Information", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ログインページへ移動します。
         ///よろしいですか？.
         /// </summary>
@@ -450,6 +459,15 @@ namespace Browser.Properties {
         internal static string Strip_Zoom {
             get {
                 return ResourceManager.GetString("Strip_Zoom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to これは七四式電子観測儀のサブプログラムであり、単体では起動できません。\r\n本体から起動してください。.
+        /// </summary>
+        internal static string SubProgramWarning {
+            get {
+                return ResourceManager.GetString("SubProgramWarning", resourceCulture);
             }
         }
         

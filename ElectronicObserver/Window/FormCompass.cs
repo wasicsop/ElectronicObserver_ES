@@ -482,20 +482,20 @@ namespace ElectronicObserver.Window {
 					sb.AppendFormat( "[{0}] {1}\r\n", ship.Aircraft[i], KCDatabase.Instance.MasterEquipments[slot[i]].Name );
 			}
 
-			sb.AppendFormat( "\r\n昼戦: {0}\r\n夜戦: {1}\r\n",
+			sb.AppendFormat( "\r\n" + GeneralRes.DayBattle + ": {0}\r\n" + GeneralRes.NightBattle + ": {1}\r\n",
 				Constants.GetDayAttackKind( Calculator.GetDayAttackKind( slot, ship.ShipID, -1 ) ),
 				Constants.GetNightAttackKind( Calculator.GetNightAttackKind( slot, ship.ShipID, -1 ) ) );
 
 			{
 				int aacutin = Calculator.GetAACutinKind( shipID, slot );
 				if ( aacutin != 0 ) {
-					sb.AppendFormat( "対空: {0}\r\n", Constants.GetAACutinKind( aacutin ) );
+					sb.AppendFormat( GeneralRes.AntiAir + ": {0}\r\n", Constants.GetAACutinKind( aacutin ) );
 				}
 			}
 			{
 				int airsup = Calculator.GetAirSuperiority( slot, ship.Aircraft.ToArray() );
 				if ( airsup > 0 ) {
-					sb.AppendFormat( "制空戦力: {0}\r\n", airsup );
+					sb.AppendFormat( GeneralRes.AirPower + ": {0}\r\n", airsup );
 				}
 			}
 
