@@ -57,14 +57,14 @@ namespace ElectronicObserver.Utility {
 		/// </summary>
 		public static DateTime UpdateTime {
 			get {
-				return DateTimeHelper.CSVStringToTime( "2016/03/21 21:00:00" );
+				return DateTimeHelper.CSVStringToTime( "2016/04/01 22:00:00" );
 			}
 		}
 
 
 
 		private static System.Net.WebClient client;
-		private static readonly Uri uri = new Uri("https://www.dropbox.com/s/0xvbhtxnh5wfk5s/version.txt?dl=1");
+		private static readonly Uri uri = new Uri( "http://raw.githubusercontent.com/silfumus/ryuukitsune.github.io/master/Translations/SoftwareVersion.txt" );
 
 		public static void CheckUpdate() {
 
@@ -119,7 +119,7 @@ namespace ElectronicObserver.Utility {
 
 						if ( result == System.Windows.Forms.DialogResult.Yes ) {
 
-							System.Diagnostics.Process.Start( "http://tumblr.rkitsune.com/elecobs" );
+							System.Diagnostics.Process.Start( "http://github.com/silfumus/ElectronicObserver/releases" );
 
 						} else if ( result == System.Windows.Forms.DialogResult.Cancel ) {
 
