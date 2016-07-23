@@ -16,8 +16,10 @@ namespace ElectronicObserver.Data.Battle {
 		public override void LoadFromResponse( string apiname, dynamic data ) {
 			base.LoadFromResponse( apiname, (object)data );
 
+			BaseAirAttack = new PhaseBaseAirAttack( this );
 			AirBattle = new PhaseAirBattle( this );
 			Support = new PhaseSupport( this );
+			OpeningASW = new PhaseOpeningASW( this, true );
 			OpeningTorpedo = new PhaseTorpedo( this, 0 );
 			Shelling1 = new PhaseShelling( this, 1, "1", true );
 			Torpedo = new PhaseTorpedo( this, 2 );
@@ -25,8 +27,10 @@ namespace ElectronicObserver.Data.Battle {
 			Shelling3 = new PhaseShelling( this, 4, "3", false );
 
 
+			BaseAirAttack.EmulateBattle( _resultHPs, _attackDamages );
 			AirBattle.EmulateBattle( _resultHPs, _attackDamages );
 			Support.EmulateBattle( _resultHPs, _attackDamages );
+			OpeningASW.EmulateBattle( _resultHPs, _attackDamages );
 			OpeningTorpedo.EmulateBattle( _resultHPs, _attackDamages );
 			Shelling1.EmulateBattle( _resultHPs, _attackDamages );
 			Torpedo.EmulateBattle( _resultHPs, _attackDamages );

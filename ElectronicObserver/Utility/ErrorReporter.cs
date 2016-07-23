@@ -24,6 +24,14 @@ namespace ElectronicObserver.Utility {
 
 			Utility.Logger.Add( 3, string.Format( "{0} : {1}", message, ex.Message ) );
 
+			if ( Utility.Configuration.Config.Debug.AlertOnError )
+				System.Media.SystemSounds.Hand.Play();
+
+
+			if ( !Utility.Configuration.Config.Log.SaveErrorReport )
+				return;
+
+
 			string path = _basePath;
 
 			if ( !Directory.Exists( path ) )
@@ -41,7 +49,7 @@ namespace ElectronicObserver.Utility {
 					sw.WriteLine( LoggerRes.AdditionalInfo, message );
 					sw.WriteLine( LoggerRes.StackTrace );
 					sw.WriteLine( ex.StackTrace );
-					
+
 					if ( connectionName != null && connectionData != null ) {
 						sw.WriteLine();
 						sw.WriteLine( LoggerRes.APIData, connectionName );
@@ -54,9 +62,6 @@ namespace ElectronicObserver.Utility {
 				Utility.Logger.Add( 3, string.Format( LoggerRes.FailedSavingErrorReport, ex.Message, ex.StackTrace ) );
 			}
 
-
-			if ( Utility.Configuration.Config.Debug.AlertOnError )
-				System.Media.SystemSounds.Hand.Play();
 		}
 
 	}

@@ -228,6 +228,12 @@ namespace ElectronicObserver.Window.Dialog {
 			}
 		}
 
+		private void Notification_AnchorageRepair_Click( object sender, EventArgs e ) {
+
+			using ( var dialog = new DialogConfigurationNotifier( NotifierManager.Instance.AnchorageRepair ) ) {
+				dialog.ShowDialog( this );
+			}
+		}
 
 		private void Life_LayoutFilePathSearch_Click( object sender, EventArgs e ) {
 
@@ -300,6 +306,7 @@ namespace ElectronicObserver.Window.Dialog {
 			Control_ConditionBorder.Value = config.Control.ConditionBorder;
 			Control_RecordAutoSaving.SelectedIndex = config.Control.RecordAutoSaving;
 			Control_UseSystemVolume.Checked = config.Control.UseSystemVolume;
+			Control_PowerEngagementForm.SelectedIndex = config.Control.PowerEngagementForm - 1;
 
 			//[デバッグ]
 			Debug_EnableDebugMenu.Checked = config.Debug.EnableDebugMenu;
@@ -329,21 +336,30 @@ namespace ElectronicObserver.Window.Dialog {
 			FormFleet_FixShipNameWidth.Checked = config.FormFleet.FixShipNameWidth;
 			FormFleet_ShortenHPBar.Checked = config.FormFleet.ShortenHPBar;
 			FormFleet_ShowNextExp.Checked = config.FormFleet.ShowNextExp;
-			FormFleet_ShowEquipmentLevel.Checked = config.FormFleet.ShowEquipmentLevel;
+			FormFleet_EquipmentLevelVisibility.SelectedIndex = (int)config.FormFleet.EquipmentLevelVisibility;
 			FormFleet_AirSuperiorityMethod.SelectedIndex = config.FormFleet.AirSuperiorityMethod;
 			FormFleet_ShowAnchorageRepairingTimer.Checked = config.FormFleet.ShowAnchorageRepairingTimer;
 			FormFleet_BlinkAtCompletion.Checked = config.FormFleet.BlinkAtCompletion;
 
 			FormHeadquarters_BlinkAtMaximum.Checked = config.FormHeadquarters.BlinkAtMaximum;
+			FormHeadquarters_Visibility.Items.Clear();
+			FormHeadquarters_Visibility.Items.AddRange( FormHeadquarters.GetItemNames().ToArray() );
+			FormHeadquarters.CheckVisibilityConfiguration();
+			for ( int i = 0; i < FormHeadquarters_Visibility.Items.Count; i++ ) {
+				FormHeadquarters_Visibility.SetItemChecked( i, config.FormHeadquarters.Visibility.List[i] );
+			}
 
 			FormQuest_ShowRunningOnly.Checked = config.FormQuest.ShowRunningOnly;
 			FormQuest_ShowOnce.Checked = config.FormQuest.ShowOnce;
 			FormQuest_ShowDaily.Checked = config.FormQuest.ShowDaily;
 			FormQuest_ShowWeekly.Checked = config.FormQuest.ShowWeekly;
 			FormQuest_ShowMonthly.Checked = config.FormQuest.ShowMonthly;
+			FormQuest_ProgressAutoSaving.SelectedIndex = config.FormQuest.ProgressAutoSaving;
+			FormQuest_AllowUserToSortRows.Checked = config.FormQuest.AllowUserToSortRows;
 
 			FormShipGroup_AutoUpdate.Checked = config.FormShipGroup.AutoUpdate;
 			FormShipGroup_ShowStatusBar.Checked = config.FormShipGroup.ShowStatusBar;
+			FormShipGroup_ShipNameSortMethod.SelectedIndex = config.FormShipGroup.ShipNameSortMethod;
 
 			FormBrowser_IsEnabled.Checked = config.FormBrowser.IsEnabled;
 			FormBrowser_ZoomRate.Value = config.FormBrowser.ZoomRate;
@@ -472,6 +488,7 @@ namespace ElectronicObserver.Window.Dialog {
 			config.Control.ConditionBorder = (int)Control_ConditionBorder.Value;
 			config.Control.RecordAutoSaving = Control_RecordAutoSaving.SelectedIndex;
 			config.Control.UseSystemVolume = Control_UseSystemVolume.Checked;
+			config.Control.PowerEngagementForm = Control_PowerEngagementForm.SelectedIndex + 1;
 
 			//[デバッグ]
 			config.Debug.EnableDebugMenu = Debug_EnableDebugMenu.Checked;
@@ -501,21 +518,30 @@ namespace ElectronicObserver.Window.Dialog {
 			config.FormFleet.FixShipNameWidth = FormFleet_FixShipNameWidth.Checked;
 			config.FormFleet.ShortenHPBar = FormFleet_ShortenHPBar.Checked;
 			config.FormFleet.ShowNextExp = FormFleet_ShowNextExp.Checked;
-			config.FormFleet.ShowEquipmentLevel = FormFleet_ShowEquipmentLevel.Checked;
+			config.FormFleet.EquipmentLevelVisibility = (Window.Control.ShipStatusEquipment.LevelVisibilityFlag)FormFleet_EquipmentLevelVisibility.SelectedIndex;
 			config.FormFleet.AirSuperiorityMethod = FormFleet_AirSuperiorityMethod.SelectedIndex;
 			config.FormFleet.ShowAnchorageRepairingTimer = FormFleet_ShowAnchorageRepairingTimer.Checked;
 			config.FormFleet.BlinkAtCompletion = FormFleet_BlinkAtCompletion.Checked;
 
 			config.FormHeadquarters.BlinkAtMaximum = FormHeadquarters_BlinkAtMaximum.Checked;
+			{
+				var list = new List<bool>();
+				for ( int i = 0; i < FormHeadquarters_Visibility.Items.Count; i++ )
+					list.Add( FormHeadquarters_Visibility.GetItemChecked( i ) );
+				config.FormHeadquarters.Visibility.List = list;
+			}
 
 			config.FormQuest.ShowRunningOnly = FormQuest_ShowRunningOnly.Checked;
 			config.FormQuest.ShowOnce = FormQuest_ShowOnce.Checked;
 			config.FormQuest.ShowDaily = FormQuest_ShowDaily.Checked;
 			config.FormQuest.ShowWeekly = FormQuest_ShowWeekly.Checked;
 			config.FormQuest.ShowMonthly = FormQuest_ShowMonthly.Checked;
+			config.FormQuest.ProgressAutoSaving = FormQuest_ProgressAutoSaving.SelectedIndex;
+			config.FormQuest.AllowUserToSortRows = FormQuest_AllowUserToSortRows.Checked;
 
 			config.FormShipGroup.AutoUpdate = FormShipGroup_AutoUpdate.Checked;
 			config.FormShipGroup.ShowStatusBar = FormShipGroup_ShowStatusBar.Checked;
+			config.FormShipGroup.ShipNameSortMethod = FormShipGroup_ShipNameSortMethod.SelectedIndex;
 
 			config.FormBrowser.IsEnabled = FormBrowser_IsEnabled.Checked;
 			config.FormBrowser.ZoomRate = (int)FormBrowser_ZoomRate.Value;
@@ -681,6 +707,7 @@ namespace ElectronicObserver.Window.Dialog {
 			}
 
 		}
+
 
 	}
 }

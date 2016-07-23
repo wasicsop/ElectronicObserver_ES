@@ -91,6 +91,8 @@ namespace ElectronicObserver.Data {
 					return ConstantsRes.SSHolo;
 				case 5:
 					return ConstantsRes.EXHolo;
+				case 6:
+					return "SSホロ+";
 				default:
 					return ConstantsRes.Unknown;
 			}
@@ -104,14 +106,16 @@ namespace ElectronicObserver.Data {
 				case 0:
 					return 1;
 				case 1:
-					return 4;
+					return 3;
 				case 2:
-					return 5;
+					return 4;
 				case 3:
-					return 6;
+					return 5;
 				case 4:
-					return 7;
+					return 6;
 				case 5:
+					return 7;
+				case 6:
 					return 8;
 				default:
 					return 0;
@@ -123,6 +127,7 @@ namespace ElectronicObserver.Data {
 		/// 艦船のボイス設定フラグを表す文字列を取得します。
 		/// </summary>
 		public static string GetVoiceFlag( int value ) {
+
 			switch ( value ) {
 				case 0:
 					return "-";
@@ -132,6 +137,14 @@ namespace ElectronicObserver.Data {
 					return ConstantsRes.Idle;
 				case 3:
 					return ConstantsRes.Hourly + " + " + ConstantsRes.Idle;
+				case 4:
+					return "特殊放置";
+				case 5:
+					return "時報+特殊放置";
+				case 6:
+					return "放置+特殊放置";
+				case 7:
+					return "時報+放置+特殊放置";
 				default:
 					return ConstantsRes.Unknown;
 			}
@@ -270,6 +283,25 @@ namespace ElectronicObserver.Data {
 			}
 
 		}
+
+		/// <summary>
+		/// 空襲被害の状態を表す文字列を取得します。
+		/// </summary>
+		public static string GetAirRaidDamage( int value ) {
+			switch ( value ) {
+				case 1:
+					return "空襲発生 - 資源に損害";
+				case 2:
+					return "空襲発生 - 資源・航空隊に損害";
+				case 3:
+					return "空襲発生 - 航空隊に損害";
+				case 4:
+					return "空襲発生 - 被害なし";
+				default:
+					return "空襲発生せず";
+			}
+		}
+
 
 		#endregion
 
@@ -685,18 +717,16 @@ namespace ElectronicObserver.Data {
 		/// </summary>
 		public static string GetQuestType( int id ) {
 			switch ( id ) {
-				case 1:		//一回限り
-					return "1";
-				case 2:		//デイリー
+				case 1:		//デイリー
 					return ConstantsRes.Daily;
-				case 3:		//ウィークリー
+				case 2:		//ウィークリー
 					return ConstantsRes.Weekly;
-				case 4:		//敵空母を3隻撃沈せよ！(日付下一桁0|3|7)
-					return ConstantsRes.Irregular;
-				case 5:		//敵輸送船団を叩け！(日付下一桁2|8)
-					return ConstantsRes.Irregular;
-				case 6:		//マンスリー
+				case 3:		//マンスリー
 					return ConstantsRes.Monthly;
+				case 4:		//単発
+					return "1";
+				case 5:		//その他(輸送5/空母3)
+					return "他";
 				default:
 					return ConstantsRes.Question;
 			}

@@ -151,7 +151,6 @@ namespace ElectronicObserver.Utility {
 					DownstreamProxy = "";
 					SendDataToKancolleDB = false;
 					SendKancolleOAuth = "";
-
 				}
 
 			}
@@ -358,12 +357,19 @@ namespace ElectronicObserver.Utility {
 				/// </summary>
 				public bool LastIsMute { get; set; }
 
+				/// <summary>
+				/// 威力表示の基準となる交戦形態
+				/// </summary>
+				public int PowerEngagementForm { get; set; }
+
+
 				public ConfigControl() {
 					ConditionBorder = 40;
 					RecordAutoSaving = 1;
 					UseSystemVolume = true;
 					LastVolume = 0.8f;
 					LastIsMute = false;
+					PowerEngagementForm = 1;
 				}
 			}
 			/// <summary>動作</summary>
@@ -524,8 +530,11 @@ namespace ElectronicObserver.Utility {
 				public bool BlinkAtMaximum { get; set; }
 
 
+				public SerializableList<bool> Visibility { get; set; }
+
 				public ConfigFormHeadquarters() {
 					BlinkAtMaximum = true;
+					Visibility = null;		// フォーム側で設定します
 				}
 			}
 			/// <summary>[司令部]ウィンドウ</summary>
@@ -569,9 +578,9 @@ namespace ElectronicObserver.Utility {
 				public bool ShowNextExp { get; set; }
 
 				/// <summary>
-				/// 装備の改修レベル・艦載機熟練度を表示するか
+				/// 装備の改修レベル・艦載機熟練度の表示フラグ
 				/// </summary>
-				public bool ShowEquipmentLevel { get; set; }
+				public Window.Control.ShipStatusEquipment.LevelVisibilityFlag EquipmentLevelVisibility { get; set; }
 
 				/// <summary>
 				/// 制空戦力の計算方法
@@ -590,12 +599,12 @@ namespace ElectronicObserver.Utility {
 
 				public ConfigFormFleet() {
 					ShowAircraft = true;
-					SearchingAbilityMethod = 0;
+					SearchingAbilityMethod = 3;
 					IsScrollable = true;
 					FixShipNameWidth = false;
 					ShortenHPBar = false;
 					ShowNextExp = true;
-					ShowEquipmentLevel = true;
+					EquipmentLevelVisibility = Window.Control.ShipStatusEquipment.LevelVisibilityFlag.Both;
 					AirSuperiorityMethod = 1;
 					ShowAnchorageRepairingTimer = true;
 					BlinkAtCompletion = true;
@@ -652,6 +661,14 @@ namespace ElectronicObserver.Utility {
 				/// </summary>
 				public int SortParameter { get; set; }
 
+				/// <summary>
+				/// 進捗を自動保存するか
+				/// 0 = しない、1 = 一時間ごと、2 = 一日ごと
+				/// </summary>
+				public int ProgressAutoSaving { get; set; }
+
+				public bool AllowUserToSortRows { get; set; }
+
 				public ConfigFormQuest() {
 					ShowRunningOnly = false;
 					ShowOnce = true;
@@ -661,6 +678,8 @@ namespace ElectronicObserver.Utility {
 					ColumnFilter = null;		//実際の初期化は FormQuest で行う
 					ColumnWidth = null;			//上に同じ
 					SortParameter = 3 << 1 | 0;
+					ProgressAutoSaving = 1;
+					AllowUserToSortRows = true;
 				}
 			}
 			/// <summary>[任務]ウィンドウ</summary>
@@ -673,13 +692,27 @@ namespace ElectronicObserver.Utility {
 			/// </summary>
 			public class ConfigFormShipGroup : ConfigPartBase {
 
+				/// <summary>
+				/// 自動更新するか
+				/// </summary>
 				public bool AutoUpdate { get; set; }
 
+				/// <summary>
+				/// ステータスバーを表示するか
+				/// </summary>
 				public bool ShowStatusBar { get; set; }
+
+
+				/// <summary>
+				/// 艦名列のソート方法
+				/// 0 = 図鑑番号順, 1 = あいうえお順
+				/// </summary>
+				public int ShipNameSortMethod { get; set; }
 
 				public ConfigFormShipGroup() {
 					AutoUpdate = true;
 					ShowStatusBar = true;
+					ShipNameSortMethod = 0;
 				}
 			}
 			/// <summary>[艦船グループ]ウィンドウ</summary>
@@ -905,6 +938,20 @@ namespace ElectronicObserver.Utility {
 			}
 
 
+			/// <summary>
+			/// [泊地修理通知]の設定を扱います。
+			/// </summary>
+			public class ConfigNotifierAnchorageRepair : ConfigNotifierBase {
+
+				public int NotificationLevel { get; set; }
+
+				public ConfigNotifierAnchorageRepair()
+					: base() {
+					NotificationLevel = 2;
+				}
+			}
+
+
 			/// <summary>[遠征帰投通知]</summary>
 			[DataMember]
 			public ConfigNotifierBase NotifierExpedition { get; private set; }
@@ -924,6 +971,11 @@ namespace ElectronicObserver.Utility {
 			/// <summary>[大破進撃通知]</summary>
 			[DataMember]
 			public ConfigNotifierDamage NotifierDamage { get; private set; }
+
+			/// <summary>[泊地修理通知]</summary>
+			[DataMember]
+			public ConfigNotifierAnchorageRepair NotifierAnchorageRepair { get; private set; }
+
 
 
 			/// <summary>
@@ -1013,6 +1065,7 @@ namespace ElectronicObserver.Utility {
 				NotifierRepair = new ConfigNotifierBase();
 				NotifierCondition = new ConfigNotifierBase();
 				NotifierDamage = new ConfigNotifierDamage();
+				NotifierAnchorageRepair = new ConfigNotifierAnchorageRepair();
 
 				BGMPlayer = new ConfigBGMPlayer();
 				Whitecap = new ConfigWhitecap();
@@ -1041,11 +1094,11 @@ namespace ElectronicObserver.Utility {
 		}
 
 
-		public void Load() {
+		public void Load( Form mainForm ) {
 			var temp = (ConfigurationData)_config.Load( SaveFileName );
 			if ( temp != null ) {
 				_config = temp;
-				CheckUpdate();
+				CheckUpdate( mainForm );
 				OnConfigurationChanged();
 			} else {
 				MessageBox.Show( String.Format(Resources.FirstTimeDialog, SoftwareInformation.SoftwareNameJapanese),
@@ -1059,7 +1112,7 @@ namespace ElectronicObserver.Utility {
 
 
 
-		private void CheckUpdate() {
+		private void CheckUpdate( Form mainForm ) {
 			DateTime dt = Config.VersionUpdateTime == null ? new DateTime( 0 ) : DateTimeHelper.CSVStringToTime( Config.VersionUpdateTime );
 
 			// version 1.4.6 or earlier
@@ -1296,6 +1349,8 @@ namespace ElectronicObserver.Utility {
 					}
 				}
 			}
+
+
 
 
 			Config.VersionUpdateTime = DateTimeHelper.TimeToCSVString( SoftwareInformation.UpdateTime );

@@ -125,11 +125,11 @@ namespace ElectronicObserver.Observer {
 
 							// 結構頻繁に出るのでレポートは残さない方針で　申し訳ないです
 							//Utility.ErrorReporter.SendErrorReport( e.Error, string.Format( "艦これ統計データベースへの {0} の送信に失敗しました。", url.Substring( url.IndexOf( "/api" ) + 1 ) ) );
-                            
+
 							Utility.Logger.Add( 3, string.Format( LoggerRes.FailedDatabaseSend, url.Substring( url.IndexOf( "/api" ) + 1 ), e.Error.Message ) );
 
 						} else {
-							Utility.Logger.Add( 1, string.Format( LoggerRes.SentDatabase, url.Substring( url.IndexOf( "/api" ) + 1 ) ) );
+							Utility.Logger.Add( 0, string.Format( LoggerRes.SentDatabase, url.Substring( url.IndexOf( "/api" ) + 1 ) ) );
 						}
 					};
 

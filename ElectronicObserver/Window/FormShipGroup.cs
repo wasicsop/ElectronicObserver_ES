@@ -56,6 +56,7 @@ namespace ElectronicObserver.Window {
 
 		private bool IsRowsUpdating;
 		private int _splitterDistance;
+		private int _shipNameSortMethod;
 
 
 		public FormShipGroup( FormMain parent ) {
@@ -208,13 +209,9 @@ namespace ElectronicObserver.Window {
 
 			MenuGroup_AutoUpdate.Checked = config.FormShipGroup.AutoUpdate;
 			MenuGroup_ShowStatusBar.Checked = config.FormShipGroup.ShowStatusBar;
-            BackColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.BackgroundColor);
-            ForeColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.MainFontColor);
-            ShipView.ForeColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.MainFontColor);
-            ShipView.BackgroundColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.BackgroundColor);
-            StatusBar.ForeColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.MainFontColor);
-            StatusBar.BackColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.BackgroundColor);
-        }
+			_shipNameSortMethod = config.FormShipGroup.ShipNameSortMethod;
+
+		}
 
 
 		// レイアウトロード時に呼ばれる
@@ -558,7 +555,7 @@ namespace ElectronicObserver.Window {
 
 
 		private string GetEquipmentString( ShipData ship, int index ) {
-            
+
 			if ( index < 5 ) {
 				return ( index >= ship.SlotSize && ship.Slot[index] == -1 ) ? "" :
 					ship.SlotInstance[index] == null ? GeneralRes.None : ship.SlotInstance[index].NameWithLevel;
@@ -686,9 +683,23 @@ namespace ElectronicObserver.Window {
 		private void ShipView_SortCompare( object sender, DataGridViewSortCompareEventArgs e ) {
 
 			if ( e.Column.Index == ShipView_Name.Index ) {
-				e.SortResult =
-					KCDatabase.Instance.MasterShips[(int)ShipView.Rows[e.RowIndex1].Cells[e.Column.Index].Tag].AlbumNo -
-					KCDatabase.Instance.MasterShips[(int)ShipView.Rows[e.RowIndex2].Cells[e.Column.Index].Tag].AlbumNo;
+
+				ShipDataMaster	ship1 = KCDatabase.Instance.MasterShips[(int)ShipView.Rows[e.RowIndex1].Cells[e.Column.Index].Tag],
+								ship2 = KCDatabase.Instance.MasterShips[(int)ShipView.Rows[e.RowIndex2].Cells[e.Column.Index].Tag];
+
+				switch ( _shipNameSortMethod ) {
+					case 0:		// 図鑑番号順
+					default:
+						e.SortResult = ship1.AlbumNo - ship2.AlbumNo;
+						break;
+
+					case 1:		// あいうえお順
+						e.SortResult = ship1.NameReading.CompareTo( ship2.NameReading );
+
+						if ( e.SortResult == 0 )
+							e.SortResult = ship1.Name.CompareTo( ship2.Name );
+						break;
+				}
 
 			} else if ( e.Column.Index == ShipView_Exp.Index ) {
 				e.SortResult = (int)e.CellValue1 - (int)e.CellValue2;
@@ -1084,7 +1095,7 @@ namespace ElectronicObserver.Window {
 
 
 		private void ApplyAutoSort( ShipGroupData group ) {
-            
+
 			if ( !group.AutoSortEnabled || group.SortOrder == null )
 				return;
 

@@ -1,5 +1,4 @@
-﻿using ElectronicObserver.Properties;
-using ElectronicObserver.Utility.Mathematics;
+﻿using ElectronicObserver.Utility.Mathematics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +17,7 @@ namespace ElectronicObserver.Utility {
 		/// </summary>
 		public static string SoftwareNameJapanese {
 			get {
-				return Resources.SoftwareName;
+				return "七四式電子観測儀";
 			}
 		}
 
@@ -27,7 +26,7 @@ namespace ElectronicObserver.Utility {
 		/// </summary>
 		public static string SoftwareNameEnglish {
 			get {
-				return Resources.SoftwareName;
+				return "Electronic Observer";
 			}
 		}
 
@@ -36,8 +35,7 @@ namespace ElectronicObserver.Utility {
 		/// </summary>
 		public static string VersionJapanese {
 			get {
-				return SoftwareNameJapanese + Resources.Version;
-				//return SoftwareNameJapanese + "二一型改二";
+				return SoftwareNameJapanese + "二三型改三";
 			}
 		}
 
@@ -45,10 +43,9 @@ namespace ElectronicObserver.Utility {
 		/// バージョン(英語)
 		/// </summary>
 		public static string VersionEnglish {
-			get
-            {
-                return Resources.Version;
-            }
+			get {
+				return "2.3.3";
+			}
 		}
 
 
@@ -57,7 +54,7 @@ namespace ElectronicObserver.Utility {
 		/// </summary>
 		public static DateTime UpdateTime {
 			get {
-				return DateTimeHelper.CSVStringToTime( "2016/04/01 22:00:00" );
+				return DateTimeHelper.CSVStringToTime( "2016/07/16 15:00:00" );
 			}
 		}
 

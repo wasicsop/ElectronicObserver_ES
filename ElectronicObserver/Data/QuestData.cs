@@ -30,7 +30,7 @@ namespace ElectronicObserver.Data {
 
 		/// <summary>
 		/// 任務出現タイプ
-		/// 1=一回限り, 2=デイリー, 3=ウィークリー, 6=マンスリー
+		/// 1=デイリー, 2=ウィークリー, 3=マンスリー, 4=単発, 5=他
 		/// </summary>
 		public int Type {
 			get { return (int)RawData.api_type; }
@@ -42,6 +42,7 @@ namespace ElectronicObserver.Data {
 		/// </summary>
 		public int State {
 			get { return (int)RawData.api_state; }
+			set { RawData.api_state = value; }
 		}
 
 		/// <summary>
@@ -55,7 +56,7 @@ namespace ElectronicObserver.Data {
 		/// 説明
 		/// </summary>
 		public string Description {
-			get { return FormMain.Instance.Translator.GetTranslation((string)RawData.api_detail,Utility.TranslationType.QuestDetail); }
+			get { return ( FormMain.Instance.Translator.GetTranslation((string)RawData.api_detail,Utility.TranslationType.QuestDetail)).Replace( "<br>", "\r\n" ); }
 		}
 
 		//undone:api_bonus_flag

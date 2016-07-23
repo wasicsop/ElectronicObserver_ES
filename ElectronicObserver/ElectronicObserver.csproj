@@ -72,6 +72,7 @@
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Management" />
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web" />
@@ -111,8 +112,10 @@
     <Compile Include="Data\Battle\BattleResultData.cs" />
     <Compile Include="Data\Battle\Phase\PhaseAirBattle.cs" />
     <Compile Include="Data\Battle\Phase\PhaseBase.cs" />
+    <Compile Include="Data\Battle\Phase\PhaseBaseAirAttack.cs" />
     <Compile Include="Data\Battle\Phase\PhaseInitial.cs" />
     <Compile Include="Data\Battle\Phase\PhaseNightBattle.cs" />
+    <Compile Include="Data\Battle\Phase\PhaseOpeningASW.cs" />
     <Compile Include="Data\Battle\Phase\PhaseSearching.cs" />
     <Compile Include="Data\Battle\Phase\PhaseShelling.cs" />
     <Compile Include="Data\Battle\Phase\PhaseSupport.cs" />
@@ -220,6 +223,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Menus.resx</DependentUpon>
     </Compile>
+    <Compile Include="Notifier\NotifierAnchorageRepair.cs" />
     <Compile Include="Notifier\NotifierBase.cs" />
     <Compile Include="Notifier\NotifierCondition.cs" />
     <Compile Include="Notifier\NotifierConstruction.cs" />
@@ -239,11 +243,13 @@
     <Compile Include="Observer\kcsapi\api_req_hensei\preset_select.cs" />
     <Compile Include="Observer\kcsapi\api_req_kaisou\marriage.cs" />
     <Compile Include="Observer\kcsapi\api_req_kaisou\open_exslot.cs" />
+    <Compile Include="Observer\kcsapi\api_req_kaisou\slot_deprive.cs" />
     <Compile Include="Observer\kcsapi\api_req_kaisou\slot_exchange_index.cs" />
     <Compile Include="Observer\kcsapi\api_req_kousyou\remodel_slotlist.cs" />
     <Compile Include="Observer\kcsapi\api_req_map\select_eventmap_rank.cs" />
     <Compile Include="Observer\kcsapi\api_req_member\updatecomment.cs" />
     <Compile Include="Observer\kcsapi\api_req_mission\result.cs" />
+    <Compile Include="Observer\kcsapi\api_req_quest\stop.cs" />
     <Compile Include="Observer\kcsapi\api_req_ranking\getlist.cs" />
     <Compile Include="Observer\kcsapi\api_req_sortie\airbattle.cs" />
     <Compile Include="Observer\kcsapi\api_req_sortie\ld_airbattle.cs" />
@@ -368,6 +374,12 @@
     </Compile>
     <Compile Include="Window\Dialog\DialogAlbumMasterShip.Designer.cs">
       <DependentUpon>DialogAlbumMasterShip.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Window\Dialog\DialogAlbumShipParameter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Window\Dialog\DialogAlbumShipParameter.Designer.cs">
+      <DependentUpon>DialogAlbumShipParameter.cs</DependentUpon>
     </Compile>
     <Compile Include="Window\Dialog\DialogConfiguration.cs">
       <SubType>Form</SubType>
@@ -703,6 +715,9 @@
     <EmbeddedResource Include="Window\Dialog\DialogAlbumMasterShip.resx">
       <DependentUpon>DialogAlbumMasterShip.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Window\Dialog\DialogAlbumShipParameter.resx">
+      <DependentUpon>DialogAlbumShipParameter.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Window\Dialog\DialogConfiguration.resx">
       <DependentUpon>DialogConfiguration.cs</DependentUpon>
     </EmbeddedResource>
@@ -877,7 +892,7 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>

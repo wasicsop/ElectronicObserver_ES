@@ -273,7 +273,7 @@ namespace ElectronicObserver.Window {
 						ShipNames[i].ForeColor = GetShipNameColor( ship );
 						ShipNames[i].Tag = ship.ShipID;
 						ShipNames[i].Cursor = Cursors.Help;
-						ToolTipInfo.SetToolTip( ShipNames[i], GetShipString( ship.ShipID, ship.DefaultSlot.ToArray() ) );
+						ToolTipInfo.SetToolTip( ShipNames[i], GetShipString( ship.ShipID, ship.DefaultSlot != null ? ship.DefaultSlot.ToArray() : null ) );
 					}
 
 					ShipNames[i].Visible = true;
@@ -595,6 +595,7 @@ namespace ElectronicObserver.Window {
 
 
 			TextDestination.ImageList = ResourceManager.Instance.Equipments;
+			TextEventKind.ImageList = ResourceManager.Instance.Equipments;
 			TextEventDetail.ImageList = ResourceManager.Instance.Equipments;
 			TextFormation.ImageList = ResourceManager.Instance.Icons;
 			TextAirSuperiority.ImageList = ResourceManager.Instance.Equipments;
@@ -667,6 +668,9 @@ namespace ElectronicObserver.Window {
 				ToolTipInfo.SetToolTip( TextDestination, null );
 				TextEventKind.Text = data.api_cmt;
 				TextEventKind.ForeColor = getColorFromEventKind( 0 );
+				TextEventKind.ImageAlign = ContentAlignment.MiddleCenter;
+				TextEventKind.ImageIndex = -1;
+				ToolTipInfo.SetToolTip( TextEventKind, null );
 				TextEventDetail.Text = string.Format( "Lv. {0} / {1} exp.", data.api_level, data.api_experience[0] );
 				TextEventDetail.ImageAlign = ContentAlignment.MiddleCenter;
 				TextEventDetail.ImageIndex = -1;
@@ -754,7 +758,7 @@ namespace ElectronicObserver.Window {
 
 						case 2:		//資源
 						case 8:		//船団護衛成功
-							TextEventDetail.Text = GetMaterialName( compass ) + " x " + compass.GetItemAmount;
+							TextEventDetail.Text = GetMaterialInfo( compass );
 							break;
 
 						case 3:		//渦潮
@@ -849,8 +853,8 @@ namespace ElectronicObserver.Window {
 											break;
 									}
 
-									if ( compass.GetItemID != -1 ) {
-										TextEventDetail.Text += string.Format( "　{0} x {1}", GetMaterialName( compass ), compass.GetItemAmount );
+									if ( compass.GetItems.Any() ) {
+										TextEventDetail.Text += "　" + GetMaterialInfo( compass );
 									}
 
 									break;
@@ -874,6 +878,18 @@ namespace ElectronicObserver.Window {
 					TextEventKind.Text = eventkind;
 				}
 
+
+				if ( compass.HasAirRaid ) {
+					TextEventKind.ImageAlign = ContentAlignment.MiddleRight;
+					TextEventKind.ImageIndex = (int)ResourceManager.EquipmentContent.CarrierBasedBomber;
+					ToolTipInfo.SetToolTip( TextEventKind, Constants.GetAirRaidDamage( compass.AirRaidDamageKind ) );
+				} else {
+					TextEventKind.ImageAlign = ContentAlignment.MiddleCenter;
+					TextEventKind.ImageIndex = -1;
+					ToolTipInfo.SetToolTip( TextEventKind, null );
+				}
+
+
 				BasePanel.ResumeLayout();
 
 				BasePanel.Visible = true;
@@ -883,18 +899,33 @@ namespace ElectronicObserver.Window {
 		}
 
 
-		private string GetMaterialName( CompassData compass ) {
+		private string GetMaterialInfo( CompassData compass ) {
 
-			if ( compass.GetItemID == 4 ) {		//"※"　大方資源専用ID
+			var strs = new LinkedList<string>();
 
-				return Constants.GetMaterialName( compass.GetItemIDMetadata );
+			foreach ( var item in compass.GetItems ) {
+
+				string itemName;
+
+				if ( item.ItemID == 4 ) {
+					itemName = Constants.GetMaterialName( item.Metadata );
+
+				} else {
+					var itemMaster = KCDatabase.Instance.MasterUseItems[item.Metadata];
+					if ( itemMaster != null )
+						itemName = itemMaster.Name;
+					else
+						itemName = "謎のアイテム";
+				}
+
+				strs.AddLast( itemName + " x " + item.Amount );
+			}
+
+			if ( !strs.Any() ) {
+				return "(なし)";
 
 			} else {
-				UseItemMaster item =  KCDatabase.Instance.MasterUseItems[compass.GetItemIDMetadata];
-				if ( item != null )
-					return item.Name;
-				else
-					return GeneralRes.MysteriousItem;
+				return string.Join( ", ", strs );
 			}
 		}
 
