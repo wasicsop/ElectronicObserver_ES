@@ -84,7 +84,6 @@ namespace ElectronicObserver.Window {
             Translator = new DynamicTranslator();
             Instance = this;
             this.SetStyle(ControlStyles.SupportsTransparentBackColor, true);
-            Utility.Configuration.Instance.Load();
             InitializeComponent();
             ThemeBase thm;
             switch (Configuration.Config.UI.Theme)
@@ -122,10 +121,10 @@ namespace ElectronicObserver.Window {
 			} );
 			Utility.Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
 
-			Utility.Logger.Add( 2, SoftwareInformation.SoftwareNameJapanese + Resources.IsStarting );
+			Utility.Logger.Add( 2, SoftwareInformation.SoftwareNameEnglish + Resources.IsStarting );
 
 
-			this.Text = SoftwareInformation.VersionJapanese;
+			this.Text = SoftwareInformation.SoftwareNameEnglish + SoftwareInformation.VersionEnglish;
 
 			ResourceManager.Instance.Load();
 			RecordManager.Instance.Load();
@@ -372,7 +371,7 @@ namespace ElectronicObserver.Window {
 		private void FormMain_FormClosing( object sender, FormClosingEventArgs e ) {
 
 			if ( Utility.Configuration.Config.Life.ConfirmOnClosing ) {
-				if ( MessageBox.Show( SoftwareInformation.SoftwareNameJapanese + Resources.AskClose, Resources.Confirm, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2 )
+				if ( MessageBox.Show( SoftwareInformation.SoftwareNameEnglish + Resources.AskClose, Resources.Confirm, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2 )
 					== System.Windows.Forms.DialogResult.No ) {
 					e.Cancel = true;
 					return;
@@ -380,7 +379,7 @@ namespace ElectronicObserver.Window {
 			}
 
 
-			Utility.Logger.Add( 2, SoftwareInformation.SoftwareNameJapanese + Resources.IsClosing );
+			Utility.Logger.Add( 2, SoftwareInformation.SoftwareNameEnglish + Resources.IsClosing );
 
 			UIUpdateTimer.Stop();
 

@@ -1101,7 +1101,7 @@ namespace ElectronicObserver.Utility {
 				CheckUpdate( mainForm );
 				OnConfigurationChanged();
 			} else {
-				MessageBox.Show( String.Format(Resources.FirstTimeDialog, SoftwareInformation.SoftwareNameJapanese),
+				MessageBox.Show( String.Format(Resources.FirstTimeDialog, SoftwareInformation.SoftwareNameEnglish),
 					Resources.FirstTimeTitle, MessageBoxButtons.OK, MessageBoxIcon.Information );
 			}
 		}
