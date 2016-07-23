@@ -582,4 +582,7 @@
   <data name="Port" xml:space="preserve">
     <value>Port</value>
   </data>
+  <data name="FurnitureCoin" xml:space="preserve">
+    <value>Furniture Coin</value>
+  </data>
 </root>

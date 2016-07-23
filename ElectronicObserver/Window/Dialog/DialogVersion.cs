@@ -43,12 +43,12 @@ namespace ElectronicObserver.Window.Dialog {
 
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start("http://tumblr.rkitsune.com/elecobs");
+            System.Diagnostics.Process.Start("https://github.com/silfumus/ElectronicObserver/releases");
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start("http://tumblr.rkitsune.com/");
+            System.Diagnostics.Process.Start("https://github.com/silfumus/ElectronicObserver/releases");
         }
     }
 }

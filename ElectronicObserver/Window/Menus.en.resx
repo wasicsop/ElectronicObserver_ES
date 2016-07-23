@@ -169,7 +169,7 @@
     <value>Equipment List (&amp;Q)</value>
   </data>
   <data name="File" xml:space="preserve">
-    <value>File (&amp;F)</value>
+    <value>&amp;File</value>
   </data>
   <data name="FleetList" xml:space="preserve">
     <value>Fleet List (&amp;O)</value>
@@ -181,7 +181,7 @@
     <value>Headquarters (&amp;H)</value>
   </data>
   <data name="Help" xml:space="preserve">
-    <value>Help (&amp;H)</value>
+    <value>&amp;Help</value>
   </data>
   <data name="Information" xml:space="preserve">
     <value>Information (&amp;I)</value>
@@ -280,13 +280,13 @@
     <value>Type 74 Electronic Observation Device</value>
   </data>
   <data name="Tools" xml:space="preserve">
-    <value>Tools (&amp;T)</value>
+    <value>&amp;Tools</value>
   </data>
   <data name="VersionInfo" xml:space="preserve">
-    <value>Version Info (&amp;V)</value>
+    <value>About Electronic Observer</value>
   </data>
   <data name="View" xml:space="preserve">
-    <value>View (&amp;V)</value>
+    <value>&amp;View</value>
   </data>
   <data name="WindowCapture" xml:space="preserve">
     <value>Window Capture (&amp;W)</value>

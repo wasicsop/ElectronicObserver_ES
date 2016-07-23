@@ -55,19 +55,19 @@ namespace ElectronicObserver.Observer.kcsapi.api_req_mission {
 
 							switch ( kind ) {
 								case 1:
-									sb.AddLast( "高速修復材x" + count );
+									sb.AddLast( ConstantsRes.Bucket + "x" + count );
 									break;
 								case 2:
-									sb.AddLast( "高速建造材x" + count );
+									sb.AddLast(ConstantsRes.Flamethrower + "x" + count );
 									break;
 								case 3:
-									sb.AddLast( "開発資材x" + count );
+									sb.AddLast( ConstantsRes.DevMat + "x" + count );
 									break;
 								case 4:
 									sb.AddLast( KCDatabase.Instance.MasterUseItems[id].Name + "x" + count );
 									break;
 								case 5:
-									sb.AddLast( "家具コインx" + count );
+									sb.AddLast( ConstantsRes.FurnitureCoin + "x" + count );
 									break;
 							}
 

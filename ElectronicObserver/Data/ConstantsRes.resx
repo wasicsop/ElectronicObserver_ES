@@ -582,4 +582,7 @@
   <data name="Port" xml:space="preserve">
     <value>母港</value>
   </data>
+  <data name="FurnitureCoin" xml:space="preserve">
+    <value>家具コイン</value>
+  </data>
 </root>

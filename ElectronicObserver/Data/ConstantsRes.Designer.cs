@@ -574,6 +574,15 @@ namespace ElectronicObserver.Data {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 家具コイン.
+        /// </summary>
+        internal static string FurnitureCoin {
+            get {
+                return ResourceManager.GetString("FurnitureCoin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 金.
         /// </summary>
         internal static string Gold {
