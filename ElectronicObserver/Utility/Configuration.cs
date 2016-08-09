@@ -627,7 +627,7 @@ namespace ElectronicObserver.Utility {
 
 
 				/// <summary>
-				/// 一回限り(+その他)を表示
+				/// 単発を表示
 				/// </summary>
 				public bool ShowOnce { get; set; }
 
@@ -645,6 +645,11 @@ namespace ElectronicObserver.Utility {
 				/// マンスリーを表示
 				/// </summary>
 				public bool ShowMonthly { get; set; }
+
+				/// <summary>
+				/// その他を表示
+				/// </summary>
+				public bool ShowOther { get; set; }
 
 				/// <summary>
 				/// 列の可視性
@@ -675,6 +680,7 @@ namespace ElectronicObserver.Utility {
 					ShowDaily = true;
 					ShowWeekly = true;
 					ShowMonthly = true;
+					ShowOther = true;
 					ColumnFilter = null;		//実際の初期化は FormQuest で行う
 					ColumnWidth = null;			//上に同じ
 					SortParameter = 3 << 1 | 0;

@@ -28,17 +28,18 @@
 			this.TableFleet = new System.Windows.Forms.TableLayoutPanel();
 			this.ContextMenuFleet = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.ContextMenuFleet_CopyFleet = new System.Windows.Forms.ToolStripMenuItem();
+			this.ContextMenuFleet_CopyFleetDeckBuilder = new System.Windows.Forms.ToolStripMenuItem();
 			this.ContextMenuFleet_Capture = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
 			this.ContextMenuFleet_IsScrollable = new System.Windows.Forms.ToolStripMenuItem();
 			this.ContextMenuFleet_FixShipNameWidth = new System.Windows.Forms.ToolStripMenuItem();
 			this.ToolTipInfo = new System.Windows.Forms.ToolTip(this.components);
-			this.ContextMenuFleet_CopyFleetDeckBuilder = new System.Windows.Forms.ToolStripMenuItem();
+			this.ContextMenuFleet_CopyKanmusuList = new System.Windows.Forms.ToolStripMenuItem();
 			this.ContextMenuFleet.SuspendLayout();
 			this.SuspendLayout();
-			// 
+			//
 			// TableMember
-			// 
+			//
 			this.TableMember.AutoSize = true;
 			this.TableMember.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
 			this.TableMember.ColumnCount = 6;
@@ -55,9 +56,9 @@
 			this.TableMember.Size = new System.Drawing.Size(0, 21);
 			this.TableMember.TabIndex = 1;
 			this.TableMember.CellPaint += new System.Windows.Forms.TableLayoutCellPaintEventHandler(this.TableMember_CellPaint);
-			// 
+			//
 			// TableFleet
-			// 
+			//
 			this.TableFleet.AutoSize = true;
 			this.TableFleet.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
 			this.TableFleet.ColumnCount = 4;
@@ -72,77 +73,85 @@
 			this.TableFleet.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 21F));
 			this.TableFleet.Size = new System.Drawing.Size(0, 21);
 			this.TableFleet.TabIndex = 2;
-			// 
+			//
 			// ContextMenuFleet
-			// 
+			//
 			this.ContextMenuFleet.ImageScalingSize = new System.Drawing.Size(32, 32);
 			this.ContextMenuFleet.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ContextMenuFleet_CopyFleet,
             this.ContextMenuFleet_CopyFleetDeckBuilder,
+            this.ContextMenuFleet_CopyKanmusuList,
             this.ContextMenuFleet_Capture,
             this.toolStripSeparator1,
             this.ContextMenuFleet_IsScrollable,
             this.ContextMenuFleet_FixShipNameWidth});
 			this.ContextMenuFleet.Name = "ContextMenuFleet";
-			this.ContextMenuFleet.Size = new System.Drawing.Size(398, 224);
+			this.ContextMenuFleet.Size = new System.Drawing.Size(228, 164);
 			this.ContextMenuFleet.Opening += new System.ComponentModel.CancelEventHandler(this.ContextMenuFleet_Opening);
-			// 
+			//
 			// ContextMenuFleet_CopyFleet
-			// 
+			//
 			this.ContextMenuFleet_CopyFleet.Name = "ContextMenuFleet_CopyFleet";
-			this.ContextMenuFleet_CopyFleet.Size = new System.Drawing.Size(397, 34);
+			this.ContextMenuFleet_CopyFleet.Size = new System.Drawing.Size(227, 22);
 			this.ContextMenuFleet_CopyFleet.Text = GeneralRes.CopyToClipboard;
 			this.ContextMenuFleet_CopyFleet.Click += new System.EventHandler(this.ContextMenuFleet_CopyFleet_Click);
-			// 
+			//
+			// ContextMenuFleet_CopyFleetDeckBuilder
+			//
+			this.ContextMenuFleet_CopyFleetDeckBuilder.Name = "ContextMenuFleet_CopyFleetDeckBuilder";
+			this.ContextMenuFleet_CopyFleetDeckBuilder.Size = new System.Drawing.Size(227, 22);
+			this.ContextMenuFleet_CopyFleetDeckBuilder.Text = "編成をコピー(デッキビルダー)(&D)";
+			this.ContextMenuFleet_CopyFleetDeckBuilder.Click += new System.EventHandler(this.ContextMenuFleet_CopyFleetDeckBuilder_Click);
+			//
 			// ContextMenuFleet_Capture
-			// 
+			//
 			this.ContextMenuFleet_Capture.Name = "ContextMenuFleet_Capture";
-			this.ContextMenuFleet_Capture.Size = new System.Drawing.Size(397, 34);
+			this.ContextMenuFleet_Capture.Size = new System.Drawing.Size(227, 22);
 			this.ContextMenuFleet_Capture.Text = GeneralRes.ScreenCapture;
 			this.ContextMenuFleet_Capture.Click += new System.EventHandler(this.ContextMenuFleet_Capture_Click);
-			// 
+			//
 			// toolStripSeparator1
-			// 
+			//
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
-			this.toolStripSeparator1.Size = new System.Drawing.Size(394, 6);
+			this.toolStripSeparator1.Size = new System.Drawing.Size(224, 6);
 			this.toolStripSeparator1.Visible = false;
-			// 
+			//
 			// ContextMenuFleet_IsScrollable
-			// 
+			//
 			this.ContextMenuFleet_IsScrollable.CheckOnClick = true;
 			this.ContextMenuFleet_IsScrollable.Enabled = false;
 			this.ContextMenuFleet_IsScrollable.Name = "ContextMenuFleet_IsScrollable";
-			this.ContextMenuFleet_IsScrollable.Size = new System.Drawing.Size(397,34);
+			this.ContextMenuFleet_IsScrollable.Size = new System.Drawing.Size(227, 22);
 			this.ContextMenuFleet_IsScrollable.Text = Dialog.ConfigRes.IsScrollable;
 			this.ContextMenuFleet_IsScrollable.Visible = false;
 			this.ContextMenuFleet_IsScrollable.Click += new System.EventHandler(this.ContextMenuFleet_IsScrollable_Click);
-			// 
+			//
 			// ContextMenuFleet_FixShipNameWidth
-			// 
+			//
 			this.ContextMenuFleet_FixShipNameWidth.CheckOnClick = true;
 			this.ContextMenuFleet_FixShipNameWidth.Enabled = false;
 			this.ContextMenuFleet_FixShipNameWidth.Name = "ContextMenuFleet_FixShipNameWidth";
-			this.ContextMenuFleet_FixShipNameWidth.Size = new System.Drawing.Size(397,34);
+			this.ContextMenuFleet_FixShipNameWidth.Size = new System.Drawing.Size(227, 22);
 			this.ContextMenuFleet_FixShipNameWidth.Text = Dialog.ConfigRes.FixShipNameWidth;
 			this.ContextMenuFleet_FixShipNameWidth.Visible = false;
 			this.ContextMenuFleet_FixShipNameWidth.Click += new System.EventHandler(this.ContextMenuFleet_FixShipNameWidth_Click);
-			// 
+			//
 			// ToolTipInfo
-			// 
+			//
 			this.ToolTipInfo.AutoPopDelay = 30000;
 			this.ToolTipInfo.InitialDelay = 500;
 			this.ToolTipInfo.ReshowDelay = 100;
 			this.ToolTipInfo.ShowAlways = true;
-			// 
-			// ContextMenuFleet_CopyFleetDeckBuilder
-			// 
-			this.ContextMenuFleet_CopyFleetDeckBuilder.Name = "ContextMenuFleet_CopyFleetDeckBuilder";
-			this.ContextMenuFleet_CopyFleetDeckBuilder.Size = new System.Drawing.Size(397, 34);
-			this.ContextMenuFleet_CopyFleetDeckBuilder.Text = "編成をコピー(デッキビルダー)(&D)";
-			this.ContextMenuFleet_CopyFleetDeckBuilder.Click += new System.EventHandler(this.ContextMenuFleet_CopyFleetDeckBuilder_Click);
-			// 
+			//
+			// ContextMenuFleet_CopyKanmusuList
+			//
+			this.ContextMenuFleet_CopyKanmusuList.Name = "ContextMenuFleet_CopyKanmusuList";
+			this.ContextMenuFleet_CopyKanmusuList.Size = new System.Drawing.Size(227, 22);
+			this.ContextMenuFleet_CopyKanmusuList.Text = "艦隊晒しページへコピー(&R)";
+			this.ContextMenuFleet_CopyKanmusuList.Click += new System.EventHandler(this.ContextMenuFleet_CopyKanmusuList_Click);
+			//
 			// FormFleet
-			// 
+			//
 			this.AutoHidePortion = 150D;
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.AutoScroll = true;
@@ -176,5 +185,6 @@
 		private System.Windows.Forms.ToolStripMenuItem ContextMenuFleet_IsScrollable;
 		private System.Windows.Forms.ToolStripMenuItem ContextMenuFleet_FixShipNameWidth;
 		private System.Windows.Forms.ToolStripMenuItem ContextMenuFleet_CopyFleetDeckBuilder;
+		private System.Windows.Forms.ToolStripMenuItem ContextMenuFleet_CopyKanmusuList;
 	}
 }
