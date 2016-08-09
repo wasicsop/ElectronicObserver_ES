@@ -132,8 +132,8 @@
 			// QuestView_Name
 			//
 			this.QuestView_Name.FillWeight = 200F;
-			this.QuestView_Name.HeaderText = "任務名";
-			this.QuestView_Name.Name = GeneralRes.QuestName;
+			this.QuestView_Name.HeaderText = GeneralRes.QuestName;
+			this.QuestView_Name.Name = "QuestView_Name";
 			this.QuestView_Name.ReadOnly = true;
 			this.QuestView_Name.Width = 143;
 			//
@@ -311,7 +311,7 @@
 			this.MenuMain_ShowOther.CheckOnClick = true;
 			this.MenuMain_ShowOther.Name = "MenuMain_ShowOther";
 			this.MenuMain_ShowOther.Size = new System.Drawing.Size(204, 22);
-			this.MenuMain_ShowOther.Text = "その他の任務を表示(&R)";
+			this.MenuMain_ShowOther.Text = GeneralRes.ShowOther;
 			this.MenuMain_ShowOther.Click += new System.EventHandler(this.MenuMain_ShowOther_Click);
 			//
 			// FormQuest

@@ -1804,6 +1804,15 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to その他の任務を表示(&amp;R).
+        /// </summary>
+        internal static string ShowOther {
+            get {
+                return ResourceManager.GetString("ShowOther", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ステータスバーを表示する.
         /// </summary>
         internal static string ShowStatusBar {

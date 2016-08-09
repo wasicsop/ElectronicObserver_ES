@@ -865,4 +865,7 @@
   <data name="Cancel" xml:space="preserve">
     <value>キャンセル</value>
   </data>
+  <data name="ShowOther" xml:space="preserve">
+    <value>その他の任務を表示(&amp;R)</value>
+  </data>
 </root>
