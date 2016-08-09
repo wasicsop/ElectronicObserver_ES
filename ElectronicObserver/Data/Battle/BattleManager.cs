@@ -225,11 +225,11 @@ namespace ElectronicObserver.Data.Battle {
 			// ロギング
 			if ( ( BattleMode & BattleModes.BattlePhaseMask ) == BattleModes.Practice ) {
 				Utility.Logger.Add( 2,
-					string.Format( "演習 で「{0}」{1}の「{2}」と交戦しました。( ランク: {3}, 提督Exp+{4}, 艦娘Exp+{5} )",
+					string.Format( LoggerRes.PracticeMessage,
 						EnemyAdmiralName, EnemyAdmiralRank, Result.EnemyFleetName, Result.Rank, Result.AdmiralExp, Result.BaseExp ) );
 			} else {
 				Utility.Logger.Add( 2,
-					string.Format( "{0}-{1}-{2} で「{3}」と交戦しました。( ランク: {4}, 提督Exp+{5}, 艦娘Exp+{6} )",
+					string.Format( LoggerRes.BattleMessage,
 						Compass.MapAreaID, Compass.MapInfoID, Compass.Destination, Result.EnemyFleetName, Result.Rank, Result.AdmiralExp, Result.BaseExp ) );
 			}
 

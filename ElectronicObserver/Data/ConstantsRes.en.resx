@@ -250,7 +250,7 @@
     <value>Fleet Admiral</value>
   </data>
   <data name="Formation" xml:space="preserve">
-    <value>Formation</value>
+    <value>Composition</value>
   </data>
   <data name="Forward" xml:space="preserve">
     <value>Forward</value>
@@ -584,5 +584,14 @@
   </data>
   <data name="FurnitureCoin" xml:space="preserve">
     <value>Furniture Coin</value>
+  </data>
+  <data name="SpecialIdle" xml:space="preserve">
+    <value>特殊放置</value>
+  </data>
+  <data name="SSHoloPlus" xml:space="preserve">
+    <value>SS-Holo+</value>
+  </data>
+  <data name="QuestOther" xml:space="preserve">
+    <value>O</value>
   </data>
 </root>

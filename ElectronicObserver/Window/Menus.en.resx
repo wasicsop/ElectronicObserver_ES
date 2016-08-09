@@ -208,7 +208,7 @@
     <value>Log (&amp;L)</value>
   </data>
   <data name="OnlineHelp" xml:space="preserve">
-    <value>Online Help (&amp;H)...</value>
+    <value>Online &amp;Help...</value>
   </data>
   <data name="Other" xml:space="preserve">
     <value>Other</value>
@@ -283,7 +283,7 @@
     <value>&amp;Tools</value>
   </data>
   <data name="VersionInfo" xml:space="preserve">
-    <value>About Electronic Observer</value>
+    <value>&amp;About Electronic Observer</value>
   </data>
   <data name="View" xml:space="preserve">
     <value>&amp;View</value>

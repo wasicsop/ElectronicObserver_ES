@@ -92,7 +92,7 @@ namespace ElectronicObserver.Data {
 				case 5:
 					return ConstantsRes.EXHolo;
 				case 6:
-					return "SSホロ+";
+					return ConstantsRes.SSHoloPlus;
 				default:
 					return ConstantsRes.Unknown;
 			}
@@ -138,13 +138,13 @@ namespace ElectronicObserver.Data {
 				case 3:
 					return ConstantsRes.Hourly + " + " + ConstantsRes.Idle;
 				case 4:
-					return "特殊放置";
+					return ConstantsRes.SpecialIdle;
 				case 5:
-					return "時報+特殊放置";
+					return ConstantsRes.Hourly + " + " + ConstantsRes.SpecialIdle;
 				case 6:
-					return "放置+特殊放置";
+					return ConstantsRes.Idle + " + " + ConstantsRes.SpecialIdle;
 				case 7:
-					return "時報+放置+特殊放置";
+					return ConstantsRes.Hourly + " + " + ConstantsRes.SpecialIdle;
 				default:
 					return ConstantsRes.Unknown;
 			}
@@ -726,7 +726,7 @@ namespace ElectronicObserver.Data {
 				case 4:		//単発
 					return "1";
 				case 5:		//その他(輸送5/空母3)
-					return "他";
+					return ConstantsRes.QuestOther;
 				default:
 					return ConstantsRes.Question;
 			}

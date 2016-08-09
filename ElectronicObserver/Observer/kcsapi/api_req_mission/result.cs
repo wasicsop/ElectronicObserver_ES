@@ -36,7 +36,7 @@ namespace ElectronicObserver.Observer.kcsapi.api_req_mission {
 					int[] materials = (int[])data.api_get_material;
 					for ( int i = 0; i < 4; i++ ) {
 						if ( materials[i] > 0 ) {
-							sb.AddLast( Constants.GetMaterialName( i + 1 ) + "x" + materials[i] );
+							sb.AddLast( Constants.GetMaterialName( i + 1 ) + "+" + materials[i] );
 						}
 					}
 
@@ -55,19 +55,19 @@ namespace ElectronicObserver.Observer.kcsapi.api_req_mission {
 
 							switch ( kind ) {
 								case 1:
-									sb.AddLast( ConstantsRes.Bucket + "x" + count );
+									sb.AddLast( ConstantsRes.Bucket + "+" + count );
 									break;
 								case 2:
-									sb.AddLast(ConstantsRes.Flamethrower + "x" + count );
+									sb.AddLast(ConstantsRes.Flamethrower + "+" + count );
 									break;
 								case 3:
-									sb.AddLast( ConstantsRes.DevMat + "x" + count );
+									sb.AddLast( ConstantsRes.DevMat + "+" + count );
 									break;
 								case 4:
-									sb.AddLast( KCDatabase.Instance.MasterUseItems[id].Name + "x" + count );
+									sb.AddLast( KCDatabase.Instance.MasterUseItems[id].Name + "+" + count );
 									break;
 								case 5:
-									sb.AddLast( ConstantsRes.FurnitureCoin + "x" + count );
+									sb.AddLast( ConstantsRes.FurnitureCoin + "+" + count );
 									break;
 							}
 
@@ -88,7 +88,7 @@ namespace ElectronicObserver.Observer.kcsapi.api_req_mission {
 					}
 				}
 
-				Utility.Logger.Add( 2, ConstantsRes.ExpeditionResult + " - " + Constants.GetExpeditionResult( (int)data.api_clear_result ) + ": " + ( sb.Count == 0 ? ConstantsRes.NoResources : string.Join( ", ", sb ) ) );
+				Utility.Logger.Add( 2, ConstantsRes.ExpeditionResult + " - " + Constants.GetExpeditionResult( (int)data.api_clear_result ) + ": " + ( sb.Count == 0 ? ConstantsRes.NoResources : string.Join( ", ", sb )) + ".");
 			}
 
 			base.OnResponseReceived( (object)data );

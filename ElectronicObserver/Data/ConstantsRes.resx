@@ -585,4 +585,13 @@
   <data name="FurnitureCoin" xml:space="preserve">
     <value>家具コイン</value>
   </data>
+  <data name="SpecialIdle" xml:space="preserve">
+    <value>特殊放置</value>
+  </data>
+  <data name="SSHoloPlus" xml:space="preserve">
+    <value>SSホロ+</value>
+  </data>
+  <data name="QuestOther" xml:space="preserve">
+    <value>他</value>
+  </data>
 </root>

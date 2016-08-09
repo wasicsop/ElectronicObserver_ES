@@ -106,6 +106,15 @@ namespace ElectronicObserver {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0}-{1}-{2} で「{3}」と交戦しました。( ランク: {4}, 提督Exp+{5}, 艦娘Exp+{6} ).
+        /// </summary>
+        internal static string BattleMessage {
+            get {
+                return ResourceManager.GetString("BattleMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to のパラメータを更新しました。.
         /// </summary>
         internal static string ChangedParameters {
@@ -525,6 +534,15 @@ namespace ElectronicObserver {
         internal static string ObserverWrongPort {
             get {
                 return ResourceManager.GetString("ObserverWrongPort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 演習 で「{0}」{1}の「{2}」と交戦しました。( ランク: {3}, 提督Exp+{4}, 艦娘Exp+{5} ).
+        /// </summary>
+        internal static string PracticeMessage {
+            get {
+                return ResourceManager.GetString("PracticeMessage", resourceCulture);
             }
         }
         

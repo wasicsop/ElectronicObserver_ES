@@ -1069,6 +1069,15 @@ namespace ElectronicObserver.Data {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 他.
+        /// </summary>
+        internal static string QuestOther {
+            get {
+                return ResourceManager.GetString("QuestOther", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 電探.
         /// </summary>
         internal static string Radar {
@@ -1231,6 +1240,15 @@ namespace ElectronicObserver.Data {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 特殊放置.
+        /// </summary>
+        internal static string SpecialIdle {
+            get {
+                return ResourceManager.GetString("SpecialIdle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 輝虹.
         /// </summary>
         internal static string SRainbow {
@@ -1245,6 +1263,15 @@ namespace ElectronicObserver.Data {
         internal static string SSHolo {
             get {
                 return ResourceManager.GetString("SSHolo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SSホロ+.
+        /// </summary>
+        internal static string SSHoloPlus {
+            get {
+                return ResourceManager.GetString("SSHoloPlus", resourceCulture);
             }
         }
         
