@@ -166,7 +166,7 @@
 あと {1} 回遠征可能</value>
   </data>
   <data name="StartTime" xml:space="preserve">
-    <value>開始日時 </value>
+    <value>開始日時 : {0}\r\n修理時間 :\r\n</value>
   </data>
   <data name="SupplyNeeded" xml:space="preserve">
     <value>未補給</value>

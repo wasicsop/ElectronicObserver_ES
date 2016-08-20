@@ -166,7 +166,7 @@ Baux: {2} ({3} planes)</value>
 {1} effective expeditions remaining.</value>
   </data>
   <data name="StartTime" xml:space="preserve">
-    <value>Start Time</value>
+    <value>Start time : {0}\r\nRepair time :\r\n</value>
   </data>
   <data name="SupplyNeeded" xml:space="preserve">
     <value>Resupply needed</value>

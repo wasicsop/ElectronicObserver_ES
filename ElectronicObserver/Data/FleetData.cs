@@ -643,8 +643,31 @@ namespace ElectronicObserver.Data {
 					label.Text = FleetRes.AnchorageRepairing + DateTimeHelper.ToTimeElapsedString( KCDatabase.Instance.Fleet.AnchorageRepairingTimer );
 					label.ImageIndex = (int)ResourceManager.IconContent.FleetAnchorageRepairing;
 
-					tooltip.SetToolTip( label, string.Format( FleetRes.StartTime + ": {0}",
-						DateTimeHelper.TimeToCSVString( KCDatabase.Instance.Fleet.AnchorageRepairingTimer ) ) );
+					StringBuilder sb = new StringBuilder();
+					sb.AppendFormat( FleetRes.StartTime,
+						DateTimeHelper.TimeToCSVString( KCDatabase.Instance.Fleet.AnchorageRepairingTimer ) );
+
+					for ( int i = 0; i < fleet.Members.Count; i++ ) {
+						var ship = fleet.MembersInstance[i];
+						if ( ship != null && ship.HPRate < 1.0 ) {
+							var totaltime = DateTimeHelper.FromAPITimeSpan( ship.RepairTime );
+							var unittime = Calculator.CalculateDockingUnitTime( ship );
+							sb.AppendFormat( "#{0} : {1:00}:{2:00}:{3:00} @ {4:00}:{5:00}:{6:00} x -{7} HP\r\n",
+								i + 1,
+								(int)totaltime.TotalHours,
+								totaltime.Minutes,
+								totaltime.Seconds,
+								(int)unittime.TotalHours,
+								unittime.Minutes,
+								unittime.Seconds,
+								ship.HPMax - ship.HPCurrent
+								);
+						} else {
+							sb.Append( "#" ).Append( i + 1 ).Append( " : ----\r\n" );
+						}
+					}
+
+					tooltip.SetToolTip( label, sb.ToString() );
 
 					return FleetStates.AnchorageRepairing;
 				}
