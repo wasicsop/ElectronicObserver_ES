@@ -88,7 +88,8 @@ namespace ElectronicObserver.Resource.Record {
 			/// <param name="level">艦船のレベル。</param>
 			/// <param name="current">現在値。</param>
 			/// <param name="max">最大値。</param>
-			public void SetEstParameter( int level, int current, int max ) {
+			/// <returns>予測パラメータが範囲外の値をとったとき true 。</returns>
+			public bool SetEstParameter( int level, int current, int max ) {
 
 				Func<int, int, int, int> clamp = ( int _value, int _min, int _max ) => _value < _min ? _min : ( _value > _max ? _max : _value );
 
@@ -110,6 +111,8 @@ namespace ElectronicObserver.Resource.Record {
 					if ( emax < MinimumEstMin || MinimumEstMax < emin ) {		//明らかに範囲から外れた場合
 						MinimumEstMin = emin;
 						MinimumEstMax = emax;
+						return true;
+
 					} else {
 						MinimumEstMin = Math.Max( MinimumEstMin, emin );
 						MinimumEstMax = Math.Min( MinimumEstMax, emax );
@@ -117,22 +120,31 @@ namespace ElectronicObserver.Resource.Record {
 
 				}
 
+				return false;
 			}
 
 
+
+			// level > 99 のとき、最小値と最大値が反転するため
 			public int GetEstParameterMin( int level ) {
-				return MinimumEstMin + (int)( ( Maximum - MinimumEstMin ) * level / 99.0 );
+				int min = CalculateParameter( level, MinimumEstMin, Maximum );
+				int max = CalculateParameter( level, MinimumEstMax, Maximum );
+				return Math.Min( min, max );
 			}
 
 			public int GetEstParameterMax( int level ) {
-				return MinimumEstMax + (int)( ( Maximum - MinimumEstMax ) * level / 99.0 );
+				int min = CalculateParameter( level, MinimumEstMin, Maximum );
+				int max = CalculateParameter( level, MinimumEstMax, Maximum );
+				return Math.Max( min, max );
 			}
-
 
 			public int GetParameter( int level ) {
-				return Minimum + (int)( ( Maximum - Minimum ) * level / 99.0 );
+				return CalculateParameter( level, Minimum, Maximum );
 			}
 
+			private int CalculateParameter( int level, int min, int max ) {
+				return min + (int)( ( max - min ) * level / 99.0 );
+			}
 		}
 
 
@@ -344,7 +356,8 @@ namespace ElectronicObserver.Resource.Record {
 					DefaultSlot = new int[5];
 
 					for ( int i = 0; i < DefaultSlot.Length; i++ ) {
-						DefaultSlot[i] = int.Parse( elem[i + 24] );
+
+						DefaultSlot[i] = elem[i + 24] == "null" ? -1 : int.Parse( elem[i + 24] );
 					}
 				}
 
@@ -355,7 +368,7 @@ namespace ElectronicObserver.Resource.Record {
 					Aircraft = new int[5];
 
 					for ( int i = 0; i < Aircraft.Length; i++ ) {
-						Aircraft[i] = int.Parse( elem[i + 29] );
+						Aircraft[i] = elem[i + 29] == "null" ? 0 : int.Parse( elem[i + 29] );
 					}
 				}
 
@@ -448,11 +461,13 @@ namespace ElectronicObserver.Resource.Record {
 			//ao.APIList["api_req_battle_midnight/battle"].ResponseReceived += BattleStart;
 			ao.APIList["api_req_battle_midnight/sp_midnight"].ResponseReceived += BattleStart;
 			ao.APIList["api_req_sortie/airbattle"].ResponseReceived += BattleStart;
+			ao.APIList["api_req_sortie/ld_airbattle"].ResponseReceived += BattleStart;
 			ao.APIList["api_req_combined_battle/battle"].ResponseReceived += BattleStart;
 			//ao.APIList["api_req_combined_battle/midnight_battle"].ResponseReceived += BattleStart;
 			ao.APIList["api_req_combined_battle/sp_midnight"].ResponseReceived += BattleStart;
 			ao.APIList["api_req_combined_battle/airbattle"].ResponseReceived += BattleStart;
 			ao.APIList["api_req_combined_battle/battle_water"].ResponseReceived += BattleStart;
+			ao.APIList["api_req_combined_battle/ld_airbattle"].ResponseReceived += BattleStart;
 
 			ao.APIList["api_req_map/start"].ResponseReceived += SortieStart;
 			//ao.APIList["api_port/port"].ResponseReceived += SortieEnd;
@@ -512,9 +527,19 @@ namespace ElectronicObserver.Resource.Record {
 				Utility.Logger.Add( 2, KCDatabase.Instance.MasterShips[shipID].NameWithClass + LoggerRes.RegisteredParameters );
 			}
 
-			e.ASW.SetEstParameter( level, aswMin, aswMax );
-			e.Evasion.SetEstParameter( level, evasionMin, evasionMax );
-			e.LOS.SetEstParameter( level, losMin, losMax );
+
+			if ( e.ASW.SetEstParameter( level, aswMin, aswMax ) )
+				Utility.Logger.Add( 1, string.Format( "ShipParameter: {0} の対潜値が予測範囲から外れました( [{1} ~ {2}] ~ {3} )。",
+					KCDatabase.Instance.MasterShips[e.ShipID].NameWithClass, e.ASW.MinimumEstMin, e.ASW.MinimumEstMax, e.ASW.Maximum ) );
+
+			if ( e.Evasion.SetEstParameter( level, evasionMin, evasionMax ) )
+				Utility.Logger.Add( 1, string.Format( "ShipParameter: {0} の回避値が予測範囲から外れました( [{1} ~ {2}] ~ {3} )。",
+					KCDatabase.Instance.MasterShips[e.ShipID].NameWithClass, e.Evasion.MinimumEstMin, e.Evasion.MinimumEstMax, e.Evasion.Maximum ) );
+
+			if ( e.LOS.SetEstParameter( level, losMin, losMax ) )
+				Utility.Logger.Add( 1, string.Format( "ShipParameter: {0} の索敵値が予測範囲から外れました( [{1} ~ {2}] ~ {3} )。",
+					KCDatabase.Instance.MasterShips[e.ShipID].NameWithClass, e.LOS.MinimumEstMin, e.LOS.MinimumEstMax, e.LOS.Maximum ) );
+
 
 			Update( e );
 		}
@@ -602,6 +627,26 @@ namespace ElectronicObserver.Resource.Record {
 				if ( elem.api_getmes() ) {
 					param.MessageGet = elem.api_getmes;
 				}
+
+				Update( param );
+			}
+
+
+			// validation
+			foreach ( var record in Record.Values ) {
+
+				// 無効な装備を持っていた場合、初期装備データを初期化
+				if ( record.DefaultSlot != null ) {
+
+					var keys = KCDatabase.Instance.MasterEquipments.Keys;
+
+					foreach ( int eq in record.DefaultSlot.ToArray() ) {
+						if ( eq != -1 && !keys.Contains( eq ) ) {
+							record.DefaultSlot = null;
+							break;
+						}
+					}
+				}
 			}
 
 		}
@@ -640,23 +685,29 @@ namespace ElectronicObserver.Resource.Record {
 
 
 				int shipID = (int)elem.api_table_id[0];
+				var ship = KCDatabase.Instance.MasterShips[shipID];
 
 				ShipParameterElement e = this[shipID];
 				if ( e == null ) {
 					e = new ShipParameterElement();
 					e.ShipID = shipID;
-					Utility.Logger.Add( 2, KCDatabase.Instance.MasterShips[shipID].NameWithClass + LoggerRes.RegisteredParameters );
+					Utility.Logger.Add( 2, ship.NameWithClass + LoggerRes.RegisteredParameters );
 				}
 
-				e.ASW.SetEstParameter( 1, (int)elem.api_tais, Parameter.MaximumDefault );
-				e.Evasion.SetEstParameter( 1, (int)elem.api_kaih, Parameter.MaximumDefault );
+
+				if ( e.ASW.SetEstParameter( 1, (int)elem.api_tais, Parameter.MaximumDefault ) )
+					Utility.Logger.Add( 1, string.Format( "ShipParameter: {0} の対潜値が予測範囲から外れました( [{1} ~ {2}] ~ {3} )。",
+						ship.NameWithClass, e.ASW.MinimumEstMin, e.ASW.MinimumEstMax, e.ASW.Maximum ) );
+
+				if ( e.Evasion.SetEstParameter( 1, (int)elem.api_kaih, Parameter.MaximumDefault ) )
+					Utility.Logger.Add( 1, string.Format( "ShipParameter: {0} の回避値が予測範囲から外れました( [{1} ~ {2}] ~ {3} )。",
+						ship.NameWithClass, e.Evasion.MinimumEstMin, e.Evasion.MinimumEstMax, e.Evasion.Maximum ) );
 
 
 				{	//図鑑説明文登録(図鑑に載っていない改装艦に関してはその改装前の艦の説明文を設定する)
 					e.MessageAlbum = elem.api_sinfo;
 					LinkedList<int> processedIDs = new LinkedList<int>();
 
-					ShipDataMaster ship = KCDatabase.Instance.MasterShips[shipID];
 					while ( ship != null && !processedIDs.Contains( ship.ShipID ) && ship.RemodelAfterShipID > 0 ) {
 
 						processedIDs.AddLast( ship.ID );
@@ -676,7 +727,7 @@ namespace ElectronicObserver.Resource.Record {
 
 
 				Update( e );
-				Utility.Logger.Add( 1, KCDatabase.Instance.MasterShips[shipID].NameWithClass + LoggerRes.ChangedParameters );
+				//Utility.Logger.Add( 1, KCDatabase.Instance.MasterShips[shipID].NameWithClass + "のパラメータを更新しました。" );
 			}
 		}
 
@@ -720,7 +771,7 @@ namespace ElectronicObserver.Resource.Record {
 		/// </summary>
 		private void SortieStart( string apiname, dynamic data ) {
 
-			newShipIDBorder = KCDatabase.Instance.Ships.Max( ( KeyValuePair<int, ShipData> s ) => s.Value.MasterID );
+			newShipIDBorder = KCDatabase.Instance.Ships.Keys.Max();
 
 		}
 
@@ -732,7 +783,7 @@ namespace ElectronicObserver.Resource.Record {
 
 			if ( newShipIDBorder == -1 ) return;
 
-			foreach ( ShipData s in KCDatabase.Instance.Ships.Values.Where( ( ShipData s ) => s.MasterID > newShipIDBorder ) ) {
+			foreach ( ShipData s in KCDatabase.Instance.Ships.Values.Where( s => s.MasterID > newShipIDBorder ) ) {
 
 				UpdateParameter( s );
 				UpdateDefaultSlot( s );
@@ -749,7 +800,7 @@ namespace ElectronicObserver.Resource.Record {
 		private void ConstructionReceived( string apiname, dynamic data ) {
 
 			int shipID = (int)data.api_id;
-			ShipData ship = KCDatabase.Instance.Ships.Values.FirstOrDefault( ( ShipData s ) => s.MasterID == shipID );
+			ShipData ship = KCDatabase.Instance.Ships.Values.FirstOrDefault( s => s.MasterID == shipID );
 
 			if ( ship != null ) {
 				UpdateParameter( ship );
@@ -813,7 +864,7 @@ namespace ElectronicObserver.Resource.Record {
 			Record.Clear();
 		}
 
-		protected override string RecordHeader {
+		public override string RecordHeader {
 			get { return "艦船ID,艦船名,耐久初期,耐久最大,火力初期,火力最大,雷装初期,雷装最大,対空初期,対空最大,装甲初期,装甲最大,対潜初期下限,対潜初期上限,対潜最大,回避初期下限,回避初期上限,回避最大,索敵初期下限,索敵初期上限,索敵最大,運初期,運最大,射程,装備1,装備2,装備3,装備4,装備5,機数1,機数2,機数3,機数4,機数5,ドロップ説明,図鑑説明"; }
 		}
 

@@ -169,7 +169,7 @@
     <value>Equipment List (&amp;Q)</value>
   </data>
   <data name="File" xml:space="preserve">
-    <value>File (&amp;F)</value>
+    <value>&amp;File</value>
   </data>
   <data name="FleetList" xml:space="preserve">
     <value>Fleet List (&amp;O)</value>
@@ -181,7 +181,7 @@
     <value>Headquarters (&amp;H)</value>
   </data>
   <data name="Help" xml:space="preserve">
-    <value>Help (&amp;H)</value>
+    <value>&amp;Help</value>
   </data>
   <data name="Information" xml:space="preserve">
     <value>Information (&amp;I)</value>
@@ -193,7 +193,7 @@
     <value>Open from another file (&amp;O)...</value>
   </data>
   <data name="Load" xml:space="preserve">
-    <value>Load(&amp;L)</value>
+    <value>Load (&amp;L)</value>
   </data>
   <data name="LoadAPIFromFile" xml:space="preserve">
     <value>Load API data from file (&amp;L)...</value>
@@ -208,7 +208,7 @@
     <value>Log (&amp;L)</value>
   </data>
   <data name="OnlineHelp" xml:space="preserve">
-    <value>Online Help (&amp;H)...</value>
+    <value>Online &amp;Help...</value>
   </data>
   <data name="Other" xml:space="preserve">
     <value>Other</value>
@@ -280,13 +280,13 @@
     <value>Type 74 Electronic Observation Device</value>
   </data>
   <data name="Tools" xml:space="preserve">
-    <value>Tools (&amp;T)</value>
+    <value>&amp;Tools</value>
   </data>
   <data name="VersionInfo" xml:space="preserve">
-    <value>Version Info (&amp;V)</value>
+    <value>&amp;About Electronic Observer</value>
   </data>
   <data name="View" xml:space="preserve">
-    <value>View (&amp;V)</value>
+    <value>&amp;View</value>
   </data>
   <data name="WindowCapture" xml:space="preserve">
     <value>Window Capture (&amp;W)</value>
@@ -297,13 +297,13 @@
   <data name="ResourceChart" xml:space="preserve">
     <value>Resource Chart (&amp;C)</value>
   </data>
-  <data name="ConstructionRecord" xml:space="preserve">
-    <value>Construction Log (&amp;R)</value>
+  <data name="BuildRecord" xml:space="preserve">
+    <value>Construction Record (&amp;R)</value>
   </data>
-  <data name="DevelopmentRecord" xml:space="preserve">
-    <value>Development Log (&amp;V)</value>
+  <data name="DevRecord" xml:space="preserve">
+    <value>Development Record (&amp;V)</value>
   </data>
   <data name="DropRecord" xml:space="preserve">
-    <value>Drop Log (&amp;D)</value>
+    <value>Drop Record (&amp;D)</value>
   </data>
 </root>

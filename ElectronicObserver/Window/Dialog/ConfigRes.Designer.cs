@@ -199,6 +199,78 @@ namespace ElectronicObserver.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to BGMプレイヤーを有効にする.
+        /// </summary>
+        internal static string BGMPlayer_Enabled {
+            get {
+                return ResourceManager.GetString("BGMPlayer_Enabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 現在の場面に合わせてお好みのBGMを再生する機能です。.
+        /// </summary>
+        internal static string BGMPlayer_Enabled_Tooltip {
+            get {
+                return ResourceManager.GetString("BGMPlayer_Enabled_Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 音楽ファイルを開く.
+        /// </summary>
+        internal static string BGMPlayer_OpenMusicFile {
+            get {
+                return ResourceManager.GetString("BGMPlayer_OpenMusicFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to BGMの設定.
+        /// </summary>
+        internal static string BGMPlayer_Settings {
+            get {
+                return ResourceManager.GetString("BGMPlayer_Settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 音量一括適用.
+        /// </summary>
+        internal static string BGMPlayer_SetVolumeAll {
+            get {
+                return ResourceManager.GetString("BGMPlayer_SetVolumeAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ミュートを同期.
+        /// </summary>
+        internal static string BGMPlayer_SyncBrowserMute {
+            get {
+                return ResourceManager.GetString("BGMPlayer_SyncBrowserMute", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ブラウザのミュートと連動させるかを指定します。.
+        /// </summary>
+        internal static string BGMPlayer_SyncBrowserMute_Tooltip {
+            get {
+                return ResourceManager.GetString("BGMPlayer_SyncBrowserMute_Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 完了時に点滅させる.
+        /// </summary>
+        internal static string BlinkAtCompletion {
+            get {
+                return ResourceManager.GetString("BlinkAtCompletion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 艦船/装備が満タンの時点滅する.
         /// </summary>
         internal static string BlinkAtMaximum {
@@ -279,6 +351,15 @@ namespace ElectronicObserver.Window.Dialog {
         internal static string Communication {
             get {
                 return ResourceManager.GetString("Communication", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 一度に表示する候補数：.
+        /// </summary>
+        internal static string CompassCandidate {
+            get {
+                return ResourceManager.GetString("CompassCandidate", resourceCulture);
             }
         }
         
@@ -530,6 +611,15 @@ namespace ElectronicObserver.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ファイル名.
+        /// </summary>
+        internal static string FileName {
+            get {
+                return ResourceManager.GetString("FileName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to フィルタ.
         /// </summary>
         internal static string Filter {
@@ -596,11 +686,29 @@ namespace ElectronicObserver.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to タイマー完了時に点滅させる.
+        /// </summary>
+        internal static string FleetBlinkAtCompletion {
+            get {
+                return ResourceManager.GetString("FleetBlinkAtCompletion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to フォルダの参照.
         /// </summary>
         internal static string FolderSearch {
             get {
                 return ResourceManager.GetString("FolderSearch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 判定式(33).
+        /// </summary>
+        internal static string Formula33 {
+            get {
+                return ResourceManager.GetString("Formula33", resourceCulture);
             }
         }
         
@@ -677,6 +785,24 @@ namespace ElectronicObserver.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 先頭：.
+        /// </summary>
+        internal static string Lead {
+            get {
+                return ResourceManager.GetString("Lead", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ロック中でもフロートウィンドウを閉じる.
+        /// </summary>
+        internal static string Life_CanCloseFloatWindowInLock {
+            get {
+                return ResourceManager.GetString("Life_CanCloseFloatWindowInLock", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 時計表示：.
         /// </summary>
         internal static string Life_Clock {
@@ -713,6 +839,24 @@ namespace ElectronicObserver.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to レイアウトをロックする.
+        /// </summary>
+        internal static string Life_LockLayout {
+            get {
+                return ResourceManager.GetString("Life_LockLayout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to サイズやレイアウトの変更を防止するかを指定します。.
+        /// </summary>
+        internal static string Life_LockLayout_Tooltip {
+            get {
+                return ResourceManager.GetString("Life_LockLayout_Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ログ.
         /// </summary>
         internal static string Log {
@@ -745,6 +889,15 @@ namespace ElectronicObserver.Window.Dialog {
         internal static string LoginURL {
             get {
                 return ResourceManager.GetString("LoginURL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ループ.
+        /// </summary>
+        internal static string Loop {
+            get {
+                return ResourceManager.GetString("Loop", resourceCulture);
             }
         }
         
@@ -863,6 +1016,15 @@ namespace ElectronicObserver.Window.Dialog {
         internal static string OutputProxyScript {
             get {
                 return ResourceManager.GetString("OutputProxyScript", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to パス：.
+        /// </summary>
+        internal static string Path {
+            get {
+                return ResourceManager.GetString("Path", resourceCulture);
             }
         }
         
@@ -1080,6 +1242,15 @@ namespace ElectronicObserver.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to シーン.
+        /// </summary>
+        internal static string Scene {
+            get {
+                return ResourceManager.GetString("Scene", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to スクリーンショット.
         /// </summary>
         internal static string Screenshot {
@@ -1094,6 +1265,15 @@ namespace ElectronicObserver.Window.Dialog {
         internal static string ScrollableHint {
             get {
                 return ResourceManager.GetString("ScrollableHint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 秒.
+        /// </summary>
+        internal static string Second {
+            get {
+                return ResourceManager.GetString("Second", resourceCulture);
             }
         }
         
@@ -1325,11 +1505,38 @@ namespace ElectronicObserver.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to システムプロキシを利用.
+        /// </summary>
+        internal static string UseSystemProxy {
+            get {
+                return ResourceManager.GetString("UseSystemProxy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to システムのプロキシ設定を利用します。.
+        /// </summary>
+        internal static string UseSystemProxyTooltip {
+            get {
+                return ResourceManager.GetString("UseSystemProxyTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 熟練度あり(仮).
         /// </summary>
         internal static string UsingPlaneXPBeta {
             get {
                 return ResourceManager.GetString("UsingPlaneXPBeta", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 音量：.
+        /// </summary>
+        internal static string Volume {
+            get {
+                return ResourceManager.GetString("Volume", resourceCulture);
             }
         }
         

@@ -404,7 +404,7 @@
     <value>索敵</value>
   </data>
   <data name="LoSTooltip" xml:space="preserve">
-    <value>(旧)2-5式: {0}\r\n2-5式(秋): {1}\r\n2-5新秋簡易式: {2}\r\n</value>
+    <value>(旧)2-5式: {0}\r\n2-5式(秋): {1}\r\n2-5新秋簡易式: {2}\r\n判定式(33): {3}\r\n\r\n触接開始率: \r\n　確保 {4:p1} / 優勢 {5:p1}\r\n</value>
   </data>
   <data name="Luck" xml:space="preserve">
     <value>運</value>
@@ -592,8 +592,8 @@
   <data name="TimeToCompletion" xml:space="preserve">
     <value>完了日時</value>
   </data>
-  <data name="To150" xml:space="preserve">
-    <value>Lv150まで: {0}</value>
+  <data name="ToX" xml:space="preserve">
+    <value>Lv{0}まで: {1}</value>
   </data>
   <data name="To99" xml:space="preserve">
     <value>Lv99まで: {0}</value>
@@ -834,5 +834,38 @@
   </data>
   <data name="TotalShips" xml:space="preserve">
     <value>所属: {0}隻</value>
+  </data>
+  <data name="KancolleMustBeLoaded" xml:space="preserve">
+    <value>艦これを読み込んでから開いてください。</value>
+  </data>
+  <data name="NoBuildData" xml:space="preserve">
+    <value>建造レコードがありません。</value>
+  </data>
+  <data name="NoDevData" xml:space="preserve">
+    <value>開発レコードがありません。</value>
+  </data>
+  <data name="NoDropData" xml:space="preserve">
+    <value>ドロップレコードがありません。</value>
+  </data>
+  <data name="NoMasterData" xml:space="preserve">
+    <value>マスターデータがありません</value>
+  </data>
+  <data name="DecrementByOne" xml:space="preserve">
+    <value>進捗 -1(&amp;D)</value>
+  </data>
+  <data name="IncrementByOne" xml:space="preserve">
+    <value>進捗 +1(&amp;I)</value>
+  </data>
+  <data name="SelectionRate" xml:space="preserve">
+    <value>触接選択率: </value>
+  </data>
+  <data name="Encyclopedia" xml:space="preserve">
+    <value>(右クリックで図鑑)</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>キャンセル</value>
+  </data>
+  <data name="ShowOther" xml:space="preserve">
+    <value>その他の任務を表示(&amp;R)</value>
   </data>
 </root>

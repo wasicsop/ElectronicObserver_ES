@@ -203,8 +203,8 @@ namespace ElectronicObserver.Window.Dialog {
 
 
 			TableEquipmentName.SuspendLayout();
-			
-			EquipmentType.Text = FormMain.Instance.Translator.GetTranslation(db.EquipmentTypes[eq.EquipmentType[2]].Name, Utility.TranslationType.EquipmentType); 
+
+			EquipmentType.Text = FormMain.Instance.Translator.GetTranslation(db.EquipmentTypes[eq.EquipmentType[2]].Name, Utility.TranslationType.EquipmentType);
 			{
 				int eqicon = eq.EquipmentType[3];
 				if ( eqicon >= (int)ResourceManager.EquipmentContent.Locked )
@@ -367,7 +367,7 @@ namespace ElectronicObserver.Window.Dialog {
 					using ( StreamWriter sw = new StreamWriter( SaveCSVDialog.FileName, false, Utility.Configuration.Config.Log.FileEncoding ) ) {
 
 						sw.WriteLine( EncycloRes.EquipCSVUserFormat );
-						string arg = string.Format( "{{{0}}}", string.Join( "},{", Enumerable.Range( 0, 26 ) ) );
+						string arg = string.Format( "{{{0}}}", string.Join( "},{", Enumerable.Range( 0, 27 ) ) );
 
 						foreach ( EquipmentDataMaster eq in KCDatabase.Instance.MasterEquipments.Values ) {
 
@@ -397,7 +397,8 @@ namespace ElectronicObserver.Window.Dialog {
 								eq.Material[2],
 								eq.Material[3],
 								eq.Message.Replace( "\n", "<br>" ),
-								eq.ResourceVersion
+								eq.AircraftDistance,
+								eq.AircraftCost
 								);
 
 						}
@@ -425,7 +426,7 @@ namespace ElectronicObserver.Window.Dialog {
 					using ( StreamWriter sw = new StreamWriter( SaveCSVDialog.FileName, false, Utility.Configuration.Config.Log.FileEncoding ) ) {
 
 						sw.WriteLine( EncycloRes.EquipCSVDataFormat );
-						string arg = string.Format( "{{{0}}}", string.Join( "},{", Enumerable.Range( 0, 24 ) ) );
+						string arg = string.Format( "{{{0}}}", string.Join( "},{", Enumerable.Range( 0, 26 ) ) );
 
 						foreach ( EquipmentDataMaster eq in KCDatabase.Instance.MasterEquipments.Values ) {
 
@@ -454,7 +455,8 @@ namespace ElectronicObserver.Window.Dialog {
 								eq.Material[2],
 								eq.Material[3],
 								eq.Message.Replace( "\n", "<br>" ),
-								eq.ResourceVersion
+								eq.AircraftDistance,
+								eq.AircraftCost
 								);
 
 						}

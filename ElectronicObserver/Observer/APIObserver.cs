@@ -30,6 +30,7 @@ namespace ElectronicObserver.Observer {
 		#endregion
 
 
+
 		public APIDictionary APIList { get; private set; }
 
 		public string ServerAddress { get; private set; }
@@ -41,9 +42,8 @@ namespace ElectronicObserver.Observer {
 		private Control UIControl;
 		private APIKancolleDB DBSender;
 
-		private APIObserver() {
 
-			// 注：重複登録するとあらぬところで落ちるので十分注意すること
+		private APIObserver() {
 
 			APIList = new APIDictionary();
 			APIList.Add( new kcsapi.api_start2() );
@@ -92,6 +92,13 @@ namespace ElectronicObserver.Observer {
 			APIList.Add( new kcsapi.api_req_kaisou.marriage() );
 			APIList.Add( new kcsapi.api_req_hensei.preset_select() );
 			APIList.Add( new kcsapi.api_req_kaisou.slot_exchange_index() );
+			APIList.Add( new kcsapi.api_get_member.record() );
+			APIList.Add( new kcsapi.api_get_member.payitem() );
+			APIList.Add( new kcsapi.api_req_kousyou.remodel_slotlist() );
+			APIList.Add( new kcsapi.api_req_sortie.ld_airbattle() );
+			APIList.Add( new kcsapi.api_req_combined_battle.ld_airbattle() );
+			APIList.Add( new kcsapi.api_get_member.require_info() );
+			APIList.Add( new kcsapi.api_req_kaisou.slot_deprive() );
 
 			APIList.Add( new kcsapi.api_req_quest.clearitemget() );
 			APIList.Add( new kcsapi.api_req_nyukyo.start() );
@@ -105,6 +112,7 @@ namespace ElectronicObserver.Observer {
 			APIList.Add( new kcsapi.api_req_map.select_eventmap_rank() );
 			APIList.Add( new kcsapi.api_req_hensei.combined() );
 			APIList.Add( new kcsapi.api_req_member.updatecomment() );
+			APIList.Add( new kcsapi.api_req_quest.stop() );
 
 
 			ServerAddress = null;
@@ -113,7 +121,6 @@ namespace ElectronicObserver.Observer {
 
 			HttpProxy.AfterSessionComplete += HttpProxy_AfterSessionComplete;
 		}
-
 
 
 
@@ -130,25 +137,22 @@ namespace ElectronicObserver.Observer {
 
 
 			this.UIControl = UIControl;
-
-
-			/*
-			Fiddler.FiddlerApplication.Startup( portID, Fiddler.FiddlerCoreStartupFlags.ChainToUpstreamGateway |
-				( Utility.Configuration.Config.Connection.RegisterAsSystemProxy ? Fiddler.FiddlerCoreStartupFlags.RegisterAsSystemProxy : 0 ) );
-			*/
 			HttpProxy.Shutdown();
 			try {
-				// checkme
-				HttpProxy.Startup( portID, false, true /*Utility.Configuration.Config.Connection.RegisterAsSystemProxy*/ );
 
 				if ( c.UseUpstreamProxy )
 					HttpProxy.UpstreamProxyConfig = new ProxyConfig( ProxyConfigType.SpecificProxy, c.UpstreamProxyAddress, c.UpstreamProxyPort );
-				else
+				else if ( c.UseSystemProxy )
 					HttpProxy.UpstreamProxyConfig = new ProxyConfig( ProxyConfigType.SystemProxy );
+				else
+					HttpProxy.UpstreamProxyConfig = new ProxyConfig( ProxyConfigType.DirectAccess );
+
+				HttpProxy.Startup( portID, false, false );
+				ProxyPort = portID;
+
 
 				ProxyStarted();
 				Utility.Logger.Add( 2, string.Format( LoggerRes.APIObserverStarted, portID ) );
-				ProxyPort = portID;
 			} catch ( Exception ex ) {
 
 				Utility.Logger.Add( 3, LoggerRes.APIObserverFailed + ex.Message );
@@ -182,12 +186,15 @@ namespace ElectronicObserver.Observer {
 
 
 
-
 		void HttpProxy_AfterSessionComplete( Session session ) {
 
 			Utility.Configuration.ConfigurationData.ConfigConnection c = Utility.Configuration.Config.Connection;
 
 			string baseurl = session.Request.PathAndQuery;
+
+			//debug
+			//Utility.Logger.Add( 1, baseurl );
+
 
 			// request
 			if ( baseurl.Contains( "/kcsapi/" ) ) {
@@ -203,6 +210,7 @@ namespace ElectronicObserver.Observer {
 				}
 				UIControl.BeginInvoke( (Action)( () => { LoadRequest( url, body ); } ) );
 			}
+
 
 
 			//response
@@ -299,7 +307,6 @@ namespace ElectronicObserver.Observer {
 				}
 
 			}
-
 
 
 			if ( ServerAddress == null && baseurl.Contains( "/kcsapi/" ) ) {

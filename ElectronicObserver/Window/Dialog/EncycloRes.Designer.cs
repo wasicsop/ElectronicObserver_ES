@@ -97,6 +97,15 @@ namespace ElectronicObserver.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to (全て).
+        /// </summary>
+        internal static string Any {
+            get {
+                return ResourceManager.GetString("Any", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 装甲.
         /// </summary>
         internal static string Armor {
@@ -183,6 +192,15 @@ namespace ElectronicObserver.Window.Dialog {
         internal static string CSVTitle {
             get {
                 return ResourceManager.GetString("CSVTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 日付.
+        /// </summary>
+        internal static string Date {
+            get {
+                return ResourceManager.GetString("Date", resourceCulture);
             }
         }
         
@@ -367,6 +385,15 @@ namespace ElectronicObserver.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 旗艦.
+        /// </summary>
+        internal static string Flagship {
+            get {
+                return ResourceManager.GetString("Flagship", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 耐久.
         /// </summary>
         internal static string HP {
@@ -390,6 +417,15 @@ namespace ElectronicObserver.Window.Dialog {
         internal static string InitiallyEquippedShips {
             get {
                 return ResourceManager.GetString("InitiallyEquippedShips", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 検索を中止しますか?.
+        /// </summary>
+        internal static string InterruptSearch {
+            get {
+                return ResourceManager.GetString("InterruptSearch", resourceCulture);
             }
         }
         
@@ -520,6 +556,15 @@ namespace ElectronicObserver.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to レシピ.
+        /// </summary>
+        internal static string Recipe {
+            get {
+                return ResourceManager.GetString("Recipe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 更新(&amp;U).
         /// </summary>
         internal static string Refresh {
@@ -555,6 +600,33 @@ namespace ElectronicObserver.Window.Dialog {
         internal static string RightClickForMore {
             get {
                 return ResourceManager.GetString("RightClickForMore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 検索がキャンセルされました。.
+        /// </summary>
+        internal static string SearchCancelled {
+            get {
+                return ResourceManager.GetString("SearchCancelled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 検索が完了しました。.
+        /// </summary>
+        internal static string SearchComplete {
+            get {
+                return ResourceManager.GetString("SearchComplete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 検索中です.
+        /// </summary>
+        internal static string Searching {
+            get {
+                return ResourceManager.GetString("Searching", resourceCulture);
             }
         }
         
@@ -649,11 +721,29 @@ namespace ElectronicObserver.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 回数.
+        /// </summary>
+        internal static string Times {
+            get {
+                return ResourceManager.GetString("Times", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 雷装.
         /// </summary>
         internal static string Torpedo {
             get {
                 return ResourceManager.GetString("Torpedo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (不明).
+        /// </summary>
+        internal static string Unknown {
+            get {
+                return ResourceManager.GetString("Unknown", resourceCulture);
             }
         }
         

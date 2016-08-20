@@ -160,6 +160,8 @@ namespace ElectronicObserver.Resource.Record {
 				switch ( battle.BattleMode & BattleManager.BattleModes.BattlePhaseMask ) {
 					case BattleManager.BattleModes.Normal:
 					case BattleManager.BattleModes.AirBattle:
+					case BattleManager.BattleModes.AirRaid:
+					default:
 						return new EnemyFleetElement(
 							fleetName,
 							battle.Compass.MapAreaID,
@@ -185,8 +187,6 @@ namespace ElectronicObserver.Resource.Record {
 					case BattleManager.BattleModes.Practice:
 						return null;
 
-					default:
-						throw new NotImplementedException();
 				}
 			}
 
@@ -278,7 +278,7 @@ namespace ElectronicObserver.Resource.Record {
 			Record.Clear();
 		}
 
-		protected override string RecordHeader {
+		public override string RecordHeader {
 			get { return "敵編成ID,敵艦隊名,海域,海域,セル,難易度,陣形,敵1番艦,敵2番艦,敵3番艦,敵4番艦,敵5番艦,敵6番艦,敵1番艦名,敵2番艦名,敵3番艦名,敵4番艦名,敵5番艦名,敵6番艦名,経験値"; }
 		}
 

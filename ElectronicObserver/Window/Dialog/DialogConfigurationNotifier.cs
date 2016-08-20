@@ -1,4 +1,5 @@
 ﻿using ElectronicObserver.Notifier;
+using ElectronicObserver.Utility.Data;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,7 +13,6 @@ using System.Windows.Forms;
 namespace ElectronicObserver.Window.Dialog {
 
 	/// <summary>
-	/// undone
 	/// 通知システムの設定ダイアログを扱います。
 	/// </summary>
 	public partial class DialogConfigurationNotifier : Form {
@@ -41,6 +41,8 @@ namespace ElectronicObserver.Window.Dialog {
 
 			PlaysSound.Checked = notifier.PlaysSound;
 			SoundPath.Text = notifier.SoundPath;
+			SoundVolume.Value = notifier.SoundVolume;
+			LoopsSound.Checked = notifier.LoopsSound;
 
 			DrawsImage.Checked = notifier.DialogData.DrawsImage;
 			ImagePath.Text = notifier.DialogData.ImagePath;
@@ -60,6 +62,7 @@ namespace ElectronicObserver.Window.Dialog {
 			ShowWithActivation.Checked = notifier.DialogData.ShowWithActivation;
 			ForeColorPreview.ForeColor = notifier.DialogData.ForeColor;
 			BackColorPreview.ForeColor = notifier.DialogData.BackColor;
+			LevelBorder.Maximum = ExpTable.ShipMaximumLevel;
 
 			NotifierDamage ndmg = notifier as NotifierDamage;
 			if ( ndmg != null ) {
@@ -76,6 +79,18 @@ namespace ElectronicObserver.Window.Dialog {
 				GroupDamage.Visible = false;
 				GroupDamage.Enabled = false;
 			}
+
+			NotifierAnchorageRepair nanc = notifier as NotifierAnchorageRepair;
+			if ( nanc != null ) {
+				AnchorageRepairNotificationLevel.SelectedIndex = nanc.NotificationLevel;
+
+			} else {
+				GroupAnchorageRepair.Visible = false;
+				GroupAnchorageRepair.Enabled = false;
+			}
+
+
+			DialogOpenSound.Filter = "音楽ファイル|" + string.Join( ";", Utility.MediaPlayer.SupportedExtensions.Select( s => "*." + s ) ) + "|File|*";
 
 		}
 
@@ -229,6 +244,8 @@ namespace ElectronicObserver.Window.Dialog {
 
 			_notifier.PlaysSound = PlaysSound.Checked;
 			_notifier.DialogData.DrawsImage = DrawsImage.Checked;
+			_notifier.SoundVolume = (int)SoundVolume.Value;
+			_notifier.LoopsSound = LoopsSound.Checked;
 
 			_notifier.ShowsDialog = ShowsDialog.Checked;
 			_notifier.DialogData.TopMost = TopMostFlag.Checked;
@@ -249,7 +266,7 @@ namespace ElectronicObserver.Window.Dialog {
 			_notifier.DialogData.BackColor = BackColorPreview.ForeColor;
 			_notifier.DialogData.ShowWithActivation = ShowWithActivation.Checked;
 
-			NotifierDamage ndmg = _notifier as NotifierDamage;
+			var ndmg = _notifier as NotifierDamage;
 			if ( ndmg != null ) {
 				ndmg.NotifiesBefore = NotifiesBefore.Checked;
 				ndmg.NotifiesNow = NotifiesNow.Checked;
@@ -259,6 +276,11 @@ namespace ElectronicObserver.Window.Dialog {
 				ndmg.ContainsFlagship = ContainsFlagship.Checked;
 				ndmg.LevelBorder = (int)LevelBorder.Value;
 				ndmg.NotifiesAtEndpoint = NotifiesAtEndpoint.Checked;
+			}
+
+			var nanc = _notifier as NotifierAnchorageRepair;
+			if ( nanc != null ) {
+				nanc.NotificationLevel = AnchorageRepairNotificationLevel.SelectedIndex;
 			}
 
 			return true;
@@ -271,6 +293,16 @@ namespace ElectronicObserver.Window.Dialog {
 			_notifier.DialogData.Message = NotifyRes.TestNotification;
 			_notifier.Notify();
 
+		}
+
+		private void SoundPathDirectorize_Click( object sender, EventArgs e ) {
+			if ( !string.IsNullOrWhiteSpace( SoundPath.Text ) ) {
+				try {
+					SoundPath.Text = System.IO.Path.GetDirectoryName( SoundPath.Text );
+				} catch ( Exception ) {
+					// *ぷちっ*
+				}
+			}
 		}
 
 

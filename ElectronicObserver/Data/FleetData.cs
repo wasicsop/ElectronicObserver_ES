@@ -209,6 +209,13 @@ namespace ElectronicObserver.Data {
 							} else {
 								//入隊
 
+								for ( int y = index - 1; y >= 0; y-- ) {		// 変更位置よりも前に空欄があれば位置をずらす
+									if ( _members[y] != -1 ) {
+										index = y + 1;
+										break;
+									}
+								}
+
 								_members[index] = shipID;
 
 								//入れ替え
@@ -461,6 +468,9 @@ namespace ElectronicObserver.Data {
 
 				case 2:
 					return Calculator.GetSearchingAbility_TinyAutumn( this );
+
+				case 3:
+					return Calculator.GetSearchingAbility_33( this );
 			}
 		}
 
@@ -474,7 +484,7 @@ namespace ElectronicObserver.Data {
 		/// <summary>
 		/// 指定の計算式で、索敵能力を表す文字列を取得します。
 		/// </summary>
-		/// <param name="index">計算式。0-2</param>
+		/// <param name="index">計算式。0-3</param>
 		public string GetSearchingAbilityString( int index ) {
 			switch ( index ) {
 				default:
@@ -486,9 +496,23 @@ namespace ElectronicObserver.Data {
 
 				case 2:
 					return Calculator.GetSearchingAbility_TinyAutumn( this ).ToString();
+
+				case 3:
+					return ( (int)( Calculator.GetSearchingAbility_33( this ) * 100 ) / 100 ).ToString( "F2" );
 			}
 		}
 
+		/// <summary>
+		/// 触接開始率を取得します。
+		/// </summary>
+		/// <returns></returns>
+		public double GetContactProbability() {
+			return Calculator.GetContactProbability( this );
+		}
+
+		public Dictionary<int, double> GetContactSelectionProbability() {
+			return Calculator.GetContactSelectionProbability( this );
+		}
 
 
 		/// <summary>
@@ -552,7 +576,7 @@ namespace ElectronicObserver.Data {
 					label.Text = FleetRes.Docking + DateTimeHelper.ToTimeRemainString( timer );
 					label.ImageIndex = (int)ResourceManager.IconContent.FleetDocking;
 
-					tooltip.SetToolTip( label, FleetRes.CompletionTime + ": " + timer );
+					tooltip.SetToolTip( label, FleetRes.CompletionTime + DateTimeHelper.TimeToCSVString( timer ) );
 
 					return FleetStates.Docking;
 				}
@@ -590,7 +614,10 @@ namespace ElectronicObserver.Data {
 				label.Text = FleetRes.OnExped + DateTimeHelper.ToTimeRemainString( timer );
 				label.ImageIndex = (int)ResourceManager.IconContent.FleetExpedition;
 
-				tooltip.SetToolTip( label, string.Format( "{0} : {1}\r\n" + FleetRes.CompletionTime + " : {2}", KCDatabase.Instance.Mission[fleet.ExpeditionDestination].ID, KCDatabase.Instance.Mission[fleet.ExpeditionDestination].Name, timer ) );
+				tooltip.SetToolTip( label, string.Format( "{0} : {1}\r\n" + FleetRes.CompletionTime + " {2}",
+					KCDatabase.Instance.Mission[fleet.ExpeditionDestination].ID,
+					KCDatabase.Instance.Mission[fleet.ExpeditionDestination].Name,
+					DateTimeHelper.TimeToCSVString( timer ) ) );
 
 				return FleetStates.Expedition;
 			}
@@ -616,7 +643,31 @@ namespace ElectronicObserver.Data {
 					label.Text = FleetRes.AnchorageRepairing + DateTimeHelper.ToTimeElapsedString( KCDatabase.Instance.Fleet.AnchorageRepairingTimer );
 					label.ImageIndex = (int)ResourceManager.IconContent.FleetAnchorageRepairing;
 
-					tooltip.SetToolTip( label, string.Format( FleetRes.StartTime + ": {0}", KCDatabase.Instance.Fleet.AnchorageRepairingTimer ) );
+					StringBuilder sb = new StringBuilder();
+					sb.AppendFormat( FleetRes.StartTime,
+						DateTimeHelper.TimeToCSVString( KCDatabase.Instance.Fleet.AnchorageRepairingTimer ) );
+
+					for ( int i = 0; i < fleet.Members.Count; i++ ) {
+						var ship = fleet.MembersInstance[i];
+						if ( ship != null && ship.HPRate < 1.0 ) {
+							var totaltime = DateTimeHelper.FromAPITimeSpan( ship.RepairTime );
+							var unittime = Calculator.CalculateDockingUnitTime( ship );
+							sb.AppendFormat( "#{0} : {1:00}:{2:00}:{3:00} @ {4:00}:{5:00}:{6:00} x -{7} HP\r\n",
+								i + 1,
+								(int)totaltime.TotalHours,
+								totaltime.Minutes,
+								totaltime.Seconds,
+								(int)unittime.TotalHours,
+								unittime.Minutes,
+								unittime.Seconds,
+								ship.HPMax - ship.HPCurrent
+								);
+						} else {
+							sb.Append( "#" ).Append( i + 1 ).Append( " : ----\r\n" );
+						}
+					}
+
+					tooltip.SetToolTip( label, sb.ToString() );
 
 					return FleetStates.AnchorageRepairing;
 				}
@@ -669,7 +720,7 @@ namespace ElectronicObserver.Data {
 						label.ImageIndex = (int)ResourceManager.IconContent.ConditionLittleTired;
 
 
-					tooltip.SetToolTip( label, string.Format( FleetRes.EstimatedRecoveryTime + ": {0}", timer ) );
+					tooltip.SetToolTip( label, string.Format( FleetRes.EstimatedRecoveryTime + ": {0}", DateTimeHelper.TimeToCSVString( timer ) ) );
 
 					return FleetStates.Tired;
 
@@ -711,12 +762,18 @@ namespace ElectronicObserver.Data {
 					break;
 				case FleetStates.Docking:
 					label.Text = FleetRes.Docking + DateTimeHelper.ToTimeRemainString( timer );
+					if ( Utility.Configuration.Config.FormFleet.BlinkAtCompletion && ( timer - DateTime.Now ).TotalMilliseconds <= Utility.Configuration.Config.NotifierRepair.AccelInterval )
+						label.BackColor = DateTime.Now.Second % 2 == 0 ? Color.LightGreen : Color.Transparent;
 					break;
 				case FleetStates.Expedition:
 					label.Text = FleetRes.OnExped + DateTimeHelper.ToTimeRemainString( timer );
+					if ( Utility.Configuration.Config.FormFleet.BlinkAtCompletion && ( timer - DateTime.Now ).TotalMilliseconds <= Utility.Configuration.Config.NotifierExpedition.AccelInterval )
+						label.BackColor = DateTime.Now.Second % 2 == 0 ? Color.LightGreen : Color.Transparent;
 					break;
 				case FleetStates.Tired:
 					label.Text = FleetRes.Fatigued + DateTimeHelper.ToTimeRemainString( timer );
+					if ( Utility.Configuration.Config.FormFleet.BlinkAtCompletion && ( timer - DateTime.Now ).TotalMilliseconds <= 0 )
+						label.BackColor = DateTime.Now.Second % 2 == 0 ? Color.LightGreen : Color.Transparent;
 					break;
 				case FleetStates.AnchorageRepairing:
 					label.Text = FleetRes.AnchorageRepairing + DateTimeHelper.ToTimeElapsedString( KCDatabase.Instance.Fleet.AnchorageRepairingTimer );

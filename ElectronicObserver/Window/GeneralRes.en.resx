@@ -413,9 +413,10 @@ Are you sure?</value>
     <value>LoS</value>
   </data>
   <data name="LoSTooltip" xml:space="preserve">
-    <value>Old 2-5: {0}
-Autumn 2-5: {1}
-New 2-5: {2}
+    <value>Old 2-5: {0}   Autumn 2-5: {1}
+New 2-5: {2}   Formula 33: {3}
+Contact Chance:
+  AS+ {4:p1} / AS {5:p1}
 </value>
   </data>
   <data name="Luck" xml:space="preserve">
@@ -622,8 +623,8 @@ Cut-in type: {2} ({3})
   <data name="TimeToCompletion" xml:space="preserve">
     <value>Completion time</value>
   </data>
-  <data name="To150" xml:space="preserve">
-    <value>To Level 150: {0}</value>
+  <data name="ToX" xml:space="preserve">
+    <value>To Level {0}: {1}</value>
   </data>
   <data name="To99" xml:space="preserve">
     <value>To Level 99: {0}</value>
@@ -864,5 +865,38 @@ Bauxite: {5} ( {6} planes )
   </data>
   <data name="TotalShips" xml:space="preserve">
     <value>Total: {0} ships</value>
+  </data>
+  <data name="KancolleMustBeLoaded" xml:space="preserve">
+    <value>Please load Kancolle before opening the records.</value>
+  </data>
+  <data name="NoBuildData" xml:space="preserve">
+    <value>There is no construction data.</value>
+  </data>
+  <data name="NoDevData" xml:space="preserve">
+    <value>There is no development data.</value>
+  </data>
+  <data name="NoDropData" xml:space="preserve">
+    <value>There is no drop data.</value>
+  </data>
+  <data name="NoMasterData" xml:space="preserve">
+    <value>No Master Data</value>
+  </data>
+  <data name="DecrementByOne" xml:space="preserve">
+    <value>Decrease by -1(&amp;D)</value>
+  </data>
+  <data name="IncrementByOne" xml:space="preserve">
+    <value>Increase by +1(&amp;I)</value>
+  </data>
+  <data name="SelectionRate" xml:space="preserve">
+    <value>Selection Rate:</value>
+  </data>
+  <data name="Encyclopedia" xml:space="preserve">
+    <value>(Right-click for encyclopedia)</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="ShowOther" xml:space="preserve">
+    <value>Show Others</value>
   </data>
 </root>

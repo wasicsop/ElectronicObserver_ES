@@ -18,7 +18,7 @@ namespace ElectronicObserver.Utility {
 		/// </summary>
 		public static string SoftwareNameJapanese {
 			get {
-				return Resources.SoftwareName;
+				return "七四式電子観測儀";
 			}
 		}
 
@@ -27,7 +27,7 @@ namespace ElectronicObserver.Utility {
 		/// </summary>
 		public static string SoftwareNameEnglish {
 			get {
-				return Resources.SoftwareName;
+				return "Electronic Observer";
 			}
 		}
 
@@ -36,7 +36,7 @@ namespace ElectronicObserver.Utility {
 		/// </summary>
 		public static string VersionJapanese {
 			get {
-				return SoftwareNameJapanese + Resources.Version;
+				return SoftwareNameJapanese + "二三型改五";
 			}
 		}
 
@@ -44,10 +44,9 @@ namespace ElectronicObserver.Utility {
 		/// バージョン(英語)
 		/// </summary>
 		public static string VersionEnglish {
-			get
-            {
-                return Resources.Version;
-            }
+			get {
+				return "2.3.5";
+			}
 		}
 
 
@@ -56,14 +55,14 @@ namespace ElectronicObserver.Utility {
 		/// </summary>
 		public static DateTime UpdateTime {
 			get {
-				return DateTimeHelper.CSVStringToTime( "2015/10/12 00:00:00" );
+				return DateTimeHelper.CSVStringToTime( "2016/08/19 12:00:00" );
 			}
 		}
 
 
 
 		private static System.Net.WebClient client;
-		private static readonly Uri uri = new Uri("https://www.dropbox.com/s/0xvbhtxnh5wfk5s/version.txt?dl=1");
+		private static readonly Uri uri = new Uri( "http://raw.githubusercontent.com/silfumus/ryuukitsune.github.io/master/Translations/SoftwareVersion.txt" );
 
 		public static void CheckUpdate() {
 
@@ -118,7 +117,7 @@ namespace ElectronicObserver.Utility {
 
 						if ( result == System.Windows.Forms.DialogResult.Yes ) {
 
-							System.Diagnostics.Process.Start( "http://tumblr.rkitsune.com/elecobs" );
+							System.Diagnostics.Process.Start( "http://github.com/silfumus/ElectronicObserver/releases" );
 
 						} else if ( result == System.Windows.Forms.DialogResult.Cancel ) {
 

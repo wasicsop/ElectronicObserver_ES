@@ -133,14 +133,26 @@ namespace ElectronicObserver.Window {
 					int ammounit = fleet.MembersInstance.Sum( s => s == null ? 0 : (int)Math.Floor( s.MasterShip.Ammo * 0.2 * ( s.IsMarried ? 0.85 : 1.00 ) ) );
 
 					int speed = fleet.MembersWithoutEscaped.Min( s => s == null ? 10 : s.MasterShip.Speed );
-                    ToolTipInfo.SetToolTip(Name, string.Format(
-                        GeneralRes.FleetTooltip,
+
+					var slots = fleet.MembersWithoutEscaped
+						.Where( s => s != null )
+						.SelectMany( s => s.SlotInstance )
+						.Where( e => e != null );
+					var daihatsu = slots.Where( e => e.EquipmentID == 68 );
+					var daihatsu_tank = slots.Where( e => e.EquipmentID == 166 );
+					var landattacker = slots.Where( e => e.EquipmentID == 167 );
+					double expeditionBonus = Math.Min( daihatsu.Count() * 0.05 + daihatsu_tank.Count() * 0.02 + landattacker.Count() * 0.01, 0.20 );
+
+					ToolTipInfo.SetToolTip( Name, string.Format(
+						GeneralRes.FleetTooltip,
 						levelSum,
 						(double)levelSum / Math.Max( fleet.Members.Count( id => id != -1 ), 1 ),
 						Constants.GetSpeed( speed ),
 						fleet.MembersInstance.Sum( s => s == null ? 0 : s.SlotInstanceMaster.Count( q => q == null ? false : q.CategoryType == 30 ) ),
-						fleet.MembersInstance.Count( s => s == null ? false : s.SlotInstanceMaster.Count( q => q == null ? false : q.CategoryType == 30 ) > 0 ),
-						fleet.MembersInstance.Sum( s => s == null ? 0 : s.SlotInstanceMaster.Count( q => q == null ? false : q.CategoryType == 24 ) ),
+						fleet.MembersInstance.Count( s => s == null ? false : s.SlotInstanceMaster.Any( q => q == null ? false : q.CategoryType == 30 ) ),
+						daihatsu.Count() + daihatsu_tank.Count() + landattacker.Count(),
+						fleet.MembersInstance.Count( s => s == null ? false : s.SlotInstanceMaster.Any( q => q == null ? false : q.CategoryType == 24 || q.CategoryType == 46 ) ),
+						expeditionBonus + 0.01 * expeditionBonus * ( daihatsu.Sum( e => e.Level ) + daihatsu_tank.Sum( e => e.Level ) + landattacker.Sum( e => e.Level ) ) / Math.Max( daihatsu.Count() + daihatsu_tank.Count() + landattacker.Count(), 1 ),
 						fueltotal,
 						ammototal,
 						fuelunit,
@@ -153,7 +165,7 @@ namespace ElectronicObserver.Window {
 				State = FleetData.UpdateFleetState( fleet, StateMain, ToolTipInfo, State, ref Timer );
 
 
-				//制空戦力計算	
+				//制空戦力計算
 				{
 					int airSuperiority = fleet.GetAirSuperiority();
 					AirSuperiority.Text = airSuperiority.ToString();
@@ -168,12 +180,29 @@ namespace ElectronicObserver.Window {
 
 				//索敵能力計算
 				SearchingAbility.Text = fleet.GetSearchingAbilityString();
-				ToolTipInfo.SetToolTip( SearchingAbility,
-					string.Format( GeneralRes.LoSTooltip,
-					fleet.GetSearchingAbilityString( 0 ),
-					fleet.GetSearchingAbilityString( 1 ),
-					fleet.GetSearchingAbilityString( 2 ) ) );
+				{
+					StringBuilder sb = new StringBuilder();
+					double probStart = fleet.GetContactProbability();
+					var probSelect = fleet.GetContactSelectionProbability();
 
+					sb.AppendFormat( GeneralRes.LoSTooltip,
+						fleet.GetSearchingAbilityString( 0 ),
+						fleet.GetSearchingAbilityString( 1 ),
+						fleet.GetSearchingAbilityString( 2 ),
+						fleet.GetSearchingAbilityString( 3 ),
+						probStart,
+						probStart * 0.6 );
+
+					if ( probSelect.Count > 0 ) {
+						sb.AppendLine( GeneralRes.SelectionRate );
+
+						foreach ( var p in probSelect.OrderBy( p => p.Key ) ) {
+							sb.AppendFormat( "  " + EncycloRes.Accuracy + "+{0} : {1:p1}\r\n", p.Key, p.Value );
+						}
+					}
+
+					ToolTipInfo.SetToolTip( SearchingAbility, sb.ToString() );
+				}
 			}
 
 
@@ -190,10 +219,11 @@ namespace ElectronicObserver.Window {
 			public void ConfigurationChanged( FormFleet parent ) {
 				Name.Font = parent.MainFont;
 				StateMain.Font = parent.MainFont;
+				StateMain.BackColor = Color.Transparent;
 				AirSuperiority.Font = parent.MainFont;
 				AirSuperiority.Font = parent.MainFont;
 				SearchingAbility.Font = parent.MainFont;
-				
+
 			}
 
 		}
@@ -236,7 +266,7 @@ namespace ElectronicObserver.Window {
 				Level.SuspendLayout();
 				Level.Anchor = AnchorStyles.Left | AnchorStyles.Bottom;
 				Level.Value = 0;
-				Level.MaximumValue = 150;
+				Level.MaximumValue = ExpTable.ShipMaximumLevel;
 				Level.ValueNext = 0;
 				Level.MainFontColor = parent.MainFontColor;
 				Level.SubFontColor = parent.SubFontColor;
@@ -386,7 +416,7 @@ namespace ElectronicObserver.Window {
 							tip.AppendFormat( GeneralRes.To99, Math.Max( ExpTable.GetExpToLevelShip( ship.ExpTotal, 99 ), 0 ) );
 
 						} else {
-							tip.AppendFormat( GeneralRes.To150, Math.Max( ExpTable.GetExpToLevelShip( ship.ExpTotal, 150 ), 0 ) );
+							tip.AppendFormat( GeneralRes.ToX, ExpTable.ShipMaximumLevel, Math.Max( ExpTable.GetExpToLevelShip( ship.ExpTotal, ExpTable.ShipMaximumLevel ), 0 ) );
 
 						}
 
@@ -511,7 +541,7 @@ namespace ElectronicObserver.Window {
 						else
 							sb.AppendFormat( " - " + GeneralRes.Power +  ": {0}", shelling );
 					} else if ( aircraft > 0 )
-							sb.AppendFormat( " - " + GeneralRes.Power + ": {0}", aircraft );
+						sb.AppendFormat( " - " + GeneralRes.Power + ": {0}", aircraft );
 				}
 				sb.AppendLine();
 
@@ -593,7 +623,7 @@ namespace ElectronicObserver.Window {
 			Utility.SystemEvents.UpdateTimerTick += UpdateTimerTick;
 
 			ConfigurationChanged();
-            
+
             MainFontColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.MainFontColor);
             SubFontColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.SubFontColor);
 
@@ -638,7 +668,7 @@ namespace ElectronicObserver.Window {
 			o.APIList["api_req_kaisou/remodeling"].RequestReceived += ChangeOrganization;
 			o.APIList["api_req_kaisou/powerup"].ResponseReceived += ChangeOrganization;
 			o.APIList["api_req_hensei/preset_select"].ResponseReceived += ChangeOrganization;
-			
+
 			o.APIList["api_req_nyukyo/start"].RequestReceived += Updated;
 			o.APIList["api_req_nyukyo/speedchange"].RequestReceived += Updated;
 			o.APIList["api_req_hensei/change"].RequestReceived += Updated;
@@ -663,6 +693,8 @@ namespace ElectronicObserver.Window {
 			o.APIList["api_get_member/ship_deck"].ResponseReceived += Updated;
 			o.APIList["api_req_hensei/preset_select"].ResponseReceived += Updated;
 			o.APIList["api_req_kaisou/slot_exchange_index"].ResponseReceived += Updated;
+			o.APIList["api_get_member/require_info"].ResponseReceived += Updated;
+			o.APIList["api_req_kaisou/slot_deprive"].ResponseReceived += Updated;
 
 
 			//追加するときは FormFleetOverview にも同様に追加してください
@@ -807,7 +839,7 @@ namespace ElectronicObserver.Window {
 
 			// 手書き json の悲しみ
 
-			sb.Append( @"{""version"":3," );
+			sb.Append( @"{""version"":4," );
 
 			foreach ( var fleet in db.Fleet.Fleets.Values ) {
 				if ( fleet == null ) continue;
@@ -832,7 +864,8 @@ namespace ElectronicObserver.Window {
 					int eqcount = 1;
 					foreach ( var eq in ship.SlotInstance ) {
 						if ( eq == null ) break;
-						sb.AppendFormat( @"""i{0}"":{{""id"":{1},""rf"":{2}}},", eqcount, eq.EquipmentID, Math.Max( eq.Level, eq.AircraftLevel ) );
+
+						sb.AppendFormat( @"""i{0}"":{{""id"":{1},""rf"":{2},""mas"":{3}}},", eqcount, eq.EquipmentID, eq.Level, eq.AircraftLevel );
 
 						eqcount++;
 					}
@@ -852,6 +885,62 @@ namespace ElectronicObserver.Window {
 
 			sb.Remove( sb.Length - 1, 1 );		// remove ","
 			sb.Append( @"}" );
+
+			Clipboard.SetData( DataFormats.StringFormat, sb.ToString() );
+		}
+
+
+		/// <summary>
+		/// 「艦隊晒しページ」用編成コピー
+		/// <see cref="http://kancolle-calc.net/kanmusu_list.html"/>
+		/// </summary>
+		private void ContextMenuFleet_CopyKanmusuList_Click( object sender, EventArgs e ) {
+
+			StringBuilder sb = new StringBuilder();
+			KCDatabase db = KCDatabase.Instance;
+
+			// version
+			sb.Append( ".2" );
+
+			// <たね艦娘(完全未改造時)のID, 艦娘リスト>　に分類
+			Dictionary<int, List<ShipData>> shiplist = new Dictionary<int, List<ShipData>>();
+
+			foreach ( var ship in db.Ships.Values.Where( s => s.IsLocked ) ) {
+				var master = ship.MasterShip;
+				while ( master.RemodelBeforeShip != null )
+					master = master.RemodelBeforeShip;
+
+				if ( !shiplist.ContainsKey( master.ShipID ) ) {
+					shiplist.Add( master.ShipID, new List<ShipData>() { ship } );
+				} else {
+					shiplist[master.ShipID].Add( ship );
+				}
+			}
+
+			// 上で作った分類の各項を文字列化
+			foreach ( var sl in shiplist ) {
+				sb.Append( "|" ).Append( sl.Key ).Append( ":" );
+
+				foreach ( var ship in sl.Value.OrderByDescending( s => s.Level ) ) {
+					sb.Append( ship.Level );
+
+					// 改造レベルに達しているのに未改造の艦は ".<たね=1, 改=2, 改二=3, ...>" を付加
+					if ( ship.MasterShip.RemodelAfterShipID != 0 && ship.ExpNextRemodel == 0 ) {
+						sb.Append( "." );
+						int count = 1;
+						var master = ship.MasterShip;
+						while ( master.RemodelBeforeShip != null ) {
+							master = master.RemodelBeforeShip;
+							count++;
+						}
+						sb.Append( count );
+					}
+					sb.Append( "," );
+				}
+
+				// 余った "," を削除
+				sb.Remove( sb.Length - 1, 1 );
+			}
 
 			Clipboard.SetData( DataFormats.StringFormat, sb.ToString() );
 		}
@@ -891,8 +980,10 @@ namespace ElectronicObserver.Window {
 				bool showAircraft = c.FormFleet.ShowAircraft;
 				bool fixShipNameWidth = c.FormFleet.FixShipNameWidth;
 				bool shortHPBar = c.FormFleet.ShortenHPBar;
+				bool colorMorphing = c.UI.BarColorMorphing;
+				Color[] colorScheme = c.UI.BarColorScheme.Select( col => col.ColorData ).ToArray();
 				bool showNext = c.FormFleet.ShowNextExp;
-				bool showEquipmentLevel = c.FormFleet.ShowEquipmentLevel;
+				var levelVisibility = c.FormFleet.EquipmentLevelVisibility;
 
 				for ( int i = 0; i < ControlMember.Length; i++ ) {
 					ControlMember[i].Equipments.ShowAircraft = showAircraft;
@@ -904,8 +995,14 @@ namespace ElectronicObserver.Window {
 					}
 
 					ControlMember[i].HP.Text = shortHPBar ? "" : "HP:";
+					ControlMember[i].HP.HPBar.ColorMorphing = colorMorphing;
+					ControlMember[i].HP.HPBar.SetBarColorScheme( colorScheme );
 					ControlMember[i].Level.TextNext = showNext ? "next:" : null;
-					ControlMember[i].Equipments.ShowEquipmentLevel = showEquipmentLevel;
+					ControlMember[i].Equipments.LevelVisibility = levelVisibility;
+					ControlMember[i].ShipResource.BarFuel.ColorMorphing =
+					ControlMember[i].ShipResource.BarAmmo.ColorMorphing = colorMorphing;
+					ControlMember[i].ShipResource.BarFuel.SetBarColorScheme( colorScheme );
+					ControlMember[i].ShipResource.BarAmmo.SetBarColorScheme( colorScheme );
 
 					ControlMember[i].ConfigurationChanged( this );
 				}

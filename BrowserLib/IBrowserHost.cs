@@ -57,7 +57,6 @@ namespace BrowserLib {
 		[OperationContract]
 		void RequestNavigation( string baseurl );
 
-
 	}
 
 	/// <summary>
@@ -138,11 +137,23 @@ namespace BrowserLib {
 		/// </summary>
 		[DataMember]
 		public bool ConfirmAtRefresh { get; set; }
-
+        
         /// <summary>
         /// Visual style for browser.
         /// </summary>
         [DataMember]
         public uint Theme { get; set; }
+
+		/// <summary>
+		/// 現在の音量
+		/// </summary>
+		[DataMember]
+		public float Volume { get; set; }
+
+		/// <summary>
+		/// ミュートかどうか
+		/// </summary>
+		[DataMember]
+		public bool IsMute { get; set; }
 	}
 }

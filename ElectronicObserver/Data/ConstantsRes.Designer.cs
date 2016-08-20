@@ -133,6 +133,15 @@ namespace ElectronicObserver.Data {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 空襲戦.
+        /// </summary>
+        internal static string AirRaid {
+            get {
+                return ResourceManager.GetString("AirRaid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 航空優勢.
         /// </summary>
         internal static string AirSuperiority {
@@ -192,6 +201,51 @@ namespace ElectronicObserver.Data {
         internal static string Baux {
             get {
                 return ResourceManager.GetString("Baux", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 航空戦.
+        /// </summary>
+        internal static string BGM_BattleAir {
+            get {
+                return ResourceManager.GetString("BGM_BattleAir", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ボス戦.
+        /// </summary>
+        internal static string BGM_BattleBoss {
+            get {
+                return ResourceManager.GetString("BGM_BattleBoss", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 昼戦.
+        /// </summary>
+        internal static string BGM_BattleDay {
+            get {
+                return ResourceManager.GetString("BGM_BattleDay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 夜戦.
+        /// </summary>
+        internal static string BGM_BattleNight {
+            get {
+                return ResourceManager.GetString("BGM_BattleNight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 出撃中.
+        /// </summary>
+        internal static string BGM_Sortie {
+            get {
+                return ResourceManager.GetString("BGM_Sortie", resourceCulture);
             }
         }
         
@@ -412,6 +466,15 @@ namespace ElectronicObserver.Data {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 遠征結果.
+        /// </summary>
+        internal static string ExpeditionResult {
+            get {
+                return ResourceManager.GetString("ExpeditionResult", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 失敗.
         /// </summary>
         internal static string Failure {
@@ -507,6 +570,15 @@ namespace ElectronicObserver.Data {
         internal static string Fuel {
             get {
                 return ResourceManager.GetString("Fuel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 家具コイン.
+        /// </summary>
+        internal static string FurnitureCoin {
+            get {
+                return ResourceManager.GetString("FurnitureCoin", resourceCulture);
             }
         }
         
@@ -898,6 +970,15 @@ namespace ElectronicObserver.Data {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 獲得資源なし.
+        /// </summary>
+        internal static string NoResources {
+            get {
+                return ResourceManager.GetString("NoResources", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 未帰還.
         /// </summary>
         internal static string NoReturn {
@@ -961,6 +1042,15 @@ namespace ElectronicObserver.Data {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 母港.
+        /// </summary>
+        internal static string Port {
+            get {
+                return ResourceManager.GetString("Port", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 演習.
         /// </summary>
         internal static string Practice {
@@ -975,6 +1065,15 @@ namespace ElectronicObserver.Data {
         internal static string Question {
             get {
                 return ResourceManager.GetString("Question", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 他.
+        /// </summary>
+        internal static string QuestOther {
+            get {
+                return ResourceManager.GetString("QuestOther", resourceCulture);
             }
         }
         
@@ -1087,6 +1186,15 @@ namespace ElectronicObserver.Data {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 艦娘.
+        /// </summary>
+        internal static string ShipGirl {
+            get {
+                return ResourceManager.GetString("ShipGirl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sホロ.
         /// </summary>
         internal static string SHolo {
@@ -1132,6 +1240,15 @@ namespace ElectronicObserver.Data {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 特殊放置.
+        /// </summary>
+        internal static string SpecialIdle {
+            get {
+                return ResourceManager.GetString("SpecialIdle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 輝虹.
         /// </summary>
         internal static string SRainbow {
@@ -1146,6 +1263,15 @@ namespace ElectronicObserver.Data {
         internal static string SSHolo {
             get {
                 return ResourceManager.GetString("SSHolo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SSホロ+.
+        /// </summary>
+        internal static string SSHoloPlus {
+            get {
+                return ResourceManager.GetString("SSHoloPlus", resourceCulture);
             }
         }
         

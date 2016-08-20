@@ -20,8 +20,8 @@ namespace ElectronicObserver.Window {
 
 	public partial class FormBattle : DockContent {
 
-		private Color WinRankColor_Win = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.MainFontColor);
-        private readonly Color WinRankColor_Lose = Color.Red;
+		private readonly Color WinRankColor_Win = SystemColors.ControlText;
+		private readonly Color WinRankColor_Lose = Color.Red;
 
 
 		private List<ShipStatusHP> HPBars;
@@ -49,8 +49,6 @@ namespace ElectronicObserver.Window {
 				HPBars[i].Anchor = AnchorStyles.None;
 				HPBars[i].MainFont = MainFont;
 				HPBars[i].SubFont = SubFont;
-                HPBars[i].MainFontColor = ForeColor;
-                HPBars[i].BackColor = BackColor;
 				HPBars[i].UsePrevValue = true;
 				HPBars[i].ShowDifference = true;
 				HPBars[i].MaximumDigit = 9999;
@@ -77,7 +75,7 @@ namespace ElectronicObserver.Window {
 
 
 			ConfigurationChanged();
-			
+
 			BaseLayoutPanel.Visible = false;
 
 
@@ -99,11 +97,13 @@ namespace ElectronicObserver.Window {
 			o.APIList["api_req_battle_midnight/battle"].ResponseReceived += Updated;
 			o.APIList["api_req_battle_midnight/sp_midnight"].ResponseReceived += Updated;
 			o.APIList["api_req_sortie/airbattle"].ResponseReceived += Updated;
+			o.APIList["api_req_sortie/ld_airbattle"].ResponseReceived += Updated;
 			o.APIList["api_req_combined_battle/battle"].ResponseReceived += Updated;
 			o.APIList["api_req_combined_battle/midnight_battle"].ResponseReceived += Updated;
 			o.APIList["api_req_combined_battle/sp_midnight"].ResponseReceived += Updated;
 			o.APIList["api_req_combined_battle/airbattle"].ResponseReceived += Updated;
 			o.APIList["api_req_combined_battle/battle_water"].ResponseReceived += Updated;
+			o.APIList["api_req_combined_battle/ld_airbattle"].ResponseReceived += Updated;
 			o.APIList["api_req_combined_battle/battleresult"].ResponseReceived += Updated;
 			o.APIList["api_req_practice/battle"].ResponseReceived += Updated;
 			o.APIList["api_req_practice/midnight_battle"].ResponseReceived += Updated;
@@ -133,7 +133,8 @@ namespace ElectronicObserver.Window {
 
 
 				case "api_req_sortie/battle":
-				case "api_req_practice/battle": {
+				case "api_req_practice/battle":
+				case "api_req_sortie/ld_airbattle": {
 
 						SetFormation( bm.BattleDay );
 						SetSearchingResult( bm.BattleDay );
@@ -178,7 +179,8 @@ namespace ElectronicObserver.Window {
 					} break;
 
 				case "api_req_combined_battle/battle":
-				case "api_req_combined_battle/battle_water": {
+				case "api_req_combined_battle/battle_water":
+				case "api_req_combined_battle/ld_airbattle": {
 
 						SetFormation( bm.BattleDay );
 						SetSearchingResult( bm.BattleDay );
@@ -294,19 +296,19 @@ namespace ElectronicObserver.Window {
 				if ( planeFriend[1] > 0 && planeFriend[0] == planeFriend[1] )
 					AirStage1Friend.ForeColor = Color.Red;
 				else
-					AirStage1Friend.ForeColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.MainFontColor);
+					AirStage1Friend.ForeColor = SystemColors.ControlText;
 
-                int[] planeEnemy = { pd.AircraftLostStage1Enemy, pd.AircraftTotalStage1Enemy };
+				int[] planeEnemy = { pd.AircraftLostStage1Enemy, pd.AircraftTotalStage1Enemy };
 				AirStage1Enemy.Text = string.Format( "-{0}/{1}", planeEnemy[0], planeEnemy[1] );
 
 				if ( planeEnemy[1] > 0 && planeEnemy[0] == planeEnemy[1] )
 					AirStage1Enemy.ForeColor = Color.Red;
 				else
-                    AirStage1Enemy.ForeColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.MainFontColor);
+					AirStage1Enemy.ForeColor = SystemColors.ControlText;
 
 
-                //触接
-                int touchFriend = pd.TouchAircraftFriend;
+				//触接
+				int touchFriend = pd.TouchAircraftFriend;
 				if ( touchFriend != -1 ) {
 					AirStage1Friend.ImageAlign = ContentAlignment.MiddleLeft;
 					AirStage1Friend.ImageIndex = (int)ResourceManager.EquipmentContent.Seaplane;
@@ -333,14 +335,14 @@ namespace ElectronicObserver.Window {
 				AirSuperiority.Text = Constants.GetAirSuperiority( -1 );
 
 				AirStage1Friend.Text = "-";
-				AirStage1Friend.ForeColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.MainFontColor);
-                AirStage1Friend.ImageAlign = ContentAlignment.MiddleCenter;
+				AirStage1Friend.ForeColor = SystemColors.ControlText;
+				AirStage1Friend.ImageAlign = ContentAlignment.MiddleCenter;
 				AirStage1Friend.ImageIndex = -1;
 				ToolTipInfo.SetToolTip( AirStage1Friend, null );
 
 				AirStage1Enemy.Text = "-";
-				AirStage1Enemy.ForeColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.MainFontColor);
-                AirStage1Enemy.ImageAlign = ContentAlignment.MiddleCenter;
+				AirStage1Enemy.ForeColor = SystemColors.ControlText;
+				AirStage1Enemy.ImageAlign = ContentAlignment.MiddleCenter;
 				AirStage1Enemy.ImageIndex = -1;
 				ToolTipInfo.SetToolTip( AirStage1Enemy, null );
 			}
@@ -354,19 +356,19 @@ namespace ElectronicObserver.Window {
 				if ( planeFriend[1] > 0 && planeFriend[0] == planeFriend[1] )
 					AirStage2Friend.ForeColor = Color.Red;
 				else
-					AirStage2Friend.ForeColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.MainFontColor);
+					AirStage2Friend.ForeColor = SystemColors.ControlText;
 
-                int[] planeEnemy = { pd.AircraftLostStage2Enemy, pd.AircraftTotalStage2Enemy };
+				int[] planeEnemy = { pd.AircraftLostStage2Enemy, pd.AircraftTotalStage2Enemy };
 				AirStage2Enemy.Text = string.Format( "-{0}/{1}", planeEnemy[0], planeEnemy[1] );
 
 				if ( planeEnemy[1] > 0 && planeEnemy[0] == planeEnemy[1] )
 					AirStage2Enemy.ForeColor = Color.Red;
 				else
-					AirStage2Enemy.ForeColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.MainFontColor);
+					AirStage2Enemy.ForeColor = SystemColors.ControlText;
 
 
-                //対空カットイン
-                if ( pd.IsAACutinAvailable ) {
+				//対空カットイン
+				if ( pd.IsAACutinAvailable ) {
 					int cutinID = pd.AACutInKind;
 					int cutinIndex = pd.AACutInIndex;
 
@@ -388,10 +390,10 @@ namespace ElectronicObserver.Window {
 
 			} else {	//艦対空戦闘発生せず
 				AirStage2Friend.Text = "-";
-				AirStage2Friend.ForeColor = ForeColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.MainFontColor);
-                AirStage2Enemy.Text = "-";
-				AirStage2Enemy.ForeColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.MainFontColor);
-                AACutin.Text = GeneralRes.AAPower;
+				AirStage2Friend.ForeColor = SystemColors.ControlText;
+				AirStage2Enemy.Text = "-";
+				AirStage2Enemy.ForeColor = SystemColors.ControlText;
+				AACutin.Text = GeneralRes.AAPower;
 				AACutin.ImageAlign = ContentAlignment.MiddleCenter;
 				AACutin.ImageIndex = -1;
 				ToolTipInfo.SetToolTip( AACutin, null );
@@ -442,10 +444,10 @@ namespace ElectronicObserver.Window {
 					 ( planeFriend[3] > 0 && planeFriend[2] == planeFriend[3] ) )
 					AirStage1Friend.ForeColor = Color.Red;
 				else
-					AirStage1Friend.ForeColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.MainFontColor);
+					AirStage1Friend.ForeColor = SystemColors.ControlText;
 
 
-                int[] planeEnemy = { 
+				int[] planeEnemy = {
 					pd1.AircraftLostStage1Enemy,
 					pd1.AircraftTotalStage1Enemy,
 					( isBattle2Enabled ? pd2.AircraftLostStage1Enemy : 0 ),
@@ -459,11 +461,11 @@ namespace ElectronicObserver.Window {
 					 ( planeEnemy[3] > 0 && planeEnemy[2] == planeEnemy[3] ) )
 					AirStage1Enemy.ForeColor = Color.Red;
 				else
-					AirStage1Enemy.ForeColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.MainFontColor);
+					AirStage1Enemy.ForeColor = SystemColors.ControlText;
 
 
-                //触接
-                int[] touchFriend = { 
+				//触接
+				int[] touchFriend = {
 					pd1.TouchAircraftFriend,
 					isBattle2Enabled ? pd2.TouchAircraftFriend : -1
 					};
@@ -509,11 +511,11 @@ namespace ElectronicObserver.Window {
 				AirSuperiority.Text = Constants.GetAirSuperiority( -1 );
 				ToolTipInfo.SetToolTip( AirSuperiority, null );
 				AirStage1Friend.Text = "-";
-				AirStage1Friend.ForeColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.MainFontColor);
-                ToolTipInfo.SetToolTip( AirStage1Friend, null );
+				AirStage1Friend.ForeColor = SystemColors.ControlText;
+				ToolTipInfo.SetToolTip( AirStage1Friend, null );
 				AirStage1Enemy.Text = "-";
-				AirStage1Enemy.ForeColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.MainFontColor);
-                ToolTipInfo.SetToolTip( AirStage1Enemy, null );
+				AirStage1Enemy.ForeColor = SystemColors.ControlText;
+				ToolTipInfo.SetToolTip( AirStage1Enemy, null );
 			}
 
 			//艦対空戦闘
@@ -523,24 +525,24 @@ namespace ElectronicObserver.Window {
 				bool isBattle2Enabled = pd2.IsStage2Available;
 
 
-				int[] planeFriend = { 
+				int[] planeFriend = {
 					pd1.AircraftLostStage2Friend,
 					pd1.AircraftTotalStage2Friend,
 					( isBattle2Enabled ? pd2.AircraftLostStage2Friend : 0 ),
 					( isBattle2Enabled ? pd2.AircraftTotalStage2Friend : 0 ),
 				};
 				AirStage2Friend.Text = string.Format( "-{0}/{1}", planeFriend[0] + planeFriend[2], planeFriend[1] );
-				ToolTipInfo.SetToolTip( AirStage2Friend, string.Format( GeneralRes.Stage2AATooltip,
+				ToolTipInfo.SetToolTip( AirStage2Friend, string.Format( "第1次: -{0}/{1}\r\n第2次: -{2}/{3}\r\n",
 					planeFriend[0], planeFriend[1], planeFriend[2], planeFriend[3] ) );
 
 				if ( ( planeFriend[1] > 0 && planeFriend[0] == planeFriend[1] ) ||
 					 ( planeFriend[3] > 0 && planeFriend[2] == planeFriend[3] ) )
 					AirStage2Friend.ForeColor = Color.Red;
 				else
-					AirStage2Friend.ForeColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.MainFontColor);
+					AirStage2Friend.ForeColor = SystemColors.ControlText;
 
 
-                int[] planeEnemy = { 
+				int[] planeEnemy = {
 					pd1.AircraftLostStage2Enemy,
 					pd1.AircraftTotalStage2Enemy,
 					( isBattle2Enabled ? pd2.AircraftLostStage2Enemy : 0 ),
@@ -549,17 +551,17 @@ namespace ElectronicObserver.Window {
 				AirStage2Enemy.Text = string.Format( "-{0}/{1}", planeEnemy[0] + planeEnemy[2], planeEnemy[1] );
 				ToolTipInfo.SetToolTip( AirStage2Enemy, string.Format( GeneralRes.Stage2AATooltip,
 					planeEnemy[0], planeEnemy[1], planeEnemy[2], planeEnemy[3],
-					isBattle2Enabled ? "" : GeneralRes.NoSecondAirStage ) );			
+					isBattle2Enabled ? "" : GeneralRes.NoSecondAirStage ) );			//DEBUG
 
 				if ( ( planeEnemy[1] > 0 && planeEnemy[0] == planeEnemy[1] ) ||
 					 ( planeEnemy[3] > 0 && planeEnemy[2] == planeEnemy[3] ) )
 					AirStage2Enemy.ForeColor = Color.Red;
 				else
-					AirStage2Enemy.ForeColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.MainFontColor);
+					AirStage2Enemy.ForeColor = SystemColors.ControlText;
 
 
-                //対空カットイン
-                {
+				//対空カットイン
+				{
 					bool[] fire = new bool[] { pd1.IsAACutinAvailable, isBattle2Enabled && pd2.IsAACutinAvailable };
 					int[] cutinID = new int[] {
 						fire[0] ? pd1.AACutInKind : -1,
@@ -602,11 +604,11 @@ namespace ElectronicObserver.Window {
 
 			} else {	//艦対空戦闘発生せず
 				AirStage2Friend.Text = "-";
-				AirStage2Friend.ForeColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.MainFontColor);
-                ToolTipInfo.SetToolTip( AirStage2Friend, null );
+				AirStage2Friend.ForeColor = SystemColors.ControlText;
+				ToolTipInfo.SetToolTip( AirStage2Friend, null );
 				AirStage2Enemy.Text = "-";
-				AirStage2Enemy.ForeColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.MainFontColor);
-                ToolTipInfo.SetToolTip( AirStage2Enemy, null );
+				AirStage2Enemy.ForeColor = SystemColors.ControlText;
+				ToolTipInfo.SetToolTip( AirStage2Enemy, null );
 				AACutin.Text = GeneralRes.AAPower;
 				AACutin.ImageAlign = ContentAlignment.MiddleCenter;
 				AACutin.ImageIndex = -1;
@@ -677,8 +679,8 @@ namespace ElectronicObserver.Window {
 					HPBars[i].Value = resultHPs[i];
 					HPBars[i].PrevValue = initialHPs[i];
 					HPBars[i].MaximumValue = maxHPs[i];
-					HPBars[i].BackColor =  Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.BackgroundColor);
-                    HPBars[i].Visible = true;
+					HPBars[i].BackColor = SystemColors.Control;
+					HPBars[i].Visible = true;
 				} else {
 					HPBars[i].Visible = false;
 				}
@@ -724,9 +726,14 @@ namespace ElectronicObserver.Window {
 				}
 			}
 
-			HPBars[bd.MVPShipIndex].BackColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.MVPHighlight);
+			if ( bd.Initial.IsBossDamaged )
+				HPBars[6].BackColor = Color.MistyRose;
 
-            FleetCombined.Visible = false;
+
+			foreach ( int i in bd.MVPShipIndexes )
+				HPBars[i].BackColor = Color.Moccasin;
+
+			FleetCombined.Visible = false;
 			for ( int i = 12; i < 18; i++ ) {
 				HPBars[i].Visible = false;
 			}
@@ -753,6 +760,7 @@ namespace ElectronicObserver.Window {
 					HPBars[i].Value = resultHPs[i];
 					HPBars[i].PrevValue = initialHPs[i];
 					HPBars[i].MaximumValue = maxHPs[i];
+					HPBars[i].BackColor = SystemColors.Control;
 					HPBars[i].Visible = true;
 				} else {
 					HPBars[i].Visible = false;
@@ -779,8 +787,8 @@ namespace ElectronicObserver.Window {
 						);
 
 					if ( isEscaped ) HPBars[i].BackColor = Color.Silver;
-					else HPBars[i].BackColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.BackgroundColor);
-                }
+					else HPBars[i].BackColor = SystemColors.Control;
+				}
 			}
 
 			for ( int i = 0; i < 6; i++ ) {
@@ -820,14 +828,18 @@ namespace ElectronicObserver.Window {
 						);
 
 					if ( isEscaped ) HPBars[i + 12].BackColor = Color.Silver;
-					else HPBars[i + 12].BackColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.BackgroundColor);
-                }
+					else HPBars[i + 12].BackColor = SystemColors.Control;
+				}
 			}
 
+			if ( bd.Initial.IsBossDamaged )
+				HPBars[6].BackColor = Color.MistyRose;
 
-            HPBars[bd.MVPShipIndex].BackColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.MVPHighlight);
-            HPBars[12 + bd.MVPShipCombinedIndex].BackColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.MVPHighlight);
-        }
+			foreach ( int i in bd.MVPShipIndexes )
+				HPBars[i].BackColor = Color.Moccasin;
+			foreach ( int i in bd.MVPShipCombinedIndexes )
+				HPBars[12 + i].BackColor = Color.Moccasin;
+		}
 
 
 		/// <summary>
@@ -901,6 +913,37 @@ namespace ElectronicObserver.Window {
 
 
 		/// <summary>
+		/// 空襲戦における勝利ランクを計算します。情報不足のため正確ではありません。
+		/// </summary>
+		/// <param name="countFriend">戦闘に参加した自軍艦数。</param>
+		/// <param name="sunkFriend">撃沈された自軍艦数。</param>
+		/// <param name="friendrate">自軍損害率。</param>
+		private static int GetWinRankAirRaid( int countFriend, int sunkFriend, double friendrate ) {
+			int rank;
+
+			if ( friendrate <= 0.0 )
+				rank = 7;	//SS
+			else if ( friendrate < 0.1 )
+				rank = 5;	//A
+			else if ( friendrate < 0.2 )
+				rank = 4;	//B
+			else if ( friendrate < 0.5 )
+				rank = 3;	//C
+			else if ( friendrate < 0.8 )
+				rank = 2;	//D
+			else
+				rank = 1;	//E
+
+			/*/// 撃沈艦があってもランクは変わらない(撃沈ありA勝利が確認されている)
+			if ( sunkFriend > 0 )
+				rank--;
+			//*/
+
+			return rank;
+		}
+
+
+		/// <summary>
 		/// 損害率と戦績予測を設定します。
 		/// </summary>
 		private void SetDamageRateNormal( BattleData bd, int[] initialHPs ) {
@@ -934,7 +977,11 @@ namespace ElectronicObserver.Window {
 				int sunkFriend = resultHPs.Take( countFriend ).Count( v => v <= 0 );
 				int sunkEnemy = resultHPs.Skip( 6 ).Take( countEnemy ).Count( v => v <= 0 );
 
-				int rank = GetWinRank( countFriend, countEnemy, sunkFriend, sunkEnemy, friendrate, enemyrate, resultHPs[6] <= 0 );
+				int rank;
+				if ( bd is BattleAirRaid )
+					rank = GetWinRankAirRaid( countFriend, sunkFriend, friendrate );
+				else
+					rank = GetWinRank( countFriend, countEnemy, sunkFriend, sunkEnemy, friendrate, enemyrate, resultHPs[6] <= 0 );
 
 
 				WinRank.Text = Constants.GetWinRank( rank );
@@ -980,7 +1027,11 @@ namespace ElectronicObserver.Window {
 				int sunkFriend = resultHPs.Take( countFriend ).Count( v => v <= 0 ) + resultHPs.Skip( 12 ).Take( countFriendCombined ).Count( v => v <= 0 );
 				int sunkEnemy = resultHPs.Skip( 6 ).Take( countEnemy ).Count( v => v <= 0 );
 
-				int rank = GetWinRank( countFriend + countFriendCombined, countEnemy, sunkFriend, sunkEnemy, friendrate, enemyrate, resultHPs[6] <= 0 );
+				int rank;
+				if ( bd is BattleCombinedAirRaid )
+					rank = GetWinRankAirRaid( countFriend, sunkFriend, friendrate );
+				else
+					rank = GetWinRank( countFriend + countFriendCombined, countEnemy, sunkFriend, sunkEnemy, friendrate, enemyrate, resultHPs[6] <= 0 );
 
 
 				WinRank.Text = Constants.GetWinRank( rank );
@@ -1021,7 +1072,7 @@ namespace ElectronicObserver.Window {
 				int index = pd.SearchlightIndexEnemy;
 				if ( index != -1 ) {
 					AirStage1Enemy.Text = "#" + ( index + 1 );
-					AirStage1Enemy.ForeColor = SystemColors.ControlText;	
+					AirStage1Enemy.ForeColor = SystemColors.ControlText;
 					AirStage1Enemy.ImageAlign = ContentAlignment.MiddleLeft;
 					AirStage1Enemy.ImageIndex = (int)ResourceManager.EquipmentContent.Searchlight;
 					ToolTipInfo.SetToolTip( AirStage1Enemy, GeneralRes.SearchlightUsed + ": " + pd.SearchlightEnemyInstance.NameWithClass );
@@ -1087,16 +1138,17 @@ namespace ElectronicObserver.Window {
 
 			MainFont = TableTop.Font = TableBottom.Font = Font = Utility.Configuration.Config.UI.MainFont;
 			SubFont = Utility.Configuration.Config.UI.SubFont;
-            ForeColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.MainFontColor);
-            BackColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.BackgroundColor);
 
 			if ( HPBars != null ) {
 				foreach ( var b in HPBars ) {
 					b.MainFont = MainFont;
 					b.SubFont = SubFont;
+					b.HPBar.ColorMorphing = Utility.Configuration.Config.UI.BarColorMorphing;
+					b.HPBar.SetBarColorScheme( Utility.Configuration.Config.UI.BarColorScheme.Select( col => col.ColorData ).ToArray() );
 				}
 			}
 		}
+
 
 
 		private void TableTop_CellPaint( object sender, TableLayoutCellPaintEventArgs e ) {

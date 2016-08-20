@@ -55,7 +55,8 @@ namespace ElectronicObserver.Window {
 		}
 
 		private bool IsRowsUpdating;
-
+		private int _splitterDistance;
+		private int _shipNameSortMethod;
 
 
 		public FormShipGroup( FormMain parent ) {
@@ -64,7 +65,7 @@ namespace ElectronicObserver.Window {
 			ControlHelper.SetDoubleBuffered( ShipView );
 
 			IsRowsUpdating = true;
-
+			_splitterDistance = -1;
 
 			foreach ( DataGridViewColumn column in ShipView.Columns ) {
 				column.MinimumWidth = 2;
@@ -206,17 +207,33 @@ namespace ElectronicObserver.Window {
 			foreach ( System.Windows.Forms.Control c in TabPanel.Controls )
 				c.Font = Font;
 
-			splitContainer1.SplitterDistance = config.FormShipGroup.SplitterDistance;
 			MenuGroup_AutoUpdate.Checked = config.FormShipGroup.AutoUpdate;
 			MenuGroup_ShowStatusBar.Checked = config.FormShipGroup.ShowStatusBar;
-            BackColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.BackgroundColor);
-            ForeColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.MainFontColor);
-            ShipView.ForeColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.MainFontColor);
-            ShipView.BackgroundColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.BackgroundColor);
-            StatusBar.ForeColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.MainFontColor);
-            StatusBar.BackColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.BackgroundColor);
-        }
+			_shipNameSortMethod = config.FormShipGroup.ShipNameSortMethod;
 
+		}
+
+
+		// レイアウトロード時に呼ばれる
+		public void ConfigureFromPersistString( string persistString ) {
+
+			string[] args = persistString.Split( "?=&".ToCharArray() );
+
+			for ( int i = 1; i < args.Length - 1; i += 2 ) {
+				switch ( args[i] ) {
+					case "SplitterDistance":
+						// 直接変えるとサイズが足りないか何かで変更が適用されないことがあるため、 Resize イベント中に変更する(ために値を記録する)
+						// しかし Resize イベントだけだと呼ばれないことがあるため、直接変えてもおく
+						// つらい
+						splitContainer1.SplitterDistance = _splitterDistance = int.Parse( args[i + 1] );
+						break;
+				}
+			}
+		}
+
+		protected override string GetPersistString() {
+			return "ShipGroup?SplitterDistance=" + splitContainer1.SplitterDistance;
+		}
 
 
 		/// <summary>
@@ -523,7 +540,7 @@ namespace ElectronicObserver.Window {
 
 			if ( 0 <= headIndex && headIndex < ShipView.Rows.Count )
 				ShipView.FirstDisplayedScrollingRowIndex = headIndex;
-			
+
 			if ( selectedIDList.Count > 0 ) {
 				ShipView.ClearSelection();
 				for ( int i = 0; i < ShipView.Rows.Count; i++ ) {
@@ -533,12 +550,12 @@ namespace ElectronicObserver.Window {
 					}
 				}
 			}
-				
+
 		}
 
 
 		private string GetEquipmentString( ShipData ship, int index ) {
-            
+
 			if ( index < 5 ) {
 				return ( index >= ship.SlotSize && ship.Slot[index] == -1 ) ? "" :
 					ship.SlotInstance[index] == null ? GeneralRes.None : ship.SlotInstance[index].NameWithLevel;
@@ -570,10 +587,10 @@ namespace ElectronicObserver.Window {
 			var group = CurrentGroup;
 			if ( KCDatabase.Instance.Ships.Count > 0 && group != null ) {
 				if ( ShipView.Rows.GetRowCount( DataGridViewElementStates.Selected ) >= 2 ) {
-					var ships = ShipView.SelectedRows.Cast<DataGridViewRow>().Select( r => KCDatabase.Instance.Ships[(int)r.Cells[ShipView_ID.Index].Value] );
+					var levels = ShipView.SelectedRows.Cast<DataGridViewRow>().Select( r => (int)r.Cells[ShipView_Level.Index].Value );
 					Status_ShipCount.Text = string.Format( GeneralRes.SelectedShips, ShipView.Rows.GetRowCount( DataGridViewElementStates.Selected ), group.Members.Count );
-					Status_LevelTotal.Text = string.Format( GeneralRes.TotalLevel, ships.Sum( s => s.Level ) );
-					Status_LevelAverage.Text = string.Format( GeneralRes.AverageLevel, ships.Average( s => s.Level ) );
+					Status_LevelTotal.Text = string.Format( GeneralRes.TotalLevel, levels.Sum() );
+					Status_LevelAverage.Text = string.Format( GeneralRes.AverageLevel, levels.Average() );
 
 				} else {
 					Status_ShipCount.Text = string.Format( GeneralRes.TotalShips, group.Members.Count );
@@ -666,9 +683,23 @@ namespace ElectronicObserver.Window {
 		private void ShipView_SortCompare( object sender, DataGridViewSortCompareEventArgs e ) {
 
 			if ( e.Column.Index == ShipView_Name.Index ) {
-				e.SortResult =
-					KCDatabase.Instance.MasterShips[(int)ShipView.Rows[e.RowIndex1].Cells[e.Column.Index].Tag].AlbumNo -
-					KCDatabase.Instance.MasterShips[(int)ShipView.Rows[e.RowIndex2].Cells[e.Column.Index].Tag].AlbumNo;
+
+				ShipDataMaster	ship1 = KCDatabase.Instance.MasterShips[(int)ShipView.Rows[e.RowIndex1].Cells[e.Column.Index].Tag],
+								ship2 = KCDatabase.Instance.MasterShips[(int)ShipView.Rows[e.RowIndex2].Cells[e.Column.Index].Tag];
+
+				switch ( _shipNameSortMethod ) {
+					case 0:		// 図鑑番号順
+					default:
+						e.SortResult = ship1.AlbumNo - ship2.AlbumNo;
+						break;
+
+					case 1:		// あいうえお順
+						e.SortResult = ship1.NameReading.CompareTo( ship2.NameReading );
+
+						if ( e.SortResult == 0 )
+							e.SortResult = ship1.Name.CompareTo( ship2.Name );
+						break;
+				}
 
 			} else if ( e.Column.Index == ShipView_Exp.Index ) {
 				e.SortResult = (int)e.CellValue1 - (int)e.CellValue2;
@@ -932,7 +963,7 @@ namespace ElectronicObserver.Window {
 				MenuMember_AddToGroup.Enabled = false;
 				MenuMember_CreateGroup.Enabled = false;
 				MenuMember_Exclude.Enabled = false;
-				
+
 			} else {
 				MenuMember_AddToGroup.Enabled = true;
 				MenuMember_CreateGroup.Enabled = true;
@@ -1064,7 +1095,7 @@ namespace ElectronicObserver.Window {
 
 
 		private void ApplyAutoSort( ShipGroupData group ) {
-            
+
 			if ( !group.AutoSortEnabled || group.SortOrder == null )
 				return;
 
@@ -1547,8 +1578,6 @@ namespace ElectronicObserver.Window {
 
 		void SystemShuttingDown() {
 
-
-			Utility.Configuration.Config.FormShipGroup.SplitterDistance = splitContainer1.SplitterDistance;
 			Utility.Configuration.Config.FormShipGroup.AutoUpdate = MenuGroup_AutoUpdate.Checked;
 			Utility.Configuration.Config.FormShipGroup.ShowStatusBar = MenuGroup_ShowStatusBar.Checked;
 
@@ -1569,8 +1598,16 @@ namespace ElectronicObserver.Window {
 		}
 
 
-		protected override string GetPersistString() {
-			return "ShipGroup";
+		private void FormShipGroup_Resize( object sender, EventArgs e ) {
+			if ( _splitterDistance != -1 && splitContainer1.Height > 0 ) {
+				try {
+					splitContainer1.SplitterDistance = _splitterDistance;
+					_splitterDistance = -1;
+
+				} catch ( Exception ) {
+					// *ぷちっ*
+				}
+			}
 		}
 
 

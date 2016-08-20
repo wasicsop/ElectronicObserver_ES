@@ -8,6 +8,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
@@ -76,11 +77,16 @@ namespace Browser {
 
 		private VolumeManager _volumeManager;
 
+		private string _lastScreenShotPath;
+
 
 		private NumericUpDown ToolMenu_Other_Volume_VolumeControl {
 			get { return (NumericUpDown)( (ToolStripControlHost)ToolMenu_Other_Volume.DropDownItems["ToolMenu_Other_Volume_VolumeControlHost"] ).Control; }
 		}
 
+		private PictureBox ToolMenu_Other_LastScreenShot_Control {
+			get { return (PictureBox)( (ToolStripControlHost)ToolMenu_Other_LastScreenShot.DropDownItems["ToolMenu_Other_LastScreenShot_ImageHost"] ).Control; }
+		}
 
 
 
@@ -118,16 +124,42 @@ namespace Browser {
 
 				control.ValueChanged += ToolMenu_Other_Volume_ValueChanged;
 				control.Tag = false;
-			
+
 				var host = new ToolStripControlHost( control, "ToolMenu_Other_Volume_VolumeControlHost" );
 
 				control.Size = new Size( host.Width - control.Margin.Horizontal, host.Height - control.Margin.Vertical );
 				control.Location = new Point( control.Margin.Left, control.Margin.Top );
-				
+
 
 				ToolMenu_Other_Volume.DropDownItems.Add( host );
 			}
+
+			// スクリーンショットプレビューコントロールの追加
+			{
+				double zoomrate = 0.5;
+				var control = new PictureBox();
+				control.Name = "ToolMenu_Other_LastScreenShot_Image";
+				control.SizeMode = PictureBoxSizeMode.Zoom;
+				control.Size = new Size( (int)( KanColleSize.Width * zoomrate ), (int)( KanColleSize.Height * zoomrate ) );
+				control.Margin = new Padding();
+				control.Image = new Bitmap( (int)( KanColleSize.Width * zoomrate ), (int)( KanColleSize.Height * zoomrate ), PixelFormat.Format24bppRgb );
+				using ( var g = Graphics.FromImage( control.Image ) ) {
+					g.Clear( SystemColors.Control );
+					g.DrawString( "スクリーンショットをまだ撮影していません。\r\n", Font, Brushes.Black, new Point( 4, 4 ) );
+				}
+
+				var host = new ToolStripControlHost( control, "ToolMenu_Other_LastScreenShot_ImageHost" );
+
+				host.Size = new Size( control.Width + control.Margin.Horizontal, control.Height + control.Margin.Vertical );
+				host.AutoSize = false;
+				control.Location = new Point( control.Margin.Left, control.Margin.Top );
+
+				host.Click += ToolMenu_Other_LastScreenShot_ImageHost_Click;
+
+				ToolMenu_Other_LastScreenShot.DropDownItems.Insert( 0, host );
+			}
 		}
+
 
 
 		private void FormBrowser_Load( object sender, EventArgs e ) {
@@ -146,7 +178,7 @@ namespace Browser {
 			// ウィンドウの親子設定＆ホストプロセスから接続してもらう
 			BrowserHost.Proxy.ConnectToBrowser( this.Handle );
 
-			// 親ウィンドウが生きているか確認 
+			// 親ウィンドウが生きているか確認
 			HeartbeatTimer.Tick += (EventHandler)( ( sender2, e2 ) => {
 				BrowserHost.AsyncRemoteRun( () => { HostWindow = BrowserHost.Proxy.HWND; } );
 			} );
@@ -260,7 +292,11 @@ namespace Browser {
 
 		private void Browser_Navigating( object sender, WebBrowserNavigatingEventArgs e ) {
 
-			IsKanColleLoaded = false;
+			// note: ここを有効にすると別ページに切り替えた際にきちんとセーフティが働くが、代わりにまれに誤検知して撮影できなくなる時がある
+			// 無効にするとセーフティは働かなくなるが誤検知がなくなる
+			// セーフティを切ってでも誤検知しなくしたほうがいいので無効化
+
+			//IsKanColleLoaded = false;
 
 		}
 
@@ -523,8 +559,15 @@ namespace Browser {
 		}
 
 
-		public void SetProxy( string address, int port ) {
-			WinInetUtil.SetProxyInProcess( string.Format( "http={0}:{1}", address, port ), "local" );
+		public void SetProxy( string proxy ) {
+			ushort port;
+			if ( ushort.TryParse( proxy, out port ) ) {
+				WinInetUtil.SetProxyInProcessForNekoxy( port );
+			} else {
+				WinInetUtil.SetProxyInProcess( proxy, "local" );
+			}
+
+			//AddLog( 1, "setproxy:" + proxy );
 		}
 
 
@@ -683,6 +726,10 @@ namespace Browser {
 				control.Value = (decimal)volume;
 				control.Tag = true;
 			}
+
+			Configuration.Volume = volume;
+			Configuration.IsMute = mute;
+			ConfigurationUpdated();
 		}
 
 
@@ -769,7 +816,7 @@ namespace Browser {
 		void ToolMenu_Other_Volume_ValueChanged( object sender, EventArgs e ) {
 
 			var control = ToolMenu_Other_Volume_VolumeControl;
-				
+
 			try {
 				if ( (bool)control.Tag )
 					_volumeManager.Volume = (float)( control.Value / 100 );
@@ -777,7 +824,7 @@ namespace Browser {
 
 			} catch ( Exception ) {
 				control.BackColor = Color.MistyRose;
-				
+
 			}
 
 		}
@@ -858,7 +905,7 @@ namespace Browser {
             BeginInvoke((MethodInvoker)(() => { SetCookie(); }));
         }
 
-		private void SizeAdjuster_Click( object sender, EventArgs e ) {
+		private void SizeAdjuster_DoubleClick( object sender, EventArgs e ) {
 			ToolMenu.Visible =
 			Configuration.IsToolMenuVisible = true;
 			ConfigurationUpdated();
@@ -950,6 +997,36 @@ namespace Browser {
 
 			ToolMenu_Other_Alignment_Invisible.Checked = !Configuration.IsToolMenuVisible;
 		}
+
+
+		private void ToolMenu_Other_LastScreenShot_DropDownOpening( object sender, EventArgs e ) {
+
+			try {
+
+				using ( var fs = new FileStream( _lastScreenShotPath, FileMode.Open, FileAccess.Read ) ) {
+					if ( ToolMenu_Other_LastScreenShot_Control.Image != null )
+						ToolMenu_Other_LastScreenShot_Control.Image.Dispose();
+
+					ToolMenu_Other_LastScreenShot_Control.Image = Image.FromStream( fs );
+				}
+
+			} catch ( Exception ) {
+				// *ぷちっ*
+			}
+
+		}
+
+		void ToolMenu_Other_LastScreenShot_ImageHost_Click( object sender, EventArgs e ) {
+			if ( _lastScreenShotPath != null && System.IO.File.Exists( _lastScreenShotPath ) )
+				System.Diagnostics.Process.Start( _lastScreenShotPath );
+		}
+
+		private void ToolMenu_Other_LastScreenShot_OpenScreenShotFolder_Click( object sender, EventArgs e ) {
+			if ( System.IO.Directory.Exists( Configuration.ScreenShotPath ) )
+				System.Diagnostics.Process.Start( Configuration.ScreenShotPath );
+		}
+
+
 
 		protected override void WndProc( ref Message m ) {
 
@@ -1076,9 +1153,6 @@ namespace Browser {
 			IntPtr lpszUrlName );
 
 		#endregion
-
-
-
 
 	}
 

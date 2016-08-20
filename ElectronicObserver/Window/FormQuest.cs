@@ -43,8 +43,8 @@ namespace ElectronicObserver.Window {
 			CSDefaultCenter = new DataGridViewCellStyle( CSDefaultLeft );
 			CSDefaultCenter.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-			CSCategories = new DataGridViewCellStyle[8];
-			for ( int i = 0; i < 8; i++ ) {
+			CSCategories = new DataGridViewCellStyle[9];
+			for ( int i = 0; i < CSCategories.Length; i++ ) {
 				CSCategories[i] = new DataGridViewCellStyle( CSDefaultCenter );
 
 				Color c;
@@ -70,7 +70,10 @@ namespace ElectronicObserver.Window {
 					case 7:		//改装
 						c = Color.FromArgb( 0xDD, 0xCC, 0xFF );
 						break;
-					case 8:		//その他
+					case 8:		//出撃(2)
+						c = Color.FromArgb( 0xFF, 0xCC, 0xCC );
+						break;
+					case 9:		//その他
 					default:
 						c = CSDefaultCenter.BackColor;
 						break;
@@ -83,7 +86,7 @@ namespace ElectronicObserver.Window {
             }
 
 			QuestView.DefaultCellStyle = CSDefaultCenter;
-			QuestView_Category.DefaultCellStyle = CSCategories[8 - 1];
+			QuestView_Category.DefaultCellStyle = CSCategories[CSCategories.Length - 1];
 			QuestView_Name.DefaultCellStyle = CSDefaultLeft;
 			QuestView_Progress.DefaultCellStyle = CSDefaultLeft;
 
@@ -146,6 +149,7 @@ namespace ElectronicObserver.Window {
 			MenuMain_ShowDaily.Checked = c.FormQuest.ShowDaily;
 			MenuMain_ShowWeekly.Checked = c.FormQuest.ShowWeekly;
 			MenuMain_ShowMonthly.Checked = c.FormQuest.ShowMonthly;
+			MenuMain_ShowOther.Checked = c.FormQuest.ShowOther;
 
 			if ( c.FormQuest.ColumnFilter == null || ( (List<bool>)c.FormQuest.ColumnFilter ).Count != QuestView.Columns.Count ) {
 				c.FormQuest.ColumnFilter = Enumerable.Repeat( true, QuestView.Columns.Count ).ToList();
@@ -162,6 +166,10 @@ namespace ElectronicObserver.Window {
 					( (ToolStripMenuItem)MenuMain_ColumnFilter.DropDownItems[i] ).Checked = list[i];
 					QuestView.Columns[i].Width = width[i];
 				}
+			}
+
+			foreach ( DataGridViewColumn column in QuestView.Columns ) {
+				column.SortMode = c.FormQuest.AllowUserToSortRows ? DataGridViewColumnSortMode.Automatic : DataGridViewColumnSortMode.NotSortable; 
 			}
 
 			Updated();
@@ -199,19 +207,25 @@ namespace ElectronicObserver.Window {
 					continue;
 
 				switch ( q.Type ) {
-					case 2:
-					case 4:
-					case 5:
+					case 1:
 						if ( !MenuMain_ShowDaily.Checked ) continue;
 						break;
-					case 3:
+					case 2:
 						if ( !MenuMain_ShowWeekly.Checked ) continue;
 						break;
-					case 6:
+					case 3:
 						if ( !MenuMain_ShowMonthly.Checked ) continue;
 						break;
+					case 4:
 					default:
 						if ( !MenuMain_ShowOnce.Checked ) continue;
+						break;
+					case 5:
+						if ( q.QuestID == 211 || q.QuestID == 212 ) {	// 空母3か輸送5
+							if ( !MenuMain_ShowDaily.Checked ) continue;
+						} else {
+							if ( !MenuMain_ShowOther.Checked ) continue;
+						}
 						break;
 				}
 
@@ -291,6 +305,7 @@ namespace ElectronicObserver.Window {
 			//更新時にソートする
 			if ( QuestView.SortedColumn != null )
 				QuestView.Sort( QuestView.SortedColumn, QuestView.SortOrder == SortOrder.Ascending ? ListSortDirection.Ascending : ListSortDirection.Descending );
+
 
 			QuestView.ResumeLayout();
 		}
@@ -414,6 +429,11 @@ namespace ElectronicObserver.Window {
 			Updated();
 		}
 
+		private void MenuMain_ShowOther_Click( object sender, EventArgs e ) {
+			Utility.Configuration.Config.FormQuest.ShowOther = MenuMain_ShowOther.Checked;
+			Updated();
+		}
+
 
 
 		private void MenuMain_Initialize_Click( object sender, EventArgs e ) {
@@ -472,10 +492,73 @@ namespace ElectronicObserver.Window {
 
 
 
+
+		private void QuestView_CellMouseDown( object sender, DataGridViewCellMouseEventArgs e ) {
+
+			if ( e.Button == System.Windows.Forms.MouseButtons.Right && e.RowIndex >= 0 ) {
+				QuestView.ClearSelection();
+				QuestView.Rows[e.RowIndex].Selected = true;
+			}
+
+		}
+
+		private void MenuProgress_Increment_Click( object sender, EventArgs e ) {
+
+			var rows = QuestView.SelectedRows;
+
+			if ( rows != null && rows.Count > 0 && rows[0].Index != -1 ) {
+
+				int id = rows[0].Cells[QuestView_Name.Index].Value as int? ?? -1;
+
+				var quest = KCDatabase.Instance.Quest[id];
+				var progress = KCDatabase.Instance.QuestProgress[id];
+
+				if ( id != -1 && quest != null && progress != null ) {
+
+					try {
+						progress.Increment();
+						Updated();
+
+					} catch ( Exception ) {
+						Utility.Logger.Add( 3, "この任務の進捗を変更することはできません。" );
+						System.Media.SystemSounds.Hand.Play();
+					}
+				}
+			}
+		}
+
+		private void MenuProgress_Decrement_Click( object sender, EventArgs e ) {
+
+			var rows = QuestView.SelectedRows;
+
+			if ( rows != null && rows.Count > 0 && rows[0].Index != -1 ) {
+
+				int id = rows[0].Cells[QuestView_Name.Index].Value as int? ?? -1;
+
+				var quest = KCDatabase.Instance.Quest[id];
+				var progress = KCDatabase.Instance.QuestProgress[id];
+
+				if ( id != -1 && quest != null && progress != null ) {
+
+					try {
+						progress.Decrement();
+						Updated();
+
+					} catch ( Exception ) {
+						Utility.Logger.Add( 3, "この任務の進捗を変更することはできません。" );
+						System.Media.SystemSounds.Hand.Play();
+					}
+				}
+			}
+		}
+
+
+
+
 		protected override string GetPersistString() {
 			return "Quest";
 		}
 
-
+	
 	}
 }

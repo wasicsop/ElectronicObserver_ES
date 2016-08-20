@@ -1,5 +1,6 @@
 ﻿using ElectronicObserver.Data;
 using ElectronicObserver.Resource.Record;
+using ElectronicObserver.Utility.Mathematics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,10 +45,11 @@ namespace ElectronicObserver.Utility.Data {
 				if ( eq == null ) continue;
 
 				switch ( eq.EquipmentType[2] ) {
-					case 6:
-					case 7:
-					case 8:
-					case 11:
+					case 6:		// 艦上戦闘機
+					case 7:		// 艦上爆撃機
+					case 8:		// 艦上攻撃機
+					case 11:	// 水上爆撃機
+					case 45:	// 水上戦闘機
 						air += (int)( eq.AA * Math.Sqrt( aircraft[s] ) );
 						break;
 				}
@@ -100,10 +102,11 @@ namespace ElectronicObserver.Utility.Data {
 		/// 各装備カテゴリにおける制空値の熟練度ボーナス
 		/// </summary>
 		private static readonly Dictionary<int, int[]> AircraftLevelBonus = new Dictionary<int, int[]>() {
-			{ 6, new int[] { 0, 0, 2, 5, 9, 14, 14, 22, 22 } },	//艦上戦闘機
-			{ 7, new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 } },		//艦上爆撃機
-			{ 8, new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 } },		//艦上攻撃機
+			{ 6, new int[] { 0, 0, 2, 5, 9, 14, 14, 22, 22 } },		//艦上戦闘機
+			{ 7, new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 } },			//艦上爆撃機
+			{ 8, new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 } },			//艦上攻撃機
 			{ 11, new int[] { 0, 1, 1, 1, 1, 3, 3, 6, 6 } },		//水上爆撃機
+			{ 45, new int[] { 0, 0, 2, 5, 9, 14, 14, 22, 22 } },	//水上戦闘機
 		};
 
 		/// <summary>
@@ -138,7 +141,21 @@ namespace ElectronicObserver.Utility.Data {
 					int category = eq.MasterEquipment.CategoryType;
 
 					if ( AircraftLevelBonus.ContainsKey( category ) ) {
-						air += (int)( eq.MasterEquipment.AA * Math.Sqrt( aircrafts[i] ) + Math.Sqrt( AircraftExpTable[eq.AircraftLevel] / 10.0 ) + AircraftLevelBonus[category][eq.AircraftLevel] );
+
+						double levelRate;
+						switch ( category ) {
+							case 6:		// 艦上戦闘機
+								levelRate = 0.2;
+								break;
+							case 7:		// 艦上爆撃機
+								levelRate = 0.25;
+								break;
+							default:
+								levelRate = 0;
+								break;
+						}
+
+						air += (int)( ( eq.MasterEquipment.AA + levelRate * eq.Level ) * Math.Sqrt( aircrafts[i] ) + Math.Sqrt( AircraftExpTable[eq.AircraftLevel] / 10.0 ) + AircraftLevelBonus[category][eq.AircraftLevel] );
 					}
 
 				}
@@ -362,6 +379,208 @@ namespace ElectronicObserver.Utility.Data {
 		}
 
 
+		/// <summary>
+		/// 索敵能力を求めます。「判定式(33)」です。
+		/// </summary>
+		/// <param name="fleet">対象の艦隊。</param>
+		public static double GetSearchingAbility_33( FleetData fleet ) {
+
+			double ret = 0.0;
+
+			foreach ( var ship in fleet.MembersWithoutEscaped ) {
+				if ( ship == null ) continue;
+
+				//equipments
+				foreach ( var slot in ship.SlotInstance ) {
+
+					if ( slot == null )
+						continue;
+
+					switch ( slot.MasterEquipment.CategoryType ) {
+
+						case 8:		//艦上攻撃機
+							ret += 0.8 * slot.MasterEquipment.LOS;
+							break;
+
+						case 9:		//艦上偵察機
+						case 94:	//艦上偵察機(II) 存在しないが念のため
+							ret += 1.0 * slot.MasterEquipment.LOS;
+							break;
+
+						case 10:	//水上偵察機
+							ret += 1.2 * ( slot.MasterEquipment.LOS + 1.2 * Math.Sqrt( slot.Level ) );
+							break;
+
+						case 11:	//水上爆撃機
+							ret += 1.1 * slot.MasterEquipment.LOS;
+							break;
+
+						case 12:	//小型電探
+						case 13:	//大型電探
+							ret += 0.6 * ( slot.MasterEquipment.LOS + 1.25 * Math.Sqrt( slot.Level ) );
+							break;
+
+						default:
+							ret += 0.6 * slot.MasterEquipment.LOS;
+							break;
+					}
+				}
+
+				ret += Math.Sqrt( ship.LOSBase );
+
+			}
+
+			ret -= Math.Ceiling( 0.4 * KCDatabase.Instance.Admiral.Level );
+
+			ret += 2.0 * ( 6 - fleet.MembersWithoutEscaped.Count( s => s != null ) );
+
+			return ret;
+		}
+
+
+		/// <summary>
+		/// 艦隊の触接開始率を求めます。
+		/// </summary>
+		/// <param name="fleet">対象の艦隊。</param>
+		public static double GetContactProbability( FleetData fleet ) {
+
+			double successProb = 0.0;
+
+			foreach ( var ship in fleet.MembersWithoutEscaped ) {
+				if ( ship == null ) continue;
+
+				var eqs = ship.SlotInstanceMaster;
+
+				for ( int i = 0; i < ship.Slot.Count; i++ ) {
+					if ( eqs[i] == null )
+						continue;
+
+					if ( eqs[i].CategoryType == 9 ||	// 艦上偵察機
+						eqs[i].CategoryType == 10 ||	// 水上偵察機
+						eqs[i].CategoryType == 41 ) {	// 大型飛行艇
+
+						successProb += 0.04 * eqs[i].LOS * Math.Sqrt( ship.Aircraft[i] );
+					}
+				}
+			}
+
+			return successProb;
+		}
+
+		/// <summary>
+		/// 機体命中率別の触接選択率を求めます。
+		/// </summary>
+		/// <param name="fleet">対象の艦隊。</param>
+		/// <returns>機体の命中をキー, 触接選択率を値とした Dictionary 。</returns>
+		public static Dictionary<int, double> GetContactSelectionProbability( FleetData fleet ) {
+
+			var probs = new Dictionary<int, double>();
+
+			foreach ( var ship in fleet.MembersWithoutEscaped ) {
+				if ( ship == null )
+					continue;
+
+				foreach ( var eq in ship.SlotInstanceMaster ) {
+					if ( eq == null )
+						continue;
+
+					switch ( eq.CategoryType ) {
+						case 8:		// 艦上攻撃機
+						case 9:		// 艦上偵察機
+						case 10:	// 水上偵察機
+						case 41:	// 大型飛行艇
+							if ( !probs.ContainsKey( eq.Accuracy ) )
+								probs.Add( eq.Accuracy, 1.0 );
+
+							probs[eq.Accuracy] *= 1.0 - ( 0.07 * eq.LOS );
+							break;
+					}
+				}
+			}
+
+			foreach ( int key in probs.Keys.ToArray() ) {		//列挙中の変更エラーを防ぐため 
+				probs[key] = 1.0 - probs[key];
+			}
+
+			return probs;
+		}
+
+
+		/// <summary>
+		/// 輸送作戦成功時の輸送量(減少TP)を求めます。
+		/// (S勝利時のもの。A勝利時は int( value * 0.7 ) )
+		/// </summary>
+		/// <param name="fleet">対象の艦隊。</param>
+		/// <returns>減少TP。</returns>
+		public static int GetTPDamage( FleetData fleet ) {
+
+			int tp = 0;
+
+			foreach ( var ship in fleet.MembersWithoutEscaped.Where( s => s != null && s.HPRate > 0.25 ) ) {
+
+				// 装備ボーナス
+				foreach ( var eq in ship.AllSlotInstanceMaster.Where( q => q != null ) ) {
+
+					switch ( eq.CategoryType ) {
+
+						case 24:	// 上陸用舟艇
+							if ( eq.EquipmentID == 166 )	// 陸戦隊
+								tp += 13;
+							else
+								tp += 8;
+							break;
+						case 30:	// 簡易輸送部材
+							tp += 5;
+							break;
+						case 43:	// 戦闘糧食
+							tp += 1;
+							break;
+						case 46:	// 特型内火艇
+							tp += 10;
+							break;
+					}
+				}
+
+
+				// 艦種ボーナス
+				switch ( ship.MasterShip.ShipType ) {
+
+					case 2:		// 駆逐艦
+						tp += 5;
+						break;
+					case 3:		// 軽巡洋艦
+						tp += 2;
+						break;
+					case 5:		// 重巡洋艦
+						tp += 0;
+						break;
+					case 6:		// 航空巡洋艦
+						tp += 4;
+						break;
+					case 10:	// 航空戦艦
+						tp += 7;
+						break;
+					case 16:	// 水上機母艦
+						tp += 9;
+						break;
+					case 17:	// 揚陸艦
+						tp += 12;
+						break;
+					case 20:	// 潜水母艦
+						tp += 7;
+						break;
+					case 21:	// 練習巡洋艦
+						tp += 6;
+						break;
+					case 22:	// 補給艦
+						tp += 15;
+						break;
+				}
+			}
+
+
+			return tp;
+		}
 
 
 		/// <summary>
@@ -535,10 +754,14 @@ namespace ElectronicObserver.Utility.Data {
 				if ( defship != null && defship.IsLandBase && rocketcnt > 0 )
 					return 10;		//ロケット砲撃
 
-				else if ( atkship.ShipType == 7 || atkship.ShipType == 11 || atkship.ShipType == 18 )		//軽空母/正規空母/装甲空母
-					return 7;		//空撃
+				else if ( atkship.ShipType == 7 || atkship.ShipType == 11 || atkship.ShipType == 18 ) {		//軽空母/正規空母/装甲空母
 
-				else if ( atkship.ShipType == 13 || atkship.ShipType == 14 )	//潜水艦/潜水空母
+					if ( attackerShipID == 432 || attackerShipID == 353 )		//Graf Zeppelin(改)
+						return 0;		//砲撃
+					else
+						return 7;		//空撃
+
+				} else if ( atkship.ShipType == 13 || atkship.ShipType == 14 )	//潜水艦/潜水空母
 					return 9;			//雷撃
 
 				else if ( defship != null && ( defship.ShipType == 13 || defship.ShipType == 14 ) )			//潜水艦/潜水空母
@@ -584,8 +807,8 @@ namespace ElectronicObserver.Utility.Data {
 				if ( eq == null ) continue;
 
 				if ( eq.IconType == 16 ) {	//高角砲
-					// 10cm連装高角砲+高射装置 or 12.7cm高角砲+高射装置 or 90mm単装高角砲
-					if ( eq.EquipmentID == 122 || eq.EquipmentID == 130 || eq.EquipmentID == 135 ) {
+					// 10cm連装高角砲+高射装置 or 12.7cm高角砲+高射装置 or 90mm単装高角砲 or 5inch連装砲 Mk.28 mod.2
+					if ( eq.EquipmentID == 122 || eq.EquipmentID == 130 || eq.EquipmentID == 135 || eq.EquipmentID == 172 ) {
 						highangle_director++;
 					}
 					highangle++;
@@ -606,7 +829,8 @@ namespace ElectronicObserver.Utility.Data {
 					aashell++;
 
 				} else if ( eq.CategoryType == 21 ) {	//対空機銃
-					if ( eq.EquipmentID == 131 ) {		//25mm三連装機銃 集中配備
+					// 25mm三連装機銃 集中配備 or Bofors 40mm四連装機関砲 or QF 2ポンド8連装ポンポン砲
+					if ( eq.EquipmentID == 131 || eq.EquipmentID == 173 || eq.EquipmentID == 191 ) {
 						aagun_concentrated++;
 					}
 					aagun++;
@@ -616,33 +840,60 @@ namespace ElectronicObserver.Utility.Data {
 			}
 
 
-			//秋月/秋月改/照月/照月改限定
-			if ( shipID == 421 || shipID == 330 || shipID == 422 || shipID == 346 ) {
+			// 固有カットイン
+			switch ( shipID ) {
 
-				if ( highangle >= 2 && radar >= 1 ) {
-					return 1;
-				}
-				if ( highangle >= 1 && radar >= 1 ) {
-					return 2;
-				}
-				if ( highangle >= 2 ) {
-					return 3;
-				}
+				case 421:	//秋月
+				case 330:	//秋月改
+				case 422:	//照月
+				case 346:	//照月改
+				case 423:	//初月
+				case 357:	//初月改
+					if ( highangle >= 2 && radar >= 1 ) {
+						return 1;
+					}
+					if ( highangle >= 1 && radar >= 1 ) {
+						return 2;
+					}
+					if ( highangle >= 2 ) {
+						return 3;
+					}
+					break;
+
+				case 428:	//摩耶改二
+					if ( highangle >= 1 && aagun_concentrated >= 1 ) {
+						if ( aaradar >= 1 )
+							return 10;
+
+						return 11;
+					}
+					break;
+
+				case 141:	//五十鈴改二
+					if ( highangle >= 1 && aagun >= 1 ) {
+						if ( aaradar >= 1 )
+							return 14;
+						else
+							return 15;
+					}
+					break;
+
+				case 470:	//霞改二乙
+					if ( highangle >= 1 && aagun >= 1 ) {
+						if ( aaradar >= 1 )
+							return 16;
+						else
+							return 17;
+					}
+					break;
+
+				case 418:	//皐月改二
+					if ( aagun_concentrated >= 1 )
+						return 18;
+					break;
 			}
 
-			if ( shipID == 428 ) {		//摩耶改二限定
-				if ( highangle >= 1 && aagun_concentrated >= 1 ) {
-					if ( aaradar >= 1 )
-						return 10;
 
-					return 11;
-				}
-			}
-
-			if ( shipID == 141 ) {		//五十鈴改二限定
-				if ( highangle >= 1 && aagun >= 1 && aaradar >= 1 )
-					return 14;
-			}
 
 			if ( maingunl >= 1 && aashell >= 1 && director >= 1 && aaradar >= 1 ) {
 				return 4;
@@ -676,7 +927,8 @@ namespace ElectronicObserver.Utility.Data {
 		/// </summary>
 		/// <param name="equipmentID">装備ID。</param>
 		/// <param name="containsRecon">偵察機(非攻撃機)を含めるか。</param>
-		public static bool IsAircraft( int equipmentID, bool containsRecon ) {
+		/// <param name="containsASWAircraft">対潜可能機を含めるか。</param>
+		public static bool IsAircraft( int equipmentID, bool containsRecon, bool containsASWAircraft = false ) {
 
 			var eq = KCDatabase.Instance.MasterEquipments[equipmentID];
 
@@ -689,13 +941,15 @@ namespace ElectronicObserver.Utility.Data {
 				case 11:	//水上爆撃機
 				case 25:	//オートジャイロ
 				case 26:	//対潜哨戒機
+				case 45:	//水上戦闘機
 					return true;
 
 				case 9:		//艦上偵察機
 				case 10:	//水上偵察機
-				case 41:	//大型飛行艇
 					return containsRecon;
 
+				case 41:	//大型飛行艇
+					return containsRecon || containsASWAircraft;
 				default:
 					return false;
 			}
@@ -723,12 +977,17 @@ namespace ElectronicObserver.Utility.Data {
 				case 10:	//航戦
 				case 16:	//水母
 				case 17:	//揚陸
-					return ship.SlotInstanceMaster.Count( eq => eq != null && IsAircraft( eq.EquipmentID, false ) && eq.ASW > 0 ) > 0;
+					return ship.SlotInstanceMaster.Count( eq => eq != null && IsAircraft( eq.EquipmentID, false, true ) && eq.ASW > 0 ) > 0;
 
 				default:
 					return false;
 			}
 
+		}
+
+
+		public static TimeSpan CalculateDockingUnitTime( ShipData ship ) {
+			return new TimeSpan( DateTimeHelper.FromAPITimeSpan( ship.RepairTime ).Add( TimeSpan.FromSeconds( -30 ) ).Ticks / ( ship.HPMax - ship.HPCurrent ) );
 		}
 
 	}

@@ -571,4 +571,73 @@ More details, as well as an access key, can be found on the site below. (opens y
   <data name="ShowAnchorageRepairingTimer_Tooltip" xml:space="preserve">
     <value>Display repair timer in the fleet list window.</value>
   </data>
+  <data name="Formula33" xml:space="preserve">
+    <value>Formula 33</value>
+  </data>
+  <data name="BlinkAtCompletion" xml:space="preserve">
+    <value>Use blink effect at completion</value>
+  </data>
+  <data name="CompassCandidate" xml:space="preserve">
+    <value>Fleets to display :</value>
+  </data>
+  <data name="FileName" xml:space="preserve">
+    <value>File Name</value>
+  </data>
+  <data name="FleetBlinkAtCompletion" xml:space="preserve">
+    <value>Use blink effect at timer completion</value>
+  </data>
+  <data name="Life_CanCloseFloatWindowInLock" xml:space="preserve">
+    <value>Enable window closing when layout is locked</value>
+  </data>
+  <data name="Life_LockLayout" xml:space="preserve">
+    <value>Enable layout locking</value>
+  </data>
+  <data name="Life_LockLayout_Tooltip" xml:space="preserve">
+    <value>Set to prevent changes to window size and layout.</value>
+  </data>
+  <data name="Scene" xml:space="preserve">
+    <value>Scene</value>
+  </data>
+  <data name="UseSystemProxy" xml:space="preserve">
+    <value>Use system proxy</value>
+  </data>
+  <data name="UseSystemProxyTooltip" xml:space="preserve">
+    <value>Use Internet Explorer proxy settings.</value>
+  </data>
+  <data name="BGMPlayer_Enabled" xml:space="preserve">
+    <value>Enable BGM player</value>
+  </data>
+  <data name="BGMPlayer_Enabled_Tooltip" xml:space="preserve">
+    <value>Enable to use custom BGM according to the specified scene.</value>
+  </data>
+  <data name="BGMPlayer_OpenMusicFile" xml:space="preserve">
+    <value>Select a Music File</value>
+  </data>
+  <data name="BGMPlayer_Settings" xml:space="preserve">
+    <value>BGM Settings</value>
+  </data>
+  <data name="BGMPlayer_SetVolumeAll" xml:space="preserve">
+    <value>Set Volume</value>
+  </data>
+  <data name="BGMPlayer_SyncBrowserMute" xml:space="preserve">
+    <value>Enable mute</value>
+  </data>
+  <data name="BGMPlayer_SyncBrowserMute_Tooltip" xml:space="preserve">
+    <value>Enable to follow browser mute settings</value>
+  </data>
+  <data name="Lead" xml:space="preserve">
+    <value>Lead :</value>
+  </data>
+  <data name="Loop" xml:space="preserve">
+    <value>Loop</value>
+  </data>
+  <data name="Path" xml:space="preserve">
+    <value>Path :</value>
+  </data>
+  <data name="Second" xml:space="preserve">
+    <value>s</value>
+  </data>
+  <data name="Volume" xml:space="preserve">
+    <value>Volume :</value>
+  </data>
 </root>

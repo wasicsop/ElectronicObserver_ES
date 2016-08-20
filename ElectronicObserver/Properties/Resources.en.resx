@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AskClose" xml:space="preserve">
-    <value>will close. Are you sure?</value>
+    <value> will close. Are you sure?</value>
   </data>
   <data name="AskForUpdate" xml:space="preserve">
     <value>A new version has been released - {0}
@@ -166,7 +166,7 @@ Okay?</value>
     <value>Confirm</value>
   </data>
   <data name="DevelopedBy" xml:space="preserve">
-    <value>Original</value>
+    <value>Author</value>
   </data>
   <data name="Error" xml:space="preserve">
     <value>Error</value>
@@ -195,10 +195,10 @@ Add windows of your choosing using the "View" menu.</value>
     <value> is starting...</value>
   </data>
   <data name="LayoutLoaded" xml:space="preserve">
-    <value>Successfully loaded window layout.</value>
+    <value>Successfully loaded window layout from {0}.</value>
   </data>
   <data name="LayoutSaved" xml:space="preserve">
-    <value>Successfully saved window layout.</value>
+    <value>Successfully saved window layout from {0}.</value>
   </data>
   <data name="NewVersionFound" xml:space="preserve">
     <value>A new version has been released! - </value>
@@ -216,7 +216,7 @@ Add windows of your choosing using the "View" menu.</value>
     <value>Open Layout File</value>
   </data>
   <data name="OriginalSite" xml:space="preserve">
-    <value>Original Site (bug reports, contact)</value>
+    <value>Original site (bug reports, contact)</value>
   </data>
   <data name="SoftwareName" xml:space="preserve">
     <value>Type 74 Electronic Observer </value>
@@ -225,10 +225,10 @@ Add windows of your choosing using the "View" menu.</value>
     <value>Startup complete.</value>
   </data>
   <data name="TranslatedSite" xml:space="preserve">
-    <value>Translation Site</value>
+    <value>Translation site</value>
   </data>
   <data name="TranslatedVer" xml:space="preserve">
-    <value>Translation</value>
+    <value>Translator</value>
   </data>
   <data name="Update" xml:space="preserve">
     <value>Update</value>
@@ -240,13 +240,13 @@ Add windows of your choosing using the "View" menu.</value>
     <value>Failed to process update data.</value>
   </data>
   <data name="Version" xml:space="preserve">
-    <value>2.0.0 [TL 2.0b]</value>
+    <value>2.1.8 [TL 2.0b]</value>
   </data>
   <data name="VersionCurrent" xml:space="preserve">
     <value>You are currently using the latest version.</value>
   </data>
   <data name="VersionTitle" xml:space="preserve">
-    <value>Version</value>
+    <value>About Electronic Observer</value>
   </data>
   <data name="ZoomCurrent" xml:space="preserve">
     <value>Current</value>
@@ -295,5 +295,8 @@ If you continue without initializing, errors may occur.
   </data>
   <data name="NewGroupFormatTitle" xml:space="preserve">
     <value>Upgrade Confirmation (~1.5.0)</value>
+  </data>
+  <data name="NoMultipleStart" xml:space="preserve">
+    <value> is already running.</value>
   </data>
 </root>

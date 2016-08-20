@@ -250,7 +250,7 @@
     <value>Fleet Admiral</value>
   </data>
   <data name="Formation" xml:space="preserve">
-    <value>Formation</value>
+    <value>Composition</value>
   </data>
   <data name="Forward" xml:space="preserve">
     <value>Forward</value>
@@ -551,5 +551,47 @@
   </data>
   <data name="TransportFleet" xml:space="preserve">
     <value>Transport Fleet</value>
+  </data>
+  <data name="AirRaid" xml:space="preserve">
+    <value>Air Raid</value>
+  </data>
+  <data name="ShipGirl" xml:space="preserve">
+    <value>Ship</value>
+  </data>
+  <data name="ExpeditionResult" xml:space="preserve">
+    <value>Expedition result</value>
+  </data>
+  <data name="NoResources" xml:space="preserve">
+    <value>No resources gained</value>
+  </data>
+  <data name="BGM_BattleAir" xml:space="preserve">
+    <value>Air Battle</value>
+  </data>
+  <data name="BGM_BattleBoss" xml:space="preserve">
+    <value>Boss Battle</value>
+  </data>
+  <data name="BGM_BattleDay" xml:space="preserve">
+    <value>Day Battle</value>
+  </data>
+  <data name="BGM_BattleNight" xml:space="preserve">
+    <value>Night Battle</value>
+  </data>
+  <data name="BGM_Sortie" xml:space="preserve">
+    <value>Sortie</value>
+  </data>
+  <data name="Port" xml:space="preserve">
+    <value>Port</value>
+  </data>
+  <data name="FurnitureCoin" xml:space="preserve">
+    <value>Furniture Coin</value>
+  </data>
+  <data name="SpecialIdle" xml:space="preserve">
+    <value>特殊放置</value>
+  </data>
+  <data name="SSHoloPlus" xml:space="preserve">
+    <value>SS-Holo+</value>
+  </data>
+  <data name="QuestOther" xml:space="preserve">
+    <value>O</value>
   </data>
 </root>

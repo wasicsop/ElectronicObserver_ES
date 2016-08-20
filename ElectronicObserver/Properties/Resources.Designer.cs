@@ -335,7 +335,7 @@ namespace ElectronicObserver.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ウィンドウ レイアウトを復元しました。.
+        ///   Looks up a localized string similar to {0}からウィンドウ レイアウトを復元しました。.
         /// </summary>
         internal static string LayoutLoaded {
             get {
@@ -344,7 +344,7 @@ namespace ElectronicObserver.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ウィンドウ レイアウトを保存しました。.
+        ///   Looks up a localized string similar to {0}へウィンドウ レイアウトを保存しました。.
         /// </summary>
         internal static string LayoutSaved {
             get {
@@ -416,6 +416,15 @@ namespace ElectronicObserver.Properties {
         internal static string NoLayoutFound {
             get {
                 return ResourceManager.GetString("NoLayoutFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 既に起動しています。\r\n多重起動はできません。.
+        /// </summary>
+        internal static string NoMultipleStart {
+            get {
+                return ResourceManager.GetString("NoMultipleStart", resourceCulture);
             }
         }
         

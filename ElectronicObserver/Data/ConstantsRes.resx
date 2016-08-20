@@ -552,4 +552,46 @@
   <data name="TransportFleet" xml:space="preserve">
     <value>輸送部隊</value>
   </data>
+  <data name="AirRaid" xml:space="preserve">
+    <value>空襲戦</value>
+  </data>
+  <data name="ShipGirl" xml:space="preserve">
+    <value>艦娘</value>
+  </data>
+  <data name="ExpeditionResult" xml:space="preserve">
+    <value>遠征結果</value>
+  </data>
+  <data name="NoResources" xml:space="preserve">
+    <value>獲得資源なし</value>
+  </data>
+  <data name="BGM_BattleAir" xml:space="preserve">
+    <value>航空戦</value>
+  </data>
+  <data name="BGM_BattleBoss" xml:space="preserve">
+    <value>ボス戦</value>
+  </data>
+  <data name="BGM_BattleDay" xml:space="preserve">
+    <value>昼戦</value>
+  </data>
+  <data name="BGM_BattleNight" xml:space="preserve">
+    <value>夜戦</value>
+  </data>
+  <data name="BGM_Sortie" xml:space="preserve">
+    <value>出撃中</value>
+  </data>
+  <data name="Port" xml:space="preserve">
+    <value>母港</value>
+  </data>
+  <data name="FurnitureCoin" xml:space="preserve">
+    <value>家具コイン</value>
+  </data>
+  <data name="SpecialIdle" xml:space="preserve">
+    <value>特殊放置</value>
+  </data>
+  <data name="SSHoloPlus" xml:space="preserve">
+    <value>SSホロ+</value>
+  </data>
+  <data name="QuestOther" xml:space="preserve">
+    <value>他</value>
+  </data>
 </root>

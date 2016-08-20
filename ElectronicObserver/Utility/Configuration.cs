@@ -60,11 +60,6 @@ namespace ElectronicObserver.Utility {
 				public bool SaveReceivedData { get; set; }
 
 				/// <summary>
-				/// 通信内容保存：フィルタ
-				/// </summary>
-				public string SaveDataFilter { get; set; }
-
-				/// <summary>
 				/// 通信内容保存：保存先
 				/// </summary>
 				public string SaveDataPath { get; set; }
@@ -94,6 +89,7 @@ namespace ElectronicObserver.Utility {
 				/// </summary>
 				public bool ApplyVersion { get; set; }
 
+
 				/// <summary>
 				/// システムプロキシに登録するか
 				/// </summary>
@@ -115,6 +111,18 @@ namespace ElectronicObserver.Utility {
 				public string UpstreamProxyAddress { get; set; }
 
 				/// <summary>
+				/// システムプロキシを利用するか
+				/// </summary>
+				public bool UseSystemProxy { get; set; }
+
+				/// <summary>
+				/// 下流プロキシ設定
+				/// 空なら他の設定から自動生成する
+				/// </summary>
+				public string DownstreamProxy { get; set; }
+
+
+				/// <summary>
 				/// kancolle-db.netに送信する
 				/// </summary>
 				public bool SendDataToKancolleDB { get; set; }
@@ -129,7 +137,6 @@ namespace ElectronicObserver.Utility {
 
 					Port = 40620;
 					SaveReceivedData = false;
-					SaveDataFilter = "";
 					SaveDataPath = @"KCAPI";
 					SaveRequest = false;
 					SaveResponse = true;
@@ -140,9 +147,10 @@ namespace ElectronicObserver.Utility {
 					UseUpstreamProxy = false;
 					UpstreamProxyPort = 0;
 					UpstreamProxyAddress = "127.0.0.1";
+					UseSystemProxy = false;
+					DownstreamProxy = "";
 					SendDataToKancolleDB = false;
 					SendKancolleOAuth = "";
-
 				}
 
 			}
@@ -162,15 +170,87 @@ namespace ElectronicObserver.Utility {
 				/// サブフォント
 				/// </summary>
 				public SerializableFont SubFont { get; set; }
-
+                
                 public Theme Theme { get; set; }
 
-				public ConfigUI() {
+				[IgnoreDataMember]
+				private bool _barColorMorphing;
+
+				/// <summary>
+				/// HPバーの色を滑らかに変化させるか
+				/// </summary>
+				public bool BarColorMorphing {
+					get { return _barColorMorphing; }
+					set {
+						_barColorMorphing = value;
+
+						if ( !_barColorMorphing )
+							BarColorScheme = new List<SerializableColor>( DefaultBarColorScheme[0] );
+						else
+							BarColorScheme = new List<SerializableColor>( DefaultBarColorScheme[1] );
+					}
+				}
+
+				/// <summary>
+				/// HPバーのカラーリング
+				/// </summary>
+				public List<SerializableColor> BarColorScheme { get; set; }
+
+
+				[IgnoreDataMember]
+				private readonly List<SerializableColor>[] DefaultBarColorScheme = new List<SerializableColor>[] {
+					new List<SerializableColor>() {
+						SerializableColor.UIntToColor( 0xFFFF0000 ),
+						SerializableColor.UIntToColor( 0xFFFF0000 ),
+						SerializableColor.UIntToColor( 0xFFFF8800 ),
+						SerializableColor.UIntToColor( 0xFFFF8800 ),
+						SerializableColor.UIntToColor( 0xFFFFCC00 ),
+						SerializableColor.UIntToColor( 0xFFFFCC00 ),
+						SerializableColor.UIntToColor( 0xFF00CC00 ),
+						SerializableColor.UIntToColor( 0xFF00CC00 ),
+						SerializableColor.UIntToColor( 0xFF0044CC ),
+						SerializableColor.UIntToColor( 0xFF44FF00 ),
+						SerializableColor.UIntToColor( 0xFF882222 ),
+						SerializableColor.UIntToColor( 0xFF888888 ),
+					},
+					/*/// recognize
+					new List<SerializableColor>() {
+						SerializableColor.UIntToColor( 0xFFFF0000 ),
+						SerializableColor.UIntToColor( 0xFFFF0000 ),
+						SerializableColor.UIntToColor( 0xFFFF6600 ),
+						SerializableColor.UIntToColor( 0xFFFF9900 ),
+						SerializableColor.UIntToColor( 0xFFFFCC00 ),
+						SerializableColor.UIntToColor( 0xFFEEEE00 ),
+						SerializableColor.UIntToColor( 0xFFAAEE00 ),
+						SerializableColor.UIntToColor( 0xFF00CC00 ),
+						SerializableColor.UIntToColor( 0xFF0044CC ),
+						SerializableColor.UIntToColor( 0xFF00FF44 ),
+						SerializableColor.UIntToColor( 0xFF882222 ),
+						SerializableColor.UIntToColor( 0xFF888888 ),
+					},
+					/*/// gradation
+					new List<SerializableColor>() {
+						SerializableColor.UIntToColor( 0xFFFF0000 ),
+						SerializableColor.UIntToColor( 0xFFFF0000 ),
+						SerializableColor.UIntToColor( 0xFFFF4400 ),
+						SerializableColor.UIntToColor( 0xFFFF8800 ),
+						SerializableColor.UIntToColor( 0xFFFFAA00 ),
+						SerializableColor.UIntToColor( 0xFFEEEE00 ),
+						SerializableColor.UIntToColor( 0xFFCCEE00 ),
+						SerializableColor.UIntToColor( 0xFF00CC00 ),
+						SerializableColor.UIntToColor( 0xFF0044CC ),
+						SerializableColor.UIntToColor( 0xFF00FF44 ),
+						SerializableColor.UIntToColor( 0xFF882222 ),
+						SerializableColor.UIntToColor( 0xFF888888 ),
+					},
 					//*/
+				};
+
+				public ConfigUI() {
 					MainFont = new Font( "Meiryo UI", 12, FontStyle.Regular, GraphicsUnit.Pixel );
 					SubFont = new Font( "Meiryo UI", 10, FontStyle.Regular, GraphicsUnit.Pixel );
                     Theme = Theme.Light;
-					//*/
+					BarColorMorphing = false;
 				}
 			}
 			/// <summary>UI</summary>
@@ -262,9 +342,34 @@ namespace ElectronicObserver.Utility {
 				/// </summary>
 				public int RecordAutoSaving { get; set; }
 
+				/// <summary>
+				/// システムの音量設定を利用するか
+				/// </summary>
+				public bool UseSystemVolume { get; set; }
+
+				/// <summary>
+				/// 前回終了時の音量
+				/// </summary>
+				public float LastVolume { get; set; }
+
+				/// <summary>
+				/// 前回終了時にミュート状態だったか
+				/// </summary>
+				public bool LastIsMute { get; set; }
+
+				/// <summary>
+				/// 威力表示の基準となる交戦形態
+				/// </summary>
+				public int PowerEngagementForm { get; set; }
+
+
 				public ConfigControl() {
 					ConditionBorder = 40;
 					RecordAutoSaving = 1;
+					UseSystemVolume = true;
+					LastVolume = 0.8f;
+					LastIsMute = false;
+					PowerEngagementForm = 1;
 				}
 			}
 			/// <summary>動作</summary>
@@ -292,11 +397,16 @@ namespace ElectronicObserver.Utility {
 				/// </summary>
 				public string APIListPath { get; set; }
 
+				/// <summary>
+				/// エラー発生時に警告音を鳴らすか
+				/// </summary>
+				public bool AlertOnError { get; set; }
 
 				public ConfigDebug() {
 					EnableDebugMenu = false;
 					LoadAPIListOnLoad = false;
 					APIListPath = "";
+					AlertOnError = false;
 				}
 			}
 			/// <summary>デバッグ</summary>
@@ -339,6 +449,16 @@ namespace ElectronicObserver.Utility {
 				/// </summary>
 				public int ClockFormat { get; set; }
 
+				/// <summary>
+				/// レイアウトをロックするか
+				/// </summary>
+				public bool LockLayout { get; set; }
+
+				/// <summary>
+				/// レイアウトロック中でもフロートウィンドウを閉じられるようにするか
+				/// </summary>
+				public bool CanCloseFloatWindowInLock { get; set; }
+
 				public ConfigLife() {
 					ConfirmOnClosing = true;
 					TopMost = false;
@@ -346,6 +466,8 @@ namespace ElectronicObserver.Utility {
 					CheckUpdateInformation = true;
 					ShowStatusBar = true;
 					ClockFormat = 0;
+					LockLayout = false;
+					CanCloseFloatWindowInLock = false;
 				}
 			}
 			/// <summary>起動と終了</summary>
@@ -363,13 +485,38 @@ namespace ElectronicObserver.Utility {
 				/// </summary>
 				public bool ShowShipName { get; set; }
 
+				/// <summary>
+				/// 完了時に点滅させるか
+				/// </summary>
+				public bool BlinkAtCompletion { get; set; }
+
 				public ConfigFormArsenal() {
 					ShowShipName = true;
+					BlinkAtCompletion = true;
 				}
 			}
 			/// <summary>[工廠]ウィンドウ</summary>
 			[DataMember]
 			public ConfigFormArsenal FormArsenal { get; private set; }
+
+
+			/// <summary>
+			/// [入渠]ウィンドウの設定を扱います。
+			/// </summary>
+			public class ConfigFormDock : ConfigPartBase {
+
+				/// <summary>
+				/// 完了時に点滅させるか
+				/// </summary>
+				public bool BlinkAtCompletion { get; set; }
+
+				public ConfigFormDock() {
+					BlinkAtCompletion = true;
+				}
+			}
+			/// <summary>[入渠]ウィンドウ</summary>
+			[DataMember]
+			public ConfigFormDock FormDock { get; private set; }
 
 
 			/// <summary>
@@ -383,8 +530,11 @@ namespace ElectronicObserver.Utility {
 				public bool BlinkAtMaximum { get; set; }
 
 
+				public SerializableList<bool> Visibility { get; set; }
+
 				public ConfigFormHeadquarters() {
 					BlinkAtMaximum = true;
+					Visibility = null;		// フォーム側で設定します
 				}
 			}
 			/// <summary>[司令部]ウィンドウ</summary>
@@ -428,27 +578,36 @@ namespace ElectronicObserver.Utility {
 				public bool ShowNextExp { get; set; }
 
 				/// <summary>
-				/// 装備の改修レベル・艦載機熟練度を表示するか
+				/// 装備の改修レベル・艦載機熟練度の表示フラグ
 				/// </summary>
-				public bool ShowEquipmentLevel { get; set; }
+				public Window.Control.ShipStatusEquipment.LevelVisibilityFlag EquipmentLevelVisibility { get; set; }
 
 				/// <summary>
 				/// 制空戦力の計算方法
 				/// </summary>
 				public int AirSuperiorityMethod { get; set; }
 
+				/// <summary>
+				/// 泊地修理タイマを表示するか
+				/// </summary>
 				public bool ShowAnchorageRepairingTimer { get; set; }
+
+				/// <summary>
+				/// タイマー完了時に点滅させるか
+				/// </summary>
+				public bool BlinkAtCompletion { get; set; }
 
 				public ConfigFormFleet() {
 					ShowAircraft = true;
-					SearchingAbilityMethod = 0;
+					SearchingAbilityMethod = 3;
 					IsScrollable = true;
 					FixShipNameWidth = false;
 					ShortenHPBar = false;
 					ShowNextExp = true;
-					ShowEquipmentLevel = true;
+					EquipmentLevelVisibility = Window.Control.ShipStatusEquipment.LevelVisibilityFlag.Both;
 					AirSuperiorityMethod = 1;
 					ShowAnchorageRepairingTimer = true;
+					BlinkAtCompletion = true;
 				}
 			}
 			/// <summary>[艦隊]ウィンドウ</summary>
@@ -468,7 +627,7 @@ namespace ElectronicObserver.Utility {
 
 
 				/// <summary>
-				/// 一回限り(+その他)を表示
+				/// 単発を表示
 				/// </summary>
 				public bool ShowOnce { get; set; }
 
@@ -488,6 +647,11 @@ namespace ElectronicObserver.Utility {
 				public bool ShowMonthly { get; set; }
 
 				/// <summary>
+				/// その他を表示
+				/// </summary>
+				public bool ShowOther { get; set; }
+
+				/// <summary>
 				/// 列の可視性
 				/// </summary>
 				public SerializableList<bool> ColumnFilter { get; set; }
@@ -502,15 +666,26 @@ namespace ElectronicObserver.Utility {
 				/// </summary>
 				public int SortParameter { get; set; }
 
+				/// <summary>
+				/// 進捗を自動保存するか
+				/// 0 = しない、1 = 一時間ごと、2 = 一日ごと
+				/// </summary>
+				public int ProgressAutoSaving { get; set; }
+
+				public bool AllowUserToSortRows { get; set; }
+
 				public ConfigFormQuest() {
 					ShowRunningOnly = false;
 					ShowOnce = true;
 					ShowDaily = true;
 					ShowWeekly = true;
 					ShowMonthly = true;
+					ShowOther = true;
 					ColumnFilter = null;		//実際の初期化は FormQuest で行う
 					ColumnWidth = null;			//上に同じ
 					SortParameter = 3 << 1 | 0;
+					ProgressAutoSaving = 1;
+					AllowUserToSortRows = true;
 				}
 			}
 			/// <summary>[任務]ウィンドウ</summary>
@@ -523,16 +698,27 @@ namespace ElectronicObserver.Utility {
 			/// </summary>
 			public class ConfigFormShipGroup : ConfigPartBase {
 
-				public int SplitterDistance { get; set; }
-
+				/// <summary>
+				/// 自動更新するか
+				/// </summary>
 				public bool AutoUpdate { get; set; }
 
+				/// <summary>
+				/// ステータスバーを表示するか
+				/// </summary>
 				public bool ShowStatusBar { get; set; }
 
+
+				/// <summary>
+				/// 艦名列のソート方法
+				/// 0 = 図鑑番号順, 1 = あいうえお順
+				/// </summary>
+				public int ShipNameSortMethod { get; set; }
+
 				public ConfigFormShipGroup() {
-					SplitterDistance = 40;
 					AutoUpdate = true;
 					ShowStatusBar = true;
+					ShipNameSortMethod = 0;
 				}
 			}
 			/// <summary>[艦船グループ]ウィンドウ</summary>
@@ -640,6 +826,24 @@ namespace ElectronicObserver.Utility {
 			public ConfigFormBrowser FormBrowser { get; private set; }
 
 
+			/// <summary>
+			/// [羅針盤]ウィンドウの設定を扱います。
+			/// </summary>
+			public class ConfigFormCompass : ConfigPartBase {
+
+				/// <summary>
+				/// 一度に表示する敵艦隊候補数
+				/// </summary>
+				public int CandidateDisplayCount { get; set; }
+
+				public ConfigFormCompass() {
+					CandidateDisplayCount = 4;
+				}
+			}
+			/// <summary>[羅針盤]ウィンドウ</summary>
+			[DataMember]
+			public ConfigFormCompass FormCompass { get; private set; }
+
 
 			/// <summary>
 			/// 各[通知]ウィンドウの設定を扱います。
@@ -657,6 +861,10 @@ namespace ElectronicObserver.Utility {
 				public string SoundPath { get; set; }
 
 				public bool PlaysSound { get; set; }
+
+				public int SoundVolume { get; set; }
+
+				public bool LoopsSound { get; set; }
 
 				public bool DrawsMessage { get; set; }
 
@@ -690,6 +898,8 @@ namespace ElectronicObserver.Utility {
 					DrawsImage = false;
 					SoundPath = "";
 					PlaysSound = false;
+					SoundVolume = 100;
+					LoopsSound = false;
 					DrawsMessage = true;
 					ClosingInterval = 10000;
 					AccelInterval = 0;
@@ -734,6 +944,20 @@ namespace ElectronicObserver.Utility {
 			}
 
 
+			/// <summary>
+			/// [泊地修理通知]の設定を扱います。
+			/// </summary>
+			public class ConfigNotifierAnchorageRepair : ConfigNotifierBase {
+
+				public int NotificationLevel { get; set; }
+
+				public ConfigNotifierAnchorageRepair()
+					: base() {
+					NotificationLevel = 2;
+				}
+			}
+
+
 			/// <summary>[遠征帰投通知]</summary>
 			[DataMember]
 			public ConfigNotifierBase NotifierExpedition { get; private set; }
@@ -754,6 +978,33 @@ namespace ElectronicObserver.Utility {
 			[DataMember]
 			public ConfigNotifierDamage NotifierDamage { get; private set; }
 
+			/// <summary>[泊地修理通知]</summary>
+			[DataMember]
+			public ConfigNotifierAnchorageRepair NotifierAnchorageRepair { get; private set; }
+
+
+
+			/// <summary>
+			/// SyncBGMPlayer の設定を扱います。
+			/// </summary>
+			public class ConfigBGMPlayer : ConfigPartBase {
+
+				public bool Enabled { get; set; }
+				public List<SyncBGMPlayer.SoundHandle> Handles { get; set; }
+				public bool SyncBrowserMute { get; set; }
+
+				public ConfigBGMPlayer()
+					: base() {
+					// 初期値定義は SyncBGMPlayer 内でも
+					Enabled = false;
+					Handles = new List<SyncBGMPlayer.SoundHandle>();
+					foreach ( SyncBGMPlayer.SoundHandleID id in Enum.GetValues( typeof( SyncBGMPlayer.SoundHandleID ) ) )
+						Handles.Add( new SyncBGMPlayer.SoundHandle( id ) );
+					SyncBrowserMute = false;
+				}
+			}
+			[DataMember]
+			public ConfigBGMPlayer BGMPlayer { get; private set; }
 
 
 			public class ConfigWhitecap : ConfigPartBase {
@@ -807,18 +1058,22 @@ namespace ElectronicObserver.Utility {
 				Life = new ConfigLife();
 
 				FormArsenal = new ConfigFormArsenal();
+				FormDock = new ConfigFormDock();
 				FormFleet = new ConfigFormFleet();
 				FormHeadquarters = new ConfigFormHeadquarters();
 				FormQuest = new ConfigFormQuest();
 				FormShipGroup = new ConfigFormShipGroup();
 				FormBrowser = new ConfigFormBrowser();
+				FormCompass = new ConfigFormCompass();
 
 				NotifierExpedition = new ConfigNotifierBase();
 				NotifierConstruction = new ConfigNotifierBase();
 				NotifierRepair = new ConfigNotifierBase();
 				NotifierCondition = new ConfigNotifierBase();
 				NotifierDamage = new ConfigNotifierDamage();
+				NotifierAnchorageRepair = new ConfigNotifierAnchorageRepair();
 
+				BGMPlayer = new ConfigBGMPlayer();
 				Whitecap = new ConfigWhitecap();
 
 				VersionUpdateTime = DateTimeHelper.TimeToCSVString( SoftwareInformation.UpdateTime );
@@ -845,14 +1100,14 @@ namespace ElectronicObserver.Utility {
 		}
 
 
-		public void Load() {
+		public void Load( Form mainForm ) {
 			var temp = (ConfigurationData)_config.Load( SaveFileName );
 			if ( temp != null ) {
 				_config = temp;
-				CheckUpdate();
+				CheckUpdate( mainForm );
 				OnConfigurationChanged();
 			} else {
-				MessageBox.Show( String.Format(Resources.FirstTimeDialog, SoftwareInformation.SoftwareNameJapanese),
+				MessageBox.Show( String.Format(Resources.FirstTimeDialog, SoftwareInformation.SoftwareNameEnglish),
 					Resources.FirstTimeTitle, MessageBoxButtons.OK, MessageBoxIcon.Information );
 			}
 		}
@@ -863,7 +1118,7 @@ namespace ElectronicObserver.Utility {
 
 
 
-		private void CheckUpdate() {
+		private void CheckUpdate( Form mainForm ) {
 			DateTime dt = Config.VersionUpdateTime == null ? new DateTime( 0 ) : DateTimeHelper.CSVStringToTime( Config.VersionUpdateTime );
 
 			// version 1.4.6 or earlier
@@ -1100,6 +1355,8 @@ namespace ElectronicObserver.Utility {
 					}
 				}
 			}
+
+
 
 
 			Config.VersionUpdateTime = DateTimeHelper.TimeToCSVString( SoftwareInformation.UpdateTime );
