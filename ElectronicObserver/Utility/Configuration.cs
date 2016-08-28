@@ -170,7 +170,7 @@ namespace ElectronicObserver.Utility {
 				/// サブフォント
 				/// </summary>
 				public SerializableFont SubFont { get; set; }
-                
+
                 public Theme Theme { get; set; }
 
 				[IgnoreDataMember]
@@ -846,6 +846,38 @@ namespace ElectronicObserver.Utility {
 
 
 			/// <summary>
+			/// [JSON]ウィンドウの設定を扱います。
+			/// </summary>
+			public class ConfigFormJson : ConfigPartBase {
+
+				/// <summary>
+				/// 自動更新するか
+				/// </summary>
+				public bool AutoUpdate { get; set; }
+
+				/// <summary>
+				/// TreeView を更新するか
+				/// </summary>
+				public bool UpdatesTree { get; set; }
+
+				/// <summary>
+				/// 自動更新時のフィルタ
+				/// </summary>
+				public string AutoUpdateFilter { get; set; }
+
+
+				public ConfigFormJson() {
+					AutoUpdate = false;
+					UpdatesTree = true;
+					AutoUpdateFilter = "";
+				}
+			}
+			/// <summary>[JSON]ウィンドウ</summary>
+			[DataMember]
+			public ConfigFormJson FormJson { get; private set; }
+
+
+			/// <summary>
 			/// 各[通知]ウィンドウの設定を扱います。
 			/// </summary>
 			public class ConfigNotifierBase : ConfigPartBase {
@@ -1065,6 +1097,7 @@ namespace ElectronicObserver.Utility {
 				FormShipGroup = new ConfigFormShipGroup();
 				FormBrowser = new ConfigFormBrowser();
 				FormCompass = new ConfigFormCompass();
+				FormJson = new ConfigFormJson();
 
 				NotifierExpedition = new ConfigNotifierBase();
 				NotifierConstruction = new ConfigNotifierBase();
@@ -1109,6 +1142,30 @@ namespace ElectronicObserver.Utility {
 			} else {
 				MessageBox.Show( String.Format(Resources.FirstTimeDialog, SoftwareInformation.SoftwareNameEnglish),
 					Resources.FirstTimeTitle, MessageBoxButtons.OK, MessageBoxIcon.Information );
+
+
+				// そのままだと正常に動作しなくなった(らしい)ので、ブラウザバージョンの書き込み
+				Microsoft.Win32.RegistryKey reg = null;
+				try {
+
+					reg = Microsoft.Win32.Registry.CurrentUser.CreateSubKey( DialogConfiguration.RegistryPathMaster + DialogConfiguration.RegistryPathBrowserVersion );
+					reg.SetValue( Window.FormBrowserHost.BrowserExeName, DialogConfiguration.DefaultBrowserVersion, Microsoft.Win32.RegistryValueKind.DWord );
+					reg.Close();
+
+					reg = Microsoft.Win32.Registry.CurrentUser.CreateSubKey( DialogConfiguration.RegistryPathMaster + DialogConfiguration.RegistryPathGPURendering );
+					reg.SetValue( Window.FormBrowserHost.BrowserExeName, DialogConfiguration.DefaultGPURendering ? 1 : 0, Microsoft.Win32.RegistryValueKind.DWord );
+
+					Utility.Logger.Add( 2, "ブラウザバージョンをレジストリに書き込みました。削除したい場合は「設定→サブウィンドウ→ブラウザ2→削除」を押してください。" );
+
+
+				} catch ( Exception ex ) {
+					Utility.ErrorReporter.SendErrorReport( ex, "ブラウザバージョンをレジストリに書き込めませんでした。" );
+
+				} finally {
+					if ( reg != null )
+						reg.Close();
+				}
+
 			}
 		}
 

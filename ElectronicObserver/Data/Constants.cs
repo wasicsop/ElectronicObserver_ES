@@ -178,6 +178,27 @@ namespace ElectronicObserver.Data {
 
 		}
 
+
+		/// <summary>
+		/// 基地航空隊の行動指示を表す文字列を取得します。
+		/// </summary>
+		public static string GetBaseAirCorpsActionKind( int value ) {
+			switch ( value ) {
+				case 0:
+					return "待機";
+				case 1:
+					return "出撃";
+				case 2:
+					return "防空";
+				case 3:
+					return "退避";
+				case 4:
+					return "休息";
+				default:
+					return "不明";
+			}
+		}
+
 		#endregion
 
 
@@ -512,6 +533,10 @@ namespace ElectronicObserver.Data {
 					return ConstantsRes.TorpedoAttack;
 				case 10:
 					return ConstantsRes.RocketAttack;
+				case 11:
+					return ConstantsRes.DaihatsuAttack;
+				case 12:
+					return ConstantsRes.TankAttack;
 				default:
 					return ConstantsRes.Unknown;
 			}
@@ -545,6 +570,10 @@ namespace ElectronicObserver.Data {
 					return ConstantsRes.TorpedoAttack;
 				case 10:
 					return ConstantsRes.RocketAttack;
+				case 11:
+					return ConstantsRes.DaihatsuAttack;
+				case 12:
+					return ConstantsRes.TankAttack;
 				default:
 					return ConstantsRes.Unknown;
 			}

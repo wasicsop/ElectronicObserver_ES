@@ -176,11 +176,7 @@ Cut-in type: {1} ({2})</value>
     <value>{0} Ships Assigned</value>
   </data>
   <data name="ASTooltip" xml:space="preserve">
-    <value>Supremacy: {0}
-Superiority: {1}
-Parity: {2}
-Denial: {3}
-</value>
+    <value>Supremacy: {0}\r\nSuperiority: {1}\r\nParity: {2}\r\nDenial: {3}\r\n({4}: {5})\r\n</value>
   </data>
   <data name="ASW" xml:space="preserve">
     <value>ASW</value>
@@ -358,12 +354,7 @@ This action cannot be undone.</value>
     <value>Fleet List</value>
   </data>
   <data name="FleetTooltip" xml:space="preserve">
-    <value>Lv. Total {0} / Average: {1:0.00}
-{2} Fleet
-Drum Canisters: {3} ({4} Ships)
-Daihatsu: {5}
-Total Consumption: Fuel {6} / Ammo {7}
-(1 Battle: Fuel {8} / Ammo {9})</value>
+    <value>Lv Total: {0} / Average: {1:0.00}\r\n{2}Fleet\r\nDrum Canisters: {3} ({4} ships)\r\nDaihatsu: {5} ({6} ships, +{7:p1})\r\nTransport Point (TP): S {8} / A {9}\r\nTotal Consumption: Fuel {10} / Ammo {11}\r\n(1 Battle: Fuel {12} / Ammo {13})</value>
   </data>
   <data name="FriendlyFleet" xml:space="preserve">
     <value>Friendly</value>
@@ -803,11 +794,7 @@ This month: {2:+##;-##;±0}</value>
     <value>[Resupply Complete]</value>
   </data>
   <data name="ResupplyString" xml:space="preserve">
-    <value>Fuel: {0} (resupply) + {1} (repair) = {2}
-Ammo: {3}
-Steel: {4}
-Bauxite: {5} ( {6} planes )
-</value>
+    <value>Fuel: {0:+0;-0} ( regen {1:+0;-0} - resupply {2} - repair {3} )\r\nAmmo: {4:+0;-0} ( regen {5:+0;-0} - resupply {6} )\r\nSteel: {7:+0;-0} ( regen {8:+0;-0} - repair {9} )\r\nBauxite: {10:+0;-0} ( regen {11:+0;-0} - resupply {12} ( {13} planes ) )</value>
   </data>
   <data name="Bombers" xml:space="preserve">
     <value>Bombers</value>

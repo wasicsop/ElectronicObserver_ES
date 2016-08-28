@@ -143,6 +143,8 @@ namespace ElectronicObserver.Window {
 					var landattacker = slots.Where( e => e.EquipmentID == 167 );
 					double expeditionBonus = Math.Min( daihatsu.Count() * 0.05 + daihatsu_tank.Count() * 0.02 + landattacker.Count() * 0.01, 0.20 );
 
+					int tp = Calculator.GetTPDamage( fleet );
+
 					ToolTipInfo.SetToolTip( Name, string.Format(
 						GeneralRes.FleetTooltip,
 						levelSum,
@@ -153,6 +155,8 @@ namespace ElectronicObserver.Window {
 						daihatsu.Count() + daihatsu_tank.Count() + landattacker.Count(),
 						fleet.MembersInstance.Count( s => s == null ? false : s.SlotInstanceMaster.Any( q => q == null ? false : q.CategoryType == 24 || q.CategoryType == 46 ) ),
 						expeditionBonus + 0.01 * expeditionBonus * ( daihatsu.Sum( e => e.Level ) + daihatsu_tank.Sum( e => e.Level ) + landattacker.Sum( e => e.Level ) ) / Math.Max( daihatsu.Count() + daihatsu_tank.Count() + landattacker.Count(), 1 ),
+						tp,
+						(int)( tp * 0.7 ),
 						fueltotal,
 						ammototal,
 						fuelunit,
@@ -168,13 +172,16 @@ namespace ElectronicObserver.Window {
 				//制空戦力計算
 				{
 					int airSuperiority = fleet.GetAirSuperiority();
+					bool includeLevel = Utility.Configuration.Config.FormFleet.AirSuperiorityMethod == 1;
 					AirSuperiority.Text = airSuperiority.ToString();
 					ToolTipInfo.SetToolTip( AirSuperiority,
 						string.Format( GeneralRes.ASTooltip,
 						(int)( airSuperiority / 3.0 ),
 						(int)( airSuperiority / 1.5 ),
-						(int)( airSuperiority * 1.5 - 1 ),
-						(int)( airSuperiority * 3.0 - 1 ) ) );
+						Math.Max( (int)( airSuperiority * 1.5 - 1 ), 0 ),
+						Math.Max( (int)( airSuperiority * 3.0 - 1 ), 0 ),
+						includeLevel ? "熟練度なし" : "熟練度あり",
+						includeLevel ? Calculator.GetAirSuperiorityIgnoreLevel( fleet ) : Calculator.GetAirSuperiority( fleet ) ) );
 				}
 
 
@@ -573,7 +580,12 @@ namespace ElectronicObserver.Window {
 					}
 				}
 				{
-					int airsup = Calculator.GetAirSuperiority( ship );
+					int airsup;
+					if ( Utility.Configuration.Config.FormFleet.AirSuperiorityMethod == 1 )
+						airsup = Calculator.GetAirSuperiority( ship );
+					else
+						airsup = Calculator.GetAirSuperiorityIgnoreLevel( ship );
+
 					int airbattle = ship.AirBattlePower;
 					if ( airsup > 0 ) {
 						if ( airbattle > 0 )

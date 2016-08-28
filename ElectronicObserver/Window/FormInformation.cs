@@ -19,12 +19,14 @@ namespace ElectronicObserver.Window {
 
 		private int _ignorePort;
 		private List<int> _inSortie;
+		private int[] _prevResource;
 
 		public FormInformation( FormMain parent ) {
 			InitializeComponent();
 
 			_ignorePort = 0;
 			_inSortie = null;
+			_prevResource = new int[4];
 
 			ConfigurationChanged();
 
@@ -77,6 +79,12 @@ namespace ElectronicObserver.Window {
 						TextInformation.Text = GetConsumptionResource( data );
 					}
 					_inSortie = null;
+
+					// '16 summer event
+					if ( data.api_event_object() && data.api_event_object.api_m_flag2() && (int)data.api_event_object.api_m_flag2 > 0 ) {
+						TextInformation.Text += "＊ギミック解除＊\r\n";
+						Utility.Logger.Add( 2, "敵勢力の弱体化を確認しました！" );
+					}
 					break;
 
 				case "api_req_member/get_practice_enemyinfo":
@@ -112,6 +120,15 @@ namespace ElectronicObserver.Window {
 
 				case "api_req_map/start":
 					_inSortie = KCDatabase.Instance.Fleet.Fleets.Values.Where( f => f.IsInSortie || f.ExpeditionState == 1 ).Select( f => f.FleetID ).ToList();
+
+					// 出撃時の資源を記録
+					{
+						var material = KCDatabase.Instance.Material;
+						_prevResource[0] = material.Fuel;
+						_prevResource[1] = material.Ammo;
+						_prevResource[2] = material.Steel;
+						_prevResource[3] = material.Bauxite;
+					}
 					break;
 
 				case "api_req_practice/battle":
@@ -179,7 +196,7 @@ namespace ElectronicObserver.Window {
 						int level = subCT.Max( s => s.Level );
 
 						if ( subCT.Count() > 1 ) {
-							// 随伴複数	
+							// 随伴複数
 							if ( level < 10 ) bonus = 1.04;
 							else if ( level < 30 ) bonus = 1.06;
 							else if ( level < 60 ) bonus = 1.08;
@@ -367,12 +384,18 @@ namespace ElectronicObserver.Window {
 		private string GetConsumptionResource( dynamic data ) {
 
 			StringBuilder sb = new StringBuilder();
+			var material = KCDatabase.Instance.Material;
+
 			int fuel_supply = 0,
 				fuel_repair = 0,
 				ammo = 0,
 				steel = 0,
 				bauxite = 0;
 
+			int fuel_diff = material.Fuel - _prevResource[0],
+				ammo_diff = material.Ammo - _prevResource[1],
+				steel_diff = material.Steel - _prevResource[2],
+				bauxite_diff = material.Bauxite - _prevResource[3];
 
 			sb.AppendLine( GeneralRes.FleetReturned );
 
@@ -388,7 +411,10 @@ namespace ElectronicObserver.Window {
 			}
 
 			sb.AppendFormat( GeneralRes.ResupplyString,
-				fuel_supply, fuel_repair, fuel_supply + fuel_repair, ammo, steel, bauxite, bauxite / 5 );
+				fuel_diff - fuel_supply - fuel_repair, fuel_diff, fuel_supply, fuel_repair,
+				ammo_diff - ammo, ammo_diff, ammo,
+				steel_diff - steel, steel_diff, steel,
+				bauxite_diff - bauxite, bauxite_diff, bauxite, bauxite / 5 );
 
 			return sb.ToString();
 		}

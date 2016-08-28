@@ -17,11 +17,12 @@ using System.Windows.Forms;
 namespace ElectronicObserver.Window.Dialog {
 	public partial class DialogConfiguration : Form {
 
-		private static readonly string RegistryPathMaster = @"Software\Microsoft\Internet Explorer\Main\FeatureControl\";
-		private static readonly string RegistryPathBrowserVersion = @"FEATURE_BROWSER_EMULATION\";
-		private static readonly string RegistryPathGPURendering = @"FEATURE_GPU_RENDERING\";
-		private static readonly int DefaultBrowserVersion = 7000;
-		private static readonly bool DefaultGPURendering = false;
+		public const string RegistryPathMaster = @"Software\Microsoft\Internet Explorer\Main\FeatureControl\";
+		public const string RegistryPathBrowserVersion = @"FEATURE_BROWSER_EMULATION\";
+		public const  string RegistryPathGPURendering = @"FEATURE_GPU_RENDERING\";
+
+		public const int DefaultBrowserVersion = 11001;
+		public const bool DefaultGPURendering = false;
 
 
 		private System.Windows.Forms.Control _UIControl;
@@ -255,7 +256,9 @@ namespace ElectronicObserver.Window.Dialog {
 			Connection_UpstreamProxyAddress.Visible =
 			Connection_DownstreamProxy.Visible =
 			Connection_DownstreamProxyLabel.Visible =
+			SubWindow_Json_SealingPanel.Visible =
 				Debug_EnableDebugMenu.Checked;
+
 		}
 
 
@@ -263,7 +266,7 @@ namespace ElectronicObserver.Window.Dialog {
 
 			FormBrowser_ScreenShotPath.Text = PathHelper.ProcessFolderBrowserDialog( FormBrowser_ScreenShotPath.Text, FolderBrowser );
 		}
-        
+
 
 		/// <summary>
 		/// 設定からUIを初期化します。
@@ -415,6 +418,10 @@ namespace ElectronicObserver.Window.Dialog {
 				FormBrowser_ToolMenuDockStyle.SelectedIndex = (int)config.FormBrowser.ToolMenuDockStyle - 1;
 
 			FormCompass_CandidateDisplayCount.Value = config.FormCompass.CandidateDisplayCount;
+
+			FormJson_AutoUpdate.Checked = config.FormJson.AutoUpdate;
+			FormJson_UpdatesTree.Checked = config.FormJson.UpdatesTree;
+			FormJson_AutoUpdateFilter.Text = config.FormJson.AutoUpdateFilter;
 
 			//[データベース]
 			Database_SendDataToKancolleDB.Checked = config.Connection.SendDataToKancolleDB;
@@ -570,6 +577,10 @@ namespace ElectronicObserver.Window.Dialog {
 			}
 
 			config.FormCompass.CandidateDisplayCount = (int)FormCompass_CandidateDisplayCount.Value;
+
+			config.FormJson.AutoUpdate = FormJson_AutoUpdate.Checked;
+			config.FormJson.UpdatesTree = FormJson_UpdatesTree.Checked;
+			config.FormJson.AutoUpdateFilter = FormJson_AutoUpdateFilter.Text;
 
 			//[データベース]
 			config.Connection.SendDataToKancolleDB = Database_SendDataToKancolleDB.Checked;

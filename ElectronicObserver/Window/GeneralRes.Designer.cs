@@ -260,7 +260,7 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 確保: {0}\r\n優勢: {1}\r\n均衡: {2}\r\n劣勢: {3}\r\n.
+        ///   Looks up a localized string similar to 確保: {0}\r\n優勢: {1}\r\n均衡: {2}\r\n劣勢: {3}\r\n({4}: {5})\r\n.
         /// </summary>
         internal static string ASTooltip {
             get {
@@ -1033,7 +1033,7 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Lv合計: {0} / 平均: {1:0.00}\r\n{2}艦隊\r\nドラム缶搭載: {3}個 ({4}艦)\r\n大発動艇搭載: {5}個\r\n総積載: 燃 {6} / 弾 {7}\r\n(1戦当たり 燃 {8} / 弾 {9}).
+        ///   Looks up a localized string similar to Lv合計: {0} / 平均: {1:0.00}\r\n{2}艦隊\r\nドラム缶搭載: {3}個 ({4}艦)\r\n大発動艇搭載: {5}個 ({6}艦, +{7:p1})\r\n輸送量(TP): S {8} / A {9}\r\n総積載: 燃 {10} / 弾 {11}\r\n(1戦当たり 燃 {12} / 弾 {13}).
         /// </summary>
         internal static string FleetTooltip {
             get {
@@ -1593,11 +1593,7 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 燃料: {0} (補給) + {1} (入渠) = {2}
-        ///弾薬: {3}
-        ///鋼材: {4}
-        ///ボーキ: {5} ( {6}機 )
-        ///.
+        ///   Looks up a localized string similar to 燃料: {0:+0;-0} ( 自然 {1:+0;-0} - 補給 {2} - 入渠 {3} )\r\n弾薬: {4:+0;-0} ( 自然 {5:+0;-0} - 補給 {6} )\r\n鋼材: {7:+0;-0} ( 自然 {8:+0;-0} - 入渠 {9} )\r\nボーキ: {10:+0;-0} ( 自然 {11:+0;-0} - 補給 {12} ( {13} 機 ) ).
         /// </summary>
         internal static string ResupplyString {
             get {
