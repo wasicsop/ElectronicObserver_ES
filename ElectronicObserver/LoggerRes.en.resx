@@ -330,4 +330,7 @@
   <data name="PracticeMessage" xml:space="preserve">
     <value>Practiced with {1} {0}'s {2} fleet (Rank: {3}, Admiral exp+{4}, Ship exp+{5}).</value>
   </data>
+  <data name="Copied" xml:space="preserve">
+    <value>{0} has been copied.</value>
+  </data>
 </root>

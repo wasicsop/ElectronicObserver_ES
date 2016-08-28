@@ -61,6 +61,7 @@ namespace ElectronicObserver.Window {
 		public FormShipGroup fShipGroup;
 		public FormBrowserHost fBrowser;
 		public FormWindowCapture fWindowCapture;
+		public FormXPCalculator fXPCalculator;
 		public FormBaseAirCorps fBaseAirCorps;
 		public FormJson fJson;
 
@@ -193,6 +194,7 @@ namespace ElectronicObserver.Window {
 			SubForms.Add( fShipGroup = new FormShipGroup( this ) );
 			SubForms.Add( fBrowser = new FormBrowserHost( this ) );
 			SubForms.Add( fWindowCapture = new FormWindowCapture( this ) );
+			SubForms.Add(fXPCalculator = new FormXPCalculator(this));
 			SubForms.Add( fBaseAirCorps = new FormBaseAirCorps( this ) );
 			SubForms.Add( fJson = new FormJson( this ) );
 
@@ -1281,6 +1283,11 @@ namespace ElectronicObserver.Window {
 
 		private void StripMenu_WindowCapture_SubWindow_Click( object sender, EventArgs e ) {
 			ShowForm( fWindowCapture );
+		}
+
+		private void StripMenu_View_XPCalculator_Click(object sender, EventArgs e)
+		{
+			fXPCalculator.Show(MainDockPanel);
 		}
 
 		private void StripMenu_View_BaseAirCorps_Click( object sender, EventArgs e ) {

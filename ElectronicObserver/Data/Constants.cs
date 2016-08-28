@@ -185,17 +185,17 @@ namespace ElectronicObserver.Data {
 		public static string GetBaseAirCorpsActionKind( int value ) {
 			switch ( value ) {
 				case 0:
-					return "待機";
+					return ConstantsRes.Standby;
 				case 1:
-					return "出撃";
+					return ConstantsRes.Mission;
 				case 2:
-					return "防空";
+					return ConstantsRes.AirDefense;
 				case 3:
-					return "退避";
+					return ConstantsRes.TakeCover;
 				case 4:
-					return "休息";
+					return ConstantsRes.Rest;
 				default:
-					return "不明";
+					return ConstantsRes.Unknown;
 			}
 		}
 

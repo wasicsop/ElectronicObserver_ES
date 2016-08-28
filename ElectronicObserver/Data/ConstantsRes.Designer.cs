@@ -106,6 +106,15 @@ namespace ElectronicObserver.Data {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 防空.
+        /// </summary>
+        internal static string AirDefense {
+            get {
+                return ResourceManager.GetString("AirDefense", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 制空権喪失.
         /// </summary>
         internal static string AirDenial {
@@ -336,6 +345,15 @@ namespace ElectronicObserver.Data {
         internal static string CutIn {
             get {
                 return ResourceManager.GetString("CutIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 揚陸攻撃(大発動艇).
+        /// </summary>
+        internal static string DaihatsuAttack {
+            get {
+                return ResourceManager.GetString("DaihatsuAttack", resourceCulture);
             }
         }
         
@@ -898,6 +916,15 @@ namespace ElectronicObserver.Data {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 出撃.
+        /// </summary>
+        internal static string Mission {
+            get {
+                return ResourceManager.GetString("Mission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 中破.
         /// </summary>
         internal static string ModerateDamage {
@@ -1132,6 +1159,15 @@ namespace ElectronicObserver.Data {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 休息.
+        /// </summary>
+        internal static string Rest {
+            get {
+                return ResourceManager.GetString("Rest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 退避.
         /// </summary>
         internal static string Retreated {
@@ -1276,6 +1312,15 @@ namespace ElectronicObserver.Data {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 待機.
+        /// </summary>
+        internal static string Standby {
+            get {
+                return ResourceManager.GetString("Standby", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 初期位置.
         /// </summary>
         internal static string StartNode {
@@ -1353,6 +1398,24 @@ namespace ElectronicObserver.Data {
         internal static string TAdvantage {
             get {
                 return ResourceManager.GetString("TAdvantage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 退避.
+        /// </summary>
+        internal static string TakeCover {
+            get {
+                return ResourceManager.GetString("TakeCover", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 揚陸攻撃(内火艇).
+        /// </summary>
+        internal static string TankAttack {
+            get {
+                return ResourceManager.GetString("TankAttack", resourceCulture);
             }
         }
         

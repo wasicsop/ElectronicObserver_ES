@@ -10,8 +10,8 @@
 
 namespace ElectronicObserver.Window {
     using System;
-
-
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -23,15 +23,15 @@ namespace ElectronicObserver.Window {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Menus {
-
+        
         private static global::System.Resources.ResourceManager resourceMan;
-
+        
         private static global::System.Globalization.CultureInfo resourceCulture;
-
+        
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
         internal Menus() {
         }
-
+        
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
@@ -45,7 +45,7 @@ namespace ElectronicObserver.Window {
                 return resourceMan;
             }
         }
-
+        
         /// <summary>
         ///   Overrides the current thread's CurrentUICulture property for all
         ///   resource lookups using this strongly typed resource class.
@@ -59,7 +59,7 @@ namespace ElectronicObserver.Window {
                 resourceCulture = value;
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to 下(&amp;B).
         /// </summary>
@@ -68,7 +68,7 @@ namespace ElectronicObserver.Window {
                 return ResourceManager.GetString("Alignment_Bottom", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to 非表示(&amp;I).
         /// </summary>
@@ -77,7 +77,7 @@ namespace ElectronicObserver.Window {
                 return ResourceManager.GetString("Alignment_Invisible", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to 左(&amp;L).
         /// </summary>
@@ -86,7 +86,7 @@ namespace ElectronicObserver.Window {
                 return ResourceManager.GetString("Alignment_Left", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to 右(&amp;R).
         /// </summary>
@@ -95,7 +95,7 @@ namespace ElectronicObserver.Window {
                 return ResourceManager.GetString("Alignment_Right", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to 上(&amp;T).
         /// </summary>
@@ -104,7 +104,7 @@ namespace ElectronicObserver.Window {
                 return ResourceManager.GetString("Alignment_Top", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to 工廠(&amp;A).
         /// </summary>
@@ -113,7 +113,7 @@ namespace ElectronicObserver.Window {
                 return ResourceManager.GetString("Arsenal", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to 戦闘(&amp;B).
         /// </summary>
@@ -122,7 +122,7 @@ namespace ElectronicObserver.Window {
                 return ResourceManager.GetString("Battle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to ブラウザ.
         /// </summary>
@@ -131,7 +131,7 @@ namespace ElectronicObserver.Window {
                 return ResourceManager.GetString("Browser", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to 建造記録(&amp;R).
         /// </summary>
@@ -140,7 +140,7 @@ namespace ElectronicObserver.Window {
                 return ResourceManager.GetString("BuildRecord", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to 終了(&amp;X).
         /// </summary>
@@ -149,7 +149,7 @@ namespace ElectronicObserver.Window {
                 return ResourceManager.GetString("Close", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to 羅針盤(&amp;C).
         /// </summary>
@@ -158,7 +158,7 @@ namespace ElectronicObserver.Window {
                 return ResourceManager.GetString("Compass", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to 建造記録(&amp;R).
         /// </summary>
@@ -167,7 +167,7 @@ namespace ElectronicObserver.Window {
                 return ResourceManager.GetString("ConstructionRecord", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to コントロールウィンドウ(&amp;C).
         /// </summary>
@@ -176,7 +176,7 @@ namespace ElectronicObserver.Window {
                 return ResourceManager.GetString("ControlWindow", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to デバッグ(&amp;D).
         /// </summary>
@@ -185,7 +185,7 @@ namespace ElectronicObserver.Window {
                 return ResourceManager.GetString("Debug", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to 古いAPIデータを削除(&amp;D).
         /// </summary>
@@ -194,7 +194,7 @@ namespace ElectronicObserver.Window {
                 return ResourceManager.GetString("DeleteOldAPI", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to 全てのウィンドウを開放(&amp;R).
         /// </summary>
@@ -203,7 +203,7 @@ namespace ElectronicObserver.Window {
                 return ResourceManager.GetString("DetachAll", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to 開発記録(&amp;V).
         /// </summary>
@@ -212,7 +212,7 @@ namespace ElectronicObserver.Window {
                 return ResourceManager.GetString("DevRecord", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to 入渠(&amp;D).
         /// </summary>
@@ -221,7 +221,7 @@ namespace ElectronicObserver.Window {
                 return ResourceManager.GetString("Dock", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to ドロップ記録(&amp;D).
         /// </summary>
@@ -230,7 +230,7 @@ namespace ElectronicObserver.Window {
                 return ResourceManager.GetString("DropRecord", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to 装備図鑑(&amp;E).
         /// </summary>
@@ -239,7 +239,7 @@ namespace ElectronicObserver.Window {
                 return ResourceManager.GetString("EquipEncyclopedia", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to 装備一覧(&amp;Q).
         /// </summary>
@@ -248,7 +248,7 @@ namespace ElectronicObserver.Window {
                 return ResourceManager.GetString("EquipmentList", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to ファイル(&amp;F).
         /// </summary>
@@ -257,7 +257,7 @@ namespace ElectronicObserver.Window {
                 return ResourceManager.GetString("File", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to 艦隊一覧(&amp;O).
         /// </summary>
@@ -266,7 +266,7 @@ namespace ElectronicObserver.Window {
                 return ResourceManager.GetString("FleetList", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to 艦隊(&amp;F).
         /// </summary>
@@ -275,7 +275,7 @@ namespace ElectronicObserver.Window {
                 return ResourceManager.GetString("Fleets", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to 司令部(&amp;H).
         /// </summary>
@@ -284,7 +284,7 @@ namespace ElectronicObserver.Window {
                 return ResourceManager.GetString("Headquarters", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to ヘルプ(&amp;H).
         /// </summary>
@@ -293,7 +293,7 @@ namespace ElectronicObserver.Window {
                 return ResourceManager.GetString("Help", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to 情報(&amp;I).
         /// </summary>
@@ -302,7 +302,7 @@ namespace ElectronicObserver.Window {
                 return ResourceManager.GetString("Information", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to レイアウト(&amp;L).
         /// </summary>
@@ -311,7 +311,7 @@ namespace ElectronicObserver.Window {
                 return ResourceManager.GetString("Layout", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to 別のファイルからロード(&amp;O)....
         /// </summary>
@@ -320,7 +320,16 @@ namespace ElectronicObserver.Window {
                 return ResourceManager.GetString("LayoutOpen", resourceCulture);
             }
         }
-
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 基地航空隊(&amp;S).
+        /// </summary>
+        internal static string LBAS {
+            get {
+                return ResourceManager.GetString("LBAS", resourceCulture);
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized string similar to ロード(&amp;L).
         /// </summary>
@@ -329,7 +338,7 @@ namespace ElectronicObserver.Window {
                 return ResourceManager.GetString("Load", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to ファイルからAPIをロード(&amp;L)....
         /// </summary>
@@ -338,7 +347,7 @@ namespace ElectronicObserver.Window {
                 return ResourceManager.GetString("LoadAPIFromFile", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to APIリストをロード(&amp;I)....
         /// </summary>
@@ -347,7 +356,7 @@ namespace ElectronicObserver.Window {
                 return ResourceManager.GetString("LoadAPIList", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to 旧 api_start2から深海棲艦を復元(&amp;A)....
         /// </summary>
@@ -356,7 +365,7 @@ namespace ElectronicObserver.Window {
                 return ResourceManager.GetString("LoadDataFromOld", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to 旧 api_start2 からレコードを構築(&amp;O)....
         /// </summary>
@@ -365,7 +374,7 @@ namespace ElectronicObserver.Window {
                 return ResourceManager.GetString("LoadOldAPIRecord", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to ログ(&amp;L).
         /// </summary>
@@ -374,7 +383,7 @@ namespace ElectronicObserver.Window {
                 return ResourceManager.GetString("Log", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to オンラインヘルプ(&amp;H)....
         /// </summary>
@@ -383,7 +392,7 @@ namespace ElectronicObserver.Window {
                 return ResourceManager.GetString("OnlineHelp", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to その他.
         /// </summary>
@@ -392,7 +401,7 @@ namespace ElectronicObserver.Window {
                 return ResourceManager.GetString("Other", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to 配置(&amp;A).
         /// </summary>
@@ -401,7 +410,7 @@ namespace ElectronicObserver.Window {
                 return ResourceManager.GetString("Other_Alignment", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to スタイルシートを適用する.
         /// </summary>
@@ -410,7 +419,7 @@ namespace ElectronicObserver.Window {
                 return ResourceManager.GetString("Other_ApplyStyleSheet", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to キャッシュのクリア(&amp;C).
         /// </summary>
@@ -419,7 +428,7 @@ namespace ElectronicObserver.Window {
                 return ResourceManager.GetString("Other_ClearCache", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to ミュート(&amp;M).
         /// </summary>
@@ -428,7 +437,7 @@ namespace ElectronicObserver.Window {
                 return ResourceManager.GetString("Other_Mute", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to 移動(&amp;N)....
         /// </summary>
@@ -437,7 +446,7 @@ namespace ElectronicObserver.Window {
                 return ResourceManager.GetString("Other_Navigate", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to ログインページへ移動(&amp;L).
         /// </summary>
@@ -446,7 +455,7 @@ namespace ElectronicObserver.Window {
                 return ResourceManager.GetString("Other_NavigateToLogInPage", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to 更新(&amp;R).
         /// </summary>
@@ -455,7 +464,7 @@ namespace ElectronicObserver.Window {
                 return ResourceManager.GetString("Other_Refresh", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to 地域制限クッキーを設定.
         /// </summary>
@@ -464,7 +473,7 @@ namespace ElectronicObserver.Window {
                 return ResourceManager.GetString("Other_RegionCookie", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to スクリーンショット(&amp;S).
         /// </summary>
@@ -473,7 +482,7 @@ namespace ElectronicObserver.Window {
                 return ResourceManager.GetString("Other_Screenshot", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to ズーム(&amp;Z).
         /// </summary>
@@ -482,7 +491,7 @@ namespace ElectronicObserver.Window {
                 return ResourceManager.GetString("Other_Zoom", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to 現在%.
         /// </summary>
@@ -491,7 +500,7 @@ namespace ElectronicObserver.Window {
                 return ResourceManager.GetString("Other_Zoom_Current", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to ぴったり.
         /// </summary>
@@ -500,7 +509,7 @@ namespace ElectronicObserver.Window {
                 return ResourceManager.GetString("Other_Zoom_Fit", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to 任務(&amp;Q).
         /// </summary>
@@ -509,7 +518,7 @@ namespace ElectronicObserver.Window {
                 return ResourceManager.GetString("Quest", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to 全て再検索して取り込む(&amp;S).
         /// </summary>
@@ -518,7 +527,7 @@ namespace ElectronicObserver.Window {
                 return ResourceManager.GetString("ReattachAll", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to レコード(&amp;R).
         /// </summary>
@@ -527,7 +536,7 @@ namespace ElectronicObserver.Window {
                 return ResourceManager.GetString("Record", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to 艦船リソースをリネーム(&amp;R)....
         /// </summary>
@@ -536,7 +545,7 @@ namespace ElectronicObserver.Window {
                 return ResourceManager.GetString("RenameShipResource", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to 資源チャート(&amp;C).
         /// </summary>
@@ -545,7 +554,7 @@ namespace ElectronicObserver.Window {
                 return ResourceManager.GetString("ResourceChart", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to セーブ(&amp;S).
         /// </summary>
@@ -554,7 +563,7 @@ namespace ElectronicObserver.Window {
                 return ResourceManager.GetString("Save", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to 設定(&amp;C)....
         /// </summary>
@@ -563,7 +572,7 @@ namespace ElectronicObserver.Window {
                 return ResourceManager.GetString("Settings", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to 艦船図鑑(&amp;S).
         /// </summary>
@@ -572,7 +581,7 @@ namespace ElectronicObserver.Window {
                 return ResourceManager.GetString("ShipEncyclopedia", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to 艦船グループ(&amp;G).
         /// </summary>
@@ -581,7 +590,7 @@ namespace ElectronicObserver.Window {
                 return ResourceManager.GetString("ShipGroup", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to 艦名を表示(&amp;V).
         /// </summary>
@@ -590,7 +599,7 @@ namespace ElectronicObserver.Window {
                 return ResourceManager.GetString("ShowShipName", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to ツールメニューを表示.
         /// </summary>
@@ -599,7 +608,7 @@ namespace ElectronicObserver.Window {
                 return ResourceManager.GetString("ShowToolMenu", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to 試製七四式電子観測儀.
         /// </summary>
@@ -608,7 +617,7 @@ namespace ElectronicObserver.Window {
                 return ResourceManager.GetString("Title", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to ツール(&amp;T).
         /// </summary>
@@ -617,7 +626,7 @@ namespace ElectronicObserver.Window {
                 return ResourceManager.GetString("Tools", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to バージョン情報(&amp;V).
         /// </summary>
@@ -626,7 +635,7 @@ namespace ElectronicObserver.Window {
                 return ResourceManager.GetString("VersionInfo", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to 表示(&amp;V).
         /// </summary>
@@ -635,7 +644,7 @@ namespace ElectronicObserver.Window {
                 return ResourceManager.GetString("View", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to ウィンドウキャプチャ(&amp;W).
         /// </summary>

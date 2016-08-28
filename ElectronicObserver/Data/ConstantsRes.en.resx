@@ -594,4 +594,25 @@
   <data name="QuestOther" xml:space="preserve">
     <value>O</value>
   </data>
+  <data name="DaihatsuAttack" xml:space="preserve">
+    <value>Amphibious Attack (Daihatsu)</value>
+  </data>
+  <data name="TankAttack" xml:space="preserve">
+    <value>Amphibious Attack (Tank)</value>
+  </data>
+  <data name="AirDefense" xml:space="preserve">
+    <value>Air Defense</value>
+  </data>
+  <data name="Rest" xml:space="preserve">
+    <value>Rest</value>
+  </data>
+  <data name="Standby" xml:space="preserve">
+    <value>Standby</value>
+  </data>
+  <data name="TakeCover" xml:space="preserve">
+    <value>Take Cover</value>
+  </data>
+  <data name="Mission" xml:space="preserve">
+    <value>Mission</value>
+  </data>
 </root>

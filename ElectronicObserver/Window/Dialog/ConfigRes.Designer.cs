@@ -88,6 +88,15 @@ namespace ElectronicObserver.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 泊地修理.
+        /// </summary>
+        internal static string AnchorageRepairFinish {
+            get {
+                return ResourceManager.GetString("AnchorageRepairFinish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 適用.
         /// </summary>
         internal static string Apply {
@@ -602,6 +611,15 @@ namespace ElectronicObserver.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ブラウザバージョンをレジストリに書き込めませんでした。.
+        /// </summary>
+        internal static string FailWriteRegistry {
+            get {
+                return ResourceManager.GetString("FailWriteRegistry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 疲労回復.
         /// </summary>
         internal static string FatigueRestore {
@@ -1007,6 +1025,15 @@ namespace ElectronicObserver.Window.Dialog {
         internal static string OneTimeOther {
             get {
                 return ResourceManager.GetString("OneTimeOther", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to その他.
+        /// </summary>
+        internal static string Others {
+            get {
+                return ResourceManager.GetString("Others", resourceCulture);
             }
         }
         
@@ -1555,6 +1582,15 @@ namespace ElectronicObserver.Window.Dialog {
         internal static string Window {
             get {
                 return ResourceManager.GetString("Window", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ブラウザバージョンをレジストリに書き込みました。削除したい場合は「設定→サブウィンドウ→ブラウザ2→削除」を押してください。.
+        /// </summary>
+        internal static string WriteRegistry {
+            get {
+                return ResourceManager.GetString("WriteRegistry", resourceCulture);
             }
         }
         

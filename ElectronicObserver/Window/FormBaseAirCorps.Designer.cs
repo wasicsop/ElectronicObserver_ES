@@ -67,7 +67,7 @@
 			// 
 			this.ContextMenuBaseAirCorps_CopyOrganization.Name = "ContextMenuBaseAirCorps_CopyOrganization";
 			this.ContextMenuBaseAirCorps_CopyOrganization.Size = new System.Drawing.Size(187, 22);
-			this.ContextMenuBaseAirCorps_CopyOrganization.Text = "クリップボードにコピー(&C)";
+			this.ContextMenuBaseAirCorps_CopyOrganization.Text = GeneralRes.CopyToClipboard;
 			this.ContextMenuBaseAirCorps_CopyOrganization.Click += new System.EventHandler(this.ContextMenuBaseAirCorps_CopyOrganization_Click);
 			// 
 			// FormBaseAirCorps
@@ -83,7 +83,7 @@
 			this.HideOnClose = true;
 			this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.Name = "FormBaseAirCorps";
-			this.Text = "基地航空隊";
+			this.Text = GeneralRes.LBAS;
 			this.Load += new System.EventHandler(this.FormBaseAirCorps_Load);
 			this.ContextMenuBaseAirCorps.ResumeLayout(false);
 			this.ResumeLayout(false);

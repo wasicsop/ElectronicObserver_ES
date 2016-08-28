@@ -137,7 +137,7 @@ namespace ElectronicObserver.Window {
 						// 未補給
 						Name.ImageAlign = ContentAlignment.MiddleRight;
 						Name.ImageIndex = (int)ResourceManager.IconContent.FleetNotReplenished;
-						ToolTipInfo.SetToolTip( Name, "未補給" );
+						ToolTipInfo.SetToolTip( Name, GeneralRes.NotResupplied );
 
 					} else if ( corps.Squadrons.Values.Any( sq => sq != null && sq.Condition > 1 ) ) {
 						// 疲労
@@ -146,12 +146,12 @@ namespace ElectronicObserver.Window {
 						if ( tired == 2 ) {
 							Name.ImageAlign = ContentAlignment.MiddleRight;
 							Name.ImageIndex = (int)ResourceManager.IconContent.ConditionTired;
-							ToolTipInfo.SetToolTip( Name, "疲労" );
+							ToolTipInfo.SetToolTip( Name, GeneralRes.Tired );
 
 						} else {
 							Name.ImageAlign = ContentAlignment.MiddleRight;
 							Name.ImageIndex = (int)ResourceManager.IconContent.ConditionVeryTired;
-							ToolTipInfo.SetToolTip( Name, "過労" );
+							ToolTipInfo.SetToolTip( Name, GeneralRes.VeryTired );
 
 						}
 
@@ -169,7 +169,7 @@ namespace ElectronicObserver.Window {
 						int airSuperiority = Calculator.GetAirSuperiority( corps );
 						AirSuperiority.Text = airSuperiority.ToString();
 						ToolTipInfo.SetToolTip( AirSuperiority,
-							string.Format( "確保: {0}\r\n優勢: {1}\r\n均衡: {2}\r\n劣勢: {3}\r\n",
+							string.Format( GeneralRes.LBASTooltip,
 							(int)( airSuperiority / 3.0 ),
 							(int)( airSuperiority / 1.5 ),
 							Math.Max( (int)( airSuperiority * 1.5 - 1 ), 0 ),
@@ -209,7 +209,7 @@ namespace ElectronicObserver.Window {
 				var sb = new StringBuilder();
 
 				if ( corps == null )
-					return "(未開放)\r\n";
+					return GeneralRes.LBASNotOpen;
 
 				foreach ( var squadron in corps.Squadrons.Values ) {
 					if ( squadron == null )
@@ -220,7 +220,7 @@ namespace ElectronicObserver.Window {
 					switch ( squadron.State ) {
 						case 0:		// 未配属
 						default:
-							sb.AppendLine( "(なし)" );
+							sb.AppendLine( GeneralRes.None );
 							break;
 
 						case 1:		// 配属済み
@@ -235,10 +235,10 @@ namespace ElectronicObserver.Window {
 								default:
 									break;
 								case 2:
-									sb.Append( "[疲労] " );
+									sb.Append("[" + GeneralRes.Tired + "] ");
 									break;
 								case 3:
-									sb.Append( "[過労] " );
+									sb.Append( "[" + GeneralRes.VeryTired + "] " );
 									break;
 							}
 
@@ -246,7 +246,7 @@ namespace ElectronicObserver.Window {
 							break;
 
 						case 2:		// 配置転換中
-							sb.AppendFormat( "配置転換中 (開始時刻: {0})\r\n",
+							sb.AppendFormat( GeneralRes.LBASRelocate,
 								DateTimeHelper.TimeToCSVString( squadron.RelocatedTime ) );
 							break;
 					}
@@ -323,7 +323,7 @@ namespace ElectronicObserver.Window {
 
 			foreach ( var corps in KCDatabase.Instance.BaseAirCorps.Values ) {
 
-				sb.AppendFormat( "{0}\t[{1}] 制空戦力{2}\r\n",
+				sb.AppendFormat( "{0}\t[{1}] " + GeneralRes.AirPower + "{2}\r\n",
 					corps.Name, Constants.GetBaseAirCorpsActionKind( corps.ActionKind ),
 					Calculator.GetAirSuperiority( corps ) );
 
@@ -334,24 +334,24 @@ namespace ElectronicObserver.Window {
 						sb.Append( "/" );
 
 					if ( sq[i] == null ) {
-						sb.Append( "(消息不明)" );
+						sb.Append( GeneralRes.LBASUnknown );
 						continue;
 					}
 
 					switch ( sq[i].State ) {
 						case 0:
-							sb.Append( "(未配属)" );
+							sb.Append( GeneralRes.LBASUnassigned );
 							break;
 						case 1: {
 								var eq = sq[i].EquipmentInstance;
 
-								sb.Append( eq == null ? "(なし)" : eq.NameWithLevel );
+								sb.Append( eq == null ? GeneralRes.None : eq.NameWithLevel );
 
 								if ( sq[i].AircraftCurrent < sq[i].AircraftMax )
 									sb.AppendFormat( "[{0}/{1}]", sq[i].AircraftCurrent, sq[i].AircraftMax );
 							} break;
 						case 2:
-							sb.Append( "(配置転換中)" );
+							sb.Append( "(" + GeneralRes.LBASRedeployment + ")" );
 							break;
 					}
 				}

@@ -594,4 +594,25 @@
   <data name="QuestOther" xml:space="preserve">
     <value>他</value>
   </data>
+  <data name="DaihatsuAttack" xml:space="preserve">
+    <value>揚陸攻撃(大発動艇)</value>
+  </data>
+  <data name="TankAttack" xml:space="preserve">
+    <value>揚陸攻撃(内火艇)</value>
+  </data>
+  <data name="AirDefense" xml:space="preserve">
+    <value>防空</value>
+  </data>
+  <data name="Rest" xml:space="preserve">
+    <value>休息</value>
+  </data>
+  <data name="Standby" xml:space="preserve">
+    <value>待機</value>
+  </data>
+  <data name="TakeCover" xml:space="preserve">
+    <value>退避</value>
+  </data>
+  <data name="Mission" xml:space="preserve">
+    <value>出撃</value>
+  </data>
 </root>

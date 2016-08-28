@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AnchorageRepair" xml:space="preserve">
+    <value>Anchorage Repair</value>
+  </data>
+  <data name="AnchorageRepairFinished" xml:space="preserve">
+    <value>20 minutes has passed since the start of anchorage repair.</value>
+  </data>
   <data name="ConditionText" xml:space="preserve">
     <value>All ship girls in Fleet {0} [{1}] have restored morale.</value>
   </data>

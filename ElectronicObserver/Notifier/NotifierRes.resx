@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AnchorageRepair" xml:space="preserve">
+    <value>泊地修理発動</value>
+  </data>
+  <data name="AnchorageRepairFinished" xml:space="preserve">
+    <value>泊地修理の開始から20分が経過しました。</value>
+  </data>
   <data name="ConditionText" xml:space="preserve">
     <value>#{0} 「{1}」に所属する艦娘の疲労が回復しました。</value>
   </data>

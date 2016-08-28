@@ -1155,11 +1155,11 @@ namespace ElectronicObserver.Utility {
 					reg = Microsoft.Win32.Registry.CurrentUser.CreateSubKey( DialogConfiguration.RegistryPathMaster + DialogConfiguration.RegistryPathGPURendering );
 					reg.SetValue( Window.FormBrowserHost.BrowserExeName, DialogConfiguration.DefaultGPURendering ? 1 : 0, Microsoft.Win32.RegistryValueKind.DWord );
 
-					Utility.Logger.Add( 2, "ブラウザバージョンをレジストリに書き込みました。削除したい場合は「設定→サブウィンドウ→ブラウザ2→削除」を押してください。" );
+					Utility.Logger.Add( 2, ConfigRes.WriteRegistry );
 
 
 				} catch ( Exception ex ) {
-					Utility.ErrorReporter.SendErrorReport( ex, "ブラウザバージョンをレジストリに書き込めませんでした。" );
+					Utility.ErrorReporter.SendErrorReport( ex, ConfigRes.FailWriteRegistry );
 
 				} finally {
 					if ( reg != null )

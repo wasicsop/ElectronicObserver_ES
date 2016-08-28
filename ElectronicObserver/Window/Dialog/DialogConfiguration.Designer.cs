@@ -2082,9 +2082,9 @@
 			//
 			this.Notification_AnchorageRepair.Location = new System.Drawing.Point(8, 151);
 			this.Notification_AnchorageRepair.Name = "Notification_AnchorageRepair";
-			this.Notification_AnchorageRepair.Size = new System.Drawing.Size(150, 23);
+			this.Notification_AnchorageRepair.Size = new System.Drawing.Size(300, 23);
 			this.Notification_AnchorageRepair.TabIndex = 6;
-			this.Notification_AnchorageRepair.Text = "泊地修理通知の設定...";
+			this.Notification_AnchorageRepair.Text = ConfigRes.AnchorageRepairFinish + ConfigRes.NotificationSetting;
 			this.Notification_AnchorageRepair.UseVisualStyleBackColor = true;
 			this.Notification_AnchorageRepair.Click += new System.EventHandler(this.Notification_AnchorageRepair_Click);
 			//

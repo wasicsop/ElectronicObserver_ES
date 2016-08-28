@@ -1188,6 +1188,69 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 基地航空隊.
+        /// </summary>
+        internal static string LBAS {
+            get {
+                return ResourceManager.GetString("LBAS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (未開放)\r\n.
+        /// </summary>
+        internal static string LBASNotOpen {
+            get {
+                return ResourceManager.GetString("LBASNotOpen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 配置転換中.
+        /// </summary>
+        internal static string LBASRedeployment {
+            get {
+                return ResourceManager.GetString("LBASRedeployment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 配置転換中 (開始時刻: {0})\r\n.
+        /// </summary>
+        internal static string LBASRelocate {
+            get {
+                return ResourceManager.GetString("LBASRelocate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 確保: {0}\r\n優勢: {1}\r\n均衡: {2}\r\n劣勢: {3}\r\n.
+        /// </summary>
+        internal static string LBASTooltip {
+            get {
+                return ResourceManager.GetString("LBASTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (未配属).
+        /// </summary>
+        internal static string LBASUnassigned {
+            get {
+                return ResourceManager.GetString("LBASUnassigned", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (消息不明).
+        /// </summary>
+        internal static string LBASUnknown {
+            get {
+                return ResourceManager.GetString("LBASUnknown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ロック.
         /// </summary>
         internal static string Lock {
@@ -1409,6 +1472,15 @@ namespace ElectronicObserver.Window {
         internal static string NoSecondAirStage {
             get {
                 return ResourceManager.GetString("NoSecondAirStage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 未補給.
+        /// </summary>
+        internal static string NotResupplied {
+            get {
+                return ResourceManager.GetString("NotResupplied", resourceCulture);
             }
         }
         
@@ -1998,6 +2070,15 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 疲労.
+        /// </summary>
+        internal static string Tired {
+            get {
+                return ResourceManager.GetString("Tired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Lv99まで: {0}.
         /// </summary>
         internal static string To99 {
@@ -2174,6 +2255,15 @@ namespace ElectronicObserver.Window {
         internal static string UnseenShips {
             get {
                 return ResourceManager.GetString("UnseenShips", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 過労.
+        /// </summary>
+        internal static string VeryTired {
+            get {
+                return ResourceManager.GetString("VeryTired", resourceCulture);
             }
         }
         

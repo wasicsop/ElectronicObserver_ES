@@ -241,7 +241,7 @@ Please use caution before changing.</value>
     <value>Error.</value>
   </data>
   <data name="ExpedReturn" xml:space="preserve">
-    <value>Expedition </value>
+    <value>Expedition</value>
   </data>
   <data name="FailedClearRegistry" xml:space="preserve">
     <value>Failed to clear registry settings.</value>
@@ -639,5 +639,17 @@ More details, as well as an access key, can be found on the site below. (opens y
   </data>
   <data name="Volume" xml:space="preserve">
     <value>Volume :</value>
+  </data>
+  <data name="Others" xml:space="preserve">
+    <value>Others</value>
+  </data>
+  <data name="FailWriteRegistry" xml:space="preserve">
+    <value>Failed to write browser version to the registry.</value>
+  </data>
+  <data name="WriteRegistry" xml:space="preserve">
+    <value>Wrote browser version in the registry. If you want to delete it, go to Settings → Sub-window → Browser 2 → Delete.</value>
+  </data>
+  <data name="AnchorageRepairFinish" xml:space="preserve">
+    <value>Anchorage repair</value>
   </data>
 </root>

@@ -176,7 +176,11 @@ Cut-in type: {1} ({2})</value>
     <value>{0} Ships Assigned</value>
   </data>
   <data name="ASTooltip" xml:space="preserve">
-    <value>Supremacy: {0}\r\nSuperiority: {1}\r\nParity: {2}\r\nDenial: {3}\r\n({4}: {5})\r\n</value>
+    <value>Supremacy: {0}
+Superiority: {1}
+Parity: {2}
+Denial: {3}
+({4}: {5})</value>
   </data>
   <data name="ASW" xml:space="preserve">
     <value>ASW</value>
@@ -242,7 +246,7 @@ Range: {20} / Speed: {21}
     <value>Made contact</value>
   </data>
   <data name="CopyToClipboard" xml:space="preserve">
-    <value>Copy to Clipboard (&amp;C)</value>
+    <value>&amp;Copy to Clipboard</value>
   </data>
   <data name="CreateGroup" xml:space="preserve">
     <value>Create Group</value>
@@ -354,7 +358,13 @@ This action cannot be undone.</value>
     <value>Fleet List</value>
   </data>
   <data name="FleetTooltip" xml:space="preserve">
-    <value>Lv Total: {0} / Average: {1:0.00}\r\n{2}Fleet\r\nDrum Canisters: {3} ({4} ships)\r\nDaihatsu: {5} ({6} ships, +{7:p1})\r\nTransport Point (TP): S {8} / A {9}\r\nTotal Consumption: Fuel {10} / Ammo {11}\r\n(1 Battle: Fuel {12} / Ammo {13})</value>
+    <value>Lv Total: {0} / Average: {1:0.00}
+{2} fleet
+Drum Canisters: {3} ({4} ships)
+Daihatsu: {5} ({6} ships, +{7:p1})
+Transport Point: S {8} / A {9}
+Total Consumption: Fuel {10} / Ammo {11}
+(1 Battle: Fuel {12} / Ammo {13})</value>
   </data>
   <data name="FriendlyFleet" xml:space="preserve">
     <value>Friendly</value>
@@ -885,5 +895,38 @@ This month: {2:+##;-##;±0}</value>
   </data>
   <data name="ShowOther" xml:space="preserve">
     <value>Show Others</value>
+  </data>
+  <data name="LBAS" xml:space="preserve">
+    <value>Land Base</value>
+  </data>
+  <data name="LBASNotOpen" xml:space="preserve">
+    <value>(Not opened)</value>
+  </data>
+  <data name="LBASRedeployment" xml:space="preserve">
+    <value>Relocating</value>
+  </data>
+  <data name="LBASRelocate" xml:space="preserve">
+    <value>Relocating (Started at: {0})</value>
+  </data>
+  <data name="LBASTooltip" xml:space="preserve">
+    <value>Supremacy: {0}
+Superiority: {1}
+Parity: {2}
+Denial: {3}</value>
+  </data>
+  <data name="LBASUnassigned" xml:space="preserve">
+    <value>(Unassigned)</value>
+  </data>
+  <data name="LBASUnknown" xml:space="preserve">
+    <value>(Location unknown)</value>
+  </data>
+  <data name="NotResupplied" xml:space="preserve">
+    <value>Need resupply</value>
+  </data>
+  <data name="Tired" xml:space="preserve">
+    <value>Low morale</value>
+  </data>
+  <data name="VeryTired" xml:space="preserve">
+    <value>Very low morale</value>
   </data>
 </root>
