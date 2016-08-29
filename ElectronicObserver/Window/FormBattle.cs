@@ -294,7 +294,7 @@ namespace ElectronicObserver.Window {
 
 			if ( pd != null && pd.IsAvailable ) {
 
-				Searching.Text = "基地航空隊";
+				Searching.Text = GeneralRes.Base;
 				Searching.ImageAlign = ContentAlignment.MiddleLeft;
 				Searching.ImageIndex = (int)ResourceManager.EquipmentContent.LandAttacker;
 
@@ -303,17 +303,17 @@ namespace ElectronicObserver.Window {
 
 				foreach ( var phase in pd.AirAttackUnits ) {
 
-					sb.AppendFormat( "{0} 回目 - #{1} :\r\n",
+					sb.AppendFormat( GeneralRes.BaseWave + " - " + GeneralRes.BaseAirCorps + " :\r\n",
 						index, phase.AirUnitID );
 
 					if ( phase.IsStage1Available ) {
-						sb.AppendFormat( "　St1: 自軍 -{0}/{1} | 敵軍 -{2}/{3} | {4}\r\n",
+						sb.AppendFormat("　St1: " + GeneralRes.FriendlyAir + " -{0}/{1} | " + GeneralRes.EnemyAir + " -{2}/{3} | {4}\r\n",
 							phase.AircraftLostStage1Friend, phase.AircraftTotalStage1Friend,
 							phase.AircraftLostStage1Enemy, phase.AircraftTotalStage1Enemy,
 							Constants.GetAirSuperiority( phase.AirSuperiority ) );
 					}
 					if ( phase.IsStage2Available ) {
-						sb.AppendFormat( "　St2: 自軍 -{0}/{1} | 敵軍 -{2}/{3}\r\n",
+						sb.AppendFormat("　St2: " + GeneralRes.FriendlyAir + " -{0}/{1} | " + GeneralRes.EnemyAir + " -{2}/{3}\r\n",
 							phase.AircraftLostStage2Friend, phase.AircraftTotalStage2Friend,
 							phase.AircraftLostStage2Enemy, phase.AircraftTotalStage2Enemy );
 					}
@@ -334,7 +334,7 @@ namespace ElectronicObserver.Window {
 		/// 基地航空隊フェーズの結果をクリアします。
 		/// </summary>
 		private void ClearBaseAirAttack() {
-			Searching.Text = "索敵";
+			Searching.Text = GeneralRes.ClearBaseAirAttack;
 			Searching.ImageAlign = ContentAlignment.MiddleCenter;
 			Searching.ImageIndex = -1;
 			ToolTipInfo.SetToolTip( Searching, null );
@@ -778,31 +778,31 @@ namespace ElectronicObserver.Window {
 						var shipTorpedoDetail = SelectBattleDetail( ( (BattleDay)bd ).Torpedo.BattleDetails, i );
 
 						if ( shipAirBattleDetail.Any() ) {
-							builder.AppendLine( "《航空戦》" );
+							builder.AppendLine( GeneralRes.DetailAirBattle );
 							builder.Append( FriendShipBattleDetail( bd, shipAirBattleDetail ) );
 						}
 						if ( shipOpeningASWDetail.Any() ) {
-							builder.AppendLine( "《開幕対潜》" );
+							builder.AppendLine( GeneralRes.DetailOpeningASW );
 							builder.Append( FriendShipBattleDetail( bd, shipOpeningASWDetail ) );
 						}
 						if ( shipOpeningTorpedoDetail.Any() ) {
-							builder.AppendLine( "《開幕雷撃》" );
+							builder.AppendLine( GeneralRes.DetailOpeningTorpedo );
 							builder.Append( FriendShipBattleDetail( bd, shipOpeningTorpedoDetail ) );
 						}
 						if ( shipShelling1Detail.Any() ) {
-							builder.AppendLine( "《第一次砲撃戦》" );
+							builder.AppendLine( GeneralRes.DetailShelling1 );
 							builder.Append( FriendShipBattleDetail( bd, shipShelling1Detail ) );
 						}
 						if ( shipShelling2Detail.Any() ) {
-							builder.AppendLine( "《第二次砲撃戦》" );
+							builder.AppendLine( GeneralRes.DetailShelling2 );
 							builder.Append( FriendShipBattleDetail( bd, shipShelling2Detail ) );
 						}
 						if ( shipShelling3Detail.Any() ) {
-							builder.AppendLine( "《第三次砲撃戦》" );
+							builder.AppendLine( GeneralRes.DetailShelling3 );
 							builder.Append( FriendShipBattleDetail( bd, shipShelling3Detail ) );
 						}
 						if ( shipTorpedoDetail.Any() ) {
-							builder.AppendLine( "《雷撃戦》" );
+							builder.AppendLine( GeneralRes.DetailTorpedo );
 							builder.AppendLine( FriendShipBattleDetail( bd, shipTorpedoDetail ) );
 						}
 
@@ -811,7 +811,7 @@ namespace ElectronicObserver.Window {
 						var shipNightBattleDetail = SelectBattleDetail( ( (BattleNight)bd ).NightBattle.BattleDetails, i );
 
 						if ( shipNightBattleDetail.Any() ) {
-							builder.AppendLine( "《夜戦》" );
+							builder.AppendLine( GeneralRes.DetailNightBattle );
 							builder.Append( FriendShipBattleDetail( bd, shipNightBattleDetail ) );
 						}
 
@@ -821,11 +821,11 @@ namespace ElectronicObserver.Window {
 						var shipAirBattle2Detail = SelectBattleDetail( ( (BattleAirBattle)bd ).AirBattle2.BattleDetails, i );
 
 						if ( shipAirBattle1Detail.Any() ) {
-							builder.AppendLine( "《第一次航空戦》" );
+							builder.AppendLine( GeneralRes.DetailAirBattle1 );
 							builder.Append( FriendShipBattleDetail( bd, shipAirBattle1Detail ) );
 						}
 						if ( shipAirBattle2Detail.Any() ) {
-							builder.AppendLine( "《第二次航空戦》" );
+							builder.AppendLine( GeneralRes.DetailAirBattle2 );
 							builder.Append( FriendShipBattleDetail( bd, shipAirBattle2Detail ) );
 						}
 
@@ -834,7 +834,7 @@ namespace ElectronicObserver.Window {
 						var shipAirBattleDetail = SelectBattleDetail( ( (BattleDay)bd ).AirBattle.BattleDetails, i );
 
 						if ( shipAirBattleDetail.Any() ) {
-							builder.AppendLine( "《空襲戦》" );
+							builder.AppendLine( GeneralRes.DetailAirRaid );
 							builder.Append( FriendShipBattleDetail( bd, shipAirBattleDetail ) );
 						}
 
@@ -930,11 +930,11 @@ namespace ElectronicObserver.Window {
 						var shipShelling2Detail = SelectBattleDetail( ( (BattleDay)bd ).Shelling2.BattleDetails, i );
 
 						if ( shipShelling1Detail.Any() ) {
-							builder.AppendLine( "《第一次砲撃戦》" );
+							builder.AppendLine( GeneralRes.DetailShelling1 );
 							builder.Append( FriendShipBattleDetail( bd, shipShelling1Detail ) );
 						}
 						if ( shipShelling2Detail.Any() ) {
-							builder.AppendLine( "《第二次砲撃戦》" );
+							builder.AppendLine( GeneralRes.DetailShelling2 );
 							builder.Append( FriendShipBattleDetail( bd, shipShelling2Detail ) );
 						}
 
@@ -944,11 +944,11 @@ namespace ElectronicObserver.Window {
 						var shipShelling3Detail = SelectBattleDetail( ( (BattleDay)bd ).Shelling3.BattleDetails, i );
 
 						if ( shipShelling2Detail.Any() ) {
-							builder.AppendLine( "《第二次砲撃戦》" );
+							builder.AppendLine( GeneralRes.DetailShelling2 );
 							builder.Append( FriendShipBattleDetail( bd, shipShelling2Detail ) );
 						}
 						if ( shipShelling3Detail.Any() ) {
-							builder.AppendLine( "《第三次砲撃戦》" );
+							builder.AppendLine( GeneralRes.DetailShelling3 );
 							builder.AppendLine( FriendShipBattleDetail( bd, shipShelling3Detail ) );
 						}
 
@@ -958,11 +958,11 @@ namespace ElectronicObserver.Window {
 						var shipAirBattle2Detail = SelectBattleDetail( ( (BattleCombinedAirBattle)bd ).AirBattle2.BattleDetails, i );
 
 						if ( shipAirBattle1Detail.Any() ) {
-							builder.AppendLine( "《第一次航空戦》" );
+							builder.AppendLine( GeneralRes.DetailAirBattle1 );
 							builder.Append( FriendShipBattleDetail( bd, shipAirBattle1Detail ) );
 						}
 						if ( shipAirBattle2Detail.Any() ) {
-							builder.AppendLine( "《第二次航空戦》" );
+							builder.AppendLine( GeneralRes.DetailAirBattle2 );
 							builder.Append( FriendShipBattleDetail( bd, shipAirBattle2Detail ) );
 						}
 
@@ -971,7 +971,7 @@ namespace ElectronicObserver.Window {
 						var shipAirBattleDetail = SelectBattleDetail( ( (BattleDay)bd ).AirBattle.BattleDetails, i );
 
 						if ( shipAirBattleDetail.Any() ) {
-							builder.AppendLine( "《空襲戦》" );
+							builder.AppendLine( GeneralRes.DetailAirRaid );
 							builder.Append( FriendShipBattleDetail( bd, shipAirBattleDetail ) );
 						}
 
@@ -1032,19 +1032,19 @@ namespace ElectronicObserver.Window {
 
 
 						if ( shipOpeningASWDetail.Any() ) {
-							builder.AppendLine( "《開幕対潜》" );
+							builder.AppendLine( GeneralRes.DetailOpeningASW );
 							builder.Append( FriendShipBattleDetail( bd, shipOpeningASWDetail ) );
 						}
 						if ( shipOpeningTorpedoDetail.Any() ) {
-							builder.AppendLine( "《開幕雷撃》" );
+							builder.AppendLine( GeneralRes.DetailOpeningTorpedo );
 							builder.Append( FriendShipBattleDetail( bd, shipOpeningTorpedoDetail ) );
 						}
 						if ( shipShelling1Detail.Any() ) {
-							builder.AppendLine( "《第一次砲撃戦》" );
+							builder.AppendLine( GeneralRes.DetailShelling1 );
 							builder.Append( FriendShipBattleDetail( bd, shipShelling1Detail ) );
 						}
 						if ( shipTorpedoDetail.Any() ) {
-							builder.AppendLine( "《雷撃戦》" );
+							builder.AppendLine( GeneralRes.DetailTorpedo );
 							builder.Append( FriendShipBattleDetail( bd, shipTorpedoDetail ) );
 						}
 
@@ -1057,19 +1057,19 @@ namespace ElectronicObserver.Window {
 
 
 						if ( shipOpeningASWDetail.Any() ) {
-							builder.AppendLine( "《開幕対潜》" );
+							builder.AppendLine( GeneralRes.DetailOpeningASW );
 							builder.Append( FriendShipBattleDetail( bd, shipOpeningASWDetail ) );
 						}
 						if ( shipOpeningTorpedoDetail.Any() ) {
-							builder.AppendLine( "《開幕雷撃》" );
+							builder.AppendLine( GeneralRes.DetailOpeningTorpedo );
 							builder.Append( FriendShipBattleDetail( bd, shipOpeningTorpedoDetail ) );
 						}
 						if ( shipShelling3Detail.Any() ) {
-							builder.AppendLine( "《第三次砲撃戦》" );
+							builder.AppendLine( GeneralRes.DetailShelling3 );
 							builder.Append( FriendShipBattleDetail( bd, shipShelling3Detail ) );
 						}
 						if ( shipTorpedoDetail.Any() ) {
-							builder.AppendLine( "《雷撃戦》" );
+							builder.AppendLine( GeneralRes.DetailTorpedo );
 							builder.Append( FriendShipBattleDetail( bd, shipTorpedoDetail ) );
 						}
 
@@ -1079,7 +1079,7 @@ namespace ElectronicObserver.Window {
 
 
 						if ( shipNightBattleDetail.Any() ) {
-							builder.AppendLine( "《夜戦》" );
+							builder.AppendLine( GeneralRes.DetailNightBattle );
 							builder.Append( FriendShipBattleDetail( bd, shipNightBattleDetail ) );
 						}
 
@@ -1089,11 +1089,11 @@ namespace ElectronicObserver.Window {
 						var shipAirBattle2Detail = SelectBattleDetail( ( (BattleCombinedAirBattle)bd ).AirBattle2.BattleDetails, i + 12 );
 
 						if ( shipAirBattle1Detail.Any() ) {
-							builder.AppendLine( "《第一次航空戦》" );
+							builder.AppendLine( GeneralRes.DetailAirBattle1 );
 							builder.Append( FriendShipBattleDetail( bd, shipAirBattle1Detail ) );
 						}
 						if ( shipAirBattle2Detail.Any() ) {
-							builder.AppendLine( "《第二次航空戦》" );
+							builder.AppendLine( GeneralRes.DetailAirBattle2 );
 							builder.Append( FriendShipBattleDetail( bd, shipAirBattle2Detail ) );
 						}
 
@@ -1102,7 +1102,7 @@ namespace ElectronicObserver.Window {
 						var shipAirBattleDetail = SelectBattleDetail( ( (BattleDay)bd ).AirBattle.BattleDetails, i + 12 );
 
 						if ( shipAirBattleDetail.Any() ) {
-							builder.AppendLine( "《空襲戦》" );
+							builder.AppendLine( GeneralRes.DetailAirRaid );
 							builder.Append( FriendShipBattleDetail( bd, shipAirBattleDetail ) );
 						}
 

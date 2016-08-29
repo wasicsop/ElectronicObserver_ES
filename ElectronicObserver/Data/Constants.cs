@@ -311,15 +311,15 @@ namespace ElectronicObserver.Data {
 		public static string GetAirRaidDamage( int value ) {
 			switch ( value ) {
 				case 1:
-					return "空襲発生 - 資源に損害";
+					return ConstantsRes.AirRaidOccur + " - " + ConstantsRes.ResourceDamage;
 				case 2:
-					return "空襲発生 - 資源・航空隊に損害";
+					return ConstantsRes.AirRaidOccur + " - " + ConstantsRes.ResAndBaseDamage;
 				case 3:
-					return "空襲発生 - 航空隊に損害";
+					return ConstantsRes.AirRaidOccur + " - " + ConstantsRes.BaseDamage;
 				case 4:
-					return "空襲発生 - 被害なし";
+					return ConstantsRes.AirRaidOccur + " - " + ConstantsRes.NoDamage;
 				default:
-					return "空襲発生せず";
+					return ConstantsRes.NoAirRaid;
 			}
 		}
 

@@ -864,25 +864,25 @@
   <data name="ShowOther" xml:space="preserve">
     <value>その他の任務を表示(&amp;R)</value>
   </data>
-  <data name="LBAS" xml:space="preserve">
+  <data name="Base" xml:space="preserve">
     <value>基地航空隊</value>
   </data>
-  <data name="LBASNotOpen" xml:space="preserve">
+  <data name="BaseNotOpen" xml:space="preserve">
     <value>(未開放)\r\n</value>
   </data>
-  <data name="LBASRedeployment" xml:space="preserve">
+  <data name="BaseRedeployment" xml:space="preserve">
     <value>配置転換中</value>
   </data>
-  <data name="LBASRelocate" xml:space="preserve">
+  <data name="BaseRelocate" xml:space="preserve">
     <value>配置転換中 (開始時刻: {0})\r\n</value>
   </data>
-  <data name="LBASTooltip" xml:space="preserve">
+  <data name="BaseTooltip" xml:space="preserve">
     <value>確保: {0}\r\n優勢: {1}\r\n均衡: {2}\r\n劣勢: {3}\r\n</value>
   </data>
-  <data name="LBASUnassigned" xml:space="preserve">
+  <data name="BaseUnassigned" xml:space="preserve">
     <value>(未配属)</value>
   </data>
-  <data name="LBASUnknown" xml:space="preserve">
+  <data name="BaseUnknown" xml:space="preserve">
     <value>(消息不明)</value>
   </data>
   <data name="NotResupplied" xml:space="preserve">
@@ -893,5 +893,53 @@
   </data>
   <data name="VeryTired" xml:space="preserve">
     <value>過労</value>
+  </data>
+  <data name="EnemyAir" xml:space="preserve">
+    <value>敵軍</value>
+  </data>
+  <data name="FriendlyAir" xml:space="preserve">
+    <value>自軍</value>
+  </data>
+  <data name="BaseWave" xml:space="preserve">
+    <value>{0} 回目</value>
+  </data>
+  <data name="ClearBaseAirAttack" xml:space="preserve">
+    <value>索敵</value>
+  </data>
+  <data name="BaseAirCorps" xml:space="preserve">
+    <value>#{1}</value>
+  </data>
+  <data name="DetailAirBattle" xml:space="preserve">
+    <value>《航空戦》</value>
+  </data>
+  <data name="DetailAirBattle1" xml:space="preserve">
+    <value>《第一次航空戦》</value>
+  </data>
+  <data name="DetailAirBattle2" xml:space="preserve">
+    <value>《第二次航空戦》</value>
+  </data>
+  <data name="DetailAirRaid" xml:space="preserve">
+    <value>《空襲戦》</value>
+  </data>
+  <data name="DetailNightBattle" xml:space="preserve">
+    <value>《夜戦》</value>
+  </data>
+  <data name="DetailOpeningASW" xml:space="preserve">
+    <value>《開幕対潜》</value>
+  </data>
+  <data name="DetailOpeningTorpedo" xml:space="preserve">
+    <value>《開幕雷撃》</value>
+  </data>
+  <data name="DetailShelling1" xml:space="preserve">
+    <value>《第一次砲撃戦》</value>
+  </data>
+  <data name="DetailShelling2" xml:space="preserve">
+    <value>《第二次砲撃戦》</value>
+  </data>
+  <data name="DetailShelling3" xml:space="preserve">
+    <value>《第三次砲撃戦》</value>
+  </data>
+  <data name="DetailTorpedo" xml:space="preserve">
+    <value>《雷撃戦》</value>
   </data>
 </root>

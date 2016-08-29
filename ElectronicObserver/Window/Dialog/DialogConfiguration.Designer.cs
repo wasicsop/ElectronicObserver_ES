@@ -387,7 +387,7 @@
 			// label4
 			//
 			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(138, 95);
+			this.label4.Location = new System.Drawing.Point(158, 95);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(201, 15);
 			this.label4.TabIndex = 6;
@@ -490,9 +490,9 @@
 			this.Connection_SaveDataPath.AllowDrop = true;
 			this.Connection_SaveDataPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.Connection_SaveDataPath.Location = new System.Drawing.Point(64, 3);
+			this.Connection_SaveDataPath.Location = new System.Drawing.Point(104, 3);
 			this.Connection_SaveDataPath.Name = "Connection_SaveDataPath";
-			this.Connection_SaveDataPath.Size = new System.Drawing.Size(454, 23);
+			this.Connection_SaveDataPath.Size = new System.Drawing.Size(414, 23);
 			this.Connection_SaveDataPath.TabIndex = 3;
 			this.Connection_SaveDataPath.TextChanged += new System.EventHandler(this.Connection_SaveDataPath_TextChanged);
 			//
@@ -503,7 +503,7 @@
 			this.Connection_SaveReceivedData.Name = "Connection_SaveReceivedData";
 			this.Connection_SaveReceivedData.Size = new System.Drawing.Size(126, 19);
 			this.Connection_SaveReceivedData.TabIndex = 5;
-			this.Connection_SaveReceivedData.Text = ConfigRes.SaveRecievedData;
+			this.Connection_SaveReceivedData.Text = ConfigRes.SaveReceivedData;
 			this.Connection_SaveReceivedData.UseVisualStyleBackColor = true;
 			this.Connection_SaveReceivedData.CheckedChanged += new System.EventHandler(this.Connection_SaveReceivedData_CheckedChanged);
 			//
@@ -559,7 +559,7 @@
 			this.UI_BarColorMorphing.Name = "UI_BarColorMorphing";
 			this.UI_BarColorMorphing.Size = new System.Drawing.Size(167, 19);
 			this.UI_BarColorMorphing.TabIndex = 11;
-			this.UI_BarColorMorphing.Text = "バーの色を滑らかに変化させる";
+			this.UI_BarColorMorphing.Text = ConfigRes.UI_BarColorMorphing;
 			this.ToolTipInfo.SetToolTip(this.UI_BarColorMorphing, "HP・資源等のバーの色を、艦これUIと同様に滑らかに変化させるか指定します。");
 			this.UI_BarColorMorphing.UseVisualStyleBackColor = true;
 			//
@@ -648,7 +648,7 @@
             // labelThemeSelect
             //
             this.labelThemeSelect.AutoSize = true;
-            this.labelThemeSelect.Location = new System.Drawing.Point(8, 70);
+            this.labelThemeSelect.Location = new System.Drawing.Point(8, 93);
             this.labelThemeSelect.Name = "labelThemeSelect";
             this.labelThemeSelect.Size = new System.Drawing.Size(78, 15);
             this.labelThemeSelect.TabIndex = 0;
@@ -659,14 +659,14 @@
             this.selectTheme.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.selectTheme.FormattingEnabled = true;
             this.selectTheme.Name = "selectTheme";
-            this.selectTheme.Location = new System.Drawing.Point(70,66);
+            this.selectTheme.Location = new System.Drawing.Point(70, 90);
             this.selectTheme.Size = new System.Drawing.Size(68,23);
             this.selectTheme.TabIndex = 8;
             //
             // labelThemeRestartWarning
             //
             this.labelThemeRestartWarning.AutoSize = true;
-            this.labelThemeRestartWarning.Location = new System.Drawing.Point(8, 100);
+            this.labelThemeRestartWarning.Location = new System.Drawing.Point(8, 120);
             this.labelThemeRestartWarning.Name = "labelThemeRestartWarning";
             this.labelThemeRestartWarning.Size = new System.Drawing.Size(78, 15);
             this.labelThemeRestartWarning.TabIndex = 0;
@@ -836,9 +836,9 @@
 			this.Control_RecordAutoSaving.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.Control_RecordAutoSaving.FormattingEnabled = true;
 			this.Control_RecordAutoSaving.Items.AddRange(new object[] {
-            "しない",
-            "1時間ごと",
-            "1日ごと"});
+            ConfigRes.ProgressAutoSaving_Disable,
+            ConfigRes.ProgressAutoSaving_Hourly,
+            ConfigRes.ProgressAutoSaving_Daily});
 			this.Control_RecordAutoSaving.Location = new System.Drawing.Point(124, 35);
 			this.Control_RecordAutoSaving.Name = "Control_RecordAutoSaving";
 			this.Control_RecordAutoSaving.Size = new System.Drawing.Size(121, 23);
@@ -851,7 +851,7 @@
 			this.label9.Name = "label9";
 			this.label9.Size = new System.Drawing.Size(112, 15);
 			this.label9.TabIndex = 2;
-			this.label9.Text = "レコードの自動保存：";
+			this.label9.Text = ConfigRes.RecordAutoSaving;
 			//
 			// Control_ConditionBorder
 			//
@@ -895,7 +895,7 @@
 			this.Debug_AlertOnError.Name = "Debug_AlertOnError";
 			this.Debug_AlertOnError.Size = new System.Drawing.Size(104, 19);
 			this.Debug_AlertOnError.TabIndex = 2;
-			this.Debug_AlertOnError.Text = "エラー音を鳴らす";
+			this.Debug_AlertOnError.Text = ConfigRes.AlertOnError;
 			this.Debug_AlertOnError.UseVisualStyleBackColor = true;
 			//
 			// Debug_SealingPanel
@@ -950,7 +950,7 @@
 			this.Debug_EnableDebugMenu.Name = "Debug_EnableDebugMenu";
 			this.Debug_EnableDebugMenu.Size = new System.Drawing.Size(162, 19);
 			this.Debug_EnableDebugMenu.TabIndex = 0;
-			this.Debug_EnableDebugMenu.Text = "デバッグ メニューを有効にする";
+			this.Debug_EnableDebugMenu.Text = ConfigRes.EnableDebugMenu;
 			this.ToolTipInfo.SetToolTip(this.Debug_EnableDebugMenu, "メインウィンドウの[デバッグ]メニューを有効にします。\r\nデバッグ用の機能であるため、通常ユーザーの操作は推奨されません。\r\n使用時の動作は保証されないので、＊自" +
         "己責任で＊使用してください。");
 			this.Debug_EnableDebugMenu.UseVisualStyleBackColor = true;
@@ -1017,7 +1017,7 @@
             ConfigRes.Life_ClockFormat_Current,
             ConfigRes.Life_ClockFormat_Excercise,
             ConfigRes.Life_ClockFormat_Quest});
-			this.Life_ClockFormat.Location = new System.Drawing.Point(81, 135);
+			this.Life_ClockFormat.Location = new System.Drawing.Point(101, 135);
 			this.Life_ClockFormat.Name = "Life_ClockFormat";
 			this.Life_ClockFormat.Size = new System.Drawing.Size(121, 23);
 			this.Life_ClockFormat.TabIndex = 7;
@@ -1148,13 +1148,13 @@
 			this.FormFleet_EquipmentLevelVisibility.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.FormFleet_EquipmentLevelVisibility.FormattingEnabled = true;
 			this.FormFleet_EquipmentLevelVisibility.Items.AddRange(new object[] {
-            "非表示",
-            "改修レベルのみ",
-            "艦載機熟練度のみ",
-            "改修レベル優先",
-            "艦載機熟練度優先",
-            "両方表示"});
-			this.FormFleet_EquipmentLevelVisibility.Location = new System.Drawing.Point(253, 86);
+			ConfigRes.EquipmentLevelVisibility_Hidden,
+			ConfigRes.EquipmentLevelVisibility_ImprovOnly,
+			ConfigRes.EquipmentLevelVisibility_ProfOnly,
+			ConfigRes.EquipmentLevelVisibility_ImprovPrio,
+			ConfigRes.EquipmentLevelVisibility_ProfPrio,
+			ConfigRes.EquipmentLevelVisibility_Both});
+			this.FormFleet_EquipmentLevelVisibility.Location = new System.Drawing.Point(310, 86);
 			this.FormFleet_EquipmentLevelVisibility.Name = "FormFleet_EquipmentLevelVisibility";
 			this.FormFleet_EquipmentLevelVisibility.Size = new System.Drawing.Size(160, 23);
 			this.FormFleet_EquipmentLevelVisibility.TabIndex = 13;
@@ -1168,7 +1168,7 @@
 			this.label28.Name = "label28";
 			this.label28.Size = new System.Drawing.Size(91, 15);
 			this.label28.TabIndex = 12;
-			this.label28.Text = "装備情報表示：";
+			this.label28.Text = ConfigRes.EquipmentLevelVisibility;
 			//
 			// FormFleet_BlinkAtCompletion
 			//
@@ -1177,7 +1177,7 @@
 			this.FormFleet_BlinkAtCompletion.Name = "FormFleet_BlinkAtCompletion";
 			this.FormFleet_BlinkAtCompletion.Size = new System.Drawing.Size(158, 19);
 			this.FormFleet_BlinkAtCompletion.TabIndex = 11;
-			this.FormFleet_BlinkAtCompletion.Text = "タイマー完了時に点滅させる";
+			this.FormFleet_BlinkAtCompletion.Text = ConfigRes.FleetBlinkAtCompletion;
 			this.FormFleet_BlinkAtCompletion.UseVisualStyleBackColor = true;
 			//
 			// FormFleet_ShowAnchorageRepairingTimer
@@ -1210,7 +1210,7 @@
 			this.label23.Name = "label23";
 			this.label23.Size = new System.Drawing.Size(103, 15);
 			this.label23.TabIndex = 3;
-			this.label23.Text = "制空戦力計算式：";
+			this.label23.Text = ConfigRes.AirSuperiorityMethod;
 			//
 			// FormFleet_ShowNextExp
 			//
@@ -1308,7 +1308,7 @@
 			this.FormArsenal_BlinkAtCompletion.Name = "FormArsenal_BlinkAtCompletion";
 			this.FormArsenal_BlinkAtCompletion.Size = new System.Drawing.Size(122, 19);
 			this.FormArsenal_BlinkAtCompletion.TabIndex = 2;
-			this.FormArsenal_BlinkAtCompletion.Text = "完了時に点滅させる";
+			this.FormArsenal_BlinkAtCompletion.Text = ConfigRes.BlinkAtCompletion;
 			this.FormArsenal_BlinkAtCompletion.UseVisualStyleBackColor = true;
 			//
 			// FormArsenal_ShowShipName
@@ -1329,7 +1329,7 @@
 			this.tabPage19.Padding = new System.Windows.Forms.Padding(3);
 			this.tabPage19.Size = new System.Drawing.Size(562, 260);
 			this.tabPage19.TabIndex = 8;
-			this.tabPage19.Text = "入渠";
+			this.tabPage19.Text = ConfigRes.Dock;
 			this.tabPage19.UseVisualStyleBackColor = true;
 			//
 			// FormDock_BlinkAtCompletion
@@ -1339,7 +1339,7 @@
 			this.FormDock_BlinkAtCompletion.Name = "FormDock_BlinkAtCompletion";
 			this.FormDock_BlinkAtCompletion.Size = new System.Drawing.Size(122, 19);
 			this.FormDock_BlinkAtCompletion.TabIndex = 3;
-			this.FormDock_BlinkAtCompletion.Text = "完了時に点滅させる";
+			this.FormDock_BlinkAtCompletion.Text = ConfigRes.BlinkAtCompletion;
 			this.FormDock_BlinkAtCompletion.UseVisualStyleBackColor = true;
 			//
 			// tabPage16
@@ -1400,7 +1400,7 @@
 			//
 			// FormCompass_CandidateDisplayCount
 			//
-			this.FormCompass_CandidateDisplayCount.Location = new System.Drawing.Point(143, 6);
+			this.FormCompass_CandidateDisplayCount.Location = new System.Drawing.Point(155, 6);
 			this.FormCompass_CandidateDisplayCount.Maximum = new decimal(new int[] {
             6,
             0,
@@ -1428,7 +1428,7 @@
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(131, 15);
 			this.label2.TabIndex = 3;
-			this.label2.Text = "一度に表示する候補数：";
+			this.label2.Text = ConfigRes.CandidateDisplayCount;
 			//
 			// tabPage10
 			//
@@ -1452,7 +1452,7 @@
 			this.FormQuest_AllowUserToSortRows.Name = "FormQuest_AllowUserToSortRows";
 			this.FormQuest_AllowUserToSortRows.Size = new System.Drawing.Size(150, 19);
 			this.FormQuest_AllowUserToSortRows.TabIndex = 6;
-			this.FormQuest_AllowUserToSortRows.Text = "ソート順を変更可能にする";
+			this.FormQuest_AllowUserToSortRows.Text = ConfigRes.AllowUserToSortRows;
 			this.FormQuest_AllowUserToSortRows.UseVisualStyleBackColor = true;
 			//
 			// FormQuest_ProgressAutoSaving
@@ -1460,9 +1460,9 @@
 			this.FormQuest_ProgressAutoSaving.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.FormQuest_ProgressAutoSaving.FormattingEnabled = true;
 			this.FormQuest_ProgressAutoSaving.Items.AddRange(new object[] {
-            "しない",
-            "1時間ごと",
-            "1日ごと"});
+            ConfigRes.ProgressAutoSaving_Disable,
+            ConfigRes.ProgressAutoSaving_Hourly,
+            ConfigRes.ProgressAutoSaving_Daily});
 			this.FormQuest_ProgressAutoSaving.Location = new System.Drawing.Point(269, 6);
 			this.FormQuest_ProgressAutoSaving.Name = "FormQuest_ProgressAutoSaving";
 			this.FormQuest_ProgressAutoSaving.Size = new System.Drawing.Size(121, 23);
@@ -1475,7 +1475,7 @@
 			this.label27.Name = "label27";
 			this.label27.Size = new System.Drawing.Size(125, 15);
 			this.label27.TabIndex = 4;
-			this.label27.Text = "任務進捗の自動保存：";
+			this.label27.Text = ConfigRes.ProgressAutoSaving;
 			//
 			// groupBox1
 			//
@@ -1570,9 +1570,9 @@
 			this.FormShipGroup_ShipNameSortMethod.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.FormShipGroup_ShipNameSortMethod.FormattingEnabled = true;
 			this.FormShipGroup_ShipNameSortMethod.Items.AddRange(new object[] {
-            "図鑑番号順",
-            "あいうえお順"});
-			this.FormShipGroup_ShipNameSortMethod.Location = new System.Drawing.Point(116, 56);
+            ConfigRes.ShipNameSortMethod_Number,
+            ConfigRes.ShipNameSortMethod_Alphabet});
+			this.FormShipGroup_ShipNameSortMethod.Location = new System.Drawing.Point(150, 56);
 			this.FormShipGroup_ShipNameSortMethod.Name = "FormShipGroup_ShipNameSortMethod";
 			this.FormShipGroup_ShipNameSortMethod.Size = new System.Drawing.Size(121, 23);
 			this.FormShipGroup_ShipNameSortMethod.TabIndex = 7;
@@ -1584,7 +1584,7 @@
 			this.label25.Name = "label25";
 			this.label25.Size = new System.Drawing.Size(104, 15);
 			this.label25.TabIndex = 6;
-			this.label25.Text = "艦名列のソート順：";
+			this.label25.Text = ConfigRes.ShipNameSortMethod;
 			//
 			// FormShipGroup_ShowStatusBar
 			//
@@ -1635,12 +1635,12 @@
 			this.FormBrowser_ToolMenuDockStyle.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.FormBrowser_ToolMenuDockStyle.FormattingEnabled = true;
 			this.FormBrowser_ToolMenuDockStyle.Items.AddRange(new object[] {
-            "上",
-            "下",
-            "左",
-            "右",
-            "非表示"});
-			this.FormBrowser_ToolMenuDockStyle.Location = new System.Drawing.Point(129, 88);
+            ConfigRes.ToolMenuAlignment_Top,
+            ConfigRes.ToolMenuAlignment_Bottom,
+            ConfigRes.ToolMenuAlignment_Left,
+            ConfigRes.ToolMenuAlignment_Right,
+            ConfigRes.ToolMenuAlignment_Invisible});
+			this.FormBrowser_ToolMenuDockStyle.Location = new System.Drawing.Point(150, 88);
 			this.FormBrowser_ToolMenuDockStyle.Name = "FormBrowser_ToolMenuDockStyle";
 			this.FormBrowser_ToolMenuDockStyle.Size = new System.Drawing.Size(121, 23);
 			this.FormBrowser_ToolMenuDockStyle.TabIndex = 11;
@@ -1652,7 +1652,7 @@
 			this.label30.Name = "label30";
 			this.label30.Size = new System.Drawing.Size(117, 15);
 			this.label30.TabIndex = 10;
-			this.label30.Text = "ツールメニューの配置：";
+			this.label30.Text = ConfigRes.ToolMenuDockStyle;
 			//
 			// FormBrowser_ZoomFit
 			//
@@ -1883,10 +1883,10 @@
 			//
 			this.FormBrowser_FlashQuality.FormattingEnabled = true;
 			this.FormBrowser_FlashQuality.Items.AddRange(new object[] {
-            "low",
-            "medium",
-            "high",
-            "best"});
+            "Low",
+            "Medium",
+            "High",
+            "Best"});
 			this.FormBrowser_FlashQuality.Location = new System.Drawing.Point(73, 22);
 			this.FormBrowser_FlashQuality.Name = "FormBrowser_FlashQuality";
 			this.FormBrowser_FlashQuality.Size = new System.Drawing.Size(121, 23);
@@ -1937,7 +1937,7 @@
 			this.FormBrowser_DeleteRegistry.Name = "FormBrowser_DeleteRegistry";
 			this.FormBrowser_DeleteRegistry.Size = new System.Drawing.Size(50, 23);
 			this.FormBrowser_DeleteRegistry.TabIndex = 4;
-			this.FormBrowser_DeleteRegistry.Text = "削除";
+			this.FormBrowser_DeleteRegistry.Text = ConfigRes.DeleteRegistry;
 			this.ToolTipInfo.SetToolTip(this.FormBrowser_DeleteRegistry, "レジストリを削除します。");
 			this.FormBrowser_DeleteRegistry.UseVisualStyleBackColor = true;
 			this.FormBrowser_DeleteRegistry.Click += new System.EventHandler(this.FormBrowser_DeleteRegistry_Click);
@@ -1949,8 +1949,8 @@
 			this.FormBrowser_GPURendering.Name = "FormBrowser_GPURendering";
 			this.FormBrowser_GPURendering.Size = new System.Drawing.Size(103, 19);
 			this.FormBrowser_GPURendering.TabIndex = 2;
-			this.FormBrowser_GPURendering.Text = "GPUレンダリング";
-			this.ToolTipInfo.SetToolTip(this.FormBrowser_GPURendering, "内蔵ブラウザでGPUレンダリングを使用するかを指定します。\r\n環境によっては処理が高速化します。");
+			this.FormBrowser_GPURendering.Text = ConfigRes.GPURendering;
+			this.ToolTipInfo.SetToolTip(this.FormBrowser_GPURendering, ConfigRes.GPURenderingHint);
 			this.FormBrowser_GPURendering.UseVisualStyleBackColor = true;
 			//
 			// FormBrowser_ApplyRegistry
@@ -1960,7 +1960,7 @@
 			this.FormBrowser_ApplyRegistry.Name = "FormBrowser_ApplyRegistry";
 			this.FormBrowser_ApplyRegistry.Size = new System.Drawing.Size(50, 23);
 			this.FormBrowser_ApplyRegistry.TabIndex = 3;
-			this.FormBrowser_ApplyRegistry.Text = "適用";
+			this.FormBrowser_ApplyRegistry.Text = ConfigRes.ApplyRegistry;
 			this.ToolTipInfo.SetToolTip(this.FormBrowser_ApplyRegistry, "レジストリに対して設定を適用します。\r\n下の[OK]ボタンでは反映されないのでご注意ください。");
 			this.FormBrowser_ApplyRegistry.UseVisualStyleBackColor = true;
 			this.FormBrowser_ApplyRegistry.Click += new System.EventHandler(this.FormBrowser_ApplyRegistry_Click);
@@ -1972,7 +1972,7 @@
 			this.label19.Name = "label19";
 			this.label19.Size = new System.Drawing.Size(100, 15);
 			this.label19.TabIndex = 0;
-			this.label19.Text = "ブラウザバージョン：";
+			this.label19.Text = ConfigRes.BrowserVersion;
 			//
 			// SubWindow_Json
 			//
@@ -2008,8 +2008,8 @@
 			this.FormJson_AutoUpdate.Name = "FormJson_AutoUpdate";
 			this.FormJson_AutoUpdate.Size = new System.Drawing.Size(93, 19);
 			this.FormJson_AutoUpdate.TabIndex = 0;
-			this.FormJson_AutoUpdate.Text = "自動更新する";
-			this.ToolTipInfo.SetToolTip(this.FormJson_AutoUpdate, "API の送受信時に、自動で表示を更新するかを指定します。\r\n多少重くなる可能性があります。\r\n");
+			this.FormJson_AutoUpdate.Text = ConfigRes.Json_AutoUpdate;
+			this.ToolTipInfo.SetToolTip(this.FormJson_AutoUpdate, ConfigRes.Json_AutoUpdateHint);
 			this.FormJson_AutoUpdate.UseVisualStyleBackColor = true;
 			//
 			// label32
@@ -2059,7 +2059,7 @@
 			this.label33.Name = "label33";
 			this.label33.Size = new System.Drawing.Size(253, 15);
 			this.label33.TabIndex = 0;
-			this.label33.Text = "(非表示です。デバッグメニューを有効にしてください。)";
+			this.label33.Text = ConfigRes.HiddenJSON;
 			//
 			// tabPage11
 			//

@@ -667,7 +667,7 @@
 			//
 			this.StripMenu_View_BaseAirCorps.Name = "StripMenu_View_BaseAirCorps";
 			this.StripMenu_View_BaseAirCorps.Size = new System.Drawing.Size(182, 22);
-			this.StripMenu_View_BaseAirCorps.Text = Menus.LBAS;
+			this.StripMenu_View_BaseAirCorps.Text = Menus.BaseAirCorps;
 			this.StripMenu_View_BaseAirCorps.Click += new System.EventHandler(this.StripMenu_View_BaseAirCorps_Click);
 			//
 			// StripMenu_View_Json

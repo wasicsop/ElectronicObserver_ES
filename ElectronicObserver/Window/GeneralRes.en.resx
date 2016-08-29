@@ -896,28 +896,28 @@ This month: {2:+##;-##;±0}</value>
   <data name="ShowOther" xml:space="preserve">
     <value>Show Others</value>
   </data>
-  <data name="LBAS" xml:space="preserve">
-    <value>Land Base</value>
+  <data name="Base" xml:space="preserve">
+    <value>Air Base</value>
   </data>
-  <data name="LBASNotOpen" xml:space="preserve">
+  <data name="BaseNotOpen" xml:space="preserve">
     <value>(Not opened)</value>
   </data>
-  <data name="LBASRedeployment" xml:space="preserve">
+  <data name="BaseRedeployment" xml:space="preserve">
     <value>Relocating</value>
   </data>
-  <data name="LBASRelocate" xml:space="preserve">
+  <data name="BaseRelocate" xml:space="preserve">
     <value>Relocating (Started at: {0})</value>
   </data>
-  <data name="LBASTooltip" xml:space="preserve">
+  <data name="BaseTooltip" xml:space="preserve">
     <value>Supremacy: {0}
 Superiority: {1}
 Parity: {2}
 Denial: {3}</value>
   </data>
-  <data name="LBASUnassigned" xml:space="preserve">
+  <data name="BaseUnassigned" xml:space="preserve">
     <value>(Unassigned)</value>
   </data>
-  <data name="LBASUnknown" xml:space="preserve">
+  <data name="BaseUnknown" xml:space="preserve">
     <value>(Location unknown)</value>
   </data>
   <data name="NotResupplied" xml:space="preserve">
@@ -928,5 +928,53 @@ Denial: {3}</value>
   </data>
   <data name="VeryTired" xml:space="preserve">
     <value>Very low morale</value>
+  </data>
+  <data name="EnemyAir" xml:space="preserve">
+    <value>Enemy</value>
+  </data>
+  <data name="FriendlyAir" xml:space="preserve">
+    <value>Friendly</value>
+  </data>
+  <data name="BaseWave" xml:space="preserve">
+    <value>Airstrike #{0}</value>
+  </data>
+  <data name="ClearBaseAirAttack" xml:space="preserve">
+    <value>-</value>
+  </data>
+  <data name="BaseAirCorps" xml:space="preserve">
+    <value>Air Base#{1}</value>
+  </data>
+  <data name="DetailAirBattle" xml:space="preserve">
+    <value>Opening Airstrike</value>
+  </data>
+  <data name="DetailAirBattle1" xml:space="preserve">
+    <value>1st Air Battle</value>
+  </data>
+  <data name="DetailAirBattle2" xml:space="preserve">
+    <value>2nd Air Battle</value>
+  </data>
+  <data name="DetailAirRaid" xml:space="preserve">
+    <value>Air Raid</value>
+  </data>
+  <data name="DetailNightBattle" xml:space="preserve">
+    <value>Night Battle</value>
+  </data>
+  <data name="DetailOpeningASW" xml:space="preserve">
+    <value>Opening ASW</value>
+  </data>
+  <data name="DetailOpeningTorpedo" xml:space="preserve">
+    <value>Opening Torpedo Salvo</value>
+  </data>
+  <data name="DetailShelling1" xml:space="preserve">
+    <value>1st Round Shelling</value>
+  </data>
+  <data name="DetailShelling2" xml:space="preserve">
+    <value>2nd Round Shelling</value>
+  </data>
+  <data name="DetailShelling3" xml:space="preserve">
+    <value>3rd Round Shelling</value>
+  </data>
+  <data name="DetailTorpedo" xml:space="preserve">
+    <value>Closing Torpedo Salvo</value>
   </data>
 </root>

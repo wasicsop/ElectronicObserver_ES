@@ -169,7 +169,7 @@ namespace ElectronicObserver.Window {
 						int airSuperiority = Calculator.GetAirSuperiority( corps );
 						AirSuperiority.Text = airSuperiority.ToString();
 						ToolTipInfo.SetToolTip( AirSuperiority,
-							string.Format( GeneralRes.LBASTooltip,
+							string.Format( GeneralRes.BaseTooltip,
 							(int)( airSuperiority / 3.0 ),
 							(int)( airSuperiority / 1.5 ),
 							Math.Max( (int)( airSuperiority * 1.5 - 1 ), 0 ),
@@ -209,7 +209,7 @@ namespace ElectronicObserver.Window {
 				var sb = new StringBuilder();
 
 				if ( corps == null )
-					return GeneralRes.LBASNotOpen;
+					return GeneralRes.BaseNotOpen;
 
 				foreach ( var squadron in corps.Squadrons.Values ) {
 					if ( squadron == null )
@@ -246,7 +246,7 @@ namespace ElectronicObserver.Window {
 							break;
 
 						case 2:		// 配置転換中
-							sb.AppendFormat( GeneralRes.LBASRelocate,
+							sb.AppendFormat( GeneralRes.BaseRelocate,
 								DateTimeHelper.TimeToCSVString( squadron.RelocatedTime ) );
 							break;
 					}
@@ -334,13 +334,13 @@ namespace ElectronicObserver.Window {
 						sb.Append( "/" );
 
 					if ( sq[i] == null ) {
-						sb.Append( GeneralRes.LBASUnknown );
+						sb.Append( GeneralRes.BaseUnknown );
 						continue;
 					}
 
 					switch ( sq[i].State ) {
 						case 0:
-							sb.Append( GeneralRes.LBASUnassigned );
+							sb.Append( GeneralRes.BaseUnassigned );
 							break;
 						case 1: {
 								var eq = sq[i].EquipmentInstance;
@@ -351,7 +351,7 @@ namespace ElectronicObserver.Window {
 									sb.AppendFormat( "[{0}/{1}]", sq[i].AircraftCurrent, sq[i].AircraftMax );
 							} break;
 						case 2:
-							sb.Append( "(" + GeneralRes.LBASRedeployment + ")" );
+							sb.Append( "(" + GeneralRes.BaseRedeployment + ")" );
 							break;
 					}
 				}

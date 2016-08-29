@@ -204,7 +204,7 @@
   <data name="LayoutOpen" xml:space="preserve">
     <value>別のファイルからロード(&amp;O)...</value>
   </data>
-  <data name="LBAS" xml:space="preserve">
+  <data name="BaseAirCorps" xml:space="preserve">
     <value>基地航空隊(&amp;S)</value>
   </data>
   <data name="Load" xml:space="preserve">

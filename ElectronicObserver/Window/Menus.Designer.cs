@@ -115,6 +115,15 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 基地航空隊(&amp;S).
+        /// </summary>
+        internal static string BaseAirCorps {
+            get {
+                return ResourceManager.GetString("BaseAirCorps", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 戦闘(&amp;B).
         /// </summary>
         internal static string Battle {
@@ -318,15 +327,6 @@ namespace ElectronicObserver.Window {
         internal static string LayoutOpen {
             get {
                 return ResourceManager.GetString("LayoutOpen", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 基地航空隊(&amp;S).
-        /// </summary>
-        internal static string LBAS {
-            get {
-                return ResourceManager.GetString("LBAS", resourceCulture);
             }
         }
         

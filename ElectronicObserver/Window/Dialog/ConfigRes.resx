@@ -166,7 +166,7 @@
     <value>ブラウザ2</value>
   </data>
   <data name="BrowserVersion" xml:space="preserve">
-    <value>ブラウザバージョン</value>
+    <value>ブラウザバージョン：</value>
   </data>
   <data name="BrowserVersionHint" xml:space="preserve">
     <value>内蔵ブラウザのバージョンを指定します。
@@ -412,7 +412,7 @@ direct にするとパフォーマンスが向上する可能性があります�
   <data name="SaveProxyScriptDialog" xml:space="preserve">
     <value>自動プロキシ設定スクリプトを保存する</value>
   </data>
-  <data name="SaveRecievedData" xml:space="preserve">
+  <data name="SaveReceivedData" xml:space="preserve">
     <value>通信内容を保存する</value>
   </data>
   <data name="SaveSWF" xml:space="preserve">
@@ -648,5 +648,101 @@ direct にするとパフォーマンスが向上する可能性があります�
   </data>
   <data name="AnchorageRepairFinish" xml:space="preserve">
     <value>泊地修理</value>
+  </data>
+  <data name="AlertOnError" xml:space="preserve">
+    <value>エラー音を鳴らす</value>
+  </data>
+  <data name="AllowUserToSortRows" xml:space="preserve">
+    <value>ソート順を変更可能にする</value>
+  </data>
+  <data name="ApplyRegistry" xml:space="preserve">
+    <value>適用</value>
+  </data>
+  <data name="CandidateDisplayCount" xml:space="preserve">
+    <value>一度に表示する候補数：</value>
+  </data>
+  <data name="DeleteRegistry" xml:space="preserve">
+    <value>削除</value>
+  </data>
+  <data name="Dock" xml:space="preserve">
+    <value>入渠</value>
+  </data>
+  <data name="EnableDebugMenu" xml:space="preserve">
+    <value>デバッグ メニューを有効にする</value>
+  </data>
+  <data name="EquipmentLevelVisibility" xml:space="preserve">
+    <value>装備情報表示：</value>
+  </data>
+  <data name="EquipmentLevelVisibility_Both" xml:space="preserve">
+    <value>両方表示</value>
+  </data>
+  <data name="EquipmentLevelVisibility_Hidden" xml:space="preserve">
+    <value>非表示</value>
+  </data>
+  <data name="EquipmentLevelVisibility_ImprovOnly" xml:space="preserve">
+    <value>改修レベルのみ</value>
+  </data>
+  <data name="EquipmentLevelVisibility_ImprovPrio" xml:space="preserve">
+    <value>改修レベル優先</value>
+  </data>
+  <data name="EquipmentLevelVisibility_ProfOnly" xml:space="preserve">
+    <value>艦載機熟練度のみ</value>
+  </data>
+  <data name="EquipmentLevelVisibility_ProfPrio" xml:space="preserve">
+    <value>艦載機熟練度優先</value>
+  </data>
+  <data name="HiddenJSON" xml:space="preserve">
+    <value>(非表示です。デバッグメニューを有効にしてください。)</value>
+  </data>
+  <data name="Json_AutoUpdate" xml:space="preserve">
+    <value>自動更新する</value>
+  </data>
+  <data name="Json_AutoUpdateHint" xml:space="preserve">
+    <value>API の送受信時に、自動で表示を更新するかを指定します。\r\n多少重くなる可能性があります。\r\n</value>
+  </data>
+  <data name="ProgressAutoSaving" xml:space="preserve">
+    <value>任務進捗の自動保存：</value>
+  </data>
+  <data name="ProgressAutoSaving_Daily" xml:space="preserve">
+    <value>1日ごと</value>
+  </data>
+  <data name="ProgressAutoSaving_Disable" xml:space="preserve">
+    <value>しない</value>
+  </data>
+  <data name="ProgressAutoSaving_Hourly" xml:space="preserve">
+    <value>1時間ごと</value>
+  </data>
+  <data name="RecordAutoSaving" xml:space="preserve">
+    <value>レコードの自動保存：</value>
+  </data>
+  <data name="ShipNameSortMethod" xml:space="preserve">
+    <value>艦名列のソート順：</value>
+  </data>
+  <data name="ShipNameSortMethod_Alphabet" xml:space="preserve">
+    <value>あいうえお順</value>
+  </data>
+  <data name="ShipNameSortMethod_Number" xml:space="preserve">
+    <value>図鑑番号順</value>
+  </data>
+  <data name="ToolMenuAlignment_Bottom" xml:space="preserve">
+    <value>下</value>
+  </data>
+  <data name="ToolMenuAlignment_Invisible" xml:space="preserve">
+    <value>非表示</value>
+  </data>
+  <data name="ToolMenuAlignment_Left" xml:space="preserve">
+    <value>左</value>
+  </data>
+  <data name="ToolMenuAlignment_Right" xml:space="preserve">
+    <value>右</value>
+  </data>
+  <data name="ToolMenuAlignment_Top" xml:space="preserve">
+    <value>上</value>
+  </data>
+  <data name="ToolMenuDockStyle" xml:space="preserve">
+    <value>ツールメニューの配置：</value>
+  </data>
+  <data name="UI_BarColorMorphing" xml:space="preserve">
+    <value>バーの色を滑らかに変化させる</value>
   </data>
 </root>

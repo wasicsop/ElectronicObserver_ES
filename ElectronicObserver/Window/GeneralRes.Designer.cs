@@ -323,6 +323,87 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 基地航空隊.
+        /// </summary>
+        internal static string Base {
+            get {
+                return ResourceManager.GetString("Base", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to #{1}.
+        /// </summary>
+        internal static string BaseAirCorps {
+            get {
+                return ResourceManager.GetString("BaseAirCorps", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (未開放)\r\n.
+        /// </summary>
+        internal static string BaseNotOpen {
+            get {
+                return ResourceManager.GetString("BaseNotOpen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 配置転換中.
+        /// </summary>
+        internal static string BaseRedeployment {
+            get {
+                return ResourceManager.GetString("BaseRedeployment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 配置転換中 (開始時刻: {0})\r\n.
+        /// </summary>
+        internal static string BaseRelocate {
+            get {
+                return ResourceManager.GetString("BaseRelocate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 確保: {0}\r\n優勢: {1}\r\n均衡: {2}\r\n劣勢: {3}\r\n.
+        /// </summary>
+        internal static string BaseTooltip {
+            get {
+                return ResourceManager.GetString("BaseTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (未配属).
+        /// </summary>
+        internal static string BaseUnassigned {
+            get {
+                return ResourceManager.GetString("BaseUnassigned", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (消息不明).
+        /// </summary>
+        internal static string BaseUnknown {
+            get {
+                return ResourceManager.GetString("BaseUnknown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} 回目.
+        /// </summary>
+        internal static string BaseWave {
+            get {
+                return ResourceManager.GetString("BaseWave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 戦闘.
         /// </summary>
         internal static string Battle {
@@ -475,6 +556,15 @@ namespace ElectronicObserver.Window {
         internal static string Clear {
             get {
                 return ResourceManager.GetString("Clear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 索敵.
+        /// </summary>
+        internal static string ClearBaseAirAttack {
+            get {
+                return ResourceManager.GetString("ClearBaseAirAttack", resourceCulture);
             }
         }
         
@@ -708,6 +798,105 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 《航空戦》.
+        /// </summary>
+        internal static string DetailAirBattle {
+            get {
+                return ResourceManager.GetString("DetailAirBattle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 《第一次航空戦》.
+        /// </summary>
+        internal static string DetailAirBattle1 {
+            get {
+                return ResourceManager.GetString("DetailAirBattle1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 《第二次航空戦》.
+        /// </summary>
+        internal static string DetailAirBattle2 {
+            get {
+                return ResourceManager.GetString("DetailAirBattle2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 《空襲戦》.
+        /// </summary>
+        internal static string DetailAirRaid {
+            get {
+                return ResourceManager.GetString("DetailAirRaid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 《夜戦》.
+        /// </summary>
+        internal static string DetailNightBattle {
+            get {
+                return ResourceManager.GetString("DetailNightBattle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 《開幕対潜》.
+        /// </summary>
+        internal static string DetailOpeningASW {
+            get {
+                return ResourceManager.GetString("DetailOpeningASW", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 《開幕雷撃》.
+        /// </summary>
+        internal static string DetailOpeningTorpedo {
+            get {
+                return ResourceManager.GetString("DetailOpeningTorpedo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 《第一次砲撃戦》.
+        /// </summary>
+        internal static string DetailShelling1 {
+            get {
+                return ResourceManager.GetString("DetailShelling1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 《第二次砲撃戦》.
+        /// </summary>
+        internal static string DetailShelling2 {
+            get {
+                return ResourceManager.GetString("DetailShelling2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 《第三次砲撃戦》.
+        /// </summary>
+        internal static string DetailShelling3 {
+            get {
+                return ResourceManager.GetString("DetailShelling3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 《雷撃戦》.
+        /// </summary>
+        internal static string DetailTorpedo {
+            get {
+                return ResourceManager.GetString("DetailTorpedo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to [開発失敗].
         /// </summary>
         internal static string DevelopmentFailed {
@@ -785,6 +974,15 @@ namespace ElectronicObserver.Window {
         internal static string EndNode {
             get {
                 return ResourceManager.GetString("EndNode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 敵軍.
+        /// </summary>
+        internal static string EnemyAir {
+            get {
+                return ResourceManager.GetString("EnemyAir", resourceCulture);
             }
         }
         
@@ -1042,6 +1240,15 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 自軍.
+        /// </summary>
+        internal static string FriendlyAir {
+            get {
+                return ResourceManager.GetString("FriendlyAir", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 自軍艦隊.
         /// </summary>
         internal static string FriendlyFleet {
@@ -1184,69 +1391,6 @@ namespace ElectronicObserver.Window {
         internal static string KancolleMustBeLoaded {
             get {
                 return ResourceManager.GetString("KancolleMustBeLoaded", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 基地航空隊.
-        /// </summary>
-        internal static string LBAS {
-            get {
-                return ResourceManager.GetString("LBAS", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to (未開放)\r\n.
-        /// </summary>
-        internal static string LBASNotOpen {
-            get {
-                return ResourceManager.GetString("LBASNotOpen", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 配置転換中.
-        /// </summary>
-        internal static string LBASRedeployment {
-            get {
-                return ResourceManager.GetString("LBASRedeployment", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 配置転換中 (開始時刻: {0})\r\n.
-        /// </summary>
-        internal static string LBASRelocate {
-            get {
-                return ResourceManager.GetString("LBASRelocate", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 確保: {0}\r\n優勢: {1}\r\n均衡: {2}\r\n劣勢: {3}\r\n.
-        /// </summary>
-        internal static string LBASTooltip {
-            get {
-                return ResourceManager.GetString("LBASTooltip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to (未配属).
-        /// </summary>
-        internal static string LBASUnassigned {
-            get {
-                return ResourceManager.GetString("LBASUnassigned", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to (消息不明).
-        /// </summary>
-        internal static string LBASUnknown {
-            get {
-                return ResourceManager.GetString("LBASUnknown", resourceCulture);
             }
         }
         

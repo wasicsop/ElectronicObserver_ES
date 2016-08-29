@@ -148,7 +148,7 @@ Depending on environment, this may cause problems, in this case please disable.<
     <value>Arsenal</value>
   </data>
   <data name="AutoUpdate" xml:space="preserve">
-    <value>Update automatically</value>
+    <value>Refresh automatically</value>
   </data>
   <data name="AutoUpdateHint" xml:space="preserve">
     <value>Updates ship data automatically.</value>
@@ -166,7 +166,7 @@ Depending on environment, this may cause problems, in this case please disable.<
     <value>Browser 2</value>
   </data>
   <data name="BrowserVersion" xml:space="preserve">
-    <value>Browser version</value>
+    <value>Browser version:</value>
   </data>
   <data name="BrowserVersionHint" xml:space="preserve">
     <value>Sets internal browser version.
@@ -177,7 +177,7 @@ Changing the version may change functionality.</value>
     <value>Cancel</value>
   </data>
   <data name="CheckUpdate" xml:space="preserve">
-    <value>Check For Updates</value>
+    <value>Check for update</value>
   </data>
   <data name="ClearingRegistry" xml:space="preserve">
     <value>Clearing registry settings. Are you sure?
@@ -286,7 +286,7 @@ Direct mode may improve performance.</value>
     <value>Search for folder</value>
   </data>
   <data name="GPURendering" xml:space="preserve">
-    <value>GPU Rendering</value>
+    <value>Enable GPU rendering</value>
   </data>
   <data name="GPURenderingHint" xml:space="preserve">
     <value>Enables GPU rendering for the internal browser.
@@ -320,7 +320,7 @@ May increase speed depending on environment.</value>
     <value>Main font</value>
   </data>
   <data name="MayIncreaseSize" xml:space="preserve">
-    <value>＊May increase size.</value>
+    <value>＊May increase size</value>
   </data>
   <data name="Mode" xml:space="preserve">
     <value>Mode</value>
@@ -348,10 +348,10 @@ Disabling may save space.</value>
     <value>Old 2-5</value>
   </data>
   <data name="OneTimeOther" xml:space="preserve">
-    <value>One-time, other</value>
+    <value>Once, other</value>
   </data>
   <data name="OutputProxyScript" xml:space="preserve">
-    <value>Save automatic proxy settings...</value>
+    <value>Save PAC settings...</value>
   </data>
   <data name="Port" xml:space="preserve">
     <value>Port</value>
@@ -402,7 +402,7 @@ Reports are by default saved in the ErrorReport subfolder.</value>
     <value>Save error reports</value>
   </data>
   <data name="SaveLocation" xml:space="preserve">
-    <value>Save Location</value>
+    <value>Save location</value>
   </data>
   <data name="SaveLog" xml:space="preserve">
     <value>Save logs to file</value>
@@ -413,8 +413,8 @@ Reports are by default saved in the ErrorReport subfolder.</value>
   <data name="SaveProxyScriptDialog" xml:space="preserve">
     <value>Saving automatic proxy script</value>
   </data>
-  <data name="SaveRecievedData" xml:space="preserve">
-    <value>Save all recieved data.</value>
+  <data name="SaveReceivedData" xml:space="preserve">
+    <value>Save all received data</value>
   </data>
   <data name="SaveSWF" xml:space="preserve">
     <value>Save SWF file.</value>
@@ -526,7 +526,7 @@ More details, as well as an access key, can be found on the site below. (opens y
     <value>A restart will be required for theme changes to take full effect.</value>
   </data>
   <data name="AirSuperiorityMethod" xml:space="preserve">
-    <value>Air Superiority:</value>
+    <value>Plane Proficiency:</value>
   </data>
   <data name="DisplayEquipLevels" xml:space="preserve">
     <value>Display proficiency and improvement level</value>
@@ -536,10 +536,10 @@ More details, as well as an access key, can be found on the site below. (opens y
 </value>
   </data>
   <data name="IgnorePlaneXP" xml:space="preserve">
-    <value>Ignore Proficiency</value>
+    <value>Disable</value>
   </data>
   <data name="UsingPlaneXPBeta" xml:space="preserve">
-    <value>w/ Proficiency (Beta)</value>
+    <value>Enable</value>
   </data>
   <data name="Life_Clock" xml:space="preserve">
     <value>Time display:</value>
@@ -548,10 +548,10 @@ More details, as well as an access key, can be found on the site below. (opens y
     <value>Current time</value>
   </data>
   <data name="Life_ClockFormat_Excercise" xml:space="preserve">
-    <value>Until PVP Reset</value>
+    <value>Until excercise reset</value>
   </data>
   <data name="Life_ClockFormat_Quest" xml:space="preserve">
-    <value>Until Quest Reset</value>
+    <value>Until quest reset</value>
   </data>
   <data name="RecordAutoSaving_Daily" xml:space="preserve">
     <value>Daily</value>
@@ -651,5 +651,102 @@ More details, as well as an access key, can be found on the site below. (opens y
   </data>
   <data name="AnchorageRepairFinish" xml:space="preserve">
     <value>Anchorage repair</value>
+  </data>
+  <data name="AlertOnError" xml:space="preserve">
+    <value>Enable error sound</value>
+  </data>
+  <data name="AllowUserToSortRows" xml:space="preserve">
+    <value>Allow manual sorting</value>
+  </data>
+  <data name="ApplyRegistry" xml:space="preserve">
+    <value>Apply</value>
+  </data>
+  <data name="CandidateDisplayCount" xml:space="preserve">
+    <value>Enemy form to display:</value>
+  </data>
+  <data name="DeleteRegistry" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Dock" xml:space="preserve">
+    <value>Dock</value>
+  </data>
+  <data name="EnableDebugMenu" xml:space="preserve">
+    <value>Enable Debug menu</value>
+  </data>
+  <data name="EquipmentLevelVisibility" xml:space="preserve">
+    <value>Equipment level display:</value>
+  </data>
+  <data name="EquipmentLevelVisibility_Both" xml:space="preserve">
+    <value>Both</value>
+  </data>
+  <data name="EquipmentLevelVisibility_Hidden" xml:space="preserve">
+    <value>Invisible</value>
+  </data>
+  <data name="EquipmentLevelVisibility_ImprovOnly" xml:space="preserve">
+    <value>Improvement only</value>
+  </data>
+  <data name="EquipmentLevelVisibility_ImprovPrio" xml:space="preserve">
+    <value>Prioritize Improvement</value>
+  </data>
+  <data name="EquipmentLevelVisibility_ProfOnly" xml:space="preserve">
+    <value>Proficiency only</value>
+  </data>
+  <data name="EquipmentLevelVisibility_ProfPrio" xml:space="preserve">
+    <value>Prioritize Proficiency</value>
+  </data>
+  <data name="HiddenJSON" xml:space="preserve">
+    <value>(Enable Debug menu to view the settings)</value>
+  </data>
+  <data name="Json_AutoUpdate" xml:space="preserve">
+    <value>Refresh automatically</value>
+  </data>
+  <data name="Json_AutoUpdateHint" xml:space="preserve">
+    <value>Automatically update the displayed JSON data on API communication.
+Might be heavy.</value>
+  </data>
+  <data name="ProgressAutoSaving" xml:space="preserve">
+    <value>Save quest progress:</value>
+  </data>
+  <data name="ProgressAutoSaving_Daily" xml:space="preserve">
+    <value>Every day</value>
+  </data>
+  <data name="ProgressAutoSaving_Disable" xml:space="preserve">
+    <value>Disable</value>
+  </data>
+  <data name="ProgressAutoSaving_Hourly" xml:space="preserve">
+    <value>Every hour</value>
+  </data>
+  <data name="RecordAutoSaving" xml:space="preserve">
+    <value>Save record:</value>
+  </data>
+  <data name="ShipNameSortMethod" xml:space="preserve">
+    <value>Ship name sort order:</value>
+  </data>
+  <data name="ShipNameSortMethod_Alphabet" xml:space="preserve">
+    <value>Alphabet</value>
+  </data>
+  <data name="ShipNameSortMethod_Number" xml:space="preserve">
+    <value>Library number</value>
+  </data>
+  <data name="ToolMenuAlignment_Bottom" xml:space="preserve">
+    <value>Bottom</value>
+  </data>
+  <data name="ToolMenuAlignment_Invisible" xml:space="preserve">
+    <value>Invisible</value>
+  </data>
+  <data name="ToolMenuAlignment_Left" xml:space="preserve">
+    <value>Left</value>
+  </data>
+  <data name="ToolMenuAlignment_Right" xml:space="preserve">
+    <value>Right</value>
+  </data>
+  <data name="ToolMenuAlignment_Top" xml:space="preserve">
+    <value>Top</value>
+  </data>
+  <data name="ToolMenuDockStyle" xml:space="preserve">
+    <value>Tool menu alignment:</value>
+  </data>
+  <data name="UI_BarColorMorphing" xml:space="preserve">
+    <value>Enable smooth color change on bar</value>
   </data>
 </root>

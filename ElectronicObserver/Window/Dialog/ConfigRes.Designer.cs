@@ -88,6 +88,24 @@ namespace ElectronicObserver.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to エラー音を鳴らす.
+        /// </summary>
+        internal static string AlertOnError {
+            get {
+                return ResourceManager.GetString("AlertOnError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ソート順を変更可能にする.
+        /// </summary>
+        internal static string AllowUserToSortRows {
+            get {
+                return ResourceManager.GetString("AllowUserToSortRows", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 泊地修理.
         /// </summary>
         internal static string AnchorageRepairFinish {
@@ -130,6 +148,15 @@ namespace ElectronicObserver.Window.Dialog {
         internal static string ApplyonOK {
             get {
                 return ResourceManager.GetString("ApplyonOK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 適用.
+        /// </summary>
+        internal static string ApplyRegistry {
+            get {
+                return ResourceManager.GetString("ApplyRegistry", resourceCulture);
             }
         }
         
@@ -307,7 +334,7 @@ namespace ElectronicObserver.Window.Dialog {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ブラウザバージョン.
+        ///   Looks up a localized string similar to ブラウザバージョン：.
         /// </summary>
         internal static string BrowserVersion {
             get {
@@ -332,6 +359,15 @@ namespace ElectronicObserver.Window.Dialog {
         internal static string Cancel {
             get {
                 return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 一度に表示する候補数：.
+        /// </summary>
+        internal static string CandidateDisplayCount {
+            get {
+                return ResourceManager.GetString("CandidateDisplayCount", resourceCulture);
             }
         }
         
@@ -491,6 +527,15 @@ namespace ElectronicObserver.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 削除.
+        /// </summary>
+        internal static string DeleteRegistry {
+            get {
+                return ResourceManager.GetString("DeleteRegistry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to レジストリを削除します。.
         /// </summary>
         internal static string DeleteRegistryHint {
@@ -519,6 +564,15 @@ namespace ElectronicObserver.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 入渠.
+        /// </summary>
+        internal static string Dock {
+            get {
+                return ResourceManager.GetString("Dock", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 入渠完了.
         /// </summary>
         internal static string DockEnd {
@@ -533,6 +587,15 @@ namespace ElectronicObserver.Window.Dialog {
         internal static string EnableBrowser {
             get {
                 return ResourceManager.GetString("EnableBrowser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to デバッグ メニューを有効にする.
+        /// </summary>
+        internal static string EnableDebugMenu {
+            get {
+                return ResourceManager.GetString("EnableDebugMenu", resourceCulture);
             }
         }
         
@@ -553,6 +616,69 @@ namespace ElectronicObserver.Window.Dialog {
         internal static string Enocding {
             get {
                 return ResourceManager.GetString("Enocding", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 装備情報表示：.
+        /// </summary>
+        internal static string EquipmentLevelVisibility {
+            get {
+                return ResourceManager.GetString("EquipmentLevelVisibility", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 両方表示.
+        /// </summary>
+        internal static string EquipmentLevelVisibility_Both {
+            get {
+                return ResourceManager.GetString("EquipmentLevelVisibility_Both", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 非表示.
+        /// </summary>
+        internal static string EquipmentLevelVisibility_Hidden {
+            get {
+                return ResourceManager.GetString("EquipmentLevelVisibility_Hidden", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 改修レベルのみ.
+        /// </summary>
+        internal static string EquipmentLevelVisibility_ImprovOnly {
+            get {
+                return ResourceManager.GetString("EquipmentLevelVisibility_ImprovOnly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 改修レベル優先.
+        /// </summary>
+        internal static string EquipmentLevelVisibility_ImprovPrio {
+            get {
+                return ResourceManager.GetString("EquipmentLevelVisibility_ImprovPrio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 艦載機熟練度のみ.
+        /// </summary>
+        internal static string EquipmentLevelVisibility_ProfOnly {
+            get {
+                return ResourceManager.GetString("EquipmentLevelVisibility_ProfOnly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 艦載機熟練度優先.
+        /// </summary>
+        internal static string EquipmentLevelVisibility_ProfPrio {
+            get {
+                return ResourceManager.GetString("EquipmentLevelVisibility_ProfPrio", resourceCulture);
             }
         }
         
@@ -767,6 +893,15 @@ namespace ElectronicObserver.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to (非表示です。デバッグメニューを有効にしてください。).
+        /// </summary>
+        internal static string HiddenJSON {
+            get {
+                return ResourceManager.GetString("HiddenJSON", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 熟練度を無視.
         /// </summary>
         internal static string IgnorePlaneXP {
@@ -781,6 +916,24 @@ namespace ElectronicObserver.Window.Dialog {
         internal static string IsScrollable {
             get {
                 return ResourceManager.GetString("IsScrollable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 自動更新する.
+        /// </summary>
+        internal static string Json_AutoUpdate {
+            get {
+                return ResourceManager.GetString("Json_AutoUpdate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to API の送受信時に、自動で表示を更新するかを指定します。\r\n多少重くなる可能性があります。\r\n.
+        /// </summary>
+        internal static string Json_AutoUpdateHint {
+            get {
+                return ResourceManager.GetString("Json_AutoUpdateHint", resourceCulture);
             }
         }
         
@@ -1065,6 +1218,42 @@ namespace ElectronicObserver.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 任務進捗の自動保存：.
+        /// </summary>
+        internal static string ProgressAutoSaving {
+            get {
+                return ResourceManager.GetString("ProgressAutoSaving", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1日ごと.
+        /// </summary>
+        internal static string ProgressAutoSaving_Daily {
+            get {
+                return ResourceManager.GetString("ProgressAutoSaving_Daily", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to しない.
+        /// </summary>
+        internal static string ProgressAutoSaving_Disable {
+            get {
+                return ResourceManager.GetString("ProgressAutoSaving_Disable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1時間ごと.
+        /// </summary>
+        internal static string ProgressAutoSaving_Hourly {
+            get {
+                return ResourceManager.GetString("ProgressAutoSaving_Hourly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 他のツール・ブラウザで利用しているポート番号を指定します。.
         /// </summary>
         internal static string ProxyPort {
@@ -1108,6 +1297,15 @@ namespace ElectronicObserver.Window.Dialog {
         internal static string Quests {
             get {
                 return ResourceManager.GetString("Quests", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to レコードの自動保存：.
+        /// </summary>
+        internal static string RecordAutoSaving {
+            get {
+                return ResourceManager.GetString("RecordAutoSaving", resourceCulture);
             }
         }
         
@@ -1253,9 +1451,9 @@ namespace ElectronicObserver.Window.Dialog {
         /// <summary>
         ///   Looks up a localized string similar to 通信内容を保存する.
         /// </summary>
-        internal static string SaveRecievedData {
+        internal static string SaveReceivedData {
             get {
-                return ResourceManager.GetString("SaveRecievedData", resourceCulture);
+                return ResourceManager.GetString("SaveReceivedData", resourceCulture);
             }
         }
         
@@ -1319,6 +1517,33 @@ namespace ElectronicObserver.Window.Dialog {
         internal static string Settings {
             get {
                 return ResourceManager.GetString("Settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 艦名列のソート順：.
+        /// </summary>
+        internal static string ShipNameSortMethod {
+            get {
+                return ResourceManager.GetString("ShipNameSortMethod", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to あいうえお順.
+        /// </summary>
+        internal static string ShipNameSortMethod_Alphabet {
+            get {
+                return ResourceManager.GetString("ShipNameSortMethod_Alphabet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 図鑑番号順.
+        /// </summary>
+        internal static string ShipNameSortMethod_Number {
+            get {
+                return ResourceManager.GetString("ShipNameSortMethod_Number", resourceCulture);
             }
         }
         
@@ -1487,11 +1712,74 @@ namespace ElectronicObserver.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 下.
+        /// </summary>
+        internal static string ToolMenuAlignment_Bottom {
+            get {
+                return ResourceManager.GetString("ToolMenuAlignment_Bottom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 非表示.
+        /// </summary>
+        internal static string ToolMenuAlignment_Invisible {
+            get {
+                return ResourceManager.GetString("ToolMenuAlignment_Invisible", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 左.
+        /// </summary>
+        internal static string ToolMenuAlignment_Left {
+            get {
+                return ResourceManager.GetString("ToolMenuAlignment_Left", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 右.
+        /// </summary>
+        internal static string ToolMenuAlignment_Right {
+            get {
+                return ResourceManager.GetString("ToolMenuAlignment_Right", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 上.
+        /// </summary>
+        internal static string ToolMenuAlignment_Top {
+            get {
+                return ResourceManager.GetString("ToolMenuAlignment_Top", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ツールメニューの配置：.
+        /// </summary>
+        internal static string ToolMenuDockStyle {
+            get {
+                return ResourceManager.GetString("ToolMenuDockStyle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 艦これに接続してから操作してください。.
         /// </summary>
         internal static string TryAgainAfterConnect {
             get {
                 return ResourceManager.GetString("TryAgainAfterConnect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to バーの色を滑らかに変化させる.
+        /// </summary>
+        internal static string UI_BarColorMorphing {
+            get {
+                return ResourceManager.GetString("UI_BarColorMorphing", resourceCulture);
             }
         }
         
