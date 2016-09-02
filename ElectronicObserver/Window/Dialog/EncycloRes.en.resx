@@ -181,7 +181,7 @@
     <value>HP</value>
   </data>
   <data name="Initial" xml:space="preserve">
-    <value>Initial</value>
+    <value>Base</value>
   </data>
   <data name="LandBase" xml:space="preserve">
     <value>Land Base</value>
@@ -196,7 +196,7 @@
     <value>Luck</value>
   </data>
   <data name="Maximum" xml:space="preserve">
-    <value>Maximum</value>
+    <value>Max</value>
   </data>
   <data name="Modernization" xml:space="preserve">
     <value>Mod</value>

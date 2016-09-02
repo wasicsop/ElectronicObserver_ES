@@ -219,7 +219,7 @@ Add windows of your choosing using the "View" menu.</value>
     <value>Original site (bug reports, contact)</value>
   </data>
   <data name="SoftwareName" xml:space="preserve">
-    <value>Type 74 Electronic Observer </value>
+    <value>Electronic Observer </value>
   </data>
   <data name="StartupComplete" xml:space="preserve">
     <value>Startup complete.</value>
@@ -238,9 +238,6 @@ Add windows of your choosing using the "View" menu.</value>
   </data>
   <data name="UpdateConnectionFailed" xml:space="preserve">
     <value>Failed to process update data.</value>
-  </data>
-  <data name="Version" xml:space="preserve">
-    <value>2.1.8 [TL 2.0b]</value>
   </data>
   <data name="VersionCurrent" xml:space="preserve">
     <value>You are currently using the latest version.</value>

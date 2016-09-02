@@ -388,7 +388,7 @@
 			this.TableConsumption.Name = "TableConsumption";
 			this.TableConsumption.RowCount = 1;
 			this.TableConsumption.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-			this.TableConsumption.Size = new System.Drawing.Size(170, 22);
+			this.TableConsumption.Size = new System.Drawing.Size(254, 22);
 			this.TableConsumption.TabIndex = 16;
 			this.TableConsumption.CellPaint += new System.Windows.Forms.TableLayoutCellPaintEventHandler(this.TableConsumption_CellPaint);
 			//
@@ -413,7 +413,7 @@
 			this.TableParameterSub.RowCount = 2;
 			this.TableParameterSub.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.TableParameterSub.RowStyles.Add(new System.Windows.Forms.RowStyle());
-			this.TableParameterSub.Size = new System.Drawing.Size(214, 44);
+			this.TableParameterSub.Size = new System.Drawing.Size(254, 44);
 			this.TableParameterSub.TabIndex = 15;
 			this.TableParameterSub.CellPaint += new System.Windows.Forms.TableLayoutCellPaintEventHandler(this.TableParameterSub_CellPaint);
 			//
@@ -543,7 +543,7 @@
 			this.TableParameterMain.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.TableParameterMain.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.TableParameterMain.RowStyles.Add(new System.Windows.Forms.RowStyle());
-			this.TableParameterMain.Size = new System.Drawing.Size(254, 227);
+			this.TableParameterMain.Size = new System.Drawing.Size(280, 227);
 			this.TableParameterMain.TabIndex = 5;
 			this.TableParameterMain.CellPaint += new System.Windows.Forms.TableLayoutCellPaintEventHandler(this.TableParameterMain_CellPaint);
 			//
@@ -1311,7 +1311,7 @@
 			//
 			// TitleLuck
 			//
-			this.TitleLuck.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+			this.TitleLuck.Anchor = System.Windows.Forms.AnchorStyles.Left;
 			this.TitleLuck.BackColor = System.Drawing.Color.Transparent;
 			this.TitleLuck.Location = new System.Drawing.Point(3, 208);
 			this.TitleLuck.Name = "TitleLuck";

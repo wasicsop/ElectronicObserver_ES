@@ -17,7 +17,7 @@ namespace ElectronicObserver {
 
 			if ( !mutex.WaitOne( 0, false ) ) {
 				// 多重起動禁止
-				MessageBox.Show( Properties.Resources.SoftwareName + Properties.Resources.Version + Properties.Resources.NoMultipleStart, Properties.Resources.SoftwareName + Properties.Resources.Version, MessageBoxButtons.OK, MessageBoxIcon.Error );
+				MessageBox.Show(Utility.SoftwareInformation.SoftwareNameEnglish + Properties.Resources.NoMultipleStart, Utility.SoftwareInformation.SoftwareNameEnglish, MessageBoxButtons.OK, MessageBoxIcon.Error );
 				return;
 			}
 
