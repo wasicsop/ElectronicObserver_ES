@@ -622,6 +622,42 @@ namespace ElectronicObserver.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to グラフィック ver..
+        /// </summary>
+        internal static string ResourceGraphicVersion {
+            get {
+                return ResourceManager.GetString("ResourceGraphicVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to リソース名.
+        /// </summary>
+        internal static string ResourceName {
+            get {
+                return ResourceManager.GetString("ResourceName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 母港ボイス ver..
+        /// </summary>
+        internal static string ResourcePortVoiceVersion {
+            get {
+                return ResourceManager.GetString("ResourcePortVoiceVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ボイス ver..
+        /// </summary>
+        internal static string ResourceVoiceVersion {
+            get {
+                return ResourceManager.GetString("ResourceVoiceVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to (右クリックで図鑑).
         /// </summary>
         internal static string RightClickForMore {

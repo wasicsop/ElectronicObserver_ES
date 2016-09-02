@@ -384,4 +384,16 @@ Maximum: {2} Steel / {3} Fuel
   <data name="TitleBomber" xml:space="preserve">
     <value>Bombing</value>
   </data>
+  <data name="ResourceGraphicVersion" xml:space="preserve">
+    <value>Graphic ver.</value>
+  </data>
+  <data name="ResourceName" xml:space="preserve">
+    <value>Resource name</value>
+  </data>
+  <data name="ResourcePortVoiceVersion" xml:space="preserve">
+    <value>Port voice ver.</value>
+  </data>
+  <data name="ResourceVoiceVersion" xml:space="preserve">
+    <value>Voice ver.</value>
+  </data>
 </root>

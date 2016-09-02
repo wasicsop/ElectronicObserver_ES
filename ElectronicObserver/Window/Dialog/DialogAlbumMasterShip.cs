@@ -264,7 +264,7 @@ namespace ElectronicObserver.Window.Dialog {
 			AlbumNo.Text = ship.AlbumNo.ToString();
 			ResourceName.Text = string.Format( "{0} ver. {1}/{2}/{3}",
 				ship.ResourceName, ship.ResourceGraphicVersion, ship.ResourceVoiceVersion, ship.ResourcePortVoiceVersion );
-			ToolTipInfo.SetToolTip( ResourceName, string.Format( "リソース名: {0}\r\nグラフィック ver. {1}\r\nボイス ver. {2}\r\n母港ボイス ver. {3}",
+			ToolTipInfo.SetToolTip( ResourceName, string.Format( EncycloRes.ResourceName + ": {0}\r\n" + EncycloRes.ResourceGraphicVersion + " {1}\r\n" + EncycloRes.ResourceVoiceVersion + " {2}\r\n" + EncycloRes.ResourcePortVoiceVersion + " {3}",
 				ship.ResourceName, ship.ResourceGraphicVersion, ship.ResourceVoiceVersion, ship.ResourcePortVoiceVersion ) );
 
 			ShipType.Text = ship.IsLandBase ? EncycloRes.LandBase : FormMain.Instance.Translator.GetTranslation(db.ShipTypes[ship.ShipType].Name, Utility.TranslationType.ShipTypes);

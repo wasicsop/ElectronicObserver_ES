@@ -378,4 +378,16 @@ HP1あたり: 鋼 {0:F2} / 燃 {1:F2}
   <data name="TitleBomber" xml:space="preserve">
     <value>爆装</value>
   </data>
+  <data name="ResourceGraphicVersion" xml:space="preserve">
+    <value>グラフィック ver.</value>
+  </data>
+  <data name="ResourceName" xml:space="preserve">
+    <value>リソース名</value>
+  </data>
+  <data name="ResourcePortVoiceVersion" xml:space="preserve">
+    <value>母港ボイス ver.</value>
+  </data>
+  <data name="ResourceVoiceVersion" xml:space="preserve">
+    <value>ボイス ver.</value>
+  </data>
 </root>
