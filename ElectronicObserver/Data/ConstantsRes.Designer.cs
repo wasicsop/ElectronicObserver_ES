@@ -295,6 +295,15 @@ namespace ElectronicObserver.Data {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 爆撃.
+        /// </summary>
+        internal static string BombingAttack {
+            get {
+                return ResourceManager.GetString("BombingAttack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ボス戦闘.
         /// </summary>
         internal static string BossNode {
@@ -480,6 +489,15 @@ namespace ElectronicObserver.Data {
         internal static string Echelon {
             get {
                 return ResourceManager.GetString("Echelon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 敵航空隊.
+        /// </summary>
+        internal static string EnemyAirSquadron {
+            get {
+                return ResourceManager.GetString("EnemyAirSquadron", resourceCulture);
             }
         }
         
@@ -1497,6 +1515,15 @@ namespace ElectronicObserver.Data {
         internal static string ThirdPatrolFormation {
             get {
                 return ResourceManager.GetString("ThirdPatrolFormation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 雷撃+爆撃.
+        /// </summary>
+        internal static string TorpBombingAttack {
+            get {
+                return ResourceManager.GetString("TorpBombingAttack", resourceCulture);
             }
         }
         

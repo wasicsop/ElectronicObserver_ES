@@ -123,20 +123,20 @@
             this.StripMenu_File_OutputCSVData});
 			this.StripMenu_File.Name = "StripMenu_File";
 			this.StripMenu_File.Size = new System.Drawing.Size(70, 20);
-			this.StripMenu_File.Text = "ファイル(&F)";
+			this.StripMenu_File.Text = EncycloRes.StripMenu_File;
 			//
 			// StripMenu_File_OutputCSVUser
 			//
 			this.StripMenu_File_OutputCSVUser.Name = "StripMenu_File_OutputCSVUser";
 			this.StripMenu_File_OutputCSVUser.Size = new System.Drawing.Size(203, 22);
-			this.StripMenu_File_OutputCSVUser.Text = "CSV出力(閲覧用)(&U)...";
+			this.StripMenu_File_OutputCSVUser.Text = EncycloRes.OutputCSVUser;
 			this.StripMenu_File_OutputCSVUser.Click += new System.EventHandler(this.StripMenu_File_OutputCSVUser_Click);
 			//
 			// StripMenu_File_OutputCSVData
 			//
 			this.StripMenu_File_OutputCSVData.Name = "StripMenu_File_OutputCSVData";
 			this.StripMenu_File_OutputCSVData.Size = new System.Drawing.Size(203, 22);
-			this.StripMenu_File_OutputCSVData.Text = "CSV出力(データ用)(&D)...";
+			this.StripMenu_File_OutputCSVData.Text = EncycloRes.OutputCSVData;
 			this.StripMenu_File_OutputCSVData.Click += new System.EventHandler(this.StripMenu_File_OutputCSVData_Click);
 			//
 			// splitContainer1
@@ -224,7 +224,7 @@
 			// EquipmentView_Type
 			//
 			this.EquipmentView_Type.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-			this.EquipmentView_Type.HeaderText = "装備種";
+			this.EquipmentView_Type.HeaderText = EncycloRes.EquipType;
 			this.EquipmentView_Type.Name = "EquipmentView_Type";
 			this.EquipmentView_Type.ReadOnly = true;
 			this.EquipmentView_Type.Width = 75;
@@ -232,7 +232,7 @@
 			// EquipmentView_Name
 			//
 			this.EquipmentView_Name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.EquipmentView_Name.HeaderText = "装備名";
+			this.EquipmentView_Name.HeaderText = EncycloRes.EquipName;
 			this.EquipmentView_Name.Name = "EquipmentView_Name";
 			this.EquipmentView_Name.ReadOnly = true;
 			//
@@ -287,7 +287,7 @@
 			this.TitleAircraftDistance.Name = "TitleAircraftDistance";
 			this.TitleAircraftDistance.Size = new System.Drawing.Size(92, 16);
 			this.TitleAircraftDistance.TabIndex = 27;
-			this.TitleAircraftDistance.Text = "戦闘行動半径";
+			this.TitleAircraftDistance.Text = EncycloRes.TitleAircraftDistance;
 			this.TitleAircraftDistance.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			//
 			// AircraftDistance
@@ -322,7 +322,7 @@
 			this.TitleAircraftCost.Name = "TitleAircraftCost";
 			this.TitleAircraftCost.Size = new System.Drawing.Size(69, 16);
 			this.TitleAircraftCost.TabIndex = 17;
-			this.TitleAircraftCost.Text = "配備コスト";
+			this.TitleAircraftCost.Text = EncycloRes.TitleAircraftCost;
 			this.TitleAircraftCost.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			//
 			// AlbumNo
@@ -340,11 +340,11 @@
 			//
 			this.imageLabel1.BackColor = System.Drawing.Color.Transparent;
 			this.imageLabel1.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
-			this.imageLabel1.Location = new System.Drawing.Point(124, 52);
+			this.imageLabel1.Location = new System.Drawing.Point(170, 52);
 			this.imageLabel1.Name = "imageLabel1";
 			this.imageLabel1.Size = new System.Drawing.Size(73, 16);
 			this.imageLabel1.TabIndex = 22;
-			this.imageLabel1.Text = "初期装備艦：";
+			this.imageLabel1.Text = EncycloRes.InitiallyEquippedShips;
 			//
 			// imageLabel2
 			//
@@ -354,7 +354,7 @@
 			this.imageLabel2.Name = "imageLabel2";
 			this.imageLabel2.Size = new System.Drawing.Size(54, 16);
 			this.imageLabel2.TabIndex = 24;
-			this.imageLabel2.Text = "図鑑番号:";
+			this.imageLabel2.Text = EncycloRes.EncyclopediaNumber;
 			//
 			// DefaultSlots
 			//
@@ -365,7 +365,7 @@
 			this.DefaultSlots.FormattingEnabled = true;
 			this.DefaultSlots.HorizontalScrollbar = true;
 			this.DefaultSlots.ItemHeight = 15;
-			this.DefaultSlots.Location = new System.Drawing.Point(124, 74);
+			this.DefaultSlots.Location = new System.Drawing.Point(170, 74);
 			this.DefaultSlots.Name = "DefaultSlots";
 			this.DefaultSlots.SelectionMode = System.Windows.Forms.SelectionMode.None;
 			this.DefaultSlots.Size = new System.Drawing.Size(153, 184);
@@ -524,7 +524,7 @@
 			this.imageLabel71.Name = "imageLabel71";
 			this.imageLabel71.Size = new System.Drawing.Size(38, 16);
 			this.imageLabel71.TabIndex = 16;
-			this.imageLabel71.Text = "レア";
+			this.imageLabel71.Text = EncycloRes.Rarity;
 			this.imageLabel71.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			//
 			// TitleRange
@@ -535,7 +535,7 @@
 			this.TitleRange.Name = "TitleRange";
 			this.TitleRange.Size = new System.Drawing.Size(44, 16);
 			this.TitleRange.TabIndex = 16;
-			this.TitleRange.Text = "射程";
+			this.TitleRange.Text = EncycloRes.Range;
 			this.TitleRange.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			//
 			// TitleSpeed
@@ -547,7 +547,7 @@
 			this.TitleSpeed.Name = "TitleSpeed";
 			this.TitleSpeed.Size = new System.Drawing.Size(44, 16);
 			this.TitleSpeed.TabIndex = 14;
-			this.TitleSpeed.Text = "速力";
+			this.TitleSpeed.Text = EncycloRes.Speed;
 			this.TitleSpeed.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			//
 			// TableArsenal
@@ -627,7 +627,7 @@
 			this.imageLabel59.Name = "imageLabel59";
 			this.imageLabel59.Size = new System.Drawing.Size(25, 16);
 			this.imageLabel59.TabIndex = 15;
-			this.imageLabel59.Text = "廃棄";
+			this.imageLabel59.Text = EncycloRes.EquipScrap;
 			this.imageLabel59.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			//
 			// imageLabel45
@@ -708,7 +708,7 @@
 			this.TitleBomber.Name = "TitleBomber";
 			this.TitleBomber.Size = new System.Drawing.Size(44, 14);
 			this.TitleBomber.TabIndex = 14;
-			this.TitleBomber.Text = "爆装";
+			this.TitleBomber.Text = EncycloRes.TitleBomber;
 			this.TitleBomber.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			//
 			// LOS
@@ -746,7 +746,7 @@
 			this.imageLabel14.Name = "imageLabel14";
 			this.imageLabel14.Size = new System.Drawing.Size(48, 16);
 			this.imageLabel14.TabIndex = 6;
-			this.imageLabel14.Text = "性能";
+			this.imageLabel14.Text = EncycloRes.EquipStats;
 			this.imageLabel14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			//
 			// TitleLOS
@@ -757,7 +757,7 @@
 			this.TitleLOS.Name = "TitleLOS";
 			this.TitleLOS.Size = new System.Drawing.Size(44, 16);
 			this.TitleLOS.TabIndex = 12;
-			this.TitleLOS.Text = "索敵";
+			this.TitleLOS.Text = EncycloRes.LoS;
 			this.TitleLOS.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			//
 			// Armor
@@ -816,7 +816,7 @@
 			this.TitleFirepower.Name = "TitleFirepower";
 			this.TitleFirepower.Size = new System.Drawing.Size(44, 16);
 			this.TitleFirepower.TabIndex = 6;
-			this.TitleFirepower.Text = "火力";
+			this.TitleFirepower.Text = EncycloRes.Firepower;
 			this.TitleFirepower.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			//
 			// TitleTorpedo
@@ -827,7 +827,7 @@
 			this.TitleTorpedo.Name = "TitleTorpedo";
 			this.TitleTorpedo.Size = new System.Drawing.Size(44, 16);
 			this.TitleTorpedo.TabIndex = 7;
-			this.TitleTorpedo.Text = "雷装";
+			this.TitleTorpedo.Text = EncycloRes.Torpedo;
 			this.TitleTorpedo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			//
 			// TitleAA
@@ -838,7 +838,7 @@
 			this.TitleAA.Name = "TitleAA";
 			this.TitleAA.Size = new System.Drawing.Size(44, 16);
 			this.TitleAA.TabIndex = 8;
-			this.TitleAA.Text = "対空";
+			this.TitleAA.Text = EncycloRes.AntiAir;
 			this.TitleAA.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			//
 			// TitleArmor
@@ -849,7 +849,7 @@
 			this.TitleArmor.Name = "TitleArmor";
 			this.TitleArmor.Size = new System.Drawing.Size(44, 16);
 			this.TitleArmor.TabIndex = 9;
-			this.TitleArmor.Text = "装甲";
+			this.TitleArmor.Text = EncycloRes.Armor;
 			this.TitleArmor.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			//
 			// TitleASW
@@ -860,7 +860,7 @@
 			this.TitleASW.Name = "TitleASW";
 			this.TitleASW.Size = new System.Drawing.Size(44, 16);
 			this.TitleASW.TabIndex = 10;
-			this.TitleASW.Text = "対潜";
+			this.TitleASW.Text = EncycloRes.ASW;
 			this.TitleASW.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			//
 			// TitleEvasion
@@ -871,7 +871,7 @@
 			this.TitleEvasion.Name = "TitleEvasion";
 			this.TitleEvasion.Size = new System.Drawing.Size(44, 16);
 			this.TitleEvasion.TabIndex = 11;
-			this.TitleEvasion.Text = "回避";
+			this.TitleEvasion.Text = EncycloRes.Evasion;
 			this.TitleEvasion.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			//
 			// Evasion
@@ -894,7 +894,7 @@
 			this.TitleAccuracy.Name = "TitleAccuracy";
 			this.TitleAccuracy.Size = new System.Drawing.Size(44, 14);
 			this.TitleAccuracy.TabIndex = 13;
-			this.TitleAccuracy.Text = "命中";
+			this.TitleAccuracy.Text = EncycloRes.Accuracy;
 			this.TitleAccuracy.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			//
 			// Accuracy
@@ -928,7 +928,7 @@
 			// SaveCSVDialog
 			//
 			this.SaveCSVDialog.Filter = "CSV|*.csv|File|*";
-			this.SaveCSVDialog.Title = "CSVに出力";
+			this.SaveCSVDialog.Title = EncycloRes.CSVTitle;
 			//
 			// DialogAlbumMasterEquipment
 			//
@@ -942,7 +942,7 @@
 			this.MinimumSize = new System.Drawing.Size(816, 518);
 			this.Name = "DialogAlbumMasterEquipment";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-			this.Text = "装備図鑑";
+			this.Text = EncycloRes.EquipmentEncyclopedia;
 			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.DialogAlbumMasterEquipment_FormClosed);
 			this.Load += new System.EventHandler(this.DialogAlbumMasterEquipment_Load);
 			this.menuStrip1.ResumeLayout(false);

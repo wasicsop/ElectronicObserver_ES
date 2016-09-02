@@ -633,4 +633,13 @@
   <data name="ResourceDamage" xml:space="preserve">
     <value>Resource</value>
   </data>
+  <data name="BombingAttack" xml:space="preserve">
+    <value>Bombing Attack</value>
+  </data>
+  <data name="EnemyAirSquadron" xml:space="preserve">
+    <value>Enemy Airstrike</value>
+  </data>
+  <data name="TorpBombingAttack" xml:space="preserve">
+    <value>Torpedo + Bombing Attack</value>
+  </data>
 </root>

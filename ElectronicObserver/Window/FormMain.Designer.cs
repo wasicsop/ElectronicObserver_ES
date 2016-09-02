@@ -192,7 +192,7 @@
 			//
 			this.StripMenu_File_Layout_Change.Name = "StripMenu_File_Layout_Change";
 			this.StripMenu_File_Layout_Change.Size = new System.Drawing.Size(203, 22);
-			this.StripMenu_File_Layout_Change.Text = "別のファイルへ保存(&C)...";
+			this.StripMenu_File_Layout_Change.Text = Menus.File_Layout_Change;
 			this.StripMenu_File_Layout_Change.Click += new System.EventHandler(this.StripMenu_File_Layout_Change_Click);
 			//
 			// toolStripSeparator9
@@ -205,7 +205,7 @@
 			this.StripMenu_File_Layout_LockLayout.CheckOnClick = true;
 			this.StripMenu_File_Layout_LockLayout.Name = "StripMenu_File_Layout_LockLayout";
 			this.StripMenu_File_Layout_LockLayout.Size = new System.Drawing.Size(203, 22);
-			this.StripMenu_File_Layout_LockLayout.Text = "レイアウトのロック(&T)";
+			this.StripMenu_File_Layout_LockLayout.Text = Menus.File_Layout_LockLayout;
 			this.StripMenu_File_Layout_LockLayout.Click += new System.EventHandler(this.StripMenu_File_Layout_LockLayout_Click);
 			//
 			// toolStripSeparator10
@@ -218,7 +218,7 @@
 			this.StripMenu_File_Layout_TopMost.CheckOnClick = true;
 			this.StripMenu_File_Layout_TopMost.Name = "StripMenu_File_Layout_TopMost";
 			this.StripMenu_File_Layout_TopMost.Size = new System.Drawing.Size(203, 22);
-			this.StripMenu_File_Layout_TopMost.Text = "最前面に表示(&M)";
+			this.StripMenu_File_Layout_TopMost.Text = Menus.File_Layout_TopMost;
 			this.StripMenu_File_Layout_TopMost.Click += new System.EventHandler(this.StripMenu_File_Layout_TopMost_Click);
 			//
 			// toolStripSeparator6

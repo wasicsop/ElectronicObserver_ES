@@ -745,4 +745,22 @@ direct にするとパフォーマンスが向上する可能性があります�
   <data name="UI_BarColorMorphing" xml:space="preserve">
     <value>バーの色を滑らかに変化させる</value>
   </data>
+  <data name="PowerEngagementForm" xml:space="preserve">
+    <value>威力表示交戦形態：</value>
+  </data>
+  <data name="PowerEngagementFormHint" xml:space="preserve">
+    <value>威力（戦闘における攻撃力）を計算する際の、基準となる交戦形態を設定します。</value>
+  </data>
+  <data name="PowerEngagementForm_GreenT" xml:space="preserve">
+    <value>T字有利</value>
+  </data>
+  <data name="PowerEngagementForm_Headon" xml:space="preserve">
+    <value>反航戦</value>
+  </data>
+  <data name="PowerEngagementForm_Paralel" xml:space="preserve">
+    <value>同航戦</value>
+  </data>
+  <data name="PowerEngagementForm_RedT" xml:space="preserve">
+    <value>T字不利</value>
+  </data>
 </root>

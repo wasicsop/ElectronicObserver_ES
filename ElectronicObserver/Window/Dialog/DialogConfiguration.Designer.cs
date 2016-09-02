@@ -800,15 +800,15 @@
 			this.Control_PowerEngagementForm.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.Control_PowerEngagementForm.FormattingEnabled = true;
 			this.Control_PowerEngagementForm.Items.AddRange(new object[] {
-            "同航戦",
-            "反航戦",
-            "T字有利",
-            "T字不利"});
+            ConfigRes.PowerEngagementForm_Paralel,
+            ConfigRes.PowerEngagementForm_Headon,
+            ConfigRes.PowerEngagementForm_GreenT,
+            ConfigRes.PowerEngagementForm_RedT});
 			this.Control_PowerEngagementForm.Location = new System.Drawing.Point(124, 64);
 			this.Control_PowerEngagementForm.Name = "Control_PowerEngagementForm";
 			this.Control_PowerEngagementForm.Size = new System.Drawing.Size(121, 23);
 			this.Control_PowerEngagementForm.TabIndex = 5;
-			this.ToolTipInfo.SetToolTip(this.Control_PowerEngagementForm, "威力（戦闘における攻撃力）を計算する際の、基準となる交戦形態を設定します。");
+			this.ToolTipInfo.SetToolTip(this.Control_PowerEngagementForm, ConfigRes.PowerEngagementFormHint);
 			//
 			// label29
 			//

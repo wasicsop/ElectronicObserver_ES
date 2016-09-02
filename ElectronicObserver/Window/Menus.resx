@@ -315,4 +315,13 @@
   <data name="WindowCapture" xml:space="preserve">
     <value>ウィンドウキャプチャ(&amp;W)</value>
   </data>
+  <data name="File_Layout_Change" xml:space="preserve">
+    <value>別のファイルへ保存(&amp;C)...</value>
+  </data>
+  <data name="File_Layout_LockLayout" xml:space="preserve">
+    <value>レイアウトのロック(&amp;T)</value>
+  </data>
+  <data name="File_Layout_TopMost" xml:space="preserve">
+    <value>最前面に表示(&amp;M)</value>
+  </data>
 </root>

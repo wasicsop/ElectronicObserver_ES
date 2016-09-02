@@ -104,7 +104,7 @@ namespace ElectronicObserver.Data.Battle {
 
 			StringBuilder builder = new StringBuilder();
 			if ( Attacker == null ) {
-				builder.Append( "敵航空隊 → " ).Append( Defender.NameWithClass );
+				builder.Append( ConstantsRes.EnemyAirSquadron + " → " ).Append( Defender.NameWithClass );
 				if ( 6 <= DefenderIndex && DefenderIndex < 12 )
 					builder.Append( " #" ).Append( DefenderIndex - 6 + 1 );
 
@@ -209,13 +209,13 @@ namespace ElectronicObserver.Data.Battle {
 		protected override string GetAttackKind() {
 			switch ( AttackType ) {
 				case 1:
-					return "雷撃";
+					return ConstantsRes.TorpedoAttack;
 				case 2:
-					return "爆撃";
+					return ConstantsRes.BombingAttack;
 				case 3:
-					return "雷撃+爆撃";
+					return ConstantsRes.TorpBombingAttack;
 				default:
-					return "不明";
+					return ConstantsRes.Unknown;
 			}
 		}
 

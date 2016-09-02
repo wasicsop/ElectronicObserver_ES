@@ -298,7 +298,7 @@ Maximum: {2} Steel / {3} Fuel
     <value>Failed to output equipment encyclopedia CSV file.</value>
   </data>
   <data name="InitiallyEquippedShips" xml:space="preserve">
-    <value>Initially Equipped:</value>
+    <value>Stock equipment:</value>
   </data>
   <data name="OutputCSV" xml:space="preserve">
     <value>Output CSV (&amp;C)...</value>
@@ -356,5 +356,32 @@ Maximum: {2} Steel / {3} Fuel
   </data>
   <data name="ShipCSVUserFormat" xml:space="preserve">
     <value>艦船ID,図鑑番号,艦種,艦名,読み,改装前,改装後,改装Lv,改装弾薬,改装鋼材,改装設計図,カタパルト,耐久初期,耐久結婚,火力初期,火力最大,雷装初期,雷装最大,対空初期,対空最大,装甲初期,装甲最大,対潜初期,対潜最大,回避初期,回避最大,索敵初期,索敵最大,運初期,運最大,速力,射程,レア,スロット数,搭載機数1,搭載機数2,搭載機数3,搭載機数4,搭載機数5,初期装備1,初期装備2,初期装備3,初期装備4,初期装備5,建造時間,解体燃料,解体弾薬,解体鋼材,解体ボーキ,改修火力,改修雷装,改修対空,改修装甲,ドロップ文章,図鑑文章,搭載燃料,搭載弾薬,ボイス,リソース名,画像バージョン,ボイスバージョン,母港ボイスバージョン</value>
+  </data>
+  <data name="AircraftCostHint" xml:space="preserve">
+    <value>Bauxite needed for deployment</value>
+  </data>
+  <data name="AntiBomber" xml:space="preserve">
+    <value>Anti-bomber</value>
+  </data>
+  <data name="Interception" xml:space="preserve">
+    <value>Interception</value>
+  </data>
+  <data name="StripMenu_Edit" xml:space="preserve">
+    <value>&amp;Edit</value>
+  </data>
+  <data name="StripMenu_Edit_EditParameter" xml:space="preserve">
+    <value>&amp;Edit parameters...</value>
+  </data>
+  <data name="StripMenu_File" xml:space="preserve">
+    <value>&amp;File</value>
+  </data>
+  <data name="TitleAircraftCost" xml:space="preserve">
+    <value>Deploy cost</value>
+  </data>
+  <data name="TitleAircraftDistance" xml:space="preserve">
+    <value>Combat radius</value>
+  </data>
+  <data name="TitleBomber" xml:space="preserve">
+    <value>Bombing</value>
   </data>
 </root>

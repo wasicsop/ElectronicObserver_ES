@@ -633,4 +633,13 @@
   <data name="ResourceDamage" xml:space="preserve">
     <value>資源に損害</value>
   </data>
+  <data name="BombingAttack" xml:space="preserve">
+    <value>爆撃</value>
+  </data>
+  <data name="EnemyAirSquadron" xml:space="preserve">
+    <value>敵航空隊</value>
+  </data>
+  <data name="TorpBombingAttack" xml:space="preserve">
+    <value>雷撃+爆撃</value>
+  </data>
 </root>

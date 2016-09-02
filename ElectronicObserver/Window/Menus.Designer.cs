@@ -268,6 +268,33 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 別のファイルへ保存(&amp;C)....
+        /// </summary>
+        internal static string File_Layout_Change {
+            get {
+                return ResourceManager.GetString("File_Layout_Change", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to レイアウトのロック(&amp;T).
+        /// </summary>
+        internal static string File_Layout_LockLayout {
+            get {
+                return ResourceManager.GetString("File_Layout_LockLayout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 最前面に表示(&amp;M).
+        /// </summary>
+        internal static string File_Layout_TopMost {
+            get {
+                return ResourceManager.GetString("File_Layout_TopMost", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 艦隊一覧(&amp;O).
         /// </summary>
         internal static string FleetList {

@@ -804,7 +804,10 @@ This month: {2:+##;-##;±0}</value>
     <value>[Resupply Complete]</value>
   </data>
   <data name="ResupplyString" xml:space="preserve">
-    <value>Fuel: {0:+0;-0} ( regen {1:+0;-0} - resupply {2} - repair {3} )\r\nAmmo: {4:+0;-0} ( regen {5:+0;-0} - resupply {6} )\r\nSteel: {7:+0;-0} ( regen {8:+0;-0} - repair {9} )\r\nBauxite: {10:+0;-0} ( regen {11:+0;-0} - resupply {12} ( {13} planes ) )</value>
+    <value>Fuel: {0:+0;-0} ( regen {1:+0;-0} - resupply {2} - repair {3} )
+Ammo: {4:+0;-0} ( regen {5:+0;-0} - resupply {6} )
+Steel: {7:+0;-0} ( regen {8:+0;-0} - repair {9} )
+Bauxite: {10:+0;-0} ( regen {11:+0;-0} - resupply {12} ( {13} planes ) )</value>
   </data>
   <data name="Bombers" xml:space="preserve">
     <value>Bombers</value>

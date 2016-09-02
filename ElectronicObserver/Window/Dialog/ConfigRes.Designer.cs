@@ -1218,6 +1218,60 @@ namespace ElectronicObserver.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 威力表示交戦形態：.
+        /// </summary>
+        internal static string PowerEngagementForm {
+            get {
+                return ResourceManager.GetString("PowerEngagementForm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to T字有利.
+        /// </summary>
+        internal static string PowerEngagementForm_GreenT {
+            get {
+                return ResourceManager.GetString("PowerEngagementForm_GreenT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 反航戦.
+        /// </summary>
+        internal static string PowerEngagementForm_Headon {
+            get {
+                return ResourceManager.GetString("PowerEngagementForm_Headon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 同航戦.
+        /// </summary>
+        internal static string PowerEngagementForm_Paralel {
+            get {
+                return ResourceManager.GetString("PowerEngagementForm_Paralel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to T字不利.
+        /// </summary>
+        internal static string PowerEngagementForm_RedT {
+            get {
+                return ResourceManager.GetString("PowerEngagementForm_RedT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 威力（戦闘における攻撃力）を計算する際の、基準となる交戦形態を設定します。.
+        /// </summary>
+        internal static string PowerEngagementFormHint {
+            get {
+                return ResourceManager.GetString("PowerEngagementFormHint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 任務進捗の自動保存：.
         /// </summary>
         internal static string ProgressAutoSaving {

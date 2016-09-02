@@ -151,7 +151,7 @@
     <value>Controls (&amp;C)</value>
   </data>
   <data name="Debug" xml:space="preserve">
-    <value>Debug (&amp;D)</value>
+    <value>&amp;Debug</value>
   </data>
   <data name="DeleteOldAPI" xml:space="preserve">
     <value>Delete Old API Data (&amp;D)</value>
@@ -308,5 +308,14 @@
   </data>
   <data name="BaseAirCorps" xml:space="preserve">
     <value>Air Ba&amp;se</value>
+  </data>
+  <data name="File_Layout_Change" xml:space="preserve">
+    <value>Save to another file... (&amp;C)</value>
+  </data>
+  <data name="File_Layout_LockLayout" xml:space="preserve">
+    <value>Lock Layout (&amp;T)</value>
+  </data>
+  <data name="File_Layout_TopMost" xml:space="preserve">
+    <value>Always on Top (&amp;M)</value>
   </data>
 </root>

@@ -79,6 +79,15 @@ namespace ElectronicObserver.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 配備時のボーキ消費.
+        /// </summary>
+        internal static string AircraftCostHint {
+            get {
+                return ResourceManager.GetString("AircraftCostHint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 制空戦力.
         /// </summary>
         internal static string AirPower {
@@ -93,6 +102,15 @@ namespace ElectronicObserver.Window.Dialog {
         internal static string AntiAir {
             get {
                 return ResourceManager.GetString("AntiAir", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 対爆.
+        /// </summary>
+        internal static string AntiBomber {
+            get {
+                return ResourceManager.GetString("AntiBomber", resourceCulture);
             }
         }
         
@@ -421,6 +439,15 @@ namespace ElectronicObserver.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 迎撃.
+        /// </summary>
+        internal static string Interception {
+            get {
+                return ResourceManager.GetString("Interception", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 検索を中止しますか?.
         /// </summary>
         internal static string InterruptSearch {
@@ -721,11 +748,65 @@ namespace ElectronicObserver.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 編集(&amp;E).
+        /// </summary>
+        internal static string StripMenu_Edit {
+            get {
+                return ResourceManager.GetString("StripMenu_Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to パラメータの編集(&amp;E)....
+        /// </summary>
+        internal static string StripMenu_Edit_EditParameter {
+            get {
+                return ResourceManager.GetString("StripMenu_Edit_EditParameter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ファイル(&amp;F).
+        /// </summary>
+        internal static string StripMenu_File {
+            get {
+                return ResourceManager.GetString("StripMenu_File", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 回数.
         /// </summary>
         internal static string Times {
             get {
                 return ResourceManager.GetString("Times", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 配備コスト.
+        /// </summary>
+        internal static string TitleAircraftCost {
+            get {
+                return ResourceManager.GetString("TitleAircraftCost", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 戦闘行動半径.
+        /// </summary>
+        internal static string TitleAircraftDistance {
+            get {
+                return ResourceManager.GetString("TitleAircraftDistance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 爆装.
+        /// </summary>
+        internal static string TitleBomber {
+            get {
+                return ResourceManager.GetString("TitleBomber", resourceCulture);
             }
         }
         

@@ -351,4 +351,31 @@ HP1あたり: 鋼 {0:F2} / 燃 {1:F2}
   <data name="Unknown" xml:space="preserve">
     <value>(不明)</value>
   </data>
+  <data name="AircraftCostHint" xml:space="preserve">
+    <value>配備時のボーキ消費</value>
+  </data>
+  <data name="AntiBomber" xml:space="preserve">
+    <value>対爆</value>
+  </data>
+  <data name="Interception" xml:space="preserve">
+    <value>迎撃</value>
+  </data>
+  <data name="StripMenu_Edit" xml:space="preserve">
+    <value>編集(&amp;E)</value>
+  </data>
+  <data name="StripMenu_Edit_EditParameter" xml:space="preserve">
+    <value>パラメータの編集(&amp;E)...</value>
+  </data>
+  <data name="StripMenu_File" xml:space="preserve">
+    <value>ファイル(&amp;F)</value>
+  </data>
+  <data name="TitleAircraftCost" xml:space="preserve">
+    <value>配備コスト</value>
+  </data>
+  <data name="TitleAircraftDistance" xml:space="preserve">
+    <value>戦闘行動半径</value>
+  </data>
+  <data name="TitleBomber" xml:space="preserve">
+    <value>爆装</value>
+  </data>
 </root>

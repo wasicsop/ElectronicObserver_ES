@@ -749,4 +749,25 @@ Might be heavy.</value>
   <data name="UI_BarColorMorphing" xml:space="preserve">
     <value>Enable smooth color change on bar</value>
   </data>
+  <data name="PowerEngagementForm" xml:space="preserve">
+    <value>Default Engagement:</value>
+  </data>
+  <data name="PowerEngagementFormHint" xml:space="preserve">
+    <value>Sets the default engagement form for attack power calculation</value>
+  </data>
+  <data name="PowerEngagementForm_GreenT" xml:space="preserve">
+    <value>T-Disadvantage</value>
+  </data>
+  <data name="PowerEngagementForm_Headon" xml:space="preserve">
+    <value>Head-on</value>
+  </data>
+  <data name="PowerEngagementForm_Paralel" xml:space="preserve">
+    <value>Parallel</value>
+  </data>
+  <data name="PowerEngagementForm_RedT" xml:space="preserve">
+    <value>T-Advantage</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value />
+  </data>
 </root>
