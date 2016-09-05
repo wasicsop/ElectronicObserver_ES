@@ -132,4 +132,55 @@
   <data name="SRank" xml:space="preserve">
     <value>S勝利</value>
   </data>
+  <data name="Only" xml:space="preserve">
+    <value>以上</value>
+  </data>
+  <data name="Supply" xml:space="preserve">
+    <value>補給</value>
+  </data>
+  <data name="Victory" xml:space="preserve">
+    <value>勝利</value>
+  </data>
+  <data name="Sunk" xml:space="preserve">
+    <value>撃沈</value>
+  </data>
+  <data name="Encounter" xml:space="preserve">
+    <value>戦闘</value>
+  </data>
+  <data name="RankVictory" xml:space="preserve">
+    <value>勝利</value>
+  </data>
+  <data name="Construction" xml:space="preserve">
+    <value>建造</value>
+  </data>
+  <data name="Development" xml:space="preserve">
+    <value>開発</value>
+  </data>
+  <data name="Dismantlement" xml:space="preserve">
+    <value>解体</value>
+  </data>
+  <data name="Exercise" xml:space="preserve">
+    <value>演習</value>
+  </data>
+  <data name="Expedition" xml:space="preserve">
+    <value>遠征</value>
+  </data>
+  <data name="Improvement" xml:space="preserve">
+    <value>装備改修</value>
+  </data>
+  <data name="Modernization" xml:space="preserve">
+    <value>近代化改修</value>
+  </data>
+  <data name="Repair" xml:space="preserve">
+    <value>入渠</value>
+  </data>
+  <data name="Discard" xml:space="preserve">
+    <value>廃棄</value>
+  </data>
+  <data name="NumberOfPieces" xml:space="preserve">
+    <value>個</value>
+  </data>
+  <data name="NumberOfTimes" xml:space="preserve">
+    <value>回</value>
+  </data>
 </root>

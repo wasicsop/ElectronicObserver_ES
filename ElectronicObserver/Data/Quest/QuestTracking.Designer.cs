@@ -88,6 +88,132 @@ namespace ElectronicObserver.Data.Quest {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 建造.
+        /// </summary>
+        internal static string Construction {
+            get {
+                return ResourceManager.GetString("Construction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 開発.
+        /// </summary>
+        internal static string Development {
+            get {
+                return ResourceManager.GetString("Development", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 廃棄.
+        /// </summary>
+        internal static string Discard {
+            get {
+                return ResourceManager.GetString("Discard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 解体.
+        /// </summary>
+        internal static string Dismantlement {
+            get {
+                return ResourceManager.GetString("Dismantlement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 戦闘.
+        /// </summary>
+        internal static string Encounter {
+            get {
+                return ResourceManager.GetString("Encounter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 演習.
+        /// </summary>
+        internal static string Exercise {
+            get {
+                return ResourceManager.GetString("Exercise", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 遠征.
+        /// </summary>
+        internal static string Expedition {
+            get {
+                return ResourceManager.GetString("Expedition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 装備改修.
+        /// </summary>
+        internal static string Improvement {
+            get {
+                return ResourceManager.GetString("Improvement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 近代化改修.
+        /// </summary>
+        internal static string Modernization {
+            get {
+                return ResourceManager.GetString("Modernization", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 個.
+        /// </summary>
+        internal static string NumberOfPieces {
+            get {
+                return ResourceManager.GetString("NumberOfPieces", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 回.
+        /// </summary>
+        internal static string NumberOfTimes {
+            get {
+                return ResourceManager.GetString("NumberOfTimes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 以上.
+        /// </summary>
+        internal static string Only {
+            get {
+                return ResourceManager.GetString("Only", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 勝利.
+        /// </summary>
+        internal static string RankVictory {
+            get {
+                return ResourceManager.GetString("RankVictory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 入渠.
+        /// </summary>
+        internal static string Repair {
+            get {
+                return ResourceManager.GetString("Repair", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 出撃.
         /// </summary>
         internal static string Sortie {
@@ -102,6 +228,33 @@ namespace ElectronicObserver.Data.Quest {
         internal static string SRank {
             get {
                 return ResourceManager.GetString("SRank", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 撃沈.
+        /// </summary>
+        internal static string Sunk {
+            get {
+                return ResourceManager.GetString("Sunk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 補給.
+        /// </summary>
+        internal static string Supply {
+            get {
+                return ResourceManager.GetString("Supply", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 勝利.
+        /// </summary>
+        internal static string Victory {
+            get {
+                return ResourceManager.GetString("Victory", resourceCulture);
             }
         }
     }

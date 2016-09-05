@@ -18,7 +18,7 @@ namespace ElectronicObserver.Data.Quest {
 		}
 
 		public override string GetClearCondition() {
-			return "近代化改修" + ProgressMax;
+			return QuestTracking.Modernization + ProgressMax;
 		}
 	}
 }

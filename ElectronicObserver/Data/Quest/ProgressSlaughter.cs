@@ -36,10 +36,10 @@ namespace ElectronicObserver.Data.Quest {
 		public override string GetClearCondition() {
 			StringBuilder sb = new StringBuilder();
 			if ( TargetShipType != null ) {
-				sb.Append( string.Join( "・", TargetShipType.OrderBy( s => s ).Select( s => KCDatabase.Instance.ShipTypes[s].Name ) ) );
+				sb.Append( string.Join( "・", TargetShipType.OrderBy( s => s ).Select( s => Window.FormMain.Instance.Translator.GetTranslation(KCDatabase.Instance.ShipTypes[s].Name, Utility.TranslationType.ShipTypes)) ) );
 			}
 
-			sb.Append( "撃沈" );
+			sb.Append( QuestTracking.Sunk );
 			sb.Append( ProgressMax );
 
 			return sb.ToString();

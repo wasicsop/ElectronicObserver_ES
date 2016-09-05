@@ -19,7 +19,7 @@ namespace ElectronicObserver.Data.Quest {
 
 
 		public override string GetClearCondition() {
-			return "建造" + ProgressMax;
+			return QuestTracking.Construction + ProgressMax;
 		}
 	}
 }

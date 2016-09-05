@@ -41,7 +41,7 @@ namespace ElectronicObserver.Data.Quest {
 			if ( TargetArea != null ) {
 				sb.Append( string.Join( "・", TargetArea.OrderBy( s => s ).Select( s => KCDatabase.Instance.Mission[s].Name ) ) );
 			} else {
-				sb.Append( "遠征" );
+				sb.Append( QuestTracking.Expedition );
 			}
 			sb.Append( ProgressMax );
 

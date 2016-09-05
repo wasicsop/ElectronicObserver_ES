@@ -18,7 +18,7 @@ namespace ElectronicObserver.Data.Quest {
 		}
 
 		public override string GetClearCondition() {
-			return "解体" + ProgressMax;
+			return QuestTracking.Dismantlement + ProgressMax;
 		}
 	}
 }

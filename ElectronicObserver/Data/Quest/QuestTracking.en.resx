@@ -118,10 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Boss" xml:space="preserve">
-    <value>Boss</value>
+    <value> boss </value>
   </data>
   <data name="BossVictory" xml:space="preserve">
-    <value>Boss Victories</value>
+    <value> boss victories × </value>
   </data>
   <data name="Complete" xml:space="preserve">
     <value>Complete</value>
@@ -130,6 +130,57 @@
     <value>Sorties</value>
   </data>
   <data name="SRank" xml:space="preserve">
-    <value>S Ranks</value>
+    <value>S-ranks</value>
+  </data>
+  <data name="Only" xml:space="preserve">
+    <value> only</value>
+  </data>
+  <data name="Supply" xml:space="preserve">
+    <value>Resupply ×</value>
+  </data>
+  <data name="Victory" xml:space="preserve">
+    <value>victories ×</value>
+  </data>
+  <data name="Sunk" xml:space="preserve">
+    <value> sunk × </value>
+  </data>
+  <data name="Encounter" xml:space="preserve">
+    <value>encounter</value>
+  </data>
+  <data name="RankVictory" xml:space="preserve">
+    <value>-rank victories ×</value>
+  </data>
+  <data name="Construction" xml:space="preserve">
+    <value>Construction ×</value>
+  </data>
+  <data name="Development" xml:space="preserve">
+    <value>Development ×</value>
+  </data>
+  <data name="Dismantlement" xml:space="preserve">
+    <value>Dismantle ship ×</value>
+  </data>
+  <data name="Exercise" xml:space="preserve">
+    <value>Exercise </value>
+  </data>
+  <data name="Expedition" xml:space="preserve">
+    <value>Expedition ×</value>
+  </data>
+  <data name="Improvement" xml:space="preserve">
+    <value>Improvement ×</value>
+  </data>
+  <data name="Modernization" xml:space="preserve">
+    <value>Modernization ×</value>
+  </data>
+  <data name="Repair" xml:space="preserve">
+    <value>Repair ×</value>
+  </data>
+  <data name="Discard" xml:space="preserve">
+    <value>Scrap ×</value>
+  </data>
+  <data name="NumberOfPieces" xml:space="preserve">
+    <value> pcs</value>
+  </data>
+  <data name="NumberOfTimes" xml:space="preserve">
+    <value> times</value>
   </data>
 </root>
