@@ -307,7 +307,7 @@
     <value>The DataStorage file does not exist.</value>
   </data>
   <data name="Decomissioned" xml:space="preserve">
-    <value> has been decomissioned.</value>
+    <value> has been decommissioned.</value>
   </data>
   <data name="ModernizationResult" xml:space="preserve">
     <value>{0}'s modernization has resulted in {1}.</value>

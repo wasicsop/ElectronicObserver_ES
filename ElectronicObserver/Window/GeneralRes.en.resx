@@ -969,10 +969,10 @@ Denial: {3}</value>
     <value>Opening Torpedo Salvo</value>
   </data>
   <data name="DetailShelling1" xml:space="preserve">
-    <value>1st Round Shelling</value>
+    <value>Shelling, 1st Round</value>
   </data>
   <data name="DetailShelling2" xml:space="preserve">
-    <value>2nd Round Shelling</value>
+    <value>Shelling, 2nd Round</value>
   </data>
   <data name="DetailShelling3" xml:space="preserve">
     <value>3rd Round Shelling</value>
