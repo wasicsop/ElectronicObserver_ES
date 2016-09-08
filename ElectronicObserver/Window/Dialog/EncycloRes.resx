@@ -390,4 +390,17 @@ HP1あたり: 鋼 {0:F2} / 燃 {1:F2}
   <data name="ResourceVoiceVersion" xml:space="preserve">
     <value>ボイス ver.</value>
   </data>
+  <data name="EditShipParameter" xml:space="preserve">
+    <value>艦船パラメータの編集</value>
+  </data>
+  <data name="EditShipParameterHint" xml:space="preserve">
+    <value>※意味が分かる方のみご利用ください。
+一部適用されない項目もあります。</value>
+  </data>
+  <data name="ParameterView_Key" xml:space="preserve">
+    <value>値</value>
+  </data>
+  <data name="ParameterView_Value" xml:space="preserve">
+    <value>項目</value>
+  </data>
 </root>

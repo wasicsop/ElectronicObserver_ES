@@ -250,6 +250,25 @@ namespace ElectronicObserver.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 艦船パラメータの編集.
+        /// </summary>
+        internal static string EditShipParameter {
+            get {
+                return ResourceManager.GetString("EditShipParameter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ※意味が分かる方のみご利用ください。
+        ///一部適用されない項目もあります。.
+        /// </summary>
+        internal static string EditShipParameterHint {
+            get {
+                return ResourceManager.GetString("EditShipParameterHint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 図鑑番号:.
         /// </summary>
         internal static string EncyclopediaNumber {
@@ -552,6 +571,24 @@ namespace ElectronicObserver.Window.Dialog {
         internal static string OutputCSVUser {
             get {
                 return ResourceManager.GetString("OutputCSVUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 値.
+        /// </summary>
+        internal static string ParameterView_Key {
+            get {
+                return ResourceManager.GetString("ParameterView_Key", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 項目.
+        /// </summary>
+        internal static string ParameterView_Value {
+            get {
+                return ResourceManager.GetString("ParameterView_Value", resourceCulture);
             }
         }
         

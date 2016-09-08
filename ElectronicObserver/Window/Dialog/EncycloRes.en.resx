@@ -396,4 +396,17 @@ Maximum: {2} Steel / {3} Fuel
   <data name="ResourceVoiceVersion" xml:space="preserve">
     <value>Voice ver.</value>
   </data>
+  <data name="EditShipParameter" xml:space="preserve">
+    <value>Edit Ship Parameter</value>
+  </data>
+  <data name="EditShipParameterHint" xml:space="preserve">
+    <value>※Only for those who understand.
+Will not apply to some items.</value>
+  </data>
+  <data name="ParameterView_Key" xml:space="preserve">
+    <value>Key</value>
+  </data>
+  <data name="ParameterView_Value" xml:space="preserve">
+    <value>Value</value>
+  </data>
 </root>
