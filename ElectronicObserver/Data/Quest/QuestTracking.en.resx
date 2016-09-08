@@ -175,7 +175,7 @@
     <value>Repair ×</value>
   </data>
   <data name="Discard" xml:space="preserve">
-    <value>Scrap ×</value>
+    <value> scrap ×</value>
   </data>
   <data name="NumberOfPieces" xml:space="preserve">
     <value> pcs</value>

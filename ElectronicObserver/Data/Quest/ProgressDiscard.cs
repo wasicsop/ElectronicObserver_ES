@@ -60,7 +60,7 @@ namespace ElectronicObserver.Data.Quest {
 
 
 		public override string GetClearCondition() {
-			return ( Categories == null ? "" : string.Join( "・", Categories.OrderBy( s => s ).Select( s => KCDatabase.Instance.EquipmentTypes[s].Name ) ) ) + QuestTracking.Discard + ProgressMax + ( CountsAmount ? QuestTracking.NumberOfPieces : QuestTracking.NumberOfTimes );
+			return ( Categories == null ? "" : string.Join( "・", Categories.OrderBy( s => s ).Select( s => Window.FormMain.Instance.Translator.GetTranslation(KCDatabase.Instance.EquipmentTypes[s].Name, Utility.TranslationType.EquipmentType)) ) ) + QuestTracking.Discard + ProgressMax + ( CountsAmount ? QuestTracking.NumberOfPieces : QuestTracking.NumberOfTimes );
 		}
 
 	}

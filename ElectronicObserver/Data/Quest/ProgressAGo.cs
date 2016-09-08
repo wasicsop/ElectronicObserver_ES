@@ -225,7 +225,7 @@ namespace ElectronicObserver.Data.Quest {
 		}
 
 		public override string GetClearCondition() {
-			return string.Format( QuestTracking.Sortie + " {0}, " + QuestTracking.SRank + " {1}, " + QuestTracking.Boss + " {2}, " + QuestTracking.BossVictory + " {3}", sortieMax, sWinMax, bossMax, bossWinMax );
+			return string.Format( QuestTracking.Sortie + " × {0}, " + QuestTracking.SRank + " × {1}, " + QuestTracking.Boss + " × {2}, " + QuestTracking.BossVictory + " × {3}", sortieMax, sWinMax, bossMax, bossWinMax );
 		}
 	}
 
