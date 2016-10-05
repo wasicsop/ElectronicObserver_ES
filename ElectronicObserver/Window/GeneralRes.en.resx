@@ -661,7 +661,7 @@ Cut-in type: {2} ({3})
     <value>Type</value>
   </data>
   <data name="TypeFilter" xml:space="preserve">
-    <value>Type (&amp;T)</value>
+    <value>&amp;Type</value>
   </data>
   <data name="Unacquired" xml:space="preserve">
     <value>(Unacquired - open your quests page in game.)</value>
@@ -752,10 +752,10 @@ Save your data and return to port before capturing.
     <value>3 Months (&amp;S)</value>
   </data>
   <data name="Week" xml:space="preserve">
-    <value>Week (&amp;W)</value>
+    <value>&amp;Week</value>
   </data>
   <data name="Year" xml:space="preserve">
-    <value>Year (&amp;Y)</value>
+    <value>&amp;Year</value>
   </data>
   <data name="AerialRecon" xml:space="preserve">
     <value>Aerial Recon</value>
@@ -979,5 +979,14 @@ Denial: {3}</value>
   </data>
   <data name="DetailTorpedo" xml:space="preserve">
     <value>Closing Torpedo Salvo</value>
+  </data>
+  <data name="Option" xml:space="preserve">
+    <value>Option</value>
+  </data>
+  <data name="Option_DivideByDay" xml:space="preserve">
+    <value>Show daily average</value>
+  </data>
+  <data name="Option_ShowAllData" xml:space="preserve">
+    <value>Display all data</value>
   </data>
 </root>

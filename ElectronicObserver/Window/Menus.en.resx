@@ -318,4 +318,7 @@
   <data name="File_Layout_TopMost" xml:space="preserve">
     <value>Always on Top (&amp;M)</value>
   </data>
+  <data name="Option" xml:space="preserve">
+    <value>&amp;Option</value>
+  </data>
 </root>

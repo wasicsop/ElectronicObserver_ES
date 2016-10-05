@@ -942,4 +942,13 @@
   <data name="DetailTorpedo" xml:space="preserve">
     <value>《雷撃戦》</value>
   </data>
+  <data name="Option" xml:space="preserve">
+    <value>オプション</value>
+  </data>
+  <data name="Option_DivideByDay" xml:space="preserve">
+    <value>日単位で平均化</value>
+  </data>
+  <data name="Option_ShowAllData" xml:space="preserve">
+    <value>全てのデータを表示する</value>
+  </data>
 </root>

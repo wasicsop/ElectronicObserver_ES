@@ -189,14 +189,14 @@
             this.Menu_Option_DivideByDay});
 			this.Menu_Option.Name = "Menu_Option";
 			this.Menu_Option.Size = new System.Drawing.Size(81, 20);
-			this.Menu_Option.Text = "オプション(&O)";
+			this.Menu_Option.Text = Menus.Option;
 			// 
 			// Menu_Option_ShowAllData
 			// 
 			this.Menu_Option_ShowAllData.CheckOnClick = true;
 			this.Menu_Option_ShowAllData.Name = "Menu_Option_ShowAllData";
 			this.Menu_Option_ShowAllData.Size = new System.Drawing.Size(185, 22);
-			this.Menu_Option_ShowAllData.Text = "全てのデータを表示する";
+			this.Menu_Option_ShowAllData.Text = GeneralRes.Option_ShowAllData;
 			this.Menu_Option_ShowAllData.Click += new System.EventHandler(this.Menu_Option_ShowAllData_Click);
 			// 
 			// Menu_Option_DivideByDay
@@ -204,7 +204,7 @@
 			this.Menu_Option_DivideByDay.CheckOnClick = true;
 			this.Menu_Option_DivideByDay.Name = "Menu_Option_DivideByDay";
 			this.Menu_Option_DivideByDay.Size = new System.Drawing.Size(185, 22);
-			this.Menu_Option_DivideByDay.Text = "日単位で平均化";
+			this.Menu_Option_DivideByDay.Text = GeneralRes.Option_DivideByDay;
 			this.Menu_Option_DivideByDay.Click += new System.EventHandler(this.Menu_Option_DivideByDay_Click);
 			// 
 			// ResourceChart

@@ -1629,6 +1629,33 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to オプション.
+        /// </summary>
+        internal static string Option {
+            get {
+                return ResourceManager.GetString("Option", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 日単位で平均化.
+        /// </summary>
+        internal static string Option_DivideByDay {
+            get {
+                return ResourceManager.GetString("Option_DivideByDay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 全てのデータを表示する.
+        /// </summary>
+        internal static string Option_ShowAllData {
+            get {
+                return ResourceManager.GetString("Option_ShowAllData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to CSV出力(&amp;O)....
         /// </summary>
         internal static string OutputCSV {

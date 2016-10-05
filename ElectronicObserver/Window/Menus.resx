@@ -324,4 +324,7 @@
   <data name="File_Layout_TopMost" xml:space="preserve">
     <value>最前面に表示(&amp;M)</value>
   </data>
+  <data name="Option" xml:space="preserve">
+    <value>オプション(&amp;O)</value>
+  </data>
 </root>
