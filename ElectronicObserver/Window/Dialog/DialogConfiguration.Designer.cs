@@ -24,7 +24,7 @@
 		/// </summary>
 		private void InitializeComponent() {
 			this.components = new System.ComponentModel.Container();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.tabPage1 = new System.Windows.Forms.TabPage();
 			this.Connection_UpstreamProxyAddress = new System.Windows.Forms.TextBox();
@@ -141,6 +141,8 @@
 			this.label25 = new System.Windows.Forms.Label();
 			this.FormShipGroup_ShowStatusBar = new System.Windows.Forms.CheckBox();
 			this.FormShipGroup_AutoUpdate = new System.Windows.Forms.CheckBox();
+			this.tabPage20 = new System.Windows.Forms.TabPage();
+			this.FormBattle_IsScrollable = new System.Windows.Forms.CheckBox();
 			this.tabPage12 = new System.Windows.Forms.TabPage();
 			this.FormBrowser_ToolMenuDockStyle = new System.Windows.Forms.ComboBox();
 			this.label30 = new System.Windows.Forms.Label();
@@ -180,6 +182,8 @@
 			this.label31 = new System.Windows.Forms.Label();
 			this.label33 = new System.Windows.Forms.Label();
 			this.tabPage11 = new System.Windows.Forms.TabPage();
+			this.silenceFullscreen = new System.Windows.Forms.CheckBox();
+			this.Notification_Silencio = new System.Windows.Forms.CheckBox();
 			this.Notification_AnchorageRepair = new System.Windows.Forms.Button();
 			this.label10 = new System.Windows.Forms.Label();
 			this.Notification_Damage = new System.Windows.Forms.Button();
@@ -211,6 +215,7 @@
 			this.FontSelector = new System.Windows.Forms.FontDialog();
 			this.LayoutFileBrowser = new System.Windows.Forms.OpenFileDialog();
 			this.APIListBrowser = new System.Windows.Forms.OpenFileDialog();
+			this.FormFleet_ShowConditionIcon = new System.Windows.Forms.CheckBox();
 			this.tabControl1.SuspendLayout();
 			this.tabPage1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.Connection_UpstreamProxyPort)).BeginInit();
@@ -235,6 +240,7 @@
 			this.tabPage10.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			this.tabPage13.SuspendLayout();
+			this.tabPage20.SuspendLayout();
 			this.tabPage12.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.FormBrowser_ZoomRate)).BeginInit();
@@ -908,7 +914,7 @@
 			this.Debug_SealingPanel.Controls.Add(this.Debug_APIListPathSearch);
 			this.Debug_SealingPanel.Location = new System.Drawing.Point(0, 56);
 			this.Debug_SealingPanel.Name = "Debug_SealingPanel";
-			this.Debug_SealingPanel.Size = new System.Drawing.Size(576, 231);
+			this.Debug_SealingPanel.Size = new System.Drawing.Size(576, 257);
 			this.Debug_SealingPanel.TabIndex = 1;
 			//
 			// Debug_APIListPath
@@ -1110,6 +1116,7 @@
 			this.tabControl2.Controls.Add(this.tabPage18);
 			this.tabControl2.Controls.Add(this.tabPage10);
 			this.tabControl2.Controls.Add(this.tabPage13);
+			this.tabControl2.Controls.Add(this.tabPage20);
 			this.tabControl2.Controls.Add(this.tabPage12);
 			this.tabControl2.Controls.Add(this.tabPage14);
 			this.tabControl2.Controls.Add(this.SubWindow_Json);
@@ -1121,7 +1128,8 @@
 			this.tabControl2.TabIndex = 0;
 			//
 			// tabPage8
-			//
+			// 
+			this.tabPage8.Controls.Add(this.FormFleet_ShowConditionIcon);
 			this.tabPage8.Controls.Add(this.FormFleet_EquipmentLevelVisibility);
 			this.tabPage8.Controls.Add(this.label28);
 			this.tabPage8.Controls.Add(this.FormFleet_BlinkAtCompletion);
@@ -1608,6 +1616,28 @@
 			this.ToolTipInfo.SetToolTip(this.FormShipGroup_AutoUpdate, ConfigRes.AutoUpdateHint);
 			this.FormShipGroup_AutoUpdate.UseVisualStyleBackColor = true;
 			//
+			// tabPage20
+			//
+			this.tabPage20.Controls.Add(this.FormBattle_IsScrollable);
+			this.tabPage20.Location = new System.Drawing.Point(4, 22);
+			this.tabPage20.Name = "tabPage20";
+			this.tabPage20.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPage20.Size = new System.Drawing.Size(562, 260);
+			this.tabPage20.TabIndex = 10;
+			this.tabPage20.Text = "戦闘";
+			this.tabPage20.UseVisualStyleBackColor = true;
+			//
+			// FormBattle_IsScrollable
+			//
+			this.FormBattle_IsScrollable.AutoSize = true;
+			this.FormBattle_IsScrollable.Location = new System.Drawing.Point(6, 6);
+			this.FormBattle_IsScrollable.Name = "FormBattle_IsScrollable";
+			this.FormBattle_IsScrollable.Size = new System.Drawing.Size(144, 19);
+			this.FormBattle_IsScrollable.TabIndex = 6;
+			this.FormBattle_IsScrollable.Text = "スクロールバーを表示する";
+			this.ToolTipInfo.SetToolTip(this.FormBattle_IsScrollable, "表示エリアがはみ出した場合にスクロールバーを表示するかを指定します。\r\n収まりきった場合は表示しません。");
+			this.FormBattle_IsScrollable.UseVisualStyleBackColor = true;
+			//
 			// tabPage12
 			//
 			this.tabPage12.Controls.Add(this.FormBrowser_ToolMenuDockStyle);
@@ -1827,10 +1857,10 @@
 			//
 			this.tabPage14.Controls.Add(this.groupBox4);
 			this.tabPage14.Controls.Add(this.groupBox3);
-			this.tabPage14.Location = new System.Drawing.Point(4, 24);
+			this.tabPage14.Location = new System.Drawing.Point(4, 22);
 			this.tabPage14.Name = "tabPage14";
 			this.tabPage14.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage14.Size = new System.Drawing.Size(562, 258);
+			this.tabPage14.Size = new System.Drawing.Size(562, 260);
 			this.tabPage14.TabIndex = 5;
 			this.tabPage14.Text = ConfigRes.Browser2;
 			this.tabPage14.UseVisualStyleBackColor = true;
@@ -1978,10 +2008,10 @@
 			//
 			this.SubWindow_Json.Controls.Add(this.SubWindow_Json_SealingPanel);
 			this.SubWindow_Json.Controls.Add(this.label33);
-			this.SubWindow_Json.Location = new System.Drawing.Point(4, 24);
+			this.SubWindow_Json.Location = new System.Drawing.Point(4, 22);
 			this.SubWindow_Json.Name = "SubWindow_Json";
 			this.SubWindow_Json.Padding = new System.Windows.Forms.Padding(3);
-			this.SubWindow_Json.Size = new System.Drawing.Size(562, 258);
+			this.SubWindow_Json.Size = new System.Drawing.Size(562, 260);
 			this.SubWindow_Json.TabIndex = 9;
 			this.SubWindow_Json.Text = "JSON";
 			this.SubWindow_Json.UseVisualStyleBackColor = true;
@@ -1998,7 +2028,7 @@
 			this.SubWindow_Json_SealingPanel.Location = new System.Drawing.Point(3, 3);
 			this.SubWindow_Json_SealingPanel.Margin = new System.Windows.Forms.Padding(0);
 			this.SubWindow_Json_SealingPanel.Name = "SubWindow_Json_SealingPanel";
-			this.SubWindow_Json_SealingPanel.Size = new System.Drawing.Size(556, 252);
+			this.SubWindow_Json_SealingPanel.Size = new System.Drawing.Size(556, 254);
 			this.SubWindow_Json_SealingPanel.TabIndex = 6;
 			//
 			// FormJson_AutoUpdate
@@ -2063,6 +2093,8 @@
 			//
 			// tabPage11
 			//
+			this.tabPage11.Controls.Add(this.silenceFullscreen);
+			this.tabPage11.Controls.Add(this.Notification_Silencio);
 			this.tabPage11.Controls.Add(this.Notification_AnchorageRepair);
 			this.tabPage11.Controls.Add(this.label10);
 			this.tabPage11.Controls.Add(this.Notification_Damage);
@@ -2078,9 +2110,32 @@
 			this.tabPage11.Text = ConfigRes.Notification;
 			this.tabPage11.UseVisualStyleBackColor = true;
 			//
+			// silenceFullscreen
+			//
+			this.silenceFullscreen.AutoSize = true;
+			this.silenceFullscreen.Enabled = false;
+			this.silenceFullscreen.Location = new System.Drawing.Point(8, 207);
+			this.silenceFullscreen.Name = "silenceFullscreen";
+			this.silenceFullscreen.Size = new System.Drawing.Size(160, 19);
+			this.silenceFullscreen.TabIndex = 8;
+			this.silenceFullscreen.Text = "Silence while fullscreen";
+			this.silenceFullscreen.UseVisualStyleBackColor = true;
+			this.silenceFullscreen.Visible = false;
+			//
+			// Notification_Silencio
+			//
+			this.Notification_Silencio.AutoSize = true;
+			this.Notification_Silencio.Location = new System.Drawing.Point(8, 181);
+			this.Notification_Silencio.Name = "Notification_Silencio";
+			this.Notification_Silencio.Size = new System.Drawing.Size(131, 19);
+			this.Notification_Silencio.TabIndex = 7;
+			this.Notification_Silencio.Text = "すべての通知をミュート";
+			this.ToolTipInfo.SetToolTip(this.Notification_Silencio, "すべての通知を非表示にし、通知音の発声も停止します。\r\n\r\n「シレンシオ！黙れ！」");
+			this.Notification_Silencio.UseVisualStyleBackColor = true;
+			//
 			// Notification_AnchorageRepair
 			//
-			this.Notification_AnchorageRepair.Location = new System.Drawing.Point(8, 151);
+			this.Notification_AnchorageRepair.Location = new System.Drawing.Point(8, 152);
 			this.Notification_AnchorageRepair.Name = "Notification_AnchorageRepair";
 			this.Notification_AnchorageRepair.Size = new System.Drawing.Size(300, 23);
 			this.Notification_AnchorageRepair.TabIndex = 6;
@@ -2092,7 +2147,7 @@
 			//
 			this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.label10.AutoSize = true;
-			this.label10.Location = new System.Drawing.Point(3, 272);
+			this.label10.Location = new System.Drawing.Point(3, 298);
 			this.label10.Name = "label10";
 			this.label10.Size = new System.Drawing.Size(238, 15);
 			this.label10.TabIndex = 5;
@@ -2298,21 +2353,21 @@
             this.BGMPlayer_ColumnContent,
             this.BGMPlayer_ColumnPath,
             this.BGMPlayer_ColumnSetting});
-			dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-			dataGridViewCellStyle2.Font = new System.Drawing.Font("Meiryo UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-			dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-			dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Window;
-			dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-			dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-			this.BGMPlayer_ControlGrid.DefaultCellStyle = dataGridViewCellStyle2;
+			dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+			dataGridViewCellStyle1.Font = new System.Drawing.Font("Meiryo UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+			dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+			dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Window;
+			dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+			dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+			this.BGMPlayer_ControlGrid.DefaultCellStyle = dataGridViewCellStyle1;
 			this.BGMPlayer_ControlGrid.Location = new System.Drawing.Point(6, 35);
 			this.BGMPlayer_ControlGrid.MultiSelect = false;
 			this.BGMPlayer_ControlGrid.Name = "BGMPlayer_ControlGrid";
 			this.BGMPlayer_ControlGrid.RowHeadersVisible = false;
 			this.BGMPlayer_ControlGrid.RowTemplate.Height = 21;
 			this.BGMPlayer_ControlGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.BGMPlayer_ControlGrid.Size = new System.Drawing.Size(564, 249);
+			this.BGMPlayer_ControlGrid.Size = new System.Drawing.Size(564, 275);
 			this.BGMPlayer_ControlGrid.TabIndex = 0;
 			this.BGMPlayer_ControlGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.BGMPlayer_ControlGrid_CellContentClick);
 			this.BGMPlayer_ControlGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.BGMPlayer_ControlGrid_CellFormatting);
@@ -2394,6 +2449,17 @@
 			this.APIListBrowser.Filter = "Text File|*.txt|File|*";
 			this.APIListBrowser.Title = "API リストを開く";
 			//
+			// FormFleet_ShowConditionIcon
+			//
+			this.FormFleet_ShowConditionIcon.AutoSize = true;
+			this.FormFleet_ShowConditionIcon.Location = new System.Drawing.Point(6, 188);
+			this.FormFleet_ShowConditionIcon.Name = "FormFleet_ShowConditionIcon";
+			this.FormFleet_ShowConditionIcon.Size = new System.Drawing.Size(149, 19);
+			this.FormFleet_ShowConditionIcon.TabIndex = 14;
+			this.FormFleet_ShowConditionIcon.Text = "疲労度アイコンを表示する";
+			this.ToolTipInfo.SetToolTip(this.FormFleet_ShowConditionIcon, "疲労度のアイコンを表示するかを指定します。\r\n表示しない場合、背景色で区別されます。");
+			this.FormFleet_ShowConditionIcon.UseVisualStyleBackColor = true;
+			//
 			// DialogConfiguration
 			//
 			this.AcceptButton = this.ButtonOK;
@@ -2453,6 +2519,8 @@
 			this.groupBox1.PerformLayout();
 			this.tabPage13.ResumeLayout(false);
 			this.tabPage13.PerformLayout();
+			this.tabPage20.ResumeLayout(false);
+			this.tabPage20.PerformLayout();
 			this.tabPage12.ResumeLayout(false);
 			this.tabPage12.PerformLayout();
 			this.groupBox2.ResumeLayout(false);
@@ -2507,9 +2575,6 @@
 		private System.Windows.Forms.FontDialog FontSelector;
 		private System.Windows.Forms.Button UI_SubFontApply;
 		private System.Windows.Forms.Button UI_MainFontApply;
-        private System.Windows.Forms.Label labelThemeSelect;
-        private System.Windows.Forms.ComboBox selectTheme;
-        private System.Windows.Forms.Label labelThemeRestartWarning;
 		private System.Windows.Forms.Button Connection_OutputConnectionScript;
 		private System.Windows.Forms.TabPage tabPage7;
 		private System.Windows.Forms.TabControl tabControl2;
@@ -2668,5 +2733,10 @@
 		private System.Windows.Forms.Label label32;
 		private System.Windows.Forms.Panel SubWindow_Json_SealingPanel;
 		private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.CheckBox silenceFullscreen;
+        private System.Windows.Forms.CheckBox Notification_Silencio;
+		private System.Windows.Forms.TabPage tabPage20;
+		private System.Windows.Forms.CheckBox FormBattle_IsScrollable;
+		private System.Windows.Forms.CheckBox FormFleet_ShowConditionIcon;
 	}
 }

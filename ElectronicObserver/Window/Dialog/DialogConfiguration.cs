@@ -34,7 +34,6 @@ namespace ElectronicObserver.Window.Dialog {
 
 		public DialogConfiguration() {
 			InitializeComponent();
-
 		}
 
 		public DialogConfiguration( Configuration.ConfigurationData config )
@@ -343,6 +342,7 @@ namespace ElectronicObserver.Window.Dialog {
 			FormFleet_AirSuperiorityMethod.SelectedIndex = config.FormFleet.AirSuperiorityMethod;
 			FormFleet_ShowAnchorageRepairingTimer.Checked = config.FormFleet.ShowAnchorageRepairingTimer;
 			FormFleet_BlinkAtCompletion.Checked = config.FormFleet.BlinkAtCompletion;
+			FormFleet_ShowConditionIcon.Checked = config.FormFleet.ShowConditionIcon;
 
 			FormHeadquarters_BlinkAtMaximum.Checked = config.FormHeadquarters.BlinkAtMaximum;
 			FormHeadquarters_Visibility.Items.Clear();
@@ -364,6 +364,8 @@ namespace ElectronicObserver.Window.Dialog {
 			FormShipGroup_AutoUpdate.Checked = config.FormShipGroup.AutoUpdate;
 			FormShipGroup_ShowStatusBar.Checked = config.FormShipGroup.ShowStatusBar;
 			FormShipGroup_ShipNameSortMethod.SelectedIndex = config.FormShipGroup.ShipNameSortMethod;
+
+			FormBattle_IsScrollable.Checked = config.FormBattle.IsScrollable;
 
 			FormBrowser_IsEnabled.Checked = config.FormBrowser.IsEnabled;
 			FormBrowser_ZoomRate.Value = config.FormBrowser.ZoomRate;
@@ -422,6 +424,13 @@ namespace ElectronicObserver.Window.Dialog {
 			FormJson_AutoUpdate.Checked = config.FormJson.AutoUpdate;
 			FormJson_UpdatesTree.Checked = config.FormJson.UpdatesTree;
 			FormJson_AutoUpdateFilter.Text = config.FormJson.AutoUpdateFilter;
+
+			//[通知]
+			{
+				bool issilenced = NotifierManager.Instance.GetNotifiers().All( no => no.IsSilenced );
+				Notification_Silencio.Checked = issilenced;
+				setSilencioConfig( issilenced );
+			}
 
 			//[データベース]
 			Database_SendDataToKancolleDB.Checked = config.Connection.SendDataToKancolleDB;
@@ -534,6 +543,7 @@ namespace ElectronicObserver.Window.Dialog {
 			config.FormFleet.AirSuperiorityMethod = FormFleet_AirSuperiorityMethod.SelectedIndex;
 			config.FormFleet.ShowAnchorageRepairingTimer = FormFleet_ShowAnchorageRepairingTimer.Checked;
 			config.FormFleet.BlinkAtCompletion = FormFleet_BlinkAtCompletion.Checked;
+			config.FormFleet.ShowConditionIcon = FormFleet_ShowConditionIcon.Checked;
 
 			config.FormHeadquarters.BlinkAtMaximum = FormHeadquarters_BlinkAtMaximum.Checked;
 			{
@@ -555,6 +565,8 @@ namespace ElectronicObserver.Window.Dialog {
 			config.FormShipGroup.AutoUpdate = FormShipGroup_AutoUpdate.Checked;
 			config.FormShipGroup.ShowStatusBar = FormShipGroup_ShowStatusBar.Checked;
 			config.FormShipGroup.ShipNameSortMethod = FormShipGroup_ShipNameSortMethod.SelectedIndex;
+
+			config.FormBattle.IsScrollable = FormBattle_IsScrollable.Checked;
 
 			config.FormBrowser.IsEnabled = FormBrowser_IsEnabled.Checked;
 			config.FormBrowser.ZoomRate = (int)FormBrowser_ZoomRate.Value;
@@ -581,6 +593,9 @@ namespace ElectronicObserver.Window.Dialog {
 			config.FormJson.AutoUpdate = FormJson_AutoUpdate.Checked;
 			config.FormJson.UpdatesTree = FormJson_UpdatesTree.Checked;
 			config.FormJson.AutoUpdateFilter = FormJson_AutoUpdateFilter.Text;
+
+			//[通知]
+			setSilencioConfig( Notification_Silencio.Checked );
 
 			//[データベース]
 			config.Connection.SendDataToKancolleDB = Database_SendDataToKancolleDB.Checked;
@@ -729,6 +744,13 @@ namespace ElectronicObserver.Window.Dialog {
 				UpdateBGMPlayerUI();
 			}
 
+		}
+
+
+		private void setSilencioConfig( bool silenced ) {
+			foreach ( NotifierBase no in NotifierManager.Instance.GetNotifiers() ) {
+				no.IsSilenced = silenced;
+			}
 		}
 
 

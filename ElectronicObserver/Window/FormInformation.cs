@@ -80,6 +80,8 @@ namespace ElectronicObserver.Window {
 					}
 					_inSortie = null;
 
+					RecordMaterials();
+
 					// '16 summer event
 					if ( data.api_event_object() && data.api_event_object.api_m_flag2() && (int)data.api_event_object.api_m_flag2 > 0 ) {
 						TextInformation.Text += "＊ギミック解除＊\r\n";
@@ -89,6 +91,7 @@ namespace ElectronicObserver.Window {
 
 				case "api_req_member/get_practice_enemyinfo":
 					TextInformation.Text = GetPracticeEnemyInfo( data );
+					RecordMaterials();
 					break;
 
 				case "api_get_member/picture_book":
@@ -121,14 +124,7 @@ namespace ElectronicObserver.Window {
 				case "api_req_map/start":
 					_inSortie = KCDatabase.Instance.Fleet.Fleets.Values.Where( f => f.IsInSortie || f.ExpeditionState == 1 ).Select( f => f.FleetID ).ToList();
 
-					// 出撃時の資源を記録
-					{
-						var material = KCDatabase.Instance.Material;
-						_prevResource[0] = material.Fuel;
-						_prevResource[1] = material.Ammo;
-						_prevResource[2] = material.Steel;
-						_prevResource[3] = material.Bauxite;
-					}
+					RecordMaterials();
 					break;
 
 				case "api_req_practice/battle":
@@ -315,7 +311,7 @@ namespace ElectronicObserver.Window {
 			StringBuilder sb = new StringBuilder();
 			sb.AppendLine( GeneralRes.MapGauges );
 
-			foreach ( dynamic elem in data ) {
+			foreach ( dynamic elem in data.api_map_info ) {
 
 				int mapID = (int)elem.api_id;
 				MapInfoData map = KCDatabase.Instance.MapInfo[mapID];
@@ -420,7 +416,13 @@ namespace ElectronicObserver.Window {
 		}
 
 
-
+		private void RecordMaterials() {
+			var material = KCDatabase.Instance.Material;
+			_prevResource[0] = material.Fuel;
+			_prevResource[1] = material.Ammo;
+			_prevResource[2] = material.Steel;
+			_prevResource[3] = material.Bauxite;
+		}
 
 		protected override string GetPersistString() {
 			return "Information";

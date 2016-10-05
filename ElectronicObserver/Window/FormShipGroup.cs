@@ -24,23 +24,23 @@ namespace ElectronicObserver.Window {
 
 
 		/// <summary>タブ背景色(アクティブ)</summary>
-		private readonly Color TabActiveColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.SubFontColor);
+		private readonly Color TabActiveColor = Color.FromArgb( 0xFF, 0xFF, 0xCC );
 
-        /// <summary>タブ背景色(非アクティブ)</summary>
-        private readonly Color TabInactiveColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.BackgroundColor);
+		/// <summary>タブ背景色(非アクティブ)</summary>
+		private readonly Color TabInactiveColor = SystemColors.Control;
 
 
 
-        // セル背景色
-        private readonly Color CellColorRed = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.RedHighlight);
-        private readonly Color CellColorOrange = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.OrangeHighlight);
-        private readonly Color CellColorYellow = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.YellowHighlight);
-        private readonly Color CellColorGreen = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.GreenHighlight);
-        private readonly Color CellColorGray = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.GrayHighlight);
-        private readonly Color CellColorCherry = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.PinkHighlight);
+		// セル背景色
+		private readonly Color CellColorRed = Color.FromArgb( 0xFF, 0xBB, 0xBB );
+		private readonly Color CellColorOrange = Color.FromArgb( 0xFF, 0xDD, 0xBB );
+		private readonly Color CellColorYellow = Color.FromArgb( 0xFF, 0xFF, 0xBB );
+		private readonly Color CellColorGreen = Color.FromArgb( 0xBB, 0xFF, 0xBB );
+		private readonly Color CellColorGray = Color.FromArgb( 0xBB, 0xBB, 0xBB );
+		private readonly Color CellColorCherry = Color.FromArgb( 0xFF, 0xDD, 0xDD );
 
-        //セルスタイル
-        private DataGridViewCellStyle CSDefaultLeft, CSDefaultCenter, CSDefaultRight,
+		//セルスタイル
+		private DataGridViewCellStyle CSDefaultLeft, CSDefaultCenter, CSDefaultRight,
 			CSRedRight, CSOrangeRight, CSYellowRight, CSGreenRight, CSGrayRight, CSCherryRight,
 			CSIsLocked;
 
@@ -76,10 +76,10 @@ namespace ElectronicObserver.Window {
 
 			CSDefaultLeft = new DataGridViewCellStyle();
 			CSDefaultLeft.Alignment = DataGridViewContentAlignment.MiddleLeft;
-			CSDefaultLeft.BackColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.BackgroundColor);
-            CSDefaultLeft.Font = Font;
-			CSDefaultLeft.ForeColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.MainFontColor);
-            CSDefaultLeft.SelectionBackColor = Color.FromArgb( 0xFF, 0xFF, 0xCC );
+			CSDefaultLeft.BackColor = SystemColors.Control;
+			CSDefaultLeft.Font = Font;
+			CSDefaultLeft.ForeColor = SystemColors.ControlText;
+			CSDefaultLeft.SelectionBackColor = Color.FromArgb( 0xFF, 0xFF, 0xCC );
 			CSDefaultLeft.SelectionForeColor = SystemColors.ControlText;
 			CSDefaultLeft.WrapMode = DataGridViewTriState.False;
 
@@ -138,11 +138,12 @@ namespace ElectronicObserver.Window {
 
 			ShipGroupManager groups = KCDatabase.Instance.ShipGroup;
 
+
 			// 空(≒初期状態)の時、おなじみ全所属艦を追加
 			if ( groups.ShipGroups.Count == 0 ) {
 
 				var group = KCDatabase.Instance.ShipGroup.Add();
-				group.Name = GeneralRes.AllAssignedShips;
+				group.Name = "全所属艦";
 
 				for ( int i = 0; i < ShipView.Columns.Count; i++ ) {
 					var newdata = new ShipGroupData.ViewColumnData( ShipView.Columns[i] );
@@ -247,7 +248,7 @@ namespace ElectronicObserver.Window {
 			label.Font = ShipView.Font;
 			label.BackColor = TabInactiveColor;
 			label.BorderStyle = BorderStyle.FixedSingle;
-			label.Padding = new Padding( 4, 4, 7, 7 );
+			label.Padding = new Padding( 4, 4, 4, 4 );
 			label.Margin = new Padding( 0, 0, 0, 0 );
 			label.ImageAlign = ContentAlignment.MiddleCenter;
 			label.AutoSize = true;
@@ -488,9 +489,9 @@ namespace ElectronicObserver.Window {
 
 			//status bar
 			if ( KCDatabase.Instance.Ships.Count > 0 ) {
-				Status_ShipCount.Text = string.Format( GeneralRes.AssignedCount, group.Members.Count );
-				Status_LevelTotal.Text = string.Format( GeneralRes.TotalLevel, group.MembersInstance.Where( s => s != null ).Sum( s => s.Level ) );
-				Status_LevelAverage.Text = string.Format( GeneralRes.AverageLevel, group.Members.Count > 0 ? group.MembersInstance.Where( s => s != null ).Average( s => s.Level ) : 0 );
+				Status_ShipCount.Text = string.Format( "所属: {0}隻", group.Members.Count );
+				Status_LevelTotal.Text = string.Format( "合計Lv: {0}", group.MembersInstance.Where( s => s != null ).Sum( s => s.Level ) );
+				Status_LevelAverage.Text = string.Format( "平均Lv: {0:F2}", group.Members.Count > 0 ? group.MembersInstance.Where( s => s != null ).Average( s => s.Level ) : 0 );
 			}
 		}
 
@@ -510,7 +511,7 @@ namespace ElectronicObserver.Window {
 			List<int> selectedIDList = new List<int>();
 
 			if ( group == null ) {
-				Utility.Logger.Add( 3, GeneralRes.NonexistentGroup );
+				Utility.Logger.Add( 3, "エラー：存在しないグループを参照しようとしました。開発者に連絡してください" );
 				return;
 			}
 
@@ -558,10 +559,10 @@ namespace ElectronicObserver.Window {
 
 			if ( index < 5 ) {
 				return ( index >= ship.SlotSize && ship.Slot[index] == -1 ) ? "" :
-					ship.SlotInstance[index] == null ? GeneralRes.None : ship.SlotInstance[index].NameWithLevel;
+					ship.SlotInstance[index] == null ? "(なし)" : ship.SlotInstance[index].NameWithLevel;
 			} else {
 				return ship.ExpansionSlot == 0 ? "" :
-					ship.ExpansionSlotInstance == null ? GeneralRes.None : ship.ExpansionSlotInstance.NameWithLevel;
+					ship.ExpansionSlotInstance == null ? "(なし)" : ship.ExpansionSlotInstance.NameWithLevel;
 			}
 
 		}
@@ -582,20 +583,22 @@ namespace ElectronicObserver.Window {
 			group.UpdateMembers( ShipView.Rows.Cast<DataGridViewRow>().Select( r => (int)r.Cells[ShipView_ID.Index].Value ) );
 		}
 
+
 		private void ShipView_SelectionChanged( object sender, EventArgs e ) {
 
 			var group = CurrentGroup;
 			if ( KCDatabase.Instance.Ships.Count > 0 && group != null ) {
 				if ( ShipView.Rows.GetRowCount( DataGridViewElementStates.Selected ) >= 2 ) {
 					var levels = ShipView.SelectedRows.Cast<DataGridViewRow>().Select( r => (int)r.Cells[ShipView_Level.Index].Value );
-					Status_ShipCount.Text = string.Format( GeneralRes.SelectedShips, ShipView.Rows.GetRowCount( DataGridViewElementStates.Selected ), group.Members.Count );
-					Status_LevelTotal.Text = string.Format( GeneralRes.TotalLevel, levels.Sum() );
-					Status_LevelAverage.Text = string.Format( GeneralRes.AverageLevel, levels.Average() );
+					Status_ShipCount.Text = string.Format( "選択: {0} / {1}隻", ShipView.Rows.GetRowCount( DataGridViewElementStates.Selected ), group.Members.Count );
+					Status_LevelTotal.Text = string.Format( "合計Lv: {0}", levels.Sum() );
+					Status_LevelAverage.Text = string.Format( "平均Lv: {0:F2}", levels.Average() );
+
 
 				} else {
-					Status_ShipCount.Text = string.Format( GeneralRes.TotalShips, group.Members.Count );
-					Status_LevelTotal.Text = string.Format( GeneralRes.TotalLevel, group.MembersInstance.Where( s => s != null ).Sum( s => s.Level ) );
-					Status_LevelAverage.Text = string.Format( GeneralRes.AverageLevel, group.Members.Count > 0 ? group.MembersInstance.Where( s => s != null ).Average( s => s.Level ) : 0 );
+					Status_ShipCount.Text = string.Format( "所属: {0}隻", group.Members.Count );
+					Status_LevelTotal.Text = string.Format( "合計Lv: {0}", group.MembersInstance.Where( s => s != null ).Sum( s => s.Level ) );
+					Status_LevelAverage.Text = string.Format( "平均Lv: {0:F2}", group.Members.Count > 0 ? group.MembersInstance.Where( s => s != null ).Average( s => s.Level ) : 0 );
 				}
 
 			} else {
@@ -605,24 +608,11 @@ namespace ElectronicObserver.Window {
 			}
 		}
 
-        private string GetExEqupimentString(ShipData ship)
-        {
-            switch (ship.ExpansionSlot)
-            {
-                case 0:
-                    return "Locked";
-                case -1:
-                    return GeneralRes.None;
-                default:
-                    return ship.ExpansionSlotInstance.NameWithLevel;
-            }
-        }
-
 
 		private void ShipView_CellFormatting( object sender, DataGridViewCellFormattingEventArgs e ) {
 
 			if ( e.ColumnIndex == ShipView_ShipType.Index ) {
-				e.Value = FormMain.Instance.Translator.GetTranslation(KCDatabase.Instance.ShipTypes[(int)e.Value].Name, TranslationType.ShipTypes);
+				e.Value = KCDatabase.Instance.ShipTypes[(int)e.Value].Name;
 				e.FormattingApplied = true;
 
 			} else if ( e.ColumnIndex == ShipView_Fleet.Index ) {
@@ -633,7 +623,7 @@ namespace ElectronicObserver.Window {
 			} else if ( e.ColumnIndex == ShipView_RepairTime.Index ) {
 
 				if ( (int)e.Value < 0 ) {
-					e.Value = GeneralRes.Dock + " #" + ( (int)e.Value + 1000 );
+					e.Value = "入渠 #" + ( (int)e.Value + 1000 );
 				} else {
 					e.Value = DateTimeHelper.ToTimeRemainString( DateTimeHelper.FromAPITimeSpan( (int)e.Value ) );
 				}
@@ -811,7 +801,7 @@ namespace ElectronicObserver.Window {
 
 		private void MenuGroup_Add_Click( object sender, EventArgs e ) {
 
-			using ( var dialog = new DialogTextInput( GeneralRes.AddGroup, GeneralRes.SpecifyGroupName ) ) {
+			using ( var dialog = new DialogTextInput( "グループを追加", "グループ名を入力してください：" ) ) {
 
 				if ( dialog.ShowDialog( this ) == System.Windows.Forms.DialogResult.OK ) {
 
@@ -841,7 +831,7 @@ namespace ElectronicObserver.Window {
 			if ( senderLabel == null )
 				return;		//想定外
 
-			using ( var dialog = new DialogTextInput( GeneralRes.CopyGroupTitle, GeneralRes.CopyGroupText ) ) {
+			using ( var dialog = new DialogTextInput( "グループをコピー", "グループ名を入力してください：" ) ) {
 
 				if ( dialog.ShowDialog( this ) == System.Windows.Forms.DialogResult.OK ) {
 
@@ -867,9 +857,8 @@ namespace ElectronicObserver.Window {
 
 			ShipGroupData group = KCDatabase.Instance.ShipGroup[(int)senderLabel.Tag];
 
-
 			if ( group != null ) {
-				if ( MessageBox.Show( string.Format( GeneralRes.DeleteGroup, group.Name ), Properties.Resources.Confirm,
+				if ( MessageBox.Show( string.Format( "グループ [{0}] を削除しますか？\r\nこの操作は元に戻せません。", group.Name ), "確認",
 					MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2 )
 					== System.Windows.Forms.DialogResult.Yes ) {
 
@@ -883,7 +872,7 @@ namespace ElectronicObserver.Window {
 				}
 
 			} else {
-				MessageBox.Show( GeneralRes.CannotDeleteGroup, Properties.Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
+				MessageBox.Show( "このグループは削除できません。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
 			}
 		}
 
@@ -896,7 +885,7 @@ namespace ElectronicObserver.Window {
 
 			if ( group != null ) {
 
-				using ( var dialog = new DialogTextInput( GeneralRes.ChangeGroupName, GeneralRes.SpecifyGroupName ) ) {
+				using ( var dialog = new DialogTextInput( "グループ名の変更", "グループ名を入力してください：" ) ) {
 
 					dialog.InputtedText = group.Name;
 
@@ -908,7 +897,7 @@ namespace ElectronicObserver.Window {
 				}
 
 			} else {
-				MessageBox.Show( GeneralRes.CannotChangeGroupName, Properties.Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
+				MessageBox.Show( "このグループの名前を変更することはできません。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
 			}
 
 		}
@@ -982,7 +971,7 @@ namespace ElectronicObserver.Window {
 			ShipGroupData group = CurrentGroup;
 
 			if ( group == null ) {
-				MessageBox.Show( GeneralRes.CannotChangeGroup, Properties.Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Asterisk );
+				MessageBox.Show( "このグループは変更できません。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Asterisk );
 				return;
 			}
 
@@ -1003,9 +992,13 @@ namespace ElectronicObserver.Window {
 				}
 			} catch ( Exception ex ) {
 
-				Utility.ErrorReporter.SendErrorReport( ex, GeneralRes.ColumnDialogError );
+				Utility.ErrorReporter.SendErrorReport( ex, "ShipGroup: 列の設定ダイアログでエラーが発生しました。" );
 			}
 		}
+
+
+
+
 
 		private void MenuMember_Filter_Click( object sender, EventArgs e ) {
 
@@ -1034,7 +1027,7 @@ namespace ElectronicObserver.Window {
 					}
 				} catch ( Exception ex ) {
 
-					Utility.ErrorReporter.SendErrorReport( ex, GeneralRes.FilterDialogError );
+					Utility.ErrorReporter.SendErrorReport( ex, "ShipGroup: フィルタダイアログでエラーが発生しました。" );
 				}
 
 			}
@@ -1069,6 +1062,7 @@ namespace ElectronicObserver.Window {
 
 
 		private void MenuMember_SortOrder_Click( object sender, EventArgs e ) {
+
 			var group = CurrentGroup;
 
 			if ( group != null ) {
@@ -1087,7 +1081,7 @@ namespace ElectronicObserver.Window {
 					}
 				} catch ( Exception ex ) {
 
-					Utility.ErrorReporter.SendErrorReport( ex, GeneralRes.AutoSortDialogError );
+					Utility.ErrorReporter.SendErrorReport( ex, "ShipGroup: 自動ソート順設定ダイアログでエラーが発生しました。" );
 				}
 			}
 
@@ -1113,9 +1107,12 @@ namespace ElectronicObserver.Window {
 		}
 
 
+
+
+
 		private void MenuMember_AddToGroup_Click( object sender, EventArgs e ) {
 
-			using ( var dialog = new DialogTextSelect( GeneralRes.SelectGroup, GeneralRes.CreateGroupName,
+			using ( var dialog = new DialogTextSelect( "グループの選択", "追加するグループを選択してください：",
 				KCDatabase.Instance.ShipGroup.ShipGroups.Values.ToArray() ) ) {
 
 				if ( dialog.ShowDialog( this ) == System.Windows.Forms.DialogResult.OK ) {
@@ -1139,7 +1136,7 @@ namespace ElectronicObserver.Window {
 			if ( ships.Count() == 0 )
 				return;
 
-			using ( var dialog = new DialogTextInput( GeneralRes.AddGroup, GeneralRes.SpecifyGroupName ) ) {
+			using ( var dialog = new DialogTextInput( "グループの追加", "グループ名を入力してください：" ) ) {
 
 				if ( dialog.ShowDialog( this ) == System.Windows.Forms.DialogResult.OK ) {
 
@@ -1187,119 +1184,124 @@ namespace ElectronicObserver.Window {
 
 		#region ColumnHeader
 		private static readonly string[] ShipCSVHeaderUser = {
-			GeneralRes.UniqueID,
-			GeneralRes.ShipType,
-			GeneralRes.ShipName,
+			"固有ID",
+			"艦種",
+			"艦名",
 			"Lv",
 			"Exp",
 			"next",
-			GeneralRes.ToRemodel,
-			GeneralRes.CurrentHealth,
-			GeneralRes.MaxHealth,
+			"改装まで",
+			"耐久現在",
+			"耐久最大",
 			"Cond",
-			GeneralRes.Fuel,
-			GeneralRes.Ammo,
-			GeneralRes.Equipment + " 1",
-			GeneralRes.Equipment + " 2",
-			GeneralRes.Equipment + " 3",
-			GeneralRes.Equipment + " 4",
-			GeneralRes.Equipment + " 5",
-			GeneralRes.Expansion,
-			GeneralRes.Dock,
-			GeneralRes.Firepower,
-			GeneralRes.Firepower + GeneralRes.ModRemaining,
-			GeneralRes.Firepower + GeneralRes.Total,
-			GeneralRes.Torpedo,
-			GeneralRes.Torpedo + GeneralRes.ModRemaining,
-			GeneralRes.Torpedo + GeneralRes.Total,
-			GeneralRes.AntiAir,
-			GeneralRes.AntiAir + GeneralRes.ModRemaining,
-			GeneralRes.AntiAir + GeneralRes.Total,
-			GeneralRes.Armor,
-			GeneralRes.Armor + GeneralRes.ModRemaining,
-			GeneralRes.Armor + GeneralRes.Total,
-			GeneralRes.ASW,
-			GeneralRes.ASW + GeneralRes.Total,
-			GeneralRes.Evasion,
-			GeneralRes.Evasion + GeneralRes.Total,
-			GeneralRes.LoS,
-			GeneralRes.LoS + GeneralRes.Total,
-			GeneralRes.Luck,
-			GeneralRes.Luck + GeneralRes.ModRemaining,
-			GeneralRes.Luck + GeneralRes.Total,
-			GeneralRes.Range,
-			GeneralRes.Speed,
-			GeneralRes.Lock,
-			GeneralRes.SortiePlace,
-			GeneralRes.Air + GeneralRes.Power,
-			GeneralRes.Shelling + GeneralRes.Power,
-			GeneralRes.Bombing + GeneralRes.Power,
-			GeneralRes.ASW + GeneralRes.Power,
-			GeneralRes.Torpedo + GeneralRes.Power,
-			GeneralRes.NightBattle + GeneralRes.Power,
+			"燃料",
+			"弾薬",
+			"装備1",
+			"装備2",
+			"装備3",
+			"装備4",
+			"装備5",
+			"補強装備",
+			"入渠",
+			"火力",
+			"火力改修",
+			"火力合計",
+			"雷装",
+			"雷装改修",
+			"雷装合計",
+			"対空",
+			"対空改修",
+			"対空合計",
+			"装甲",
+			"装甲改修",
+			"装甲合計",
+			"対潜",
+			"対潜合計",
+			"回避",
+			"回避合計",
+			"索敵",
+			"索敵合計",
+			"運",
+			"運改修",
+			"運合計",
+			"射程",
+			"速力",
+			"ロック",
+			"出撃先",
+			"航空威力",
+			"砲撃威力",
+			"空撃威力",
+			"対潜威力",
+			"雷撃威力",
+			"夜戦威力",
 			};
 
 		private static readonly string[] ShipCSVHeaderData = {
-            GeneralRes.UniqueID,
-            GeneralRes.ShipType,
-            GeneralRes.ShipName,
-            GeneralRes.ShipID,
+			"固有ID",
+			"艦種",
+			"艦名",
+			"艦船ID",
 			"Lv",
 			"Exp",
 			"next",
-            GeneralRes.ToRemodel,
-            GeneralRes.CurrentHealth,
-            GeneralRes.MaxHealth,
-            "Cond",
+			"改装まで",
+			"耐久現在",
+			"耐久最大",
+			"Cond",
 			"燃料",
-            GeneralRes.Fuel,
-            GeneralRes.Ammo,
-            GeneralRes.Equipment + " 1",
-            GeneralRes.Equipment + " 2",
-            GeneralRes.Equipment + " 3",
-            GeneralRes.Equipment + " 4",
-            GeneralRes.Equipment + " 5",
-            GeneralRes.Expansion,
-            GeneralRes.Equipment + " ID1",
-			GeneralRes.Equipment + " ID2",
-			GeneralRes.Equipment + " ID3",
-			GeneralRes.Equipment + " ID4",
-			GeneralRes.Equipment + " ID5",
-			GeneralRes.Expansion + " ID",
-			GeneralRes.Planes  + " 1",
-			GeneralRes.Planes + " 2",
-			GeneralRes.Planes + " 3",
-			GeneralRes.Planes + " 4",
-			GeneralRes.Planes + " 5",
-			GeneralRes.Dock,
-			GeneralRes.Dock + " " + GeneralRes.Fuel,
-			GeneralRes.Dock + " " + GeneralRes.Steel,
-            GeneralRes.Firepower,
-            GeneralRes.Firepower + GeneralRes.ModRemaining,
-            GeneralRes.Firepower + GeneralRes.Total,
-            GeneralRes.Torpedo,
-            GeneralRes.Torpedo + GeneralRes.ModRemaining,
-            GeneralRes.Torpedo + GeneralRes.Total,
-            GeneralRes.AntiAir,
-            GeneralRes.AntiAir + GeneralRes.ModRemaining,
-            GeneralRes.AntiAir + GeneralRes.Total,
-            GeneralRes.Armor,
-            GeneralRes.Armor + GeneralRes.ModRemaining,
-            GeneralRes.Armor + GeneralRes.Total,
-            GeneralRes.ASW,
-            GeneralRes.ASW + GeneralRes.Total,
-            GeneralRes.Evasion,
-            GeneralRes.Evasion + GeneralRes.Total,
-            GeneralRes.LoS,
-            GeneralRes.LoS + GeneralRes.Total,
-            GeneralRes.Luck,
-            GeneralRes.Luck + GeneralRes.ModRemaining,
-            GeneralRes.Luck + GeneralRes.Total,
-            GeneralRes.Range,
-            GeneralRes.Speed,
-            GeneralRes.Lock,
-            GeneralRes.SortiePlace,
-            };
+			"弾薬",
+			"装備1",
+			"装備2",
+			"装備3",
+			"装備4",
+			"装備5",
+			"補強装備",
+			"装備ID1",
+			"装備ID2",
+			"装備ID3",
+			"装備ID4",
+			"装備ID5",
+			"補強装備ID",
+			"艦載機1",
+			"艦載機2",
+			"艦載機3",
+			"艦載機4",
+			"艦載機5",
+			"入渠",
+			"入渠燃料",
+			"入渠鋼材",
+			"火力",
+			"火力改修",
+			"火力合計",
+			"雷装",
+			"雷装改修",
+			"雷装合計",
+			"対空",
+			"対空改修",
+			"対空合計",
+			"装甲",
+			"装甲改修",
+			"装甲合計",
+			"対潜",
+			"対潜合計",
+			"回避",
+			"回避合計",
+			"索敵",
+			"索敵合計",
+			"運",
+			"運改修",
+			"運合計",
+			"射程",
+			"速力",
+			"ロック",
+			"出撃先",
+			"航空威力",
+			"砲撃威力",
+			"空撃威力",
+			"対潜威力",
+			"雷撃威力",
+			"夜戦威力",
+			};
 
 		#endregion
 
@@ -1475,8 +1477,8 @@ namespace ElectronicObserver.Window {
 
 					} catch ( Exception ex ) {
 
-						Utility.ErrorReporter.SendErrorReport( ex, GeneralRes.FailedToCreateCSV );
-						MessageBox.Show( GeneralRes.FailedToCreateCSV + "\r\n" + ex.Message, Properties.Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error );
+						Utility.ErrorReporter.SendErrorReport( ex, "艦船グループ CSVの出力に失敗しました。" );
+						MessageBox.Show( "艦船グループ CSVの出力に失敗しました。\r\n" + ex.Message, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error );
 
 					}
 

@@ -139,7 +139,7 @@ namespace ElectronicObserver.Window.Dialog {
 
 				DataGridViewRow row = new DataGridViewRow();
 				row.CreateCells( ShipView );
-				row.SetValues( ship.ShipID, FormMain.Instance.Translator.GetTranslation(KCDatabase.Instance.ShipTypes[ship.ShipType].Name, Utility.TranslationType.ShipTypes), ship.NameWithClass );
+				row.SetValues( ship.ShipID, KCDatabase.Instance.ShipTypes[ship.ShipType].Name, ship.NameWithClass );
 				row.Cells[ShipView_ShipType.Index].Tag = ship.ShipType;
 				row.Cells[ShipView_Name.Index].Tag = ship.IsAbyssalShip ? null : ship.NameReading;
 				rows.Add( row );
@@ -264,10 +264,10 @@ namespace ElectronicObserver.Window.Dialog {
 			AlbumNo.Text = ship.AlbumNo.ToString();
 			ResourceName.Text = string.Format( "{0} ver. {1}/{2}/{3}",
 				ship.ResourceName, ship.ResourceGraphicVersion, ship.ResourceVoiceVersion, ship.ResourcePortVoiceVersion );
-			ToolTipInfo.SetToolTip( ResourceName, string.Format( EncycloRes.ResourceName + ": {0}\r\n" + EncycloRes.ResourceGraphicVersion + " {1}\r\n" + EncycloRes.ResourceVoiceVersion + " {2}\r\n" + EncycloRes.ResourcePortVoiceVersion + " {3}",
+			ToolTipInfo.SetToolTip( ResourceName, string.Format( "リソース名: {0}\r\nグラフィック ver. {1}\r\nボイス ver. {2}\r\n母港ボイス ver. {3}",
 				ship.ResourceName, ship.ResourceGraphicVersion, ship.ResourceVoiceVersion, ship.ResourcePortVoiceVersion ) );
 
-			ShipType.Text = ship.IsLandBase ? EncycloRes.LandBase : FormMain.Instance.Translator.GetTranslation(db.ShipTypes[ship.ShipType].Name, Utility.TranslationType.ShipTypes);
+			ShipType.Text = ship.IsLandBase ? "陸上施設" : db.ShipTypes[ship.ShipType].Name;
 			ShipName.Text = ship.NameWithClass;
 			ToolTipInfo.SetToolTip( ShipName, !ship.IsAbyssalShip ? ship.NameReading : null );
 			TableShipName.ResumeLayout();
@@ -278,8 +278,8 @@ namespace ElectronicObserver.Window.Dialog {
 
 			if ( !ship.IsAbyssalShip ) {
 
-				TitleParameterMin.Text = EncycloRes.Initial;
-				TitleParameterMax.Text = EncycloRes.Maximum;
+				TitleParameterMin.Text = "初期値";
+				TitleParameterMax.Text = "最大値";
 
 				HPMin.Text = ship.HPMin.ToString();
 				HPMax.Text = ship.HPMaxMarried.ToString();
@@ -337,8 +337,8 @@ namespace ElectronicObserver.Window.Dialog {
 					}
 				}
 
-				TitleParameterMin.Text = EncycloRes.BaseValue;
-				TitleParameterMax.Text = EncycloRes.WithEquipValue;
+				TitleParameterMin.Text = "基本値";
+				TitleParameterMax.Text = "装備込";
 
 				HPMin.Text = ship.HPMin.ToString();
 				HPMax.Text = hp.ToString();
@@ -389,7 +389,7 @@ namespace ElectronicObserver.Window.Dialog {
 			Ammo.Text = ship.Ammo.ToString();
 
 			string tooltiptext = string.Format(
-				EncycloRes.RepairTooltip,
+				"入渠時の消費:\r\nHP1あたり: 鋼 {0:F2} / 燃 {1:F2}\r\n最大: 鋼 {2} / 燃 {3}\r\n",
 				( ship.Fuel * 0.06 ),
 				( ship.Fuel * 0.032 ),
 				(int)( ship.Fuel * 0.06 * ( ship.HPMaxMarried - 1 ) ),
@@ -450,23 +450,23 @@ namespace ElectronicObserver.Window.Dialog {
 							StringBuilder sb = new StringBuilder();
 
 							sb.AppendFormat( "{0} {1} (ID: {2})\r\n", eq.CategoryTypeInstance.Name, eq.Name, eq.EquipmentID );
-							if ( eq.Firepower != 0 ) sb.AppendFormat( EncycloRes.Firepower + " {0}{1}\r\n", eq.Firepower > 0 ? "+" : "", eq.Firepower );
-							if ( eq.Torpedo != 0 ) sb.AppendFormat( EncycloRes.Torpedo + " {0}{1}\r\n", eq.Torpedo > 0 ? "+" : "", eq.Torpedo );
-							if ( eq.AA != 0 ) sb.AppendFormat( EncycloRes.AntiAir + " {0}{1}\r\n", eq.AA > 0 ? "+" : "", eq.AA );
-							if ( eq.Armor != 0 ) sb.AppendFormat( EncycloRes.Armor + " {0}{1}\r\n", eq.Armor > 0 ? "+" : "", eq.Armor );
-							if ( eq.ASW != 0 ) sb.AppendFormat( EncycloRes.ASW + " {0}{1}\r\n", eq.ASW > 0 ? "+" : "", eq.ASW );
-							if ( eq.Evasion != 0 ) sb.AppendFormat( EncycloRes.Evasion + " {0}{1}\r\n", eq.Evasion > 0 ? "+" : "", eq.Evasion );
-							if ( eq.LOS != 0 ) sb.AppendFormat( EncycloRes.LoS + " {0}{1}\r\n", eq.LOS > 0 ? "+" : "", eq.LOS );
-							if ( eq.Accuracy != 0 ) sb.AppendFormat( EncycloRes.Accuracy + " {0}{1}\r\n", eq.Accuracy > 0 ? "+" : "", eq.Accuracy );
-							if ( eq.Bomber != 0 ) sb.AppendFormat( EncycloRes.DiveBomb + " {0}{1}\r\n", eq.Bomber > 0 ? "+" : "", eq.Bomber );
-							sb.AppendLine( EncycloRes.RightClickForMore );
+							if ( eq.Firepower != 0 ) sb.AppendFormat( "火力 {0:+0;-0}\r\n", eq.Firepower );
+							if ( eq.Torpedo != 0 ) sb.AppendFormat( "雷装 {0:+0;-0}\r\n", eq.Torpedo );
+							if ( eq.AA != 0 ) sb.AppendFormat( "対空 {0:+0;-0}\r\n", eq.AA );
+							if ( eq.Armor != 0 ) sb.AppendFormat( "装甲 {0:+0;-0}\r\n", eq.Armor );
+							if ( eq.ASW != 0 ) sb.AppendFormat( "対潜 {0:+0;-0}\r\n", eq.ASW );
+							if ( eq.Evasion != 0 ) sb.AppendFormat( "回避 {0:+0;-0}\r\n", eq.Evasion );
+							if ( eq.LOS != 0 ) sb.AppendFormat( "索敵 {0:+0;-0}\r\n", eq.LOS );
+							if ( eq.Accuracy != 0 ) sb.AppendFormat( "命中 {0:+0;-0}\r\n", eq.Accuracy );
+							if ( eq.Bomber != 0 ) sb.AppendFormat( "爆装 {0:+0;-0}\r\n", eq.Bomber );
+							sb.AppendLine( "(右クリックで図鑑)" );
 
 							ToolTipInfo.SetToolTip( Equipments[i], sb.ToString() );
 						}
 					}
 
 				} else if ( i < ship.SlotSize ) {
-					Equipments[i].Text = EncycloRes.None;
+					Equipments[i].Text = "(なし)";
 					Equipments[i].ImageIndex = (int)ResourceManager.EquipmentContent.Nothing;
 
 				} else {
@@ -501,7 +501,7 @@ namespace ElectronicObserver.Window.Dialog {
 				TableRemodel.SuspendLayout();
 
 				if ( ship.RemodelBeforeShipID == 0 ) {
-					RemodelBeforeShipName.Text = EncycloRes.None;
+					RemodelBeforeShipName.Text = "(なし)";
 					RemodelBeforeLevel.Text = "";
 					RemodelBeforeLevel.ImageIndex = -1;
 					ToolTipInfo.SetToolTip( RemodelBeforeLevel, null );
@@ -518,7 +518,7 @@ namespace ElectronicObserver.Window.Dialog {
 				}
 
 				if ( ship.RemodelAfterShipID == 0 ) {
-					RemodelAfterShipName.Text = EncycloRes.None;
+					RemodelAfterShipName.Text = "(なし)";
 					RemodelAfterLevel.Text = "";
 					RemodelAfterLevel.ImageIndex = -1;
 					ToolTipInfo.SetToolTip( RemodelAfterLevel, null );
@@ -561,7 +561,7 @@ namespace ElectronicObserver.Window.Dialog {
 			BasePanelShipGirl.Visible = true;
 
 
-			this.Text = EncycloRes.ShipEncyclopedia + " - " + ship.NameWithClass;
+			this.Text = "艦船図鑑 - " + ship.NameWithClass;
 
 		}
 
@@ -734,9 +734,9 @@ namespace ElectronicObserver.Window.Dialog {
 		private string GetRemodelItem( ShipDataMaster ship ) {
 			StringBuilder sb = new StringBuilder();
 			if ( ship.NeedBlueprint > 0 )
-				sb.AppendLine( EncycloRes.Blueprint + ": " + ship.NeedBlueprint );
+				sb.AppendLine( "改装設計図: " + ship.NeedBlueprint );
 			if ( ship.NeedCatapult > 0 )
-				sb.AppendLine( EncycloRes.PrototypeCatapult + ": " + ship.NeedCatapult );
+				sb.AppendLine( "試製甲板カタパルト: " + ship.NeedCatapult );
 
 			return sb.ToString();
 		}
@@ -750,7 +750,7 @@ namespace ElectronicObserver.Window.Dialog {
 
 					using ( StreamWriter sw = new StreamWriter( SaveCSVDialog.FileName, false, Utility.Configuration.Config.Log.FileEncoding ) ) {
 
-						sw.WriteLine( EncycloRes.ShipCSVUserFormat );
+						sw.WriteLine( "艦船ID,図鑑番号,艦種,艦名,読み,改装前,改装後,改装Lv,改装弾薬,改装鋼材,改装設計図,カタパルト,耐久初期,耐久結婚,火力初期,火力最大,雷装初期,雷装最大,対空初期,対空最大,装甲初期,装甲最大,対潜初期,対潜最大,回避初期,回避最大,索敵初期,索敵最大,運初期,運最大,速力,射程,レア,スロット数,搭載機数1,搭載機数2,搭載機数3,搭載機数4,搭載機数5,初期装備1,初期装備2,初期装備3,初期装備4,初期装備5,建造時間,解体燃料,解体弾薬,解体鋼材,解体ボーキ,改修火力,改修雷装,改修対空,改修装甲,ドロップ文章,図鑑文章,搭載燃料,搭載弾薬,ボイス,リソース名,画像バージョン,ボイスバージョン,母港ボイスバージョン" );
 						string arg = string.Format( "{{{0}}}", string.Join( "},{", Enumerable.Range( 0, 62 ) ) );
 
 						foreach ( ShipDataMaster ship in KCDatabase.Instance.MasterShips.Values ) {
@@ -760,7 +760,7 @@ namespace ElectronicObserver.Window.Dialog {
 							sw.WriteLine( arg,
 								ship.ShipID,
 								ship.AlbumNo,
-                                FormMain.Instance.Translator.GetTranslation(KCDatabase.Instance.ShipTypes[ship.ShipType].Name, Utility.TranslationType.ShipTypes),
+								KCDatabase.Instance.ShipTypes[ship.ShipType].Name,
 								ship.Name,
 								ship.NameReading,
 								ship.RemodelBeforeShipID > 0 ? ship.RemodelBeforeShip.Name : "-",
@@ -768,7 +768,7 @@ namespace ElectronicObserver.Window.Dialog {
 								ship.RemodelAfterLevel,
 								ship.RemodelAmmo,
 								ship.RemodelSteel,
-								ship.NeedBlueprint > 0 ? ship.NeedBlueprint + EncycloRes.Sheets : "-",
+								ship.NeedBlueprint > 0 ? ship.NeedBlueprint + "枚" : "-",
 								ship.NeedCatapult > 0 ? ship.NeedCatapult + "個" : "-",
 								ship.HPMin,
 								ship.HPMaxMarried,
@@ -797,11 +797,11 @@ namespace ElectronicObserver.Window.Dialog {
 								ship.Aircraft[2],
 								ship.Aircraft[3],
 								ship.Aircraft[4],
-								ship.DefaultSlot != null ? ( ship.DefaultSlot[0] != -1 ? KCDatabase.Instance.MasterEquipments[ship.DefaultSlot[0]].Name : ( ship.SlotSize > 0 ? EncycloRes.None : "" ) ) : "???",
-								ship.DefaultSlot != null ? ( ship.DefaultSlot[1] != -1 ? KCDatabase.Instance.MasterEquipments[ship.DefaultSlot[1]].Name : ( ship.SlotSize > 1 ? EncycloRes.None : "" ) ) : "???",
-								ship.DefaultSlot != null ? ( ship.DefaultSlot[2] != -1 ? KCDatabase.Instance.MasterEquipments[ship.DefaultSlot[2]].Name : ( ship.SlotSize > 2 ? EncycloRes.None : "" ) ) : "???",
-								ship.DefaultSlot != null ? ( ship.DefaultSlot[3] != -1 ? KCDatabase.Instance.MasterEquipments[ship.DefaultSlot[3]].Name : ( ship.SlotSize > 3 ? EncycloRes.None : "" ) ) : "???",
-								ship.DefaultSlot != null ? ( ship.DefaultSlot[4] != -1 ? KCDatabase.Instance.MasterEquipments[ship.DefaultSlot[4]].Name : ( ship.SlotSize > 4 ? EncycloRes.None : "" ) ) : "???",
+								ship.DefaultSlot != null ? ( ship.DefaultSlot[0] != -1 ? KCDatabase.Instance.MasterEquipments[ship.DefaultSlot[0]].Name : ( ship.SlotSize > 0 ? "(なし)" : "" ) ) : "???",
+								ship.DefaultSlot != null ? ( ship.DefaultSlot[1] != -1 ? KCDatabase.Instance.MasterEquipments[ship.DefaultSlot[1]].Name : ( ship.SlotSize > 1 ? "(なし)" : "" ) ) : "???",
+								ship.DefaultSlot != null ? ( ship.DefaultSlot[2] != -1 ? KCDatabase.Instance.MasterEquipments[ship.DefaultSlot[2]].Name : ( ship.SlotSize > 2 ? "(なし)" : "" ) ) : "???",
+								ship.DefaultSlot != null ? ( ship.DefaultSlot[3] != -1 ? KCDatabase.Instance.MasterEquipments[ship.DefaultSlot[3]].Name : ( ship.SlotSize > 3 ? "(なし)" : "" ) ) : "???",
+								ship.DefaultSlot != null ? ( ship.DefaultSlot[4] != -1 ? KCDatabase.Instance.MasterEquipments[ship.DefaultSlot[4]].Name : ( ship.SlotSize > 4 ? "(なし)" : "" ) ) : "???",
 								DateTimeHelper.ToTimeRemainString( new TimeSpan( 0, ship.BuildingTime, 0 ) ),
 								ship.Material[0],
 								ship.Material[1],
@@ -828,8 +828,8 @@ namespace ElectronicObserver.Window.Dialog {
 
 				} catch ( Exception ex ) {
 
-					Utility.ErrorReporter.SendErrorReport( ex, EncycloRes.FailedToOutputCSV );
-					MessageBox.Show( EncycloRes.FailedToOutputCSV + "\r\n" + ex.Message, Properties.Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error );
+					Utility.ErrorReporter.SendErrorReport( ex, "艦船図鑑 CSVの出力に失敗しました。" );
+					MessageBox.Show( "艦船図鑑 CSVの出力に失敗しました。\r\n" + ex.Message, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error );
 				}
 
 			}
@@ -845,7 +845,7 @@ namespace ElectronicObserver.Window.Dialog {
 
 					using ( StreamWriter sw = new StreamWriter( SaveCSVDialog.FileName, false, Utility.Configuration.Config.Log.FileEncoding ) ) {
 
-						sw.WriteLine( string.Format( EncycloRes.ShipCSVDataFormat, ExpTable.ShipMaximumLevel ) );
+						sw.WriteLine( string.Format( "艦船ID,図鑑番号,艦名,読み,艦種,改装前,改装後,改装Lv,改装弾薬,改装鋼材,改装設計図,カタパルト,耐久初期,耐久最大,耐久結婚,火力初期,火力最大,雷装初期,雷装最大,対空初期,対空最大,装甲初期,装甲最大,対潜初期最小,対潜初期最大,対潜最大,対潜{0}最小,対潜{0}最大,回避初期最小,回避初期最大,回避最大,回避{0}最小,回避{0}最大,索敵初期最小,索敵初期最大,索敵最大,索敵{0}最小,索敵{0}最大,運初期,運最大,速力,射程,レア,スロット数,搭載機数1,搭載機数2,搭載機数3,搭載機数4,搭載機数5,初期装備1,初期装備2,初期装備3,初期装備4,初期装備5,建造時間,解体燃料,解体弾薬,解体鋼材,解体ボーキ,改修火力,改修雷装,改修対空,改修装甲,ドロップ文章,図鑑文章,搭載燃料,搭載弾薬,ボイス,リソース名,画像バージョン,ボイスバージョン,母港ボイスバージョン", ExpTable.ShipMaximumLevel ) );
 						string arg = string.Format( "{{{0}}}", string.Join( "},{", Enumerable.Range( 0, 72 ) ) );
 
 						foreach ( ShipDataMaster ship in KCDatabase.Instance.MasterShips.Values ) {
@@ -931,8 +931,8 @@ namespace ElectronicObserver.Window.Dialog {
 
 				} catch ( Exception ex ) {
 
-					Utility.ErrorReporter.SendErrorReport( ex, EncycloRes.FailedToOutputCSV );
-					MessageBox.Show( EncycloRes.FailedToOutputCSV + "\r\n" + ex.Message, Properties.Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error );
+					Utility.ErrorReporter.SendErrorReport( ex, "艦船図鑑 CSVの出力に失敗しました。" );
+					MessageBox.Show( "艦船図鑑 CSVの出力に失敗しました。\r\n" + ex.Message, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error );
 				}
 
 			}

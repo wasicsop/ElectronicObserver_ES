@@ -597,6 +597,12 @@ namespace ElectronicObserver.Utility {
 				/// </summary>
 				public bool BlinkAtCompletion { get; set; }
 
+				/// <summary>
+				/// 疲労度アイコンを表示するか
+				/// </summary>
+				public bool ShowConditionIcon { get; set; }
+
+
 				public ConfigFormFleet() {
 					ShowAircraft = true;
 					SearchingAbilityMethod = 3;
@@ -608,6 +614,7 @@ namespace ElectronicObserver.Utility {
 					AirSuperiorityMethod = 1;
 					ShowAnchorageRepairingTimer = true;
 					BlinkAtCompletion = true;
+					ShowConditionIcon = true;
 				}
 			}
 			/// <summary>[艦隊]ウィンドウ</summary>
@@ -878,11 +885,36 @@ namespace ElectronicObserver.Utility {
 
 
 			/// <summary>
+			/// [戦闘]ウィンドウの設定を扱います。
+			/// </summary>
+			public class ConfigFormBattle : ConfigPartBase {
+
+				/// <summary>
+				/// スクロール可能か
+				/// </summary>
+				public bool IsScrollable { get; set; }
+
+
+				public ConfigFormBattle() {
+					IsScrollable = false;
+				}
+			}
+
+			/// <summary>
+			/// [戦闘]ウィンドウ
+			/// </summary>
+			[DataMember]
+			public ConfigFormBattle FormBattle { get; private set; }
+
+
+			/// <summary>
 			/// 各[通知]ウィンドウの設定を扱います。
 			/// </summary>
 			public class ConfigNotifierBase : ConfigPartBase {
 
 				public bool IsEnabled { get; set; }
+
+				public bool IsSilenced { get; set; }
 
 				public bool ShowsDialog { get; set; }
 
@@ -925,6 +957,7 @@ namespace ElectronicObserver.Utility {
 
 				public ConfigNotifierBase() {
 					IsEnabled = true;
+					IsSilenced = false;
 					ShowsDialog = true;
 					ImagePath = "";
 					DrawsImage = false;
@@ -1095,6 +1128,7 @@ namespace ElectronicObserver.Utility {
 				FormHeadquarters = new ConfigFormHeadquarters();
 				FormQuest = new ConfigFormQuest();
 				FormShipGroup = new ConfigFormShipGroup();
+				FormBattle = new ConfigFormBattle();
 				FormBrowser = new ConfigFormBrowser();
 				FormCompass = new ConfigFormCompass();
 				FormJson = new ConfigFormJson();

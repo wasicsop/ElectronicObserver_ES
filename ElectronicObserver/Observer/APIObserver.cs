@@ -145,6 +145,8 @@ namespace ElectronicObserver.Observer {
 
 
 			this.UIControl = UIControl;
+
+
 			HttpProxy.Shutdown();
 			try {
 
@@ -160,10 +162,12 @@ namespace ElectronicObserver.Observer {
 
 
 				ProxyStarted();
-				Utility.Logger.Add( 2, string.Format( LoggerRes.APIObserverStarted, portID ) );
+
+				Utility.Logger.Add( 2, string.Format( "APIObserver: ポート {0} 番で受信を開始しました。", portID ) );
+
 			} catch ( Exception ex ) {
 
-				Utility.Logger.Add( 3, LoggerRes.APIObserverFailed + ex.Message );
+				Utility.Logger.Add( 3, "APIObserver: 受信開始に失敗しました。" + ex.Message );
 				ProxyPort = 0;
 			}
 
@@ -179,7 +183,7 @@ namespace ElectronicObserver.Observer {
 
 			HttpProxy.Shutdown();
 
-			Utility.Logger.Add( 2, LoggerRes.APIObserverStopped );
+			Utility.Logger.Add( 2, "APIObserver: 受信を停止しました。" );
 		}
 
 
@@ -212,10 +216,13 @@ namespace ElectronicObserver.Observer {
 
 				//保存
 				if ( c.SaveReceivedData && c.SaveRequest ) {
+
 					Task.Run( (Action)( () => {
 						SaveRequest( url, body );
 					} ) );
 				}
+
+
 				UIControl.BeginInvoke( (Action)( () => { LoadRequest( url, body ); } ) );
 			}
 
@@ -223,6 +230,7 @@ namespace ElectronicObserver.Observer {
 
 			//response
 			//保存
+
 			if ( c.SaveReceivedData ) {
 
 				try {
@@ -282,11 +290,11 @@ namespace ElectronicObserver.Observer {
 									}
 								}
 
-								Utility.Logger.Add( 1, string.Format( LoggerRes.SavedAPI, tpath.Remove( 0, saveDataPath.Length + 1 ) ) );
+								Utility.Logger.Add( 1, string.Format( "通信からファイル {0} を保存しました。", tpath.Remove( 0, saveDataPath.Length + 1 ) ) );
 
 							} catch ( IOException ex ) {	//ファイルがロックされている; 頻繁に出るのでエラーレポートを残さない
 
-								Utility.Logger.Add( 3, LoggerRes.FailedSaveAPI + ex.Message );
+								Utility.Logger.Add( 3, "通信内容の保存に失敗しました。 " + ex.Message );
 							}
 						} ) );
 
@@ -294,8 +302,9 @@ namespace ElectronicObserver.Observer {
 
 				} catch ( Exception ex ) {
 
-					Utility.ErrorReporter.SendErrorReport( ex, LoggerRes.FailedSaveAPI );
+					Utility.ErrorReporter.SendErrorReport( ex, "通信内容の保存に失敗しました。" );
 				}
+
 			}
 
 
@@ -314,7 +323,7 @@ namespace ElectronicObserver.Observer {
 					Task.Run( (Action)( () => DBSender.ExecuteSession( session ) ) );
 				}
 
-				}
+			}
 
 
 			if ( ServerAddress == null && baseurl.Contains( "/kcsapi/" ) ) {
@@ -331,7 +340,7 @@ namespace ElectronicObserver.Observer {
 
 			try {
 
-				Utility.Logger.Add( 1, LoggerRes.RecievedRequest + shortpath );
+				Utility.Logger.Add( 1, "Request を受信しました : " + shortpath );
 
 				SystemEvents.UpdateTimerEnabled = false;
 
@@ -350,7 +359,7 @@ namespace ElectronicObserver.Observer {
 
 			} catch ( Exception ex ) {
 
-				ErrorReporter.SendErrorReport( ex, LoggerRes.RequestError, shortpath, data );
+				ErrorReporter.SendErrorReport( ex, "Request の受信中にエラーが発生しました。", shortpath, data );
 
 			} finally {
 
@@ -367,7 +376,7 @@ namespace ElectronicObserver.Observer {
 
 			try {
 
-				Utility.Logger.Add( 1, LoggerRes.RecievedResponse + shortpath );
+				Utility.Logger.Add( 1, "Responseを受信しました : " + shortpath );
 
 				SystemEvents.UpdateTimerEnabled = false;
 
@@ -376,9 +385,8 @@ namespace ElectronicObserver.Observer {
 
 				int result = (int)json.api_result;
 				if ( result != 1 ) {
-					var ex = new ArgumentException( LoggerRes.ResponseHadErrorCode + result );
-					Utility.ErrorReporter.SendErrorReport( ex, LoggerRes.ResponseHadErrorCode );
-					throw ex;
+
+					throw new InvalidOperationException( "猫を検出しました。(エラーコード: " + result + ")" );
 				}
 
 
@@ -397,7 +405,7 @@ namespace ElectronicObserver.Observer {
 
 			} catch ( Exception ex ) {
 
-				ErrorReporter.SendErrorReport( ex, LoggerRes.ResponseError, shortpath, data );
+				ErrorReporter.SendErrorReport( ex, "Responseの受信中にエラーが発生しました。", shortpath, data );
 
 			} finally {
 
@@ -421,7 +429,7 @@ namespace ElectronicObserver.Observer {
 
 			} catch ( Exception ex ) {
 
-				Utility.ErrorReporter.SendErrorReport( ex, LoggerRes.FailedSaveAPI );
+				Utility.ErrorReporter.SendErrorReport( ex, "Requestの保存に失敗しました。" );
 
 			}
 		}
@@ -439,7 +447,7 @@ namespace ElectronicObserver.Observer {
 
 			} catch ( Exception ex ) {
 
-				Utility.ErrorReporter.SendErrorReport( ex, LoggerRes.FailedSaveAPI );
+				Utility.ErrorReporter.SendErrorReport( ex, "Responseの保存に失敗しました。" );
 
 			}
 
