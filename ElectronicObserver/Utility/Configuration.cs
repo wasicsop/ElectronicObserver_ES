@@ -14,7 +14,6 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ElectronicObserver.Properties;
 
 namespace ElectronicObserver.Utility {
 
@@ -171,8 +170,6 @@ namespace ElectronicObserver.Utility {
 				/// </summary>
 				public SerializableFont SubFont { get; set; }
 
-                public Theme Theme { get; set; }
-
 				[IgnoreDataMember]
 				private bool _barColorMorphing;
 
@@ -249,7 +246,6 @@ namespace ElectronicObserver.Utility {
 				public ConfigUI() {
 					MainFont = new Font( "Meiryo UI", 12, FontStyle.Regular, GraphicsUnit.Pixel );
 					SubFont = new Font( "Meiryo UI", 10, FontStyle.Regular, GraphicsUnit.Pixel );
-                    Theme = Theme.Light;
 					BarColorMorphing = false;
 				}
 			}
@@ -312,12 +308,25 @@ namespace ElectronicObserver.Utility {
 				/// </summary>
 				public bool ShowSpoiler { get; set; }
 
+				/// <summary>
+				/// プレイ時間
+				/// </summary>
+				public double PlayTime { get; set; }
+
+				/// <summary>
+				/// これ以上の無通信時間があったときプレイ時間にカウントしない
+				/// </summary>
+				public double PlayTimeIgnoreInterval { get; set; }
+
+
 				public ConfigLog() {
 					LogLevel = 2;
 					SaveLogFlag = true;
 					SaveErrorReport = true;
 					FileEncodingID = 4;
 					ShowSpoiler = true;
+					PlayTime = 0;
+					PlayTimeIgnoreInterval = 10 * 60;
 				}
 
 			}
@@ -530,11 +539,20 @@ namespace ElectronicObserver.Utility {
 				public bool BlinkAtMaximum { get; set; }
 
 
+				/// <summary>
+				/// 項目の可視/不可視設定
+				/// </summary>
 				public SerializableList<bool> Visibility { get; set; }
+
+				/// <summary>
+				/// 任意アイテム表示のアイテムID
+				/// </summary>
+				public int DisplayUseItemID { get; set; }
 
 				public ConfigFormHeadquarters() {
 					BlinkAtMaximum = true;
 					Visibility = null;		// フォーム側で設定します
+					DisplayUseItemID = 68;	// 秋刀魚
 				}
 			}
 			/// <summary>[司令部]ウィンドウ</summary>
@@ -814,7 +832,7 @@ namespace ElectronicObserver.Utility {
 				public ConfigFormBrowser() {
 					ZoomRate = 100;
 					ZoomFit = false;
-					LogInPageURL = @"http://www.dmm.com/netgame/social/-/gadgets/=/app_id=854854/";
+					LogInPageURL = @"http://www.dmm.com/netgame_s/kancolle/";
 					IsEnabled = true;
 					ScreenShotPath = "ScreenShot";
 					ScreenShotFormat = 2;
@@ -1174,8 +1192,8 @@ namespace ElectronicObserver.Utility {
 				CheckUpdate( mainForm );
 				OnConfigurationChanged();
 			} else {
-				MessageBox.Show( String.Format(Resources.FirstTimeDialog, SoftwareInformation.SoftwareNameEnglish),
-					Resources.FirstTimeTitle, MessageBoxButtons.OK, MessageBoxIcon.Information );
+				MessageBox.Show( SoftwareInformation.SoftwareNameJapanese + " をご利用いただきありがとうございます。\r\n設定や使用方法については「ヘルプ」→「オンラインヘルプ」を参照してください。\r\nご使用の前に必ずご一読ください。",
+					"初回起動メッセージ", MessageBoxButtons.OK, MessageBoxIcon.Information );
 
 
 				// そのままだと正常に動作しなくなった(らしい)ので、ブラウザバージョンの書き込み
@@ -1189,11 +1207,11 @@ namespace ElectronicObserver.Utility {
 					reg = Microsoft.Win32.Registry.CurrentUser.CreateSubKey( DialogConfiguration.RegistryPathMaster + DialogConfiguration.RegistryPathGPURendering );
 					reg.SetValue( Window.FormBrowserHost.BrowserExeName, DialogConfiguration.DefaultGPURendering ? 1 : 0, Microsoft.Win32.RegistryValueKind.DWord );
 
-					Utility.Logger.Add( 2, ConfigRes.WriteRegistry );
+					Utility.Logger.Add( 2, "ブラウザバージョンをレジストリに書き込みました。削除したい場合は「設定→サブウィンドウ→ブラウザ2→削除」を押してください。" );
 
 
 				} catch ( Exception ex ) {
-					Utility.ErrorReporter.SendErrorReport( ex, ConfigRes.FailWriteRegistry );
+					Utility.ErrorReporter.SendErrorReport( ex, "ブラウザバージョンをレジストリに書き込めませんでした。" );
 
 				} finally {
 					if ( reg != null )
@@ -1216,8 +1234,8 @@ namespace ElectronicObserver.Utility {
 			if ( dt <= DateTimeHelper.CSVStringToTime( "2015/08/27 21:00:00" ) ) {
 
 				if ( MessageBox.Show(
-					Resources.NewRecordFormat,
-					Resources.NewRecordTitle,
+					"バージョンアップが検出されました。\r\n古いレコードファイルを新しいフォーマットにコンバートします。\r\n(元のファイルは Record_Backup フォルダに残されます。)\r\nよろしいですか？\r\n(コンバートせずに続行した場合、読み込めなくなる可能性があります。)\r\n",
+					"バージョンアップに伴う確認(～1.4.6)",
 					MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1 )
 					 == DialogResult.Yes ) {
 
@@ -1326,10 +1344,10 @@ namespace ElectronicObserver.Utility {
 
 					} catch ( Exception ex ) {
 
-						Utility.ErrorReporter.SendErrorReport( ex, Resources.FailedNewRecords );
+						Utility.ErrorReporter.SendErrorReport( ex, "バージョンアップに伴うレコードのコンバートに失敗しました。" );
 
-						if ( MessageBox.Show( String.Format(Resources.FailedRecordDialog, ex.Message),
-							Resources.Error, MessageBoxButtons.YesNo, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2 )
+						if ( MessageBox.Show( "コンバートに失敗しました。\r\n" + ex.Message + "\r\n起動処理を続行しますか？\r\n(データが破壊される可能性があります)\r\n",
+							"エラー", MessageBoxButtons.YesNo, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2 )
 							== DialogResult.No )
 							Environment.Exit( -1 );
 
@@ -1343,8 +1361,8 @@ namespace ElectronicObserver.Utility {
 			if ( dt <= DateTimeHelper.CSVStringToTime( "2015/09/04 21:00:00" ) ) {
 
 				if ( MessageBox.Show(
-					Resources.NewGroupFormat,
-					Resources.NewGroupFormatTitle,
+					"バージョンアップが検出されました。\r\n艦船グループデータの互換性がなくなったため、当該データを初期化します。\r\n(古いファイルは Settings_Backup フォルダに退避されます。)\r\nよろしいですか？\r\n(初期化せずに続行した場合、エラーが発生します。)\r\n",
+					"バージョンアップに伴う確認(～1.5.0)",
 					MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1 )
 					 == DialogResult.Yes ) {
 
@@ -1355,11 +1373,11 @@ namespace ElectronicObserver.Utility {
 
 					} catch ( Exception ex ) {
 
-						Utility.ErrorReporter.SendErrorReport( ex, Resources.GroupUpgradeFailed );
+						Utility.ErrorReporter.SendErrorReport( ex, "バージョンアップに伴うグループデータの削除に失敗しました。" );
 
 						// エラーが出るだけなのでシャットダウンは不要
-						MessageBox.Show( Resources.FailedToDelete + ex.Message,
-							Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error );
+						MessageBox.Show( "削除に失敗しました。\r\n" + ex.Message,
+							"エラー", MessageBoxButtons.OK, MessageBoxIcon.Error );
 
 					}
 				}

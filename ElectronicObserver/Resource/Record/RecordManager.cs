@@ -56,20 +56,22 @@ namespace ElectronicObserver.Resource.Record {
 			bool succeeded = true;
 
 			ResourceManager.CopyFromArchive( "Record/" + ShipParameter.FileName, MasterPath + "\\" + ShipParameter.FileName );
-            
+
 			succeeded &= EnemyFleet.Load( MasterPath );
 			succeeded &= ShipParameter.Load( MasterPath );
 			succeeded &= Construction.Load( MasterPath );
 			succeeded &= ShipDrop.Load( MasterPath );
 			succeeded &= Development.Load( MasterPath );
 			succeeded &= Resource.Load( MasterPath );
-            if (logging) {
-                if (succeeded)
-                    Utility.Logger.Add(2, LoggerRes.LoadedRecords);
-                else
-                    Utility.Logger.Add(3, LoggerRes.FailedLoadingRecords);
-            }
-            return succeeded;
+
+			if ( logging ) {
+				if ( succeeded )
+					Utility.Logger.Add( 2, "レコードをロードしました。" );
+				else
+					Utility.Logger.Add( 3, "レコードのロードに失敗しました。" );
+			}
+
+			return succeeded;
 		}
 
 
@@ -87,13 +89,13 @@ namespace ElectronicObserver.Resource.Record {
 			succeeded &= ShipDrop.Save( MasterPath );
 			succeeded &= Development.Save( MasterPath );
 			succeeded &= Resource.Save( MasterPath );
-            if (logging)
-            {
-                if (succeeded)
-                    Utility.Logger.Add(2, LoggerRes.SavedRecords);
-                else
-                    Utility.Logger.Add(3, LoggerRes.FailedSavingRecords);
-            }
+
+			if ( logging ) {
+				if ( succeeded )
+					Utility.Logger.Add( 2, "レコードをセーブしました。" );
+				else
+					Utility.Logger.Add( 2, "レコードのセーブに失敗しました。" );
+			}
 
 			return succeeded;
 		}
@@ -121,9 +123,9 @@ namespace ElectronicObserver.Resource.Record {
 				_prevTime = DateTime.Now;
 
 				if ( Save( false ) ) {
-					Utility.Logger.Add( 1, LoggerRes.RecordAutosaveSuccess );
+					Utility.Logger.Add( 1, "レコードのオートセーブを行いました。" );
 				} else {
-					Utility.Logger.Add( 3, LoggerRes.RecordAutosaveFailure );
+					Utility.Logger.Add( 3, "レコードのオートセーブに失敗しました。" );
 				}
 			}
 		}

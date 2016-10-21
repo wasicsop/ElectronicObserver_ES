@@ -35,10 +35,10 @@ namespace ElectronicObserver.Window {
 			CSDefaultLeft = new DataGridViewCellStyle();
 			CSDefaultLeft.Alignment = DataGridViewContentAlignment.MiddleLeft;
 			CSDefaultLeft.BackColor =
-			CSDefaultLeft.SelectionBackColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.BackgroundColor);
-            CSDefaultLeft.ForeColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.MainFontColor);
-            CSDefaultLeft.SelectionForeColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.MainFontColor);
-            CSDefaultLeft.WrapMode = DataGridViewTriState.False;
+			CSDefaultLeft.SelectionBackColor = SystemColors.Control;
+			CSDefaultLeft.ForeColor = SystemColors.ControlText;
+			CSDefaultLeft.SelectionForeColor = SystemColors.ControlText;
+			CSDefaultLeft.WrapMode = DataGridViewTriState.False;
 
 			CSDefaultCenter = new DataGridViewCellStyle( CSDefaultLeft );
 			CSDefaultCenter.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -81,9 +81,7 @@ namespace ElectronicObserver.Window {
 
 				CSCategories[i].BackColor =
 				CSCategories[i].SelectionBackColor = c;
-                CSCategories[i].ForeColor =
-                CSCategories[i].SelectionForeColor = SystemColors.ControlText;
-            }
+			}
 
 			QuestView.DefaultCellStyle = CSDefaultCenter;
 			QuestView_Category.DefaultCellStyle = CSCategories[CSCategories.Length - 1];
@@ -139,12 +137,8 @@ namespace ElectronicObserver.Window {
 			var c = Utility.Configuration.Config;
 
 			QuestView.Font = Font = c.UI.MainFont;
-            BackColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.BackgroundColor);
-            ForeColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.MainFontColor);
-            QuestView.ForeColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.MainFontColor);
-            QuestView.BackgroundColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.BackgroundColor);
 
-            MenuMain_ShowRunningOnly.Checked = c.FormQuest.ShowRunningOnly;
+			MenuMain_ShowRunningOnly.Checked = c.FormQuest.ShowRunningOnly;
 			MenuMain_ShowOnce.Checked = c.FormQuest.ShowOnce;
 			MenuMain_ShowDaily.Checked = c.FormQuest.ShowDaily;
 			MenuMain_ShowWeekly.Checked = c.FormQuest.ShowWeekly;
@@ -187,7 +181,7 @@ namespace ElectronicObserver.Window {
 				Utility.Configuration.Config.FormQuest.ColumnWidth = QuestView.Columns.Cast<DataGridViewColumn>().Select( c => c.Width ).ToList();
 
 			} catch ( Exception ) {
-				// *ぷちっ*				
+				// *ぷちっ*
 			}
 		}
 
@@ -248,7 +242,7 @@ namespace ElectronicObserver.Window {
 					double tag;
 
 					if ( q.State == 3 ) {
-						value = GeneralRes.Achieved;
+						value = "達成！";
 						tag = 1.0;
 
 					} else {
@@ -267,11 +261,11 @@ namespace ElectronicObserver.Window {
 									tag = 0.0;
 									break;
 								case 1:
-									value = GeneralRes.Over50;
+									value = "50%以上";
 									tag = 0.5;
 									break;
 								case 2:
-									value = GeneralRes.Over80;
+									value = "80%以上";
 									tag = 0.8;
 									break;
 								default:
@@ -293,13 +287,13 @@ namespace ElectronicObserver.Window {
 			if ( KCDatabase.Instance.Quest.Quests.Count < KCDatabase.Instance.Quest.Count ) {
 				int index = QuestView.Rows.Add();
 				QuestView.Rows[index].Cells[QuestView_State.Index].Value = null;
-				QuestView.Rows[index].Cells[QuestView_Name.Index].Value = string.Format( "(" + GeneralRes.UnacquiredQuests + " x {0})", ( KCDatabase.Instance.Quest.Count - KCDatabase.Instance.Quest.Quests.Count ) );
+				QuestView.Rows[index].Cells[QuestView_Name.Index].Value = string.Format( "(未取得の任務 x {0})", ( KCDatabase.Instance.Quest.Count - KCDatabase.Instance.Quest.Quests.Count ) );
 			}
 
 			if ( KCDatabase.Instance.Quest.Quests.Count == 0 ) {
 				int index = QuestView.Rows.Add();
 				QuestView.Rows[index].Cells[QuestView_State.Index].Value = null;
-				QuestView.Rows[index].Cells[QuestView_Name.Index].Value = GeneralRes.AllComplete;
+				QuestView.Rows[index].Cells[QuestView_Name.Index].Value = "(任務完遂！)";
 			}
 
 			//更新時にソートする
@@ -438,7 +432,7 @@ namespace ElectronicObserver.Window {
 
 		private void MenuMain_Initialize_Click( object sender, EventArgs e ) {
 
-			if ( MessageBox.Show( GeneralRes.InitializeQuestData, GeneralRes.InitQuestTitle,
+			if ( MessageBox.Show( "任務データを初期化します。\r\nデータに齟齬が生じている場合以外での使用は推奨しません。\r\nよろしいですか？", "任務初期化の確認",
 				MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2 ) == System.Windows.Forms.DialogResult.Yes ) {
 
 				KCDatabase.Instance.Quest.Clear();
@@ -456,7 +450,7 @@ namespace ElectronicObserver.Window {
 			{
 				DataGridViewRow row = new DataGridViewRow();
 				row.CreateCells( QuestView );
-				row.SetValues( null, null, null, GeneralRes.Unacquired, null );
+				row.SetValues( null, null, null, "(未取得)", null );
 				QuestView.Rows.Add( row );
 			}
 

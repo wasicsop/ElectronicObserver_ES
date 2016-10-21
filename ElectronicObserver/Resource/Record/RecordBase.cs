@@ -58,14 +58,14 @@ namespace ElectronicObserver.Resource.Record {
 
 						/*/
 						// こちらのほうがよさげだが、エラーが多すぎた場合プログラムが起動できなくなるので自粛
-						
+
 						try {
 							LoadLine( line );
 
 						} catch ( Exception ex ) {
 							Utility.Logger.Add( 3, string.Format( "{0}: エラーが発生したため行 {1} をスキップしました。 {2}", path, linecount, ex.Message ) );
 						}
-						
+
 						/*/
 
 						LoadLine( line );
@@ -81,12 +81,12 @@ namespace ElectronicObserver.Resource.Record {
 
 			} catch ( FileNotFoundException ) {
 
-				Utility.Logger.Add( 1, LoggerRes.Record + path + LoggerRes.DoesNotExist );
+				Utility.Logger.Add( 1, "レコード " + path + " は存在しません。" );
 
 
 			} catch ( Exception ex ) {
 
-				Utility.ErrorReporter.SendErrorReport( ex, LoggerRes.Record + path + LoggerRes.FailedLoading );
+				Utility.ErrorReporter.SendErrorReport( ex, "レコード " + path + " の読み込みに失敗しました。" );
 
 			}
 
@@ -117,7 +117,9 @@ namespace ElectronicObserver.Resource.Record {
 				return true;
 
 			} catch ( Exception ex ) {
-				Utility.ErrorReporter.SendErrorReport( ex, LoggerRes.Record + path + LoggerRes.FailedSaving );
+
+				Utility.ErrorReporter.SendErrorReport( ex, "レコード " + path + " の書き込みに失敗しました。" );
+
 			}
 
 			return false;

@@ -29,11 +29,15 @@ namespace ElectronicObserver.Window.Dialog {
 
 		private Dictionary<SyncBGMPlayer.SoundHandleID, SyncBGMPlayer.SoundHandle> BGMHandles;
 
+		private DateTime _shownTime;
+		private double _playTimeCache;
 
 
 
 		public DialogConfiguration() {
 			InitializeComponent();
+
+			_shownTime = DateTime.Now;
 		}
 
 		public DialogConfiguration( Configuration.ConfigurationData config )
@@ -57,7 +61,7 @@ namespace ElectronicObserver.Window.Dialog {
 				ToolTipInfo.SetToolTip( Connection_SaveDataPath, null );
 			} else {
 				Connection_SaveDataPath.BackColor = Color.MistyRose;
-				ToolTipInfo.SetToolTip( Connection_SaveDataPath, ConfigRes.SavePathDoesNotExist );
+				ToolTipInfo.SetToolTip( Connection_SaveDataPath, "指定されたフォルダは存在しません。" );
 			}
 		}
 
@@ -147,13 +151,13 @@ namespace ElectronicObserver.Window.Dialog {
 
 			string serverAddress = APIObserver.Instance.ServerAddress;
 			if ( serverAddress == null ) {
-				MessageBox.Show( ConfigRes.TryAgainAfterConnect, ConfigRes.Error, MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
+				MessageBox.Show( "艦これに接続してから操作してください。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
 				return;
 			}
 
 			using ( var dialog = new SaveFileDialog() ) {
 				dialog.Filter = "Proxy Script|*.pac|File|*";
-				dialog.Title = ConfigRes.SaveProxyScriptDialog;
+				dialog.Title = "自動プロキシ設定スクリプトを保存する";
 				dialog.InitialDirectory = System.IO.Directory.GetCurrentDirectory();
 				dialog.FileName = System.IO.Directory.GetCurrentDirectory() + "\\proxy.pac";
 
@@ -174,14 +178,14 @@ namespace ElectronicObserver.Window.Dialog {
 
 						Clipboard.SetData( DataFormats.StringFormat, "file:///" + dialog.FileName.Replace( '\\', '/' ) );
 
-						MessageBox.Show( ConfigRes.ProxyScriptSaved,
-							ConfigRes.CreationComplete, MessageBoxButtons.OK, MessageBoxIcon.Information );
+						MessageBox.Show( "自動プロキシ設定スクリプトを保存し、設定用URLをクリップボードにコピーしました。\r\n所定の位置に貼り付けてください。",
+							"作成完了", MessageBoxButtons.OK, MessageBoxIcon.Information );
 
 
 					} catch ( Exception ex ) {
 
-						Utility.ErrorReporter.SendErrorReport( ex, ConfigRes.FailedSaveProxy );
-						MessageBox.Show( ConfigRes.FailedSaveProxy + ex.Message, ConfigRes.Error,
+						Utility.ErrorReporter.SendErrorReport( ex, "自動プロキシ設定スクリプトの保存に失敗しました。" );
+						MessageBox.Show( "自動プロキシ設定スクリプトの保存に失敗しました。\r\n" + ex.Message, "エラー",
 							MessageBoxButtons.OK, MessageBoxIcon.Error );
 
 					}
@@ -267,6 +271,9 @@ namespace ElectronicObserver.Window.Dialog {
 		}
 
 
+
+
+
 		/// <summary>
 		/// 設定からUIを初期化します。
 		/// </summary>
@@ -293,8 +300,6 @@ namespace ElectronicObserver.Window.Dialog {
 			UI_MainFont.Text = config.UI.MainFont.SerializeFontAttribute;
 			UI_SubFont.Font = config.UI.SubFont.FontData;
 			UI_SubFont.Text = config.UI.SubFont.SerializeFontAttribute;
-            selectTheme.DataSource = Enum.GetValues(typeof(Theme));
-            selectTheme.SelectedItem = config.UI.Theme;
 			UI_BarColorMorphing.Checked = config.UI.BarColorMorphing;
 
 			//[ログ]
@@ -303,6 +308,8 @@ namespace ElectronicObserver.Window.Dialog {
 			Log_SaveErrorReport.Checked = config.Log.SaveErrorReport;
 			Log_FileEncodingID.SelectedIndex = config.Log.FileEncodingID;
 			Log_ShowSpoiler.Checked = config.Log.ShowSpoiler;
+			_playTimeCache = config.Log.PlayTime;
+			UpdatePlayTime();
 
 			//[動作]
 			Control_ConditionBorder.Value = config.Control.ConditionBorder;
@@ -350,6 +357,20 @@ namespace ElectronicObserver.Window.Dialog {
 			FormHeadquarters.CheckVisibilityConfiguration();
 			for ( int i = 0; i < FormHeadquarters_Visibility.Items.Count; i++ ) {
 				FormHeadquarters_Visibility.SetItemChecked( i, config.FormHeadquarters.Visibility.List[i] );
+			}
+
+			{
+				FormHeadquarters_DisplayUseItemID.Items.AddRange(
+					ElectronicObserver.Data.KCDatabase.Instance.MasterUseItems.Values
+						.Where( i => i.Name.Length > 0 && i.Description.Length > 0 )
+						.Select( i => i.Name ).ToArray() );
+				var item = ElectronicObserver.Data.KCDatabase.Instance.MasterUseItems[config.FormHeadquarters.DisplayUseItemID];
+
+				if ( item != null ) {
+					FormHeadquarters_DisplayUseItemID.Text = item.Name;
+				} else {
+					FormHeadquarters_DisplayUseItemID.Text = config.FormHeadquarters.DisplayUseItemID.ToString();
+				}
 			}
 
 			FormQuest_ShowRunningOnly.Checked = config.FormQuest.ShowRunningOnly;
@@ -404,7 +425,7 @@ namespace ElectronicObserver.Window.Dialog {
 					FormBrowser_BrowserVersion.Text = DefaultBrowserVersion.ToString();
 					FormBrowser_GPURendering.Checked = DefaultGPURendering;
 
-					Utility.Logger.Add( 3, ConfigRes.FailedLoadRegistry + ex.Message );
+					Utility.Logger.Add( 3, "レジストリからの読み込みに失敗しました。" + ex.Message );
 
 				} finally {
 					if ( reg != null )
@@ -493,9 +514,6 @@ namespace ElectronicObserver.Window.Dialog {
 			//[UI]
 			config.UI.MainFont = UI_MainFont.Font;
 			config.UI.SubFont = UI_SubFont.Font;
-            Theme theme;
-            Enum.TryParse(selectTheme.SelectedValue.ToString(), out theme);
-            config.UI.Theme = theme;
 			config.UI.BarColorMorphing = UI_BarColorMorphing.Checked;
 
 			//[ログ]
@@ -551,6 +569,26 @@ namespace ElectronicObserver.Window.Dialog {
 				for ( int i = 0; i < FormHeadquarters_Visibility.Items.Count; i++ )
 					list.Add( FormHeadquarters_Visibility.GetItemChecked( i ) );
 				config.FormHeadquarters.Visibility.List = list;
+			}
+			{
+				string name = FormHeadquarters_DisplayUseItemID.Text;
+				if ( string.IsNullOrEmpty( name ) ) {
+					config.FormHeadquarters.DisplayUseItemID = -1;
+
+				} else {
+					var item = ElectronicObserver.Data.KCDatabase.Instance.MasterUseItems.Values.FirstOrDefault( p => p.Name == name );
+
+					if ( item != null ) {
+						config.FormHeadquarters.DisplayUseItemID = item.ItemID;
+
+					} else {
+						int val;
+						if ( int.TryParse( name, out val ) )
+							config.FormHeadquarters.DisplayUseItemID = val;
+						else
+							config.FormHeadquarters.DisplayUseItemID = -1;
+					}
+				}
 			}
 
 			config.FormQuest.ShowRunningOnly = FormQuest_ShowRunningOnly.Checked;
@@ -634,7 +672,7 @@ namespace ElectronicObserver.Window.Dialog {
 
 		private void FormBrowser_ApplyRegistry_Click( object sender, EventArgs e ) {
 
-			if ( MessageBox.Show( ConfigRes.ApplyingRegistry, ConfigRes.Confirm,
+			if ( MessageBox.Show( "レジストリに登録します。よろしいですか？\r\n＊完全に適用するには再起動が必要です。", "確認",
 				MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2 )
 				== System.Windows.Forms.DialogResult.Yes ) {
 
@@ -650,8 +688,8 @@ namespace ElectronicObserver.Window.Dialog {
 
 				} catch ( Exception ex ) {
 
-					Utility.ErrorReporter.SendErrorReport( ex, ConfigRes.FailedSaveRegistry );
-					MessageBox.Show( ConfigRes.FailedSaveRegistry + ex.Message, ConfigRes.Error,
+					Utility.ErrorReporter.SendErrorReport( ex, "レジストリへの書き込みに失敗しました。" );
+					MessageBox.Show( "レジストリへの書き込みに失敗しました。\r\n" + ex.Message, "エラー",
 						MessageBoxButtons.OK, MessageBoxIcon.Error );
 
 				} finally {
@@ -664,7 +702,7 @@ namespace ElectronicObserver.Window.Dialog {
 
 		private void FormBrowser_DeleteRegistry_Click( object sender, EventArgs e ) {
 
-			if ( MessageBox.Show( ConfigRes.ClearingRegistry, ConfigRes.Confirm,
+			if ( MessageBox.Show( "レジストリを削除します。よろしいですか？\r\n＊完全に適用するには再起動が必要です。", "確認",
 				MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2 )
 				== System.Windows.Forms.DialogResult.Yes ) {
 
@@ -680,8 +718,8 @@ namespace ElectronicObserver.Window.Dialog {
 
 				} catch ( Exception ex ) {
 
-					Utility.ErrorReporter.SendErrorReport( ex, ConfigRes.FailedClearRegistry );
-					MessageBox.Show( ConfigRes.FailedClearRegistry + ex.Message, ConfigRes.Error,
+					Utility.ErrorReporter.SendErrorReport( ex, "レジストリの削除に失敗しました。" );
+					MessageBox.Show( "レジストリの削除に失敗しました。\r\n" + ex.Message, "エラー",
 						MessageBoxButtons.OK, MessageBoxIcon.Error );
 
 				} finally {
@@ -751,6 +789,16 @@ namespace ElectronicObserver.Window.Dialog {
 			foreach ( NotifierBase no in NotifierManager.Instance.GetNotifiers() ) {
 				no.IsSilenced = silenced;
 			}
+		}
+
+
+		private void UpdatePlayTime() {
+			double elapsed = ( DateTime.Now - _shownTime ).TotalSeconds;
+			Log_PlayTime.Text = "プレイ時間: " + ElectronicObserver.Utility.Mathematics.DateTimeHelper.ToTimeElapsedString( TimeSpan.FromSeconds( _playTimeCache + elapsed ) );
+		}
+
+		private void PlayTimeTimer_Tick( object sender, EventArgs e ) {
+			UpdatePlayTime();
 		}
 
 

@@ -251,7 +251,9 @@ namespace ElectronicObserver.Data {
 				case 3:
 					return ConstantsRes.NightDayBattle;
 				case 4:
-					return ConstantsRes.AirBattle;
+					return "航空戦";
+				case 5:
+					return "敵連合";
 				case 6:
 					return ConstantsRes.AirRaid;
 				default:

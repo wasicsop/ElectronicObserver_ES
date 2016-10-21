@@ -150,7 +150,7 @@ namespace ElectronicObserver.Data {
 
 		/// <summary>
 		/// 補強装備スロット(ID)
-		/// 0=未開放, -1=装備なし 
+		/// 0=未開放, -1=装備なし
 		/// </summary>
 		public int ExpansionSlot { get; private set; }
 
@@ -1329,12 +1329,6 @@ namespace ElectronicObserver.Data {
 
 		}
 
-        public override string ToString()
-        {
-            return NameWithLevel;
-        }
-
-    }
+	}
 
 }
-

@@ -58,11 +58,8 @@ namespace ElectronicObserver.Window {
 		void ConfigurationChanged() {
 
 			Font = TextInformation.Font = Utility.Configuration.Config.UI.MainFont;
-            BackColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.BackgroundColor);
-            ForeColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.MainFontColor);
-            TextInformation.BackColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.BackgroundColor);
-            TextInformation.ForeColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.MainFontColor);
-        }
+			TextInformation.LanguageOption = RichTextBoxLanguageOptions.UIFonts;
+		}
 
 
 		void Updated( string apiname, dynamic data ) {
@@ -138,9 +135,9 @@ namespace ElectronicObserver.Window {
 		private string GetPracticeEnemyInfo( dynamic data ) {
 
 			StringBuilder sb = new StringBuilder();
-			sb.AppendLine( GeneralRes.PracticeReport );
-            sb.AppendLine("Admiral Name: " + data.api_nickname);
-			sb.AppendLine( GeneralRes.EnemyFleetName + ":" + data.api_deckname );
+			sb.AppendLine( "[演習情報]" );
+			sb.AppendLine( "敵提督名 : " + data.api_nickname );
+			sb.AppendLine( "敵艦隊名 : " + data.api_deckname );
 
 			{
 				int ship1lv = (int)data.api_deck.api_ships[0].api_id != -1 ? (int)data.api_deck.api_ships[0].api_level : 1;
@@ -153,8 +150,10 @@ namespace ElectronicObserver.Window {
 				double expbase = ExpTable.ShipExp[ship1lv].Total / 100.0 + ExpTable.ShipExp[ship2lv].Total / 300.0;
 				if ( expbase >= 500.0 )
 					expbase = 500.0 + Math.Sqrt( expbase - 500.0 );
-				sb.AppendLine( GeneralRes.TotalExperienceGained + ": " + (int)expbase );
-				sb.AppendLine( GeneralRes.SVictory + ": " + (int)( expbase * 1.2 ) );
+
+				expbase = (int)expbase;
+
+				sb.AppendFormat( "獲得経験値: {0} / S勝利: {1}\r\n", expbase, (int)( expbase * 1.2 ) );
 
 
 				// 練巡ボーナス計算 - きたない
@@ -226,12 +225,12 @@ namespace ElectronicObserver.Window {
 			if ( data != null && data.api_list() && data.api_list != null ) {
 
 				if ( data.api_list[0].api_yomi() ) {
-                    //艦娘図鑑
-                    const int bound = 70;		// 図鑑1ページあたりの艦船数
+					//艦娘図鑑
+					const int bound = 70;		// 図鑑1ページあたりの艦船数
 					int startIndex = ( ( (int)data.api_list[0].api_index_no - 1 ) / bound ) * bound + 1;
 					bool[] flags = Enumerable.Repeat<bool>( false, bound ).ToArray();
 
-                    sb.AppendLine(GeneralRes.DamagedArtUnseen);
+					sb.AppendLine( "[中破絵未回収]" );
 
 					foreach ( dynamic elem in data.api_list ) {
 
@@ -249,7 +248,7 @@ namespace ElectronicObserver.Window {
 
 					}
 
-					sb.AppendLine( GeneralRes.UnseenShips );
+					sb.AppendLine( "[未保有艦]" );
 					for ( int i = 0; i < bound; i++ ) {
 						if ( !flags[i] ) {
 							ShipDataMaster ship = KCDatabase.Instance.MasterShips.Values.FirstOrDefault( s => s.AlbumNo == startIndex + i );
@@ -270,7 +269,7 @@ namespace ElectronicObserver.Window {
 						flags[(int)elem.api_index_no - startIndex] = true;
 					}
 
-					sb.AppendLine( GeneralRes.UnseenEquips );
+					sb.AppendLine( "[未保有装備]" );
 					for ( int i = 0; i < bound; i++ ) {
 						if ( !flags[i] ) {
 							EquipmentDataMaster eq = KCDatabase.Instance.MasterEquipments.Values.FirstOrDefault( s => s.AlbumNo == startIndex + i );
@@ -291,7 +290,7 @@ namespace ElectronicObserver.Window {
 			if ( (int)data.api_create_flag == 0 ) {
 
 				StringBuilder sb = new StringBuilder();
-				sb.AppendLine( GeneralRes.DevelopmentFailed );
+				sb.AppendLine( "[開発失敗]" );
 				sb.AppendLine( data.api_fdata );
 
 				EquipmentDataMaster eqm = KCDatabase.Instance.MasterEquipments[int.Parse( ( (string)data.api_fdata ).Split( ",".ToCharArray() )[1] )];
@@ -309,9 +308,11 @@ namespace ElectronicObserver.Window {
 		private string GetMapGauge( dynamic data ) {
 
 			StringBuilder sb = new StringBuilder();
-			sb.AppendLine( GeneralRes.MapGauges );
+			sb.AppendLine( "[海域ゲージ]" );
 
-			foreach ( dynamic elem in data.api_map_info ) {
+			var list = data.api_map_info() ? data.api_map_info : data;
+
+			foreach ( dynamic elem in list ) {
 
 				int mapID = (int)elem.api_id;
 				MapInfoData map = KCDatabase.Instance.MapInfo[mapID];
@@ -319,7 +320,7 @@ namespace ElectronicObserver.Window {
 				if ( map != null ) {
 					if ( map.RequiredDefeatedCount != -1 && elem.api_defeat_count() ) {
 
-						sb.AppendFormat( "{0}-{1}: " + GeneralRes.Defeated + " {2}/{3} " + GeneralRes.Times + "\r\n", map.MapAreaID, map.MapInfoID, (int)elem.api_defeat_count, map.RequiredDefeatedCount );
+						sb.AppendFormat( "{0}-{1} : 撃破 {2}/{3} 回\r\n", map.MapAreaID, map.MapInfoID, (int)elem.api_defeat_count, map.RequiredDefeatedCount );
 
 					} else if ( elem.api_eventmap() ) {
 
@@ -344,11 +345,11 @@ namespace ElectronicObserver.Window {
 		private string GetExpeditionResult( dynamic data ) {
 			StringBuilder sb = new StringBuilder();
 
-			sb.AppendLine( GeneralRes.ExpeditionReturned );
-			sb.AppendLine( FormMain.Instance.Translator.GetTranslation(data.api_quest_name, Utility.TranslationType.ExpeditionTitle) + "\r\n" );
-			sb.AppendFormat( GeneralRes.Result + ": {0}\r\n", Constants.GetExpeditionResult( (int)data.api_clear_result ) );
-			sb.AppendFormat( GeneralRes.AdmiralXP + ": +{0}\r\n", (int)data.api_get_exp );
-			sb.AppendFormat( GeneralRes.ShipXP + ": +{0}\r\n", ( (int[])data.api_get_ship_exp ).Min() );
+			sb.AppendLine( "[遠征帰投]" );
+			sb.AppendLine( data.api_quest_name );
+			sb.AppendFormat( "結果: {0}\r\n", Constants.GetExpeditionResult( (int)data.api_clear_result ) );
+			sb.AppendFormat( "提督経験値: +{0}\r\n", (int)data.api_get_exp );
+			sb.AppendFormat( "艦娘経験値: +{0}\r\n", ( (int[])data.api_get_ship_exp ).Min() );
 
 			return sb.ToString();
 		}
@@ -357,10 +358,10 @@ namespace ElectronicObserver.Window {
 		private string GetBattleResult( dynamic data ) {
 			StringBuilder sb = new StringBuilder();
 
-			sb.AppendLine( "[" + GeneralRes.BattleComplete +  "]" );
-			sb.AppendFormat( GeneralRes.EnemyName, FormMain.Instance.Translator.GetTranslation(data.api_enemy_info.api_deck_name, Utility.TranslationType.Operations) );
-			sb.AppendFormat( GeneralRes.WinRank + ": {0}\r\n", data.api_win_rank );
-			sb.AppendFormat( GeneralRes.AdmiralXP + ": +{0}\r\n", (int)data.api_get_exp );
+			sb.AppendLine( "[戦闘終了]" );
+			sb.AppendFormat( "敵艦隊名: {0}\r\n", data.api_enemy_info.api_deck_name );
+			sb.AppendFormat( "勝敗判定: {0}\r\n", data.api_win_rank );
+			sb.AppendFormat( "提督経験値: +{0}\r\n", (int)data.api_get_exp );
 
 			return sb.ToString();
 		}
@@ -370,8 +371,8 @@ namespace ElectronicObserver.Window {
 
 			StringBuilder sb = new StringBuilder();
 
-			sb.AppendLine( GeneralRes.ResupplyComplete );
-			sb.AppendFormat( GeneralRes.BauxiteUsage, (int)data.api_use_bou, (int)data.api_use_bou / 5 );
+			sb.AppendLine( "[補給完了]" );
+			sb.AppendFormat( "ボーキサイト: {0} ( {1}機 )\r\n", (int)data.api_use_bou, (int)data.api_use_bou / 5 );
 
 			return sb.ToString();
 		}
@@ -393,7 +394,7 @@ namespace ElectronicObserver.Window {
 				steel_diff = material.Steel - _prevResource[2],
 				bauxite_diff = material.Bauxite - _prevResource[3];
 
-			sb.AppendLine( GeneralRes.FleetReturned );
+			sb.AppendLine( "[艦隊帰投]" );
 
 			foreach ( var f in KCDatabase.Instance.Fleet.Fleets.Values.Where( f => _inSortie.Contains( f.FleetID ) ) ) {
 
@@ -406,7 +407,7 @@ namespace ElectronicObserver.Window {
 
 			}
 
-			sb.AppendFormat( GeneralRes.ResupplyString,
+			sb.AppendFormat( "燃料: {0:+0;-0} ( 自然 {1:+0;-0} - 補給 {2} - 入渠 {3} )\r\n弾薬: {4:+0;-0} ( 自然 {5:+0;-0} - 補給 {6} )\r\n鋼材: {7:+0;-0} ( 自然 {8:+0;-0} - 入渠 {9} )\r\nボーキ: {10:+0;-0} ( 自然 {11:+0;-0} - 補給 {12} ( {13} 機 ) )",
 				fuel_diff - fuel_supply - fuel_repair, fuel_diff, fuel_supply, fuel_repair,
 				ammo_diff - ammo, ammo_diff, ammo,
 				steel_diff - steel, steel_diff, steel,

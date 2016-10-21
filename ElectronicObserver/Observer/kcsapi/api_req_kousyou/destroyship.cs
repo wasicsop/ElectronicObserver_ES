@@ -9,7 +9,7 @@ namespace ElectronicObserver.Observer.kcsapi.api_req_kousyou {
 
 	public class destroyship : APIBase {
 
-	
+
 		public override void OnRequestReceived( Dictionary<string, string> data ) {
 
 			KCDatabase db = KCDatabase.Instance;
@@ -22,8 +22,8 @@ namespace ElectronicObserver.Observer.kcsapi.api_req_kousyou {
 			db.Fleet.LoadFromRequest( APIName, data );
 
 			ShipData ship = db.Ships[shipID];
-			
-			Utility.Logger.Add( 2, ship.NameWithLevel + LoggerRes.ShipScrapped );
+
+			Utility.Logger.Add( 2, ship.NameWithLevel + " を解体しました。" );
 
 			for ( int i = 0; i < ship.Slot.Count; i++ ) {
 				if ( ship.Slot[i] != -1 )
@@ -32,7 +32,7 @@ namespace ElectronicObserver.Observer.kcsapi.api_req_kousyou {
 
 			db.Ships.Remove( shipID );
 
-			
+
 			base.OnRequestReceived( data );
 		}
 

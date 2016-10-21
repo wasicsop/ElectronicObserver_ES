@@ -43,7 +43,6 @@ namespace ElectronicObserver.Window {
 				Name.Text = "[" + parent.FleetID.ToString() + "]";
 				Name.Anchor = AnchorStyles.Left;
 				Name.ForeColor = parent.MainFontColor;
-                Name.BackColor = parent.BackColor;
 				Name.Padding = new Padding( 0, 1, 0, 1 );
 				Name.Margin = new Padding( 2, 0, 2, 0 );
 				Name.AutoSize = true;
@@ -52,7 +51,6 @@ namespace ElectronicObserver.Window {
 				StateMain = new ImageLabel();
 				StateMain.Anchor = AnchorStyles.Left;
 				StateMain.ForeColor = parent.MainFontColor;
-                StateMain.BackColor = parent.BackColor;
 				StateMain.ImageList = ResourceManager.Instance.Icons;
 				StateMain.Padding = new Padding( 2, 2, 2, 2 );
 				StateMain.Margin = new Padding( 2, 0, 2, 0 );
@@ -61,7 +59,6 @@ namespace ElectronicObserver.Window {
 				AirSuperiority = new ImageLabel();
 				AirSuperiority.Anchor = AnchorStyles.Left;
 				AirSuperiority.ForeColor = parent.MainFontColor;
-                AirSuperiority.BackColor = parent.BackColor;
 				AirSuperiority.ImageList = ResourceManager.Instance.Equipments;
 				AirSuperiority.ImageIndex = (int)ResourceManager.EquipmentContent.CarrierBasedFighter;
 				AirSuperiority.Padding = new Padding( 2, 2, 2, 2 );
@@ -71,7 +68,6 @@ namespace ElectronicObserver.Window {
 				SearchingAbility = new ImageLabel();
 				SearchingAbility.Anchor = AnchorStyles.Left;
 				SearchingAbility.ForeColor = parent.MainFontColor;
-                SearchingAbility.BackColor = parent.BackColor;
 				SearchingAbility.ImageList = ResourceManager.Instance.Equipments;
 				SearchingAbility.ImageIndex = (int)ResourceManager.EquipmentContent.CarrierBasedRecon;
 				SearchingAbility.Padding = new Padding( 2, 2, 2, 2 );
@@ -146,7 +142,7 @@ namespace ElectronicObserver.Window {
 					int tp = Calculator.GetTPDamage( fleet );
 
 					ToolTipInfo.SetToolTip( Name, string.Format(
-						GeneralRes.FleetTooltip,
+						"Lv合計: {0} / 平均: {1:0.00}\r\n{2}艦隊\r\nドラム缶搭載: {3}個 ({4}艦)\r\n大発動艇搭載: {5}個 ({6}艦, +{7:p1})\r\n輸送量(TP): S {8} / A {9}\r\n総積載: 燃 {10} / 弾 {11}\r\n(1戦当たり 燃 {12} / 弾 {13})",
 						levelSum,
 						(double)levelSum / Math.Max( fleet.Members.Count( id => id != -1 ), 1 ),
 						Constants.GetSpeed( speed ),
@@ -175,7 +171,7 @@ namespace ElectronicObserver.Window {
 					bool includeLevel = Utility.Configuration.Config.FormFleet.AirSuperiorityMethod == 1;
 					AirSuperiority.Text = airSuperiority.ToString();
 					ToolTipInfo.SetToolTip( AirSuperiority,
-						string.Format( GeneralRes.ASTooltip,
+						string.Format( "確保: {0}\r\n優勢: {1}\r\n均衡: {2}\r\n劣勢: {3}\r\n({4}: {5})\r\n",
 						(int)( airSuperiority / 3.0 ),
 						(int)( airSuperiority / 1.5 ),
 						Math.Max( (int)( airSuperiority * 1.5 - 1 ), 0 ),
@@ -192,7 +188,7 @@ namespace ElectronicObserver.Window {
 					double probStart = fleet.GetContactProbability();
 					var probSelect = fleet.GetContactSelectionProbability();
 
-					sb.AppendFormat( GeneralRes.LoSTooltip,
+					sb.AppendFormat( "(旧)2-5式: {0}\r\n2-5式(秋): {1}\r\n2-5新秋簡易式: {2}\r\n判定式(33): {3}\r\n\r\n触接開始率: \r\n　確保 {4:p1} / 優勢 {5:p1}\r\n",
 						fleet.GetSearchingAbilityString( 0 ),
 						fleet.GetSearchingAbilityString( 1 ),
 						fleet.GetSearchingAbilityString( 2 ),
@@ -201,10 +197,10 @@ namespace ElectronicObserver.Window {
 						probStart * 0.6 );
 
 					if ( probSelect.Count > 0 ) {
-						sb.AppendLine( GeneralRes.SelectionRate );
+						sb.AppendLine( "触接選択率: " );
 
 						foreach ( var p in probSelect.OrderBy( p => p.Key ) ) {
-							sb.AppendFormat( "  " + EncycloRes.Accuracy + "+{0} : {1:p1}\r\n", p.Key, p.Value );
+							sb.AppendFormat( "　命中{0} : {1:p1}\r\n", p.Key, p.Value );
 						}
 					}
 
@@ -259,7 +255,6 @@ namespace ElectronicObserver.Window {
 				Name.TextAlign = ContentAlignment.MiddleLeft;
 				Name.ImageAlign = ContentAlignment.MiddleCenter;
 				Name.ForeColor = parent.MainFontColor;
-                Name.BackColor = parent.BackColor;
 				Name.Padding = new Padding( 0, 1, 0, 1 );
 				Name.Margin = new Padding( 2, 0, 2, 0 );
 				Name.AutoSize = true;
@@ -293,7 +288,6 @@ namespace ElectronicObserver.Window {
 				HP.UsePrevValue = false;
 				HP.MainFontColor = parent.MainFontColor;
 				HP.SubFontColor = parent.SubFontColor;
-                HP.BackColor = parent.BackColor;
 				HP.Padding = new Padding( 0, 0, 0, 0 );
 				HP.Margin = new Padding( 2, 1, 2, 2 );
 				HP.AutoSize = true;
@@ -305,7 +299,6 @@ namespace ElectronicObserver.Window {
 				Condition.Text = "*";
 				Condition.Anchor = AnchorStyles.Left | AnchorStyles.Right;
 				Condition.ForeColor = parent.MainFontColor;
-                Condition.BackColor = parent.BackColor;
 				Condition.TextAlign = ContentAlignment.BottomRight;
 				Condition.ImageAlign = ContentAlignment.MiddleLeft;
 				Condition.ImageList = ResourceManager.Instance.Icons;
@@ -391,7 +384,7 @@ namespace ElectronicObserver.Window {
 					Name.Tag = ship.ShipID;
 					ToolTipInfo.SetToolTip( Name,
 						string.Format(
-							GeneralRes.ShipTooltip,
+							"{0} {1}\n火力: {2}/{3}\n雷装: {4}/{5}\n対空: {6}/{7}\n装甲: {8}/{9}\n対潜: {10}/{11}\n回避: {12}/{13}\n索敵: {14}/{15}\n運: {16}\n射程: {17} / 速力: {18}\n(右クリックで図鑑)\n",
 							ship.MasterShip.ShipTypeName, ship.NameWithLevel,
 							ship.FirepowerBase, ship.FirepowerTotal,
 							ship.TorpedoBase, ship.TorpedoTotal,
@@ -414,16 +407,16 @@ namespace ElectronicObserver.Window {
 						tip.AppendFormat( "Total: {0} exp.\r\n", ship.ExpTotal );
 
 						if ( !Utility.Configuration.Config.FormFleet.ShowNextExp )
-							tip.AppendFormat( GeneralRes.ToNextLevel + "\r\n", ship.ExpNext );
+							tip.AppendFormat( "次のレベルまで: {0} exp.\r\n", ship.ExpNext );
 
 						if ( ship.MasterShip.RemodelAfterShipID != 0 && ship.Level < ship.MasterShip.RemodelAfterLevel ) {
-							tip.AppendFormat( GeneralRes.ToRemodel, ship.MasterShip.RemodelAfterLevel - ship.Level, ship.ExpNextRemodel);
+							tip.AppendFormat( "改装まで: Lv. {0} / {1} exp.\r\n", ship.MasterShip.RemodelAfterLevel - ship.Level, ship.ExpNextRemodel );
 
-                        } else if ( ship.Level <= 99 ) {
-							tip.AppendFormat( GeneralRes.To99, Math.Max( ExpTable.GetExpToLevelShip( ship.ExpTotal, 99 ), 0 ) );
+						} else if ( ship.Level <= 99 ) {
+							tip.AppendFormat( "Lv99まで: {0} exp.\r\n", Math.Max( ExpTable.GetExpToLevelShip( ship.ExpTotal, 99 ), 0 ) );
 
 						} else {
-							tip.AppendFormat( GeneralRes.ToX, ExpTable.ShipMaximumLevel, Math.Max( ExpTable.GetExpToLevelShip( ship.ExpTotal, ExpTable.ShipMaximumLevel ), 0 ) );
+							tip.AppendFormat( "Lv{0}まで: {1} exp.\r\n", ExpTable.ShipMaximumLevel, Math.Max( ExpTable.GetExpToLevelShip( ship.ExpTotal, ExpTable.ShipMaximumLevel ), 0 ) );
 
 						}
 
@@ -444,26 +437,26 @@ namespace ElectronicObserver.Window {
 					if ( isEscaped ) {
 						HP.BackColor = Color.Silver;
 					} else {
-						HP.BackColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.BackgroundColor);
-                    }
+						HP.BackColor = SystemColors.Control;
+					}
 					{
 						StringBuilder sb = new StringBuilder();
 						double hprate = (double)ship.HPCurrent / ship.HPMax;
 
 						sb.AppendFormat( "HP: {0:0.0}% [{1}]\n", hprate * 100, Constants.GetDamageState( hprate ) );
 						if ( isEscaped ) {
-							sb.AppendLine( GeneralRes.Retreating );
+							sb.AppendLine( "退避中" );
 						} else if ( hprate > 0.50 ) {
-							sb.AppendFormat( GeneralRes.ToMidAndHeavy + "\r\n", ship.HPCurrent - ship.HPMax / 2, ship.HPCurrent - ship.HPMax / 4 );
+							sb.AppendFormat( "中破まで: {0} / 大破まで: {1}\n", ship.HPCurrent - ship.HPMax / 2, ship.HPCurrent - ship.HPMax / 4 );
 						} else if ( hprate > 0.25 ) {
-							sb.AppendFormat( GeneralRes.ToHeavy + "\r\n", ship.HPCurrent - ship.HPMax / 4 );
+							sb.AppendFormat( "大破まで: {0}\n", ship.HPCurrent - ship.HPMax / 4 );
 						} else {
-							sb.AppendLine( GeneralRes.IsTaiha );
+							sb.AppendLine( "大破しています！" );
 						}
 
 						if ( ship.RepairTime > 0 ) {
 							var span = DateTimeHelper.FromAPITimeSpan( ship.RepairTime );
-							sb.AppendFormat( GeneralRes.DockTime + ": {0} @ {1}",
+							sb.AppendFormat( "入渠時間: {0} @ {1}",
 								DateTimeHelper.ToTimeRemainString( span ),
 								DateTimeHelper.ToTimeRemainString( new TimeSpan( span.Add( new TimeSpan( 0, 0, -30 ) ).Ticks / ( ship.HPMax - ship.HPCurrent ) ) ) );
 						}
@@ -476,12 +469,12 @@ namespace ElectronicObserver.Window {
 					Condition.Text = ship.Condition.ToString();
 					Condition.Tag = ship.Condition;
 					SetConditionDesign( ship.Condition );
-					
+
 					if ( ship.Condition < 49 ) {
 						TimeSpan ts = new TimeSpan( 0, (int)Math.Ceiling( ( 49 - ship.Condition ) / 3.0 ) * 3, 0 );
-						ToolTipInfo.SetToolTip( Condition, string.Format( GeneralRes.FatigueRestoreTime, (int)ts.TotalMinutes, (int)ts.Seconds ) );
+						ToolTipInfo.SetToolTip( Condition, string.Format( "完全回復まで 約 {0:D2}:{1:D2}", (int)ts.TotalMinutes, (int)ts.Seconds ) );
 					} else {
-						ToolTipInfo.SetToolTip( Condition, string.Format( GeneralRes.RemainingExpeds, (int)Math.Ceiling( ( ship.Condition - 49 ) / 3.0 ) ) );
+						ToolTipInfo.SetToolTip( Condition, string.Format( "あと {0} 回遠征可能", (int)Math.Ceiling( ( ship.Condition - 49 ) / 3.0 ) ) );
 					}
 
 					ShipResource.SetResources( ship.Fuel, ship.FuelMax, ship.Ammo, ship.AmmoMax );
@@ -526,29 +519,30 @@ namespace ElectronicObserver.Window {
 				{
 					var exslot = ship.ExpansionSlotInstance;
 					if ( exslot != null )
-						sb.AppendFormat( GeneralRes.Expansion + ": {0}\r\n", exslot.NameWithLevel );
+						sb.AppendFormat( "補強: {0}\r\n", exslot.NameWithLevel );
 				}
 
 				int[] slotmaster = ship.SlotMaster.ToArray();
-				sb.AppendFormat( "\r\n" + GeneralRes.DayBattle + ": {0}", Constants.GetDayAttackKind( Calculator.GetDayAttackKind( slotmaster, ship.ShipID, -1 ) ) );
+
+				sb.AppendFormat( "\r\n昼戦: {0}", Constants.GetDayAttackKind( Calculator.GetDayAttackKind( slotmaster, ship.ShipID, -1 ) ) );
 				{
 					int shelling = ship.ShellingPower;
 					int aircraft = ship.AircraftPower;
 					if ( shelling > 0 ) {
 						if ( aircraft > 0 )
-							sb.AppendFormat( " - " + GeneralRes.Shelling + ": {0} / " + GeneralRes.Bombing + ": {1}", shelling, aircraft );
+							sb.AppendFormat( " - 砲撃: {0} / 空撃: {1}", shelling, aircraft );
 						else
-							sb.AppendFormat( " - " + GeneralRes.Power +  ": {0}", shelling );
+							sb.AppendFormat( " - 威力: {0}", shelling );
 					} else if ( aircraft > 0 )
-						sb.AppendFormat( " - " + GeneralRes.Power + ": {0}", aircraft );
+						sb.AppendFormat( " - 威力: {0}", aircraft );
 				}
 				sb.AppendLine();
 
-				sb.AppendFormat( GeneralRes.NightBattle + ": {0}", Constants.GetNightAttackKind( Calculator.GetNightAttackKind( slotmaster, ship.ShipID, -1 ) ) );
+				sb.AppendFormat( "夜戦: {0}", Constants.GetNightAttackKind( Calculator.GetNightAttackKind( slotmaster, ship.ShipID, -1 ) ) );
 				{
 					int night = ship.NightBattlePower;
 					if ( night > 0 ) {
-						sb.AppendFormat( " - " + GeneralRes.Power +  ": {0}", night );
+						sb.AppendFormat( " - 威力: {0}", night );
 					}
 				}
 				sb.AppendLine();
@@ -558,17 +552,17 @@ namespace ElectronicObserver.Window {
 					int asw = ship.AntiSubmarinePower;
 					if ( torpedo > 0 ) {
 						if ( asw > 0 )
-							sb.AppendFormat( GeneralRes.Torpedo + ": {0} / " + GeneralRes.ASW + ": {1}\r\n", torpedo, asw );
+							sb.AppendFormat( "雷撃: {0} / 対潜: {1}\r\n", torpedo, asw );
 						else
-							sb.AppendFormat( GeneralRes.Torpedo + ": {0}\r\n", torpedo );
+							sb.AppendFormat( "雷撃: {0}\r\n", torpedo );
 					} else if ( asw > 0 )
-						sb.AppendFormat( GeneralRes.ASW + ": {0}\r\n", asw );
+						sb.AppendFormat( "対潜: {0}\r\n", asw );
 				}
 
 				{
 					int aacutin = Calculator.GetAACutinKind( ship.ShipID, slotmaster );
 					if ( aacutin != 0 ) {
-						sb.AppendFormat( GeneralRes.AntiAir + ": {0}\r\n", Constants.GetAACutinKind( aacutin ) );
+						sb.AppendFormat( "対空: {0}\r\n", Constants.GetAACutinKind( aacutin ) );
 					}
 				}
 				{
@@ -581,11 +575,11 @@ namespace ElectronicObserver.Window {
 					int airbattle = ship.AirBattlePower;
 					if ( airsup > 0 ) {
 						if ( airbattle > 0 )
-							sb.AppendFormat( GeneralRes.AirPower + ": {0} / " + GeneralRes.Bombing + GeneralRes.Power + ": {1}\r\n", airsup, airbattle );
+							sb.AppendFormat( "制空戦力: {0} / 航空威力: {1}\r\n", airsup, airbattle );
 						else
-							sb.AppendFormat( GeneralRes.AirPower + ": {0}\r\n", airsup );
+							sb.AppendFormat( "制空戦力: {0}\r\n", airsup );
 					} else if ( airbattle > 0 )
-						sb.AppendFormat( GeneralRes.Bombing + GeneralRes.Power + ": {0}\r\n", airbattle );
+						sb.AppendFormat( "航空威力: {0}\r\n", airbattle );
 				}
 
 				return sb.ToString();
@@ -662,13 +656,13 @@ namespace ElectronicObserver.Window {
 
 			ConfigurationChanged();
 
-            MainFontColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.MainFontColor);
-            SubFontColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.SubFontColor);
+			MainFontColor = Color.FromArgb( 0x00, 0x00, 0x00 );
+			SubFontColor = Color.FromArgb( 0x88, 0x88, 0x88 );
 
 
-            //ui init
+			//ui init
 
-            ControlHelper.SetDoubleBuffered( TableFleet );
+			ControlHelper.SetDoubleBuffered( TableFleet );
 			ControlHelper.SetDoubleBuffered( TableMember );
 
 
@@ -814,7 +808,7 @@ namespace ElectronicObserver.Window {
 			FleetData fleet = db.Fleet[FleetID];
 			if ( fleet == null ) return;
 
-			sb.AppendFormat( "{0}\t" + GeneralRes.AirPower + " {1}/ " + GeneralRes.TotalLoS + "{2}\r\n", fleet.Name, fleet.GetAirSuperiority(), fleet.GetSearchingAbilityString() );
+			sb.AppendFormat( "{0}\t制空戦力{1}/索敵能力{2}\r\n", fleet.Name, fleet.GetAirSuperiority(), fleet.GetSearchingAbilityString() );
 			for ( int i = 0; i < fleet.Members.Count; i++ ) {
 				if ( fleet[i] == -1 )
 					continue;
@@ -880,7 +874,7 @@ namespace ElectronicObserver.Window {
 			sb.Append( @"{""version"":4," );
 
 			foreach ( var fleet in db.Fleet.Fleets.Values ) {
-				if ( fleet == null ) continue;
+				if ( fleet == null || fleet.MembersInstance.All( m => m == null ) ) continue;
 
 				sb.AppendFormat( @"""f{0}"":{{", fleet.FleetID );
 
@@ -1002,11 +996,8 @@ namespace ElectronicObserver.Window {
 
 			MainFont = Font = c.UI.MainFont;
 			SubFont = c.UI.SubFont;
-            BackColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.BackgroundColor);
-            ForeColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.MainFontColor);
-            MainFontColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.MainFontColor);
-            SubFontColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.SubFontColor);
-            AutoScroll = ContextMenuFleet_IsScrollable.Checked = c.FormFleet.IsScrollable;
+
+			AutoScroll = ContextMenuFleet_IsScrollable.Checked = c.FormFleet.IsScrollable;
 			ContextMenuFleet_FixShipNameWidth.Checked = c.FormFleet.FixShipNameWidth;
 
 			if ( ControlFleet != null && KCDatabase.Instance.Fleet[FleetID] != null ) {

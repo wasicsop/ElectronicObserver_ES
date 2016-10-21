@@ -195,8 +195,8 @@ namespace ElectronicObserver.Window.Support {
 
 			} catch ( Exception ex ) {
 
-				Utility.ErrorReporter.SendErrorReport( ex, LoggerRes.FailedLoadWindowPlacement );
-				
+				Utility.ErrorReporter.SendErrorReport( ex, "ウィンドウ状態の復元に失敗しました。" );
+
 			}
 
 		}
@@ -216,7 +216,7 @@ namespace ElectronicObserver.Window.Support {
 
 			} catch ( Exception ex ) {
 
-				Utility.ErrorReporter.SendErrorReport( ex, LoggerRes.FailedLoadWindowPlacement );
+				Utility.ErrorReporter.SendErrorReport( ex, "ウィンドウ状態の復元に失敗しました。" );
 			}
 
 		}
@@ -235,7 +235,7 @@ namespace ElectronicObserver.Window.Support {
 
 
 				var wp = new WindowPlacementWrapper();
-				
+
 
 
 				GetWindowPlacement( form.Handle, out wp.RawData );
@@ -246,13 +246,13 @@ namespace ElectronicObserver.Window.Support {
 				using ( StreamWriter sw = new StreamWriter( path ) ) {
 
 					sw.Write( settings );
-				
+
 				}
 
 
 			} catch ( Exception ex ) {
 
-				Utility.ErrorReporter.SendErrorReport( ex, LoggerRes.FailedSaveWindowPlacement );
+				Utility.ErrorReporter.SendErrorReport( ex, "ウィンドウ状態の保存に失敗しました。" );
 			}
 		}
 
@@ -269,7 +269,7 @@ namespace ElectronicObserver.Window.Support {
 
 			} catch ( Exception ex ) {
 
-				Utility.ErrorReporter.SendErrorReport( ex, LoggerRes.FailedSaveWindowPlacement );
+				Utility.ErrorReporter.SendErrorReport( ex, "ウィンドウ状態の保存に失敗しました。" );
 			}
 		}
 

@@ -4,7 +4,6 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ElectronicObserver.Window;
 
 namespace ElectronicObserver.Data {
 
@@ -49,14 +48,14 @@ namespace ElectronicObserver.Data {
 		/// 任務名
 		/// </summary>
 		public string Name {
-			get { return FormMain.Instance.Translator.GetTranslation((string)RawData.api_title, Utility.TranslationType.QuestTitle); }
+			get { return (string)RawData.api_title; }
 		}
 
 		/// <summary>
 		/// 説明
 		/// </summary>
 		public string Description {
-			get { return ( FormMain.Instance.Translator.GetTranslation((string)RawData.api_detail,Utility.TranslationType.QuestDetail)).Replace( "<br>", "\r\n" ); }
+			get { return ( (string)RawData.api_detail ).Replace( "<br>", "\r\n" ); }
 		}
 
 		//undone:api_bonus_flag
