@@ -172,21 +172,21 @@ namespace ElectronicObserver.Window {
 		/// 各表示項目の名称を返します。
 		/// </summary>
 		public static IEnumerable<string> GetItemNames() {
-			yield return "提督名";
-			yield return "提督コメント";
-			yield return "司令部Lv";
-			yield return "艦船数";
-			yield return "装備数";
-			yield return "高速修復材";
-			yield return "高速建造材";
-			yield return "開発資材";
-			yield return "改修資材";
-			yield return "家具コイン";
-			yield return "燃料";
-			yield return "弾薬";
-			yield return "鋼材";
-			yield return "ボーキサイト";
-			yield return "任意のアイテム";
+			yield return "Name";
+			yield return "Comment";
+			yield return "HQ Lv";
+			yield return "Ship Slots";
+			yield return "Equip Slots";
+			yield return "Instant Repair";
+			yield return "Instant Construction";
+			yield return "Development Material";
+			yield return "Improve Material";
+			yield return "Furniture Coin";
+			yield return "Fuel";
+			yield return "Ammo";
+			yield return "Steel";
+			yield return "Bauxite";
+			yield return "Other Item";
 		}
 
 

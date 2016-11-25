@@ -414,7 +414,7 @@ Reports are by default saved in the ErrorReport subfolder.</value>
     <value>Saving automatic proxy script</value>
   </data>
   <data name="SaveReceivedData" xml:space="preserve">
-    <value>Save all received data</value>
+    <value>Save received data</value>
   </data>
   <data name="SaveSWF" xml:space="preserve">
     <value>Save SWF file.</value>
@@ -620,7 +620,7 @@ More details, as well as an access key, can be found on the site below. (opens y
     <value>Set Volume</value>
   </data>
   <data name="BGMPlayer_SyncBrowserMute" xml:space="preserve">
-    <value>Enable mute</value>
+    <value>Mute</value>
   </data>
   <data name="BGMPlayer_SyncBrowserMute_Tooltip" xml:space="preserve">
     <value>Enable to follow browser mute settings</value>
@@ -671,7 +671,7 @@ More details, as well as an access key, can be found on the site below. (opens y
     <value>Dock</value>
   </data>
   <data name="EnableDebugMenu" xml:space="preserve">
-    <value>Enable Debug menu</value>
+    <value>Enable debug menu</value>
   </data>
   <data name="EquipmentLevelVisibility" xml:space="preserve">
     <value>Equipment level display:</value>
@@ -720,7 +720,7 @@ Might be heavy.</value>
     <value>Save record:</value>
   </data>
   <data name="ShipNameSortMethod" xml:space="preserve">
-    <value>Ship name sort order:</value>
+    <value>Ship sort order:</value>
   </data>
   <data name="ShipNameSortMethod_Alphabet" xml:space="preserve">
     <value>Alphabet</value>
