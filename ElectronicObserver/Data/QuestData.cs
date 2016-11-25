@@ -48,14 +48,14 @@ namespace ElectronicObserver.Data {
 		/// 任務名
 		/// </summary>
 		public string Name {
-			get { return (string)RawData.api_title; }
+			get { return Window.FormMain.Instance.Translator.GetTranslation((string)RawData.api_title, Utility.TranslationType.QuestTitle); }
 		}
 
 		/// <summary>
 		/// 説明
 		/// </summary>
 		public string Description {
-			get { return ( (string)RawData.api_detail ).Replace( "<br>", "\r\n" ); }
+			get { return Window.FormMain.Instance.Translator.GetTranslation((string)RawData.api_detail, Utility.TranslationType.QuestDetail)).Replace("<br>", "\r\n"); }
 		}
 
 		//undone:api_bonus_flag

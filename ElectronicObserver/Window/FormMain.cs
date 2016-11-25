@@ -65,6 +65,7 @@ namespace ElectronicObserver.Window {
 		public FormShipGroup fShipGroup;
 		public FormBrowserHost fBrowser;
 		public FormWindowCapture fWindowCapture;
+		public FormXPCalculator fXPCalculator;
 		public FormBaseAirCorps fBaseAirCorps;
 		public FormJson fJson;
 
@@ -115,10 +116,10 @@ namespace ElectronicObserver.Window {
 			} );
 			Utility.Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
 
-			Utility.Logger.Add( 2, SoftwareInformation.SoftwareNameJapanese + " を起動しています…" );
+			Utility.Logger.Add( 2, SoftwareInformation.SoftwareNameEnglish + Resources.IsStarting );
 
 
-			this.Text = SoftwareInformation.VersionJapanese;
+			this.Text = SoftwareInformation.SoftwareNameEnglish + " " + SoftwareInformation.VersionEnglish;
 
 			ResourceManager.Instance.Load();
 			RecordManager.Instance.Load();
@@ -186,6 +187,7 @@ namespace ElectronicObserver.Window {
 			SubForms.Add( fShipGroup = new FormShipGroup( this ) );
 			SubForms.Add( fBrowser = new FormBrowserHost( this ) );
 			SubForms.Add( fWindowCapture = new FormWindowCapture( this ) );
+			SubForms.Add(fXPCalculator = new FormXPCalculator(this));
 			SubForms.Add( fBaseAirCorps = new FormBaseAirCorps( this ) );
 			SubForms.Add( fJson = new FormJson( this ) );
 
@@ -206,7 +208,7 @@ namespace ElectronicObserver.Window {
 
 				} catch ( Exception ex ) {
 
-					Utility.Logger.Add( 3, "API読み込みに失敗しました。" + ex.Message );
+					Utility.Logger.Add( 3, LoggerRes.FailedLoadAPI + ex.Message );
 				}
 			}
 
@@ -224,7 +226,7 @@ namespace ElectronicObserver.Window {
 			UIUpdateTimer.Start();
 
 
-			Utility.Logger.Add( 3, "起動処理が完了しました。" );
+			Utility.Logger.Add( 3, Resources.StartupComplete );
 
 		}
 
@@ -381,7 +383,7 @@ namespace ElectronicObserver.Window {
 		private void FormMain_FormClosing( object sender, FormClosingEventArgs e ) {
 
 			if ( Utility.Configuration.Config.Life.ConfirmOnClosing ) {
-				if ( MessageBox.Show( SoftwareInformation.SoftwareNameJapanese + " を終了しますか？", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2 )
+				if ( MessageBox.Show( SoftwareInformation.SoftwareNameEnglish + Resources.AskClose, Resources.Confirm, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2 )
 					== System.Windows.Forms.DialogResult.No ) {
 					e.Cancel = true;
 					return;
@@ -389,7 +391,7 @@ namespace ElectronicObserver.Window {
 			}
 
 
-			Utility.Logger.Add( 2, SoftwareInformation.SoftwareNameJapanese + " を終了しています…" );
+			Utility.Logger.Add( 2, SoftwareInformation.SoftwareNameEnglish + Resources.IsClosing );
 
 			UIUpdateTimer.Stop();
 
@@ -427,7 +429,7 @@ namespace ElectronicObserver.Window {
 			KCDatabase.Instance.Save();
 
 
-			Utility.Logger.Add( 2, "終了処理が完了しました。" );
+			Utility.Logger.Add( 2, Resources.ClosingComplete );
 
 			if ( Utility.Configuration.Config.Log.SaveLogFlag )
 				Utility.Logger.Save( @"eolog.log" );
@@ -522,7 +524,7 @@ namespace ElectronicObserver.Window {
 
 			} catch ( Exception ex ) {
 
-				Utility.ErrorReporter.SendErrorReport( ex, "サブウィンドウ レイアウトの復元に失敗しました。" );
+				Utility.ErrorReporter.SendErrorReport( ex, LoggerRes.FailedLoadSubLayout );
 			}
 
 		}
@@ -536,7 +538,7 @@ namespace ElectronicObserver.Window {
 
 			} catch ( Exception ex ) {
 
-				Utility.ErrorReporter.SendErrorReport( ex, "サブウィンドウ レイアウトの保存に失敗しました。" );
+				Utility.ErrorReporter.SendErrorReport( ex, LoggerRes.FailedSaveLayout );
 			}
 
 		}
@@ -559,27 +561,27 @@ namespace ElectronicObserver.Window {
 				}
 
 
-				Utility.Logger.Add( 2, path + " からウィンドウ レイアウトを復元しました。" );
+				Utility.Logger.Add( 2, string.Format(Resources.LayoutLoaded, path) );
 
 			} catch ( FileNotFoundException ) {
 
-				Utility.Logger.Add( 3, string.Format( "ウィンドウ レイアウト ファイルは存在しません。" ) );
-				MessageBox.Show( "レイアウトが初期化されました。\r\n「表示」メニューからお好みのウィンドウを追加してください。", "ウィンドウ レイアウト ファイルが存在しません",
+				Utility.Logger.Add( 3, string.Format( Resources.NoLayoutFound ) );
+				MessageBox.Show( Resources.InitLayout, Resources.NoLayoutFound,
 					MessageBoxButtons.OK, MessageBoxIcon.Information );
 
 				fBrowser.Show( MainDockPanel );
 
 			} catch ( DirectoryNotFoundException ) {
 
-				Utility.Logger.Add( 3, string.Format( "ウィンドウ レイアウト ファイルは存在しません。" ) );
-				MessageBox.Show( "レイアウトが初期化されました。\r\n「表示」メニューからお好みのウィンドウを追加してください。", "ウィンドウ レイアウト ファイルが存在しません",
+				Utility.Logger.Add( 3, string.Format( Resources.NoLayoutFound ) );
+				MessageBox.Show( Resources.InitLayout, Resources.NoLayoutFound,
 					MessageBoxButtons.OK, MessageBoxIcon.Information );
 
 				fBrowser.Show( MainDockPanel );
 
 			} catch ( Exception ex ) {
 
-				Utility.ErrorReporter.SendErrorReport( ex, "ウィンドウ レイアウトの復元に失敗しました。" );
+				Utility.ErrorReporter.SendErrorReport( ex, LoggerRes.FailedLoadLayout );
 
 			} finally {
 
@@ -606,11 +608,11 @@ namespace ElectronicObserver.Window {
 				}
 
 
-				Utility.Logger.Add( 2, path + " へウィンドウ レイアウトを保存しました。" );
+				Utility.Logger.Add( 2, string.Format(Resources.LayoutSaved, path) );
 
 			} catch ( Exception ex ) {
 
-				Utility.ErrorReporter.SendErrorReport( ex, "ウィンドウ レイアウトの保存に失敗しました。" );
+				Utility.ErrorReporter.SendErrorReport( ex, LoggerRes.FailedSaveLayout );
 			}
 
 		}
@@ -668,7 +670,7 @@ namespace ElectronicObserver.Window {
 
 		private void StripMenu_File_SaveData_Load_Click( object sender, EventArgs e ) {
 
-			if ( MessageBox.Show( "セーブしていないレコードが失われる可能性があります。\r\nロードしますか？", "確認",
+			if ( MessageBox.Show( Resources.AskLoad, Resources.Confirm,
 					MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2 )
 				== System.Windows.Forms.DialogResult.Yes ) {
 
@@ -695,7 +697,7 @@ namespace ElectronicObserver.Window {
 
 					} catch ( Exception ex ) {
 
-						MessageBox.Show( "API読み込みに失敗しました。\r\n" + ex.Message, "エラー",
+						MessageBox.Show( "API読み込みに失敗しました。\r\n" + ex.Message, Resources.Error,
 							MessageBoxButtons.OK, MessageBoxIcon.Error );
 
 					}
@@ -807,7 +809,7 @@ namespace ElectronicObserver.Window {
 
 					} catch ( Exception ex ) {
 
-						MessageBox.Show( "API読み込みに失敗しました。\r\n" + ex.Message, "エラー",
+						MessageBox.Show( "API読み込みに失敗しました。\r\n" + ex.Message, Resources.Error,
 							MessageBoxButtons.OK, MessageBoxIcon.Error );
 					}
 				}
@@ -852,7 +854,7 @@ namespace ElectronicObserver.Window {
 
 					} catch ( Exception ex ) {
 
-						MessageBox.Show( "API読み込みに失敗しました。\r\n" + ex.Message, "エラー",
+						MessageBox.Show( "API読み込みに失敗しました。\r\n" + ex.Message, Resources.Error,
 							MessageBoxButtons.OK, MessageBoxIcon.Error );
 					}
 				}
@@ -864,7 +866,7 @@ namespace ElectronicObserver.Window {
 		private void StripMenu_Tool_AlbumMasterShip_Click( object sender, EventArgs e ) {
 
 			if ( KCDatabase.Instance.MasterShips.Count == 0 ) {
-				MessageBox.Show( "艦船データが読み込まれていません。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error );
+				MessageBox.Show( "艦船データが読み込まれていません。", Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error );
 
 			} else {
 				new DialogAlbumMasterShip().Show( this );
@@ -875,7 +877,7 @@ namespace ElectronicObserver.Window {
 		private void StripMenu_Tool_AlbumMasterEquipment_Click( object sender, EventArgs e ) {
 
 			if ( KCDatabase.Instance.MasterEquipments.Count == 0 ) {
-				MessageBox.Show( "装備データが読み込まれていません。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error );
+				MessageBox.Show( "装備データが読み込まれていません。", Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error );
 
 			} else {
 				new DialogAlbumMasterEquipment().Show( this );
@@ -897,7 +899,7 @@ namespace ElectronicObserver.Window {
 
 				} catch ( Exception ex ) {
 
-					MessageBox.Show( "削除に失敗しました。\r\n" + ex.Message, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error );
+					MessageBox.Show( "削除に失敗しました。\r\n" + ex.Message, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error );
 				}
 
 
@@ -952,7 +954,7 @@ namespace ElectronicObserver.Window {
 		private async void StripMenu_Debug_RenameShipResource_Click( object sender, EventArgs e ) {
 
 			if ( KCDatabase.Instance.MasterShips.Count == 0 ) {
-				MessageBox.Show( "艦船データが読み込まれていません。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error );
+				MessageBox.Show( "艦船データが読み込まれていません。", Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error );
 				return;
 			}
 
@@ -984,7 +986,7 @@ namespace ElectronicObserver.Window {
 				} catch ( Exception ex ) {
 
 					Utility.ErrorReporter.SendErrorReport( ex, "艦船リソースのリネームに失敗しました。" );
-					MessageBox.Show( "艦船リソースのリネームに失敗しました。\r\n" + ex.Message, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error );
+					MessageBox.Show( "艦船リソースのリネームに失敗しました。\r\n" + ex.Message, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error );
 
 				}
 
@@ -1136,12 +1138,12 @@ namespace ElectronicObserver.Window {
 		private void StripMenu_Tool_DropRecord_Click( object sender, EventArgs e ) {
 
 			if ( KCDatabase.Instance.MasterShips.Count == 0 ) {
-				MessageBox.Show( "艦これを読み込んでから開いてください。", "マスターデータがありません", MessageBoxButtons.OK, MessageBoxIcon.Error );
+				MessageBox.Show( GeneralRes.KancolleMustBeLoaded, GeneralRes.NoMasterData, MessageBoxButtons.OK, MessageBoxIcon.Error );
 				return;
 			}
 
 			if ( RecordManager.Instance.ShipDrop.Record.Count == 0 ) {
-				MessageBox.Show( "ドロップレコードがありません。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error );
+				MessageBox.Show( GeneralRes.NoDevData, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error );
 				return;
 			}
 
@@ -1153,12 +1155,12 @@ namespace ElectronicObserver.Window {
 		private void StripMenu_Tool_DevelopmentRecord_Click( object sender, EventArgs e ) {
 
 			if ( KCDatabase.Instance.MasterShips.Count == 0 ) {
-				MessageBox.Show( "艦これを読み込んでから開いてください。", "マスターデータがありません", MessageBoxButtons.OK, MessageBoxIcon.Error );
+				MessageBox.Show( GeneralRes.KancolleMustBeLoaded, GeneralRes.NoMasterData, MessageBoxButtons.OK, MessageBoxIcon.Error );
 				return;
 			}
 
 			if ( RecordManager.Instance.Development.Record.Count == 0 ) {
-				MessageBox.Show( "開発レコードがありません。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error );
+				MessageBox.Show( GeneralRes.NoDevData, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error );
 				return;
 			}
 
@@ -1169,12 +1171,12 @@ namespace ElectronicObserver.Window {
 		private void StripMenu_Tool_ConstructionRecord_Click( object sender, EventArgs e ) {
 
 			if ( KCDatabase.Instance.MasterShips.Count == 0 ) {
-				MessageBox.Show( "艦これを読み込んでから開いてください。", "マスターデータがありません", MessageBoxButtons.OK, MessageBoxIcon.Error );
+				MessageBox.Show( GeneralRes.KancolleMustBeLoaded, GeneralRes.NoMasterData, MessageBoxButtons.OK, MessageBoxIcon.Error );
 				return;
 			}
 
 			if ( RecordManager.Instance.Construction.Record.Count == 0 ) {
-				MessageBox.Show( "建造レコードがありません。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error );
+				MessageBox.Show( GeneralRes.NoBuildData, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error );
 				return;
 			}
 
@@ -1309,6 +1311,11 @@ namespace ElectronicObserver.Window {
 
 		private void StripMenu_WindowCapture_SubWindow_Click( object sender, EventArgs e ) {
 			ShowForm( fWindowCapture );
+		}
+
+		private void StripMenu_View_XPCalculator_Click(object sender, EventArgs e)
+		{
+			fXPCalculator.Show(MainDockPanel);
 		}
 
 		private void StripMenu_View_BaseAirCorps_Click( object sender, EventArgs e ) {
