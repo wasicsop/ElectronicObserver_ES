@@ -165,8 +165,6 @@ namespace ElectronicObserver.Window
 
             MainFont = Font = c.UI.MainFont;
             SubFont = c.UI.SubFont;
-            BackColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.BackgroundColor);
-            ForeColor = Utility.ThemeManager.GetColor(Utility.Configuration.Config.UI.Theme, Utility.ThemeColors.MainFontColor);
         }
     }
 }

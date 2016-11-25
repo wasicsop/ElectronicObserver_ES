@@ -1,4 +1,5 @@
 ﻿using Codeplex.Data;
+using ElectronicObserver.Properties;
 using ElectronicObserver.Data;
 using ElectronicObserver.Notifier;
 using ElectronicObserver.Observer;
@@ -17,6 +18,8 @@ using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Text;
+using System.Globalization;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
@@ -41,6 +44,9 @@ namespace ElectronicObserver.Window {
 
 		#endregion
 
+		//Singleton
+		public static FormMain Instance;
+
 
 		#region Forms
 
@@ -64,10 +70,27 @@ namespace ElectronicObserver.Window {
 
 		#endregion
 
+		public DynamicTranslator Translator { get; private set; }
+
 
 
 
 		public FormMain() {
+			CultureInfo c = CultureInfo.CurrentCulture;
+			CultureInfo ui = CultureInfo.CurrentUICulture;
+			if (c.Name != "en-US" && c.Name != "ja-JP")
+			{
+				c = new CultureInfo("en-US");
+			}
+			if (ui.Name != "en-US" && ui.Name != "ja-JP")
+			{
+				ui = new CultureInfo("en-US");
+			}
+			Thread.CurrentThread.CurrentCulture = c;
+			Thread.CurrentThread.CurrentUICulture = ui;
+			Translator = new DynamicTranslator();
+			Instance = this;
+			this.SetStyle(ControlStyles.SupportsTransparentBackColor, true);
 			InitializeComponent();
 		}
 
