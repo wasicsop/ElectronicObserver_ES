@@ -55,7 +55,7 @@ namespace ElectronicObserver.Data {
 		/// 説明
 		/// </summary>
 		public string Description {
-			get { return Window.FormMain.Instance.Translator.GetTranslation((string)RawData.api_detail, Utility.TranslationType.QuestDetail)).Replace("<br>", "\r\n"); }
+			get { return Window.FormMain.Instance.Translator.GetTranslation((string)RawData.api_detail, Utility.TranslationType.QuestDetail).Replace("<br>", "\r\n"); }
 		}
 
 		//undone:api_bonus_flag
