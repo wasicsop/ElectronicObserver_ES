@@ -559,7 +559,7 @@ namespace Browser {
 
 				}
 
-
+				_lastScreenShotPath = path;
 				AddLog( 2, string.Format( Resources.ScreenshotSaved, path ) );
 
 			} catch ( Exception ex ) {
