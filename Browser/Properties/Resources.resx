@@ -164,32 +164,20 @@
     <value>ズームの適用に失敗しました。</value>
   </data>
   <data name="FrameScript" xml:space="preserve">
-    <value>// KCRDBと競合しないように同じように処理
-try {
-	var hideStyle = {width:"0px",height:"0px",visibility:"hidden",display:"none"};
-	var fillStyle = {margin:"0px",padding:"0px",position:"fixed",left:"0px",top:"0px",width:"100%",height:"100%",overflow:"hidden"};
-	var jqBody=document.body;
-	$(jqBody).css("zoom","normal");
-	$(jqBody).css({margin:"0px",padding:"0px",overflow:"hidden"});
-	$("#spacing_top").css(hideStyle);
-	$("#adFlashWrap").css(fillStyle);
-	$("#wsFlashWrap").css(fillStyle);
-	$("#flashWrap").css(fillStyle);
-	var elmExternalSwf=document.getElementById("externalswf");
-	if(elmExternalSwf != null) {
-		elmExternalSwf.setAttribute("width","100%");
-		elmExternalSwf.setAttribute("height","100%");
-	}
-	$("#sectionWrap").css(hideStyle);
-	$("#globalNavi").css(hideStyle);
-	$(".rollover").css(hideStyle);
-	$("img").css(hideStyle);
-	$(".badge").css(hideStyle);
-	$("#contentsWrap").css(hideStyle);
-}
-catch(e) {
+    <value>
+try {{
+var node = document.getElementById('{0}');
+if (node) document.head.removeChild(node);
+node = document.createElement('style');
+node.id = '{0}';
+node.innerHTML = 'body {{ visibility: hidden; }} \
+#flashWrap {{ position: fixed; left: 0; top: 0; width: 100%; height: 100%; }} \
+#externalswf {{ visibility: visible; width: 100%; height: 100%; }}';
+document.head.appendChild(node);
+}}
+catch(e) {{
 	alert("フレームCSS適用に失敗しました: "+e);
-}</value>
+}}</value>
   </data>
   <data name="Information" xml:space="preserve">
     <value>情報</value>
@@ -241,30 +229,23 @@ catch(e) {
     <value>ぴったり</value>
   </data>
   <data name="PageScript" xml:space="preserve">
-    <value>// KCRDBと競合しないように同じように処理
-try {
-	var hideStyle = {width:"0px",height:"0px",visibility:"hidden",display:"none"};
-	var fillStyle = {margin:"0px",padding:"0px",position:"fixed",left:"0px",top:"0px",width:"100%",height:"100%",overflow:"hidden"};
-	$(document.body).css({margin:"0px",padding:"0px",overflow:"hidden"});
-	$("img").css(hideStyle);
-	//$("#dmm_ntgnavi").css(hideStyle);
-	$("#dmm-ntgnavi-renew").css(hideStyle);
-	$("#w").css(fillStyle);
-	$("#main-ntg").css(fillStyle);
-	$("#page").css(fillStyle);
-	$("#area-game").css(fillStyle);
-	$("#ntg-recommend").css(hideStyle);
-	var jqGameFrame=$("#game_frame");
-	jqGameFrame.css(fillStyle);
-	jqGameFrame.attr("scrolling","no");
-	jqGameFrame.attr("width","100%");
-	jqGameFrame.attr("height","100%");
-	$("[class^=area-naviapp]").css(hideStyle);
-	$("#foot").css(hideStyle);
-}
-catch(e) {
+    <value>
+try {{
+var node = document.getElementById('{0}');
+if (node) document.head.removeChild(node);
+node = document.createElement('style');
+node.id = '{0}';
+node.innerHTML = 'body {{ visibility: hidden; overflow: hidden; }} \
+div #block_background {{ visibility: visible; }} \
+div #alert {{ visibility: visible; overflow: scroll; top: 0 !important; left: 3% !important; width: 90% !important; height: 100%; padding:2%;}} \
+div.dmm-ntgnavi {{ display: none; }} \
+#area-game {{ position: fixed; left: 0; top: 0; width: 100%; height: 100%; }} \
+#game_frame {{ visibility: visible; width: 100%; height: 100%; }}';
+document.head.appendChild(node);
+}}
+catch(e) {{
 	alert("ページCSS適用に失敗しました: "+e);
-}</value>
+}}</value>
   </data>
   <data name="ReloadDialog" xml:space="preserve">
     <value>再読み込みします。

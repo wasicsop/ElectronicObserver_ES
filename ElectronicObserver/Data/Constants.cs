@@ -325,6 +325,24 @@ namespace ElectronicObserver.Data {
 			}
 		}
 
+		/// <summary>
+		/// 空襲被害の状態を表す文字列を取得します。(短縮版)
+		/// </summary>
+		public static string GetAirRaidDamageShort( int value ) {
+			switch ( value ) {
+				case 1:
+					return "資源損害";
+				case 2:
+					return "資源・航空";
+				case 3:
+					return "航空隊損害";
+				case 4:
+					return "損害なし";
+				default:
+					return "-";
+			}
+		}
+
 
 		#endregion
 
@@ -539,6 +557,8 @@ namespace ElectronicObserver.Data {
 					return ConstantsRes.DaihatsuAttack;
 				case 12:
 					return ConstantsRes.TankAttack;
+				case 13:
+					return "揚陸攻撃(特大発)";
 				default:
 					return ConstantsRes.Unknown;
 			}
@@ -576,6 +596,8 @@ namespace ElectronicObserver.Data {
 					return ConstantsRes.DaihatsuAttack;
 				case 12:
 					return ConstantsRes.TankAttack;
+				case 13:
+					return "揚陸攻撃(特大発)";
 				default:
 					return ConstantsRes.Unknown;
 			}
@@ -623,6 +645,10 @@ namespace ElectronicObserver.Data {
 					return ConstantsRes.HAGun + "/" + ConstantsRes.AAGun;
 				case 18:
 					return ConstantsRes.AAGun;
+				case 19:
+					return "高角砲/集中機銃";
+				case 20:
+					return "集中機銃";
 				default:
 					return ConstantsRes.Unknown;
 			}

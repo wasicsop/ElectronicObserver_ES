@@ -47,13 +47,18 @@
 			this.AirStage1Friend = new ElectronicObserver.Window.Control.ImageLabel();
 			this.SearchingEnemy = new ElectronicObserver.Window.Control.ImageLabel();
 			this.AirSuperiority = new ElectronicObserver.Window.Control.ImageLabel();
+			this.RightClickMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+			this.RightClickMenu_ShowBattleDetail = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+			this.RightClickMenu_ShowBattleResult = new System.Windows.Forms.ToolStripMenuItem();
 			this.TableBottom.SuspendLayout();
 			this.BaseLayoutPanel.SuspendLayout();
 			this.TableTop.SuspendLayout();
+			this.RightClickMenu.SuspendLayout();
 			this.SuspendLayout();
 			//
 			// TableBottom
-			// 
+			//
 			this.TableBottom.AutoSize = true;
 			this.TableBottom.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
 			this.TableBottom.ColumnCount = 4;
@@ -351,12 +356,42 @@
 			this.AirSuperiority.TabIndex = 7;
 			this.AirSuperiority.Text = GeneralRes.AirSuperiority;
 			this.AirSuperiority.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			// 
+			// RightClickMenu
+			//
+			this.RightClickMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.RightClickMenu_ShowBattleDetail,
+            this.toolStripSeparator1,
+            this.RightClickMenu_ShowBattleResult});
+			this.RightClickMenu.Name = "RightClickMenu";
+			this.RightClickMenu.Size = new System.Drawing.Size(219, 76);
+			this.RightClickMenu.Opening += new System.ComponentModel.CancelEventHandler(this.RightClickMenu_Opening);
+			//
+			// RightClickMenu_ShowBattleDetail
+			//
+			this.RightClickMenu_ShowBattleDetail.Name = "RightClickMenu_ShowBattleDetail";
+			this.RightClickMenu_ShowBattleDetail.Size = new System.Drawing.Size(218, 22);
+			this.RightClickMenu_ShowBattleDetail.Text = "戦闘詳細を表示(&D)...";
+			this.RightClickMenu_ShowBattleDetail.Click += new System.EventHandler(this.RightClickMenu_ShowBattleDetail_Click);
+			//
+			// toolStripSeparator1
+			//
+			this.toolStripSeparator1.Name = "toolStripSeparator1";
+			this.toolStripSeparator1.Size = new System.Drawing.Size(215, 6);
+			//
+			// RightClickMenu_ShowBattleResult
+			//
+			this.RightClickMenu_ShowBattleResult.Name = "RightClickMenu_ShowBattleResult";
+			this.RightClickMenu_ShowBattleResult.Size = new System.Drawing.Size(218, 22);
+			this.RightClickMenu_ShowBattleResult.Text = "戦闘結果を一時的に表示(&V)";
+			this.RightClickMenu_ShowBattleResult.Click += new System.EventHandler(this.RightClickMenu_ShowBattleResult_Click);
 			//
 			// FormBattle
 			//
 			this.AutoHidePortion = 150D;
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.ClientSize = new System.Drawing.Size(300, 300);
+			this.ContextMenuStrip = this.RightClickMenu;
 			this.Controls.Add(this.BaseLayoutPanel);
 			this.DoubleBuffered = true;
 			this.Font = new System.Drawing.Font("Meiryo UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
@@ -371,6 +406,7 @@
 			this.BaseLayoutPanel.PerformLayout();
 			this.TableTop.ResumeLayout(false);
 			this.TableTop.PerformLayout();
+			this.RightClickMenu.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -400,5 +436,9 @@
 		private System.Windows.Forms.FlowLayoutPanel BaseLayoutPanel;
 		private System.Windows.Forms.TableLayoutPanel TableTop;
 		private Control.ImageLabel FleetEnemyEscort;
+		private System.Windows.Forms.ContextMenuStrip RightClickMenu;
+		private System.Windows.Forms.ToolStripMenuItem RightClickMenu_ShowBattleDetail;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+		private System.Windows.Forms.ToolStripMenuItem RightClickMenu_ShowBattleResult;
 	}
 }

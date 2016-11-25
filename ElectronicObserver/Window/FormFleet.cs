@@ -47,6 +47,7 @@ namespace ElectronicObserver.Window {
 				Name.Margin = new Padding( 2, 0, 2, 0 );
 				Name.AutoSize = true;
 				//Name.Visible = false;
+				Name.Cursor = Cursors.Help;
 
 				StateMain = new ImageLabel();
 				StateMain.Anchor = AnchorStyles.Left;
@@ -130,15 +131,7 @@ namespace ElectronicObserver.Window {
 
 					int speed = fleet.MembersWithoutEscaped.Min( s => s == null ? 10 : s.MasterShip.Speed );
 
-					var slots = fleet.MembersWithoutEscaped
-						.Where( s => s != null )
-						.SelectMany( s => s.SlotInstance )
-						.Where( e => e != null );
-					var daihatsu = slots.Where( e => e.EquipmentID == 68 );
-					var daihatsu_tank = slots.Where( e => e.EquipmentID == 166 );
-					var landattacker = slots.Where( e => e.EquipmentID == 167 );
-					double expeditionBonus = Math.Min( daihatsu.Count() * 0.05 + daihatsu_tank.Count() * 0.02 + landattacker.Count() * 0.01, 0.20 );
-
+					double expeditionBonus = Calculator.GetExpeditionBonus( fleet );
 					int tp = Calculator.GetTPDamage( fleet );
 
 					ToolTipInfo.SetToolTip( Name, string.Format(
@@ -148,9 +141,9 @@ namespace ElectronicObserver.Window {
 						Constants.GetSpeed( speed ),
 						fleet.MembersInstance.Sum( s => s == null ? 0 : s.SlotInstanceMaster.Count( q => q == null ? false : q.CategoryType == 30 ) ),
 						fleet.MembersInstance.Count( s => s == null ? false : s.SlotInstanceMaster.Any( q => q == null ? false : q.CategoryType == 30 ) ),
-						daihatsu.Count() + daihatsu_tank.Count() + landattacker.Count(),
+						fleet.MembersInstance.Sum( s => s == null ? 0 : s.SlotInstanceMaster.Count( q => q == null ? false : q.CategoryType == 24 || q.CategoryType == 46 ) ),
 						fleet.MembersInstance.Count( s => s == null ? false : s.SlotInstanceMaster.Any( q => q == null ? false : q.CategoryType == 24 || q.CategoryType == 46 ) ),
-						expeditionBonus + 0.01 * expeditionBonus * ( daihatsu.Sum( e => e.Level ) + daihatsu_tank.Sum( e => e.Level ) + landattacker.Sum( e => e.Level ) ) / Math.Max( daihatsu.Count() + daihatsu_tank.Count() + landattacker.Count(), 1 ),
+						expeditionBonus,
 						tp,
 						(int)( tp * 0.7 ),
 						fueltotal,

@@ -31,6 +31,9 @@ namespace Browser {
 		private readonly Size KanColleSize = new Size( 800, 480 );
 
 
+		private readonly string StyleClassID = Guid.NewGuid().ToString().Substring( 0, 8 );
+		private readonly string RestoreScript = @"var node = document.getElementById('{0}'); if (node) document.head.removeChild(node);";
+		private bool RestoreStyleSheet = false;
 
 		// FormBrowserHostの通信サーバ
 		private string ServerUri;
@@ -108,6 +111,7 @@ namespace Browser {
             Thread.CurrentThread.CurrentUICulture = ui;
 
 			InitializeComponent();
+			CoInternetSetFeatureEnabled( 21, 0x00000002, true );
 
 			ServerUri = serverUri;
 			StyleSheetApplied = false;
@@ -275,6 +279,7 @@ namespace Browser {
 		}
 
 		private void CenteringBrowser() {
+			if ( SizeAdjuster.Width == 0 || SizeAdjuster.Height == 0 ) return;
 			int x = Browser.Location.X, y = Browser.Location.Y;
 			bool isScrollable = Configuration.IsScrollable;
 
@@ -302,7 +307,6 @@ namespace Browser {
 
 		private void Browser_DocumentCompleted( object sender, WebBrowserDocumentCompletedEventArgs e ) {
 
-			StyleSheetApplied = false;
 			ApplyStyleSheet();
 
 			ApplyZoom();
@@ -313,7 +317,7 @@ namespace Browser {
 		/// </summary>
 		public void ApplyStyleSheet() {
 
-			if ( !Configuration.AppliesStyleSheet )
+			if ( !Configuration.AppliesStyleSheet && !RestoreStyleSheet )
 				return;
 
 			try {
@@ -322,16 +326,22 @@ namespace Browser {
 				if ( document == null ) return;
 				if ( document.Url.ToString().Contains( ".swf?" ) ) {
 
-					document.Body.SetAttribute( "width", "100%" );
-					document.Body.SetAttribute( "height", "100%" );
+					document.InvokeScript( "eval", new object[] { "document.body.style.margin=0;" } );
 
 				} else {
 					var swf = getFrameElementById( document, "externalswf" );
 					if ( swf == null ) return;
 
+					if ( RestoreStyleSheet ) {
+						document.InvokeScript( "eval", new object[] { string.Format( RestoreScript, StyleClassID ) } );
+						swf.Document.InvokeScript( "eval", new object[] { string.Format( RestoreScript, StyleClassID ) } );
+						StyleSheetApplied = false;
+						RestoreStyleSheet = false;
+						return;
+					}
 					// InvokeScriptは関数しか呼べないようなので、スクリプトをevalで渡す
-					document.InvokeScript( "eval", new object[] { Properties.Resources.PageScript } );
-					swf.Document.InvokeScript( "eval", new object[] { Properties.Resources.FrameScript } );
+					document.InvokeScript( "eval", new object[] { string.Format( Properties.Resources.PageScript, StyleClassID ) } );
+					swf.Document.InvokeScript( "eval", new object[] { string.Format( Properties.Resources.FrameScript, StyleClassID ) } );
 				}
 
 				StyleSheetApplied = true;
@@ -348,7 +358,8 @@ namespace Browser {
 		/// 指定した URL のページを開きます。
 		/// </summary>
 		public void Navigate( string url ) {
-			StyleSheetApplied = false;
+			if ( url != Configuration.LogInPageURL || !Configuration.AppliesStyleSheet )
+				StyleSheetApplied = false;
 			Browser.Navigate( url );
 		}
 
@@ -356,6 +367,8 @@ namespace Browser {
 		/// ブラウザを再読み込みします。
 		/// </summary>
 		public void RefreshBrowser() {
+			if ( !Configuration.AppliesStyleSheet )
+				StyleSheetApplied = false;
 			Browser.Refresh( WebBrowserRefreshOption.Completely );
 		}
 
@@ -858,9 +871,10 @@ namespace Browser {
 
 		private void ToolMenu_Other_AppliesStyleSheet_Click( object sender, EventArgs e ) {
 			Configuration.AppliesStyleSheet = ToolMenu_Other_AppliesStyleSheet.Checked;
-			if ( Configuration.AppliesStyleSheet ) {
-				ApplyStyleSheet();
-			}
+			if ( !Configuration.AppliesStyleSheet )
+				RestoreStyleSheet = true;
+			ApplyStyleSheet();
+			ApplyZoom();
 			ConfigurationUpdated();
 		}
 
@@ -1039,6 +1053,11 @@ namespace Browser {
 
 
 		#region 呪文
+
+		[DllImport( "urlmon.dll" )]
+		[PreserveSig]
+		[return: MarshalAs( UnmanagedType.Error )]
+		static extern int CoInternetSetFeatureEnabled( int FeatureEntry, [MarshalAs( UnmanagedType.U4 )] int dwFlags, bool fEnable );
 
 		[DllImport( "user32.dll", EntryPoint = "GetWindowLongA", SetLastError = true )]
 		private static extern uint GetWindowLong( IntPtr hwnd, int nIndex );
