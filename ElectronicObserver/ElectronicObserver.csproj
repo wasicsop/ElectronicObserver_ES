@@ -148,6 +148,11 @@
     <Compile Include="Data\EquipmentDataMaster.cs" />
     <Compile Include="Data\EquipmentType.cs" />
     <Compile Include="Data\FleetManager.cs" />
+    <Compile Include="Data\FleetRes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FleetRes.resx</DependentUpon>
+    </Compile>
     <Compile Include="Data\IDDictionary.cs" />
     <Compile Include="Data\IIdentifiable.cs" />
     <Compile Include="Data\KCDatabase.cs" />
