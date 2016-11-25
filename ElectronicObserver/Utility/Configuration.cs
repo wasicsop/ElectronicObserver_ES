@@ -1,6 +1,7 @@
 ﻿using Codeplex.Data;
 using ElectronicObserver.Data;
 using ElectronicObserver.Observer;
+using ElectronicObserver.Properties;
 using ElectronicObserver.Resource.Record;
 using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.Utility.Storage;
@@ -1199,8 +1200,8 @@ namespace ElectronicObserver.Utility {
 				CheckUpdate( mainForm );
 				OnConfigurationChanged();
 			} else {
-				MessageBox.Show( SoftwareInformation.SoftwareNameJapanese + " をご利用いただきありがとうございます。\r\n設定や使用方法については「ヘルプ」→「オンラインヘルプ」を参照してください。\r\nご使用の前に必ずご一読ください。",
-					"初回起動メッセージ", MessageBoxButtons.OK, MessageBoxIcon.Information );
+				MessageBox.Show( String.Format(Resources.FirstTimeDialog, SoftwareInformation.SoftwareNameEnglish),
+					Resources.FirstTimeTitle, MessageBoxButtons.OK, MessageBoxIcon.Information );
 
 
 				// そのままだと正常に動作しなくなった(らしい)ので、ブラウザバージョンの書き込み
@@ -1214,11 +1215,11 @@ namespace ElectronicObserver.Utility {
 					reg = Microsoft.Win32.Registry.CurrentUser.CreateSubKey( DialogConfiguration.RegistryPathMaster + DialogConfiguration.RegistryPathGPURendering );
 					reg.SetValue( Window.FormBrowserHost.BrowserExeName, DialogConfiguration.DefaultGPURendering ? 1 : 0, Microsoft.Win32.RegistryValueKind.DWord );
 
-					Utility.Logger.Add( 2, "ブラウザバージョンをレジストリに書き込みました。削除したい場合は「設定→サブウィンドウ→ブラウザ2→削除」を押してください。" );
+					Utility.Logger.Add( 2, ConfigRes.WriteRegistry );
 
 
 				} catch ( Exception ex ) {
-					Utility.ErrorReporter.SendErrorReport( ex, "ブラウザバージョンをレジストリに書き込めませんでした。" );
+					Utility.ErrorReporter.SendErrorReport( ex, ConfigRes.FailWriteRegistry );
 
 				} finally {
 					if ( reg != null )
@@ -1241,8 +1242,8 @@ namespace ElectronicObserver.Utility {
 			if ( dt <= DateTimeHelper.CSVStringToTime( "2015/08/27 21:00:00" ) ) {
 
 				if ( MessageBox.Show(
-					"バージョンアップが検出されました。\r\n古いレコードファイルを新しいフォーマットにコンバートします。\r\n(元のファイルは Record_Backup フォルダに残されます。)\r\nよろしいですか？\r\n(コンバートせずに続行した場合、読み込めなくなる可能性があります。)\r\n",
-					"バージョンアップに伴う確認(～1.4.6)",
+					Resources.NewRecordFormat,
+					Resources.NewRecordTitle,
 					MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1 )
 					 == DialogResult.Yes ) {
 
@@ -1351,10 +1352,10 @@ namespace ElectronicObserver.Utility {
 
 					} catch ( Exception ex ) {
 
-						Utility.ErrorReporter.SendErrorReport( ex, "バージョンアップに伴うレコードのコンバートに失敗しました。" );
+						Utility.ErrorReporter.SendErrorReport( ex, Resources.FailedNewRecords );
 
-						if ( MessageBox.Show( "コンバートに失敗しました。\r\n" + ex.Message + "\r\n起動処理を続行しますか？\r\n(データが破壊される可能性があります)\r\n",
-							"エラー", MessageBoxButtons.YesNo, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2 )
+						if ( MessageBox.Show( String.Format(Resources.FailedRecordDialog, ex.Message),
+							Resources.Error, MessageBoxButtons.YesNo, MessageBoxIcon.Error, MessageBoxDefaultButton.Button2 )
 							== DialogResult.No )
 							Environment.Exit( -1 );
 
@@ -1368,8 +1369,8 @@ namespace ElectronicObserver.Utility {
 			if ( dt <= DateTimeHelper.CSVStringToTime( "2015/09/04 21:00:00" ) ) {
 
 				if ( MessageBox.Show(
-					"バージョンアップが検出されました。\r\n艦船グループデータの互換性がなくなったため、当該データを初期化します。\r\n(古いファイルは Settings_Backup フォルダに退避されます。)\r\nよろしいですか？\r\n(初期化せずに続行した場合、エラーが発生します。)\r\n",
-					"バージョンアップに伴う確認(～1.5.0)",
+					Resources.NewGroupFormat,
+					Resources.NewGroupFormatTitle,
 					MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1 )
 					 == DialogResult.Yes ) {
 
@@ -1380,11 +1381,11 @@ namespace ElectronicObserver.Utility {
 
 					} catch ( Exception ex ) {
 
-						Utility.ErrorReporter.SendErrorReport( ex, "バージョンアップに伴うグループデータの削除に失敗しました。" );
+						Utility.ErrorReporter.SendErrorReport( ex, Resources.GroupUpgradeFailed );
 
 						// エラーが出るだけなのでシャットダウンは不要
-						MessageBox.Show( "削除に失敗しました。\r\n" + ex.Message,
-							"エラー", MessageBoxButtons.OK, MessageBoxIcon.Error );
+						MessageBox.Show( Resources.FailedToDelete + ex.Message,
+							Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error );
 
 					}
 				}

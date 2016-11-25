@@ -154,7 +154,7 @@ namespace ElectronicObserver.Data {
 
 					_escapedShipList.Clear();
 					if ( IsInSortie ) {
-						Utility.Logger.Add( 2, string.Format( "#{0}「{1}」が帰投しました。", FleetID, Name ) );
+						Utility.Logger.Add( 2, string.Format(　FleetRes.HasReturned, FleetID, Name ) );
 					}
 					IsInSortie = false;
 

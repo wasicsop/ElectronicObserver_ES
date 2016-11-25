@@ -149,7 +149,7 @@ namespace Browser {
 				control.Image = new Bitmap( (int)( KanColleSize.Width * zoomrate ), (int)( KanColleSize.Height * zoomrate ), PixelFormat.Format24bppRgb );
 				using ( var g = Graphics.FromImage( control.Image ) ) {
 					g.Clear( SystemColors.Control );
-					g.DrawString( "スクリーンショットをまだ撮影していません。\r\n", Font, Brushes.Black, new Point( 4, 4 ) );
+					g.DrawString("No screenshot yet.\r\n", Font, Brushes.Black, new Point( 4, 4 ) );
 				}
 
 				var host = new ToolStripControlHost( control, "ToolMenu_Other_LastScreenShot_ImageHost" );

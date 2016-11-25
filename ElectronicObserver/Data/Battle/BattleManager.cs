@@ -328,11 +328,11 @@ namespace ElectronicObserver.Data.Battle {
 			// ロギング
 			if ( IsPractice ) {
 				Utility.Logger.Add( 2,
-					string.Format( "演習 で「{0}」{1}の「{2}」と交戦しました。( ランク: {3}, 提督Exp+{4}, 艦娘Exp+{5} )",
+					string.Format( LoggerRes.PracticeMessage,
 						EnemyAdmiralName, EnemyAdmiralRank, Result.EnemyFleetName, Result.Rank, Result.AdmiralExp, Result.BaseExp ) );
 			} else {
 				Utility.Logger.Add( 2,
-					string.Format( "{0}-{1}-{2} で「{3}」と交戦しました。( ランク: {4}, 提督Exp+{5}, 艦娘Exp+{6} )",
+					string.Format( LoggerRes.BattleMessage,
 						Compass.MapAreaID, Compass.MapInfoID, Compass.Destination, Result.EnemyFleetName, Result.Rank, Result.AdmiralExp, Result.BaseExp ) );
 			}
 
@@ -358,7 +358,7 @@ namespace ElectronicObserver.Data.Battle {
 						DroppedEquipmentCount += defaultSlot.Count( id => id != -1 );
 
 					if ( showLog )
-						Utility.Logger.Add( 2, string.Format( "{0}「{1}」が戦列に加わりました。", ship.ShipTypeName, ship.NameWithClass ) );
+						Utility.Logger.Add( 2, string.Format( LoggerRes.ShipAdded, ship.ShipTypeName, ship.NameWithClass ) );
 				}
 
 				if ( itemID != -1 ) {
@@ -370,7 +370,7 @@ namespace ElectronicObserver.Data.Battle {
 					if ( showLog ) {
 						var item = KCDatabase.Instance.UseItems[itemID];
 						var itemmaster = KCDatabase.Instance.MasterUseItems[itemID];
-						Utility.Logger.Add( 2, string.Format( "アイテム「{0}」を入手しました。( 合計: {1}個 )", itemmaster != null ? itemmaster.Name : ( "不明なアイテム - ID:" + itemID ), ( item != null ? item.Count : 0 ) + DroppedItemCount[itemID] ) );
+						Utility.Logger.Add( 2, string.Format( LoggerRes.ItemObtained, itemmaster != null ? itemmaster.Name : ( "Unknown item - ID: " + itemID ), ( item != null ? item.Count : 0 ) + DroppedItemCount[itemID] ) );
 					}
 				}
 
@@ -380,7 +380,7 @@ namespace ElectronicObserver.Data.Battle {
 					DroppedEquipmentCount++;
 
 					if ( showLog ) {
-						Utility.Logger.Add( 2, string.Format( "{0}「{1}」を入手しました。", eq.CategoryTypeInstance.Name, eq.Name ) );
+						Utility.Logger.Add( 2, string.Format( LoggerRes.EquipmentObtained, eq.CategoryTypeInstance.Name, eq.Name ) );
 					}
 				}
 
