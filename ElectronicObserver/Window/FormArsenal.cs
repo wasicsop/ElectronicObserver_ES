@@ -211,7 +211,7 @@ namespace ElectronicObserver.Window {
 
 				if ( Utility.Configuration.Config.Log.ShowSpoiler && Utility.Configuration.Config.FormArsenal.ShowShipName ) {
 
-					name = string.Format( "{0}「{1}」", ship.ShipTypeName, ship.NameWithClass );
+					name = string.Format( "{0} {1}", ship.ShipTypeName, ship.NameWithClass );
 
 				} else {
 

@@ -170,7 +170,7 @@ Cut-in type: {1} ({2})</value>
     <value>Arsenal</value>
   </data>
   <data name="ArsenalLog" xml:space="preserve">
-    <value>{1} has started construction in arsenal dock #{0}. ({2}/{3}/{4}/{5}-{6} Secretary: {7})</value>
+    <value>Secretary {7} has started the construction of {1} in dock #{0} with {2}/{3}/{4}/{5}-{6}.</value>
   </data>
   <data name="AssignedCount" xml:space="preserve">
     <value>{0} Ships Assigned</value>

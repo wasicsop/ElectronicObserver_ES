@@ -133,13 +133,13 @@
     <value> has had their parameters changed.</value>
   </data>
   <data name="CreatedItem" xml:space="preserve">
-    <value>{0} [{1}] has been created. ({2}/{3}/{4}/{5} Secretary: {6})</value>
+    <value>Secretary {6} has created {0} {1} with {2}/{3}/{4}/{5}.</value>
   </data>
   <data name="DoesNotExist" xml:space="preserve">
     <value>does not exist.</value>
   </data>
   <data name="EquipmentObtained" xml:space="preserve">
-    <value>Obtained {0} [{1}].</value>
+    <value>Obtained {0} {1}.</value>
   </data>
   <data name="Error" xml:space="preserve">
     <value>Error</value>
@@ -241,7 +241,7 @@
     <value> has had initial equipment registered.</value>
   </data>
   <data name="ItemCreationFailed" xml:space="preserve">
-    <value>Development failed. ({0}/{1}/{2}/{3} Secretary: {4})</value>
+    <value>Secretary {4} has failed to develop with {0}/{1}/{2}/{3}.</value>
   </data>
   <data name="ItemObtained" xml:space="preserve">
     <value>Obtained item {0} (Total: {1}).</value>
@@ -286,16 +286,16 @@
     <value>Sent {0} to the Kancolle Statistics Database.</value>
   </data>
   <data name="ShipAdded" xml:space="preserve">
-    <value>{0} [{1}] has been added to the line of battle.</value>
+    <value>{0} {1} has been added to the line of battle.</value>
   </data>
   <data name="ShipConstructed" xml:space="preserve">
-    <value>Construction is now complete on {0} [{1}].</value>
+    <value>Constructed ship {0} {1} has been added to the line of battle.</value>
   </data>
   <data name="ShipScrapped" xml:space="preserve">
     <value> has been scrapped.</value>
   </data>
   <data name="SortiedTo" xml:space="preserve">
-    <value>#{0} "{1}" has sortied to 「{2}-{3} {4}」.</value>
+    <value>#{0} 「{1}」 has sortied to 「{2}-{3} {4}」.</value>
   </data>
   <data name="StackTrace" xml:space="preserve">
     <value>Stack Trace:</value>
