@@ -573,7 +573,7 @@ namespace ElectronicObserver.Data {
 				if ( !IsAbyssalShip )
 					return 0;
 
-				else if ( Name.Contains( "後期型" ) ) {
+				else if ( Name.Contains( "Late Type" ) ) {
 					if ( NameReading == "flagship" )
 						return 6;
 					else if ( NameReading == "elite" )
@@ -581,7 +581,7 @@ namespace ElectronicObserver.Data {
 					else
 						return 4;
 
-				} else if ( Name.Contains( "改" ) && NameReading == "flagship" )
+				} else if ( Name.Contains( "Kai" ) && NameReading == "flagship" )
 					return 4;
 				else if ( NameReading == "flagship" )
 					return 3;

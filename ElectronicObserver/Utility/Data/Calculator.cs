@@ -684,11 +684,11 @@ namespace ElectronicObserver.Utility.Data {
 		/// ハードスキン型陸上基地の名前リスト
 		/// IDではなく名前なのは本家の処理に倣ったため
 		/// </summary>
-		private static readonly HashSet<string> HardInstallationNames = new HashSet<string>() { 
-			"離島棲姫",
-			"砲台小鬼",
-			"集積地棲姫",
-			"集積地棲姫-壊",
+		private static readonly HashSet<string> HardInstallationNames = new HashSet<string>() {
+			"Isolated Island Princess",
+			"Artillery Imp",
+			"Supply Depot Princess",
+			"Supply Depot Princess - Damaged",
 		};
 
 		/// <summary>
@@ -922,7 +922,7 @@ namespace ElectronicObserver.Utility.Data {
 
 					if ( attackerShipID == 432 || attackerShipID == 353 )		//Graf Zeppelin(改)
 						return 0;		//砲撃
-					else if ( atkship.Name == "リコリス棲姫" )
+					else if ( atkship.Name == "Lycoris Princess" )
 						return 0;		//砲撃
 					else
 						return 7;		//空撃
