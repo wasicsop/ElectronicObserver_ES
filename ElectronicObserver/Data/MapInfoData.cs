@@ -36,7 +36,7 @@ namespace ElectronicObserver.Data {
 		/// 海域名
 		/// </summary>
 		public string Name {
-			get { return RawData.api_name; }
+			get { return Window.FormMain.Instance.Translator.GetTranslation(RawData.api_name, Utility.TranslationType.OperationMaps); }
 		}
 
 		/// <summary>

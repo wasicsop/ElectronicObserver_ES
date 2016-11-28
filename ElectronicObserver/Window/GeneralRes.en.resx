@@ -781,8 +781,7 @@ This month: {2:+##;-##;±0}</value>
     <value>Battle Complete</value>
   </data>
   <data name="EnemyName" xml:space="preserve">
-    <value>Enemy Name: {0}
-</value>
+    <value>Enemy Name: {0}</value>
   </data>
   <data name="NoSecondAirStage" xml:space="preserve">
     <value>(Second air stage did not activate.)</value>

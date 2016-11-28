@@ -135,7 +135,7 @@ namespace ElectronicObserver.Window {
 					int tp = Calculator.GetTPDamage( fleet );
 
 					ToolTipInfo.SetToolTip( Name, string.Format(
-						"Lv合計: {0} / 平均: {1:0.00}\r\n{2}艦隊\r\nドラム缶搭載: {3}個 ({4}艦)\r\n大発動艇搭載: {5}個 ({6}艦, +{7:p1})\r\n輸送量(TP): S {8} / A {9}\r\n総積載: 燃 {10} / 弾 {11}\r\n(1戦当たり 燃 {12} / 弾 {13})",
+						GeneralRes.FleetTooltip,
 						levelSum,
 						(double)levelSum / Math.Max( fleet.Members.Count( id => id != -1 ), 1 ),
 						Constants.GetSpeed( speed ),
@@ -164,12 +164,12 @@ namespace ElectronicObserver.Window {
 					bool includeLevel = Utility.Configuration.Config.FormFleet.AirSuperiorityMethod == 1;
 					AirSuperiority.Text = airSuperiority.ToString();
 					ToolTipInfo.SetToolTip( AirSuperiority,
-						string.Format( "確保: {0}\r\n優勢: {1}\r\n均衡: {2}\r\n劣勢: {3}\r\n({4}: {5})\r\n",
+						string.Format( GeneralRes.ASTooltip,
 						(int)( airSuperiority / 3.0 ),
 						(int)( airSuperiority / 1.5 ),
 						Math.Max( (int)( airSuperiority * 1.5 - 1 ), 0 ),
 						Math.Max( (int)( airSuperiority * 3.0 - 1 ), 0 ),
-						includeLevel ? "熟練度なし" : "熟練度あり",
+						includeLevel ? "Without Proficiency" : "With Proficiency",
 						includeLevel ? Calculator.GetAirSuperiorityIgnoreLevel( fleet ) : Calculator.GetAirSuperiority( fleet ) ) );
 				}
 
@@ -181,7 +181,7 @@ namespace ElectronicObserver.Window {
 					double probStart = fleet.GetContactProbability();
 					var probSelect = fleet.GetContactSelectionProbability();
 
-					sb.AppendFormat( "(旧)2-5式: {0}\r\n2-5式(秋): {1}\r\n2-5新秋簡易式: {2}\r\n判定式(33): {3}\r\n\r\n触接開始率: \r\n　確保 {4:p1} / 優勢 {5:p1}\r\n",
+					sb.AppendFormat( GeneralRes.LoSTooltip,
 						fleet.GetSearchingAbilityString( 0 ),
 						fleet.GetSearchingAbilityString( 1 ),
 						fleet.GetSearchingAbilityString( 2 ),
@@ -190,10 +190,10 @@ namespace ElectronicObserver.Window {
 						probStart * 0.6 );
 
 					if ( probSelect.Count > 0 ) {
-						sb.AppendLine( "触接選択率: " );
+						sb.AppendLine( GeneralRes.SelectionRate );
 
 						foreach ( var p in probSelect.OrderBy( p => p.Key ) ) {
-							sb.AppendFormat( "　命中{0} : {1:p1}\r\n", p.Key, p.Value );
+							sb.AppendFormat( "　" + EncycloRes.Accuracy + "+{0} : {1:p1}\r\n", p.Key, p.Value );
 						}
 					}
 
@@ -377,7 +377,7 @@ namespace ElectronicObserver.Window {
 					Name.Tag = ship.ShipID;
 					ToolTipInfo.SetToolTip( Name,
 						string.Format(
-							"{0} {1}\n火力: {2}/{3}\n雷装: {4}/{5}\n対空: {6}/{7}\n装甲: {8}/{9}\n対潜: {10}/{11}\n回避: {12}/{13}\n索敵: {14}/{15}\n運: {16}\n射程: {17} / 速力: {18}\n(右クリックで図鑑)\n",
+							GeneralRes.ShipTooltip,
 							ship.MasterShip.ShipTypeName, ship.NameWithLevel,
 							ship.FirepowerBase, ship.FirepowerTotal,
 							ship.TorpedoBase, ship.TorpedoTotal,

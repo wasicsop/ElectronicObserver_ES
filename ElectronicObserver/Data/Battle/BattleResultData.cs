@@ -75,7 +75,7 @@ namespace ElectronicObserver.Data.Battle {
 		/// 敵艦隊名
 		/// </summary>
 		public string EnemyFleetName {
-			get { return RawData.api_enemy_info.api_deck_name; }
+			get { return Window.FormMain.Instance.Translator.GetTranslation(RawData.api_enemy_info.api_deck_name, Utility.TranslationType.OperationSortie); }
 		}
 
 		//undone: 複数の battleresult に対応させる
