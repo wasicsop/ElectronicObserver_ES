@@ -24,7 +24,7 @@ namespace ElectronicObserver.Data {
 		/// 名前
 		/// </summary>
 		public string Name {
-			get { return RawData.api_name; }
+			get { return Window.FormMain.Instance.Translator.GetTranslation(RawData.api_name, Utility.TranslationType.EquipmentType); }
 		}
 
 		//show_flg
