@@ -264,10 +264,10 @@ namespace ElectronicObserver.Window.Dialog {
 			AlbumNo.Text = ship.AlbumNo.ToString();
 			ResourceName.Text = string.Format( "{0} ver. {1}/{2}/{3}",
 				ship.ResourceName, ship.ResourceGraphicVersion, ship.ResourceVoiceVersion, ship.ResourcePortVoiceVersion );
-			ToolTipInfo.SetToolTip( ResourceName, string.Format( "リソース名: {0}\r\nグラフィック ver. {1}\r\nボイス ver. {2}\r\n母港ボイス ver. {3}",
+			ToolTipInfo.SetToolTip( ResourceName, string.Format( EncycloRes.ResourceName + ": {0}\r\n" + EncycloRes.ResourceGraphicVersion + " {1}\r\n" + EncycloRes.ResourceVoiceVersion + " {2}\r\n" + EncycloRes.ResourcePortVoiceVersion + " {3}",
 				ship.ResourceName, ship.ResourceGraphicVersion, ship.ResourceVoiceVersion, ship.ResourcePortVoiceVersion ) );
 
-			ShipType.Text = ship.IsLandBase ? "陸上施設" : db.ShipTypes[ship.ShipType].Name;
+			ShipType.Text = ship.IsLandBase ? "Land Base" : db.ShipTypes[ship.ShipType].Name;
 			ShipName.Text = ship.NameWithClass;
 			ToolTipInfo.SetToolTip( ShipName, !ship.IsAbyssalShip ? ship.NameReading : null );
 			TableShipName.ResumeLayout();
@@ -278,8 +278,8 @@ namespace ElectronicObserver.Window.Dialog {
 
 			if ( !ship.IsAbyssalShip ) {
 
-				TitleParameterMin.Text = "初期値";
-				TitleParameterMax.Text = "最大値";
+				TitleParameterMin.Text = EncycloRes.Initial;
+				TitleParameterMax.Text = EncycloRes.Maximum;
 
 				HPMin.Text = ship.HPMin.ToString();
 				HPMax.Text = ship.HPMaxMarried.ToString();
@@ -337,8 +337,8 @@ namespace ElectronicObserver.Window.Dialog {
 					}
 				}
 
-				TitleParameterMin.Text = "基本値";
-				TitleParameterMax.Text = "装備込";
+				TitleParameterMin.Text = EncycloRes.BaseValue;
+				TitleParameterMax.Text = EncycloRes.WithEquipValue;
 
 				HPMin.Text = ship.HPMin.ToString();
 				HPMax.Text = hp.ToString();
@@ -389,7 +389,7 @@ namespace ElectronicObserver.Window.Dialog {
 			Ammo.Text = ship.Ammo.ToString();
 
 			string tooltiptext = string.Format(
-				"入渠時の消費:\r\nHP1あたり: 鋼 {0:F2} / 燃 {1:F2}\r\n最大: 鋼 {2} / 燃 {3}\r\n",
+				EncycloRes.RepairTooltip,
 				( ship.Fuel * 0.06 ),
 				( ship.Fuel * 0.032 ),
 				(int)( ship.Fuel * 0.06 * ( ship.HPMaxMarried - 1 ) ),
@@ -450,16 +450,16 @@ namespace ElectronicObserver.Window.Dialog {
 							StringBuilder sb = new StringBuilder();
 
 							sb.AppendFormat( "{0} {1} (ID: {2})\r\n", eq.CategoryTypeInstance.Name, eq.Name, eq.EquipmentID );
-							if ( eq.Firepower != 0 ) sb.AppendFormat( "火力 {0:+0;-0}\r\n", eq.Firepower );
-							if ( eq.Torpedo != 0 ) sb.AppendFormat( "雷装 {0:+0;-0}\r\n", eq.Torpedo );
-							if ( eq.AA != 0 ) sb.AppendFormat( "対空 {0:+0;-0}\r\n", eq.AA );
-							if ( eq.Armor != 0 ) sb.AppendFormat( "装甲 {0:+0;-0}\r\n", eq.Armor );
-							if ( eq.ASW != 0 ) sb.AppendFormat( "対潜 {0:+0;-0}\r\n", eq.ASW );
-							if ( eq.Evasion != 0 ) sb.AppendFormat( "回避 {0:+0;-0}\r\n", eq.Evasion );
-							if ( eq.LOS != 0 ) sb.AppendFormat( "索敵 {0:+0;-0}\r\n", eq.LOS );
-							if ( eq.Accuracy != 0 ) sb.AppendFormat( "命中 {0:+0;-0}\r\n", eq.Accuracy );
-							if ( eq.Bomber != 0 ) sb.AppendFormat( "爆装 {0:+0;-0}\r\n", eq.Bomber );
-							sb.AppendLine( "(右クリックで図鑑)" );
+							if ( eq.Firepower != 0 ) sb.AppendFormat( EncycloRes.Firepower + " {0:+0;-0}\r\n", eq.Firepower );
+							if ( eq.Torpedo != 0 ) sb.AppendFormat( EncycloRes.Torpedo + " {0:+0;-0}\r\n", eq.Torpedo );
+							if ( eq.AA != 0 ) sb.AppendFormat( EncycloRes.AntiAir + " {0:+0;-0}\r\n", eq.AA );
+							if ( eq.Armor != 0 ) sb.AppendFormat( EncycloRes.Armor + " {0:+0;-0}\r\n", eq.Armor );
+							if ( eq.ASW != 0 ) sb.AppendFormat( EncycloRes.ASW + " {0:+0;-0}\r\n", eq.ASW );
+							if ( eq.Evasion != 0 ) sb.AppendFormat( EncycloRes.Evasion + " {0:+0;-0}\r\n", eq.Evasion );
+							if ( eq.LOS != 0 ) sb.AppendFormat( EncycloRes.LoS + " {0:+0;-0}\r\n", eq.LOS );
+							if ( eq.Accuracy != 0 ) sb.AppendFormat( EncycloRes.Accuracy + " {0:+0;-0}\r\n", eq.Accuracy );
+							if ( eq.Bomber != 0 ) sb.AppendFormat( EncycloRes.TitleBomber + " {0:+0;-0}\r\n", eq.Bomber );
+							sb.AppendLine( EncycloRes.RightClickForMore );
 
 							ToolTipInfo.SetToolTip( Equipments[i], sb.ToString() );
 						}
@@ -561,7 +561,7 @@ namespace ElectronicObserver.Window.Dialog {
 			BasePanelShipGirl.Visible = true;
 
 
-			this.Text = "艦船図鑑 - " + ship.NameWithClass;
+			this.Text = EncycloRes.ShipEncyclopedia + " - " + ship.NameWithClass;
 
 		}
 
@@ -734,9 +734,9 @@ namespace ElectronicObserver.Window.Dialog {
 		private string GetRemodelItem( ShipDataMaster ship ) {
 			StringBuilder sb = new StringBuilder();
 			if ( ship.NeedBlueprint > 0 )
-				sb.AppendLine( "改装設計図: " + ship.NeedBlueprint );
+				sb.AppendLine( EncycloRes.Blueprint + ": " + ship.NeedBlueprint );
 			if ( ship.NeedCatapult > 0 )
-				sb.AppendLine( "試製甲板カタパルト: " + ship.NeedCatapult );
+				sb.AppendLine( EncycloRes.PrototypeCatapult + ": " + ship.NeedCatapult );
 
 			return sb.ToString();
 		}
@@ -984,7 +984,7 @@ namespace ElectronicObserver.Window.Dialog {
 		private void StripMenu_Edit_EditParameter_Click( object sender, EventArgs e ) {
 
 			if ( _shipID <= 0 ) {
-				MessageBox.Show( "艦船を選択してください。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Asterisk );
+				MessageBox.Show("Please select a ship.", ConfigRes.Error, MessageBoxButtons.OK, MessageBoxIcon.Asterisk );
 				return;
 			}
 

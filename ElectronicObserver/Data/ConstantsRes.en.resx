@@ -202,7 +202,7 @@
     <value>Day Battle</value>
   </data>
   <data name="DepthChargeAttack" xml:space="preserve">
-    <value>Depth Charge Attack</value>
+    <value>Depth Charge</value>
   </data>
   <data name="Destroyed" xml:space="preserve">
     <value>Destroyed</value>

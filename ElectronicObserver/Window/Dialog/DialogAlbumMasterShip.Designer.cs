@@ -190,20 +190,20 @@
             this.StripMenu_File_OutputCSVData});
 			this.StripMenu_File.Name = "StripMenu_File";
 			this.StripMenu_File.Size = new System.Drawing.Size(70, 20);
-			this.StripMenu_File.Text = "ファイル(&F)";
+			this.StripMenu_File.Text = Menus.File;
 			//
 			// StripMenu_File_OutputCSVUser
 			//
 			this.StripMenu_File_OutputCSVUser.Name = "StripMenu_File_OutputCSVUser";
 			this.StripMenu_File_OutputCSVUser.Size = new System.Drawing.Size(203, 22);
-			this.StripMenu_File_OutputCSVUser.Text = "CSV出力(閲覧用)(&U)...";
+			this.StripMenu_File_OutputCSVUser.Text = EncycloRes.OutputCSVUser;
 			this.StripMenu_File_OutputCSVUser.Click += new System.EventHandler(this.StripMenu_File_OutputCSVUser_Click);
 			//
 			// StripMenu_File_OutputCSVData
 			//
 			this.StripMenu_File_OutputCSVData.Name = "StripMenu_File_OutputCSVData";
 			this.StripMenu_File_OutputCSVData.Size = new System.Drawing.Size(203, 22);
-			this.StripMenu_File_OutputCSVData.Text = "CSV出力(データ用)(&D)...";
+			this.StripMenu_File_OutputCSVData.Text = EncycloRes.OutputCSVData;
 			this.StripMenu_File_OutputCSVData.Click += new System.EventHandler(this.StripMenu_File_OutputCSVData_Click);
 			//
 			// StripMenu_Edit
@@ -212,13 +212,13 @@
             this.StripMenu_Edit_EditParameter});
 			this.StripMenu_Edit.Name = "StripMenu_Edit";
 			this.StripMenu_Edit.Size = new System.Drawing.Size(60, 20);
-			this.StripMenu_Edit.Text = "編集(&E)";
+			this.StripMenu_Edit.Text = EncycloRes.StripMenu_Edit;
 			//
 			// StripMenu_Edit_EditParameter
 			//
 			this.StripMenu_Edit_EditParameter.Name = "StripMenu_Edit_EditParameter";
 			this.StripMenu_Edit_EditParameter.Size = new System.Drawing.Size(181, 22);
-			this.StripMenu_Edit_EditParameter.Text = "パラメータの編集(&E)...";
+			this.StripMenu_Edit_EditParameter.Text = EncycloRes.StripMenu_Edit_EditParameter;
 			this.StripMenu_Edit_EditParameter.Click += new System.EventHandler(this.StripMenu_Edit_EditParameter_Click);
 			//
 			// splitContainer1
@@ -286,7 +286,7 @@
 			// ShipView_ShipType
 			//
 			this.ShipView_ShipType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-			this.ShipView_ShipType.HeaderText = "艦種";
+			this.ShipView_ShipType.HeaderText = EncycloRes.ShipType;
 			this.ShipView_ShipType.Name = "ShipView_ShipType";
 			this.ShipView_ShipType.ReadOnly = true;
 			this.ShipView_ShipType.Width = 80;
@@ -294,7 +294,7 @@
 			// ShipView_Name
 			//
 			this.ShipView_Name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.ShipView_Name.HeaderText = "艦名";
+			this.ShipView_Name.HeaderText = EncycloRes.ShipName;
 			this.ShipView_Name.Name = "ShipView_Name";
 			this.ShipView_Name.ReadOnly = true;
 			//
@@ -362,7 +362,7 @@
 			this.TitleDayAttack.Name = "TitleDayAttack";
 			this.TitleDayAttack.Size = new System.Drawing.Size(68, 16);
 			this.TitleDayAttack.TabIndex = 24;
-			this.TitleDayAttack.Text = "昼戦攻撃";
+			this.TitleDayAttack.Text = EncycloRes.DayAttack;
 			this.TitleDayAttack.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			//
 			// NightAttack
@@ -382,7 +382,7 @@
 			this.TitleNightAttack.Name = "TitleNightAttack";
 			this.TitleNightAttack.Size = new System.Drawing.Size(68, 16);
 			this.TitleNightAttack.TabIndex = 19;
-			this.TitleNightAttack.Text = "夜戦攻撃";
+			this.TitleNightAttack.Text = EncycloRes.NightAttack;
 			this.TitleNightAttack.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			//
 			// DayAttack
@@ -412,7 +412,7 @@
 			this.TitleAirSuperiority.Name = "TitleAirSuperiority";
 			this.TitleAirSuperiority.Size = new System.Drawing.Size(68, 16);
 			this.TitleAirSuperiority.TabIndex = 18;
-			this.TitleAirSuperiority.Text = "制空戦力";
+			this.TitleAirSuperiority.Text = EncycloRes.AirPower;
 			this.TitleAirSuperiority.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			//
 			// AlbumNo
@@ -431,7 +431,7 @@
 			this.imageLabel2.Name = "imageLabel2";
 			this.imageLabel2.Size = new System.Drawing.Size(54, 16);
 			this.imageLabel2.TabIndex = 22;
-			this.imageLabel2.Text = "図鑑番号:";
+			this.imageLabel2.Text = EncycloRes.EncyclopediaNumber + ":";
 			//
 			// Description
 			//
@@ -1400,7 +1400,7 @@
 			this.TitleParameterMax.Name = "TitleParameterMax";
 			this.TitleParameterMax.Size = new System.Drawing.Size(48, 16);
 			this.TitleParameterMax.TabIndex = 7;
-			this.TitleParameterMax.Text = "最大値";
+			this.TitleParameterMax.Text = EncycloRes.Maximum;
 			this.TitleParameterMax.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			//
 			// ASWMax
@@ -1446,7 +1446,7 @@
 			this.TitleParameterMin.Name = "TitleParameterMin";
 			this.TitleParameterMin.Size = new System.Drawing.Size(48, 16);
 			this.TitleParameterMin.TabIndex = 6;
-			this.TitleParameterMin.Text = "初期値";
+			this.TitleParameterMin.Text = EncycloRes.Initial;
 			this.TitleParameterMin.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			//
 			// AAMax

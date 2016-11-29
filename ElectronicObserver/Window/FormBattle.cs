@@ -627,7 +627,7 @@ namespace ElectronicObserver.Window {
 					( isBattle2Enabled ? pd2.AircraftTotalStage2Friend : 0 ),
 				};
 				AirStage2Friend.Text = string.Format( "-{0}/{1}", planeFriend[0] + planeFriend[2], planeFriend[1] );
-				ToolTipInfo.SetToolTip( AirStage2Friend, string.Format( "第1次: -{0}/{1}\r\n第2次: -{2}/{3}\r\n",
+				ToolTipInfo.SetToolTip( AirStage2Friend, string.Format( GeneralRes.Stage2AATooltip,
 					planeFriend[0], planeFriend[1], planeFriend[2], planeFriend[3] ) );
 
 				if ( ( planeFriend[1] > 0 && planeFriend[0] == planeFriend[1] ) ||
@@ -794,7 +794,7 @@ namespace ElectronicObserver.Window {
 					bool isLandBase;
 
 					if ( isBaseAirRaid ) {
-						name = string.Format( "第{0}基地", i + 1 );
+						name = string.Format( "Base {0}", i + 1 );
 						isEscaped = false;
 						isLandBase = true;
 					} else {
@@ -805,7 +805,7 @@ namespace ElectronicObserver.Window {
 					}
 
 					ToolTipInfo.SetToolTip( HPBars[i], string.Format
-						( "{0}\r\nHP: ({1} → {2})/{3} ({4}) [{5}]\r\n与ダメージ: {6}\r\n\r\n{7}",
+						( "{0}\r\nHP: ({1} → {2})/{3} ({4}) [{5}]\r\n" + GeneralRes.DamageDone + ": {6}\r\n\r\n{7}",
 						name,
 						Math.Max( HPBars[i].PrevValue, 0 ),
 						Math.Max( HPBars[i].Value, 0 ),

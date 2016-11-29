@@ -17,11 +17,32 @@ namespace ElectronicObserver.Data.Battle.Phase {
 		public List<BattleDetail> BattleDetails { get; protected set; }
 		public readonly string Title;
 
+		private string TranslatedPhaseTitle(string title) {
+			switch (title)	{
+				default: return title;
+				case "基地航空隊攻撃": return "Land-based Air Attack";
+				case "空襲戦": return "Air Raid";
+				case "航空戦": return ConstantsRes.AirBattle;
+				case "第一次航空戦": return "Air Battle, 1st";
+				case "第二次航空戦": return "Air Battle, 2nd";
+				case "支援攻撃": return "Support Expedition";
+				case "先制対潜": return "Opening ASW";
+				case "先制雷撃": return "Opening Torpedo Salvo";
+				case "第一次砲撃戦": return "Shelling, 1st Round";
+				case "第二次砲撃戦": return "Shelling, 2nd Round";
+				case "雷撃戦": return "Closing Torpedo Salvo";
+				case "第三次砲撃戦": return "Shelling, 3rd Round";
+				case "夜戦": return "Night Battle";
+
+
+			}
+		}
+
 		public PhaseBase( BattleData data, string title ) {
 
 			_battleData = data;
 			BattleDetails = new List<BattleDetail>();
-			Title = title;
+			Title = TranslatedPhaseTitle(title);
 		}
 
 

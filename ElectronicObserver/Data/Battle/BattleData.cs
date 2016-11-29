@@ -136,7 +136,7 @@ namespace ElectronicObserver.Data.Battle {
 				string bd = phase.GetBattleDetail( index );
 
 				if ( !string.IsNullOrEmpty( bd ) ) {
-					sb.AppendLine( "《" + phase.Title + "》" ).Append( bd );
+					sb.AppendLine( "== " + phase.Title + " ==").Append( bd );
 				}
 			}
 			return sb.ToString();

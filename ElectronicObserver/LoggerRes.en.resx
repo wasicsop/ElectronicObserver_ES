@@ -286,13 +286,13 @@
     <value>Sent {0} to the Kancolle Statistics Database.</value>
   </data>
   <data name="ShipAdded" xml:space="preserve">
-    <value>{0} {1} has been added to the line of battle.</value>
+    <value>{0} {1} has been added to the navy list.</value>
   </data>
   <data name="ShipConstructed" xml:space="preserve">
-    <value>Constructed ship {0} {1} has been added to the line of battle.</value>
+    <value>Constructed ship {0} {1} has been added to the navy list.</value>
   </data>
   <data name="ShipScrapped" xml:space="preserve">
-    <value> has been scrapped.</value>
+    <value> has been scrapped and removed from the navy list.</value>
   </data>
   <data name="SortiedTo" xml:space="preserve">
     <value>#{0} 「{1}」 has sortied to 「{2}-{3} {4}」.</value>
@@ -307,7 +307,7 @@
     <value>The DataStorage file does not exist.</value>
   </data>
   <data name="Decomissioned" xml:space="preserve">
-    <value> has been decommissioned.</value>
+    <value> has been decommissioned and removed from the navy list.</value>
   </data>
   <data name="ModernizationResult" xml:space="preserve">
     <value>{0}'s modernization has resulted in {1}.</value>

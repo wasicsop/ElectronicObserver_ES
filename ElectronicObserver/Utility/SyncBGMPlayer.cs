@@ -335,7 +335,7 @@ namespace ElectronicObserver.Utility {
 				case SoundHandleID.ImprovementArsenal:
 					return "改修工廠";
 				default:
-					return "不明";
+					return  ConstantsRes.Unknown;
 			}
 		}
 	}

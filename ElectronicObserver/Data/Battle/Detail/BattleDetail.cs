@@ -198,7 +198,7 @@ namespace ElectronicObserver.Data.Battle.Detail {
 		}
 
 		protected override string GetAttackerName() {
-			return "支援艦隊";
+			return "Support Fleet";
 		}
 
 		protected override int CaclulateAttackKind( int[] slots, int attackerShipID, int defenderShipID ) {
@@ -208,13 +208,13 @@ namespace ElectronicObserver.Data.Battle.Detail {
 		protected override string GetAttackKind() {
 			switch ( AttackType ) {
 				case 1:
-					return "空撃";
+					return ConstantsRes.AirAttack;
 				case 2:
-					return "砲撃";
+					return ConstantsRes.Shelling;
 				case 3:
-					return "雷撃";
+					return ConstantsRes.TorpedoAttack;
 				default:
-					return "不明";
+					return  ConstantsRes.Unknown;
 			}
 		}
 
@@ -253,19 +253,19 @@ namespace ElectronicObserver.Data.Battle.Detail {
 		protected override string GetAttackerName() {
 			if ( WaveIndex <= 0 ) {
 				if ( IsFriendIndex( DefenderIndex ) )
-					return "敵軍航空隊";
+					return "Enemy Air Base";
 				else
-					return "自軍航空隊";
+					return "Friendly Air Base";
 
 			} else {
-				return string.Format( "基地航空隊 第{0}波", WaveIndex );
+				return string.Format( "Air Squadron Wave {0}", WaveIndex );
 
 			}
 		}
 
 		protected override string GetDefenderName() {
 			if ( WaveIndex < 0 && IsFriendIndex( DefenderIndex ) )
-				return string.Format( "第{0}基地", DefenderIndex + 1 );
+				return string.Format( "Base {0}", DefenderIndex + 1 );
 
 			return base.GetDefenderName();
 		}
@@ -277,13 +277,13 @@ namespace ElectronicObserver.Data.Battle.Detail {
 		protected override string GetAttackKind() {
 			switch ( AttackType ) {
 				case 1:
-					return "雷撃";
+					return  ConstantsRes.TorpedoAttack;
 				case 2:
-					return "爆撃";
+					return ConstantsRes.BombingAttack;
 				case 3:
-					return "雷撃+爆撃";
+					return ConstantsRes.TorpBombingAttack;
 				default:
-					return "不明";
+					return  ConstantsRes.Unknown;
 			}
 		}
 

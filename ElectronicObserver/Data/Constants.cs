@@ -251,9 +251,9 @@ namespace ElectronicObserver.Data {
 				case 3:
 					return ConstantsRes.NightDayBattle;
 				case 4:
-					return "航空戦";
+					return ConstantsRes.AirBattle;
 				case 5:
-					return "敵連合";
+					return "Enemy Combined Fleet";
 				case 6:
 					return ConstantsRes.AirRaid;
 				default:
@@ -331,13 +331,13 @@ namespace ElectronicObserver.Data {
 		public static string GetAirRaidDamageShort( int value ) {
 			switch ( value ) {
 				case 1:
-					return "資源損害";
+					return "Resources damaged";
 				case 2:
-					return "資源・航空";
+					return "Base and resources";
 				case 3:
-					return "航空隊損害";
+					return "Base damaged";
 				case 4:
-					return "損害なし";
+					return "No damage";
 				default:
 					return "-";
 			}
