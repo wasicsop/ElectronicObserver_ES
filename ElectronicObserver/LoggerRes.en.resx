@@ -157,10 +157,10 @@
     <value>Set the Flash quality settings.</value>
   </data>
   <data name="ExpedReturned" xml:space="preserve">
-    <value>#{0} "{1}" has returned from expedition 「{2}: {3}」 ({4}).</value>
+    <value>#{0} 「{1}」 has returned from expedition 「{2}: {3}」 ({4}).</value>
   </data>
   <data name="ExpedStarted" xml:space="preserve">
-    <value>#{0} "{1}" has been sent to expedition 「{2}: {3}」.</value>
+    <value>#{0} 「{1}」 has been sent to expedition 「{2}: {3}」.</value>
   </data>
   <data name="Failed" xml:space="preserve">
     <value>failed. </value>

@@ -339,7 +339,7 @@
 			this.ShowWithActivation.Name = "ShowWithActivation";
 			this.ShowWithActivation.Size = new System.Drawing.Size(151, 19);
 			this.ShowWithActivation.TabIndex = 8;
-			this.ShowWithActivation.Text = "表示時にアクティベートする";
+			this.ShowWithActivation.Text = NotifyRes.ShowWithActivation;
 			this.ToolTipText.SetToolTip(this.ShowWithActivation, "表示時にダイアログをアクティブにします。\r\n無効にすると操作を妨げない代わりにダイアログが隠れやすくなります。");
 			this.ShowWithActivation.UseVisualStyleBackColor = true;
 			// 

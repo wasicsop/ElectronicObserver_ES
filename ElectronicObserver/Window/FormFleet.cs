@@ -400,16 +400,16 @@ namespace ElectronicObserver.Window {
 						tip.AppendFormat( "Total: {0} exp.\r\n", ship.ExpTotal );
 
 						if ( !Utility.Configuration.Config.FormFleet.ShowNextExp )
-							tip.AppendFormat( "次のレベルまで: {0} exp.\r\n", ship.ExpNext );
+							tip.AppendFormat( GeneralRes.ToNextLevel + " exp.\r\n", ship.ExpNext );
 
 						if ( ship.MasterShip.RemodelAfterShipID != 0 && ship.Level < ship.MasterShip.RemodelAfterLevel ) {
-							tip.AppendFormat( "改装まで: Lv. {0} / {1} exp.\r\n", ship.MasterShip.RemodelAfterLevel - ship.Level, ship.ExpNextRemodel );
+							tip.AppendFormat( GeneralRes.ToRemodel + "\r\n", ship.MasterShip.RemodelAfterLevel - ship.Level, ship.ExpNextRemodel );
 
 						} else if ( ship.Level <= 99 ) {
-							tip.AppendFormat( "Lv99まで: {0} exp.\r\n", Math.Max( ExpTable.GetExpToLevelShip( ship.ExpTotal, 99 ), 0 ) );
+							tip.AppendFormat( GeneralRes.To99 + " exp.\r\n", Math.Max( ExpTable.GetExpToLevelShip( ship.ExpTotal, 99 ), 0 ) );
 
 						} else {
-							tip.AppendFormat( "Lv{0}まで: {1} exp.\r\n", ExpTable.ShipMaximumLevel, Math.Max( ExpTable.GetExpToLevelShip( ship.ExpTotal, ExpTable.ShipMaximumLevel ), 0 ) );
+							tip.AppendFormat( GeneralRes.ToX + " exp.\r\n", ExpTable.ShipMaximumLevel, Math.Max( ExpTable.GetExpToLevelShip( ship.ExpTotal, ExpTable.ShipMaximumLevel ), 0 ) );
 
 						}
 
@@ -438,18 +438,18 @@ namespace ElectronicObserver.Window {
 
 						sb.AppendFormat( "HP: {0:0.0}% [{1}]\n", hprate * 100, Constants.GetDamageState( hprate ) );
 						if ( isEscaped ) {
-							sb.AppendLine( "退避中" );
+							sb.AppendLine( GeneralRes.Retreating );
 						} else if ( hprate > 0.50 ) {
-							sb.AppendFormat( "中破まで: {0} / 大破まで: {1}\n", ship.HPCurrent - ship.HPMax / 2, ship.HPCurrent - ship.HPMax / 4 );
+							sb.AppendFormat( GeneralRes.ToMidAndHeavy, ship.HPCurrent - ship.HPMax / 2, ship.HPCurrent - ship.HPMax / 4 );
 						} else if ( hprate > 0.25 ) {
-							sb.AppendFormat( "大破まで: {0}\n", ship.HPCurrent - ship.HPMax / 4 );
+							sb.AppendFormat( GeneralRes.ToHeavy + "\n", ship.HPCurrent - ship.HPMax / 4 );
 						} else {
-							sb.AppendLine( "大破しています！" );
+							sb.AppendLine( GeneralRes.IsTaiha );
 						}
 
 						if ( ship.RepairTime > 0 ) {
 							var span = DateTimeHelper.FromAPITimeSpan( ship.RepairTime );
-							sb.AppendFormat( "入渠時間: {0} @ {1}",
+							sb.AppendFormat( GeneralRes.DockTime + ": {0} @ {1}",
 								DateTimeHelper.ToTimeRemainString( span ),
 								DateTimeHelper.ToTimeRemainString( new TimeSpan( span.Add( new TimeSpan( 0, 0, -30 ) ).Ticks / ( ship.HPMax - ship.HPCurrent ) ) ) );
 						}
@@ -465,9 +465,9 @@ namespace ElectronicObserver.Window {
 
 					if ( ship.Condition < 49 ) {
 						TimeSpan ts = new TimeSpan( 0, (int)Math.Ceiling( ( 49 - ship.Condition ) / 3.0 ) * 3, 0 );
-						ToolTipInfo.SetToolTip( Condition, string.Format( "完全回復まで 約 {0:D2}:{1:D2}", (int)ts.TotalMinutes, (int)ts.Seconds ) );
+						ToolTipInfo.SetToolTip( Condition, string.Format( GeneralRes.FatigueRestoreTime, (int)ts.TotalMinutes, (int)ts.Seconds ) );
 					} else {
-						ToolTipInfo.SetToolTip( Condition, string.Format( "あと {0} 回遠征可能", (int)Math.Ceiling( ( ship.Condition - 49 ) / 3.0 ) ) );
+						ToolTipInfo.SetToolTip( Condition, string.Format( GeneralRes.RemainingExpeds, (int)Math.Ceiling( ( ship.Condition - 49 ) / 3.0 ) ) );
 					}
 
 					ShipResource.SetResources( ship.Fuel, ship.FuelMax, ship.Ammo, ship.AmmoMax );
@@ -512,30 +512,30 @@ namespace ElectronicObserver.Window {
 				{
 					var exslot = ship.ExpansionSlotInstance;
 					if ( exslot != null )
-						sb.AppendFormat( "補強: {0}\r\n", exslot.NameWithLevel );
+						sb.AppendFormat( GeneralRes.Expansion + ": {0}\r\n", exslot.NameWithLevel );
 				}
 
 				int[] slotmaster = ship.SlotMaster.ToArray();
 
-				sb.AppendFormat( "\r\n昼戦: {0}", Constants.GetDayAttackKind( Calculator.GetDayAttackKind( slotmaster, ship.ShipID, -1 ) ) );
+				sb.AppendFormat( "\r\n" +GeneralRes.DayBattle + ": {0}", Constants.GetDayAttackKind( Calculator.GetDayAttackKind( slotmaster, ship.ShipID, -1 ) ) );
 				{
 					int shelling = ship.ShellingPower;
 					int aircraft = ship.AircraftPower;
 					if ( shelling > 0 ) {
 						if ( aircraft > 0 )
-							sb.AppendFormat( " - 砲撃: {0} / 空撃: {1}", shelling, aircraft );
+							sb.AppendFormat( " - " + GeneralRes.Shelling + ": {0} / " + GeneralRes.Bombing + ": {1}", shelling, aircraft );
 						else
-							sb.AppendFormat( " - 威力: {0}", shelling );
+							sb.AppendFormat( " - " + GeneralRes.Power + ": {0}", shelling );
 					} else if ( aircraft > 0 )
-						sb.AppendFormat( " - 威力: {0}", aircraft );
+						sb.AppendFormat( " - " + GeneralRes.Power + ": {0}", aircraft );
 				}
 				sb.AppendLine();
 
-				sb.AppendFormat( "夜戦: {0}", Constants.GetNightAttackKind( Calculator.GetNightAttackKind( slotmaster, ship.ShipID, -1 ) ) );
+				sb.AppendFormat( GeneralRes.NightBattle + ": {0}", Constants.GetNightAttackKind( Calculator.GetNightAttackKind( slotmaster, ship.ShipID, -1 ) ) );
 				{
 					int night = ship.NightBattlePower;
 					if ( night > 0 ) {
-						sb.AppendFormat( " - 威力: {0}", night );
+						sb.AppendFormat( " - " + GeneralRes.Power + ": {0}", night );
 					}
 				}
 				sb.AppendLine();
@@ -545,17 +545,17 @@ namespace ElectronicObserver.Window {
 					int asw = ship.AntiSubmarinePower;
 					if ( torpedo > 0 ) {
 						if ( asw > 0 )
-							sb.AppendFormat( "雷撃: {0} / 対潜: {1}\r\n", torpedo, asw );
+							sb.AppendFormat( ConstantsRes.TorpedoAttack + ": {0} / " + GeneralRes.ASW + ": {1}\r\n", torpedo, asw );
 						else
-							sb.AppendFormat( "雷撃: {0}\r\n", torpedo );
+							sb.AppendFormat( ConstantsRes.TorpedoAttack + ": {0}\r\n", torpedo );
 					} else if ( asw > 0 )
-						sb.AppendFormat( "対潜: {0}\r\n", asw );
+						sb.AppendFormat(  GeneralRes.ASW + ": {0}\r\n", asw );
 				}
 
 				{
 					int aacutin = Calculator.GetAACutinKind( ship.ShipID, slotmaster );
 					if ( aacutin != 0 ) {
-						sb.AppendFormat( "対空: {0}\r\n", Constants.GetAACutinKind( aacutin ) );
+						sb.AppendFormat( GeneralRes.AntiAir + ": {0}\r\n", Constants.GetAACutinKind( aacutin ) );
 					}
 				}
 				{
@@ -568,9 +568,9 @@ namespace ElectronicObserver.Window {
 					int airbattle = ship.AirBattlePower;
 					if ( airsup > 0 ) {
 						if ( airbattle > 0 )
-							sb.AppendFormat( "制空戦力: {0} / 航空威力: {1}\r\n", airsup, airbattle );
+							sb.AppendFormat( GeneralRes.AirPower + ": {0} / 航空威力: {1}\r\n", airsup, airbattle );
 						else
-							sb.AppendFormat( "制空戦力: {0}\r\n", airsup );
+							sb.AppendFormat( GeneralRes.AirPower + ": {0}\r\n", airsup );
 					} else if ( airbattle > 0 )
 						sb.AppendFormat( "航空威力: {0}\r\n", airbattle );
 				}
@@ -801,7 +801,7 @@ namespace ElectronicObserver.Window {
 			FleetData fleet = db.Fleet[FleetID];
 			if ( fleet == null ) return;
 
-			sb.AppendFormat( "{0}\t制空戦力{1}/索敵能力{2}\r\n", fleet.Name, fleet.GetAirSuperiority(), fleet.GetSearchingAbilityString() );
+			sb.AppendFormat( "{0}\t" +GeneralRes.AirPower + "{1}/" + GeneralRes.TotalLoS + "{2}\r\n", fleet.Name, fleet.GetAirSuperiority(), fleet.GetSearchingAbilityString() );
 			for ( int i = 0; i < fleet.Members.Count; i++ ) {
 				if ( fleet[i] == -1 )
 					continue;
