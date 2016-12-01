@@ -636,10 +636,37 @@
   <data name="BombingAttack" xml:space="preserve">
     <value>Bombing Attack</value>
   </data>
-  <data name="EnemyAirSquadron" xml:space="preserve">
-    <value>Enemy Airstrike</value>
-  </data>
   <data name="TorpBombingAttack" xml:space="preserve">
     <value>Torpedo + Bombing Attack</value>
+  </data>
+  <data name="BattleDetail_Node" xml:space="preserve">
+    <value> Node: </value>
+  </data>
+  <data name="BattleDetail_Boss" xml:space="preserve">
+    <value> (Boss)</value>
+  </data>
+  <data name="BattleDetail_AirAttackWave" xml:space="preserve">
+    <value>〈 Wave {0} 〉\r\n</value>
+  </data>
+  <data name="BattleDetail_FriendMainFleet" xml:space="preserve">
+    <value> - Main Fleet -</value>
+  </data>
+  <data name="BattleDetail_FriendFleet" xml:space="preserve">
+    <value>- Fleet -</value>
+  </data>
+  <data name="BattleDetail_FriendEscortFleet" xml:space="preserve">
+    <value>- Escort Fleet -</value>
+  </data>
+  <data name="BattleDetail_EnemyMainFleet" xml:space="preserve">
+    <value>- Enemy Main Fleet -</value>
+  </data>
+  <data name="BattleDetail_EnemyEscortFleet" xml:space="preserve">
+    <value>- Enemy Escort Fleet -</value>
+  </data>
+  <data name="BattleDetail_EnemyFleet" xml:space="preserve">
+    <value>- Enemy Fleet -</value>
+  </data>
+  <data name="BattleDetail_IsBossDamaged" xml:space="preserve">
+    <value> : Damaged</value>
   </data>
 </root>

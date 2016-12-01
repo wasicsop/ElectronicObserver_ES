@@ -636,10 +636,37 @@
   <data name="BombingAttack" xml:space="preserve">
     <value>爆撃</value>
   </data>
-  <data name="EnemyAirSquadron" xml:space="preserve">
-    <value>敵航空隊</value>
-  </data>
   <data name="TorpBombingAttack" xml:space="preserve">
     <value>雷撃+爆撃</value>
+  </data>
+  <data name="BattleDetail_Node" xml:space="preserve">
+    <value> セル: </value>
+  </data>
+  <data name="BattleDetail_Boss" xml:space="preserve">
+    <value> (ボス)</value>
+  </data>
+  <data name="BattleDetail_AirAttackWave" xml:space="preserve">
+    <value>〈第{0}波〉\r\n</value>
+  </data>
+  <data name="BattleDetail_FriendMainFleet" xml:space="preserve">
+    <value> 〈味方主力艦隊〉 </value>
+  </data>
+  <data name="BattleDetail_FriendFleet" xml:space="preserve">
+    <value> 〈味方艦隊〉 </value>
+  </data>
+  <data name="BattleDetail_FriendEscortFleet" xml:space="preserve">
+    <value> 〈味方随伴艦隊〉 </value>
+  </data>
+  <data name="BattleDetail_EnemyMainFleet" xml:space="preserve">
+    <value> 〈敵主力艦隊〉</value>
+  </data>
+  <data name="BattleDetail_EnemyEscortFleet" xml:space="preserve">
+    <value> 〈敵随伴艦隊〉</value>
+  </data>
+  <data name="BattleDetail_EnemyFleet" xml:space="preserve">
+    <value> 〈敵艦隊〉 </value>
+  </data>
+  <data name="BattleDetail_IsBossDamaged" xml:space="preserve">
+    <value>  : 装甲破壊</value>
   </data>
 </root>
