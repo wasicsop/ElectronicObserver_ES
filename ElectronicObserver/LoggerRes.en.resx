@@ -172,7 +172,7 @@
     <value>Failed to read the API.</value>
   </data>
   <data name="FailedLoading" xml:space="preserve">
-    <value>could not be loaded.</value>
+    <value>　could not be loaded.</value>
   </data>
   <data name="FailedLoadingRecords" xml:space="preserve">
     <value>Failed to load records.</value>
@@ -229,13 +229,10 @@
     <value>The specified image resource {0} does not exist.</value>
   </data>
   <data name="ImprovedFailure" xml:space="preserve">
-    <value>{0} could not be improved.</value>
+    <value>We have failed to improve {0}.</value>
   </data>
   <data name="ImprovedSuccess" xml:space="preserve">
-    <value> has been successfully improved. ( </value>
-  </data>
-  <data name="InitialEquipChanged" xml:space="preserve">
-    <value> has had initial equipment changed.</value>
+    <value>We have successfully improved {0}.</value>
   </data>
   <data name="InitialEquipRegistered" xml:space="preserve">
     <value> has had initial equipment registered.</value>
@@ -252,9 +249,6 @@
   <data name="LoadedRecords" xml:space="preserve">
     <value>Records loaded.</value>
   </data>
-  <data name="ObserverWrongPort" xml:space="preserve">
-    <value>APIObserver: There was a difference in the specified port and the actual port.</value>
-  </data>
   <data name="RecievedRequest" xml:space="preserve">
     <value>Recieved request:</value>
   </data>
@@ -262,7 +256,7 @@
     <value>Recieved response:</value>
   </data>
   <data name="Record" xml:space="preserve">
-    <value>The record</value>
+    <value>The record </value>
   </data>
   <data name="RegisteredParameters" xml:space="preserve">
     <value> has had their parameters registered.</value>
@@ -308,12 +302,6 @@
   </data>
   <data name="Decomissioned" xml:space="preserve">
     <value> has been decommissioned and removed from the navy list.</value>
-  </data>
-  <data name="ModernizationResult" xml:space="preserve">
-    <value>{0}'s modernization has resulted in {1}.</value>
-  </data>
-  <data name="APIObververFailed" xml:space="preserve">
-    <value>APIObserver: 受信開始に失敗しました。</value>
   </data>
   <data name="MultiplePossibleMvps" xml:space="preserve">
     <value>There are multiple possible MVPs. Please check the log.</value>

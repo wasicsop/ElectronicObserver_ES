@@ -422,6 +422,15 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 戦闘詳細.
+        /// </summary>
+        internal static string BattleDetail {
+            get {
+                return ResourceManager.GetString("BattleDetail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ボーキ.
         /// </summary>
         internal static string Baux {
@@ -1850,6 +1859,24 @@ namespace ElectronicObserver.Window {
         internal static string Retreating {
             get {
                 return ResourceManager.GetString("Retreating", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 戦闘詳細を表示(&amp;D)....
+        /// </summary>
+        internal static string RightClickMenu_ShowBattleDetail {
+            get {
+                return ResourceManager.GetString("RightClickMenu_ShowBattleDetail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 戦闘結果を一時的に表示(&amp;V).
+        /// </summary>
+        internal static string RightClickMenu_ShowBattleResult {
+            get {
+                return ResourceManager.GetString("RightClickMenu_ShowBattleResult", resourceCulture);
             }
         }
         

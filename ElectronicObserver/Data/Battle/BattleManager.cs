@@ -419,7 +419,7 @@ namespace ElectronicObserver.Data.Battle {
 				damages = damages.Take( 6 ).Where( i => i > 0 );
 
 				if ( damages.Count( i => i == damages.Max() ) > 1 ) {
-					Utility.Logger.Add( 1, "MVP候補が複数存在します。ログを確認してください。" );
+					Utility.Logger.Add( 1, LoggerRes.MultiplePossibleMvps );
 				}
 			}
 			//*/

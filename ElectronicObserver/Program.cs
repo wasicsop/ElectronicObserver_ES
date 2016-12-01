@@ -17,7 +17,7 @@ namespace ElectronicObserver {
 
 			if ( !mutex.WaitOne( 0, false ) ) {
 				// 多重起動禁止
-				MessageBox.Show( "既に起動しています。\r\n多重起動はできません。", "七四式電子観測儀", MessageBoxButtons.OK, MessageBoxIcon.Error );
+				MessageBox.Show( Properties.Resources.NoMultipleStart, Utility.SoftwareInformation.SoftwareNameEnglish, MessageBoxButtons.OK, MessageBoxIcon.Error );
 				return;
 			}
 

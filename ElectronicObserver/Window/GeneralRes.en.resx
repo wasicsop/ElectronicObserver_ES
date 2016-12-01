@@ -988,4 +988,13 @@ Denial: {3}</value>
   <data name="Option_ShowAllData" xml:space="preserve">
     <value>Display all data</value>
   </data>
+  <data name="BattleDetail" xml:space="preserve">
+    <value>Battle Details</value>
+  </data>
+  <data name="RightClickMenu_ShowBattleDetail" xml:space="preserve">
+    <value>Show battle (&amp;d)etails...</value>
+  </data>
+  <data name="RightClickMenu_ShowBattleResult" xml:space="preserve">
+    <value>Temporarily show battle details (&amp;V)</value>
+  </data>
 </root>

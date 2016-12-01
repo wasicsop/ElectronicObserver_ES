@@ -259,7 +259,7 @@ namespace ElectronicObserver {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to の読み込みに失敗しました。.
+        ///   Looks up a localized string similar to 　の読み込みに失敗しました。.
         /// </summary>
         internal static string FailedLoading {
             get {
@@ -457,15 +457,6 @@ namespace ElectronicObserver {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to の初期装備を更新しました。.
-        /// </summary>
-        internal static string InitialEquipChanged {
-            get {
-                return ResourceManager.GetString("InitialEquipChanged", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to の初期装備を記録しました。.
         /// </summary>
         internal static string InitialEquipRegistered {
@@ -511,29 +502,11 @@ namespace ElectronicObserver {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} の近代化改修に{1}しました。.
-        /// </summary>
-        internal static string ModernizationResult {
-            get {
-                return ResourceManager.GetString("ModernizationResult", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to MVP候補が複数存在します。ログを確認してください。.
         /// </summary>
         internal static string MultiplePossibleMvps {
             get {
                 return ResourceManager.GetString("MultiplePossibleMvps", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to APIObserver: 実際に受信を開始したポート番号が指定されたポート番号とは異なります。.
-        /// </summary>
-        internal static string ObserverWrongPort {
-            get {
-                return ResourceManager.GetString("ObserverWrongPort", resourceCulture);
             }
         }
         
@@ -565,7 +538,7 @@ namespace ElectronicObserver {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to レコード.
+        ///   Looks up a localized string similar to レコード .
         /// </summary>
         internal static string Record {
             get {

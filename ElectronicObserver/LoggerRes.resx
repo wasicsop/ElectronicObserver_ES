@@ -172,7 +172,7 @@
     <value>API読み込みに失敗しました。</value>
   </data>
   <data name="FailedLoading" xml:space="preserve">
-    <value>の読み込みに失敗しました。</value>
+    <value>　の読み込みに失敗しました。</value>
   </data>
   <data name="FailedLoadingRecords" xml:space="preserve">
     <value>レコードのロードに失敗しました。</value>
@@ -234,9 +234,6 @@
   <data name="ImprovedSuccess" xml:space="preserve">
     <value>の改修に成功しました。( </value>
   </data>
-  <data name="InitialEquipChanged" xml:space="preserve">
-    <value>の初期装備を更新しました。</value>
-  </data>
   <data name="InitialEquipRegistered" xml:space="preserve">
     <value>の初期装備を記録しました。</value>
   </data>
@@ -252,9 +249,6 @@
   <data name="LoadedRecords" xml:space="preserve">
     <value>レコードをロードしました。</value>
   </data>
-  <data name="ObserverWrongPort" xml:space="preserve">
-    <value>APIObserver: 実際に受信を開始したポート番号が指定されたポート番号とは異なります。</value>
-  </data>
   <data name="RecievedRequest" xml:space="preserve">
     <value>Request を受信しました :</value>
   </data>
@@ -262,7 +256,7 @@
     <value>Responseを受信しました :</value>
   </data>
   <data name="Record" xml:space="preserve">
-    <value>レコード</value>
+    <value>レコード </value>
   </data>
   <data name="RegisteredParameters" xml:space="preserve">
     <value>のパラメータを記録しました。</value>
@@ -314,9 +308,6 @@
   </data>
   <data name="FailedToCopy" xml:space="preserve">
     <value>{0} のコピーに失敗しました。{1}</value>
-  </data>
-  <data name="ModernizationResult" xml:space="preserve">
-    <value>{0} の近代化改修に{1}しました。</value>
   </data>
   <data name="APIObserverFailed" xml:space="preserve">
     <value>APIObserver: 受信開始に失敗しました。</value>

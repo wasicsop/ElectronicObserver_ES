@@ -371,7 +371,7 @@
 			//
 			this.RightClickMenu_ShowBattleDetail.Name = "RightClickMenu_ShowBattleDetail";
 			this.RightClickMenu_ShowBattleDetail.Size = new System.Drawing.Size(218, 22);
-			this.RightClickMenu_ShowBattleDetail.Text = "戦闘詳細を表示(&D)...";
+			this.RightClickMenu_ShowBattleDetail.Text = GeneralRes.RightClickMenu_ShowBattleDetail;
 			this.RightClickMenu_ShowBattleDetail.Click += new System.EventHandler(this.RightClickMenu_ShowBattleDetail_Click);
 			//
 			// toolStripSeparator1
@@ -383,7 +383,7 @@
 			//
 			this.RightClickMenu_ShowBattleResult.Name = "RightClickMenu_ShowBattleResult";
 			this.RightClickMenu_ShowBattleResult.Size = new System.Drawing.Size(218, 22);
-			this.RightClickMenu_ShowBattleResult.Text = "戦闘結果を一時的に表示(&V)";
+			this.RightClickMenu_ShowBattleResult.Text = "";
 			this.RightClickMenu_ShowBattleResult.Click += new System.EventHandler(this.RightClickMenu_ShowBattleResult_Click);
 			//
 			// FormBattle
