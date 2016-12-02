@@ -231,9 +231,6 @@
   <data name="ImprovedFailure" xml:space="preserve">
     <value>We have failed to improve {0}.</value>
   </data>
-  <data name="ImprovedSuccess" xml:space="preserve">
-    <value>We have successfully improved {0}.</value>
-  </data>
   <data name="InitialEquipRegistered" xml:space="preserve">
     <value> has had initial equipment registered.</value>
   </data>
@@ -320,5 +317,11 @@
   </data>
   <data name="Copied" xml:space="preserve">
     <value>{0} has been copied.</value>
+  </data>
+  <data name="ImprovedEqSuccess" xml:space="preserve">
+    <value>We have successfully improved {0}.</value>
+  </data>
+  <data name="ImprovedSuccess" xml:space="preserve">
+    <value> has been successfully improved. ( </value>
   </data>
 </root>

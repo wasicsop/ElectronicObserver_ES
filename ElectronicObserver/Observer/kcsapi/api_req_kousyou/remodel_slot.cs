@@ -33,7 +33,7 @@ namespace ElectronicObserver.Observer.kcsapi.api_req_kousyou {
 					eq.LoadFromResponse( APIName, data.api_after_slot );
 
 					if ( Utility.Configuration.Config.Log.ShowSpoiler )
-						Utility.Logger.Add( 2, string.Format( LoggerRes.ImprovedSuccess, eq.NameWithLevel ) );
+						Utility.Logger.Add( 2, string.Format( LoggerRes.ImprovedEqSuccess, eq.NameWithLevel ) );
 				}
 
 			} else if ( Utility.Configuration.Config.Log.ShowSpoiler ) {

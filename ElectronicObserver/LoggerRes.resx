@@ -327,4 +327,7 @@
   <data name="PracticeMessage" xml:space="preserve">
     <value>演習 で「{0}」{1}の「{2}」と交戦しました。( ランク: {3}, 提督Exp+{4}, 艦娘Exp+{5} )</value>
   </data>
+  <data name="ImprovedEqSuccess" xml:space="preserve">
+    <value>{0} への改修に成功しました。</value>
+  </data>
 </root>

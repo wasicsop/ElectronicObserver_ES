@@ -439,6 +439,15 @@ namespace ElectronicObserver {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} への改修に成功しました。.
+        /// </summary>
+        internal static string ImprovedEqSuccess {
+            get {
+                return ResourceManager.GetString("ImprovedEqSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} の改修に失敗しました。.
         /// </summary>
         internal static string ImprovedFailure {
