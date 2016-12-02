@@ -396,9 +396,9 @@ namespace ElectronicObserver.Window {
 				.Select( eq => string.Format( "{0} ({1}～)", eq.NameWithLevel, DateTimeHelper.TimeToCSVString( eq.RelocatedTime ) ) ) );
 
 			if ( message.Length == 0 )
-				message = "現在配置転換中の装備はありません。";
+				message = GeneralRes.ContextMenuBaseAirCorps_DisplayRelocatedEquipments_Detail;
 
-			MessageBox.Show( message, "配置転換中装備", MessageBoxButtons.OK, MessageBoxIcon.Information );
+			MessageBox.Show( message, GeneralRes.ContextMenuBaseAirCorps_DisplayRelocatedEquipments_Title, MessageBoxButtons.OK, MessageBoxIcon.Information );
 		}
 
 

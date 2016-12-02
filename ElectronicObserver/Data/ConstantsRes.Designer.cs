@@ -214,11 +214,65 @@ namespace ElectronicObserver.Data {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 〈第{0}波〉\r\n.
+        ///   Looks up a localized string similar to 味方基地航空隊 参加中隊:.
+        /// </summary>
+        internal static string BattleDetail_AirAttackUnits {
+            get {
+                return ResourceManager.GetString("BattleDetail_AirAttackUnits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 〈第{0}波〉.
         /// </summary>
         internal static string BattleDetail_AirAttackWave {
             get {
                 return ResourceManager.GetString("BattleDetail_AirAttackWave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  〈基地航空隊〉 .
+        /// </summary>
+        internal static string BattleDetail_AirBase {
+            get {
+                return ResourceManager.GetString("BattleDetail_AirBase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 敵軍触接.
+        /// </summary>
+        internal static string BattleDetail_AirBaseEnemyContact {
+            get {
+                return ResourceManager.GetString("BattleDetail_AirBaseEnemyContact", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 自軍触接.
+        /// </summary>
+        internal static string BattleDetail_AirBaseFriendlyContact {
+            get {
+                return ResourceManager.GetString("BattleDetail_AirBaseFriendlyContact", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 第{0}基地.
+        /// </summary>
+        internal static string BattleDetail_Base {
+            get {
+                return ResourceManager.GetString("BattleDetail_Base", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 《戦闘終了》.
+        /// </summary>
+        internal static string BattleDetail_BattleEnd {
+            get {
+                return ResourceManager.GetString("BattleDetail_BattleEnd", resourceCulture);
             }
         }
         
@@ -255,6 +309,33 @@ namespace ElectronicObserver.Data {
         internal static string BattleDetail_EnemyMainFleet {
             get {
                 return ResourceManager.GetString("BattleDetail_EnemyMainFleet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 交戦形態: .
+        /// </summary>
+        internal static string BattleDetail_EngagementForm {
+            get {
+                return ResourceManager.GetString("BattleDetail_EngagementForm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  / 敵軍陣形: .
+        /// </summary>
+        internal static string BattleDetail_FormationEnemy {
+            get {
+                return ResourceManager.GetString("BattleDetail_FormationEnemy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 自軍陣形: .
+        /// </summary>
+        internal static string BattleDetail_FormationFriend {
+            get {
+                return ResourceManager.GetString("BattleDetail_FormationFriend", resourceCulture);
             }
         }
         
@@ -300,6 +381,33 @@ namespace ElectronicObserver.Data {
         internal static string BattleDetail_Node {
             get {
                 return ResourceManager.GetString("BattleDetail_Node", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  / 敵軍索敵: .
+        /// </summary>
+        internal static string BattleDetail_SearchingEnemy {
+            get {
+                return ResourceManager.GetString("BattleDetail_SearchingEnemy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 自軍索敵: .
+        /// </summary>
+        internal static string BattleDetail_SearchingFriend {
+            get {
+                return ResourceManager.GetString("BattleDetail_SearchingFriend", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 《{0}》.
+        /// </summary>
+        internal static string BattleDetail_TitleBrackets {
+            get {
+                return ResourceManager.GetString("BattleDetail_TitleBrackets", resourceCulture);
             }
         }
         
@@ -579,6 +687,15 @@ namespace ElectronicObserver.Data {
         internal static string Echelon {
             get {
                 return ResourceManager.GetString("Echelon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 敵連合.
+        /// </summary>
+        internal static string EnemyCombinedFleet {
+            get {
+                return ResourceManager.GetString("EnemyCombinedFleet", resourceCulture);
             }
         }
         

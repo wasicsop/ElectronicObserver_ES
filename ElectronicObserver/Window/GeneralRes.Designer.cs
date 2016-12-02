@@ -644,6 +644,33 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 配置転換中の装備を確認(&amp;R).
+        /// </summary>
+        internal static string ContextMenuBaseAirCorps_DisplayRelocatedEquipments {
+            get {
+                return ResourceManager.GetString("ContextMenuBaseAirCorps_DisplayRelocatedEquipments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 現在配置転換中の装備はありません。.
+        /// </summary>
+        internal static string ContextMenuBaseAirCorps_DisplayRelocatedEquipments_Detail {
+            get {
+                return ResourceManager.GetString("ContextMenuBaseAirCorps_DisplayRelocatedEquipments_Detail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 配置転換中装備.
+        /// </summary>
+        internal static string ContextMenuBaseAirCorps_DisplayRelocatedEquipments_Title {
+            get {
+                return ResourceManager.GetString("ContextMenuBaseAirCorps_DisplayRelocatedEquipments_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to グループをコピー(&amp;C).
         /// </summary>
         internal static string CopyGroup {

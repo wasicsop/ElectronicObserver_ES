@@ -646,7 +646,7 @@
     <value> (Boss)</value>
   </data>
   <data name="BattleDetail_AirAttackWave" xml:space="preserve">
-    <value>〈 Wave {0} 〉\r\n</value>
+    <value>-- Wave {0} --</value>
   </data>
   <data name="BattleDetail_FriendMainFleet" xml:space="preserve">
     <value> - Main Fleet -</value>
@@ -668,5 +668,44 @@
   </data>
   <data name="BattleDetail_IsBossDamaged" xml:space="preserve">
     <value> : Damaged</value>
+  </data>
+  <data name="BattleDetail_AirAttackUnits" xml:space="preserve">
+    <value>Friendly Air Squadrons:</value>
+  </data>
+  <data name="BattleDetail_AirBase" xml:space="preserve">
+    <value>- Air Base -</value>
+  </data>
+  <data name="BattleDetail_SearchingFriend" xml:space="preserve">
+    <value>Contact: </value>
+  </data>
+  <data name="BattleDetail_SearchingEnemy" xml:space="preserve">
+    <value> / Enemy Contact: </value>
+  </data>
+  <data name="BattleDetail_EngagementForm" xml:space="preserve">
+    <value>Engagement: </value>
+  </data>
+  <data name="BattleDetail_FormationFriend" xml:space="preserve">
+    <value>Formation: </value>
+  </data>
+  <data name="BattleDetail_FormationEnemy" xml:space="preserve">
+    <value> / Enemy Formation: </value>
+  </data>
+  <data name="EnemyCombinedFleet" xml:space="preserve">
+    <value>Combined Fleet</value>
+  </data>
+  <data name="BattleDetail_TitleBrackets" xml:space="preserve">
+    <value>== {0} ==</value>
+  </data>
+  <data name="BattleDetail_Base" xml:space="preserve">
+    <value>Base {0}</value>
+  </data>
+  <data name="BattleDetail_BattleEnd" xml:space="preserve">
+    <value>== Battle Finished ==</value>
+  </data>
+  <data name="BattleDetail_AirBaseEnemyContact" xml:space="preserve">
+    <value>Enemy Contact</value>
+  </data>
+  <data name="BattleDetail_AirBaseFriendlyContact" xml:space="preserve">
+    <value>Contact</value>
   </data>
 </root>

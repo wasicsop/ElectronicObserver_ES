@@ -383,7 +383,7 @@
 			//
 			this.RightClickMenu_ShowBattleResult.Name = "RightClickMenu_ShowBattleResult";
 			this.RightClickMenu_ShowBattleResult.Size = new System.Drawing.Size(218, 22);
-			this.RightClickMenu_ShowBattleResult.Text = "";
+			this.RightClickMenu_ShowBattleResult.Text = GeneralRes.RightClickMenu_ShowBattleResult;
 			this.RightClickMenu_ShowBattleResult.Click += new System.EventHandler(this.RightClickMenu_ShowBattleResult_Click);
 			//
 			// FormBattle

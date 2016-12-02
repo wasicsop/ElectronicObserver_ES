@@ -646,7 +646,7 @@
     <value> (ボス)</value>
   </data>
   <data name="BattleDetail_AirAttackWave" xml:space="preserve">
-    <value>〈第{0}波〉\r\n</value>
+    <value>〈第{0}波〉</value>
   </data>
   <data name="BattleDetail_FriendMainFleet" xml:space="preserve">
     <value> 〈味方主力艦隊〉 </value>
@@ -668,5 +668,44 @@
   </data>
   <data name="BattleDetail_IsBossDamaged" xml:space="preserve">
     <value>  : 装甲破壊</value>
+  </data>
+  <data name="BattleDetail_AirAttackUnits" xml:space="preserve">
+    <value>味方基地航空隊 参加中隊:</value>
+  </data>
+  <data name="BattleDetail_AirBase" xml:space="preserve">
+    <value> 〈基地航空隊〉 </value>
+  </data>
+  <data name="BattleDetail_FormationFriend" xml:space="preserve">
+    <value>自軍陣形: </value>
+  </data>
+  <data name="BattleDetail_FormationEnemy" xml:space="preserve">
+    <value> / 敵軍陣形: </value>
+  </data>
+  <data name="BattleDetail_EngagementForm" xml:space="preserve">
+    <value>交戦形態: </value>
+  </data>
+  <data name="BattleDetail_SearchingFriend" xml:space="preserve">
+    <value>自軍索敵: </value>
+  </data>
+  <data name="BattleDetail_SearchingEnemy" xml:space="preserve">
+    <value> / 敵軍索敵: </value>
+  </data>
+  <data name="EnemyCombinedFleet" xml:space="preserve">
+    <value>敵連合</value>
+  </data>
+  <data name="BattleDetail_TitleBrackets" xml:space="preserve">
+    <value>《{0}》</value>
+  </data>
+  <data name="BattleDetail_BattleEnd" xml:space="preserve">
+    <value>《戦闘終了》</value>
+  </data>
+  <data name="BattleDetail_Base" xml:space="preserve">
+    <value>第{0}基地</value>
+  </data>
+  <data name="BattleDetail_AirBaseFriendlyContact" xml:space="preserve">
+    <value>自軍触接</value>
+  </data>
+  <data name="BattleDetail_AirBaseEnemyContact" xml:space="preserve">
+    <value>敵軍触接</value>
   </data>
 </root>

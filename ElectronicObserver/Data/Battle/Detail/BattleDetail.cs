@@ -253,9 +253,9 @@ namespace ElectronicObserver.Data.Battle.Detail {
 		protected override string GetAttackerName() {
 			if ( WaveIndex <= 0 ) {
 				if ( IsFriendIndex( DefenderIndex ) )
-					return "Enemy Air Base";
+					return "Enemy Air Squadron";
 				else
-					return "Friendly Air Base";
+					return "Friendly Air Squadron";
 
 			} else {
 				return string.Format( "Air Squadron Wave {0}", WaveIndex );

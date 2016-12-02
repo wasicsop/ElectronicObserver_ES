@@ -253,7 +253,7 @@ namespace ElectronicObserver.Data {
 				case 4:
 					return ConstantsRes.AirBattle;
 				case 5:
-					return "Enemy Combined Fleet";
+					return ConstantsRes.EnemyCombinedFleet;
 				case 6:
 					return ConstantsRes.AirRaid;
 				default:
