@@ -807,4 +807,10 @@
   <data name="Title_CombinedNormalNight" xml:space="preserve">
     <value>連合艦隊 夜戦</value>
   </data>
+  <data name="Title_CombinedWater" xml:space="preserve">
+    <value>連合艦隊-水上部隊 昼戦</value>
+  </data>
+  <data name="Title_CombinedEachDay" xml:space="preserve">
+    <value>連合艦隊-機動部隊 対連合艦隊 昼戦</value>
+  </data>
 </root>

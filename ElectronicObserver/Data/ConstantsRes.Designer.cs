@@ -1879,6 +1879,15 @@ namespace ElectronicObserver.Data {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 連合艦隊-機動部隊 対連合艦隊 昼戦.
+        /// </summary>
+        internal static string Title_CombinedEachDay {
+            get {
+                return ResourceManager.GetString("Title_CombinedEachDay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 連合艦隊-水上部隊 対連合艦隊 昼戦.
         /// </summary>
         internal static string Title_CombinedEachWater {
@@ -1929,6 +1938,15 @@ namespace ElectronicObserver.Data {
         internal static string Title_CombinedNormalNight {
             get {
                 return ResourceManager.GetString("Title_CombinedNormalNight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 連合艦隊-水上部隊 昼戦.
+        /// </summary>
+        internal static string Title_CombinedWater {
+            get {
+                return ResourceManager.GetString("Title_CombinedWater", resourceCulture);
             }
         }
         

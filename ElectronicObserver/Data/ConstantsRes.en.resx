@@ -586,7 +586,7 @@
     <value>Furniture Coin</value>
   </data>
   <data name="SpecialIdle" xml:space="preserve">
-    <value>特殊放置</value>
+    <value>Special Idle</value>
   </data>
   <data name="SSHoloPlus" xml:space="preserve">
     <value>SS-Holo+</value>
@@ -778,7 +778,7 @@
     <value>Kidou Butai Day Battle</value>
   </data>
   <data name="Title_CombinedEachWater" xml:space="preserve">
-    <value>Suijou Butai Day Battle</value>
+    <value>Suijou Butai Combined Fleet Day Battle</value>
   </data>
   <data name="Title_NightOnly" xml:space="preserve">
     <value>Opening Night Battle</value>
@@ -790,6 +790,27 @@
     <value>Night Battle</value>
   </data>
   <data name="Title_EnemyCombinedDay" xml:space="preserve">
-    <value>Enemy Combined Fleet Battle</value>
+    <value>Enemy Combined Fleet Day Battle</value>
+  </data>
+  <data name="Title_CombinedEachDay" xml:space="preserve">
+    <value>Kidou Butai Combined Fleet Day Battle</value>
+  </data>
+  <data name="Title_BaseAirRaid" xml:space="preserve">
+    <value>Air Base Raid</value>
+  </data>
+  <data name="Title_CombinedWater" xml:space="preserve">
+    <value>Suijou Butai Day Battle</value>
+  </data>
+  <data name="Title_EnemyCombinedNight" xml:space="preserve">
+    <value>Enemy Combined Fleet Night Battle</value>
+  </data>
+  <data name="BattleDetail_EnemyNightContact" xml:space="preserve">
+    <value>Enemy Night Contact: </value>
+  </data>
+  <data name="Title_PracticeDay" xml:space="preserve">
+    <value>Practice Day Battle</value>
+  </data>
+  <data name="Title_PracticeNight" xml:space="preserve">
+    <value>Practice Night Battle</value>
   </data>
 </root>
