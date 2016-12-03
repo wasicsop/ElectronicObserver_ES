@@ -538,6 +538,15 @@ namespace ElectronicObserver.Data {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 対空カットイン ( {0}, {1}({2}) ).
+        /// </summary>
+        internal static string BattleDetail_Stage2AACI {
+            get {
+                return ResourceManager.GetString("BattleDetail_Stage2AACI", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 《{0}》.
         /// </summary>
         internal static string BattleDetail_TitleBrackets {

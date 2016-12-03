@@ -440,7 +440,7 @@ namespace ElectronicObserver.Window {
 						if ( isEscaped ) {
 							sb.AppendLine( GeneralRes.Retreating );
 						} else if ( hprate > 0.50 ) {
-							sb.AppendFormat( GeneralRes.ToMidAndHeavy, ship.HPCurrent - ship.HPMax / 2, ship.HPCurrent - ship.HPMax / 4 );
+							sb.AppendFormat( GeneralRes.ToMidAndHeavy + "\n", ship.HPCurrent - ship.HPMax / 2, ship.HPCurrent - ship.HPMax / 4 );
 						} else if ( hprate > 0.25 ) {
 							sb.AppendFormat( GeneralRes.ToHeavy + "\n", ship.HPCurrent - ship.HPMax / 4 );
 						} else {

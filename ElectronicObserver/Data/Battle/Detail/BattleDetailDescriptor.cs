@@ -317,7 +317,7 @@ namespace ElectronicObserver.Data.Battle.Detail {
 			if ( p.IsStage2Available ) {
 				sb.Append( "Stage 2: " );
 				if ( p.IsAACutinAvailable ) {
-					sb.AppendFormat( Window.GeneralRes.AACutIn + " ( {0}, {1}({2}) )", p.AACutInShip.NameWithLevel, Constants.GetAACutinKind( p.AACutInKind ), p.AACutInKind );
+					sb.AppendFormat(ConstantsRes.BattleDetail_Stage2AACI, p.AACutInShip.NameWithLevel, Constants.GetAACutinKind( p.AACutInKind ), p.AACutInKind );
 				}
 				sb.AppendLine();
 				sb.AppendFormat( "　" + Window.GeneralRes.FriendlyAir + ": -{0}/{1}\r\n　" + Window.GeneralRes.EnemyAir + ": -{2}/{3}\r\n",

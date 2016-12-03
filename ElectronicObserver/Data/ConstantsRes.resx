@@ -813,4 +813,7 @@
   <data name="Title_CombinedEachDay" xml:space="preserve">
     <value>連合艦隊-機動部隊 対連合艦隊 昼戦</value>
   </data>
+  <data name="BattleDetail_Stage2AACI" xml:space="preserve">
+    <value>対空カットイン ( {0}, {1}({2}) )</value>
+  </data>
 </root>

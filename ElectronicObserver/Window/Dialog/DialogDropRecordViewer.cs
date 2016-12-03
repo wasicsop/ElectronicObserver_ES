@@ -707,11 +707,11 @@ namespace ElectronicObserver.Window.Dialog {
 				RecordView.Sort( RecordView.SortedColumn ?? RecordView_Header,
 					RecordView.SortOrder == SortOrder.Ascending ? ListSortDirection.Ascending : ListSortDirection.Descending );
 
-				StatusInfo.Text = "検索が完了しました。(" + (int)( DateTime.Now - (DateTime)StatusInfo.Tag ).TotalMilliseconds + " ms)";
+				StatusInfo.Text = EncycloRes.SearchComplete + " (" + (int)( DateTime.Now - (DateTime)StatusInfo.Tag ).TotalMilliseconds + " ms)";
 
 			} else {
 
-				StatusInfo.Text = "検索がキャンセルされました。";
+				StatusInfo.Text = EncycloRes.SearchCancelled;
 			}
 
 		}
