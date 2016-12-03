@@ -708,4 +708,88 @@
   <data name="BattleDetail_AirBaseFriendlyContact" xml:space="preserve">
     <value>Contact</value>
   </data>
+  <data name="BattleDetail_ShipStats" xml:space="preserve">
+    <value>#{0}: {1} {2} HP: {3} / {4} - FP:{5}, Torp:{6}, AA:{7}, Armor:{8}</value>
+  </data>
+  <data name="BattleDetail_EnemyStats" xml:space="preserve">
+    <value> - FP:{0}, Torp:{1}, AA:{2}, Armor:{3}</value>
+  </data>
+  <data name="BattleDetail_ResultRank" xml:space="preserve">
+    <value>Rank: {0}</value>
+  </data>
+  <data name="BattleDetail_ResultMVPMain" xml:space="preserve">
+    <value>MVP (Main Fleet): {0}</value>
+  </data>
+  <data name="BattleDetail_ResultMVPEscort" xml:space="preserve">
+    <value>MVP (Escort Fleet): {0}</value>
+  </data>
+  <data name="BattleDetail_Result" xml:space="preserve">
+    <value>◆ Battle Result ◆</value>
+  </data>
+  <data name="BattleDetail_Drop" xml:space="preserve">
+    <value>Drop: </value>
+  </data>
+  <data name="BattleDetail_AdmiralExp" xml:space="preserve">
+    <value>Admiral Exp: +{0}</value>
+  </data>
+  <data name="BattleDetail_ShipExp" xml:space="preserve">
+    <value>Ship Exp: +{1}</value>
+  </data>
+  <data name="BattleDetail_FriendlyStarshell" xml:space="preserve">
+    <value>Starshell: : {0} #{1}</value>
+  </data>
+  <data name="BattleDetail_FriendlySearchlight" xml:space="preserve">
+    <value>Searchlight: {0} #{1}</value>
+  </data>
+  <data name="BattleDetail_EnemySearchlight" xml:space="preserve">
+    <value>Enemy Searchlight: {0} #{1}</value>
+  </data>
+  <data name="BattleDetail_EnemyStarshell" xml:space="preserve">
+    <value>Enemy Starshell: : {0} #{1}</value>
+  </data>
+  <data name="BattleDetail_FriendlyNightContact" xml:space="preserve">
+    <value>Night Contact: </value>
+  </data>
+  <data name="Participant" xml:space="preserve">
+    <value>Participant</value>
+  </data>
+  <data name="LOS" xml:space="preserve">
+    <value>Detection</value>
+  </data>
+  <data name="Title_NormalFleetAirBattle" xml:space="preserve">
+    <value>Air Battle</value>
+  </data>
+  <data name="Title_NormalFleetAirRaid" xml:space="preserve">
+    <value>Air Raid</value>
+  </data>
+  <data name="Title_CombinedFleetAirBattle" xml:space="preserve">
+    <value>Combined Fleet Air Battle</value>
+  </data>
+  <data name="Title_CombinedFleetAirRaid" xml:space="preserve">
+    <value>Combined Fleet Air Raid</value>
+  </data>
+  <data name="Title_CombinedNormalNight" xml:space="preserve">
+    <value>Combined Fleet Night Battle</value>
+  </data>
+  <data name="Title_CombinedNightOnly" xml:space="preserve">
+    <value>Combined Fleet Opening Night Battle</value>
+  </data>
+  <data name="Title_CombinedNormalDay" xml:space="preserve">
+    <value>Kidou Butai Day Battle</value>
+  </data>
+  <data name="Title_CombinedEachWater" xml:space="preserve">
+    <value>Suijou Butai Day Battle</value>
+  </data>
+  <data name="Title_NightOnly" xml:space="preserve">
+    <value>Opening Night Battle</value>
+  </data>
+  <data name="Title_NormalDay" xml:space="preserve">
+    <value>Day Battle</value>
+  </data>
+  <data name="Title_NormalNight" xml:space="preserve">
+    <value>Night Battle</value>
+  </data>
+  <data name="Title_EnemyCombinedDay" xml:space="preserve">
+    <value>Enemy Combined Fleet Battle</value>
+  </data>
 </root>

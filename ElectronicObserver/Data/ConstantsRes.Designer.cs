@@ -214,6 +214,15 @@ namespace ElectronicObserver.Data {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 提督経験値: +{0}.
+        /// </summary>
+        internal static string BattleDetail_AdmiralExp {
+            get {
+                return ResourceManager.GetString("BattleDetail_AdmiralExp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 味方基地航空隊 参加中隊:.
         /// </summary>
         internal static string BattleDetail_AirAttackUnits {
@@ -286,6 +295,15 @@ namespace ElectronicObserver.Data {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ドロップ：.
+        /// </summary>
+        internal static string BattleDetail_Drop {
+            get {
+                return ResourceManager.GetString("BattleDetail_Drop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to  〈敵随伴艦隊〉.
         /// </summary>
         internal static string BattleDetail_EnemyEscortFleet {
@@ -309,6 +327,42 @@ namespace ElectronicObserver.Data {
         internal static string BattleDetail_EnemyMainFleet {
             get {
                 return ResourceManager.GetString("BattleDetail_EnemyMainFleet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 敵軍夜間触接: .
+        /// </summary>
+        internal static string BattleDetail_EnemyNightContact {
+            get {
+                return ResourceManager.GetString("BattleDetail_EnemyNightContact", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 敵軍探照灯照射: {0} #{1}.
+        /// </summary>
+        internal static string BattleDetail_EnemySearchlight {
+            get {
+                return ResourceManager.GetString("BattleDetail_EnemySearchlight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 敵軍照明弾投射: {0} #{1}.
+        /// </summary>
+        internal static string BattleDetail_EnemyStarshell {
+            get {
+                return ResourceManager.GetString("BattleDetail_EnemyStarshell", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  - 火力{0}, 雷装{1}, 対空{2}, 装甲{3}.
+        /// </summary>
+        internal static string BattleDetail_EnemyStats {
+            get {
+                return ResourceManager.GetString("BattleDetail_EnemyStats", resourceCulture);
             }
         }
         
@@ -358,6 +412,33 @@ namespace ElectronicObserver.Data {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 自軍夜間触接: .
+        /// </summary>
+        internal static string BattleDetail_FriendlyNightContact {
+            get {
+                return ResourceManager.GetString("BattleDetail_FriendlyNightContact", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 自軍探照灯照射: {0} #{1}.
+        /// </summary>
+        internal static string BattleDetail_FriendlySearchlight {
+            get {
+                return ResourceManager.GetString("BattleDetail_FriendlySearchlight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 自軍照明弾投射: {0} #{1}.
+        /// </summary>
+        internal static string BattleDetail_FriendlyStarshell {
+            get {
+                return ResourceManager.GetString("BattleDetail_FriendlyStarshell", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to  〈味方主力艦隊〉 .
         /// </summary>
         internal static string BattleDetail_FriendMainFleet {
@@ -385,6 +466,42 @@ namespace ElectronicObserver.Data {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ◆ 戦闘結果 ◆.
+        /// </summary>
+        internal static string BattleDetail_Result {
+            get {
+                return ResourceManager.GetString("BattleDetail_Result", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MVP(随伴艦隊): {0}.
+        /// </summary>
+        internal static string BattleDetail_ResultMVPEscort {
+            get {
+                return ResourceManager.GetString("BattleDetail_ResultMVPEscort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MVP(主力艦隊): {0}.
+        /// </summary>
+        internal static string BattleDetail_ResultMVPMain {
+            get {
+                return ResourceManager.GetString("BattleDetail_ResultMVPMain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ランク: {0}.
+        /// </summary>
+        internal static string BattleDetail_ResultRank {
+            get {
+                return ResourceManager.GetString("BattleDetail_ResultRank", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to  / 敵軍索敵: .
         /// </summary>
         internal static string BattleDetail_SearchingEnemy {
@@ -399,6 +516,24 @@ namespace ElectronicObserver.Data {
         internal static string BattleDetail_SearchingFriend {
             get {
                 return ResourceManager.GetString("BattleDetail_SearchingFriend", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 艦娘基本経験値: +{1}.
+        /// </summary>
+        internal static string BattleDetail_ShipExp {
+            get {
+                return ResourceManager.GetString("BattleDetail_ShipExp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to #{0}: {1} {2} HP: {3} / {4} - 火力{5}, 雷装{6}, 対空{7}, 装甲{8}.
+        /// </summary>
+        internal static string BattleDetail_ShipStats {
+            get {
+                return ResourceManager.GetString("BattleDetail_ShipStats", resourceCulture);
             }
         }
         
@@ -1051,6 +1186,15 @@ namespace ElectronicObserver.Data {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 索敵.
+        /// </summary>
+        internal static string LOS {
+            get {
+                return ResourceManager.GetString("LOS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 少佐.
         /// </summary>
         internal static string LtCmdr {
@@ -1317,6 +1461,15 @@ namespace ElectronicObserver.Data {
         internal static string Parallel {
             get {
                 return ResourceManager.GetString("Parallel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 戦力.
+        /// </summary>
+        internal static string Participant {
+            get {
+                return ResourceManager.GetString("Participant", resourceCulture);
             }
         }
         
@@ -1713,6 +1866,150 @@ namespace ElectronicObserver.Data {
         internal static string ThirdPatrolFormation {
             get {
                 return ResourceManager.GetString("ThirdPatrolFormation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 基地空襲戦.
+        /// </summary>
+        internal static string Title_BaseAirRaid {
+            get {
+                return ResourceManager.GetString("Title_BaseAirRaid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 連合艦隊-水上部隊 対連合艦隊 昼戦.
+        /// </summary>
+        internal static string Title_CombinedEachWater {
+            get {
+                return ResourceManager.GetString("Title_CombinedEachWater", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 連合艦隊 航空戦.
+        /// </summary>
+        internal static string Title_CombinedFleetAirBattle {
+            get {
+                return ResourceManager.GetString("Title_CombinedFleetAirBattle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 連合艦隊 長距離空襲戦.
+        /// </summary>
+        internal static string Title_CombinedFleetAirRaid {
+            get {
+                return ResourceManager.GetString("Title_CombinedFleetAirRaid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 連合艦隊 開幕夜戦.
+        /// </summary>
+        internal static string Title_CombinedNightOnly {
+            get {
+                return ResourceManager.GetString("Title_CombinedNightOnly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 連合艦隊-機動部隊 昼戦.
+        /// </summary>
+        internal static string Title_CombinedNormalDay {
+            get {
+                return ResourceManager.GetString("Title_CombinedNormalDay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 連合艦隊 夜戦.
+        /// </summary>
+        internal static string Title_CombinedNormalNight {
+            get {
+                return ResourceManager.GetString("Title_CombinedNormalNight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 通常艦隊 対連合艦隊 昼戦.
+        /// </summary>
+        internal static string Title_EnemyCombinedDay {
+            get {
+                return ResourceManager.GetString("Title_EnemyCombinedDay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 対連合艦隊 夜戦.
+        /// </summary>
+        internal static string Title_EnemyCombinedNight {
+            get {
+                return ResourceManager.GetString("Title_EnemyCombinedNight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 通常艦隊 開幕夜戦.
+        /// </summary>
+        internal static string Title_NightOnly {
+            get {
+                return ResourceManager.GetString("Title_NightOnly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 通常艦隊 昼戦.
+        /// </summary>
+        internal static string Title_NormalDay {
+            get {
+                return ResourceManager.GetString("Title_NormalDay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 通常艦隊 航空戦.
+        /// </summary>
+        internal static string Title_NormalFleetAirBattle {
+            get {
+                return ResourceManager.GetString("Title_NormalFleetAirBattle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 通常艦隊 長距離空襲戦.
+        /// </summary>
+        internal static string Title_NormalFleetAirRaid {
+            get {
+                return ResourceManager.GetString("Title_NormalFleetAirRaid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 通常艦隊 夜戦.
+        /// </summary>
+        internal static string Title_NormalNight {
+            get {
+                return ResourceManager.GetString("Title_NormalNight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 演習 昼戦.
+        /// </summary>
+        internal static string Title_PracticeDay {
+            get {
+                return ResourceManager.GetString("Title_PracticeDay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 演習 夜戦.
+        /// </summary>
+        internal static string Title_PracticeNight {
+            get {
+                return ResourceManager.GetString("Title_PracticeNight", resourceCulture);
             }
         }
         

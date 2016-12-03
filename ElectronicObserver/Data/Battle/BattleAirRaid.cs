@@ -28,7 +28,7 @@ namespace ElectronicObserver.Data.Battle {
 		}
 
 		public override string BattleName {
-			get { return "通常艦隊 長距離空襲戦"; }
+			get { return ConstantsRes.Title_NormalFleetAirRaid; }
 		}
 
 		public override BattleTypeFlag BattleType {

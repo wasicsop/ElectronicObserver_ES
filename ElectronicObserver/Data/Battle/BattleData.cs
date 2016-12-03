@@ -33,8 +33,8 @@ namespace ElectronicObserver.Data.Battle {
 		public override void LoadFromResponse( string apiname, dynamic data ) {
 			base.LoadFromResponse( apiname, (object)data );
 
-			Initial = new PhaseInitial( this, "戦力" );
-			Searching = new PhaseSearching( this, "索敵" );
+			Initial = new PhaseInitial( this, ConstantsRes.Participant );
+			Searching = new PhaseSearching( this, ConstantsRes.LOS );
 
 			_resultHPs = Initial.InitialHPs.ToArray();
 			if ( _attackDamages == null )

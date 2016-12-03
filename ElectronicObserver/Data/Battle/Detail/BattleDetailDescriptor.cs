@@ -155,30 +155,30 @@ namespace ElectronicObserver.Data.Battle.Detail {
 					{
 						var eq = KCDatabase.Instance.MasterEquipments[p.TouchAircraftFriend];
 						if ( eq != null ) {
-							sb.Append( "自軍夜間触接: " ).AppendLine( eq.Name );
+							sb.Append( ConstantsRes.BattleDetail_FriendlyNightContact ).AppendLine( eq.Name );
 						}
 						eq = KCDatabase.Instance.MasterEquipments[p.TouchAircraftEnemy];
 						if ( eq != null ) {
-							sb.Append( "敵軍夜間触接: " ).AppendLine( eq.Name );
+							sb.Append( ConstantsRes.BattleDetail_EnemyNightContact ).AppendLine( eq.Name );
 						}
 					}
 
 					{
 						int searchlightIndex = p.SearchlightIndexFriend;
 						if ( searchlightIndex != -1 ) {
-							sb.AppendFormat( "自軍探照灯照射: {0} #{1}\r\n", p.FriendFleet.MembersInstance[searchlightIndex].Name, searchlightIndex + 1 );
+							sb.AppendFormat( ConstantsRes.BattleDetail_FriendlySearchlight + "\r\n", p.FriendFleet.MembersInstance[searchlightIndex].Name, searchlightIndex + 1 );
 						}
 						searchlightIndex = p.SearchlightIndexEnemy;
 						if ( searchlightIndex != -1 ) {
-							sb.AppendFormat( "敵軍探照灯照射: {0} #{1}\r\n", p.EnemyMembersInstance[searchlightIndex].NameWithClass, searchlightIndex + 1 );
+							sb.AppendFormat( ConstantsRes.BattleDetail_EnemySearchlight + "\r\n", p.EnemyMembersInstance[searchlightIndex].NameWithClass, searchlightIndex + 1 );
 						}
 					}
 
 					if ( p.FlareIndexFriend != -1 ) {
-						sb.AppendFormat( "自軍照明弾投射: {0} #{1}\r\n", p.FriendFleet.MembersInstance[p.FlareIndexFriend].Name, p.FlareIndexFriend + 1 );
+						sb.AppendFormat( ConstantsRes.BattleDetail_FriendlyStarshell + "\r\n", p.FriendFleet.MembersInstance[p.FlareIndexFriend].Name, p.FlareIndexFriend + 1 );
 					}
 					if ( p.FlareIndexEnemy != -1 ) {
-						sb.AppendFormat( "敵軍照明弾投射: {0} #{1}\r\n", p.FlareEnemyInstance.NameWithClass, p.FlareIndexEnemy + 1 );
+						sb.AppendFormat( ConstantsRes.BattleDetail_EnemyStarshell + "\r\n", p.FlareEnemyInstance.NameWithClass, p.FlareIndexEnemy + 1 );
 					}
 
 					if ( sb.Length > length )		// 追加行があった場合
@@ -336,7 +336,7 @@ namespace ElectronicObserver.Data.Battle.Detail {
 				if ( ship == null )
 					continue;
 
-				sb.AppendFormat( "#{0}: {1} {2} HP: {3} / {4} - 火力{5}, 雷装{6}, 対空{7}, 装甲{8}\r\n",
+				sb.AppendFormat( ConstantsRes.BattleDetail_ShipStats + "\r\n",
 					i + 1,
 					ship.MasterShip.ShipTypeName, ship.NameWithLevel,
 					initialHPs[i], maxHPs[i],
@@ -382,7 +382,7 @@ namespace ElectronicObserver.Data.Battle.Detail {
 					initialHPs[i], maxHPs[i] );
 
 				if ( parameters != null ) {
-					sb.AppendFormat( " - 火力{0}, 雷装{1}, 対空{2}, 装甲{3}",
+					sb.AppendFormat( ConstantsRes.BattleDetail_EnemyStats,
 					parameters[i][0], parameters[i][1], parameters[i][2], parameters[i][3] );
 				}
 
@@ -416,13 +416,13 @@ namespace ElectronicObserver.Data.Battle.Detail {
 			var sb = new StringBuilder();
 
 
-			sb.AppendLine( "◆ 戦闘結果 ◆" );
-			sb.AppendFormat( "ランク: {0}\r\n", result.Rank );
+			sb.AppendLine( ConstantsRes.BattleDetail_Result );
+			sb.AppendFormat( ConstantsRes.BattleDetail_ResultRank + "\r\n", result.Rank );
 
 			if ( bm.IsCombinedBattle ) {
-				sb.AppendFormat( "MVP(主力艦隊): {0}\r\n",
+				sb.AppendFormat( ConstantsRes.BattleDetail_ResultMVPMain + "\r\n",
 					result.MVPIndex == -1 ? "(なし)" : bm.FirstBattle.Initial.FriendFleet.MembersInstance[result.MVPIndex - 1].NameWithLevel );
-				sb.AppendFormat( "MVP(随伴艦隊): {0}\r\n",
+				sb.AppendFormat( ConstantsRes.BattleDetail_ResultMVPEscort + "\r\n",
 					result.MVPIndexCombined == -1 ? "(なし)" : bm.FirstBattle.Initial.FriendFleetEscort.MembersInstance[result.MVPIndexCombined - 1].NameWithLevel );
 
 			} else {
@@ -430,12 +430,12 @@ namespace ElectronicObserver.Data.Battle.Detail {
 					result.MVPIndex == -1 ? "(なし)" : bm.FirstBattle.Initial.FriendFleet.MembersInstance[result.MVPIndex - 1].NameWithLevel );
 			}
 
-			sb.AppendFormat( "提督経験値: +{0}\r\n艦娘基本経験値: +{1}\r\n",
+			sb.AppendFormat( ConstantsRes.BattleDetail_AdmiralExp + "\r\n" + ConstantsRes.BattleDetail_ShipExp + "\r\n",
 				result.AdmiralExp, result.BaseExp );
 
 
 			if ( !bm.IsPractice ) {
-				sb.AppendLine().AppendLine( "ドロップ：" );
+				sb.AppendLine().AppendLine( ConstantsRes.BattleDetail_Drop );
 
 
 				int length = sb.Length;

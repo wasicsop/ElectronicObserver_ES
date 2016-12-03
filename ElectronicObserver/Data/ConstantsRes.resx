@@ -708,4 +708,103 @@
   <data name="BattleDetail_AirBaseEnemyContact" xml:space="preserve">
     <value>敵軍触接</value>
   </data>
+  <data name="BattleDetail_ShipStats" xml:space="preserve">
+    <value>#{0}: {1} {2} HP: {3} / {4} - 火力{5}, 雷装{6}, 対空{7}, 装甲{8}</value>
+  </data>
+  <data name="BattleDetail_EnemyStats" xml:space="preserve">
+    <value> - 火力{0}, 雷装{1}, 対空{2}, 装甲{3}</value>
+  </data>
+  <data name="BattleDetail_Result" xml:space="preserve">
+    <value>◆ 戦闘結果 ◆</value>
+  </data>
+  <data name="BattleDetail_ResultRank" xml:space="preserve">
+    <value>ランク: {0}</value>
+  </data>
+  <data name="BattleDetail_ResultMVPMain" xml:space="preserve">
+    <value>MVP(主力艦隊): {0}</value>
+  </data>
+  <data name="BattleDetail_ResultMVPEscort" xml:space="preserve">
+    <value>MVP(随伴艦隊): {0}</value>
+  </data>
+  <data name="BattleDetail_ShipExp" xml:space="preserve">
+    <value>艦娘基本経験値: +{1}</value>
+  </data>
+  <data name="BattleDetail_AdmiralExp" xml:space="preserve">
+    <value>提督経験値: +{0}</value>
+  </data>
+  <data name="BattleDetail_Drop" xml:space="preserve">
+    <value>ドロップ：</value>
+  </data>
+  <data name="BattleDetail_EnemyStarshell" xml:space="preserve">
+    <value>敵軍照明弾投射: {0} #{1}</value>
+  </data>
+  <data name="BattleDetail_EnemySearchlight" xml:space="preserve">
+    <value>敵軍探照灯照射: {0} #{1}</value>
+  </data>
+  <data name="BattleDetail_FriendlyStarshell" xml:space="preserve">
+    <value>自軍照明弾投射: {0} #{1}</value>
+  </data>
+  <data name="BattleDetail_FriendlySearchlight" xml:space="preserve">
+    <value>自軍探照灯照射: {0} #{1}</value>
+  </data>
+  <data name="BattleDetail_FriendlyNightContact" xml:space="preserve">
+    <value>自軍夜間触接: </value>
+  </data>
+  <data name="BattleDetail_EnemyNightContact" xml:space="preserve">
+    <value>敵軍夜間触接: </value>
+  </data>
+  <data name="LOS" xml:space="preserve">
+    <value>索敵</value>
+  </data>
+  <data name="Participant" xml:space="preserve">
+    <value>戦力</value>
+  </data>
+  <data name="Title_NormalFleetAirBattle" xml:space="preserve">
+    <value>通常艦隊 航空戦</value>
+  </data>
+  <data name="Title_NormalFleetAirRaid" xml:space="preserve">
+    <value>通常艦隊 長距離空襲戦</value>
+  </data>
+  <data name="Title_CombinedFleetAirRaid" xml:space="preserve">
+    <value>連合艦隊 長距離空襲戦</value>
+  </data>
+  <data name="Title_CombinedFleetAirBattle" xml:space="preserve">
+    <value>連合艦隊 航空戦</value>
+  </data>
+  <data name="Title_BaseAirRaid" xml:space="preserve">
+    <value>基地空襲戦</value>
+  </data>
+  <data name="Title_CombinedEachWater" xml:space="preserve">
+    <value>連合艦隊-水上部隊 対連合艦隊 昼戦</value>
+  </data>
+  <data name="Title_CombinedNightOnly" xml:space="preserve">
+    <value>連合艦隊 開幕夜戦</value>
+  </data>
+  <data name="Title_PracticeNight" xml:space="preserve">
+    <value>演習 夜戦</value>
+  </data>
+  <data name="Title_PracticeDay" xml:space="preserve">
+    <value>演習 昼戦</value>
+  </data>
+  <data name="Title_NormalNight" xml:space="preserve">
+    <value>通常艦隊 夜戦</value>
+  </data>
+  <data name="Title_NormalDay" xml:space="preserve">
+    <value>通常艦隊 昼戦</value>
+  </data>
+  <data name="Title_NightOnly" xml:space="preserve">
+    <value>通常艦隊 開幕夜戦</value>
+  </data>
+  <data name="Title_EnemyCombinedDay" xml:space="preserve">
+    <value>通常艦隊 対連合艦隊 昼戦</value>
+  </data>
+  <data name="Title_EnemyCombinedNight" xml:space="preserve">
+    <value>対連合艦隊 夜戦</value>
+  </data>
+  <data name="Title_CombinedNormalDay" xml:space="preserve">
+    <value>連合艦隊-機動部隊 昼戦</value>
+  </data>
+  <data name="Title_CombinedNormalNight" xml:space="preserve">
+    <value>連合艦隊 夜戦</value>
+  </data>
 </root>
