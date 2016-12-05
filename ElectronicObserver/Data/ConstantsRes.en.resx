@@ -814,6 +814,6 @@
     <value>Practice Night Battle</value>
   </data>
   <data name="BattleDetail_Stage2AACI" xml:space="preserve">
-    <value>AA Cut-in #{2} ( {0}, {1} )</value>
+    <value>AA Cut-in type #{2} ( {0}, {1} )</value>
   </data>
 </root>
