@@ -1458,7 +1458,7 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to (旧)2-5式: {0}\r\n2-5式(秋): {1}\r\n2-5新秋簡易式: {2}\r\n判定式(33): {3}\r\n\r\n触接開始率: \r\n　確保 {4:p1} / 優勢 {5:p1}\r\n.
+        ///   Looks up a localized string similar to (旧)2-5式: {0}\r\n2-5式(秋): {1}\r\n2-5新秋簡易式: {2}\r\n判定式(33): {3}\r\n新判定式(33):\r\n　分岐点係数1: {4:f2}\r\n　分岐点係数3: {5:f2}\r\n　分岐点係数4: {6:f2}\r\n\r\n触接開始率: \r\n　確保 {7:p1} / 優勢 {8:p1}\r\n.
         /// </summary>
         internal static string LoSTooltip {
             get {

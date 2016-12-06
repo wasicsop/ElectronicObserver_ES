@@ -116,7 +116,7 @@ namespace ElectronicObserver.Window {
 					tooltip.SetToolTip( ShipName, name );
 					CompletionTime.Text = DateTimeHelper.ToTimeRemainString( arsenal.CompletionTime );
 					CompletionTime.Tag = arsenal.CompletionTime;
-					tooltip.SetToolTip( CompletionTime, GeneralRes.TimeToCompletion + ":" + arsenal.CompletionTime.ToString() );
+					tooltip.SetToolTip( CompletionTime, GeneralRes.TimeToCompletion + ":" + DateTimeHelper.TimeToCSVString( arsenal.CompletionTime ) );
 
 				} else if ( arsenal.State == 3 ) {
 					//complete!
@@ -264,7 +264,7 @@ namespace ElectronicObserver.Window {
 
 			Font = Utility.Configuration.Config.UI.MainFont;
 			MenuMain_ShowShipName.Checked = Utility.Configuration.Config.FormArsenal.ShowShipName;
-        
+
 			if ( ControlArsenal != null ) {
 				foreach ( var c in ControlArsenal )
 					c.ConfigurationChanged( this );

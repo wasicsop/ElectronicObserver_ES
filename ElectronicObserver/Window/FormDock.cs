@@ -116,7 +116,7 @@ namespace ElectronicObserver.Window {
 					ToolTipInfo.SetToolTip( ShipName, db.Ships[dock.ShipID].NameWithLevel );
 					RepairTime.Text = DateTimeHelper.ToTimeRemainString( dock.CompletionTime );
 					RepairTime.Tag = dock.CompletionTime;
-					ToolTipInfo.SetToolTip( RepairTime, GeneralRes.TimeToCompletion + ":" + dock.CompletionTime );
+					ToolTipInfo.SetToolTip( RepairTime, GeneralRes.TimeToCompletion + ":" + DateTimeHelper.TimeToCSVString( dock.CompletionTime ) );
 
 				}
 
@@ -128,7 +128,7 @@ namespace ElectronicObserver.Window {
 				if ( RepairTime.Tag != null ) {
 
 					var time = (DateTime)RepairTime.Tag;
-					
+
 					RepairTime.Text = DateTimeHelper.ToTimeRemainString( time );
 
 					if ( Utility.Configuration.Config.FormDock.BlinkAtCompletion && ( time - DateTime.Now ).TotalMilliseconds <= Utility.Configuration.Config.NotifierRepair.AccelInterval ) {

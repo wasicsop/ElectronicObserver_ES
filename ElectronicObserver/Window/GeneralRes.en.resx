@@ -414,10 +414,17 @@ Are you sure?</value>
     <value>LoS</value>
   </data>
   <data name="LoSTooltip" xml:space="preserve">
-    <value>Old 2-5: {0}   Autumn 2-5: {1}
-New 2-5: {2}   Formula 33: {3}
-Contact Chance:
-  AS+ {4:p1} / AS {5:p1}
+    <value>Old 2-5: {0}
+Autumn 2-5: {1}
+New 2-5: {2}
+Formula 33: {3}
+New Formula 33:
+　分岐点係数1: {4:f2}
+　分岐点係数3: {5:f2}
+　分岐点係数4: {6:f2}
+
+Contact Chance: 
+　AS+ {7:p1} / AS {8:p1}
 </value>
   </data>
   <data name="Luck" xml:space="preserve">
