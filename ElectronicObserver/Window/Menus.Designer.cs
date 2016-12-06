@@ -106,6 +106,15 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 対空砲火詳細(&amp;A).
+        /// </summary>
+        internal static string AntiAirDefense {
+            get {
+                return ResourceManager.GetString("AntiAirDefense", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 工廠(&amp;A).
         /// </summary>
         internal static string Arsenal {

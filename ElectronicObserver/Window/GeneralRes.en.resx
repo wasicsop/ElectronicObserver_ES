@@ -414,10 +414,17 @@ Are you sure?</value>
     <value>LoS</value>
   </data>
   <data name="LoSTooltip" xml:space="preserve">
-    <value>Old 2-5: {0}   Autumn 2-5: {1}
-New 2-5: {2}   Formula 33: {3}
-Contact Chance:
-  AS+ {4:p1} / AS {5:p1}
+    <value>Old 2-5: {0}
+Autumn 2-5: {1}
+New 2-5: {2}
+Formula 33: {3}
+New Formula 33:
+　Weighting=1: {4:f2}
+　Weighting=3: {5:f2}
+　Weighting=4: {6:f2}
+
+Contact Chance: 
+　AS+ {7:p1} / AS {8:p1}
 </value>
   </data>
   <data name="Luck" xml:space="preserve">
@@ -987,5 +994,39 @@ Denial: {3}</value>
   </data>
   <data name="Option_ShowAllData" xml:space="preserve">
     <value>Display all data</value>
+  </data>
+  <data name="BattleDetail" xml:space="preserve">
+    <value>Battle Details</value>
+  </data>
+  <data name="RightClickMenu_ShowBattleDetail" xml:space="preserve">
+    <value>Show battle details... (&amp;D)</value>
+  </data>
+  <data name="RightClickMenu_ShowBattleResult" xml:space="preserve">
+    <value>Temporarily show battle details (&amp;V)</value>
+  </data>
+  <data name="ContextMenuBaseAirCorps_DisplayRelocatedEquipments_Detail" xml:space="preserve">
+    <value>There is no aircraft being transferred.</value>
+  </data>
+  <data name="ContextMenuBaseAirCorps_DisplayRelocatedEquipments_Title" xml:space="preserve">
+    <value>Aircraft Transfer</value>
+  </data>
+  <data name="ContextMenuBaseAirCorps_DisplayRelocatedEquipments" xml:space="preserve">
+    <value>Check for aircraft being transferred (&amp;R)</value>
+  </data>
+  <data name="CopyKanmusuList" xml:space="preserve">
+    <value>Copy ship list for kancolle-calc (&amp;R)</value>
+  </data>
+  <data name="CopyFleetDeckBuilder" xml:space="preserve">
+    <value>Copy organization (deck-builder) (&amp;D)</value>
+  </data>
+  <data name="CopyAntiAirDetails" xml:space="preserve">
+    <value>Show AA defense details (&amp;A)</value>
+  </data>
+  <data name="AntiAirPower" xml:space="preserve">
+    <value>Fleet AA
+  Line ahead: {0:0.0}
+  Double line: {1:0.0}
+  Ring: {2:0.0}
+</value>
   </data>
 </root>

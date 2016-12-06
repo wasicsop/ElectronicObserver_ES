@@ -253,7 +253,7 @@ namespace ElectronicObserver.Data {
 				case 4:
 					return ConstantsRes.AirBattle;
 				case 5:
-					return "Enemy Combined Fleet";
+					return ConstantsRes.EnemyCombinedFleet;
 				case 6:
 					return ConstantsRes.AirRaid;
 				default:
@@ -646,9 +646,9 @@ namespace ElectronicObserver.Data {
 				case 18:
 					return ConstantsRes.AAGun;
 				case 19:
-					return "高角砲/集中機銃";
+					return ConstantsRes.HAGun + "/" + ConstantsRes.AAGun;
 				case 20:
-					return "集中機銃";
+					return ConstantsRes.AAGun;
 				default:
 					return ConstantsRes.Unknown;
 			}

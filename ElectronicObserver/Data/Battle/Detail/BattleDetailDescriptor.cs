@@ -13,15 +13,15 @@ namespace ElectronicObserver.Data.Battle.Detail {
 			var sb = new StringBuilder();
 
 			if ( bm.IsPractice ) {
-				sb.AppendLine( "演習" );
+				sb.AppendLine( ConstantsRes.Practice );
 
 			} else {
 				sb.AppendFormat( "{0} ({1}-{2})", bm.Compass.MapInfo.Name, bm.Compass.MapAreaID, bm.Compass.MapInfoID );
 				if ( bm.Compass.MapInfo.EventDifficulty > 0 )
 					sb.AppendFormat( " [{0}]", Constants.GetDifficulty( bm.Compass.MapInfo.EventDifficulty ) );
-				sb.Append( " セル: " ).Append( bm.Compass.Destination.ToString() );
+				sb.Append( ConstantsRes.BattleDetail_Node ).Append( bm.Compass.Destination.ToString() );
 				if ( bm.Compass.EventID == 5 )
-					sb.Append( " (ボス)" );
+					sb.Append( ConstantsRes.BattleDetail_Boss );
 				sb.AppendLine();
 			}
 			if ( bm.Result != null ) {
@@ -56,7 +56,7 @@ namespace ElectronicObserver.Data.Battle.Detail {
 				if ( phase is PhaseBaseAirRaid ) {
 					var p = phase as PhaseBaseAirRaid;
 
-					sb.AppendLine( "味方基地航空隊 参加中隊:" );
+					sb.AppendLine( ConstantsRes.BattleDetail_AirAttackUnits );
 					sb.Append( "　" ).AppendLine( string.Join( ", ", p.Squadrons.Where( sq => sq.EquipmentInstance != null ).Select( sq => sq.ToString() ) ) );
 
 					GetBattleDetailPhaseAirBattle( sb, p );
@@ -71,9 +71,9 @@ namespace ElectronicObserver.Data.Battle.Detail {
 					var p = phase as PhaseBaseAirAttack;
 
 					foreach ( var a in p.AirAttackUnits ) {
-						sb.AppendFormat( "〈第{0}波〉\r\n", a.AirAttackIndex + 1 );
+						sb.AppendFormat( ConstantsRes.BattleDetail_AirAttackWave + "\r\n", a.AirAttackIndex + 1 );
 
-						sb.AppendLine( "味方基地航空隊 参加中隊:" );
+						sb.AppendLine( ConstantsRes.BattleDetail_AirAttackUnits );
 						sb.Append( "　" ).AppendLine( string.Join( ", ", a.Squadrons.Where( sq => sq.EquipmentInstance != null ).Select( sq => sq.ToString() ) ) );
 
 						GetBattleDetailPhaseAirBattle( sb, a );
@@ -85,9 +85,9 @@ namespace ElectronicObserver.Data.Battle.Detail {
 					var p = phase as PhaseInitial;
 
 					if ( p.FriendFleetEscort != null )
-						sb.AppendLine( "〈味方主力艦隊〉" );
+						sb.AppendLine( ConstantsRes.BattleDetail_FriendMainFleet );
 					else
-						sb.AppendLine( "〈味方艦隊〉" );
+						sb.AppendLine( ConstantsRes.BattleDetail_FriendFleet );
 
 					if ( isBaseAirRaid )
 						OutputFriendBase( sb, p.InitialHPs.Take( 6 ).ToArray(), p.MaxHPs.Take( 6 ).ToArray() );
@@ -96,7 +96,7 @@ namespace ElectronicObserver.Data.Battle.Detail {
 
 					if ( p.FriendFleetEscort != null ) {
 						sb.AppendLine();
-						sb.AppendLine( "〈味方随伴艦隊〉" );
+						sb.AppendLine( ConstantsRes.BattleDetail_FriendEscortFleet );
 
 						OutputFriendData( sb, p.FriendFleetEscort, p.InitialHPs.Skip( 12 ).Take( 6 ).ToArray(), p.MaxHPs.Skip( 12 ).Take( 6 ).ToArray() );
 					}
@@ -104,12 +104,12 @@ namespace ElectronicObserver.Data.Battle.Detail {
 					sb.AppendLine();
 
 					if ( p.EnemyMembersEscort != null )
-						sb.Append( "〈敵主力艦隊〉" );
+						sb.Append( ConstantsRes.BattleDetail_EnemyMainFleet );
 					else
-						sb.Append( "〈敵艦隊〉" );
+						sb.Append( ConstantsRes.BattleDetail_EnemyFleet );
 
 					if ( p.IsBossDamaged )
-						sb.Append( " : 装甲破壊" );
+						sb.Append( ConstantsRes.BattleDetail_IsBossDamaged );
 					sb.AppendLine();
 
 					OutputEnemyData( sb, p.EnemyMembersInstance, p.EnemyLevels, p.InitialHPs.Skip( 6 ).Take( 6 ).ToArray(), p.MaxHPs.Skip( 6 ).Take( 6 ).ToArray(), p.EnemySlotsInstance, p.EnemyParameters );
@@ -117,7 +117,7 @@ namespace ElectronicObserver.Data.Battle.Detail {
 
 					if ( p.EnemyMembersEscort != null ) {
 						sb.AppendLine();
-						sb.AppendLine( "〈敵随伴艦隊〉" );
+						sb.AppendLine( ConstantsRes.BattleDetail_EnemyEscortFleet );
 
 						OutputEnemyData( sb, p.EnemyMembersEscortInstance, p.EnemyLevelsEscort, p.InitialHPs.Skip( 18 ).Take( 6 ).ToArray(), p.MaxHPs.Skip( 18 ).Take( 6 ).ToArray(), p.EnemySlotsEscortInstance, p.EnemyParametersEscort );
 					}
@@ -125,7 +125,7 @@ namespace ElectronicObserver.Data.Battle.Detail {
 					sb.AppendLine();
 
 					if ( battle.GetPhases().Where( ph => ph is PhaseBaseAirAttack || ph is PhaseBaseAirRaid ).Any( ph => ph != null && ph.IsAvailable ) ) {
-						sb.AppendLine( "〈基地航空隊〉" );
+						sb.AppendLine( ConstantsRes.BattleDetail_AirBase );
 						GetBattleDetailBaseAirCorps( sb, KCDatabase.Instance.Battle.Compass.MapAreaID );		// :(
 						sb.AppendLine();
 					}
@@ -141,7 +141,7 @@ namespace ElectronicObserver.Data.Battle.Detail {
 								ship = p.FriendFleetEscort.MembersInstance[index - 6];
 
 							if ( ship != null ) {
-								sb.AppendFormat( "　{0} #{1}\r\n", ship.NameWithLevel, index );
+								sb.AppendFormat( "　{0} #{1}\r\n", ship.NameWithLevel, index + 1 );
 							}
 						}
 						sb.AppendLine();
@@ -155,30 +155,30 @@ namespace ElectronicObserver.Data.Battle.Detail {
 					{
 						var eq = KCDatabase.Instance.MasterEquipments[p.TouchAircraftFriend];
 						if ( eq != null ) {
-							sb.Append( "自軍夜間触接: " ).AppendLine( eq.Name );
+							sb.Append( ConstantsRes.BattleDetail_FriendlyNightContact ).AppendLine( eq.Name );
 						}
 						eq = KCDatabase.Instance.MasterEquipments[p.TouchAircraftEnemy];
 						if ( eq != null ) {
-							sb.Append( "敵軍夜間触接: " ).AppendLine( eq.Name );
+							sb.Append( ConstantsRes.BattleDetail_EnemyNightContact ).AppendLine( eq.Name );
 						}
 					}
 
 					{
 						int searchlightIndex = p.SearchlightIndexFriend;
 						if ( searchlightIndex != -1 ) {
-							sb.AppendFormat( "自軍探照灯照射: {0} #{1}\r\n", p.FriendFleet.MembersInstance[searchlightIndex].Name, searchlightIndex + 1 );
+							sb.AppendFormat( ConstantsRes.BattleDetail_FriendlySearchlight + "\r\n", p.FriendFleet.MembersInstance[searchlightIndex].Name, searchlightIndex + 1 );
 						}
 						searchlightIndex = p.SearchlightIndexEnemy;
 						if ( searchlightIndex != -1 ) {
-							sb.AppendFormat( "敵軍探照灯照射: {0} #{1}\r\n", p.EnemyMembersInstance[searchlightIndex].NameWithClass, searchlightIndex + 1 );
+							sb.AppendFormat( ConstantsRes.BattleDetail_EnemySearchlight + "\r\n", p.EnemyMembersInstance[searchlightIndex].NameWithClass, searchlightIndex + 1 );
 						}
 					}
 
 					if ( p.FlareIndexFriend != -1 ) {
-						sb.AppendFormat( "自軍照明弾投射: {0} #{1}\r\n", p.FriendFleet.MembersInstance[p.FlareIndexFriend].Name, p.FlareIndexFriend + 1 );
+						sb.AppendFormat( ConstantsRes.BattleDetail_FriendlyStarshell + "\r\n", p.FriendFleet.MembersInstance[p.FlareIndexFriend].Name, p.FlareIndexFriend + 1 );
 					}
 					if ( p.FlareIndexEnemy != -1 ) {
-						sb.AppendFormat( "敵軍照明弾投射: {0} #{1}\r\n", p.FlareEnemyInstance.NameWithClass, p.FlareIndexEnemy + 1 );
+						sb.AppendFormat( ConstantsRes.BattleDetail_EnemyStarshell + "\r\n", p.FlareEnemyInstance.NameWithClass, p.FlareIndexEnemy + 1 );
 					}
 
 					if ( sb.Length > length )		// 追加行があった場合
@@ -188,11 +188,11 @@ namespace ElectronicObserver.Data.Battle.Detail {
 				} else if ( phase is PhaseSearching ) {
 					var p = phase as PhaseSearching;
 
-					sb.Append( "自軍陣形: " ).Append( Constants.GetFormation( p.FormationFriend ) );
-					sb.Append( " / 敵軍陣形: " ).AppendLine( Constants.GetFormation( p.FormationEnemy ) );
-					sb.Append( "交戦形態: " ).AppendLine( Constants.GetEngagementForm( p.EngagementForm ) );
-					sb.Append( "自軍索敵: " ).Append( Constants.GetSearchingResult( p.SearchingFriend ) );
-					sb.Append( " / 敵軍索敵: " ).AppendLine( Constants.GetSearchingResult( p.SearchingEnemy ) );
+					sb.Append( ConstantsRes.BattleDetail_FormationFriend ).Append( Constants.GetFormation( p.FormationFriend ) );
+					sb.Append( ConstantsRes.BattleDetail_FormationEnemy ).AppendLine( Constants.GetFormation( p.FormationEnemy ) );
+					sb.Append( ConstantsRes.BattleDetail_EngagementForm ).AppendLine( Constants.GetEngagementForm( p.EngagementForm ) );
+					sb.Append( ConstantsRes.BattleDetail_SearchingFriend ).Append( Constants.GetSearchingResult( p.SearchingFriend ) );
+					sb.Append( ConstantsRes.BattleDetail_SearchingEnemy ).AppendLine( Constants.GetSearchingResult( p.SearchingEnemy ) );
 
 					sb.AppendLine();
 				}
@@ -202,13 +202,13 @@ namespace ElectronicObserver.Data.Battle.Detail {
 					sb.Append( phase.GetBattleDetail() );
 
 				if ( sb.Length > 0 ) {
-					sbmaster.AppendFormat( "《{0}》\r\n", phase.Title ).Append( sb );
+					sbmaster.AppendFormat( ConstantsRes.BattleDetail_TitleBrackets + "\r\n", phase.Title ).Append( sb );
 				}
 			}
 
 
 			{
-				sbmaster.AppendLine( "《戦闘終了》" );
+				sbmaster.AppendLine( ConstantsRes.BattleDetail_BattleEnd );
 
 				var friend = battle.Initial.FriendFleet;
 				var friendescort = battle.Initial.FriendFleetEscort;
@@ -216,9 +216,9 @@ namespace ElectronicObserver.Data.Battle.Detail {
 				var enemyescort = battle.Initial.EnemyMembersEscortInstance;
 
 				if ( friendescort != null )
-					sbmaster.AppendLine( "〈味方主力艦隊〉" );
+					sbmaster.AppendLine( ConstantsRes.BattleDetail_FriendMainFleet );
 				else
-					sbmaster.AppendLine( "〈味方艦隊〉" );
+					sbmaster.AppendLine( ConstantsRes.BattleDetail_FriendFleet );
 
 				if ( isBaseAirRaid ) {
 
@@ -226,7 +226,7 @@ namespace ElectronicObserver.Data.Battle.Detail {
 						if ( battle.Initial.MaxHPs[i] <= 0 )
 							continue;
 
-						OutputResultData( sbmaster, i, string.Format( "第{0}基地", i + 1 ),
+						OutputResultData( sbmaster, i, string.Format( ConstantsRes.BattleDetail_Base, i + 1 ),
 							battle.Initial.InitialHPs[i], battle.ResultHPs[i], battle.Initial.MaxHPs[i] );
 					}
 
@@ -242,7 +242,7 @@ namespace ElectronicObserver.Data.Battle.Detail {
 				}
 
 				if ( friendescort != null ) {
-					sbmaster.AppendLine().AppendLine( "〈味方随伴艦隊〉" );
+					sbmaster.AppendLine().AppendLine( ConstantsRes.BattleDetail_FriendEscortFleet );
 
 					for ( int i = 0; i < friendescort.Members.Count(); i++ ) {
 						var ship = friendescort.MembersInstance[i];
@@ -258,9 +258,9 @@ namespace ElectronicObserver.Data.Battle.Detail {
 
 				sbmaster.AppendLine();
 				if ( enemyescort != null )
-					sbmaster.AppendLine( "〈敵主力艦隊〉" );
+					sbmaster.AppendLine( ConstantsRes.BattleDetail_EnemyMainFleet );
 				else
-					sbmaster.AppendLine( "〈敵艦隊〉" );
+					sbmaster.AppendLine( ConstantsRes.BattleDetail_EnemyFleet );
 
 				for ( int i = 0; i < enemy.Length; i++ ) {
 					var ship = enemy[i];
@@ -273,7 +273,7 @@ namespace ElectronicObserver.Data.Battle.Detail {
 				}
 
 				if ( enemyescort != null ) {
-					sbmaster.AppendLine().AppendLine( "〈敵随伴艦隊〉" );
+					sbmaster.AppendLine().AppendLine( ConstantsRes.BattleDetail_EnemyEscortFleet );
 
 					for ( int i = 0; i < enemyescort.Length; i++ ) {
 						var ship = enemyescort[i];
@@ -305,22 +305,22 @@ namespace ElectronicObserver.Data.Battle.Detail {
 		private static void GetBattleDetailPhaseAirBattle( StringBuilder sb, PhaseAirBattle p ) {
 
 			if ( p.IsStage1Available ) {
-				sb.Append( "Stage1: " ).AppendLine( Constants.GetAirSuperiority( p.AirSuperiority ) );
-				sb.AppendFormat( "　自軍: -{0}/{1}\r\n　敵軍: -{2}/{3}\r\n",
+				sb.Append( "Stage 1: " ).AppendLine( Constants.GetAirSuperiority( p.AirSuperiority ) );
+				sb.AppendFormat("　" + Window.GeneralRes.FriendlyAir + ": -{0}/{1}\r\n　" + Window.GeneralRes.EnemyAir + ": -{2}/{3}\r\n",
 					p.AircraftLostStage1Friend, p.AircraftTotalStage1Friend,
 					p.AircraftLostStage1Enemy, p.AircraftTotalStage1Enemy );
 				if ( p.TouchAircraftFriend > 0 )
-					sb.AppendFormat( "　自軍触接: {0}\r\n", KCDatabase.Instance.MasterEquipments[p.TouchAircraftFriend].Name );
+					sb.AppendFormat("　" + ConstantsRes.BattleDetail_AirBaseFriendlyContact + ": {0}\r\n", KCDatabase.Instance.MasterEquipments[p.TouchAircraftFriend].Name );
 				if ( p.TouchAircraftEnemy > 0 )
-					sb.AppendFormat( "　敵軍触接: {0}\r\n", KCDatabase.Instance.MasterEquipments[p.TouchAircraftEnemy].Name );
+					sb.AppendFormat("　" + ConstantsRes.BattleDetail_AirBaseEnemyContact + ": {0}\r\n", KCDatabase.Instance.MasterEquipments[p.TouchAircraftEnemy].Name );
 			}
 			if ( p.IsStage2Available ) {
-				sb.Append( "Stage2: " );
+				sb.Append( "Stage 2: " );
 				if ( p.IsAACutinAvailable ) {
-					sb.AppendFormat( "対空カットイン( {0}, {1}({2}) )", p.AACutInShip.NameWithLevel, Constants.GetAACutinKind( p.AACutInKind ), p.AACutInKind );
+					sb.AppendFormat(ConstantsRes.BattleDetail_Stage2AACI, p.AACutInShip.NameWithLevel, Constants.GetAACutinKind( p.AACutInKind ), p.AACutInKind );
 				}
 				sb.AppendLine();
-				sb.AppendFormat( "　自軍: -{0}/{1}\r\n　敵軍: -{2}/{3}\r\n",
+				sb.AppendFormat( "　" + Window.GeneralRes.FriendlyAir + ": -{0}/{1}\r\n　" + Window.GeneralRes.EnemyAir + ": -{2}/{3}\r\n",
 					p.AircraftLostStage2Friend, p.AircraftTotalStage2Friend,
 					p.AircraftLostStage2Enemy, p.AircraftTotalStage2Enemy );
 			}
@@ -336,7 +336,7 @@ namespace ElectronicObserver.Data.Battle.Detail {
 				if ( ship == null )
 					continue;
 
-				sb.AppendFormat( "#{0}: {1} {2} HP: {3} / {4} - 火力{5}, 雷装{6}, 対空{7}, 装甲{8}\r\n",
+				sb.AppendFormat( ConstantsRes.BattleDetail_ShipStats + "\r\n",
 					i + 1,
 					ship.MasterShip.ShipTypeName, ship.NameWithLevel,
 					initialHPs[i], maxHPs[i],
@@ -382,7 +382,7 @@ namespace ElectronicObserver.Data.Battle.Detail {
 					initialHPs[i], maxHPs[i] );
 
 				if ( parameters != null ) {
-					sb.AppendFormat( " - 火力{0}, 雷装{1}, 対空{2}, 装甲{3}",
+					sb.AppendFormat( ConstantsRes.BattleDetail_EnemyStats,
 					parameters[i][0], parameters[i][1], parameters[i][2], parameters[i][3] );
 				}
 
@@ -416,13 +416,13 @@ namespace ElectronicObserver.Data.Battle.Detail {
 			var sb = new StringBuilder();
 
 
-			sb.AppendLine( "◆ 戦闘結果 ◆" );
-			sb.AppendFormat( "ランク: {0}\r\n", result.Rank );
+			sb.AppendLine( ConstantsRes.BattleDetail_Result );
+			sb.AppendFormat( ConstantsRes.BattleDetail_ResultRank + "\r\n", result.Rank );
 
 			if ( bm.IsCombinedBattle ) {
-				sb.AppendFormat( "MVP(主力艦隊): {0}\r\n",
+				sb.AppendFormat( ConstantsRes.BattleDetail_ResultMVPMain + "\r\n",
 					result.MVPIndex == -1 ? "(なし)" : bm.FirstBattle.Initial.FriendFleet.MembersInstance[result.MVPIndex - 1].NameWithLevel );
-				sb.AppendFormat( "MVP(随伴艦隊): {0}\r\n",
+				sb.AppendFormat( ConstantsRes.BattleDetail_ResultMVPEscort + "\r\n",
 					result.MVPIndexCombined == -1 ? "(なし)" : bm.FirstBattle.Initial.FriendFleetEscort.MembersInstance[result.MVPIndexCombined - 1].NameWithLevel );
 
 			} else {
@@ -430,12 +430,12 @@ namespace ElectronicObserver.Data.Battle.Detail {
 					result.MVPIndex == -1 ? "(なし)" : bm.FirstBattle.Initial.FriendFleet.MembersInstance[result.MVPIndex - 1].NameWithLevel );
 			}
 
-			sb.AppendFormat( "提督経験値: +{0}\r\n艦娘基本経験値: +{1}\r\n",
+			sb.AppendFormat( ConstantsRes.BattleDetail_AdmiralExp + "\r\n" + ConstantsRes.BattleDetail_ShipExp + "\r\n",
 				result.AdmiralExp, result.BaseExp );
 
 
 			if ( !bm.IsPractice ) {
-				sb.AppendLine().AppendLine( "ドロップ：" );
+				sb.AppendLine().AppendLine( ConstantsRes.BattleDetail_Drop );
 
 
 				int length = sb.Length;

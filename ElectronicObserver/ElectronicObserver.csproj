@@ -184,6 +184,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>QuestTracking.resx</DependentUpon>
     </Compile>
+    <Compile Include="Data\RelocationData.cs" />
     <Compile Include="Data\ResponseWrapper.cs" />
     <Compile Include="Data\CompassData.cs" />
     <Compile Include="Data\ShipGroupData.cs" />
@@ -403,6 +404,12 @@
     </Compile>
     <Compile Include="Window\Dialog\DialogAlbumShipParameter.Designer.cs">
       <DependentUpon>DialogAlbumShipParameter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Window\Dialog\DialogAntiAirDefense.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Window\Dialog\DialogAntiAirDefense.Designer.cs">
+      <DependentUpon>DialogAntiAirDefense.cs</DependentUpon>
     </Compile>
     <Compile Include="Window\Dialog\DialogBattleDetail.cs">
       <SubType>Form</SubType>
@@ -658,10 +665,12 @@
     <EmbeddedResource Include="Data\ConstantsRes.en.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ConstantsRes.en.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Data\ConstantsRes.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ConstantsRes.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Data\FleetRes.en.resx" />
     <EmbeddedResource Include="Data\FleetRes.resx">
@@ -688,6 +697,9 @@
     <EmbeddedResource Include="Window\Dialog\ConfigRes.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ConfigRes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Window\Dialog\DialogAntiAirDefense.en.resx">
+      <DependentUpon>DialogAntiAirDefense.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Window\Dialog\DialogConstructionRecordViewer.en.resx">
       <DependentUpon>DialogConstructionRecordViewer.cs</DependentUpon>
@@ -758,6 +770,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Window\Dialog\DialogAlbumShipParameter.resx">
       <DependentUpon>DialogAlbumShipParameter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Window\Dialog\DialogAntiAirDefense.resx">
+      <DependentUpon>DialogAntiAirDefense.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Window\Dialog\DialogBattleDetail.resx">
       <DependentUpon>DialogBattleDetail.cs</DependentUpon>

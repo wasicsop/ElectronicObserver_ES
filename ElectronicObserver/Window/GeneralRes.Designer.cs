@@ -224,6 +224,15 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 艦隊防空\r\n単縦陣: {0:0.0} / 複縦陣: {1:0.0} / 輪形陣: {2:0.0}\r\n.
+        /// </summary>
+        internal static string AntiAirPower {
+            get {
+                return ResourceManager.GetString("AntiAirPower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 装甲.
         /// </summary>
         internal static string Armor {
@@ -418,6 +427,15 @@ namespace ElectronicObserver.Window {
         internal static string BattleComplete {
             get {
                 return ResourceManager.GetString("BattleComplete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 戦闘詳細.
+        /// </summary>
+        internal static string BattleDetail {
+            get {
+                return ResourceManager.GetString("BattleDetail", resourceCulture);
             }
         }
         
@@ -635,6 +653,51 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 配置転換中の装備を確認(&amp;R).
+        /// </summary>
+        internal static string ContextMenuBaseAirCorps_DisplayRelocatedEquipments {
+            get {
+                return ResourceManager.GetString("ContextMenuBaseAirCorps_DisplayRelocatedEquipments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 現在配置転換中の装備はありません。.
+        /// </summary>
+        internal static string ContextMenuBaseAirCorps_DisplayRelocatedEquipments_Detail {
+            get {
+                return ResourceManager.GetString("ContextMenuBaseAirCorps_DisplayRelocatedEquipments_Detail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 配置転換中装備.
+        /// </summary>
+        internal static string ContextMenuBaseAirCorps_DisplayRelocatedEquipments_Title {
+            get {
+                return ResourceManager.GetString("ContextMenuBaseAirCorps_DisplayRelocatedEquipments_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 対空砲火の詳細表示(&amp;A).
+        /// </summary>
+        internal static string CopyAntiAirDetails {
+            get {
+                return ResourceManager.GetString("CopyAntiAirDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 編成をコピー(デッキビルダー)(&amp;D).
+        /// </summary>
+        internal static string CopyFleetDeckBuilder {
+            get {
+                return ResourceManager.GetString("CopyFleetDeckBuilder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to グループをコピー(&amp;C).
         /// </summary>
         internal static string CopyGroup {
@@ -658,6 +721,15 @@ namespace ElectronicObserver.Window {
         internal static string CopyGroupTitle {
             get {
                 return ResourceManager.GetString("CopyGroupTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 艦隊晒しページへコピー(&amp;R).
+        /// </summary>
+        internal static string CopyKanmusuList {
+            get {
+                return ResourceManager.GetString("CopyKanmusuList", resourceCulture);
             }
         }
         
@@ -1422,7 +1494,7 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to (旧)2-5式: {0}\r\n2-5式(秋): {1}\r\n2-5新秋簡易式: {2}\r\n判定式(33): {3}\r\n\r\n触接開始率: \r\n　確保 {4:p1} / 優勢 {5:p1}\r\n.
+        ///   Looks up a localized string similar to (旧)2-5式: {0}\r\n2-5式(秋): {1}\r\n2-5新秋簡易式: {2}\r\n判定式(33): {3}\r\n新判定式(33):\r\n　分岐点係数1: {4:f2}\r\n　分岐点係数3: {5:f2}\r\n　分岐点係数4: {6:f2}\r\n\r\n触接開始率: \r\n　確保 {7:p1} / 優勢 {8:p1}\r\n.
         /// </summary>
         internal static string LoSTooltip {
             get {
@@ -1850,6 +1922,24 @@ namespace ElectronicObserver.Window {
         internal static string Retreating {
             get {
                 return ResourceManager.GetString("Retreating", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 戦闘詳細を表示(&amp;D)....
+        /// </summary>
+        internal static string RightClickMenu_ShowBattleDetail {
+            get {
+                return ResourceManager.GetString("RightClickMenu_ShowBattleDetail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 戦闘結果を一時的に表示(&amp;V).
+        /// </summary>
+        internal static string RightClickMenu_ShowBattleResult {
+            get {
+                return ResourceManager.GetString("RightClickMenu_ShowBattleResult", resourceCulture);
             }
         }
         

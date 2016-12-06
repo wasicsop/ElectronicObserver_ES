@@ -450,7 +450,7 @@ namespace ElectronicObserver.Window {
 			{
 				DataGridViewRow row = new DataGridViewRow();
 				row.CreateCells( QuestView );
-				row.SetValues( null, null, null, "(未取得)", null );
+				row.SetValues( null, null, null, GeneralRes.Unacquired, null );
 				QuestView.Rows.Add( row );
 			}
 

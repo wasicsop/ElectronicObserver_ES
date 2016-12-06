@@ -153,7 +153,7 @@
 			this.LoopsSound.Name = "LoopsSound";
 			this.LoopsSound.Size = new System.Drawing.Size(55, 19);
 			this.LoopsSound.TabIndex = 5;
-			this.LoopsSound.Text = "ループ";
+			this.LoopsSound.Text = ConfigRes.Loop;
 			this.LoopsSound.UseVisualStyleBackColor = true;
 			// 
 			// label9
@@ -163,7 +163,7 @@
 			this.label9.Name = "label9";
 			this.label9.Size = new System.Drawing.Size(43, 15);
 			this.label9.TabIndex = 1;
-			this.label9.Text = "音量：";
+			this.label9.Text = ConfigRes.Volume;
 			// 
 			// SoundVolume
 			// 
@@ -312,7 +312,7 @@
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(49, 15);
 			this.label5.TabIndex = 20;
-			this.label5.Text = "閉じる：";
+			this.label5.Text = NotifyRes.CloseOn + "：";
 			// 
 			// CloseList
 			// 
@@ -738,7 +738,7 @@
 			this.label10.Name = "label10";
 			this.label10.Size = new System.Drawing.Size(213, 15);
 			this.label10.TabIndex = 8;
-			this.label10.Text = "＊テストを行った時点で設定が適用されます";
+			this.label10.Text = "＊The settings will be applied at the time of the test";
 			// 
 			// GroupAnchorageRepair
 			// 
@@ -749,7 +749,7 @@
 			this.GroupAnchorageRepair.Size = new System.Drawing.Size(602, 103);
 			this.GroupAnchorageRepair.TabIndex = 9;
 			this.GroupAnchorageRepair.TabStop = false;
-			this.GroupAnchorageRepair.Text = "泊地修理設定";
+			this.GroupAnchorageRepair.Text = "Anchorage Repair Settings";
 			// 
 			// label11
 			// 
@@ -758,16 +758,16 @@
 			this.label11.Name = "label11";
 			this.label11.Size = new System.Drawing.Size(67, 15);
 			this.label11.TabIndex = 0;
-			this.label11.Text = "発動条件：";
+			this.label11.Text = "Trigger when：";
 			// 
 			// AnchorageRepairNotificationLevel
 			// 
 			this.AnchorageRepairNotificationLevel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.AnchorageRepairNotificationLevel.FormattingEnabled = true;
 			this.AnchorageRepairNotificationLevel.Items.AddRange(new object[] {
-            "いつでも",
-            "明石旗艦の時",
-            "修理艦もいる時"});
+            "Always",
+            "Akashi as flagship",
+            "Ship needed repair"});
 			this.AnchorageRepairNotificationLevel.Location = new System.Drawing.Point(80, 20);
 			this.AnchorageRepairNotificationLevel.Name = "AnchorageRepairNotificationLevel";
 			this.AnchorageRepairNotificationLevel.Size = new System.Drawing.Size(160, 23);

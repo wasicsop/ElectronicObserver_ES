@@ -581,6 +581,7 @@ namespace Browser {
 			}
 
 			//AddLog( 1, "setproxy:" + proxy );
+			BrowserHost.AsyncRemoteRun( () => BrowserHost.Proxy.SetProxyCompleted() );
 		}
 
 

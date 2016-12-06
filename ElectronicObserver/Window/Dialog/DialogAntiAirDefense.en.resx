@@ -1,17 +1,17 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!--
-    Microsoft ResX Schema
-
+  <!-- 
+    Microsoft ResX Schema 
+    
     Version 2.0
-
-    The primary goals of this format is to allow a simple XML format
-    that is mostly human readable. The generation and parsing of the
-    various data types are done through the TypeConverter classes
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
     associated with the data types.
-
+    
     Example:
-
+    
     ... ado.net/XML headers & schema ...
     <resheader name="resmimetype">text/microsoft-resx</resheader>
     <resheader name="version">2.0</resheader>
@@ -26,36 +26,36 @@
         <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
         <comment>This is a comment</comment>
     </data>
-
-    There are any number of "resheader" rows that contain simple
+                
+    There are any number of "resheader" rows that contain simple 
     name/value pairs.
-
-    Each data row contains a name, and value. The row also contains a
-    type or mimetype. Type corresponds to a .NET class that support
-    text/value conversion through the TypeConverter architecture.
-    Classes that don't support this are serialized and stored with the
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
     mimetype set.
-
-    The mimetype is used for serialized objects, and tells the
-    ResXResourceReader how to depersist the object. This is currently not
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
     extensible. For a given mimetype the value must be set accordingly:
-
-    Note - application/x-microsoft.net.object.binary.base64 is the format
-    that the ResXResourceWriter will generate, however the reader can
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
     read any of the formats listed below.
-
+    
     mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with
+    value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
-
+    
     mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with
+    value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
 
     mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array
+    value   : The object must be serialized into a byte array 
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
@@ -117,34 +117,82 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="ToolTipInfo.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="BGMPlayer_ColumnEnabled.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="BGMPlayer_ColumnContent.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="BGMPlayer_ColumnPath.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="BGMPlayer_ColumnSetting.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="FolderBrowser.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>137, 17</value>
-  </metadata>
-  <metadata name="FontSelector.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>275, 17</value>
-  </metadata>
-  <metadata name="LayoutFileBrowser.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>402, 17</value>
-  </metadata>
-  <metadata name="APIListBrowser.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>564, 17</value>
-  </metadata>
-  <metadata name="PlayTimeTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>707, 17</value>
-  </metadata>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Form :</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Fleet :</value>
+  </data>
+  <data name="FleetID.Items" xml:space="preserve">
+    <value>Fleet #1</value>
+  </data>
+  <data name="FleetID.Items1" xml:space="preserve">
+    <value>Fleet #2</value>
+  </data>
+  <data name="FleetID.Items2" xml:space="preserve">
+    <value>Fleet #3</value>
+  </data>
+  <data name="FleetID.Items3" xml:space="preserve">
+    <value>Fleet #4</value>
+  </data>
+  <data name="FleetID.Items4" xml:space="preserve">
+    <value>Combined Fleet</value>
+  </data>
+  <data name="ResultView_ShipName.HeaderText" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="ResultView_AntiAir.HeaderText" xml:space="preserve">
+    <value>AA</value>
+  </data>
+  <data name="ResultView_AdjustedAntiAir.HeaderText" xml:space="preserve">
+    <value>Adjusted</value>
+  </data>
+  <data name="ResultView_ProportionalAirDefense.HeaderText" xml:space="preserve">
+    <value>Proportional</value>
+  </data>
+  <data name="ResultView_FixedAirDefense.HeaderText" xml:space="preserve">
+    <value>Fixed</value>
+  </data>
+  <data name="ResultView_ShootDownProportional.HeaderText" xml:space="preserve">
+    <value>Proportional</value>
+  </data>
+  <data name="ResultView_ShootDownFixed.HeaderText" xml:space="preserve">
+    <value>Fixed</value>
+  </data>
+  <data name="ResultView_ShootDownFailed.HeaderText" xml:space="preserve">
+    <value>Failed</value>
+  </data>
+  <data name="ResultView_ShootDownBoth.HeaderText" xml:space="preserve">
+    <value>Both</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>AA Defense Details</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Wipe rate :</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>AA Cut-in :</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Fleet AA :</value>
+  </data>
+  <data name="ShowAll.Text" xml:space="preserve">
+    <value>Show all AACI types</value>
+  </data>
+  <data name="ShowAll.ToolTip" xml:space="preserve">
+    <value>If unchecked, it will only show AACI types possible from current equipment setup.</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Enemy slot :</value>
+  </data>
+  <data name="Formation.Items2" xml:space="preserve">
+    <value>Ring/diamond</value>
+  </data>
+  <data name="Formation.Items1" xml:space="preserve">
+    <value>Double line</value>
+  </data>
+  <data name="Formation.Items" xml:space="preserve">
+    <value>Single line</value>
+  </data>
 </root>
