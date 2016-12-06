@@ -222,7 +222,7 @@ namespace ElectronicObserver.Window {
 
 					AntiAirPower.Text = lineahead.ToString( "0.0" );
 
-					sb.AppendFormat( "艦隊防空\r\n単縦陣: {0:0.0} / 複縦陣: {1:0.0} / 輪形陣: {2:0.0}\r\n",
+					sb.AppendFormat( GeneralRes.AntiAirPower,
 						lineahead,
 						Calculator.GetAdjustedFleetAAValue( fleet, 2 ),
 						Calculator.GetAdjustedFleetAAValue( fleet, 3 ) );

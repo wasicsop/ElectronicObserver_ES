@@ -691,7 +691,7 @@
 			//
 			this.StripMenu_Tool_AntiAirDefense.Name = "StripMenu_Tool_AntiAirDefense";
 			this.StripMenu_Tool_AntiAirDefense.Size = new System.Drawing.Size(164, 22);
-			this.StripMenu_Tool_AntiAirDefense.Text = "対空砲火詳細(&A)";
+			this.StripMenu_Tool_AntiAirDefense.Text = Menus.AntiAirDefense;
 			this.StripMenu_Tool_AntiAirDefense.Click += new System.EventHandler(this.StripMenu_Tool_AntiAirDefense_Click);
 			//
 			// FormMain

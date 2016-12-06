@@ -224,6 +224,15 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 艦隊防空\r\n単縦陣: {0:0.0} / 複縦陣: {1:0.0} / 輪形陣: {2:0.0}\r\n.
+        /// </summary>
+        internal static string AntiAirPower {
+            get {
+                return ResourceManager.GetString("AntiAirPower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 装甲.
         /// </summary>
         internal static string Armor {
@@ -671,6 +680,24 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 対空砲火の詳細表示(&amp;A).
+        /// </summary>
+        internal static string CopyAntiAirDetails {
+            get {
+                return ResourceManager.GetString("CopyAntiAirDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 編成をコピー(デッキビルダー)(&amp;D).
+        /// </summary>
+        internal static string CopyFleetDeckBuilder {
+            get {
+                return ResourceManager.GetString("CopyFleetDeckBuilder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to グループをコピー(&amp;C).
         /// </summary>
         internal static string CopyGroup {
@@ -694,6 +721,15 @@ namespace ElectronicObserver.Window {
         internal static string CopyGroupTitle {
             get {
                 return ResourceManager.GetString("CopyGroupTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 艦隊晒しページへコピー(&amp;R).
+        /// </summary>
+        internal static string CopyKanmusuList {
+            get {
+                return ResourceManager.GetString("CopyKanmusuList", resourceCulture);
             }
         }
         

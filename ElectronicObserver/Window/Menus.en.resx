@@ -321,4 +321,7 @@
   <data name="Option" xml:space="preserve">
     <value>&amp;Option</value>
   </data>
+  <data name="AntiAirDefense" xml:space="preserve">
+    <value>AA Defense Details (&amp;A)</value>
+  </data>
 </root>

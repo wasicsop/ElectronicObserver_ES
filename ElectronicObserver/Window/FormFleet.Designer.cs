@@ -99,14 +99,14 @@
 			//
 			this.ContextMenuFleet_CopyFleetDeckBuilder.Name = "ContextMenuFleet_CopyFleetDeckBuilder";
 			this.ContextMenuFleet_CopyFleetDeckBuilder.Size = new System.Drawing.Size(227, 22);
-			this.ContextMenuFleet_CopyFleetDeckBuilder.Text = "編成をコピー(デッキビルダー)(&D)";
+			this.ContextMenuFleet_CopyFleetDeckBuilder.Text = GeneralRes.CopyFleetDeckBuilder;
 			this.ContextMenuFleet_CopyFleetDeckBuilder.Click += new System.EventHandler(this.ContextMenuFleet_CopyFleetDeckBuilder_Click);
 			//
 			// ContextMenuFleet_CopyKanmusuList
 			//
 			this.ContextMenuFleet_CopyKanmusuList.Name = "ContextMenuFleet_CopyKanmusuList";
 			this.ContextMenuFleet_CopyKanmusuList.Size = new System.Drawing.Size(227, 22);
-			this.ContextMenuFleet_CopyKanmusuList.Text = "艦隊晒しページへコピー(&R)";
+			this.ContextMenuFleet_CopyKanmusuList.Text = GeneralRes.CopyKanmusuList;
 			this.ContextMenuFleet_CopyKanmusuList.Click += new System.EventHandler(this.ContextMenuFleet_CopyKanmusuList_Click);
 			//
 			// ContextMenuFleet_Capture
@@ -132,7 +132,7 @@
 			//
 			this.ContextMenuFleet_AntiAirDetails.Name = "ContextMenuFleet_AntiAirDetails";
 			this.ContextMenuFleet_AntiAirDetails.Size = new System.Drawing.Size(227, 22);
-			this.ContextMenuFleet_AntiAirDetails.Text = "対空砲火の詳細表示(&A)";
+			this.ContextMenuFleet_AntiAirDetails.Text = GeneralRes.CopyAntiAirDetails;
 			this.ContextMenuFleet_AntiAirDetails.Click += new System.EventHandler(this.ContextMenuFleet_AntiAirDetails_Click);
 			//
 			// FormFleet

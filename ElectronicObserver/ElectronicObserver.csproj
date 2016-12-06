@@ -670,6 +670,7 @@
     <EmbeddedResource Include="Data\ConstantsRes.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ConstantsRes.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Data\FleetRes.en.resx" />
     <EmbeddedResource Include="Data\FleetRes.resx">
@@ -696,6 +697,9 @@
     <EmbeddedResource Include="Window\Dialog\ConfigRes.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ConfigRes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Window\Dialog\DialogAntiAirDefense.en.resx">
+      <DependentUpon>DialogAntiAirDefense.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Window\Dialog\DialogConstructionRecordViewer.en.resx">
       <DependentUpon>DialogConstructionRecordViewer.cs</DependentUpon>

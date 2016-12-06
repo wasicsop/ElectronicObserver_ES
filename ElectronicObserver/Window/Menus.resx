@@ -327,4 +327,7 @@
   <data name="Option" xml:space="preserve">
     <value>オプション(&amp;O)</value>
   </data>
+  <data name="AntiAirDefense" xml:space="preserve">
+    <value>対空砲火詳細(&amp;A)</value>
+  </data>
 </root>

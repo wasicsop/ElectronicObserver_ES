@@ -1270,7 +1270,7 @@
             ConfigRes.Autumn25,
             ConfigRes.New25,
             ConfigRes.Formula33,
-            "新判定式(33)"});
+            ConfigRes.NewFormula33});
 			this.FormFleet_SearchingAbilityMethod.Location = new System.Drawing.Point(115, 31);
 			this.FormFleet_SearchingAbilityMethod.Name = "FormFleet_SearchingAbilityMethod";
 			this.FormFleet_SearchingAbilityMethod.Size = new System.Drawing.Size(121, 23);

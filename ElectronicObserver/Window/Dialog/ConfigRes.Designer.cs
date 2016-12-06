@@ -1136,6 +1136,15 @@ namespace ElectronicObserver.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 新判定式(33).
+        /// </summary>
+        internal static string NewFormula33 {
+            get {
+                return ResourceManager.GetString("NewFormula33", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 「次のレベルまでに必要な経験値」を表示するかを指定します。
         ///省略した場合スペースを節約できます。.
         /// </summary>

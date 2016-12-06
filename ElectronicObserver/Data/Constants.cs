@@ -646,9 +646,9 @@ namespace ElectronicObserver.Data {
 				case 18:
 					return ConstantsRes.AAGun;
 				case 19:
-					return "高角砲/集中機銃";
+					return ConstantsRes.HAGun + "/" + ConstantsRes.AAGun;
 				case 20:
-					return "集中機銃";
+					return ConstantsRes.AAGun;
 				default:
 					return ConstantsRes.Unknown;
 			}

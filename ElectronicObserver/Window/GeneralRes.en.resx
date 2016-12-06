@@ -419,9 +419,9 @@ Autumn 2-5: {1}
 New 2-5: {2}
 Formula 33: {3}
 New Formula 33:
-　分岐点係数1: {4:f2}
-　分岐点係数3: {5:f2}
-　分岐点係数4: {6:f2}
+　Weighting=1: {4:f2}
+　Weighting=3: {5:f2}
+　Weighting=4: {6:f2}
 
 Contact Chance: 
 　AS+ {7:p1} / AS {8:p1}
@@ -999,7 +999,7 @@ Denial: {3}</value>
     <value>Battle Details</value>
   </data>
   <data name="RightClickMenu_ShowBattleDetail" xml:space="preserve">
-    <value>Show battle (&amp;d)etails...</value>
+    <value>Show battle details... (&amp;D)</value>
   </data>
   <data name="RightClickMenu_ShowBattleResult" xml:space="preserve">
     <value>Temporarily show battle details (&amp;V)</value>
@@ -1012,5 +1012,21 @@ Denial: {3}</value>
   </data>
   <data name="ContextMenuBaseAirCorps_DisplayRelocatedEquipments" xml:space="preserve">
     <value>Check for aircraft being transferred (&amp;R)</value>
+  </data>
+  <data name="CopyKanmusuList" xml:space="preserve">
+    <value>Copy ship list for kancolle-calc (&amp;R)</value>
+  </data>
+  <data name="CopyFleetDeckBuilder" xml:space="preserve">
+    <value>Copy organization (deck-builder) (&amp;D)</value>
+  </data>
+  <data name="CopyAntiAirDetails" xml:space="preserve">
+    <value>Show AA defense details (&amp;A)</value>
+  </data>
+  <data name="AntiAirPower" xml:space="preserve">
+    <value>Fleet AA
+  Line ahead: {0:0.0}
+  Double line: {1:0.0}
+  Ring: {2:0.0}
+</value>
   </data>
 </root>
