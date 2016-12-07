@@ -115,20 +115,20 @@ namespace ElectronicObserver.Data {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 制空権喪失.
+        ///   Looks up a localized string similar to 航空劣勢.
         /// </summary>
-        internal static string AirDenial {
+        internal static string AirDenialNew {
             get {
-                return ResourceManager.GetString("AirDenial", resourceCulture);
+                return ResourceManager.GetString("AirDenialNew", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 航空劣勢.
+        ///   Looks up a localized string similar to 制空権喪失.
         /// </summary>
-        internal static string AirInferiority {
+        internal static string AirIncapability {
             get {
-                return ResourceManager.GetString("AirInferiority", resourceCulture);
+                return ResourceManager.GetString("AirIncapability", resourceCulture);
             }
         }
         
