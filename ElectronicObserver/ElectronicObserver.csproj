@@ -683,7 +683,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>QuestTracking.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="LoggerRes.en.resx" />
+    <EmbeddedResource Include="LoggerRes.en.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="LoggerRes.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>LoggerRes.Designer.cs</LastGenOutput>
@@ -693,7 +695,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>NotifierRes.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Window\Dialog\ConfigRes.en.resx" />
+    <EmbeddedResource Include="Window\Dialog\ConfigRes.en.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Window\Dialog\ConfigRes.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ConfigRes.Designer.cs</LastGenOutput>
@@ -706,6 +710,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Window\Dialog\DialogDevelopmentRecordViewer.en.resx">
       <DependentUpon>DialogDevelopmentRecordViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Window\Dialog\DialogDropRecordViewer.en.resx">
+      <DependentUpon>DialogDropRecordViewer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Window\Dialog\EncycloRes.en.resx">
       <SubType>Designer</SubType>

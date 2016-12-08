@@ -873,7 +873,7 @@ Bauxite: {10:+0;-0} ( regen {11:+0;-0} - resupply {12} ( {13} planes ) )</value>
     <value>Total: {0} ships</value>
   </data>
   <data name="KancolleMustBeLoaded" xml:space="preserve">
-    <value>Please load Kancolle before opening the records.</value>
+    <value>Please load KanColle before opening the records.</value>
   </data>
   <data name="NoBuildData" xml:space="preserve">
     <value>There is no construction data.</value>

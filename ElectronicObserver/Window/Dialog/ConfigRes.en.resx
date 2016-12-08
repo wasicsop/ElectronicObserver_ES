@@ -141,7 +141,7 @@ Pressing "OK" may have no visible effect.</value>
     <value>Apply stylesheet</value>
   </data>
   <data name="ApplyStyleSheetHint" xml:space="preserve">
-    <value>Shows only the Kancolle game screen.
+    <value>Shows only the KanColle game screen.
 Depending on environment, this may cause problems, in this case please disable.</value>
   </data>
   <data name="Arsenal" xml:space="preserve">
@@ -474,7 +474,7 @@ Can increase the number of status bar messages.</value>
     <value>＊Takes effect on restart.</value>
   </data>
   <data name="TryAgainAfterConnect" xml:space="preserve">
-    <value>Try again after connecting to Kancolle.</value>
+    <value>Try again after connecting to KanColle.</value>
   </data>
   <data name="UnderWayOnly" xml:space="preserve">
     <value>In progress only</value>
@@ -510,14 +510,14 @@ Can increase the number of status bar messages.</value>
     <value>Database</value>
   </data>
   <data name="DatabaseDescription" xml:space="preserve">
-    <value>Sends your data to the Kancolle Statistics Database.
+    <value>Sends your data to the KanColle Statistics Database.
 More details, as well as an access key, can be found on the site below. (opens your web browser, Japanese only)</value>
   </data>
   <data name="Headquarters" xml:space="preserve">
     <value>Headquarters</value>
   </data>
   <data name="SendData" xml:space="preserve">
-    <value>Send data to Kancolle Statistics Database</value>
+    <value>Send data to KanColle Statistics Database</value>
   </data>
   <data name="Theme" xml:space="preserve">
     <value>Theme</value>
