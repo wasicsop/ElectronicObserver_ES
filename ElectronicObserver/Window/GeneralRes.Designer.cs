@@ -2034,6 +2034,15 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 加重対空: {0} (割合撃墜: {1:p2}).
+        /// </summary>
+        internal static string ShipAADefense {
+            get {
+                return ResourceManager.GetString("ShipAADefense", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 艦娘.
         /// </summary>
         internal static string ShipGirl {

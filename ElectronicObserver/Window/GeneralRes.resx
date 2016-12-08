@@ -981,4 +981,7 @@
   <data name="AntiAirPower" xml:space="preserve">
     <value>艦隊防空\r\n単縦陣: {0:0.0} / 複縦陣: {1:0.0} / 輪形陣: {2:0.0}\r\n</value>
   </data>
+  <data name="ShipAADefense" xml:space="preserve">
+    <value>加重対空: {0} (割合撃墜: {1:p2})</value>
+  </data>
 </root>

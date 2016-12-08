@@ -588,7 +588,7 @@ namespace ElectronicObserver.Window {
 						sb.AppendFormat( GeneralRes.AntiAir + ": {0}\r\n", Constants.GetAACutinKind( aacutin ) );
 					}
 					double adjustedaa = Calculator.GetAdjustedAAValue( ship );
-					sb.AppendFormat( "加重対空: {0} (割合撃墜: {1:p2})\r\n",
+					sb.AppendFormat( GeneralRes.ShipAADefense + "\r\n",
 						adjustedaa,
 						Calculator.GetProportionalAirDefense( adjustedaa )
 						);

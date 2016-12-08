@@ -1029,4 +1029,7 @@ Denial: {3}</value>
   Ring: {2:0.0}
 </value>
   </data>
+  <data name="ShipAADefense" xml:space="preserve">
+    <value>Adj AA: {0} (Rate: {1:p2})</value>
+  </data>
 </root>
