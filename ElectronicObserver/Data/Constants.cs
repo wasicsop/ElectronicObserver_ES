@@ -516,9 +516,9 @@ namespace ElectronicObserver.Data {
 				case 2:
 					return ConstantsRes.AirSuperiority;
 				case 3:
-					return ConstantsRes.AirInferiority;
+					return ConstantsRes.AirDenialNew;
 				case 4:
-					return ConstantsRes.AirDenial;
+					return ConstantsRes.AirIncapability;
 				default:
 					return ConstantsRes.Unknown;
 			}

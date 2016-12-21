@@ -132,11 +132,8 @@
   <data name="AirBattle" xml:space="preserve">
     <value>Air Battle</value>
   </data>
-  <data name="AirDenial" xml:space="preserve">
+  <data name="AirDenialNew" xml:space="preserve">
     <value>Air Denial</value>
-  </data>
-  <data name="AirInferiority" xml:space="preserve">
-    <value>Air Inferiority</value>
   </data>
   <data name="AirParity" xml:space="preserve">
     <value>Air Parity</value>
@@ -815,5 +812,8 @@
   </data>
   <data name="BattleDetail_Stage2AACI" xml:space="preserve">
     <value>AA Cut-in type #{2} ( {0}, {1} )</value>
+  </data>
+  <data name="AirIncapability" xml:space="preserve">
+    <value>Air Incapability</value>
   </data>
 </root>

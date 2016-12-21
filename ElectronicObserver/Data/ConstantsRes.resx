@@ -132,10 +132,10 @@
   <data name="AirBattle" xml:space="preserve">
     <value>航空戦</value>
   </data>
-  <data name="AirDenial" xml:space="preserve">
+  <data name="AirIncapability" xml:space="preserve">
     <value>制空権喪失</value>
   </data>
-  <data name="AirInferiority" xml:space="preserve">
+  <data name="AirDenialNew" xml:space="preserve">
     <value>航空劣勢</value>
   </data>
   <data name="AirParity" xml:space="preserve">

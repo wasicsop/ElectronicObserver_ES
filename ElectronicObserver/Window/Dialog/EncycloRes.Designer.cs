@@ -250,6 +250,15 @@ namespace ElectronicObserver.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to (ドロップ).
+        /// </summary>
+        internal static string Drop {
+            get {
+                return ResourceManager.GetString("Drop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 艦船パラメータの編集.
         /// </summary>
         internal static string EditShipParameter {
@@ -427,6 +436,15 @@ namespace ElectronicObserver.Window.Dialog {
         internal static string Flagship {
             get {
                 return ResourceManager.GetString("Flagship", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (満員).
+        /// </summary>
+        internal static string FullPort {
+            get {
+                return ResourceManager.GetString("FullPort", resourceCulture);
             }
         }
         
@@ -731,6 +749,15 @@ namespace ElectronicObserver.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 検索中です....
+        /// </summary>
+        internal static string SearchingNow {
+            get {
+                return ResourceManager.GetString("SearchingNow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 枚.
         /// </summary>
         internal static string Sheets {
@@ -889,6 +916,15 @@ namespace ElectronicObserver.Window.Dialog {
         internal static string Torpedo {
             get {
                 return ResourceManager.GetString("Torpedo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 回数.
+        /// </summary>
+        internal static string Tries {
+            get {
+                return ResourceManager.GetString("Tries", resourceCulture);
             }
         }
         

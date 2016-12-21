@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,60 +117,61 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AnchorageRepairing" xml:space="preserve">
-    <value>Anchorage repairing </value>
+  <data name="RecordView_Name.HeaderText" xml:space="preserve">
+    <value>Name</value>
   </data>
-  <data name="CompletionTime" xml:space="preserve">
-    <value>Completion time</value>
+  <data name="RecordView_Rank.HeaderText" xml:space="preserve">
+    <value>Rank</value>
   </data>
-  <data name="CriticalDamageAdvance" xml:space="preserve">
-    <value>!! Advancing at critical damage !!</value>
+  <data name="RecordView_Date.HeaderText" xml:space="preserve">
+    <value>Date</value>
   </data>
-  <data name="CriticallyDamagedShip" xml:space="preserve">
-    <value>Critically damaged ship!</value>
+  <data name="ButtonRun.Text" xml:space="preserve">
+    <value>Search</value>
   </data>
-  <data name="Docking" xml:space="preserve">
-    <value>Repairing </value>
+  <data name="LabelItemName.Text" xml:space="preserve">
+    <value>Item</value>
   </data>
-  <data name="EstimatedRecoveryTime" xml:space="preserve">
-    <value>Estimated Recovery Time</value>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Start</value>
   </data>
-  <data name="Fatigued" xml:space="preserve">
-    <value>Fatigued </value>
+  <data name="label3.Text" xml:space="preserve">
+    <value>End</value>
   </data>
-  <data name="FightingSpiritHigh" xml:space="preserve">
-    <value>Fighting Spirit High!</value>
+  <data name="LabelShipName.Text" xml:space="preserve">
+    <value>Ship</value>
   </data>
-  <data name="HasReturned" xml:space="preserve">
-    <value>#{0} 「{1}」 has returned.</value>
+  <data name="RecordView_Map.HeaderText" xml:space="preserve">
+    <value>Map</value>
   </data>
-  <data name="NoShips" xml:space="preserve">
-    <value>No Ships Assigned</value>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Diff</value>
   </data>
-  <data name="OnExped" xml:space="preserve">
-    <value>On expedition </value>
+  <data name="RecordView_RankA.HeaderText" xml:space="preserve">
+    <value>A-rank</value>
   </data>
-  <data name="OnSortie" xml:space="preserve">
-    <value>On sortie </value>
+  <data name="RankA.ToolTip" xml:space="preserve">
+    <value>A-rank</value>
   </data>
-  <data name="ReadyToSortie" xml:space="preserve">
-    <value>Ready to sortie!</value>
+  <data name="RecordView_RankB.HeaderText" xml:space="preserve">
+    <value>B-rank</value>
   </data>
-  <data name="ResupplyTooltip" xml:space="preserve">
-    <value>Fuel: {0}
-Ammo: {1}
-Baux: {2} ({3} planes)</value>
+  <data name="RankB.ToolTip" xml:space="preserve">
+    <value>B-rank</value>
   </data>
-  <data name="SparkledTooltip" xml:space="preserve">
-    <value>Lowest morale: {0}
-{1} effective expeditions remaining.</value>
+  <data name="RecordView_RankS.HeaderText" xml:space="preserve">
+    <value>S-rank</value>
   </data>
-  <data name="StartTime" xml:space="preserve">
-    <value>Start time : {0}
-Repair time :
-</value>
+  <data name="RankS.ToolTip" xml:space="preserve">
+    <value>S-rank</value>
   </data>
-  <data name="SupplyNeeded" xml:space="preserve">
-    <value>Resupply needed</value>
+  <data name="DateBegin.CustomFormat" xml:space="preserve">
+    <value>yyyy/MM/dd</value>
+  </data>
+  <data name="DateEnd.CustomFormat" xml:space="preserve">
+    <value>yyyy/MM/dd</value>
+  </data>
+  <data name="MergeRows.Text" xml:space="preserve">
+    <value>Combine</value>
   </data>
 </root>
