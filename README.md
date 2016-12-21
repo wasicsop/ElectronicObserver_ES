@@ -2,6 +2,7 @@
 
 Electronic Observer is a browser to help admirals manage their fleets. It is packed with features to provide additional informations for admirals to plan and play KanColle better. 
 
+## Main Features
 
 ![screenshot](https://cloud.githubusercontent.com/assets/6127734/21392624/18089a70-c7d4-11e6-8f85-55b877aef5b3.jpg)
 
