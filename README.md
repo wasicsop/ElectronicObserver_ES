@@ -1,13 +1,9 @@
+# Electronic Observer (七四式電子観測儀)
 
-## Type 74 Electronic Observation Device
----
+Electronic Observer is a browser to help admirals manage their fleets. It is packed with features to provide additional informations for admirals to plan and play KanColle better. 
 
-A Kancolle-use browser under constant development.
 
-### Included Functions
----
-
-![](https://github.com/andanteyk/ElectronicObserver/wiki/media/mainimage2.png)
+![screenshot](https://cloud.githubusercontent.com/assets/6127734/21392624/18089a70-c7d4-11e6-8f85-55b877aef5b3.jpg)
 
 Each function is located in separate windows, and can be freely docked, moved, and arranged by the user.  
 Below is a brief explanation. **For more details, please see the [Wiki.](https://github.com/RyuuKitsune/ElectronicObserver/wiki)**  
@@ -30,27 +26,18 @@ Below is a brief explanation. **For more details, please see the [Wiki.](https:/
 * Records (keep records of drops, constructions, and developments)
 * Window Capture (capture external windows into the program)
 
-None of these functions interfere with Kancolle's normal, legal operation.
+None of these functions interfere with KanColle normal, legal operation.
 
-### Download
----
+## Downloads
 
-Please see the latest download information at the releases page on GitHub.
-That can be found [here](https://github.com/RyuuKitsune/ElectronicObserver/Releases).
+The latest version of Electronic Observer is available at the [**Releases**](https://github.com/silfumus/ElectronicObserver/releases/latest) page. 
 
-### For Developers
----
+## Documentations
 
 The Kancolle API is documented (in Japanese only) at the original project's [Other/Information/](https://github.com/andanteyk/ElectronicObserver/tree/develop/ElectronicObserver/Other/Information).
  Use as you wish, but no guarantee of accuracy is made.
 
-Please be careful of the exceution directory.
-The Assets.zip file must exist in the running directory of the program.
-
-This project is licensed under the MIT License, for more information, see [here.](https://github.com/RyuuKitsune/ElectronicObserver/blob/master/LICENSE)  
-
-### Libraries Used
----
+## Libraries
 
 * [DynamicJson](http://dynamicjson.codeplex.com/) (JSON read/write) - [Ms-PL](https://github.com/andanteyk/ElectronicObserver/blob/master/Licenses/Ms-PL.txt)
 * [DockPanel Suite](http://dockpanelsuite.com/) (Window layout) - [MIT License](https://github.com/andanteyk/ElectronicObserver/blob/master/Licenses/DockPanelSuite.txt)
@@ -58,9 +45,13 @@ This project is licensed under the MIT License, for more information, see [here.
     * [TrotiNet](http://trotinet.sourceforge.net/) - [GNU Lesser General Public License v3.0](https://github.com/andanteyk/ElectronicObserver/blob/master/Licenses/LGPL.txt)
         * [log4net](https://logging.apache.org/log4net/) - [Apache License version 2.0](https://github.com/andanteyk/ElectronicObserver/blob/master/Licenses/Apache.txt)
 
-### Contact/Other
----
+## License
+This project is licensed under the MIT License, for more information, see LICENSE.
 
-* Original Japanese Distribution Website:[ブルネイ工廠電気実験部](http://electronicobserver.blog.fc2.com/) (bug reports affecting the program itself should be made here)
-* English Distribution Home: [Ryuu Kitsune's Tumblr](http://tumblr.rkitsune.com/elecobs)
-* Original Developer:[Andante](https://twitter.com/andanteyk)
+## Contacts
+
+Please open a new [**issue**](https://github.com/silfumus/ElectronicObserver/issues) at Github if you have any problem, question, or suggestion.
+Thank you for using Electronic Observer.
+* Translator: [silfumus](https://github.com/silfumus)
+* Japanese Distribution Website: [ブルネイ工廠電気実験部](http://electronicobserver.blog.fc2.com/)
+* Developer: [Andante](https://twitter.com/andanteyk)
