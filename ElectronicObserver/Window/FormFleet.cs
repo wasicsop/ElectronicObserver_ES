@@ -545,7 +545,7 @@ namespace ElectronicObserver.Window {
 						sb.AppendFormat( GeneralRes.Expansion + ": {0}\r\n", exslot.NameWithLevel );
 				}
 
-				int[] slotmaster = ship.SlotMaster.ToArray();
+				int[] slotmaster = ship.AllSlotMaster.ToArray();
 
 				sb.AppendFormat( "\r\n" +GeneralRes.DayBattle + ": {0}", Constants.GetDayAttackKind( Calculator.GetDayAttackKind( slotmaster, ship.ShipID, -1 ) ) );
 				{
@@ -1054,12 +1054,13 @@ namespace ElectronicObserver.Window {
 				bool showNext = c.FormFleet.ShowNextExp;
 				bool showConditionIcon = c.FormFleet.ShowConditionIcon;
 				var levelVisibility = c.FormFleet.EquipmentLevelVisibility;
+				int fixedShipNameWidth = c.FormFleet.FixedShipNameWidth;
 
 				for ( int i = 0; i < ControlMember.Length; i++ ) {
 					ControlMember[i].Equipments.ShowAircraft = showAircraft;
 					if ( fixShipNameWidth ) {
 						ControlMember[i].Name.AutoSize = false;
-						ControlMember[i].Name.Size = new Size( 40, 20 );
+						ControlMember[i].Name.Size = new Size( fixedShipNameWidth, 20 );
 					} else {
 						ControlMember[i].Name.AutoSize = true;
 					}
