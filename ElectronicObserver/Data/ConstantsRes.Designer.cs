@@ -2095,6 +2095,15 @@ namespace ElectronicObserver.Data {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 未確認飛行物体.
+        /// </summary>
+        internal static string UnidentifiedPlane {
+            get {
+                return ResourceManager.GetString("UnidentifiedPlane", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 不明.
         /// </summary>
         internal static string Unknown {

@@ -816,4 +816,7 @@
   <data name="BattleDetail_Stage2AACI" xml:space="preserve">
     <value>対空カットイン ( {0}, {1}({2}) )</value>
   </data>
+  <data name="UnidentifiedPlane" xml:space="preserve">
+    <value>未確認飛行物体</value>
+  </data>
 </root>

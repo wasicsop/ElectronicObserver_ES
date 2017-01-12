@@ -63,21 +63,21 @@ namespace ElectronicObserver.Observer.kcsapi.api_req_kaisou {
 
 						int firepower = updated_ship.FirepowerBase - ship.FirepowerBase;
 						if ( firepower > 0 )
-							contents.AddLast( string.Format( GeneralRes.Firepower + ": {0}+{1}={2}/{3}", ship.FirepowerBase, firepower, updated_ship.FirepowerBase, ship.MasterShip.FirepowerMax ) );
+							contents.AddLast( string.Format( GeneralRes.Firepower + ": {0}+{1}={2} ({3})", ship.FirepowerBase, firepower, updated_ship.FirepowerBase, ship.MasterShip.FirepowerMax ) );
 						int torpedo = updated_ship.TorpedoBase - ship.TorpedoBase;
 						if ( torpedo > 0 )
-							contents.AddLast( string.Format( GeneralRes.Torpedo + ": {0}+{1}={2}/{3}", ship.TorpedoBase, torpedo, updated_ship.TorpedoBase, ship.MasterShip.TorpedoMax ) );
+							contents.AddLast( string.Format( GeneralRes.Torpedo + ": {0}+{1}={2} ({3})", ship.TorpedoBase, torpedo, updated_ship.TorpedoBase, ship.MasterShip.TorpedoMax ) );
 						int aa = updated_ship.AABase - ship.AABase;
 						if ( aa > 0 )
-							contents.AddLast( string.Format( GeneralRes.AntiAir + ": {0}+{1}={2}/{3}", ship.AABase, aa, updated_ship.AABase, ship.MasterShip.AAMax ) );
+							contents.AddLast( string.Format( GeneralRes.AntiAir + ": {0}+{1}={2} ({3})", ship.AABase, aa, updated_ship.AABase, ship.MasterShip.AAMax ) );
 						int armor = updated_ship.ArmorBase - ship.ArmorBase;
 						if ( armor > 0 )
-							contents.AddLast( string.Format( GeneralRes.Armor + ": {0}+{1}={2}/{3}", ship.ArmorBase, armor, updated_ship.ArmorBase, ship.MasterShip.ArmorMax ) );
+							contents.AddLast( string.Format( GeneralRes.Armor + ": {0}+{1}={2} ({3})", ship.ArmorBase, armor, updated_ship.ArmorBase, ship.MasterShip.ArmorMax ) );
 						int luck = updated_ship.LuckBase - ship.LuckBase;
 						if ( luck > 0 )
-							contents.AddLast( string.Format( GeneralRes.Luck + ": {0}+{1}={2}/{3}", ship.LuckBase, luck, updated_ship.LuckBase, ship.MasterShip.LuckMax ) );
+							contents.AddLast( string.Format( GeneralRes.Luck + ": {0}+{1}={2} ({3})", ship.LuckBase, luck, updated_ship.LuckBase, ship.MasterShip.LuckMax ) );
 
-						sb.AppendFormat( string.Join( ", ", contents ) + " )" );
+						sb.AppendFormat( string.Join( ", ", contents ) + ")" );
 						Utility.Logger.Add( 2, sb.ToString() );
 					}
 				}

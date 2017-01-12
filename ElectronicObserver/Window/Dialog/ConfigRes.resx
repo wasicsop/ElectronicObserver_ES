@@ -766,4 +766,7 @@ direct にするとパフォーマンスが向上する可能性があります�
   <data name="NewFormula33" xml:space="preserve">
     <value>新判定式(33)</value>
   </data>
+  <data name="Log_SaveBattleLog" xml:space="preserve">
+    <value>戦闘ログを保存する</value>
+  </data>
 </root>

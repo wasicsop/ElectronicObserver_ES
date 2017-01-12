@@ -816,4 +816,7 @@
   <data name="AirIncapability" xml:space="preserve">
     <value>Air Incapability</value>
   </data>
+  <data name="UnidentifiedPlane" xml:space="preserve">
+    <value>Unidentified Plane</value>
+  </data>
 </root>

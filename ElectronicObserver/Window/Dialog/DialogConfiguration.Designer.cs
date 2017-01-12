@@ -680,7 +680,7 @@
 			this.Log_SaveBattleLog.Name = "Log_SaveBattleLog";
 			this.Log_SaveBattleLog.Size = new System.Drawing.Size(120, 19);
 			this.Log_SaveBattleLog.TabIndex = 8;
-			this.Log_SaveBattleLog.Text = "戦闘ログを保存する";
+			this.Log_SaveBattleLog.Text = ConfigRes.Log_SaveBattleLog;
 			this.ToolTipInfo.SetToolTip(this.Log_SaveBattleLog, "戦闘ログを保存するかを指定します。\r\n戦闘ログは BattleLog フォルダに保存されます。");
 			this.Log_SaveBattleLog.UseVisualStyleBackColor = true;
 			//

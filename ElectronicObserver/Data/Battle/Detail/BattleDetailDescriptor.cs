@@ -91,9 +91,9 @@ namespace ElectronicObserver.Data.Battle.Detail {
 					var p = phase as PhaseJetBaseAirAttack;
 
 					foreach ( var a in p.AirAttackUnits ) {
-						sb.AppendFormat( "〈第{0}波〉\r\n", a.AirAttackIndex + 1 );
+						sb.AppendFormat(ConstantsRes.BattleDetail_AirAttackWave + "\r\n", a.AirAttackIndex + 1 );
 
-						sb.AppendLine( "味方基地航空隊 参加中隊:" );
+						sb.AppendLine(ConstantsRes.BattleDetail_AirAttackUnits);
 						sb.Append( "　" ).AppendLine( string.Join( ", ", a.Squadrons.Where( sq => sq.EquipmentInstance != null ).Select( sq => sq.ToString() ) ) );
 
 						GetBattleDetailPhaseAirBattle( sb, a );
