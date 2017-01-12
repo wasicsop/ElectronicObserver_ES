@@ -770,4 +770,7 @@ Might be heavy.</value>
   <data name="NewFormula33" xml:space="preserve">
     <value>New Formula 33</value>
   </data>
+  <data name="Log_SaveBattleLog" xml:space="preserve">
+    <value>Save battle log</value>
+  </data>
 </root>

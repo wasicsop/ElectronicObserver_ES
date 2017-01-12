@@ -20,11 +20,13 @@ namespace ElectronicObserver.Data.Battle.Phase {
 		private string TranslatedPhaseTitle(string title) {
 			switch (title)	{
 				default: return title;
+				case "噴式基地航空隊攻撃": return "Land-based Jet Air Attack";
+				case "噴式航空戦": return "Jet Air Attack";
 				case "基地航空隊攻撃": return "Land-based Air Attack";
-				case "空襲戦": return "Air Raid";
+				case "防空戦": return "Air Raid";
 				case "航空戦": return ConstantsRes.AirBattle;
-				case "第一次航空戦": return "Air Battle, 1st";
-				case "第二次航空戦": return "Air Battle, 2nd";
+				case "第一次航空戦": return "Air Attack, 1st";
+				case "第二次航空戦": return "Air Attack, 2nd";
 				case "支援攻撃": return "Support Expedition";
 				case "先制対潜": return "Opening ASW";
 				case "先制雷撃": return "Opening Torpedo Salvo";

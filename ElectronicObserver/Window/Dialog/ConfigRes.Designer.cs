@@ -1037,6 +1037,15 @@ namespace ElectronicObserver.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 戦闘ログを保存する.
+        /// </summary>
+        internal static string Log_SaveBattleLog {
+            get {
+                return ResourceManager.GetString("Log_SaveBattleLog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to レコードの自動保存：.
         /// </summary>
         internal static string LoggingInterval {

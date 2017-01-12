@@ -1,6 +1,6 @@
 # Electronic Observer (七四式電子観測儀)
 
-Electronic Observer is a browser to help admirals manage their fleets. It is packed with features to provide additional informations for admirals to plan and play KanColle better. 
+Electronic Observer is a browser to help admirals manage their fleets. It is packed with features to provide additional informations for admirals to plan and play KanColle better.
 
 ## Main Features
 
@@ -31,7 +31,7 @@ None of these functions interfere with KanColle normal, legal operation.
 
 ## Downloads
 
-The latest version of Electronic Observer is available at the [**Releases**](https://github.com/silfumus/ElectronicObserver/releases/latest) page. 
+The latest version of Electronic Observer is available at the [**Releases**](https://github.com/silfumus/ElectronicObserver/releases/latest) page.
 
 ## Documentations
 

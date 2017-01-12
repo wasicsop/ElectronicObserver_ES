@@ -322,6 +322,6 @@
     <value>We have successfully improved {0}.</value>
   </data>
   <data name="ImprovedSuccess" xml:space="preserve">
-    <value> has been successfully improved. ( </value>
+    <value> has been successfully improved. (</value>
   </data>
 </root>
