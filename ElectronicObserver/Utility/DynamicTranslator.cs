@@ -124,21 +124,35 @@ namespace ElectronicObserver.Utility
         {
             Directory.CreateDirectory("Translations");
             string locale = Thread.CurrentThread.CurrentCulture.Name;
+			string newShipVer = shipsVersion;
+			string newShipTypeVer = shipTypesVersion;
+			string newEquipVer = equipmentVersion;
+			string newEquipTypeVer = equipTypesVersion;
+			string newOperationVer = operationsVersion;
+			string newQuestVer = questsVersion;
+			string newExpedVer = expeditionsVersion;
             if (locale != "ja-JP")
             {
-                WebRequest rq = HttpWebRequest.Create(AppSettings.Default.EOTranslations.AbsoluteUri + locale + "/VersionManifest.xml");
-                using (WebResponse resp = rq.GetResponse())
-                {
-                    Stream responseStream = resp.GetResponseStream();
-                    this.versionManifest = XDocument.Load(responseStream);
-                }
-                string newShipVer = versionManifest.Root.Element("Ships").Attribute("version").Value;
-                string newShipTypeVer = versionManifest.Root.Element("ShipTypes").Attribute("version").Value;
-                string newEquipVer = versionManifest.Root.Element("Equipment").Attribute("version").Value;
-                string newEquipTypeVer = versionManifest.Root.Element("EquipmentTypes").Attribute("version").Value;
-                string newOperationVer = versionManifest.Root.Element("Operations").Attribute("version").Value;
-                string newQuestVer = versionManifest.Root.Element("Quests").Attribute("version").Value;
-                string newExpedVer = versionManifest.Root.Element("Expeditions").Attribute("version").Value;
+				try
+				{
+					WebRequest rq = HttpWebRequest.Create(AppSettings.Default.EOTranslations.AbsoluteUri + locale + "/VersionManifest.xml");
+					using (WebResponse resp = rq.GetResponse())
+					{
+						Stream responseStream = resp.GetResponseStream();
+						this.versionManifest = XDocument.Load(responseStream);
+					}
+					newShipVer = versionManifest.Root.Element("Ships").Attribute("version").Value;
+					newShipTypeVer = versionManifest.Root.Element("ShipTypes").Attribute("version").Value;
+					newEquipVer = versionManifest.Root.Element("Equipment").Attribute("version").Value;
+					newEquipTypeVer = versionManifest.Root.Element("EquipmentTypes").Attribute("version").Value;
+					newOperationVer = versionManifest.Root.Element("Operations").Attribute("version").Value;
+					newQuestVer = versionManifest.Root.Element("Quests").Attribute("version").Value;
+					newExpedVer = versionManifest.Root.Element("Expeditions").Attribute("version").Value;
+				}
+				catch (Exception e)
+				{
+					Logger.Add(3, "Failed to check translation updates: " + e.Message);
+				}
 
                 if (newShipVer != shipsVersion)
                 {
