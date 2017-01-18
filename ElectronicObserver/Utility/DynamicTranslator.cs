@@ -259,7 +259,11 @@ namespace ElectronicObserver.Utility
                     if (this.equipmentXml != null)
                         return this.equipmentXml.Descendants("Item");
                     break;
-                case TranslationType.EquipmentType:
+				case TranslationType.EquipmentDesc:
+					if (this.equipmentXml != null)
+						return this.equipmentXml.Descendants("ItemDesc");
+					break;
+				case TranslationType.EquipmentType:
                     if (this.equipTypesXML != null)
                         return this.equipTypesXML.Descendants("Type");
                     break;
@@ -444,7 +448,8 @@ namespace ElectronicObserver.Utility
     {
         App,
         Equipment,
-        EquipmentType,
+		EquipmentDesc,
+		EquipmentType,
         Operations,
         Quests,
         Ships,
