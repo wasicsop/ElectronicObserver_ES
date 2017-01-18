@@ -32,6 +32,10 @@ namespace ElectronicObserver.Data {
 			get { return (int)RawData.api_no; }
 		}
 
+		public string MapInfoID2 {
+			get { return Window.FormMain.Instance.Translator.GetMapNodes(MapID, MapAreaID, MapInfoID, Utility.TranslationType.OperationMapNodes); }
+		}
+
 		/// <summary>
 		/// 海域名
 		/// </summary>

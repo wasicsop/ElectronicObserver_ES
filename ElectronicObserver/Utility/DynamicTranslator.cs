@@ -271,7 +271,11 @@ namespace ElectronicObserver.Utility
                     if (this.operationsXml != null)
                         return this.operationsXml.Descendants("Sortie");
                     break;
-                case TranslationType.Quests:
+				case TranslationType.OperationMapNodes:
+					if (this.operationsXml != null)
+						return this.operationsXml.Descendants("MapNode");
+					break;
+				case TranslationType.Quests:
                 case TranslationType.QuestTitle:
                 case TranslationType.QuestDetail:
                     if (this.questsXml != null)
@@ -320,7 +324,33 @@ namespace ElectronicObserver.Utility
             return jpString;
         }
 
-        public bool GetTranslation(string jpString, IEnumerable<XElement> translationList, string jpChildElement, string trChildElement, int id, ref string translate)
+
+		public string GetMapNodes(int mapAreaID, int mapInfoID, int mapNodeID, TranslationType type, int id = -1)
+		{
+			try
+			{
+				IEnumerable<XElement> translationList = this.GetTranslationList(type);
+
+				if (translationList == null)
+					return mapNodeID.ToString();
+
+				string idChildElement = "Node";
+				string labelChildElement = "Label";
+				
+				string nodeinfo = mapAreaID.ToString("D3") + mapInfoID.ToString("D3") + mapNodeID.ToString("D3");
+				string converted = nodeinfo;
+				if (this.GetTranslation(nodeinfo, translationList, idChildElement, labelChildElement, id, ref converted))
+					return converted;
+			}
+			catch (Exception e)
+			{
+				Logger.Add(3, "Can't output translation: " + e.Message);
+			}
+
+			return mapNodeID.ToString();
+		}
+
+		public bool GetTranslation(string jpString, IEnumerable<XElement> translationList, string jpChildElement, string trChildElement, int id, ref string translate)
         {
             IEnumerable<XElement> foundTranslation = translationList.Where(el =>
             {
@@ -410,7 +440,7 @@ namespace ElectronicObserver.Utility
         }
     }
 
-    public enum TranslationType
+	public enum TranslationType
     {
         App,
         Equipment,
@@ -421,7 +451,8 @@ namespace ElectronicObserver.Utility
         ShipTypes,
         OperationMaps,
         OperationSortie,
-        QuestDetail,
+		OperationMapNodes,
+		QuestDetail,
         QuestTitle,
         Expeditions,
         ExpeditionDetail,

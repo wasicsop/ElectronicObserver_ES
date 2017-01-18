@@ -19,7 +19,7 @@ namespace ElectronicObserver.Data.Battle.Detail {
 				sb.AppendFormat( "{0} ({1}-{2})", bm.Compass.MapInfo.Name, bm.Compass.MapAreaID, bm.Compass.MapInfoID );
 				if ( bm.Compass.MapInfo.EventDifficulty > 0 )
 					sb.AppendFormat( " [{0}]", Constants.GetDifficulty( bm.Compass.MapInfo.EventDifficulty ) );
-				sb.Append( ConstantsRes.BattleDetail_Node ).Append( bm.Compass.Destination.ToString() );
+				sb.Append( ConstantsRes.BattleDetail_Node ).Append( bm.Compass.DestinationID );
 				if ( bm.Compass.EventID == 5 )
 					sb.Append( ConstantsRes.BattleDetail_Boss );
 				sb.AppendLine();

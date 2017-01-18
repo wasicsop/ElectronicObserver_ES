@@ -33,6 +33,10 @@ namespace ElectronicObserver.Data {
 			get { return (int)RawData.api_no; }
 		}
 
+		public string DestinationID {
+			get { return Window.FormMain.Instance.Translator.GetMapNodes(MapAreaID, MapInfoID, Destination, Utility.TranslationType.OperationMapNodes); }
+		}
+
 		/// <summary>
 		/// 次のセルのグラフィック
 		/// </summary>

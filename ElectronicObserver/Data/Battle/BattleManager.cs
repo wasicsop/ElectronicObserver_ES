@@ -335,7 +335,7 @@ namespace ElectronicObserver.Data.Battle {
 			} else {
 				Utility.Logger.Add( 2,
 					string.Format( LoggerRes.BattleMessage,
-						Compass.MapAreaID, Compass.MapInfoID, Compass.Destination, Result.EnemyFleetName, Result.Rank, Result.AdmiralExp, Result.BaseExp ) );
+						Compass.MapAreaID, Compass.MapInfoID, Compass.DestinationID, Result.EnemyFleetName, Result.Rank, Result.AdmiralExp, Result.BaseExp ) );
 			}
 
 
@@ -620,7 +620,7 @@ namespace ElectronicObserver.Data.Battle {
 				if ( IsPractice )
 					info = "practice";
 				else
-					info = string.Format( "{0}-{1}-{2}", Compass.MapAreaID, Compass.MapInfoID, Compass.Destination );
+					info = string.Format( "{0}-{1}-{2}", Compass.MapAreaID, Compass.MapInfoID, Compass.DestinationID );
 
 				string path = string.Format( "{0}\\{1}@{2}.txt", parent, DateTimeHelper.GetTimeStamp(), info );
 

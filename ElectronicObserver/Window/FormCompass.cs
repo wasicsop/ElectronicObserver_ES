@@ -715,7 +715,7 @@ namespace ElectronicObserver.Window {
 				}
 
 
-				TextDestination.Text = string.Format( GeneralRes.NextNode + ": {0}{1}", compass.Destination, ( compass.IsEndPoint ? GeneralRes.EndNode : "" ) );
+				TextDestination.Text = string.Format( GeneralRes.NextNode + ": {0}{1}", compass.DestinationID, ( compass.IsEndPoint ? GeneralRes.EndNode : "" ) );
 				if ( compass.LaunchedRecon != 0 ) {
 					TextDestination.ImageAlign = ContentAlignment.MiddleRight;
 					TextDestination.ImageIndex = (int)ResourceManager.EquipmentContent.Seaplane;

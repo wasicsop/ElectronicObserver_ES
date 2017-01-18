@@ -320,7 +320,7 @@ namespace ElectronicObserver.Window {
 				if ( map != null ) {
 					if ( map.RequiredDefeatedCount != -1 && elem.api_defeat_count() ) {
 
-						sb.AppendFormat( "{0}-{1} : " + GeneralRes.Defeated + " {2}/{3} " + GeneralRes.Times + "\r\n", map.MapAreaID, map.MapInfoID, (int)elem.api_defeat_count, map.RequiredDefeatedCount );
+						sb.AppendFormat( "{0}-{1} : " + GeneralRes.Defeated + " {2}/{3} " + GeneralRes.Times + "\r\n", map.MapAreaID, map.MapInfoID2, (int)elem.api_defeat_count, map.RequiredDefeatedCount );
 
 					} else if ( elem.api_eventmap() ) {
 
@@ -330,7 +330,7 @@ namespace ElectronicObserver.Window {
 						}
 
 						sb.AppendFormat( "{0}-{1} {2}: {3} {4}/{5}\r\n",
-							map.MapAreaID, map.MapInfoID, difficulty,
+							map.MapAreaID, map.MapInfoID2, difficulty,
 							elem.api_eventmap.api_gauge_type() && (int)elem.api_eventmap.api_gauge_type == 3 ? "TP" : "HP",
 							(int)elem.api_eventmap.api_now_maphp, (int)elem.api_eventmap.api_max_maphp );
 
