@@ -2094,8 +2094,8 @@
 			this.FormJson_UpdatesTree.Name = "FormJson_UpdatesTree";
 			this.FormJson_UpdatesTree.Size = new System.Drawing.Size(104, 19);
 			this.FormJson_UpdatesTree.TabIndex = 1;
-			this.FormJson_UpdatesTree.Text = "Treeも更新する";
-			this.ToolTipInfo.SetToolTip(this.FormJson_UpdatesTree, "API の送受信時に、自動で Tree 表示を更新するかを指定します。\r\n上の「自動更新する」が有効の時のみ更新されます。\r\n多少重くなる可能性があります。");
+			this.FormJson_UpdatesTree.Text = "Also update JSON Tree";
+			this.ToolTipInfo.SetToolTip(this.FormJson_UpdatesTree, "Whether to automatically update the Tree display when sending/receiving API data.\r\nIt is updated only when the automatic refresh is enabled.\r\nIt may decrease performance.");
 			this.FormJson_UpdatesTree.UseVisualStyleBackColor = true;
 			//
 			// FormJson_AutoUpdateFilter
@@ -2106,7 +2106,7 @@
 			this.FormJson_AutoUpdateFilter.Name = "FormJson_AutoUpdateFilter";
 			this.FormJson_AutoUpdateFilter.Size = new System.Drawing.Size(444, 23);
 			this.FormJson_AutoUpdateFilter.TabIndex = 3;
-			this.ToolTipInfo.SetToolTip(this.FormJson_AutoUpdateFilter, "自動更新時に読み込む API を選択するフィルタです。\r\n正規表現も利用可能です。");
+			this.ToolTipInfo.SetToolTip(this.FormJson_AutoUpdateFilter, "Filter that selects API data to be read at automatic update. Supports Regex.");
 			//
 			// label31
 			//
@@ -2115,7 +2115,7 @@
 			this.label31.Name = "label31";
 			this.label31.Size = new System.Drawing.Size(100, 15);
 			this.label31.TabIndex = 2;
-			this.label31.Text = "自動更新フィルタ：";
+			this.label31.Text = "Update filter:";
 			//
 			// label33
 			//
@@ -2165,7 +2165,7 @@
 			this.Notification_Silencio.Size = new System.Drawing.Size(131, 19);
 			this.Notification_Silencio.TabIndex = 7;
 			this.Notification_Silencio.Text = "Mute all notifications";
-			this.ToolTipInfo.SetToolTip(this.Notification_Silencio, "すべての通知を非表示にし、通知音の発声も停止します。\r\n\r\n「シレンシオ！黙れ！」");
+			this.ToolTipInfo.SetToolTip(this.Notification_Silencio, "Hide/stop all notifications and notification sounds.");
 			this.Notification_Silencio.UseVisualStyleBackColor = true;
 			//
 			// Notification_AnchorageRepair

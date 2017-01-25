@@ -73,7 +73,7 @@
 			// APIView_FileName
 			// 
 			this.APIView_FileName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.APIView_FileName.HeaderText = "ファイル名";
+			this.APIView_FileName.HeaderText = "File Name";
 			this.APIView_FileName.Name = "APIView_FileName";
 			this.APIView_FileName.ReadOnly = true;
 			this.APIView_FileName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -91,7 +91,7 @@
 			// 
 			this.ViewMenu_Execute.Name = "ViewMenu_Execute";
 			this.ViewMenu_Execute.Size = new System.Drawing.Size(143, 22);
-			this.ViewMenu_Execute.Text = "実行(&E)";
+			this.ViewMenu_Execute.Text = "&Execute";
 			this.ViewMenu_Execute.Click += new System.EventHandler(this.ViewMenu_Execute_Click);
 			// 
 			// ViewMenu_Delete
@@ -99,7 +99,7 @@
 			this.ViewMenu_Delete.Name = "ViewMenu_Delete";
 			this.ViewMenu_Delete.ShortcutKeys = System.Windows.Forms.Keys.Delete;
 			this.ViewMenu_Delete.Size = new System.Drawing.Size(143, 22);
-			this.ViewMenu_Delete.Text = "削除(&D)";
+			this.ViewMenu_Delete.Text = "&Delete";
 			this.ViewMenu_Delete.Click += new System.EventHandler(this.ViewMenu_Delete_Click);
 			// 
 			// menuStrip1
@@ -120,20 +120,20 @@
             this.Menu_File_Reload});
 			this.Menu_File.Name = "Menu_File";
 			this.Menu_File.Size = new System.Drawing.Size(70, 20);
-			this.Menu_File.Text = "ファイル(&F)";
+			this.Menu_File.Text = "&File";
 			// 
 			// Menu_File_OpenFolder
 			// 
 			this.Menu_File_OpenFolder.Name = "Menu_File_OpenFolder";
 			this.Menu_File_OpenFolder.Size = new System.Drawing.Size(167, 22);
-			this.Menu_File_OpenFolder.Text = "フォルダを開く(&O)...";
+			this.Menu_File_OpenFolder.Text = "&Open folder...";
 			this.Menu_File_OpenFolder.Click += new System.EventHandler(this.Menu_File_OpenFolder_Click);
 			// 
 			// Menu_File_Reload
 			// 
 			this.Menu_File_Reload.Name = "Menu_File_Reload";
 			this.Menu_File_Reload.Size = new System.Drawing.Size(167, 22);
-			this.Menu_File_Reload.Text = "再読み込み(&R)";
+			this.Menu_File_Reload.Text = "&Reload";
 			this.Menu_File_Reload.Click += new System.EventHandler(this.Menu_File_Reload_Click);
 			// 
 			// splitContainer1
@@ -166,7 +166,7 @@
 			this.ButtonSearchPrev.Name = "ButtonSearchPrev";
 			this.ButtonSearchPrev.Size = new System.Drawing.Size(75, 23);
 			this.ButtonSearchPrev.TabIndex = 5;
-			this.ButtonSearchPrev.Text = "前に検索";
+			this.ButtonSearchPrev.Text = "Previous";
 			this.ButtonSearchPrev.UseVisualStyleBackColor = true;
 			this.ButtonSearchPrev.Click += new System.EventHandler(this.ButtonSearchPrev_Click);
 			// 
@@ -187,7 +187,7 @@
 			this.ButtonSearch.Name = "ButtonSearch";
 			this.ButtonSearch.Size = new System.Drawing.Size(75, 23);
 			this.ButtonSearch.TabIndex = 3;
-			this.ButtonSearch.Text = "検索";
+			this.ButtonSearch.Text = "Search";
 			this.ButtonSearch.UseVisualStyleBackColor = true;
 			this.ButtonSearch.Click += new System.EventHandler(this.ButtonSearch_Click);
 			// 
@@ -208,7 +208,7 @@
 			this.ButtonExecuteNext.Name = "ButtonExecuteNext";
 			this.ButtonExecuteNext.Size = new System.Drawing.Size(75, 23);
 			this.ButtonExecuteNext.TabIndex = 1;
-			this.ButtonExecuteNext.Text = "次へ実行";
+			this.ButtonExecuteNext.Text = "Run Next";
 			this.ButtonExecuteNext.UseVisualStyleBackColor = true;
 			this.ButtonExecuteNext.Click += new System.EventHandler(this.ButtonExecuteNext_Click);
 			// 
@@ -218,7 +218,7 @@
 			this.ButtonExecute.Name = "ButtonExecute";
 			this.ButtonExecute.Size = new System.Drawing.Size(75, 23);
 			this.ButtonExecute.TabIndex = 0;
-			this.ButtonExecute.Text = "実行";
+			this.ButtonExecute.Text = "Run";
 			this.ButtonExecute.UseVisualStyleBackColor = true;
 			this.ButtonExecute.Click += new System.EventHandler(this.ViewMenu_Execute_Click);
 			// 
@@ -238,7 +238,7 @@
 			this.MainMenuStrip = this.menuStrip1;
 			this.Name = "DialogLocalAPILoader2";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-			this.Text = "ファイルからAPIをロード";
+			this.Text = "Load API from File";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DialogLocalAPILoader2_FormClosing);
 			this.Load += new System.EventHandler(this.DialogLocalAPILoader2_Load);
 			((System.ComponentModel.ISupportInitialize)(this.APIView)).EndInit();
