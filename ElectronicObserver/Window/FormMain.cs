@@ -1060,11 +1060,24 @@ namespace ElectronicObserver.Window {
 
 		private void StripMenu_Help_Help_Click( object sender, EventArgs e ) {
 
-			if ( MessageBox.Show( "外部ブラウザでオンラインヘルプを開きます。\r\nよろしいですか？", "ヘルプ",
+			if ( MessageBox.Show("This will open Online Help with your browser.\r\nAre you sure?", "Help",
 				MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1 )
 				== System.Windows.Forms.DialogResult.Yes ) {
 
 				System.Diagnostics.Process.Start( "https://github.com/andanteyk/ElectronicObserver/wiki" );
+			}
+
+		}
+
+		private void StripMenu_Help_Issue_Click(object sender, EventArgs e)
+		{
+
+			if (MessageBox.Show("This will open a page with your browser.\r\nAre you sure?", "Submit an Issue",
+				MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1)
+				== System.Windows.Forms.DialogResult.Yes)
+			{
+
+				System.Diagnostics.Process.Start("https://gitreports.com/issue/silfumus/ElectronicObserver");
 			}
 
 		}

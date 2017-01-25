@@ -90,6 +90,7 @@
 			this.StripMenu_Debug_LoadDataFromOld = new System.Windows.Forms.ToolStripMenuItem();
 			this.StripMenu_Help = new System.Windows.Forms.ToolStripMenuItem();
 			this.StripMenu_Help_Help = new System.Windows.Forms.ToolStripMenuItem();
+			this.StripMenu_Help_Issue = new System.Windows.Forms.ToolStripMenuItem();
 			this.SeparatorWhitecap = new System.Windows.Forms.ToolStripSeparator();
 			this.StripMenu_Help_Version = new System.Windows.Forms.ToolStripMenuItem();
 			this.StripStatus = new System.Windows.Forms.StatusStrip();
@@ -605,7 +606,8 @@
 			//
 			this.StripMenu_Help.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.StripMenu_Help_Help,
-            this.SeparatorWhitecap,
+			this.StripMenu_Help_Issue,
+			this.SeparatorWhitecap,
             this.StripMenu_Help_Version});
 			this.StripMenu_Help.Name = "StripMenu_Help";
 			this.StripMenu_Help.Size = new System.Drawing.Size(67, 20);
@@ -617,6 +619,13 @@
 			this.StripMenu_Help_Help.Size = new System.Drawing.Size(178, 22);
 			this.StripMenu_Help_Help.Text = Menus.OnlineHelp;
 			this.StripMenu_Help_Help.Click += new System.EventHandler(this.StripMenu_Help_Help_Click);
+			//
+			// StripMenu_Help_Issue
+			//
+			this.StripMenu_Help_Issue.Name = "StripMenu_Help_Issue";
+			this.StripMenu_Help_Issue.Size = new System.Drawing.Size(178, 22);
+			this.StripMenu_Help_Issue.Text = "Submit an Issue...";
+			this.StripMenu_Help_Issue.Click += new System.EventHandler(this.StripMenu_Help_Issue_Click);
 			//
 			// SeparatorWhitecap
 			//
@@ -772,6 +781,7 @@
 		private System.Windows.Forms.ToolStripMenuItem StripMenu_Debug_RenameShipResource;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
 		private System.Windows.Forms.ToolStripMenuItem StripMenu_Help_Help;
+		private System.Windows.Forms.ToolStripMenuItem StripMenu_Help_Issue;
 		private System.Windows.Forms.ToolStripSeparator SeparatorWhitecap;
 		private System.Windows.Forms.ToolStripMenuItem StripMenu_File_Layout;
 		private System.Windows.Forms.ToolStripMenuItem StripMenu_File_Layout_Load;
