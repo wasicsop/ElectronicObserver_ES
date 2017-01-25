@@ -136,8 +136,8 @@ namespace ElectronicObserver.Window {
 
 			StringBuilder sb = new StringBuilder();
 			sb.AppendLine( GeneralRes.PracticeReport );
-			sb.AppendLine( "敵提督名 : " + data.api_nickname );
-			sb.AppendLine( GeneralRes.EnemyFleetName + " : " + data.api_deckname );
+			sb.AppendLine( GeneralRes.EnemyAdmiral + ": " + data.api_nickname );
+			sb.AppendLine( GeneralRes.EnemyFleetName + ": " + data.api_deckname );
 
 			{
 				int ship1lv = (int)data.api_deck.api_ships[0].api_id != -1 ? (int)data.api_deck.api_ships[0].api_level : 1;
@@ -153,7 +153,7 @@ namespace ElectronicObserver.Window {
 
 				expbase = (int)expbase;
 
-				sb.AppendFormat( "獲得経験値: {0} / S-rank: {1}\r\n", expbase, (int)( expbase * 1.2 ) );
+				sb.AppendFormat( GeneralRes.BaseExp + ": {0} / S-rank: {1}\r\n", expbase, (int)( expbase * 1.2 ) );
 
 
 				// 練巡ボーナス計算 - きたない
@@ -320,7 +320,7 @@ namespace ElectronicObserver.Window {
 				if ( map != null ) {
 					if ( map.RequiredDefeatedCount != -1 && elem.api_defeat_count() ) {
 
-						sb.AppendFormat( "{0}-{1} : " + GeneralRes.Defeated + " {2}/{3} " + GeneralRes.Times + "\r\n", map.MapAreaID, map.MapInfoID, (int)elem.api_defeat_count, map.RequiredDefeatedCount );
+						sb.AppendFormat( "{0}-{1} : " + GeneralRes.Defeated + " {2}/{3} " + GeneralRes.Times + "\r\n", map.MapAreaID, map.MapInfoID2, (int)elem.api_defeat_count, map.RequiredDefeatedCount );
 
 					} else if ( elem.api_eventmap() ) {
 
@@ -330,7 +330,7 @@ namespace ElectronicObserver.Window {
 						}
 
 						sb.AppendFormat( "{0}-{1} {2}: {3} {4}/{5}\r\n",
-							map.MapAreaID, map.MapInfoID, difficulty,
+							map.MapAreaID, map.MapInfoID2, difficulty,
 							elem.api_eventmap.api_gauge_type() && (int)elem.api_eventmap.api_gauge_type == 3 ? "TP" : "HP",
 							(int)elem.api_eventmap.api_now_maphp, (int)elem.api_eventmap.api_max_maphp );
 

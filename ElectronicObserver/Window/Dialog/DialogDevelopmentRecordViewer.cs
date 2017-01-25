@@ -17,9 +17,9 @@ namespace ElectronicObserver.Window.Dialog {
 
 		private DevelopmentRecord _record;
 
-		private string NameAny = EncycloRes.Any;
-		private string NameNotExist = GeneralRes.Failure;
-		private string NameExist = GeneralRes.Success;
+		private const string NameAny = "(All)";
+		private const string NameNotExist = "(失敗)";
+		private const string NameExist = "(Success)";
 
 
 		private class SearchArgument {
@@ -226,15 +226,15 @@ namespace ElectronicObserver.Window.Dialog {
 				RecordView_Detail.Visible = false;
 			} else {
 				RecordView_Header.Width = 150;
-				RecordView_Header.HeaderText = EncycloRes.Times;
+				RecordView_Header.HeaderText = EncycloRes.Tries;
 				RecordView_Name.AutoSizeMode = DataGridViewAutoSizeColumnMode.NotSet;
 				RecordView_Name.Width = 160;
-				RecordView_Name.HeaderText = ( ( EquipmentName.Text != NameAny && EquipmentName.Text != NameExist ) || (int)EquipmentCategory.SelectedValue != -1 ) ? "レシピ" : "装備";
+				RecordView_Name.HeaderText = ( ( EquipmentName.Text != NameAny && EquipmentName.Text != NameExist ) || (int)EquipmentCategory.SelectedValue != -1 ) ? "Recipe" : "Equipment";
 				RecordView_Date.Visible = false;
 				RecordView_Recipe.Visible = false;
 				RecordView_FlagshipType.Visible = false;
 				RecordView_Flagship.Visible = false;
-				RecordView_Detail.HeaderText = ( SecretaryName.Text != NameAny || (int)SecretaryCategory.SelectedValue != -1 ) ? "レシピ別回数" : "艦種別回数";
+				RecordView_Detail.HeaderText = ( SecretaryName.Text != NameAny || (int)SecretaryCategory.SelectedValue != -1 ) ? "Recipe Tries" : "Ship Type";
 				RecordView_Detail.Visible = true;
 			}
 			RecordView.ColumnHeadersVisible = true;
@@ -370,16 +370,13 @@ namespace ElectronicObserver.Window.Dialog {
 					continue;
 
 				switch ( args.EquipmentName ) {
-					case "(Any)":
-                    case "(全て)":
+					case NameAny:
 						break;
-					case "Success":
-                    case "成功":
+					case NameExist:
 						if ( r.EquipmentID == -1 )
 							continue;
 						break;
-					case "Failure":
-                    case "失敗":
+					case NameNotExist:
 						if ( r.EquipmentID != -1 )
 							continue;
 						break;
@@ -607,5 +604,7 @@ namespace ElectronicObserver.Window.Dialog {
 			}
 
 		}
-    }
+
+
+	}
 }

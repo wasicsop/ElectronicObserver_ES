@@ -686,7 +686,7 @@ namespace ElectronicObserver.Window {
 
 			using ( OpenFileDialog ofd = new OpenFileDialog() ) {
 
-				ofd.Title = "APIリストをロード";
+				ofd.Title = "Load API List";
 				ofd.Filter = "API List|*.txt|File|*";
 				ofd.InitialDirectory = Utility.Configuration.Config.Connection.SaveDataPath;
 
@@ -698,7 +698,7 @@ namespace ElectronicObserver.Window {
 
 					} catch ( Exception ex ) {
 
-						MessageBox.Show( "API読み込みに失敗しました。\r\n" + ex.Message, Resources.Error,
+						MessageBox.Show( "Failed to load API List.\r\n" + ex.Message, Resources.Error,
 							MessageBoxButtons.OK, MessageBoxIcon.Error );
 
 					}
@@ -779,14 +779,14 @@ namespace ElectronicObserver.Window {
 		private void StripMenu_Debug_LoadRecordFromOld_Click( object sender, EventArgs e ) {
 
 			if ( KCDatabase.Instance.MasterShips.Count == 0 ) {
-				MessageBox.Show( "先に通常の api_start2 を読み込んでください。", "大変ご迷惑をおかけしております", MessageBoxButtons.OK, MessageBoxIcon.Information );
+				MessageBox.Show( "Please load normal api_start2 first.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information );
 				return;
 			}
 
 
 			using ( OpenFileDialog ofd = new OpenFileDialog() ) {
 
-				ofd.Title = "旧 api_start2 からレコードを構築";
+				ofd.Title = "Build Record from Old api_start2";
 				ofd.Filter = "api_start2|*api_start2*.json|JSON|*.json|File|*";
 
 				if ( ofd.ShowDialog() == System.Windows.Forms.DialogResult.OK ) {
@@ -810,7 +810,7 @@ namespace ElectronicObserver.Window {
 
 					} catch ( Exception ex ) {
 
-						MessageBox.Show( "API読み込みに失敗しました。\r\n" + ex.Message, Resources.Error,
+						MessageBox.Show( "Failed to load API.\r\n" + ex.Message, Resources.Error,
 							MessageBoxButtons.OK, MessageBoxIcon.Error );
 					}
 				}
@@ -821,14 +821,14 @@ namespace ElectronicObserver.Window {
 		private void StripMenu_Debug_LoadDataFromOld_Click( object sender, EventArgs e ) {
 
 			if ( KCDatabase.Instance.MasterShips.Count == 0 ) {
-				MessageBox.Show( "先に通常の api_start2 を読み込んでください。", "大変ご迷惑をおかけしております", MessageBoxButtons.OK, MessageBoxIcon.Information );
+				MessageBox.Show( "Please load normal api_start2 first.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information );
 				return;
 			}
 
 
 			using ( OpenFileDialog ofd = new OpenFileDialog() ) {
 
-				ofd.Title = "旧 api_start2 から深海棲艦を復元";
+				ofd.Title = "Restore Abyssal Data from Old api_start2";
 				ofd.Filter = "api_start2|*api_start2*.json|JSON|*.json|File|*";
 				ofd.InitialDirectory = Utility.Configuration.Config.Connection.SaveDataPath;
 
@@ -851,11 +851,11 @@ namespace ElectronicObserver.Window {
 							}
 						}
 
-						Utility.Logger.Add( 1, "旧 api_start2 からデータを復元しました。" );
+						Utility.Logger.Add( 1, "Restored data from old api_start2" );
 
 					} catch ( Exception ex ) {
 
-						MessageBox.Show( "API読み込みに失敗しました。\r\n" + ex.Message, Resources.Error,
+						MessageBox.Show( "Failed to load API.\r\n" + ex.Message, Resources.Error,
 							MessageBoxButtons.OK, MessageBoxIcon.Error );
 					}
 				}
@@ -867,7 +867,7 @@ namespace ElectronicObserver.Window {
 		private void StripMenu_Tool_AlbumMasterShip_Click( object sender, EventArgs e ) {
 
 			if ( KCDatabase.Instance.MasterShips.Count == 0 ) {
-				MessageBox.Show( "艦船データが読み込まれていません。", Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error );
+				MessageBox.Show( "Ship data is not loaded.", Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error );
 
 			} else {
 				new DialogAlbumMasterShip().Show( this );
@@ -878,7 +878,7 @@ namespace ElectronicObserver.Window {
 		private void StripMenu_Tool_AlbumMasterEquipment_Click( object sender, EventArgs e ) {
 
 			if ( KCDatabase.Instance.MasterEquipments.Count == 0 ) {
-				MessageBox.Show( "装備データが読み込まれていません。", Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error );
+				MessageBox.Show( "Equipment data is not loaded", Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error );
 
 			} else {
 				new DialogAlbumMasterEquipment().Show( this );
@@ -889,18 +889,18 @@ namespace ElectronicObserver.Window {
 
 		private async void StripMenu_Debug_DeleteOldAPI_Click( object sender, EventArgs e ) {
 
-			if ( MessageBox.Show( "古いAPIデータを削除します。\r\n本当によろしいですか？", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2 )
+			if ( MessageBox.Show( "This will delete old API data.\r\nAre you sure?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2 )
 				== System.Windows.Forms.DialogResult.Yes ) {
 
 				try {
 
 					int count = await Task.Factory.StartNew( () => DeleteOldAPI() );
 
-					MessageBox.Show( "削除が完了しました。\r\n" + count + " 個のファイルを削除しました。", "削除成功", MessageBoxButtons.OK, MessageBoxIcon.Information );
+					MessageBox.Show( "Delete successful.\r\n" + count + " files deleted.", "Delete Successful", MessageBoxButtons.OK, MessageBoxIcon.Information );
 
 				} catch ( Exception ex ) {
 
-					MessageBox.Show( "削除に失敗しました。\r\n" + ex.Message, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error );
+					MessageBox.Show( "Failed to delete.\r\n" + ex.Message, Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error );
 				}
 
 
@@ -955,7 +955,7 @@ namespace ElectronicObserver.Window {
 		private async void StripMenu_Debug_RenameShipResource_Click( object sender, EventArgs e ) {
 
 			if ( KCDatabase.Instance.MasterShips.Count == 0 ) {
-				MessageBox.Show( "艦船データが読み込まれていません。", Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error );
+				MessageBox.Show( "Ship data is not loaded.", Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error );
 				return;
 			}
 
@@ -1060,11 +1060,24 @@ namespace ElectronicObserver.Window {
 
 		private void StripMenu_Help_Help_Click( object sender, EventArgs e ) {
 
-			if ( MessageBox.Show( "外部ブラウザでオンラインヘルプを開きます。\r\nよろしいですか？", "ヘルプ",
+			if ( MessageBox.Show("This will open Online Help with your browser.\r\nAre you sure?", "Help",
 				MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1 )
 				== System.Windows.Forms.DialogResult.Yes ) {
 
 				System.Diagnostics.Process.Start( "https://github.com/andanteyk/ElectronicObserver/wiki" );
+			}
+
+		}
+
+		private void StripMenu_Help_Issue_Click(object sender, EventArgs e)
+		{
+
+			if (MessageBox.Show("This will open a page with your browser.\r\nAre you sure?", "Report an Issue",
+				MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1)
+				== System.Windows.Forms.DialogResult.Yes)
+			{
+
+				System.Diagnostics.Process.Start("https://gitreports.com/issue/silfumus/ElectronicObserver");
 			}
 
 		}

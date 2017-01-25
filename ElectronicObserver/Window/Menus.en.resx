@@ -324,4 +324,7 @@
   <data name="AntiAirDefense" xml:space="preserve">
     <value>AA Defense Details (&amp;A)</value>
   </data>
+  <data name="LoadDataFromOld" xml:space="preserve">
+    <value>Restore Abyssal Data from Old api_start2 (&amp;A)...</value>
+  </data>
 </root>

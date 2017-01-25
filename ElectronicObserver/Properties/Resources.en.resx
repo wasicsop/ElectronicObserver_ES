@@ -216,7 +216,7 @@ Add windows of your choosing using the "View" menu.</value>
     <value>Open Layout File</value>
   </data>
   <data name="OriginalSite" xml:space="preserve">
-    <value>Original site (bug reports, contact)</value>
+    <value>Original site</value>
   </data>
   <data name="SoftwareName" xml:space="preserve">
     <value>Electronic Observer </value>
@@ -225,7 +225,7 @@ Add windows of your choosing using the "View" menu.</value>
     <value>Startup complete.</value>
   </data>
   <data name="TranslatedSite" xml:space="preserve">
-    <value>Translation site</value>
+    <value>Translation project site:</value>
   </data>
   <data name="TranslatedVer" xml:space="preserve">
     <value>Translator</value>

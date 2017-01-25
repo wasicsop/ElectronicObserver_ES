@@ -321,7 +321,7 @@ namespace ElectronicObserver.Window.Dialog {
 				sb.Append( cell );
 			}
 			if ( isboss )
-				sb.Append( " [ボス]" );
+				sb.Append( " [Boss]" );
 
 			if ( insertEnemyFleetName ) {
 				var enemy = RecordManager.Instance.EnemyFleet.Record.Values.FirstOrDefault( r => r.MapAreaID == maparea && r.MapInfoID == mapinfo && r.CellID == cell && r.Difficulty == difficulty );

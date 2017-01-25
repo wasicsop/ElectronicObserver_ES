@@ -145,10 +145,10 @@ namespace ElectronicObserver.Data {
 		/// <summary>
 		/// 図鑑説明
 		/// </summary>
-		public string Message {
-			get { return ( (string)RawData.api_info ).Replace( "<br>", "\n" ); }
+		public string Message
+		{
+			get { return Window.FormMain.Instance.Translator.GetTranslation(((string)RawData.api_info), Utility.TranslationType.EquipmentDesc).Replace("<br>", "\n"); }
 		}
-
 
 		/// <summary>
 		/// 基地航空隊：配置コスト
