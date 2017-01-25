@@ -624,7 +624,7 @@
 			//
 			this.StripMenu_Help_Issue.Name = "StripMenu_Help_Issue";
 			this.StripMenu_Help_Issue.Size = new System.Drawing.Size(178, 22);
-			this.StripMenu_Help_Issue.Text = "Submit an Issue...";
+			this.StripMenu_Help_Issue.Text = "Report an Issue...";
 			this.StripMenu_Help_Issue.Click += new System.EventHandler(this.StripMenu_Help_Issue_Click);
 			//
 			// SeparatorWhitecap
