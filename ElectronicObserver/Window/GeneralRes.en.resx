@@ -255,7 +255,7 @@ Range: {20} / Speed: {21}
     <value>Create a new group (&amp;C)...</value>
   </data>
   <data name="CreateGroupName" xml:space="preserve">
-    <value>Please enter the name of the group you wish to create:</value>
+    <value>Add selected ships to the following group:</value>
   </data>
   <data name="CurrentHealth" xml:space="preserve">
     <value>Current Health</value>

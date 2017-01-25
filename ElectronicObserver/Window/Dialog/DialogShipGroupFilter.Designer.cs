@@ -575,7 +575,7 @@
 			// ConstFilterView_Name
 			// 
 			this.ConstFilterView_Name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.ConstFilterView_Name.HeaderText = "艦名";
+			this.ConstFilterView_Name.HeaderText = "Name";
 			this.ConstFilterView_Name.Name = "ConstFilterView_Name";
 			this.ConstFilterView_Name.ReadOnly = true;
 			this.ConstFilterView_Name.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -613,8 +613,8 @@
 			this.ConstFilterSelector.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.ConstFilterSelector.FormattingEnabled = true;
 			this.ConstFilterSelector.Items.AddRange(new object[] {
-            "包含リスト",
-            "除外リスト"});
+            "Inclusion List",
+			"Exclusion List"});
 			this.ConstFilterSelector.Location = new System.Drawing.Point(8, 42);
 			this.ConstFilterSelector.Name = "ConstFilterSelector";
 			this.ConstFilterSelector.Size = new System.Drawing.Size(357, 23);
@@ -628,7 +628,7 @@
 			this.ButtonMenu.Name = "ButtonMenu";
 			this.ButtonMenu.Size = new System.Drawing.Size(75, 23);
 			this.ButtonMenu.TabIndex = 1;
-			this.ButtonMenu.Text = "メニュー ▼";
+			this.ButtonMenu.Text = "Menu ▼";
 			this.ButtonMenu.UseVisualStyleBackColor = true;
 			this.ButtonMenu.Click += new System.EventHandler(this.ButtonMenu_Click);
 			// 
@@ -644,14 +644,14 @@
 			// 
 			this.SubMenu_ImportFilter.Name = "SubMenu_ImportFilter";
 			this.SubMenu_ImportFilter.Size = new System.Drawing.Size(188, 22);
-			this.SubMenu_ImportFilter.Text = "フィルタのインポート(&I)";
+			this.SubMenu_ImportFilter.Text = "&Import Filter";
 			this.SubMenu_ImportFilter.Click += new System.EventHandler(this.Menu_ImportFilter_Click);
 			// 
 			// SubMenu_ExportFilter
 			// 
 			this.SubMenu_ExportFilter.Name = "SubMenu_ExportFilter";
 			this.SubMenu_ExportFilter.Size = new System.Drawing.Size(188, 22);
-			this.SubMenu_ExportFilter.Text = "フィルタのエクスポート(&E)";
+			this.SubMenu_ExportFilter.Text = "&Export filter";
 			this.SubMenu_ExportFilter.Click += new System.EventHandler(this.Menu_ExportFilter_Click);
 			// 
 			// DialogShipGroupFilter
@@ -667,7 +667,7 @@
 			this.MinimizeBox = false;
 			this.Name = "DialogShipGroupFilter";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-			this.Text = "フィルタ設定";
+			this.Text = "Filter Settings";
 			this.Load += new System.EventHandler(this.DialogShipGroupFilter_Load);
 			this.splitContainer1.Panel1.ResumeLayout(false);
 			this.splitContainer1.Panel2.ResumeLayout(false);
