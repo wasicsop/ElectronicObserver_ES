@@ -1032,4 +1032,10 @@ Denial: {3}</value>
   <data name="ShipAADefense" xml:space="preserve">
     <value>Adj AA: {0} (Rate: {1:p2})</value>
   </data>
+  <data name="EnemyAdmiral" xml:space="preserve">
+    <value>Enemy Admiral</value>
+  </data>
+  <data name="BaseExp" xml:space="preserve">
+    <value>Base Exp</value>
+  </data>
 </root>

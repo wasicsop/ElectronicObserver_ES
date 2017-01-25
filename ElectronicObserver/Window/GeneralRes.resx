@@ -984,4 +984,10 @@
   <data name="ShipAADefense" xml:space="preserve">
     <value>加重対空: {0} (割合撃墜: {1:p2})</value>
   </data>
+  <data name="EnemyAdmiral" xml:space="preserve">
+    <value>敵提督名</value>
+  </data>
+  <data name="BaseExp" xml:space="preserve">
+    <value>獲得経験値</value>
+  </data>
 </root>

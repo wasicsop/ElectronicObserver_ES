@@ -136,8 +136,8 @@ namespace ElectronicObserver.Window {
 
 			StringBuilder sb = new StringBuilder();
 			sb.AppendLine( GeneralRes.PracticeReport );
-			sb.AppendLine( "敵提督名 : " + data.api_nickname );
-			sb.AppendLine( GeneralRes.EnemyFleetName + " : " + data.api_deckname );
+			sb.AppendLine( GeneralRes.EnemyAdmiral + ": " + data.api_nickname );
+			sb.AppendLine( GeneralRes.EnemyFleetName + ": " + data.api_deckname );
 
 			{
 				int ship1lv = (int)data.api_deck.api_ships[0].api_id != -1 ? (int)data.api_deck.api_ships[0].api_level : 1;
@@ -153,7 +153,7 @@ namespace ElectronicObserver.Window {
 
 				expbase = (int)expbase;
 
-				sb.AppendFormat( "獲得経験値: {0} / S-rank: {1}\r\n", expbase, (int)( expbase * 1.2 ) );
+				sb.AppendFormat( GeneralRes.BaseExp + ": {0} / S-rank: {1}\r\n", expbase, (int)( expbase * 1.2 ) );
 
 
 				// 練巡ボーナス計算 - きたない

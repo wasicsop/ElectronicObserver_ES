@@ -350,6 +350,15 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 獲得経験値.
+        /// </summary>
+        internal static string BaseExp {
+            get {
+                return ResourceManager.GetString("BaseExp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to (未開放)\r\n.
         /// </summary>
         internal static string BaseNotOpen {
@@ -1046,6 +1055,15 @@ namespace ElectronicObserver.Window {
         internal static string EndNode {
             get {
                 return ResourceManager.GetString("EndNode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 敵提督名.
+        /// </summary>
+        internal static string EnemyAdmiral {
+            get {
+                return ResourceManager.GetString("EnemyAdmiral", resourceCulture);
             }
         }
         
