@@ -115,15 +115,21 @@ namespace ElectronicObserver.Window {
 			Font = FlowPanelMaster.Font = Utility.Configuration.Config.UI.MainFont;
 			HQLevel.MainFont = Utility.Configuration.Config.UI.MainFont;
 			HQLevel.SubFont = Utility.Configuration.Config.UI.SubFont;
+			HQLevel.MainFontColor = Utility.Configuration.Config.UI.ForeColor;
+			HQLevel.SubFontColor = Utility.Configuration.Config.UI.SubForeColor;
 
 			// 点滅しない設定にしたときに消灯状態で固定されるのを防ぐ
 			if ( !Utility.Configuration.Config.FormHeadquarters.BlinkAtMaximum ) {
-				if ( ShipCount.Tag as bool? ?? false ) {
-					ShipCount.BackColor = Color.LightCoral;
+				if (ShipCount.Tag as bool? ?? false)
+				{
+					ShipCount.BackColor = Utility.Configuration.Config.UI.Blink_BackColorLightCoral;
+					ShipCount.ForeColor = Utility.Configuration.Config.UI.Blink_ForeColor;
 				}
 
-				if ( EquipmentCount.Tag as bool? ?? false ) {
-					EquipmentCount.BackColor = Color.LightCoral;
+				if (EquipmentCount.Tag as bool? ?? false)
+				{
+					EquipmentCount.BackColor = Utility.Configuration.Config.UI.Blink_BackColorLightCoral;
+					EquipmentCount.ForeColor = Utility.Configuration.Config.UI.Blink_ForeColor;
 				}
 			}
 
@@ -252,18 +258,28 @@ namespace ElectronicObserver.Window {
 			{
 
 				ShipCount.Text = string.Format( "{0}/{1}", RealShipCount, db.Admiral.MaxShipCount );
-				if ( RealShipCount > db.Admiral.MaxShipCount - 5 ) {
-					ShipCount.BackColor = Color.LightCoral;
-				} else {
+				if (RealShipCount > db.Admiral.MaxShipCount - 5)
+				{
+					ShipCount.BackColor = Utility.Configuration.Config.UI.Blink_BackColorLightCoral;
+					ShipCount.ForeColor = Utility.Configuration.Config.UI.Blink_ForeColor;
+				}
+				else
+				{
 					ShipCount.BackColor = Color.Transparent;
+					ShipCount.ForeColor = Utility.Configuration.Config.UI.ForeColor;
 				}
 				ShipCount.Tag = RealShipCount >= db.Admiral.MaxShipCount;
 
 				EquipmentCount.Text = string.Format( "{0}/{1}", RealEquipmentCount, db.Admiral.MaxEquipmentCount );
-				if ( RealEquipmentCount > db.Admiral.MaxEquipmentCount + 3 - 20 ) {
-					EquipmentCount.BackColor = Color.LightCoral;
-				} else {
+				if (RealEquipmentCount > db.Admiral.MaxEquipmentCount + 3 - 20)
+				{
+					EquipmentCount.BackColor = Utility.Configuration.Config.UI.Blink_BackColorLightCoral;
+					EquipmentCount.ForeColor = Utility.Configuration.Config.UI.Blink_ForeColor;
+				}
+				else
+				{
 					EquipmentCount.BackColor = Color.Transparent;
+					EquipmentCount.ForeColor = Utility.Configuration.Config.UI.ForeColor;
 				}
 				EquipmentCount.Tag = RealEquipmentCount >= db.Admiral.MaxEquipmentCount;
 
@@ -323,7 +339,7 @@ namespace ElectronicObserver.Window {
 			//Resources
 			FlowPanelResource.SuspendLayout();
 			{
-				Color overcolor = Color.Moccasin;
+				Color overcolor = Utility.Configuration.Config.UI.SubBackColor;
 
 				Fuel.Text = db.Material.Fuel.ToString();
 				Fuel.BackColor = db.Material.Fuel < db.Admiral.MaxResourceRegenerationAmount ? Color.Transparent : overcolor;
@@ -372,12 +388,16 @@ namespace ElectronicObserver.Window {
 			if ( db.Ships.Count <= 0 ) return;
 
 			if ( Utility.Configuration.Config.FormHeadquarters.BlinkAtMaximum ) {
-				if ( ShipCount.Tag as bool? ?? false ) {
-					ShipCount.BackColor = DateTime.Now.Second % 2 == 0 ? Color.LightCoral : Color.Transparent;
+				if (ShipCount.Tag as bool? ?? false)
+				{
+					ShipCount.BackColor = Utility.Configuration.Config.UI.Blink_BackColorLightCoral;
+					ShipCount.ForeColor = Utility.Configuration.Config.UI.Blink_ForeColor;
 				}
 
-				if ( EquipmentCount.Tag as bool? ?? false ) {
-					EquipmentCount.BackColor = DateTime.Now.Second % 2 == 0 ? Color.LightCoral : Color.Transparent;
+				if (EquipmentCount.Tag as bool? ?? false)
+				{
+					EquipmentCount.BackColor = Utility.Configuration.Config.UI.Blink_BackColorLightCoral;
+					EquipmentCount.ForeColor = Utility.Configuration.Config.UI.Blink_ForeColor;
 				}
 			}
 		}

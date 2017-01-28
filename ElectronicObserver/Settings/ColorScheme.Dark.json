@@ -1,0 +1,117 @@
+[{
+  // Color scheme name
+  "name": "VS2015 Dark",
+
+// ####################################
+// ## Color format:  #RGB / #RRGGBB  ##
+// ####################################
+
+  // Base Color
+  // 不排除未来这些基本颜色将被用作其他用途，请勿定义成和名称不符的颜色
+  "basicColors": {
+    "red":     "#F00",    // red - severe fatigue, taiha, 出击任务, elite 级深海
+    "orange":  "#FFA500", // orange - moderate fatigue, chuuha, flagship 级深海
+    "yellow":  "#FF0",    // yellow - light fatigue, shouha、
+    "green":   "#0F0",    // green - 
+    "cyan":    "#0FF",    // cyan - 装备改修等级
+    "blue":    "#00F",    // blue - 战意高扬、满血、任务进度 100%
+    "magenta": "#F0F",    // magenta - 航空队全灭 ( 残机数 0 )
+    "violet":  "#EE82EE"  // violet - 改装任务
+  },
+  // 数值条颜色
+  "barColors": [[
+    "#FF0000", // taiha
+    "#FF0000", // taiha
+    "#FF8800", // chuuha
+    "#FF8800", // chuuha
+    "#FFCC00", // shouha
+    "#FFCC00", // shouha
+    "#00CC00", // scratch
+    "#00CC00", // scratch
+    "#0044CC", // healthy
+    "#44FF00", // 未使用 ? (_barColorIncrement)
+    "#882222", // 造成伤害
+    "#888888"  // bg color
+  ],[
+    // 开启 "更多阶数值条颜色" 时的定义
+    "#FF0000", // taiha
+    "#FF0000", // taiha
+    "#FF4400", // chuuha
+    "#FF8800", // chuuha
+    "#FFAA00", // shouha
+    "#EEEE00", // shouha
+    "#CCEE00", // scratch
+    "#00CC00", // scratch
+    "#0044CC", // healthy
+    "#00FF44", //
+    "#882222", // 造成伤害
+    "#888888"  // bg color
+  ]],
+  // 面板颜色
+  "panelColors": {
+    "foreground":  "#000000", // 主文字色 - 大部分文字颜色
+    "background":  "#F0F0F0", // 主bg color - 各面板背景颜色
+    "foreground2": "#000000", // 副文字色 - 副bg color上的文字颜色
+    "background2": "#E3E3E3", // 副bg color - 状态栏背景、各种分隔线
+
+//  ######################################################
+//  ##  以下颜色均存在默认值，在每行注释后的 [] 内标出  ##
+//  ######################################################
+
+  // Status Bar
+  "statusBarFG" : "#000000", // [foreground2] status bar text color
+  "statusBarBG" : "#E3E3E3", // [background2] status bar bg color
+
+    // 主界面 - 标签页
+    // 注：自定义配色刚刚实现，以下三组颜色暂不建议设置为不同颜色
+    "tabActiveFG":    "#007ACC", // [foreground2] active tab text color
+    "tabActiveBG":    "#007ACC", // [background2] active tab bg color
+    "tabLostFocusFG": "#2D2D30", // [foreground2] inactive tab text color
+    "tabLostFocusBG": "#007ACC", // [background2] inactive tab bg color
+    "tabHoverFG":     "#3F3F46", // [foreground2] hover tab text color
+    "tabHoverBG":     "#1C97EA", // [background2] hover tab bg color
+    // View - Fleet
+    "fleet": {
+      "conditionVeryTired":   "#F08080", // [red]    severe fatigue
+      "conditionTired":       "#FFA07A", // [orange] medium fatigue
+      "conditionLittleTired": "#FFE4B5", // [yellow] light fatigue
+      "conditionSparkle":     "#90EE90", // [blue]   sparkled
+      "equipmentLevel":       "#006666"  // [cyan]   eq lvl value
+    },
+    // View - HQ
+    "hq": {
+      "empty": "place_holder"
+    },
+    // View - Quest
+    "quest": {
+      "typeHensei":     "#AAFFAA", // [green]  编成类任务
+      "typeShutsugeki": "#FFCCCC", // [red]    出击类任务
+      "typeEnshu":      "#DDFFAA", // [green]  演习类任务
+      "typeEnsei":      "#DDFFAA", // [cyan]   远征类任务
+      "typeHokyu":      "#CCFFFF", // [yellow] 补给、入渠类任务
+      "typeKojo":       "#DDCCBB", // [orange] 工厂类任务
+      "typeKaiso":      "#DDCCFF", // [violet] 改装类任务
+      "processLT50":    "#FF8800", // [orange] 任务进度 <50%
+      "processLT80":    "#00CC00", // [green]  任务进度 <80%
+      "processLT100":   "#008800", // [cyan]   任务进度 <100%
+      "processDefault": "#0088FF"  // [blue]   任务进度 100%
+    },
+    // View - Compass
+    "compass": {
+      "shipClass2": "#F00",    // [red]     elite
+      "shipClass3": "#FF8800", // [orange]  flagship
+      "shipClass4": "#0088FF", // [blue]    改 flagship / 后期型
+      "shipClass5": "#880000", // [magenta] 后期型 elite
+      "shipClass6": "#884400", // [yellow]  后期型 flagship
+      "eventKind3": "#000080", // [violet]  夜战
+      "eventKind6": "#006400", // [green]   航空战
+      "eventKind5": "#8B0000"  // [violet]  敌联合
+    },
+    // View - Battle
+    "battle": {
+      "barBossDamaged": "#FFE4E1", // [orange]      受损状态 BOSS
+      "barMVP":         "#FFE4B5", // [blue]        MVP
+      "barEscaped":     "#C0C0C0"  // [background2] 已退避
+    }
+  }
+}]

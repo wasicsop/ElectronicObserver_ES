@@ -103,6 +103,12 @@ namespace ElectronicObserver.Window {
 
 			Utility.Configuration.Instance.Load( this );
 
+			this.MainDockPanel.Styles = Configuration.Config.UI.DockPanelSuiteStyles;
+			this.MainDockPanel.Theme = new WeifenLuo.WinFormsUI.Docking.VS2012Theme();
+			this.BackColor = this.StripMenu.BackColor = Utility.Configuration.Config.UI.BackColor;
+			this.ForeColor = this.StripMenu.ForeColor = Utility.Configuration.Config.UI.ForeColor;
+			this.StripStatus.BackColor = Utility.Configuration.Config.UI.StatusBarBackColor;
+			this.StripStatus.ForeColor = Utility.Configuration.Config.UI.StatusBarForeColor;
 
 			Utility.Logger.Instance.LogAdded += new Utility.LogAddedEventHandler( ( Utility.Logger.LogData data ) => {
 				if ( InvokeRequired ) {
@@ -263,6 +269,21 @@ namespace ElectronicObserver.Window {
 			StripStatus.Font = Font;
 			MainDockPanel.Skin.AutoHideStripSkin.TextFont = Font;
 			MainDockPanel.Skin.DockPaneStripSkin.TextFont = Font;
+
+
+			foreach (var f in SubForms)
+			{
+				f.BackColor = this.BackColor;
+				f.ForeColor = this.ForeColor;
+				if (f is FormShipGroup)
+				{ // 暂时不对舰队编成窗口应用主题
+					f.BackColor = SystemColors.Control;
+					f.ForeColor = SystemColors.ControlText;
+				}
+			}
+
+			StripStatus_Information.BackColor = System.Drawing.Color.Transparent;
+			StripStatus_Information.Margin = new Padding(-1, 1, -1, 0);
 
 
 			if ( c.Life.LockLayout ) {

@@ -140,12 +140,6 @@ namespace BrowserLib {
 		[DataMember]
 		public bool ConfirmAtRefresh { get; set; }
         
-        /// <summary>
-        /// Visual style for browser.
-        /// </summary>
-        [DataMember]
-        public uint Theme { get; set; }
-
 		/// <summary>
 		/// 現在の音量
 		/// </summary>
@@ -157,5 +151,8 @@ namespace BrowserLib {
 		/// </summary>
 		[DataMember]
 		public bool IsMute { get; set; }
+
+		[DataMember]
+		public int BackColor { get; set; }
 	}
 }

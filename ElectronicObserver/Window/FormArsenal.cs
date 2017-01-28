@@ -32,7 +32,6 @@ namespace ElectronicObserver.Window {
 				ShipName = new ImageLabel();
 				ShipName.Text = "???";
 				ShipName.Anchor = AnchorStyles.Left;
-				ShipName.ForeColor = parent.ForeColor;
 				ShipName.TextAlign = ContentAlignment.MiddleLeft;
 				ShipName.Padding = new Padding( 0, 1, 0, 1 );
 				ShipName.Margin = new Padding( 2, 0, 2, 0 );
@@ -45,7 +44,6 @@ namespace ElectronicObserver.Window {
 				CompletionTime = new Label();
 				CompletionTime.Text = "";
 				CompletionTime.Anchor = AnchorStyles.Left;
-				CompletionTime.ForeColor = parent.ForeColor;
 				CompletionTime.Tag = null;
 				CompletionTime.TextAlign = ContentAlignment.MiddleLeft;
 				CompletionTime.Padding = new Padding( 0, 1, 0, 1 );
@@ -94,6 +92,7 @@ namespace ElectronicObserver.Window {
 				bool showShipName = Utility.Configuration.Config.FormArsenal.ShowShipName;
 
 				CompletionTime.BackColor = Color.Transparent;
+				CompletionTime.ForeColor = Utility.Configuration.Config.UI.ForeColor;
 				tooltip.SetToolTip( ShipName, null );
 				tooltip.SetToolTip( CompletionTime, null );
 
@@ -140,12 +139,14 @@ namespace ElectronicObserver.Window {
 					CompletionTime.Text = DateTimeHelper.ToTimeRemainString( time );
 
 					if ( Utility.Configuration.Config.FormArsenal.BlinkAtCompletion && ( time - DateTime.Now ).TotalMilliseconds <= Utility.Configuration.Config.NotifierConstruction.AccelInterval ) {
-						CompletionTime.BackColor = DateTime.Now.Second % 2 == 0 ? Color.LightGreen : Color.Transparent;
+						CompletionTime.BackColor = DateTime.Now.Second % 2 == 0 ? Utility.Configuration.Config.UI.Blink_BackColorLightGreen : Color.Transparent;
+						CompletionTime.ForeColor = DateTime.Now.Second % 2 == 0 ? Utility.Configuration.Config.UI.Blink_ForeColor : Utility.Configuration.Config.UI.ForeColor;
 					}
 
 				} else if ( Utility.Configuration.Config.FormArsenal.BlinkAtCompletion && !string.IsNullOrWhiteSpace( CompletionTime.Text ) ) {
 					//完成しているので
-					CompletionTime.BackColor = DateTime.Now.Second % 2 == 0 ? Color.LightGreen : Color.Transparent;
+					CompletionTime.BackColor = DateTime.Now.Second % 2 == 0 ? Utility.Configuration.Config.UI.Blink_BackColorLightGreen : Color.Transparent;
+					CompletionTime.ForeColor = DateTime.Now.Second % 2 == 0 ? Utility.Configuration.Config.UI.Blink_ForeColor : Utility.Configuration.Config.UI.ForeColor;
 				}
 			}
 
@@ -154,6 +155,7 @@ namespace ElectronicObserver.Window {
 				ShipName.Font = parent.Font;
 				CompletionTime.Font = parent.Font;
 				CompletionTime.BackColor = Color.Transparent;
+				ShipName.ForeColor = CompletionTime.ForeColor = Utility.Configuration.Config.UI.ForeColor;
 			}
 
 		}
@@ -280,7 +282,7 @@ namespace ElectronicObserver.Window {
 
 
 		private void TableArsenal_CellPaint( object sender, TableLayoutCellPaintEventArgs e ) {
-			e.Graphics.DrawLine( Pens.Silver, e.CellBounds.X, e.CellBounds.Bottom - 1, e.CellBounds.Right - 1, e.CellBounds.Bottom - 1 );
+			e.Graphics.DrawLine(Utility.Configuration.Config.UI.SubBackColorPen, e.CellBounds.X, e.CellBounds.Bottom - 1, e.CellBounds.Right - 1, e.CellBounds.Bottom - 1 );
 		}
 
 
