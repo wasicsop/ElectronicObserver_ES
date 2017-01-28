@@ -1349,7 +1349,7 @@ namespace ElectronicObserver.Utility {
 				Logger.Add(2, "The specified ThemeID does not exist.");
 			}
 			ThemeStyle = json[themeId];
-			Logger.Add(2, "Color scheme " + ThemeStyle["name"] + " loaded");
+			Logger.Add(2, ThemeStyle["name"] + " color scheme loaded.");
 			// 定义基本颜色
 			Config.UI.Color_Red     = ThemeColor("basicColors", "red");
 			Config.UI.Color_Orange  = ThemeColor("basicColors", "orange");
