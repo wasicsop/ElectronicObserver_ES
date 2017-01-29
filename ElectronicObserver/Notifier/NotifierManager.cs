@@ -71,7 +71,7 @@ namespace ElectronicObserver.Notifier {
 
 				form.DialogData.Location = p;
 			}
-
+			form.FormBorderStyle = FormBorderStyle.FixedToolWindow;
 			form.Show();
 		}
 

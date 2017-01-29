@@ -241,9 +241,10 @@ namespace ElectronicObserver.Window {
 		private void FormMain_Shown( object sender, EventArgs e ) {
 			// Load で設定すると無視されるかバグる(タスクバーに出なくなる)のでここで設定
 			TopMost = Utility.Configuration.Config.Life.TopMost;
-
+			Activate();
 			// HACK: タスクバーに表示されなくなる不具合への応急処置　効くかは知らない
 			ShowInTaskbar = true;
+			
 		}
 
 

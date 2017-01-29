@@ -334,8 +334,15 @@ namespace Browser {
 
 			} catch ( Exception ex ) {
 
-				BrowserHost.AsyncRemoteRun( () =>
-					BrowserHost.Proxy.SendErrorReport( ex.ToString(), Resources.FailedToApplyStylesheet ) );
+				if (ex is COMException)
+				{
+					// Do nothing
+				}
+				else
+				{
+					BrowserHost.AsyncRemoteRun(() => BrowserHost.Proxy.SendErrorReport(ex.ToString(), Resources.FailedToApplyStylesheet));
+				}
+
 			}
 
 		}
