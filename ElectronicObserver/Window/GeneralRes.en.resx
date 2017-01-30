@@ -125,7 +125,7 @@ Cut-in type: {1} ({2})</value>
     <value>AA Cut-in</value>
   </data>
   <data name="AAPower" xml:space="preserve">
-    <value>AA Firepower</value>
+    <value>AA Defense</value>
   </data>
   <data name="Achieved" xml:space="preserve">
     <value>Complete!</value>
@@ -449,7 +449,7 @@ Contact Chance:
     <value>Name (&amp;N)</value>
   </data>
   <data name="NextNode" xml:space="preserve">
-    <value>Next node</value>
+    <value>Node</value>
   </data>
   <data name="NightBattle" xml:space="preserve">
     <value>Night Battle</value>

@@ -296,7 +296,7 @@ May increase speed depending on environment.</value>
     <value>Group</value>
   </data>
   <data name="IsScrollable" xml:space="preserve">
-    <value>Display scroll bar.</value>
+    <value>Display scroll bar</value>
   </data>
   <data name="LayoutFile" xml:space="preserve">
     <value>Layout File</value>
@@ -638,7 +638,7 @@ More details, as well as an access key, can be found on the site below. (opens y
     <value>s</value>
   </data>
   <data name="Volume" xml:space="preserve">
-    <value>Volume :</value>
+    <value>Vol :</value>
   </data>
   <data name="Others" xml:space="preserve">
     <value>Others</value>
@@ -647,7 +647,7 @@ More details, as well as an access key, can be found on the site below. (opens y
     <value>Failed to write browser version to the registry.</value>
   </data>
   <data name="WriteRegistry" xml:space="preserve">
-    <value>Wrote browser version in the registry. If you want to delete it, go to Settings → Sub-window → Browser 2 → Delete.</value>
+    <value>Wrote browser version in the registry. If you want to delete it, go to Settings → Window → IE (2) → Delete.</value>
   </data>
   <data name="AnchorageRepairFinish" xml:space="preserve">
     <value>Anchorage repair</value>

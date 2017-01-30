@@ -133,16 +133,16 @@
     <value>Air Battle</value>
   </data>
   <data name="AirDenialNew" xml:space="preserve">
-    <value>Air Denial</value>
+    <value>AI</value>
   </data>
   <data name="AirParity" xml:space="preserve">
-    <value>Air Parity</value>
+    <value>AP</value>
   </data>
   <data name="AirSuperiority" xml:space="preserve">
-    <value>Air Superiority</value>
+    <value>AS</value>
   </data>
   <data name="AirSupremacy" xml:space="preserve">
-    <value>Air Supremacy</value>
+    <value>AS+</value>
   </data>
   <data name="Ammo" xml:space="preserve">
     <value>Ammo</value>
@@ -166,7 +166,7 @@
     <value>Blue</value>
   </data>
   <data name="BossNode" xml:space="preserve">
-    <value>Boss Battle</value>
+    <value>Boss</value>
   </data>
   <data name="Bucket" xml:space="preserve">
     <value>Instant Repair</value>
@@ -490,13 +490,13 @@
     <value>Surface Fleet</value>
   </data>
   <data name="TAdvantage" xml:space="preserve">
-    <value>T (Advantage)</value>
+    <value>Green T</value>
   </data>
   <data name="TaskForce" xml:space="preserve">
     <value>Task Force</value>
   </data>
   <data name="TDisadvantage" xml:space="preserve">
-    <value>T (Disadvantage)</value>
+    <value>Red T</value>
   </data>
   <data name="ThirdPatrolFormation" xml:space="preserve">
     <value>Third Cruising Formation</value>
@@ -814,7 +814,7 @@
     <value>AA Cut-in type #{2} ( {0}, {1} )</value>
   </data>
   <data name="AirIncapability" xml:space="preserve">
-    <value>Air Incapability</value>
+    <value>AI-</value>
   </data>
   <data name="UnidentifiedPlane" xml:space="preserve">
     <value>Unidentified Plane</value>
