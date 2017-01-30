@@ -30,17 +30,21 @@ namespace ElectronicObserver.Utility
         private string operationsVersion;
         private string questsVersion;
         private string expeditionsVersion;
+		private bool jpShipName = Configuration.Config.UI.JapaneseShipName;
+		private bool jpShipType = Configuration.Config.UI.JapaneseShipType;
+		private bool jpEquipmentName = Configuration.Config.UI.JapaneseEquipmentName;
+		private bool jpEquipmentType = Configuration.Config.UI.JapaneseEquipmentType;
 
-        internal DynamicTranslator()
+		internal DynamicTranslator()
         {
             try
             {
                 if (Thread.CurrentThread.CurrentCulture.Name != "ja-JP")
                 {
-                    if (File.Exists("Translations\\Ships.xml")) this.shipsXml = XDocument.Load("Translations\\Ships.xml");
-                    if (File.Exists("Translations\\ShipTypes.xml")) this.shipTypesXml = XDocument.Load("Translations\\ShipTypes.xml");
-                    if (File.Exists("Translations\\Equipment.xml")) this.equipmentXml = XDocument.Load("Translations\\Equipment.xml");
-                    if (File.Exists("Translations\\EquipmentTypes.xml")) this.equipTypesXML = XDocument.Load("Translations\\EquipmentTYpes.xml");
+                    if (File.Exists("Translations\\Ships.xml") && jpShipName) this.shipsXml = XDocument.Load("Translations\\Ships.xml");
+                    if (File.Exists("Translations\\ShipTypes.xml") && jpShipName) this.shipTypesXml = XDocument.Load("Translations\\ShipTypes.xml");
+                    if (File.Exists("Translations\\Equipment.xml") && jpEquipmentName) this.equipmentXml = XDocument.Load("Translations\\Equipment.xml");
+                    if (File.Exists("Translations\\EquipmentTypes.xml") && jpEquipmentType) this.equipTypesXML = XDocument.Load("Translations\\EquipmentTYpes.xml");
                     if (File.Exists("Translations\\Operations.xml")) this.operationsXml = XDocument.Load("Translations\\Operations.xml");
                     if (File.Exists("Translations\\Quests.xml")) this.questsXml = XDocument.Load("Translations\\Quests.xml");
                     if (File.Exists("Translations\\Expeditions.xml")) this.expeditionsXml = XDocument.Load("Translations\\Expeditions.xml");
@@ -154,7 +158,7 @@ namespace ElectronicObserver.Utility
 					Logger.Add(3, "Failed to check translation updates: " + e.Message);
 				}
 
-                if (newShipVer != shipsVersion)
+                if (newShipVer != shipsVersion && jpShipName)
                 {
                     shipsXml = null;
                     WebRequest r2 = HttpWebRequest.Create(AppSettings.Default.EOTranslations.AbsoluteUri + locale + "/Ships.xml");
@@ -166,7 +170,7 @@ namespace ElectronicObserver.Utility
                     }
                     Logger.Add(2, "Updated ship translations to version " + newShipVer + ".");
                 }
-                if (newShipTypeVer != shipTypesVersion)
+                if (newShipTypeVer != shipTypesVersion && jpShipType)
                 {
                     shipTypesXml = null;
                     WebRequest r2 = HttpWebRequest.Create(AppSettings.Default.EOTranslations.AbsoluteUri + locale + "/ShipTypes.xml");
@@ -178,7 +182,7 @@ namespace ElectronicObserver.Utility
                     }
                     Logger.Add(2, "Updated ship type translations to version " + newShipTypeVer + ".");
                 }
-                if (newEquipVer != equipmentVersion)
+                if (newEquipVer != equipmentVersion && jpEquipmentName)
                 {
                     equipmentXml = null;
                     WebRequest r2 = HttpWebRequest.Create(AppSettings.Default.EOTranslations.AbsoluteUri + locale + "/Equipment.xml");
@@ -190,7 +194,7 @@ namespace ElectronicObserver.Utility
                     }
                     Logger.Add(2, "Updated equipment translations to version " + newEquipVer + ".");
                 }
-                if (newEquipTypeVer != equipTypesVersion)
+                if (newEquipTypeVer != equipTypesVersion && jpEquipmentType)
                 {
                     equipTypesXML = null;
                     WebRequest r2 = HttpWebRequest.Create(AppSettings.Default.EOTranslations.AbsoluteUri + locale + "/EquipmentTypes.xml");
@@ -299,33 +303,40 @@ namespace ElectronicObserver.Utility
 
         public string GetTranslation(string jpString, TranslationType type, int id = -1)
         {
-            try
-            {
-                IEnumerable<XElement> translationList = this.GetTranslationList(type);
-
-                if (translationList == null) return jpString;
-
-                string jpChildElement = "JP-Name";
-                string trChildElement = "TR-Name";
-
-                if (type == TranslationType.QuestDetail || type == TranslationType.ExpeditionDetail)
-                {
-                    jpChildElement = "JP-Detail";
-                    trChildElement = "TR-Detail";
-                }
-
-                string translated = jpString;
-                if (this.GetTranslation(jpString, translationList, jpChildElement, trChildElement, id, ref translated))
-                {
-                    return translated;
-                }
-            }
-            catch (Exception e)
-            {
-                Logger.Add(3, "Can't output translation: " + e.Message);
-            }
-
-            return jpString;
+			bool translate = true;
+			switch (type)
+			{
+				default: break;
+				case TranslationType.Equipment: translate = !jpEquipmentName; break;
+				case TranslationType.EquipmentDesc: translate = !jpEquipmentName; break;
+				case TranslationType.EquipmentType: translate = !jpEquipmentType; break;
+				case TranslationType.Ships: translate = !jpShipName; break;
+				case TranslationType.ShipTypes: translate = !jpShipType; break;
+			}
+			if (translate)
+			{
+				try
+				{
+					IEnumerable<XElement> translationList = this.GetTranslationList(type);
+					if (translationList == null) return jpString;
+					string jpChildElement = "JP-Name";
+					string trChildElement = "TR-Name";
+					if (type == TranslationType.QuestDetail || type == TranslationType.ExpeditionDetail)
+					{
+						jpChildElement = "JP-Detail";
+						trChildElement = "TR-Detail";
+					}
+					string translated = jpString;
+					if (this.GetTranslation(jpString, translationList, jpChildElement, trChildElement, id, ref translated))
+						return translated;
+				}
+				catch (Exception e)
+				{
+					Logger.Add(3, "Can't output translation: " + e.Message);
+				}
+				return jpString;
+			}
+			else { return jpString; }
         }
 
 

@@ -343,7 +343,7 @@ namespace ElectronicObserver.Window.Control {
 			_aircraftColorDisabled = Color.FromArgb( 0xAA, 0xAA, 0xAA );
 			_aircraftColorLost = Utility.Configuration.Config.UI.Color_Magenta;
 			_aircraftColorDamaged = Utility.Configuration.Config.UI.Color_Red;
-			_aircraftColorFull = Utility.Configuration.Config.UI.ForeColor;
+			_aircraftColorFull = Utility.Configuration.Config.UI.SubForeColor;
 
 			_equipmentLevelColor = Utility.Configuration.Config.UI.Fleet_equipmentLevelColor;
 			_aircraftLevelColorLow = Color.FromArgb( 0x66, 0x99, 0xEE );

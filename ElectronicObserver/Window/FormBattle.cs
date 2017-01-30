@@ -281,6 +281,10 @@ namespace ElectronicObserver.Window {
 			FormationFriend.Text = Constants.GetFormationShort( bd.Searching.FormationFriend );
 			FormationEnemy.Text = Constants.GetFormationShort( bd.Searching.FormationEnemy );
 			Formation.Text = Constants.GetEngagementForm( bd.Searching.EngagementForm );
+			if (bd.Searching.EngagementForm == 3)
+				Formation.ForeColor = Utility.Configuration.Config.UI.Color_Green;
+			if (bd.Searching.EngagementForm == 4)
+				Formation.ForeColor = Utility.Configuration.Config.UI.Color_Red;
 
 		}
 
@@ -380,6 +384,23 @@ namespace ElectronicObserver.Window {
 		/// </summary>
 		private void SetAerialWarfare( PhaseAirBattleBase pd ) {
 
+			switch (pd.AirSuperiority)
+			{
+				default: break;
+				case 0: break; //AP
+				case 1: //AS+
+					AirSuperiority.ForeColor = Utility.Configuration.Config.UI.Color_Green;
+					break;
+				case 2:
+					AirSuperiority.ForeColor = Utility.Configuration.Config.UI.Color_Green;
+					break;
+				case 3:
+					AirSuperiority.ForeColor = Utility.Configuration.Config.UI.Color_Red;
+					break;
+				case 4: //AI-
+					AirSuperiority.ForeColor = Utility.Configuration.Config.UI.Color_Red;
+					break;
+			}
 			//空対空戦闘
 			if ( pd.IsStage1Available ) {
 
@@ -511,6 +532,7 @@ namespace ElectronicObserver.Window {
 		/// </summary>
 		private void SetAerialWarfareAirBattle( PhaseAirBattle pd1, PhaseAirBattle pd2 ) {
 
+
 			//空対空戦闘
 			if ( pd1.IsStage1Available ) {
 
@@ -518,6 +540,7 @@ namespace ElectronicObserver.Window {
 				bool isBattle2Enabled = pd2.IsStage1Available;
 
 				AirSuperiority.Text = Constants.GetAirSuperiority( pd1.AirSuperiority );
+
 				if ( isBattle2Enabled ) {
 					ToolTipInfo.SetToolTip( AirSuperiority, GeneralRes.SecondStage + ": " + Constants.GetAirSuperiority( pd2.AirSuperiority ) );
 				} else {

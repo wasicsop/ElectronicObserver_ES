@@ -172,6 +172,26 @@ namespace ElectronicObserver.Utility {
 				/// </summary>
 				public SerializableFont SubFont { get; set; }
 
+				/// <summary>
+				/// Whether to use Japanese or English ship names
+				/// </summary>
+				public bool JapaneseShipName { get; set; }
+
+				/// <summary>
+				/// Whether to use Japanese or English ship names
+				/// </summary>
+				public bool JapaneseShipType { get; set; }
+
+				/// <summary>
+				/// Whether to use Japanese or English equipment names
+				/// </summary>
+				public bool JapaneseEquipmentName { get; set; }
+
+				/// <summary>
+				/// Whether to use Japanese or English equipment names
+				/// </summary>
+				public bool JapaneseEquipmentType { get; set; }
+
 				// ThemeID
 				public int ThemeID { get; set; }
 
@@ -337,6 +357,10 @@ namespace ElectronicObserver.Utility {
 					MainFont = new Font( "Meiryo UI", 12, FontStyle.Regular, GraphicsUnit.Pixel );
 					SubFont = new Font( "Meiryo UI", 10, FontStyle.Regular, GraphicsUnit.Pixel );
 					BarColorMorphing = false;
+					JapaneseShipName = false;
+					JapaneseShipType = false;
+					JapaneseEquipmentName = false;
+					JapaneseEquipmentType = false;
 				}
 			}
 			/// <summary>UI</summary>

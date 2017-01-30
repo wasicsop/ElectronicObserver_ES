@@ -210,7 +210,7 @@ namespace ElectronicObserver.Window {
 						}
 					}
 
-					sb.AppendFormat( "(練巡強化: {0} / S-rank: {1})\r\n", (int)( expbase * bonus ), (int)( (int)( expbase * 1.2 ) * bonus ) );
+					sb.AppendFormat( "(incl. CT Bonus: {0} / S-rank: {1})\r\n", (int)( expbase * bonus ), (int)( (int)( expbase * 1.2 ) * bonus ) );
 
 
 				}

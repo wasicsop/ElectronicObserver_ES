@@ -180,11 +180,9 @@ namespace ElectronicObserver.Window {
 
 				Formation = InitializeImageLabel();
 				Formation.Anchor = AnchorStyles.None;
-				/*
 				Formation.ImageAlign = ContentAlignment.MiddleLeft;
 				Formation.ImageList = ResourceManager.Instance.Icons;
 				Formation.ImageIndex = -1;
-				*/
 
 				AirSuperiority = InitializeImageLabel();
 				AirSuperiority.Anchor = AnchorStyles.Right;
@@ -280,9 +278,9 @@ namespace ElectronicObserver.Window {
 
 				}
 
-				Formation.Text = Constants.GetFormationShort( fleet.Formation );
-				Formation.ForeColor = Utility.Configuration.Config.UI.ForeColor;
-				//Formation.ImageIndex = (int)ResourceManager.IconContent.BattleFormationEnemyLineAhead + fleet.Formation - 1;
+				//Formation.Text = Constants.GetFormationShort( fleet.Formation );
+				//Formation.ForeColor = Utility.Configuration.Config.UI.ForeColor;
+				Formation.ImageIndex = (int)ResourceManager.IconContent.BattleFormationEnemyLineAhead + fleet.Formation - 1;
 				Formation.Visible = true;
 
 				{
@@ -1019,8 +1017,9 @@ namespace ElectronicObserver.Window {
 				ToolTipInfo.SetToolTip( TextEventDetail, null );
 			}
 
-			TextFormation.Text = Constants.GetFormationShort( (int)bd.Searching.FormationEnemy );
-			//TextFormation.ImageIndex = (int)ResourceManager.IconContent.BattleFormationEnemyLineAhead + bd.Searching.FormationEnemy - 1;
+			//TextFormation.Text = Constants.GetFormationShort( (int)bd.Searching.FormationEnemy );
+			TextFormation.Text = " ";
+			TextFormation.ImageIndex = (int)ResourceManager.IconContent.BattleFormationEnemyLineAhead + bd.Searching.FormationEnemy - 1;
 			TextFormation.Visible = true;
 			{
 				int air = Calculator.GetAirSuperiority( enemies, slots );
