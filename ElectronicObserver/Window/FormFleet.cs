@@ -605,11 +605,11 @@ namespace ElectronicObserver.Window {
 					int airbattle = ship.AirBattlePower;
 					if ( airsup > 0 ) {
 						if ( airbattle > 0 )
-							sb.AppendFormat( GeneralRes.AirPower + ": {0} / 航空威力: {1}\r\n", airsup, airbattle );
+							sb.AppendFormat( GeneralRes.AirPower + ": {0} / Airstrike Power: {1}\r\n", airsup, airbattle );
 						else
 							sb.AppendFormat( GeneralRes.AirPower + ": {0}\r\n", airsup );
 					} else if ( airbattle > 0 )
-						sb.AppendFormat( "航空威力: {0}\r\n", airbattle );
+						sb.AppendFormat("Airstrike Power: {0}\r\n", airbattle );
 				}
 
 				return sb.ToString();
