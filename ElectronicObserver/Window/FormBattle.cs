@@ -280,11 +280,12 @@ namespace ElectronicObserver.Window {
 
 			FormationFriend.Text = Constants.GetFormationShort( bd.Searching.FormationFriend );
 			FormationEnemy.Text = Constants.GetFormationShort( bd.Searching.FormationEnemy );
-			Formation.Text = Constants.GetEngagementForm( bd.Searching.EngagementForm );
+			Formation.Text = Constants.GetEngagementFormShort( bd.Searching.EngagementForm );
 			if (bd.Searching.EngagementForm == 3)
 				Formation.ForeColor = Utility.Configuration.Config.UI.Color_Green;
-			if (bd.Searching.EngagementForm == 4)
+			else if (bd.Searching.EngagementForm == 4)
 				Formation.ForeColor = Utility.Configuration.Config.UI.Color_Red;
+			else Formation.ForeColor = Utility.Configuration.Config.UI.ForeColor;
 
 		}
 

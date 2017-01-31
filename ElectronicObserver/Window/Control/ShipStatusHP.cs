@@ -112,14 +112,14 @@ namespace ElectronicObserver.Window.Control {
 		}
 
 		private Color _repairFontColor;
-		[Browsable( true ), Category( "Appearance" ), DefaultValue( typeof( Color ), "0, 0, 136" )]
+		[Browsable( true ), Category( "Appearance" )]
 		[Description( "修復時間テキストの色を指定します。" )]
 		public Color RepairFontColor {
 			get {
 				return _repairFontColor;
 			}
 			set {
-				_repairFontColor = value;
+				_repairFontColor = Utility.Configuration.Config.UI.Color_Cyan;
 				Refresh();
 			}
 		}
