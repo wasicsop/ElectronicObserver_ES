@@ -452,6 +452,26 @@ namespace ElectronicObserver.Data {
 				case 2:
 					return ConstantsRes.HeadOn;
 				case 3:
+					return "T Advantage";
+				case 4:
+					return "T Disadvantage";
+				default:
+					return ConstantsRes.Unknown;
+			}
+		}
+
+		/// <summary>
+		/// 交戦形態を表す文字列を取得します。
+		/// </summary>
+		public static string GetEngagementFormShort(int id)
+		{
+			switch (id)
+			{
+				case 1:
+					return ConstantsRes.Parallel;
+				case 2:
+					return ConstantsRes.HeadOn;
+				case 3:
 					return ConstantsRes.TAdvantage;
 				case 4:
 					return ConstantsRes.TDisadvantage;
