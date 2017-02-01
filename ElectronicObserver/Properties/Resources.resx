@@ -177,13 +177,6 @@
   <data name="Help" xml:space="preserve">
     <value>ヘルプ</value>
   </data>
-  <data name="HelpAddress" xml:space="preserve">
-    <value>https://github.com/andanteyk/ElectronicObserver/wiki</value>
-  </data>
-  <data name="HelpAsk" xml:space="preserve">
-    <value>外部ブラウザでオンラインヘルプを開きます。
-よろしいですか？</value>
-  </data>
   <data name="InitLayout" xml:space="preserve">
     <value>レイアウトが初期化されました。
 「表示」メニューからお好みのウィンドウを追加してください。</value>

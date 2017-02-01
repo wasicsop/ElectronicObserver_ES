@@ -177,13 +177,6 @@ Okay?</value>
   <data name="Help" xml:space="preserve">
     <value>Help</value>
   </data>
-  <data name="HelpAddress" xml:space="preserve">
-    <value>https://github.com/RyuuKitsune/ElectronicObserver/wiki</value>
-  </data>
-  <data name="HelpAsk" xml:space="preserve">
-    <value>Online help will open your web browser.
-Continue?</value>
-  </data>
   <data name="InitLayout" xml:space="preserve">
     <value>Your window layout has been set to initial defaults.
 Add windows of your choosing using the "View" menu.</value>

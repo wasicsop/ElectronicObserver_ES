@@ -1082,11 +1082,11 @@ namespace ElectronicObserver.Window {
 
 		private void StripMenu_Help_Help_Click( object sender, EventArgs e ) {
 
-			if ( MessageBox.Show("This will open Online Help with your browser.\r\nAre you sure?", "Help",
+			if ( MessageBox.Show("This will open the EO wiki with your browser.\r\nAre you sure?", "Help",
 				MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1 )
 				== System.Windows.Forms.DialogResult.Yes ) {
 
-				System.Diagnostics.Process.Start( "https://github.com/andanteyk/ElectronicObserver/wiki" );
+				System.Diagnostics.Process.Start("https://github.com/silfumus/ElectronicObserver/wiki");
 			}
 
 		}
