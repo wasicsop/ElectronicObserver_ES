@@ -304,6 +304,10 @@ namespace ElectronicObserver.Window.Dialog {
 			UI_SubFont.Font = config.UI.SubFont.FontData;
 			UI_SubFont.Text = config.UI.SubFont.SerializeFontAttribute;
 			UI_BarColorMorphing.Checked = config.UI.BarColorMorphing;
+			UI_JapaneseShipNames.Checked = config.UI.JapaneseShipName;
+			UI_JapaneseShipTypes.Checked = config.UI.JapaneseShipType;
+			UI_JapaneseEquipmentNames.Checked = config.UI.JapaneseEquipmentName;
+			UI_JapaneseEquipmentTypes.Checked = config.UI.JapaneseEquipmentType;
 
 			//[ログ]
 			Log_LogLevel.Value = config.Log.LogLevel;
@@ -521,6 +525,10 @@ namespace ElectronicObserver.Window.Dialog {
 			config.UI.MainFont = UI_MainFont.Font;
 			config.UI.SubFont = UI_SubFont.Font;
 			config.UI.BarColorMorphing = UI_BarColorMorphing.Checked;
+			config.UI.JapaneseShipName = UI_JapaneseShipNames.Checked;
+			config.UI.JapaneseShipType = UI_JapaneseShipTypes.Checked;
+			config.UI.JapaneseEquipmentName = UI_JapaneseEquipmentNames.Checked;
+			config.UI.JapaneseEquipmentType = UI_JapaneseEquipmentTypes.Checked;
 
 			//[ログ]
 			config.Log.LogLevel = (int)Log_LogLevel.Value;
