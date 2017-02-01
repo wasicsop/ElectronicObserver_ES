@@ -622,7 +622,7 @@ namespace ElectronicObserver.Data {
 			if ( fleet.ExpeditionState != 0 ) {
 
 				timer = fleet.ExpeditionTime;
-				label.Text = FleetRes.OnExped + DateTimeHelper.ToTimeRemainString( timer );
+				label.Text = "On ex [" + KCDatabase.Instance.Mission[fleet.ExpeditionDestination].ID.ToString("D3") + "] " + DateTimeHelper.ToTimeRemainString( timer );
 				label.ImageIndex = (int)ResourceManager.IconContent.FleetExpedition;
 
 				tooltip.SetToolTip( label, string.Format( "{0} : {1}\r\n" + FleetRes.CompletionTime + " {2}",
@@ -777,7 +777,7 @@ namespace ElectronicObserver.Data {
 						label.BackColor = DateTime.Now.Second % 2 == 0 ? Color.LightGreen : Color.Transparent;
 					break;
 				case FleetStates.Expedition:
-					label.Text = FleetRes.OnExped + DateTimeHelper.ToTimeRemainString( timer );
+					label.Text = label.Text.Substring(0, 12) + DateTimeHelper.ToTimeRemainString( timer );
 					if ( Utility.Configuration.Config.FormFleet.BlinkAtCompletion && ( timer - DateTime.Now ).TotalMilliseconds <= Utility.Configuration.Config.NotifierExpedition.AccelInterval )
 						label.BackColor = DateTime.Now.Second % 2 == 0 ? Color.LightGreen : Color.Transparent;
 					break;
