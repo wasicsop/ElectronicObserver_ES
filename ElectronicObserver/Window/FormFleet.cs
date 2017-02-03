@@ -181,7 +181,7 @@ namespace ElectronicObserver.Window {
 						(int)( airSuperiority / 1.5 ),
 						Math.Max( (int)( airSuperiority * 1.5 - 1 ), 0 ),
 						Math.Max( (int)( airSuperiority * 3.0 - 1 ), 0 ),
-						includeLevel ? "Without Proficiency" : "With Proficiency",
+						includeLevel ? "w/o Proficiency" : "w/ Proficiency",
 						includeLevel ? Calculator.GetAirSuperiorityIgnoreLevel( fleet ) : Calculator.GetAirSuperiority( fleet ) ) );
 				}
 
