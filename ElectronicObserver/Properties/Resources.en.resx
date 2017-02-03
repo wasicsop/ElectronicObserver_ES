@@ -121,11 +121,12 @@
     <value> will close. Are you sure?</value>
   </data>
   <data name="AskForUpdate" xml:space="preserve">
-    <value>A new version has been released - {0}
-New version details:
+    <value>Electronic Observer {0} has been released.
+Changes:
 {1}
+
 Open the download page?
-(This dialog will not appear again if you cancel.)</value>
+(click cancel to disable update notification)</value>
   </data>
   <data name="AskLoad" xml:space="preserve">
     <value>All unsaved records will be lost.

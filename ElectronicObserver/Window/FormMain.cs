@@ -1104,6 +1104,10 @@ namespace ElectronicObserver.Window {
 
 		}
 
+		private void StripMenu_Help_Update_Click( object sender, EventArgs e ) {
+			SoftwareInformation.CheckUpdate();
+		}
+
 
 		private void SeparatorWhitecap_Click( object sender, EventArgs e ) {
 			new DialogWhitecap().Show( this );
