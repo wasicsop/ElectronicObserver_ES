@@ -307,7 +307,7 @@ This action cannot be undone.</value>
     <value>Enemy</value>
   </data>
   <data name="EnemyFleetID" xml:space="preserve">
-    <value>Enemy Fleet ID</value>
+    <value>ID</value>
   </data>
   <data name="EnemyFleetName" xml:space="preserve">
     <value>Enemy Fleet Name</value>

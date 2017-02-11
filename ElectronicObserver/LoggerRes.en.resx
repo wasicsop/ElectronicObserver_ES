@@ -298,7 +298,7 @@
     <value>The DataStorage file does not exist.</value>
   </data>
   <data name="Decomissioned" xml:space="preserve">
-    <value> has been decommissioned and removed from the navy list.</value>
+    <value> has been decommissioned.</value>
   </data>
   <data name="MultiplePossibleMvps" xml:space="preserve">
     <value>There are multiple possible MVPs. Please check the log.</value>
