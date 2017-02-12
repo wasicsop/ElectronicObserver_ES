@@ -119,7 +119,7 @@ namespace ElectronicObserver.Utility
                         this.shipsXml = XDocument.Load(responseStream);
 						shipsXml.Save("Translations\\Ships.xml");
                     }
-                    Logger.Add(2, "Updated ship translations to version " + newShipVer + ".");
+                    Logger.Add(2, "Updated ship translations to v" + newShipVer + ".");
                 }
                 if (newShipTypeVer != shipTypesVersion)
                 {
@@ -131,7 +131,7 @@ namespace ElectronicObserver.Utility
                         this.shipTypesXml = XDocument.Load(responseStream);
                         shipTypesXml.Save("Translations\\ShipTypes.xml");
                     }
-                    Logger.Add(2, "Updated ship type translations to version " + newShipTypeVer + ".");
+                    Logger.Add(2, "Updated ship type translations to v" + newShipTypeVer + ".");
                 }
                 if (newEquipVer != equipmentVersion)
                 {
@@ -143,7 +143,7 @@ namespace ElectronicObserver.Utility
                         this.equipmentXml = XDocument.Load(responseStream);
                         equipmentXml.Save("Translations\\Equipment.xml");
                     }
-                    Logger.Add(2, "Updated equipment translations to version " + newEquipVer + ".");
+                    Logger.Add(2, "Updated equipment translations to v" + newEquipVer + ".");
                 }
                 if (newEquipTypeVer != equipTypesVersion)
                 {
@@ -155,7 +155,7 @@ namespace ElectronicObserver.Utility
                         this.equipTypesXML = XDocument.Load(responseStream);
                         equipTypesXML.Save("Translations\\EquipmentTypes.xml");
                     }
-                    Logger.Add(2, "Updated equipment type translations to version " + newEquipTypeVer + ".");
+                    Logger.Add(2, "Updated equipment type translations to v" + newEquipTypeVer + ".");
                 }
                 if (newOperationVer != operationsVersion)
                 {
@@ -167,7 +167,7 @@ namespace ElectronicObserver.Utility
                         this.operationsXml = XDocument.Load(responseStream);
                         operationsXml.Save("Translations\\Operations.xml");
                     }
-                    Logger.Add(2, "Updated operation translations to version " + newOperationVer + ".");
+                    Logger.Add(2, "Updated operation translations to v" + newOperationVer + ".");
                 }
                 if (newQuestVer != questsVersion)
                 {
@@ -179,7 +179,7 @@ namespace ElectronicObserver.Utility
                         this.questsXml = XDocument.Load(responseStream);
                         questsXml.Save("Translations\\Quests.xml");
                     }
-                    Logger.Add(2, "Updated quest translations to version " + newQuestVer + ".");
+                    Logger.Add(2, "Updated quest translations to v" + newQuestVer + ".");
                 }
                 if (newExpedVer != expeditionsVersion)
                 {
@@ -191,7 +191,7 @@ namespace ElectronicObserver.Utility
                         this.expeditionsXml = XDocument.Load(responseStream);
                         expeditionsXml.Save("Translations\\Expeditions.xml");
                     }
-                    Logger.Add(2, "Updated expedition translations to version " + newExpedVer + ".");
+                    Logger.Add(2, "Updated expedition translations to v" + newExpedVer + ".");
                 }
             }
         }

@@ -250,7 +250,7 @@ Maximum: {2} Steel / {3} Fuel
     <value>Torpedo</value>
   </data>
   <data name="WithEquipValue" xml:space="preserve">
-    <value>With Equipment</value>
+    <value>Armed</value>
   </data>
   <data name="CountAll" xml:space="preserve">
     <value>Total</value>
