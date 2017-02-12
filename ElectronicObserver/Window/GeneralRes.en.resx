@@ -125,7 +125,7 @@ Cut-in type: {1} ({2})</value>
     <value>AA Cut-in</value>
   </data>
   <data name="AAPower" xml:space="preserve">
-    <value>AA Firepower</value>
+    <value>AA Defense</value>
   </data>
   <data name="Achieved" xml:space="preserve">
     <value>Complete!</value>
@@ -176,10 +176,10 @@ Cut-in type: {1} ({2})</value>
     <value>{0} Ships Assigned</value>
   </data>
   <data name="ASTooltip" xml:space="preserve">
-    <value>Supremacy: {0}
-Superiority: {1}
-Parity: {2}
-Denial: {3}
+    <value>AS+: {0}
+AS: {1}
+AP: {2}
+AI: {3}
 ({4}: {5})</value>
   </data>
   <data name="ASW" xml:space="preserve">
@@ -307,7 +307,7 @@ This action cannot be undone.</value>
     <value>Enemy</value>
   </data>
   <data name="EnemyFleetID" xml:space="preserve">
-    <value>Enemy Fleet ID</value>
+    <value>ID</value>
   </data>
   <data name="EnemyFleetName" xml:space="preserve">
     <value>Enemy Fleet Name</value>
@@ -358,13 +358,13 @@ This action cannot be undone.</value>
     <value>Fleet List</value>
   </data>
   <data name="FleetTooltip" xml:space="preserve">
-    <value>Lv Total: {0} / Average: {1:0.00}
+    <value>Lv sum: {0} / avg: {1:0.00}
 {2} fleet
-Drum Canisters: {3} ({4} ships)
+Drum: {3} ({4} ships)
 Daihatsu: {5} ({6} ships, +{7:p1})
-Transport Point: S {8} / A {9}
-Total Consumption: Fuel {10} / Ammo {11}
-(1 Battle: Fuel {12} / Ammo {13})</value>
+TP: {9} TP @ A-rank ({8} TP @ S-rank)
+Consumption: {10} fuel / {11} ammo
+({12} fuel / {13} ammo per battle)</value>
   </data>
   <data name="FriendlyFleet" xml:space="preserve">
     <value>Friendly</value>
@@ -419,9 +419,9 @@ Autumn 2-5: {1}
 New 2-5: {2}
 Formula 33: {3}
 New Formula 33:
-　Weighting=1: {4:f2}
-　Weighting=3: {5:f2}
-　Weighting=4: {6:f2}
+　Weight=1: {4:f2}
+　Weight=3: {5:f2}
+　Weight=4: {6:f2}
 
 Contact Chance: 
 　AS+ {7:p1} / AS {8:p1}
@@ -449,7 +449,7 @@ Contact Chance:
     <value>Name (&amp;N)</value>
   </data>
   <data name="NextNode" xml:space="preserve">
-    <value>Next node</value>
+    <value>Node</value>
   </data>
   <data name="NightBattle" xml:space="preserve">
     <value>Night Battle</value>
@@ -497,7 +497,7 @@ Contact Chance:
     <value>Range</value>
   </data>
   <data name="RankPoints" xml:space="preserve">
-    <value>Rank Points</value>
+    <value>rank points</value>
   </data>
   <data name="RemainingExpeds" xml:space="preserve">
     <value>{0} effective expeditions</value>
@@ -620,10 +620,10 @@ Cut-in type: {2} ({3})
     <value>Target sighted!</value>
   </data>
   <data name="ThisMonth" xml:space="preserve">
-    <value>This Month</value>
+    <value>This month</value>
   </data>
   <data name="ThisTime" xml:space="preserve">
-    <value>This Session</value>
+    <value>This session</value>
   </data>
   <data name="Times" xml:space="preserve">
     <value>times</value>
@@ -632,25 +632,26 @@ Cut-in type: {2} ({3})
     <value>Completion time</value>
   </data>
   <data name="ToX" xml:space="preserve">
-    <value>To Level {0}: {1}</value>
+    <value>To lv{0}: {1}</value>
   </data>
   <data name="To99" xml:space="preserve">
-    <value>To Level 99: {0}</value>
+    <value>To lv99: {0}</value>
   </data>
   <data name="Today" xml:space="preserve">
     <value>Today</value>
   </data>
   <data name="ToHeavy" xml:space="preserve">
-    <value>To Critical Damage: {0}</value>
+    <value>To critical damage: {0}</value>
   </data>
   <data name="ToMidAndHeavy" xml:space="preserve">
-    <value>To Moderate Damage: {0} / To Critical Damage: {1}</value>
+    <value>To moderate damage: {0}
+To critical damage: {1}</value>
   </data>
   <data name="ToNextLevel" xml:space="preserve">
     <value>To Next Level: {0}</value>
   </data>
   <data name="ToRemodel" xml:space="preserve">
-    <value>To Remodel: {0} levels / {1} exp.</value>
+    <value>To remodel: {0} levels / {1} exp.</value>
   </data>
   <data name="Torpedo" xml:space="preserve">
     <value>Torpedo</value>

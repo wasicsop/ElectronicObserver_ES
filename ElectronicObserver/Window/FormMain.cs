@@ -103,6 +103,12 @@ namespace ElectronicObserver.Window {
 
 			Utility.Configuration.Instance.Load( this );
 
+			this.MainDockPanel.Styles = Configuration.Config.UI.DockPanelSuiteStyles;
+			this.MainDockPanel.Theme = new WeifenLuo.WinFormsUI.Docking.VS2012Theme();
+			this.BackColor = this.StripMenu.BackColor = Utility.Configuration.Config.UI.BackColor;
+			this.ForeColor = this.StripMenu.ForeColor = Utility.Configuration.Config.UI.ForeColor;
+			this.StripStatus.BackColor = Utility.Configuration.Config.UI.StatusBarBackColor;
+			this.StripStatus.ForeColor = Utility.Configuration.Config.UI.StatusBarForeColor;
 
 			Utility.Logger.Instance.LogAdded += new Utility.LogAddedEventHandler( ( Utility.Logger.LogData data ) => {
 				if ( InvokeRequired ) {
@@ -235,9 +241,10 @@ namespace ElectronicObserver.Window {
 		private void FormMain_Shown( object sender, EventArgs e ) {
 			// Load で設定すると無視されるかバグる(タスクバーに出なくなる)のでここで設定
 			TopMost = Utility.Configuration.Config.Life.TopMost;
-
+			Activate();
 			// HACK: タスクバーに表示されなくなる不具合への応急処置　効くかは知らない
 			ShowInTaskbar = true;
+			
 		}
 
 
@@ -263,6 +270,21 @@ namespace ElectronicObserver.Window {
 			StripStatus.Font = Font;
 			MainDockPanel.Skin.AutoHideStripSkin.TextFont = Font;
 			MainDockPanel.Skin.DockPaneStripSkin.TextFont = Font;
+
+
+			foreach (var f in SubForms)
+			{
+				f.BackColor = this.BackColor;
+				f.ForeColor = this.ForeColor;
+				if (f is FormShipGroup)
+				{ // 暂时不对舰队编成窗口应用主题
+					f.BackColor = SystemColors.Control;
+					f.ForeColor = SystemColors.ControlText;
+				}
+			}
+
+			StripStatus_Information.BackColor = System.Drawing.Color.Transparent;
+			StripStatus_Information.Margin = new Padding(-1, 1, -1, 0);
 
 
 			if ( c.Life.LockLayout ) {
@@ -1060,11 +1082,11 @@ namespace ElectronicObserver.Window {
 
 		private void StripMenu_Help_Help_Click( object sender, EventArgs e ) {
 
-			if ( MessageBox.Show("This will open Online Help with your browser.\r\nAre you sure?", "Help",
+			if ( MessageBox.Show("This will open the EO wiki with your browser.\r\nAre you sure?", "Help",
 				MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1 )
 				== System.Windows.Forms.DialogResult.Yes ) {
 
-				System.Diagnostics.Process.Start( "https://github.com/andanteyk/ElectronicObserver/wiki" );
+				System.Diagnostics.Process.Start("https://github.com/silfumus/ElectronicObserver/wiki");
 			}
 
 		}
@@ -1080,6 +1102,10 @@ namespace ElectronicObserver.Window {
 				System.Diagnostics.Process.Start("https://gitreports.com/issue/silfumus/ElectronicObserver");
 			}
 
+		}
+
+		private void StripMenu_Help_Update_Click( object sender, EventArgs e ) {
+			SoftwareInformation.CheckUpdate();
 		}
 
 

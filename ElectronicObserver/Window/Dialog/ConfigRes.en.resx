@@ -160,10 +160,10 @@ Depending on environment, this may cause problems, in this case please disable.<
     <value>Behavior</value>
   </data>
   <data name="Browser" xml:space="preserve">
-    <value>Browser</value>
+    <value>IE</value>
   </data>
   <data name="Browser2" xml:space="preserve">
-    <value>Browser 2</value>
+    <value>IE (2)</value>
   </data>
   <data name="BrowserVersion" xml:space="preserve">
     <value>Browser version:</value>
@@ -184,7 +184,7 @@ Changing the version may change functionality.</value>
 ＊Clearing settings will require restarting.</value>
   </data>
   <data name="Communication" xml:space="preserve">
-    <value>Communication</value>
+    <value>Network</value>
   </data>
   <data name="Confirm" xml:space="preserve">
     <value>Confirm</value>
@@ -296,7 +296,7 @@ May increase speed depending on environment.</value>
     <value>Group</value>
   </data>
   <data name="IsScrollable" xml:space="preserve">
-    <value>Display scroll bar.</value>
+    <value>Display scroll bar</value>
   </data>
   <data name="LayoutFile" xml:space="preserve">
     <value>Layout File</value>
@@ -465,7 +465,7 @@ Can increase the number of status bar messages.</value>
     <value>Secondary</value>
   </data>
   <data name="SubWindow" xml:space="preserve">
-    <value>Sub-window</value>
+    <value>Window</value>
   </data>
   <data name="TaihaAdvance" xml:space="preserve">
     <value>Critical damage</value>
@@ -492,7 +492,7 @@ Can increase the number of status bar messages.</value>
     <value>Weekly</value>
   </data>
   <data name="Window" xml:space="preserve">
-    <value>Window</value>
+    <value>Layout</value>
   </data>
   <data name="ZoomRate" xml:space="preserve">
     <value>Zoom</value>
@@ -507,14 +507,14 @@ Can increase the number of status bar messages.</value>
     <value>Blink ship/equipment slots when full.</value>
   </data>
   <data name="Database" xml:space="preserve">
-    <value>Database</value>
+    <value>KCDB</value>
   </data>
   <data name="DatabaseDescription" xml:space="preserve">
     <value>Sends your data to the KanColle Statistics Database.
 More details, as well as an access key, can be found on the site below. (opens your web browser, Japanese only)</value>
   </data>
   <data name="Headquarters" xml:space="preserve">
-    <value>Headquarters</value>
+    <value>HQ</value>
   </data>
   <data name="SendData" xml:space="preserve">
     <value>Send data to KanColle Statistics Database</value>
@@ -638,7 +638,7 @@ More details, as well as an access key, can be found on the site below. (opens y
     <value>s</value>
   </data>
   <data name="Volume" xml:space="preserve">
-    <value>Volume :</value>
+    <value>Vol :</value>
   </data>
   <data name="Others" xml:space="preserve">
     <value>Others</value>
@@ -647,7 +647,7 @@ More details, as well as an access key, can be found on the site below. (opens y
     <value>Failed to write browser version to the registry.</value>
   </data>
   <data name="WriteRegistry" xml:space="preserve">
-    <value>Wrote browser version in the registry. If you want to delete it, go to Settings → Sub-window → Browser 2 → Delete.</value>
+    <value>Wrote browser version in the registry. If you want to delete it, go to Settings → Window → IE (2) → Delete.</value>
   </data>
   <data name="AnchorageRepairFinish" xml:space="preserve">
     <value>Anchorage repair</value>

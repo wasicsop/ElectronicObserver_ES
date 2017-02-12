@@ -207,7 +207,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>NotifierRes.resx</DependentUpon>
     </Compile>
-    <Compile Include="Utility\ThemeManager.cs" />
     <Compile Include="Utility\DynamicTranslator.cs" />
     <Compile Include="Window\Dialog\ConfigRes.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -897,6 +896,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Window\FormQuest.resx">
       <DependentUpon>FormQuest.cs</DependentUpon>
@@ -926,6 +926,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Settings\ColorScheme.example.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Settings\ColorScheme.Solarized.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -960,6 +966,10 @@
     <ProjectReference Include="..\BrowserLib\BrowserLib.csproj">
       <Project>{8bb3e37d-09fb-40b9-958a-8cdcd18ef1f5}</Project>
       <Name>BrowserLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DockPanelSuite\WinFormsUI\ThemeVS2012.csproj">
+      <Project>{a965d7bb-5cda-4531-ab67-58d4fa10aa6d}</Project>
+      <Name>ThemeVS2012</Name>
     </ProjectReference>
     <ProjectReference Include="..\DockPanelSuite\WinFormsUI\WinFormsUI.csproj">
       <Project>{c75532c4-765b-418e-b09b-46d36b2abdb1}</Project>

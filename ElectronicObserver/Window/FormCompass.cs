@@ -105,7 +105,7 @@ namespace ElectronicObserver.Window {
 				if ( shipID == -1 ) {
 					//なし
 					ShipName.Text = "-";
-					ShipName.ForeColor = Color.FromArgb( 0x00, 0x00, 0x00 );
+					ShipName.ForeColor = Utility.Configuration.Config.UI.ForeColor;
 					Equipments.Visible = false;
 					ToolTipInfo.SetToolTip( ShipName, null );
 					ToolTipInfo.SetToolTip( Equipments, null );
@@ -180,11 +180,9 @@ namespace ElectronicObserver.Window {
 
 				Formation = InitializeImageLabel();
 				Formation.Anchor = AnchorStyles.None;
-				/*
 				Formation.ImageAlign = ContentAlignment.MiddleLeft;
 				Formation.ImageList = ResourceManager.Instance.Icons;
 				Formation.ImageIndex = -1;
-				*/
 
 				AirSuperiority = InitializeImageLabel();
 				AirSuperiority.Anchor = AnchorStyles.Right;
@@ -262,7 +260,7 @@ namespace ElectronicObserver.Window {
 					if ( ship == null ) {
 						// nothing
 						ShipNames[i].Text = "-";
-						ShipNames[i].ForeColor = Color.Black;
+						ShipNames[i].ForeColor = Utility.Configuration.Config.UI.ForeColor;
 						ShipNames[i].Tag = -1;
 						ShipNames[i].Cursor = Cursors.Default;
 						ToolTipInfo.SetToolTip( ShipNames[i], null );
@@ -280,13 +278,15 @@ namespace ElectronicObserver.Window {
 
 				}
 
-				Formation.Text = Constants.GetFormationShort( fleet.Formation );
-				//Formation.ImageIndex = (int)ResourceManager.IconContent.BattleFormationEnemyLineAhead + fleet.Formation - 1;
+				//Formation.Text = Constants.GetFormationShort( fleet.Formation );
+				//Formation.ForeColor = Utility.Configuration.Config.UI.ForeColor;
+				Formation.ImageIndex = (int)ResourceManager.IconContent.BattleFormationEnemyLineAhead + fleet.Formation - 1;
 				Formation.Visible = true;
 
 				{
 					int air = Calculator.GetAirSuperiority( fleet.FleetMember );
 					AirSuperiority.Text = air.ToString();
+					AirSuperiority.ForeColor = Utility.Configuration.Config.UI.ForeColor;
 					ToolTipInfo.SetToolTip( AirSuperiority, GetAirSuperiorityString( air ) );
 					AirSuperiority.Visible = true;
 				}
@@ -310,22 +310,23 @@ namespace ElectronicObserver.Window {
 
 		#region ***Control method
 
-		private static Color GetShipNameColor( ShipDataMaster ship ) {
-			switch ( ship.AbyssalShipClass ) {
+		private static Color GetShipNameColor(ShipDataMaster ship) {
+			switch (ship.AbyssalShipClass)
+			{
 				case 0:
 				case 1:		//normal
 				default:
-					return Color.FromArgb( 0x00, 0x00, 0x00 );
-				case 2:		//elite
-					return Color.FromArgb( 0xFF, 0x00, 0x00 );
-				case 3:		//flagship
-					return Color.FromArgb( 0xFF, 0x88, 0x00 );
-				case 4:		//latemodel / flagship kai
-					return Color.FromArgb( 0x00, 0x88, 0xFF );
-				case 5:		//latemodel elite
-					return Color.FromArgb( 0x88, 0x00, 0x00 );
-				case 6:		//latemodel flagship
-					return Color.FromArgb( 0x88, 0x44, 0x00 );
+					return Utility.Configuration.Config.UI.ForeColor;
+				case 2:     //elite
+					return Utility.Configuration.Config.UI.Compass_ShipNameColor2;
+				case 3:     //flagship
+					return Utility.Configuration.Config.UI.Compass_ShipNameColor3;
+				case 4:     //latemodel / flagship kai
+					return Utility.Configuration.Config.UI.Compass_ShipNameColor4;
+				case 5:     //latemodel elite
+					return Utility.Configuration.Config.UI.Compass_ShipNameColor5;
+				case 6:     //latemodel flagship
+					return Utility.Configuration.Config.UI.Compass_ShipNameColor6;
 			}
 		}
 
@@ -647,16 +648,16 @@ namespace ElectronicObserver.Window {
 				switch ( kind ) {
 					case 0:
 					case 1:
-					default:	//昼夜戦・その他
-						return SystemColors.ControlText;
+					default:    //昼夜戦・その他
+						return Utility.Configuration.Config.UI.ForeColor;
 					case 2:
-					case 3:		//夜戦・夜昼戦
-						return Color.Navy;
-					case 4:		//航空戦
-					case 6:		//長距離空襲戦
-						return Color.DarkGreen;
-					case 5:		// 敵連合
-						return Color.DarkRed;
+					case 3:     //夜戦・夜昼戦
+						return Utility.Configuration.Config.UI.Compass_ColorTextEventKind3;
+					case 4:     //航空戦
+					case 6:     //長距離空襲戦
+						return Utility.Configuration.Config.UI.Compass_ColorTextEventKind6;
+					case 5:     // 敵連合
+						return Utility.Configuration.Config.UI.Compass_ColorTextEventKind5;
 				}
 			};
 
@@ -801,7 +802,7 @@ namespace ElectronicObserver.Window {
 							break;
 
 						case 5:		//ボス戦闘
-							TextEventKind.ForeColor = Color.Red;
+							TextEventKind.ForeColor = Utility.Configuration.Config.UI.Color_Red;
 
 							if ( compass.EventKind >= 2 ) {
 								eventkind += "/" + Constants.GetMapEventKind( compass.EventKind );
@@ -1016,8 +1017,9 @@ namespace ElectronicObserver.Window {
 				ToolTipInfo.SetToolTip( TextEventDetail, null );
 			}
 
-			TextFormation.Text = Constants.GetFormationShort( (int)bd.Searching.FormationEnemy );
-			//TextFormation.ImageIndex = (int)ResourceManager.IconContent.BattleFormationEnemyLineAhead + bd.Searching.FormationEnemy - 1;
+			//TextFormation.Text = Constants.GetFormationShort( (int)bd.Searching.FormationEnemy );
+			TextFormation.Text = " ";
+			TextFormation.ImageIndex = (int)ResourceManager.IconContent.BattleFormationEnemyLineAhead + bd.Searching.FormationEnemy - 1;
 			TextFormation.Visible = true;
 			{
 				int air = Calculator.GetAirSuperiority( enemies, slots );

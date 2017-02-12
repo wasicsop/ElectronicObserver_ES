@@ -32,7 +32,6 @@ namespace ElectronicObserver.Window {
 				ShipName = new ImageLabel();
 				ShipName.Text = "???";
 				ShipName.Anchor = AnchorStyles.Left;
-				ShipName.ForeColor = parent.ForeColor;
 				ShipName.TextAlign = ContentAlignment.MiddleLeft;
 				ShipName.Padding = new Padding( 0, 1, 0, 1 );
 				ShipName.Margin = new Padding( 2, 0, 2, 0 );
@@ -45,7 +44,6 @@ namespace ElectronicObserver.Window {
 				RepairTime = new Label();
 				RepairTime.Text = "";
 				RepairTime.Anchor = AnchorStyles.Left;
-				RepairTime.ForeColor = parent.ForeColor;
 				RepairTime.Tag = null;
 				RepairTime.TextAlign = ContentAlignment.MiddleLeft;
 				RepairTime.Padding = new Padding( 0, 1, 0, 1 );
@@ -95,6 +93,7 @@ namespace ElectronicObserver.Window {
 				DockData dock = db.Docks[dockID];
 
 				RepairTime.BackColor = Color.Transparent;
+				RepairTime.ForeColor = Utility.Configuration.Config.UI.ForeColor;
 				ToolTipInfo.SetToolTip( ShipName, null );
 				ToolTipInfo.SetToolTip( RepairTime, null );
 
@@ -132,7 +131,8 @@ namespace ElectronicObserver.Window {
 					RepairTime.Text = DateTimeHelper.ToTimeRemainString( time );
 
 					if ( Utility.Configuration.Config.FormDock.BlinkAtCompletion && ( time - DateTime.Now ).TotalMilliseconds <= Utility.Configuration.Config.NotifierRepair.AccelInterval ) {
-						RepairTime.BackColor = DateTime.Now.Second % 2 == 0 ? Color.LightGreen : Color.Transparent;
+						RepairTime.BackColor = DateTime.Now.Second % 2 == 0 ? Utility.Configuration.Config.UI.Blink_BackColorLightGreen : Color.Transparent;
+						RepairTime.ForeColor = DateTime.Now.Second % 2 == 0 ? Utility.Configuration.Config.UI.Blink_ForeColor : Utility.Configuration.Config.UI.ForeColor;
 					}
 				}
 			}
@@ -142,6 +142,7 @@ namespace ElectronicObserver.Window {
 				ShipName.Font = parent.Font;
 				RepairTime.Font = parent.Font;
 				RepairTime.BackColor = Color.Transparent;
+				ShipName.ForeColor = RepairTime.ForeColor = Utility.Configuration.Config.UI.ForeColor;
 			}
 		}
 
@@ -213,7 +214,7 @@ namespace ElectronicObserver.Window {
 
 
 		private void TableDock_CellPaint( object sender, TableLayoutCellPaintEventArgs e ) {
-			e.Graphics.DrawLine( Pens.Silver, e.CellBounds.X, e.CellBounds.Bottom - 1, e.CellBounds.Right - 1, e.CellBounds.Bottom - 1 );
+			e.Graphics.DrawLine(Utility.Configuration.Config.UI.SubBackColorPen, e.CellBounds.X, e.CellBounds.Bottom - 1, e.CellBounds.Right - 1, e.CellBounds.Bottom - 1 );
 		}
 
 

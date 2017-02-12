@@ -45,7 +45,7 @@ namespace ElectronicObserver.Utility {
 		/// </summary>
 		public static string VersionEnglish {
 			get {
-				return "2.5.2.1";
+				return "2.5.2.2";
 			}
 		}
 
@@ -55,7 +55,7 @@ namespace ElectronicObserver.Utility {
 		/// </summary>
 		public static DateTime UpdateTime {
 			get {
-				return DateTimeHelper.CSVStringToTime( "2017/01/25 19:00:00" );
+				return DateTimeHelper.CSVStringToTime( "2017/01/28 10:00:00" );
 			}
 		}
 

@@ -13,6 +13,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -171,6 +172,29 @@ namespace ElectronicObserver.Utility {
 				/// </summary>
 				public SerializableFont SubFont { get; set; }
 
+				/// <summary>
+				/// Whether to use Japanese or English ship names
+				/// </summary>
+				public bool JapaneseShipName { get; set; }
+
+				/// <summary>
+				/// Whether to use Japanese or English ship names
+				/// </summary>
+				public bool JapaneseShipType { get; set; }
+
+				/// <summary>
+				/// Whether to use Japanese or English equipment names
+				/// </summary>
+				public bool JapaneseEquipmentName { get; set; }
+
+				/// <summary>
+				/// Whether to use Japanese or English equipment names
+				/// </summary>
+				public bool JapaneseEquipmentType { get; set; }
+
+				// ThemeID
+				public int ThemeID { get; set; }
+
 				[IgnoreDataMember]
 				private bool _barColorMorphing;
 
@@ -178,14 +202,21 @@ namespace ElectronicObserver.Utility {
 				/// HPバーの色を滑らかに変化させるか
 				/// </summary>
 				public bool BarColorMorphing {
-					get { return _barColorMorphing; }
-					set {
+					get {
+						SetBarColorScheme();
+						return _barColorMorphing;
+					} set {
 						_barColorMorphing = value;
+						SetBarColorScheme();
+					}
+				}
 
-						if ( !_barColorMorphing )
-							BarColorScheme = new List<SerializableColor>( DefaultBarColorScheme[0] );
-						else
-							BarColorScheme = new List<SerializableColor>( DefaultBarColorScheme[1] );
+				public void SetBarColorScheme() {
+					if ( BarColorSchemes == null ) return;
+					if ( !_barColorMorphing ) {
+						BarColorScheme = new List<SerializableColor>( BarColorSchemes[0] );
+					} else {
+						BarColorScheme = new List<SerializableColor>( BarColorSchemes[1] );
 					}
 				}
 
@@ -194,60 +225,142 @@ namespace ElectronicObserver.Utility {
 				/// </summary>
 				public List<SerializableColor> BarColorScheme { get; set; }
 
+				#region - UI Colors -
 
+				// 数值条 ( 耐久、燃料、弹药... ) 颜色
 				[IgnoreDataMember]
-				private readonly List<SerializableColor>[] DefaultBarColorScheme = new List<SerializableColor>[] {
-					new List<SerializableColor>() {
-						SerializableColor.UIntToColor( 0xFFFF0000 ),
-						SerializableColor.UIntToColor( 0xFFFF0000 ),
-						SerializableColor.UIntToColor( 0xFFFF8800 ),
-						SerializableColor.UIntToColor( 0xFFFF8800 ),
-						SerializableColor.UIntToColor( 0xFFFFCC00 ),
-						SerializableColor.UIntToColor( 0xFFFFCC00 ),
-						SerializableColor.UIntToColor( 0xFF00CC00 ),
-						SerializableColor.UIntToColor( 0xFF00CC00 ),
-						SerializableColor.UIntToColor( 0xFF0044CC ),
-						SerializableColor.UIntToColor( 0xFF44FF00 ),
-						SerializableColor.UIntToColor( 0xFF882222 ),
-						SerializableColor.UIntToColor( 0xFF888888 ),
-					},
-					/*/// recognize
-					new List<SerializableColor>() {
-						SerializableColor.UIntToColor( 0xFFFF0000 ),
-						SerializableColor.UIntToColor( 0xFFFF0000 ),
-						SerializableColor.UIntToColor( 0xFFFF6600 ),
-						SerializableColor.UIntToColor( 0xFFFF9900 ),
-						SerializableColor.UIntToColor( 0xFFFFCC00 ),
-						SerializableColor.UIntToColor( 0xFFEEEE00 ),
-						SerializableColor.UIntToColor( 0xFFAAEE00 ),
-						SerializableColor.UIntToColor( 0xFF00CC00 ),
-						SerializableColor.UIntToColor( 0xFF0044CC ),
-						SerializableColor.UIntToColor( 0xFF00FF44 ),
-						SerializableColor.UIntToColor( 0xFF882222 ),
-						SerializableColor.UIntToColor( 0xFF888888 ),
-					},
-					/*/// gradation
-					new List<SerializableColor>() {
-						SerializableColor.UIntToColor( 0xFFFF0000 ),
-						SerializableColor.UIntToColor( 0xFFFF0000 ),
-						SerializableColor.UIntToColor( 0xFFFF4400 ),
-						SerializableColor.UIntToColor( 0xFFFF8800 ),
-						SerializableColor.UIntToColor( 0xFFFFAA00 ),
-						SerializableColor.UIntToColor( 0xFFEEEE00 ),
-						SerializableColor.UIntToColor( 0xFFCCEE00 ),
-						SerializableColor.UIntToColor( 0xFF00CC00 ),
-						SerializableColor.UIntToColor( 0xFF0044CC ),
-						SerializableColor.UIntToColor( 0xFF00FF44 ),
-						SerializableColor.UIntToColor( 0xFF882222 ),
-						SerializableColor.UIntToColor( 0xFF888888 ),
-					},
-					//*/
-				};
+				public List<SerializableColor>[] BarColorSchemes { get; set; }
+				// 面板颜色
+				[IgnoreDataMember]
+				public Color ForeColor { get; set; }
+				[IgnoreDataMember]
+				public Color BackColor { get; set; }
+				[IgnoreDataMember]
+				public Color SubForeColor { get; set; }
+				[IgnoreDataMember]
+				public Color SubBackColor { get; set; }
+				[IgnoreDataMember]
+				public Pen SubBackColorPen { get; set; }
+				// 状态栏颜色
+				[IgnoreDataMember]
+				public Color StatusBarForeColor { get; set; }
+				[IgnoreDataMember]
+				public Color StatusBarBackColor { get; set; }
+				// 标签页颜色 ( DockPanelSuite )
+				[IgnoreDataMember]
+				public string[] DockPanelSuiteStyles { get; set; }
+				// 基本颜色
+				[IgnoreDataMember]
+				public Color Color_Red { get; set; }
+				[IgnoreDataMember]
+				public Color Color_Orange { get; set; }
+				[IgnoreDataMember]
+				public Color Color_Yellow { get; set; }
+				[IgnoreDataMember]
+				public Color Color_Green { get; set; }
+				[IgnoreDataMember]
+				public Color Color_Cyan { get; set; }
+				[IgnoreDataMember]
+				public Color Color_Blue { get; set; }
+				[IgnoreDataMember]
+				public Color Color_Magenta { get; set; }
+				[IgnoreDataMember]
+				public Color Color_Violet { get; set; }
+
+				// 待整理
+				public Color Blink_ForeColor { get { return BackColor; } }
+				public Color Blink_SubForeColor { get { return SubBackColor; } }
+				public Color Blink_BackColorLightCoral { get { return Color_Red; } }
+				public Color Blink_BackColorLightGreen { get { return Color_Cyan; } }
+
+				// 视图 - 舰队
+				[IgnoreDataMember] // 严重疲劳
+				public Color Fleet_ColorConditionVeryTired { get; set; }
+				[IgnoreDataMember] // 中等疲劳
+				public Color Fleet_ColorConditionTired { get; set; }
+				[IgnoreDataMember] // 轻微疲劳
+				public Color Fleet_ColorConditionLittleTired { get; set; }
+				[IgnoreDataMember] // 战意高扬
+				public Color Fleet_ColorConditionSparkle { get; set; }
+				[IgnoreDataMember] // 装备改修值
+				public Color Fleet_equipmentLevelColor { get; set; }
+
+				// 视图 - 任务
+				[IgnoreDataMember] // 编成
+				public Color Quest_Type1Color { get; set; }
+				[IgnoreDataMember] // 出击
+				public Color Quest_Type2Color { get; set; }
+				[IgnoreDataMember] // 演习
+				public Color Quest_Type3Color { get; set; }
+				[IgnoreDataMember] // 远征
+				public Color Quest_Type4Color { get; set; }
+				[IgnoreDataMember] // 补给、入渠
+				public Color Quest_Type5Color { get; set; }
+				[IgnoreDataMember] // 工厂
+				public Color Quest_Type6Color { get; set; }
+				[IgnoreDataMember] // 改装
+				public Color Quest_Type7Color { get; set; }
+				[IgnoreDataMember] // 进度 <50%
+				public Color Quest_ColorProcessLT50 { get; set; }
+				[IgnoreDataMember] // 进度 <80%
+				public Color Quest_ColorProcessLT80 { get; set; }
+				[IgnoreDataMember] // 进度 <100%
+				public Color Quest_ColorProcessLT100 { get; set; }
+				[IgnoreDataMember] // 进度 100%
+				public Color Quest_ColorProcessDefault { get; set; }
+
+				// 视图 - 罗盘
+				[IgnoreDataMember] // 敌舰名 - elite
+				public Color Compass_ShipNameColor2 { get; set; }
+				[IgnoreDataMember] // 敌舰名 - flagship
+				public Color Compass_ShipNameColor3 { get; set; }
+				[IgnoreDataMember] // 敌舰名 - 改 flagship / 后期型
+				public Color Compass_ShipNameColor4 { get; set; }
+				[IgnoreDataMember] // 敌舰名 - 后期型 elite
+				public Color Compass_ShipNameColor5 { get; set; }
+				[IgnoreDataMember] // 敌舰名 - 后期型 flagship
+				public Color Compass_ShipNameColor6 { get; set; }
+				[IgnoreDataMember] // 事件类型 - 夜战
+				public Color Compass_ColorTextEventKind3 { get; set; }
+				[IgnoreDataMember] // 事件类型 - 航空战 / 长距离空袭战
+				public Color Compass_ColorTextEventKind6 { get; set; }
+				[IgnoreDataMember] // 事件类型 - 敌联合舰队
+				public Color Compass_ColorTextEventKind5 { get; set; }
+				[IgnoreDataMember] // 半透明背景色，当舰载机数量叠加到飞机图标上时背景填充的色块
+				public Color Compass_ColoroverlayBrush { get; set; }
+				// default: return Color.FromArgb(0xC0, 0xF0, 0xF0, 0xF0);
+
+				// 视图 - 战斗：血条背景色、血条文字色
+				[IgnoreDataMember] // 受损状态 BOSS
+				public Color Battle_ColorHPBarsBossDamaged { get; set; }
+				[IgnoreDataMember] // MVP
+				public Color Battle_ColorHPBarsMVP { get; set; }
+				[IgnoreDataMember] // 已退避
+				public Color Battle_ColorHPBarsEscaped { get; set; }
+
+				// 视图 - 舰队：入渠中计时器
+				public Color Battle_ColorHPTextRepair { get {
+					return SubBackColor;
+					// return Color.FromArgb(0x00, 0x00, 0x88);
+				}}
+
+				public bool RemoveBarShadow { get {
+				switch (ThemeID) {
+					case 0:  return true;
+					case 1:  return true;
+					default: return false;
+				}}}
+
+				#endregion
 
 				public ConfigUI() {
 					MainFont = new Font( "Meiryo UI", 12, FontStyle.Regular, GraphicsUnit.Pixel );
 					SubFont = new Font( "Meiryo UI", 10, FontStyle.Regular, GraphicsUnit.Pixel );
 					BarColorMorphing = false;
+					JapaneseShipName = false;
+					JapaneseShipType = false;
+					JapaneseEquipmentName = false;
+					JapaneseEquipmentType = false;
 				}
 			}
 			/// <summary>UI</summary>
@@ -1231,6 +1344,322 @@ namespace ElectronicObserver.Utility {
 						reg.Close();
 				}
 
+			}
+
+
+			// 读取配色主题 ( 默认值待编辑 )
+			dynamic json = DynamicJson.Parse(@"[{""name"":""VS2012Light""}]");
+			//if (File.Exists(@"Settings\ColorScheme.json")) {
+			try {
+				string s = String.Empty;
+				StringBuilder sb = new StringBuilder();
+				// 读取配色文件
+				using (StreamReader sr = File.OpenText(@"Settings\ColorScheme.json")) {
+					while ((s = sr.ReadLine()) != null) {
+						// 干掉注释，因为 DynamicJson 不支持注释
+						s = Regex.Replace(s, @"\/\/.*?$", string.Empty);
+						if (!String.IsNullOrWhiteSpace(s)) sb.Append(s);
+					}
+				}
+				json = DynamicJson.Parse(sb.ToString());
+			} catch (FileNotFoundException) {
+				Logger.Add(2, @"Settings\ColorScheme.json not found.");
+			} catch {
+				Logger.Add(2, @"Failed to load Settings\ColorScheme.json.");
+			}
+			int themeId = Config.UI.ThemeID;
+			if (!json.IsDefined(themeId)) {
+				themeId = Config.UI.ThemeID = 0;
+				Logger.Add(2, "The specified ThemeID does not exist.");
+			}
+			ThemeStyle = json[themeId];
+			Logger.Add(2, ThemeStyle["name"] + " color scheme loaded.");
+			// 定义基本颜色
+			Config.UI.Color_Red     = ThemeColor("basicColors", "red");
+			Config.UI.Color_Orange  = ThemeColor("basicColors", "orange");
+			Config.UI.Color_Yellow  = ThemeColor("basicColors", "yellow");
+			Config.UI.Color_Green   = ThemeColor("basicColors", "green");
+			Config.UI.Color_Cyan    = ThemeColor("basicColors", "cyan");
+			Config.UI.Color_Blue    = ThemeColor("basicColors", "blue");
+			Config.UI.Color_Magenta = ThemeColor("basicColors", "magenta");
+			Config.UI.Color_Violet  = ThemeColor("basicColors", "violet");
+			// 定义面板颜色
+			Config.UI.ForeColor = ThemeColor("panelColors", "foreground");
+			Config.UI.BackColor = ThemeColor("panelColors", "background");
+			Config.UI.SubForeColor = ThemeColor("panelColors", "foreground2");
+			Config.UI.SubBackColor = ThemeColor("panelColors", "background2");
+			Config.UI.SubBackColorPen = new Pen(Config.UI.SubBackColor);
+			// 状态栏颜色
+			Config.UI.StatusBarForeColor = ThemeColor("panelColors", "statusBarFG");
+			Config.UI.StatusBarBackColor = ThemeColor("panelColors", "statusBarBG");
+			// 定义 UI (DockPanelSuite) 颜色
+			Config.UI.DockPanelSuiteStyles = new string[] {
+				ThemeColorHex("panelColors", "foreground"),
+				ThemeColorHex("panelColors", "background"),
+				ThemeColorHex("panelColors", "background2"),
+				ThemeColorHex("panelColors", "tabActiveFG"),
+				ThemeColorHex("panelColors", "tabActiveBG"),
+				ThemeColorHex("panelColors", "tabLostFocusFG"),
+				ThemeColorHex("panelColors", "tabLostFocusBG"),
+				ThemeColorHex("panelColors", "tabHoverFG"),
+				ThemeColorHex("panelColors", "tabHoverBG")
+			};
+			// 定义数值条颜色
+			Config.UI.BarColorSchemes = new List<SerializableColor>[] {
+				new List<SerializableColor>() {
+					ThemeBarColor(0, 0),
+					ThemeBarColor(0, 1),
+					ThemeBarColor(0, 2),
+					ThemeBarColor(0, 3),
+					ThemeBarColor(0, 4),
+					ThemeBarColor(0, 5),
+					ThemeBarColor(0, 6),
+					ThemeBarColor(0, 7),
+					ThemeBarColor(0, 8),
+					ThemeBarColor(0, 9),
+					ThemeBarColor(0, 10),
+					ThemeBarColor(0, 11)
+				},
+				new List<SerializableColor>() {
+					ThemeBarColor(1, 0),
+					ThemeBarColor(1, 1),
+					ThemeBarColor(1, 2),
+					ThemeBarColor(1, 3),
+					ThemeBarColor(1, 4),
+					ThemeBarColor(1, 5),
+					ThemeBarColor(1, 6),
+					ThemeBarColor(1, 7),
+					ThemeBarColor(1, 8),
+					ThemeBarColor(1, 9),
+					ThemeBarColor(1, 10),
+					ThemeBarColor(1, 11)
+				}
+			};
+			Config.UI.SetBarColorScheme();
+			// 设定各面板颜色
+			Config.UI.Fleet_ColorConditionVeryTired   = ThemePanelColor("fleet", "conditionVeryTired");
+			Config.UI.Fleet_ColorConditionTired       = ThemePanelColor("fleet", "conditionTired");
+			Config.UI.Fleet_ColorConditionLittleTired = ThemePanelColor("fleet", "conditionLittleTired");
+			Config.UI.Fleet_ColorConditionSparkle     = ThemePanelColor("fleet", "conditionSparkle");
+			Config.UI.Fleet_equipmentLevelColor = ThemePanelColor("fleet", "equipmentLevel");
+			Config.UI.Quest_Type1Color = ThemePanelColor("quest", "typeHensei");
+			Config.UI.Quest_Type2Color = ThemePanelColor("quest", "typeShutsugeki");
+			Config.UI.Quest_Type3Color = ThemePanelColor("quest", "typeEnshu");
+			Config.UI.Quest_Type4Color = ThemePanelColor("quest", "typeEnsei");
+			Config.UI.Quest_Type5Color = ThemePanelColor("quest", "typeHokyu");
+			Config.UI.Quest_Type6Color = ThemePanelColor("quest", "typeKojo");
+			Config.UI.Quest_Type7Color = ThemePanelColor("quest", "typeKaiso");
+			Config.UI.Quest_ColorProcessLT50 = ThemePanelColor("quest", "processLT50");
+			Config.UI.Quest_ColorProcessLT80 = ThemePanelColor("quest", "processLT80");
+			Config.UI.Quest_ColorProcessLT100 = ThemePanelColor("quest", "processLT100");
+			Config.UI.Quest_ColorProcessDefault = ThemePanelColor("quest", "processDefault");
+			Config.UI.Compass_ShipNameColor2 = ThemePanelColor("compass", "shipClass2");
+			Config.UI.Compass_ShipNameColor3 = ThemePanelColor("compass", "shipClass3");
+			Config.UI.Compass_ShipNameColor4 = ThemePanelColor("compass", "shipClass4");
+			Config.UI.Compass_ShipNameColor5 = ThemePanelColor("compass", "shipClass5");
+			Config.UI.Compass_ShipNameColor6 = ThemePanelColor("compass", "shipClass6");
+			Config.UI.Compass_ColorTextEventKind3 = ThemePanelColor("compass", "eventKind3");
+			Config.UI.Compass_ColorTextEventKind6 = ThemePanelColor("compass", "eventKind6");
+			Config.UI.Compass_ColorTextEventKind5 = ThemePanelColor("compass", "eventKind5");
+			Config.UI.Compass_ColoroverlayBrush = ThemePanelColor("compass", "overlayBrush");
+			Config.UI.Battle_ColorHPBarsBossDamaged = ThemePanelColor("battle", "barBossDamaged");
+			Config.UI.Battle_ColorHPBarsMVP = ThemePanelColor("battle", "barMVP");
+			Config.UI.Battle_ColorHPBarsEscaped = ThemePanelColor("battle", "barBossDamaged");
+		}
+
+		private dynamic ThemeStyle;
+
+		private Color ThemeColor(string type, string name) {
+			if (ThemeStyle.IsDefined(type) && ThemeStyle[type].IsDefined(name)) {
+				return ColorTranslator.FromHtml(ThemeStyle[type][name]);
+			} else {
+				switch (type + "_" + name) {
+					case "basicColors_red":
+						return Color.Red;
+					case "basicColors_orange":
+						return Color.Orange;
+					case "basicColors_yellow":
+						return Color.Yellow;
+					case "basicColors_green":
+						return Color.Green;
+					case "basicColors.cyan":
+						return Color.Cyan;
+					case "basicColors.blue":
+						return Color.Blue;
+					case "basicColors.magenta":
+						return Color.Magenta;
+					case "basicColors.violet":
+						return Color.Violet;
+					case "panelColors_foreground":
+						return SystemColors.ControlText;
+					case "panelColors_background":
+						return SystemColors.Control;
+					case "panelColors_foreground2":
+						return SystemColors.ControlText;
+					case "panelColors_background2":
+						return SystemColors.ControlLight;
+					case "panelColors_statusBarFG":
+						return Config.UI.SubForeColor;
+					case "panelColors_statusBarBG":
+						return Config.UI.SubBackColor;
+					default:
+						return Color.Magenta;
+				}
+			}
+		}
+
+		private Color ThemePanelColor(string form, string name) {
+			if (ThemeStyle.IsDefined("panelColors") && ThemeStyle["panelColors"].IsDefined(form) && ThemeStyle["panelColors"][form].IsDefined(name)) {
+				return ColorTranslator.FromHtml(ThemeStyle["panelColors"][form][name]);
+			} else {
+				switch (form + "_" + name) {
+					// 视图 - 舰队
+					case "fleet_conditionVeryTired":
+						return Config.UI.Color_Red;
+					case "fleet_conditionTired":
+						return Config.UI.Color_Orange;
+					case "fleet_conditionLittleTired":
+						return Config.UI.Color_Yellow;
+					case "fleet_conditionSparkle":
+						return Config.UI.Color_Blue;
+					case "fleet_equipmentLevel":
+						return Config.UI.Color_Cyan;
+					// 视图 - 司令部
+					// 视图 - 任务
+					case "quest_typeHensei":
+						return Config.UI.Color_Green;
+					case "quest_typeShutsugeki":
+						return Config.UI.Color_Red;
+					case "quest_typeEnshu":
+						return Config.UI.Color_Green;
+					case "quest_typeEnsei":
+						return Config.UI.Color_Cyan;
+					case "quest_typeHokyu":
+						return Config.UI.Color_Yellow;
+					case "quest_typeKojo":
+						return Config.UI.Color_Orange;
+					case "quest_typeKaiso":
+						return Config.UI.Color_Violet;
+					case "quest_processLT50":
+						return Config.UI.Color_Orange;
+					case "quest_processLT80":
+						return Config.UI.Color_Green;
+					case "quest_processLT100":
+						return Config.UI.Color_Cyan;
+					case "quest_processDefault":
+						return Config.UI.Color_Blue;
+					// 视图 - 罗盘
+					case "compass_shipClass2":
+						return Config.UI.Color_Red;
+					case "compass_shipClass3":
+						return Config.UI.Color_Orange;
+					case "compass_shipClass4":
+						return Config.UI.Color_Blue;
+					case "compass_shipClass5":
+						return Config.UI.Color_Magenta;
+					case "compass_shipClass6":
+						return Config.UI.Color_Yellow;
+					case "compass_eventKind3":
+						return Config.UI.Color_Violet;
+					case "compass_eventKind6":
+						return Config.UI.Color_Green;
+					case "compass_eventKind5":
+						return Config.UI.Color_Red;
+					case "compass_overlayBrush": // %75 透明度背景色
+						return Color.FromArgb(0xC0, Config.UI.BackColor);
+					// 视图 - 战斗
+					case "battle_barBossDamaged":
+						return Config.UI.Color_Orange;
+					case "battle_barMVP":
+						return Config.UI.Color_Blue;
+					case "battle_barEscaped":
+						return Config.UI.SubBackColor;
+					default:
+						return Color.Magenta;
+				}
+			}
+		}
+
+		private String ThemeColorHex(string type, string name) {
+			if (ThemeStyle.IsDefined(type) && ThemeStyle[type].IsDefined(name)) {
+				return ThemeStyle[type][name];
+			} else {
+				switch (type + "_" + name) {
+					case "panelColors_tabActiveFG":
+						return ThemeColorHex("panelColors", "foreground2");
+					case "panelColors_tabActiveBG":
+						return ThemeColorHex("panelColors", "background2");
+					case "panelColors_tabLostFocusFG":
+						return ThemeColorHex("panelColors", "foreground2");
+					case "panelColors_tabLostFocusBG":
+						return ThemeColorHex("panelColors", "background2");
+					case "panelColors_tabHoverFG":
+						return ThemeColorHex("panelColors", "foreground2");
+					case "panelColors_tabHoverBG":
+						return ThemeColorHex("panelColors", "background2");
+					default:
+						var c = ThemeColor(type, name);
+						return "#" + c.R.ToString("X2") + c.G.ToString("X2") + c.B.ToString("X2");
+				}
+			}
+		}
+
+		private Color ThemeBarColor(int type, int index) {
+			if (ThemeStyle.IsDefined("barColors") && ThemeStyle["barColors"].IsDefined(type) && ThemeStyle["barColors"][type].IsDefined(11)) {
+				return ColorTranslator.FromHtml(ThemeStyle["barColors"][type][index]);
+			} else {
+				switch (type + "_" + index) {
+					case "0_0":
+						return ColorTranslator.FromHtml("#FF0000");
+					case "0_1":
+						return ColorTranslator.FromHtml("#FF0000");
+					case "0_2":
+						return ColorTranslator.FromHtml("#FF8800");
+					case "0_3":
+						return ColorTranslator.FromHtml("#FF8800");
+					case "0_4":
+						return ColorTranslator.FromHtml("#FFCC00");
+					case "0_5":
+						return ColorTranslator.FromHtml("#FFCC00");
+					case "0_6":
+						return ColorTranslator.FromHtml("#00CC00");
+					case "0_7":
+						return ColorTranslator.FromHtml("#00CC00");
+					case "0_8":
+						return ColorTranslator.FromHtml("#0044CC");
+					case "0_9":
+						return ColorTranslator.FromHtml("#44FF00");
+					case "0_10":
+						return ColorTranslator.FromHtml("#882222");
+					case "0_11":
+						return ColorTranslator.FromHtml("#888888");
+					case "1_0":
+						return ColorTranslator.FromHtml("#FF0000");
+					case "1_1":
+						return ColorTranslator.FromHtml("#FF0000");
+					case "1_2":
+						return ColorTranslator.FromHtml("#FF4400");
+					case "1_3":
+						return ColorTranslator.FromHtml("#FF8800");
+					case "1_4":
+						return ColorTranslator.FromHtml("#FFAA00");
+					case "1_5":
+						return ColorTranslator.FromHtml("#EEEE00");
+					case "1_6":
+						return ColorTranslator.FromHtml("#CCEE00");
+					case "1_7":
+						return ColorTranslator.FromHtml("#00CC00");
+					case "1_8":
+						return ColorTranslator.FromHtml("#0044CC");
+					case "1_9":
+						return ColorTranslator.FromHtml("#00FF44");
+					case "1_10":
+						return ColorTranslator.FromHtml("#882222");
+					case "1_11":
+						return ColorTranslator.FromHtml("#888888");
+					default:
+						return Color.Magenta;
+				}
 			}
 		}
 

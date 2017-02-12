@@ -1,3 +1,4 @@
 [submodule "DockPanelSuite"]
 	path = DockPanelSuite
-	url = https://github.com/andanteyk/dockpanelsuite.git
+	url = https://github.com/silfumus/dockpanelsuite.git
+	branch = 74eo-silf

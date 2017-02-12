@@ -59,6 +59,8 @@ namespace ElectronicObserver.Window {
 
 			Font = TextInformation.Font = Utility.Configuration.Config.UI.MainFont;
 			TextInformation.LanguageOption = RichTextBoxLanguageOptions.UIFonts;
+			TextInformation.ForeColor = Utility.Configuration.Config.UI.ForeColor;
+			TextInformation.BackColor = Utility.Configuration.Config.UI.BackColor;
 		}
 
 
@@ -208,7 +210,7 @@ namespace ElectronicObserver.Window {
 						}
 					}
 
-					sb.AppendFormat( "(練巡強化: {0} / S-rank: {1})\r\n", (int)( expbase * bonus ), (int)( (int)( expbase * 1.2 ) * bonus ) );
+					sb.AppendFormat( "(incl. CT Bonus: {0} / S-rank: {1})\r\n", (int)( expbase * bonus ), (int)( (int)( expbase * 1.2 ) * bonus ) );
 
 
 				}

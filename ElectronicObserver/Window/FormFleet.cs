@@ -181,7 +181,7 @@ namespace ElectronicObserver.Window {
 						(int)( airSuperiority / 1.5 ),
 						Math.Max( (int)( airSuperiority * 1.5 - 1 ), 0 ),
 						Math.Max( (int)( airSuperiority * 3.0 - 1 ), 0 ),
-						includeLevel ? "Without Proficiency" : "With Proficiency",
+						includeLevel ? "w/o Proficiency" : "w/ Proficiency",
 						includeLevel ? Calculator.GetAirSuperiorityIgnoreLevel( fleet ) : Calculator.GetAirSuperiority( fleet ) ) );
 				}
 
@@ -244,7 +244,7 @@ namespace ElectronicObserver.Window {
 
 			public void ConfigurationChanged( FormFleet parent ) {
 				Name.Font = parent.MainFont;
-				StateMain.Font = parent.MainFont;
+				StateMain.Font = Utility.Configuration.Config.UI.MainFont;
 				StateMain.BackColor = Color.Transparent;
 				AirSuperiority.Font = parent.MainFont;
 				AirSuperiority.Font = parent.MainFont;
@@ -458,9 +458,9 @@ namespace ElectronicObserver.Window {
 						}
 					}
 					if ( isEscaped ) {
-						HP.BackColor = Color.Silver;
+						HP.BackColor = Utility.Configuration.Config.UI.SubBackColor;
 					} else {
-						HP.BackColor = SystemColors.Control;
+						HP.BackColor = Utility.Configuration.Config.UI.BackColor;
 					}
 					{
 						StringBuilder sb = new StringBuilder();
@@ -605,11 +605,11 @@ namespace ElectronicObserver.Window {
 					int airbattle = ship.AirBattlePower;
 					if ( airsup > 0 ) {
 						if ( airbattle > 0 )
-							sb.AppendFormat( GeneralRes.AirPower + ": {0} / 航空威力: {1}\r\n", airsup, airbattle );
+							sb.AppendFormat( GeneralRes.AirPower + ": {0} / Airstrike Power: {1}\r\n", airsup, airbattle );
 						else
 							sb.AppendFormat( GeneralRes.AirPower + ": {0}\r\n", airsup );
 					} else if ( airbattle > 0 )
-						sb.AppendFormat( "航空威力: {0}\r\n", airbattle );
+						sb.AppendFormat("Airstrike Power: {0}\r\n", airbattle );
 				}
 
 				return sb.ToString();
@@ -621,19 +621,34 @@ namespace ElectronicObserver.Window {
 					// icon invisible
 					Condition.ImageIndex = -1;
 
-					if ( cond < 20 )
-						Condition.BackColor = Color.LightCoral;
-					else if ( cond < 30 )
-						Condition.BackColor = Color.LightSalmon;
-					else if ( cond < 40 )
-						Condition.BackColor = Color.Moccasin;
-					else if ( cond < 50 )
-						Condition.BackColor = SystemColors.Control;
+					if (cond < 20)
+					{
+						Condition.BackColor = Utility.Configuration.Config.UI.Fleet_ColorConditionVeryTired;
+						Condition.ForeColor = Utility.Configuration.Config.UI.Blink_ForeColor;
+					}
+					else if (cond < 30)
+					{
+						Condition.BackColor = Utility.Configuration.Config.UI.Fleet_ColorConditionTired;
+						Condition.ForeColor = Utility.Configuration.Config.UI.Blink_ForeColor;
+					}
+					else if (cond < 40)
+					{
+						Condition.BackColor = Utility.Configuration.Config.UI.Fleet_ColorConditionLittleTired;
+						Condition.ForeColor = Utility.Configuration.Config.UI.Blink_ForeColor;
+					}
+					else if (cond < 50)
+					{
+						Condition.BackColor = Utility.Configuration.Config.UI.BackColor;
+						Condition.ForeColor = Utility.Configuration.Config.UI.ForeColor;
+					}
 					else
-						Condition.BackColor = Color.LightGreen;
+					{
+						Condition.BackColor = Utility.Configuration.Config.UI.Fleet_ColorConditionSparkle;
+						Condition.ForeColor = Utility.Configuration.Config.UI.Blink_ForeColor;
+					}
 
 				} else {
-					Condition.BackColor = SystemColors.Control;
+					Condition.BackColor = Utility.Configuration.Config.UI.BackColor;
 
 					if ( cond < 20 )
 						Condition.ImageIndex = (int)ResourceManager.IconContent.ConditionVeryTired;
@@ -686,8 +701,8 @@ namespace ElectronicObserver.Window {
 
 			ConfigurationChanged();
 
-			MainFontColor = Color.FromArgb( 0x00, 0x00, 0x00 );
-			SubFontColor = Color.FromArgb( 0x88, 0x88, 0x88 );
+			MainFontColor = Utility.Configuration.Config.UI.ForeColor;
+			SubFontColor = Utility.Configuration.Config.UI.SubForeColor;
 
 
 			//ui init
@@ -698,7 +713,8 @@ namespace ElectronicObserver.Window {
 
 			TableFleet.Visible = false;
 			TableFleet.SuspendLayout();
-			TableFleet.BorderStyle = BorderStyle.FixedSingle;
+			// TableFleet.BorderStyle = BorderStyle.FixedSingle;
+			TableFleet.BackColor = Utility.Configuration.Config.UI.SubBackColor;
 			ControlFleet = new TableFleetControl( this, TableFleet );
 			TableFleet.ResumeLayout();
 
@@ -1088,7 +1104,7 @@ namespace ElectronicObserver.Window {
 
 
 		private void TableMember_CellPaint( object sender, TableLayoutCellPaintEventArgs e ) {
-			e.Graphics.DrawLine( Pens.Silver, e.CellBounds.X, e.CellBounds.Bottom - 1, e.CellBounds.Right - 1, e.CellBounds.Bottom - 1 );
+			e.Graphics.DrawLine(Utility.Configuration.Config.UI.SubBackColorPen, e.CellBounds.X, e.CellBounds.Bottom - 1, e.CellBounds.Right - 1, e.CellBounds.Bottom - 1 );
 		}
 
 

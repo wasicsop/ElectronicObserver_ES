@@ -112,14 +112,14 @@ namespace ElectronicObserver.Window.Control {
 		}
 
 		private Color _repairFontColor;
-		[Browsable( true ), Category( "Appearance" ), DefaultValue( typeof( Color ), "0, 0, 136" )]
+		[Browsable( true ), Category( "Appearance" )]
 		[Description( "修復時間テキストの色を指定します。" )]
 		public Color RepairFontColor {
 			get {
 				return _repairFontColor;
 			}
 			set {
-				_repairFontColor = value;
+				_repairFontColor = Utility.Configuration.Config.UI.Color_Cyan;
 				Refresh();
 			}
 		}
@@ -258,10 +258,10 @@ namespace ElectronicObserver.Window.Control {
 			_maximumDigit = 999;
 
 			_mainFont = new Font( "Meiryo UI", 12, FontStyle.Regular, GraphicsUnit.Pixel );
-			_mainFontColor = FromArgb( 0xFF000000 );
+			_mainFontColor = Color.FromArgb( 0xFF, Utility.Configuration.Config.UI.ForeColor );
 
 			_subFont = new Font( "Meiryo UI", 10, FontStyle.Regular, GraphicsUnit.Pixel );
-			_subFontColor = FromArgb( 0xFF888888 );
+			_subFontColor = Color.FromArgb(0xFF, Utility.Configuration.Config.UI.SubForeColor);
 
 			_repairFontColor = FromArgb(0xFF000088);
 			_text = "HP:";
@@ -271,7 +271,20 @@ namespace ElectronicObserver.Window.Control {
 		}
 
 
-
+		public void RepaintHPtext()
+		{
+			if (this.BackColor == Utility.Configuration.Config.UI.BackColor)
+			{
+				_mainFontColor = Utility.Configuration.Config.UI.ForeColor;
+				_subFontColor = Utility.Configuration.Config.UI.SubForeColor;
+			}
+			else
+			{
+				_mainFontColor = Utility.Configuration.Config.UI.Blink_ForeColor;
+				_subFontColor = Utility.Configuration.Config.UI.Blink_SubForeColor;
+			}
+			this.Refresh();
+		}
 
 
 		private void ShipStatusHP_Paint( object sender, PaintEventArgs e ) {
