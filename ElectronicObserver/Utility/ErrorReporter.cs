@@ -43,8 +43,8 @@ namespace ElectronicObserver.Utility {
 			try {
 				using ( StreamWriter sw = new StreamWriter( path, false, new System.Text.UTF8Encoding( false ) ) ) {
 
-					sw.WriteLine( LoggerRes.ErrorReport, DateTime.Now );
-					sw.WriteLine( LoggerRes.ErrorField, ex.GetType().Name );
+					sw.WriteLine( "Error Report [ver. {0}] : {1}", SoftwareInformation.VersionEnglish, DateTimeHelper.TimeToCSVString( DateTime.Now ) );
+					sw.WriteLine( "Error : {0}", ex.GetType().Name );
 					sw.WriteLine( ex.Message );
 					sw.WriteLine( LoggerRes.AdditionalInfo, message );
 					sw.WriteLine( LoggerRes.StackTrace );

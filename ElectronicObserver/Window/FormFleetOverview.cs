@@ -251,17 +251,17 @@ namespace ElectronicObserver.Window {
 			if ( KCDatabase.Instance.Fleet.CombinedFlag > 0 ) {
 				CombinedTag.Text = Constants.GetCombinedFleet( KCDatabase.Instance.Fleet.CombinedFlag );
 
-				if ( KCDatabase.Instance.Fleet.CombinedFlag == 3 ) {
-					ToolTipInfo.SetToolTip( CombinedTag, string.Format( "Drums: {0} pcs\r\nDaihatsu: {1} pcs\r\nTP: {2}\r\n",
-						KCDatabase.Instance.Fleet[1].MembersWithoutEscaped.Sum( s => s == null ? 0 : s.AllSlotInstanceMaster.Count( eq => eq != null && eq.CategoryType == 30 ) ) +
-						KCDatabase.Instance.Fleet[2].MembersWithoutEscaped.Sum( s => s == null ? 0 : s.AllSlotInstanceMaster.Count( eq => eq != null && eq.CategoryType == 30 ) ),
-						KCDatabase.Instance.Fleet[1].MembersWithoutEscaped.Sum( s => s == null ? 0 : s.AllSlotInstanceMaster.Count( eq => eq != null && eq.CategoryType == 24 ) ) +
-						KCDatabase.Instance.Fleet[2].MembersWithoutEscaped.Sum( s => s == null ? 0 : s.AllSlotInstanceMaster.Count( eq => eq != null && eq.CategoryType == 24 ) ),
-						Calculator.GetTPDamage( KCDatabase.Instance.Fleet[1] ) + Calculator.GetTPDamage( KCDatabase.Instance.Fleet[2] )
-						) );
-				} else {
-					ToolTipInfo.SetToolTip( CombinedTag, null );
-				}
+
+				int tp = Calculator.GetTPDamage( KCDatabase.Instance.Fleet[1] ) + Calculator.GetTPDamage( KCDatabase.Instance.Fleet[2] );
+
+				ToolTipInfo.SetToolTip( CombinedTag, string.Format( "Drums: {0} pcs\r\nDaihatsu: {1} pcs\r\nTP: S {2} / A {3}\r\n",
+					KCDatabase.Instance.Fleet[1].MembersWithoutEscaped.Sum( s => s == null ? 0 : s.AllSlotInstanceMaster.Count( eq => eq != null && eq.CategoryType == 30 ) ) +
+					KCDatabase.Instance.Fleet[2].MembersWithoutEscaped.Sum( s => s == null ? 0 : s.AllSlotInstanceMaster.Count( eq => eq != null && eq.CategoryType == 30 ) ),
+					KCDatabase.Instance.Fleet[1].MembersWithoutEscaped.Sum( s => s == null ? 0 : s.AllSlotInstanceMaster.Count( eq => eq != null && eq.CategoryType == 24 ) ) +
+					KCDatabase.Instance.Fleet[2].MembersWithoutEscaped.Sum( s => s == null ? 0 : s.AllSlotInstanceMaster.Count( eq => eq != null && eq.CategoryType == 24 ) ),
+					tp, (int)Math.Floor( tp * 0.7 )
+					) );
+
 
 				CombinedTag.Visible = true;
 			} else {

@@ -97,7 +97,7 @@ namespace ElectronicObserver.Window {
 			o.APIList["api_req_air_corps/set_plane"].ResponseReceived += Updated;
 			o.APIList["api_req_air_corps/supply"].ResponseReceived += Updated;
 			o.APIList["api_get_member/useitem"].ResponseReceived += Updated;
-			
+
 
 			Utility.Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
 			Utility.SystemEvents.UpdateTimerTick += SystemEvents_UpdateTimerTick;
@@ -205,6 +205,11 @@ namespace ElectronicObserver.Window {
 				return;
 
 
+			// 資源上限超過時の色
+			Color overcolor = Color.Moccasin;
+
+
+
 			FlowPanelMaster.SuspendLayout();
 
 			//Admiral
@@ -297,30 +302,35 @@ namespace ElectronicObserver.Window {
 			FlowPanelUseItem.SuspendLayout();
 
 			InstantRepair.Text = db.Material.InstantRepair.ToString();
-			ToolTipInfo.SetToolTip( InstantRepair, string.Format( GeneralRes.ChangeTooltip,
+			InstantRepair.BackColor = db.Material.InstantRepair >= 3000 ? overcolor : Color.Transparent;
+			ToolTipInfo.SetToolTip( InstantRepair, string.Format( "Today: {0:+##;-##;±0}\nThis week: {1:+##;-##;±0}\nThis month: {2:+##;-##;±0}",
 					resday == null ? 0 : ( db.Material.InstantRepair - resday.InstantRepair ),
 					resweek == null ? 0 : ( db.Material.InstantRepair - resweek.InstantRepair ),
 					resmonth == null ? 0 : ( db.Material.InstantRepair - resmonth.InstantRepair ) ) );
 
 			InstantConstruction.Text = db.Material.InstantConstruction.ToString();
-			ToolTipInfo.SetToolTip( InstantConstruction, string.Format( GeneralRes.ChangeTooltip,
+			InstantConstruction.BackColor = db.Material.InstantConstruction >= 3000 ? overcolor : Color.Transparent;
+			ToolTipInfo.SetToolTip( InstantConstruction, string.Format( "Today: {0:+##;-##;±0}\nThis week: {1:+##;-##;±0}\nThis month: {2:+##;-##;±0}",
 					resday == null ? 0 : ( db.Material.InstantConstruction - resday.InstantConstruction ),
 					resweek == null ? 0 : ( db.Material.InstantConstruction - resweek.InstantConstruction ),
 					resmonth == null ? 0 : ( db.Material.InstantConstruction - resmonth.InstantConstruction ) ) );
 
 			DevelopmentMaterial.Text = db.Material.DevelopmentMaterial.ToString();
-			ToolTipInfo.SetToolTip( DevelopmentMaterial, string.Format( GeneralRes.ChangeTooltip,
+			DevelopmentMaterial.BackColor = db.Material.DevelopmentMaterial >= 3000 ? overcolor : Color.Transparent;
+			ToolTipInfo.SetToolTip( DevelopmentMaterial, string.Format( "Today: {0:+##;-##;±0}\nThis week: {1:+##;-##;±0}\nThis month: {2:+##;-##;±0}",
 					resday == null ? 0 : ( db.Material.DevelopmentMaterial - resday.DevelopmentMaterial ),
 					resweek == null ? 0 : ( db.Material.DevelopmentMaterial - resweek.DevelopmentMaterial ),
 					resmonth == null ? 0 : ( db.Material.DevelopmentMaterial - resmonth.DevelopmentMaterial ) ) );
 
 			ModdingMaterial.Text = db.Material.ModdingMaterial.ToString();
-			ToolTipInfo.SetToolTip( ModdingMaterial, string.Format( GeneralRes.ChangeTooltip,
+			ModdingMaterial.BackColor = db.Material.ModdingMaterial >= 3000 ? overcolor : Color.Transparent;
+			ToolTipInfo.SetToolTip( ModdingMaterial, string.Format( "Today: {0:+##;-##;±0}\nThis week: {1:+##;-##;±0}\nThis month: {2:+##;-##;±0}",
 					resday == null ? 0 : ( db.Material.ModdingMaterial - resday.ModdingMaterial ),
 					resweek == null ? 0 : ( db.Material.ModdingMaterial - resweek.ModdingMaterial ),
 					resmonth == null ? 0 : ( db.Material.ModdingMaterial - resmonth.ModdingMaterial ) ) );
 
 			FurnitureCoin.Text = db.Admiral.FurnitureCoin.ToString();
+			FurnitureCoin.BackColor = db.Admiral.FurnitureCoin >= 200000 ? overcolor : Color.Transparent;
 			{
 				int small = db.UseItems[10] != null ? db.UseItems[10].Count : 0;
 				int medium = db.UseItems[11] != null ? db.UseItems[11].Count : 0;
