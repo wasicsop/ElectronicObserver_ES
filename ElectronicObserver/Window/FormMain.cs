@@ -125,7 +125,7 @@ namespace ElectronicObserver.Window {
 			Utility.Logger.Add( 2, SoftwareInformation.SoftwareNameEnglish + Resources.IsStarting );
 
 
-			this.Text = SoftwareInformation.SoftwareNameEnglish + " " + SoftwareInformation.VersionEnglish;
+			this.Text = SoftwareInformation.SoftwareNameEnglish;
 
 			ResourceManager.Instance.Load();
 			RecordManager.Instance.Load();
