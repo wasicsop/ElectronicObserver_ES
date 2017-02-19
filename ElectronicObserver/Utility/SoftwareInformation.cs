@@ -117,7 +117,7 @@ namespace ElectronicObserver.Utility {
 
 						if ( result == System.Windows.Forms.DialogResult.Yes ) {
 
-							System.Diagnostics.Process.Start( "http://github.com/silfumus/ElectronicObserver/releases" );
+							System.Diagnostics.Process.Start( "http://github.com/silfumus/ElectronicObserver" );
 
 						} else if ( result == System.Windows.Forms.DialogResult.Cancel ) {
 

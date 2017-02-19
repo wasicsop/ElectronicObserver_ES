@@ -798,7 +798,7 @@ This month: {2:+##;-##;±0}</value>
     <value>Fleet Candidate</value>
   </data>
   <data name="NoFleetCandidates" xml:space="preserve">
-    <value>(No Enemy Fleet Candidates)</value>
+    <value>(No Candidates)</value>
   </data>
   <data name="BauxiteUsage" xml:space="preserve">
     <value>Bauxite: {0} ( {1} planes )

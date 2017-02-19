@@ -206,7 +206,7 @@ namespace ElectronicObserver.Window {
 
 
 			// 資源上限超過時の色
-			Color overcolor = Color.Moccasin;
+			Color overcolor = Utility.Configuration.Config.UI.SubBackColor;
 
 
 
@@ -349,8 +349,6 @@ namespace ElectronicObserver.Window {
 			//Resources
 			FlowPanelResource.SuspendLayout();
 			{
-				Color overcolor = Utility.Configuration.Config.UI.SubBackColor;
-
 				Fuel.Text = db.Material.Fuel.ToString();
 				Fuel.BackColor = db.Material.Fuel < db.Admiral.MaxResourceRegenerationAmount ? Color.Transparent : overcolor;
 				ToolTipInfo.SetToolTip( Fuel, string.Format( GeneralRes.ChangeTooltip,

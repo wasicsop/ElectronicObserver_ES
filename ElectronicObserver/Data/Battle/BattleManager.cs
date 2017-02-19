@@ -347,7 +347,7 @@ namespace ElectronicObserver.Data.Battle {
 						var ship = FirstBattle.Initial.FriendFleet.MembersInstance[i];
 						int increment = Math.Max( lvup[i].Length - 2, 1 );
 
-						Utility.Logger.Add( 2, string.Format( "{0} が Lv. {1} になりました。", ship.Name, ship.Level + increment ) );
+						Utility.Logger.Add( 2, string.Format( "{0} has leveled up to lv{1}.", ship.Name, ship.Level + increment ) );
 					}
 				}
 
@@ -359,7 +359,7 @@ namespace ElectronicObserver.Data.Battle {
 							var ship = FirstBattle.Initial.FriendFleetEscort.MembersInstance[i];
 							int increment = Math.Max( lvup[i].Length - 2, 1 );
 
-							Utility.Logger.Add( 2, string.Format( "{0} が Lv. {1} になりました。", ship.Name, ship.Level + increment ) );
+							Utility.Logger.Add( 2, string.Format( "{0} has leveled up to lv{1}.", ship.Name, ship.Level + increment ) );
 						}
 					}
 				}

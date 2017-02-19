@@ -829,7 +829,7 @@ namespace ElectronicObserver.Window {
 									TextEventDetail.Text = string.Join( "/", compass.RouteChoices );
 									break;
 								case 3:		//穏やかな海
-									eventkind = "穏やかな海";
+									eventkind = "It's a calm sea.";
 									TextEventDetail.Text = "";
 									break;
 							}

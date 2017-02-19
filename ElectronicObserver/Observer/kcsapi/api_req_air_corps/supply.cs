@@ -38,7 +38,7 @@ namespace ElectronicObserver.Observer.kcsapi.api_req_air_corps {
 			baux -= KCDatabase.Instance.Material.Bauxite;
 
 			if ( corps.ContainsKey( _aircorpsID ) )
-			Utility.Logger.Add( 2, string.Format( "#{0}「{1}」へ補給を行いました。消費: 燃料x{2}, ボーキサイトx{3}",
+			Utility.Logger.Add( 2, string.Format( "「{1}」 of Air Base #{0} has been resupplied. Cost: Fuel×{2}, Bauxite×{3}",
 				corps[_aircorpsID].MapAreaID, corps[_aircorpsID].Name, fuel, baux ) );
 
 			base.OnResponseReceived( (object)data );
