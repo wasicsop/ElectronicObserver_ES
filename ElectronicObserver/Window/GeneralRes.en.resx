@@ -325,7 +325,7 @@ This action cannot be undone.</value>
     <value>Enemy sighted!</value>
   </data>
   <data name="EnemyUnknown" xml:space="preserve">
-    <value>(Enemy Unknown)</value>
+    <value>(Unidentified)</value>
   </data>
   <data name="Equipment" xml:space="preserve">
     <value>Equipment</value>
@@ -512,7 +512,7 @@ Contact Chance:
     <value>Retreating</value>
   </data>
   <data name="SawNoEnemy" xml:space="preserve">
-    <value>Saw no enemy.</value>
+    <value>No enemy sighted.</value>
   </data>
   <data name="Scouting" xml:space="preserve">
     <value>Scouting</value>
@@ -798,7 +798,7 @@ This month: {2:+##;-##;±0}</value>
     <value>Fleet Candidate</value>
   </data>
   <data name="NoFleetCandidates" xml:space="preserve">
-    <value>(No Enemy Fleet Candidates)</value>
+    <value>(No Candidates)</value>
   </data>
   <data name="BauxiteUsage" xml:space="preserve">
     <value>Bauxite: {0} ( {1} planes )

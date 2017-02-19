@@ -29,7 +29,17 @@ namespace ElectronicObserver.Observer.kcsapi.api_req_air_corps {
 				corps[_aircorpsID].LoadFromResponse( APIName, data );
 
 
+			int fuel = KCDatabase.Instance.Material.Fuel;
+			int baux = KCDatabase.Instance.Material.Bauxite;
+
 			KCDatabase.Instance.Material.LoadFromResponse( APIName, data );
+
+			fuel -= KCDatabase.Instance.Material.Fuel;
+			baux -= KCDatabase.Instance.Material.Bauxite;
+
+			if ( corps.ContainsKey( _aircorpsID ) )
+			Utility.Logger.Add( 2, string.Format( "「{1}」 of Air Base #{0} has been resupplied. Cost: Fuel×{2}, Bauxite×{3}",
+				corps[_aircorpsID].MapAreaID, corps[_aircorpsID].Name, fuel, baux ) );
 
 			base.OnResponseReceived( (object)data );
 		}

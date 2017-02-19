@@ -21,6 +21,10 @@ namespace ElectronicObserver.Data {
 					return ConstantsRes.Slow;
 				case 10:
 					return ConstantsRes.Fast;
+				case 15:
+					return "Fast+";
+				case 20:
+					return "Fastest";
 				default:
 					return ConstantsRes.Unknown;
 			}
@@ -41,6 +45,8 @@ namespace ElectronicObserver.Data {
 					return ConstantsRes.Long;
 				case 4:
 					return ConstantsRes.VeryLong;
+				case 5:
+					return ConstantsRes.VeryLong + "+";
 				default:
 					return ConstantsRes.Unknown;
 			}

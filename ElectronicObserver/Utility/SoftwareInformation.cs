@@ -36,7 +36,7 @@ namespace ElectronicObserver.Utility {
 		/// </summary>
 		public static string VersionJapanese {
 			get {
-				return SoftwareNameJapanese + "二五型改二";
+				return SoftwareNameJapanese + "二五型改三";
 			}
 		}
 
@@ -45,7 +45,7 @@ namespace ElectronicObserver.Utility {
 		/// </summary>
 		public static string VersionEnglish {
 			get {
-				return "2.5.2.2";
+				return "2.5.3";
 			}
 		}
 
@@ -55,7 +55,7 @@ namespace ElectronicObserver.Utility {
 		/// </summary>
 		public static DateTime UpdateTime {
 			get {
-				return DateTimeHelper.CSVStringToTime( "2017/02/11 10:00:00" );
+				return DateTimeHelper.CSVStringToTime( "2017/02/14 23:00:00" );
 			}
 		}
 
@@ -117,7 +117,7 @@ namespace ElectronicObserver.Utility {
 
 						if ( result == System.Windows.Forms.DialogResult.Yes ) {
 
-							System.Diagnostics.Process.Start( "http://github.com/silfumus/ElectronicObserver/releases" );
+							System.Diagnostics.Process.Start( "http://github.com/silfumus/ElectronicObserver" );
 
 						} else if ( result == System.Windows.Forms.DialogResult.Cancel ) {
 
