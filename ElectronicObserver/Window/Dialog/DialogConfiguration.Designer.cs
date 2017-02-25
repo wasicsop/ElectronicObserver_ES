@@ -152,6 +152,7 @@
 			this.FormBattle_HideDuringBattle = new System.Windows.Forms.CheckBox();
 			this.FormBattle_IsScrollable = new System.Windows.Forms.CheckBox();
 			this.tabPage12 = new System.Windows.Forms.TabPage();
+			this.FormBrowser_IsDMMreloadDialogDestroyable = new System.Windows.Forms.CheckBox();
 			this.FormBrowser_ToolMenuDockStyle = new System.Windows.Forms.ComboBox();
 			this.label30 = new System.Windows.Forms.Label();
 			this.FormBrowser_ZoomFit = new System.Windows.Forms.CheckBox();
@@ -1758,6 +1759,7 @@
 			// 
 			// tabPage12
 			// 
+			this.tabPage12.Controls.Add(this.FormBrowser_IsDMMreloadDialogDestroyable);
 			this.tabPage12.Controls.Add(this.FormBrowser_ToolMenuDockStyle);
 			this.tabPage12.Controls.Add(this.label30);
 			this.tabPage12.Controls.Add(this.FormBrowser_ZoomFit);
@@ -1777,6 +1779,17 @@
 			this.tabPage12.TabIndex = 3;
 			this.tabPage12.Text = global::ElectronicObserver.Window.Dialog.ConfigRes.Browser;
 			this.tabPage12.UseVisualStyleBackColor = true;
+			// 
+			// FormBrowser_IsDMMreloadDialogDestroyable
+			// 
+			this.FormBrowser_IsDMMreloadDialogDestroyable.AutoSize = true;
+			this.FormBrowser_IsDMMreloadDialogDestroyable.Location = new System.Drawing.Point(282, 90);
+			this.FormBrowser_IsDMMreloadDialogDestroyable.Name = "FormBrowser_IsDMMreloadDialogDestroyable";
+			this.FormBrowser_IsDMMreloadDialogDestroyable.Size = new System.Drawing.Size(245, 19);
+			this.FormBrowser_IsDMMreloadDialogDestroyable.TabIndex = 12;
+			this.FormBrowser_IsDMMreloadDialogDestroyable.Text = "DMMによるページ更新ダイアログを非表示にする";
+			this.ToolTipInfo.SetToolTip(this.FormBrowser_IsDMMreloadDialogDestroyable, "DMMによる「エラーが発生したため、ページ更新します。」の確認ダイアログを表示されないようにします。");
+			this.FormBrowser_IsDMMreloadDialogDestroyable.UseVisualStyleBackColor = true;
 			// 
 			// FormBrowser_ToolMenuDockStyle
 			// 
@@ -2870,6 +2883,7 @@
 		private System.Windows.Forms.ComboBox FormHeadquarters_DisplayUseItemID;
 		private System.Windows.Forms.CheckBox FormBattle_HideDuringBattle;
 		private System.Windows.Forms.CheckBox Log_SaveBattleLog;
+		private System.Windows.Forms.CheckBox FormBrowser_IsDMMreloadDialogDestroyable;
 		private System.Windows.Forms.Label label35;
 		private System.Windows.Forms.NumericUpDown FormFleet_FixedShipNameWidth;
 		private System.Windows.Forms.CheckBox UI_JapaneseShipNames;

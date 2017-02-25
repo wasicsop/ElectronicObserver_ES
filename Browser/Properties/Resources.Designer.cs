@@ -10,8 +10,8 @@
 
 namespace Browser.Properties {
     using System;
-    
-    
+
+
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -23,15 +23,15 @@ namespace Browser.Properties {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
-        
+
         private static global::System.Resources.ResourceManager resourceMan;
-        
+
         private static global::System.Globalization.CultureInfo resourceCulture;
-        
+
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
         internal Resources() {
         }
-        
+
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
@@ -45,7 +45,7 @@ namespace Browser.Properties {
                 return resourceMan;
             }
         }
-        
+
         /// <summary>
         ///   Overrides the current thread's CurrentUICulture property for all
         ///   resource lookups using this strongly typed resource class.
@@ -59,7 +59,7 @@ namespace Browser.Properties {
                 resourceCulture = value;
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to 下(&amp;B).
         /// </summary>
@@ -68,7 +68,7 @@ namespace Browser.Properties {
                 return ResourceManager.GetString("Alignment_Bottom", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to 非表示(&amp;I).
         /// </summary>
@@ -77,7 +77,7 @@ namespace Browser.Properties {
                 return ResourceManager.GetString("Alignment_Invisible", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to 左(&amp;L).
         /// </summary>
@@ -86,7 +86,7 @@ namespace Browser.Properties {
                 return ResourceManager.GetString("Alignment_Left", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to 右(&amp;R).
         /// </summary>
@@ -95,7 +95,7 @@ namespace Browser.Properties {
                 return ResourceManager.GetString("Alignment_Right", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to 上(&amp;T).
         /// </summary>
@@ -104,7 +104,7 @@ namespace Browser.Properties {
                 return ResourceManager.GetString("Alignment_Top", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to ブラウザのキャッシュを削除します。
         ///よろしいですか？.
@@ -114,7 +114,7 @@ namespace Browser.Properties {
                 return ResourceManager.GetString("ClearCacheDialog", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to キャッシュの削除.
         /// </summary>
@@ -123,7 +123,7 @@ namespace Browser.Properties {
                 return ResourceManager.GetString("ClearCacheTitle", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to 削除完了.
         /// </summary>
@@ -132,7 +132,7 @@ namespace Browser.Properties {
                 return ResourceManager.GetString("ClearComplete", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to キャッシュの削除が完了しました。.
         /// </summary>
@@ -141,7 +141,7 @@ namespace Browser.Properties {
                 return ResourceManager.GetString("ClearCompleteDialog", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to 確認.
         /// </summary>
@@ -150,7 +150,7 @@ namespace Browser.Properties {
                 return ResourceManager.GetString("Confirm", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to 対象の swf が見つかりませんでした。.
         /// </summary>
@@ -159,7 +159,7 @@ namespace Browser.Properties {
                 return ResourceManager.GetString("CouldntFindSWF", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to embed 要素の取得に失敗しました。.
         /// </summary>
@@ -168,7 +168,7 @@ namespace Browser.Properties {
                 return ResourceManager.GetString("CouldntLoadEmbed", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to 現在: .
         /// </summary>
@@ -177,7 +177,7 @@ namespace Browser.Properties {
                 return ResourceManager.GetString("CurrentZoom", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to スタイルシートの適用に失敗しました。.
         /// </summary>
@@ -186,7 +186,7 @@ namespace Browser.Properties {
                 return ResourceManager.GetString("FailedToApplyStylesheet", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to ズームの適用に失敗しました。.
         /// </summary>
@@ -195,7 +195,7 @@ namespace Browser.Properties {
                 return ResourceManager.GetString("FailedToApplyZoom", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to // KCRDBと競合しないように同じように処理
         ///try {
@@ -214,7 +214,7 @@ namespace Browser.Properties {
                 return ResourceManager.GetString("FrameScript", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to 情報.
         /// </summary>
@@ -223,7 +223,7 @@ namespace Browser.Properties {
                 return ResourceManager.GetString("Information", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to ログインページへ移動します。
         ///よろしいですか？.
@@ -233,7 +233,7 @@ namespace Browser.Properties {
                 return ResourceManager.GetString("LoginDialog", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to 艦これが読み込まれていないため、スクリーンショットを撮ることはできません。.
         /// </summary>
@@ -242,7 +242,7 @@ namespace Browser.Properties {
                 return ResourceManager.GetString("NoScreenshotUnloaded", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to その他.
         /// </summary>
@@ -251,7 +251,7 @@ namespace Browser.Properties {
                 return ResourceManager.GetString("Other", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to 配置(&amp;A).
         /// </summary>
@@ -260,7 +260,7 @@ namespace Browser.Properties {
                 return ResourceManager.GetString("Other_Alignment", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to スタイルシートを適用する.
         /// </summary>
@@ -269,7 +269,7 @@ namespace Browser.Properties {
                 return ResourceManager.GetString("Other_ApplyStyleSheet", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to キャッシュのクリア(&amp;C).
         /// </summary>
@@ -278,7 +278,7 @@ namespace Browser.Properties {
                 return ResourceManager.GetString("Other_ClearCache", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to ミュート(&amp;M).
         /// </summary>
@@ -287,7 +287,7 @@ namespace Browser.Properties {
                 return ResourceManager.GetString("Other_Mute", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to 移動(&amp;N)....
         /// </summary>
@@ -296,7 +296,7 @@ namespace Browser.Properties {
                 return ResourceManager.GetString("Other_Navigate", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to ログインページへ移動(&amp;L).
         /// </summary>
@@ -305,7 +305,7 @@ namespace Browser.Properties {
                 return ResourceManager.GetString("Other_NavigateToLogInPage", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to 更新(&amp;R).
         /// </summary>
@@ -314,7 +314,7 @@ namespace Browser.Properties {
                 return ResourceManager.GetString("Other_Refresh", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to 地域制限クッキーを設定.
         /// </summary>
@@ -323,7 +323,7 @@ namespace Browser.Properties {
                 return ResourceManager.GetString("Other_RegionCookie", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to スクリーンショット(&amp;S).
         /// </summary>
@@ -332,7 +332,7 @@ namespace Browser.Properties {
                 return ResourceManager.GetString("Other_Screenshot", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to ズーム(&amp;Z).
         /// </summary>
@@ -341,7 +341,7 @@ namespace Browser.Properties {
                 return ResourceManager.GetString("Other_Zoom", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to 現在% .
         /// </summary>
@@ -350,7 +350,7 @@ namespace Browser.Properties {
                 return ResourceManager.GetString("Other_Zoom_Current", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to ぴったり.
         /// </summary>
@@ -359,7 +359,7 @@ namespace Browser.Properties {
                 return ResourceManager.GetString("Other_Zoom_Fit", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to // KCRDBと競合しないように同じように処理
         ///try {
@@ -379,7 +379,7 @@ namespace Browser.Properties {
                 return ResourceManager.GetString("PageScript", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to 再読み込みします。
         ///よろしいですか？.
@@ -389,7 +389,7 @@ namespace Browser.Properties {
                 return ResourceManager.GetString("ReloadDialog", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to スクリーンショットの保存時にエラーが発生しました。.
         /// </summary>
@@ -398,7 +398,7 @@ namespace Browser.Properties {
                 return ResourceManager.GetString("ScreenshotError", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to スクリーンショットを {0} に保存しました。.
         /// </summary>
@@ -407,7 +407,7 @@ namespace Browser.Properties {
                 return ResourceManager.GetString("ScreenshotSaved", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to ツールメニューを表示.
         /// </summary>
@@ -416,7 +416,7 @@ namespace Browser.Properties {
                 return ResourceManager.GetString("ShowToolMenu", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to ミュート.
         /// </summary>
@@ -425,7 +425,7 @@ namespace Browser.Properties {
                 return ResourceManager.GetString("Strip_Mute", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to ログインページへ移動.
         /// </summary>
@@ -434,7 +434,7 @@ namespace Browser.Properties {
                 return ResourceManager.GetString("Strip_NavigateToLogInPage", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to 更新.
         /// </summary>
@@ -443,7 +443,7 @@ namespace Browser.Properties {
                 return ResourceManager.GetString("Strip_Refresh", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to スクリーンショット.
         /// </summary>
@@ -452,7 +452,7 @@ namespace Browser.Properties {
                 return ResourceManager.GetString("Strip_ScreenShot", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to ズーム.
         /// </summary>
@@ -461,7 +461,7 @@ namespace Browser.Properties {
                 return ResourceManager.GetString("Strip_Zoom", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to これは七四式電子観測儀のサブプログラムであり、単体では起動できません。\r\n本体から起動してください。.
         /// </summary>
@@ -470,7 +470,7 @@ namespace Browser.Properties {
                 return ResourceManager.GetString("SubProgramWarning", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to 七四式電子観測儀 ブラウザ.
         /// </summary>
@@ -479,7 +479,7 @@ namespace Browser.Properties {
                 return ResourceManager.GetString("Title", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to 音量(&amp;V).
         /// </summary>
@@ -488,5 +488,12 @@ namespace Browser.Properties {
                 return ResourceManager.GetString("Volume", resourceCulture);
             }
         }
+
+        internal static string DMMScript {
+            get {
+                return ResourceManager.GetString("DMMScript", resourceCulture);
+            }
+        }
+		
     }
 }
