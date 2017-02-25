@@ -281,6 +281,7 @@ catch(e) {{
   </data>
   <data name="Volume" xml:space="preserve">
     <value>音量(&amp;V)</value>
+  </data>
   <data name="DMMScript" xml:space="preserve">
     <value>
 try {
