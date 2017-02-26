@@ -1122,6 +1122,8 @@ namespace ElectronicObserver.Window {
 			TextEventKind.Font =
 			TextEventDetail.Font = Font;
 
+			AutoScroll = Utility.Configuration.Config.FormCompass.IsScrollable;
+
 			_candidatesDisplayCount = Utility.Configuration.Config.FormCompass.CandidateDisplayCount;
 			_enemyFleetCandidateIndex = 0;
 			if ( PanelEnemyCandidate.Visible )

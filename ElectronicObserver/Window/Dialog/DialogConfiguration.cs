@@ -344,8 +344,10 @@ namespace ElectronicObserver.Window.Dialog {
 			//[サブウィンドウ]
 			FormArsenal_ShowShipName.Checked = config.FormArsenal.ShowShipName;
 			FormArsenal_BlinkAtCompletion.Checked = config.FormArsenal.BlinkAtCompletion;
+			FormArsenal_MaxShipNameWidth.Value = config.FormArsenal.MaxShipNameWidth;
 
 			FormDock_BlinkAtCompletion.Checked = config.FormDock.BlinkAtCompletion;
+			FormDock_MaxShipNameWidth.Value = config.FormDock.MaxShipNameWidth;
 
 			FormFleet_ShowAircraft.Checked = config.FormFleet.ShowAircraft;
 			FormFleet_SearchingAbilityMethod.SelectedIndex = config.FormFleet.SearchingAbilityMethod;
@@ -354,6 +356,7 @@ namespace ElectronicObserver.Window.Dialog {
 			FormFleet_ShortenHPBar.Checked = config.FormFleet.ShortenHPBar;
 			FormFleet_ShowNextExp.Checked = config.FormFleet.ShowNextExp;
 			FormFleet_EquipmentLevelVisibility.SelectedIndex = (int)config.FormFleet.EquipmentLevelVisibility;
+			FormFleet_ShowAircraftLevelByNumber.Checked = config.FormFleet.ShowAircraftLevelByNumber;
 			FormFleet_AirSuperiorityMethod.SelectedIndex = config.FormFleet.AirSuperiorityMethod;
 			FormFleet_ShowAnchorageRepairingTimer.Checked = config.FormFleet.ShowAnchorageRepairingTimer;
 			FormFleet_BlinkAtCompletion.Checked = config.FormFleet.BlinkAtCompletion;
@@ -452,6 +455,7 @@ namespace ElectronicObserver.Window.Dialog {
 				FormBrowser_ToolMenuDockStyle.SelectedIndex = (int)config.FormBrowser.ToolMenuDockStyle - 1;
 
 			FormCompass_CandidateDisplayCount.Value = config.FormCompass.CandidateDisplayCount;
+			FormCompass_IsScrollable.Checked = config.FormCompass.IsScrollable;
 
 			FormJson_AutoUpdate.Checked = config.FormJson.AutoUpdate;
 			FormJson_UpdatesTree.Checked = config.FormJson.UpdatesTree;
@@ -564,8 +568,10 @@ namespace ElectronicObserver.Window.Dialog {
 			//[サブウィンドウ]
 			config.FormArsenal.ShowShipName = FormArsenal_ShowShipName.Checked;
 			config.FormArsenal.BlinkAtCompletion = FormArsenal_BlinkAtCompletion.Checked;
+			config.FormArsenal.MaxShipNameWidth = (int)FormArsenal_MaxShipNameWidth.Value;
 
 			config.FormDock.BlinkAtCompletion = FormDock_BlinkAtCompletion.Checked;
+			config.FormDock.MaxShipNameWidth = (int)FormDock_MaxShipNameWidth.Value;
 
 			config.FormFleet.ShowAircraft = FormFleet_ShowAircraft.Checked;
 			config.FormFleet.SearchingAbilityMethod = FormFleet_SearchingAbilityMethod.SelectedIndex;
@@ -574,6 +580,7 @@ namespace ElectronicObserver.Window.Dialog {
 			config.FormFleet.ShortenHPBar = FormFleet_ShortenHPBar.Checked;
 			config.FormFleet.ShowNextExp = FormFleet_ShowNextExp.Checked;
 			config.FormFleet.EquipmentLevelVisibility = (Window.Control.ShipStatusEquipment.LevelVisibilityFlag)FormFleet_EquipmentLevelVisibility.SelectedIndex;
+			config.FormFleet.ShowAircraftLevelByNumber = FormFleet_ShowAircraftLevelByNumber.Checked;
 			config.FormFleet.AirSuperiorityMethod = FormFleet_AirSuperiorityMethod.SelectedIndex;
 			config.FormFleet.ShowAnchorageRepairingTimer = FormFleet_ShowAnchorageRepairingTimer.Checked;
 			config.FormFleet.BlinkAtCompletion = FormFleet_BlinkAtCompletion.Checked;
@@ -646,6 +653,7 @@ namespace ElectronicObserver.Window.Dialog {
 			}
 
 			config.FormCompass.CandidateDisplayCount = (int)FormCompass_CandidateDisplayCount.Value;
+			config.FormCompass.IsScrollable = FormCompass_IsScrollable.Checked;
 
 			config.FormJson.AutoUpdate = FormJson_AutoUpdate.Checked;
 			config.FormJson.UpdatesTree = FormJson_UpdatesTree.Checked;
@@ -823,6 +831,7 @@ namespace ElectronicObserver.Window.Dialog {
 		private void FormFleet_FixShipNameWidth_CheckedChanged( object sender, EventArgs e ) {
 			FormFleet_FixedShipNameWidth.Enabled = FormFleet_FixShipNameWidth.Checked;
 		}
+
 
 
 	}

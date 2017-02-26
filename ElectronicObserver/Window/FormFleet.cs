@@ -1070,6 +1070,7 @@ namespace ElectronicObserver.Window {
 				bool showNext = c.FormFleet.ShowNextExp;
 				bool showConditionIcon = c.FormFleet.ShowConditionIcon;
 				var levelVisibility = c.FormFleet.EquipmentLevelVisibility;
+				bool showAircraftLevelByNumber = c.FormFleet.ShowAircraftLevelByNumber;
 				int fixedShipNameWidth = c.FormFleet.FixedShipNameWidth;
 
 				for ( int i = 0; i < ControlMember.Length; i++ ) {
@@ -1087,6 +1088,7 @@ namespace ElectronicObserver.Window {
 					ControlMember[i].Level.TextNext = showNext ? "next:" : null;
 					ControlMember[i].Condition.ImageAlign = showConditionIcon ? ContentAlignment.MiddleLeft : ContentAlignment.MiddleCenter;
 					ControlMember[i].Equipments.LevelVisibility = levelVisibility;
+					ControlMember[i].Equipments.ShowAircraftLevelByNumber = showAircraftLevelByNumber;
 					ControlMember[i].ShipResource.BarFuel.ColorMorphing =
 					ControlMember[i].ShipResource.BarAmmo.ColorMorphing = colorMorphing;
 					ControlMember[i].ShipResource.BarFuel.SetBarColorScheme( colorScheme );
