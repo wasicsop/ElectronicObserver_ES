@@ -109,21 +109,21 @@
 			// 
 			this.TreeContextMenu_Expand.Name = "TreeContextMenu_Expand";
 			this.TreeContextMenu_Expand.Size = new System.Drawing.Size(223, 22);
-			this.TreeContextMenu_Expand.Text = "全て展開";
+			this.TreeContextMenu_Expand.Text = "Expand All";
 			this.TreeContextMenu_Expand.Click += new System.EventHandler(this.TreeContextMenu_Expand_Click);
 			// 
 			// TreeContextMenu_Shrink
 			// 
 			this.TreeContextMenu_Shrink.Name = "TreeContextMenu_Shrink";
 			this.TreeContextMenu_Shrink.Size = new System.Drawing.Size(223, 22);
-			this.TreeContextMenu_Shrink.Text = "全て格納";
+			this.TreeContextMenu_Shrink.Text = "Shrink All";
 			this.TreeContextMenu_Shrink.Click += new System.EventHandler(this.TreeContextMenu_Shrink_Click);
 			// 
 			// TreeContextMenu_ShrinkParent
 			// 
 			this.TreeContextMenu_ShrinkParent.Name = "TreeContextMenu_ShrinkParent";
 			this.TreeContextMenu_ShrinkParent.Size = new System.Drawing.Size(223, 22);
-			this.TreeContextMenu_ShrinkParent.Text = "親ノードを格納";
+			this.TreeContextMenu_ShrinkParent.Text = "Shrink to Parent Node";
 			this.TreeContextMenu_ShrinkParent.Click += new System.EventHandler(this.TreeContextMenu_ShrinkParent_Click);
 			// 
 			// toolStripSeparator1
@@ -135,7 +135,7 @@
 			// 
 			this.TreeContextMenu_OutputCSV.Name = "TreeContextMenu_OutputCSV";
 			this.TreeContextMenu_OutputCSV.Size = new System.Drawing.Size(223, 22);
-			this.TreeContextMenu_OutputCSV.Text = "このノードをCSVに出力...";
+			this.TreeContextMenu_OutputCSV.Text = "Export this node to CSV...";
 			this.TreeContextMenu_OutputCSV.Click += new System.EventHandler(this.TreeContextMenu_OutputCSV_Click);
 			// 
 			// tabPage2
