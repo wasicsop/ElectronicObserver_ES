@@ -2709,7 +2709,7 @@
 			this.label38.Name = "label38";
 			this.label38.Size = new System.Drawing.Size(101, 15);
 			this.label38.TabIndex = 12;
-			this.label38.Text = "艦名の最大横幅：";
+			this.label38.Text = "Ship Name Width:";
 			//
 			// label39
 			//
@@ -2718,7 +2718,7 @@
 			this.label39.Name = "label39";
 			this.label39.Size = new System.Drawing.Size(101, 15);
 			this.label39.TabIndex = 12;
-			this.label39.Text = "艦名の最大横幅：";
+			this.label39.Text = "Ship Name Width:";
 			//
 			// DialogConfiguration
 			//
