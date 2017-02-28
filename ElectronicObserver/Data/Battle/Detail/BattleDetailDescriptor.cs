@@ -27,7 +27,7 @@ namespace ElectronicObserver.Data.Battle.Detail {
 				var mapinfo = bm.Compass.MapInfo;
 				if ( !mapinfo.IsCleared ) {
 					if ( mapinfo.RequiredDefeatedCount != -1 ) {
-						sb.AppendFormat( "撃破: {0} / {1} 回", mapinfo.CurrentDefeatedCount, mapinfo.RequiredDefeatedCount )
+						sb.AppendFormat( "Cleared: {0} / {1} times", mapinfo.CurrentDefeatedCount, mapinfo.RequiredDefeatedCount )
 							.AppendLine();
 					} else if ( mapinfo.MapHPMax > 0 ) {
 						int current = bm.Compass.MapHPCurrent > 0 ? bm.Compass.MapHPCurrent : mapinfo.MapHPCurrent;
@@ -164,7 +164,7 @@ namespace ElectronicObserver.Data.Battle.Detail {
 					}
 
 					if ( p.RationIndexes.Length > 0 ) {
-						sb.AppendLine( "〈戦闘糧食補給〉" );
+						sb.AppendLine( "〈Combat Ration〉" );
 						foreach ( var index in p.RationIndexes ) {
 							ShipData ship;
 
@@ -228,6 +228,16 @@ namespace ElectronicObserver.Data.Battle.Detail {
 					sb.Append( ConstantsRes.BattleDetail_SearchingEnemy ).AppendLine( Constants.GetSearchingResult( p.SearchingEnemy ) );
 
 					sb.AppendLine();
+
+
+				} else if ( phase is PhaseSupport ) {
+					var p = phase as PhaseSupport;
+
+					if ( p.IsAvailable ) {
+						sb.AppendLine( "〈Support Fleet〉" );
+						OutputSupportData( sb, p.SupportFleet );
+						sb.AppendLine();
+					}
 				}
 
 
@@ -396,10 +406,37 @@ namespace ElectronicObserver.Data.Battle.Detail {
 				if ( maxHPs[i] <= 0 )
 					continue;
 
-				sb.AppendFormat( "#{0}: 陸上施設 第{1}基地 HP: {2} / {3}\r\n\r\n",
+				sb.AppendFormat( "#{0}: Air Base Squadron #{1} HP: {2} / {3}\r\n\r\n",
 					i + 1,
 					i + 1,
 					initialHPs[i], maxHPs[i] );
+			}
+
+		}
+
+		public static void OutputSupportData( StringBuilder sb, FleetData fleet ) {
+
+			for ( int i = 0; i < fleet.MembersInstance.Count; i++ ) {
+				var ship = fleet.MembersInstance[i];
+
+				if ( ship == null )
+					continue;
+
+				sb.AppendFormat( "#{0}: {1} {2} - {3} FP, {4} Torp, {5} AA, {6} Armor\r\n",
+					i + 1,
+					ship.MasterShip.ShipTypeName, ship.NameWithLevel,
+					ship.FirepowerBase, ship.TorpedoBase, ship.AABase, ship.ArmorBase );
+
+				sb.Append( "　" );
+				for ( int k = 0; k < ship.SlotInstance.Count; k++ ) {
+					var eq = ship.SlotInstance[k];
+					if ( eq != null ) {
+						if ( k > 0 )
+							sb.Append( ", " );
+						sb.Append( eq.ToString() );
+					}
+				}
+				sb.AppendLine();
 			}
 
 		}

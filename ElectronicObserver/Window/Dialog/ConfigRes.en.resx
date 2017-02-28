@@ -459,7 +459,7 @@ Those worried of knowing in advance should use this.</value>
 Can increase the number of status bar messages.</value>
   </data>
   <data name="StayOnTop" xml:space="preserve">
-    <value>Stay on top</value>
+    <value>Always on top</value>
   </data>
   <data name="Subfont" xml:space="preserve">
     <value>Secondary</value>

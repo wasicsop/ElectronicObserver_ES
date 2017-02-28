@@ -135,14 +135,18 @@ namespace ElectronicObserver.Window {
 					Name.Text = string.Format( "#{0} - {1}", corps.MapAreaID, corps.Name );
 					Name.Tag = corps.MapAreaID;
 					var sb = new StringBuilder();
-					sb.AppendLine( "所属海域: " + KCDatabase.Instance.MapArea[corps.MapAreaID].Name );
+
+
+					string areaName = KCDatabase.Instance.MapArea.ContainsKey( corps.MapAreaID ) ? KCDatabase.Instance.MapArea[corps.MapAreaID].Name : "Unknown Area";
+
+					sb.AppendLine( "Area: " + areaName );
 
 					// state
 					if ( corps.Squadrons.Values.Any( sq => sq != null && sq.AircraftCurrent < sq.AircraftMax ) ) {
 						// 未補給
 						Name.ImageAlign = ContentAlignment.MiddleRight;
 						Name.ImageIndex = (int)ResourceManager.IconContent.FleetNotReplenished;
-						sb.AppendLine( "未補給" );
+						sb.AppendLine( "Not assigned" );
 
 					} else if ( corps.Squadrons.Values.Any( sq => sq != null && sq.Condition > 1 ) ) {
 						// 疲労
@@ -199,14 +203,21 @@ namespace ElectronicObserver.Window {
 
 
 			public void ConfigurationChanged( FormBaseAirCorps parent ) {
-				var mainfont = Utility.Configuration.Config.UI.MainFont;
-				var subfont = Utility.Configuration.Config.UI.SubFont;
+
+				var config = Utility.Configuration.Config;
+
+				var mainfont = config.UI.MainFont;
+				var subfont = config.UI.SubFont;
 
 				Name.Font = mainfont;
 				ActionKind.Font = mainfont;
 				AirSuperiority.Font = mainfont;
 				Distance.Font = mainfont;
 				Squadrons.Font = subfont;
+
+				Squadrons.ShowAircraft = config.FormFleet.ShowAircraft;
+				Squadrons.ShowAircraftLevelByNumber = config.FormFleet.ShowAircraftLevelByNumber;
+				Squadrons.LevelVisibility = config.FormFleet.EquipmentLevelVisibility;
 			}
 
 
@@ -347,8 +358,10 @@ namespace ElectronicObserver.Window {
 
 			foreach ( var corps in baseaircorps ) {
 
-				sb.AppendFormat( "{0}\t[{1}] 制空戦力{2}/戦闘行動半径{3}\r\n",
-					( areaid == -1 ? ( KCDatabase.Instance.MapArea[corps.MapAreaID].Name + "：" ) : "" ) + corps.Name,
+				string areaName = KCDatabase.Instance.MapArea.ContainsKey( corps.MapAreaID ) ? KCDatabase.Instance.MapArea[corps.MapAreaID].Name : "Unknown Area";
+
+				sb.AppendFormat( "{0}\t[{1}] Fighter Power {2}/Range {3}\r\n",
+					( areaid == -1 ? ( areaName + "：" ) : "" ) + corps.Name,
 					Constants.GetBaseAirCorpsActionKind( corps.ActionKind ),
 					Calculator.GetAirSuperiority( corps ),
 					corps.Distance );
