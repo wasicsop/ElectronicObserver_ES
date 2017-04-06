@@ -1941,6 +1941,92 @@ namespace ElectronicObserver.Utility {
 			}
 
 
+			// version 2.5.5.1 or earlier
+			if ( dt <= DateTimeHelper.CSVStringToTime( "2017/03/30 00:00:00" ) ) {
+
+				if ( MessageBox.Show( "Due to recent KanColle changes, Electronic Observer needs to convert current records data.\r\nStart the conversion?\r\n(You may encounter unexpected error if you skip this step)", "Version Update Confirmation(～2.5.5.1)",
+					MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1 ) == DialogResult.Yes ) {
+
+					// 敵編成レコードの敵編成ID再計算とドロップレコードの敵編成ID振りなおし
+					try {
+						var enemyFleetRecord = new EnemyFleetRecord();
+						var convertPair = new Dictionary<uint, uint>();
+
+						enemyFleetRecord.Load( RecordManager.Instance.MasterPath );
+
+						foreach ( var record in enemyFleetRecord.Record.Values ) {
+							uint key = record.FleetID;
+							record.FleetMember = record.FleetMember.Select( id => 500 < id && id < 1000 ? id + 1000 : id ).ToArray();
+							convertPair.Add( key, record.FleetID );
+						}
+
+						enemyFleetRecord.Save( RecordManager.Instance.MasterPath );
+
+						var shipDropRecord = new ShipDropRecord();
+						shipDropRecord.Load( RecordManager.Instance.MasterPath );
+
+						foreach ( var record in shipDropRecord.Record ) {
+							if ( convertPair.ContainsKey( record.EnemyFleetID ) )
+								record.EnemyFleetID = convertPair[record.EnemyFleetID];
+						}
+
+						shipDropRecord.Save( RecordManager.Instance.MasterPath );
+
+					} catch ( Exception ex ) {
+						ErrorReporter.SendErrorReport( ex, "CheckUpdate: Failed to reset ShipDropRecord ID." );
+					}
+
+
+					// パラメータレコードの移動と破損データのダウンロード
+					try {
+
+						var currentRecord = new ShipParameterRecord();
+						currentRecord.Load( RecordManager.Instance.MasterPath );
+
+						foreach ( var record in currentRecord.Record.Values ) {
+							if ( 500 < record.ShipID && record.ShipID <= 1000 ) {
+								record.ShipID += 1000;
+							}
+						}
+
+						string defaultRecordPath = Path.Combine( Path.GetTempPath(), Path.GetRandomFileName() );
+						while ( Directory.Exists( defaultRecordPath ) )
+							defaultRecordPath = Path.Combine( Path.GetTempPath(), Path.GetRandomFileName() );
+
+						Directory.CreateDirectory( defaultRecordPath );
+
+						ElectronicObserver.Resource.ResourceManager.CopyFromArchive( "Record/" + currentRecord.FileName, Path.Combine( defaultRecordPath, currentRecord.FileName ) );
+
+						var defaultRecord = new ShipParameterRecord();
+						defaultRecord.Load( defaultRecordPath );
+						var changed = new List<int>();
+
+						foreach ( var pair in defaultRecord.Record.Keys.GroupJoin( currentRecord.Record.Keys, i => i, i => i, ( id, list ) => new { id, list } ) ) {
+							if ( defaultRecord[pair.id].HPMin > 0 && ( pair.list == null || defaultRecord[pair.id].SaveLine() != currentRecord[pair.id].SaveLine() ) )
+								changed.Add( pair.id );
+						}
+
+						foreach ( var id in changed ) {
+							if ( currentRecord[id] == null )
+								currentRecord.Update( new ShipParameterRecord.ShipParameterElement() );
+							currentRecord[id].LoadLine( defaultRecord.Record[id].SaveLine() );
+						}
+
+						currentRecord.Save( RecordManager.Instance.MasterPath );
+
+						Directory.Delete( defaultRecordPath, true );
+
+
+					} catch ( Exception ex ) {
+						ErrorReporter.SendErrorReport( ex, "Failed to reorganize ShipParameterRecord." );
+					}
+
+				}
+
+
+			}
+
+
 
 
 			Config.VersionUpdateTime = DateTimeHelper.TimeToCSVString( SoftwareInformation.UpdateTime );
