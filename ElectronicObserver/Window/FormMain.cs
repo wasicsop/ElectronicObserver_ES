@@ -94,7 +94,7 @@ namespace ElectronicObserver.Window {
 			this.SetStyle(ControlStyles.SupportsTransparentBackColor, true);
 			InitializeComponent();
 
-			this.Text = SoftwareInformation.VersionJapanese;
+			this.Text = SoftwareInformation.SoftwareNameEnglish;
 		}
 
 		private async void FormMain_Load( object sender, EventArgs e ) {
