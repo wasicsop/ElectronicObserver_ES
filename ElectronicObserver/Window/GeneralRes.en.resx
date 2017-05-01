@@ -420,7 +420,7 @@ Are you sure?</value>
  n=4: {2:f2}
 
 Contact Chance: 
-　AS+ {3:p1} / AS {8:p1}</value>
+　AS+ {3:p1} / AS {4:p1}</value>
   </data>
   <data name="Luck" xml:space="preserve">
     <value>Luck</value>
