@@ -93,6 +93,8 @@ namespace ElectronicObserver.Window {
 			Instance = this;
 			this.SetStyle(ControlStyles.SupportsTransparentBackColor, true);
 			InitializeComponent();
+
+			this.Text = SoftwareInformation.SoftwareNameEnglish;
 		}
 
 		private async void FormMain_Load( object sender, EventArgs e ) {
@@ -124,8 +126,6 @@ namespace ElectronicObserver.Window {
 
 			Utility.Logger.Add( 2, SoftwareInformation.SoftwareNameEnglish + Resources.IsStarting );
 
-
-			this.Text = SoftwareInformation.SoftwareNameEnglish;
 
 			ResourceManager.Instance.Load();
 			RecordManager.Instance.Load();
@@ -244,7 +244,7 @@ namespace ElectronicObserver.Window {
 			// HACK: タスクバーに表示されなくなる不具合への応急処置　効くかは知らない
 			ShowInTaskbar = false;
 			ShowInTaskbar = true;
-			
+
 		}
 
 
@@ -1375,7 +1375,7 @@ namespace ElectronicObserver.Window {
 
 		#endregion
 
-		
+
 
 
 

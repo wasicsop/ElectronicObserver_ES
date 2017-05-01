@@ -7,6 +7,7 @@ using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.Window.Control;
 using ElectronicObserver.Window.Dialog;
 using ElectronicObserver.Window.Support;
+using SwfExtractor;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -174,7 +175,7 @@ namespace ElectronicObserver.Window {
 				{
 					int airSuperiority = fleet.GetAirSuperiority();
 					bool includeLevel = Utility.Configuration.Config.FormFleet.AirSuperiorityMethod == 1;
-					AirSuperiority.Text = airSuperiority.ToString();
+					AirSuperiority.Text = fleet.GetAirSuperiorityString();
 					ToolTipInfo.SetToolTip( AirSuperiority,
 						string.Format( GeneralRes.ASTooltip,
 						(int)( airSuperiority / 3.0 ),
@@ -194,10 +195,6 @@ namespace ElectronicObserver.Window {
 					var probSelect = fleet.GetContactSelectionProbability();
 
 					sb.AppendFormat( GeneralRes.LoSTooltip,
-						fleet.GetSearchingAbilityString( 0 ),
-						fleet.GetSearchingAbilityString( 1 ),
-						fleet.GetSearchingAbilityString( 2 ),
-						fleet.GetSearchingAbilityString( 3 ),
 						Math.Floor( Calculator.GetSearchingAbility_New33( fleet, 1 ) * 100 ) / 100,
 						Math.Floor( Calculator.GetSearchingAbility_New33( fleet, 3 ) * 100 ) / 100,
 						Math.Floor( Calculator.GetSearchingAbility_New33( fleet, 4 ) * 100 ) / 100,
@@ -596,18 +593,29 @@ namespace ElectronicObserver.Window {
 				}
 
 				{
-					int airsup;
-					if ( Utility.Configuration.Config.FormFleet.AirSuperiorityMethod == 1 )
-						airsup = Calculator.GetAirSuperiority( ship );
-					else
-						airsup = Calculator.GetAirSuperiorityIgnoreLevel( ship );
+					int airsup_min;
+					int airsup_max;
+					if ( Utility.Configuration.Config.FormFleet.AirSuperiorityMethod == 1 ) {
+						airsup_min = Calculator.GetAirSuperiority( ship, false );
+						airsup_max = Calculator.GetAirSuperiority( ship, true );
+					} else {
+						airsup_min = airsup_max = Calculator.GetAirSuperiorityIgnoreLevel( ship );
+					}
 
 					int airbattle = ship.AirBattlePower;
-					if ( airsup > 0 ) {
+					if ( airsup_min > 0 ) {
+
+						string airsup_str;
+						if ( Utility.Configuration.Config.FormFleet.ShowAirSuperiorityRange && airsup_min < airsup_max ) {
+							airsup_str = string.Format( "{0} ～ {1}", airsup_min, airsup_max );
+						} else {
+							airsup_str = airsup_min.ToString();
+						}
+
 						if ( airbattle > 0 )
-							sb.AppendFormat( GeneralRes.AirPower + ": {0} / Airstrike Power: {1}\r\n", airsup, airbattle );
+							sb.AppendFormat( GeneralRes.AirPower + ": {0} / Airstrike Power: {1}\r\n", airsup_str, airbattle );
 						else
-							sb.AppendFormat( GeneralRes.AirPower + ": {0}\r\n", airsup );
+							sb.AppendFormat( GeneralRes.AirPower + ": {0}\r\n", airsup_str );
 					} else if ( airbattle > 0 )
 						sb.AppendFormat("Airstrike Power: {0}\r\n", airbattle );
 				}
@@ -1039,6 +1047,13 @@ namespace ElectronicObserver.Window {
 		}
 
 
+		private void ContextMenuFleet_OutputFleetImage_Click( object sender, EventArgs e ) {
+
+			using ( var dialog = new DialogFleetImageGenerator( FleetID ) ) {
+				dialog.ShowDialog( this );
+			}
+		}
+
 
 
 		void ConfigurationChanged() {
@@ -1108,7 +1123,6 @@ namespace ElectronicObserver.Window {
 		protected override string GetPersistString() {
 			return "Fleet #" + FleetID.ToString();
 		}
-
 
 
 	}
