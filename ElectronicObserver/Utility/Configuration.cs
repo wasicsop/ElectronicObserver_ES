@@ -761,6 +761,11 @@ namespace ElectronicObserver.Utility {
 				/// </summary>
 				public int FixedShipNameWidth { get; set; }
 
+				/// <summary>
+				/// 制空戦力を範囲表示するか
+				/// </summary>
+				public bool ShowAirSuperiorityRange { get; set; }
+
 				public ConfigFormFleet() {
 					ShowAircraft = true;
 					SearchingAbilityMethod = 4;
@@ -775,6 +780,7 @@ namespace ElectronicObserver.Utility {
 					BlinkAtCompletion = true;
 					ShowConditionIcon = true;
 					FixedShipNameWidth = 40;
+					ShowAirSuperiorityRange = false;
 				}
 			}
 			/// <summary>[艦隊]ウィンドウ</summary>
@@ -1249,6 +1255,31 @@ namespace ElectronicObserver.Utility {
 			public ConfigBGMPlayer BGMPlayer { get; private set; }
 
 
+			/// <summary>
+			/// 編成画像出力の設定を扱います。
+			/// </summary>
+			public class ConfigFleetImageGenerator : ConfigPartBase {
+
+				public FleetImageArgument Argument { get; set; }
+				public int ImageType { get; set; }
+				public int OutputType { get; set; }
+				public bool OpenImageAfterOutput { get; set; }
+				public string LastOutputPath { get; set; }
+
+				public ConfigFleetImageGenerator()
+					: base() {
+					Argument = FleetImageArgument.GetDefaultInstance();
+					ImageType = 0;
+					OutputType = 0;
+					OpenImageAfterOutput = false;
+					LastOutputPath = "";
+				}
+			}
+			[DataMember]
+			public ConfigFleetImageGenerator FleetImageGenerator { get; private set; }
+
+
+
 			public class ConfigWhitecap : ConfigPartBase {
 
 				public bool ShowInTaskbar { get; set; }
@@ -1318,6 +1349,7 @@ namespace ElectronicObserver.Utility {
 				NotifierAnchorageRepair = new ConfigNotifierAnchorageRepair();
 
 				BGMPlayer = new ConfigBGMPlayer();
+				FleetImageGenerator = new ConfigFleetImageGenerator();
 				Whitecap = new ConfigWhitecap();
 
 				VersionUpdateTime = DateTimeHelper.TimeToCSVString( SoftwareInformation.UpdateTime );
@@ -1995,7 +2027,7 @@ namespace ElectronicObserver.Utility {
 
 						Directory.CreateDirectory( defaultRecordPath );
 
-						ElectronicObserver.Resource.ResourceManager.CopyFromArchive( "Record/" + currentRecord.FileName, Path.Combine( defaultRecordPath, currentRecord.FileName ) );
+						ElectronicObserver.Resource.ResourceManager.CopyDocumentFromArchive( "Record/" + currentRecord.FileName, Path.Combine( defaultRecordPath, currentRecord.FileName ) );
 
 						var defaultRecord = new ShipParameterRecord();
 						defaultRecord.Load( defaultRecordPath );
@@ -2004,13 +2036,13 @@ namespace ElectronicObserver.Utility {
 						foreach ( var pair in defaultRecord.Record.Keys.GroupJoin( currentRecord.Record.Keys, i => i, i => i, ( id, list ) => new { id, list } ) ) {
 							if ( defaultRecord[pair.id].HPMin > 0 && ( pair.list == null || defaultRecord[pair.id].SaveLine() != currentRecord[pair.id].SaveLine() ) )
 								changed.Add( pair.id );
-						}
+					}
 
 						foreach ( var id in changed ) {
 							if ( currentRecord[id] == null )
 								currentRecord.Update( new ShipParameterRecord.ShipParameterElement() );
 							currentRecord[id].LoadLine( defaultRecord.Record[id].SaveLine() );
-						}
+				}
 
 						currentRecord.Save( RecordManager.Instance.MasterPath );
 
