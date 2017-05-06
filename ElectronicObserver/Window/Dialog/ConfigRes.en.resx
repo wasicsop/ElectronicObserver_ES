@@ -193,7 +193,7 @@ Changing the version may change functionality.</value>
     <value>Confirm on close</value>
   </data>
   <data name="ConfirmRefresh" xml:space="preserve">
-    <value>Confirm before refreshing.</value>
+    <value>Confirm before page reload</value>
   </data>
   <data name="ConfirmRefreshHint" xml:space="preserve">
     <value>Displays a confirmation dialog when refreshing.
@@ -206,7 +206,7 @@ Useful to prevent mistakes.</value>
     <value>Construction complete</value>
   </data>
   <data name="CorruptLogs" xml:space="preserve">
-    <value>＊Reckless use may corrupt records and settings.</value>
+    <value>＊Improper use of the setting may corrupt records and settings</value>
   </data>
   <data name="CreationComplete" xml:space="preserve">
     <value>Creation complete.</value>
@@ -227,7 +227,7 @@ Useful to prevent mistakes.</value>
     <value>Repair complete</value>
   </data>
   <data name="EnableBrowser" xml:space="preserve">
-    <value>Load on start</value>
+    <value>Load page on application start</value>
   </data>
   <data name="EncodingHint" xml:space="preserve">
     <value>Set the encoding of output files.
@@ -290,13 +290,13 @@ Direct mode may improve performance.</value>
   </data>
   <data name="GPURenderingHint" xml:space="preserve">
     <value>Enables GPU rendering for the internal browser.
-May increase speed depending on environment.</value>
+May result in KanColle screen freezing under specific situation.</value>
   </data>
   <data name="Group" xml:space="preserve">
     <value>Group</value>
   </data>
   <data name="IsScrollable" xml:space="preserve">
-    <value>Display scroll bar</value>
+    <value>Show scroll bar</value>
   </data>
   <data name="LayoutFile" xml:space="preserve">
     <value>Layout File</value>
@@ -423,8 +423,7 @@ Reports are by default saved in the ErrorReport subfolder.</value>
     <value>Screenshot</value>
   </data>
   <data name="ScrollableHint" xml:space="preserve">
-    <value>Displays a scroll bar when content is too large to fit.
-Scroll bar will not display otherwise</value>
+    <value>Show the scroll bar in the fleet tab when content does not fit.</value>
   </data>
   <data name="Settings" xml:space="preserve">
     <value>Settings</value>
@@ -439,7 +438,7 @@ Scroll bar will not display otherwise</value>
     <value>Display aircraft numbers</value>
   </data>
   <data name="ShowNextXP" xml:space="preserve">
-    <value>Display next level XP</value>
+    <value>Show next level exp</value>
   </data>
   <data name="ShowShipNames" xml:space="preserve">
     <value>Show ship names</value>
@@ -566,10 +565,10 @@ More details, as well as an access key, can be found on the site below. (opens y
     <value>Logging Interval:</value>
   </data>
   <data name="ShowAnchorageRepairingTimer" xml:space="preserve">
-    <value>Display repair timer</value>
+    <value>Show repair timer</value>
   </data>
   <data name="ShowAnchorageRepairingTimer_Tooltip" xml:space="preserve">
-    <value>Display repair timer in the fleet list window.</value>
+    <value>Show repair timer in the fleet list window.</value>
   </data>
   <data name="Formula33" xml:space="preserve">
     <value>Formula 33</value>
@@ -584,16 +583,16 @@ More details, as well as an access key, can be found on the site below. (opens y
     <value>File Name</value>
   </data>
   <data name="FleetBlinkAtCompletion" xml:space="preserve">
-    <value>Use blink effect at timer completion</value>
+    <value>Blink when the timer is complete</value>
   </data>
   <data name="Life_CanCloseFloatWindowInLock" xml:space="preserve">
-    <value>Enable window closing when layout is locked</value>
+    <value>Allow tab to be closed when layout is locked</value>
   </data>
   <data name="Life_LockLayout" xml:space="preserve">
-    <value>Enable layout locking</value>
+    <value>Lock current layout</value>
   </data>
   <data name="Life_LockLayout_Tooltip" xml:space="preserve">
-    <value>Set to prevent changes to window size and layout.</value>
+    <value>Enable to prevent changes to tab layout and window size.</value>
   </data>
   <data name="Scene" xml:space="preserve">
     <value>Scene</value>
@@ -665,7 +664,7 @@ More details, as well as an access key, can be found on the site below. (opens y
     <value>Enemy form to display:</value>
   </data>
   <data name="DeleteRegistry" xml:space="preserve">
-    <value>Delete</value>
+    <value>Del</value>
   </data>
   <data name="Dock" xml:space="preserve">
     <value>Dock</value>

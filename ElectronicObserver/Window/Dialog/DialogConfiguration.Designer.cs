@@ -741,7 +741,7 @@
 			this.Log_SaveBattleLog.Size = new System.Drawing.Size(120, 19);
 			this.Log_SaveBattleLog.TabIndex = 8;
 			this.Log_SaveBattleLog.Text = global::ElectronicObserver.Window.Dialog.ConfigRes.Log_SaveBattleLog;
-			this.ToolTipInfo.SetToolTip(this.Log_SaveBattleLog, "戦闘ログを保存するかを指定します。\r\n戦闘ログは BattleLog フォルダに保存されます。");
+			this.ToolTipInfo.SetToolTip(this.Log_SaveBattleLog, "Enable to save battle logs.\r\nBattle logs are saved in the BattleLog folder." );
 			this.Log_SaveBattleLog.UseVisualStyleBackColor = true;
 			//
 			// Log_ShowSpoiler
@@ -1005,8 +1005,7 @@
 			this.Debug_EnableDebugMenu.Size = new System.Drawing.Size(162, 19);
 			this.Debug_EnableDebugMenu.TabIndex = 0;
 			this.Debug_EnableDebugMenu.Text = global::ElectronicObserver.Window.Dialog.ConfigRes.EnableDebugMenu;
-			this.ToolTipInfo.SetToolTip(this.Debug_EnableDebugMenu, "メインウィンドウの[デバッグ]メニューを有効にします。\r\nデバッグ用の機能であるため、通常ユーザーの操作は推奨されません。\r\n使用時の動作は保証されないので、＊自" +
-        "己責任で＊使用してください。");
+			this.ToolTipInfo.SetToolTip(this.Debug_EnableDebugMenu, "Enable the debug menu in the menu bar.\r\nNot recommended for daily use. Use at your own risk." );
 			this.Debug_EnableDebugMenu.UseVisualStyleBackColor = true;
 			this.Debug_EnableDebugMenu.CheckedChanged += new System.EventHandler(this.Debug_EnableDebugMenu_CheckedChanged);
 			//
@@ -1211,8 +1210,8 @@
 			this.FormFleet_ShowAircraftLevelByNumber.Name = "FormFleet_ShowAircraftLevelByNumber";
 			this.FormFleet_ShowAircraftLevelByNumber.Size = new System.Drawing.Size(184, 19);
 			this.FormFleet_ShowAircraftLevelByNumber.TabIndex = 16;
-			this.FormFleet_ShowAircraftLevelByNumber.Text = "Display Aircraft Proficiency level in numeric";
-			this.ToolTipInfo.SetToolTip(this.FormFleet_ShowAircraftLevelByNumber, "艦載機熟練度を記号（|, || など）ではなく、数字（1, 2 など）で表示するかを指定します。");
+			this.FormFleet_ShowAircraftLevelByNumber.Text = "Show plane proficiency in numeric";
+			this.ToolTipInfo.SetToolTip(this.FormFleet_ShowAircraftLevelByNumber, "Show plane proficiency level in numbers (1,2,3) instead of symbols (|,||,>>).");
 			this.FormFleet_ShowAircraftLevelByNumber.UseVisualStyleBackColor = true;
 			//
 			// label35
@@ -1255,7 +1254,7 @@
 			this.FormFleet_ShowConditionIcon.Name = "FormFleet_ShowConditionIcon";
 			this.FormFleet_ShowConditionIcon.Size = new System.Drawing.Size(139, 19);
 			this.FormFleet_ShowConditionIcon.TabIndex = 11;
-			this.FormFleet_ShowConditionIcon.Text = "Display fatigue icon";
+			this.FormFleet_ShowConditionIcon.Text = "Show fatigue icon";
 			this.ToolTipInfo.SetToolTip(this.FormFleet_ShowConditionIcon, "疲労度のアイコンを表示するかを指定します。\r\n表示しない場合、背景色で区別されます。");
 			this.FormFleet_ShowConditionIcon.UseVisualStyleBackColor = true;
 			//
@@ -1633,7 +1632,7 @@
 			this.FormCompass_IsScrollable.Name = "FormCompass_IsScrollable";
 			this.FormCompass_IsScrollable.Size = new System.Drawing.Size(144, 19);
 			this.FormCompass_IsScrollable.TabIndex = 6;
-			this.FormCompass_IsScrollable.Text = "Display scroll bar";
+			this.FormCompass_IsScrollable.Text = "Show the scroll bar";
 			this.ToolTipInfo.SetToolTip(this.FormCompass_IsScrollable, "表示エリアがはみ出した場合にスクロールバーを表示するかを指定します。\r\n収まりきった場合は表示しません。");
 			this.FormCompass_IsScrollable.UseVisualStyleBackColor = true;
 			//
@@ -1878,9 +1877,8 @@
 			this.FormBattle_IsScrollable.Name = "FormBattle_IsScrollable";
 			this.FormBattle_IsScrollable.Size = new System.Drawing.Size(148, 19);
 			this.FormBattle_IsScrollable.TabIndex = 6;
-			this.FormBattle_IsScrollable.Text = "Display the scroll bar";
-			this.ToolTipInfo.SetToolTip(this.FormBattle_IsScrollable, "Specify whether to display the scroll bar when there\'s not enough display area.\r\n" +
-        "If it does not fit, it will not be displayed.");
+			this.FormBattle_IsScrollable.Text = "Enable scroll bar";
+			this.ToolTipInfo.SetToolTip(this.FormBattle_IsScrollable, "Show the scroll bar when the content does not fit." );
 			this.FormBattle_IsScrollable.UseVisualStyleBackColor = true;
 			//
 			// tabPage12
@@ -1913,8 +1911,8 @@
 			this.FormBrowser_IsDMMreloadDialogDestroyable.Name = "FormBrowser_IsDMMreloadDialogDestroyable";
 			this.FormBrowser_IsDMMreloadDialogDestroyable.Size = new System.Drawing.Size(254, 19);
 			this.FormBrowser_IsDMMreloadDialogDestroyable.TabIndex = 12;
-			this.FormBrowser_IsDMMreloadDialogDestroyable.Text = "DMMによるページ更新ダイアログを非表示にする";
-			this.ToolTipInfo.SetToolTip(this.FormBrowser_IsDMMreloadDialogDestroyable, "DMMによる「エラーが発生したため、ページ更新します。」の確認ダイアログを表示されないようにします。");
+			this.FormBrowser_IsDMMreloadDialogDestroyable.Text = "Hide DMM page reload dialog";
+			this.ToolTipInfo.SetToolTip(this.FormBrowser_IsDMMreloadDialogDestroyable, "Specify whether to hide the DMM page reload dialog." );
 			this.FormBrowser_IsDMMreloadDialogDestroyable.UseVisualStyleBackColor = true;
 			//
 			// FormBrowser_ToolMenuDockStyle
@@ -2214,8 +2212,7 @@
 			this.FormBrowser_BrowserVersion.Size = new System.Drawing.Size(60, 23);
 			this.FormBrowser_BrowserVersion.TabIndex = 1;
 			this.FormBrowser_BrowserVersion.Text = "7000";
-			this.ToolTipInfo.SetToolTip(this.FormBrowser_BrowserVersion, "内蔵ブラウザのバージョンを指定します。\r\n7000がIE7相当、8000がIE8相当、11000がIE11相当です。\r\nバージョンによって動作が変わる可能性があり" +
-        "ます。");
+			this.ToolTipInfo.SetToolTip(this.FormBrowser_BrowserVersion, "Specify the version of the internal browser. 7000 for IE7, 8000 for IE8, 11000 for IE11.\r\nDepending on the version, it may change the DMM page behavior.");
 			//
 			// FormBrowser_DeleteRegistry
 			//
@@ -2225,7 +2222,7 @@
 			this.FormBrowser_DeleteRegistry.Size = new System.Drawing.Size(50, 23);
 			this.FormBrowser_DeleteRegistry.TabIndex = 4;
 			this.FormBrowser_DeleteRegistry.Text = global::ElectronicObserver.Window.Dialog.ConfigRes.DeleteRegistry;
-			this.ToolTipInfo.SetToolTip(this.FormBrowser_DeleteRegistry, "レジストリを削除します。");
+			this.ToolTipInfo.SetToolTip(this.FormBrowser_DeleteRegistry, "Delete the associated registry entry.");
 			this.FormBrowser_DeleteRegistry.UseVisualStyleBackColor = true;
 			this.FormBrowser_DeleteRegistry.Click += new System.EventHandler(this.FormBrowser_DeleteRegistry_Click);
 			//
@@ -2486,7 +2483,7 @@
 			this.groupBox5.Size = new System.Drawing.Size(564, 117);
 			this.groupBox5.TabIndex = 5;
 			this.groupBox5.TabStop = false;
-			this.groupBox5.Text = "艦これ統計データベース";
+			this.groupBox5.Text = "kancolle-db.net";
 			//
 			// label22
 			//
@@ -2729,8 +2726,8 @@
 			this.FormFleet_ShowAirSuperiorityRange.Name = "FormFleet_ShowAirSuperiorityRange";
 			this.FormFleet_ShowAirSuperiorityRange.Size = new System.Drawing.Size(150, 19);
 			this.FormFleet_ShowAirSuperiorityRange.TabIndex = 17;
-			this.FormFleet_ShowAirSuperiorityRange.Text = "制空戦力を範囲表示する";
-			this.ToolTipInfo.SetToolTip(this.FormFleet_ShowAirSuperiorityRange, "制空戦力の範囲を「内部熟練度最小～最大」として範囲表示するかを指定します。\r\n通常、制空戦力は最低の内部熟練度を持つとして計算されます。");
+			this.FormFleet_ShowAirSuperiorityRange.Text = "Show AS value w/ plane proficiency range";
+			this.ToolTipInfo.SetToolTip(this.FormFleet_ShowAirSuperiorityRange, "Show the fleet AS value range based on minimum and maximum plane proficiency.\r\nThe default setting is to use the lowest plane proficiency for AS calculation." );
 			this.FormFleet_ShowAirSuperiorityRange.UseVisualStyleBackColor = true;
 			//
 			// DialogConfiguration
