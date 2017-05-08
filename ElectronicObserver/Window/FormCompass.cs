@@ -832,6 +832,14 @@ namespace ElectronicObserver.Window {
 									eventkind = "It's a calm sea.";
 									TextEventDetail.Text = "";
 									break;
+								case 4:
+									eventkind = "穏やかな海峡";
+									TextEventDetail.Text = "";
+									break;
+								case 5:
+									eventkind = "警戒が必要";
+									TextEventDetail.Text = "";
+									break;
 							}
 							break;
 
