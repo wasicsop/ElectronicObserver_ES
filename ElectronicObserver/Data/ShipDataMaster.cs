@@ -623,12 +623,12 @@ namespace ElectronicObserver.Data {
 
 
 		private static readonly Color[] ShipNameColors = new Color[] {
-			Color.FromArgb( 0x00, 0x00, 0x00 ),
-			Color.FromArgb( 0xFF, 0x00, 0x00 ),
-			Color.FromArgb( 0xFF, 0x88, 0x00 ),
-			Color.FromArgb( 0x00, 0x66, 0x00 ),
-			Color.FromArgb( 0x88, 0x00, 0x00 ),
-			Color.FromArgb( 0x00, 0x88, 0xFF ),
+			Utility.Configuration.Config.UI.ForeColor,
+			Utility.Configuration.Config.UI.Compass_ShipNameColor2,
+			Utility.Configuration.Config.UI.Compass_ShipNameColor3,
+			Utility.Configuration.Config.UI.Compass_ShipNameColor4,
+			Utility.Configuration.Config.UI.Compass_ShipNameColor5,
+			Utility.Configuration.Config.UI.Compass_ShipNameColor6,
 			Color.FromArgb( 0x00, 0x00, 0xFF ),
 		};
 
