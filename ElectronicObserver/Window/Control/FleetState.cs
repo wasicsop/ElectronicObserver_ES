@@ -167,7 +167,7 @@ namespace ElectronicObserver.Window.Control {
 			if ( fleet == null || fleet.Members.All( id => id == -1 ) ) {
 				var state = GetStateLabel( index );
 
-				state.SetInformation( FleetStates.NoShip, "所属艦なし", "", (int)ResourceManager.IconContent.FleetNoShip );
+				state.SetInformation( FleetStates.NoShip, "No Ships Assigned", "", (int)ResourceManager.IconContent.FleetNoShip );
 				tooltip.SetToolTip( state.Label, null );
 
 				emphasizesSubFleetInPort = false;
@@ -181,7 +181,7 @@ namespace ElectronicObserver.Window.Control {
 					if ( fleet.MembersWithoutEscaped.Any( s => s != null && s.HPRate <= 0.25 ) ) {
 						var state = GetStateLabel( index );
 
-						state.SetInformation( FleetStates.SortieDamaged, "！！大破進撃中！！", "！！大破進撃中！！", (int)ResourceManager.IconContent.FleetSortieDamaged, colorDanger );
+						state.SetInformation( FleetStates.SortieDamaged, "！！Advancing at critical damage！！", "！！Advancing at critical damage！！", (int)ResourceManager.IconContent.FleetSortieDamaged, colorDanger );
 						tooltip.SetToolTip( state.Label, null );
 
 						index++;
@@ -189,7 +189,7 @@ namespace ElectronicObserver.Window.Control {
 					} else {	//出撃中
 						var state = GetStateLabel( index );
 
-						state.SetInformation( FleetStates.Sortie, "出撃中", "", (int)ResourceManager.IconContent.FleetSortie );
+						state.SetInformation( FleetStates.Sortie, "On sortie", "", (int)ResourceManager.IconContent.FleetSortie );
 						tooltip.SetToolTip( state.Label, null );
 
 						index++;
@@ -199,18 +199,18 @@ namespace ElectronicObserver.Window.Control {
 				}
 
 				//遠征中
-				if ( fleet.ExpeditionState != 0 ) {
+				if (fleet.ExpeditionState != 0) {
 					var state = GetStateLabel( index );
+					var dest = db.Mission[fleet.ExpeditionDestination];
 
 					state.Timer = fleet.ExpeditionTime;
 					state.SetInformation( FleetStates.Expedition,
-						"遠征中 " + DateTimeHelper.ToTimeRemainString( state.Timer ),
-						DateTimeHelper.ToTimeRemainString( state.Timer ),
+						"[" + dest.ID.ToString( "D3" ) + "] " + DateTimeHelper.ToTimeRemainString( state.Timer ),
+						"[" + dest.ID.ToString( "D3" ) + "] " + DateTimeHelper.ToTimeRemainString( state.Timer ),
 						(int)ResourceManager.IconContent.FleetExpedition );
 
-					var dest = db.Mission[fleet.ExpeditionDestination];
 					tooltip.SetToolTip( state.Label,
-						string.Format( "{0} : {1}\r\n完了日時 : {2}",
+						string.Format( "{0} : {1}\r\nETA: {2}",
 						dest.ID, dest.Name, DateTimeHelper.TimeToCSVString( state.Timer ) ) );
 
 					emphasizesSubFleetInPort = false;
@@ -221,7 +221,7 @@ namespace ElectronicObserver.Window.Control {
 				if ( !fleet.IsInSortie && fleet.MembersWithoutEscaped.Any( s => s != null && s.HPRate <= 0.25 && s.RepairingDockID == -1 ) ) {
 					var state = GetStateLabel( index );
 
-					state.SetInformation( FleetStates.Damaged, "大破艦あり！", "大破艦あり！", (int)ResourceManager.IconContent.FleetDamaged, colorDanger );
+					state.SetInformation( FleetStates.Damaged, "Critically damaged ship!", "Critically damaged ship!", (int)ResourceManager.IconContent.FleetDamaged, colorDanger );
 					tooltip.SetToolTip( state.Label, null );
 
 					emphasizesSubFleetInPort = false;
@@ -234,13 +234,13 @@ namespace ElectronicObserver.Window.Control {
 
 					state.Timer = db.Fleet.AnchorageRepairingTimer;
 					state.SetInformation( FleetStates.AnchorageRepairing,
-						"泊地修理中 " + DateTimeHelper.ToTimeElapsedString( state.Timer ),
+						"Repairing " + DateTimeHelper.ToTimeElapsedString( state.Timer ),
 						DateTimeHelper.ToTimeElapsedString( state.Timer ),
 						(int)ResourceManager.IconContent.FleetAnchorageRepairing );
 
 
 					StringBuilder sb = new StringBuilder();
-					sb.AppendFormat( "開始日時 : {0}\r\n修理時間 :\r\n",
+					sb.AppendFormat( "Start: {0}\r\nRepair time:\r\n",
 						DateTimeHelper.TimeToCSVString( db.Fleet.AnchorageRepairingTimer ) );
 
 					for ( int i = 0; i < fleet.Members.Count; i++ ) {
@@ -274,11 +274,11 @@ namespace ElectronicObserver.Window.Control {
 
 						state.Timer = new DateTime( ntime );
 						state.SetInformation( FleetStates.Docking,
-							 "入渠中 " + DateTimeHelper.ToTimeRemainString( state.Timer ),
+							 "On dock " + DateTimeHelper.ToTimeRemainString( state.Timer ),
 							 DateTimeHelper.ToTimeRemainString( state.Timer ),
 							 (int)ResourceManager.IconContent.FleetDocking );
 
-						tooltip.SetToolTip( state.Label, "完了日時 : " + DateTimeHelper.TimeToCSVString( state.Timer ) );
+						tooltip.SetToolTip( state.Label, "ETA : " + DateTimeHelper.TimeToCSVString( state.Timer ) );
 
 						emphasizesSubFleetInPort = false;
 						index++;
@@ -296,8 +296,8 @@ namespace ElectronicObserver.Window.Control {
 					if ( fuel > 0 || ammo > 0 || bauxite > 0 ) {
 						var state = GetStateLabel( index );
 
-						state.SetInformation( FleetStates.NotReplenished, "未補給", "", (int)ResourceManager.IconContent.FleetNotReplenished, colorInPort );
-						tooltip.SetToolTip( state.Label, string.Format( "燃 : {0}\r\n弾 : {1}\r\nボ : {2} ({3}機)", fuel, ammo, bauxite, aircraft ) );
+						state.SetInformation( FleetStates.NotReplenished, "Supply needed", "", (int)ResourceManager.IconContent.FleetNotReplenished, colorInPort );
+						tooltip.SetToolTip( state.Label, string.Format( "Fuel: {0}\r\nAmmo: {1}\r\nBaux: {2} ({3} planes)", fuel, ammo, bauxite, aircraft ) );
 
 						index++;
 					}
@@ -320,12 +320,12 @@ namespace ElectronicObserver.Window.Control {
 
 						state.Timer = (DateTime)fleet.ConditionTime;
 						state.SetInformation( FleetStates.Tired,
-							"疲労 " + DateTimeHelper.ToTimeRemainString( state.Timer ),
+							"Fatigued " + DateTimeHelper.ToTimeRemainString( state.Timer ),
 							DateTimeHelper.ToTimeRemainString( state.Timer ),
 							iconIndex,
 							colorInPort );
 
-						tooltip.SetToolTip( state.Label, string.Format( "回復目安日時: {0}\r\n(予測誤差: {1})",
+						tooltip.SetToolTip( state.Label, string.Format( "Recovery time: {0}\r\n(予測誤差: {1})",
 							DateTimeHelper.TimeToCSVString( state.Timer ), DateTimeHelper.ToTimeRemainString( TimeSpan.FromSeconds( db.Fleet.ConditionBorderAccuracy ) ) ) );
 
 						index++;
@@ -333,8 +333,8 @@ namespace ElectronicObserver.Window.Control {
 					} else if ( cond >= 50 ) {		//戦意高揚
 						var state = GetStateLabel( index );
 
-						state.SetInformation( FleetStates.Sparkled, "戦意高揚！", "", (int)ResourceManager.IconContent.ConditionSparkle, colorInPort );
-						tooltip.SetToolTip( state.Label, string.Format( "最低cond: {0}\r\nあと {1} 回遠征可能", cond, Math.Ceiling( ( cond - 49 ) / 3.0 ) ) );
+						state.SetInformation( FleetStates.Sparkled, "Sparkled fleet!", "", (int)ResourceManager.IconContent.ConditionSparkle, colorInPort );
+						tooltip.SetToolTip( state.Label, string.Format( "Lowest morale: {0}\r\nEffective for {1} expeditions.", cond, Math.Ceiling( ( cond - 49 ) / 3.0 ) ) );
 
 						index++;
 					}
@@ -345,7 +345,7 @@ namespace ElectronicObserver.Window.Control {
 				if ( index == 0 ) {
 					var state = GetStateLabel( index );
 
-					state.SetInformation( FleetStates.Ready, "出撃可能！", "", (int)ResourceManager.IconContent.FleetReady, colorInPort );
+					state.SetInformation( FleetStates.Ready, "Ready to sortie!", "", (int)ResourceManager.IconContent.FleetReady, colorInPort );
 					tooltip.SetToolTip( state.Label, null );
 
 					index++;
@@ -397,15 +397,16 @@ namespace ElectronicObserver.Window.Control {
 
 					case FleetStates.Docking:
 						state.ShortenedText = DateTimeHelper.ToTimeRemainString( state.Timer );
-						state.Text = "入渠中 " + state.ShortenedText;
+						state.Text = "On dock " + state.ShortenedText;
 						state.UpdateText();
 						if ( Utility.Configuration.Config.FormFleet.BlinkAtCompletion && ( state.Timer - DateTime.Now ).TotalMilliseconds <= Utility.Configuration.Config.NotifierRepair.AccelInterval )
 							state.Label.BackColor = DateTime.Now.Second % 2 == 0 ? Color.LightGreen : Color.Transparent;
 						break;
 
 					case FleetStates.Expedition:
-						state.ShortenedText = DateTimeHelper.ToTimeRemainString( state.Timer );
-						state.Text = "遠征中 " + state.ShortenedText;
+						string expId = state.ShortenedText.Substring( 0, 6 );
+						state.ShortenedText = expId + DateTimeHelper.ToTimeRemainString( state.Timer );
+						state.Text = state.ShortenedText;
 						state.UpdateText();
 						if ( Utility.Configuration.Config.FormFleet.BlinkAtCompletion && ( state.Timer - DateTime.Now ).TotalMilliseconds <= Utility.Configuration.Config.NotifierExpedition.AccelInterval )
 							state.Label.BackColor = DateTime.Now.Second % 2 == 0 ? Color.LightGreen : Color.Transparent;
@@ -413,7 +414,7 @@ namespace ElectronicObserver.Window.Control {
 
 					case FleetStates.Tired:
 						state.ShortenedText = DateTimeHelper.ToTimeRemainString( state.Timer );
-						state.Text = "疲労 " + state.ShortenedText;
+						state.Text = "Fatigued " + state.ShortenedText;
 						state.UpdateText();
 						if ( Utility.Configuration.Config.FormFleet.BlinkAtCompletion && ( state.Timer - DateTime.Now ).TotalMilliseconds <= 0 )
 							state.Label.BackColor = DateTime.Now.Second % 2 == 0 ? Color.LightGreen : Color.Transparent;
@@ -421,7 +422,7 @@ namespace ElectronicObserver.Window.Control {
 
 					case FleetStates.AnchorageRepairing:
 						state.ShortenedText = DateTimeHelper.ToTimeElapsedString( KCDatabase.Instance.Fleet.AnchorageRepairingTimer );
-						state.Text = "泊地修理中 " + state.ShortenedText;
+						state.Text = "Repairing " + state.ShortenedText;
 						state.UpdateText();
 						break;
 

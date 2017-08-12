@@ -224,7 +224,7 @@ namespace ElectronicObserver.Window {
 			public void ConfigurationChanged( FormFleet parent ) {
 				Name.Font = parent.MainFont;
 				State.Font = parent.MainFont;
-				StateMain.BackColor = Color.Transparent;
+				State.BackColor = Color.Transparent;
 				State.RefreshFleetState();
 				AirSuperiority.Font = parent.MainFont;
 				SearchingAbility.Font = parent.MainFont;

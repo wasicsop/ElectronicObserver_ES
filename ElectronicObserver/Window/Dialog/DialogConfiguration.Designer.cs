@@ -598,43 +598,43 @@
 			this.tabPage2.TabIndex = 1;
 			this.tabPage2.Text = "UI";
 			this.tabPage2.UseVisualStyleBackColor = true;
-			//
+			// 
 			// UI_JapaneseEquipmentTypes
-			//
+			// 
 			this.UI_JapaneseEquipmentTypes.AutoSize = true;
-			this.UI_JapaneseEquipmentTypes.Location = new System.Drawing.Point(193, 114);
+			this.UI_JapaneseEquipmentTypes.Location = new System.Drawing.Point( 194, 154 );
 			this.UI_JapaneseEquipmentTypes.Name = "UI_JapaneseEquipmentTypes";
-			this.UI_JapaneseEquipmentTypes.Size = new System.Drawing.Size(207, 19);
+			this.UI_JapaneseEquipmentTypes.Size = new System.Drawing.Size( 207, 19 );
 			this.UI_JapaneseEquipmentTypes.TabIndex = 15;
 			this.UI_JapaneseEquipmentTypes.Text = "Use Japanese equipment types";
 			this.UI_JapaneseEquipmentTypes.UseVisualStyleBackColor = true;
-			//
+			// 
 			// UI_JapaneseEquipmentNames
-			//
+			// 
 			this.UI_JapaneseEquipmentNames.AutoSize = true;
-			this.UI_JapaneseEquipmentNames.Location = new System.Drawing.Point(193, 89);
+			this.UI_JapaneseEquipmentNames.Location = new System.Drawing.Point( 194, 129 );
 			this.UI_JapaneseEquipmentNames.Name = "UI_JapaneseEquipmentNames";
-			this.UI_JapaneseEquipmentNames.Size = new System.Drawing.Size(214, 19);
+			this.UI_JapaneseEquipmentNames.Size = new System.Drawing.Size( 214, 19 );
 			this.UI_JapaneseEquipmentNames.TabIndex = 14;
 			this.UI_JapaneseEquipmentNames.Text = "Use Japanese equipment names";
 			this.UI_JapaneseEquipmentNames.UseVisualStyleBackColor = true;
-			//
+			// 
 			// UI_JapaneseShipTypes
-			//
+			// 
 			this.UI_JapaneseShipTypes.AutoSize = true;
-			this.UI_JapaneseShipTypes.Location = new System.Drawing.Point(8, 114);
+			this.UI_JapaneseShipTypes.Location = new System.Drawing.Point( 9, 154 );
 			this.UI_JapaneseShipTypes.Name = "UI_JapaneseShipTypes";
-			this.UI_JapaneseShipTypes.Size = new System.Drawing.Size(168, 19);
+			this.UI_JapaneseShipTypes.Size = new System.Drawing.Size( 168, 19 );
 			this.UI_JapaneseShipTypes.TabIndex = 13;
 			this.UI_JapaneseShipTypes.Text = "Use Japanese ship types";
 			this.UI_JapaneseShipTypes.UseVisualStyleBackColor = true;
-			//
+			// 
 			// UI_JapaneseShipNames
-			//
+			// 
 			this.UI_JapaneseShipNames.AutoSize = true;
-			this.UI_JapaneseShipNames.Location = new System.Drawing.Point(8, 89);
+			this.UI_JapaneseShipNames.Location = new System.Drawing.Point( 9, 129 );
 			this.UI_JapaneseShipNames.Name = "UI_JapaneseShipNames";
-			this.UI_JapaneseShipNames.Size = new System.Drawing.Size(175, 19);
+			this.UI_JapaneseShipNames.Size = new System.Drawing.Size( 175, 19 );
 			this.UI_JapaneseShipNames.TabIndex = 12;
 			this.UI_JapaneseShipNames.Text = "Use Japanese ship names";
 			this.UI_JapaneseShipNames.UseVisualStyleBackColor = true;
@@ -700,7 +700,7 @@
 			this.UI_IsLayoutFixed.Name = "UI_IsLayoutFixed";
 			this.UI_IsLayoutFixed.Size = new System.Drawing.Size(141, 19);
 			this.UI_IsLayoutFixed.TabIndex = 13;
-			this.UI_IsLayoutFixed.Text = "フォントの高さを固定する";
+			this.UI_IsLayoutFixed.Text = "Use fixed height for font";
 			this.ToolTipInfo.SetToolTip(this.UI_IsLayoutFixed, "有効な時、どんなフォントでも概ね各UIの列の高さが同じになります(ver. 2.6.2 以前と同様)。\r\n無効な時、フォントによって列の高さが変わります(有効な時" +
         "より大きくなる場合があります)。\r\n無効にした場合、動作が若干重くなる可能性があります。");
 			this.UI_IsLayoutFixed.UseVisualStyleBackColor = true;
@@ -809,7 +809,7 @@
 			this.Log_SaveLogImmediately.Name = "Log_SaveLogImmediately";
 			this.Log_SaveLogImmediately.Size = new System.Drawing.Size(140, 19);
 			this.Log_SaveLogImmediately.TabIndex = 9;
-			this.Log_SaveLogImmediately.Text = "ログを即時書き込みする";
+			this.Log_SaveLogImmediately.Text = "Write log immediately";
 			this.ToolTipInfo.SetToolTip(this.Log_SaveLogImmediately, "ログ追加と同時にログファイルに書き込むかを指定します。\r\n無効の場合はプログラム終了時にまとめて書き込みます。\r\n有効な場合、強制終了等の問題が発生してもログを残" +
         "せますが、多少処理が重くなる可能性があります。\r\nなお、「ログをファイルに保存する」無効時には本指定は無効になります。");
 			this.Log_SaveLogImmediately.UseVisualStyleBackColor = true;
@@ -1295,7 +1295,7 @@
 			this.FormFleet_EmphasizesSubFleetInPort.Name = "FormFleet_EmphasizesSubFleetInPort";
 			this.FormFleet_EmphasizesSubFleetInPort.Size = new System.Drawing.Size(179, 19);
 			this.FormFleet_EmphasizesSubFleetInPort.TabIndex = 20;
-			this.FormFleet_EmphasizesSubFleetInPort.Text = "遠征艦隊未出撃時に強調表示";
+			this.FormFleet_EmphasizesSubFleetInPort.Text = "Highlight idle fleet";
 			this.ToolTipInfo.SetToolTip(this.FormFleet_EmphasizesSubFleetInPort, "第2~4艦隊が母港に存在するとき、色付きで表示するようにします。");
 			this.FormFleet_EmphasizesSubFleetInPort.UseVisualStyleBackColor = true;
 			//
@@ -1306,7 +1306,7 @@
 			this.FormFleet_BlinkAtDamaged.Name = "FormFleet_BlinkAtDamaged";
 			this.FormFleet_BlinkAtDamaged.Size = new System.Drawing.Size(122, 19);
 			this.FormFleet_BlinkAtDamaged.TabIndex = 19;
-			this.FormFleet_BlinkAtDamaged.Text = "大破時に点滅させる";
+			this.FormFleet_BlinkAtDamaged.Text = "Blink at critical damage";
 			this.ToolTipInfo.SetToolTip(this.FormFleet_BlinkAtDamaged, "母港において、大破艦が存在するときに点滅表示させるかを指定します。\r\n出撃時は常に点滅が有効です。");
 			this.FormFleet_BlinkAtDamaged.UseVisualStyleBackColor = true;
 			//
@@ -1317,7 +1317,7 @@
 			this.FormFleet_ReflectAnchorageRepairHealing.Name = "FormFleet_ReflectAnchorageRepairHealing";
 			this.FormFleet_ReflectAnchorageRepairHealing.Size = new System.Drawing.Size(193, 19);
 			this.FormFleet_ReflectAnchorageRepairHealing.TabIndex = 16;
-			this.FormFleet_ReflectAnchorageRepairHealing.Text = "泊地修理によるHP回復を反映する";
+			this.FormFleet_ReflectAnchorageRepairHealing.Text = "Show HP recovery";
 			this.ToolTipInfo.SetToolTip(this.FormFleet_ReflectAnchorageRepairHealing, "有効な場合、泊地修理開始から20分以上経過するとHPバーに回復量が表示されるようになります。");
 			this.FormFleet_ReflectAnchorageRepairHealing.UseVisualStyleBackColor = true;
 			//
@@ -2041,7 +2041,7 @@
 			this.FormBattle_ShowHPBar.Name = "FormBattle_ShowHPBar";
 			this.FormBattle_ShowHPBar.Size = new System.Drawing.Size(114, 19);
 			this.FormBattle_ShowHPBar.TabIndex = 8;
-			this.FormBattle_ShowHPBar.Text = "HPバーを表示する";
+			this.FormBattle_ShowHPBar.Text = "Show HP bar";
 			this.ToolTipInfo.SetToolTip(this.FormBattle_ShowHPBar, "非表示にするとわずかではありますが縦幅を節約できます。");
 			this.FormBattle_ShowHPBar.UseVisualStyleBackColor = true;
 			//
@@ -2184,7 +2184,7 @@
 			this.FormBrowser_ScreenShotFormat_AvoidTwitterDeterioration.Name = "FormBrowser_ScreenShotFormat_AvoidTwitterDeterioration";
 			this.FormBrowser_ScreenShotFormat_AvoidTwitterDeterioration.Size = new System.Drawing.Size(182, 19);
 			this.FormBrowser_ScreenShotFormat_AvoidTwitterDeterioration.TabIndex = 13;
-			this.FormBrowser_ScreenShotFormat_AvoidTwitterDeterioration.Text = "Twitter の画像圧縮を回避する";
+			this.FormBrowser_ScreenShotFormat_AvoidTwitterDeterioration.Text = "Avoid compression on Twitter";
 			this.ToolTipInfo.SetToolTip(this.FormBrowser_ScreenShotFormat_AvoidTwitterDeterioration, "Twitter に PNG 形式の画像をアップロードすると、自動的に JPEG 形式に変換され画質が劣化します。\\r\\nそれを回避するための情報を埋め込むかを指定" +
         "します。");
 			this.FormBrowser_ScreenShotFormat_AvoidTwitterDeterioration.UseVisualStyleBackColor = true;
