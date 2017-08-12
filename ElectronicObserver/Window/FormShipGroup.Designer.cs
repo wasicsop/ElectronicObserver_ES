@@ -24,15 +24,15 @@
 		/// </summary>
 		private void InitializeComponent() {
 			this.components = new System.ComponentModel.Container();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.ShipView = new System.Windows.Forms.DataGridView();
 			this.ShipView_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.ShipView_ShipType = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -126,9 +126,9 @@
 			this.splitContainer1.SuspendLayout();
 			this.StatusBar.SuspendLayout();
 			this.SuspendLayout();
-			// 
+			//
 			// ShipView
-			// 
+			//
 			this.ShipView.AllowUserToAddRows = false;
 			this.ShipView.AllowUserToDeleteRows = false;
 			this.ShipView.AllowUserToOrderColumns = true;
@@ -196,14 +196,14 @@
             this.ShipView_Locked,
             this.ShipView_SallyArea});
 			this.ShipView.ContextMenuStrip = this.MenuMember;
-			dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-			dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-			dataGridViewCellStyle8.Font = new System.Drawing.Font("Meiryo UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-			dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
-			dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-			dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-			this.ShipView.DefaultCellStyle = dataGridViewCellStyle8;
+			dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+			dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
+			dataGridViewCellStyle9.Font = new System.Drawing.Font("Meiryo UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+			dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText;
+			dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+			this.ShipView.DefaultCellStyle = dataGridViewCellStyle9;
 			this.ShipView.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.ShipView.Location = new System.Drawing.Point(0, 0);
 			this.ShipView.Name = "ShipView";
@@ -218,441 +218,441 @@
 			this.ShipView.SelectionChanged += new System.EventHandler(this.ShipView_SelectionChanged);
 			this.ShipView.SortCompare += new System.Windows.Forms.DataGridViewSortCompareEventHandler(this.ShipView_SortCompare);
 			this.ShipView.Sorted += new System.EventHandler(this.ShipView_Sorted);
-			// 
+			//
 			// ShipView_ID
-			// 
+			//
 			this.ShipView_ID.HeaderText = "ID";
 			this.ShipView_ID.Name = "ShipView_ID";
 			this.ShipView_ID.ReadOnly = true;
 			this.ShipView_ID.Width = 50;
-			// 
+			//
 			// ShipView_ShipType
-			// 
-			dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			this.ShipView_ShipType.DefaultCellStyle = dataGridViewCellStyle1;
+			//
+			dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			this.ShipView_ShipType.DefaultCellStyle = dataGridViewCellStyle2;
 			this.ShipView_ShipType.HeaderText = GeneralRes.ShipType;
 			this.ShipView_ShipType.Name = "ShipView_ShipType";
 			this.ShipView_ShipType.ReadOnly = true;
 			this.ShipView_ShipType.Width = 80;
-			// 
+			//
 			// ShipView_Name
-			// 
-			dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			this.ShipView_Name.DefaultCellStyle = dataGridViewCellStyle2;
+			//
+			dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			this.ShipView_Name.DefaultCellStyle = dataGridViewCellStyle3;
 			this.ShipView_Name.HeaderText = GeneralRes.ShipName;
 			this.ShipView_Name.Name = "ShipView_Name";
 			this.ShipView_Name.ReadOnly = true;
-			// 
+			//
 			// ShipView_Level
-			// 
+			//
 			this.ShipView_Level.HeaderText = "Lv";
 			this.ShipView_Level.Name = "ShipView_Level";
 			this.ShipView_Level.ReadOnly = true;
 			this.ShipView_Level.Width = 40;
-			// 
+			//
 			// ShipView_Exp
-			// 
+			//
 			this.ShipView_Exp.HeaderText = "Exp";
 			this.ShipView_Exp.Name = "ShipView_Exp";
 			this.ShipView_Exp.ReadOnly = true;
 			this.ShipView_Exp.Width = 60;
-			// 
+			//
 			// ShipView_Next
-			// 
+			//
 			this.ShipView_Next.HeaderText = "next";
 			this.ShipView_Next.Name = "ShipView_Next";
 			this.ShipView_Next.ReadOnly = true;
 			this.ShipView_Next.Width = 60;
-			// 
+			//
 			// ShipView_NextRemodel
-			// 
+			//
 			this.ShipView_NextRemodel.HeaderText = GeneralRes.ToRemodel;
 			this.ShipView_NextRemodel.Name = "ShipView_NextRemodel";
 			this.ShipView_NextRemodel.ReadOnly = true;
 			this.ShipView_NextRemodel.Width = 60;
-			// 
+			//
 			// ShipView_HP
-			// 
+			//
 			this.ShipView_HP.HeaderText = "HP";
 			this.ShipView_HP.Name = "ShipView_HP";
 			this.ShipView_HP.ReadOnly = true;
 			this.ShipView_HP.Width = 60;
-			// 
+			//
 			// ShipView_Condition
-			// 
+			//
 			this.ShipView_Condition.HeaderText = "Cond";
 			this.ShipView_Condition.Name = "ShipView_Condition";
 			this.ShipView_Condition.ReadOnly = true;
 			this.ShipView_Condition.Width = 40;
-			// 
+			//
 			// ShipView_Fuel
-			// 
+			//
 			this.ShipView_Fuel.HeaderText = GeneralRes.Fuel;
 			this.ShipView_Fuel.Name = "ShipView_Fuel";
 			this.ShipView_Fuel.ReadOnly = true;
 			this.ShipView_Fuel.Width = 60;
-			// 
+			//
 			// ShipView_Ammo
-			// 
+			//
 			this.ShipView_Ammo.HeaderText = GeneralRes.Ammo;
 			this.ShipView_Ammo.Name = "ShipView_Ammo";
 			this.ShipView_Ammo.ReadOnly = true;
 			this.ShipView_Ammo.Width = 60;
-			// 
+			//
 			// ShipView_Slot1
-			// 
-			dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			this.ShipView_Slot1.DefaultCellStyle = dataGridViewCellStyle3;
+			//
+			dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			this.ShipView_Slot1.DefaultCellStyle = dataGridViewCellStyle4;
 			this.ShipView_Slot1.HeaderText = GeneralRes.Equipment + " 1";
 			this.ShipView_Slot1.Name = "ShipView_Slot1";
 			this.ShipView_Slot1.ReadOnly = true;
 			this.ShipView_Slot1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
 			this.ShipView_Slot1.Width = 150;
-			// 
+			//
 			// ShipView_Slot2
-			// 
-			dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			this.ShipView_Slot2.DefaultCellStyle = dataGridViewCellStyle4;
+			//
+			dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			this.ShipView_Slot2.DefaultCellStyle = dataGridViewCellStyle5;
 			this.ShipView_Slot2.HeaderText = GeneralRes.Equipment + " 2";
 			this.ShipView_Slot2.Name = "ShipView_Slot2";
 			this.ShipView_Slot2.ReadOnly = true;
 			this.ShipView_Slot2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
 			this.ShipView_Slot2.Width = 150;
-			// 
+			//
 			// ShipView_Slot3
-			// 
-			dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			this.ShipView_Slot3.DefaultCellStyle = dataGridViewCellStyle5;
+			//
+			dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			this.ShipView_Slot3.DefaultCellStyle = dataGridViewCellStyle6;
 			this.ShipView_Slot3.HeaderText = GeneralRes.Equipment + " 3";
 			this.ShipView_Slot3.Name = "ShipView_Slot3";
 			this.ShipView_Slot3.ReadOnly = true;
 			this.ShipView_Slot3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
 			this.ShipView_Slot3.Width = 150;
-			// 
+			//
 			// ShipView_Slot4
-			// 
-			dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			this.ShipView_Slot4.DefaultCellStyle = dataGridViewCellStyle6;
+			//
+			dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			this.ShipView_Slot4.DefaultCellStyle = dataGridViewCellStyle7;
 			this.ShipView_Slot4.HeaderText = GeneralRes.Equipment + " 4";
 			this.ShipView_Slot4.Name = "ShipView_Slot4";
 			this.ShipView_Slot4.ReadOnly = true;
 			this.ShipView_Slot4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
 			this.ShipView_Slot4.Width = 150;
-			// 
+			//
 			// ShipView_Slot5
-			// 
-			dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			this.ShipView_Slot5.DefaultCellStyle = dataGridViewCellStyle7;
+			//
+			dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			this.ShipView_Slot5.DefaultCellStyle = dataGridViewCellStyle8;
 			this.ShipView_Slot5.HeaderText = GeneralRes.Equipment + " 5";
 			this.ShipView_Slot5.Name = "ShipView_Slot5";
 			this.ShipView_Slot5.ReadOnly = true;
 			this.ShipView_Slot5.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
 			this.ShipView_Slot5.Width = 150;
-			// 
+			//
 			// ShipView_ExpansionSlot
-			// 
+			//
 			this.ShipView_ExpansionSlot.HeaderText = GeneralRes.Expansion;
 			this.ShipView_ExpansionSlot.Name = "ShipView_ExpansionSlot";
 			this.ShipView_ExpansionSlot.ReadOnly = true;
 			this.ShipView_ExpansionSlot.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
 			this.ShipView_ExpansionSlot.Width = 150;
-			// 
+			//
 			// ShipView_Aircraft1
-			// 
+			//
 			this.ShipView_Aircraft1.HeaderText = GeneralRes.Planes + " 1";
 			this.ShipView_Aircraft1.Name = "ShipView_Aircraft1";
 			this.ShipView_Aircraft1.ReadOnly = true;
 			this.ShipView_Aircraft1.Width = 60;
-			// 
+			//
 			// ShipView_Aircraft2
-			// 
+			//
 			this.ShipView_Aircraft2.HeaderText = GeneralRes.Planes + " 2";
 			this.ShipView_Aircraft2.Name = "ShipView_Aircraft2";
 			this.ShipView_Aircraft2.ReadOnly = true;
 			this.ShipView_Aircraft2.Width = 60;
-			// 
+			//
 			// ShipView_Aircraft3
-			// 
+			//
 			this.ShipView_Aircraft3.HeaderText = GeneralRes.Planes + " 3";
 			this.ShipView_Aircraft3.Name = "ShipView_Aircraft3";
 			this.ShipView_Aircraft3.ReadOnly = true;
 			this.ShipView_Aircraft3.Width = 60;
-			// 
+			//
 			// ShipView_Aircraft4
-			// 
+			//
 			this.ShipView_Aircraft4.HeaderText = GeneralRes.Planes + " 4";
 			this.ShipView_Aircraft4.Name = "ShipView_Aircraft4";
 			this.ShipView_Aircraft4.ReadOnly = true;
 			this.ShipView_Aircraft4.Width = 60;
-			// 
+			//
 			// ShipView_Aircraft5
-			// 
+			//
 			this.ShipView_Aircraft5.HeaderText = GeneralRes.Planes + " 5";
 			this.ShipView_Aircraft5.Name = "ShipView_Aircraft5";
 			this.ShipView_Aircraft5.ReadOnly = true;
 			this.ShipView_Aircraft5.Width = 60;
-			// 
+			//
 			// ShipView_AircraftTotal
-			// 
+			//
 			this.ShipView_AircraftTotal.HeaderText = GeneralRes.Planes + GeneralRes.Total;
 			this.ShipView_AircraftTotal.Name = "ShipView_AircraftTotal";
 			this.ShipView_AircraftTotal.ReadOnly = true;
 			this.ShipView_AircraftTotal.Width = 60;
-			// 
+			//
 			// ShipView_Fleet
-			// 
+			//
 			this.ShipView_Fleet.HeaderText = GeneralRes.Fleet;
 			this.ShipView_Fleet.Name = "ShipView_Fleet";
 			this.ShipView_Fleet.ReadOnly = true;
 			this.ShipView_Fleet.Width = 40;
-			// 
+			//
 			// ShipView_RepairTime
-			// 
+			//
 			this.ShipView_RepairTime.HeaderText = GeneralRes.Dock;
 			this.ShipView_RepairTime.Name = "ShipView_RepairTime";
 			this.ShipView_RepairTime.ReadOnly = true;
 			this.ShipView_RepairTime.Width = 60;
-			// 
+			//
 			// ShipView_RepairSteel
-			// 
+			//
 			this.ShipView_RepairSteel.HeaderText = GeneralRes.Dock + " " + GeneralRes.Steel;
 			this.ShipView_RepairSteel.Name = "ShipView_RepairSteel";
 			this.ShipView_RepairSteel.ReadOnly = true;
 			this.ShipView_RepairSteel.Width = 60;
-			// 
+			//
 			// ShipView_RepairFuel
-			// 
+			//
 			this.ShipView_RepairFuel.HeaderText = GeneralRes.Dock + " " + GeneralRes.Fuel;
 			this.ShipView_RepairFuel.Name = "ShipView_RepairFuel";
 			this.ShipView_RepairFuel.ReadOnly = true;
 			this.ShipView_RepairFuel.Width = 60;
-			// 
+			//
 			// ShipView_Firepower
-			// 
+			//
 			this.ShipView_Firepower.HeaderText = GeneralRes.Firepower;
 			this.ShipView_Firepower.Name = "ShipView_Firepower";
 			this.ShipView_Firepower.ReadOnly = true;
 			this.ShipView_Firepower.Width = 40;
-			// 
+			//
 			// ShipView_FirepowerRemain
-			// 
+			//
 			this.ShipView_FirepowerRemain.HeaderText = GeneralRes.Firepower + GeneralRes.ModRemaining;
 			this.ShipView_FirepowerRemain.Name = "ShipView_FirepowerRemain";
 			this.ShipView_FirepowerRemain.ReadOnly = true;
 			this.ShipView_FirepowerRemain.Width = 40;
-			// 
+			//
 			// ShipView_FirepowerTotal
-			// 
+			//
 			this.ShipView_FirepowerTotal.HeaderText = GeneralRes.Firepower + GeneralRes.Total;
 			this.ShipView_FirepowerTotal.Name = "ShipView_FirepowerTotal";
 			this.ShipView_FirepowerTotal.ReadOnly = true;
 			this.ShipView_FirepowerTotal.Width = 40;
-			// 
+			//
 			// ShipView_Torpedo
-			// 
+			//
 			this.ShipView_Torpedo.HeaderText = GeneralRes.Torpedo;
 			this.ShipView_Torpedo.Name = "ShipView_Torpedo";
 			this.ShipView_Torpedo.ReadOnly = true;
 			this.ShipView_Torpedo.Width = 40;
-			// 
+			//
 			// ShipView_TorpedoRemain
-			// 
+			//
 			this.ShipView_TorpedoRemain.HeaderText = GeneralRes.Torpedo + GeneralRes.ModRemaining;
 			this.ShipView_TorpedoRemain.Name = "ShipView_TorpedoRemain";
 			this.ShipView_TorpedoRemain.ReadOnly = true;
 			this.ShipView_TorpedoRemain.Width = 40;
-			// 
+			//
 			// ShipView_TorpedoTotal
-			// 
+			//
 			this.ShipView_TorpedoTotal.HeaderText = GeneralRes.Torpedo + GeneralRes.Total;
 			this.ShipView_TorpedoTotal.Name = "ShipView_TorpedoTotal";
 			this.ShipView_TorpedoTotal.ReadOnly = true;
 			this.ShipView_TorpedoTotal.Width = 40;
-			// 
+			//
 			// ShipView_AA
-			// 
+			//
 			this.ShipView_AA.HeaderText = GeneralRes.AntiAir;
 			this.ShipView_AA.Name = "ShipView_AA";
 			this.ShipView_AA.ReadOnly = true;
 			this.ShipView_AA.Width = 40;
-			// 
+			//
 			// ShipView_AARemain
-			// 
+			//
 			this.ShipView_AARemain.HeaderText = GeneralRes.AntiAir + GeneralRes.ModRemaining;
 			this.ShipView_AARemain.Name = "ShipView_AARemain";
 			this.ShipView_AARemain.ReadOnly = true;
 			this.ShipView_AARemain.Width = 40;
-			// 
+			//
 			// ShipView_AATotal
-			// 
+			//
 			this.ShipView_AATotal.HeaderText = GeneralRes.AntiAir + GeneralRes.Total;
 			this.ShipView_AATotal.Name = "ShipView_AATotal";
 			this.ShipView_AATotal.ReadOnly = true;
 			this.ShipView_AATotal.Width = 40;
-			// 
+			//
 			// ShipView_Armor
-			// 
+			//
 			this.ShipView_Armor.HeaderText = GeneralRes.Armor;
 			this.ShipView_Armor.Name = "ShipView_Armor";
 			this.ShipView_Armor.ReadOnly = true;
 			this.ShipView_Armor.Width = 40;
-			// 
+			//
 			// ShipView_ArmorRemain
-			// 
+			//
 			this.ShipView_ArmorRemain.HeaderText = GeneralRes.Armor + GeneralRes.ModRemaining;
 			this.ShipView_ArmorRemain.Name = "ShipView_ArmorRemain";
 			this.ShipView_ArmorRemain.ReadOnly = true;
 			this.ShipView_ArmorRemain.Width = 40;
-			// 
+			//
 			// ShipView_ArmorTotal
-			// 
+			//
 			this.ShipView_ArmorTotal.HeaderText = GeneralRes.Armor + GeneralRes.Total;
 			this.ShipView_ArmorTotal.Name = "ShipView_ArmorTotal";
 			this.ShipView_ArmorTotal.ReadOnly = true;
 			this.ShipView_ArmorTotal.Width = 40;
-			// 
+			//
 			// ShipView_ASW
-			// 
+			//
 			this.ShipView_ASW.HeaderText = GeneralRes.ASW;
 			this.ShipView_ASW.Name = "ShipView_ASW";
 			this.ShipView_ASW.ReadOnly = true;
 			this.ShipView_ASW.Width = 40;
-			// 
+			//
 			// ShipView_ASWTotal
-			// 
+			//
 			this.ShipView_ASWTotal.HeaderText = GeneralRes.ASW + GeneralRes.Total;
 			this.ShipView_ASWTotal.Name = "ShipView_ASWTotal";
 			this.ShipView_ASWTotal.ReadOnly = true;
 			this.ShipView_ASWTotal.Width = 40;
-			// 
+			//
 			// ShipView_Evasion
-			// 
+			//
 			this.ShipView_Evasion.HeaderText = GeneralRes.Evasion;
 			this.ShipView_Evasion.Name = "ShipView_Evasion";
 			this.ShipView_Evasion.ReadOnly = true;
 			this.ShipView_Evasion.Width = 40;
-			// 
+			//
 			// ShipView_EvasionTotal
-			// 
+			//
 			this.ShipView_EvasionTotal.HeaderText = GeneralRes.Evasion + GeneralRes.Total;
 			this.ShipView_EvasionTotal.Name = "ShipView_EvasionTotal";
 			this.ShipView_EvasionTotal.ReadOnly = true;
 			this.ShipView_EvasionTotal.Width = 40;
-			// 
+			//
 			// ShipView_LOS
-			// 
+			//
 			this.ShipView_LOS.HeaderText = GeneralRes.LoS;
 			this.ShipView_LOS.Name = "ShipView_LOS";
 			this.ShipView_LOS.ReadOnly = true;
 			this.ShipView_LOS.Width = 40;
-			// 
+			//
 			// ShipView_LOSTotal
-			// 
+			//
 			this.ShipView_LOSTotal.HeaderText = GeneralRes.LoS + GeneralRes.Total;
 			this.ShipView_LOSTotal.Name = "ShipView_LOSTotal";
 			this.ShipView_LOSTotal.ReadOnly = true;
 			this.ShipView_LOSTotal.Width = 40;
-			// 
+			//
 			// ShipView_Luck
-			// 
+			//
 			this.ShipView_Luck.HeaderText = GeneralRes.Luck;
 			this.ShipView_Luck.Name = "ShipView_Luck";
 			this.ShipView_Luck.ReadOnly = true;
 			this.ShipView_Luck.Width = 40;
-			// 
+			//
 			// ShipView_LuckRemain
-			// 
+			//
 			this.ShipView_LuckRemain.HeaderText = GeneralRes.Luck + GeneralRes.ModRemaining;
 			this.ShipView_LuckRemain.Name = "ShipView_LuckRemain";
 			this.ShipView_LuckRemain.ReadOnly = true;
 			this.ShipView_LuckRemain.Width = 40;
-			// 
+			//
 			// ShipView_LuckTotal
-			// 
+			//
 			this.ShipView_LuckTotal.HeaderText = GeneralRes.Luck + GeneralRes.Total;
 			this.ShipView_LuckTotal.Name = "ShipView_LuckTotal";
 			this.ShipView_LuckTotal.ReadOnly = true;
 			this.ShipView_LuckTotal.Width = 40;
-			// 
+			//
 			// ShipView_BomberTotal
-			// 
+			//
 			this.ShipView_BomberTotal.HeaderText = GeneralRes.Bombers + GeneralRes.Total;
 			this.ShipView_BomberTotal.Name = "ShipView_BomberTotal";
 			this.ShipView_BomberTotal.ReadOnly = true;
 			this.ShipView_BomberTotal.Width = 40;
-			// 
+			//
 			// ShipView_Speed
-			// 
+			//
 			this.ShipView_Speed.HeaderText = GeneralRes.Speed;
 			this.ShipView_Speed.Name = "ShipView_Speed";
 			this.ShipView_Speed.ReadOnly = true;
 			this.ShipView_Speed.Width = 40;
-			// 
+			//
 			// ShipView_Range
-			// 
+			//
 			this.ShipView_Range.HeaderText = GeneralRes.Range;
 			this.ShipView_Range.Name = "ShipView_Range";
 			this.ShipView_Range.ReadOnly = true;
 			this.ShipView_Range.Width = 40;
-			// 
+			//
 			// ShipView_AirBattlePower
-			// 
+			//
 			this.ShipView_AirBattlePower.HeaderText = GeneralRes.Air + GeneralRes.Power;
 			this.ShipView_AirBattlePower.Name = "ShipView_AirBattlePower";
 			this.ShipView_AirBattlePower.ReadOnly = true;
 			this.ShipView_AirBattlePower.Width = 40;
-			// 
+			//
 			// ShipView_ShellingPower
-			// 
+			//
 			this.ShipView_ShellingPower.HeaderText = GeneralRes.Shelling + GeneralRes.Power;
 			this.ShipView_ShellingPower.Name = "ShipView_ShellingPower";
 			this.ShipView_ShellingPower.ReadOnly = true;
 			this.ShipView_ShellingPower.Width = 40;
-			// 
+			//
 			// ShipView_AircraftPower
-			// 
+			//
 			this.ShipView_AircraftPower.HeaderText = GeneralRes.Bombing + GeneralRes.Power;
 			this.ShipView_AircraftPower.Name = "ShipView_AircraftPower";
 			this.ShipView_AircraftPower.ReadOnly = true;
 			this.ShipView_AircraftPower.Width = 40;
-			// 
+			//
 			// ShipView_AntiSubmarinePower
-			// 
+			//
 			this.ShipView_AntiSubmarinePower.HeaderText = GeneralRes.ASW + GeneralRes.Power;
 			this.ShipView_AntiSubmarinePower.Name = "ShipView_AntiSubmarinePower";
 			this.ShipView_AntiSubmarinePower.ReadOnly = true;
 			this.ShipView_AntiSubmarinePower.Width = 40;
-			// 
+			//
 			// ShipView_TorpedoPower
-			// 
+			//
 			this.ShipView_TorpedoPower.HeaderText = GeneralRes.Torpedo + GeneralRes.Power;
 			this.ShipView_TorpedoPower.Name = "ShipView_TorpedoPower";
 			this.ShipView_TorpedoPower.ReadOnly = true;
 			this.ShipView_TorpedoPower.Width = 40;
-			// 
+			//
 			// ShipView_NightBattlePower
-			// 
+			//
 			this.ShipView_NightBattlePower.HeaderText = GeneralRes.NightBattle + GeneralRes.Power;
 			this.ShipView_NightBattlePower.Name = "ShipView_NightBattlePower";
 			this.ShipView_NightBattlePower.ReadOnly = true;
 			this.ShipView_NightBattlePower.Width = 40;
-			// 
+			//
 			// ShipView_Locked
-			// 
+			//
 			this.ShipView_Locked.HeaderText = GeneralRes.Lock;
 			this.ShipView_Locked.Name = "ShipView_Locked";
 			this.ShipView_Locked.ReadOnly = true;
 			this.ShipView_Locked.Width = 40;
-			// 
+			//
 			// ShipView_SallyArea
-			// 
+			//
 			this.ShipView_SallyArea.HeaderText = GeneralRes.SortiePlace;
 			this.ShipView_SallyArea.Name = "ShipView_SallyArea";
 			this.ShipView_SallyArea.ReadOnly = true;
 			this.ShipView_SallyArea.Width = 40;
-			// 
+			//
 			// MenuMember
-			// 
+			//
 			this.MenuMember.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MenuMember_AddToGroup,
             this.MenuMember_CreateGroup,
@@ -666,71 +666,71 @@
 			this.MenuMember.Name = "MenuMember";
 			this.MenuMember.Size = new System.Drawing.Size(202, 170);
 			this.MenuMember.Opening += new System.ComponentModel.CancelEventHandler(this.MenuMember_Opening);
-			// 
+			//
 			// MenuMember_AddToGroup
-			// 
+			//
 			this.MenuMember_AddToGroup.Name = "MenuMember_AddToGroup";
 			this.MenuMember_AddToGroup.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D)));
 			this.MenuMember_AddToGroup.Size = new System.Drawing.Size(501, 34);
 			this.MenuMember_AddToGroup.Text = GeneralRes.AddToGroupMenu;
 			this.MenuMember_AddToGroup.Click += new System.EventHandler(this.MenuMember_AddToGroup_Click);
-			// 
+			//
 			// MenuMember_CreateGroup
-			// 
+			//
 			this.MenuMember_CreateGroup.Name = "MenuMember_CreateGroup";
-			this.MenuMember_CreateGroup.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+			this.MenuMember_CreateGroup.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift)
             | System.Windows.Forms.Keys.D)));
 			this.MenuMember_CreateGroup.Size = new System.Drawing.Size(501, 34);
 			this.MenuMember_CreateGroup.Text = GeneralRes.CreateGroupMenu;
 			this.MenuMember_CreateGroup.Click += new System.EventHandler(this.MenuMember_CreateGroup_Click);
-			// 
+			//
 			// MenuMember_Exclude
-			// 
+			//
 			this.MenuMember_Exclude.Name = "MenuMember_Exclude";
 			this.MenuMember_Exclude.Size = new System.Drawing.Size(201, 22);
 			this.MenuMember_Exclude.Text = GeneralRes.Remove;
 			this.MenuMember_Exclude.Click += new System.EventHandler(this.MenuMember_Exclude_Click);
-			// 
+			//
 			// toolStripSeparator2
-			// 
+			//
 			this.toolStripSeparator2.Name = "toolStripSeparator2";
 			this.toolStripSeparator2.Size = new System.Drawing.Size(198, 6);
-			// 
+			//
 			// MenuMember_Filter
-			// 
+			//
 			this.MenuMember_Filter.Name = "MenuMember_Filter";
 			this.MenuMember_Filter.Size = new System.Drawing.Size(201, 22);
 			this.MenuMember_Filter.Text = GeneralRes.FilterSettings;
 			this.MenuMember_Filter.Click += new System.EventHandler(this.MenuMember_Filter_Click);
-			// 
+			//
 			// MenuMember_ColumnFilter
-			// 
+			//
 			this.MenuMember_ColumnFilter.Name = "MenuMember_ColumnFilter";
 			this.MenuMember_ColumnFilter.Size = new System.Drawing.Size(201, 22);
 			this.MenuMember_ColumnFilter.Text = GeneralRes.ColumnSettings;
 			this.MenuMember_ColumnFilter.Click += new System.EventHandler(this.MenuMember_ColumnFilter_Click);
-			// 
+			//
 			// MenuMember_SortOrder
-			// 
+			//
 			this.MenuMember_SortOrder.Name = "MenuMember_SortOrder";
 			this.MenuMember_SortOrder.Size = new System.Drawing.Size(201, 22);
 			this.MenuMember_SortOrder.Text = GeneralRes.AutoSort;
 			this.MenuMember_SortOrder.Click += new System.EventHandler(this.MenuMember_SortOrder_Click);
-			// 
+			//
 			// toolStripSeparator3
-			// 
+			//
 			this.toolStripSeparator3.Name = "toolStripSeparator3";
 			this.toolStripSeparator3.Size = new System.Drawing.Size(198, 6);
-			// 
+			//
 			// MenuMember_CSVOutput
-			// 
+			//
 			this.MenuMember_CSVOutput.Name = "MenuMember_CSVOutput";
 			this.MenuMember_CSVOutput.Size = new System.Drawing.Size(201, 22);
 			this.MenuMember_CSVOutput.Text = GeneralRes.OutputCSV;
 			this.MenuMember_CSVOutput.Click += new System.EventHandler(this.MenuMember_CSVOutput_Click);
-			// 
+			//
 			// MenuGroup
-			// 
+			//
 			this.MenuGroup.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MenuGroup_Add,
             this.MenuGroup_Copy,
@@ -742,49 +742,49 @@
 			this.MenuGroup.Name = "MenuGroup";
 			this.MenuGroup.Size = new System.Drawing.Size(192, 142);
 			this.MenuGroup.Opening += new System.ComponentModel.CancelEventHandler(this.MenuGroup_Opening);
-			// 
+			//
 			// MenuGroup_Add
-			// 
+			//
 			this.MenuGroup_Add.Name = "MenuGroup_Add";
 			this.MenuGroup_Add.Size = new System.Drawing.Size(321, 38);
 			this.MenuGroup_Add.Text = GeneralRes.AddGroupMenu;
 			this.MenuGroup_Add.Click += new System.EventHandler(this.MenuGroup_Add_Click);
-			// 
+			//
 			// MenuGroup_Copy
-			// 
+			//
 			this.MenuGroup_Copy.Name = "MenuGroup_Copy";
 			this.MenuGroup_Copy.Size = new System.Drawing.Size(191, 22);
 			this.MenuGroup_Copy.Text = GeneralRes.CopyGroup;
 			this.MenuGroup_Copy.Click += new System.EventHandler(this.MenuGroup_Copy_Click);
-			// 
+			//
 			// MenuGroup_Rename
-			// 
+			//
 			this.MenuGroup_Rename.Name = "MenuGroup_Rename";
 			this.MenuGroup_Rename.Size = new System.Drawing.Size(321, 38);
 			this.MenuGroup_Rename.Text = GeneralRes.RenameGroupMenu;
 			this.MenuGroup_Rename.Click += new System.EventHandler(this.MenuGroup_Rename_Click);
-			// 
+			//
 			// MenuGroup_Delete
-			// 
+			//
 			this.MenuGroup_Delete.Name = "MenuGroup_Delete";
 			this.MenuGroup_Delete.Size = new System.Drawing.Size(321, 38);
 			this.MenuGroup_Delete.Text = GeneralRes.DeleteGroupMenu;
 			this.MenuGroup_Delete.Click += new System.EventHandler(this.MenuGroup_Delete_Click);
-			// 
+			//
 			// toolStripSeparator4
-			// 
+			//
 			this.toolStripSeparator4.Name = "toolStripSeparator4";
 			this.toolStripSeparator4.Size = new System.Drawing.Size(188, 6);
-			// 
+			//
 			// MenuGroup_AutoUpdate
-			// 
+			//
 			this.MenuGroup_AutoUpdate.CheckOnClick = true;
 			this.MenuGroup_AutoUpdate.Name = "MenuGroup_AutoUpdate";
 			this.MenuGroup_AutoUpdate.Size = new System.Drawing.Size(321, 38);
 			this.MenuGroup_AutoUpdate.Text = GeneralRes.AutoUpdate;
-			// 
+			//
 			// MenuGroup_ShowStatusBar
-			// 
+			//
 			this.MenuGroup_ShowStatusBar.Checked = true;
 			this.MenuGroup_ShowStatusBar.CheckOnClick = true;
 			this.MenuGroup_ShowStatusBar.CheckState = System.Windows.Forms.CheckState.Checked;
@@ -792,32 +792,32 @@
 			this.MenuGroup_ShowStatusBar.Size = new System.Drawing.Size(321, 38);
 			this.MenuGroup_ShowStatusBar.Text = GeneralRes.ShowStatusBar;
 			this.MenuGroup_ShowStatusBar.CheckedChanged += new System.EventHandler(this.MenuGroup_ShowStatusBar_CheckedChanged);
-			// 
+			//
 			// splitContainer1
-			// 
+			//
 			this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
 			this.splitContainer1.Location = new System.Drawing.Point(0, 0);
 			this.splitContainer1.Name = "splitContainer1";
 			this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
-			// 
+			//
 			// splitContainer1.Panel1
-			// 
+			//
 			this.splitContainer1.Panel1.Controls.Add(this.TabPanel);
-			// 
+			//
 			// splitContainer1.Panel2
-			// 
+			//
 			this.splitContainer1.Panel2.Controls.Add(this.ShipView);
 			this.splitContainer1.Panel2.Controls.Add(this.StatusBar);
 			this.splitContainer1.Size = new System.Drawing.Size(300, 200);
 			this.splitContainer1.SplitterDistance = 40;
 			this.splitContainer1.TabIndex = 1;
-			// 
+			//
 			// TabPanel
-			// 
+			//
 			this.TabPanel.AllowDrop = true;
-			this.TabPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+			this.TabPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.TabPanel.AutoScroll = true;
 			this.TabPanel.ContextMenuStrip = this.MenuGroup;
@@ -829,9 +829,9 @@
 			this.TabPanel.DragEnter += new System.Windows.Forms.DragEventHandler(this.TabPanel_DragEnter);
 			this.TabPanel.QueryContinueDrag += new System.Windows.Forms.QueryContinueDragEventHandler(this.TabPanel_QueryContinueDrag);
 			this.TabPanel.DoubleClick += new System.EventHandler(this.TabPanel_DoubleClick);
-			// 
+			//
 			// StatusBar
-			// 
+			//
 			this.StatusBar.ImageScalingSize = new System.Drawing.Size(32, 32);
 			this.StatusBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.Status_ShipCount,
@@ -843,24 +843,24 @@
 			this.StatusBar.SizingGrip = false;
 			this.StatusBar.TabIndex = 1;
 			this.StatusBar.Text = "statusStrip1";
-			// 
+			//
 			// Status_ShipCount
-			// 
+			//
 			this.Status_ShipCount.Name = "Status_ShipCount";
 			this.Status_ShipCount.Size = new System.Drawing.Size(0, 17);
-			// 
+			//
 			// Status_LevelTotal
-			// 
+			//
 			this.Status_LevelTotal.Name = "Status_LevelTotal";
 			this.Status_LevelTotal.Size = new System.Drawing.Size(0, 17);
-			// 
+			//
 			// Status_LevelAverage
-			// 
+			//
 			this.Status_LevelAverage.Name = "Status_LevelAverage";
 			this.Status_LevelAverage.Size = new System.Drawing.Size(0, 17);
-			// 
+			//
 			// FormShipGroup
-			// 
+			//
 			this.AutoHidePortion = 150D;
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.ClientSize = new System.Drawing.Size(300, 200);
