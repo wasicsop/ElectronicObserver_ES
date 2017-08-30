@@ -228,9 +228,6 @@
   <data name="Other_ApplyStyleSheet" xml:space="preserve">
     <value>スタイルシートを適用する</value>
   </data>
-  <data name="Other_ClearCache" xml:space="preserve">
-    <value>キャッシュのクリア(&amp;C)</value>
-  </data>
   <data name="Other_Mute" xml:space="preserve">
     <value>ミュート(&amp;M)</value>
   </data>

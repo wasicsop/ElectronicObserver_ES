@@ -938,21 +938,21 @@ namespace Browser {
 
 		private void ToolMenu_Other_ClearCache_Click( object sender, EventArgs e ) {
 
-			if ( MessageBox.Show( Resources.ClearCacheDialog, Resources.ClearCacheTitle, MessageBoxButtons.OKCancel, MessageBoxIcon.Question )
-				== System.Windows.Forms.DialogResult.OK ) {
+			if (MessageBox.Show( "This will clear the browser cache.\r\nAre you sure?", "Clear Cache", MessageBoxButtons.OKCancel, MessageBoxIcon.Question )
+				== System.Windows.Forms.DialogResult.OK) {
 
-				BeginInvoke( (MethodInvoker)( () => {
+				BeginInvoke( (MethodInvoker)(() => {
 					bool succeeded = ClearCache();
-					if ( succeeded )
-						MessageBox.Show( Resources.ClearCompleteDialog, Resources.ClearComplete, MessageBoxButtons.OK, MessageBoxIcon.Information );
+					if (succeeded)
+						MessageBox.Show( "Clear cache completed successfully.", "Clear Cache Completed", MessageBoxButtons.OK, MessageBoxIcon.Information );
 					else
-						MessageBox.Show( "時間がかかりすぎたため、キャッシュの削除を中断しました。\r\n削除しきれていない可能性があります。", "削除中断", MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
-				} ) );
+						MessageBox.Show( "The clear cache operation was interrupted because it took too long.", "Clear Cache Aborted", MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
+				}) );
 
 			}
 		}
 
-        private void ToolMenu_Other_RegionCookie_Click(object sender, EventArgs e)
+		private void ToolMenu_Other_RegionCookie_Click(object sender, EventArgs e)
         {
             BeginInvoke((MethodInvoker)(() => { SetCookie(); }));
         }

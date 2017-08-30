@@ -210,9 +210,6 @@
   <data name="Other_ApplyStyleSheet" xml:space="preserve">
     <value>스타일 시트를 적용한다.</value>
   </data>
-  <data name="Other_ClearCache" xml:space="preserve">
-    <value>캐쉬를 삭제(&amp;C)</value>
-  </data>
   <data name="Other_Mute" xml:space="preserve">
     <value>음소거(&amp;M)</value>
   </data>

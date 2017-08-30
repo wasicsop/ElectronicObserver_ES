@@ -164,6 +164,7 @@ namespace ElectronicObserver.Window {
 			StripMenu_Tool_AntiAirDefense.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormAntiAirDefense];
 			StripMenu_Tool_FleetImageGenerator.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormFleetImageGenerator];
 
+			StripMenu_Help_Help.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormInformation];
 			StripMenu_Help_Version.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.AppIcon];
 			#endregion
 
@@ -412,7 +413,7 @@ namespace ElectronicObserver.Window {
 		private void FormMain_FormClosing( object sender, FormClosingEventArgs e ) {
 
 			if ( Utility.Configuration.Config.Life.ConfirmOnClosing ) {
-				if ( MessageBox.Show( SoftwareInformation.SoftwareNameEnglish + Resources.AskClose, Resources.Confirm, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2 )
+				if ( MessageBox.Show( "Are you sure you want to exit Electronic Observer?", "Electronic Observer", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2 )
 					== System.Windows.Forms.DialogResult.No ) {
 					e.Cancel = true;
 					return;

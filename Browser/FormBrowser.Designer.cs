@@ -483,7 +483,7 @@ namespace Browser
 			//
 			this.ToolMenu_Other_ClearCache.Name = "ToolMenu_Other_ClearCache";
 			this.ToolMenu_Other_ClearCache.Size = new System.Drawing.Size(199, 22);
-			this.ToolMenu_Other_ClearCache.Text = "キャッシュのクリア(&C)";
+			this.ToolMenu_Other_ClearCache.Text = "Clear Browser Cache (&C)";
 			this.ToolMenu_Other_ClearCache.Click += new System.EventHandler(this.ToolMenu_Other_ClearCache_Click);
 			//
 			// toolStripSeparator6
@@ -538,13 +538,6 @@ namespace Browser
             this.ToolMenu_Other_Alignment_Invisible.Size = new System.Drawing.Size(125, 22);
             this.ToolMenu_Other_Alignment_Invisible.Text = Resources.Alignment_Invisible;
 			this.ToolMenu_Other_Alignment_Invisible.Click += new System.EventHandler(this.ToolMenu_Other_Alignment_Invisible_Click);
-			//
-			// ToolMenu_Other_ClearCache
-			//
-			this.ToolMenu_Other_ClearCache.Name = "ToolMenu_Other_ClearCache";
-			this.ToolMenu_Other_ClearCache.Size = new System.Drawing.Size(191, 22);
-			this.ToolMenu_Other_ClearCache.Text = Resources.Other_ClearCache;
-			this.ToolMenu_Other_ClearCache.Click += new System.EventHandler(this.ToolMenu_Other_ClearCache_Click);
             //
             // ToolMenu_Other_RegionCookie
             //
@@ -564,7 +557,7 @@ namespace Browser
 			//
 			this.ToolMenu_Other_LastScreenShot_CopyToClipboard.Name = "ToolMenu_Other_LastScreenShot_CopyToClipboard";
 			this.ToolMenu_Other_LastScreenShot_CopyToClipboard.Size = new System.Drawing.Size(187, 22);
-			this.ToolMenu_Other_LastScreenShot_CopyToClipboard.Text = "クリップボードにコピー(&C)";
+			this.ToolMenu_Other_LastScreenShot_CopyToClipboard.Text = "Copy to Clipboard (&C)";
 			this.ToolMenu_Other_LastScreenShot_CopyToClipboard.Click += new System.EventHandler(this.ToolMenu_Other_LastScreenShot_CopyToClipboard_Click);
 			//
 			// FormBrowser
