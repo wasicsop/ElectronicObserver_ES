@@ -225,7 +225,7 @@ namespace ElectronicObserver.Window.Dialog {
 				ToolTipInfo.SetToolTip( EquipmentType, sb.ToString() );
 			}
 			EquipmentName.Text = eq.Name;
-			ToolTipInfo.SetToolTip( EquipmentName, "(右クリックでコピー)" );
+			ToolTipInfo.SetToolTip( EquipmentName, "Right click to copy." );
 
 			TableEquipmentName.ResumeLayout();
 
@@ -640,7 +640,7 @@ namespace ElectronicObserver.Window.Dialog {
 				.ThenBy( r => r.Steel )
 				.ThenBy( r => r.Bauxite )
 				) {
-				sb.AppendFormat( "開発 {0} / {1} / {2} / {3}\r\n",
+				sb.AppendFormat( "Recipe {0} / {1} / {2} / {3}\r\n",
 					record.Fuel, record.Ammo, record.Steel, record.Bauxite );
 			}
 
@@ -660,10 +660,10 @@ namespace ElectronicObserver.Window.Dialog {
 			string result = GetAppearingArea( eqID );
 
 			if ( string.IsNullOrWhiteSpace( result ) ) {
-				result = eq.Name + " の初期装備艦・開発レシピは不明です。";
+				result = "Failed to find ship/recipe which has " + eq.Name + ".";
 			}
 
-			MessageBox.Show( result, "入手手段表示", MessageBoxButtons.OK, MessageBoxIcon.Information );
+			MessageBox.Show( result, "Ship/Recipe Search", MessageBoxButtons.OK, MessageBoxIcon.Information );
 		}
 
 

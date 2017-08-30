@@ -154,7 +154,7 @@
             this.StripMenu_Edit_CopyEquipmentData});
 			this.StripMenu_Edit.Name = "StripMenu_Edit";
 			this.StripMenu_Edit.Size = new System.Drawing.Size(60, 20);
-			this.StripMenu_Edit.Text = "編集(&E)";
+			this.StripMenu_Edit.Text = "&Edit";
 			//
 			// StripMenu_Edit_CopyEquipmentName
 			//
@@ -162,7 +162,7 @@
 			this.StripMenu_Edit_CopyEquipmentName.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift)
             | System.Windows.Forms.Keys.C)));
 			this.StripMenu_Edit_CopyEquipmentName.Size = new System.Drawing.Size(248, 22);
-			this.StripMenu_Edit_CopyEquipmentName.Text = "装備名をコピー(&N)";
+			this.StripMenu_Edit_CopyEquipmentName.Text = "Copy Equipment &Name";
 			this.StripMenu_Edit_CopyEquipmentName.Click += new System.EventHandler(this.StripMenu_Edit_CopyEquipmentName_Click);
 			//
 			// splitContainer1
@@ -459,14 +459,14 @@
 			// SaveCSVDialog
 			//
 			this.SaveCSVDialog.Filter = "CSV|*.csv|File|*";
-			this.SaveCSVDialog.Title = "CSVに出力";
+			this.SaveCSVDialog.Title = "Save As CSV";
 			//
 			// StripMenu_Edit_CopyEquipmentData
 			//
 			this.StripMenu_Edit_CopyEquipmentData.Name = "StripMenu_Edit_CopyEquipmentData";
 			this.StripMenu_Edit_CopyEquipmentData.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
 			this.StripMenu_Edit_CopyEquipmentData.Size = new System.Drawing.Size(248, 22);
-			this.StripMenu_Edit_CopyEquipmentData.Text = "装備データをコピー(&D)";
+			this.StripMenu_Edit_CopyEquipmentData.Text = "Copy Equipment &Data";
 			this.StripMenu_Edit_CopyEquipmentData.Click += new System.EventHandler(this.StripMenu_Edit_CopyEquipmentData_Click);
 			//
 			// StripMenu_View
@@ -475,14 +475,14 @@
             this.StripMenu_View_ShowAppearingArea});
 			this.StripMenu_View.Name = "StripMenu_View";
 			this.StripMenu_View.Size = new System.Drawing.Size(61, 20);
-			this.StripMenu_View.Text = "表示(&V)";
+			this.StripMenu_View.Text = "&View";
 			//
 			// StripMenu_View_ShowAppearingArea
 			//
 			this.StripMenu_View_ShowAppearingArea.Name = "StripMenu_View_ShowAppearingArea";
 			this.StripMenu_View_ShowAppearingArea.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
 			this.StripMenu_View_ShowAppearingArea.Size = new System.Drawing.Size(288, 22);
-			this.StripMenu_View_ShowAppearingArea.Text = "初期装備艦・開発レシピを検索(&S)";
+			this.StripMenu_View_ShowAppearingArea.Text = "Ship and Recipe &Search";
 			this.StripMenu_View_ShowAppearingArea.Click += new System.EventHandler(this.StripMenu_View_ShowAppearingArea_Click);
 			//
 			// AircraftCost
