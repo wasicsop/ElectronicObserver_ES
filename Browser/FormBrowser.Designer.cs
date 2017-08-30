@@ -153,6 +153,8 @@ namespace Browser
 			this.ToolMenu.Size = new System.Drawing.Size(284, 25);
 			this.ToolMenu.TabIndex = 1;
 			this.ToolMenu.Text = "toolStrip1";
+			this.ToolMenu.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+			this.ToolMenu.Renderer = new ToolStripOverride();
 			//
 			// ToolMenu_ScreenShot
 			//

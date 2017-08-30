@@ -129,7 +129,7 @@ namespace ElectronicObserver.Data.Battle.Detail {
 					builder.Append( " , " );
 
 				if ( GuardsFlagship[i] )
-					builder.Append( "<かばう> " );
+					builder.Append( "<Protected> " );
 
 				switch ( CriticalTypes[i] ) {
 					case CriticalType.Miss:
