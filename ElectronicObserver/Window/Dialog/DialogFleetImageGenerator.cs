@@ -206,7 +206,7 @@ namespace ElectronicObserver.Window.Dialog {
 			GeneralFont = SerializableFont.StringToFont( TextGeneralFont.Text, true );
 
 			if ( GeneralFont == null ) {
-				MessageBox.Show( "フォント名が正しくありません。", "フォント変換失敗", MessageBoxButtons.OK, MessageBoxIcon.Error );
+				MessageBox.Show( "The specified font does not exists.", "Font Conversion Failed", MessageBoxButtons.OK, MessageBoxIcon.Error );
 				TextGeneralFont.Text = "";
 				return;
 			}
@@ -269,38 +269,38 @@ namespace ElectronicObserver.Window.Dialog {
 
 			// validation
 			if ( args.FleetIDs == null || args.FleetIDs.Length == 0 ) {
-				MessageBox.Show( "出力する艦隊が指定されていません。", "入力値エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
+				MessageBox.Show( "Please select a fleet to export.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
 				args.DisposeResources();
 				return;
 			}
 
 			if ( args.HorizontalFleetCount <= 0 || args.HorizontalShipCount <= 0 ) {
-				MessageBox.Show( "艦隊・艦船の横幅は 1 以上にしてください。", "入力値エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
+				MessageBox.Show( "The fleet must contain at least 1 ship.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
 				args.DisposeResources();
 				return;
 			}
 
 			if ( args.Fonts.Any( f => f == null ) ) {
-				MessageBox.Show( "未入力・不正なフォントが存在します。", "入力値エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
+				MessageBox.Show( "The specified font does not exists.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
 				args.DisposeResources();
 				return;
 			}
 
 			if ( !OutputToClipboard.Checked ) {
 				if ( string.IsNullOrWhiteSpace( OutputPath.Text ) ) {
-					MessageBox.Show( "出力先ファイル名が入力されていません。", "入力値エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
+					MessageBox.Show( "Please enter the destination path.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
 					args.DisposeResources();
 					return;
 				}
 
 				if ( OutputPath.Text.ToCharArray().Intersect( Path.GetInvalidPathChars() ).Any() ) {
-					MessageBox.Show( "出力先に使用できない文字が含まれています。", "入力値エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
+					MessageBox.Show( "The destination path contains invalid characters.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
 					args.DisposeResources();
 					return;
 				}
 
 				if ( !DisableOverwritePrompt.Checked && File.Exists( OutputPath.Text ) ) {
-					if ( MessageBox.Show( Path.GetFileName( OutputPath.Text ) + "\r\nは既に存在します。\r\n上書きしますか？", "上書き確認",
+					if ( MessageBox.Show( Path.GetFileName( OutputPath.Text ) + " already exists.\r\nDo you want to replace it?", "Overwrite Confirmation",
 						MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2 )
 						== System.Windows.Forms.DialogResult.No ) {
 						args.DisposeResources();
@@ -386,12 +386,12 @@ namespace ElectronicObserver.Window.Dialog {
 				CurrentArgument = args;
 				SaveConfiguration();
 
-				Utility.Logger.Add( 2, "編成画像を出力しました。" );
+				Utility.Logger.Add( 2, "Fleet image exported successfully." );
 
 			} catch ( Exception ex ) {
 
-				ErrorReporter.SendErrorReport( ex, "編成画像の出力に失敗しました。" );
-				MessageBox.Show( "編成画像の出力に失敗しました。\r\n" + ex.GetType().Name + "\r\n" + ex.Message, "編成画像出力失敗", MessageBoxButtons.OK, MessageBoxIcon.Error );
+				ErrorReporter.SendErrorReport( ex, "Failed to export fleet image." );
+				MessageBox.Show( "Failed to export fleet image.\r\n" + ex.GetType().Name + "\r\n" + ex.Message, "Export Failure", MessageBoxButtons.OK, MessageBoxIcon.Error );
 
 			} finally {
 				args.DisposeResources();
@@ -444,14 +444,14 @@ namespace ElectronicObserver.Window.Dialog {
 			if ( !Utility.Configuration.Config.Connection.SaveReceivedData || !Utility.Configuration.Config.Connection.SaveSWF ) {
 
 				visibility = true;
-				ButtonAlert.Text = "艦船画像保存設定が無効です(詳細表示...)";
+				ButtonAlert.Text = "Invalid settings";
 
 			}
 
 			if ( !FleetImageGenerator.HasShipSwfImage( ToFleetIDs() ) ) {
 
 				visibility = true;
-				ButtonAlert.Text = "艦船画像が足りません(詳細表示...)";
+				ButtonAlert.Text = "Ship image not found";
 
 			}
 
@@ -464,8 +464,8 @@ namespace ElectronicObserver.Window.Dialog {
 
 			if ( !Utility.Configuration.Config.Connection.SaveReceivedData || !Utility.Configuration.Config.Connection.SaveSWF ) {
 
-				if ( MessageBox.Show( "編成画像を出力するためには、艦船画像を保存する設定を有効にする必要があります。\r\n有効にしますか？",
-					"艦船画像保存設定が無効です", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1 )
+				if ( MessageBox.Show( "It is necessary to enable save ship image option in order\r\nto export fleet image. Would you like to enable it?",
+					"Invalid Settings", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1 )
 					== System.Windows.Forms.DialogResult.Yes ) {
 
 					if ( !Utility.Configuration.Config.Connection.SaveReceivedData ) {
@@ -481,8 +481,8 @@ namespace ElectronicObserver.Window.Dialog {
 
 			if ( !FleetImageGenerator.HasShipSwfImage( ToFleetIDs() ) ) {
 
-				MessageBox.Show( "現在の艦隊を出力するための艦船画像データが不足しています。\r\n\r\nキャッシュを削除したのち再読み込みを行い、\r\n艦これ本体側で出力したい艦隊の編成ページを開くと\r\n艦船画像データが保存されます。",
-					"艦船画像データ不足", MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
+				MessageBox.Show( "One or more ship image of the current fleet are missing.\r\n\r\nClear cache and reload the game. The ship images are automatically\r\nsaved when you view the current fleet within the game.",
+					"Ship Image Not Found", MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
 
 				UpdateButtonAlert();
 			}
@@ -498,7 +498,7 @@ namespace ElectronicObserver.Window.Dialog {
 
 		private void ButtonClearFont_Click( object sender, EventArgs e ) {
 
-			if ( MessageBox.Show( "フォントをデフォルト設定に戻します。\r\nよろしいですか？", "クリア確認",
+			if ( MessageBox.Show( "Are you sure you want to reset font\r\nsettings to the default values?", "Clear Confirmation",
 				MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2 )
 				 == System.Windows.Forms.DialogResult.Yes ) {
 
@@ -615,7 +615,7 @@ namespace ElectronicObserver.Window.Dialog {
 			SyncronizeTitleAndFileName.Enabled =
 				!OutputToClipboard.Checked;
 
-			ToolTipInfo.SetToolTip( GroupOutputPath, OutputToClipboard.Checked ? "クリップボードに出力されます。\r\nファイルに出力したい場合は、詳細タブの「クリップボードに出力する」を外してください。" : null );
+			ToolTipInfo.SetToolTip( GroupOutputPath, OutputToClipboard.Checked ? "The fleet image will be exported to the clipboard.\r\nUncheck 'Copy to clipboard' on the details tab to export fleet image to a file." : null );
 		}
 
 		private void Comment_KeyDown( object sender, KeyEventArgs e ) {
