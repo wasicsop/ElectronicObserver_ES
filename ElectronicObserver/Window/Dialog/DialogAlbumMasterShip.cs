@@ -273,7 +273,7 @@ namespace ElectronicObserver.Window.Dialog {
 			ShipType.Text = ship.IsLandBase ? "Land Base" : db.ShipTypes[ship.ShipType].Name;
 			ShipName.Text = ship.NameWithClass;
 			ShipName.ForeColor = ship.GetShipNameColor();
-			ToolTipInfo.SetToolTip( ShipName, ( !ship.IsAbyssalShip ? ship.NameReading + "\r\n" : "" ) + "(右クリックでコピー)" );
+			ToolTipInfo.SetToolTip( ShipName, ( !ship.IsAbyssalShip ? ship.NameReading + "\r\n" : "" ) + "Right click to copy." );
 			TableShipName.ResumeLayout();
 
 
@@ -389,7 +389,7 @@ namespace ElectronicObserver.Window.Dialog {
 					.Select( id => KCDatabase.Instance.MasterEquipments[id] )
 					.Where( eq => eq != null );
 				Range.Text = Constants.GetRange( Math.Max( ship.Range, availableEquipments.Any() ? availableEquipments.Max( eq => eq.Range ) : 0 ) );
-				ToolTipInfo.SetToolTip( Range, "素の射程: " + Constants.GetRange( ship.Range ) );
+				ToolTipInfo.SetToolTip( Range, "Default Range: " + Constants.GetRange( ship.Range ) );
 			}
 			Rarity.Text = Constants.GetShipRarity( ship.Rarity );
 			Rarity.ImageIndex = (int)ResourceManager.IconContent.RarityRed + ship.Rarity;
@@ -446,7 +446,7 @@ namespace ElectronicObserver.Window.Dialog {
 					EquipmentDataMaster eq = db.MasterEquipments[ship.DefaultSlot[i]];
 					if ( eq == null ) {
 						// 破損データが入っていた場合
-						Equipments[i].Text = "(なし)";
+						Equipments[i].Text = "Empty";
 						Equipments[i].ImageIndex = (int)ResourceManager.EquipmentContent.Nothing;
 
 					} else {
@@ -463,23 +463,23 @@ namespace ElectronicObserver.Window.Dialog {
 							StringBuilder sb = new StringBuilder();
 
 							sb.AppendFormat( "{0} {1} (ID: {2})\r\n", eq.CategoryTypeInstance.Name, eq.Name, eq.EquipmentID );
-							if ( eq.Firepower != 0 ) sb.AppendFormat( EncycloRes.Firepower + " {0:+0;-0}\r\n", eq.Firepower );
-							if ( eq.Torpedo != 0 ) sb.AppendFormat( EncycloRes.Torpedo + " {0:+0;-0}\r\n", eq.Torpedo );
+							if ( eq.Firepower != 0 ) sb.AppendFormat( "FP  {0:+0;-0}\r\n", eq.Firepower );
+							if ( eq.Torpedo != 0 ) sb.AppendFormat( "Torp {0:+0;-0}\r\n", eq.Torpedo );
 							if ( eq.AA != 0 ) sb.AppendFormat( EncycloRes.AntiAir + " {0:+0;-0}\r\n", eq.AA );
 							if ( eq.Armor != 0 ) sb.AppendFormat( EncycloRes.Armor + " {0:+0;-0}\r\n", eq.Armor );
 							if ( eq.ASW != 0 ) sb.AppendFormat( EncycloRes.ASW + " {0:+0;-0}\r\n", eq.ASW );
 							if ( eq.Evasion != 0 ) sb.AppendFormat( EncycloRes.Evasion + " {0:+0;-0}\r\n", eq.Evasion );
 							if ( eq.LOS != 0 ) sb.AppendFormat( EncycloRes.LoS + " {0:+0;-0}\r\n", eq.LOS );
-							if ( eq.Accuracy != 0 ) sb.AppendFormat( EncycloRes.Accuracy + " {0:+0;-0}\r\n", eq.Accuracy );
+							if ( eq.Accuracy != 0 ) sb.AppendFormat( EncycloRes.Accuracy + "Acc {0:+0;-0}\r\n", eq.Accuracy );
 							if ( eq.Bomber != 0 ) sb.AppendFormat( EncycloRes.TitleBomber + " {0:+0;-0}\r\n", eq.Bomber );
-							sb.AppendLine( EncycloRes.RightClickForMore );
+							sb.AppendLine( "\r\nRight click to open in a new window." );
 
 							ToolTipInfo.SetToolTip( Equipments[i], sb.ToString() );
 						}
 					}
 
 				} else if ( i < ship.SlotSize ) {
-					Equipments[i].Text = "(なし)";
+					Equipments[i].Text = "Empty";
 					Equipments[i].ImageIndex = (int)ResourceManager.EquipmentContent.Nothing;
 
 				} else {
@@ -514,7 +514,7 @@ namespace ElectronicObserver.Window.Dialog {
 				TableRemodel.SuspendLayout();
 
 				if ( ship.RemodelBeforeShipID == 0 ) {
-					RemodelBeforeShipName.Text = "(なし)";
+					RemodelBeforeShipName.Text = "-";
 					ToolTipInfo.SetToolTip( RemodelBeforeShipName, null );
 					RemodelBeforeLevel.Text = "";
 					RemodelBeforeLevel.ImageIndex = -1;
@@ -524,7 +524,7 @@ namespace ElectronicObserver.Window.Dialog {
 				} else {
 					ShipDataMaster sbefore = ship.RemodelBeforeShip;
 					RemodelBeforeShipName.Text = sbefore.Name;
-					ToolTipInfo.SetToolTip( RemodelBeforeShipName, "(左クリックで開く, 右クリックで新規ウィンドウ)" );
+					ToolTipInfo.SetToolTip( RemodelBeforeShipName, "Open with left click.\r\nRight click to open in a new window." );
 					RemodelBeforeLevel.Text = string.Format( "Lv. {0}", sbefore.RemodelAfterLevel );
 					RemodelBeforeLevel.ImageIndex = sbefore.NeedCatapult > 0 ? (int)ResourceManager.IconContent.ItemCatapult : sbefore.NeedBlueprint > 0 ? (int)ResourceManager.IconContent.ItemBlueprint : -1;
 					ToolTipInfo.SetToolTip( RemodelBeforeLevel, GetRemodelItem( sbefore ) );
@@ -533,7 +533,7 @@ namespace ElectronicObserver.Window.Dialog {
 				}
 
 				if ( ship.RemodelAfterShipID == 0 ) {
-					RemodelAfterShipName.Text = "(なし)";
+					RemodelAfterShipName.Text = "-";
 					ToolTipInfo.SetToolTip( RemodelAfterShipName, null );
 					RemodelAfterLevel.Text = "";
 					RemodelAfterLevel.ImageIndex = -1;
@@ -542,7 +542,7 @@ namespace ElectronicObserver.Window.Dialog {
 					RemodelAfterSteel.Text = "-";
 				} else {
 					RemodelAfterShipName.Text = ship.RemodelAfterShip.Name;
-					ToolTipInfo.SetToolTip( RemodelAfterShipName, "(左クリックで開く, 右クリックで新規ウィンドウ)" );
+					ToolTipInfo.SetToolTip( RemodelAfterShipName, "Open with left click.\r\nRight click to open in a new window." );
 					RemodelAfterLevel.Text = string.Format( "Lv. {0}", ship.RemodelAfterLevel );
 					RemodelAfterLevel.ImageIndex = ship.NeedCatapult > 0 ? (int)ResourceManager.IconContent.ItemCatapult : ship.NeedBlueprint > 0 ? (int)ResourceManager.IconContent.ItemBlueprint : -1;
 					ToolTipInfo.SetToolTip( RemodelAfterLevel, GetRemodelItem( ship ) );
@@ -856,7 +856,7 @@ namespace ElectronicObserver.Window.Dialog {
 				} catch ( Exception ex ) {
 
 					Utility.ErrorReporter.SendErrorReport( ex, "艦船図鑑 CSVの出力に失敗しました。" );
-					MessageBox.Show( "艦船図鑑 CSVの出力に失敗しました。\r\n" + ex.Message, "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error );
+					MessageBox.Show( "艦船図鑑 CSVの出力に失敗しました。\r\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error );
 				}
 
 			}
@@ -1264,7 +1264,7 @@ namespace ElectronicObserver.Window.Dialog {
 					.Select( s => new {
 						s.MapAreaID, s.MapInfoID, s.CellID, s.Difficulty,
 						EnemyFleetName = RecordManager.Instance.EnemyFleet.Record.ContainsKey( s.EnemyFleetID ) ?
-							RecordManager.Instance.EnemyFleet.Record[s.EnemyFleetID].FleetName : "敵艦隊名不明"
+							RecordManager.Instance.EnemyFleet.Record[s.EnemyFleetID].FleetName : "Unknown"
 					} )
 					.Distinct()
 					.OrderBy( r => r.MapAreaID )
@@ -1288,7 +1288,7 @@ namespace ElectronicObserver.Window.Dialog {
 					.ThenBy( r => r.Bauxite )
 					.ThenBy( r => r.DevelopmentMaterial )
 					) {
-					sb.AppendFormat( "建造 {0} / {1} / {2} / {3} - {4}\r\n",
+					sb.AppendFormat( "Recipe {0} / {1} / {2} / {3} - {4}\r\n",
 						record.Fuel, record.Ammo, record.Steel, record.Bauxite, record.DevelopmentMaterial );
 				}
 
@@ -1298,7 +1298,7 @@ namespace ElectronicObserver.Window.Dialog {
 					.Where( r => r.FleetMember.Contains( shipID ) )
 					.Select( s => new {
 						s.MapAreaID, s.MapInfoID, s.CellID, s.Difficulty,
-						EnemyFleetName = !string.IsNullOrWhiteSpace( s.FleetName ) ? s.FleetName : "敵艦隊名不明"
+						EnemyFleetName = !string.IsNullOrWhiteSpace( s.FleetName ) ? s.FleetName : "Unknown"
 					} )
 					.Distinct()
 					.OrderBy( r => r.MapAreaID )
@@ -1325,9 +1325,9 @@ namespace ElectronicObserver.Window.Dialog {
 			string result = GetAppearingArea( ship.ShipID );
 
 			if ( string.IsNullOrEmpty( result ) )
-				result = ship.NameWithClass + " の出現海域は不明です。";
+				result = "Failed to find maps/recipe which drop " + ship.NameWithClass + ".";
 
-			MessageBox.Show( result, "出現海域検索", MessageBoxButtons.OK, MessageBoxIcon.Information );
+			MessageBox.Show( result, "Map/Recipe Search", MessageBoxButtons.OK, MessageBoxIcon.Information );
 		}
 
 
@@ -1358,11 +1358,11 @@ namespace ElectronicObserver.Window.Dialog {
 
 				} else {
 
-					MessageBox.Show( "画像リソースが存在しません。以下の手順を踏んでください。\r\n1. 設定→通信→通信内容を保存する 及び SWF を有効にする。\r\n2. キャッシュをクリアし、再読み込みする。\r\n3. 艦これ本体で当該艦を表示させる（図鑑画面を開くなど）。", "ビューア：画像リソース不足", MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
+					MessageBox.Show( "Failed to find the image resource. Please do the following:\r\n1. Settings→Network→Save received data and enable SWF option.\r\n2. Clear cache and reload the game.\r\n3. View the ship within the game (organize menu, encyclopedia, etc)", "Ship Image Not Found", MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
 
 				}
 			} else {
-				MessageBox.Show( "対象艦船を指定してください。", "ビューア：対象未指定", MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
+				MessageBox.Show( "Please select a ship.", "No Ship Selected", MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
 			}
 		}
 

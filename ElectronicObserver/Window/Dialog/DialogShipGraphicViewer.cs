@@ -221,7 +221,7 @@ namespace ElectronicObserver.Window.Dialog {
 				ImageTags = Parsers.Values.SelectMany( p => p.FindTags<ImageTag>() ).ToList();
 
 				if ( ImageTags.Count == 0 ) {
-					throw new InvalidOperationException( "展開しましたが、画像が見つかりませんでした。" );
+					throw new InvalidOperationException( "Failed to find ship images." );
 				}
 
 				CurrentIndex = 0;
@@ -230,7 +230,7 @@ namespace ElectronicObserver.Window.Dialog {
 				CurrentImage = ImageTags[CurrentIndex].ExtractImage();
 
 			} catch ( Exception ex ) {
-				MessageBox.Show( string.Join( "\r\n", pathlist ) + "を開けませんでした。\r\n" + ex.GetType().Name + "\r\n" + ex.Message );
+				MessageBox.Show( string.Join( "\r\n", pathlist ) + " cannot be opened.\r\n" + ex.GetType().Name + "\r\n" + ex.Message );
 				Parsers.Clear();
 				ImageTags.Clear();
 				if ( CurrentImage != null ) {
@@ -264,7 +264,7 @@ namespace ElectronicObserver.Window.Dialog {
 
 				} catch ( Exception ex ) {
 
-					MessageBox.Show( SaveImageDialog.FileName + "\r\nへの保存に失敗しました。\r\n" + ex.GetType().Name + "\r\n" + ex.Message );
+					MessageBox.Show( "Failed to save " + SaveImageDialog.FileName + ".\r\n" + ex.GetType().Name + "\r\n" + ex.Message );
 
 				}
 			}
@@ -295,7 +295,7 @@ namespace ElectronicObserver.Window.Dialog {
 
 				} catch ( Exception ex ) {
 
-					MessageBox.Show( SaveFolderDialog.SelectedPath + "\r\nへの保存に失敗しました。\r\n" + ex.GetType().Name + "\r\n" + ex.Message );
+					MessageBox.Show( "Failed to save " + SaveFolderDialog.SelectedPath + ".\r\n" + ex.GetType().Name + "\r\n" + ex.Message );
 				}
 
 			}
@@ -358,7 +358,7 @@ namespace ElectronicObserver.Window.Dialog {
 				var ship = GetShipFromPath( parentParser.Key );
 
 				e.Graphics.DrawString(
-					string.Format( "{0} / {1}\r\n{2} ({3}) CID: {4}\r\nZoom {5:p1}\r\n(←/→キーでページめくり)", CurrentIndex + 1, ImageTags.Count, Path.GetFileName( parentParser.Key ), ship != null ? ship.NameWithClass : "???", ImageTags[CurrentIndex].CharacterID, zoomRate ),
+					string.Format( "{0} / {1}\r\n{2} ({3}) CID: {4}\r\nZoom {5:p1}\r\n\r\nUse ←/→ key to change page.\r\nUse ↑/↓ key to zoom in/out.", CurrentIndex + 1, ImageTags.Count, Path.GetFileName( parentParser.Key ), ship != null ? ship.NameWithClass : "???", ImageTags[CurrentIndex].CharacterID, zoomRate ),
 					Font, Brushes.DimGray, new PointF( 0, 0 ) );
 			}
 

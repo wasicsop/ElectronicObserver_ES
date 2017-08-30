@@ -199,7 +199,7 @@
             this.StripMenu_File_OutputCSVData});
 			this.StripMenu_File.Name = "StripMenu_File";
 			this.StripMenu_File.Size = new System.Drawing.Size(70, 20);
-			this.StripMenu_File.Text = Menus.File;
+			this.StripMenu_File.Text = "&File";
 			//
 			// StripMenu_File_OutputCSVUser
 			//
@@ -244,7 +244,7 @@
 			this.StripMenu_Edit_CopyShipName.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift)
             | System.Windows.Forms.Keys.C)));
 			this.StripMenu_Edit_CopyShipName.Size = new System.Drawing.Size(236, 22);
-			this.StripMenu_Edit_CopyShipName.Text = "艦名をコピー(&N)";
+			this.StripMenu_Edit_CopyShipName.Text = "Copy Ship &Name";
 			this.StripMenu_Edit_CopyShipName.Click += new System.EventHandler(this.StripMenu_Edit_CopyShipName_Click);
 			//
 			// StripMenu_Edit_CopyShipData
@@ -252,7 +252,7 @@
 			this.StripMenu_Edit_CopyShipData.Name = "StripMenu_Edit_CopyShipData";
 			this.StripMenu_Edit_CopyShipData.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
 			this.StripMenu_Edit_CopyShipData.Size = new System.Drawing.Size(236, 22);
-			this.StripMenu_Edit_CopyShipData.Text = "艦船データのコピー(&D)";
+			this.StripMenu_Edit_CopyShipData.Text = "Copy Ship &Data";
 			this.StripMenu_Edit_CopyShipData.Click += new System.EventHandler(this.StripMenu_Edit_CopyShipData_Click);
 			//
 			// StripMenu_View
@@ -262,21 +262,21 @@
             this.StripMenu_View_ShowShipGraphicViewer});
 			this.StripMenu_View.Name = "StripMenu_View";
 			this.StripMenu_View.Size = new System.Drawing.Size(61, 20);
-			this.StripMenu_View.Text = "表示(&V)";
+			this.StripMenu_View.Text = "&View";
 			//
 			// StripMenu_View_ShowAppearingArea
 			//
 			this.StripMenu_View_ShowAppearingArea.Name = "StripMenu_View_ShowAppearingArea";
 			this.StripMenu_View_ShowAppearingArea.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
 			this.StripMenu_View_ShowAppearingArea.Size = new System.Drawing.Size(217, 22);
-			this.StripMenu_View_ShowAppearingArea.Text = "出現海域を検索(&P)";
+			this.StripMenu_View_ShowAppearingArea.Text = "Map Dro&p";
 			this.StripMenu_View_ShowAppearingArea.Click += new System.EventHandler(this.StripMenu_View_ShowAppearingArea_Click);
 			//
 			// StripMenu_View_ShowShipGraphicViewer
 			//
 			this.StripMenu_View_ShowShipGraphicViewer.Name = "StripMenu_View_ShowShipGraphicViewer";
 			this.StripMenu_View_ShowShipGraphicViewer.Size = new System.Drawing.Size(217, 22);
-			this.StripMenu_View_ShowShipGraphicViewer.Text = "画像ビューア(&V)";
+			this.StripMenu_View_ShowShipGraphicViewer.Text = "Ship Image &Viewer";
 			this.StripMenu_View_ShowShipGraphicViewer.Click += new System.EventHandler(this.StripMenu_View_ShowShipGraphicViewer_Click);
 			//
 			// splitContainer1
@@ -1765,7 +1765,7 @@
 			// SaveCSVDialog
 			//
 			this.SaveCSVDialog.Filter = "CSV|*.csv|File|*";
-			this.SaveCSVDialog.Title = "CSVに出力";
+			this.SaveCSVDialog.Title = "Save As CSV";
 			//
 			// ImageLoader
 			//
