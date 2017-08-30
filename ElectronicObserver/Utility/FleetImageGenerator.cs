@@ -296,7 +296,7 @@ namespace ElectronicObserver.Utility {
 							} else if ( isOutOfSlot ) {
 								equipmentName = "";
 							} else {
-								equipmentName = "(なし)";
+								equipmentName = "Empty";
 							}
 							equipmentNameBrush.ResetTransform();
 							if ( eq != null && eq.AircraftLevel > 0 ) {
@@ -729,7 +729,7 @@ namespace ElectronicObserver.Utility {
 							} else if ( isOutOfSlot ) {
 								equipmentName = "";
 							} else {
-								equipmentName = "(なし)";
+								equipmentName = "Empty";
 							}
 							equipmentNameBrush.ResetTransform();
 							if ( eq != null && eq.Level > 0 ) {
@@ -1083,7 +1083,7 @@ namespace ElectronicObserver.Utility {
 							} else if ( isOutOfSlot ) {
 								equipmentName = "";
 							} else {
-								equipmentName = "(なし)";
+								equipmentName = "Empty";
 							}
 							equipmentNameBrush.ResetTransform();
 							if ( eq != null && eq.Level > 0 ) {
