@@ -244,11 +244,11 @@ namespace ElectronicObserver.Window.Dialog {
 			SetParameterText( Bomber, eq.Bomber );
 
 			if ( eq.CategoryType == 48 ) {
-				TitleAccuracy.Text = EncycloRes.AntiBomber;
-				TitleEvasion.Text = EncycloRes.Interception;
+				TitleAccuracy.Text = "対爆";
+				TitleEvasion.Text = "迎撃";
 			} else {
-				TitleAccuracy.Text = EncycloRes.Accuracy;
-				TitleEvasion.Text = EncycloRes.Evasion;
+				TitleAccuracy.Text = "命中";
+				TitleEvasion.Text = "回避";
 			}
 
 			TableParameterMain.ResumeLayout();
