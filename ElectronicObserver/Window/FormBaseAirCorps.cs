@@ -131,7 +131,7 @@ namespace ElectronicObserver.Window {
 					var sb = new StringBuilder();
 
 
-					string areaName = KCDatabase.Instance.MapArea.ContainsKey( corps.MapAreaID ) ? KCDatabase.Instance.MapArea[corps.MapAreaID].Name : "Unknown Area";
+					string areaName = KCDatabase.Instance.MapArea.ContainsKey( corps.MapAreaID ) ? Window.FormMain.Instance.Translator.GetTranslation( KCDatabase.Instance.MapArea[corps.MapAreaID].Name, Utility.TranslationType.OperationMaps ) : "Unknown Area";
 
 					sb.AppendLine( "Area: " + areaName );
 
@@ -140,7 +140,7 @@ namespace ElectronicObserver.Window {
 						// 未補給
 						Name.ImageAlign = ContentAlignment.MiddleRight;
 						Name.ImageIndex = (int)ResourceManager.IconContent.FleetNotReplenished;
-						sb.AppendLine( "Not assigned" );
+						sb.AppendLine( "Resupply needed" );
 
 					} else if ( corps.Squadrons.Values.Any( sq => sq != null && sq.Condition > 1 ) ) {
 						// 疲労
@@ -262,7 +262,7 @@ namespace ElectronicObserver.Window {
 									break;
 							}
 
-							sb.AppendFormat( "{0} (半径: {1})\r\n", eq.NameWithLevel, eq.MasterEquipment.AircraftDistance );
+							sb.AppendFormat( "{0} (Range: {1})\r\n", eq.NameWithLevel, eq.MasterEquipment.AircraftDistance );
 							break;
 
 						case 2:		// 配置転換中
