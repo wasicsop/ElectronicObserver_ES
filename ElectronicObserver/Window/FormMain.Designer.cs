@@ -131,7 +131,7 @@
             this.StripMenu_File_Close});
 			this.StripMenu_File.Name = "StripMenu_File";
 			this.StripMenu_File.Size = new System.Drawing.Size(70, 20);
-			this.StripMenu_File.Text = global::ElectronicObserver.Window.Menus.File;
+			this.StripMenu_File.Text = "&File";
 			//
 			// StripMenu_File_Record
 			//
@@ -274,7 +274,7 @@
             this.StripMenu_View_Json});
 			this.StripMenu_View.Name = "StripMenu_View";
 			this.StripMenu_View.Size = new System.Drawing.Size(60, 20);
-			this.StripMenu_View.Text = global::ElectronicObserver.Window.Menus.View;
+			this.StripMenu_View.Text = "&View";
 			//
 			// StripMenu_View_Fleet
 			//
@@ -481,7 +481,7 @@
             this.StripMenu_Tool_FleetImageGenerator});
 			this.StripMenu_Tool.Name = "StripMenu_Tool";
 			this.StripMenu_Tool.Size = new System.Drawing.Size(66, 20);
-			this.StripMenu_Tool.Text = global::ElectronicObserver.Window.Menus.Tools;
+			this.StripMenu_Tool.Text = "&Tools";
 			//
 			// StripMenu_Tool_EquipmentList
 			//
@@ -558,7 +558,7 @@
 			//
 			this.StripMenu_Tool_FleetImageGenerator.Name = "StripMenu_Tool_FleetImageGenerator";
 			this.StripMenu_Tool_FleetImageGenerator.Size = new System.Drawing.Size(164, 22);
-			this.StripMenu_Tool_FleetImageGenerator.Text = "編成画像出力(&F)";
+			this.StripMenu_Tool_FleetImageGenerator.Text = "Export Fleet Image (&F)";
 			this.StripMenu_Tool_FleetImageGenerator.Click += new System.EventHandler(this.StripMenu_Tool_FleetImageGenerator_Click);
 			//
 			// StripMenu_Debug
@@ -573,7 +573,7 @@
             this.StripMenu_Debug_LoadDataFromOld});
 			this.StripMenu_Debug.Name = "StripMenu_Debug";
 			this.StripMenu_Debug.Size = new System.Drawing.Size(75, 20);
-			this.StripMenu_Debug.Text = global::ElectronicObserver.Window.Menus.Debug;
+			this.StripMenu_Debug.Text = "&Debug";
 			//
 			// StripMenu_Debug_LoadAPIFromFile
 			//
@@ -632,20 +632,20 @@
             this.StripMenu_Help_Version});
 			this.StripMenu_Help.Name = "StripMenu_Help";
 			this.StripMenu_Help.Size = new System.Drawing.Size(68, 20);
-			this.StripMenu_Help.Text = global::ElectronicObserver.Window.Menus.Help;
+			this.StripMenu_Help.Text = "&Help";
 			//
 			// StripMenu_Help_Help
 			//
 			this.StripMenu_Help_Help.Name = "StripMenu_Help_Help";
 			this.StripMenu_Help_Help.Size = new System.Drawing.Size(180, 22);
-			this.StripMenu_Help_Help.Text = global::ElectronicObserver.Window.Menus.OnlineHelp;
+			this.StripMenu_Help_Help.Text = "View &Help";
 			this.StripMenu_Help_Help.Click += new System.EventHandler(this.StripMenu_Help_Help_Click);
 			//
 			// StripMenu_Help_Issue
 			//
 			this.StripMenu_Help_Issue.Name = "StripMenu_Help_Issue";
 			this.StripMenu_Help_Issue.Size = new System.Drawing.Size(180, 22);
-			this.StripMenu_Help_Issue.Text = "&Report an Issue...";
+			this.StripMenu_Help_Issue.Text = "&Report a Problem...";
 			this.StripMenu_Help_Issue.Click += new System.EventHandler(this.StripMenu_Help_Issue_Click);
 			//
 			// SeparatorWhitecap
@@ -712,7 +712,7 @@
 			//
 			this.StripMenu_Help_Update.Name = "StripMenu_Help_Update";
 			this.StripMenu_Help_Update.Size = new System.Drawing.Size(180, 22);
-			this.StripMenu_Help_Update.Text = "&Check for update";
+			this.StripMenu_Help_Update.Text = "&Check for Update";
 			this.StripMenu_Help_Update.Click += new System.EventHandler(this.StripMenu_Help_Update_Click);
 			//
 			// FormMain

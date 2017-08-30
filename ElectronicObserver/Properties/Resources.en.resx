@@ -233,9 +233,6 @@ Add windows of your choosing using the "View" menu.</value>
   <data name="UpdateConnectionFailed" xml:space="preserve">
     <value>Failed to process update data.</value>
   </data>
-  <data name="VersionCurrent" xml:space="preserve">
-    <value>You are currently using the latest version.</value>
-  </data>
   <data name="VersionTitle" xml:space="preserve">
     <value>About Electronic Observer</value>
   </data>

@@ -117,7 +117,7 @@ namespace ElectronicObserver.Utility {
 
 						if ( result == System.Windows.Forms.DialogResult.Yes ) {
 
-							System.Diagnostics.Process.Start( "http://github.com/silfumus/ElectronicObserver" );
+							System.Diagnostics.Process.Start( "http://github.com/silfumus/ElectronicObserver/releases" );
 
 						} else if ( result == System.Windows.Forms.DialogResult.Cancel ) {
 
@@ -127,7 +127,7 @@ namespace ElectronicObserver.Utility {
 
 					} else {
 
-						Utility.Logger.Add( 1, Resources.VersionCurrent );
+						Utility.Logger.Add( 2, "You are currently using the latest version (" + date.ToString( "yyyy/MM/dd" ) + " release)." );
 
 					}
 

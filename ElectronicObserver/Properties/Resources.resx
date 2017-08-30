@@ -232,9 +232,6 @@
   <data name="UpdateConnectionFailed" xml:space="preserve">
     <value>アップデート情報の処理に失敗しました。</value>
   </data>
-  <data name="VersionCurrent" xml:space="preserve">
-    <value>お使いのバージョンは最新です。</value>
-  </data>
   <data name="VersionTitle" xml:space="preserve">
     <value>バージョン</value>
   </data>
