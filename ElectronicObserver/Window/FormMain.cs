@@ -350,8 +350,24 @@ namespace ElectronicObserver.Window {
 
 			switch ( ClockFormat ) {
 				case 0:	//時計表示
+					DateTime pvpReset = now.Date.AddHours( 3 );
+					DateTime questReset = now.Date.AddHours( 5 );
+
+					if (pvpReset < now)
+						pvpReset = pvpReset.AddHours( 12 );
+					if (questReset < now)
+						questReset = questReset.AddHours( 12 );
+
+					TimeSpan pvpCountdown = pvpReset - now;
+					TimeSpan questResetCountdown = questReset - now;
+
+					String pvpResetMsg = string.Format( "Next PVP Reset: {0:D2}:{1:D2}:{2:D2}\r\n", (int)pvpCountdown.TotalHours, pvpCountdown.Minutes, pvpCountdown.Seconds );
+					String questResetMsg = string.Format( "Next Quest Reset: {0:D2}:{1:D2}:{2:D2}", (int)pvpCountdown.TotalHours, pvpCountdown.Minutes, pvpCountdown.Seconds );
+					
+
 					StripStatus_Clock.Text = now.ToString( "HH\\:mm\\:ss" );
-					StripStatus_Clock.ToolTipText = now.ToString( "yyyy\\/MM\\/dd (ddd)" );
+					StripStatus_Clock.ToolTipText = now.ToString( "yyyy\\/MM\\/dd (ddd)\r\n" ) + pvpResetMsg + questResetMsg ;
+
 					break;
 
 				case 1:	//演習更新まで
