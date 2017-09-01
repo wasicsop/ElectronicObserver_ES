@@ -195,6 +195,39 @@ namespace ElectronicObserver.Utility {
 				// ThemeID
 				public int ThemeID { get; set; }
 
+				// 明石 ToolTip 每 HP 耗时最大显示数量
+				public int MaxAkashiPerHP { get; set; }
+
+				// 修理时间偏移值 ( 暂定 +30s, 待验证 )
+				public int DockingUnitTimeOffset { get; set; }
+
+				// 使用旧版熟练度图标
+				public bool UseOldAircraftLevelIcons { get; set; }
+
+				// 日志窗口自动换行
+				public bool TextWrapInLogWindow { get; set; }
+
+				// 日志窗口精简模式
+				public bool CompactModeLogWindow { get; set; }
+
+				// 日志窗口反向滚动 ( 新日志在顶端 )
+				public bool InvertedLogWindow { get; set; }
+
+
+				// 司令部各资源储量过低警告值
+				// -1: 自然恢复上限 ( 桶无效 ) | 3000: 小于 3000
+				public int HqResLowAlertFuel { get; set; }
+				public int HqResLowAlertAmmo { get; set; }
+				public int HqResLowAlertSteel { get; set; }
+				public int HqResLowAlertBauxite { get; set; }
+				public int HqResLowAlertBucket { get; set; }
+
+				/// <summary>
+				/// 舰队编成 - 新增排序列 ( Lv 序, 舰种序, NEW 序 )
+				/// | true: 开启此功能 ( 默认 ) | false: 禁用此功能 ( 若过分拖慢可关闭 )
+				/// </summary>
+				public bool AllowSortIndexing { get; set; }
+
 				[IgnoreDataMember]
 				private bool _barColorMorphing;
 
@@ -205,17 +238,19 @@ namespace ElectronicObserver.Utility {
 					get {
 						SetBarColorScheme();
 						return _barColorMorphing;
-					} set {
+					}
+					set {
 						_barColorMorphing = value;
 						SetBarColorScheme();
 					}
 				}
 
 				public void SetBarColorScheme() {
-					if ( BarColorSchemes == null ) return;
-					if ( !_barColorMorphing ) {
+					if (BarColorSchemes == null) return;
+					if (!_barColorMorphing) {
 						BarColorScheme = new List<SerializableColor>( BarColorSchemes[0] );
-					} else {
+					}
+					else {
 						BarColorScheme = new List<SerializableColor>( BarColorSchemes[1] );
 					}
 				}
@@ -223,7 +258,7 @@ namespace ElectronicObserver.Utility {
 				/// <summary>
 				/// HPバーのカラーリング
 				/// </summary>
-				public List<SerializableColor> BarColorScheme { get; set; }
+				public List<SerializableColor> BarColorScheme { get; private set; }
 
 				#region - UI Colors -
 
@@ -267,13 +302,11 @@ namespace ElectronicObserver.Utility {
 				[IgnoreDataMember]
 				public Color Color_Violet { get; set; }
 
-				// 待整理
-				public Color Blink_ForeColor { get { return BackColor; } }
-				public Color Blink_SubForeColor { get { return SubBackColor; } }
-				public Color Blink_BackColorLightCoral { get { return Color_Red; } }
-				public Color Blink_BackColorLightGreen { get { return Color_Cyan; } }
-
 				// 视图 - 舰队
+				[IgnoreDataMember] // 入渠计时器文字色
+				public Color Fleet_ColorRepairTimerText { get; set; }
+				[IgnoreDataMember] // 疲劳状态文字色
+				public Color Fleet_ColorConditionText { get; set; }
 				[IgnoreDataMember] // 严重疲劳
 				public Color Fleet_ColorConditionVeryTired { get; set; }
 				[IgnoreDataMember] // 中等疲劳
@@ -283,9 +316,67 @@ namespace ElectronicObserver.Utility {
 				[IgnoreDataMember] // 战意高扬
 				public Color Fleet_ColorConditionSparkle { get; set; }
 				[IgnoreDataMember] // 装备改修值
-				public Color Fleet_equipmentLevelColor { get; set; }
+				public Color Fleet_EquipmentLevelColor { get; set; }
+
+				// 视图 - 舰队一览
+				[IgnoreDataMember] // 大破 / 大破进击文字色
+				public Color FleetOverview_ShipDamagedFG { get; set; }
+				[IgnoreDataMember] // 大破 / 大破进击背景色
+				public Color FleetOverview_ShipDamagedBG { get; set; }
+				[IgnoreDataMember] // 远征返回文字色
+				public Color FleetOverview_ExpeditionOverFG { get; set; }
+				[IgnoreDataMember] // 远征返回背景色
+				public Color FleetOverview_ExpeditionOverBG { get; set; }
+				[IgnoreDataMember] // 疲劳恢复文字色
+				public Color FleetOverview_TiredRecoveredFG { get; set; }
+				[IgnoreDataMember] // 疲劳恢复背景色
+				public Color FleetOverview_TiredRecoveredBG { get; set; }
+				[IgnoreDataMember] // 未远征提醒文字色
+				public Color FleetOverview_AlertNotInExpeditionFG { get; set; }
+				[IgnoreDataMember] // 未远征提醒背景色
+				public Color FleetOverview_AlertNotInExpeditionBG { get; set; }
+
+				// 视图 - 入渠
+				[IgnoreDataMember] // 修理完成文字色
+				public Color Dock_RepairFinishedFG { get; set; }
+				[IgnoreDataMember] // 修理完成背景色
+				public Color Dock_RepairFinishedBG { get; set; }
+
+				// 视图 - 工厂
+				[IgnoreDataMember] // 建造完成文字色
+				public Color Arsenal_BuildCompleteFG { get; set; }
+				[IgnoreDataMember] // 建造完成背景色
+				public Color Arsenal_BuildCompleteBG { get; set; }
+
+				// 视图 - 司令部
+				[IgnoreDataMember] // 资源超过自然恢复上限文字色
+				public Color Headquarters_ResourceOverFG { get; set; }
+				[IgnoreDataMember] // 资源超过自然恢复上限背景色
+				public Color Headquarters_ResourceOverBG { get; set; }
+				[IgnoreDataMember] // 剩余船位、装备位不满足活动图出击要求时闪烁文字色
+				public Color Headquarters_ShipCountOverFG { get; set; }
+				[IgnoreDataMember] // 剩余船位、装备位不满足活动图出击要求时闪烁背景色
+				public Color Headquarters_ShipCountOverBG { get; set; }
+				[IgnoreDataMember] // 资材达到 3,000 个时文字色
+				public Color Headquarters_MaterialMaxFG { get; set; }
+				[IgnoreDataMember] // 资材达到 3,000 个时背景色
+				public Color Headquarters_MaterialMaxBG { get; set; }
+				[IgnoreDataMember] // 家具币达到 200,000 个时文字色
+				public Color Headquarters_CoinMaxFG { get; set; }
+				[IgnoreDataMember] // 家具币达到 200,000 个时背景色
+				public Color Headquarters_CoinMaxBG { get; set; }
+				[IgnoreDataMember] // 资源储量低于警告值文字色
+				public Color Headquarters_ResourceLowFG { get; set; }
+				[IgnoreDataMember] // 资源储量低于警告值背景色
+				public Color Headquarters_ResourceLowBG { get; set; }
+				[IgnoreDataMember] // 资源储量达到 300,000 时文字色
+				public Color Headquarters_ResourceMaxFG { get; set; }
+				[IgnoreDataMember] // 资源储量达到 300,000 时背景色
+				public Color Headquarters_ResourceMaxBG { get; set; }
 
 				// 视图 - 任务
+				[IgnoreDataMember] // 任务类型文字色
+				public Color Quest_TypeFG { get; set; }
 				[IgnoreDataMember] // 编成
 				public Color Quest_Type1Color { get; set; }
 				[IgnoreDataMember] // 出击
@@ -314,12 +405,16 @@ namespace ElectronicObserver.Utility {
 				public Color Compass_ShipNameColor2 { get; set; }
 				[IgnoreDataMember] // 敌舰名 - flagship
 				public Color Compass_ShipNameColor3 { get; set; }
-				[IgnoreDataMember] // 敌舰名 - 改 flagship / 后期型
+				[IgnoreDataMember] // 敌舰名 - 鬼 / 改 flagship / 后期型
 				public Color Compass_ShipNameColor4 { get; set; }
-				[IgnoreDataMember] // 敌舰名 - 后期型 elite
+				[IgnoreDataMember] // 敌舰名 - 姫 / 后期型 elite
 				public Color Compass_ShipNameColor5 { get; set; }
-				[IgnoreDataMember] // 敌舰名 - 后期型 flagship
+				[IgnoreDataMember] // 敌舰名 - 水鬼 / 后期型 flagship
 				public Color Compass_ShipNameColor6 { get; set; }
+				[IgnoreDataMember] // 敌舰名 - 水姫
+				public Color Compass_ShipNameColor7 { get; set; }
+				[IgnoreDataMember] // 敌舰名 - 壊
+				public Color Compass_ShipNameColorDestroyed { get; set; }
 				[IgnoreDataMember] // 事件类型 - 夜战
 				public Color Compass_ColorTextEventKind3 { get; set; }
 				[IgnoreDataMember] // 事件类型 - 航空战 / 长距离空袭战
@@ -331,25 +426,34 @@ namespace ElectronicObserver.Utility {
 				// default: return Color.FromArgb(0xC0, 0xF0, 0xF0, 0xF0);
 
 				// 视图 - 战斗：血条背景色、血条文字色
-				[IgnoreDataMember] // 受损状态 BOSS
-				public Color Battle_ColorHPBarsBossDamaged { get; set; }
 				[IgnoreDataMember] // MVP
 				public Color Battle_ColorHPBarsMVP { get; set; }
+				[IgnoreDataMember] // MVP 主文字色
+				public Color Battle_ColorTextMVP { get; set; }
+				[IgnoreDataMember] // MVP 副文字色
+				public Color Battle_ColorTextMVP2 { get; set; }
 				[IgnoreDataMember] // 已退避
 				public Color Battle_ColorHPBarsEscaped { get; set; }
+				[IgnoreDataMember] // 已退避主文字色
+				public Color Battle_ColorTextEscaped { get; set; }
+				[IgnoreDataMember] // 已退避副文字色
+				public Color Battle_ColorTextEscaped2 { get; set; }
+				[IgnoreDataMember] // 受损状态 BOSS
+				public Color Battle_ColorHPBarsBossDamaged { get; set; }
+				[IgnoreDataMember] // 受损状态 BOSS 主文字色
+				public Color Battle_ColorTextBossDamaged { get; set; }
+				[IgnoreDataMember] // 受损状态 BOSS 副文字色
+				public Color Battle_ColorTextBossDamaged2 { get; set; }
 
-				// 视图 - 舰队：入渠中计时器
-				public Color Battle_ColorHPTextRepair { get {
-					return SubBackColor;
-					// return Color.FromArgb(0x00, 0x00, 0x88);
-				}}
-
-				public bool RemoveBarShadow { get {
-				switch (ThemeID) {
-					case 0:  return true;
-					case 1:  return true;
-					default: return false;
-				}}}
+				public bool RemoveBarShadow {
+					get {
+						switch (ThemeID) {
+							case 0: return true;
+							case 1: return true;
+							default: return false;
+						}
+					}
+				}
 
 				#endregion
 
@@ -362,13 +466,26 @@ namespace ElectronicObserver.Utility {
 				public ConfigUI() {
 					MainFont = new Font( "Meiryo UI", 12, FontStyle.Regular, GraphicsUnit.Pixel );
 					SubFont = new Font( "Meiryo UI", 10, FontStyle.Regular, GraphicsUnit.Pixel );
+					ThemeID = 0;
+					MaxAkashiPerHP = 5;
+					DockingUnitTimeOffset = 30;
+					UseOldAircraftLevelIcons = true;
+					TextWrapInLogWindow = false;
+					CompactModeLogWindow = false;
+					InvertedLogWindow = false;
+					HqResLowAlertFuel = 0;
+					HqResLowAlertAmmo = 0;
+					HqResLowAlertSteel = 0;
+					HqResLowAlertBauxite = 0;
+					HqResLowAlertBucket = 0;
+					AllowSortIndexing = true;
 					BarColorMorphing = false;
+					IsLayoutFixed = true;
+
 					JapaneseShipName = false;
 					JapaneseShipType = false;
 					JapaneseEquipmentName = false;
 					JapaneseEquipmentType = false;
-
-					IsLayoutFixed = true;
 				}
 			}
 			/// <summary>UI</summary>
@@ -1631,26 +1748,28 @@ namespace ElectronicObserver.Utility {
 				string s = String.Empty;
 				StringBuilder sb = new StringBuilder();
 				// 读取配色文件
-				using (StreamReader sr = File.OpenText(@"Settings\ColorScheme.json")) {
+				using (StreamReader sr = File.OpenText( @"Settings\ColorScheme.json" )) {
 					while ((s = sr.ReadLine()) != null) {
 						// 干掉注释，因为 DynamicJson 不支持注释
-						s = Regex.Replace(s, @"\/\/.*?$", string.Empty);
-						if (!String.IsNullOrWhiteSpace(s)) sb.Append(s);
+						s = Regex.Replace( s, @"\/\/.*?$", string.Empty );
+						if (!String.IsNullOrWhiteSpace( s )) sb.Append( s );
 					}
 				}
-				json = DynamicJson.Parse(sb.ToString());
-			} catch (FileNotFoundException) {
-				Logger.Add(2, @"Settings\ColorScheme.json not found.");
-			} catch {
-				Logger.Add(2, @"Failed to load Settings\ColorScheme.json.");
+				json = DynamicJson.Parse( sb.ToString() );
+			}
+			catch (FileNotFoundException) {
+				Logger.Add( 2, @"Settings\ColorScheme.json 不存在。" );
+			}
+			catch {
+				Logger.Add( 2, @"解析 Settings\ColorScheme.json 失败。" );
 			}
 			int themeId = Config.UI.ThemeID;
-			if (!json.IsDefined(themeId)) {
+			if (!json.IsDefined( themeId )) {
 				themeId = Config.UI.ThemeID = 0;
-				Logger.Add(2, "The specified ThemeID does not exist.");
+				Logger.Add( 2, "指定的 ThemeID 不存在。" );
 			}
 			ThemeStyle = json[themeId];
-			Logger.Add(2, ThemeStyle["name"] + " color scheme loaded.");
+			Logger.Add( 2, "载入配色主题 : " + ThemeStyle["name"] );
 			// 定义基本颜色
 			Config.UI.Color_Red = ThemeColor( "basicColors", "red" );
 			Config.UI.Color_Orange = ThemeColor( "basicColors", "orange" );
@@ -1733,34 +1852,69 @@ namespace ElectronicObserver.Utility {
 			};
 			Config.UI.SetBarColorScheme();
 			// 设定各面板颜色
-			Config.UI.Fleet_ColorConditionVeryTired   = ThemePanelColor("fleet", "conditionVeryTired");
-			Config.UI.Fleet_ColorConditionTired       = ThemePanelColor("fleet", "conditionTired");
-			Config.UI.Fleet_ColorConditionLittleTired = ThemePanelColor("fleet", "conditionLittleTired");
-			Config.UI.Fleet_ColorConditionSparkle     = ThemePanelColor("fleet", "conditionSparkle");
-			Config.UI.Fleet_equipmentLevelColor = ThemePanelColor("fleet", "equipmentLevel");
-			Config.UI.Quest_Type1Color = ThemePanelColor("quest", "typeHensei");
-			Config.UI.Quest_Type2Color = ThemePanelColor("quest", "typeShutsugeki");
-			Config.UI.Quest_Type3Color = ThemePanelColor("quest", "typeEnshu");
-			Config.UI.Quest_Type4Color = ThemePanelColor("quest", "typeEnsei");
-			Config.UI.Quest_Type5Color = ThemePanelColor("quest", "typeHokyu");
-			Config.UI.Quest_Type6Color = ThemePanelColor("quest", "typeKojo");
-			Config.UI.Quest_Type7Color = ThemePanelColor("quest", "typeKaiso");
-			Config.UI.Quest_ColorProcessLT50 = ThemePanelColor("quest", "processLT50");
-			Config.UI.Quest_ColorProcessLT80 = ThemePanelColor("quest", "processLT80");
-			Config.UI.Quest_ColorProcessLT100 = ThemePanelColor("quest", "processLT100");
-			Config.UI.Quest_ColorProcessDefault = ThemePanelColor("quest", "processDefault");
-			Config.UI.Compass_ShipNameColor2 = ThemePanelColor("compass", "shipClass2");
-			Config.UI.Compass_ShipNameColor3 = ThemePanelColor("compass", "shipClass3");
-			Config.UI.Compass_ShipNameColor4 = ThemePanelColor("compass", "shipClass4");
-			Config.UI.Compass_ShipNameColor5 = ThemePanelColor("compass", "shipClass5");
-			Config.UI.Compass_ShipNameColor6 = ThemePanelColor("compass", "shipClass6");
-			Config.UI.Compass_ColorTextEventKind3 = ThemePanelColor("compass", "eventKind3");
-			Config.UI.Compass_ColorTextEventKind6 = ThemePanelColor("compass", "eventKind6");
-			Config.UI.Compass_ColorTextEventKind5 = ThemePanelColor("compass", "eventKind5");
-			Config.UI.Compass_ColoroverlayBrush = ThemePanelColor("compass", "overlayBrush");
-			Config.UI.Battle_ColorHPBarsBossDamaged = ThemePanelColor("battle", "barBossDamaged");
-			Config.UI.Battle_ColorHPBarsMVP = ThemePanelColor("battle", "barMVP");
-			Config.UI.Battle_ColorHPBarsEscaped = ThemePanelColor("battle", "barBossDamaged");
+			Config.UI.Fleet_ColorRepairTimerText = ThemePanelColor( "fleet", "repairTimerText" );
+			Config.UI.Fleet_ColorConditionText = ThemePanelColor( "fleet", "conditionText" );
+			Config.UI.Fleet_ColorConditionVeryTired = ThemePanelColor( "fleet", "conditionVeryTired" );
+			Config.UI.Fleet_ColorConditionTired = ThemePanelColor( "fleet", "conditionTired" );
+			Config.UI.Fleet_ColorConditionLittleTired = ThemePanelColor( "fleet", "conditionLittleTired" );
+			Config.UI.Fleet_ColorConditionSparkle = ThemePanelColor( "fleet", "conditionSparkle" );
+			Config.UI.Fleet_EquipmentLevelColor = ThemePanelColor( "fleet", "equipmentLevel" );
+			Config.UI.FleetOverview_ShipDamagedFG = ThemePanelColor( "fleetOverview", "shipDamagedFG" );
+			Config.UI.FleetOverview_ShipDamagedBG = ThemePanelColor( "fleetOverview", "shipDamagedBG" );
+			Config.UI.FleetOverview_ExpeditionOverFG = ThemePanelColor( "fleetOverview", "expeditionOverFG" );
+			Config.UI.FleetOverview_ExpeditionOverBG = ThemePanelColor( "fleetOverview", "expeditionOverBG" );
+			Config.UI.FleetOverview_TiredRecoveredFG = ThemePanelColor( "fleetOverview", "tiredRecoveredFG" );
+			Config.UI.FleetOverview_TiredRecoveredBG = ThemePanelColor( "fleetOverview", "tiredRecoveredBG" );
+			Config.UI.FleetOverview_AlertNotInExpeditionFG = ThemePanelColor( "fleetOverview", "alertNotInExpeditionFG" );
+			Config.UI.FleetOverview_AlertNotInExpeditionBG = ThemePanelColor( "fleetOverview", "alertNotInExpeditionBG" );
+			Config.UI.Dock_RepairFinishedFG = ThemePanelColor( "dock", "repairFinishedFG" );
+			Config.UI.Dock_RepairFinishedBG = ThemePanelColor( "dock", "repairFinishedBG" );
+			Config.UI.Arsenal_BuildCompleteFG = ThemePanelColor( "arsenal", "buildCompleteFG" );
+			Config.UI.Arsenal_BuildCompleteBG = ThemePanelColor( "arsenal", "buildCompleteBG" );
+			Config.UI.Headquarters_ResourceOverFG = ThemePanelColor( "hq", "resOverFG" );
+			Config.UI.Headquarters_ResourceOverBG = ThemePanelColor( "hq", "resOverBG" );
+			Config.UI.Headquarters_ShipCountOverFG = ThemePanelColor( "hq", "shipOverFG" );
+			Config.UI.Headquarters_ShipCountOverBG = ThemePanelColor( "hq", "shipOverBG" );
+			Config.UI.Headquarters_MaterialMaxFG = ThemePanelColor( "hq", "materialMaxFG" );
+			Config.UI.Headquarters_MaterialMaxBG = ThemePanelColor( "hq", "materialMaxBG" );
+			Config.UI.Headquarters_CoinMaxFG = ThemePanelColor( "hq", "coinMaxFG" );
+			Config.UI.Headquarters_CoinMaxBG = ThemePanelColor( "hq", "coinMaxBG" );
+			Config.UI.Headquarters_ResourceLowFG = ThemePanelColor( "hq", "resLowFG" );
+			Config.UI.Headquarters_ResourceLowBG = ThemePanelColor( "hq", "resLowBG" );
+			Config.UI.Headquarters_ResourceMaxFG = ThemePanelColor( "hq", "resMaxFG" );
+			Config.UI.Headquarters_ResourceMaxBG = ThemePanelColor( "hq", "resMaxBG" );
+			Config.UI.Quest_TypeFG = ThemePanelColor( "quest", "typeFG" );
+			Config.UI.Quest_Type1Color = ThemePanelColor( "quest", "typeHensei" );
+			Config.UI.Quest_Type2Color = ThemePanelColor( "quest", "typeShutsugeki" );
+			Config.UI.Quest_Type3Color = ThemePanelColor( "quest", "typeEnshu" );
+			Config.UI.Quest_Type4Color = ThemePanelColor( "quest", "typeEnsei" );
+			Config.UI.Quest_Type5Color = ThemePanelColor( "quest", "typeHokyu" );
+			Config.UI.Quest_Type6Color = ThemePanelColor( "quest", "typeKojo" );
+			Config.UI.Quest_Type7Color = ThemePanelColor( "quest", "typeKaiso" );
+			Config.UI.Quest_ColorProcessLT50 = ThemePanelColor( "quest", "processLT50" );
+			Config.UI.Quest_ColorProcessLT80 = ThemePanelColor( "quest", "processLT80" );
+			Config.UI.Quest_ColorProcessLT100 = ThemePanelColor( "quest", "processLT100" );
+			Config.UI.Quest_ColorProcessDefault = ThemePanelColor( "quest", "processDefault" );
+			Config.UI.Compass_ShipNameColor2 = ThemePanelColor( "compass", "shipClass2" );
+			Config.UI.Compass_ShipNameColor3 = ThemePanelColor( "compass", "shipClass3" );
+			Config.UI.Compass_ShipNameColor4 = ThemePanelColor( "compass", "shipClass4" );
+			Config.UI.Compass_ShipNameColor5 = ThemePanelColor( "compass", "shipClass5" );
+			Config.UI.Compass_ShipNameColor6 = ThemePanelColor( "compass", "shipClass6" );
+			Config.UI.Compass_ShipNameColor7 = ThemePanelColor( "compass", "shipClass7" );
+			Config.UI.Compass_ShipNameColorDestroyed = ThemePanelColor( "compass", "shipDestroyed" );
+			Config.UI.Compass_ColorTextEventKind3 = ThemePanelColor( "compass", "eventKind3" );
+			Config.UI.Compass_ColorTextEventKind6 = ThemePanelColor( "compass", "eventKind6" );
+			Config.UI.Compass_ColorTextEventKind5 = ThemePanelColor( "compass", "eventKind5" );
+			Config.UI.Compass_ColoroverlayBrush = ThemePanelColor( "compass", "overlayBrush" );
+			Config.UI.Battle_ColorHPBarsMVP = ThemePanelColor( "battle", "barMVP" );
+			Config.UI.Battle_ColorTextMVP = ThemePanelColor( "battle", "textMVP" );
+			Config.UI.Battle_ColorTextMVP2 = ThemePanelColor( "battle", "textMVP2" );
+			Config.UI.Battle_ColorHPBarsEscaped = ThemePanelColor( "battle", "barEscaped" );
+			Config.UI.Battle_ColorTextEscaped = ThemePanelColor( "battle", "textEscaped" );
+			Config.UI.Battle_ColorTextEscaped2 = ThemePanelColor( "battle", "textEscaped2" );
+			Config.UI.Battle_ColorHPBarsBossDamaged = ThemePanelColor( "battle", "barBossDamaged" );
+			Config.UI.Battle_ColorTextBossDamaged = ThemePanelColor( "battle", "textBossDamaged" );
+			Config.UI.Battle_ColorTextBossDamaged2 = ThemePanelColor( "battle", "textBossDamaged2" );
 		}
 
 		private dynamic ThemeStyle;
@@ -1862,14 +2016,27 @@ namespace ElectronicObserver.Utility {
 					case "compass_eventKind5":
 						return Config.UI.Color_Red;
 					case "compass_overlayBrush": // %75 透明度背景色
-						return Color.FromArgb(0xC0, Config.UI.BackColor);
+						return Color.FromArgb( 0xC0, Config.UI.BackColor );
 					// 视图 - 战斗
-					case "battle_barBossDamaged":
-						return Config.UI.Color_Orange;
 					case "battle_barMVP":
 						return Config.UI.Color_Blue;
+					case "battle_textMVP":
+						return Config.UI.BackColor;
+					case "battle_textMVP2":
+						return Config.UI.SubBackColor;
 					case "battle_barEscaped":
 						return Config.UI.SubBackColor;
+					case "battle_textEscaped":
+						return Config.UI.ForeColor;
+					case "battle_textEscaped2":
+						return Config.UI.SubForeColor;
+					case "battle_barBossDamaged":
+						return Config.UI.Color_Orange;
+					case "battle_textBossDamaged":
+						return Config.UI.BackColor;
+					case "battle_textBossDamaged2":
+						return Config.UI.SubBackColor;
+					// 未定义颜色
 					default:
 						return Color.Magenta;
 				}
@@ -1977,53 +2144,53 @@ namespace ElectronicObserver.Utility {
 			} else {
 				switch (type + "_" + index) {
 					case "0_0":
-						return ColorTranslator.FromHtml("#FF0000");
+						return Config.UI.Color_Red;
 					case "0_1":
-						return ColorTranslator.FromHtml("#FF0000");
+						return Config.UI.Color_Red;
 					case "0_2":
-						return ColorTranslator.FromHtml("#FF8800");
+						return Config.UI.Color_Orange;
 					case "0_3":
-						return ColorTranslator.FromHtml("#FF8800");
+						return Config.UI.Color_Orange;
 					case "0_4":
-						return ColorTranslator.FromHtml("#FFCC00");
+						return Config.UI.Color_Yellow;
 					case "0_5":
-						return ColorTranslator.FromHtml("#FFCC00");
+						return Config.UI.Color_Yellow;
 					case "0_6":
-						return ColorTranslator.FromHtml("#00CC00");
+						return Config.UI.Color_Green;
 					case "0_7":
-						return ColorTranslator.FromHtml("#00CC00");
+						return Config.UI.Color_Green;
 					case "0_8":
-						return ColorTranslator.FromHtml("#0044CC");
+						return Config.UI.Color_Blue;
 					case "0_9":
-						return ColorTranslator.FromHtml("#44FF00");
+						return Config.UI.Color_Magenta;
 					case "0_10":
-						return ColorTranslator.FromHtml("#882222");
+						return Config.UI.Color_Magenta;
 					case "0_11":
-						return ColorTranslator.FromHtml("#888888");
+						return Config.UI.SubBackColor;
 					case "1_0":
-						return ColorTranslator.FromHtml("#FF0000");
+						return ThemeBarColor( 0, 0 );
 					case "1_1":
-						return ColorTranslator.FromHtml("#FF0000");
+						return ThemeBarColor( 0, 1 );
 					case "1_2":
-						return ColorTranslator.FromHtml("#FF4400");
+						return ThemeBarColor( 0, 2 );
 					case "1_3":
-						return ColorTranslator.FromHtml("#FF8800");
+						return ThemeBarColor( 0, 3 );
 					case "1_4":
-						return ColorTranslator.FromHtml("#FFAA00");
+						return ThemeBarColor( 0, 4 );
 					case "1_5":
-						return ColorTranslator.FromHtml("#EEEE00");
+						return ThemeBarColor( 0, 5 );
 					case "1_6":
-						return ColorTranslator.FromHtml("#CCEE00");
+						return ThemeBarColor( 0, 6 );
 					case "1_7":
-						return ColorTranslator.FromHtml("#00CC00");
+						return ThemeBarColor( 0, 7 );
 					case "1_8":
-						return ColorTranslator.FromHtml("#0044CC");
+						return ThemeBarColor( 0, 8 );
 					case "1_9":
-						return ColorTranslator.FromHtml("#00FF44");
+						return ThemeBarColor( 0, 9 );
 					case "1_10":
-						return ColorTranslator.FromHtml("#882222");
+						return ThemeBarColor( 0, 10 );
 					case "1_11":
-						return ColorTranslator.FromHtml("#888888");
+						return ThemeBarColor( 0, 11 );
 					default:
 						return Color.Magenta;
 				}
