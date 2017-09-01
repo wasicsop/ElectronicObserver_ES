@@ -354,9 +354,6 @@ This action cannot be undone.</value>
   <data name="Fleet" xml:space="preserve">
     <value>Fleet</value>
   </data>
-  <data name="FleetList" xml:space="preserve">
-    <value>Fleet List</value>
-  </data>
   <data name="FleetTooltip" xml:space="preserve">
     <value>Lv sum: {0} / avg: {1:0.00}
 {2} fleet
@@ -380,12 +377,6 @@ Consumption: {10} fuel / {11} ammo
   </data>
   <data name="Group" xml:space="preserve">
     <value>Group</value>
-  </data>
-  <data name="Headquarters" xml:space="preserve">
-    <value>Headquarters</value>
-  </data>
-  <data name="Information" xml:space="preserve">
-    <value>Information</value>
   </data>
   <data name="Initialize" xml:space="preserve">
     <value>Initialize (&amp;I)</value>
@@ -897,9 +888,6 @@ Bauxite: {10:+0;-0} ( regen {11:+0;-0} - resupply {12} ( {13} planes ) )</value>
   </data>
   <data name="ShowOther" xml:space="preserve">
     <value>Show Others</value>
-  </data>
-  <data name="Base" xml:space="preserve">
-    <value>Air Base</value>
   </data>
   <data name="BaseNotOpen" xml:space="preserve">
     <value>(Not opened)</value>

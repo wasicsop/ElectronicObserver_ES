@@ -332,15 +332,6 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 基地航空隊.
-        /// </summary>
-        internal static string Base {
-            get {
-                return ResourceManager.GetString("Base", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to #{1}.
         /// </summary>
         internal static string BaseAirCorps {
@@ -689,24 +680,6 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 対空砲火の詳細表示(&amp;A).
-        /// </summary>
-        internal static string CopyAntiAirDetails {
-            get {
-                return ResourceManager.GetString("CopyAntiAirDetails", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 編成をコピー(デッキビルダー)(&amp;D).
-        /// </summary>
-        internal static string CopyFleetDeckBuilder {
-            get {
-                return ResourceManager.GetString("CopyFleetDeckBuilder", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to グループをコピー(&amp;C).
         /// </summary>
         internal static string CopyGroup {
@@ -730,15 +703,6 @@ namespace ElectronicObserver.Window {
         internal static string CopyGroupTitle {
             get {
                 return ResourceManager.GetString("CopyGroupTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 艦隊晒しページへコピー(&amp;R).
-        /// </summary>
-        internal static string CopyKanmusuList {
-            get {
-                return ResourceManager.GetString("CopyKanmusuList", resourceCulture);
             }
         }
         
@@ -1303,15 +1267,6 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 艦隊.
-        /// </summary>
-        internal static string FleetList {
-            get {
-                return ResourceManager.GetString("FleetList", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to [艦隊帰投].
         /// </summary>
         internal static string FleetReturned {
@@ -1393,15 +1348,6 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 司令部.
-        /// </summary>
-        internal static string Headquarters {
-            get {
-                return ResourceManager.GetString("Headquarters", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 改修資材.
         /// </summary>
         internal static string ImpMat {
@@ -1416,15 +1362,6 @@ namespace ElectronicObserver.Window {
         internal static string IncrementByOne {
             get {
                 return ResourceManager.GetString("IncrementByOne", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 情報.
-        /// </summary>
-        internal static string Information {
-            get {
-                return ResourceManager.GetString("Information", resourceCulture);
             }
         }
         
@@ -1976,15 +1913,6 @@ namespace ElectronicObserver.Window {
         internal static string Scouting {
             get {
                 return ResourceManager.GetString("Scouting", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to この画面をキャプチャ(&amp;S).
-        /// </summary>
-        internal static string ScreenCapture {
-            get {
-                return ResourceManager.GetString("ScreenCapture", resourceCulture);
             }
         }
         

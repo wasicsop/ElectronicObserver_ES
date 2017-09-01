@@ -101,7 +101,7 @@
 			this.HideOnClose = true;
 			this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.Name = "FormBaseAirCorps";
-			this.Text = GeneralRes.Base;
+			this.Text = "A/B";
 			this.Load += new System.EventHandler(this.FormBaseAirCorps_Load);
 			this.ContextMenuBaseAirCorps.ResumeLayout(false);
 			this.ResumeLayout(false);

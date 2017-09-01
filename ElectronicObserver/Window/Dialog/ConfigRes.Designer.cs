@@ -884,15 +884,6 @@ namespace ElectronicObserver.Window.Dialog {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 司令部.
-        /// </summary>
-        internal static string Headquarters {
-            get {
-                return ResourceManager.GetString("Headquarters", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to (非表示です。デバッグメニューを有効にしてください。).
         /// </summary>
         internal static string HiddenJSON {

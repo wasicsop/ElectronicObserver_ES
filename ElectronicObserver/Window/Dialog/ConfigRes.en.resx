@@ -512,9 +512,6 @@ Can increase the number of status bar messages.</value>
     <value>Sends your data to the KanColle Statistics Database.
 More details, as well as an access key, can be found on the site below. (opens your web browser, Japanese only)</value>
   </data>
-  <data name="Headquarters" xml:space="preserve">
-    <value>HQ</value>
-  </data>
   <data name="SendData" xml:space="preserve">
     <value>Send data to KanColle Statistics Database</value>
   </data>

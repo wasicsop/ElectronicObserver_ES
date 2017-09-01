@@ -376,9 +376,6 @@ HP: {3}
   <data name="Fleet" xml:space="preserve">
     <value>함대</value>
   </data>
-  <data name="FleetList" xml:space="preserve">
-    <value>함대</value>
-  </data>
   <data name="FleetTooltip" xml:space="preserve">
     <value>Lv 함계: {0} / 평균: {1:0.00}
 {2}함대
@@ -402,14 +399,8 @@ HP: {3}
   <data name="Group" xml:space="preserve">
     <value>그룹</value>
   </data>
-  <data name="Headquarters" xml:space="preserve">
-    <value>사령부</value>
-  </data>
   <data name="ImpMat" xml:space="preserve">
     <value>개수 자재</value>
-  </data>
-  <data name="Information" xml:space="preserve">
-    <value>정보</value>
   </data>
   <data name="Initialize" xml:space="preserve">
     <value>초기화(&amp;I)</value>

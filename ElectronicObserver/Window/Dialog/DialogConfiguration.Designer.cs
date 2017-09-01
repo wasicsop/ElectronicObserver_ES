@@ -1691,7 +1691,7 @@
 			this.tabPage16.Padding = new System.Windows.Forms.Padding(3);
 			this.tabPage16.Size = new System.Drawing.Size(562, 260);
 			this.tabPage16.TabIndex = 6;
-			this.tabPage16.Text = global::ElectronicObserver.Window.Dialog.ConfigRes.Headquarters;
+			this.tabPage16.Text = "HQ";
 			this.tabPage16.UseVisualStyleBackColor = true;
 			//
 			// label34

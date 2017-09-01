@@ -346,7 +346,7 @@ namespace ElectronicObserver.Window {
 
 			if ( pd != null && pd.IsAvailable ) {
 
-				Searching.Text = GeneralRes.Base;
+				Searching.Text = "LBAS";
 				Searching.ImageAlign = ContentAlignment.MiddleLeft;
 				Searching.ImageIndex = (int)ResourceManager.EquipmentContent.LandAttacker;
 
