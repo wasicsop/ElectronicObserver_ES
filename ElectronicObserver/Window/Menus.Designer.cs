@@ -196,15 +196,6 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to デバッグ(&amp;D).
-        /// </summary>
-        internal static string Debug {
-            get {
-                return ResourceManager.GetString("Debug", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 古いAPIデータを削除(&amp;D).
         /// </summary>
         internal static string DeleteOldAPI {
@@ -268,15 +259,6 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ファイル(&amp;F).
-        /// </summary>
-        internal static string File {
-            get {
-                return ResourceManager.GetString("File", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 別のファイルへ保存(&amp;C)....
         /// </summary>
         internal static string File_Layout_Change {
@@ -327,15 +309,6 @@ namespace ElectronicObserver.Window {
         internal static string Headquarters {
             get {
                 return ResourceManager.GetString("Headquarters", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to ヘルプ(&amp;H).
-        /// </summary>
-        internal static string Help {
-            get {
-                return ResourceManager.GetString("Help", resourceCulture);
             }
         }
         
@@ -664,29 +637,11 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ツール(&amp;T).
-        /// </summary>
-        internal static string Tools {
-            get {
-                return ResourceManager.GetString("Tools", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to バージョン情報(&amp;V).
         /// </summary>
         internal static string VersionInfo {
             get {
                 return ResourceManager.GetString("VersionInfo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 表示(&amp;V).
-        /// </summary>
-        internal static string View {
-            get {
-                return ResourceManager.GetString("View", resourceCulture);
             }
         }
         

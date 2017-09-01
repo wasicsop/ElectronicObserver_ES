@@ -162,7 +162,9 @@ namespace ElectronicObserver.Window {
 			StripMenu_Tool_AlbumMasterShip.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormAlbumShip];
 			StripMenu_Tool_AlbumMasterEquipment.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormAlbumEquipment];
 			StripMenu_Tool_AntiAirDefense.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormAntiAirDefense];
+			StripMenu_Tool_FleetImageGenerator.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormFleetImageGenerator];
 
+			StripMenu_Help_Help.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormInformation];
 			StripMenu_Help_Version.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.AppIcon];
 			#endregion
 
@@ -247,6 +249,11 @@ namespace ElectronicObserver.Window {
 
 		}
 
+		// Toggle TopMost of Main Form back and forth to workaround a .Net Bug: KB2756203 (~win7) / KB2769674 (win8~)
+		private void FormMain_RefreshTopMost() {
+			TopMost = !TopMost;
+			TopMost = !TopMost;
+		}
 
 
 		private void ConfigurationChanged() {
@@ -343,8 +350,24 @@ namespace ElectronicObserver.Window {
 
 			switch ( ClockFormat ) {
 				case 0:	//時計表示
+					DateTime pvpReset = now.Date.AddHours( 3 );
+					DateTime questReset = now.Date.AddHours( 5 );
+
+					if (pvpReset < now)
+						pvpReset = pvpReset.AddHours( 12 );
+					if (questReset < now)
+						questReset = questReset.AddHours( 12 );
+
+					TimeSpan pvpCountdown = pvpReset - now;
+					TimeSpan questResetCountdown = questReset - now;
+
+					String pvpResetMsg = string.Format( "Next PVP Reset: {0:D2}:{1:D2}:{2:D2}\r\n", (int)pvpCountdown.TotalHours, pvpCountdown.Minutes, pvpCountdown.Seconds );
+					String questResetMsg = string.Format( "Next Quest Reset: {0:D2}:{1:D2}:{2:D2}", (int)pvpCountdown.TotalHours, pvpCountdown.Minutes, pvpCountdown.Seconds );
+					
+
 					StripStatus_Clock.Text = now.ToString( "HH\\:mm\\:ss" );
-					StripStatus_Clock.ToolTipText = now.ToString( "yyyy\\/MM\\/dd (ddd)" );
+					StripStatus_Clock.ToolTipText = now.ToString( "yyyy\\/MM\\/dd (ddd)\r\n" ) + pvpResetMsg + questResetMsg ;
+
 					break;
 
 				case 1:	//演習更新まで
@@ -406,7 +429,7 @@ namespace ElectronicObserver.Window {
 		private void FormMain_FormClosing( object sender, FormClosingEventArgs e ) {
 
 			if ( Utility.Configuration.Config.Life.ConfirmOnClosing ) {
-				if ( MessageBox.Show( SoftwareInformation.SoftwareNameEnglish + Resources.AskClose, Resources.Confirm, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2 )
+				if ( MessageBox.Show( "Are you sure you want to exit Electronic Observer?", "Electronic Observer", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2 )
 					== System.Windows.Forms.DialogResult.No ) {
 					e.Cancel = true;
 					return;
@@ -447,7 +470,7 @@ namespace ElectronicObserver.Window {
 
 			NotifierManager.Instance.ApplyToConfiguration();
 			Utility.Configuration.Instance.Save();
-			RecordManager.Instance.Save();
+			RecordManager.Instance.SavePartial();
 			KCDatabase.Instance.Save();
 			APIObserver.Instance.Stop();
 
@@ -455,7 +478,7 @@ namespace ElectronicObserver.Window {
 			Utility.Logger.Add( 2, Resources.ClosingComplete );
 
 			if ( Utility.Configuration.Config.Log.SaveLogFlag )
-				Utility.Logger.Save( @"eolog.log" );
+				Utility.Logger.Save();
 
 		}
 
@@ -654,7 +677,7 @@ namespace ElectronicObserver.Window {
 
 		void Logger_LogAdded( Utility.Logger.LogData data ) {
 
-			StripStatus_Information.Text = data.Message;
+			StripStatus_Information.Text = data.Message.Replace( "\r", " " ).Replace( "\n", " " );
 
 		}
 
@@ -688,7 +711,8 @@ namespace ElectronicObserver.Window {
 
 		private void StripMenu_File_SaveData_Save_Click( object sender, EventArgs e ) {
 
-			RecordManager.Instance.Save();
+			RecordManager.Instance.SaveAll();
+
 		}
 
 		private void StripMenu_File_SaveData_Load_Click( object sender, EventArgs e ) {
@@ -892,7 +916,9 @@ namespace ElectronicObserver.Window {
 				MessageBox.Show( "Ship data is not loaded.", Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error );
 
 			} else {
-				new DialogAlbumMasterShip().Show( this );
+				var dialogAlbumMasterShip = new DialogAlbumMasterShip();
+				FormMain_RefreshTopMost();
+				dialogAlbumMasterShip.Show( this );
 			}
 
 		}
@@ -903,7 +929,9 @@ namespace ElectronicObserver.Window {
 				MessageBox.Show( "Equipment data is not loaded", Resources.Error, MessageBoxButtons.OK, MessageBoxIcon.Error );
 
 			} else {
-				new DialogAlbumMasterEquipment().Show( this );
+				var dialogAlbumMasterEquipment = new DialogAlbumMasterEquipment();
+				FormMain_RefreshTopMost();
+				dialogAlbumMasterEquipment.Show( this );
 			}
 
 		}
@@ -969,7 +997,9 @@ namespace ElectronicObserver.Window {
 
 		private void StripMenu_Tool_EquipmentList_Click( object sender, EventArgs e ) {
 
-			new DialogEquipmentList().Show( this );
+			var dialogEquipmentList = new DialogEquipmentList();
+			FormMain_RefreshTopMost();
+			dialogEquipmentList.Show( this );
 
 		}
 
@@ -1032,7 +1062,7 @@ namespace ElectronicObserver.Window {
 
 					if ( name.Contains( ship.ResourceName ) ) {
 
-						name = name.Replace( ship.ResourceName, ship.NameWithClass ).Replace( ' ', '_' );
+						name = name.Replace( ship.ResourceName, string.Format( "{0}({1})", ship.NameWithClass, ship.ShipID ) ).Replace( ' ', '_' );
 
 						try {
 
@@ -1058,7 +1088,7 @@ namespace ElectronicObserver.Window {
 
 					if ( name.Contains( ship.ResourceName ) ) {
 
-						name = name.Replace( ship.ResourceName, ship.NameWithClass ).Replace( ' ', '_' );
+						name = name.Replace( ship.ResourceName, string.Format( "{0}({1})", ship.NameWithClass, ship.ShipID ) ).Replace( ' ', '_' );
 
 						try {
 
@@ -1171,7 +1201,9 @@ namespace ElectronicObserver.Window {
 
 		private void StripMenu_Tool_ResourceChart_Click( object sender, EventArgs e ) {
 
-			new Dialog.DialogResourceChart().Show( this );
+			var dialogResourceChart = new DialogResourceChart();
+			FormMain_RefreshTopMost();
+			dialogResourceChart.Show( this );
 
 		}
 
@@ -1230,6 +1262,10 @@ namespace ElectronicObserver.Window {
 
 		}
 
+		private void StripMenu_Tool_FleetImageGenerator_Click( object sender, EventArgs e ) {
+
+			new Dialog.DialogFleetImageGenerator( 1 ).Show( this );
+		}
 
 
 
@@ -1374,8 +1410,6 @@ namespace ElectronicObserver.Window {
 		}
 
 		#endregion
-
-
 
 
 

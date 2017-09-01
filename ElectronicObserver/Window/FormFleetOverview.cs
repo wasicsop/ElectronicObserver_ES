@@ -23,7 +23,7 @@ namespace ElectronicObserver.Window {
 		private class TableFleetControl {
 
 			public ImageLabel Number;
-			public ImageLabel State;
+			public FleetState State;
 			public ToolTip ToolTipInfo;
 			private int fleetID;
 
@@ -34,18 +34,16 @@ namespace ElectronicObserver.Window {
 				Number = new ImageLabel();
 				Number.Anchor = AnchorStyles.Left;
 				Number.ImageAlign = ContentAlignment.MiddleCenter;
-				Number.Margin = new Padding( 3, 2, 3, 2 );
+				Number.Padding = new Padding( 0, 1, 0, 1 );
+				Number.Margin = new Padding( 2, 1, 2, 1 );
 				Number.Text = string.Format( "#{0}:", fleetID );
 				Number.AutoSize = true;
-				Number.Tag = null;
 
-				State = new ImageLabel();
+				State = new FleetState();
 				State.Anchor = AnchorStyles.Left;
-				State.Margin = new Padding( 3, 2, 3, 2 );
-				State.ImageList = ResourceManager.Instance.Icons;
-				State.Text = "-";
+				State.Padding = new Padding();
+				State.Margin = new Padding();
 				State.AutoSize = true;
-				State.Tag = FleetData.FleetStates.NoShip;
 
 				ConfigurationChanged( parent );
 
@@ -67,16 +65,6 @@ namespace ElectronicObserver.Window {
 				table.Controls.Add( Number, 0, row );
 				table.Controls.Add( State, 1, row );
 
-				#region set RowStyle
-				RowStyle rs = new RowStyle( SizeType.AutoSize, 0 );
-
-				if ( table.RowStyles.Count > row )
-					table.RowStyles[row] = rs;
-				else
-					while ( table.RowStyles.Count <= row )
-						table.RowStyles.Add( rs );
-				#endregion
-
 			}
 
 
@@ -85,20 +73,15 @@ namespace ElectronicObserver.Window {
 				FleetData fleet =  KCDatabase.Instance.Fleet[fleetID];
 				if ( fleet == null ) return;
 
-				DateTime dt = (DateTime?)Number.Tag ?? DateTime.Now;
-				State.Tag = FleetData.UpdateFleetState( fleet, State, ToolTipInfo, (FleetData.FleetStates)State.Tag, ref dt );
-				Number.Tag = dt;
+				State.UpdateFleetState( fleet, ToolTipInfo );
 
 				ToolTipInfo.SetToolTip( Number, fleet.Name );
 			}
 
-			public void ResetState() {
-				State.Tag = FleetData.FleetStates.NoShip;
-			}
 
 			public void Refresh() {
 
-				FleetData.RefreshFleetState( State, (FleetData.FleetStates)State.Tag, (DateTime?)Number.Tag ?? DateTime.Now );
+				State.RefreshFleetState();
 			}
 
 
@@ -106,6 +89,7 @@ namespace ElectronicObserver.Window {
 				Number.Font = parent.Font;
 				State.Font = parent.Font;
 				State.BackColor = Color.Transparent;
+				Update();
 			}
 		}
 
@@ -129,7 +113,8 @@ namespace ElectronicObserver.Window {
 			{
 				AnchorageRepairingTimer = new ImageLabel();
 				AnchorageRepairingTimer.Anchor = AnchorStyles.Left;
-				AnchorageRepairingTimer.Margin = new Padding( 3, 2, 3, 2 );
+				AnchorageRepairingTimer.Padding = new Padding( 0, 1, 0, 1 );
+				AnchorageRepairingTimer.Margin = new Padding( 2, 1, 2, 1 );
 				AnchorageRepairingTimer.ImageList = ResourceManager.Instance.Icons;
 				AnchorageRepairingTimer.ImageIndex = (int)ResourceManager.IconContent.FleetDocking;
 				AnchorageRepairingTimer.Text = "-";
@@ -138,22 +123,14 @@ namespace ElectronicObserver.Window {
 
 				TableFleet.Controls.Add( AnchorageRepairingTimer, 1, 4 );
 
-				#region set RowStyle
-				RowStyle rs = new RowStyle( SizeType.AutoSize, 0 );
-
-				if ( TableFleet.RowStyles.Count > 4 )
-					TableFleet.RowStyles[4] = rs;
-				else
-					while ( TableFleet.RowStyles.Count <= 4 )
-						TableFleet.RowStyles.Add( rs );
-				#endregion
 			}
 
 			#region CombinedTag
 			{
 				CombinedTag = new ImageLabel();
 				CombinedTag.Anchor = AnchorStyles.Left;
-				CombinedTag.Margin = new Padding( 3, 2, 3, 2 );
+				CombinedTag.Padding = new Padding( 0, 1, 0, 1 );
+				CombinedTag.Margin = new Padding( 2, 1, 2, 1 );
 				CombinedTag.ImageList = ResourceManager.Instance.Icons;
 				CombinedTag.ImageIndex = (int)ResourceManager.IconContent.FleetCombined;
 				CombinedTag.Text = "-";
@@ -161,16 +138,6 @@ namespace ElectronicObserver.Window {
 				CombinedTag.Visible = false;
 
 				TableFleet.Controls.Add( CombinedTag, 1, 5 );
-
-				#region set RowStyle
-				RowStyle rs = new RowStyle( SizeType.AutoSize, 0 );
-
-				if ( TableFleet.RowStyles.Count > 5 )
-					TableFleet.RowStyles[5] = rs;
-				else
-					while ( TableFleet.RowStyles.Count <= 5 )
-						TableFleet.RowStyles.Add( rs );
-				#endregion
 
 			}
 			#endregion
@@ -188,16 +155,8 @@ namespace ElectronicObserver.Window {
 
 		private void FormFleetOverview_Load( object sender, EventArgs e ) {
 
-
-
 			//api register
 			APIObserver o = APIObserver.Instance;
-
-			o.APIList["api_req_hensei/change"].RequestReceived += ChangeOrganization;
-			o.APIList["api_req_kousyou/destroyship"].RequestReceived += ChangeOrganization;
-			o.APIList["api_req_kaisou/remodeling"].RequestReceived += ChangeOrganization;
-			o.APIList["api_req_kaisou/powerup"].ResponseReceived += ChangeOrganization;
-			o.APIList["api_req_hensei/preset_select"].ResponseReceived += ChangeOrganization;
 
 			o.APIList["api_req_nyukyo/start"].RequestReceived += Updated;
 			o.APIList["api_req_nyukyo/speedchange"].RequestReceived += Updated;
@@ -229,6 +188,9 @@ namespace ElectronicObserver.Window {
 		}
 
 		void ConfigurationChanged() {
+
+			TableFleet.SuspendLayout();
+
 			Font = Utility.Configuration.Config.UI.MainFont;
 
 			AutoScroll = Utility.Configuration.Config.FormFleet.IsScrollable;
@@ -239,11 +201,18 @@ namespace ElectronicObserver.Window {
 			CombinedTag.Font = Font;
 			AnchorageRepairingTimer.Font = Font;
 			AnchorageRepairingTimer.Visible = Utility.Configuration.Config.FormFleet.ShowAnchorageRepairingTimer;
+
+			ControlHelper.SetTableRowStyles( TableFleet, ControlHelper.GetDefaultRowStyle() );
+
+			TableFleet.ResumeLayout();
 		}
 
 
 		private void Updated( string apiname, dynamic data ) {
 
+			TableFleet.SuspendLayout();
+
+			TableFleet.RowCount = KCDatabase.Instance.Fleet.Fleets.Values.Count( f => f.IsAvailable );
 			for ( int i = 0; i < ControlFleet.Count; i++ ) {
 				ControlFleet[i].Update();
 			}
@@ -281,14 +250,10 @@ namespace ElectronicObserver.Window {
 				AnchorageRepairingTimer.Tag = KCDatabase.Instance.Fleet.AnchorageRepairingTimer;
 				ToolTipInfo.SetToolTip( AnchorageRepairingTimer, "Anchorage Repair Timer\r\nStart: " + DateTimeHelper.TimeToCSVString( KCDatabase.Instance.Fleet.AnchorageRepairingTimer ) + "\r\nRecovery: " + DateTimeHelper.TimeToCSVString( KCDatabase.Instance.Fleet.AnchorageRepairingTimer.AddMinutes( 20 ) ) );
 			}
+
+			TableFleet.ResumeLayout();
 		}
 
-		void ChangeOrganization( string apiname, dynamic data ) {
-
-			for ( int i = 0; i < ControlFleet.Count; i++ )
-				ControlFleet[i].ResetState();
-
-		}
 
 
 		void UpdateTimerTick() {

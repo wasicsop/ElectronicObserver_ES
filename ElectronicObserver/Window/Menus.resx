@@ -156,9 +156,6 @@
   <data name="ControlWindow" xml:space="preserve">
     <value>コントロールウィンドウ(&amp;C)</value>
   </data>
-  <data name="Debug" xml:space="preserve">
-    <value>デバッグ(&amp;D)</value>
-  </data>
   <data name="DeleteOldAPI" xml:space="preserve">
     <value>古いAPIデータを削除(&amp;D)</value>
   </data>
@@ -180,9 +177,6 @@
   <data name="EquipmentList" xml:space="preserve">
     <value>装備一覧(&amp;Q)</value>
   </data>
-  <data name="File" xml:space="preserve">
-    <value>ファイル(&amp;F)</value>
-  </data>
   <data name="FleetList" xml:space="preserve">
     <value>艦隊一覧(&amp;O)</value>
   </data>
@@ -191,9 +185,6 @@
   </data>
   <data name="Headquarters" xml:space="preserve">
     <value>司令部(&amp;H)</value>
-  </data>
-  <data name="Help" xml:space="preserve">
-    <value>ヘルプ(&amp;H)</value>
   </data>
   <data name="Information" xml:space="preserve">
     <value>情報(&amp;I)</value>
@@ -236,9 +227,6 @@
   </data>
   <data name="Other_ApplyStyleSheet" xml:space="preserve">
     <value>スタイルシートを適用する</value>
-  </data>
-  <data name="Other_ClearCache" xml:space="preserve">
-    <value>キャッシュのクリア(&amp;C)</value>
   </data>
   <data name="Other_Mute" xml:space="preserve">
     <value>ミュート(&amp;M)</value>
@@ -303,14 +291,8 @@
   <data name="Title" xml:space="preserve">
     <value>試製七四式電子観測儀</value>
   </data>
-  <data name="Tools" xml:space="preserve">
-    <value>ツール(&amp;T)</value>
-  </data>
   <data name="VersionInfo" xml:space="preserve">
     <value>バージョン情報(&amp;V)</value>
-  </data>
-  <data name="View" xml:space="preserve">
-    <value>表示(&amp;V)</value>
   </data>
   <data name="WindowCapture" xml:space="preserve">
     <value>ウィンドウキャプチャ(&amp;W)</value>

@@ -135,7 +135,7 @@
 			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
 			this.tabPage1.Size = new System.Drawing.Size(456, 373);
 			this.tabPage1.TabIndex = 0;
-			this.tabPage1.Text = "基本";
+			this.tabPage1.Text = "Basic";
 			this.tabPage1.UseVisualStyleBackColor = true;
 			// 
 			// GroupOutputPath
@@ -144,22 +144,22 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.GroupOutputPath.Controls.Add(this.SearchOutputPath);
 			this.GroupOutputPath.Controls.Add(this.OutputPath);
-			this.GroupOutputPath.Location = new System.Drawing.Point(8, 279);
+			this.GroupOutputPath.Location = new System.Drawing.Point(8, 277);
 			this.GroupOutputPath.Name = "GroupOutputPath";
 			this.GroupOutputPath.Size = new System.Drawing.Size(440, 57);
 			this.GroupOutputPath.TabIndex = 10;
 			this.GroupOutputPath.TabStop = false;
-			this.GroupOutputPath.Text = "出力先";
+			this.GroupOutputPath.Text = "Output Path";
 			// 
 			// SearchOutputPath
 			// 
 			this.SearchOutputPath.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.SearchOutputPath.Location = new System.Drawing.Point(394, 21);
+			this.SearchOutputPath.Location = new System.Drawing.Point(354, 21);
 			this.SearchOutputPath.Name = "SearchOutputPath";
-			this.SearchOutputPath.Size = new System.Drawing.Size(40, 23);
+			this.SearchOutputPath.Size = new System.Drawing.Size(80, 23);
 			this.SearchOutputPath.TabIndex = 6;
-			this.SearchOutputPath.Text = "...";
-			this.ToolTipInfo.SetToolTip(this.SearchOutputPath, "出力先のファイルを検索・指定するダイアログを開きます。");
+			this.SearchOutputPath.Text = "Browse...";
+			this.ToolTipInfo.SetToolTip(this.SearchOutputPath, "Select the destination path and file name for the fleet image." );
 			this.SearchOutputPath.UseVisualStyleBackColor = true;
 			this.SearchOutputPath.Click += new System.EventHandler(this.SearchOutputPath_Click);
 			// 
@@ -169,9 +169,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.OutputPath.Location = new System.Drawing.Point(6, 22);
 			this.OutputPath.Name = "OutputPath";
-			this.OutputPath.Size = new System.Drawing.Size(382, 23);
+			this.OutputPath.Size = new System.Drawing.Size(342, 23);
 			this.OutputPath.TabIndex = 5;
-			this.ToolTipInfo.SetToolTip(this.OutputPath, "出力先のファイル名を指定します。");
+			this.ToolTipInfo.SetToolTip(this.OutputPath, "Specify the destination path and file name for the fleet image." );
 			this.OutputPath.TextChanged += new System.EventHandler(this.OutputPath_TextChanged);
 			// 
 			// groupBox7
@@ -185,10 +185,10 @@
 			this.groupBox7.Controls.Add(this.Comment);
 			this.groupBox7.Location = new System.Drawing.Point(8, 127);
 			this.groupBox7.Name = "groupBox7";
-			this.groupBox7.Size = new System.Drawing.Size(440, 146);
+			this.groupBox7.Size = new System.Drawing.Size(440, 144);
 			this.groupBox7.TabIndex = 9;
 			this.groupBox7.TabStop = false;
-			this.groupBox7.Text = "自由入力欄";
+			this.groupBox7.Text = "Custom text";
 			// 
 			// label2
 			// 
@@ -197,7 +197,7 @@
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(54, 15);
 			this.label2.TabIndex = 3;
-			this.label2.Text = "タイトル：";
+			this.label2.Text = "Title:";
 			// 
 			// Title
 			// 
@@ -216,7 +216,7 @@
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(52, 15);
 			this.label3.TabIndex = 5;
-			this.label3.Text = "コメント：";
+			this.label3.Text = "Comment:";
 			// 
 			// Comment
 			// 
@@ -230,7 +230,7 @@
 			this.Comment.Multiline = true;
 			this.Comment.Name = "Comment";
 			this.Comment.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-			this.Comment.Size = new System.Drawing.Size(428, 74);
+			this.Comment.Size = new System.Drawing.Size(428, 72);
 			this.Comment.TabIndex = 6;
 			this.Comment.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Comment_KeyDown);
 			// 
@@ -239,7 +239,7 @@
 			this.ButtonAlert.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.ButtonAlert.Font = new System.Drawing.Font("Meiryo UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
 			this.ButtonAlert.ForeColor = System.Drawing.Color.Red;
-			this.ButtonAlert.Location = new System.Drawing.Point(6, 342);
+			this.ButtonAlert.Location = new System.Drawing.Point(6, 340);
 			this.ButtonAlert.Name = "ButtonAlert";
 			this.ButtonAlert.Size = new System.Drawing.Size(278, 23);
 			this.ButtonAlert.TabIndex = 8;
@@ -259,7 +259,7 @@
 			this.groupBox3.Size = new System.Drawing.Size(440, 52);
 			this.groupBox3.TabIndex = 0;
 			this.groupBox3.TabStop = false;
-			this.groupBox3.Text = "出力モード";
+			this.groupBox3.Text = "Mode";
 			// 
 			// ImageTypeBanner
 			// 
@@ -269,7 +269,7 @@
 			this.ImageTypeBanner.Size = new System.Drawing.Size(93, 19);
 			this.ImageTypeBanner.TabIndex = 2;
 			this.ImageTypeBanner.TabStop = true;
-			this.ImageTypeBanner.Text = "バナー (小型)";
+			this.ImageTypeBanner.Text = "Banner (S)";
 			this.ImageTypeBanner.UseVisualStyleBackColor = true;
 			this.ImageTypeBanner.CheckedChanged += new System.EventHandler(this.ImageTypeBanner_CheckedChanged);
 			// 
@@ -281,7 +281,7 @@
 			this.ImageTypeCutin.Size = new System.Drawing.Size(105, 19);
 			this.ImageTypeCutin.TabIndex = 1;
 			this.ImageTypeCutin.TabStop = true;
-			this.ImageTypeCutin.Text = "カットイン (中型)";
+			this.ImageTypeCutin.Text = "Cut-in (M)";
 			this.ImageTypeCutin.UseVisualStyleBackColor = true;
 			this.ImageTypeCutin.CheckedChanged += new System.EventHandler(this.ImageTypeCutin_CheckedChanged);
 			// 
@@ -293,7 +293,7 @@
 			this.ImageTypeCard.Size = new System.Drawing.Size(90, 19);
 			this.ImageTypeCard.TabIndex = 0;
 			this.ImageTypeCard.TabStop = true;
-			this.ImageTypeCard.Text = "カード (大型)";
+			this.ImageTypeCard.Text = "Card (L)";
 			this.ImageTypeCard.UseVisualStyleBackColor = true;
 			this.ImageTypeCard.CheckedChanged += new System.EventHandler(this.ImageTypeCard_CheckedChanged);
 			// 
@@ -301,7 +301,7 @@
 			// 
 			this.ButtonCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.ButtonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.ButtonCancel.Location = new System.Drawing.Point(373, 342);
+			this.ButtonCancel.Location = new System.Drawing.Point(373, 340);
 			this.ButtonCancel.Name = "ButtonCancel";
 			this.ButtonCancel.Size = new System.Drawing.Size(75, 23);
 			this.ButtonCancel.TabIndex = 0;
@@ -312,7 +312,7 @@
 			// ButtonOK
 			// 
 			this.ButtonOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.ButtonOK.Location = new System.Drawing.Point(292, 342);
+			this.ButtonOK.Location = new System.Drawing.Point(292, 340);
 			this.ButtonOK.Name = "ButtonOK";
 			this.ButtonOK.Size = new System.Drawing.Size(75, 23);
 			this.ButtonOK.TabIndex = 7;
@@ -333,7 +333,7 @@
 			this.groupBox1.Size = new System.Drawing.Size(440, 52);
 			this.groupBox1.TabIndex = 2;
 			this.groupBox1.TabStop = false;
-			this.groupBox1.Text = "対象艦隊";
+			this.groupBox1.Text = "Fleet";
 			// 
 			// TargetFleet4
 			// 
@@ -389,7 +389,7 @@
 			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
 			this.tabPage2.Size = new System.Drawing.Size(456, 373);
 			this.tabPage2.TabIndex = 1;
-			this.tabPage2.Text = "詳細";
+			this.tabPage2.Text = "Details";
 			this.tabPage2.UseVisualStyleBackColor = true;
 			// 
 			// groupBox2
@@ -406,7 +406,7 @@
 			this.groupBox2.Size = new System.Drawing.Size(440, 101);
 			this.groupBox2.TabIndex = 11;
 			this.groupBox2.TabStop = false;
-			this.groupBox2.Text = "出力先";
+			this.groupBox2.Text = "Output Path";
 			// 
 			// SyncronizeTitleAndFileName
 			// 
@@ -415,8 +415,8 @@
 			this.SyncronizeTitleAndFileName.Name = "SyncronizeTitleAndFileName";
 			this.SyncronizeTitleAndFileName.Size = new System.Drawing.Size(148, 19);
 			this.SyncronizeTitleAndFileName.TabIndex = 9;
-			this.SyncronizeTitleAndFileName.Text = "タイトルとファイル名を同期";
-			this.ToolTipInfo.SetToolTip(this.SyncronizeTitleAndFileName, "タイトルと出力ファイル名を同じにします。");
+			this.SyncronizeTitleAndFileName.Text = "Syncronize image title and file name";
+			this.ToolTipInfo.SetToolTip(this.SyncronizeTitleAndFileName, "Automatically use the image title as file name and vice versa.");
 			this.SyncronizeTitleAndFileName.UseVisualStyleBackColor = true;
 			this.SyncronizeTitleAndFileName.CheckedChanged += new System.EventHandler(this.SyncronizeTitleAndFileName_CheckedChanged);
 			// 
@@ -427,8 +427,8 @@
 			this.AutoSetFileNameToDate.Name = "AutoSetFileNameToDate";
 			this.AutoSetFileNameToDate.Size = new System.Drawing.Size(181, 19);
 			this.AutoSetFileNameToDate.TabIndex = 8;
-			this.AutoSetFileNameToDate.Text = "出力ファイル名を現在日時にする";
-			this.ToolTipInfo.SetToolTip(this.AutoSetFileNameToDate, "自動的にファイル名を現在の日付にします。");
+			this.AutoSetFileNameToDate.Text = "Use current date and time as file name";
+			this.ToolTipInfo.SetToolTip(this.AutoSetFileNameToDate, "Automatically set the image file name using the current date and time.");
 			this.AutoSetFileNameToDate.UseVisualStyleBackColor = true;
 			this.AutoSetFileNameToDate.CheckedChanged += new System.EventHandler(this.AutoSetFileNameToDate_CheckedChanged);
 			// 
@@ -439,8 +439,8 @@
 			this.OutputToClipboard.Name = "OutputToClipboard";
 			this.OutputToClipboard.Size = new System.Drawing.Size(118, 19);
 			this.OutputToClipboard.TabIndex = 7;
-			this.OutputToClipboard.Text = "クリップボードに出力";
-			this.ToolTipInfo.SetToolTip(this.OutputToClipboard, "画像をクリップボードに出力します。\r\nファイル系の指定は無視されます。\r\n");
+			this.OutputToClipboard.Text = "Copy to Clipboard";
+			this.ToolTipInfo.SetToolTip(this.OutputToClipboard, "Output the current image to the clipboard.");
 			this.OutputToClipboard.UseVisualStyleBackColor = true;
 			this.OutputToClipboard.CheckedChanged += new System.EventHandler(this.OutputToClipboard_CheckedChanged);
 			// 
@@ -451,8 +451,8 @@
 			this.DisableOverwritePrompt.Name = "DisableOverwritePrompt";
 			this.DisableOverwritePrompt.Size = new System.Drawing.Size(113, 19);
 			this.DisableOverwritePrompt.TabIndex = 5;
-			this.DisableOverwritePrompt.Text = "上書きを常に許可";
-			this.ToolTipInfo.SetToolTip(this.DisableOverwritePrompt, "ファイルの上書きチェックを無効にし、常に上書き可能にします。");
+			this.DisableOverwritePrompt.Text = "Always overwrite";
+			this.ToolTipInfo.SetToolTip(this.DisableOverwritePrompt, "Disable the file overwrite check and always overwrite the existing image.");
 			this.DisableOverwritePrompt.UseVisualStyleBackColor = true;
 			// 
 			// OpenImageAfterOutput
@@ -462,8 +462,8 @@
 			this.OpenImageAfterOutput.Name = "OpenImageAfterOutput";
 			this.OpenImageAfterOutput.Size = new System.Drawing.Size(89, 19);
 			this.OpenImageAfterOutput.TabIndex = 2;
-			this.OpenImageAfterOutput.Text = "保存後に開く";
-			this.ToolTipInfo.SetToolTip(this.OpenImageAfterOutput, "出力先が「ファイル」の場合、出力後にその画像をビューアで開くかを指定します。\r\nその画像に紐づけられている既定のビューアが起動します。");
+			this.OpenImageAfterOutput.Text = "Open after saving";
+			this.ToolTipInfo.SetToolTip(this.OpenImageAfterOutput, "Specify whether to open the fleet image after it is successfully exported." );
 			this.OpenImageAfterOutput.UseVisualStyleBackColor = true;
 			// 
 			// groupBox5
@@ -478,29 +478,29 @@
 			this.groupBox5.Size = new System.Drawing.Size(440, 58);
 			this.groupBox5.TabIndex = 1;
 			this.groupBox5.TabStop = false;
-			this.groupBox5.Text = "背景画像";
+			this.groupBox5.Text = "Background image";
 			// 
 			// ClearBackgroundPath
 			// 
 			this.ClearBackgroundPath.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.ClearBackgroundPath.Location = new System.Drawing.Point(394, 21);
+			this.ClearBackgroundPath.Location = new System.Drawing.Point(374, 21);
 			this.ClearBackgroundPath.Name = "ClearBackgroundPath";
-			this.ClearBackgroundPath.Size = new System.Drawing.Size(40, 23);
+			this.ClearBackgroundPath.Size = new System.Drawing.Size(60, 23);
 			this.ClearBackgroundPath.TabIndex = 2;
-			this.ClearBackgroundPath.Text = "なし";
-			this.ToolTipInfo.SetToolTip(this.ClearBackgroundPath, "背景画像をクリアします。");
+			this.ClearBackgroundPath.Text = "Clear";
+			this.ToolTipInfo.SetToolTip(this.ClearBackgroundPath, "Clear current background image path.");
 			this.ClearBackgroundPath.UseVisualStyleBackColor = true;
 			this.ClearBackgroundPath.Click += new System.EventHandler(this.ClearBackgroundPath_Click);
 			// 
 			// SearchBackgroundImagePath
 			// 
 			this.SearchBackgroundImagePath.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.SearchBackgroundImagePath.Location = new System.Drawing.Point(348, 21);
+			this.SearchBackgroundImagePath.Location = new System.Drawing.Point(328, 21);
 			this.SearchBackgroundImagePath.Name = "SearchBackgroundImagePath";
 			this.SearchBackgroundImagePath.Size = new System.Drawing.Size(40, 23);
 			this.SearchBackgroundImagePath.TabIndex = 1;
 			this.SearchBackgroundImagePath.Text = "...";
-			this.ToolTipInfo.SetToolTip(this.SearchBackgroundImagePath, "背景画像を検索・指定するダイアログを開きます。");
+			this.ToolTipInfo.SetToolTip(this.SearchBackgroundImagePath, "Select the destination path and file name of the background image." );
 			this.SearchBackgroundImagePath.UseVisualStyleBackColor = true;
 			this.SearchBackgroundImagePath.Click += new System.EventHandler(this.SearchBackgroundImagePath_Click);
 			// 
@@ -510,9 +510,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.BackgroundImagePath.Location = new System.Drawing.Point(6, 22);
 			this.BackgroundImagePath.Name = "BackgroundImagePath";
-			this.BackgroundImagePath.Size = new System.Drawing.Size(336, 23);
+			this.BackgroundImagePath.Size = new System.Drawing.Size(316, 23);
 			this.BackgroundImagePath.TabIndex = 0;
-			this.ToolTipInfo.SetToolTip(this.BackgroundImagePath, "背景画像へのパスを指定します。\r\n空白の場合は背景画像なしで出力されます。");
+			this.ToolTipInfo.SetToolTip(this.BackgroundImagePath, "Specify the destination path and file name of the background image." );
 			// 
 			// groupBox4
 			// 
@@ -529,7 +529,7 @@
 			this.groupBox4.Size = new System.Drawing.Size(440, 88);
 			this.groupBox4.TabIndex = 0;
 			this.groupBox4.TabStop = false;
-			this.groupBox4.Text = "レイアウト";
+			this.groupBox4.Text = "Layout";
 			// 
 			// AvoidTwitterDeterioration
 			// 
@@ -538,9 +538,8 @@
 			this.AvoidTwitterDeterioration.Name = "AvoidTwitterDeterioration";
 			this.AvoidTwitterDeterioration.Size = new System.Drawing.Size(182, 19);
 			this.AvoidTwitterDeterioration.TabIndex = 5;
-			this.AvoidTwitterDeterioration.Text = "Twitter の画像圧縮を回避する";
-			this.ToolTipInfo.SetToolTip(this.AvoidTwitterDeterioration, "Twitter に PNG 形式の画像をアップロードすると、自動的に JPEG 形式に変換され画質が劣化します。\r\nそれを回避するための情報を埋め込むかを指定しま" +
-        "す。");
+			this.AvoidTwitterDeterioration.Text = "Avoid image compression on Twitter";
+			this.ToolTipInfo.SetToolTip(this.AvoidTwitterDeterioration, "Specify whether to embed additional data to prevent Twitter from converting the image to JPEG." );
 			this.AvoidTwitterDeterioration.UseVisualStyleBackColor = true;
 			// 
 			// ReflectDamageGraphic
@@ -550,8 +549,8 @@
 			this.ReflectDamageGraphic.Name = "ReflectDamageGraphic";
 			this.ReflectDamageGraphic.Size = new System.Drawing.Size(149, 19);
 			this.ReflectDamageGraphic.TabIndex = 4;
-			this.ReflectDamageGraphic.Text = "中破グラフィックを適用する";
-			this.ToolTipInfo.SetToolTip(this.ReflectDamageGraphic, "艦娘が中破している場合、出力画像でも中破グラフィックにするかを指定します。");
+			this.ReflectDamageGraphic.Text = "Use damaged CG";
+			this.ToolTipInfo.SetToolTip(this.ReflectDamageGraphic, "Specify whether to use the ship's damaged CG for the fleet image\r\nwhen the ship is moderately damaged or more." );
 			this.ReflectDamageGraphic.UseVisualStyleBackColor = true;
 			// 
 			// label5
@@ -561,11 +560,11 @@
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(77, 15);
 			this.label5.TabIndex = 2;
-			this.label5.Text = "艦船の横幅：";
+			this.label5.Text = "Ship column:";
 			// 
 			// HorizontalShipCount
 			// 
-			this.HorizontalShipCount.Location = new System.Drawing.Point(89, 51);
+			this.HorizontalShipCount.Location = new System.Drawing.Point(109, 51);
 			this.HorizontalShipCount.Maximum = new decimal(new int[] {
             6,
             0,
@@ -577,10 +576,10 @@
             0,
             0});
 			this.HorizontalShipCount.Name = "HorizontalShipCount";
-			this.HorizontalShipCount.Size = new System.Drawing.Size(60, 23);
+			this.HorizontalShipCount.Size = new System.Drawing.Size(40, 23);
 			this.HorizontalShipCount.TabIndex = 3;
 			this.HorizontalShipCount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			this.ToolTipInfo.SetToolTip(this.HorizontalShipCount, "艦船を横に並べる個数を指定します。\r\nこれ以上の数の艦船を出力したとき、改行されます。\r\n");
+			this.ToolTipInfo.SetToolTip(this.HorizontalShipCount, "Specify the number of ships in a single row.\r\n" );
 			this.HorizontalShipCount.Value = new decimal(new int[] {
             1,
             0,
@@ -589,7 +588,7 @@
 			// 
 			// HorizontalFleetCount
 			// 
-			this.HorizontalFleetCount.Location = new System.Drawing.Point(89, 22);
+			this.HorizontalFleetCount.Location = new System.Drawing.Point(109, 22);
 			this.HorizontalFleetCount.Maximum = new decimal(new int[] {
             4,
             0,
@@ -601,10 +600,10 @@
             0,
             0});
 			this.HorizontalFleetCount.Name = "HorizontalFleetCount";
-			this.HorizontalFleetCount.Size = new System.Drawing.Size(60, 23);
+			this.HorizontalFleetCount.Size = new System.Drawing.Size(40, 23);
 			this.HorizontalFleetCount.TabIndex = 1;
 			this.HorizontalFleetCount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			this.ToolTipInfo.SetToolTip(this.HorizontalFleetCount, "艦隊を横に並べる個数を指定します。\r\nこれ以上の数の艦隊を出力したとき、改行されます。\r\n");
+			this.ToolTipInfo.SetToolTip(this.HorizontalFleetCount, "Specify the number of fleets in a single row.\r\n" );
 			this.HorizontalFleetCount.Value = new decimal(new int[] {
             1,
             0,
@@ -618,7 +617,7 @@
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(77, 15);
 			this.label4.TabIndex = 0;
-			this.label4.Text = "艦隊の横幅：";
+			this.label4.Text = "Fleet column:";
 			// 
 			// tabPage3
 			// 
@@ -628,7 +627,7 @@
 			this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
 			this.tabPage3.Size = new System.Drawing.Size(456, 373);
 			this.tabPage3.TabIndex = 2;
-			this.tabPage3.Text = "フォント";
+			this.tabPage3.Text = "Font";
 			this.tabPage3.UseVisualStyleBackColor = true;
 			// 
 			// groupBox6
@@ -661,10 +660,10 @@
 			this.groupBox6.Controls.Add(this.TextGeneralFont);
 			this.groupBox6.Location = new System.Drawing.Point(6, 6);
 			this.groupBox6.Name = "groupBox6";
-			this.groupBox6.Size = new System.Drawing.Size(442, 349);
+			this.groupBox6.Size = new System.Drawing.Size(442, 347);
 			this.groupBox6.TabIndex = 0;
 			this.groupBox6.TabStop = false;
-			this.groupBox6.Text = "フォント";
+			this.groupBox6.Text = "Font";
 			// 
 			// ButtonClearFont
 			// 
@@ -673,7 +672,8 @@
 			this.ButtonClearFont.Name = "ButtonClearFont";
 			this.ButtonClearFont.Size = new System.Drawing.Size(75, 23);
 			this.ButtonClearFont.TabIndex = 22;
-			this.ButtonClearFont.Text = "デフォルト";
+			this.ButtonClearFont.Text = "Default";
+			this.ToolTipInfo.SetToolTip( this.ButtonClearFont, "Reset the font settings to the default values." );
 			this.ButtonClearFont.UseVisualStyleBackColor = true;
 			this.ButtonClearFont.Click += new System.EventHandler(this.ButtonClearFont_Click);
 			// 
@@ -696,7 +696,7 @@
 			this.label12.Name = "label12";
 			this.label12.Size = new System.Drawing.Size(65, 15);
 			this.label12.TabIndex = 19;
-			this.label12.Text = "小(英数)：";
+			this.label12.Text = "S (Digit):";
 			// 
 			// SelectSmallDigitFont
 			// 
@@ -726,7 +726,7 @@
 			this.label11.Name = "label11";
 			this.label11.Size = new System.Drawing.Size(65, 15);
 			this.label11.TabIndex = 16;
-			this.label11.Text = "中(英数)：";
+			this.label11.Text = "M (Digit):";
 			// 
 			// SelectMediumDigitFont
 			// 
@@ -756,7 +756,7 @@
 			this.label10.Name = "label10";
 			this.label10.Size = new System.Drawing.Size(65, 15);
 			this.label10.TabIndex = 13;
-			this.label10.Text = "小(通常)：";
+			this.label10.Text = "S (Text):";
 			// 
 			// SelectSmallFont
 			// 
@@ -786,7 +786,7 @@
 			this.label9.Name = "label9";
 			this.label9.Size = new System.Drawing.Size(65, 15);
 			this.label9.TabIndex = 10;
-			this.label9.Text = "中(通常)：";
+			this.label9.Text = "M (Text):";
 			// 
 			// SelectMediumFont
 			// 
@@ -816,7 +816,7 @@
 			this.label8.Name = "label8";
 			this.label8.Size = new System.Drawing.Size(65, 15);
 			this.label8.TabIndex = 7;
-			this.label8.Text = "大(通常)：";
+			this.label8.Text = "L (Text):";
 			// 
 			// SelectLargeFont
 			// 
@@ -846,7 +846,7 @@
 			this.label7.Name = "label7";
 			this.label7.Size = new System.Drawing.Size(54, 15);
 			this.label7.TabIndex = 4;
-			this.label7.Text = "タイトル：";
+			this.label7.Text = "Title:";
 			// 
 			// SelectTitleFont
 			// 
@@ -876,7 +876,7 @@
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(79, 15);
 			this.label6.TabIndex = 0;
-			this.label6.Text = "まとめて変更：";
+			this.label6.Text = "Change all:";
 			// 
 			// SelectGeneralFont
 			// 
@@ -909,13 +909,13 @@
 			this.OpenImageDialog.Filter = "All Images|*.bmp;*.dib;*.jpg;*.jpeg;*.jpe;*.jfif;*.gif;*.png;*.tif;*.tiff|BMP|*.b" +
     "mp;*.dib|JPEG|*.jpg;*.jpeg;*.jpe;*.jfif|GIF|*.gif|PNG|*.png|TIFF|*.tif;*.tiff|Fi" +
     "le|*";
-			this.OpenImageDialog.Title = "背景画像の参照";
+			this.OpenImageDialog.Title = "Select Background Image";
 			// 
 			// SaveImageDialog
 			// 
 			this.SaveImageDialog.Filter = "PNG|*.png|JPEG|*.jpg|File|*";
 			this.SaveImageDialog.OverwritePrompt = false;
-			this.SaveImageDialog.Title = "編成画像の保存";
+			this.SaveImageDialog.Title = "Save As";
 			// 
 			// ToolTipInfo
 			// 
@@ -936,11 +936,11 @@
 			this.MinimizeBox = false;
 			this.MinimumSize = new System.Drawing.Size(480, 440);
 			this.Name = "DialogFleetImageGenerator";
-			this.ShowIcon = false;
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-			this.Text = "編成画像出力";
+			this.Text = "Export Fleet Image";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DialogFleetImageGenerator_FormClosing);
+			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.DialogFleetImageGenerator_FormClosed);
 			this.Load += new System.EventHandler(this.DialogFleetImageGenerator_Load);
 			this.tabControl1.ResumeLayout(false);
 			this.tabPage1.ResumeLayout(false);

@@ -647,11 +647,11 @@ namespace ElectronicObserver.Data {
 				case 0:
 					return ConstantsRes.NoNode;
 				case 1:
-					return ConstantsRes.HA2 + "/" + ConstantsRes.Radar;
+					return ConstantsRes.HA2 + "/" + ConstantsRes.Radar + " (Akizuki)";
 				case 2:
-					return ConstantsRes.HAGun + "/" + ConstantsRes.Radar;
+					return ConstantsRes.HAGun + "/" + ConstantsRes.Radar + " (Akizuki)";
 				case 3:
-					return ConstantsRes.HA2;
+					return ConstantsRes.HA2 + " (Akizuki)";
 				case 4:
 					return ConstantsRes.BigGun + "/" + ConstantsRes.Type3 + "/" + ConstantsRes.AADirector + "/" + ConstantsRes.Radar;
 				case 5:
@@ -665,25 +665,29 @@ namespace ElectronicObserver.Data {
 				case 9:
 					return ConstantsRes.HAGun + "/" + ConstantsRes.AADirector;
                 case 10:
-					return ConstantsRes.HAGun + "/" + ConstantsRes.AAGun + "/" + ConstantsRes.Radar;
+					return ConstantsRes.HAGun + "/" + ConstantsRes.AAGun + "/" + ConstantsRes.Radar + " (Maya)";
 				case 11:
-					return ConstantsRes.HAGun + "/" + ConstantsRes.AAGun;
+					return ConstantsRes.HAGun + "/" + ConstantsRes.AAGun + " (Maya)";
 				case 12:
 					return ConstantsRes.AAGun + "/" + ConstantsRes.AAGun + ConstantsRes.Radar;
 				case 14:
-					return ConstantsRes.HAGun + "/" + ConstantsRes.AAGun + "/" + ConstantsRes.Radar;
+					return ConstantsRes.HAGun + "/" + ConstantsRes.AAGun + "/" + ConstantsRes.Radar + " (Isuzu)";
 				case 15:
-					return ConstantsRes.HAGun + "/" + ConstantsRes.AAGun;
+					return ConstantsRes.HAGun + "/" + ConstantsRes.AAGun + " (Isuzu)";
 				case 16:
-					return ConstantsRes.HAGun + "/" + ConstantsRes.AAGun + "/" + ConstantsRes.Radar;
+					return ConstantsRes.HAGun + "/" + ConstantsRes.AAGun + "/" + ConstantsRes.Radar + " (Kasumi)";
 				case 17:
-					return ConstantsRes.HAGun + "/" + ConstantsRes.AAGun;
+					return ConstantsRes.HAGun + "/" + ConstantsRes.AAGun + " (Kasumi)";
 				case 18:
-					return ConstantsRes.AAGun;
+					return ConstantsRes.AAGun + " (Satsuki)";
 				case 19:
-					return ConstantsRes.HAGun + "/" + ConstantsRes.AAGun;
+					return ConstantsRes.HAGun + "/" + ConstantsRes.AAGun + " (Kinu)";
 				case 20:
-					return ConstantsRes.AAGun;
+					return ConstantsRes.AAGun + " (Kinu)";
+				case 21:
+					return ConstantsRes.HAGun + "/" + ConstantsRes.Radar + " (Yura)";
+				case 22:
+					return ConstantsRes.AAGun + " (Fumizuki)";
 				default:
 					return ConstantsRes.Unknown;
 			}

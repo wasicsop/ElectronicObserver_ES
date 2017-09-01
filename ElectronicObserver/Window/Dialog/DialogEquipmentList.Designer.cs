@@ -133,7 +133,7 @@
             this.TopMenu_File_Update});
 			this.TopMenu_File.Name = "TopMenu_File";
 			this.TopMenu_File.Size = new System.Drawing.Size(128, 34);
-			this.TopMenu_File.Text = Menus.File;
+			this.TopMenu_File.Text = "&File";
 			// 
 			// TopMenu_File_CSVOutput
 			// 

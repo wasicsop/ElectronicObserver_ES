@@ -132,13 +132,6 @@
   <data name="Alignment_Top" xml:space="preserve">
     <value>위쪽(&amp;T)</value>
   </data>
-  <data name="ClearCacheDialog" xml:space="preserve">
-    <value>브라우저의 캐쉬를 삭제합니다.
-계속하시겠습니까?</value>
-  </data>
-  <data name="ClearCacheTitle" xml:space="preserve">
-    <value>캐쉬를 삭제</value>
-  </data>
   <data name="ClearComplete" xml:space="preserve">
     <value>삭제 완료</value>
   </data>
@@ -178,9 +171,6 @@
   </data>
   <data name="Other_ApplyStyleSheet" xml:space="preserve">
     <value>스타일 시트를 적용한다.</value>
-  </data>
-  <data name="Other_ClearCache" xml:space="preserve">
-    <value>캐쉬를 클리어(&amp;C)</value>
   </data>
   <data name="Other_Mute" xml:space="preserve">
     <value>뮤트(&amp;M)</value>

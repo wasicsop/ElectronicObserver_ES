@@ -462,7 +462,7 @@ Contact Chance:
     <value>Error: attempted to access a nonexistent group. Please contact the developer.</value>
   </data>
   <data name="OutputCSV" xml:space="preserve">
-    <value>Output CSV (&amp;O)...</value>
+    <value>Export CSV (&amp;O)...</value>
   </data>
   <data name="Over50" xml:space="preserve">
     <value>Over 50%</value>
@@ -511,9 +511,6 @@ Contact Chance:
   </data>
   <data name="Scouting" xml:space="preserve">
     <value>Scouting</value>
-  </data>
-  <data name="ScreenCapture" xml:space="preserve">
-    <value>Capture this Screen (&amp;S)</value>
   </data>
   <data name="SearchlightUsed" xml:space="preserve">
     <value>Searchlight used</value>
@@ -1009,19 +1006,10 @@ Denial: {3}</value>
   <data name="ContextMenuBaseAirCorps_DisplayRelocatedEquipments" xml:space="preserve">
     <value>Check for aircraft being transferred (&amp;R)</value>
   </data>
-  <data name="CopyKanmusuList" xml:space="preserve">
-    <value>Copy ship list for kancolle-calc (&amp;R)</value>
-  </data>
-  <data name="CopyFleetDeckBuilder" xml:space="preserve">
-    <value>Copy organization (deck-builder) (&amp;D)</value>
-  </data>
-  <data name="CopyAntiAirDetails" xml:space="preserve">
-    <value>Show AA defense details (&amp;A)</value>
-  </data>
   <data name="AntiAirPower" xml:space="preserve">
     <value>Fleet AA
-  Line ahead: {0:0.0}
-  Double line: {1:0.0}
+  LA: {0:0.0}
+  DL: {1:0.0}
   Ring: {2:0.0}
 </value>
   </data>

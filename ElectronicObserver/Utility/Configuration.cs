@@ -353,6 +353,12 @@ namespace ElectronicObserver.Utility {
 
 				#endregion
 
+				/// <summary>
+				/// 固定レイアウト(フォントに依存しないレイアウト)を利用するか
+				/// </summary>
+				public bool IsLayoutFixed;
+
+
 				public ConfigUI() {
 					MainFont = new Font( "Meiryo UI", 12, FontStyle.Regular, GraphicsUnit.Pixel );
 					SubFont = new Font( "Meiryo UI", 10, FontStyle.Regular, GraphicsUnit.Pixel );
@@ -361,6 +367,8 @@ namespace ElectronicObserver.Utility {
 					JapaneseShipType = false;
 					JapaneseEquipmentName = false;
 					JapaneseEquipmentType = false;
+
+					IsLayoutFixed = true;
 				}
 			}
 			/// <summary>UI</summary>
@@ -437,6 +445,12 @@ namespace ElectronicObserver.Utility {
 				/// </summary>
 				public bool SaveBattleLog { get; set; }
 
+				/// <summary>
+				/// ログを即時保存するか
+				/// </summary>
+				public bool SaveLogImmediately { get; set; }
+
+
 				public ConfigLog() {
 					LogLevel = 2;
 					SaveLogFlag = true;
@@ -446,6 +460,7 @@ namespace ElectronicObserver.Utility {
 					PlayTime = 0;
 					PlayTimeIgnoreInterval = 10 * 60;
 					SaveBattleLog = false;
+					SaveLogImmediately = false;
 				}
 
 			}
@@ -466,7 +481,7 @@ namespace ElectronicObserver.Utility {
 
 				/// <summary>
 				/// レコードを自動保存するか
-				/// 0=しない、1=1時間ごと、2=1日ごと
+				/// 0=しない、1=1時間ごと、2=1日ごと, 3=即時
 				/// </summary>
 				public int RecordAutoSaving { get; set; }
 
@@ -651,7 +666,7 @@ namespace ElectronicObserver.Utility {
 
 				public ConfigFormDock() {
 					BlinkAtCompletion = true;
-					MaxShipNameWidth = 60;
+					MaxShipNameWidth = 64;
 				}
 			}
 			/// <summary>[入渠]ウィンドウ</summary>
@@ -766,6 +781,22 @@ namespace ElectronicObserver.Utility {
 				/// </summary>
 				public bool ShowAirSuperiorityRange { get; set; }
 
+				/// <summary>
+				/// 泊地修理によるHP回復を表示に反映するか
+				/// </summary>
+				public bool ReflectAnchorageRepairHealing { get; set; }
+
+				/// <summary>
+				/// 遠征艦隊が母港にいるとき強調表示
+				/// </summary>
+				public bool EmphasizesSubFleetInPort { get; set; }
+
+				/// <summary>
+				/// 大破時に点滅させる
+				/// </summary>
+				public bool BlinkAtDamaged { get; set; }
+
+
 				public ConfigFormFleet() {
 					ShowAircraft = true;
 					SearchingAbilityMethod = 4;
@@ -781,6 +812,9 @@ namespace ElectronicObserver.Utility {
 					ShowConditionIcon = true;
 					FixedShipNameWidth = 40;
 					ShowAirSuperiorityRange = false;
+					ReflectAnchorageRepairHealing = true;
+					EmphasizesSubFleetInPort = false;
+					BlinkAtDamaged = true;
 				}
 			}
 			/// <summary>[艦隊]ウィンドウ</summary>
@@ -957,6 +991,11 @@ namespace ElectronicObserver.Utility {
 				public bool IsDMMreloadDialogDestroyable { get; set; }
 
 				/// <summary>
+				/// Twitter の画像圧縮を回避するか
+				/// </summary>
+				public bool AvoidTwitterDeterioration { get; set; }
+
+				/// <summary>
 				/// ツールメニューの配置
 				/// </summary>
 				public DockStyle ToolMenuDockStyle { get; set; }
@@ -993,6 +1032,7 @@ namespace ElectronicObserver.Utility {
 					IsScrollable = false;
 					AppliesStyleSheet = true;
 					IsDMMreloadDialogDestroyable = false;
+					AvoidTwitterDeterioration = true;
 					ToolMenuDockStyle = DockStyle.Top;
 					IsToolMenuVisible = true;
 					ConfirmAtRefresh = true;
@@ -1020,9 +1060,16 @@ namespace ElectronicObserver.Utility {
 				/// </summary>
 				public bool IsScrollable { get; set; }
 
+				/// <summary>
+				/// 艦名表示の最大幅
+				/// </summary>
+				public int MaxShipNameWidth { get; set; }
+
+
 				public ConfigFormCompass() {
 					CandidateDisplayCount = 4;
 					IsScrollable = false;
+					MaxShipNameWidth = 60;
 				}
 			}
 			/// <summary>[羅針盤]ウィンドウ</summary>
@@ -1077,9 +1124,15 @@ namespace ElectronicObserver.Utility {
 				/// </summary>
 				public bool HideDuringBattle { get; set; }
 
+				/// <summary>
+				/// HP バーを表示するか
+				/// </summary>
+				public bool ShowHPBar { get; set; }
+
 				public ConfigFormBattle() {
 					IsScrollable = false;
 					HideDuringBattle = false;
+					ShowHPBar = true;
 				}
 			}
 
@@ -1419,7 +1472,160 @@ namespace ElectronicObserver.Utility {
 
 
 			// 读取配色主题 ( 默认值待编辑 )
-			dynamic json = DynamicJson.Parse(@"[{""name"":""VS2012Light""}]");
+			dynamic json = DynamicJson.Parse( @"[{
+""name"":""VS2012 Light"",
+""basicColors"":{
+""red"":""#FF0000"",
+""orange"":""#FFA500"",
+""yellow"":""#FFFF00"",
+""green"":""#00FF00"",
+""cyan"":""#00FFFF"",
+""blue"":""#0000FF"",
+""magenta"":""#FF00FF"",
+""violet"":""#EE82EE""
+},
+""barColors"":[[
+""#FF0000"",
+""#FF0000"",
+""#FF8800"",
+""#FF8800"",
+""#FFCC00"",
+""#FFCC00"",
+""#00CC00"",
+""#00CC00"",
+""#0044CC"",
+""#44FF00"",
+""#882222"",
+""#888888""
+],[
+""#FF0000"",
+""#FF0000"",
+""#FF4400"",
+""#FF8800"",
+""#FFAA00"",
+""#EEEE00"",
+""#CCEE00"",
+""#00CC00"",
+""#0044CC"",
+""#00FF44"",
+""#882222"",
+""#888888""
+]],
+""panelColors"":{
+""foreground"":""#000000"",
+""background"":""#F0F0F0"",
+""foreground2"":""#888888"",
+""background2"":""#E3E3E3"",
+""statusBarFG"":""#000000"",
+""statusBarBG"":""#E3E3E3"",
+""skin"":{
+""panelSplitter"":""#E3E3E3"",
+""docTabBarFG"":""#000000"",
+""docTabBarBG"":""#F0F0F0"",
+""docTabActiveFG"":""#FFFFFF"",
+""docTabActiveBG"":""#007ACC"",
+""docTabActiveLostFocusFG"":""#6D6D6D"",
+""docTabActiveLostFocusBG"":""#CCCEDB"",
+""docTabInactiveHoverFG"":""#FFFFFF"",
+""docTabInactiveHoverBG"":""#1C97EA"",
+""docBtnActiveHoverFG"":""#FFFFFF"",
+""docBtnActiveHoverBG"":""#1C97EA"",
+""docBtnActiveLostFocusHoverFG"":""#717171"",
+""docBtnActiveLostFocusHoverBG"":""#E6E7ED"",
+""docBtnInactiveHoverFG"":""#FFFFFF"",
+""docBtnInactiveHoverBG"":""#52B0EF"",
+""toolTabBarFG"":""#6D6D6D"",
+""toolTabBarBG"":""#F0F0F0"",
+""toolTabActive"":""#007ACC"",
+""toolTitleActiveFG"":""#FFFFFF"",
+""toolTitleActiveBG"":""#007ACC"",
+""toolTitleLostFocusFG"":""#6D6D6D"",
+""toolTitleLostFocusBG"":""#F0F0F0"",
+""toolTitleDotActive"":""#50AADC"",
+""toolTitleDotLostFocus"":""#A0A0A0"",
+""autoHideTabBarFG"":""#E3E3E3"",
+""autoHideTabBarBG"":""#F0F0F0"",
+""autoHideTabActive"":""#007ACC"",
+""autoHideTabInactive"":""#6D6D6D""
+},
+""fleet"":{
+""repairTimerText"":""#888888"",
+""conditionText"":""#000000"",
+""conditionVeryTired"":""#F08080"",
+""conditionTired"":""#FFA07A"",
+""conditionLittleTired"":""#FFE4B5"",
+""conditionSparkle"":""#90EE90"",
+""equipmentLevel"":""#006666""
+},
+""fleetOverview"":{
+""shipDamagedFG"":""#000000"",
+""shipDamagedBG"":""#F08080"",
+""expeditionOverFG"":""#000000"",
+""expeditionOverBG"":""#90EE90"",
+""tiredRecoveredFG"":""#000000"",
+""tiredRecoveredBG"":""#90EE90"",
+""alertNotInExpeditionFG"":""#000000"",
+""alertNotInExpeditionBG"":""#90EE90""
+},
+""dock"":{
+""repairFinishedFG"":""#000000"",
+""repairFinishedBG"":""#90EE90""
+},
+""arsenal"":{
+""buildCompleteFG"":""#000000"",
+""buildCompleteBG"":""#90EE90""
+},
+""hq"":{
+""resOverFG"":""#000000"",
+""resOverBG"":""#FFE4B5"",
+""shipOverFG"":""#000000"",
+""shipOverBG"":""#F08080"",
+""materialMaxFG"":""#000000"",
+""materialMaxBG"":""#F08080"",
+""coinMaxFG"":""#000000"",
+""coinMaxFG"":""#F08080"",
+""resLowFG"":""#000000"",
+""resLowBG"":""#F08080"",
+""resMaxFG"":""#000000"",
+""resMaxBG"":""#F08080""
+},
+""quest"":{
+""typeFG"":""#000000"",
+""typeHensei"":""#AAFFAA"",
+""typeShutsugeki"":""#FFCCCC"",
+""typeEnshu"":""#DDFFAA"",
+""typeEnsei"":""#DDFFAA"",
+""typeHokyu"":""#CCFFFF"",
+""typeKojo"":""#DDCCBB"",
+""typeKaiso"":""#DDCCFF"",
+""processLT50"":""#FF8800"",
+""processLT80"":""#00CC00"",
+""processLT100"":""#008800"",
+""processDefault"":""#0088FF""
+},
+""compass"":{
+""shipClass2"":""#FF0000"",
+""shipClass3"":""#FF8800"",
+""shipClass4"":""#006600"",
+""shipClass5"":""#880000"",
+""shipClass6"":""#0088FF"",
+""shipClass7"":""#FF00FF"",
+""shipDestroyed"":""#0000FF"",
+""eventKind3"":""#000080"",
+""eventKind6"":""#006400"",
+""eventKind5"":""#8B0000""
+},
+""battle"":{
+""barMVP"":""#FFE4B5"",
+""textMVP"":""#000000"",
+""textMVP2"":""#888888"",
+""barEscaped"":""#C0C0C0"",
+""textEscaped"":""#000000"",
+""textEscaped2"":""#888888"",
+""barBossDamaged"":""#FFE4E1"",
+""textBossDamaged"":""#000000"",
+""textBossDamaged2"":""#888888""
+}}}]" );
 			//if (File.Exists(@"Settings\ColorScheme.json")) {
 			try {
 				string s = String.Empty;
@@ -1446,34 +1652,53 @@ namespace ElectronicObserver.Utility {
 			ThemeStyle = json[themeId];
 			Logger.Add(2, ThemeStyle["name"] + " color scheme loaded.");
 			// 定义基本颜色
-			Config.UI.Color_Red     = ThemeColor("basicColors", "red");
-			Config.UI.Color_Orange  = ThemeColor("basicColors", "orange");
-			Config.UI.Color_Yellow  = ThemeColor("basicColors", "yellow");
-			Config.UI.Color_Green   = ThemeColor("basicColors", "green");
-			Config.UI.Color_Cyan    = ThemeColor("basicColors", "cyan");
-			Config.UI.Color_Blue    = ThemeColor("basicColors", "blue");
-			Config.UI.Color_Magenta = ThemeColor("basicColors", "magenta");
-			Config.UI.Color_Violet  = ThemeColor("basicColors", "violet");
+			Config.UI.Color_Red = ThemeColor( "basicColors", "red" );
+			Config.UI.Color_Orange = ThemeColor( "basicColors", "orange" );
+			Config.UI.Color_Yellow = ThemeColor( "basicColors", "yellow" );
+			Config.UI.Color_Green = ThemeColor( "basicColors", "green" );
+			Config.UI.Color_Cyan = ThemeColor( "basicColors", "cyan" );
+			Config.UI.Color_Blue = ThemeColor( "basicColors", "blue" );
+			Config.UI.Color_Magenta = ThemeColor( "basicColors", "magenta" );
+			Config.UI.Color_Violet = ThemeColor( "basicColors", "violet" );
 			// 定义面板颜色
-			Config.UI.ForeColor = ThemeColor("panelColors", "foreground");
-			Config.UI.BackColor = ThemeColor("panelColors", "background");
-			Config.UI.SubForeColor = ThemeColor("panelColors", "foreground2");
-			Config.UI.SubBackColor = ThemeColor("panelColors", "background2");
-			Config.UI.SubBackColorPen = new Pen(Config.UI.SubBackColor);
+			Config.UI.ForeColor = ThemeColor( "panelColors", "foreground" );
+			Config.UI.BackColor = ThemeColor( "panelColors", "background" );
+			Config.UI.SubForeColor = ThemeColor( "panelColors", "foreground2" );
+			Config.UI.SubBackColor = ThemeColor( "panelColors", "background2" );
+			Config.UI.SubBackColorPen = new Pen( Config.UI.SubBackColor );
 			// 状态栏颜色
-			Config.UI.StatusBarForeColor = ThemeColor("panelColors", "statusBarFG");
-			Config.UI.StatusBarBackColor = ThemeColor("panelColors", "statusBarBG");
+			Config.UI.StatusBarForeColor = ThemeColor( "panelColors", "statusBarFG" );
+			Config.UI.StatusBarBackColor = ThemeColor( "panelColors", "statusBarBG" );
 			// 定义 UI (DockPanelSuite) 颜色
 			Config.UI.DockPanelSuiteStyles = new string[] {
-				ThemeColorHex("panelColors", "foreground"),
-				ThemeColorHex("panelColors", "background"),
-				ThemeColorHex("panelColors", "background2"),
-				ThemeColorHex("panelColors", "tabActiveFG"),
-				ThemeColorHex("panelColors", "tabActiveBG"),
-				ThemeColorHex("panelColors", "tabLostFocusFG"),
-				ThemeColorHex("panelColors", "tabLostFocusBG"),
-				ThemeColorHex("panelColors", "tabHoverFG"),
-				ThemeColorHex("panelColors", "tabHoverBG")
+				ThemePanelColorHex("skin", "panelSplitter"),
+				ThemePanelColorHex("skin", "docTabBarFG"),
+				ThemePanelColorHex("skin", "docTabBarBG"),
+				ThemePanelColorHex("skin", "docTabActiveFG"),
+				ThemePanelColorHex("skin", "docTabActiveBG"),
+				ThemePanelColorHex("skin", "docTabActiveLostFocusFG"),
+				ThemePanelColorHex("skin", "docTabActiveLostFocusBG"),
+				ThemePanelColorHex("skin", "docTabInactiveHoverFG"),
+				ThemePanelColorHex("skin", "docTabInactiveHoverBG"),
+				ThemePanelColorHex("skin", "docBtnActiveHoverFG"),
+				ThemePanelColorHex("skin", "docBtnActiveHoverBG"),
+				ThemePanelColorHex("skin", "docBtnActiveLostFocusHoverFG"),
+				ThemePanelColorHex("skin", "docBtnActiveLostFocusHoverBG"),
+				ThemePanelColorHex("skin", "docBtnInactiveHoverFG"),
+				ThemePanelColorHex("skin", "docBtnInactiveHoverBG"),
+				ThemePanelColorHex("skin", "toolTabBarFG"),
+				ThemePanelColorHex("skin", "toolTabBarBG"),
+				ThemePanelColorHex("skin", "toolTabActive"),
+				ThemePanelColorHex("skin", "toolTitleActiveFG"),
+				ThemePanelColorHex("skin", "toolTitleActiveBG"),
+				ThemePanelColorHex("skin", "toolTitleLostFocusFG"),
+				ThemePanelColorHex("skin", "toolTitleLostFocusBG"),
+				ThemePanelColorHex("skin", "toolTitleDotActive"),
+				ThemePanelColorHex("skin", "toolTitleDotLostFocus"),
+				ThemePanelColorHex("skin", "autoHideTabBarFG"),
+				ThemePanelColorHex("skin", "autoHideTabBarBG"),
+				ThemePanelColorHex("skin", "autoHideTabActive"),
+				ThemePanelColorHex("skin", "autoHideTabInactive")
 			};
 			// 定义数值条颜色
 			Config.UI.BarColorSchemes = new List<SerializableColor>[] {
@@ -1651,26 +1876,97 @@ namespace ElectronicObserver.Utility {
 			}
 		}
 
-		private String ThemeColorHex(string type, string name) {
-			if (ThemeStyle.IsDefined(type) && ThemeStyle[type].IsDefined(name)) {
+		private String ThemeColorHex( string type, string name ) {
+			if (ThemeStyle.IsDefined( type ) && ThemeStyle[type].IsDefined( name )) {
 				return ThemeStyle[type][name];
-			} else {
+			}
+			else {
 				switch (type + "_" + name) {
 					case "panelColors_tabActiveFG":
-						return ThemeColorHex("panelColors", "foreground2");
+						return ThemeColorHex( "panelColors", "foreground2" );
 					case "panelColors_tabActiveBG":
-						return ThemeColorHex("panelColors", "background2");
+						return ThemeColorHex( "panelColors", "background2" );
 					case "panelColors_tabLostFocusFG":
-						return ThemeColorHex("panelColors", "foreground2");
+						return ThemeColorHex( "panelColors", "foreground2" );
 					case "panelColors_tabLostFocusBG":
-						return ThemeColorHex("panelColors", "background2");
+						return ThemeColorHex( "panelColors", "background2" );
 					case "panelColors_tabHoverFG":
-						return ThemeColorHex("panelColors", "foreground2");
+						return ThemeColorHex( "panelColors", "foreground2" );
 					case "panelColors_tabHoverBG":
-						return ThemeColorHex("panelColors", "background2");
+						return ThemeColorHex( "panelColors", "background2" );
 					default:
-						var c = ThemeColor(type, name);
-						return "#" + c.R.ToString("X2") + c.G.ToString("X2") + c.B.ToString("X2");
+						var c = ThemeColor( type, name );
+						return "#" + c.R.ToString( "X2" ) + c.G.ToString( "X2" ) + c.B.ToString( "X2" );
+				}
+			}
+		}
+
+		private String ThemePanelColorHex( string form, string name ) {
+			if (ThemeStyle.IsDefined( "panelColors" ) && ThemeStyle["panelColors"].IsDefined( form ) && ThemeStyle["panelColors"][form].IsDefined( name )) {
+				return ThemeStyle["panelColors"][form][name];
+			}
+			else {
+				switch (form + "_" + name) {
+					// 面板分割线
+					case "skin_panelSplitter":
+						return ThemeColorHex( "panelColors", "background2" );
+					case "skin_docTabBarFG":
+						return ThemeColorHex( "panelColors", "foreground2" );
+					case "skin_docTabBarBG":
+						return ThemeColorHex( "panelColors", "background" );
+					case "skin_docTabActiveFG":
+						return ThemeColorHex( "panelColors", "foreground" );
+					case "skin_docTabActiveBG":
+						return ThemeColorHex( "panelColors", "background2" );
+					case "skin_docTabActiveLostFocusFG":
+						return ThemeColorHex( "panelColors", "foreground" );
+					case "skin_docTabActiveLostFocusBG":
+						return ThemeColorHex( "panelColors", "background2" );
+					case "skin_docTabInactiveHoverFG":
+						return ThemeColorHex( "panelColors", "foreground" );
+					case "skin_docTabInactiveHoverBG":
+						return ThemeColorHex( "panelColors", "background2" );
+					case "skin_docBtnActiveHoverFG":
+						return ThemeColorHex( "panelColors", "foreground" );
+					case "skin_docBtnActiveHoverBG":
+						return ThemeColorHex( "panelColors", "background2" );
+					case "skin_docBtnActiveLostFocusHoverFG":
+						return ThemeColorHex( "panelColors", "foreground" );
+					case "skin_docBtnActiveLostFocusHoverBG":
+						return ThemeColorHex( "panelColors", "background2" );
+					case "skin_docBtnInactiveHoverFG":
+						return ThemeColorHex( "panelColors", "foreground" );
+					case "skin_docBtnInactiveHoverBG":
+						return ThemeColorHex( "panelColors", "background2" );
+					case "skin_toolTabBarFG":
+						return ThemeColorHex( "panelColors", "foreground2" );
+					case "skin_toolTabBarBG":
+						return ThemeColorHex( "panelColors", "background" );
+					case "skin_toolTabActive":
+						return ThemeColorHex( "panelColors", "foreground" );
+					case "skin_toolTitleActiveFG":
+						return ThemeColorHex( "panelColors", "foreground" );
+					case "skin_toolTitleActiveBG":
+						return ThemeColorHex( "panelColors", "background2" );
+					case "skin_toolTitleLostFocusFG":
+						return ThemeColorHex( "panelColors", "foreground2" );
+					case "skin_toolTitleLostFocusBG":
+						return ThemeColorHex( "panelColors", "background" );
+					case "skin_toolTitleDotActive":
+						return ThemeColorHex( "panelColors", "background" );
+					case "skin_toolTitleDotLostFocus":
+						return ThemeColorHex( "panelColors", "background2" );
+					case "skin_autoHideTabBarFG":
+						return ThemeColorHex( "panelColors", "background2" );
+					case "skin_autoHideTabBarBG":
+						return ThemeColorHex( "panelColors", "background" );
+					case "skin_autoHideTabActive":
+						return ThemeColorHex( "panelColors", "foreground" );
+					case "skin_autoHideTabInactive":
+						return ThemeColorHex( "panelColors", "foreground2" );
+					default:
+						var c = ThemePanelColor( form, name );
+						return "#" + c.R.ToString( "X2" ) + c.G.ToString( "X2" ) + c.B.ToString( "X2" );
 				}
 			}
 		}
@@ -1998,7 +2294,7 @@ namespace ElectronicObserver.Utility {
 							convertPair.Add( key, record.FleetID );
 						}
 
-						enemyFleetRecord.Save( RecordManager.Instance.MasterPath );
+						enemyFleetRecord.SaveAll( RecordManager.Instance.MasterPath );
 
 						var shipDropRecord = new ShipDropRecord();
 						shipDropRecord.Load( RecordManager.Instance.MasterPath );
@@ -2008,7 +2304,7 @@ namespace ElectronicObserver.Utility {
 								record.EnemyFleetID = convertPair[record.EnemyFleetID];
 						}
 
-						shipDropRecord.Save( RecordManager.Instance.MasterPath );
+						shipDropRecord.SaveAll( RecordManager.Instance.MasterPath );
 
 					} catch ( Exception ex ) {
 						ErrorReporter.SendErrorReport( ex, "CheckUpdate: Failed to reset ShipDropRecord ID." );
@@ -2042,15 +2338,15 @@ namespace ElectronicObserver.Utility {
 						foreach ( var pair in defaultRecord.Record.Keys.GroupJoin( currentRecord.Record.Keys, i => i, i => i, ( id, list ) => new { id, list } ) ) {
 							if ( defaultRecord[pair.id].HPMin > 0 && ( pair.list == null || defaultRecord[pair.id].SaveLine() != currentRecord[pair.id].SaveLine() ) )
 								changed.Add( pair.id );
-					}
+						}
 
 						foreach ( var id in changed ) {
 							if ( currentRecord[id] == null )
 								currentRecord.Update( new ShipParameterRecord.ShipParameterElement() );
 							currentRecord[id].LoadLine( defaultRecord.Record[id].SaveLine() );
-				}
+						}
 
-						currentRecord.Save( RecordManager.Instance.MasterPath );
+						currentRecord.SaveAll( RecordManager.Instance.MasterPath );
 
 						Directory.Delete( defaultRecordPath, true );
 
@@ -2065,6 +2361,50 @@ namespace ElectronicObserver.Utility {
 			}
 
 
+			// version 2.6.2 or earlier
+			if ( dt <= DateTimeHelper.CSVStringToTime( "2017/05/07 23:00:00" ) ) {
+
+				// 開発レコードを重複記録してしまう不具合があったため、重複行の削除を行う
+
+				try {
+
+					var dev = new DevelopmentRecord();
+					string path = RecordManager.Instance.MasterPath + "\\" + dev.FileName;
+
+
+					string backupPath = RecordManager.Instance.MasterPath + "\\Backup_" + DateTimeHelper.GetTimeStamp();
+					Directory.CreateDirectory( backupPath );
+					File.Copy( path, backupPath + "\\" + dev.FileName );
+
+
+					if ( File.Exists( path ) ) {
+
+						var lines = new List<string>();
+						using ( StreamReader sr = new StreamReader( path, Utility.Configuration.Config.Log.FileEncoding ) ) {
+							sr.ReadLine();		// skip header row
+							while ( !sr.EndOfStream )
+								lines.Add( sr.ReadLine() );
+						}
+
+						int beforeCount = lines.Count;
+						lines = lines.Distinct().ToList();
+						int afterCount = lines.Count;
+
+						using ( StreamWriter sw = new StreamWriter( path, false, Utility.Configuration.Config.Log.FileEncoding ) ) {
+							sw.WriteLine( dev.RecordHeader );
+							foreach ( var line in lines ) {
+								sw.WriteLine( line );
+							}
+						}
+
+						Utility.Logger.Add( 2, "<= ver. 2.6.2 開発レコード重複不具合対応: 正常に完了しました。 " + ( beforeCount - afterCount ) + " 件の重複を削除しました。" );
+
+					}
+
+				} catch ( Exception ex ) {
+					ErrorReporter.SendErrorReport( ex, "<= ver. 2.6.2 開発レコード重複不具合対応: 失敗しました。" );
+				}
+			}
 
 
 			Config.VersionUpdateTime = DateTimeHelper.TimeToCSVString( SoftwareInformation.UpdateTime );

@@ -150,9 +150,6 @@
   <data name="ControlWindow" xml:space="preserve">
     <value>컨트롤 윈도우(&amp;C)</value>
   </data>
-  <data name="Debug" xml:space="preserve">
-    <value>디버그(&amp;D)</value>
-  </data>
   <data name="DeleteOldAPI" xml:space="preserve">
     <value>낡은 API 데이터를 삭제(&amp;D)</value>
   </data>
@@ -168,9 +165,6 @@
   <data name="EquipmentList" xml:space="preserve">
     <value>장비 일람(&amp;Q)</value>
   </data>
-  <data name="File" xml:space="preserve">
-    <value>파일(&amp;F)</value>
-  </data>
   <data name="FleetList" xml:space="preserve">
     <value>함대 일람(&amp;O)</value>
   </data>
@@ -179,9 +173,6 @@
   </data>
   <data name="Headquarters" xml:space="preserve">
     <value>사령부(&amp;H)</value>
-  </data>
-  <data name="Help" xml:space="preserve">
-    <value>도움말(&amp;H)</value>
   </data>
   <data name="Information" xml:space="preserve">
     <value>정보(&amp;I)</value>
@@ -218,9 +209,6 @@
   </data>
   <data name="Other_ApplyStyleSheet" xml:space="preserve">
     <value>스타일 시트를 적용한다.</value>
-  </data>
-  <data name="Other_ClearCache" xml:space="preserve">
-    <value>캐쉬를 삭제(&amp;C)</value>
   </data>
   <data name="Other_Mute" xml:space="preserve">
     <value>음소거(&amp;M)</value>
@@ -285,14 +273,8 @@
   <data name="Title" xml:space="preserve">
     <value>74식 전자 관측의</value>
   </data>
-  <data name="Tools" xml:space="preserve">
-    <value>툴(&amp;T)</value>
-  </data>
   <data name="VersionInfo" xml:space="preserve">
     <value>버전 정보(&amp;V)</value>
-  </data>
-  <data name="View" xml:space="preserve">
-    <value>표시(&amp;V)</value>
   </data>
   <data name="WindowCapture" xml:space="preserve">
     <value>창을 캡쳐(&amp;W)</value>

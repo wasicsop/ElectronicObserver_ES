@@ -36,7 +36,7 @@ namespace ElectronicObserver.Utility {
 		/// </summary>
 		public static string VersionJapanese {
 			get {
-				return SoftwareNameJapanese + "二六型改二";
+				return SoftwareNameJapanese + "二七型改甲";
 			}
 		}
 
@@ -45,7 +45,7 @@ namespace ElectronicObserver.Utility {
 		/// </summary>
 		public static string VersionEnglish {
 			get {
-				return "2.6.2";
+				return "2.7.1.1";
 			}
 		}
 
@@ -55,7 +55,7 @@ namespace ElectronicObserver.Utility {
 		/// </summary>
 		public static DateTime UpdateTime {
 			get {
-				return DateTimeHelper.CSVStringToTime( "2017/05/07 23:00:00" );
+				return DateTimeHelper.CSVStringToTime( "2017/08/30 23:45:00" );
 			}
 		}
 
@@ -117,7 +117,7 @@ namespace ElectronicObserver.Utility {
 
 						if ( result == System.Windows.Forms.DialogResult.Yes ) {
 
-							System.Diagnostics.Process.Start( "http://github.com/silfumus/ElectronicObserver" );
+							System.Diagnostics.Process.Start( "http://github.com/silfumus/ElectronicObserver/releases" );
 
 						} else if ( result == System.Windows.Forms.DialogResult.Cancel ) {
 
@@ -127,7 +127,7 @@ namespace ElectronicObserver.Utility {
 
 					} else {
 
-						Utility.Logger.Add( 1, Resources.VersionCurrent );
+						Utility.Logger.Add( 2, "You are currently using the latest version (" + date.ToString( "yyyy/MM/dd" ) + " release)." );
 
 					}
 

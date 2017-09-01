@@ -150,9 +150,6 @@
   <data name="ControlWindow" xml:space="preserve">
     <value>Controls (&amp;C)</value>
   </data>
-  <data name="Debug" xml:space="preserve">
-    <value>&amp;Debug</value>
-  </data>
   <data name="DeleteOldAPI" xml:space="preserve">
     <value>Delete Old API Data (&amp;D)</value>
   </data>
@@ -168,9 +165,6 @@
   <data name="EquipmentList" xml:space="preserve">
     <value>Equipment List (&amp;Q)</value>
   </data>
-  <data name="File" xml:space="preserve">
-    <value>&amp;File</value>
-  </data>
   <data name="FleetList" xml:space="preserve">
     <value>Fleet List (&amp;O)</value>
   </data>
@@ -179,9 +173,6 @@
   </data>
   <data name="Headquarters" xml:space="preserve">
     <value>Headquarters (&amp;H)</value>
-  </data>
-  <data name="Help" xml:space="preserve">
-    <value>&amp;Help</value>
   </data>
   <data name="Information" xml:space="preserve">
     <value>Information (&amp;I)</value>
@@ -218,9 +209,6 @@
   </data>
   <data name="Other_ApplyStyleSheet" xml:space="preserve">
     <value>Apply Style Sheet</value>
-  </data>
-  <data name="Other_ClearCache" xml:space="preserve">
-    <value>Clear Browser Cache (&amp;C)</value>
   </data>
   <data name="Other_Mute" xml:space="preserve">
     <value>Mute (&amp;M)</value>
@@ -279,14 +267,8 @@
   <data name="Title" xml:space="preserve">
     <value>Type 74 Electronic Observation Device</value>
   </data>
-  <data name="Tools" xml:space="preserve">
-    <value>&amp;Tools</value>
-  </data>
   <data name="VersionInfo" xml:space="preserve">
     <value>&amp;About Electronic Observer</value>
-  </data>
-  <data name="View" xml:space="preserve">
-    <value>&amp;View</value>
   </data>
   <data name="WindowCapture" xml:space="preserve">
     <value>Window Capture (&amp;W)</value>

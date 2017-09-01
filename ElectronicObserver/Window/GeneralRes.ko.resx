@@ -544,9 +544,6 @@ HP: {3}
   <data name="Scouting" xml:space="preserve">
     <value>색적</value>
   </data>
-  <data name="ScreenCapture" xml:space="preserve">
-    <value>이 화면을 캡쳐(&amp;S)</value>
-  </data>
   <data name="SearchlightUsed" xml:space="preserve">
     <value>조명탄 투사</value>
   </data>

@@ -52,7 +52,7 @@ namespace ElectronicObserver.Utility.Storage {
 
 			} catch ( Exception ex ) {
 
-				Utility.ErrorReporter.SendErrorReport( ex, LoggerRes.FailedLoadingStorage );
+				Utility.ErrorReporter.SendErrorReport( ex, "Failed to write " + GetType().Name );
 			}
 
 		}
@@ -64,7 +64,7 @@ namespace ElectronicObserver.Utility.Storage {
 					serializer.WriteObject( xw, this );
 				}
 			} catch ( Exception ex ) {
-				Utility.ErrorReporter.SendErrorReport( ex, LoggerRes.FailedSavingStorage );
+				Utility.ErrorReporter.SendErrorReport( ex, GetType().Name + " の書き込みに失敗しました。" );
 			}
 		}
 
@@ -81,15 +81,15 @@ namespace ElectronicObserver.Utility.Storage {
 
 			} catch ( FileNotFoundException ) {
 
-				Utility.Logger.Add( 3, string.Format( LoggerRes.StorageDoesNotExist, path ) );
+				Utility.Logger.Add( 3, string.Format( "{0}: {1} does not exists.", GetType().Name, path ) );
 
 			} catch ( DirectoryNotFoundException ) {
 
-				Utility.Logger.Add( 3, string.Format( LoggerRes.StorageDoesNotExist, path ) );
+				Utility.Logger.Add( 3, string.Format( "{0}: {1} does not exists.", GetType().Name, path ) );
 
 			} catch ( Exception ex ) {
 
-				Utility.ErrorReporter.SendErrorReport( ex, LoggerRes.FailedLoadingStorage );
+				Utility.ErrorReporter.SendErrorReport( ex, " Failed to load " + GetType().Name );
 
 			}
 
@@ -119,7 +119,7 @@ namespace ElectronicObserver.Utility.Storage {
 
 			} catch ( Exception ex ) {
 
-				Utility.ErrorReporter.SendErrorReport( ex, LoggerRes.FailedSavingStorage );
+				Utility.ErrorReporter.SendErrorReport( ex, "Failed to write " + GetType().Name );
 			}
 
 		}
@@ -137,15 +137,15 @@ namespace ElectronicObserver.Utility.Storage {
 
 			} catch ( FileNotFoundException ) {
 
-				Utility.Logger.Add( 3, string.Format( LoggerRes.StorageFileDoesNotExist ) );
+				Utility.Logger.Add( 3, GetType().Name + ": File does not exists." );
 
 			} catch ( DirectoryNotFoundException ) {
 
-				Utility.Logger.Add( 3, string.Format( LoggerRes.StorageFileDoesNotExist ) );
+				Utility.Logger.Add( 3, GetType().Name + ": File does not exists." );
 
 			} catch ( Exception ex ) {
 
-				Utility.ErrorReporter.SendErrorReport( ex, LoggerRes.FailedLoadingStorage );
+				Utility.ErrorReporter.SendErrorReport( ex, "Failed to load " + GetType().Name );
 
 			}
 
@@ -161,11 +161,11 @@ namespace ElectronicObserver.Utility.Storage {
 				}
 			} catch ( DirectoryNotFoundException ) {
 
-				Utility.Logger.Add( 3, string.Format( LoggerRes.StorageFileDoesNotExist ) );
+				Utility.Logger.Add( 3, GetType().Name + ": File does not exists." );
 
 			} catch ( Exception ex ) {
 
-				Utility.ErrorReporter.SendErrorReport( ex, LoggerRes.FailedLoadingStorage );
+				Utility.ErrorReporter.SendErrorReport( ex, "Failed to load " + GetType().Name );
 
 			}
 

@@ -147,7 +147,7 @@ namespace ElectronicObserver.Data {
 		/// </summary>
 		public string Message
 		{
-			get { return Window.FormMain.Instance.Translator.GetTranslation(((string)RawData.api_info), Utility.TranslationType.EquipmentDesc).Replace("<br>", "\n"); }
+			get { return Window.FormMain.Instance.Translator.GetTranslation(((string)RawData.api_info), Utility.TranslationType.EquipmentDesc).Replace("<br>", "\r\n"); }
 		}
 
 		/// <summary>

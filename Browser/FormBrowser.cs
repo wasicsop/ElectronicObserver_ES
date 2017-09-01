@@ -515,7 +515,7 @@ namespace Browser {
 		/// </summary>
 		/// <param name="path">保存先。</param>
 		/// <param name="format">画像のフォーマット。</param>
-		private void SaveScreenShot( string path, System.Drawing.Imaging.ImageFormat format ) {
+		private void SaveScreenShot( string path, ImageFormat format ) {
 
 			var wb = Browser;
 
@@ -565,7 +565,10 @@ namespace Browser {
 				if ( viewobj != null ) {
 					var rect = new RECT { left = 0, top = 0, width = KanColleSize.Width, height = KanColleSize.Height };
 
-					using ( var image = new Bitmap( rect.width, rect.height, System.Drawing.Imaging.PixelFormat.Format24bppRgb ) ) {
+					bool is32bpp = format == ImageFormat.Png && Configuration.AvoidTwitterDeterioration;
+
+					// twitter の劣化回避を行う場合は32ビットの色深度で作業する
+					using ( var image = new Bitmap( rect.width, rect.height, is32bpp ? PixelFormat.Format32bppArgb : PixelFormat.Format24bppRgb ) ) {
 
 						var device = new DVTARGETDEVICE { tdSize = 0 };
 
@@ -574,6 +577,13 @@ namespace Browser {
 							viewobj.Draw( 1, 0, IntPtr.Zero, device, IntPtr.Zero, hdc, rect, null, IntPtr.Zero, IntPtr.Zero );
 							g.ReleaseHdc( hdc );
 						}
+
+						if ( is32bpp ) {
+							// 不透明ピクセルのみだと jpeg 化されてしまうため、1px だけわずかに透明にする
+							Color temp = image.GetPixel( image.Width - 1, image.Height - 1 );
+							image.SetPixel( image.Width - 1, image.Height - 1, Color.FromArgb( 252, temp.R, temp.G, temp.B ) );
+						}
+
 
 						image.Save( path, format );
 					}
@@ -928,21 +938,21 @@ namespace Browser {
 
 		private void ToolMenu_Other_ClearCache_Click( object sender, EventArgs e ) {
 
-			if ( MessageBox.Show( Resources.ClearCacheDialog, Resources.ClearCacheTitle, MessageBoxButtons.OKCancel, MessageBoxIcon.Question )
-				== System.Windows.Forms.DialogResult.OK ) {
+			if (MessageBox.Show( "This will clear the browser cache.\r\nAre you sure?", "Clear Cache", MessageBoxButtons.OKCancel, MessageBoxIcon.Question )
+				== System.Windows.Forms.DialogResult.OK) {
 
-				BeginInvoke( (MethodInvoker)( () => {
+				BeginInvoke( (MethodInvoker)(() => {
 					bool succeeded = ClearCache();
-					if ( succeeded )
-						MessageBox.Show( Resources.ClearCompleteDialog, Resources.ClearComplete, MessageBoxButtons.OK, MessageBoxIcon.Information );
+					if (succeeded)
+						MessageBox.Show( "Clear cache completed successfully.", "Clear Cache Completed", MessageBoxButtons.OK, MessageBoxIcon.Information );
 					else
-						MessageBox.Show( "時間がかかりすぎたため、キャッシュの削除を中断しました。\r\n削除しきれていない可能性があります。", "削除中断", MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
-				} ) );
+						MessageBox.Show( "The clear cache operation was interrupted because it took too long.", "Clear Cache Aborted", MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
+				}) );
 
 			}
 		}
 
-        private void ToolMenu_Other_RegionCookie_Click(object sender, EventArgs e)
+		private void ToolMenu_Other_RegionCookie_Click(object sender, EventArgs e)
         {
             BeginInvoke((MethodInvoker)(() => { SetCookie(); }));
         }
@@ -1066,6 +1076,21 @@ namespace Browser {
 		private void ToolMenu_Other_LastScreenShot_OpenScreenShotFolder_Click( object sender, EventArgs e ) {
 			if ( System.IO.Directory.Exists( Configuration.ScreenShotPath ) )
 				System.Diagnostics.Process.Start( Configuration.ScreenShotPath );
+		}
+
+		private void ToolMenu_Other_LastScreenShot_CopyToClipboard_Click( object sender, EventArgs e ) {
+
+			if ( _lastScreenShotPath != null && System.IO.File.Exists( _lastScreenShotPath ) ) {
+				try {
+					using ( var img = new Bitmap( _lastScreenShotPath ) ) {
+						Clipboard.SetImage( img );
+						AddLog( 2, string.Format( "スクリーンショット {0} をクリップボードにコピーしました。", _lastScreenShotPath ) );
+					}
+				} catch ( Exception ex ) {
+					BrowserHost.AsyncRemoteRun( () =>
+						BrowserHost.Proxy.SendErrorReport( ex.Message, "スクリーンショットのクリップボードへのコピーに失敗しました。" ) );
+				}
+			}
 		}
 
 
@@ -1200,6 +1225,7 @@ namespace Browser {
 			IntPtr lpszUrlName );
 
 		#endregion
+
 
 	}
 

@@ -208,10 +208,10 @@
     <value>(none)</value>
   </data>
   <data name="OutputCSVData" xml:space="preserve">
-    <value>Output CSV (data use) (&amp;D)...</value>
+    <value>Export CSV (&amp;data use)...</value>
   </data>
   <data name="OutputCSVUser" xml:space="preserve">
-    <value>Output CSV (reference use) (&amp;U)...</value>
+    <value>Export CSV (reference &amp;use)...</value>
   </data>
   <data name="Range" xml:space="preserve">
     <value>Range</value>
@@ -301,7 +301,7 @@ Maximum: {2} Steel / {3} Fuel
     <value>Stock equipment:</value>
   </data>
   <data name="OutputCSV" xml:space="preserve">
-    <value>Output CSV (&amp;C)...</value>
+    <value>Export &amp;CSV...</value>
   </data>
   <data name="Refresh" xml:space="preserve">
     <value>Refresh (&amp;U)...</value>

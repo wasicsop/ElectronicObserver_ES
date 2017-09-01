@@ -82,6 +82,7 @@
 			this.StripMenu_Tool_AlbumMasterEquipment = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
 			this.StripMenu_Tool_AntiAirDefense = new System.Windows.Forms.ToolStripMenuItem();
+			this.StripMenu_Tool_FleetImageGenerator = new System.Windows.Forms.ToolStripMenuItem();
 			this.StripMenu_Debug = new System.Windows.Forms.ToolStripMenuItem();
 			this.StripMenu_Debug_LoadAPIFromFile = new System.Windows.Forms.ToolStripMenuItem();
 			this.StripMenu_Debug_LoadInitialAPI = new System.Windows.Forms.ToolStripMenuItem();
@@ -97,7 +98,6 @@
 			this.StripMenu_Help_Version = new System.Windows.Forms.ToolStripMenuItem();
 			this.StripStatus = new System.Windows.Forms.StatusStrip();
 			this.StripStatus_Information = new System.Windows.Forms.ToolStripStatusLabel();
-			this.StripStatus_Padding = new System.Windows.Forms.ToolStripStatusLabel();
 			this.StripStatus_Clock = new System.Windows.Forms.ToolStripStatusLabel();
 			this.UIUpdateTimer = new System.Windows.Forms.Timer(this.components);
 			this.MainDockPanel = new WeifenLuo.WinFormsUI.Docking.DockPanel();
@@ -105,9 +105,9 @@
 			this.StripMenu.SuspendLayout();
 			this.StripStatus.SuspendLayout();
 			this.SuspendLayout();
-			// 
+			//
 			// StripMenu
-			// 
+			//
 			this.StripMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.StripMenu_File,
             this.StripMenu_View,
@@ -119,9 +119,9 @@
 			this.StripMenu.Size = new System.Drawing.Size(640, 24);
 			this.StripMenu.TabIndex = 2;
 			this.StripMenu.Text = "menuStrip1";
-			// 
+			//
 			// StripMenu_File
-			// 
+			//
 			this.StripMenu_File.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.StripMenu_File_Record,
             this.StripMenu_File_Layout,
@@ -131,33 +131,33 @@
             this.StripMenu_File_Close});
 			this.StripMenu_File.Name = "StripMenu_File";
 			this.StripMenu_File.Size = new System.Drawing.Size(70, 20);
-			this.StripMenu_File.Text = global::ElectronicObserver.Window.Menus.File;
-			// 
+			this.StripMenu_File.Text = "&File";
+			//
 			// StripMenu_File_Record
-			// 
+			//
 			this.StripMenu_File_Record.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.StripMenu_File_Record_Save,
             this.StripMenu_File_Record_Load});
 			this.StripMenu_File_Record.Name = "StripMenu_File_Record";
 			this.StripMenu_File_Record.Size = new System.Drawing.Size(136, 22);
 			this.StripMenu_File_Record.Text = global::ElectronicObserver.Window.Menus.Record;
-			// 
+			//
 			// StripMenu_File_Record_Save
-			// 
+			//
 			this.StripMenu_File_Record_Save.Name = "StripMenu_File_Record_Save";
 			this.StripMenu_File_Record_Save.Size = new System.Drawing.Size(120, 22);
 			this.StripMenu_File_Record_Save.Text = global::ElectronicObserver.Window.Menus.Save;
 			this.StripMenu_File_Record_Save.Click += new System.EventHandler(this.StripMenu_File_SaveData_Save_Click);
-			// 
+			//
 			// StripMenu_File_Record_Load
-			// 
+			//
 			this.StripMenu_File_Record_Load.Name = "StripMenu_File_Record_Load";
 			this.StripMenu_File_Record_Load.Size = new System.Drawing.Size(120, 22);
 			this.StripMenu_File_Record_Load.Text = global::ElectronicObserver.Window.Menus.Load;
 			this.StripMenu_File_Record_Load.Click += new System.EventHandler(this.StripMenu_File_SaveData_Load_Click);
-			// 
+			//
 			// StripMenu_File_Layout
-			// 
+			//
 			this.StripMenu_File_Layout.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.StripMenu_File_Layout_Load,
             this.StripMenu_File_Layout_Save,
@@ -170,87 +170,87 @@
 			this.StripMenu_File_Layout.Name = "StripMenu_File_Layout";
 			this.StripMenu_File_Layout.Size = new System.Drawing.Size(136, 22);
 			this.StripMenu_File_Layout.Text = global::ElectronicObserver.Window.Menus.Layout;
-			// 
+			//
 			// StripMenu_File_Layout_Load
-			// 
+			//
 			this.StripMenu_File_Layout_Load.Name = "StripMenu_File_Layout_Load";
 			this.StripMenu_File_Layout_Load.Size = new System.Drawing.Size(210, 22);
 			this.StripMenu_File_Layout_Load.Text = global::ElectronicObserver.Window.Menus.Load;
 			this.StripMenu_File_Layout_Load.Click += new System.EventHandler(this.StripMenu_File_Layout_Load_Click);
-			// 
+			//
 			// StripMenu_File_Layout_Save
-			// 
+			//
 			this.StripMenu_File_Layout_Save.Name = "StripMenu_File_Layout_Save";
 			this.StripMenu_File_Layout_Save.Size = new System.Drawing.Size(210, 22);
 			this.StripMenu_File_Layout_Save.Text = global::ElectronicObserver.Window.Menus.Save;
 			this.StripMenu_File_Layout_Save.Click += new System.EventHandler(this.StripMenu_File_Layout_Save_Click);
-			// 
+			//
 			// StripMenu_File_Layout_Open
-			// 
+			//
 			this.StripMenu_File_Layout_Open.Name = "StripMenu_File_Layout_Open";
 			this.StripMenu_File_Layout_Open.Size = new System.Drawing.Size(210, 22);
 			this.StripMenu_File_Layout_Open.Text = global::ElectronicObserver.Window.Menus.LayoutOpen;
 			this.StripMenu_File_Layout_Open.Click += new System.EventHandler(this.StripMenu_File_Layout_Open_Click);
-			// 
+			//
 			// StripMenu_File_Layout_Change
-			// 
+			//
 			this.StripMenu_File_Layout_Change.Name = "StripMenu_File_Layout_Change";
 			this.StripMenu_File_Layout_Change.Size = new System.Drawing.Size(210, 22);
 			this.StripMenu_File_Layout_Change.Text = global::ElectronicObserver.Window.Menus.File_Layout_Change;
 			this.StripMenu_File_Layout_Change.Click += new System.EventHandler(this.StripMenu_File_Layout_Change_Click);
-			// 
+			//
 			// toolStripSeparator9
-			// 
+			//
 			this.toolStripSeparator9.Name = "toolStripSeparator9";
 			this.toolStripSeparator9.Size = new System.Drawing.Size(207, 6);
-			// 
+			//
 			// StripMenu_File_Layout_LockLayout
-			// 
+			//
 			this.StripMenu_File_Layout_LockLayout.CheckOnClick = true;
 			this.StripMenu_File_Layout_LockLayout.Name = "StripMenu_File_Layout_LockLayout";
 			this.StripMenu_File_Layout_LockLayout.Size = new System.Drawing.Size(210, 22);
 			this.StripMenu_File_Layout_LockLayout.Text = global::ElectronicObserver.Window.Menus.File_Layout_LockLayout;
 			this.StripMenu_File_Layout_LockLayout.Click += new System.EventHandler(this.StripMenu_File_Layout_LockLayout_Click);
-			// 
+			//
 			// toolStripSeparator10
-			// 
+			//
 			this.toolStripSeparator10.Name = "toolStripSeparator10";
 			this.toolStripSeparator10.Size = new System.Drawing.Size(207, 6);
-			// 
+			//
 			// StripMenu_File_Layout_TopMost
-			// 
+			//
 			this.StripMenu_File_Layout_TopMost.CheckOnClick = true;
 			this.StripMenu_File_Layout_TopMost.Name = "StripMenu_File_Layout_TopMost";
 			this.StripMenu_File_Layout_TopMost.Size = new System.Drawing.Size(210, 22);
 			this.StripMenu_File_Layout_TopMost.Text = global::ElectronicObserver.Window.Menus.File_Layout_TopMost;
 			this.StripMenu_File_Layout_TopMost.Click += new System.EventHandler(this.StripMenu_File_Layout_TopMost_Click);
-			// 
+			//
 			// toolStripSeparator6
-			// 
+			//
 			this.toolStripSeparator6.Name = "toolStripSeparator6";
 			this.toolStripSeparator6.Size = new System.Drawing.Size(133, 6);
-			// 
+			//
 			// StripMenu_File_Configuration
-			// 
+			//
 			this.StripMenu_File_Configuration.Name = "StripMenu_File_Configuration";
 			this.StripMenu_File_Configuration.Size = new System.Drawing.Size(136, 22);
 			this.StripMenu_File_Configuration.Text = global::ElectronicObserver.Window.Menus.Settings;
 			this.StripMenu_File_Configuration.Click += new System.EventHandler(this.StripMenu_File_Configuration_Click);
-			// 
+			//
 			// toolStripSeparator5
-			// 
+			//
 			this.toolStripSeparator5.Name = "toolStripSeparator5";
 			this.toolStripSeparator5.Size = new System.Drawing.Size(133, 6);
-			// 
+			//
 			// StripMenu_File_Close
-			// 
+			//
 			this.StripMenu_File_Close.Name = "StripMenu_File_Close";
 			this.StripMenu_File_Close.Size = new System.Drawing.Size(136, 22);
 			this.StripMenu_File_Close.Text = global::ElectronicObserver.Window.Menus.Close;
 			this.StripMenu_File_Close.Click += new System.EventHandler(this.StripMenu_File_Close_Click);
-			// 
+			//
 			// StripMenu_View
-			// 
+			//
 			this.StripMenu_View.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.StripMenu_View_Fleet,
             this.StripMenu_View_FleetOverview,
@@ -274,10 +274,10 @@
             this.StripMenu_View_Json});
 			this.StripMenu_View.Name = "StripMenu_View";
 			this.StripMenu_View.Size = new System.Drawing.Size(60, 20);
-			this.StripMenu_View.Text = global::ElectronicObserver.Window.Menus.View;
-			// 
+			this.StripMenu_View.Text = "&View";
+			//
 			// StripMenu_View_Fleet
-			// 
+			//
 			this.StripMenu_View_Fleet.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.StripMenu_View_Fleet_1,
             this.StripMenu_View_Fleet_2,
@@ -286,148 +286,148 @@
 			this.StripMenu_View_Fleet.Name = "StripMenu_View_Fleet";
 			this.StripMenu_View_Fleet.Size = new System.Drawing.Size(188, 22);
 			this.StripMenu_View_Fleet.Text = global::ElectronicObserver.Window.Menus.Fleets;
-			// 
+			//
 			// StripMenu_View_Fleet_1
-			// 
+			//
 			this.StripMenu_View_Fleet_1.Name = "StripMenu_View_Fleet_1";
 			this.StripMenu_View_Fleet_1.Size = new System.Drawing.Size(87, 22);
 			this.StripMenu_View_Fleet_1.Text = "#&1";
 			this.StripMenu_View_Fleet_1.Click += new System.EventHandler(this.StripMenu_View_Fleet_1_Click);
-			// 
+			//
 			// StripMenu_View_Fleet_2
-			// 
+			//
 			this.StripMenu_View_Fleet_2.Name = "StripMenu_View_Fleet_2";
 			this.StripMenu_View_Fleet_2.Size = new System.Drawing.Size(87, 22);
 			this.StripMenu_View_Fleet_2.Text = "#&2";
 			this.StripMenu_View_Fleet_2.Click += new System.EventHandler(this.StripMenu_View_Fleet_2_Click);
-			// 
+			//
 			// StripMenu_View_Fleet_3
-			// 
+			//
 			this.StripMenu_View_Fleet_3.Name = "StripMenu_View_Fleet_3";
 			this.StripMenu_View_Fleet_3.Size = new System.Drawing.Size(87, 22);
 			this.StripMenu_View_Fleet_3.Text = "#&3";
 			this.StripMenu_View_Fleet_3.Click += new System.EventHandler(this.StripMenu_View_Fleet_3_Click);
-			// 
+			//
 			// StripMenu_View_Fleet_4
-			// 
+			//
 			this.StripMenu_View_Fleet_4.Name = "StripMenu_View_Fleet_4";
 			this.StripMenu_View_Fleet_4.Size = new System.Drawing.Size(87, 22);
 			this.StripMenu_View_Fleet_4.Text = "#&4";
 			this.StripMenu_View_Fleet_4.Click += new System.EventHandler(this.StripMenu_View_Fleet_4_Click);
-			// 
+			//
 			// StripMenu_View_FleetOverview
-			// 
+			//
 			this.StripMenu_View_FleetOverview.Name = "StripMenu_View_FleetOverview";
 			this.StripMenu_View_FleetOverview.Size = new System.Drawing.Size(188, 22);
 			this.StripMenu_View_FleetOverview.Text = global::ElectronicObserver.Window.Menus.FleetList;
 			this.StripMenu_View_FleetOverview.Click += new System.EventHandler(this.StripMenu_View_FleetOverview_Click);
-			// 
+			//
 			// StripMenu_View_ShipGroup
-			// 
+			//
 			this.StripMenu_View_ShipGroup.Name = "StripMenu_View_ShipGroup";
 			this.StripMenu_View_ShipGroup.Size = new System.Drawing.Size(188, 22);
 			this.StripMenu_View_ShipGroup.Text = global::ElectronicObserver.Window.Menus.ShipGroup;
 			this.StripMenu_View_ShipGroup.Click += new System.EventHandler(this.StripMenu_View_ShipGroup_Click);
-			// 
+			//
 			// StripMenu_View_XPCalculator
-			// 
+			//
 			this.StripMenu_View_XPCalculator.Name = "StripMenu_View_XPCalculator";
 			this.StripMenu_View_XPCalculator.Size = new System.Drawing.Size(188, 22);
 			this.StripMenu_View_XPCalculator.Text = "Exp Calculator";
 			this.StripMenu_View_XPCalculator.Click += new System.EventHandler(this.StripMenu_View_XPCalculator_Click);
-			// 
+			//
 			// toolStripSeparator1
-			// 
+			//
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
 			this.toolStripSeparator1.Size = new System.Drawing.Size(185, 6);
-			// 
+			//
 			// StripMenu_View_Dock
-			// 
+			//
 			this.StripMenu_View_Dock.Name = "StripMenu_View_Dock";
 			this.StripMenu_View_Dock.Size = new System.Drawing.Size(188, 22);
 			this.StripMenu_View_Dock.Text = global::ElectronicObserver.Window.Menus.Dock;
 			this.StripMenu_View_Dock.Click += new System.EventHandler(this.StripMenu_View_Dock_Click);
-			// 
+			//
 			// StripMenu_View_Arsenal
-			// 
+			//
 			this.StripMenu_View_Arsenal.Name = "StripMenu_View_Arsenal";
 			this.StripMenu_View_Arsenal.Size = new System.Drawing.Size(188, 22);
 			this.StripMenu_View_Arsenal.Text = global::ElectronicObserver.Window.Menus.Arsenal;
 			this.StripMenu_View_Arsenal.Click += new System.EventHandler(this.StripMenu_View_Arsenal_Click);
-			// 
+			//
 			// StripMenu_View_BaseAirCorps
-			// 
+			//
 			this.StripMenu_View_BaseAirCorps.Name = "StripMenu_View_BaseAirCorps";
 			this.StripMenu_View_BaseAirCorps.Size = new System.Drawing.Size(188, 22);
 			this.StripMenu_View_BaseAirCorps.Text = global::ElectronicObserver.Window.Menus.BaseAirCorps;
 			this.StripMenu_View_BaseAirCorps.Click += new System.EventHandler(this.StripMenu_View_BaseAirCorps_Click);
-			// 
+			//
 			// toolStripSeparator2
-			// 
+			//
 			this.toolStripSeparator2.Name = "toolStripSeparator2";
 			this.toolStripSeparator2.Size = new System.Drawing.Size(185, 6);
-			// 
+			//
 			// StripMenu_View_Headquarters
-			// 
+			//
 			this.StripMenu_View_Headquarters.Name = "StripMenu_View_Headquarters";
 			this.StripMenu_View_Headquarters.Size = new System.Drawing.Size(188, 22);
 			this.StripMenu_View_Headquarters.Text = global::ElectronicObserver.Window.Menus.Headquarters;
 			this.StripMenu_View_Headquarters.Click += new System.EventHandler(this.StripMenu_View_Headquarters_Click);
-			// 
+			//
 			// StripMenu_View_Quest
-			// 
+			//
 			this.StripMenu_View_Quest.Name = "StripMenu_View_Quest";
 			this.StripMenu_View_Quest.Size = new System.Drawing.Size(188, 22);
 			this.StripMenu_View_Quest.Text = global::ElectronicObserver.Window.Menus.Quest;
 			this.StripMenu_View_Quest.Click += new System.EventHandler(this.StripMenu_View_Quest_Click);
-			// 
+			//
 			// StripMenu_View_Information
-			// 
+			//
 			this.StripMenu_View_Information.Name = "StripMenu_View_Information";
 			this.StripMenu_View_Information.Size = new System.Drawing.Size(188, 22);
 			this.StripMenu_View_Information.Text = global::ElectronicObserver.Window.Menus.Information;
 			this.StripMenu_View_Information.Click += new System.EventHandler(this.StripMenu_View_Information_Click);
-			// 
+			//
 			// toolStripSeparator3
-			// 
+			//
 			this.toolStripSeparator3.Name = "toolStripSeparator3";
 			this.toolStripSeparator3.Size = new System.Drawing.Size(185, 6);
-			// 
+			//
 			// StripMenu_View_Compass
-			// 
+			//
 			this.StripMenu_View_Compass.Name = "StripMenu_View_Compass";
 			this.StripMenu_View_Compass.Size = new System.Drawing.Size(188, 22);
 			this.StripMenu_View_Compass.Text = global::ElectronicObserver.Window.Menus.Compass;
 			this.StripMenu_View_Compass.Click += new System.EventHandler(this.StripMenu_View_Compass_Click);
-			// 
+			//
 			// StripMenu_View_Battle
-			// 
+			//
 			this.StripMenu_View_Battle.Name = "StripMenu_View_Battle";
 			this.StripMenu_View_Battle.Size = new System.Drawing.Size(188, 22);
 			this.StripMenu_View_Battle.Text = global::ElectronicObserver.Window.Menus.Battle;
 			this.StripMenu_View_Battle.Click += new System.EventHandler(this.StripMenu_View_Battle_Click);
-			// 
+			//
 			// toolStripSeparator4
-			// 
+			//
 			this.toolStripSeparator4.Name = "toolStripSeparator4";
 			this.toolStripSeparator4.Size = new System.Drawing.Size(185, 6);
-			// 
+			//
 			// StripMenu_View_Browser
-			// 
+			//
 			this.StripMenu_View_Browser.Name = "StripMenu_View_Browser";
 			this.StripMenu_View_Browser.Size = new System.Drawing.Size(188, 22);
 			this.StripMenu_View_Browser.Text = global::ElectronicObserver.Window.Menus.Browser;
 			this.StripMenu_View_Browser.Click += new System.EventHandler(this.StripMenu_View_Browser_Click);
-			// 
+			//
 			// StripMenu_View_Log
-			// 
+			//
 			this.StripMenu_View_Log.Name = "StripMenu_View_Log";
 			this.StripMenu_View_Log.Size = new System.Drawing.Size(188, 22);
 			this.StripMenu_View_Log.Text = global::ElectronicObserver.Window.Menus.Log;
 			this.StripMenu_View_Log.Click += new System.EventHandler(this.StripMenu_View_Log_Click);
-			// 
+			//
 			// StripMenu_WindowCapture
-			// 
+			//
 			this.StripMenu_WindowCapture.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.StripMenu_WindowCapture_SubWindow,
             this.StripMenu_WindowCapture_AttachAll,
@@ -435,37 +435,37 @@
 			this.StripMenu_WindowCapture.Name = "StripMenu_WindowCapture";
 			this.StripMenu_WindowCapture.Size = new System.Drawing.Size(188, 22);
 			this.StripMenu_WindowCapture.Text = global::ElectronicObserver.Window.Menus.WindowCapture;
-			// 
+			//
 			// StripMenu_WindowCapture_SubWindow
-			// 
+			//
 			this.StripMenu_WindowCapture_SubWindow.Name = "StripMenu_WindowCapture_SubWindow";
 			this.StripMenu_WindowCapture_SubWindow.Size = new System.Drawing.Size(214, 22);
 			this.StripMenu_WindowCapture_SubWindow.Text = global::ElectronicObserver.Window.Menus.WindowCapture;
 			this.StripMenu_WindowCapture_SubWindow.Click += new System.EventHandler(this.StripMenu_WindowCapture_SubWindow_Click);
-			// 
+			//
 			// StripMenu_WindowCapture_AttachAll
-			// 
+			//
 			this.StripMenu_WindowCapture_AttachAll.Name = "StripMenu_WindowCapture_AttachAll";
 			this.StripMenu_WindowCapture_AttachAll.Size = new System.Drawing.Size(214, 22);
 			this.StripMenu_WindowCapture_AttachAll.Text = global::ElectronicObserver.Window.Menus.ReattachAll;
 			this.StripMenu_WindowCapture_AttachAll.Click += new System.EventHandler(this.StripMenu_WindowCapture_AttachAll_Click);
-			// 
+			//
 			// StripMenu_WindowCapture_DetachAll
-			// 
+			//
 			this.StripMenu_WindowCapture_DetachAll.Name = "StripMenu_WindowCapture_DetachAll";
 			this.StripMenu_WindowCapture_DetachAll.Size = new System.Drawing.Size(214, 22);
 			this.StripMenu_WindowCapture_DetachAll.Text = global::ElectronicObserver.Window.Menus.DetachAll;
 			this.StripMenu_WindowCapture_DetachAll.Click += new System.EventHandler(this.StripMenu_WindowCapture_DetachAll_Click);
-			// 
+			//
 			// StripMenu_View_Json
-			// 
+			//
 			this.StripMenu_View_Json.Name = "StripMenu_View_Json";
 			this.StripMenu_View_Json.Size = new System.Drawing.Size(188, 22);
 			this.StripMenu_View_Json.Text = "JSON(&J)";
 			this.StripMenu_View_Json.Click += new System.EventHandler(this.StripMenu_View_Json_Click);
-			// 
+			//
 			// StripMenu_Tool
-			// 
+			//
 			this.StripMenu_Tool.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.StripMenu_Tool_EquipmentList,
             this.toolStripSeparator7,
@@ -477,84 +477,92 @@
             this.StripMenu_Tool_AlbumMasterShip,
             this.StripMenu_Tool_AlbumMasterEquipment,
             this.toolStripSeparator11,
-            this.StripMenu_Tool_AntiAirDefense});
+            this.StripMenu_Tool_AntiAirDefense,
+            this.StripMenu_Tool_FleetImageGenerator});
 			this.StripMenu_Tool.Name = "StripMenu_Tool";
 			this.StripMenu_Tool.Size = new System.Drawing.Size(66, 20);
-			this.StripMenu_Tool.Text = global::ElectronicObserver.Window.Menus.Tools;
-			// 
+			this.StripMenu_Tool.Text = "&Tools";
+			//
 			// StripMenu_Tool_EquipmentList
-			// 
+			//
 			this.StripMenu_Tool_EquipmentList.Name = "StripMenu_Tool_EquipmentList";
 			this.StripMenu_Tool_EquipmentList.Size = new System.Drawing.Size(168, 22);
 			this.StripMenu_Tool_EquipmentList.Text = global::ElectronicObserver.Window.Menus.EquipmentList;
 			this.StripMenu_Tool_EquipmentList.Click += new System.EventHandler(this.StripMenu_Tool_EquipmentList_Click);
-			// 
+			//
 			// toolStripSeparator7
-			// 
+			//
 			this.toolStripSeparator7.Name = "toolStripSeparator7";
 			this.toolStripSeparator7.Size = new System.Drawing.Size(165, 6);
-			// 
+			//
 			// StripMenu_Tool_DropRecord
-			// 
+			//
 			this.StripMenu_Tool_DropRecord.Name = "StripMenu_Tool_DropRecord";
 			this.StripMenu_Tool_DropRecord.Size = new System.Drawing.Size(168, 22);
 			this.StripMenu_Tool_DropRecord.Text = global::ElectronicObserver.Window.Menus.DropRecord;
 			this.StripMenu_Tool_DropRecord.Click += new System.EventHandler(this.StripMenu_Tool_DropRecord_Click);
-			// 
+			//
 			// StripMenu_Tool_DevelopmentRecord
-			// 
+			//
 			this.StripMenu_Tool_DevelopmentRecord.Name = "StripMenu_Tool_DevelopmentRecord";
 			this.StripMenu_Tool_DevelopmentRecord.Size = new System.Drawing.Size(168, 22);
 			this.StripMenu_Tool_DevelopmentRecord.Text = global::ElectronicObserver.Window.Menus.DevRecord;
 			this.StripMenu_Tool_DevelopmentRecord.Click += new System.EventHandler(this.StripMenu_Tool_DevelopmentRecord_Click);
-			// 
+			//
 			// StripMenu_Tool_ConstructionRecord
-			// 
+			//
 			this.StripMenu_Tool_ConstructionRecord.Name = "StripMenu_Tool_ConstructionRecord";
 			this.StripMenu_Tool_ConstructionRecord.Size = new System.Drawing.Size(168, 22);
 			this.StripMenu_Tool_ConstructionRecord.Text = global::ElectronicObserver.Window.Menus.BuildRecord;
 			this.StripMenu_Tool_ConstructionRecord.Click += new System.EventHandler(this.StripMenu_Tool_ConstructionRecord_Click);
-			// 
+			//
 			// StripMenu_Tool_ResourceChart
-			// 
+			//
 			this.StripMenu_Tool_ResourceChart.Name = "StripMenu_Tool_ResourceChart";
 			this.StripMenu_Tool_ResourceChart.Size = new System.Drawing.Size(168, 22);
 			this.StripMenu_Tool_ResourceChart.Text = global::ElectronicObserver.Window.Menus.ResourceChart;
 			this.StripMenu_Tool_ResourceChart.Click += new System.EventHandler(this.StripMenu_Tool_ResourceChart_Click);
-			// 
+			//
 			// toolStripSeparator15
-			// 
+			//
 			this.toolStripSeparator15.Name = "toolStripSeparator15";
 			this.toolStripSeparator15.Size = new System.Drawing.Size(165, 6);
-			// 
+			//
 			// StripMenu_Tool_AlbumMasterShip
-			// 
+			//
 			this.StripMenu_Tool_AlbumMasterShip.Name = "StripMenu_Tool_AlbumMasterShip";
 			this.StripMenu_Tool_AlbumMasterShip.Size = new System.Drawing.Size(168, 22);
 			this.StripMenu_Tool_AlbumMasterShip.Text = global::ElectronicObserver.Window.Menus.ShipEncyclopedia;
 			this.StripMenu_Tool_AlbumMasterShip.Click += new System.EventHandler(this.StripMenu_Tool_AlbumMasterShip_Click);
-			// 
+			//
 			// StripMenu_Tool_AlbumMasterEquipment
-			// 
+			//
 			this.StripMenu_Tool_AlbumMasterEquipment.Name = "StripMenu_Tool_AlbumMasterEquipment";
 			this.StripMenu_Tool_AlbumMasterEquipment.Size = new System.Drawing.Size(168, 22);
 			this.StripMenu_Tool_AlbumMasterEquipment.Text = global::ElectronicObserver.Window.Menus.EquipEncyclopedia;
 			this.StripMenu_Tool_AlbumMasterEquipment.Click += new System.EventHandler(this.StripMenu_Tool_AlbumMasterEquipment_Click);
-			// 
+			//
 			// toolStripSeparator11
-			// 
+			//
 			this.toolStripSeparator11.Name = "toolStripSeparator11";
-			this.toolStripSeparator11.Size = new System.Drawing.Size(165, 6);
-			// 
+			this.toolStripSeparator11.Size = new System.Drawing.Size(161, 6);
+			//
 			// StripMenu_Tool_AntiAirDefense
-			// 
+			//
 			this.StripMenu_Tool_AntiAirDefense.Name = "StripMenu_Tool_AntiAirDefense";
-			this.StripMenu_Tool_AntiAirDefense.Size = new System.Drawing.Size(168, 22);
+			this.StripMenu_Tool_AntiAirDefense.Size = new System.Drawing.Size(164, 22);
 			this.StripMenu_Tool_AntiAirDefense.Text = global::ElectronicObserver.Window.Menus.AntiAirDefense;
 			this.StripMenu_Tool_AntiAirDefense.Click += new System.EventHandler(this.StripMenu_Tool_AntiAirDefense_Click);
-			// 
+			//
+			// StripMenu_Tool_FleetImageGenerator
+			//
+			this.StripMenu_Tool_FleetImageGenerator.Name = "StripMenu_Tool_FleetImageGenerator";
+			this.StripMenu_Tool_FleetImageGenerator.Size = new System.Drawing.Size(164, 22);
+			this.StripMenu_Tool_FleetImageGenerator.Text = "Export Fleet Image (&F)";
+			this.StripMenu_Tool_FleetImageGenerator.Click += new System.EventHandler(this.StripMenu_Tool_FleetImageGenerator_Click);
+			//
 			// StripMenu_Debug
-			// 
+			//
 			this.StripMenu_Debug.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.StripMenu_Debug_LoadAPIFromFile,
             this.StripMenu_Debug_LoadInitialAPI,
@@ -565,57 +573,57 @@
             this.StripMenu_Debug_LoadDataFromOld});
 			this.StripMenu_Debug.Name = "StripMenu_Debug";
 			this.StripMenu_Debug.Size = new System.Drawing.Size(75, 20);
-			this.StripMenu_Debug.Text = global::ElectronicObserver.Window.Menus.Debug;
-			// 
+			this.StripMenu_Debug.Text = "&Debug";
+			//
 			// StripMenu_Debug_LoadAPIFromFile
-			// 
+			//
 			this.StripMenu_Debug_LoadAPIFromFile.Name = "StripMenu_Debug_LoadAPIFromFile";
 			this.StripMenu_Debug_LoadAPIFromFile.Size = new System.Drawing.Size(273, 22);
 			this.StripMenu_Debug_LoadAPIFromFile.Text = global::ElectronicObserver.Window.Menus.LoadAPIFromFile;
 			this.StripMenu_Debug_LoadAPIFromFile.Click += new System.EventHandler(this.StripMenu_Debug_LoadAPIFromFile_Click);
-			// 
+			//
 			// StripMenu_Debug_LoadInitialAPI
-			// 
+			//
 			this.StripMenu_Debug_LoadInitialAPI.Name = "StripMenu_Debug_LoadInitialAPI";
 			this.StripMenu_Debug_LoadInitialAPI.Size = new System.Drawing.Size(273, 22);
 			this.StripMenu_Debug_LoadInitialAPI.Text = global::ElectronicObserver.Window.Menus.LoadAPIList;
 			this.StripMenu_Debug_LoadInitialAPI.Click += new System.EventHandler(this.StripMenu_Debug_LoadInitialAPI_Click);
-			// 
+			//
 			// toolStripSeparator8
-			// 
+			//
 			this.toolStripSeparator8.Name = "toolStripSeparator8";
 			this.toolStripSeparator8.Size = new System.Drawing.Size(270, 6);
-			// 
+			//
 			// StripMenu_Debug_LoadRecordFromOld
-			// 
+			//
 			this.StripMenu_Debug_LoadRecordFromOld.Name = "StripMenu_Debug_LoadRecordFromOld";
 			this.StripMenu_Debug_LoadRecordFromOld.Size = new System.Drawing.Size(273, 22);
 			this.StripMenu_Debug_LoadRecordFromOld.Text = global::ElectronicObserver.Window.Menus.LoadOldAPIRecord;
 			this.StripMenu_Debug_LoadRecordFromOld.Click += new System.EventHandler(this.StripMenu_Debug_LoadRecordFromOld_Click);
-			// 
+			//
 			// StripMenu_Debug_DeleteOldAPI
-			// 
+			//
 			this.StripMenu_Debug_DeleteOldAPI.Name = "StripMenu_Debug_DeleteOldAPI";
 			this.StripMenu_Debug_DeleteOldAPI.Size = new System.Drawing.Size(273, 22);
 			this.StripMenu_Debug_DeleteOldAPI.Text = global::ElectronicObserver.Window.Menus.DeleteOldAPI;
 			this.StripMenu_Debug_DeleteOldAPI.Click += new System.EventHandler(this.StripMenu_Debug_DeleteOldAPI_Click);
-			// 
+			//
 			// StripMenu_Debug_RenameShipResource
-			// 
+			//
 			this.StripMenu_Debug_RenameShipResource.Name = "StripMenu_Debug_RenameShipResource";
 			this.StripMenu_Debug_RenameShipResource.Size = new System.Drawing.Size(273, 22);
 			this.StripMenu_Debug_RenameShipResource.Text = global::ElectronicObserver.Window.Menus.RenameShipResource;
 			this.StripMenu_Debug_RenameShipResource.Click += new System.EventHandler(this.StripMenu_Debug_RenameShipResource_Click);
-			// 
+			//
 			// StripMenu_Debug_LoadDataFromOld
-			// 
+			//
 			this.StripMenu_Debug_LoadDataFromOld.Name = "StripMenu_Debug_LoadDataFromOld";
 			this.StripMenu_Debug_LoadDataFromOld.Size = new System.Drawing.Size(273, 22);
 			this.StripMenu_Debug_LoadDataFromOld.Text = global::ElectronicObserver.Window.Menus.LoadDataFromOld;
 			this.StripMenu_Debug_LoadDataFromOld.Click += new System.EventHandler(this.StripMenu_Debug_LoadDataFromOld_Click);
-			// 
+			//
 			// StripMenu_Help
-			// 
+			//
 			this.StripMenu_Help.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.StripMenu_Help_Help,
             this.StripMenu_Help_Issue,
@@ -624,73 +632,68 @@
             this.StripMenu_Help_Version});
 			this.StripMenu_Help.Name = "StripMenu_Help";
 			this.StripMenu_Help.Size = new System.Drawing.Size(68, 20);
-			this.StripMenu_Help.Text = global::ElectronicObserver.Window.Menus.Help;
-			// 
+			this.StripMenu_Help.Text = "&Help";
+			//
 			// StripMenu_Help_Help
-			// 
+			//
 			this.StripMenu_Help_Help.Name = "StripMenu_Help_Help";
 			this.StripMenu_Help_Help.Size = new System.Drawing.Size(180, 22);
-			this.StripMenu_Help_Help.Text = global::ElectronicObserver.Window.Menus.OnlineHelp;
+			this.StripMenu_Help_Help.Text = "View &Help";
 			this.StripMenu_Help_Help.Click += new System.EventHandler(this.StripMenu_Help_Help_Click);
-			// 
+			//
 			// StripMenu_Help_Issue
-			// 
+			//
 			this.StripMenu_Help_Issue.Name = "StripMenu_Help_Issue";
 			this.StripMenu_Help_Issue.Size = new System.Drawing.Size(180, 22);
-			this.StripMenu_Help_Issue.Text = "&Report an Issue...";
+			this.StripMenu_Help_Issue.Text = "&Report a Problem...";
 			this.StripMenu_Help_Issue.Click += new System.EventHandler(this.StripMenu_Help_Issue_Click);
-			// 
+			//
 			// SeparatorWhitecap
-			// 
+			//
 			this.SeparatorWhitecap.Name = "SeparatorWhitecap";
 			this.SeparatorWhitecap.Size = new System.Drawing.Size(177, 6);
 			this.SeparatorWhitecap.Click += new System.EventHandler(this.SeparatorWhitecap_Click);
-			// 
+			//
 			// StripMenu_Help_Version
-			// 
+			//
 			this.StripMenu_Help_Version.Name = "StripMenu_Help_Version";
 			this.StripMenu_Help_Version.Size = new System.Drawing.Size(180, 22);
 			this.StripMenu_Help_Version.Text = global::ElectronicObserver.Window.Menus.VersionInfo;
 			this.StripMenu_Help_Version.Click += new System.EventHandler(this.StripMenu_Help_Version_Click);
-			// 
+			//
 			// StripStatus
-			// 
+			//
 			this.StripStatus.ImageScalingSize = new System.Drawing.Size(32, 32);
 			this.StripStatus.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.StripStatus_Information,
-            this.StripStatus_Padding,
             this.StripStatus_Clock});
 			this.StripStatus.Location = new System.Drawing.Point(0, 458);
 			this.StripStatus.Name = "StripStatus";
 			this.StripStatus.ShowItemToolTips = true;
 			this.StripStatus.Size = new System.Drawing.Size(640, 22);
 			this.StripStatus.TabIndex = 3;
-			// 
+			//
 			// StripStatus_Information
-			// 
+			//
 			this.StripStatus_Information.Name = "StripStatus_Information";
-			this.StripStatus_Information.Size = new System.Drawing.Size(95, 17);
+			this.StripStatus_Information.Size = new System.Drawing.Size(556, 17);
+			this.StripStatus_Information.Spring = true;
 			this.StripStatus_Information.Text = "Now Preparing...";
-			// 
-			// StripStatus_Padding
-			// 
-			this.StripStatus_Padding.Name = "StripStatus_Padding";
-			this.StripStatus_Padding.Size = new System.Drawing.Size(493, 17);
-			this.StripStatus_Padding.Spring = true;
-			// 
+			this.StripStatus_Information.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			//
 			// StripStatus_Clock
-			// 
+			//
 			this.StripStatus_Clock.Name = "StripStatus_Clock";
 			this.StripStatus_Clock.Size = new System.Drawing.Size(37, 17);
 			this.StripStatus_Clock.Text = "Clock";
-			// 
+			//
 			// UIUpdateTimer
-			// 
+			//
 			this.UIUpdateTimer.Interval = 1000;
 			this.UIUpdateTimer.Tick += new System.EventHandler(this.UIUpdateTimer_Tick);
-			// 
+			//
 			// MainDockPanel
-			// 
+			//
 			this.MainDockPanel.DefaultFloatWindowSize = new System.Drawing.Size(400, 300);
 			this.MainDockPanel.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.MainDockPanel.DockBottomPortion = 150D;
@@ -704,16 +707,16 @@
 			this.MainDockPanel.Size = new System.Drawing.Size(640, 434);
 			this.MainDockPanel.Styles = null;
 			this.MainDockPanel.TabIndex = 0;
-			// 
+			//
 			// StripMenu_Help_Update
-			// 
+			//
 			this.StripMenu_Help_Update.Name = "StripMenu_Help_Update";
 			this.StripMenu_Help_Update.Size = new System.Drawing.Size(180, 22);
-			this.StripMenu_Help_Update.Text = "&Check for update";
+			this.StripMenu_Help_Update.Text = "&Check for Update";
 			this.StripMenu_Help_Update.Click += new System.EventHandler(this.StripMenu_Help_Update_Click);
-			// 
+			//
 			// FormMain
-			// 
+			//
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.ClientSize = new System.Drawing.Size(640, 480);
 			this.Controls.Add(this.MainDockPanel);
@@ -746,7 +749,6 @@
 		private System.Windows.Forms.ToolStripMenuItem StripMenu_Debug_LoadAPIFromFile;
 		private System.Windows.Forms.Timer UIUpdateTimer;
 		private System.Windows.Forms.ToolStripStatusLabel StripStatus_Information;
-		private System.Windows.Forms.ToolStripStatusLabel StripStatus_Padding;
 		private System.Windows.Forms.ToolStripStatusLabel StripStatus_Clock;
 		private System.Windows.Forms.ToolStripMenuItem StripMenu_View;
 		private System.Windows.Forms.ToolStripMenuItem StripMenu_View_Fleet;
@@ -817,5 +819,6 @@
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator11;
 		private System.Windows.Forms.ToolStripMenuItem StripMenu_Tool_AntiAirDefense;
 		private System.Windows.Forms.ToolStripMenuItem StripMenu_Help_Update;
+		private System.Windows.Forms.ToolStripMenuItem StripMenu_Tool_FleetImageGenerator;
 	}
 }
