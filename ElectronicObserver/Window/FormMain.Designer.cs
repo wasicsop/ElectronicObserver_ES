@@ -246,7 +246,8 @@
 			//
 			this.StripMenu_File_Close.Name = "StripMenu_File_Close";
 			this.StripMenu_File_Close.Size = new System.Drawing.Size(136, 22);
-			this.StripMenu_File_Close.Text = global::ElectronicObserver.Window.Menus.Close;
+			this.StripMenu_File_Close.Text = "E&xit";
+			this.StripMenu_File_Close.ShortcutKeyDisplayString = "Alt+F4";
 			this.StripMenu_File_Close.Click += new System.EventHandler(this.StripMenu_File_Close_Click);
 			//
 			// StripMenu_View

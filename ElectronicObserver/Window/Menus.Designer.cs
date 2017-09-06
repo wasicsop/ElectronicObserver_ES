@@ -160,15 +160,6 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 終了(&amp;X).
-        /// </summary>
-        internal static string Close {
-            get {
-                return ResourceManager.GetString("Close", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 羅針盤(&amp;C).
         /// </summary>
         internal static string Compass {
@@ -439,24 +430,6 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to キャッシュのクリア(&amp;C).
-        /// </summary>
-        internal static string Other_ClearCache {
-            get {
-                return ResourceManager.GetString("Other_ClearCache", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to ミュート(&amp;M).
-        /// </summary>
-        internal static string Other_Mute {
-            get {
-                return ResourceManager.GetString("Other_Mute", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 移動(&amp;N)....
         /// </summary>
         internal static string Other_Navigate {
@@ -475,29 +448,11 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 更新(&amp;R).
-        /// </summary>
-        internal static string Other_Refresh {
-            get {
-                return ResourceManager.GetString("Other_Refresh", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 地域制限クッキーを設定.
         /// </summary>
         internal static string Other_RegionCookie {
             get {
                 return ResourceManager.GetString("Other_RegionCookie", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to スクリーンショット(&amp;S).
-        /// </summary>
-        internal static string Other_Screenshot {
-            get {
-                return ResourceManager.GetString("Other_Screenshot", resourceCulture);
             }
         }
         

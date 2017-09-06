@@ -300,9 +300,6 @@ Maximum: {2} Steel / {3} Fuel
   <data name="InitiallyEquippedShips" xml:space="preserve">
     <value>Stock equipment:</value>
   </data>
-  <data name="OutputCSV" xml:space="preserve">
-    <value>Export &amp;CSV...</value>
-  </data>
   <data name="Refresh" xml:space="preserve">
     <value>Refresh (&amp;U)...</value>
   </data>

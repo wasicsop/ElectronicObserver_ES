@@ -141,9 +141,6 @@
   <data name="Browser" xml:space="preserve">
     <value>브라우저</value>
   </data>
-  <data name="Close" xml:space="preserve">
-    <value>종료(&amp;X)</value>
-  </data>
   <data name="Compass" xml:space="preserve">
     <value>나침반(&amp;C)</value>
   </data>
@@ -210,23 +207,14 @@
   <data name="Other_ApplyStyleSheet" xml:space="preserve">
     <value>스타일 시트를 적용한다.</value>
   </data>
-  <data name="Other_Mute" xml:space="preserve">
-    <value>음소거(&amp;M)</value>
-  </data>
   <data name="Other_Navigate" xml:space="preserve">
     <value>이동(&amp;N)...</value>
   </data>
   <data name="Other_NavigateToLogInPage" xml:space="preserve">
     <value>로그인 페이지로 이동(&amp;L)</value>
   </data>
-  <data name="Other_Refresh" xml:space="preserve">
-    <value>새로고침(&amp;R)</value>
-  </data>
   <data name="Other_RegionCookie" xml:space="preserve">
     <value>지역 제한 쿠키를 설정</value>
-  </data>
-  <data name="Other_Screenshot" xml:space="preserve">
-    <value>스크린샷(&amp;S)</value>
   </data>
   <data name="Other_Zoom" xml:space="preserve">
     <value>줌(&amp;Z)</value>

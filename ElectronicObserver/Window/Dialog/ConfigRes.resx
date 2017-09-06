@@ -264,9 +264,6 @@
   <data name="FitHint" xml:space="preserve">
     <value>有効な場合、画面に合わせて自動的に拡大・縮小します。</value>
   </data>
-  <data name="FixShipNameWidth" xml:space="preserve">
-    <value>艦名の横幅を固定する</value>
-  </data>
   <data name="FixWidthHint" xml:space="preserve">
     <value>艦名表示部の幅を固定し、スペースを節約します。
 代わりに長い名前を持つ艦娘は見切れます。</value>
@@ -666,9 +663,6 @@ direct にするとパフォーマンスが向上する可能性があります�
   </data>
   <data name="EnableDebugMenu" xml:space="preserve">
     <value>デバッグ メニューを有効にする</value>
-  </data>
-  <data name="EquipmentLevelVisibility" xml:space="preserve">
-    <value>装備情報表示：</value>
   </data>
   <data name="EquipmentLevelVisibility_Both" xml:space="preserve">
     <value>両方表示</value>

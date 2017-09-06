@@ -566,15 +566,6 @@ namespace ElectronicObserver.Window.Dialog {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to CSV出力(&amp;C)....
-        /// </summary>
-        internal static string OutputCSV {
-            get {
-                return ResourceManager.GetString("OutputCSV", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to CSV出力(データ用)(&amp;D)....
         /// </summary>
         internal static string OutputCSVData {

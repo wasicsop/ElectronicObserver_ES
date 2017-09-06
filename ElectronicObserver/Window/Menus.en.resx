@@ -121,7 +121,7 @@
     <value>Bottom (&amp;B)</value>
   </data>
   <data name="Alignment_Invisible" xml:space="preserve">
-    <value>Invisible (&amp;I)</value>
+    <value>Hidden (&amp;I)</value>
   </data>
   <data name="Alignment_Left" xml:space="preserve">
     <value>Left (&amp;L)</value>
@@ -140,9 +140,6 @@
   </data>
   <data name="Browser" xml:space="preserve">
     <value>Browser</value>
-  </data>
-  <data name="Close" xml:space="preserve">
-    <value>Quit (&amp;X)</value>
   </data>
   <data name="Compass" xml:space="preserve">
     <value>Compass (&amp;C)</value>
@@ -210,23 +207,14 @@
   <data name="Other_ApplyStyleSheet" xml:space="preserve">
     <value>Apply Style Sheet</value>
   </data>
-  <data name="Other_Mute" xml:space="preserve">
-    <value>Mute (&amp;M)</value>
-  </data>
   <data name="Other_Navigate" xml:space="preserve">
     <value>Go to... (&amp;N)</value>
   </data>
   <data name="Other_NavigateToLogInPage" xml:space="preserve">
     <value>Go to Login Page (&amp;L)</value>
   </data>
-  <data name="Other_Refresh" xml:space="preserve">
-    <value>Refresh (&amp;R)</value>
-  </data>
   <data name="Other_RegionCookie" xml:space="preserve">
     <value>Set Region Cookie</value>
-  </data>
-  <data name="Other_Screenshot" xml:space="preserve">
-    <value>Screenshot (&amp;S)</value>
   </data>
   <data name="Other_Zoom" xml:space="preserve">
     <value>Zoom (&amp;Z)</value>

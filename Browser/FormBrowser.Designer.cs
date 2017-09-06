@@ -249,7 +249,7 @@ namespace Browser
 			this.ToolMenu_Other_ScreenShot.Name = "ToolMenu_Other_ScreenShot";
 			this.ToolMenu_Other_ScreenShot.ShortcutKeys = System.Windows.Forms.Keys.F2;
 			this.ToolMenu_Other_ScreenShot.Size = new System.Drawing.Size(199, 22);
-			this.ToolMenu_Other_ScreenShot.Text = Resources.Other_Screenshot;
+			this.ToolMenu_Other_ScreenShot.Text = "&Screenshot";
 			this.ToolMenu_Other_ScreenShot.Click += new System.EventHandler(this.ToolMenu_Other_ScreenShot_Click);
 			//
 			// ToolMenu_Other_LastScreenShot
@@ -438,7 +438,7 @@ namespace Browser
 			this.ToolMenu_Other_Mute.Name = "ToolMenu_Other_Mute";
 			this.ToolMenu_Other_Mute.ShortcutKeys = System.Windows.Forms.Keys.F7;
 			this.ToolMenu_Other_Mute.Size = new System.Drawing.Size(199, 22);
-			this.ToolMenu_Other_Mute.Text = Resources.Other_Mute;
+			this.ToolMenu_Other_Mute.Text = "&Mute";
 			this.ToolMenu_Other_Mute.Click += new System.EventHandler(this.ToolMenu_Other_Mute_Click);
 			//
 			// toolStripSeparator7
@@ -450,8 +450,9 @@ namespace Browser
 			//
 			this.ToolMenu_Other_Refresh.Name = "ToolMenu_Other_Refresh";
 			this.ToolMenu_Other_Refresh.ShortcutKeys = System.Windows.Forms.Keys.F5;
+			this.ToolMenu_Other_Refresh.ShowShortcutKeys = true;
 			this.ToolMenu_Other_Refresh.Size = new System.Drawing.Size(199, 22);
-			this.ToolMenu_Other_Refresh.Text = Resources.Other_Refresh;
+			this.ToolMenu_Other_Refresh.Text = "&Refresh";
 			this.ToolMenu_Other_Refresh.Click += new System.EventHandler(this.ToolMenu_Other_Refresh_Click);
 			//
 			// ToolMenu_Other_NavigateToLogInPage

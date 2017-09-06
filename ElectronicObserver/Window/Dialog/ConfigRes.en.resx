@@ -227,7 +227,7 @@ Useful to prevent mistakes.</value>
     <value>Repair complete</value>
   </data>
   <data name="EnableBrowser" xml:space="preserve">
-    <value>Load page on application start</value>
+    <value>Load page on startup</value>
   </data>
   <data name="EncodingHint" xml:space="preserve">
     <value>Set the encoding of output files.
@@ -264,9 +264,6 @@ Please use caution before changing.</value>
   <data name="FitHint" xml:space="preserve">
     <value>Zooms game screen to fit window size.</value>
   </data>
-  <data name="FixShipNameWidth" xml:space="preserve">
-    <value>Fix ship name width</value>
-  </data>
   <data name="FixWidthHint" xml:space="preserve">
     <value>Fixes the width of ship names, saving space.
 Longer names may be cut off.</value>
@@ -296,7 +293,7 @@ May result in KanColle screen freezing under specific situation.</value>
     <value>Group</value>
   </data>
   <data name="IsScrollable" xml:space="preserve">
-    <value>Show scroll bar</value>
+    <value>Enable scroll bar</value>
   </data>
   <data name="LayoutFile" xml:space="preserve">
     <value>Layout File</value>
@@ -544,7 +541,7 @@ More details, as well as an access key, can be found on the site below. (opens y
     <value>Current time</value>
   </data>
   <data name="Life_ClockFormat_Excercise" xml:space="preserve">
-    <value>Until excercise reset</value>
+    <value>Until PVP reset</value>
   </data>
   <data name="Life_ClockFormat_Quest" xml:space="preserve">
     <value>Until quest reset</value>
@@ -658,7 +655,7 @@ More details, as well as an access key, can be found on the site below. (opens y
     <value>Apply</value>
   </data>
   <data name="CandidateDisplayCount" xml:space="preserve">
-    <value>Enemy form to display:</value>
+    <value>Enemy form:</value>
   </data>
   <data name="DeleteRegistry" xml:space="preserve">
     <value>Del</value>
@@ -669,14 +666,11 @@ More details, as well as an access key, can be found on the site below. (opens y
   <data name="EnableDebugMenu" xml:space="preserve">
     <value>Enable debug menu</value>
   </data>
-  <data name="EquipmentLevelVisibility" xml:space="preserve">
-    <value>Equipment level display:</value>
-  </data>
   <data name="EquipmentLevelVisibility_Both" xml:space="preserve">
     <value>Both</value>
   </data>
   <data name="EquipmentLevelVisibility_Hidden" xml:space="preserve">
-    <value>Invisible</value>
+    <value>Hidden</value>
   </data>
   <data name="EquipmentLevelVisibility_ImprovOnly" xml:space="preserve">
     <value>Improvement only</value>
@@ -728,7 +722,7 @@ Might be heavy.</value>
     <value>Bottom</value>
   </data>
   <data name="ToolMenuAlignment_Invisible" xml:space="preserve">
-    <value>Invisible</value>
+    <value>Hidden</value>
   </data>
   <data name="ToolMenuAlignment_Left" xml:space="preserve">
     <value>Left</value>

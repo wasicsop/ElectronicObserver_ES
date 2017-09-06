@@ -140,7 +140,7 @@
 			this.TopMenu_File_CSVOutput.Name = "TopMenu_File_CSVOutput";
 			this.TopMenu_File_CSVOutput.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
 			this.TopMenu_File_CSVOutput.Size = new System.Drawing.Size(331, 34);
-			this.TopMenu_File_CSVOutput.Text = EncycloRes.OutputCSV;
+			this.TopMenu_File_CSVOutput.Text = "Save As &CSV...";
 			this.TopMenu_File_CSVOutput.Click += new System.EventHandler(this.Menu_File_CSVOutput_Click);
 			// 
 			// TopMenu_File_Update
@@ -148,7 +148,7 @@
 			this.TopMenu_File_Update.Name = "TopMenu_File_Update";
 			this.TopMenu_File_Update.ShortcutKeys = System.Windows.Forms.Keys.F5;
 			this.TopMenu_File_Update.Size = new System.Drawing.Size(331, 34);
-			this.TopMenu_File_Update.Text = EncycloRes.Refresh;
+			this.TopMenu_File_Update.Text = "&Refresh";
 			this.TopMenu_File_Update.Click += new System.EventHandler(this.TopMenu_File_Update_Click);
 			// 
 			// SaveCSVDialog
