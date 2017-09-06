@@ -351,22 +351,19 @@ namespace ElectronicObserver.Window {
 			switch ( ClockFormat ) {
 				case 0:	//時計表示
 					DateTime pvpReset = now.Date.AddHours( 3 );
-					DateTime questReset = now.Date.AddHours( 5 );
-
-					if (pvpReset < now)
+					while (pvpReset < now)
 						pvpReset = pvpReset.AddHours( 12 );
+					TimeSpan pvpTimer = pvpReset - now;
+
+					DateTime questReset = now.Date.AddHours( 5 );
 					if (questReset < now)
-						questReset = questReset.AddHours( 12 );
+						questReset = questReset.AddHours( 24 );
+					TimeSpan questTimer = questReset - now;
 
-					TimeSpan pvpCountdown = pvpReset - now;
-					TimeSpan questResetCountdown = questReset - now;
-
-					String pvpResetMsg = string.Format( "Next PVP Reset: {0:D2}:{1:D2}:{2:D2}\r\n", (int)pvpCountdown.TotalHours, pvpCountdown.Minutes, pvpCountdown.Seconds );
-					String questResetMsg = string.Format( "Next Quest Reset: {0:D2}:{1:D2}:{2:D2}", (int)pvpCountdown.TotalHours, pvpCountdown.Minutes, pvpCountdown.Seconds );
+					String resetMsg = string.Format( "Next PVP Reset: {0:D2}:{1:D2}:{2:D2}\r\nNext Quest Reset: {3:D2}:{4:D2}:{5:D2}", (int)pvpTimer.TotalHours, pvpTimer.Minutes, pvpTimer.Seconds, (int)questTimer.TotalHours, questTimer.Minutes, questTimer.Seconds );
 					
-
 					StripStatus_Clock.Text = now.ToString( "HH\\:mm\\:ss" );
-					StripStatus_Clock.ToolTipText = now.ToString( "yyyy\\/MM\\/dd (ddd)\r\n" ) + pvpResetMsg + questResetMsg ;
+					StripStatus_Clock.ToolTipText = now.ToString( "yyyy\\/MM\\/dd (ddd)\r\n" ) + resetMsg;
 
 					break;
 
