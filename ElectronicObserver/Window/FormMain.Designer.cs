@@ -671,6 +671,7 @@
 			this.StripStatus.Location = new System.Drawing.Point(0, 458);
 			this.StripStatus.Name = "StripStatus";
 			this.StripStatus.ShowItemToolTips = true;
+			this.StripStatus.SizingGrip = false;
 			this.StripStatus.Size = new System.Drawing.Size(640, 22);
 			this.StripStatus.TabIndex = 3;
 			//
