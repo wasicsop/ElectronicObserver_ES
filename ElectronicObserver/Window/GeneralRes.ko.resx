@@ -136,12 +136,6 @@
   <data name="AddGroup" xml:space="preserve">
     <value>그룹을 추가</value>
   </data>
-  <data name="AddGroupMenu" xml:space="preserve">
-    <value>그룹을 추가(&amp;A)</value>
-  </data>
-  <data name="AddToGroupMenu" xml:space="preserve">
-    <value>그룹으로 추가(&amp;A)...</value>
-  </data>
   <data name="AdmiralXP" xml:space="preserve">
     <value>제독 경험치</value>
   </data>
@@ -189,9 +183,6 @@
   </data>
   <data name="AutoAdjustColumns" xml:space="preserve">
     <value>열을 자동으로 조정(&amp;D)</value>
-  </data>
-  <data name="AutoUpdate" xml:space="preserve">
-    <value>자동으로 업데이트</value>
   </data>
   <data name="AverageLevel" xml:space="preserve">
     <value>평균 Lv: {0:F2}</value>
@@ -252,14 +243,8 @@ HP: {3}
   <data name="Contacting" xml:space="preserve">
     <value>접촉중</value>
   </data>
-  <data name="CopyToClipboard" xml:space="preserve">
-    <value>클립보드에 복사(&amp;C)</value>
-  </data>
   <data name="CreateGroup" xml:space="preserve">
     <value>그룹 추가</value>
-  </data>
-  <data name="CreateGroupMenu" xml:space="preserve">
-    <value>신규 그룹을 작성(&amp;C)...</value>
   </data>
   <data name="CreateGroupName" xml:space="preserve">
     <value>추가할 그룹의 이름을 입력해 주십시오.</value>
@@ -291,9 +276,6 @@ HP: {3}
   <data name="DeleteGroup" xml:space="preserve">
     <value>그룹 [{0}] 을 삭제합니까? 
 이후에는 되돌릴 수 없습니다.</value>
-  </data>
-  <data name="DeleteGroupMenu" xml:space="preserve">
-    <value>그룹을 삭제(&amp;D)</value>
   </data>
   <data name="DevelopmentFailed" xml:space="preserve">
     <value>[개발 실패]</value>
@@ -342,9 +324,6 @@ HP: {3}
   </data>
   <data name="EnemyUnknown" xml:space="preserve">
     <value>(적 함대 정보 불명)</value>
-  </data>
-  <data name="Equipment" xml:space="preserve">
-    <value>장비</value>
   </data>
   <data name="EscortFleet" xml:space="preserve">
     <value>수반함대</value>
@@ -396,9 +375,6 @@ HP: {3}
   <data name="Fuel" xml:space="preserve">
     <value>연료</value>
   </data>
-  <data name="Group" xml:space="preserve">
-    <value>그룹</value>
-  </data>
   <data name="ImpMat" xml:space="preserve">
     <value>개수 자재</value>
   </data>
@@ -427,11 +403,6 @@ HP: {3}
   </data>
   <data name="LoS" xml:space="preserve">
     <value>색적</value>
-  </data>
-  <data name="LoSTooltip" xml:space="preserve">
-    <value>(구)2-5식: {0}
-2-5식 (가을): {1}
-(신) 2-5 가을 간이식: {2}</value>
   </data>
   <data name="Luck" xml:space="preserve">
     <value>운</value>
@@ -477,9 +448,6 @@ HP: {3}
   </data>
   <data name="NonexistentGroup" xml:space="preserve">
     <value>에러：존재하지 않는 그룹을 참조하려고 합니다. 개발자에게 연락해 주세요.</value>
-  </data>
-  <data name="OutputCSV" xml:space="preserve">
-    <value>CSV 출력(&amp;O)...</value>
   </data>
   <data name="Over50" xml:space="preserve">
     <value>50% 이상</value>
@@ -541,9 +509,6 @@ HP: {3}
   <data name="SecondStage" xml:space="preserve">
     <value>제2차</value>
   </data>
-  <data name="SelectGraph" xml:space="preserve">
-    <value>그래프를 선택(&amp;G)</value>
-  </data>
   <data name="SelectGroup" xml:space="preserve">
     <value>그룹을 선택</value>
   </data>
@@ -590,17 +555,11 @@ HP: {3}
   <data name="ShowOneTime" xml:space="preserve">
     <value>1회 한정 임무를 표시(&amp;O)</value>
   </data>
-  <data name="ShowStatusBar" xml:space="preserve">
-    <value>스테이터스 바를 표시한다</value>
-  </data>
   <data name="ShowWeekly" xml:space="preserve">
     <value>위클리 임무를 표시(&amp;W)</value>
   </data>
   <data name="SortiePlace" xml:space="preserve">
     <value>출격 위치</value>
-  </data>
-  <data name="Span" xml:space="preserve">
-    <value>범위(&amp;S)</value>
   </data>
   <data name="SpecifyGroupName" xml:space="preserve">
     <value>그룹 이름을 입력해 주세요.：</value>

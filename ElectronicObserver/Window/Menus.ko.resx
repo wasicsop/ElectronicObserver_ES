@@ -132,68 +132,11 @@
   <data name="Alignment_Top" xml:space="preserve">
     <value>위쪽(&amp;T)</value>
   </data>
-  <data name="Arsenal" xml:space="preserve">
-    <value>공창(&amp;A)</value>
-  </data>
-  <data name="Battle" xml:space="preserve">
-    <value>전투(&amp;B)</value>
-  </data>
-  <data name="Browser" xml:space="preserve">
-    <value>브라우저</value>
-  </data>
-  <data name="Compass" xml:space="preserve">
-    <value>나침반(&amp;C)</value>
-  </data>
   <data name="ControlWindow" xml:space="preserve">
     <value>컨트롤 윈도우(&amp;C)</value>
   </data>
-  <data name="DeleteOldAPI" xml:space="preserve">
-    <value>낡은 API 데이터를 삭제(&amp;D)</value>
-  </data>
   <data name="DetachAll" xml:space="preserve">
     <value>모든 윈도우를 해방(&amp;R)</value>
-  </data>
-  <data name="Dock" xml:space="preserve">
-    <value>입거(&amp;D)</value>
-  </data>
-  <data name="EquipEncyclopedia" xml:space="preserve">
-    <value>장비 도감(&amp;E)</value>
-  </data>
-  <data name="EquipmentList" xml:space="preserve">
-    <value>장비 일람(&amp;Q)</value>
-  </data>
-  <data name="FleetList" xml:space="preserve">
-    <value>함대 일람(&amp;O)</value>
-  </data>
-  <data name="Fleets" xml:space="preserve">
-    <value>함대(&amp;F)</value>
-  </data>
-  <data name="Headquarters" xml:space="preserve">
-    <value>사령부(&amp;H)</value>
-  </data>
-  <data name="Information" xml:space="preserve">
-    <value>정보(&amp;I)</value>
-  </data>
-  <data name="Layout" xml:space="preserve">
-    <value>레이아웃(&amp;L)</value>
-  </data>
-  <data name="LayoutOpen" xml:space="preserve">
-    <value>다른 파일로부터 로드(&amp;O)...</value>
-  </data>
-  <data name="Load" xml:space="preserve">
-    <value>로드(&amp;L)</value>
-  </data>
-  <data name="LoadAPIFromFile" xml:space="preserve">
-    <value>파일로부터 API를 로드(&amp;L)...</value>
-  </data>
-  <data name="LoadAPIList" xml:space="preserve">
-    <value>API 리스트를 로드(&amp;I)...</value>
-  </data>
-  <data name="LoadOldAPIRecord" xml:space="preserve">
-    <value>구버전 api_start2로부터 기록을 구축(&amp;O)...</value>
-  </data>
-  <data name="Log" xml:space="preserve">
-    <value>로그(&amp;L)</value>
   </data>
   <data name="OnlineHelp" xml:space="preserve">
     <value>온라인 도움말(&amp;H)...</value>
@@ -225,29 +168,8 @@
   <data name="Other_Zoom_Fit" xml:space="preserve">
     <value>창에 맞춤</value>
   </data>
-  <data name="Quest" xml:space="preserve">
-    <value>임무(&amp;Q)</value>
-  </data>
   <data name="ReattachAll" xml:space="preserve">
     <value>전체를 재검색 해서 불러오기(&amp;S)</value>
-  </data>
-  <data name="Record" xml:space="preserve">
-    <value>기록(&amp;R)</value>
-  </data>
-  <data name="RenameShipResource" xml:space="preserve">
-    <value>함선 리소스 이름을 바꾸기(&amp;R)...</value>
-  </data>
-  <data name="ResourceChart" xml:space="preserve">
-    <value>자원 차트(&amp;C)</value>
-  </data>
-  <data name="Save" xml:space="preserve">
-    <value>세이브(&amp;S)</value>
-  </data>
-  <data name="Settings" xml:space="preserve">
-    <value>설정(&amp;C)...</value>
-  </data>
-  <data name="ShipEncyclopedia" xml:space="preserve">
-    <value>함선 도감(&amp;S)</value>
   </data>
   <data name="ShipGroup" xml:space="preserve">
     <value>함선 그룹(&amp;G)</value>
@@ -260,9 +182,6 @@
   </data>
   <data name="Title" xml:space="preserve">
     <value>74식 전자 관측의</value>
-  </data>
-  <data name="VersionInfo" xml:space="preserve">
-    <value>버전 정보(&amp;V)</value>
   </data>
   <data name="WindowCapture" xml:space="preserve">
     <value>창을 캡쳐(&amp;W)</value>

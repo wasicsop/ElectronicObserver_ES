@@ -149,7 +149,7 @@
 			this.GroupOutputPath.Size = new System.Drawing.Size(440, 57);
 			this.GroupOutputPath.TabIndex = 10;
 			this.GroupOutputPath.TabStop = false;
-			this.GroupOutputPath.Text = "Output Path";
+			this.GroupOutputPath.Text = "Output path";
 			// 
 			// SearchOutputPath
 			// 
@@ -406,7 +406,7 @@
 			this.groupBox2.Size = new System.Drawing.Size(440, 101);
 			this.groupBox2.TabIndex = 11;
 			this.groupBox2.TabStop = false;
-			this.groupBox2.Text = "Output Path";
+			this.groupBox2.Text = "Output path";
 			// 
 			// SyncronizeTitleAndFileName
 			// 
@@ -440,7 +440,7 @@
 			this.OutputToClipboard.Size = new System.Drawing.Size(118, 19);
 			this.OutputToClipboard.TabIndex = 7;
 			this.OutputToClipboard.Text = "Copy to Clipboard";
-			this.ToolTipInfo.SetToolTip(this.OutputToClipboard, "Output the current image to the clipboard.");
+			this.ToolTipInfo.SetToolTip(this.OutputToClipboard, "Export the image to clipboard.");
 			this.OutputToClipboard.UseVisualStyleBackColor = true;
 			this.OutputToClipboard.CheckedChanged += new System.EventHandler(this.OutputToClipboard_CheckedChanged);
 			// 

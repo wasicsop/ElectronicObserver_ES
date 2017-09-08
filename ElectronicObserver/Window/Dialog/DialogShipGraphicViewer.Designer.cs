@@ -112,7 +112,7 @@
 			this.TopMenu_File_CopyToClipboard.Name = "TopMenu_File_CopyToClipboard";
 			this.TopMenu_File_CopyToClipboard.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
 			this.TopMenu_File_CopyToClipboard.Size = new System.Drawing.Size(271, 22);
-			this.TopMenu_File_CopyToClipboard.Text = "&Copy to Clipboard";
+			this.TopMenu_File_CopyToClipboard.Text = "&Copy";
 			this.TopMenu_File_CopyToClipboard.Click += new System.EventHandler(this.TopMenu_File_CopyToClipboard_Click);
 			// 
 			// TopMenu_View

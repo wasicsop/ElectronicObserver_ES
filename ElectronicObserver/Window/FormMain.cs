@@ -426,7 +426,7 @@ namespace ElectronicObserver.Window {
 		private void FormMain_FormClosing( object sender, FormClosingEventArgs e ) {
 
 			if ( Utility.Configuration.Config.Life.ConfirmOnClosing ) {
-				if ( MessageBox.Show( "Are you sure you want to exit Electronic Observer?", "Electronic Observer", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2 )
+				if ( MessageBox.Show( "Are you sure you want to exit?", "Electronic Observer", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2 )
 					== System.Windows.Forms.DialogResult.No ) {
 					e.Cancel = true;
 					return;
@@ -1121,7 +1121,7 @@ namespace ElectronicObserver.Window {
 		private void StripMenu_Help_Issue_Click(object sender, EventArgs e)
 		{
 
-			if (MessageBox.Show("This will open a page with your browser.\r\nAre you sure?", "Report an Issue",
+			if (MessageBox.Show("This will open a page with your browser.\r\nAre you sure?", "Report A Problem",
 				MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1)
 				== System.Windows.Forms.DialogResult.Yes)
 			{
@@ -1159,7 +1159,7 @@ namespace ElectronicObserver.Window {
 			using ( var dialog = new OpenFileDialog() ) {
 
 				dialog.Filter = "Layout Archive|*.zip|File|*";
-				dialog.Title = "レイアウト ファイルを開く";
+				dialog.Title = "Open Layout File";
 
 
 				PathHelper.InitOpenFileDialog( Utility.Configuration.Config.Life.LayoutFilePath, dialog );
@@ -1180,7 +1180,7 @@ namespace ElectronicObserver.Window {
 			using ( var dialog = new SaveFileDialog() ) {
 
 				dialog.Filter = "Layout Archive|*.zip|File|*";
-				dialog.Title = "レイアウト ファイルの保存";
+				dialog.Title = "Save Layout As";
 
 
 				PathHelper.InitSaveFileDialog( Utility.Configuration.Config.Life.LayoutFilePath, dialog );

@@ -127,13 +127,15 @@
 			this.Menu_File_OpenFolder.Name = "Menu_File_OpenFolder";
 			this.Menu_File_OpenFolder.Size = new System.Drawing.Size(167, 22);
 			this.Menu_File_OpenFolder.Text = "&Open folder...";
+			this.Menu_File_OpenFolder.ShortcutKeys = System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O;
+			this.Menu_File_OpenFolder.ShowShortcutKeys = true;
 			this.Menu_File_OpenFolder.Click += new System.EventHandler(this.Menu_File_OpenFolder_Click);
 			// 
 			// Menu_File_Reload
 			// 
 			this.Menu_File_Reload.Name = "Menu_File_Reload";
 			this.Menu_File_Reload.Size = new System.Drawing.Size(167, 22);
-			this.Menu_File_Reload.Text = "&Reload";
+			this.Menu_File_Reload.Text = "&Refresh";
 			this.Menu_File_Reload.Click += new System.EventHandler(this.Menu_File_Reload_Click);
 			// 
 			// splitContainer1

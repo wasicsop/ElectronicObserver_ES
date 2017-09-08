@@ -376,15 +376,6 @@ namespace ElectronicObserver {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to レコードのセーブに失敗しました。.
-        /// </summary>
-        internal static string FailedSavingRecords {
-            get {
-                return ResourceManager.GetString("FailedSavingRecords", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to DataStorage の書き込みに失敗しました。.
         /// </summary>
         internal static string FailedSavingStorage {
@@ -615,15 +606,6 @@ namespace ElectronicObserver {
         internal static string SavedAPI {
             get {
                 return ResourceManager.GetString("SavedAPI", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to レコードをセーブしました。.
-        /// </summary>
-        internal static string SavedRecords {
-            get {
-                return ResourceManager.GetString("SavedRecords", resourceCulture);
             }
         }
         

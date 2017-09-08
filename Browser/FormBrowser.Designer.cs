@@ -560,7 +560,7 @@ namespace Browser
 			//
 			this.ToolMenu_Other_LastScreenShot_CopyToClipboard.Name = "ToolMenu_Other_LastScreenShot_CopyToClipboard";
 			this.ToolMenu_Other_LastScreenShot_CopyToClipboard.Size = new System.Drawing.Size(187, 22);
-			this.ToolMenu_Other_LastScreenShot_CopyToClipboard.Text = "Copy to Clipboard (&C)";
+			this.ToolMenu_Other_LastScreenShot_CopyToClipboard.Text = "&Copy";
 			this.ToolMenu_Other_LastScreenShot_CopyToClipboard.Click += new System.EventHandler(this.ToolMenu_Other_LastScreenShot_CopyToClipboard_Click);
 			//
 			// FormBrowser

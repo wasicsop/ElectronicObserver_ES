@@ -132,86 +132,11 @@
   <data name="Alignment_Top" xml:space="preserve">
     <value>上(&amp;T)</value>
   </data>
-  <data name="Arsenal" xml:space="preserve">
-    <value>工廠(&amp;A)</value>
-  </data>
-  <data name="Battle" xml:space="preserve">
-    <value>戦闘(&amp;B)</value>
-  </data>
-  <data name="Browser" xml:space="preserve">
-    <value>ブラウザ</value>
-  </data>
-  <data name="BuildRecord" xml:space="preserve">
-    <value>建造記録(&amp;R)</value>
-  </data>
-  <data name="Compass" xml:space="preserve">
-    <value>羅針盤(&amp;C)</value>
-  </data>
-  <data name="ConstructionRecord" xml:space="preserve">
-    <value>建造記録(&amp;R)</value>
-  </data>
   <data name="ControlWindow" xml:space="preserve">
     <value>コントロールウィンドウ(&amp;C)</value>
   </data>
-  <data name="DeleteOldAPI" xml:space="preserve">
-    <value>古いAPIデータを削除(&amp;D)</value>
-  </data>
   <data name="DetachAll" xml:space="preserve">
     <value>全てのウィンドウを開放(&amp;R)</value>
-  </data>
-  <data name="DevRecord" xml:space="preserve">
-    <value>開発記録(&amp;V)</value>
-  </data>
-  <data name="Dock" xml:space="preserve">
-    <value>入渠(&amp;D)</value>
-  </data>
-  <data name="DropRecord" xml:space="preserve">
-    <value>ドロップ記録(&amp;D)</value>
-  </data>
-  <data name="EquipEncyclopedia" xml:space="preserve">
-    <value>装備図鑑(&amp;E)</value>
-  </data>
-  <data name="EquipmentList" xml:space="preserve">
-    <value>装備一覧(&amp;Q)</value>
-  </data>
-  <data name="FleetList" xml:space="preserve">
-    <value>艦隊一覧(&amp;O)</value>
-  </data>
-  <data name="Fleets" xml:space="preserve">
-    <value>艦隊(&amp;F)</value>
-  </data>
-  <data name="Headquarters" xml:space="preserve">
-    <value>司令部(&amp;H)</value>
-  </data>
-  <data name="Information" xml:space="preserve">
-    <value>情報(&amp;I)</value>
-  </data>
-  <data name="Layout" xml:space="preserve">
-    <value>レイアウト(&amp;L)</value>
-  </data>
-  <data name="LayoutOpen" xml:space="preserve">
-    <value>別のファイルからロード(&amp;O)...</value>
-  </data>
-  <data name="BaseAirCorps" xml:space="preserve">
-    <value>基地航空隊(&amp;S)</value>
-  </data>
-  <data name="Load" xml:space="preserve">
-    <value>ロード(&amp;L)</value>
-  </data>
-  <data name="LoadAPIFromFile" xml:space="preserve">
-    <value>ファイルからAPIをロード(&amp;L)...</value>
-  </data>
-  <data name="LoadAPIList" xml:space="preserve">
-    <value>APIリストをロード(&amp;I)...</value>
-  </data>
-  <data name="LoadDataFromOld" xml:space="preserve">
-    <value>旧 api_start2から深海棲艦を復元(&amp;A)...</value>
-  </data>
-  <data name="LoadOldAPIRecord" xml:space="preserve">
-    <value>旧 api_start2 からレコードを構築(&amp;O)...</value>
-  </data>
-  <data name="Log" xml:space="preserve">
-    <value>ログ(&amp;L)</value>
   </data>
   <data name="OnlineHelp" xml:space="preserve">
     <value>オンラインヘルプ(&amp;H)...</value>
@@ -243,29 +168,8 @@
   <data name="Other_Zoom_Fit" xml:space="preserve">
     <value>ぴったり</value>
   </data>
-  <data name="Quest" xml:space="preserve">
-    <value>任務(&amp;Q)</value>
-  </data>
   <data name="ReattachAll" xml:space="preserve">
     <value>全て再検索して取り込む(&amp;S)</value>
-  </data>
-  <data name="Record" xml:space="preserve">
-    <value>レコード(&amp;R)</value>
-  </data>
-  <data name="RenameShipResource" xml:space="preserve">
-    <value>艦船リソースをリネーム(&amp;R)...</value>
-  </data>
-  <data name="ResourceChart" xml:space="preserve">
-    <value>資源チャート(&amp;C)</value>
-  </data>
-  <data name="Save" xml:space="preserve">
-    <value>セーブ(&amp;S)</value>
-  </data>
-  <data name="Settings" xml:space="preserve">
-    <value>設定(&amp;C)...</value>
-  </data>
-  <data name="ShipEncyclopedia" xml:space="preserve">
-    <value>艦船図鑑(&amp;S)</value>
   </data>
   <data name="ShipGroup" xml:space="preserve">
     <value>艦船グループ(&amp;G)</value>
@@ -279,25 +183,10 @@
   <data name="Title" xml:space="preserve">
     <value>試製七四式電子観測儀</value>
   </data>
-  <data name="VersionInfo" xml:space="preserve">
-    <value>バージョン情報(&amp;V)</value>
-  </data>
   <data name="WindowCapture" xml:space="preserve">
     <value>ウィンドウキャプチャ(&amp;W)</value>
   </data>
-  <data name="File_Layout_Change" xml:space="preserve">
-    <value>別のファイルへ保存(&amp;C)...</value>
-  </data>
-  <data name="File_Layout_LockLayout" xml:space="preserve">
-    <value>レイアウトのロック(&amp;T)</value>
-  </data>
-  <data name="File_Layout_TopMost" xml:space="preserve">
-    <value>最前面に表示(&amp;M)</value>
-  </data>
   <data name="Option" xml:space="preserve">
     <value>オプション(&amp;O)</value>
-  </data>
-  <data name="AntiAirDefense" xml:space="preserve">
-    <value>対空砲火詳細(&amp;A)</value>
   </data>
 </root>

@@ -72,7 +72,7 @@
 			//
 			this.ContextMenuBaseAirCorps_CopyOrganization.Name = "ContextMenuBaseAirCorps_CopyOrganization";
 			this.ContextMenuBaseAirCorps_CopyOrganization.Size = new System.Drawing.Size(219, 22);
-			this.ContextMenuBaseAirCorps_CopyOrganization.Text = GeneralRes.CopyToClipboard;
+			this.ContextMenuBaseAirCorps_CopyOrganization.Text = "&Copy";
 			this.ContextMenuBaseAirCorps_CopyOrganization.Click += new System.EventHandler(this.ContextMenuBaseAirCorps_CopyOrganization_Click);
 			//
 			// toolStripSeparator1

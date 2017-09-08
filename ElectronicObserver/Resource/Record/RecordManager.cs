@@ -98,9 +98,9 @@ namespace ElectronicObserver.Resource.Record {
 
 			if ( logging ) {
 				if ( succeeded )
-					Utility.Logger.Add( 2, "レコードをセーブしました。" );
+					Utility.Logger.Add( 2, "Records saved." );
 				else
-					Utility.Logger.Add( 2, "レコードのセーブに失敗しました。" );
+					Utility.Logger.Add( 2, "Failed to save records." );
 			}
 
 			return succeeded;
@@ -128,9 +128,9 @@ namespace ElectronicObserver.Resource.Record {
 
 			if ( logging ) {
 				if ( succeeded )
-					Utility.Logger.Add( 2, LoggerRes.SavedRecords );
+					Utility.Logger.Add( 2, "Records saved." );
 				else
-					Utility.Logger.Add( 2, LoggerRes.FailedSavingRecords );
+					Utility.Logger.Add( 2, "Failed to save records." );
 			}
 
 			return succeeded;

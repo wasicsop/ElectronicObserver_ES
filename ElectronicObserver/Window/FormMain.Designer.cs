@@ -140,20 +140,20 @@
             this.StripMenu_File_Record_Load});
 			this.StripMenu_File_Record.Name = "StripMenu_File_Record";
 			this.StripMenu_File_Record.Size = new System.Drawing.Size(136, 22);
-			this.StripMenu_File_Record.Text = global::ElectronicObserver.Window.Menus.Record;
+			this.StripMenu_File_Record.Text = "&Record";
 			//
 			// StripMenu_File_Record_Save
 			//
 			this.StripMenu_File_Record_Save.Name = "StripMenu_File_Record_Save";
 			this.StripMenu_File_Record_Save.Size = new System.Drawing.Size(120, 22);
-			this.StripMenu_File_Record_Save.Text = global::ElectronicObserver.Window.Menus.Save;
+			this.StripMenu_File_Record_Save.Text = "&Save";
 			this.StripMenu_File_Record_Save.Click += new System.EventHandler(this.StripMenu_File_SaveData_Save_Click);
 			//
 			// StripMenu_File_Record_Load
 			//
 			this.StripMenu_File_Record_Load.Name = "StripMenu_File_Record_Load";
 			this.StripMenu_File_Record_Load.Size = new System.Drawing.Size(120, 22);
-			this.StripMenu_File_Record_Load.Text = global::ElectronicObserver.Window.Menus.Load;
+			this.StripMenu_File_Record_Load.Text = "&Load";
 			this.StripMenu_File_Record_Load.Click += new System.EventHandler(this.StripMenu_File_SaveData_Load_Click);
 			//
 			// StripMenu_File_Layout
@@ -169,34 +169,34 @@
             this.StripMenu_File_Layout_TopMost});
 			this.StripMenu_File_Layout.Name = "StripMenu_File_Layout";
 			this.StripMenu_File_Layout.Size = new System.Drawing.Size(136, 22);
-			this.StripMenu_File_Layout.Text = global::ElectronicObserver.Window.Menus.Layout;
+			this.StripMenu_File_Layout.Text = "&Layout";
 			//
 			// StripMenu_File_Layout_Load
 			//
 			this.StripMenu_File_Layout_Load.Name = "StripMenu_File_Layout_Load";
 			this.StripMenu_File_Layout_Load.Size = new System.Drawing.Size(210, 22);
-			this.StripMenu_File_Layout_Load.Text = global::ElectronicObserver.Window.Menus.Load;
+			this.StripMenu_File_Layout_Load.Text = "&Load";
 			this.StripMenu_File_Layout_Load.Click += new System.EventHandler(this.StripMenu_File_Layout_Load_Click);
 			//
 			// StripMenu_File_Layout_Save
 			//
 			this.StripMenu_File_Layout_Save.Name = "StripMenu_File_Layout_Save";
 			this.StripMenu_File_Layout_Save.Size = new System.Drawing.Size(210, 22);
-			this.StripMenu_File_Layout_Save.Text = global::ElectronicObserver.Window.Menus.Save;
+			this.StripMenu_File_Layout_Save.Text = "&Save";
 			this.StripMenu_File_Layout_Save.Click += new System.EventHandler(this.StripMenu_File_Layout_Save_Click);
 			//
 			// StripMenu_File_Layout_Open
 			//
 			this.StripMenu_File_Layout_Open.Name = "StripMenu_File_Layout_Open";
 			this.StripMenu_File_Layout_Open.Size = new System.Drawing.Size(210, 22);
-			this.StripMenu_File_Layout_Open.Text = global::ElectronicObserver.Window.Menus.LayoutOpen;
+			this.StripMenu_File_Layout_Open.Text = "&Open...";
 			this.StripMenu_File_Layout_Open.Click += new System.EventHandler(this.StripMenu_File_Layout_Open_Click);
 			//
 			// StripMenu_File_Layout_Change
 			//
 			this.StripMenu_File_Layout_Change.Name = "StripMenu_File_Layout_Change";
 			this.StripMenu_File_Layout_Change.Size = new System.Drawing.Size(210, 22);
-			this.StripMenu_File_Layout_Change.Text = global::ElectronicObserver.Window.Menus.File_Layout_Change;
+			this.StripMenu_File_Layout_Change.Text = "Save &as...";
 			this.StripMenu_File_Layout_Change.Click += new System.EventHandler(this.StripMenu_File_Layout_Change_Click);
 			//
 			// toolStripSeparator9
@@ -209,7 +209,7 @@
 			this.StripMenu_File_Layout_LockLayout.CheckOnClick = true;
 			this.StripMenu_File_Layout_LockLayout.Name = "StripMenu_File_Layout_LockLayout";
 			this.StripMenu_File_Layout_LockLayout.Size = new System.Drawing.Size(210, 22);
-			this.StripMenu_File_Layout_LockLayout.Text = global::ElectronicObserver.Window.Menus.File_Layout_LockLayout;
+			this.StripMenu_File_Layout_LockLayout.Text = "Lock Layou&t";
 			this.StripMenu_File_Layout_LockLayout.Click += new System.EventHandler(this.StripMenu_File_Layout_LockLayout_Click);
 			//
 			// toolStripSeparator10
@@ -222,7 +222,7 @@
 			this.StripMenu_File_Layout_TopMost.CheckOnClick = true;
 			this.StripMenu_File_Layout_TopMost.Name = "StripMenu_File_Layout_TopMost";
 			this.StripMenu_File_Layout_TopMost.Size = new System.Drawing.Size(210, 22);
-			this.StripMenu_File_Layout_TopMost.Text = global::ElectronicObserver.Window.Menus.File_Layout_TopMost;
+			this.StripMenu_File_Layout_TopMost.Text = "&Always on top";
 			this.StripMenu_File_Layout_TopMost.Click += new System.EventHandler(this.StripMenu_File_Layout_TopMost_Click);
 			//
 			// toolStripSeparator6
@@ -234,7 +234,7 @@
 			//
 			this.StripMenu_File_Configuration.Name = "StripMenu_File_Configuration";
 			this.StripMenu_File_Configuration.Size = new System.Drawing.Size(136, 22);
-			this.StripMenu_File_Configuration.Text = global::ElectronicObserver.Window.Menus.Settings;
+			this.StripMenu_File_Configuration.Text = "&Settings...";
 			this.StripMenu_File_Configuration.Click += new System.EventHandler(this.StripMenu_File_Configuration_Click);
 			//
 			// toolStripSeparator5
@@ -286,7 +286,7 @@
             this.StripMenu_View_Fleet_4});
 			this.StripMenu_View_Fleet.Name = "StripMenu_View_Fleet";
 			this.StripMenu_View_Fleet.Size = new System.Drawing.Size(188, 22);
-			this.StripMenu_View_Fleet.Text = global::ElectronicObserver.Window.Menus.Fleets;
+			this.StripMenu_View_Fleet.Text = "&Fleet";
 			//
 			// StripMenu_View_Fleet_1
 			//
@@ -320,21 +320,21 @@
 			//
 			this.StripMenu_View_FleetOverview.Name = "StripMenu_View_FleetOverview";
 			this.StripMenu_View_FleetOverview.Size = new System.Drawing.Size(188, 22);
-			this.StripMenu_View_FleetOverview.Text = global::ElectronicObserver.Window.Menus.FleetList;
+			this.StripMenu_View_FleetOverview.Text = "Fleet &list";
 			this.StripMenu_View_FleetOverview.Click += new System.EventHandler(this.StripMenu_View_FleetOverview_Click);
 			//
 			// StripMenu_View_ShipGroup
 			//
 			this.StripMenu_View_ShipGroup.Name = "StripMenu_View_ShipGroup";
 			this.StripMenu_View_ShipGroup.Size = new System.Drawing.Size(188, 22);
-			this.StripMenu_View_ShipGroup.Text = global::ElectronicObserver.Window.Menus.ShipGroup;
+			this.StripMenu_View_ShipGroup.Text = "Ship &group";
 			this.StripMenu_View_ShipGroup.Click += new System.EventHandler(this.StripMenu_View_ShipGroup_Click);
 			//
 			// StripMenu_View_XPCalculator
 			//
 			this.StripMenu_View_XPCalculator.Name = "StripMenu_View_XPCalculator";
 			this.StripMenu_View_XPCalculator.Size = new System.Drawing.Size(188, 22);
-			this.StripMenu_View_XPCalculator.Text = "Exp Calculator";
+			this.StripMenu_View_XPCalculator.Text = "&Exp calculator";
 			this.StripMenu_View_XPCalculator.Click += new System.EventHandler(this.StripMenu_View_XPCalculator_Click);
 			//
 			// toolStripSeparator1
@@ -346,21 +346,21 @@
 			//
 			this.StripMenu_View_Dock.Name = "StripMenu_View_Dock";
 			this.StripMenu_View_Dock.Size = new System.Drawing.Size(188, 22);
-			this.StripMenu_View_Dock.Text = global::ElectronicObserver.Window.Menus.Dock;
+			this.StripMenu_View_Dock.Text = "&Dock";
 			this.StripMenu_View_Dock.Click += new System.EventHandler(this.StripMenu_View_Dock_Click);
 			//
 			// StripMenu_View_Arsenal
 			//
 			this.StripMenu_View_Arsenal.Name = "StripMenu_View_Arsenal";
 			this.StripMenu_View_Arsenal.Size = new System.Drawing.Size(188, 22);
-			this.StripMenu_View_Arsenal.Text = global::ElectronicObserver.Window.Menus.Arsenal;
+			this.StripMenu_View_Arsenal.Text = "&Arsenal";
 			this.StripMenu_View_Arsenal.Click += new System.EventHandler(this.StripMenu_View_Arsenal_Click);
 			//
 			// StripMenu_View_BaseAirCorps
 			//
 			this.StripMenu_View_BaseAirCorps.Name = "StripMenu_View_BaseAirCorps";
 			this.StripMenu_View_BaseAirCorps.Size = new System.Drawing.Size(188, 22);
-			this.StripMenu_View_BaseAirCorps.Text = global::ElectronicObserver.Window.Menus.BaseAirCorps;
+			this.StripMenu_View_BaseAirCorps.Text = "Air ba&se";
 			this.StripMenu_View_BaseAirCorps.Click += new System.EventHandler(this.StripMenu_View_BaseAirCorps_Click);
 			//
 			// toolStripSeparator2
@@ -372,21 +372,21 @@
 			//
 			this.StripMenu_View_Headquarters.Name = "StripMenu_View_Headquarters";
 			this.StripMenu_View_Headquarters.Size = new System.Drawing.Size(188, 22);
-			this.StripMenu_View_Headquarters.Text = global::ElectronicObserver.Window.Menus.Headquarters;
+			this.StripMenu_View_Headquarters.Text = "&HQ";
 			this.StripMenu_View_Headquarters.Click += new System.EventHandler(this.StripMenu_View_Headquarters_Click);
 			//
 			// StripMenu_View_Quest
 			//
 			this.StripMenu_View_Quest.Name = "StripMenu_View_Quest";
 			this.StripMenu_View_Quest.Size = new System.Drawing.Size(188, 22);
-			this.StripMenu_View_Quest.Text = global::ElectronicObserver.Window.Menus.Quest;
+			this.StripMenu_View_Quest.Text = "&Quest";
 			this.StripMenu_View_Quest.Click += new System.EventHandler(this.StripMenu_View_Quest_Click);
 			//
 			// StripMenu_View_Information
 			//
 			this.StripMenu_View_Information.Name = "StripMenu_View_Information";
 			this.StripMenu_View_Information.Size = new System.Drawing.Size(188, 22);
-			this.StripMenu_View_Information.Text = global::ElectronicObserver.Window.Menus.Information;
+			this.StripMenu_View_Information.Text = "&Information";
 			this.StripMenu_View_Information.Click += new System.EventHandler(this.StripMenu_View_Information_Click);
 			//
 			// toolStripSeparator3
@@ -398,14 +398,14 @@
 			//
 			this.StripMenu_View_Compass.Name = "StripMenu_View_Compass";
 			this.StripMenu_View_Compass.Size = new System.Drawing.Size(188, 22);
-			this.StripMenu_View_Compass.Text = global::ElectronicObserver.Window.Menus.Compass;
+			this.StripMenu_View_Compass.Text = "&Compass";
 			this.StripMenu_View_Compass.Click += new System.EventHandler(this.StripMenu_View_Compass_Click);
 			//
 			// StripMenu_View_Battle
 			//
 			this.StripMenu_View_Battle.Name = "StripMenu_View_Battle";
 			this.StripMenu_View_Battle.Size = new System.Drawing.Size(188, 22);
-			this.StripMenu_View_Battle.Text = global::ElectronicObserver.Window.Menus.Battle;
+			this.StripMenu_View_Battle.Text = "&Battle";
 			this.StripMenu_View_Battle.Click += new System.EventHandler(this.StripMenu_View_Battle_Click);
 			//
 			// toolStripSeparator4
@@ -417,14 +417,14 @@
 			//
 			this.StripMenu_View_Browser.Name = "StripMenu_View_Browser";
 			this.StripMenu_View_Browser.Size = new System.Drawing.Size(188, 22);
-			this.StripMenu_View_Browser.Text = global::ElectronicObserver.Window.Menus.Browser;
+			this.StripMenu_View_Browser.Text = "Browser";
 			this.StripMenu_View_Browser.Click += new System.EventHandler(this.StripMenu_View_Browser_Click);
 			//
 			// StripMenu_View_Log
 			//
 			this.StripMenu_View_Log.Name = "StripMenu_View_Log";
 			this.StripMenu_View_Log.Size = new System.Drawing.Size(188, 22);
-			this.StripMenu_View_Log.Text = global::ElectronicObserver.Window.Menus.Log;
+			this.StripMenu_View_Log.Text = "L&og";
 			this.StripMenu_View_Log.Click += new System.EventHandler(this.StripMenu_View_Log_Click);
 			//
 			// StripMenu_WindowCapture
@@ -462,7 +462,7 @@
 			//
 			this.StripMenu_View_Json.Name = "StripMenu_View_Json";
 			this.StripMenu_View_Json.Size = new System.Drawing.Size(188, 22);
-			this.StripMenu_View_Json.Text = "JSON(&J)";
+			this.StripMenu_View_Json.Text = "&JSON";
 			this.StripMenu_View_Json.Click += new System.EventHandler(this.StripMenu_View_Json_Click);
 			//
 			// StripMenu_Tool
@@ -488,7 +488,7 @@
 			//
 			this.StripMenu_Tool_EquipmentList.Name = "StripMenu_Tool_EquipmentList";
 			this.StripMenu_Tool_EquipmentList.Size = new System.Drawing.Size(168, 22);
-			this.StripMenu_Tool_EquipmentList.Text = global::ElectronicObserver.Window.Menus.EquipmentList;
+			this.StripMenu_Tool_EquipmentList.Text = "E&quipment list";
 			this.StripMenu_Tool_EquipmentList.Click += new System.EventHandler(this.StripMenu_Tool_EquipmentList_Click);
 			//
 			// toolStripSeparator7
@@ -500,28 +500,28 @@
 			//
 			this.StripMenu_Tool_DropRecord.Name = "StripMenu_Tool_DropRecord";
 			this.StripMenu_Tool_DropRecord.Size = new System.Drawing.Size(168, 22);
-			this.StripMenu_Tool_DropRecord.Text = global::ElectronicObserver.Window.Menus.DropRecord;
+			this.StripMenu_Tool_DropRecord.Text = "&Drop record";
 			this.StripMenu_Tool_DropRecord.Click += new System.EventHandler(this.StripMenu_Tool_DropRecord_Click);
 			//
 			// StripMenu_Tool_DevelopmentRecord
 			//
 			this.StripMenu_Tool_DevelopmentRecord.Name = "StripMenu_Tool_DevelopmentRecord";
 			this.StripMenu_Tool_DevelopmentRecord.Size = new System.Drawing.Size(168, 22);
-			this.StripMenu_Tool_DevelopmentRecord.Text = global::ElectronicObserver.Window.Menus.DevRecord;
+			this.StripMenu_Tool_DevelopmentRecord.Text = "De&velopment record";
 			this.StripMenu_Tool_DevelopmentRecord.Click += new System.EventHandler(this.StripMenu_Tool_DevelopmentRecord_Click);
 			//
 			// StripMenu_Tool_ConstructionRecord
 			//
 			this.StripMenu_Tool_ConstructionRecord.Name = "StripMenu_Tool_ConstructionRecord";
 			this.StripMenu_Tool_ConstructionRecord.Size = new System.Drawing.Size(168, 22);
-			this.StripMenu_Tool_ConstructionRecord.Text = global::ElectronicObserver.Window.Menus.BuildRecord;
+			this.StripMenu_Tool_ConstructionRecord.Text = "Construction &record";
 			this.StripMenu_Tool_ConstructionRecord.Click += new System.EventHandler(this.StripMenu_Tool_ConstructionRecord_Click);
 			//
 			// StripMenu_Tool_ResourceChart
 			//
 			this.StripMenu_Tool_ResourceChart.Name = "StripMenu_Tool_ResourceChart";
 			this.StripMenu_Tool_ResourceChart.Size = new System.Drawing.Size(168, 22);
-			this.StripMenu_Tool_ResourceChart.Text = global::ElectronicObserver.Window.Menus.ResourceChart;
+			this.StripMenu_Tool_ResourceChart.Text = "&Resource chart";
 			this.StripMenu_Tool_ResourceChart.Click += new System.EventHandler(this.StripMenu_Tool_ResourceChart_Click);
 			//
 			// toolStripSeparator15
@@ -533,14 +533,14 @@
 			//
 			this.StripMenu_Tool_AlbumMasterShip.Name = "StripMenu_Tool_AlbumMasterShip";
 			this.StripMenu_Tool_AlbumMasterShip.Size = new System.Drawing.Size(168, 22);
-			this.StripMenu_Tool_AlbumMasterShip.Text = global::ElectronicObserver.Window.Menus.ShipEncyclopedia;
+			this.StripMenu_Tool_AlbumMasterShip.Text = "&Ship encylopedia";
 			this.StripMenu_Tool_AlbumMasterShip.Click += new System.EventHandler(this.StripMenu_Tool_AlbumMasterShip_Click);
 			//
 			// StripMenu_Tool_AlbumMasterEquipment
 			//
 			this.StripMenu_Tool_AlbumMasterEquipment.Name = "StripMenu_Tool_AlbumMasterEquipment";
 			this.StripMenu_Tool_AlbumMasterEquipment.Size = new System.Drawing.Size(168, 22);
-			this.StripMenu_Tool_AlbumMasterEquipment.Text = global::ElectronicObserver.Window.Menus.EquipEncyclopedia;
+			this.StripMenu_Tool_AlbumMasterEquipment.Text = "&Equipment encyclopedia";
 			this.StripMenu_Tool_AlbumMasterEquipment.Click += new System.EventHandler(this.StripMenu_Tool_AlbumMasterEquipment_Click);
 			//
 			// toolStripSeparator11
@@ -552,14 +552,14 @@
 			//
 			this.StripMenu_Tool_AntiAirDefense.Name = "StripMenu_Tool_AntiAirDefense";
 			this.StripMenu_Tool_AntiAirDefense.Size = new System.Drawing.Size(164, 22);
-			this.StripMenu_Tool_AntiAirDefense.Text = global::ElectronicObserver.Window.Menus.AntiAirDefense;
+			this.StripMenu_Tool_AntiAirDefense.Text = "&AA defense";
 			this.StripMenu_Tool_AntiAirDefense.Click += new System.EventHandler(this.StripMenu_Tool_AntiAirDefense_Click);
 			//
 			// StripMenu_Tool_FleetImageGenerator
 			//
 			this.StripMenu_Tool_FleetImageGenerator.Name = "StripMenu_Tool_FleetImageGenerator";
 			this.StripMenu_Tool_FleetImageGenerator.Size = new System.Drawing.Size(164, 22);
-			this.StripMenu_Tool_FleetImageGenerator.Text = "Export Fleet Image (&F)";
+			this.StripMenu_Tool_FleetImageGenerator.Text = "Export &fleet image...";
 			this.StripMenu_Tool_FleetImageGenerator.Click += new System.EventHandler(this.StripMenu_Tool_FleetImageGenerator_Click);
 			//
 			// StripMenu_Debug
@@ -580,14 +580,14 @@
 			//
 			this.StripMenu_Debug_LoadAPIFromFile.Name = "StripMenu_Debug_LoadAPIFromFile";
 			this.StripMenu_Debug_LoadAPIFromFile.Size = new System.Drawing.Size(273, 22);
-			this.StripMenu_Debug_LoadAPIFromFile.Text = global::ElectronicObserver.Window.Menus.LoadAPIFromFile;
+			this.StripMenu_Debug_LoadAPIFromFile.Text = "&Load API data from file...";
 			this.StripMenu_Debug_LoadAPIFromFile.Click += new System.EventHandler(this.StripMenu_Debug_LoadAPIFromFile_Click);
 			//
 			// StripMenu_Debug_LoadInitialAPI
 			//
 			this.StripMenu_Debug_LoadInitialAPI.Name = "StripMenu_Debug_LoadInitialAPI";
 			this.StripMenu_Debug_LoadInitialAPI.Size = new System.Drawing.Size(273, 22);
-			this.StripMenu_Debug_LoadInitialAPI.Text = global::ElectronicObserver.Window.Menus.LoadAPIList;
+			this.StripMenu_Debug_LoadInitialAPI.Text = "Load &API list...";
 			this.StripMenu_Debug_LoadInitialAPI.Click += new System.EventHandler(this.StripMenu_Debug_LoadInitialAPI_Click);
 			//
 			// toolStripSeparator8
@@ -599,28 +599,28 @@
 			//
 			this.StripMenu_Debug_LoadRecordFromOld.Name = "StripMenu_Debug_LoadRecordFromOld";
 			this.StripMenu_Debug_LoadRecordFromOld.Size = new System.Drawing.Size(273, 22);
-			this.StripMenu_Debug_LoadRecordFromOld.Text = global::ElectronicObserver.Window.Menus.LoadOldAPIRecord;
+			this.StripMenu_Debug_LoadRecordFromOld.Text = "Load from &old api_start2...";
 			this.StripMenu_Debug_LoadRecordFromOld.Click += new System.EventHandler(this.StripMenu_Debug_LoadRecordFromOld_Click);
 			//
 			// StripMenu_Debug_DeleteOldAPI
 			//
 			this.StripMenu_Debug_DeleteOldAPI.Name = "StripMenu_Debug_DeleteOldAPI";
 			this.StripMenu_Debug_DeleteOldAPI.Size = new System.Drawing.Size(273, 22);
-			this.StripMenu_Debug_DeleteOldAPI.Text = global::ElectronicObserver.Window.Menus.DeleteOldAPI;
+			this.StripMenu_Debug_DeleteOldAPI.Text = "&Delete old API data";
 			this.StripMenu_Debug_DeleteOldAPI.Click += new System.EventHandler(this.StripMenu_Debug_DeleteOldAPI_Click);
 			//
 			// StripMenu_Debug_RenameShipResource
 			//
 			this.StripMenu_Debug_RenameShipResource.Name = "StripMenu_Debug_RenameShipResource";
 			this.StripMenu_Debug_RenameShipResource.Size = new System.Drawing.Size(273, 22);
-			this.StripMenu_Debug_RenameShipResource.Text = global::ElectronicObserver.Window.Menus.RenameShipResource;
+			this.StripMenu_Debug_RenameShipResource.Text = "&Rename ship resource...";
 			this.StripMenu_Debug_RenameShipResource.Click += new System.EventHandler(this.StripMenu_Debug_RenameShipResource_Click);
 			//
 			// StripMenu_Debug_LoadDataFromOld
 			//
 			this.StripMenu_Debug_LoadDataFromOld.Name = "StripMenu_Debug_LoadDataFromOld";
 			this.StripMenu_Debug_LoadDataFromOld.Size = new System.Drawing.Size(273, 22);
-			this.StripMenu_Debug_LoadDataFromOld.Text = global::ElectronicObserver.Window.Menus.LoadDataFromOld;
+			this.StripMenu_Debug_LoadDataFromOld.Text = "Re&store abyssal data from old api_start2...";
 			this.StripMenu_Debug_LoadDataFromOld.Click += new System.EventHandler(this.StripMenu_Debug_LoadDataFromOld_Click);
 			//
 			// StripMenu_Help
@@ -639,14 +639,14 @@
 			//
 			this.StripMenu_Help_Help.Name = "StripMenu_Help_Help";
 			this.StripMenu_Help_Help.Size = new System.Drawing.Size(180, 22);
-			this.StripMenu_Help_Help.Text = "View &Help";
+			this.StripMenu_Help_Help.Text = "View &help";
 			this.StripMenu_Help_Help.Click += new System.EventHandler(this.StripMenu_Help_Help_Click);
 			//
 			// StripMenu_Help_Issue
 			//
 			this.StripMenu_Help_Issue.Name = "StripMenu_Help_Issue";
 			this.StripMenu_Help_Issue.Size = new System.Drawing.Size(180, 22);
-			this.StripMenu_Help_Issue.Text = "&Report a Problem...";
+			this.StripMenu_Help_Issue.Text = "&Report a problem...";
 			this.StripMenu_Help_Issue.Click += new System.EventHandler(this.StripMenu_Help_Issue_Click);
 			//
 			// SeparatorWhitecap
@@ -659,7 +659,7 @@
 			//
 			this.StripMenu_Help_Version.Name = "StripMenu_Help_Version";
 			this.StripMenu_Help_Version.Size = new System.Drawing.Size(180, 22);
-			this.StripMenu_Help_Version.Text = global::ElectronicObserver.Window.Menus.VersionInfo;
+			this.StripMenu_Help_Version.Text = "&About Electronic Observer";
 			this.StripMenu_Help_Version.Click += new System.EventHandler(this.StripMenu_Help_Version_Click);
 			//
 			// StripStatus
@@ -680,7 +680,7 @@
 			this.StripStatus_Information.Name = "StripStatus_Information";
 			this.StripStatus_Information.Size = new System.Drawing.Size(556, 17);
 			this.StripStatus_Information.Spring = true;
-			this.StripStatus_Information.Text = "Now Preparing...";
+			this.StripStatus_Information.Text = "Now loading...";
 			this.StripStatus_Information.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			//
 			// StripStatus_Clock
@@ -714,7 +714,7 @@
 			//
 			this.StripMenu_Help_Update.Name = "StripMenu_Help_Update";
 			this.StripMenu_Help_Update.Size = new System.Drawing.Size(180, 22);
-			this.StripMenu_Help_Update.Text = "&Check for Update";
+			this.StripMenu_Help_Update.Text = "Check for &update";
 			this.StripMenu_Help_Update.Click += new System.EventHandler(this.StripMenu_Help_Update_Click);
 			//
 			// FormMain

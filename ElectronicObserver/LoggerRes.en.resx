@@ -210,9 +210,6 @@
   <data name="FailedSavingErrorReport" xml:space="preserve">
     <value>Failed to write error report.\r\n{0}\r\n{1}</value>
   </data>
-  <data name="FailedSavingRecords" xml:space="preserve">
-    <value>Failed to save records.</value>
-  </data>
   <data name="FailedSavingStorage" xml:space="preserve">
     <value>Failed to save DataStorage.</value>
   </data>
@@ -269,9 +266,6 @@
   </data>
   <data name="SavedAPI" xml:space="preserve">
     <value>Saved API file {0}.</value>
-  </data>
-  <data name="SavedRecords" xml:space="preserve">
-    <value>Saved records.</value>
   </data>
   <data name="SentDatabase" xml:space="preserve">
     <value>Sent {0} to the Kancolle Statistics Database.</value>
