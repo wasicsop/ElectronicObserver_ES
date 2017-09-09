@@ -884,7 +884,7 @@ namespace ElectronicObserver.Window {
 			FleetData fleet = db.Fleet[FleetID];
 			if ( fleet == null ) return;
 
-			sb.AppendFormat( "{0}\tAS value: {1} / LOS value: {2}\r\n", fleet.Name, fleet.GetAirSuperiority(), fleet.GetSearchingAbilityString() );
+			sb.AppendFormat( "{0}\tAS value: {1} / LOS value: {2} / Transport cap.: {3}\r\n", fleet.Name, fleet.GetAirSuperiority(), fleet.GetSearchingAbilityString(), Calculator.GetTPDamage( fleet ) );
 			for ( int i = 0; i < fleet.Members.Count; i++ ) {
 				if ( fleet[i] == -1 )
 					continue;

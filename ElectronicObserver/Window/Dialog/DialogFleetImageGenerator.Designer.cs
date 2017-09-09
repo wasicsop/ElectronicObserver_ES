@@ -36,6 +36,7 @@
 			this.Comment = new System.Windows.Forms.TextBox();
 			this.ButtonAlert = new System.Windows.Forms.Button();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
+			this.ImageTypeBaseAirCorps = new System.Windows.Forms.RadioButton();
 			this.ImageTypeBanner = new System.Windows.Forms.RadioButton();
 			this.ImageTypeCutin = new System.Windows.Forms.RadioButton();
 			this.ImageTypeCard = new System.Windows.Forms.RadioButton();
@@ -108,9 +109,9 @@
 			this.tabPage3.SuspendLayout();
 			this.groupBox6.SuspendLayout();
 			this.SuspendLayout();
-			// 
+			//
 			// tabControl1
-			// 
+			//
 			this.tabControl1.Controls.Add(this.tabPage1);
 			this.tabControl1.Controls.Add(this.tabPage2);
 			this.tabControl1.Controls.Add(this.tabPage3);
@@ -120,9 +121,9 @@
 			this.tabControl1.SelectedIndex = 0;
 			this.tabControl1.Size = new System.Drawing.Size(464, 401);
 			this.tabControl1.TabIndex = 0;
-			// 
+			//
 			// tabPage1
-			// 
+			//
 			this.tabPage1.Controls.Add(this.GroupOutputPath);
 			this.tabPage1.Controls.Add(this.groupBox7);
 			this.tabPage1.Controls.Add(this.ButtonAlert);
@@ -137,22 +138,22 @@
 			this.tabPage1.TabIndex = 0;
 			this.tabPage1.Text = "Basic";
 			this.tabPage1.UseVisualStyleBackColor = true;
-			// 
+			//
 			// GroupOutputPath
-			// 
-			this.GroupOutputPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+			//
+			this.GroupOutputPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.GroupOutputPath.Controls.Add(this.SearchOutputPath);
 			this.GroupOutputPath.Controls.Add(this.OutputPath);
-			this.GroupOutputPath.Location = new System.Drawing.Point(8, 277);
+			this.GroupOutputPath.Location = new System.Drawing.Point(8, 273);
 			this.GroupOutputPath.Name = "GroupOutputPath";
 			this.GroupOutputPath.Size = new System.Drawing.Size(440, 57);
 			this.GroupOutputPath.TabIndex = 10;
 			this.GroupOutputPath.TabStop = false;
 			this.GroupOutputPath.Text = "Output path";
-			// 
+			//
 			// SearchOutputPath
-			// 
+			//
 			this.SearchOutputPath.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.SearchOutputPath.Location = new System.Drawing.Point(354, 21);
 			this.SearchOutputPath.Name = "SearchOutputPath";
@@ -162,10 +163,10 @@
 			this.ToolTipInfo.SetToolTip(this.SearchOutputPath, "Select the destination path and file name for the fleet image." );
 			this.SearchOutputPath.UseVisualStyleBackColor = true;
 			this.SearchOutputPath.Click += new System.EventHandler(this.SearchOutputPath_Click);
-			// 
+			//
 			// OutputPath
-			// 
-			this.OutputPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			//
+			this.OutputPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.OutputPath.Location = new System.Drawing.Point(6, 22);
 			this.OutputPath.Name = "OutputPath";
@@ -173,11 +174,11 @@
 			this.OutputPath.TabIndex = 5;
 			this.ToolTipInfo.SetToolTip(this.OutputPath, "Specify the destination path and file name for the fleet image." );
 			this.OutputPath.TextChanged += new System.EventHandler(this.OutputPath_TextChanged);
-			// 
+			//
 			// groupBox7
-			// 
-			this.groupBox7.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+			//
+			this.groupBox7.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox7.Controls.Add(this.label2);
 			this.groupBox7.Controls.Add(this.Title);
@@ -185,72 +186,73 @@
 			this.groupBox7.Controls.Add(this.Comment);
 			this.groupBox7.Location = new System.Drawing.Point(8, 127);
 			this.groupBox7.Name = "groupBox7";
-			this.groupBox7.Size = new System.Drawing.Size(440, 144);
+			this.groupBox7.Size = new System.Drawing.Size(440, 140);
 			this.groupBox7.TabIndex = 9;
 			this.groupBox7.TabStop = false;
 			this.groupBox7.Text = "Custom text";
-			// 
+			//
 			// label2
-			// 
+			//
 			this.label2.AutoSize = true;
 			this.label2.Location = new System.Drawing.Point(6, 25);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(54, 15);
 			this.label2.TabIndex = 3;
 			this.label2.Text = "Title:";
-			// 
+			//
 			// Title
-			// 
-			this.Title.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			//
+			this.Title.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.Title.Location = new System.Drawing.Point(66, 22);
 			this.Title.Name = "Title";
 			this.Title.Size = new System.Drawing.Size(368, 23);
 			this.Title.TabIndex = 4;
 			this.Title.TextChanged += new System.EventHandler(this.Title_TextChanged);
-			// 
+			//
 			// label3
-			// 
+			//
 			this.label3.AutoSize = true;
 			this.label3.Location = new System.Drawing.Point(6, 48);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(52, 15);
 			this.label3.TabIndex = 5;
 			this.label3.Text = "Comment:";
-			// 
+			//
 			// Comment
-			// 
+			//
 			this.Comment.AcceptsReturn = true;
 			this.Comment.AcceptsTab = true;
-			this.Comment.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+			this.Comment.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.Comment.Location = new System.Drawing.Point(6, 66);
 			this.Comment.MaxLength = 0;
 			this.Comment.Multiline = true;
 			this.Comment.Name = "Comment";
 			this.Comment.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-			this.Comment.Size = new System.Drawing.Size(428, 72);
+			this.Comment.Size = new System.Drawing.Size(428, 68);
 			this.Comment.TabIndex = 6;
 			this.Comment.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Comment_KeyDown);
-			// 
+			//
 			// ButtonAlert
-			// 
+			//
 			this.ButtonAlert.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.ButtonAlert.Font = new System.Drawing.Font("Meiryo UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
 			this.ButtonAlert.ForeColor = System.Drawing.Color.Red;
-			this.ButtonAlert.Location = new System.Drawing.Point(6, 340);
+			this.ButtonAlert.Location = new System.Drawing.Point(6, 336);
 			this.ButtonAlert.Name = "ButtonAlert";
 			this.ButtonAlert.Size = new System.Drawing.Size(278, 23);
 			this.ButtonAlert.TabIndex = 8;
 			this.ButtonAlert.Text = "Alert";
 			this.ButtonAlert.UseVisualStyleBackColor = true;
 			this.ButtonAlert.Click += new System.EventHandler(this.ButtonAlert_Click);
-			// 
+			//
 			// groupBox3
-			// 
-			this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			//
+			this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox3.Controls.Add(this.ImageTypeBaseAirCorps);
 			this.groupBox3.Controls.Add(this.ImageTypeBanner);
 			this.groupBox3.Controls.Add(this.ImageTypeCutin);
 			this.groupBox3.Controls.Add(this.ImageTypeCard);
@@ -260,69 +262,78 @@
 			this.groupBox3.TabIndex = 0;
 			this.groupBox3.TabStop = false;
 			this.groupBox3.Text = "Mode";
-			// 
+			//
+			// ImageTypeBaseAirCorps
+			//
+			this.ImageTypeBaseAirCorps.AutoSize = true;
+			this.ImageTypeBaseAirCorps.Enabled = false;
+			this.ImageTypeBaseAirCorps.Location = new System.Drawing.Point(312, 22);
+			this.ImageTypeBaseAirCorps.Name = "ImageTypeBaseAirCorps";
+			this.ImageTypeBaseAirCorps.Size = new System.Drawing.Size(85, 19);
+			this.ImageTypeBaseAirCorps.TabIndex = 3;
+			this.ImageTypeBaseAirCorps.Text = "基地航空隊";
+			this.ImageTypeBaseAirCorps.UseVisualStyleBackColor = true;
+			this.ImageTypeBaseAirCorps.Visible = false;
+			//
 			// ImageTypeBanner
-			// 
+			//
 			this.ImageTypeBanner.AutoSize = true;
 			this.ImageTypeBanner.Location = new System.Drawing.Point(213, 22);
 			this.ImageTypeBanner.Name = "ImageTypeBanner";
 			this.ImageTypeBanner.Size = new System.Drawing.Size(93, 19);
 			this.ImageTypeBanner.TabIndex = 2;
-			this.ImageTypeBanner.TabStop = true;
 			this.ImageTypeBanner.Text = "Banner (S)";
 			this.ImageTypeBanner.UseVisualStyleBackColor = true;
 			this.ImageTypeBanner.CheckedChanged += new System.EventHandler(this.ImageTypeBanner_CheckedChanged);
-			// 
+			//
 			// ImageTypeCutin
-			// 
+			//
 			this.ImageTypeCutin.AutoSize = true;
 			this.ImageTypeCutin.Location = new System.Drawing.Point(102, 22);
 			this.ImageTypeCutin.Name = "ImageTypeCutin";
 			this.ImageTypeCutin.Size = new System.Drawing.Size(105, 19);
 			this.ImageTypeCutin.TabIndex = 1;
-			this.ImageTypeCutin.TabStop = true;
 			this.ImageTypeCutin.Text = "Cut-in (M)";
 			this.ImageTypeCutin.UseVisualStyleBackColor = true;
 			this.ImageTypeCutin.CheckedChanged += new System.EventHandler(this.ImageTypeCutin_CheckedChanged);
-			// 
+			//
 			// ImageTypeCard
-			// 
+			//
 			this.ImageTypeCard.AutoSize = true;
 			this.ImageTypeCard.Location = new System.Drawing.Point(6, 22);
 			this.ImageTypeCard.Name = "ImageTypeCard";
 			this.ImageTypeCard.Size = new System.Drawing.Size(90, 19);
 			this.ImageTypeCard.TabIndex = 0;
-			this.ImageTypeCard.TabStop = true;
 			this.ImageTypeCard.Text = "Card (L)";
 			this.ImageTypeCard.UseVisualStyleBackColor = true;
 			this.ImageTypeCard.CheckedChanged += new System.EventHandler(this.ImageTypeCard_CheckedChanged);
-			// 
+			//
 			// ButtonCancel
-			// 
+			//
 			this.ButtonCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.ButtonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.ButtonCancel.Location = new System.Drawing.Point(373, 340);
+			this.ButtonCancel.Location = new System.Drawing.Point(373, 336);
 			this.ButtonCancel.Name = "ButtonCancel";
 			this.ButtonCancel.Size = new System.Drawing.Size(75, 23);
 			this.ButtonCancel.TabIndex = 0;
 			this.ButtonCancel.Text = "Cancel";
 			this.ButtonCancel.UseVisualStyleBackColor = true;
 			this.ButtonCancel.Click += new System.EventHandler(this.ButtonCancel_Click);
-			// 
+			//
 			// ButtonOK
-			// 
+			//
 			this.ButtonOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.ButtonOK.Location = new System.Drawing.Point(292, 340);
+			this.ButtonOK.Location = new System.Drawing.Point(292, 336);
 			this.ButtonOK.Name = "ButtonOK";
 			this.ButtonOK.Size = new System.Drawing.Size(75, 23);
 			this.ButtonOK.TabIndex = 7;
 			this.ButtonOK.Text = "OK";
 			this.ButtonOK.UseVisualStyleBackColor = true;
 			this.ButtonOK.Click += new System.EventHandler(this.ButtonOK_Click);
-			// 
+			//
 			// groupBox1
-			// 
-			this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			//
+			this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox1.Controls.Add(this.TargetFleet4);
 			this.groupBox1.Controls.Add(this.TargetFleet3);
@@ -334,9 +345,9 @@
 			this.groupBox1.TabIndex = 2;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Fleet";
-			// 
+			//
 			// TargetFleet4
-			// 
+			//
 			this.TargetFleet4.AutoSize = true;
 			this.TargetFleet4.Location = new System.Drawing.Point(154, 23);
 			this.TargetFleet4.Name = "TargetFleet4";
@@ -345,9 +356,9 @@
 			this.TargetFleet4.Text = "#4";
 			this.TargetFleet4.UseVisualStyleBackColor = true;
 			this.TargetFleet4.CheckedChanged += new System.EventHandler(this.TargetFleet1_CheckedChanged);
-			// 
+			//
 			// TargetFleet3
-			// 
+			//
 			this.TargetFleet3.AutoSize = true;
 			this.TargetFleet3.Location = new System.Drawing.Point(105, 23);
 			this.TargetFleet3.Name = "TargetFleet3";
@@ -356,9 +367,9 @@
 			this.TargetFleet3.Text = "#3";
 			this.TargetFleet3.UseVisualStyleBackColor = true;
 			this.TargetFleet3.CheckedChanged += new System.EventHandler(this.TargetFleet1_CheckedChanged);
-			// 
+			//
 			// TargetFleet2
-			// 
+			//
 			this.TargetFleet2.AutoSize = true;
 			this.TargetFleet2.Location = new System.Drawing.Point(56, 23);
 			this.TargetFleet2.Name = "TargetFleet2";
@@ -367,9 +378,9 @@
 			this.TargetFleet2.Text = "#2";
 			this.TargetFleet2.UseVisualStyleBackColor = true;
 			this.TargetFleet2.CheckedChanged += new System.EventHandler(this.TargetFleet1_CheckedChanged);
-			// 
+			//
 			// TargetFleet1
-			// 
+			//
 			this.TargetFleet1.AutoSize = true;
 			this.TargetFleet1.Location = new System.Drawing.Point(7, 23);
 			this.TargetFleet1.Name = "TargetFleet1";
@@ -378,9 +389,9 @@
 			this.TargetFleet1.Text = "#1";
 			this.TargetFleet1.UseVisualStyleBackColor = true;
 			this.TargetFleet1.CheckedChanged += new System.EventHandler(this.TargetFleet1_CheckedChanged);
-			// 
+			//
 			// tabPage2
-			// 
+			//
 			this.tabPage2.Controls.Add(this.groupBox2);
 			this.tabPage2.Controls.Add(this.groupBox5);
 			this.tabPage2.Controls.Add(this.groupBox4);
@@ -391,10 +402,10 @@
 			this.tabPage2.TabIndex = 1;
 			this.tabPage2.Text = "Details";
 			this.tabPage2.UseVisualStyleBackColor = true;
-			// 
+			//
 			// groupBox2
-			// 
-			this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			//
+			this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox2.Controls.Add(this.SyncronizeTitleAndFileName);
 			this.groupBox2.Controls.Add(this.AutoSetFileNameToDate);
@@ -407,9 +418,9 @@
 			this.groupBox2.TabIndex = 11;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Output path";
-			// 
+			//
 			// SyncronizeTitleAndFileName
-			// 
+			//
 			this.SyncronizeTitleAndFileName.AutoSize = true;
 			this.SyncronizeTitleAndFileName.Location = new System.Drawing.Point(155, 72);
 			this.SyncronizeTitleAndFileName.Name = "SyncronizeTitleAndFileName";
@@ -419,9 +430,9 @@
 			this.ToolTipInfo.SetToolTip(this.SyncronizeTitleAndFileName, "Automatically use the image title as file name and vice versa.");
 			this.SyncronizeTitleAndFileName.UseVisualStyleBackColor = true;
 			this.SyncronizeTitleAndFileName.CheckedChanged += new System.EventHandler(this.SyncronizeTitleAndFileName_CheckedChanged);
-			// 
+			//
 			// AutoSetFileNameToDate
-			// 
+			//
 			this.AutoSetFileNameToDate.AutoSize = true;
 			this.AutoSetFileNameToDate.Location = new System.Drawing.Point(155, 47);
 			this.AutoSetFileNameToDate.Name = "AutoSetFileNameToDate";
@@ -431,9 +442,9 @@
 			this.ToolTipInfo.SetToolTip(this.AutoSetFileNameToDate, "Automatically set the image file name using the current date and time.");
 			this.AutoSetFileNameToDate.UseVisualStyleBackColor = true;
 			this.AutoSetFileNameToDate.CheckedChanged += new System.EventHandler(this.AutoSetFileNameToDate_CheckedChanged);
-			// 
+			//
 			// OutputToClipboard
-			// 
+			//
 			this.OutputToClipboard.AutoSize = true;
 			this.OutputToClipboard.Location = new System.Drawing.Point(6, 22);
 			this.OutputToClipboard.Name = "OutputToClipboard";
@@ -443,9 +454,9 @@
 			this.ToolTipInfo.SetToolTip(this.OutputToClipboard, "Export the image to clipboard.");
 			this.OutputToClipboard.UseVisualStyleBackColor = true;
 			this.OutputToClipboard.CheckedChanged += new System.EventHandler(this.OutputToClipboard_CheckedChanged);
-			// 
+			//
 			// DisableOverwritePrompt
-			// 
+			//
 			this.DisableOverwritePrompt.AutoSize = true;
 			this.DisableOverwritePrompt.Location = new System.Drawing.Point(6, 72);
 			this.DisableOverwritePrompt.Name = "DisableOverwritePrompt";
@@ -454,9 +465,9 @@
 			this.DisableOverwritePrompt.Text = "Always overwrite";
 			this.ToolTipInfo.SetToolTip(this.DisableOverwritePrompt, "Disable the file overwrite check and always overwrite the existing image.");
 			this.DisableOverwritePrompt.UseVisualStyleBackColor = true;
-			// 
+			//
 			// OpenImageAfterOutput
-			// 
+			//
 			this.OpenImageAfterOutput.AutoSize = true;
 			this.OpenImageAfterOutput.Location = new System.Drawing.Point(6, 47);
 			this.OpenImageAfterOutput.Name = "OpenImageAfterOutput";
@@ -465,10 +476,10 @@
 			this.OpenImageAfterOutput.Text = "Open after saving";
 			this.ToolTipInfo.SetToolTip(this.OpenImageAfterOutput, "Specify whether to open the fleet image after it is successfully exported." );
 			this.OpenImageAfterOutput.UseVisualStyleBackColor = true;
-			// 
+			//
 			// groupBox5
-			// 
-			this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			//
+			this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox5.Controls.Add(this.ClearBackgroundPath);
 			this.groupBox5.Controls.Add(this.SearchBackgroundImagePath);
@@ -479,9 +490,9 @@
 			this.groupBox5.TabIndex = 1;
 			this.groupBox5.TabStop = false;
 			this.groupBox5.Text = "Background image";
-			// 
+			//
 			// ClearBackgroundPath
-			// 
+			//
 			this.ClearBackgroundPath.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.ClearBackgroundPath.Location = new System.Drawing.Point(374, 21);
 			this.ClearBackgroundPath.Name = "ClearBackgroundPath";
@@ -491,9 +502,9 @@
 			this.ToolTipInfo.SetToolTip(this.ClearBackgroundPath, "Clear current background image path.");
 			this.ClearBackgroundPath.UseVisualStyleBackColor = true;
 			this.ClearBackgroundPath.Click += new System.EventHandler(this.ClearBackgroundPath_Click);
-			// 
+			//
 			// SearchBackgroundImagePath
-			// 
+			//
 			this.SearchBackgroundImagePath.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.SearchBackgroundImagePath.Location = new System.Drawing.Point(328, 21);
 			this.SearchBackgroundImagePath.Name = "SearchBackgroundImagePath";
@@ -503,20 +514,20 @@
 			this.ToolTipInfo.SetToolTip(this.SearchBackgroundImagePath, "Select the destination path and file name of the background image." );
 			this.SearchBackgroundImagePath.UseVisualStyleBackColor = true;
 			this.SearchBackgroundImagePath.Click += new System.EventHandler(this.SearchBackgroundImagePath_Click);
-			// 
+			//
 			// BackgroundImagePath
-			// 
-			this.BackgroundImagePath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			//
+			this.BackgroundImagePath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.BackgroundImagePath.Location = new System.Drawing.Point(6, 22);
 			this.BackgroundImagePath.Name = "BackgroundImagePath";
 			this.BackgroundImagePath.Size = new System.Drawing.Size(316, 23);
 			this.BackgroundImagePath.TabIndex = 0;
 			this.ToolTipInfo.SetToolTip(this.BackgroundImagePath, "Specify the destination path and file name of the background image." );
-			// 
+			//
 			// groupBox4
-			// 
-			this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			//
+			this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox4.Controls.Add(this.AvoidTwitterDeterioration);
 			this.groupBox4.Controls.Add(this.ReflectDamageGraphic);
@@ -530,9 +541,9 @@
 			this.groupBox4.TabIndex = 0;
 			this.groupBox4.TabStop = false;
 			this.groupBox4.Text = "Layout";
-			// 
+			//
 			// AvoidTwitterDeterioration
-			// 
+			//
 			this.AvoidTwitterDeterioration.AutoSize = true;
 			this.AvoidTwitterDeterioration.Location = new System.Drawing.Point(155, 52);
 			this.AvoidTwitterDeterioration.Name = "AvoidTwitterDeterioration";
@@ -541,9 +552,9 @@
 			this.AvoidTwitterDeterioration.Text = "Avoid image compression on Twitter";
 			this.ToolTipInfo.SetToolTip(this.AvoidTwitterDeterioration, "Specify whether to embed additional data to prevent Twitter from converting the image to JPEG." );
 			this.AvoidTwitterDeterioration.UseVisualStyleBackColor = true;
-			// 
+			//
 			// ReflectDamageGraphic
-			// 
+			//
 			this.ReflectDamageGraphic.AutoSize = true;
 			this.ReflectDamageGraphic.Location = new System.Drawing.Point(155, 23);
 			this.ReflectDamageGraphic.Name = "ReflectDamageGraphic";
@@ -552,18 +563,18 @@
 			this.ReflectDamageGraphic.Text = "Use damaged CG";
 			this.ToolTipInfo.SetToolTip(this.ReflectDamageGraphic, "Specify whether to use the ship's damaged CG for the fleet image\r\nwhen the ship is moderately damaged or more." );
 			this.ReflectDamageGraphic.UseVisualStyleBackColor = true;
-			// 
+			//
 			// label5
-			// 
+			//
 			this.label5.AutoSize = true;
 			this.label5.Location = new System.Drawing.Point(6, 53);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(77, 15);
 			this.label5.TabIndex = 2;
 			this.label5.Text = "Ship column:";
-			// 
+			//
 			// HorizontalShipCount
-			// 
+			//
 			this.HorizontalShipCount.Location = new System.Drawing.Point(109, 51);
 			this.HorizontalShipCount.Maximum = new decimal(new int[] {
             6,
@@ -585,9 +596,9 @@
             0,
             0,
             0});
-			// 
+			//
 			// HorizontalFleetCount
-			// 
+			//
 			this.HorizontalFleetCount.Location = new System.Drawing.Point(109, 22);
 			this.HorizontalFleetCount.Maximum = new decimal(new int[] {
             4,
@@ -609,18 +620,18 @@
             0,
             0,
             0});
-			// 
+			//
 			// label4
-			// 
+			//
 			this.label4.AutoSize = true;
 			this.label4.Location = new System.Drawing.Point(6, 24);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(77, 15);
 			this.label4.TabIndex = 0;
 			this.label4.Text = "Fleet column:";
-			// 
+			//
 			// tabPage3
-			// 
+			//
 			this.tabPage3.Controls.Add(this.groupBox6);
 			this.tabPage3.Location = new System.Drawing.Point(4, 24);
 			this.tabPage3.Name = "tabPage3";
@@ -629,11 +640,11 @@
 			this.tabPage3.TabIndex = 2;
 			this.tabPage3.Text = "Font";
 			this.tabPage3.UseVisualStyleBackColor = true;
-			// 
+			//
 			// groupBox6
-			// 
-			this.groupBox6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+			//
+			this.groupBox6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox6.Controls.Add(this.ButtonClearFont);
 			this.groupBox6.Controls.Add(this.ApplyGeneralFont);
@@ -660,13 +671,13 @@
 			this.groupBox6.Controls.Add(this.TextGeneralFont);
 			this.groupBox6.Location = new System.Drawing.Point(6, 6);
 			this.groupBox6.Name = "groupBox6";
-			this.groupBox6.Size = new System.Drawing.Size(442, 347);
+			this.groupBox6.Size = new System.Drawing.Size(442, 343);
 			this.groupBox6.TabIndex = 0;
 			this.groupBox6.TabStop = false;
 			this.groupBox6.Text = "Font";
-			// 
+			//
 			// ButtonClearFont
-			// 
+			//
 			this.ButtonClearFont.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.ButtonClearFont.Location = new System.Drawing.Point(361, 225);
 			this.ButtonClearFont.Name = "ButtonClearFont";
@@ -676,9 +687,9 @@
 			this.ToolTipInfo.SetToolTip( this.ButtonClearFont, "Reset the font settings to the default values." );
 			this.ButtonClearFont.UseVisualStyleBackColor = true;
 			this.ButtonClearFont.Click += new System.EventHandler(this.ButtonClearFont_Click);
-			// 
+			//
 			// ApplyGeneralFont
-			// 
+			//
 			this.ApplyGeneralFont.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.ApplyGeneralFont.Location = new System.Drawing.Point(350, 22);
 			this.ApplyGeneralFont.Name = "ApplyGeneralFont";
@@ -688,18 +699,18 @@
 			this.ToolTipInfo.SetToolTip(this.ApplyGeneralFont, "左のフォント設定を下の各フォントに適用します。");
 			this.ApplyGeneralFont.UseVisualStyleBackColor = true;
 			this.ApplyGeneralFont.Click += new System.EventHandler(this.ApplyGeneralFont_Click);
-			// 
+			//
 			// label12
-			// 
+			//
 			this.label12.AutoSize = true;
 			this.label12.Location = new System.Drawing.Point(6, 200);
 			this.label12.Name = "label12";
 			this.label12.Size = new System.Drawing.Size(65, 15);
 			this.label12.TabIndex = 19;
 			this.label12.Text = "S (Digit):";
-			// 
+			//
 			// SelectSmallDigitFont
-			// 
+			//
 			this.SelectSmallDigitFont.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.SelectSmallDigitFont.Location = new System.Drawing.Point(396, 196);
 			this.SelectSmallDigitFont.Name = "SelectSmallDigitFont";
@@ -708,28 +719,28 @@
 			this.SelectSmallDigitFont.Text = "...";
 			this.ToolTipInfo.SetToolTip(this.SelectSmallDigitFont, "フォントを指定するダイアログを開きます。");
 			this.SelectSmallDigitFont.UseVisualStyleBackColor = true;
-			// 
+			//
 			// TextSmallDigitFont
-			// 
-			this.TextSmallDigitFont.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			//
+			this.TextSmallDigitFont.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.TextSmallDigitFont.Location = new System.Drawing.Point(100, 196);
 			this.TextSmallDigitFont.Name = "TextSmallDigitFont";
 			this.TextSmallDigitFont.Size = new System.Drawing.Size(290, 23);
 			this.TextSmallDigitFont.TabIndex = 20;
 			this.ToolTipInfo.SetToolTip(this.TextSmallDigitFont, "搭載機数などの補助的な数値の描画に用いられます。");
-			// 
+			//
 			// label11
-			// 
+			//
 			this.label11.AutoSize = true;
 			this.label11.Location = new System.Drawing.Point(6, 171);
 			this.label11.Name = "label11";
 			this.label11.Size = new System.Drawing.Size(65, 15);
 			this.label11.TabIndex = 16;
 			this.label11.Text = "M (Digit):";
-			// 
+			//
 			// SelectMediumDigitFont
-			// 
+			//
 			this.SelectMediumDigitFont.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.SelectMediumDigitFont.Location = new System.Drawing.Point(396, 167);
 			this.SelectMediumDigitFont.Name = "SelectMediumDigitFont";
@@ -738,28 +749,28 @@
 			this.SelectMediumDigitFont.Text = "...";
 			this.ToolTipInfo.SetToolTip(this.SelectMediumDigitFont, "フォントを指定するダイアログを開きます。");
 			this.SelectMediumDigitFont.UseVisualStyleBackColor = true;
-			// 
+			//
 			// TextMediumDigitFont
-			// 
-			this.TextMediumDigitFont.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			//
+			this.TextMediumDigitFont.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.TextMediumDigitFont.Location = new System.Drawing.Point(100, 167);
 			this.TextMediumDigitFont.Name = "TextMediumDigitFont";
 			this.TextMediumDigitFont.Size = new System.Drawing.Size(290, 23);
 			this.TextMediumDigitFont.TabIndex = 17;
 			this.ToolTipInfo.SetToolTip(this.TextMediumDigitFont, "Lv などの主要な数字の描画に用いられます。");
-			// 
+			//
 			// label10
-			// 
+			//
 			this.label10.AutoSize = true;
 			this.label10.Location = new System.Drawing.Point(6, 142);
 			this.label10.Name = "label10";
 			this.label10.Size = new System.Drawing.Size(65, 15);
 			this.label10.TabIndex = 13;
 			this.label10.Text = "S (Text):";
-			// 
+			//
 			// SelectSmallFont
-			// 
+			//
 			this.SelectSmallFont.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.SelectSmallFont.Location = new System.Drawing.Point(396, 138);
 			this.SelectSmallFont.Name = "SelectSmallFont";
@@ -768,28 +779,28 @@
 			this.SelectSmallFont.Text = "...";
 			this.ToolTipInfo.SetToolTip(this.SelectSmallFont, "フォントを指定するダイアログを開きます。");
 			this.SelectSmallFont.UseVisualStyleBackColor = true;
-			// 
+			//
 			// TextSmallFont
-			// 
-			this.TextSmallFont.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			//
+			this.TextSmallFont.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.TextSmallFont.Location = new System.Drawing.Point(100, 138);
 			this.TextSmallFont.Name = "TextSmallFont";
 			this.TextSmallFont.Size = new System.Drawing.Size(290, 23);
 			this.TextSmallFont.TabIndex = 14;
 			this.ToolTipInfo.SetToolTip(this.TextSmallFont, "補助的な文字列に利用されます。");
-			// 
+			//
 			// label9
-			// 
+			//
 			this.label9.AutoSize = true;
 			this.label9.Location = new System.Drawing.Point(6, 113);
 			this.label9.Name = "label9";
 			this.label9.Size = new System.Drawing.Size(65, 15);
 			this.label9.TabIndex = 10;
 			this.label9.Text = "M (Text):";
-			// 
+			//
 			// SelectMediumFont
-			// 
+			//
 			this.SelectMediumFont.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.SelectMediumFont.Location = new System.Drawing.Point(396, 109);
 			this.SelectMediumFont.Name = "SelectMediumFont";
@@ -798,28 +809,28 @@
 			this.SelectMediumFont.Text = "...";
 			this.ToolTipInfo.SetToolTip(this.SelectMediumFont, "フォントを指定するダイアログを開きます。");
 			this.SelectMediumFont.UseVisualStyleBackColor = true;
-			// 
+			//
 			// TextMediumFont
-			// 
-			this.TextMediumFont.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			//
+			this.TextMediumFont.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.TextMediumFont.Location = new System.Drawing.Point(100, 109);
 			this.TextMediumFont.Name = "TextMediumFont";
 			this.TextMediumFont.Size = new System.Drawing.Size(290, 23);
 			this.TextMediumFont.TabIndex = 11;
 			this.ToolTipInfo.SetToolTip(this.TextMediumFont, "装備名など、通常の文字列に使用されます。");
-			// 
+			//
 			// label8
-			// 
+			//
 			this.label8.AutoSize = true;
 			this.label8.Location = new System.Drawing.Point(6, 84);
 			this.label8.Name = "label8";
 			this.label8.Size = new System.Drawing.Size(65, 15);
 			this.label8.TabIndex = 7;
 			this.label8.Text = "L (Text):";
-			// 
+			//
 			// SelectLargeFont
-			// 
+			//
 			this.SelectLargeFont.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.SelectLargeFont.Location = new System.Drawing.Point(396, 80);
 			this.SelectLargeFont.Name = "SelectLargeFont";
@@ -828,28 +839,28 @@
 			this.SelectLargeFont.Text = "...";
 			this.ToolTipInfo.SetToolTip(this.SelectLargeFont, "フォントを指定するダイアログを開きます。");
 			this.SelectLargeFont.UseVisualStyleBackColor = true;
-			// 
+			//
 			// TextLargeFont
-			// 
-			this.TextLargeFont.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			//
+			this.TextLargeFont.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.TextLargeFont.Location = new System.Drawing.Point(100, 80);
 			this.TextLargeFont.Name = "TextLargeFont";
 			this.TextLargeFont.Size = new System.Drawing.Size(290, 23);
 			this.TextLargeFont.TabIndex = 8;
 			this.ToolTipInfo.SetToolTip(this.TextLargeFont, "主に艦隊名に使用されるフォントです。");
-			// 
+			//
 			// label7
-			// 
+			//
 			this.label7.AutoSize = true;
 			this.label7.Location = new System.Drawing.Point(6, 55);
 			this.label7.Name = "label7";
 			this.label7.Size = new System.Drawing.Size(54, 15);
 			this.label7.TabIndex = 4;
 			this.label7.Text = "Title:";
-			// 
+			//
 			// SelectTitleFont
-			// 
+			//
 			this.SelectTitleFont.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.SelectTitleFont.Location = new System.Drawing.Point(396, 51);
 			this.SelectTitleFont.Name = "SelectTitleFont";
@@ -858,28 +869,28 @@
 			this.SelectTitleFont.Text = "...";
 			this.ToolTipInfo.SetToolTip(this.SelectTitleFont, "フォントを指定するダイアログを開きます。");
 			this.SelectTitleFont.UseVisualStyleBackColor = true;
-			// 
+			//
 			// TextTitleFont
-			// 
-			this.TextTitleFont.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			//
+			this.TextTitleFont.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.TextTitleFont.Location = new System.Drawing.Point(100, 51);
 			this.TextTitleFont.Name = "TextTitleFont";
 			this.TextTitleFont.Size = new System.Drawing.Size(290, 23);
 			this.TextTitleFont.TabIndex = 5;
 			this.ToolTipInfo.SetToolTip(this.TextTitleFont, "タイトルに利用されるフォントです。");
-			// 
+			//
 			// label6
-			// 
+			//
 			this.label6.AutoSize = true;
 			this.label6.Location = new System.Drawing.Point(6, 26);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(79, 15);
 			this.label6.TabIndex = 0;
 			this.label6.Text = "Change all:";
-			// 
+			//
 			// SelectGeneralFont
-			// 
+			//
 			this.SelectGeneralFont.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.SelectGeneralFont.Location = new System.Drawing.Point(396, 22);
 			this.SelectGeneralFont.Name = "SelectGeneralFont";
@@ -889,43 +900,43 @@
 			this.ToolTipInfo.SetToolTip(this.SelectGeneralFont, "フォントを指定するダイアログを開きます。");
 			this.SelectGeneralFont.UseVisualStyleBackColor = true;
 			this.SelectGeneralFont.Click += new System.EventHandler(this.SelectGeneralFont_Click);
-			// 
+			//
 			// TextGeneralFont
-			// 
-			this.TextGeneralFont.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			//
+			this.TextGeneralFont.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.TextGeneralFont.Location = new System.Drawing.Point(100, 22);
 			this.TextGeneralFont.Name = "TextGeneralFont";
 			this.TextGeneralFont.Size = new System.Drawing.Size(244, 23);
 			this.TextGeneralFont.TabIndex = 1;
 			this.ToolTipInfo.SetToolTip(this.TextGeneralFont, "下記フォントを自動変更するためのフォントを指定します。\r\n右の ▼ ボタンを押すと適用されます。");
-			// 
+			//
 			// fontDialog1
-			// 
+			//
 			this.fontDialog1.AllowVerticalFonts = false;
-			// 
+			//
 			// OpenImageDialog
-			// 
+			//
 			this.OpenImageDialog.Filter = "All Images|*.bmp;*.dib;*.jpg;*.jpeg;*.jpe;*.jfif;*.gif;*.png;*.tif;*.tiff|BMP|*.b" +
     "mp;*.dib|JPEG|*.jpg;*.jpeg;*.jpe;*.jfif|GIF|*.gif|PNG|*.png|TIFF|*.tif;*.tiff|Fi" +
     "le|*";
 			this.OpenImageDialog.Title = "Select Background Image";
-			// 
+			//
 			// SaveImageDialog
-			// 
+			//
 			this.SaveImageDialog.Filter = "PNG|*.png|JPEG|*.jpg|File|*";
 			this.SaveImageDialog.OverwritePrompt = false;
 			this.SaveImageDialog.Title = "Save As";
-			// 
+			//
 			// ToolTipInfo
-			// 
+			//
 			this.ToolTipInfo.AutoPopDelay = 30000;
 			this.ToolTipInfo.InitialDelay = 500;
 			this.ToolTipInfo.ReshowDelay = 100;
 			this.ToolTipInfo.ShowAlways = true;
-			// 
+			//
 			// DialogFleetImageGenerator
-			// 
+			//
 			this.AcceptButton = this.ButtonOK;
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.CancelButton = this.ButtonCancel;
@@ -1039,5 +1050,6 @@
 		private System.Windows.Forms.CheckBox SyncronizeTitleAndFileName;
 		private System.Windows.Forms.CheckBox AutoSetFileNameToDate;
 		private System.Windows.Forms.CheckBox OutputToClipboard;
+		private System.Windows.Forms.RadioButton ImageTypeBaseAirCorps;
 	}
 }
