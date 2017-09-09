@@ -13,13 +13,13 @@
   // Base Color
   // 不排除未来这些基本颜色将被用作其他用途，请勿定义成和名称不符的颜色
   "basicColors": {
-    "red":     "#F00",    // red - severe fatigue, taiha, 出击任务, elite 级深海
+    "red":     "#FF0000",    // red - severe fatigue, taiha, 出击任务, elite 级深海
     "orange":  "#FFA500", // orange - moderate fatigue, chuuha, flagship 级深海
-    "yellow":  "#FF0",    // yellow - light fatigue, shouha、
-    "green":   "#0F0",    // green - 
-    "cyan":    "#0FF",    // cyan - 装备改修等级
-    "blue":    "#00F",    // blue - 战意高扬、满血、progress 100%
-    "magenta": "#F0F",    // magenta - 航空队全灭 ( 残机数 0 )
+    "yellow":  "#FFFF00",    // yellow - light fatigue, shouha、
+    "green":   "#00FF00",    // green - 
+    "cyan":    "#00FFFF",    // cyan - 装备改修等级
+    "blue":    "#0000FF",    // blue - 战意高扬、满血、progress 100%
+    "magenta": "#FF00FF",    // magenta - 航空队全灭 ( 残机数 0 )
     "violet":  "#EE82EE"  // violet - 改装任务
   },
   // 数值条颜色
@@ -46,7 +46,7 @@
     "#EEEE00", // shouha
     "#CCEE00", // scratch
     "#00CC00", // scratch
-    "#0044CC", // healthy
+    "#0088FF", // healthy
     "#00FF44", //
     "#882222", // 造成伤害
     "#888888"  // bg color
@@ -88,6 +88,7 @@
     },
     // View - Quest
     "quest": {
+      "typeFG":         "#000000", // [bg]     任务类型文字色
       "typeHensei":     "#5bef90", // [green]  composition
       "typeShutsugeki": "#feb0b4", // [red]    sortie
       "typeEnshu":      "#c4f28e", // [green]  practice
@@ -102,14 +103,16 @@
     },
     // View - Compass
     "compass": {
-      "shipClass2": "#ff3f3f", // [red]     elite
-      "shipClass3": "#fcc800", // [orange]  flagship
-      "shipClass4": "#87ceeb", // [cyan]    改 flagship / late model
-      "shipClass5": "#87ceeb", // [cyan] late model elite
-      "shipClass6": "#87ceeb", // [cyan]  late model flagship
-      "eventKind3": "#000080", // [blue]  night battle
-      "eventKind6": "#008800", // [green]   air raid
-      "eventKind5": "#0088FF"  // [violet]  combined fleet
+      "shipClass2":    "#FF0000", // [red]     elite
+      "shipClass3":    "#FF8800", // [orange]  flagship
+      "shipClass4":    "#006600", // [green]   鬼 / 改 flagship / late type
+      "shipClass5":    "#880000", // [violet]  姬 / late type elite
+      "shipClass6":    "#0088FF", // [cyan]    水鬼 / late type flagship
+      "shipClass7":    "#0000FF", // [blue]    水姬
+      "shipDestroyed": "#FF00FF", // [magenta] XXXX-壊
+      "eventKind3":    "#000080", // [blue]  night battle
+      "eventKind6":    "#008800", // [green]   air raid
+      "eventKind5":    "#0088FF"  // [violet]  combined fleet
     },
     // View - Battle
     "battle": {
