@@ -48,7 +48,7 @@ namespace ElectronicObserver.Window {
 				CSCategories[i] = new DataGridViewCellStyle( CSDefaultCenter );
 
 				Color c;
-				CSCategories[i].ForeColor = CSCategories[i].SelectionForeColor = Utility.Configuration.Config.UI.Blink_ForeColor;
+				CSCategories[i].ForeColor = CSCategories[i].SelectionForeColor = Utility.Configuration.Config.UI.Quest_TypeFG;
 				switch (i + 1)
 				{
 					case 1:     //編成
@@ -390,7 +390,15 @@ namespace ElectronicObserver.Window {
 			using ( var bback = new SolidBrush( e.CellStyle.BackColor ) ) {
 
 				Color col;
-				double rate = QuestView.Rows[e.RowIndex].Cells[e.ColumnIndex].Tag as double? ?? 0.0;
+				double rate;
+				bool drawgaugeback = false;
+				if (QuestView.Rows[e.RowIndex].Cells[e.ColumnIndex].Tag == null) {
+					rate = 0.0;
+				}
+				else {
+					rate = (double)QuestView.Rows[e.RowIndex].Cells[e.ColumnIndex].Tag;
+					drawgaugeback = true;
+				}
 
 				if (rate < 0.5)
 					col = Utility.Configuration.Config.UI.Quest_ColorProcessLT50;
@@ -401,12 +409,13 @@ namespace ElectronicObserver.Window {
 				else
 					col = Utility.Configuration.Config.UI.Quest_ColorProcessDefault;
 
-				using ( var bgauge = new SolidBrush( col ) ) {
-
+				using (var bgauge = new SolidBrush( col ))
+				using (var bgaugeback = new SolidBrush( Utility.Configuration.Config.UI.SubBackColor )) {
 					const int thickness = 4;
 
 					e.Graphics.FillRectangle( bback, e.CellBounds );
-					e.Graphics.FillRectangle( bgauge, new Rectangle( e.CellBounds.X, e.CellBounds.Bottom - thickness, (int)( e.CellBounds.Width * rate ), thickness ) );
+					if (drawgaugeback && rate < 1.0) e.Graphics.FillRectangle( bgaugeback, new Rectangle( e.CellBounds.X, e.CellBounds.Bottom - thickness, e.CellBounds.Width, thickness ) );
+					e.Graphics.FillRectangle( bgauge, new Rectangle( e.CellBounds.X, e.CellBounds.Bottom - thickness, (int)(e.CellBounds.Width * rate), thickness ) );
 				}
 			}
 

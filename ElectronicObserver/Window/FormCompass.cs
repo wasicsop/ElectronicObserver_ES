@@ -104,7 +104,14 @@ namespace ElectronicObserver.Window {
 
 
 					ShipName.Text = ship.Name;
-					ShipName.ForeColor = ship.GetShipNameColor();
+					if(ship.IsAbyssalShip)
+					{
+						ShipName.ForeColor = ship.GetShipNameColor();
+					}
+					else
+					{
+						ShipName.ForeColor = Utility.Configuration.Config.UI.ForeColor;
+					}
 					ToolTipInfo.SetToolTip( ShipName, GetShipString( shipID, slot ) );
 
 					Equipments.SetSlotList( shipID, slot );
@@ -1129,7 +1136,7 @@ namespace ElectronicObserver.Window {
 		}
 
 		private void TableEnemyMember_CellPaint( object sender, TableLayoutCellPaintEventArgs e ) {
-			e.Graphics.DrawLine( Pens.Silver, e.CellBounds.X, e.CellBounds.Bottom - 1, e.CellBounds.Right - 1, e.CellBounds.Bottom - 1 );
+			e.Graphics.DrawLine( Utility.Configuration.Config.UI.SubBackColorPen, e.CellBounds.X, e.CellBounds.Bottom - 1, e.CellBounds.Right - 1, e.CellBounds.Bottom - 1 );
 		}
 
 		private void TableEnemyCandidateMember_CellPaint( object sender, TableLayoutCellPaintEventArgs e ) {
@@ -1138,10 +1145,12 @@ namespace ElectronicObserver.Window {
 				return;
 
 
-			e.Graphics.DrawLine( Pens.Silver, e.CellBounds.Right - 1, e.CellBounds.Top, e.CellBounds.Right - 1, e.CellBounds.Bottom - 1 );
-
-			if ( e.Row == 5 || e.Row == 7 ) {
-				e.Graphics.DrawLine( Pens.Silver, e.CellBounds.X, e.CellBounds.Bottom - 1, e.CellBounds.Right - 1, e.CellBounds.Bottom - 1 );
+			if (e.Column != (Utility.Configuration.Config.FormCompass.CandidateDisplayCount - 1)) {
+				e.Graphics.DrawLine( Utility.Configuration.Config.UI.SubBackColorPen, e.CellBounds.Right - 1, e.CellBounds.Top, e.CellBounds.Right - 1, e.CellBounds.Bottom - 1 );
+				if (e.Row == 5) e.Graphics.DrawLine( Utility.Configuration.Config.UI.SubBackColorPen, e.CellBounds.X, e.CellBounds.Bottom - 1, e.CellBounds.Right - 1, e.CellBounds.Bottom - 1 );
+			}
+			else if (e.Row == 5) {
+				e.Graphics.DrawLine( Utility.Configuration.Config.UI.SubBackColorPen, e.CellBounds.X, e.CellBounds.Bottom - 1, e.CellBounds.Right - 2, e.CellBounds.Bottom - 1 );
 			}
 		}
 

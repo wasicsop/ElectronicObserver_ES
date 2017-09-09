@@ -273,6 +273,10 @@ namespace ElectronicObserver.Window.Dialog {
 			ShipType.Text = ship.IsLandBase ? "Land Base" : db.ShipTypes[ship.ShipType].Name;
 			ShipName.Text = ship.NameWithClass;
 			ShipName.ForeColor = ship.GetShipNameColor();
+			if(ShipName.ForeColor == Color.FromArgb( 0xFF, 0xFF, 0xFF ))
+			{
+				ShipName.ForeColor = SystemColors.ControlText;
+			}
 			ToolTipInfo.SetToolTip( ShipName, ( !ship.IsAbyssalShip ? ship.NameReading + "\r\n" : "" ) + "Right click to copy." );
 			TableShipName.ResumeLayout();
 

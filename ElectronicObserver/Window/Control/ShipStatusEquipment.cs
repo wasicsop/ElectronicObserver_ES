@@ -311,7 +311,7 @@ namespace ElectronicObserver.Window.Control {
 
 
 
-		private Brush _overlayBrush = new SolidBrush(Utility.Configuration.Config.UI.Compass_ColoroverlayBrush);
+		private Brush _overlayBrush = new SolidBrush( Utility.Configuration.Config.UI.Compass_ColoroverlayBrush );
 
 
 		[System.Diagnostics.DebuggerDisplay( "[{PreferredSize.Width}, {PreferredSize.Height}]" )]
@@ -427,9 +427,9 @@ namespace ElectronicObserver.Window.Control {
 			_aircraftColorDisabled = Color.FromArgb( 0xAA, 0xAA, 0xAA );
 			_aircraftColorLost = Utility.Configuration.Config.UI.Color_Magenta;
 			_aircraftColorDamaged = Utility.Configuration.Config.UI.Color_Red;
-			_aircraftColorFull = Utility.Configuration.Config.UI.SubForeColor;
+			_aircraftColorFull = Utility.Configuration.Config.UI.ForeColor;
 
-			_equipmentLevelColor = Utility.Configuration.Config.UI.Fleet_equipmentLevelColor;
+			_equipmentLevelColor = Utility.Configuration.Config.UI.Fleet_EquipmentLevelColor;
 			_aircraftLevelColorLow = Color.FromArgb( 0x66, 0x99, 0xEE );
 			_aircraftLevelColorHigh = Color.FromArgb( 0xFF, 0xAA, 0x00 );
 

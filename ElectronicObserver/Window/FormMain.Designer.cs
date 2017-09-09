@@ -209,7 +209,7 @@
 			this.StripMenu_File_Layout_LockLayout.CheckOnClick = true;
 			this.StripMenu_File_Layout_LockLayout.Name = "StripMenu_File_Layout_LockLayout";
 			this.StripMenu_File_Layout_LockLayout.Size = new System.Drawing.Size(210, 22);
-			this.StripMenu_File_Layout_LockLayout.Text = "Lock Layou&t";
+			this.StripMenu_File_Layout_LockLayout.Text = "Lock layou&t";
 			this.StripMenu_File_Layout_LockLayout.Click += new System.EventHandler(this.StripMenu_File_Layout_LockLayout_Click);
 			//
 			// toolStripSeparator10

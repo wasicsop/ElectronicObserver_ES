@@ -296,9 +296,9 @@ namespace ElectronicObserver.Window {
 			Formation.Text = Constants.GetEngagementForm( bm.FirstBattle.Searching.EngagementForm );
 
 			if ( bm.Compass != null && bm.Compass.EventID == 5 ) {
-				FleetEnemy.ForeColor = Color.Red;
+				FleetEnemy.ForeColor = Utility.Configuration.Config.UI.Color_Red;
 			} else {
-				FleetEnemy.ForeColor = SystemColors.ControlText;
+				FleetEnemy.ForeColor = Utility.Configuration.Config.UI.ForeColor;
 			}
 		}
 
@@ -860,13 +860,12 @@ namespace ElectronicObserver.Window {
 					if (isEscaped)
 					{
 						HPBars[i].BackColor = Utility.Configuration.Config.UI.Battle_ColorHPBarsEscaped;
-						HPBars[i].RepaintHPtext();
 					}
 					else
 					{
 						HPBars[i].BackColor = Utility.Configuration.Config.UI.BackColor;
-						HPBars[i].RepaintHPtext();
 					}
+					HPBars[i].RepaintHPtext();
 				}
 			}
 
@@ -1170,20 +1169,16 @@ namespace ElectronicObserver.Window {
 					if (escort.EscapedShipList.Contains(escort.Members[i]))
 					{
 						HPBars[i + 12].BackColor = Utility.Configuration.Config.UI.Battle_ColorHPBarsEscaped;
-						HPBars[i + 12].RepaintHPtext();
-
 					}
 					else if (br.MVPIndexCombined == i + 1)
 					{
 						HPBars[i + 12].BackColor = Utility.Configuration.Config.UI.Battle_ColorHPBarsMVP;
-						HPBars[i + 12].RepaintHPtext();
-
 					}
 					else
 					{
 						HPBars[i + 12].BackColor = Utility.Configuration.Config.UI.BackColor;
-						HPBars[i + 12].RepaintHPtext();
 					}
+					HPBars[i + 12].RepaintHPtext();
 				}
 			}
 
