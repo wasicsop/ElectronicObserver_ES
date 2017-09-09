@@ -193,9 +193,6 @@ catch(e) {{
   <data name="Other_Navigate" xml:space="preserve">
     <value>移動(&amp;N)...</value>
   </data>
-  <data name="Other_NavigateToLogInPage" xml:space="preserve">
-    <value>ログインページへ移動(&amp;L)</value>
-  </data>
   <data name="Other_RegionCookie" xml:space="preserve">
     <value>地域制限クッキーを設定</value>
   </data>
@@ -241,9 +238,6 @@ catch(e) {{
   </data>
   <data name="Strip_Mute" xml:space="preserve">
     <value>ミュート</value>
-  </data>
-  <data name="Strip_NavigateToLogInPage" xml:space="preserve">
-    <value>ログインページへ移動</value>
   </data>
   <data name="Strip_Refresh" xml:space="preserve">
     <value>更新</value>

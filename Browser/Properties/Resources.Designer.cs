@@ -275,15 +275,6 @@ namespace Browser.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ログインページへ移動(&amp;L).
-        /// </summary>
-        internal static string Other_NavigateToLogInPage {
-            get {
-                return ResourceManager.GetString("Other_NavigateToLogInPage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 地域制限クッキーを設定.
         /// </summary>
         internal static string Other_RegionCookie {
@@ -379,15 +370,6 @@ namespace Browser.Properties {
         internal static string Strip_Mute {
             get {
                 return ResourceManager.GetString("Strip_Mute", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to ログインページへ移動.
-        /// </summary>
-        internal static string Strip_NavigateToLogInPage {
-            get {
-                return ResourceManager.GetString("Strip_NavigateToLogInPage", resourceCulture);
             }
         }
         

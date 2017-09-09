@@ -83,14 +83,14 @@ namespace ElectronicObserver.Utility {
 
 			if ( e.Error != null ) {
 
-				Utility.ErrorReporter.SendErrorReport( e.Error, Resources.UpdateCheckFailed );
+				Utility.ErrorReporter.SendErrorReport( e.Error, "Failed to obtain update data." );
 				return;
 
 			}
 
 			if ( e.Result.StartsWith( "<!DOCTYPE html>" ) ) {
 
-				Utility.Logger.Add( 3, Resources.BadUpdateURI );
+				Utility.Logger.Add( 3, "Invalid update URL." );
 				return;
 
 			}

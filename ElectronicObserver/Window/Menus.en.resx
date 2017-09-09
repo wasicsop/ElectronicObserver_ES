@@ -153,9 +153,6 @@
   <data name="Other_Navigate" xml:space="preserve">
     <value>Go to... (&amp;N)</value>
   </data>
-  <data name="Other_NavigateToLogInPage" xml:space="preserve">
-    <value>Go to Login Page (&amp;L)</value>
-  </data>
   <data name="Other_RegionCookie" xml:space="preserve">
     <value>Set Region Cookie</value>
   </data>

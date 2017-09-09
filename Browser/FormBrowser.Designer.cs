@@ -139,14 +139,14 @@ namespace Browser
 			//
 			this.ToolMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ToolMenu_ScreenShot,
-            this.toolStripSeparator1,
+            //this.toolStripSeparator1,
             this.ToolMenu_Zoom,
-            this.toolStripSeparator2,
+            //this.toolStripSeparator2,
             this.ToolMenu_Mute,
-            this.toolStripSeparator13,
+            //this.toolStripSeparator13,
             this.ToolMenu_Refresh,
             this.ToolMenu_NavigateToLogInPage,
-            this.toolStripSeparator8,
+            //this.toolStripSeparator8,
             this.ToolMenu_Other});
 			this.ToolMenu.Location = new System.Drawing.Point(0, 0);
 			this.ToolMenu.Name = "ToolMenu";
@@ -208,7 +208,7 @@ namespace Browser
 			//
 			this.ToolMenu_NavigateToLogInPage.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
 			this.ToolMenu_NavigateToLogInPage.Name = "ToolMenu_NavigateToLogInPage";
-			this.ToolMenu_NavigateToLogInPage.Text = Resources.Strip_NavigateToLogInPage;
+			this.ToolMenu_NavigateToLogInPage.Text = "Go to login page";
 			this.ToolMenu_NavigateToLogInPage.Size = new System.Drawing.Size(23, 22);
 			this.ToolMenu_NavigateToLogInPage.Click += new System.EventHandler(this.ToolMenu_NavigateToLogInPage_Click);
 			//
@@ -459,7 +459,7 @@ namespace Browser
 			//
 			this.ToolMenu_Other_NavigateToLogInPage.Name = "ToolMenu_Other_NavigateToLogInPage";
 			this.ToolMenu_Other_NavigateToLogInPage.Size = new System.Drawing.Size(199, 22);
-			this.ToolMenu_Other_NavigateToLogInPage.Text = Resources.Other_NavigateToLogInPage;
+			this.ToolMenu_Other_NavigateToLogInPage.Text = "&Go to &login page";
 			this.ToolMenu_Other_NavigateToLogInPage.Click += new System.EventHandler(this.ToolMenu_Other_NavigateToLogInPage_Click);
 			//
 			// ToolMenu_Other_Navigate

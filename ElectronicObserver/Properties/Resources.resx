@@ -141,9 +141,6 @@
   <data name="AskNavTitle" xml:space="preserve">
     <value>移動先の入力</value>
   </data>
-  <data name="BadUpdateURI" xml:space="preserve">
-    <value>アップデート情報の URI が無効です。</value>
-  </data>
   <data name="Browser" xml:space="preserve">
     <value>ブラウザ</value>
   </data>
@@ -225,9 +222,6 @@
   </data>
   <data name="Update" xml:space="preserve">
     <value>アップデート情報</value>
-  </data>
-  <data name="UpdateCheckFailed" xml:space="preserve">
-    <value>アップデート情報の取得に失敗しました。</value>
   </data>
   <data name="UpdateConnectionFailed" xml:space="preserve">
     <value>アップデート情報の処理に失敗しました。</value>

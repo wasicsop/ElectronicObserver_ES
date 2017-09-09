@@ -178,15 +178,6 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ログインページへ移動(&amp;L).
-        /// </summary>
-        internal static string Other_NavigateToLogInPage {
-            get {
-                return ResourceManager.GetString("Other_NavigateToLogInPage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 地域制限クッキーを設定.
         /// </summary>
         internal static string Other_RegionCookie {

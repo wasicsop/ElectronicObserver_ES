@@ -159,9 +159,6 @@ catch(e) {{
   <data name="Other_Navigate" xml:space="preserve">
     <value>Go to... (&amp;N)</value>
   </data>
-  <data name="Other_NavigateToLogInPage" xml:space="preserve">
-    <value>Go to Login Page (&amp;L)</value>
-  </data>
   <data name="Other_RegionCookie" xml:space="preserve">
     <value>Set Region Cookie</value>
   </data>
@@ -197,9 +194,6 @@ catch(e) {{
   </data>
   <data name="Strip_Mute" xml:space="preserve">
     <value>Mute</value>
-  </data>
-  <data name="Strip_NavigateToLogInPage" xml:space="preserve">
-    <value>Go To Login Page</value>
   </data>
   <data name="Strip_Refresh" xml:space="preserve">
     <value>Refresh</value>

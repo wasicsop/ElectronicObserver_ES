@@ -884,14 +884,14 @@ namespace ElectronicObserver.Window {
 			FleetData fleet = db.Fleet[FleetID];
 			if ( fleet == null ) return;
 
-			sb.AppendFormat( "{0}\t" +GeneralRes.AirPower + "{1}/" + GeneralRes.TotalLoS + "{2}\r\n", fleet.Name, fleet.GetAirSuperiority(), fleet.GetSearchingAbilityString() );
+			sb.AppendFormat( "{0}\tAS value: {1} / LOS value: {2}\r\n", fleet.Name, fleet.GetAirSuperiority(), fleet.GetSearchingAbilityString() );
 			for ( int i = 0; i < fleet.Members.Count; i++ ) {
 				if ( fleet[i] == -1 )
 					continue;
 
 				ShipData ship = db.Ships[fleet[i]];
 
-				sb.AppendFormat( "{0}/{1}\t", ship.MasterShip.Name, ship.Level );
+				sb.AppendFormat( "{0}/Lv{1}\t", ship.MasterShip.Name, ship.Level );
 
 				var eq = ship.AllSlotInstance;
 
