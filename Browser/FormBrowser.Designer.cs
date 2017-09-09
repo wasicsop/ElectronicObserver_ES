@@ -139,14 +139,14 @@ namespace Browser
 			//
 			this.ToolMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ToolMenu_ScreenShot,
-            this.toolStripSeparator1,
+            //this.toolStripSeparator1,
             this.ToolMenu_Zoom,
-            this.toolStripSeparator2,
+            //this.toolStripSeparator2,
             this.ToolMenu_Mute,
-            this.toolStripSeparator13,
+            //this.toolStripSeparator13,
             this.ToolMenu_Refresh,
             this.ToolMenu_NavigateToLogInPage,
-            this.toolStripSeparator8,
+            //this.toolStripSeparator8,
             this.ToolMenu_Other});
 			this.ToolMenu.Location = new System.Drawing.Point(0, 0);
 			this.ToolMenu.Name = "ToolMenu";
@@ -208,7 +208,7 @@ namespace Browser
 			//
 			this.ToolMenu_NavigateToLogInPage.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
 			this.ToolMenu_NavigateToLogInPage.Name = "ToolMenu_NavigateToLogInPage";
-			this.ToolMenu_NavigateToLogInPage.Text = Resources.Strip_NavigateToLogInPage;
+			this.ToolMenu_NavigateToLogInPage.Text = "Go to login page";
 			this.ToolMenu_NavigateToLogInPage.Size = new System.Drawing.Size(23, 22);
 			this.ToolMenu_NavigateToLogInPage.Click += new System.EventHandler(this.ToolMenu_NavigateToLogInPage_Click);
 			//
@@ -249,7 +249,7 @@ namespace Browser
 			this.ToolMenu_Other_ScreenShot.Name = "ToolMenu_Other_ScreenShot";
 			this.ToolMenu_Other_ScreenShot.ShortcutKeys = System.Windows.Forms.Keys.F2;
 			this.ToolMenu_Other_ScreenShot.Size = new System.Drawing.Size(199, 22);
-			this.ToolMenu_Other_ScreenShot.Text = Resources.Other_Screenshot;
+			this.ToolMenu_Other_ScreenShot.Text = "&Screenshot";
 			this.ToolMenu_Other_ScreenShot.Click += new System.EventHandler(this.ToolMenu_Other_ScreenShot_Click);
 			//
 			// ToolMenu_Other_LastScreenShot
@@ -438,7 +438,7 @@ namespace Browser
 			this.ToolMenu_Other_Mute.Name = "ToolMenu_Other_Mute";
 			this.ToolMenu_Other_Mute.ShortcutKeys = System.Windows.Forms.Keys.F7;
 			this.ToolMenu_Other_Mute.Size = new System.Drawing.Size(199, 22);
-			this.ToolMenu_Other_Mute.Text = Resources.Other_Mute;
+			this.ToolMenu_Other_Mute.Text = "&Mute";
 			this.ToolMenu_Other_Mute.Click += new System.EventHandler(this.ToolMenu_Other_Mute_Click);
 			//
 			// toolStripSeparator7
@@ -450,15 +450,16 @@ namespace Browser
 			//
 			this.ToolMenu_Other_Refresh.Name = "ToolMenu_Other_Refresh";
 			this.ToolMenu_Other_Refresh.ShortcutKeys = System.Windows.Forms.Keys.F5;
+			this.ToolMenu_Other_Refresh.ShowShortcutKeys = true;
 			this.ToolMenu_Other_Refresh.Size = new System.Drawing.Size(199, 22);
-			this.ToolMenu_Other_Refresh.Text = Resources.Other_Refresh;
+			this.ToolMenu_Other_Refresh.Text = "&Refresh";
 			this.ToolMenu_Other_Refresh.Click += new System.EventHandler(this.ToolMenu_Other_Refresh_Click);
 			//
 			// ToolMenu_Other_NavigateToLogInPage
 			//
 			this.ToolMenu_Other_NavigateToLogInPage.Name = "ToolMenu_Other_NavigateToLogInPage";
 			this.ToolMenu_Other_NavigateToLogInPage.Size = new System.Drawing.Size(199, 22);
-			this.ToolMenu_Other_NavigateToLogInPage.Text = Resources.Other_NavigateToLogInPage;
+			this.ToolMenu_Other_NavigateToLogInPage.Text = "&Go to &login page";
 			this.ToolMenu_Other_NavigateToLogInPage.Click += new System.EventHandler(this.ToolMenu_Other_NavigateToLogInPage_Click);
 			//
 			// ToolMenu_Other_Navigate
@@ -559,7 +560,7 @@ namespace Browser
 			//
 			this.ToolMenu_Other_LastScreenShot_CopyToClipboard.Name = "ToolMenu_Other_LastScreenShot_CopyToClipboard";
 			this.ToolMenu_Other_LastScreenShot_CopyToClipboard.Size = new System.Drawing.Size(187, 22);
-			this.ToolMenu_Other_LastScreenShot_CopyToClipboard.Text = "Copy to Clipboard (&C)";
+			this.ToolMenu_Other_LastScreenShot_CopyToClipboard.Text = "&Copy";
 			this.ToolMenu_Other_LastScreenShot_CopyToClipboard.Click += new System.EventHandler(this.ToolMenu_Other_LastScreenShot_CopyToClipboard_Click);
 			//
 			// FormBrowser

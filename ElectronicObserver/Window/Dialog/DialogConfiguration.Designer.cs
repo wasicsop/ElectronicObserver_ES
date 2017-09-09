@@ -700,7 +700,7 @@
 			this.UI_IsLayoutFixed.Name = "UI_IsLayoutFixed";
 			this.UI_IsLayoutFixed.Size = new System.Drawing.Size(141, 19);
 			this.UI_IsLayoutFixed.TabIndex = 13;
-			this.UI_IsLayoutFixed.Text = "Use fixed height for font";
+			this.UI_IsLayoutFixed.Text = "Use fixed font height";
 			this.ToolTipInfo.SetToolTip(this.UI_IsLayoutFixed, "有効な時、どんなフォントでも概ね各UIの列の高さが同じになります(ver. 2.6.2 以前と同様)。\r\n無効な時、フォントによって列の高さが変わります(有効な時" +
         "より大きくなる場合があります)。\r\n無効にした場合、動作が若干重くなる可能性があります。");
 			this.UI_IsLayoutFixed.UseVisualStyleBackColor = true;
@@ -1328,7 +1328,7 @@
 			this.FormFleet_ShowAirSuperiorityRange.Name = "FormFleet_ShowAirSuperiorityRange";
 			this.FormFleet_ShowAirSuperiorityRange.Size = new System.Drawing.Size(150, 19);
 			this.FormFleet_ShowAirSuperiorityRange.TabIndex = 14;
-			this.FormFleet_ShowAirSuperiorityRange.Text = "Show AS value w/ plane proficiency range";
+			this.FormFleet_ShowAirSuperiorityRange.Text = "Show AS value range";
 			this.ToolTipInfo.SetToolTip(this.FormFleet_ShowAirSuperiorityRange, "Show the fleet AS value range based on minimum and maximum plane proficiency.\r\nThe default setting is to use the lowest plane proficiency for AS calculation." );
 			this.FormFleet_ShowAirSuperiorityRange.UseVisualStyleBackColor = true;
 			//
@@ -1413,7 +1413,7 @@
 			this.label28.Name = "label28";
 			this.label28.Size = new System.Drawing.Size(91, 15);
 			this.label28.TabIndex = 6;
-			this.label28.Text = ConfigRes.EquipmentLevelVisibility;
+			this.label28.Text = "Eq lvl display:";
 			//
 			// FormFleet_BlinkAtCompletion
 			//
@@ -1486,7 +1486,7 @@
 			this.FormFleet_FixShipNameWidth.Name = "FormFleet_FixShipNameWidth";
 			this.FormFleet_FixShipNameWidth.Size = new System.Drawing.Size(136, 19);
 			this.FormFleet_FixShipNameWidth.TabIndex = 8;
-			this.FormFleet_FixShipNameWidth.Text = global::ElectronicObserver.Window.Dialog.ConfigRes.FixShipNameWidth;
+			this.FormFleet_FixShipNameWidth.Text = "Fixed name width";
 			this.ToolTipInfo.SetToolTip(this.FormFleet_FixShipNameWidth, global::ElectronicObserver.Window.Dialog.ConfigRes.FixWidthHint);
 			this.FormFleet_FixShipNameWidth.UseVisualStyleBackColor = true;
 			this.FormFleet_FixShipNameWidth.CheckedChanged += new System.EventHandler(this.FormFleet_FixShipNameWidth_CheckedChanged);
@@ -1558,7 +1558,7 @@
 			this.label38.Name = "label38";
 			this.label38.Size = new System.Drawing.Size(101, 15);
 			this.label38.TabIndex = 12;
-			this.label38.Text = "Ship Name Width: ";
+			this.label38.Text = "Name Width:";
 			//
 			// label37
 			//
@@ -1634,7 +1634,7 @@
 			this.label39.Name = "label39";
 			this.label39.Size = new System.Drawing.Size(101, 15);
 			this.label39.TabIndex = 12;
-			this.label39.Text = "Ship Name Width: ";
+			this.label39.Text = "Name Width:";
 			//
 			// label36
 			//
@@ -1691,7 +1691,7 @@
 			this.tabPage16.Padding = new System.Windows.Forms.Padding(3);
 			this.tabPage16.Size = new System.Drawing.Size(562, 260);
 			this.tabPage16.TabIndex = 6;
-			this.tabPage16.Text = global::ElectronicObserver.Window.Dialog.ConfigRes.Headquarters;
+			this.tabPage16.Text = "HQ";
 			this.tabPage16.UseVisualStyleBackColor = true;
 			//
 			// label34
@@ -1765,7 +1765,7 @@
 			this.label40.Name = "label40";
 			this.label40.Size = new System.Drawing.Size(101, 15);
 			this.label40.TabIndex = 15;
-			this.label40.Text = "艦名の最大横幅：";
+			this.label40.Text = "Name width:";
 			//
 			// label41
 			//
@@ -1807,7 +1807,7 @@
 			this.FormCompass_IsScrollable.Name = "FormCompass_IsScrollable";
 			this.FormCompass_IsScrollable.Size = new System.Drawing.Size(144, 19);
 			this.FormCompass_IsScrollable.TabIndex = 6;
-			this.FormCompass_IsScrollable.Text = "Show the scroll bar";
+			this.FormCompass_IsScrollable.Text = "Enable scroll bar";
 			this.ToolTipInfo.SetToolTip(this.FormCompass_IsScrollable, "表示エリアがはみ出した場合にスクロールバーを表示するかを指定します。\r\n収まりきった場合は表示しません。");
 			this.FormCompass_IsScrollable.UseVisualStyleBackColor = true;
 			//

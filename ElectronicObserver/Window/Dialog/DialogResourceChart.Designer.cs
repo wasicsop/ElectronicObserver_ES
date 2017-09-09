@@ -70,13 +70,15 @@
             this.Menu_File_SaveImage});
 			this.Menu_File.Name = "Menu_File";
 			this.Menu_File.Size = new System.Drawing.Size(70, 20);
-			this.Menu_File.Text = "ファイル(&F)";
+			this.Menu_File.Text = "&File";
 			// 
 			// Menu_File_SaveImage
 			// 
 			this.Menu_File_SaveImage.Name = "Menu_File_SaveImage";
 			this.Menu_File_SaveImage.Size = new System.Drawing.Size(196, 22);
-			this.Menu_File_SaveImage.Text = "チャート画像を保存(&S)...";
+			this.Menu_File_SaveImage.Text = "Save &as...";
+			this.Menu_File_SaveImage.ShortcutKeys = System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S;
+			this.Menu_File_SaveImage.ShowShortcutKeys = true;
 			this.Menu_File_SaveImage.Click += new System.EventHandler(this.Menu_File_SaveImage_Click);
 			// 
 			// Menu_Graph
@@ -92,20 +94,20 @@
             this.Menu_Graph_ExperienceDiff});
 			this.Menu_Graph.Name = "Menu_Graph";
 			this.Menu_Graph.Size = new System.Drawing.Size(97, 20);
-			this.Menu_Graph.Text = GeneralRes.SelectGraph;
+			this.Menu_Graph.Text = "&View";
 			// 
 			// Menu_Graph_Resource
 			// 
 			this.Menu_Graph_Resource.Name = "Menu_Graph_Resource";
 			this.Menu_Graph_Resource.Size = new System.Drawing.Size(162, 22);
-			this.Menu_Graph_Resource.Text = GeneralRes.Resources + "(&R)";
+			this.Menu_Graph_Resource.Text = "&Resources";
 			this.Menu_Graph_Resource.Click += new System.EventHandler(this.Menu_Graph_Resource_Click);
 			// 
 			// Menu_Graph_ResourceDiff
 			// 
 			this.Menu_Graph_ResourceDiff.Name = "Menu_Graph_ResourceDiff";
 			this.Menu_Graph_ResourceDiff.Size = new System.Drawing.Size(162, 22);
-			this.Menu_Graph_ResourceDiff.Text = GeneralRes.Resources + GeneralRes.Difference + "(&E)";
+			this.Menu_Graph_ResourceDiff.Text = "R&esources - delta";
 			this.Menu_Graph_ResourceDiff.Click += new System.EventHandler(this.Menu_Graph_ResourceDiff_Click);
 			// 
 			// toolStripSeparator1
@@ -117,14 +119,14 @@
 			// 
 			this.Menu_Graph_Material.Name = "Menu_Graph_Material";
 			this.Menu_Graph_Material.Size = new System.Drawing.Size(162, 22);
-			this.Menu_Graph_Material.Text = GeneralRes.Materials + "(&M)";
+			this.Menu_Graph_Material.Text = "&Materials";
 			this.Menu_Graph_Material.Click += new System.EventHandler(this.Menu_Graph_Material_Click);
 			// 
 			// Menu_Graph_MaterialDiff
 			// 
 			this.Menu_Graph_MaterialDiff.Name = "Menu_Graph_MaterialDiff";
 			this.Menu_Graph_MaterialDiff.Size = new System.Drawing.Size(162, 22);
-			this.Menu_Graph_MaterialDiff.Text = GeneralRes.Materials + GeneralRes.Difference + "(&A)";
+			this.Menu_Graph_MaterialDiff.Text = "M&aterials - delta";
 			this.Menu_Graph_MaterialDiff.Click += new System.EventHandler(this.Menu_Graph_MaterialDiff_Click);
 			// 
 			// toolStripSeparator2
@@ -136,14 +138,14 @@
 			// 
 			this.Menu_Graph_Experience.Name = "Menu_Graph_Experience";
 			this.Menu_Graph_Experience.Size = new System.Drawing.Size(162, 22);
-			this.Menu_Graph_Experience.Text = GeneralRes.Experience + "(&E)";
+			this.Menu_Graph_Experience.Text = "&Experience";
 			this.Menu_Graph_Experience.Click += new System.EventHandler(this.Menu_Graph_Experience_Click);
 			// 
 			// Menu_Graph_ExperienceDiff
 			// 
 			this.Menu_Graph_ExperienceDiff.Name = "Menu_Graph_ExperienceDiff";
 			this.Menu_Graph_ExperienceDiff.Size = new System.Drawing.Size(162, 22);
-			this.Menu_Graph_ExperienceDiff.Text = GeneralRes.Experience + GeneralRes.Difference + "(&X)";
+			this.Menu_Graph_ExperienceDiff.Text = "E&xperience - delta";
 			this.Menu_Graph_ExperienceDiff.Click += new System.EventHandler(this.Menu_Graph_ExperienceDiff_Click);
 			// 
 			// Menu_Span
@@ -157,7 +159,7 @@
             this.Menu_Span_All});
 			this.Menu_Span.Name = "Menu_Span";
 			this.Menu_Span.Size = new System.Drawing.Size(61, 20);
-			this.Menu_Span.Text = GeneralRes.Span;
+			this.Menu_Span.Text = "Range";
 			// 
 			// Menu_Span_Day
 			// 
@@ -215,7 +217,7 @@
 			this.Menu_Option_ShowAllData.CheckOnClick = true;
 			this.Menu_Option_ShowAllData.Name = "Menu_Option_ShowAllData";
 			this.Menu_Option_ShowAllData.Size = new System.Drawing.Size(185, 22);
-			this.Menu_Option_ShowAllData.Text = GeneralRes.Option_ShowAllData;
+			this.Menu_Option_ShowAllData.Text = "Display all data";
 			this.Menu_Option_ShowAllData.Click += new System.EventHandler(this.Menu_Option_ShowAllData_Click);
 			// 
 			// Menu_Option_DivideByDay
@@ -223,7 +225,7 @@
 			this.Menu_Option_DivideByDay.CheckOnClick = true;
 			this.Menu_Option_DivideByDay.Name = "Menu_Option_DivideByDay";
 			this.Menu_Option_DivideByDay.Size = new System.Drawing.Size(185, 22);
-			this.Menu_Option_DivideByDay.Text = GeneralRes.Option_DivideByDay;
+			this.Menu_Option_DivideByDay.Text = "Show daily average";
 			this.Menu_Option_DivideByDay.Click += new System.EventHandler(this.Menu_Option_DivideByDay_Click);
 			// 
 			// ResourceChart
@@ -241,7 +243,7 @@
 			// SaveImageDialog
 			// 
 			this.SaveImageDialog.Filter = "PNG|*.png|File|*";
-			this.SaveImageDialog.Title = "チャートを保存";
+			this.SaveImageDialog.Title = "Save Chart As";
 			// 
 			// DialogResourceChart
 			// 

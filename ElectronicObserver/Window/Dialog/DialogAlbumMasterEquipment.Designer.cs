@@ -162,7 +162,7 @@
 			this.StripMenu_Edit_CopyEquipmentName.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
             | System.Windows.Forms.Keys.C)));
 			this.StripMenu_Edit_CopyEquipmentName.Size = new System.Drawing.Size(248, 22);
-			this.StripMenu_Edit_CopyEquipmentName.Text = "Copy Equipment &Name";
+			this.StripMenu_Edit_CopyEquipmentName.Text = "Copy equipment &name";
 			this.StripMenu_Edit_CopyEquipmentName.Click += new System.EventHandler(this.StripMenu_Edit_CopyEquipmentName_Click);
 			// 
 			// splitContainer1
@@ -459,14 +459,14 @@
 			// SaveCSVDialog
 			// 
 			this.SaveCSVDialog.Filter = "CSV|*.csv|File|*";
-			this.SaveCSVDialog.Title = "Save CSV";
+			this.SaveCSVDialog.Title = "Save As";
 			// 
 			// StripMenu_Edit_CopyEquipmentData
 			// 
 			this.StripMenu_Edit_CopyEquipmentData.Name = "StripMenu_Edit_CopyEquipmentData";
 			this.StripMenu_Edit_CopyEquipmentData.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
 			this.StripMenu_Edit_CopyEquipmentData.Size = new System.Drawing.Size(248, 22);
-			this.StripMenu_Edit_CopyEquipmentData.Text = "Copy Equipment &Data";
+			this.StripMenu_Edit_CopyEquipmentData.Text = "Copy equipment &data";
 			this.StripMenu_Edit_CopyEquipmentData.Click += new System.EventHandler(this.StripMenu_Edit_CopyEquipmentData_Click);
 			// 
 			// StripMenu_View
@@ -482,7 +482,7 @@
 			this.StripMenu_View_ShowAppearingArea.Name = "StripMenu_View_ShowAppearingArea";
 			this.StripMenu_View_ShowAppearingArea.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
 			this.StripMenu_View_ShowAppearingArea.Size = new System.Drawing.Size(288, 22);
-			this.StripMenu_View_ShowAppearingArea.Text = "Ship and Recipe &Search";
+			this.StripMenu_View_ShowAppearingArea.Text = "Ship/recipe &search";
 			this.StripMenu_View_ShowAppearingArea.Click += new System.EventHandler(this.StripMenu_View_ShowAppearingArea_Click);
 			// 
 			// AircraftCost

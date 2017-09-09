@@ -620,15 +620,6 @@ namespace ElectronicObserver.Window.Dialog {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 装備情報表示：.
-        /// </summary>
-        internal static string EquipmentLevelVisibility {
-            get {
-                return ResourceManager.GetString("EquipmentLevelVisibility", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 両方表示.
         /// </summary>
         internal static string EquipmentLevelVisibility_Both {
@@ -782,15 +773,6 @@ namespace ElectronicObserver.Window.Dialog {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 艦名の横幅を固定する.
-        /// </summary>
-        internal static string FixShipNameWidth {
-            get {
-                return ResourceManager.GetString("FixShipNameWidth", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 艦名表示部の幅を固定し、スペースを節約します。
         ///代わりに長い名前を持つ艦娘は見切れます。.
         /// </summary>
@@ -880,15 +862,6 @@ namespace ElectronicObserver.Window.Dialog {
         internal static string Group {
             get {
                 return ResourceManager.GetString("Group", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 司令部.
-        /// </summary>
-        internal static string Headquarters {
-            get {
-                return ResourceManager.GetString("Headquarters", resourceCulture);
             }
         }
         

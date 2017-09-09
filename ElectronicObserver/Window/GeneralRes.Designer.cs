@@ -116,24 +116,6 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to グループを追加(&amp;A).
-        /// </summary>
-        internal static string AddGroupMenu {
-            get {
-                return ResourceManager.GetString("AddGroupMenu", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to グループへ追加(&amp;A)....
-        /// </summary>
-        internal static string AddToGroupMenu {
-            get {
-                return ResourceManager.GetString("AddToGroupMenu", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 提督経験値.
         /// </summary>
         internal static string AdmiralXP {
@@ -296,15 +278,6 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 自動ソート設定(&amp;S)....
-        /// </summary>
-        internal static string AutoSort {
-            get {
-                return ResourceManager.GetString("AutoSort", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to ShipGroup: 自動ソート順設定ダイアログでエラーが発生しました。.
         /// </summary>
         internal static string AutoSortDialogError {
@@ -314,29 +287,11 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 自動更新する.
-        /// </summary>
-        internal static string AutoUpdate {
-            get {
-                return ResourceManager.GetString("AutoUpdate", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 平均Lv: {0:F2}.
         /// </summary>
         internal static string AverageLevel {
             get {
                 return ResourceManager.GetString("AverageLevel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 基地航空隊.
-        /// </summary>
-        internal static string Base {
-            get {
-                return ResourceManager.GetString("Base", resourceCulture);
             }
         }
         
@@ -605,15 +560,6 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 列の表示設定(&amp;C)....
-        /// </summary>
-        internal static string ColumnSettings {
-            get {
-                return ResourceManager.GetString("ColumnSettings", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 羅針盤.
         /// </summary>
         internal static string Compass {
@@ -689,33 +635,6 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 対空砲火の詳細表示(&amp;A).
-        /// </summary>
-        internal static string CopyAntiAirDetails {
-            get {
-                return ResourceManager.GetString("CopyAntiAirDetails", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 編成をコピー(デッキビルダー)(&amp;D).
-        /// </summary>
-        internal static string CopyFleetDeckBuilder {
-            get {
-                return ResourceManager.GetString("CopyFleetDeckBuilder", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to グループをコピー(&amp;C).
-        /// </summary>
-        internal static string CopyGroup {
-            get {
-                return ResourceManager.GetString("CopyGroup", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to グループ名を入力してください：.
         /// </summary>
         internal static string CopyGroupText {
@@ -734,38 +653,11 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 艦隊晒しページへコピー(&amp;R).
-        /// </summary>
-        internal static string CopyKanmusuList {
-            get {
-                return ResourceManager.GetString("CopyKanmusuList", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to クリップボードにコピー(&amp;C).
-        /// </summary>
-        internal static string CopyToClipboard {
-            get {
-                return ResourceManager.GetString("CopyToClipboard", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to グループの追加.
         /// </summary>
         internal static string CreateGroup {
             get {
                 return ResourceManager.GetString("CreateGroup", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 新規グループを作成(&amp;C)....
-        /// </summary>
-        internal static string CreateGroupMenu {
-            get {
-                return ResourceManager.GetString("CreateGroupMenu", resourceCulture);
             }
         }
         
@@ -866,15 +758,6 @@ namespace ElectronicObserver.Window {
         internal static string DeleteGroup {
             get {
                 return ResourceManager.GetString("DeleteGroup", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to グループを削除(&amp;D).
-        /// </summary>
-        internal static string DeleteGroupMenu {
-            get {
-                return ResourceManager.GetString("DeleteGroupMenu", resourceCulture);
             }
         }
         
@@ -1168,15 +1051,6 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 装備.
-        /// </summary>
-        internal static string Equipment {
-            get {
-                return ResourceManager.GetString("Equipment", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 随伴艦隊.
         /// </summary>
         internal static string EscortFleet {
@@ -1267,15 +1141,6 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to フィルタ設定(&amp;F)....
-        /// </summary>
-        internal static string FilterSettings {
-            get {
-                return ResourceManager.GetString("FilterSettings", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 火力.
         /// </summary>
         internal static string Firepower {
@@ -1299,15 +1164,6 @@ namespace ElectronicObserver.Window {
         internal static string Fleet {
             get {
                 return ResourceManager.GetString("Fleet", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 艦隊.
-        /// </summary>
-        internal static string FleetList {
-            get {
-                return ResourceManager.GetString("FleetList", resourceCulture);
             }
         }
         
@@ -1384,24 +1240,6 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to グループ.
-        /// </summary>
-        internal static string Group {
-            get {
-                return ResourceManager.GetString("Group", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 司令部.
-        /// </summary>
-        internal static string Headquarters {
-            get {
-                return ResourceManager.GetString("Headquarters", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 改修資材.
         /// </summary>
         internal static string ImpMat {
@@ -1416,15 +1254,6 @@ namespace ElectronicObserver.Window {
         internal static string IncrementByOne {
             get {
                 return ResourceManager.GetString("IncrementByOne", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 情報.
-        /// </summary>
-        internal static string Information {
-            get {
-                return ResourceManager.GetString("Information", resourceCulture);
             }
         }
         
@@ -1508,15 +1337,6 @@ namespace ElectronicObserver.Window {
         internal static string LoS {
             get {
                 return ResourceManager.GetString("LoS", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to (旧)2-5式: {0}\r\n2-5式(秋): {1}\r\n2-5新秋簡易式: {2}\r\n判定式(33): {3}\r\n新判定式(33):\r\n　分岐点係数1: {4:f2}\r\n　分岐点係数3: {5:f2}\r\n　分岐点係数4: {6:f2}\r\n\r\n触接開始率: \r\n　確保 {7:p1} / 優勢 {8:p1}\r\n.
-        /// </summary>
-        internal static string LoSTooltip {
-            get {
-                return ResourceManager.GetString("LoSTooltip", resourceCulture);
             }
         }
         
@@ -1724,33 +1544,6 @@ namespace ElectronicObserver.Window {
         internal static string Option {
             get {
                 return ResourceManager.GetString("Option", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 日単位で平均化.
-        /// </summary>
-        internal static string Option_DivideByDay {
-            get {
-                return ResourceManager.GetString("Option_DivideByDay", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 全てのデータを表示する.
-        /// </summary>
-        internal static string Option_ShowAllData {
-            get {
-                return ResourceManager.GetString("Option_ShowAllData", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to CSV出力(&amp;O)....
-        /// </summary>
-        internal static string OutputCSV {
-            get {
-                return ResourceManager.GetString("OutputCSV", resourceCulture);
             }
         }
         
@@ -1980,15 +1773,6 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to この画面をキャプチャ(&amp;S).
-        /// </summary>
-        internal static string ScreenCapture {
-            get {
-                return ResourceManager.GetString("ScreenCapture", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 探照灯照射.
         /// </summary>
         internal static string SearchlightUsed {
@@ -2016,29 +1800,11 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to グラフの選択(&amp;G).
-        /// </summary>
-        internal static string SelectGraph {
-            get {
-                return ResourceManager.GetString("SelectGraph", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to グループの選択.
         /// </summary>
         internal static string SelectGroup {
             get {
                 return ResourceManager.GetString("SelectGroup", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 触接選択率: .
-        /// </summary>
-        internal static string SelectionRate {
-            get {
-                return ResourceManager.GetString("SelectionRate", resourceCulture);
             }
         }
         
@@ -2169,15 +1935,6 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ステータスバーを表示する.
-        /// </summary>
-        internal static string ShowStatusBar {
-            get {
-                return ResourceManager.GetString("ShowStatusBar", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to ウィークリー任務を表示(&amp;W).
         /// </summary>
         internal static string ShowWeekly {
@@ -2192,15 +1949,6 @@ namespace ElectronicObserver.Window {
         internal static string SortiePlace {
             get {
                 return ResourceManager.GetString("SortiePlace", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 範囲(&amp;S).
-        /// </summary>
-        internal static string Span {
-            get {
-                return ResourceManager.GetString("Span", resourceCulture);
             }
         }
         

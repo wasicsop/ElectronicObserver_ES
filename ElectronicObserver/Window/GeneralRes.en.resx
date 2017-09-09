@@ -136,12 +136,6 @@ Cut-in type: {1} ({2})</value>
   <data name="AddGroup" xml:space="preserve">
     <value>Add Group</value>
   </data>
-  <data name="AddGroupMenu" xml:space="preserve">
-    <value>Add Group(&amp;A)</value>
-  </data>
-  <data name="AddToGroupMenu" xml:space="preserve">
-    <value>Add to group (&amp;A)...</value>
-  </data>
   <data name="AdmiralXP" xml:space="preserve">
     <value>Admiral XP</value>
   </data>
@@ -187,9 +181,6 @@ AI: {3}
   </data>
   <data name="AutoAdjustColumns" xml:space="preserve">
     <value>Automatically adjust columns (&amp;D)</value>
-  </data>
-  <data name="AutoUpdate" xml:space="preserve">
-    <value>Automatically update</value>
   </data>
   <data name="AverageLevel" xml:space="preserve">
     <value>Average Level: {0:F2}</value>
@@ -245,14 +236,8 @@ Range: {20} / Speed: {21}
   <data name="Contacting" xml:space="preserve">
     <value>Made contact</value>
   </data>
-  <data name="CopyToClipboard" xml:space="preserve">
-    <value>&amp;Copy to Clipboard</value>
-  </data>
   <data name="CreateGroup" xml:space="preserve">
     <value>Create Group</value>
-  </data>
-  <data name="CreateGroupMenu" xml:space="preserve">
-    <value>Create a new group (&amp;C)...</value>
   </data>
   <data name="CreateGroupName" xml:space="preserve">
     <value>Add selected ships to the following group:</value>
@@ -281,9 +266,6 @@ Range: {20} / Speed: {21}
   <data name="DeleteGroup" xml:space="preserve">
     <value>Delete the group [{0}]?
 This action cannot be undone.</value>
-  </data>
-  <data name="DeleteGroupMenu" xml:space="preserve">
-    <value>Delete group (&amp;D)</value>
   </data>
   <data name="DevelopmentFailed" xml:space="preserve">
     <value>[Development Failed]</value>
@@ -327,9 +309,6 @@ This action cannot be undone.</value>
   <data name="EnemyUnknown" xml:space="preserve">
     <value>(Unidentified)</value>
   </data>
-  <data name="Equipment" xml:space="preserve">
-    <value>Equipment</value>
-  </data>
   <data name="EscortFleet" xml:space="preserve">
     <value>Escort</value>
   </data>
@@ -354,9 +333,6 @@ This action cannot be undone.</value>
   <data name="Fleet" xml:space="preserve">
     <value>Fleet</value>
   </data>
-  <data name="FleetList" xml:space="preserve">
-    <value>Fleet List</value>
-  </data>
   <data name="FleetTooltip" xml:space="preserve">
     <value>Lv sum: {0} / avg: {1:0.00}
 {2} fleet
@@ -377,15 +353,6 @@ Consumption: {10} fuel / {11} ammo
   </data>
   <data name="Fuel" xml:space="preserve">
     <value>Fuel</value>
-  </data>
-  <data name="Group" xml:space="preserve">
-    <value>Group</value>
-  </data>
-  <data name="Headquarters" xml:space="preserve">
-    <value>Headquarters</value>
-  </data>
-  <data name="Information" xml:space="preserve">
-    <value>Information</value>
   </data>
   <data name="Initialize" xml:space="preserve">
     <value>Initialize (&amp;I)</value>
@@ -412,15 +379,6 @@ Are you sure?</value>
   </data>
   <data name="LoS" xml:space="preserve">
     <value>LoS</value>
-  </data>
-  <data name="LoSTooltip" xml:space="preserve">
-    <value>Formula 33:
- n=1: {0:f2}
- n=3: {1:f2}
- n=4: {2:f2}
-
-Contact Chance: 
-　AS+ {3:p1} / AS {4:p1}</value>
   </data>
   <data name="Luck" xml:space="preserve">
     <value>Luck</value>
@@ -460,9 +418,6 @@ Contact Chance:
   </data>
   <data name="NonexistentGroup" xml:space="preserve">
     <value>Error: attempted to access a nonexistent group. Please contact the developer.</value>
-  </data>
-  <data name="OutputCSV" xml:space="preserve">
-    <value>Export CSV (&amp;O)...</value>
   </data>
   <data name="Over50" xml:space="preserve">
     <value>Over 50%</value>
@@ -564,9 +519,6 @@ Range: {17} / Speed: {18}
   </data>
   <data name="ShowOneTime" xml:space="preserve">
     <value>Show One-time Quests (&amp;O)</value>
-  </data>
-  <data name="ShowStatusBar" xml:space="preserve">
-    <value>Show status bar</value>
   </data>
   <data name="ShowWeekly" xml:space="preserve">
     <value>Show Weeklies (&amp;W)</value>
@@ -739,12 +691,6 @@ Save your data and return to port before capturing.
   <data name="Resources" xml:space="preserve">
     <value>Resources </value>
   </data>
-  <data name="SelectGraph" xml:space="preserve">
-    <value>Select Graph (&amp;G)</value>
-  </data>
-  <data name="Span" xml:space="preserve">
-    <value>Span (&amp;S)</value>
-  </data>
   <data name="Steel" xml:space="preserve">
     <value>Steel</value>
   </data>
@@ -820,20 +766,8 @@ Bauxite: {10:+0;-0} ( regen {11:+0;-0} - resupply {12} ( {13} planes ) )</value>
   <data name="Air" xml:space="preserve">
     <value>Air</value>
   </data>
-  <data name="AutoSort" xml:space="preserve">
-    <value>Automatic Sort Settings (&amp;S)...</value>
-  </data>
   <data name="Bombing" xml:space="preserve">
     <value>Bombing</value>
-  </data>
-  <data name="ColumnSettings" xml:space="preserve">
-    <value>Column Display Settings (&amp;C)...</value>
-  </data>
-  <data name="CopyGroup" xml:space="preserve">
-    <value>Copy Group (&amp;C)</value>
-  </data>
-  <data name="FilterSettings" xml:space="preserve">
-    <value>Filter Settings (&amp;F)...</value>
   </data>
   <data name="Power" xml:space="preserve">
     <value> Power</value>
@@ -886,9 +820,6 @@ Bauxite: {10:+0;-0} ( regen {11:+0;-0} - resupply {12} ( {13} planes ) )</value>
   <data name="IncrementByOne" xml:space="preserve">
     <value>Increase by +1(&amp;I)</value>
   </data>
-  <data name="SelectionRate" xml:space="preserve">
-    <value>Selection Rate:</value>
-  </data>
   <data name="Encyclopedia" xml:space="preserve">
     <value>(Right-click for encyclopedia)</value>
   </data>
@@ -897,9 +828,6 @@ Bauxite: {10:+0;-0} ( regen {11:+0;-0} - resupply {12} ( {13} planes ) )</value>
   </data>
   <data name="ShowOther" xml:space="preserve">
     <value>Show Others</value>
-  </data>
-  <data name="Base" xml:space="preserve">
-    <value>Air Base</value>
   </data>
   <data name="BaseNotOpen" xml:space="preserve">
     <value>(Not opened)</value>
@@ -981,12 +909,6 @@ Denial: {3}</value>
   </data>
   <data name="Option" xml:space="preserve">
     <value>Option</value>
-  </data>
-  <data name="Option_DivideByDay" xml:space="preserve">
-    <value>Show daily average</value>
-  </data>
-  <data name="Option_ShowAllData" xml:space="preserve">
-    <value>Display all data</value>
   </data>
   <data name="BattleDetail" xml:space="preserve">
     <value>Battle Details</value>

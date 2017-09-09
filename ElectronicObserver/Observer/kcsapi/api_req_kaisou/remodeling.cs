@@ -16,7 +16,7 @@ namespace ElectronicObserver.Observer.kcsapi.api_req_kaisou {
 
 			int id = int.Parse( data["api_id"] );
 			var ship = KCDatabase.Instance.Ships[id];
-			Utility.Logger.Add( 2, string.Format( "{0} Lv. {1} への改装が完了しました。", ship.MasterShip.RemodelAfterShip.NameWithClass, ship.Level ) );
+			Utility.Logger.Add( 2, string.Format( "{0} Lv. {1} has been succefully remodelled.", ship.MasterShip.RemodelAfterShip.NameWithClass, ship.Level ) );
 
 			KCDatabase.Instance.Fleet.LoadFromRequest( APIName, data );
 			

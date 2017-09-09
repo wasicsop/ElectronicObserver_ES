@@ -36,7 +36,7 @@ namespace ElectronicObserver.Window {
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 			this.HideOnClose = true;
 			this.Name = "FormBrowserHost";
-			this.Text = Menus.Browser;
+			this.Text = "Browser";
 			this.Load += new System.EventHandler(this.FormBrowser_Load);
 			this.Resize += new System.EventHandler(this.FormBrowserHost_Resize);
 			this.ResumeLayout(false);

@@ -121,15 +121,6 @@ namespace ElectronicObserver.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to アップデート情報の URI が無効です。.
-        /// </summary>
-        internal static string BadUpdateURI {
-            get {
-                return ResourceManager.GetString("BadUpdateURI", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to ブラウザ.
         /// </summary>
         internal static string Browser {
@@ -482,29 +473,11 @@ namespace ElectronicObserver.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to アップデート情報の取得に失敗しました。.
-        /// </summary>
-        internal static string UpdateCheckFailed {
-            get {
-                return ResourceManager.GetString("UpdateCheckFailed", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to アップデート情報の処理に失敗しました。.
         /// </summary>
         internal static string UpdateConnectionFailed {
             get {
                 return ResourceManager.GetString("UpdateConnectionFailed", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to お使いのバージョンは最新です。.
-        /// </summary>
-        internal static string VersionCurrent {
-            get {
-                return ResourceManager.GetString("VersionCurrent", resourceCulture);
             }
         }
         

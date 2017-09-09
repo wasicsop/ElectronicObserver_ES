@@ -180,7 +180,7 @@ namespace ElectronicObserver.Window {
 					double probStart = fleet.GetContactProbability();
 					var probSelect = fleet.GetContactSelectionProbability();
 
-					sb.AppendFormat( GeneralRes.LoSTooltip,
+					sb.AppendFormat( "Formula 33:\r\n n=1: {0:f2}\r\n n=3: {1:f2}\r\n n=4: {2:f2}\r\n\r\nContact:\r\n　AS+ {3:p1} / AS {4:p1}\r\n",
 						Math.Floor( Calculator.GetSearchingAbility_New33( fleet, 1 ) * 100 ) / 100,
 						Math.Floor( Calculator.GetSearchingAbility_New33( fleet, 3 ) * 100 ) / 100,
 						Math.Floor( Calculator.GetSearchingAbility_New33( fleet, 4 ) * 100 ) / 100,
@@ -188,10 +188,10 @@ namespace ElectronicObserver.Window {
 						probStart * 0.6 );
 
 					if ( probSelect.Count > 0 ) {
-						sb.AppendLine( GeneralRes.SelectionRate );
+						sb.AppendLine( "Selection:" );
 
 						foreach ( var p in probSelect.OrderBy( p => p.Key ) ) {
-							sb.AppendFormat( "　" + EncycloRes.Accuracy + "+{0} : {1:p1}\r\n", p.Key, p.Value );
+							sb.AppendFormat( "　Acc+{0}: {1:p1}\r\n", p.Key, p.Value );
 						}
 					}
 
@@ -884,14 +884,14 @@ namespace ElectronicObserver.Window {
 			FleetData fleet = db.Fleet[FleetID];
 			if ( fleet == null ) return;
 
-			sb.AppendFormat( "{0}\t" +GeneralRes.AirPower + "{1}/" + GeneralRes.TotalLoS + "{2}\r\n", fleet.Name, fleet.GetAirSuperiority(), fleet.GetSearchingAbilityString() );
+			sb.AppendFormat( "{0}\tAS value: {1} / LOS value: {2}\r\n", fleet.Name, fleet.GetAirSuperiority(), fleet.GetSearchingAbilityString() );
 			for ( int i = 0; i < fleet.Members.Count; i++ ) {
 				if ( fleet[i] == -1 )
 					continue;
 
 				ShipData ship = db.Ships[fleet[i]];
 
-				sb.AppendFormat( "{0}/{1}\t", ship.MasterShip.Name, ship.Level );
+				sb.AppendFormat( "{0}/Lv{1}\t", ship.MasterShip.Name, ship.Level );
 
 				var eq = ship.AllSlotInstance;
 

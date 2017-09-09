@@ -295,7 +295,7 @@
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 			this.HideOnClose = true;
 			this.Name = "FormHeadquarters";
-			this.Text = GeneralRes.Headquarters;
+			this.Text = "HQ";
 			this.Load += new System.EventHandler(this.FormHeadquarters_Load);
 			this.FlowPanelMaster.ResumeLayout(false);
 			this.FlowPanelMaster.PerformLayout();
