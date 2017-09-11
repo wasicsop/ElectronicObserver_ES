@@ -168,9 +168,6 @@
   <data name="Blue" xml:space="preserve">
     <value>青</value>
   </data>
-  <data name="BossNode" xml:space="preserve">
-    <value>ボス戦闘</value>
-  </data>
   <data name="Bucket" xml:space="preserve">
     <value>高速修復材</value>
   </data>
@@ -390,9 +387,6 @@
   <data name="NormalFleet" xml:space="preserve">
     <value>通常艦隊</value>
   </data>
-  <data name="NormalNode" xml:space="preserve">
-    <value>通常戦闘</value>
-  </data>
   <data name="NoviceCommander" xml:space="preserve">
     <value>新米中佐</value>
   </data>
@@ -425,9 +419,6 @@
   </data>
   <data name="Red" xml:space="preserve">
     <value>赤</value>
-  </data>
-  <data name="Resources" xml:space="preserve">
-    <value>資源</value>
   </data>
   <data name="Retreated" xml:space="preserve">
     <value>退避</value>

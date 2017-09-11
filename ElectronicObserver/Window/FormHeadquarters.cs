@@ -230,21 +230,21 @@ namespace ElectronicObserver.Window {
 					var res = RecordManager.Instance.Resource.GetRecordPrevious();
 					if ( res != null ) {
 						int diff = db.Admiral.Exp - res.HQExp;
-						tooltip.AppendFormat( GeneralRes.ThisTime + ": +{0} exp. / {1:n2} " + GeneralRes.RankPoints + "\r\n", diff, diff * 7 / 10000.0 );
+						tooltip.AppendFormat( "Session: +{0} exp / {1:n2} pt\r\n", diff, diff * 7 / 10000.0 );
 					}
 				}
 				{
 					var res = RecordManager.Instance.Resource.GetRecordDay();
 					if ( res != null ) {
 						int diff = db.Admiral.Exp - res.HQExp;
-						tooltip.AppendFormat( GeneralRes.Today + ": +{0} exp. / {1:n2} " + GeneralRes.RankPoints + "\r\n", diff, diff * 7 / 10000.0 );
+						tooltip.AppendFormat( "Daily: +{0} exp / {1:n2} pt\r\n", diff, diff * 7 / 10000.0 );
 					}
 				}
 				{
 					var res = RecordManager.Instance.Resource.GetRecordMonth();
 					if ( res != null ) {
 						int diff = db.Admiral.Exp - res.HQExp;
-						tooltip.AppendFormat( GeneralRes.ThisMonth + ": +{0} exp. / {1:n2} " + GeneralRes.RankPoints + "\r\n", diff, diff * 7 / 10000.0 );
+						tooltip.AppendFormat( "Monthly: +{0} exp / {1:n2} pt\r\n", diff, diff * 7 / 10000.0 );
 					}
 				}
 
@@ -303,10 +303,10 @@ namespace ElectronicObserver.Window {
 				InstantRepair.ForeColor = configUI.ForeColor;
 				InstantRepair.BackColor = Color.Transparent;
 			}
-			ToolTipInfo.SetToolTip( InstantConstruction, string.Format( "Today: {0:+##;-##;±0}\nThis week: {1:+##;-##;±0}\nThis month: {2:+##;-##;±0}",
-					resday == null ? 0 : ( db.Material.InstantConstruction - resday.InstantConstruction ),
-					resweek == null ? 0 : ( db.Material.InstantConstruction - resweek.InstantConstruction ),
-					resmonth == null ? 0 : ( db.Material.InstantConstruction - resmonth.InstantConstruction ) ) );
+			ToolTipInfo.SetToolTip( InstantRepair, string.Format( "Daily: {0:+##;-##;±0}\nWeekly: {1:+##;-##;±0}\nMonthly: {2:+##;-##;±0}",
+					resday == null ? 0 : ( db.Material.InstantRepair - resday.InstantRepair),
+					resweek == null ? 0 : ( db.Material.InstantRepair - resweek.InstantRepair),
+					resmonth == null ? 0 : ( db.Material.InstantRepair - resmonth.InstantRepair) ) );
 
 			InstantConstruction.Text = db.Material.InstantConstruction.ToString();
 			if (db.Material.InstantConstruction >= 3000) {
@@ -317,7 +317,7 @@ namespace ElectronicObserver.Window {
 				InstantConstruction.ForeColor = configUI.ForeColor;
 				InstantConstruction.BackColor = Color.Transparent;
 			}
-			ToolTipInfo.SetToolTip( InstantConstruction, string.Format( "今日 : {0:+##;-##;±0}\n本周 : {1:+##;-##;±0}\n本月 : {2:+##;-##;±0}",
+			ToolTipInfo.SetToolTip( InstantConstruction, string.Format( "Daily: {0:+##;-##;±0}\nWeekly: {1:+##;-##;±0}\nMonthly: {2:+##;-##;±0}",
 					resday == null ? 0 : (db.Material.InstantConstruction - resday.InstantConstruction),
 					resweek == null ? 0 : (db.Material.InstantConstruction - resweek.InstantConstruction),
 					resmonth == null ? 0 : (db.Material.InstantConstruction - resmonth.InstantConstruction) ) );
@@ -331,7 +331,7 @@ namespace ElectronicObserver.Window {
 				DevelopmentMaterial.ForeColor = configUI.ForeColor;
 				DevelopmentMaterial.BackColor = Color.Transparent;
 			}
-			ToolTipInfo.SetToolTip( DevelopmentMaterial, string.Format( "Today: {0:+##;-##;±0}\nThis week: {1:+##;-##;±0}\nThis month: {2:+##;-##;±0}",
+			ToolTipInfo.SetToolTip( DevelopmentMaterial, string.Format( "Daily: {0:+##;-##;±0}\nWeekly: {1:+##;-##;±0}\nMonthly: {2:+##;-##;±0}",
 					resday == null ? 0 : ( db.Material.DevelopmentMaterial - resday.DevelopmentMaterial ),
 					resweek == null ? 0 : ( db.Material.DevelopmentMaterial - resweek.DevelopmentMaterial ),
 					resmonth == null ? 0 : ( db.Material.DevelopmentMaterial - resmonth.DevelopmentMaterial ) ) );
@@ -345,7 +345,7 @@ namespace ElectronicObserver.Window {
 				ModdingMaterial.ForeColor = configUI.ForeColor;
 				ModdingMaterial.BackColor = Color.Transparent;
 			}
-			ToolTipInfo.SetToolTip( ModdingMaterial, string.Format( "Today: {0:+##;-##;±0}\nThis week: {1:+##;-##;±0}\nThis month: {2:+##;-##;±0}",
+			ToolTipInfo.SetToolTip( ModdingMaterial, string.Format( "Daily: {0:+##;-##;±0}\nWeekly: {1:+##;-##;±0}\nMonthly: {2:+##;-##;±0}",
 					resday == null ? 0 : ( db.Material.ModdingMaterial - resday.ModdingMaterial ),
 					resweek == null ? 0 : ( db.Material.ModdingMaterial - resweek.ModdingMaterial ),
 					resmonth == null ? 0 : ( db.Material.ModdingMaterial - resmonth.ModdingMaterial ) ) );
@@ -365,7 +365,7 @@ namespace ElectronicObserver.Window {
 				int large = db.UseItems[12] != null ? db.UseItems[12].Count : 0;
 
 				ToolTipInfo.SetToolTip( FurnitureCoin,
-						string.Format( "( 小 ) x {0} ( +{1} )\r\n( 中 ) x {2} ( +{3} )\r\n( 大 ) x {4} ( +{5} )\r\n",
+						string.Format( "(S) x {0} ( +{1} )\r\n(M) x {2} ( +{3} )\r\n(L) x {4} ( +{5} )\r\n",
 							small, small * 200,
 							medium, medium * 400,
 							large, large * 700 ) );
@@ -396,7 +396,7 @@ namespace ElectronicObserver.Window {
 					Fuel.ForeColor = configUI.ForeColor;
 					Fuel.BackColor = Color.Transparent;
 				}
-				ToolTipInfo.SetToolTip( Fuel, string.Format( "今日 : {0:+##;-##;±0}\n本周 : {1:+##;-##;±0}\n本月 : {2:+##;-##;±0}",
+				ToolTipInfo.SetToolTip( Fuel, string.Format( "Daily: {0:+##;-##;±0}\nWeekly: {1:+##;-##;±0}\nMonthly: {2:+##;-##;±0}",
 					resday == null ? 0 : (db.Material.Fuel - resday.Fuel),
 					resweek == null ? 0 : (db.Material.Fuel - resweek.Fuel),
 					resmonth == null ? 0 : (db.Material.Fuel - resmonth.Fuel) ) );
@@ -418,7 +418,7 @@ namespace ElectronicObserver.Window {
 					Ammo.ForeColor = configUI.ForeColor;
 					Ammo.BackColor = Color.Transparent;
 				}
-				ToolTipInfo.SetToolTip( Ammo, string.Format( "今日 : {0:+##;-##;±0}\n本周 : {1:+##;-##;±0}\n本月 : {2:+##;-##;±0}",
+				ToolTipInfo.SetToolTip( Ammo, string.Format( "Daily: {0:+##;-##;±0}\nWeekly: {1:+##;-##;±0}\nMonthly: {2:+##;-##;±0}",
 					resday == null ? 0 : (db.Material.Ammo - resday.Ammo),
 					resweek == null ? 0 : (db.Material.Ammo - resweek.Ammo),
 					resmonth == null ? 0 : (db.Material.Ammo - resmonth.Ammo) ) );
@@ -440,7 +440,7 @@ namespace ElectronicObserver.Window {
 					Steel.ForeColor = configUI.ForeColor;
 					Steel.BackColor = Color.Transparent;
 				}
-				ToolTipInfo.SetToolTip( Steel, string.Format( "今日 : {0:+##;-##;±0}\n本周 : {1:+##;-##;±0}\n本月 : {2:+##;-##;±0}",
+				ToolTipInfo.SetToolTip( Steel, string.Format( "Daily: {0:+##;-##;±0}\nWeekly: {1:+##;-##;±0}\nMonthly: {2:+##;-##;±0}",
 					resday == null ? 0 : (db.Material.Steel - resday.Steel),
 					resweek == null ? 0 : (db.Material.Steel - resweek.Steel),
 					resmonth == null ? 0 : (db.Material.Steel - resmonth.Steel) ) );
@@ -462,7 +462,7 @@ namespace ElectronicObserver.Window {
 					Bauxite.ForeColor = configUI.ForeColor;
 					Bauxite.BackColor = Color.Transparent;
 				}
-				ToolTipInfo.SetToolTip( Bauxite, string.Format( "今日 : {0:+##;-##;±0}\n本周 : {1:+##;-##;±0}\n本月 : {2:+##;-##;±0}",
+				ToolTipInfo.SetToolTip( Bauxite, string.Format( "Daily: {0:+##;-##;±0}\nWeekly: {1:+##;-##;±0}\nMonthly: {2:+##;-##;±0}",
 					resday == null ? 0 : (db.Material.Bauxite - resday.Bauxite),
 					resweek == null ? 0 : (db.Material.Bauxite - resweek.Bauxite),
 					resmonth == null ? 0 : (db.Material.Bauxite - resmonth.Bauxite) ) );
@@ -511,7 +511,7 @@ namespace ElectronicObserver.Window {
 			var db = KCDatabase.Instance;
 			var item = db.UseItems[Utility.Configuration.Config.FormHeadquarters.DisplayUseItemID];
 			var itemMaster = db.MasterUseItems[Utility.Configuration.Config.FormHeadquarters.DisplayUseItemID];
-			string tail = "\r\n(設定から変更可能)";
+			string tail = "\r\n(can be changed in settings)";
 
 			if ( item != null ) {
 				DisplayUseItem.Text = item.Count.ToString();
@@ -523,7 +523,7 @@ namespace ElectronicObserver.Window {
 
 			} else {
 				DisplayUseItem.Text = "???";
-				ToolTipInfo.SetToolTip( DisplayUseItem, "不明なアイテム (ID: " + Utility.Configuration.Config.FormHeadquarters.DisplayUseItemID + ")" + tail );
+				ToolTipInfo.SetToolTip( DisplayUseItem, "Unknown Item (ID: " + Utility.Configuration.Config.FormHeadquarters.DisplayUseItemID + ")" + tail );
 			}
 		}
 

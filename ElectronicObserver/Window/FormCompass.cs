@@ -729,7 +729,9 @@ namespace ElectronicObserver.Window {
 							TextEventDetail.Text = GeneralRes.WhyDidThisHappen;
 							break;
 
-						case 2:		//資源
+						case 2:     //資源
+							TextEventKind.ForeColor = Utility.Configuration.Config.UI.Color_Green;
+							break;
 						case 8:		//船団護衛成功
 							TextEventDetail.Text = GetMaterialInfo( compass );
 							break;
@@ -784,29 +786,29 @@ namespace ElectronicObserver.Window {
 								default:
 									break;
 								case 1:
-									eventkind = GeneralRes.SawNoEnemy;
+									eventkind = "No enemy sighted.";
 									break;
 								case 2:
-									eventkind = GeneralRes.BranchChoice;
+									eventkind = "Branch choice";
 									break;
 								case 3:
 									eventkind = "It's a calm sea.";
 									break;
 								case 4:
-									eventkind = "穏やかな海峡";
+									eventkind = "It's a calm strait.";
 									break;
 								case 5:
-									eventkind = "警戒が必要";
+									eventkind = "I need to be careful.";
 									break;
 								case 6:
-									eventkind = "静かな海";
+									eventkind = "It's a calm sea.";
 									break;
 								case 7:
-									eventkind = "ドーバー海峡進撃中";
+									eventkind = "Advancing towards Dover strait.";
 									break;
 							}
 							if ( compass.RouteChoices != null )
-								TextEventDetail.Text = string.Join( "/", compass.RouteChoices );
+								TextEventDetail.Text = "Active branching: " + string.Join( " or ", compass.RouteChoices );
 							else
 								TextEventDetail.Text = "";
 

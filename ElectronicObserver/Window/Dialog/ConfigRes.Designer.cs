@@ -372,15 +372,6 @@ namespace ElectronicObserver.Window.Dialog {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to アップデートを確認する.
-        /// </summary>
-        internal static string CheckUpdate {
-            get {
-                return ResourceManager.GetString("CheckUpdate", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to レジストリを削除します。よろしいですか？
         ///＊完全に適用するには再起動が必要です。.
         /// </summary>
@@ -414,24 +405,6 @@ namespace ElectronicObserver.Window.Dialog {
         internal static string Confirm {
             get {
                 return ResourceManager.GetString("Confirm", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 終了時に確認する.
-        /// </summary>
-        internal static string ConfirmClose {
-            get {
-                return ResourceManager.GetString("ConfirmClose", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 再読み込み時に確認する.
-        /// </summary>
-        internal static string ConfirmRefresh {
-            get {
-                return ResourceManager.GetString("ConfirmRefresh", resourceCulture);
             }
         }
         
@@ -587,15 +560,6 @@ namespace ElectronicObserver.Window.Dialog {
         internal static string EnableBrowser {
             get {
                 return ResourceManager.GetString("EnableBrowser", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to デバッグ メニューを有効にする.
-        /// </summary>
-        internal static string EnableDebugMenu {
-            get {
-                return ResourceManager.GetString("EnableDebugMenu", resourceCulture);
             }
         }
         
@@ -803,15 +767,6 @@ namespace ElectronicObserver.Window.Dialog {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 艦隊.
-        /// </summary>
-        internal static string Fleet {
-            get {
-                return ResourceManager.GetString("Fleet", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to タイマー完了時に点滅させる.
         /// </summary>
         internal static string FleetBlinkAtCompletion {
@@ -875,24 +830,6 @@ namespace ElectronicObserver.Window.Dialog {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 熟練度を無視.
-        /// </summary>
-        internal static string IgnorePlaneXP {
-            get {
-                return ResourceManager.GetString("IgnorePlaneXP", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to スクロールバーを表示する.
-        /// </summary>
-        internal static string IsScrollable {
-            get {
-                return ResourceManager.GetString("IsScrollable", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 自動更新する.
         /// </summary>
         internal static string Json_AutoUpdate {
@@ -943,42 +880,6 @@ namespace ElectronicObserver.Window.Dialog {
         internal static string Life_CanCloseFloatWindowInLock {
             get {
                 return ResourceManager.GetString("Life_CanCloseFloatWindowInLock", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 時計表示：.
-        /// </summary>
-        internal static string Life_Clock {
-            get {
-                return ResourceManager.GetString("Life_Clock", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 現在時刻.
-        /// </summary>
-        internal static string Life_ClockFormat_Current {
-            get {
-                return ResourceManager.GetString("Life_ClockFormat_Current", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 演習更新まで.
-        /// </summary>
-        internal static string Life_ClockFormat_Excercise {
-            get {
-                return ResourceManager.GetString("Life_ClockFormat_Excercise", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 任務更新まで.
-        /// </summary>
-        internal static string Life_ClockFormat_Quest {
-            get {
-                return ResourceManager.GetString("Life_ClockFormat_Quest", resourceCulture);
             }
         }
         
@@ -1218,51 +1119,6 @@ namespace ElectronicObserver.Window.Dialog {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to T字有利.
-        /// </summary>
-        internal static string PowerEngagementForm_GreenT {
-            get {
-                return ResourceManager.GetString("PowerEngagementForm_GreenT", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 反航戦.
-        /// </summary>
-        internal static string PowerEngagementForm_Headon {
-            get {
-                return ResourceManager.GetString("PowerEngagementForm_Headon", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 同航戦.
-        /// </summary>
-        internal static string PowerEngagementForm_Paralel {
-            get {
-                return ResourceManager.GetString("PowerEngagementForm_Paralel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to T字不利.
-        /// </summary>
-        internal static string PowerEngagementForm_RedT {
-            get {
-                return ResourceManager.GetString("PowerEngagementForm_RedT", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 威力（戦闘における攻撃力）を計算する際の、基準となる交戦形態を設定します。.
-        /// </summary>
-        internal static string PowerEngagementFormHint {
-            get {
-                return ResourceManager.GetString("PowerEngagementFormHint", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 任務進捗の自動保存：.
         /// </summary>
         internal static string ProgressAutoSaving {
@@ -1387,15 +1243,6 @@ namespace ElectronicObserver.Window.Dialog {
         internal static string Registry {
             get {
                 return ResourceManager.GetString("Registry", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to システムプロキシとして登録.
-        /// </summary>
-        internal static string RegSystemProxy {
-            get {
-                return ResourceManager.GetString("RegSystemProxy", resourceCulture);
             }
         }
         
@@ -1530,15 +1377,6 @@ namespace ElectronicObserver.Window.Dialog {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 表示エリアがはみ出した場合にスクロールバーを表示するかを指定します。\r\n収まりきった場合は表示しません。.
-        /// </summary>
-        internal static string ScrollableHint {
-            get {
-                return ResourceManager.GetString("ScrollableHint", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 秒.
         /// </summary>
         internal static string Second {
@@ -1593,29 +1431,11 @@ namespace ElectronicObserver.Window.Dialog {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to HPバーを短縮する.
-        /// </summary>
-        internal static string ShortenHPBar {
-            get {
-                return ResourceManager.GetString("ShortenHPBar", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to HPバーを短縮し、スペースを節約します。.
         /// </summary>
         internal static string ShortenHPHint {
             get {
                 return ResourceManager.GetString("ShortenHPHint", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 艦載機数を表示する.
-        /// </summary>
-        internal static string ShowAircraft {
-            get {
-                return ResourceManager.GetString("ShowAircraft", resourceCulture);
             }
         }
         
@@ -1647,15 +1467,6 @@ namespace ElectronicObserver.Window.Dialog {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 艦名を表示する.
-        /// </summary>
-        internal static string ShowShipNames {
-            get {
-                return ResourceManager.GetString("ShowShipNames", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to ネタバレを許可する.
         /// </summary>
         internal static string ShowSpoilers {
@@ -1671,15 +1482,6 @@ namespace ElectronicObserver.Window.Dialog {
         internal static string ShowSpoilersHint {
             get {
                 return ResourceManager.GetString("ShowSpoilersHint", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to ステータスバーを表示する.
-        /// </summary>
-        internal static string ShowStatusBar {
-            get {
-                return ResourceManager.GetString("ShowStatusBar", resourceCulture);
             }
         }
         
@@ -1708,15 +1510,6 @@ namespace ElectronicObserver.Window.Dialog {
         internal static string Subfont {
             get {
                 return ResourceManager.GetString("Subfont", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to サブウィンドウ.
-        /// </summary>
-        internal static string SubWindow {
-            get {
-                return ResourceManager.GetString("SubWindow", resourceCulture);
             }
         }
         
@@ -1847,15 +1640,6 @@ namespace ElectronicObserver.Window.Dialog {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 上流プロキシを利用する：.
-        /// </summary>
-        internal static string UseProxy {
-            get {
-                return ResourceManager.GetString("UseProxy", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 他のプロキシを利用するツール・ブラウザと連携する際に利用します。.
         /// </summary>
         internal static string UseProxyHint {
@@ -1879,15 +1663,6 @@ namespace ElectronicObserver.Window.Dialog {
         internal static string UseSystemProxyTooltip {
             get {
                 return ResourceManager.GetString("UseSystemProxyTooltip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 熟練度あり(仮).
-        /// </summary>
-        internal static string UsingPlaneXPBeta {
-            get {
-                return ResourceManager.GetString("UsingPlaneXPBeta", resourceCulture);
             }
         }
         

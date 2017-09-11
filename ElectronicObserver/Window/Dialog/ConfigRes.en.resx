@@ -176,9 +176,6 @@ Changing the version may change functionality.</value>
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
-  <data name="CheckUpdate" xml:space="preserve">
-    <value>Check for update</value>
-  </data>
   <data name="ClearingRegistry" xml:space="preserve">
     <value>Clearing registry settings. Are you sure?
 ＊Clearing settings will require restarting.</value>
@@ -188,12 +185,6 @@ Changing the version may change functionality.</value>
   </data>
   <data name="Confirm" xml:space="preserve">
     <value>Confirm</value>
-  </data>
-  <data name="ConfirmClose" xml:space="preserve">
-    <value>Confirm on close</value>
-  </data>
-  <data name="ConfirmRefresh" xml:space="preserve">
-    <value>Confirm before page reload</value>
   </data>
   <data name="ConfirmRefreshHint" xml:space="preserve">
     <value>Displays a confirmation dialog when refreshing.
@@ -276,9 +267,6 @@ Direct mode may improve performance.</value>
   <data name="FlashQuality" xml:space="preserve">
     <value>Flash Quality Settings</value>
   </data>
-  <data name="Fleet" xml:space="preserve">
-    <value>Fleet</value>
-  </data>
   <data name="FolderSearch" xml:space="preserve">
     <value>Search for folder</value>
   </data>
@@ -291,9 +279,6 @@ May result in KanColle screen freezing under specific situation.</value>
   </data>
   <data name="Group" xml:space="preserve">
     <value>Group</value>
-  </data>
-  <data name="IsScrollable" xml:space="preserve">
-    <value>Enable scroll bar</value>
   </data>
   <data name="LayoutFile" xml:space="preserve">
     <value>Layout File</value>
@@ -373,9 +358,6 @@ Default is "High".</value>
   <data name="Registry" xml:space="preserve">
     <value>Registry</value>
   </data>
-  <data name="RegSystemProxy" xml:space="preserve">
-    <value>Register as system proxy.</value>
-  </data>
   <data name="RegSystemProxyHint" xml:space="preserve">
     <value>Register the proxy with the system, allowing automatic use.
 If the proxy becomes unnecessary, side effects may occur.
@@ -419,26 +401,14 @@ Reports are by default saved in the ErrorReport subfolder.</value>
   <data name="Screenshot" xml:space="preserve">
     <value>Screenshot</value>
   </data>
-  <data name="ScrollableHint" xml:space="preserve">
-    <value>Show the scroll bar in the fleet tab when content does not fit.</value>
-  </data>
   <data name="Settings" xml:space="preserve">
     <value>Settings</value>
   </data>
-  <data name="ShortenHPBar" xml:space="preserve">
-    <value>Shorten HP bar</value>
-  </data>
   <data name="ShortenHPHint" xml:space="preserve">
-    <value>Shortens HP bar, saving space.</value>
-  </data>
-  <data name="ShowAircraft" xml:space="preserve">
-    <value>Display aircraft numbers</value>
+    <value>Use smaller HP bar in order to save horizontal space.</value>
   </data>
   <data name="ShowNextXP" xml:space="preserve">
     <value>Show next level exp</value>
-  </data>
-  <data name="ShowShipNames" xml:space="preserve">
-    <value>Show ship names</value>
   </data>
   <data name="ShowSpoilers" xml:space="preserve">
     <value>Show spoilers</value>
@@ -446,9 +416,6 @@ Reports are by default saved in the ErrorReport subfolder.</value>
   <data name="ShowSpoilersHint" xml:space="preserve">
     <value>Set whether developed items and dropped ships are displayed on the log.
 Those worried of knowing in advance should use this.</value>
-  </data>
-  <data name="ShowStatusBar" xml:space="preserve">
-    <value>Show status bar</value>
   </data>
   <data name="ShowStatusbarHint" xml:space="preserve">
     <value>Displays data in the status bar (including ship numbers, etc.)
@@ -459,9 +426,6 @@ Can increase the number of status bar messages.</value>
   </data>
   <data name="Subfont" xml:space="preserve">
     <value>Secondary</value>
-  </data>
-  <data name="SubWindow" xml:space="preserve">
-    <value>Window</value>
   </data>
   <data name="TaihaAdvance" xml:space="preserve">
     <value>Critical damage</value>
@@ -477,9 +441,6 @@ Can increase the number of status bar messages.</value>
   </data>
   <data name="Unimplemented" xml:space="preserve">
     <value>＊Unimplemented＊</value>
-  </data>
-  <data name="UseProxy" xml:space="preserve">
-    <value>Use upstream proxy:</value>
   </data>
   <data name="UseProxyHint" xml:space="preserve">
     <value>Use to cooperate with other proxy-using applications.</value>
@@ -527,24 +488,6 @@ More details, as well as an access key, can be found on the site below. (opens y
   <data name="DisplayEquipLevelsTooltip" xml:space="preserve">
     <value>Displays aircraft proficiency and equipment improvement level.
 </value>
-  </data>
-  <data name="IgnorePlaneXP" xml:space="preserve">
-    <value>Disable</value>
-  </data>
-  <data name="UsingPlaneXPBeta" xml:space="preserve">
-    <value>Enable</value>
-  </data>
-  <data name="Life_Clock" xml:space="preserve">
-    <value>Time display:</value>
-  </data>
-  <data name="Life_ClockFormat_Current" xml:space="preserve">
-    <value>Current time</value>
-  </data>
-  <data name="Life_ClockFormat_Excercise" xml:space="preserve">
-    <value>Until PVP reset</value>
-  </data>
-  <data name="Life_ClockFormat_Quest" xml:space="preserve">
-    <value>Until quest reset</value>
   </data>
   <data name="RecordAutoSaving_Daily" xml:space="preserve">
     <value>Daily</value>
@@ -663,9 +606,6 @@ More details, as well as an access key, can be found on the site below. (opens y
   <data name="Dock" xml:space="preserve">
     <value>Dock</value>
   </data>
-  <data name="EnableDebugMenu" xml:space="preserve">
-    <value>Enable debug menu</value>
-  </data>
   <data name="EquipmentLevelVisibility_Both" xml:space="preserve">
     <value>Both</value>
   </data>
@@ -741,21 +681,6 @@ Might be heavy.</value>
   </data>
   <data name="PowerEngagementForm" xml:space="preserve">
     <value>Default Engagement:</value>
-  </data>
-  <data name="PowerEngagementFormHint" xml:space="preserve">
-    <value>Sets the default engagement form for attack power calculation</value>
-  </data>
-  <data name="PowerEngagementForm_GreenT" xml:space="preserve">
-    <value>T-Disadvantage</value>
-  </data>
-  <data name="PowerEngagementForm_Headon" xml:space="preserve">
-    <value>Head-on</value>
-  </data>
-  <data name="PowerEngagementForm_Paralel" xml:space="preserve">
-    <value>Parallel</value>
-  </data>
-  <data name="PowerEngagementForm_RedT" xml:space="preserve">
-    <value>T-Advantage</value>
   </data>
   <data name="NewFormula33" xml:space="preserve">
     <value>New Formula 33</value>

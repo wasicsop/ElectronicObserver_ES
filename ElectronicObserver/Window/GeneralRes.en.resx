@@ -188,9 +188,6 @@ AI: {3}
   <data name="Battle" xml:space="preserve">
     <value>Battle</value>
   </data>
-  <data name="BranchChoice" xml:space="preserve">
-    <value>Branch Choice</value>
-  </data>
   <data name="CannotChangeGroup" xml:space="preserve">
     <value>Could not change the name of the group.</value>
   </data>
@@ -325,7 +322,7 @@ This action cannot be undone.</value>
     <value>Approx. {0:D2}:{1:D2} before morale fully restored.</value>
   </data>
   <data name="FilterBy" xml:space="preserve">
-    <value>Filter By (&amp;C)</value>
+    <value>Select &amp;columns</value>
   </data>
   <data name="Firepower" xml:space="preserve">
     <value>Firepower</value>
@@ -355,15 +352,14 @@ Consumption: {10} fuel / {11} ammo
     <value>Fuel</value>
   </data>
   <data name="Initialize" xml:space="preserve">
-    <value>Initialize (&amp;I)</value>
+    <value>&amp;Reset</value>
   </data>
   <data name="InitializeQuestData" xml:space="preserve">
-    <value>This will initialize all quest data.
-Use outside of a demonstrated inconsistency is not recommended.
+    <value>This will reset quest data.
 Are you sure?</value>
   </data>
   <data name="InitQuestTitle" xml:space="preserve">
-    <value>Confirm Quest Data Initialization</value>
+    <value>Reset Quest Data</value>
   </data>
   <data name="InProgressFilter" xml:space="preserve">
     <value>In Progress (&amp;S)</value>
@@ -445,9 +441,6 @@ Are you sure?</value>
   </data>
   <data name="Range" xml:space="preserve">
     <value>Range</value>
-  </data>
-  <data name="RankPoints" xml:space="preserve">
-    <value>rank points</value>
   </data>
   <data name="RemainingExpeds" xml:space="preserve">
     <value>{0} effective expeditions</value>
@@ -563,12 +556,6 @@ Cut-in type: {2} ({3})
   <data name="TargetSighted" xml:space="preserve">
     <value>Target sighted!</value>
   </data>
-  <data name="ThisMonth" xml:space="preserve">
-    <value>This month</value>
-  </data>
-  <data name="ThisTime" xml:space="preserve">
-    <value>This session</value>
-  </data>
   <data name="Times" xml:space="preserve">
     <value>times</value>
   </data>
@@ -580,9 +567,6 @@ Cut-in type: {2} ({3})
   </data>
   <data name="To99" xml:space="preserve">
     <value>To lv99: {0}</value>
-  </data>
-  <data name="Today" xml:space="preserve">
-    <value>Today</value>
   </data>
   <data name="ToHeavy" xml:space="preserve">
     <value>To critical damage: {0}</value>
@@ -687,9 +671,6 @@ Save your data and return to port before capturing.
   </data>
   <data name="ResourceChart" xml:space="preserve">
     <value>Resource Chart</value>
-  </data>
-  <data name="Resources" xml:space="preserve">
-    <value>Resources </value>
   </data>
   <data name="Steel" xml:space="preserve">
     <value>Steel</value>

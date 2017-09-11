@@ -174,7 +174,7 @@
 			this.StripMenu_Edit_CopyEquipmentData.Name = "StripMenu_Edit_CopyEquipmentData";
 			this.StripMenu_Edit_CopyEquipmentData.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
 			this.StripMenu_Edit_CopyEquipmentData.Size = new System.Drawing.Size(248, 22);
-			this.StripMenu_Edit_CopyEquipmentData.Text = "装備データをコピー(&D)";
+			this.StripMenu_Edit_CopyEquipmentData.Text = "Copy equipment &data";
 			this.StripMenu_Edit_CopyEquipmentData.Click += new System.EventHandler(this.StripMenu_Edit_CopyEquipmentData_Click);
 			//
 			// StripMenu_View
@@ -183,14 +183,14 @@
             this.StripMenu_View_ShowAppearingArea});
 			this.StripMenu_View.Name = "StripMenu_View";
 			this.StripMenu_View.Size = new System.Drawing.Size(61, 20);
-			this.StripMenu_View.Text = "表示(&V)";
+			this.StripMenu_View.Text = "&View";
 			//
 			// StripMenu_View_ShowAppearingArea
 			//
 			this.StripMenu_View_ShowAppearingArea.Name = "StripMenu_View_ShowAppearingArea";
 			this.StripMenu_View_ShowAppearingArea.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
 			this.StripMenu_View_ShowAppearingArea.Size = new System.Drawing.Size(288, 22);
-			this.StripMenu_View_ShowAppearingArea.Text = "初期装備艦・開発レシピを検索(&S)";
+			this.StripMenu_View_ShowAppearingArea.Text = "&Search on recipe/ships";
 			this.StripMenu_View_ShowAppearingArea.Click += new System.EventHandler(this.StripMenu_View_ShowAppearingArea_Click);
 			//
 			// splitContainer1
@@ -960,7 +960,7 @@
 			this.StripMenu_Edit_GoogleEquipmentName.Name = "StripMenu_Edit_GoogleEquipmentName";
 			this.StripMenu_Edit_GoogleEquipmentName.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.G)));
 			this.StripMenu_Edit_GoogleEquipmentName.Size = new System.Drawing.Size(250, 22);
-			this.StripMenu_Edit_GoogleEquipmentName.Text = "装備名でGoogle検索(&G)";
+			this.StripMenu_Edit_GoogleEquipmentName.Text = "Search on &Google";
 			this.StripMenu_Edit_GoogleEquipmentName.Click += new System.EventHandler(this.StripMenu_Edit_GoogleEquipmentName_Click);
 			//
 			// DialogAlbumMasterEquipment

@@ -767,9 +767,6 @@
     <EmbeddedResource Include="Window\GeneralRes.en.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Window\GeneralRes.ko.resx">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Window\GeneralRes.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>GeneralRes.Designer.cs</LastGenOutput>
@@ -969,7 +966,7 @@
     <None Include="Settings\ColorScheme.example.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Settings\ColorScheme.Solarized.json">
+    <None Include="Settings\ColorScheme.Dark.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

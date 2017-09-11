@@ -445,10 +445,10 @@ namespace ElectronicObserver.Window {
 			bool isAreaMixed = targetShips.Select( s => s.SallyArea ).Where( area => area > 0 ).Distinct().Count() > 1;		// 札が複数ある場合、おそらく自由出撃海域なので警告しなくてもいいはず
 
 			if ( freeships.Any() && !isAreaMixed ) {
-				TextInformation.Text = "[誤出撃警告]\r\n札なし艦娘：\r\n" + string.Join( "\r\n", freeships.Select( s => s.NameWithLevel ) );
+				TextInformation.Text = "[Fleet tag warning]\r\nUntagged ships:\r\n" + string.Join( "\r\n", freeships.Select( s => s.NameWithLevel ) );
 
 				if ( Utility.Configuration.Config.Control.ShowSallyAreaAlertDialog )
-					MessageBox.Show( "出撃札がついていない艦娘が編成されています。\r\n注意して出撃してください。\r\n\r\n（この警告は 設定→動作 から無効化できます。）", "誤出撃警告",
+					MessageBox.Show( "A ship without fleet tag is in the fleet.\r\nPlease recheck before sortieing.\r\n\r\n(This check can be disabled in the settings)", "Fleet Tag Warning",
 						MessageBoxButtons.OK, MessageBoxIcon.Warning );
 			}
 		}

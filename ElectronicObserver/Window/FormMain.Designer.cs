@@ -361,7 +361,7 @@
 			//
 			this.StripMenu_View_BaseAirCorps.Name = "StripMenu_View_BaseAirCorps";
 			this.StripMenu_View_BaseAirCorps.Size = new System.Drawing.Size(188, 22);
-			this.StripMenu_View_BaseAirCorps.Text = "Air ba&se";
+			this.StripMenu_View_BaseAirCorps.Text = "LBA&S";
 			this.StripMenu_View_BaseAirCorps.Click += new System.EventHandler(this.StripMenu_View_BaseAirCorps_Click);
 			//
 			// toolStripSeparator2
@@ -480,8 +480,8 @@
             this.StripMenu_Tool_AlbumMasterEquipment,
             this.toolStripSeparator11,
             this.StripMenu_Tool_AntiAirDefense,
-            this.StripMenu_Tool_FleetImageGenerator,
-            this.StripMenu_Tool_BaseAirCorpsSimulation});
+            this.StripMenu_Tool_BaseAirCorpsSimulation,
+            this.StripMenu_Tool_FleetImageGenerator});
 			this.StripMenu_Tool.Name = "StripMenu_Tool";
 			this.StripMenu_Tool.Size = new System.Drawing.Size(66, 20);
 			this.StripMenu_Tool.Text = "&Tools";
@@ -716,7 +716,7 @@
 			//
 			this.StripMenu_Tool_BaseAirCorpsSimulation.Name = "StripMenu_Tool_BaseAirCorpsSimulation";
 			this.StripMenu_Tool_BaseAirCorpsSimulation.Size = new System.Drawing.Size(176, 22);
-			this.StripMenu_Tool_BaseAirCorpsSimulation.Text = "Air &base composition";
+			this.StripMenu_Tool_BaseAirCorpsSimulation.Text = "L&BAS simulator";
 			this.StripMenu_Tool_BaseAirCorpsSimulation.Click += new System.EventHandler(this.StripMenu_Tool_BaseAirCorpsSimulation_Click);
 			//
 			//

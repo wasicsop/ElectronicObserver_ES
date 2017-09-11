@@ -176,9 +176,6 @@
   <data name="Cancel" xml:space="preserve">
     <value>キャンセル</value>
   </data>
-  <data name="CheckUpdate" xml:space="preserve">
-    <value>アップデートを確認する</value>
-  </data>
   <data name="ClearingRegistry" xml:space="preserve">
     <value>レジストリを削除します。よろしいですか？
 ＊完全に適用するには再起動が必要です。</value>
@@ -188,12 +185,6 @@
   </data>
   <data name="Confirm" xml:space="preserve">
     <value>確認</value>
-  </data>
-  <data name="ConfirmClose" xml:space="preserve">
-    <value>終了時に確認する</value>
-  </data>
-  <data name="ConfirmRefresh" xml:space="preserve">
-    <value>再読み込み時に確認する</value>
   </data>
   <data name="ConfirmRefreshHint" xml:space="preserve">
     <value>有効な場合再読み込みするときに確認ダイアログを表示します。
@@ -276,9 +267,6 @@ direct にするとパフォーマンスが向上する可能性があります�
   <data name="FlashQuality" xml:space="preserve">
     <value>Flash品質設定</value>
   </data>
-  <data name="Fleet" xml:space="preserve">
-    <value>艦隊</value>
-  </data>
   <data name="FolderSearch" xml:space="preserve">
     <value>フォルダの参照</value>
   </data>
@@ -290,9 +278,6 @@ direct にするとパフォーマンスが向上する可能性があります�
   </data>
   <data name="Group" xml:space="preserve">
     <value>グループ</value>
-  </data>
-  <data name="IsScrollable" xml:space="preserve">
-    <value>スクロールバーを表示する</value>
   </data>
   <data name="LayoutFile" xml:space="preserve">
     <value>レイアウトファイル</value>
@@ -372,9 +357,6 @@ direct にするとパフォーマンスが向上する可能性があります�
   <data name="Registry" xml:space="preserve">
     <value>レジストリ</value>
   </data>
-  <data name="RegSystemProxy" xml:space="preserve">
-    <value>システムプロキシとして登録</value>
-  </data>
   <data name="RegSystemProxyHint" xml:space="preserve">
     <value>プロキシをシステムに登録し、自動的に通信できるようにします。
 プロキシ設定が不要になりますが、副作用があるため注意してご利用ください。
@@ -418,26 +400,14 @@ direct にするとパフォーマンスが向上する可能性があります�
   <data name="Screenshot" xml:space="preserve">
     <value>スクリーンショット</value>
   </data>
-  <data name="ScrollableHint" xml:space="preserve">
-    <value>表示エリアがはみ出した場合にスクロールバーを表示するかを指定します。\r\n収まりきった場合は表示しません。</value>
-  </data>
   <data name="Settings" xml:space="preserve">
     <value>設定</value>
-  </data>
-  <data name="ShortenHPBar" xml:space="preserve">
-    <value>HPバーを短縮する</value>
   </data>
   <data name="ShortenHPHint" xml:space="preserve">
     <value>HPバーを短縮し、スペースを節約します。</value>
   </data>
-  <data name="ShowAircraft" xml:space="preserve">
-    <value>艦載機数を表示する</value>
-  </data>
   <data name="ShowNextXP" xml:space="preserve">
     <value>next. を表示する</value>
-  </data>
-  <data name="ShowShipNames" xml:space="preserve">
-    <value>艦名を表示する</value>
   </data>
   <data name="ShowSpoilers" xml:space="preserve">
     <value>ネタバレを許可する</value>
@@ -445,9 +415,6 @@ direct にするとパフォーマンスが向上する可能性があります�
   <data name="ShowSpoilersHint" xml:space="preserve">
     <value>開発したアイテム名やドロップ艦名などのログを記録するかを指定します。
 先にわかってしまうことが気になる方は無効にしてください。</value>
-  </data>
-  <data name="ShowStatusBar" xml:space="preserve">
-    <value>ステータスバーを表示する</value>
   </data>
   <data name="ShowStatusbarHint" xml:space="preserve">
     <value>下部のステータスバー(所属艦数など)を表示するかを指定します。
@@ -458,9 +425,6 @@ direct にするとパフォーマンスが向上する可能性があります�
   </data>
   <data name="Subfont" xml:space="preserve">
     <value>サブフォント</value>
-  </data>
-  <data name="SubWindow" xml:space="preserve">
-    <value>サブウィンドウ</value>
   </data>
   <data name="TaihaAdvance" xml:space="preserve">
     <value>大破進撃</value>
@@ -476,9 +440,6 @@ direct にするとパフォーマンスが向上する可能性があります�
   </data>
   <data name="Unimplemented" xml:space="preserve">
     <value>＊未実装です＊</value>
-  </data>
-  <data name="UseProxy" xml:space="preserve">
-    <value>上流プロキシを利用する：</value>
   </data>
   <data name="UseProxyHint" xml:space="preserve">
     <value>他のプロキシを利用するツール・ブラウザと連携する際に利用します。</value>
@@ -525,24 +486,6 @@ direct にするとパフォーマンスが向上する可能性があります�
   <data name="DisplayEquipLevelsTooltip" xml:space="preserve">
     <value>装備の改修レベルと艦載機熟練度を表示するかを指定します。
 </value>
-  </data>
-  <data name="IgnorePlaneXP" xml:space="preserve">
-    <value>熟練度を無視</value>
-  </data>
-  <data name="UsingPlaneXPBeta" xml:space="preserve">
-    <value>熟練度あり(仮)</value>
-  </data>
-  <data name="Life_Clock" xml:space="preserve">
-    <value>時計表示：</value>
-  </data>
-  <data name="Life_ClockFormat_Current" xml:space="preserve">
-    <value>現在時刻</value>
-  </data>
-  <data name="Life_ClockFormat_Excercise" xml:space="preserve">
-    <value>演習更新まで</value>
-  </data>
-  <data name="Life_ClockFormat_Quest" xml:space="preserve">
-    <value>任務更新まで</value>
   </data>
   <data name="RecordAutoSaving_Daily" xml:space="preserve">
     <value>1日ごと</value>
@@ -661,9 +604,6 @@ direct にするとパフォーマンスが向上する可能性があります�
   <data name="Dock" xml:space="preserve">
     <value>入渠</value>
   </data>
-  <data name="EnableDebugMenu" xml:space="preserve">
-    <value>デバッグ メニューを有効にする</value>
-  </data>
   <data name="EquipmentLevelVisibility_Both" xml:space="preserve">
     <value>両方表示</value>
   </data>
@@ -738,21 +678,6 @@ direct にするとパフォーマンスが向上する可能性があります�
   </data>
   <data name="PowerEngagementForm" xml:space="preserve">
     <value>威力表示交戦形態：</value>
-  </data>
-  <data name="PowerEngagementFormHint" xml:space="preserve">
-    <value>威力（戦闘における攻撃力）を計算する際の、基準となる交戦形態を設定します。</value>
-  </data>
-  <data name="PowerEngagementForm_GreenT" xml:space="preserve">
-    <value>T字有利</value>
-  </data>
-  <data name="PowerEngagementForm_Headon" xml:space="preserve">
-    <value>反航戦</value>
-  </data>
-  <data name="PowerEngagementForm_Paralel" xml:space="preserve">
-    <value>同航戦</value>
-  </data>
-  <data name="PowerEngagementForm_RedT" xml:space="preserve">
-    <value>T字不利</value>
   </data>
   <data name="NewFormula33" xml:space="preserve">
     <value>新判定式(33)</value>

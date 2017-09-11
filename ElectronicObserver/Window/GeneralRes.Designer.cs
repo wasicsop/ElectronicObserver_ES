@@ -441,15 +441,6 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 能動分岐.
-        /// </summary>
-        internal static string BranchChoice {
-            get {
-                return ResourceManager.GetString("BranchChoice", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 高速修復材.
         /// </summary>
         internal static string Bucket {
@@ -1647,15 +1638,6 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 戦果.
-        /// </summary>
-        internal static string RankPoints {
-            get {
-                return ResourceManager.GetString("RankPoints", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to あと {0} 回遠征可能.
         /// </summary>
         internal static string RemainingExpeds {
@@ -1688,15 +1670,6 @@ namespace ElectronicObserver.Window {
         internal static string ResourceChart {
             get {
                 return ResourceManager.GetString("ResourceChart", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 資源.
-        /// </summary>
-        internal static string Resources {
-            get {
-                return ResourceManager.GetString("Resources", resourceCulture);
             }
         }
         
@@ -2061,24 +2034,6 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 今月.
-        /// </summary>
-        internal static string ThisMonth {
-            get {
-                return ResourceManager.GetString("ThisMonth", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 今回.
-        /// </summary>
-        internal static string ThisTime {
-            get {
-                return ResourceManager.GetString("ThisTime", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 3ヵ月(&amp;S).
         /// </summary>
         internal static string ThreeMonths {
@@ -2120,15 +2075,6 @@ namespace ElectronicObserver.Window {
         internal static string To99 {
             get {
                 return ResourceManager.GetString("To99", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 今日.
-        /// </summary>
-        internal static string Today {
-            get {
-                return ResourceManager.GetString("Today", resourceCulture);
             }
         }
         

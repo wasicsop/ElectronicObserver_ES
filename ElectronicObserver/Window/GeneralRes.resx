@@ -184,9 +184,6 @@
   <data name="Battle" xml:space="preserve">
     <value>戦闘</value>
   </data>
-  <data name="BranchChoice" xml:space="preserve">
-    <value>能動分岐</value>
-  </data>
   <data name="CannotChangeGroup" xml:space="preserve">
     <value>このグループは変更できません。</value>
   </data>
@@ -436,9 +433,6 @@
   <data name="Range" xml:space="preserve">
     <value>射程</value>
   </data>
-  <data name="RankPoints" xml:space="preserve">
-    <value>戦果</value>
-  </data>
   <data name="RemainingExpeds" xml:space="preserve">
     <value>あと {0} 回遠征可能</value>
   </data>
@@ -535,12 +529,6 @@
   <data name="TargetSighted" xml:space="preserve">
     <value>攻撃目標発見！</value>
   </data>
-  <data name="ThisMonth" xml:space="preserve">
-    <value>今月</value>
-  </data>
-  <data name="ThisTime" xml:space="preserve">
-    <value>今回</value>
-  </data>
   <data name="Times" xml:space="preserve">
     <value>回</value>
   </data>
@@ -552,9 +540,6 @@
   </data>
   <data name="To99" xml:space="preserve">
     <value>Lv99まで: {0}</value>
-  </data>
-  <data name="Today" xml:space="preserve">
-    <value>今日</value>
   </data>
   <data name="ToHeavy" xml:space="preserve">
     <value>大破まで: {0}</value>
@@ -658,9 +643,6 @@
   </data>
   <data name="ResourceChart" xml:space="preserve">
     <value>資源チャート</value>
-  </data>
-  <data name="Resources" xml:space="preserve">
-    <value>資源</value>
   </data>
   <data name="Steel" xml:space="preserve">
     <value>鋼材</value>

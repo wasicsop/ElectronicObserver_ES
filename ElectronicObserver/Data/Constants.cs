@@ -227,7 +227,7 @@ namespace ElectronicObserver.Data {
 				case 7:
 					return "CVL";
 				case 8:
-					return "BC";	// ? FBB, CC?
+					return "FBB";	// ? FBB, CC?
 				case 9:
 					return "BB";
 				case 10:
@@ -278,13 +278,13 @@ namespace ElectronicObserver.Data {
 				case 1:
 					return ConstantsRes.NoNode;
 				case 2:
-					return ConstantsRes.Resources;
+					return "Resources";
 				case 3:
 					return ConstantsRes.Maelstrom;
 				case 4:
-					return ConstantsRes.NormalNode;
+					return "Battle";
 				case 5:
-					return ConstantsRes.BossNode;
+					return "Boss";
 				case 6:
 					return ConstantsRes.Imagination;
 				case 7:
@@ -514,9 +514,9 @@ namespace ElectronicObserver.Data {
 				case 2:
 					return ConstantsRes.HeadOn;
 				case 3:
-					return "T Advantage";
+					return "Green T";
 				case 4:
-					return "T Disadvantage";
+					return "Red T";
 				default:
 					return ConstantsRes.Unknown;
 			}
@@ -736,7 +736,7 @@ namespace ElectronicObserver.Data {
 				case 18:
 					return ConstantsRes.AAGun + " (Satsuki)";
 				case 19:
-					return ConstantsRes.HAGun + " (Non-piercing)"/" + ConstantsRes.AAGun + " (Kinu)";
+					return ConstantsRes.HAGun + " (Non-piercing)/" + ConstantsRes.AAGun + " (Kinu)";
 				case 20:
 					return ConstantsRes.AAGun + " (Kinu)";
 				case 21:

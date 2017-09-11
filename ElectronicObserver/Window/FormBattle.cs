@@ -296,6 +296,18 @@ namespace ElectronicObserver.Window {
 			FormationEnemy.Text = Constants.GetFormationShort( bm.FirstBattle.Searching.FormationEnemy );
 			Formation.Text = Constants.GetEngagementForm( bm.FirstBattle.Searching.EngagementForm );
 
+			switch (bm.FirstBattle.Searching.EngagementForm) {
+				case 3:
+					Formation.ForeColor = Utility.Configuration.Config.UI.Color_Green;
+					break;
+				case 4:
+					Formation.ForeColor = Utility.Configuration.Config.UI.Color_Red;
+					break;
+				default:
+					Formation.ForeColor = Utility.Configuration.Config.UI.ForeColor;
+					break;
+			}
+
 			if ( bm.Compass != null && bm.Compass.EventID == 5 ) {
 				FleetEnemy.ForeColor = Utility.Configuration.Config.UI.Color_Red;
 			} else {
@@ -450,10 +462,10 @@ namespace ElectronicObserver.Window {
 					if ( phaseJetStage1Enabled )
 						sb.Append( "Jet: " ).AppendLine( Constants.GetAirSuperiority( phaseJet.AirSuperiority ) );
 
-					sb.Append( "Stage 1: " ).AppendLine( Constants.GetAirSuperiority( phase1.AirSuperiority ) );
+					sb.Append( "St1: " ).AppendLine( Constants.GetAirSuperiority( phase1.AirSuperiority ) );
 
 					if ( phase2Stage1Enabled )
-						sb.Append( "Stage 2: " ).AppendLine( Constants.GetAirSuperiority( phase2.AirSuperiority ) );
+						sb.Append( "St2: " ).AppendLine( Constants.GetAirSuperiority( phase2.AirSuperiority ) );
 
 					ToolTipInfo.SetToolTip( AirSuperiority, sb.ToString() );
 
@@ -499,10 +511,10 @@ namespace ElectronicObserver.Window {
 					if ( phaseJetStage1Enabled )
 						sb.AppendFormat( "Jet: -{0}/{1}\r\n", jetLostFriend, jetTotalFriend );
 
-					sb.AppendFormat( "Stage 1: -{0}/{1}\r\n", phase1LostFriend, phase1TotalFriend );
+					sb.AppendFormat( "St1: -{0}/{1}\r\n", phase1LostFriend, phase1TotalFriend );
 
 					if ( phase2Stage1Enabled )
-						sb.AppendFormat( "Stage 2: -{0}/{1}\r\n", phase2LostFriend, phase2TotalFriend );
+						sb.AppendFormat( "St2: -{0}/{1}\r\n", phase2LostFriend, phase2TotalFriend );
 
 					ToolTipInfo.SetToolTip( AirStage1Friend, sb.ToString() );
 				} else {
@@ -533,10 +545,10 @@ namespace ElectronicObserver.Window {
 					if ( phaseJetStage1Enabled )
 						sb.AppendFormat( "Jet: {0}\r\n", jetTouchPlane != null ? jetTouchPlane.Name : "(なし)" );
 					if ( needAppendInfo )
-						sb.Append( "Stage 1: " );
+						sb.Append( "St1: " );
 					sb.AppendFormat( "{0}\r\n", phase1TouchPlane != null ? phase1TouchPlane.Name : "(なし)" );
 					if ( phase2Stage1Enabled )
-						sb.AppendFormat( "Stage 2: {0}\r\n", phase2TouchPlane != null ? phase2TouchPlane.Name : "(なし)" );
+						sb.AppendFormat( "St2: {0}\r\n", phase2TouchPlane != null ? phase2TouchPlane.Name : "(なし)" );
 
 					ToolTipInfo.SetToolTip( AirStage1Friend, sb.ToString() );
 
@@ -584,10 +596,10 @@ namespace ElectronicObserver.Window {
 					if ( phaseJetStage1Enabled )
 						sb.AppendFormat( "Jet: -{0}/{1}\r\n", jetLostEnemy, jetTotalEnemy );
 
-					sb.AppendFormat( "Stage 1: -{0}/{1}\r\n", phase1LostEnemy, phase1TotalEnemy );
+					sb.AppendFormat( "St1: -{0}/{1}\r\n", phase1LostEnemy, phase1TotalEnemy );
 
 					if ( phase2Stage1Enabled )
-						sb.AppendFormat( "第2次: -{0}/{1}\r\n", phase2LostEnemy, phase2TotalEnemy );
+						sb.AppendFormat( "St2: -{0}/{1}\r\n", phase2LostEnemy, phase2TotalEnemy );
 
 					ToolTipInfo.SetToolTip( AirStage1Enemy, sb.ToString() );
 				} else {
@@ -600,7 +612,7 @@ namespace ElectronicObserver.Window {
 					( phase2TotalEnemy > 0 && phase2LostEnemy == phase2TotalEnemy ) ) {
 					AirStage1Enemy.ForeColor = Utility.Configuration.Config.UI.Color_Red;
 				} else {
-					AirStage1Enemy.ForeColor = SystemColors.ControlText;
+					AirStage1Enemy.ForeColor = Utility.Configuration.Config.UI.ForeColor;
 				}
 
 				// touch
@@ -618,10 +630,10 @@ namespace ElectronicObserver.Window {
 					if ( phaseJetStage1Enabled )
 						sb.AppendFormat( "Jet: {0}\r\n", jetTouchPlane != null ? jetTouchPlane.Name : "(なし)" );
 					if ( needAppendInfo )
-						sb.Append( "Stage 1: " );
+						sb.Append( "St1: " );
 					sb.AppendFormat( "{0}\r\n", phase1TouchPlane != null ? phase1TouchPlane.Name : "(なし)" );
 					if ( phase2Stage1Enabled )
-						sb.AppendFormat( "Stage 2: {0}\r\n", phase2TouchPlane != null ? phase2TouchPlane.Name : "(なし)" );
+						sb.AppendFormat( "St2: {0}\r\n", phase2TouchPlane != null ? phase2TouchPlane.Name : "(なし)" );
 
 					ToolTipInfo.SetToolTip( AirStage1Enemy, sb.ToString() );
 
@@ -689,10 +701,10 @@ namespace ElectronicObserver.Window {
 					if ( phaseJetStage2Enabled )
 						sb.AppendFormat( "Jet: -{0}/{1}\r\n", jetLostFriend, jetTotalFriend );
 
-					sb.AppendFormat( "Stage 1: -{0}/{1}\r\n", phase1LostFriend, phase1TotalFriend );
+					sb.AppendFormat( "St1: -{0}/{1}\r\n", phase1LostFriend, phase1TotalFriend );
 
 					if ( phase2Stage2Enabled )
-						sb.AppendFormat( "Stage 2: -{0}/{1}\r\n", phase2LostFriend, phase2TotalFriend );
+						sb.AppendFormat( "St2: -{0}/{1}\r\n", phase2LostFriend, phase2TotalFriend );
 
 					ToolTipInfo.SetToolTip( AirStage2Friend, sb.ToString() );
 				} else {
@@ -746,10 +758,10 @@ namespace ElectronicObserver.Window {
 					if ( phaseJetStage2Enabled )
 						sb.AppendFormat( "Jet: -{0}/{1}\r\n", jetLostEnemy, jetTotalEnemy );
 
-					sb.AppendFormat( "Stage 1: -{0}/{1}\r\n", phase1LostEnemy, phase1TotalEnemy );
+					sb.AppendFormat( "St1: -{0}/{1}\r\n", phase1LostEnemy, phase1TotalEnemy );
 
 					if ( phase2Stage2Enabled )
-						sb.AppendFormat( "Stage 2: -{0}/{1}\r\n", phase2LostEnemy, phase2TotalEnemy );
+						sb.AppendFormat( "St2: -{0}/{1}\r\n", phase2LostEnemy, phase2TotalEnemy );
 
 					ToolTipInfo.SetToolTip( AirStage2Enemy, sb.ToString() );
 				} else {
@@ -815,7 +827,7 @@ namespace ElectronicObserver.Window {
 						}
 
 						if ( needAppendInfo )
-							sb.Append( "Stage 1: " );
+							sb.Append( "St1: " );
 						if ( phase1AACutInKind > 0 ) {
 							sb.AppendLine( phase1.AACutInShip.NameWithLevel );
 							sb.AppendFormat( "AACI: {0} ({1})\r\n", phase1AACutInKind, Constants.GetAACutinKind( phase1AACutInKind ) );
@@ -824,7 +836,7 @@ namespace ElectronicObserver.Window {
 						}
 
 						if ( phase2Stage2Enabled ) {
-							sb.Append( "Stage 2: " );
+							sb.Append( "St2: " );
 
 							if ( phase2AACutInKind > 0 ) {
 								sb.AppendLine( phase2.AACutInShip.NameWithLevel );

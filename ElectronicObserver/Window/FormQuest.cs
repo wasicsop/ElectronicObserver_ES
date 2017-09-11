@@ -620,10 +620,10 @@ namespace ElectronicObserver.Window {
 
 			if ( quest != null ) {
 				MenuMain_GoogleQuest.Enabled = true;
-				MenuMain_GoogleQuest.Text = string.Format( "『{0}』でGoogle検索(&G)", quest.Name );
+				MenuMain_GoogleQuest.Text = string.Format( "Search on &Google: {0}", quest.Name );
 			} else {
 				MenuMain_GoogleQuest.Enabled = false;
-				MenuMain_GoogleQuest.Text = "任務名でGoogle検索(&G)";
+				MenuMain_GoogleQuest.Text = "Search on &Google";
 			}
 		}
 
@@ -634,10 +634,10 @@ namespace ElectronicObserver.Window {
 				try {
 
 					// google <任務名> 艦これ
-					System.Diagnostics.Process.Start( @"https://www.google.co.jp/search?q=" + Uri.EscapeDataString( quest.Name ) + "+%E8%89%A6%E3%81%93%E3%82%8C" );
+					System.Diagnostics.Process.Start( @"https://www.google.com/search?q=" + Uri.EscapeDataString( quest.Name ) + "+KanColle" );
 
 				} catch ( Exception ex ) {
-					Utility.ErrorReporter.SendErrorReport( ex, "任務名の Google 検索に失敗しました。" );
+					Utility.ErrorReporter.SendErrorReport( ex, "Failed to search on Google." );
 				}
 			}
 

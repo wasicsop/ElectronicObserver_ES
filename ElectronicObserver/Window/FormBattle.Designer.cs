@@ -315,7 +315,7 @@
 			this.FleetFriend.Name = "FleetFriend";
 			this.FleetFriend.Size = new System.Drawing.Size(49, 16);
 			this.FleetFriend.TabIndex = 0;
-			this.FleetFriend.Text = "自軍艦隊";
+			this.FleetFriend.Text = "Ally";
 			this.FleetFriend.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			//
 			// DamageFriend
@@ -337,7 +337,7 @@
 			this.FleetEnemyEscort.Name = "FleetEnemyEscort";
 			this.FleetEnemyEscort.Size = new System.Drawing.Size(49, 16);
 			this.FleetEnemyEscort.TabIndex = 19;
-			this.FleetEnemyEscort.Text = "敵軍随伴";
+			this.FleetEnemyEscort.Text = "Escort";
 			this.FleetEnemyEscort.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			//
 			// WinRank
@@ -372,7 +372,7 @@
 			this.FleetFriendEscort.Name = "FleetFriendEscort";
 			this.FleetFriendEscort.Size = new System.Drawing.Size(49, 16);
 			this.FleetFriendEscort.TabIndex = 1;
-			this.FleetFriendEscort.Text = "自軍随伴";
+			this.FleetFriendEscort.Text = "Escort";
 			this.FleetFriendEscort.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			//
 			// FleetEnemy
@@ -383,7 +383,7 @@
 			this.FleetEnemy.Name = "FleetEnemy";
 			this.FleetEnemy.Size = new System.Drawing.Size(49, 16);
 			this.FleetEnemy.TabIndex = 2;
-			this.FleetEnemy.Text = "敵軍艦隊";
+			this.FleetEnemy.Text = "Enemy";
 			this.FleetEnemy.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			//
 			// FormBattle

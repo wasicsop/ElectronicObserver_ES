@@ -111,7 +111,7 @@
 			this.HQLevel.Name = "HQLevel";
 			this.HQLevel.Size = new System.Drawing.Size(88, 20);
 			this.HQLevel.TabIndex = 0;
-			this.HQLevel.Text = "HQ Lv.";
+			this.HQLevel.Text = "Lv";
 			// 
 			// FlowPanelFleet
 			// 

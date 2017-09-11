@@ -209,17 +209,17 @@ namespace ElectronicObserver.Window.Dialog {
 
 				bool isLand = eq.CategoryType == 48;
 
-				Add( "火力", eq.Firepower );
-				Add( "雷装", eq.Torpedo );
-				Add( "爆装", eq.Bomber );
-				Add( "対空", eq.AA );
-				Add( "装甲", eq.Armor );
-				Add( "対潜", eq.ASW );
-				Add( isLand ? "迎撃" : "回避", eq.Evasion );
-				Add( "索敵", eq.LOS );
-				Add( isLand ? "対爆" : "命中", eq.Accuracy );
-				AddNoSign( "コスト", eq.AircraftCost );
-				AddNoSign( "半径", eq.AircraftDistance );
+				Add( "FP", eq.Firepower );
+				Add( "Torp", eq.Torpedo );
+				Add( "Bomb", eq.Bomber );
+				Add( "AA", eq.AA );
+				Add( "Armor", eq.Armor );
+				Add( "ASW", eq.ASW );
+				Add( isLand ? "Interception" : "Evasion", eq.Evasion );
+				Add( "LOS", eq.LOS );
+				Add( isLand ? "Anti-bomber" : "Acc", eq.Accuracy );
+				AddNoSign( "Cost", eq.AircraftCost );
+				AddNoSign( "Range", eq.AircraftDistance );
 
 				return sb.ToString();
 			}
@@ -323,17 +323,17 @@ namespace ElectronicObserver.Window.Dialog {
 				TitleAutoAirSuperiority = NewTitleLabel();
 				TitleAutoDistance = NewTitleLabel();
 
-				TitleAircraftCategory.Text = "カテゴリ";
-				TitleAircraft.Text = "配備機";
-				TitleAircraftCount.Text = "機数";
-				TitleAirSuperioritySortie.Text = "出撃制空";
-				TitleAirSuperiorityAirDefense.Text = "防空制空";
-				TitleDistance.Text = "半径";
-				TitleBomber.Text = "爆装";
-				TitleTorpedo.Text = "雷装";
-				TitleOrganizationCost.Text = "配備コスト";
-				TitleAutoAirSuperiority.Text = "目標制空";
-				TitleAutoDistance.Text = "目標半径";
+				TitleAircraftCategory.Text = "Type";
+				TitleAircraft.Text = "Aircraft";
+				TitleAircraftCount.Text = "Slot";
+				TitleAirSuperioritySortie.Text = "Sortie";
+				TitleAirSuperiorityAirDefense.Text = "AD";
+				TitleDistance.Text = "Range";
+				TitleBomber.Text = "Bomb";
+				TitleTorpedo.Text = "Torp";
+				TitleOrganizationCost.Text = "Deploy";
+				TitleAutoAirSuperiority.Text = "AS";
+				TitleAutoDistance.Text = "Range";
 
 				AutoAirSuperiority = new NumericUpDown();
 				AutoAirSuperiority.Size = new Size( 60, AutoAirSuperiority.Height );
@@ -368,14 +368,14 @@ namespace ElectronicObserver.Window.Dialog {
 				AutoOrganizeSortie.Size = new Size( 60, AutoOrganizeSortie.Height );
 				AutoOrganizeSortie.Anchor = AnchorStyles.Left | AnchorStyles.Right;
 				AutoOrganizeSortie.Margin = new Padding( 2, 0, 2, 0 );
-				AutoOrganizeSortie.Text = "出撃編成";
+				AutoOrganizeSortie.Text = "Auto";
 				AutoOrganizeSortie.Click += AutoOrganize_Click;
 
 				AutoOrganizeAirDefense = new Button();
 				AutoOrganizeAirDefense.Size = new Size( 60, AutoOrganizeSortie.Height );
 				AutoOrganizeAirDefense.Anchor = AnchorStyles.Left | AnchorStyles.Right;
 				AutoOrganizeAirDefense.Margin = new Padding( 2, 0, 2, 0 );
-				AutoOrganizeAirDefense.Text = "防空編成";
+				AutoOrganizeAirDefense.Text = "Auto AD";
 				AutoOrganizeAirDefense.Click += AutoOrganize_Click;
 
 				Squadrons = new SquadronUI[4];
@@ -391,7 +391,7 @@ namespace ElectronicObserver.Window.Dialog {
 				TotalDistance = NewTotalLabel();
 				TotalOrganizationCost = NewTotalLabel();
 
-				TitleTotal.Text = "合計";
+				TitleTotal.Text = "Total";
 				DuplicateCheck.TextAlign = ContentAlignment.MiddleLeft;
 				DuplicateCheck.ForeColor = Color.Red;
 
@@ -467,7 +467,7 @@ namespace ElectronicObserver.Window.Dialog {
 
 				TotalAirSuperioritySortie.Text = airSortie.ToString();
 				ToolTipInternal.SetToolTip( TotalAirSuperioritySortie,
-					string.Format( "確保: {0}\r\n優勢: {1}\r\n均衡: {2}\r\n劣勢: {3}\r\n",
+					string.Format( "AS+: {0}\r\nAS: {1}\r\nAP: {2}\r\nAI: {3}\r\n",
 						(int)( airSortie / 3.0 ),
 						(int)( airSortie / 1.5 ),
 						Math.Max( (int)( airSortie * 1.5 - 1 ), 0 ),
@@ -495,7 +495,7 @@ namespace ElectronicObserver.Window.Dialog {
 
 				TotalAirSuperiorityAirDefense.Text = airDefense.ToString();
 				ToolTipInternal.SetToolTip( TotalAirSuperiorityAirDefense,
-					string.Format( "確保: {0}\r\n優勢: {1}\r\n均衡: {2}\r\n劣勢: {3}\r\n",
+					string.Format( "AS+: {0}\r\nAS: {1}\r\nAP: {2}\r\nAI: {3}\r\n",
 						(int)( airDefense / 3.0 ),
 						(int)( airDefense / 1.5 ),
 						Math.Max( (int)( airDefense * 1.5 - 1 ), 0 ),
@@ -544,7 +544,7 @@ namespace ElectronicObserver.Window.Dialog {
 					int val = (int)e.Value;
 
 					if ( val == -1 )
-						e.Value = "ちょうど";
+						e.Value = "Select";
 					else
 						e.Value = Constants.GetAirSuperiority( val );
 				}
@@ -582,8 +582,8 @@ namespace ElectronicObserver.Window.Dialog {
 					Parent.GetUsingEquipments( new int[] { BaseAirCorpsID - 1 } ).Concat( KCDatabase.Instance.Ships.Values.SelectMany( s => s.AllSlot ) ) );
 
 				if ( orgs == null || orgs.All( o => o == null ) ) {
-					MessageBox.Show( "自動編成に失敗しました。\r\n条件が厳しすぎるか、航空機が不足しています。\r\n",
-						"自動編成失敗", MessageBoxButtons.OK, MessageBoxIcon.Error );
+					MessageBox.Show( "Optimization failed.\r\nThe requirement is too high or not enough plane.\r\n",
+						"Optimization Failed", MessageBoxButtons.OK, MessageBoxIcon.Error );
 					return;
 				}
 
@@ -612,7 +612,7 @@ namespace ElectronicObserver.Window.Dialog {
 
 			public override string ToString() {
 				if ( EquipmentType == null )
-					return "(不明)";
+					return "(Unknown)";
 				else
 					return EquipmentType.Name;
 			}
@@ -693,7 +693,7 @@ namespace ElectronicObserver.Window.Dialog {
 					sb.Append( " :" ).Append( EquipmentInstance.AircraftDistance );
 					return sb.ToString();
 
-				} else return "(なし)";
+				} else return "(Empty)";
 			}
 		}
 
@@ -739,7 +739,7 @@ namespace ElectronicObserver.Window.Dialog {
 		private void DialogBaseAirCorpsSimulation_Load( object sender, EventArgs e ) {
 
 			if ( !KCDatabase.Instance.BaseAirCorps.Any() ) {
-				MessageBox.Show( "基地航空隊のデータがありません。\r\n一度出撃画面に移動してください。", "基地航空隊データ未受信",
+				MessageBox.Show( "Failed to read LBAS information.\r\nBrowse the sortie menu ingame to retrieve the relevant data.", "Read Failed",
 					MessageBoxButtons.OK, MessageBoxIcon.Error );
 				Close();
 			}
@@ -759,9 +759,9 @@ namespace ElectronicObserver.Window.Dialog {
 					string name = map.Name;
 
 					if ( string.IsNullOrWhiteSpace( map.Name ) || map.Name == "※" )
-						name = "イベント海域";
+						name = "Event Map";
 
-					var tool = new ToolStripMenuItem( string.Format( "#{0} {1}", mapAreaID, name ), null,
+					var tool = new ToolStripMenuItem( string.Format( "#{0} {1}", mapAreaID, Window.FormMain.Instance.Translator.GetTranslation( name, Utility.TranslationType.OperationMaps ) ), null,
 						new EventHandler( ( ssender, ee ) => TopMenu_Edit_MapArea_Click( mapAreaID ) ) );
 
 					TopMenu_Edit_ImportOrganization.DropDownItems.Add( tool );
@@ -806,7 +806,7 @@ namespace ElectronicObserver.Window.Dialog {
 				}
 
 				if ( dupelist.Any() ) {
-					ui.DuplicateCheck.Text = "重複あり " + string.Join( ", ", dupelist.Select( d => "#" + ( d + 1 ) ) );
+					ui.DuplicateCheck.Text = "Dupes: " + string.Join( ", ", dupelist.Select( d => "#" + ( d + 1 ) ) );
 				} else {
 					ui.DuplicateCheck.Text = "";
 				}
@@ -855,7 +855,7 @@ namespace ElectronicObserver.Window.Dialog {
 		}
 
 		private void TopMenu_Edit_Clear_Click( object sender, EventArgs e ) {
-			if ( MessageBox.Show( "編成をすべてクリアします。\r\nよろしいですか？", "編成クリア", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1 )
+			if ( MessageBox.Show( "This will clear all LBAS organizations.\r\nAre you sure?", "Clear Organization", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1 )
 				== System.Windows.Forms.DialogResult.Yes ) {
 
 				for ( int i  =0; i < BaseAirCorpsUIList.Length; i++ ) {

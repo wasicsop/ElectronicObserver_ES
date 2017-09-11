@@ -1637,7 +1637,7 @@ namespace ElectronicObserver.Utility {
 
 			// 读取配色主题 ( 默认值待编辑 )
 			dynamic json = DynamicJson.Parse( @"[{
-""name"":""VS2012 Light"",
+""name"":""Light"",
 ""basicColors"":{
 ""red"":""#FF0000"",
 ""orange"":""#FFA500"",
@@ -1805,18 +1805,18 @@ namespace ElectronicObserver.Utility {
 				json = DynamicJson.Parse( sb.ToString() );
 			}
 			catch (FileNotFoundException) {
-				Logger.Add( 2, @"Settings\ColorScheme.json 不存在。" );
+				Logger.Add( 2, @"Settings\ColorScheme.json not found." );
 			}
 			catch {
-				Logger.Add( 2, @"解析 Settings\ColorScheme.json 失败。" );
+				Logger.Add( 2, @"Failed to read Settings\ColorScheme.json." );
 			}
 			int themeId = Config.UI.ThemeID;
 			if (!json.IsDefined( themeId )) {
 				themeId = Config.UI.ThemeID = 0;
-				Logger.Add( 2, "指定的 ThemeID 不存在。" );
+				Logger.Add( 2, "Failed to find selected ThemeID" );
 			}
 			ThemeStyle = json[themeId];
-			Logger.Add( 2, "载入配色主题 : " + ThemeStyle["name"] );
+			Logger.Add( 2, "Color theme loaded: " + ThemeStyle["name"] );
 			// 定义基本颜色
 			Config.UI.Color_Red = ThemeColor( "basicColors", "red" );
 			Config.UI.Color_Orange = ThemeColor( "basicColors", "orange" );

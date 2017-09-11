@@ -1381,10 +1381,10 @@ namespace ElectronicObserver.Window.Dialog {
 			try {
 
 				// google <艦船名> 艦これ
-				System.Diagnostics.Process.Start( @"https://www.google.co.jp/search?q=" + Uri.EscapeDataString( ship.NameWithClass ) + "+%E8%89%A6%E3%81%93%E3%82%8C" );
+				System.Diagnostics.Process.Start( @"https://www.google.com/search?q=" + Uri.EscapeDataString( ship.NameWithClass ) + "+KanColle" );
 
 			} catch ( Exception ex ) {
-				Utility.ErrorReporter.SendErrorReport( ex, "艦船名の Google 検索に失敗しました。" );
+				Utility.ErrorReporter.SendErrorReport( ex, "Failed to search on Google." );
 			}
 		}
 

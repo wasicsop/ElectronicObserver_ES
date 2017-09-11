@@ -151,51 +151,6 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 配置(&amp;A).
-        /// </summary>
-        internal static string Other_Alignment {
-            get {
-                return ResourceManager.GetString("Other_Alignment", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to スタイルシートを適用する.
-        /// </summary>
-        internal static string Other_ApplyStyleSheet {
-            get {
-                return ResourceManager.GetString("Other_ApplyStyleSheet", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 移動(&amp;N)....
-        /// </summary>
-        internal static string Other_Navigate {
-            get {
-                return ResourceManager.GetString("Other_Navigate", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 地域制限クッキーを設定.
-        /// </summary>
-        internal static string Other_RegionCookie {
-            get {
-                return ResourceManager.GetString("Other_RegionCookie", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to ズーム(&amp;Z).
-        /// </summary>
-        internal static string Other_Zoom {
-            get {
-                return ResourceManager.GetString("Other_Zoom", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 現在%.
         /// </summary>
         internal static string Other_Zoom_Current {
