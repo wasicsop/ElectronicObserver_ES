@@ -104,7 +104,14 @@ namespace ElectronicObserver.Window {
 
 
 					ShipName.Text = ship.Name;
-					ShipName.ForeColor = ship.GetShipNameColor();
+					if(ship.IsAbyssalShip)
+					{
+						ShipName.ForeColor = ship.GetShipNameColor();
+					}
+					else
+					{
+						ShipName.ForeColor = Utility.Configuration.Config.UI.ForeColor;
+					}
 					ToolTipInfo.SetToolTip( ShipName, GetShipString( shipID, slot ) );
 
 					Equipments.SetSlotList( shipID, slot );
@@ -722,7 +729,9 @@ namespace ElectronicObserver.Window {
 							TextEventDetail.Text = GeneralRes.WhyDidThisHappen;
 							break;
 
-						case 2:		//資源
+						case 2:     //資源
+							TextEventKind.ForeColor = Utility.Configuration.Config.UI.Color_Green;
+							break;
 						case 8:		//船団護衛成功
 							TextEventDetail.Text = GetMaterialInfo( compass );
 							break;
@@ -775,29 +784,34 @@ namespace ElectronicObserver.Window {
 
 								case 0:		//気のせいだった
 								default:
-									TextEventDetail.Text = "";
 									break;
-								case 1:		//敵影を見ず
-									eventkind = GeneralRes.SawNoEnemy;
-									TextEventDetail.Text = "";
+								case 1:
+									eventkind = "No enemy sighted.";
 									break;
-								case 2:		//能動分岐
-									eventkind = GeneralRes.BranchChoice;
-									TextEventDetail.Text = string.Join( "/", compass.RouteChoices );
+								case 2:
+									eventkind = "Branch choice";
 									break;
-								case 3:		//穏やかな海
+								case 3:
 									eventkind = "It's a calm sea.";
-									TextEventDetail.Text = "";
 									break;
 								case 4:
-									eventkind = "穏やかな海峡";
-									TextEventDetail.Text = "";
+									eventkind = "It's a calm strait.";
 									break;
 								case 5:
-									eventkind = "警戒が必要";
-									TextEventDetail.Text = "";
+									eventkind = "I need to be careful.";
+									break;
+								case 6:
+									eventkind = "It's a calm sea.";
+									break;
+								case 7:
+									eventkind = "Advancing towards Dover strait.";
 									break;
 							}
+							if ( compass.RouteChoices != null )
+								TextEventDetail.Text = "Active branching: " + string.Join( " or ", compass.RouteChoices );
+							else
+								TextEventDetail.Text = "";
+
 							break;
 
 						case 7:		//航空戦or航空偵察
@@ -1129,7 +1143,7 @@ namespace ElectronicObserver.Window {
 		}
 
 		private void TableEnemyMember_CellPaint( object sender, TableLayoutCellPaintEventArgs e ) {
-			e.Graphics.DrawLine( Pens.Silver, e.CellBounds.X, e.CellBounds.Bottom - 1, e.CellBounds.Right - 1, e.CellBounds.Bottom - 1 );
+			e.Graphics.DrawLine( Utility.Configuration.Config.UI.SubBackColorPen, e.CellBounds.X, e.CellBounds.Bottom - 1, e.CellBounds.Right - 1, e.CellBounds.Bottom - 1 );
 		}
 
 		private void TableEnemyCandidateMember_CellPaint( object sender, TableLayoutCellPaintEventArgs e ) {
@@ -1138,10 +1152,12 @@ namespace ElectronicObserver.Window {
 				return;
 
 
-			e.Graphics.DrawLine( Pens.Silver, e.CellBounds.Right - 1, e.CellBounds.Top, e.CellBounds.Right - 1, e.CellBounds.Bottom - 1 );
-
-			if ( e.Row == 5 || e.Row == 7 ) {
-				e.Graphics.DrawLine( Pens.Silver, e.CellBounds.X, e.CellBounds.Bottom - 1, e.CellBounds.Right - 1, e.CellBounds.Bottom - 1 );
+			if (e.Column != (Utility.Configuration.Config.FormCompass.CandidateDisplayCount - 1)) {
+				e.Graphics.DrawLine( Utility.Configuration.Config.UI.SubBackColorPen, e.CellBounds.Right - 1, e.CellBounds.Top, e.CellBounds.Right - 1, e.CellBounds.Bottom - 1 );
+				if (e.Row == 5) e.Graphics.DrawLine( Utility.Configuration.Config.UI.SubBackColorPen, e.CellBounds.X, e.CellBounds.Bottom - 1, e.CellBounds.Right - 1, e.CellBounds.Bottom - 1 );
+			}
+			else if (e.Row == 5) {
+				e.Graphics.DrawLine( Utility.Configuration.Config.UI.SubBackColorPen, e.CellBounds.X, e.CellBounds.Bottom - 1, e.CellBounds.Right - 2, e.CellBounds.Bottom - 1 );
 			}
 		}
 

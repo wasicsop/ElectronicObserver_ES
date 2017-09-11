@@ -184,33 +184,6 @@ catch(e) {{
   <data name="Other" xml:space="preserve">
     <value>その他</value>
   </data>
-  <data name="Other_Alignment" xml:space="preserve">
-    <value>配置(&amp;A)</value>
-  </data>
-  <data name="Other_ApplyStyleSheet" xml:space="preserve">
-    <value>スタイルシートを適用する</value>
-  </data>
-  <data name="Other_Mute" xml:space="preserve">
-    <value>ミュート(&amp;M)</value>
-  </data>
-  <data name="Other_Navigate" xml:space="preserve">
-    <value>移動(&amp;N)...</value>
-  </data>
-  <data name="Other_NavigateToLogInPage" xml:space="preserve">
-    <value>ログインページへ移動(&amp;L)</value>
-  </data>
-  <data name="Other_Refresh" xml:space="preserve">
-    <value>更新(&amp;R)</value>
-  </data>
-  <data name="Other_RegionCookie" xml:space="preserve">
-    <value>地域制限クッキーを設定</value>
-  </data>
-  <data name="Other_Screenshot" xml:space="preserve">
-    <value>スクリーンショット(&amp;S)</value>
-  </data>
-  <data name="Other_Zoom" xml:space="preserve">
-    <value>ズーム(&amp;Z)</value>
-  </data>
   <data name="Other_Zoom_Current" xml:space="preserve">
     <value>現在% </value>
   </data>
@@ -251,9 +224,6 @@ catch(e) {{
   <data name="Strip_Mute" xml:space="preserve">
     <value>ミュート</value>
   </data>
-  <data name="Strip_NavigateToLogInPage" xml:space="preserve">
-    <value>ログインページへ移動</value>
-  </data>
   <data name="Strip_Refresh" xml:space="preserve">
     <value>更新</value>
   </data>
@@ -268,9 +238,6 @@ catch(e) {{
   </data>
   <data name="Title" xml:space="preserve">
     <value>七四式電子観測儀 ブラウザ</value>
-  </data>
-  <data name="Volume" xml:space="preserve">
-    <value>音量(&amp;V)</value>
   </data>
   <data name="DMMScript" xml:space="preserve">
     <value>

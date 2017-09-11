@@ -58,7 +58,7 @@
 			this.AutoSortFlag.Name = "AutoSortFlag";
 			this.AutoSortFlag.Size = new System.Drawing.Size(96, 19);
 			this.AutoSortFlag.TabIndex = 0;
-			this.AutoSortFlag.Text = "自動ソートする";
+			this.AutoSortFlag.Text = "Enable";
 			this.AutoSortFlag.UseVisualStyleBackColor = true;
 			// 
 			// EnabledView
@@ -91,16 +91,17 @@
 			// EnabledView_Name
 			// 
 			this.EnabledView_Name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.EnabledView_Name.HeaderText = "列名";
+			this.EnabledView_Name.HeaderText = "Column";
 			this.EnabledView_Name.Name = "EnabledView_Name";
 			this.EnabledView_Name.ReadOnly = true;
 			this.EnabledView_Name.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
 			// 
 			// EnabledView_SortDirection
 			// 
-			this.EnabledView_SortDirection.HeaderText = "順";
+			this.EnabledView_SortDirection.HeaderText = "Order";
+			this.EnabledView_SortDirection.ToolTipText = "Sort the column in ascending or descending order.";
 			this.EnabledView_SortDirection.Name = "EnabledView_SortDirection";
-			this.EnabledView_SortDirection.Width = 40;
+			this.EnabledView_SortDirection.Width = 45;
 			// 
 			// EnabledView_Up
 			// 
@@ -225,7 +226,7 @@
 			this.ButtonRightAll.Name = "ButtonRightAll";
 			this.ButtonRightAll.Size = new System.Drawing.Size(74, 23);
 			this.ButtonRightAll.TabIndex = 6;
-			this.ButtonRightAll.Text = "全て >>";
+			this.ButtonRightAll.Text = "All >>";
 			this.ButtonRightAll.UseVisualStyleBackColor = true;
 			this.ButtonRightAll.Click += new System.EventHandler(this.ButtonRightAll_Click);
 			// 
@@ -236,7 +237,7 @@
 			this.ButtonLeftAll.Name = "ButtonLeftAll";
 			this.ButtonLeftAll.Size = new System.Drawing.Size(74, 23);
 			this.ButtonLeftAll.TabIndex = 5;
-			this.ButtonLeftAll.Text = "<< 全て";
+			this.ButtonLeftAll.Text = "<< All";
 			this.ButtonLeftAll.UseVisualStyleBackColor = true;
 			this.ButtonLeftAll.Click += new System.EventHandler(this.ButtonLeftAll_Click);
 			// 
@@ -266,7 +267,7 @@
 			// DisabledView_Name
 			// 
 			this.DisabledView_Name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.DisabledView_Name.HeaderText = "列名";
+			this.DisabledView_Name.HeaderText = "Column";
 			this.DisabledView_Name.Name = "DisabledView_Name";
 			this.DisabledView_Name.ReadOnly = true;
 			// 
@@ -305,7 +306,7 @@
 			this.MinimizeBox = false;
 			this.Name = "DialogShipGroupSortOrder";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-			this.Text = "自動ソート順";
+			this.Text = "Custom Sort";
 			this.Load += new System.EventHandler(this.DialogShipGroupSortOrder_Load);
 			((System.ComponentModel.ISupportInitialize)(this.EnabledView)).EndInit();
 			this.tableLayoutPanel1.ResumeLayout(false);

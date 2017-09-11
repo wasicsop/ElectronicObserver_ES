@@ -206,6 +206,61 @@ namespace ElectronicObserver.Data {
 			}
 		}
 
+
+		/// <summary>
+		/// 艦種略号を取得します。
+		/// </summary>
+		public static string GetShipClassClassification( int shiptype ) {
+			switch ( shiptype ) {
+				case 1:
+					return "DE";
+				case 2:
+					return "DD";
+				case 3:
+					return "CL";
+				case 4:
+					return "CLT";
+				case 5:
+					return "CA";
+				case 6:
+					return "CAV";
+				case 7:
+					return "CVL";
+				case 8:
+					return "FBB";	// ? FBB, CC?
+				case 9:
+					return "BB";
+				case 10:
+					return "BBV";
+				case 11:
+					return "CV";
+				case 12:
+					return "BB";
+				case 13:
+					return "SS";
+				case 14:
+					return "SSV";
+				case 15:
+					return "AP";	// ? AO?
+				case 16:
+					return "AV";
+				case 17:
+					return "LHA";
+				case 18:
+					return "CVB";
+				case 19:
+					return "AR";
+				case 20:
+					return "AS";
+				case 21:
+					return "CT";
+				case 22:
+					return "AO";
+				default:
+					return "IX";
+			}
+		}
+
 		#endregion
 
 
@@ -223,13 +278,13 @@ namespace ElectronicObserver.Data {
 				case 1:
 					return ConstantsRes.NoNode;
 				case 2:
-					return ConstantsRes.Resources;
+					return "Resources";
 				case 3:
 					return ConstantsRes.Maelstrom;
 				case 4:
-					return ConstantsRes.NormalNode;
+					return "Battle";
 				case 5:
-					return ConstantsRes.BossNode;
+					return "Boss";
 				case 6:
 					return ConstantsRes.Imagination;
 				case 7:
@@ -459,9 +514,9 @@ namespace ElectronicObserver.Data {
 				case 2:
 					return ConstantsRes.HeadOn;
 				case 3:
-					return "T Advantage";
+					return "Green T";
 				case 4:
-					return "T Disadvantage";
+					return "Red T";
 				default:
 					return ConstantsRes.Unknown;
 			}
@@ -681,13 +736,15 @@ namespace ElectronicObserver.Data {
 				case 18:
 					return ConstantsRes.AAGun + " (Satsuki)";
 				case 19:
-					return ConstantsRes.HAGun + "/" + ConstantsRes.AAGun + " (Kinu)";
+					return ConstantsRes.HAGun + " (Non-piercing)/" + ConstantsRes.AAGun + " (Kinu)";
 				case 20:
 					return ConstantsRes.AAGun + " (Kinu)";
 				case 21:
 					return ConstantsRes.HAGun + "/" + ConstantsRes.Radar + " (Yura)";
 				case 22:
-					return ConstantsRes.AAGun + " (Fumizuki)";
+					return ConstantsRes.HAGun + " (Fumizuki)";
+				case 23:
+					return ConstantsRes.AAGun + "(Unconcentrated)(UIT-25)";
 				default:
 					return ConstantsRes.Unknown;
 			}

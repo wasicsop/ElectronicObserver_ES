@@ -214,7 +214,7 @@ namespace ElectronicObserver.Window.Dialog {
 				RecordView_Header.Width = 50;
 				RecordView_Header.HeaderText = "";
 				RecordView_Name.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-				RecordView_Name.HeaderText = GeneralRes.Equipment;
+				RecordView_Name.HeaderText = "Equipment";
 				RecordView_Date.Width = 140;
 				RecordView_Date.Visible = true;
 				RecordView_Recipe.Width = 120;

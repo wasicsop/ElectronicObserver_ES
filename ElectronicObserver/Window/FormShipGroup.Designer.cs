@@ -230,7 +230,7 @@
 			//
 			dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
 			this.ShipView_ShipType.DefaultCellStyle = dataGridViewCellStyle2;
-			this.ShipView_ShipType.HeaderText = GeneralRes.ShipType;
+			this.ShipView_ShipType.HeaderText = "Type";
 			this.ShipView_ShipType.Name = "ShipView_ShipType";
 			this.ShipView_ShipType.ReadOnly = true;
 			this.ShipView_ShipType.Width = 80;
@@ -239,7 +239,7 @@
 			//
 			dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
 			this.ShipView_Name.DefaultCellStyle = dataGridViewCellStyle3;
-			this.ShipView_Name.HeaderText = GeneralRes.ShipName;
+			this.ShipView_Name.HeaderText = "Name";
 			this.ShipView_Name.Name = "ShipView_Name";
 			this.ShipView_Name.ReadOnly = true;
 			//
@@ -266,7 +266,7 @@
 			//
 			// ShipView_NextRemodel
 			//
-			this.ShipView_NextRemodel.HeaderText = GeneralRes.ToRemodel;
+			this.ShipView_NextRemodel.HeaderText = "Remodel";
 			this.ShipView_NextRemodel.Name = "ShipView_NextRemodel";
 			this.ShipView_NextRemodel.ReadOnly = true;
 			this.ShipView_NextRemodel.Width = 60;
@@ -303,7 +303,7 @@
 			//
 			dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
 			this.ShipView_Slot1.DefaultCellStyle = dataGridViewCellStyle4;
-			this.ShipView_Slot1.HeaderText = GeneralRes.Equipment + " 1";
+			this.ShipView_Slot1.HeaderText = "Eq 1";
 			this.ShipView_Slot1.Name = "ShipView_Slot1";
 			this.ShipView_Slot1.ReadOnly = true;
 			this.ShipView_Slot1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -313,7 +313,7 @@
 			//
 			dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
 			this.ShipView_Slot2.DefaultCellStyle = dataGridViewCellStyle5;
-			this.ShipView_Slot2.HeaderText = GeneralRes.Equipment + " 2";
+			this.ShipView_Slot2.HeaderText = "Eq 2";
 			this.ShipView_Slot2.Name = "ShipView_Slot2";
 			this.ShipView_Slot2.ReadOnly = true;
 			this.ShipView_Slot2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -323,7 +323,7 @@
 			//
 			dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
 			this.ShipView_Slot3.DefaultCellStyle = dataGridViewCellStyle6;
-			this.ShipView_Slot3.HeaderText = GeneralRes.Equipment + " 3";
+			this.ShipView_Slot3.HeaderText = "Eq 3";
 			this.ShipView_Slot3.Name = "ShipView_Slot3";
 			this.ShipView_Slot3.ReadOnly = true;
 			this.ShipView_Slot3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -333,7 +333,7 @@
 			//
 			dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
 			this.ShipView_Slot4.DefaultCellStyle = dataGridViewCellStyle7;
-			this.ShipView_Slot4.HeaderText = GeneralRes.Equipment + " 4";
+			this.ShipView_Slot4.HeaderText = "Eq 4";
 			this.ShipView_Slot4.Name = "ShipView_Slot4";
 			this.ShipView_Slot4.ReadOnly = true;
 			this.ShipView_Slot4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -343,7 +343,7 @@
 			//
 			dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
 			this.ShipView_Slot5.DefaultCellStyle = dataGridViewCellStyle8;
-			this.ShipView_Slot5.HeaderText = GeneralRes.Equipment + " 5";
+			this.ShipView_Slot5.HeaderText = "Eq 5";
 			this.ShipView_Slot5.Name = "ShipView_Slot5";
 			this.ShipView_Slot5.ReadOnly = true;
 			this.ShipView_Slot5.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -429,21 +429,21 @@
 			//
 			// ShipView_Firepower
 			//
-			this.ShipView_Firepower.HeaderText = GeneralRes.Firepower;
+			this.ShipView_Firepower.HeaderText = "FP";
 			this.ShipView_Firepower.Name = "ShipView_Firepower";
 			this.ShipView_Firepower.ReadOnly = true;
 			this.ShipView_Firepower.Width = 40;
 			//
 			// ShipView_FirepowerRemain
 			//
-			this.ShipView_FirepowerRemain.HeaderText = GeneralRes.Firepower + GeneralRes.ModRemaining;
+			this.ShipView_FirepowerRemain.HeaderText = "FP" + GeneralRes.ModRemaining;
 			this.ShipView_FirepowerRemain.Name = "ShipView_FirepowerRemain";
 			this.ShipView_FirepowerRemain.ReadOnly = true;
 			this.ShipView_FirepowerRemain.Width = 40;
 			//
 			// ShipView_FirepowerTotal
 			//
-			this.ShipView_FirepowerTotal.HeaderText = GeneralRes.Firepower + GeneralRes.Total;
+			this.ShipView_FirepowerTotal.HeaderText = "FP" + GeneralRes.Total;
 			this.ShipView_FirepowerTotal.Name = "ShipView_FirepowerTotal";
 			this.ShipView_FirepowerTotal.ReadOnly = true;
 			this.ShipView_FirepowerTotal.Width = 40;
@@ -632,7 +632,7 @@
 			//
 			// ShipView_NightBattlePower
 			//
-			this.ShipView_NightBattlePower.HeaderText = GeneralRes.NightBattle + GeneralRes.Power;
+			this.ShipView_NightBattlePower.HeaderText = "NB Power";
 			this.ShipView_NightBattlePower.Name = "ShipView_NightBattlePower";
 			this.ShipView_NightBattlePower.ReadOnly = true;
 			this.ShipView_NightBattlePower.Width = 40;
@@ -646,7 +646,7 @@
 			//
 			// ShipView_SallyArea
 			//
-			this.ShipView_SallyArea.HeaderText = GeneralRes.SortiePlace;
+			this.ShipView_SallyArea.HeaderText = "Fleet Lock";
 			this.ShipView_SallyArea.Name = "ShipView_SallyArea";
 			this.ShipView_SallyArea.ReadOnly = true;
 			this.ShipView_SallyArea.Width = 40;
@@ -672,7 +672,7 @@
 			this.MenuMember_AddToGroup.Name = "MenuMember_AddToGroup";
 			this.MenuMember_AddToGroup.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D)));
 			this.MenuMember_AddToGroup.Size = new System.Drawing.Size(501, 34);
-			this.MenuMember_AddToGroup.Text = GeneralRes.AddToGroupMenu;
+			this.MenuMember_AddToGroup.Text = "&Add to group...";
 			this.MenuMember_AddToGroup.Click += new System.EventHandler(this.MenuMember_AddToGroup_Click);
 			//
 			// MenuMember_CreateGroup
@@ -681,14 +681,14 @@
 			this.MenuMember_CreateGroup.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift)
             | System.Windows.Forms.Keys.D)));
 			this.MenuMember_CreateGroup.Size = new System.Drawing.Size(501, 34);
-			this.MenuMember_CreateGroup.Text = GeneralRes.CreateGroupMenu;
+			this.MenuMember_CreateGroup.Text = "Add to a &new group...";
 			this.MenuMember_CreateGroup.Click += new System.EventHandler(this.MenuMember_CreateGroup_Click);
 			//
 			// MenuMember_Exclude
 			//
 			this.MenuMember_Exclude.Name = "MenuMember_Exclude";
 			this.MenuMember_Exclude.Size = new System.Drawing.Size(201, 22);
-			this.MenuMember_Exclude.Text = GeneralRes.Remove;
+			this.MenuMember_Exclude.Text = "&Remove";
 			this.MenuMember_Exclude.Click += new System.EventHandler(this.MenuMember_Exclude_Click);
 			//
 			// toolStripSeparator2
@@ -700,21 +700,21 @@
 			//
 			this.MenuMember_Filter.Name = "MenuMember_Filter";
 			this.MenuMember_Filter.Size = new System.Drawing.Size(201, 22);
-			this.MenuMember_Filter.Text = GeneralRes.FilterSettings;
+			this.MenuMember_Filter.Text = "&Filter...";
 			this.MenuMember_Filter.Click += new System.EventHandler(this.MenuMember_Filter_Click);
 			//
 			// MenuMember_ColumnFilter
 			//
 			this.MenuMember_ColumnFilter.Name = "MenuMember_ColumnFilter";
 			this.MenuMember_ColumnFilter.Size = new System.Drawing.Size(201, 22);
-			this.MenuMember_ColumnFilter.Text = GeneralRes.ColumnSettings;
+			this.MenuMember_ColumnFilter.Text = "Select &columns...";
 			this.MenuMember_ColumnFilter.Click += new System.EventHandler(this.MenuMember_ColumnFilter_Click);
 			//
 			// MenuMember_SortOrder
 			//
 			this.MenuMember_SortOrder.Name = "MenuMember_SortOrder";
 			this.MenuMember_SortOrder.Size = new System.Drawing.Size(201, 22);
-			this.MenuMember_SortOrder.Text = GeneralRes.AutoSort;
+			this.MenuMember_SortOrder.Text = "Custom &sort...";
 			this.MenuMember_SortOrder.Click += new System.EventHandler(this.MenuMember_SortOrder_Click);
 			//
 			// toolStripSeparator3
@@ -726,7 +726,7 @@
 			//
 			this.MenuMember_CSVOutput.Name = "MenuMember_CSVOutput";
 			this.MenuMember_CSVOutput.Size = new System.Drawing.Size(201, 22);
-			this.MenuMember_CSVOutput.Text = GeneralRes.OutputCSV;
+			this.MenuMember_CSVOutput.Text = "&Export...";
 			this.MenuMember_CSVOutput.Click += new System.EventHandler(this.MenuMember_CSVOutput_Click);
 			//
 			// MenuGroup
@@ -747,28 +747,28 @@
 			//
 			this.MenuGroup_Add.Name = "MenuGroup_Add";
 			this.MenuGroup_Add.Size = new System.Drawing.Size(321, 38);
-			this.MenuGroup_Add.Text = GeneralRes.AddGroupMenu;
+			this.MenuGroup_Add.Text = "&New...";
 			this.MenuGroup_Add.Click += new System.EventHandler(this.MenuGroup_Add_Click);
 			//
 			// MenuGroup_Copy
 			//
 			this.MenuGroup_Copy.Name = "MenuGroup_Copy";
 			this.MenuGroup_Copy.Size = new System.Drawing.Size(191, 22);
-			this.MenuGroup_Copy.Text = GeneralRes.CopyGroup;
+			this.MenuGroup_Copy.Text = "&Copy...";
 			this.MenuGroup_Copy.Click += new System.EventHandler(this.MenuGroup_Copy_Click);
 			//
 			// MenuGroup_Rename
 			//
 			this.MenuGroup_Rename.Name = "MenuGroup_Rename";
 			this.MenuGroup_Rename.Size = new System.Drawing.Size(321, 38);
-			this.MenuGroup_Rename.Text = GeneralRes.RenameGroupMenu;
+			this.MenuGroup_Rename.Text = "&Rename...";
 			this.MenuGroup_Rename.Click += new System.EventHandler(this.MenuGroup_Rename_Click);
 			//
 			// MenuGroup_Delete
 			//
 			this.MenuGroup_Delete.Name = "MenuGroup_Delete";
 			this.MenuGroup_Delete.Size = new System.Drawing.Size(321, 38);
-			this.MenuGroup_Delete.Text = GeneralRes.DeleteGroupMenu;
+			this.MenuGroup_Delete.Text = "&Delete";
 			this.MenuGroup_Delete.Click += new System.EventHandler(this.MenuGroup_Delete_Click);
 			//
 			// toolStripSeparator4
@@ -781,7 +781,7 @@
 			this.MenuGroup_AutoUpdate.CheckOnClick = true;
 			this.MenuGroup_AutoUpdate.Name = "MenuGroup_AutoUpdate";
 			this.MenuGroup_AutoUpdate.Size = new System.Drawing.Size(321, 38);
-			this.MenuGroup_AutoUpdate.Text = GeneralRes.AutoUpdate;
+			this.MenuGroup_AutoUpdate.Text = "Update automatically";
 			//
 			// MenuGroup_ShowStatusBar
 			//
@@ -790,7 +790,7 @@
 			this.MenuGroup_ShowStatusBar.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.MenuGroup_ShowStatusBar.Name = "MenuGroup_ShowStatusBar";
 			this.MenuGroup_ShowStatusBar.Size = new System.Drawing.Size(321, 38);
-			this.MenuGroup_ShowStatusBar.Text = GeneralRes.ShowStatusBar;
+			this.MenuGroup_ShowStatusBar.Text = "Show status bar";
 			this.MenuGroup_ShowStatusBar.CheckedChanged += new System.EventHandler(this.MenuGroup_ShowStatusBar_CheckedChanged);
 			//
 			// splitContainer1
@@ -870,7 +870,7 @@
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 			this.HideOnClose = true;
 			this.Name = "FormShipGroup";
-			this.Text = GeneralRes.Group;
+			this.Text = "Group";
 			this.Load += new System.EventHandler(this.FormShipGroup_Load);
 			this.Resize += new System.EventHandler(this.FormShipGroup_Resize);
 			((System.ComponentModel.ISupportInitialize)(this.ShipView)).EndInit();

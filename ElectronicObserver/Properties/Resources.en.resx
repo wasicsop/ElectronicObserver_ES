@@ -142,9 +142,6 @@ Okay?</value>
   <data name="AskNavTitle" xml:space="preserve">
     <value>Go to...</value>
   </data>
-  <data name="BadUpdateURI" xml:space="preserve">
-    <value>Update data URI was not successful.</value>
-  </data>
   <data name="Browser" xml:space="preserve">
     <value>Browser</value>
   </data>
@@ -226,9 +223,6 @@ Add windows of your choosing using the "View" menu.</value>
   </data>
   <data name="Update" xml:space="preserve">
     <value>Update</value>
-  </data>
-  <data name="UpdateCheckFailed" xml:space="preserve">
-    <value>Failed to obtain update data.</value>
   </data>
   <data name="UpdateConnectionFailed" xml:space="preserve">
     <value>Failed to process update data.</value>

@@ -94,7 +94,7 @@
 			// ColumnView_Name
 			// 
 			this.ColumnView_Name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.ColumnView_Name.HeaderText = "列名";
+			this.ColumnView_Name.HeaderText = "Column";
 			this.ColumnView_Name.Name = "ColumnView_Name";
 			this.ColumnView_Name.ReadOnly = true;
 			this.ColumnView_Name.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -102,20 +102,22 @@
 			// ColumnView_Visible
 			// 
 			this.ColumnView_Visible.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-			this.ColumnView_Visible.HeaderText = "表示";
+			this.ColumnView_Visible.HeaderText = " ";
+			this.ColumnView_Visible.ToolTipText = "Select to enable the specified column.";
 			this.ColumnView_Visible.Name = "ColumnView_Visible";
 			this.ColumnView_Visible.Width = 37;
 			// 
 			// ColumnView_AutoSize
 			// 
 			this.ColumnView_AutoSize.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-			this.ColumnView_AutoSize.HeaderText = "自動サイズ";
+			this.ColumnView_AutoSize.HeaderText = "Resize";
+			this.ColumnView_AutoSize.ToolTipText = "Select to automatically resize the specified column.";
 			this.ColumnView_AutoSize.Name = "ColumnView_AutoSize";
 			this.ColumnView_AutoSize.Width = 66;
 			// 
 			// ColumnView_Width
 			// 
-			this.ColumnView_Width.HeaderText = "幅";
+			this.ColumnView_Width.HeaderText = "Width";
 			this.ColumnView_Width.Name = "ColumnView_Width";
 			this.ColumnView_Width.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
 			// 
@@ -137,14 +139,14 @@
 			this.label1.AutoSize = true;
 			this.label1.Location = new System.Drawing.Point(12, 331);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(62, 15);
+			this.label1.Size = new System.Drawing.Size(120, 15);
 			this.label1.TabIndex = 5;
-			this.label1.Text = "列の固定: ";
+			this.label1.Text = "Freeze # of column: ";
 			// 
 			// ScrLkColumnCount
 			// 
 			this.ScrLkColumnCount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.ScrLkColumnCount.Location = new System.Drawing.Point(80, 327);
+			this.ScrLkColumnCount.Location = new System.Drawing.Point(140, 327);
 			this.ScrLkColumnCount.Name = "ScrLkColumnCount";
 			this.ScrLkColumnCount.Size = new System.Drawing.Size(60, 23);
 			this.ScrLkColumnCount.TabIndex = 6;
@@ -167,7 +169,7 @@
 			this.MinimizeBox = false;
 			this.Name = "DialogShipGroupColumnFilter";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-			this.Text = "列の表示設定";
+			this.Text = "Select Columns";
 			this.Load += new System.EventHandler(this.DialogShipGroupColumnFilter_Load);
 			((System.ComponentModel.ISupportInitialize)(this.ColumnView)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.ScrLkColumnCount)).EndInit();

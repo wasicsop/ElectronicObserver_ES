@@ -48,7 +48,7 @@ namespace ElectronicObserver.Window {
 				CSCategories[i] = new DataGridViewCellStyle( CSDefaultCenter );
 
 				Color c;
-				CSCategories[i].ForeColor = CSCategories[i].SelectionForeColor = Utility.Configuration.Config.UI.Blink_ForeColor;
+				CSCategories[i].ForeColor = CSCategories[i].SelectionForeColor = Utility.Configuration.Config.UI.Quest_TypeFG;
 				switch (i + 1)
 				{
 					case 1:     //編成
@@ -390,7 +390,15 @@ namespace ElectronicObserver.Window {
 			using ( var bback = new SolidBrush( e.CellStyle.BackColor ) ) {
 
 				Color col;
-				double rate = QuestView.Rows[e.RowIndex].Cells[e.ColumnIndex].Tag as double? ?? 0.0;
+				double rate;
+				bool drawgaugeback = false;
+				if (QuestView.Rows[e.RowIndex].Cells[e.ColumnIndex].Tag == null) {
+					rate = 0.0;
+				}
+				else {
+					rate = (double)QuestView.Rows[e.RowIndex].Cells[e.ColumnIndex].Tag;
+					drawgaugeback = true;
+				}
 
 				if (rate < 0.5)
 					col = Utility.Configuration.Config.UI.Quest_ColorProcessLT50;
@@ -401,12 +409,13 @@ namespace ElectronicObserver.Window {
 				else
 					col = Utility.Configuration.Config.UI.Quest_ColorProcessDefault;
 
-				using ( var bgauge = new SolidBrush( col ) ) {
-
+				using (var bgauge = new SolidBrush( col ))
+				using (var bgaugeback = new SolidBrush( Utility.Configuration.Config.UI.SubBackColor )) {
 					const int thickness = 4;
 
 					e.Graphics.FillRectangle( bback, e.CellBounds );
-					e.Graphics.FillRectangle( bgauge, new Rectangle( e.CellBounds.X, e.CellBounds.Bottom - thickness, (int)( e.CellBounds.Width * rate ), thickness ) );
+					if (drawgaugeback && rate < 1.0) e.Graphics.FillRectangle( bgaugeback, new Rectangle( e.CellBounds.X, e.CellBounds.Bottom - thickness, e.CellBounds.Width, thickness ) );
+					e.Graphics.FillRectangle( bgauge, new Rectangle( e.CellBounds.X, e.CellBounds.Bottom - thickness, (int)(e.CellBounds.Width * rate), thickness ) );
 				}
 			}
 
@@ -518,80 +527,65 @@ namespace ElectronicObserver.Window {
 
 		private void MenuProgress_Increment_Click( object sender, EventArgs e ) {
 
-			var rows = QuestView.SelectedRows;
+			int id = GetSelectedRowQuestID();
 
-			if ( rows != null && rows.Count > 0 && rows[0].Index != -1 ) {
+			var quest = KCDatabase.Instance.Quest[id];
+			var progress = KCDatabase.Instance.QuestProgress[id];
 
-				int id = rows[0].Cells[QuestView_Name.Index].Value as int? ?? -1;
+			if ( id != -1 && quest != null && progress != null ) {
 
-				var quest = KCDatabase.Instance.Quest[id];
-				var progress = KCDatabase.Instance.QuestProgress[id];
+				try {
+					progress.Increment();
+					Updated();
 
-				if ( id != -1 && quest != null && progress != null ) {
-
-					try {
-						progress.Increment();
-						Updated();
-
-					} catch ( Exception ) {
-						Utility.Logger.Add( 3, string.Format( "任務『{0}』の進捗を変更することはできません。", quest.Name ) );
-						System.Media.SystemSounds.Hand.Play();
-					}
+				} catch ( Exception ) {
+					Utility.Logger.Add( 3, string.Format( "任務『{0}』の進捗を変更することはできません。", quest.Name ) );
+					System.Media.SystemSounds.Hand.Play();
 				}
 			}
 		}
 
 		private void MenuProgress_Decrement_Click( object sender, EventArgs e ) {
 
-			var rows = QuestView.SelectedRows;
+			int id = GetSelectedRowQuestID();
+			var quest = KCDatabase.Instance.Quest[id];
+			var progress = KCDatabase.Instance.QuestProgress[id];
 
-			if ( rows != null && rows.Count > 0 && rows[0].Index != -1 ) {
+			if ( id != -1 && quest != null && progress != null ) {
 
-				int id = rows[0].Cells[QuestView_Name.Index].Value as int? ?? -1;
+				try {
+					progress.Decrement();
+					Updated();
 
-				var quest = KCDatabase.Instance.Quest[id];
-				var progress = KCDatabase.Instance.QuestProgress[id];
-
-				if ( id != -1 && quest != null && progress != null ) {
-
-					try {
-						progress.Decrement();
-						Updated();
-
-					} catch ( Exception ) {
-						Utility.Logger.Add( 3, string.Format( "任務『{0}』の進捗を変更することはできません。", quest.Name ) );
-						System.Media.SystemSounds.Hand.Play();
-					}
+				} catch ( Exception ) {
+					Utility.Logger.Add( 3, string.Format( "任務『{0}』の進捗を変更することはできません。", quest.Name ) );
+					System.Media.SystemSounds.Hand.Play();
 				}
 			}
 		}
 
 		private void MenuProgress_Reset_Click( object sender, EventArgs e ) {
 
-			var rows = QuestView.SelectedRows;
+			int id = GetSelectedRowQuestID();
 
-			if ( rows != null && rows.Count > 0 && rows[0].Index != -1 ) {
+			var quest = KCDatabase.Instance.Quest[id];
+			var progress = KCDatabase.Instance.QuestProgress[id];
 
-				int id = rows[0].Cells[QuestView_Name.Index].Value as int? ?? -1;
+			if ( id != -1 && ( quest != null || progress != null ) ) {
 
-				var quest = KCDatabase.Instance.Quest[id];
-				var progress = KCDatabase.Instance.QuestProgress[id];
+				if ( MessageBox.Show( "任務" + ( quest != null ? ( "『" + quest.Name + "』" ) : ( "ID: " + id.ToString() + " " ) ) + "を一覧から削除し、進捗をリセットします。\r\nよろしいですか？\r\n(艦これ本体の任務画面を開くと正しく更新されます。)", "任務削除の確認",
+					MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1 ) == System.Windows.Forms.DialogResult.Yes ) {
 
-				if ( id != -1 && ( quest != null || progress != null ) ) {
+					if ( quest != null )
+						KCDatabase.Instance.Quest.Quests.Remove( quest );
 
-					if ( MessageBox.Show( "任務" + ( quest != null ? ( "『" + quest.Name + "』" ) : ( "ID: " + id.ToString() + " " ) ) + "を一覧から削除し、進捗をリセットします。\r\nよろしいですか？\r\n(艦これ本体の任務画面を開くと正しく更新されます。)", "任務削除の確認",
-						MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1 ) == System.Windows.Forms.DialogResult.Yes ) {
+					if ( progress != null )
+						KCDatabase.Instance.QuestProgress.Progresses.Remove( progress );
 
-						if ( quest != null )
-							KCDatabase.Instance.Quest.Quests.Remove( quest );
-
-						if ( progress != null )
-							KCDatabase.Instance.QuestProgress.Progresses.Remove( progress );
-
-						Updated();
-					}
+					Updated();
 				}
 			}
+
 		}
 
 
@@ -620,10 +614,51 @@ namespace ElectronicObserver.Window {
 		}
 
 
+		private void MenuMain_Opening( object sender, CancelEventArgs e ) {
+
+			var quest =  KCDatabase.Instance.Quest[GetSelectedRowQuestID()];
+
+			if ( quest != null ) {
+				MenuMain_GoogleQuest.Enabled = true;
+				MenuMain_GoogleQuest.Text = string.Format( "Search on &Google: {0}", quest.Name );
+			} else {
+				MenuMain_GoogleQuest.Enabled = false;
+				MenuMain_GoogleQuest.Text = "Search on &Google";
+			}
+		}
+
+		private void MenuMain_GoogleQuest_Click( object sender, EventArgs e ) {
+			var quest = KCDatabase.Instance.Quest[GetSelectedRowQuestID()];
+
+			if ( quest != null ) {
+				try {
+
+					// google <任務名> 艦これ
+					System.Diagnostics.Process.Start( @"https://www.google.com/search?q=" + Uri.EscapeDataString( quest.Name ) + "+KanColle" );
+
+				} catch ( Exception ex ) {
+					Utility.ErrorReporter.SendErrorReport( ex, "Failed to search on Google." );
+				}
+			}
+
+		}
+
+		private int GetSelectedRowQuestID() {
+			var rows = QuestView.SelectedRows;
+
+			if ( rows != null && rows.Count > 0 && rows[0].Index != -1 ) {
+
+				return rows[0].Cells[QuestView_Name.Index].Value as int? ?? -1;
+			}
+
+			return -1;
+		}
+
 
 		protected override string GetPersistString() {
 			return "Quest";
 		}
+
 
 	}
 }

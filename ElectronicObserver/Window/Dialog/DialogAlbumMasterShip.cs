@@ -273,6 +273,10 @@ namespace ElectronicObserver.Window.Dialog {
 			ShipType.Text = ship.IsLandBase ? "Land Base" : db.ShipTypes[ship.ShipType].Name;
 			ShipName.Text = ship.NameWithClass;
 			ShipName.ForeColor = ship.GetShipNameColor();
+			if(ShipName.ForeColor == Color.FromArgb( 0xFF, 0xFF, 0xFF ))
+			{
+				ShipName.ForeColor = SystemColors.ControlText;
+			}
 			ToolTipInfo.SetToolTip( ShipName, ( !ship.IsAbyssalShip ? ship.NameReading + "\r\n" : "" ) + "Right click to copy." );
 			TableShipName.ResumeLayout();
 
@@ -1363,6 +1367,24 @@ namespace ElectronicObserver.Window.Dialog {
 				}
 			} else {
 				MessageBox.Show( "Please select a ship.", "No Ship Selected", MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
+			}
+		}
+
+
+		private void StripMenu_Edit_GoogleShipName_Click( object sender, EventArgs e ) {
+			var ship = KCDatabase.Instance.MasterShips[_shipID];
+			if ( ship == null ) {
+				System.Media.SystemSounds.Exclamation.Play();
+				return;
+			}
+
+			try {
+
+				// google <艦船名> 艦これ
+				System.Diagnostics.Process.Start( @"https://www.google.com/search?q=" + Uri.EscapeDataString( ship.NameWithClass ) + "+KanColle" );
+
+			} catch ( Exception ex ) {
+				Utility.ErrorReporter.SendErrorReport( ex, "Failed to search on Google." );
 			}
 		}
 

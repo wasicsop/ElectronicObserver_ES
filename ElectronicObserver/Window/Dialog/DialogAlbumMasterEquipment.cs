@@ -667,5 +667,23 @@ namespace ElectronicObserver.Window.Dialog {
 		}
 
 
+		private void StripMenu_Edit_GoogleEquipmentName_Click( object sender, EventArgs e ) {
+			var eq = KCDatabase.Instance.MasterEquipments[EquipmentID.Tag as int? ?? -1];
+			if ( eq == null ) {
+				System.Media.SystemSounds.Exclamation.Play();
+				return;
+			}
+
+			try {
+
+				// google <装備名> 艦これ
+				System.Diagnostics.Process.Start( @"https://www.google.com/search?q=" + Uri.EscapeDataString( eq.Name ) + "+KanColle" );
+
+			} catch ( Exception ex ) {
+				Utility.ErrorReporter.SendErrorReport( ex, "Failed to search on Google." );
+			}
+		}
+
+
 	}
 }

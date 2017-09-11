@@ -72,7 +72,7 @@
 			//
 			this.ContextMenuBaseAirCorps_CopyOrganization.Name = "ContextMenuBaseAirCorps_CopyOrganization";
 			this.ContextMenuBaseAirCorps_CopyOrganization.Size = new System.Drawing.Size(219, 22);
-			this.ContextMenuBaseAirCorps_CopyOrganization.Text = GeneralRes.CopyToClipboard;
+			this.ContextMenuBaseAirCorps_CopyOrganization.Text = "&Copy";
 			this.ContextMenuBaseAirCorps_CopyOrganization.Click += new System.EventHandler(this.ContextMenuBaseAirCorps_CopyOrganization_Click);
 			//
 			// toolStripSeparator1
@@ -101,7 +101,7 @@
 			this.HideOnClose = true;
 			this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.Name = "FormBaseAirCorps";
-			this.Text = GeneralRes.Base;
+			this.Text = "A/B";
 			this.Load += new System.EventHandler(this.FormBaseAirCorps_Load);
 			this.ContextMenuBaseAirCorps.ResumeLayout(false);
 			this.ResumeLayout(false);

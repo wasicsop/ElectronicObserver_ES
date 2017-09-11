@@ -670,7 +670,7 @@ namespace ElectronicObserver.Data {
 			Utility.Configuration.Config.UI.Compass_ShipNameColor4,
 			Utility.Configuration.Config.UI.Compass_ShipNameColor5,
 			Utility.Configuration.Config.UI.Compass_ShipNameColor6,
-			Color.FromArgb( 0x00, 0x00, 0xFF ),
+			Utility.Configuration.Config.UI.Compass_ShipNameColor7
 		};
 
 		public Color GetShipNameColor() {
@@ -679,19 +679,19 @@ namespace ElectronicObserver.Data {
 				return SystemColors.ControlText;
 			}
 
-			bool isLateModel = Name.Contains( "後期型" );
-			bool isRemodeled = Name.Contains( "改" );
-			bool isDestroyed = Name.EndsWith( "-壊" );
-			bool isDemon = Name.EndsWith( "鬼" );
-			bool isPrincess = Name.EndsWith( "姫" );
-			bool isWaterDemon = Name.EndsWith( "水鬼" );
-			bool isWaterPrincess = Name.EndsWith( "水姫" );
+			bool isLateModel = Name.Contains( "Late Type" ) || Name.Contains( "後期型" );
+			bool isRemodeled = Name.Contains( "Kai" ) || Name.Contains( "改" );
+			bool isDestroyed = Name.Contains( "Damaged" ) || Name.EndsWith( "-壊" );
+			bool isDemon = Name.Contains( "Demon" ) || Name.EndsWith( "鬼" );
+			bool isPrincess = Name.Contains( "Princess" ) || Name.EndsWith( "姫" );
+			bool isWaterDemon = Name.Contains( "Water Demon" ) || Name.EndsWith( "水鬼" );
+			bool isWaterPrincess = Name.Contains( "Water Princess" ) || Name.EndsWith( "水姫" );
 			bool isElite = NameReading == "elite";
 			bool isFlagship = NameReading == "flagship";
 
 
-			if ( isDestroyed )
-				return Color.FromArgb( 0xFF, 0x00, 0xFF );
+			if (isDestroyed)
+				return Utility.Configuration.Config.UI.Compass_ShipNameColorDestroyed;
 
 			else if ( isWaterPrincess )
 				return ShipNameColors[6];

@@ -136,12 +136,6 @@
   <data name="AddGroup" xml:space="preserve">
     <value>グループを追加</value>
   </data>
-  <data name="AddGroupMenu" xml:space="preserve">
-    <value>グループを追加(&amp;A)</value>
-  </data>
-  <data name="AddToGroupMenu" xml:space="preserve">
-    <value>グループへ追加(&amp;A)...</value>
-  </data>
   <data name="AdmiralXP" xml:space="preserve">
     <value>提督経験値</value>
   </data>
@@ -184,17 +178,11 @@
   <data name="AutoAdjustColumns" xml:space="preserve">
     <value>列の自動調整(&amp;D)</value>
   </data>
-  <data name="AutoUpdate" xml:space="preserve">
-    <value>自動更新する</value>
-  </data>
   <data name="AverageLevel" xml:space="preserve">
     <value>平均Lv: {0:F2}</value>
   </data>
   <data name="Battle" xml:space="preserve">
     <value>戦闘</value>
-  </data>
-  <data name="BranchChoice" xml:space="preserve">
-    <value>能動分岐</value>
   </data>
   <data name="CannotChangeGroup" xml:space="preserve">
     <value>このグループは変更できません。</value>
@@ -241,14 +229,8 @@
   <data name="Contacting" xml:space="preserve">
     <value>触接中</value>
   </data>
-  <data name="CopyToClipboard" xml:space="preserve">
-    <value>クリップボードにコピー(&amp;C)</value>
-  </data>
   <data name="CreateGroup" xml:space="preserve">
     <value>グループの追加</value>
-  </data>
-  <data name="CreateGroupMenu" xml:space="preserve">
-    <value>新規グループを作成(&amp;C)...</value>
   </data>
   <data name="CreateGroupName" xml:space="preserve">
     <value>追加するグループの名前を入力してください：</value>
@@ -277,9 +259,6 @@
   <data name="DeleteGroup" xml:space="preserve">
     <value>グループ [{0}] を削除しますか？
 この操作は元に戻せません。</value>
-  </data>
-  <data name="DeleteGroupMenu" xml:space="preserve">
-    <value>グループを削除(&amp;D)</value>
   </data>
   <data name="DevelopmentFailed" xml:space="preserve">
     <value>[開発失敗]</value>
@@ -323,9 +302,6 @@
   <data name="EnemyUnknown" xml:space="preserve">
     <value>(敵艦隊情報不明)</value>
   </data>
-  <data name="Equipment" xml:space="preserve">
-    <value>装備</value>
-  </data>
   <data name="EscortFleet" xml:space="preserve">
     <value>随伴艦隊</value>
   </data>
@@ -350,9 +326,6 @@
   <data name="Fleet" xml:space="preserve">
     <value>艦隊</value>
   </data>
-  <data name="FleetList" xml:space="preserve">
-    <value>艦隊</value>
-  </data>
   <data name="FleetTooltip" xml:space="preserve">
     <value>Lv合計: {0} / 平均: {1:0.00}\r\n{2}艦隊\r\nドラム缶搭載: {3}個 ({4}艦)\r\n大発動艇搭載: {5}個 ({6}艦, +{7:p1})\r\n輸送量(TP): S {8} / A {9}\r\n総積載: 燃 {10} / 弾 {11}\r\n(1戦当たり 燃 {12} / 弾 {13})</value>
   </data>
@@ -367,15 +340,6 @@
   </data>
   <data name="Fuel" xml:space="preserve">
     <value>燃料</value>
-  </data>
-  <data name="Group" xml:space="preserve">
-    <value>グループ</value>
-  </data>
-  <data name="Headquarters" xml:space="preserve">
-    <value>司令部</value>
-  </data>
-  <data name="Information" xml:space="preserve">
-    <value>情報</value>
   </data>
   <data name="Initialize" xml:space="preserve">
     <value>初期化(&amp;I)</value>
@@ -402,9 +366,6 @@
   </data>
   <data name="LoS" xml:space="preserve">
     <value>索敵</value>
-  </data>
-  <data name="LoSTooltip" xml:space="preserve">
-    <value>(旧)2-5式: {0}\r\n2-5式(秋): {1}\r\n2-5新秋簡易式: {2}\r\n判定式(33): {3}\r\n新判定式(33):\r\n　分岐点係数1: {4:f2}\r\n　分岐点係数3: {5:f2}\r\n　分岐点係数4: {6:f2}\r\n\r\n触接開始率: \r\n　確保 {7:p1} / 優勢 {8:p1}\r\n</value>
   </data>
   <data name="Luck" xml:space="preserve">
     <value>運</value>
@@ -445,9 +406,6 @@
   <data name="NonexistentGroup" xml:space="preserve">
     <value>エラー：存在しないグループを参照しようとしました。開発者に連絡してください</value>
   </data>
-  <data name="OutputCSV" xml:space="preserve">
-    <value>CSV出力(&amp;O)...</value>
-  </data>
   <data name="Over50" xml:space="preserve">
     <value>50%以上</value>
   </data>
@@ -474,9 +432,6 @@
   </data>
   <data name="Range" xml:space="preserve">
     <value>射程</value>
-  </data>
-  <data name="RankPoints" xml:space="preserve">
-    <value>戦果</value>
   </data>
   <data name="RemainingExpeds" xml:space="preserve">
     <value>あと {0} 回遠征可能</value>
@@ -538,9 +493,6 @@
   <data name="ShowOneTime" xml:space="preserve">
     <value>一回限りの任務を表示(&amp;O)</value>
   </data>
-  <data name="ShowStatusBar" xml:space="preserve">
-    <value>ステータスバーを表示する</value>
-  </data>
   <data name="ShowWeekly" xml:space="preserve">
     <value>ウィークリー任務を表示(&amp;W)</value>
   </data>
@@ -577,12 +529,6 @@
   <data name="TargetSighted" xml:space="preserve">
     <value>攻撃目標発見！</value>
   </data>
-  <data name="ThisMonth" xml:space="preserve">
-    <value>今月</value>
-  </data>
-  <data name="ThisTime" xml:space="preserve">
-    <value>今回</value>
-  </data>
   <data name="Times" xml:space="preserve">
     <value>回</value>
   </data>
@@ -594,9 +540,6 @@
   </data>
   <data name="To99" xml:space="preserve">
     <value>Lv99まで: {0}</value>
-  </data>
-  <data name="Today" xml:space="preserve">
-    <value>今日</value>
   </data>
   <data name="ToHeavy" xml:space="preserve">
     <value>大破まで: {0}</value>
@@ -701,15 +644,6 @@
   <data name="ResourceChart" xml:space="preserve">
     <value>資源チャート</value>
   </data>
-  <data name="Resources" xml:space="preserve">
-    <value>資源</value>
-  </data>
-  <data name="SelectGraph" xml:space="preserve">
-    <value>グラフの選択(&amp;G)</value>
-  </data>
-  <data name="Span" xml:space="preserve">
-    <value>範囲(&amp;S)</value>
-  </data>
   <data name="Steel" xml:space="preserve">
     <value>鋼材</value>
   </data>
@@ -783,20 +717,8 @@
   <data name="Air" xml:space="preserve">
     <value>航空</value>
   </data>
-  <data name="AutoSort" xml:space="preserve">
-    <value>自動ソート設定(&amp;S)...</value>
-  </data>
   <data name="Bombing" xml:space="preserve">
     <value>空撃</value>
-  </data>
-  <data name="ColumnSettings" xml:space="preserve">
-    <value>列の表示設定(&amp;C)...</value>
-  </data>
-  <data name="CopyGroup" xml:space="preserve">
-    <value>グループをコピー(&amp;C)</value>
-  </data>
-  <data name="FilterSettings" xml:space="preserve">
-    <value>フィルタ設定(&amp;F)...</value>
   </data>
   <data name="Power" xml:space="preserve">
     <value>威力</value>
@@ -849,9 +771,6 @@
   <data name="IncrementByOne" xml:space="preserve">
     <value>進捗 +1(&amp;I)</value>
   </data>
-  <data name="SelectionRate" xml:space="preserve">
-    <value>触接選択率: </value>
-  </data>
   <data name="Encyclopedia" xml:space="preserve">
     <value>(右クリックで図鑑)</value>
   </data>
@@ -860,9 +779,6 @@
   </data>
   <data name="ShowOther" xml:space="preserve">
     <value>その他の任務を表示(&amp;R)</value>
-  </data>
-  <data name="Base" xml:space="preserve">
-    <value>基地航空隊</value>
   </data>
   <data name="BaseNotOpen" xml:space="preserve">
     <value>(未開放)\r\n</value>
@@ -941,12 +857,6 @@
   </data>
   <data name="Option" xml:space="preserve">
     <value>オプション</value>
-  </data>
-  <data name="Option_DivideByDay" xml:space="preserve">
-    <value>日単位で平均化</value>
-  </data>
-  <data name="Option_ShowAllData" xml:space="preserve">
-    <value>全てのデータを表示する</value>
   </data>
   <data name="BattleDetail" xml:space="preserve">
     <value>戦闘詳細</value>

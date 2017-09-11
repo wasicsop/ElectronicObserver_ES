@@ -124,7 +124,7 @@ namespace ElectronicObserver.Window.Control {
 		}
 
 		private Color _repairFontColor;
-		[Browsable( true ), Category( "Appearance" )]
+		[Browsable( true ), Category( "Appearance" ), DefaultValue( typeof( Color ), "0, 0, 136" )]
 		[Description( "修復時間テキストの色を指定します。" )]
 		public Color RepairFontColor {
 			get {
@@ -315,16 +315,18 @@ namespace ElectronicObserver.Window.Control {
 			_HPBar.PrevValue = 88;
 			_HPBar.MaximumValue = 100;
 			_repairTime = DateTime.Now;
+			if (Utility.Configuration.Config.UI.RemoveBarShadow)
+				_HPBar.BarBackgroundOffset = 0;
 
 			_maximumDigit = 999;
 
 			_mainFont = new Font( "Meiryo UI", 12, FontStyle.Regular, GraphicsUnit.Pixel );
-			_mainFontColor = Color.FromArgb( 0xFF, Utility.Configuration.Config.UI.ForeColor );
+			_mainFontColor = Utility.Configuration.Config.UI.ForeColor;
 
 			_subFont = new Font( "Meiryo UI", 10, FontStyle.Regular, GraphicsUnit.Pixel );
-			_subFontColor = Color.FromArgb(0xFF, Utility.Configuration.Config.UI.SubForeColor);
+			_subFontColor = Utility.Configuration.Config.UI.SubForeColor;
 
-			_repairFontColor = FromArgb(0xFF000088);
+			_repairFontColor = Utility.Configuration.Config.UI.Fleet_ColorRepairTimerText;
 			_text = "HP:";
 
 			_HPBar.UsePrevValue = true;
@@ -336,15 +338,21 @@ namespace ElectronicObserver.Window.Control {
 
 		public void RepaintHPtext()
 		{
-			if (this.BackColor == Utility.Configuration.Config.UI.BackColor)
-			{
+			if (this.BackColor == Utility.Configuration.Config.UI.BackColor) {
 				_mainFontColor = Utility.Configuration.Config.UI.ForeColor;
 				_subFontColor = Utility.Configuration.Config.UI.SubForeColor;
 			}
-			else
-			{
-				_mainFontColor = Utility.Configuration.Config.UI.Blink_ForeColor;
-				_subFontColor = Utility.Configuration.Config.UI.Blink_SubForeColor;
+			else if (this.BackColor == Utility.Configuration.Config.UI.Battle_ColorHPBarsMVP) {
+				_mainFontColor = Utility.Configuration.Config.UI.Battle_ColorTextMVP;
+				_subFontColor = Utility.Configuration.Config.UI.Battle_ColorTextMVP2;
+			}
+			else if (this.BackColor == Utility.Configuration.Config.UI.Battle_ColorHPBarsEscaped) {
+				_mainFontColor = Utility.Configuration.Config.UI.Battle_ColorTextEscaped;
+				_subFontColor = Utility.Configuration.Config.UI.Battle_ColorTextEscaped2;
+			}
+			else if (this.BackColor == Utility.Configuration.Config.UI.Battle_ColorHPBarsBossDamaged) {
+				_mainFontColor = Utility.Configuration.Config.UI.Battle_ColorTextBossDamaged;
+				_subFontColor = Utility.Configuration.Config.UI.Battle_ColorTextBossDamaged2;
 			}
 			this.Refresh();
 		}

@@ -139,14 +139,14 @@ namespace Browser
 			//
 			this.ToolMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ToolMenu_ScreenShot,
-            this.toolStripSeparator1,
+            //this.toolStripSeparator1,
             this.ToolMenu_Zoom,
-            this.toolStripSeparator2,
+            //this.toolStripSeparator2,
             this.ToolMenu_Mute,
-            this.toolStripSeparator13,
+            //this.toolStripSeparator13,
             this.ToolMenu_Refresh,
             this.ToolMenu_NavigateToLogInPage,
-            this.toolStripSeparator8,
+            //this.toolStripSeparator8,
             this.ToolMenu_Other});
 			this.ToolMenu.Location = new System.Drawing.Point(0, 0);
 			this.ToolMenu.Name = "ToolMenu";
@@ -208,7 +208,7 @@ namespace Browser
 			//
 			this.ToolMenu_NavigateToLogInPage.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
 			this.ToolMenu_NavigateToLogInPage.Name = "ToolMenu_NavigateToLogInPage";
-			this.ToolMenu_NavigateToLogInPage.Text = Resources.Strip_NavigateToLogInPage;
+			this.ToolMenu_NavigateToLogInPage.Text = "Go to login page";
 			this.ToolMenu_NavigateToLogInPage.Size = new System.Drawing.Size(23, 22);
 			this.ToolMenu_NavigateToLogInPage.Click += new System.EventHandler(this.ToolMenu_NavigateToLogInPage_Click);
 			//
@@ -249,7 +249,7 @@ namespace Browser
 			this.ToolMenu_Other_ScreenShot.Name = "ToolMenu_Other_ScreenShot";
 			this.ToolMenu_Other_ScreenShot.ShortcutKeys = System.Windows.Forms.Keys.F2;
 			this.ToolMenu_Other_ScreenShot.Size = new System.Drawing.Size(199, 22);
-			this.ToolMenu_Other_ScreenShot.Text = Resources.Other_Screenshot;
+			this.ToolMenu_Other_ScreenShot.Text = "&Screenshot";
 			this.ToolMenu_Other_ScreenShot.Click += new System.EventHandler(this.ToolMenu_Other_ScreenShot_Click);
 			//
 			// ToolMenu_Other_LastScreenShot
@@ -260,7 +260,7 @@ namespace Browser
             this.ToolMenu_Other_LastScreenShot_CopyToClipboard});
 			this.ToolMenu_Other_LastScreenShot.Name = "ToolMenu_Other_LastScreenShot";
 			this.ToolMenu_Other_LastScreenShot.Size = new System.Drawing.Size(199, 22);
-			this.ToolMenu_Other_LastScreenShot.Text = "Previous Screenshot (&P)";
+			this.ToolMenu_Other_LastScreenShot.Text = "&Previous screenshot";
 			this.ToolMenu_Other_LastScreenShot.DropDownOpening += new System.EventHandler(this.ToolMenu_Other_LastScreenShot_DropDownOpening);
 			//
 			// toolStripSeparator15
@@ -272,7 +272,7 @@ namespace Browser
 			//
 			this.ToolMenu_Other_LastScreenShot_OpenScreenShotFolder.Name = "ToolMenu_Other_LastScreenShot_OpenScreenShotFolder";
 			this.ToolMenu_Other_LastScreenShot_OpenScreenShotFolder.Size = new System.Drawing.Size(187, 22);
-			this.ToolMenu_Other_LastScreenShot_OpenScreenShotFolder.Text = "&Open Screenshot Folder";
+			this.ToolMenu_Other_LastScreenShot_OpenScreenShotFolder.Text = "&Open screenshot folder";
 			this.ToolMenu_Other_LastScreenShot_OpenScreenShotFolder.Click += new System.EventHandler(this.ToolMenu_Other_LastScreenShot_OpenScreenShotFolder_Click);
 			//
 			// toolStripSeparator4
@@ -303,7 +303,7 @@ namespace Browser
             this.ToolMenu_Other_Zoom_400});
 			this.ToolMenu_Other_Zoom.Name = "ToolMenu_Other_Zoom";
 			this.ToolMenu_Other_Zoom.Size = new System.Drawing.Size(199, 22);
-			this.ToolMenu_Other_Zoom.Text = Resources.Other_Zoom;
+			this.ToolMenu_Other_Zoom.Text = "&Zoom";
 			//
 			// ToolMenu_Other_Zoom_Current
 			//
@@ -431,14 +431,14 @@ namespace Browser
 			//
 			this.ToolMenu_Other_Volume.Name = "ToolMenu_Other_Volume";
 			this.ToolMenu_Other_Volume.Size = new System.Drawing.Size(199, 22);
-			this.ToolMenu_Other_Volume.Text = Resources.Volume;
+			this.ToolMenu_Other_Volume.Text = "&Volume";
 			//
 			// ToolMenu_Other_Mute
 			//
 			this.ToolMenu_Other_Mute.Name = "ToolMenu_Other_Mute";
 			this.ToolMenu_Other_Mute.ShortcutKeys = System.Windows.Forms.Keys.F7;
 			this.ToolMenu_Other_Mute.Size = new System.Drawing.Size(199, 22);
-			this.ToolMenu_Other_Mute.Text = Resources.Other_Mute;
+			this.ToolMenu_Other_Mute.Text = "&Mute";
 			this.ToolMenu_Other_Mute.Click += new System.EventHandler(this.ToolMenu_Other_Mute_Click);
 			//
 			// toolStripSeparator7
@@ -450,22 +450,23 @@ namespace Browser
 			//
 			this.ToolMenu_Other_Refresh.Name = "ToolMenu_Other_Refresh";
 			this.ToolMenu_Other_Refresh.ShortcutKeys = System.Windows.Forms.Keys.F5;
+			this.ToolMenu_Other_Refresh.ShowShortcutKeys = true;
 			this.ToolMenu_Other_Refresh.Size = new System.Drawing.Size(199, 22);
-			this.ToolMenu_Other_Refresh.Text = Resources.Other_Refresh;
+			this.ToolMenu_Other_Refresh.Text = "&Refresh";
 			this.ToolMenu_Other_Refresh.Click += new System.EventHandler(this.ToolMenu_Other_Refresh_Click);
 			//
 			// ToolMenu_Other_NavigateToLogInPage
 			//
 			this.ToolMenu_Other_NavigateToLogInPage.Name = "ToolMenu_Other_NavigateToLogInPage";
 			this.ToolMenu_Other_NavigateToLogInPage.Size = new System.Drawing.Size(199, 22);
-			this.ToolMenu_Other_NavigateToLogInPage.Text = Resources.Other_NavigateToLogInPage;
+			this.ToolMenu_Other_NavigateToLogInPage.Text = "&Go to &login page";
 			this.ToolMenu_Other_NavigateToLogInPage.Click += new System.EventHandler(this.ToolMenu_Other_NavigateToLogInPage_Click);
 			//
 			// ToolMenu_Other_Navigate
 			//
 			this.ToolMenu_Other_Navigate.Name = "ToolMenu_Other_Navigate";
 			this.ToolMenu_Other_Navigate.Size = new System.Drawing.Size(199, 22);
-			this.ToolMenu_Other_Navigate.Text = Resources.Other_Navigate;
+			this.ToolMenu_Other_Navigate.Text = "Go to...";
 			this.ToolMenu_Other_Navigate.Click += new System.EventHandler(this.ToolMenu_Other_Navigate_Click);
 			//
 			// toolStripSeparator5
@@ -478,14 +479,14 @@ namespace Browser
 			this.ToolMenu_Other_AppliesStyleSheet.CheckOnClick = true;
 			this.ToolMenu_Other_AppliesStyleSheet.Name = "ToolMenu_Other_AppliesStyleSheet";
 			this.ToolMenu_Other_AppliesStyleSheet.Size = new System.Drawing.Size(199, 22);
-			this.ToolMenu_Other_AppliesStyleSheet.Text = Resources.Other_ApplyStyleSheet;
+			this.ToolMenu_Other_AppliesStyleSheet.Text = "Apply stylesheet";
 			this.ToolMenu_Other_AppliesStyleSheet.Click += new System.EventHandler(this.ToolMenu_Other_AppliesStyleSheet_Click);
 			//
 			// ToolMenu_Other_ClearCache
 			//
 			this.ToolMenu_Other_ClearCache.Name = "ToolMenu_Other_ClearCache";
 			this.ToolMenu_Other_ClearCache.Size = new System.Drawing.Size(199, 22);
-			this.ToolMenu_Other_ClearCache.Text = "Clear Browser Cache (&C)";
+			this.ToolMenu_Other_ClearCache.Text = "Clear browser &cache";
 			this.ToolMenu_Other_ClearCache.Click += new System.EventHandler(this.ToolMenu_Other_ClearCache_Click);
 			//
 			// toolStripSeparator6
@@ -503,7 +504,7 @@ namespace Browser
             this.ToolMenu_Other_Alignment_Invisible});
 			this.ToolMenu_Other_Alignment.Name = "ToolMenu_Other_Alignment";
 			this.ToolMenu_Other_Alignment.Size = new System.Drawing.Size(199, 22);
-			this.ToolMenu_Other_Alignment.Text = Resources.Other_Alignment;
+			this.ToolMenu_Other_Alignment.Text = "&Alignment";
 			this.ToolMenu_Other_Alignment.DropDownOpening += new System.EventHandler(this.ToolMenu_Other_Alignment_DropDownOpening);
 			//
 			// ToolMenu_Other_Alignment_Top
@@ -545,7 +546,7 @@ namespace Browser
             //
             this.ToolMenu_Other_RegionCookie.Name = "ToolMenu_Other_RegionCookie";
             this.ToolMenu_Other_RegionCookie.Size = new System.Drawing.Size(319, 34);
-            this.ToolMenu_Other_RegionCookie.Text = Resources.Other_RegionCookie;
+            this.ToolMenu_Other_RegionCookie.Text = "Set region cookie";
             this.ToolMenu_Other_RegionCookie.Click += new System.EventHandler(this.ToolMenu_Other_RegionCookie_Click);
 			//
 			//
@@ -559,7 +560,7 @@ namespace Browser
 			//
 			this.ToolMenu_Other_LastScreenShot_CopyToClipboard.Name = "ToolMenu_Other_LastScreenShot_CopyToClipboard";
 			this.ToolMenu_Other_LastScreenShot_CopyToClipboard.Size = new System.Drawing.Size(187, 22);
-			this.ToolMenu_Other_LastScreenShot_CopyToClipboard.Text = "Copy to Clipboard (&C)";
+			this.ToolMenu_Other_LastScreenShot_CopyToClipboard.Text = "&Copy";
 			this.ToolMenu_Other_LastScreenShot_CopyToClipboard.Click += new System.EventHandler(this.ToolMenu_Other_LastScreenShot_CopyToClipboard_Click);
 			//
 			// FormBrowser

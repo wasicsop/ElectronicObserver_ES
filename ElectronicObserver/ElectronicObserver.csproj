@@ -256,6 +256,7 @@
     <Compile Include="Observer\kcsapi\api_get_member\record.cs" />
     <Compile Include="Observer\kcsapi\api_get_member\require_info.cs" />
     <Compile Include="Observer\kcsapi\api_get_member\ship_deck.cs" />
+    <Compile Include="Observer\kcsapi\api_get_member\sortie_conditions.cs" />
     <Compile Include="Observer\kcsapi\api_req_air_corps\change_name.cs" />
     <Compile Include="Observer\kcsapi\api_req_air_corps\expand_base.cs" />
     <Compile Include="Observer\kcsapi\api_req_air_corps\set_action.cs" />
@@ -422,6 +423,12 @@
     </Compile>
     <Compile Include="Window\Dialog\DialogAntiAirDefense.Designer.cs">
       <DependentUpon>DialogAntiAirDefense.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Window\Dialog\DialogBaseAirCorpsSimulation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Window\Dialog\DialogBaseAirCorpsSimulation.Designer.cs">
+      <DependentUpon>DialogBaseAirCorpsSimulation.cs</DependentUpon>
     </Compile>
     <Compile Include="Window\Dialog\DialogBattleDetail.cs">
       <SubType>Form</SubType>
@@ -760,16 +767,12 @@
     <EmbeddedResource Include="Window\GeneralRes.en.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Window\GeneralRes.ko.resx">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Window\GeneralRes.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>GeneralRes.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Window\Menus.en.resx" />
-    <EmbeddedResource Include="Window\Menus.ko.resx" />
     <EmbeddedResource Include="Window\Menus.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Menus.Designer.cs</LastGenOutput>
@@ -807,6 +810,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Window\Dialog\DialogAntiAirDefense.resx">
       <DependentUpon>DialogAntiAirDefense.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Window\Dialog\DialogBaseAirCorpsSimulation.resx">
+      <DependentUpon>DialogBaseAirCorpsSimulation.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Window\Dialog\DialogBattleDetail.resx">
       <DependentUpon>DialogBattleDetail.cs</DependentUpon>
@@ -960,7 +966,7 @@
     <None Include="Settings\ColorScheme.example.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Settings\ColorScheme.Solarized.json">
+    <None Include="Settings\ColorScheme.Dark.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

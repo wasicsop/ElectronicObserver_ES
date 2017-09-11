@@ -248,87 +248,6 @@ namespace Browser.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 配置(&amp;A).
-        /// </summary>
-        internal static string Other_Alignment {
-            get {
-                return ResourceManager.GetString("Other_Alignment", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to スタイルシートを適用する.
-        /// </summary>
-        internal static string Other_ApplyStyleSheet {
-            get {
-                return ResourceManager.GetString("Other_ApplyStyleSheet", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to ミュート(&amp;M).
-        /// </summary>
-        internal static string Other_Mute {
-            get {
-                return ResourceManager.GetString("Other_Mute", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 移動(&amp;N)....
-        /// </summary>
-        internal static string Other_Navigate {
-            get {
-                return ResourceManager.GetString("Other_Navigate", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to ログインページへ移動(&amp;L).
-        /// </summary>
-        internal static string Other_NavigateToLogInPage {
-            get {
-                return ResourceManager.GetString("Other_NavigateToLogInPage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 更新(&amp;R).
-        /// </summary>
-        internal static string Other_Refresh {
-            get {
-                return ResourceManager.GetString("Other_Refresh", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 地域制限クッキーを設定.
-        /// </summary>
-        internal static string Other_RegionCookie {
-            get {
-                return ResourceManager.GetString("Other_RegionCookie", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to スクリーンショット(&amp;S).
-        /// </summary>
-        internal static string Other_Screenshot {
-            get {
-                return ResourceManager.GetString("Other_Screenshot", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to ズーム(&amp;Z).
-        /// </summary>
-        internal static string Other_Zoom {
-            get {
-                return ResourceManager.GetString("Other_Zoom", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 現在% .
         /// </summary>
         internal static string Other_Zoom_Current {
@@ -410,15 +329,6 @@ namespace Browser.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ログインページへ移動.
-        /// </summary>
-        internal static string Strip_NavigateToLogInPage {
-            get {
-                return ResourceManager.GetString("Strip_NavigateToLogInPage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 更新.
         /// </summary>
         internal static string Strip_Refresh {
@@ -460,15 +370,6 @@ namespace Browser.Properties {
         internal static string Title {
             get {
                 return ResourceManager.GetString("Title", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 音量(&amp;V).
-        /// </summary>
-        internal static string Volume {
-            get {
-                return ResourceManager.GetString("Volume", resourceCulture);
             }
         }
     }

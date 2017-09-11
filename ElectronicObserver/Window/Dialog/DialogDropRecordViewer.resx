@@ -921,7 +921,7 @@
     <value>CenterParent</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Drop log</value>
+    <value>Drop Log</value>
   </data>
   <data name="&gt;&gt;RecordView_Header.Name" xml:space="preserve">
     <value>RecordView_Header</value>

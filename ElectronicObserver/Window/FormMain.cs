@@ -163,6 +163,7 @@ namespace ElectronicObserver.Window {
 			StripMenu_Tool_AlbumMasterEquipment.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormAlbumEquipment];
 			StripMenu_Tool_AntiAirDefense.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormAntiAirDefense];
 			StripMenu_Tool_FleetImageGenerator.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormFleetImageGenerator];
+			StripMenu_Tool_BaseAirCorpsSimulation.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormBaseAirCorps];
 
 			StripMenu_Help_Help.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormInformation];
 			StripMenu_Help_Version.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.AppIcon];
@@ -351,22 +352,19 @@ namespace ElectronicObserver.Window {
 			switch ( ClockFormat ) {
 				case 0:	//時計表示
 					DateTime pvpReset = now.Date.AddHours( 3 );
-					DateTime questReset = now.Date.AddHours( 5 );
-
-					if (pvpReset < now)
+					while (pvpReset < now)
 						pvpReset = pvpReset.AddHours( 12 );
+					TimeSpan pvpTimer = pvpReset - now;
+
+					DateTime questReset = now.Date.AddHours( 5 );
 					if (questReset < now)
-						questReset = questReset.AddHours( 12 );
+						questReset = questReset.AddHours( 24 );
+					TimeSpan questTimer = questReset - now;
 
-					TimeSpan pvpCountdown = pvpReset - now;
-					TimeSpan questResetCountdown = questReset - now;
-
-					String pvpResetMsg = string.Format( "Next PVP Reset: {0:D2}:{1:D2}:{2:D2}\r\n", (int)pvpCountdown.TotalHours, pvpCountdown.Minutes, pvpCountdown.Seconds );
-					String questResetMsg = string.Format( "Next Quest Reset: {0:D2}:{1:D2}:{2:D2}", (int)pvpCountdown.TotalHours, pvpCountdown.Minutes, pvpCountdown.Seconds );
+					String resetMsg = string.Format( "Next PVP Reset: {0:D2}:{1:D2}:{2:D2}\r\nNext Quest Reset: {3:D2}:{4:D2}:{5:D2}", (int)pvpTimer.TotalHours, pvpTimer.Minutes, pvpTimer.Seconds, (int)questTimer.TotalHours, questTimer.Minutes, questTimer.Seconds );
 					
-
 					StripStatus_Clock.Text = now.ToString( "HH\\:mm\\:ss" );
-					StripStatus_Clock.ToolTipText = now.ToString( "yyyy\\/MM\\/dd (ddd)\r\n" ) + pvpResetMsg + questResetMsg ;
+					StripStatus_Clock.ToolTipText = now.ToString( "yyyy\\/MM\\/dd (ddd)\r\n" ) + resetMsg;
 
 					break;
 
@@ -429,7 +427,7 @@ namespace ElectronicObserver.Window {
 		private void FormMain_FormClosing( object sender, FormClosingEventArgs e ) {
 
 			if ( Utility.Configuration.Config.Life.ConfirmOnClosing ) {
-				if ( MessageBox.Show( "Are you sure you want to exit Electronic Observer?", "Electronic Observer", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2 )
+				if ( MessageBox.Show( "Are you sure you want to exit?", "Electronic Observer", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2 )
 					== System.Windows.Forms.DialogResult.No ) {
 					e.Cancel = true;
 					return;
@@ -1124,7 +1122,7 @@ namespace ElectronicObserver.Window {
 		private void StripMenu_Help_Issue_Click(object sender, EventArgs e)
 		{
 
-			if (MessageBox.Show("This will open a page with your browser.\r\nAre you sure?", "Report an Issue",
+			if (MessageBox.Show("This will open a page with your browser.\r\nAre you sure?", "Report A Problem",
 				MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1)
 				== System.Windows.Forms.DialogResult.Yes)
 			{
@@ -1162,7 +1160,7 @@ namespace ElectronicObserver.Window {
 			using ( var dialog = new OpenFileDialog() ) {
 
 				dialog.Filter = "Layout Archive|*.zip|File|*";
-				dialog.Title = "レイアウト ファイルを開く";
+				dialog.Title = "Open Layout File";
 
 
 				PathHelper.InitOpenFileDialog( Utility.Configuration.Config.Life.LayoutFilePath, dialog );
@@ -1183,7 +1181,7 @@ namespace ElectronicObserver.Window {
 			using ( var dialog = new SaveFileDialog() ) {
 
 				dialog.Filter = "Layout Archive|*.zip|File|*";
-				dialog.Title = "レイアウト ファイルの保存";
+				dialog.Title = "Save Layout As";
 
 
 				PathHelper.InitSaveFileDialog( Utility.Configuration.Config.Life.LayoutFilePath, dialog );
@@ -1267,6 +1265,10 @@ namespace ElectronicObserver.Window {
 			new Dialog.DialogFleetImageGenerator( 1 ).Show( this );
 		}
 
+		private void StripMenu_Tool_BaseAirCorpsSimulation_Click( object sender, EventArgs e ) {
+
+			new Dialog.DialogBaseAirCorpsSimulation().Show( this );
+		}
 
 
 		private void StripMenu_File_Layout_LockLayout_Click( object sender, EventArgs e ) {

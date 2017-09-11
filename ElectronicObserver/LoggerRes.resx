@@ -210,9 +210,6 @@
   <data name="FailedSavingErrorReport" xml:space="preserve">
     <value>エラーレポートの書き込みに失敗しました。\r\n{0}\r\n{1}</value>
   </data>
-  <data name="FailedSavingRecords" xml:space="preserve">
-    <value>レコードのセーブに失敗しました。</value>
-  </data>
   <data name="FailedSavingStorage" xml:space="preserve">
     <value>DataStorage の書き込みに失敗しました。</value>
   </data>
@@ -272,9 +269,6 @@
   </data>
   <data name="SavedAPI" xml:space="preserve">
     <value>通信からファイル {0} を保存しました。</value>
-  </data>
-  <data name="SavedRecords" xml:space="preserve">
-    <value>レコードをセーブしました。</value>
   </data>
   <data name="SentDatabase" xml:space="preserve">
     <value>艦これ統計データベースへ {0} を送信しました。</value>

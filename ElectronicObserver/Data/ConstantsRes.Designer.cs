@@ -646,15 +646,6 @@ namespace ElectronicObserver.Data {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ボス戦闘.
-        /// </summary>
-        internal static string BossNode {
-            get {
-                return ResourceManager.GetString("BossNode", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 高速修復材.
         /// </summary>
         internal static string Bucket {
@@ -1429,15 +1420,6 @@ namespace ElectronicObserver.Data {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 通常戦闘.
-        /// </summary>
-        internal static string NormalNode {
-            get {
-                return ResourceManager.GetString("NormalNode", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 新米中佐.
         /// </summary>
         internal static string NoviceCommander {
@@ -1578,15 +1560,6 @@ namespace ElectronicObserver.Data {
         internal static string ResourceDamage {
             get {
                 return ResourceManager.GetString("ResourceDamage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 資源.
-        /// </summary>
-        internal static string Resources {
-            get {
-                return ResourceManager.GetString("Resources", resourceCulture);
             }
         }
         

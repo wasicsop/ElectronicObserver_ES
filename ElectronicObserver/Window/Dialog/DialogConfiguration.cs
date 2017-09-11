@@ -333,6 +333,7 @@ namespace ElectronicObserver.Window.Dialog {
 			Control_RecordAutoSaving.SelectedIndex = config.Control.RecordAutoSaving;
 			Control_UseSystemVolume.Checked = config.Control.UseSystemVolume;
 			Control_PowerEngagementForm.SelectedIndex = config.Control.PowerEngagementForm - 1;
+			Control_ShowSallyAreaAlertDialog.Checked = config.Control.ShowSallyAreaAlertDialog;
 
 			//[デバッグ]
 			Debug_EnableDebugMenu.Checked = config.Debug.EnableDebugMenu;
@@ -375,6 +376,7 @@ namespace ElectronicObserver.Window.Dialog {
 			FormFleet_ReflectAnchorageRepairHealing.Checked = config.FormFleet.ReflectAnchorageRepairHealing;
 			FormFleet_BlinkAtDamaged.Checked = config.FormFleet.BlinkAtDamaged;
 			FormFleet_EmphasizesSubFleetInPort.Checked = config.FormFleet.EmphasizesSubFleetInPort;
+			FormFleet_FleetStateDisplayMode.SelectedIndex = config.FormFleet.FleetStateDisplayMode;
 
 			FormHeadquarters_BlinkAtMaximum.Checked = config.FormHeadquarters.BlinkAtMaximum;
 			FormHeadquarters_Visibility.Items.Clear();
@@ -414,6 +416,7 @@ namespace ElectronicObserver.Window.Dialog {
 			FormBattle_IsScrollable.Checked = config.FormBattle.IsScrollable;
 			FormBattle_HideDuringBattle.Checked = config.FormBattle.HideDuringBattle;
 			FormBattle_ShowHPBar.Checked = config.FormBattle.ShowHPBar;
+			FormBattle_ShowShipTypeInHPBar.Checked = config.FormBattle.ShowShipTypeInHPBar;
 
 			FormBrowser_IsEnabled.Checked = config.FormBrowser.IsEnabled;
 			FormBrowser_ZoomRate.Value = config.FormBrowser.ZoomRate;
@@ -426,6 +429,7 @@ namespace ElectronicObserver.Window.Dialog {
 			FormBrowser_AppliesStyleSheet.Checked = config.FormBrowser.AppliesStyleSheet;
 			FormBrowser_IsDMMreloadDialogDestroyable.Checked = config.FormBrowser.IsDMMreloadDialogDestroyable;
 			FormBrowser_ScreenShotFormat_AvoidTwitterDeterioration.Checked = config.FormBrowser.AvoidTwitterDeterioration;
+			FormBrowser_ScreenShotSaveMode.SelectedIndex = config.FormBrowser.ScreenShotSaveMode - 1;
 			{
 				Microsoft.Win32.RegistryKey reg = null;
 				try {
@@ -476,6 +480,9 @@ namespace ElectronicObserver.Window.Dialog {
 			FormJson_AutoUpdate.Checked = config.FormJson.AutoUpdate;
 			FormJson_UpdatesTree.Checked = config.FormJson.UpdatesTree;
 			FormJson_AutoUpdateFilter.Text = config.FormJson.AutoUpdateFilter;
+
+			FormBaseAirCorps_ShowEventMapOnly.Checked = config.FormBaseAirCorps.ShowEventMapOnly;
+
 
 			//[通知]
 			{
@@ -575,6 +582,7 @@ namespace ElectronicObserver.Window.Dialog {
 			config.Control.RecordAutoSaving = Control_RecordAutoSaving.SelectedIndex;
 			config.Control.UseSystemVolume = Control_UseSystemVolume.Checked;
 			config.Control.PowerEngagementForm = Control_PowerEngagementForm.SelectedIndex + 1;
+			config.Control.ShowSallyAreaAlertDialog = Control_ShowSallyAreaAlertDialog.Checked;
 
 			//[デバッグ]
 			config.Debug.EnableDebugMenu = Debug_EnableDebugMenu.Checked;
@@ -617,6 +625,7 @@ namespace ElectronicObserver.Window.Dialog {
 			config.FormFleet.ReflectAnchorageRepairHealing = FormFleet_ReflectAnchorageRepairHealing.Checked;
 			config.FormFleet.BlinkAtDamaged = FormFleet_BlinkAtDamaged.Checked;
 			config.FormFleet.EmphasizesSubFleetInPort = FormFleet_EmphasizesSubFleetInPort.Checked;
+			config.FormFleet.FleetStateDisplayMode = FormFleet_FleetStateDisplayMode.SelectedIndex;
 
 			config.FormHeadquarters.BlinkAtMaximum = FormHeadquarters_BlinkAtMaximum.Checked;
 			{
@@ -662,6 +671,7 @@ namespace ElectronicObserver.Window.Dialog {
 			config.FormBattle.IsScrollable = FormBattle_IsScrollable.Checked;
 			config.FormBattle.HideDuringBattle = FormBattle_HideDuringBattle.Checked;
 			config.FormBattle.ShowHPBar = FormBattle_ShowHPBar.Checked;
+			config.FormBattle.ShowShipTypeInHPBar = FormBattle_ShowShipTypeInHPBar.Checked;
 
 			config.FormBrowser.IsEnabled = FormBrowser_IsEnabled.Checked;
 			config.FormBrowser.ZoomRate = (int)FormBrowser_ZoomRate.Value;
@@ -684,6 +694,7 @@ namespace ElectronicObserver.Window.Dialog {
 				config.FormBrowser.IsToolMenuVisible = true;
 				config.FormBrowser.ToolMenuDockStyle = (DockStyle)( FormBrowser_ToolMenuDockStyle.SelectedIndex + 1 );
 			}
+			config.FormBrowser.ScreenShotSaveMode = FormBrowser_ScreenShotSaveMode.SelectedIndex + 1;
 
 			config.FormCompass.CandidateDisplayCount = (int)FormCompass_CandidateDisplayCount.Value;
 			config.FormCompass.IsScrollable = FormCompass_IsScrollable.Checked;
@@ -692,6 +703,9 @@ namespace ElectronicObserver.Window.Dialog {
 			config.FormJson.AutoUpdate = FormJson_AutoUpdate.Checked;
 			config.FormJson.UpdatesTree = FormJson_UpdatesTree.Checked;
 			config.FormJson.AutoUpdateFilter = FormJson_AutoUpdateFilter.Text;
+
+			config.FormBaseAirCorps.ShowEventMapOnly = FormBaseAirCorps_ShowEventMapOnly.Checked;
+
 
 			//[通知]
 			setSilencioConfig( Notification_Silencio.Checked );

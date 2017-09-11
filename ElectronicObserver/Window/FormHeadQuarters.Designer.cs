@@ -111,7 +111,7 @@
 			this.HQLevel.Name = "HQLevel";
 			this.HQLevel.Size = new System.Drawing.Size(88, 20);
 			this.HQLevel.TabIndex = 0;
-			this.HQLevel.Text = "HQ Lv.";
+			this.HQLevel.Text = "Lv";
 			// 
 			// FlowPanelFleet
 			// 
@@ -295,7 +295,7 @@
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 			this.HideOnClose = true;
 			this.Name = "FormHeadquarters";
-			this.Text = GeneralRes.Headquarters;
+			this.Text = "HQ";
 			this.Load += new System.EventHandler(this.FormHeadquarters_Load);
 			this.FlowPanelMaster.ResumeLayout(false);
 			this.FlowPanelMaster.PerformLayout();

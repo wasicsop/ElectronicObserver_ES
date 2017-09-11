@@ -36,7 +36,7 @@ namespace ElectronicObserver.Utility {
 		/// </summary>
 		public static string VersionJapanese {
 			get {
-				return SoftwareNameJapanese + "二七型改甲";
+				return SoftwareNameJapanese + "二八型";
 			}
 		}
 
@@ -45,7 +45,7 @@ namespace ElectronicObserver.Utility {
 		/// </summary>
 		public static string VersionEnglish {
 			get {
-				return "2.7.1.1";
+				return "2.8.0";
 			}
 		}
 
@@ -55,7 +55,7 @@ namespace ElectronicObserver.Utility {
 		/// </summary>
 		public static DateTime UpdateTime {
 			get {
-				return DateTimeHelper.CSVStringToTime( "2017/08/30 23:45:00" );
+				return DateTimeHelper.CSVStringToTime( "2017/09/10 00:15:00" );
 			}
 		}
 
@@ -83,14 +83,14 @@ namespace ElectronicObserver.Utility {
 
 			if ( e.Error != null ) {
 
-				Utility.ErrorReporter.SendErrorReport( e.Error, Resources.UpdateCheckFailed );
+				Utility.ErrorReporter.SendErrorReport( e.Error, "Failed to obtain update data." );
 				return;
 
 			}
 
 			if ( e.Result.StartsWith( "<!DOCTYPE html>" ) ) {
 
-				Utility.Logger.Add( 3, Resources.BadUpdateURI );
+				Utility.Logger.Add( 3, "Invalid update URL." );
 				return;
 
 			}

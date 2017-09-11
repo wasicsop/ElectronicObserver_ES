@@ -121,7 +121,7 @@
     <value>Bottom (&amp;B)</value>
   </data>
   <data name="Alignment_Invisible" xml:space="preserve">
-    <value>Invisible (&amp;I)</value>
+    <value>Hidden (&amp;I)</value>
   </data>
   <data name="Alignment_Left" xml:space="preserve">
     <value>Left (&amp;L)</value>
@@ -132,71 +132,11 @@
   <data name="Alignment_Top" xml:space="preserve">
     <value>Top (&amp;T)</value>
   </data>
-  <data name="Arsenal" xml:space="preserve">
-    <value>Arsenal (&amp;A)</value>
-  </data>
-  <data name="Battle" xml:space="preserve">
-    <value>Battle (&amp;B)</value>
-  </data>
-  <data name="Browser" xml:space="preserve">
-    <value>Browser</value>
-  </data>
-  <data name="Close" xml:space="preserve">
-    <value>Quit (&amp;X)</value>
-  </data>
-  <data name="Compass" xml:space="preserve">
-    <value>Compass (&amp;C)</value>
-  </data>
   <data name="ControlWindow" xml:space="preserve">
     <value>Controls (&amp;C)</value>
   </data>
-  <data name="DeleteOldAPI" xml:space="preserve">
-    <value>Delete Old API Data (&amp;D)</value>
-  </data>
   <data name="DetachAll" xml:space="preserve">
-    <value>Detatch All Captured Windows (&amp;R)</value>
-  </data>
-  <data name="Dock" xml:space="preserve">
-    <value>Dock (&amp;D)</value>
-  </data>
-  <data name="EquipEncyclopedia" xml:space="preserve">
-    <value>Equipment Encyclopedia (&amp;E)</value>
-  </data>
-  <data name="EquipmentList" xml:space="preserve">
-    <value>Equipment List (&amp;Q)</value>
-  </data>
-  <data name="FleetList" xml:space="preserve">
-    <value>Fleet List (&amp;O)</value>
-  </data>
-  <data name="Fleets" xml:space="preserve">
-    <value>Fleets (&amp;F)</value>
-  </data>
-  <data name="Headquarters" xml:space="preserve">
-    <value>Headquarters (&amp;H)</value>
-  </data>
-  <data name="Information" xml:space="preserve">
-    <value>Information (&amp;I)</value>
-  </data>
-  <data name="Layout" xml:space="preserve">
-    <value>Layout (&amp;L)</value>
-  </data>
-  <data name="LayoutOpen" xml:space="preserve">
-    <value>Open from another file (&amp;O)...</value>
-  </data>
-  <data name="Load" xml:space="preserve">
-    <value>Load (&amp;L)</value>
-  </data>
-  <data name="LoadAPIFromFile" xml:space="preserve">
-    <value>Load API data from file (&amp;L)...</value>
-  </data>
-  <data name="LoadAPIList" xml:space="preserve">
-    <value>Load API List (&amp;I)...</value>
-  </data>
-  <data name="LoadOldAPIRecord" xml:space="preserve">
-    <value>Load from old api_start2 (&amp;O)...</value>
-  </data>
-  <data name="Log" xml:space="preserve">
-    <value>Log (&amp;L)</value>
+    <value>Detach all captured windows (&amp;R)</value>
   </data>
   <data name="OnlineHelp" xml:space="preserve">
     <value>Online &amp;Help...</value>
@@ -204,59 +144,14 @@
   <data name="Other" xml:space="preserve">
     <value>Other</value>
   </data>
-  <data name="Other_Alignment" xml:space="preserve">
-    <value>Alignment (&amp;A)</value>
-  </data>
-  <data name="Other_ApplyStyleSheet" xml:space="preserve">
-    <value>Apply Style Sheet</value>
-  </data>
-  <data name="Other_Mute" xml:space="preserve">
-    <value>Mute (&amp;M)</value>
-  </data>
-  <data name="Other_Navigate" xml:space="preserve">
-    <value>Go to... (&amp;N)</value>
-  </data>
-  <data name="Other_NavigateToLogInPage" xml:space="preserve">
-    <value>Go to Login Page (&amp;L)</value>
-  </data>
-  <data name="Other_Refresh" xml:space="preserve">
-    <value>Refresh (&amp;R)</value>
-  </data>
-  <data name="Other_RegionCookie" xml:space="preserve">
-    <value>Set Region Cookie</value>
-  </data>
-  <data name="Other_Screenshot" xml:space="preserve">
-    <value>Screenshot (&amp;S)</value>
-  </data>
-  <data name="Other_Zoom" xml:space="preserve">
-    <value>Zoom (&amp;Z)</value>
-  </data>
   <data name="Other_Zoom_current" xml:space="preserve">
     <value>Current%</value>
   </data>
   <data name="Other_Zoom_Fit" xml:space="preserve">
     <value>Zoom To Fit</value>
   </data>
-  <data name="Quest" xml:space="preserve">
-    <value>Quests (&amp;Q)</value>
-  </data>
   <data name="ReattachAll" xml:space="preserve">
-    <value>Reattach All Captured Windows (&amp;S)</value>
-  </data>
-  <data name="Record" xml:space="preserve">
-    <value>Record (&amp;R)</value>
-  </data>
-  <data name="RenameShipResource" xml:space="preserve">
-    <value>Rename Ship Resource (&amp;R)...</value>
-  </data>
-  <data name="Save" xml:space="preserve">
-    <value>Save (&amp;S)</value>
-  </data>
-  <data name="Settings" xml:space="preserve">
-    <value>Settings (&amp;C)...</value>
-  </data>
-  <data name="ShipEncyclopedia" xml:space="preserve">
-    <value>Ship Encylopedia (&amp;S)</value>
+    <value>Reattach all captured windows (&amp;S)</value>
   </data>
   <data name="ShipGroup" xml:space="preserve">
     <value>Ship Groups (&amp;G)</value>
@@ -267,46 +162,13 @@
   <data name="Title" xml:space="preserve">
     <value>Type 74 Electronic Observation Device</value>
   </data>
-  <data name="VersionInfo" xml:space="preserve">
-    <value>&amp;About Electronic Observer</value>
-  </data>
   <data name="WindowCapture" xml:space="preserve">
-    <value>Window Capture (&amp;W)</value>
+    <value>&amp;Window capture</value>
   </data>
   <data name="ShowShipName" xml:space="preserve">
     <value>Show Ship Name (&amp;V)</value>
   </data>
-  <data name="ResourceChart" xml:space="preserve">
-    <value>Resource Chart (&amp;C)</value>
-  </data>
-  <data name="BuildRecord" xml:space="preserve">
-    <value>Construction Record (&amp;R)</value>
-  </data>
-  <data name="DevRecord" xml:space="preserve">
-    <value>Development Record (&amp;V)</value>
-  </data>
-  <data name="DropRecord" xml:space="preserve">
-    <value>Drop Record (&amp;D)</value>
-  </data>
-  <data name="BaseAirCorps" xml:space="preserve">
-    <value>Air Ba&amp;se</value>
-  </data>
-  <data name="File_Layout_Change" xml:space="preserve">
-    <value>Save to another file... (&amp;C)</value>
-  </data>
-  <data name="File_Layout_LockLayout" xml:space="preserve">
-    <value>Lock Layout (&amp;T)</value>
-  </data>
-  <data name="File_Layout_TopMost" xml:space="preserve">
-    <value>Always on Top (&amp;M)</value>
-  </data>
   <data name="Option" xml:space="preserve">
     <value>&amp;Option</value>
-  </data>
-  <data name="AntiAirDefense" xml:space="preserve">
-    <value>AA Defense Details (&amp;A)</value>
-  </data>
-  <data name="LoadDataFromOld" xml:space="preserve">
-    <value>Restore Abyssal Data from Old api_start2 (&amp;A)...</value>
   </data>
 </root>

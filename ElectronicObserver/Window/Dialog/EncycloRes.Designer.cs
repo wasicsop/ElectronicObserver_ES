@@ -205,15 +205,6 @@ namespace ElectronicObserver.Window.Dialog {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to CSVに出力.
-        /// </summary>
-        internal static string CSVTitle {
-            get {
-                return ResourceManager.GetString("CSVTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 日付.
         /// </summary>
         internal static string Date {
@@ -562,15 +553,6 @@ namespace ElectronicObserver.Window.Dialog {
         internal static string None {
             get {
                 return ResourceManager.GetString("None", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to CSV出力(&amp;C)....
-        /// </summary>
-        internal static string OutputCSV {
-            get {
-                return ResourceManager.GetString("OutputCSV", resourceCulture);
             }
         }
         

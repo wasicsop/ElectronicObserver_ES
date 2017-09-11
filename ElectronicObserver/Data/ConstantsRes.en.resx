@@ -165,9 +165,6 @@
   <data name="Blue" xml:space="preserve">
     <value>Blue</value>
   </data>
-  <data name="BossNode" xml:space="preserve">
-    <value>Boss Node</value>
-  </data>
   <data name="Bucket" xml:space="preserve">
     <value>Instant Repair</value>
   </data>
@@ -387,9 +384,6 @@
   <data name="NormalFleet" xml:space="preserve">
     <value>Normal Fleet</value>
   </data>
-  <data name="NormalNode" xml:space="preserve">
-    <value>Battle Node</value>
-  </data>
   <data name="NoviceCommander" xml:space="preserve">
     <value>Novice Commander</value>
   </data>
@@ -422,9 +416,6 @@
   </data>
   <data name="Red" xml:space="preserve">
     <value>Red</value>
-  </data>
-  <data name="Resources" xml:space="preserve">
-    <value>Resources</value>
   </data>
   <data name="Retreated" xml:space="preserve">
     <value>Retreated</value>
