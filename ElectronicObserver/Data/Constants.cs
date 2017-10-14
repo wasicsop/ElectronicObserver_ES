@@ -613,30 +613,34 @@ namespace ElectronicObserver.Data {
 		/// </summary>
 		public static string GetDayAttackKind( DayAttackKind id ) {
 			switch ( id ) {
-				case  DayAttackKind.Shelling:
-					return ConstantsRes.Shelling;
-				case  DayAttackKind.Laser:
-					return ConstantsRes.Laser;
-				case  DayAttackKind.DoubleShelling:
-					return ConstantsRes.DoubleAttack;
-				case  DayAttackKind.CutinMainSub:
-					return ConstantsRes.CutIn + ConstantsRes.MainSecondary;
-				case  DayAttackKind.CutinMainLadar:
-					return ConstantsRes.CutIn + ConstantsRes.MainRadar;
-				case  DayAttackKind.CutinMainAP:
-					return ConstantsRes.CutIn + ConstantsRes.MainAP;
-				case  DayAttackKind.CutinMainMain:
-					return ConstantsRes.CutIn + ConstantsRes.MainMain;
-				case  DayAttackKind.AirAttack:
-					return ConstantsRes.AirAttack;
-				case  DayAttackKind.DepthCharge:
-					return ConstantsRes.DepthChargeAttack;
-				case  DayAttackKind.Torpedo:
-					return ConstantsRes.TorpedoAttack;
-				case  DayAttackKind.Rocket:
-					return ConstantsRes.RocketAttack;
-				case  DayAttackKind.LandingDaihatsu:
-					return ConstantsRes.DaihatsuAttack;
+				case DayAttackKind.NormalAttack:
+					return "Normal Attack";
+				case DayAttackKind.Laser:
+					return "Laser Attack";
+				case DayAttackKind.DoubleShelling:
+					return "DA";
+				case DayAttackKind.CutinMainSub:
+					return "CI (MG+SG)";
+				case DayAttackKind.CutinMainLadar:
+					return "CI (MG+Radar)";
+				case DayAttackKind.CutinMainAP:
+					return "CI (MG+AP)";
+				case DayAttackKind.CutinMainMain:
+					return "CI (MG+MG)";
+				case DayAttackKind.CutinAirAttack:
+					return "CI (Carrier)";
+				case DayAttackKind.Shelling:
+					return "Shelling";
+				case DayAttackKind.AirAttack:
+					return "Air Attack";
+				case DayAttackKind.DepthCharge:
+					return "Depth Charge";
+				case DayAttackKind.Torpedo:
+					return "Torpedo";
+				case DayAttackKind.Rocket:
+					return "Rocket Artillery";
+				case DayAttackKind.LandingDaihatsu:
+					return "Amphibious Attack (Daihatsu)";
 				case DayAttackKind.LandingTokuDaihatsu:
 					return "Amphibious Attack(Toku Daihatsu)";
 				case DayAttackKind.LandingDaihatsuTank:
@@ -656,20 +660,22 @@ namespace ElectronicObserver.Data {
 		/// </summary>
 		public static string GetNightAttackKind( NightAttackKind id ) {
 			switch ( id ) {
-				case  NightAttackKind.Shelling:
-					return ConstantsRes.Shelling;
-				case  NightAttackKind.DoubleShelling:
-					return ConstantsRes.DoubleAttack;
-				case  NightAttackKind.CutinMainTorpedo:
-					return ConstantsRes.CutIn + ConstantsRes.MainTorp;
-				case  NightAttackKind.CutinTorpedoTorpedo:
-					return ConstantsRes.CutIn + ConstantsRes.TorpTorp;
-				case  NightAttackKind.CutinMainSub:
-					return ConstantsRes.CutIn + ConstantsRes.MainMainSec;
+				case NightAttackKind.NormalAttack:
+					return "Shelling";
+				case NightAttackKind.DoubleShelling:
+					return "DA";
+				case NightAttackKind.CutinMainTorpedo:
+					return "CI (MG+Torp)";
+				case NightAttackKind.CutinTorpedoTorpedo:
+					return "CI (Torp×2)";
+				case NightAttackKind.CutinMainSub:
+					return "CI (MG×2+SG)";
 				case NightAttackKind.CutinMainMain:
-					return ConstantsRes.CutIn + ConstantsRes.Main3;
-				case NightAttackKind.Reserved:
-					return ConstantsRes.Unknown;
+					return "CI (MG×3)";
+				case NightAttackKind.CutinAirAttack:
+					return "CI (Carrier)";
+				case NightAttackKind.Shelling:
+					return "Shelling";
 				case NightAttackKind.AirAttack:
 					return ConstantsRes.AirAttack;
 				case NightAttackKind.DepthCharge:
@@ -681,13 +687,13 @@ namespace ElectronicObserver.Data {
 				case NightAttackKind.LandingDaihatsu:
 					return ConstantsRes.DaihatsuAttack;
 				case NightAttackKind.LandingTokuDaihatsu:
-					return "Amphibious Attack(Toku Daihatsu)";
+					return "Amphibious Attack (Toku Daihatsu)";
 				case NightAttackKind.LandingDaihatsuTank:
-					return "Amphibious Attack(Daihatsu+Tank)";
+					return "Amphibious Attack (Daihatsu+Tank)";
 				case NightAttackKind.LandingAmphibious:
 					return ConstantsRes.TankAttack;
 				case NightAttackKind.LandingTokuDaihatsuTank:
-					return "Amphibious Attack(Toku Daihatsu+Tank)";
+					return "Amphibious Attack (Toku Daihatsu+Tank)";
 				default:
 					return ConstantsRes.Unknown;
 			}
