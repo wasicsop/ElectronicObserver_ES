@@ -568,7 +568,7 @@ namespace ElectronicObserver.Window {
 						sb.AppendFormat( GeneralRes.ASW + ": {0}", asw );
 
 						if ( Calculator.CanOpeningASW( ship ) )
-							sb.Append( " (Opening Torp)" );
+							sb.Append( " (OASW)" );
 					}
 					if ( torpedo > 0 || asw > 0 )
 						sb.AppendLine();
