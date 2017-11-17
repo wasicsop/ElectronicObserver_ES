@@ -169,15 +169,6 @@ namespace ElectronicObserver {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to エラー.
-        /// </summary>
-        internal static string Error {
-            get {
-                return ResourceManager.GetString("Error", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 艦これ統計データベースへの送信中にエラーが発生しました。.
         /// </summary>
         internal static string ErrorDatabaseSending {

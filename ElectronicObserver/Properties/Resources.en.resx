@@ -160,14 +160,8 @@ Okay?</value>
   <data name="ClosingComplete" xml:space="preserve">
     <value>Closing complete.</value>
   </data>
-  <data name="Confirm" xml:space="preserve">
-    <value>Confirm</value>
-  </data>
   <data name="DevelopedBy" xml:space="preserve">
     <value>Author</value>
-  </data>
-  <data name="Error" xml:space="preserve">
-    <value>Error</value>
   </data>
   <data name="FailedBrowserStart" xml:space="preserve">
     <value>Failed to start the browser process.</value>

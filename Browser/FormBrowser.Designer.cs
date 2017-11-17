@@ -2,40 +2,40 @@
 
 namespace Browser
 {
-    partial class FormBrowser
-    {
-        /// <summary>
-        /// 必要なデザイナー変数です。
-        /// </summary>
-        private System.ComponentModel.IContainer components = null;
+	partial class FormBrowser
+	{
+		/// <summary>
+		/// 必要なデザイナー変数です。
+		/// </summary>
+		private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// 使用中のリソースをすべてクリーンアップします。
-        /// </summary>
-        /// <param name="disposing">マネージ リソースが破棄される場合 true、破棄されない場合は false です。</param>
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+		/// <summary>
+		/// 使用中のリソースをすべてクリーンアップします。
+		/// </summary>
+		/// <param name="disposing">マネージ リソースが破棄される場合 true、破棄されない場合は false です。</param>
+		protected override void Dispose(bool disposing)
+		{
+			if (disposing && (components != null))
+			{
+				components.Dispose();
+			}
+			base.Dispose(disposing);
+		}
 
-        #region Windows フォーム デザイナーで生成されたコード
+		#region Windows フォーム デザイナーで生成されたコード
 
-        /// <summary>
-        /// デザイナー サポートに必要なメソッドです。このメソッドの内容を
-        /// コード エディターで変更しないでください。
-        /// </summary>
-        private void InitializeComponent()
-        {
+		/// <summary>
+		/// デザイナー サポートに必要なメソッドです。このメソッドの内容を
+		/// コード エディターで変更しないでください。
+		/// </summary>
+		private void InitializeComponent()
+		{
 			this.components = new System.ComponentModel.Container();
 			this.SizeAdjuster = new System.Windows.Forms.Panel();
 			this.Browser = new Browser.ExtraWebBrowser();
 			this.ContextMenuTool = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.ContextMenuTool_ShowToolMenu = new System.Windows.Forms.ToolStripMenuItem();
-			this.ToolMenu = new System.Windows.Forms.ToolStrip();
+			this.ToolMenu = new Browser.ExtraToolStrip();
 			this.ToolMenu_ScreenShot = new System.Windows.Forms.ToolStripButton();
 			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
 			this.ToolMenu_Zoom = new System.Windows.Forms.ToolStripDropDownButton();
@@ -123,7 +123,7 @@ namespace Browser
 			// ContextMenuTool
 			//
 			this.ContextMenuTool.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ContextMenuTool_ShowToolMenu});
+			this.ContextMenuTool_ShowToolMenu});
 			this.ContextMenuTool.Name = "ContextMenuTool";
 			this.ContextMenuTool.Size = new System.Drawing.Size(172, 26);
 			this.ContextMenuTool.Opening += new System.ComponentModel.CancelEventHandler(this.ContextMenuTool_Opening);
@@ -255,9 +255,9 @@ namespace Browser
 			// ToolMenu_Other_LastScreenShot
 			//
 			this.ToolMenu_Other_LastScreenShot.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripSeparator15,
-            this.ToolMenu_Other_LastScreenShot_OpenScreenShotFolder,
-            this.ToolMenu_Other_LastScreenShot_CopyToClipboard});
+			this.toolStripSeparator15,
+			this.ToolMenu_Other_LastScreenShot_OpenScreenShotFolder,
+			this.ToolMenu_Other_LastScreenShot_CopyToClipboard});
 			this.ToolMenu_Other_LastScreenShot.Name = "ToolMenu_Other_LastScreenShot";
 			this.ToolMenu_Other_LastScreenShot.Size = new System.Drawing.Size(199, 22);
 			this.ToolMenu_Other_LastScreenShot.Text = "&Previous screenshot";
@@ -283,24 +283,24 @@ namespace Browser
 			// ToolMenu_Other_Zoom
 			//
 			this.ToolMenu_Other_Zoom.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ToolMenu_Other_Zoom_Current,
-            this.toolStripSeparator9,
-            this.ToolMenu_Other_Zoom_Fit,
-            this.toolStripSeparator14,
-            this.ToolMenu_Other_Zoom_Decrement,
-            this.ToolMenu_Other_Zoom_Increment,
-            this.toolStripSeparator10,
-            this.ToolMenu_Other_Zoom_25,
-            this.ToolMenu_Other_Zoom_50,
-            this.ToolMenu_Other_Zoom_75,
-            this.toolStripSeparator11,
-            this.ToolMenu_Other_Zoom_100,
-            this.toolStripSeparator12,
-            this.ToolMenu_Other_Zoom_150,
-            this.ToolMenu_Other_Zoom_200,
-            this.ToolMenu_Other_Zoom_250,
-            this.ToolMenu_Other_Zoom_300,
-            this.ToolMenu_Other_Zoom_400});
+			this.ToolMenu_Other_Zoom_Current,
+			this.toolStripSeparator9,
+			this.ToolMenu_Other_Zoom_Fit,
+			this.toolStripSeparator14,
+			this.ToolMenu_Other_Zoom_Decrement,
+			this.ToolMenu_Other_Zoom_Increment,
+			this.toolStripSeparator10,
+			this.ToolMenu_Other_Zoom_25,
+			this.ToolMenu_Other_Zoom_50,
+			this.ToolMenu_Other_Zoom_75,
+			this.toolStripSeparator11,
+			this.ToolMenu_Other_Zoom_100,
+			this.toolStripSeparator12,
+			this.ToolMenu_Other_Zoom_150,
+			this.ToolMenu_Other_Zoom_200,
+			this.ToolMenu_Other_Zoom_250,
+			this.ToolMenu_Other_Zoom_300,
+			this.ToolMenu_Other_Zoom_400});
 			this.ToolMenu_Other_Zoom.Name = "ToolMenu_Other_Zoom";
 			this.ToolMenu_Other_Zoom.Size = new System.Drawing.Size(199, 22);
 			this.ToolMenu_Other_Zoom.Text = "&Zoom";
@@ -497,11 +497,11 @@ namespace Browser
 			// ToolMenu_Other_Alignment
 			//
 			this.ToolMenu_Other_Alignment.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ToolMenu_Other_Alignment_Top,
-            this.ToolMenu_Other_Alignment_Bottom,
-            this.ToolMenu_Other_Alignment_Left,
-            this.ToolMenu_Other_Alignment_Right,
-            this.ToolMenu_Other_Alignment_Invisible});
+			this.ToolMenu_Other_Alignment_Top,
+			this.ToolMenu_Other_Alignment_Bottom,
+			this.ToolMenu_Other_Alignment_Left,
+			this.ToolMenu_Other_Alignment_Right,
+			this.ToolMenu_Other_Alignment_Invisible});
 			this.ToolMenu_Other_Alignment.Name = "ToolMenu_Other_Alignment";
 			this.ToolMenu_Other_Alignment.Size = new System.Drawing.Size(199, 22);
 			this.ToolMenu_Other_Alignment.Text = "&Alignment";
@@ -582,13 +582,13 @@ namespace Browser
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
-        }
+		}
 
-        #endregion
+		#endregion
 
-        private System.Windows.Forms.Panel SizeAdjuster;
+		private System.Windows.Forms.Panel SizeAdjuster;
 		private ExtraWebBrowser Browser;
-		private System.Windows.Forms.ToolStrip ToolMenu;
+		private Browser.ExtraToolStrip ToolMenu;
 		private System.Windows.Forms.ToolStripButton ToolMenu_ScreenShot;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
 		private System.Windows.Forms.ToolStripDropDownButton ToolMenu_Zoom;
@@ -646,5 +646,5 @@ namespace Browser
 		private System.Windows.Forms.ToolStripMenuItem ToolMenu_Other_LastScreenShot_OpenScreenShotFolder;
 		private System.Windows.Forms.ToolStripMenuItem ToolMenu_Other_LastScreenShot_CopyToClipboard;
 
-    }
+	}
 }

@@ -141,9 +141,6 @@
   <data name="EquipmentObtained" xml:space="preserve">
     <value>{0}「{1}」を入手しました。</value>
   </data>
-  <data name="Error" xml:space="preserve">
-    <value>エラー</value>
-  </data>
   <data name="ErrorDatabaseSending" xml:space="preserve">
     <value>艦これ統計データベースへの送信中にエラーが発生しました。</value>
   </data>

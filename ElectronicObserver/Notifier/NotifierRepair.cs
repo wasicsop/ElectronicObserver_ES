@@ -5,23 +5,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ElectronicObserver.Notifier {
-	
+namespace ElectronicObserver.Notifier
+{
+
 	/// <summary>
 	/// 入渠完了通知を扱います。
 	/// </summary>
-	public class NotifierRepair : NotifierBase {
+	public class NotifierRepair : NotifierBase
+	{
 
 		private Dictionary<int, bool> processedFlags;
 
 
 		public NotifierRepair()
-			: base() {
+			: base()
+		{
 			Initialize();
 		}
 
-		public NotifierRepair( Utility.Configuration.ConfigurationData.ConfigNotifierBase config )
-			: base( config ) {
+		public NotifierRepair(Utility.Configuration.ConfigurationData.ConfigNotifierBase config)
+			: base(config)
+		{
 			Initialize();
 		}
 
@@ -32,22 +36,28 @@ namespace ElectronicObserver.Notifier {
 		}
 
 
-		protected override void UpdateTimerTick() {
+		protected override void UpdateTimerTick()
+		{
 
-			foreach ( var dock in KCDatabase.Instance.Docks.Values ) {
+			foreach (var dock in KCDatabase.Instance.Docks.Values)
+			{
 
-				if ( !processedFlags.ContainsKey( dock.DockID ) )
-					processedFlags.Add( dock.DockID, false );
+				if (!processedFlags.ContainsKey(dock.DockID))
+					processedFlags.Add(dock.DockID, false);
 
-				if ( dock.State > 0 ) {
-					if ( !processedFlags[dock.DockID] && (int)( dock.CompletionTime - DateTime.Now ).TotalMilliseconds <= AccelInterval ) {
+				if (dock.State > 0)
+				{
+					if (!processedFlags[dock.DockID] && (int)(dock.CompletionTime - DateTime.Now).TotalMilliseconds <= AccelInterval)
+					{
 
 						processedFlags[dock.DockID] = true;
-						Notify( dock.DockID, dock.ShipID );
+						Notify(dock.DockID, dock.ShipID);
 
 					}
 
-				} else {
+				}
+				else
+				{
 					processedFlags[dock.DockID] = false;
 				}
 
@@ -55,7 +65,8 @@ namespace ElectronicObserver.Notifier {
 
 		}
 
-		public void Notify( int dockID, int shipID ) {
+		public void Notify(int dockID, int shipID)
+		{
 
 			DialogData.Message = string.Format( NotifierRes.RepairText,
 				dockID, KCDatabase.Instance.Ships[shipID].NameWithLevel );

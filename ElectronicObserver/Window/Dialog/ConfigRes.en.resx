@@ -183,9 +183,6 @@ Changing the version may change functionality.</value>
   <data name="Communication" xml:space="preserve">
     <value>Network</value>
   </data>
-  <data name="Confirm" xml:space="preserve">
-    <value>Confirm</value>
-  </data>
   <data name="ConfirmRefreshHint" xml:space="preserve">
     <value>Displays a confirmation dialog when refreshing.
 Useful to prevent mistakes.</value>
@@ -227,9 +224,6 @@ Please use caution before changing.</value>
   </data>
   <data name="Enocding" xml:space="preserve">
     <value>Encoding</value>
-  </data>
-  <data name="Error" xml:space="preserve">
-    <value>Error.</value>
   </data>
   <data name="ExpedReturn" xml:space="preserve">
     <value>Expedition</value>

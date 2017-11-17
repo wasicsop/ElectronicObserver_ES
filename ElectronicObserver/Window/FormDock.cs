@@ -15,44 +15,54 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
 
-namespace ElectronicObserver.Window {
+namespace ElectronicObserver.Window
+{
 
-	public partial class FormDock : DockContent {
+	public partial class FormDock : DockContent
+	{
 
-		private class TableDockControl {
+		private class TableDockControl : IDisposable
+		{
 
 			public Label ShipName;
 			public Label RepairTime;
 			public ToolTip ToolTipInfo;
 
-			public TableDockControl( FormDock parent ) {
+			public TableDockControl(FormDock parent)
+			{
 
 				#region Initialize
 
-				ShipName = new ImageLabel();
-				ShipName.Text = "???";
-				ShipName.Anchor = AnchorStyles.Left;
-				ShipName.TextAlign = ContentAlignment.MiddleLeft;
-				ShipName.Padding = new Padding( 0, 1, 0, 1 );
-				ShipName.Margin = new Padding( 2, 1, 2, 1 );
-				ShipName.MaximumSize = new Size( 60, int.MaxValue );
-				//ShipName.AutoEllipsis = true;
-				ShipName.ImageAlign = ContentAlignment.MiddleCenter;
-				ShipName.AutoSize = true;
-				ShipName.Visible = true;
+				ShipName = new ImageLabel
+				{
+					Text = "???",
+					Anchor = AnchorStyles.Left,
+					ForeColor = parent.ForeColor,
+					TextAlign = ContentAlignment.MiddleLeft,
+					Padding = new Padding(0, 1, 0, 1),
+					Margin = new Padding(2, 1, 2, 1),
+					MaximumSize = new Size(60, int.MaxValue),
+					//ShipName.AutoEllipsis = true;
+					ImageAlign = ContentAlignment.MiddleCenter,
+					AutoSize = true,
+					Visible = true
+				};
 
-				RepairTime = new Label();
-				RepairTime.Text = "";
-				RepairTime.Anchor = AnchorStyles.Left;
-				RepairTime.Tag = null;
-				RepairTime.TextAlign = ContentAlignment.MiddleLeft;
-				RepairTime.Padding = new Padding( 0, 1, 0, 1 );
-				RepairTime.Margin = new Padding( 2, 1, 2, 1 );
-				RepairTime.MinimumSize = new Size( 60, 10 );
-				RepairTime.AutoSize = true;
-				RepairTime.Visible = true;
+				RepairTime = new Label
+				{
+					Text = "",
+					Anchor = AnchorStyles.Left,
+					ForeColor = parent.ForeColor,
+					Tag = null,
+					TextAlign = ContentAlignment.MiddleLeft,
+					Padding = new Padding(0, 1, 0, 1),
+					Margin = new Padding(2, 1, 2, 1),
+					MinimumSize = new Size(60, 10),
+					AutoSize = true,
+					Visible = true
+				};
 
-				ConfigurationChanged( parent );
+				ConfigurationChanged(parent);
 
 				ToolTipInfo = parent.ToolTipInfo;
 
@@ -61,22 +71,25 @@ namespace ElectronicObserver.Window {
 			}
 
 
-			public TableDockControl( FormDock parent, TableLayoutPanel table, int row )
-				: this( parent ) {
+			public TableDockControl(FormDock parent, TableLayoutPanel table, int row)
+				: this(parent)
+			{
 
-				AddToTable( table, row );
+				AddToTable(table, row);
 			}
 
-			public void AddToTable( TableLayoutPanel table, int row ) {
+			public void AddToTable(TableLayoutPanel table, int row)
+			{
 
-				table.Controls.Add( ShipName, 0, row );
-				table.Controls.Add( RepairTime, 1, row );
+				table.Controls.Add(ShipName, 0, row);
+				table.Controls.Add(RepairTime, 1, row);
 
 			}
 
 
 			//データ更新時
-			public void Update( int dockID ) {
+			public void Update(int dockID)
+			{
 
 				KCDatabase db = KCDatabase.Instance;
 
@@ -87,23 +100,28 @@ namespace ElectronicObserver.Window {
 				ToolTipInfo.SetToolTip( ShipName, null );
 				ToolTipInfo.SetToolTip( RepairTime, null );
 
-				if ( dock == null || dock.State == -1 ) {
+				if (dock == null || dock.State == -1)
+				{
 					//locked
 					ShipName.Text = "";
 					RepairTime.Text = "";
 					RepairTime.Tag = null;
 
-				} else if ( dock.State == 0 ) {
+				}
+				else if (dock.State == 0)
+				{
 					//empty
 					ShipName.Text = "----";
 					RepairTime.Text = "";
 					RepairTime.Tag = null;
 
-				} else {
+				}
+				else
+				{
 					//repairing
 					ShipName.Text = db.Ships[dock.ShipID].Name;
-					ToolTipInfo.SetToolTip( ShipName, db.Ships[dock.ShipID].NameWithLevel );
-					RepairTime.Text = DateTimeHelper.ToTimeRemainString( dock.CompletionTime );
+					ToolTipInfo.SetToolTip(ShipName, db.Ships[dock.ShipID].NameWithLevel);
+					RepairTime.Text = DateTimeHelper.ToTimeRemainString(dock.CompletionTime);
 					RepairTime.Tag = dock.CompletionTime;
 					ToolTipInfo.SetToolTip( RepairTime, GeneralRes.TimeToCompletion + ":" + DateTimeHelper.TimeToCSVString( dock.CompletionTime ) );
 
@@ -112,13 +130,15 @@ namespace ElectronicObserver.Window {
 			}
 
 			//タイマー更新時
-			public void Refresh( int dockID ) {
+			public void Refresh(int dockID)
+			{
 
-				if ( RepairTime.Tag != null ) {
+				if (RepairTime.Tag != null)
+				{
 
 					var time = (DateTime)RepairTime.Tag;
 
-					RepairTime.Text = DateTimeHelper.ToTimeRemainString( time );
+					RepairTime.Text = DateTimeHelper.ToTimeRemainString(time);
 
 					if ( Utility.Configuration.Config.FormDock.BlinkAtCompletion && ( time - DateTime.Now ).TotalMilliseconds <= Utility.Configuration.Config.NotifierRepair.AccelInterval ) {
 						RepairTime.BackColor = DateTime.Now.Second % 2 == 0 ? Utility.Configuration.Config.UI.Dock_RepairFinishedBG : Color.Transparent;
@@ -128,7 +148,8 @@ namespace ElectronicObserver.Window {
 			}
 
 
-			public void ConfigurationChanged( FormDock parent ) {
+			public void ConfigurationChanged(FormDock parent)
+			{
 
 				var config = Utility.Configuration.Config.FormDock;
 
@@ -137,7 +158,13 @@ namespace ElectronicObserver.Window {
 				RepairTime.BackColor = Color.Transparent;
 				ShipName.ForeColor = RepairTime.ForeColor = Utility.Configuration.Config.UI.ForeColor;
 
-				ShipName.MaximumSize = new Size( config.MaxShipNameWidth, ShipName.MaximumSize.Height );
+				ShipName.MaximumSize = new Size(config.MaxShipNameWidth, ShipName.MaximumSize.Height);
+			}
+
+			public void Dispose()
+			{
+				ShipName.Dispose();
+				RepairTime.Dispose();
 			}
 		}
 
@@ -148,31 +175,34 @@ namespace ElectronicObserver.Window {
 
 
 
-		public FormDock( FormMain parent ) {
+		public FormDock(FormMain parent)
+		{
 			InitializeComponent();
 
 			Utility.SystemEvents.UpdateTimerTick += UpdateTimerTick;
 
 
-			ControlHelper.SetDoubleBuffered( TableDock );
+			ControlHelper.SetDoubleBuffered(TableDock);
 
 
 			TableDock.SuspendLayout();
 			ControlDock = new TableDockControl[4];
-			for ( int i = 0; i < ControlDock.Length; i++ ) {
-				ControlDock[i] = new TableDockControl( this, TableDock, i );
+			for (int i = 0; i < ControlDock.Length; i++)
+			{
+				ControlDock[i] = new TableDockControl(this, TableDock, i);
 			}
 			TableDock.ResumeLayout();
 
 
 			ConfigurationChanged();
 
-			Icon = ResourceManager.ImageToIcon( ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormDock] );
+			Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormDock]);
 
 		}
 
 
-		private void FormDock_Load( object sender, EventArgs e ) {
+		private void FormDock_Load(object sender, EventArgs e)
+		{
 
 			APIObserver o = APIObserver.Instance;
 
@@ -187,22 +217,24 @@ namespace ElectronicObserver.Window {
 
 
 
-		void Updated( string apiname, dynamic data ) {
+		void Updated(string apiname, dynamic data)
+		{
 
 			TableDock.SuspendLayout();
-			TableDock.RowCount = KCDatabase.Instance.Docks.Values.Count( d => d.State != -1 );
-			for ( int i = 0; i < ControlDock.Length; i++ )
-				ControlDock[i].Update( i + 1 );
+			TableDock.RowCount = KCDatabase.Instance.Docks.Values.Count(d => d.State != -1);
+			for (int i = 0; i < ControlDock.Length; i++)
+				ControlDock[i].Update(i + 1);
 			TableDock.ResumeLayout();
 
 		}
 
 
-		void UpdateTimerTick() {
+		void UpdateTimerTick()
+		{
 
 			TableDock.SuspendLayout();
-			for ( int i = 0; i < ControlDock.Length; i++ )
-				ControlDock[i].Refresh( i + 1 );
+			for (int i = 0; i < ControlDock.Length; i++)
+				ControlDock[i].Refresh(i + 1);
 			TableDock.ResumeLayout();
 
 		}
@@ -214,24 +246,27 @@ namespace ElectronicObserver.Window {
 		}
 
 
-		void ConfigurationChanged() {
+		void ConfigurationChanged()
+		{
 
 			Font = Utility.Configuration.Config.UI.MainFont;
 
-			if ( ControlDock != null ) {
+			if (ControlDock != null)
+			{
 				TableDock.SuspendLayout();
 
-				foreach ( var c in ControlDock )
-					c.ConfigurationChanged( this );
+				foreach (var c in ControlDock)
+					c.ConfigurationChanged(this);
 
-				ControlHelper.SetTableRowStyles( TableDock, ControlHelper.GetDefaultRowStyle() );
+				ControlHelper.SetTableRowStyles(TableDock, ControlHelper.GetDefaultRowStyle());
 
 				TableDock.ResumeLayout();
 			}
 		}
 
 
-		protected override string GetPersistString() {
+		protected override string GetPersistString()
+		{
 			return "Dock";
 		}
 

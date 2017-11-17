@@ -6,89 +6,83 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ElectronicObserver.Utility {
+namespace ElectronicObserver.Utility
+{
 
 	/// <summary>
 	/// ソフトウェアの情報を保持します。
 	/// </summary>
-	public static class SoftwareInformation {
+	public static class SoftwareInformation
+	{
 
 		/// <summary>
 		/// ソフトウェア名(日本語)
 		/// </summary>
-		public static string SoftwareNameJapanese {
-			get {
-				return "七四式電子観測儀";
-			}
-		}
+		public static string SoftwareNameJapanese => "七四式電子観測儀";
+
 
 		/// <summary>
 		/// ソフトウェア名(英語)
 		/// </summary>
-		public static string SoftwareNameEnglish {
-			get {
-				return "Electronic Observer";
-			}
-		}
+		public static string SoftwareNameEnglish => "Electronic Observer";
+
 
 		/// <summary>
 		/// バージョン(日本語, ソフトウェア名を含みます)
 		/// </summary>
-		public static string VersionJapanese {
-			get {
-				return SoftwareNameJapanese + "二八型改二";
-			}
-		}
+		public static string VersionJapanese => SoftwareNameJapanese + "二八型改二";
+
 
 		/// <summary>
 		/// バージョン(英語)
 		/// </summary>
-		public static string VersionEnglish {
-			get {
-				return "2.8.2";
-			}
-		}
+		public static string VersionEnglish => "2.8.2";
+
 
 
 		/// <summary>
 		/// 更新日時
 		/// </summary>
-		public static DateTime UpdateTime {
-			get {
-				return DateTimeHelper.CSVStringToTime( "2017/10/17 20:30:00" );
-			}
-		}
+		public static DateTime UpdateTime => DateTimeHelper.CSVStringToTime("2017/10/17 20:30:00");
+
 
 
 
 		private static System.Net.WebClient client;
-		private static readonly Uri uri = new Uri( "http://raw.githubusercontent.com/silfumus/ryuukitsune.github.io/master/Translations/SoftwareVersion.txt" );
+		private static readonly Uri uri = new Uri("http://raw.githubusercontent.com/silfumus/ryuukitsune.github.io/master/Translations/SoftwareVersion.txt");
 
-		public static void CheckUpdate() {
+		public static void CheckUpdate()
+		{
 
-			if ( !Utility.Configuration.Config.Life.CheckUpdateInformation )
+			if (!Utility.Configuration.Config.Life.CheckUpdateInformation)
 				return;
 
-			if ( client == null ) {
-				client = new System.Net.WebClient();
-				client.Encoding = new System.Text.UTF8Encoding( false );
+			if (client == null)
+			{
+				client = new System.Net.WebClient
+				{
+					Encoding = new System.Text.UTF8Encoding(false)
+				};
 				client.DownloadStringCompleted += DownloadStringCompleted;
 			}
 
-			if ( !client.IsBusy )
-				client.DownloadStringAsync( uri );
+			if (!client.IsBusy)
+				client.DownloadStringAsync(uri);
 		}
 
-		private static void DownloadStringCompleted( object sender, System.Net.DownloadStringCompletedEventArgs e ) {
+		private static void DownloadStringCompleted(object sender, System.Net.DownloadStringCompletedEventArgs e)
+		{
 
-			if ( e.Error != null ) {
+			if (e.Error != null)
+			{
 
 				Utility.ErrorReporter.SendErrorReport( e.Error, "Failed to obtain update data." );
 				return;
 
 			}
 
-			if ( e.Result.StartsWith( "<!DOCTYPE html>" ) ) {
+			if (e.Result.StartsWith("<!DOCTYPE html>"))
+			{
 
 				Utility.Logger.Add( 3, "Invalid update URL." );
 				return;
@@ -96,15 +90,18 @@ namespace ElectronicObserver.Utility {
 			}
 
 
-			try {
+			try
+			{
 
-				using ( var sr = new System.IO.StringReader( e.Result ) ) {
+				using (var sr = new System.IO.StringReader(e.Result))
+				{
 
-					DateTime date = DateTimeHelper.CSVStringToTime( sr.ReadLine() );
+					DateTime date = DateTimeHelper.CSVStringToTime(sr.ReadLine());
 					string version = sr.ReadLine();
 					string description = sr.ReadToEnd();
 
-					if ( UpdateTime < date ) {
+					if (UpdateTime < date)
+					{
 
 						Utility.Logger.Add( 3, Resources.NewVersionFound + version );
 
@@ -115,17 +112,22 @@ namespace ElectronicObserver.Utility {
 							System.Windows.Forms.MessageBoxDefaultButton.Button1 );
 
 
-						if ( result == System.Windows.Forms.DialogResult.Yes ) {
+						if (result == System.Windows.Forms.DialogResult.Yes)
+						{
 
-							System.Diagnostics.Process.Start( "http://github.com/silfumus/ElectronicObserver/releases" );
+							System.Diagnostics.Process.Start("https://github.com/silfumus/ElectronicObserver/releases/latest");
 
-						} else if ( result == System.Windows.Forms.DialogResult.Cancel ) {
+						}
+						else if (result == System.Windows.Forms.DialogResult.Cancel)
+						{
 
 							Utility.Configuration.Config.Life.CheckUpdateInformation = false;
 
 						}
 
-					} else {
+					}
+					else
+					{
 
 						Utility.Logger.Add( 2, "You are currently using the latest version (" + date.ToString( "yyyy/MM/dd" ) + " release)." );
 
@@ -133,7 +135,9 @@ namespace ElectronicObserver.Utility {
 
 				}
 
-			} catch ( Exception ex ) {
+			}
+			catch (Exception ex)
+			{
 
 				Utility.ErrorReporter.SendErrorReport( ex, Resources.UpdateConnectionFailed );
 			}

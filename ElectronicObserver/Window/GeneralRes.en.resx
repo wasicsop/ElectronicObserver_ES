@@ -127,14 +127,8 @@ Cut-in type: {1} ({2})</value>
   <data name="AAPower" xml:space="preserve">
     <value>AA Defense</value>
   </data>
-  <data name="Achieved" xml:space="preserve">
-    <value>Complete!</value>
-  </data>
   <data name="AddFleetToGroupMenu" xml:space="preserve">
     <value>Add current fleet to group (&amp;G)...</value>
-  </data>
-  <data name="AddGroup" xml:space="preserve">
-    <value>Add Group</value>
   </data>
   <data name="AdmiralXP" xml:space="preserve">
     <value>Admiral XP</value>
@@ -166,9 +160,6 @@ Cut-in type: {1} ({2})</value>
   <data name="ArsenalLog" xml:space="preserve">
     <value>Secretary {7} has started the construction of {1} in dock #{0} with {2}/{3}/{4}/{5}-{6}.</value>
   </data>
-  <data name="AssignedCount" xml:space="preserve">
-    <value>{0} Ships Assigned</value>
-  </data>
   <data name="ASTooltip" xml:space="preserve">
     <value>AS+: {0}
 AS: {1}
@@ -182,17 +173,11 @@ AI: {3}
   <data name="AutoAdjustColumns" xml:space="preserve">
     <value>Automatically adjust columns (&amp;D)</value>
   </data>
-  <data name="AverageLevel" xml:space="preserve">
-    <value>Average Level: {0:F2}</value>
-  </data>
   <data name="Battle" xml:space="preserve">
     <value>Battle</value>
   </data>
   <data name="CannotChangeGroup" xml:space="preserve">
     <value>Could not change the name of the group.</value>
-  </data>
-  <data name="CannotChangeGroupName" xml:space="preserve">
-    <value>Could not change the group name.</value>
   </data>
   <data name="CannotDeleteGroup" xml:space="preserve">
     <value>Could not delete the group.</value>
@@ -202,9 +187,6 @@ AI: {3}
   </data>
   <data name="CategoryFilter" xml:space="preserve">
     <value>Category (&amp;C)</value>
-  </data>
-  <data name="ChangeGroupName" xml:space="preserve">
-    <value>Change Group Name</value>
   </data>
   <data name="Clear" xml:space="preserve">
     <value>Clear (&amp;C)</value>
@@ -236,9 +218,6 @@ Range: {20} / Speed: {21}
   <data name="CreateGroup" xml:space="preserve">
     <value>Create Group</value>
   </data>
-  <data name="CreateGroupName" xml:space="preserve">
-    <value>Add selected ships to the following group:</value>
-  </data>
   <data name="CurrentHealth" xml:space="preserve">
     <value>Current Health</value>
   </data>
@@ -266,9 +245,6 @@ This action cannot be undone.</value>
   </data>
   <data name="DevelopmentFailed" xml:space="preserve">
     <value>[Development Failed]</value>
-  </data>
-  <data name="Dock" xml:space="preserve">
-    <value>Dock</value>
   </data>
   <data name="DockTime" xml:space="preserve">
     <value>Dock Time</value>
@@ -409,12 +385,6 @@ Are you sure?</value>
   <data name="NightContacting" xml:space="preserve">
     <value>Made night contact</value>
   </data>
-  <data name="None" xml:space="preserve">
-    <value>(none)</value>
-  </data>
-  <data name="NonexistentGroup" xml:space="preserve">
-    <value>Error: attempted to access a nonexistent group. Please contact the developer.</value>
-  </data>
   <data name="Over50" xml:space="preserve">
     <value>Over 50%</value>
   </data>
@@ -466,9 +436,6 @@ Are you sure?</value>
   <data name="SecondStage" xml:space="preserve">
     <value>Stage 2</value>
   </data>
-  <data name="SelectGroup" xml:space="preserve">
-    <value>Select Group</value>
-  </data>
   <data name="ShipGirl" xml:space="preserve">
     <value>Ship Girl</value>
   </data>
@@ -518,9 +485,6 @@ Range: {17} / Speed: {18}
   </data>
   <data name="SortiePlace" xml:space="preserve">
     <value>Sortie Location</value>
-  </data>
-  <data name="SpecifyGroupName" xml:space="preserve">
-    <value>Please enter the group name:</value>
   </data>
   <data name="SpecifySelectGroup" xml:space="preserve">
     <value>Select the group to add to:</value>
@@ -587,9 +551,6 @@ To critical damage: {1}</value>
   <data name="TotalExperienceGained" xml:space="preserve">
     <value>XP Gain</value>
   </data>
-  <data name="TotalLevel" xml:space="preserve">
-    <value>Total Level: {0}</value>
-  </data>
   <data name="TotalLoS" xml:space="preserve">
     <value>Total LoS</value>
   </data>
@@ -614,9 +575,6 @@ To critical damage: {1}</value>
   <data name="UnseenShips" xml:space="preserve">
     <value>[Unseen Ships]</value>
   </data>
-  <data name="WCWarningTitle" xml:space="preserve">
-    <value>Confirm Window Capture</value>
-  </data>
   <data name="WhyDidThisHappen" xml:space="preserve">
     <value>Why did this happen.</value>
   </data>
@@ -625,13 +583,6 @@ To critical damage: {1}</value>
   </data>
   <data name="WindowCaptureInst" xml:space="preserve">
     <value>Drag and drop this icon to the window you wish to capture.</value>
-  </data>
-  <data name="WindowCaptureWarning" xml:space="preserve">
-    <value>This window will be captured. Are you sure?
-
-Warning: the captured window may become unstable and lead to loss of data.
-Save your data and return to port before capturing.
-</value>
   </data>
   <data name="WinRank" xml:space="preserve">
     <value>Battle Rank</value>
@@ -762,20 +713,11 @@ Bauxite: {10:+0;-0} ( regen {11:+0;-0} - resupply {12} ( {13} planes ) )</value>
   <data name="AutoSortDialogError" xml:space="preserve">
     <value>ShipGroup: There was an error with the auto-sort settings dialog.</value>
   </data>
-  <data name="ColumnDialogError" xml:space="preserve">
-    <value>ShipGroup: There was an error with the column settings dialog.</value>
-  </data>
   <data name="CopyGroupText" xml:space="preserve">
     <value>Enter the desired group name:</value>
   </data>
   <data name="CopyGroupTitle" xml:space="preserve">
     <value>Copy Group</value>
-  </data>
-  <data name="FilterDialogError" xml:space="preserve">
-    <value>ShipGroup: There was an error with the filter dialog.</value>
-  </data>
-  <data name="SelectedShips" xml:space="preserve">
-    <value>Selected: {0} / {1} ships</value>
   </data>
   <data name="TotalShips" xml:space="preserve">
     <value>Total: {0} ships</value>

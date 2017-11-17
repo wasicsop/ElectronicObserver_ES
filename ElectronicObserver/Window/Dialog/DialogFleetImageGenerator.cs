@@ -14,17 +14,20 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ElectronicObserver.Window.Dialog {
-	public partial class DialogFleetImageGenerator : Form {
+namespace ElectronicObserver.Window.Dialog
+{
+	public partial class DialogFleetImageGenerator : Form
+	{
 
 		private FleetImageArgument CurrentArgument;
 		private Font GeneralFont;
 
 		private readonly TextBox[] TextFontList;
-		private Regex LFtoCRLF = new Regex( @"\n|\r\n", RegexOptions.Multiline | RegexOptions.Compiled );
+		private Regex LFtoCRLF = new Regex(@"\n|\r\n", RegexOptions.Multiline | RegexOptions.Compiled);
 
 
-		public DialogFleetImageGenerator() {
+		public DialogFleetImageGenerator()
+		{
 			InitializeComponent();
 
 			TextFontList = new TextBox[]{
@@ -36,19 +39,21 @@ namespace ElectronicObserver.Window.Dialog {
 				TextSmallDigitFont,
 			};
 
-			for ( int i = 0; i < TextFontList.Length; i++ ) {
-				int x  = i;
-				this.Controls.Find( "Select" + TextFontList[i].Name.Remove( 0, 4 ), true ).First().Click += ( sender, e ) => SelectFont_Click( sender, e, x );
+			for (int i = 0; i < TextFontList.Length; i++)
+			{
+				int x = i;
+				this.Controls.Find("Select" + TextFontList[i].Name.Remove(0, 4), true).First().Click += (sender, e) => SelectFont_Click(sender, e, x);
 			}
 
 			LoadConfiguration();
 
 		}
 
-		public DialogFleetImageGenerator( int fleetID )
-			: this() {
+		public DialogFleetImageGenerator(int fleetID)
+			: this()
+		{
 
-			if ( KCDatabase.Instance.Fleet.CombinedFlag > 0 && fleetID <= 2 )
+			if (KCDatabase.Instance.Fleet.CombinedFlag > 0 && fleetID <= 2)
 				CurrentArgument.FleetIDs = new int[] { 1, 2 };
 			else
 				CurrentArgument.FleetIDs = new int[] { fleetID };
@@ -56,24 +61,27 @@ namespace ElectronicObserver.Window.Dialog {
 
 
 
-		private void DialogFleetImageGenerator_Load( object sender, EventArgs e ) {
+		private void DialogFleetImageGenerator_Load(object sender, EventArgs e)
+		{
 
-			this.Icon = ResourceManager.ImageToIcon( ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormFleetImageGenerator] );
+			this.Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormFleetImageGenerator]);
 
-			ApplyToUI( CurrentArgument );
+			ApplyToUI(CurrentArgument);
 
 			UpdateButtonAlert();
 		}
 
 
 
-		private void LoadConfiguration() {
+		private void LoadConfiguration()
+		{
 			var config = Utility.Configuration.Config.FleetImageGenerator;
 
 			CurrentArgument = config.Argument.Clone();
 
 
-			switch ( config.ImageType ) {
+			switch (config.ImageType)
+			{
 				case 0:
 				default:
 					ImageTypeCard.Checked = true;
@@ -91,10 +99,13 @@ namespace ElectronicObserver.Window.Dialog {
 			DisableOverwritePrompt.Checked = config.DisableOverwritePrompt;
 
 			OutputPath.Text = config.LastOutputPath;
-			try {
-				SaveImageDialog.FileName = System.IO.Path.GetFileName( config.LastOutputPath );
-				SaveImageDialog.InitialDirectory = string.IsNullOrWhiteSpace( config.LastOutputPath ) ? "" : System.IO.Path.GetDirectoryName( config.LastOutputPath );
-			} catch ( Exception ) {
+			try
+			{
+				SaveImageDialog.FileName = System.IO.Path.GetFileName(config.LastOutputPath);
+				SaveImageDialog.InitialDirectory = string.IsNullOrWhiteSpace(config.LastOutputPath) ? "" : System.IO.Path.GetDirectoryName(config.LastOutputPath);
+			}
+			catch (Exception)
+			{
 			}
 
 			SyncronizeTitleAndFileName.Checked = config.SyncronizeTitleAndFileName;
@@ -102,19 +113,20 @@ namespace ElectronicObserver.Window.Dialog {
 
 		}
 
-		private void SaveConfiguration() {
+		private void SaveConfiguration()
+		{
 			var config = Utility.Configuration.Config.FleetImageGenerator;
 
-			if ( config.Argument != null )
+			if (config.Argument != null)
 				config.Argument.DisposeResources();
 
 			config.Argument = CurrentArgument.Clone();
 
-			if ( ImageTypeCard.Checked )
+			if (ImageTypeCard.Checked)
 				config.ImageType = 0;
-			else if ( ImageTypeCutin.Checked )
+			else if (ImageTypeCutin.Checked)
 				config.ImageType = 1;
-			else if ( ImageTypeBanner.Checked )
+			else if (ImageTypeBanner.Checked)
 				config.ImageType = 2;
 
 			config.OutputType = OutputToClipboard.Checked ? 1 : 0;
@@ -128,18 +140,19 @@ namespace ElectronicObserver.Window.Dialog {
 
 
 
-		private void ApplyToUI( FleetImageArgument args ) {
+		private void ApplyToUI(FleetImageArgument args)
+		{
 
 			int[] fleetIDs = args.FleetIDs ?? new int[0];
 
-			TargetFleet1.Checked = fleetIDs.Contains( 1 );
-			TargetFleet2.Checked = fleetIDs.Contains( 2 );
-			TargetFleet3.Checked = fleetIDs.Contains( 3 );
-			TargetFleet4.Checked = fleetIDs.Contains( 4 );
+			TargetFleet1.Checked = fleetIDs.Contains(1);
+			TargetFleet2.Checked = fleetIDs.Contains(2);
+			TargetFleet3.Checked = fleetIDs.Contains(3);
+			TargetFleet4.Checked = fleetIDs.Contains(4);
 
-			if ( !SyncronizeTitleAndFileName.Checked )
+			if (!SyncronizeTitleAndFileName.Checked)
 				Title.Text = args.Title;
-			Comment.Text = string.IsNullOrWhiteSpace( args.Comment ) ? "" : LFtoCRLF.Replace( args.Comment, "\r\n" );		// 保存データからのロード時に \n に変換されてしまっているため
+			Comment.Text = string.IsNullOrWhiteSpace(args.Comment) ? "" : LFtoCRLF.Replace(args.Comment, "\r\n");       // 保存データからのロード時に \n に変換されてしまっているため
 
 
 			HorizontalFleetCount.Value = args.HorizontalFleetCount;
@@ -150,21 +163,23 @@ namespace ElectronicObserver.Window.Dialog {
 
 			BackgroundImagePath.Text = args.BackgroundImagePath;
 
-			for ( int i = 0; i < TextFontList.Length; i++ ) {
-				TextFontList[i].Text = SerializableFont.FontToString( args.Fonts[i], true );
+			for (int i = 0; i < TextFontList.Length; i++)
+			{
+				TextFontList[i].Text = SerializableFont.FontToString(args.Fonts[i], true);
 			}
 		}
 
-		private FleetImageArgument ApplyToArgument( FleetImageArgument defaultValue = null ) {
+		private FleetImageArgument ApplyToArgument(FleetImageArgument defaultValue = null)
+		{
 
-			var ret = defaultValue == null ? new FleetImageArgument() : defaultValue.Clone();
+			var ret = defaultValue?.Clone() ?? new FleetImageArgument();
 
 			ret.FleetIDs = new[]{
 				TargetFleet1.Checked ? 1 : 0,
 				TargetFleet2.Checked ? 2 : 0,
 				TargetFleet3.Checked ? 3 : 0,
-				TargetFleet4.Checked ? 4 : 0 
-			}.Where( i => i > 0 ).ToArray();
+				TargetFleet4.Checked ? 4 : 0
+			}.Where(i => i > 0).ToArray();
 
 			ret.HorizontalFleetCount = (int)HorizontalFleetCount.Value;
 			ret.HorizontalShipCount = (int)HorizontalShipCount.Value;
@@ -173,10 +188,11 @@ namespace ElectronicObserver.Window.Dialog {
 			ret.AvoidTwitterDeterioration = AvoidTwitterDeterioration.Checked;
 
 			var fonts = ret.Fonts;
-			for ( int i = 0; i < fonts.Length; i++ ) {
-				if ( fonts[i] != null )
+			for (int i = 0; i < fonts.Length; i++)
+			{
+				if (fonts[i] != null)
 					fonts[i].Dispose();
-				fonts[i] = SerializableFont.StringToFont( TextFontList[i].Text, true );
+				fonts[i] = SerializableFont.StringToFont(TextFontList[i].Text, true);
 			}
 			ret.Fonts = fonts;
 
@@ -188,22 +204,25 @@ namespace ElectronicObserver.Window.Dialog {
 			return ret;
 		}
 
-		private int[] ToFleetIDs() {
+		private int[] ToFleetIDs()
+		{
 			return new[]{
 				TargetFleet1.Checked ? 1 : 0,
 				TargetFleet2.Checked ? 2 : 0,
 				TargetFleet3.Checked ? 3 : 0,
-				TargetFleet4.Checked ? 4 : 0 
-			}.Where( i => i > 0 ).ToArray();
+				TargetFleet4.Checked ? 4 : 0
+			}.Where(i => i > 0).ToArray();
 		}
 
 
-		private void ApplyGeneralFont_Click( object sender, EventArgs e ) {
+		private void ApplyGeneralFont_Click(object sender, EventArgs e)
+		{
 
-			if ( GeneralFont != null ) {
+			if (GeneralFont != null)
+			{
 				GeneralFont.Dispose();
 			}
-			GeneralFont = SerializableFont.StringToFont( TextGeneralFont.Text, true );
+			GeneralFont = SerializableFont.StringToFont(TextGeneralFont.Text, true);
 
 			if ( GeneralFont == null ) {
 				MessageBox.Show( "The specified font does not exists.", "Font Conversion Failed", MessageBoxButtons.OK, MessageBoxIcon.Error );
@@ -212,58 +231,68 @@ namespace ElectronicObserver.Window.Dialog {
 			}
 
 
-			for ( int i = 0; i < TextFontList.Length; i++ ) {
+			for (int i = 0; i < TextFontList.Length; i++)
+			{
 				float size = FleetImageArgument.DefaultFontPixels[i];
 				var unit = GraphicsUnit.Pixel;
 				var style = FontStyle.Regular;
 
-				var font = SerializableFont.StringToFont( TextFontList[i].Text, true );
-				if ( font != null ) {
+				var font = SerializableFont.StringToFont(TextFontList[i].Text, true);
+				if (font != null)
+				{
 					size = font.Size;
 					unit = font.Unit;
 					style = font.Style;
 					font.Dispose();
 				}
 
-				font = new Font( GeneralFont.FontFamily, size, style, unit );
-				TextFontList[i].Text = SerializableFont.FontToString( font );
+				font = new Font(GeneralFont.FontFamily, size, style, unit);
+				TextFontList[i].Text = SerializableFont.FontToString(font);
 				font.Dispose();
 			}
 
 		}
 
 
-		private void SelectGeneralFont_Click( object sender, EventArgs e ) {
+		private void SelectGeneralFont_Click(object sender, EventArgs e)
+		{
 			fontDialog1.Font = GeneralFont;
-			if ( fontDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK ) {
+			if (fontDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+			{
 				GeneralFont = fontDialog1.Font;
-				TextGeneralFont.Text = SerializableFont.FontToString( GeneralFont, true );
+				TextGeneralFont.Text = SerializableFont.FontToString(GeneralFont, true);
 			}
 		}
 
-		private void SelectFont_Click( object sender, EventArgs e, int index ) {
-			fontDialog1.Font = SerializableFont.StringToFont( TextFontList[index].Text, true );
-			if ( fontDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK ) {
-				TextFontList[index].Text = SerializableFont.FontToString( fontDialog1.Font, true );
+		private void SelectFont_Click(object sender, EventArgs e, int index)
+		{
+			fontDialog1.Font = SerializableFont.StringToFont(TextFontList[index].Text, true);
+			if (fontDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+			{
+				TextFontList[index].Text = SerializableFont.FontToString(fontDialog1.Font, true);
 			}
 		}
 
 
-		private void SearchBackgroundImagePath_Click( object sender, EventArgs e ) {
+		private void SearchBackgroundImagePath_Click(object sender, EventArgs e)
+		{
 			OpenImageDialog.FileName = BackgroundImagePath.Text;
-			if ( OpenImageDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK ) {
+			if (OpenImageDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+			{
 				BackgroundImagePath.Text = OpenImageDialog.FileName;
 			}
 		}
 
-		private void ClearBackgroundPath_Click( object sender, EventArgs e ) {
+		private void ClearBackgroundPath_Click(object sender, EventArgs e)
+		{
 			BackgroundImagePath.Text = "";
 		}
 
 
 
 
-		private void ButtonOK_Click( object sender, EventArgs e ) {
+		private void ButtonOK_Click(object sender, EventArgs e)
+		{
 
 			var args = ApplyToArgument();
 
@@ -310,90 +339,104 @@ namespace ElectronicObserver.Window.Dialog {
 			}
 
 			int mode;
-			if ( ImageTypeCard.Checked )
+			if (ImageTypeCard.Checked)
 				mode = 0;
-			else if ( ImageTypeCutin.Checked )
+			else if (ImageTypeCutin.Checked)
 				mode = 1;
-			else if ( ImageTypeBanner.Checked )
+			else if (ImageTypeBanner.Checked)
 				mode = 2;
 			else
 				mode = 3;
 
 
-			try {
+			try
+			{
 
-				if ( !OutputToClipboard.Checked ) {
+				if (!OutputToClipboard.Checked)
+				{
 
-					using ( var image = GenerateFleetImage( args, mode ) ) {
+					using (var image = GenerateFleetImage(args, mode))
+					{
 
-						if ( !Directory.Exists( Path.GetDirectoryName( OutputPath.Text ) ) ) {
-							Directory.CreateDirectory( Path.GetDirectoryName( OutputPath.Text ) );
+						if (!Directory.Exists(Path.GetDirectoryName(OutputPath.Text)))
+						{
+							Directory.CreateDirectory(Path.GetDirectoryName(OutputPath.Text));
 						}
 
-						switch ( Path.GetExtension( OutputPath.Text ).ToLower() ) {
+						switch (Path.GetExtension(OutputPath.Text).ToLower())
+						{
 							case ".png":
 							default:
-								image.Save( OutputPath.Text, System.Drawing.Imaging.ImageFormat.Png );
+								image.Save(OutputPath.Text, System.Drawing.Imaging.ImageFormat.Png);
 								break;
 
 							case ".bmp":
 							case ".dib":
-								image.Save( OutputPath.Text, System.Drawing.Imaging.ImageFormat.Bmp );
+								image.Save(OutputPath.Text, System.Drawing.Imaging.ImageFormat.Bmp);
 								break;
 
 							case ".gif":
-								image.Save( OutputPath.Text, System.Drawing.Imaging.ImageFormat.Gif );
+								image.Save(OutputPath.Text, System.Drawing.Imaging.ImageFormat.Gif);
 								break;
 
 							case ".tif":
 							case ".tiff":
-								image.Save( OutputPath.Text, System.Drawing.Imaging.ImageFormat.Tiff );
+								image.Save(OutputPath.Text, System.Drawing.Imaging.ImageFormat.Tiff);
 								break;
 
 							case ".jpg":
 							case ".jpeg":
 							case ".jpe":
-							case ".jfif": {
+							case ".jfif":
+								{
 									// jpeg quality settings
 									var encoderParams = new System.Drawing.Imaging.EncoderParameters();
-									encoderParams.Param[0] = new System.Drawing.Imaging.EncoderParameter( System.Drawing.Imaging.Encoder.Quality, 90L );
+									encoderParams.Param[0] = new System.Drawing.Imaging.EncoderParameter(System.Drawing.Imaging.Encoder.Quality, 90L);
 
-									var codecInfo = System.Drawing.Imaging.ImageCodecInfo.GetImageEncoders().FirstOrDefault( codec => codec.MimeType == "image/jpeg" );
+									var codecInfo = System.Drawing.Imaging.ImageCodecInfo.GetImageEncoders().FirstOrDefault(codec => codec.MimeType == "image/jpeg");
 
-									image.Save( OutputPath.Text, codecInfo, encoderParams );
-								} break;
+									image.Save(OutputPath.Text, codecInfo, encoderParams);
+								}
+								break;
 						}
 
-						if ( OpenImageAfterOutput.Checked )
-							System.Diagnostics.Process.Start( OutputPath.Text );
+						if (OpenImageAfterOutput.Checked)
+							System.Diagnostics.Process.Start(OutputPath.Text);
 
 
 					}
 
 
-				} else {
+				}
+				else
+				{
 
-					using ( var image = GenerateFleetImage( args, mode ) ) {
+					using (var image = GenerateFleetImage(args, mode))
+					{
 
-						Clipboard.SetImage( image );
+						Clipboard.SetImage(image);
 					}
 				}
 
 
 
-				if ( CurrentArgument != null )
+				if (CurrentArgument != null)
 					CurrentArgument.DisposeResources();
 				CurrentArgument = args;
 				SaveConfiguration();
 
 				Utility.Logger.Add( 2, "Fleet image exported successfully." );
 
-			} catch ( Exception ex ) {
+			}
+			catch (Exception ex)
+			{
 
 				ErrorReporter.SendErrorReport( ex, "Failed to export fleet image." );
 				MessageBox.Show( "Failed to export fleet image.\r\n" + ex.GetType().Name + "\r\n" + ex.Message, "Export Failure", MessageBoxButtons.OK, MessageBoxIcon.Error );
 
-			} finally {
+			}
+			finally
+			{
 				args.DisposeResources();
 			}
 
@@ -402,55 +445,64 @@ namespace ElectronicObserver.Window.Dialog {
 
 		}
 
-		private Bitmap GenerateFleetImage( FleetImageArgument args, int mode ) {
-			switch ( mode ) {
+		private Bitmap GenerateFleetImage(FleetImageArgument args, int mode)
+		{
+			switch (mode)
+			{
 				case 0:
 				default:
-					return FleetImageGenerator.GenerateCardBitmap( args );
+					return FleetImageGenerator.GenerateCardBitmap(args);
 				case 1:
-					return FleetImageGenerator.GenerateCutinBitmap( args );
+					return FleetImageGenerator.GenerateCutinBitmap(args);
 				case 2:
-					return FleetImageGenerator.GenerateBannerBitmap( args );
+					return FleetImageGenerator.GenerateBannerBitmap(args);
 				case 3:
-					return FleetImageGenerator.GenerateBaseAirCorpsImage( args );
+					return FleetImageGenerator.GenerateBaseAirCorpsImage(args);
 			}
 		}
 
 
-		private void ButtonCancel_Click( object sender, EventArgs e ) {
+		private void ButtonCancel_Click(object sender, EventArgs e)
+		{
 			Close();
 		}
 
 
-		private void ImageTypeCard_CheckedChanged( object sender, EventArgs e ) {
-			if ( ImageTypeCard.Checked )
+		private void ImageTypeCard_CheckedChanged(object sender, EventArgs e)
+		{
+			if (ImageTypeCard.Checked)
 				HorizontalShipCount.Value = 2;
 		}
 
-		private void ImageTypeCutin_CheckedChanged( object sender, EventArgs e ) {
-			if ( ImageTypeCutin.Checked )
+		private void ImageTypeCutin_CheckedChanged(object sender, EventArgs e)
+		{
+			if (ImageTypeCutin.Checked)
 				HorizontalShipCount.Value = 1;
 		}
 
-		private void ImageTypeBanner_CheckedChanged( object sender, EventArgs e ) {
-			if ( ImageTypeBanner.Checked )
+		private void ImageTypeBanner_CheckedChanged(object sender, EventArgs e)
+		{
+			if (ImageTypeBanner.Checked)
 				HorizontalShipCount.Value = 2;
 		}
 
 
 
-		private void UpdateButtonAlert() {
+		private void UpdateButtonAlert()
+		{
 
 			bool visibility = false;
 
-			if ( !Utility.Configuration.Config.Connection.SaveReceivedData || !Utility.Configuration.Config.Connection.SaveSWF ) {
+			if (!Utility.Configuration.Config.Connection.SaveReceivedData || !Utility.Configuration.Config.Connection.SaveSWF)
+			{
 
 				visibility = true;
 				ButtonAlert.Text = "Invalid settings";
 
 			}
 
-			if ( !FleetImageGenerator.HasShipSwfImage( ToFleetIDs() ) ) {
+			if (!FleetImageGenerator.HasShipSwfImage(ToFleetIDs()))
+			{
 
 				visibility = true;
 				ButtonAlert.Text = "Ship image not found";
@@ -462,17 +514,20 @@ namespace ElectronicObserver.Window.Dialog {
 		}
 
 
-		private void ButtonAlert_Click( object sender, EventArgs e ) {
+		private void ButtonAlert_Click(object sender, EventArgs e)
+		{
 
-			if ( !Utility.Configuration.Config.Connection.SaveReceivedData || !Utility.Configuration.Config.Connection.SaveSWF ) {
+			if (!Utility.Configuration.Config.Connection.SaveReceivedData || !Utility.Configuration.Config.Connection.SaveSWF)
+			{
 
 				if ( MessageBox.Show( "It is necessary to enable save ship image option in order\r\nto export fleet image. Would you like to enable it?",
 					"Invalid Settings", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1 )
 					== System.Windows.Forms.DialogResult.Yes ) {
 
-					if ( !Utility.Configuration.Config.Connection.SaveReceivedData ) {
+					if (!Utility.Configuration.Config.Connection.SaveReceivedData)
+					{
 						Utility.Configuration.Config.Connection.SaveReceivedData = true;
-						Utility.Configuration.Config.Connection.SaveResponse = false;		// もともと不要にしていたユーザーには res は邪魔なだけだと思うので
+						Utility.Configuration.Config.Connection.SaveResponse = false;       // もともと不要にしていたユーザーには res は邪魔なだけだと思うので
 					}
 					Utility.Configuration.Config.Connection.SaveSWF = true;
 
@@ -481,7 +536,8 @@ namespace ElectronicObserver.Window.Dialog {
 
 			}
 
-			if ( !FleetImageGenerator.HasShipSwfImage( ToFleetIDs() ) ) {
+			if (!FleetImageGenerator.HasShipSwfImage(ToFleetIDs()))
+			{
 
 				MessageBox.Show( "One or more ship image of the current fleet are missing.\r\n\r\nClear cache and reload the game. The ship images are automatically\r\nsaved when you view the current fleet within the game.",
 					"Ship Image Not Found", MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
@@ -493,25 +549,28 @@ namespace ElectronicObserver.Window.Dialog {
 
 
 
-		private void TargetFleet1_CheckedChanged( object sender, EventArgs e ) {
+		private void TargetFleet1_CheckedChanged(object sender, EventArgs e)
+		{
 			UpdateButtonAlert();
 		}
 
 
-		private void ButtonClearFont_Click( object sender, EventArgs e ) {
+		private void ButtonClearFont_Click(object sender, EventArgs e)
+		{
 
 			if ( MessageBox.Show( "Are you sure you want to reset font\r\nsettings to the default values?", "Clear Confirmation",
 				MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2 )
 				 == System.Windows.Forms.DialogResult.Yes ) {
 
-				if ( GeneralFont != null )
+				if (GeneralFont != null)
 					GeneralFont.Dispose();
 				GeneralFont = null;
 				TextGeneralFont.Text = "";
 
 				var defaultFonts = FleetImageArgument.GetDefaultFonts();
-				for ( int i = 0; i < TextFontList.Length; i++ ) {
-					TextFontList[i].Text = SerializableFont.FontToString( defaultFonts[i] );
+				for (int i = 0; i < TextFontList.Length; i++)
+				{
+					TextFontList[i].Text = SerializableFont.FontToString(defaultFonts[i]);
 					defaultFonts[i].Dispose();
 				}
 			}
@@ -520,81 +579,111 @@ namespace ElectronicObserver.Window.Dialog {
 
 
 
-		private void Title_TextChanged( object sender, EventArgs e ) {
-			if ( SyncronizeTitleAndFileName.Checked ) {
-				try {
+		private void Title_TextChanged(object sender, EventArgs e)
+		{
+			if (SyncronizeTitleAndFileName.Checked)
+			{
+				try
+				{
 
-					string replaceTo = Path.GetDirectoryName( OutputPath.Text ) + "\\" + Title.Text + Path.GetExtension( OutputPath.Text );
+					string replaceTo = Path.GetDirectoryName(OutputPath.Text) + "\\" + Title.Text + Path.GetExtension(OutputPath.Text);
 
-					if ( OutputPath.Text != replaceTo )
+					if (OutputPath.Text != replaceTo)
 						OutputPath.Text = replaceTo;
 
-				} catch ( Exception ) {
+				}
+				catch (Exception)
+				{
 				}
 			}
 		}
 
-		private void OutputPath_TextChanged( object sender, EventArgs e ) {
+		private void OutputPath_TextChanged(object sender, EventArgs e)
+		{
 
-			if ( SyncronizeTitleAndFileName.Checked ) {
-				try {
-					string replaceTo = Path.GetFileNameWithoutExtension( OutputPath.Text );
+			if (SyncronizeTitleAndFileName.Checked)
+			{
+				try
+				{
+					string replaceTo = Path.GetFileNameWithoutExtension(OutputPath.Text);
 
-					if ( Title.Text != replaceTo )
+					if (Title.Text != replaceTo)
 						Title.Text = replaceTo;
 
-				} catch ( Exception ) {		// path contains invalid char.
+				}
+				catch (Exception)
+				{       // path contains invalid char.
 				}
 			}
 
-			if ( string.IsNullOrWhiteSpace( OutputPath.Text ) || OutputPath.Text.ToCharArray().Intersect( Path.GetInvalidPathChars() ).Any() ) {
+			if (string.IsNullOrWhiteSpace(OutputPath.Text) || OutputPath.Text.ToCharArray().Intersect(Path.GetInvalidPathChars()).Any())
+			{
 				OutputPath.BackColor = Color.MistyRose;
-			} else if ( File.Exists( OutputPath.Text ) ) {
+			}
+			else if (File.Exists(OutputPath.Text))
+			{
 				OutputPath.BackColor = Color.Moccasin;
-			} else {
+			}
+			else
+			{
 				OutputPath.BackColor = SystemColors.Window;
 			}
 		}
 
 
 
-		private void AutoSetFileNameToDate_CheckedChanged( object sender, EventArgs e ) {
+		private void AutoSetFileNameToDate_CheckedChanged(object sender, EventArgs e)
+		{
 
-			if ( AutoSetFileNameToDate.Checked ) {
-				try {
+			if (AutoSetFileNameToDate.Checked)
+			{
+				try
+				{
 
-					OutputPath.Text = Path.GetDirectoryName( OutputPath.Text ) + "\\" + Utility.Mathematics.DateTimeHelper.GetTimeStamp() + Path.GetExtension( OutputPath.Text );
+					OutputPath.Text = Path.GetDirectoryName(OutputPath.Text) + "\\" + Utility.Mathematics.DateTimeHelper.GetTimeStamp() + Path.GetExtension(OutputPath.Text);
 
-				} catch ( Exception ) {
+				}
+				catch (Exception)
+				{
 				}
 			}
 
 		}
 
 
-		private void SyncronizeTitleAndFileName_CheckedChanged( object sender, EventArgs e ) {
+		private void SyncronizeTitleAndFileName_CheckedChanged(object sender, EventArgs e)
+		{
 
-			if ( SyncronizeTitleAndFileName.Checked ) {
+			if (SyncronizeTitleAndFileName.Checked)
+			{
 
-				if ( string.IsNullOrWhiteSpace( OutputPath.Text ) ) {
-					Title_TextChanged( sender, e );
+				if (string.IsNullOrWhiteSpace(OutputPath.Text))
+				{
+					Title_TextChanged(sender, e);
 
-				} else {
-					OutputPath_TextChanged( sender, e );
+				}
+				else
+				{
+					OutputPath_TextChanged(sender, e);
 				}
 
 			}
 
 		}
 
-		private void SearchOutputPath_Click( object sender, EventArgs e ) {
+		private void SearchOutputPath_Click(object sender, EventArgs e)
+		{
 
-			try {
-				SaveImageDialog.FileName = System.IO.Path.GetFileName( OutputPath.Text );
-				SaveImageDialog.InitialDirectory = string.IsNullOrWhiteSpace( OutputPath.Text ) ? "" : System.IO.Path.GetDirectoryName( OutputPath.Text );
-			} catch ( Exception ) {
+			try
+			{
+				SaveImageDialog.FileName = System.IO.Path.GetFileName(OutputPath.Text);
+				SaveImageDialog.InitialDirectory = string.IsNullOrWhiteSpace(OutputPath.Text) ? "" : System.IO.Path.GetDirectoryName(OutputPath.Text);
 			}
-			if ( SaveImageDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK ) {
+			catch (Exception)
+			{
+			}
+			if (SaveImageDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+			{
 				OutputPath.Text = SaveImageDialog.FileName;
 			}
 
@@ -602,13 +691,15 @@ namespace ElectronicObserver.Window.Dialog {
 
 
 
-		private void DialogFleetImageGenerator_FormClosing( object sender, FormClosingEventArgs e ) {
+		private void DialogFleetImageGenerator_FormClosing(object sender, FormClosingEventArgs e)
+		{
 			CurrentArgument.DisposeResources();
 		}
 
 
 
-		private void OutputToClipboard_CheckedChanged( object sender, EventArgs e ) {
+		private void OutputToClipboard_CheckedChanged(object sender, EventArgs e)
+		{
 			OutputPath.Enabled =
 			SearchOutputPath.Enabled =
 			OpenImageAfterOutput.Enabled =
@@ -620,13 +711,16 @@ namespace ElectronicObserver.Window.Dialog {
 			ToolTipInfo.SetToolTip( GroupOutputPath, OutputToClipboard.Checked ? "The fleet image will be exported to the clipboard.\r\nUncheck 'Copy to clipboard' on the details tab to export fleet image to a file." : null );
 		}
 
-		private void Comment_KeyDown( object sender, KeyEventArgs e ) {
+		private void Comment_KeyDown(object sender, KeyEventArgs e)
+		{
 
 			// Multiline == true の TextBox では、 Ctrl-A ショートカットが無効化されるらしいので自家実装
 
-			if ( e.Control && e.KeyCode == Keys.A ) {
-				if ( sender != null ) {
-					( (TextBox)sender ).SelectAll();
+			if (e.Control && e.KeyCode == Keys.A)
+			{
+				if (sender != null)
+				{
+					((TextBox)sender).SelectAll();
 				}
 				e.SuppressKeyPress = true;
 				e.Handled = true;
@@ -635,8 +729,9 @@ namespace ElectronicObserver.Window.Dialog {
 
 
 
-		private void DialogFleetImageGenerator_FormClosed( object sender, FormClosedEventArgs e ) {
-			ResourceManager.DestroyIcon( Icon );
+		private void DialogFleetImageGenerator_FormClosed(object sender, FormClosedEventArgs e)
+		{
+			ResourceManager.DestroyIcon(Icon);
 		}
 
 

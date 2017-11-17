@@ -175,29 +175,11 @@ namespace ElectronicObserver.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 確認.
-        /// </summary>
-        internal static string Confirm {
-            get {
-                return ResourceManager.GetString("Confirm", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 開発.
         /// </summary>
         internal static string DevelopedBy {
             get {
                 return ResourceManager.GetString("DevelopedBy", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to エラー.
-        /// </summary>
-        internal static string Error {
-            get {
-                return ResourceManager.GetString("Error", resourceCulture);
             }
         }
         

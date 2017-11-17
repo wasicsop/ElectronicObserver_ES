@@ -400,15 +400,6 @@ namespace ElectronicObserver.Window.Dialog {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 確認.
-        /// </summary>
-        internal static string Confirm {
-            get {
-                return ResourceManager.GetString("Confirm", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 有効な場合再読み込みするときに確認ダイアログを表示します。
         ///誤爆防止にご利用ください。.
         /// </summary>
@@ -634,15 +625,6 @@ namespace ElectronicObserver.Window.Dialog {
         internal static string EquipmentLevelVisibility_ProfPrio {
             get {
                 return ResourceManager.GetString("EquipmentLevelVisibility_ProfPrio", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to エラー.
-        /// </summary>
-        internal static string Error {
-            get {
-                return ResourceManager.GetString("Error", resourceCulture);
             }
         }
         

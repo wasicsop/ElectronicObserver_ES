@@ -5,16 +5,19 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ElectronicObserver.Data.Quest {
-	
+namespace ElectronicObserver.Data.Quest
+{
+
 	/// <summary>
 	/// 艦船建造任務の進捗を管理します。
 	/// </summary>
-	[DataContract( Name = "ProgressConstruction" )]
-	public class ProgressConstruction : ProgressData {
+	[DataContract(Name = "ProgressConstruction")]
+	public class ProgressConstruction : ProgressData
+	{
 
-		public ProgressConstruction( QuestData quest, int maxCount )
-			: base( quest, maxCount ) {
+		public ProgressConstruction(QuestData quest, int maxCount)
+			: base(quest, maxCount)
+		{
 		}
 
 

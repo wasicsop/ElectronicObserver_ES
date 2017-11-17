@@ -1456,15 +1456,6 @@ namespace ElectronicObserver.Data {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 戦力.
-        /// </summary>
-        internal static string Participant {
-            get {
-                return ResourceManager.GetString("Participant", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 母港.
         /// </summary>
         internal static string Port {
@@ -1915,24 +1906,6 @@ namespace ElectronicObserver.Data {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 連合艦隊 夜戦.
-        /// </summary>
-        internal static string Title_CombinedNormalNight {
-            get {
-                return ResourceManager.GetString("Title_CombinedNormalNight", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 連合艦隊-水上部隊 昼戦.
-        /// </summary>
-        internal static string Title_CombinedWater {
-            get {
-                return ResourceManager.GetString("Title_CombinedWater", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 通常艦隊 対連合艦隊 昼戦.
         /// </summary>
         internal static string Title_EnemyCombinedDay {
@@ -2064,15 +2037,6 @@ namespace ElectronicObserver.Data {
         internal static string Unhurt {
             get {
                 return ResourceManager.GetString("Unhurt", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 未確認飛行物体.
-        /// </summary>
-        internal static string UnidentifiedPlane {
-            get {
-                return ResourceManager.GetString("UnidentifiedPlane", resourceCulture);
             }
         }
         

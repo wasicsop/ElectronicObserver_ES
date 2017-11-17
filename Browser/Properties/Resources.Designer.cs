@@ -124,33 +124,6 @@ namespace Browser.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 確認.
-        /// </summary>
-        internal static string Confirm {
-            get {
-                return ResourceManager.GetString("Confirm", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 対象の swf が見つかりませんでした。.
-        /// </summary>
-        internal static string CouldntFindSWF {
-            get {
-                return ResourceManager.GetString("CouldntFindSWF", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to embed 要素の取得に失敗しました。.
-        /// </summary>
-        internal static string CouldntLoadEmbed {
-            get {
-                return ResourceManager.GetString("CouldntLoadEmbed", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 現在: .
         /// </summary>
         internal static string CurrentZoom {
@@ -184,15 +157,6 @@ namespace Browser.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ズームの適用に失敗しました。.
-        /// </summary>
-        internal static string FailedToApplyZoom {
-            get {
-                return ResourceManager.GetString("FailedToApplyZoom", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 
         ///try {{
         ///var node = document.getElementById(&apos;{0}&apos;);
@@ -211,30 +175,12 @@ namespace Browser.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 情報.
-        /// </summary>
-        internal static string Information {
-            get {
-                return ResourceManager.GetString("Information", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to ログインページへ移動します。
         ///よろしいですか？.
         /// </summary>
         internal static string LoginDialog {
             get {
                 return ResourceManager.GetString("LoginDialog", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 艦これが読み込まれていないため、スクリーンショットを撮ることはできません。.
-        /// </summary>
-        internal static string NoScreenshotUnloaded {
-            get {
-                return ResourceManager.GetString("NoScreenshotUnloaded", resourceCulture);
             }
         }
         
@@ -352,15 +298,6 @@ namespace Browser.Properties {
         internal static string Strip_Zoom {
             get {
                 return ResourceManager.GetString("Strip_Zoom", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to これは七四式電子観測儀のサブプログラムであり、単体では起動できません。\r\n本体から起動してください。.
-        /// </summary>
-        internal static string SubProgramWarning {
-            get {
-                return ResourceManager.GetString("SubProgramWarning", resourceCulture);
             }
         }
         

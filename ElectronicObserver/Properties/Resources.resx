@@ -159,14 +159,8 @@
   <data name="ClosingComplete" xml:space="preserve">
     <value>終了処理が完了しました。</value>
   </data>
-  <data name="Confirm" xml:space="preserve">
-    <value>確認</value>
-  </data>
   <data name="DevelopedBy" xml:space="preserve">
     <value>開発</value>
-  </data>
-  <data name="Error" xml:space="preserve">
-    <value>エラー</value>
   </data>
   <data name="FailedBrowserStart" xml:space="preserve">
     <value>ブラウザプロセスの起動に失敗しました。</value>
