@@ -240,9 +240,10 @@ namespace ElectronicObserver.Window.Dialog
 
 				StringBuilder sb = new StringBuilder();
 				sb.AppendLine(EncycloRes.EquippableShips);
-				foreach ( var stype in KCDatabase.Instance.ShipTypes.Values ) {
-					if ( stype.EquipmentType.Contains( eq.CategoryType ) )
-						sb.AppendLine( FormMain.Instance.Translator.GetTranslation(stype.Name, Utility.TranslationType.ShipTypes) );
+				foreach (var stype in KCDatabase.Instance.ShipTypes.Values)
+				{
+					if (stype.EquipmentType.Contains((int)eq.CategoryType))
+						sb.AppendLine(FormMain.Instance.Translator.GetTranslation(stype.Name, Utility.TranslationType.ShipTypes));
 				}
 				ToolTipInfo.SetToolTip(EquipmentType, sb.ToString());
 			}
@@ -295,7 +296,7 @@ namespace ElectronicObserver.Window.Dialog
 			{
 				TableAircraft.SuspendLayout();
 				AircraftCost.Text = eq.AircraftCost.ToString();
-				ToolTipInfo.SetToolTip( AircraftCost, EncycloRes.AircraftCostHint + "：" + ( ( Calculator.IsAircraft( equipmentID, false ) ? 18 : 4 ) * eq.AircraftCost ) );
+				ToolTipInfo.SetToolTip(AircraftCost, EncycloRes.AircraftCostHint + "：" + ((eq.IsCombatAircraft ? 18 : 4) * eq.AircraftCost));
 				AircraftDistance.Text = eq.AircraftDistance.ToString();
 				TableAircraft.ResumeLayout();
 				TableAircraft.Visible = true;

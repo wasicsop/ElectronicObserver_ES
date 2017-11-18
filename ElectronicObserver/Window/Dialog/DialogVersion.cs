@@ -18,7 +18,7 @@ namespace ElectronicObserver.Window.Dialog
 		{
 			InitializeComponent();
 
-			TextVersion.Text = string.Format("{0} {1} ({2} release)", SoftwareInformation.VersionJapanese, SoftwareInformation.VersionEnglish, SoftwareInformation.UpdateTime.ToString("d"));
+			TextVersion.Text = string.Format("{0} {1} ({2} release)", SoftwareInformation.SoftwareNameEnglish, SoftwareInformation.VersionEnglish, SoftwareInformation.UpdateTime.ToString("d"));
 		}
 
 		private void TextAuthor_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -38,7 +38,7 @@ namespace ElectronicObserver.Window.Dialog
 		private void TextInformation_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
 		{
 
-			System.Diagnostics.Process.Start("http://electronicobserver.blog.fc2.com/");
+			System.Diagnostics.Process.Start("https://github.com/silfumus/ElectronicObserver");
 
 		}
 
@@ -47,15 +47,5 @@ namespace ElectronicObserver.Window.Dialog
 
 			this.Icon = ResourceManager.Instance.AppIcon;
 		}
-
-        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            System.Diagnostics.Process.Start("https://github.com/silfumus/ElectronicObserver/releases");
-        }
-
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            System.Diagnostics.Process.Start("https://github.com/silfumus");
-        }
     }
 }

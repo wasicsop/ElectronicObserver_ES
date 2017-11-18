@@ -245,7 +245,7 @@ namespace ElectronicObserver.Resource
 			{
 
 				Utility.ErrorReporter.SendErrorReport( ex, LoggerRes.FailedLoadingResource);
-                MessageBox.Show( LoggerRes.FailedLoadingResource + "\r\n" + ex.Message, LoggerRes.Error, MessageBoxButtons.OK, MessageBoxIcon.Error );
+				MessageBox.Show( LoggerRes.FailedLoadingResource + "\r\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error );
 
 				FillWithBlankImage(Icons, Enum.GetValues(typeof(IconContent)).Length);
 				FillWithBlankImage(Equipments, Enum.GetValues(typeof(EquipmentContent)).Length);

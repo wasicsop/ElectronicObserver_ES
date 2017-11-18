@@ -413,21 +413,21 @@
 			//
 			// ShipView_RepairTime
 			//
-			this.ShipView_RepairTime.HeaderText = GeneralRes.Dock;
+			this.ShipView_RepairTime.HeaderText = "Repair Time";
 			this.ShipView_RepairTime.Name = "ShipView_RepairTime";
 			this.ShipView_RepairTime.ReadOnly = true;
 			this.ShipView_RepairTime.Width = 60;
 			//
 			// ShipView_RepairSteel
 			//
-			this.ShipView_RepairSteel.HeaderText = GeneralRes.Dock + " " + GeneralRes.Steel;
+			this.ShipView_RepairSteel.HeaderText = "Steel Repair Cost";
 			this.ShipView_RepairSteel.Name = "ShipView_RepairSteel";
 			this.ShipView_RepairSteel.ReadOnly = true;
 			this.ShipView_RepairSteel.Width = 60;
 			//
 			// ShipView_RepairFuel
 			//
-			this.ShipView_RepairFuel.HeaderText = GeneralRes.Dock + " " + GeneralRes.Fuel;
+			this.ShipView_RepairFuel.HeaderText = "Fuel Repair Cost";
 			this.ShipView_RepairFuel.Name = "ShipView_RepairFuel";
 			this.ShipView_RepairFuel.ReadOnly = true;
 			this.ShipView_RepairFuel.Width = 60;

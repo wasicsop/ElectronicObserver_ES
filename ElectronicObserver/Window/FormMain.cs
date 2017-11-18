@@ -790,7 +790,7 @@ namespace ElectronicObserver.Window
 		private void StripMenu_File_SaveData_Load_Click(object sender, EventArgs e)
 		{
 
-			if ( MessageBox.Show( Resources.AskLoad, Resources.Confirm,
+			if ( MessageBox.Show( Resources.AskLoad, "Confirmation",
 					MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2 )
 				== System.Windows.Forms.DialogResult.Yes ) {
 

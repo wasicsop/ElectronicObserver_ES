@@ -241,15 +241,14 @@ namespace ElectronicObserver.Window.Control
 					var dest = db.Mission[fleet.ExpeditionDestination];
 
 					state.Timer = fleet.ExpeditionTime;
+					string stateText = $"[{dest.ID.ToString("D3")}] {DateTimeHelper.ToTimeRemainString(state.Timer)}";
 					state.SetInformation(FleetStates.Expedition,
-						"[" + dest.ID.ToString( "D3" ) + "] " + DateTimeHelper.ToTimeRemainString( state.Timer ),
-						"[" + dest.ID.ToString( "D3" ) + "] " + DateTimeHelper.ToTimeRemainString( state.Timer ),
+						stateText,
+						stateText,
 						(int)ResourceManager.IconContent.FleetExpedition);
 
-					var dest = db.Mission[fleet.ExpeditionDestination];
 					tooltip.SetToolTip(state.Label,
-						string.Format("{0} : {1}\r\nETA: {2}",
-						dest.ID, dest.Name, DateTimeHelper.TimeToCSVString(state.Timer)));
+						$"{dest.ID}: {dest.Name}\r\nETA: {DateTimeHelper.TimeToCSVString(state.Timer)}");
 
 					emphasizesSubFleetInPort = false;
 					index++;

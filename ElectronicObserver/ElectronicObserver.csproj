@@ -735,9 +735,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ConfigRes.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Window\Dialog\DialogAntiAirDefense.en.resx">
-      <DependentUpon>DialogAntiAirDefense.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Window\Dialog\DialogConstructionRecordViewer.en.resx">
       <DependentUpon>DialogConstructionRecordViewer.cs</DependentUpon>
     </EmbeddedResource>

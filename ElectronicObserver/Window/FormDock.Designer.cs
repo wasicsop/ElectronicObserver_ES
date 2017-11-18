@@ -69,7 +69,7 @@
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 			this.HideOnClose = true;
 			this.Name = "FormDock";
-            this.Text = GeneralRes.Dock;
+            this.Text = "Dock";
 			this.Load += new System.EventHandler(this.FormDock_Load);
 			this.ResumeLayout(false);
 			this.PerformLayout();

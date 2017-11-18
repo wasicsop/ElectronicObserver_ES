@@ -592,7 +592,7 @@ namespace ElectronicObserver.Data
 		/// <summary>
 		/// 艦種名
 		/// </summary>
-		public string ShipTypeName => Window.FormMain.Instance.Translator.GetTranslation(KCDatabase.Instance.ShipTypes[ShipType].Name, Utility.TranslationType.ShipTypes);
+		public string ShipTypeName => Window.FormMain.Instance.Translator.GetTranslation(KCDatabase.Instance.ShipTypes[(int)ShipType].Name, Utility.TranslationType.ShipTypes);
 
 
 		/// <summary>

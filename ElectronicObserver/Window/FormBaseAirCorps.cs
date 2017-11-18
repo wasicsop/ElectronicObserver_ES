@@ -274,7 +274,7 @@ namespace ElectronicObserver.Window
 					{
 						case 0:     // 未配属
 						default:
-							sb.AppendLine( GeneralRes.None );
+							sb.AppendLine( "(empty)" );
 							break;
 
 						case 1:     // 配属済み
@@ -491,7 +491,7 @@ namespace ElectronicObserver.Window
 							{
 								var eq = sq[i].EquipmentInstance;
 
-								sb.Append(eq?.NameWithLevel ?? GeneralRes.None);
+								sb.Append(eq?.NameWithLevel ?? "(empty)");
 
 								if (sq[i].AircraftCurrent < sq[i].AircraftMax)
 									sb.AppendFormat("[{0}/{1}]", sq[i].AircraftCurrent, sq[i].AircraftMax);
