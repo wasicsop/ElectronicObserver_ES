@@ -176,9 +176,6 @@ Add windows of your choosing using the "View" menu.</value>
   <data name="IsClosing" xml:space="preserve">
     <value> is closing...</value>
   </data>
-  <data name="IsStarting" xml:space="preserve">
-    <value> is starting...</value>
-  </data>
   <data name="LayoutLoaded" xml:space="preserve">
     <value>Successfully loaded window layout from {0}.</value>
   </data>

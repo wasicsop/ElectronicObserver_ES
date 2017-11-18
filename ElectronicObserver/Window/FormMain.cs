@@ -132,7 +132,7 @@ namespace ElectronicObserver.Window
 			});
 			Utility.Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
 
-			Utility.Logger.Add(2, SoftwareInformation.SoftwareNameJapanese + Resources.IsStarting);
+			Utility.Logger.Add(2, SoftwareInformation.SoftwareNameEnglish + " is starting...");
 
 
 			ResourceManager.Instance.Load();

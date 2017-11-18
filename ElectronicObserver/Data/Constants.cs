@@ -948,7 +948,7 @@ namespace ElectronicObserver.Data
 				case 3:     //マンスリー
 					return ConstantsRes.Monthly;
 				case 4:     //単発
-					return "Once";
+					return "1";
 				case 5:     //その他(輸送5/空母3)
 					return ConstantsRes.QuestOther;
 				default:

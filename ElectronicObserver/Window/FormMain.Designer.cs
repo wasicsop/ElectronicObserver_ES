@@ -733,14 +733,14 @@
             this.StripMenu_File_Notification_MuteAll});
 			this.StripMenu_File_Notification.Name = "StripMenu_File_Notification";
 			this.StripMenu_File_Notification.Size = new System.Drawing.Size(152, 22);
-			this.StripMenu_File_Notification.Text = "通知(&N)";
+			this.StripMenu_File_Notification.Text = "&Notification";
 			//
 			// StripMenu_File_Notification_MuteAll
 			//
 			this.StripMenu_File_Notification_MuteAll.CheckOnClick = true;
 			this.StripMenu_File_Notification_MuteAll.Name = "StripMenu_File_Notification_MuteAll";
 			this.StripMenu_File_Notification_MuteAll.Size = new System.Drawing.Size(199, 22);
-			this.StripMenu_File_Notification_MuteAll.Text = "すべての通知をミュート(&M)";
+			this.StripMenu_File_Notification_MuteAll.Text = "&Mute all notifications";
 			this.StripMenu_File_Notification_MuteAll.Click += new System.EventHandler(this.StripMenu_File_Notification_MuteAll_Click);
 			//
 			//

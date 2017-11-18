@@ -1,36 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Xml.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 using System.Threading;
-using System.Globalization;
+using System.Xml.Linq;
 using AppSettings = ElectronicObserver.Properties.Settings;
 
 namespace ElectronicObserver.Utility
 {
-    public class DynamicTranslator
+	public class DynamicTranslator
     {
-        private XDocument shipsXml;
-        private XDocument shipTypesXml;
-        private XDocument equipmentXml;
-        private XDocument equipTypesXML;
-        private XDocument operationsXml;
-        private XDocument questsXml;
-        private XDocument expeditionsXml;
-        private XDocument versionManifest;
-        private string shipsVersion;
-        private string shipTypesVersion;
-        private string equipmentVersion;
-        private string equipTypesVersion;
-        private string operationsVersion;
-        private string questsVersion;
-        private string expeditionsVersion;
-		string locale = Thread.CurrentThread.CurrentCulture.Name;
+        private XDocument _shipsXml;
+        private XDocument _shipTypesXml;
+        private XDocument _equipmentXml;
+        private XDocument _equipTypesXml;
+        private XDocument _operationsXml;
+        private XDocument _questsXml;
+        private XDocument _expeditionsXml;
+        private XDocument _versionManifest;
+        private string _shipsVersion;
+        private string _shipTypesVersion;
+        private string _equipmentVersion;
+        private string _equipTypesVersion;
+        private string _operationsVersion;
+        private string _questsVersion;
+        private string _expeditionsVersion;
+	    private readonly string _locale = Thread.CurrentThread.CurrentCulture.Name;
 
 		internal DynamicTranslator()
         {
@@ -38,13 +34,13 @@ namespace ElectronicObserver.Utility
             {
                 if (Thread.CurrentThread.CurrentCulture.Name != "ja-JP")
                 {
-                    if (File.Exists("Translations\\Ships.xml")) this.shipsXml = XDocument.Load("Translations\\Ships.xml");
-                    if (File.Exists("Translations\\ShipTypes.xml")) this.shipTypesXml = XDocument.Load("Translations\\ShipTypes.xml");
-                    if (File.Exists("Translations\\Equipment.xml")) this.equipmentXml = XDocument.Load("Translations\\Equipment.xml");
-                    if (File.Exists("Translations\\EquipmentTypes.xml")) this.equipTypesXML = XDocument.Load("Translations\\EquipmentTypes.xml");
-                    if (File.Exists("Translations\\Operations.xml")) this.operationsXml = XDocument.Load("Translations\\Operations.xml");
-                    if (File.Exists("Translations\\Quests.xml")) this.questsXml = XDocument.Load("Translations\\Quests.xml");
-                    if (File.Exists("Translations\\Expeditions.xml")) this.expeditionsXml = XDocument.Load("Translations\\Expeditions.xml");
+                    if (File.Exists("Translations\\Ships.xml")) _shipsXml = XDocument.Load("Translations\\Ships.xml");
+                    if (File.Exists("Translations\\ShipTypes.xml")) _shipTypesXml = XDocument.Load("Translations\\ShipTypes.xml");
+                    if (File.Exists("Translations\\Equipment.xml")) _equipmentXml = XDocument.Load("Translations\\Equipment.xml");
+                    if (File.Exists("Translations\\EquipmentTypes.xml")) _equipTypesXml = XDocument.Load("Translations\\EquipmentTypes.xml");
+                    if (File.Exists("Translations\\Operations.xml")) _operationsXml = XDocument.Load("Translations\\Operations.xml");
+                    if (File.Exists("Translations\\Quests.xml")) _questsXml = XDocument.Load("Translations\\Quests.xml");
+                    if (File.Exists("Translations\\Expeditions.xml")) _expeditionsXml = XDocument.Load("Translations\\Expeditions.xml");
 				}
             }
             catch (Exception ex)
@@ -57,13 +53,13 @@ namespace ElectronicObserver.Utility
 
         private void GetVersions()
         {
-			this.shipsVersion = LoadXml(this.shipsXml);
-			this.shipTypesVersion = LoadXml(this.shipTypesXml);
-			this.equipmentVersion = LoadXml(this.equipmentXml);
-			this.equipTypesVersion = LoadXml(this.equipTypesXML);
-			this.operationsVersion = LoadXml(this.operationsXml);
-			this.questsVersion = LoadXml(this.questsXml);
-			this.expeditionsVersion = LoadXml(this.expeditionsXml);
+			_shipsVersion = LoadXml(_shipsXml);
+			_shipTypesVersion = LoadXml(_shipTypesXml);
+			_equipmentVersion = LoadXml(_equipmentXml);
+			_equipTypesVersion = LoadXml(_equipTypesXml);
+			_operationsVersion = LoadXml(_operationsXml);
+			_questsVersion = LoadXml(_questsXml);
+			_expeditionsVersion = LoadXml(_expeditionsXml);
 		}
 
 		private string LoadXml(XDocument xml)
@@ -72,124 +68,123 @@ namespace ElectronicObserver.Utility
 				return "0.0.0";
 			else
 			{
-				var element = xml.Root.Attribute("Version");
-				return element.Value;
+				return xml.Root.Attribute("Version").Value;
 			}
 		}
 
         private void CheckForUpdates()
         {
             Directory.CreateDirectory("Translations");
-			string newShipVer = shipsVersion;
-			string newShipTypeVer = shipTypesVersion;
-			string newEquipVer = equipmentVersion;
-			string newEquipTypeVer = equipTypesVersion;
-			string newOperationVer = operationsVersion;
-			string newQuestVer = questsVersion;
-			string newExpedVer = expeditionsVersion;
-            if (locale != "ja-JP")
+			string newShipVer = _shipsVersion;
+			string newShipTypeVer = _shipTypesVersion;
+			string newEquipVer = _equipmentVersion;
+			string newEquipTypeVer = _equipTypesVersion;
+			string newOperationVer = _operationsVersion;
+			string newQuestVer = _questsVersion;
+			string newExpedVer = _expeditionsVersion;
+            if (_locale != "ja-JP")
             {
 				try
 				{
-					WebRequest rq = HttpWebRequest.Create(AppSettings.Default.EOTranslations.AbsoluteUri + locale + "/VersionManifest.xml");
+					WebRequest rq = WebRequest.Create(AppSettings.Default.EOTranslations.AbsoluteUri + _locale + "/VersionManifest.xml");
 					using (WebResponse resp = rq.GetResponse())
 					{
 						Stream responseStream = resp.GetResponseStream();
-						this.versionManifest = XDocument.Load(responseStream);
+						_versionManifest = XDocument.Load(responseStream);
 					}
-					newShipVer = versionManifest.Root.Element("Ships").Attribute("version").Value;
-					newShipTypeVer = versionManifest.Root.Element("ShipTypes").Attribute("version").Value;
-					newEquipVer = versionManifest.Root.Element("Equipment").Attribute("version").Value;
-					newEquipTypeVer = versionManifest.Root.Element("EquipmentTypes").Attribute("version").Value;
-					newOperationVer = versionManifest.Root.Element("Operations").Attribute("version").Value;
-					newQuestVer = versionManifest.Root.Element("Quests").Attribute("version").Value;
-					newExpedVer = versionManifest.Root.Element("Expeditions").Attribute("version").Value;
+					newShipVer = _versionManifest.Root.Element("Ships").Attribute("version").Value;
+					newShipTypeVer = _versionManifest.Root.Element("ShipTypes").Attribute("version").Value;
+					newEquipVer = _versionManifest.Root.Element("Equipment").Attribute("version").Value;
+					newEquipTypeVer = _versionManifest.Root.Element("EquipmentTypes").Attribute("version").Value;
+					newOperationVer = _versionManifest.Root.Element("Operations").Attribute("version").Value;
+					newQuestVer = _versionManifest.Root.Element("Quests").Attribute("version").Value;
+					newExpedVer = _versionManifest.Root.Element("Expeditions").Attribute("version").Value;
 				}
 				catch (Exception e)
 				{
 					Logger.Add(3, "Failed to check translation updates: " + e.Message);
 				}
-				if (newShipVer != shipsVersion)
+				if (newShipVer != _shipsVersion)
                 {
-					shipsXml = null;
-                    WebRequest r2 = HttpWebRequest.Create(AppSettings.Default.EOTranslations.AbsoluteUri + locale + "/Ships.xml");
+					_shipsXml = null;
+                    WebRequest r2 = WebRequest.Create(AppSettings.Default.EOTranslations.AbsoluteUri + _locale + "/Ships.xml");
                     using (WebResponse resp = r2.GetResponse())
 					{
 						Stream responseStream = resp.GetResponseStream();
-                        this.shipsXml = XDocument.Load(responseStream);
-						shipsXml.Save("Translations\\Ships.xml");
+						_shipsXml = XDocument.Load(responseStream);
+						_shipsXml.Save("Translations\\Ships.xml");
                     }
                     Logger.Add(2, "Updated ship translations to v" + newShipVer + ".");
                 }
-                if (newShipTypeVer != shipTypesVersion)
+                if (newShipTypeVer != _shipTypesVersion)
                 {
-                    shipTypesXml = null;
-                    WebRequest r2 = HttpWebRequest.Create(AppSettings.Default.EOTranslations.AbsoluteUri + locale + "/ShipTypes.xml");
+                    _shipTypesXml = null;
+                    WebRequest r2 = WebRequest.Create(AppSettings.Default.EOTranslations.AbsoluteUri + _locale + "/ShipTypes.xml");
                     using (WebResponse resp = r2.GetResponse())
                     {
                         Stream responseStream = resp.GetResponseStream();
-                        this.shipTypesXml = XDocument.Load(responseStream);
-                        shipTypesXml.Save("Translations\\ShipTypes.xml");
+						_shipTypesXml = XDocument.Load(responseStream);
+                        _shipTypesXml.Save("Translations\\ShipTypes.xml");
                     }
                     Logger.Add(2, "Updated ship type translations to v" + newShipTypeVer + ".");
                 }
-                if (newEquipVer != equipmentVersion)
+                if (newEquipVer != _equipmentVersion)
                 {
-                    equipmentXml = null;
-                    WebRequest r2 = HttpWebRequest.Create(AppSettings.Default.EOTranslations.AbsoluteUri + locale + "/Equipment.xml");
+                    _equipmentXml = null;
+                    WebRequest r2 = WebRequest.Create(AppSettings.Default.EOTranslations.AbsoluteUri + _locale + "/Equipment.xml");
                     using (WebResponse resp = r2.GetResponse())
                     {
                         Stream responseStream = resp.GetResponseStream();
-                        this.equipmentXml = XDocument.Load(responseStream);
-                        equipmentXml.Save("Translations\\Equipment.xml");
+						_equipmentXml = XDocument.Load(responseStream);
+                        _equipmentXml.Save("Translations\\Equipment.xml");
                     }
                     Logger.Add(2, "Updated equipment translations to v" + newEquipVer + ".");
                 }
-                if (newEquipTypeVer != equipTypesVersion)
+                if (newEquipTypeVer != _equipTypesVersion)
                 {
-                    equipTypesXML = null;
-                    WebRequest r2 = HttpWebRequest.Create(AppSettings.Default.EOTranslations.AbsoluteUri + locale + "/EquipmentTypes.xml");
+                    _equipTypesXml = null;
+                    WebRequest r2 = WebRequest.Create(AppSettings.Default.EOTranslations.AbsoluteUri + _locale + "/EquipmentTypes.xml");
                     using (WebResponse resp = r2.GetResponse())
                     {
                         Stream responseStream = resp.GetResponseStream();
-                        this.equipTypesXML = XDocument.Load(responseStream);
-                        equipTypesXML.Save("Translations\\EquipmentTypes.xml");
+						_equipTypesXml = XDocument.Load(responseStream);
+                        _equipTypesXml.Save("Translations\\EquipmentTypes.xml");
                     }
                     Logger.Add(2, "Updated equipment type translations to v" + newEquipTypeVer + ".");
                 }
-                if (newOperationVer != operationsVersion)
+                if (newOperationVer != _operationsVersion)
                 {
-                    operationsXml = null;
-                    WebRequest r2 = HttpWebRequest.Create(AppSettings.Default.EOTranslations.AbsoluteUri + locale + "/Operations.xml");
+                    _operationsXml = null;
+                    WebRequest r2 = WebRequest.Create(AppSettings.Default.EOTranslations.AbsoluteUri + _locale + "/Operations.xml");
                     using (WebResponse resp = r2.GetResponse())
                     {
                         Stream responseStream = resp.GetResponseStream();
-                        this.operationsXml = XDocument.Load(responseStream);
-                        operationsXml.Save("Translations\\Operations.xml");
+						_operationsXml = XDocument.Load(responseStream);
+                        _operationsXml.Save("Translations\\Operations.xml");
                     }
                     Logger.Add(2, "Updated operation translations to v" + newOperationVer + ".");
                 }
-                if (newQuestVer != questsVersion)
+                if (newQuestVer != _questsVersion)
                 {
-                    questsXml = null;
-                    WebRequest r2 = HttpWebRequest.Create(AppSettings.Default.EOTranslations.AbsoluteUri + locale + "/Quests.xml");
+                    _questsXml = null;
+                    WebRequest r2 = WebRequest.Create(AppSettings.Default.EOTranslations.AbsoluteUri + _locale + "/Quests.xml");
                     using (WebResponse resp = r2.GetResponse())
                     {
                         Stream responseStream = resp.GetResponseStream();
-                        this.questsXml = XDocument.Load(responseStream);
-                        questsXml.Save("Translations\\Quests.xml");
+						_questsXml = XDocument.Load(responseStream);
+                        _questsXml.Save("Translations\\Quests.xml");
                     }
                     Logger.Add(2, "Updated quest translations to v" + newQuestVer + ".");
                 }
-                if (newExpedVer != expeditionsVersion)
+                if (newExpedVer != _expeditionsVersion)
                 {
-                    expeditionsXml = null;
-                    WebRequest r2 = HttpWebRequest.Create(AppSettings.Default.EOTranslations.AbsoluteUri + locale + "/Expeditions.xml");
+                    _expeditionsXml = null;
+                    WebRequest r2 = WebRequest.Create(AppSettings.Default.EOTranslations.AbsoluteUri + _locale + "/Expeditions.xml");
                     using (WebResponse resp = r2.GetResponse())
                     {
                         Stream responseStream = resp.GetResponseStream();
-                        this.expeditionsXml = XDocument.Load(responseStream);
-                        expeditionsXml.Save("Translations\\Expeditions.xml");
+						_expeditionsXml = XDocument.Load(responseStream);
+                        _expeditionsXml.Save("Translations\\Expeditions.xml");
                     }
                     Logger.Add(2, "Updated expedition translations to v" + newExpedVer + ".");
                 }
@@ -201,48 +196,48 @@ namespace ElectronicObserver.Utility
             switch (type)
             {
                 case TranslationType.Ships:
-                    if (this.shipsXml != null)
-                        return this.shipsXml.Descendants("Ship");
+                    if (_shipsXml != null)
+                        return _shipsXml.Descendants("Ship");
                     break;
                 case TranslationType.ShipTypes:
-                    if (this.shipTypesXml != null)
-                        return this.shipTypesXml.Descendants("Type");
+                    if (_shipTypesXml != null)
+                        return _shipTypesXml.Descendants("Type");
                     break;
                 case TranslationType.Equipment:
-                    if (this.equipmentXml != null)
-                        return this.equipmentXml.Descendants("Item");
+                    if (_equipmentXml != null)
+                        return _equipmentXml.Descendants("Item");
                     break;
 				case TranslationType.EquipmentDesc:
-					if (this.equipmentXml != null)
-						return this.equipmentXml.Descendants("ItemDesc");
+					if (_equipmentXml != null)
+						return _equipmentXml.Descendants("ItemDesc");
 					break;
 				case TranslationType.EquipmentType:
-                    if (this.equipTypesXML != null)
-                        return this.equipTypesXML.Descendants("Type");
+                    if (_equipTypesXml != null)
+                        return _equipTypesXml.Descendants("Type");
                     break;
                 case TranslationType.OperationMaps:
-                    if (this.operationsXml != null)
-                        return this.operationsXml.Descendants("Map");
+                    if (_operationsXml != null)
+                        return _operationsXml.Descendants("Map");
                     break;
                 case TranslationType.OperationSortie:
-                    if (this.operationsXml != null)
-                        return this.operationsXml.Descendants("Sortie");
+                    if (_operationsXml != null)
+                        return _operationsXml.Descendants("Sortie");
                     break;
 				case TranslationType.OperationMapNodes:
-					if (this.operationsXml != null)
-						return this.operationsXml.Descendants("MapNode");
+					if (_operationsXml != null)
+						return _operationsXml.Descendants("MapNode");
 					break;
 				case TranslationType.Quests:
                 case TranslationType.QuestTitle:
                 case TranslationType.QuestDetail:
-                    if (this.questsXml != null)
-                        return this.questsXml.Descendants("Quest");
+                    if (_questsXml != null)
+                        return _questsXml.Descendants("Quest");
                     break;
                 case TranslationType.Expeditions:
                 case TranslationType.ExpeditionTitle:
                 case TranslationType.ExpeditionDetail:
-                    if (this.expeditionsXml != null)
-                        return this.expeditionsXml.Descendants("Expedition");
+                    if (_expeditionsXml != null)
+                        return _expeditionsXml.Descendants("Expedition");
                     break;
                 default:
                     return null;
@@ -255,7 +250,6 @@ namespace ElectronicObserver.Utility
 			bool translate = true;
 			switch (type)
 			{
-				default: break;
 				case TranslationType.Ships: translate = !Configuration.Config.UI.JapaneseShipName; break;
 				case TranslationType.ShipTypes: translate = !Configuration.Config.UI.JapaneseShipType; break;
 				case TranslationType.Equipment: translate = !Configuration.Config.UI.JapaneseEquipmentName; break;
@@ -266,7 +260,7 @@ namespace ElectronicObserver.Utility
 			{
 				try
 				{
-					IEnumerable<XElement> translationList = this.GetTranslationList(type);
+					IEnumerable<XElement> translationList = GetTranslationList(type);
 					if (translationList == null) return jpString;
 					string jpChildElement = "JP-Name";
 					string trChildElement = "TR-Name";
@@ -276,7 +270,7 @@ namespace ElectronicObserver.Utility
 						trChildElement = "TR-Detail";
 					}
 					string translated = jpString;
-					if (this.GetTranslation(jpString, translationList, jpChildElement, trChildElement, id, ref translated))
+					if (GetTranslation(jpString, translationList, jpChildElement, trChildElement, id, ref translated))
 						return translated;
 				}
 				catch (Exception e)
@@ -288,21 +282,21 @@ namespace ElectronicObserver.Utility
 			else { return jpString; }
         }
 		
-		public string GetMapNodes(int mapAreaID, int mapInfoID, int mapNodeID, TranslationType type, int id = -1)
+		public string GetMapNodes(int mapAreaId, int mapInfoId, int mapNodeId, TranslationType type, int id = -1)
 		{
 			try
 			{
-				IEnumerable<XElement> translationList = this.GetTranslationList(type);
+				IEnumerable<XElement> translationList = GetTranslationList(type);
 
 				if (translationList == null)
-					return mapNodeID.ToString();
+					return mapNodeId.ToString();
 
 				string idChildElement = "Node";
 				string labelChildElement = "Label";
 				
-				string nodeinfo = mapAreaID.ToString("D3") + mapInfoID.ToString("D3") + mapNodeID.ToString("D3");
+				string nodeinfo = mapAreaId.ToString("D3") + mapInfoId.ToString("D3") + mapNodeId.ToString("D3");
 				string converted = nodeinfo;
-				if (this.GetTranslation(nodeinfo, translationList, idChildElement, labelChildElement, id, ref converted))
+				if (GetTranslation(nodeinfo, translationList, idChildElement, labelChildElement, id, ref converted))
 					return converted;
 			}
 			catch (Exception e)
@@ -310,7 +304,7 @@ namespace ElectronicObserver.Utility
 				Logger.Add(3, "Can't output translation: " + e.Message);
 			}
 
-			return mapNodeID.ToString();
+			return mapNodeId.ToString();
 		}
 
 		private bool GetTranslation(string jpString, IEnumerable<XElement> translationList, string jpChildElement, string trChildElement, int id, ref string translate)
@@ -340,9 +334,8 @@ namespace ElectronicObserver.Utility
             }
             );
 
-            bool foundWrongID = false;
-            int n;
-            foreach (XElement el in foundTranslation)
+            bool foundWrongId = false;
+	        foreach (XElement el in foundTranslation)
             {
                 if (el.Attribute("mode") != null && !el.Attribute("mode").Value.Equals("normal"))
                 {
@@ -350,7 +343,7 @@ namespace ElectronicObserver.Utility
                         try
                         {
                             string t = jpString.Substring(0, jpString.Length - el.Element(jpChildElement).Value.Length);
-                            if (this.GetTranslation(t, translationList, jpChildElement, trChildElement, -1, ref t))
+                            if (GetTranslation(t, translationList, jpChildElement, trChildElement, -1, ref t))
                             {
                                 if ((el.Attribute("suffixType") != null) && el.Attribute("suffixType").Value.Equals("pre")) translate = el.Element(trChildElement).Value + t;
                                 else translate = t + el.Element(trChildElement).Value;
@@ -369,9 +362,9 @@ namespace ElectronicObserver.Utility
                 {
                     if(id >= 0)
                     {
-                        if(!Int32.TryParse(el.Element("ID").Value, out n))
+                        if(!Int32.TryParse(el.Element("ID").Value, out _))
                         {
-                            foundWrongID = true;
+                            foundWrongId = true;
                             translate = el.Element(trChildElement).Value;
                         }
                         else
@@ -395,7 +388,7 @@ namespace ElectronicObserver.Utility
                 }
             }
 
-            if(foundWrongID)
+            if(foundWrongId)
             {
                 return true;
             }
