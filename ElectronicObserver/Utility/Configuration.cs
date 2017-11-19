@@ -2524,7 +2524,7 @@ namespace ElectronicObserver.Utility
 						}
 						else
 						{
-							Utility.Logger.Add(1, "~2.8.2 レコード変換処理：敵艦隊レコードは既に新しいフォーマットです。処理をスキップします。");
+							Utility.Logger.Add(1, "~2.8.2 Record conversion: Enemy Fleet Record is already in the latest format. Skipped.");
 						}
 					}
 
@@ -2565,7 +2565,7 @@ namespace ElectronicObserver.Utility
 						}
 						else
 						{
-							Utility.Logger.Add(1, "~2.8.2 レコード変換処理：ドロップレコードは既に新しいフォーマットです。処理をスキップします。");
+							Utility.Logger.Add(1, "~2.8.2 Record conversion: Drop Record already in the latest format. Skipped.");
 						}
 					}
 
@@ -2575,15 +2575,15 @@ namespace ElectronicObserver.Utility
 						Directory.Delete(backupDirectoryPath);
 
 
-					Utility.Logger.Add(2, "~2.8.2 レコード変換処理：正常に完了しました。");
+					Utility.Logger.Add(2, "~2.8.2 Record conversion: completed successfully.");
 
 				}
 				catch (Exception ex)
 				{
-					Utility.ErrorReporter.SendErrorReport(ex, "~2.8.2 レコード変換処理：失敗しました。");
+					Utility.ErrorReporter.SendErrorReport(ex, "~2.8.2 Record conversion: failed.");
 
-					if (MessageBox.Show($"互換性維持のためのレコード変換処理中にエラーが発生しました。\r\n\r\n{ex.Message}\r\n\r\n再試行しますか？\r\n（「いいえ」を選択した場合、一部の記録データが消失する可能性があります。）",
-						"~2.8.2 レコード変換処理：" + ex.GetType().Name, MessageBoxButtons.YesNo, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1)
+					if (MessageBox.Show($"An error occurred during record conversion to the latest version.\r\n\r\n{ex.Message}\r\n\r\nDo you want to try again?\r\n(Selecting 'No' may result in loss of recorded data.)",
+						"~2.8.2 Record conversion:" + ex.GetType().Name, MessageBoxButtons.YesNo, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1)
 						== DialogResult.Yes)
 						continue;
 					else

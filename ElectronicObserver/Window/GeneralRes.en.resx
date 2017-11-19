@@ -560,12 +560,6 @@ To critical damage: {1}</value>
   <data name="TypeFilter" xml:space="preserve">
     <value>&amp;Type</value>
   </data>
-  <data name="Unacquired" xml:space="preserve">
-    <value>(Unacquired - open your quests page in game.)</value>
-  </data>
-  <data name="UnacquiredQuests" xml:space="preserve">
-    <value>Unacquired Quests</value>
-  </data>
   <data name="UniqueID" xml:space="preserve">
     <value>Unique ID</value>
   </data>

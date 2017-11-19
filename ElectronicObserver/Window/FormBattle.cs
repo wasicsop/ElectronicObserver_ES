@@ -1284,14 +1284,14 @@ namespace ElectronicObserver.Window
 					if (isCombined && isEnemyCombined)
 						FleetFriend.Text = "Friendly";
 					else
-						FleetFriend.Text = "Friendly Fleet";
+						FleetFriend.Text = "Friendly";
 
 				}
 				else
 				{
 					FleetFriend.ImageIndex = -1;
 					FleetFriend.ImageAlign = ContentAlignment.MiddleCenter;
-					FleetFriend.Text = "Friendly Fleet";
+					FleetFriend.Text = "Friendly";
 					ToolTipInfo.SetToolTip(FleetFriend, null);
 
 				}

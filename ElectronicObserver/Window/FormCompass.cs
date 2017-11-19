@@ -316,6 +316,7 @@ namespace ElectronicObserver.Window
 				}
 
 				Formation.Text = Constants.GetFormationShort(fleet.Formation);
+				Formation.ForeColor = Utility.Configuration.Config.UI.ForeColor;
 				//Formation.ImageIndex = (int)ResourceManager.IconContent.BattleFormationEnemyLineAhead + fleet.Formation - 1;
 				Formation.Visible = true;
 

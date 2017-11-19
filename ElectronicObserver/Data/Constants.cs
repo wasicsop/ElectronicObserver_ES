@@ -524,27 +524,27 @@ namespace ElectronicObserver.Data
 			switch (id)
 			{
 				case 1:
-					return ConstantsRes.LineAhead;
+					return "LA";
 				case 2:
-					return ConstantsRes.DoubleLine;
+					return "DL";
 				case 3:
-					return ConstantsRes.Diamond;
+					return "Rin";
 				case 4:
-					return ConstantsRes.Echelon;
+					return "Ech";
 				case 5:
-					return ConstantsRes.LineAbreast;
+					return "LAb";
 				case 6:
-					return "Lookout";
+					return "Lo";
 				case 11:
-					return ConstantsRes.ASWFormation;
+					return "ASW";
 				case 12:
-					return ConstantsRes.Forward;
+					return "For";
 				case 13:
-					return ConstantsRes.Ring;
+					return "Rin";
 				case 14:
-					return ConstantsRes.BattleForm;
+					return "Btl";
 				default:
-					return ConstantsRes.Unknown;
+					return "Unk";
 			}
 		}
 
