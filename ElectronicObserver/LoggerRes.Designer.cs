@@ -19,7 +19,7 @@ namespace ElectronicObserver {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class LoggerRes {
@@ -201,15 +201,6 @@ namespace ElectronicObserver {
         internal static string ExecutedFlashQualitySetting {
             get {
                 return ResourceManager.GetString("ExecutedFlashQualitySetting", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to #{0}「{1}」が遠征「{2}: {3}」から帰投しました。({4}).
-        /// </summary>
-        internal static string ExpedReturned {
-            get {
-                return ResourceManager.GetString("ExpedReturned", resourceCulture);
             }
         }
         
@@ -520,15 +511,6 @@ namespace ElectronicObserver {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Responseを受信しました :.
-        /// </summary>
-        internal static string RecievedResponse {
-            get {
-                return ResourceManager.GetString("RecievedResponse", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to レコード .
         /// </summary>
         internal static string Record {
@@ -570,15 +552,6 @@ namespace ElectronicObserver {
         internal static string RequestError {
             get {
                 return ResourceManager.GetString("RequestError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Responseの受信中にエラーが発生しました。.
-        /// </summary>
-        internal static string ResponseError {
-            get {
-                return ResourceManager.GetString("ResponseError", resourceCulture);
             }
         }
         
@@ -642,15 +615,6 @@ namespace ElectronicObserver {
         internal static string SortiedTo {
             get {
                 return ResourceManager.GetString("SortiedTo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to スタックトレース：.
-        /// </summary>
-        internal static string StackTrace {
-            get {
-                return ResourceManager.GetString("StackTrace", resourceCulture);
             }
         }
         

@@ -25,7 +25,7 @@ namespace ElectronicObserver.Utility
 		public static void SendErrorReport(Exception ex, string message, string connectionName = null, string connectionData = null)
 		{
 
-			Utility.Logger.Add(3, string.Format("{0} : {1}", message, ex.Message));
+			Utility.Logger.Add(3, string.Format("{0} {1}", message, ex.Message));
 
 			if (Utility.Configuration.Config.Debug.AlertOnError)
 				System.Media.SystemSounds.Hand.Play();
@@ -48,12 +48,12 @@ namespace ElectronicObserver.Utility
 				using (StreamWriter sw = new StreamWriter(path, false, new System.Text.UTF8Encoding(false)))
 				{
 
-					sw.WriteLine( "Error Report [ver. {0}] : {1}", SoftwareInformation.VersionEnglish, DateTimeHelper.TimeToCSVString( DateTime.Now ) );
-					sw.WriteLine( "Error : {0}", ex.GetType().Name );
-					sw.WriteLine( ex.Message );
-					sw.WriteLine( LoggerRes.AdditionalInfo, message );
-					sw.WriteLine( LoggerRes.StackTrace );
-					sw.WriteLine( ex.StackTrace );
+					sw.WriteLine("Error Report [ver. {0}]: {1}", SoftwareInformation.VersionEnglish, DateTimeHelper.TimeToCSVString(DateTime.Now));
+					sw.WriteLine("Error: {0}", ex.GetType().Name);
+					sw.WriteLine(ex.Message);
+					sw.WriteLine("Additional info: {0}", message);
+					sw.WriteLine("Stack trace:");
+					sw.WriteLine(ex.StackTrace);
 
 					if (connectionName != null && connectionData != null)
 					{

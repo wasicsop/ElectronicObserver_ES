@@ -153,9 +153,6 @@
   <data name="ExecutedFlashQualitySetting" xml:space="preserve">
     <value>Set the Flash quality settings.</value>
   </data>
-  <data name="ExpedReturned" xml:space="preserve">
-    <value>#{0} 「{1}」 has returned from expedition 「{2}: {3}」 ({4}).</value>
-  </data>
   <data name="ExpedStarted" xml:space="preserve">
     <value>#{0} 「{1}」 has been sent to expedition 「{2}: {3}」.</value>
   </data>
@@ -243,9 +240,6 @@
   <data name="RecievedRequest" xml:space="preserve">
     <value>Recieved request:</value>
   </data>
-  <data name="RecievedResponse" xml:space="preserve">
-    <value>Recieved response:</value>
-  </data>
   <data name="Record" xml:space="preserve">
     <value>The record </value>
   </data>
@@ -254,9 +248,6 @@
   </data>
   <data name="RequestError" xml:space="preserve">
     <value>There was an error transmitting the request.</value>
-  </data>
-  <data name="ResponseError" xml:space="preserve">
-    <value>There was an error transmitting the response.</value>
   </data>
   <data name="ResponseHadErrorCode" xml:space="preserve">
     <value>An error code was recieved from the server.</value>
@@ -278,9 +269,6 @@
   </data>
   <data name="SortiedTo" xml:space="preserve">
     <value>#{0} 「{1}」 has sortied to 「{2}-{3} {4}」.</value>
-  </data>
-  <data name="StackTrace" xml:space="preserve">
-    <value>Stack Trace:</value>
   </data>
   <data name="StorageDoesNotExist" xml:space="preserve">
     <value>DataStorage {0} does not exist.</value>

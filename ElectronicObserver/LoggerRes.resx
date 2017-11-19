@@ -153,9 +153,6 @@
   <data name="ExecutedFlashQualitySetting" xml:space="preserve">
     <value>flashの品質設定を行いました。</value>
   </data>
-  <data name="ExpedReturned" xml:space="preserve">
-    <value>#{0}「{1}」が遠征「{2}: {3}」から帰投しました。({4})</value>
-  </data>
   <data name="ExpedStarted" xml:space="preserve">
     <value>#{0}「{1}」が遠征「{2}: {3}」へ出撃しました。</value>
   </data>
@@ -246,9 +243,6 @@
   <data name="RecievedRequest" xml:space="preserve">
     <value>Request を受信しました :</value>
   </data>
-  <data name="RecievedResponse" xml:space="preserve">
-    <value>Responseを受信しました :</value>
-  </data>
   <data name="Record" xml:space="preserve">
     <value>レコード </value>
   </data>
@@ -257,9 +251,6 @@
   </data>
   <data name="RequestError" xml:space="preserve">
     <value>Request の受信中にエラーが発生しました。</value>
-  </data>
-  <data name="ResponseError" xml:space="preserve">
-    <value>Responseの受信中にエラーが発生しました。</value>
   </data>
   <data name="ResponseHadErrorCode" xml:space="preserve">
     <value>エラーコードを含むメッセージを受信しました。</value>
@@ -281,9 +272,6 @@
   </data>
   <data name="SortiedTo" xml:space="preserve">
     <value>#{0}「{1}」が「{2}-{3} {4}」へ出撃しました。</value>
-  </data>
-  <data name="StackTrace" xml:space="preserve">
-    <value>スタックトレース：</value>
   </data>
   <data name="StorageDoesNotExist" xml:space="preserve">
     <value>DataStorage {0} は存在しません。</value>

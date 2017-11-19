@@ -424,7 +424,7 @@ namespace ElectronicObserver.Observer
 			try
 			{
 
-				Utility.Logger.Add( 1, LoggerRes.RecievedResponse + shortpath );
+				Utility.Logger.Add(1, "Recieved response:" + shortpath);
 
 				SystemEvents.UpdateTimerEnabled = false;
 
@@ -434,8 +434,16 @@ namespace ElectronicObserver.Observer
 				int result = (int)json.api_result;
 				if (result != 1)
 				{
-
-					throw new InvalidOperationException( LoggerRes.ResponseHadErrorCode + result + ")" );
+					if (result == 201)
+					{
+						Utility.Logger.Add(3,
+							"Error code 201 was received. It may be triggered by macro detection " +
+							"or by starting KanColle from another device.");
+					}
+					else
+					{
+						throw new InvalidOperationException($"Error code {result} was received from the server.");
+					}
 				}
 
 
@@ -461,7 +469,9 @@ namespace ElectronicObserver.Observer
 			catch (Exception ex)
 			{
 
-				ErrorReporter.SendErrorReport( ex, LoggerRes.ResponseError, shortpath, data );
+				ErrorReporter.SendErrorReport(ex,
+					"There was an error while receiving the response.",
+					shortpath, data);
 
 			}
 			finally
