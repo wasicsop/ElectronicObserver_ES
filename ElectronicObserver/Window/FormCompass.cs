@@ -1073,7 +1073,7 @@ namespace ElectronicObserver.Window
 		{
 
 			BattleManager bm = KCDatabase.Instance.Battle;
-			BattleData bd = bm.StartsFromDayBattle ? (BattleData)bm.BattleDay : (BattleData)bm.BattleNight;
+			BattleData bd = bm.FirstBattle;
 
 			int[] enemies = bd.Initial.EnemyMembers;
 			int[][] slots = bd.Initial.EnemySlots;
@@ -1094,9 +1094,9 @@ namespace ElectronicObserver.Window
 				if (efrecord != null)
 				{
 					TextEnemyFleetName.Text = efrecord.FleetName;
+					TextEventDetail.Text = "Exp: " + efrecord.ExpShip;
 				}
-				TextEventDetail.Text = GeneralRes.EnemyFleetID + ": " + efcurrent.FleetID.ToString("x8");
-				ToolTipInfo.SetToolTip(TextEventDetail, null);
+				ToolTipInfo.SetToolTip(TextEventDetail, GeneralRes.EnemyFleetID + ": " + efcurrent.FleetID.ToString("x16"));
 			}
 
 			TextFormation.Text = Constants.GetFormationShort((int)bd.Searching.FormationEnemy);
