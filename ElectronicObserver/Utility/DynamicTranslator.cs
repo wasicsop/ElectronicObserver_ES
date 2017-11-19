@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Threading;
 using System.Xml.Linq;
 using AppSettings = ElectronicObserver.Properties.Settings;
 
@@ -18,178 +17,71 @@ namespace ElectronicObserver.Utility
         private XDocument _operationsXml;
         private XDocument _questsXml;
         private XDocument _expeditionsXml;
-        private XDocument _versionManifest;
-        private string _shipsVersion;
-        private string _shipTypesVersion;
-        private string _equipmentVersion;
-        private string _equipTypesVersion;
-        private string _operationsVersion;
-        private string _questsVersion;
-        private string _expeditionsVersion;
-	    private readonly string _locale = Thread.CurrentThread.CurrentCulture.Name;
+	    private readonly string _url = AppSettings.Default.EOTranslations.AbsoluteUri + "en-US";
 
 		internal DynamicTranslator()
-        {
-            try
+		{
+			CheckForUpdates();
+
+			try
             {
-                if (Thread.CurrentThread.CurrentCulture.Name != "ja-JP")
-                {
-                    if (File.Exists("Translations\\Ships.xml")) _shipsXml = XDocument.Load("Translations\\Ships.xml");
-                    if (File.Exists("Translations\\ShipTypes.xml")) _shipTypesXml = XDocument.Load("Translations\\ShipTypes.xml");
-                    if (File.Exists("Translations\\Equipment.xml")) _equipmentXml = XDocument.Load("Translations\\Equipment.xml");
-                    if (File.Exists("Translations\\EquipmentTypes.xml")) _equipTypesXml = XDocument.Load("Translations\\EquipmentTypes.xml");
-                    if (File.Exists("Translations\\Operations.xml")) _operationsXml = XDocument.Load("Translations\\Operations.xml");
-                    if (File.Exists("Translations\\Quests.xml")) _questsXml = XDocument.Load("Translations\\Quests.xml");
-                    if (File.Exists("Translations\\Expeditions.xml")) _expeditionsXml = XDocument.Load("Translations\\Expeditions.xml");
-				}
-            }
+	            if (File.Exists("Translations\\Ships.xml")) _shipsXml = XDocument.Load("Translations\\Ships.xml");
+	            if (File.Exists("Translations\\ShipTypes.xml")) _shipTypesXml = XDocument.Load("Translations\\ShipTypes.xml");
+	            if (File.Exists("Translations\\Equipment.xml")) _equipmentXml = XDocument.Load("Translations\\Equipment.xml");
+	            if (File.Exists("Translations\\EquipmentTypes.xml")) _equipTypesXml = XDocument.Load("Translations\\EquipmentTypes.xml");
+	            if (File.Exists("Translations\\Operations.xml")) _operationsXml = XDocument.Load("Translations\\Operations.xml");
+	            if (File.Exists("Translations\\Quests.xml")) _questsXml = XDocument.Load("Translations\\Quests.xml");
+	            if (File.Exists("Translations\\Expeditions.xml")) _expeditionsXml = XDocument.Load("Translations\\Expeditions.xml");
+			}
             catch (Exception ex)
             {
                 Logger.Add(3, "Could not load translation file: " + ex.Message);
             }
-            GetVersions();
-            CheckForUpdates();
         }
-
-        private void GetVersions()
-        {
-			_shipsVersion = LoadXml(_shipsXml);
-			_shipTypesVersion = LoadXml(_shipTypesXml);
-			_equipmentVersion = LoadXml(_equipmentXml);
-			_equipTypesVersion = LoadXml(_equipTypesXml);
-			_operationsVersion = LoadXml(_operationsXml);
-			_questsVersion = LoadXml(_questsXml);
-			_expeditionsVersion = LoadXml(_expeditionsXml);
-		}
-
-		private string LoadXml(XDocument xml)
-		{
-			if (xml == null)
-				return "0.0.0";
-			else
-			{
-				return xml.Root.Attribute("Version").Value;
-			}
-		}
 
         private void CheckForUpdates()
         {
-            Directory.CreateDirectory("Translations");
-			string newShipVer = _shipsVersion;
-			string newShipTypeVer = _shipTypesVersion;
-			string newEquipVer = _equipmentVersion;
-			string newEquipTypeVer = _equipTypesVersion;
-			string newOperationVer = _operationsVersion;
-			string newQuestVer = _questsVersion;
-			string newExpedVer = _expeditionsVersion;
-            if (_locale != "ja-JP")
-            {
-				try
-				{
-					WebRequest rq = WebRequest.Create(AppSettings.Default.EOTranslations.AbsoluteUri + _locale + "/VersionManifest.xml");
-					using (WebResponse resp = rq.GetResponse())
-					{
-						Stream responseStream = resp.GetResponseStream();
-						_versionManifest = XDocument.Load(responseStream);
-					}
-					newShipVer = _versionManifest.Root.Element("Ships").Attribute("version").Value;
-					newShipTypeVer = _versionManifest.Root.Element("ShipTypes").Attribute("version").Value;
-					newEquipVer = _versionManifest.Root.Element("Equipment").Attribute("version").Value;
-					newEquipTypeVer = _versionManifest.Root.Element("EquipmentTypes").Attribute("version").Value;
-					newOperationVer = _versionManifest.Root.Element("Operations").Attribute("version").Value;
-					newQuestVer = _versionManifest.Root.Element("Quests").Attribute("version").Value;
-					newExpedVer = _versionManifest.Root.Element("Expeditions").Attribute("version").Value;
+	        if (!Directory.Exists("Translations"))
+		        Directory.CreateDirectory("Translations");
+			XDocument versionManifest = null;
+
+			try
+			{
+		        var rq = WebRequest.Create(_url + "/VersionManifest.xml");
+				using (var resp = rq.GetResponse())
+			        versionManifest = XDocument.Load(resp.GetResponseStream());
+			}
+	        catch (Exception e)
+	        {
+		        Logger.Add(3, "Failed to check translation updates: " + e.Message);
+	        }
+
+	        foreach (TranslationFile filename in Enum.GetValues(typeof(TranslationFile)))
+	        {
+		        var current = "0.0.0";
+				var path = $"Translations\\{filename}.xml";
+				if (File.Exists(path))
+		        {
+					var translationfile = XDocument.Load(path);
+			        current = translationfile?.Root.Attribute("Version").Value ?? "0.0.0";
 				}
-				catch (Exception e)
-				{
-					Logger.Add(3, "Failed to check translation updates: " + e.Message);
-				}
-				if (newShipVer != _shipsVersion)
-                {
-					_shipsXml = null;
-                    WebRequest r2 = WebRequest.Create(AppSettings.Default.EOTranslations.AbsoluteUri + _locale + "/Ships.xml");
-                    using (WebResponse resp = r2.GetResponse())
-					{
-						Stream responseStream = resp.GetResponseStream();
-						_shipsXml = XDocument.Load(responseStream);
-						_shipsXml.Save("Translations\\Ships.xml");
-                    }
-                    Logger.Add(2, "Updated ship translations to v" + newShipVer + ".");
-                }
-                if (newShipTypeVer != _shipTypesVersion)
-                {
-                    _shipTypesXml = null;
-                    WebRequest r2 = WebRequest.Create(AppSettings.Default.EOTranslations.AbsoluteUri + _locale + "/ShipTypes.xml");
-                    using (WebResponse resp = r2.GetResponse())
-                    {
-                        Stream responseStream = resp.GetResponseStream();
-						_shipTypesXml = XDocument.Load(responseStream);
-                        _shipTypesXml.Save("Translations\\ShipTypes.xml");
-                    }
-                    Logger.Add(2, "Updated ship type translations to v" + newShipTypeVer + ".");
-                }
-                if (newEquipVer != _equipmentVersion)
-                {
-                    _equipmentXml = null;
-                    WebRequest r2 = WebRequest.Create(AppSettings.Default.EOTranslations.AbsoluteUri + _locale + "/Equipment.xml");
-                    using (WebResponse resp = r2.GetResponse())
-                    {
-                        Stream responseStream = resp.GetResponseStream();
-						_equipmentXml = XDocument.Load(responseStream);
-                        _equipmentXml.Save("Translations\\Equipment.xml");
-                    }
-                    Logger.Add(2, "Updated equipment translations to v" + newEquipVer + ".");
-                }
-                if (newEquipTypeVer != _equipTypesVersion)
-                {
-                    _equipTypesXml = null;
-                    WebRequest r2 = WebRequest.Create(AppSettings.Default.EOTranslations.AbsoluteUri + _locale + "/EquipmentTypes.xml");
-                    using (WebResponse resp = r2.GetResponse())
-                    {
-                        Stream responseStream = resp.GetResponseStream();
-						_equipTypesXml = XDocument.Load(responseStream);
-                        _equipTypesXml.Save("Translations\\EquipmentTypes.xml");
-                    }
-                    Logger.Add(2, "Updated equipment type translations to v" + newEquipTypeVer + ".");
-                }
-                if (newOperationVer != _operationsVersion)
-                {
-                    _operationsXml = null;
-                    WebRequest r2 = WebRequest.Create(AppSettings.Default.EOTranslations.AbsoluteUri + _locale + "/Operations.xml");
-                    using (WebResponse resp = r2.GetResponse())
-                    {
-                        Stream responseStream = resp.GetResponseStream();
-						_operationsXml = XDocument.Load(responseStream);
-                        _operationsXml.Save("Translations\\Operations.xml");
-                    }
-                    Logger.Add(2, "Updated operation translations to v" + newOperationVer + ".");
-                }
-                if (newQuestVer != _questsVersion)
-                {
-                    _questsXml = null;
-                    WebRequest r2 = WebRequest.Create(AppSettings.Default.EOTranslations.AbsoluteUri + _locale + "/Quests.xml");
-                    using (WebResponse resp = r2.GetResponse())
-                    {
-                        Stream responseStream = resp.GetResponseStream();
-						_questsXml = XDocument.Load(responseStream);
-                        _questsXml.Save("Translations\\Quests.xml");
-                    }
-                    Logger.Add(2, "Updated quest translations to v" + newQuestVer + ".");
-                }
-                if (newExpedVer != _expeditionsVersion)
-                {
-                    _expeditionsXml = null;
-                    WebRequest r2 = WebRequest.Create(AppSettings.Default.EOTranslations.AbsoluteUri + _locale + "/Expeditions.xml");
-                    using (WebResponse resp = r2.GetResponse())
-                    {
-                        Stream responseStream = resp.GetResponseStream();
-						_expeditionsXml = XDocument.Load(responseStream);
-                        _expeditionsXml.Save("Translations\\Expeditions.xml");
-                    }
-                    Logger.Add(2, "Updated expedition translations to v" + newExpedVer + ".");
-                }
-            }
-        }
+				
+				var latest = versionManifest.Root.Element($"{filename}").Attribute("version").Value;
+				if (current != latest)
+					UpdateTranslation(filename, latest);
+			}
+		}
+
+	    private void UpdateTranslation(TranslationFile filename, string latestVersion)
+	    {
+		    var r2 = WebRequest.Create(_url + $"/{filename}.xml");
+		    using (var resp = r2.GetResponse())
+		    {
+			    var doc = XDocument.Load(resp.GetResponseStream());
+			    doc.Save($"Translations\\{filename}.xml");
+		    }
+		    Logger.Add(2, $"Updated {filename} translations to v{latestVersion}.");
+		}
 
         private IEnumerable<XElement> GetTranslationList(TranslationType type)
         {
@@ -394,7 +286,18 @@ namespace ElectronicObserver.Utility
             }
             return false;
         }
-    }
+
+	    private enum TranslationFile
+	    {
+		    Ships,
+		    ShipTypes,
+		    Equipment,
+		    EquipmentTypes,
+		    Operations,
+		    Quests,
+		    Expeditions
+		}
+	}
 
 	public enum TranslationType
     {
