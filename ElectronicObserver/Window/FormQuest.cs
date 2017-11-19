@@ -351,6 +351,7 @@ namespace ElectronicObserver.Window
 			{
 				int index = QuestView.Rows.Add();
 				QuestView.Rows[index].Cells[QuestView_State.Index].Value = null;
+				QuestView.Rows[index].Cells[QuestView_Name.Index].Value = string.Format("(Other quest x {0})", (KCDatabase.Instance.Quest.Count - KCDatabase.Instance.Quest.Quests.Count));
 			}
 
 			if (KCDatabase.Instance.Quest.Quests.Count == 0)
