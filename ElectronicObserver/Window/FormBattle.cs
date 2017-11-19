@@ -68,11 +68,11 @@ namespace ElectronicObserver.Window
 				}
 				else if (i < 12)
 				{
-					TableBottom.Controls.Add(HPBars[i], 3, i - 5);
+					TableBottom.Controls.Add(HPBars[i], 1, i - 5);
 				}
 				else if (i < 18)
 				{
-					TableBottom.Controls.Add(HPBars[i], 1, i - 11);
+					TableBottom.Controls.Add(HPBars[i], 3, i - 11);
 				}
 				else
 				{
@@ -1023,8 +1023,7 @@ namespace ElectronicObserver.Window
 			bool isEnemyCombined = (bd.BattleType & BattleData.BattleTypeFlag.EnemyCombined) != 0;
 			bool isBaseAirRaid = (bd.BattleType & BattleData.BattleTypeFlag.BaseAirRaid) != 0;
 
-			var initialHPs = bd.Initial.InitialHPs;
-			var maxHPs = bd.Initial.MaxHPs;
+			var initial = bd.Initial;
 			var resultHPs = bd.ResultHPs;
 			var attackDamages = bd.AttackDamages;
 
@@ -1032,34 +1031,37 @@ namespace ElectronicObserver.Window
 			foreach (var bar in HPBars)
 				bar.SuspendUpdate();
 
-			for (int i = 0; i < 24; i++)
-			{
 
-				if (initialHPs[i] != -1)
-				{
-					HPBars[i].Value = resultHPs[i];
-					HPBars[i].PrevValue = initialHPs[i];
-					HPBars[i].MaximumValue = maxHPs[i];
-					HPBars[i].BackColor = Utility.Configuration.Config.UI.BackColor;
-					HPBars[i].Visible = true;
-				}
-				else
-				{
-					HPBars[i].Visible = false;
-				}
+			void EnableHPBar(int index, int initialHP, int resultHP, int maxHP)
+			{
+				HPBars[index].Value = resultHP;
+				HPBars[index].PrevValue = initialHP;
+				HPBars[index].MaximumValue = maxHP;
+				HPBars[index].BackColor = Utility.Configuration.Config.UI.BackColor;
+				HPBars[index].Visible = true;
+			}
+
+			void DisableHPBar(int index)
+			{
+				HPBars[index].Visible = false;
 			}
 
 
+
 			// friend main
-			for (int i = 0; i < 6; i++)
+			for (int i = 0; i < initial.FriendInitialHPs.Length; i++)
 			{
-				if (initialHPs[i] != -1)
+				int refindex = BattleIndex.Get(BattleSides.FriendMain, i);
+
+				if (initial.FriendInitialHPs[i] != -1)
 				{
+					EnableHPBar(refindex, initial.FriendInitialHPs[i], resultHPs[refindex], initial.FriendMaxHPs[i]);
+
 					string name;
 					bool isEscaped;
 					bool isLandBase;
 
-					var bar = HPBars[i];
+					var bar = HPBars[refindex];
 
 					if ( isBaseAirRaid ) {
 						name = string.Format( "Base {0}", i + 1 );
@@ -1071,7 +1073,7 @@ namespace ElectronicObserver.Window
 					else
 					{
 						ShipData ship = bd.Initial.FriendFleet.MembersInstance[i];
-						name = string.Format("{0} Lv. {1}", ship.MasterShip.NameWithClass, ship.Level);
+						name = ship.NameWithLevel;
 						isEscaped = bd.Initial.FriendFleet.EscapedShipList.Contains(ship.MasterID);
 						isLandBase = ship.MasterShip.IsLandBase;
 						bar.Text = Constants.GetShipClassClassification(ship.MasterShip.ShipType);
@@ -1085,38 +1087,49 @@ namespace ElectronicObserver.Window
 						bar.MaximumValue,
 						bar.Value - bar.PrevValue,
 						Constants.GetDamageState((double)bar.Value / bar.MaximumValue, isPractice, isLandBase, isEscaped),
-						attackDamages[i],
-						bd.GetBattleDetail(i)
+						attackDamages[refindex],
+						bd.GetBattleDetail(refindex)
 						));
 
 					if ( isEscaped ) bar.BackColor = Utility.Configuration.Config.UI.Battle_ColorHPBarsEscaped;
 					else bar.BackColor = Utility.Configuration.Config.UI.BackColor;
 				}
+				else
+				{
+					DisableHPBar(refindex);
+				}
 			}
 
 
 			// enemy main
-			for (int i = 0; i < 6; i++)
+			for (int i = 0; i < initial.EnemyInitialHPs.Length; i++)
 			{
-				if (initialHPs[i + 6] != -1)
+				int refindex = BattleIndex.Get(BattleSides.EnemyMain, i);
+
+				if (initial.EnemyInitialHPs[i] != -1)
 				{
+					EnableHPBar(refindex, initial.EnemyInitialHPs[i], resultHPs[refindex], initial.EnemyMaxHPs[i]);
 					ShipDataMaster ship = bd.Initial.EnemyMembersInstance[i];
 
-					var bar = HPBars[i + 6];
+					var bar = HPBars[refindex];
 					bar.Text = Constants.GetShipClassClassification(ship.ShipType);
 
 					ToolTipInfo.SetToolTip(bar,
 						string.Format("{0} Lv. {1}\r\nHP: ({2} → {3})/{4} ({5}) [{6}]\r\n\r\n{7}",
 							ship.NameWithClass,
-							bd.Initial.EnemyLevels[i],
+							initial.EnemyLevels[i],
 							Math.Max(bar.PrevValue, 0),
 							Math.Max(bar.Value, 0),
 							bar.MaximumValue,
 							bar.Value - bar.PrevValue,
 							Constants.GetDamageState((double)bar.Value / bar.MaximumValue, isPractice, ship.IsLandBase),
-							bd.GetBattleDetail(i + 6)
+							bd.GetBattleDetail(refindex)
 							)
 						);
+				}
+				else
+				{
+					DisableHPBar(refindex);
 				}
 			}
 
@@ -1126,14 +1139,18 @@ namespace ElectronicObserver.Window
 			{
 				FleetFriendEscort.Visible = true;
 
-				for (int i = 0; i < 6; i++)
+				for (int i = 0; i < initial.FriendInitialHPsEscort.Length; i++)
 				{
-					if (initialHPs[i + 12] != -1)
+					int refindex = BattleIndex.Get(BattleSides.FriendEscort, i);
+
+					if (initial.FriendInitialHPsEscort[i] != -1)
 					{
+						EnableHPBar(refindex, initial.FriendInitialHPsEscort[i], resultHPs[refindex], initial.FriendMaxHPsEscort[i]);
+
 						ShipData ship = bd.Initial.FriendFleetEscort.MembersInstance[i];
 						bool isEscaped = bd.Initial.FriendFleetEscort.EscapedShipList.Contains(ship.MasterID);
 
-						var bar = HPBars[i + 12];
+						var bar = HPBars[refindex];
 						bar.Text = Constants.GetShipClassClassification(ship.MasterShip.ShipType);
 
 						ToolTipInfo.SetToolTip( bar, string.Format(
@@ -1145,12 +1162,16 @@ namespace ElectronicObserver.Window
 							bar.MaximumValue,
 							bar.Value - bar.PrevValue,
 							Constants.GetDamageState((double)bar.Value / bar.MaximumValue, isPractice, ship.MasterShip.IsLandBase, isEscaped),
-							attackDamages[i + 12],
-							bd.GetBattleDetail(i + 12)
+							attackDamages[refindex],
+							bd.GetBattleDetail(refindex)
 							));
 
 						if ( isEscaped ) bar.BackColor = Utility.Configuration.Config.UI.Battle_ColorHPBarsEscaped;
 						else bar.BackColor = Utility.Configuration.Config.UI.BackColor;
+					}
+					else
+					{
+						DisableHPBar(refindex);
 					}
 				}
 
@@ -1158,6 +1179,10 @@ namespace ElectronicObserver.Window
 			else
 			{
 				FleetFriendEscort.Visible = false;
+
+				for (int i = 0; i < 6; i++)
+					DisableHPBar(BattleIndex.Get(BattleSides.FriendEscort, i));
+
 			}
 
 
@@ -1168,11 +1193,15 @@ namespace ElectronicObserver.Window
 
 				for (int i = 0; i < 6; i++)
 				{
-					if (initialHPs[i + 18] != -1)
+					int refindex = BattleIndex.Get(BattleSides.EnemyEscort, i);
+
+					if (initial.EnemyInitialHPsEscort[i] != -1)
 					{
+						EnableHPBar(refindex, initial.EnemyInitialHPsEscort[i], resultHPs[refindex], initial.EnemyMaxHPsEscort[i]);
+
 						ShipDataMaster ship = bd.Initial.EnemyMembersEscortInstance[i];
 
-						var bar = HPBars[i + 18];
+						var bar = HPBars[refindex];
 						bar.Text = Constants.GetShipClassClassification(ship.ShipType);
 
 						ToolTipInfo.SetToolTip(bar,
@@ -1184,9 +1213,13 @@ namespace ElectronicObserver.Window
 								bar.MaximumValue,
 								bar.Value - bar.PrevValue,
 								Constants.GetDamageState((double)bar.Value / bar.MaximumValue, isPractice, ship.IsLandBase),
-								bd.GetBattleDetail(i + 18)
+								bd.GetBattleDetail(refindex)
 								)
 							);
+					}
+					else
+					{
+						DisableHPBar(refindex);
 					}
 				}
 
@@ -1194,6 +1227,9 @@ namespace ElectronicObserver.Window
 			else
 			{
 				FleetEnemyEscort.Visible = false;
+
+				for (int i = 0; i < 6; i++)
+					DisableHPBar(BattleIndex.Get(BattleSides.EnemyEscort, i));
 			}
 
 
@@ -1220,10 +1256,10 @@ namespace ElectronicObserver.Window
 
 
 			{   // support
-				if (bd is BattleDay battleday && (battleday.Support?.IsAvailable ?? false))
+				if (bd.Support?.IsAvailable ?? false)
 				{
 
-					switch (battleday.Support.SupportFlag)
+					switch (bd.Support.SupportFlag)
 					{
 						case 1:
 							FleetFriend.ImageIndex = (int)ResourceManager.EquipmentContent.CarrierBasedTorpedo;
@@ -1234,13 +1270,16 @@ namespace ElectronicObserver.Window
 						case 3:
 							FleetFriend.ImageIndex = (int)ResourceManager.EquipmentContent.Torpedo;
 							break;
+						case 4:
+							FleetFriend.ImageIndex = (int)ResourceManager.EquipmentContent.DepthCharge;
+							break;
 						default:
 							FleetFriend.ImageIndex = (int)ResourceManager.EquipmentContent.Unknown;
 							break;
 					}
 
 					FleetFriend.ImageAlign = ContentAlignment.MiddleLeft;
-					ToolTipInfo.SetToolTip(FleetFriend, "支援攻撃\r\n" + battleday.Support.GetBattleDetail());
+					ToolTipInfo.SetToolTip(FleetFriend, "支援攻撃\r\n" + bd.Support.GetBattleDetail());
 
 					if (isCombined && isEnemyCombined)
 						FleetFriend.Text = "自軍";
@@ -1250,7 +1289,6 @@ namespace ElectronicObserver.Window
 				}
 				else
 				{
-
 					FleetFriend.ImageIndex = -1;
 					FleetFriend.ImageAlign = ContentAlignment.MiddleCenter;
 					FleetFriend.Text = "自軍艦隊";
@@ -1260,22 +1298,22 @@ namespace ElectronicObserver.Window
 			}
 
 
-			if ( bd.Initial.IsBossDamaged )
+			if (bd.Initial.IsBossDamaged)
 			{
-				HPBars[6].BackColor = Utility.Configuration.Config.UI.Battle_ColorHPBarsBossDamaged;
+				HPBars[BattleIndex.Get(BattleSides.EnemyMain, 0)].BackColor = Utility.Configuration.Config.UI.Battle_ColorHPBarsBossDamaged;
 				HPBars[6].RepaintHPtext();
 			}
 
 			if ( !isBaseAirRaid ) {
 				foreach (int i in bd.MVPShipIndexes)
 				{
-					HPBars[i].BackColor = Utility.Configuration.Config.UI.Battle_ColorHPBarsMVP;
-					HPBars[i].RepaintHPtext();
+					HPBars[BattleIndex.Get(BattleSides.FriendMain, i)].BackColor = Utility.Configuration.Config.UI.Battle_ColorHPBarsMVP;
+					HPBars[BattleIndex.Get(BattleSides.FriendMain, i)].RepaintHPtext();
 				}
 				foreach (int i in bd.MVPShipCombinedIndexes)
 				{
-					HPBars[12 + i].BackColor = Utility.Configuration.Config.UI.Battle_ColorHPBarsMVP;
-					HPBars[12 + i].RepaintHPtext();
+					HPBars[BattleIndex.Get(BattleSides.FriendEscort, i)].BackColor = Utility.Configuration.Config.UI.Battle_ColorHPBarsMVP;
+					HPBars[BattleIndex.Get(BattleSides.FriendEscort, i)].RepaintHPtext();
 				}
 			}
 
