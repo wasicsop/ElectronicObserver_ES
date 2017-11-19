@@ -53,7 +53,7 @@ namespace ElectronicObserver.Utility
 			}
 	        catch (Exception e)
 	        {
-		        Logger.Add(3, "Failed to check translation updates: " + e.Message);
+		        Logger.Add(3, "Failed to obtain translation update data. " + e.Message);
 	        }
 
 	        foreach (TranslationFile filename in Enum.GetValues(typeof(TranslationFile)))
@@ -65,22 +65,35 @@ namespace ElectronicObserver.Utility
 					var translationfile = XDocument.Load(path);
 			        current = translationfile?.Root.Attribute("Version").Value ?? "0.0.0";
 				}
-				
-				var latest = versionManifest.Root.Element($"{filename}").Attribute("version").Value;
-				if (current != latest)
-					UpdateTranslation(filename, latest);
+
+		        var latest = current;
+				if (versionManifest != null)
+		        {
+			        latest = versionManifest.Root.Element($"{filename}").Attribute("version").Value;
+		        }
+
+		        if (current != latest)
+			        UpdateTranslation(filename, latest);
 			}
 		}
 
 	    private void UpdateTranslation(TranslationFile filename, string latestVersion)
 	    {
-		    var r2 = WebRequest.Create(_url + $"/{filename}.xml");
-		    using (var resp = r2.GetResponse())
+			try
 		    {
-			    var doc = XDocument.Load(resp.GetResponseStream());
-			    doc.Save($"Translations\\{filename}.xml");
+				var r2 = WebRequest.Create(_url + $"/{filename}.xml");
+			    using (var resp = r2.GetResponse())
+			    {
+				    var doc = XDocument.Load(resp.GetResponseStream());
+				    doc.Save($"Translations\\{filename}.xml");
+			    }
+			    Logger.Add(2, $"Updated {filename} translations to v{latestVersion}.");
+			}
+		    catch (Exception e)
+		    {
+			    Logger.Add(3, $"Failed to download {filename}.xml. " + e.Message);
 		    }
-		    Logger.Add(2, $"Updated {filename} translations to v{latestVersion}.");
+		    
 		}
 
         private IEnumerable<XElement> GetTranslationList(TranslationType type)
