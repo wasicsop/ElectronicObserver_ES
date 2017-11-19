@@ -1279,19 +1279,19 @@ namespace ElectronicObserver.Window
 					}
 
 					FleetFriend.ImageAlign = ContentAlignment.MiddleLeft;
-					ToolTipInfo.SetToolTip(FleetFriend, "支援攻撃\r\n" + bd.Support.GetBattleDetail());
+					ToolTipInfo.SetToolTip(FleetFriend, "Support Expedition\r\n" + bd.Support.GetBattleDetail());
 
 					if (isCombined && isEnemyCombined)
-						FleetFriend.Text = "自軍";
+						FleetFriend.Text = "Friendly";
 					else
-						FleetFriend.Text = "自軍艦隊";
+						FleetFriend.Text = "Friendly Fleet";
 
 				}
 				else
 				{
 					FleetFriend.ImageIndex = -1;
 					FleetFriend.ImageAlign = ContentAlignment.MiddleCenter;
-					FleetFriend.Text = "自軍艦隊";
+					FleetFriend.Text = "Friendly Fleet";
 					ToolTipInfo.SetToolTip(FleetFriend, null);
 
 				}

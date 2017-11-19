@@ -497,6 +497,7 @@ namespace ElectronicObserver.Data
                 case "Line Abreast":
 					return 5;
 				case "警戒陣":
+				case "Lookout":
 					return 6;
 				case "第一警戒航行序列":
                 case "First Cruising Formation":
