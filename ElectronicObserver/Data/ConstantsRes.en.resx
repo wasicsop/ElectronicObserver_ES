@@ -738,9 +738,6 @@
   <data name="BattleDetail_FriendlyNightContact" xml:space="preserve">
     <value>Night Contact: </value>
   </data>
-  <data name="Participant" xml:space="preserve">
-    <value>Participant</value>
-  </data>
   <data name="LOS" xml:space="preserve">
     <value>Detection</value>
   </data>
@@ -755,9 +752,6 @@
   </data>
   <data name="Title_CombinedFleetAirRaid" xml:space="preserve">
     <value>Combined Fleet Air Raid</value>
-  </data>
-  <data name="Title_CombinedNormalNight" xml:space="preserve">
-    <value>Combined Fleet Night Battle</value>
   </data>
   <data name="Title_CombinedNightOnly" xml:space="preserve">
     <value>Combined Fleet Opening Night Battle</value>
@@ -786,9 +780,6 @@
   <data name="Title_BaseAirRaid" xml:space="preserve">
     <value>Air Base Raid</value>
   </data>
-  <data name="Title_CombinedWater" xml:space="preserve">
-    <value>Suijou Butai Day Battle</value>
-  </data>
   <data name="Title_EnemyCombinedNight" xml:space="preserve">
     <value>Enemy Combined Fleet Night Battle</value>
   </data>
@@ -806,8 +797,5 @@
   </data>
   <data name="AirIncapability" xml:space="preserve">
     <value>AI-</value>
-  </data>
-  <data name="UnidentifiedPlane" xml:space="preserve">
-    <value>Unidentified Plane</value>
   </data>
 </root>

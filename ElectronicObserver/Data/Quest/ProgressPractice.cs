@@ -5,13 +5,15 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ElectronicObserver.Data.Quest {
+namespace ElectronicObserver.Data.Quest
+{
 
 	/// <summary>
 	/// 演習任務の進捗を管理します。
 	/// </summary>
-	[DataContract( Name = "ProgressPractice" )]
-	public class ProgressPractice : ProgressData {
+	[DataContract(Name = "ProgressPractice")]
+	public class ProgressPractice : ProgressData
+	{
 
 		/// <summary>
 		/// 勝利のみカウントする
@@ -20,16 +22,18 @@ namespace ElectronicObserver.Data.Quest {
 		private bool WinOnly { get; set; }
 
 
-		public ProgressPractice( QuestData quest, int maxCount, bool winOnly )
-			: base( quest, maxCount ) {
+		public ProgressPractice(QuestData quest, int maxCount, bool winOnly)
+			: base(quest, maxCount)
+		{
 
 			WinOnly = winOnly;
 		}
 
 
-		public void Increment( string rank ) {
+		public void Increment(string rank)
+		{
 
-			if ( WinOnly && Constants.GetWinRank( rank ) < Constants.GetWinRank( "B" ) )
+			if (WinOnly && Constants.GetWinRank(rank) < Constants.GetWinRank("B"))
 				return;
 
 			Increment();

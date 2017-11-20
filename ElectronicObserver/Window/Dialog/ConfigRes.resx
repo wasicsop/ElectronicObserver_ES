@@ -183,9 +183,6 @@
   <data name="Communication" xml:space="preserve">
     <value>通信</value>
   </data>
-  <data name="Confirm" xml:space="preserve">
-    <value>確認</value>
-  </data>
   <data name="ConfirmRefreshHint" xml:space="preserve">
     <value>有効な場合再読み込みするときに確認ダイアログを表示します。
 誤爆防止にご利用ください。</value>
@@ -227,9 +224,6 @@
   </data>
   <data name="Enocding" xml:space="preserve">
     <value>文字コード</value>
-  </data>
-  <data name="Error" xml:space="preserve">
-    <value>エラー</value>
   </data>
   <data name="ExpedReturn" xml:space="preserve">
     <value>遠征帰投</value>

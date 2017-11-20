@@ -19,7 +19,7 @@ namespace ElectronicObserver.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -175,29 +175,11 @@ namespace ElectronicObserver.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 確認.
-        /// </summary>
-        internal static string Confirm {
-            get {
-                return ResourceManager.GetString("Confirm", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 開発.
         /// </summary>
         internal static string DevelopedBy {
             get {
                 return ResourceManager.GetString("DevelopedBy", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to エラー.
-        /// </summary>
-        internal static string Error {
-            get {
-                return ResourceManager.GetString("Error", resourceCulture);
             }
         }
         
@@ -294,15 +276,6 @@ namespace ElectronicObserver.Properties {
         internal static string IsClosing {
             get {
                 return ResourceManager.GetString("IsClosing", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to  を起動しています….
-        /// </summary>
-        internal static string IsStarting {
-            get {
-                return ResourceManager.GetString("IsStarting", resourceCulture);
             }
         }
         

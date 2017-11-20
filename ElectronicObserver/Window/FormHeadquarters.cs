@@ -15,13 +15,16 @@ using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Window.Support;
 using ElectronicObserver.Resource.Record;
 
-namespace ElectronicObserver.Window {
+namespace ElectronicObserver.Window
+{
 
-	public partial class FormHeadquarters : DockContent {
+	public partial class FormHeadquarters : DockContent
+	{
 
 		private Form _parentForm;
 
-		public FormHeadquarters( FormMain parent ) {
+		public FormHeadquarters(FormMain parent)
+		{
 			InitializeComponent();
 
 			_parentForm = parent;
@@ -55,21 +58,22 @@ namespace ElectronicObserver.Window {
 			DisplayUseItem.ImageIndex = (int)ResourceManager.IconContent.ItemPresentBox;
 
 
-			ControlHelper.SetDoubleBuffered( FlowPanelMaster );
-			ControlHelper.SetDoubleBuffered( FlowPanelAdmiral );
-			ControlHelper.SetDoubleBuffered( FlowPanelFleet );
-			ControlHelper.SetDoubleBuffered( FlowPanelUseItem );
-			ControlHelper.SetDoubleBuffered( FlowPanelResource );
+			ControlHelper.SetDoubleBuffered(FlowPanelMaster);
+			ControlHelper.SetDoubleBuffered(FlowPanelAdmiral);
+			ControlHelper.SetDoubleBuffered(FlowPanelFleet);
+			ControlHelper.SetDoubleBuffered(FlowPanelUseItem);
+			ControlHelper.SetDoubleBuffered(FlowPanelResource);
 
 
 			ConfigurationChanged();
 
-			Icon = ResourceManager.ImageToIcon( ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormHeadQuarters] );
+			Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormHeadQuarters]);
 
 		}
 
 
-		private void FormHeadquarters_Load( object sender, EventArgs e ) {
+		private void FormHeadquarters_Load(object sender, EventArgs e)
+		{
 
 			APIObserver o = APIObserver.Instance;
 
@@ -102,7 +106,7 @@ namespace ElectronicObserver.Window {
 			Utility.Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
 			Utility.SystemEvents.UpdateTimerTick += SystemEvents_UpdateTimerTick;
 
-			FlowPanelResource.SetFlowBreak( Ammo, true );
+			FlowPanelResource.SetFlowBreak(Ammo, true);
 
 			FlowPanelMaster.Visible = false;
 
@@ -110,7 +114,8 @@ namespace ElectronicObserver.Window {
 
 
 
-		void ConfigurationChanged() {
+		void ConfigurationChanged()
+		{
 
 			Font = FlowPanelMaster.Font = Utility.Configuration.Config.UI.MainFont;
 			HQLevel.MainFont = Utility.Configuration.Config.UI.MainFont;
@@ -119,13 +124,16 @@ namespace ElectronicObserver.Window {
 			HQLevel.SubFontColor = Utility.Configuration.Config.UI.SubForeColor;
 
 			// 点滅しない設定にしたときに消灯状態で固定されるのを防ぐ
-			if (!Utility.Configuration.Config.FormHeadquarters.BlinkAtMaximum) {
-				if (ShipCount.Tag as bool? ?? false) {
+			if (!Utility.Configuration.Config.FormHeadquarters.BlinkAtMaximum)
+			{
+				if (ShipCount.Tag as bool? ?? false)
+				{
 					ShipCount.BackColor = Utility.Configuration.Config.UI.Headquarters_ShipCountOverBG;
 					ShipCount.ForeColor = Utility.Configuration.Config.UI.Headquarters_ShipCountOverFG;
 				}
 
-				if (EquipmentCount.Tag as bool? ?? false) {
+				if (EquipmentCount.Tag as bool? ?? false)
+				{
 					EquipmentCount.BackColor = Utility.Configuration.Config.UI.Headquarters_ShipCountOverBG;
 					EquipmentCount.ForeColor = Utility.Configuration.Config.UI.Headquarters_ShipCountOverFG;
 				}
@@ -159,15 +167,17 @@ namespace ElectronicObserver.Window {
 		/// <summary>
 		/// VisibleFlags 設定をチェックし、不正な値だった場合は初期値に戻します。
 		/// </summary>
-		public static void CheckVisibilityConfiguration() {
+		public static void CheckVisibilityConfiguration()
+		{
 			const int count = 15;
 			var config = Utility.Configuration.Config.FormHeadquarters;
 
-			if ( config.Visibility == null )
-				config.Visibility = new Utility.Storage.SerializableList<bool>( Enumerable.Repeat( true, count ).ToList() );
+			if (config.Visibility == null)
+				config.Visibility = new Utility.Storage.SerializableList<bool>(Enumerable.Repeat(true, count).ToList());
 
-			for ( int i = config.Visibility.List.Count; i < count; i++ ) {
-				config.Visibility.List.Add( true );
+			for (int i = config.Visibility.List.Count; i < count; i++)
+			{
+				config.Visibility.List.Add(true);
 			}
 
 		}
@@ -175,7 +185,8 @@ namespace ElectronicObserver.Window {
 		/// <summary>
 		/// 各表示項目の名称を返します。
 		/// </summary>
-		public static IEnumerable<string> GetItemNames() {
+		public static IEnumerable<string> GetItemNames()
+		{
 			yield return "Name";
 			yield return "Comment";
 			yield return "HQ Lv";
@@ -194,20 +205,21 @@ namespace ElectronicObserver.Window {
 		}
 
 
-		void Updated( string apiname, dynamic data ) {
+		void Updated(string apiname, dynamic data)
+		{
 
 			KCDatabase db = KCDatabase.Instance;
 
 			var configUI = Utility.Configuration.Config.UI;
 
-			if ( !db.Admiral.IsAvailable )
+			if (!db.Admiral.IsAvailable)
 				return;
 
 			FlowPanelMaster.SuspendLayout();
 
 			//Admiral
 			FlowPanelAdmiral.SuspendLayout();
-			AdmiralName.Text = string.Format( "{0} {1}", db.Admiral.AdmiralName, Constants.GetAdmiralRank( db.Admiral.Rank ) );
+			AdmiralName.Text = string.Format("{0} {1}", db.Admiral.AdmiralName, Constants.GetAdmiralRank(db.Admiral.Rank));
 			AdmiralComment.Text = db.Admiral.Comment;
 			FlowPanelAdmiral.ResumeLayout();
 
@@ -215,11 +227,14 @@ namespace ElectronicObserver.Window {
 			HQLevel.Value = db.Admiral.Level;
 			{
 				StringBuilder tooltip = new StringBuilder();
-				if ( db.Admiral.Level < ExpTable.AdmiralExp.Max( e => e.Key ) ) {
+				if (db.Admiral.Level < ExpTable.AdmiralExp.Max(e => e.Key))
+				{
 					HQLevel.TextNext = "next:";
-					HQLevel.ValueNext = ExpTable.GetNextExpAdmiral( db.Admiral.Exp );
-					tooltip.AppendFormat( "{0} / {1}\r\n", db.Admiral.Exp, ExpTable.AdmiralExp[db.Admiral.Level + 1].Total );
-				} else {
+					HQLevel.ValueNext = ExpTable.GetNextExpAdmiral(db.Admiral.Exp);
+					tooltip.AppendFormat("{0} / {1}\r\n", db.Admiral.Exp, ExpTable.AdmiralExp[db.Admiral.Level + 1].Total);
+				}
+				else
+				{
 					HQLevel.TextNext = "exp:";
 					HQLevel.ValueNext = db.Admiral.Exp;
 				}
@@ -228,27 +243,30 @@ namespace ElectronicObserver.Window {
 				//fixme: もっとましな書き方はなかっただろうか
 				{
 					var res = RecordManager.Instance.Resource.GetRecordPrevious();
-					if ( res != null ) {
+					if (res != null)
+					{
 						int diff = db.Admiral.Exp - res.HQExp;
-						tooltip.AppendFormat( "Session: +{0} exp / {1:n2} pt\r\n", diff, diff * 7 / 10000.0 );
+						tooltip.AppendFormat("Session: +{0} exp / {1:n2} pt\r\n", diff, diff * 7 / 10000.0);
 					}
 				}
 				{
 					var res = RecordManager.Instance.Resource.GetRecordDay();
-					if ( res != null ) {
+					if (res != null)
+					{
 						int diff = db.Admiral.Exp - res.HQExp;
-						tooltip.AppendFormat( "Daily: +{0} exp / {1:n2} pt\r\n", diff, diff * 7 / 10000.0 );
+						tooltip.AppendFormat("Daily: +{0} exp / {1:n2} pt\r\n", diff, diff * 7 / 10000.0);
 					}
 				}
 				{
 					var res = RecordManager.Instance.Resource.GetRecordMonth();
-					if ( res != null ) {
+					if (res != null)
+					{
 						int diff = db.Admiral.Exp - res.HQExp;
-						tooltip.AppendFormat( "Monthly: +{0} exp / {1:n2} pt\r\n", diff, diff * 7 / 10000.0 );
+						tooltip.AppendFormat("Monthly: +{0} exp / {1:n2} pt\r\n", diff, diff * 7 / 10000.0);
 					}
 				}
 
-				ToolTipInfo.SetToolTip( HQLevel, tooltip.ToString() );
+				ToolTipInfo.SetToolTip(HQLevel, tooltip.ToString());
 			}
 
 			//Fleet
@@ -256,22 +274,26 @@ namespace ElectronicObserver.Window {
 			{
 
 				ShipCount.Text = string.Format( "{0}/{1}", RealShipCount, db.Admiral.MaxShipCount );
-				if (RealShipCount > db.Admiral.MaxShipCount - 5) {
+				if (RealShipCount > db.Admiral.MaxShipCount - 5)
+				{
 					ShipCount.BackColor = Utility.Configuration.Config.UI.Headquarters_ShipCountOverBG;
 					ShipCount.ForeColor = Utility.Configuration.Config.UI.Headquarters_ShipCountOverFG;
 				}
-				else {
+				else
+				{
 					ShipCount.BackColor = Color.Transparent;
 					ShipCount.ForeColor = Utility.Configuration.Config.UI.ForeColor;
 				}
 				ShipCount.Tag = RealShipCount >= db.Admiral.MaxShipCount;
 
 				EquipmentCount.Text = string.Format( "{0}/{1}", RealEquipmentCount, db.Admiral.MaxEquipmentCount );
-				if (RealEquipmentCount > db.Admiral.MaxEquipmentCount + 3 - 20) {
+				if (RealEquipmentCount > db.Admiral.MaxEquipmentCount + 3 - 20)
+				{
 					EquipmentCount.BackColor = Utility.Configuration.Config.UI.Headquarters_ShipCountOverBG;
 					EquipmentCount.ForeColor = Utility.Configuration.Config.UI.Headquarters_ShipCountOverFG;
 				}
-				else {
+				else
+				{
 					EquipmentCount.BackColor = Color.Transparent;
 					EquipmentCount.ForeColor = Utility.Configuration.Config.UI.ForeColor;
 				}
@@ -282,9 +304,9 @@ namespace ElectronicObserver.Window {
 
 
 
-			var resday = RecordManager.Instance.Resource.GetRecord( DateTime.Now.AddHours( -5 ).Date.AddHours( 5 ) );
-			var resweek = RecordManager.Instance.Resource.GetRecord( DateTime.Now.AddHours( -5 ).Date.AddDays( -( ( (int)DateTime.Now.AddHours( -5 ).DayOfWeek + 6 ) % 7 ) ).AddHours( 5 ) );	//月曜日起点
-			var resmonth = RecordManager.Instance.Resource.GetRecord( new DateTime( DateTime.Now.Year, DateTime.Now.Month, 1 ).AddHours( 5 ) );
+			var resday = RecordManager.Instance.Resource.GetRecord(DateTime.Now.AddHours(-5).Date.AddHours(5));
+			var resweek = RecordManager.Instance.Resource.GetRecord(DateTime.Now.AddHours(-5).Date.AddDays(-(((int)DateTime.Now.AddHours(-5).DayOfWeek + 6) % 7)).AddHours(5)); //月曜日起点
+			var resmonth = RecordManager.Instance.Resource.GetRecord(new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1).AddHours(5));
 
 
 			//UseItems
@@ -360,15 +382,15 @@ namespace ElectronicObserver.Window {
 				FurnitureCoin.BackColor = Color.Transparent;
 			}
 			{
-				int small = db.UseItems[10] != null ? db.UseItems[10].Count : 0;
-				int medium = db.UseItems[11] != null ? db.UseItems[11].Count : 0;
-				int large = db.UseItems[12] != null ? db.UseItems[12].Count : 0;
+				int small = db.UseItems[10]?.Count ?? 0;
+				int medium = db.UseItems[11]?.Count ?? 0;
+				int large = db.UseItems[12]?.Count ?? 0;
 
 				ToolTipInfo.SetToolTip( FurnitureCoin,
 						string.Format( "(S) x {0} ( +{1} )\r\n(M) x {2} ( +{3} )\r\n(L) x {4} ( +{5} )\r\n",
 							small, small * 200,
 							medium, medium * 400,
-							large, large * 700 ) );
+							large, large * 700));
 			}
 			UpdateDisplayUseItem();
 			FlowPanelUseItem.ResumeLayout();
@@ -479,7 +501,8 @@ namespace ElectronicObserver.Window {
 		}
 
 
-		void SystemEvents_UpdateTimerTick() {
+		void SystemEvents_UpdateTimerTick()
+		{
 
 			KCDatabase db = KCDatabase.Instance;
 
@@ -499,46 +522,71 @@ namespace ElectronicObserver.Window {
 		}
 
 
-		private void Resource_MouseClick( object sender, MouseEventArgs e ) {
+		private void Resource_MouseClick(object sender, MouseEventArgs e)
+		{
+			if (e.Button == System.Windows.Forms.MouseButtons.Right)
+				new Dialog.DialogResourceChart().Show(_parentForm);
+		}
 
-			if ( e.Button == System.Windows.Forms.MouseButtons.Right )
-				new Dialog.DialogResourceChart().Show( _parentForm );
-
+		private void Resource_MouseDoubleClick(object sender, MouseEventArgs e)
+		{
+			if (e.Button == MouseButtons.Left)
+			{
+				try
+				{
+					var mat = KCDatabase.Instance.Material;
+					Clipboard.SetText($"{mat.Fuel}/{mat.Ammo}/{mat.Steel}/{mat.Bauxite}/修復{mat.InstantRepair}/開発{mat.DevelopmentMaterial}/建造{mat.InstantConstruction}/改修{mat.ModdingMaterial}");
+				}
+				catch (Exception ex)
+				{
+					Utility.Logger.Add(3, "資源のクリップボードへのコピーに失敗しました。" + ex.Message);
+				}
+			}
 		}
 
 
-		private void UpdateDisplayUseItem() {
+		private void UpdateDisplayUseItem()
+		{
 			var db = KCDatabase.Instance;
 			var item = db.UseItems[Utility.Configuration.Config.FormHeadquarters.DisplayUseItemID];
 			var itemMaster = db.MasterUseItems[Utility.Configuration.Config.FormHeadquarters.DisplayUseItemID];
 			string tail = "\r\n(can be changed in settings)";
 
-			if ( item != null ) {
+			if (item != null)
+			{
 				DisplayUseItem.Text = item.Count.ToString();
-				ToolTipInfo.SetToolTip( DisplayUseItem, itemMaster.Name + tail );
+				ToolTipInfo.SetToolTip(DisplayUseItem, itemMaster.Name + tail);
 
-			} else if ( itemMaster != null ) {
+			}
+			else if (itemMaster != null)
+			{
 				DisplayUseItem.Text = "0";
-				ToolTipInfo.SetToolTip( DisplayUseItem, itemMaster.Name + tail );
+				ToolTipInfo.SetToolTip(DisplayUseItem, itemMaster.Name + tail);
 
-			} else {
+			}
+			else
+			{
 				DisplayUseItem.Text = "???";
 				ToolTipInfo.SetToolTip( DisplayUseItem, "Unknown Item (ID: " + Utility.Configuration.Config.FormHeadquarters.DisplayUseItemID + ")" + tail );
 			}
 		}
 
-		private int RealShipCount {
-			get {
-				if ( KCDatabase.Instance.Battle != null )
+		private int RealShipCount
+		{
+			get
+			{
+				if (KCDatabase.Instance.Battle != null)
 					return KCDatabase.Instance.Ships.Count + KCDatabase.Instance.Battle.DroppedShipCount;
 
 				return KCDatabase.Instance.Ships.Count;
 			}
 		}
 
-		private int RealEquipmentCount {
-			get {
-				if ( KCDatabase.Instance.Battle != null )
+		private int RealEquipmentCount
+		{
+			get
+			{
+				if (KCDatabase.Instance.Battle != null)
 					return KCDatabase.Instance.Equipments.Count + KCDatabase.Instance.Battle.DroppedEquipmentCount;
 
 				return KCDatabase.Instance.Equipments.Count;
@@ -546,9 +594,11 @@ namespace ElectronicObserver.Window {
 		}
 
 
-		protected override string GetPersistString() {
+		protected override string GetPersistString()
+		{
 			return "HeadQuarters";
 		}
+
 
 	}
 

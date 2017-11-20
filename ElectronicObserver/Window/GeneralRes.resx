@@ -127,14 +127,8 @@
   <data name="AAPower" xml:space="preserve">
     <value>対空砲火</value>
   </data>
-  <data name="Achieved" xml:space="preserve">
-    <value>達成！</value>
-  </data>
   <data name="AddFleetToGroupMenu" xml:space="preserve">
     <value>現在の艦隊を追加(&amp;G)</value>
-  </data>
-  <data name="AddGroup" xml:space="preserve">
-    <value>グループを追加</value>
   </data>
   <data name="AdmiralXP" xml:space="preserve">
     <value>提督経験値</value>
@@ -166,9 +160,6 @@
   <data name="ArsenalLog" xml:space="preserve">
     <value>工廠ドック #{0}で {1}の建造を開始しました。({2}/{3}/{4}/{5}-{6} 秘書艦: {7})</value>
   </data>
-  <data name="AssignedCount" xml:space="preserve">
-    <value>所属: {0}隻</value>
-  </data>
   <data name="ASTooltip" xml:space="preserve">
     <value>確保: {0}\r\n優勢: {1}\r\n均衡: {2}\r\n劣勢: {3}\r\n({4}: {5})\r\n</value>
   </data>
@@ -178,17 +169,11 @@
   <data name="AutoAdjustColumns" xml:space="preserve">
     <value>列の自動調整(&amp;D)</value>
   </data>
-  <data name="AverageLevel" xml:space="preserve">
-    <value>平均Lv: {0:F2}</value>
-  </data>
   <data name="Battle" xml:space="preserve">
     <value>戦闘</value>
   </data>
   <data name="CannotChangeGroup" xml:space="preserve">
     <value>このグループは変更できません。</value>
-  </data>
-  <data name="CannotChangeGroupName" xml:space="preserve">
-    <value>このグループの名前を変更することはできません。</value>
   </data>
   <data name="CannotDeleteGroup" xml:space="preserve">
     <value>このグループは削除できません。</value>
@@ -198,9 +183,6 @@
   </data>
   <data name="CategoryFilter" xml:space="preserve">
     <value>分類(&amp;C)</value>
-  </data>
-  <data name="ChangeGroupName" xml:space="preserve">
-    <value>グループ名の変更</value>
   </data>
   <data name="Clear" xml:space="preserve">
     <value>クリア(&amp;C)</value>
@@ -232,9 +214,6 @@
   <data name="CreateGroup" xml:space="preserve">
     <value>グループの追加</value>
   </data>
-  <data name="CreateGroupName" xml:space="preserve">
-    <value>追加するグループの名前を入力してください：</value>
-  </data>
   <data name="CurrentHealth" xml:space="preserve">
     <value>耐久現在</value>
   </data>
@@ -262,9 +241,6 @@
   </data>
   <data name="DevelopmentFailed" xml:space="preserve">
     <value>[開発失敗]</value>
-  </data>
-  <data name="Dock" xml:space="preserve">
-    <value>入渠</value>
   </data>
   <data name="DockTime" xml:space="preserve">
     <value>入渠時間</value>
@@ -400,12 +376,6 @@
   <data name="NightContacting" xml:space="preserve">
     <value>夜間触接中</value>
   </data>
-  <data name="None" xml:space="preserve">
-    <value>(なし)</value>
-  </data>
-  <data name="NonexistentGroup" xml:space="preserve">
-    <value>エラー：存在しないグループを参照しようとしました。開発者に連絡してください</value>
-  </data>
   <data name="Over50" xml:space="preserve">
     <value>50%以上</value>
   </data>
@@ -457,9 +427,6 @@
   <data name="SecondStage" xml:space="preserve">
     <value>第2次</value>
   </data>
-  <data name="SelectGroup" xml:space="preserve">
-    <value>グループの選択</value>
-  </data>
   <data name="ShipGirl" xml:space="preserve">
     <value>艦娘</value>
   </data>
@@ -498,9 +465,6 @@
   </data>
   <data name="SortiePlace" xml:space="preserve">
     <value>出撃先</value>
-  </data>
-  <data name="SpecifyGroupName" xml:space="preserve">
-    <value>グループ名を入力してください：</value>
   </data>
   <data name="SpecifySelectGroup" xml:space="preserve">
     <value>追加するグループを選択してください：</value>
@@ -559,9 +523,6 @@
   <data name="TotalExperienceGained" xml:space="preserve">
     <value>獲得経験値</value>
   </data>
-  <data name="TotalLevel" xml:space="preserve">
-    <value>合計Lv: {0}</value>
-  </data>
   <data name="TotalLoS" xml:space="preserve">
     <value>索敵能力</value>
   </data>
@@ -570,12 +531,6 @@
   </data>
   <data name="TypeFilter" xml:space="preserve">
     <value>出現種別(&amp;T)</value>
-  </data>
-  <data name="Unacquired" xml:space="preserve">
-    <value>(未取得)</value>
-  </data>
-  <data name="UnacquiredQuests" xml:space="preserve">
-    <value>未取得の任務</value>
   </data>
   <data name="UniqueID" xml:space="preserve">
     <value>固有ID</value>
@@ -586,9 +541,6 @@
   <data name="UnseenShips" xml:space="preserve">
     <value>[未保有艦]</value>
   </data>
-  <data name="WCWarningTitle" xml:space="preserve">
-    <value>ウィンドウキャプチャの確認</value>
-  </data>
   <data name="WhyDidThisHappen" xml:space="preserve">
     <value>どうしてこうなった</value>
   </data>
@@ -597,13 +549,6 @@
   </data>
   <data name="WindowCaptureInst" xml:space="preserve">
     <value>取り込みたいウィンドウへボタンをドラッグ＆ドロップしてください。</value>
-  </data>
-  <data name="WindowCaptureWarning" xml:space="preserve">
-    <value>このウィンドウをキャプチャします。よろしいですか？
-
-注意: ウィンドウによっては正常に取り込めず、不安定になる可能性があります。
-データを保存する・母港に戻るなど、安全を確保してから実行してください。
-</value>
   </data>
   <data name="WinRank" xml:space="preserve">
     <value>戦績判定</value>
@@ -732,20 +677,11 @@
   <data name="AutoSortDialogError" xml:space="preserve">
     <value>ShipGroup: 自動ソート順設定ダイアログでエラーが発生しました。</value>
   </data>
-  <data name="ColumnDialogError" xml:space="preserve">
-    <value>ShipGroup: 列の設定ダイアログでエラーが発生しました。</value>
-  </data>
   <data name="CopyGroupText" xml:space="preserve">
     <value>グループ名を入力してください：</value>
   </data>
   <data name="CopyGroupTitle" xml:space="preserve">
     <value>グループをコピー</value>
-  </data>
-  <data name="FilterDialogError" xml:space="preserve">
-    <value>ShipGroup: フィルタダイアログでエラーが発生しました。</value>
-  </data>
-  <data name="SelectedShips" xml:space="preserve">
-    <value>選択: {0} / {1}隻</value>
   </data>
   <data name="TotalShips" xml:space="preserve">
     <value>所属: {0}隻</value>

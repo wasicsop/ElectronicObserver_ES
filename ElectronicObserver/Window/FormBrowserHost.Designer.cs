@@ -1,6 +1,7 @@
-﻿using ElectronicObserver.Properties;
-namespace ElectronicObserver.Window {
-	partial class FormBrowserHost {
+﻿namespace ElectronicObserver.Window
+{
+	partial class FormBrowserHost
+	{
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
@@ -10,11 +11,13 @@ namespace ElectronicObserver.Window {
 		/// Clean up any resources being used.
 		/// </summary>
 		/// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-		protected override void Dispose( bool disposing ) {
-			if ( disposing && ( components != null ) ) {
+		protected override void Dispose(bool disposing)
+		{
+			if (disposing && (components != null))
+			{
 				components.Dispose();
 			}
-			base.Dispose( disposing );
+			base.Dispose(disposing);
 		}
 
 		#region Windows Form Designer generated code
@@ -23,11 +26,12 @@ namespace ElectronicObserver.Window {
 		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
 		/// </summary>
-		private void InitializeComponent() {
+		private void InitializeComponent()
+		{
 			this.SuspendLayout();
-			// 
+			//
 			// FormBrowserHost
-			// 
+			//
 			this.AutoHidePortion = 150D;
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.ClientSize = new System.Drawing.Size(300, 200);

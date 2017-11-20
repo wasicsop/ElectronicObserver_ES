@@ -1,5 +1,7 @@
-﻿namespace ElectronicObserver.Window.Dialog {
-	partial class DialogAlbumMasterEquipment {
+﻿namespace ElectronicObserver.Window.Dialog
+{
+	partial class DialogAlbumMasterEquipment
+	{
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
@@ -9,11 +11,13 @@
 		/// Clean up any resources being used.
 		/// </summary>
 		/// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-		protected override void Dispose( bool disposing ) {
-			if ( disposing && ( components != null ) ) {
+		protected override void Dispose(bool disposing)
+		{
+			if (disposing && (components != null))
+			{
 				components.Dispose();
 			}
-			base.Dispose( disposing );
+			base.Dispose(disposing);
 		}
 
 		#region Windows Form Designer generated code
@@ -22,7 +26,8 @@
 		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
 		/// </summary>
-		private void InitializeComponent() {
+		private void InitializeComponent()
+		{
 			this.components = new System.ComponentModel.Container();
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -117,9 +122,9 @@
 			// menuStrip1
 			//
 			this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.StripMenu_File,
-            this.StripMenu_Edit,
-            this.StripMenu_View});
+			this.StripMenu_File,
+			this.StripMenu_Edit,
+			this.StripMenu_View});
 			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip1.Name = "menuStrip1";
 			this.menuStrip1.Size = new System.Drawing.Size(800, 24);
@@ -129,8 +134,8 @@
 			// StripMenu_File
 			//
 			this.StripMenu_File.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.StripMenu_File_OutputCSVUser,
-            this.StripMenu_File_OutputCSVData});
+			this.StripMenu_File_OutputCSVUser,
+			this.StripMenu_File_OutputCSVData});
 			this.StripMenu_File.Name = "StripMenu_File";
 			this.StripMenu_File.Size = new System.Drawing.Size(70, 20);
 			this.StripMenu_File.Text = "&File";
@@ -152,10 +157,10 @@
 			// StripMenu_Edit
 			//
 			this.StripMenu_Edit.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.StripMenu_Edit_CopyEquipmentName,
-            this.StripMenu_Edit_CopyEquipmentData,
-            this.toolStripSeparator1,
-            this.StripMenu_Edit_GoogleEquipmentName});
+			this.StripMenu_Edit_CopyEquipmentName,
+			this.StripMenu_Edit_CopyEquipmentData,
+			this.toolStripSeparator1,
+			this.StripMenu_Edit_GoogleEquipmentName});
 			this.StripMenu_Edit.Name = "StripMenu_Edit";
 			this.StripMenu_Edit.Size = new System.Drawing.Size(60, 20);
 			this.StripMenu_Edit.Text = "&Edit";
@@ -164,7 +169,7 @@
 			//
 			this.StripMenu_Edit_CopyEquipmentName.Name = "StripMenu_Edit_CopyEquipmentName";
 			this.StripMenu_Edit_CopyEquipmentName.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift)
-            | System.Windows.Forms.Keys.C)));
+			| System.Windows.Forms.Keys.C)));
 			this.StripMenu_Edit_CopyEquipmentName.Size = new System.Drawing.Size(248, 22);
 			this.StripMenu_Edit_CopyEquipmentName.Text = "Copy equipment &name";
 			this.StripMenu_Edit_CopyEquipmentName.Click += new System.EventHandler(this.StripMenu_Edit_CopyEquipmentName_Click);
@@ -180,7 +185,7 @@
 			// StripMenu_View
 			//
 			this.StripMenu_View.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.StripMenu_View_ShowAppearingArea});
+			this.StripMenu_View_ShowAppearingArea});
 			this.StripMenu_View.Name = "StripMenu_View";
 			this.StripMenu_View.Size = new System.Drawing.Size(61, 20);
 			this.StripMenu_View.Text = "&View";
@@ -215,7 +220,7 @@
 			// TextSearch
 			//
 			this.TextSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.TextSearch.Location = new System.Drawing.Point(3, 3);
 			this.TextSearch.Name = "TextSearch";
 			this.TextSearch.Size = new System.Drawing.Size(244, 23);
@@ -229,8 +234,8 @@
 			this.EquipmentView.AllowUserToDeleteRows = false;
 			this.EquipmentView.AllowUserToResizeRows = false;
 			this.EquipmentView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
+			| System.Windows.Forms.AnchorStyles.Left)
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.EquipmentView.BackgroundColor = System.Drawing.SystemColors.Control;
 			this.EquipmentView.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -243,10 +248,10 @@
 			this.EquipmentView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
 			this.EquipmentView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.EquipmentView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.EquipmentView_ID,
-            this.EquipmentView_Icon,
-            this.EquipmentView_Type,
-            this.EquipmentView_Name});
+			this.EquipmentView_ID,
+			this.EquipmentView_Icon,
+			this.EquipmentView_Type,
+			this.EquipmentView_Name});
 			dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
 			dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
 			dataGridViewCellStyle9.Font = new System.Drawing.Font("Meiryo UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
@@ -420,7 +425,7 @@
 			// DefaultSlots
 			//
 			this.DefaultSlots.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.DefaultSlots.BackColor = System.Drawing.SystemColors.Control;
 			this.DefaultSlots.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.DefaultSlots.FormattingEnabled = true;
@@ -436,8 +441,8 @@
 			// Description
 			//
 			this.Description.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
+			| System.Windows.Forms.AnchorStyles.Left)
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.Description.AutoSize = false;
 			this.Description.AutoWrap = true;
 			this.Description.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -446,7 +451,7 @@
 			this.Description.Size = new System.Drawing.Size(525, 83);
 			this.Description.TabIndex = 20;
 			this.Description.Text = "[5inch連装砲]\r\nかの国において最も広く使われた駆逐艦主砲、その連装砲版です。\r\n大型艦の対空砲としても搭載されました。\r\n現在では深海駆逐艦の主力兵装とし" +
-    "て普及しています。\r\n";
+	"て普及しています。\r\n";
 			this.Description.TextAlign = System.Drawing.ContentAlignment.TopLeft;
 			//
 			// TableEquipmentName
@@ -773,7 +778,7 @@
 			// imageLabel14
 			//
 			this.imageLabel14.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.imageLabel14.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			this.imageLabel14.Location = new System.Drawing.Point(56, 3);
 			this.imageLabel14.Margin = new System.Windows.Forms.Padding(6, 3, 6, 3);

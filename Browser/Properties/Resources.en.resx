@@ -198,30 +198,15 @@ catch(e) {{
   <data name="ClearCompleteDialog" xml:space="preserve">
     <value>The browser cache has been cleared.</value>
   </data>
-  <data name="Confirm" xml:space="preserve">
-    <value>Confirm</value>
-  </data>
-  <data name="CouldntFindSWF" xml:space="preserve">
-    <value>Could not find SWF file.</value>
-  </data>
-  <data name="CouldntLoadEmbed" xml:space="preserve">
-    <value>Failed to load an "embed" tag.</value>
-  </data>
   <data name="CurrentZoom" xml:space="preserve">
-    <value>Current: </value>
+    <value>Other_Zoom_Fit</value>
   </data>
   <data name="FailedToApplyStylesheet" xml:space="preserve">
     <value>Failed to apply stylesheet.</value>
   </data>
-  <data name="FailedToApplyZoom" xml:space="preserve">
-    <value>Failed to apply zoom.</value>
-  </data>
   <data name="LoginDialog" xml:space="preserve">
     <value>This will return to the login page.
 Are you sure?</value>
-  </data>
-  <data name="NoScreenshotUnloaded" xml:space="preserve">
-    <value>KanColle is not loaded, unable to take screenshots.</value>
   </data>
   <data name="ReloadDialog" xml:space="preserve">
     <value>This will reload the page.
@@ -232,11 +217,5 @@ Are you sure?</value>
   </data>
   <data name="ScreenshotSaved" xml:space="preserve">
     <value>Screenshot saved to {0}.</value>
-  </data>
-  <data name="Information" xml:space="preserve">
-    <value>Information</value>
-  </data>
-  <data name="SubProgramWarning" xml:space="preserve">
-    <value>This is a subprogram and cannot be run independently. Please start the main program instead.</value>
   </data>
 </root>

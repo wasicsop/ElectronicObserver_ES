@@ -5,6 +5,7 @@
 *.suo
 *.user
 *.sln.docstates
+.vs/
 
 # Build results
 
@@ -95,14 +96,9 @@ publish/
 # Publish Web Output
 *.Publish.xml
 
-# NuGet Packages
-*.nupkg
-# The packages folder can be ignored because of Package Restore
-**/packages/*
-# except build/, which is used as an MSBuild target.
-!**/packages/build/
-# Uncomment if necessary however generally it will be regenerated when needed
-#!**/packages/repositories.config
+# NuGet Packages Directory
+## TODO: If you have NuGet Package Restore enabled, uncomment the next line
+#packages/
 
 # Windows Azure Build Output
 csx
@@ -166,3 +162,8 @@ $RECYCLE.BIN/
 ElectronicObserver/Other/Information/todo.txt
 DigitalArsenal/
 packages/
+/ElectronicObserver/zip.bat
+/ElectronicObserver/Settings
+/ElectronicObserver/Record
+/ElectronicObserver/ErrorReport
+/ElectronicObserver/BattleLog

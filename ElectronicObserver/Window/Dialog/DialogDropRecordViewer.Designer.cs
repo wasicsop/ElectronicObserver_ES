@@ -1,5 +1,7 @@
-﻿namespace ElectronicObserver.Window.Dialog {
-	partial class DialogDropRecordViewer {
+﻿namespace ElectronicObserver.Window.Dialog
+{
+	partial class DialogDropRecordViewer
+	{
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
@@ -9,11 +11,13 @@
 		/// Clean up any resources being used.
 		/// </summary>
 		/// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-		protected override void Dispose( bool disposing ) {
-			if ( disposing && ( components != null ) ) {
+		protected override void Dispose(bool disposing)
+		{
+			if (disposing && (components != null))
+			{
 				components.Dispose();
 			}
-			base.Dispose( disposing );
+			base.Dispose(disposing);
 		}
 
 		#region Windows Form Designer generated code
@@ -22,7 +26,8 @@
 		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
 		/// </summary>
-		private void InitializeComponent() {
+		private void InitializeComponent()
+		{
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DialogDropRecordViewer));
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -73,128 +78,128 @@
 			this.splitContainer1.SuspendLayout();
 			this.statusStrip1.SuspendLayout();
 			this.SuspendLayout();
-			// 
+			//
 			// ItemName
-			// 
+			//
 			this.ItemName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.ItemName.FormattingEnabled = true;
 			resources.ApplyResources(this.ItemName, "ItemName");
 			this.ItemName.Name = "ItemName";
 			this.ToolTipInfo.SetToolTip(this.ItemName, resources.GetString("ItemName.ToolTip"));
-			// 
+			//
 			// ShipName
-			// 
+			//
 			this.ShipName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
 			this.ShipName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
 			this.ShipName.FormattingEnabled = true;
 			resources.ApplyResources(this.ShipName, "ShipName");
 			this.ShipName.Name = "ShipName";
 			this.ToolTipInfo.SetToolTip(this.ShipName, resources.GetString("ShipName.ToolTip"));
-			// 
+			//
 			// EquipmentName
-			// 
+			//
 			this.EquipmentName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			resources.ApplyResources(this.EquipmentName, "EquipmentName");
 			this.EquipmentName.FormattingEnabled = true;
 			this.EquipmentName.Name = "EquipmentName";
 			this.ToolTipInfo.SetToolTip(this.EquipmentName, resources.GetString("EquipmentName.ToolTip"));
-			// 
+			//
 			// DateBegin
-			// 
+			//
 			resources.ApplyResources(this.DateBegin, "DateBegin");
 			this.DateBegin.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
 			this.DateBegin.Name = "DateBegin";
 			this.ToolTipInfo.SetToolTip(this.DateBegin, resources.GetString("DateBegin.ToolTip"));
-			// 
+			//
 			// label2
-			// 
+			//
 			resources.ApplyResources(this.label2, "label2");
 			this.label2.Name = "label2";
-			// 
+			//
 			// label3
-			// 
+			//
 			resources.ApplyResources(this.label3, "label3");
 			this.label3.Name = "label3";
-			// 
+			//
 			// DateEnd
-			// 
+			//
 			resources.ApplyResources(this.DateEnd, "DateEnd");
 			this.DateEnd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
 			this.DateEnd.Name = "DateEnd";
 			this.ToolTipInfo.SetToolTip(this.DateEnd, resources.GetString("DateEnd.ToolTip"));
-			// 
+			//
 			// RankS
-			// 
+			//
 			resources.ApplyResources(this.RankS, "RankS");
 			this.RankS.Checked = true;
 			this.RankS.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.RankS.Name = "RankS";
 			this.ToolTipInfo.SetToolTip(this.RankS, resources.GetString("RankS.ToolTip"));
 			this.RankS.UseVisualStyleBackColor = true;
-			// 
+			//
 			// RankA
-			// 
+			//
 			resources.ApplyResources(this.RankA, "RankA");
 			this.RankA.Checked = true;
 			this.RankA.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.RankA.Name = "RankA";
 			this.ToolTipInfo.SetToolTip(this.RankA, resources.GetString("RankA.ToolTip"));
 			this.RankA.UseVisualStyleBackColor = true;
-			// 
+			//
 			// RankB
-			// 
+			//
 			resources.ApplyResources(this.RankB, "RankB");
 			this.RankB.Checked = true;
 			this.RankB.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.RankB.Name = "RankB";
 			this.ToolTipInfo.SetToolTip(this.RankB, resources.GetString("RankB.ToolTip"));
 			this.RankB.UseVisualStyleBackColor = true;
-			// 
+			//
 			// RankX
-			// 
+			//
 			resources.ApplyResources(this.RankX, "RankX");
 			this.RankX.Checked = true;
 			this.RankX.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.RankX.Name = "RankX";
 			this.ToolTipInfo.SetToolTip(this.RankX, resources.GetString("RankX.ToolTip"));
 			this.RankX.UseVisualStyleBackColor = true;
-			// 
+			//
 			// label1
-			// 
+			//
 			resources.ApplyResources(this.label1, "label1");
 			this.label1.Name = "label1";
-			// 
+			//
 			// MapDifficulty
-			// 
+			//
 			this.MapDifficulty.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.MapDifficulty.FormattingEnabled = true;
 			resources.ApplyResources(this.MapDifficulty, "MapDifficulty");
 			this.MapDifficulty.Name = "MapDifficulty";
 			this.ToolTipInfo.SetToolTip(this.MapDifficulty, resources.GetString("MapDifficulty.ToolTip"));
-			// 
+			//
 			// ButtonRun
-			// 
+			//
 			resources.ApplyResources(this.ButtonRun, "ButtonRun");
 			this.ButtonRun.Name = "ButtonRun";
 			this.ButtonRun.UseVisualStyleBackColor = true;
 			this.ButtonRun.Click += new System.EventHandler(this.ButtonRun_Click);
-			// 
+			//
 			// RecordView
-			// 
+			//
 			this.RecordView.AllowUserToAddRows = false;
 			this.RecordView.AllowUserToDeleteRows = false;
 			this.RecordView.AllowUserToResizeRows = false;
 			this.RecordView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
 			this.RecordView.ColumnHeadersVisible = false;
 			this.RecordView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.RecordView_Header,
-            this.RecordView_Name,
-            this.RecordView_Date,
-            this.RecordView_Map,
-            this.RecordView_Rank,
-            this.RecordView_RankS,
-            this.RecordView_RankA,
-            this.RecordView_RankB});
+			this.RecordView_Header,
+			this.RecordView_Name,
+			this.RecordView_Date,
+			this.RecordView_Map,
+			this.RecordView_Rank,
+			this.RecordView_RankS,
+			this.RecordView_RankA,
+			this.RecordView_RankB});
 			dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
 			dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
 			dataGridViewCellStyle5.Font = new System.Drawing.Font("Meiryo UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
@@ -213,107 +218,107 @@
 			this.RecordView.SortCompare += new System.Windows.Forms.DataGridViewSortCompareEventHandler(this.RecordView_SortCompare);
 			this.RecordView.Sorted += new System.EventHandler(this.RecordView_Sorted);
 			this.RecordView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.RecordView_CellDoubleClick);
-			// 
+			//
 			// RecordView_Header
-			// 
+			//
 			dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
 			this.RecordView_Header.DefaultCellStyle = dataGridViewCellStyle1;
 			resources.ApplyResources(this.RecordView_Header, "RecordView_Header");
 			this.RecordView_Header.Name = "RecordView_Header";
 			this.RecordView_Header.ReadOnly = true;
-			// 
+			//
 			// RecordView_Name
-			// 
+			//
 			this.RecordView_Name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
 			resources.ApplyResources(this.RecordView_Name, "RecordView_Name");
 			this.RecordView_Name.Name = "RecordView_Name";
 			this.RecordView_Name.ReadOnly = true;
-			// 
+			//
 			// RecordView_Date
-			// 
+			//
 			resources.ApplyResources(this.RecordView_Date, "RecordView_Date");
 			this.RecordView_Date.Name = "RecordView_Date";
 			this.RecordView_Date.ReadOnly = true;
-			// 
+			//
 			// RecordView_Map
-			// 
+			//
 			resources.ApplyResources(this.RecordView_Map, "RecordView_Map");
 			this.RecordView_Map.Name = "RecordView_Map";
 			this.RecordView_Map.ReadOnly = true;
-			// 
+			//
 			// RecordView_Rank
-			// 
+			//
 			resources.ApplyResources(this.RecordView_Rank, "RecordView_Rank");
 			this.RecordView_Rank.Name = "RecordView_Rank";
 			this.RecordView_Rank.ReadOnly = true;
-			// 
+			//
 			// RecordView_RankS
-			// 
+			//
 			dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
 			this.RecordView_RankS.DefaultCellStyle = dataGridViewCellStyle2;
 			resources.ApplyResources(this.RecordView_RankS, "RecordView_RankS");
 			this.RecordView_RankS.Name = "RecordView_RankS";
 			this.RecordView_RankS.ReadOnly = true;
-			// 
+			//
 			// RecordView_RankA
-			// 
+			//
 			dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
 			this.RecordView_RankA.DefaultCellStyle = dataGridViewCellStyle3;
 			resources.ApplyResources(this.RecordView_RankA, "RecordView_RankA");
 			this.RecordView_RankA.Name = "RecordView_RankA";
 			this.RecordView_RankA.ReadOnly = true;
-			// 
+			//
 			// RecordView_RankB
-			// 
+			//
 			dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
 			this.RecordView_RankB.DefaultCellStyle = dataGridViewCellStyle4;
 			resources.ApplyResources(this.RecordView_RankB, "RecordView_RankB");
 			this.RecordView_RankB.Name = "RecordView_RankB";
 			this.RecordView_RankB.ReadOnly = true;
-			// 
+			//
 			// IsBossOnly
-			// 
+			//
 			resources.ApplyResources(this.IsBossOnly, "IsBossOnly");
 			this.IsBossOnly.Checked = true;
 			this.IsBossOnly.CheckState = System.Windows.Forms.CheckState.Indeterminate;
 			this.IsBossOnly.Name = "IsBossOnly";
 			this.IsBossOnly.ThreeState = true;
 			this.IsBossOnly.UseVisualStyleBackColor = true;
-			// 
+			//
 			// MapAreaID
-			// 
+			//
 			this.MapAreaID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.MapAreaID.FormattingEnabled = true;
 			resources.ApplyResources(this.MapAreaID, "MapAreaID");
 			this.MapAreaID.Name = "MapAreaID";
 			this.ToolTipInfo.SetToolTip(this.MapAreaID, resources.GetString("MapAreaID.ToolTip"));
 			this.MapAreaID.SelectedIndexChanged += new System.EventHandler(this.MapAreaID_SelectedIndexChanged);
-			// 
+			//
 			// MapInfoID
-			// 
+			//
 			this.MapInfoID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.MapInfoID.FormattingEnabled = true;
 			resources.ApplyResources(this.MapInfoID, "MapInfoID");
 			this.MapInfoID.Name = "MapInfoID";
 			this.ToolTipInfo.SetToolTip(this.MapInfoID, resources.GetString("MapInfoID.ToolTip"));
 			this.MapInfoID.SelectedIndexChanged += new System.EventHandler(this.MapAreaID_SelectedIndexChanged);
-			// 
+			//
 			// MapCellID
-			// 
+			//
 			this.MapCellID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.MapCellID.FormattingEnabled = true;
 			resources.ApplyResources(this.MapCellID, "MapCellID");
 			this.MapCellID.Name = "MapCellID";
 			this.ToolTipInfo.SetToolTip(this.MapCellID, resources.GetString("MapCellID.ToolTip"));
-			// 
+			//
 			// splitContainer1
-			// 
+			//
 			resources.ApplyResources(this.splitContainer1, "splitContainer1");
 			this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
 			this.splitContainer1.Name = "splitContainer1";
-			// 
+			//
 			// splitContainer1.Panel1
-			// 
+			//
 			this.splitContainer1.Panel1.Controls.Add(this.MergeRows);
 			this.splitContainer1.Panel1.Controls.Add(this.MapCellID);
 			this.splitContainer1.Panel1.Controls.Add(this.LabelShipName);
@@ -336,63 +341,63 @@
 			this.splitContainer1.Panel1.Controls.Add(this.RankA);
 			this.splitContainer1.Panel1.Controls.Add(this.label3);
 			this.splitContainer1.Panel1.Controls.Add(this.RankS);
-			// 
+			//
 			// splitContainer1.Panel2
-			// 
+			//
 			this.splitContainer1.Panel2.Controls.Add(this.RecordView);
-			// 
+			//
 			// MergeRows
-			// 
+			//
 			resources.ApplyResources(this.MergeRows, "MergeRows");
 			this.MergeRows.Name = "MergeRows";
 			this.ToolTipInfo.SetToolTip(this.MergeRows, resources.GetString("MergeRows.ToolTip"));
 			this.MergeRows.UseVisualStyleBackColor = true;
-			// 
+			//
 			// LabelShipName
-			// 
+			//
 			resources.ApplyResources(this.LabelShipName, "LabelShipName");
 			this.LabelShipName.BackColor = System.Drawing.Color.Transparent;
 			this.LabelShipName.Name = "LabelShipName";
-			// 
+			//
 			// LabelItemName
-			// 
+			//
 			resources.ApplyResources(this.LabelItemName, "LabelItemName");
 			this.LabelItemName.BackColor = System.Drawing.Color.Transparent;
 			this.LabelItemName.Name = "LabelItemName";
-			// 
+			//
 			// LabelEquipmentName
-			// 
+			//
 			resources.ApplyResources(this.LabelEquipmentName, "LabelEquipmentName");
 			this.LabelEquipmentName.BackColor = System.Drawing.Color.Transparent;
 			this.LabelEquipmentName.Name = "LabelEquipmentName";
-			// 
+			//
 			// statusStrip1
-			// 
+			//
 			this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.StatusInfo});
-			resources.ApplyResources(this.statusStrip1, "statusStrip1");
+			this.StatusInfo});
+			this.statusStrip1.Location = new System.Drawing.Point(0, 419);
 			this.statusStrip1.Name = "statusStrip1";
-			// 
+			//
 			// StatusInfo
-			// 
+			//
 			this.StatusInfo.Name = "StatusInfo";
 			resources.ApplyResources(this.StatusInfo, "StatusInfo");
-			// 
+			//
 			// ToolTipInfo
-			// 
+			//
 			this.ToolTipInfo.AutoPopDelay = 30000;
 			this.ToolTipInfo.InitialDelay = 500;
 			this.ToolTipInfo.ReshowDelay = 100;
 			this.ToolTipInfo.ShowAlways = true;
-			// 
+			//
 			// Searcher
-			// 
+			//
 			this.Searcher.WorkerSupportsCancellation = true;
 			this.Searcher.DoWork += new System.ComponentModel.DoWorkEventHandler(this.Searcher_DoWork);
 			this.Searcher.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.Searcher_RunWorkerCompleted);
-			// 
+			//
 			// DialogDropRecordViewer
-			// 
+			//
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			resources.ApplyResources(this, "$this");
 			this.Controls.Add(this.splitContainer1);
