@@ -746,7 +746,7 @@ namespace ElectronicObserver.Window
 							tiptext = GeneralRes.TargetSighted;
 							break;
 						case 3:
-							tiptext = "針路哨戒！";
+							tiptext = "Course Patrol!";
 							break;
 						default:
 							tiptext = GeneralRes.EnemyPlaneSighted;
@@ -846,7 +846,7 @@ namespace ElectronicObserver.Window
 									eventkind = "No enemy sighted.";
 									break;
 								case 2:
-									eventkind = "Branch choice";
+									eventkind = "Branch choice:";
 									break;
 								case 3:
 									eventkind = "It's a calm sea.";
@@ -865,7 +865,15 @@ namespace ElectronicObserver.Window
 									break;
 							}
 							if (compass.RouteChoices != null)
-								TextEventDetail.Text = string.Join(" or ", compass.RouteChoices);
+							{
+								var nodechoices = new string[compass.RouteChoices.Count];
+								for (int i = 0; i < compass.RouteChoices.Count; i++)
+								{
+									nodechoices[i] = FormMain.Instance.Translator.GetMapNodes(compass.MapAreaID, compass.MapInfoID,
+										compass.RouteChoices[i], Utility.TranslationType.OperationMapNodes);
+								}
+								TextEventDetail.Text = string.Join(" or ", nodechoices);
+							}
 							else
 								TextEventDetail.Text = "";
 
@@ -980,7 +988,7 @@ namespace ElectronicObserver.Window
 					if (itemMaster != null)
 						itemName = itemMaster.Name;
 					else
-						itemName = "謎のアイテム";
+						itemName = "Unknown item";
 				}
 
 				strs.AddLast(itemName + " x " + item.Amount);
@@ -988,7 +996,7 @@ namespace ElectronicObserver.Window
 
 			if (!strs.Any())
 			{
-				return "(なし)";
+				return "(none)";
 
 			}
 			else
@@ -1153,11 +1161,11 @@ namespace ElectronicObserver.Window
 				if (_enemyFleetCandidate.Count > _candidatesDisplayCount)
 				{
 					TextEventDetail.Text += " ▼";
-					ToolTipInfo.SetToolTip(TextEventDetail, string.Format("候補: {0} / {1}\r\n(左右クリックでページめくり)\r\n", _enemyFleetCandidateIndex + 1, _enemyFleetCandidate.Count));
+					ToolTipInfo.SetToolTip(TextEventDetail, string.Format("Fleets: {0} / {1}\r\n(left or right click to change pages)\r\n", _enemyFleetCandidateIndex + 1, _enemyFleetCandidate.Count));
 				}
 				else
 				{
-					ToolTipInfo.SetToolTip(TextEventDetail, string.Format("候補: {0}\r\n", _enemyFleetCandidate.Count));
+					ToolTipInfo.SetToolTip(TextEventDetail, string.Format("Fleets: {0}\r\n", _enemyFleetCandidate.Count));
 				}
 
 				TableEnemyCandidate.SuspendLayout();
