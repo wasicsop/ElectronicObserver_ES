@@ -288,9 +288,6 @@
   <data name="FailedToCopy" xml:space="preserve">
     <value>{0} のコピーに失敗しました。{1}</value>
   </data>
-  <data name="APIObserverFailed" xml:space="preserve">
-    <value>APIObserver: 受信開始に失敗しました。</value>
-  </data>
   <data name="MultiplePossibleMvps" xml:space="preserve">
     <value>MVP候補が複数存在します。ログを確認してください。</value>
   </data>

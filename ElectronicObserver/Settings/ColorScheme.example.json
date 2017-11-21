@@ -4,7 +4,7 @@
 
 [{
   // 定义主题名，启动时会显示在日志中
-  "name": "Scheme Template (VS2012 Light)",
+  "name": "Light",
 
 // ######################################################
 // ## 颜色格式支持 #RGB / #RRGGBB 使用其他格式定义无效 ##
@@ -156,8 +156,8 @@
       "typeHensei":     "#AAFFAA", // [green]  编成类任务背景色
       "typeShutsugeki": "#FFCCCC", // [red]    出击类任务背景色
       "typeEnshu":      "#DDFFAA", // [green]  演习类任务背景色
-      "typeEnsei":      "#DDFFAA", // [cyan]   远征类任务背景色
-      "typeHokyu":      "#CCFFFF", // [yellow] 补给、入渠类任务背景色
+      "typeEnsei":      "#CCFFFF", // [cyan]   远征类任务背景色
+      "typeHokyu":      "#FFFFCC", // [yellow] 补给、入渠类任务背景色
       "typeKojo":       "#DDCCBB", // [orange] 工厂类任务背景色
       "typeKaiso":      "#DDCCFF", // [violet] 改装类任务背景色
       "processLT50":    "#FF8800", // [orange] 任务进度条 <50%

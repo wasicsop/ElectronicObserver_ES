@@ -516,7 +516,7 @@ namespace ElectronicObserver.Window
 		{
 			if (air > 0)
 			{
-				return string.Format("確保: {0}\r\n優勢: {1}\r\n均衡: {2}\r\n劣勢: {3}\r\n",
+				return string.Format("AS+: {0}\r\nAS: {1}\r\nAP: {2}\r\nAI: {3}\r\n",
 							(int)(air * 3.0),
 							(int)Math.Ceiling(air * 1.5),
 							(int)(air / 1.5 + 1),
@@ -715,7 +715,7 @@ namespace ElectronicObserver.Window
 						ToolTipInfo.SetToolTip(TextMapArea, null);
 
 					} else if ( mapinfo.RequiredDefeatedCount != -1 ) {
-						ToolTipInfo.SetToolTip( TextMapArea, string.Format( GeneralRes.Defeated + ": {0} / {1} 回", mapinfo.CurrentDefeatedCount, mapinfo.RequiredDefeatedCount ) );
+						ToolTipInfo.SetToolTip( TextMapArea, string.Format( GeneralRes.Defeated + ": {0} / {1} times", mapinfo.CurrentDefeatedCount, mapinfo.RequiredDefeatedCount ) );
 
 					}
 					else if (mapinfo.MapHPMax > 0)

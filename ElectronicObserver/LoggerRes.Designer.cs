@@ -79,15 +79,6 @@ namespace ElectronicObserver {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to APIObserver: 受信開始に失敗しました。.
-        /// </summary>
-        internal static string APIObserverFailed {
-            get {
-                return ResourceManager.GetString("APIObserverFailed", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to APIObserver: ポート {0} 番で受信を開始しました。.
         /// </summary>
         internal static string APIObserverStarted {

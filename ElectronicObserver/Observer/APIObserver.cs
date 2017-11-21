@@ -183,7 +183,7 @@ namespace ElectronicObserver.Observer
 			catch (Exception ex)
 			{
 
-				Utility.Logger.Add( 3, LoggerRes.APIObserverFailed + ex.Message );
+				Utility.Logger.Add( 3, "APIObserver: Failed to start observation. " + ex.Message );
 				ProxyPort = 0;
 			}
 
