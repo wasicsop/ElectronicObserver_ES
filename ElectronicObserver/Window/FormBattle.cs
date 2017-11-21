@@ -1225,9 +1225,8 @@ namespace ElectronicObserver.Window
 			{
 				FleetFriendEscort.Visible = false;
 
-				for (int i = 0; i < 6; i++)
-					DisableHPBar(BattleIndex.Get(BattleSides.FriendEscort, i));
-
+				foreach (var i in BattleIndex.FriendEscort.Skip(Math.Max(bd.Initial.FriendFleet.Members.Count - 6, 0)))
+					DisableHPBar(i);
 			}
 
 
@@ -1273,9 +1272,11 @@ namespace ElectronicObserver.Window
 			{
 				FleetEnemyEscort.Visible = false;
 
-				for (int i = 0; i < 6; i++)
-					DisableHPBar(BattleIndex.Get(BattleSides.EnemyEscort, i));
+				foreach (var i in BattleIndex.EnemyEscort)
+					DisableHPBar(i);
 			}
+
+
 
 
 			if (isCombined && isEnemyCombined)
@@ -1345,8 +1346,8 @@ namespace ElectronicObserver.Window
 
 			if (bd.Initial.IsBossDamaged)
 			{
-				HPBars[BattleIndex.Get(BattleSides.EnemyMain, 0)].BackColor = Utility.Configuration.Config.UI.Battle_ColorHPBarsBossDamaged;
-				HPBars[6].RepaintHPtext();
+				HPBars[BattleIndex.EnemyMain1].BackColor = Utility.Configuration.Config.UI.Battle_ColorHPBarsBossDamaged;
+				HPBars[BattleIndex.EnemyMain1].RepaintHPtext();
 			}
 
 			if ( !isBaseAirRaid ) {
@@ -1355,10 +1356,14 @@ namespace ElectronicObserver.Window
 					HPBars[BattleIndex.Get(BattleSides.FriendMain, i)].BackColor = Utility.Configuration.Config.UI.Battle_ColorHPBarsMVP;
 					HPBars[BattleIndex.Get(BattleSides.FriendMain, i)].RepaintHPtext();
 				}
-				foreach (int i in bd.MVPShipCombinedIndexes)
+
+				if (isCombined)
 				{
-					HPBars[BattleIndex.Get(BattleSides.FriendEscort, i)].BackColor = Utility.Configuration.Config.UI.Battle_ColorHPBarsMVP;
-					HPBars[BattleIndex.Get(BattleSides.FriendEscort, i)].RepaintHPtext();
+					foreach (int i in bd.MVPShipCombinedIndexes)
+					{
+						HPBars[BattleIndex.Get(BattleSides.FriendEscort, i)].BackColor = Utility.Configuration.Config.UI.Battle_ColorHPBarsMVP;
+						HPBars[BattleIndex.Get(BattleSides.FriendEscort, i)].RepaintHPtext();
+					}
 				}
 			}
 
@@ -1520,39 +1525,41 @@ namespace ElectronicObserver.Window
 			//*/
 
 
-			for ( int i = 0; i < 6; i++ ) {
+			for (int i = 0; i < friend.Members.Count; i++)
+			{
 				if (friend.EscapedShipList.Contains(friend.Members[i]))
 				{
 					HPBars[i].BackColor = Utility.Configuration.Config.UI.Battle_ColorHPBarsEscaped;
 					HPBars[i].RepaintHPtext();
-
 				}
+
 				else if (br.MVPIndex == i + 1)
 				{
 					HPBars[i].BackColor = Utility.Configuration.Config.UI.Battle_ColorHPBarsMVP;
 					HPBars[i].RepaintHPtext();
-
 				}
+
 				else
 				{
 					HPBars[i].BackColor = Utility.Configuration.Config.UI.BackColor;
 					HPBars[i].RepaintHPtext();
 				}
+			}
 
-				if ( escort != null ) {
+			if (escort != null)
+			{
+				for (int i = 0; i < escort.Members.Count; i++)
+				{
 					if (escort.EscapedShipList.Contains(escort.Members[i]))
-					{
-						HPBars[i + 12].BackColor = Utility.Configuration.Config.UI.Battle_ColorHPBarsEscaped;
-					}
+						HPBars[i + 6].BackColor = Utility.Configuration.Config.UI.Battle_ColorHPBarsEscaped;
+
 					else if (br.MVPIndexCombined == i + 1)
-					{
-						HPBars[i + 12].BackColor = Utility.Configuration.Config.UI.Battle_ColorHPBarsMVP;
-					}
+						HPBars[i + 6].BackColor = Utility.Configuration.Config.UI.Battle_ColorHPBarsMVP;
+
 					else
-					{
-						HPBars[i + 12].BackColor = Utility.Configuration.Config.UI.BackColor;
-					}
-					HPBars[i + 12].RepaintHPtext();
+						HPBars[i + 6].BackColor = Utility.Configuration.Config.UI.BackColor;
+
+					HPBars[i + 6].RepaintHPtext();
 				}
 			}
 

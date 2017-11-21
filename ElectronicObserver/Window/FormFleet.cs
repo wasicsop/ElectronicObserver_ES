@@ -801,7 +801,7 @@ namespace ElectronicObserver.Window
 
 
 			TableMember.SuspendLayout();
-			ControlMember = new TableMemberControl[6];
+			ControlMember = new TableMemberControl[7];
 			for (int i = 0; i < ControlMember.Length; i++)
 			{
 				ControlMember[i] = new TableMemberControl(this, TableMember, i);
@@ -892,7 +892,7 @@ namespace ElectronicObserver.Window
 			TableMember.RowCount = fleet.Members.Count(id => id > 0);
 			for (int i = 0; i < ControlMember.Length; i++)
 			{
-				ControlMember[i].Update(fleet.Members[i]);
+				ControlMember[i].Update(i < fleet.Members.Count ? fleet.Members[i] : -1);
 			}
 			TableMember.ResumeLayout();
 
