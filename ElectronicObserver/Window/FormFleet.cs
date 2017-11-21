@@ -594,11 +594,15 @@ namespace ElectronicObserver.Window
 				}
 				sb.AppendLine();
 
-				sb.AppendFormat( GeneralRes.NightBattle + ": {0}", Constants.GetNightAttackKind( Calculator.GetNightAttackKind( slotmaster, ship.ShipID, -1 ) ) );
+				if (ship.CanAttackAtNight)
 				{
-					int night = ship.NightBattlePower;
-					if ( night > 0 ) {
-						sb.AppendFormat( " - " + GeneralRes.Power + ": {0}", night );
+					sb.AppendFormat(GeneralRes.NightBattle + ": {0}", Constants.GetNightAttackKind(Calculator.GetNightAttackKind(slotmaster, ship.ShipID, -1)));
+					{
+						int night = ship.NightBattlePower;
+						if (night > 0)
+						{
+							sb.AppendFormat(" - " + GeneralRes.Power + ": {0}", night);
+						}
 					}
 					sb.AppendLine();
 				}

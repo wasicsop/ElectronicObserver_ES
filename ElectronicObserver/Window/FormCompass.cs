@@ -617,24 +617,26 @@ namespace ElectronicObserver.Window
 
 			APIObserver o = APIObserver.Instance;
 
-			o.APIList["api_port/port"].ResponseReceived += Updated;
-			o.APIList["api_req_map/start"].ResponseReceived += Updated;
-			o.APIList["api_req_map/next"].ResponseReceived += Updated;
-			o.APIList["api_req_member/get_practice_enemyinfo"].ResponseReceived += Updated;
+			o["api_port/port"].ResponseReceived += Updated;
+			o["api_req_map/start"].ResponseReceived += Updated;
+			o["api_req_map/next"].ResponseReceived += Updated;
+			o["api_req_member/get_practice_enemyinfo"].ResponseReceived += Updated;
 
-			o.APIList["api_req_sortie/battle"].ResponseReceived += BattleStarted;
-			o.APIList["api_req_battle_midnight/sp_midnight"].ResponseReceived += BattleStarted;
-			o.APIList["api_req_sortie/airbattle"].ResponseReceived += BattleStarted;
-			o.APIList["api_req_sortie/ld_airbattle"].ResponseReceived += BattleStarted;
-			o.APIList["api_req_combined_battle/battle"].ResponseReceived += BattleStarted;
-			o.APIList["api_req_combined_battle/sp_midnight"].ResponseReceived += BattleStarted;
-			o.APIList["api_req_combined_battle/airbattle"].ResponseReceived += BattleStarted;
-			o.APIList["api_req_combined_battle/battle_water"].ResponseReceived += BattleStarted;
-			o.APIList["api_req_combined_battle/ld_airbattle"].ResponseReceived += BattleStarted;
-			o.APIList["api_req_combined_battle/ec_battle"].ResponseReceived += BattleStarted;
-			o.APIList["api_req_combined_battle/each_battle"].ResponseReceived += BattleStarted;
-			o.APIList["api_req_combined_battle/each_battle_water"].ResponseReceived += BattleStarted;
-			o.APIList["api_req_practice/battle"].ResponseReceived += BattleStarted;
+			o["api_req_sortie/battle"].ResponseReceived += BattleStarted;
+			o["api_req_battle_midnight/sp_midnight"].ResponseReceived += BattleStarted;
+			o["api_req_sortie/night_to_day"].ResponseReceived += BattleStarted;
+			o["api_req_sortie/airbattle"].ResponseReceived += BattleStarted;
+			o["api_req_sortie/ld_airbattle"].ResponseReceived += BattleStarted;
+			o["api_req_combined_battle/battle"].ResponseReceived += BattleStarted;
+			o["api_req_combined_battle/sp_midnight"].ResponseReceived += BattleStarted;
+			o["api_req_combined_battle/airbattle"].ResponseReceived += BattleStarted;
+			o["api_req_combined_battle/battle_water"].ResponseReceived += BattleStarted;
+			o["api_req_combined_battle/ld_airbattle"].ResponseReceived += BattleStarted;
+			o["api_req_combined_battle/ec_battle"].ResponseReceived += BattleStarted;
+			o["api_req_combined_battle/each_battle"].ResponseReceived += BattleStarted;
+			o["api_req_combined_battle/each_battle_water"].ResponseReceived += BattleStarted;
+			o["api_req_combined_battle/ec_night_to_day"].ResponseReceived += BattleStarted;
+			o["api_req_practice/battle"].ResponseReceived += BattleStarted;
 
 
 			Utility.Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
@@ -746,7 +748,7 @@ namespace ElectronicObserver.Window
 							tiptext = GeneralRes.TargetSighted;
 							break;
 						case 3:
-							tiptext = "針路哨戒！";
+							tiptext = "Course Patrol!";
 							break;
 						default:
 							tiptext = GeneralRes.EnemyPlaneSighted;
@@ -846,7 +848,7 @@ namespace ElectronicObserver.Window
 									eventkind = "No enemy sighted.";
 									break;
 								case 2:
-									eventkind = "Branch choice";
+									eventkind = "Branch choice:";
 									break;
 								case 3:
 									eventkind = "It's a calm sea.";
@@ -865,7 +867,15 @@ namespace ElectronicObserver.Window
 									break;
 							}
 							if (compass.RouteChoices != null)
-								TextEventDetail.Text = string.Join(" or ", compass.RouteChoices);
+							{
+								var nodechoices = new string[compass.RouteChoices.Count];
+								for (int i = 0; i < compass.RouteChoices.Count; i++)
+								{
+									nodechoices[i] = FormMain.Instance.Translator.GetMapNodes(compass.MapAreaID, compass.MapInfoID,
+										compass.RouteChoices[i], Utility.TranslationType.OperationMapNodes);
+								}
+								TextEventDetail.Text = string.Join(" or ", nodechoices);
+							}
 							else
 								TextEventDetail.Text = "";
 
@@ -980,7 +990,7 @@ namespace ElectronicObserver.Window
 					if (itemMaster != null)
 						itemName = itemMaster.Name;
 					else
-						itemName = "謎のアイテム";
+						itemName = "Unknown item";
 				}
 
 				strs.AddLast(itemName + " x " + item.Amount);
@@ -988,7 +998,7 @@ namespace ElectronicObserver.Window
 
 			if (!strs.Any())
 			{
-				return "(なし)";
+				return "(none)";
 
 			}
 			else
@@ -1153,11 +1163,11 @@ namespace ElectronicObserver.Window
 				if (_enemyFleetCandidate.Count > _candidatesDisplayCount)
 				{
 					TextEventDetail.Text += " ▼";
-					ToolTipInfo.SetToolTip(TextEventDetail, string.Format("候補: {0} / {1}\r\n(左右クリックでページめくり)\r\n", _enemyFleetCandidateIndex + 1, _enemyFleetCandidate.Count));
+					ToolTipInfo.SetToolTip(TextEventDetail, string.Format("Fleets: {0} / {1}\r\n(left or right click to change pages)\r\n", _enemyFleetCandidateIndex + 1, _enemyFleetCandidate.Count));
 				}
 				else
 				{
-					ToolTipInfo.SetToolTip(TextEventDetail, string.Format("候補: {0}\r\n", _enemyFleetCandidate.Count));
+					ToolTipInfo.SetToolTip(TextEventDetail, string.Format("Fleets: {0}\r\n", _enemyFleetCandidate.Count));
 				}
 
 				TableEnemyCandidate.SuspendLayout();
