@@ -102,7 +102,7 @@ namespace ElectronicObserver.Observer.kcsapi.api_req_kaisou
 							contents.AddLast(string.Format("Luck+{0}→{1}/{2}", luck, updated_ship.LuckBase, updated_ship.MasterShip.LuckMax));
 
 
-						sb.Append(string.Join(", ", contents)).Append(" )");
+						sb.Append(string.Join(", ", contents)).Append(")");
 						Utility.Logger.Add(2, sb.ToString());
 					}
 				}
