@@ -1695,7 +1695,7 @@ namespace ElectronicObserver.Utility
 
 
 			// 读取配色主题 ( 默认值待编辑 )
-			dynamic json = DynamicJson.Parse( @"[{
+			dynamic json = DynamicJson.Parse(@"[{
 ""name"":""Light"",
 ""basicColors"":{
 ""red"":""#FF0000"",
@@ -1817,8 +1817,8 @@ namespace ElectronicObserver.Utility
 ""typeHensei"":""#AAFFAA"",
 ""typeShutsugeki"":""#FFCCCC"",
 ""typeEnshu"":""#DDFFAA"",
-""typeEnsei"":""#DDFFAA"",
-""typeHokyu"":""#CCFFFF"",
+""typeEnsei"":""#CCFFFF"",
+""typeHokyu"":""#FFFFCC"",
 ""typeKojo"":""#DDCCBB"",
 ""typeKaiso"":""#DDCCFF"",
 ""processLT50"":""#FF8800"",
@@ -1848,7 +1848,7 @@ namespace ElectronicObserver.Utility
 ""barBossDamaged"":""#FFE4E1"",
 ""textBossDamaged"":""#000000"",
 ""textBossDamaged2"":""#888888""
-}}}]" );
+}}}]");
 			//if (File.Exists(@"Settings\ColorScheme.json")) {
 			try {
 				string s = String.Empty;
