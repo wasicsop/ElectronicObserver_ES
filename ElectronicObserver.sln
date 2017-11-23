@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2009
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElectronicObserver", "ElectronicObserver\ElectronicObserver.csproj", "{A9ABEC50-1BFC-4C69-87AE-C68DB6004F68}"
 EndProject
@@ -14,6 +14,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThemeVS2012", "DockPanelSuite\WinFormsUI\ThemeVS2012.csproj", "{A965D7BB-5CDA-4531-AB67-58D4FA10AA6D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwfExtractor", "SwfExtractor\SwfExtractor\SwfExtractor.csproj", "{44244148-D3FE-4D71-AA8F-CACB54AC53C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EOUpdater", "EOUpdater\EOUpdater.csproj", "{CA2A3648-9C19-4CB7-8A17-754552823C26}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,8 +47,15 @@ Global
 		{44244148-D3FE-4D71-AA8F-CACB54AC53C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{44244148-D3FE-4D71-AA8F-CACB54AC53C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{44244148-D3FE-4D71-AA8F-CACB54AC53C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA2A3648-9C19-4CB7-8A17-754552823C26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA2A3648-9C19-4CB7-8A17-754552823C26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA2A3648-9C19-4CB7-8A17-754552823C26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA2A3648-9C19-4CB7-8A17-754552823C26}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DE16AA72-368B-4129-8EAE-6D85FEF36A4C}
 	EndGlobalSection
 EndGlobal
