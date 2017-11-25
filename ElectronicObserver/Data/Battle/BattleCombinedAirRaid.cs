@@ -34,8 +34,6 @@ namespace ElectronicObserver.Data.Battle
 
 		public override string BattleName => ConstantsRes.Title_CombinedFleetAirRaid;
 
-		public override BattleData.BattleTypeFlag BattleType => BattleTypeFlag.Day | BattleTypeFlag.Combined;
-
 
 		public override IEnumerable<PhaseBase> GetPhases()
 		{

@@ -341,6 +341,8 @@ namespace ElectronicObserver.Data
 					return ConstantsRes.EnemyCombinedFleet;
 				case 6:
 					return ConstantsRes.AirRaid;
+				case 7:
+					return ConstantsRes.NightDayBattle;		// 対連合
 				default:
 					return ConstantsRes.Unknown;
 			}

@@ -18,7 +18,7 @@ namespace ElectronicObserver.Data.Battle
 		{
 			base.LoadFromResponse(apiname, (object)data);
 
-			Support = new PhaseSupport(this, "支援攻撃", false);
+			Support = new PhaseSupport(this, "夜間支援攻撃", true);
 			NightBattle = new PhaseNightBattle(this, "夜戦", 0, false);
 			
 
@@ -31,8 +31,7 @@ namespace ElectronicObserver.Data.Battle
 
 		public override string BattleName => ConstantsRes.Title_NightOnly;
 
-		public override BattleTypeFlag BattleType => BattleTypeFlag.Night;
-
+	
 
 		public override IEnumerable<PhaseBase> GetPhases()
 		{

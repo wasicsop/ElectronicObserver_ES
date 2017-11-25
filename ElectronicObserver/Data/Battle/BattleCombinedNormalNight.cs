@@ -32,8 +32,6 @@ namespace ElectronicObserver.Data.Battle
 
 		public override string BattleName => "Combined Fleet Night Battle";
 
-		public override BattleData.BattleTypeFlag BattleType => BattleTypeFlag.Night | BattleTypeFlag.Combined;
-
 
 		public override IEnumerable<PhaseBase> GetPhases()
 		{

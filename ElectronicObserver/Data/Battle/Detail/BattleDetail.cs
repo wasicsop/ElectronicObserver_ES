@@ -102,23 +102,30 @@ namespace ElectronicObserver.Data.Battle.Detail
 			}
 
 
-			switch (DefenderIndex.Side)
+			if (bd.IsBaseAirRaid)
 			{
-				case BattleSides.FriendMain:
-					Defender = bd.Initial.FriendFleet.MembersInstance[DefenderIndex.Index].MasterShip;
-					break;
+				Defender = null;
+			}
+			else
+			{
+				switch (DefenderIndex.Side)
+				{
+					case BattleSides.FriendMain:
+						Defender = bd.Initial.FriendFleet.MembersInstance[DefenderIndex.Index].MasterShip;
+						break;
 
-				case BattleSides.FriendEscort:
-					Defender = bd.Initial.FriendFleetEscort.MembersInstance[DefenderIndex.Index].MasterShip;
-					break;
+					case BattleSides.FriendEscort:
+						Defender = bd.Initial.FriendFleetEscort.MembersInstance[DefenderIndex.Index].MasterShip;
+						break;
 
-				case BattleSides.EnemyMain:
-					Defender = bd.Initial.EnemyMembersInstance[DefenderIndex.Index];
-					break;
+					case BattleSides.EnemyMain:
+						Defender = bd.Initial.EnemyMembersInstance[DefenderIndex.Index];
+						break;
 
-				case BattleSides.EnemyEscort:
-					Defender = bd.Initial.EnemyMembersEscortInstance[DefenderIndex.Index];
-					break;
+					case BattleSides.EnemyEscort:
+						Defender = bd.Initial.EnemyMembersEscortInstance[DefenderIndex.Index];
+						break;
+				}
 			}
 
 
@@ -193,16 +200,21 @@ namespace ElectronicObserver.Data.Battle.Detail
 
 		protected virtual string GetAttackerName()
 		{
+			int index = AttackerIndex.Index + 1 + (AttackerIndex.IsEscort ? 6 : 0);
+
 			if (Attacker == null)
-				return "#" + (AttackerIndex.Index + 1);
-			return Attacker.NameWithClass + " #" + (AttackerIndex.Index + 1);
+				return "#" + index;
+
+			return Attacker.NameWithClass + " #" + index;
 		}
 
 		protected virtual string GetDefenderName()
 		{
+			int index = DefenderIndex.Index + 1 + (DefenderIndex.IsEscort ? 6 : 0);
+
 			if (Defender == null)
-				return "#" + (DefenderIndex.Index + 1);
-			return Defender.NameWithClass + " #" + (DefenderIndex.Index + 1);
+				return "#" + index;
+			return Defender.NameWithClass + " #" + index;
 		}
 
 		protected abstract int CaclulateAttackKind(int[] slots, int attackerShipID, int defenderShipID);

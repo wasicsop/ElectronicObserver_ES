@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Codeplex.Data;
 
 namespace ElectronicObserver.Utility
 {
@@ -30,26 +31,27 @@ namespace ElectronicObserver.Utility
 		/// <summary>
 		/// バージョン(日本語, ソフトウェア名を含みます)
 		/// </summary>
-		public static string VersionJapanese => SoftwareNameJapanese + "三〇型改二";
+		public static string VersionJapanese => SoftwareNameJapanese + "三〇型改四";
 
 
 		/// <summary>
 		/// バージョン(英語)
 		/// </summary>
-		public static string VersionEnglish => "3.0.2";
+		public static string VersionEnglish => "3.0.4";
 
 
 
 		/// <summary>
 		/// 更新日時
 		/// </summary>
-		public static DateTime UpdateTime => DateTimeHelper.CSVStringToTime("2017/11/22 00:00:00");
+		public static DateTime UpdateTime => DateTimeHelper.CSVStringToTime("2017/11/26 00:00:00");
 
 
 
 
 		private static System.Net.WebClient client;
-		private static readonly Uri uri = new Uri("http://raw.githubusercontent.com/silfumus/ryuukitsune.github.io/master/Translations/SoftwareVersion.txt");
+		private static readonly Uri uri =
+			new Uri("http://raw.githubusercontent.com/silfumus/ryuukitsune.github.io/master/Translations/en-US/update.json");
 
 		public static void CheckUpdate()
 		{
@@ -92,46 +94,42 @@ namespace ElectronicObserver.Utility
 
 			try
 			{
+				var json = DynamicJson.Parse(e.Result);
+				DateTime date = DateTimeHelper.CSVStringToTime(json.bld_date);
+				string version = json.ver;
+				string description = json.note.Replace("<br>", "\r\n");
 
-				using (var sr = new System.IO.StringReader(e.Result))
+				if (UpdateTime < date)
 				{
 
-					DateTime date = DateTimeHelper.CSVStringToTime(sr.ReadLine());
-					string version = sr.ReadLine();
-					string description = sr.ReadToEnd();
+					Utility.Logger.Add(3, Resources.NewVersionFound + version);
+					SoftwareUpdater.UpdateSoftware();
 
-					if (UpdateTime < date)
+					var result = System.Windows.Forms.MessageBox.Show(
+						string.Format(Resources.AskForUpdate,
+							version, description),
+						Resources.Update, System.Windows.Forms.MessageBoxButtons.YesNoCancel, System.Windows.Forms.MessageBoxIcon.Information,
+						System.Windows.Forms.MessageBoxDefaultButton.Button1);
+
+
+					if (result == System.Windows.Forms.DialogResult.Yes)
 					{
 
-						Utility.Logger.Add( 3, Resources.NewVersionFound + version );
-
-						var result = System.Windows.Forms.MessageBox.Show(
-							string.Format( Resources.AskForUpdate,
-							version, description ),
-							Resources.Update, System.Windows.Forms.MessageBoxButtons.YesNoCancel, System.Windows.Forms.MessageBoxIcon.Information,
-							System.Windows.Forms.MessageBoxDefaultButton.Button1 );
-
-
-						if (result == System.Windows.Forms.DialogResult.Yes)
-						{
-
-							System.Diagnostics.Process.Start("https://github.com/silfumus/ElectronicObserver/releases/latest");
-
-						}
-						else if (result == System.Windows.Forms.DialogResult.Cancel)
-						{
-
-							Utility.Configuration.Config.Life.CheckUpdateInformation = false;
-
-						}
+						System.Diagnostics.Process.Start("https://github.com/silfumus/ElectronicObserver/releases/latest");
 
 					}
-					else
+					else if (result == System.Windows.Forms.DialogResult.Cancel)
 					{
 
-						Utility.Logger.Add( 2, "You are currently using the latest version (" + date.ToString( "yyyy/MM/dd" ) + " release)." );
+						Utility.Configuration.Config.Life.CheckUpdateInformation = false;
 
 					}
+
+				}
+				else
+				{
+
+					Utility.Logger.Add(2, "You are currently using the latest version (" + date.ToString("yyyy/MM/dd") + " release).");
 
 				}
 

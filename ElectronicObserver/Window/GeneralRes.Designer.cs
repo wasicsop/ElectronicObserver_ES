@@ -1078,15 +1078,6 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Lv合計: {0} / 平均: {1:0.00}\r\n{2}艦隊\r\nドラム缶搭載: {3}個 ({4}艦)\r\n大発動艇搭載: {5}個 ({6}艦, +{7:p1})\r\n輸送量(TP): S {8} / A {9}\r\n総積載: 燃 {10} / 弾 {11}\r\n(1戦当たり 燃 {12} / 弾 {13}).
-        /// </summary>
-        internal static string FleetTooltip {
-            get {
-                return ResourceManager.GetString("FleetTooltip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 自軍.
         /// </summary>
         internal static string FriendlyAir {

@@ -302,9 +302,6 @@
   <data name="Fleet" xml:space="preserve">
     <value>艦隊</value>
   </data>
-  <data name="FleetTooltip" xml:space="preserve">
-    <value>Lv合計: {0} / 平均: {1:0.00}\r\n{2}艦隊\r\nドラム缶搭載: {3}個 ({4}艦)\r\n大発動艇搭載: {5}個 ({6}艦, +{7:p1})\r\n輸送量(TP): S {8} / A {9}\r\n総積載: 燃 {10} / 弾 {11}\r\n(1戦当たり 燃 {12} / 弾 {13})</value>
-  </data>
   <data name="FriendlyFleet" xml:space="preserve">
     <value>自軍艦隊</value>
   </data>

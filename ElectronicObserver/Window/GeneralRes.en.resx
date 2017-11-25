@@ -306,15 +306,6 @@ This action cannot be undone.</value>
   <data name="Fleet" xml:space="preserve">
     <value>Fleet</value>
   </data>
-  <data name="FleetTooltip" xml:space="preserve">
-    <value>Lv sum: {0} / avg: {1:0.00}
-{2} fleet
-Drum: {3} ({4} ships)
-Daihatsu: {5} ({6} ships, +{7:p1})
-TP: {9} TP @ A-rank ({8} TP @ S-rank)
-Consumption: {10} fuel / {11} ammo
-({12} fuel / {13} ammo per battle)</value>
-  </data>
   <data name="FriendlyFleet" xml:space="preserve">
     <value>Friendly</value>
   </data>

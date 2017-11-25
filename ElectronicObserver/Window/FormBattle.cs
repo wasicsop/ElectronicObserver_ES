@@ -235,16 +235,16 @@ namespace ElectronicObserver.Window
 				case "api_req_sortie/night_to_day":
 					{
 						// 暫定
-						var battle = bm.BattleDay as BattleDayFromNight;
+						var battle = bm.BattleNight as BattleDayFromNight;
 
 						SetFormation(bm);
-						SetNightBattleEvent(battle.NightBattle1);
+						SetNightBattleEvent(battle.NightBattle);
 
 						if (battle.NextToDay)
 						{
-							SetSearchingResult(bm.BattleDay);
-							SetBaseAirAttack(bm.BattleDay.BaseAirAttack);
-							SetAerialWarfare(bm.BattleDay.JetAirBattle, bm.BattleDay.AirBattle);
+							SetSearchingResult(battle);
+							SetBaseAirAttack(battle.BaseAirAttack);
+							SetAerialWarfare(battle.JetAirBattle, battle.AirBattle);
 						}
 
 						SetHPBar(bm.BattleDay);
@@ -317,19 +317,19 @@ namespace ElectronicObserver.Window
 				case "api_req_combined_battle/ec_night_to_day":
 					{
 						// 暫定
-						var battle = bm.BattleDay as BattleEnemyCombinedDayFromNight;
+						var battle = bm.BattleNight as BattleDayFromNight;
 
 						SetFormation(bm);
-						SetNightBattleEvent(battle.NightBattle1);
+						SetNightBattleEvent(battle.NightBattle);
 
 						if (battle.NextToDay)
 						{
-							SetSearchingResult(bm.BattleDay);
-							SetBaseAirAttack(bm.BattleDay.BaseAirAttack);
-							SetAerialWarfare(bm.BattleDay.JetAirBattle, bm.BattleDay.AirBattle);
+							SetSearchingResult(battle);
+							SetBaseAirAttack(battle.BaseAirAttack);
+							SetAerialWarfare(battle.JetAirBattle, battle.AirBattle);
 						}
 
-						SetHPBar(bm.BattleDay);
+						SetHPBar(battle);
 						SetDamageRate(bm);
 
 						BaseLayoutPanel.Visible = !hideDuringBattle;
@@ -1063,10 +1063,11 @@ namespace ElectronicObserver.Window
 		{
 
 			KCDatabase db = KCDatabase.Instance;
-			bool isPractice = (bd.BattleType & BattleData.BattleTypeFlag.Practice) != 0;
-			bool isCombined = (bd.BattleType & BattleData.BattleTypeFlag.Combined) != 0;
-			bool isEnemyCombined = (bd.BattleType & BattleData.BattleTypeFlag.EnemyCombined) != 0;
-			bool isBaseAirRaid = (bd.BattleType & BattleData.BattleTypeFlag.BaseAirRaid) != 0;
+			bool isPractice = bd.IsPractice;
+			bool isFriendCombined = bd.IsFriendCombined;
+			bool isEnemyCombined = bd.IsEnemyCombined;
+			bool isBaseAirRaid = bd.IsBaseAirRaid;
+			bool hasFriend7thShip = bd.Initial.FriendMaxHPs.Count(hp => hp > 0) == 7;
 
 			var initial = bd.Initial;
 			var resultHPs = bd.ResultHPs;
@@ -1180,7 +1181,7 @@ namespace ElectronicObserver.Window
 
 
 			// friend escort
-			if (isCombined)
+			if (isFriendCombined)
 			{
 				FleetFriendEscort.Visible = true;
 
@@ -1279,7 +1280,7 @@ namespace ElectronicObserver.Window
 
 
 
-			if (isCombined && isEnemyCombined)
+			if ((isFriendCombined || hasFriend7thShip) && isEnemyCombined)
 			{
 				foreach (var bar in HPBars)
 				{
@@ -1302,10 +1303,20 @@ namespace ElectronicObserver.Window
 
 
 			{   // support
-				if (bd.Support?.IsAvailable ?? false)
+				PhaseSupport support = null;
+
+				if (bd is BattleDayFromNight bddn)
+				{
+					if (bddn.NightSupport?.IsAvailable ?? false)
+						support = bddn.NightSupport;
+				}
+				if (support == null)
+					support = bd.Support;
+
+				if (support?.IsAvailable ?? false)
 				{
 
-					switch (bd.Support.SupportFlag)
+					switch (support.SupportFlag)
 					{
 						case 1:
 							FleetFriend.ImageIndex = (int)ResourceManager.EquipmentContent.CarrierBasedTorpedo;
@@ -1325,9 +1336,9 @@ namespace ElectronicObserver.Window
 					}
 
 					FleetFriend.ImageAlign = ContentAlignment.MiddleLeft;
-					ToolTipInfo.SetToolTip(FleetFriend, "Support Expedition\r\n" + bd.Support.GetBattleDetail());
+					ToolTipInfo.SetToolTip(FleetFriend, "Support Expedition\r\n" + support.GetBattleDetail());
 
-					if (isCombined && isEnemyCombined)
+					if ((isFriendCombined || hasFriend7thShip) && isEnemyCombined)
 						FleetFriend.Text = "Friendly";
 					else
 						FleetFriend.Text = "Friendly";
@@ -1357,7 +1368,7 @@ namespace ElectronicObserver.Window
 					HPBars[BattleIndex.Get(BattleSides.FriendMain, i)].RepaintHPtext();
 				}
 
-				if (isCombined)
+				if (isFriendCombined)
 				{
 					foreach (int i in bd.MVPShipCombinedIndexes)
 					{
