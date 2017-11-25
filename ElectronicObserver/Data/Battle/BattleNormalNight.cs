@@ -30,7 +30,6 @@ namespace ElectronicObserver.Data.Battle
 
 		public override string BattleName => ConstantsRes.Title_NormalNight;
 
-		public override BattleTypeFlag BattleType => BattleTypeFlag.Night;
 
 
 		public override IEnumerable<PhaseBase> GetPhases()

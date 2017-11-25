@@ -414,7 +414,7 @@ namespace ElectronicObserver.Window
 				}
 			}
 
-	
+
 			var sb = new StringBuilder();
 
 			sb.Append(ship.ShipTypeName).Append(" ").AppendLine(ship.NameWithClass);
@@ -662,6 +662,8 @@ namespace ElectronicObserver.Window
 						return Utility.Configuration.Config.UI.Compass_ColorTextEventKind6;
 					case 5:     // 敵連合
 						return Utility.Configuration.Config.UI.Compass_ColorTextEventKind5;
+					case 7:		// 夜昼戦(対連合艦隊)
+						return Utility.Configuration.Config.UI.Compass_ColorTextEventKind3;
 				}
 			};
 
@@ -863,7 +865,13 @@ namespace ElectronicObserver.Window
 									eventkind = "It's a calm sea.";
 									break;
 								case 7:
-									eventkind = "Advancing towards Dover strait.";
+									eventkind = "Striking Force, advancing.";
+									break;
+								case 8:
+									eventkind = "Anti-Submarine Alert, advancing.";
+									break;
+								case 9:
+									eventkind = "Kurita Fleet, pushing through.";
 									break;
 							}
 							if (compass.RouteChoices != null)

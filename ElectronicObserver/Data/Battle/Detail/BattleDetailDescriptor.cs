@@ -72,7 +72,7 @@ namespace ElectronicObserver.Data.Battle.Detail
 		{
 
 			var sbmaster = new StringBuilder();
-			bool isBaseAirRaid = (battle.BattleType & BattleData.BattleTypeFlag.BaseAirRaid) != 0;
+			bool isBaseAirRaid = battle.IsBaseAirRaid;
 
 
 			foreach (var phase in battle.GetPhases())
@@ -85,7 +85,7 @@ namespace ElectronicObserver.Data.Battle.Detail
 					var p = phase as PhaseBaseAirRaid;
 
 					sb.AppendLine(ConstantsRes.BattleDetail_AirAttackUnits);
-					sb.Append("　").AppendLine(string.Join(", ", p.Squadrons.Where(sq => sq.EquipmentInstance != null).Select(sq => sq.ToString())));
+					sb.Append("　").AppendLine(string.Join(", ", p.Squadrons.Where(sq => sq.EquipmentInstance != null).Select(sq => sq.ToString()).DefaultIfEmpty("(empty)")));
 
 					GetBattleDetailPhaseAirBattle(sb, p);
 
@@ -441,11 +441,12 @@ namespace ElectronicObserver.Data.Battle.Detail
 				if (ship == null)
 					continue;
 
-				sb.AppendFormat("#{0}: {1} {2} HP: {3} / {4} - FP:{5}, Torp:{6}, AA:{7}, Armor:{8}\r\n",
+				sb.AppendFormat("#{0}: {1} {2} HP: {3} / {4} - FP:{5}, Torp:{6}, AA:{7}, Armor:{8}{9}\r\n",
 					i + 1,
 					ship.MasterShip.ShipTypeName, ship.NameWithLevel,
 					initialHPs[i], maxHPs[i],
-					ship.FirepowerBase, ship.TorpedoBase, ship.AABase, ship.ArmorBase);
+					ship.FirepowerBase, ship.TorpedoBase, ship.AABase, ship.ArmorBase,
+					fleet.EscapedShipList.Contains(ship.MasterID) ? " (Escaped)" : "");
 
 				sb.Append("　");
 				for (int k = 0; k < ship.SlotInstance.Count; k++)

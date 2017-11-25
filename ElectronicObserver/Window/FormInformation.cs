@@ -474,18 +474,27 @@ namespace ElectronicObserver.Window
 			if (KCDatabase.Instance.Ships.Values.First().SallyArea == -1)   // そもそも札情報がなければやる必要はない
 				return;
 
-			int[] targetFleet = KCDatabase.Instance.Fleet.CombinedFlag != 0 ? new int[] { 1, 2 } : new int[] { 1 };
+			IEnumerable<IEnumerable<ShipData>> group;
 
-			var targetShips = targetFleet
-				.Select(f => KCDatabase.Instance.Fleet[f])
-				.SelectMany(f => f.MembersInstance)
-				.Where(s => s != null);
+			if (KCDatabase.Instance.Fleet.CombinedFlag != 0)
+				group = new[] { KCDatabase.Instance.Fleet[1].MembersInstance.Concat(KCDatabase.Instance.Fleet[2].MembersInstance).Where(s => s != null) };
+			else
+				group = KCDatabase.Instance.Fleet.Fleets.Values
+					.Where(f => f?.ExpeditionState == 0)
+					.Select(f => f.MembersInstance.Where(s => s != null));
 
-			var freeships = targetShips.Where(s => s.SallyArea == 0);
-			bool isAreaMixed = targetShips.Select(s => s.SallyArea).Where(area => area > 0).Distinct().Count() > 1;     // 札が複数ある場合、おそらく自由出撃海域なので警告しなくてもいいはず
 
-			if ( freeships.Any() && !isAreaMixed ) {
-				TextInformation.Text = "[Fleet tag warning]\r\nUntagged ships:\r\n" + string.Join( "\r\n", freeships.Select( s => s.NameWithLevel ) );
+			group = group.Where(ss =>
+				ss.All(s => s.RepairingDockID == -1) &&
+				ss.Any(s => s.SallyArea == 0) &&
+				ss.Select(s => s.SallyArea).Distinct().Count() <= 2);   // 札が(なしも含めて)3種類以上なら、出撃できない or 自由出撃海域なので除外
+
+
+			if (group.Any())
+			{
+				var freeShips = group.SelectMany(f => f).Where(s => s.SallyArea == 0);
+
+				TextInformation.Text = "[Fleet tag warning]\r\nUntagged ships:\r\n" + string.Join("\r\n", freeShips.Select(s => s.NameWithLevel));
 
 				if ( Utility.Configuration.Config.Control.ShowSallyAreaAlertDialog )
 					MessageBox.Show( "A ship without fleet tag is in the fleet.\r\nPlease recheck before sortieing.\r\n\r\n(This check can be disabled in the settings)", "Fleet Tag Warning",

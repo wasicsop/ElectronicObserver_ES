@@ -32,7 +32,7 @@ namespace ElectronicObserver.Data.Battle
 
 		public override string BattleName => ConstantsRes.Title_BaseAirRaid;
 
-		public override BattleData.BattleTypeFlag BattleType => BattleTypeFlag.Day | BattleTypeFlag.BaseAirRaid;
+		public override bool IsBaseAirRaid => true;
 
 		public override IEnumerable<PhaseBase> GetPhases()
 		{
