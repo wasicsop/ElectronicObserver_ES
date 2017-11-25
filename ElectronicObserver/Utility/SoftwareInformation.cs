@@ -103,6 +103,7 @@ namespace ElectronicObserver.Utility
 				{
 
 					Utility.Logger.Add(3, Resources.NewVersionFound + version);
+					SoftwareUpdater.UpdateSoftware();
 
 					var result = System.Windows.Forms.MessageBox.Show(
 						string.Format(Resources.AskForUpdate,
@@ -122,11 +123,6 @@ namespace ElectronicObserver.Utility
 
 						Utility.Configuration.Config.Life.CheckUpdateInformation = false;
 
-					}
-
-					if (Utility.Configuration.Config.Life.CheckUpdateInformation)
-					{
-						SoftwareUpdater.UpdateSoftware();
 					}
 
 				}

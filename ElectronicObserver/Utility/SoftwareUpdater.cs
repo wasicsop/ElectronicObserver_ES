@@ -49,6 +49,10 @@ namespace ElectronicObserver.Utility
 				File.Delete(UpdateFile);
 				DownloadUpdate(downloadUrl);
 			}
+			else
+			{
+				Logger.Add(2, "Close Electronic Observer to complete the update.");
+			}
 
 			
 
@@ -85,7 +89,7 @@ namespace ElectronicObserver.Utility
 			{
 				using (var client = new WebClient())
 				{
-					Logger.Add(2, "New version of Electronic Observer is available. Downloading...");
+					Logger.Add(2, "Downloading new version of Electronic Observer...");
 					client.DownloadFileCompleted += DownloadComplete;
 					client.DownloadFileAsync(url, UpdateFile);
 				}

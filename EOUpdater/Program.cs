@@ -75,12 +75,12 @@ namespace EOUpdater
 		private static void Extract(string zipPath, string extractPath)
 		{
 			var localPath = new Uri(extractPath).LocalPath;
-			var currentPath = Directory.GetParent(localPath).FullName;
 			using (var archive = ZipFile.Open(zipPath, ZipArchiveMode.Read))
 			{
 				foreach (var file in archive.Entries)
 				{
-					var completeFileName = Path.Combine(currentPath, file.FullName);
+					var fullname = file.FullName.Replace(@"ElectronicObserver/", "");
+					var completeFileName = Path.Combine(localPath, fullname);
 					var directory = Path.GetDirectoryName(completeFileName);
 
 					if (!Directory.Exists(directory))
