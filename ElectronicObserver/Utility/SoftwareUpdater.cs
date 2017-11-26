@@ -6,6 +6,8 @@ using System.Net;
 using System.Security.Cryptography;
 using Codeplex.Data;
 using System.Windows.Forms;
+using System.Xml.Linq;
+using AppSettings = ElectronicObserver.Properties.Settings;
 
 namespace ElectronicObserver.Utility
 {
@@ -13,8 +15,9 @@ namespace ElectronicObserver.Utility
 	{
 		public static bool UpdateRestart = false;
 		
-		private static readonly string AppDataFolder =
+		internal static readonly string AppDataFolder =
 			Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + @"\\ElectronicObserver";
+		internal static readonly string TranslationFolder = AppDataFolder + "\\Translations";
 		private static readonly string UpdateFile = AppDataFolder + @"\\latest.zip";
 		private static string _downloadHash = string.Empty;
 		private static readonly Uri UpdateUrl =
@@ -101,6 +104,26 @@ namespace ElectronicObserver.Utility
 			catch (Exception e)
 			{
 				Logger.Add(3, "Failed to download update file." + e);
+			}
+
+		}
+
+		internal static void DownloadTranslation(TranslationFile filename, string latestVersion)
+		{
+			var url = AppSettings.Default.EOTranslations.AbsoluteUri + "en-US";
+			try
+			{
+				var r2 = WebRequest.Create(url + $"/{filename}.xml");
+				using (var resp = r2.GetResponse())
+				{
+					var doc = XDocument.Load(resp.GetResponseStream());
+					doc.Save(TranslationFolder + $"\\{filename}.xml");
+				}
+				Logger.Add(2, $"Updated {filename} translations to v{latestVersion}.");
+			}
+			catch (Exception e)
+			{
+				Logger.Add(3, $"Failed to download {filename}.xml. " + e.Message);
 			}
 
 		}
