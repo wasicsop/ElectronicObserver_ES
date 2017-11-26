@@ -1,7 +1,7 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
+using System.IO.Compression;
 using System.Net;
 using System.Security.Cryptography;
 using Codeplex.Data;
@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace ElectronicObserver.Utility
 {
-	class SoftwareUpdater
+	internal class SoftwareUpdater
 	{
 		public static bool UpdateRestart = false;
 		
@@ -53,6 +53,10 @@ namespace ElectronicObserver.Utility
 			{
 				Logger.Add(2, "Close Electronic Observer to complete the update.");
 			}
+
+			var destPath =
+				Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().CodeBase);
+			UpdateUpdater(UpdateFile, destPath);
 
 			
 
@@ -99,6 +103,23 @@ namespace ElectronicObserver.Utility
 				Logger.Add(3, "Failed to download update file." + e);
 			}
 
+		}
+
+		private static void UpdateUpdater(string zipPath, string extractPath)
+		{
+			var localPath = new Uri(extractPath).LocalPath;
+			using (var archive = ZipFile.Open(zipPath, ZipArchiveMode.Read))
+			{
+				foreach (var file in archive.Entries)
+				{
+					var fullname = file.FullName.Replace(@"ElectronicObserver/", "");
+					var completeFileName = Path.Combine(localPath, fullname);
+
+					if (file.Name != "EOUpdater.exe") continue;
+
+					file.ExtractToFile(completeFileName, true);
+				}
+			}
 		}
 
 		private static void DownloadComplete(object sender, EventArgs e)
