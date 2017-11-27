@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Net;
 using System.Xml.Linq;
-using AppSettings = ElectronicObserver.Properties.Settings;
 
 namespace ElectronicObserver.Utility
 {
@@ -17,12 +15,11 @@ namespace ElectronicObserver.Utility
         private XDocument _operationsXml;
         private XDocument _questsXml;
         private XDocument _expeditionsXml;
-	    private readonly string _url = AppSettings.Default.EOTranslations.AbsoluteUri + "en-US";
 	    private readonly string _folder = SoftwareUpdater.TranslationFolder;
 
 		internal DynamicTranslator()
 		{
-			CheckForUpdates();
+			CheckUpdate();
 
 			try
             {
@@ -40,42 +37,36 @@ namespace ElectronicObserver.Utility
             }
         }
 
-        private void CheckForUpdates()
-        {
-	        if (!Directory.Exists(_folder))
-		        Directory.CreateDirectory(_folder);
-			XDocument versionManifest = null;
+	    private void CheckUpdate()
+	    {
+			if (!Directory.Exists(_folder))
+				Directory.CreateDirectory(_folder);
 
-			try
-			{
-		        var rq = WebRequest.Create(_url + "/VersionManifest.xml");
-				using (var resp = rq.GetResponse())
-			        versionManifest = XDocument.Load(resp.GetResponseStream());
-			}
-	        catch (Exception e)
-	        {
-		        Logger.Add(3, "Failed to obtain translation update data. " + e.Message);
-	        }
+			SoftwareUpdater.CheckVersion();
 
-	        foreach (TranslationFile filename in Enum.GetValues(typeof(TranslationFile)))
-	        {
-		        var current = "0.0.0";
-				var path = _folder + "\\{filename}.xml";
-				if (File.Exists(path))
-		        {
-					var translationfile = XDocument.Load(path);
-			        current = translationfile?.Root.Attribute("Version").Value ?? "0.0.0";
-				}
+		    foreach (TranslationFile filename in Enum.GetValues(typeof(TranslationFile)))
+		    {
+			    var current = "0.0.0";
+			    var path = _folder + $"\\{filename}.xml";
+				Logger.Add(2, path);
+			    if (File.Exists(path))
+			    {
+				    var translationfile = XDocument.Load(path);
+				    current = translationfile.Root.Attribute("Version").Value;
+			    }
+			    var latest = current;
 
-		        var latest = current;
-				if (versionManifest != null)
-		        {
-			        latest = versionManifest.Root.Element($"{filename}").Attribute("version").Value;
-		        }
+			    if (filename == TranslationFile.Equipment) latest = SoftwareUpdater.EqVer;
+			    if (filename == TranslationFile.EquipmentTypes) latest = SoftwareUpdater.EqTypeVer;
+			    if (filename == TranslationFile.Expeditions) latest = SoftwareUpdater.ExpVer;
+			    if (filename == TranslationFile.Operations) latest = SoftwareUpdater.OpVer;
+			    if (filename == TranslationFile.Quests) latest = SoftwareUpdater.QuestVer;
+			    if (filename == TranslationFile.Ships) latest = SoftwareUpdater.ShipVer;
+			    if (filename == TranslationFile.ShipTypes) latest = SoftwareUpdater.ShipTypeVer;
 
-		        if (current != latest)
-			        SoftwareUpdater.DownloadTranslation(filename, latest);
-			}
+				if (current != latest)
+				    SoftwareUpdater.DownloadTranslation(filename, latest);
+		    }
 		}
 
         private IEnumerable<XElement> GetTranslationList(TranslationType type)
