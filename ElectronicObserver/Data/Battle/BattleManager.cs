@@ -167,7 +167,7 @@ namespace ElectronicObserver.Data.Battle
 						BattleMode = BattleModes.BaseAirRaid;
 						BattleDay = new BattleBaseAirRaid();
 						BattleDay.LoadFromResponse(apiname, Compass.AirRaidData);
-						WriteBattleLog();
+						BattleFinished();
 					}
 					break;
 
@@ -334,17 +334,31 @@ namespace ElectronicObserver.Data.Battle
 
 
 			// ロギング
-			if ( IsPractice ) {
-				Utility.Logger.Add( 2,
-					string.Format( LoggerRes.PracticeMessage,
-						EnemyAdmiralName, EnemyAdmiralRank, Result.EnemyFleetName, Result.Rank, Result.AdmiralExp, Result.BaseExp ) );
-			} else {
-				Utility.Logger.Add( 2,
-					string.Format( LoggerRes.BattleMessage,
-						Compass.MapAreaID, Compass.MapInfoID, Compass.DestinationID, Result.EnemyFleetName, Result.Rank, Result.AdmiralExp, Result.BaseExp ) );
+			if (IsPractice)
+			{
+				Utility.Logger.Add(2,
+					string.Format("Practiced with {1} {0}'s {2} fleet (Rank: {3}, Admiral exp+{4}, Ship exp+{5}).",
+						EnemyAdmiralName, EnemyAdmiralRank, Result.EnemyFleetName, Result.Rank, Result.AdmiralExp, Result.BaseExp));
+			}
+			else if (IsBaseAirRaid)
+			{
+				var initialHPs = BattleDay.Initial.FriendInitialHPs.TakeWhile(hp => hp >= 0);
+				var damage = initialHPs.Zip(BattleDay.ResultHPs.Take(initialHPs.Count()), (initial, result) => initial - result).Sum();
+
+				Utility.Logger.Add(2,
+					string.Format("Encountered air raid at {0}-{1}-{2} (Damage taken: {3}, {4}).",
+						Compass.MapAreaID, Compass.MapInfoID, Compass.Destination, damage, Constants.GetAirRaidDamage(Compass.AirRaidDamageKind)));
+			}
+			else
+			{
+				Utility.Logger.Add(2,
+					string.Format("Battled with 「{3}」 in {0}-{1}-{2} (Rank: {4}, Admiral exp+{5}, Ship exp+{6}).",
+						Compass.MapAreaID, Compass.MapInfoID, Compass.Destination, Result.EnemyFleetName, Result.Rank, Result.AdmiralExp, Result.BaseExp));
 			}
 
+
 			// Level up
+			if (!IsBaseAirRaid)
 			{
 				var exps = Result.ExpList;
 				var lvup = Result.LevelUpList;
@@ -379,7 +393,7 @@ namespace ElectronicObserver.Data.Battle
 
 
 			//ドロップ艦記録
-			if (!IsPractice)
+			if (!IsPractice && !IsBaseAirRaid)
 			{
 
 				//checkme: とてもアレな感じ
@@ -441,31 +455,29 @@ namespace ElectronicObserver.Data.Battle
 				RecordManager.Instance.ShipDrop.Add(shipID, itemID, eqID, Compass.MapAreaID, Compass.MapInfoID, Compass.Destination, Compass.MapInfo.EventDifficulty, Compass.EventID == 5, enemyFleetData.FleetID, Result.Rank, KCDatabase.Instance.Admiral.Level);
 			}
 
+
+
 			WriteBattleLog();
 
 
 
-			//DEBUG
-			/*/
-			if ( Utility.Configuration.Config.Log.LogLevel <= 1 && Utility.Configuration.Config.Connection.SaveReceivedData ) {
-				IEnumerable<int> damages;
-				switch ( BattleMode & BattleModes.BattlePhaseMask ) {
-					case BattleModes.Normal:
-					case BattleModes.AirBattle:
-					case BattleModes.Practice:
-					default:
-						damages = ( (BattleData)BattleNight ?? BattleDay ).AttackDamages;
-						break;
-					case BattleModes.NightOnly:
-					case BattleModes.NightDay:
-						damages = ( (BattleData)BattleDay ?? BattleNight ).AttackDamages;
-						break;
+			/*//DEBUG
+			if (!IsBaseAirRaid && Utility.Configuration.Config.Log.LogLevel <= 1)
+			{
+				var battle = SecondBattle ?? FirstBattle;
+
+				for (int i = 0; i < battle.Initial.EnemyMaxHPs.Length; i++)
+				{
+					if (battle.Initial.EnemyMaxHPs[i] > 0 && battle.ResultHPs[BattleIndex.Get(BattleSides.EnemyMain, i)] == 0)
+						Utility.Logger.Add(1, "justkill #" + (i + 1));
 				}
 
-				damages = damages.Take( 6 ).Where( i => i > 0 );
+			int rank = PredictWinRank(out var friend, out var enemy);
 
-				if ( damages.Count( i => i == damages.Max() ) > 1 ) {
-					Utility.Logger.Add( 1, LoggerRes.MultiplePossibleMvps );
+				// SS -> S
+				if (Constants.GetWinRank(rank).Substring(0, 1) != Result.Rank)
+				{
+					Utility.Logger.Add(1, $"勝利ランク予測が誤っています。予想 {Constants.GetWinRank(rank)} -> 実際 {Result.Rank}");
 				}
 			}
 			//*/

@@ -406,15 +406,15 @@ namespace ElectronicObserver.Data
 			switch (value)
 			{
 				case 1:
-					return ConstantsRes.AirRaidOccur + " - " + ConstantsRes.ResourceDamage;
+					return "Resources Damaged";
 				case 2:
-					return ConstantsRes.AirRaidOccur + " - " + ConstantsRes.ResAndBaseDamage;
+					return "Resources and Air Squadron Damaged";
 				case 3:
-					return ConstantsRes.AirRaidOccur + " - " + ConstantsRes.BaseDamage;
+					return "Air Squadron Damaged";
 				case 4:
-					return ConstantsRes.AirRaidOccur + " - " + ConstantsRes.NoDamage;
+					return "No Damage";
 				default:
-					return ConstantsRes.NoAirRaid;
+					return "No Air Raid";
 			}
 		}
 
