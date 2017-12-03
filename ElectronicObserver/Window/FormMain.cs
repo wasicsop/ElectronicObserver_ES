@@ -22,6 +22,7 @@ using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ElectronicObserver.Utility.Mathematics;
 using WeifenLuo.WinFormsUI.Docking;
 
 namespace ElectronicObserver.Window
@@ -372,21 +373,63 @@ namespace ElectronicObserver.Window
 			SystemEvents.OnUpdateTimerTick();
 
 			// 東京標準時
-			DateTime now = DateTime.UtcNow + new TimeSpan(9, 0, 0);
+			var now = DateTime.UtcNow + new TimeSpan(9, 0, 0);
 
 			switch ( ClockFormat ) {
 				case 0:	//時計表示
-					DateTime pvpReset = now.Date.AddHours( 3 );
+					var pvpReset = now.Date.AddHours( 3 );
 					while (pvpReset < now)
 						pvpReset = pvpReset.AddHours( 12 );
-					TimeSpan pvpTimer = pvpReset - now;
+					var pvpTimer = pvpReset - now;
 
-					DateTime questReset = now.Date.AddHours( 5 );
+					var questReset = now.Date.AddHours( 5 );
 					if (questReset < now)
 						questReset = questReset.AddHours( 24 );
-					TimeSpan questTimer = questReset - now;
+					var questTimer = questReset - now;
 
-					String resetMsg = string.Format( "Next PVP Reset: {0:D2}:{1:D2}:{2:D2}\r\nNext Quest Reset: {3:D2}:{4:D2}:{5:D2}", (int)pvpTimer.TotalHours, pvpTimer.Minutes, pvpTimer.Seconds, (int)questTimer.TotalHours, questTimer.Minutes, questTimer.Seconds );
+					var maintDate = DateTimeHelper.CSVStringToTime(SoftwareUpdater.MaintDate);
+					if (maintDate < now)
+						maintDate = now;
+					var maintTimer = maintDate - now;
+
+					string maintState;
+					switch (SoftwareUpdater.MaintState)
+					{
+						default:
+							if (maintDate > now)
+							{
+								maintState = string.Format("Next maintenance: {0:D2}:{1:D2}:{2:D2}",
+									(int)maintTimer.TotalHours, maintTimer.Minutes, maintTimer.Seconds);
+							}
+							else
+								maintState = "Maintenance has started.";
+							break;
+						case 1:
+							if (maintDate > now)
+							{
+								maintState = string.Format("Event starts in: {0:D2}:{1:D2}:{2:D2}",
+									(int)maintTimer.TotalHours, maintTimer.Minutes, maintTimer.Seconds);
+							}
+							else
+								maintState = "Event has started!";
+							break;
+						case 2:
+							if (maintDate > now)
+							{
+								maintState = string.Format("Event ends in: {0:D2}:{1:D2}:{2:D2}",
+									(int) maintTimer.TotalHours, maintTimer.Minutes, maintTimer.Seconds);
+							}
+							else
+								maintState = "Event period has ended.";
+							break;
+					}
+
+					var resetMsg = string.Format( "Next PVP Reset: {0:D2}:{1:D2}:{2:D2}\r\n" +
+					                                 "Next Quest Reset: {3:D2}:{4:D2}:{5:D2}\r\n" +
+													 "{6}",
+						(int)pvpTimer.TotalHours, pvpTimer.Minutes, pvpTimer.Seconds,
+						(int)questTimer.TotalHours, questTimer.Minutes, questTimer.Seconds,
+						maintState);
 
 					StripStatus_Clock.Text = now.ToString( "HH\\:mm\\:ss" );
 					StripStatus_Clock.ToolTipText = now.ToString( "yyyy\\/MM\\/dd (ddd)\r\n" ) + resetMsg;
@@ -395,11 +438,11 @@ namespace ElectronicObserver.Window
 
 				case 1: //演習更新まで
 					{
-						DateTime border = now.Date.AddHours(3);
+						var border = now.Date.AddHours(3);
 						while (border < now)
 							border = border.AddHours(12);
 
-						TimeSpan ts = border - now;
+						var ts = border - now;
 						StripStatus_Clock.Text = string.Format("{0:D2}:{1:D2}:{2:D2}", (int)ts.TotalHours, ts.Minutes, ts.Seconds);
 						StripStatus_Clock.ToolTipText = now.ToString("yyyy\\/MM\\/dd (ddd) HH\\:mm\\:ss");
 
@@ -408,11 +451,11 @@ namespace ElectronicObserver.Window
 
 				case 2: //任務更新まで
 					{
-						DateTime border = now.Date.AddHours(5);
+						var border = now.Date.AddHours(5);
 						if (border < now)
 							border = border.AddHours(24);
 
-						TimeSpan ts = border - now;
+						var ts = border - now;
 						StripStatus_Clock.Text = string.Format("{0:D2}:{1:D2}:{2:D2}", (int)ts.TotalHours, ts.Minutes, ts.Seconds);
 						StripStatus_Clock.ToolTipText = now.ToString("yyyy\\/MM\\/dd (ddd) HH\\:mm\\:ss");
 

@@ -48,7 +48,6 @@ namespace ElectronicObserver.Utility
 		    {
 			    var current = "0.0.0";
 			    var path = _folder + $"\\{filename}.xml";
-				Logger.Add(2, path);
 			    if (File.Exists(path))
 			    {
 				    var translationfile = XDocument.Load(path);

@@ -30,6 +30,8 @@ namespace ElectronicObserver.Utility
 		internal static string QuestVer { get; set; } = "0.0.0";
 		internal static string ShipVer { get; set; } = "0.0.0";
 		internal static string ShipTypeVer { get; set; } = "0.0.0";
+		internal static string MaintDate { get; set; } = string.Empty;
+		internal static int MaintState { get; set; }
 
 		internal static string ZipUrl = string.Empty;
 		internal static string DownloadHash = string.Empty;
@@ -88,6 +90,8 @@ namespace ElectronicObserver.Utility
 
 					ZipUrl = json.url;
 					DownloadHash = json.hash;
+					MaintDate = json.kancolle_mt;
+					MaintState = (int)json.event_state;
 
 					EqVer = json.tl_ver.equipment;
 					EqTypeVer = json.tl_ver.equipment_type;
