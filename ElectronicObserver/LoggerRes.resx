@@ -297,12 +297,6 @@
   <data name="RecordAutosaveSuccess" xml:space="preserve">
     <value>レコードのオートセーブを行いました。</value>
   </data>
-  <data name="BattleMessage" xml:space="preserve">
-    <value>{0}-{1}-{2} で「{3}」と交戦しました。( ランク: {4}, 提督Exp+{5}, 艦娘Exp+{6} )</value>
-  </data>
-  <data name="PracticeMessage" xml:space="preserve">
-    <value>演習 で「{0}」{1}の「{2}」と交戦しました。( ランク: {3}, 提督Exp+{4}, 艦娘Exp+{5} )</value>
-  </data>
   <data name="ImprovedEqSuccess" xml:space="preserve">
     <value>{0} への改修に成功しました。</value>
   </data>

@@ -19,7 +19,7 @@ namespace ElectronicObserver.Data {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class ConstantsRes {
@@ -151,15 +151,6 @@ namespace ElectronicObserver.Data {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 空襲発生.
-        /// </summary>
-        internal static string AirRaidOccur {
-            get {
-                return ResourceManager.GetString("AirRaidOccur", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 航空優勢.
         /// </summary>
         internal static string AirSuperiority {
@@ -201,15 +192,6 @@ namespace ElectronicObserver.Data {
         internal static string ASWFormation {
             get {
                 return ResourceManager.GetString("ASWFormation", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 航空隊に損害.
-        /// </summary>
-        internal static string BaseDamage {
-            get {
-                return ResourceManager.GetString("BaseDamage", resourceCulture);
             }
         }
         
@@ -1348,29 +1330,11 @@ namespace ElectronicObserver.Data {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 空襲発生せず.
-        /// </summary>
-        internal static string NoAirRaid {
-            get {
-                return ResourceManager.GetString("NoAirRaid", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 非戦闘.
         /// </summary>
         internal static string NoBattle {
             get {
                 return ResourceManager.GetString("NoBattle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 被害なし.
-        /// </summary>
-        internal static string NoDamage {
-            get {
-                return ResourceManager.GetString("NoDamage", resourceCulture);
             }
         }
         
@@ -1533,24 +1497,6 @@ namespace ElectronicObserver.Data {
         internal static string Red {
             get {
                 return ResourceManager.GetString("Red", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 資源・航空隊に損害.
-        /// </summary>
-        internal static string ResAndBaseDamage {
-            get {
-                return ResourceManager.GetString("ResAndBaseDamage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 資源に損害.
-        /// </summary>
-        internal static string ResourceDamage {
-            get {
-                return ResourceManager.GetString("ResourceDamage", resourceCulture);
             }
         }
         

@@ -288,12 +288,6 @@
   <data name="RecordAutosaveSuccess" xml:space="preserve">
     <value>Successfully autosaved records.</value>
   </data>
-  <data name="BattleMessage" xml:space="preserve">
-    <value>Battled with 「{3}」 in {0}-{1}-{2} (Rank: {4}, Admiral exp+{5}, Ship exp+{6}).</value>
-  </data>
-  <data name="PracticeMessage" xml:space="preserve">
-    <value>Practiced with {1} {0}'s {2} fleet (Rank: {3}, Admiral exp+{4}, Ship exp+{5}).</value>
-  </data>
   <data name="Copied" xml:space="preserve">
     <value>{0} has been copied.</value>
   </data>
