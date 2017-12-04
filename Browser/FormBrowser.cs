@@ -402,7 +402,7 @@ namespace Browser
 			catch (Exception ex)
 			{
 
-				SendErrorReport(ex.ToString(), "DMMによるページ更新ダイアログの非表示に失敗しました。");
+				SendErrorReport(ex.ToString(), "Failed to hide DMM refresh dialog.");
 			}
 
 		}
@@ -673,13 +673,13 @@ namespace Browser
 						image.Save(path, imgFormat);
 						_lastScreenShotPath = path;
 
-						AddLog(2, string.Format("スクリーンショットを {0} に保存しました。", path));
+						AddLog(2, string.Format("Screenshot saved to {0}.", path));
 
 					}
 					catch (Exception ex)
 					{
 
-						SendErrorReport(ex.ToString(), "スクリーンショットの保存に失敗しました。");
+						SendErrorReport(ex.ToString(), "Failed to save screenshot.");
 					}
 				}
 
@@ -693,13 +693,13 @@ namespace Browser
 						Clipboard.SetImage(image);
 
 						if ((savemode & 3) != 3)
-							AddLog(2, "スクリーンショットをクリップボードにコピーしました。");
+							AddLog(2, "Screenshot copied to clipboard.");
 
 					}
 					catch (Exception ex)
 					{
 
-						SendErrorReport(ex.ToString(), "スクリーンショットのクリップボードへのコピーに失敗しました。");
+						SendErrorReport(ex.ToString(), "Failed to copy screenshot to clipboard.");
 					}
 				}
 			}
@@ -1256,12 +1256,12 @@ namespace Browser
 					using (var img = new Bitmap(_lastScreenShotPath))
 					{
 						Clipboard.SetImage(img);
-						AddLog(2, string.Format("スクリーンショット {0} をクリップボードにコピーしました。", _lastScreenShotPath));
+						AddLog(2, string.Format("Screenshot {0} copied to clipboard.", _lastScreenShotPath));
 					}
 				}
 				catch (Exception ex)
 				{
-					SendErrorReport(ex.Message, "スクリーンショットのクリップボードへのコピーに失敗しました。");
+					SendErrorReport(ex.Message, "Failed to copy screenshot to clipboard.");
 				}
 			}
 		}

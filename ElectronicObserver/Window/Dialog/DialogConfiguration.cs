@@ -803,7 +803,7 @@ namespace ElectronicObserver.Window.Dialog
 		private void FormBrowser_ApplyRegistry_Click(object sender, EventArgs e)
 		{
 
-			if (MessageBox.Show("レジストリに登録します。よろしいですか？\r\n＊完全に適用するには再起動が必要です。", "確認",
+			if (MessageBox.Show("Apply settings to the Registry?\r\n＊Restart is required for the changes to take effect.", "Confirmation",
 				MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2)
 				== System.Windows.Forms.DialogResult.Yes)
 			{
@@ -818,8 +818,8 @@ namespace ElectronicObserver.Window.Dialog
 				}
 				catch (Exception ex)
 				{
-					Utility.ErrorReporter.SendErrorReport(ex, "設定：レジストリへの書き込みに失敗しました。");
-					MessageBox.Show("レジストリへの書き込みに失敗しました。\r\n" + ex.Message, "Error",
+					Utility.ErrorReporter.SendErrorReport(ex, "Settings: failed to write to the Registry.");
+					MessageBox.Show("Failed to write to the Registry.\r\n" + ex.Message, "Error",
 						MessageBoxButtons.OK, MessageBoxIcon.Error);
 
 				}

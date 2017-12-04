@@ -47,7 +47,7 @@ namespace ElectronicObserver.Window.Dialog
 			if (Directory.Exists(CurrentPath))
 				LoadFiles(CurrentPath);
 			else
-				MessageBox.Show("フォルダが指定されていないか存在しません。", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				MessageBox.Show("The folder is not specified or does not exists.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 		}
 
 		private void ViewMenu_Execute_Click(object sender, EventArgs e)
@@ -63,7 +63,7 @@ namespace ElectronicObserver.Window.Dialog
 			if (!APICaller.IsBusy)
 				APICaller.RunWorkerAsync(APIView.SelectedRows.Cast<DataGridViewRow>().Select(row => row.Cells[APIView_FileName.Index].Value as string).OrderBy(s => s));
 			else
-				if (MessageBox.Show("既に実行中です。\n中断しますか?", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation)
+				if (MessageBox.Show("The operation is already in progress.\nDo you want to interrupt the operation?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation)
 					== System.Windows.Forms.DialogResult.Yes)
 			{
 				APICaller.CancelAsync();
@@ -101,7 +101,7 @@ namespace ElectronicObserver.Window.Dialog
 			}
 			else
 			{
-				MessageBox.Show("単一行を選択してください。", "情報", MessageBoxButtons.OK, MessageBoxIcon.Information);
+				MessageBox.Show("Please only select a single row.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
 			}
 
@@ -359,7 +359,7 @@ namespace ElectronicObserver.Window.Dialog
 			}
 			catch (Exception ex)
 			{
-				Utility.Logger.Add(1, $"API ファイルの起動に失敗しました。 {ex.GetType().Name}: {ex.Message}");
+				Utility.Logger.Add(1, $"Failed to start with the specified API file. {ex.GetType().Name}: {ex.Message}");
 			}
 		}
 	}

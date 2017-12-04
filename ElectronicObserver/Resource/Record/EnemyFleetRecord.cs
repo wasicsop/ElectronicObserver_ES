@@ -176,7 +176,7 @@ namespace ElectronicObserver.Resource.Record
 			{
 
 				var battle = KCDatabase.Instance.Battle;
-				string fleetName = battle.IsBaseAirRaid ? "敵基地空襲" : battle.Result?.EnemyFleetName ?? "";
+				string fleetName = battle.IsBaseAirRaid ? "LBAS Air Raid" : battle.Result?.EnemyFleetName ?? "";
 				int baseExp = battle.Result?.BaseExp ?? 0;
 				var initial = battle.FirstBattle.Initial;
 
