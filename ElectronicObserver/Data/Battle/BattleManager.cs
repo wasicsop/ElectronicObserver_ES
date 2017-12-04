@@ -347,13 +347,13 @@ namespace ElectronicObserver.Data.Battle
 
 				Utility.Logger.Add(2,
 					string.Format("Encountered air raid at {0}-{1}-{2} (Damage taken: {3}, {4}).",
-						Compass.MapAreaID, Compass.MapInfoID, Compass.Destination, damage, Constants.GetAirRaidDamage(Compass.AirRaidDamageKind)));
+						Compass.MapAreaID, Compass.MapInfoID, Compass.DestinationID, damage, Constants.GetAirRaidDamage(Compass.AirRaidDamageKind)));
 			}
 			else
 			{
 				Utility.Logger.Add(2,
 					string.Format("Battled with 「{3}」 in {0}-{1}-{2} (Rank: {4}, Admiral exp+{5}, Ship exp+{6}).",
-						Compass.MapAreaID, Compass.MapInfoID, Compass.Destination, Result.EnemyFleetName, Result.Rank, Result.AdmiralExp, Result.BaseExp));
+						Compass.MapAreaID, Compass.MapInfoID, Compass.DestinationID, Result.EnemyFleetName, Result.Rank, Result.AdmiralExp, Result.BaseExp));
 			}
 
 
