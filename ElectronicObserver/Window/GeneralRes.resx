@@ -266,14 +266,8 @@
   <data name="EnemyFormation" xml:space="preserve">
     <value>敵陣形</value>
   </data>
-  <data name="EnemyPlaneSighted" xml:space="preserve">
-    <value>索敵機発艦！</value>
-  </data>
   <data name="EnemyScout" xml:space="preserve">
     <value>敵索敵</value>
-  </data>
-  <data name="EnemySighted" xml:space="preserve">
-    <value>敵艦隊発見！</value>
   </data>
   <data name="EnemyUnknown" xml:space="preserve">
     <value>(敵艦隊情報不明)</value>
@@ -486,9 +480,6 @@
   </data>
   <data name="SVictory" xml:space="preserve">
     <value>S勝利</value>
-  </data>
-  <data name="TargetSighted" xml:space="preserve">
-    <value>攻撃目標発見！</value>
   </data>
   <data name="Times" xml:space="preserve">
     <value>回</value>

@@ -925,29 +925,11 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 索敵機発艦！.
-        /// </summary>
-        internal static string EnemyPlaneSighted {
-            get {
-                return ResourceManager.GetString("EnemyPlaneSighted", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 敵索敵.
         /// </summary>
         internal static string EnemyScout {
             get {
                 return ResourceManager.GetString("EnemyScout", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 敵艦隊発見！.
-        /// </summary>
-        internal static string EnemySighted {
-            get {
-                return ResourceManager.GetString("EnemySighted", resourceCulture);
             }
         }
         
@@ -1877,15 +1859,6 @@ namespace ElectronicObserver.Window {
         internal static string SVictory {
             get {
                 return ResourceManager.GetString("SVictory", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 攻撃目標発見！.
-        /// </summary>
-        internal static string TargetSighted {
-            get {
-                return ResourceManager.GetString("TargetSighted", resourceCulture);
             }
         }
         

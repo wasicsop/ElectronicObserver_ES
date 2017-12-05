@@ -744,16 +744,16 @@ namespace ElectronicObserver.Window
 					switch (compass.CommentID)
 					{
 						case 1:
-							tiptext = GeneralRes.EnemySighted;
+							tiptext = "Enemy sighted!";
 							break;
 						case 2:
-							tiptext = GeneralRes.TargetSighted;
+							tiptext = "Target sighted!";
 							break;
 						case 3:
 							tiptext = "Course Patrol!";
 							break;
 						default:
-							tiptext = GeneralRes.EnemyPlaneSighted;
+							tiptext = "Enemy plane sighted!";
 							break;
 					}
 					ToolTipInfo.SetToolTip(TextDestination, tiptext);
