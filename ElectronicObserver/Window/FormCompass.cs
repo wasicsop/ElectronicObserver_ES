@@ -787,9 +787,10 @@ namespace ElectronicObserver.Window
 
 						case 2:     //資源
 							TextEventKind.ForeColor = Utility.Configuration.Config.UI.Color_Green;
+							TextEventDetail.Text = GetMaterialInfo(compass);
 							break;
 						case 8:		//船団護衛成功
-							TextEventDetail.Text = GetMaterialInfo( compass );
+							TextEventDetail.Text = GetMaterialInfo(compass);
 							break;
 
 						case 3:     //渦潮
