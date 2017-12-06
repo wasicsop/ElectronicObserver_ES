@@ -959,7 +959,7 @@ namespace ElectronicObserver.Window
 				{
 					TextEventKind.ImageAlign = ContentAlignment.MiddleRight;
 					TextEventKind.ImageIndex = (int)ResourceManager.EquipmentContent.CarrierBasedBomber;
-					ToolTipInfo.SetToolTip(TextEventKind, "空襲 - " + Constants.GetAirRaidDamage(compass.AirRaidDamageKind));
+					ToolTipInfo.SetToolTip(TextEventKind, "Air raid - " + Constants.GetAirRaidDamage(compass.AirRaidDamageKind));
 				}
 				else
 				{

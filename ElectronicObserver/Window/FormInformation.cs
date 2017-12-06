@@ -415,7 +415,7 @@ namespace ElectronicObserver.Window
 			if (data.api_m1() && data.api_m1 == 1)
 			{
 				Utility.Logger.Add(2, "Detected changes in event map!");
-				sb.AppendLine("\r\n＊Gimmick released＊");
+				sb.AppendLine("\r\n* Gimmick released *");
 			}
 
 			return sb.ToString();

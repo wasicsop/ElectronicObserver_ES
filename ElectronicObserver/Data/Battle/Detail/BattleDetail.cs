@@ -209,10 +209,10 @@ namespace ElectronicObserver.Data.Battle.Detail
 					int id = defender.DamageControlID;
 
 					if (id == 42)
-						builder.AppendFormat("　応急修理要員発動　HP{0}", (int)(defender.HPMax * 0.2)).AppendLine();
+						builder.AppendFormat("　Emergency Repair Personnel activated. HP{0}", (int)(defender.HPMax * 0.2)).AppendLine();
 
 					else if (id == 43)
-						builder.AppendFormat("　応急修理女神発動　HP{0}", defender.HPMax).AppendLine();
+						builder.AppendFormat("　Emergency Repair Goddess activated. HP{0}", defender.HPMax).AppendLine();
 
 				}
 			}
