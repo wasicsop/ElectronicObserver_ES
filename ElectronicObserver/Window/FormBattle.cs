@@ -1144,6 +1144,7 @@ namespace ElectronicObserver.Window
 
 					if ( isEscaped ) bar.BackColor = Utility.Configuration.Config.UI.Battle_ColorHPBarsEscaped;
 					else bar.BackColor = Utility.Configuration.Config.UI.BackColor;
+					bar.RepaintHPtext();
 				}
 				else
 				{
@@ -1219,6 +1220,7 @@ namespace ElectronicObserver.Window
 
 						if ( isEscaped ) bar.BackColor = Utility.Configuration.Config.UI.Battle_ColorHPBarsEscaped;
 						else bar.BackColor = Utility.Configuration.Config.UI.BackColor;
+						bar.RepaintHPtext();
 					}
 					else
 					{
@@ -1574,22 +1576,15 @@ namespace ElectronicObserver.Window
 			for (int i = 0; i < friend.Members.Count; i++)
 			{
 				if (friend.EscapedShipList.Contains(friend.Members[i]))
-				{
 					HPBars[i].BackColor = Utility.Configuration.Config.UI.Battle_ColorHPBarsEscaped;
-					HPBars[i].RepaintHPtext();
-				}
 
 				else if (br.MVPIndex == i + 1)
-				{
 					HPBars[i].BackColor = Utility.Configuration.Config.UI.Battle_ColorHPBarsMVP;
-					HPBars[i].RepaintHPtext();
-				}
 
 				else
-				{
 					HPBars[i].BackColor = Utility.Configuration.Config.UI.BackColor;
-					HPBars[i].RepaintHPtext();
-				}
+
+				HPBars[i].RepaintHPtext();
 			}
 
 			if (escort != null)
