@@ -462,7 +462,7 @@ namespace ElectronicObserver.Data
 				case 5:
 					return ConstantsRes.LineAbreast;
 				case 6:
-					return "Lookout";
+					return "Vanguard";
 				case 11:
 					return ConstantsRes.FirstPatrolFormation;
 				case 12:
@@ -499,7 +499,7 @@ namespace ElectronicObserver.Data
                 case "Line Abreast":
 					return 5;
 				case "警戒陣":
-				case "Lookout":
+				case "Vanguard":
 					return 6;
 				case "第一警戒航行序列":
                 case "First Cruising Formation":
@@ -536,7 +536,7 @@ namespace ElectronicObserver.Data
 				case 5:
 					return "LAb";
 				case 6:
-					return "Lo";
+					return "Van";
 				case 11:
 					return "ASW";
 				case 12:
