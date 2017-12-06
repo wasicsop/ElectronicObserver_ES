@@ -406,10 +406,10 @@
 			//
 			// ShipView_Fleet
 			//
-			this.ShipView_Fleet.HeaderText = GeneralRes.Fleet;
+			this.ShipView_Fleet.HeaderText = "Fleet Pos";
 			this.ShipView_Fleet.Name = "ShipView_Fleet";
 			this.ShipView_Fleet.ReadOnly = true;
-			this.ShipView_Fleet.Width = 40;
+			this.ShipView_Fleet.Width = 80;
 			//
 			// ShipView_RepairTime
 			//
@@ -651,10 +651,10 @@
 			//
 			// ShipView_SallyArea
 			//
-			this.ShipView_SallyArea.HeaderText = "Fleet Lock";
+			this.ShipView_SallyArea.HeaderText = "Fleet Tag";
 			this.ShipView_SallyArea.Name = "ShipView_SallyArea";
 			this.ShipView_SallyArea.ReadOnly = true;
-			this.ShipView_SallyArea.Width = 40;
+			this.ShipView_SallyArea.Width = 80;
 			//
 			// MenuMember
 			//
