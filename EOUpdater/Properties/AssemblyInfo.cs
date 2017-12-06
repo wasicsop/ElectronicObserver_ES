@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Updater for Electronic Observer")]
+[assembly: AssemblyTitle("Updater Subprocess for Electronic Observer")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("silfumus")]
-[assembly: AssemblyProduct("EOUpdater")]
-[assembly: AssemblyCopyright("Copyright ©  2017")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("ElectronicObserver")]
+[assembly: AssemblyCopyright("Copyright ©  2017 silfumus")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
