@@ -406,10 +406,10 @@
 			//
 			// ShipView_Fleet
 			//
-			this.ShipView_Fleet.HeaderText = "Fleet Pos";
+			this.ShipView_Fleet.HeaderText = "Position";
 			this.ShipView_Fleet.Name = "ShipView_Fleet";
 			this.ShipView_Fleet.ReadOnly = true;
-			this.ShipView_Fleet.Width = 80;
+			this.ShipView_Fleet.Width = 40;
 			//
 			// ShipView_RepairTime
 			//
