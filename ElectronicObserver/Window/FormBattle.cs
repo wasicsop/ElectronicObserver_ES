@@ -238,6 +238,9 @@ namespace ElectronicObserver.Window
 						var battle = bm.BattleNight as BattleDayFromNight;
 
 						SetFormation(bm);
+						ClearAerialWarfare();
+						ClearSearchingResult();
+						ClearBaseAirAttack();
 						SetNightBattleEvent(battle.NightBattle);
 
 						if (battle.NextToDay)
@@ -316,10 +319,12 @@ namespace ElectronicObserver.Window
 
 				case "api_req_combined_battle/ec_night_to_day":
 					{
-						// 暫定
 						var battle = bm.BattleNight as BattleDayFromNight;
 
 						SetFormation(bm);
+						ClearAerialWarfare();
+						ClearSearchingResult();
+						ClearBaseAirAttack();
 						SetNightBattleEvent(battle.NightBattle);
 
 						if (battle.NextToDay)
@@ -1139,6 +1144,7 @@ namespace ElectronicObserver.Window
 
 					if ( isEscaped ) bar.BackColor = Utility.Configuration.Config.UI.Battle_ColorHPBarsEscaped;
 					else bar.BackColor = Utility.Configuration.Config.UI.BackColor;
+					bar.RepaintHPtext();
 				}
 				else
 				{
@@ -1214,6 +1220,7 @@ namespace ElectronicObserver.Window
 
 						if ( isEscaped ) bar.BackColor = Utility.Configuration.Config.UI.Battle_ColorHPBarsEscaped;
 						else bar.BackColor = Utility.Configuration.Config.UI.BackColor;
+						bar.RepaintHPtext();
 					}
 					else
 					{
@@ -1229,6 +1236,9 @@ namespace ElectronicObserver.Window
 				foreach (var i in BattleIndex.FriendEscort.Skip(Math.Max(bd.Initial.FriendFleet.Members.Count - 6, 0)))
 					DisableHPBar(i);
 			}
+
+			MoveHPBar(hasFriend7thShip);
+
 
 
 			// enemy escort
@@ -1280,7 +1290,7 @@ namespace ElectronicObserver.Window
 
 
 
-			if ((isFriendCombined || hasFriend7thShip) && isEnemyCombined)
+			if ((isFriendCombined || (hasFriend7thShip && !Utility.Configuration.Config.FormBattle.Display7thAsSingleLine)) && isEnemyCombined)
 			{
 				foreach (var bar in HPBars)
 				{
@@ -1382,6 +1392,33 @@ namespace ElectronicObserver.Window
 				bar.ResumeUpdate();
 		}
 
+
+		private bool _hpBarMoved = false;
+		/// <summary>
+		/// 味方遊撃部隊７人目のHPゲージ（通常時は連合艦隊第二艦隊旗艦のHPゲージ）を移動します。
+		/// </summary>
+		private void MoveHPBar(bool hasFriend7thShip)
+		{
+			if (Utility.Configuration.Config.FormBattle.Display7thAsSingleLine && hasFriend7thShip)
+			{
+				if (_hpBarMoved)
+					return;
+				TableBottom.SetCellPosition(HPBars[BattleIndex.FriendEscort1], new TableLayoutPanelCellPosition(0, 7));
+				bool fixSize = Utility.Configuration.Config.UI.IsLayoutFixed;
+				bool showHPBar = Utility.Configuration.Config.FormBattle.ShowHPBar;
+				ControlHelper.SetTableRowStyle(TableBottom, 7, fixSize ? new RowStyle(SizeType.Absolute, showHPBar ? 21 : 16) : new RowStyle(SizeType.AutoSize));
+				_hpBarMoved = true;
+			}
+			else
+			{
+				if (!_hpBarMoved)
+					return;
+				TableBottom.SetCellPosition(HPBars[BattleIndex.FriendEscort1], new TableLayoutPanelCellPosition(1, 1));
+				ControlHelper.SetTableRowStyle(TableBottom, 7, new RowStyle(SizeType.Absolute, 0));
+				_hpBarMoved = false;
+			}
+
+		}
 
 
 		/// <summary>
@@ -1539,22 +1576,15 @@ namespace ElectronicObserver.Window
 			for (int i = 0; i < friend.Members.Count; i++)
 			{
 				if (friend.EscapedShipList.Contains(friend.Members[i]))
-				{
 					HPBars[i].BackColor = Utility.Configuration.Config.UI.Battle_ColorHPBarsEscaped;
-					HPBars[i].RepaintHPtext();
-				}
 
 				else if (br.MVPIndex == i + 1)
-				{
 					HPBars[i].BackColor = Utility.Configuration.Config.UI.Battle_ColorHPBarsMVP;
-					HPBars[i].RepaintHPtext();
-				}
 
 				else
-				{
 					HPBars[i].BackColor = Utility.Configuration.Config.UI.BackColor;
-					HPBars[i].RepaintHPtext();
-				}
+
+				HPBars[i].RepaintHPtext();
 			}
 
 			if (escort != null)
@@ -1639,7 +1669,7 @@ namespace ElectronicObserver.Window
 				ControlHelper.SetTableRowStyle(TableBottom, 0, new RowStyle(SizeType.Absolute, 21));
 				for (int i = 1; i <= 6; i++)
 					ControlHelper.SetTableRowStyle(TableBottom, i, new RowStyle(SizeType.Absolute, showHPBar ? 21 : 16));
-				ControlHelper.SetTableRowStyle(TableBottom, 7, new RowStyle(SizeType.Absolute, 21));
+				ControlHelper.SetTableRowStyle(TableBottom, 8, new RowStyle(SizeType.Absolute, 21));
 			}
 			else
 			{
@@ -1702,7 +1732,7 @@ namespace ElectronicObserver.Window
 
 		private void TableBottom_CellPaint(object sender, TableLayoutCellPaintEventArgs e)
 		{
-			if (e.Row == 7)
+			if (e.Row == 8)
 				e.Graphics.DrawLine(Utility.Configuration.Config.UI.SubBackColorPen, e.CellBounds.X, e.CellBounds.Bottom - 1, e.CellBounds.Right - 1, e.CellBounds.Bottom - 1);
 		}
 

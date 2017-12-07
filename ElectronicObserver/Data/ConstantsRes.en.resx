@@ -603,24 +603,6 @@
   <data name="Mission" xml:space="preserve">
     <value>Mission</value>
   </data>
-  <data name="AirRaidOccur" xml:space="preserve">
-    <value>Raid</value>
-  </data>
-  <data name="BaseDamage" xml:space="preserve">
-    <value>Air Base</value>
-  </data>
-  <data name="NoAirRaid" xml:space="preserve">
-    <value>No Raid</value>
-  </data>
-  <data name="NoDamage" xml:space="preserve">
-    <value>No Damage</value>
-  </data>
-  <data name="ResAndBaseDamage" xml:space="preserve">
-    <value>Resource + Air Base</value>
-  </data>
-  <data name="ResourceDamage" xml:space="preserve">
-    <value>Resource</value>
-  </data>
   <data name="BombingAttack" xml:space="preserve">
     <value>Bombing Attack</value>
   </data>

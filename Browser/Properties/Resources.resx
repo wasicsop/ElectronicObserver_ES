@@ -197,9 +197,6 @@ catch(e) {{
   <data name="ScreenshotError" xml:space="preserve">
     <value>スクリーンショットの保存時にエラーが発生しました。</value>
   </data>
-  <data name="ScreenshotSaved" xml:space="preserve">
-    <value>スクリーンショットを {0} に保存しました。</value>
-  </data>
   <data name="ShowToolMenu" xml:space="preserve">
     <value>ツールメニューを表示</value>
   </data>

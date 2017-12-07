@@ -1314,7 +1314,7 @@ namespace ElectronicObserver.Window.Dialog
 		private void ConvertToExpression_Click(object sender, EventArgs e)
 		{
 
-			if (MessageBox.Show("現在の包含/除外リストを式に変換します。\r\n逆変換はできません。\r\nよろしいですか？", "確認",
+			if (MessageBox.Show("現在の包含/除外リストを式に変換します。\r\n逆変換はできません。\r\nよろしいですか？", "Confirmation",
 					MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1)
 					== System.Windows.Forms.DialogResult.Yes)
 			{

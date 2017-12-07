@@ -25,9 +25,10 @@ namespace ElectronicObserver.Data.Battle.Phase
 				case "噴式基地航空隊攻撃": return "Land-based Jet Air Attack";
 				case "噴式航空戦": return "Jet Air Attack";
 				case "基地航空隊攻撃": return "Land-based Air Attack";
-				case "防空戦": return "Air Raid";
-				case "航空戦": return ConstantsRes.AirBattle;
-				case "第一次航空戦": return "Air Attack, 1st";
+				case "防空戦": return "Land Base Air Raid";
+				case "航空戦": return "Air Battle";
+				case "空襲戦": return "Air Raid";
+				case "第一次航空戦": return "Air Attack, 1st"; 
 				case "第二次航空戦": return "Air Attack, 2nd";
 				case "支援攻撃": return "Support Expedition";
 				case "先制対潜": return "Opening ASW";
@@ -76,36 +77,14 @@ namespace ElectronicObserver.Data.Battle.Phase
 				if (ship == null)
 					return;
 
+				int id = ship.DamageControlID;
 
-				//補強スロットが最優先
-				if (ship.ExpansionSlotMaster == 42)
-				{
-					//応急修理要員
+				if (id == 42)
 					hps[index] = (int)(ship.HPMax * 0.2);
-					return;
-				}
-				else if (ship.ExpansionSlotMaster == 43)
-				{
-					//応急修理女神
-					hps[index] = ship.HPMax;
-					return;
-				}
 
-				foreach (var eid in ship.SlotMaster)
-				{
-					if (eid == 42)
-					{
-						//応急修理要員
-						hps[index] = (int)(ship.HPMax * 0.2);
-						break;
-					}
-					else if (eid == 43)
-					{
-						//応急修理女神
-						hps[index] = ship.HPMax;
-						break;
-					}
-				}
+				else if (id == 43)
+					hps[index] = ship.HPMax;
+
 			}
 		}
 

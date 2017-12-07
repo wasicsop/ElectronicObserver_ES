@@ -744,16 +744,16 @@ namespace ElectronicObserver.Window
 					switch (compass.CommentID)
 					{
 						case 1:
-							tiptext = GeneralRes.EnemySighted;
+							tiptext = "Enemy sighted!";
 							break;
 						case 2:
-							tiptext = GeneralRes.TargetSighted;
+							tiptext = "Target sighted!";
 							break;
 						case 3:
 							tiptext = "Course Patrol!";
 							break;
 						default:
-							tiptext = GeneralRes.EnemyPlaneSighted;
+							tiptext = "Enemy plane sighted!";
 							break;
 					}
 					ToolTipInfo.SetToolTip(TextDestination, tiptext);
@@ -787,9 +787,10 @@ namespace ElectronicObserver.Window
 
 						case 2:     //資源
 							TextEventKind.ForeColor = Utility.Configuration.Config.UI.Color_Green;
+							TextEventDetail.Text = GetMaterialInfo(compass);
 							break;
 						case 8:		//船団護衛成功
-							TextEventDetail.Text = GetMaterialInfo( compass );
+							TextEventDetail.Text = GetMaterialInfo(compass);
 							break;
 
 						case 3:     //渦潮
@@ -958,7 +959,7 @@ namespace ElectronicObserver.Window
 				{
 					TextEventKind.ImageAlign = ContentAlignment.MiddleRight;
 					TextEventKind.ImageIndex = (int)ResourceManager.EquipmentContent.CarrierBasedBomber;
-					ToolTipInfo.SetToolTip(TextEventKind, Constants.GetAirRaidDamage(compass.AirRaidDamageKind));
+					ToolTipInfo.SetToolTip(TextEventKind, "Air raid - " + Constants.GetAirRaidDamage(compass.AirRaidDamageKind));
 				}
 				else
 				{

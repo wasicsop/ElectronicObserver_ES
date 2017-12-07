@@ -375,8 +375,9 @@ namespace ElectronicObserver.Window
 							difficulty = "[" + Constants.GetDifficulty((int)elem.api_eventmap.api_selected_rank) + "] ";
 						}
 
-						sb.AppendFormat( "{0}-{1} {2}: {3} {4}/{5}\r\n",
-							map.MapAreaID, map.MapInfoID2, difficulty,
+						sb.AppendFormat("{0}-{1} {2}: {3}{4} {5}/{6}\r\n",
+							map.MapAreaID, map.MapInfoID, difficulty,
+							elem.api_eventmap.api_gauge_num() ? ("#" + (int)elem.api_eventmap.api_gauge_num + " ") : "",
 							elem.api_eventmap.api_gauge_type() && (int)elem.api_eventmap.api_gauge_type == 3 ? "TP" : "HP",
 							(int)elem.api_eventmap.api_now_maphp, (int)elem.api_eventmap.api_max_maphp);
 
@@ -413,8 +414,8 @@ namespace ElectronicObserver.Window
 
 			if (data.api_m1() && data.api_m1 == 1)
 			{
-				Utility.Logger.Add(2, "海域に変化を確認しました！");
-				sb.AppendLine("\r\n＊ギミック解除＊");
+				Utility.Logger.Add(2, "Detected changes in event map!");
+				sb.AppendLine("\r\n* Gimmick released *");
 			}
 
 			return sb.ToString();

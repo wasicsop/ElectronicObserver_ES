@@ -8,7 +8,7 @@ using System.Security.Cryptography;
 
 namespace EOUpdater
 {
-	class Program
+	internal class Program
 	{
 		private static string _downloadUrl = string.Empty;
 		private static string _downloadHash = string.Empty;
@@ -86,14 +86,8 @@ namespace EOUpdater
 					if (!Directory.Exists(directory))
 						Directory.CreateDirectory(directory);
 
-					if (file.Name == "DynamicJson.dll")
-					{
-						
-					}
-					else if(file.Name != "")
-					{
-						file.ExtractToFile(completeFileName, true);
-					}
+					if (file.Name == "DynamicJson.dll" || file.Name == "EOUpdater.exe" || file.Name == "") continue;
+					file.ExtractToFile(completeFileName, true);
 				}
 			}
 		}

@@ -406,15 +406,15 @@ namespace ElectronicObserver.Data
 			switch (value)
 			{
 				case 1:
-					return ConstantsRes.AirRaidOccur + " - " + ConstantsRes.ResourceDamage;
+					return "Resources Damaged";
 				case 2:
-					return ConstantsRes.AirRaidOccur + " - " + ConstantsRes.ResAndBaseDamage;
+					return "Resources and Air Squadron Damaged";
 				case 3:
-					return ConstantsRes.AirRaidOccur + " - " + ConstantsRes.BaseDamage;
+					return "Air Squadron Damaged";
 				case 4:
-					return ConstantsRes.AirRaidOccur + " - " + ConstantsRes.NoDamage;
+					return "No Damage";
 				default:
-					return ConstantsRes.NoAirRaid;
+					return "No Air Raid";
 			}
 		}
 
@@ -462,7 +462,7 @@ namespace ElectronicObserver.Data
 				case 5:
 					return ConstantsRes.LineAbreast;
 				case 6:
-					return "Lookout";
+					return "Vanguard";
 				case 11:
 					return ConstantsRes.FirstPatrolFormation;
 				case 12:
@@ -499,7 +499,7 @@ namespace ElectronicObserver.Data
                 case "Line Abreast":
 					return 5;
 				case "警戒陣":
-				case "Lookout":
+				case "Vanguard":
 					return 6;
 				case "第一警戒航行序列":
                 case "First Cruising Formation":
@@ -536,7 +536,7 @@ namespace ElectronicObserver.Data
 				case 5:
 					return "LAb";
 				case 6:
-					return "Lo";
+					return "Van";
 				case 11:
 					return "ASW";
 				case 12:

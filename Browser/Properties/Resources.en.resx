@@ -215,7 +215,4 @@ Are you sure?</value>
   <data name="ScreenshotError" xml:space="preserve">
     <value>An error occured while trying to save the screenshot.</value>
   </data>
-  <data name="ScreenshotSaved" xml:space="preserve">
-    <value>Screenshot saved to {0}.</value>
-  </data>
 </root>
