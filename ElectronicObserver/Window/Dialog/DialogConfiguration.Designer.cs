@@ -363,7 +363,7 @@
 			this.Connection_UpstreamProxyAddress.Name = "Connection_UpstreamProxyAddress";
 			this.Connection_UpstreamProxyAddress.Size = new System.Drawing.Size(432, 23);
 			this.Connection_UpstreamProxyAddress.TabIndex = 12;
-			this.ToolTipInfo.SetToolTip(this.Connection_UpstreamProxyAddress, "Specify the address of the upstream proxy. \r\nThe default value is 127.0.0.1.");
+			this.ToolTipInfo.SetToolTip(this.Connection_UpstreamProxyAddress, "Specify address of the upstream proxy. \r\nThe default value is 127.0.0.1.");
 			//
 			// Connection_DownstreamProxyLabel
 			//
@@ -382,8 +382,8 @@
 			this.Connection_DownstreamProxy.Name = "Connection_DownstreamProxy";
 			this.Connection_DownstreamProxy.Size = new System.Drawing.Size(518, 23);
 			this.Connection_DownstreamProxy.TabIndex = 10;
-			this.ToolTipInfo.SetToolTip(this.Connection_DownstreamProxy, "下流プロキシ設定を記述します。\r\nこの設定は上記のポート設定より優先されます。\r\n空欄の場合は上記の設定をもとに自動設定されます。\r\n動作を理解できる方のみ利用し" +
-        "てください。");
+			this.ToolTipInfo.SetToolTip(this.Connection_DownstreamProxy,
+				"Specify the downstream proxy settings.\r\nThis setting will override the upstream proxy settings.\r\nFor advanced users only.");
 			//
 			// Connection_UseSystemProxy
 			//
@@ -392,7 +392,7 @@
 			this.Connection_UseSystemProxy.Name = "Connection_UseSystemProxy";
 			this.Connection_UseSystemProxy.Size = new System.Drawing.Size(135, 19);
 			this.Connection_UseSystemProxy.TabIndex = 9;
-			this.Connection_UseSystemProxy.Text = "Use system proxy";
+			this.Connection_UseSystemProxy.Text = "Use system proxy settings.";
 			this.ToolTipInfo.SetToolTip(this.Connection_UseSystemProxy, global::ElectronicObserver.Window.Dialog.ConfigRes.UseSystemProxyTooltip);
 			this.Connection_UseSystemProxy.UseVisualStyleBackColor = true;
 			//
@@ -705,7 +705,7 @@
 			this.UI_RenderingTest.Size = new System.Drawing.Size(136, 20);
 			this.UI_RenderingTest.TabIndex = 12;
 			this.UI_RenderingTest.Text = "Rendering Test: ";
-			this.ToolTipInfo.SetToolTip(this.UI_RenderingTest, "描画プレビューです。\r\n下のバーから値を調整できます。");
+			this.ToolTipInfo.SetToolTip(this.UI_RenderingTest, "This is a preview.\r\nUse the slider below to adjust the value.");
 			this.UI_RenderingTest.Value = 401;
 			//
 			// UI_IsLayoutFixed
@@ -716,8 +716,7 @@
 			this.UI_IsLayoutFixed.Size = new System.Drawing.Size(141, 19);
 			this.UI_IsLayoutFixed.TabIndex = 13;
 			this.UI_IsLayoutFixed.Text = "Use fixed font height";
-			this.ToolTipInfo.SetToolTip(this.UI_IsLayoutFixed, "有効な時、どんなフォントでも概ね各UIの列の高さが同じになります(ver. 2.6.2 以前と同様)。\r\n無効な時、フォントによって列の高さが変わります(有効な時" +
-        "より大きくなる場合があります)。\r\n無効にした場合、動作が若干重くなる可能性があります。");
+			this.ToolTipInfo.SetToolTip(this.UI_IsLayoutFixed, "Apply the same height for all UI fonts.\r\nIf disabled, the font height may differ from each other.");
 			this.UI_IsLayoutFixed.UseVisualStyleBackColor = true;
 			//
 			// UI_BarColorMorphing
@@ -728,7 +727,7 @@
 			this.UI_BarColorMorphing.Size = new System.Drawing.Size(167, 19);
 			this.UI_BarColorMorphing.TabIndex = 11;
 			this.UI_BarColorMorphing.Text = global::ElectronicObserver.Window.Dialog.ConfigRes.UI_BarColorMorphing;
-			this.ToolTipInfo.SetToolTip(this.UI_BarColorMorphing, "HP・資源等のバーの色を、艦これUIと同様に滑らかに変化させるか指定します。");
+			this.ToolTipInfo.SetToolTip(this.UI_BarColorMorphing, "Use color gradient on color bar such as HP, etc.");
 			this.UI_BarColorMorphing.UseVisualStyleBackColor = true;
 			this.UI_BarColorMorphing.CheckedChanged += new System.EventHandler(this.UI_BarColorMorphing_CheckedChanged);
 			//
@@ -825,8 +824,7 @@
 			this.Log_SaveLogImmediately.Size = new System.Drawing.Size(140, 19);
 			this.Log_SaveLogImmediately.TabIndex = 9;
 			this.Log_SaveLogImmediately.Text = "Write log immediately";
-			this.ToolTipInfo.SetToolTip(this.Log_SaveLogImmediately, "ログ追加と同時にログファイルに書き込むかを指定します。\r\n無効の場合はプログラム終了時にまとめて書き込みます。\r\n有効な場合、強制終了等の問題が発生してもログを残" +
-        "せますが、多少処理が重くなる可能性があります。\r\nなお、「ログをファイルに保存する」無効時には本指定は無効になります。");
+			this.ToolTipInfo.SetToolTip(this.Log_SaveLogImmediately, "Specify whether logs are written immediately.\r\nIf disabled, logs are saved only when exiting the program.");
 			this.Log_SaveLogImmediately.UseVisualStyleBackColor = true;
 			//
 			// Log_SaveBattleLog
