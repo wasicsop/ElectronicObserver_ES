@@ -382,6 +382,19 @@ namespace ElectronicObserver.Window
 				FleetEnemy.ForeColor = Utility.Configuration.Config.UI.Color_Red;
 			else
 				FleetEnemy.ForeColor = Utility.Configuration.Config.UI.ForeColor;
+
+			switch (bm.FirstBattle.Searching.EngagementForm)
+			{
+				case 3:
+					Formation.ForeColor = Utility.Configuration.Config.UI.Color_Green;
+					break;
+				case 4:
+					Formation.ForeColor = Utility.Configuration.Config.UI.Color_Red;
+					break;
+				default:
+					Formation.ForeColor = Utility.Configuration.Config.UI.ForeColor;
+					break;
+			}
 		}
 
 		/// <summary>
@@ -552,9 +565,9 @@ namespace ElectronicObserver.Window
 		private void SetAerialWarfare(PhaseAirBattleBase phaseJet, PhaseAirBattleBase phase1, PhaseAirBattleBase phase2)
 		{
 			var phases = new[] {
-				new AerialWarfareFormatter( phaseJet, "噴式戦: " ),
-				new AerialWarfareFormatter( phase1, "第1次: "),
-				new AerialWarfareFormatter( phase2, "第2次: "),
+				new AerialWarfareFormatter( phaseJet, "Jet: " ),
+				new AerialWarfareFormatter( phase1, "1st: "),
+				new AerialWarfareFormatter( phase2, "2nd: "),
 			};
 
 			if (!phases[0].Enabled && !phases[2].Enabled)
@@ -576,10 +589,12 @@ namespace ElectronicObserver.Window
 					ToolTipInfo.SetToolTip(label, null);
 				}
 
-				if (phasesEnabled.Any(p => p.GetAircraftTotal(stage, isFriend) > 0 && p.GetAircraftLost(stage, isFriend) == p.GetAircraftTotal(stage, isFriend)))
+				if (phasesEnabled.Any(p =>
+					p.GetAircraftTotal(stage, isFriend) > 0 &&
+					p.GetAircraftLost(stage, isFriend) == p.GetAircraftTotal(stage, isFriend)))
 					label.ForeColor = Utility.Configuration.Config.UI.Color_Red;
 				else
-					label.ForeColor = SystemColors.ControlText;
+					label.ForeColor = Utility.Configuration.Config.UI.ForeColor;
 			}
 
 			void ClearAACutinLabel()
@@ -598,6 +613,20 @@ namespace ElectronicObserver.Window
 				var phases1 = phases.Where(p => p.Stage1Enabled);
 
 				AirSuperiority.Text = Constants.GetAirSuperiority(phases[1].Air.AirSuperiority);
+				switch (phases[1].Air.AirSuperiority)
+				{
+					case 1: //AS+
+					case 2: //AS
+						AirSuperiority.ForeColor = Utility.Configuration.Config.UI.Color_Green;
+						break;
+					case 3: //AI
+					case 4: //AI-
+						AirSuperiority.ForeColor = Utility.Configuration.Config.UI.Color_Red;
+						break;
+					default: //AP
+						AirSuperiority.ForeColor = Utility.Configuration.Config.UI.ForeColor;
+						break;
+				}
 
 				ToolTipInfo.SetToolTip(AirSuperiority,
 					needAppendInfo ? string.Join("", phases1.Select(p => $"{p.PhaseName}{Constants.GetAirSuperiority(p.Air.AirSuperiority)}\r\n")) : null);
@@ -614,7 +643,7 @@ namespace ElectronicObserver.Window
 						label.ImageIndex = (int)ResourceManager.EquipmentContent.Seaplane;
 
 						ToolTipInfo.SetToolTip(label, ToolTipInfo.GetToolTip(label) +
-							"触接中\r\n" + string.Join("\r\n", phases1.Select(p => $"{p.PhaseName}{(KCDatabase.Instance.MasterEquipments[p.GetTouchAircraft(isFriend)]?.Name ?? "(なし)")}")));
+							"Contact\r\n" + string.Join("\r\n", phases1.Select(p => $"{p.PhaseName}{(KCDatabase.Instance.MasterEquipments[p.GetTouchAircraft(isFriend)]?.Name ?? "(none)")}")));
 					}
 					else
 					{
@@ -651,7 +680,7 @@ namespace ElectronicObserver.Window
 					AACutin.ImageIndex = (int)ResourceManager.EquipmentContent.HighAngleGun;
 
 					ToolTipInfo.SetToolTip(AACutin, "AACI\r\n" +
-						string.Join("\r\n", phases2.Select(p => p.PhaseName + (p.Air.IsAACutinAvailable ? $"{p.Air.AACutInShip.NameWithLevel}\r\nカットイン種別: {p.Air.AACutInKind} ({Constants.GetAACutinKind(p.Air.AACutInKind)})" : "(発動せず)"))));
+						string.Join("\r\n", phases2.Select(p => p.PhaseName + (p.Air.IsAACutinAvailable ? $"{p.Air.AACutInShip.NameWithLevel}\r\nAACI type: {p.Air.AACutInKind} ({Constants.GetAACutinKind(p.Air.AACutInKind)})" : "(did not activate)"))));
 				}
 				else
 				{
