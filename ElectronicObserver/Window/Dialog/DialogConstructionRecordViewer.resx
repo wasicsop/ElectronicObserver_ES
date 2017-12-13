@@ -138,9 +138,6 @@
   <data name="&gt;&gt;label8.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;RecordView_Name.Name" xml:space="preserve">
-    <value>RecordView_Name</value>
-  </data>
   <data name="&gt;&gt;label8.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
@@ -150,8 +147,8 @@
   <data name="RecordView_SecretaryShip.HeaderText" xml:space="preserve">
     <value>秘書艦</value>
   </data>
-  <data name="&gt;&gt;DateBegin.Parent" xml:space="preserve">
-    <value>splitContainer1.Panel1</value>
+  <data name="label4.TabIndex" type="System.Int32, mscorlib">
+    <value>28</value>
   </data>
   <data name="RecordView.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
@@ -161,9 +158,6 @@
   </data>
   <data name="&gt;&gt;DateBegin.ZOrder" xml:space="preserve">
     <value>13</value>
-  </data>
-  <data name="statusStrip1.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
   </data>
   <data name="&gt;&gt;ShipName.Parent" xml:space="preserve">
     <value>splitContainer1.Panel1</value>
@@ -189,8 +183,8 @@
   <data name="EmptyDock.TabIndex" type="System.Int32, mscorlib">
     <value>38</value>
   </data>
-  <data name="label3.Text" xml:space="preserve">
-    <value>開始</value>
+  <data name="RecordView.Size" type="System.Drawing.Size, System.Drawing">
+    <value>624, 317</value>
   </data>
   <data name="&gt;&gt;label1.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -225,6 +219,9 @@
   <data name="ShipCategory.Location" type="System.Drawing.Point, System.Drawing">
     <value>61, 10</value>
   </data>
+  <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 71</value>
+  </data>
   <data name="EmptyDock.Size" type="System.Drawing.Size, System.Drawing">
     <value>60, 23</value>
   </data>
@@ -234,11 +231,11 @@
   <data name="&gt;&gt;label7.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="label7.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="ButtonRun.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
   </data>
-  <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
-    <value>16</value>
+  <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Meiryo UI, 12px</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
     <value>カテゴリ</value>
@@ -248,6 +245,9 @@
   </data>
   <data name="&gt;&gt;DateBegin.Type" xml:space="preserve">
     <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;DateBegin.Parent" xml:space="preserve">
+    <value>splitContainer1.Panel1</value>
   </data>
   <data name="&gt;&gt;RecordView_Date.Name" xml:space="preserve">
     <value>RecordView_Date</value>
@@ -273,8 +273,8 @@
   <data name="&gt;&gt;SecretaryCategory.ZOrder" xml:space="preserve">
     <value>10</value>
   </data>
-  <data name="&gt;&gt;SecretaryName.ZOrder" xml:space="preserve">
-    <value>9</value>
+  <data name="label3.TabIndex" type="System.Int32, mscorlib">
+    <value>27</value>
   </data>
   <data name="&gt;&gt;ShipCategory.ZOrder" xml:space="preserve">
     <value>17</value>
@@ -291,26 +291,17 @@
   <data name="DevelopmentMaterial.Location" type="System.Drawing.Point, System.Drawing">
     <value>429, 39</value>
   </data>
-  <data name="RecordView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>624, 317</value>
-  </data>
-  <data name="ShipName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>121, 23</value>
-  </data>
   <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
     <value>43, 15</value>
   </data>
   <data name="&gt;&gt;label1.Name" xml:space="preserve">
     <value>label1</value>
   </data>
-  <data name="&gt;&gt;RecordView_Date.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="&gt;&gt;RecordView_Header.Name" xml:space="preserve">
     <value>RecordView_Header</value>
   </data>
-  <data name="&gt;&gt;Recipe.ZOrder" xml:space="preserve">
-    <value>8</value>
+  <data name="label3.Text" xml:space="preserve">
+    <value>開始</value>
   </data>
   <data name="label5.Text" xml:space="preserve">
     <value>秘書艦</value>
@@ -320,9 +311,6 @@
   </data>
   <data name="label2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
-  </data>
-  <data name="statusStrip1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 419</value>
   </data>
   <data name="Recipe.TabIndex" type="System.Int32, mscorlib">
     <value>34</value>
@@ -339,28 +327,22 @@
   <data name="ButtonRun.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
-  <data name="Recipe.Size" type="System.Drawing.Size, System.Drawing">
-    <value>200, 23</value>
+  <data name="&gt;&gt;DateBegin.Name" xml:space="preserve">
+    <value>DateBegin</value>
   </data>
   <data name="&gt;&gt;label5.Parent" xml:space="preserve">
     <value>splitContainer1.Panel1</value>
   </data>
-  <data name="&gt;&gt;splitContainer1.Panel1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;RecordView_Date.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
-    <value>55, 15</value>
+  <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
+    <value>16</value>
   </data>
-  <data name="RecordView_Material100.HeaderText" xml:space="preserve">
-    <value>100</value>
+  <data name="statusStrip1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
   <data name="&gt;&gt;RecordView_Recipe.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;RecordView_Material100.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;RecordView_SecretaryShip.Type" xml:space="preserve">
     <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;ButtonRun.Name" xml:space="preserve">
@@ -384,9 +366,6 @@
   <data name="label3.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="label3.TabIndex" type="System.Int32, mscorlib">
-    <value>27</value>
-  </data>
   <data name="&gt;&gt;label5.Name" xml:space="preserve">
     <value>label5</value>
   </data>
@@ -405,17 +384,14 @@
   <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
     <value>188, 42</value>
   </data>
-  <data name="&gt;&gt;RecordView_Material20.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 42</value>
   </data>
   <data name="DevelopmentMaterial.Size" type="System.Drawing.Size, System.Drawing">
     <value>60, 23</value>
   </data>
-  <data name="&gt;&gt;DevelopmentMaterial.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
+    <value>55, 15</value>
   </data>
   <data name="&gt;&gt;IsLargeConstruction.Parent" xml:space="preserve">
     <value>splitContainer1.Panel1</value>
@@ -438,11 +414,11 @@
   <data name="&gt;&gt;splitContainer1.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;statusStrip1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.StatusStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;RecordView_Material1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;DateBegin.Name" xml:space="preserve">
-    <value>DateBegin</value>
+  <data name="ShipCategory.TabIndex" type="System.Int32, mscorlib">
+    <value>25</value>
   </data>
   <data name="&gt;&gt;Searcher.Type" xml:space="preserve">
     <value>System.ComponentModel.BackgroundWorker, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -465,8 +441,11 @@
   <data name="ButtonRun.Location" type="System.Drawing.Point, System.Drawing">
     <value>537, 66</value>
   </data>
-  <data name="IsLargeConstruction.Text" xml:space="preserve">
-    <value>大型艦建造</value>
+  <data name="statusStrip1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 419</value>
+  </data>
+  <data name="&gt;&gt;splitContainer1.Panel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
     <value>41, 15</value>
@@ -480,17 +459,20 @@
   <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
     <value>368, 42</value>
   </data>
-  <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 71</value>
+  <data name="&gt;&gt;RecordView_Material20.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="label2.TabIndex" type="System.Int32, mscorlib">
-    <value>26</value>
+  <data name="&gt;&gt;ShipCategory.Name" xml:space="preserve">
+    <value>ShipCategory</value>
   </data>
   <data name="splitContainer1.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
   <data name="&gt;&gt;splitContainer1.Panel2.Parent" xml:space="preserve">
     <value>splitContainer1</value>
+  </data>
+  <data name="label7.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="&gt;&gt;label2.Parent" xml:space="preserve">
     <value>splitContainer1.Panel1</value>
@@ -510,8 +492,8 @@
   <data name="MergeRows.Location" type="System.Drawing.Point, System.Drawing">
     <value>469, 69</value>
   </data>
-  <data name="RecordView_Material20.HeaderText" xml:space="preserve">
-    <value>20</value>
+  <data name="&gt;&gt;RecordView_Material100.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label8.Parent" xml:space="preserve">
     <value>splitContainer1.Panel1</value>
@@ -519,17 +501,11 @@
   <data name="&gt;&gt;DevelopmentMaterial.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>建造記録</value>
+  <data name="&gt;&gt;RecordView.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="ShipCategory.TabIndex" type="System.Int32, mscorlib">
-    <value>25</value>
-  </data>
-  <data name="&gt;&gt;EmptyDock.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Meiryo UI, 12px</value>
+  <data name="label7.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
   </data>
   <data name="&gt;&gt;StatusInfo.Name" xml:space="preserve">
     <value>StatusInfo</value>
@@ -543,8 +519,8 @@
   <data name="&gt;&gt;RecordView_Material100.Name" xml:space="preserve">
     <value>RecordView_Material100</value>
   </data>
-  <data name="&gt;&gt;RecordView.Name" xml:space="preserve">
-    <value>RecordView</value>
+  <data name="&gt;&gt;DevelopmentMaterial.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="label7.Text" xml:space="preserve">
     <value>空きドック</value>
@@ -558,11 +534,11 @@
   <data name="&gt;&gt;DateEnd.ZOrder" xml:space="preserve">
     <value>12</value>
   </data>
-  <data name="IsLargeConstruction.Size" type="System.Drawing.Size, System.Drawing">
-    <value>86, 19</value>
+  <data name="ShipName.Size" type="System.Drawing.Size, System.Drawing">
+    <value>121, 23</value>
   </data>
-  <data name="&gt;&gt;ShipCategory.Name" xml:space="preserve">
-    <value>ShipCategory</value>
+  <data name="RecordView_Material100.HeaderText" xml:space="preserve">
+    <value>100</value>
   </data>
   <data name="label1.TabIndex" type="System.Int32, mscorlib">
     <value>24</value>
@@ -573,14 +549,14 @@
   <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
     <value>188, 13</value>
   </data>
-  <data name="DateBegin.TabIndex" type="System.Int32, mscorlib">
-    <value>29</value>
+  <data name="label2.TabIndex" type="System.Int32, mscorlib">
+    <value>26</value>
   </data>
   <data name="&gt;&gt;splitContainer1.Panel2.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="label6.TabIndex" type="System.Int32, mscorlib">
-    <value>35</value>
+  <data name="IsLargeConstruction.Text" xml:space="preserve">
+    <value>大型艦建造</value>
   </data>
   <data name="&gt;&gt;RecordView.Parent" xml:space="preserve">
     <value>splitContainer1.Panel2</value>
@@ -588,11 +564,11 @@
   <data name="&gt;&gt;ShipName.ZOrder" xml:space="preserve">
     <value>19</value>
   </data>
-  <data name="&gt;&gt;DateEnd.Name" xml:space="preserve">
-    <value>DateEnd</value>
+  <data name="&gt;&gt;EmptyDock.ZOrder" xml:space="preserve">
+    <value>4</value>
   </data>
-  <data name="label6.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="RecordView_Recipe.HeaderText" xml:space="preserve">
+    <value>レシピ</value>
   </data>
   <data name="SecretaryName.Location" type="System.Drawing.Point, System.Drawing">
     <value>188, 68</value>
@@ -600,11 +576,14 @@
   <data name="DateBegin.Size" type="System.Drawing.Size, System.Drawing">
     <value>140, 23</value>
   </data>
-  <data name="&gt;&gt;EmptyDock.Name" xml:space="preserve">
-    <value>EmptyDock</value>
+  <data name="&gt;&gt;Recipe.ZOrder" xml:space="preserve">
+    <value>8</value>
   </data>
   <data name="&gt;&gt;splitContainer1.Panel2.Type" xml:space="preserve">
     <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>終了</value>
   </data>
   <data name="RecordView.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -617,6 +596,9 @@
   </data>
   <data name="&gt;&gt;SecretaryName.Name" xml:space="preserve">
     <value>SecretaryName</value>
+  </data>
+  <data name="Recipe.Size" type="System.Drawing.Size, System.Drawing">
+    <value>200, 23</value>
   </data>
   <data name="&gt;&gt;label7.Parent" xml:space="preserve">
     <value>splitContainer1.Panel1</value>
@@ -657,6 +639,9 @@
   <data name="&gt;&gt;label8.Name" xml:space="preserve">
     <value>label8</value>
   </data>
+  <data name="&gt;&gt;RecordView_Name.Name" xml:space="preserve">
+    <value>RecordView_Name</value>
+  </data>
   <data name="&gt;&gt;DevelopmentMaterial.Parent" xml:space="preserve">
     <value>splitContainer1.Panel1</value>
   </data>
@@ -678,11 +663,11 @@
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>31, 15</value>
   </data>
+  <data name="&gt;&gt;RecordView.Name" xml:space="preserve">
+    <value>RecordView</value>
+  </data>
   <data name="&gt;&gt;statusStrip1.ZOrder" xml:space="preserve">
     <value>1</value>
-  </data>
-  <data name="&gt;&gt;Searcher.Name" xml:space="preserve">
-    <value>Searcher</value>
   </data>
   <data name="SecretaryCategory.Size" type="System.Drawing.Size, System.Drawing">
     <value>121, 23</value>
@@ -699,8 +684,8 @@
   <data name="DateBegin.Location" type="System.Drawing.Point, System.Drawing">
     <value>225, 10</value>
   </data>
-  <data name="label4.TabIndex" type="System.Int32, mscorlib">
-    <value>28</value>
+  <data name="&gt;&gt;Searcher.Name" xml:space="preserve">
+    <value>Searcher</value>
   </data>
   <data name="label8.TabIndex" type="System.Int32, mscorlib">
     <value>42</value>
@@ -738,14 +723,17 @@
   <data name="&gt;&gt;label2.Name" xml:space="preserve">
     <value>label2</value>
   </data>
+  <data name="DateBegin.TabIndex" type="System.Int32, mscorlib">
+    <value>29</value>
+  </data>
   <data name="&gt;&gt;RecordView_Recipe.Name" xml:space="preserve">
     <value>RecordView_Recipe</value>
   </data>
   <data name="&gt;&gt;splitContainer1.Panel2.Name" xml:space="preserve">
     <value>splitContainer1.Panel2</value>
   </data>
-  <data name="ButtonRun.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
+  <data name="$this.Text" xml:space="preserve">
+    <value>建造記録</value>
   </data>
   <data name="&gt;&gt;EmptyDock.Type" xml:space="preserve">
     <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -777,6 +765,9 @@
   <data name="&gt;&gt;SecretaryName.Parent" xml:space="preserve">
     <value>splitContainer1.Panel1</value>
   </data>
+  <data name="&gt;&gt;EmptyDock.Name" xml:space="preserve">
+    <value>EmptyDock</value>
+  </data>
   <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
     <value>15</value>
   </data>
@@ -786,8 +777,8 @@
   <data name="label1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="&gt;&gt;RecordView_Material1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="label6.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="&gt;&gt;IsLargeConstruction.ZOrder" xml:space="preserve">
     <value>2</value>
@@ -795,17 +786,23 @@
   <data name="&gt;&gt;Recipe.Parent" xml:space="preserve">
     <value>splitContainer1.Panel1</value>
   </data>
+  <data name="&gt;&gt;DateEnd.Name" xml:space="preserve">
+    <value>DateEnd</value>
+  </data>
   <data name="&gt;&gt;ShipCategory.Parent" xml:space="preserve">
     <value>splitContainer1.Panel1</value>
   </data>
   <data name="SecretaryCategory.TabIndex" type="System.Int32, mscorlib">
     <value>32</value>
   </data>
+  <data name="IsLargeConstruction.Size" type="System.Drawing.Size, System.Drawing">
+    <value>86, 19</value>
+  </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>DialogConstructionRecordViewer</value>
   </data>
-  <data name="&gt;&gt;RecordView.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;SecretaryName.ZOrder" xml:space="preserve">
+    <value>9</value>
   </data>
   <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
     <value>31, 15</value>
@@ -813,17 +810,20 @@
   <data name="&gt;&gt;MergeRows.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;statusStrip1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.StatusStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="IsLargeConstruction.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="StatusInfo.Text" xml:space="preserve">
     <value>-</value>
   </data>
-  <data name="label7.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
+  <data name="&gt;&gt;RecordView_SecretaryShip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="RecordView_Recipe.HeaderText" xml:space="preserve">
-    <value>レシピ</value>
+  <data name="label6.TabIndex" type="System.Int32, mscorlib">
+    <value>35</value>
   </data>
   <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
     <value>371, 13</value>
@@ -831,8 +831,8 @@
   <data name="label4.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>終了</value>
+  <data name="RecordView_Material20.HeaderText" xml:space="preserve">
+    <value>20</value>
   </data>
   <data name="ShipCategory.Size" type="System.Drawing.Size, System.Drawing">
     <value>121, 23</value>

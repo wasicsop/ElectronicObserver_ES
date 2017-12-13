@@ -147,7 +147,7 @@
 			this.SoundPathDirectorize.Size = new System.Drawing.Size(32, 23);
 			this.SoundPathDirectorize.TabIndex = 6;
 			this.SoundPathDirectorize.Text = "Dir";
-			this.ToolTipText.SetToolTip(this.SoundPathDirectorize, "パスのファイル名部分を削除し、フォルダ指定にします。\r\nパスにフォルダを指定した場合、そのフォルダに含まれる音声ファイルがランダムに再生されます。");
+			this.ToolTipText.SetToolTip(this.SoundPathDirectorize, "Delete the filename part in the previous file path column.\r\nSpecifying a folder as the file path will enable the program to\r\nrandomly play an audio file from the folder as notification sound.");
 			this.SoundPathDirectorize.UseVisualStyleBackColor = true;
 			this.SoundPathDirectorize.Click += new System.EventHandler(this.SoundPathDirectorize_Click);
 			//
@@ -177,7 +177,7 @@
 			this.SoundVolume.Size = new System.Drawing.Size(80, 23);
 			this.SoundVolume.TabIndex = 2;
 			this.SoundVolume.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			this.ToolTipText.SetToolTip(this.SoundVolume, "通知音の音量を指定します。\r\n0が無音で100が最大音量です。");
+			this.ToolTipText.SetToolTip(this.SoundVolume, "Specify volume of the notication sound (0-100).");
 			//
 			// PlaysSound
 			//
@@ -345,7 +345,7 @@
 			this.ShowWithActivation.Size = new System.Drawing.Size(151, 19);
 			this.ShowWithActivation.TabIndex = 8;
 			this.ShowWithActivation.Text = NotifyRes.ShowWithActivation;
-			this.ToolTipText.SetToolTip(this.ShowWithActivation, "表示時にダイアログをアクティブにします。\r\n無効にすると操作を妨げない代わりにダイアログが隠れやすくなります。");
+			this.ToolTipText.SetToolTip(this.ShowWithActivation, "Activate the notification dialog when the dialog is being shown.\r\nEnabling this option will prevent accidental user interaction\r\n(e.g: advancing in critical damage).");
 			this.ShowWithActivation.UseVisualStyleBackColor = true;
 			//
 			// label4
@@ -777,8 +777,7 @@
 			this.AnchorageRepairNotificationLevel.Name = "AnchorageRepairNotificationLevel";
 			this.AnchorageRepairNotificationLevel.Size = new System.Drawing.Size(160, 23);
 			this.AnchorageRepairNotificationLevel.TabIndex = 1;
-			this.ToolTipText.SetToolTip(this.AnchorageRepairNotificationLevel, "いつでも：20分経過したら通知します。\r\n明石旗艦の時：上記に加え、明石旗艦の時のみ通知します。\r\n修理艦もいるとき：上記に加え、実際に修理可能な条件の時のみ通知" +
-		"します。");
+			this.ToolTipText.SetToolTip(this.AnchorageRepairNotificationLevel, "Always: always trigger notification every 20 minutes.\r\nAkashi as flagship: + only if Akashi is set as flagship.\r\nShip needed repair: + only if there ships needed repair.");
 			//
 			// DialogConfigurationNotifier
 			//

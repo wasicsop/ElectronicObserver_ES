@@ -392,7 +392,7 @@
 			this.Connection_UseSystemProxy.Name = "Connection_UseSystemProxy";
 			this.Connection_UseSystemProxy.Size = new System.Drawing.Size(135, 19);
 			this.Connection_UseSystemProxy.TabIndex = 9;
-			this.Connection_UseSystemProxy.Text = "Use system proxy settings.";
+			this.Connection_UseSystemProxy.Text = "Use system proxy settings";
 			this.ToolTipInfo.SetToolTip(this.Connection_UseSystemProxy, global::ElectronicObserver.Window.Dialog.ConfigRes.UseSystemProxyTooltip);
 			this.Connection_UseSystemProxy.UseVisualStyleBackColor = true;
 			//
@@ -408,7 +408,7 @@
 			this.Connection_UpstreamProxyPort.Size = new System.Drawing.Size(80, 23);
 			this.Connection_UpstreamProxyPort.TabIndex = 4;
 			this.Connection_UpstreamProxyPort.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			this.ToolTipInfo.SetToolTip(this.Connection_UpstreamProxyPort, global::ElectronicObserver.Window.Dialog.ConfigRes.ProxyPort);
+			this.ToolTipInfo.SetToolTip(this.Connection_UpstreamProxyPort, "Specify port number of the local proxy server.");
 			//
 			// Connection_UseUpstreamProxy
 			//
@@ -417,8 +417,8 @@
 			this.Connection_UseUpstreamProxy.Name = "Connection_UseUpstreamProxy";
 			this.Connection_UseUpstreamProxy.Size = new System.Drawing.Size(152, 19);
 			this.Connection_UseUpstreamProxy.TabIndex = 3;
-			this.Connection_UseUpstreamProxy.Text = "Use upstream proxy:";
-			this.ToolTipInfo.SetToolTip(this.Connection_UseUpstreamProxy, global::ElectronicObserver.Window.Dialog.ConfigRes.UseProxyHint);
+			this.Connection_UseUpstreamProxy.Text = "Use local proxy:";
+			this.ToolTipInfo.SetToolTip(this.Connection_UseUpstreamProxy, "Use local proxy server.\r\nEnable if you want to route the connection through\r\nthird-party application (e.g: MyFleetGirls).");
 			this.Connection_UseUpstreamProxy.UseVisualStyleBackColor = true;
 			//
 			// Connection_RegisterAsSystemProxy
@@ -716,7 +716,7 @@
 			this.UI_IsLayoutFixed.Size = new System.Drawing.Size(141, 19);
 			this.UI_IsLayoutFixed.TabIndex = 13;
 			this.UI_IsLayoutFixed.Text = "Use fixed font height";
-			this.ToolTipInfo.SetToolTip(this.UI_IsLayoutFixed, "Apply the same height for all UI fonts.\r\nIf disabled, the font height may differ from each other.");
+			this.ToolTipInfo.SetToolTip(this.UI_IsLayoutFixed, "Apply the same height for all UI fonts.\r\nIf disabled, the font height may differ for each UI elements.");
 			this.UI_IsLayoutFixed.UseVisualStyleBackColor = true;
 			//
 			// UI_BarColorMorphing
@@ -824,7 +824,7 @@
 			this.Log_SaveLogImmediately.Size = new System.Drawing.Size(140, 19);
 			this.Log_SaveLogImmediately.TabIndex = 9;
 			this.Log_SaveLogImmediately.Text = "Write log immediately";
-			this.ToolTipInfo.SetToolTip(this.Log_SaveLogImmediately, "Specify whether logs are written immediately.\r\nIf disabled, logs are saved only when exiting the program.");
+			this.ToolTipInfo.SetToolTip(this.Log_SaveLogImmediately, "Write log to file immediately instead of caching it until program exit.\r\nIf disabled, logs are saved only when exiting the program.");
 			this.Log_SaveLogImmediately.UseVisualStyleBackColor = true;
 			//
 			// Log_SaveBattleLog
@@ -834,8 +834,8 @@
 			this.Log_SaveBattleLog.Name = "Log_SaveBattleLog";
 			this.Log_SaveBattleLog.Size = new System.Drawing.Size(120, 19);
 			this.Log_SaveBattleLog.TabIndex = 8;
-			this.Log_SaveBattleLog.Text = global::ElectronicObserver.Window.Dialog.ConfigRes.Log_SaveBattleLog;
-			this.ToolTipInfo.SetToolTip(this.Log_SaveBattleLog, "Enable to save battle logs.\r\nBattle logs are saved in the BattleLog folder." );
+			this.Log_SaveBattleLog.Text = "Save battle history";
+			this.ToolTipInfo.SetToolTip(this.Log_SaveBattleLog, "Save battle history as text file.\r\nBattle histories are saved in the BattleLog subfolder." );
 			this.Log_SaveBattleLog.UseVisualStyleBackColor = true;
 			//
 			// Log_ShowSpoiler
@@ -845,8 +845,8 @@
 			this.Log_ShowSpoiler.Name = "Log_ShowSpoiler";
 			this.Log_ShowSpoiler.Size = new System.Drawing.Size(115, 19);
 			this.Log_ShowSpoiler.TabIndex = 3;
-			this.Log_ShowSpoiler.Text = global::ElectronicObserver.Window.Dialog.ConfigRes.ShowSpoilers;
-			this.ToolTipInfo.SetToolTip(this.Log_ShowSpoiler, global::ElectronicObserver.Window.Dialog.ConfigRes.ShowSpoilersHint);
+			this.Log_ShowSpoiler.Text = "Show spoilers";
+			this.ToolTipInfo.SetToolTip(this.Log_ShowSpoiler, "Show developed items and dropped ships in the log.\r\nDisable this setting to hide the information.");
 			this.Log_ShowSpoiler.UseVisualStyleBackColor = true;
 			//
 			// label12
@@ -916,7 +916,7 @@
 			this.Log_LogLevel.Size = new System.Drawing.Size(80, 23);
 			this.Log_LogLevel.TabIndex = 2;
 			this.Log_LogLevel.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			this.ToolTipInfo.SetToolTip(this.Log_LogLevel, "小さい値では詳細なログを、大きな値では重要なログのみを表示します。\r\n1: デバッグレベル\r\n2: 通常(推奨)\r\n3: エラーのみ");
+			this.ToolTipInfo.SetToolTip(this.Log_LogLevel, "Specify logging level for the program. Smaller number means more verbose logging.\r\n1: Debug\r\n2: Normal\r\n3: Error-only");
 			//
 			// label6
 			//
@@ -988,7 +988,7 @@
 			this.Control_UseSystemVolume.Size = new System.Drawing.Size(336, 19);
 			this.Control_UseSystemVolume.TabIndex = 6;
 			this.Control_UseSystemVolume.Text = "Use system volume settings";
-			this.ToolTipInfo.SetToolTip(this.Control_UseSystemVolume, "This option will disable custom volume setting in notification sound and BGM.\r\nYou will need to use windows volume mixer to change the volume setting." );
+			this.ToolTipInfo.SetToolTip(this.Control_UseSystemVolume, "Disable individual volume setting in notification sound and BGM.\r\nYou will need to use windows volume mixer to adjust the volume setting." );
 			this.Control_UseSystemVolume.UseVisualStyleBackColor = true;
 			//
 			// Control_RecordAutoSaving
@@ -1090,7 +1090,7 @@
 			this.Debug_LoadAPIListOnLoad.Size = new System.Drawing.Size(163, 19);
 			this.Debug_LoadAPIListOnLoad.TabIndex = 0;
 			this.Debug_LoadAPIListOnLoad.Text = "Load API list on startup";
-			this.ToolTipInfo.SetToolTip(this.Debug_LoadAPIListOnLoad, "起動時に、下記テキストボックスで指定されるAPIリストを自動的に読み込みます。\r\nAPIリストの書式や用法はオンラインヘルプを参照してください。");
+			this.ToolTipInfo.SetToolTip(this.Debug_LoadAPIListOnLoad, "Load the following API list at startup.\r\nRefer to the online help on format and usage of API list.");
 			this.Debug_LoadAPIListOnLoad.UseVisualStyleBackColor = true;
 			//
 			// Debug_APIListPathSearch
@@ -1112,7 +1112,7 @@
 			this.Debug_EnableDebugMenu.Size = new System.Drawing.Size(162, 19);
 			this.Debug_EnableDebugMenu.TabIndex = 0;
 			this.Debug_EnableDebugMenu.Text = "Show debug menu";
-			this.ToolTipInfo.SetToolTip(this.Debug_EnableDebugMenu, "Show the debug menu in the menu bar.\r\nUse at your own risk." );
+			this.ToolTipInfo.SetToolTip(this.Debug_EnableDebugMenu, "Show debug menu in the menu bar.\r\nUse it at your own risk." );
 			this.Debug_EnableDebugMenu.UseVisualStyleBackColor = true;
 			this.Debug_EnableDebugMenu.CheckedChanged += new System.EventHandler(this.Debug_EnableDebugMenu_CheckedChanged);
 			//
@@ -1145,8 +1145,7 @@
 			this.Life_CanCloseFloatWindowInLock.Size = new System.Drawing.Size(197, 19);
 			this.Life_CanCloseFloatWindowInLock.TabIndex = 10;
 			this.Life_CanCloseFloatWindowInLock.Text = global::ElectronicObserver.Window.Dialog.ConfigRes.Life_CanCloseFloatWindowInLock;
-			this.ToolTipInfo.SetToolTip(this.Life_CanCloseFloatWindowInLock, "上記「レイアウトをロックする」が有効な時でも、\r\nフロートウィンドウ(本体とは分離したウィンドウ)を閉じられるようにするかを指定します。\r\nよくウィンドウを一時的" +
-        "に開く方は有効にすると便利です。");
+			this.ToolTipInfo.SetToolTip(this.Life_CanCloseFloatWindowInLock, "Allow floating window to be closed regardless of lock layout setting.");
 			this.Life_CanCloseFloatWindowInLock.UseVisualStyleBackColor = true;
 			//
 			// Life_LockLayout
@@ -1156,8 +1155,8 @@
 			this.Life_LockLayout.Name = "Life_LockLayout";
 			this.Life_LockLayout.Size = new System.Drawing.Size(122, 19);
 			this.Life_LockLayout.TabIndex = 9;
-			this.Life_LockLayout.Text = global::ElectronicObserver.Window.Dialog.ConfigRes.Life_LockLayout;
-			this.ToolTipInfo.SetToolTip(this.Life_LockLayout, global::ElectronicObserver.Window.Dialog.ConfigRes.Life_LockLayout_Tooltip);
+			this.Life_LockLayout.Text = "Lock current layout";
+			this.ToolTipInfo.SetToolTip(this.Life_LockLayout, "Prevent changes to tab layout and window size.");
 			this.Life_LockLayout.UseVisualStyleBackColor = true;
 			//
 			// label24
@@ -1167,14 +1166,14 @@
 			this.label24.Name = "label24";
 			this.label24.Size = new System.Drawing.Size(67, 15);
 			this.label24.TabIndex = 8;
-			this.label24.Text = "Timer mode:";
+			this.label24.Text = "Clock mode:";
 			//
 			// Life_ClockFormat
 			//
 			this.Life_ClockFormat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.Life_ClockFormat.FormattingEnabled = true;
 			this.Life_ClockFormat.Items.AddRange(new object[] {
-            "Local time",
+            "Server time",
             "PVP reset",
             "Quest reset"});
 			this.Life_ClockFormat.Location = new System.Drawing.Point(101, 135);
@@ -1330,9 +1329,9 @@
 			this.FormFleet_FleetStateDisplayMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.FormFleet_FleetStateDisplayMode.FormattingEnabled = true;
 			this.FormFleet_FleetStateDisplayMode.Items.AddRange(new object[] {
-			"Show single status",
+			"Single status",
 			"Collapse all",
-			"Collapse on multiple",
+			"Collapse multiple",
 			"Expand all"});
 			this.FormFleet_FleetStateDisplayMode.Location = new System.Drawing.Point(115, 30);
 			this.FormFleet_FleetStateDisplayMode.Name = "FormFleet_FleetStateDisplayMode";
@@ -1346,8 +1345,8 @@
 			this.FormFleet_EmphasizesSubFleetInPort.Name = "FormFleet_EmphasizesSubFleetInPort";
 			this.FormFleet_EmphasizesSubFleetInPort.Size = new System.Drawing.Size(179, 19);
 			this.FormFleet_EmphasizesSubFleetInPort.TabIndex = 20;
-			this.FormFleet_EmphasizesSubFleetInPort.Text = "Highlight idle fleet";
-			this.ToolTipInfo.SetToolTip(this.FormFleet_EmphasizesSubFleetInPort, "Highlight idle expedition fleet." );
+			this.FormFleet_EmphasizesSubFleetInPort.Text = "Highlight idle exped fleet";
+			this.ToolTipInfo.SetToolTip(this.FormFleet_EmphasizesSubFleetInPort, "Highlight expedition fleet idling on homeport." );
 			this.FormFleet_EmphasizesSubFleetInPort.UseVisualStyleBackColor = true;
 			//
 			// FormFleet_BlinkAtDamaged
@@ -1369,7 +1368,7 @@
 			this.FormFleet_ReflectAnchorageRepairHealing.Size = new System.Drawing.Size(193, 19);
 			this.FormFleet_ReflectAnchorageRepairHealing.TabIndex = 16;
 			this.FormFleet_ReflectAnchorageRepairHealing.Text = "Show HP recovery";
-			this.ToolTipInfo.SetToolTip(this.FormFleet_ReflectAnchorageRepairHealing, "Show the HP gain from anchorage repair in the HP bar." );
+			this.ToolTipInfo.SetToolTip(this.FormFleet_ReflectAnchorageRepairHealing, "Show recovered HP in the HP bar from anchorage repair.");
 			this.FormFleet_ReflectAnchorageRepairHealing.UseVisualStyleBackColor = true;
 			//
 			// FormFleet_ShowAirSuperiorityRange
@@ -1380,7 +1379,7 @@
 			this.FormFleet_ShowAirSuperiorityRange.Size = new System.Drawing.Size(150, 19);
 			this.FormFleet_ShowAirSuperiorityRange.TabIndex = 14;
 			this.FormFleet_ShowAirSuperiorityRange.Text = "Show AS value range";
-			this.ToolTipInfo.SetToolTip(this.FormFleet_ShowAirSuperiorityRange, "Show the fleet AS value range based on minimum and maximum plane proficiency.\r\nThe default setting is to use the lowest plane proficiency for AS calculation." );
+			this.ToolTipInfo.SetToolTip(this.FormFleet_ShowAirSuperiorityRange, "Show fleet AS value range based on minimum and maximum plane proficiency.\r\nThe default setting is to use the lowest plane proficiency for AS calculation." );
 			this.FormFleet_ShowAirSuperiorityRange.UseVisualStyleBackColor = true;
 			//
 			// FormFleet_ShowAircraftLevelByNumber
@@ -1420,7 +1419,7 @@
 			this.FormFleet_FixedShipNameWidth.Size = new System.Drawing.Size(60, 23);
 			this.FormFleet_FixedShipNameWidth.TabIndex = 9;
 			this.FormFleet_FixedShipNameWidth.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			this.ToolTipInfo.SetToolTip(this.FormFleet_FixedShipNameWidth, "艦名の横幅固定が有効なときのサイズを指定します。");
+			this.ToolTipInfo.SetToolTip(this.FormFleet_FixedShipNameWidth, "Specify width of ship name column.");
 			this.FormFleet_FixedShipNameWidth.Value = new decimal(new int[] {
             1,
             0,
@@ -1435,7 +1434,7 @@
 			this.FormFleet_ShowConditionIcon.Size = new System.Drawing.Size(139, 19);
 			this.FormFleet_ShowConditionIcon.TabIndex = 13;
 			this.FormFleet_ShowConditionIcon.Text = "Show fatigue icon";
-			this.ToolTipInfo.SetToolTip(this.FormFleet_ShowConditionIcon, "疲労度のアイコンを表示するかを指定します。\r\n表示しない場合、背景色で区別されます。");
+			this.ToolTipInfo.SetToolTip(this.FormFleet_ShowConditionIcon, "Show fatigue level icon in the fleet window.\r\nIf disabled, ship fatigue level is denoted by background color.");
 			this.FormFleet_ShowConditionIcon.UseVisualStyleBackColor = true;
 			//
 			// FormFleet_EquipmentLevelVisibility
@@ -1454,8 +1453,7 @@
 			this.FormFleet_EquipmentLevelVisibility.Name = "FormFleet_EquipmentLevelVisibility";
 			this.FormFleet_EquipmentLevelVisibility.Size = new System.Drawing.Size(160, 23);
 			this.FormFleet_EquipmentLevelVisibility.TabIndex = 7;
-			this.ToolTipInfo.SetToolTip(this.FormFleet_EquipmentLevelVisibility, "装備の改修レベルや艦載機熟練度の表示を指定します。\r\n「非表示」の場合は表示しません。\r\n「～優先」の場合、どちらもLv.1以上の時にそれぞれを優先して表示します" +
-        "。\r\n「両方表示」の場合は常にどちらも表示します。");
+			this.ToolTipInfo.SetToolTip(this.FormFleet_EquipmentLevelVisibility, "Specify the display mode of improvement and proficiency level of aircraft.\r\n If set to prioritize, it will prioritize the specified item over another.\r\n If set to both, both item will be displayed.");
 			//
 			// label28
 			//
@@ -1516,7 +1514,7 @@
 			this.FormFleet_ShowNextExp.Size = new System.Drawing.Size(112, 19);
 			this.FormFleet_ShowNextExp.TabIndex = 12;
 			this.FormFleet_ShowNextExp.Text = global::ElectronicObserver.Window.Dialog.ConfigRes.ShowNextXP;
-			this.ToolTipInfo.SetToolTip(this.FormFleet_ShowNextExp, global::ElectronicObserver.Window.Dialog.ConfigRes.NextXPHint);
+			this.ToolTipInfo.SetToolTip(this.FormFleet_ShowNextExp, "Show the amount of experience needed to level up.\r\nDisable this setting to save horizontal space.");
 			this.FormFleet_ShowNextExp.UseVisualStyleBackColor = true;
 			//
 			// FormFleet_ShortenHPBar
@@ -1538,7 +1536,7 @@
 			this.FormFleet_FixShipNameWidth.Size = new System.Drawing.Size(136, 19);
 			this.FormFleet_FixShipNameWidth.TabIndex = 8;
 			this.FormFleet_FixShipNameWidth.Text = "Fixed name width";
-			this.ToolTipInfo.SetToolTip(this.FormFleet_FixShipNameWidth, global::ElectronicObserver.Window.Dialog.ConfigRes.FixWidthHint);
+			this.ToolTipInfo.SetToolTip(this.FormFleet_FixShipNameWidth, "Specify a fixed width of ship name column.\r\nIt may decrease horizontal space requirement but may cut off long ship names.");
 			this.FormFleet_FixShipNameWidth.UseVisualStyleBackColor = true;
 			this.FormFleet_FixShipNameWidth.CheckedChanged += new System.EventHandler(this.FormFleet_FixShipNameWidth_CheckedChanged);
 			//
@@ -1550,7 +1548,7 @@
 			this.FormFleet_IsScrollable.Size = new System.Drawing.Size(144, 19);
 			this.FormFleet_IsScrollable.TabIndex = 5;
 			this.FormFleet_IsScrollable.Text = "Show scrollbar";
-			this.ToolTipInfo.SetToolTip(this.FormFleet_IsScrollable, "Show the scrollbar when the content does not fit." );
+			this.ToolTipInfo.SetToolTip(this.FormFleet_IsScrollable, "Show scrollbar if the content does not fit." );
 			this.FormFleet_IsScrollable.UseVisualStyleBackColor = true;
 			//
 			// FormFleet_SearchingAbilityMethod
@@ -1613,7 +1611,7 @@
 			this.label38.Name = "label38";
 			this.label38.Size = new System.Drawing.Size(101, 15);
 			this.label38.TabIndex = 12;
-			this.label38.Text = "Name Width:";
+			this.label38.Text = "Name width:";
 			//
 			// label37
 			//
@@ -1641,7 +1639,7 @@
 			this.FormArsenal_MaxShipNameWidth.Size = new System.Drawing.Size(60, 23);
 			this.FormArsenal_MaxShipNameWidth.TabIndex = 10;
 			this.FormArsenal_MaxShipNameWidth.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			this.ToolTipInfo.SetToolTip(this.FormArsenal_MaxShipNameWidth, "艦名の表示幅の最大値を指定します。");
+			this.ToolTipInfo.SetToolTip(this.FormArsenal_MaxShipNameWidth, "Specify maximum width of ship name column.");
 			this.FormArsenal_MaxShipNameWidth.Value = new decimal(new int[] {
             1,
             0,
@@ -1689,7 +1687,7 @@
 			this.label39.Name = "label39";
 			this.label39.Size = new System.Drawing.Size(101, 15);
 			this.label39.TabIndex = 12;
-			this.label39.Text = "Name Width:";
+			this.label39.Text = "Name width:";
 			//
 			// label36
 			//
@@ -1717,7 +1715,7 @@
 			this.FormDock_MaxShipNameWidth.Size = new System.Drawing.Size(60, 23);
 			this.FormDock_MaxShipNameWidth.TabIndex = 10;
 			this.FormDock_MaxShipNameWidth.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			this.ToolTipInfo.SetToolTip(this.FormDock_MaxShipNameWidth, "艦名の表示幅の最大値を指定します。");
+			this.ToolTipInfo.SetToolTip(this.FormDock_MaxShipNameWidth, "Specify maximum width of ship name column.");
 			this.FormDock_MaxShipNameWidth.Value = new decimal(new int[] {
             1,
             0,
@@ -1848,7 +1846,7 @@
 			this.FormCompass_MaxShipNameWidth.Size = new System.Drawing.Size(60, 23);
 			this.FormCompass_MaxShipNameWidth.TabIndex = 13;
 			this.FormCompass_MaxShipNameWidth.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			this.ToolTipInfo.SetToolTip(this.FormCompass_MaxShipNameWidth, "艦名の表示幅の最大値を指定します。");
+			this.ToolTipInfo.SetToolTip(this.FormCompass_MaxShipNameWidth, "Specify maximum width of ship name column.");
 			this.FormCompass_MaxShipNameWidth.Value = new decimal(new int[] {
             1,
             0,
@@ -1863,7 +1861,7 @@
 			this.FormCompass_IsScrollable.Size = new System.Drawing.Size(144, 19);
 			this.FormCompass_IsScrollable.TabIndex = 6;
 			this.FormCompass_IsScrollable.Text = "Show scrollbar";
-			this.ToolTipInfo.SetToolTip(this.FormCompass_IsScrollable, "Show the scrollbar when the content does not fit." );
+			this.ToolTipInfo.SetToolTip(this.FormCompass_IsScrollable, "Show scrollbar if the content does not fit." );
 			this.FormCompass_IsScrollable.UseVisualStyleBackColor = true;
 			//
 			// FormCompass_CandidateDisplayCount
@@ -2098,9 +2096,8 @@
 			this.FormBattle_Display7thAsSingleLine.Name = "FormBattle_Display7thAsSingleLine";
 			this.FormBattle_Display7thAsSingleLine.Size = new System.Drawing.Size(151, 19);
 			this.FormBattle_Display7thAsSingleLine.TabIndex = 10;
-			this.FormBattle_Display7thAsSingleLine.Text = "7番艦を同じ行に表示する";
-			this.ToolTipInfo.SetToolTip(this.FormBattle_Display7thAsSingleLine, "遊撃部隊(7隻編成)での出撃時、7隻目の情報をどこに表示するか指定します。\r\n有効時は6隻目の下に、無効時は随伴艦隊1隻目と同じ位置に表示されます。\r\n無効にする" +
-        "と若干スペースを節約できます。");
+			this.FormBattle_Display7thAsSingleLine.Text = "Show 7th ship in the same line";
+			this.ToolTipInfo.SetToolTip(this.FormBattle_Display7thAsSingleLine, "Specify placement of the 7th ship in Striking Force fleet mode.\r\n If enabled, it will be displayed under the 6th ship.\r\n If disabled, it will be displayed as flagship of the escort fleet.\r\n Disabling the setting may save vertical space.");
 			this.FormBattle_Display7thAsSingleLine.UseVisualStyleBackColor = true;
 			//
 			// FormBattle_ShowShipTypeInHPBar
@@ -2111,7 +2108,7 @@
 			this.FormBattle_ShowShipTypeInHPBar.Size = new System.Drawing.Size(171, 19);
 			this.FormBattle_ShowShipTypeInHPBar.TabIndex = 9;
 			this.FormBattle_ShowShipTypeInHPBar.Text = "Show ship type on HP bar";
-			this.ToolTipInfo.SetToolTip(this.FormBattle_ShowShipTypeInHPBar, "Enabling this option will replace the HP title text\r\nwith type of the ship (i.e: DD)." );
+			this.ToolTipInfo.SetToolTip(this.FormBattle_ShowShipTypeInHPBar, "Show ship type (e.g: DD) instead of HP title text.");
 			this.FormBattle_ShowShipTypeInHPBar.UseVisualStyleBackColor = true;
 			//
 			// FormBattle_ShowHPBar
@@ -2122,7 +2119,7 @@
 			this.FormBattle_ShowHPBar.Size = new System.Drawing.Size(114, 19);
 			this.FormBattle_ShowHPBar.TabIndex = 8;
 			this.FormBattle_ShowHPBar.Text = "Show HP bar";
-			this.ToolTipInfo.SetToolTip(this.FormBattle_ShowHPBar, "Disabling this option will remove the HP bar\r\nand reducing vertical space needed." );
+			this.ToolTipInfo.SetToolTip(this.FormBattle_ShowHPBar, "Disabling this option will remove the HP bar and save vertical space." );
 			this.FormBattle_ShowHPBar.UseVisualStyleBackColor = true;
 			//
 			// FormBattle_HideDuringBattle
@@ -2145,7 +2142,7 @@
 			this.FormBattle_IsScrollable.Size = new System.Drawing.Size(148, 19);
 			this.FormBattle_IsScrollable.TabIndex = 6;
 			this.FormBattle_IsScrollable.Text = "Show scrollbar";
-			this.ToolTipInfo.SetToolTip(this.FormBattle_IsScrollable, "Show the scrollbar when the content does not fit." );
+			this.ToolTipInfo.SetToolTip(this.FormBattle_IsScrollable, "Show scrollbar if the content does not fit." );
 			this.FormBattle_IsScrollable.UseVisualStyleBackColor = true;
 			//
 			// tabPage12
@@ -2179,7 +2176,7 @@
 			this.FormBrowser_IsDMMreloadDialogDestroyable.Size = new System.Drawing.Size(254, 19);
 			this.FormBrowser_IsDMMreloadDialogDestroyable.TabIndex = 12;
 			this.FormBrowser_IsDMMreloadDialogDestroyable.Text = "Hide DMM page reload dialog";
-			this.ToolTipInfo.SetToolTip(this.FormBrowser_IsDMMreloadDialogDestroyable, "Specify whether to hide the DMM page reload dialog." );
+			this.ToolTipInfo.SetToolTip(this.FormBrowser_IsDMMreloadDialogDestroyable, "Hide DMM page reload pop-up dialog from appearing in browser window." );
 			this.FormBrowser_IsDMMreloadDialogDestroyable.UseVisualStyleBackColor = true;
 			//
 			// FormBrowser_ToolMenuDockStyle
@@ -2289,8 +2286,7 @@
 			this.FormBrowser_ScreenShotFormat_AvoidTwitterDeterioration.Size = new System.Drawing.Size(182, 19);
 			this.FormBrowser_ScreenShotFormat_AvoidTwitterDeterioration.TabIndex = 13;
 			this.FormBrowser_ScreenShotFormat_AvoidTwitterDeterioration.Text = "Avoid compression on Twitter";
-			this.ToolTipInfo.SetToolTip(this.FormBrowser_ScreenShotFormat_AvoidTwitterDeterioration, "Twitter に PNG 形式の画像をアップロードすると、自動的に JPEG 形式に変換され画質が劣化します。\\r\\nそれを回避するための情報を埋め込むかを指定" +
-        "します。");
+			this.ToolTipInfo.SetToolTip(this.FormBrowser_ScreenShotFormat_AvoidTwitterDeterioration, "Apply modification to images in order to\r\nprevent Twitter from automatically converting them to JPEG.");
 			this.FormBrowser_ScreenShotFormat_AvoidTwitterDeterioration.UseVisualStyleBackColor = true;
 			//
 			// label18
@@ -2438,7 +2434,7 @@
 			this.groupBox4.Size = new System.Drawing.Size(200, 80);
 			this.groupBox4.TabIndex = 1;
 			this.groupBox4.TabStop = false;
-			this.groupBox4.Text = "Flash品質設定";
+			this.groupBox4.Text = "Flash quality settings";
 			this.groupBox4.Visible = false;
 			//
 			// label21
@@ -2519,7 +2515,7 @@
 			this.FormBrowser_BrowserVersion.Size = new System.Drawing.Size(60, 23);
 			this.FormBrowser_BrowserVersion.TabIndex = 1;
 			this.FormBrowser_BrowserVersion.Text = "7000";
-			this.ToolTipInfo.SetToolTip(this.FormBrowser_BrowserVersion, "Specify the version of the internal browser. 7000 for IE7, 8000 for IE8, 11000 for IE11.\r\nDepending on the version, it may change the DMM page behavior.");
+			this.ToolTipInfo.SetToolTip(this.FormBrowser_BrowserVersion, "Specify version of the embedded browser. 7000 for IE7, 8000 for IE8, 11000 for IE11.\r\nDepending on the version, it may change the DMM page behavior.");
 			//
 			// FormBrowser_DeleteRegistry
 			//
@@ -2552,7 +2548,7 @@
 			this.FormBrowser_ApplyRegistry.Size = new System.Drawing.Size(50, 23);
 			this.FormBrowser_ApplyRegistry.TabIndex = 3;
 			this.FormBrowser_ApplyRegistry.Text = global::ElectronicObserver.Window.Dialog.ConfigRes.ApplyRegistry;
-			this.ToolTipInfo.SetToolTip(this.FormBrowser_ApplyRegistry, "レジストリに対して設定を適用します。\r\n下の[OK]ボタンでは反映されないのでご注意ください。");
+			this.ToolTipInfo.SetToolTip(this.FormBrowser_ApplyRegistry, "Apply settings to registry.");
 			this.FormBrowser_ApplyRegistry.UseVisualStyleBackColor = true;
 			this.FormBrowser_ApplyRegistry.Click += new System.EventHandler(this.FormBrowser_ApplyRegistry_Click);
 			//
@@ -2584,7 +2580,7 @@
 			this.FormBaseAirCorps_ShowEventMapOnly.Size = new System.Drawing.Size(184, 19);
 			this.FormBaseAirCorps_ShowEventMapOnly.TabIndex = 0;
 			this.FormBaseAirCorps_ShowEventMapOnly.Text = "Hide non-event LBAS";
-			this.ToolTipInfo.SetToolTip(this.FormBaseAirCorps_ShowEventMapOnly, "Enabling this option will hide LBAS stationed\r\nin non-event map during the event period." );
+			this.ToolTipInfo.SetToolTip(this.FormBaseAirCorps_ShowEventMapOnly, "Hide LBAS stationed in non-event map during event period." );
 			this.FormBaseAirCorps_ShowEventMapOnly.UseVisualStyleBackColor = true;
 			//
 			// SubWindow_Json
@@ -2621,8 +2617,8 @@
 			this.FormJson_AutoUpdate.Name = "FormJson_AutoUpdate";
 			this.FormJson_AutoUpdate.Size = new System.Drawing.Size(93, 19);
 			this.FormJson_AutoUpdate.TabIndex = 0;
-			this.FormJson_AutoUpdate.Text = global::ElectronicObserver.Window.Dialog.ConfigRes.Json_AutoUpdate;
-			this.ToolTipInfo.SetToolTip(this.FormJson_AutoUpdate, global::ElectronicObserver.Window.Dialog.ConfigRes.Json_AutoUpdateHint);
+			this.FormJson_AutoUpdate.Text = "Refresh automatically";
+			this.ToolTipInfo.SetToolTip(this.FormJson_AutoUpdate, "Automatically update the displayed API data.\r\nMay increase processing load.");
 			this.FormJson_AutoUpdate.UseVisualStyleBackColor = true;
 			//
 			// label32
@@ -2632,7 +2628,7 @@
 			this.label32.Name = "label32";
 			this.label32.Size = new System.Drawing.Size(144, 44);
 			this.label32.TabIndex = 5;
-			this.label32.Text = "※自動更新を有効にすると、\r\n　重くなる可能性があります";
+			this.label32.Text = "※Enabling automatic update may increase processing load";
 			this.label32.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			//
 			// FormJson_UpdatesTree
@@ -2642,10 +2638,8 @@
 			this.FormJson_UpdatesTree.Name = "FormJson_UpdatesTree";
 			this.FormJson_UpdatesTree.Size = new System.Drawing.Size(159, 19);
 			this.FormJson_UpdatesTree.TabIndex = 1;
-			this.FormJson_UpdatesTree.Text = "Also update JSON Tree";
-			this.ToolTipInfo.SetToolTip(this.FormJson_UpdatesTree, "Whether to automatically update the Tree display when sending/receiving API data." +
-        "\r\nIt is updated only when the automatic refresh is enabled.\r\nIt may decrease per" +
-        "formance.");
+			this.FormJson_UpdatesTree.Text = "Also update JSON tree view";
+			this.ToolTipInfo.SetToolTip(this.FormJson_UpdatesTree, "Automatically update tree content when sending/receiving API data.\r\nIt only works if automatic refresh is enabled. May increase processing load.");
 			this.FormJson_UpdatesTree.UseVisualStyleBackColor = true;
 			//
 			// FormJson_AutoUpdateFilter
@@ -2885,8 +2879,8 @@
 			this.BGMPlayer_SyncBrowserMute.Name = "BGMPlayer_SyncBrowserMute";
 			this.BGMPlayer_SyncBrowserMute.Size = new System.Drawing.Size(92, 19);
 			this.BGMPlayer_SyncBrowserMute.TabIndex = 4;
-			this.BGMPlayer_SyncBrowserMute.Text = global::ElectronicObserver.Window.Dialog.ConfigRes.BGMPlayer_SyncBrowserMute;
-			this.ToolTipInfo.SetToolTip(this.BGMPlayer_SyncBrowserMute, "ブラウザのミュートと連動させるかを指定します。");
+			this.BGMPlayer_SyncBrowserMute.Text = "Mute sync";
+			this.ToolTipInfo.SetToolTip(this.BGMPlayer_SyncBrowserMute, "Syncronize mute setting with browser window.");
 			this.BGMPlayer_SyncBrowserMute.UseVisualStyleBackColor = true;
 			//
 			// BGMPlayer_SetVolumeAll
@@ -3032,7 +3026,7 @@
 			// APIListBrowser
 			//
 			this.APIListBrowser.Filter = "Text File|*.txt|File|*";
-			this.APIListBrowser.Title = "API リストを開く";
+			this.APIListBrowser.Title = "Open API List File";
 			//
 			// Log_PlayTime
 			//

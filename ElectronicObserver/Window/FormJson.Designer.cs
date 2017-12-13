@@ -1,4 +1,6 @@
-﻿namespace ElectronicObserver.Window
+﻿using System.Drawing;
+
+namespace ElectronicObserver.Window
 {
 	partial class FormJson
 	{
@@ -142,14 +144,14 @@
 			//
 			this.TreeContextMenu_OutputCSV.Name = "TreeContextMenu_OutputCSV";
 			this.TreeContextMenu_OutputCSV.Size = new System.Drawing.Size(235, 22);
-			this.TreeContextMenu_OutputCSV.Text = "Export this node to CSV...";
+			this.TreeContextMenu_OutputCSV.Text = "Export This Node to CSV...";
 			this.TreeContextMenu_OutputCSV.Click += new System.EventHandler(this.TreeContextMenu_OutputCSV_Click);
 			//
 			// TreeContextMenu_CopyToClipboard
 			//
 			this.TreeContextMenu_CopyToClipboard.Name = "TreeContextMenu_CopyToClipboard";
 			this.TreeContextMenu_CopyToClipboard.Size = new System.Drawing.Size(235, 22);
-			this.TreeContextMenu_CopyToClipboard.Text = "このノードをクリップボードへコピー";
+			this.TreeContextMenu_CopyToClipboard.Text = "Copy This Node to Clipboard";
 			this.TreeContextMenu_CopyToClipboard.Click += new System.EventHandler(this.TreeContextMenu_CopyToClipboard_Click);
 			//
 			// tabPage2
@@ -200,7 +202,8 @@
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(249, 15);
 			this.label3.TabIndex = 5;
-			this.label3.Text = "◆ D&D で保存した json ファイル を読み込めます";
+			this.label3.Text = "◆ Load saved JSON file by drag and dropping file to this window";
+			this.label3.ForeColor = SystemColors.ControlText;
 			this.label3.UseMnemonic = false;
 			//
 			// label2
@@ -210,7 +213,8 @@
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(144, 44);
 			this.label2.TabIndex = 4;
-			this.label2.Text = "※自動更新を有効にすると、\r\n　重くなる可能性があります";
+			this.label2.Text = "";
+			this.label2.ForeColor = SystemColors.ControlText;
 			this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			//
 			// UpdatesTree
@@ -220,7 +224,8 @@
 			this.UpdatesTree.Name = "UpdatesTree";
 			this.UpdatesTree.Size = new System.Drawing.Size(104, 19);
 			this.UpdatesTree.TabIndex = 3;
-			this.UpdatesTree.Text = "Treeも更新する";
+			this.UpdatesTree.Text = "Also update JSON tree view";
+			this.UpdatesTree.ForeColor = SystemColors.ControlText;
 			this.UpdatesTree.UseVisualStyleBackColor = true;
 			this.UpdatesTree.CheckedChanged += new System.EventHandler(this.UpdatesTree_CheckedChanged);
 			//
@@ -231,7 +236,8 @@
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(52, 15);
 			this.label1.TabIndex = 2;
-			this.label1.Text = "フィルタ：";
+			this.label1.Text = "Filter:";
+			this.label1.ForeColor = SystemColors.ControlText;
 			//
 			// AutoUpdateFilter
 			//
@@ -250,20 +256,21 @@
 			this.AutoUpdate.Name = "AutoUpdate";
 			this.AutoUpdate.Size = new System.Drawing.Size(93, 19);
 			this.AutoUpdate.TabIndex = 0;
-			this.AutoUpdate.Text = "自動更新する";
+			this.AutoUpdate.Text = "Refresh automatically";
+			this.AutoUpdate.ForeColor = SystemColors.ControlText;
 			this.AutoUpdate.UseVisualStyleBackColor = true;
 			this.AutoUpdate.CheckedChanged += new System.EventHandler(this.AutoUpdate_CheckedChanged);
 			//
 			// CSVSaver
 			//
 			this.CSVSaver.Filter = "CSV|*.csv|File|*";
-			this.CSVSaver.Title = "ノードを CSV に出力";
+			this.CSVSaver.Title = "Export As CSV File";
 			//
 			// TreeContextMenu_CopyAsDocument
 			//
 			this.TreeContextMenu_CopyAsDocument.Name = "TreeContextMenu_CopyAsDocument";
 			this.TreeContextMenu_CopyAsDocument.Size = new System.Drawing.Size(235, 22);
-			this.TreeContextMenu_CopyAsDocument.Text = "このノードをドキュメント化してコピー";
+			this.TreeContextMenu_CopyAsDocument.Text = "Copy This Node as Documentation Template";
 			this.TreeContextMenu_CopyAsDocument.Click += new System.EventHandler(this.TreeContextMenu_CopyAsDocument_Click);
 			//
 			// FormJson

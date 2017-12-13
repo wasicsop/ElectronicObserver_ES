@@ -249,10 +249,6 @@ Please use caution before changing.</value>
   <data name="FitHint" xml:space="preserve">
     <value>Zooms game screen to fit window size.</value>
   </data>
-  <data name="FixWidthHint" xml:space="preserve">
-    <value>Fixes the width of ship names, saving space.
-Longer names may be cut off.</value>
-  </data>
   <data name="FlashModeHint" xml:space="preserve">
     <value>Set Flash mode.
 Default is opaque.
@@ -310,10 +306,6 @@ May result in KanColle screen freezing under specific situation.</value>
   <data name="New25" xml:space="preserve">
     <value>New 2-5</value>
   </data>
-  <data name="NextXPHint" xml:space="preserve">
-    <value>Show the amount of XP required to level up.
-Disabling may save space.</value>
-  </data>
   <data name="Notification" xml:space="preserve">
     <value>Notification</value>
   </data>
@@ -331,9 +323,6 @@ Disabling may save space.</value>
   </data>
   <data name="Port" xml:space="preserve">
     <value>Port</value>
-  </data>
-  <data name="ProxyPort" xml:space="preserve">
-    <value>Specify the port to be used in the browser and other tools.</value>
   </data>
   <data name="ProxyScriptSaved" xml:space="preserve">
     <value>The proxy script has been created and copied to the clipboard.
@@ -404,13 +393,6 @@ Reports are by default saved in the ErrorReport subfolder.</value>
   <data name="ShowNextXP" xml:space="preserve">
     <value>Show next level exp</value>
   </data>
-  <data name="ShowSpoilers" xml:space="preserve">
-    <value>Show spoilers</value>
-  </data>
-  <data name="ShowSpoilersHint" xml:space="preserve">
-    <value>Set whether developed items and dropped ships are displayed on the log.
-Those worried of knowing in advance should use this.</value>
-  </data>
   <data name="ShowStatusbarHint" xml:space="preserve">
     <value>Displays data in the status bar (including ship numbers, etc.)
 Can increase the number of status bar messages.</value>
@@ -436,9 +418,6 @@ Can increase the number of status bar messages.</value>
   <data name="Unimplemented" xml:space="preserve">
     <value>＊Unimplemented＊</value>
   </data>
-  <data name="UseProxyHint" xml:space="preserve">
-    <value>Use to cooperate with other proxy-using applications.</value>
-  </data>
   <data name="Weekly" xml:space="preserve">
     <value>Weekly</value>
   </data>
@@ -455,7 +434,7 @@ Can increase the number of status bar messages.</value>
     <value>Access key:</value>
   </data>
   <data name="BlinkAtMaximum" xml:space="preserve">
-    <value>Blink ship/equipment slots when full.</value>
+    <value>Blink ship/equipment slots when full</value>
   </data>
   <data name="Database" xml:space="preserve">
     <value>KCDB</value>
@@ -518,12 +497,6 @@ More details, as well as an access key, can be found on the site below. (opens y
   </data>
   <data name="Life_CanCloseFloatWindowInLock" xml:space="preserve">
     <value>Allow tab to be closed when layout is locked</value>
-  </data>
-  <data name="Life_LockLayout" xml:space="preserve">
-    <value>Lock current layout</value>
-  </data>
-  <data name="Life_LockLayout_Tooltip" xml:space="preserve">
-    <value>Enable to prevent changes to tab layout and window size.</value>
   </data>
   <data name="Scene" xml:space="preserve">
     <value>Scene</value>
@@ -621,24 +594,17 @@ More details, as well as an access key, can be found on the site below. (opens y
   <data name="HiddenJSON" xml:space="preserve">
     <value>(Enable Debug menu to view the settings)</value>
   </data>
-  <data name="Json_AutoUpdate" xml:space="preserve">
-    <value>Refresh automatically</value>
-  </data>
-  <data name="Json_AutoUpdateHint" xml:space="preserve">
-    <value>Automatically update the displayed JSON data on API communication.
-Might be heavy.</value>
-  </data>
   <data name="ProgressAutoSaving" xml:space="preserve">
     <value>Save quest progress:</value>
   </data>
   <data name="ProgressAutoSaving_Daily" xml:space="preserve">
-    <value>Every day</value>
+    <value>Daily</value>
   </data>
   <data name="ProgressAutoSaving_Disable" xml:space="preserve">
     <value>Disable</value>
   </data>
   <data name="ProgressAutoSaving_Hourly" xml:space="preserve">
-    <value>Every hour</value>
+    <value>Hourly</value>
   </data>
   <data name="RecordAutoSaving" xml:space="preserve">
     <value>Save record:</value>
@@ -678,8 +644,5 @@ Might be heavy.</value>
   </data>
   <data name="NewFormula33" xml:space="preserve">
     <value>New Formula 33</value>
-  </data>
-  <data name="Log_SaveBattleLog" xml:space="preserve">
-    <value>Save battle log</value>
   </data>
 </root>

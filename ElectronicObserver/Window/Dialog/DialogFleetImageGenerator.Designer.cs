@@ -701,7 +701,7 @@
 			this.ApplyGeneralFont.Size = new System.Drawing.Size(40, 23);
 			this.ApplyGeneralFont.TabIndex = 2;
 			this.ApplyGeneralFont.Text = "▼";
-			this.ToolTipInfo.SetToolTip(this.ApplyGeneralFont, "左のフォント設定を下の各フォントに適用します。");
+			this.ToolTipInfo.SetToolTip(this.ApplyGeneralFont, "Apply the following setting to individual font seting below.");
 			this.ApplyGeneralFont.UseVisualStyleBackColor = true;
 			this.ApplyGeneralFont.Click += new System.EventHandler(this.ApplyGeneralFont_Click);
 			//
@@ -712,7 +712,7 @@
 			this.label12.Name = "label12";
 			this.label12.Size = new System.Drawing.Size(65, 15);
 			this.label12.TabIndex = 19;
-			this.label12.Text = "S (Digit):";
+			this.label12.Text = "S (digit):";
 			//
 			// SelectSmallDigitFont
 			//
@@ -722,7 +722,7 @@
 			this.SelectSmallDigitFont.Size = new System.Drawing.Size(40, 23);
 			this.SelectSmallDigitFont.TabIndex = 21;
 			this.SelectSmallDigitFont.Text = "...";
-			this.ToolTipInfo.SetToolTip(this.SelectSmallDigitFont, "フォントを指定するダイアログを開きます。");
+			this.ToolTipInfo.SetToolTip(this.SelectSmallDigitFont, "Open a dialog to specify font setting.");
 			this.SelectSmallDigitFont.UseVisualStyleBackColor = true;
 			//
 			// TextSmallDigitFont
@@ -742,7 +742,7 @@
 			this.label11.Name = "label11";
 			this.label11.Size = new System.Drawing.Size(65, 15);
 			this.label11.TabIndex = 16;
-			this.label11.Text = "M (Digit):";
+			this.label11.Text = "M (digit):";
 			//
 			// SelectMediumDigitFont
 			//
@@ -752,7 +752,7 @@
 			this.SelectMediumDigitFont.Size = new System.Drawing.Size(40, 23);
 			this.SelectMediumDigitFont.TabIndex = 18;
 			this.SelectMediumDigitFont.Text = "...";
-			this.ToolTipInfo.SetToolTip(this.SelectMediumDigitFont, "フォントを指定するダイアログを開きます。");
+			this.ToolTipInfo.SetToolTip(this.SelectMediumDigitFont, "Open a dialog to specify font setting.");
 			this.SelectMediumDigitFont.UseVisualStyleBackColor = true;
 			//
 			// TextMediumDigitFont
@@ -772,7 +772,7 @@
 			this.label10.Name = "label10";
 			this.label10.Size = new System.Drawing.Size(65, 15);
 			this.label10.TabIndex = 13;
-			this.label10.Text = "S (Text):";
+			this.label10.Text = "S (text):";
 			//
 			// SelectSmallFont
 			//
@@ -782,7 +782,7 @@
 			this.SelectSmallFont.Size = new System.Drawing.Size(40, 23);
 			this.SelectSmallFont.TabIndex = 15;
 			this.SelectSmallFont.Text = "...";
-			this.ToolTipInfo.SetToolTip(this.SelectSmallFont, "フォントを指定するダイアログを開きます。");
+			this.ToolTipInfo.SetToolTip(this.SelectSmallFont, "Open a dialog to specify font setting.");
 			this.SelectSmallFont.UseVisualStyleBackColor = true;
 			//
 			// TextSmallFont
@@ -802,7 +802,7 @@
 			this.label9.Name = "label9";
 			this.label9.Size = new System.Drawing.Size(65, 15);
 			this.label9.TabIndex = 10;
-			this.label9.Text = "M (Text):";
+			this.label9.Text = "M (text):";
 			//
 			// SelectMediumFont
 			//
@@ -812,7 +812,7 @@
 			this.SelectMediumFont.Size = new System.Drawing.Size(40, 23);
 			this.SelectMediumFont.TabIndex = 12;
 			this.SelectMediumFont.Text = "...";
-			this.ToolTipInfo.SetToolTip(this.SelectMediumFont, "フォントを指定するダイアログを開きます。");
+			this.ToolTipInfo.SetToolTip(this.SelectMediumFont, "Open a dialog to specify font setting.");
 			this.SelectMediumFont.UseVisualStyleBackColor = true;
 			//
 			// TextMediumFont
@@ -832,7 +832,7 @@
 			this.label8.Name = "label8";
 			this.label8.Size = new System.Drawing.Size(65, 15);
 			this.label8.TabIndex = 7;
-			this.label8.Text = "L (Text):";
+			this.label8.Text = "L (text):";
 			//
 			// SelectLargeFont
 			//
@@ -842,7 +842,7 @@
 			this.SelectLargeFont.Size = new System.Drawing.Size(40, 23);
 			this.SelectLargeFont.TabIndex = 9;
 			this.SelectLargeFont.Text = "...";
-			this.ToolTipInfo.SetToolTip(this.SelectLargeFont, "フォントを指定するダイアログを開きます。");
+			this.ToolTipInfo.SetToolTip(this.SelectLargeFont, "Open a dialog to specify font setting.");
 			this.SelectLargeFont.UseVisualStyleBackColor = true;
 			//
 			// TextLargeFont
@@ -872,7 +872,7 @@
 			this.SelectTitleFont.Size = new System.Drawing.Size(40, 23);
 			this.SelectTitleFont.TabIndex = 6;
 			this.SelectTitleFont.Text = "...";
-			this.ToolTipInfo.SetToolTip(this.SelectTitleFont, "フォントを指定するダイアログを開きます。");
+			this.ToolTipInfo.SetToolTip(this.SelectTitleFont, "Open a dialog to specify font setting.");
 			this.SelectTitleFont.UseVisualStyleBackColor = true;
 			//
 			// TextTitleFont
@@ -902,7 +902,7 @@
 			this.SelectGeneralFont.Size = new System.Drawing.Size(40, 23);
 			this.SelectGeneralFont.TabIndex = 3;
 			this.SelectGeneralFont.Text = "...";
-			this.ToolTipInfo.SetToolTip(this.SelectGeneralFont, "フォントを指定するダイアログを開きます。");
+			this.ToolTipInfo.SetToolTip(this.SelectGeneralFont, "Open a dialog to specify font setting.");
 			this.SelectGeneralFont.UseVisualStyleBackColor = true;
 			this.SelectGeneralFont.Click += new System.EventHandler(this.SelectGeneralFont_Click);
 			//
