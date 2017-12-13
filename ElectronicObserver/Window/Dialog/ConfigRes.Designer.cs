@@ -19,7 +19,7 @@ namespace ElectronicObserver.Window.Dialog {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class ConfigRes {
@@ -719,16 +719,6 @@ namespace ElectronicObserver.Window.Dialog {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 艦名表示部の幅を固定し、スペースを節約します。
-        ///代わりに長い名前を持つ艦娘は見切れます。.
-        /// </summary>
-        internal static string FixWidthHint {
-            get {
-                return ResourceManager.GetString("FixWidthHint", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Flashのモードを指定します。
         ///既定値は opaque です。
         ///direct にするとパフォーマンスが向上する可能性があります。.
@@ -812,24 +802,6 @@ namespace ElectronicObserver.Window.Dialog {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 自動更新する.
-        /// </summary>
-        internal static string Json_AutoUpdate {
-            get {
-                return ResourceManager.GetString("Json_AutoUpdate", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to API の送受信時に、自動で表示を更新するかを指定します。\r\n多少重くなる可能性があります。\r\n.
-        /// </summary>
-        internal static string Json_AutoUpdateHint {
-            get {
-                return ResourceManager.GetString("Json_AutoUpdateHint", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to レイアウトファイル.
         /// </summary>
         internal static string LayoutFile {
@@ -866,38 +838,11 @@ namespace ElectronicObserver.Window.Dialog {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to レイアウトをロックする.
-        /// </summary>
-        internal static string Life_LockLayout {
-            get {
-                return ResourceManager.GetString("Life_LockLayout", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to サイズやレイアウトの変更を防止するかを指定します。.
-        /// </summary>
-        internal static string Life_LockLayout_Tooltip {
-            get {
-                return ResourceManager.GetString("Life_LockLayout_Tooltip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to ログ.
         /// </summary>
         internal static string Log {
             get {
                 return ResourceManager.GetString("Log", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 戦闘ログを保存する.
-        /// </summary>
-        internal static string Log_SaveBattleLog {
-            get {
-                return ResourceManager.GetString("Log_SaveBattleLog", resourceCulture);
             }
         }
         
@@ -1006,16 +951,6 @@ namespace ElectronicObserver.Window.Dialog {
         internal static string NewFormula33 {
             get {
                 return ResourceManager.GetString("NewFormula33", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 「次のレベルまでに必要な経験値」を表示するかを指定します。
-        ///省略した場合スペースを節約できます。.
-        /// </summary>
-        internal static string NextXPHint {
-            get {
-                return ResourceManager.GetString("NextXPHint", resourceCulture);
             }
         }
         
@@ -1133,15 +1068,6 @@ namespace ElectronicObserver.Window.Dialog {
         internal static string ProgressAutoSaving_Hourly {
             get {
                 return ResourceManager.GetString("ProgressAutoSaving_Hourly", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 他のツール・ブラウザで利用しているポート番号を指定します。.
-        /// </summary>
-        internal static string ProxyPort {
-            get {
-                return ResourceManager.GetString("ProxyPort", resourceCulture);
             }
         }
         
@@ -1449,25 +1375,6 @@ namespace ElectronicObserver.Window.Dialog {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ネタバレを許可する.
-        /// </summary>
-        internal static string ShowSpoilers {
-            get {
-                return ResourceManager.GetString("ShowSpoilers", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 開発したアイテム名やドロップ艦名などのログを記録するかを指定します。
-        ///先にわかってしまうことが気になる方は無効にしてください。.
-        /// </summary>
-        internal static string ShowSpoilersHint {
-            get {
-                return ResourceManager.GetString("ShowSpoilersHint", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 下部のステータスバー(所属艦数など)を表示するかを指定します。
         ///わずかですが表示行数を増やすことができます。.
         /// </summary>
@@ -1618,15 +1525,6 @@ namespace ElectronicObserver.Window.Dialog {
         internal static string Unimplemented {
             get {
                 return ResourceManager.GetString("Unimplemented", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 他のプロキシを利用するツール・ブラウザと連携する際に利用します。.
-        /// </summary>
-        internal static string UseProxyHint {
-            get {
-                return ResourceManager.GetString("UseProxyHint", resourceCulture);
             }
         }
         

@@ -381,9 +381,6 @@
   <data name="NoReturn" xml:space="preserve">
     <value>Planes did not return</value>
   </data>
-  <data name="NormalFleet" xml:space="preserve">
-    <value>Normal Fleet</value>
-  </data>
   <data name="NoviceCommander" xml:space="preserve">
     <value>Novice Commander</value>
   </data>
@@ -477,14 +474,8 @@
   <data name="Supply" xml:space="preserve">
     <value>Supply</value>
   </data>
-  <data name="SurfaceFleet" xml:space="preserve">
-    <value>Surface Fleet</value>
-  </data>
   <data name="TAdvantage" xml:space="preserve">
     <value>Green T</value>
-  </data>
-  <data name="TaskForce" xml:space="preserve">
-    <value>Task Force</value>
   </data>
   <data name="TDisadvantage" xml:space="preserve">
     <value>Red T</value>

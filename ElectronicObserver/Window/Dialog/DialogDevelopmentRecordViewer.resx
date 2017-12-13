@@ -132,6 +132,9 @@
     <value>Top, Left, Right</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="splitContainer1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
   <data name="MergeRows.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -155,6 +158,9 @@
   </data>
   <data name="&gt;&gt;DateBegin.ZOrder" xml:space="preserve">
     <value>8</value>
+  </data>
+  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>188, 13</value>
   </data>
   <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 4, 3, 4</value>
@@ -219,6 +225,9 @@
   <data name="ButtonRun.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
   </data>
+  <data name="&gt;&gt;RecordView_Header.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
     <value>Meiryo UI, 12px</value>
   </data>
@@ -227,9 +236,6 @@
   </data>
   <data name="&gt;&gt;DateBegin.Type" xml:space="preserve">
     <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;DateBegin.Parent" xml:space="preserve">
-    <value>splitContainer1.Panel1</value>
   </data>
   <data name="&gt;&gt;RecordView_Date.Name" xml:space="preserve">
     <value>RecordView_Date</value>
@@ -261,9 +267,6 @@
   <data name="label3.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
   </data>
-  <data name="&gt;&gt;statusStrip1.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
   <data name="&gt;&gt;DateEnd.Type" xml:space="preserve">
     <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -275,6 +278,9 @@
   </data>
   <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
     <value>43, 15</value>
+  </data>
+  <data name="&gt;&gt;ToolTipInfo.Name" xml:space="preserve">
+    <value>ToolTipInfo</value>
   </data>
   <data name="&gt;&gt;splitContainer1.Panel1.Parent" xml:space="preserve">
     <value>splitContainer1</value>
@@ -408,9 +414,6 @@
   <data name="&gt;&gt;RecordView_Name.Type" xml:space="preserve">
     <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;SecretaryName.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
     <value>41, 15</value>
   </data>
@@ -435,11 +438,17 @@
   <data name="&gt;&gt;label2.Parent" xml:space="preserve">
     <value>splitContainer1.Panel1</value>
   </data>
+  <data name="MergeRows.Size" type="System.Drawing.Size, System.Drawing">
+    <value>62, 19</value>
+  </data>
   <data name="EquipmentName.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
   <data name="splitContainer1.Panel1.ToolTip" xml:space="preserve">
     <value />
+  </data>
+  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
+    <value>10</value>
   </data>
   <data name="&gt;&gt;EquipmentName.ZOrder" xml:space="preserve">
     <value>14</value>
@@ -447,20 +456,11 @@
   <data name="ButtonRun.TabIndex" type="System.Int32, mscorlib">
     <value>22</value>
   </data>
-  <data name="StatusInfo.Text" xml:space="preserve">
-    <value>-</value>
-  </data>
   <data name="&gt;&gt;DateBegin.Name" xml:space="preserve">
     <value>DateBegin</value>
   </data>
   <data name="&gt;&gt;RecordView.Type" xml:space="preserve">
     <value>System.Windows.Forms.DataGridView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;RecordView_Detail.Name" xml:space="preserve">
-    <value>RecordView_Detail</value>
-  </data>
-  <data name="EquipmentCategory.ToolTip" xml:space="preserve">
-    <value />
   </data>
   <data name="&gt;&gt;StatusInfo.Name" xml:space="preserve">
     <value>StatusInfo</value>
@@ -498,8 +498,8 @@
   <data name="&gt;&gt;splitContainer1.Panel2.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>188, 13</value>
+  <data name="&gt;&gt;statusStrip1.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="label2.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -534,8 +534,8 @@
   <data name="&gt;&gt;splitContainer1.Panel1.Name" xml:space="preserve">
     <value>splitContainer1.Panel1</value>
   </data>
-  <data name="&gt;&gt;RecordView_Header.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;RecordView_Detail.Name" xml:space="preserve">
+    <value>RecordView_Detail</value>
   </data>
   <data name="&gt;&gt;SecretaryName.Name" xml:space="preserve">
     <value>SecretaryName</value>
@@ -543,8 +543,8 @@
   <data name="&gt;&gt;EquipmentName.Type" xml:space="preserve">
     <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="MergeRows.Size" type="System.Drawing.Size, System.Drawing">
-    <value>62, 19</value>
+  <data name="EquipmentCategory.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="RecordView_Date.HeaderText" xml:space="preserve">
     <value>日付</value>
@@ -639,8 +639,8 @@
   <data name="statusStrip1.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="&gt;&gt;ToolTipInfo.Name" xml:space="preserve">
-    <value>ToolTipInfo</value>
+  <data name="&gt;&gt;MergeRows.Name" xml:space="preserve">
+    <value>MergeRows</value>
   </data>
   <data name="EquipmentCategory.Size" type="System.Drawing.Size, System.Drawing">
     <value>121, 23</value>
@@ -702,14 +702,14 @@
   <data name="&gt;&gt;EquipmentCategory.Parent" xml:space="preserve">
     <value>splitContainer1.Panel1</value>
   </data>
-  <data name="splitContainer1.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
+  <data name="&gt;&gt;DateBegin.Parent" xml:space="preserve">
+    <value>splitContainer1.Panel1</value>
   </data>
   <data name="&gt;&gt;SecretaryName.Parent" xml:space="preserve">
     <value>splitContainer1.Panel1</value>
   </data>
-  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>10</value>
+  <data name="splitContainer1.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="&gt;&gt;ButtonRun.ZOrder" xml:space="preserve">
     <value>0</value>
@@ -738,8 +738,8 @@
   <data name="label6.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="splitContainer1.ToolTip" xml:space="preserve">
-    <value />
+  <data name="&gt;&gt;SecretaryName.ZOrder" xml:space="preserve">
+    <value>4</value>
   </data>
   <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
     <value>31, 15</value>
@@ -750,8 +750,8 @@
   <data name="EquipmentCategory.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="&gt;&gt;MergeRows.Name" xml:space="preserve">
-    <value>MergeRows</value>
+  <data name="StatusInfo.Text" xml:space="preserve">
+    <value>-</value>
   </data>
   <data name="&gt;&gt;label4.Parent" xml:space="preserve">
     <value>splitContainer1.Panel1</value>

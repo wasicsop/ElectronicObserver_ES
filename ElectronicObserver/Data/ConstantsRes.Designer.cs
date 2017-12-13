@@ -1375,15 +1375,6 @@ namespace ElectronicObserver.Data {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 通常艦隊.
-        /// </summary>
-        internal static string NormalFleet {
-            get {
-                return ResourceManager.GetString("NormalFleet", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 新米中佐.
         /// </summary>
         internal static string NoviceCommander {
@@ -1726,15 +1717,6 @@ namespace ElectronicObserver.Data {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 水上部隊.
-        /// </summary>
-        internal static string SurfaceFleet {
-            get {
-                return ResourceManager.GetString("SurfaceFleet", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to T字有利.
         /// </summary>
         internal static string TAdvantage {
@@ -1758,15 +1740,6 @@ namespace ElectronicObserver.Data {
         internal static string TankAttack {
             get {
                 return ResourceManager.GetString("TankAttack", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 機動部隊.
-        /// </summary>
-        internal static string TaskForce {
-            get {
-                return ResourceManager.GetString("TaskForce", resourceCulture);
             }
         }
         

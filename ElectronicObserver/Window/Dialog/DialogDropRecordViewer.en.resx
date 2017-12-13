@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -173,5 +173,42 @@
   </data>
   <data name="MergeRows.Text" xml:space="preserve">
     <value>Combine</value>
+  </data>
+  <data name="DateBegin.ToolTip" xml:space="preserve">
+    <value>Specify start date to search.</value>
+  </data>
+  <data name="DateEnd.ToolTip" xml:space="preserve">
+    <value>Specify end date to search.</value>
+  </data>
+  <data name="EquipmentName.ToolTip" xml:space="preserve">
+    <value>Specify equipment name to search.</value>
+  </data>
+  <data name="ItemName.ToolTip" xml:space="preserve">
+    <value>Specify item name to search.</value>
+  </data>
+  <data name="LabelEquipmentName.Text" xml:space="preserve">
+    <value>Equipment</value>
+  </data>
+  <data name="ShipName.ToolTip" xml:space="preserve">
+    <value>Specify ship name to search.</value>
+  </data>
+  <data name="RankX.ToolTip" xml:space="preserve">
+    <value>Defeat</value>
+  </data>
+  <data name="MergeRows.ToolTip" xml:space="preserve">
+    <value>Combine multiple entries of the same drop.</value>
+  </data>
+  <data name="MapAreaID.ToolTip" xml:space="preserve">
+    <value>Specify area ID.
+* ID above 20 are event area.</value>
+  </data>
+  <data name="MapCellID.ToolTip" xml:space="preserve">
+    <value>Specify node ID.</value>
+  </data>
+  <data name="MapDifficulty.ToolTip" xml:space="preserve">
+    <value>Specify map difficulty.</value>
+  </data>
+  <data name="MapInfoID.ToolTip" xml:space="preserve">
+    <value>Specify map ID.</value>
   </data>
 </root>

@@ -384,9 +384,6 @@
   <data name="NoReturn" xml:space="preserve">
     <value>未帰還</value>
   </data>
-  <data name="NormalFleet" xml:space="preserve">
-    <value>通常艦隊</value>
-  </data>
   <data name="NoviceCommander" xml:space="preserve">
     <value>新米中佐</value>
   </data>
@@ -480,14 +477,8 @@
   <data name="Supply" xml:space="preserve">
     <value>補給</value>
   </data>
-  <data name="SurfaceFleet" xml:space="preserve">
-    <value>水上部隊</value>
-  </data>
   <data name="TAdvantage" xml:space="preserve">
     <value>T字有利</value>
-  </data>
-  <data name="TaskForce" xml:space="preserve">
-    <value>機動部隊</value>
   </data>
   <data name="TDisadvantage" xml:space="preserve">
     <value>T字不利</value>

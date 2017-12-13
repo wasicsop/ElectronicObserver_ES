@@ -21,7 +21,7 @@ namespace ElectronicObserver.Window
 
 		// yyyyMMdd_hhmmssff[S|Q]@api_path.json
 		private static readonly Regex FileNamePattern = new Regex(@"\d{8}_\d{8}([SQ])@(.*)\.json$", RegexOptions.Compiled);
-		private const string AutoUpdateDisabledMessage = "<自動更新が無効になっています。Configから有効化してください。>";
+		private const string AutoUpdateDisabledMessage = "<Automatic update is disabled. Please enable it from Config tab>";
 
 		private Regex _apiPattern;
 

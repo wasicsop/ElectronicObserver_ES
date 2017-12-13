@@ -42,7 +42,7 @@ namespace ElectronicObserver.Data.Battle
 
 		public override string APIName => "api_req_combined_battle/ec_night_to_day";
 
-		public override string BattleName => "対連合艦隊　夜昼戦";
+		public override string BattleName => "Enemy Combined Fleet Night→Day Battle";
 
 
 

@@ -73,7 +73,7 @@ namespace ElectronicObserver.Window.Dialog
 			else
 			{
 				Connection_SaveDataPath.BackColor = Color.MistyRose;
-				ToolTipInfo.SetToolTip(Connection_SaveDataPath, "指定されたフォルダは存在しません。");
+				ToolTipInfo.SetToolTip(Connection_SaveDataPath, "The specified folder does not exists.");
 			}
 		}
 
@@ -175,14 +175,14 @@ namespace ElectronicObserver.Window.Dialog
 			string serverAddress = APIObserver.Instance.ServerAddress;
 			if (serverAddress == null)
 			{
-				MessageBox.Show("艦これに接続してから操作してください。", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				MessageBox.Show("Please start KanColle first.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 				return;
 			}
 
 			using (var dialog = new SaveFileDialog())
 			{
 				dialog.Filter = "Proxy Script|*.pac|File|*";
-				dialog.Title = "自動プロキシ設定スクリプトを保存する";
+				dialog.Title = "Save PAC File As";
 				dialog.InitialDirectory = System.IO.Directory.GetCurrentDirectory();
 				dialog.FileName = System.IO.Directory.GetCurrentDirectory() + "\\proxy.pac";
 
@@ -206,16 +206,17 @@ namespace ElectronicObserver.Window.Dialog
 
 						Clipboard.SetData(DataFormats.StringFormat, "file:///" + dialog.FileName.Replace('\\', '/'));
 
-						MessageBox.Show("自動プロキシ設定スクリプトを保存し、設定用URLをクリップボードにコピーしました。\r\n所定の位置に貼り付けてください。",
-							"作成完了", MessageBoxButtons.OK, MessageBoxIcon.Information);
+						MessageBox.Show("The proxy auto-config script has been saved.\r\n" +
+						                "The file path was copied to clipboard, paste it to the proxy settings in Internet Explorer.",
+							"PAC Script Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
 
 					}
 					catch (Exception ex)
 					{
 
-						Utility.ErrorReporter.SendErrorReport(ex, "自動プロキシ設定スクリプトの保存に失敗しました。");
-						MessageBox.Show("自動プロキシ設定スクリプトの保存に失敗しました。\r\n" + ex.Message, "Error",
+						Utility.ErrorReporter.SendErrorReport(ex, "Failed to save proxy auto-config script.");
+						MessageBox.Show("Failed to save proxy auto-config script.\r\n" + ex.Message, "Error",
 							MessageBoxButtons.OK, MessageBoxIcon.Error);
 
 					}
@@ -490,7 +491,7 @@ namespace ElectronicObserver.Window.Dialog
 			catch (Exception ex)
 			{
 				FormBrowser_BrowserVersion.Text = DefaultBrowserVersion.ToString();
-				Utility.Logger.Add(3, "設定：レジストリからの読み込みに失敗しました。: BrowserVersion, " + ex.Message);
+				Utility.Logger.Add(3, "Configuration: failed to read from registry: Browser Version, " + ex.Message);
 			}
 
 			try
@@ -504,7 +505,7 @@ namespace ElectronicObserver.Window.Dialog
 			catch (Exception ex)
 			{
 				FormBrowser_GPURendering.Checked = DefaultGPURendering;
-				Utility.Logger.Add(3, "設定：レジストリからの読み込みに失敗しました。: GPURendering, " + ex.Message);
+				Utility.Logger.Add(3, "Configuration: failed to read from registry: GPU Rendering, " + ex.Message);
 			}
 
 			FormBrowser_FlashQuality.Text = config.FormBrowser.FlashQuality;
@@ -818,8 +819,8 @@ namespace ElectronicObserver.Window.Dialog
 				}
 				catch (Exception ex)
 				{
-					Utility.ErrorReporter.SendErrorReport(ex, "Settings: failed to write to the Registry.");
-					MessageBox.Show("Failed to write to the Registry.\r\n" + ex.Message, "Error",
+					Utility.ErrorReporter.SendErrorReport(ex, "Settings: failed to write to registry.");
+					MessageBox.Show("Failed to write to registry.\r\n" + ex.Message, "Error",
 						MessageBoxButtons.OK, MessageBoxIcon.Error);
 
 				}
@@ -830,7 +831,7 @@ namespace ElectronicObserver.Window.Dialog
 		private void FormBrowser_DeleteRegistry_Click(object sender, EventArgs e)
 		{
 
-			if (MessageBox.Show("レジストリを削除します。よろしいですか？\r\n＊完全に適用するには再起動が必要です。", "確認",
+			if (MessageBox.Show("This will delete the applied registry setting.\r\nAre you sure?\r\n* Restart is required for the setting to take effect.", "Confirmation",
 				MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2)
 				== System.Windows.Forms.DialogResult.Yes)
 			{
@@ -845,8 +846,8 @@ namespace ElectronicObserver.Window.Dialog
 				}
 				catch (Exception ex)
 				{
-					Utility.ErrorReporter.SendErrorReport(ex, "設定：レジストリの削除に失敗しました。");
-					MessageBox.Show("レジストリの削除に失敗しました。\r\n" + ex.Message, "Error",
+					Utility.ErrorReporter.SendErrorReport(ex, "Configuration: Failed to delete registry setting.");
+					MessageBox.Show("Failed to delete registry setting.\r\n" + ex.Message, "Error",
 						MessageBoxButtons.OK, MessageBoxIcon.Error);
 				}
 			}
@@ -906,7 +907,7 @@ namespace ElectronicObserver.Window.Dialog
 		private void BGMPlayer_SetVolumeAll_Click(object sender, EventArgs e)
 		{
 
-			if (MessageBox.Show("すべてのBGMに対して音量 " + (int)BGMPlayer_VolumeAll.Value + " を適用します。\r\nよろしいですか？\r\n", "音量一括設定の確認",
+			if (MessageBox.Show("BGM player volume will be set to " + (int)BGMPlayer_VolumeAll.Value + ".\r\nAre you sure?\r\n", "Confirm Setting",
 				MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == System.Windows.Forms.DialogResult.Yes)
 			{
 

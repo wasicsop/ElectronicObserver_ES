@@ -38,6 +38,8 @@ namespace ElectronicObserver.Data.Battle.Phase
 				case "第三次砲撃戦": return "Shelling, 3rd Round";
 				case "雷撃戦": return "Closing Torpedo Salvo";
 				case "夜戦": return "Night Battle";
+				case "第一次夜戦": return "Night Battle, 1st Round";
+				case "第二次夜戦": return "Night Battle, 2nd Round";
 				case "夜間支援攻撃": return "Night Support Expedition";
 
 
