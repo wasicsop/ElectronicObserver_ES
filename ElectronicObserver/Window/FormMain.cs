@@ -387,22 +387,21 @@ namespace ElectronicObserver.Window
 						questReset = questReset.AddHours( 24 );
 					var questTimer = questReset - now;
 
-					var maintDate = DateTimeHelper.CSVStringToTime(SoftwareUpdater.MaintDate);
-					if (maintDate < now)
-						maintDate = now;
-					var maintTimer = maintDate - now;
+					DateTime maintDate = now;
+					TimeSpan maintTimer = now - now;
+					if (SoftwareUpdater.MaintState != 0)
+					{
+						maintDate = DateTimeHelper.CSVStringToTime(SoftwareUpdater.MaintDate);
+						if (maintDate < now)
+							maintDate = now;
+						maintTimer = maintDate - now;
+					}
 
 					string maintState;
 					switch (SoftwareUpdater.MaintState)
 					{
 						default:
-							if (maintDate > now)
-							{
-								maintState = string.Format("Next maintenance: {0:D2}:{1:D2}:{2:D2}",
-									(int)maintTimer.TotalHours, maintTimer.Minutes, maintTimer.Seconds);
-							}
-							else
-								maintState = "Maintenance has started.";
+							maintState = string.Empty;
 							break;
 						case 1:
 							if (maintDate > now)
@@ -421,6 +420,15 @@ namespace ElectronicObserver.Window
 							}
 							else
 								maintState = "Event period has ended.";
+							break;
+						case 3:
+							if (maintDate > now)
+							{
+								maintState = string.Format("Next maintenance: {0:D2}:{1:D2}:{2:D2}",
+									(int)maintTimer.TotalHours, maintTimer.Minutes, maintTimer.Seconds);
+							}
+							else
+								maintState = "Maintenance has started.";
 							break;
 					}
 
