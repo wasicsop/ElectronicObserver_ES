@@ -220,12 +220,12 @@ namespace ElectronicObserver.Data.Battle.Detail
 							int searchlightIndex = p.SearchlightIndexFriend;
 							if (searchlightIndex != -1)
 							{
-								sb.AppendFormat(BattleDetail_FriendlySearchlight + "\r\n", p.FriendFleet.MembersInstance[searchlightIndex].Name, searchlightIndex + 1);
+								sb.AppendFormat(ConstantsRes.BattleDetail_FriendlySearchlight + "\r\n", p.FriendFleet.MembersInstance[searchlightIndex].Name, searchlightIndex + 1);
 							}
 							searchlightIndex = p.SearchlightIndexEnemy;
 							if (searchlightIndex != -1)
 							{
-								sb.AppendFormat(BattleDetail_EnemySearchlight + "\r\n", p.EnemyMembersInstance[searchlightIndex].NameWithClass, searchlightIndex + 1);
+								sb.AppendFormat(ConstantsRes.BattleDetail_EnemySearchlight + "\r\n", p.EnemyMembersInstance[searchlightIndex].NameWithClass, searchlightIndex + 1);
 							}
 						}
 
@@ -273,7 +273,7 @@ namespace ElectronicObserver.Data.Battle.Detail
 								int searchlightIndex = p.SearchlightIndexFriend;
 								if (searchlightIndex != -1)
 								{
-									sb.AppendFormat(BattleDetail_FriendlySearchlight + "\r\n", p.SearchlightFriendInstance.NameWithClass, searchlightIndex + 1);
+									sb.AppendFormat(ConstantsRes.BattleDetail_FriendlySearchlight + "\r\n", p.SearchlightFriendInstance.NameWithClass, searchlightIndex + 1);
 								}
 								searchlightIndex = p.SearchlightIndexEnemy;
 								if (searchlightIndex != -1)
@@ -291,7 +291,7 @@ namespace ElectronicObserver.Data.Battle.Detail
 								flareIndex = p.FlareIndexEnemy;
 								if (flareIndex != -1)
 								{
-									sb.AppendFormat(BattleDetail_EnemyStarshell + "\r\n", p.FlareEnemyInstance.NameWithClass, flareIndex + 1);
+									sb.AppendFormat(ConstantsRes.BattleDetail_EnemyStarshell + "\r\n", p.FlareEnemyInstance.NameWithClass, flareIndex + 1);
 								}
 							}
 
