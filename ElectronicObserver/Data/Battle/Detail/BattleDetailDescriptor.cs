@@ -42,7 +42,7 @@ namespace ElectronicObserver.Data.Battle.Detail
 					{
 						int current = bm.Compass.MapHPCurrent > 0 ? bm.Compass.MapHPCurrent : mapinfo.MapHPCurrent;
 						int max = bm.Compass.MapHPMax > 0 ? bm.Compass.MapHPMax : mapinfo.MapHPMax;
-						sb.AppendFormat("{0}: {1} / {2}", mapinfo.GaugeType == 3 ? "TP" : "HP", current, max)
+						sb.AppendFormat("{0}{1}: {2} / {3}", mapinfo.CurrentGaugeIndex > 0 ? "#" + mapinfo.CurrentGaugeIndex + " " : "", mapinfo.GaugeType == 3 ? "TP" : "HP", current, max)
 							.AppendLine();
 					}
 				}
@@ -80,90 +80,117 @@ namespace ElectronicObserver.Data.Battle.Detail
 
 				var sb = new StringBuilder();
 
-				if (phase is PhaseBaseAirRaid)
+				switch (phase)
 				{
-					var p = phase as PhaseBaseAirRaid;
+					case PhaseBaseAirRaid p:
 
+<<<<<<< HEAD
 					sb.AppendLine(ConstantsRes.BattleDetail_AirAttackUnits);
 					sb.Append("　").AppendLine(string.Join(", ", p.Squadrons.Where(sq => sq.EquipmentInstance != null).Select(sq => sq.ToString()).DefaultIfEmpty("(empty)")));
+=======
+						sb.AppendLine("味方基地航空隊 参加中隊:");
+						sb.Append("　").AppendLine(string.Join(", ", p.Squadrons.Where(sq => sq.EquipmentInstance != null).Select(sq => sq.ToString()).DefaultIfEmpty("(なし)")));
+>>>>>>> andanteyk/develop
 
-					GetBattleDetailPhaseAirBattle(sb, p);
+						GetBattleDetailPhaseAirBattle(sb, p);
 
-				}
-				else if (phase is PhaseAirBattle)
-				{
-					var p = phase as PhaseAirBattle;
+						break;
 
-					GetBattleDetailPhaseAirBattle(sb, p);
+					case PhaseAirBattle p:
 
+						GetBattleDetailPhaseAirBattle(sb, p);
 
-				}
-				else if (phase is PhaseBaseAirAttack)
-				{
-					var p = phase as PhaseBaseAirAttack;
+						break;
 
+<<<<<<< HEAD
 					foreach (var a in p.AirAttackUnits)
 					{
 						sb.AppendFormat(ConstantsRes.BattleDetail_AirAttackWave + "\r\n", a.AirAttackIndex + 1);
 
 						sb.AppendLine(ConstantsRes.BattleDetail_AirAttackUnits);
 						sb.Append("　").AppendLine(string.Join(", ", a.Squadrons.Where(sq => sq.EquipmentInstance != null).Select(sq => sq.ToString())));
+=======
+					case PhaseBaseAirAttack p:
 
-						GetBattleDetailPhaseAirBattle(sb, a);
-						sb.Append(a.GetBattleDetail());
-					}
+						foreach (var a in p.AirAttackUnits)
+						{
+							sb.AppendFormat("〈第{0}波〉\r\n", a.AirAttackIndex + 1);
+>>>>>>> andanteyk/develop
 
+							sb.AppendLine("味方基地航空隊 参加中隊:");
+							sb.Append("　").AppendLine(string.Join(", ", a.Squadrons.Where(sq => sq.EquipmentInstance != null).Select(sq => sq.ToString())));
 
-				}
-				else if (phase is PhaseJetAirBattle)
-				{
-					var p = phase as PhaseJetAirBattle;
+							GetBattleDetailPhaseAirBattle(sb, a);
+							sb.Append(a.GetBattleDetail());
+						}
 
-					GetBattleDetailPhaseAirBattle(sb, p);
+						break;
 
+					case PhaseJetAirBattle p:
+						GetBattleDetailPhaseAirBattle(sb, p);
 
-				}
-				else if (phase is PhaseJetBaseAirAttack)
-				{
-					var p = phase as PhaseJetBaseAirAttack;
+						break;
 
+					case PhaseJetBaseAirAttack p:
+
+<<<<<<< HEAD
 					foreach (var a in p.AirAttackUnits)
 					{
 						sb.AppendFormat(ConstantsRes.BattleDetail_AirAttackWave + "\r\n", a.AirAttackIndex + 1);
 
 						sb.AppendLine(ConstantsRes.BattleDetail_AirAttackUnits);
 						sb.Append("　").AppendLine(string.Join(", ", a.Squadrons.Where(sq => sq.EquipmentInstance != null).Select(sq => sq.ToString())));
+=======
+						foreach (var a in p.AirAttackUnits)
+						{
+							sb.AppendFormat("〈第{0}波〉\r\n", a.AirAttackIndex + 1);
 
-						GetBattleDetailPhaseAirBattle(sb, a);
-						sb.Append(a.GetBattleDetail());
-					}
+							sb.AppendLine("味方基地航空隊 参加中隊:");
+							sb.Append("　").AppendLine(string.Join(", ", a.Squadrons.Where(sq => sq.EquipmentInstance != null).Select(sq => sq.ToString())));
+>>>>>>> andanteyk/develop
 
+							GetBattleDetailPhaseAirBattle(sb, a);
+							sb.Append(a.GetBattleDetail());
+						}
 
-				}
-				else if (phase is PhaseInitial)
-				{
-					var p = phase as PhaseInitial;
+						break;
 
+					case PhaseInitial p:
+
+<<<<<<< HEAD
 					if (p.FriendFleetEscort != null)
 						sb.AppendLine(ConstantsRes.BattleDetail_FriendMainFleet);
 					else
 						sb.AppendLine(ConstantsRes.BattleDetail_FriendFleet);
+=======
+>>>>>>> andanteyk/develop
 
-					if (isBaseAirRaid)
-						OutputFriendBase(sb, p.FriendInitialHPs, p.FriendMaxHPs);
-					else
-						OutputFriendData(sb, p.FriendFleet, p.FriendInitialHPs, p.FriendMaxHPs);
+						if (p.FriendFleetEscort != null)
+							sb.AppendLine("〈味方主力艦隊〉");
+						else
+							sb.AppendLine("〈味方艦隊〉");
 
+<<<<<<< HEAD
 					if (p.FriendFleetEscort != null)
 					{
 						sb.AppendLine();
 						sb.AppendLine(ConstantsRes.BattleDetail_FriendEscortFleet);
+=======
+						if (isBaseAirRaid)
+							OutputFriendBase(sb, p.FriendInitialHPs, p.FriendMaxHPs);
+						else
+							OutputFriendData(sb, p.FriendFleet, p.FriendInitialHPs, p.FriendMaxHPs);
+>>>>>>> andanteyk/develop
 
-						OutputFriendData(sb, p.FriendFleetEscort, p.FriendInitialHPsEscort, p.FriendMaxHPsEscort);
-					}
+						if (p.FriendFleetEscort != null)
+						{
+							sb.AppendLine();
+							sb.AppendLine("〈味方随伴艦隊〉");
 
-					sb.AppendLine();
+							OutputFriendData(sb, p.FriendFleetEscort, p.FriendInitialHPsEscort, p.FriendMaxHPsEscort);
+						}
 
+<<<<<<< HEAD
 					if (p.EnemyMembersEscort != null)
 						sb.Append(ConstantsRes.BattleDetail_EnemyMainFleet);
 					else
@@ -172,75 +199,131 @@ namespace ElectronicObserver.Data.Battle.Detail
 					if (p.IsBossDamaged)
 						sb.Append(ConstantsRes.BattleDetail_IsBossDamaged);
 					sb.AppendLine();
+=======
+						sb.AppendLine();
 
-					OutputEnemyData(sb, p.EnemyMembersInstance, p.EnemyLevels, p.EnemyInitialHPs, p.EnemyMaxHPs, p.EnemySlotsInstance, p.EnemyParameters);
+						if (p.EnemyMembersEscort != null)
+							sb.Append("〈敵主力艦隊〉");
+						else
+							sb.Append("〈敵艦隊〉");
+>>>>>>> andanteyk/develop
 
+						if (p.IsBossDamaged)
+							sb.Append(" : 装甲破壊");
+						sb.AppendLine();
 
+						OutputEnemyData(sb, p.EnemyMembersInstance, p.EnemyLevels, p.EnemyInitialHPs, p.EnemyMaxHPs, p.EnemySlotsInstance, p.EnemyParameters);
+
+<<<<<<< HEAD
 					if (p.EnemyMembersEscort != null)
 					{
 						sb.AppendLine();
 						sb.AppendLine(ConstantsRes.BattleDetail_EnemyEscortFleet);
+=======
+>>>>>>> andanteyk/develop
 
-						OutputEnemyData(sb, p.EnemyMembersEscortInstance, p.EnemyLevelsEscort, p.EnemyInitialHPsEscort, p.EnemyMaxHPsEscort, p.EnemySlotsEscortInstance, p.EnemyParametersEscort);
-					}
+						if (p.EnemyMembersEscort != null)
+						{
+							sb.AppendLine();
+							sb.AppendLine("〈敵随伴艦隊〉");
 
-					sb.AppendLine();
+							OutputEnemyData(sb, p.EnemyMembersEscortInstance, p.EnemyLevelsEscort, p.EnemyInitialHPsEscort, p.EnemyMaxHPsEscort, p.EnemySlotsEscortInstance, p.EnemyParametersEscort);
+						}
 
+<<<<<<< HEAD
 					if (battle.GetPhases().Where(ph => ph is PhaseBaseAirAttack || ph is PhaseBaseAirRaid).Any(ph => ph != null && ph.IsAvailable))
 					{
 						sb.AppendLine(ConstantsRes.BattleDetail_AirBase);
 						GetBattleDetailBaseAirCorps(sb, KCDatabase.Instance.Battle.Compass.MapAreaID);      // :(
+=======
+>>>>>>> andanteyk/develop
 						sb.AppendLine();
-					}
 
+<<<<<<< HEAD
 					if (p.RationIndexes.Length > 0)
 					{
 						sb.AppendLine("〈Combat Ration〉");
 						foreach (var index in p.RationIndexes)
+=======
+						if (battle.GetPhases().Where(ph => ph is PhaseBaseAirAttack || ph is PhaseBaseAirRaid).Any(ph => ph != null && ph.IsAvailable))
+>>>>>>> andanteyk/develop
 						{
-							var ship = p.GetFriendShip(index);
+							sb.AppendLine("〈基地航空隊〉");
+							GetBattleDetailBaseAirCorps(sb, KCDatabase.Instance.Battle.Compass.MapAreaID);      // :(
+							sb.AppendLine();
+						}
 
-							if (ship != null)
+						if (p.RationIndexes.Length > 0)
+						{
+							sb.AppendLine("〈戦闘糧食補給〉");
+							foreach (var index in p.RationIndexes)
 							{
-								sb.AppendFormat("　{0} #{1}\r\n", ship.NameWithLevel, index + 1);
+								var ship = p.GetFriendShip(index);
+
+								if (ship != null)
+								{
+									sb.AppendFormat("　{0} #{1}\r\n", ship.NameWithLevel, index + 1);
+								}
 							}
+							sb.AppendLine();
 						}
-						sb.AppendLine();
-					}
 
+						break;
 
-				}
-				else if (phase is PhaseNightBattle)
-				{
-					var p = phase as PhaseNightBattle;
-					int length = sb.Length;
+					case PhaseNightInitial p:
 
-					{
-						var eq = KCDatabase.Instance.MasterEquipments[p.TouchAircraftFriend];
-						if (eq != null)
 						{
+<<<<<<< HEAD
 							sb.Append(ConstantsRes.BattleDetail_FriendlyNightContact).AppendLine(eq.Name);
+=======
+							var eq = KCDatabase.Instance.MasterEquipments[p.TouchAircraftFriend];
+							if (eq != null)
+							{
+								sb.Append("自軍夜間触接: ").AppendLine(eq.Name);
+							}
+							eq = KCDatabase.Instance.MasterEquipments[p.TouchAircraftEnemy];
+							if (eq != null)
+							{
+								sb.Append("敵軍夜間触接: ").AppendLine(eq.Name);
+							}
+>>>>>>> andanteyk/develop
 						}
-						eq = KCDatabase.Instance.MasterEquipments[p.TouchAircraftEnemy];
-						if (eq != null)
+
 						{
+<<<<<<< HEAD
 							sb.Append(ConstantsRes.BattleDetail_EnemyNightContact).AppendLine(eq.Name);
+=======
+							int searchlightIndex = p.SearchlightIndexFriend;
+							if (searchlightIndex != -1)
+							{
+								sb.AppendFormat("自軍探照灯照射: {0} #{1}\r\n", p.FriendFleet.MembersInstance[searchlightIndex].Name, searchlightIndex + 1);
+							}
+							searchlightIndex = p.SearchlightIndexEnemy;
+							if (searchlightIndex != -1)
+							{
+								sb.AppendFormat("敵軍探照灯照射: {0} #{1}\r\n", p.EnemyMembersInstance[searchlightIndex].NameWithClass, searchlightIndex + 1);
+							}
+>>>>>>> andanteyk/develop
 						}
-					}
 
-					{
-						int searchlightIndex = p.SearchlightIndexFriend;
-						if (searchlightIndex != -1)
+						if (p.FlareIndexFriend != -1)
 						{
+<<<<<<< HEAD
 							sb.AppendFormat(ConstantsRes.BattleDetail_FriendlySearchlight + "\r\n", p.FriendFleet.MembersInstance[searchlightIndex].Name, searchlightIndex + 1);
+=======
+							sb.AppendFormat("自軍照明弾投射: {0} #{1}\r\n", p.FlareFriendInstance.NameWithLevel, p.FlareIndexFriend + 1);
+>>>>>>> andanteyk/develop
 						}
-						searchlightIndex = p.SearchlightIndexEnemy;
-						if (searchlightIndex != -1)
+						if (p.FlareIndexEnemy != -1)
 						{
+<<<<<<< HEAD
 							sb.AppendFormat(ConstantsRes.BattleDetail_EnemySearchlight + "\r\n", p.EnemyMembersInstance[searchlightIndex].NameWithClass, searchlightIndex + 1);
+=======
+							sb.AppendFormat("敵軍照明弾投射: {0} #{1}\r\n", p.FlareEnemyInstance.NameWithClass, p.FlareIndexEnemy + 1);
+>>>>>>> andanteyk/develop
 						}
-					}
 
+<<<<<<< HEAD
 					if (p.FlareIndexFriend != -1)
 					{
 						sb.AppendFormat(ConstantsRes.BattleDetail_FriendlyStarshell + "\r\n", p.FriendFleet.MembersInstance[p.FlareIndexFriend].Name, p.FlareIndexFriend + 1);
@@ -249,36 +332,77 @@ namespace ElectronicObserver.Data.Battle.Detail
 					{
 						sb.AppendFormat(ConstantsRes.BattleDetail_EnemyStarshell + "\r\n", p.FlareEnemyInstance.NameWithClass, p.FlareIndexEnemy + 1);
 					}
+=======
+						sb.AppendLine();
+						break;
 
-					if (sb.Length > length)     // 追加行があった場合
+
+					case PhaseSearching p:
+						sb.Append("自軍陣形: ").Append(Constants.GetFormation(p.FormationFriend));
+						sb.Append(" / 敵軍陣形: ").AppendLine(Constants.GetFormation(p.FormationEnemy));
+						sb.Append("交戦形態: ").AppendLine(Constants.GetEngagementForm(p.EngagementForm));
+						sb.Append("自軍索敵: ").Append(Constants.GetSearchingResult(p.SearchingFriend));
+						sb.Append(" / 敵軍索敵: ").AppendLine(Constants.GetSearchingResult(p.SearchingEnemy));
+>>>>>>> andanteyk/develop
+
 						sb.AppendLine();
 
+						break;
 
-				}
-				else if (phase is PhaseSearching)
-				{
-					var p = phase as PhaseSearching;
+					case PhaseSupport p:
+						if (p.IsAvailable)
+						{
+							sb.AppendLine("〈Support Fleet〉");
+							OutputSupportData(sb, p.SupportFleet);
+							sb.AppendLine();
+						}
+						break;
 
+<<<<<<< HEAD
 					sb.Append(ConstantsRes.BattleDetail_FormationFriend).Append(Constants.GetFormation(p.FormationFriend));
 					sb.Append(ConstantsRes.BattleDetail_FormationEnemy).AppendLine(Constants.GetFormation(p.FormationEnemy));
 					sb.Append(ConstantsRes.BattleDetail_EngagementForm).AppendLine(Constants.GetEngagementForm(p.EngagementForm));
 					sb.Append(ConstantsRes.BattleDetail_SearchingFriend).Append(Constants.GetSearchingResult(p.SearchingFriend));
 					sb.Append(ConstantsRes.BattleDetail_SearchingEnemy).AppendLine(Constants.GetSearchingResult(p.SearchingEnemy));
+=======
+					case PhaseFriendlySupport p:
+						if (p.IsAvailable)
+						{
+							sb.AppendLine("〈友軍艦隊〉");
+							OutputFriendlySupportData(sb, p);
+							sb.AppendLine();
+>>>>>>> andanteyk/develop
 
-					sb.AppendLine();
+							{
+								int searchlightIndex = p.SearchlightIndexFriend;
+								if (searchlightIndex != -1)
+								{
+									sb.AppendFormat("自軍探照灯照射: {0} #{1}\r\n", p.SearchlightFriendInstance.NameWithClass, searchlightIndex + 1);
+								}
+								searchlightIndex = p.SearchlightIndexEnemy;
+								if (searchlightIndex != -1)
+								{
+									sb.AppendFormat("敵軍探照灯照射: {0} #{1}\r\n", p.SearchlightEnemyInstance.NameWithClass, searchlightIndex + 1);
+								}
+							}
 
+							{
+								int flareIndex = p.FlareIndexFriend;
+								if (flareIndex != -1)
+								{
+									sb.AppendFormat("自軍照明弾投射: {0} #{1}\r\n", p.FlareFriendInstance.NameWithClass, flareIndex + 1);
+								}
+								flareIndex = p.FlareIndexEnemy;
+								if (flareIndex != -1)
+								{
+									sb.AppendFormat("敵軍照明弾投射: {0} #{1}\r\n", p.FlareEnemyInstance.NameWithClass, flareIndex + 1);
+								}
+							}
 
-				}
-				else if (phase is PhaseSupport)
-				{
-					var p = phase as PhaseSupport;
+							sb.AppendLine();
+						}
+						break;
 
-					if (p.IsAvailable)
-					{
-						sb.AppendLine("〈Support Fleet〉");
-						OutputSupportData(sb, p.SupportFleet);
-						sb.AppendLine();
-					}
 				}
 
 
@@ -488,6 +612,27 @@ namespace ElectronicObserver.Data.Battle.Detail
 				sb.AppendLine(string.Join(", ", ship.AllSlotInstance.Where(eq => eq != null)));
 			}
 
+		}
+
+		private static void OutputFriendlySupportData(StringBuilder sb, PhaseFriendlySupport p)
+		{
+
+			for (int i = 0; i < p.FriendlyMembersInstance.Length; i++)
+			{
+				var ship = p.FriendlyMembersInstance[i];
+
+				if (ship == null)
+					continue;
+
+				sb.AppendFormat("#{0}: {1} {2} Lv. {3} HP: {4} / {5} - 火力{6}, 雷装{7}, 対空{8}, 装甲{9}\r\n",
+					i + 1,
+					ship.ShipTypeName, p.FriendlyMembersInstance[i].NameWithClass, p.FriendlyLevels[i],
+					p.FriendlyInitialHPs[i], p.FriendlyMaxHPs[i],
+					p.FriendlyParameters[i][0], p.FriendlyParameters[i][1], p.FriendlyParameters[i][2], p.FriendlyParameters[i][3]);
+
+				sb.Append("　");
+				sb.AppendLine(string.Join(", ", p.FriendlySlots[i].Select(id => KCDatabase.Instance.MasterEquipments[id]).Where(eq => eq != null).Select(eq => eq.Name)));
+			}
 		}
 
 		private static void OutputEnemyData(StringBuilder sb, ShipDataMaster[] members, int[] levels, int[] initialHPs, int[] maxHPs, EquipmentDataMaster[][] slots, int[][] parameters)

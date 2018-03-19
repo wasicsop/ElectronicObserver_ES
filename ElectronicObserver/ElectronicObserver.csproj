@@ -129,10 +129,12 @@
     <Compile Include="Data\Battle\Phase\PhaseBase.cs" />
     <Compile Include="Data\Battle\Phase\PhaseBaseAirAttack.cs" />
     <Compile Include="Data\Battle\Phase\PhaseBaseAirRaid.cs" />
+    <Compile Include="Data\Battle\Phase\PhaseFriendlySupport.cs" />
     <Compile Include="Data\Battle\Phase\PhaseInitial.cs" />
     <Compile Include="Data\Battle\Phase\PhaseJetAirBattle.cs" />
     <Compile Include="Data\Battle\Phase\PhaseJetBaseAirAttack.cs" />
     <Compile Include="Data\Battle\Phase\PhaseNightBattle.cs" />
+    <Compile Include="Data\Battle\Phase\PhaseNightInitial.cs" />
     <Compile Include="Data\Battle\Phase\PhaseOpeningASW.cs" />
     <Compile Include="Data\Battle\Phase\PhaseSearching.cs" />
     <Compile Include="Data\Battle\Phase\PhaseShelling.cs" />
@@ -184,6 +186,7 @@
     <Compile Include="Data\Quest\ProgressImprovement.cs" />
     <Compile Include="Data\Quest\ProgressModernization.cs" />
     <Compile Include="Data\Quest\ProgressMultiBattle.cs" />
+    <Compile Include="Data\Quest\ProgressMultiDiscard.cs" />
     <Compile Include="Data\Quest\ProgressPractice.cs" />
     <Compile Include="Data\Quest\ProgressSlaughter.cs" />
     <Compile Include="Data\Quest\ProgressSupply.cs" />
@@ -256,7 +259,6 @@
     <Compile Include="Notifier\NotifierRepair.cs" />
     <Compile Include="Notifier\NotifierExpedition.cs" />
     <Compile Include="Notifier\NotifierManager.cs" />
-    <Compile Include="Observer\APIKancolleDB.cs" />
     <Compile Include="Observer\kcsapi\api_get_member\base_air_corps.cs" />
     <Compile Include="Observer\kcsapi\api_get_member\material.cs" />
     <Compile Include="Observer\kcsapi\api_get_member\payitem.cs" />
