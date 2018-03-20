@@ -65,13 +65,15 @@ namespace ElectronicObserver.Data.Battle.Detail
 			EquipmentIDs = equipmentIDs;
 			DefenderHP = defenderHP;
 
-			int[] slots = null;
+		}
 
 
+		protected int[] SetAttacker()
+		{
 			if (AttackerIndex < 0)
 			{
 				Attacker = null;
-				slots = null;
+				return null;
 			}
 			else
 			{
@@ -79,34 +81,35 @@ namespace ElectronicObserver.Data.Battle.Detail
 				{
 					case BattleSides.FriendMain:
 						{
-							var atk = bd.Initial.FriendFleet.MembersInstance[AttackerIndex.Index];
+							var atk = Battle.Initial.FriendFleet.MembersInstance[AttackerIndex.Index];
 							Attacker = atk.MasterShip;
-							slots = atk.AllSlotMaster.ToArray();
+							return atk.AllSlotMaster.ToArray();
 						}
-						break;
 
 					case BattleSides.FriendEscort:
 						{
-							var atk = bd.Initial.FriendFleetEscort.MembersInstance[AttackerIndex.Index];
+							var atk = Battle.Initial.FriendFleetEscort.MembersInstance[AttackerIndex.Index];
 							Attacker = atk.MasterShip;
-							slots = atk.AllSlotMaster.ToArray();
+							return atk.AllSlotMaster.ToArray();
 						}
-						break;
 
 					case BattleSides.EnemyMain:
-						Attacker = bd.Initial.EnemyMembersInstance[AttackerIndex.Index];
-						slots = bd.Initial.EnemySlots[AttackerIndex.Index];
-						break;
+						Attacker = Battle.Initial.EnemyMembersInstance[AttackerIndex.Index];
+						return Battle.Initial.EnemySlots[AttackerIndex.Index];
 
 					case BattleSides.EnemyEscort:
-						Attacker = bd.Initial.EnemyMembersEscortInstance[AttackerIndex.Index];
-						slots = bd.Initial.EnemySlotsEscort[AttackerIndex.Index];
-						break;
+						Attacker = Battle.Initial.EnemyMembersEscortInstance[AttackerIndex.Index];
+						return Battle.Initial.EnemySlotsEscort[AttackerIndex.Index];
+
+					default:
+						throw new NotSupportedException();
 				}
 			}
+		}
 
-
-			if (bd.IsBaseAirRaid)
+		protected void SetDefender()
+		{
+			if (Battle.IsBaseAirRaid)
 			{
 				Defender = null;
 			}
@@ -115,30 +118,25 @@ namespace ElectronicObserver.Data.Battle.Detail
 				switch (DefenderIndex.Side)
 				{
 					case BattleSides.FriendMain:
-						Defender = bd.Initial.FriendFleet.MembersInstance[DefenderIndex.Index].MasterShip;
+						Defender = Battle.Initial.FriendFleet.MembersInstance[DefenderIndex.Index].MasterShip;
 						break;
 
 					case BattleSides.FriendEscort:
-						Defender = bd.Initial.FriendFleetEscort.MembersInstance[DefenderIndex.Index].MasterShip;
+						Defender = Battle.Initial.FriendFleetEscort.MembersInstance[DefenderIndex.Index].MasterShip;
 						break;
 
 					case BattleSides.EnemyMain:
-						Defender = bd.Initial.EnemyMembersInstance[DefenderIndex.Index];
+						Defender = Battle.Initial.EnemyMembersInstance[DefenderIndex.Index];
 						break;
 
 					case BattleSides.EnemyEscort:
-						Defender = bd.Initial.EnemyMembersEscortInstance[DefenderIndex.Index];
+						Defender = Battle.Initial.EnemyMembersEscortInstance[DefenderIndex.Index];
 						break;
 				}
 			}
 
-
-			if (AttackType == 0 && Attacker != null)
-			{
-				AttackType = CaclulateAttackKind(slots, Attacker.ShipID, Defender.ShipID);
-			}
-
 		}
+
 
 
 		/// <summary>
@@ -149,7 +147,14 @@ namespace ElectronicObserver.Data.Battle.Detail
 
 			StringBuilder builder = new StringBuilder();
 
-			builder.AppendFormat("{0} → {1}\r\n", GetAttackerName(), GetDefenderName());
+
+			if (Battle.IsPractice)
+				builder.AppendFormat("{0}{1} → {2}{3}",
+					Attacker == null ? "" : AttackerIndex.IsFriend ? "自軍 " : "敵軍 ", GetAttackerName(),
+					DefenderIndex.IsFriend ? "自軍 " : "敵軍 ", GetDefenderName()
+					).AppendLine();
+			else
+				builder.AppendFormat("{0} → {1}", GetAttackerName(), GetDefenderName()).AppendLine();
 
 
 			if (AttackType >= 0)
@@ -201,9 +206,13 @@ namespace ElectronicObserver.Data.Battle.Detail
 
 
 			// damage control
-			if (afterHP <= 0 && DefenderIndex.IsFriend && !Battle.IsPractice && !Battle.IsBaseAirRaid)
+			if (beforeHP > 0 && afterHP <= 0 && DefenderIndex.IsFriend && !Battle.IsPractice && !Battle.IsBaseAirRaid)
 			{
-				var defender = (DefenderIndex.Side == BattleSides.FriendEscort ? Battle.Initial.FriendFleetEscort : Battle.Initial.FriendFleet).MembersInstance[DefenderIndex.Index];
+				// 友軍艦隊時は常に beforeHP == 0 になるので、ここには来ないはず
+				// 暫定対策でしかないのでできればまともにしたい
+
+				var defender = (DefenderIndex.Side == BattleSides.FriendEscort ? Battle.Initial.FriendFleetEscort : Battle.Initial.FriendFleet)
+					?.MembersInstance?.ElementAtOrDefault(DefenderIndex.Index);
 				if (defender != null)
 				{
 					int id = defender.DamageControlID;
@@ -254,6 +263,12 @@ namespace ElectronicObserver.Data.Battle.Detail
 		public BattleDayDetail(BattleData bd, BattleIndex attackerId, BattleIndex defenderId, double[] damages, int[] criticalTypes, int attackType, int[] equipmentIDs, int defenderHP)
 			: base(bd, attackerId, defenderId, damages, criticalTypes, attackType, equipmentIDs, defenderHP)
 		{
+			var attackerSlots = SetAttacker();
+			SetDefender();
+
+			if (AttackType == 0 && Attacker != null)
+				AttackType = CaclulateAttackKind(attackerSlots, Attacker.ShipID, Defender.ShipID);
+
 		}
 
 		protected override int CaclulateAttackKind(int[] slots, int attackerShipID, int defenderShipID)
@@ -276,6 +291,11 @@ namespace ElectronicObserver.Data.Battle.Detail
 		public BattleSupportDetail(BattleData bd, BattleIndex defenderId, double damage, int criticalType, int attackType, int defenderHP)
 			: base(bd, BattleIndex.Invalid, defenderId, new double[] { damage }, new int[] { criticalType }, attackType, null, defenderHP)
 		{
+			var attackerSlots = SetAttacker();
+			SetDefender();
+
+			if (AttackType == 0 && Attacker != null)
+				AttackType = CaclulateAttackKind(attackerSlots, Attacker.ShipID, Defender.ShipID);
 		}
 
 		protected override string GetAttackerName()
@@ -319,6 +339,12 @@ namespace ElectronicObserver.Data.Battle.Detail
 			: base(bd, attackerId, defenderId, damages, criticalTypes, attackType, equipmentIDs, defenderHP)
 		{
 			NightAirAttackFlag = nightAirAttackFlag;
+
+			var attackerSlots = SetAttacker();
+			SetDefender();
+
+			if (AttackType == 0 && Attacker != null)
+				AttackType = CaclulateAttackKind(attackerSlots, Attacker.ShipID, Defender.ShipID);
 		}
 
 		protected override int CaclulateAttackKind(int[] slots, int attackerShipID, int defenderShipID)
@@ -391,6 +417,53 @@ namespace ElectronicObserver.Data.Battle.Detail
 			}
 		}
 
+	}
+
+
+	/// <summary>
+	/// 友軍艦隊攻撃における戦闘詳細データを保持します。
+	/// </summary>
+	public class BattleFriendlySupportDetail : BattleDetail
+	{
+
+		public bool NightAirAttackFlag { get; protected set; }
+
+		public BattleFriendlySupportDetail(BattleNight bd, BattleIndex attackerId, BattleIndex defenderId, double[] damages, int[] criticalTypes, int attackType, int[] equipmentIDs, bool nightAirAttackFlag, int defenderHP)
+			: base(bd, attackerId, defenderId, damages, criticalTypes, attackType, equipmentIDs, defenderHP)
+		{
+			NightAirAttackFlag = nightAirAttackFlag;
+
+			int[] attackerSlots;
+
+			if (attackerId.IsFriend)
+			{
+				Attacker = bd.FriendlySupport.FriendlyMembersInstance[attackerId.Index];
+				attackerSlots = bd.FriendlySupport.FriendlySlots[attackerId.Index];
+			}
+			else
+			{
+				attackerSlots = SetAttacker();
+			}
+
+			if (defenderId.IsFriend)
+				Defender = bd.FriendlySupport.FriendlyMembersInstance[defenderId.Index];
+			else
+				SetDefender();
+
+
+			if (AttackType == 0 && Attacker != null)
+				AttackType = CaclulateAttackKind(attackerSlots, Attacker.ShipID, Defender.ShipID);
+		}
+
+		protected override int CaclulateAttackKind(int[] slots, int attackerShipID, int defenderShipID)
+		{
+			return (int)Calculator.GetNightAttackKind(slots, attackerShipID, defenderShipID, false, NightAirAttackFlag);
+		}
+
+		protected override string GetAttackKind()
+		{
+			return Constants.GetNightAttackKind((NightAttackKind)AttackType);
+		}
 	}
 
 }

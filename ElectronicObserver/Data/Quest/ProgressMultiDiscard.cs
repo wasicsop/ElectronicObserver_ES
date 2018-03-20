@@ -7,32 +7,32 @@ using System.Threading.Tasks;
 
 namespace ElectronicObserver.Data.Quest
 {
-
-	[DataContract(Name = "ProgressMultiBattle")]
-	public class ProgressMultiBattle : ProgressData
+	[DataContract(Name = "ProgressMultiDiscard")]
+	public class ProgressMultiDiscard : ProgressData
 	{
 
 		[DataMember]
-		private ProgressBattle[] ProgressList;
+		private ProgressDiscard[] ProgressList;
 
-		public ProgressMultiBattle(QuestData quest, IEnumerable<ProgressBattle> progressList)
+		public ProgressMultiDiscard(QuestData quest, IEnumerable<ProgressDiscard> progressList)
 			: base(quest, 1)
 		{
 			ProgressList = progressList.ToArray();
 			foreach (var p in ProgressList)
 				p.IgnoreCheckProgress = true;
 
-			ProgressMax = ProgressList.Sum(p => p.ProgressMax);
+			ProgressMax = progressList.Sum(p => p.ProgressMax);
 		}
 
 
-		public void Increment(string rank, int areaID, bool isBoss)
+		public void Increment(IEnumerable<int> equipments)
 		{
 			foreach (var p in ProgressList)
-				p.Increment(rank, areaID, isBoss);
+				p.Increment(equipments);
 
 			Progress = ProgressList.Sum(p => p.Progress);
 		}
+
 
 		public override void Increment()
 		{
@@ -44,10 +44,12 @@ namespace ElectronicObserver.Data.Quest
 			throw new NotSupportedException();
 		}
 
+
 		public override void CheckProgress(QuestData q)
 		{
 			// do nothing
 		}
+
 
 		public override string ToString()
 		{
@@ -56,6 +58,7 @@ namespace ElectronicObserver.Data.Quest
 			else
 				return string.Join(", ", ProgressList.Where(p => !p.IsCleared).Select(p => p.GetClearCondition() + ": " + p.ToString()));
 		}
+
 
 		public override string GetClearCondition()
 		{

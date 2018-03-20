@@ -195,7 +195,7 @@ namespace ElectronicObserver.Window
 				case "api_req_practice/midnight_battle":
 					{
 
-						SetNightBattleEvent(bm.BattleNight.NightBattle);
+						SetNightBattleEvent(bm.BattleNight.NightInitial);
 						SetHPBar(bm.BattleNight);
 						SetDamageRate(bm);
 
@@ -210,7 +210,7 @@ namespace ElectronicObserver.Window
 						ClearBaseAirAttack();
 						ClearAerialWarfare();
 						ClearSearchingResult();
-						SetNightBattleEvent(bm.BattleNight.NightBattle);
+						SetNightBattleEvent(bm.BattleNight.NightInitial);
 						SetHPBar(bm.BattleNight);
 						SetDamageRate(bm);
 
@@ -241,7 +241,7 @@ namespace ElectronicObserver.Window
 						ClearAerialWarfare();
 						ClearSearchingResult();
 						ClearBaseAirAttack();
-						SetNightBattleEvent(battle.NightBattle);
+						SetNightBattleEvent(battle.NightInitial);
 
 						if (battle.NextToDay)
 						{
@@ -294,7 +294,7 @@ namespace ElectronicObserver.Window
 				case "api_req_combined_battle/ec_midnight_battle":
 					{
 
-						SetNightBattleEvent(bm.BattleNight.NightBattle);
+						SetNightBattleEvent(bm.BattleNight.NightInitial);
 						SetHPBar(bm.BattleNight);
 						SetDamageRate(bm);
 
@@ -309,7 +309,7 @@ namespace ElectronicObserver.Window
 						ClearAerialWarfare();
 						ClearSearchingResult();
 						ClearBaseAirAttack();
-						SetNightBattleEvent(bm.BattleNight.NightBattle);
+						SetNightBattleEvent(bm.BattleNight.NightInitial);
 						SetHPBar(bm.BattleNight);
 						SetDamageRate(bm);
 
@@ -325,7 +325,7 @@ namespace ElectronicObserver.Window
 						ClearAerialWarfare();
 						ClearSearchingResult();
 						ClearBaseAirAttack();
-						SetNightBattleEvent(battle.NightBattle);
+						SetNightBattleEvent(battle.NightInitial);
 
 						if (battle.NextToDay)
 						{
@@ -595,7 +595,10 @@ namespace ElectronicObserver.Window
 					label.ForeColor = Utility.Configuration.Config.UI.Color_Red;
 				else
 					label.ForeColor = Utility.Configuration.Config.UI.ForeColor;
-			}
+
+                label.ImageAlign = ContentAlignment.MiddleCenter;
+                label.ImageIndex = -1;
+            }
 
 			void ClearAACutinLabel()
 			{
@@ -1105,7 +1108,7 @@ namespace ElectronicObserver.Window
 		/// <param name="hp">戦闘開始前のHP。</param>
 		/// <param name="isCombined">連合艦隊かどうか。</param>
 		/// <param name="bd">戦闘データ。</param>
-		private void SetNightBattleEvent(PhaseNightBattle pd)
+		private void SetNightBattleEvent(PhaseNightInitial pd)
 		{
 
 			FleetData fleet = pd.FriendFleet;
@@ -1171,7 +1174,7 @@ namespace ElectronicObserver.Window
 					AirStage2Friend.ForeColor = Utility.Configuration.Config.UI.ForeColor;
 					AirStage2Friend.ImageAlign = ContentAlignment.MiddleLeft;
 					AirStage2Friend.ImageIndex = (int)ResourceManager.EquipmentContent.Flare;
-					ToolTipInfo.SetToolTip( AirStage2Friend, GeneralRes.StarShellUsed + ": " + fleet.MembersInstance[index].NameWithLevel );
+					ToolTipInfo.SetToolTip(AirStage2Friend, GeneralRes.StarShellUsed + ": " + pd.FlareFriendInstance.NameWithLevel);
 
 				}
 				else

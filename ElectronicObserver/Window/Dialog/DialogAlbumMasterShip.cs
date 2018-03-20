@@ -296,6 +296,7 @@ namespace ElectronicObserver.Window.Dialog
 				ship.ResourceName, ship.ResourceGraphicVersion, ship.ResourceVoiceVersion, ship.ResourcePortVoiceVersion, Constants.GetVoiceFlag(ship.VoiceFlag)));
 
 			ShipType.Text = ship.IsLandBase ? "Land Base" : ship.ShipTypeName;
+			ToolTipInfo.SetToolTip(ShipType, Constants.GetShipClass(ship.ShipClass));
 			ShipName.Text = ship.NameWithClass;
 			ShipName.ForeColor = ship.GetShipNameColor();
 			if(ShipName.ForeColor == Color.FromArgb( 0xFF, 0xFF, 0xFF ))
@@ -586,7 +587,7 @@ namespace ElectronicObserver.Window.Dialog
 					RemodelBeforeShipName.Text = sbefore.Name;
 					ToolTipInfo.SetToolTip(RemodelBeforeShipName, "Open with left click.\r\nRight click to open in a new window.");
 					RemodelBeforeLevel.Text = string.Format("Lv. {0}", sbefore.RemodelAfterLevel);
-					RemodelBeforeLevel.ImageIndex = sbefore.NeedCatapult > 0 ? (int)ResourceManager.IconContent.ItemCatapult : sbefore.NeedBlueprint > 0 ? (int)ResourceManager.IconContent.ItemBlueprint : -1;
+					RemodelBeforeLevel.ImageIndex = GetRemodelItemImageIndex(sbefore);
 					ToolTipInfo.SetToolTip(RemodelBeforeLevel, GetRemodelItem(sbefore));
 					RemodelBeforeAmmo.Text = sbefore.RemodelAmmo.ToString();
 					RemodelBeforeSteel.Text = sbefore.RemodelSteel.ToString();
@@ -607,7 +608,7 @@ namespace ElectronicObserver.Window.Dialog
 					RemodelAfterShipName.Text = ship.RemodelAfterShip.Name;
 					ToolTipInfo.SetToolTip(RemodelAfterShipName, "Open with left click.\r\nRight click to open in a new window.");
 					RemodelAfterLevel.Text = string.Format("Lv. {0}", ship.RemodelAfterLevel);
-					RemodelAfterLevel.ImageIndex = ship.NeedCatapult > 0 ? (int)ResourceManager.IconContent.ItemCatapult : ship.NeedBlueprint > 0 ? (int)ResourceManager.IconContent.ItemBlueprint : -1;
+					RemodelAfterLevel.ImageIndex = GetRemodelItemImageIndex(ship);
 					ToolTipInfo.SetToolTip(RemodelAfterLevel, GetRemodelItem(ship));
 					RemodelAfterAmmo.Text = ship.RemodelAmmo.ToString();
 					RemodelAfterSteel.Text = ship.RemodelSteel.ToString();
@@ -852,13 +853,24 @@ namespace ElectronicObserver.Window.Dialog
 		}
 
 
-		private string GetRemodelItem(ShipDataMaster ship)
+		private static int GetRemodelItemImageIndex(ShipDataMaster ship)
+		{
+			return
+				ship.NeedCatapult > 0 ? (int)ResourceManager.IconContent.ItemCatapult :
+				ship.NeedActionReport > 0 ? (int)ResourceManager.IconContent.ItemActionReport :
+				ship.NeedBlueprint > 0 ? (int)ResourceManager.IconContent.ItemBlueprint :
+				-1;
+		}
+
+		private static string GetRemodelItem(ShipDataMaster ship)
 		{
 			StringBuilder sb = new StringBuilder();
 			if (ship.NeedBlueprint > 0)
 				sb.AppendLine(EncycloRes.Blueprint + ": " + ship.NeedBlueprint);
 			if (ship.NeedCatapult > 0)
 				sb.AppendLine(EncycloRes.PrototypeCatapult + ": " + ship.NeedCatapult);
+			if (ship.NeedActionReport > 0)
+				sb.AppendLine("Action Report: " + ship.NeedActionReport);
 
 			return sb.ToString();
 		}
@@ -876,7 +888,7 @@ namespace ElectronicObserver.Window.Dialog
 					using (StreamWriter sw = new StreamWriter(SaveCSVDialog.FileName, false, Utility.Configuration.Config.Log.FileEncoding))
 					{
 
-						sw.WriteLine("艦船ID,図鑑番号,艦種,艦名,読み,改装前,改装後,改装Lv,改装弾薬,改装鋼材,改装設計図,カタパルト,改装段階,耐久初期,耐久結婚,火力初期,火力最大,雷装初期,雷装最大,対空初期,対空最大,装甲初期,装甲最大,対潜初期,対潜最大,回避初期,回避最大,索敵初期,索敵最大,運初期,運最大,速力,射程,レア,スロット数,搭載機数1,搭載機数2,搭載機数3,搭載機数4,搭載機数5,初期装備1,初期装備2,初期装備3,初期装備4,初期装備5,建造時間,解体燃料,解体弾薬,解体鋼材,解体ボーキ,改修火力,改修雷装,改修対空,改修装甲,ドロップ文章,図鑑文章,搭載燃料,搭載弾薬,ボイス,リソース名,画像バージョン,ボイスバージョン,母港ボイスバージョン");
+						sw.WriteLine("艦船ID,図鑑番号,艦型,艦種,艦名,読み,改装前,改装後,改装Lv,改装弾薬,改装鋼材,改装設計図,カタパルト,戦闘詳報,改装段階,耐久初期,耐久結婚,火力初期,火力最大,雷装初期,雷装最大,対空初期,対空最大,装甲初期,装甲最大,対潜初期,対潜最大,回避初期,回避最大,索敵初期,索敵最大,運初期,運最大,速力,射程,レア,スロット数,搭載機数1,搭載機数2,搭載機数3,搭載機数4,搭載機数5,初期装備1,初期装備2,初期装備3,初期装備4,初期装備5,建造時間,解体燃料,解体弾薬,解体鋼材,解体ボーキ,改修火力,改修雷装,改修対空,改修装甲,ドロップ文章,図鑑文章,搭載燃料,搭載弾薬,ボイス,リソース名,画像バージョン,ボイスバージョン,母港ボイスバージョン");
 
 						foreach (ShipDataMaster ship in KCDatabase.Instance.MasterShips.Values)
 						{
@@ -886,6 +898,7 @@ namespace ElectronicObserver.Window.Dialog
 							sw.WriteLine(string.Join(",",
 								ship.ShipID,
 								ship.AlbumNo,
+								ship.IsAbyssalShip ? "深海棲艦" : Constants.GetShipClass(ship.ShipClass),
 								ship.ShipTypeName,
 								ship.Name,
 								ship.NameReading,
@@ -896,6 +909,7 @@ namespace ElectronicObserver.Window.Dialog
 								ship.RemodelSteel,
 								ship.NeedBlueprint > 0 ? ship.NeedBlueprint + "枚" : "-",
 								ship.NeedCatapult > 0 ? ship.NeedCatapult + "個" : "-",
+								ship.NeedActionReport > 0 ? ship.NeedActionReport + "枚" : "-",
 								ship.RemodelTier,
 								ship.HPMin,
 								ship.HPMaxMarried,
@@ -978,7 +992,7 @@ namespace ElectronicObserver.Window.Dialog
 					using (StreamWriter sw = new StreamWriter(SaveCSVDialog.FileName, false, Utility.Configuration.Config.Log.FileEncoding))
 					{
 
-						sw.WriteLine(string.Format("艦船ID,図鑑番号,艦名,読み,艦種,改装前,改装後,改装Lv,改装弾薬,改装鋼材,改装設計図,カタパルト,改装段階,耐久初期,耐久最大,耐久結婚,火力初期,火力最大,雷装初期,雷装最大,対空初期,対空最大,装甲初期,装甲最大,対潜初期最小,対潜初期最大,対潜最大,対潜{0}最小,対潜{0}最大,回避初期最小,回避初期最大,回避最大,回避{0}最小,回避{0}最大,索敵初期最小,索敵初期最大,索敵最大,索敵{0}最小,索敵{0}最大,運初期,運最大,速力,射程,レア,スロット数,搭載機数1,搭載機数2,搭載機数3,搭載機数4,搭載機数5,初期装備1,初期装備2,初期装備3,初期装備4,初期装備5,建造時間,解体燃料,解体弾薬,解体鋼材,解体ボーキ,改修火力,改修雷装,改修対空,改修装甲,ドロップ文章,図鑑文章,搭載燃料,搭載弾薬,ボイス,リソース名,画像バージョン,ボイスバージョン,母港ボイスバージョン", ExpTable.ShipMaximumLevel));
+						sw.WriteLine(string.Format("艦船ID,図鑑番号,艦名,読み,艦種,艦型,改装前,改装後,改装Lv,改装弾薬,改装鋼材,改装設計図,カタパルト,戦闘詳報,改装段階,耐久初期,耐久最大,耐久結婚,火力初期,火力最大,雷装初期,雷装最大,対空初期,対空最大,装甲初期,装甲最大,対潜初期最小,対潜初期最大,対潜最大,対潜{0}最小,対潜{0}最大,回避初期最小,回避初期最大,回避最大,回避{0}最小,回避{0}最大,索敵初期最小,索敵初期最大,索敵最大,索敵{0}最小,索敵{0}最大,運初期,運最大,速力,射程,レア,スロット数,搭載機数1,搭載機数2,搭載機数3,搭載機数4,搭載機数5,初期装備1,初期装備2,初期装備3,初期装備4,初期装備5,建造時間,解体燃料,解体弾薬,解体鋼材,解体ボーキ,改修火力,改修雷装,改修対空,改修装甲,ドロップ文章,図鑑文章,搭載燃料,搭載弾薬,ボイス,リソース名,画像バージョン,ボイスバージョン,母港ボイスバージョン", ExpTable.ShipMaximumLevel));
 
 						foreach (ShipDataMaster ship in KCDatabase.Instance.MasterShips.Values)
 						{
@@ -989,6 +1003,7 @@ namespace ElectronicObserver.Window.Dialog
 								ship.Name,
 								ship.NameReading,
 								(int)ship.ShipType,
+								ship.ShipClass,
 								ship.RemodelBeforeShipID,
 								ship.RemodelAfterShipID,
 								ship.RemodelAfterLevel,
@@ -996,6 +1011,7 @@ namespace ElectronicObserver.Window.Dialog
 								ship.RemodelSteel,
 								ship.NeedBlueprint,
 								ship.NeedCatapult,
+								ship.NeedActionReport,
 								ship.RemodelTier,
 								ship.HPMin,
 								ship.HPMax,
@@ -1371,6 +1387,9 @@ namespace ElectronicObserver.Window.Dialog
 						append.Add("要改装設計図");
 					if (before.NeedCatapult > 0)
 						append.Add("要カタパルト");
+					if (before.NeedActionReport > 0)
+						append.Add("要戦闘詳報");
+
 					sb.AppendFormat("改造前: {0} Lv. {1} ({2})\r\n",
 						before.NameWithClass, before.RemodelAfterLevel, string.Join(", ", append));
 				}
@@ -1389,6 +1408,9 @@ namespace ElectronicObserver.Window.Dialog
 						append.Add("要改装設計図");
 					if (ship.NeedCatapult > 0)
 						append.Add("要カタパルト");
+					if (ship.NeedActionReport > 0)
+						append.Add("要戦闘詳報");
+
 					sb.AppendFormat("改造後: {0} Lv. {1} ({2})\r\n",
 						ship.RemodelAfterShip.NameWithClass, ship.RemodelAfterLevel, string.Join(", ", append));
 				}

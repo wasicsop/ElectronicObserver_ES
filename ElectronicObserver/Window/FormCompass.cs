@@ -662,7 +662,7 @@ namespace ElectronicObserver.Window
 						return Utility.Configuration.Config.UI.Compass_ColorTextEventKind6;
 					case 5:     // 敵連合
 						return Utility.Configuration.Config.UI.Compass_ColorTextEventKind5;
-					case 7:		// 夜昼戦(対連合艦隊)
+					case 7:     // 夜昼戦(対連合艦隊)
 						return Utility.Configuration.Config.UI.Compass_ColorTextEventKind3;
 				}
 			};
@@ -725,7 +725,9 @@ namespace ElectronicObserver.Window
 						int current = compass.MapHPCurrent > 0 ? compass.MapHPCurrent : mapinfo.MapHPCurrent;
 						int max = compass.MapHPMax > 0 ? compass.MapHPMax : mapinfo.MapHPMax;
 
-						ToolTipInfo.SetToolTip(TextMapArea, string.Format("{0}: {1} / {2}", mapinfo.GaugeType == 3 ? "TP" : "HP", current, max));
+						ToolTipInfo.SetToolTip(TextMapArea, string.Format("{0}{1}: {2} / {3}",
+							mapinfo.CurrentGaugeIndex > 0 ? "#" + mapinfo.CurrentGaugeIndex + " " : "",
+							mapinfo.GaugeType == 3 ? "TP" : "HP", current, max));
 
 					}
 					else
@@ -780,8 +782,7 @@ namespace ElectronicObserver.Window
 					switch (compass.EventID)
 					{
 
-						case 0:		//初期位置
-						case 1:		//不明
+						case 0:     //初期位置
 							TextEventDetail.Text = GeneralRes.WhyDidThisHappen;
 							break;
 
@@ -840,6 +841,7 @@ namespace ElectronicObserver.Window
 							UpdateEnemyFleet();
 							break;
 
+						case 1:     //イベントなし
 						case 6:     //気のせいだった
 							switch (compass.EventKind)
 							{
@@ -866,13 +868,61 @@ namespace ElectronicObserver.Window
 									eventkind = "It's a calm sea.";
 									break;
 								case 7:
-									eventkind = "Striking Force, advancing.";
+									eventkind = "Anti-Submarine Alert, advancing.";
 									break;
 								case 8:
-									eventkind = "Anti-Submarine Alert, advancing.";
+									eventkind = "Enemy patrol aircraft discovered.";
 									break;
 								case 9:
 									eventkind = "Kurita Fleet, pushing through.";
+									break;
+								case 10:
+									eventkind = "Nishimura Fleet, attack in progress.";
+									break;
+								case 11:
+									eventkind = "Advancing to Surigao Strait."; // 西村
+									break;
+								case 12:
+									eventkind = "Advancing to Sibuyan Sea.";
+									break;
+								case 13:
+									eventkind = "Transport mission failed.";
+									break;
+								case 14:
+									eventkind = "Attacking in Sibuyan Sea."; // 栗田
+									break;
+								case 15:
+									eventkind = "Attacking off the coast of Samar.";
+									break;
+								case 16:
+									eventkind = "Nishimura Fleet, pushing through."; // 西村
+									break;
+								case 17:
+									eventkind = "Ozawa Fleet, sortieing.";
+									break;
+								case 18:
+									eventkind = "Panay Island.";
+									break;
+								case 19:
+									eventkind = "Entering Mindanao Island.";
+									break;
+								case 20:
+									eventkind = "Shima Fleet, sortieing.";
+									break;
+								case 21:
+									eventkind = "Enemy patrol aircraft discovered.";
+									break;
+								case 22:
+									eventkind = "Anti-Submarine Alert, advancing.";
+									break;
+								case 23:
+									eventkind = "Fast Fleet, sortieing.";
+									break;
+								case 24:
+									eventkind = "Carrier Task Force, sortieing.";
+									break;
+								case 25:
+									eventkind = "Decisive battle.";
 									break;
 							}
 							if (compass.RouteChoices != null)
