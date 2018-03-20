@@ -108,6 +108,7 @@ namespace EOUpdater
 		{
 			using (var client = new WebClient())
 			{
+				ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 				var updateData = client.OpenRead(UpdateUrl);
 				var json = DynamicJson.Parse(updateData);
 
