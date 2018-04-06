@@ -2684,12 +2684,12 @@ namespace ElectronicObserver.Utility
 				drop.SaveAll(RecordManager.Instance.MasterPath);
 
 
-				Utility.Logger.Add(2, "<= ver. 3.0.7 難易度変更に伴うレコードファイルの修正: 正常に完了しました。");
+				Utility.Logger.Add(2, "<= ver. 3.0.7 changes to records due to difficulty level changes: Operation completed successfully.");
 
 			}
 			catch (Exception ex)
 			{
-				ErrorReporter.SendErrorReport(ex, "<= ver. 3.0.7 難易度変更に伴うレコードファイルの修正: 失敗しました。");
+				ErrorReporter.SendErrorReport(ex, "<= ver. 3.0.7 changes to records due to difficulty level changes: Operation failed.");
 			}
 
 		}
