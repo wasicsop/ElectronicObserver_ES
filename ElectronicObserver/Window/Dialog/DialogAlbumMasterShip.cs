@@ -148,7 +148,7 @@ namespace ElectronicObserver.Window.Dialog
 				row.CreateCells(ShipView);
 				row.SetValues(ship.ShipID, ship.ShipTypeName, ship.NameWithClass);
 				row.Cells[ShipView_ShipType.Index].Tag = ship.ShipType;
-				row.Cells[ShipView_Name.Index].Tag = ship.IsAbyssalShip ? null : ship.NameReading;
+				row.Cells[ShipView_Name.Index].Tag = ship.IsAbyssalShip ? null : ship.Name;
 				rows.Add(row);
 
 			}
@@ -1574,7 +1574,7 @@ namespace ElectronicObserver.Window.Dialog
 				}
 				else
 				{
-					MessageBox.Show("Failed to find the image resource. Please do the following:\r\n1. Settings→Network→Save received data and enable SWF option.\r\n2. Clear cache and reload the game.\r\n3. View the ship within the game (organize menu, encyclopedia, etc)", "Ship Image Not Found", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+					MessageBox.Show("Failed to find the image resource. Please do the following:\r\n1. Settings→Network→Save API data and enable SWF option.\r\n2. Clear cache and reload the game.\r\n3. View the ship within the game (organize menu, encyclopedia, etc)", "Ship Image Not Found", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 				}
 			}
 			else
