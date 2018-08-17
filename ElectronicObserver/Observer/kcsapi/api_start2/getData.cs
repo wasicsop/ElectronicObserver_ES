@@ -5,10 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ElectronicObserver.Observer.kcsapi
+namespace ElectronicObserver.Observer.kcsapi.api_start2
 {
-	[Obsolete]
-	public class api_start2_old : APIBase
+	public class getData : APIBase
 	{
 
 
@@ -214,17 +213,17 @@ namespace ElectronicObserver.Observer.kcsapi
 				{
 					shipbefore.NeedBlueprint = (int)elem.api_drawing_count;
 					shipbefore.NeedCatapult = (int)elem.api_catapult_count;
-                    shipbefore.NeedActionReport = (int)elem.api_report_count;
+					shipbefore.NeedActionReport = (int)elem.api_report_count;
 				}
 			}
 
 
-			Utility.Logger.Add(2, "The Admiral has checked in at the base. You may now take control.");
+			Utility.Logger.Add(2, "提督が鎮守府に着任しました。これより艦隊の指揮を執ります。");
 
 			base.OnResponseReceived((object)data);
 		}
 
-		public override string APIName => "api_start2";
+		public override string APIName => "api_start2/getData";
 	}
 
 
