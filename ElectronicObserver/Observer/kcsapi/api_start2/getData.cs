@@ -218,7 +218,7 @@ namespace ElectronicObserver.Observer.kcsapi.api_start2
 			}
 
 
-			Utility.Logger.Add(2, "提督が鎮守府に着任しました。これより艦隊の指揮を執ります。");
+			Utility.Logger.Add(2, "The Admiral has checked in at the base. You may now take control.");
 
 			base.OnResponseReceived((object)data);
 		}

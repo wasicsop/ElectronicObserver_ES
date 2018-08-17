@@ -234,27 +234,27 @@
 			// RecordView_Name
 			//
 			this.RecordView_Name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.RecordView_Name.HeaderText = "名前";
+			this.RecordView_Name.HeaderText = "Name";
 			this.RecordView_Name.Name = "RecordView_Name";
 			this.RecordView_Name.ReadOnly = true;
 			//
 			// RecordView_Date
 			//
-			this.RecordView_Date.HeaderText = "日付";
+			this.RecordView_Date.HeaderText = "Date";
 			this.RecordView_Date.Name = "RecordView_Date";
 			this.RecordView_Date.ReadOnly = true;
 			this.RecordView_Date.Width = 150;
 			//
 			// RecordView_Map
 			//
-			this.RecordView_Map.HeaderText = "海域";
+			this.RecordView_Map.HeaderText = "Map";
 			this.RecordView_Map.Name = "RecordView_Map";
 			this.RecordView_Map.ReadOnly = true;
 			this.RecordView_Map.Width = 120;
 			//
 			// RecordView_Rank
 			//
-			this.RecordView_Rank.HeaderText = "ランク";
+			this.RecordView_Rank.HeaderText = "Rank";
 			this.RecordView_Rank.Name = "RecordView_Rank";
 			this.RecordView_Rank.ReadOnly = true;
 			this.RecordView_Rank.Width = 40;
@@ -263,7 +263,7 @@
 			//
 			dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
 			this.RecordView_RankS.DefaultCellStyle = dataGridViewCellStyle2;
-			this.RecordView_RankS.HeaderText = "S勝利";
+			this.RecordView_RankS.HeaderText = "S-rank";
 			this.RecordView_RankS.Name = "RecordView_RankS";
 			this.RecordView_RankS.ReadOnly = true;
 			//
@@ -271,7 +271,7 @@
 			//
 			dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
 			this.RecordView_RankA.DefaultCellStyle = dataGridViewCellStyle3;
-			this.RecordView_RankA.HeaderText = "A勝利";
+			this.RecordView_RankA.HeaderText = "A-rank";
 			this.RecordView_RankA.Name = "RecordView_RankA";
 			this.RecordView_RankA.ReadOnly = true;
 			//
@@ -279,7 +279,7 @@
 			//
 			dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
 			this.RecordView_RankB.DefaultCellStyle = dataGridViewCellStyle4;
-			this.RecordView_RankB.HeaderText = "B勝利";
+			this.RecordView_RankB.HeaderText = "B-rank";
 			this.RecordView_RankB.Name = "RecordView_RankB";
 			this.RecordView_RankB.ReadOnly = true;
 			//

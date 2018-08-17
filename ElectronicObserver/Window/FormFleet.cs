@@ -174,13 +174,13 @@ namespace ElectronicObserver.Window
 					{
 						case 0:
 						default:
-							supporttype = "発動不能"; break;
+							supporttype = "n/a"; break;
 						case 1:
-							supporttype = "航空支援";break;
+							supporttype = "Aerial Support";break;
 						case 2:
-							supporttype = "支援射撃"; break;
+							supporttype = "Support Shelling"; break;
 						case 3:
-							supporttype = "支援長距離雷撃"; break;
+							supporttype = "Long-range Torpedo Attack"; break;
 					}
 
 					double expeditionBonus = Calculator.GetExpeditionBonus(fleet);
@@ -194,7 +194,7 @@ namespace ElectronicObserver.Window
 					ToolTipInfo.SetToolTip(Name, string.Format(
 						"Lv sum: {0} / avg: {1:0.00}\r\n" +
 						"{2} fleet\r\n" +
-						"支援攻撃: {3}\r\n" +
+						"Support Expedition: {3}\r\n" +
 						"Total AA: {4} / ASW: {5} / LOS: {6}\r\n" +
 						"Drum: {7} ({8} ships)\r\n" +
 						"Daihatsu: {9} ({10} ships, +{11:p1})\r\n" +
@@ -470,7 +470,7 @@ namespace ElectronicObserver.Window
 					Name.Tag = ship.ShipID;
 					ToolTipInfo.SetToolTip(Name,
 						string.Format(
-							"{0} {1}\r\n火力: {2}/{3}\r\n雷装: {4}/{5}\r\n対空: {6}/{7}\r\n装甲: {8}/{9}\r\n対潜: {10}/{11}\r\n回避: {12}/{13}\r\n索敵: {14}/{15}\r\n運: {16}\r\n射程: {17} / 速力: {18}\r\n(右クリックで図鑑)\n",
+                            "{0} {1}\r\nFP: {2}/{3}\r\nTorp: {4}/{5}\r\nAA: {6}/{7}\r\nArmor: {8}/{9}\r\nASW: {10}/{11}\r\nEvasion: {12}/{13}\r\nLOS: {14}/{15}\r\nLuck: {16}\r\nRange: {17} / Speed: {18}\r\n(right click to open encyclopedia)\n",
 							ship.MasterShip.ShipTypeName, ship.NameWithLevel,
 							ship.FirepowerBase, ship.FirepowerTotal,
 							ship.TorpedoBase, ship.TorpedoTotal,
@@ -509,7 +509,7 @@ namespace ElectronicObserver.Window
 							tip.AppendFormat(GeneralRes.ToX + " exp.\r\n", ExpTable.ShipMaximumLevel, Math.Max(ExpTable.GetExpToLevelShip(ship.ExpTotal, ExpTable.ShipMaximumLevel), 0));
 						}
 
-						tip.AppendLine("(右クリックで必要Exp計算)");
+						tip.AppendLine("(right click to calculate exp)");
 
 						ToolTipInfo.SetToolTip(Level, tip.ToString());
 					}

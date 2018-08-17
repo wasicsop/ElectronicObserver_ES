@@ -242,14 +242,14 @@
             this.StripMenu_File_Notification_MuteAll});
 			this.StripMenu_File_Notification.Name = "StripMenu_File_Notification";
 			this.StripMenu_File_Notification.Size = new System.Drawing.Size(135, 22);
-			this.StripMenu_File_Notification.Text = "通知(&N)";
+			this.StripMenu_File_Notification.Text = "&Notification";
 			//
 			// StripMenu_File_Notification_MuteAll
 			//
 			this.StripMenu_File_Notification_MuteAll.CheckOnClick = true;
 			this.StripMenu_File_Notification_MuteAll.Name = "StripMenu_File_Notification_MuteAll";
 			this.StripMenu_File_Notification_MuteAll.Size = new System.Drawing.Size(199, 22);
-			this.StripMenu_File_Notification_MuteAll.Text = "すべての通知をミュート(&M)";
+			this.StripMenu_File_Notification_MuteAll.Text = "&Disable";
 			this.StripMenu_File_Notification_MuteAll.Click += new System.EventHandler(this.StripMenu_File_Notification_MuteAll_Click);
 			//
 			// toolStripSeparator6
@@ -756,7 +756,7 @@
 			//
 			this.StripMenu_Tool_ExpChecker.Name = "StripMenu_Tool_ExpChecker";
 			this.StripMenu_Tool_ExpChecker.Size = new System.Drawing.Size(180, 22);
-			this.StripMenu_Tool_ExpChecker.Text = "必要経験値計算(&X)";
+			this.StripMenu_Tool_ExpChecker.Text = "E&xp Calculator";
 			this.StripMenu_Tool_ExpChecker.Click += new System.EventHandler(this.StripMenu_Tool_ExpChecker_Click);
 			//
 			// FormMain
