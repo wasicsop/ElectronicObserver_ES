@@ -67,15 +67,15 @@
 			((System.ComponentModel.ISupportInitialize)(this.RecordView)).BeginInit();
 			this.statusStrip1.SuspendLayout();
 			this.SuspendLayout();
-			// 
+			//
 			// splitContainer1
-			// 
+			//
 			resources.ApplyResources(this.splitContainer1, "splitContainer1");
 			this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
 			this.splitContainer1.Name = "splitContainer1";
-			// 
+			//
 			// splitContainer1.Panel1
-			// 
+			//
 			resources.ApplyResources(this.splitContainer1.Panel1, "splitContainer1.Panel1");
 			this.splitContainer1.Panel1.Controls.Add(this.ButtonRun);
 			this.splitContainer1.Panel1.Controls.Add(this.MergeRows);
@@ -93,123 +93,124 @@
 			this.splitContainer1.Panel1.Controls.Add(this.label1);
 			this.splitContainer1.Panel1.Controls.Add(this.EquipmentName);
 			this.ToolTipInfo.SetToolTip(this.splitContainer1.Panel1, resources.GetString("splitContainer1.Panel1.ToolTip"));
-			// 
+			//
 			// splitContainer1.Panel2
-			// 
+			//
 			resources.ApplyResources(this.splitContainer1.Panel2, "splitContainer1.Panel2");
 			this.splitContainer1.Panel2.Controls.Add(this.RecordView);
 			this.ToolTipInfo.SetToolTip(this.splitContainer1.Panel2, resources.GetString("splitContainer1.Panel2.ToolTip"));
 			this.ToolTipInfo.SetToolTip(this.splitContainer1, resources.GetString("splitContainer1.ToolTip"));
-			// 
+			//
 			// ButtonRun
-			// 
+			//
 			resources.ApplyResources(this.ButtonRun, "ButtonRun");
 			this.ButtonRun.Name = "ButtonRun";
 			this.ToolTipInfo.SetToolTip(this.ButtonRun, resources.GetString("ButtonRun.ToolTip"));
 			this.ButtonRun.UseVisualStyleBackColor = true;
 			this.ButtonRun.Click += new System.EventHandler(this.ButtonRun_Click);
-			// 
+			//
 			// MergeRows
-			// 
+			//
 			resources.ApplyResources(this.MergeRows, "MergeRows");
 			this.MergeRows.Name = "MergeRows";
 			this.ToolTipInfo.SetToolTip(this.MergeRows, resources.GetString("MergeRows.ToolTip"));
 			this.MergeRows.UseVisualStyleBackColor = true;
-			// 
+			//
 			// label6
-			// 
+			//
 			resources.ApplyResources(this.label6, "label6");
 			this.label6.Name = "label6";
 			this.ToolTipInfo.SetToolTip(this.label6, resources.GetString("label6.ToolTip"));
-			// 
+			//
 			// Recipe
-			// 
-			resources.ApplyResources(this.Recipe, "Recipe");
+			//
+			this.Recipe.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.Recipe.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.Recipe.FormattingEnabled = true;
 			this.Recipe.Name = "Recipe";
 			this.ToolTipInfo.SetToolTip(this.Recipe, resources.GetString("Recipe.ToolTip"));
-			// 
+			//
 			// SecretaryName
-			// 
+			//
 			resources.ApplyResources(this.SecretaryName, "SecretaryName");
 			this.SecretaryName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.SecretaryName.FormattingEnabled = true;
 			this.SecretaryName.Name = "SecretaryName";
 			this.ToolTipInfo.SetToolTip(this.SecretaryName, resources.GetString("SecretaryName.ToolTip"));
 			this.SecretaryName.SelectedIndexChanged += new System.EventHandler(this.SecretaryName_SelectedIndexChanged);
-			// 
+			//
 			// SecretaryCategory
-			// 
+			//
 			resources.ApplyResources(this.SecretaryCategory, "SecretaryCategory");
 			this.SecretaryCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.SecretaryCategory.FormattingEnabled = true;
 			this.SecretaryCategory.Name = "SecretaryCategory";
 			this.ToolTipInfo.SetToolTip(this.SecretaryCategory, resources.GetString("SecretaryCategory.ToolTip"));
 			this.SecretaryCategory.SelectedIndexChanged += new System.EventHandler(this.SecretaryCategory_SelectedIndexChanged);
-			// 
+			//
 			// label5
-			// 
+			//
 			resources.ApplyResources(this.label5, "label5");
 			this.label5.Name = "label5";
 			this.ToolTipInfo.SetToolTip(this.label5, resources.GetString("label5.ToolTip"));
-			// 
+			//
 			// DateEnd
-			// 
+			//
 			resources.ApplyResources(this.DateEnd, "DateEnd");
 			this.DateEnd.Name = "DateEnd";
 			this.ToolTipInfo.SetToolTip(this.DateEnd, resources.GetString("DateEnd.ToolTip"));
-			// 
+			//
 			// DateBegin
-			// 
+			//
 			resources.ApplyResources(this.DateBegin, "DateBegin");
 			this.DateBegin.Name = "DateBegin";
 			this.ToolTipInfo.SetToolTip(this.DateBegin, resources.GetString("DateBegin.ToolTip"));
-			// 
+			//
 			// label4
-			// 
+			//
 			resources.ApplyResources(this.label4, "label4");
 			this.label4.Name = "label4";
 			this.ToolTipInfo.SetToolTip(this.label4, resources.GetString("label4.ToolTip"));
-			// 
+			//
 			// label3
-			// 
+			//
 			resources.ApplyResources(this.label3, "label3");
 			this.label3.Name = "label3";
 			this.ToolTipInfo.SetToolTip(this.label3, resources.GetString("label3.ToolTip"));
-			// 
+			//
 			// label2
-			// 
+			//
 			resources.ApplyResources(this.label2, "label2");
 			this.label2.Name = "label2";
 			this.ToolTipInfo.SetToolTip(this.label2, resources.GetString("label2.ToolTip"));
-			// 
+			//
 			// EquipmentCategory
-			// 
+			//
 			resources.ApplyResources(this.EquipmentCategory, "EquipmentCategory");
 			this.EquipmentCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.EquipmentCategory.FormattingEnabled = true;
 			this.EquipmentCategory.Name = "EquipmentCategory";
 			this.ToolTipInfo.SetToolTip(this.EquipmentCategory, resources.GetString("EquipmentCategory.ToolTip"));
 			this.EquipmentCategory.SelectedIndexChanged += new System.EventHandler(this.EquipmentCategory_SelectedIndexChanged);
-			// 
+			//
 			// label1
-			// 
+			//
 			resources.ApplyResources(this.label1, "label1");
 			this.label1.Name = "label1";
 			this.ToolTipInfo.SetToolTip(this.label1, resources.GetString("label1.ToolTip"));
-			// 
+			//
 			// EquipmentName
-			// 
+			//
 			resources.ApplyResources(this.EquipmentName, "EquipmentName");
 			this.EquipmentName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.EquipmentName.FormattingEnabled = true;
 			this.EquipmentName.Name = "EquipmentName";
 			this.ToolTipInfo.SetToolTip(this.EquipmentName, resources.GetString("EquipmentName.ToolTip"));
 			this.EquipmentName.SelectedIndexChanged += new System.EventHandler(this.EquipmentName_SelectedIndexChanged);
-			// 
+			//
 			// RecordView
-			// 
+			//
 			resources.ApplyResources(this.RecordView, "RecordView");
 			this.RecordView.AllowUserToAddRows = false;
 			this.RecordView.AllowUserToDeleteRows = false;
@@ -232,14 +233,16 @@
             this.RecordView_FlagshipType,
             this.RecordView_Flagship,
             this.RecordView_Detail});
-			dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-			dataGridViewCellStyle4.Font = new System.Drawing.Font("Meiryo UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-			dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-			dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(204)))));
-			dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-			dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-			this.RecordView.DefaultCellStyle = dataGridViewCellStyle4;
+			dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+			dataGridViewCellStyle2.Font = new System.Drawing.Font("Meiryo UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+			dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+			dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(204)))));
+			dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+			dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+			this.RecordView.DefaultCellStyle = dataGridViewCellStyle2;
+			this.RecordView.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.RecordView.Location = new System.Drawing.Point(0, 0);
 			this.RecordView.Name = "RecordView";
 			this.RecordView.ReadOnly = true;
 			this.RecordView.RowHeadersVisible = false;
@@ -247,81 +250,85 @@
 			this.RecordView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.ToolTipInfo.SetToolTip(this.RecordView, resources.GetString("RecordView.ToolTip"));
 			this.RecordView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.RecordView_CellFormatting);
+			this.RecordView.SelectionChanged += new System.EventHandler(this.RecordView_SelectionChanged);
 			this.RecordView.SortCompare += new System.Windows.Forms.DataGridViewSortCompareEventHandler(this.RecordView_SortCompare);
 			this.RecordView.Sorted += new System.EventHandler(this.RecordView_Sorted);
-			// 
+			//
 			// RecordView_Header
-			// 
+			//
 			resources.ApplyResources(this.RecordView_Header, "RecordView_Header");
 			this.RecordView_Header.Name = "RecordView_Header";
 			this.RecordView_Header.ReadOnly = true;
-			// 
+			//
 			// RecordView_Name
-			// 
+			//
 			this.RecordView_Name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
 			resources.ApplyResources(this.RecordView_Name, "RecordView_Name");
 			this.RecordView_Name.Name = "RecordView_Name";
 			this.RecordView_Name.ReadOnly = true;
-			// 
+			//
 			// RecordView_Date
-			// 
+			//
 			resources.ApplyResources(this.RecordView_Date, "RecordView_Date");
 			this.RecordView_Date.Name = "RecordView_Date";
 			this.RecordView_Date.ReadOnly = true;
-			// 
+			//
 			// RecordView_Recipe
-			// 
+			//
 			resources.ApplyResources(this.RecordView_Recipe, "RecordView_Recipe");
 			this.RecordView_Recipe.Name = "RecordView_Recipe";
 			this.RecordView_Recipe.ReadOnly = true;
-			// 
+			//
 			// RecordView_FlagshipType
-			// 
+			//
 			resources.ApplyResources(this.RecordView_FlagshipType, "RecordView_FlagshipType");
 			this.RecordView_FlagshipType.Name = "RecordView_FlagshipType";
 			this.RecordView_FlagshipType.ReadOnly = true;
-			// 
+			//
 			// RecordView_Flagship
-			// 
+			//
 			resources.ApplyResources(this.RecordView_Flagship, "RecordView_Flagship");
 			this.RecordView_Flagship.Name = "RecordView_Flagship";
 			this.RecordView_Flagship.ReadOnly = true;
-			// 
+			//
 			// RecordView_Detail
-			// 
+			//
 			this.RecordView_Detail.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
 			resources.ApplyResources(this.RecordView_Detail, "RecordView_Detail");
 			this.RecordView_Detail.Name = "RecordView_Detail";
 			this.RecordView_Detail.ReadOnly = true;
-			// 
+			//
 			// ToolTipInfo
-			// 
+			//
 			this.ToolTipInfo.AutoPopDelay = 30000;
 			this.ToolTipInfo.InitialDelay = 500;
 			this.ToolTipInfo.ReshowDelay = 100;
 			this.ToolTipInfo.ShowAlways = true;
-			// 
+			//
 			// statusStrip1
-			// 
-			resources.ApplyResources(this.statusStrip1, "statusStrip1");
+			//
 			this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.StatusInfo});
+			this.statusStrip1.Location = new System.Drawing.Point(0, 419);
 			this.statusStrip1.Name = "statusStrip1";
-			this.ToolTipInfo.SetToolTip(this.statusStrip1, resources.GetString("statusStrip1.ToolTip"));
-			// 
+			this.statusStrip1.Size = new System.Drawing.Size(624, 22);
+			this.statusStrip1.TabIndex = 1;
+			this.statusStrip1.Text = "statusStrip1";
+			//
 			// StatusInfo
-			// 
-			resources.ApplyResources(this.StatusInfo, "StatusInfo");
+			//
 			this.StatusInfo.Name = "StatusInfo";
-			// 
+			this.StatusInfo.Size = new System.Drawing.Size(12, 17);
+			this.StatusInfo.Text = "-";
+			//
 			// Searcher
-			// 
+			//
 			this.Searcher.WorkerSupportsCancellation = true;
 			this.Searcher.DoWork += new System.ComponentModel.DoWorkEventHandler(this.Searcher_DoWork);
 			this.Searcher.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.Searcher_RunWorkerCompleted);
-			// 
+			//
 			// DialogDevelopmentRecordViewer
-			// 
+			//
 			resources.ApplyResources(this, "$this");
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.Controls.Add(this.splitContainer1);
