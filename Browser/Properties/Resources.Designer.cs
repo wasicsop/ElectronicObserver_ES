@@ -106,29 +106,11 @@ namespace Browser.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 削除完了.
+        ///   Looks up a localized string similar to 確認.
         /// </summary>
-        internal static string ClearComplete {
+        internal static string Confirmation {
             get {
-                return ResourceManager.GetString("ClearComplete", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to キャッシュの削除が完了しました。.
-        /// </summary>
-        internal static string ClearCompleteDialog {
-            get {
-                return ResourceManager.GetString("ClearCompleteDialog", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 現在: .
-        /// </summary>
-        internal static string CurrentZoom {
-            get {
-                return ResourceManager.GetString("CurrentZoom", resourceCulture);
+                return ResourceManager.GetString("Confirmation", resourceCulture);
             }
         }
         
@@ -176,12 +158,39 @@ namespace Browser.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to クリップボードにコピー(&amp;C).
+        /// </summary>
+        internal static string LastScreenShot_CopyToClipboard {
+            get {
+                return ResourceManager.GetString("LastScreenShot_CopyToClipboard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ログインページへ移動します。
         ///よろしいですか？.
         /// </summary>
         internal static string LoginDialog {
             get {
                 return ResourceManager.GetString("LoginDialog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Go to Login Page.
+        /// </summary>
+        internal static string NavigateToLogInPage {
+            get {
+                return ResourceManager.GetString("NavigateToLogInPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 開発者ツールを開く.
+        /// </summary>
+        internal static string OpenDevTool {
+            get {
+                return ResourceManager.GetString("OpenDevTool", resourceCulture);
             }
         }
         
@@ -195,7 +204,7 @@ namespace Browser.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 現在% .
+        ///   Looks up a localized string similar to 現在:.
         /// </summary>
         internal static string Other_Zoom_Current {
             get {
@@ -204,11 +213,11 @@ namespace Browser.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ぴったり.
+        ///   Looks up a localized string similar to 現在: ぴったり.
         /// </summary>
-        internal static string Other_Zoom_Fit {
+        internal static string Other_Zoom_Current_Fit {
             get {
-                return ResourceManager.GetString("Other_Zoom_Fit", resourceCulture);
+                return ResourceManager.GetString("Other_Zoom_Current_Fit", resourceCulture);
             }
         }
         
@@ -226,6 +235,15 @@ namespace Browser.Properties {
         internal static string PageScript {
             get {
                 return ResourceManager.GetString("PageScript", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to キャッシュを無視して更新(&amp;C).
+        /// </summary>
+        internal static string RefreshIgnoreCache {
+            get {
+                return ResourceManager.GetString("RefreshIgnoreCache", resourceCulture);
             }
         }
         
@@ -249,6 +267,34 @@ namespace Browser.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to キャッシュを無視して再読み込みします。
+        ///よろしいですか？.
+        /// </summary>
+        internal static string ReloadHardDialog {
+            get {
+                return ResourceManager.GetString("ReloadHardDialog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to var element = document.getElementById(&apos;page-popup&apos;); element.parentNode.removeChild(element);.
+        /// </summary>
+        internal static string RemoveServicePopup {
+            get {
+                return ResourceManager.GetString("RemoveServicePopup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to var element = document.getElementById(&apos;welcome&apos;); element.parentNode.removeChild(element);.
+        /// </summary>
+        internal static string RemoveWelcomePopup {
+            get {
+                return ResourceManager.GetString("RemoveWelcomePopup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to var node = document.getElementById(&apos;{0}&apos;);
         ///if (node) document.getElementsByTagName(&apos;head&apos;)[0].removeChild(node);.
         /// </summary>
@@ -259,7 +305,7 @@ namespace Browser.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to スクリーンショットの保存時にエラーが発生しました。.
+        ///   Looks up a localized string similar to スクリーンショットの撮影に失敗しました。.
         /// </summary>
         internal static string ScreenshotError {
             get {
@@ -318,6 +364,15 @@ namespace Browser.Properties {
         internal static string Title {
             get {
                 return ResourceManager.GetString("Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 現在: ぴったり.
+        /// </summary>
+        internal static string Zoom_to_Fit {
+            get {
+                return ResourceManager.GetString("Zoom_to_Fit", resourceCulture);
             }
         }
     }
