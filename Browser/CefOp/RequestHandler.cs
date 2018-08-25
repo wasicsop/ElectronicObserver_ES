@@ -17,10 +17,17 @@ namespace Browser.CefOp
 
 		public override IResponseFilter GetResourceResponseFilter(IWebBrowser browserControl, IBrowser browser, IFrame frame, IRequest request, IResponse response)
 		{
-			if (request.Url.Contains(@"/kcs2/index.php"))
+		    if (request.Url.Contains("/app_id=854854/"))
+                return new AdFilter();
+            if (request.Url.Contains(@"/kcs2/index.php"))
 				return new ResponseFilterPixiSetting();
 
 			return base.GetResourceResponseFilter(browserControl, browser, frame, request, response);
-		}
-	}
+	    }
+
+	    public override CefReturnValue OnBeforeResourceLoad(IWebBrowser browserControl, CefSharp.IBrowser browser, IFrame frame, IRequest request, IRequestCallback callback)
+	    {
+	        return request.Url.Contains("rt.gsspat.jp") ? CefReturnValue.Cancel : CefReturnValue.Continue;
+	    }
+    }
 }

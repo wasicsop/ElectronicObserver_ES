@@ -47,4 +47,41 @@ namespace Browser.CefOp
 
 		public void Dispose() { }
 	}
+
+    public class AdFilter : IResponseFilter
+    {
+        public bool InitFilter() => true;
+
+        public FilterStatus Filter(Stream dataIn, out long dataInRead, Stream dataOut, out long dataOutWritten)
+        {
+            if (dataIn == null)
+            {
+                dataInRead = 0;
+                dataOutWritten = 0;
+                return FilterStatus.Done;
+            }
+
+            using (var reader = new StreamReader(dataIn))
+            {
+                string raw = reader.ReadToEnd();
+
+               string replaced = raw
+                   .Replace("ga.src = (\'https:\' == document.location.protocol ? \'https://\' : \'http://\') + \'stats.g.doubleclick.net/dc.js\';", string.Empty)
+                   .Replace("<script type=\"text/javascript\" src=\"/js/marketing/conf.js\"></script>", string.Empty)
+                   .Replace("<script type=\"text/javascript\" src=\"/js/marketing/gtm.js\"></script>", string.Empty)
+                   .Replace("//stat.i3.dmm.com/latest/js/dmm.tracking.min.js", string.Empty)
+                   .Replace("<script type=\"text/javascript\" src=\"/js/netgame/analytics.js\"></script>", string.Empty);
+
+                var bytes = Encoding.UTF8.GetBytes(replaced);
+                dataOut.Write(bytes, 0, bytes.Length);
+
+                dataInRead = dataIn.Length;
+                dataOutWritten = Math.Min(bytes.Length, dataOut.Length);
+            }
+
+            return FilterStatus.Done;
+        }
+
+        public void Dispose() { }
+    }
 }
