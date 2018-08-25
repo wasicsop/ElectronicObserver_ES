@@ -1669,24 +1669,6 @@ namespace ElectronicObserver.Utility
 			{
 				MessageBox.Show( String.Format(Resources.FirstTimeDialog, SoftwareInformation.SoftwareNameEnglish),
 					Resources.FirstTimeTitle, MessageBoxButtons.OK, MessageBoxIcon.Information );
-
-
-				// そのままだと正常に動作しなくなった(らしい)ので、ブラウザバージョンの書き込み
-				try
-				{
-					using (var reg = Microsoft.Win32.Registry.CurrentUser.CreateSubKey(DialogConfiguration.RegistryPathMaster + DialogConfiguration.RegistryPathBrowserVersion))
-						reg.SetValue(Window.FormBrowserHost.BrowserExeName, DialogConfiguration.DefaultBrowserVersion, Microsoft.Win32.RegistryValueKind.DWord);
-
-					using (var reg = Microsoft.Win32.Registry.CurrentUser.CreateSubKey(DialogConfiguration.RegistryPathMaster + DialogConfiguration.RegistryPathGPURendering))
-						reg.SetValue(Window.FormBrowserHost.BrowserExeName, DialogConfiguration.DefaultGPURendering ? 1 : 0, Microsoft.Win32.RegistryValueKind.DWord);
-
-					Utility.Logger.Add(2, ConfigRes.WriteRegistry);
-
-				}
-				catch (Exception ex)
-				{
-					Utility.ErrorReporter.SendErrorReport(ex, ConfigRes.FailWriteRegistry);
-				}
 			}
 
 
