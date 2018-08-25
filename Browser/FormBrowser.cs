@@ -33,7 +33,7 @@ namespace Browser
 	{
 
 		private readonly Size KanColleSize = new Size(1200, 720);
-		private readonly string BrowserCachePath = "BrowserCache";
+		private readonly string BrowserCachePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"ElectronicObserver\CEF");
 
 		private readonly string StyleClassID = Guid.NewGuid().ToString().Substring(0, 8);
 		private bool RestoreStyleSheet = false;
@@ -365,10 +365,9 @@ namespace Browser
 
 			//if ( x != Browser.Location.X || y != Browser.Location.Y )
 			Browser.Location = new Point(x, y);
-		}
+	    }
 
-
-		private void Browser_LoadingStateChanged(object sender, LoadingStateChangedEventArgs e)
+        private void Browser_LoadingStateChanged(object sender, LoadingStateChangedEventArgs e)
 		{
 			// DocumentCompleted に相当?
 			// note: 非 UI thread からコールされるので、何かしら UI に触る場合は適切な処置が必要
@@ -376,7 +375,14 @@ namespace Browser
 			if (e.IsLoading)
 				return;
 
-			BeginInvoke((Action)(() =>
+		    if (Browser.Address.Contains("login/=/path="))
+		    {
+		        SetCookie();
+                Browser.ExecuteScriptAsync(Properties.Resources.RemoveWelcomePopup);
+		        Browser.ExecuteScriptAsync(Properties.Resources.RemoveServicePopup);
+            }
+
+            BeginInvoke((Action)(() =>
 			{
 				ApplyStyleSheet();
 
@@ -467,7 +473,7 @@ namespace Browser
 			}
 			catch (Exception ex)
 			{
-				SendErrorReport(ex.ToString(), "Failed to apply stylesheet.");
+				SendErrorReport(ex.ToString(), Resources.FailedToApplyStylesheet);
 			}
 
 		}
@@ -572,11 +578,11 @@ namespace Browser
 
 			if (fit)
 			{
-				ToolMenu_Other_Zoom_Current.Text = "現在: ぴったり";
+				ToolMenu_Other_Zoom_Current.Text = Resources.Other_Zoom_Current_Fit;
 			}
 			else
 			{
-				ToolMenu_Other_Zoom_Current.Text = $"現在: {zoomRate:p1}";
+				ToolMenu_Other_Zoom_Current.Text = Resources.Other_Zoom_Current + $" {zoomRate:p1}";
 			}
 
 		}
@@ -600,7 +606,7 @@ namespace Browser
 
 			if (KanColleFrame == null)
 			{
-				AddLog(3, string.Format("KanColle is not loaded, unable to take screenshots."));
+				AddLog(3, "KanColle is not loaded, unable to take screenshots.");
 				System.Media.SystemSounds.Beep.Play();
 				return source.Task;
 			}
@@ -737,7 +743,7 @@ namespace Browser
 			}
 			catch (Exception ex)
 			{
-				SendErrorReport(ex.ToString(), "スクリーンショットの撮影に失敗しました。");
+				SendErrorReport(ex.ToString(), Resources.ScreenshotError);
 			}
 			finally
 			{
@@ -987,8 +993,8 @@ namespace Browser
 		{
 
 			if (!Configuration.ConfirmAtRefresh ||
-				MessageBox.Show("This will reload the page.\r\nAre you sure?", "Confirmation",
-				MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2)
+				MessageBox.Show(Resources.ReloadDialog, Resources.Confirmation,
+                MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2)
 				== DialogResult.OK)
 			{
 				RefreshBrowser();
@@ -998,8 +1004,8 @@ namespace Browser
 		private void ToolMenu_Other_RefreshIgnoreCache_Click(object sender, EventArgs e)
 		{
 			if (!Configuration.ConfirmAtRefresh ||
-				MessageBox.Show("キャッシュを無視して再読み込みします。\r\nよろしいですか？", "確認",
-				MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2)
+				MessageBox.Show(Resources.ReloadHardDialog, Resources.Confirmation,
+                MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2)
 				== DialogResult.OK)
 			{
 				RefreshBrowser(true);
@@ -1009,7 +1015,7 @@ namespace Browser
 		private void ToolMenu_Other_NavigateToLogInPage_Click(object sender, EventArgs e)
 		{
 
-			if (MessageBox.Show("This will return to the login page.\r\nAre you sure?", "Confirmation",
+			if (MessageBox.Show(Resources.LoginDialog, Resources.Confirmation,
 				MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2)
 				== DialogResult.OK)
 			{
