@@ -1095,7 +1095,7 @@ namespace ElectronicObserver.Utility
 				/// <summary>
 				/// ブラウザの拡大率 10-1000(%)
 				/// </summary>
-				public int ZoomRate { get; set; }
+				public double ZoomRate { get; set; }
 
 				/// <summary>
 				/// ブラウザをウィンドウサイズに合わせる
@@ -1171,19 +1171,14 @@ namespace ElectronicObserver.Utility
 				public bool ConfirmAtRefresh { get; set; }
 
 				/// <summary>
-				/// flashのパラメータ指定 'wmode'
+				/// ハードウェアアクセラレーションを有効にするか
 				/// </summary>
-				public string FlashWMode { get; set; }
-
-				/// <summary>
-				/// flashのパラメータ指定 'quality'
-				/// </summary>
-				public string FlashQuality { get; set; }
+				public bool HardwareAccelerationEnabled { get; set; }
 
 
 				public ConfigFormBrowser()
 				{
-					ZoomRate = 100;
+					ZoomRate = 1;
 					ZoomFit = false;
 					LogInPageURL = @"http://www.dmm.com/netgame/social/-/gadgets/=/app_id=854854/";
 					IsEnabled = true;
@@ -1198,8 +1193,7 @@ namespace ElectronicObserver.Utility
 					ToolMenuDockStyle = DockStyle.Top;
 					IsToolMenuVisible = true;
 					ConfirmAtRefresh = true;
-					FlashWMode = "opaque";
-					FlashQuality = "high";
+					HardwareAccelerationEnabled = true;
 				}
 			}
 			/// <summary>[ブラウザ]ウィンドウ</summary>
@@ -2478,6 +2472,9 @@ namespace ElectronicObserver.Utility
 			if (dt <= DateTimeHelper.CSVStringToTime("2018/02/11 23:00:00"))
 				Update307_ConvertRecord();
 
+			if (dt <= DateTimeHelper.CSVStringToTime("2018/08/17 23:00:00"))
+				Update312_RemoveObsoleteRegistry();
+
 
 			Config.VersionUpdateTime = DateTimeHelper.TimeToCSVString(SoftwareInformation.UpdateTime);
 		}
@@ -2678,10 +2675,10 @@ namespace ElectronicObserver.Utility
 						int diff = d.Difficulty;
 						switch (diff)
 						{
-							case 2: diff = 1; break;  
+							case 2: diff = 1; break;
 							case 3: diff = 2; break;
 							case 4: diff = 3; break;
-							case -1: diff = 4; break; 
+							case -1: diff = 4; break;
 						}
 
 						d.Difficulty = diff;
@@ -2699,6 +2696,29 @@ namespace ElectronicObserver.Utility
 				ErrorReporter.SendErrorReport(ex, "<= ver. 3.0.7 changes to records due to difficulty level changes: Operation failed.");
 			}
 
+		}
+
+
+		private void Update312_RemoveObsoleteRegistry()
+		{
+			string RegistryPathMaster = @"Software\Microsoft\Internet Explorer\Main\FeatureControl\";
+			string RegistryPathBrowserVersion = @"FEATURE_BROWSER_EMULATION\";
+			string RegistryPathGPURendering = @"FEATURE_GPU_RENDERING\";
+
+
+			try
+			{
+				using (var reg = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(RegistryPathMaster + RegistryPathBrowserVersion, true))
+					reg.DeleteValue(Window.FormBrowserHost.BrowserExeName);
+
+				using (var reg = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(RegistryPathMaster + RegistryPathGPURendering, true))
+					reg.DeleteValue(Window.FormBrowserHost.BrowserExeName);
+
+			}
+			catch (Exception ex)
+			{
+				Utility.ErrorReporter.SendErrorReport(ex, "<= ver. 3.1.2 移行処理: 古いレジストリ値の削除に失敗しました。");
+			}
 		}
 	}
 

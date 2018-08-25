@@ -237,6 +237,7 @@ namespace ElectronicObserver.Window
 				config.ToolMenuDockStyle = (int)c.ToolMenuDockStyle;
 				config.IsToolMenuVisible = c.IsToolMenuVisible;
 				config.ConfirmAtRefresh = c.ConfirmAtRefresh;
+				config.HardwareAccelerationEnabled = c.HardwareAccelerationEnabled;
 				config.BackColor = this.BackColor.ToArgb();
 
 				return config;
@@ -263,6 +264,8 @@ namespace ElectronicObserver.Window
 			c.ToolMenuDockStyle = (DockStyle)config.ToolMenuDockStyle;
 			c.IsToolMenuVisible = config.IsToolMenuVisible;
 			c.ConfirmAtRefresh = config.ConfirmAtRefresh;
+			c.HardwareAccelerationEnabled = config.HardwareAccelerationEnabled;
+
 			// volume
 			if (Utility.Configuration.Config.BGMPlayer.SyncBrowserMute)
 			{

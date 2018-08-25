@@ -152,7 +152,7 @@ if (node) document.getElementsByTagName('head')[0].removeChild(node);
 node = document.createElement('div');
 node.innerHTML = 'F&lt;style id=\'{0}\'&gt;body {{ visibility: hidden; }} \
 #flashWrap {{ position: fixed; left: 0; top: 0; width: 100% !important; height: 100% !important; }} \
-#externalswf {{ visibility: visible; width: 100% !important; height: 100% !important; }}&lt;/style&gt;';
+#htmlWrap {{ visibility: visible; width: 100% !important; height: 100% !important; }}&lt;/style&gt;';
 document.getElementsByTagName('head')[0].appendChild(node.lastChild);
 }}
 catch(e) {{
@@ -223,5 +223,9 @@ try {
 catch(e) {
 	alert("DMMによるページ更新ダイアログの非表示に失敗しました: "+e);
 }</value>
+  </data>
+  <data name="RestoreScript" xml:space="preserve">
+    <value>var node = document.getElementById('{0}');
+if (node) document.getElementsByTagName('head')[0].removeChild(node);</value>
   </data>
 </root>
