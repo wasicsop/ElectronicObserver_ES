@@ -70,7 +70,8 @@ namespace Browser.CefOp
                    .Replace("<script type=\"text/javascript\" src=\"/js/marketing/conf.js\"></script>", string.Empty)
                    .Replace("<script type=\"text/javascript\" src=\"/js/marketing/gtm.js\"></script>", string.Empty)
                    .Replace("//stat.i3.dmm.com/latest/js/dmm.tracking.min.js", string.Empty)
-                   .Replace("<script type=\"text/javascript\" src=\"/js/netgame/analytics.js\"></script>", string.Empty);
+                   .Replace("p+\'://platform.twitter.com/widgets.js\'", string.Empty)
+                   .Replace("/js/netgame/analytics.js", string.Empty);
 
                 var bytes = Encoding.UTF8.GetBytes(replaced);
                 dataOut.Write(bytes, 0, bytes.Length);
