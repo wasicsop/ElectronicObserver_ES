@@ -234,8 +234,7 @@ namespace Browser
 			{
 				BrowserSubprocessPath = Path.Combine(
 						AppDomain.CurrentDomain.SetupInformation.ApplicationBase,
-						Environment.Is64BitProcess ? "x64" : "x86",
-						"CefSharp.BrowserSubprocess.exe"),
+                        @"CefEOBrowser\bin\CefSharp.BrowserSubprocess.exe"),
 				CachePath = BrowserCachePath,
 				Locale = "ja",
 				AcceptLanguageList = "ja,en-US,en",        // todo: いる？
