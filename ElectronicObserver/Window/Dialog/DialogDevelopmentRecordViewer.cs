@@ -19,9 +19,9 @@ namespace ElectronicObserver.Window.Dialog
 
 		private DevelopmentRecord _record;
 
-		private const string NameAny = "(All)";
-		private const string NameNotExist = "(失敗)";
-		private const string NameExist = "(Success)";
+		private const string NameAny = "All";
+		private const string NameNotExist = "Failed"; //(失敗)
+        private const string NameExist = "Success";
 
 
 		private class SearchArgument
@@ -238,11 +238,11 @@ namespace ElectronicObserver.Window.Dialog
 				RecordView_Name.HeaderText = "Equipment";
 				RecordView_Date.Width = 140;
 				RecordView_Date.Visible = true;
-				RecordView_Recipe.Width = 120;
+				RecordView_Recipe.Width = 95;
 				RecordView_Recipe.Visible = true;
-				RecordView_FlagshipType.Width = 60;
+				RecordView_FlagshipType.Width = 40;
 				RecordView_FlagshipType.Visible = true;
-				RecordView_Flagship.Width = 60;
+				RecordView_Flagship.Width = 105;
 				RecordView_Flagship.Visible = true;
 				RecordView_Detail.Visible = false;
 			}

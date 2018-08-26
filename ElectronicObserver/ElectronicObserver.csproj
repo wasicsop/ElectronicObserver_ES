@@ -754,12 +754,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ConfigRes.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Window\Dialog\DialogConstructionRecordViewer.en.resx">
-      <DependentUpon>DialogConstructionRecordViewer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Window\Dialog\DialogDevelopmentRecordViewer.en.resx">
-      <DependentUpon>DialogDevelopmentRecordViewer.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Window\Dialog\DialogDropRecordViewer.en.resx">
       <DependentUpon>DialogDropRecordViewer.cs</DependentUpon>
     </EmbeddedResource>

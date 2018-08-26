@@ -459,6 +459,7 @@ namespace Browser
 				{
 					mainframe.EvaluateScriptAsync(string.Format(Properties.Resources.RestoreScript, StyleClassID));
 					gameframe.EvaluateScriptAsync(string.Format(Properties.Resources.RestoreScript, StyleClassID));
+				    gameframe.EvaluateScriptAsync("document.body.style.backgroundColor = \"#000000\";");
 					StyleSheetApplied = false;
 					RestoreStyleSheet = false;
 				}
@@ -466,6 +467,8 @@ namespace Browser
 				{
 					mainframe.EvaluateScriptAsync(string.Format(Properties.Resources.PageScript, StyleClassID));
 					gameframe.EvaluateScriptAsync(string.Format(Properties.Resources.FrameScript, StyleClassID));
+				    gameframe.EvaluateScriptAsync("document.body.style.backgroundColor = \"#000000\";");
+
 				}
 
 				StyleSheetApplied = true;

@@ -342,7 +342,7 @@
 			this.label19.Name = "label19";
 			this.label19.Size = new System.Drawing.Size(285, 15);
 			this.label19.TabIndex = 13;
-			this.label19.Text = "* ブラウザに対する通信設定は、再起動すると反映されます";
+			this.label19.Text = "* Network settings will take effect after restart";
 			//
 			// Connection_UpstreamProxyAddress
 			//
@@ -381,7 +381,7 @@
 			this.Connection_UseSystemProxy.Name = "Connection_UseSystemProxy";
 			this.Connection_UseSystemProxy.Size = new System.Drawing.Size(135, 19);
 			this.Connection_UseSystemProxy.TabIndex = 9;
-			this.Connection_UseSystemProxy.Text = "Use system proxy settings";
+			this.Connection_UseSystemProxy.Text = "Use system proxy";
 			this.ToolTipInfo.SetToolTip(this.Connection_UseSystemProxy, global::ElectronicObserver.Window.Dialog.ConfigRes.UseSystemProxyTooltip);
 			this.Connection_UseSystemProxy.UseVisualStyleBackColor = true;
 			//
@@ -610,7 +610,7 @@
 			this.UI_JapaneseEquipmentTypes.Name = "UI_JapaneseEquipmentTypes";
 			this.UI_JapaneseEquipmentTypes.Size = new System.Drawing.Size( 207, 19 );
 			this.UI_JapaneseEquipmentTypes.TabIndex = 15;
-			this.UI_JapaneseEquipmentTypes.Text = "Use Japanese equipment types";
+			this.UI_JapaneseEquipmentTypes.Text = "Use JP equipment types";
 			this.UI_JapaneseEquipmentTypes.UseVisualStyleBackColor = true;
 			//
 			// UI_JapaneseEquipmentNames
@@ -620,7 +620,7 @@
 			this.UI_JapaneseEquipmentNames.Name = "UI_JapaneseEquipmentNames";
 			this.UI_JapaneseEquipmentNames.Size = new System.Drawing.Size( 214, 19 );
 			this.UI_JapaneseEquipmentNames.TabIndex = 14;
-			this.UI_JapaneseEquipmentNames.Text = "Use Japanese equipment names";
+			this.UI_JapaneseEquipmentNames.Text = "Use JP equipment names";
 			this.UI_JapaneseEquipmentNames.UseVisualStyleBackColor = true;
 			//
 			// UI_JapaneseShipTypes
@@ -630,7 +630,7 @@
 			this.UI_JapaneseShipTypes.Name = "UI_JapaneseShipTypes";
 			this.UI_JapaneseShipTypes.Size = new System.Drawing.Size( 168, 19 );
 			this.UI_JapaneseShipTypes.TabIndex = 13;
-			this.UI_JapaneseShipTypes.Text = "Use Japanese ship types";
+			this.UI_JapaneseShipTypes.Text = "Use JP ship types";
 			this.UI_JapaneseShipTypes.UseVisualStyleBackColor = true;
 			//
 			// UI_JapaneseShipNames
@@ -640,7 +640,7 @@
 			this.UI_JapaneseShipNames.Name = "UI_JapaneseShipNames";
 			this.UI_JapaneseShipNames.Size = new System.Drawing.Size( 175, 19 );
 			this.UI_JapaneseShipNames.TabIndex = 12;
-			this.UI_JapaneseShipNames.Text = "Use Japanese ship names";
+			this.UI_JapaneseShipNames.Text = "Use JP ship names";
 			this.UI_JapaneseShipNames.UseVisualStyleBackColor = true;
 			//
 			// tableLayoutPanel1
@@ -1167,7 +1167,7 @@
             "Quest reset"});
 			this.Life_ClockFormat.Location = new System.Drawing.Point(101, 135);
 			this.Life_ClockFormat.Name = "Life_ClockFormat";
-			this.Life_ClockFormat.Size = new System.Drawing.Size(90, 23);
+			this.Life_ClockFormat.Size = new System.Drawing.Size(100, 23);
 			this.Life_ClockFormat.TabIndex = 7;
 			//
 			// Life_ShowStatusBar
@@ -1333,7 +1333,7 @@
 			this.FormFleet_EmphasizesSubFleetInPort.Name = "FormFleet_EmphasizesSubFleetInPort";
 			this.FormFleet_EmphasizesSubFleetInPort.Size = new System.Drawing.Size(179, 19);
 			this.FormFleet_EmphasizesSubFleetInPort.TabIndex = 20;
-			this.FormFleet_EmphasizesSubFleetInPort.Text = "Highlight idle exped fleet";
+			this.FormFleet_EmphasizesSubFleetInPort.Text = "Highlight idle fleet";
 			this.ToolTipInfo.SetToolTip(this.FormFleet_EmphasizesSubFleetInPort, "Highlight expedition fleet idling on homeport." );
 			this.FormFleet_EmphasizesSubFleetInPort.UseVisualStyleBackColor = true;
 			//
@@ -1355,7 +1355,7 @@
 			this.FormFleet_ReflectAnchorageRepairHealing.Name = "FormFleet_ReflectAnchorageRepairHealing";
 			this.FormFleet_ReflectAnchorageRepairHealing.Size = new System.Drawing.Size(193, 19);
 			this.FormFleet_ReflectAnchorageRepairHealing.TabIndex = 16;
-			this.FormFleet_ReflectAnchorageRepairHealing.Text = "Show HP recovery";
+			this.FormFleet_ReflectAnchorageRepairHealing.Text = "HP recovery";
 			this.ToolTipInfo.SetToolTip(this.FormFleet_ReflectAnchorageRepairHealing, "Show recovered HP in the HP bar from anchorage repair.");
 			this.FormFleet_ReflectAnchorageRepairHealing.UseVisualStyleBackColor = true;
 			//
@@ -1377,7 +1377,7 @@
 			this.FormFleet_ShowAircraftLevelByNumber.Name = "FormFleet_ShowAircraftLevelByNumber";
 			this.FormFleet_ShowAircraftLevelByNumber.Size = new System.Drawing.Size(184, 19);
 			this.FormFleet_ShowAircraftLevelByNumber.TabIndex = 18;
-			this.FormFleet_ShowAircraftLevelByNumber.Text = "Proficiency level in numeric";
+			this.FormFleet_ShowAircraftLevelByNumber.Text = "Numeric proficiency level";
 			this.ToolTipInfo.SetToolTip(this.FormFleet_ShowAircraftLevelByNumber, "Show plane proficiency level in digits (1,2,3) instead of symbols (|,||,>>).");
 			this.FormFleet_ShowAircraftLevelByNumber.UseVisualStyleBackColor = true;
 			//
@@ -1421,7 +1421,7 @@
 			this.FormFleet_ShowConditionIcon.Name = "FormFleet_ShowConditionIcon";
 			this.FormFleet_ShowConditionIcon.Size = new System.Drawing.Size(139, 19);
 			this.FormFleet_ShowConditionIcon.TabIndex = 13;
-			this.FormFleet_ShowConditionIcon.Text = "Show fatigue icon";
+			this.FormFleet_ShowConditionIcon.Text = "Fatigue Icon";
 			this.ToolTipInfo.SetToolTip(this.FormFleet_ShowConditionIcon, "Show fatigue level icon in the fleet window.\r\nIf disabled, ship fatigue level is denoted by background color.");
 			this.FormFleet_ShowConditionIcon.UseVisualStyleBackColor = true;
 			//
@@ -1469,8 +1469,8 @@
 			this.FormFleet_ShowAnchorageRepairingTimer.Name = "FormFleet_ShowAnchorageRepairingTimer";
 			this.FormFleet_ShowAnchorageRepairingTimer.Size = new System.Drawing.Size(152, 19);
 			this.FormFleet_ShowAnchorageRepairingTimer.TabIndex = 15;
-			this.FormFleet_ShowAnchorageRepairingTimer.Text = global::ElectronicObserver.Window.Dialog.ConfigRes.ShowAnchorageRepairingTimer;
-			this.ToolTipInfo.SetToolTip(this.FormFleet_ShowAnchorageRepairingTimer, global::ElectronicObserver.Window.Dialog.ConfigRes.ShowAnchorageRepairingTimer_Tooltip);
+			this.FormFleet_ShowAnchorageRepairingTimer.Text = "Repair timer";
+			this.ToolTipInfo.SetToolTip(this.FormFleet_ShowAnchorageRepairingTimer, "Show repair timer in the fleet list window.");
 			this.FormFleet_ShowAnchorageRepairingTimer.UseVisualStyleBackColor = true;
 			//
 			// FormFleet_AirSuperiorityMethod
@@ -2155,7 +2155,7 @@
 			this.tabPage12.Padding = new System.Windows.Forms.Padding(3);
 			this.tabPage12.Size = new System.Drawing.Size(682, 338);
 			this.tabPage12.TabIndex = 3;
-			this.tabPage12.Text = global::ElectronicObserver.Window.Dialog.ConfigRes.Browser;
+			this.tabPage12.Text = "Browser";
 			this.tabPage12.UseVisualStyleBackColor = true;
 			//
 			// label20
@@ -2166,7 +2166,7 @@
 			this.label20.Name = "label20";
 			this.label20.Size = new System.Drawing.Size(241, 15);
 			this.label20.TabIndex = 14;
-			this.label20.Text = "* マークのある設定は、再起動すると反映されます";
+			this.label20.Text = "* Some settings will take effect after restart";
 			//
 			// FormBrowser_HardwareAccelerationEnabled
 			//
@@ -2175,8 +2175,8 @@
 			this.FormBrowser_HardwareAccelerationEnabled.Name = "FormBrowser_HardwareAccelerationEnabled";
 			this.FormBrowser_HardwareAccelerationEnabled.Size = new System.Drawing.Size(230, 19);
 			this.FormBrowser_HardwareAccelerationEnabled.TabIndex = 13;
-			this.FormBrowser_HardwareAccelerationEnabled.Text = "ハードウェアアクセラレーションを有効にする *";
-			this.ToolTipInfo.SetToolTip(this.FormBrowser_HardwareAccelerationEnabled, "描画に GPU を使用するかを指定します。\r\n* この変更は再起動後に適用されます。");
+			this.FormBrowser_HardwareAccelerationEnabled.Text = "HW Acceleration *";
+			this.ToolTipInfo.SetToolTip(this.FormBrowser_HardwareAccelerationEnabled, "Specify whether to use hardware acceleration when available.\r\n* Changes will take effect after restart.");
 			this.FormBrowser_HardwareAccelerationEnabled.UseVisualStyleBackColor = true;
 			//
 			// FormBrowser_IsDMMreloadDialogDestroyable
@@ -2186,7 +2186,7 @@
 			this.FormBrowser_IsDMMreloadDialogDestroyable.Name = "FormBrowser_IsDMMreloadDialogDestroyable";
 			this.FormBrowser_IsDMMreloadDialogDestroyable.Size = new System.Drawing.Size(254, 19);
 			this.FormBrowser_IsDMMreloadDialogDestroyable.TabIndex = 12;
-			this.FormBrowser_IsDMMreloadDialogDestroyable.Text = "Hide DMM page reload dialog";
+			this.FormBrowser_IsDMMreloadDialogDestroyable.Text = "Hide page reload popup";
 			this.ToolTipInfo.SetToolTip(this.FormBrowser_IsDMMreloadDialogDestroyable, "Hide DMM page reload pop-up dialog from appearing in browser window." );
 			this.FormBrowser_IsDMMreloadDialogDestroyable.UseVisualStyleBackColor = true;
 			//
@@ -2243,7 +2243,7 @@
 			this.FormBrowser_ConfirmAtRefresh.Name = "FormBrowser_ConfirmAtRefresh";
 			this.FormBrowser_ConfirmAtRefresh.Size = new System.Drawing.Size(148, 19);
 			this.FormBrowser_ConfirmAtRefresh.TabIndex = 6;
-			this.FormBrowser_ConfirmAtRefresh.Text = "Confirm before refreshing the page";
+			this.FormBrowser_ConfirmAtRefresh.Text = "Refresh confirmation";
 			this.ToolTipInfo.SetToolTip(this.FormBrowser_ConfirmAtRefresh, "Displays a confirmation dialog before refreshing the page." );
 			this.FormBrowser_ConfirmAtRefresh.UseVisualStyleBackColor = true;
 			//
@@ -2420,7 +2420,7 @@
 			this.label15.Name = "label15";
 			this.label15.Size = new System.Drawing.Size(66, 15);
 			this.label15.TabIndex = 1;
-			this.label15.Text = "ズーム倍率：";
+			this.label15.Text = "Zoom: ";
 			//
 			// tabPage21
 			//
