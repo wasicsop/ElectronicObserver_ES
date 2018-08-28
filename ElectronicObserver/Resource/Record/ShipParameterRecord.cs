@@ -349,7 +349,7 @@ namespace ElectronicObserver.Resource.Record
 			public override void LoadLine(string line)
 			{
 				string[] elem = line.Split(",".ToCharArray());
-				if (elem.Length < 36) throw new ArgumentException("要素数が少なすぎます。");
+				if (elem.Length < 36) throw new ArgumentException("The number of elements is too small.");
 
 				ShipID = int.Parse(elem[0]);
 
@@ -621,15 +621,15 @@ namespace ElectronicObserver.Resource.Record
 
 
 			if (e.ASW.SetEstParameter(level, aswMin, aswMax))
-				Utility.Logger.Add(1, string.Format("ShipParameter: {0} の対潜値が予測範囲から外れました( [{1} ~ {2}] ~ {3} )。",
+				Utility.Logger.Add(1, string.Format("ShipParameter: ASW value of {0} is out of the predicted range( [{1} ~ {2}] ~ {3} ).",
 					KCDatabase.Instance.MasterShips[e.ShipID].NameWithClass, e.ASW.MinimumEstMin, e.ASW.MinimumEstMax, e.ASW.Maximum));
 
 			if (e.Evasion.SetEstParameter(level, evasionMin, evasionMax))
-				Utility.Logger.Add(1, string.Format("ShipParameter: {0} の回避値が予測範囲から外れました( [{1} ~ {2}] ~ {3} )。",
+				Utility.Logger.Add(1, string.Format("ShipParameter: Evasion value of {0} is out of the predicted range( [{1} ~ {2}] ~ {3} ).",
 					KCDatabase.Instance.MasterShips[e.ShipID].NameWithClass, e.Evasion.MinimumEstMin, e.Evasion.MinimumEstMax, e.Evasion.Maximum));
 
 			if (e.LOS.SetEstParameter(level, losMin, losMax))
-				Utility.Logger.Add(1, string.Format("ShipParameter: {0} の索敵値が予測範囲から外れました( [{1} ~ {2}] ~ {3} )。",
+				Utility.Logger.Add(1, string.Format("ShipParameter: LOS value of {0} is out of the predicted range( [{1} ~ {2}] ~ {3} ).",
 					KCDatabase.Instance.MasterShips[e.ShipID].NameWithClass, e.LOS.MinimumEstMin, e.LOS.MinimumEstMax, e.LOS.Maximum));
 
 
@@ -661,7 +661,7 @@ namespace ElectronicObserver.Resource.Record
 			}
 
 			if (e.DefaultSlot == null || !e.DefaultSlot.SequenceEqual(slot))
-				Utility.Logger.Add(2, KCDatabase.Instance.MasterShips[shipID].NameWithClass + " の初期装備記録が更新されました。");
+				Utility.Logger.Add(2, "Stock equipment of " + KCDatabase.Instance.MasterShips[shipID].NameWithClass + " has been updated.");
 
 			e.DefaultSlot = slot;
 

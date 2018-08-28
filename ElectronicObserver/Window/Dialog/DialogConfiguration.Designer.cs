@@ -2178,7 +2178,9 @@
 			this.FormBrowser_HardwareAccelerationEnabled.Size = new System.Drawing.Size(230, 19);
 			this.FormBrowser_HardwareAccelerationEnabled.TabIndex = 13;
 			this.FormBrowser_HardwareAccelerationEnabled.Text = "HW Acceleration *";
-			this.ToolTipInfo.SetToolTip(this.FormBrowser_HardwareAccelerationEnabled, "Specify whether to use hardware acceleration when available.\r\nNote: if preserveDrawingBuffer is not enabled, screenshot size\r\nwill be limited to browser window size.\r\n* Changes will take effect after restart.\r\n");
+			this.ToolTipInfo.SetToolTip(this.FormBrowser_HardwareAccelerationEnabled,
+				"Use hardware acceleration when available.\r\nNote: Disable this setting if you need to use window capture \r\n" +
+				"for recording/streaming.\r\n* Changes will take effect after application restart.\r\n");
 			this.FormBrowser_HardwareAccelerationEnabled.UseVisualStyleBackColor = true;
 			//
 			// FormBrowser_IsDMMreloadDialogDestroyable
@@ -2839,9 +2841,10 @@
 			this.FormBrowser_PreserveDrawingBuffer.Name = "FormBrowser_PreserveDrawingBuffer";
 			this.FormBrowser_PreserveDrawingBuffer.Size = new System.Drawing.Size(145, 19);
 			this.FormBrowser_PreserveDrawingBuffer.TabIndex = 15;
-			this.FormBrowser_PreserveDrawingBuffer.Text = "描画バッファを保持する *";
-			this.ToolTipInfo.SetToolTip(this.FormBrowser_PreserveDrawingBuffer, "無効化するとパフォーマンスが向上する可能性があります。\r\n注意：「ハードウェアアクセラレーション」が有効な時、これが有効でないと原寸でスクリーンショットが撮影でき" +
-        "なくなります。\r\n* この変更は再起動後に適用されます。");
+			this.FormBrowser_PreserveDrawingBuffer.Text = "Preserve drawing buffer *";
+			this.ToolTipInfo.SetToolTip(this.FormBrowser_PreserveDrawingBuffer, 
+				"Disabling the setting may improve performance.\r\nNote: if preserve drawing buffer is not enabled, screenshot \r\n" +
+				"size may be limited to browser window size.\r\n* Changes will take effect after application restart.\r\n");
 			this.FormBrowser_PreserveDrawingBuffer.UseVisualStyleBackColor = true;
 			//
 			// DialogConfiguration

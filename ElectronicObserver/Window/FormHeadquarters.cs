@@ -557,11 +557,11 @@ namespace ElectronicObserver.Window
 				try
 				{
 					var mat = KCDatabase.Instance.Material;
-					Clipboard.SetText($"{mat.Fuel}/{mat.Ammo}/{mat.Steel}/{mat.Bauxite}/修復{mat.InstantRepair}/開発{mat.DevelopmentMaterial}/建造{mat.InstantConstruction}/改修{mat.ModdingMaterial}");
+					Clipboard.SetText($"{mat.Fuel}/{mat.Ammo}/{mat.Steel}/{mat.Bauxite}/{mat.InstantRepair} buckets/{mat.DevelopmentMaterial} devmats/{mat.InstantConstruction} torches/{mat.ModdingMaterial} screws");
 				}
 				catch (Exception ex)
 				{
-					Utility.Logger.Add(3, "資源のクリップボードへのコピーに失敗しました。" + ex.Message);
+					Utility.Logger.Add(3, "Failed to copy resources to clipboard." + ex.Message);
 				}
 			}
 		}
