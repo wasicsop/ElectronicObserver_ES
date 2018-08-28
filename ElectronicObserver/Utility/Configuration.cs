@@ -1175,6 +1175,10 @@ namespace ElectronicObserver.Utility
 				/// </summary>
 				public bool HardwareAccelerationEnabled { get; set; }
 
+				/// <summary>
+				/// 描画バッファを保持するか
+				/// </summary>
+				public bool PreserveDrawingBuffer { get; set; }
 
 				public ConfigFormBrowser()
 				{
@@ -1194,6 +1198,7 @@ namespace ElectronicObserver.Utility
 					IsToolMenuVisible = true;
 					ConfirmAtRefresh = true;
 					HardwareAccelerationEnabled = true;
+					PreserveDrawingBuffer = true;
 				}
 			}
 			/// <summary>[ブラウザ]ウィンドウ</summary>
@@ -2683,6 +2688,10 @@ namespace ElectronicObserver.Utility
 
 		private void Update312_RemoveObsoleteRegistry()
 		{
+			// ;)
+			Config.FormBrowser.ZoomRate = 1;
+
+
 			string RegistryPathMaster = @"Software\Microsoft\Internet Explorer\Main\FeatureControl\";
 			string RegistryPathBrowserVersion = @"FEATURE_BROWSER_EMULATION\";
 			string RegistryPathGPURendering = @"FEATURE_GPU_RENDERING\";

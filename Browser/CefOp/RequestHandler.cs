@@ -13,14 +13,18 @@ namespace Browser.CefOp
 	/// </summary>
 	public class RequestHandler : DefaultRequestHandler
 	{
-		public RequestHandler() : base() { }
+		bool pixiSettingEnabled;
+
+		public RequestHandler(bool pixiSettingEnabled) : base() {
+			this.pixiSettingEnabled = pixiSettingEnabled;
+		}
 
 		public override IResponseFilter GetResourceResponseFilter(IWebBrowser browserControl, IBrowser browser, IFrame frame, IRequest request, IResponse response)
 		{
-		    if (request.Url.Contains("/app_id=854854/"))
-                return new AdFilter();
-            if (request.Url.Contains(@"/kcs2/index.php"))
+			if (pixiSettingEnabled && request.Url.Contains(@"/kcs2/index.php"))
 				return new ResponseFilterPixiSetting();
+			if (request.Url.Contains("/app_id=854854/"))
+				return new AdFilter();
 
 			return base.GetResourceResponseFilter(browserControl, browser, frame, request, response);
 	    }

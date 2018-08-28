@@ -654,7 +654,7 @@ namespace ElectronicObserver.Window.Dialog
 			if (!ImageLoader.IsBusy)
 			{
 				loadingResourceShipID = ship.ShipID;
-				ImageLoader.RunWorkerAsync(ship.ResourceName);
+				ImageLoader.RunWorkerAsync(ship.ShipID);
 			}
 
 
@@ -1169,25 +1169,11 @@ namespace ElectronicObserver.Window.Dialog
 
 		private void ImageLoader_DoWork(object sender, DoWorkEventArgs e)
 		{
-
-			string resourceName = e.Argument as string;
-
 			//System.Threading.Thread.Sleep( 2000 );		// for test
 
 			try
 			{
-
-				var img = SwfHelper.GetShipSwfImage(resourceName, SwfHelper.ShipResourceCharacterID.BannerNormal);
-
-				if (img.Size == SwfHelper.ShipBannerSize)
-				{
-					e.Result = img;
-				}
-				else
-				{
-					img.Dispose();
-					e.Result = null;
-				}
+				e.Result = KCResourceHelper.LoadShipImage(e.Argument as int? ?? 0, false, KCResourceHelper.ResourceTypeShipBanner);
 			}
 			catch (Exception)
 			{
@@ -1216,7 +1202,7 @@ namespace ElectronicObserver.Window.Dialog
 					loadingResourceShipID = _shipID;
 					var ship = KCDatabase.Instance.MasterShips[_shipID];
 					if (ship != null)
-						ImageLoader.RunWorkerAsync(ship.ResourceName);
+						ImageLoader.RunWorkerAsync(_shipID);
 				}
 
 				return;
@@ -1554,26 +1540,7 @@ namespace ElectronicObserver.Window.Dialog
 			var ship = KCDatabase.Instance.MasterShips[_shipID];
 			if (ship != null)
 			{
-
-				var pathlist = new LinkedList<string>();
-				pathlist.AddLast(SwfHelper.GetShipResourcePath(ship.ResourceName));
-
-				foreach (var rec in RecordManager.Instance.ShipParameter.Record.Values.Where(r => r.OriginalCostumeShipID == _shipID))
-				{
-					string path = SwfHelper.GetShipResourcePath(rec.ResourceName);
-					if (path != null)
-						pathlist.AddLast(path);
-				}
-
-				var arg = pathlist.Where(p => p != null).ToArray();
-				if (arg.Length > 0)
-				{
-					new DialogShipGraphicViewer(arg).Show(Owner);
-				}
-				else
-				{
-					MessageBox.Show("Failed to find the image resource. Please do the following:\r\n1. Settings→Network→Save API data and enable SWF option.\r\n2. Clear cache and reload the game.\r\n3. View the ship within the game (organize menu, encyclopedia, etc)", "Ship Image Not Found", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-				}
+				new DialogShipGraphicViewer(ship.ShipID).Show(Owner);
 			}
 			else
 			{

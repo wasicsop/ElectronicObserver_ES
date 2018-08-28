@@ -252,7 +252,7 @@ namespace Browser
 			Browser = new ChromiumWebBrowser(@"about:blank")
 			{
 				Dock = DockStyle.None,
-				RequestHandler = new RequestHandler(),
+				RequestHandler = new RequestHandler(pixiSettingEnabled: Configuration.PreserveDrawingBuffer),
 				MenuHandler = new MenuHandler(),
 				KeyboardHandler = new KeyboardHandler(),
 				DragHandler = new DragHandler(),
@@ -637,6 +637,25 @@ namespace Browser
 
 
 		/// <summary>
+		/// ブラウザ画面のハードコピーを取得します。
+		/// TakeScreenShot で SS が撮れない環境 (WebGL && preserveDrawingBuffer=false) で使用します。
+		/// </summary>
+		private Task<Bitmap> TakeHardScreenShot()
+		{
+			// スタイルシートが適用されていると仮定する
+
+			var bmp = new Bitmap(Browser.Width, Browser.Height, PixelFormat.Format24bppRgb);
+			using (var g = Graphics.FromImage(bmp))
+			{
+				g.CopyFromScreen(Browser.PointToScreen(Browser.Location), new Point(0, 0), Browser.Size);
+			}
+
+			// 同期処理でもいいが、TakeScreenShot とシグネチャを合わせるため
+			return Task.FromResult(bmp);
+		}
+
+
+		/// <summary>
 		/// スクリーンショットを撮影し、設定で指定された保存先に保存します。
 		/// </summary>
 		public async Task SaveScreenShot()
@@ -650,7 +669,11 @@ namespace Browser
 			Bitmap image = null;
 			try
 			{
-				image = await TakeScreenShot();
+				if (Configuration.HardwareAccelerationEnabled && !Configuration.PreserveDrawingBuffer)
+					image = await TakeHardScreenShot();
+				else
+					image = await TakeScreenShot();
+
 
 				if (image == null)
 					return;
@@ -908,7 +931,7 @@ namespace Browser
 			else if (sender == ToolMenu_Other_Zoom_50)
 				zoom = 0.50;
 			else if (sender == ToolMenu_Other_Zoom_Classic)
-				zoom = 2.0 / 3;
+				zoom = 0.667;       // 2/3 ジャストだと 799x479 になる
 			else if (sender == ToolMenu_Other_Zoom_75)
 				zoom = 0.75;
 			else if (sender == ToolMenu_Other_Zoom_100)

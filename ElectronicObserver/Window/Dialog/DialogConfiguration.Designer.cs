@@ -246,6 +246,7 @@
 			this.APIListBrowser = new System.Windows.Forms.OpenFileDialog();
 			this.Log_PlayTime = new System.Windows.Forms.Label();
 			this.PlayTimeTimer = new System.Windows.Forms.Timer(this.components);
+			this.FormBrowser_PreserveDrawingBuffer = new System.Windows.Forms.CheckBox();
 			this.tabControl1.SuspendLayout();
 			this.tabPage1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.Connection_UpstreamProxyPort)).BeginInit();
@@ -1058,7 +1059,7 @@
 			this.Debug_SealingPanel.Controls.Add(this.Debug_APIListPathSearch);
 			this.Debug_SealingPanel.Location = new System.Drawing.Point(0, 56);
 			this.Debug_SealingPanel.Name = "Debug_SealingPanel";
-			this.Debug_SealingPanel.Size = new System.Drawing.Size(696, 267);
+			this.Debug_SealingPanel.Size = new System.Drawing.Size(696, 265);
 			this.Debug_SealingPanel.TabIndex = 1;
 			//
 			// Debug_APIListPath
@@ -2134,7 +2135,8 @@
 			this.FormBattle_IsScrollable.UseVisualStyleBackColor = true;
 			//
 			// tabPage12
-			// 
+			//
+			this.tabPage12.Controls.Add(this.FormBrowser_PreserveDrawingBuffer);
 			this.tabPage12.Controls.Add(this.label20);
 			this.tabPage12.Controls.Add(this.FormBrowser_HardwareAccelerationEnabled);
 			this.tabPage12.Controls.Add(this.FormBrowser_IsDMMreloadDialogDestroyable);
@@ -2176,7 +2178,7 @@
 			this.FormBrowser_HardwareAccelerationEnabled.Size = new System.Drawing.Size(230, 19);
 			this.FormBrowser_HardwareAccelerationEnabled.TabIndex = 13;
 			this.FormBrowser_HardwareAccelerationEnabled.Text = "HW Acceleration *";
-			this.ToolTipInfo.SetToolTip(this.FormBrowser_HardwareAccelerationEnabled, "Specify whether to use hardware acceleration when available.\r\n* Changes will take effect after restart.");
+			this.ToolTipInfo.SetToolTip(this.FormBrowser_HardwareAccelerationEnabled, "Specify whether to use hardware acceleration when available.\r\nNote: if preserveDrawingBuffer is not enabled, screenshot size\r\nwill be limited to browser window size.\r\n* Changes will take effect after restart.\r\n");
 			this.FormBrowser_HardwareAccelerationEnabled.UseVisualStyleBackColor = true;
 			//
 			// FormBrowser_IsDMMreloadDialogDestroyable
@@ -2587,7 +2589,7 @@
 			//
 			this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.label10.AutoSize = true;
-			this.label10.Location = new System.Drawing.Point(3, 338);
+			this.label10.Location = new System.Drawing.Point(3, 336);
 			this.label10.Name = "label10";
 			this.label10.Size = new System.Drawing.Size(238, 15);
 			this.label10.TabIndex = 5;
@@ -2732,7 +2734,7 @@
 			this.BGMPlayer_ControlGrid.RowHeadersVisible = false;
 			this.BGMPlayer_ControlGrid.RowTemplate.Height = 21;
 			this.BGMPlayer_ControlGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.BGMPlayer_ControlGrid.Size = new System.Drawing.Size(684, 287);
+			this.BGMPlayer_ControlGrid.Size = new System.Drawing.Size(684, 285);
 			this.BGMPlayer_ControlGrid.TabIndex = 0;
 			this.BGMPlayer_ControlGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.BGMPlayer_ControlGrid_CellContentClick);
 			this.BGMPlayer_ControlGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.BGMPlayer_ControlGrid_CellFormatting);
@@ -2829,6 +2831,18 @@
 			this.PlayTimeTimer.Enabled = true;
 			this.PlayTimeTimer.Interval = 1000;
 			this.PlayTimeTimer.Tick += new System.EventHandler(this.PlayTimeTimer_Tick);
+			//
+			// FormBrowser_PreserveDrawingBuffer
+			//
+			this.FormBrowser_PreserveDrawingBuffer.AutoSize = true;
+			this.FormBrowser_PreserveDrawingBuffer.Location = new System.Drawing.Point(436, 31);
+			this.FormBrowser_PreserveDrawingBuffer.Name = "FormBrowser_PreserveDrawingBuffer";
+			this.FormBrowser_PreserveDrawingBuffer.Size = new System.Drawing.Size(145, 19);
+			this.FormBrowser_PreserveDrawingBuffer.TabIndex = 15;
+			this.FormBrowser_PreserveDrawingBuffer.Text = "描画バッファを保持する *";
+			this.ToolTipInfo.SetToolTip(this.FormBrowser_PreserveDrawingBuffer, "無効化するとパフォーマンスが向上する可能性があります。\r\n注意：「ハードウェアアクセラレーション」が有効な時、これが有効でないと原寸でスクリーンショットが撮影でき" +
+        "なくなります。\r\n* この変更は再起動後に適用されます。");
+			this.FormBrowser_PreserveDrawingBuffer.UseVisualStyleBackColor = true;
 			//
 			// DialogConfiguration
 			//
@@ -3137,5 +3151,6 @@
 		private System.Windows.Forms.CheckBox FormBrowser_HardwareAccelerationEnabled;
 		private System.Windows.Forms.Label label19;
 		private System.Windows.Forms.Label label20;
+		private System.Windows.Forms.CheckBox FormBrowser_PreserveDrawingBuffer;
 	}
 }

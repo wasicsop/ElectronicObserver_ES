@@ -238,6 +238,7 @@ namespace ElectronicObserver.Window
 				config.IsToolMenuVisible = c.IsToolMenuVisible;
 				config.ConfirmAtRefresh = c.ConfirmAtRefresh;
 				config.HardwareAccelerationEnabled = c.HardwareAccelerationEnabled;
+				config.PreserveDrawingBuffer = c.PreserveDrawingBuffer;
 				config.BackColor = this.BackColor.ToArgb();
 
 				return config;
@@ -265,6 +266,7 @@ namespace ElectronicObserver.Window
 			c.IsToolMenuVisible = config.IsToolMenuVisible;
 			c.ConfirmAtRefresh = config.ConfirmAtRefresh;
 			c.HardwareAccelerationEnabled = config.HardwareAccelerationEnabled;
+			c.PreserveDrawingBuffer = config.PreserveDrawingBuffer;
 
 			// volume
 			if (Utility.Configuration.Config.BGMPlayer.SyncBrowserMute)
