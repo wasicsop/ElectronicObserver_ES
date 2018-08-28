@@ -251,7 +251,7 @@ namespace Browser
 
 			Browser = new ChromiumWebBrowser(@"about:blank")
 			{
-				Dock = DockStyle.None,
+				Dock = DockStyle.Fill,
 				RequestHandler = new RequestHandler(pixiSettingEnabled: Configuration.PreserveDrawingBuffer),
 				MenuHandler = new MenuHandler(),
 				KeyboardHandler = new KeyboardHandler(),
@@ -352,6 +352,7 @@ namespace Browser
 			if (SizeAdjuster.Width == 0 || SizeAdjuster.Height == 0) return;
 			int x = Browser.Location.X, y = Browser.Location.Y;
 			bool isScrollable = Configuration.IsScrollable;
+			Browser.Dock = DockStyle.None;
 
 			if (!isScrollable || Browser.Width <= SizeAdjuster.Width)
 			{
