@@ -257,6 +257,7 @@ namespace Browser
 				KeyboardHandler = new KeyboardHandler(),
 				DragHandler = new DragHandler(),
 			};
+			Browser.BrowserSettings.StandardFontFamily = "Microsoft YaHei"; // Fixes text rendering position too high
 			Browser.LoadingStateChanged += Browser_LoadingStateChanged;
 			SizeAdjuster.Controls.Add(Browser);
 
