@@ -643,7 +643,6 @@ namespace ElectronicObserver.Resource.Record
 		/// <param name="ship">対象の艦船。入手直後・改装直後のものに限ります。</param>
 		public void UpdateDefaultSlot(ShipData ship)
 		{
-
 			UpdateDefaultSlot(ship.ShipID, ship.SlotMaster.ToArray());
 		}
 
@@ -654,13 +653,15 @@ namespace ElectronicObserver.Resource.Record
 		/// <param name="slot">装備スロット配列。</param>
 		public void UpdateDefaultSlot(int shipID, int[] slot)
 		{
-
 			ShipParameterElement e = this[shipID];
 			if ( e == null ) {
 				e = new ShipParameterElement();
 				e.ShipID = shipID;
 				Utility.Logger.Add( 2, KCDatabase.Instance.MasterShips[shipID].NameWithClass + LoggerRes.InitialEquipRegistered );
 			}
+
+			if (e.DefaultSlot == null || !e.DefaultSlot.SequenceEqual(slot))
+				Utility.Logger.Add(2, KCDatabase.Instance.MasterShips[shipID].NameWithClass + " の初期装備記録が更新されました。");
 
 			e.DefaultSlot = slot;
 
@@ -801,18 +802,19 @@ namespace ElectronicObserver.Resource.Record
 		/// </summary>
 		void ParameterLoaded(string apiname, dynamic data)
 		{
-
-			if (!ParameterLoadFlag) return;
+			// note: 暫定的に毎回ロードしてみる
+			//if (!ParameterLoadFlag) return;
 
 
 			foreach (ShipData ship in KCDatabase.Instance.Ships.Values)
 			{
-
-				UpdateParameter(ship);
-
+				// note: 昨今特殊シナジーが多くなっていて、かつすべてに対応しきれいていないため、完全非武装な艦のみステータスを記録する
+				// 暫定対応なので要再検討
+				if (ship.AllSlot.All(id => id <= 0))
+					UpdateParameter(ship);
 			}
 
-			ParameterLoadFlag = false;      //一回限り(基本的に起動直後の1回)
+			//ParameterLoadFlag = false;      //一回限り(基本的に起動直後の1回)
 
 		}
 
@@ -982,8 +984,8 @@ namespace ElectronicObserver.Resource.Record
 
 			foreach (ShipData s in KCDatabase.Instance.Ships.Values.Where(s => s.MasterID > newShipIDBorder))
 			{
-
-				UpdateParameter(s);
+				// note: 初期装備がシナジー装備であることがあるので、記録しない　要再確認
+				//UpdateParameter(s);
 				UpdateDefaultSlot(s);
 
 			}
@@ -1003,7 +1005,8 @@ namespace ElectronicObserver.Resource.Record
 
 			if (ship != null)
 			{
-				UpdateParameter(ship);
+				// note: 初期装備がシナジー装備であることがあるので、記録しない　要再確認
+				//UpdateParameter(ship);
 				UpdateDefaultSlot(ship);
 			}
 
@@ -1033,7 +1036,8 @@ namespace ElectronicObserver.Resource.Record
 
 			if (ship != null)
 			{
-				UpdateParameter(ship);
+				// note: 初期装備がシナジー装備であることがあるので、記録しない　要再確認
+				//UpdateParameter(ship);
 				UpdateDefaultSlot(ship);
 			}
 
@@ -1069,7 +1073,7 @@ namespace ElectronicObserver.Resource.Record
 
 			var ship = KCDatabase.Instance.Ships.OrderBy(p => p.Key).Last().Value;
 
-			if(ship.ShipID == questRewardShipID)
+			if (ship.ShipID == questRewardShipID)
 			{
 				// 装備データがまだ送られてきていないので、remodeling と同様 slot_item が来た時点で処理する
 				remodelingShipID = ship.MasterID;

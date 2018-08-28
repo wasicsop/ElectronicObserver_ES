@@ -252,6 +252,7 @@ namespace Browser
 			Browser = new ChromiumWebBrowser(@"about:blank")
 			{
 				Dock = DockStyle.Fill,
+				Size = SizeAdjuster.Size,
 				RequestHandler = new RequestHandler(pixiSettingEnabled: Configuration.PreserveDrawingBuffer),
 				MenuHandler = new MenuHandler(),
 				KeyboardHandler = new KeyboardHandler(),
@@ -260,7 +261,6 @@ namespace Browser
 			Browser.BrowserSettings.StandardFontFamily = "Microsoft YaHei"; // Fixes text rendering position too high
 			Browser.LoadingStateChanged += Browser_LoadingStateChanged;
 			SizeAdjuster.Controls.Add(Browser);
-
 		}
 
 
