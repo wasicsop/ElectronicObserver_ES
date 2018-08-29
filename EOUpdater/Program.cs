@@ -11,7 +11,7 @@ namespace EOUpdater
 	internal class Program
 	{
 		private static readonly string AppDataFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"ElectronicObserver");
-	    private const string UpdateUrl = @"http://raw.githubusercontent.com/silfumus/ryuukitsune.github.io/master/Translations/en-US/update.json";
+	    private const string UpdateUrl = @"https://raw.githubusercontent.com/silfumus/ryuukitsune.github.io/master/Translations/en-US/update.json";
 
 	    private static void Main(string[] args)
 		{
@@ -34,20 +34,6 @@ namespace EOUpdater
                 }
 			}
 
-			if (wait)
-			{
-				foreach (var process in Process.GetProcessesByName("ElectronicObserver"))
-				{
-					Console.WriteLine("Waiting Electronic Observer to exit...");
-					process.WaitForExit();
-				}
-				foreach (var process in Process.GetProcessesByName("EOBrowser"))
-				{
-					Console.WriteLine("Waiting EOBrowser to exit...");
-					process.WaitForExit();
-				}
-			}
-
 			if (!Directory.Exists(AppDataFolder))
 				Directory.CreateDirectory(AppDataFolder);
 
@@ -56,28 +42,49 @@ namespace EOUpdater
                 var tempFile = AppDataFolder + @"\latest.zip";
                 var destPath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().CodeBase);
 
-                GetUpdateInfo(UpdateUrl, out var downloadUrl, out var downloadHash);
-				GetUpdateFile(downloadUrl, tempFile, downloadHash);
-                Extract(tempFile, destPath);
+                CheckUpdate(UpdateUrl, out var downloadUrl, out var downloadHash);
+				DownloadUpdate(downloadUrl, tempFile, downloadHash);
+
+	            if (wait)
+	            {
+		            foreach (var process in Process.GetProcessesByName("ElectronicObserver"))
+		            {
+			            Console.WriteLine("Close Electronic Observer to start the updating process.");
+			            process.WaitForExit();
+		            }
+		            foreach (var process in Process.GetProcessesByName("EOBrowser"))
+		            {
+			            Console.WriteLine("Close EOBrowser to start the updating process.");
+			            process.WaitForExit();
+		            }
+	            }
+
+				ExtractUpdate(tempFile, destPath);
             }
 			catch (Exception e)
 			{
 				Console.WriteLine(e);
 			}
 
-		    if (!restart) return;
-		    var appPath = Path.Combine(AppDomain.CurrentDomain.SetupInformation.ApplicationBase, @"ElectronicObserver.exe");
-            Process.Start(appPath);
+			if (restart)
+			{
+				var appPath = Path.Combine(AppDomain.CurrentDomain.SetupInformation.ApplicationBase, @"ElectronicObserver.exe");
+				Process.Start(appPath);
+				return;
+			}
+
+			Console.WriteLine("Update complete. You can close this window.");
+			Console.ReadKey();
 		}
 
-		private static void Extract(string zipPath, string extractPath)
+		private static void ExtractUpdate(string zipPath, string extractPath)
 		{
 			var localPath = new Uri(extractPath).LocalPath;
             using (var archive = ZipFile.Open(zipPath, ZipArchiveMode.Read))
 			{
+				Console.WriteLine("Start extracting...");
 				foreach (var file in archive.Entries)
 				{
-				    Console.WriteLine("Start extracting...");
                     var fullname = file.FullName.Replace(@"ElectronicObserver/", "");
 					var completeFileName = Path.Combine(localPath, fullname);
 					var directory = Path.GetDirectoryName(completeFileName);
@@ -87,12 +94,12 @@ namespace EOUpdater
 
 					if (file.Name == "DynamicJson.dll" || file.Name == "EOUpdater.exe" || file.Name == "") continue;
 					file.ExtractToFile(completeFileName, true);
-				    Console.WriteLine("Extracting finished.");
-                }
+				}
+				Console.WriteLine("Extracting finished.");
 			}
 		}
 
-		private static string GetFileHash(string filename)
+		private static string GetHash(string filename)
 		{
 			using (var sha256 = SHA256.Create())
 			{
@@ -104,7 +111,7 @@ namespace EOUpdater
 			}
 		}
 
-		private static void GetUpdateInfo(string url, out string downloadUrl, out string downloadHash)
+		private static void CheckUpdate(string url, out string downloadUrl, out string downloadHash)
 		{
 			using (var client = new WebClient())
 			{
@@ -125,11 +132,12 @@ namespace EOUpdater
 			}
 		}
 
-		private static void GetUpdateFile(string downloadUrl, string tempFile, string downloadHash)
+		private static void DownloadUpdate(string downloadUrl, string tempFile, string downloadHash)
 		{
-			if (!File.Exists(tempFile) || GetFileHash(tempFile) != downloadHash)
+			if (!File.Exists(tempFile) || GetHash(tempFile) != downloadHash)
                 DownloadUpdate(downloadUrl, tempFile);
-		    Console.WriteLine("File: latest.zip SHA-256: " + GetFileHash(tempFile));
+		    Console.WriteLine("File: latest.zip SHA-256: " + GetHash(tempFile));
+			Console.WriteLine("Download complete.\r\n");
 		}
 
 		private static void DownloadUpdate(string url, string tempFile)
@@ -138,12 +146,9 @@ namespace EOUpdater
 			{
 				using (var client = new WebClient())
 				{
-					Console.WriteLine("Download starting...");
+					ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+					Console.WriteLine("Downloading update...");
 					client.DownloadFile(url, tempFile);
-					if (File.Exists(tempFile))
-					{
-						Console.WriteLine("Download successful.\r\n");
-					}
 				}
 			}
 			catch (Exception e)
