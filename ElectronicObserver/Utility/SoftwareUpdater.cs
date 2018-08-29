@@ -19,9 +19,8 @@ namespace ElectronicObserver.Utility
 		internal static readonly string AppDataFolder =
 			Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + @"\\ElectronicObserver";
 		internal static readonly string TranslationFolder = AppDataFolder + "\\Translations";
-		private static readonly string UpdateFile = AppDataFolder + @"\\latest.zip";
 		private static readonly Uri UpdateUrl =
-			new Uri("http://raw.githubusercontent.com/silfumus/ryuukitsune.github.io/master/Translations/en-US/update.json");
+			new Uri("https://raw.githubusercontent.com/silfumus/ryuukitsune.github.io/master/Translations/en-US/update.json");
 
 		internal static string EqVer { get; set; } = "0.0.0";
 		internal static string EqTypeVer { get; set; } = "0.0.0";
@@ -44,38 +43,47 @@ namespace ElectronicObserver.Utility
 				Directory.CreateDirectory(AppDataFolder);
 
 			CheckVersion();
-			
-			var downloadUrl = new Uri(ZipUrl);
+			DownloadUpdater();
 
-			if (!File.Exists(UpdateFile))
-				DownloadUpdate(downloadUrl);
-			else if (GetFileHash(UpdateFile) != DownloadHash)
+			var updaterFile = AppDomain.CurrentDomain.SetupInformation.ApplicationBase + @"\EOUpdater.exe";
+			if (!File.Exists(updaterFile))
 			{
-				File.Delete(UpdateFile);
-				DownloadUpdate(downloadUrl);
+				Logger.Add(2, "Updater started. Close EO after it has finished downloading the update.");
 			}
-			else
-			{
-				Logger.Add(2, "Close Electronic Observer to complete the update.");
-			}
-
-			var destPath =
-				Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase);
-			UpdateUpdater(UpdateFile, destPath);
-
 			var updater = new Process
 			{
 				StartInfo =
 				{
-					FileName = Application.StartupPath + @"\EOUpdater.exe",
+					FileName = updaterFile,
 					UseShellExecute = false,
-					CreateNoWindow = true
-				}
+					CreateNoWindow = false
+		}
 			};
 			if (!UpdateRestart)
 				updater.StartInfo.Arguments = "--restart";
 
 			updater.Start();
+			Logger.Add(2, "Updater started. Close EO after it has finished downloading the update.");
+		}
+
+		private static void DownloadUpdater()
+		{
+			try
+			{
+				using (var client = new WebClient())
+				{
+					ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+					var url = @"https://github.com/silfumus/ryuukitsune.github.io/raw/develop/Translations/en-US/EOUpdater.exe";
+					var updaterFile = AppDomain.CurrentDomain.SetupInformation.ApplicationBase + @"\EOUpdater.exe";
+
+					client.DownloadFile(url, updaterFile);
+					Logger.Add(1, "Updater download finished.");
+				}
+			}
+			catch (Exception e)
+			{
+				Logger.Add(3, "Failed to download updater. " + e);
+			}
 		}
 
 		internal static void CheckVersion()
@@ -111,7 +119,7 @@ namespace ElectronicObserver.Utility
 			_isChecked = true;
 		}
 
-		private static string GetFileHash(string filename)
+		private static string GetHash(string filename)
 		{
 			using (var sha256 = SHA256.Create())
 			{
@@ -121,24 +129,6 @@ namespace ElectronicObserver.Utility
 					return BitConverter.ToString(hash).Replace("-", "");
 				}
 			}
-		}
-
-		private static void DownloadUpdate(Uri url)
-		{
-			try
-			{
-				using (var client = new WebClient())
-				{
-					Logger.Add(2, "Downloading new version of Electronic Observer...");
-					client.DownloadFileCompleted += DownloadComplete;
-					client.DownloadFileAsync(url, UpdateFile);
-				}
-			}
-			catch (Exception e)
-			{
-				Logger.Add(3, "Failed to download update file." + e);
-			}
-
 		}
 
 		internal static void DownloadTranslation(TranslationFile filename, string latestVersion)
@@ -159,28 +149,6 @@ namespace ElectronicObserver.Utility
 				Logger.Add(3, $"Failed to download {filename}.xml. " + e.Message);
 			}
 
-		}
-
-		private static void UpdateUpdater(string zipPath, string extractPath)
-		{
-			var localPath = new Uri(extractPath).LocalPath;
-			using (var archive = ZipFile.Open(zipPath, ZipArchiveMode.Read))
-			{
-				foreach (var file in archive.Entries)
-				{
-					var fullname = file.FullName.Replace(@"ElectronicObserver/", "");
-					var completeFileName = Path.Combine(localPath, fullname);
-
-					if (file.Name != "EOUpdater.exe") continue;
-
-					file.ExtractToFile(completeFileName, true);
-				}
-			}
-		}
-
-		private static void DownloadComplete(object sender, EventArgs e)
-		{
-			Logger.Add(2, "Download complete. Close Electronic Observer to complete the update.");
 		}
 	}
 }
