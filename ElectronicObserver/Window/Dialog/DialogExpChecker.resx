@@ -117,128 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 15</value>
-  </data>
-  <data name="label8.Text" xml:space="preserve">
-    <value>Devmats</value>
-  </data>
-  <data name="IsLargeConstruction.Location" type="System.Drawing.Point, System.Drawing">
-    <value>399, 69</value>
-  </data>
-  <data name="IsLargeConstruction.Size" type="System.Drawing.Size, System.Drawing">
-    <value>49, 19</value>
-  </data>
-  <data name="IsLargeConstruction.Text" xml:space="preserve">
-    <value>LSC</value>
-  </data>
-  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>42, 15</value>
-  </data>
-  <data name="label7.Text" xml:space="preserve">
-    <value>Docks</value>
-  </data>
-  <data name="ButtonRun.Text" xml:space="preserve">
-    <value>Search</value>
-  </data>
-  <data name="MergeRows.Location" type="System.Drawing.Point, System.Drawing">
-    <value>454, 69</value>
-  </data>
-  <data name="MergeRows.Size" type="System.Drawing.Size, System.Drawing">
-    <value>77, 19</value>
-  </data>
-  <data name="MergeRows.Text" xml:space="preserve">
-    <value>Combine</value>
-  </data>
-  <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>378, 13</value>
-  </data>
-  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>45, 15</value>
-  </data>
-  <data name="label6.Text" xml:space="preserve">
-    <value>Recipe</value>
-  </data>
-  <data name="Recipe.Location" type="System.Drawing.Point, System.Drawing">
-    <value>429, 10</value>
-  </data>
-  <data name="Recipe.Size" type="System.Drawing.Size, System.Drawing">
-    <value>183, 23</value>
-  </data>
-  <data name="SecretaryName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>203, 65</value>
-  </data>
-  <data name="SecretaryCategory.Location" type="System.Drawing.Point, System.Drawing">
-    <value>76, 65</value>
-  </data>
-  <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>64, 15</value>
-  </data>
-  <data name="label5.Text" xml:space="preserve">
-    <value>Secretary</value>
-  </data>
-  <data name="DateEnd.Location" type="System.Drawing.Point, System.Drawing">
-    <value>246, 39</value>
-  </data>
-  <data name="DateEnd.Size" type="System.Drawing.Size, System.Drawing">
-    <value>119, 23</value>
-  </data>
-  <data name="DateBegin.Location" type="System.Drawing.Point, System.Drawing">
-    <value>246, 10</value>
-  </data>
-  <data name="DateBegin.Size" type="System.Drawing.Size, System.Drawing">
-    <value>119, 23</value>
-  </data>
-  <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>212, 42</value>
-  </data>
-  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>28, 15</value>
-  </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>End</value>
-  </data>
-  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>203, 13</value>
-  </data>
-  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>37, 15</value>
-  </data>
-  <data name="label3.Text" xml:space="preserve">
-    <value>Start</value>
-  </data>
-  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 15</value>
-  </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>Category</value>
-  </data>
-  <data name="ShipCategory.Location" type="System.Drawing.Point, System.Drawing">
-    <value>76, 10</value>
-  </data>
-  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>42, 15</value>
-  </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>Name</value>
-  </data>
-  <data name="ShipName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>76, 39</value>
-  </data>
-  <data name="RecordView_Name.HeaderText" xml:space="preserve">
-    <value>Name</value>
-  </data>
-  <data name="RecordView_Date.HeaderText" xml:space="preserve">
-    <value>Date</value>
-  </data>
-  <data name="RecordView_Recipe.HeaderText" xml:space="preserve">
-    <value>Recipe</value>
-  </data>
-  <data name="RecordView_SecretaryShip.HeaderText" xml:space="preserve">
-    <value>Secretary</value>
-  </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>Construction Record</value>
-  </data>
+  <metadata name="ToolTipInfo.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="ColumnLevel.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="ColumnExp.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="ColumnSortieCount.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="ColumnASW.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="ColumnEquipment.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
 </root>

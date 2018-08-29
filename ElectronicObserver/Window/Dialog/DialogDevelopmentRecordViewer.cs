@@ -19,9 +19,9 @@ namespace ElectronicObserver.Window.Dialog
 
 		private DevelopmentRecord _record;
 
-		private const string NameAny = "(All)";
-		private const string NameNotExist = "(失敗)";
-		private const string NameExist = "(Success)";
+		private const string NameAny = "All";
+		private const string NameNotExist = "Failed"; //(失敗)
+        private const string NameExist = "Success";
 
 
 		private class SearchArgument
@@ -227,6 +227,8 @@ namespace ElectronicObserver.Window.Dialog
 				BaseRow = row
 			};
 
+			RecordView.Tag = args;
+
 
 			if (!MergeRows.Checked)
 			{
@@ -236,11 +238,11 @@ namespace ElectronicObserver.Window.Dialog
 				RecordView_Name.HeaderText = "Equipment";
 				RecordView_Date.Width = 140;
 				RecordView_Date.Visible = true;
-				RecordView_Recipe.Width = 120;
+				RecordView_Recipe.Width = 95;
 				RecordView_Recipe.Visible = true;
-				RecordView_FlagshipType.Width = 60;
+				RecordView_FlagshipType.Width = 40;
 				RecordView_FlagshipType.Visible = true;
-				RecordView_Flagship.Width = 60;
+				RecordView_Flagship.Width = 105;
 				RecordView_Flagship.Visible = true;
 				RecordView_Detail.Visible = false;
 			}
@@ -683,5 +685,31 @@ namespace ElectronicObserver.Window.Dialog
 		}
 
 
+		private void RecordView_SelectionChanged(object sender, EventArgs e)
+		{
+			var args = RecordView.Tag as SearchArgument;
+			if (args == null)
+				return;
+
+			int selectedCount = RecordView.Rows.GetRowCount(DataGridViewElementStates.Selected);
+
+			if (selectedCount == 0)
+				return;
+
+			if (args.MergeRows)
+			{
+				int count = RecordView.SelectedRows.OfType<DataGridViewRow>().Select(r => (int)r.Cells[RecordView_Header.Index].Value).Sum();
+				int allcount = RecordView.Rows.OfType<DataGridViewRow>().Select(r => (int)r.Cells[RecordView_Header.Index].Value).Sum();
+
+				StatusInfo.Text = string.Format("Selected items: {0} / {1} ({2:p1})",
+					count, allcount, (double)count / allcount);
+			}
+			else
+			{
+				int allcount = RecordView.RowCount;
+				StatusInfo.Text = string.Format("Selected items: {0} / {1} ({2:p1})",
+					selectedCount, allcount, (double)selectedCount / allcount);
+			}
+		}
 	}
 }

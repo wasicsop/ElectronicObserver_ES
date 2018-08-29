@@ -173,6 +173,7 @@ namespace ElectronicObserver.Window
 			StripMenu_Tool_AntiAirDefense.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormAntiAirDefense];
 			StripMenu_Tool_FleetImageGenerator.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormFleetImageGenerator];
 			StripMenu_Tool_BaseAirCorpsSimulation.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormBaseAirCorps];
+			StripMenu_Tool_ExpChecker.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormExpChecker];
 
 			StripMenu_Help_Help.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormInformation];
 			StripMenu_Help_Version.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.AppIcon];
@@ -1523,7 +1524,10 @@ namespace ElectronicObserver.Window
 				n.IsSilenced = isSilenced;
 		}
 
-
+		private void StripMenu_Tool_ExpChecker_Click(object sender, EventArgs e)
+		{
+			new Dialog.DialogExpChecker().Show(this);
+		}
 
 
 
@@ -1677,8 +1681,9 @@ namespace ElectronicObserver.Window
 
 
 
+
 		#endregion
 
-
+	
 	}
 }

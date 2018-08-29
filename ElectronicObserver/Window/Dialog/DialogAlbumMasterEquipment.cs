@@ -337,26 +337,18 @@ namespace ElectronicObserver.Window.Dialog
 
 			//装備画像を読み込んでみる
 			{
-				string path = string.Format(@"{0}\\resources\\image\\slotitem\\card\\{1:D3}.png", Utility.Configuration.Config.Connection.SaveDataPath, equipmentID);
-				if (File.Exists(path))
+				var img =
+					KCResourceHelper.LoadEquipmentImage(equipmentID, KCResourceHelper.ResourceTypeEquipmentCard) ??
+					KCResourceHelper.LoadEquipmentImage(equipmentID, KCResourceHelper.ResourceTypeEquipmentCardSmall);
+
+				if (img != null)
 				{
-					try
-					{
-
-						EquipmentImage.Image = new Bitmap(path);
-
-					}
-					catch (Exception)
-					{
-						if (EquipmentImage.Image != null)
-							EquipmentImage.Image.Dispose();
-						EquipmentImage.Image = null;
-					}
+					EquipmentImage.Image?.Dispose();
+					EquipmentImage.Image = img;
 				}
 				else
 				{
-					if (EquipmentImage.Image != null)
-						EquipmentImage.Image.Dispose();
+					EquipmentImage.Image?.Dispose();
 					EquipmentImage.Image = null;
 				}
 			}
@@ -573,17 +565,25 @@ namespace ElectronicObserver.Window.Dialog
 			if (string.IsNullOrWhiteSpace(TextSearch.Text))
 				return;
 
-			string searchWord = DialogAlbumMasterShip.ToHiragana(TextSearch.Text.ToLower());
-			var target =
-				EquipmentView.Rows.OfType<DataGridViewRow>()
-				.Select(r => KCDatabase.Instance.MasterEquipments[(int)r.Cells[EquipmentView_ID.Index].Value])
-				.FirstOrDefault(
-					eq => DialogAlbumMasterShip.ToHiragana(eq.Name.ToLower()).Contains(searchWord));
 
-			if (target != null)
+			bool Search(string searchWord)
 			{
-				EquipmentView.FirstDisplayedScrollingRowIndex = EquipmentView.Rows.OfType<DataGridViewRow>().First(r => (int)r.Cells[EquipmentView_ID.Index].Value == target.EquipmentID).Index;
+				var target =
+					EquipmentView.Rows.OfType<DataGridViewRow>()
+					.Select(r => KCDatabase.Instance.MasterEquipments[(int)r.Cells[EquipmentView_ID.Index].Value])
+					.FirstOrDefault(
+						eq => Calculator.ToHiragana(eq.Name.ToLower()).Contains(searchWord));
+
+				if (target != null)
+				{
+					EquipmentView.FirstDisplayedScrollingRowIndex = EquipmentView.Rows.OfType<DataGridViewRow>().First(r => (int)r.Cells[EquipmentView_ID.Index].Value == target.EquipmentID).Index;
+					return true;
+				}
+				return false;
 			}
+
+			if (!Search(Calculator.ToHiragana(TextSearch.Text.ToLower())))
+				Search(Calculator.RomaToHira(TextSearch.Text));
 		}
 
 		private void TextSearch_KeyDown(object sender, KeyEventArgs e)

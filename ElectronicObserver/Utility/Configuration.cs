@@ -629,6 +629,12 @@ namespace ElectronicObserver.Utility
 				/// </summary>
 				public bool ShowSallyAreaAlertDialog { get; set; }
 
+				/// <summary>
+				/// 必要経験値計算：出撃当たりの経験値
+				/// </summary>
+				public int ExpCheckerExpUnit { get; set; }
+
+
 				public ConfigControl()
 				{
 					ConditionBorder = 40;
@@ -638,6 +644,7 @@ namespace ElectronicObserver.Utility
 					LastIsMute = false;
 					PowerEngagementForm = 1;
 					ShowSallyAreaAlertDialog = true;
+					ExpCheckerExpUnit = 2268;
 				}
 			}
 			/// <summary>動作</summary>
@@ -1088,7 +1095,7 @@ namespace ElectronicObserver.Utility
 				/// <summary>
 				/// ブラウザの拡大率 10-1000(%)
 				/// </summary>
-				public int ZoomRate { get; set; }
+				public double ZoomRate { get; set; }
 
 				/// <summary>
 				/// ブラウザをウィンドウサイズに合わせる
@@ -1164,21 +1171,20 @@ namespace ElectronicObserver.Utility
 				public bool ConfirmAtRefresh { get; set; }
 
 				/// <summary>
-				/// flashのパラメータ指定 'wmode'
+				/// ハードウェアアクセラレーションを有効にするか
 				/// </summary>
-				public string FlashWMode { get; set; }
+				public bool HardwareAccelerationEnabled { get; set; }
 
 				/// <summary>
-				/// flashのパラメータ指定 'quality'
+				/// 描画バッファを保持するか
 				/// </summary>
-				public string FlashQuality { get; set; }
-
+				public bool PreserveDrawingBuffer { get; set; }
 
 				public ConfigFormBrowser()
 				{
-					ZoomRate = 100;
+					ZoomRate = 1;
 					ZoomFit = false;
-					LogInPageURL = @"http://www.dmm.com/netgame_s/kancolle/";
+					LogInPageURL = @"http://www.dmm.com/netgame/social/-/gadgets/=/app_id=854854/";
 					IsEnabled = true;
 					ScreenShotPath = "ScreenShot";
 					ScreenShotFormat = 2;
@@ -1191,8 +1197,8 @@ namespace ElectronicObserver.Utility
 					ToolMenuDockStyle = DockStyle.Top;
 					IsToolMenuVisible = true;
 					ConfirmAtRefresh = true;
-					FlashWMode = "opaque";
-					FlashQuality = "high";
+					HardwareAccelerationEnabled = true;
+					PreserveDrawingBuffer = true;
 				}
 			}
 			/// <summary>[ブラウザ]ウィンドウ</summary>
@@ -1668,24 +1674,6 @@ namespace ElectronicObserver.Utility
 			{
 				MessageBox.Show( String.Format(Resources.FirstTimeDialog, SoftwareInformation.SoftwareNameEnglish),
 					Resources.FirstTimeTitle, MessageBoxButtons.OK, MessageBoxIcon.Information );
-
-
-				// そのままだと正常に動作しなくなった(らしい)ので、ブラウザバージョンの書き込み
-				try
-				{
-					using (var reg = Microsoft.Win32.Registry.CurrentUser.CreateSubKey(DialogConfiguration.RegistryPathMaster + DialogConfiguration.RegistryPathBrowserVersion))
-						reg.SetValue(Window.FormBrowserHost.BrowserExeName, DialogConfiguration.DefaultBrowserVersion, Microsoft.Win32.RegistryValueKind.DWord);
-
-					using (var reg = Microsoft.Win32.Registry.CurrentUser.CreateSubKey(DialogConfiguration.RegistryPathMaster + DialogConfiguration.RegistryPathGPURendering))
-						reg.SetValue(Window.FormBrowserHost.BrowserExeName, DialogConfiguration.DefaultGPURendering ? 1 : 0, Microsoft.Win32.RegistryValueKind.DWord);
-
-					Utility.Logger.Add(2, ConfigRes.WriteRegistry);
-
-				}
-				catch (Exception ex)
-				{
-					Utility.ErrorReporter.SendErrorReport(ex, ConfigRes.FailWriteRegistry);
-				}
 			}
 
 
@@ -2471,6 +2459,9 @@ namespace ElectronicObserver.Utility
 			if (dt <= DateTimeHelper.CSVStringToTime("2018/02/11 23:00:00"))
 				Update307_ConvertRecord();
 
+			if (dt <= DateTimeHelper.CSVStringToTime("2018/08/17 23:00:00"))
+				Update312_RemoveObsoleteRegistry();
+
 
 			Config.VersionUpdateTime = DateTimeHelper.TimeToCSVString(SoftwareInformation.UpdateTime);
 		}
@@ -2671,10 +2662,10 @@ namespace ElectronicObserver.Utility
 						int diff = d.Difficulty;
 						switch (diff)
 						{
-							case 2: diff = 1; break;  
+							case 2: diff = 1; break;
 							case 3: diff = 2; break;
 							case 4: diff = 3; break;
-							case -1: diff = 4; break; 
+							case -1: diff = 4; break;
 						}
 
 						d.Difficulty = diff;
@@ -2684,14 +2675,41 @@ namespace ElectronicObserver.Utility
 				drop.SaveAll(RecordManager.Instance.MasterPath);
 
 
-				Utility.Logger.Add(2, "<= ver. 3.0.7 難易度変更に伴うレコードファイルの修正: 正常に完了しました。");
+				Utility.Logger.Add(2, "<= ver. 3.0.7 changes to records due to difficulty level changes: Operation completed successfully.");
 
 			}
 			catch (Exception ex)
 			{
-				ErrorReporter.SendErrorReport(ex, "<= ver. 3.0.7 難易度変更に伴うレコードファイルの修正: 失敗しました。");
+				ErrorReporter.SendErrorReport(ex, "<= ver. 3.0.7 changes to records due to difficulty level changes: Operation failed.");
 			}
 
+		}
+
+
+		private void Update312_RemoveObsoleteRegistry()
+		{
+			// ;)
+			Config.FormBrowser.ZoomRate = 1;
+
+
+			string RegistryPathMaster = @"Software\Microsoft\Internet Explorer\Main\FeatureControl\";
+			string RegistryPathBrowserVersion = @"FEATURE_BROWSER_EMULATION\";
+			string RegistryPathGPURendering = @"FEATURE_GPU_RENDERING\";
+
+
+			try
+			{
+				using (var reg = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(RegistryPathMaster + RegistryPathBrowserVersion, true))
+					reg.DeleteValue(Window.FormBrowserHost.BrowserExeName);
+
+				using (var reg = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(RegistryPathMaster + RegistryPathGPURendering, true))
+					reg.DeleteValue(Window.FormBrowserHost.BrowserExeName);
+
+			}
+			catch (Exception ex)
+			{
+				Utility.ErrorReporter.SendErrorReport(ex, "<= ver. 3.1.2 移行処理: 古いレジストリ値の削除に失敗しました。");
+			}
 		}
 	}
 

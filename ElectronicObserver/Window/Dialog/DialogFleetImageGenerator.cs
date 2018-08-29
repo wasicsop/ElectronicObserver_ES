@@ -204,6 +204,34 @@ namespace ElectronicObserver.Window.Dialog
 			return ret;
 		}
 
+		private int ImageType
+		{
+			get
+			{
+				if (ImageTypeCard.Checked)
+					return 0;
+				if (ImageTypeCutin.Checked)
+					return 1;
+				if (ImageTypeBanner.Checked)
+					return 2;
+				if (ImageTypeBaseAirCorps.Checked)
+					return 3;
+				return 0;
+			}
+		}
+		private string GetResourceType(int imageType)
+		{
+			switch (imageType)
+			{
+				case 0:
+				default:
+					return KCResourceHelper.ResourceTypeShipCard;
+				case 1:
+					return KCResourceHelper.ResourceTypeShipCutin;
+				case 2:
+					return KCResourceHelper.ResourceTypeShipBanner;
+			}
+		}
 		private int[] ToFleetIDs()
 		{
 			return new[]{
@@ -338,16 +366,7 @@ namespace ElectronicObserver.Window.Dialog
 				}
 			}
 
-			int mode;
-			if (ImageTypeCard.Checked)
-				mode = 0;
-			else if (ImageTypeCutin.Checked)
-				mode = 1;
-			else if (ImageTypeBanner.Checked)
-				mode = 2;
-			else
-				mode = 3;
-
+			int mode = ImageType;
 
 			try
 			{
@@ -493,7 +512,7 @@ namespace ElectronicObserver.Window.Dialog
 
 			bool visibility = false;
 
-			if (!Utility.Configuration.Config.Connection.SaveReceivedData || !Utility.Configuration.Config.Connection.SaveSWF)
+			if (!Utility.Configuration.Config.Connection.SaveReceivedData || !Utility.Configuration.Config.Connection.SaveOtherFile)
 			{
 
 				visibility = true;
@@ -501,7 +520,7 @@ namespace ElectronicObserver.Window.Dialog
 
 			}
 
-			if (!FleetImageGenerator.HasShipSwfImage(ToFleetIDs()))
+			if (!FleetImageGenerator.HasShipImage(ToFleetIDs(), ReflectDamageGraphic.Checked, GetResourceType(ImageType)))
 			{
 
 				visibility = true;
@@ -517,7 +536,7 @@ namespace ElectronicObserver.Window.Dialog
 		private void ButtonAlert_Click(object sender, EventArgs e)
 		{
 
-			if (!Utility.Configuration.Config.Connection.SaveReceivedData || !Utility.Configuration.Config.Connection.SaveSWF)
+			if (!Utility.Configuration.Config.Connection.SaveReceivedData || !Utility.Configuration.Config.Connection.SaveOtherFile)
 			{
 
 				if ( MessageBox.Show( "It is necessary to enable save ship image option in order\r\nto export fleet image. Would you like to enable it?",
@@ -529,14 +548,14 @@ namespace ElectronicObserver.Window.Dialog
 						Utility.Configuration.Config.Connection.SaveReceivedData = true;
 						Utility.Configuration.Config.Connection.SaveResponse = false;       // もともと不要にしていたユーザーには res は邪魔なだけだと思うので
 					}
-					Utility.Configuration.Config.Connection.SaveSWF = true;
+					Utility.Configuration.Config.Connection.SaveOtherFile = true;
 
 					UpdateButtonAlert();
 				}
 
 			}
 
-			if (!FleetImageGenerator.HasShipSwfImage(ToFleetIDs()))
+			if (!FleetImageGenerator.HasShipImage(ToFleetIDs(), ReflectDamageGraphic.Checked, GetResourceType(ImageType)))
 			{
 
 				MessageBox.Show( "One or more ship image of the current fleet are missing.\r\n\r\nClear cache and reload the game. The ship images are automatically\r\nsaved when you view the current fleet within the game.",

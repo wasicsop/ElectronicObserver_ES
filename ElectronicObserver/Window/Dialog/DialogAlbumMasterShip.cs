@@ -148,7 +148,7 @@ namespace ElectronicObserver.Window.Dialog
 				row.CreateCells(ShipView);
 				row.SetValues(ship.ShipID, ship.ShipTypeName, ship.NameWithClass);
 				row.Cells[ShipView_ShipType.Index].Tag = ship.ShipType;
-				row.Cells[ShipView_Name.Index].Tag = ship.IsAbyssalShip ? null : ship.NameReading;
+				row.Cells[ShipView_Name.Index].Tag = ship.IsAbyssalShip ? null : ship.Name;
 				rows.Add(row);
 
 			}
@@ -295,8 +295,15 @@ namespace ElectronicObserver.Window.Dialog
 			ToolTipInfo.SetToolTip(ResourceName, string.Format("Resource name: {0}\r\nGraphic ver. {1}\r\nVoice ver. {2}\r\nPort voice ver. {3}\r\n({4})",
 				ship.ResourceName, ship.ResourceGraphicVersion, ship.ResourceVoiceVersion, ship.ResourcePortVoiceVersion, Constants.GetVoiceFlag(ship.VoiceFlag)));
 
+
 			ShipType.Text = ship.IsLandBase ? "Land Base" : ship.ShipTypeName;
-			ToolTipInfo.SetToolTip(ShipType, Constants.GetShipClass(ship.ShipClass));
+			if (ship.IsAbyssalShip)
+				ToolTipInfo.SetToolTip(ShipType, $"Ship Class ID: {ship.ShipClass}");
+			else if (Constants.GetShipClass(ship.ShipClass) == "不明" || Constants.GetShipClass(ship.ShipClass) == "Unknown")
+				ToolTipInfo.SetToolTip(ShipType, $"Ship Class Unknown: {ship.ShipClass}");
+			else
+				ToolTipInfo.SetToolTip(ShipType, $"{Constants.GetShipClass(ship.ShipClass)}: {ship.ShipClass}");
+
 			ShipName.Text = ship.NameWithClass;
 			ShipName.ForeColor = ship.GetShipNameColor();
 			if(ShipName.ForeColor == Color.FromArgb( 0xFF, 0xFF, 0xFF ))
@@ -647,7 +654,7 @@ namespace ElectronicObserver.Window.Dialog
 			if (!ImageLoader.IsBusy)
 			{
 				loadingResourceShipID = ship.ShipID;
-				ImageLoader.RunWorkerAsync(ship.ResourceName);
+				ImageLoader.RunWorkerAsync(ship.ShipID);
 			}
 
 
@@ -1162,25 +1169,11 @@ namespace ElectronicObserver.Window.Dialog
 
 		private void ImageLoader_DoWork(object sender, DoWorkEventArgs e)
 		{
-
-			string resourceName = e.Argument as string;
-
 			//System.Threading.Thread.Sleep( 2000 );		// for test
 
 			try
 			{
-
-				var img = SwfHelper.GetShipSwfImage(resourceName, SwfHelper.ShipResourceCharacterID.BannerNormal);
-
-				if (img.Size == SwfHelper.ShipBannerSize)
-				{
-					e.Result = img;
-				}
-				else
-				{
-					img.Dispose();
-					e.Result = null;
-				}
+				e.Result = KCResourceHelper.LoadShipImage(e.Argument as int? ?? 0, false, KCResourceHelper.ResourceTypeShipBanner);
 			}
 			catch (Exception)
 			{
@@ -1209,7 +1202,7 @@ namespace ElectronicObserver.Window.Dialog
 					loadingResourceShipID = _shipID;
 					var ship = KCDatabase.Instance.MasterShips[_shipID];
 					if (ship != null)
-						ImageLoader.RunWorkerAsync(ship.ResourceName);
+						ImageLoader.RunWorkerAsync(_shipID);
 				}
 
 				return;
@@ -1231,39 +1224,30 @@ namespace ElectronicObserver.Window.Dialog
 			if (string.IsNullOrWhiteSpace(TextSearch.Text))
 				return;
 
-			string searchWord = ToHiragana(TextSearch.Text.ToLower());
-			var target =
-				ShipView.Rows.OfType<DataGridViewRow>()
-				.Select(r => KCDatabase.Instance.MasterShips[(int)r.Cells[ShipView_ShipID.Index].Value])
-				.FirstOrDefault(
-				ship =>
-					ToHiragana(ship.NameWithClass.ToLower()).StartsWith(searchWord) ||
-					ToHiragana(ship.NameReading.ToLower()).StartsWith(searchWord));
 
-			if (target != null)
+			bool Search(string searchWord)
 			{
-				ShipView.FirstDisplayedScrollingRowIndex = ShipView.Rows.OfType<DataGridViewRow>().First(r => (int)r.Cells[ShipView_ShipID.Index].Value == target.ShipID).Index;
-			}
-		}
+				var target =
+					ShipView.Rows.OfType<DataGridViewRow>()
+					.Select(r => KCDatabase.Instance.MasterShips[(int)r.Cells[ShipView_ShipID.Index].Value])
+					.FirstOrDefault(
+					ship =>
+						Calculator.ToHiragana(ship.NameWithClass.ToLower()).StartsWith(searchWord) ||
+						Calculator.ToHiragana(ship.NameReading.ToLower()).StartsWith(searchWord));
 
-		public static string ToHiragana(string str)
-		{
-			// あまり深いことは考えずにやる
-			char hiraganaHead = '\x3041';
-			char katakanaHead = '\x30a1';
-			char katakanaTail = '\x30ff';
-
-			char[] chars = str.ToCharArray();
-			for (int i = 0; i < chars.Length; i++)
-			{
-				if (katakanaHead <= chars[i] && chars[i] <= katakanaTail)
-				{       // is katakana
-					chars[i] = (char)((int)chars[i] - (int)katakanaHead + (int)hiraganaHead);
+				if (target != null)
+				{
+					ShipView.FirstDisplayedScrollingRowIndex = ShipView.Rows.OfType<DataGridViewRow>().First(r => (int)r.Cells[ShipView_ShipID.Index].Value == target.ShipID).Index;
+					return true;
 				}
+				return false;
 			}
 
-			return new string(chars);
+			if (!Search(Calculator.ToHiragana(TextSearch.Text.ToLower())))
+				Search(Calculator.RomaToHira(TextSearch.Text));
+
 		}
+
 
 		private void TextSearch_KeyDown(object sender, KeyEventArgs e)
 		{
@@ -1556,26 +1540,7 @@ namespace ElectronicObserver.Window.Dialog
 			var ship = KCDatabase.Instance.MasterShips[_shipID];
 			if (ship != null)
 			{
-
-				var pathlist = new LinkedList<string>();
-				pathlist.AddLast(SwfHelper.GetShipResourcePath(ship.ResourceName));
-
-				foreach (var rec in RecordManager.Instance.ShipParameter.Record.Values.Where(r => r.OriginalCostumeShipID == _shipID))
-				{
-					string path = SwfHelper.GetShipResourcePath(rec.ResourceName);
-					if (path != null)
-						pathlist.AddLast(path);
-				}
-
-				var arg = pathlist.Where(p => p != null).ToArray();
-				if (arg.Length > 0)
-				{
-					new DialogShipGraphicViewer(arg).Show(Owner);
-				}
-				else
-				{
-					MessageBox.Show("Failed to find the image resource. Please do the following:\r\n1. Settings→Network→Save received data and enable SWF option.\r\n2. Clear cache and reload the game.\r\n3. View the ship within the game (organize menu, encyclopedia, etc)", "Ship Image Not Found", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-				}
+				new DialogShipGraphicViewer(ship.ShipID).Show(Owner);
 			}
 			else
 			{
