@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml.Linq;
+using Codeplex.Data;
 
 namespace ElectronicObserver.Utility
 {
@@ -37,7 +38,7 @@ namespace ElectronicObserver.Utility
             }
         }
 
-	    private void CheckUpdate()
+        private void CheckUpdate()
 	    {
 			if (!Directory.Exists(_folder))
 				Directory.CreateDirectory(_folder);
@@ -155,31 +156,29 @@ namespace ElectronicObserver.Utility
 	        }
 	        return jpString;
         }
-		
-		public string GetMapNodes(int mapAreaId, int mapInfoId, int mapNodeId, TranslationType type, int id = -1)
+
+	    public string GetMapNodes(int worldId, int areaId, int nodeId)
 		{
-			try
-			{
-				var translationList = GetTranslationList(type);
-
-				if (translationList == null)
-					return mapNodeId.ToString();
-
-				var idChildElement = "Node";
-				var labelChildElement = "Label";
-				
-				var nodeinfo = mapAreaId.ToString("D3") + mapInfoId.ToString("D3") + mapNodeId.ToString("D3");
-				var converted = nodeinfo;
-				if (GetTranslation(nodeinfo, translationList, idChildElement, labelChildElement, id, ref converted))
-					return converted;
-			}
-			catch (Exception e)
-			{
-				Logger.Add(3, "Can't output translation: " + e.Message);
-			}
-
-			return mapNodeId.ToString();
-		}
+			var filepath = _folder + @"\nodes.json";
+		    var id = nodeId.ToString();
+		    using (var sr = new StreamReader(filepath))
+		    {
+		        var json = DynamicJson.Parse(sr.ReadToEnd());
+		        var worldKey = string.Concat(worldId.ToString("D2"), areaId.ToString());
+		        var nodeKey = nodeId.ToString("D2");
+		        foreach (KeyValuePair<string, object> world in json)
+		        {
+		            if (world.Key.Remove(0, 1).PadLeft(3, '0') != worldKey) continue;
+		            var nodes = DynamicJson.Parse(world.Value.ToString());
+		            foreach (KeyValuePair<string, object> node in nodes)
+		            {
+		                if (node.Key.Remove(0, 1).PadLeft(2, '0') != nodeKey) continue;
+		                id = DynamicJson.Parse(node.Value.ToString())[1];
+		            }
+		        }
+		    }
+		    return id;
+        }
 
 		private bool GetTranslation(string jpString, IEnumerable<XElement> translationList, string jpChildElement, string trChildElement, int id, ref string translate)
         {

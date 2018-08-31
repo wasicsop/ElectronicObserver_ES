@@ -29,7 +29,7 @@ namespace ElectronicObserver.Data
 		public int MapInfoID => (int)RawData.api_no;
 
 		public string MapInfoID2 {
-			get { return Window.FormMain.Instance.Translator.GetMapNodes(MapID, MapAreaID, MapInfoID, Utility.TranslationType.OperationMapNodes); }
+			get { return Window.FormMain.Instance.Translator.GetMapNodes(MapID, MapAreaID, MapInfoID); }
 		}
 
 		/// <summary>
