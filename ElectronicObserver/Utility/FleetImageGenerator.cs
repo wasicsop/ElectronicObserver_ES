@@ -71,8 +71,8 @@ namespace ElectronicObserver.Utility
 			var linePen = new Pen(subTextColor);
 
 
-			string fleetAirSuperiorityTitle = "制空戦力";
-			string fleetSearchingAbilityTitle = "索敵能力";
+			string fleetAirSuperiorityTitle = "AS";
+			string fleetSearchingAbilityTitle = "LOS";
 
 			// for measure space of strings
 			Bitmap preimage = new Bitmap(1, 1, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
@@ -480,8 +480,8 @@ namespace ElectronicObserver.Utility
 			};
 
 
-			string fleetAirSuperiorityTitle = "制空戦力";
-			string fleetSearchingAbilityTitle = "索敵能力";
+			string fleetAirSuperiorityTitle = "AS";
+			string fleetSearchingAbilityTitle = "LOS";
 
 			// for measure space of strings
 			Bitmap preimage = new Bitmap(1, 1, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
@@ -955,8 +955,8 @@ namespace ElectronicObserver.Utility
 				DashStyle = DashStyle.Dash
 			};
 
-			string fleetAirSuperiorityTitle = "制空戦力";
-			string fleetSearchingAbilityTitle = "索敵能力";
+			string fleetAirSuperiorityTitle = "AS";
+			string fleetSearchingAbilityTitle = "LOS";
 
 			// for measure space of strings
 			Bitmap preimage = new Bitmap(1, 1, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
@@ -1347,8 +1347,8 @@ namespace ElectronicObserver.Utility
 			var linePen = new Pen(subTextColor);
 
 
-			string baseAirSuperiorityTitle = "制空戦力";
-			string baseDistanceTitle = "戦闘行動半径";
+			string baseAirSuperiorityTitle = "AS";
+			string baseDistanceTitle = "Range";
 
 			// for measure space of strings
 			Bitmap preimage = new Bitmap(1, 1, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
@@ -1516,11 +1516,11 @@ namespace ElectronicObserver.Utility
 						}
 						else if (squadron.State == 2)
 						{
-							equipmentName = "(配置転換中)";
+							equipmentName = "(in transit)";
 						}
 						else
 						{
-							equipmentName = "(なし)";
+							equipmentName = "(empty)";
 						}
 						// fixme: unchecked;
 						equipmentNameBrush.ResetTransform();
