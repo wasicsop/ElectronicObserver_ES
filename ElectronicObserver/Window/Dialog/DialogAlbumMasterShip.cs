@@ -297,13 +297,21 @@ namespace ElectronicObserver.Window.Dialog
 
 
 			ShipType.Text = ship.IsLandBase ? "Land Base" : ship.ShipTypeName;
-			if (ship.IsAbyssalShip)
-				ToolTipInfo.SetToolTip(ShipType, $"Ship Class ID: {ship.ShipClass}");
-			else if (Constants.GetShipClass(ship.ShipClass) == "不明" || Constants.GetShipClass(ship.ShipClass) == "Unknown")
-				ToolTipInfo.SetToolTip(ShipType, $"Ship Class Unknown: {ship.ShipClass}");
-			else
-				ToolTipInfo.SetToolTip(ShipType, $"{Constants.GetShipClass(ship.ShipClass)}: {ship.ShipClass}");
+			{
+				var tip = new StringBuilder();
+				if (ship.IsAbyssalShip)
+					tip.AppendLine($"Ship Class ID: {ship.ShipClass}");
+				else if (Constants.GetShipClass(ship.ShipClass) == "不明" || Constants.GetShipClass(ship.ShipClass) == "Unknown")
+					tip.AppendLine($"Ship Class Unknown: {ship.ShipClass}");
+				else
+					tip.AppendLine($"{Constants.GetShipClass(ship.ShipClass)}: {ship.ShipClass}");
 
+				tip.AppendLine();
+				tip.AppendLine("装備可能：");
+				tip.AppendLine(GetEquippableString(shipID));
+
+				ToolTipInfo.SetToolTip(ShipType, tip.ToString());
+			}
 			ShipName.Text = ship.NameWithClass;
 			ShipName.ForeColor = ship.GetShipNameColor();
 			if(ShipName.ForeColor == Color.FromArgb( 0xFF, 0xFF, 0xFF ))
@@ -738,6 +746,17 @@ namespace ElectronicObserver.Window.Dialog
 			else
 				return param.Maximum.ToString();
 
+		}
+
+		private string GetEquippableString(int shipID)
+		{
+			var db = KCDatabase.Instance;
+			var ship = db.MasterShips[shipID];
+			if (ship == null)
+				return "";
+
+			return string.Join("\r\n", ship.EquippableCategories.Select(id => db.EquipmentTypes[id].Name)
+				.Concat(db.MasterEquipments.Values.Where(eq => eq.EquippableShipsAtExpansion.Contains(shipID)).Select(eq => eq.Name + " (補強スロット)")));
 		}
 
 
