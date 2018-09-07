@@ -197,7 +197,9 @@ namespace ElectronicObserver.Utility
 		{
 			var filepath = _folder + @"\nodes.json";
 		    var id = nodeId.ToString();
-		    using (var sr = new StreamReader(filepath))
+			if (Configuration.Config.UI.UseOriginalNodeId)
+				return id;
+			using (var sr = new StreamReader(filepath))
 		    {
 		        var json = DynamicJson.Parse(sr.ReadToEnd());
 		        var worldKey = string.Concat(worldId.ToString("D2"), areaId.ToString());

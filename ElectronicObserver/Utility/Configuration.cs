@@ -179,6 +179,11 @@ namespace ElectronicObserver.Utility
 				/// </summary>
 				public bool JapaneseEquipmentType { get; set; }
 
+				/// <summary>
+				/// Whether to use default or normal node ID
+				/// </summary>
+				public bool UseOriginalNodeId { get; set; }
+
 				// ThemeID
 				public int ThemeID { get; set; }
 
@@ -476,6 +481,7 @@ namespace ElectronicObserver.Utility
 					JapaneseShipType = false;
 					JapaneseEquipmentName = false;
 					JapaneseEquipmentType = false;
+					UseOriginalNodeId = false;
 				}
 			}
 			/// <summary>UI</summary>
