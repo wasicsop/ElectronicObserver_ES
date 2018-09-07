@@ -1,18 +1,15 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
-using System.IO.Compression;
 using System.Net;
-using System.Reflection;
 using System.Security.Cryptography;
-using System.Windows.Forms;
 using System.Xml.Linq;
 using Codeplex.Data;
 using AppSettings = ElectronicObserver.Properties.Settings;
 
 namespace ElectronicObserver.Utility
 {
-	internal class SoftwareUpdater
+    internal class SoftwareUpdater
 	{
 		public static bool UpdateRestart = false;
 		
@@ -88,10 +85,11 @@ namespace ElectronicObserver.Utility
 
 		internal static void CheckVersion()
 		{
-			if (_isChecked) return;
+		    if (_isChecked) return;
 			try
 			{
-				using (var client = WebRequest.Create(UpdateUrl).GetResponse())
+			    int nodeVer;
+			    using (var client = WebRequest.Create(UpdateUrl).GetResponse())
 				{
 					var updateData = client.GetResponseStream();
 					var json = DynamicJson.Parse(updateData);
@@ -108,8 +106,11 @@ namespace ElectronicObserver.Utility
 					QuestVer = json.tl_ver.quest;
 					ShipVer = json.tl_ver.ship;
 					ShipTypeVer = json.tl_ver.ship_type;
-
+				    nodeVer = (int)json.tl_ver.nodes;
 				}
+
+			    if (nodeVer != CheckDataVersion("nodes.json"))
+			        DownloadData("nodes.json");
 			}
 			catch (Exception e)
 			{
@@ -117,9 +118,45 @@ namespace ElectronicObserver.Utility
 			}
 
 			_isChecked = true;
-		}
+	    }
 
-		private static string GetHash(string filename)
+	    public static int CheckDataVersion(string filename)
+	    {
+	        var source = TranslationFolder + $"\\{filename}";
+	        if (!File.Exists(source))
+	            DownloadData(filename);
+	        try
+	        {
+	            using (var sr = new StreamReader(source))
+	            {
+	                var json = DynamicJson.Parse(sr.ReadToEnd());
+	                return (int)json.Revision;
+	            }
+	        }
+	        catch (Exception)
+	        {
+	            return 0;
+	        }
+        }
+
+	    public static string CheckDataVersion(TranslationFile filename)
+	    {
+	        var source = TranslationFolder + $"\\{filename}.xml";
+            if (!File.Exists(source))
+	            DownloadData(filename);
+            Console.WriteLine(source);
+	        try
+	        {
+	            var xml = XDocument.Load(source);
+	            return xml.Root.Attribute("Version").Value;
+	        }
+	        catch (Exception)
+	        {
+	            return "0.0.0";
+	        }
+        }
+
+        private static string GetHash(string filename)
 		{
 			using (var sha256 = SHA256.Create())
 			{
@@ -131,24 +168,40 @@ namespace ElectronicObserver.Utility
 			}
 		}
 
-		internal static void DownloadTranslation(TranslationFile filename, string latestVersion)
+		internal static void DownloadData(TranslationFile filename)
 		{
-			var url = AppSettings.Default.EOTranslations.AbsoluteUri + "en-US";
-			try
-			{
-				var r2 = WebRequest.Create(url + $"/{filename}.xml");
-				using (var resp = r2.GetResponse())
-				{
-					var doc = XDocument.Load(resp.GetResponseStream());
-					doc.Save(TranslationFolder + $"\\{filename}.xml");
-				}
-				Logger.Add(2, $"Updated {filename} translations to v{latestVersion}.");
-			}
-			catch (Exception e)
-			{
-				Logger.Add(3, $"Failed to download {filename}.xml. " + e.Message);
-			}
+		    var url = AppSettings.Default.EOTranslations.AbsoluteUri + "en-US/" + $"{filename}.xml";
+		    var dest = TranslationFolder + $"\\{filename}.xml";
+		    try
+		    {
+		        using (var client = new WebClient())
+		        {
+		            client.DownloadFile(new Uri(url), dest);
+		            Logger.Add(2, $"File {filename} updated.");
+                }
+		    }
+		    catch (Exception e)
+		    {
+		        Logger.Add(3, $"Failed to update {filename} data. " + e.Message);
+		    }
+        }
 
-		}
-	}
+	    internal static void DownloadData(string filename)
+	    {
+	        var url = AppSettings.Default.EOTranslations.AbsoluteUri + "en-US/" + $"{filename}";
+	        var dest = TranslationFolder + $"\\{filename}";
+            try
+	        {
+	            using (var client = new WebClient())
+	            {
+	                client.DownloadFile(new Uri(url), dest);
+	                Logger.Add(2, $"File {filename} updated.");
+	            }
+            }
+	        catch (Exception e)
+	        {
+	            Logger.Add(3, $"Failed to update {filename} data. " + e.Message);
+	        }
+	    }
+    }
 }

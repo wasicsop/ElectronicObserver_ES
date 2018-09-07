@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Xml.Linq;
 using Codeplex.Data;
 
@@ -21,17 +22,57 @@ namespace ElectronicObserver.Utility
 		internal DynamicTranslator()
 		{
 			CheckUpdate();
+		    //LoadFile();
 
-			try
+		}
+
+        private void LoadFile()
+        {
+            try
             {
-	            if (File.Exists(_folder + "\\Ships.xml")) _shipsXml = XDocument.Load(_folder + "\\Ships.xml");
-	            if (File.Exists(_folder + "\\ShipTypes.xml")) _shipTypesXml = XDocument.Load(_folder + "\\ShipTypes.xml");
-	            if (File.Exists(_folder + "\\Equipment.xml")) _equipmentXml = XDocument.Load(_folder + "\\Equipment.xml");
-	            if (File.Exists(_folder + "\\EquipmentTypes.xml")) _equipTypesXml = XDocument.Load(_folder + "\\EquipmentTypes.xml");
-	            if (File.Exists(_folder + "\\Operations.xml")) _operationsXml = XDocument.Load(_folder + "\\Operations.xml");
-	            if (File.Exists(_folder + "\\Quests.xml")) _questsXml = XDocument.Load(_folder + "\\Quests.xml");
-	            if (File.Exists(_folder + "\\Expeditions.xml")) _expeditionsXml = XDocument.Load(_folder + "\\Expeditions.xml");
-			}
+                if (File.Exists(_folder + "\\Ships.xml")) _shipsXml = XDocument.Load(_folder + "\\Ships.xml");
+                if (File.Exists(_folder + "\\ShipTypes.xml")) _shipTypesXml = XDocument.Load(_folder + "\\ShipTypes.xml");
+                if (File.Exists(_folder + "\\Equipment.xml")) _equipmentXml = XDocument.Load(_folder + "\\Equipment.xml");
+                if (File.Exists(_folder + "\\EquipmentTypes.xml")) _equipTypesXml = XDocument.Load(_folder + "\\EquipmentTypes.xml");
+                if (File.Exists(_folder + "\\Operations.xml")) _operationsXml = XDocument.Load(_folder + "\\Operations.xml");
+                if (File.Exists(_folder + "\\Quests.xml")) _questsXml = XDocument.Load(_folder + "\\Quests.xml");
+                if (File.Exists(_folder + "\\Expeditions.xml")) _expeditionsXml = XDocument.Load(_folder + "\\Expeditions.xml");
+            }
+            catch (Exception ex)
+            {
+                Logger.Add(3, "Could not load translation file: " + ex.Message);
+            }
+        }
+
+        private void LoadFile(TranslationFile filename)
+        {
+            try
+            {
+                switch (filename)
+                {
+                    case TranslationFile.Equipment:
+                        _equipmentXml = XDocument.Load(_folder + "\\Equipment.xml");
+                        break;
+                    case TranslationFile.EquipmentTypes:
+                        _equipTypesXml = XDocument.Load(_folder + "\\EquipmentTypes.xml");
+                        break;
+                    case TranslationFile.Expeditions:
+                        _expeditionsXml = XDocument.Load(_folder + "\\Expeditions.xml");
+                        break;
+                    case TranslationFile.Operations:
+                        _operationsXml = XDocument.Load(_folder + "\\Operations.xml");
+                        break;
+                    case TranslationFile.Quests:
+                        _questsXml = XDocument.Load(_folder + "\\Quests.xml");
+                        break;
+                    case TranslationFile.Ships:
+                        _shipsXml = XDocument.Load(_folder + "\\Ships.xml");
+                        break;
+                    case TranslationFile.ShipTypes:
+                        _shipTypesXml = XDocument.Load(_folder + "\\ShipTypes.xml");
+                        break;
+                }
+            }
             catch (Exception ex)
             {
                 Logger.Add(3, "Could not load translation file: " + ex.Message);
@@ -45,29 +86,24 @@ namespace ElectronicObserver.Utility
 
 			SoftwareUpdater.CheckVersion();
 
-		    foreach (TranslationFile filename in Enum.GetValues(typeof(TranslationFile)))
-		    {
-			    var current = "0.0.0";
-			    var path = _folder + $"\\{filename}.xml";
-			    if (File.Exists(path))
-			    {
-				    var translationfile = XDocument.Load(path);
-				    current = translationfile.Root.Attribute("Version").Value;
-			    }
-			    var latest = current;
+            Parallel.ForEach((TranslationFile[])Enum.GetValues(typeof(TranslationFile)), filename =>
+            {
+                var current = SoftwareUpdater.CheckDataVersion(filename);
+                var latest = current;
 
-			    if (filename == TranslationFile.Equipment) latest = SoftwareUpdater.EqVer;
-			    if (filename == TranslationFile.EquipmentTypes) latest = SoftwareUpdater.EqTypeVer;
-			    if (filename == TranslationFile.Expeditions) latest = SoftwareUpdater.ExpVer;
-			    if (filename == TranslationFile.Operations) latest = SoftwareUpdater.OpVer;
-			    if (filename == TranslationFile.Quests) latest = SoftwareUpdater.QuestVer;
-			    if (filename == TranslationFile.Ships) latest = SoftwareUpdater.ShipVer;
-			    if (filename == TranslationFile.ShipTypes) latest = SoftwareUpdater.ShipTypeVer;
+                if (filename == TranslationFile.Equipment) latest = SoftwareUpdater.EqVer;
+                if (filename == TranslationFile.EquipmentTypes) latest = SoftwareUpdater.EqTypeVer;
+                if (filename == TranslationFile.Expeditions) latest = SoftwareUpdater.ExpVer;
+                if (filename == TranslationFile.Operations) latest = SoftwareUpdater.OpVer;
+                if (filename == TranslationFile.Quests) latest = SoftwareUpdater.QuestVer;
+                if (filename == TranslationFile.Ships) latest = SoftwareUpdater.ShipVer;
+                if (filename == TranslationFile.ShipTypes) latest = SoftwareUpdater.ShipTypeVer;
 
-				if (current != latest)
-				    SoftwareUpdater.DownloadTranslation(filename, latest);
-		    }
-		}
+                if (current != latest)
+                    SoftwareUpdater.DownloadData(filename);
+                LoadFile(filename);
+            });
+        }
 
         private IEnumerable<XElement> GetTranslationList(TranslationType type)
         {
