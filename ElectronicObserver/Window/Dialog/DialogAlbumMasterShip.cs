@@ -307,7 +307,7 @@ namespace ElectronicObserver.Window.Dialog
 					tip.AppendLine($"{Constants.GetShipClass(ship.ShipClass)}: {ship.ShipClass}");
 
 				tip.AppendLine();
-				tip.AppendLine("装備可能：");
+				tip.AppendLine("Equippable:");
 				tip.AppendLine(GetEquippableString(shipID));
 
 				ToolTipInfo.SetToolTip(ShipType, tip.ToString());
@@ -756,7 +756,7 @@ namespace ElectronicObserver.Window.Dialog
 				return "";
 
 			return string.Join("\r\n", ship.EquippableCategories.Select(id => db.EquipmentTypes[id].Name)
-				.Concat(db.MasterEquipments.Values.Where(eq => eq.EquippableShipsAtExpansion.Contains(shipID)).Select(eq => eq.Name + " (補強スロット)")));
+				.Concat(db.MasterEquipments.Values.Where(eq => eq.EquippableShipsAtExpansion.Contains(shipID)).Select(eq => eq.Name + " (Reinforcement Slot)")));
 		}
 
 
