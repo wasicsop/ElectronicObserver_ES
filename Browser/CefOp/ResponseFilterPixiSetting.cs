@@ -66,12 +66,12 @@ namespace Browser.CefOp
                 string raw = reader.ReadToEnd();
 
                string replaced = raw
-                   .Replace("ga.src = (\'https:\' == document.location.protocol ? \'https://\' : \'http://\') + \'stats.g.doubleclick.net/dc.js\';", string.Empty)
+                   .Replace(@"stats.g.doubleclick.net/dc.js", string.Empty)
                    .Replace("<script type=\"text/javascript\" src=\"/js/marketing/conf.js\"></script>", string.Empty)
                    .Replace("<script type=\"text/javascript\" src=\"/js/marketing/gtm.js\"></script>", string.Empty)
-                   .Replace("//stat.i3.dmm.com/latest/js/dmm.tracking.min.js", string.Empty)
-                   .Replace("p+\'://platform.twitter.com/widgets.js\'", string.Empty)
-                   .Replace("/js/netgame/analytics.js", string.Empty);
+                   .Replace(@"//stat.i3.dmm.com/latest/js/dmm.tracking.min.js", string.Empty)
+                   .Replace(@"<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>", string.Empty)
+                   .Replace(@"<script type=""text/javascript"" src=""/js/netgame/analytics.js""></script>", string.Empty);
 
                 var bytes = Encoding.UTF8.GetBytes(replaced);
                 dataOut.Write(bytes, 0, bytes.Length);
