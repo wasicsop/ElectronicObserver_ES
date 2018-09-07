@@ -522,14 +522,14 @@ namespace ElectronicObserver.Window.Dialog
 			if (!Utility.Configuration.Config.Connection.SaveReceivedData || !Utility.Configuration.Config.Connection.SaveOtherFile)
 			{
 				visibility = true;
-				ButtonAlert.Text = "艦船画像保存設定が無効です(詳細表示...)";
+				ButtonAlert.Text = @"Invalid settings (details...)";
 			}
 
 
 			if (!HasShipImage())
 			{
 				visibility = true;
-				ButtonAlert.Text = "Ship image not found";
+				ButtonAlert.Text = @"Ship image not found (details...)";
 			}
 
 			ButtonAlert.Visible = visibility;
@@ -566,21 +566,21 @@ namespace ElectronicObserver.Window.Dialog
 				switch (ImageType)
 				{
 					case 0:
-						needs = "艦これ本体の「編成」画面から、各艦の詳細を開くと";
+						needs = @"Open 'Organize' menu and view details of each ship";
 						break;
 					case 1:
-						needs = "この編成で戦闘を開始すると";
+						needs = @"Sortie with the fleet";
 						break;
 					case 2:
-						needs = "艦これ本体の「編成」画面を開くと";
+						needs = @"Open 'Organize' menu";
 						break;
 					default:
-						needs = "艦これ本体で必要な画像を表示させると";
+						needs = @"Open 'Organize' menu";
 						break;
 				}
 
-				MessageBox.Show("One or more ship image of the current fleet are missing.\r\n\r\nClear cache and reload the game. The ship images are automatically\r\nsaved when you view the current fleet within the game.",
-					"Ship Image Not Found", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				MessageBox.Show("One or more ship image of the current fleet are missing.\r\n\r\nDelete cache and reload the game.\r\n" + needs + "\r\nto save the ship images.",
+					"Ship Image Missing", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
 				UpdateButtonAlert();
 			}
