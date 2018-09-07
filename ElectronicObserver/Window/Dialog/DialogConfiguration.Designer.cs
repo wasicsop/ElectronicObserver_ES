@@ -2156,8 +2156,8 @@
 			this.FormBrowser_ForceColorProfile.Name = "FormBrowser_ForceColorProfile";
 			this.FormBrowser_ForceColorProfile.Size = new System.Drawing.Size(216, 19);
 			this.FormBrowser_ForceColorProfile.TabIndex = 16;
-			this.FormBrowser_ForceColorProfile.Text = "Use sRGB*";
-			this.ToolTipInfo.SetToolTip(this.FormBrowser_ForceColorProfile, "ブラウザの色合いがおかしい場合、有効にすると解決するかもしれません。\r\n再起動すると反映されます。");
+			this.FormBrowser_ForceColorProfile.Text = "Force sRGB color profile*";
+			this.ToolTipInfo.SetToolTip(this.FormBrowser_ForceColorProfile, "Enable this setting if the browser displays wrong color.\r\n* Changes will take effect after application restart.");
 			this.FormBrowser_ForceColorProfile.UseVisualStyleBackColor = true;
 			//
 			// FormBrowser_PreserveDrawingBuffer
@@ -2190,7 +2190,7 @@
 			this.FormBrowser_HardwareAccelerationEnabled.Name = "FormBrowser_HardwareAccelerationEnabled";
 			this.FormBrowser_HardwareAccelerationEnabled.Size = new System.Drawing.Size(230, 19);
 			this.FormBrowser_HardwareAccelerationEnabled.TabIndex = 13;
-			this.FormBrowser_HardwareAccelerationEnabled.Text = "HW Acceleration *";
+			this.FormBrowser_HardwareAccelerationEnabled.Text = "HW acceleration *";
 			this.ToolTipInfo.SetToolTip(this.FormBrowser_HardwareAccelerationEnabled,
 				"Use hardware acceleration when available.\r\nNote: Disable this setting if you need to use window capture \r\n" +
 				"for recording/streaming.\r\n* Changes will take effect after application restart.\r\n");
