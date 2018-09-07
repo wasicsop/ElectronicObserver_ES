@@ -79,11 +79,6 @@ namespace ElectronicObserver.Utility
 				public bool SaveResponse { get; set; }
 
 				/// <summary>
-				/// 通信内容保存：SWFを保存するか
-				/// </summary>
-				public bool SaveSWF { get; set; }
-
-				/// <summary>
 				/// 通信内容保存：その他ファイルを保存するか
 				/// </summary>
 				public bool SaveOtherFile { get; set; }
@@ -135,7 +130,6 @@ namespace ElectronicObserver.Utility
 					SaveDataPath = @"KCAPI";
 					SaveRequest = false;
 					SaveResponse = true;
-					SaveSWF = false;
 					SaveOtherFile = false;
 					ApplyVersion = false;
 					RegisterAsSystemProxy = false;
@@ -184,6 +178,11 @@ namespace ElectronicObserver.Utility
 				/// Whether to use Japanese or English equipment names
 				/// </summary>
 				public bool JapaneseEquipmentType { get; set; }
+
+				/// <summary>
+				/// Whether to use default or normal node ID
+				/// </summary>
+				public bool UseOriginalNodeId { get; set; }
 
 				// ThemeID
 				public int ThemeID { get; set; }
@@ -482,6 +481,7 @@ namespace ElectronicObserver.Utility
 					JapaneseShipType = false;
 					JapaneseEquipmentName = false;
 					JapaneseEquipmentType = false;
+					UseOriginalNodeId = false;
 				}
 			}
 			/// <summary>UI</summary>
@@ -1180,6 +1180,12 @@ namespace ElectronicObserver.Utility
 				/// </summary>
 				public bool PreserveDrawingBuffer { get; set; }
 
+				/// <summary>
+				/// カラープロファイルを sRGB に固定するか
+				/// </summary>
+				public bool ForceColorProfile { get; set; }
+
+
 				public ConfigFormBrowser()
 				{
 					ZoomRate = 1;
@@ -1199,6 +1205,7 @@ namespace ElectronicObserver.Utility
 					ConfirmAtRefresh = true;
 					HardwareAccelerationEnabled = true;
 					PreserveDrawingBuffer = true;
+					ForceColorProfile = false;	
 				}
 			}
 			/// <summary>[ブラウザ]ウィンドウ</summary>

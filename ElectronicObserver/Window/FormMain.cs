@@ -862,6 +862,8 @@ namespace ElectronicObserver.Window
 				ofd.Title = "Load API List";
 				ofd.Filter = "API List|*.txt|File|*";
 				ofd.InitialDirectory = Utility.Configuration.Config.Connection.SaveDataPath;
+				if (!string.IsNullOrWhiteSpace(Utility.Configuration.Config.Debug.APIListPath))
+					ofd.FileName = Utility.Configuration.Config.Debug.APIListPath;
 
 				if (ofd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
 				{
@@ -1684,6 +1686,6 @@ namespace ElectronicObserver.Window
 
 		#endregion
 
-	
+
 	}
 }

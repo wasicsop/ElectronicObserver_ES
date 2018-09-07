@@ -29,8 +29,8 @@
 		private void InitializeComponent()
 		{
 			this.components = new System.ComponentModel.Container();
-			ElectronicObserver.Window.Control.StatusBarModule statusBarModule1 = new ElectronicObserver.Window.Control.StatusBarModule();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+			ElectronicObserver.Window.Control.StatusBarModule statusBarModule2 = new ElectronicObserver.Window.Control.StatusBarModule();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.tabPage1 = new System.Windows.Forms.TabPage();
 			this.label19 = new System.Windows.Forms.Label();
@@ -46,7 +46,6 @@
 			this.Connection_PanelSaveData = new System.Windows.Forms.Panel();
 			this.Connection_ApplyVersion = new System.Windows.Forms.CheckBox();
 			this.Connection_SaveOtherFile = new System.Windows.Forms.CheckBox();
-			this.Connection_SaveSWF = new System.Windows.Forms.CheckBox();
 			this.Connection_SaveResponse = new System.Windows.Forms.CheckBox();
 			this.Connection_SaveRequest = new System.Windows.Forms.CheckBox();
 			this.Connection_SaveDataPathSearch = new System.Windows.Forms.Button();
@@ -184,6 +183,8 @@
 			this.FormBattle_HideDuringBattle = new System.Windows.Forms.CheckBox();
 			this.FormBattle_IsScrollable = new System.Windows.Forms.CheckBox();
 			this.tabPage12 = new System.Windows.Forms.TabPage();
+			this.FormBrowser_ForceColorProfile = new System.Windows.Forms.CheckBox();
+			this.FormBrowser_PreserveDrawingBuffer = new System.Windows.Forms.CheckBox();
 			this.label20 = new System.Windows.Forms.Label();
 			this.FormBrowser_HardwareAccelerationEnabled = new System.Windows.Forms.CheckBox();
 			this.FormBrowser_IsDMMreloadDialogDestroyable = new System.Windows.Forms.CheckBox();
@@ -246,7 +247,6 @@
 			this.APIListBrowser = new System.Windows.Forms.OpenFileDialog();
 			this.Log_PlayTime = new System.Windows.Forms.Label();
 			this.PlayTimeTimer = new System.Windows.Forms.Timer(this.components);
-			this.FormBrowser_PreserveDrawingBuffer = new System.Windows.Forms.CheckBox();
 			this.tabControl1.SuspendLayout();
 			this.tabPage1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.Connection_UpstreamProxyPort)).BeginInit();
@@ -449,7 +449,6 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.Connection_PanelSaveData.Controls.Add(this.Connection_ApplyVersion);
 			this.Connection_PanelSaveData.Controls.Add(this.Connection_SaveOtherFile);
-			this.Connection_PanelSaveData.Controls.Add(this.Connection_SaveSWF);
 			this.Connection_PanelSaveData.Controls.Add(this.Connection_SaveResponse);
 			this.Connection_PanelSaveData.Controls.Add(this.Connection_SaveRequest);
 			this.Connection_PanelSaveData.Controls.Add(this.Connection_SaveDataPathSearch);
@@ -463,7 +462,7 @@
 			// Connection_ApplyVersion
 			//
 			this.Connection_ApplyVersion.AutoSize = true;
-			this.Connection_ApplyVersion.Location = new System.Drawing.Point(296, 32);
+			this.Connection_ApplyVersion.Location = new System.Drawing.Point(237, 32);
 			this.Connection_ApplyVersion.Name = "Connection_ApplyVersion";
 			this.Connection_ApplyVersion.Size = new System.Drawing.Size(68, 19);
 			this.Connection_ApplyVersion.TabIndex = 9;
@@ -474,24 +473,13 @@
 			// Connection_SaveOtherFile
 			//
 			this.Connection_SaveOtherFile.AutoSize = true;
-			this.Connection_SaveOtherFile.Location = new System.Drawing.Point(231, 32);
+			this.Connection_SaveOtherFile.Location = new System.Drawing.Point(172, 32);
 			this.Connection_SaveOtherFile.Name = "Connection_SaveOtherFile";
 			this.Connection_SaveOtherFile.Size = new System.Drawing.Size(59, 19);
 			this.Connection_SaveOtherFile.TabIndex = 8;
 			this.Connection_SaveOtherFile.Text = "Other";
 			this.ToolTipInfo.SetToolTip(this.Connection_SaveOtherFile, global::ElectronicObserver.Window.Dialog.ConfigRes.SaveAllConnectionFiles);
 			this.Connection_SaveOtherFile.UseVisualStyleBackColor = true;
-			//
-			// Connection_SaveSWF
-			//
-			this.Connection_SaveSWF.AutoSize = true;
-			this.Connection_SaveSWF.Location = new System.Drawing.Point(172, 32);
-			this.Connection_SaveSWF.Name = "Connection_SaveSWF";
-			this.Connection_SaveSWF.Size = new System.Drawing.Size(53, 19);
-			this.Connection_SaveSWF.TabIndex = 7;
-			this.Connection_SaveSWF.Text = "SWF";
-			this.ToolTipInfo.SetToolTip(this.Connection_SaveSWF, global::ElectronicObserver.Window.Dialog.ConfigRes.SaveSWF);
-			this.Connection_SaveSWF.UseVisualStyleBackColor = true;
 			//
 			// Connection_SaveResponse
 			//
@@ -678,12 +666,12 @@
 			//
 			this.UI_RenderingTest.AutoSize = true;
 			this.UI_RenderingTest.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-			statusBarModule1.BarColor0Begin = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-			statusBarModule1.BarColor0End = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-			statusBarModule1.MaximumValue = 500;
-			statusBarModule1.PrevValue = 401;
-			statusBarModule1.Value = 401;
-			this.UI_RenderingTest.HPBar = statusBarModule1;
+			statusBarModule2.BarColor0Begin = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			statusBarModule2.BarColor0End = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			statusBarModule2.MaximumValue = 500;
+			statusBarModule2.PrevValue = 401;
+			statusBarModule2.Value = 401;
+			this.UI_RenderingTest.HPBar = statusBarModule2;
 			this.UI_RenderingTest.Location = new System.Drawing.Point(16, 3);
 			this.UI_RenderingTest.MainFontColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.UI_RenderingTest.Margin = new System.Windows.Forms.Padding(16, 3, 16, 3);
@@ -1059,7 +1047,7 @@
 			this.Debug_SealingPanel.Controls.Add(this.Debug_APIListPathSearch);
 			this.Debug_SealingPanel.Location = new System.Drawing.Point(0, 56);
 			this.Debug_SealingPanel.Name = "Debug_SealingPanel";
-			this.Debug_SealingPanel.Size = new System.Drawing.Size(696, 265);
+			this.Debug_SealingPanel.Size = new System.Drawing.Size(696, 259);
 			this.Debug_SealingPanel.TabIndex = 1;
 			//
 			// Debug_APIListPath
@@ -2136,6 +2124,7 @@
 			//
 			// tabPage12
 			//
+			this.tabPage12.Controls.Add(this.FormBrowser_ForceColorProfile);
 			this.tabPage12.Controls.Add(this.FormBrowser_PreserveDrawingBuffer);
 			this.tabPage12.Controls.Add(this.label20);
 			this.tabPage12.Controls.Add(this.FormBrowser_HardwareAccelerationEnabled);
@@ -2160,11 +2149,35 @@
 			this.tabPage12.Text = "Browser";
 			this.tabPage12.UseVisualStyleBackColor = true;
 			//
+			// FormBrowser_ForceColorProfile
+			//
+			this.FormBrowser_ForceColorProfile.AutoSize = true;
+			this.FormBrowser_ForceColorProfile.Location = new System.Drawing.Point(6, 249);
+			this.FormBrowser_ForceColorProfile.Name = "FormBrowser_ForceColorProfile";
+			this.FormBrowser_ForceColorProfile.Size = new System.Drawing.Size(216, 19);
+			this.FormBrowser_ForceColorProfile.TabIndex = 16;
+			this.FormBrowser_ForceColorProfile.Text = "Force sRGB color profile*";
+			this.ToolTipInfo.SetToolTip(this.FormBrowser_ForceColorProfile, "Enable this setting if the browser displays wrong color.\r\n* Changes will take effect after application restart.");
+			this.FormBrowser_ForceColorProfile.UseVisualStyleBackColor = true;
+			//
+			// FormBrowser_PreserveDrawingBuffer
+			//
+			this.FormBrowser_PreserveDrawingBuffer.AutoSize = true;
+			this.FormBrowser_PreserveDrawingBuffer.Location = new System.Drawing.Point(6, 224);
+			this.FormBrowser_PreserveDrawingBuffer.Name = "FormBrowser_PreserveDrawingBuffer";
+			this.FormBrowser_PreserveDrawingBuffer.Size = new System.Drawing.Size(145, 19);
+			this.FormBrowser_PreserveDrawingBuffer.TabIndex = 15;
+			this.FormBrowser_PreserveDrawingBuffer.Text = "Preserve drawing buffer *";
+			this.ToolTipInfo.SetToolTip(this.FormBrowser_PreserveDrawingBuffer,
+				"Disabling the setting may improve performance.\r\nNote: if preserve drawing buffer is not enabled, screenshot \r\n" +
+				"size may be limited to browser window size.\r\n* Changes will take effect after application restart.\r\n");
+			this.FormBrowser_PreserveDrawingBuffer.UseVisualStyleBackColor = true;
+			//
 			// label20
 			//
 			this.label20.AutoSize = true;
 			this.label20.ForeColor = System.Drawing.Color.Red;
-			this.label20.Location = new System.Drawing.Point(32, 259);
+			this.label20.Location = new System.Drawing.Point(12, 295);
 			this.label20.Name = "label20";
 			this.label20.Size = new System.Drawing.Size(241, 15);
 			this.label20.TabIndex = 14;
@@ -2173,11 +2186,11 @@
 			// FormBrowser_HardwareAccelerationEnabled
 			//
 			this.FormBrowser_HardwareAccelerationEnabled.AutoSize = true;
-			this.FormBrowser_HardwareAccelerationEnabled.Location = new System.Drawing.Point(436, 6);
+			this.FormBrowser_HardwareAccelerationEnabled.Location = new System.Drawing.Point(6, 199);
 			this.FormBrowser_HardwareAccelerationEnabled.Name = "FormBrowser_HardwareAccelerationEnabled";
 			this.FormBrowser_HardwareAccelerationEnabled.Size = new System.Drawing.Size(230, 19);
 			this.FormBrowser_HardwareAccelerationEnabled.TabIndex = 13;
-			this.FormBrowser_HardwareAccelerationEnabled.Text = "HW Acceleration *";
+			this.FormBrowser_HardwareAccelerationEnabled.Text = "HW acceleration *";
 			this.ToolTipInfo.SetToolTip(this.FormBrowser_HardwareAccelerationEnabled,
 				"Use hardware acceleration when available.\r\nNote: Disable this setting if you need to use window capture \r\n" +
 				"for recording/streaming.\r\n* Changes will take effect after application restart.\r\n");
@@ -2591,7 +2604,7 @@
 			//
 			this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.label10.AutoSize = true;
-			this.label10.Location = new System.Drawing.Point(3, 336);
+			this.label10.Location = new System.Drawing.Point(3, 330);
 			this.label10.Name = "label10";
 			this.label10.Size = new System.Drawing.Size(238, 15);
 			this.label10.TabIndex = 5;
@@ -2722,21 +2735,21 @@
             this.BGMPlayer_ColumnContent,
             this.BGMPlayer_ColumnPath,
             this.BGMPlayer_ColumnSetting});
-			dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-			dataGridViewCellStyle1.Font = new System.Drawing.Font("Meiryo UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-			dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-			dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Window;
-			dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-			dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-			this.BGMPlayer_ControlGrid.DefaultCellStyle = dataGridViewCellStyle1;
+			dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+			dataGridViewCellStyle2.Font = new System.Drawing.Font("Meiryo UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+			dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+			dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Window;
+			dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+			dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+			this.BGMPlayer_ControlGrid.DefaultCellStyle = dataGridViewCellStyle2;
 			this.BGMPlayer_ControlGrid.Location = new System.Drawing.Point(6, 35);
 			this.BGMPlayer_ControlGrid.MultiSelect = false;
 			this.BGMPlayer_ControlGrid.Name = "BGMPlayer_ControlGrid";
 			this.BGMPlayer_ControlGrid.RowHeadersVisible = false;
 			this.BGMPlayer_ControlGrid.RowTemplate.Height = 21;
 			this.BGMPlayer_ControlGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.BGMPlayer_ControlGrid.Size = new System.Drawing.Size(684, 285);
+			this.BGMPlayer_ControlGrid.Size = new System.Drawing.Size(684, 279);
 			this.BGMPlayer_ControlGrid.TabIndex = 0;
 			this.BGMPlayer_ControlGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.BGMPlayer_ControlGrid_CellContentClick);
 			this.BGMPlayer_ControlGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.BGMPlayer_ControlGrid_CellFormatting);
@@ -2833,19 +2846,6 @@
 			this.PlayTimeTimer.Enabled = true;
 			this.PlayTimeTimer.Interval = 1000;
 			this.PlayTimeTimer.Tick += new System.EventHandler(this.PlayTimeTimer_Tick);
-			//
-			// FormBrowser_PreserveDrawingBuffer
-			//
-			this.FormBrowser_PreserveDrawingBuffer.AutoSize = true;
-			this.FormBrowser_PreserveDrawingBuffer.Location = new System.Drawing.Point(436, 31);
-			this.FormBrowser_PreserveDrawingBuffer.Name = "FormBrowser_PreserveDrawingBuffer";
-			this.FormBrowser_PreserveDrawingBuffer.Size = new System.Drawing.Size(145, 19);
-			this.FormBrowser_PreserveDrawingBuffer.TabIndex = 15;
-			this.FormBrowser_PreserveDrawingBuffer.Text = "Preserve drawing buffer *";
-			this.ToolTipInfo.SetToolTip(this.FormBrowser_PreserveDrawingBuffer, 
-				"Disabling the setting may improve performance.\r\nNote: if preserve drawing buffer is not enabled, screenshot \r\n" +
-				"size may be limited to browser window size.\r\n* Changes will take effect after application restart.\r\n");
-			this.FormBrowser_PreserveDrawingBuffer.UseVisualStyleBackColor = true;
 			//
 			// DialogConfiguration
 			//
@@ -2980,7 +2980,6 @@
 		private System.Windows.Forms.Label label12;
 		private System.Windows.Forms.Label label13;
 		private System.Windows.Forms.CheckBox Connection_SaveOtherFile;
-		private System.Windows.Forms.CheckBox Connection_SaveSWF;
 		private System.Windows.Forms.CheckBox Connection_SaveResponse;
 		private System.Windows.Forms.CheckBox Connection_SaveRequest;
 		private System.Windows.Forms.TextBox Connection_SaveDataPath;
@@ -3155,5 +3154,6 @@
 		private System.Windows.Forms.Label label19;
 		private System.Windows.Forms.Label label20;
 		private System.Windows.Forms.CheckBox FormBrowser_PreserveDrawingBuffer;
+		private System.Windows.Forms.CheckBox FormBrowser_ForceColorProfile;
 	}
 }

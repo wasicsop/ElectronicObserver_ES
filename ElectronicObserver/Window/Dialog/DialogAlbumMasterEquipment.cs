@@ -242,7 +242,7 @@ namespace ElectronicObserver.Window.Dialog
 				sb.AppendLine(EncycloRes.EquippableShips);
 				foreach (var stype in KCDatabase.Instance.ShipTypes.Values)
 				{
-					if (stype.EquipmentType.Contains((int)eq.CategoryType))
+					if (stype.EquippableCategories.Contains((int)eq.CategoryType))
 						sb.AppendLine(FormMain.Instance.Translator.GetTranslation(stype.Name, Utility.TranslationType.ShipTypes));
 				}
 				ToolTipInfo.SetToolTip(EquipmentType, sb.ToString());
