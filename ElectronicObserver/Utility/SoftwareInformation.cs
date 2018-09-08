@@ -103,7 +103,7 @@ namespace ElectronicObserver.Utility
 				{
 
 					Utility.Logger.Add(3, Resources.NewVersionFound + version);
-					SoftwareUpdater.UpdateSoftware();
+					Task.Run(() => SoftwareUpdater.UpdateSoftware());
 
 					var result = System.Windows.Forms.MessageBox.Show(
 						string.Format(Resources.AskForUpdate,

@@ -3,8 +3,12 @@ using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Security.Cryptography;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Xml.Linq;
 using Codeplex.Data;
+using ElectronicObserver.Utility.Mathematics;
+using ElectronicObserver.Window;
 using AppSettings = ElectronicObserver.Properties.Settings;
 
 namespace ElectronicObserver.Utility
@@ -19,33 +23,84 @@ namespace ElectronicObserver.Utility
 		internal static string MaintDate { get; set; } = string.Empty;
 		internal static int MaintState { get; set; }
 
-		//internal static string ZipUrl = string.Empty;
-		//internal static string DownloadHash = string.Empty;
-		private static bool _isChecked = false;
+		private static string UpdateFileUrl = string.Empty;
+		private static bool isChecked;
+		private static bool waitForRestart;
 
 		public static void UpdateSoftware()
 		{
+			if (waitForRestart)
+				return;
 			if (!Directory.Exists(AppDataFolder))
 				Directory.CreateDirectory(AppDataFolder);
 
 			CheckVersion();
-			DownloadUpdater();
 
-			var updaterFile = AppDomain.CurrentDomain.SetupInformation.ApplicationBase + @"\EOUpdater.exe";
-			if (!File.Exists(updaterFile))
+			if (UpdateFileUrl != string.Empty)
 			{
-				var updater = new Process
+				Logger.Add(1, string.Format("Started downloading update. {0}", UpdateFileUrl));
+				DownloadUpdate(UpdateFileUrl);
+				Logger.Add(1, "Download finished.");
+			}
+
+			DownloadUpdater();
+			var updaterFile = AppDomain.CurrentDomain.SetupInformation.ApplicationBase + @"\EOUpdater.exe";
+			if (!File.Exists(updaterFile)) return;
+			var updater = new Process
+			{
+				StartInfo =
 				{
-					StartInfo =
+					FileName = updaterFile,
+					UseShellExecute = false,
+					CreateNoWindow = false
+				}
+			};
+			updater.StartInfo.Arguments = "--restart";
+			updater.Start();
+			Logger.Add(2, "Close Electronic Observer to complete the update process. It will restart automatically.");
+			waitForRestart = true;
+		}
+
+		public static async Task PeriodicUpdateCheckAsync(CancellationToken cancellationToken)
+		{
+			while (true)
+			{
+				await Task.Delay(TimeSpan.FromMinutes(1), cancellationToken);
+				try
+				{
+					using (var client = WebRequest.Create(UpdateUrl).GetResponse())
 					{
-						FileName = updaterFile,
-						UseShellExecute = false,
-						CreateNoWindow = false
+						var updateData = client.GetResponseStream();
+						var json = DynamicJson.Parse(updateData);
+						DateTime date = DateTimeHelper.CSVStringToTime(json.bld_date);
+
+						/*if (SoftwareInformation.UpdateTime < date)
+						{
+							
+						}*/
+						FormMain.Instance.Update_Available(json.ver);
+						UpdateSoftware();
+
+						UpdateFileUrl = json.url;
+						//DownloadHash = json.hash;
+						MaintDate = json.kancolle_mt;
+						MaintState = (int)json.event_state;
+
+						CheckDataVersion(TranslationFile.Equipment, json.tl_ver.equipment);
+						CheckDataVersion(TranslationFile.EquipmentTypes, json.tl_ver.equipment_type);
+						CheckDataVersion(TranslationFile.Expeditions, json.tl_ver.expedition);
+						CheckDataVersion(TranslationFile.Operations, json.tl_ver.operation);
+						CheckDataVersion(TranslationFile.Quests, json.tl_ver.quest);
+						CheckDataVersion(TranslationFile.Ships, json.tl_ver.ship);
+						CheckDataVersion(TranslationFile.ShipTypes, json.tl_ver.ship_type);
+						CheckDataVersion("nodes.json", (int)json.tl_ver.nodes);
 					}
-				};
-				updater.StartInfo.Arguments = "--restart";
-				updater.Start();
-				Logger.Add(2, "Updater started. Close EO after it has finished downloading the update.");
+
+				}
+				catch (Exception e)
+				{
+					Logger.Add(3, "Failed to download update info. " + e);
+				}
 			}
 		}
 
@@ -69,9 +124,28 @@ namespace ElectronicObserver.Utility
 			}
 		}
 
+		private static void DownloadUpdate(string url)
+		{
+			try
+			{
+				using (var client = new WebClient())
+				{
+					string tempFile = AppDataFolder + @"\latest.zip"; ;
+					ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+					Console.WriteLine("Downloading update...");
+					client.DownloadFile(url, tempFile);
+				}
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine(e);
+			}
+
+		}
+
 		internal static void CheckVersion()
 		{
-		    if (_isChecked) return;
+		    if (isChecked) return;
 			try
 			{
 
@@ -80,7 +154,7 @@ namespace ElectronicObserver.Utility
 					var updateData = client.GetResponseStream();
 					var json = DynamicJson.Parse(updateData);
 
-					//ZipUrl = json.url;
+					UpdateFileUrl = json.url;
 					//DownloadHash = json.hash;
 					MaintDate = json.kancolle_mt;
 					MaintState = (int)json.event_state;
@@ -101,7 +175,7 @@ namespace ElectronicObserver.Utility
 				Logger.Add(3, "Failed to download update info. " + e);
 			}
 
-			_isChecked = true;
+			isChecked = true;
 	    }
 
 	    public static void CheckDataVersion(string filename, int latestVer)
