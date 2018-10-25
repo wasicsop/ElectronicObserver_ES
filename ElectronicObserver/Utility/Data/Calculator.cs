@@ -2207,9 +2207,11 @@ namespace ElectronicObserver.Utility.Data
 		/// <summary> 空母カットイン </summary>
 		CutinAirAttack,
 
+        /// <summary> Nelson Touch </summary>
+        SpecialNelson,
 
-		/// <summary> 砲撃 </summary>
-		Shelling = 100,
+        /// <summary> 砲撃 </summary>
+        Shelling = 1000,
 
 		/// <summary> 空撃 </summary>
 		AirAttack,
@@ -2222,11 +2224,11 @@ namespace ElectronicObserver.Utility.Data
 
 
 		/// <summary> ロケット攻撃 </summary>
-		Rocket = 200,
+		Rocket = 2000,
 
 
 		/// <summary> 揚陸攻撃(大発動艇) </summary>
-		LandingDaihatsu = 300,
+		LandingDaihatsu = 3000,
 
 		/// <summary> 揚陸攻撃(特大発動艇) </summary>
 		LandingTokuDaihatsu,
@@ -2279,9 +2281,11 @@ namespace ElectronicObserver.Utility.Data
 		/// <summary> 駆逐カットイン(魚雷/見張員/電探) </summary>
 		CutinTorpedoPicket,
 
+        /// <summary> Nelson Touch </summary>
+        SpecialNelson,
 
-		/// <summary> 砲撃 </summary>
-		Shelling = 100,
+        /// <summary> 砲撃 </summary>
+        Shelling = 1000,
 
 		/// <summary> 空撃 </summary>
 		AirAttack,
@@ -2294,11 +2298,11 @@ namespace ElectronicObserver.Utility.Data
 
 
 		/// <summary> ロケット攻撃 </summary>
-		Rocket = 200,
+		Rocket = 2000,
 
 
 		/// <summary> 揚陸攻撃(大発動艇) </summary>
-		LandingDaihatsu = 300,
+		LandingDaihatsu = 3000,
 
 		/// <summary> 揚陸攻撃(特大発動艇) </summary>
 		LandingTokuDaihatsu,

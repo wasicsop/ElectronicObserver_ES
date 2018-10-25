@@ -789,7 +789,9 @@ namespace ElectronicObserver.Data
 					return "CI (MG+MG)";
 				case DayAttackKind.CutinAirAttack:
 					return "CI (Carrier)";
-				case DayAttackKind.Shelling:
+                case DayAttackKind.SpecialNelson:
+                    return "Nelson Touch";
+                case DayAttackKind.Shelling:
 					return "Shelling";
 				case DayAttackKind.AirAttack:
 					return "Air Attack";
