@@ -40,11 +40,12 @@ namespace ElectronicObserver.Window
 		private readonly Color CellColorGreen = Color.FromArgb(0xBB, 0xFF, 0xBB);
 		private readonly Color CellColorGray = Color.FromArgb(0xBB, 0xBB, 0xBB);
 		private readonly Color CellColorCherry = Color.FromArgb(0xFF, 0xDD, 0xDD);
+        private readonly Color CellColorBlue = Color.FromArgb(0x41, 0x69, 0xE1);
 
-		//セルスタイル
-		private DataGridViewCellStyle CSDefaultLeft, CSDefaultCenter, CSDefaultRight,
+        //セルスタイル
+        private DataGridViewCellStyle CSDefaultLeft, CSDefaultCenter, CSDefaultRight,
 			CSRedRight, CSOrangeRight, CSYellowRight, CSGreenRight, CSGrayRight, CSCherryRight,
-			CSIsLocked;
+            CSBlueRight, CSIsLocked;
 
 		/// <summary>選択中のタブ</summary>
 		private ImageLabel SelectedTab = null;
@@ -120,7 +121,11 @@ namespace ElectronicObserver.Window
 			CSCherryRight.BackColor =
 			CSCherryRight.SelectionBackColor = CellColorCherry;
 
-			CSIsLocked = new DataGridViewCellStyle(CSDefaultCenter);
+            CSBlueRight = new DataGridViewCellStyle(CSDefaultRight);
+            CSBlueRight.BackColor =
+            CSBlueRight.SelectionBackColor = CellColorBlue;
+
+            CSIsLocked = new DataGridViewCellStyle(CSDefaultCenter);
 			CSIsLocked.ForeColor =
 			CSIsLocked.SelectionForeColor = Color.FromArgb(0xFF, 0x88, 0x88);
 
@@ -465,13 +470,27 @@ namespace ElectronicObserver.Window
 
 				row.Cells[ShipView_RepairTime.Index].Style = cs;
 			}
-			row.Cells[ShipView_FirepowerRemain.Index].Style = ship.FirepowerRemain == 0 ? CSGrayRight : CSDefaultRight;
-			row.Cells[ShipView_TorpedoRemain.Index].Style = ship.TorpedoRemain == 0 ? CSGrayRight : CSDefaultRight;
-			row.Cells[ShipView_AARemain.Index].Style = ship.AARemain == 0 ? CSGrayRight : CSDefaultRight;
-			row.Cells[ShipView_ArmorRemain.Index].Style = ship.ArmorRemain == 0 ? CSGrayRight : CSDefaultRight;
-			row.Cells[ShipView_LuckRemain.Index].Style = ship.LuckRemain == 0 ? CSGrayRight : CSDefaultRight;
+            row.Cells[ShipView_Firepower.Index].Style = ship.FirepowerRemain == 0 ? CSRedRight : CSDefaultRight;
+            row.Cells[ShipView_FirepowerRemain.Index].Style = ship.FirepowerRemain == 0 ? CSRedRight : CSDefaultRight;
+            row.Cells[ShipView_FirepowerTotal.Index].Style = ship.FirepowerRemain == 0 ? CSRedRight : CSDefaultRight;
 
-			row.Cells[ShipView_Locked.Index].Style = ship.IsLocked ? CSIsLocked : CSDefaultCenter;
+            row.Cells[ShipView_Torpedo.Index].Style = ship.TorpedoRemain == 0 ? CSBlueRight : CSDefaultRight;
+            row.Cells[ShipView_TorpedoRemain.Index].Style = ship.TorpedoRemain == 0 ? CSBlueRight : CSDefaultRight;
+            row.Cells[ShipView_TorpedoTotal.Index].Style = ship.TorpedoRemain == 0 ? CSBlueRight : CSDefaultRight;
+
+            row.Cells[ShipView_AA.Index].Style = ship.AARemain == 0 ? CSGreenRight : CSDefaultRight;
+            row.Cells[ShipView_AARemain.Index].Style = ship.AARemain == 0 ? CSGreenRight : CSDefaultRight;
+            row.Cells[ShipView_AATotal.Index].Style = ship.AARemain == 0 ? CSGreenRight : CSDefaultRight;
+
+            row.Cells[ShipView_Armor.Index].Style = ship.ArmorRemain == 0 ? CSYellowRight : CSDefaultRight;
+            row.Cells[ShipView_ArmorRemain.Index].Style = ship.ArmorRemain == 0 ? CSYellowRight : CSDefaultRight;
+            row.Cells[ShipView_ArmorTotal.Index].Style = ship.ArmorRemain == 0 ? CSYellowRight : CSDefaultRight;
+
+            row.Cells[ShipView_Luck.Index].Style = ship.LuckRemain == 0 ? CSGreenRight : CSDefaultRight;
+            row.Cells[ShipView_LuckRemain.Index].Style = ship.LuckRemain == 0 ? CSGreenRight : CSDefaultRight;
+            row.Cells[ShipView_LuckTotal.Index].Style = ship.LuckRemain == 0 ? CSGreenRight : CSDefaultRight;
+
+            row.Cells[ShipView_Locked.Index].Style = ship.IsLocked ? CSIsLocked : CSDefaultCenter;
 
 			return row;
 		}

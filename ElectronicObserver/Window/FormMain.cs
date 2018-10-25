@@ -219,6 +219,8 @@ namespace ElectronicObserver.Window
 
 
 			SoftwareInformation.CheckUpdate();
+			CancellationTokenSource cts = new CancellationTokenSource();
+			await Task.Run( async () => await SoftwareUpdater.PeriodicUpdateCheckAsync(cts.Token));
 
 			// デバッグ: 開始時にAPIリストを読み込む
 			if (Configuration.Config.Debug.LoadAPIListOnLoad)
@@ -337,7 +339,11 @@ namespace ElectronicObserver.Window
 				_volumeUpdateState = -1;
 		}
 
-
+		public void Update_Available(string newVersion)
+		{
+			StripMenu_Update.Visible = true;
+			StripMenu_Update.Text = string.Format("Electronic Observer v{0} is available!", newVersion);
+		}
 
 
 

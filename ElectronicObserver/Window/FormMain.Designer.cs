@@ -104,6 +104,7 @@
 			this.StripMenu_Help_Issue = new System.Windows.Forms.ToolStripMenuItem();
 			this.SeparatorWhitecap = new System.Windows.Forms.ToolStripSeparator();
 			this.StripMenu_Help_Version = new System.Windows.Forms.ToolStripMenuItem();
+			this.StripMenu_Update = new System.Windows.Forms.ToolStripMenuItem();
 			this.StripStatus = new System.Windows.Forms.StatusStrip();
 			this.StripStatus_Information = new System.Windows.Forms.ToolStripStatusLabel();
 			this.StripStatus_Clock = new System.Windows.Forms.ToolStripStatusLabel();
@@ -123,7 +124,8 @@
             this.StripMenu_View,
             this.StripMenu_Tool,
             this.StripMenu_Debug,
-            this.StripMenu_Help});
+            this.StripMenu_Help,
+			this.StripMenu_Update});
 			this.StripMenu.Location = new System.Drawing.Point(0, 0);
 			this.StripMenu.Name = "StripMenu";
 			this.StripMenu.Size = new System.Drawing.Size(640, 24);
@@ -697,6 +699,14 @@
 			this.StripMenu_Help_Version.Text = "&About Electronic Observer";
 			this.StripMenu_Help_Version.Click += new System.EventHandler(this.StripMenu_Help_Version_Click);
 			//
+			// StripMenu_Update
+			//
+			this.StripMenu_Update.Name = "StripMenu_Update";
+			this.StripMenu_Update.Size = new System.Drawing.Size(75, 20);
+			this.StripMenu_Update.Text = "Update";
+			this.StripMenu_Update.Enabled = false;
+			this.StripMenu_Update.Visible = false;
+			//
 			// StripStatus
 			//
 			this.StripStatus.ImageScalingSize = new System.Drawing.Size(32, 32);
@@ -789,6 +799,7 @@
 		private WeifenLuo.WinFormsUI.Docking.DockPanel MainDockPanel;
 		private System.Windows.Forms.MenuStrip StripMenu;
 		private System.Windows.Forms.StatusStrip StripStatus;
+		private System.Windows.Forms.ToolStripMenuItem StripMenu_Update;
 		private System.Windows.Forms.ToolStripMenuItem StripMenu_Debug;
 		private System.Windows.Forms.ToolStripMenuItem StripMenu_Debug_LoadAPIFromFile;
 		private System.Windows.Forms.Timer UIUpdateTimer;
