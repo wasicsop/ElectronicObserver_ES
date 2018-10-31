@@ -138,7 +138,7 @@ namespace ElectronicObserver.Window.Dialog
 
 			setSeries(instantRepair);
 			instantRepair.Color = Color.FromArgb(32, 128, 255);
-			instantRepair.LegendText = "高速修復材";
+			instantRepair.LegendText = "Buckets";
 			instantRepair.YAxisType = AxisType.Secondary;
 
 
@@ -225,7 +225,7 @@ namespace ElectronicObserver.Window.Dialog
 			setSeries(instantRepair);
 			instantRepair.Color = Color.FromArgb(64, 32, 128, 255);
 			instantRepair.BorderColor = Color.FromArgb(255, 32, 128, 255);
-			instantRepair.LegendText = "高速修復材";
+			instantRepair.LegendText = "Buckets";
 			instantRepair.YAxisType = AxisType.Secondary;
 
 
