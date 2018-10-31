@@ -249,7 +249,8 @@ namespace Browser
 				KeyboardHandler = new KeyboardHandler(),
 				DragHandler = new DragHandler(),
 			};
-			Browser.LoadingStateChanged += Browser_LoadingStateChanged;
+            Browser.BrowserSettings.StandardFontFamily = "Microsoft YaHei";
+            Browser.LoadingStateChanged += Browser_LoadingStateChanged;
 			SizeAdjuster.Controls.Add(Browser);
 		}
 
