@@ -38,7 +38,7 @@ namespace ElectronicObserver.Window.Dialog
 		private void TextInformation_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
 		{
 
-			System.Diagnostics.Process.Start("https://github.com/silfumus/ElectronicObserver");
+			System.Diagnostics.Process.Start("https://github.com/gre4bee/ElectronicObserver");
 
 		}
 
@@ -47,5 +47,7 @@ namespace ElectronicObserver.Window.Dialog
 
 			this.Icon = ResourceManager.Instance.AppIcon;
 		}
+
+
     }
 }

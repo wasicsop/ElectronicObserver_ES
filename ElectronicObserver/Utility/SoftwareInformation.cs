@@ -15,7 +15,7 @@ namespace ElectronicObserver.Utility
 	/// </summary>
 	public static class SoftwareInformation
 	{
-
+        
 		/// <summary>
 		/// ソフトウェア名(日本語)
 		/// </summary>
@@ -44,7 +44,7 @@ namespace ElectronicObserver.Utility
 		/// <summary>
 		/// 更新日時
 		/// </summary>
-		public static DateTime UpdateTime => DateTimeHelper.CSVStringToTime("2018/09/17 10:00:00");
+		public static DateTime UpdateTime => DateTimeHelper.CSVStringToTime("2018/10/31s 10:00:00");
 
 
 

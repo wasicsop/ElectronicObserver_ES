@@ -150,8 +150,8 @@ namespace ElectronicObserver.Data.Battle.Detail
 
 			if (Battle.IsPractice)
 				builder.AppendFormat("{0}{1} → {2}{3}",
-					Attacker == null ? "" : AttackerIndex.IsFriend ? "自軍 " : "敵軍 ", GetAttackerName(),
-					DefenderIndex.IsFriend ? "自軍 " : "敵軍 ", GetDefenderName()
+					Attacker == null ? "" : AttackerIndex.IsFriend ? "Allied " : "Enemy ", GetAttackerName(),
+					DefenderIndex.IsFriend ? "Allied " : "Enemy ", GetDefenderName()
 					).AppendLine();
 			else
 				builder.AppendFormat("{0} → {1}", GetAttackerName(), GetDefenderName()).AppendLine();
