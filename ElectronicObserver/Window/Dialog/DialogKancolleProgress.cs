@@ -96,7 +96,8 @@ namespace ElectronicObserver.Window.Dialog
 
             var GroupedShips = new List<IEnumerable<ShipDataMaster>> { Destroyer, Escort, LightCruiser, HeavyCruiser, Battleship, Carrier, Others };
 
-            ShipList.Rows.Add(30);
+            int NumberOfRows = 30;
+            ShipList.Rows.Add(NumberOfRows);
 
             ShipList.Rows[1].Cells[5].Value = "駆逐艦";
             ShipList.Rows[1].Cells[9].Value = "海防艦";
@@ -235,7 +236,8 @@ namespace ElectronicObserver.Window.Dialog
 
             using (Pen p = new Pen(Brushes.Black, 2))
             {
-                if (e.RowIndex == 1 && e.ColumnIndex >= 1 && e.ColumnIndex <= 20)
+                int NumberOfColumns = 20;
+                if (e.RowIndex == 1 && e.ColumnIndex >= 1 && e.ColumnIndex <= NumberOfColumns)
                 {
                     BorderTop(p, e);
                     BorderBottom(p, e);
@@ -243,7 +245,8 @@ namespace ElectronicObserver.Window.Dialog
                     if (e.ColumnIndex == 1)
                         BorderLeft(p, e);
 
-                    if (e.ColumnIndex >= 8 && e.ColumnIndex % 2 == 0)
+                    int NumberOfGroupedColumns = 8;
+                    if (e.ColumnIndex >= NumberOfGroupedColumns && e.ColumnIndex % 2 == 0)
                         BorderRight(p, e);
                 }
 
