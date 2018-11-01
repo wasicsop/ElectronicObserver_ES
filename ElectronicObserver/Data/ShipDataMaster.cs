@@ -28,10 +28,15 @@ namespace ElectronicObserver.Data
 		/// </summary>
 		public int AlbumNo => !RawData.api_sortno() ? 0 : (int)RawData.api_sortno;
 
-		/// <summary>
-		/// 名前
-		/// </summary>
-		public string Name => Window.FormMain.Instance.Translator.GetTranslation(RawData.api_name, Utility.TranslationType.Ships);
+        /// <summary>
+        /// 母港ソート順
+        /// </summary>
+        public int SortNo => (int)RawData.api_sort_id;
+
+        /// <summary>
+        /// 名前
+        /// </summary>
+        public string Name => Window.FormMain.Instance.Translator.GetTranslation(RawData.api_name, Utility.TranslationType.Ships);
 
 		/// <summary>
 		/// 読み
