@@ -14,17 +14,15 @@ using System.Windows.Forms;
 
 namespace ElectronicObserver.Window.Dialog
 {
-	public partial class DialogKancolleProgress : Form
-	{
+    public partial class DialogKancolleProgress : Form
+    {
         // base ship ID, level
         Dictionary<int, int> ShipLevels = new Dictionary<int, int>();
 
-        List<DataGridViewCell> borderTop = new List<DataGridViewCell>();
-        List<DataGridViewCell> borderBottom = new List<DataGridViewCell>();
-        List<DataGridViewCell> borderLeft = new List<DataGridViewCell>();
-        List<DataGridViewCell> borderRight = new List<DataGridViewCell>();
-
-        List<int> boatIds = new List<int>();
+        List<DataGridViewCell> BorderTopCells = new List<DataGridViewCell>();
+        List<DataGridViewCell> BorderBottomCells = new List<DataGridViewCell>();
+        List<DataGridViewCell> BorderLeftCells = new List<DataGridViewCell>();
+        List<DataGridViewCell> BorderRightCells = new List<DataGridViewCell>();
 
         public DialogKancolleProgress()
         {
@@ -42,17 +40,17 @@ namespace ElectronicObserver.Window.Dialog
                 Font = new Font("Meiryo UI", 14F, GraphicsUnit.Pixel)
             };
 
-            dataGridView1.DefaultCellStyle = CS;
-            dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.None;
-            dataGridView1.AllowUserToResizeRows = false;
-            dataGridView1.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridView1.BackgroundColor = Color.FromArgb(38, 38, 38);
-            dataGridView1.GridColor = Color.FromArgb(38, 38, 38);
+            ShipList.DefaultCellStyle = CS;
+            ShipList.CellBorderStyle = DataGridViewCellBorderStyle.None;
+            ShipList.AllowUserToResizeRows = false;
+            ShipList.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            ShipList.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            ShipList.BackgroundColor = Color.FromArgb(38, 38, 38);
+            ShipList.GridColor = Color.FromArgb(38, 38, 38);
 
-            dataGridView1.CellPainting += dataGridView1_CellPainting;
+            ShipList.CellPainting += dataGridView1_CellPainting;
 
-            ControlHelper.SetDoubleBuffered(dataGridView1);
+            ControlHelper.SetDoubleBuffered(ShipList);
 
             // DataGridView size
             ClientSize = new Size(1250, 650);
@@ -62,108 +60,109 @@ namespace ElectronicObserver.Window.Dialog
         {
             int ShipCount = ShipLevels.Count(x => x.Value >= 0);
 
-            dataGridView1.Rows[2].Cells[21].Value = "Missing: " + ShipLevels.Count(x => x.Value == 0) + "/" + ShipCount;
-            dataGridView1.Rows[2].Cells[21].Style.ForeColor = GetLevelColor(0);
-            dataGridView1.Rows[2].Cells[21].Style.SelectionForeColor = GetLevelColor(0);
+            ShipList.Rows[2].Cells[21].Value = "Missing: " + ShipLevels.Count(x => x.Value == 0) + "/" + ShipCount;
+            ShipList.Rows[2].Cells[21].Style.ForeColor = GetLevelColor(0);
+            ShipList.Rows[2].Cells[21].Style.SelectionForeColor = GetLevelColor(0);
 
-            dataGridView1.Rows[3].Cells[21].Value = "Collection: " + ShipLevels.Count(x => x.Value > 0) + "/" + ShipCount;
-            dataGridView1.Rows[3].Cells[21].Style.ForeColor = GetLevelColor(1);
-            dataGridView1.Rows[3].Cells[21].Style.SelectionForeColor = GetLevelColor(1);
+            ShipList.Rows[3].Cells[21].Value = "Collection: " + ShipLevels.Count(x => x.Value > 0) + "/" + ShipCount;
+            ShipList.Rows[3].Cells[21].Style.ForeColor = GetLevelColor(1);
+            ShipList.Rows[3].Cells[21].Style.SelectionForeColor = GetLevelColor(1);
 
-            dataGridView1.Rows[4].Cells[21].Value = "90+: " + ShipLevels.Count(x => x.Value >= 90) + "/" + ShipCount;
-            dataGridView1.Rows[4].Cells[21].Style.ForeColor = GetLevelColor(90);
-            dataGridView1.Rows[4].Cells[21].Style.SelectionForeColor = GetLevelColor(90);
+            ShipList.Rows[4].Cells[21].Value = "90+: " + ShipLevels.Count(x => x.Value >= 90) + "/" + ShipCount;
+            ShipList.Rows[4].Cells[21].Style.ForeColor = GetLevelColor(90);
+            ShipList.Rows[4].Cells[21].Style.SelectionForeColor = GetLevelColor(90);
 
-            dataGridView1.Rows[5].Cells[21].Value = "99+: " + ShipLevels.Count(x => x.Value >= 99) + "/" + ShipCount;
-            dataGridView1.Rows[5].Cells[21].Style.ForeColor = GetLevelColor(99);
-            dataGridView1.Rows[5].Cells[21].Style.SelectionForeColor = GetLevelColor(99);
+            ShipList.Rows[5].Cells[21].Value = "99+: " + ShipLevels.Count(x => x.Value >= 99) + "/" + ShipCount;
+            ShipList.Rows[5].Cells[21].Style.ForeColor = GetLevelColor(99);
+            ShipList.Rows[5].Cells[21].Style.SelectionForeColor = GetLevelColor(99);
 
-            dataGridView1.Rows[6].Cells[21].Value = "Perfection: " + ShipLevels.Count(x => x.Value == 175) + "/" + ShipCount;
-            dataGridView1.Rows[6].Cells[21].Style.ForeColor = GetLevelColor(175);
-            dataGridView1.Rows[6].Cells[21].Style.SelectionForeColor = GetLevelColor(175);
+            ShipList.Rows[6].Cells[21].Value = "Perfection: " + ShipLevels.Count(x => x.Value == 175) + "/" + ShipCount;
+            ShipList.Rows[6].Cells[21].Style.ForeColor = GetLevelColor(175);
+            ShipList.Rows[6].Cells[21].Style.SelectionForeColor = GetLevelColor(175);
         }
 
         private void GenerateList()
         {
-            var boats = KCDatabase.Instance.MasterShips.Values;
-            boats = boats.Where(x => x.ShipID < 1500 && x.RemodelBeforeShipID == 0).OrderBy(x => x.SortNo);
+            var Ships = KCDatabase.Instance.MasterShips.Values;
+            Ships = Ships.Where(x => x.ShipID < 1500 && x.RemodelBeforeShipID == 0).OrderBy(x => x.SortNo);
 
-            var Destroyer = boats.Where(x => x.ShipType == ShipTypes.Destroyer);
-            var Escort = boats.Where(x => x.ShipType == ShipTypes.Escort);
-            var LightCruiser = boats.Where(x => x.ShipType == ShipTypes.LightCruiser);
-            var HeavyCruiser = boats.Where(x => x.ShipType == ShipTypes.HeavyCruiser);
-            var Battleship = boats.Where(x => x.ShipType == ShipTypes.Battleship || x.ShipType == ShipTypes.Battlecruiser);
-            var Carrier = boats.Where(x => x.ShipType == ShipTypes.AircraftCarrier || x.ShipType == ShipTypes.LightAircraftCarrier || x.ShipType == ShipTypes.ArmoredAircraftCarrier);
-            var Others = boats.Where(x => x.ShipType == ShipTypes.Submarine || x.ShipType == ShipTypes.SubmarineAircraftCarrier || x.ShipType == ShipTypes.SeaplaneTender || x.ShipType == ShipTypes.FleetOiler || x.ShipType == ShipTypes.RepairShip || x.ShipType == ShipTypes.TrainingCruiser || x.ShipType == ShipTypes.AmphibiousAssaultShip || x.ShipType == ShipTypes.SubmarineTender);
+            var Destroyer = Ships.Where(x => x.ShipType == ShipTypes.Destroyer);
+            var Escort = Ships.Where(x => x.ShipType == ShipTypes.Escort);
+            var LightCruiser = Ships.Where(x => x.ShipType == ShipTypes.LightCruiser);
+            var HeavyCruiser = Ships.Where(x => x.ShipType == ShipTypes.HeavyCruiser);
+            var Battleship = Ships.Where(x => x.ShipType == ShipTypes.Battleship || x.ShipType == ShipTypes.Battlecruiser);
+            var Carrier = Ships.Where(x => x.ShipType == ShipTypes.AircraftCarrier || x.ShipType == ShipTypes.LightAircraftCarrier || x.ShipType == ShipTypes.ArmoredAircraftCarrier);
+            var Others = Ships.Where(x => x.ShipType == ShipTypes.Submarine || x.ShipType == ShipTypes.SubmarineAircraftCarrier || x.ShipType == ShipTypes.SeaplaneTender || x.ShipType == ShipTypes.FleetOiler || x.ShipType == ShipTypes.RepairShip || x.ShipType == ShipTypes.TrainingCruiser || x.ShipType == ShipTypes.AmphibiousAssaultShip || x.ShipType == ShipTypes.SubmarineTender);
 
-            var groupedBoats = new List<IEnumerable<ShipDataMaster>> { Destroyer, Escort, LightCruiser, HeavyCruiser, Battleship, Carrier, Others };
-            dataGridView1.Rows.Add(30);
+            var GroupedShips = new List<IEnumerable<ShipDataMaster>> { Destroyer, Escort, LightCruiser, HeavyCruiser, Battleship, Carrier, Others };
 
-            dataGridView1.Rows[1].Cells[5].Value = "駆逐艦";
-            dataGridView1.Rows[1].Cells[9].Value = "海防艦";
-            dataGridView1.Rows[1].Cells[11].Value = "軽巡";
-            dataGridView1.Rows[1].Cells[13].Value = "重巡";
-            dataGridView1.Rows[1].Cells[15].Value = "戦艦";
-            dataGridView1.Rows[1].Cells[17].Value = "空母";
-            dataGridView1.Rows[1].Cells[19].Value = "その他";
+            ShipList.Rows.Add(30);
 
-            int rowCount = 2;
-            int columnCount = 1;
+            ShipList.Rows[1].Cells[5].Value = "駆逐艦";
+            ShipList.Rows[1].Cells[9].Value = "海防艦";
+            ShipList.Rows[1].Cells[11].Value = "軽巡";
+            ShipList.Rows[1].Cells[13].Value = "重巡";
+            ShipList.Rows[1].Cells[15].Value = "戦艦";
+            ShipList.Rows[1].Cells[17].Value = "空母";
+            ShipList.Rows[1].Cells[19].Value = "その他";
 
             int PreviousShipClass = 0;
 
-            foreach (var boat in boats)
-                ShipLevels.Add(boat.ShipID, 0);
+            foreach (var Ship in Ships)
+                ShipLevels.Add(Ship.ShipID, 0);
 
             GetShipLevels();
 
             int MaxRowCount = 29;
 
-            foreach (var group in groupedBoats)
+            int RowCount = 2;
+            int ColumnCount = 1;
+
+            foreach (var Group in GroupedShips)
             {
-                foreach (var boat in group)
+                foreach (var Ship in Group)
                 {
-                    if (boat.Name == "なし") continue;
+                    if (Ship.Name == "なし") continue;
 
-                    if (boat.ShipClass != PreviousShipClass)
+                    if (Ship.ShipClass != PreviousShipClass)
                     {
-                        borderTop.Add(dataGridView1.Rows[rowCount].Cells[columnCount]);
-                        borderTop.Add(dataGridView1.Rows[rowCount].Cells[columnCount+1]);
+                        BorderTopCells.Add(ShipList.Rows[RowCount].Cells[ColumnCount]);
+                        BorderTopCells.Add(ShipList.Rows[RowCount].Cells[ColumnCount + 1]);
 
-                        borderBottom.Add(dataGridView1.Rows[rowCount-1].Cells[columnCount]);
-                        borderBottom.Add(dataGridView1.Rows[rowCount - 1].Cells[columnCount+1]);
+                        BorderBottomCells.Add(ShipList.Rows[RowCount - 1].Cells[ColumnCount]);
+                        BorderBottomCells.Add(ShipList.Rows[RowCount - 1].Cells[ColumnCount + 1]);
 
-                        if (rowCount + group.Count(x => x.ShipClass == boat.ShipClass) > MaxRowCount)
+                        if (RowCount + Group.Count(x => x.ShipClass == Ship.ShipClass) > MaxRowCount)
                         {
-                            rowCount = 2;
-                            columnCount += 2;
+                            RowCount = 2;
+                            ColumnCount += 2;
                         }
 
-                        PreviousShipClass = boat.ShipClass;
+                        PreviousShipClass = Ship.ShipClass;
                     }
 
-                    dataGridView1.Rows[rowCount].Cells[columnCount].Value = boat.Name;
-                    borderLeft.Add(dataGridView1.Rows[rowCount].Cells[columnCount]);
+                    ShipList.Rows[RowCount].Cells[ColumnCount].Value = Ship.Name;
+                    BorderLeftCells.Add(ShipList.Rows[RowCount].Cells[ColumnCount]);
 
-                    dataGridView1.Rows[rowCount].Cells[columnCount + 1].Value = ShipLevels[boat.ShipID];
-                    borderRight.Add(dataGridView1.Rows[rowCount].Cells[columnCount + 1]);
+                    ShipList.Rows[RowCount].Cells[ColumnCount + 1].Value = ShipLevels[Ship.ShipID];
+                    BorderRightCells.Add(ShipList.Rows[RowCount].Cells[ColumnCount + 1]);
 
-                    rowCount++;
+                    RowCount++;
 
-                    if (rowCount > MaxRowCount)
+                    if (RowCount > MaxRowCount)
                     {
-                        borderTop.Add(dataGridView1.Rows[rowCount].Cells[columnCount]);
-                        borderTop.Add(dataGridView1.Rows[rowCount].Cells[columnCount+1]);
+                        BorderTopCells.Add(ShipList.Rows[RowCount].Cells[ColumnCount]);
+                        BorderTopCells.Add(ShipList.Rows[RowCount].Cells[ColumnCount + 1]);
 
-                        rowCount = 2;
-                        columnCount += 2;
+                        RowCount = 2;
+                        ColumnCount += 2;
                     }
                 }
-                borderTop.Add(dataGridView1.Rows[rowCount].Cells[columnCount]);
-                borderTop.Add(dataGridView1.Rows[rowCount].Cells[columnCount+1]);
+                BorderTopCells.Add(ShipList.Rows[RowCount].Cells[ColumnCount]);
+                BorderTopCells.Add(ShipList.Rows[RowCount].Cells[ColumnCount + 1]);
 
-                rowCount = 2;
-                columnCount += 2;
+                RowCount = 2;
+                ColumnCount += 2;
             }
 
             AddStatistics();
@@ -171,34 +170,34 @@ namespace ElectronicObserver.Window.Dialog
 
         private void ColorShipNames()
         {
-            for (int i = 1; i < dataGridView1.ColumnCount - 1; i += 2)
-                for (int j = 2; j < dataGridView1.RowCount; j++)
+            for (int i = 1; i < ShipList.ColumnCount - 1; i += 2)
+                for (int j = 2; j < ShipList.RowCount; j++)
                 {
-                    Color c = GetLevelColor(dataGridView1.Rows[j].Cells[i + 1].Value);
-                    dataGridView1.Rows[j].Cells[i].Style.ForeColor = c;
-                    dataGridView1.Rows[j].Cells[i].Style.SelectionForeColor = c;
+                    Color c = GetLevelColor(ShipList.Rows[j].Cells[i + 1].Value);
+                    ShipList.Rows[j].Cells[i].Style.ForeColor = c;
+                    ShipList.Rows[j].Cells[i].Style.SelectionForeColor = c;
                 }
         }
 
-        private Color GetLevelColor(object value)
+        private Color GetLevelColor(object Value)
         {
-            if (value == null)
+            if (Value == null)
                 return Color.Black;
 
-            int level = 0;
+            int Level = 0;
 
-            int.TryParse(value.ToString(), out level);
+            int.TryParse(Value.ToString(), out Level);
 
-            if (level==175)
+            if (Level == 175)
                 return Color.FromArgb(255, 51, 153);
 
-            if (level >= 99)
+            if (Level >= 99)
                 return Color.FromArgb(0, 176, 240);
 
-            if (level >= 90)
+            if (Level >= 90)
                 return Color.FromArgb(0, 176, 80);
 
-            if (level >= 1)
+            if (Level >= 1)
                 return Color.FromArgb(255, 255, 0);
 
             return Color.FromArgb(255, 0, 0);
@@ -206,30 +205,30 @@ namespace ElectronicObserver.Window.Dialog
 
         private void GetShipLevels()
         {
-            foreach (KeyValuePair<int, ShipData> entry in KCDatabase.Instance.Ships)
+            foreach (KeyValuePair<int, ShipData> Entry in KCDatabase.Instance.Ships)
             {
-                int baseID = BaseShipId(entry.Value.ShipID);
-                if (ShipLevels.ContainsKey(baseID))
+                int BaseID = BaseShipId(Entry.Value.ShipID);
+                if (ShipLevels.ContainsKey(BaseID))
                 {
-                    if (ShipLevels[baseID] < entry.Value.Level)
-                        ShipLevels[baseID] = entry.Value.Level;
+                    if (ShipLevels[BaseID] < Entry.Value.Level)
+                        ShipLevels[BaseID] = Entry.Value.Level;
                 }
             }
         }
 
-        private int BaseShipId(int shipID)
+        private int BaseShipId(int ShipID)
         {
-            ShipDataMaster ship = KCDatabase.Instance.MasterShips[shipID];
-            while (ship.RemodelBeforeShipID != 0)
-                ship = ship.RemodelBeforeShip;
-            return ship.ID;
+            ShipDataMaster Ship = KCDatabase.Instance.MasterShips[ShipID];
+            while (Ship.RemodelBeforeShipID != 0)
+                Ship = Ship.RemodelBeforeShip;
+            return Ship.ID;
         }
 
         private void dataGridView1_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
             e.Handled = true;
 
-            using (Brush b = new SolidBrush(dataGridView1.DefaultCellStyle.BackColor))
+            using (Brush b = new SolidBrush(ShipList.DefaultCellStyle.BackColor))
             {
                 e.Graphics.FillRectangle(b, e.CellBounds);
             }
@@ -248,16 +247,16 @@ namespace ElectronicObserver.Window.Dialog
                         BorderRight(p, e);
                 }
 
-                if (borderTop.Contains(dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex]))
+                if (BorderTopCells.Contains(ShipList.Rows[e.RowIndex].Cells[e.ColumnIndex]))
                     BorderTop(p, e);
 
-                if (borderBottom.Contains(dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex]))
+                if (BorderBottomCells.Contains(ShipList.Rows[e.RowIndex].Cells[e.ColumnIndex]))
                     BorderBottom(p, e);
 
-                if (borderLeft.Contains(dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex]))
+                if (BorderLeftCells.Contains(ShipList.Rows[e.RowIndex].Cells[e.ColumnIndex]))
                     BorderLeft(p, e);
 
-                if (borderRight.Contains(dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex]))
+                if (BorderRightCells.Contains(ShipList.Rows[e.RowIndex].Cells[e.ColumnIndex]))
                     BorderRight(p, e);
             }
 
