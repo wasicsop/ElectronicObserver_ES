@@ -132,7 +132,9 @@ namespace ElectronicObserver.Window
 		internal void ConfigurationChanged()
 		{
 			Font = Utility.Configuration.Config.UI.MainFont;
-			Browser.AsyncRemoteRun(() => Browser.Proxy.ConfigurationChanged(Configuration));
+            BackColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.BackgroundColor);
+            ForeColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.MainFontColor);
+            Browser.AsyncRemoteRun(() => Browser.Proxy.ConfigurationChanged(Configuration));
 		}
 
 

@@ -556,11 +556,11 @@ namespace ElectronicObserver.Window
 
 
 
-			MainFontColor = Color.FromArgb(0x00, 0x00, 0x00);
-			SubFontColor = Color.FromArgb(0x88, 0x88, 0x88);
+            MainFontColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.MainFontColor);
+            SubFontColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.SubFontColor);
 
 
-			ControlHelper.SetDoubleBuffered(BasePanel);
+            ControlHelper.SetDoubleBuffered(BasePanel);
 			ControlHelper.SetDoubleBuffered(TableEnemyFleet);
 			ControlHelper.SetDoubleBuffered(TableEnemyMember);
 
@@ -1285,7 +1285,11 @@ namespace ElectronicObserver.Window
 				ControlHelper.SetTableColumnStyles(TableEnemyCandidate, ControlHelper.GetDefaultColumnStyle());
 				TableEnemyCandidate.ResumeLayout();
 			}
-		}
+            ForeColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.MainFontColor);
+            BackColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.BackgroundColor);
+            MainFontColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.MainFontColor);
+            SubFontColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.SubFontColor);
+        }
 
 
 

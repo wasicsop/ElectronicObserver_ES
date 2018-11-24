@@ -40,10 +40,10 @@ namespace ElectronicObserver.Window
 				Alignment = DataGridViewContentAlignment.MiddleLeft
 			};
 			CSDefaultLeft.BackColor =
-			CSDefaultLeft.SelectionBackColor = SystemColors.Control;
-			CSDefaultLeft.ForeColor = SystemColors.ControlText;
-			CSDefaultLeft.SelectionForeColor = SystemColors.ControlText;
-			CSDefaultLeft.WrapMode = DataGridViewTriState.False;
+            CSDefaultLeft.SelectionBackColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.BackgroundColor);
+            CSDefaultLeft.ForeColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.MainFontColor);
+            CSDefaultLeft.SelectionForeColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.MainFontColor);
+            CSDefaultLeft.WrapMode = DataGridViewTriState.False;
 
 			CSDefaultCenter = new DataGridViewCellStyle(CSDefaultLeft)
 			{
@@ -88,8 +88,10 @@ namespace ElectronicObserver.Window
 						break;
 				}
 
-				CSCategories[i].BackColor =
-				CSCategories[i].SelectionBackColor = c;
+                CSCategories[i].ForeColor =
+                CSCategories[i].SelectionForeColor = SystemColors.ControlText;
+                CSCategories[i].BackColor =
+                CSCategories[i].SelectionBackColor = c;
 			}
 
 			QuestView.DefaultCellStyle = CSDefaultCenter;
@@ -152,7 +154,13 @@ namespace ElectronicObserver.Window
 
 			QuestView.Font = Font = c.UI.MainFont;
 
-			MenuMain_ShowRunningOnly.Checked = c.FormQuest.ShowRunningOnly;
+            BackColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.BackgroundColor);
+            ForeColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.MainFontColor);
+            QuestView.ForeColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.MainFontColor);
+            QuestView.BackgroundColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.BackgroundColor);
+
+
+            MenuMain_ShowRunningOnly.Checked = c.FormQuest.ShowRunningOnly;
 			MenuMain_ShowOnce.Checked = c.FormQuest.ShowOnce;
 			MenuMain_ShowDaily.Checked = c.FormQuest.ShowDaily;
 			MenuMain_ShowWeekly.Checked = c.FormQuest.ShowWeekly;

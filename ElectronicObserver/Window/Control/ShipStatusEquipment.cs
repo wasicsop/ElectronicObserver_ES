@@ -469,13 +469,13 @@ namespace ElectronicObserver.Window.Control
 
 			base.Font = new Font("Meiryo UI", 10, FontStyle.Regular, GraphicsUnit.Pixel);
 
-			_aircraftColorDisabled = Color.FromArgb(0xAA, 0xAA, 0xAA);
-			_aircraftColorLost = Color.FromArgb(0xFF, 0x00, 0xFF);
-			_aircraftColorDamaged = Color.FromArgb(0xFF, 0x00, 0x00);
-			_aircraftColorFull = Color.FromArgb(0x00, 0x00, 0x00);
+            _aircraftColorDisabled = Utility.ThemeManager.GetColor(Utility.Theme.Dark ,Utility.ThemeColors.SubFontColor);
+            _aircraftColorLost = Color.FromArgb(0xFF, 0x00, 0xFF);
+            _aircraftColorDamaged = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.RedHighlight);
+            _aircraftColorFull = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.MainFontColor);
 
-			_equipmentLevelColor = Color.FromArgb(0x00, 0x66, 0x66);
-			_aircraftLevelColorLow = Color.FromArgb(0x66, 0x99, 0xEE);
+            _equipmentLevelColor = Color.FromArgb(0x00, 0x66, 0x66);
+            _aircraftLevelColorLow = Color.FromArgb(0x66, 0x99, 0xEE);
 			_aircraftLevelColorHigh = Color.FromArgb(0xFF, 0xAA, 0x00);
 
 			_invalidSlotColor = Color.FromArgb(0x40, 0xFF, 0x00, 0x00);

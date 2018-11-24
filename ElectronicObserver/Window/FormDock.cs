@@ -141,7 +141,7 @@ namespace ElectronicObserver.Window
 
 					if (Utility.Configuration.Config.FormDock.BlinkAtCompletion && (time - DateTime.Now).TotalMilliseconds <= Utility.Configuration.Config.NotifierRepair.AccelInterval)
 					{
-						RepairTime.BackColor = DateTime.Now.Second % 2 == 0 ? Color.LightGreen : Color.Transparent;
+						RepairTime.BackColor = DateTime.Now.Second % 2 == 0 ? Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.GreenHighlight) : Color.Transparent;
 					}
 				}
 			}
@@ -155,7 +155,8 @@ namespace ElectronicObserver.Window
 				ShipName.Font = parent.Font;
 				RepairTime.Font = parent.Font;
 				RepairTime.BackColor = Color.Transparent;
-
+                RepairTime.ForeColor = parent.ForeColor;
+                ShipName.ForeColor = parent.ForeColor;
 				ShipName.MaximumSize = new Size(config.MaxShipNameWidth, ShipName.MaximumSize.Height);
 			}
 
@@ -183,7 +184,7 @@ namespace ElectronicObserver.Window
 			ControlHelper.SetDoubleBuffered(TableDock);
 
 
-			TableDock.SuspendLayout();
+            TableDock.SuspendLayout();
 			ControlDock = new TableDockControl[4];
 			for (int i = 0; i < ControlDock.Length; i++)
 			{
@@ -202,7 +203,7 @@ namespace ElectronicObserver.Window
 		private void FormDock_Load(object sender, EventArgs e)
 		{
 
-			APIObserver o = APIObserver.Instance;
+            APIObserver o = APIObserver.Instance;
 
 			o.APIList["api_req_nyukyo/start"].RequestReceived += Updated;
 			o.APIList["api_req_nyukyo/speedchange"].RequestReceived += Updated;
@@ -249,8 +250,10 @@ namespace ElectronicObserver.Window
 		{
 
 			Font = Utility.Configuration.Config.UI.MainFont;
+            ForeColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.MainFontColor);
+            BackColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.BackgroundColor);
 
-			if (ControlDock != null)
+            if (ControlDock != null)
 			{
 				TableDock.SuspendLayout();
 

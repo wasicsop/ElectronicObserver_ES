@@ -370,8 +370,10 @@ namespace ElectronicObserver.Window
 			TableMember.SuspendLayout();
 
 			Font = c.UI.MainFont;
+            ForeColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.MainFontColor);
+            BackColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.BackgroundColor);
 
-			foreach (var control in ControlMember)
+            foreach (var control in ControlMember)
 				control.ConfigurationChanged(this);
 
 			ControlHelper.SetTableRowStyles(TableMember, ControlHelper.GetDefaultRowStyle());

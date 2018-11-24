@@ -29,8 +29,9 @@ namespace ElectronicObserver.Window
 
 			_parentForm = parent;
 
-
-			ImageList icons = ResourceManager.Instance.Icons;
+            this.BackColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.BackgroundColor);
+            this.ForeColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.MainFontColor);
+            ImageList icons = ResourceManager.Instance.Icons;
 
 			ShipCount.ImageList = icons;
 			ShipCount.ImageIndex = (int)ResourceManager.IconContent.HeadQuartersShip;
@@ -107,7 +108,7 @@ namespace ElectronicObserver.Window
 			Utility.SystemEvents.UpdateTimerTick += SystemEvents_UpdateTimerTick;
 
 			FlowPanelResource.SetFlowBreak(Ammo, true);
-
+            
 			FlowPanelMaster.Visible = false;
 
 		}
@@ -121,18 +122,23 @@ namespace ElectronicObserver.Window
 			HQLevel.MainFont = Utility.Configuration.Config.UI.MainFont;
 			HQLevel.SubFont = Utility.Configuration.Config.UI.SubFont;
 
-			// 点滅しない設定にしたときに消灯状態で固定されるのを防ぐ
-			if (!Utility.Configuration.Config.FormHeadquarters.BlinkAtMaximum)
+            BackColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.BackgroundColor);
+            ForeColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.MainFontColor);
+            HQLevel.MainFontColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.MainFontColor);
+            HQLevel.SubFontColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.SubFontColor);
+
+            // 点滅しない設定にしたときに消灯状態で固定されるのを防ぐ
+            if (!Utility.Configuration.Config.FormHeadquarters.BlinkAtMaximum)
 			{
 				if (ShipCount.Tag as bool? ?? false)
 				{
-					ShipCount.BackColor = Color.LightCoral;
+                    ShipCount.BackColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.PinkHighlight);
 				}
 
 				if (EquipmentCount.Tag as bool? ?? false)
 				{
-					EquipmentCount.BackColor = Color.LightCoral;
-				}
+					EquipmentCount.BackColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.PinkHighlight);
+                }
 			}
 
 			//visibility
@@ -212,11 +218,11 @@ namespace ElectronicObserver.Window
 
 
 			// 資源上限超過時の色
-			Color overcolor = Color.Moccasin;
+			Color overcolor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.OrangeHighlight);
 
+            
 
-
-			FlowPanelMaster.SuspendLayout();
+            FlowPanelMaster.SuspendLayout();
 
 			//Admiral
 			FlowPanelAdmiral.SuspendLayout();
@@ -299,7 +305,7 @@ namespace ElectronicObserver.Window
 				ShipCount.Text = string.Format("{0}/{1}", RealShipCount, db.Admiral.MaxShipCount);
 				if (RealShipCount > db.Admiral.MaxShipCount - 5)
 				{
-					ShipCount.BackColor = Color.LightCoral;
+					ShipCount.BackColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.RedHighlight);
 				}
 				else
 				{
@@ -310,7 +316,7 @@ namespace ElectronicObserver.Window
 				EquipmentCount.Text = string.Format("{0}/{1}", RealEquipmentCount, db.Admiral.MaxEquipmentCount);
 				if (RealEquipmentCount > db.Admiral.MaxEquipmentCount + 3 - 20)
 				{
-					EquipmentCount.BackColor = Color.LightCoral;
+					EquipmentCount.BackColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.RedHighlight);
 				}
 				else
 				{
@@ -431,12 +437,12 @@ namespace ElectronicObserver.Window
 			{
 				if (ShipCount.Tag as bool? ?? false)
 				{
-					ShipCount.BackColor = DateTime.Now.Second % 2 == 0 ? Color.LightCoral : Color.Transparent;
+					ShipCount.BackColor = DateTime.Now.Second % 2 == 0 ? Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.PinkHighlight) : Color.Transparent;
 				}
 
 				if (EquipmentCount.Tag as bool? ?? false)
 				{
-					EquipmentCount.BackColor = DateTime.Now.Second % 2 == 0 ? Color.LightCoral : Color.Transparent;
+					EquipmentCount.BackColor = DateTime.Now.Second % 2 == 0 ? Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.PinkHighlight) : Color.Transparent;
 				}
 			}
 		}

@@ -188,7 +188,7 @@ namespace ElectronicObserver.Window.Control
 				(db.Fleet.CombinedFlag > 0 ? fleet.FleetID >= 3 : fleet.FleetID >= 2);
 			var displayMode = (FleetStateDisplayModes)Utility.Configuration.Config.FormFleet.FleetStateDisplayMode;
 
-			Color colorDanger = Color.LightCoral;
+            Color colorDanger = Color.LightCoral;
 			Color colorInPort = Color.Transparent;
 
 
@@ -409,8 +409,8 @@ namespace ElectronicObserver.Window.Control
 			{
 				for (int i = 0; i < index; i++)
 				{
-					if (StateLabels[i].Label.BackColor == Color.Transparent)
-						StateLabels[i].Label.BackColor = Color.LightGreen;
+                    if (StateLabels[i].Label.BackColor == Color.Transparent)
+                        StateLabels[i].Label.BackColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.GreenHighlight);
 				}
 			}
 
@@ -463,11 +463,11 @@ namespace ElectronicObserver.Window.Control
 
 					case FleetStates.Damaged:
 						if (Utility.Configuration.Config.FormFleet.BlinkAtDamaged)
-							state.Label.BackColor = DateTime.Now.Second % 2 == 0 ? Color.LightCoral : Color.Transparent;
+							state.Label.BackColor = DateTime.Now.Second % 2 == 0 ? Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.PinkHighlight) : Color.Transparent;
 						break;
 
 					case FleetStates.SortieDamaged:
-						state.Label.BackColor = DateTime.Now.Second % 2 == 0 ? Color.LightCoral : Color.Transparent;
+						state.Label.BackColor = DateTime.Now.Second % 2 == 0 ? Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.PinkHighlight) : Color.Transparent;
 						break;
 
 					case FleetStates.Docking:
@@ -475,7 +475,7 @@ namespace ElectronicObserver.Window.Control
 						state.Text = "入渠中 " + state.ShortenedText;
 						state.UpdateText();
 						if (Utility.Configuration.Config.FormFleet.BlinkAtCompletion && (state.Timer - DateTime.Now).TotalMilliseconds <= Utility.Configuration.Config.NotifierRepair.AccelInterval)
-							state.Label.BackColor = DateTime.Now.Second % 2 == 0 ? Color.LightGreen : Color.Transparent;
+							state.Label.BackColor = DateTime.Now.Second % 2 == 0 ? Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.GreenHighlight) : Color.Transparent;
 						break;
 
 					case FleetStates.Expedition:
@@ -483,7 +483,7 @@ namespace ElectronicObserver.Window.Control
 						state.Text = "遠征中 " + state.ShortenedText;
 						state.UpdateText();
 						if (Utility.Configuration.Config.FormFleet.BlinkAtCompletion && (state.Timer - DateTime.Now).TotalMilliseconds <= Utility.Configuration.Config.NotifierExpedition.AccelInterval)
-							state.Label.BackColor = DateTime.Now.Second % 2 == 0 ? Color.LightGreen : Color.Transparent;
+							state.Label.BackColor = DateTime.Now.Second % 2 == 0 ? Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.GreenHighlight) : Color.Transparent;
 						break;
 
 					case FleetStates.Tired:
@@ -491,7 +491,7 @@ namespace ElectronicObserver.Window.Control
 						state.Text = "疲労 " + state.ShortenedText;
 						state.UpdateText();
 						if (Utility.Configuration.Config.FormFleet.BlinkAtCompletion && (state.Timer - DateTime.Now).TotalMilliseconds <= 0)
-							state.Label.BackColor = DateTime.Now.Second % 2 == 0 ? Color.LightGreen : Color.Transparent;
+							state.Label.BackColor = DateTime.Now.Second % 2 == 0 ? Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.GreenHighlight) : Color.Transparent;
 						break;
 
 					case FleetStates.AnchorageRepairing:

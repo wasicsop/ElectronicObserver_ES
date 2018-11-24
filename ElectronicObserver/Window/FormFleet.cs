@@ -848,10 +848,10 @@ namespace ElectronicObserver.Window
 
 			ConfigurationChanged();
 
-			MainFontColor = Color.FromArgb(0x00, 0x00, 0x00);
-			SubFontColor = Color.FromArgb(0x88, 0x88, 0x88);
+			MainFontColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.MainFontColor);
+            SubFontColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.SubFontColor);
 
-			AnchorageRepairBound = 0;
+            AnchorageRepairBound = 0;
 
 			//ui init
 
@@ -1269,8 +1269,12 @@ namespace ElectronicObserver.Window
 
 			MainFont = Font = c.UI.MainFont;
 			SubFont = c.UI.SubFont;
+            BackColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.BackgroundColor);
+            ForeColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.MainFontColor);
+            MainFontColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.MainFontColor);
+            SubFontColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.SubFontColor);
 
-			AutoScroll = c.FormFleet.IsScrollable;
+            AutoScroll = c.FormFleet.IsScrollable;
 
 			var fleet = KCDatabase.Instance.Fleet[FleetID];
 
