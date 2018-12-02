@@ -90,7 +90,7 @@
             this.Summary});
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Meiryo UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -286,8 +286,10 @@
             // 
             // DialogKancolleProgress
             // 
+            this.Text = "Ship Progression List";
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1377, 714);
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Controls.Add(this.ShipList);
             this.DoubleBuffered = true;
             this.Name = "DialogKancolleProgress";

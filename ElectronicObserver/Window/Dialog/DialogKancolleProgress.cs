@@ -27,6 +27,7 @@ namespace ElectronicObserver.Window.Dialog
         public DialogKancolleProgress()
         {
             InitializeComponent();
+            this.Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormEquipmentList]);
 
             GenerateList();
             ColorShipNames();
@@ -35,15 +36,15 @@ namespace ElectronicObserver.Window.Dialog
             {
                 BackColor = Color.FromArgb(38, 38, 38),
                 ForeColor = Color.White,
-                Alignment = DataGridViewContentAlignment.MiddleCenter,
+                Alignment = DataGridViewContentAlignment.MiddleLeft,
                 SelectionBackColor = Color.FromArgb(76, 76, 76),
-                Font = new Font("Meiryo UI", 14F, GraphicsUnit.Pixel)
+                Font = new Font("Meiryo UI", 12F, GraphicsUnit.Pixel)
             };
 
             ShipList.DefaultCellStyle = CS;
             ShipList.CellBorderStyle = DataGridViewCellBorderStyle.None;
             ShipList.AllowUserToResizeRows = false;
-            ShipList.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            ShipList.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             ShipList.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             ShipList.BackgroundColor = Color.FromArgb(38, 38, 38);
             ShipList.GridColor = Color.FromArgb(38, 38, 38);
@@ -53,30 +54,30 @@ namespace ElectronicObserver.Window.Dialog
             ControlHelper.SetDoubleBuffered(ShipList);
 
             // DataGridView size
-            ClientSize = new Size(1250, 650);
+            ClientSize = new Size(1200, 550);
         }
 
         private void AddStatistics()
         {
             int ShipCount = ShipLevels.Count(x => x.Value >= 0);
 
-            ShipList.Rows[2].Cells[21].Value = "Missing: " + ShipLevels.Count(x => x.Value == 0) + "/" + ShipCount;
-            ShipList.Rows[2].Cells[21].Style.ForeColor = GetLevelColor(0);
-            ShipList.Rows[2].Cells[21].Style.SelectionForeColor = GetLevelColor(0);
+            ShipList.Rows[3].Cells[21].Value = "Missing: " + ShipLevels.Count(x => x.Value == 0) + "/" + ShipCount;
+            ShipList.Rows[3].Cells[21].Style.ForeColor = GetLevelColor(0);
+            ShipList.Rows[3].Cells[21].Style.SelectionForeColor = GetLevelColor(0);
 
-            ShipList.Rows[3].Cells[21].Value = "Collection: " + ShipLevels.Count(x => x.Value > 0) + "/" + ShipCount;
-            ShipList.Rows[3].Cells[21].Style.ForeColor = GetLevelColor(1);
-            ShipList.Rows[3].Cells[21].Style.SelectionForeColor = GetLevelColor(1);
+            ShipList.Rows[2].Cells[21].Value = "Collection: " + ShipLevels.Count(x => x.Value > 0) + "/" + ShipCount;
+            ShipList.Rows[2].Cells[21].Style.ForeColor = GetLevelColor(1);
+            ShipList.Rows[2].Cells[21].Style.SelectionForeColor = GetLevelColor(1);
 
-            ShipList.Rows[4].Cells[21].Value = "90+: " + ShipLevels.Count(x => x.Value >= 90) + "/" + ShipCount;
+            ShipList.Rows[4].Cells[21].Value = "Lv. 90+: " + ShipLevels.Count(x => x.Value >= 90) + "/" + ShipCount;
             ShipList.Rows[4].Cells[21].Style.ForeColor = GetLevelColor(90);
             ShipList.Rows[4].Cells[21].Style.SelectionForeColor = GetLevelColor(90);
 
-            ShipList.Rows[5].Cells[21].Value = "99+: " + ShipLevels.Count(x => x.Value >= 99) + "/" + ShipCount;
+            ShipList.Rows[5].Cells[21].Value = "Lv. 99+: " + ShipLevels.Count(x => x.Value >= 99) + "/" + ShipCount;
             ShipList.Rows[5].Cells[21].Style.ForeColor = GetLevelColor(99);
             ShipList.Rows[5].Cells[21].Style.SelectionForeColor = GetLevelColor(99);
 
-            ShipList.Rows[6].Cells[21].Value = "Perfection: " + ShipLevels.Count(x => x.Value == 175) + "/" + ShipCount;
+            ShipList.Rows[6].Cells[21].Value = "Lv. Max: " + ShipLevels.Count(x => x.Value == 175) + "/" + ShipCount;
             ShipList.Rows[6].Cells[21].Style.ForeColor = GetLevelColor(175);
             ShipList.Rows[6].Cells[21].Style.SelectionForeColor = GetLevelColor(175);
         }
@@ -99,13 +100,20 @@ namespace ElectronicObserver.Window.Dialog
             int NumberOfRows = 30;
             ShipList.Rows.Add(NumberOfRows);
 
-            ShipList.Rows[1].Cells[5].Value = "駆逐艦";
-            ShipList.Rows[1].Cells[9].Value = "海防艦";
-            ShipList.Rows[1].Cells[11].Value = "軽巡";
-            ShipList.Rows[1].Cells[13].Value = "重巡";
-            ShipList.Rows[1].Cells[15].Value = "戦艦";
-            ShipList.Rows[1].Cells[17].Value = "空母";
-            ShipList.Rows[1].Cells[19].Value = "その他";
+            ShipList.Rows[1].Cells[5].Value = Constants.GetShipClassClassification(ShipTypes.Destroyer);
+            ShipList.Rows[1].Cells[5].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            ShipList.Rows[1].Cells[9].Value = Constants.GetShipClassClassification(ShipTypes.Escort); ;
+            ShipList.Rows[1].Cells[9].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            ShipList.Rows[1].Cells[11].Value = Constants.GetShipClassClassification(ShipTypes.LightCruiser); ;
+            ShipList.Rows[1].Cells[11].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            ShipList.Rows[1].Cells[13].Value = Constants.GetShipClassClassification(ShipTypes.HeavyCruiser); ;
+            ShipList.Rows[1].Cells[13].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            ShipList.Rows[1].Cells[15].Value = Constants.GetShipClassClassification(ShipTypes.Battleship); ;
+            ShipList.Rows[1].Cells[15].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            ShipList.Rows[1].Cells[17].Value = Constants.GetShipClassClassification(ShipTypes.AircraftCarrier); ;
+            ShipList.Rows[1].Cells[17].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            ShipList.Rows[1].Cells[19].Value = "Others";
+            ShipList.Rows[1].Cells[19].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
             int PreviousShipClass = 0;
 
@@ -146,6 +154,7 @@ namespace ElectronicObserver.Window.Dialog
                     BorderLeftCells.Add(ShipList.Rows[RowCount].Cells[ColumnCount]);
 
                     ShipList.Rows[RowCount].Cells[ColumnCount + 1].Value = ShipLevels[Ship.ShipID];
+                    ShipList.Rows[RowCount].Cells[ColumnCount + 1].Style.Alignment = DataGridViewContentAlignment.MiddleRight;
                     BorderRightCells.Add(ShipList.Rows[RowCount].Cells[ColumnCount + 1]);
 
                     RowCount++;

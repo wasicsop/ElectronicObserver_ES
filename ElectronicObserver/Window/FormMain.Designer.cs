@@ -775,7 +775,7 @@
             //
             this.StripMenu_Tool_KancolleProgress.Name = "StripMenu_Tool_KancolleProgress";
             this.StripMenu_Tool_KancolleProgress.Size = new System.Drawing.Size(180, 22);
-            this.StripMenu_Tool_KancolleProgress.Text = "Kancolle Progress";
+            this.StripMenu_Tool_KancolleProgress.Text = "Ship Progression List";
             this.StripMenu_Tool_KancolleProgress.Click += new System.EventHandler(this.StripMenu_Tool_KancolleProgress_Click);
             //
             // FormMain
