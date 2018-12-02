@@ -509,7 +509,7 @@ namespace ElectronicObserver.Data
 		/// </summary>
 		public string ResourcePortVoiceVersion => GraphicData?.PortVoiceVersion ?? "";
 
-		
+
 
 		/// <summary>
 		/// 衣替え艦：ベースとなる艦船ID
@@ -593,6 +593,11 @@ namespace ElectronicObserver.Data
 		}
 
 		/// <summary>
+		/// 艦種インスタンス
+		/// </summary>
+		public ShipType ShipTypeInstance => KCDatabase.Instance.ShipTypes[(int)ShipType];
+
+		/// <summary>
 		/// 陸上基地かどうか
 		/// </summary>
 		public bool IsLandBase => Speed == 0;
@@ -602,7 +607,7 @@ namespace ElectronicObserver.Data
 		/// <summary>
 		/// 図鑑に載っているか
 		/// </summary>
-		public bool IsListedInAlbum => 0 < AlbumNo && AlbumNo <= 350;
+		public bool IsListedInAlbum => 0 < AlbumNo && AlbumNo <= 420;
 
 
 		/// <summary>
@@ -672,13 +677,13 @@ namespace ElectronicObserver.Data
 				return SystemColors.ControlText;
 			}
 
-			bool isLateModel = Name.Contains( "Late Type" ) || Name.Contains( "後期型" );
-			bool isRemodeled = Name.Contains( "Kai" ) || Name.Contains( "改" );
-			bool isDestroyed = Name.Contains( "Damaged" ) || Name.EndsWith( "-壊" );
-			bool isDemon = Name.Contains( "Demon" ) || Name.EndsWith( "鬼" );
-			bool isPrincess = Name.Contains( "Princess" ) || Name.EndsWith( "姫" );
-			bool isWaterDemon = Name.Contains( "Water Demon" ) || Name.EndsWith( "水鬼" );
-			bool isWaterPrincess = Name.Contains( "Water Princess" ) || Name.EndsWith( "水姫" );
+			bool isLateModel = Name.Contains("後期型") || Name.Contains("Late Type");
+			bool isRemodeled = Name.Contains("改") || Name.Contains("Kai");
+			bool isDestroyed = Name.Contains("-壊") || Name.Contains("Damaged");
+			bool isDemon = Name.Contains("鬼") || Name.Contains("Demon");
+			bool isPrincess = Name.Contains("姫") || Name.Contains("Princess");
+			bool isWaterDemon = Name.Contains("水鬼") || Name.Contains("Water Demon");
+			bool isWaterPrincess = Name.Contains("水姫") || Name.Contains("Water Princess");
 			bool isElite = NameReading == "elite";
 			bool isFlagship = NameReading == "flagship";
 
