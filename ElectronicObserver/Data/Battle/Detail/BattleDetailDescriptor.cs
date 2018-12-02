@@ -18,7 +18,7 @@ namespace ElectronicObserver.Data.Battle.Detail
 
 			if (bm.IsPractice)
 			{
-				sb.AppendLine("演習");
+				sb.AppendLine("Exercise");
 
 			}
 			else
@@ -144,11 +144,11 @@ namespace ElectronicObserver.Data.Battle.Detail
 
 						void appendFleetInfo(FleetData fleet)
 						{
-							sb.Append(" 制空戦力 ");
+							sb.Append(" Air Superiority ");
 							sb.Append(GetRangeString(Calculator.GetAirSuperiority(fleet, false), Calculator.GetAirSuperiority(fleet, true)));
 
 							double truncate2(double value) => Math.Floor(value * 100) / 100;
-							sb.AppendFormat(" / 索敵能力 [1] {0}, [2] {1}, [3] {2}, [4] {3}",
+							sb.AppendFormat(" / LOS [1] {0}, [2] {1}, [3] {2}, [4] {3}",
 								truncate2(Calculator.GetSearchingAbility_New33(fleet, 1)),
 								truncate2(Calculator.GetSearchingAbility_New33(fleet, 2)),
 								truncate2(Calculator.GetSearchingAbility_New33(fleet, 3)),
@@ -185,7 +185,7 @@ namespace ElectronicObserver.Data.Battle.Detail
 							sb.Append(ConstantsRes.BattleDetail_EnemyFleet);
 
 						if (p.IsBossDamaged)
-							sb.Append(" : 装甲破壊");
+							sb.Append(" : Boss Debuffed");
 						sb.AppendLine();
 
 						OutputEnemyData(sb, p.EnemyMembersInstance, p.EnemyLevels, p.EnemyInitialHPs, p.EnemyMaxHPs, p.EnemySlotsInstance, p.EnemyParameters);
@@ -438,7 +438,7 @@ namespace ElectronicObserver.Data.Battle.Detail
 		{
 			foreach (var corps in KCDatabase.Instance.BaseAirCorps.Values.Where(corps => corps.MapAreaID == mapAreaID))
 			{
-				sb.AppendFormat("{0} [{1}] 制空戦力 {2}\r\n　{3}\r\n",
+				sb.AppendFormat("{0} [{1}] Air Superiority {2}\r\n　{3}\r\n",
 					corps.Name, Constants.GetBaseAirCorpsActionKind(corps.ActionKind),
 					GetRangeString(Calculator.GetAirSuperiority(corps, false), Calculator.GetAirSuperiority(corps, true)),
 					string.Join(", ", corps.Squadrons.Values
@@ -548,7 +548,7 @@ namespace ElectronicObserver.Data.Battle.Detail
 				if (ship == null)
 					continue;
 
-				sb.AppendFormat("#{0}: {1} {2} Lv. {3} HP: {4} / {5} - 火力{6}, 雷装{7}, 対空{8}, 装甲{9}\r\n",
+				sb.AppendFormat("#{0}: {1} {2} Lv. {3} HP: {4} / {5} - FP {6}, Torp {7}, AA {8}, Armor {9}\r\n",
 					i + 1,
 					ship.ShipTypeName, p.FriendlyMembersInstance[i].NameWithClass, p.FriendlyLevels[i],
 					p.FriendlyInitialHPs[i], p.FriendlyMaxHPs[i],
