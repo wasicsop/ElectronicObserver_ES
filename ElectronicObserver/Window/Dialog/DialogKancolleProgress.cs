@@ -91,9 +91,13 @@ namespace ElectronicObserver.Window.Dialog
             var Escort = Ships.Where(x => x.ShipType == ShipTypes.Escort);
             var LightCruiser = Ships.Where(x => x.ShipType == ShipTypes.LightCruiser);
             var HeavyCruiser = Ships.Where(x => x.ShipType == ShipTypes.HeavyCruiser);
-            var Battleship = Ships.Where(x => x.ShipType == ShipTypes.Battleship || x.ShipType == ShipTypes.Battlecruiser);
-            var Carrier = Ships.Where(x => x.ShipType == ShipTypes.AircraftCarrier || x.ShipType == ShipTypes.LightAircraftCarrier || x.ShipType == ShipTypes.ArmoredAircraftCarrier);
-            var Others = Ships.Where(x => x.ShipType == ShipTypes.Submarine || x.ShipType == ShipTypes.SubmarineAircraftCarrier || x.ShipType == ShipTypes.SeaplaneTender || x.ShipType == ShipTypes.FleetOiler || x.ShipType == ShipTypes.RepairShip || x.ShipType == ShipTypes.TrainingCruiser || x.ShipType == ShipTypes.AmphibiousAssaultShip || x.ShipType == ShipTypes.SubmarineTender);
+            var Battleship = Ships.Where(x => x.ShipType == ShipTypes.Battleship || x.ShipType == ShipTypes.Battlecruiser).OrderBy(x => (int) x.ShipType);
+            var Carrier = Ships.Where(x => x.ShipType == ShipTypes.AircraftCarrier || x.ShipType == ShipTypes.LightAircraftCarrier
+            || x.ShipType == ShipTypes.ArmoredAircraftCarrier).OrderBy(x => (int)x.ShipType);
+            var Others = Ships.Where(x => x.ShipType == ShipTypes.Submarine || x.ShipType == ShipTypes.SubmarineAircraftCarrier
+            || x.ShipType == ShipTypes.SeaplaneTender || x.ShipType == ShipTypes.FleetOiler || x.ShipType == ShipTypes.RepairShip
+            || x.ShipType == ShipTypes.TrainingCruiser || x.ShipType == ShipTypes.AmphibiousAssaultShip || x.ShipType == ShipTypes.SubmarineTender)
+            .OrderByDescending(x => (int)x.ShipType);
 
             var GroupedShips = new List<IEnumerable<ShipDataMaster>> { Destroyer, Escort, LightCruiser, HeavyCruiser, Battleship, Carrier, Others };
 
