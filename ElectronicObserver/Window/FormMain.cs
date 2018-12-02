@@ -220,7 +220,7 @@ namespace ElectronicObserver.Window
 
 			SoftwareInformation.CheckUpdate();
 			CancellationTokenSource cts = new CancellationTokenSource();
-			await Task.Run( async () => await SoftwareUpdater.PeriodicUpdateCheckAsync(cts.Token));
+			Task.Run( async () => await SoftwareUpdater.PeriodicUpdateCheckAsync(cts.Token));
 
 			// デバッグ: 開始時にAPIリストを読み込む
 			if (Configuration.Config.Debug.LoadAPIListOnLoad)
