@@ -23,8 +23,8 @@ namespace ElectronicObserver.Utility
             colors.Add(Tuple.Create(Theme.Dark, ThemeColors.GreenHighlight), Color.DarkGreen);
             colors.Add(Tuple.Create(Theme.Dark, ThemeColors.GrayHighlight), Color.Silver);
             colors.Add(Tuple.Create(Theme.Dark, ThemeColors.PinkHighlight), Color.LightCoral);
-            colors.Add(Tuple.Create(Theme.Dark, ThemeColors.MVPHighlight), Color.FromArgb(0xCC, 0xB6, 0x90));
-            colors.Add(Tuple.Create(Theme.Dark, ThemeColors.RepairColor), Color.LightBlue);
+            colors.Add(Tuple.Create(Theme.Dark, ThemeColors.MVPHighlight), ColorTranslator.FromHtml("#776445"));
+            colors.Add(Tuple.Create(Theme.Dark, ThemeColors.RepairColor), Color.DarkGray);
             colors.Add(Tuple.Create(Theme.Dark, ThemeColors.BlackFontColor), Color.White);
         }
 

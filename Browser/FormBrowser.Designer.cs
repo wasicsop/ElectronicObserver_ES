@@ -96,6 +96,7 @@
             // 
             // SizeAdjuster
             // 
+            this.SizeAdjuster.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.SizeAdjuster.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SizeAdjuster.Location = new System.Drawing.Point(0, 25);
             this.SizeAdjuster.Name = "SizeAdjuster";

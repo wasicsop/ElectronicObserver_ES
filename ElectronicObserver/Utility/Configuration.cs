@@ -188,16 +188,16 @@ namespace ElectronicObserver.Utility
 					new List<SerializableColor>() {
 						SerializableColor.UIntToColor( 0xFFFF0000 ),
 						SerializableColor.UIntToColor( 0xFFFF0000 ),
-						SerializableColor.UIntToColor( 0xFFFF8800 ),
-						SerializableColor.UIntToColor( 0xFFFF8800 ),
-						SerializableColor.UIntToColor( 0xFFFFCC00 ),
-						SerializableColor.UIntToColor( 0xFFFFCC00 ),
+						SerializableColor.UIntToColor( 0xFFFFBB00 ),
+						SerializableColor.UIntToColor( 0xFFFFBB00 ),
+						SerializableColor.UIntToColor( 0xFFFFEE00 ),
+						SerializableColor.UIntToColor( 0xFFFFEE00 ),
 						SerializableColor.UIntToColor( 0xFF00CC00 ),
 						SerializableColor.UIntToColor( 0xFF00CC00 ),
 						SerializableColor.UIntToColor( 0xFF0044CC ),
 						SerializableColor.UIntToColor( 0xFF44FF00 ),
 						SerializableColor.UIntToColor( 0xFF882222 ),
-						SerializableColor.UIntToColor( 0xFF888888 ),
+						SerializableColor.UIntToColor( 0xFFCCCCCC ),
 					},
 					/*/// recognize
 					new List<SerializableColor>() {
@@ -227,7 +227,7 @@ namespace ElectronicObserver.Utility
 						SerializableColor.UIntToColor( 0xFF0044CC ),
 						SerializableColor.UIntToColor( 0xFF00FF44 ),
 						SerializableColor.UIntToColor( 0xFF882222 ),
-						SerializableColor.UIntToColor( 0xFF888888 ),
+						SerializableColor.UIntToColor( 0xFFCCCCCC ),
 					},
 					//*/
 				};
@@ -957,8 +957,8 @@ namespace ElectronicObserver.Utility
 					ScreenShotPath = "ScreenShot";
 					ScreenShotFormat = 2;
 					ScreenShotSaveMode = 1;
-					StyleSheet = "\r\nbody {\r\n	margin:0;\r\n	overflow:hidden\r\n}\r\n\r\n#game_frame {\r\n	position:fixed;\r\n	left:50%;\r\n	top:-16px;\r\n	margin-left:-450px;\r\n	z-index:1\r\n}\r\n";
-					IsScrollable = false;
+					StyleSheet = "\r\nbody {\r\n	margin:0;\r\n	overflow:hidden\r\n	background-color:#2A2A2D\r\n}\r\n\r\n#game_frame {\r\n	position:fixed;\r\n	left:50%;\r\n	top:-16px;\r\n	margin-left:-450px;\r\n	z-index:1\r\n	background-color:#2A2A2D\r\n}\r\n";
+                    IsScrollable = false;
 					AppliesStyleSheet = true;
 					IsDMMreloadDialogDestroyable = false;
 					AvoidTwitterDeterioration = true;

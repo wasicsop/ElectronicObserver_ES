@@ -394,7 +394,8 @@ namespace ElectronicObserver.Window
 				label.Text = Constants.GetSearchingResultShort(search);
 				label.ImageAlign = search > 0 ? ContentAlignment.MiddleLeft : ContentAlignment.MiddleCenter;
 				label.ImageIndex = search > 0 ? (int)(search < 4 ? ResourceManager.EquipmentContent.Seaplane : ResourceManager.EquipmentContent.Radar) : -1;
-				ToolTipInfo.SetToolTip(label, null);
+                label.ForeColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.MainFontColor); ;
+                ToolTipInfo.SetToolTip(label, null);
 			}
 
 			SetResult(SearchingFriend, bd.Searching.SearchingFriend);
@@ -579,10 +580,10 @@ namespace ElectronicObserver.Window
 					ToolTipInfo.SetToolTip(label, null);
 				}
 
-				if (phasesEnabled.Any(p => p.GetAircraftTotal(stage, isFriend) > 0 && p.GetAircraftLost(stage, isFriend) == p.GetAircraftTotal(stage, isFriend)))
-					label.ForeColor = Color.Red;
-				else
-					label.ForeColor = SystemColors.ControlText;
+                if (phasesEnabled.Any(p => p.GetAircraftTotal(stage, isFriend) > 0 && p.GetAircraftLost(stage, isFriend) == p.GetAircraftTotal(stage, isFriend)))
+                    label.ForeColor = Color.Red;
+                else
+                    label.ForeColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.MainFontColor);
 
 				label.ImageAlign = ContentAlignment.MiddleCenter;
 				label.ImageIndex = -1;

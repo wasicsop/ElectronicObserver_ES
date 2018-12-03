@@ -197,7 +197,7 @@ namespace ElectronicObserver.Window.Control
 		/// <summary>
 		/// 艦載機熟練度の色 ( Lv. 1 ~ Lv. 3 )
 		/// </summary>
-		[Browsable(true), Category("Appearance"), DefaultValue(typeof(Color), "102, 153, 238")]
+		[Browsable(true), Category("Appearance"), DefaultValue(typeof(Color), "161, 207, 255")]
 		[Description("艦載機熟練度の文字色( Lv. 1 ~ 3 )を指定します。")]
 		public Color AircraftLevelColorLow
 		{
@@ -344,7 +344,7 @@ namespace ElectronicObserver.Window.Control
 
 
 
-		private Brush _overlayBrush = new SolidBrush(Color.FromArgb(0xC0, 0xF0, 0xF0, 0xF0));
+		private Brush _overlayBrush = new SolidBrush(Color.FromArgb(0xC0, 0x22, 0x22, 0x22));
 
 
 		[System.Diagnostics.DebuggerDisplay("[{PreferredSize.Width}, {PreferredSize.Height}]")]
@@ -474,7 +474,7 @@ namespace ElectronicObserver.Window.Control
             _aircraftColorDamaged = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.RedHighlight);
             _aircraftColorFull = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.MainFontColor);
 
-            _equipmentLevelColor = Color.FromArgb(0x00, 0x66, 0x66);
+            _equipmentLevelColor = Color.Green;
             _aircraftLevelColorLow = Color.FromArgb(0x66, 0x99, 0xEE);
 			_aircraftLevelColorHigh = Color.FromArgb(0xFF, 0xAA, 0x00);
 

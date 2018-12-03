@@ -682,25 +682,38 @@ namespace ElectronicObserver.Data
 			bool isLateModel = Name.Contains("後期型");
 			bool isRemodeled = Name.Contains("改");
 			bool isDestroyed = Name.Contains("-壊");
-			bool isDemon = Name.Contains("鬼");
-			bool isPrincess = Name.Contains("姫");
-			bool isWaterDemon = Name.Contains("水鬼");
+
+
+            bool isDemon = Name.Contains("鬼") && !Name.Contains("小鬼");
+            bool isMinor = Name.Contains("小鬼") || Name.Contains("要塞");
+            bool isPrincess = Name.Contains("姫");
+
+            bool isWaterDemon = Name.Contains("水鬼");
 			bool isWaterPrincess = Name.Contains("水姫");
 			bool isElite = NameReading == "elite";
 			bool isFlagship = NameReading == "flagship";
 
 
 			if (isDestroyed)
-				return Color.FromArgb(0xFF, 0x00, 0xFF);
-
-			else if (isWaterPrincess)
-				return ShipNameColors[6];
-			else if (isWaterDemon)
-				return ShipNameColors[5];
-			else if (isPrincess)
-				return ShipNameColors[4];
-			else if (isDemon)
-				return ShipNameColors[3];
+                return ColorTranslator.FromHtml("#FF00FF");
+            if (isPrincess)
+                return ColorTranslator.FromHtml("#8800FF");
+            if (isDemon)
+                return ColorTranslator.FromHtml("#FF0000");
+            if (isWaterDemon)
+                return ColorTranslator.FromHtml("#FF6644");
+            if (isMinor)
+                return ColorTranslator.FromHtml("#FF6666");
+            if (isLateModel)
+                return ColorTranslator.FromHtml("#CC88FF");
+            if (isRemodeled)
+                return ColorTranslator.FromHtml("#86FFFD");
+            if (isFlagship)
+                return ColorTranslator.FromHtml("#FFDD44");
+            if (isElite)
+                return ColorTranslator.FromHtml("#FFC0C8");
+            return ColorTranslator.FromHtml("#D0D0D0");
+            /**
 			else
 			{
 
@@ -718,6 +731,7 @@ namespace ElectronicObserver.Data
 
 				return ShipNameColors[tier];
 			}
+    **/
 		}
 
 

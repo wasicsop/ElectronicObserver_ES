@@ -151,13 +151,14 @@ namespace ElectronicObserver.Window
 
             APIObserver.Instance.Start(Utility.Configuration.Config.Connection.Port, this);
 
-
+           // vS2015DarkTheme1.Measures.SplitterSize = 2;
             //MainDockPanel.Extender.FloatWindowFactory = new CustomFloatWindowFactory();
             MainDockPanel.Theme = vS2015DarkTheme1;
-
+            
             visualStudioToolStripExtender1.SetStyle(StripMenu, VisualStudioToolStripExtender.VsVersion.Vs2015, vS2015DarkTheme1);
             visualStudioToolStripExtender1.SetStyle(StripStatus, VisualStudioToolStripExtender.VsVersion.Vs2015, vS2015DarkTheme1);
             vS2015DarkTheme1.Extender.FloatWindowFactory = new CustomFloatWindowFactory();
+        
             SubForms = new List<DockContent>();
 
 			//form init
@@ -277,17 +278,19 @@ namespace ElectronicObserver.Window
             StripStatus.BackColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.BackgroundColor);
             StripStatus.ForeColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.MainFontColor);
 
-
             if (c.Life.LockLayout)
 			{
 				MainDockPanel.AllowChangeLayout = false;
 				FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+                SubForms.ForEach(dock=> ToggleLock(dock));
 			}
 			else
 			{
 				MainDockPanel.AllowChangeLayout = true;
 				FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
-			}
+                SubForms.ForEach(dock => ToggleLock(dock));
+
+            }
 
 			StripMenu_File_Layout_LockLayout.Checked = c.Life.LockLayout;
 			MainDockPanel.CanCloseFloatWindowInLock = c.Life.CanCloseFloatWindowInLock;
@@ -300,12 +303,19 @@ namespace ElectronicObserver.Window
 				_volumeUpdateState = -1;
 		}
 
-
-
-
-
-
-		private void StripMenu_Debug_LoadAPIFromFile_Click(object sender, EventArgs e)
+        private void ToggleLock(DockContent dock)
+        {
+            if (MainDockPanel.AllowChangeLayout)
+            {
+                dock.AllowEndUserDocking = true;
+            }
+            else
+            {
+                dock.AllowEndUserDocking = false;
+            }
+        }
+       
+        private void StripMenu_Debug_LoadAPIFromFile_Click(object sender, EventArgs e)
 		{
 
 			/*/

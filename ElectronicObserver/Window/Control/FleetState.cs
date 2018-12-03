@@ -188,8 +188,8 @@ namespace ElectronicObserver.Window.Control
 				(db.Fleet.CombinedFlag > 0 ? fleet.FleetID >= 3 : fleet.FleetID >= 2);
 			var displayMode = (FleetStateDisplayModes)Utility.Configuration.Config.FormFleet.FleetStateDisplayMode;
 
-            Color colorDanger = Color.LightCoral;
-			Color colorInPort = Color.Transparent;
+            Color colorDanger = ColorTranslator.FromHtml("#880000");
+            Color colorInPort = Color.Transparent;
 
 
 			//所属艦なし
@@ -463,11 +463,11 @@ namespace ElectronicObserver.Window.Control
 
 					case FleetStates.Damaged:
 						if (Utility.Configuration.Config.FormFleet.BlinkAtDamaged)
-							state.Label.BackColor = DateTime.Now.Second % 2 == 0 ? Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.PinkHighlight) : Color.Transparent;
+							state.Label.BackColor = DateTime.Now.Second % 2 == 0 ? Color.LightCoral : Color.Transparent;
 						break;
 
 					case FleetStates.SortieDamaged:
-						state.Label.BackColor = DateTime.Now.Second % 2 == 0 ? Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.PinkHighlight) : Color.Transparent;
+						state.Label.BackColor = DateTime.Now.Second % 2 == 0 ? Color.LightCoral : Color.Transparent;
 						break;
 
 					case FleetStates.Docking:

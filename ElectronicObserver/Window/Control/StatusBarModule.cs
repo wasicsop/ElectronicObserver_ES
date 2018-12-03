@@ -268,11 +268,11 @@ namespace ElectronicObserver.Window.Control
 			}
 		}
 
-		private Color _barColorBackground = FromArgb(0xFF888888);
+		private Color _barColorBackground = FromArgb(0xFF555555);
 		/// <summary>
 		/// バーの背景色
 		/// </summary>
-		[Browsable(true), Category("Appearance"), DefaultValue(typeof(Color), "136, 136, 136")]
+		[Browsable(true), Category("Appearance"), DefaultValue(typeof(Color), "255, 85, 85")]
 		[Description("バーの背景色を指定します。")]
 		public Color BarColorBackground
 		{

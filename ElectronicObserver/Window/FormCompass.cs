@@ -104,8 +104,8 @@ namespace ElectronicObserver.Window
 				{
 					//なし
 					ShipName.Text = "-";
-					ShipName.ForeColor = Color.FromArgb(0x00, 0x00, 0x00);
-					Equipments.Visible = false;
+                    ShipName.ForeColor = ColorTranslator.FromHtml("#D0D0D0");
+                    Equipments.Visible = false;
 					ToolTipInfo.SetToolTip(ShipName, null);
 					ToolTipInfo.SetToolTip(Equipments, null);
 
@@ -290,8 +290,8 @@ namespace ElectronicObserver.Window
 					{
 						// nothing
 						ShipNames[i].Text = "-";
-						ShipNames[i].ForeColor = Color.Black;
-						ShipNames[i].Tag = -1;
+                        ShipNames[i].ForeColor = ColorTranslator.FromHtml("#D0D0D0");
+                        ShipNames[i].Tag = -1;
 						ShipNames[i].Cursor = Cursors.Default;
 						ToolTipInfo.SetToolTip(ShipNames[i], null);
 
@@ -648,18 +648,18 @@ namespace ElectronicObserver.Window
 					case 0:
 					case 1:
 					default:    //昼夜戦・その他
-						return SystemColors.ControlText;
-					case 2:
+						return ColorTranslator.FromHtml("#D0D0D0");
+                    case 2:
 					case 3:     //夜戦・夜昼戦
-						return Color.Navy;
-					case 4:     //航空戦
+						return ColorTranslator.FromHtml("#0080A0");
+                    case 4:     //航空戦
 					case 6:     //長距離空襲戦
-						return Color.DarkGreen;
-					case 5:     // 敵連合
-						return Color.DarkRed;
+						return ColorTranslator.FromHtml("#00A040");
+                    case 5:     // 敵連合
+						return ColorTranslator.FromHtml("#F08080"); ;
 					case 7:     // 夜昼戦(対連合艦隊)
-						return Color.Navy;
-				}
+						return ColorTranslator.FromHtml("#0080A0");
+                }
 			};
 
 			if (apiname == "api_port/port")
