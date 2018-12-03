@@ -705,7 +705,7 @@ namespace ElectronicObserver.Window
 					LoadSubWindowsLayout(archive.GetEntry("SubWindowLayout.xml").Open());
 				}
 
-				Utility.Logger.Add(2, "Successfully loaded window layout from " + path);
+				Utility.Logger.Add(1, "Successfully loaded window layout from " + path);
 
 			}
 			catch (FileNotFoundException)
@@ -764,7 +764,7 @@ namespace ElectronicObserver.Window
 				}
 
 
-				Utility.Logger.Add( 2, string.Format(Resources.LayoutSaved, path) );
+				Utility.Logger.Add( 1, string.Format(Resources.LayoutSaved, path) );
 
 			}
 			catch (Exception ex)
