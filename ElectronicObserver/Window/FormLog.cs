@@ -59,7 +59,12 @@ namespace ElectronicObserver.Window
 		{
 
 			LogList.Font = Font = Utility.Configuration.Config.UI.MainFont;
-		}
+            BackColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.BackgroundColor);
+            ForeColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.MainFontColor);
+            LogList.ForeColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.MainFontColor);
+            LogList.BackColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.BackgroundColor);
+
+        }
 
 
 		void Logger_LogAdded(Utility.Logger.LogData data)

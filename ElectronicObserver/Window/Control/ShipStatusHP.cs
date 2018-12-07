@@ -375,15 +375,19 @@ namespace ElectronicObserver.Window.Control
 			_repairTime = DateTime.Now;
 
 			_maximumDigit = 999;
-
-			_mainFont = new Font("Meiryo UI", 12, FontStyle.Regular, GraphicsUnit.Pixel);
-			_mainFontColor = FromArgb(0xFF000000);
-
-			_subFont = new Font("Meiryo UI", 10, FontStyle.Regular, GraphicsUnit.Pixel);
-			_subFontColor = FromArgb(0xFF888888);
-
-			_repairFontColor = FromArgb(0xFF000088);
-			_text = "HP:";
+           
+            //BackColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.BackgroundColor);
+            _HPBar.BarBackgroundOffset = 0;
+           // _HPBar.BarColorBackground = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.BackgroundColor);
+            _mainFont = new Font("Meiryo UI", 12, FontStyle.Regular, GraphicsUnit.Pixel);
+            _mainFontColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.MainFontColor);
+            //_mainFontColor = ColorTranslator.FromHtml("#D0D0D0");
+            _subFont = new Font("Meiryo UI", 10, FontStyle.Regular, GraphicsUnit.Pixel);
+            _subFontColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.SubFontColor);
+           // _subFontColor = ColorTranslator.FromHtml("#DDDDDD");
+            _repairFontColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.RepairColor);
+           // _repairFontColor = ColorTranslator.FromHtml("#DDDDDD");
+            _text = "HP:";
 
 			_HPBar.UsePrevValue = true;
 			_showDifference = false;
@@ -400,7 +404,7 @@ namespace ElectronicObserver.Window.Control
 			Rectangle basearea = new Rectangle(Padding.Left, Padding.Top, Width - Padding.Horizontal, Height - Padding.Vertical);
 			Size barSize = ShowHPBar ? _HPBar.GetPreferredSize(new Size(basearea.Width, 0)) : Size.Empty;
 
-
+           
 
 			if (RepairTimeShowMode == ShipStatusHPRepairTimeShowMode.Visible ||
 				(RepairTimeShowMode == ShipStatusHPRepairTimeShowMode.MouseOver && _onMouse))
@@ -444,8 +448,11 @@ namespace ElectronicObserver.Window.Control
 		}
 
 
+   
+        
 
-		public override Size GetPreferredSize(Size proposedSize)
+
+        public override Size GetPreferredSize(Size proposedSize)
 		{
 
 			if (_preferredSizeCache == null)

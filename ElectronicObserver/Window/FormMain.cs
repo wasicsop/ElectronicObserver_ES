@@ -20,6 +20,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
+using WeifenLuo.WinFormsUI.ThemeVS2015;
 
 namespace ElectronicObserver.Window
 {
@@ -47,8 +48,9 @@ namespace ElectronicObserver.Window
 		#region Forms
 
 		public List<DockContent> SubForms { get; private set; }
+        //public ThemeBase vS2015DarkTheme1 { get; }
 
-		public FormFleet[] fFleet;
+        public FormFleet[] fFleet;
 		public FormDock fDock;
 		public FormArsenal fArsenal;
 		public FormHeadquarters fHeadquarters;
@@ -72,9 +74,9 @@ namespace ElectronicObserver.Window
 		public FormMain()
 		{
 			InitializeComponent();
-
-			this.Text = SoftwareInformation.VersionJapanese;
-		}
+           
+            this.Text = SoftwareInformation.VersionJapanese;
+        }
 
 		private async void FormMain_Load(object sender, EventArgs e)
 		{
@@ -82,8 +84,7 @@ namespace ElectronicObserver.Window
 			if (!Directory.Exists("Settings"))
 				Directory.CreateDirectory("Settings");
 
-
-			Utility.Configuration.Instance.Load(this);
+            Utility.Configuration.Instance.Load(this);
 
 
 			Utility.Logger.Instance.LogAdded += new Utility.LogAddedEventHandler((Utility.Logger.LogData data) =>
@@ -103,8 +104,8 @@ namespace ElectronicObserver.Window
 			Utility.Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
 
 			Utility.Logger.Add(2, SoftwareInformation.SoftwareNameJapanese + " を起動しています…");
-
-
+            
+           
 			ResourceManager.Instance.Load();
 			RecordManager.Instance.Load();
 			KCDatabase.Instance.Load();
@@ -145,16 +146,20 @@ namespace ElectronicObserver.Window
 			StripMenu_Tool_ExpChecker.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormExpChecker];
 
 			StripMenu_Help_Version.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.AppIcon];
-			#endregion
+            #endregion
+       
 
+            APIObserver.Instance.Start(Utility.Configuration.Config.Connection.Port, this);
 
-			APIObserver.Instance.Start(Utility.Configuration.Config.Connection.Port, this);
-
-
-			MainDockPanel.Extender.FloatWindowFactory = new CustomFloatWindowFactory();
-
-
-			SubForms = new List<DockContent>();
+           // vS2015DarkTheme1.Measures.SplitterSize = 2;
+            //MainDockPanel.Extender.FloatWindowFactory = new CustomFloatWindowFactory();
+            MainDockPanel.Theme = vS2015DarkTheme1;
+            
+            visualStudioToolStripExtender1.SetStyle(StripMenu, VisualStudioToolStripExtender.VsVersion.Vs2015, vS2015DarkTheme1);
+            visualStudioToolStripExtender1.SetStyle(StripStatus, VisualStudioToolStripExtender.VsVersion.Vs2015, vS2015DarkTheme1);
+            vS2015DarkTheme1.Extender.FloatWindowFactory = new CustomFloatWindowFactory();
+        
+            SubForms = new List<DockContent>();
 
 			//form init
 			//注：一度全てshowしないとイベントを受け取れないので注意	
@@ -252,6 +257,7 @@ namespace ElectronicObserver.Window
 				c.Debug.EnableDebugMenu;
 
 			StripStatus.Visible = c.Life.ShowStatusBar;
+            //StripMenu.
 
 			// Load で TopMost を変更するとバグるため(前述)
 			if (UIUpdateTimer.Enabled)
@@ -262,20 +268,29 @@ namespace ElectronicObserver.Window
 			Font = c.UI.MainFont;
 			//StripMenu.Font = Font;
 			StripStatus.Font = Font;
-			MainDockPanel.Skin.AutoHideStripSkin.TextFont = Font;
-			MainDockPanel.Skin.DockPaneStripSkin.TextFont = Font;
+            MainDockPanel.Theme.Skin.AutoHideStripSkin.TextFont = Font;
+           // vS2015DarkTheme1.Skin.AutoHideStripSkin.TextFont = Font;
+            MainDockPanel.Theme.Skin.DockPaneStripSkin.TextFont = Font;
+            BackColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.BackgroundColor);
+            ForeColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.MainFontColor);
+            StripMenu.BackColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.BackgroundColor);
+            StripMenu.ForeColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.MainFontColor);
+            StripStatus.BackColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.BackgroundColor);
+            StripStatus.ForeColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.MainFontColor);
 
-
-			if (c.Life.LockLayout)
+            if (c.Life.LockLayout)
 			{
 				MainDockPanel.AllowChangeLayout = false;
 				FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+                SubForms.ForEach(dock=> ToggleLock(dock));
 			}
 			else
 			{
 				MainDockPanel.AllowChangeLayout = true;
 				FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
-			}
+                SubForms.ForEach(dock => ToggleLock(dock));
+
+            }
 
 			StripMenu_File_Layout_LockLayout.Checked = c.Life.LockLayout;
 			MainDockPanel.CanCloseFloatWindowInLock = c.Life.CanCloseFloatWindowInLock;
@@ -288,12 +303,19 @@ namespace ElectronicObserver.Window
 				_volumeUpdateState = -1;
 		}
 
-
-
-
-
-
-		private void StripMenu_Debug_LoadAPIFromFile_Click(object sender, EventArgs e)
+        private void ToggleLock(DockContent dock)
+        {
+            if (MainDockPanel.AllowChangeLayout)
+            {
+                dock.AllowEndUserDocking = true;
+            }
+            else
+            {
+                dock.AllowEndUserDocking = false;
+            }
+        }
+       
+        private void StripMenu_Debug_LoadAPIFromFile_Click(object sender, EventArgs e)
 		{
 
 			/*/

@@ -36,12 +36,12 @@ namespace ElectronicObserver.Window
 			public ImageLabel SearchingAbility;
 			public ImageLabel AntiAirPower;
 			public ToolTip ToolTipInfo;
-
+            public FormFleet Parent;
 			public int BranchWeight { get; private set; } = 1;
 
 			public TableFleetControl(FormFleet parent)
 			{
-
+                this.Parent = parent;
 				#region Initialize
 
 				Name = new Label
@@ -330,8 +330,8 @@ namespace ElectronicObserver.Window
 			public TableMemberControl(FormFleet parent)
 			{
 
-				#region Initialize
-
+                #region Initialize
+                
 				Name = new ImageLabel();
 				Name.SuspendLayout();
 				Name.Text = "*nothing*";
@@ -374,6 +374,7 @@ namespace ElectronicObserver.Window
 				HP.UsePrevValue = false;
 				HP.MainFontColor = parent.MainFontColor;
 				HP.SubFontColor = parent.SubFontColor;
+                //HP.BackColor = parent.BackColor;
 				HP.Padding = new Padding(0, 0, 0, 0);
 				HP.Margin = new Padding(2, 1, 2, 2);
 				HP.AutoSize = true;
@@ -540,7 +541,7 @@ namespace ElectronicObserver.Window
 					}
 					else
 					{
-						HP.BackColor = SystemColors.Control;
+                        HP.BackColor = ColorTranslator.FromHtml("#2A2A2D");
 					}
 					{
 						StringBuilder sb = new StringBuilder();
@@ -848,10 +849,10 @@ namespace ElectronicObserver.Window
 
 			ConfigurationChanged();
 
-			MainFontColor = Color.FromArgb(0x00, 0x00, 0x00);
-			SubFontColor = Color.FromArgb(0x88, 0x88, 0x88);
+			MainFontColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.MainFontColor);
+            SubFontColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.SubFontColor);
 
-			AnchorageRepairBound = 0;
+            AnchorageRepairBound = 0;
 
 			//ui init
 
@@ -862,7 +863,8 @@ namespace ElectronicObserver.Window
 			TableFleet.Visible = false;
 			TableFleet.SuspendLayout();
 			TableFleet.BorderStyle = BorderStyle.FixedSingle;
-			ControlFleet = new TableFleetControl(this, TableFleet);
+            TableFleet.BackColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.BackgroundColor);
+            ControlFleet = new TableFleetControl(this, TableFleet);
 			TableFleet.ResumeLayout();
 
 
@@ -1269,8 +1271,12 @@ namespace ElectronicObserver.Window
 
 			MainFont = Font = c.UI.MainFont;
 			SubFont = c.UI.SubFont;
+            BackColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.BackgroundColor);
+            ForeColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.MainFontColor);
+            MainFontColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.MainFontColor);
+            SubFontColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.SubFontColor);
 
-			AutoScroll = c.FormFleet.IsScrollable;
+            AutoScroll = c.FormFleet.IsScrollable;
 
 			var fleet = KCDatabase.Instance.Fleet[FleetID];
 

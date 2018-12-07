@@ -18,6 +18,7 @@ using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WeifenLuo.WinFormsUI.Docking;
 
 namespace Browser
 {
@@ -163,7 +164,14 @@ namespace Browser
 				host.Click += ToolMenu_Other_LastScreenShot_ImageHost_Click;
 
 				ToolMenu_Other_LastScreenShot.DropDownItems.Insert(0, host);
-			}
+
+
+                visualStudioToolStripExtender1.SetStyle(ToolMenu, VisualStudioToolStripExtender.VsVersion.Vs2015, vS2015DarkTheme1);
+                ToolMenu.BackColor = SystemColors.ControlDark;
+                ToolMenu.ForeColor = Color.FromArgb(0x22, 0x22, 0x22);
+                this.BackColor = SystemColors.ControlDark;
+                this.ForeColor = Color.FromArgb(0x22, 0x22, 0x22); ;
+            }
 
 		}
 
@@ -290,7 +298,12 @@ namespace Browser
 			ToolMenu.Dock = (DockStyle)Configuration.ToolMenuDockStyle;
 			ToolMenu.Visible = Configuration.IsToolMenuVisible;
 
-		}
+
+            //BackColor = SystemColors.ControlDark;
+            //ForeColor = SystemColors.Control;
+           // ToolMenu.BackColor = SystemColors.ControlDark;
+            //ToolMenu.ForeColor = SystemColors.Control;
+        }
 
 		private void ConfigurationUpdated()
 		{

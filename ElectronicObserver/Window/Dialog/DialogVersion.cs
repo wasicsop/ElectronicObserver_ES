@@ -47,5 +47,6 @@ namespace ElectronicObserver.Window.Dialog
 
 			this.Icon = ResourceManager.Instance.AppIcon;
 		}
-	}
+
+    }
 }

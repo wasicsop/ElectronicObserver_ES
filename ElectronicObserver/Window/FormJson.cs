@@ -303,7 +303,10 @@ namespace ElectronicObserver.Window
 
 			Font = tabControl1.Font = c.UI.MainFont;
 
-			AutoUpdate.Checked = c.FormJson.AutoUpdate;
+            ForeColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.MainFontColor);
+            BackColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.BackgroundColor);
+
+            AutoUpdate.Checked = c.FormJson.AutoUpdate;
 			UpdatesTree.Checked = c.FormJson.UpdatesTree;
 			AutoUpdateFilter.Text = c.FormJson.AutoUpdateFilter;
 

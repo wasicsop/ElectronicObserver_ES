@@ -342,9 +342,12 @@ namespace ElectronicObserver.Window.Dialog
 			{
 				UI_RenderingTest.MainFont = config.UI.MainFont.FontData;
 				UI_RenderingTest.SubFont = config.UI.SubFont.FontData;
+                
 				UI_RenderingTest.HPBar.ColorMorphing = config.UI.BarColorMorphing;
 				UI_RenderingTest.HPBar.SetBarColorScheme(config.UI.BarColorScheme.Select(c => c.ColorData).ToArray());
-				UI_RenderingTestChanger.Maximum = UI_RenderingTest.MaximumValue;
+                UI_RenderingTest.BackColor = Color.FromArgb(0x22, 0x22, 0x22);
+                UI_RenderingTest.ForeColor = Color.White;
+                UI_RenderingTestChanger.Maximum = UI_RenderingTest.MaximumValue;
 				UI_RenderingTestChanger.Value = UI_RenderingTest.Value;
 			}
 

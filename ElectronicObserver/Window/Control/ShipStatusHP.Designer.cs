@@ -28,18 +28,20 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.SuspendLayout();
-			// 
-			// ShipStatusHP
-			// 
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.DoubleBuffered = true;
-			this.Name = "ShipStatusHP";
-			this.Size = new System.Drawing.Size(80, 20);
-			this.Paint += new System.Windows.Forms.PaintEventHandler(this.ShipStatusHP_Paint);
-			this.MouseEnter += new System.EventHandler(this.ShipStatusHP_MouseEnter);
-			this.MouseLeave += new System.EventHandler(this.ShipStatusHP_MouseLeave);
-			this.ResumeLayout(false);
+            this.SuspendLayout();
+            // 
+            // ShipStatusHP
+            // 
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.BackColor = System.Drawing.SystemColors.ControlText;
+            this.DoubleBuffered = true;
+            this.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.Name = "ShipStatusHP";
+            this.Size = new System.Drawing.Size(80, 20);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.ShipStatusHP_Paint);
+            this.MouseEnter += new System.EventHandler(this.ShipStatusHP_MouseEnter);
+            this.MouseLeave += new System.EventHandler(this.ShipStatusHP_MouseLeave);
+            this.ResumeLayout(false);
 
 		}
 

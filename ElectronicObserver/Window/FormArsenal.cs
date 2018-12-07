@@ -171,7 +171,9 @@ namespace ElectronicObserver.Window
 				ShipName.Font = parent.Font;
 				CompletionTime.Font = parent.Font;
 				CompletionTime.BackColor = Color.Transparent;
-				ShipName.MaximumSize = new Size(config.MaxShipNameWidth, ShipName.MaximumSize.Height);
+                ShipName.ForeColor = parent.ForeColor;
+                CompletionTime.ForeColor = parent.ForeColor;
+                ShipName.MaximumSize = new Size(config.MaxShipNameWidth, ShipName.MaximumSize.Height);
 			}
 
 			public void Dispose()
@@ -300,8 +302,10 @@ namespace ElectronicObserver.Window
 
 			Font = Utility.Configuration.Config.UI.MainFont;
 			MenuMain_ShowShipName.Checked = Utility.Configuration.Config.FormArsenal.ShowShipName;
+            ForeColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.MainFontColor);
+            BackColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.BackgroundColor);
 
-			if (ControlArsenal != null)
+            if (ControlArsenal != null)
 			{
 				TableArsenal.SuspendLayout();
 
