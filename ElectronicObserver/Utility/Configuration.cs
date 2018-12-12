@@ -185,7 +185,7 @@ namespace ElectronicObserver.Utility
 				public bool UseOriginalNodeId { get; set; }
 
 			    // ColorMode
-			    public ColorMode ThemeMode { get; set; }
+			    public int ThemeMode { get; set; }
 
                 // ThemeID
                 public int ThemeID { get; set; }
@@ -464,6 +464,7 @@ namespace ElectronicObserver.Utility
 				{
 					MainFont = new Font( "Meiryo UI", 12, FontStyle.Regular, GraphicsUnit.Pixel );
 					SubFont = new Font( "Meiryo UI", 10, FontStyle.Regular, GraphicsUnit.Pixel );
+				    ThemeMode = 0;
 					ThemeID = 0;
 					MaxAkashiPerHP = 5;
 					DockingUnitTimeOffset = 30;
@@ -1687,7 +1688,7 @@ namespace ElectronicObserver.Utility
 			}
 
 		    dynamic json;
-		    if (Config.UI.ThemeMode != ColorMode.Custom)
+		    if (Config.UI.ThemeMode != 2)
 		    {
 		        string theme = Theme.GetTheme(Config.UI.ThemeMode);
 		        json = DynamicJson.Parse(theme);
@@ -1711,12 +1712,12 @@ namespace ElectronicObserver.Utility
 		        catch (FileNotFoundException)
 		        {
 		            Logger.Add(3, @"Settings\ColorScheme.json not found.");
-		            json = DynamicJson.Parse(Theme.GetTheme(ColorMode.Dark));
+		            json = DynamicJson.Parse(Theme.GetTheme(0));
                 }
 		        catch
 		        {
 		            Logger.Add(3, @"Failed to read Settings\ColorScheme.json.");
-		            json = DynamicJson.Parse(Theme.GetTheme(ColorMode.Dark));
+		            json = DynamicJson.Parse(Theme.GetTheme(0));
                 }
             }
 
