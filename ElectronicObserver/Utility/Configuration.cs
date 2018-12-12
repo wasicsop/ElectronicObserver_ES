@@ -184,8 +184,11 @@ namespace ElectronicObserver.Utility
 				/// </summary>
 				public bool UseOriginalNodeId { get; set; }
 
-				// ThemeID
-				public int ThemeID { get; set; }
+			    // ColorMode
+			    public ColorMode ThemeMode { get; set; }
+
+                // ThemeID
+                public int ThemeID { get; set; }
 
 				// 明石 ToolTip 每 HP 耗时最大显示数量
 				public int MaxAkashiPerHP { get; set; }
@@ -1683,187 +1686,46 @@ namespace ElectronicObserver.Utility
 					Resources.FirstTimeTitle, MessageBoxButtons.OK, MessageBoxIcon.Information );
 			}
 
+		    dynamic json;
+		    if (Config.UI.ThemeMode != ColorMode.Custom)
+		    {
+		        string theme = Theme.GetTheme(Config.UI.ThemeMode);
+		        json = DynamicJson.Parse(theme);
+		    }
+		    else
+		    {
+		        try
+		        {
+		            string s = String.Empty;
+		            StringBuilder sb = new StringBuilder();
+		            using (StreamReader sr = File.OpenText(@"Settings\ColorScheme.json"))
+		            {
+		                while ((s = sr.ReadLine()) != null)
+		                {
+		                    s = Regex.Replace(s, @"\/\/.*?$", string.Empty);
+		                    if (!String.IsNullOrWhiteSpace(s)) sb.Append(s);
+		                }
+		            }
+		            json = DynamicJson.Parse(sb.ToString());
+		        }
+		        catch (FileNotFoundException)
+		        {
+		            Logger.Add(3, @"Settings\ColorScheme.json not found.");
+		            json = DynamicJson.Parse(Theme.GetTheme(ColorMode.Dark));
+                }
+		        catch
+		        {
+		            Logger.Add(3, @"Failed to read Settings\ColorScheme.json.");
+		            json = DynamicJson.Parse(Theme.GetTheme(ColorMode.Dark));
+                }
+            }
 
-			// 读取配色主题 ( 默认值待编辑 )
-			dynamic json = DynamicJson.Parse(@"[{
-""name"":""Light"",
-""basicColors"":{
-""red"":""#FF0000"",
-""orange"":""#FFA500"",
-""yellow"":""#FFFF00"",
-""green"":""#00FF00"",
-""cyan"":""#00FFFF"",
-""blue"":""#0000FF"",
-""magenta"":""#FF00FF"",
-""violet"":""#EE82EE""
-},
-""barColors"":[[
-""#FF0000"",
-""#FF0000"",
-""#FF8800"",
-""#FF8800"",
-""#FFCC00"",
-""#FFCC00"",
-""#00CC00"",
-""#00CC00"",
-""#0044CC"",
-""#44FF00"",
-""#882222"",
-""#888888""
-],[
-""#FF0000"",
-""#FF0000"",
-""#FF4400"",
-""#FF8800"",
-""#FFAA00"",
-""#EEEE00"",
-""#CCEE00"",
-""#00CC00"",
-""#0044CC"",
-""#00FF44"",
-""#882222"",
-""#888888""
-]],
-""panelColors"":{
-""foreground"":""#000000"",
-""background"":""#F0F0F0"",
-""foreground2"":""#888888"",
-""background2"":""#E3E3E3"",
-""statusBarFG"":""#000000"",
-""statusBarBG"":""#E3E3E3"",
-""skin"":{
-""panelSplitter"":""#E3E3E3"",
-""docTabBarFG"":""#000000"",
-""docTabBarBG"":""#F0F0F0"",
-""docTabActiveFG"":""#FFFFFF"",
-""docTabActiveBG"":""#007ACC"",
-""docTabActiveLostFocusFG"":""#6D6D6D"",
-""docTabActiveLostFocusBG"":""#CCCEDB"",
-""docTabInactiveHoverFG"":""#FFFFFF"",
-""docTabInactiveHoverBG"":""#1C97EA"",
-""docBtnActiveHoverFG"":""#FFFFFF"",
-""docBtnActiveHoverBG"":""#1C97EA"",
-""docBtnActiveLostFocusHoverFG"":""#717171"",
-""docBtnActiveLostFocusHoverBG"":""#E6E7ED"",
-""docBtnInactiveHoverFG"":""#FFFFFF"",
-""docBtnInactiveHoverBG"":""#52B0EF"",
-""toolTabBarFG"":""#6D6D6D"",
-""toolTabBarBG"":""#F0F0F0"",
-""toolTabActive"":""#007ACC"",
-""toolTitleActiveFG"":""#FFFFFF"",
-""toolTitleActiveBG"":""#007ACC"",
-""toolTitleLostFocusFG"":""#6D6D6D"",
-""toolTitleLostFocusBG"":""#F0F0F0"",
-""toolTitleDotActive"":""#50AADC"",
-""toolTitleDotLostFocus"":""#A0A0A0"",
-""autoHideTabBarFG"":""#E3E3E3"",
-""autoHideTabBarBG"":""#F0F0F0"",
-""autoHideTabActive"":""#007ACC"",
-""autoHideTabInactive"":""#6D6D6D""
-},
-""fleet"":{
-""repairTimerText"":""#888888"",
-""conditionText"":""#000000"",
-""conditionVeryTired"":""#F08080"",
-""conditionTired"":""#FFA07A"",
-""conditionLittleTired"":""#FFE4B5"",
-""conditionSparkle"":""#90EE90"",
-""equipmentLevel"":""#006666""
-},
-""fleetOverview"":{
-""shipDamagedFG"":""#000000"",
-""shipDamagedBG"":""#F08080"",
-""expeditionOverFG"":""#000000"",
-""expeditionOverBG"":""#90EE90"",
-""tiredRecoveredFG"":""#000000"",
-""tiredRecoveredBG"":""#90EE90"",
-""alertNotInExpeditionFG"":""#000000"",
-""alertNotInExpeditionBG"":""#90EE90""
-},
-""dock"":{
-""repairFinishedFG"":""#000000"",
-""repairFinishedBG"":""#90EE90""
-},
-""arsenal"":{
-""buildCompleteFG"":""#000000"",
-""buildCompleteBG"":""#90EE90""
-},
-""hq"":{
-""resOverFG"":""#000000"",
-""resOverBG"":""#FFE4B5"",
-""shipOverFG"":""#000000"",
-""shipOverBG"":""#F08080"",
-""materialMaxFG"":""#000000"",
-""materialMaxBG"":""#F08080"",
-""coinMaxFG"":""#000000"",
-""coinMaxFG"":""#F08080"",
-""resLowFG"":""#000000"",
-""resLowBG"":""#F08080"",
-""resMaxFG"":""#000000"",
-""resMaxBG"":""#F08080""
-},
-""quest"":{
-""typeFG"":""#000000"",
-""typeHensei"":""#AAFFAA"",
-""typeShutsugeki"":""#FFCCCC"",
-""typeEnshu"":""#DDFFAA"",
-""typeEnsei"":""#CCFFFF"",
-""typeHokyu"":""#FFFFCC"",
-""typeKojo"":""#DDCCBB"",
-""typeKaiso"":""#DDCCFF"",
-""processLT50"":""#FF8800"",
-""processLT80"":""#00CC00"",
-""processLT100"":""#008800"",
-""processDefault"":""#0088FF""
-},
-""compass"":{
-""shipClass2"":""#FF0000"",
-""shipClass3"":""#FF8800"",
-""shipClass4"":""#006600"",
-""shipClass5"":""#880000"",
-""shipClass6"":""#0088FF"",
-""shipClass7"":""#FF00FF"",
-""shipDestroyed"":""#0000FF"",
-""eventKind3"":""#000080"",
-""eventKind6"":""#006400"",
-""eventKind5"":""#8B0000""
-},
-""battle"":{
-""barMVP"":""#FFE4B5"",
-""textMVP"":""#000000"",
-""textMVP2"":""#888888"",
-""barEscaped"":""#C0C0C0"",
-""textEscaped"":""#000000"",
-""textEscaped2"":""#888888"",
-""barBossDamaged"":""#FFE4E1"",
-""textBossDamaged"":""#000000"",
-""textBossDamaged2"":""#888888""
-}}}]");
-			//if (File.Exists(@"Settings\ColorScheme.json")) {
-			try {
-				string s = String.Empty;
-				StringBuilder sb = new StringBuilder();
-				// 读取配色文件
-				using (StreamReader sr = File.OpenText( @"Settings\ColorScheme.json" )) {
-					while ((s = sr.ReadLine()) != null) {
-						// 干掉注释，因为 DynamicJson 不支持注释
-						s = Regex.Replace( s, @"\/\/.*?$", string.Empty );
-						if (!String.IsNullOrWhiteSpace( s )) sb.Append( s );
-					}
-				}
-				json = DynamicJson.Parse( sb.ToString() );
-			}
-			catch (FileNotFoundException) {
-				Logger.Add( 1, @"Settings\ColorScheme.json not found." );
-			}
-			catch {
-				Logger.Add( 1, @"Failed to read Settings\ColorScheme.json." );
-			}
 			int themeId = Config.UI.ThemeID;
 			if (!json.IsDefined( themeId )) {
 				themeId = Config.UI.ThemeID = 0;
 				Logger.Add( 2, "Failed to find selected ThemeID" );
 			}
+
 			ThemeStyle = json[themeId];
 			Logger.Add( 1, "Color theme loaded: " + ThemeStyle["name"] );
 			// 定义基本颜色
