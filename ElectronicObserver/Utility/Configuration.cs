@@ -1687,66 +1687,74 @@ namespace ElectronicObserver.Utility
 					Resources.FirstTimeTitle, MessageBoxButtons.OK, MessageBoxIcon.Information );
 			}
 
-		    dynamic json;
-		    if (Config.UI.ThemeMode != 2)
-		    {
-		        string theme = Theme.GetTheme(Config.UI.ThemeMode);
-		        json = DynamicJson.Parse(theme);
-		    }
-		    else
-		    {
-		        try
-		        {
-		            string s = String.Empty;
-		            StringBuilder sb = new StringBuilder();
-		            using (StreamReader sr = File.OpenText(@"Settings\ColorScheme.json"))
-		            {
-		                while ((s = sr.ReadLine()) != null)
-		                {
-		                    s = Regex.Replace(s, @"\/\/.*?$", string.Empty);
-		                    if (!String.IsNullOrWhiteSpace(s)) sb.Append(s);
-		                }
-		            }
-		            json = DynamicJson.Parse(sb.ToString());
-		        }
-		        catch (FileNotFoundException)
-		        {
-		            Logger.Add(3, @"Settings\ColorScheme.json not found.");
-		            json = DynamicJson.Parse(Theme.GetTheme(0));
-                }
-		        catch
-		        {
-		            Logger.Add(3, @"Failed to read Settings\ColorScheme.json.");
-		            json = DynamicJson.Parse(Theme.GetTheme(0));
-                }
-            }
+		    ApplyTheme();
+		}
+
+		private dynamic ThemeStyle;
+
+		private void ApplyTheme()
+		{
+			dynamic json;
+			if (Config.UI.ThemeMode != 2)
+			{
+				string theme = Theme.GetTheme(Config.UI.ThemeMode);
+				json = DynamicJson.Parse(theme);
+			}
+			else
+			{
+				try
+				{
+					string s = String.Empty;
+					StringBuilder sb = new StringBuilder();
+					using (StreamReader sr = File.OpenText(@"Settings\ColorScheme.json"))
+					{
+						while ((s = sr.ReadLine()) != null)
+						{
+							s = Regex.Replace(s, @"\/\/.*?$", string.Empty);
+							if (!String.IsNullOrWhiteSpace(s)) sb.Append(s);
+						}
+					}
+					json = DynamicJson.Parse(sb.ToString());
+				}
+				catch (FileNotFoundException)
+				{
+					Logger.Add(3, @"Settings\ColorScheme.json not found.");
+					json = DynamicJson.Parse(Theme.GetTheme(0));
+				}
+				catch
+				{
+					Logger.Add(3, @"Failed to read Settings\ColorScheme.json.");
+					json = DynamicJson.Parse(Theme.GetTheme(0));
+				}
+			}
 
 			int themeId = Config.UI.ThemeID;
-			if (!json.IsDefined( themeId )) {
+			if (!json.IsDefined(themeId))
+			{
 				themeId = Config.UI.ThemeID = 0;
-				Logger.Add( 2, "Failed to find selected ThemeID" );
+				Logger.Add(2, "Failed to find selected ThemeID");
 			}
 
 			ThemeStyle = json[themeId];
-			Logger.Add( 1, "Color theme loaded: " + ThemeStyle["name"] );
+			Logger.Add(1, "Color theme loaded: " + ThemeStyle["name"]);
 			// 定义基本颜色
-			Config.UI.Color_Red = ThemeColor( "basicColors", "red" );
-			Config.UI.Color_Orange = ThemeColor( "basicColors", "orange" );
-			Config.UI.Color_Yellow = ThemeColor( "basicColors", "yellow" );
-			Config.UI.Color_Green = ThemeColor( "basicColors", "green" );
-			Config.UI.Color_Cyan = ThemeColor( "basicColors", "cyan" );
-			Config.UI.Color_Blue = ThemeColor( "basicColors", "blue" );
-			Config.UI.Color_Magenta = ThemeColor( "basicColors", "magenta" );
-			Config.UI.Color_Violet = ThemeColor( "basicColors", "violet" );
+			Config.UI.Color_Red = ThemeColor("basicColors", "red");
+			Config.UI.Color_Orange = ThemeColor("basicColors", "orange");
+			Config.UI.Color_Yellow = ThemeColor("basicColors", "yellow");
+			Config.UI.Color_Green = ThemeColor("basicColors", "green");
+			Config.UI.Color_Cyan = ThemeColor("basicColors", "cyan");
+			Config.UI.Color_Blue = ThemeColor("basicColors", "blue");
+			Config.UI.Color_Magenta = ThemeColor("basicColors", "magenta");
+			Config.UI.Color_Violet = ThemeColor("basicColors", "violet");
 			// 定义面板颜色
-			Config.UI.ForeColor = ThemeColor( "panelColors", "foreground" );
-			Config.UI.BackColor = ThemeColor( "panelColors", "background" );
-			Config.UI.SubForeColor = ThemeColor( "panelColors", "foreground2" );
-			Config.UI.SubBackColor = ThemeColor( "panelColors", "background2" );
-			Config.UI.SubBackColorPen = new Pen( Config.UI.SubBackColor );
+			Config.UI.ForeColor = ThemeColor("panelColors", "foreground");
+			Config.UI.BackColor = ThemeColor("panelColors", "background");
+			Config.UI.SubForeColor = ThemeColor("panelColors", "foreground2");
+			Config.UI.SubBackColor = ThemeColor("panelColors", "background2");
+			Config.UI.SubBackColorPen = new Pen(Config.UI.SubBackColor);
 			// 状态栏颜色
-			Config.UI.StatusBarForeColor = ThemeColor( "panelColors", "statusBarFG" );
-			Config.UI.StatusBarBackColor = ThemeColor( "panelColors", "statusBarBG" );
+			Config.UI.StatusBarForeColor = ThemeColor("panelColors", "statusBarFG");
+			Config.UI.StatusBarBackColor = ThemeColor("panelColors", "statusBarBG");
 			// 定义 UI (DockPanelSuite) 颜色
 			Config.UI.DockPanelSuiteStyles = new string[] {
 				ThemePanelColorHex("skin", "panelSplitter"),
@@ -1811,72 +1819,70 @@ namespace ElectronicObserver.Utility
 			};
 			Config.UI.SetBarColorScheme();
 			// 设定各面板颜色
-			Config.UI.Fleet_ColorRepairTimerText = ThemePanelColor( "fleet", "repairTimerText" );
-			Config.UI.Fleet_ColorConditionText = ThemePanelColor( "fleet", "conditionText" );
-			Config.UI.Fleet_ColorConditionVeryTired = ThemePanelColor( "fleet", "conditionVeryTired" );
-			Config.UI.Fleet_ColorConditionTired = ThemePanelColor( "fleet", "conditionTired" );
-			Config.UI.Fleet_ColorConditionLittleTired = ThemePanelColor( "fleet", "conditionLittleTired" );
-			Config.UI.Fleet_ColorConditionSparkle = ThemePanelColor( "fleet", "conditionSparkle" );
-			Config.UI.Fleet_EquipmentLevelColor = ThemePanelColor( "fleet", "equipmentLevel" );
-			Config.UI.FleetOverview_ShipDamagedFG = ThemePanelColor( "fleetOverview", "shipDamagedFG" );
-			Config.UI.FleetOverview_ShipDamagedBG = ThemePanelColor( "fleetOverview", "shipDamagedBG" );
-			Config.UI.FleetOverview_ExpeditionOverFG = ThemePanelColor( "fleetOverview", "expeditionOverFG" );
-			Config.UI.FleetOverview_ExpeditionOverBG = ThemePanelColor( "fleetOverview", "expeditionOverBG" );
-			Config.UI.FleetOverview_TiredRecoveredFG = ThemePanelColor( "fleetOverview", "tiredRecoveredFG" );
-			Config.UI.FleetOverview_TiredRecoveredBG = ThemePanelColor( "fleetOverview", "tiredRecoveredBG" );
-			Config.UI.FleetOverview_AlertNotInExpeditionFG = ThemePanelColor( "fleetOverview", "alertNotInExpeditionFG" );
-			Config.UI.FleetOverview_AlertNotInExpeditionBG = ThemePanelColor( "fleetOverview", "alertNotInExpeditionBG" );
-			Config.UI.Dock_RepairFinishedFG = ThemePanelColor( "dock", "repairFinishedFG" );
-			Config.UI.Dock_RepairFinishedBG = ThemePanelColor( "dock", "repairFinishedBG" );
-			Config.UI.Arsenal_BuildCompleteFG = ThemePanelColor( "arsenal", "buildCompleteFG" );
-			Config.UI.Arsenal_BuildCompleteBG = ThemePanelColor( "arsenal", "buildCompleteBG" );
-			Config.UI.Headquarters_ResourceOverFG = ThemePanelColor( "hq", "resOverFG" );
-			Config.UI.Headquarters_ResourceOverBG = ThemePanelColor( "hq", "resOverBG" );
-			Config.UI.Headquarters_ShipCountOverFG = ThemePanelColor( "hq", "shipOverFG" );
-			Config.UI.Headquarters_ShipCountOverBG = ThemePanelColor( "hq", "shipOverBG" );
-			Config.UI.Headquarters_MaterialMaxFG = ThemePanelColor( "hq", "materialMaxFG" );
-			Config.UI.Headquarters_MaterialMaxBG = ThemePanelColor( "hq", "materialMaxBG" );
-			Config.UI.Headquarters_CoinMaxFG = ThemePanelColor( "hq", "coinMaxFG" );
-			Config.UI.Headquarters_CoinMaxBG = ThemePanelColor( "hq", "coinMaxBG" );
-			Config.UI.Headquarters_ResourceLowFG = ThemePanelColor( "hq", "resLowFG" );
-			Config.UI.Headquarters_ResourceLowBG = ThemePanelColor( "hq", "resLowBG" );
-			Config.UI.Headquarters_ResourceMaxFG = ThemePanelColor( "hq", "resMaxFG" );
-			Config.UI.Headquarters_ResourceMaxBG = ThemePanelColor( "hq", "resMaxBG" );
-			Config.UI.Quest_TypeFG = ThemePanelColor( "quest", "typeFG" );
-			Config.UI.Quest_Type1Color = ThemePanelColor( "quest", "typeHensei" );
-			Config.UI.Quest_Type2Color = ThemePanelColor( "quest", "typeShutsugeki" );
-			Config.UI.Quest_Type3Color = ThemePanelColor( "quest", "typeEnshu" );
-			Config.UI.Quest_Type4Color = ThemePanelColor( "quest", "typeEnsei" );
-			Config.UI.Quest_Type5Color = ThemePanelColor( "quest", "typeHokyu" );
-			Config.UI.Quest_Type6Color = ThemePanelColor( "quest", "typeKojo" );
-			Config.UI.Quest_Type7Color = ThemePanelColor( "quest", "typeKaiso" );
-			Config.UI.Quest_ColorProcessLT50 = ThemePanelColor( "quest", "processLT50" );
-			Config.UI.Quest_ColorProcessLT80 = ThemePanelColor( "quest", "processLT80" );
-			Config.UI.Quest_ColorProcessLT100 = ThemePanelColor( "quest", "processLT100" );
-			Config.UI.Quest_ColorProcessDefault = ThemePanelColor( "quest", "processDefault" );
-			Config.UI.Compass_ShipNameColor2 = ThemePanelColor( "compass", "shipClass2" );
-			Config.UI.Compass_ShipNameColor3 = ThemePanelColor( "compass", "shipClass3" );
-			Config.UI.Compass_ShipNameColor4 = ThemePanelColor( "compass", "shipClass4" );
-			Config.UI.Compass_ShipNameColor5 = ThemePanelColor( "compass", "shipClass5" );
-			Config.UI.Compass_ShipNameColor6 = ThemePanelColor( "compass", "shipClass6" );
-			Config.UI.Compass_ShipNameColor7 = ThemePanelColor( "compass", "shipClass7" );
-			Config.UI.Compass_ShipNameColorDestroyed = ThemePanelColor( "compass", "shipDestroyed" );
-			Config.UI.Compass_ColorTextEventKind3 = ThemePanelColor( "compass", "eventKind3" );
-			Config.UI.Compass_ColorTextEventKind6 = ThemePanelColor( "compass", "eventKind6" );
-			Config.UI.Compass_ColorTextEventKind5 = ThemePanelColor( "compass", "eventKind5" );
-			Config.UI.Compass_ColoroverlayBrush = ThemePanelColor( "compass", "overlayBrush" );
-			Config.UI.Battle_ColorHPBarsMVP = ThemePanelColor( "battle", "barMVP" );
-			Config.UI.Battle_ColorTextMVP = ThemePanelColor( "battle", "textMVP" );
-			Config.UI.Battle_ColorTextMVP2 = ThemePanelColor( "battle", "textMVP2" );
-			Config.UI.Battle_ColorHPBarsEscaped = ThemePanelColor( "battle", "barEscaped" );
-			Config.UI.Battle_ColorTextEscaped = ThemePanelColor( "battle", "textEscaped" );
-			Config.UI.Battle_ColorTextEscaped2 = ThemePanelColor( "battle", "textEscaped2" );
-			Config.UI.Battle_ColorHPBarsBossDamaged = ThemePanelColor( "battle", "barBossDamaged" );
-			Config.UI.Battle_ColorTextBossDamaged = ThemePanelColor( "battle", "textBossDamaged" );
-			Config.UI.Battle_ColorTextBossDamaged2 = ThemePanelColor( "battle", "textBossDamaged2" );
+			Config.UI.Fleet_ColorRepairTimerText = ThemePanelColor("fleet", "repairTimerText");
+			Config.UI.Fleet_ColorConditionText = ThemePanelColor("fleet", "conditionText");
+			Config.UI.Fleet_ColorConditionVeryTired = ThemePanelColor("fleet", "conditionVeryTired");
+			Config.UI.Fleet_ColorConditionTired = ThemePanelColor("fleet", "conditionTired");
+			Config.UI.Fleet_ColorConditionLittleTired = ThemePanelColor("fleet", "conditionLittleTired");
+			Config.UI.Fleet_ColorConditionSparkle = ThemePanelColor("fleet", "conditionSparkle");
+			Config.UI.Fleet_EquipmentLevelColor = ThemePanelColor("fleet", "equipmentLevel");
+			Config.UI.FleetOverview_ShipDamagedFG = ThemePanelColor("fleetOverview", "shipDamagedFG");
+			Config.UI.FleetOverview_ShipDamagedBG = ThemePanelColor("fleetOverview", "shipDamagedBG");
+			Config.UI.FleetOverview_ExpeditionOverFG = ThemePanelColor("fleetOverview", "expeditionOverFG");
+			Config.UI.FleetOverview_ExpeditionOverBG = ThemePanelColor("fleetOverview", "expeditionOverBG");
+			Config.UI.FleetOverview_TiredRecoveredFG = ThemePanelColor("fleetOverview", "tiredRecoveredFG");
+			Config.UI.FleetOverview_TiredRecoveredBG = ThemePanelColor("fleetOverview", "tiredRecoveredBG");
+			Config.UI.FleetOverview_AlertNotInExpeditionFG = ThemePanelColor("fleetOverview", "alertNotInExpeditionFG");
+			Config.UI.FleetOverview_AlertNotInExpeditionBG = ThemePanelColor("fleetOverview", "alertNotInExpeditionBG");
+			Config.UI.Dock_RepairFinishedFG = ThemePanelColor("dock", "repairFinishedFG");
+			Config.UI.Dock_RepairFinishedBG = ThemePanelColor("dock", "repairFinishedBG");
+			Config.UI.Arsenal_BuildCompleteFG = ThemePanelColor("arsenal", "buildCompleteFG");
+			Config.UI.Arsenal_BuildCompleteBG = ThemePanelColor("arsenal", "buildCompleteBG");
+			Config.UI.Headquarters_ResourceOverFG = ThemePanelColor("hq", "resOverFG");
+			Config.UI.Headquarters_ResourceOverBG = ThemePanelColor("hq", "resOverBG");
+			Config.UI.Headquarters_ShipCountOverFG = ThemePanelColor("hq", "shipOverFG");
+			Config.UI.Headquarters_ShipCountOverBG = ThemePanelColor("hq", "shipOverBG");
+			Config.UI.Headquarters_MaterialMaxFG = ThemePanelColor("hq", "materialMaxFG");
+			Config.UI.Headquarters_MaterialMaxBG = ThemePanelColor("hq", "materialMaxBG");
+			Config.UI.Headquarters_CoinMaxFG = ThemePanelColor("hq", "coinMaxFG");
+			Config.UI.Headquarters_CoinMaxBG = ThemePanelColor("hq", "coinMaxBG");
+			Config.UI.Headquarters_ResourceLowFG = ThemePanelColor("hq", "resLowFG");
+			Config.UI.Headquarters_ResourceLowBG = ThemePanelColor("hq", "resLowBG");
+			Config.UI.Headquarters_ResourceMaxFG = ThemePanelColor("hq", "resMaxFG");
+			Config.UI.Headquarters_ResourceMaxBG = ThemePanelColor("hq", "resMaxBG");
+			Config.UI.Quest_TypeFG = ThemePanelColor("quest", "typeFG");
+			Config.UI.Quest_Type1Color = ThemePanelColor("quest", "typeHensei");
+			Config.UI.Quest_Type2Color = ThemePanelColor("quest", "typeShutsugeki");
+			Config.UI.Quest_Type3Color = ThemePanelColor("quest", "typeEnshu");
+			Config.UI.Quest_Type4Color = ThemePanelColor("quest", "typeEnsei");
+			Config.UI.Quest_Type5Color = ThemePanelColor("quest", "typeHokyu");
+			Config.UI.Quest_Type6Color = ThemePanelColor("quest", "typeKojo");
+			Config.UI.Quest_Type7Color = ThemePanelColor("quest", "typeKaiso");
+			Config.UI.Quest_ColorProcessLT50 = ThemePanelColor("quest", "processLT50");
+			Config.UI.Quest_ColorProcessLT80 = ThemePanelColor("quest", "processLT80");
+			Config.UI.Quest_ColorProcessLT100 = ThemePanelColor("quest", "processLT100");
+			Config.UI.Quest_ColorProcessDefault = ThemePanelColor("quest", "processDefault");
+			Config.UI.Compass_ShipNameColor2 = ThemePanelColor("compass", "shipClass2");
+			Config.UI.Compass_ShipNameColor3 = ThemePanelColor("compass", "shipClass3");
+			Config.UI.Compass_ShipNameColor4 = ThemePanelColor("compass", "shipClass4");
+			Config.UI.Compass_ShipNameColor5 = ThemePanelColor("compass", "shipClass5");
+			Config.UI.Compass_ShipNameColor6 = ThemePanelColor("compass", "shipClass6");
+			Config.UI.Compass_ShipNameColor7 = ThemePanelColor("compass", "shipClass7");
+			Config.UI.Compass_ShipNameColorDestroyed = ThemePanelColor("compass", "shipDestroyed");
+			Config.UI.Compass_ColorTextEventKind3 = ThemePanelColor("compass", "eventKind3");
+			Config.UI.Compass_ColorTextEventKind6 = ThemePanelColor("compass", "eventKind6");
+			Config.UI.Compass_ColorTextEventKind5 = ThemePanelColor("compass", "eventKind5");
+			Config.UI.Compass_ColoroverlayBrush = ThemePanelColor("compass", "overlayBrush");
+			Config.UI.Battle_ColorHPBarsMVP = ThemePanelColor("battle", "barMVP");
+			Config.UI.Battle_ColorTextMVP = ThemePanelColor("battle", "textMVP");
+			Config.UI.Battle_ColorTextMVP2 = ThemePanelColor("battle", "textMVP2");
+			Config.UI.Battle_ColorHPBarsEscaped = ThemePanelColor("battle", "barEscaped");
+			Config.UI.Battle_ColorTextEscaped = ThemePanelColor("battle", "textEscaped");
+			Config.UI.Battle_ColorTextEscaped2 = ThemePanelColor("battle", "textEscaped2");
+			Config.UI.Battle_ColorHPBarsBossDamaged = ThemePanelColor("battle", "barBossDamaged");
+			Config.UI.Battle_ColorTextBossDamaged = ThemePanelColor("battle", "textBossDamaged");
+			Config.UI.Battle_ColorTextBossDamaged2 = ThemePanelColor("battle", "textBossDamaged2");
 		}
-
-		private dynamic ThemeStyle;
 
 		private Color ThemeColor(string type, string name) {
 			if (ThemeStyle.IsDefined(type) && ThemeStyle[type].IsDefined(name)) {
