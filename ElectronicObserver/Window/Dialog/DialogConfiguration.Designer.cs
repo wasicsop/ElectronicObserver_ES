@@ -2870,6 +2870,9 @@
 			this.comboBox1.TabIndex = 17;
 			this.comboBox1.Items.AddRange(new object[] {
 				"Light", "Dark", "Custom"});
+			this.ToolTipInfo.SetToolTip(this.comboBox1, "Use the specified color theme.\n" +
+			                                            "Changes will take effect after restart.\n" +
+			                                            "Custom option will use color values from Settings\\ColorScheme.json");
 			//
 			// DialogConfiguration
 			//
