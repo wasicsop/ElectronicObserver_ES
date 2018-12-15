@@ -58,7 +58,7 @@ namespace ElectronicObserver.Data
 			}
 		}
 
-
+        //bonus distance
         public int Bonus_Distance
         {
             get
@@ -159,7 +159,8 @@ namespace ElectronicObserver.Data
 							}
 						}
 
-						Distance = (int)data.api_distance;
+                        Distance = (int)data.api_distance.api_base;
+                        Bonus_Distance = (int)data.api_distance.api_bonus;
 					}
 					break;
 
