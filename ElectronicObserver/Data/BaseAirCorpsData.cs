@@ -44,25 +44,38 @@ namespace ElectronicObserver.Data
 		}
 
 		/// <summary>
-		/// 戦闘行動半径
+		/// 戦闘行動半径 base distance
 		/// </summary>
 		public int Distance
 		{
 			get
 			{
-				return (int)RawData.api_distance;
+				return (int)RawData.api_distance.api_base;
 			}
 			private set
 			{
-				RawData.api_distance = value;
+				RawData.api_distance.api_base = value;
 			}
 		}
 
-		/// <summary>
-		/// 行動指示
-		/// 0=待機, 1=出撃, 2=防空, 3=退避, 4=休息
-		/// </summary>
-		public int ActionKind
+        //bonus distance
+        public int Bonus_Distance
+        {
+            get
+            {
+                return (int)RawData.api_distance.api_bonus;
+            }
+            private set
+            {
+                RawData.api_distance.api_bonus = value;
+            }
+        }
+
+        /// <summary>
+        /// 行動指示
+        /// 0=待機, 1=出撃, 2=防空, 3=退避, 4=休息
+        /// </summary>
+        public int ActionKind
 		{
 			get
 			{
@@ -146,7 +159,8 @@ namespace ElectronicObserver.Data
 							}
 						}
 
-						Distance = (int)data.api_distance;
+                        Distance = (int)data.api_distance.api_base;
+                        Bonus_Distance = (int)data.api_distance.api_bonus;
 					}
 					break;
 
