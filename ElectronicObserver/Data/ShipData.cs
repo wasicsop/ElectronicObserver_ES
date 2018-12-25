@@ -1523,8 +1523,8 @@ namespace ElectronicObserver.Data
 
 				var eqs = AllSlotInstance.Where(eq => eq != null);
 
-				if (ShipID == 380 || ShipID == 529)  // 大鷹改(二)
-				{
+				if (ShipID == 380 || ShipID == 529 || ShipID == 381 || ShipID == 536)  // 大鷹改(二) , 神鷹改(二)
+                {
 					// 本当は 対潜 > 0 の艦攻 or オートジャイロ or 対潜哨戒機 が必要らしいが、おそらくそれは CanAttackSubmarine で判定済みなので
 					return true;
 				}
