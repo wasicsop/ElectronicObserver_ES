@@ -169,3 +169,5 @@ packages/
 /ElectronicObserver/BattleLog
 /ElectronicObserver/BrowserCache
 /ElectronicObserver/ScreenShot
+
+*.bak
