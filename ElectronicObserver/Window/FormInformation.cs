@@ -386,18 +386,27 @@ namespace ElectronicObserver.Window
 					else if (elem.api_eventmap())
 					{
 
-						string difficulty = "";
-						if (elem.api_eventmap.api_selected_rank())
-						{
-							difficulty = "[" + Constants.GetDifficulty((int)elem.api_eventmap.api_selected_rank) + "] ";
-						}
+                        string difficulty = "";
+                        if (elem.api_eventmap.api_selected_rank())
+                        {
+                            difficulty = "[" + Constants.GetDifficulty((int)elem.api_eventmap.api_selected_rank) + "] ";
+                        }
+                        int gauge_max_hp = 0;
+                        int gauge_cur_hp = 0;
+                        if (elem.api_eventmap.api_now_maphp())
+                        {
+                            gauge_cur_hp = (int)elem.api_eventmap.api_now_maphp;
+                        }
+                        if (elem.api_eventmap.api_max_maphp())
+                        {
+                            gauge_max_hp = (int)elem.api_eventmap.api_max_maphp;
+                        }
 
-						sb.AppendFormat("{0}-{1} {2}: {3}{4} {5}/{6}\r\n",
-							map.MapAreaID, map.MapInfoID, difficulty,
-							elem.api_eventmap.api_gauge_num() ? ("#" + (int)elem.api_eventmap.api_gauge_num + " ") : "",
-							elem.api_eventmap.api_gauge_type() && (int)elem.api_eventmap.api_gauge_type == 3 ? "TP" : "HP",
-							(int)elem.api_eventmap.api_now_maphp, (int)elem.api_eventmap.api_max_maphp);
-
+                        sb.AppendFormat("{0}-{1} {2}:{3} {4} {5}/{6}\r\n",
+                            map.MapAreaID, map.MapInfoID, difficulty,
+                            elem.api_gauge_num() ? ("#" + (int)elem.api_gauge_num + " ") : "",
+                            elem.api_gauge_type() && (int)elem.api_gauge_type == 3 ? "TP" : "HP",
+                            gauge_cur_hp, gauge_max_hp);                         
 					}
 				}
 			}
