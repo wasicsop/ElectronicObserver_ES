@@ -23,7 +23,8 @@ namespace ElectronicObserver.Window
 		private List<int> _inSortie;
 		private int[] _prevResource;
 
-		public FormInformation(FormMain parent)
+
+        public FormInformation(FormMain parent)
 		{
 			InitializeComponent();
 
@@ -386,28 +387,48 @@ namespace ElectronicObserver.Window
 
 				if (map != null)
 				{
-					if (map.RequiredDefeatedCount != -1 && elem.api_defeat_count())
-					{
+                    if (map.RequiredDefeatedCount != -1 && elem.api_defeat_count())
+                    {
 
-						sb.AppendFormat("{0}-{1} : 撃破 {2}/{3} 回\r\n", map.MapAreaID, map.MapInfoID, (int)elem.api_defeat_count, map.RequiredDefeatedCount);
+                        sb.AppendFormat("{0}-{1} : 撃破 {2}/{3} 回\r\n", map.MapAreaID, map.MapInfoID, (int)elem.api_defeat_count, map.RequiredDefeatedCount);
 
-					}
-					else if (elem.api_eventmap())
-					{
+                    }
+                    else if (elem.api_eventmap())
+                    {
 
-						string difficulty = "";
-						if (elem.api_eventmap.api_selected_rank())
-						{
-							difficulty = "[" + Constants.GetDifficulty((int)elem.api_eventmap.api_selected_rank) + "] ";
-						}
+                        string difficulty = "";
+                        if (elem.api_eventmap.api_selected_rank())
+                        {
+                            difficulty = "[" + Constants.GetDifficulty((int)elem.api_eventmap.api_selected_rank) + "] ";
+                        }
 
-						sb.AppendFormat("{0}-{1} {2}: {3}{4} {5}/{6}\r\n",
-							map.MapAreaID, map.MapInfoID, difficulty,
-							elem.api_eventmap.api_gauge_num() ? ("#" + (int)elem.api_eventmap.api_gauge_num + " ") : "",
-							elem.api_eventmap.api_gauge_type() && (int)elem.api_eventmap.api_gauge_type == 3 ? "TP" : "HP",
-							(int)elem.api_eventmap.api_now_maphp, (int)elem.api_eventmap.api_max_maphp);
 
-					}
+
+                        //elem.api_gauge_num() ? ("#" + (int)elem.api_gauge_num + " ") : ""
+                        //elem.api_gauge_type() && (int)elem.api_gauge_type == 3 ? "TP" : "HP"
+
+                        // Utility.Logger.Add(2, elem.api_eventmap.api_now_maphp + "/" + elem.api_eventmap.api_max_maphp);
+                        int gauge_max_hp = 0;
+                        int gauge_cur_hp = 0;
+                        if (elem.api_eventmap.api_now_maphp())
+                        {
+                            gauge_cur_hp = (int)elem.api_eventmap.api_now_maphp;
+                        }
+                        if (elem.api_eventmap.api_max_maphp())
+                        {
+                            gauge_max_hp = (int)elem.api_eventmap.api_max_maphp;
+                        }
+
+                        sb.AppendFormat("{0}-{1} {2}:{3} {4} {5}/{6}\r\n",
+                            map.MapAreaID, map.MapInfoID, difficulty,
+                            elem.api_gauge_num() ? ("#" + (int)elem.api_gauge_num + " ") : "",
+                            elem.api_gauge_type() && (int)elem.api_gauge_type == 3 ? "TP" : "HP",
+                            gauge_cur_hp, gauge_max_hp);
+							//,(int)elem.api_eventmap.api_now_maphp, (int)elem.api_eventmap.api_max_maphp);
+                           
+
+                    }
+
 				}
 			}
 
