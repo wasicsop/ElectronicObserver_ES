@@ -375,7 +375,11 @@ namespace ElectronicObserver.Data
 				case 85: return "日振型";
 				case 86: return "呂号潜水艦";
 				case 87: return "John C.Butler級";
-				default: return "不明";
+                case 88: return "Nelson級";
+                case 89: return "Gotland級";
+                case 90: return "日進型";
+                case 91: return "Fletcher級";
+                default: return "不明";
 			}
 		}
 
@@ -442,7 +446,9 @@ namespace ElectronicObserver.Data
 					return ConstantsRes.AirRaid;
 				case 7:
 					return ConstantsRes.NightDayBattle;       // 対連合
-				default:
+                case 8:
+                    return "レーダー";
+                default:
 					return ConstantsRes.Unknown;
 			}
 		}
@@ -791,6 +797,8 @@ namespace ElectronicObserver.Data
 					return "CI (Carrier)";
                 case DayAttackKind.SpecialNelson:
                     return "Nelson Touch";
+                case DayAttackKind.SpecialNagato:
+                    return "一斉射かッ…胸が熱いな！";
                 case DayAttackKind.Shelling:
 					return "Shelling";
 				case DayAttackKind.AirAttack:
@@ -842,7 +850,11 @@ namespace ElectronicObserver.Data
 					return "駆逐カットイン(主砲/魚雷/電探)";
 				case NightAttackKind.CutinTorpedoPicket:
 					return "駆逐カットイン(魚雷/見張員/電探)";
-				case NightAttackKind.Shelling:
+                case NightAttackKind.SpecialNelson:
+                    return "Nelson Touch";
+                case NightAttackKind.SpecialNagato:
+                    return "一斉射かッ…胸が熱いな！";
+                case NightAttackKind.Shelling:
 					return "Shelling";
 				case NightAttackKind.AirAttack:
 					return ConstantsRes.AirAttack;
@@ -931,7 +943,15 @@ namespace ElectronicObserver.Data
 					return "Rocket Launcher Kai Ni/" + ConstantsRes.Radar + " (Ise)";
 				case 29:
 					return ConstantsRes.HAGun + "/" + ConstantsRes.Radar + " (Hamakaze)";
-				default:
+                case 30:
+                    return "高角砲x3<天龍>";
+                case 31:
+                    return "高角砲x2<天龍>";
+                case 32:
+                    return "ロケランx2 or FCR/ポンポン砲 or ロケラン/ポンポン砲<英国>";
+                case 33:
+                    return "高角砲/機銃(非集中)<Gotland>";
+                default:
 					return ConstantsRes.Unknown;
 			}
 		}

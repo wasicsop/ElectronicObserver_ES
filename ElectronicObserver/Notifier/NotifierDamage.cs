@@ -102,7 +102,8 @@ namespace ElectronicObserver.Notifier
 			o["api_req_sortie/airbattle"].ResponseReceived += BattleStarted;
 			o["api_req_sortie/ld_airbattle"].ResponseReceived += BattleStarted;
 			o["api_req_sortie/night_to_day"].ResponseReceived += BattleStarted;
-			o["api_req_combined_battle/battle"].ResponseReceived += BattleStarted;
+            o["api_req_sortie/ld_shooting"].ResponseReceived += BattleStarted;
+            o["api_req_combined_battle/battle"].ResponseReceived += BattleStarted;
 			o["api_req_combined_battle/battle_water"].ResponseReceived += BattleStarted;
 			o["api_req_combined_battle/airbattle"].ResponseReceived += BattleStarted;
 			o["api_req_combined_battle/midnight_battle"].ResponseReceived += BattleStarted;
@@ -113,8 +114,8 @@ namespace ElectronicObserver.Notifier
 			o["api_req_combined_battle/ec_night_to_day"].ResponseReceived += BattleStarted;
 			o["api_req_combined_battle/each_battle"].ResponseReceived += BattleStarted;
 			o["api_req_combined_battle/each_battle_water"].ResponseReceived += BattleStarted;
-
-		}
+            o["api_req_combined_battle/ld_shooting"].ResponseReceived += BattleStarted;
+        }
 
 		void CloseAll(string apiname, dynamic data)
 		{

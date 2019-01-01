@@ -130,19 +130,11 @@ namespace ElectronicObserver.Window
 
 			private void SearchingAbility_Click(object sender, EventArgs e, int fleetID)
 			{
-				switch (BranchWeight)
-				{
-					case 1:
-						BranchWeight = 4;
-						break;
-					case 4:
-						BranchWeight = 3;
-						break;
-					case 3:
-						BranchWeight = 1;
-						break;
-				}
-				Update(KCDatabase.Instance.Fleet[fleetID]);
+                BranchWeight--;
+                if (BranchWeight <= 0)
+                    BranchWeight = 4;
+
+                Update(KCDatabase.Instance.Fleet[fleetID]);
 			}
 
 			public void Update(FleetData fleet)
@@ -194,17 +186,18 @@ namespace ElectronicObserver.Window
 						"Lv sum: {0} / avg: {1:0.00}\r\n" +
 						"{2} fleet\r\n" +
 						"Support Expedition: {3}\r\n" +
-						"Total AA: {4} / ASW: {5} / LOS: {6}\r\n" +
-						"Drum: {7} ({8} ships)\r\n" +
-						"Daihatsu: {9} ({10} ships, +{11:p1})\r\n" +
-						"TP: {13} TP @ A-rank ({12} TP @ S-rank)\r\n" +
-						"Consumption: {14} fuel / {15} ammo\r\n" +
-						"({16} fuel / {17} ammo per battle)",
+						"Total FP: {4} / AA: {5} / ASW: {6} / LOS: {7}\r\n" +
+						"Drum: {8} ({9} ships)\r\n" +
+						"Daihatsu: {10} ({11} ships, +{12:p1})\r\n" +
+						"TP: {14} TP @ A-rank ({13} TP @ S-rank)\r\n" +
+						"Consumption: {15} fuel / {16} ammo\r\n" +
+						"({17} fuel / {18} ammo per battle)",
 						levelSum,
 						(double)levelSum / Math.Max(fleet.Members.Count(id => id != -1), 1),
 						Constants.GetSpeed(speed),
 						supporttype,
-						members.Sum(s => s.AATotal),
+                        members.Sum(s => s.FirepowerTotal),
+                        members.Sum(s => s.AATotal),
 						members.Sum(s => s.ASWTotal),
 						members.Sum(s => s.LOSTotal),
 						transport.Sum(),
@@ -483,8 +476,23 @@ namespace ElectronicObserver.Window
 							Constants.GetSpeed(ship.Speed)
 							));
 
+                    {
+                        var colorscheme = Utility.Configuration.Config.FormFleet.SallyAreaColorScheme;
 
-					Level.Value = ship.Level;
+                        if (Utility.Configuration.Config.FormFleet.AppliesSallyAreaColor &&
+                            (colorscheme?.Count ?? 0) > 0 &&
+                            ship.SallyArea >= 0)
+                        {
+                            Name.BackColor = colorscheme[Math.Min(ship.SallyArea, colorscheme.Count - 1)];
+                        }
+                        else
+                        {
+                            Name.BackColor = SystemColors.Control;
+                        }
+                    }
+
+
+                    Level.Value = ship.Level;
 					Level.ValueNext = ship.ExpNext;
 					Level.Tag = ship.MasterID;
 

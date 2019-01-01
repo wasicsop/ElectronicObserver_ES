@@ -414,8 +414,9 @@ namespace ElectronicObserver.Window.Dialog
 			FormFleet_BlinkAtDamaged.Checked = config.FormFleet.BlinkAtDamaged;
 			FormFleet_EmphasizesSubFleetInPort.Checked = config.FormFleet.EmphasizesSubFleetInPort;
 			FormFleet_FleetStateDisplayMode.SelectedIndex = config.FormFleet.FleetStateDisplayMode;
+            FormFleet_AppliesSallyAreaColor.Checked = config.FormFleet.AppliesSallyAreaColor;
 
-			FormHeadquarters_BlinkAtMaximum.Checked = config.FormHeadquarters.BlinkAtMaximum;
+            FormHeadquarters_BlinkAtMaximum.Checked = config.FormHeadquarters.BlinkAtMaximum;
 			FormHeadquarters_Visibility.Items.Clear();
 			FormHeadquarters_Visibility.Items.AddRange(FormHeadquarters.GetItemNames().ToArray());
 			FormHeadquarters.CheckVisibilityConfiguration();
@@ -631,8 +632,9 @@ namespace ElectronicObserver.Window.Dialog
 			config.FormFleet.BlinkAtDamaged = FormFleet_BlinkAtDamaged.Checked;
 			config.FormFleet.EmphasizesSubFleetInPort = FormFleet_EmphasizesSubFleetInPort.Checked;
 			config.FormFleet.FleetStateDisplayMode = FormFleet_FleetStateDisplayMode.SelectedIndex;
+            config.FormFleet.AppliesSallyAreaColor = FormFleet_AppliesSallyAreaColor.Checked;
 
-			config.FormHeadquarters.BlinkAtMaximum = FormHeadquarters_BlinkAtMaximum.Checked;
+            config.FormHeadquarters.BlinkAtMaximum = FormHeadquarters_BlinkAtMaximum.Checked;
 			{
 				var list = new List<bool>();
 				for (int i = 0; i < FormHeadquarters_Visibility.Items.Count; i++)

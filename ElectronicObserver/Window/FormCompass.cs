@@ -627,7 +627,8 @@ namespace ElectronicObserver.Window
 			o["api_req_sortie/night_to_day"].ResponseReceived += BattleStarted;
 			o["api_req_sortie/airbattle"].ResponseReceived += BattleStarted;
 			o["api_req_sortie/ld_airbattle"].ResponseReceived += BattleStarted;
-			o["api_req_combined_battle/battle"].ResponseReceived += BattleStarted;
+            o["api_req_sortie/ld_shooting"].ResponseReceived += BattleStarted;
+            o["api_req_combined_battle/battle"].ResponseReceived += BattleStarted;
 			o["api_req_combined_battle/sp_midnight"].ResponseReceived += BattleStarted;
 			o["api_req_combined_battle/airbattle"].ResponseReceived += BattleStarted;
 			o["api_req_combined_battle/battle_water"].ResponseReceived += BattleStarted;
@@ -636,7 +637,8 @@ namespace ElectronicObserver.Window
 			o["api_req_combined_battle/each_battle"].ResponseReceived += BattleStarted;
 			o["api_req_combined_battle/each_battle_water"].ResponseReceived += BattleStarted;
 			o["api_req_combined_battle/ec_night_to_day"].ResponseReceived += BattleStarted;
-			o["api_req_practice/battle"].ResponseReceived += BattleStarted;
+            o["api_req_combined_battle/ld_shooting"].ResponseReceived += BattleStarted;
+            o["api_req_practice/battle"].ResponseReceived += BattleStarted;
 
 
 			Utility.Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
@@ -664,7 +666,9 @@ namespace ElectronicObserver.Window
 						return Utility.Configuration.Config.UI.Compass_ColorTextEventKind5;
 					case 7:     // 夜昼戦(対連合艦隊)
 						return Utility.Configuration.Config.UI.Compass_ColorTextEventKind3;
-				}
+                    case 8:     // レーダー射撃
+                        return Color.Navy;
+                }
 			};
 
 			if (apiname == "api_port/port")
@@ -712,21 +716,20 @@ namespace ElectronicObserver.Window
 				{
 					var mapinfo = compass.MapInfo;
 
-					if (mapinfo.IsCleared)
-					{
-						ToolTipInfo.SetToolTip(TextMapArea, null);
+                    if (mapinfo.RequiredDefeatedCount != -1 && mapinfo.CurrentDefeatedCount < mapinfo.RequiredDefeatedCount)
+                    {
+						ToolTipInfo.SetToolTip( TextMapArea, string.Format("{0}" + GeneralRes.Defeated + ": {1} / {2} times",
+                            mapinfo.CurrentGaugeIndex > 0 ? $"#{mapinfo.CurrentGaugeIndex} " : "",
+                            mapinfo.CurrentDefeatedCount, mapinfo.RequiredDefeatedCount));
 
-					} else if ( mapinfo.RequiredDefeatedCount != -1 ) {
-						ToolTipInfo.SetToolTip( TextMapArea, string.Format( GeneralRes.Defeated + ": {0} / {1} times", mapinfo.CurrentDefeatedCount, mapinfo.RequiredDefeatedCount ) );
-
-					}
+                    }
 					else if (mapinfo.MapHPMax > 0)
 					{
 						int current = compass.MapHPCurrent > 0 ? compass.MapHPCurrent : mapinfo.MapHPCurrent;
 						int max = compass.MapHPMax > 0 ? compass.MapHPMax : mapinfo.MapHPMax;
 
 						ToolTipInfo.SetToolTip(TextMapArea, string.Format("{0}{1}: {2} / {3}",
-							mapinfo.CurrentGaugeIndex > 0 ? "#" + mapinfo.CurrentGaugeIndex + " " : "",
+							mapinfo.CurrentGaugeIndex > 0 ? $"#{mapinfo.CurrentGaugeIndex} " : "",
 							mapinfo.GaugeType == 3 ? "TP" : "HP", current, max));
 
 					}

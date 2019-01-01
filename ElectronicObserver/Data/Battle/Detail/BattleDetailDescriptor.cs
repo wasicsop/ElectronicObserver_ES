@@ -1,4 +1,5 @@
 ﻿using ElectronicObserver.Data.Battle.Phase;
+using ElectronicObserver.Resource.Record;
 using ElectronicObserver.Utility.Data;
 using System;
 using System.Collections.Generic;
@@ -178,12 +179,42 @@ namespace ElectronicObserver.Data.Battle.Detail
 
 						sb.AppendLine();
 
-						if (p.EnemyMembersEscort != null)
+                        void appendEnemyFleetInfo(int[] members)
+                        {
+                            int air = 0;
+                            int airbase = 0;
+                            bool indeterminate = false;
+                            for (int i = 0; i < members.Length; i++)
+                            {
+                                var param = RecordManager.Instance.ShipParameter[members[i]];
+                                if (param == null) continue;
+
+                                if (param.DefaultSlot == null || param.Aircraft == null)
+                                {
+                                    indeterminate = true;
+                                    continue;
+                                }
+
+                                for (int s = 0; s < Math.Min(param.DefaultSlot.Length, param.Aircraft.Length); s++)
+                                {
+                                    air += Calculator.GetAirSuperiority(param.DefaultSlot[s], param.Aircraft[s]);
+                                    if (KCDatabase.Instance.MasterEquipments[param.DefaultSlot[s]]?.IsAircraft ?? false)
+                                        airbase += Calculator.GetAirSuperiority(param.DefaultSlot[s], param.Aircraft[s], 0, 0, 1);
+                                }
+                            }
+                            sb.AppendFormat(" 制空戦力 {0} (対基地 {1})", air, airbase);
+                            if (indeterminate)
+                                sb.Append(" (未確定)");
+                        }
+
+                        if (p.EnemyMembersEscort != null)
 							sb.Append(ConstantsRes.BattleDetail_EnemyMainFleet);
 						else
 							sb.Append(ConstantsRes.BattleDetail_EnemyFleet);
 
-						if (p.IsBossDamaged)
+                        appendEnemyFleetInfo(p.EnemyMembers);
+
+                        if (p.IsBossDamaged)
 							sb.Append(" : 装甲破壊");
 						sb.AppendLine();
 
@@ -195,7 +226,9 @@ namespace ElectronicObserver.Data.Battle.Detail
 							sb.AppendLine();
 							sb.AppendLine(ConstantsRes.BattleDetail_EnemyEscortFleet);
 
-							OutputEnemyData(sb, p.EnemyMembersEscortInstance, p.EnemyLevelsEscort, p.EnemyInitialHPsEscort, p.EnemyMaxHPsEscort, p.EnemySlotsEscortInstance, p.EnemyParametersEscort);
+                            appendEnemyFleetInfo(p.EnemyMembersEscort);
+
+                            OutputEnemyData(sb, p.EnemyMembersEscortInstance, p.EnemyLevelsEscort, p.EnemyInitialHPsEscort, p.EnemyMaxHPsEscort, p.EnemySlotsEscortInstance, p.EnemyParametersEscort);
 						}
 
 						sb.AppendLine();
@@ -495,8 +528,10 @@ namespace ElectronicObserver.Data.Battle.Detail
 					fleet.EscapedShipList.Contains(ship.MasterID) ? " (Escaped)" : "");
 
 				sb.Append("　");
-				sb.AppendLine(string.Join(", ", ship.AllSlotInstance.Where(eq => eq != null)));
-			}
+                sb.AppendLine(string.Join(", ", ship.AllSlotInstance.Zip(ship.Aircraft, (eq, aircraft) =>
+                    eq == null ? null : ((eq.MasterEquipment.IsAircraft ? $"[{aircraft}] " : "") + eq.NameWithLevel))
+                    .Where(str => str != null)));
+            }
 		}
 
 		private static void OutputFriendBase(StringBuilder sb, int[] initialHPs, int[] maxHPs)

@@ -48,7 +48,8 @@ namespace ElectronicObserver.Data.Battle
 			NightOnly,                      // 夜戦
 			NightDay,                       // 夜昼戦
 			AirBattle,                      // 航空戦
-			AirRaid,                        // 長距離空襲戦
+            Radar,                          // レーダー射撃
+            AirRaid,                        // 長距離空襲戦
 			Practice,                       // 演習
 			BaseAirRaid,                    // 基地空襲戦
 			BattlePhaseMask = 0xFF,         // 戦闘形態マスク
@@ -208,7 +209,13 @@ namespace ElectronicObserver.Data.Battle
 					BattleNight.LoadFromResponse(apiname, data);
 					break;
 
-				case "api_req_combined_battle/battle":
+                case "api_req_sortie/ld_shooting":
+                    BattleMode = BattleModes.Radar;
+                    BattleDay = new BattleNormalRadar();
+                    BattleDay.LoadFromResponse(apiname, data);
+                    break;
+
+                case "api_req_combined_battle/battle":
 					BattleMode = BattleModes.Normal | BattleModes.CombinedTaskForce;
 					BattleDay = new BattleCombinedNormalDay();
 					BattleDay.LoadFromResponse(apiname, data);
@@ -275,8 +282,13 @@ namespace ElectronicObserver.Data.Battle
 					BattleDay.LoadFromResponse(apiname, data);
 					break;
 
+                case "api_req_combined_battle/ld_shooting":
+                    BattleMode = BattleModes.Radar | BattleModes.CombinedTaskForce;
+                    BattleDay = new BattleCombinedRadar();
+                    BattleDay.LoadFromResponse(apiname, data);
+                    break;
 
-				case "api_req_member/get_practice_enemyinfo":
+                case "api_req_member/get_practice_enemyinfo":
 					EnemyAdmiralName = data.api_nickname;
 					EnemyAdmiralRank = Constants.GetAdmiralRank((int)data.api_rank);
 					break;
@@ -592,8 +604,9 @@ namespace ElectronicObserver.Data.Battle
 			enemyrate = (double)(enemybefore - enemyafter) / enemybefore;
 
 
-			if ((BattleMode & BattleModes.BattlePhaseMask) == BattleModes.AirRaid)
-				return GetWinRankAirRaid(friendcount, friendsunk, friendrate);
+            if ((BattleMode & BattleModes.BattlePhaseMask) == BattleModes.AirRaid ||
+                (BattleMode & BattleModes.BattlePhaseMask) == BattleModes.Radar)
+                return GetWinRankAirRaid(friendcount, friendsunk, friendrate);
 			else
 				return GetWinRank(friendcount, enemycount, friendsunk, enemysunk, friendrate, enemyrate,
 					friend[0].HPRate <= 0.25, resultHPs[BattleIndex.EnemyMain1] <= 0);
