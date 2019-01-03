@@ -220,15 +220,7 @@ namespace ElectronicObserver.Window
 							Math.Max((int)(airSuperiority * 1.5 - 1), 0),
 							Math.Max((int)(airSuperiority * 3.0 - 1), 0)));
 					}
-                    int dist_text = corps.Distance + corps.Bonus_Distance;
-
-                    Distance.Text = dist_text.ToString();
-
-                    Squadrons.SetSlotList(corps);
-					ToolTipInfo.SetToolTip(Squadrons, GetEquipmentString(corps));
-                    ToolTipInfo.SetToolTip(Distance, string.Format("Total Distance: {0} + {1}"
-                                                                    ,corps.Distance, 
-                                                                    corps.Bonus_Distance));
+        
 
 				}
 
