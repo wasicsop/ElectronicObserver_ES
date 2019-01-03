@@ -26,7 +26,7 @@ namespace ElectronicObserver.Data.Battle
 
 		public override string APIName => "api_req_combined_battle/ld_shooting";
 
-		public override string BattleName => "連合艦隊 レーダー射撃";
+		public override string BattleName => "Combined Fleet Radar Ambush";
 
 		public override IEnumerable<PhaseBase> GetPhases()
 		{
