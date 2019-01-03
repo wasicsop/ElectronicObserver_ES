@@ -393,9 +393,9 @@ namespace ElectronicObserver.Window
 						map.MapAreaID, map.MapInfoID,
 						map.EventDifficulty > 0 ? $" [{Constants.GetDifficulty(map.EventDifficulty)}]" : "",
 						map.CurrentGaugeIndex > 0 ? $"#{map.CurrentGaugeIndex} " : "",
-						gaugeType == 1 ? "撃破" : gaugeType == 2 ? "HP" : "TP",
+						gaugeType == 1 ? " defeated" : gaugeType == 2 ? "HP" : "TP",
 						current, max,
-						gaugeType == 1 ? " 回" : ""));
+						gaugeType == 1 ? " times" : ""));
 				}
 			}
 

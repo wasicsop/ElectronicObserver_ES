@@ -45,15 +45,14 @@ namespace Browser
 				catch (IOException ex) when (ex is FileNotFoundException || ex is FileLoadException)
 				{
 					if (MessageBox.Show(
-$@"ブラウザコンポーネントがロードできませんでした。動作に必要な
-「Microsoft Visual C++ 2015 再頒布可能パッケージ」
-がインストールされていないのが原因の可能性があります。
-ダウンロードページを開きますか？
-(vc_redist.{(Environment.Is64BitProcess ? "x64" : "x86")}.exe をインストールしてください。)",
-						"CefSharp ロードエラー", MessageBoxButtons.YesNo, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1)
+$@"The browser component could not be loaded.
+Microsoft Visual C++ 2015 Redistributable is required.
+Open the download page?
+(Please install vc_redist.{(Environment.Is64BitProcess ? "x64" : "x86")}.exe)",
+						"CefSharp Load Error", MessageBoxButtons.YesNo, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1)
 						== DialogResult.Yes)
 					{
-						System.Diagnostics.Process.Start(@"https://www.microsoft.com/ja-jp/download/details.aspx?id=53587");
+						System.Diagnostics.Process.Start(@"https://www.microsoft.com/en-US/download/details.aspx?id=53587");
 					}
 
 					// なんにせよ今回は起動できないのであきらめる
@@ -64,10 +63,10 @@ $@"ブラウザコンポーネントがロードできませんでした。動�
 					// 概ね ZoneID を外し忘れているのが原因
 
 					if (MessageBox.Show(
-@"ブラウザの起動に失敗しました。
-インストールに必要な操作が行われていないことが原因の可能性があります。
-インストールガイドを開きますか？（外部ブラウザが開きます）",
-							"ブラウザロード失敗", MessageBoxButtons.YesNo, MessageBoxIcon.Error)
+@"Browser startup failed.
+This may be caused by the fact that the operation required for installation has not been performed.
+Do you want to open the installation guide?",
+							"Browser Load Failed", MessageBoxButtons.YesNo, MessageBoxIcon.Error)
 						== DialogResult.Yes)
 						System.Diagnostics.Process.Start(@"https://github.com/andanteyk/ElectronicObserver/wiki/Install");
 

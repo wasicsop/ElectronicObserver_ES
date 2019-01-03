@@ -205,9 +205,9 @@ namespace ElectronicObserver.Data.Battle.Detail
 										airbase += Calculator.GetAirSuperiority(param.DefaultSlot[s], param.Aircraft[s], 0, 0, 1);
 								}
 							}
-							sb.AppendFormat(" 制空戦力 {0} (対基地 {1})", air, airbase);
+							sb.AppendFormat(" AS {0} (Air Base {1})", air, airbase);
 							if (indeterminate)
-								sb.Append(" (未確定)");
+								sb.Append(" (To be determined)");
 						}
 
 						if (p.EnemyMembersEscort != null)

@@ -798,7 +798,7 @@ namespace ElectronicObserver.Data
 				case DayAttackKind.SpecialNelson:
 					return "Nelson Touch";
 				case DayAttackKind.SpecialNagato:
-					return "一斉射かッ…胸が熱いな！";
+					return "Full broadside... Sounds exciting!";
 				case DayAttackKind.Shelling:
 					return "Shelling";
 				case DayAttackKind.AirAttack:
@@ -847,13 +847,13 @@ namespace ElectronicObserver.Data
 				case NightAttackKind.CutinAirAttack:
 					return "CI (Carrier)";
 				case NightAttackKind.CutinTorpedoRadar:
-					return "駆逐カットイン(主砲/魚雷/電探)";
+					return "DD CI (MG+Torp+Radar)";
 				case NightAttackKind.CutinTorpedoPicket:
-					return "駆逐カットイン(魚雷/見張員/電探)";
+					return "DD CI (Torp+Lookout+Radar)";
 				case NightAttackKind.SpecialNelson:
 					return "Nelson Touch";
 				case NightAttackKind.SpecialNagato:
-					return "一斉射かッ…胸が熱いな！";
+					return "Full broadside... Sounds exciting!";
 				case NightAttackKind.Shelling:
 					return "Shelling";
 				case NightAttackKind.AirAttack:
