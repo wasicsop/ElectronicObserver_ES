@@ -2883,8 +2883,8 @@
 			this.FormFleet_AppliesSallyAreaColor.Name = "FormFleet_AppliesSallyAreaColor";
 			this.FormFleet_AppliesSallyAreaColor.Size = new System.Drawing.Size(170, 19);
 			this.FormFleet_AppliesSallyAreaColor.TabIndex = 23;
-			this.FormFleet_AppliesSallyAreaColor.Text = "出撃海域で艦名を色分けする";
-			this.ToolTipInfo.SetToolTip(this.FormFleet_AppliesSallyAreaColor, "出撃海域によって艦名の背景色を設定します。");
+			this.FormFleet_AppliesSallyAreaColor.Text = "Use fleet tag color";
+			this.ToolTipInfo.SetToolTip(this.FormFleet_AppliesSallyAreaColor, "Use fleet tag color as background of each ship name.\nThe colors may not match each event tag colors.");
 			this.FormFleet_AppliesSallyAreaColor.UseVisualStyleBackColor = true;
 			//
 			// DialogConfiguration

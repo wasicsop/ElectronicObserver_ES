@@ -480,13 +480,16 @@ namespace ElectronicObserver.Window
 
 						if (Utility.Configuration.Config.FormFleet.AppliesSallyAreaColor &&
 							(colorscheme?.Count ?? 0) > 0 &&
-							ship.SallyArea >= 0)
+							ship.SallyArea > 0)
 						{
+							if (Configuration.Config.UI.ThemeMode != 0)
+								Name.ForeColor = Configuration.Config.UI.BackColor;
 							Name.BackColor = colorscheme[Math.Min(ship.SallyArea, colorscheme.Count - 1)];
 						}
 						else
 						{
-							Name.BackColor = SystemColors.Control;
+							Name.ForeColor = Configuration.Config.UI.ForeColor;
+							Name.BackColor = Configuration.Config.UI.BackColor;
 						}
 					}
 
