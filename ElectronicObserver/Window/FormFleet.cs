@@ -482,14 +482,16 @@ namespace ElectronicObserver.Window
 
 						if (Utility.Configuration.Config.FormFleet.AppliesSallyAreaColor &&
 							(colorscheme?.Count ?? 0) > 0 &&
-							ship.SallyArea >= 0)
+							ship.SallyArea > 0)
 						{
 							Name.BackColor = colorscheme[Math.Min(ship.SallyArea, colorscheme.Count - 1)];
+                            Name.ForeColor = Color.Black;
 						}
 						else
 						{
-							Name.BackColor = SystemColors.Control;
-						}
+                            Name.BackColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.BackgroundColor);
+                            Name.ForeColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.MainFontColor);
+                        }
 					}
 
 					Level.Value = ship.Level;

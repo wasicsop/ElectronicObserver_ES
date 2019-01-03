@@ -610,11 +610,27 @@ namespace ElectronicObserver.Window
 
 				AirSuperiority.Text = Constants.GetAirSuperiority(phases[1].Air.AirSuperiority);
 
-				ToolTipInfo.SetToolTip(AirSuperiority,
-					needAppendInfo ? string.Join("", phases1.Select(p => $"{p.PhaseName}{Constants.GetAirSuperiority(p.Air.AirSuperiority)}\r\n")) : null);
+                switch (phases[1].Air.AirSuperiority)
+                {
+                    case 1: //AS+           
+                        AirSuperiority.ForeColor = Color.DarkBlue;
+                        break;
+                    case 2: //AS
+                        AirSuperiority.ForeColor = Color.Green;
+                        break;
+                    case 3: //AI
+                    case 4: //AI-
+                        AirSuperiority.ForeColor = Color.Red;
+                        break;
+                    default: //AP
+                        AirSuperiority.ForeColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.MainFontColor);
+                        break;
+                }
+                ToolTipInfo.SetToolTip(AirSuperiority,
+                needAppendInfo ? string.Join("", phases1.Select(p => $"{p.PhaseName}{Constants.GetAirSuperiority(p.Air.AirSuperiority)}\r\n")) : null);
 
 
-				SetShootdown(AirStage1Friend, 1, true, needAppendInfo);
+                SetShootdown(AirStage1Friend, 1, true, needAppendInfo);
 				SetShootdown(AirStage1Enemy, 1, false, needAppendInfo);
 
 				void SetTouch(ImageLabel label, bool isFriend)
