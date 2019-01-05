@@ -233,6 +233,7 @@ namespace ElectronicObserver.Data
 					case EquipmentTypes.SeaplaneRecon:
 					case EquipmentTypes.FlyingBoat:
 					case EquipmentTypes.JetRecon:
+                    case EquipmentTypes.LandBasedRecon:
 						return true;
 
 					default:
@@ -279,6 +280,7 @@ namespace ElectronicObserver.Data
 					case EquipmentTypes.SeaplaneRecon:
 					case EquipmentTypes.FlyingBoat:
 					case EquipmentTypes.JetRecon:
+                    case EquipmentTypes.LandBasedRecon:
 						return true;
 
 					default:

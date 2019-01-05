@@ -30,6 +30,7 @@ namespace ElectronicObserver.Window.Dialog
 			EquipmentTypes.SeaplaneFighter,
 			EquipmentTypes.LandBasedAttacker,
 			EquipmentTypes.Interceptor,
+            EquipmentTypes.LandBasedRecon,
 			EquipmentTypes.JetFighter,
 			EquipmentTypes.JetBomber,
 			EquipmentTypes.JetTorpedo,
@@ -63,6 +64,7 @@ namespace ElectronicObserver.Window.Dialog
 			EquipmentTypes.SeaplaneRecon,
 			EquipmentTypes.FlyingBoat,
 			EquipmentTypes.JetRecon,
+            EquipmentTypes.LandBasedRecon
 		};
 
 
