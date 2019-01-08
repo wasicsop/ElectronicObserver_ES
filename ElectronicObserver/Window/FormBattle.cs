@@ -613,7 +613,7 @@ namespace ElectronicObserver.Window
                 switch (phases[1].Air.AirSuperiority)
                 {
                     case 1: //AS+           
-                        AirSuperiority.ForeColor = Color.DarkBlue;
+                        AirSuperiority.ForeColor = Color.Gold;
                         break;
                     case 2: //AS
                         AirSuperiority.ForeColor = Color.Green;
