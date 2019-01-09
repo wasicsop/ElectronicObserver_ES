@@ -1250,8 +1250,8 @@ namespace ElectronicObserver.Window
             {
                 if (ship == null) break;
 
-                sb.Append($"{{\"api_ship_id\":{ship.ShipID},\"api_lv\":{ship.Level},\"api_kyouka\":[{ship.FirepowerModernized},{ship.TorpedoModernized},{ship.AAModernized},{ship.ArmorModernized},{ship.LuckModernized},{ship.HPMaxModernized},{ship.ASWModernized}]}},");
-            }
+				sb.Append($"{{\"api_ship_id\":{ship.ShipID},\"api_lv\":{ship.Level},\"api_kyouka\":[{ship.FirepowerModernized},{ship.TorpedoModernized},{ship.AAModernized},{ship.ArmorModernized},{ship.LuckModernized},{ship.HPMaxModernized},{ship.ASWModernized}],\"api_sally_area\":{ship.SallyArea}}},");
+			}
 
             sb.Remove(sb.Length - 1, 1);        // remove ","
             sb.Append("]");
