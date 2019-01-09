@@ -214,9 +214,9 @@ namespace ElectronicObserver.Window.Dialog
 
 
 			if (!aswdata.IsAvailable)
-				LabelAlert.Text = "＊対潜値が不明なため、成長予測ができません。";
+				LabelAlert.Text = "＊Since ASW value is unknown, calculation cannot be performed.";
 			else if (!aswdata.IsDetermined)
-				LabelAlert.Text = "＊対潜値が未確定なため、成長予測は不正確です。";
+				LabelAlert.Text = "＊Since ASW value is still an approximation, calculation may be inaccurate.";
 			else
 				LabelAlert.Text = "";
 
