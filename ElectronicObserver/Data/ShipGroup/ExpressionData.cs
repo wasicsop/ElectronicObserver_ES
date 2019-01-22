@@ -154,20 +154,20 @@ namespace ElectronicObserver.Data.ShipGroup
 
 		[IgnoreDataMember]
 		public static readonly Dictionary<ExpressionOperator, string> OperatorNameTable = new Dictionary<ExpressionOperator, string>() {
-			{ ExpressionOperator.Equal, "と等しい" },
-			{ ExpressionOperator.NotEqual, "と等しくない" },
-			{ ExpressionOperator.LessThan, "より小さい" },
-			{ ExpressionOperator.LessEqual, "以下" },
-			{ ExpressionOperator.GreaterThan, "より大きい" },
-			{ ExpressionOperator.GreaterEqual, "以上" },
-			{ ExpressionOperator.Contains, "を含む" },
-			{ ExpressionOperator.NotContains, "を含まない" },
-			{ ExpressionOperator.BeginWith, "から始まる" },
-			{ ExpressionOperator.NotBeginWith, "から始まらない" },
-			{ ExpressionOperator.EndWith, "で終わる" },
-			{ ExpressionOperator.NotEndWith, "で終わらない" },
-			{ ExpressionOperator.ArrayContains, "を含む" },
-			{ ExpressionOperator.ArrayNotContains, "を含まない" },
+            { ExpressionOperator.Equal, "==" },
+            { ExpressionOperator.NotEqual, "!=" },
+            { ExpressionOperator.LessThan, "<" },
+            { ExpressionOperator.LessEqual, "<=" },
+            { ExpressionOperator.GreaterThan, ">" },
+            { ExpressionOperator.GreaterEqual, ">=" },
+            { ExpressionOperator.Contains, "Contains" },
+			{ ExpressionOperator.NotContains, "Not Contains" },
+			{ ExpressionOperator.BeginWith, "Begin With" },
+			{ ExpressionOperator.NotBeginWith, "Not Begin With" },
+			{ ExpressionOperator.EndWith, "End With" },
+			{ ExpressionOperator.NotEndWith, "Not End With" },
+			{ ExpressionOperator.ArrayContains, "Array Contains" },
+			{ ExpressionOperator.ArrayNotContains, "Array Not Contains" },
 
 		};
 
