@@ -242,8 +242,8 @@ namespace Browser
 			if (Configuration.ForceColorProfile)
 				settings.CefCommandLineArgs.Add("force-color-profile", "srgb");
 			CefSharpSettings.SubprocessExitIfParentProcessClosed = true;
-			Cef.Initialize(settings, false, null);
-
+            Cef.Initialize(settings);
+            
 
 			var requestHandler = new RequestHandler(pixiSettingEnabled: Configuration.PreserveDrawingBuffer);
 			requestHandler.RenderProcessTerminated += (mes) => AddLog(3, mes);
@@ -257,6 +257,7 @@ namespace Browser
 				KeyboardHandler = new KeyboardHandler(),
 				DragHandler = new DragHandler(),
 			};
+            
             Browser.BrowserSettings.StandardFontFamily = "Microsoft YaHei";
             Browser.LoadingStateChanged += Browser_LoadingStateChanged;
 			SizeAdjuster.Controls.Add(Browser);
