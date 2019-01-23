@@ -1405,7 +1405,7 @@ Request.api_req_kaisou/slotset	：装備換装
 	api_slot_idx		：装備スロット
 	
 api_req_kaisou/slotset			：装備換装
-	(情報なし)
+	api_bauxite			：現在のボーキサイト保有量　更新があった場合（日進改に大型飛行艇を装備させて搭載機数が減少した場合等）のみ存在
 
 Request.api_req_kaisou/unsetslot_all	：装備全解除
 	api_id				：艦船ID
@@ -1427,13 +1427,14 @@ Request.api_req_kaisou/slotset_ex		：補強スロット装備
 api_req_kaisou/slotset_ex				：補強スロット装備
 	(情報なし)
 
-Request.api_req_kaisou/slot_exchange_index		：装備スロット交換
+Request.api_req_kaisou/slot_exchange_index		：装備スロット交換（同一艦船内でのドラッグ＆ドロップ）
 	api_id			：対象の艦船ID
 	api_src_idx		：交換元のスロットインデックス　0から始まる
 	api_dst_idx		：交換先のスロットインデックス
 
 api_req_kaisou/slot_exchange_index		：装備スロット交換
-	api_slot		：交換後のスロット配置
+	api_ship_data		：対象の艦船データ　port に準じる
+	api_bauxite			：現在のボーキサイト保有量　更新があった場合のみ存在
 
 Request.api_req_kaisou/slot_deprive		：艦娘間装備受け渡し
 	api_unset_ship		：送信元の艦船固有ID
@@ -1441,16 +1442,16 @@ Request.api_req_kaisou/slot_deprive		：艦娘間装備受け渡し
 	api_unset_slot_kind	：送信元のスロット種別　0=通常スロット, 1=拡張スロット
 	api_set_slot_kind	：送信先のスロット種別　0=通常スロット, 1=拡張スロット
 	api_unset_idx		：送信元のスロットインデックス　0から始まる　拡張スロットの時は0
-	api_set_idx			：送信先のスロットインデックス　〃
+	api_set_idx			：送信先のスロットインデックス　0から始まる　拡張スロットの時は-1
 
 api_req_kaisou/slot_deprive		：艦娘間装備受け渡し
 	api_ship_data		：更新した艦船データ
 		api_set_ship	：送信先の艦船データ　port に準じる
 		api_unset_ship	：送信元の艦船データ　〃
-	api_unset_list		：未装備の装備リスト
+	api_unset_list		：未装備の装備リスト　送信先スロットに装備があった時のみ存在
 		api_type3No		：受け渡した装備のカテゴリ
-		api_slot_list	：未装備の装備固有IDリスト
-
+		api_slot_list	：api_type3No のカテゴリに属する未装備の装備固有IDリスト
+	api_bauxite			：現在のボーキサイト保有量　更新があった場合のみ存在
 
 Request.api_req_kaisou/remodeling	：改装
 	api_id				：艦船ID
@@ -1458,10 +1459,15 @@ Request.api_req_kaisou/remodeling	：改装
 api_req_kaisou/remodeling			：改装
 	(情報なし)
 
-api_get_member/ship3	：装備換装時に呼ばれる
-	api_ship_data		：対象艦のデータ　portと同等
-	api_deck_data		：deckと同等
-	api_slot_data		：unsetslotと同等
+Request.api_get_member/ship3		：艦船データ更新　装備換装時に呼ばれる
+	api_shipid			：対象艦のID
+	api_sort_key		：
+	api_sort_order		：
+
+api_get_member/ship3	：艦船データ更新　装備換装時に呼ばれる
+	api_ship_data		：対象艦のデータ[]　port と同等　指定した艦のみ存在
+	api_deck_data		：艦隊データ　deck と同等
+	api_slot_data		：未装備データ　unsetslot と同等
 
 
 Request.api_req_kaisou/lock		：装備ロック
@@ -3357,6 +3363,17 @@ Request.api_req_member/registration_sp		：艦これAndroid版 事前登録
 api_req_furniture/radio_play	：母港ラジオ再生
 	(情報なし)
 
+Request.api_req_furniture/change	：家具変更
+	api_floor			：=api_id　文字列　床
+	api_wallpaper		：=api_id　文字列　壁紙
+	api_window			：=api_id　文字列　窓
+	api_wallhanging		：=api_id　文字列　壁掛け
+	api_shelf			：=api_id　文字列　家具
+	api_desk			：=api_id　文字列　机
+	api_season			：
+
+api_req_furniture/change			：家具変更
+	(情報なし)
 
 Request.api_req_member/set_oss_condition		：艦船フィルタ変更　母港に戻った時に port より先に呼ばれる
 	api_language_type	：0=日本語 1=英語
