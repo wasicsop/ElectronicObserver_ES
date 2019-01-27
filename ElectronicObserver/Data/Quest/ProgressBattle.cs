@@ -45,7 +45,7 @@ namespace ElectronicObserver.Data.Quest
 
 
 
-		public void Increment(string rank, int areaID, bool isBoss)
+		public virtual void Increment(string rank, int areaID, bool isBoss)
 		{
 
 			if (TargetArea != null && !TargetArea.Contains(areaID))
@@ -70,9 +70,13 @@ namespace ElectronicObserver.Data.Quest
 			{
 				sb.Append(string.Join("・", TargetArea.OrderBy(s => s).Select(s => string.Format("{0}-{1}", s / 10, s % 10))));
 			}
-			if ( IsBossOnly )
-				sb.Append( QuestTracking.Boss );
-			switch ( LowestRank ) {
+			if (IsBossOnly)
+				sb.Append("Boss");
+			switch (LowestRank)
+			{
+				case 0:
+					sb.Append("Reach");
+					break;
 				case 1:
 				default:
 					sb.Append( QuestTracking.Encounter );
