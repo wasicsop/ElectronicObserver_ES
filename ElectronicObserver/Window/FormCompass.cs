@@ -660,10 +660,10 @@ namespace ElectronicObserver.Window
                     case 5:     // 敵連合
 						return ColorTranslator.FromHtml("#F08080"); ;
 					case 7:     // 夜昼戦(対連合艦隊)
-						return Color.Navy;
-					case 8:     // レーダー射撃
-						return Color.Navy;
-				}
+                        return ColorTranslator.FromHtml("#0080A0");
+                    case 8:     // レーダー射撃
+                        return ColorTranslator.FromHtml("#0080A0");
+                }
 			}
 
 			if (apiname == "api_port/port")
