@@ -243,16 +243,16 @@ namespace ElectronicObserver.Data.Quest
 				new DSPair(Math.Min((double)sortieCount / sortieMax, 1.0), string.Format(QuestTracking.Sortie + " {0}/{1}", sortieCount, sortieMax)),
 				new DSPair(Math.Min((double)sWinCount / sWinMax, 1.0), string.Format(QuestTracking.SRank + " {0}/{1}", sWinCount, sWinMax)),
 				new DSPair(Math.Min((double)bossCount / bossMax, 1.0), string.Format(QuestTracking.Boss + " {0}/{1}", bossCount, bossMax)),
-				new DSPair(Math.Min((double)bossWinCount / bossWinMax, 1.0), string.Format(QuestTracking.BossVictory + " {0}/{1}", bossWinCount, bossWinMax))
+				new DSPair(Math.Min((double)bossWinCount / bossWinMax, 1.0), string.Format("boss victories {0}/{1}", bossWinCount, bossWinMax))
 			};
 
 			var slist = list.Where(elem => elem.Key < 1.0).OrderBy(elem => elem.Key).Select(elem => elem.Value);
-			return string.Format("{0} ({1:p1})", slist.Count() > 0 ? string.Join(", ", slist) : "Completed!", ProgressPercentage);
+			return string.Format("{0} ({1:p1})", slist.Count() > 0 ? string.Join(", ", slist) : "Complete!", ProgressPercentage);
 		}
 
 		public override string GetClearCondition()
 		{
-			return string.Format(QuestTracking.Sortie + " × {0}, " + QuestTracking.SRank + " × {1}, " + QuestTracking.Boss + " × {2}, " + QuestTracking.BossVictory + " × {3}", sortieMax, sWinMax, bossMax, bossWinMax);
+			return string.Format("Sortie ×{0}, S-rank ×{1}, boss ×{2}, boss victories ×{3}", sortieMax, sWinMax, bossMax, bossWinMax);
 		}
 	}
 

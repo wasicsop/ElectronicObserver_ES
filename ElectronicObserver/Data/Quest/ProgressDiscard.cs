@@ -100,17 +100,17 @@ namespace ElectronicObserver.Data.Quest
 				switch (CategoryIndex)
 				{
 					case -1:
-						return KCDatabase.Instance.MasterEquipments[s].Name;
+						return Window.FormMain.Instance.Translator.GetTranslation(KCDatabase.Instance.MasterEquipments[s].Name, Utility.TranslationType.Equipment);
 					case 1:
-						return $"図鑑[{s}]";
+						return $"Illust[{s}]";
 					case 2:
 						return Window.FormMain.Instance.Translator.GetTranslation(KCDatabase.Instance.EquipmentTypes[s].Name, Utility.TranslationType.EquipmentType);
 					case 3:
-						return $"アイコン[{s}]";
+						return $"Icon[{s}]";
 					default:
 						return $"???[{s}]";
 				}
-			}))) + "廃棄" + ProgressMax + (CountsAmount ? "pcs" : "times");
+			}))) + " scrap ×" + ProgressMax + (CountsAmount ? "pcs" : "times");
 		}
 
 
