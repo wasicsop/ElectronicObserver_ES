@@ -1598,7 +1598,7 @@ namespace ElectronicObserver.Window.Dialog
 		private void StripMenu_Edit_CopySpecialEquipmentTable_Click(object sender, EventArgs e)
 		{
 			var sb = new StringBuilder();
-			sb.AppendLine("|対象艦ID|対象艦|装備可能|装備不可能|");
+			sb.AppendLine("|Ship ID|Ship|Equipable|Unequipable|");
 			sb.AppendLine("|--:|:--|:--|:--|");
 
 			foreach (var ship in KCDatabase.Instance.MasterShips.Values)
@@ -1631,7 +1631,7 @@ namespace ElectronicObserver.Window.Dialog
 					}
 				}
 
-				sb.AppendLine("|対象艦ID|対象艦|装備可能ID|装備可能|");
+				sb.AppendLine("|Ship ID|Ship|Equipable Eq ID|Equipable|");
 				sb.AppendLine("|--:|:--|:--|:--|");
 
 				foreach (var pair in nyan.OrderBy(p => p.Key))
