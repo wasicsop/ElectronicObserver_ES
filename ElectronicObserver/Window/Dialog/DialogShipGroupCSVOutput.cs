@@ -105,7 +105,19 @@ namespace ElectronicObserver.Window.Dialog
 		{
 			InitializeComponent();
 
-			DialogSaveCSV.InitialDirectory = Utility.Configuration.Config.Connection.SaveDataPath;
+            groupBox1.Text = "Options";
+            RadioFormat_Data.Text = "Raw Data";
+            RadioFormat_User.Text = "Human-readable";
+            RadioOutput_VisibleColumnOnly.Text = "Export Visible Columns Only"; // unused?
+            RadioOutput_All.Text = "Export All Columns"; // unused?
+            ButtonOK.Text = "OK";
+            ButtonCancel.Text = "Cancel";
+            groupBox2.Text = "Output Path";
+            Text = "Export as .CSV File";
+            DialogSaveCSV.Title = "Save .CSV File";
+            DialogSaveCSV.Filter = "CSV|*.csv|File|*";
+
+            DialogSaveCSV.InitialDirectory = Utility.Configuration.Config.Connection.SaveDataPath;
 
 		}
 

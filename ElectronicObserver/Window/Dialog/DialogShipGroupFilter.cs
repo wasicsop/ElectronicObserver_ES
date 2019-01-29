@@ -43,7 +43,47 @@ namespace ElectronicObserver.Window.Dialog
 		{
 			InitializeComponent();
 
-			{
+            ExpressionView_Enabled.HeaderText = "";
+            ExpressionView_Enabled.ToolTipText = "Enabled/Disabled";
+            ExpressionView_ExternalAndOr.HeaderText = "Outter";
+            ExpressionView_Inverse.HeaderText = "INV";
+            ExpressionView_Inverse.ToolTipText = "Invert Conditions";
+            ExpressionView_InternalAndOr.HeaderText = "Inner";
+            ExpressionView_Expression.HeaderText = "Conditions";
+            ExpressionView_Up.ToolTipText = "Move Up";
+            ExpressionView_Down.ToolTipText = "Move Down";
+            Expression_Delete.Text = "Remove";
+            Expression_Add.Text = "Add";
+            ExpressionDetailView_Enabled.HeaderText = "";
+            ExpressionDetailView_Enabled.ToolTipText = "Enabled/Disabled";
+            ExpressionDetailView_LeftOperand.HeaderText = "Item";
+            ExpressionDetailView_RightOperand.HeaderText = "Value";
+            ExpressionDetailView_Operator.HeaderText = "Condition";
+            ExpressionDetail_Delete.Text = "Remove";
+            ExpressionDetail_Edit.Text = "Update";
+            ExpressionDetail_Add.Text = "Add";
+            ButtonCancel.Text = "Cancel";
+            ButtonOK.Text = "OK";
+            tabPage1.Text = "Filters";
+            tabPage2.Text = "Include/Exclude Lists";
+            label1.Text =
+                "Ships to include/exclude regardless of Filters status.\r\n" +
+                "Use right-click menu from main panel to add ships to those lists.";
+            OptimizeConstFilter.Text = "Optimize";
+            toolTip1.SetToolTip(OptimizeConstFilter, "Delete nonexistent ships from current list.");
+            ConvertToExpression.Text = "Convert";
+            toolTip1.SetToolTip(ConvertToExpression, "Convert current list to Filter.\r\nCaution: This operation can not be reverted.");
+            ClearConstFilter.Text = "Clear";
+            toolTip1.SetToolTip(ClearConstFilter, "Clear current list.");
+            ConstFilterSelector.Items[0] = "Include List";
+            ConstFilterSelector.Items[1] = "Exclude List";
+            ConstFilterView_Name.HeaderText = "Name";
+            ButtonMenu.Text = "Menu ▼";
+            SubMenu_ImportFilter.Text = "&Import Filters";
+            SubMenu_ExportFilter.Text = "&Export Filters";
+            Text = "Filters Setup";
+
+            {
 				// 一部の列ヘッダを中央揃えにする
 				var headercenter = new DataGridViewCellStyle(ExpressionView_Enabled.HeaderCell.Style)
 				{

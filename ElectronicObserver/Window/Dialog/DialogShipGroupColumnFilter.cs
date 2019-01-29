@@ -21,13 +21,23 @@ namespace ElectronicObserver.Window.Dialog
 		public DialogShipGroupColumnFilter(DataGridView target, ShipGroupData group)
 		{
 			InitializeComponent();
+            string String_All;
 
+            String_All = "(All)";
+            ButtonOK.Text = "OK";
+            ButtonCancel.Text = "Cancel";
+            ColumnView_Name.HeaderText = "Name";
+            ColumnView_Visible.HeaderText = "Visible";
+            ColumnView_AutoSize.HeaderText = "Fit";
+            ColumnView_Width.HeaderText = "Width";
+            label1.Text = "ScrollLock:";
+            Text = "Column Visibility Setup";
 
-			var rows = new LinkedList<DataGridViewRow>();
+            var rows = new LinkedList<DataGridViewRow>();
 			var row = new DataGridViewRow();
 
 			row.CreateCells(ColumnView);
-			row.SetValues("(全て)", null, null, "-");
+			row.SetValues(String_All, null, null, "-");
 			row.Cells[ColumnView_Width.Index].ReadOnly = true;
 			rows.AddLast(row);
 

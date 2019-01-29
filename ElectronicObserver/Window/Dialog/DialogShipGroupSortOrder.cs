@@ -24,7 +24,17 @@ namespace ElectronicObserver.Window.Dialog
 		{
 			InitializeComponent();
 
-			var rows_enabled = new LinkedList<DataGridViewRow>();
+            AutoSortFlag.Text = "Enable Auto Sort";
+            EnabledView_Name.HeaderText = "Name";
+            EnabledView_SortDirection.HeaderText = "Order";
+            ButtonRightAll.Text = "All >>";
+            ButtonLeftAll.Text = "<< All";
+            DisabledView_Name.HeaderText = "Name";
+            ButtonOK.Text = "OK";
+            ButtonCancel.Text = "Cancel";
+            Text = "Auto Sort Setup";
+
+            var rows_enabled = new LinkedList<DataGridViewRow>();
 			var rows_disabled = new LinkedList<DataGridViewRow>();
 
 			var columns = target.Columns.Cast<DataGridViewColumn>();
