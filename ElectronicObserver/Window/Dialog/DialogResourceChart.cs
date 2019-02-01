@@ -1047,7 +1047,7 @@ namespace ElectronicObserver.Window.Dialog
 				}
 				catch (Exception ex)
 				{
-					Utility.ErrorReporter.SendErrorReport(ex, "資源チャート画像の保存に失敗しました。");
+					Utility.ErrorReporter.SendErrorReport(ex, "Failed to save resource chart image.");
 				}
 			}
 		}

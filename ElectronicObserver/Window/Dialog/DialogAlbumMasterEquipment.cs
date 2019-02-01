@@ -3,6 +3,7 @@ using ElectronicObserver.Resource;
 using ElectronicObserver.Resource.Record;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Utility.Mathematics;
+using ElectronicObserver.Utility.Storage;
 using ElectronicObserver.Window.Control;
 using ElectronicObserver.Window.Support;
 using System;
@@ -238,8 +239,8 @@ namespace ElectronicObserver.Window.Dialog
 					eqicon = (int)ResourceManager.EquipmentContent.Unknown;
 				EquipmentType.ImageIndex = eqicon;
 
-                ToolTipInfo.SetToolTip(EquipmentType, GetEquippableShips(equipmentID));
-            }
+				ToolTipInfo.SetToolTip(EquipmentType, GetEquippableShips(equipmentID));
+			}
 			EquipmentName.Text = eq.Name;
 			ToolTipInfo.SetToolTip( EquipmentName, "Right click to copy." );
 
@@ -262,17 +263,17 @@ namespace ElectronicObserver.Window.Dialog
 			if (eq.CategoryType == EquipmentTypes.Interceptor)
 			{
 				TitleAccuracy.Text = "対爆";
-                TitleAccuracy.ImageIndex = (int)ResourceManager.IconContent.ParameterAntiBomber;
-                TitleEvasion.Text = "迎撃";
-                TitleEvasion.ImageIndex = (int)ResourceManager.IconContent.ParameterInterception;
-            }
+				TitleAccuracy.ImageIndex = (int)ResourceManager.IconContent.ParameterAntiBomber;
+				TitleEvasion.Text = "迎撃";
+				TitleEvasion.ImageIndex = (int)ResourceManager.IconContent.ParameterInterception;
+			}
 			else
 			{
 				TitleAccuracy.Text = "命中";
-                TitleAccuracy.ImageIndex = (int)ResourceManager.IconContent.ParameterAccuracy;
-                TitleEvasion.Text = "回避";
-                TitleEvasion.ImageIndex = (int)ResourceManager.IconContent.ParameterEvasion;
-            }
+				TitleAccuracy.ImageIndex = (int)ResourceManager.IconContent.ParameterAccuracy;
+				TitleEvasion.Text = "回避";
+				TitleEvasion.ImageIndex = (int)ResourceManager.IconContent.ParameterEvasion;
+			}
 
 			TableParameterMain.ResumeLayout();
 
@@ -381,54 +382,65 @@ namespace ElectronicObserver.Window.Dialog
 
 		}
 
-        private string GetEquippableShips(int equipmentID)
-        {
-            var db = KCDatabase.Instance;
-            var sb = new StringBuilder();
-            sb.AppendLine("装備可能:");
-            var eq = db.MasterEquipments[equipmentID];
-            if (eq == null)
-                return sb.ToString();
-            int eqCategory = (int)eq.CategoryType;
-            var specialShips = new Dictionary<ShipTypes, List<string>>();
-            foreach (var ship in db.MasterShips.Values.Where(s => s.SpecialEquippableCategories != null))
-            {
-                bool usual = ship.ShipTypeInstance.EquippableCategories.Contains(eqCategory);
-                bool special = ship.SpecialEquippableCategories.Contains(eqCategory);
-                if (usual != special)
-                {
-                    if (specialShips.ContainsKey(ship.ShipType))
-                        specialShips[ship.ShipType].Add(ship.NameWithClass);
-                    else
-                        specialShips.Add(ship.ShipType, new List<string>(new[] { ship.NameWithClass }));
-                }
-            }
-            foreach (var shiptype in db.ShipTypes.Values)
-            {
-                if (shiptype.EquippableCategories.Contains(eqCategory))
-                {
-                    sb.Append(shiptype.Name);
-                    if (specialShips.ContainsKey(shiptype.Type))
-                    {
-                        sb.Append(" (").Append(string.Join(", ", specialShips[shiptype.Type])).Append("を除く)");
-                    }
-                    sb.AppendLine();
-                }
-                else
-                {
-                    if (specialShips.ContainsKey(shiptype.Type))
-                    {
-                        sb.Append("○ ").AppendLine(string.Join(", ", specialShips[shiptype.Type]));
-                    }
-                }
-            }
-            if (eq.EquippableShipsAtExpansion.Any())
-                sb.Append("[拡張スロット] ").AppendLine(string.Join(", ", eq.EquippableShipsAtExpansion.Select(id => db.MasterShips[id].NameWithClass)));
-            return sb.ToString();
-        }
+		private string GetEquippableShips(int equipmentID)
+		{
+			var db = KCDatabase.Instance;
+
+			var sb = new StringBuilder();
+			sb.AppendLine("装備可能:");
+
+			var eq = db.MasterEquipments[equipmentID];
+			if (eq == null)
+				return sb.ToString();
+
+			int eqCategory = (int)eq.CategoryType;
+
+			var specialShips = new Dictionary<ShipTypes, List<string>>();
+
+			foreach (var ship in db.MasterShips.Values.Where(s => s.SpecialEquippableCategories != null))
+			{
+				bool usual = ship.ShipTypeInstance.EquippableCategories.Contains(eqCategory);
+				bool special = ship.SpecialEquippableCategories.Contains(eqCategory);
+
+				if (usual != special)
+				{
+					if (specialShips.ContainsKey(ship.ShipType))
+						specialShips[ship.ShipType].Add(ship.NameWithClass);
+					else
+						specialShips.Add(ship.ShipType, new List<string>(new[] { ship.NameWithClass }));
+				}
+			}
+
+			foreach (var shiptype in db.ShipTypes.Values)
+			{
+				if (shiptype.EquippableCategories.Contains(eqCategory))
+				{
+					sb.Append(shiptype.Name);
+
+					if (specialShips.ContainsKey(shiptype.Type))
+					{
+						sb.Append(" (").Append(string.Join(", ", specialShips[shiptype.Type])).Append("を除く)");
+					}
+
+					sb.AppendLine();
+				}
+				else
+				{
+					if (specialShips.ContainsKey(shiptype.Type))
+					{
+						sb.Append("○ ").AppendLine(string.Join(", ", specialShips[shiptype.Type]));
+					}
+				}
+			}
+
+			if (eq.EquippableShipsAtExpansion.Any())
+				sb.Append("[拡張スロット] ").AppendLine(string.Join(", ", eq.EquippableShipsAtExpansion.Select(id => db.MasterShips[id].NameWithClass)));
+
+			return sb.ToString();
+		}
 
 
-        private void DefaultSlots_MouseDown(object sender, MouseEventArgs e)
+		private void DefaultSlots_MouseDown(object sender, MouseEventArgs e)
 		{
 
 			if (e.Button == System.Windows.Forms.MouseButtons.Right)
@@ -493,8 +505,8 @@ namespace ElectronicObserver.Window.Dialog
 							sw.WriteLine(string.Join(",",
 								eq.EquipmentID,
 								eq.AlbumNo,
-								KCDatabase.Instance.EquipmentTypes[eq.EquipmentType[2]].Name,
-								eq.Name,
+								CsvHelper.EscapeCsvCell(eq.CategoryTypeInstance.Name),
+								CsvHelper.EscapeCsvCell(eq.Name),
 								eq.EquipmentType[0],
 								eq.EquipmentType[1],
 								eq.EquipmentType[2],
@@ -516,7 +528,7 @@ namespace ElectronicObserver.Window.Dialog
 								eq.Material[1],
 								eq.Material[2],
 								eq.Material[3],
-								eq.Message.Replace("\r\n", "<br>"),
+								CsvHelper.EscapeCsvCell(eq.Message),
 								eq.AircraftDistance,
 								eq.AircraftCost
 								));
@@ -559,7 +571,7 @@ namespace ElectronicObserver.Window.Dialog
 							sw.WriteLine(string.Join(",",
 								eq.EquipmentID,
 								eq.AlbumNo,
-								eq.Name,
+								CsvHelper.EscapeCsvCell(eq.Name),
 								eq.EquipmentType[0],
 								eq.EquipmentType[1],
 								eq.EquipmentType[2],
@@ -581,7 +593,7 @@ namespace ElectronicObserver.Window.Dialog
 								eq.Material[1],
 								eq.Material[2],
 								eq.Material[3],
-								eq.Message.Replace("\r\n", "<br>"),
+								CsvHelper.EscapeCsvCell(eq.Message),
 								eq.AircraftDistance,
 								eq.AircraftCost
 								));
@@ -811,7 +823,6 @@ namespace ElectronicObserver.Window.Dialog
 				Utility.ErrorReporter.SendErrorReport( ex, "Failed to search on Google." );
 			}
 		}
-
 
 	}
 }

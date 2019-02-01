@@ -1518,8 +1518,16 @@ namespace ElectronicObserver.Data
 				if (!CanAttackSubmarine)
 					return false;
 
-				if (ShipID == 141 || ShipID == 394 || ShipID == 478 || ShipID == 681)  // 五十鈴改二, Jervis改, 龍田改二, Samuel B.Roberts改
-					return true;
+				switch (ShipID)
+				{
+					case 141:		// 五十鈴改二
+					case 394:		// Jervis改
+					case 478:		// 龍田改二
+					case 681:       // Samuel B.Roberts改
+					case 562:		// Johnston
+					case 689:       // Johnston改
+						return true;
+				}
 
 				var eqs = AllSlotInstance.Where(eq => eq != null);
 
@@ -1651,10 +1659,6 @@ namespace ElectronicObserver.Data
 					Fuel = (int)data.api_fuel;
 					Ammo = (int)data.api_bull;
 					_aircraft = (int[])data.api_onslot;
-					break;
-
-				case "api_req_kaisou/slot_exchange_index":
-					Slot = Array.AsReadOnly((int[])data.api_slot);
 					break;
 			}
 

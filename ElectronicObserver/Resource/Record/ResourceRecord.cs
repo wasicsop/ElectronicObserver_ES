@@ -2,6 +2,7 @@
 using ElectronicObserver.Observer;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Utility.Mathematics;
+using ElectronicObserver.Utility.Storage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -106,7 +107,7 @@ namespace ElectronicObserver.Resource.Record
 			public override void LoadLine(string line)
 			{
 
-				string[] elem = line.Split(",".ToCharArray());
+				string[] elem = CsvHelper.ParseCsvLine(line).ToArray();
 				if (elem.Length < 11) throw new ArgumentException("要素数が少なすぎます。");
 
 				Date = DateTimeHelper.CSVStringToTime(elem[0]);
@@ -125,7 +126,7 @@ namespace ElectronicObserver.Resource.Record
 
 			public override string SaveLine()
 			{
-				return string.Format("{" + string.Join("},{", Enumerable.Range(0, 11)) + "}",
+				return string.Join(",", 
 					DateTimeHelper.TimeToCSVString(Date),
 					Fuel,
 					Ammo,
@@ -239,7 +240,7 @@ namespace ElectronicObserver.Resource.Record
 		public ResourceElement GetRecordPrevious()
 		{
 
-			DateTime now = DateTime.Now;
+			DateTime now = DateTime.UtcNow + new TimeSpan(9, 0, 0);
 			DateTime target;
 			if (now.TimeOfDay.Hours < 2)
 			{
@@ -254,7 +255,7 @@ namespace ElectronicObserver.Resource.Record
 				target = new DateTime(now.Year, now.Month, now.Day, 14, 0, 0);
 			}
 
-			return GetRecord(target);
+			return GetRecord(target.Add(DateTimeHelper.GetTimeDifference()));
 		}
 
 		/// <summary>
@@ -263,7 +264,7 @@ namespace ElectronicObserver.Resource.Record
 		public ResourceElement GetRecordDay()
 		{
 
-			DateTime now = DateTime.Now;
+			DateTime now = DateTime.UtcNow + new TimeSpan(9, 0, 0);
 			DateTime target;
 			if (now.TimeOfDay.Hours < 2)
 			{
@@ -274,7 +275,7 @@ namespace ElectronicObserver.Resource.Record
 				target = new DateTime(now.Year, now.Month, now.Day, 2, 0, 0);
 			}
 
-			return GetRecord(target);
+			return GetRecord(target.Add(DateTimeHelper.GetTimeDifference()));
 		}
 
 		/// <summary>
@@ -282,9 +283,9 @@ namespace ElectronicObserver.Resource.Record
 		/// </summary>
 		public ResourceElement GetRecordMonth()
 		{
-			DateTime now = DateTime.Now;
+			DateTime now = DateTime.UtcNow + new TimeSpan(9, 0, 0);
 
-			return GetRecord(new DateTime(now.Year, now.Month, 1));
+			return GetRecord(new DateTime(now.Year, now.Month, 1).Add(DateTimeHelper.GetTimeDifference()));
 		}
 
 

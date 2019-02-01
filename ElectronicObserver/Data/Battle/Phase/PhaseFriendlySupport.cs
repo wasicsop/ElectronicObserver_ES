@@ -95,27 +95,28 @@ namespace ElectronicObserver.Data.Battle.Phase
 			if (!IsAvailable)
 				return;
 
-            int[] friendhps = FriendlyInitialHPs;
+			int[] friendhps = FriendlyInitialHPs;
 
             foreach (var attack in Attacks)
 			{
 				foreach (var defs in attack.Defenders.GroupBy(d => d.Defender))
 				{
-                    BattleDetails.Add(new BattleFriendlySupportDetail(
-                        (BattleNight)Battle,
-                        attack.Attacker,
-                        defs.Key,
-                        defs.Select(d => d.RawDamage).ToArray(),
-                        defs.Select(d => d.CriticalFlag).ToArray(),
-                        attack.AttackType,
-                        attack.EquipmentIDs,
-                        attack.NightAirAttackFlag,
-                        defs.Key.IsFriend ? friendhps[defs.Key] : hps[defs.Key]));
-                    if (defs.Key.IsFriend)
-                        friendhps[defs.Key] -= Math.Max(defs.Sum(d => d.Damage), 0);
-                    else
-                        AddDamage(hps, defs.Key, defs.Sum(d => d.Damage));
-                }
+					BattleDetails.Add(new BattleFriendlySupportDetail(
+						(BattleNight)Battle,
+						attack.Attacker,
+						defs.Key,
+						defs.Select(d => d.RawDamage).ToArray(),
+						defs.Select(d => d.CriticalFlag).ToArray(),
+						attack.AttackType,
+						attack.EquipmentIDs,
+						attack.NightAirAttackFlag,
+						defs.Key.IsFriend ? friendhps[defs.Key] : hps[defs.Key]));
+
+					if (defs.Key.IsFriend)
+						friendhps[defs.Key] -= Math.Max(defs.Sum(d => d.Damage), 0);
+					else
+						AddDamage(hps, defs.Key, defs.Sum(d => d.Damage));
+				}
 			}
 
 		}

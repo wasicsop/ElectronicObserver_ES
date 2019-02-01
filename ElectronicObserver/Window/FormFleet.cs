@@ -130,11 +130,11 @@ namespace ElectronicObserver.Window
 
 			private void SearchingAbility_Click(object sender, EventArgs e, int fleetID)
 			{
-                BranchWeight--;
-                if (BranchWeight <= 0)
-                    BranchWeight = 4;
+				BranchWeight--;
+				if (BranchWeight <= 0)
+					BranchWeight = 4;
 
-                Update(KCDatabase.Instance.Fleet[fleetID]);
+				Update(KCDatabase.Instance.Fleet[fleetID]);
 			}
 
 			public void Update(FleetData fleet)
@@ -167,7 +167,7 @@ namespace ElectronicObserver.Window
 						default:
 							supporttype = "n/a"; break;
 						case 1:
-							supporttype = "Aerial Support";break;
+							supporttype = "Aerial Support"; break;
 						case 2:
 							supporttype = "Support Shelling"; break;
 						case 3:
@@ -186,18 +186,18 @@ namespace ElectronicObserver.Window
 						"Lv sum: {0} / avg: {1:0.00}\r\n" +
 						"{2} fleet\r\n" +
 						"Support Expedition: {3}\r\n" +
-						"Total FP: {4} / AA: {5} / ASW: {6} / LOS: {7}\r\n" +
+						"Total FP {4} / AA {5} / ASW {6} / LOS {7}\r\n" +
 						"Drum: {8} ({9} ships)\r\n" +
 						"Daihatsu: {10} ({11} ships, +{12:p1})\r\n" +
-						"TP: {14} TP @ A-rank ({13} TP @ S-rank)\r\n" +
+						"TP: S {13} / A {14}\r\n" +
 						"Consumption: {15} fuel / {16} ammo\r\n" +
 						"({17} fuel / {18} ammo per battle)",
 						levelSum,
 						(double)levelSum / Math.Max(fleet.Members.Count(id => id != -1), 1),
 						Constants.GetSpeed(speed),
 						supporttype,
-                        members.Sum(s => s.FirepowerTotal),
-                        members.Sum(s => s.AATotal),
+						members.Sum(s => s.FirepowerTotal),
+						members.Sum(s => s.AATotal),
 						members.Sum(s => s.ASWTotal),
 						members.Sum(s => s.LOSTotal),
 						transport.Sum(),
@@ -475,21 +475,23 @@ namespace ElectronicObserver.Window
 							Constants.GetRange(ship.Range),
 							Constants.GetSpeed(ship.Speed)
 							));
+					{
+						var colorscheme = Utility.Configuration.Config.FormFleet.SallyAreaColorScheme;
 
-                    {
-                        var colorscheme = Utility.Configuration.Config.FormFleet.SallyAreaColorScheme;
-
-                        if (Utility.Configuration.Config.FormFleet.AppliesSallyAreaColor &&
-                            (colorscheme?.Count ?? 0) > 0 &&
-                            ship.SallyArea >= 0)
-                        {
-                            Name.BackColor = colorscheme[Math.Min(ship.SallyArea, colorscheme.Count - 1)];
-                        }
-                        else
-                        {
-                            Name.BackColor = SystemColors.Control;
-                        }
-                    }
+						if (Utility.Configuration.Config.FormFleet.AppliesSallyAreaColor &&
+							(colorscheme?.Count ?? 0) > 0 &&
+							ship.SallyArea > 0)
+						{
+							if (Utility.Configuration.Config.UI.ThemeMode != 0)
+								Name.ForeColor = Utility.Configuration.Config.UI.BackColor;
+							Name.BackColor = colorscheme[Math.Min(ship.SallyArea, colorscheme.Count - 1)];
+						}
+						else
+						{
+							Name.ForeColor = Utility.Configuration.Config.UI.ForeColor;
+							Name.BackColor = Utility.Configuration.Config.UI.BackColor;
+						}
+					}
 
 
                     Level.Value = ship.Level;
@@ -1249,8 +1251,8 @@ namespace ElectronicObserver.Window
             {
                 if (ship == null) break;
 
-                sb.Append($"{{\"api_ship_id\":{ship.ShipID},\"api_lv\":{ship.Level},\"api_kyouka\":[{ship.FirepowerModernized},{ship.TorpedoModernized},{ship.AAModernized},{ship.ArmorModernized},{ship.LuckModernized},{ship.HPMaxModernized},{ship.ASWModernized}]}},");
-            }
+				sb.Append($"{{\"api_ship_id\":{ship.ShipID},\"api_lv\":{ship.Level},\"api_kyouka\":[{ship.FirepowerModernized},{ship.TorpedoModernized},{ship.AAModernized},{ship.ArmorModernized},{ship.LuckModernized},{ship.HPMaxModernized},{ship.ASWModernized}],\"api_sally_area\":{ship.SallyArea}}},");
+			}
 
             sb.Remove(sb.Length - 1, 1);        // remove ","
             sb.Append("]");

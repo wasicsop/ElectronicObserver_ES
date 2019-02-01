@@ -367,38 +367,38 @@ namespace ElectronicObserver.Window
 			StringBuilder sb = new StringBuilder();
 			sb.AppendLine( GeneralRes.MapGauges );
 
-			var list = data.api_map_info() ? data.api_map_info : data;
 
-            foreach (var map in KCDatabase.Instance.MapInfo.Values)
+			foreach (var map in KCDatabase.Instance.MapInfo.Values)
 			{
-                int gaugeType = -1;
-                int current = 0;
-                int max = 0;
+				int gaugeType = -1;
+				int current = 0;
+				int max = 0;
 
-                if (map.RequiredDefeatedCount != -1 && map.CurrentDefeatedCount < map.RequiredDefeatedCount)
-                {
-                    gaugeType = 1;
-                    current = map.CurrentDefeatedCount;
-                    max = map.RequiredDefeatedCount;
-                }
-                else if (map.MapHPMax > 0)
-                {
-                    gaugeType = map.GaugeType;
-                    current = map.MapHPCurrent;
-                    max = map.MapHPMax;
-                }
+				if (map.RequiredDefeatedCount != -1 && map.CurrentDefeatedCount < map.RequiredDefeatedCount)
+				{
+					gaugeType = 1;
+					current = map.CurrentDefeatedCount;
+					max = map.RequiredDefeatedCount;
+				}
+				else if (map.MapHPMax > 0)
+				{
+					gaugeType = map.GaugeType;
+					current = map.MapHPCurrent;
+					max = map.MapHPMax;
+				}
 
-                if (gaugeType > 0)
-                {
-                    sb.AppendLine(string.Format("{0}-{1}{2}: {3}{4} {5} / {6}{7}",
-                        map.MapAreaID, map.MapInfoID,
-                        map.EventDifficulty > 0 ? $" [{Constants.GetDifficulty(map.EventDifficulty)}]" : "",
-                        map.CurrentGaugeIndex > 0 ? $"#{map.CurrentGaugeIndex} " : "",
-                        gaugeType == 1 ? "撃破" : gaugeType == 2 ? "HP" : "TP",
-                        current, max,
-                        gaugeType == 1 ? " 回" : ""));
-                }
-            }
+				if (gaugeType > 0)
+				{
+					sb.AppendLine(string.Format("{0}-{1}{2}: {3}{4} {5} / {6}{7}",
+						map.MapAreaID, map.MapInfoID,
+						map.EventDifficulty > 0 ? $" [{Constants.GetDifficulty(map.EventDifficulty)}]" : "",
+						map.CurrentGaugeIndex > 0 ? $"#{map.CurrentGaugeIndex} " : "",
+						gaugeType == 1 ? " defeated" : gaugeType == 2 ? "HP" : "TP",
+						current, max,
+						gaugeType == 1 ? " times" : ""));
+				}
+			}
+
 
 			return sb.ToString();
 		}

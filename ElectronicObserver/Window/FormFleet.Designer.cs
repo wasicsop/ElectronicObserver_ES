@@ -110,8 +110,8 @@
             //
             this.ContextMenuFleet_CopyFleetAnalysis.Name = "ContextMenuFleet_CopyFleetAnalysis";
             this.ContextMenuFleet_CopyFleetAnalysis.Size = new System.Drawing.Size(227, 22);
-            this.ContextMenuFleet_CopyFleetAnalysis.Text = "Copy Ship List (&fleetanalysis)";
-            this.ContextMenuFleet_CopyFleetAnalysis.Click += new System.EventHandler(this.ContextMenuFleet_CopyFleetAnalysis_Click);
+            this.ContextMenuFleet_CopyFleetAnalysis.Text = "Copy Ship List (kancolle-&fleetanalysis)";
+			this.ContextMenuFleet_CopyFleetAnalysis.Click += new System.EventHandler(this.ContextMenuFleet_CopyFleetAnalysis_Click);
             //
             // toolStripSeparator1
             //

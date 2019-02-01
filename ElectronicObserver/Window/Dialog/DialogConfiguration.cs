@@ -343,6 +343,8 @@ namespace ElectronicObserver.Window.Dialog
 			UI_JapaneseShipTypes.Checked = config.UI.JapaneseShipType;
 			UI_JapaneseEquipmentNames.Checked = config.UI.JapaneseEquipmentName;
 			UI_JapaneseEquipmentTypes.Checked = config.UI.JapaneseEquipmentType;
+			UI_NodeNumbering.Checked = !config.UI.UseOriginalNodeId;
+			comboBox1.SelectedIndex = config.UI.ThemeMode;
 
 			UI_IsLayoutFixed.Checked = config.UI.IsLayoutFixed;
 			{
@@ -414,7 +416,7 @@ namespace ElectronicObserver.Window.Dialog
 			FormFleet_BlinkAtDamaged.Checked = config.FormFleet.BlinkAtDamaged;
 			FormFleet_EmphasizesSubFleetInPort.Checked = config.FormFleet.EmphasizesSubFleetInPort;
 			FormFleet_FleetStateDisplayMode.SelectedIndex = config.FormFleet.FleetStateDisplayMode;
-            FormFleet_AppliesSallyAreaColor.Checked = config.FormFleet.AppliesSallyAreaColor;
+			FormFleet_AppliesSallyAreaColor.Checked = config.FormFleet.AppliesSallyAreaColor;
 
             FormHeadquarters_BlinkAtMaximum.Checked = config.FormHeadquarters.BlinkAtMaximum;
 			FormHeadquarters_Visibility.Items.Clear();
@@ -571,6 +573,8 @@ namespace ElectronicObserver.Window.Dialog
 			config.UI.JapaneseShipType = UI_JapaneseShipTypes.Checked;
 			config.UI.JapaneseEquipmentName = UI_JapaneseEquipmentNames.Checked;
 			config.UI.JapaneseEquipmentType = UI_JapaneseEquipmentTypes.Checked;
+			config.UI.UseOriginalNodeId = !UI_NodeNumbering.Checked;
+			config.UI.ThemeMode = comboBox1.SelectedIndex;
 
 			config.UI.IsLayoutFixed = UI_IsLayoutFixed.Checked;
 
@@ -632,7 +636,7 @@ namespace ElectronicObserver.Window.Dialog
 			config.FormFleet.BlinkAtDamaged = FormFleet_BlinkAtDamaged.Checked;
 			config.FormFleet.EmphasizesSubFleetInPort = FormFleet_EmphasizesSubFleetInPort.Checked;
 			config.FormFleet.FleetStateDisplayMode = FormFleet_FleetStateDisplayMode.SelectedIndex;
-            config.FormFleet.AppliesSallyAreaColor = FormFleet_AppliesSallyAreaColor.Checked;
+			config.FormFleet.AppliesSallyAreaColor = FormFleet_AppliesSallyAreaColor.Checked;
 
             config.FormHeadquarters.BlinkAtMaximum = FormHeadquarters_BlinkAtMaximum.Checked;
 			{

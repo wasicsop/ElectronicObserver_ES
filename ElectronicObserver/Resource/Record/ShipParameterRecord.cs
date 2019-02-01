@@ -1,6 +1,7 @@
 ﻿using ElectronicObserver.Data;
 using ElectronicObserver.Data.Battle;
 using ElectronicObserver.Observer;
+using ElectronicObserver.Utility.Storage;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -93,7 +94,7 @@ namespace ElectronicObserver.Resource.Record
 			public bool SetEstParameter(int level, int current, int max)
 			{
 
-                int clamp(int _value, int _min, int _max) => _value < _min ? _min : (_value > _max ? _max : _value);
+				int clamp(int _value, int _min, int _max) => _value < _min ? _min : (_value > _max ? _max : _value);
 
                 if (max != MaximumDefault)
 					Maximum = max;
@@ -101,11 +102,9 @@ namespace ElectronicObserver.Resource.Record
 				if (level == 1)
 				{
 					MinimumEstMin = MinimumEstMax = current;
-
 				}
 				else if (level != 99)
 				{
-
 					double emind = (99.0 * (current + 0.0) - max * level) / (99.0 - level);
 					double emaxd = (99.0 * (current + 1.0) - max * level) / (99.0 - level);
 
@@ -117,14 +116,12 @@ namespace ElectronicObserver.Resource.Record
 						MinimumEstMin = emin;
 						MinimumEstMax = emax;
 						return true;
-
 					}
 					else
 					{
 						MinimumEstMin = Math.Max(MinimumEstMin, emin);
 						MinimumEstMax = Math.Min(MinimumEstMax, emax);
 					}
-
 				}
 
 				return false;
@@ -173,11 +170,11 @@ namespace ElectronicObserver.Resource.Record
 			/// </summary>
 			public int ShipID { get; set; }
 
-            /// <summary>
-            /// 艦船名
-            /// 可読性向上のために存在します。
-            /// </summary>
-            public string ShipName => KCDatabase.Instance.MasterShips[ShipID]?.NameWithClass;
+			/// <summary>
+			/// 艦船名
+			/// 可読性向上のために存在します。
+			/// </summary>
+			public string ShipName => KCDatabase.Instance.MasterShips[ShipID]?.NameWithClass;
 
 
             /// <summary>
@@ -314,7 +311,6 @@ namespace ElectronicObserver.Resource.Record
 
 			public ShipParameterElement() : base()
 			{
-
 				ASW = new Parameter();
 				Evasion = new Parameter();
 				LOS = new Parameter();
@@ -336,7 +332,7 @@ namespace ElectronicObserver.Resource.Record
 
 			public override void LoadLine(string line)
 			{
-				string[] elem = line.Split(",".ToCharArray());
+				string[] elem = CsvHelper.ParseCsvLine(line).ToArray();
 				if (elem.Length < 36) throw new ArgumentException("The number of elements is too small.");
 
 				ShipID = int.Parse(elem[0]);
@@ -382,7 +378,6 @@ namespace ElectronicObserver.Resource.Record
 				if (elem[24].ToLower() == "null")
 				{
 					DefaultSlot = null;
-
 				}
 				else
 				{
@@ -390,7 +385,6 @@ namespace ElectronicObserver.Resource.Record
 
 					for (int i = 0; i < DefaultSlot.Length; i++)
 					{
-
 						DefaultSlot[i] = elem[i + 24] == "null" ? -1 : int.Parse(elem[i + 24]);
 					}
 				}
@@ -398,7 +392,6 @@ namespace ElectronicObserver.Resource.Record
 				if (elem[29].ToLower() == "null")
 				{
 					Aircraft = null;
-
 				}
 				else
 				{
@@ -433,7 +426,7 @@ namespace ElectronicObserver.Resource.Record
 
 				sb.Append(string.Join(",",
 					ShipID,
-					ShipName,
+					CsvHelper.EscapeCsvCell(ShipName),
 					HPMin,
 					HPMax,
 					FirepowerMin,
@@ -477,9 +470,9 @@ namespace ElectronicObserver.Resource.Record
 				}
 
 				sb.Append(",").Append(string.Join(",",
-					MessageGet ?? "null",
-					MessageAlbum ?? "null",
-					ResourceName ?? "null",
+					CsvHelper.EscapeCsvCell(MessageGet),
+					CsvHelper.EscapeCsvCell(MessageAlbum),
+					CsvHelper.EscapeCsvCell(ResourceName),
 					ResourceGraphicVersion ?? "null",
 					ResourceVoiceVersion ?? "null",
 					ResourcePortVoiceVersion ?? "null",
@@ -502,14 +495,12 @@ namespace ElectronicObserver.Resource.Record
 
 		public ShipParameterRecord() : base()
 		{
-
 			Record = new Dictionary<int, ShipParameterElement>();
 			newShipIDBorder = -1;
 			remodelingShipID = -1;
 			questRewardShipID = -1;
 			changed = false;
 			ParameterLoadFlag = true;
-
 		}
 
 		public override void RegisterEvents()
@@ -520,6 +511,8 @@ namespace ElectronicObserver.Resource.Record
 
 			ao["api_port/port"].ResponseReceived += ParameterLoaded;
 
+			ao["api_get_member/ship3"].ResponseReceived += EquipmentChanged;
+
 			ao["api_get_member/picture_book"].ResponseReceived += AlbumOpened;
 
 			//戦闘系：最初のフェーズのみ要るから夜戦(≠開幕)は不要
@@ -528,8 +521,8 @@ namespace ElectronicObserver.Resource.Record
 			ao["api_req_sortie/airbattle"].ResponseReceived += BattleStart;
 			ao["api_req_sortie/ld_airbattle"].ResponseReceived += BattleStart;
 			ao["api_req_sortie/night_to_day"].ResponseReceived += BattleStart;
-            ao["api_req_sortie/ld_shooting"].ResponseReceived += BattleStart;
-            ao["api_req_combined_battle/battle"].ResponseReceived += BattleStart;
+			ao["api_req_sortie/ld_shooting"].ResponseReceived += BattleStart;
+			ao["api_req_combined_battle/battle"].ResponseReceived += BattleStart;
 			ao["api_req_combined_battle/sp_midnight"].ResponseReceived += BattleStart;
 			ao["api_req_combined_battle/airbattle"].ResponseReceived += BattleStart;
 			ao["api_req_combined_battle/battle_water"].ResponseReceived += BattleStart;
@@ -538,7 +531,9 @@ namespace ElectronicObserver.Resource.Record
 			ao["api_req_combined_battle/ec_night_to_day"].ResponseReceived += BattleStart;
 			ao["api_req_combined_battle/each_battle"].ResponseReceived += BattleStart;
 			ao["api_req_combined_battle/each_battle_water"].ResponseReceived += BattleStart;
-            ao["api_req_combined_battle/ld_shooting"].ResponseReceived += BattleStart;
+			ao["api_req_combined_battle/ld_shooting"].ResponseReceived += BattleStart;
+
+			ao["api_req_map/next"].ResponseReceived += SortieNext;
 
             ao["api_req_map/next"].ResponseReceived += SortieNext;
 
@@ -592,7 +587,6 @@ namespace ElectronicObserver.Resource.Record
 		/// <param name="ship">対象の艦船。</param>
 		public void UpdateParameter(ShipData ship)
 		{
-
 			UpdateParameter(ship.ShipID, ship.Level, ship.ASWBase - ship.ASWModernized, ship.ASWMax, ship.EvasionBase, ship.EvasionMax, ship.LOSBase, ship.LOSMax);
 		}
 
@@ -602,12 +596,11 @@ namespace ElectronicObserver.Resource.Record
 		/// </summary>
 		public void UpdateParameter(int shipID, int level, int aswMin, int aswMax, int evasionMin, int evasionMax, int losMin, int losMax)
 		{
-
 			ShipParameterElement e = this[shipID];
-			if ( e == null )
-            {
-                e = new ShipParameterElement { ShipID = shipID };
-            }
+			if (e == null)
+			{
+				e = new ShipParameterElement { ShipID = shipID };
+			}
 
 
 			if (e.ASW.SetEstParameter(level, aswMin, aswMax))
@@ -626,32 +619,32 @@ namespace ElectronicObserver.Resource.Record
 			Update(e);
 		}
 
-        /// <summary>
-        /// パラメータを更新します。（対潜/回避/索敵最大値のみ）
-        /// </summary>
-        public void UpdateMaxParameter(ShipData ship)
-        {
-            ShipParameterElement e = this[ship.ShipID];
-            if (e == null)
-            {
-                e = new ShipParameterElement { ShipID = ship.ShipID };
-            }
+		/// <summary>
+		/// パラメータを更新します。（対潜/回避/索敵最大値のみ）
+		/// </summary>
+		public void UpdateMaxParameter(ShipData ship)
+		{
+			ShipParameterElement e = this[ship.ShipID];
+			if (e == null)
+			{
+				e = new ShipParameterElement { ShipID = ship.ShipID };
+			}
 
 
-            e.ASW.Maximum = ship.ASWMax;
-            e.Evasion.Maximum = ship.EvasionMax;
-            e.LOS.Maximum = ship.LOSMax;
+			e.ASW.Maximum = ship.ASWMax;
+			e.Evasion.Maximum = ship.EvasionMax;
+			e.LOS.Maximum = ship.LOSMax;
 
 
-            Update(e);
-        }
+			Update(e);
+		}
 
 
-        /// <summary>
-        /// 初期装備を更新します。
-        /// </summary>
-        /// <param name="ship">対象の艦船。入手直後・改装直後のものに限ります。</param>
-        public void UpdateDefaultSlot(ShipData ship)
+		/// <summary>
+		/// 初期装備を更新します。
+		/// </summary>
+		/// <param name="ship">対象の艦船。入手直後・改装直後のものに限ります。</param>
+		public void UpdateDefaultSlot(ShipData ship)
 		{
 			UpdateDefaultSlot(ship.ShipID, ship.SlotMaster.ToArray());
 		}
@@ -664,10 +657,10 @@ namespace ElectronicObserver.Resource.Record
 		public void UpdateDefaultSlot(int shipID, int[] slot)
 		{
 			ShipParameterElement e = this[shipID];
-			if ( e == null )
-            {
-                e = new ShipParameterElement { ShipID = shipID };
-            }
+			if (e == null)
+			{
+				e = new ShipParameterElement { ShipID = shipID };
+			}
 
 			if (e.DefaultSlot == null || !e.DefaultSlot.SequenceEqual(slot))
 				Utility.Logger.Add(2, "Stock equipment of " + KCDatabase.Instance.MasterShips[shipID].NameWithClass + " has been updated.");
@@ -687,7 +680,6 @@ namespace ElectronicObserver.Resource.Record
 		/// </summary>
 		private void GameStart(string apiname, dynamic data)
 		{
-
 			ParameterLoadFlag = true;
 
 
@@ -696,8 +688,8 @@ namespace ElectronicObserver.Resource.Record
 				var param = this[(int)elem.api_id];
 				if (param == null)
 				{
-                    param = new ShipParameterElement { ShipID = (int)elem.api_id };
-                }
+					param = new ShipParameterElement { ShipID = (int)elem.api_id };
+				}
 
 				if (elem.api_taik())
 				{
@@ -758,8 +750,8 @@ namespace ElectronicObserver.Resource.Record
 				var param = this[(int)elem.api_id];
 				if (param == null)
 				{
-                    param = new ShipParameterElement { ShipID = (int)elem.api_id };
-                }
+					param = new ShipParameterElement { ShipID = (int)elem.api_id };
+				}
 
 				if (elem.api_filename())
 				{
@@ -783,10 +775,9 @@ namespace ElectronicObserver.Resource.Record
 				// 無効な装備を持っていた場合、初期装備データを初期化
 				if (record.DefaultSlot != null)
 				{
-
-                    if (record.DefaultSlot.Any(id => id != -1 && !KCDatabase.Instance.MasterEquipments.ContainsKey(id)))
-                        record.DefaultSlot = null;
-                }
+					if (record.DefaultSlot.Any(id => id != -1 && !KCDatabase.Instance.MasterEquipments.ContainsKey(id)))
+						record.DefaultSlot = null;
+				}
 			}
 
 		}
@@ -803,15 +794,30 @@ namespace ElectronicObserver.Resource.Record
 
 			foreach (ShipData ship in KCDatabase.Instance.Ships.Values)
 			{
-                // 非武装時のみ詳細にステータスを更新
-                if (ship.AllSlot.All(id => id <= 0))
+				// 非武装時のみ詳細にステータスを更新
+				if (ship.AllSlot.All(id => id <= 0))
 					UpdateParameter(ship);
-                else
-                    UpdateMaxParameter(ship);
-            }
+				else
+					UpdateMaxParameter(ship);
+			}
 
 			//ParameterLoadFlag = false;      //一回限り(基本的に起動直後の1回)
 
+		}
+
+
+		private void EquipmentChanged(string apiname, dynamic data)
+		{
+			foreach (var rawship in data.api_ship_data)
+			{
+				var ship = KCDatabase.Instance.Ships[(int)rawship.api_id];
+
+				// 非武装時のみ詳細にステータスを更新
+				if (ship.AllSlot.All(id => id <= 0))
+					UpdateParameter(ship);
+				else
+					UpdateMaxParameter(ship);
+			}
 		}
 
 
@@ -833,11 +839,11 @@ namespace ElectronicObserver.Resource.Record
 				int shipID = (int)elem.api_table_id[0];
 				var ship = KCDatabase.Instance.MasterShips[shipID];
 
-                var e = this[shipID];
-                if (e == null)
+				var e = this[shipID];
+				if (e == null)
 				{
-                    e = new ShipParameterElement { ShipID = shipID };
-                }
+					e = new ShipParameterElement { ShipID = shipID };
+				}
 
 
 				if (e.ASW.SetEstParameter(1, (int)elem.api_tais, Parameter.MaximumDefault))
@@ -855,13 +861,12 @@ namespace ElectronicObserver.Resource.Record
 
 					while (ship != null && !processedIDs.Contains(ship.ShipID) && ship.RemodelAfterShipID > 0)
 					{
-
 						processedIDs.AddLast(ship.ID);
-                        var e2 = this[ship.RemodelAfterShipID];
-                        if (e2 == null)
+						var e2 = this[ship.RemodelAfterShipID];
+						if (e2 == null)
 						{
-                            e2 = new ShipParameterElement { ShipID = ship.RemodelAfterShipID };
-                        }
+							e2 = new ShipParameterElement { ShipID = ship.RemodelAfterShipID };
+						}
 
 						ship = KCDatabase.Instance.MasterShips[ship.RemodelAfterShipID];
 						if (ship != null && ship.IsListedInAlbum)
@@ -883,8 +888,8 @@ namespace ElectronicObserver.Resource.Record
 						var e2 = this[id];
 						if (e2 == null)
 						{
-                            e2 = new ShipParameterElement { ShipID = id };
-                        }
+							e2 = new ShipParameterElement { ShipID = id };
+						}
 
 						e2.OriginalCostumeShipID = shipID;
 						Update(e2);
@@ -903,8 +908,7 @@ namespace ElectronicObserver.Resource.Record
 		{
 
 			var battle = KCDatabase.Instance.Battle.FirstBattle;
-
-            var binit = battle.Initial;
+			var binit = battle.Initial;
 
             void UpdateParams(int id, int maxhp, int[] status, int[] slot)
 			{
@@ -929,165 +933,165 @@ namespace ElectronicObserver.Resource.Record
 				Update(param);
 			}
 
-            for (int i = 0; i < binit.EnemyMembers.Length; i++)
-            {
-                int id = binit.EnemyMembers[i];
-                if (id <= 0)
+
+			for (int i = 0; i < binit.EnemyMembers.Length; i++)
+			{
+				int id = binit.EnemyMembers[i];
+				if (id <= 0)
 					continue;
 
-                UpdateParams(id, binit.EnemyMaxHPs[i], binit.EnemyParameters?[i], binit.EnemySlots[i]);
-            }
+				UpdateParams(id, binit.EnemyMaxHPs[i], binit.EnemyParameters?[i], binit.EnemySlots[i]);
+			}
 
 			if (battle.IsEnemyCombined)
 			{
-                for (int i = 0; i < binit.EnemyMembersEscort.Length; i++)
-                {
-                    int id = binit.EnemyMembersEscort[i];
-                    if (id <= 0)
+				for (int i = 0; i < binit.EnemyMembersEscort.Length; i++)
+				{
+					int id = binit.EnemyMembersEscort[i];
+					if (id <= 0)
 						continue;
 
-                    UpdateParams(id, binit.EnemyMaxHPsEscort[i], binit.EnemyParametersEscort?[i], binit.EnemySlotsEscort[i]);
-                }
-            }
-
-
-
-            void EstimateUnknownAircraftSlot()
-            {
-                var db = KCDatabase.Instance;
-
-                // 航空戦が存在するときだけ処理する
-                if (!(battle is BattleDay battleDay))
-                    return;
-
-
-
-                IEnumerable<int> members = binit.EnemyMembers;
-                if (battleDay.IsEnemyCombined)
-                    members = members.Concat(binit.EnemyMembersEscort);
-
-
-                void checkNoAircraft(int id, int[] eqs)
-                {
-                    if (id <= 0 ||
-                        this[id].Aircraft != null)
-                        return;
-
-                    if (eqs.Select(eqid => db.MasterEquipments[eqid]).All(eq => !eq?.IsAircraft ?? true))
-                    {
-                        Utility.Logger.Add(1, $"搭載チェック：ID{id} {db.MasterShips[id].NameWithClass} は航空機を装備していません。搭載数 0 と推定します。");
-                        this[id].Aircraft = new int[5];
-                    }
-                }
-
-                for (int i = 0; i < binit.EnemyMembers.Length; i++)
-                    checkNoAircraft(binit.EnemyMembers[i], binit.EnemySlots[i]);
-
-                if (battleDay.IsEnemyCombined)
-                {
-                    for (int i = 0; i < binit.EnemyMembersEscort.Length; i++)
-                        checkNoAircraft(binit.EnemyMembersEscort[i], binit.EnemySlotsEscort[i]);
-                }
-
-
-
-                // 搭載不明艦が 1 種類 && 航空機搭載スロットが 1 つだけの場合、搭載数推定を行う
-
-                var unknowns = members.Where(id => this[id] != null && this[id].Aircraft == null);
-
-                if (unknowns.Distinct().Count() == 1)
-                {
-                    int unknownShipID = unknowns.First();
-
-                    int[] unknownShipEquipment;
-
-                    {
-                        int unknownShipIndex = Array.IndexOf(binit.EnemyMembers, unknownShipID);
-                        if (unknownShipIndex != -1)
-                        {
-                            unknownShipEquipment = binit.EnemySlots[unknownShipIndex];
-                        }
-                        else
-                        {
-                            unknownShipIndex = Array.IndexOf(binit.EnemyMembersEscort, unknownShipID);
-                            unknownShipEquipment = binit.EnemySlotsEscort[unknownShipIndex];
-                        }
-                    }
-
-
-                    void estimate(int actualAircraftCount, Func<EquipmentDataMaster, bool> isAircraft)
-                    {
-                        if (unknownShipEquipment.Select(id => db.MasterEquipments[id]).Count(isAircraft) != 1)
-                            return;
-
-
-                        int getAircraftCount(int shipID, int[] equipmentIDs, int[] aircraft)
-                        {
-                            int aircount = 0;
-                            if (shipID <= 0 || aircraft == null)
-                                return 0;
-
-                            for (int i = 0; i < Math.Min(equipmentIDs.Length, aircraft.Length); i++)
-                            {
-                                if (isAircraft(db.MasterEquipments[equipmentIDs[i]]))
-                                    aircount += aircraft[i];
-                            }
-                            return aircount;
-                        }
-
-                        int knownAircraftCount = 0;
-                        for (int i = 0; i < binit.EnemyMembers.Length; i++)
-                            knownAircraftCount += getAircraftCount(binit.EnemyMembers[i], binit.EnemySlots[i], this[binit.EnemyMembers[i]]?.Aircraft);
-
-                        if (battleDay.IsEnemyCombined)
-                        {
-                            for (int i = 0; i < binit.EnemyMembersEscort.Length; i++)
-                                knownAircraftCount += getAircraftCount(binit.EnemyMembersEscort[i], binit.EnemySlotsEscort[i], this[binit.EnemyMembersEscort[i]]?.Aircraft);
-                        }
-
-                        int estimatedAircraftCount = (actualAircraftCount - knownAircraftCount) / unknowns.Count();
-
-                        {
-                            var p = this[unknownShipID];
-                            var aircraft = new int[5];
-                            aircraft[Array.FindIndex(unknownShipEquipment, id => isAircraft(db.MasterEquipments[id]))] = estimatedAircraftCount;
-                            p.Aircraft = aircraft;
-                            Update(p);
-                            Utility.Logger.Add(1, $"搭載チェック：ID{unknownShipID} {db.MasterShips[unknownShipID].NameWithClass} の搭載数を [{string.Join(", ", aircraft)}] と推定しました。");
-                        }
-                    }
-
-
-                    if (battleDay.BaseAirAttack?.IsAvailable ?? false)
-                    {
-                        var firstUnit = battleDay.BaseAirAttack.AirAttackUnits.FirstOrDefault();
-                        if (!firstUnit?.IsStage1Available ?? false)
-                            return;
-
-                        estimate(firstUnit.AircraftTotalStage1Enemy, eq => eq?.IsAircraft ?? false);
-                    }
-                    else if (battleDay.AirBattle?.IsStage1Available ?? false)
-                    {
-                        estimate(battleDay.AirBattle.AircraftTotalStage1Enemy, eq => eq?.IsCombatAircraft ?? false);
-                    }
-                    else if (battleDay is BattleBaseAirRaid battleAirRaid && (battleAirRaid.BaseAirRaid?.IsStage1Available ?? false))
-                    {
-                        estimate(battleAirRaid.BaseAirRaid.AircraftTotalStage1Enemy, eq => eq?.IsCombatAircraft ?? false);
-                    }
-
-                }
+					UpdateParams(id, binit.EnemyMaxHPsEscort[i], binit.EnemyParametersEscort?[i], binit.EnemySlotsEscort[i]);
+				}
 			}
 
-            EstimateUnknownAircraftSlot();
-
-        }
 
 
-        private void SortieNext(string apiname, dynamic data)
-        {
-            if (KCDatabase.Instance.Battle.Compass.HasAirRaid)
-                BattleStart(apiname, data);
-        }
+			void EstimateUnknownAircraftSlot()
+			{
+				var db = KCDatabase.Instance;
+
+				// 航空戦が存在するときだけ処理する
+				if (!(battle is BattleDay battleDay))
+					return;
+
+
+
+				IEnumerable<int> members = binit.EnemyMembers;
+				if (battleDay.IsEnemyCombined)
+					members = members.Concat(binit.EnemyMembersEscort);
+
+
+				void checkNoAircraft(int id, int[] eqs)
+				{
+					if (id <= 0 ||
+						this[id].Aircraft != null)
+						return;
+
+					if (eqs.Select(eqid => db.MasterEquipments[eqid]).All(eq => !eq?.IsAircraft ?? true))
+					{
+						Utility.Logger.Add(1, $"搭載チェック：ID{id} {db.MasterShips[id].NameWithClass} は航空機を装備していません。搭載数 0 と推定します。");
+						this[id].Aircraft = new int[5];
+					}
+				}
+
+				for (int i = 0; i < binit.EnemyMembers.Length; i++)
+					checkNoAircraft(binit.EnemyMembers[i], binit.EnemySlots[i]);
+
+				if (battleDay.IsEnemyCombined)
+				{
+					for (int i = 0; i < binit.EnemyMembersEscort.Length; i++)
+						checkNoAircraft(binit.EnemyMembersEscort[i], binit.EnemySlotsEscort[i]);
+				}
+
+
+
+				// 搭載不明艦が 1 種類 && 航空機搭載スロットが 1 つだけの場合、搭載数推定を行う
+
+				var unknowns = members.Where(id => this[id] != null && this[id].Aircraft == null);
+
+				if (unknowns.Distinct().Count() == 1)
+				{
+					int unknownShipID = unknowns.First();
+
+					int[] unknownShipEquipment;
+
+					{
+						int unknownShipIndex = Array.IndexOf(binit.EnemyMembers, unknownShipID);
+						if (unknownShipIndex != -1)
+						{
+							unknownShipEquipment = binit.EnemySlots[unknownShipIndex];
+						}
+						else
+						{
+							unknownShipIndex = Array.IndexOf(binit.EnemyMembersEscort, unknownShipID);
+							unknownShipEquipment = binit.EnemySlotsEscort[unknownShipIndex];
+						}
+					}
+
+
+					void estimate(int actualAircraftCount, Func<EquipmentDataMaster, bool> isAircraft)
+					{
+						if (unknownShipEquipment.Select(id => db.MasterEquipments[id]).Count(isAircraft) != 1)
+							return;
+
+
+						int getAircraftCount(int shipID, int[] equipmentIDs, int[] aircraft)
+						{
+							int aircount = 0;
+							if (shipID <= 0 || aircraft == null)
+								return 0;
+
+							for (int i = 0; i < Math.Min(equipmentIDs.Length, aircraft.Length); i++)
+							{
+								if (isAircraft(db.MasterEquipments[equipmentIDs[i]]))
+									aircount += aircraft[i];
+							}
+							return aircount;
+						}
+
+						int knownAircraftCount = 0;
+						for (int i = 0; i < binit.EnemyMembers.Length; i++)
+							knownAircraftCount += getAircraftCount(binit.EnemyMembers[i], binit.EnemySlots[i], this[binit.EnemyMembers[i]]?.Aircraft);
+
+						if (battleDay.IsEnemyCombined)
+						{
+							for (int i = 0; i < binit.EnemyMembersEscort.Length; i++)
+								knownAircraftCount += getAircraftCount(binit.EnemyMembersEscort[i], binit.EnemySlotsEscort[i], this[binit.EnemyMembersEscort[i]]?.Aircraft);
+						}
+
+						int estimatedAircraftCount = (actualAircraftCount - knownAircraftCount) / unknowns.Count();
+
+						{
+							var p = this[unknownShipID];
+							var aircraft = new int[5];
+							aircraft[Array.FindIndex(unknownShipEquipment, id => isAircraft(db.MasterEquipments[id]))] = estimatedAircraftCount;
+							p.Aircraft = aircraft;
+							Update(p);
+							Utility.Logger.Add(1, $"搭載チェック：ID{unknownShipID} {db.MasterShips[unknownShipID].NameWithClass} の搭載数を [{string.Join(", ", aircraft)}] と推定しました。");
+						}
+					}
+
+
+					if (battleDay.BaseAirAttack?.IsAvailable ?? false)
+					{
+						var firstUnit = battleDay.BaseAirAttack.AirAttackUnits.FirstOrDefault();
+						if (!firstUnit?.IsStage1Available ?? false)
+							return;
+
+						estimate(firstUnit.AircraftTotalStage1Enemy, eq => eq?.IsAircraft ?? false);
+					}
+					else if (battleDay.AirBattle?.IsStage1Available ?? false)
+					{
+						estimate(battleDay.AirBattle.AircraftTotalStage1Enemy, eq => eq?.IsCombatAircraft ?? false);
+					}
+					else if (battleDay is BattleBaseAirRaid battleAirRaid && (battleAirRaid.BaseAirRaid?.IsStage1Available ?? false))
+					{
+						estimate(battleAirRaid.BaseAirRaid.AircraftTotalStage1Enemy, eq => eq?.IsCombatAircraft ?? false);
+					}
+
+				}
+			}
+			EstimateUnknownAircraftSlot();
+
+		}
+
+
+		private void SortieNext(string apiname, dynamic data)
+		{
+			if (KCDatabase.Instance.Battle.Compass.HasAirRaid)
+				BattleStart(apiname, data);
+		}
 
 
 		/// <summary>
@@ -1097,9 +1101,10 @@ namespace ElectronicObserver.Resource.Record
 		{
 			newShipIDBorder = KCDatabase.Instance.Ships.Keys.Max();
 
-            if (KCDatabase.Instance.Battle.Compass.HasAirRaid)
-                BattleStart(apiname, data);
-        }
+
+			if (KCDatabase.Instance.Battle.Compass.HasAirRaid)
+				BattleStart(apiname, data);
+		}
 
 
 		/// <summary>

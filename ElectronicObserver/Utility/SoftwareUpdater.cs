@@ -65,7 +65,8 @@ namespace ElectronicObserver.Utility
 		{
 			while (true)
 			{
-				await Task.Delay(TimeSpan.FromMinutes(1), cancellationToken);
+                // Check for update every 1 hour.
+				await Task.Delay(TimeSpan.FromHours(1), cancellationToken);
 				try
 				{
 					using (var client = WebRequest.Create(UpdateUrl).GetResponse())
@@ -74,12 +75,11 @@ namespace ElectronicObserver.Utility
 						var json = DynamicJson.Parse(updateData);
 						DateTime date = DateTimeHelper.CSVStringToTime(json.bld_date);
 
-						/*if (SoftwareInformation.UpdateTime < date)
+						if (SoftwareInformation.UpdateTime < date)
 						{
-							
-						}*/
-						FormMain.Instance.Update_Available(json.ver);
-						UpdateSoftware();
+						    FormMain.Instance.Update_Available(json.ver);
+						    UpdateSoftware();
+                        }
 
 						UpdateFileUrl = json.url;
 						//DownloadHash = json.hash;

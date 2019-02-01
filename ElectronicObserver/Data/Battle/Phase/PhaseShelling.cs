@@ -120,40 +120,39 @@ namespace ElectronicObserver.Data.Battle.Phase
 
 			foreach (var atk in Attacks)
 			{
+				switch (atk.AttackType)
+				{
+					case 100:
+						// nelson touch
+						for (int i = 0; i < atk.Defenders.Count; i++)
+						{
+							var comboatk = new BattleIndex(atk.Attacker.Side, i * 2);       // #1, #3, #5
+							BattleDetails.Add(new BattleDayDetail(Battle, comboatk, atk.Defenders[i].Defender, new[] { atk.Defenders[i].RawDamage }, new[] { atk.Defenders[i].CriticalFlag }, atk.AttackType, atk.EquipmentIDs, hps[atk.Defenders[i].Defender]));
+							AddDamage(hps, atk.Defenders[i].Defender, atk.Defenders[i].Damage);
+							damages[comboatk] += atk.Defenders[i].Damage;
+						}
+						break;
 
-                switch (atk.AttackType)
-                {
-                    case 100:
-                        // nelson touch
-                        for (int i = 0; i < atk.Defenders.Count; i++)
-                        {
-                            var comboatk = new BattleIndex(atk.Attacker.Side, i * 2);       // #1, #3, #5
-                            BattleDetails.Add(new BattleDayDetail(Battle, comboatk, atk.Defenders[i].Defender, new[] { atk.Defenders[i].RawDamage }, new[] { atk.Defenders[i].CriticalFlag }, atk.AttackType, atk.EquipmentIDs, hps[atk.Defenders[i].Defender]));
-                            AddDamage(hps, atk.Defenders[i].Defender, atk.Defenders[i].Damage);
-                            damages[comboatk] += atk.Defenders[i].Damage;
-                        }
-                        break;
+					case 101:
+						// nagato touch
+						for (int i = 0; i < atk.Defenders.Count; i++)
+						{
+							var comboatk = new BattleIndex(atk.Attacker.Side, i / 2);       // #1, #1, #2
+							BattleDetails.Add(new BattleDayDetail(Battle, comboatk, atk.Defenders[i].Defender, new[] { atk.Defenders[i].RawDamage }, new[] { atk.Defenders[i].CriticalFlag }, atk.AttackType, atk.EquipmentIDs, hps[atk.Defenders[i].Defender]));
+							AddDamage(hps, atk.Defenders[i].Defender, atk.Defenders[i].Damage);
+							damages[comboatk] += atk.Defenders[i].Damage;
+						}
+						break;
 
-                    case 101:
-                        // nagato touch
-                        for (int i = 0; i < atk.Defenders.Count; i++)
-                        {
-                            var comboatk = new BattleIndex(atk.Attacker.Side, i / 2);       // #1, #1, #2
-                            BattleDetails.Add(new BattleDayDetail(Battle, comboatk, atk.Defenders[i].Defender, new[] { atk.Defenders[i].RawDamage }, new[] { atk.Defenders[i].CriticalFlag }, atk.AttackType, atk.EquipmentIDs, hps[atk.Defenders[i].Defender]));
-                            AddDamage(hps, atk.Defenders[i].Defender, atk.Defenders[i].Damage);
-                            damages[comboatk] += atk.Defenders[i].Damage;
-                        }
-                        break;
-
-                    default:
-                        foreach (var defs in atk.Defenders.GroupBy(d => d.Defender))
-                        {
-                            BattleDetails.Add(new BattleDayDetail(Battle, atk.Attacker, defs.Key, defs.Select(d => d.RawDamage).ToArray(), defs.Select(d => d.CriticalFlag).ToArray(), atk.AttackType, atk.EquipmentIDs, hps[defs.Key]));
-                            AddDamage(hps, defs.Key, defs.Sum(d => d.Damage));
-                        }
-                        damages[atk.Attacker] += atk.Defenders.Sum(d => d.Damage);
-                        break;
-                }
+					default:
+						foreach (var defs in atk.Defenders.GroupBy(d => d.Defender))
+						{
+							BattleDetails.Add(new BattleDayDetail(Battle, atk.Attacker, defs.Key, defs.Select(d => d.RawDamage).ToArray(), defs.Select(d => d.CriticalFlag).ToArray(), atk.AttackType, atk.EquipmentIDs, hps[defs.Key]));
+							AddDamage(hps, defs.Key, defs.Sum(d => d.Damage));
+						}
+						damages[atk.Attacker] += atk.Defenders.Sum(d => d.Damage);
+						break;
+				}
 			}
 
 		}

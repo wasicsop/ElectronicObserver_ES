@@ -28,31 +28,21 @@ namespace ElectronicObserver.Data
 		public int AirCorpsID => (int)RawData.api_rid;
 
 
-        /// <summary>
-        /// 航空隊名
-        /// </summary>
-        public string Name { get; private set; }
+		/// <summary>
+		/// 航空隊名
+		/// </summary>
+		public string Name { get; private set; }
 
-        /// <summary>
-        /// 戦闘行動半径
-        /// </summary>
-        public int Distance { get; private set; }
+		/// <summary>
+		/// 戦闘行動半径 base distance
+		/// </summary>
+		public int Distance { get; private set; }
 
-        /// <summary>
-        /// 行動指示
-        /// 0=待機, 1=出撃, 2=防空, 3=退避, 4=休息
-        /// </summary>
-        public int ActionKind
-		{
-			get
-			{
-				return (int)RawData.api_action_kind;
-			}
-			private set
-			{
-				RawData.api_action_kind = value;
-			}
-		}
+		/// <summary>
+		/// 行動指示
+		/// 0=待機, 1=出撃, 2=防空, 3=退避, 4=休息
+		/// </summary>
+		public int ActionKind { get; private set; }
 
 
 		/// <summary>
@@ -108,11 +98,11 @@ namespace ElectronicObserver.Data
 				default:
 					base.LoadFromResponse(apiname, (object)data);
 
-                    Name = (string)data.api_name;
-                    Distance = (int)data.api_distance.api_base + (int)data.api_distance.api_bonus;
-                    ActionKind = (int)data.api_action_kind;
+					Name = (string)data.api_name;
+					Distance = (int)data.api_distance.api_base + (int)data.api_distance.api_bonus;
+					ActionKind = (int)data.api_action_kind;
 
-                    SetSquadrons(apiname, data.api_plane_info);
+					SetSquadrons(apiname, data.api_plane_info);
 					break;
 
 				case "api_req_air_corps/set_plane":
@@ -130,8 +120,8 @@ namespace ElectronicObserver.Data
 							}
 						}
 
-                        Distance = (int)data.api_distance.api_base + (int)data.api_distance.api_bonus;
-                    }
+						Distance = (int)data.api_distance.api_base + (int)data.api_distance.api_bonus;
+					}
 					break;
 
 				case "api_req_air_corps/supply":

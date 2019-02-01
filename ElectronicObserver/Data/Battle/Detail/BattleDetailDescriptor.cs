@@ -19,7 +19,7 @@ namespace ElectronicObserver.Data.Battle.Detail
 
 			if (bm.IsPractice)
 			{
-				sb.AppendLine("Exercise"); //pvp
+				sb.AppendLine("Exercise");
 
 			}
 			else
@@ -142,80 +142,83 @@ namespace ElectronicObserver.Data.Battle.Detail
 						else
 							sb.Append(ConstantsRes.BattleDetail_FriendFleet);
 
-                        void appendFleetInfo(FleetData fleet)
-                        {
-                            sb.Append(" Air Superiority "); // AS
-                            sb.Append(GetRangeString(Calculator.GetAirSuperiority(fleet, false), Calculator.GetAirSuperiority(fleet, true)));
 
-                            double truncate2(double value) => Math.Floor(value * 100) / 100;
-                            sb.AppendFormat(" / LOS [1] {0}, [2] {1}, [3] {2}, [4] {3}", // LOS
-                                truncate2(Calculator.GetSearchingAbility_New33(fleet, 1)),
-                                truncate2(Calculator.GetSearchingAbility_New33(fleet, 2)),
-                                truncate2(Calculator.GetSearchingAbility_New33(fleet, 3)),
-                                truncate2(Calculator.GetSearchingAbility_New33(fleet, 4)));
-                        }
+						void appendFleetInfo(FleetData fleet)
+						{
+							sb.Append(" Air Superiority ");
+							sb.Append(GetRangeString(Calculator.GetAirSuperiority(fleet, false), Calculator.GetAirSuperiority(fleet, true)));
 
-                        if (isBaseAirRaid)
-                        {
-                            sb.AppendLine();
-                            OutputFriendBase(sb, p.FriendInitialHPs, p.FriendMaxHPs);
-                        }
-                        else
-                        {
-                            appendFleetInfo(p.FriendFleet);
-                            sb.AppendLine();
-                            OutputFriendData(sb, p.FriendFleet, p.FriendInitialHPs, p.FriendMaxHPs);
-                        }
+							double truncate2(double value) => Math.Floor(value * 100) / 100;
+							sb.AppendFormat(" / LOS [1] {0}, [2] {1}, [3] {2}, [4] {3}",
+								truncate2(Calculator.GetSearchingAbility_New33(fleet, 1)),
+								truncate2(Calculator.GetSearchingAbility_New33(fleet, 2)),
+								truncate2(Calculator.GetSearchingAbility_New33(fleet, 3)),
+								truncate2(Calculator.GetSearchingAbility_New33(fleet, 4)));
+						}
+
+						if (isBaseAirRaid)
+						{
+							sb.AppendLine();
+							OutputFriendBase(sb, p.FriendInitialHPs, p.FriendMaxHPs);
+						}
+						else
+						{
+							appendFleetInfo(p.FriendFleet);
+							sb.AppendLine();
+							OutputFriendData(sb, p.FriendFleet, p.FriendInitialHPs, p.FriendMaxHPs);
+						}
 
 						if (p.FriendFleetEscort != null)
 						{
 							sb.AppendLine();
 							sb.Append(ConstantsRes.BattleDetail_FriendEscortFleet);
-                            appendFleetInfo(p.FriendFleetEscort);
-                            sb.AppendLine();
+							appendFleetInfo(p.FriendFleetEscort);
+							sb.AppendLine();
 
                             OutputFriendData(sb, p.FriendFleetEscort, p.FriendInitialHPsEscort, p.FriendMaxHPsEscort);
 						}
 
+
 						sb.AppendLine();
 
-                        void appendEnemyFleetInfo(int[] members)
-                        {
-                            int air = 0;
-                            int airbase = 0;
-                            bool indeterminate = false;
-                            for (int i = 0; i < members.Length; i++)
-                            {
-                                var param = RecordManager.Instance.ShipParameter[members[i]];
-                                if (param == null) continue;
 
-                                if (param.DefaultSlot == null || param.Aircraft == null)
-                                {
-                                    indeterminate = true;
-                                    continue;
-                                }
+						void appendEnemyFleetInfo(int[] members)
+						{
+							int air = 0;
+							int airbase = 0;
+							bool indeterminate = false;
+							for (int i = 0; i < members.Length; i++)
+							{
+								var param = RecordManager.Instance.ShipParameter[members[i]];
+								if (param == null) continue;
 
-                                for (int s = 0; s < Math.Min(param.DefaultSlot.Length, param.Aircraft.Length); s++)
-                                {
-                                    air += Calculator.GetAirSuperiority(param.DefaultSlot[s], param.Aircraft[s]);
-                                    if (KCDatabase.Instance.MasterEquipments[param.DefaultSlot[s]]?.IsAircraft ?? false)
-                                        airbase += Calculator.GetAirSuperiority(param.DefaultSlot[s], param.Aircraft[s], 0, 0, 1);
-                                }
-                            }
-                            sb.AppendFormat(" 制空戦力 {0} (対基地 {1})", air, airbase);
-                            if (indeterminate)
-                                sb.Append(" (未確定)");
-                        }
+								if (param.DefaultSlot == null || param.Aircraft == null)
+								{
+									indeterminate = true;
+									continue;
+								}
 
-                        if (p.EnemyMembersEscort != null)
+								for (int s = 0; s < Math.Min(param.DefaultSlot.Length, param.Aircraft.Length); s++)
+								{
+									air += Calculator.GetAirSuperiority(param.DefaultSlot[s], param.Aircraft[s]);
+									if (KCDatabase.Instance.MasterEquipments[param.DefaultSlot[s]]?.IsAircraft ?? false)
+										airbase += Calculator.GetAirSuperiority(param.DefaultSlot[s], param.Aircraft[s], 0, 0, 1);
+								}
+							}
+							sb.AppendFormat(" AS {0} (Air Base {1})", air, airbase);
+							if (indeterminate)
+								sb.Append(" (To be determined)");
+						}
+
+						if (p.EnemyMembersEscort != null)
 							sb.Append(ConstantsRes.BattleDetail_EnemyMainFleet);
 						else
 							sb.Append(ConstantsRes.BattleDetail_EnemyFleet);
 
-                        appendEnemyFleetInfo(p.EnemyMembers);
+						appendEnemyFleetInfo(p.EnemyMembers);
 
-                        if (p.IsBossDamaged)
-							sb.Append(" : 装甲破壊");
+						if (p.IsBossDamaged)
+							sb.Append(" : Boss Debuffed");
 						sb.AppendLine();
 
 						OutputEnemyData(sb, p.EnemyMembersInstance, p.EnemyLevels, p.EnemyInitialHPs, p.EnemyMaxHPs, p.EnemySlotsInstance, p.EnemyParameters);
@@ -226,9 +229,9 @@ namespace ElectronicObserver.Data.Battle.Detail
 							sb.AppendLine();
 							sb.AppendLine(ConstantsRes.BattleDetail_EnemyEscortFleet);
 
-                            appendEnemyFleetInfo(p.EnemyMembersEscort);
+							appendEnemyFleetInfo(p.EnemyMembersEscort);
 
-                            OutputEnemyData(sb, p.EnemyMembersEscortInstance, p.EnemyLevelsEscort, p.EnemyInitialHPsEscort, p.EnemyMaxHPsEscort, p.EnemySlotsEscortInstance, p.EnemyParametersEscort);
+							OutputEnemyData(sb, p.EnemyMembersEscortInstance, p.EnemyLevelsEscort, p.EnemyInitialHPsEscort, p.EnemyMaxHPsEscort, p.EnemySlotsEscortInstance, p.EnemyParametersEscort);
 						}
 
 						sb.AppendLine();
@@ -465,14 +468,17 @@ namespace ElectronicObserver.Data.Battle.Detail
         private static string GetRangeString(int min, int max) => min != max ? $"{min} ～ {max}" : min.ToString();
 
 
-        private static void GetBattleDetailBaseAirCorps(StringBuilder sb, int mapAreaID)
+		private static string GetRangeString(int min, int max) => min != max ? $"{min} ～ {max}" : min.ToString();
+
+
+		private static void GetBattleDetailBaseAirCorps(StringBuilder sb, int mapAreaID)
 		{
 			foreach (var corps in KCDatabase.Instance.BaseAirCorps.Values.Where(corps => corps.MapAreaID == mapAreaID))
 			{
-                sb.AppendFormat("{0} [{1}] AS {2}\r\n　{3}\r\n",
-                    corps.Name, Constants.GetBaseAirCorpsActionKind(corps.ActionKind),
-                    GetRangeString(Calculator.GetAirSuperiority(corps, false), Calculator.GetAirSuperiority(corps, true)),
-                    string.Join(", ", corps.Squadrons.Values
+				sb.AppendFormat("{0} [{1}] Air Superiority {2}\r\n　{3}\r\n",
+					corps.Name, Constants.GetBaseAirCorpsActionKind(corps.ActionKind),
+					GetRangeString(Calculator.GetAirSuperiority(corps, false), Calculator.GetAirSuperiority(corps, true)),
+					string.Join(", ", corps.Squadrons.Values
 						.Where(sq => sq.State == 1 && sq.EquipmentInstance != null)
 						.Select(sq => sq.EquipmentInstance.NameWithLevel)));
 			}
@@ -528,10 +534,11 @@ namespace ElectronicObserver.Data.Battle.Detail
 					fleet.EscapedShipList.Contains(ship.MasterID) ? " (Escaped)" : "");
 
 				sb.Append("　");
-                sb.AppendLine(string.Join(", ", ship.AllSlotInstance.Zip(ship.Aircraft, (eq, aircraft) =>
-                    eq == null ? null : ((eq.MasterEquipment.IsAircraft ? $"[{aircraft}] " : "") + eq.NameWithLevel))
-                    .Where(str => str != null)));
-            }
+				sb.AppendLine(string.Join(", ", ship.AllSlotInstance.Zip(
+					ship.ExpansionSlot > 0 ? ship.Aircraft.Concat(new[] { 0 }) : ship.Aircraft,
+					(eq, aircraft) => eq == null ? null : ((eq.MasterEquipment.IsAircraft ? $"[{aircraft}] " : "") + eq.NameWithLevel)
+				).Where(str => str != null)));
+			}
 		}
 
 		private static void OutputFriendBase(StringBuilder sb, int[] initialHPs, int[] maxHPs)
@@ -581,7 +588,7 @@ namespace ElectronicObserver.Data.Battle.Detail
 				if (ship == null)
 					continue;
 
-				sb.AppendFormat("#{0}: {1} {2} Lv. {3} HP: {4} / {5} - FP{6}, Torp{7}, AA{8}, Armor{9}\r\n",
+				sb.AppendFormat("#{0}: {1} {2} Lv. {3} HP: {4} / {5} - FP {6}, Torp {7}, AA {8}, Armor {9}\r\n",
 					i + 1,
 					ship.ShipTypeName, p.FriendlyMembersInstance[i].NameWithClass, p.FriendlyLevels[i],
 					p.FriendlyInitialHPs[i], p.FriendlyMaxHPs[i],

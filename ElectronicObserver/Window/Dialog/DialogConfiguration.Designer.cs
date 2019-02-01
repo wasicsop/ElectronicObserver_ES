@@ -59,6 +59,7 @@
 			this.UI_JapaneseEquipmentNames = new System.Windows.Forms.CheckBox();
 			this.UI_JapaneseShipTypes = new System.Windows.Forms.CheckBox();
 			this.UI_JapaneseShipNames = new System.Windows.Forms.CheckBox();
+			this.UI_NodeNumbering = new System.Windows.Forms.CheckBox();
 
 			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
 			this.UI_RenderingTestChanger = new System.Windows.Forms.TrackBar();
@@ -247,8 +248,10 @@
 			this.APIListBrowser = new System.Windows.Forms.OpenFileDialog();
 			this.Log_PlayTime = new System.Windows.Forms.Label();
 			this.PlayTimeTimer = new System.Windows.Forms.Timer(this.components);
-            this.FormFleet_AppliesSallyAreaColor = new System.Windows.Forms.CheckBox();
-            this.tabControl1.SuspendLayout();
+			this.label21 = new System.Windows.Forms.Label();
+			this.comboBox1 = new System.Windows.Forms.ComboBox();
+			this.FormFleet_AppliesSallyAreaColor = new System.Windows.Forms.CheckBox();
+			this.tabControl1.SuspendLayout();
 			this.tabPage1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.Connection_UpstreamProxyPort)).BeginInit();
 			this.Connection_PanelSaveData.SuspendLayout();
@@ -575,6 +578,9 @@
 			this.tabPage2.Controls.Add(this.UI_JapaneseEquipmentNames);
 			this.tabPage2.Controls.Add(this.UI_JapaneseShipTypes);
 			this.tabPage2.Controls.Add(this.UI_JapaneseShipNames);
+			this.tabPage2.Controls.Add(this.UI_NodeNumbering);
+			this.tabPage2.Controls.Add(this.label21);
+			this.tabPage2.Controls.Add(this.comboBox1);
 
 			this.tabPage2.Controls.Add(this.tableLayoutPanel1);
 			this.tabPage2.Controls.Add(this.UI_IsLayoutFixed);
@@ -632,6 +638,16 @@
 			this.UI_JapaneseShipNames.TabIndex = 12;
 			this.UI_JapaneseShipNames.Text = "Use JP ship names";
 			this.UI_JapaneseShipNames.UseVisualStyleBackColor = true;
+			//
+			// UI_NodeNumbering
+			//
+			this.UI_NodeNumbering.AutoSize = true;
+			this.UI_NodeNumbering.Location = new System.Drawing.Point(9, 179);
+			this.UI_NodeNumbering.Name = "UI_JapaneseShipTypes";
+			this.UI_NodeNumbering.Size = new System.Drawing.Size(168, 19);
+			this.UI_NodeNumbering.TabIndex = 13;
+			this.UI_NodeNumbering.Text = "Use letter for node assignment";
+			this.UI_NodeNumbering.UseVisualStyleBackColor = true;
 			//
 			// tableLayoutPanel1
 			//
@@ -1259,11 +1275,11 @@
 			this.tabControl2.SelectedIndex = 0;
 			this.tabControl2.Size = new System.Drawing.Size(690, 366);
 			this.tabControl2.TabIndex = 0;
-            //
-            // tabPage8
-            //
-            this.tabPage8.Controls.Add(this.FormFleet_AppliesSallyAreaColor);
-            this.tabPage8.Controls.Add(this.label43);
+			//
+			// tabPage8
+			//
+			this.tabPage8.Controls.Add(this.FormFleet_AppliesSallyAreaColor);
+			this.tabPage8.Controls.Add(this.label43);
 			this.tabPage8.Controls.Add(this.FormFleet_FleetStateDisplayMode);
 			this.tabPage8.Controls.Add(this.FormFleet_EmphasizesSubFleetInPort);
 			this.tabPage8.Controls.Add(this.FormFleet_BlinkAtDamaged);
@@ -1412,7 +1428,7 @@
 			this.FormFleet_ShowConditionIcon.Name = "FormFleet_ShowConditionIcon";
 			this.FormFleet_ShowConditionIcon.Size = new System.Drawing.Size(139, 19);
 			this.FormFleet_ShowConditionIcon.TabIndex = 13;
-			this.FormFleet_ShowConditionIcon.Text = "Fatigue Icon";
+			this.FormFleet_ShowConditionIcon.Text = "Fatigue icon";
 			this.ToolTipInfo.SetToolTip(this.FormFleet_ShowConditionIcon, "Show fatigue level icon in the fleet window.\r\nIf disabled, ship fatigue level is denoted by background color.");
 			this.FormFleet_ShowConditionIcon.UseVisualStyleBackColor = true;
 			//
@@ -2848,21 +2864,44 @@
 			this.PlayTimeTimer.Enabled = true;
 			this.PlayTimeTimer.Interval = 1000;
 			this.PlayTimeTimer.Tick += new System.EventHandler(this.PlayTimeTimer_Tick);
-            // 
-            // FormFleet_AppliesSallyAreaColor
-            // 
-            this.FormFleet_AppliesSallyAreaColor.AutoSize = true;
-            this.FormFleet_AppliesSallyAreaColor.Location = new System.Drawing.Point(358, 188);
-            this.FormFleet_AppliesSallyAreaColor.Name = "FormFleet_AppliesSallyAreaColor";
-            this.FormFleet_AppliesSallyAreaColor.Size = new System.Drawing.Size(170, 19);
-            this.FormFleet_AppliesSallyAreaColor.TabIndex = 23;
-            this.FormFleet_AppliesSallyAreaColor.Text = "出撃海域で艦名を色分けする";
-            this.ToolTipInfo.SetToolTip(this.FormFleet_AppliesSallyAreaColor, "出撃海域によって艦名の背景色を設定します。");
-            this.FormFleet_AppliesSallyAreaColor.UseVisualStyleBackColor = true;
-            //
-            // DialogConfiguration
-            //
-            this.AcceptButton = this.ButtonOK;
+			//
+			// label21
+			//
+			this.label21.AutoSize = true;
+			this.label21.Location = new System.Drawing.Point(8, 222);
+			this.label21.Name = "label21";
+			this.label21.Size = new System.Drawing.Size(57, 15);
+			this.label21.TabIndex = 16;
+			this.label21.Text = "Theme:";
+			//
+			// comboBox1
+			//
+			this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.comboBox1.FormattingEnabled = true;
+			this.comboBox1.Location = new System.Drawing.Point(71, 222);
+			this.comboBox1.Name = "comboBox1";
+			this.comboBox1.Size = new System.Drawing.Size(80, 23);
+			this.comboBox1.TabIndex = 17;
+			this.comboBox1.Items.AddRange(new object[] {
+				"Light", "Dark", "Custom"});
+			this.ToolTipInfo.SetToolTip(this.comboBox1, "Use the specified color theme.\n" +
+			                                            "Changes will take effect after restart.\n" +
+			                                            "Custom option will use color values from Settings\\ColorScheme.json");
+			//
+			// FormFleet_AppliesSallyAreaColor
+			//
+			this.FormFleet_AppliesSallyAreaColor.AutoSize = true;
+			this.FormFleet_AppliesSallyAreaColor.Location = new System.Drawing.Point(358, 188);
+			this.FormFleet_AppliesSallyAreaColor.Name = "FormFleet_AppliesSallyAreaColor";
+			this.FormFleet_AppliesSallyAreaColor.Size = new System.Drawing.Size(170, 19);
+			this.FormFleet_AppliesSallyAreaColor.TabIndex = 23;
+			this.FormFleet_AppliesSallyAreaColor.Text = "Use fleet tag color";
+			this.ToolTipInfo.SetToolTip(this.FormFleet_AppliesSallyAreaColor, "Use fleet tag color as background of each ship name.\nThe colors may not match each event tag colors.");
+			this.FormFleet_AppliesSallyAreaColor.UseVisualStyleBackColor = true;
+			//
+			// DialogConfiguration
+			//
+			this.AcceptButton = this.ButtonOK;
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.CancelButton = this.ButtonCancel;
 			this.ClientSize = new System.Drawing.Size(704, 441);
@@ -3132,6 +3171,7 @@
 		private System.Windows.Forms.CheckBox UI_JapaneseEquipmentTypes;
 		private System.Windows.Forms.CheckBox UI_JapaneseEquipmentNames;
 		private System.Windows.Forms.CheckBox UI_JapaneseShipTypes;
+		private System.Windows.Forms.CheckBox UI_NodeNumbering;
 		private System.Windows.Forms.CheckBox FormFleet_ShowAircraftLevelByNumber;
 		private System.Windows.Forms.CheckBox FormCompass_IsScrollable;
 		private System.Windows.Forms.Label label37;
@@ -3168,6 +3208,8 @@
 		private System.Windows.Forms.Label label20;
 		private System.Windows.Forms.CheckBox FormBrowser_PreserveDrawingBuffer;
 		private System.Windows.Forms.CheckBox FormBrowser_ForceColorProfile;
-        private System.Windows.Forms.CheckBox FormFleet_AppliesSallyAreaColor;
-    }
+		private System.Windows.Forms.Label label21;
+		private System.Windows.Forms.ComboBox comboBox1;
+		private System.Windows.Forms.CheckBox FormFleet_AppliesSallyAreaColor;
+	}
 }

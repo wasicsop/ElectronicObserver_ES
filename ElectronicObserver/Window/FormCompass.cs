@@ -627,8 +627,8 @@ namespace ElectronicObserver.Window
 			o["api_req_sortie/night_to_day"].ResponseReceived += BattleStarted;
 			o["api_req_sortie/airbattle"].ResponseReceived += BattleStarted;
 			o["api_req_sortie/ld_airbattle"].ResponseReceived += BattleStarted;
-            o["api_req_sortie/ld_shooting"].ResponseReceived += BattleStarted;
-            o["api_req_combined_battle/battle"].ResponseReceived += BattleStarted;
+			o["api_req_sortie/ld_shooting"].ResponseReceived += BattleStarted;
+			o["api_req_combined_battle/battle"].ResponseReceived += BattleStarted;
 			o["api_req_combined_battle/sp_midnight"].ResponseReceived += BattleStarted;
 			o["api_req_combined_battle/airbattle"].ResponseReceived += BattleStarted;
 			o["api_req_combined_battle/battle_water"].ResponseReceived += BattleStarted;
@@ -637,8 +637,8 @@ namespace ElectronicObserver.Window
 			o["api_req_combined_battle/each_battle"].ResponseReceived += BattleStarted;
 			o["api_req_combined_battle/each_battle_water"].ResponseReceived += BattleStarted;
 			o["api_req_combined_battle/ec_night_to_day"].ResponseReceived += BattleStarted;
-            o["api_req_combined_battle/ld_shooting"].ResponseReceived += BattleStarted;
-            o["api_req_practice/battle"].ResponseReceived += BattleStarted;
+			o["api_req_combined_battle/ld_shooting"].ResponseReceived += BattleStarted;
+			o["api_req_practice/battle"].ResponseReceived += BattleStarted;
 
 
 			Utility.Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
@@ -648,7 +648,7 @@ namespace ElectronicObserver.Window
 		private void Updated(string apiname, dynamic data)
 		{
 
-			Func<int, Color> getColorFromEventKind = (int kind) =>
+			Color getColorFromEventKind(int kind)
 			{
 				switch (kind)
 				{
@@ -666,10 +666,10 @@ namespace ElectronicObserver.Window
 						return Utility.Configuration.Config.UI.Compass_ColorTextEventKind5;
 					case 7:     // 夜昼戦(対連合艦隊)
 						return Utility.Configuration.Config.UI.Compass_ColorTextEventKind3;
-                    case 8:     // レーダー射撃
-                        return Color.Navy;
-                }
-			};
+					case 8:     // レーダー射撃
+						return Utility.Configuration.Config.UI.Compass_ColorTextEventKind3;
+				}
+			}
 
 			if (apiname == "api_port/port")
 			{
@@ -716,13 +716,13 @@ namespace ElectronicObserver.Window
 				{
 					var mapinfo = compass.MapInfo;
 
-                    if (mapinfo.RequiredDefeatedCount != -1 && mapinfo.CurrentDefeatedCount < mapinfo.RequiredDefeatedCount)
-                    {
-						ToolTipInfo.SetToolTip( TextMapArea, string.Format("{0}" + GeneralRes.Defeated + ": {1} / {2} times",
-                            mapinfo.CurrentGaugeIndex > 0 ? $"#{mapinfo.CurrentGaugeIndex} " : "",
-                            mapinfo.CurrentDefeatedCount, mapinfo.RequiredDefeatedCount));
+					if (mapinfo.RequiredDefeatedCount != -1 && mapinfo.CurrentDefeatedCount < mapinfo.RequiredDefeatedCount)
+					{
+						ToolTipInfo.SetToolTip(TextMapArea, string.Format("{0} defeated: {1} / {2} times",
+							mapinfo.CurrentGaugeIndex > 0 ? $"#{mapinfo.CurrentGaugeIndex} " : "",
+							mapinfo.CurrentDefeatedCount, mapinfo.RequiredDefeatedCount));
 
-                    }
+					}
 					else if (mapinfo.MapHPMax > 0)
 					{
 						int current = compass.MapHPCurrent > 0 ? compass.MapHPCurrent : mapinfo.MapHPCurrent;
@@ -870,64 +870,8 @@ namespace ElectronicObserver.Window
 								case 6:
 									eventkind = "It's a calm sea.";
 									break;
-								case 7:
-									eventkind = "Anti-Submarine Alert, advancing.";
-									break;
-								case 8:
-									eventkind = "Enemy patrol aircraft discovered.";
-									break;
-								case 9:
-									eventkind = "Kurita Fleet, pushing through.";
-									break;
-								case 10:
-									eventkind = "Nishimura Fleet, attack in progress.";
-									break;
-								case 11:
-									eventkind = "Advancing to Surigao Strait."; // 西村
-									break;
-								case 12:
-									eventkind = "Advancing to Sibuyan Sea.";
-									break;
-								case 13:
-									eventkind = "Transport mission failed.";
-									break;
-								case 14:
-									eventkind = "Attacking in Sibuyan Sea."; // 栗田
-									break;
-								case 15:
-									eventkind = "Attacking off the coast of Samar.";
-									break;
-								case 16:
-									eventkind = "Nishimura Fleet, pushing through."; // 西村
-									break;
-								case 17:
-									eventkind = "Ozawa Fleet, sortieing.";
-									break;
-								case 18:
-									eventkind = "Panay Island.";
-									break;
-								case 19:
-									eventkind = "Entering Mindanao Island.";
-									break;
-								case 20:
-									eventkind = "Shima Fleet, sortieing.";
-									break;
-								case 21:
-									eventkind = "Enemy patrol aircraft discovered.";
-									break;
-								case 22:
-									eventkind = "Anti-Submarine Alert, advancing.";
-									break;
-								case 23:
-									eventkind = "Fast Fleet, sortieing.";
-									break;
-								case 24:
-									eventkind = "Carrier Task Force, sortieing.";
-									break;
-								case 25:
-									eventkind = "Decisive battle.";
-									break;
 							}
+
 							if (compass.RouteChoices != null)
 							{
 								var nodechoices = new string[compass.RouteChoices.Count];
@@ -938,8 +882,15 @@ namespace ElectronicObserver.Window
 								}
 								TextEventDetail.Text = string.Join(" or ", nodechoices);
 							}
+							else if (compass.FlavorTextType != -1)
+							{
+								TextEventDetail.Text = "◆";
+								ToolTipInfo.SetToolTip(TextEventDetail, compass.FlavorText);
+							}
 							else
+							{
 								TextEventDetail.Text = "";
+							}
 
 							break;
 
