@@ -602,16 +602,10 @@ namespace ElectronicObserver.Data
 		/// </summary>
 		public ShipType ShipTypeInstance => KCDatabase.Instance.ShipTypes[(int)ShipType];
 
-		/// <summary>
-		/// 陸上基地かどうか
-		/// </summary>
-		public ShipType ShipTypeInstance => KCDatabase.Instance.ShipTypes[(int)ShipType];
-
         /// <summary>
         /// 陸上基地かどうか
         /// </summary>
         public bool IsLandBase => Speed == 0;
-
 
 
 		/// <summary>

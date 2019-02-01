@@ -467,10 +467,6 @@ namespace ElectronicObserver.Data.Battle.Detail
 
         private static string GetRangeString(int min, int max) => min != max ? $"{min} ～ {max}" : min.ToString();
 
-
-		private static string GetRangeString(int min, int max) => min != max ? $"{min} ～ {max}" : min.ToString();
-
-
 		private static void GetBattleDetailBaseAirCorps(StringBuilder sb, int mapAreaID)
 		{
 			foreach (var corps in KCDatabase.Instance.BaseAirCorps.Values.Where(corps => corps.MapAreaID == mapAreaID))

@@ -1295,11 +1295,6 @@ namespace ElectronicObserver.Utility.Data
 				}
 			}
 
-
-			switch (shipID)
-			{
-
-
             switch (shipID)
 			{
 				case 428:   // 摩耶改二
