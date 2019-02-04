@@ -241,6 +241,7 @@ namespace Browser
 			settings.CefCommandLineArgs.Add("proxy-server", ProxySettings);
 			if (Configuration.ForceColorProfile)
 				settings.CefCommandLineArgs.Add("force-color-profile", "srgb");
+            settings.CefCommandLineArgs.Add("num-raster-threads", "4");
 			CefSharpSettings.SubprocessExitIfParentProcessClosed = true;
             Cef.Initialize(settings);
             
@@ -298,12 +299,6 @@ namespace Browser
 			ToolMenu_Other_AppliesStyleSheet.Checked = Configuration.AppliesStyleSheet;
 			ToolMenu.Dock = (DockStyle)Configuration.ToolMenuDockStyle;
 			ToolMenu.Visible = Configuration.IsToolMenuVisible;
-
-
-            //BackColor = SystemColors.ControlDark;
-            //ForeColor = SystemColors.Control;
-           // ToolMenu.BackColor = SystemColors.ControlDark;
-            //ToolMenu.ForeColor = SystemColors.Control;
         }
 
 		private void ConfigurationUpdated()
@@ -381,8 +376,7 @@ namespace Browser
 
 			BeginInvoke((Action)(() =>
 			{
-				ApplyStyleSheet();
-
+                ApplyStyleSheet();
 				ApplyZoom();
 				DestroyDMMreloadDialog();
 			}));
