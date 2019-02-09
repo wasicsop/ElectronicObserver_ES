@@ -166,12 +166,12 @@ namespace Browser
 				ToolMenu_Other_LastScreenShot.DropDownItems.Insert(0, host);
 
 
-                visualStudioToolStripExtender1.SetStyle(ToolMenu, VisualStudioToolStripExtender.VsVersion.Vs2015, vS2015DarkTheme1);
-                ToolMenu.BackColor = SystemColors.ControlDark;
-                ToolMenu.ForeColor = Color.FromArgb(0x22, 0x22, 0x22);
-                BackColor = SystemColors.ControlDark;
-                ForeColor = Color.FromArgb(0x22, 0x22, 0x22);
-            }
+				visualStudioToolStripExtender1.SetStyle(ToolMenu, VisualStudioToolStripExtender.VsVersion.Vs2015, vS2015DarkTheme1);
+				ToolMenu.BackColor = SystemColors.ControlDark;
+				ToolMenu.ForeColor = Color.FromArgb(0x22, 0x22, 0x22);
+				BackColor = SystemColors.ControlDark;
+				ForeColor = Color.FromArgb(0x22, 0x22, 0x22);
+			}
 
 		}
 
@@ -241,10 +241,10 @@ namespace Browser
 			settings.CefCommandLineArgs.Add("proxy-server", ProxySettings);
 			if (Configuration.ForceColorProfile)
 				settings.CefCommandLineArgs.Add("force-color-profile", "srgb");
-            settings.CefCommandLineArgs.Add("num-raster-threads", "4");
+			settings.CefCommandLineArgs.Add("num-raster-threads", "4");
 			CefSharpSettings.SubprocessExitIfParentProcessClosed = true;
-            Cef.Initialize(settings);
-            
+			Cef.Initialize(settings);
+			SetCookies();
 
 			var requestHandler = new RequestHandler(pixiSettingEnabled: Configuration.PreserveDrawingBuffer);
 			requestHandler.RenderProcessTerminated += (mes) => AddLog(3, mes);
@@ -264,6 +264,19 @@ namespace Browser
 			SizeAdjuster.Controls.Add(Browser);
 		}
 
+		private void SetCookies()
+		{
+			Cookie c = new Cookie();
+			c.Name = "ckcy";
+			c.Value = "1";
+			c.Domain = ".dmm.com";
+			c.Path = @"/netgame/";
+			c.Expires = DateTime.Now.AddMonths(6);
+			c.HttpOnly = false;
+			c.Secure = false;
+			var manager = Cef.GetGlobalCookieManager();
+			manager.SetCookie(@"http://www.dmm.com/netgame/social/-/gadgets/=/app_id=854854/", c);
+		}
 
 		void Exit()
 		{
@@ -299,7 +312,7 @@ namespace Browser
 			ToolMenu_Other_AppliesStyleSheet.Checked = Configuration.AppliesStyleSheet;
 			ToolMenu.Dock = (DockStyle)Configuration.ToolMenuDockStyle;
 			ToolMenu.Visible = Configuration.IsToolMenuVisible;
-        }
+		}
 
 		private void ConfigurationUpdated()
 		{
@@ -376,7 +389,7 @@ namespace Browser
 
 			BeginInvoke((Action)(() =>
 			{
-                ApplyStyleSheet();
+				ApplyStyleSheet();
 				ApplyZoom();
 				DestroyDMMreloadDialog();
 			}));
