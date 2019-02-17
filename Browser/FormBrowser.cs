@@ -242,6 +242,7 @@ namespace Browser
 			if (Configuration.ForceColorProfile)
 				settings.CefCommandLineArgs.Add("force-color-profile", "srgb");
 			settings.CefCommandLineArgs.Add("num-raster-threads", "4");
+			settings.CefCommandLineArgs.Add("limit-fps", "60"); // fix for canvas crash if fps exceeds 60fps
 			CefSharpSettings.SubprocessExitIfParentProcessClosed = true;
 			Cef.Initialize(settings);
 			SetCookies();
