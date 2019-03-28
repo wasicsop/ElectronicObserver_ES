@@ -247,6 +247,7 @@ namespace Browser
 
 			settings.CefCommandLineArgs.Add("proxy-server", ProxySettings);
 			settings.CefCommandLineArgs.Add("limit-fps", "60");// limit browser fps to fix canvas crash
+			settings.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0"; // fix for 206 response from server for bgm
 			if (Configuration.ForceColorProfile)
 				settings.CefCommandLineArgs.Add("force-color-profile", "srgb");
 			CefSharpSettings.SubprocessExitIfParentProcessClosed = true;
