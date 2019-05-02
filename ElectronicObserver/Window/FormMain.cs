@@ -283,14 +283,16 @@ namespace ElectronicObserver.Window
 				MainDockPanel.AllowChangeLayout = false;
 				FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
                 SubForms.ForEach(dock=> ToggleLock(dock));
+				MainDockPanel.AllowEndUserDocking = false;
 			}
 			else
 			{
 				MainDockPanel.AllowChangeLayout = true;
 				FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
                 SubForms.ForEach(dock => ToggleLock(dock));
+				MainDockPanel.AllowEndUserDocking = true;
 
-            }
+			}
 
 			StripMenu_File_Layout_LockLayout.Checked = c.Life.LockLayout;
 			MainDockPanel.CanCloseFloatWindowInLock = c.Life.CanCloseFloatWindowInLock;
