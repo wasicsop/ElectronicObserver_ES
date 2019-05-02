@@ -48,7 +48,6 @@ namespace Browser
 		private Timer HeartbeatTimer = new Timer();
 		private IntPtr HostWindow;
 
-
 		private ChromiumWebBrowser Browser = null;
 
 		private string ProxySettings = null;
@@ -119,7 +118,7 @@ namespace Browser
 			StyleSheetApplied = false;
 			_volumeManager = new VolumeManager((uint)Process.GetCurrentProcess().Id);
 
-
+			Assembly.Load("Nekoxy");
 			// 音量設定用コントロールの追加
 			{
 				var control = new NumericUpDown();
@@ -221,7 +220,6 @@ namespace Browser
 			if (ProxySettings == null)
 				return;
 
-
 			var settings = new CefSettings()
 			{
 				BrowserSubprocessPath = Path.Combine(
@@ -231,7 +229,7 @@ namespace Browser
 				CachePath = BrowserCachePath,
 				Locale = "ja",
 				AcceptLanguageList = "ja,en-US,en",        // todo: いる？
-				LogSeverity = LogSeverity.Error,
+				LogSeverity = LogSeverity.Info,
 				LogFile = "BrowserLog.log",
 			};
 
@@ -252,7 +250,7 @@ namespace Browser
 			var requestHandler = new RequestHandler(pixiSettingEnabled: Configuration.PreserveDrawingBuffer);
 			requestHandler.RenderProcessTerminated += (mes) => AddLog(3, mes);
 
-			Browser = new ChromiumWebBrowser(@"about:blank")
+			Browser = new ChromiumWebBrowser(String.Empty)
 			{
 				Dock = DockStyle.None,
 				Size = SizeAdjuster.Size,
@@ -261,9 +259,9 @@ namespace Browser
 				KeyboardHandler = new KeyboardHandler(),
 				DragHandler = new DragHandler(),
 			};
-            
-            Browser.BrowserSettings.StandardFontFamily = "Microsoft YaHei";
-            Browser.LoadingStateChanged += Browser_LoadingStateChanged;
+
+			Browser.BrowserSettings.StandardFontFamily = "Microsoft YaHei";
+			Browser.LoadingStateChanged += Browser_LoadingStateChanged;
 			SizeAdjuster.Controls.Add(Browser);
 		}
 
