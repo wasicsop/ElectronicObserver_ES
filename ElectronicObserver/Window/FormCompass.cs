@@ -715,6 +715,7 @@ namespace ElectronicObserver.Window
 					compass.MapInfo.EventDifficulty > 0 ? " [" + Constants.GetDifficulty( compass.MapInfo.EventDifficulty ) + "]" : "" );
 				{
 					var mapinfo = compass.MapInfo;
+                    var sb = new StringBuilder();
 
                     if (mapinfo.RequiredDefeatedCount != -1 && mapinfo.CurrentDefeatedCount < mapinfo.RequiredDefeatedCount)
                     {
