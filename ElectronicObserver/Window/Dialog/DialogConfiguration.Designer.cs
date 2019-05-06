@@ -28,276 +28,269 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.components = new System.ComponentModel.Container();
-			ElectronicObserver.Window.Control.StatusBarModule statusBarModule2 = new ElectronicObserver.Window.Control.StatusBarModule();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-			this.tabControl1 = new System.Windows.Forms.TabControl();
-			this.tabPage1 = new System.Windows.Forms.TabPage();
-			this.label19 = new System.Windows.Forms.Label();
-			this.Connection_UpstreamProxyAddress = new System.Windows.Forms.TextBox();
-			this.Connection_DownstreamProxyLabel = new System.Windows.Forms.Label();
-			this.Connection_DownstreamProxy = new System.Windows.Forms.TextBox();
-			this.Connection_UseSystemProxy = new System.Windows.Forms.CheckBox();
-			this.Connection_UpstreamProxyPort = new System.Windows.Forms.NumericUpDown();
-			this.Connection_UseUpstreamProxy = new System.Windows.Forms.CheckBox();
-			this.Connection_RegisterAsSystemProxy = new System.Windows.Forms.CheckBox();
-			this.Connection_OutputConnectionScript = new System.Windows.Forms.Button();
-			this.label4 = new System.Windows.Forms.Label();
-			this.Connection_PanelSaveData = new System.Windows.Forms.Panel();
-			this.Connection_ApplyVersion = new System.Windows.Forms.CheckBox();
-			this.Connection_SaveOtherFile = new System.Windows.Forms.CheckBox();
-			this.Connection_SaveResponse = new System.Windows.Forms.CheckBox();
-			this.Connection_SaveRequest = new System.Windows.Forms.CheckBox();
-			this.Connection_SaveDataPathSearch = new System.Windows.Forms.Button();
-			this.label3 = new System.Windows.Forms.Label();
-			this.Connection_SaveDataPath = new System.Windows.Forms.TextBox();
-			this.Connection_SaveReceivedData = new System.Windows.Forms.CheckBox();
-			this.Connection_Port = new System.Windows.Forms.NumericUpDown();
-			this.label1 = new System.Windows.Forms.Label();
-			this.tabPage2 = new System.Windows.Forms.TabPage();
-			this.UI_JapaneseEquipmentTypes = new System.Windows.Forms.CheckBox();
-			this.UI_JapaneseEquipmentNames = new System.Windows.Forms.CheckBox();
-			this.UI_JapaneseShipTypes = new System.Windows.Forms.CheckBox();
-			this.UI_JapaneseShipNames = new System.Windows.Forms.CheckBox();
-			this.UI_NodeNumbering = new System.Windows.Forms.CheckBox();
-
-			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-			this.UI_RenderingTestChanger = new System.Windows.Forms.TrackBar();
-			this.UI_RenderingTest = new ElectronicObserver.Window.Control.ShipStatusHP();
-			this.UI_IsLayoutFixed = new System.Windows.Forms.CheckBox();
-			this.UI_BarColorMorphing = new System.Windows.Forms.CheckBox();
-			this.UI_SubFontSelect = new System.Windows.Forms.Button();
-			this.UI_SubFont = new System.Windows.Forms.TextBox();
-			this.label8 = new System.Windows.Forms.Label();
-			this.UI_MainFontSelect = new System.Windows.Forms.Button();
-			this.UI_MainFont = new System.Windows.Forms.TextBox();
-			this.label5 = new System.Windows.Forms.Label();
-			this.tabPage3 = new System.Windows.Forms.TabPage();
-			this.Log_SaveLogImmediately = new System.Windows.Forms.CheckBox();
-			this.Log_SaveBattleLog = new System.Windows.Forms.CheckBox();
-			this.Log_ShowSpoiler = new System.Windows.Forms.CheckBox();
-			this.label12 = new System.Windows.Forms.Label();
-			this.label11 = new System.Windows.Forms.Label();
-			this.Log_FileEncodingID = new System.Windows.Forms.ComboBox();
-			this.Log_SaveErrorReport = new System.Windows.Forms.CheckBox();
-			this.Log_SaveLogFlag = new System.Windows.Forms.CheckBox();
-			this.Log_LogLevel = new System.Windows.Forms.NumericUpDown();
-			this.label6 = new System.Windows.Forms.Label();
-			this.tabPage4 = new System.Windows.Forms.TabPage();
-			this.Control_ShowSallyAreaAlertDialog = new System.Windows.Forms.CheckBox();
-			this.Control_PowerEngagementForm = new System.Windows.Forms.ComboBox();
-			this.label29 = new System.Windows.Forms.Label();
-			this.Control_UseSystemVolume = new System.Windows.Forms.CheckBox();
-			this.Control_RecordAutoSaving = new System.Windows.Forms.ComboBox();
-			this.label9 = new System.Windows.Forms.Label();
-			this.Control_ConditionBorder = new System.Windows.Forms.NumericUpDown();
-			this.label7 = new System.Windows.Forms.Label();
-			this.tabPage5 = new System.Windows.Forms.TabPage();
-			this.Debug_AlertOnError = new System.Windows.Forms.CheckBox();
-			this.Debug_SealingPanel = new System.Windows.Forms.Panel();
-			this.Debug_APIListPath = new System.Windows.Forms.TextBox();
-			this.Debug_LoadAPIListOnLoad = new System.Windows.Forms.CheckBox();
-			this.Debug_APIListPathSearch = new System.Windows.Forms.Button();
-			this.Debug_EnableDebugMenu = new System.Windows.Forms.CheckBox();
-			this.tabPage6 = new System.Windows.Forms.TabPage();
-			this.Life_CanCloseFloatWindowInLock = new System.Windows.Forms.CheckBox();
-			this.Life_LockLayout = new System.Windows.Forms.CheckBox();
-			this.label24 = new System.Windows.Forms.Label();
-			this.Life_ClockFormat = new System.Windows.Forms.ComboBox();
-			this.Life_ShowStatusBar = new System.Windows.Forms.CheckBox();
-			this.Life_CheckUpdateInformation = new System.Windows.Forms.CheckBox();
-			this.Life_LayoutFilePathSearch = new System.Windows.Forms.Button();
-			this.Life_LayoutFilePath = new System.Windows.Forms.TextBox();
-			this.label14 = new System.Windows.Forms.Label();
-			this.Life_TopMost = new System.Windows.Forms.CheckBox();
-			this.Life_ConfirmOnClosing = new System.Windows.Forms.CheckBox();
-			this.tabPage7 = new System.Windows.Forms.TabPage();
-			this.tabControl2 = new System.Windows.Forms.TabControl();
-			this.tabPage8 = new System.Windows.Forms.TabPage();
-			this.label43 = new System.Windows.Forms.Label();
-			this.FormFleet_FleetStateDisplayMode = new System.Windows.Forms.ComboBox();
-			this.FormFleet_EmphasizesSubFleetInPort = new System.Windows.Forms.CheckBox();
-			this.FormFleet_BlinkAtDamaged = new System.Windows.Forms.CheckBox();
-			this.FormFleet_ReflectAnchorageRepairHealing = new System.Windows.Forms.CheckBox();
-			this.FormFleet_ShowAirSuperiorityRange = new System.Windows.Forms.CheckBox();
-			this.FormFleet_ShowAircraftLevelByNumber = new System.Windows.Forms.CheckBox();
-			this.label35 = new System.Windows.Forms.Label();
-			this.FormFleet_FixedShipNameWidth = new System.Windows.Forms.NumericUpDown();
-			this.FormFleet_ShowConditionIcon = new System.Windows.Forms.CheckBox();
-			this.FormFleet_EquipmentLevelVisibility = new System.Windows.Forms.ComboBox();
-			this.label28 = new System.Windows.Forms.Label();
-			this.FormFleet_BlinkAtCompletion = new System.Windows.Forms.CheckBox();
-			this.FormFleet_ShowAnchorageRepairingTimer = new System.Windows.Forms.CheckBox();
-			this.FormFleet_AirSuperiorityMethod = new System.Windows.Forms.ComboBox();
-			this.label23 = new System.Windows.Forms.Label();
-			this.FormFleet_ShowNextExp = new System.Windows.Forms.CheckBox();
-			this.FormFleet_ShortenHPBar = new System.Windows.Forms.CheckBox();
-			this.FormFleet_FixShipNameWidth = new System.Windows.Forms.CheckBox();
-			this.FormFleet_IsScrollable = new System.Windows.Forms.CheckBox();
-			this.FormFleet_SearchingAbilityMethod = new System.Windows.Forms.ComboBox();
-			this.label13 = new System.Windows.Forms.Label();
-			this.FormFleet_ShowAircraft = new System.Windows.Forms.CheckBox();
-			this.tabPage9 = new System.Windows.Forms.TabPage();
-			this.label38 = new System.Windows.Forms.Label();
-			this.label37 = new System.Windows.Forms.Label();
-			this.FormArsenal_MaxShipNameWidth = new System.Windows.Forms.NumericUpDown();
-			this.FormArsenal_BlinkAtCompletion = new System.Windows.Forms.CheckBox();
-			this.FormArsenal_ShowShipName = new System.Windows.Forms.CheckBox();
-			this.tabPage19 = new System.Windows.Forms.TabPage();
-			this.label39 = new System.Windows.Forms.Label();
-			this.label36 = new System.Windows.Forms.Label();
-			this.FormDock_MaxShipNameWidth = new System.Windows.Forms.NumericUpDown();
-			this.FormDock_BlinkAtCompletion = new System.Windows.Forms.CheckBox();
-			this.tabPage16 = new System.Windows.Forms.TabPage();
-			this.label34 = new System.Windows.Forms.Label();
-			this.FormHeadquarters_DisplayUseItemID = new System.Windows.Forms.ComboBox();
-			this.label26 = new System.Windows.Forms.Label();
-			this.FormHeadquarters_Visibility = new System.Windows.Forms.CheckedListBox();
-			this.FormHeadquarters_BlinkAtMaximum = new System.Windows.Forms.CheckBox();
-			this.tabPage18 = new System.Windows.Forms.TabPage();
-			this.label40 = new System.Windows.Forms.Label();
-			this.label41 = new System.Windows.Forms.Label();
-			this.FormCompass_MaxShipNameWidth = new System.Windows.Forms.NumericUpDown();
-			this.FormCompass_IsScrollable = new System.Windows.Forms.CheckBox();
-			this.FormCompass_CandidateDisplayCount = new System.Windows.Forms.NumericUpDown();
-			this.label2 = new System.Windows.Forms.Label();
-			this.tabPage10 = new System.Windows.Forms.TabPage();
-			this.FormQuest_AllowUserToSortRows = new System.Windows.Forms.CheckBox();
-			this.FormQuest_ProgressAutoSaving = new System.Windows.Forms.ComboBox();
-			this.label27 = new System.Windows.Forms.Label();
-			this.groupBox1 = new System.Windows.Forms.GroupBox();
-			this.FormQuest_ShowOther = new System.Windows.Forms.CheckBox();
-			this.FormQuest_ShowMonthly = new System.Windows.Forms.CheckBox();
-			this.FormQuest_ShowWeekly = new System.Windows.Forms.CheckBox();
-			this.FormQuest_ShowDaily = new System.Windows.Forms.CheckBox();
-			this.FormQuest_ShowOnce = new System.Windows.Forms.CheckBox();
-			this.FormQuest_ShowRunningOnly = new System.Windows.Forms.CheckBox();
-			this.tabPage13 = new System.Windows.Forms.TabPage();
-			this.FormShipGroup_ShipNameSortMethod = new System.Windows.Forms.ComboBox();
-			this.label25 = new System.Windows.Forms.Label();
-			this.FormShipGroup_ShowStatusBar = new System.Windows.Forms.CheckBox();
-			this.FormShipGroup_AutoUpdate = new System.Windows.Forms.CheckBox();
-			this.tabPage20 = new System.Windows.Forms.TabPage();
-			this.FormBattle_Display7thAsSingleLine = new System.Windows.Forms.CheckBox();
-			this.FormBattle_ShowShipTypeInHPBar = new System.Windows.Forms.CheckBox();
-			this.FormBattle_ShowHPBar = new System.Windows.Forms.CheckBox();
-			this.FormBattle_HideDuringBattle = new System.Windows.Forms.CheckBox();
-			this.FormBattle_IsScrollable = new System.Windows.Forms.CheckBox();
-			this.tabPage12 = new System.Windows.Forms.TabPage();
-			this.FormBrowser_ForceColorProfile = new System.Windows.Forms.CheckBox();
-			this.FormBrowser_PreserveDrawingBuffer = new System.Windows.Forms.CheckBox();
-			this.label20 = new System.Windows.Forms.Label();
-			this.FormBrowser_HardwareAccelerationEnabled = new System.Windows.Forms.CheckBox();
-			this.FormBrowser_IsDMMreloadDialogDestroyable = new System.Windows.Forms.CheckBox();
-			this.FormBrowser_ToolMenuDockStyle = new System.Windows.Forms.ComboBox();
-			this.label30 = new System.Windows.Forms.Label();
-			this.FormBrowser_ZoomFit = new System.Windows.Forms.CheckBox();
-			this.FormBrowser_AppliesStyleSheet = new System.Windows.Forms.CheckBox();
-			this.FormBrowser_ConfirmAtRefresh = new System.Windows.Forms.CheckBox();
-			this.groupBox2 = new System.Windows.Forms.GroupBox();
-			this.label42 = new System.Windows.Forms.Label();
-			this.FormBrowser_ScreenShotSaveMode = new System.Windows.Forms.ComboBox();
-			this.FormBrowser_ScreenShotFormat_AvoidTwitterDeterioration = new System.Windows.Forms.CheckBox();
-			this.label18 = new System.Windows.Forms.Label();
-			this.FormBrowser_ScreenShotFormat_PNG = new System.Windows.Forms.RadioButton();
-			this.FormBrowser_ScreenShotPathSearch = new System.Windows.Forms.Button();
-			this.FormBrowser_ScreenShotPath = new System.Windows.Forms.TextBox();
-			this.FormBrowser_ScreenShotFormat_JPEG = new System.Windows.Forms.RadioButton();
-			this.label17 = new System.Windows.Forms.Label();
-			this.label16 = new System.Windows.Forms.Label();
-			this.FormBrowser_IsEnabled = new System.Windows.Forms.CheckBox();
-			this.FormBrowser_LogInPageURL = new System.Windows.Forms.TextBox();
-			this.FormBrowser_ZoomRate = new System.Windows.Forms.NumericUpDown();
-			this.label15 = new System.Windows.Forms.Label();
-			this.tabPage21 = new System.Windows.Forms.TabPage();
-			this.FormBaseAirCorps_ShowEventMapOnly = new System.Windows.Forms.CheckBox();
-			this.SubWindow_Json = new System.Windows.Forms.TabPage();
-			this.SubWindow_Json_SealingPanel = new System.Windows.Forms.Panel();
-			this.FormJson_AutoUpdate = new System.Windows.Forms.CheckBox();
-			this.label32 = new System.Windows.Forms.Label();
-			this.FormJson_UpdatesTree = new System.Windows.Forms.CheckBox();
-			this.FormJson_AutoUpdateFilter = new System.Windows.Forms.TextBox();
-			this.label31 = new System.Windows.Forms.Label();
-			this.label33 = new System.Windows.Forms.Label();
-			this.tabPage11 = new System.Windows.Forms.TabPage();
-			this.silenceFullscreen = new System.Windows.Forms.CheckBox();
-			this.Notification_Silencio = new System.Windows.Forms.CheckBox();
-			this.Notification_AnchorageRepair = new System.Windows.Forms.Button();
-			this.label10 = new System.Windows.Forms.Label();
-			this.Notification_Damage = new System.Windows.Forms.Button();
-			this.Notification_Condition = new System.Windows.Forms.Button();
-			this.Notification_Repair = new System.Windows.Forms.Button();
-			this.Notification_Construction = new System.Windows.Forms.Button();
-			this.Notification_Expedition = new System.Windows.Forms.Button();
-			this.tabPage17 = new System.Windows.Forms.TabPage();
-			this.BGMPlayer_SyncBrowserMute = new System.Windows.Forms.CheckBox();
-			this.BGMPlayer_SetVolumeAll = new System.Windows.Forms.Button();
-			this.BGMPlayer_VolumeAll = new System.Windows.Forms.NumericUpDown();
-			this.BGMPlayer_Enabled = new System.Windows.Forms.CheckBox();
-			this.BGMPlayer_ControlGrid = new System.Windows.Forms.DataGridView();
-			this.BGMPlayer_ColumnEnabled = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-			this.BGMPlayer_ColumnContent = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.BGMPlayer_ColumnPath = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.BGMPlayer_ColumnSetting = new System.Windows.Forms.DataGridViewButtonColumn();
-			this.ToolTipInfo = new System.Windows.Forms.ToolTip(this.components);
-			this.ButtonOK = new System.Windows.Forms.Button();
-			this.ButtonCancel = new System.Windows.Forms.Button();
-			this.FolderBrowser = new System.Windows.Forms.FolderBrowserDialog();
-			this.FontSelector = new System.Windows.Forms.FontDialog();
-			this.LayoutFileBrowser = new System.Windows.Forms.OpenFileDialog();
-			this.APIListBrowser = new System.Windows.Forms.OpenFileDialog();
-			this.Log_PlayTime = new System.Windows.Forms.Label();
-			this.PlayTimeTimer = new System.Windows.Forms.Timer(this.components);
-			this.label21 = new System.Windows.Forms.Label();
-			this.comboBox1 = new System.Windows.Forms.ComboBox();
-			this.FormFleet_AppliesSallyAreaColor = new System.Windows.Forms.CheckBox();
-			this.tabControl1.SuspendLayout();
-			this.tabPage1.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.Connection_UpstreamProxyPort)).BeginInit();
-			this.Connection_PanelSaveData.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.Connection_Port)).BeginInit();
-			this.tabPage2.SuspendLayout();
-			this.tableLayoutPanel1.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.UI_RenderingTestChanger)).BeginInit();
-			this.tabPage3.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.Log_LogLevel)).BeginInit();
-			this.tabPage4.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.Control_ConditionBorder)).BeginInit();
-			this.tabPage5.SuspendLayout();
-			this.Debug_SealingPanel.SuspendLayout();
-			this.tabPage6.SuspendLayout();
-			this.tabPage7.SuspendLayout();
-			this.tabControl2.SuspendLayout();
-			this.tabPage8.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.FormFleet_FixedShipNameWidth)).BeginInit();
-			this.tabPage9.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.FormArsenal_MaxShipNameWidth)).BeginInit();
-			this.tabPage19.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.FormDock_MaxShipNameWidth)).BeginInit();
-			this.tabPage16.SuspendLayout();
-			this.tabPage18.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.FormCompass_MaxShipNameWidth)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.FormCompass_CandidateDisplayCount)).BeginInit();
-			this.tabPage10.SuspendLayout();
-			this.groupBox1.SuspendLayout();
-			this.tabPage13.SuspendLayout();
-			this.tabPage20.SuspendLayout();
-			this.tabPage12.SuspendLayout();
-			this.groupBox2.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.FormBrowser_ZoomRate)).BeginInit();
-			this.tabPage21.SuspendLayout();
-			this.SubWindow_Json.SuspendLayout();
-			this.SubWindow_Json_SealingPanel.SuspendLayout();
-			this.tabPage11.SuspendLayout();
-			this.tabPage17.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.BGMPlayer_VolumeAll)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.BGMPlayer_ControlGrid)).BeginInit();
-			this.SuspendLayout();
-			//
-			// tabControl1
-			//
-			this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.components = new System.ComponentModel.Container();
+            ElectronicObserver.Window.Control.StatusBarModule statusBarModule1 = new ElectronicObserver.Window.Control.StatusBarModule();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.label19 = new System.Windows.Forms.Label();
+            this.Connection_UpstreamProxyAddress = new System.Windows.Forms.TextBox();
+            this.Connection_DownstreamProxyLabel = new System.Windows.Forms.Label();
+            this.Connection_DownstreamProxy = new System.Windows.Forms.TextBox();
+            this.Connection_UseSystemProxy = new System.Windows.Forms.CheckBox();
+            this.Connection_UpstreamProxyPort = new System.Windows.Forms.NumericUpDown();
+            this.Connection_UseUpstreamProxy = new System.Windows.Forms.CheckBox();
+            this.Connection_RegisterAsSystemProxy = new System.Windows.Forms.CheckBox();
+            this.Connection_OutputConnectionScript = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.Connection_PanelSaveData = new System.Windows.Forms.Panel();
+            this.Connection_ApplyVersion = new System.Windows.Forms.CheckBox();
+            this.Connection_SaveOtherFile = new System.Windows.Forms.CheckBox();
+            this.Connection_SaveResponse = new System.Windows.Forms.CheckBox();
+            this.Connection_SaveRequest = new System.Windows.Forms.CheckBox();
+            this.Connection_SaveDataPathSearch = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.Connection_SaveDataPath = new System.Windows.Forms.TextBox();
+            this.Connection_SaveReceivedData = new System.Windows.Forms.CheckBox();
+            this.Connection_Port = new System.Windows.Forms.NumericUpDown();
+            this.label1 = new System.Windows.Forms.Label();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.UI_RenderingTestChanger = new System.Windows.Forms.TrackBar();
+            this.UI_RenderingTest = new ElectronicObserver.Window.Control.ShipStatusHP();
+            this.UI_IsLayoutFixed = new System.Windows.Forms.CheckBox();
+            this.UI_BarColorMorphing = new System.Windows.Forms.CheckBox();
+            this.UI_SubFontSelect = new System.Windows.Forms.Button();
+            this.UI_SubFont = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.UI_MainFontSelect = new System.Windows.Forms.Button();
+            this.UI_MainFont = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.Log_SaveLogImmediately = new System.Windows.Forms.CheckBox();
+            this.Log_SaveBattleLog = new System.Windows.Forms.CheckBox();
+            this.Log_ShowSpoiler = new System.Windows.Forms.CheckBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.Log_FileEncodingID = new System.Windows.Forms.ComboBox();
+            this.Log_SaveErrorReport = new System.Windows.Forms.CheckBox();
+            this.Log_SaveLogFlag = new System.Windows.Forms.CheckBox();
+            this.Log_LogLevel = new System.Windows.Forms.NumericUpDown();
+            this.label6 = new System.Windows.Forms.Label();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.Control_ShowSallyAreaAlertDialog = new System.Windows.Forms.CheckBox();
+            this.Control_PowerEngagementForm = new System.Windows.Forms.ComboBox();
+            this.label29 = new System.Windows.Forms.Label();
+            this.Control_UseSystemVolume = new System.Windows.Forms.CheckBox();
+            this.Control_RecordAutoSaving = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.Control_ConditionBorder = new System.Windows.Forms.NumericUpDown();
+            this.label7 = new System.Windows.Forms.Label();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.Debug_AlertOnError = new System.Windows.Forms.CheckBox();
+            this.Debug_SealingPanel = new System.Windows.Forms.Panel();
+            this.Debug_APIListPath = new System.Windows.Forms.TextBox();
+            this.Debug_LoadAPIListOnLoad = new System.Windows.Forms.CheckBox();
+            this.Debug_APIListPathSearch = new System.Windows.Forms.Button();
+            this.Debug_EnableDebugMenu = new System.Windows.Forms.CheckBox();
+            this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.Life_CanCloseFloatWindowInLock = new System.Windows.Forms.CheckBox();
+            this.Life_LockLayout = new System.Windows.Forms.CheckBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.Life_ClockFormat = new System.Windows.Forms.ComboBox();
+            this.Life_ShowStatusBar = new System.Windows.Forms.CheckBox();
+            this.Life_CheckUpdateInformation = new System.Windows.Forms.CheckBox();
+            this.Life_LayoutFilePathSearch = new System.Windows.Forms.Button();
+            this.Life_LayoutFilePath = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.Life_TopMost = new System.Windows.Forms.CheckBox();
+            this.Life_ConfirmOnClosing = new System.Windows.Forms.CheckBox();
+            this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.tabControl2 = new System.Windows.Forms.TabControl();
+            this.tabPage8 = new System.Windows.Forms.TabPage();
+            this.FormFleet_AppliesSallyAreaColor = new System.Windows.Forms.CheckBox();
+            this.label43 = new System.Windows.Forms.Label();
+            this.FormFleet_FleetStateDisplayMode = new System.Windows.Forms.ComboBox();
+            this.FormFleet_EmphasizesSubFleetInPort = new System.Windows.Forms.CheckBox();
+            this.FormFleet_BlinkAtDamaged = new System.Windows.Forms.CheckBox();
+            this.FormFleet_ReflectAnchorageRepairHealing = new System.Windows.Forms.CheckBox();
+            this.FormFleet_ShowAirSuperiorityRange = new System.Windows.Forms.CheckBox();
+            this.FormFleet_ShowAircraftLevelByNumber = new System.Windows.Forms.CheckBox();
+            this.label35 = new System.Windows.Forms.Label();
+            this.FormFleet_FixedShipNameWidth = new System.Windows.Forms.NumericUpDown();
+            this.FormFleet_ShowConditionIcon = new System.Windows.Forms.CheckBox();
+            this.FormFleet_EquipmentLevelVisibility = new System.Windows.Forms.ComboBox();
+            this.label28 = new System.Windows.Forms.Label();
+            this.FormFleet_BlinkAtCompletion = new System.Windows.Forms.CheckBox();
+            this.FormFleet_ShowAnchorageRepairingTimer = new System.Windows.Forms.CheckBox();
+            this.FormFleet_AirSuperiorityMethod = new System.Windows.Forms.ComboBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.FormFleet_ShowNextExp = new System.Windows.Forms.CheckBox();
+            this.FormFleet_ShortenHPBar = new System.Windows.Forms.CheckBox();
+            this.FormFleet_FixShipNameWidth = new System.Windows.Forms.CheckBox();
+            this.FormFleet_IsScrollable = new System.Windows.Forms.CheckBox();
+            this.FormFleet_SearchingAbilityMethod = new System.Windows.Forms.ComboBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.FormFleet_ShowAircraft = new System.Windows.Forms.CheckBox();
+            this.tabPage9 = new System.Windows.Forms.TabPage();
+            this.label38 = new System.Windows.Forms.Label();
+            this.label37 = new System.Windows.Forms.Label();
+            this.FormArsenal_MaxShipNameWidth = new System.Windows.Forms.NumericUpDown();
+            this.FormArsenal_BlinkAtCompletion = new System.Windows.Forms.CheckBox();
+            this.FormArsenal_ShowShipName = new System.Windows.Forms.CheckBox();
+            this.tabPage19 = new System.Windows.Forms.TabPage();
+            this.label39 = new System.Windows.Forms.Label();
+            this.label36 = new System.Windows.Forms.Label();
+            this.FormDock_MaxShipNameWidth = new System.Windows.Forms.NumericUpDown();
+            this.FormDock_BlinkAtCompletion = new System.Windows.Forms.CheckBox();
+            this.tabPage16 = new System.Windows.Forms.TabPage();
+            this.label34 = new System.Windows.Forms.Label();
+            this.FormHeadquarters_DisplayUseItemID = new System.Windows.Forms.ComboBox();
+            this.label26 = new System.Windows.Forms.Label();
+            this.FormHeadquarters_Visibility = new System.Windows.Forms.CheckedListBox();
+            this.FormHeadquarters_BlinkAtMaximum = new System.Windows.Forms.CheckBox();
+            this.tabPage18 = new System.Windows.Forms.TabPage();
+            this.label40 = new System.Windows.Forms.Label();
+            this.label41 = new System.Windows.Forms.Label();
+            this.FormCompass_MaxShipNameWidth = new System.Windows.Forms.NumericUpDown();
+            this.FormCompass_IsScrollable = new System.Windows.Forms.CheckBox();
+            this.FormCompass_CandidateDisplayCount = new System.Windows.Forms.NumericUpDown();
+            this.label2 = new System.Windows.Forms.Label();
+            this.tabPage10 = new System.Windows.Forms.TabPage();
+            this.FormQuest_AllowUserToSortRows = new System.Windows.Forms.CheckBox();
+            this.FormQuest_ProgressAutoSaving = new System.Windows.Forms.ComboBox();
+            this.label27 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.FormQuest_ShowOther = new System.Windows.Forms.CheckBox();
+            this.FormQuest_ShowMonthly = new System.Windows.Forms.CheckBox();
+            this.FormQuest_ShowWeekly = new System.Windows.Forms.CheckBox();
+            this.FormQuest_ShowDaily = new System.Windows.Forms.CheckBox();
+            this.FormQuest_ShowOnce = new System.Windows.Forms.CheckBox();
+            this.FormQuest_ShowRunningOnly = new System.Windows.Forms.CheckBox();
+            this.tabPage13 = new System.Windows.Forms.TabPage();
+            this.FormShipGroup_ShipNameSortMethod = new System.Windows.Forms.ComboBox();
+            this.label25 = new System.Windows.Forms.Label();
+            this.FormShipGroup_ShowStatusBar = new System.Windows.Forms.CheckBox();
+            this.FormShipGroup_AutoUpdate = new System.Windows.Forms.CheckBox();
+            this.tabPage20 = new System.Windows.Forms.TabPage();
+            this.FormBattle_Display7thAsSingleLine = new System.Windows.Forms.CheckBox();
+            this.FormBattle_ShowShipTypeInHPBar = new System.Windows.Forms.CheckBox();
+            this.FormBattle_ShowHPBar = new System.Windows.Forms.CheckBox();
+            this.FormBattle_HideDuringBattle = new System.Windows.Forms.CheckBox();
+            this.FormBattle_IsScrollable = new System.Windows.Forms.CheckBox();
+            this.tabPage12 = new System.Windows.Forms.TabPage();
+            this.FormBrowser_ForceColorProfile = new System.Windows.Forms.CheckBox();
+            this.FormBrowser_PreserveDrawingBuffer = new System.Windows.Forms.CheckBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.FormBrowser_HardwareAccelerationEnabled = new System.Windows.Forms.CheckBox();
+            this.FormBrowser_IsDMMreloadDialogDestroyable = new System.Windows.Forms.CheckBox();
+            this.FormBrowser_ToolMenuDockStyle = new System.Windows.Forms.ComboBox();
+            this.label30 = new System.Windows.Forms.Label();
+            this.FormBrowser_ZoomFit = new System.Windows.Forms.CheckBox();
+            this.FormBrowser_AppliesStyleSheet = new System.Windows.Forms.CheckBox();
+            this.FormBrowser_ConfirmAtRefresh = new System.Windows.Forms.CheckBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label42 = new System.Windows.Forms.Label();
+            this.FormBrowser_ScreenShotSaveMode = new System.Windows.Forms.ComboBox();
+            this.FormBrowser_ScreenShotFormat_AvoidTwitterDeterioration = new System.Windows.Forms.CheckBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.FormBrowser_ScreenShotFormat_PNG = new System.Windows.Forms.RadioButton();
+            this.FormBrowser_ScreenShotPathSearch = new System.Windows.Forms.Button();
+            this.FormBrowser_ScreenShotPath = new System.Windows.Forms.TextBox();
+            this.FormBrowser_ScreenShotFormat_JPEG = new System.Windows.Forms.RadioButton();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.FormBrowser_IsEnabled = new System.Windows.Forms.CheckBox();
+            this.FormBrowser_LogInPageURL = new System.Windows.Forms.TextBox();
+            this.FormBrowser_ZoomRate = new System.Windows.Forms.NumericUpDown();
+            this.label15 = new System.Windows.Forms.Label();
+            this.tabPage21 = new System.Windows.Forms.TabPage();
+            this.FormBaseAirCorps_ShowEventMapOnly = new System.Windows.Forms.CheckBox();
+            this.SubWindow_Json = new System.Windows.Forms.TabPage();
+            this.SubWindow_Json_SealingPanel = new System.Windows.Forms.Panel();
+            this.FormJson_AutoUpdate = new System.Windows.Forms.CheckBox();
+            this.label32 = new System.Windows.Forms.Label();
+            this.FormJson_UpdatesTree = new System.Windows.Forms.CheckBox();
+            this.FormJson_AutoUpdateFilter = new System.Windows.Forms.TextBox();
+            this.label31 = new System.Windows.Forms.Label();
+            this.label33 = new System.Windows.Forms.Label();
+            this.tabPage11 = new System.Windows.Forms.TabPage();
+            this.silenceFullscreen = new System.Windows.Forms.CheckBox();
+            this.Notification_Silencio = new System.Windows.Forms.CheckBox();
+            this.Notification_AnchorageRepair = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
+            this.Notification_Damage = new System.Windows.Forms.Button();
+            this.Notification_Condition = new System.Windows.Forms.Button();
+            this.Notification_Repair = new System.Windows.Forms.Button();
+            this.Notification_Construction = new System.Windows.Forms.Button();
+            this.Notification_Expedition = new System.Windows.Forms.Button();
+            this.tabPage17 = new System.Windows.Forms.TabPage();
+            this.BGMPlayer_SyncBrowserMute = new System.Windows.Forms.CheckBox();
+            this.BGMPlayer_SetVolumeAll = new System.Windows.Forms.Button();
+            this.BGMPlayer_VolumeAll = new System.Windows.Forms.NumericUpDown();
+            this.BGMPlayer_Enabled = new System.Windows.Forms.CheckBox();
+            this.BGMPlayer_ControlGrid = new System.Windows.Forms.DataGridView();
+            this.BGMPlayer_ColumnEnabled = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.BGMPlayer_ColumnContent = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BGMPlayer_ColumnPath = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BGMPlayer_ColumnSetting = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.ToolTipInfo = new System.Windows.Forms.ToolTip(this.components);
+            this.ButtonOK = new System.Windows.Forms.Button();
+            this.ButtonCancel = new System.Windows.Forms.Button();
+            this.FolderBrowser = new System.Windows.Forms.FolderBrowserDialog();
+            this.FontSelector = new System.Windows.Forms.FontDialog();
+            this.LayoutFileBrowser = new System.Windows.Forms.OpenFileDialog();
+            this.APIListBrowser = new System.Windows.Forms.OpenFileDialog();
+            this.Log_PlayTime = new System.Windows.Forms.Label();
+            this.PlayTimeTimer = new System.Windows.Forms.Timer(this.components);
+            this.Control_ShowExpeditionAlertDialog = new System.Windows.Forms.CheckBox();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Connection_UpstreamProxyPort)).BeginInit();
+            this.Connection_PanelSaveData.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Connection_Port)).BeginInit();
+            this.tabPage2.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.UI_RenderingTestChanger)).BeginInit();
+            this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Log_LogLevel)).BeginInit();
+            this.tabPage4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Control_ConditionBorder)).BeginInit();
+            this.tabPage5.SuspendLayout();
+            this.Debug_SealingPanel.SuspendLayout();
+            this.tabPage6.SuspendLayout();
+            this.tabPage7.SuspendLayout();
+            this.tabControl2.SuspendLayout();
+            this.tabPage8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.FormFleet_FixedShipNameWidth)).BeginInit();
+            this.tabPage9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.FormArsenal_MaxShipNameWidth)).BeginInit();
+            this.tabPage19.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.FormDock_MaxShipNameWidth)).BeginInit();
+            this.tabPage16.SuspendLayout();
+            this.tabPage18.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.FormCompass_MaxShipNameWidth)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FormCompass_CandidateDisplayCount)).BeginInit();
+            this.tabPage10.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.tabPage13.SuspendLayout();
+            this.tabPage20.SuspendLayout();
+            this.tabPage12.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.FormBrowser_ZoomRate)).BeginInit();
+            this.tabPage21.SuspendLayout();
+            this.SubWindow_Json.SuspendLayout();
+            this.SubWindow_Json_SealingPanel.SuspendLayout();
+            this.tabPage11.SuspendLayout();
+            this.tabPage17.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.BGMPlayer_VolumeAll)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BGMPlayer_ControlGrid)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.tabControl1.Controls.Add(this.tabPage1);
 			this.tabControl1.Controls.Add(this.tabPage2);
@@ -921,10 +914,11 @@
 			this.label6.Size = new System.Drawing.Size(88, 15);
 			this.label6.TabIndex = 1;
 			this.label6.Text = ConfigRes.LoggingLevel;
-			//
-			// tabPage4
-			//
-			this.tabPage4.Controls.Add(this.Control_ShowSallyAreaAlertDialog);
+            //
+            // tabPage4
+            //
+            this.tabPage4.Controls.Add(this.Control_ShowExpeditionAlertDialog);
+            this.tabPage4.Controls.Add(this.Control_ShowSallyAreaAlertDialog);
 			this.tabPage4.Controls.Add(this.Control_PowerEngagementForm);
 			this.tabPage4.Controls.Add(this.label29);
 			this.tabPage4.Controls.Add(this.Control_UseSystemVolume);
@@ -1405,7 +1399,7 @@
             0,
             0,
             0});
-			this.FormFleet_FixedShipNameWidth.Minimum = new decimal(new int[] {
+            this.FormFleet_FixedShipNameWidth.Minimum = new decimal(new int[] {
             1,
             0,
             0,
@@ -1625,7 +1619,7 @@
             0,
             0,
             0});
-			this.FormArsenal_MaxShipNameWidth.Minimum = new decimal(new int[] {
+            this.FormArsenal_MaxShipNameWidth.Minimum = new decimal(new int[] {
             1,
             0,
             0,
@@ -1701,7 +1695,7 @@
             0,
             0,
             0});
-			this.FormDock_MaxShipNameWidth.Minimum = new decimal(new int[] {
+            this.FormDock_MaxShipNameWidth.Minimum = new decimal(new int[] {
             1,
             0,
             0,
@@ -1832,7 +1826,7 @@
             0,
             0,
             0});
-			this.FormCompass_MaxShipNameWidth.Minimum = new decimal(new int[] {
+            this.FormCompass_MaxShipNameWidth.Minimum = new decimal(new int[] {
             1,
             0,
             0,
@@ -1867,16 +1861,16 @@
             0,
             0,
             0});
-			this.FormCompass_CandidateDisplayCount.Minimum = new decimal(new int[] {
+            this.FormCompass_CandidateDisplayCount.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-			this.FormCompass_CandidateDisplayCount.Name = "FormCompass_CandidateDisplayCount";
-			this.FormCompass_CandidateDisplayCount.Size = new System.Drawing.Size(60, 23);
-			this.FormCompass_CandidateDisplayCount.TabIndex = 4;
-			this.FormCompass_CandidateDisplayCount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			this.FormCompass_CandidateDisplayCount.Value = new decimal(new int[] {
+            this.FormCompass_CandidateDisplayCount.Name = "FormCompass_CandidateDisplayCount";
+            this.FormCompass_CandidateDisplayCount.Size = new System.Drawing.Size(60, 23);
+            this.FormCompass_CandidateDisplayCount.TabIndex = 4;
+            this.FormCompass_CandidateDisplayCount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.FormCompass_CandidateDisplayCount.Value = new decimal(new int[] {
             4,
             0,
             0,
@@ -2433,16 +2427,16 @@
             0,
             0,
             0});
-			this.FormBrowser_ZoomRate.Minimum = new decimal(new int[] {
+            this.FormBrowser_ZoomRate.Minimum = new decimal(new int[] {
             10,
             0,
             0,
             0});
-			this.FormBrowser_ZoomRate.Name = "FormBrowser_ZoomRate";
-			this.FormBrowser_ZoomRate.Size = new System.Drawing.Size(60, 23);
-			this.FormBrowser_ZoomRate.TabIndex = 2;
-			this.FormBrowser_ZoomRate.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			this.FormBrowser_ZoomRate.Value = new decimal(new int[] {
+            this.FormBrowser_ZoomRate.Name = "FormBrowser_ZoomRate";
+            this.FormBrowser_ZoomRate.Size = new System.Drawing.Size(60, 23);
+            this.FormBrowser_ZoomRate.TabIndex = 2;
+            this.FormBrowser_ZoomRate.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.FormBrowser_ZoomRate.Value = new decimal(new int[] {
             10,
             0,
             0,
@@ -2747,8 +2741,8 @@
 			this.BGMPlayer_ControlGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.BGMPlayer_ControlGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.BGMPlayer_ControlGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.BGMPlayer_ControlGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.BGMPlayer_ControlGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.BGMPlayer_ColumnEnabled,
             this.BGMPlayer_ColumnContent,
             this.BGMPlayer_ColumnPath,
@@ -2898,10 +2892,21 @@
 			this.FormFleet_AppliesSallyAreaColor.Text = "Use fleet tag color";
 			this.ToolTipInfo.SetToolTip(this.FormFleet_AppliesSallyAreaColor, "Use fleet tag color as background of each ship name.\nThe colors may not match each event tag colors.");
 			this.FormFleet_AppliesSallyAreaColor.UseVisualStyleBackColor = true;
-			//
-			// DialogConfiguration
-			//
-			this.AcceptButton = this.ButtonOK;
+            // 
+            // Control_ShowExpeditionAlertDialog
+            // 
+            this.Control_ShowExpeditionAlertDialog.AutoSize = true;
+            this.Control_ShowExpeditionAlertDialog.Location = new System.Drawing.Point(9, 143);
+            this.Control_ShowExpeditionAlertDialog.Name = "Control_ShowExpeditionAlertDialog";
+            this.Control_ShowExpeditionAlertDialog.Size = new System.Drawing.Size(181, 19);
+            this.Control_ShowExpeditionAlertDialog.TabIndex = 8;
+            this.Control_ShowExpeditionAlertDialog.Text = "失敗する遠征出撃時に警告する";
+            this.ToolTipInfo.SetToolTip(this.Control_ShowExpeditionAlertDialog, "編成条件を満たさない艦隊が遠征に出発したときに、警告ダイアログを表示するかを指定します。");
+            this.Control_ShowExpeditionAlertDialog.UseVisualStyleBackColor = true;
+            //
+            // DialogConfiguration
+            //
+            this.AcceptButton = this.ButtonOK;
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.CancelButton = this.ButtonCancel;
 			this.ClientSize = new System.Drawing.Size(704, 441);
@@ -3211,5 +3216,6 @@
 		private System.Windows.Forms.Label label21;
 		private System.Windows.Forms.ComboBox comboBox1;
 		private System.Windows.Forms.CheckBox FormFleet_AppliesSallyAreaColor;
-	}
+        private System.Windows.Forms.CheckBox Control_ShowExpeditionAlertDialog;
+    }
 }

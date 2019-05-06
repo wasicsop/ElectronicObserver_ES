@@ -801,6 +801,12 @@ namespace ElectronicObserver.Data
 					return "Full broadside... Sounds exciting!";
 				case DayAttackKind.Shelling:
 					return "Shelling";
+                case DayAttackKind.SpecialMutsu:
+                    return "長門、いい？ いくわよ！ 主砲一斉射ッ！";
+                case DayAttackKind.ZuiunMultiAngle:
+                    return "瑞雲立体攻撃";
+                case DayAttackKind.SeaAirMultiAngle:
+                    return "海空立体攻撃";
 				case DayAttackKind.AirAttack:
 					return "Air Attack";
 				case DayAttackKind.DepthCharge:
@@ -820,7 +826,7 @@ namespace ElectronicObserver.Data
 				case  DayAttackKind.LandingTokuDaihatsuTank:
 					return "Amphibious Attack(Toku Daihatsu+Tank)";
 				default:
-					return ConstantsRes.Unknown;
+					return $"{ConstantsRes.Unknown}({(int)id})";
 			}
 		}
 
@@ -856,6 +862,9 @@ namespace ElectronicObserver.Data
 					return "Full broadside... Sounds exciting!";
 				case NightAttackKind.Shelling:
 					return "Shelling";
+                case NightAttackKind.SpecialMutsu:
+                    return "長門、いい？ いくわよ！ 主砲一斉射ッ！";
+
 				case NightAttackKind.AirAttack:
 					return ConstantsRes.AirAttack;
 				case NightAttackKind.DepthCharge:
@@ -875,7 +884,7 @@ namespace ElectronicObserver.Data
 				case NightAttackKind.LandingTokuDaihatsuTank:
 					return "Amphibious Attack (Toku Daihatsu+Tank)";
 				default:
-					return ConstantsRes.Unknown;
+					return $"{ConstantsRes.Unknown}({(int)id})";
 			}
 		}
 
@@ -960,7 +969,7 @@ namespace ElectronicObserver.Data
 				case 37:
 					return "5inch Single Gun Mk.30 Kai x2 (Johnston)";
 				default:
-					return ConstantsRes.Unknown;
+					return $"{ConstantsRes.Unknown}({(int)id})";
 			}
 		}
 

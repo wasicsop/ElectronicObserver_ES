@@ -39,7 +39,9 @@
 			this.ColumnView_Down = new System.Windows.Forms.DataGridViewButtonColumn();
 			this.label1 = new System.Windows.Forms.Label();
 			this.ScrLkColumnCount = new System.Windows.Forms.NumericUpDown();
-			((System.ComponentModel.ISupportInitialize)(this.ColumnView)).BeginInit();
+            this.ButtonSelectedUp = new System.Windows.Forms.Button();
+            this.ButtonSelectedDown = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.ColumnView)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.ScrLkColumnCount)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -156,14 +158,36 @@
 			this.ScrLkColumnCount.Size = new System.Drawing.Size(60, 23);
 			this.ScrLkColumnCount.TabIndex = 6;
 			this.ScrLkColumnCount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			// 
-			// DialogShipGroupColumnFilter
-			// 
-			this.AcceptButton = this.ButtonOK;
+            // 
+            // ButtonSelectedUp
+            // 
+            this.ButtonSelectedUp.Location = new System.Drawing.Point(200, 327);
+            this.ButtonSelectedUp.Name = "ButtonSelectedUp";
+            this.ButtonSelectedUp.Size = new System.Drawing.Size(25, 23);
+            this.ButtonSelectedUp.TabIndex = 7;
+            this.ButtonSelectedUp.Text = "↑";
+            this.ButtonSelectedUp.UseVisualStyleBackColor = true;
+            this.ButtonSelectedUp.Click += new System.EventHandler(this.ButtonSelectedUp_Click);
+            // 
+            // ButtonSelectedDown
+            // 
+            this.ButtonSelectedDown.Location = new System.Drawing.Point(231, 327);
+            this.ButtonSelectedDown.Name = "ButtonSelectedDown";
+            this.ButtonSelectedDown.Size = new System.Drawing.Size(25, 23);
+            this.ButtonSelectedDown.TabIndex = 8;
+            this.ButtonSelectedDown.Text = "↓";
+            this.ButtonSelectedDown.UseVisualStyleBackColor = true;
+            this.ButtonSelectedDown.Click += new System.EventHandler(this.ButtonSelectedDown_Click);
+            // 
+            // DialogShipGroupColumnFilter
+            // 
+            this.AcceptButton = this.ButtonOK;
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.CancelButton = this.ButtonCancel;
 			this.ClientSize = new System.Drawing.Size(464, 362);
-			this.Controls.Add(this.ScrLkColumnCount);
+            this.Controls.Add(this.ButtonSelectedDown);
+            this.Controls.Add(this.ButtonSelectedUp);
+            this.Controls.Add(this.ScrLkColumnCount);
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.ColumnView);
 			this.Controls.Add(this.ButtonCancel);
@@ -196,5 +220,7 @@
 		private System.Windows.Forms.DataGridViewButtonColumn ColumnView_Down;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.NumericUpDown ScrLkColumnCount;
-	}
+        private System.Windows.Forms.Button ButtonSelectedUp;
+        private System.Windows.Forms.Button ButtonSelectedDown;
+    }
 }

@@ -28,38 +28,38 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.components = new System.ComponentModel.Container();
-			this.FlowPanelMaster = new System.Windows.Forms.FlowLayoutPanel();
-			this.FlowPanelAdmiral = new System.Windows.Forms.FlowLayoutPanel();
-			this.AdmiralName = new System.Windows.Forms.Label();
-			this.AdmiralComment = new System.Windows.Forms.Label();
-			this.HQLevel = new ElectronicObserver.Window.Control.ShipStatusLevel();
-			this.FlowPanelFleet = new System.Windows.Forms.FlowLayoutPanel();
-			this.ShipCount = new ElectronicObserver.Window.Control.ImageLabel();
-			this.EquipmentCount = new ElectronicObserver.Window.Control.ImageLabel();
-			this.FlowPanelUseItem = new System.Windows.Forms.FlowLayoutPanel();
-			this.InstantRepair = new ElectronicObserver.Window.Control.ImageLabel();
-			this.InstantConstruction = new ElectronicObserver.Window.Control.ImageLabel();
-			this.DevelopmentMaterial = new ElectronicObserver.Window.Control.ImageLabel();
-			this.ModdingMaterial = new ElectronicObserver.Window.Control.ImageLabel();
-			this.FurnitureCoin = new ElectronicObserver.Window.Control.ImageLabel();
-			this.DisplayUseItem = new ElectronicObserver.Window.Control.ImageLabel();
-			this.FlowPanelResource = new System.Windows.Forms.FlowLayoutPanel();
-			this.Fuel = new ElectronicObserver.Window.Control.ImageLabel();
-			this.Ammo = new ElectronicObserver.Window.Control.ImageLabel();
-			this.Steel = new ElectronicObserver.Window.Control.ImageLabel();
-			this.Bauxite = new ElectronicObserver.Window.Control.ImageLabel();
-			this.ToolTipInfo = new System.Windows.Forms.ToolTip(this.components);
-			this.FlowPanelMaster.SuspendLayout();
-			this.FlowPanelAdmiral.SuspendLayout();
-			this.FlowPanelFleet.SuspendLayout();
-			this.FlowPanelUseItem.SuspendLayout();
-			this.FlowPanelResource.SuspendLayout();
-			this.SuspendLayout();
-			// 
-			// FlowPanelMaster
-			// 
-			this.FlowPanelMaster.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.components = new System.ComponentModel.Container();
+            this.FlowPanelMaster = new System.Windows.Forms.FlowLayoutPanel();
+            this.FlowPanelAdmiral = new System.Windows.Forms.FlowLayoutPanel();
+            this.AdmiralName = new System.Windows.Forms.Label();
+            this.AdmiralComment = new System.Windows.Forms.Label();
+            this.FlowPanelFleet = new System.Windows.Forms.FlowLayoutPanel();
+            this.FlowPanelUseItem = new System.Windows.Forms.FlowLayoutPanel();
+            this.FlowPanelResource = new System.Windows.Forms.FlowLayoutPanel();
+            this.ToolTipInfo = new System.Windows.Forms.ToolTip(this.components);
+            this.HQLevel = new ElectronicObserver.Window.Control.ShipStatusLevel();
+            this.ShipCount = new ElectronicObserver.Window.Control.ImageLabel();
+            this.EquipmentCount = new ElectronicObserver.Window.Control.ImageLabel();
+            this.InstantRepair = new ElectronicObserver.Window.Control.ImageLabel();
+            this.InstantConstruction = new ElectronicObserver.Window.Control.ImageLabel();
+            this.DevelopmentMaterial = new ElectronicObserver.Window.Control.ImageLabel();
+            this.ModdingMaterial = new ElectronicObserver.Window.Control.ImageLabel();
+            this.FurnitureCoin = new ElectronicObserver.Window.Control.ImageLabel();
+            this.DisplayUseItem = new ElectronicObserver.Window.Control.ImageLabel();
+            this.Fuel = new ElectronicObserver.Window.Control.ImageLabel();
+            this.Ammo = new ElectronicObserver.Window.Control.ImageLabel();
+            this.Steel = new ElectronicObserver.Window.Control.ImageLabel();
+            this.Bauxite = new ElectronicObserver.Window.Control.ImageLabel();
+            this.FlowPanelMaster.SuspendLayout();
+            this.FlowPanelAdmiral.SuspendLayout();
+            this.FlowPanelFleet.SuspendLayout();
+            this.FlowPanelUseItem.SuspendLayout();
+            this.FlowPanelResource.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // FlowPanelMaster
+            // 
+            this.FlowPanelMaster.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.FlowPanelMaster.Controls.Add(this.FlowPanelAdmiral);

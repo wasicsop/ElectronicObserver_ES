@@ -46,7 +46,8 @@
 			this.DetailView_CountAll = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.DetailView_CountRemain = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.DetailView_EquippedShip = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			((System.ComponentModel.ISupportInitialize)(this.EquipmentView)).BeginInit();
+            this.TopMenu_File_CopyToFleetAnalysis = new System.Windows.Forms.ToolStripMenuItem();
+            ((System.ComponentModel.ISupportInitialize)(this.EquipmentView)).BeginInit();
 			this.TopMenu.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
@@ -135,7 +136,8 @@
 			// 
 			this.TopMenu_File.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
 			this.TopMenu_File_CSVOutput,
-			this.TopMenu_File_Update});
+			this.TopMenu_File_Update,
+            this.TopMenu_File_CopyToFleetAnalysis});
 			this.TopMenu_File.Name = "TopMenu_File";
 			this.TopMenu_File.Size = new System.Drawing.Size(128, 34);
 			this.TopMenu_File.Text = "&File";
@@ -240,10 +242,17 @@
 			this.DetailView_EquippedShip.Name = "DetailView_EquippedShip";
 			this.DetailView_EquippedShip.ReadOnly = true;
 			this.DetailView_EquippedShip.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-			// 
-			// DialogEquipmentList
-			// 
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            // 
+            // TopMenu_File_CopyToFleetAnalysis
+            // 
+            this.TopMenu_File_CopyToFleetAnalysis.Name = "TopMenu_File_CopyToFleetAnalysis";
+            this.TopMenu_File_CopyToFleetAnalysis.Size = new System.Drawing.Size(207, 22);
+            this.TopMenu_File_CopyToFleetAnalysis.Text = "艦隊分析ページへコピー(&A)";
+            this.TopMenu_File_CopyToFleetAnalysis.Click += new System.EventHandler(this.TopMenu_File_CopyToFleetAnalysis_Click);
+            // 
+            // DialogEquipmentList
+            // 
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.ClientSize = new System.Drawing.Size(640, 480);
 			this.Controls.Add(this.splitContainer1);
 			this.Controls.Add(this.TopMenu);
@@ -288,5 +297,6 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn DetailView_CountAll;
 		private System.Windows.Forms.DataGridViewTextBoxColumn DetailView_CountRemain;
 		private System.Windows.Forms.DataGridViewTextBoxColumn DetailView_EquippedShip;
-	}
+        private System.Windows.Forms.ToolStripMenuItem TopMenu_File_CopyToFleetAnalysis;
+    }
 }

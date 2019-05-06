@@ -573,7 +573,7 @@ namespace ElectronicObserver.Window
 			var itemID = Utility.Configuration.Config.FormHeadquarters.DisplayUseItemID;
 			var item = db.UseItems[itemID];
 			var itemMaster = db.MasterUseItems[itemID];
-			string tail = "\r\n(can be changed in settings)";
+			string tail = "\r\n(can be changed in settings)\r\n(right click to show all items)";
 
 
 
@@ -603,7 +603,22 @@ namespace ElectronicObserver.Window
 
 		}
 
-		private int RealShipCount
+        private void DisplayUseItem_MouseClick(object sender, MouseEventArgs e)
+        {
+            if(e.Button == MouseButtons.Right)
+            {
+                var db = KCDatabase.Instance;
+                var sb = new StringBuilder();
+                foreach (var item in db.UseItems.Values)
+                {
+                    sb.Append(item.MasterUseItem.Name).Append(" x ").Append(item.Count).AppendLine();
+                }
+
+                MessageBox.Show(sb.ToString(), "保有アイテム一覧", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private int RealShipCount
 		{
 			get
 			{
@@ -632,6 +647,6 @@ namespace ElectronicObserver.Window
 		}
 
 
-	}
+    }
 
 }
