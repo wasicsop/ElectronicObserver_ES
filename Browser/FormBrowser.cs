@@ -244,7 +244,7 @@ namespace Browser
 			settings.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0";
 			settings.CefCommandLineArgs.Add("autoplay-policy", "no-user-gesture-required");
 			CefSharpSettings.SubprocessExitIfParentProcessClosed = true;
-			Cef.Initialize(settings);
+			Cef.Initialize(settings, false, (IBrowserProcessHandler)null);
 			SetCookies();
 
 			var requestHandler = new RequestHandler(pixiSettingEnabled: Configuration.PreserveDrawingBuffer);
@@ -262,8 +262,9 @@ namespace Browser
 
 			Browser.BrowserSettings.StandardFontFamily = "Microsoft YaHei";
 			Browser.LoadingStateChanged += Browser_LoadingStateChanged;
+            Browser.IsBrowserInitializedChanged += Browser_IsBrowserInitializedChanged;
 			SizeAdjuster.Controls.Add(Browser);
-		}
+        }
 
 		private void SetCookies()
 		{
@@ -509,20 +510,43 @@ namespace Browser
 
 		}
 
-		/// <summary>
-		/// 指定した URL のページを開きます。
-		/// </summary>
-		public void Navigate(string url)
+
+
+        // タイミングによっては(特に起動時)、ブラウザの初期化が完了する前に Navigate() が呼ばれることがある
+        // その場合ロードに失敗してブラウザが白画面でスタートしてしまう（手動でログインページを開けば続行は可能だが）
+        // 応急処置として失敗したとき後で再試行するようにしてみる
+        private string navigateCache = null;
+        private void Browser_IsBrowserInitializedChanged(object sender, IsBrowserInitializedChangedEventArgs e)
+        {
+            if (IsBrowserInitialized && navigateCache != null)
+            {
+                // ロードが完了したので再試行
+                string url = navigateCache;            // 非同期コールするのでコピーを取っておく必要がある
+                BeginInvoke((Action)(() => Navigate(url)));
+                navigateCache = null;
+            }
+        }
+
+        /// <summary>
+        /// 指定した URL のページを開きます。
+        /// </summary>
+        public void Navigate(string url)
 		{
 			if (url != Configuration.LogInPageURL || !Configuration.AppliesStyleSheet)
 				StyleSheetApplied = false;
 			Browser.Load(url);
-		}
 
-		/// <summary>
-		/// ブラウザを再読み込みします。
-		/// </summary>
-		public void RefreshBrowser() => RefreshBrowser(false);
+            if (!IsBrowserInitialized)
+            {
+                // 大方ロードできないのであとで再試行する
+                navigateCache = url;
+            }
+        }
+
+        /// <summary>
+        /// ブラウザを再読み込みします。
+        /// </summary>
+        public void RefreshBrowser() => RefreshBrowser(false);
 
 		/// <summary>
 		/// ブラウザを再読み込みします。
