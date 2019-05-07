@@ -147,7 +147,7 @@ namespace ElectronicObserver.Data.ShipGroup
             { ".MasterShip.RemodelBeforeShipID", "Ship ID Before Remodel" },
             { ".MasterShip.RemodelAfterShipID", "Ship ID After Remodel" },
 			//マスターのパラメータ系もおそらく意味がないので省略
-			{ ".MasterShip.EquippableCategories", "装備可能リスト" },
+			{ ".MasterShip.EquippableCategories", "Equippable Categories" },
 		};
 
 		private static Dictionary<string, Type> ExpressionTypeTable = new Dictionary<string, Type>();
