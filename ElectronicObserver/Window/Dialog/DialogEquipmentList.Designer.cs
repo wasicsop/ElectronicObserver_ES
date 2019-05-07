@@ -247,7 +247,7 @@
             // 
             this.TopMenu_File_CopyToFleetAnalysis.Name = "TopMenu_File_CopyToFleetAnalysis";
             this.TopMenu_File_CopyToFleetAnalysis.Size = new System.Drawing.Size(207, 22);
-            this.TopMenu_File_CopyToFleetAnalysis.Text = "艦隊分析ページへコピー(&A)";
+            this.TopMenu_File_CopyToFleetAnalysis.Text = "Copy Equip List (fleet analysis)(&A)";
             this.TopMenu_File_CopyToFleetAnalysis.Click += new System.EventHandler(this.TopMenu_File_CopyToFleetAnalysis_Click);
             // 
             // DialogEquipmentList

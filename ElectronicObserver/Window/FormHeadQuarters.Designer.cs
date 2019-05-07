@@ -215,20 +215,22 @@
 			this.FurnitureCoin.Size = new System.Drawing.Size(54, 20);
 			this.FurnitureCoin.TabIndex = 4;
 			this.FurnitureCoin.Text = "(家具)";
-			// 
-			// DisplayUseItem
-			// 
-			this.DisplayUseItem.Location = new System.Drawing.Point(3, 20);
+            // 
+            // DisplayUseItem
+            // 
+            this.DisplayUseItem.Cursor = System.Windows.Forms.Cursors.Help;
+            this.DisplayUseItem.Location = new System.Drawing.Point(3, 20);
 			this.DisplayUseItem.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
 			this.DisplayUseItem.Name = "DisplayUseItem";
 			this.DisplayUseItem.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
 			this.DisplayUseItem.Size = new System.Drawing.Size(54, 20);
 			this.DisplayUseItem.TabIndex = 6;
 			this.DisplayUseItem.Text = "(任意)";
-			// 
-			// FlowPanelResource
-			// 
-			this.FlowPanelResource.AutoSize = true;
+            this.DisplayUseItem.MouseClick += new System.Windows.Forms.MouseEventHandler(this.DisplayUseItem_MouseClick);
+            // 
+            // FlowPanelResource
+            // 
+            this.FlowPanelResource.AutoSize = true;
 			this.FlowPanelResource.Controls.Add(this.Fuel);
 			this.FlowPanelResource.Controls.Add(this.Ammo);
 			this.FlowPanelResource.Controls.Add(this.Steel);

@@ -110,9 +110,10 @@
             this.StripStatus_Clock = new System.Windows.Forms.ToolStripStatusLabel();
             this.UIUpdateTimer = new System.Windows.Forms.Timer(this.components);
             this.MainDockPanel = new WeifenLuo.WinFormsUI.Docking.DockPanel();
+            this.StripMenu_Tool_ExpChecker = new System.Windows.Forms.ToolStripMenuItem();
+            this.StripMenu_Tool_ExpeditionCheck = new System.Windows.Forms.ToolStripMenuItem();
 
             this.StripMenu_Help_Update = new System.Windows.Forms.ToolStripMenuItem();
-            this.StripMenu_Tool_ExpChecker = new System.Windows.Forms.ToolStripMenuItem();
             this.StripMenu_Tool_KancolleProgress = new System.Windows.Forms.ToolStripMenuItem();
             this.StripMenu.SuspendLayout();
             this.StripStatus.SuspendLayout();
@@ -511,6 +512,7 @@
             this.StripMenu_Tool_FleetImageGenerator,
             this.StripMenu_Tool_BaseAirCorpsSimulation,
             this.StripMenu_Tool_ExpChecker,
+            this.StripMenu_Tool_ExpeditionCheck,
             this.StripMenu_Tool_KancolleProgress});
             this.StripMenu_Tool.Name = "StripMenu_Tool";
             this.StripMenu_Tool.Size = new System.Drawing.Size(66, 20);
@@ -756,6 +758,13 @@
             this.MainDockPanel.Size = new System.Drawing.Size(640, 434);
             this.MainDockPanel.Styles = null;
             this.MainDockPanel.TabIndex = 0;
+            // 
+            // StripMenu_Tool_ExpeditionCheck
+            // 
+            this.StripMenu_Tool_ExpeditionCheck.Name = "StripMenu_Tool_ExpeditionCheck";
+            this.StripMenu_Tool_ExpeditionCheck.Size = new System.Drawing.Size(180, 22);
+            this.StripMenu_Tool_ExpeditionCheck.Text = "Expedition Check(&M)";
+            this.StripMenu_Tool_ExpeditionCheck.Click += new System.EventHandler(this.StripMenu_Tool_ExpeditionCheck_Click);
             //
             // StripMenu_Help_Update
             //
@@ -888,6 +897,7 @@
         private System.Windows.Forms.ToolStripMenuItem StripMenu_File_Notification;
         private System.Windows.Forms.ToolStripMenuItem StripMenu_File_Notification_MuteAll;
         private System.Windows.Forms.ToolStripMenuItem StripMenu_Tool_ExpChecker;
+        private System.Windows.Forms.ToolStripMenuItem StripMenu_Tool_ExpeditionCheck;
         private System.Windows.Forms.ToolStripMenuItem StripMenu_Tool_KancolleProgress;
     }
 }
