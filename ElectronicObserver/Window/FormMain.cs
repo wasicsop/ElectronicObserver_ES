@@ -157,10 +157,10 @@ namespace ElectronicObserver.Window
             
             visualStudioToolStripExtender1.SetStyle(StripMenu, VisualStudioToolStripExtender.VsVersion.Vs2015, vS2015DarkTheme1);
             visualStudioToolStripExtender1.SetStyle(StripStatus, VisualStudioToolStripExtender.VsVersion.Vs2015, vS2015DarkTheme1);
-            vS2015DarkTheme1.Extender.FloatWindowFactory = new CustomFloatWindowFactory();
+			vS2015DarkTheme1.Extender.FloatWindowFactory = new CustomFloatWindowFactory();
 
 
-            MainDockPanel.Extender.FloatWindowFactory = new CustomFloatWindowFactory();
+            MainDockPanel.Theme.Extender.FloatWindowFactory = new CustomFloatWindowFactory();
 
 
             SubForms = new List<DockContent>();
