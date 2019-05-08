@@ -239,8 +239,11 @@ namespace ElectronicObserver.Resource.Record
 		/// </summary>
 		public ResourceElement GetRecordPrevious()
 		{
+            DateTime now = DateTime.Now;
+            bool isDst = TimeZoneInfo.Local.IsDaylightSavingTime(now);
 
-			DateTime now = DateTime.UtcNow + new TimeSpan(9, 0, 0);
+            now = DateTime.UtcNow + new TimeSpan(9, 0, 0);
+
 			DateTime target;
 			if (now.TimeOfDay.Hours < 2)
 			{
@@ -255,7 +258,10 @@ namespace ElectronicObserver.Resource.Record
 				target = new DateTime(now.Year, now.Month, now.Day, 14, 0, 0);
 			}
 
-			return GetRecord(target.Add(DateTimeHelper.GetTimeDifference()));
+            if(isDst)
+                target += new TimeSpan(1, 0, 0);
+
+            return GetRecord(target.Add(DateTimeHelper.GetTimeDifference()));
 		}
 
 		/// <summary>
@@ -263,9 +269,12 @@ namespace ElectronicObserver.Resource.Record
 		/// </summary>
 		public ResourceElement GetRecordDay()
 		{
+            DateTime now = DateTime.Now;
+            bool isDst = TimeZoneInfo.Local.IsDaylightSavingTime(now);
 
-			DateTime now = DateTime.UtcNow + new TimeSpan(9, 0, 0);
-			DateTime target;
+            now = DateTime.UtcNow + new TimeSpan(9, 0, 0);
+
+            DateTime target;
 			if (now.TimeOfDay.Hours < 2)
 			{
 				target = new DateTime(now.Year, now.Month, now.Day, 2, 0, 0).Subtract(TimeSpan.FromDays(1));
@@ -275,8 +284,12 @@ namespace ElectronicObserver.Resource.Record
 				target = new DateTime(now.Year, now.Month, now.Day, 2, 0, 0);
 			}
 
-			return GetRecord(target.Add(DateTimeHelper.GetTimeDifference()));
+            if (isDst)
+                target += new TimeSpan(1, 0, 0);
+
+            return GetRecord(target.Add(DateTimeHelper.GetTimeDifference()));
 		}
+
 
 		/// <summary>
 		/// 今月の戦果更新以降の最も古い記録を返します。
