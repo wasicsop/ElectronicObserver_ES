@@ -113,7 +113,8 @@ namespace ElectronicObserver.Data
 		/// <summary>
 		/// 図鑑説明
 		/// </summary>
-		public string Message => Window.FormMain.Instance.Translator.GetTranslation(((string)RawData.api_info), Utility.TranslationType.EquipmentDesc).Replace("<br>", "\r\n");
+		public string Message => String.Empty;
+		// Window.FormMain.Instance.Translator.GetTranslation(((string)RawData.api_info), Utility.TranslationType.EquipmentDesc).Replace("<br>", "\r\n"); old API for reference
 
 		/// <summary>
 		/// 基地航空隊：配置コスト
