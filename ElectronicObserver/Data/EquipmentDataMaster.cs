@@ -112,7 +112,8 @@ namespace ElectronicObserver.Data
 		/// <summary>
 		/// 図鑑説明
 		/// </summary>
-		public string Message => ((string)RawData.api_info).Replace("<br>", "\r\n");
+		public string Message => String.Empty;
+		//((string)RawData.api_info).Replace("<br>", "\r\n");
 
 
 		/// <summary>
