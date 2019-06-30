@@ -42,6 +42,10 @@ namespace Browser.CefOp
 			{
 				return CefReturnValue.Cancel;
 			}
+			// remove range request to allow bgm caching
+			var headers = request.Headers;
+			headers.Remove("Range");
+			request.Headers = headers;
 
 			return base.OnBeforeResourceLoad(browserControl, browser, frame, request, callback);
 		}

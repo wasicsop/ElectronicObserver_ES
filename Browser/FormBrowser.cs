@@ -241,7 +241,6 @@ namespace Browser
 				settings.CefCommandLineArgs.Add("force-color-profile", "srgb");
 			settings.CefCommandLineArgs.Add("num-raster-threads", "4");
 			settings.CefCommandLineArgs.Add("limit-fps", "60"); // fix for canvas crash if fps exceeds 60fps
-			settings.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0";
 			settings.CefCommandLineArgs.Add("autoplay-policy", "no-user-gesture-required");
 			CefSharpSettings.SubprocessExitIfParentProcessClosed = true;
 			Cef.Initialize(settings, false, (IBrowserProcessHandler)null);
