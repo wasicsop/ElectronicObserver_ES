@@ -113,7 +113,7 @@ namespace ElectronicObserver.Data
 		/// <summary>
 		/// 図鑑説明
 		/// </summary>
-		public string Message => String.Empty;
+		public string Message => RawData.api_info() ? ((string)RawData.api_info).Replace("<br>", "\r\n") : "";
 		// Window.FormMain.Instance.Translator.GetTranslation(((string)RawData.api_info), Utility.TranslationType.EquipmentDesc).Replace("<br>", "\r\n"); old API for reference
 
 		/// <summary>
@@ -334,7 +334,7 @@ namespace ElectronicObserver.Data
 		public bool IsAirRadar => IsRadar && AA >= 2;
 
 		/// <summary> 水上電探かどうか </summary>
-		public bool IsSurfaceRadar => IsRadar && Accuracy >= 3;
+		public bool IsSurfaceRadar => IsRadar && LOS >= 5;
 
 
 		/// <summary> ソナーかどうか </summary>

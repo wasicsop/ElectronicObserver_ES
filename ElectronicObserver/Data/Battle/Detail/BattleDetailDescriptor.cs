@@ -230,6 +230,7 @@ namespace ElectronicObserver.Data.Battle.Detail
 							sb.AppendLine(ConstantsRes.BattleDetail_EnemyEscortFleet);
 
 							appendEnemyFleetInfo(p.EnemyMembersEscort);
+                            sb.AppendLine();
 
 							OutputEnemyData(sb, p.EnemyMembersEscortInstance, p.EnemyLevelsEscort, p.EnemyInitialHPsEscort, p.EnemyMaxHPsEscort, p.EnemySlotsEscortInstance, p.EnemyParametersEscort);
 						}
