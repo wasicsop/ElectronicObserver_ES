@@ -709,7 +709,14 @@ namespace ElectronicObserver.Window
 						Calculator.GetProportionalAirDefense(adjustedaa)
 						);
 
-				}
+                    double aarbRate = Calculator.GetAarbRate(ship, adjustedaa);
+                    if (aarbRate > 0)
+                    {
+                        sb.Append($"AARB: {aarbRate.ToString("#0.##%")}\r\n");
+                        sb.Append("Ise class and multiple rocket bonus is probably wrong!\r\n");
+                    }
+
+                }
 
 				{
 					int airsup_min;

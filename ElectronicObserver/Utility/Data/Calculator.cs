@@ -1613,6 +1613,51 @@ namespace ElectronicObserver.Utility.Data
             return GetAdjustedFleetAAValue(fleet.MembersWithoutEscaped, formation);
         }
 
+        public static double GetAarbRate(ShipData ship, double adjustedAA)
+        {
+            if (ship.MasterShip.ShipType == ShipTypes.AircraftCarrier ||
+                ship.MasterShip.ShipType == ShipTypes.LightAircraftCarrier ||
+                ship.MasterShip.ShipType == ShipTypes.ArmoredAircraftCarrier ||
+                ship.MasterShip.ShipType == ShipTypes.AviationBattleship ||
+                ship.MasterShip.ShipType == ShipTypes.AviationCruiser ||
+                ship.MasterShip.ShipType == ShipTypes.SeaplaneTender)
+            {
+                int rocketCount = 0;
+
+                foreach (EquipmentData eq in ship.AllSlotInstance)
+                {
+                    if (eq == null)
+                        continue;
+
+                    if (eq.EquipmentID == 274)
+                        rocketCount++;
+                }
+
+                if (rocketCount == 0)
+                    return 0;
+
+                // https://twitter.com/noratako5/status/1062027534026428416
+                double aarbRate = ((0.9 * ship.LuckBase) + adjustedAA) / 281;
+
+                if (rocketCount > 1)
+                    aarbRate += 0.15 * (rocketCount - 1);
+
+                switch (ship.ShipID)
+                {
+                    case 82:  // Ise kai
+                    case 553: // ni
+                    case 88:  // Hyuuga kai
+                    case 554: // ni
+                        aarbRate += 0.4;
+                        break;
+                }
+
+                return aarbRate;
+            }
+
+            return 0;
+        }
+
 
         /// <summary>
         /// 対空砲火における連合艦隊補正を求めます。
