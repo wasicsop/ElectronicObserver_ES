@@ -229,7 +229,7 @@ namespace Browser
 				CachePath = BrowserCachePath,
 				Locale = "ja",
 				AcceptLanguageList = "ja,en-US,en",        // todo: いる？
-				LogSeverity = LogSeverity.Info,
+				LogSeverity = Configuration.SavesBrowserLog ? LogSeverity.Error : LogSeverity.Disable,
 				LogFile = "BrowserLog.log",
 			};
 
