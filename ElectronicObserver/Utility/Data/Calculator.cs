@@ -1630,16 +1630,10 @@ namespace ElectronicObserver.Utility.Data
                 ship.MasterShip.ShipType == ShipTypes.AviationCruiser ||
                 ship.MasterShip.ShipType == ShipTypes.SeaplaneTender)
             {
-                int rocketCount = 0;
+                int rocketCount = ship.AllSlotInstance
+                    .Where(eq => eq != null)
+                    .Count(eq => eq.EquipmentID == 274);
 
-                foreach (EquipmentData eq in ship.AllSlotInstance)
-                {
-                    if (eq == null)
-                        continue;
-
-                    if (eq.EquipmentID == 274)
-                        rocketCount++;
-                }
 
                 if (rocketCount == 0)
                     return 0;
@@ -1656,7 +1650,7 @@ namespace ElectronicObserver.Utility.Data
                     case 553: // ni
                     case 88:  // Hyuuga kai
                     case 554: // ni
-                        aarbRate += 0.4;
+                        aarbRate += 0.25;
                         break;
                 }
 
