@@ -24,7 +24,8 @@
 			this.ContextMenuFleet_CopyFleetDeckBuilder = new System.Windows.Forms.ToolStripMenuItem();
 			this.ContextMenuFleet_CopyKanmusuList = new System.Windows.Forms.ToolStripMenuItem();
             this.ContextMenuFleet_CopyFleetAnalysis = new System.Windows.Forms.ToolStripMenuItem();
-            this.ContextMenuFleet_CopyFleetAnalysisEquip = new System.Windows.Forms.ToolStripMenuItem();
+            this.ContextMenuFleet_CopyFleetAnalysisLockedEquip = new System.Windows.Forms.ToolStripMenuItem();
+            this.ContextMenuFleet_CopyFleetAnalysisAllEquip = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
 			this.ContextMenuFleet_AntiAirDetails = new System.Windows.Forms.ToolStripMenuItem();
 			this.ContextMenuFleet_Capture = new System.Windows.Forms.ToolStripMenuItem();
@@ -78,7 +79,8 @@
 			this.ContextMenuFleet_CopyFleetDeckBuilder,
 			this.ContextMenuFleet_CopyKanmusuList,
             this.ContextMenuFleet_CopyFleetAnalysis,
-            this.ContextMenuFleet_CopyFleetAnalysisEquip,
+            this.ContextMenuFleet_CopyFleetAnalysisLockedEquip,
+            this.ContextMenuFleet_CopyFleetAnalysisAllEquip,
             this.toolStripSeparator1,
 			this.ContextMenuFleet_AntiAirDetails,
 			this.ContextMenuFleet_Capture,
@@ -115,12 +117,19 @@
             this.ContextMenuFleet_CopyFleetAnalysis.Text = "Copy Ship List (kancolle-&fleetanalysis)";
 			this.ContextMenuFleet_CopyFleetAnalysis.Click += new System.EventHandler(this.ContextMenuFleet_CopyFleetAnalysis_Click);
             //
-            // ContextMenuFleet_CopyFleetAnalysisEquip
+            // ContextMenuFleet_CopyFleetAnalysisLockedEquip
             //
-            this.ContextMenuFleet_CopyFleetAnalysisEquip.Name = "ContextMenuFleet_CopyFleetAnalysisEquip";
-            this.ContextMenuFleet_CopyFleetAnalysisEquip.Size = new System.Drawing.Size(227, 22);
-            this.ContextMenuFleet_CopyFleetAnalysisEquip.Text = "Copy Equip List (kancolle-fleetanalysis)";
-            this.ContextMenuFleet_CopyFleetAnalysisEquip.Click += new System.EventHandler(this.ContextMenuFleet_CopyFleetAnalysisEquip_Click);
+            this.ContextMenuFleet_CopyFleetAnalysisLockedEquip.Name = "ContextMenuFleet_CopyFleetAnalysisLockedEquip";
+            this.ContextMenuFleet_CopyFleetAnalysisLockedEquip.Size = new System.Drawing.Size(227, 22);
+            this.ContextMenuFleet_CopyFleetAnalysisLockedEquip.Text = "Copy Locked Equip (kancolle-fleetanalysis)";
+            this.ContextMenuFleet_CopyFleetAnalysisLockedEquip.Click += new System.EventHandler(this.ContextMenuFleet_CopyFleetAnalysisLockedEquip_Click);
+            //
+            // ContextMenuFleet_CopyFleetAnalysisAllEquip
+            //
+            this.ContextMenuFleet_CopyFleetAnalysisAllEquip.Name = "ContextMenuFleet_CopyFleetAnalysisAllEquip";
+            this.ContextMenuFleet_CopyFleetAnalysisAllEquip.Size = new System.Drawing.Size(227, 22);
+            this.ContextMenuFleet_CopyFleetAnalysisAllEquip.Text = "Copy All Equip (kancolle-fleetanalysis)";
+            this.ContextMenuFleet_CopyFleetAnalysisAllEquip.Click += new System.EventHandler(this.ContextMenuFleet_CopyFleetAnalysisAllEquip_Click);
             //
             // toolStripSeparator1
             //
@@ -190,7 +199,8 @@
 		private System.Windows.Forms.ToolStripMenuItem ContextMenuFleet_CopyFleetDeckBuilder;
 		private System.Windows.Forms.ToolStripMenuItem ContextMenuFleet_CopyKanmusuList;
         private System.Windows.Forms.ToolStripMenuItem ContextMenuFleet_CopyFleetAnalysis;
-        private System.Windows.Forms.ToolStripMenuItem ContextMenuFleet_CopyFleetAnalysisEquip;
+        private System.Windows.Forms.ToolStripMenuItem ContextMenuFleet_CopyFleetAnalysisLockedEquip;
+        private System.Windows.Forms.ToolStripMenuItem ContextMenuFleet_CopyFleetAnalysisAllEquip;
         private System.Windows.Forms.ToolStripMenuItem ContextMenuFleet_AntiAirDetails;
 		private System.Windows.Forms.ToolStripMenuItem ContextMenuFleet_OutputFleetImage;
 	}

@@ -1272,12 +1272,20 @@ namespace ElectronicObserver.Window
         }
 
         /// <summary>
-		/// 
 		/// <see cref="https://kancolle-fleetanalysis.firebaseapp.com"/>
 		/// </summary>
-		private void ContextMenuFleet_CopyFleetAnalysisEquip_Click(object sender, EventArgs e)
+		private void ContextMenuFleet_CopyFleetAnalysisLockedEquip_Click(object sender, EventArgs e)
         {
+            GenerateEquipList(false);
+        }
 
+        private void ContextMenuFleet_CopyFleetAnalysisAllEquip_Click(object sender, EventArgs e)
+        {
+            GenerateEquipList(true);
+        }
+
+        private void GenerateEquipList(bool allEquipment)
+        {
             StringBuilder sb = new StringBuilder();
             KCDatabase db = KCDatabase.Instance;
 
@@ -1286,10 +1294,8 @@ namespace ElectronicObserver.Window
 
             sb.Append("[");
 
-            foreach (EquipmentData equip in db.Equipments.Values.Where(eq => eq.IsLocked))
+            foreach (EquipmentData equip in db.Equipments.Values.Where(eq => allEquipment || eq.IsLocked))
             {
-                if (equip == null) break;
-
                 sb.Append($"{{\"api_slotitem_id\":{equip.EquipmentID},\"api_level\":{equip.Level}}},");
             }
 
