@@ -118,7 +118,7 @@ namespace Browser
 			StyleSheetApplied = false;
 			_volumeManager = new VolumeManager((uint)Process.GetCurrentProcess().Id);
 
-			Assembly.Load("Nekoxy");
+			
 			// 音量設定用コントロールの追加
 			{
 				var control = new NumericUpDown();

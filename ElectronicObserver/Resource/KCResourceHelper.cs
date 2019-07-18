@@ -91,7 +91,7 @@ namespace ElectronicObserver.Resource
 
 				return
 					Directory.EnumerateFiles(root, Path.GetFileNameWithoutExtension(resourcePath) + "*.png", SearchOption.TopDirectoryOnly)
-					.OrderBy(path => File.GetCreationTime(path))
+					.OrderBy(path => File.GetLastWriteTime(path))
 					.LastOrDefault();
 			}
 			catch (Exception)
