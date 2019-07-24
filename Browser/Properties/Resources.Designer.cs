@@ -19,7 +19,7 @@ namespace Browser.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -248,7 +248,7 @@ namespace Browser.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to document.cookie = &apos;ckcy=1;expires=Sun, 09 Feb 2019 09:00:09 GMT;domain=osapi.dmm.com;path=/&apos;; document.cookie = &apos;ckcy=1;expires=Sun, 09 Feb 2019 09:00:09 GMT;domain=203.104.209.7;path=/&apos;; document.cookie = &apos;ckcy=1;expires=Sun, 09 Feb 2019 09:00:09 GMT;domain=www.dmm.com;path=/netgame/&apos;; document.cookie = &apos;ckcy=1;expires=Sun, 09 Feb 2019 09:00:09 GMT;domain=log-netgame.dmm.com;path=/&apos;;.
+        ///   Looks up a localized string similar to document.cookie = &quot;ckcy=1;expires=Sun, 09 Feb 2025 09:00:09 GMT;domain=www.dmm.com;path=/netgame/&quot;;.
         /// </summary>
         internal static string RegionCookie {
             get {
