@@ -305,8 +305,16 @@ namespace ElectronicObserver.Window
 
             ForeColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.MainFontColor);
             BackColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.BackgroundColor);
+			// Tab pages
+			tabPage3.BackColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.BackgroundColor);
+			tabPage3.ForeColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.MainFontColor);
+			tabPage2.BackColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.BackgroundColor);
+			tabPage2.ForeColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.MainFontColor);
+			tabPage1.BackColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.BackgroundColor);
+			tabPage1.ForeColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.MainFontColor);
 
-            AutoUpdate.Checked = c.FormJson.AutoUpdate;
+
+			AutoUpdate.Checked = c.FormJson.AutoUpdate;
 			UpdatesTree.Checked = c.FormJson.UpdatesTree;
 			AutoUpdateFilter.Text = c.FormJson.AutoUpdateFilter;
 
