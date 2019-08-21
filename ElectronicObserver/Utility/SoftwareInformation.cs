@@ -51,7 +51,7 @@ namespace ElectronicObserver.Utility
 
 		private static System.Net.WebClient client;
 		private static readonly Uri uri =
-			new Uri("http://raw.githubusercontent.com/silfumus/ryuukitsune.github.io/master/Translations/en-US/update.json");
+			new Uri("http://raw.githubusercontent.com/gre4bee/ryuukitsune.github.io/master/Translations/en-US/update.json");
 
 		public static void CheckUpdate()
 		{
@@ -115,7 +115,7 @@ namespace ElectronicObserver.Utility
 					if (result == System.Windows.Forms.DialogResult.Yes)
 					{
 
-						System.Diagnostics.Process.Start("https://github.com/silfumus/ElectronicObserver/releases/latest");
+						System.Diagnostics.Process.Start("https://github.com/gre4bee/ElectronicObserver/releases/latest");
 
 					}
 					else if (result == System.Windows.Forms.DialogResult.Cancel)

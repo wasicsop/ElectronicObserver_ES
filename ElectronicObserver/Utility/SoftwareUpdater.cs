@@ -19,7 +19,8 @@ namespace ElectronicObserver.Utility
 			Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + @"\\ElectronicObserver";
 		internal static readonly string TranslationFolder = AppDataFolder + "\\Translations";
 		private static readonly Uri UpdateUrl =
-			new Uri("https://raw.githubusercontent.com/silfumus/ryuukitsune.github.io/master/Translations/en-US/update.json");
+			new Uri("https://raw.githubusercontent.com/gre4bee/ryuukitsune.github.io/master/Translations/en-US/update.json");
+	
 		internal static string MaintDate { get; set; } = string.Empty;
 		internal static int MaintState { get; set; }
 
@@ -111,7 +112,7 @@ namespace ElectronicObserver.Utility
 				using (var client = new WebClient())
 				{
 					ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-					var url = @"https://github.com/silfumus/ryuukitsune.github.io/raw/develop/Translations/en-US/EOUpdater.exe";
+					var url = @"https://github.com/gre4bee/ryuukitsune.github.io/raw/develop/Translations/en-US/EOUpdater.exe";
 					var updaterFile = AppDomain.CurrentDomain.SetupInformation.ApplicationBase + @"\EOUpdater.exe";
 
 					client.DownloadFile(url, updaterFile);
