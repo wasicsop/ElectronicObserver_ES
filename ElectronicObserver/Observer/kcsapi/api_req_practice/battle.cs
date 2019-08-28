@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static ElectronicObserver.Observer.DiscordRPC;
 
 namespace ElectronicObserver.Observer.kcsapi.api_req_practice
 {
@@ -23,11 +24,16 @@ namespace ElectronicObserver.Observer.kcsapi.api_req_practice
 
 		public override void OnResponseReceived(dynamic data)
 		{
+            KCDatabase.Instance.Battle.LoadFromResponse(APIName, data);
 
-			KCDatabase.Instance.Battle.LoadFromResponse(APIName, data);
+            if (Utility.Configuration.Config.Control.EnableDiscordRPC)
+            {
+                DiscordFormat dataForWS = Instance.data;
+                dataForWS.top = "Doing PVP";
+            }
 
 
-			base.OnResponseReceived((object)data);
+            base.OnResponseReceived((object)data);
 		}
 
 		public override string APIName => "api_req_practice/battle";

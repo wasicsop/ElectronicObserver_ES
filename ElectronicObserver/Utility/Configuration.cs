@@ -120,9 +120,7 @@ namespace ElectronicObserver.Utility
 				/// </summary>
 				public string DownstreamProxy { get; set; }
 
-
-
-				public ConfigConnection()
+                public ConfigConnection()
 				{
 
 					Port = 40620;
@@ -138,7 +136,7 @@ namespace ElectronicObserver.Utility
 					UpstreamProxyAddress = "127.0.0.1";
 					UseSystemProxy = false;
 					DownstreamProxy = "";
-				}
+                }
 
 			}
 			/// <summary>通信</summary>
@@ -643,7 +641,22 @@ namespace ElectronicObserver.Utility
                 /// </summary>
                 public bool ShowExpeditionAlertDialog { get; set; }
 
-				public ConfigControl()
+                /// <summary>
+                /// Enable Discord RPC
+                /// </summary>
+                public bool EnableDiscordRPC { get; set; }
+
+                /// <summary>
+                /// Discord RPC message to display use {{secretary}} to insert secretary name
+                /// </summary>
+                public string DiscordRPCMessage { get; set; }
+
+                /// <summary>
+                /// Set if the Discord rich presence shouuld show your number of first class medals
+                /// </summary>
+                public bool DiscordRPCShowFCM { get; set; }
+
+                public ConfigControl()
 				{
 					ConditionBorder = 40;
 					RecordAutoSaving = 1;
@@ -654,7 +667,10 @@ namespace ElectronicObserver.Utility
 					ShowSallyAreaAlertDialog = true;
 					ExpCheckerExpUnit = 2268;
                     ShowExpeditionAlertDialog = true;
-				}
+                    EnableDiscordRPC = false;
+                    DiscordRPCMessage = "Headpatting {{secretary}}";
+                    DiscordRPCShowFCM = true;
+                }
 			}
 			/// <summary>動作</summary>
 			[DataMember]

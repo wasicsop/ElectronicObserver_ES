@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static ElectronicObserver.Data.Constants;
 
 namespace ElectronicObserver.Data
 {
@@ -48,10 +49,15 @@ namespace ElectronicObserver.Data
 		/// </summary>
 		public int Rank => (int)RawData.api_rank;
 
-		/// <summary>
-		/// 提督経験値
+        /// <summary>
+		/// 階級
 		/// </summary>
-		public int Exp => (int)RawData.api_experience;
+		public string RankString => getRank(Rank);
+
+        /// <summary>
+        /// 提督経験値
+        /// </summary>
+        public int Exp => (int)RawData.api_experience;
 
 		/// <summary>
 		/// 提督コメント
@@ -127,11 +133,16 @@ namespace ElectronicObserver.Data
 			get { return (int)RawData.api_medals; }
 		}
 
-
-		/// <summary>
-		/// 資源の自然回復上限
+        /// <summary>
+		/// Senka
 		/// </summary>
-		public int MaxResourceRegenerationAmount => Level * 250 + 750;
+		public int? Senka
+        { get; set; }
+
+        /// <summary>
+        /// 資源の自然回復上限
+        /// </summary>
+        public int MaxResourceRegenerationAmount => Level * 250 + 750;
 
 
 		public override void LoadFromRequest(string apiname, Dictionary<string, string> data)

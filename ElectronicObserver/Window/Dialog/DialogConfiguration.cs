@@ -374,9 +374,13 @@ namespace ElectronicObserver.Window.Dialog
 			Control_PowerEngagementForm.SelectedIndex = config.Control.PowerEngagementForm - 1;
 			Control_ShowSallyAreaAlertDialog.Checked = config.Control.ShowSallyAreaAlertDialog;
             Control_ShowExpeditionAlertDialog.Checked = config.Control.ShowExpeditionAlertDialog;
+            Control_EnableDiscordRPC.Checked = config.Control.EnableDiscordRPC;
+            Control_DiscordRPCMessage.Text = config.Control.DiscordRPCMessage;
+            Control_DiscordRPCShowFCM.Checked = config.Control.DiscordRPCShowFCM;
+            Control_DiscordRPCMessage.ReadOnly = !config.Control.EnableDiscordRPC;
 
-			//[デバッグ]
-			Debug_EnableDebugMenu.Checked = config.Debug.EnableDebugMenu;
+            //[デバッグ]
+            Debug_EnableDebugMenu.Checked = config.Debug.EnableDebugMenu;
 			Debug_LoadAPIListOnLoad.Checked = config.Debug.LoadAPIListOnLoad;
 			Debug_APIListPath.Text = config.Debug.APIListPath;
 			Debug_AlertOnError.Checked = config.Debug.AlertOnError;
@@ -596,6 +600,10 @@ namespace ElectronicObserver.Window.Dialog
 			config.Control.PowerEngagementForm = Control_PowerEngagementForm.SelectedIndex + 1;
 			config.Control.ShowSallyAreaAlertDialog = Control_ShowSallyAreaAlertDialog.Checked;
             config.Control.ShowExpeditionAlertDialog = Control_ShowExpeditionAlertDialog.Checked;
+            config.Control.EnableDiscordRPC = Control_EnableDiscordRPC.Checked;
+            config.Control.DiscordRPCMessage = Control_DiscordRPCMessage.Text;
+            config.Control.DiscordRPCShowFCM = Control_DiscordRPCShowFCM.Checked;
+
 
 			//[デバッグ]
 			config.Debug.EnableDebugMenu = Debug_EnableDebugMenu.Checked;
@@ -947,6 +955,9 @@ namespace ElectronicObserver.Window.Dialog
 			UI_RenderingTest.Value = UI_RenderingTestChanger.Value;
 		}
 
-
-	}
+        private void Control_EnableDiscordRPC_CheckStateChanged(object sender, EventArgs e)
+        {
+            Control_DiscordRPCMessage.ReadOnly = !Control_EnableDiscordRPC.Checked;
+        }
+    }
 }

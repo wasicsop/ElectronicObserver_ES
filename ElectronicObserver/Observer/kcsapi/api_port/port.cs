@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static ElectronicObserver.Observer.DiscordRPC;
 
 namespace ElectronicObserver.Observer.kcsapi.api_port
 {
@@ -36,9 +37,9 @@ namespace ElectronicObserver.Observer.kcsapi.api_port
 				db.Ships.Add(a);
 
 			}
-
-
-			//api_ndock
+            
+            
+            //api_ndock
 			foreach (var elem in data.api_ndock)
 			{
 
@@ -61,9 +62,34 @@ namespace ElectronicObserver.Observer.kcsapi.api_port
 			db.Fleet.LoadFromResponse(APIName, data.api_deck_port);
 			db.Fleet.CombinedFlag = data.api_combined_flag() ? (int)data.api_combined_flag : 0;
 
+            if (Utility.Configuration.Config.Control.EnableDiscordRPC)
+            {
+                DiscordFormat dataForWS = Instance.data;
+                dataForWS.top = Utility.Configuration.Config.Control.DiscordRPCMessage.Replace("{{secretary}}", db.Fleet[1].MembersInstance[0].Name);
 
-			// 基地航空隊　配置転換系の処理
-			if (data.api_plane_info() && data.api_plane_info.api_base_convert_slot())
+                dataForWS.bot = new List<string>();
+
+                if (db.Admiral.Senka != null)
+                {
+                    dataForWS.bot.Add(string.Format("Rank {0} on {1}", db.Admiral.Senka, db.Server.Name));
+                }
+                else
+                {
+                    dataForWS.bot.Add("Rank data not loaded");
+                }
+
+                if (Utility.Configuration.Config.Control.DiscordRPCShowFCM)
+                    dataForWS.bot.Add(new StringBuilder("First class medals: ").Append(db.Admiral.Medals).ToString());
+
+
+                dataForWS.large = string.Format("{0} (HQ Level {1})", db.Admiral.AdmiralName, db.Admiral.Level);
+
+                dataForWS.small = db.Admiral.RankString;
+            }
+
+            
+            // 基地航空隊　配置転換系の処理
+            if (data.api_plane_info() && data.api_plane_info.api_base_convert_slot())
 			{
 
 				var prev = db.RelocatedEquipments.Keys.ToArray();

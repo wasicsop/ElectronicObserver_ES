@@ -120,6 +120,19 @@
   <metadata name="ToolTipInfo.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <data name="FormBattle_Display7thAsSingleLine.ToolTip" xml:space="preserve">
+    <value>Specify placement of the 7th ship in Striking Force fleet mode.
+ If enabled, it will be displayed under the 6th ship.
+ If disabled, it will be displayed as flagship of the escort fleet.
+ Disabling the setting may save vertical space.</value>
+  </data>
+  <data name="FormBrowser_PreserveDrawingBuffer.ToolTip" xml:space="preserve">
+    <value>Disabling the setting may improve performance.
+Note: if preserve drawing buffer is not enabled, screenshot 
+size may be limited to browser window size.
+* Changes will take effect after application restart.
+</value>
+  </data>
   <metadata name="BGMPlayer_ColumnEnabled.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
