@@ -381,8 +381,8 @@ namespace ElectronicObserver.Window
 
             SystemEvents.OnUpdateTimerTick();
 
-			// 東京標準時
-			var now = DateTime.UtcNow + new TimeSpan(9, 0, 0);
+            // 東京標準時
+            DateTime now = Utility.Mathematics.DateTimeHelper.GetJapanStandardTimeNow();
 
 			switch ( ClockFormat ) {
 				case 0:	//時計表示
