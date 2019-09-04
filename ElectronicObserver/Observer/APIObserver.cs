@@ -1,4 +1,5 @@
 ﻿using Codeplex.Data;
+using ElectronicObserver.Data;
 using ElectronicObserver.Observer.kcsapi;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Utility.Mathematics;
@@ -7,11 +8,14 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.WebSockets;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 using System.Windows.Forms;
+using static ElectronicObserver.Data.Constants;
 
 namespace ElectronicObserver.Observer
 {
@@ -49,8 +53,8 @@ namespace ElectronicObserver.Observer
 		private APIObserver()
 		{
 
-			APIList = new APIDictionary
-			{
+            APIList = new APIDictionary
+            {
 				new kcsapi.api_start2.getData(),
 				new kcsapi.api_get_member.basic(),
 				new kcsapi.api_get_member.slot_item(),
@@ -226,12 +230,25 @@ namespace ElectronicObserver.Observer
 
 			string baseurl = session.Request.PathAndQuery;
 
-			//debug
-			//Utility.Logger.Add( 1, baseurl );
+            //debug
+            //Utility.Logger.Add( 1, baseurl );
 
 
-			// request
-			if (baseurl.Contains("/kcsapi/"))
+            if (baseurl == ("/gadgets/makeRequest"))
+            {
+                KCDatabase db = KCDatabase.Instance;
+                if (db.Server is null)
+                {
+                    string body = session.Response.BodyAsString;
+                    string url = body.Split('/')[2];
+                    url = url.Split('\\')[0];
+
+                    db.Server = getKCServer(url);
+                }                
+            }
+
+            // request
+            if (baseurl.Contains("/kcsapi/"))
 			{
 
 				string url = baseurl;
@@ -255,7 +272,6 @@ namespace ElectronicObserver.Observer
 
 			//response
 			//保存
-
 			if (c.SaveReceivedData)
 			{
 
@@ -266,7 +282,7 @@ namespace ElectronicObserver.Observer
 						Directory.CreateDirectory(c.SaveDataPath);
 
 
-					if (c.SaveResponse && baseurl.Contains("/kcsapi/"))
+                    if (c.SaveResponse && baseurl.Contains("/kcsapi/"))
 					{
 
 						// 非同期で書き出し処理するので取っておく
@@ -451,7 +467,11 @@ namespace ElectronicObserver.Observer
 				{
 					ResponseReceived(shortpath, json);
 					APIList.OnResponseReceived(shortpath, json);
-				}
+				} else if (shortpath.Contains("api_req_ranking")) {
+                    shortpath = "api_req_ranking/getlist";
+                    ResponseReceived(shortpath, json.api_data);
+                    APIList.OnResponseReceived(shortpath, json.api_data);
+                }
 				else if (json.IsDefined("api_data"))
 				{
 					ResponseReceived(shortpath, json.api_data);
@@ -509,27 +529,27 @@ namespace ElectronicObserver.Observer
 		private void SaveResponse(string url, string body)
 		{
 
-			try
-			{
+            try
+            {
 
-				string tpath = string.Format("{0}\\{1}S@{2}.json", Utility.Configuration.Config.Connection.SaveDataPath, DateTimeHelper.GetTimeStamp(), url.Substring(url.LastIndexOf("/kcsapi/") + 8).Replace("/", "@"));
+                string tpath = string.Format("{0}\\{1}S@{2}.json", Utility.Configuration.Config.Connection.SaveDataPath, DateTimeHelper.GetTimeStamp(), url.Substring(url.LastIndexOf("/kcsapi/") + 8).Replace("/", "@"));
 
-				using (var sw = new System.IO.StreamWriter(tpath, false, Encoding.UTF8))
-				{
-					sw.Write(body);
-				}
+                using (var sw = new System.IO.StreamWriter(tpath, false, Encoding.UTF8))
+                {
+                    sw.Write(body);
+                }
 
-			}
-			catch (Exception ex)
-			{
+            }
+            catch (Exception ex)
+            {
 
-				Utility.ErrorReporter.SendErrorReport( ex, LoggerRes.FailedSaveAPI );
+                Utility.ErrorReporter.SendErrorReport(ex, LoggerRes.FailedSaveAPI);
 
-			}
+            }
 
 
 
-		}
+        }  
 
 	}
 

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static ElectronicObserver.Observer.DiscordRPC;
 
 namespace ElectronicObserver.Observer.kcsapi.api_req_map
 {
@@ -14,9 +15,17 @@ namespace ElectronicObserver.Observer.kcsapi.api_req_map
 		public override void OnResponseReceived(dynamic data)
 		{
 
-			KCDatabase.Instance.Battle.LoadFromResponse(APIName, data);
+            KCDatabase db = KCDatabase.Instance;
 
-			base.OnResponseReceived((object)data);
+            db.Battle.LoadFromResponse(APIName, data);
+
+            if (Utility.Configuration.Config.Control.EnableDiscordRPC)
+            {
+                DiscordFormat dataForWS = Instance.data;
+                dataForWS.top = string.Format("Node {0}-{1} {2}", db.Battle.Compass.MapAreaID, db.Battle.Compass.MapInfoID, db.Battle.Compass.DestinationID);
+            }
+
+            base.OnResponseReceived((object)data);
 
 
 			// 表示順の関係上、UIの更新をしてからデータを更新する
