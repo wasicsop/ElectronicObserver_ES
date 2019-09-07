@@ -22,15 +22,30 @@ namespace ElectronicObserver.Observer
 
         private int count;
 
+        private string clientID;
+
         public DiscordFormat data { get; set; }
 
         private DiscordRPC()
         {
+            clientID = "391369077991538698";
+
+            if (!String.IsNullOrEmpty(Utility.Configuration.Config.Control.DiscordRPCApplicationId))
+            {
+                clientID = Utility.Configuration.Config.Control.DiscordRPCApplicationId;
+            }
+
             // Store the client id somewhere
-            client = new DiscordRpcClient("391369077991538698");
+            client = new DiscordRpcClient(clientID);
 
             //Set the logger
             client.Logger = new ConsoleLogger() { Level = LogLevel.Warning };
+
+            //Subscribe to events
+            client.OnReady += (sender, e) =>
+            {
+                Console.WriteLine("Received Ready from user {0}", e.User.Username);
+            };
 
             //Connect to the RPC
             client.Initialize();
@@ -95,5 +110,7 @@ namespace ElectronicObserver.Observer
             public string small { get; set; }
             public string timestamp { get; set; }
         }
+
+        public string MapInfo { get; set; }
     }
 }
