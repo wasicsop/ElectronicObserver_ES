@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static ElectronicObserver.Data.Constants;
 
 namespace ElectronicObserver.Data
 {
@@ -48,6 +49,7 @@ namespace ElectronicObserver.Data
 		/// </summary>
 		public int Rank => (int)RawData.api_rank;
 
+		public string RankString => getRank(Rank);
 		/// <summary>
 		/// 提督経験値
 		/// </summary>
@@ -127,6 +129,11 @@ namespace ElectronicObserver.Data
 			get { return (int)RawData.api_medals; }
 		}
 
+		/// <summary>
+		/// Senka
+		/// </summary>
+		public int? Senka
+		{ get; set; }
 
 		/// <summary>
 		/// 資源の自然回復上限

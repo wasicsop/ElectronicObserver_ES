@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static ElectronicObserver.Data.Constants;
 
 namespace ElectronicObserver.Data
 {
@@ -153,6 +154,11 @@ namespace ElectronicObserver.Data
 		/// 配置転換中装備データ
 		/// </summary>
 		public IDDictionary<RelocationData> RelocatedEquipments { get; private set; }
+
+		/// <summary>
+		/// Current server
+		/// </summary>
+		public KCServer Server { get; set; }
 
 		private KCDatabase()
 		{
