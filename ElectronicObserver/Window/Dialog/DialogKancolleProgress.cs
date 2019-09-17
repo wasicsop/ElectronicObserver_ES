@@ -97,7 +97,7 @@ namespace ElectronicObserver.Window.Dialog
 
             var GroupedShips = new List<IEnumerable<ShipDataMaster>> { Destroyer, Escort, LightCruiser, HeavyCruiser, Battleship, Carrier, Others };
 
-            int NumberOfRows = 30;
+            int NumberOfRows = 32;
             ShipList.Rows.Add(NumberOfRows);
 
             ShipList.Rows[1].Cells[5].Value = "駆逐艦";
@@ -115,7 +115,7 @@ namespace ElectronicObserver.Window.Dialog
 
             GetShipLevels();
 
-            int MaxRowCount = 29;
+            int MaxRowCount = 31;
 
             int RowCount = 2;
             int ColumnCount = 1;
