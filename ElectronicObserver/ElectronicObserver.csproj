@@ -182,6 +182,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ConstantsRes.en.resx</DependentUpon>
     </Compile>
+    <Compile Include="Data\DevelopmentData.cs" />
     <Compile Include="Data\DockData.cs" />
     <Compile Include="Data\EquipmentData.cs" />
     <Compile Include="Data\EquipmentDataMaster.cs" />
