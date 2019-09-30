@@ -171,3 +171,4 @@ packages/
 /ElectronicObserver/ScreenShot
 
 DockPanelSuite
+*.old

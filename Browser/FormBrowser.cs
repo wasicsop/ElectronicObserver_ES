@@ -4,7 +4,6 @@ using CefSharp;
 using CefSharp.WinForms;
 using Nekoxy;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
@@ -12,10 +11,8 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Runtime.InteropServices;
 using System.ServiceModel;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
@@ -229,7 +226,7 @@ namespace Browser
 				CachePath = BrowserCachePath,
 				Locale = "ja",
 				AcceptLanguageList = "ja,en-US,en",        // todo: いる？
-				LogSeverity = Configuration.SavesBrowserLog ? LogSeverity.Error : LogSeverity.Disable,
+				LogSeverity = Configuration.SavesBrowserLog ? LogSeverity.Info : LogSeverity.Disable,
 				LogFile = "BrowserLog.log",
 			};
 
@@ -242,11 +239,13 @@ namespace Browser
 			settings.CefCommandLineArgs.Add("num-raster-threads", "4");
 			settings.CefCommandLineArgs.Add("limit-fps", "60"); // fix for canvas crash if fps exceeds 60fps
 			settings.CefCommandLineArgs.Add("autoplay-policy", "no-user-gesture-required");
+			settings.CefCommandLineArgs.Add("disable-features", "HardwareMediaKeyHandling");
 			CefSharpSettings.SubprocessExitIfParentProcessClosed = true;
 			Cef.Initialize(settings, false, (IBrowserProcessHandler)null);
 			SetCookies();
 
-			var requestHandler = new RequestHandler(pixiSettingEnabled: Configuration.PreserveDrawingBuffer);
+			//var resrequestHandler = new Cef_ResRequestHandler(pixiSettingEnabled: Configuration.PreserveDrawingBuffer);
+			var requestHandler = new Cef_RequestHandler(pixiSettingEnabled: Configuration.PreserveDrawingBuffer);
 			requestHandler.RenderProcessTerminated += (mes) => AddLog(3, mes);
 
 			Browser = new ChromiumWebBrowser(String.Empty)
@@ -258,7 +257,6 @@ namespace Browser
 				KeyboardHandler = new KeyboardHandler(),
 				DragHandler = new DragHandler(),
 			};
-
 			Browser.BrowserSettings.StandardFontFamily = "Microsoft YaHei";
 			Browser.LoadingStateChanged += Browser_LoadingStateChanged;
             Browser.IsBrowserInitializedChanged += Browser_IsBrowserInitializedChanged;
@@ -267,14 +265,16 @@ namespace Browser
 
 		private void SetCookies()
 		{
-			Cookie c = new Cookie();
-			c.Name = "ckcy";
-			c.Value = "1";
-			c.Domain = ".dmm.com";
-			c.Path = @"/netgame/";
-			c.Expires = DateTime.Now.AddMonths(6);
-			c.HttpOnly = false;
-			c.Secure = false;
+			Cookie c = new Cookie
+			{
+				Name = "ckcy",
+				Value = "1",
+				Domain = ".dmm.com",
+				Path = @"/netgame/",
+				Expires = DateTime.Now.AddMonths(6),
+				HttpOnly = false,
+				Secure = false
+			};
 			var manager = Cef.GetGlobalCookieManager();
 			manager.SetCookie(@"http://www.dmm.com/netgame/social/-/gadgets/=/app_id=854854/", c);
 		}
@@ -515,7 +515,7 @@ namespace Browser
         // その場合ロードに失敗してブラウザが白画面でスタートしてしまう（手動でログインページを開けば続行は可能だが）
         // 応急処置として失敗したとき後で再試行するようにしてみる
         private string navigateCache = null;
-        private void Browser_IsBrowserInitializedChanged(object sender, IsBrowserInitializedChangedEventArgs e)
+        private void Browser_IsBrowserInitializedChanged(object sender, EventArgs e)
         {
             if (IsBrowserInitialized && navigateCache != null)
             {
