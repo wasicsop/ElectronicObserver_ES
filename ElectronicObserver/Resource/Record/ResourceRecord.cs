@@ -255,7 +255,7 @@ namespace ElectronicObserver.Resource.Record
 				target = new DateTime(now.Year, now.Month, now.Day, 14, 0, 0);
 			}
 
-			return GetRecord(target.Add(DateTimeHelper.GetTimeDifference()));
+			return GetRecord(target);
 		}
 
 		/// <summary>
@@ -275,7 +275,7 @@ namespace ElectronicObserver.Resource.Record
 				target = new DateTime(now.Year, now.Month, now.Day, 2, 0, 0);
 			}
 
-			return GetRecord(target.Add(DateTimeHelper.GetTimeDifference()));
+			return GetRecord(target);
 		}
 
 		/// <summary>
@@ -285,7 +285,7 @@ namespace ElectronicObserver.Resource.Record
 		{
 			DateTime now = DateTime.UtcNow + new TimeSpan(9, 0, 0);
 
-			return GetRecord(new DateTime(now.Year, now.Month, 1).Add(DateTimeHelper.GetTimeDifference()));
+			return GetRecord(new DateTime(now.Year, now.Month, 1));
 		}
 
 
