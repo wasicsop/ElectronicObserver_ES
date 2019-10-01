@@ -457,9 +457,10 @@ namespace ElectronicObserver.Window
             return sb.ToString();
         }
 
+        
 		private string CheckGimmickUpdated(dynamic data)
 		{
-			if (data.api_m1() && data.api_m1 != 0)
+			if (data.api_m1() && data.api_m1 != 0 || (data.api_m2() && data.api_m2 != 0))
 			{
 				Utility.Logger.Add(2, "Changes in event map detected!");
 				return "\r\n* Gimmick released *\r\n";

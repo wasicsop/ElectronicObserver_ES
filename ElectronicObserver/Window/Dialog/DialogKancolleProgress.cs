@@ -54,32 +54,32 @@ namespace ElectronicObserver.Window.Dialog
             ControlHelper.SetDoubleBuffered(ShipList);
 
             // DataGridView size
-            ClientSize = new Size(1600, 650);
+            ClientSize = new Size(1250, 650);
         }
 
         private void AddStatistics()
         {
             int ShipCount = ShipLevels.Count(x => x.Value >= 0);
 
-            ShipList.Rows[2].Cells[23].Value = "Missing: " + ShipLevels.Count(x => x.Value == 0) + "/" + ShipCount;
-            ShipList.Rows[2].Cells[23].Style.ForeColor = GetLevelColor(0);
-            ShipList.Rows[2].Cells[23].Style.SelectionForeColor = GetLevelColor(0);
+            ShipList.Rows[2].Cells[21].Value = "Missing: " + ShipLevels.Count(x => x.Value == 0) + "/" + ShipCount;
+            ShipList.Rows[2].Cells[21].Style.ForeColor = GetLevelColor(0);
+            ShipList.Rows[2].Cells[21].Style.SelectionForeColor = GetLevelColor(0);
 
-            ShipList.Rows[3].Cells[23].Value = "Collection: " + ShipLevels.Count(x => x.Value > 0) + "/" + ShipCount;
-            ShipList.Rows[3].Cells[23].Style.ForeColor = GetLevelColor(1);
-            ShipList.Rows[3].Cells[23].Style.SelectionForeColor = GetLevelColor(1);
+            ShipList.Rows[3].Cells[21].Value = "Collection: " + ShipLevels.Count(x => x.Value > 0) + "/" + ShipCount;
+            ShipList.Rows[3].Cells[21].Style.ForeColor = GetLevelColor(1);
+            ShipList.Rows[3].Cells[21].Style.SelectionForeColor = GetLevelColor(1);
 
-            ShipList.Rows[4].Cells[23].Value = "90+: " + ShipLevels.Count(x => x.Value >= 90) + "/" + ShipCount;
-            ShipList.Rows[4].Cells[23].Style.ForeColor = GetLevelColor(90);
-            ShipList.Rows[4].Cells[23].Style.SelectionForeColor = GetLevelColor(90);
+            ShipList.Rows[4].Cells[21].Value = "90+: " + ShipLevels.Count(x => x.Value >= 90) + "/" + ShipCount;
+            ShipList.Rows[4].Cells[21].Style.ForeColor = GetLevelColor(90);
+            ShipList.Rows[4].Cells[21].Style.SelectionForeColor = GetLevelColor(90);
 
-            ShipList.Rows[5].Cells[23].Value = "99+: " + ShipLevels.Count(x => x.Value >= 99) + "/" + ShipCount;
-            ShipList.Rows[5].Cells[23].Style.ForeColor = GetLevelColor(99);
-            ShipList.Rows[5].Cells[23].Style.SelectionForeColor = GetLevelColor(99);
+            ShipList.Rows[5].Cells[21].Value = "99+: " + ShipLevels.Count(x => x.Value >= 99) + "/" + ShipCount;
+            ShipList.Rows[5].Cells[21].Style.ForeColor = GetLevelColor(99);
+            ShipList.Rows[5].Cells[21].Style.SelectionForeColor = GetLevelColor(99);
 
-            ShipList.Rows[6].Cells[23].Value = "Perfection: " + ShipLevels.Count(x => x.Value == 175) + "/" + ShipCount;
-            ShipList.Rows[6].Cells[23].Style.ForeColor = GetLevelColor(175);
-            ShipList.Rows[6].Cells[23].Style.SelectionForeColor = GetLevelColor(175);
+            ShipList.Rows[6].Cells[21].Value = "Perfection: " + ShipLevels.Count(x => x.Value == 175) + "/" + ShipCount;
+            ShipList.Rows[6].Cells[21].Style.ForeColor = GetLevelColor(175);
+            ShipList.Rows[6].Cells[21].Style.SelectionForeColor = GetLevelColor(175);
         }
 
         private void GenerateList()
@@ -97,16 +97,16 @@ namespace ElectronicObserver.Window.Dialog
 
             var GroupedShips = new List<IEnumerable<ShipDataMaster>> { Destroyer, Escort, LightCruiser, HeavyCruiser, Battleship, Carrier, Others };
 
-            int NumberOfRows = 35;
+            int NumberOfRows = 32;
             ShipList.Rows.Add(NumberOfRows);
 
-            ShipList.Rows[1].Cells[7].Value = "駆逐艦";
-            ShipList.Rows[1].Cells[11].Value = "海防艦";
-            ShipList.Rows[1].Cells[13].Value = "軽巡";
-            ShipList.Rows[1].Cells[15].Value = "重巡";
-            ShipList.Rows[1].Cells[17].Value = "戦艦";
-            ShipList.Rows[1].Cells[19].Value = "空母";
-            ShipList.Rows[1].Cells[21].Value = "その他";
+            ShipList.Rows[1].Cells[5].Value = "駆逐艦";
+            ShipList.Rows[1].Cells[9].Value = "海防艦";
+            ShipList.Rows[1].Cells[11].Value = "軽巡";
+            ShipList.Rows[1].Cells[13].Value = "重巡";
+            ShipList.Rows[1].Cells[15].Value = "戦艦";
+            ShipList.Rows[1].Cells[17].Value = "空母";
+            ShipList.Rows[1].Cells[19].Value = "その他";
 
             int PreviousShipClass = 0;
 
@@ -115,7 +115,7 @@ namespace ElectronicObserver.Window.Dialog
 
             GetShipLevels();
 
-            int MaxRowCount = 29;
+            int MaxRowCount = 31;
 
             int RowCount = 2;
             int ColumnCount = 1;
@@ -237,7 +237,7 @@ namespace ElectronicObserver.Window.Dialog
 
             using (Pen p = new Pen(Brushes.Black, 2))
             {
-                int NumberOfColumns = 22;
+                int NumberOfColumns = 20;
                 if (e.RowIndex == 1 && e.ColumnIndex >= 1 && e.ColumnIndex <= NumberOfColumns)
                 {
                     BorderTop(p, e);
@@ -246,7 +246,7 @@ namespace ElectronicObserver.Window.Dialog
                     if (e.ColumnIndex == 1)
                         BorderLeft(p, e);
 
-                    int NumberOfGroupedColumns = 9;
+                    int NumberOfGroupedColumns = 8;
                     if (e.ColumnIndex >= NumberOfGroupedColumns && e.ColumnIndex % 2 == 0)
                         BorderRight(p, e);
                 }

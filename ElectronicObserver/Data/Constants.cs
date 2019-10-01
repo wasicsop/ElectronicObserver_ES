@@ -421,6 +421,8 @@ namespace ElectronicObserver.Data
                     return ConstantsRes.LargeResourceNode;
                 case 9:
                     return ConstantsRes.LandNode;
+                case 10:
+                    return "Anchorage"; // todo add to res
                 default:
                     return ConstantsRes.Unknown;
             }
