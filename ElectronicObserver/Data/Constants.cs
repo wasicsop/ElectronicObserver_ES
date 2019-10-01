@@ -89,33 +89,33 @@ namespace ElectronicObserver.Data
             }
         }
 
-        /// <summary>
-        /// 装備のレアリティを表す文字列を取得します。
-        /// </summary>
-        public static string GetEquipmentRarity(int value)
-        {
-            switch (value)
-            {
-                case 0:
-                    return ConstantsRes.Common;
-                case 1:
-                    return ConstantsRes.Rare;
-                case 2:
-                    return ConstantsRes.Holo;
-                case 3:
-                    return ConstantsRes.SHolo;
-                case 4:
-                    return ConstantsRes.SSHolo;
-                case 5:
-                    return ConstantsRes.EXHolo;
-                case 6:
-                    return ConstantsRes.SSHoloPlus;
+		/// <summary>
+		/// 装備のレアリティを表す文字列を取得します。
+		/// </summary>
+		public static string GetEquipmentRarity(int value)
+		{
+			switch (value)
+			{
+				case 0:
+					return "コモン";
+				case 1:
+					return "レア";
+				case 2:
+					return "ホロ";
+				case 3:
+					return "Sホロ";
+				case 4:
+					return "SSホロ";
+				case 5:
+					return "SSホロ'";
+				case 6:
+					return "SSホロ+";
                 case 7:
                     return "SS++";
-                default:
-                    return ConstantsRes.Unknown;
-            }
-        }
+				default:
+					return "不明";
+			}
+		}
 
         /// <summary>
         /// 装備のレアリティの画像インデックスを取得します。

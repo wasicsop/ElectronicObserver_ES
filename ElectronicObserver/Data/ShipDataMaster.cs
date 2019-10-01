@@ -651,6 +651,11 @@ namespace ElectronicObserver.Data
 		/// </summary>
 		public bool IsAircraftCarrier => ShipType == ShipTypes.LightAircraftCarrier || ShipType == ShipTypes.AircraftCarrier || ShipType == ShipTypes.ArmoredAircraftCarrier;
 
+		/// <summary>
+		/// 護衛空母か
+		/// </summary>
+		public bool IsEscortAircraftCarrier => ShipType == ShipTypes.LightAircraftCarrier && ASW.Minimum > 0;
+
 
 		/// <summary>
 		/// 自身のパラメータレコードを取得します。

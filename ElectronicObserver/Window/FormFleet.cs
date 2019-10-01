@@ -456,7 +456,7 @@ namespace ElectronicObserver.Window
 				{
 
 					bool isEscaped = KCDatabase.Instance.Fleet[Parent.FleetID].EscapedShipList.Contains(shipMasterID);
-                    var equipments = ship.AllSlotInstance.Where(eq => eq != null);
+					var equipments = ship.AllSlotInstance.Where(eq => eq != null);
 
 					Name.Text = ship.MasterShip.NameWithClass;
 					Name.Tag = ship.ShipID;
@@ -472,9 +472,9 @@ namespace ElectronicObserver.Window
 							ship.EvasionBase, ship.EvasionTotal,
 							ship.LOSBase, ship.LOSTotal,
 							ship.LuckTotal,
-                            equipments.Any() ? equipments.Sum(eq => eq.MasterEquipment.Accuracy): 0,
-                            equipments.Any() ? equipments.Sum(eq => eq.MasterEquipment.Bomber) : 0,
-                            Constants.GetRange(ship.Range),
+							equipments.Any() ? equipments.Sum(eq => eq.MasterEquipment.Accuracy) : 0,
+							equipments.Any() ? equipments.Sum(eq => eq.MasterEquipment.Bomber) : 0,
+							Constants.GetRange(ship.Range),
 							Constants.GetSpeed(ship.Speed)
 							));
 					{
@@ -911,9 +911,9 @@ namespace ElectronicObserver.Window
 			o["api_req_kaisou/remodeling"].RequestReceived += Updated;
 			o["api_req_map/start"].RequestReceived += Updated;
 			o["api_req_hensei/combined"].RequestReceived += Updated;
-            o["api_req_kaisou/open_exslot"].RequestReceived += Updated;
+			o["api_req_kaisou/open_exslot"].RequestReceived += Updated;
 
-            o["api_port/port"].ResponseReceived += Updated;
+			o["api_port/port"].ResponseReceived += Updated;
 			o["api_get_member/ship2"].ResponseReceived += Updated;
 			o["api_get_member/ndock"].ResponseReceived += Updated;
 			o["api_req_kousyou/getship"].ResponseReceived += Updated;
@@ -930,8 +930,8 @@ namespace ElectronicObserver.Window
 			o["api_req_kaisou/slot_exchange_index"].ResponseReceived += Updated;
 			o["api_get_member/require_info"].ResponseReceived += Updated;
 			o["api_req_kaisou/slot_deprive"].ResponseReceived += Updated;
-            o["api_req_kaisou/marriage"].ResponseReceived += Updated;
-            o["api_req_map/anchorage_repair"].ResponseReceived += Updated;
+			o["api_req_kaisou/marriage"].ResponseReceived += Updated;
+			o["api_req_map/anchorage_repair"].ResponseReceived += Updated;
 
 			//追加するときは FormFleetOverview にも同様に追加してください
 
