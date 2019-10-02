@@ -89,33 +89,33 @@ namespace ElectronicObserver.Data
             }
         }
 
-		/// <summary>
-		/// 装備のレアリティを表す文字列を取得します。
-		/// </summary>
-		public static string GetEquipmentRarity(int value)
-		{
-			switch (value)
-			{
-				case 0:
-					return "コモン";
-				case 1:
-					return "レア";
-				case 2:
-					return "ホロ";
-				case 3:
-					return "Sホロ";
-				case 4:
-					return "SSホロ";
-				case 5:
-					return "SSホロ'";
-				case 6:
-					return "SSホロ+";
+        /// <summary>
+        /// 装備のレアリティを表す文字列を取得します。
+        /// </summary>
+        public static string GetEquipmentRarity(int value)
+        {
+            switch (value)
+            {
+                case 0:
+                    return ConstantsRes.Common;
+                case 1:
+                    return ConstantsRes.Rare;
+                case 2:
+                    return ConstantsRes.Holo;
+                case 3:
+                    return ConstantsRes.SHolo;
+                case 4:
+                    return ConstantsRes.SSHolo;
+                case 5:
+                    return ConstantsRes.EXHolo;
+                case 6:
+                    return ConstantsRes.SSHoloPlus;
                 case 7:
                     return "SS++";
-				default:
-					return "不明";
-			}
-		}
+                default:
+                    return ConstantsRes.Unknown;
+            }
+        }
 
         /// <summary>
         /// 装備のレアリティの画像インデックスを取得します。
@@ -480,6 +480,28 @@ namespace ElectronicObserver.Data
                     return "Medium";
                 case 4:
                     return "Hard";
+                default:
+                    return ConstantsRes.Unknown;
+            }
+        }
+
+        public static string GetDifficultyJP(int value)
+        {
+
+            switch (value)
+            {
+                case -1:
+                    return ConstantsRes.NoNode;
+                case 0:
+                    return ConstantsRes.Unselected;
+                case 1:
+                    return "丁";
+                case 2:
+                    return "丙";
+                case 3:
+                    return "乙";
+                case 4:
+                    return "甲";
                 default:
                     return ConstantsRes.Unknown;
             }

@@ -9,58 +9,58 @@ using static ElectronicObserver.Observer.DiscordRPC;
 namespace ElectronicObserver.Observer.kcsapi.api_port
 {
 
-	public class port : APIBase
-	{
+    public class port : APIBase
+    {
 
 
-		public override void OnResponseReceived(dynamic data)
-		{
+        public override void OnResponseReceived(dynamic data)
+        {
 
-			KCDatabase db = KCDatabase.Instance;
+            KCDatabase db = KCDatabase.Instance;
 
-			db.Fleet.EvacuatePreviousShips();
+            db.Fleet.EvacuatePreviousShips();
 
 
-			//api_material
-			db.Material.LoadFromResponse(APIName, data.api_material);
+            //api_material
+            db.Material.LoadFromResponse(APIName, data.api_material);
 
-			//api_basic
-			db.Admiral.LoadFromResponse(APIName, data.api_basic);
+            //api_basic
+            db.Admiral.LoadFromResponse(APIName, data.api_basic);
 
-			//api_ship
-			db.Ships.Clear();
-			foreach (var elem in data.api_ship)
-			{
+            //api_ship
+            db.Ships.Clear();
+            foreach (var elem in data.api_ship)
+            {
 
-				var a = new ShipData();
-				a.LoadFromResponse(APIName, elem);
-				db.Ships.Add(a);
+                var a = new ShipData();
+                a.LoadFromResponse(APIName, elem);
+                db.Ships.Add(a);
 
-			}
-            
-            
+            }
+
+
             //api_ndock
-			foreach (var elem in data.api_ndock)
-			{
+            foreach (var elem in data.api_ndock)
+            {
 
-				int id = (int)elem.api_id;
+                int id = (int)elem.api_id;
 
-				if (!db.Docks.ContainsKey(id))
-				{
-					var a = new DockData();
-					a.LoadFromResponse(APIName, elem);
-					db.Docks.Add(a);
+                if (!db.Docks.ContainsKey(id))
+                {
+                    var a = new DockData();
+                    a.LoadFromResponse(APIName, elem);
+                    db.Docks.Add(a);
 
-				}
-				else
-				{
-					db.Docks[id].LoadFromResponse(APIName, elem);
-				}
-			}
+                }
+                else
+                {
+                    db.Docks[id].LoadFromResponse(APIName, elem);
+                }
+            }
 
-			//api_deck_port
-			db.Fleet.LoadFromResponse(APIName, data.api_deck_port);
-			db.Fleet.CombinedFlag = data.api_combined_flag() ? (int)data.api_combined_flag : 0;
+            //api_deck_port
+            db.Fleet.LoadFromResponse(APIName, data.api_deck_port);
+            db.Fleet.CombinedFlag = data.api_combined_flag() ? (int)data.api_combined_flag : 0;
 
             if (Utility.Configuration.Config.Control.EnableDiscordRPC)
             {
@@ -73,9 +73,10 @@ namespace ElectronicObserver.Observer.kcsapi.api_port
                 {
                     dataForWS.bot.Add(string.Format("Rank {0} on {1}", db.Admiral.Senka, db.Server.Name));
                 }
-                else
+
+                if (!String.IsNullOrEmpty(Instance.MapInfo))
                 {
-                    dataForWS.bot.Add("Rank data not loaded");
+                    dataForWS.bot.Add(Instance.MapInfo);
                 }
 
                 if (Utility.Configuration.Config.Control.DiscordRPCShowFCM)
@@ -87,38 +88,38 @@ namespace ElectronicObserver.Observer.kcsapi.api_port
                 dataForWS.small = db.Admiral.RankString;
             }
 
-            
+
             // 基地航空隊　配置転換系の処理
             if (data.api_plane_info() && data.api_plane_info.api_base_convert_slot())
-			{
+            {
 
-				var prev = db.RelocatedEquipments.Keys.ToArray();
-				var current = (int[])data.api_plane_info.api_base_convert_slot;
+                var prev = db.RelocatedEquipments.Keys.ToArray();
+                var current = (int[])data.api_plane_info.api_base_convert_slot;
 
-				foreach (int deleted in prev.Except(current))
-				{
-					db.RelocatedEquipments.Remove(deleted);
-				}
+                foreach (int deleted in prev.Except(current))
+                {
+                    db.RelocatedEquipments.Remove(deleted);
+                }
 
-				foreach (int added in current.Except(prev))
-				{
-					db.RelocatedEquipments.Add(new RelocationData(added, DateTime.Now));
-				}
+                foreach (int added in current.Except(prev))
+                {
+                    db.RelocatedEquipments.Add(new RelocationData(added, DateTime.Now));
+                }
 
-			}
-			else
-			{
+            }
+            else
+            {
 
-				db.RelocatedEquipments.Clear();
-			}
+                db.RelocatedEquipments.Clear();
+            }
 
-			db.Battle.LoadFromResponse(APIName, data);
+            db.Battle.LoadFromResponse(APIName, data);
 
-			base.OnResponseReceived((object)data);
-		}
+            base.OnResponseReceived((object)data);
+        }
 
-		public override string APIName => "api_port/port";
-	}
+        public override string APIName => "api_port/port";
+    }
 
 
 }

@@ -34,7 +34,7 @@ namespace ElectronicObserver.Observer
             {
                 clientID = Utility.Configuration.Config.Control.DiscordRPCApplicationId;
             }
-
+                
             // Store the client id somewhere
             client = new DiscordRpcClient(clientID);
 

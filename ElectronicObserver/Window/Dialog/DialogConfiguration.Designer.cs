@@ -1,33 +1,33 @@
 ﻿namespace ElectronicObserver.Window.Dialog
 {
-    partial class DialogConfiguration
-    {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
-        private System.ComponentModel.IContainer components = null;
+	partial class DialogConfiguration
+	{
+		/// <summary>
+		/// Required designer variable.
+		/// </summary>
+		private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+		/// <summary>
+		/// Clean up any resources being used.
+		/// </summary>
+		/// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+		protected override void Dispose(bool disposing)
+		{
+			if (disposing && (components != null))
+			{
+				components.Dispose();
+			}
+			base.Dispose(disposing);
+		}
 
-        #region Windows Form Designer generated code
+		#region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
-        private void InitializeComponent()
-        {
+		/// <summary>
+		/// Required method for Designer support - do not modify
+		/// the contents of this method with the code editor.
+		/// </summary>
+		private void InitializeComponent()
+		{
             this.components = new System.ComponentModel.Container();
             ElectronicObserver.Window.Control.StatusBarModule statusBarModule1 = new ElectronicObserver.Window.Control.StatusBarModule();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DialogConfiguration));
@@ -258,7 +258,8 @@
             this.Log_PlayTime = new System.Windows.Forms.Label();
             this.PlayTimeTimer = new System.Windows.Forms.Timer(this.components);
             this.label44 = new System.Windows.Forms.Label();
-            this.Control_Custom_application_id = new System.Windows.Forms.TextBox();
+            this.Control_translationURL = new System.Windows.Forms.TextBox();
+            this.Control_ForceUpdate = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Connection_UpstreamProxyPort)).BeginInit();
@@ -304,8 +305,8 @@
             // 
             // tabControl1
             // 
-            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
@@ -359,7 +360,7 @@
             // 
             // Connection_UpstreamProxyAddress
             // 
-            this.Connection_UpstreamProxyAddress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.Connection_UpstreamProxyAddress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Connection_UpstreamProxyAddress.Location = new System.Drawing.Point(250, 35);
             this.Connection_UpstreamProxyAddress.Name = "Connection_UpstreamProxyAddress";
@@ -378,7 +379,7 @@
             // 
             // Connection_DownstreamProxy
             // 
-            this.Connection_DownstreamProxy.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.Connection_DownstreamProxy.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Connection_DownstreamProxy.Location = new System.Drawing.Point(164, 64);
             this.Connection_DownstreamProxy.Name = "Connection_DownstreamProxy";
@@ -458,7 +459,7 @@
             // 
             // Connection_PanelSaveData
             // 
-            this.Connection_PanelSaveData.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.Connection_PanelSaveData.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Connection_PanelSaveData.Controls.Add(this.Connection_ApplyVersion);
             this.Connection_PanelSaveData.Controls.Add(this.Connection_SaveOtherFile);
@@ -539,7 +540,7 @@
             // Connection_SaveDataPath
             // 
             this.Connection_SaveDataPath.AllowDrop = true;
-            this.Connection_SaveDataPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.Connection_SaveDataPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Connection_SaveDataPath.Location = new System.Drawing.Point(94, 3);
             this.Connection_SaveDataPath.Name = "Connection_SaveDataPath";
@@ -695,22 +696,22 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(168, 57);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(168, 31);
             this.tableLayoutPanel1.TabIndex = 15;
             // 
             // UI_RenderingTestChanger
             // 
-            this.UI_RenderingTestChanger.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.UI_RenderingTestChanger.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.UI_RenderingTestChanger.AutoSize = false;
             this.UI_RenderingTestChanger.BackColor = System.Drawing.SystemColors.Window;
-            this.UI_RenderingTestChanger.Location = new System.Drawing.Point(3, 29);
+            this.UI_RenderingTestChanger.Location = new System.Drawing.Point(3, 3);
             this.UI_RenderingTestChanger.Name = "UI_RenderingTestChanger";
             this.UI_RenderingTestChanger.Size = new System.Drawing.Size(162, 25);
             this.UI_RenderingTestChanger.TabIndex = 14;
             this.UI_RenderingTestChanger.TickStyle = System.Windows.Forms.TickStyle.None;
             this.UI_RenderingTestChanger.Scroll += new System.EventHandler(this.UI_RenderingTestChanger_Scroll);
-            // 
+            //
             // UI_RenderingTest
             // 
             this.UI_RenderingTest.AutoSize = true;
@@ -774,7 +775,7 @@
             // 
             // UI_SubFont
             // 
-            this.UI_SubFont.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.UI_SubFont.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.UI_SubFont.Location = new System.Drawing.Point(92, 35);
             this.UI_SubFont.Name = "UI_SubFont";
@@ -806,7 +807,7 @@
             // 
             // UI_MainFont
             // 
-            this.UI_MainFont.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.UI_MainFont.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.UI_MainFont.Location = new System.Drawing.Point(92, 6);
             this.UI_MainFont.Name = "UI_MainFont";
@@ -962,8 +963,9 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.Control_ForceUpdate);
             this.tabPage4.Controls.Add(this.label44);
-            this.tabPage4.Controls.Add(this.Control_Custom_application_id);
+            this.tabPage4.Controls.Add(this.Control_translationURL);
             this.tabPage4.Controls.Add(this.Control_DiscordRPCShowFCM);
             this.tabPage4.Controls.Add(this.Control_EnableDiscordRPC);
             this.tabPage4.Controls.Add(this.label22);
@@ -1019,7 +1021,7 @@
             // 
             // Control_DiscordRPCMessage
             // 
-            this.Control_DiscordRPCMessage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.Control_DiscordRPCMessage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Control_DiscordRPCMessage.Location = new System.Drawing.Point(147, 196);
             this.Control_DiscordRPCMessage.Name = "Control_DiscordRPCMessage";
@@ -1158,8 +1160,8 @@
             // 
             // Debug_SealingPanel
             // 
-            this.Debug_SealingPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.Debug_SealingPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Debug_SealingPanel.Controls.Add(this.Debug_APIListPath);
             this.Debug_SealingPanel.Controls.Add(this.Debug_LoadAPIListOnLoad);
@@ -1172,7 +1174,7 @@
             // Debug_APIListPath
             // 
             this.Debug_APIListPath.AllowDrop = true;
-            this.Debug_APIListPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.Debug_APIListPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Debug_APIListPath.Location = new System.Drawing.Point(8, 28);
             this.Debug_APIListPath.Name = "Debug_APIListPath";
@@ -1312,7 +1314,7 @@
             // 
             // Life_LayoutFilePath
             // 
-            this.Life_LayoutFilePath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.Life_LayoutFilePath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Life_LayoutFilePath.Location = new System.Drawing.Point(103, 6);
             this.Life_LayoutFilePath.Name = "Life_LayoutFilePath";
@@ -1891,7 +1893,7 @@
             // 
             // FormHeadquarters_Visibility
             // 
-            this.FormHeadquarters_Visibility.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.FormHeadquarters_Visibility.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.FormHeadquarters_Visibility.CheckOnClick = true;
             this.FormHeadquarters_Visibility.FormattingEnabled = true;
@@ -2417,7 +2419,7 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.label42);
             this.groupBox2.Controls.Add(this.FormBrowser_ScreenShotSaveMode);
@@ -2503,7 +2505,7 @@
             // 
             // FormBrowser_ScreenShotPath
             // 
-            this.FormBrowser_ScreenShotPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.FormBrowser_ScreenShotPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.FormBrowser_ScreenShotPath.Location = new System.Drawing.Point(96, 48);
             this.FormBrowser_ScreenShotPath.Name = "FormBrowser_ScreenShotPath";
@@ -2552,7 +2554,7 @@
             // 
             // FormBrowser_LogInPageURL
             // 
-            this.FormBrowser_LogInPageURL.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.FormBrowser_LogInPageURL.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.FormBrowser_LogInPageURL.Location = new System.Drawing.Point(82, 59);
             this.FormBrowser_LogInPageURL.Name = "FormBrowser_LogInPageURL";
@@ -2675,7 +2677,7 @@
             // 
             // FormJson_AutoUpdateFilter
             // 
-            this.FormJson_AutoUpdateFilter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.FormJson_AutoUpdateFilter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.FormJson_AutoUpdateFilter.Location = new System.Drawing.Point(109, 53);
             this.FormJson_AutoUpdateFilter.Name = "FormJson_AutoUpdateFilter";
@@ -2879,8 +2881,8 @@
             this.BGMPlayer_ControlGrid.AllowUserToDeleteRows = false;
             this.BGMPlayer_ControlGrid.AllowUserToResizeColumns = false;
             this.BGMPlayer_ControlGrid.AllowUserToResizeRows = false;
-            this.BGMPlayer_ControlGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.BGMPlayer_ControlGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.BGMPlayer_ControlGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.BGMPlayer_ControlGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -3003,21 +3005,31 @@
             // label44
             // 
             this.label44.AutoSize = true;
-            this.label44.Location = new System.Drawing.Point(6, 253);
+            this.label44.Location = new System.Drawing.Point(6, 251);
             this.label44.Name = "label44";
-            this.label44.Size = new System.Drawing.Size(136, 15);
+            this.label44.Size = new System.Drawing.Size(99, 15);
             this.label44.TabIndex = 15;
-            this.label44.Text = "Custom application ID";
+            this.label44.Text = "Translation URL";
             // 
-            // Control_Custom_application_id
+            // Control_translationURL
             // 
-            this.Control_Custom_application_id.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.Control_translationURL.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.Control_Custom_application_id.Location = new System.Drawing.Point(147, 250);
-            this.Control_Custom_application_id.Name = "Control_Custom_application_id";
-            this.Control_Custom_application_id.Size = new System.Drawing.Size(537, 23);
-            this.Control_Custom_application_id.TabIndex = 14;
-            this.ToolTipInfo.SetToolTip(this.Control_Custom_application_id, "Allow you to use you own discord appication ID");
+            this.Control_translationURL.Location = new System.Drawing.Point(147, 248);
+            this.Control_translationURL.Name = "Control_translationURL";
+            this.Control_translationURL.Size = new System.Drawing.Size(390, 23);
+            this.Control_translationURL.TabIndex = 14;
+            this.ToolTipInfo.SetToolTip(this.Control_translationURL, "Specify the repository to use to update translations.");
+            // 
+            // Control_ForceUpdate
+            // 
+            this.Control_ForceUpdate.Location = new System.Drawing.Point(543, 248);
+            this.Control_ForceUpdate.Name = "Control_ForceUpdate";
+            this.Control_ForceUpdate.Size = new System.Drawing.Size(141, 23);
+            this.Control_ForceUpdate.TabIndex = 16;
+            this.Control_ForceUpdate.Text = "Force update";
+            this.Control_ForceUpdate.UseVisualStyleBackColor = true;
+            this.Control_ForceUpdate.Click += new System.EventHandler(this.Control_ForceUpdate_Click);
             // 
             // DialogConfiguration
             // 
@@ -3108,229 +3120,229 @@
             this.ResumeLayout(false);
             this.PerformLayout();
 
-        }
+		}
 
-        #endregion
+		#endregion
 
-        private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Panel Connection_PanelSaveData;
-        private System.Windows.Forms.ToolTip ToolTipInfo;
-        private System.Windows.Forms.Button Connection_SaveDataPathSearch;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.Button ButtonOK;
-        private System.Windows.Forms.Button ButtonCancel;
-        private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TabPage tabPage4;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TabPage tabPage5;
-        private System.Windows.Forms.TabPage tabPage6;
-        private System.Windows.Forms.FolderBrowserDialog FolderBrowser;
-        private System.Windows.Forms.Button UI_SubFontSelect;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Button UI_MainFontSelect;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.FontDialog FontSelector;
-        private System.Windows.Forms.Button Connection_OutputConnectionScript;
-        private System.Windows.Forms.TabPage tabPage7;
-        private System.Windows.Forms.TabControl tabControl2;
-        private System.Windows.Forms.TabPage tabPage8;
-        private System.Windows.Forms.TabPage tabPage9;
-        private System.Windows.Forms.TabPage tabPage10;
-        private System.Windows.Forms.TabPage tabPage11;
-        private System.Windows.Forms.Button Notification_Expedition;
-        private System.Windows.Forms.Button Notification_Construction;
-        private System.Windows.Forms.Button Notification_Repair;
-        private System.Windows.Forms.Button Notification_Damage;
-        private System.Windows.Forms.Button Notification_Condition;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.CheckBox Connection_SaveOtherFile;
-        private System.Windows.Forms.CheckBox Connection_SaveResponse;
-        private System.Windows.Forms.CheckBox Connection_SaveRequest;
-        private System.Windows.Forms.TextBox Connection_SaveDataPath;
-        private System.Windows.Forms.CheckBox Connection_SaveReceivedData;
-        private System.Windows.Forms.NumericUpDown Connection_Port;
-        private System.Windows.Forms.NumericUpDown Log_LogLevel;
-        private System.Windows.Forms.NumericUpDown Control_ConditionBorder;
-        private System.Windows.Forms.CheckBox Log_SaveLogFlag;
-        private System.Windows.Forms.CheckBox Debug_EnableDebugMenu;
-        private System.Windows.Forms.CheckBox Life_ConfirmOnClosing;
-        private System.Windows.Forms.CheckBox Connection_ApplyVersion;
-        private System.Windows.Forms.TextBox UI_SubFont;
-        private System.Windows.Forms.TextBox UI_MainFont;
-        private System.Windows.Forms.CheckBox Log_SaveErrorReport;
-        private System.Windows.Forms.CheckBox FormFleet_ShowAircraft;
-        private System.Windows.Forms.CheckBox FormArsenal_ShowShipName;
-        private System.Windows.Forms.CheckBox FormQuest_ShowRunningOnly;
-        private System.Windows.Forms.CheckBox Life_TopMost;
-        private System.Windows.Forms.ComboBox Log_FileEncodingID;
-        private System.Windows.Forms.ComboBox FormFleet_SearchingAbilityMethod;
-        private System.Windows.Forms.NumericUpDown Connection_UpstreamProxyPort;
-        private System.Windows.Forms.CheckBox Connection_UseUpstreamProxy;
-        private System.Windows.Forms.CheckBox Connection_RegisterAsSystemProxy;
-        private System.Windows.Forms.Button Life_LayoutFilePathSearch;
-        private System.Windows.Forms.TextBox Life_LayoutFilePath;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.OpenFileDialog LayoutFileBrowser;
-        private System.Windows.Forms.Button Debug_APIListPathSearch;
-        private System.Windows.Forms.TextBox Debug_APIListPath;
-        private System.Windows.Forms.CheckBox Debug_LoadAPIListOnLoad;
-        private System.Windows.Forms.OpenFileDialog APIListBrowser;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.CheckBox FormQuest_ShowMonthly;
-        private System.Windows.Forms.CheckBox FormQuest_ShowWeekly;
-        private System.Windows.Forms.CheckBox FormQuest_ShowDaily;
-        private System.Windows.Forms.CheckBox FormQuest_ShowOnce;
-        private System.Windows.Forms.Panel Debug_SealingPanel;
-        private System.Windows.Forms.CheckBox Life_CheckUpdateInformation;
-        private System.Windows.Forms.TabPage tabPage12;
-        private System.Windows.Forms.NumericUpDown FormBrowser_ZoomRate;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.TextBox FormBrowser_LogInPageURL;
-        private System.Windows.Forms.CheckBox FormBrowser_IsEnabled;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.RadioButton FormBrowser_ScreenShotFormat_PNG;
-        private System.Windows.Forms.RadioButton FormBrowser_ScreenShotFormat_JPEG;
-        private System.Windows.Forms.TabPage tabPage13;
-        private System.Windows.Forms.CheckBox FormShipGroup_AutoUpdate;
-        private System.Windows.Forms.CheckBox FormShipGroup_ShowStatusBar;
-        private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.TextBox FormBrowser_ScreenShotPath;
-        private System.Windows.Forms.Button FormBrowser_ScreenShotPathSearch;
-        private System.Windows.Forms.CheckBox FormBrowser_ConfirmAtRefresh;
-        private System.Windows.Forms.CheckBox FormBrowser_AppliesStyleSheet;
-        private System.Windows.Forms.CheckBox FormFleet_FixShipNameWidth;
-        private System.Windows.Forms.CheckBox FormFleet_IsScrollable;
-        private System.Windows.Forms.CheckBox FormFleet_ShowNextExp;
-        private System.Windows.Forms.CheckBox FormFleet_ShortenHPBar;
-        private System.Windows.Forms.CheckBox Log_ShowSpoiler;
-        private System.Windows.Forms.CheckBox Life_ShowStatusBar;
-        private System.Windows.Forms.CheckBox FormBrowser_ZoomFit;
-        private System.Windows.Forms.TabPage tabPage16;
-        private System.Windows.Forms.CheckBox FormHeadquarters_BlinkAtMaximum;
-        private System.Windows.Forms.ComboBox FormFleet_AirSuperiorityMethod;
-        private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.CheckBox FormFleet_ShowAnchorageRepairingTimer;
-        private System.Windows.Forms.ComboBox Control_RecordAutoSaving;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.ComboBox Life_ClockFormat;
-        private System.Windows.Forms.CheckBox Connection_UseSystemProxy;
-        private System.Windows.Forms.Label Connection_DownstreamProxyLabel;
-        private System.Windows.Forms.TextBox Connection_DownstreamProxy;
-        private System.Windows.Forms.TextBox Connection_UpstreamProxyAddress;
-        private System.Windows.Forms.CheckBox Life_LockLayout;
-        private System.Windows.Forms.CheckBox Life_CanCloseFloatWindowInLock;
-        private System.Windows.Forms.CheckBox UI_BarColorMorphing;
-        private System.Windows.Forms.TabPage tabPage17;
-        private System.Windows.Forms.CheckBox BGMPlayer_Enabled;
-        private System.Windows.Forms.DataGridView BGMPlayer_ControlGrid;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn BGMPlayer_ColumnEnabled;
-        private System.Windows.Forms.DataGridViewTextBoxColumn BGMPlayer_ColumnContent;
-        private System.Windows.Forms.DataGridViewTextBoxColumn BGMPlayer_ColumnPath;
-        private System.Windows.Forms.DataGridViewButtonColumn BGMPlayer_ColumnSetting;
-        private System.Windows.Forms.Button BGMPlayer_SetVolumeAll;
-        private System.Windows.Forms.NumericUpDown BGMPlayer_VolumeAll;
-        private System.Windows.Forms.CheckBox Control_UseSystemVolume;
-        private System.Windows.Forms.CheckBox BGMPlayer_SyncBrowserMute;
-        private System.Windows.Forms.TabPage tabPage18;
-        private System.Windows.Forms.NumericUpDown FormCompass_CandidateDisplayCount;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.CheckBox Debug_AlertOnError;
-        private System.Windows.Forms.CheckBox FormFleet_BlinkAtCompletion;
-        private System.Windows.Forms.CheckBox FormArsenal_BlinkAtCompletion;
-        private System.Windows.Forms.TabPage tabPage19;
-        private System.Windows.Forms.CheckBox FormDock_BlinkAtCompletion;
-        private System.Windows.Forms.CheckedListBox FormHeadquarters_Visibility;
-        private System.Windows.Forms.Label label26;
-        private System.Windows.Forms.Button Notification_AnchorageRepair;
-        private System.Windows.Forms.ComboBox FormQuest_ProgressAutoSaving;
-        private System.Windows.Forms.Label label27;
-        private System.Windows.Forms.ComboBox FormFleet_EquipmentLevelVisibility;
-        private System.Windows.Forms.Label label28;
-        private System.Windows.Forms.ComboBox Control_PowerEngagementForm;
-        private System.Windows.Forms.Label label29;
-        private System.Windows.Forms.CheckBox FormQuest_AllowUserToSortRows;
-        private System.Windows.Forms.ComboBox FormShipGroup_ShipNameSortMethod;
-        private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.ComboBox FormBrowser_ToolMenuDockStyle;
-        private System.Windows.Forms.Label label30;
-        private System.Windows.Forms.CheckBox FormQuest_ShowOther;
-        private System.Windows.Forms.TabPage SubWindow_Json;
-        private System.Windows.Forms.CheckBox FormJson_AutoUpdate;
-        private System.Windows.Forms.CheckBox FormJson_UpdatesTree;
-        private System.Windows.Forms.TextBox FormJson_AutoUpdateFilter;
-        private System.Windows.Forms.Label label31;
-        private System.Windows.Forms.Label label32;
-        private System.Windows.Forms.Panel SubWindow_Json_SealingPanel;
-        private System.Windows.Forms.Label label33;
-        private System.Windows.Forms.CheckBox silenceFullscreen;
-        private System.Windows.Forms.CheckBox Notification_Silencio;
-        private System.Windows.Forms.TabPage tabPage20;
-        private System.Windows.Forms.CheckBox FormBattle_IsScrollable;
-        private System.Windows.Forms.CheckBox FormFleet_ShowConditionIcon;
-        private System.Windows.Forms.Label Log_PlayTime;
-        private System.Windows.Forms.Timer PlayTimeTimer;
-        private System.Windows.Forms.Label label34;
-        private System.Windows.Forms.ComboBox FormHeadquarters_DisplayUseItemID;
-        private System.Windows.Forms.CheckBox FormBattle_HideDuringBattle;
-        private System.Windows.Forms.CheckBox Log_SaveBattleLog;
-        private System.Windows.Forms.CheckBox FormBrowser_IsDMMreloadDialogDestroyable;
-        private System.Windows.Forms.Label label35;
-        private System.Windows.Forms.NumericUpDown FormFleet_FixedShipNameWidth;
-        private System.Windows.Forms.CheckBox UI_JapaneseShipNames;
-        private System.Windows.Forms.CheckBox UI_JapaneseEquipmentTypes;
-        private System.Windows.Forms.CheckBox UI_JapaneseEquipmentNames;
-        private System.Windows.Forms.CheckBox UI_JapaneseShipTypes;
-        private System.Windows.Forms.CheckBox UI_NodeNumbering;
-        private System.Windows.Forms.CheckBox FormFleet_ShowAircraftLevelByNumber;
-        private System.Windows.Forms.CheckBox FormCompass_IsScrollable;
-        private System.Windows.Forms.Label label37;
-        private System.Windows.Forms.NumericUpDown FormArsenal_MaxShipNameWidth;
-        private System.Windows.Forms.Label label36;
-        private System.Windows.Forms.NumericUpDown FormDock_MaxShipNameWidth;
-        private System.Windows.Forms.Label label38;
-        private System.Windows.Forms.Label label39;
-        private System.Windows.Forms.CheckBox FormFleet_ShowAirSuperiorityRange;
-        private System.Windows.Forms.CheckBox FormBrowser_ScreenShotFormat_AvoidTwitterDeterioration;
-        private System.Windows.Forms.CheckBox FormFleet_ReflectAnchorageRepairHealing;
-        private System.Windows.Forms.CheckBox FormFleet_EmphasizesSubFleetInPort;
-        private System.Windows.Forms.CheckBox FormFleet_BlinkAtDamaged;
-        private System.Windows.Forms.CheckBox Log_SaveLogImmediately;
-        private System.Windows.Forms.CheckBox UI_IsLayoutFixed;
-        private Control.ShipStatusHP UI_RenderingTest;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.TrackBar UI_RenderingTestChanger;
-        private System.Windows.Forms.Label label40;
-        private System.Windows.Forms.Label label41;
-        private System.Windows.Forms.NumericUpDown FormCompass_MaxShipNameWidth;
-        private System.Windows.Forms.CheckBox FormBattle_ShowHPBar;
-        private System.Windows.Forms.Label label42;
-        private System.Windows.Forms.ComboBox FormBrowser_ScreenShotSaveMode;
-        private System.Windows.Forms.CheckBox FormBattle_ShowShipTypeInHPBar;
-        private System.Windows.Forms.Label label43;
-        private System.Windows.Forms.ComboBox FormFleet_FleetStateDisplayMode;
-        private System.Windows.Forms.CheckBox Control_ShowSallyAreaAlertDialog;
-        private System.Windows.Forms.TabPage tabPage21;
-        private System.Windows.Forms.CheckBox FormBaseAirCorps_ShowEventMapOnly;
-        private System.Windows.Forms.CheckBox FormBattle_Display7thAsSingleLine;
-        private System.Windows.Forms.CheckBox FormBrowser_HardwareAccelerationEnabled;
-        private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.CheckBox FormBrowser_PreserveDrawingBuffer;
-        private System.Windows.Forms.CheckBox FormBrowser_ForceColorProfile;
-        private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.CheckBox FormFleet_AppliesSallyAreaColor;
+		private System.Windows.Forms.TabControl tabControl1;
+		private System.Windows.Forms.TabPage tabPage1;
+		private System.Windows.Forms.Label label4;
+		private System.Windows.Forms.Panel Connection_PanelSaveData;
+		private System.Windows.Forms.ToolTip ToolTipInfo;
+		private System.Windows.Forms.Button Connection_SaveDataPathSearch;
+		private System.Windows.Forms.Label label3;
+		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.TabPage tabPage2;
+		private System.Windows.Forms.Button ButtonOK;
+		private System.Windows.Forms.Button ButtonCancel;
+		private System.Windows.Forms.TabPage tabPage3;
+		private System.Windows.Forms.Label label6;
+		private System.Windows.Forms.TabPage tabPage4;
+		private System.Windows.Forms.Label label7;
+		private System.Windows.Forms.TabPage tabPage5;
+		private System.Windows.Forms.TabPage tabPage6;
+		private System.Windows.Forms.FolderBrowserDialog FolderBrowser;
+		private System.Windows.Forms.Button UI_SubFontSelect;
+		private System.Windows.Forms.Label label8;
+		private System.Windows.Forms.Button UI_MainFontSelect;
+		private System.Windows.Forms.Label label5;
+		private System.Windows.Forms.FontDialog FontSelector;
+		private System.Windows.Forms.Button Connection_OutputConnectionScript;
+		private System.Windows.Forms.TabPage tabPage7;
+		private System.Windows.Forms.TabControl tabControl2;
+		private System.Windows.Forms.TabPage tabPage8;
+		private System.Windows.Forms.TabPage tabPage9;
+		private System.Windows.Forms.TabPage tabPage10;
+		private System.Windows.Forms.TabPage tabPage11;
+		private System.Windows.Forms.Button Notification_Expedition;
+		private System.Windows.Forms.Button Notification_Construction;
+		private System.Windows.Forms.Button Notification_Repair;
+		private System.Windows.Forms.Button Notification_Damage;
+		private System.Windows.Forms.Button Notification_Condition;
+		private System.Windows.Forms.Label label10;
+		private System.Windows.Forms.Label label11;
+		private System.Windows.Forms.Label label12;
+		private System.Windows.Forms.Label label13;
+		private System.Windows.Forms.CheckBox Connection_SaveOtherFile;
+		private System.Windows.Forms.CheckBox Connection_SaveResponse;
+		private System.Windows.Forms.CheckBox Connection_SaveRequest;
+		private System.Windows.Forms.TextBox Connection_SaveDataPath;
+		private System.Windows.Forms.CheckBox Connection_SaveReceivedData;
+		private System.Windows.Forms.NumericUpDown Connection_Port;
+		private System.Windows.Forms.NumericUpDown Log_LogLevel;
+		private System.Windows.Forms.NumericUpDown Control_ConditionBorder;
+		private System.Windows.Forms.CheckBox Log_SaveLogFlag;
+		private System.Windows.Forms.CheckBox Debug_EnableDebugMenu;
+		private System.Windows.Forms.CheckBox Life_ConfirmOnClosing;
+		private System.Windows.Forms.CheckBox Connection_ApplyVersion;
+		private System.Windows.Forms.TextBox UI_SubFont;
+		private System.Windows.Forms.TextBox UI_MainFont;
+		private System.Windows.Forms.CheckBox Log_SaveErrorReport;
+		private System.Windows.Forms.CheckBox FormFleet_ShowAircraft;
+		private System.Windows.Forms.CheckBox FormArsenal_ShowShipName;
+		private System.Windows.Forms.CheckBox FormQuest_ShowRunningOnly;
+		private System.Windows.Forms.CheckBox Life_TopMost;
+		private System.Windows.Forms.ComboBox Log_FileEncodingID;
+		private System.Windows.Forms.ComboBox FormFleet_SearchingAbilityMethod;
+		private System.Windows.Forms.NumericUpDown Connection_UpstreamProxyPort;
+		private System.Windows.Forms.CheckBox Connection_UseUpstreamProxy;
+		private System.Windows.Forms.CheckBox Connection_RegisterAsSystemProxy;
+		private System.Windows.Forms.Button Life_LayoutFilePathSearch;
+		private System.Windows.Forms.TextBox Life_LayoutFilePath;
+		private System.Windows.Forms.Label label14;
+		private System.Windows.Forms.OpenFileDialog LayoutFileBrowser;
+		private System.Windows.Forms.Button Debug_APIListPathSearch;
+		private System.Windows.Forms.TextBox Debug_APIListPath;
+		private System.Windows.Forms.CheckBox Debug_LoadAPIListOnLoad;
+		private System.Windows.Forms.OpenFileDialog APIListBrowser;
+		private System.Windows.Forms.GroupBox groupBox1;
+		private System.Windows.Forms.CheckBox FormQuest_ShowMonthly;
+		private System.Windows.Forms.CheckBox FormQuest_ShowWeekly;
+		private System.Windows.Forms.CheckBox FormQuest_ShowDaily;
+		private System.Windows.Forms.CheckBox FormQuest_ShowOnce;
+		private System.Windows.Forms.Panel Debug_SealingPanel;
+		private System.Windows.Forms.CheckBox Life_CheckUpdateInformation;
+		private System.Windows.Forms.TabPage tabPage12;
+		private System.Windows.Forms.NumericUpDown FormBrowser_ZoomRate;
+		private System.Windows.Forms.Label label15;
+		private System.Windows.Forms.TextBox FormBrowser_LogInPageURL;
+		private System.Windows.Forms.CheckBox FormBrowser_IsEnabled;
+		private System.Windows.Forms.Label label17;
+		private System.Windows.Forms.Label label16;
+		private System.Windows.Forms.GroupBox groupBox2;
+		private System.Windows.Forms.RadioButton FormBrowser_ScreenShotFormat_PNG;
+		private System.Windows.Forms.RadioButton FormBrowser_ScreenShotFormat_JPEG;
+		private System.Windows.Forms.TabPage tabPage13;
+		private System.Windows.Forms.CheckBox FormShipGroup_AutoUpdate;
+		private System.Windows.Forms.CheckBox FormShipGroup_ShowStatusBar;
+		private System.Windows.Forms.Label label18;
+		private System.Windows.Forms.TextBox FormBrowser_ScreenShotPath;
+		private System.Windows.Forms.Button FormBrowser_ScreenShotPathSearch;
+		private System.Windows.Forms.CheckBox FormBrowser_ConfirmAtRefresh;
+		private System.Windows.Forms.CheckBox FormBrowser_AppliesStyleSheet;
+		private System.Windows.Forms.CheckBox FormFleet_FixShipNameWidth;
+		private System.Windows.Forms.CheckBox FormFleet_IsScrollable;
+		private System.Windows.Forms.CheckBox FormFleet_ShowNextExp;
+		private System.Windows.Forms.CheckBox FormFleet_ShortenHPBar;
+		private System.Windows.Forms.CheckBox Log_ShowSpoiler;
+		private System.Windows.Forms.CheckBox Life_ShowStatusBar;
+		private System.Windows.Forms.CheckBox FormBrowser_ZoomFit;
+		private System.Windows.Forms.TabPage tabPage16;
+		private System.Windows.Forms.CheckBox FormHeadquarters_BlinkAtMaximum;
+		private System.Windows.Forms.ComboBox FormFleet_AirSuperiorityMethod;
+		private System.Windows.Forms.Label label23;
+		private System.Windows.Forms.CheckBox FormFleet_ShowAnchorageRepairingTimer;
+		private System.Windows.Forms.ComboBox Control_RecordAutoSaving;
+		private System.Windows.Forms.Label label9;
+		private System.Windows.Forms.Label label24;
+		private System.Windows.Forms.ComboBox Life_ClockFormat;
+		private System.Windows.Forms.CheckBox Connection_UseSystemProxy;
+		private System.Windows.Forms.Label Connection_DownstreamProxyLabel;
+		private System.Windows.Forms.TextBox Connection_DownstreamProxy;
+		private System.Windows.Forms.TextBox Connection_UpstreamProxyAddress;
+		private System.Windows.Forms.CheckBox Life_LockLayout;
+		private System.Windows.Forms.CheckBox Life_CanCloseFloatWindowInLock;
+		private System.Windows.Forms.CheckBox UI_BarColorMorphing;
+		private System.Windows.Forms.TabPage tabPage17;
+		private System.Windows.Forms.CheckBox BGMPlayer_Enabled;
+		private System.Windows.Forms.DataGridView BGMPlayer_ControlGrid;
+		private System.Windows.Forms.DataGridViewCheckBoxColumn BGMPlayer_ColumnEnabled;
+		private System.Windows.Forms.DataGridViewTextBoxColumn BGMPlayer_ColumnContent;
+		private System.Windows.Forms.DataGridViewTextBoxColumn BGMPlayer_ColumnPath;
+		private System.Windows.Forms.DataGridViewButtonColumn BGMPlayer_ColumnSetting;
+		private System.Windows.Forms.Button BGMPlayer_SetVolumeAll;
+		private System.Windows.Forms.NumericUpDown BGMPlayer_VolumeAll;
+		private System.Windows.Forms.CheckBox Control_UseSystemVolume;
+		private System.Windows.Forms.CheckBox BGMPlayer_SyncBrowserMute;
+		private System.Windows.Forms.TabPage tabPage18;
+		private System.Windows.Forms.NumericUpDown FormCompass_CandidateDisplayCount;
+		private System.Windows.Forms.Label label2;
+		private System.Windows.Forms.CheckBox Debug_AlertOnError;
+		private System.Windows.Forms.CheckBox FormFleet_BlinkAtCompletion;
+		private System.Windows.Forms.CheckBox FormArsenal_BlinkAtCompletion;
+		private System.Windows.Forms.TabPage tabPage19;
+		private System.Windows.Forms.CheckBox FormDock_BlinkAtCompletion;
+		private System.Windows.Forms.CheckedListBox FormHeadquarters_Visibility;
+		private System.Windows.Forms.Label label26;
+		private System.Windows.Forms.Button Notification_AnchorageRepair;
+		private System.Windows.Forms.ComboBox FormQuest_ProgressAutoSaving;
+		private System.Windows.Forms.Label label27;
+		private System.Windows.Forms.ComboBox FormFleet_EquipmentLevelVisibility;
+		private System.Windows.Forms.Label label28;
+		private System.Windows.Forms.ComboBox Control_PowerEngagementForm;
+		private System.Windows.Forms.Label label29;
+		private System.Windows.Forms.CheckBox FormQuest_AllowUserToSortRows;
+		private System.Windows.Forms.ComboBox FormShipGroup_ShipNameSortMethod;
+		private System.Windows.Forms.Label label25;
+		private System.Windows.Forms.ComboBox FormBrowser_ToolMenuDockStyle;
+		private System.Windows.Forms.Label label30;
+		private System.Windows.Forms.CheckBox FormQuest_ShowOther;
+		private System.Windows.Forms.TabPage SubWindow_Json;
+		private System.Windows.Forms.CheckBox FormJson_AutoUpdate;
+		private System.Windows.Forms.CheckBox FormJson_UpdatesTree;
+		private System.Windows.Forms.TextBox FormJson_AutoUpdateFilter;
+		private System.Windows.Forms.Label label31;
+		private System.Windows.Forms.Label label32;
+		private System.Windows.Forms.Panel SubWindow_Json_SealingPanel;
+		private System.Windows.Forms.Label label33;
+		private System.Windows.Forms.CheckBox silenceFullscreen;
+		private System.Windows.Forms.CheckBox Notification_Silencio;
+		private System.Windows.Forms.TabPage tabPage20;
+		private System.Windows.Forms.CheckBox FormBattle_IsScrollable;
+		private System.Windows.Forms.CheckBox FormFleet_ShowConditionIcon;
+		private System.Windows.Forms.Label Log_PlayTime;
+		private System.Windows.Forms.Timer PlayTimeTimer;
+		private System.Windows.Forms.Label label34;
+		private System.Windows.Forms.ComboBox FormHeadquarters_DisplayUseItemID;
+		private System.Windows.Forms.CheckBox FormBattle_HideDuringBattle;
+		private System.Windows.Forms.CheckBox Log_SaveBattleLog;
+		private System.Windows.Forms.CheckBox FormBrowser_IsDMMreloadDialogDestroyable;
+		private System.Windows.Forms.Label label35;
+		private System.Windows.Forms.NumericUpDown FormFleet_FixedShipNameWidth;
+		private System.Windows.Forms.CheckBox UI_JapaneseShipNames;
+		private System.Windows.Forms.CheckBox UI_JapaneseEquipmentTypes;
+		private System.Windows.Forms.CheckBox UI_JapaneseEquipmentNames;
+		private System.Windows.Forms.CheckBox UI_JapaneseShipTypes;
+		private System.Windows.Forms.CheckBox UI_NodeNumbering;
+		private System.Windows.Forms.CheckBox FormFleet_ShowAircraftLevelByNumber;
+		private System.Windows.Forms.CheckBox FormCompass_IsScrollable;
+		private System.Windows.Forms.Label label37;
+		private System.Windows.Forms.NumericUpDown FormArsenal_MaxShipNameWidth;
+		private System.Windows.Forms.Label label36;
+		private System.Windows.Forms.NumericUpDown FormDock_MaxShipNameWidth;
+		private System.Windows.Forms.Label label38;
+		private System.Windows.Forms.Label label39;
+		private System.Windows.Forms.CheckBox FormFleet_ShowAirSuperiorityRange;
+		private System.Windows.Forms.CheckBox FormBrowser_ScreenShotFormat_AvoidTwitterDeterioration;
+		private System.Windows.Forms.CheckBox FormFleet_ReflectAnchorageRepairHealing;
+		private System.Windows.Forms.CheckBox FormFleet_EmphasizesSubFleetInPort;
+		private System.Windows.Forms.CheckBox FormFleet_BlinkAtDamaged;
+		private System.Windows.Forms.CheckBox Log_SaveLogImmediately;
+		private System.Windows.Forms.CheckBox UI_IsLayoutFixed;
+		private Control.ShipStatusHP UI_RenderingTest;
+		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+		private System.Windows.Forms.TrackBar UI_RenderingTestChanger;
+		private System.Windows.Forms.Label label40;
+		private System.Windows.Forms.Label label41;
+		private System.Windows.Forms.NumericUpDown FormCompass_MaxShipNameWidth;
+		private System.Windows.Forms.CheckBox FormBattle_ShowHPBar;
+		private System.Windows.Forms.Label label42;
+		private System.Windows.Forms.ComboBox FormBrowser_ScreenShotSaveMode;
+		private System.Windows.Forms.CheckBox FormBattle_ShowShipTypeInHPBar;
+		private System.Windows.Forms.Label label43;
+		private System.Windows.Forms.ComboBox FormFleet_FleetStateDisplayMode;
+		private System.Windows.Forms.CheckBox Control_ShowSallyAreaAlertDialog;
+		private System.Windows.Forms.TabPage tabPage21;
+		private System.Windows.Forms.CheckBox FormBaseAirCorps_ShowEventMapOnly;
+		private System.Windows.Forms.CheckBox FormBattle_Display7thAsSingleLine;
+		private System.Windows.Forms.CheckBox FormBrowser_HardwareAccelerationEnabled;
+		private System.Windows.Forms.Label label19;
+		private System.Windows.Forms.Label label20;
+		private System.Windows.Forms.CheckBox FormBrowser_PreserveDrawingBuffer;
+		private System.Windows.Forms.CheckBox FormBrowser_ForceColorProfile;
+		private System.Windows.Forms.Label label21;
+		private System.Windows.Forms.ComboBox comboBox1;
+		private System.Windows.Forms.CheckBox FormFleet_AppliesSallyAreaColor;
         private System.Windows.Forms.CheckBox Control_ShowExpeditionAlertDialog;
         private System.Windows.Forms.CheckBox FormBrowser_SavesBrowserLog;
         private System.Windows.Forms.Label label22;
@@ -3338,6 +3350,7 @@
         private System.Windows.Forms.CheckBox Control_EnableDiscordRPC;
         private System.Windows.Forms.CheckBox Control_DiscordRPCShowFCM;
         private System.Windows.Forms.Label label44;
-        private System.Windows.Forms.TextBox Control_Custom_application_id;
+        private System.Windows.Forms.TextBox Control_translationURL;
+        private System.Windows.Forms.Button Control_ForceUpdate;
     }
 }

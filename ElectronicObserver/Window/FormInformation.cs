@@ -65,11 +65,11 @@ namespace ElectronicObserver.Window
 		void ConfigurationChanged()
 		{
 
-			Font = TextInformation.Font = Utility.Configuration.Config.UI.MainFont;
-			TextInformation.LanguageOption = RichTextBoxLanguageOptions.UIFonts;
-			TextInformation.ForeColor = Utility.Configuration.Config.UI.ForeColor;
-			TextInformation.BackColor = Utility.Configuration.Config.UI.BackColor;
-		}
+            Font = TextInformation.Font = Utility.Configuration.Config.UI.MainFont;
+            TextInformation.LanguageOption = RichTextBoxLanguageOptions.UIFonts;
+            TextInformation.ForeColor = Utility.Configuration.Config.UI.ForeColor;
+            TextInformation.BackColor = Utility.Configuration.Config.UI.BackColor;
+        }
 
 
 		void Updated(string apiname, dynamic data)
@@ -171,10 +171,10 @@ namespace ElectronicObserver.Window
 		private string GetPracticeEnemyInfo(dynamic data)
 		{
 
-			StringBuilder sb = new StringBuilder();
-			sb.AppendLine( GeneralRes.PracticeReport );
-			sb.AppendLine( GeneralRes.EnemyAdmiral + ": " + data.api_nickname );
-			sb.AppendLine( GeneralRes.EnemyFleetName + ": " + data.api_deckname );
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine(GeneralRes.PracticeReport);
+            sb.AppendLine(GeneralRes.EnemyAdmiral + ": " + data.api_nickname);
+            sb.AppendLine(GeneralRes.EnemyFleetName + ": " + data.api_deckname);
 
 			{
 				int ship1lv = (int)data.api_deck.api_ships[0].api_id != -1 ? (int)data.api_deck.api_ships[0].api_level : 1;
@@ -190,7 +190,7 @@ namespace ElectronicObserver.Window
 
 				expbase = (int)expbase;
 
-				sb.AppendFormat( GeneralRes.BaseExp + ": {0} / S-rank: {1}\r\n", expbase, (int)( expbase * 1.2 ) );
+                sb.AppendFormat(GeneralRes.BaseExp + ": {0} / S-rank: {1}\r\n", expbase, (int)(expbase * 1.2));
 
 
 				// 練巡ボーナス計算 - きたない
@@ -234,13 +234,14 @@ namespace ElectronicObserver.Window
 
 						int level = subCT.Max(s => s.Level);
 
-						if ( subCT.Count() > 1 ) {
-							// 随伴複数
-							if ( level < 10 ) bonus = 1.04;
-							else if ( level < 30 ) bonus = 1.06;
-							else if ( level < 60 ) bonus = 1.08;
-							else if ( level < 100 ) bonus = 1.12;
-							else bonus = 1.175;
+                        if (subCT.Count() > 1)
+                        {
+                            // 随伴複数
+                            if (level < 10) bonus = 1.04;
+                            else if (level < 30) bonus = 1.06;
+                            else if (level < 60) bonus = 1.08;
+                            else if (level < 100) bonus = 1.12;
+                            else bonus = 1.175;
 
 						}
 						else
@@ -254,7 +255,7 @@ namespace ElectronicObserver.Window
 						}
 					}
 
-					sb.AppendFormat( "(incl. CT Bonus: {0} / S-rank: {1})\r\n", (int)( expbase * bonus ), (int)( (int)( expbase * 1.2 ) * bonus ) );
+                    sb.AppendFormat("(incl. CT Bonus: {0} / S-rank: {1})\r\n", (int)(expbase * bonus), (int)((int)(expbase * 1.2) * bonus));
 
 
 				}
@@ -279,7 +280,7 @@ namespace ElectronicObserver.Window
 					int startIndex = (((int)data.api_list[0].api_index_no - 1) / bound) * bound + 1;
 					bool[] flags = Enumerable.Repeat<bool>(false, bound).ToArray();
 
-					sb.AppendLine( GeneralRes.DamagedArtUnseen );
+                    sb.AppendLine(GeneralRes.DamagedArtUnseen);
 
 					foreach (dynamic elem in data.api_list)
 					{
@@ -300,18 +301,18 @@ namespace ElectronicObserver.Window
 
 					}
 
-					sb.AppendLine( GeneralRes.UnseenShips );
-					for ( int i = 0; i < bound; i++ )
+                    sb.AppendLine(GeneralRes.UnseenShips);
+                    for (int i = 0; i < bound; i++)
                     {
-						if ( !flags[i] )
+                        if (!flags[i])
                         {
-							ShipDataMaster ship = KCDatabase.Instance.MasterShips.Values.FirstOrDefault( s => s.AlbumNo == startIndex + i );
-							if ( ship != null )
+                            ShipDataMaster ship = KCDatabase.Instance.MasterShips.Values.FirstOrDefault(s => s.AlbumNo == startIndex + i);
+                            if (ship != null)
                             {
-								sb.AppendLine( ship.Name );
-							}
-						}
-					}
+                                sb.AppendLine(ship.Name);
+                            }
+                        }
+                    }
 
 				}
 				else
@@ -327,20 +328,20 @@ namespace ElectronicObserver.Window
 						flags[(int)elem.api_index_no - startIndex] = true;
 					}
 
-					sb.AppendLine( GeneralRes.UnseenEquips );
-					for ( int i = 0; i < bound; i++ )
+                    sb.AppendLine(GeneralRes.UnseenEquips);
+                    for (int i = 0; i < bound; i++)
                     {
-						if ( !flags[i] )
+                        if (!flags[i])
                         {
-							EquipmentDataMaster eq = KCDatabase.Instance.MasterEquipments.Values.FirstOrDefault( s => s.AlbumNo == startIndex + i );
-							if ( eq != null )
+                            EquipmentDataMaster eq = KCDatabase.Instance.MasterEquipments.Values.FirstOrDefault(s => s.AlbumNo == startIndex + i);
+                            if (eq != null)
                             {
-								sb.AppendLine( eq.Name );
-							}
-						}
-					}
-				}
-			}
+                                sb.AppendLine(eq.Name);
+                            }
+                        }
+                    }
+                }
+            }
 
             return sb.ToString();
         }
@@ -352,9 +353,9 @@ namespace ElectronicObserver.Window
             if ((int)data.api_create_flag == 0)
             {
 
-				StringBuilder sb = new StringBuilder();
-				sb.AppendLine( GeneralRes.DevelopmentFailed );
-				sb.AppendLine( data.api_fdata );
+                StringBuilder sb = new StringBuilder();
+                sb.AppendLine(GeneralRes.DevelopmentFailed);
+                sb.AppendLine(data.api_fdata);
 
                 EquipmentDataMaster eqm = KCDatabase.Instance.MasterEquipments[int.Parse(((string)data.api_fdata).Split(",".ToCharArray())[1])];
                 if (eqm != null)
@@ -372,9 +373,11 @@ namespace ElectronicObserver.Window
 		private string GetMapGauge(dynamic data)
 		{
 
-			StringBuilder sb = new StringBuilder();
-			sb.AppendLine( GeneralRes.MapGauges );
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine(GeneralRes.MapGauges);
+
             string rpcMapInfo = "";
+
 
 			foreach (var map in KCDatabase.Instance.MapInfo.Values)
 			{
@@ -395,15 +398,15 @@ namespace ElectronicObserver.Window
 					max = map.MapHPMax;
 				}
 
-				if (gaugeType > 0)
-				{
-					sb.AppendLine(string.Format("{0}-{1}{2}: {3}{4} {5} / {6}{7}",
-						map.MapAreaID, map.MapInfoID,
-						map.EventDifficulty > 0 ? $" [{Constants.GetDifficulty(map.EventDifficulty)}]" : "",
-						map.CurrentGaugeIndex > 0 ? $"#{map.CurrentGaugeIndex} " : "",
-						gaugeType == 1 ? " defeated" : gaugeType == 2 ? "HP" : "TP",
-						current, max,
-						gaugeType == 1 ? " times" : ""));
+                if (gaugeType > 0)
+                {
+                    sb.AppendLine(string.Format("{0}-{1}{2}: {3}{4} {5} / {6}{7}",
+                        map.MapAreaID, map.MapInfoID,
+                        map.EventDifficulty > 0 ? $" [{Constants.GetDifficulty(map.EventDifficulty)}]" : "",
+                        map.CurrentGaugeIndex > 0 ? $"#{map.CurrentGaugeIndex} " : "",
+                        gaugeType == 1 ? " defeated" : gaugeType == 2 ? "HP" : "TP",
+                        current, max,
+                        gaugeType == 1 ? " times" : ""));
 
                     if (map.MapAreaID > 10)
                     {
@@ -416,7 +419,7 @@ namespace ElectronicObserver.Window
                             gaugeType == 1 ? " times" : "");
                     }
                 }
-			}
+            }
 
             Instance.MapInfo = rpcMapInfo;
 
@@ -428,11 +431,11 @@ namespace ElectronicObserver.Window
 		{
 			StringBuilder sb = new StringBuilder();
 
-			sb.AppendLine( GeneralRes.ExpeditionReturned );
-			sb.AppendLine(Window.FormMain.Instance.Translator.GetTranslation(data.api_quest_name, Utility.TranslationType.ExpeditionTitle) );
-			sb.AppendFormat( GeneralRes.Result + ": {0}\r\n", Constants.GetExpeditionResult( (int)data.api_clear_result ) );
-			sb.AppendFormat( GeneralRes.AdmiralXP + ": +{0}\r\n", (int)data.api_get_exp );
-			sb.AppendFormat( GeneralRes.ShipXP + ": +{0}\r\n", ( (int[])data.api_get_ship_exp ).Min() );
+            sb.AppendLine(GeneralRes.ExpeditionReturned);
+            sb.AppendLine(Window.FormMain.Instance.Translator.GetTranslation(data.api_quest_name, Utility.TranslationType.ExpeditionTitle));
+            sb.AppendFormat(GeneralRes.Result + ": {0}\r\n", Constants.GetExpeditionResult((int)data.api_clear_result));
+            sb.AppendFormat(GeneralRes.AdmiralXP + ": +{0}\r\n", (int)data.api_get_exp);
+            sb.AppendFormat(GeneralRes.ShipXP + ": +{0}\r\n", ((int[])data.api_get_ship_exp).Min());
 
 			return sb.ToString();
 		}
@@ -442,24 +445,23 @@ namespace ElectronicObserver.Window
 		{
 			StringBuilder sb = new StringBuilder();
 
-			sb.AppendLine( GeneralRes.BattleComplete );
-			sb.AppendFormat( GeneralRes.EnemyName + "\r\n", Window.FormMain.Instance.Translator.GetTranslation(data.api_enemy_info.api_deck_name, Utility.TranslationType.OperationSortie));
-			sb.AppendFormat( "Result: {0}-rank\r\n", data.api_win_rank );
-			sb.AppendFormat( GeneralRes.AdmiralXP + ": +{0}\r\n", (int)data.api_get_exp );
+            sb.AppendLine(GeneralRes.BattleComplete);
+            sb.AppendFormat(GeneralRes.EnemyName + "\r\n", Window.FormMain.Instance.Translator.GetTranslation(data.api_enemy_info.api_deck_name, Utility.TranslationType.OperationSortie));
+            sb.AppendFormat("Result: {0}-rank\r\n", data.api_win_rank);
+            sb.AppendFormat(GeneralRes.AdmiralXP + ": +{0}\r\n", (int)data.api_get_exp);
 
 			sb.Append(CheckGimmickUpdated(data));
 
 			return sb.ToString();
 		}
 
-        
-		private string CheckGimmickUpdated(dynamic data)
-		{
-			if (data.api_m1() && data.api_m1 != 0 || (data.api_m2() && data.api_m2 != 0))
-			{
-				Utility.Logger.Add(2, "Changes in event map detected!");
-				return "\r\n* Gimmick released *\r\n";
-			}
+        private string CheckGimmickUpdated(dynamic data)
+        {
+            if (data.api_m1() && data.api_m1 != 0)
+            {
+                Utility.Logger.Add(2, "Changes in event map detected!");
+                return "\r\n* Gimmick released *\r\n";
+            }
 
 			return "";
 		}
@@ -470,8 +472,8 @@ namespace ElectronicObserver.Window
 
 			StringBuilder sb = new StringBuilder();
 
-			sb.AppendLine( GeneralRes.ResupplyComplete );
-			sb.AppendFormat( GeneralRes.BauxiteUsage + "\r\n", (int)data.api_use_bou, (int)data.api_use_bou / 5 );
+            sb.AppendLine(GeneralRes.ResupplyComplete);
+            sb.AppendFormat(GeneralRes.BauxiteUsage + "\r\n", (int)data.api_use_bou, (int)data.api_use_bou / 5);
 
 			return sb.ToString();
 		}
@@ -503,11 +505,11 @@ namespace ElectronicObserver.Window
 			int steel = ships.Sum(s => s.RepairSteel);
 
 
-			sb.AppendFormat( GeneralRes.ResupplyString,
-				fuel_diff - fuel_supply - fuel_repair, fuel_diff, fuel_supply, fuel_repair,
-				ammo_diff - ammo, ammo_diff, ammo,
-				steel_diff - steel, steel_diff, steel,
-				bauxite_diff - bauxite, bauxite_diff, bauxite, bauxite / 5);
+            sb.AppendFormat(GeneralRes.ResupplyString,
+                fuel_diff - fuel_supply - fuel_repair, fuel_diff, fuel_supply, fuel_repair,
+                ammo_diff - ammo, ammo_diff, ammo,
+                steel_diff - steel, steel_diff, steel,
+                bauxite_diff - bauxite, bauxite_diff, bauxite, bauxite / 5);
 
 			return sb.ToString();
 		}
@@ -538,13 +540,13 @@ namespace ElectronicObserver.Window
 			{
 				var freeShips = group.SelectMany(f => f).Where(s => s.SallyArea == 0);
 
-				TextInformation.Text = "[Fleet tag warning]\r\nUntagged ships:\r\n" + string.Join("\r\n", freeShips.Select(s => s.NameWithLevel));
+                TextInformation.Text = "[Fleet tag warning]\r\nUntagged ships:\r\n" + string.Join("\r\n", freeShips.Select(s => s.NameWithLevel));
 
-				if ( Utility.Configuration.Config.Control.ShowSallyAreaAlertDialog )
-					MessageBox.Show( "A ship without fleet tag is in the fleet.\r\nPlease recheck before sortieing.\r\n\r\n(This check can be disabled in the settings)", "Fleet Tag Warning",
-						MessageBoxButtons.OK, MessageBoxIcon.Warning );
-			}
-		}
+                if (Utility.Configuration.Config.Control.ShowSallyAreaAlertDialog)
+                    MessageBox.Show("A ship without fleet tag is in the fleet.\r\nPlease recheck before sortieing.\r\n\r\n(This check can be disabled in the settings)", "Fleet Tag Warning",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
 
 		private void CheckExpedition(int missionID, int fleetID)
 		{
