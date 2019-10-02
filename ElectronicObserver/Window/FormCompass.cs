@@ -290,7 +290,7 @@ namespace ElectronicObserver.Window
 					{
 						// nothing
 						ShipNames[i].Text = "-";
-						ShipNames[i].ForeColor = Color.Black;
+						ShipNames[i].ForeColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.MainFontColor);
 						ShipNames[i].Tag = -1;
 						ShipNames[i].Cursor = Cursors.Default;
 						ToolTipInfo.SetToolTip(ShipNames[i], null);
@@ -311,12 +311,14 @@ namespace ElectronicObserver.Window
 				}
 
 				Formation.Text = Constants.GetFormationShort(fleet.Formation);
+				Formation.ForeColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.MainFontColor);
 				//Formation.ImageIndex = (int)ResourceManager.IconContent.BattleFormationEnemyLineAhead + fleet.Formation - 1;
 				Formation.Visible = true;
 
 				{
 					int air = Calculator.GetAirSuperiority(fleet.FleetMember);
 					AirSuperiority.Text = air.ToString();
+					AirSuperiority.ForeColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.MainFontColor);
 					ToolTipInfo.SetToolTip(AirSuperiority, GetAirSuperiorityString(air));
 					AirSuperiority.Visible = true;
 				}
@@ -1207,6 +1209,8 @@ namespace ElectronicObserver.Window
 			SubFont = Utility.Configuration.Config.UI.SubFont;
 			BackColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.BackgroundColor);
 			ForeColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.MainFontColor);
+			MainFontColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.MainFontColor);
+			SubFontColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.BackgroundColor);
 			TextMapArea.Font =
 			TextDestination.Font =
 			TextEventKind.Font =
