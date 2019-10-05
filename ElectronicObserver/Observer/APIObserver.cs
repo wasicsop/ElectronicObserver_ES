@@ -1,4 +1,5 @@
 ﻿using Codeplex.Data;
+using ElectronicObserver.Data;
 using ElectronicObserver.Observer.kcsapi;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Utility.Mathematics;
@@ -9,9 +10,11 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Net.WebSockets;
 using System.Threading.Tasks;
 using System.Web;
 using System.Windows.Forms;
+using static ElectronicObserver.Data.Constants;
 
 namespace ElectronicObserver.Observer
 {
@@ -230,7 +233,18 @@ namespace ElectronicObserver.Observer
 			//debug
 			//Utility.Logger.Add( 1, baseurl );
 
+			if (baseurl == ("/gadgets/makeRequest"))
+			{
+				KCDatabase db = KCDatabase.Instance;
+				if (db.Server is null)
+				{
+					string body = session.Response.BodyAsString;
+					string url = body.Split('/')[2];
+					url = url.Split('\\')[0];
 
+					db.Server = getKCServer(url);
+				}
+			}
 			// request
 			if (baseurl.Contains("/kcsapi/"))
 			{
@@ -444,6 +458,12 @@ namespace ElectronicObserver.Observer
 				{
 					ResponseReceived(shortpath, json);
 					APIList.OnResponseReceived(shortpath, json);
+				}
+				else if (shortpath.Contains("api_req_ranking"))
+				{
+					shortpath = "api_req_ranking/getlist";
+					ResponseReceived(shortpath, json.api_data);
+					APIList.OnResponseReceived(shortpath, json.api_data);
 				}
 				else if (json.IsDefined("api_data"))
 				{

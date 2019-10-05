@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
+using static ElectronicObserver.Observer.DiscordRPC;
 
 namespace ElectronicObserver.Window
 {
@@ -353,7 +354,7 @@ namespace ElectronicObserver.Window
 
 			StringBuilder sb = new StringBuilder();
 			sb.AppendLine("[海域ゲージ]");
-
+			string rpcMapInfo = "";
 
 			foreach (var map in KCDatabase.Instance.MapInfo.Values)
 			{
@@ -384,9 +385,19 @@ namespace ElectronicObserver.Window
 						current, max,
 						gaugeType == 1 ? " 回" : ""));
 				}
+				if (map.MapAreaID > 10)
+				{
+					rpcMapInfo = string.Format("E{0}{1}: {2}{3} {4} / {5}{6}",
+						map.MapInfoID,
+						map.EventDifficulty > 0 ? $"{Constants.GetDifficulty(map.EventDifficulty)}" : "",
+						map.CurrentGaugeIndex > 0 ? $"#{map.CurrentGaugeIndex} " : "",
+						gaugeType == 1 ? " defeated" : gaugeType == 2 ? "HP" : "TP",
+						current, max,
+						gaugeType == 1 ? " times" : "");
+				}
 			}
 
-
+			Instance.MapInfo = rpcMapInfo;
 			return sb.ToString();
 		}
 

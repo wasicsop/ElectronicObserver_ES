@@ -273,7 +273,6 @@ namespace ElectronicObserver.Utility.Mathematics
 			return time - TimeZoneInfo.Local.BaseUtcOffset + new TimeSpan(9, 0, 0);
 		}
 
-
 	}
 
 

@@ -401,6 +401,26 @@ namespace ElectronicObserver.Utility
                 /// </summary>
                 public bool ShowExpeditionAlertDialog { get; set; }
 
+				/// <summary>
+				/// Enable Discord RPC
+				/// </summary>
+				public bool EnableDiscordRPC { get; set; }
+
+				/// <summary>
+				/// Discord RPC message to display use {{secretary}} to insert secretary name
+				/// </summary>
+				public string DiscordRPCMessage { get; set; }
+
+				/// <summary>
+				/// Set if the Discord rich presence shouuld show your number of first class medals
+				/// </summary>
+				public bool DiscordRPCShowFCM { get; set; }
+
+				/// <summary>
+				/// Set the application ID to use for the discord RPC
+				/// </summary>
+				public string DiscordRPCApplicationId { get; set; }
+
 				public ConfigControl()
 				{
 					ConditionBorder = 40;
@@ -412,6 +432,9 @@ namespace ElectronicObserver.Utility
 					ShowSallyAreaAlertDialog = true;
 					ExpCheckerExpUnit = 2268;
                     ShowExpeditionAlertDialog = true;
+					DiscordRPCMessage = "Headpatting {{secretary}}";
+					DiscordRPCShowFCM = true;
+					DiscordRPCApplicationId = "";
 				}
 			}
 			/// <summary>動作</summary>
