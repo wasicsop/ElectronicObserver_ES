@@ -245,7 +245,7 @@ namespace Browser
 			SetCookies();
 
 			//var resrequestHandler = new Cef_ResRequestHandler(pixiSettingEnabled: Configuration.PreserveDrawingBuffer);
-			var requestHandler = new Cef_RequestHandler(pixiSettingEnabled: Configuration.PreserveDrawingBuffer);
+			var requestHandler = new Cef_RequestHandler();
 			requestHandler.RenderProcessTerminated += (mes) => AddLog(3, mes);
 
 			Browser = new ChromiumWebBrowser(String.Empty)

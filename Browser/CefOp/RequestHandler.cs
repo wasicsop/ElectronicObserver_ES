@@ -15,11 +15,6 @@ namespace Browser.CefOp
 		public delegate void RenderProcessTerminatedEventHandler(string message);
 		public event RenderProcessTerminatedEventHandler RenderProcessTerminated;
 
-		bool pixiSettingEnabled;
-		public Cef_RequestHandler(bool pixiSettingEnabled) : base()
-		{
-			this.pixiSettingEnabled = pixiSettingEnabled;
-		}
 		/// <summary>
 		/// 戻る/進む操作をブロックします。
 		/// </summary>
@@ -65,10 +60,6 @@ namespace Browser.CefOp
 			if (request.Url.Contains(@"/kcs2/resources/bgm/"))
 			{
 				return new Cef_ResRequestHandler();
-			}
-			if (request.Url.Contains(@"/kcs2/index.php")&& pixiSettingEnabled)
-			{
-				return new Cef_pixihandler();
 			}
 			return null;
 		}
