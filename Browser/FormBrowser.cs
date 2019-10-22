@@ -246,17 +246,18 @@ namespace Browser
 				settings.DisableGpuAcceleration();
 
 			settings.CefCommandLineArgs.Add("proxy-server", ProxySettings);
-			settings.CefCommandLineArgs.Add("limit-fps", "60");// limit browser fps to fix canvas crash
-            // causes memory leak after Umikaze k2 update somehow...
+			settings.CefCommandLineArgs.Add("limit-fps", "60");
+			// limit browser fps to fix canvas crash
+			// causes memory leak after Umikaze k2 update somehow...
 			// settings.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0"; // fix for 206 response from server for bgm
+			settings.CefCommandLineArgs.Add("disable-features", "HardwareMediaKeyHandling"); // prevent CEF from taking over media keys
 			if (Configuration.ForceColorProfile)
 				settings.CefCommandLineArgs.Add("force-color-profile", "srgb");
 			CefSharpSettings.SubprocessExitIfParentProcessClosed = true;
 			Cef.Initialize(settings, false, (IBrowserProcessHandler)null);
 
+			var requestHandler = new CefRequestHandler();
 
-			var requestHandler = new RequestHandler(pixiSettingEnabled: Configuration.PreserveDrawingBuffer);
-			requestHandler.RenderProcessTerminated += (mes) => AddLog(3, mes);
 
 			Browser = new ChromiumWebBrowser(@"about:blank")
 			{
@@ -524,7 +525,7 @@ namespace Browser
         // その場合ロードに失敗してブラウザが白画面でスタートしてしまう（手動でログインページを開けば続行は可能だが）
         // 応急処置として失敗したとき後で再試行するようにしてみる
         private string navigateCache = null;
-        private void Browser_IsBrowserInitializedChanged(object sender, IsBrowserInitializedChangedEventArgs e)
+        private void Browser_IsBrowserInitializedChanged(object sender, EventArgs e)
         {
             if (IsBrowserInitialized && navigateCache != null)
             {
