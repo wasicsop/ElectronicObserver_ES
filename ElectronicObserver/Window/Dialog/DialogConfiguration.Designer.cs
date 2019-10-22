@@ -86,6 +86,9 @@
             this.Log_LogLevel = new System.Windows.Forms.NumericUpDown();
             this.label6 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.Control_ForceUpdate = new System.Windows.Forms.Button();
+            this.label44 = new System.Windows.Forms.Label();
+            this.Control_translationURL = new System.Windows.Forms.TextBox();
             this.Control_DiscordRPCShowFCM = new System.Windows.Forms.CheckBox();
             this.Control_EnableDiscordRPC = new System.Windows.Forms.CheckBox();
             this.label22 = new System.Windows.Forms.Label();
@@ -257,9 +260,9 @@
             this.APIListBrowser = new System.Windows.Forms.OpenFileDialog();
             this.Log_PlayTime = new System.Windows.Forms.Label();
             this.PlayTimeTimer = new System.Windows.Forms.Timer(this.components);
-            this.label44 = new System.Windows.Forms.Label();
-            this.Control_translationURL = new System.Windows.Forms.TextBox();
-            this.Control_ForceUpdate = new System.Windows.Forms.Button();
+
+            this.label45 = new System.Windows.Forms.Label();
+            this.Control_ApplicationID = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Connection_UpstreamProxyPort)).BeginInit();
@@ -711,7 +714,7 @@
             this.UI_RenderingTestChanger.TabIndex = 14;
             this.UI_RenderingTestChanger.TickStyle = System.Windows.Forms.TickStyle.None;
             this.UI_RenderingTestChanger.Scroll += new System.EventHandler(this.UI_RenderingTestChanger_Scroll);
-            //
+            // 
             // UI_RenderingTest
             // 
             this.UI_RenderingTest.AutoSize = true;
@@ -963,6 +966,8 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.label45);
+            this.tabPage4.Controls.Add(this.Control_ApplicationID);
             this.tabPage4.Controls.Add(this.Control_ForceUpdate);
             this.tabPage4.Controls.Add(this.label44);
             this.tabPage4.Controls.Add(this.Control_translationURL);
@@ -986,6 +991,35 @@
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Behavior";
             this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // Control_ForceUpdate
+            // 
+            this.Control_ForceUpdate.Location = new System.Drawing.Point(543, 248);
+            this.Control_ForceUpdate.Name = "Control_ForceUpdate";
+            this.Control_ForceUpdate.Size = new System.Drawing.Size(141, 23);
+            this.Control_ForceUpdate.TabIndex = 16;
+            this.Control_ForceUpdate.Text = "Force update";
+            this.Control_ForceUpdate.UseVisualStyleBackColor = true;
+            this.Control_ForceUpdate.Click += new System.EventHandler(this.Control_ForceUpdate_Click);
+            // 
+            // label44
+            // 
+            this.label44.AutoSize = true;
+            this.label44.Location = new System.Drawing.Point(6, 251);
+            this.label44.Name = "label44";
+            this.label44.Size = new System.Drawing.Size(99, 15);
+            this.label44.TabIndex = 15;
+            this.label44.Text = "Translation URL";
+            // 
+            // Control_translationURL
+            // 
+            this.Control_translationURL.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Control_translationURL.Location = new System.Drawing.Point(147, 248);
+            this.Control_translationURL.Name = "Control_translationURL";
+            this.Control_translationURL.Size = new System.Drawing.Size(390, 23);
+            this.Control_translationURL.TabIndex = 14;
+            this.ToolTipInfo.SetToolTip(this.Control_translationURL, "Specify the repository to use to update translations.");
             // 
             // Control_DiscordRPCShowFCM
             // 
@@ -1168,7 +1202,7 @@
             this.Debug_SealingPanel.Controls.Add(this.Debug_APIListPathSearch);
             this.Debug_SealingPanel.Location = new System.Drawing.Point(0, 56);
             this.Debug_SealingPanel.Name = "Debug_SealingPanel";
-            this.Debug_SealingPanel.Size = new System.Drawing.Size(696, 239);
+            this.Debug_SealingPanel.Size = new System.Drawing.Size(696, 237);
             this.Debug_SealingPanel.TabIndex = 1;
             // 
             // Debug_APIListPath
@@ -2759,7 +2793,7 @@
             // 
             this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(3, 310);
+            this.label10.Location = new System.Drawing.Point(3, 308);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(238, 15);
             this.label10.TabIndex = 5;
@@ -2904,7 +2938,7 @@
             this.BGMPlayer_ControlGrid.RowHeadersVisible = false;
             this.BGMPlayer_ControlGrid.RowTemplate.Height = 21;
             this.BGMPlayer_ControlGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.BGMPlayer_ControlGrid.Size = new System.Drawing.Size(684, 259);
+            this.BGMPlayer_ControlGrid.Size = new System.Drawing.Size(684, 257);
             this.BGMPlayer_ControlGrid.TabIndex = 0;
             this.BGMPlayer_ControlGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.BGMPlayer_ControlGrid_CellContentClick);
             this.BGMPlayer_ControlGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.BGMPlayer_ControlGrid_CellFormatting);
@@ -3002,34 +3036,24 @@
             this.PlayTimeTimer.Interval = 1000;
             this.PlayTimeTimer.Tick += new System.EventHandler(this.PlayTimeTimer_Tick);
             // 
-            // label44
+            // label45
             // 
-            this.label44.AutoSize = true;
-            this.label44.Location = new System.Drawing.Point(6, 251);
-            this.label44.Name = "label44";
-            this.label44.Size = new System.Drawing.Size(99, 15);
-            this.label44.TabIndex = 15;
-            this.label44.Text = "Translation URL";
+            this.label45.AutoSize = true;
+            this.label45.Location = new System.Drawing.Point(6, 280);
+            this.label45.Name = "label45";
+            this.label45.Size = new System.Drawing.Size(88, 15);
+            this.label45.TabIndex = 18;
+            this.label45.Text = "Application ID";
             // 
-            // Control_translationURL
+            // Control_ApplicationID
             // 
-            this.Control_translationURL.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.Control_ApplicationID.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.Control_translationURL.Location = new System.Drawing.Point(147, 248);
-            this.Control_translationURL.Name = "Control_translationURL";
-            this.Control_translationURL.Size = new System.Drawing.Size(390, 23);
-            this.Control_translationURL.TabIndex = 14;
-            this.ToolTipInfo.SetToolTip(this.Control_translationURL, "Specify the repository to use to update translations.");
-            // 
-            // Control_ForceUpdate
-            // 
-            this.Control_ForceUpdate.Location = new System.Drawing.Point(543, 248);
-            this.Control_ForceUpdate.Name = "Control_ForceUpdate";
-            this.Control_ForceUpdate.Size = new System.Drawing.Size(141, 23);
-            this.Control_ForceUpdate.TabIndex = 16;
-            this.Control_ForceUpdate.Text = "Force update";
-            this.Control_ForceUpdate.UseVisualStyleBackColor = true;
-            this.Control_ForceUpdate.Click += new System.EventHandler(this.Control_ForceUpdate_Click);
+            this.Control_ApplicationID.Location = new System.Drawing.Point(147, 277);
+            this.Control_ApplicationID.Name = "Control_ApplicationID";
+            this.Control_ApplicationID.Size = new System.Drawing.Size(537, 23);
+            this.Control_ApplicationID.TabIndex = 17;
+            this.ToolTipInfo.SetToolTip(this.Control_ApplicationID, "Application ID to use with Discord Rich Presence");
             // 
             // DialogConfiguration
             // 
@@ -3061,7 +3085,6 @@
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.UI_RenderingTestChanger)).EndInit();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
@@ -3352,5 +3375,7 @@
         private System.Windows.Forms.Label label44;
         private System.Windows.Forms.TextBox Control_translationURL;
         private System.Windows.Forms.Button Control_ForceUpdate;
+        private System.Windows.Forms.Label label45;
+        private System.Windows.Forms.TextBox Control_ApplicationID;
     }
 }
