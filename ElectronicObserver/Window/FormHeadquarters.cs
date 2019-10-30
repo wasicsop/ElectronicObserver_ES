@@ -594,6 +594,14 @@ namespace ElectronicObserver.Window
 						$"Rice: {db.UseItems[85]?.Count ?? 0}\r\nUmeboshi: {db.UseItems[86]?.Count ?? 0}\r\nNori: {db.UseItems[87]?.Count ?? 0}\r\nTea: {db.UseItems[88]?.Count ?? 0}\r\n{tail}");
 					break;
 
+				// '19 autumn event special mode
+				case "秋刀魚":
+				case "鰯":
+					DisplayUseItem.Text = (item?.Count ?? 0).ToString();
+					ToolTipInfo.SetToolTip(DisplayUseItem,
+						$"秋刀魚: {db.UseItems[68]?.Count ?? 0}\r\n鰯: {db.UseItems[93]?.Count ?? 0}\r\n{tail}");
+					break;
+
 				default:
 					DisplayUseItem.Text = (item?.Count ?? 0).ToString();
 					ToolTipInfo.SetToolTip(DisplayUseItem,
