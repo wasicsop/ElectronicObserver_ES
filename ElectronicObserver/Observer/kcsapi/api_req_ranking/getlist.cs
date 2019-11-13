@@ -21,7 +21,8 @@ namespace ElectronicObserver.Observer.kcsapi.api_req_ranking
             try
             {
                 string rankData = regex.Match(data.ToString()).Value;
-                rankData = rankData.Split(',')[0].Split(':')[1].Replace('"', '\0');
+				if (string.IsNullOrEmpty(rankData)) return;
+				rankData = rankData.Split(',')[0].Split(':')[1].Replace('"', '\0');
                 db.Admiral.Senka = int.Parse(rankData);
             }
             catch (Exception ex)

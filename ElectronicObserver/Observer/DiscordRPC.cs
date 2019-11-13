@@ -1,10 +1,6 @@
 ﻿using DiscordRPC;
-using DiscordRPC.Logging;
-using ElectronicObserver.Data;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace ElectronicObserver.Observer
@@ -65,11 +61,6 @@ namespace ElectronicObserver.Observer
 		{
 			if (!Utility.Configuration.Config.Control.EnableDiscordRPC) return;
 
-			KCDatabase db = KCDatabase.Instance;
-
-			int shipID = 0;
-			if (db.Fleet.Fleets.Count > 0 && db.Fleet[1].MembersInstance.Count > 0) shipID = db.Fleet[1].MembersInstance[0].ShipID;
-
 			string state = "";
 
 			if (data.bot != null)
@@ -79,6 +70,7 @@ namespace ElectronicObserver.Observer
 
 			if (forcedClient == null)
 			{
+				int shipID = data.shipId;
 				int clientId = Math.Abs((shipID - 1) / 150);
 				if (currentClientIndex == clientId)
 				{
@@ -90,7 +82,7 @@ namespace ElectronicObserver.Observer
 						State = state,
 						Assets = new Assets()
 						{
-							LargeImageKey = shipID.ToString(),
+							LargeImageKey = data.image,
 							LargeImageText = data.large,
 							SmallImageText = data.small,
 						}
@@ -107,7 +99,7 @@ namespace ElectronicObserver.Observer
 							State = state,
 							Assets = new Assets()
 							{
-								LargeImageKey = Utility.Configuration.Config.Control.UseFlagshipIconForRPC ? shipID.ToString() : "kc_logo_512x512",
+								LargeImageKey = data.image,
 								LargeImageText = data.large,
 								SmallImageText = data.small,
 							}
@@ -129,7 +121,7 @@ namespace ElectronicObserver.Observer
 					State = state,
 					Assets = new Assets()
 					{
-						LargeImageKey = shipID.ToString(),
+						LargeImageKey = data.image,
 						LargeImageText = data.large,
 						SmallImageText = data.small,
 					}
@@ -167,6 +159,8 @@ namespace ElectronicObserver.Observer
 			public string large { get; set; }
 			public string small { get; set; }
 			public string timestamp { get; set; }
+			public int shipId { get; set; }
+			public string image { get; set; }
 		}
 
 		public string MapInfo { get; set; }
