@@ -54,7 +54,7 @@ namespace ElectronicObserver.Data.Quest
 		public override string ToString()
 		{
 			if (ProgressList.All(p => p.IsCleared))
-				return "Complete!";
+				return "100%";
 			else
 				return string.Join(" \n", ProgressList.Where(p => !p.IsCleared).Select(p => p.ToString() + " " + p.GetClearCondition()));
 		}
