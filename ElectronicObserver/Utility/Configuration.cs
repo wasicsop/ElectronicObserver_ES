@@ -666,7 +666,12 @@ namespace ElectronicObserver.Utility
                 /// </summary>
                 public Uri UpdateURL { get; set; }
 
-                public ConfigControl()
+				/// <summary>
+				/// Should RPC use the icon of your flagship or not
+				/// </summary>
+				public bool UseFlagshipIconForRPC { get; set; }
+
+				public ConfigControl()
 				{
 					ConditionBorder = 40;
 					RecordAutoSaving = 1;
@@ -682,7 +687,8 @@ namespace ElectronicObserver.Utility
                     DiscordRPCShowFCM = true;
                     DiscordRPCApplicationId = "";
                     UpdateURL = new Uri("http://raw.githubusercontent.com/Jebzou/ryuukitsune.github.io/master/Translations/");
-                }
+					UseFlagshipIconForRPC = false;
+				}
 			}
 			/// <summary>動作</summary>
 			[DataMember]

@@ -381,6 +381,7 @@ namespace ElectronicObserver.Window.Dialog
             Control_DiscordRPCMessage.ReadOnly = !config.Control.EnableDiscordRPC;
             Control_translationURL.Text = config.Control.UpdateURL.AbsoluteUri;
             Control_ApplicationID.Text = config.Control.DiscordRPCApplicationId;
+            checkBoxUseSecretaryIconForRPC.Checked = config.Control.UseFlagshipIconForRPC;
 
             //[デバッグ]
             Debug_EnableDebugMenu.Checked = config.Debug.EnableDebugMenu;
@@ -608,6 +609,7 @@ namespace ElectronicObserver.Window.Dialog
             config.Control.DiscordRPCShowFCM = Control_DiscordRPCShowFCM.Checked;
             config.Control.UpdateURL = new Uri(Control_translationURL.Text);
             config.Control.DiscordRPCApplicationId = Control_ApplicationID.Text;
+            config.Control.UseFlagshipIconForRPC = checkBoxUseSecretaryIconForRPC.Checked;
 
 			//[デバッグ]
 			config.Debug.EnableDebugMenu = Debug_EnableDebugMenu.Checked;

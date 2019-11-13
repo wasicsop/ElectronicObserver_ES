@@ -29,8 +29,8 @@
 		private void InitializeComponent()
 		{
             this.components = new System.ComponentModel.Container();
-            ElectronicObserver.Window.Control.StatusBarModule statusBarModule1 = new ElectronicObserver.Window.Control.StatusBarModule();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DialogConfiguration));
+			ElectronicObserver.Window.Control.StatusBarModule statusBarModule1 = new ElectronicObserver.Window.Control.StatusBarModule();
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DialogConfiguration));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -65,8 +65,8 @@
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.UI_RenderingTestChanger = new System.Windows.Forms.TrackBar();
-            this.UI_RenderingTest = new ElectronicObserver.Window.Control.ShipStatusHP();
-            this.UI_IsLayoutFixed = new System.Windows.Forms.CheckBox();
+			this.UI_RenderingTest = new ElectronicObserver.Window.Control.ShipStatusHP();
+			this.UI_IsLayoutFixed = new System.Windows.Forms.CheckBox();
             this.UI_BarColorMorphing = new System.Windows.Forms.CheckBox();
             this.UI_SubFontSelect = new System.Windows.Forms.Button();
             this.UI_SubFont = new System.Windows.Forms.TextBox();
@@ -86,6 +86,8 @@
             this.Log_LogLevel = new System.Windows.Forms.NumericUpDown();
             this.label6 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.label45 = new System.Windows.Forms.Label();
+            this.Control_ApplicationID = new System.Windows.Forms.TextBox();
             this.Control_ForceUpdate = new System.Windows.Forms.Button();
             this.label44 = new System.Windows.Forms.Label();
             this.Control_translationURL = new System.Windows.Forms.TextBox();
@@ -260,9 +262,7 @@
             this.APIListBrowser = new System.Windows.Forms.OpenFileDialog();
             this.Log_PlayTime = new System.Windows.Forms.Label();
             this.PlayTimeTimer = new System.Windows.Forms.Timer(this.components);
-
-            this.label45 = new System.Windows.Forms.Label();
-            this.Control_ApplicationID = new System.Windows.Forms.TextBox();
+            this.checkBoxUseSecretaryIconForRPC = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Connection_UpstreamProxyPort)).BeginInit();
@@ -693,8 +693,8 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Controls.Add(this.UI_RenderingTestChanger, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.UI_RenderingTest, 0, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(250, 64);
+			this.tableLayoutPanel1.Controls.Add(this.UI_RenderingTest, 0, 0);
+			this.tableLayoutPanel1.Location = new System.Drawing.Point(250, 64);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -714,36 +714,36 @@
             this.UI_RenderingTestChanger.TabIndex = 14;
             this.UI_RenderingTestChanger.TickStyle = System.Windows.Forms.TickStyle.None;
             this.UI_RenderingTestChanger.Scroll += new System.EventHandler(this.UI_RenderingTestChanger_Scroll);
-            // 
-            // UI_RenderingTest
-            // 
-            this.UI_RenderingTest.AutoSize = true;
-            this.UI_RenderingTest.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            statusBarModule1.BarColor0Begin = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            statusBarModule1.BarColor0End = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            statusBarModule1.MaximumValue = 500;
-            statusBarModule1.PrevValue = 401;
-            statusBarModule1.Value = 401;
-            this.UI_RenderingTest.HPBar = statusBarModule1;
-            this.UI_RenderingTest.Location = new System.Drawing.Point(16, 3);
-            this.UI_RenderingTest.MainFontColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.UI_RenderingTest.Margin = new System.Windows.Forms.Padding(16, 3, 16, 3);
-            this.UI_RenderingTest.MaximumValue = 500;
-            this.UI_RenderingTest.Name = "UI_RenderingTest";
-            this.UI_RenderingTest.PrevValue = 401;
-            this.UI_RenderingTest.RepairFontColor = System.Drawing.Color.Empty;
-            this.UI_RenderingTest.RepairTime = new System.DateTime(2017, 6, 18, 0, 0, 59, 159);
-            this.UI_RenderingTest.RepairTimeShowMode = ElectronicObserver.Window.Control.ShipStatusHPRepairTimeShowMode.Invisible;
-            this.UI_RenderingTest.Size = new System.Drawing.Size(136, 20);
-            this.UI_RenderingTest.SubFontColor = System.Drawing.Color.Empty;
-            this.UI_RenderingTest.TabIndex = 12;
-            this.UI_RenderingTest.Text = "Rendering Test: ";
-            this.ToolTipInfo.SetToolTip(this.UI_RenderingTest, "This is a preview.\r\nUse the slider below to adjust the value.");
-            this.UI_RenderingTest.Value = 401;
-            // 
-            // UI_IsLayoutFixed
-            // 
-            this.UI_IsLayoutFixed.AutoSize = true;
+			// 
+			// UI_RenderingTest
+			// 
+			this.UI_RenderingTest.AutoSize = true;
+			this.UI_RenderingTest.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+			statusBarModule1.BarColor0Begin = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			statusBarModule1.BarColor0End = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			statusBarModule1.MaximumValue = 500;
+			statusBarModule1.PrevValue = 401;
+			statusBarModule1.Value = 401;
+			this.UI_RenderingTest.HPBar = statusBarModule1;
+			this.UI_RenderingTest.Location = new System.Drawing.Point(16, 3);
+			this.UI_RenderingTest.MainFontColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.UI_RenderingTest.Margin = new System.Windows.Forms.Padding(16, 3, 16, 3);
+			this.UI_RenderingTest.MaximumValue = 500;
+			this.UI_RenderingTest.Name = "UI_RenderingTest";
+			this.UI_RenderingTest.PrevValue = 401;
+			this.UI_RenderingTest.RepairFontColor = System.Drawing.Color.Empty;
+			this.UI_RenderingTest.RepairTime = new System.DateTime(2017, 6, 18, 0, 0, 59, 159);
+			this.UI_RenderingTest.RepairTimeShowMode = ElectronicObserver.Window.Control.ShipStatusHPRepairTimeShowMode.Invisible;
+			this.UI_RenderingTest.Size = new System.Drawing.Size(136, 20);
+			this.UI_RenderingTest.SubFontColor = System.Drawing.Color.Empty;
+			this.UI_RenderingTest.TabIndex = 12;
+			this.UI_RenderingTest.Text = "Rendering Test: ";
+			this.ToolTipInfo.SetToolTip(this.UI_RenderingTest, "This is a preview.\r\nUse the slider below to adjust the value.");
+			this.UI_RenderingTest.Value = 401;
+			// 
+			// UI_IsLayoutFixed
+			// 
+			this.UI_IsLayoutFixed.AutoSize = true;
             this.UI_IsLayoutFixed.Location = new System.Drawing.Point(8, 89);
             this.UI_IsLayoutFixed.Name = "UI_IsLayoutFixed";
             this.UI_IsLayoutFixed.Size = new System.Drawing.Size(147, 19);
@@ -966,6 +966,7 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.checkBoxUseSecretaryIconForRPC);
             this.tabPage4.Controls.Add(this.label45);
             this.tabPage4.Controls.Add(this.Control_ApplicationID);
             this.tabPage4.Controls.Add(this.Control_ForceUpdate);
@@ -991,6 +992,25 @@
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Behavior";
             this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // label45
+            // 
+            this.label45.AutoSize = true;
+            this.label45.Location = new System.Drawing.Point(6, 280);
+            this.label45.Name = "label45";
+            this.label45.Size = new System.Drawing.Size(88, 15);
+            this.label45.TabIndex = 18;
+            this.label45.Text = "Application ID";
+            // 
+            // Control_ApplicationID
+            // 
+            this.Control_ApplicationID.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Control_ApplicationID.Location = new System.Drawing.Point(147, 277);
+            this.Control_ApplicationID.Name = "Control_ApplicationID";
+            this.Control_ApplicationID.Size = new System.Drawing.Size(537, 23);
+            this.Control_ApplicationID.TabIndex = 17;
+            this.ToolTipInfo.SetToolTip(this.Control_ApplicationID, "Application ID to use with Discord Rich Presence");
             // 
             // Control_ForceUpdate
             // 
@@ -1202,7 +1222,7 @@
             this.Debug_SealingPanel.Controls.Add(this.Debug_APIListPathSearch);
             this.Debug_SealingPanel.Location = new System.Drawing.Point(0, 56);
             this.Debug_SealingPanel.Name = "Debug_SealingPanel";
-            this.Debug_SealingPanel.Size = new System.Drawing.Size(696, 237);
+            this.Debug_SealingPanel.Size = new System.Drawing.Size(696, 235);
             this.Debug_SealingPanel.TabIndex = 1;
             // 
             // Debug_APIListPath
@@ -2793,7 +2813,7 @@
             // 
             this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(3, 308);
+            this.label10.Location = new System.Drawing.Point(3, 306);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(238, 15);
             this.label10.TabIndex = 5;
@@ -2938,7 +2958,7 @@
             this.BGMPlayer_ControlGrid.RowHeadersVisible = false;
             this.BGMPlayer_ControlGrid.RowTemplate.Height = 21;
             this.BGMPlayer_ControlGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.BGMPlayer_ControlGrid.Size = new System.Drawing.Size(684, 257);
+            this.BGMPlayer_ControlGrid.Size = new System.Drawing.Size(684, 255);
             this.BGMPlayer_ControlGrid.TabIndex = 0;
             this.BGMPlayer_ControlGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.BGMPlayer_ControlGrid_CellContentClick);
             this.BGMPlayer_ControlGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.BGMPlayer_ControlGrid_CellFormatting);
@@ -3036,24 +3056,16 @@
             this.PlayTimeTimer.Interval = 1000;
             this.PlayTimeTimer.Tick += new System.EventHandler(this.PlayTimeTimer_Tick);
             // 
-            // label45
+            // checkBoxUseSecretaryIconForRPC
             // 
-            this.label45.AutoSize = true;
-            this.label45.Location = new System.Drawing.Point(6, 280);
-            this.label45.Name = "label45";
-            this.label45.Size = new System.Drawing.Size(88, 15);
-            this.label45.TabIndex = 18;
-            this.label45.Text = "Application ID";
-            // 
-            // Control_ApplicationID
-            // 
-            this.Control_ApplicationID.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Control_ApplicationID.Location = new System.Drawing.Point(147, 277);
-            this.Control_ApplicationID.Name = "Control_ApplicationID";
-            this.Control_ApplicationID.Size = new System.Drawing.Size(537, 23);
-            this.Control_ApplicationID.TabIndex = 17;
-            this.ToolTipInfo.SetToolTip(this.Control_ApplicationID, "Application ID to use with Discord Rich Presence");
+            this.checkBoxUseSecretaryIconForRPC.AutoSize = true;
+            this.checkBoxUseSecretaryIconForRPC.Location = new System.Drawing.Point(9, 306);
+            this.checkBoxUseSecretaryIconForRPC.Name = "checkBoxUseSecretaryIconForRPC";
+            this.checkBoxUseSecretaryIconForRPC.Size = new System.Drawing.Size(232, 19);
+            this.checkBoxUseSecretaryIconForRPC.TabIndex = 19;
+            this.checkBoxUseSecretaryIconForRPC.Text = "Use secretary icon as game picture";
+            this.ToolTipInfo.SetToolTip(this.checkBoxUseSecretaryIconForRPC, "Enable Discord Rich Presence");
+            this.checkBoxUseSecretaryIconForRPC.UseVisualStyleBackColor = true;
             // 
             // DialogConfiguration
             // 
@@ -3377,5 +3389,6 @@
         private System.Windows.Forms.Button Control_ForceUpdate;
         private System.Windows.Forms.Label label45;
         private System.Windows.Forms.TextBox Control_ApplicationID;
-    }
+		private System.Windows.Forms.CheckBox checkBoxUseSecretaryIconForRPC;
+	}
 }
