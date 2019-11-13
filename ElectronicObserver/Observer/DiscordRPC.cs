@@ -33,6 +33,7 @@ namespace ElectronicObserver.Observer
 				string clientID = Utility.Configuration.Config.Control.DiscordRPCApplicationId;
 				// Store the client id somewhere
 				forcedClient = new DiscordRpcClient(clientID);
+				forcedClient.Initialize();
 			}
 			else if (Utility.Configuration.Config.Control.UseFlagshipIconForRPC)
 			{
@@ -52,6 +53,7 @@ namespace ElectronicObserver.Observer
 			{
 				// default application
 				forcedClient = new DiscordRpcClient("391369077991538698");
+				forcedClient.Initialize();
 			}
 
 			StartRPCUpdate();
