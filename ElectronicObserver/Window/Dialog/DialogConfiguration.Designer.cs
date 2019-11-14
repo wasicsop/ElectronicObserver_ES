@@ -458,11 +458,11 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(201, 15);
             this.label4.TabIndex = 6;
-            this.label4.Text = "＊膨大なサイズになる可能性があります。";
-            // 
-            // Connection_PanelSaveData
-            // 
-            this.Connection_PanelSaveData.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.label4.Text = ConfigRes.MayIncreaseSize;
+			// 
+			// Connection_PanelSaveData
+			// 
+			this.Connection_PanelSaveData.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Connection_PanelSaveData.Controls.Add(this.Connection_ApplyVersion);
             this.Connection_PanelSaveData.Controls.Add(this.Connection_SaveOtherFile);
@@ -538,11 +538,11 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(48, 15);
             this.label3.TabIndex = 2;
-            this.label3.Text = "保存先:";
-            // 
-            // Connection_SaveDataPath
-            // 
-            this.Connection_SaveDataPath.AllowDrop = true;
+            this.label3.Text = $"{ConfigRes.SaveLocation}:";
+			// 
+			// Connection_SaveDataPath
+			// 
+			this.Connection_SaveDataPath.AllowDrop = true;
             this.Connection_SaveDataPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Connection_SaveDataPath.Location = new System.Drawing.Point(94, 3);
@@ -583,11 +583,11 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(40, 15);
             this.label1.TabIndex = 0;
-            this.label1.Text = "ポート:";
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.Controls.Add(this.UI_JapaneseEquipmentTypes);
+            this.label1.Text = $"{ConfigRes.Port}:";
+			// 
+			// tabPage2
+			// 
+			this.tabPage2.Controls.Add(this.UI_JapaneseEquipmentTypes);
             this.tabPage2.Controls.Add(this.UI_JapaneseEquipmentNames);
             this.tabPage2.Controls.Add(this.UI_JapaneseShipTypes);
             this.tabPage2.Controls.Add(this.UI_JapaneseShipNames);
@@ -795,11 +795,11 @@
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(64, 15);
             this.label8.TabIndex = 4;
-            this.label8.Text = "サブフォント:";
-            // 
-            // UI_MainFontSelect
-            // 
-            this.UI_MainFontSelect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label8.Text = $"{ConfigRes.Subfont} :";
+			// 
+			// UI_MainFontSelect
+			// 
+			this.UI_MainFontSelect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.UI_MainFontSelect.Location = new System.Drawing.Point(656, 6);
             this.UI_MainFontSelect.Name = "UI_MainFontSelect";
             this.UI_MainFontSelect.Size = new System.Drawing.Size(32, 23);
@@ -827,11 +827,11 @@
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(71, 15);
             this.label5.TabIndex = 0;
-            this.label5.Text = "メインフォント:";
-            // 
-            // tabPage3
-            // 
-            this.tabPage3.Controls.Add(this.Log_SaveLogImmediately);
+            this.label5.Text = $"{ConfigRes.Mainfont} :";
+			// 
+			// tabPage3
+			// 
+			this.tabPage3.Controls.Add(this.Log_SaveLogImmediately);
             this.tabPage3.Controls.Add(this.Log_SaveBattleLog);
             this.tabPage3.Controls.Add(this.Log_ShowSpoiler);
             this.tabPage3.Controls.Add(this.label12);
@@ -892,20 +892,20 @@
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(318, 15);
             this.label12.TabIndex = 7;
-            this.label12.Text = "＊無闇に変更すると設定・レコードが読めなくなる可能性があります";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
+            this.label12.Text = ConfigRes.CorruptLogs;
+			// 
+			// label11
+			// 
+			this.label11.AutoSize = true;
             this.label11.Location = new System.Drawing.Point(5, 88);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(57, 15);
             this.label11.TabIndex = 5;
-            this.label11.Text = "文字コード";
-            // 
-            // Log_FileEncodingID
-            // 
-            this.Log_FileEncodingID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.label11.Text = ConfigRes.Enocding;
+			// 
+			// Log_FileEncodingID
+			// 
+			this.Log_FileEncodingID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Log_FileEncodingID.FormattingEnabled = true;
             this.Log_FileEncodingID.Items.AddRange(new object[] {
             "UTF-8",
@@ -962,11 +962,11 @@
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(88, 15);
             this.label6.TabIndex = 1;
-            this.label6.Text = "ログの出力レベル";
-            // 
-            // tabPage4
-            // 
-            this.tabPage4.Controls.Add(this.checkBoxUseSecretaryIconForRPC);
+            this.label6.Text = ConfigRes.LoggingLevel;
+			// 
+			// tabPage4
+			// 
+			this.tabPage4.Controls.Add(this.checkBoxUseSecretaryIconForRPC);
             this.tabPage4.Controls.Add(this.label45);
             this.tabPage4.Controls.Add(this.Control_ApplicationID);
             this.tabPage4.Controls.Add(this.Control_ForceUpdate);
@@ -1187,11 +1187,11 @@
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(87, 15);
             this.label7.TabIndex = 0;
-            this.label7.Text = "疲労度ボーダー:";
-            // 
-            // tabPage5
-            // 
-            this.tabPage5.Controls.Add(this.Debug_AlertOnError);
+            this.label7.Text = $"{ConfigRes.MoraleBorder}:";
+			// 
+			// tabPage5
+			// 
+			this.tabPage5.Controls.Add(this.Debug_AlertOnError);
             this.tabPage5.Controls.Add(this.Debug_SealingPanel);
             this.tabPage5.Controls.Add(this.Debug_EnableDebugMenu);
             this.tabPage5.Location = new System.Drawing.Point(4, 24);
@@ -1382,11 +1382,11 @@
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(90, 15);
             this.label14.TabIndex = 0;
-            this.label14.Text = "レイアウトファイル:";
-            // 
-            // Life_TopMost
-            // 
-            this.Life_TopMost.AutoSize = true;
+            this.label14.Text = $"{ConfigRes.LayoutFile}:";
+			// 
+			// Life_TopMost
+			// 
+			this.Life_TopMost.AutoSize = true;
             this.Life_TopMost.Location = new System.Drawing.Point(11, 60);
             this.Life_TopMost.Name = "Life_TopMost";
             this.Life_TopMost.Size = new System.Drawing.Size(108, 19);
@@ -1674,11 +1674,11 @@
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(103, 15);
             this.label23.TabIndex = 3;
-            this.label23.Text = "制空戦力計算式：";
-            // 
-            // FormFleet_ShowNextExp
-            // 
-            this.FormFleet_ShowNextExp.AutoSize = true;
+            this.label23.Text = ConfigRes.AirSuperiorityMethod;
+			// 
+			// FormFleet_ShowNextExp
+			// 
+			this.FormFleet_ShowNextExp.AutoSize = true;
             this.FormFleet_ShowNextExp.Location = new System.Drawing.Point(6, 163);
             this.FormFleet_ShowNextExp.Name = "FormFleet_ShowNextExp";
             this.FormFleet_ShowNextExp.Size = new System.Drawing.Size(112, 19);
@@ -1748,8 +1748,8 @@
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(96, 15);
             this.label13.TabIndex = 1;
-            this.label13.Text = "索敵能力計算式:";
-            this.label13.Visible = false;
+            this.label13.Text = $"{ConfigRes.LosFormula}:";
+			this.label13.Visible = false;
             // 
             // FormFleet_ShowAircraft
             // 
@@ -2066,11 +2066,11 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(131, 15);
             this.label2.TabIndex = 3;
-            this.label2.Text = "一度に表示する候補数：";
-            // 
-            // tabPage10
-            // 
-            this.tabPage10.Controls.Add(this.FormQuest_AllowUserToSortRows);
+            this.label2.Text = ConfigRes.CandidateDisplayCount;
+			// 
+			// tabPage10
+			// 
+			this.tabPage10.Controls.Add(this.FormQuest_AllowUserToSortRows);
             this.tabPage10.Controls.Add(this.FormQuest_ProgressAutoSaving);
             this.tabPage10.Controls.Add(this.label27);
             this.tabPage10.Controls.Add(this.groupBox1);
@@ -2113,11 +2113,11 @@
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(125, 15);
             this.label27.TabIndex = 4;
-            this.label27.Text = "任務進捗の自動保存：";
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.FormQuest_ShowOther);
+            this.label27.Text = ConfigRes.ProgressAutoSaving;
+			// 
+			// groupBox1
+			// 
+			this.groupBox1.Controls.Add(this.FormQuest_ShowOther);
             this.groupBox1.Controls.Add(this.FormQuest_ShowMonthly);
             this.groupBox1.Controls.Add(this.FormQuest_ShowWeekly);
             this.groupBox1.Controls.Add(this.FormQuest_ShowDaily);
@@ -2127,11 +2127,11 @@
             this.groupBox1.Size = new System.Drawing.Size(126, 152);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "フィルタ";
-            // 
-            // FormQuest_ShowOther
-            // 
-            this.FormQuest_ShowOther.AutoSize = true;
+            this.groupBox1.Text = ConfigRes.Filter;
+			// 
+			// FormQuest_ShowOther
+			// 
+			this.FormQuest_ShowOther.AutoSize = true;
             this.FormQuest_ShowOther.Location = new System.Drawing.Point(6, 122);
             this.FormQuest_ShowOther.Name = "FormQuest_ShowOther";
             this.FormQuest_ShowOther.Size = new System.Drawing.Size(57, 19);
@@ -2222,11 +2222,11 @@
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(104, 15);
             this.label25.TabIndex = 6;
-            this.label25.Text = "艦名列のソート順：";
-            // 
-            // FormShipGroup_ShowStatusBar
-            // 
-            this.FormShipGroup_ShowStatusBar.AutoSize = true;
+            this.label25.Text = ConfigRes.ShipNameSortMethod;
+			// 
+			// FormShipGroup_ShowStatusBar
+			// 
+			this.FormShipGroup_ShowStatusBar.AutoSize = true;
             this.FormShipGroup_ShowStatusBar.Location = new System.Drawing.Point(6, 31);
             this.FormShipGroup_ShowStatusBar.Name = "FormShipGroup_ShowStatusBar";
             this.FormShipGroup_ShowStatusBar.Size = new System.Drawing.Size(121, 19);
@@ -2436,11 +2436,11 @@
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(117, 15);
             this.label30.TabIndex = 10;
-            this.label30.Text = "ツールメニューの配置：";
-            // 
-            // FormBrowser_ZoomFit
-            // 
-            this.FormBrowser_ZoomFit.AutoSize = true;
+            this.label30.Text = ConfigRes.ToolMenuDockStyle;
+			// 
+			// FormBrowser_ZoomFit
+			// 
+			this.FormBrowser_ZoomFit.AutoSize = true;
             this.FormBrowser_ZoomFit.Location = new System.Drawing.Point(173, 31);
             this.FormBrowser_ZoomFit.Name = "FormBrowser_ZoomFit";
             this.FormBrowser_ZoomFit.Size = new System.Drawing.Size(61, 19);
@@ -2532,11 +2532,11 @@
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(48, 15);
             this.label18.TabIndex = 2;
-            this.label18.Text = "保存先:";
-            // 
-            // FormBrowser_ScreenShotFormat_PNG
-            // 
-            this.FormBrowser_ScreenShotFormat_PNG.AutoSize = true;
+            this.label18.Text = $"{ConfigRes.SaveLocation}:";
+			// 
+			// FormBrowser_ScreenShotFormat_PNG
+			// 
+			this.FormBrowser_ScreenShotFormat_PNG.AutoSize = true;
             this.FormBrowser_ScreenShotFormat_PNG.Location = new System.Drawing.Point(65, 22);
             this.FormBrowser_ScreenShotFormat_PNG.Name = "FormBrowser_ScreenShotFormat_PNG";
             this.FormBrowser_ScreenShotFormat_PNG.Size = new System.Drawing.Size(50, 19);
@@ -2585,11 +2585,11 @@
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(72, 15);
             this.label17.TabIndex = 8;
-            this.label17.Text = "ログインURL:";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
+            this.label17.Text = $"{ConfigRes.LoginURL}:";
+			// 
+			// label16
+			// 
+			this.label16.AutoSize = true;
             this.label16.Location = new System.Drawing.Point(148, 32);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(19, 15);
@@ -2755,11 +2755,11 @@
             this.label33.Name = "label33";
             this.label33.Size = new System.Drawing.Size(253, 15);
             this.label33.TabIndex = 0;
-            this.label33.Text = "(非表示です。デバッグメニューを有効にしてください。)";
-            // 
-            // tabPage11
-            // 
-            this.tabPage11.Controls.Add(this.silenceFullscreen);
+            this.label33.Text = ConfigRes.HiddenJSON;
+			// 
+			// tabPage11
+			// 
+			this.tabPage11.Controls.Add(this.silenceFullscreen);
             this.tabPage11.Controls.Add(this.Notification_Silencio);
             this.tabPage11.Controls.Add(this.Notification_AnchorageRepair);
             this.tabPage11.Controls.Add(this.label10);
@@ -2805,8 +2805,8 @@
             this.Notification_AnchorageRepair.Name = "Notification_AnchorageRepair";
             this.Notification_AnchorageRepair.Size = new System.Drawing.Size(150, 23);
             this.Notification_AnchorageRepair.TabIndex = 6;
-            this.Notification_AnchorageRepair.Text = "Anchorage repairs...";
-            this.Notification_AnchorageRepair.UseVisualStyleBackColor = true;
+            this.Notification_AnchorageRepair.Text = $"{ConfigRes.AnchorageRepairFinish}{ConfigRes.NotificationSetting}";
+			this.Notification_AnchorageRepair.UseVisualStyleBackColor = true;
             this.Notification_AnchorageRepair.Click += new System.EventHandler(this.Notification_AnchorageRepair_Click);
             // 
             // label10
@@ -2817,16 +2817,16 @@
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(238, 15);
             this.label10.TabIndex = 5;
-            this.label10.Text = "＊各ダイアログでOKを押した時点で適用されます";
-            // 
-            // Notification_Damage
-            // 
-            this.Notification_Damage.Location = new System.Drawing.Point(8, 122);
+            this.label10.Text = ConfigRes.ApplyonOK;
+			// 
+			// Notification_Damage
+			// 
+			this.Notification_Damage.Location = new System.Drawing.Point(8, 122);
             this.Notification_Damage.Name = "Notification_Damage";
             this.Notification_Damage.Size = new System.Drawing.Size(150, 23);
             this.Notification_Damage.TabIndex = 4;
-            this.Notification_Damage.Text = "Heavy damage...";
-            this.Notification_Damage.UseVisualStyleBackColor = true;
+            this.Notification_Damage.Text = $"{ConfigRes.TaihaAdvance}{ConfigRes.NotificationSetting}";
+			this.Notification_Damage.UseVisualStyleBackColor = true;
             this.Notification_Damage.Click += new System.EventHandler(this.Notification_Damage_Click);
             // 
             // Notification_Condition
@@ -2835,8 +2835,8 @@
             this.Notification_Condition.Name = "Notification_Condition";
             this.Notification_Condition.Size = new System.Drawing.Size(150, 23);
             this.Notification_Condition.TabIndex = 3;
-            this.Notification_Condition.Text = "Condition recovered...";
-            this.Notification_Condition.UseVisualStyleBackColor = true;
+            this.Notification_Condition.Text = $"{ConfigRes.FatigueRestore}{ConfigRes.NotificationSetting}";
+			this.Notification_Condition.UseVisualStyleBackColor = true;
             this.Notification_Condition.Click += new System.EventHandler(this.Notification_Condition_Click);
             // 
             // Notification_Repair
@@ -2845,8 +2845,8 @@
             this.Notification_Repair.Name = "Notification_Repair";
             this.Notification_Repair.Size = new System.Drawing.Size(150, 23);
             this.Notification_Repair.TabIndex = 2;
-            this.Notification_Repair.Text = "Repair complete...";
-            this.Notification_Repair.UseVisualStyleBackColor = true;
+            this.Notification_Repair.Text = $"{ConfigRes.DockEnd}{ConfigRes.NotificationSetting}";
+			this.Notification_Repair.UseVisualStyleBackColor = true;
             this.Notification_Repair.Click += new System.EventHandler(this.Notification_Repair_Click);
             // 
             // Notification_Construction
@@ -2855,8 +2855,8 @@
             this.Notification_Construction.Name = "Notification_Construction";
             this.Notification_Construction.Size = new System.Drawing.Size(150, 23);
             this.Notification_Construction.TabIndex = 1;
-            this.Notification_Construction.Text = "Construction...";
-            this.Notification_Construction.UseVisualStyleBackColor = true;
+            this.Notification_Construction.Text = $"{ConfigRes.ConstructEnd}{ConfigRes.NotificationSetting}";
+			this.Notification_Construction.UseVisualStyleBackColor = true;
             this.Notification_Construction.Click += new System.EventHandler(this.Notification_Construction_Click);
             // 
             // Notification_Expedition
@@ -2865,8 +2865,8 @@
             this.Notification_Expedition.Name = "Notification_Expedition";
             this.Notification_Expedition.Size = new System.Drawing.Size(150, 23);
             this.Notification_Expedition.TabIndex = 0;
-            this.Notification_Expedition.Text = "Expedition return...";
-            this.Notification_Expedition.UseVisualStyleBackColor = true;
+            this.Notification_Expedition.Text = $"{ConfigRes.ExpedReturn}{ConfigRes.NotificationSetting}";
+			this.Notification_Expedition.UseVisualStyleBackColor = true;
             this.Notification_Expedition.Click += new System.EventHandler(this.Notification_Expedition_Click);
             // 
             // tabPage17
@@ -3084,8 +3084,8 @@
             this.Name = "DialogConfiguration";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "設定";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.DialogConfiguration_FormClosed);
+            this.Text = ConfigRes.Settings;
+			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.DialogConfiguration_FormClosed);
             this.Load += new System.EventHandler(this.DialogConfiguration_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);

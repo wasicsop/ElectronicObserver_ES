@@ -116,7 +116,7 @@ namespace ElectronicObserver.Utility
                 using (var client = new WebClient())
                 {
                     ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-                    var url = @"https://github.com/Jebzou/ryuukitsune.github.io/raw/develop/Translations/en-US/EOUpdater.exe";
+                    var url = @"https://github.com/gre4bee/ryuukitsune.github.io/raw/develop/Translations/en-US/EOUpdater.exe";
                     var updaterFile = AppDomain.CurrentDomain.SetupInformation.ApplicationBase + @"\EOUpdater.exe";
 
                     client.DownloadFile(url, updaterFile);

@@ -38,9 +38,7 @@
             this.DD3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.filler3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DD4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.filler20 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DD5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.filler21 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.filler4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.filler5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CL = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -76,9 +74,7 @@
             this.DD3,
             this.filler3,
             this.DD4,
-            this.filler20,
-            this.DD5,
-            this.filler21,
+            this.filler4,
             this.DE,
             this.filler5,
             this.CL,
@@ -177,31 +173,17 @@
             this.DD4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.DD4.Width = 5;
             // 
-            // filler20
+            // filler4
             // 
-            this.filler20.HeaderText = "";
-            this.filler20.Name = "filler20";
-            this.filler20.ReadOnly = true;
-            this.filler20.Width = 5;
-            // 
-            // DD5
-            // 
-            this.DD5.HeaderText = "駆逐艦";
-            this.DD5.Name = "DD5";
-            this.DD5.ReadOnly = true;
-            this.DD5.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.DD5.Width = 5;
-            // 
-            // filler21
-            // 
-            this.filler21.HeaderText = "";
-            this.filler21.Name = "filler21";
-            this.filler21.ReadOnly = true;
-            this.filler21.Width = 5;
-            // 
-            // DE
-            // 
-            this.DE.HeaderText = "海防艦";
+            this.filler4.HeaderText = "";
+            this.filler4.Name = "filler4";
+            this.filler4.ReadOnly = true;
+            this.filler4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.filler4.Width = 5;
+			// 
+			// DE
+			// 
+			this.DE.HeaderText = "海防艦";
             this.DE.Name = "DE";
             this.DE.ReadOnly = true;
             this.DE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -327,9 +309,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn DD3;
         private System.Windows.Forms.DataGridViewTextBoxColumn filler3;
         private System.Windows.Forms.DataGridViewTextBoxColumn DD4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn filler20;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DD5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn filler21;
+        private System.Windows.Forms.DataGridViewTextBoxColumn filler4;
         private System.Windows.Forms.DataGridViewTextBoxColumn DE;
         private System.Windows.Forms.DataGridViewTextBoxColumn filler5;
         private System.Windows.Forms.DataGridViewTextBoxColumn CL;

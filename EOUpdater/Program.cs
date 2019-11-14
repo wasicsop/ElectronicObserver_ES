@@ -11,7 +11,7 @@ namespace EOUpdater
     internal class Program
     {
         private static readonly string AppDataFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"ElectronicObserver");
-        private const string UpdateUrl = @"https://raw.githubusercontent.com/Jebzou/ryuukitsune.github.io/master/Translations/en-US/update.json";
+        private const string UpdateUrl = @"https://raw.githubusercontent.com/gre4bee/ryuukitsune.github.io/master/Translations/en-US/update.json";
 
 
 

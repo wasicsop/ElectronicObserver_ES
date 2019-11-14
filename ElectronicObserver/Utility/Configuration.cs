@@ -686,7 +686,7 @@ namespace ElectronicObserver.Utility
                     DiscordRPCMessage = "Headpatting {{secretary}}";
                     DiscordRPCShowFCM = true;
                     DiscordRPCApplicationId = "";
-                    UpdateURL = new Uri("http://raw.githubusercontent.com/Jebzou/ryuukitsune.github.io/master/Translations/");
+                    UpdateURL = new Uri("http://raw.githubusercontent.com/gre4bee/ryuukitsune.github.io/master/Translations/");
 					UseFlagshipIconForRPC = false;
 				}
 			}
