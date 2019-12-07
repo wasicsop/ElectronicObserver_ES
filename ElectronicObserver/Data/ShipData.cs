@@ -189,15 +189,17 @@ namespace ElectronicObserver.Data
         public int Condition { get; internal set; }
 
 
-        #region Parameters
+		#region Parameters
 
-        /********************************************************
+		/********************************************************
 		 * 強化値：近代化改修・レベルアップによって上昇した数値
 		 * 総合値：装備込みでのパラメータ
 		 * 基本値：装備なしでのパラメータ(初期値+強化値)
 		 ********************************************************/
 
         private int[] _modernized;
+
+		public int[] Kyouka => (int[])RawData.api_kyouka;
         /// <summary>
         /// 火力強化値
         /// </summary>

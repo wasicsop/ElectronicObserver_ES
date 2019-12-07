@@ -160,6 +160,9 @@ namespace ElectronicObserver.Data
 		/// </summary>
 		public IDDictionary<RelocationData> RelocatedEquipments { get; private set; }
 
+
+		public ReplayManager Replays { get; private set; }
+
 		/// <summary>
 		/// Current server
 		/// </summary>
@@ -192,6 +195,7 @@ namespace ElectronicObserver.Data
 			ShipGroup = new ShipGroupManager();
 			BaseAirCorps = new IDDictionary<BaseAirCorpsData>();
 			RelocatedEquipments = new IDDictionary<RelocationData>();
+			Replays = new ReplayManager();
 		}
 
 

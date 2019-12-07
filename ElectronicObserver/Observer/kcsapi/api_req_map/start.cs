@@ -19,7 +19,7 @@ namespace ElectronicObserver.Observer.kcsapi.api_req_map
 			KCDatabase db = KCDatabase.Instance;
 
 			db.Battle.LoadFromResponse(APIName, data);
-
+			db.Replays.LoadFromResponse(APIName, data);
 			if (Utility.Configuration.Config.Control.EnableDiscordRPC)
 			{
 				DiscordFormat dataForWS = Instance.data;

@@ -111,7 +111,7 @@ namespace ElectronicObserver.Observer.kcsapi.api_port
 			}
 
 			db.Battle.LoadFromResponse(APIName, data);
-
+			db.Replays.LoadFromResponse(APIName, data);
 			base.OnResponseReceived((object)data);
 		}
 
