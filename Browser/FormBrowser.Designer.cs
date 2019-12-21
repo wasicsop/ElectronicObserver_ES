@@ -1,4 +1,5 @@
-﻿namespace Browser
+﻿
+namespace Browser
 {
 	partial class FormBrowser
 	{
@@ -88,7 +89,8 @@
             this.ToolMenu_Other_Alignment_Right = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolMenu_Other_Alignment_Invisible = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolMenu_Other_OpenDevTool = new System.Windows.Forms.ToolStripMenuItem();
-            this.vS2015DarkTheme1 = new WeifenLuo.WinFormsUI.Docking.VS2015DarkTheme();
+			this.ToolMenu_Other_ClearCache = new System.Windows.Forms.ToolStripMenuItem();
+			this.vS2015DarkTheme1 = new WeifenLuo.WinFormsUI.Docking.VS2015DarkTheme();
             this.visualStudioToolStripExtender1 = new WeifenLuo.WinFormsUI.Docking.VisualStudioToolStripExtender(this.components);
             this.ContextMenuTool.SuspendLayout();
             this.ToolMenu.SuspendLayout();
@@ -222,7 +224,8 @@
             this.ToolMenu_Other_RefreshIgnoreCache,
             this.ToolMenu_Other_NavigateToLogInPage,
             this.ToolMenu_Other_Navigate,
-            this.toolStripSeparator5,
+			this.ToolMenu_Other_ClearCache,
+			this.toolStripSeparator5,
             this.ToolMenu_Other_AppliesStyleSheet,
             this.toolStripSeparator6,
             this.ToolMenu_Other_Alignment,
