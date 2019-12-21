@@ -390,13 +390,13 @@ namespace ElectronicObserver.Window
 			if (bm.IsEnemyCombined && bm.StartsFromDayBattle)
 			{
 				bool willMain = bm.WillNightBattleWithMainFleet();
-				FleetEnemy.BackColor = willMain ? Color.LightSteelBlue : Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.MainFontColor);
-				FleetEnemyEscort.BackColor = willMain ? Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.MainFontColor) : Color.LightSteelBlue;
+				FleetEnemy.BackColor = willMain ? Color.LightSteelBlue : Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.BackgroundColor);
+				FleetEnemyEscort.BackColor = willMain ? Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.BackgroundColor) : Color.LightSteelBlue;
 			}
 			else
 			{
 				FleetEnemy.BackColor =
-				FleetEnemyEscort.BackColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.MainFontColor);
+				FleetEnemyEscort.BackColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.BackgroundColor);
 			}
 		}
 
