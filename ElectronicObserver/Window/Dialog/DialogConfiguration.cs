@@ -274,6 +274,14 @@ namespace ElectronicObserver.Window.Dialog
 			}
 		}
 
+		private void Notification_BaseAirCorps_Click(object sender, EventArgs e)
+		{
+			using (var dialog = new DialogConfigurationNotifier(NotifierManager.Instance.BaseAirCorps))
+			{
+				dialog.ShowDialog(this);
+			}
+		}
+
 		private void Life_LayoutFilePathSearch_Click(object sender, EventArgs e)
 		{
 
@@ -948,5 +956,7 @@ namespace ElectronicObserver.Window.Dialog
 		{
 			Control_DiscordRPCMessage.ReadOnly = !Control_EnableDiscordRPC.Checked;
 		}
+
+
 	}
 }

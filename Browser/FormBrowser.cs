@@ -4,6 +4,7 @@ using CefSharp;
 using CefSharp.WinForms;
 using Nekoxy;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
@@ -11,8 +12,10 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.ServiceModel;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
@@ -313,6 +316,7 @@ namespace Browser
 			ToolMenu_Other_AppliesStyleSheet.Checked = Configuration.AppliesStyleSheet;
 			ToolMenu.Dock = (DockStyle)Configuration.ToolMenuDockStyle;
 			ToolMenu.Visible = Configuration.IsToolMenuVisible;
+			ToolMenu_Other_ClearCache.Visible = conf.EnableDebugMenu;
 		}
 
 		private void ConfigurationUpdated()
@@ -810,17 +814,6 @@ namespace Browser
 		}
 
 
-		/// <summary>
-		/// キャッシュを削除します。
-		/// </summary>
-		private bool ClearCache(long timeoutMilliseconds = 5000)
-		{
-			// note: Cef が起動している状態では削除できない X(
-			// 今のところ手動でやってもらうことにする
-
-			return true;
-		}
-
 
 		public void SetIconResource(byte[] canvas)
 		{
@@ -1241,6 +1234,14 @@ namespace Browser
 			Browser.GetBrowser().ShowDevTools();
 		}
 
+		private void ToolMenu_Other_ClearCache_Click(object sender, EventArgs e)
+		{
+			if (MessageBox.Show("キャッシュをクリアするため、ブラウザを再起動します。\r\nよろしいですか？\r\n※環境によっては本ツールが終了する場合があります。その場合は再起動してください。", "ブラウザ再起動確認",
+				MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+			{
+				BrowserHost.AsyncRemoteRun(() => BrowserHost.Proxy.ClearCache());
+			}
+		}
 
 		protected override void WndProc(ref Message m)
 		{

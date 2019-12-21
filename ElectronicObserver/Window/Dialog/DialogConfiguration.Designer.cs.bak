@@ -253,7 +253,6 @@ namespace ElectronicObserver.Window.Dialog
 			this.APIListBrowser = new System.Windows.Forms.OpenFileDialog();
 			this.Log_PlayTime = new System.Windows.Forms.Label();
 			this.PlayTimeTimer = new System.Windows.Forms.Timer(this.components);
-            this.Notification_BaseAirCorps = new System.Windows.Forms.Button();
 			this.tabControl1.SuspendLayout();
 			this.tabPage1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.Connection_UpstreamProxyPort)).BeginInit();
@@ -2631,7 +2630,6 @@ namespace ElectronicObserver.Window.Dialog
 			// 
 			// tabPage11
 			// 
-            this.tabPage11.Controls.Add(this.Notification_BaseAirCorps);
 			this.tabPage11.Controls.Add(this.silenceFullscreen);
 			this.tabPage11.Controls.Add(this.Notification_Silencio);
 			this.tabPage11.Controls.Add(this.Notification_AnchorageRepair);
@@ -2929,16 +2927,6 @@ namespace ElectronicObserver.Window.Dialog
 			this.PlayTimeTimer.Interval = 1000;
 			this.PlayTimeTimer.Tick += new System.EventHandler(this.PlayTimeTimer_Tick);
 			// 
-            // Notification_BaseAirCorps
-            // 
-            this.Notification_BaseAirCorps.Location = new System.Drawing.Point(8, 181);
-            this.Notification_BaseAirCorps.Name = "Notification_BaseAirCorps";
-            this.Notification_BaseAirCorps.Size = new System.Drawing.Size(150, 23);
-            this.Notification_BaseAirCorps.TabIndex = 9;
-            this.Notification_BaseAirCorps.Text = "基地航空隊通知の設定...";
-            this.Notification_BaseAirCorps.UseVisualStyleBackColor = true;
-            this.Notification_BaseAirCorps.Click += new System.EventHandler(this.Notification_BaseAirCorps_Click);
-            // 
 			// DialogConfiguration
 			// 
 			this.AcceptButton = this.ButtonOK;
@@ -3252,6 +3240,5 @@ namespace ElectronicObserver.Window.Dialog
 		private System.Windows.Forms.CheckBox Control_DiscordRPCShowFCM;
 		private System.Windows.Forms.Label label44;
 		private System.Windows.Forms.TextBox Control_Custom_application_id;
-		private System.Windows.Forms.Button Notification_BaseAirCorps;
 	}
 }

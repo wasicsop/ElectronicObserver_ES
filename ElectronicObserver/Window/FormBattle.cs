@@ -386,7 +386,19 @@ namespace ElectronicObserver.Window
 				FleetEnemy.ForeColor = Color.Red;
 			else
 				FleetEnemy.ForeColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.MainFontColor);
-        }
+
+			if (bm.IsEnemyCombined && bm.StartsFromDayBattle)
+			{
+				bool willMain = bm.WillNightBattleWithMainFleet();
+				FleetEnemy.BackColor = willMain ? Color.LightSteelBlue : Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.MainFontColor);
+				FleetEnemyEscort.BackColor = willMain ? Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.MainFontColor) : Color.LightSteelBlue;
+			}
+			else
+			{
+				FleetEnemy.BackColor =
+				FleetEnemyEscort.BackColor = Utility.ThemeManager.GetColor(Utility.Theme.Dark, Utility.ThemeColors.MainFontColor);
+			}
+		}
 
 		/// <summary>
 		/// 索敵結果を設定します。
