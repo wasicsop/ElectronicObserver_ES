@@ -253,6 +253,11 @@
       <DependentUpon>NotifierRes.resx</DependentUpon>
     </Compile>
     <Compile Include="Observer\DiscordRPC.cs" />
+    <Compile Include="Properties\NotifierBaseAirCorpsResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NotifierBaseAirCorpsResources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Utility\DynamicTranslator.cs" />
     <Compile Include="Utility\SoftwareUpdater.cs" />
     <Compile Include="Utility\Storage\Theme.cs" />
@@ -798,6 +803,11 @@
     <EmbeddedResource Include="Notifier\NotifierRes.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>NotifierRes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\NotifierBaseAirCorpsResources.en.resx" />
+    <EmbeddedResource Include="Properties\NotifierBaseAirCorpsResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>NotifierBaseAirCorpsResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Window\Dialog\ConfigRes.en.resx">
       <SubType>Designer</SubType>

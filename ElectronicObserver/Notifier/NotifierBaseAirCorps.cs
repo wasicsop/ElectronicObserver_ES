@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ElectronicObserver.Properties;
 
 namespace ElectronicObserver.Notifier
 {
@@ -105,7 +106,8 @@ namespace ElectronicObserver.Notifier
 
 		private void Initalize()
 		{
-			DialogData.Title = "基地航空隊報告";
+			DialogData.Title = NotifierBaseAirCorpsResources.Title;
+			
 
 			var o = APIObserver.Instance;
 
@@ -217,7 +219,11 @@ namespace ElectronicObserver.Notifier
 						 (NotifiesNormalMap && db.MapArea[corps.MapAreaID].MapType == 0) ||
 						 (NotifiesEventMap && db.MapArea[corps.MapAreaID].MapType == 1)))
 				{
-					var targetSquadrons = corps.Squadrons.Values.Where(sq => sq.State == 2 && !_notifiedEquipments.Contains(sq.EquipmentID) && (DateTime.Now - sq.RelocatedTime) >= RelocationSpan);
+					var targetSquadrons = corps.Squadrons.Values
+						.Where(sq => sq.State == 2 && 
+						             !_notifiedEquipments.Contains(sq.EquipmentID) && 
+						             (DateTime.Now - sq.RelocatedTime) >= RelocationSpan)
+						.ToList();
 
 					if (targetSquadrons.Any())
 					{
@@ -239,8 +245,10 @@ namespace ElectronicObserver.Notifier
 
 			if (NotifiesEquipmentRelocation)
 			{
-				var targets = db.RelocatedEquipments.Where(kv => !_notifiedEquipments.Contains(kv.Key) &&
-					(DateTime.Now - kv.Value.RelocatedTime) >= RelocationSpan);
+				var targets = db.RelocatedEquipments
+					.Where(kv => !_notifiedEquipments.Contains(kv.Key) &&
+					             (DateTime.Now - kv.Value.RelocatedTime) >= RelocationSpan)
+					.ToList();
 
 				if (targets.Any())
 				{
@@ -256,7 +264,7 @@ namespace ElectronicObserver.Notifier
 
 		private void Notify(string message)
 		{
-			DialogData.Title = "基地航空隊報告";
+			DialogData.Title = NotifierBaseAirCorpsResources.Title;
 			DialogData.Message = message;
 
 			base.Notify();

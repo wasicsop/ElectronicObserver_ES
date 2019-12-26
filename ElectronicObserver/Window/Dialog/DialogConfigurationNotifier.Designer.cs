@@ -924,6 +924,7 @@
 			//
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.ClientSize = new System.Drawing.Size(624, 442);
+			this.Controls.Add(this.GroupBaseAirCorps);
 			this.Controls.Add(this.GroupAnchorageRepair);
 			this.Controls.Add(this.label10);
 			this.Controls.Add(this.GroupDamage);
@@ -959,6 +960,8 @@
 			((System.ComponentModel.ISupportInitialize)(this.LevelBorder)).EndInit();
 			this.GroupAnchorageRepair.ResumeLayout(false);
 			this.GroupAnchorageRepair.PerformLayout();
+			this.GroupBaseAirCorps.ResumeLayout(false);
+			this.GroupBaseAirCorps.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
