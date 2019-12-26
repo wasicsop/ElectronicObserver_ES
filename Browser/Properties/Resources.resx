@@ -250,4 +250,7 @@ if (node) document.getElementsByTagName('head')[0].removeChild(node);</value>
   <data name="Zoom_to_Fit" xml:space="preserve">
     <value>現在: ぴったり</value>
   </data>
+  <data name="ClearCache" xml:space="preserve">
+    <value>キャッシュを削除</value>
+  </data>
 </root>

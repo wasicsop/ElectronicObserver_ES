@@ -106,6 +106,15 @@ namespace Browser.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to キャッシュを削除.
+        /// </summary>
+        internal static string ClearCache {
+            get {
+                return ResourceManager.GetString("ClearCache", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 確認.
         /// </summary>
         internal static string Confirmation {

@@ -88,6 +88,7 @@ namespace Browser
 			this.ToolMenu_Other_Alignment_Left = new System.Windows.Forms.ToolStripMenuItem();
 			this.ToolMenu_Other_Alignment_Right = new System.Windows.Forms.ToolStripMenuItem();
 			this.ToolMenu_Other_Alignment_Invisible = new System.Windows.Forms.ToolStripMenuItem();
+			this.ToolMenu_Other_ClearCache = new System.Windows.Forms.ToolStripMenuItem();
 			this.ToolMenu_Other_OpenDevTool = new System.Windows.Forms.ToolStripMenuItem();
 			this.ToolMenu_Other_RefreshIgnoreCache = new System.Windows.Forms.ToolStripMenuItem();
 			this.ContextMenuTool.SuspendLayout();
@@ -539,6 +540,13 @@ namespace Browser
             this.ToolMenu_Other_Alignment_Invisible.Size = new System.Drawing.Size(125, 22);
             this.ToolMenu_Other_Alignment_Invisible.Text = Resources.Alignment_Invisible;
 			this.ToolMenu_Other_Alignment_Invisible.Click += new System.EventHandler(this.ToolMenu_Other_Alignment_Invisible_Click);
+			//
+			// ToolMenu_Other_ClearCache
+			//
+			this.ToolMenu_Other_ClearCache.Name = "ToolMenu_Other_ClearCache";
+			this.ToolMenu_Other_ClearCache.Size = new System.Drawing.Size(262, 22);
+			this.ToolMenu_Other_ClearCache.Text = $"{Resources.ClearCache}(&H)";
+			this.ToolMenu_Other_ClearCache.Click += new System.EventHandler(this.ToolMenu_Other_ClearCache_Click);
 			//
 			// ToolMenu_Other_OpenDevTool
 			//
