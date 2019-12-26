@@ -1,4 +1,7 @@
-﻿namespace ElectronicObserver.Window.Dialog
+﻿using ElectronicObserver.Properties;
+using ElectronicObserver.Resource;
+
+namespace ElectronicObserver.Window.Dialog
 {
 	partial class DialogAlbumMasterShip
 	{
@@ -167,6 +170,8 @@
 			this.LevelTimer = new System.Windows.Forms.Timer(this.components);
 			this.SaveCSVDialog = new System.Windows.Forms.SaveFileDialog();
 			this.ImageLoader = new System.ComponentModel.BackgroundWorker();
+			this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+			this.StripMenu_File_MergeDefaultRecord = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
 			this.StripMenu_Edit_CopySpecialEquipmentTable = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuStrip1.SuspendLayout();
@@ -205,7 +210,9 @@
 			//
 			this.StripMenu_File.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.StripMenu_File_OutputCSVUser,
-            this.StripMenu_File_OutputCSVData});
+            this.StripMenu_File_OutputCSVData,
+            this.toolStripSeparator4,
+            this.StripMenu_File_MergeDefaultRecord});
 			this.StripMenu_File.Name = "StripMenu_File";
 			this.StripMenu_File.Size = new System.Drawing.Size(70, 20);
 			this.StripMenu_File.Text = "&File";
@@ -1810,6 +1817,18 @@
 			this.StripMenu_Edit_CopySpecialEquipmentTable.Size = new System.Drawing.Size(250, 22);
 			this.StripMenu_Edit_CopySpecialEquipmentTable.Text = "Copy &Special Equipment Table";
 			this.StripMenu_Edit_CopySpecialEquipmentTable.Click += new System.EventHandler(this.StripMenu_Edit_CopySpecialEquipmentTable_Click);
+			// 
+			// toolStripSeparator4
+			// 
+			this.toolStripSeparator4.Name = "toolStripSeparator4";
+			this.toolStripSeparator4.Size = new System.Drawing.Size(212, 6);
+			// 
+			// StripMenu_File_MergeDefaultRecord
+			// 
+			this.StripMenu_File_MergeDefaultRecord.Name = "StripMenu_File_MergeDefaultRecord";
+			this.StripMenu_File_MergeDefaultRecord.Size = new System.Drawing.Size(215, 22);
+			this.StripMenu_File_MergeDefaultRecord.Text = "Merge Default Record(&M)";
+			this.StripMenu_File_MergeDefaultRecord.Click += new System.EventHandler(this.StripMenu_File_MergeDefaultRecord_Click);
 			//
 			// DialogAlbumMasterShip
 			//
