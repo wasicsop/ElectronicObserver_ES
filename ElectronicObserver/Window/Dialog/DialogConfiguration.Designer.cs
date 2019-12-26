@@ -3075,7 +3075,7 @@
             this.Notification_BaseAirCorps.Name = "Notification_BaseAirCorps";
             this.Notification_BaseAirCorps.Size = new System.Drawing.Size(150, 23);
             this.Notification_BaseAirCorps.TabIndex = 9;
-            this.Notification_BaseAirCorps.Text = "基地航空隊通知の設定...";
+            this.Notification_BaseAirCorps.Text = "AB notification";
             this.Notification_BaseAirCorps.UseVisualStyleBackColor = true;
             this.Notification_BaseAirCorps.Click += new System.EventHandler(this.Notification_BaseAirCorps_Click);
             // 
