@@ -19,7 +19,7 @@ namespace ElectronicObserver.Window {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class GeneralRes {
@@ -1110,6 +1110,15 @@ namespace ElectronicObserver.Window {
         internal static string GreatSuccess {
             get {
                 return ResourceManager.GetString("GreatSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to \r\n対高高度爆撃：制空 {0}\r\n確保: {1}\r\n優勢: {2}\r\n均衡: {3}\r\n劣勢: {4}\r\n.
+        /// </summary>
+        internal static string HighAltitudeAirState {
+            get {
+                return ResourceManager.GetString("HighAltitudeAirState", resourceCulture);
             }
         }
         

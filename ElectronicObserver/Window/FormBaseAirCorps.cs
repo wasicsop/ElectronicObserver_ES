@@ -219,27 +219,18 @@ namespace ElectronicObserver.Window
 						}
 
 						var tip = new StringBuilder();
-						tip.AppendFormat("確保: {0}\r\n優勢: {1}\r\n均衡: {2}\r\n劣勢: {3}\r\n",
+						tip.AppendFormat(GeneralRes.BaseTooltip,
 							(int)(airSuperiority / 3.0),
 							(int)(airSuperiority / 1.5),
 							Math.Max((int)(airSuperiority * 1.5 - 1), 0),
 							Math.Max((int)(airSuperiority * 3.0 - 1), 0));
-						/*
-						 *ToolTipInfo.SetToolTip(AirSuperiority, tip.ToString());
-						ToolTipInfo.SetToolTip( AirSuperiority,
-							string.Format( GeneralRes.BaseTooltip,
-							(int)( airSuperiority / 3.0 ),
-							(int)( airSuperiority / 1.5 ),
-							Math.Max( (int)( airSuperiority * 1.5 - 1 ), 0 ),
-							Math.Max( (int)( airSuperiority * 3.0 - 1 ), 0 ) ) );
-						 *
-						 */
+
 						if (corps.ActionKind == 2)
 						{
 							int airSuperiorityHighAltitude = Calculator.GetAirSuperiority(corps, isHighAltitude: true);
 							int airSuperiorityHighAltitudeMax = Calculator.GetAirSuperiority(corps, isAircraftLevelMaximum: true, isHighAltitude: true);
 
-							tip.AppendFormat("\r\n対高高度爆撃：制空 {0}\r\n確保: {1}\r\n優勢: {2}\r\n均衡: {3}\r\n劣勢: {4}\r\n",
+							tip.AppendFormat(GeneralRes.HighAltitudeAirState,
 								Utility.Configuration.Config.FormFleet.ShowAirSuperiorityRange && airSuperiorityHighAltitude != airSuperiorityHighAltitudeMax ? 
 									$"{airSuperiorityHighAltitude} ～ {airSuperiorityHighAltitudeMax}" : 
 									airSuperiorityHighAltitude.ToString(),
@@ -249,7 +240,7 @@ namespace ElectronicObserver.Window
 								Math.Max((int)(airSuperiorityHighAltitude * 3.0 - 1), 0));
 						}
 
-						
+						ToolTipInfo.SetToolTip(AirSuperiority, tip.ToString());
 					}
                     int dist_text = corps.Distance;
 
@@ -257,8 +248,7 @@ namespace ElectronicObserver.Window
 
 					Squadrons.SetSlotList(corps);
 					ToolTipInfo.SetToolTip(Squadrons, GetEquipmentString(corps));
-                    ToolTipInfo.SetToolTip(Distance, string.Format("Total Distance: {0}"
-                                                                    ,corps.Distance));
+                    ToolTipInfo.SetToolTip(Distance, string.Format("Total Distance: {0}", corps.Distance));
 
 				}
 

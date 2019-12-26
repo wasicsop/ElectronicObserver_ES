@@ -843,4 +843,7 @@ Denial: {3}</value>
   <data name="BaseExp" xml:space="preserve">
     <value>Base Exp</value>
   </data>
+  <data name="HighAltitudeAirState" xml:space="preserve">
+    <value>\r\nHigh Altitude：Air {0}\r\nAS+: {1}\r\nAS: {2}\r\nAP: {3}\r\nAI: {4}\r\n</value>
+  </data>
 </root>
