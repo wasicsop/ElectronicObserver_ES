@@ -377,7 +377,8 @@ namespace ElectronicObserver.Window
 		{
 			int trial;
 			Exception lastException = null;
-			var dir = new DirectoryInfo("BrowserCache");
+			// todo put cache path into config
+			var dir = new DirectoryInfo(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"ElectronicObserver\CEF"));
 
 			for (trial = 0; trial < 4; trial++)
 			{
