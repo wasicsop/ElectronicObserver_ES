@@ -41,6 +41,8 @@
 			this.TopMenu_Edit_ImportOrganization = new System.Windows.Forms.ToolStripMenuItem();
 			this.TopMenu_Edit_Clear = new System.Windows.Forms.ToolStripMenuItem();
 			this.ToolTipInfo = new System.Windows.Forms.ToolTip(this.components);
+			this.TopMenu_Settings = new System.Windows.Forms.ToolStripMenuItem();
+			this.TopMenu_Settings_HighAltitude = new System.Windows.Forms.ToolStripMenuItem();
 			this.groupBox1.SuspendLayout();
 			this.tableLayoutPanel2.SuspendLayout();
 			this.groupBox3.SuspendLayout();
