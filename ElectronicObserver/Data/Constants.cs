@@ -996,6 +996,12 @@ namespace ElectronicObserver.Data
                     return "5inch Single Gun Mk.30 Kai x2/GFCS (Johnston)";
                 case 37:
                     return "5inch Single Gun Mk.30 Kai x2 (Johnston)";
+                case 39:
+                    return "Atlanta Gun + GFCS/Atlanta Gun<Atlanta>";
+                case 40:
+                    return "Atlanta Gun x2/GFCS<Atlanta>";
+                case 41:
+                    return "Atlanta Gun x2<Atlanta>";
                 default:
                     return $"{ConstantsRes.Unknown}({(int)id})";
             }

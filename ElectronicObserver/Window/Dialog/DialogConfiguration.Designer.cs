@@ -263,6 +263,7 @@
             this.Log_PlayTime = new System.Windows.Forms.Label();
             this.PlayTimeTimer = new System.Windows.Forms.Timer(this.components);
             this.checkBoxUseSecretaryIconForRPC = new System.Windows.Forms.CheckBox();
+            this.Notification_BaseAirCorps = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Connection_UpstreamProxyPort)).BeginInit();
@@ -2756,10 +2757,11 @@
             this.label33.Size = new System.Drawing.Size(253, 15);
             this.label33.TabIndex = 0;
             this.label33.Text = ConfigRes.HiddenJSON;
-			// 
-			// tabPage11
-			// 
-			this.tabPage11.Controls.Add(this.silenceFullscreen);
+            // 
+            // tabPage11
+            // 
+            this.tabPage11.Controls.Add(this.Notification_BaseAirCorps);
+            this.tabPage11.Controls.Add(this.silenceFullscreen);
             this.tabPage11.Controls.Add(this.Notification_Silencio);
             this.tabPage11.Controls.Add(this.Notification_AnchorageRepair);
             this.tabPage11.Controls.Add(this.label10);
@@ -2780,7 +2782,7 @@
             // 
             this.silenceFullscreen.AutoSize = true;
             this.silenceFullscreen.Enabled = false;
-            this.silenceFullscreen.Location = new System.Drawing.Point(8, 207);
+            this.silenceFullscreen.Location = new System.Drawing.Point(8, 236);
             this.silenceFullscreen.Name = "silenceFullscreen";
             this.silenceFullscreen.Size = new System.Drawing.Size(160, 19);
             this.silenceFullscreen.TabIndex = 8;
@@ -2791,7 +2793,7 @@
             // Notification_Silencio
             // 
             this.Notification_Silencio.AutoSize = true;
-            this.Notification_Silencio.Location = new System.Drawing.Point(8, 181);
+            this.Notification_Silencio.Location = new System.Drawing.Point(8, 210);
             this.Notification_Silencio.Name = "Notification_Silencio";
             this.Notification_Silencio.Size = new System.Drawing.Size(146, 19);
             this.Notification_Silencio.TabIndex = 7;
@@ -3066,6 +3068,16 @@
             this.checkBoxUseSecretaryIconForRPC.Text = "Use secretary icon as game picture";
             this.ToolTipInfo.SetToolTip(this.checkBoxUseSecretaryIconForRPC, "Enable Discord Rich Presence");
             this.checkBoxUseSecretaryIconForRPC.UseVisualStyleBackColor = true;
+            // 
+            // Notification_BaseAirCorps
+            // 
+            this.Notification_BaseAirCorps.Location = new System.Drawing.Point(8, 181);
+            this.Notification_BaseAirCorps.Name = "Notification_BaseAirCorps";
+            this.Notification_BaseAirCorps.Size = new System.Drawing.Size(150, 23);
+            this.Notification_BaseAirCorps.TabIndex = 9;
+            this.Notification_BaseAirCorps.Text = "基地航空隊通知の設定...";
+            this.Notification_BaseAirCorps.UseVisualStyleBackColor = true;
+            this.Notification_BaseAirCorps.Click += new System.EventHandler(this.Notification_BaseAirCorps_Click);
             // 
             // DialogConfiguration
             // 
@@ -3390,5 +3402,6 @@
         private System.Windows.Forms.Label label45;
         private System.Windows.Forms.TextBox Control_ApplicationID;
 		private System.Windows.Forms.CheckBox checkBoxUseSecretaryIconForRPC;
+		private System.Windows.Forms.Button Notification_BaseAirCorps;
 	}
 }

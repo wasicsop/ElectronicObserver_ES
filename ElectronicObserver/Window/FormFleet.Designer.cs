@@ -203,5 +203,6 @@
         private System.Windows.Forms.ToolStripMenuItem ContextMenuFleet_CopyFleetAnalysisAllEquip;
         private System.Windows.Forms.ToolStripMenuItem ContextMenuFleet_AntiAirDetails;
 		private System.Windows.Forms.ToolStripMenuItem ContextMenuFleet_OutputFleetImage;
+		private System.Windows.Forms.ToolStripMenuItem ContextMenuFleet_CopyToFleetAnalysis;
 	}
 }

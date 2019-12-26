@@ -295,6 +295,7 @@
     </Compile>
     <Compile Include="Notifier\NotifierAnchorageRepair.cs" />
     <Compile Include="Notifier\NotifierBase.cs" />
+    <Compile Include="Notifier\NotifierBaseAirCorps.cs" />
     <Compile Include="Notifier\NotifierCondition.cs" />
     <Compile Include="Notifier\NotifierConstruction.cs" />
     <Compile Include="Notifier\NotifierDialogData.cs" />

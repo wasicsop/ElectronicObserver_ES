@@ -764,6 +764,135 @@
 			this.label11.Size = new System.Drawing.Size(67, 15);
 			this.label11.TabIndex = 0;
 			this.label11.Text = "Trigger when：";
+			// 
+			// GroupBaseAirCorps
+			// 
+			this.GroupBaseAirCorps.Controls.Add(this.BaseAirCorps_SquadronRelocation);
+			this.GroupBaseAirCorps.Controls.Add(this.BaseAirCorps_EquipmentRelocation);
+			this.GroupBaseAirCorps.Controls.Add(this.BaseAirCorps_EventMap);
+			this.GroupBaseAirCorps.Controls.Add(this.BaseAirCorps_NormalMap);
+			this.GroupBaseAirCorps.Controls.Add(this.BaseAirCorps_Standby);
+			this.GroupBaseAirCorps.Controls.Add(this.BaseAirCorps_Retreat);
+			this.GroupBaseAirCorps.Controls.Add(this.BaseAirCorps_Rest);
+			this.GroupBaseAirCorps.Controls.Add(this.BaseAirCorps_NotOrganized);
+			this.GroupBaseAirCorps.Controls.Add(this.BaseAirCorps_Tired);
+			this.GroupBaseAirCorps.Controls.Add(this.BaseAirCorps_NotSupplied);
+			this.GroupBaseAirCorps.Location = new System.Drawing.Point(12, 298);
+			this.GroupBaseAirCorps.Name = "GroupBaseAirCorps";
+			this.GroupBaseAirCorps.Size = new System.Drawing.Size(602, 103);
+			this.GroupBaseAirCorps.TabIndex = 10;
+			this.GroupBaseAirCorps.TabStop = false;
+			this.GroupBaseAirCorps.Text = "基地航空隊設定";
+			// 
+			// BaseAirCorps_NotSupplied
+			// 
+			this.BaseAirCorps_NotSupplied.AutoSize = true;
+			this.BaseAirCorps_NotSupplied.Location = new System.Drawing.Point(10, 22);
+			this.BaseAirCorps_NotSupplied.Name = "BaseAirCorps_NotSupplied";
+			this.BaseAirCorps_NotSupplied.Size = new System.Drawing.Size(74, 19);
+			this.BaseAirCorps_NotSupplied.TabIndex = 0;
+			this.BaseAirCorps_NotSupplied.Text = "未補給時";
+			this.ToolTipText.SetToolTip(this.BaseAirCorps_NotSupplied, "出撃前に、いずれかの中隊が未補給のときに通知します。");
+			this.BaseAirCorps_NotSupplied.UseVisualStyleBackColor = true;
+			// 
+			// BaseAirCorps_Tired
+			// 
+			this.BaseAirCorps_Tired.AutoSize = true;
+			this.BaseAirCorps_Tired.Location = new System.Drawing.Point(10, 47);
+			this.BaseAirCorps_Tired.Name = "BaseAirCorps_Tired";
+			this.BaseAirCorps_Tired.Size = new System.Drawing.Size(62, 19);
+			this.BaseAirCorps_Tired.TabIndex = 1;
+			this.BaseAirCorps_Tired.Text = "疲労時";
+			this.ToolTipText.SetToolTip(this.BaseAirCorps_Tired, "出撃前に、いずれかの中隊が橙疲労以上のときに通知します。");
+			this.BaseAirCorps_Tired.UseVisualStyleBackColor = true;
+			// 
+			// BaseAirCorps_NotOrganized
+			// 
+			this.BaseAirCorps_NotOrganized.AutoSize = true;
+			this.BaseAirCorps_NotOrganized.Location = new System.Drawing.Point(10, 72);
+			this.BaseAirCorps_NotOrganized.Name = "BaseAirCorps_NotOrganized";
+			this.BaseAirCorps_NotOrganized.Size = new System.Drawing.Size(128, 19);
+			this.BaseAirCorps_NotOrganized.TabIndex = 2;
+			this.BaseAirCorps_NotOrganized.Text = "未編成・配置転換中";
+			this.ToolTipText.SetToolTip(this.BaseAirCorps_NotOrganized, "出撃前に、いずれかの中隊が未編成か、配置転換中のときに通知します。");
+			this.BaseAirCorps_NotOrganized.UseVisualStyleBackColor = true;
+			// 
+			// BaseAirCorps_Rest
+			// 
+			this.BaseAirCorps_Rest.AutoSize = true;
+			this.BaseAirCorps_Rest.Location = new System.Drawing.Point(147, 72);
+			this.BaseAirCorps_Rest.Name = "BaseAirCorps_Rest";
+			this.BaseAirCorps_Rest.Size = new System.Drawing.Size(60, 19);
+			this.BaseAirCorps_Rest.TabIndex = 5;
+			this.BaseAirCorps_Rest.Text = "[休息]";
+			this.ToolTipText.SetToolTip(this.BaseAirCorps_Rest, "出撃前に、基地航空隊が[休息]状態のときに通知します。");
+			this.BaseAirCorps_Rest.UseVisualStyleBackColor = true;
+			// 
+			// BaseAirCorps_Retreat
+			// 
+			this.BaseAirCorps_Retreat.AutoSize = true;
+			this.BaseAirCorps_Retreat.Location = new System.Drawing.Point(147, 47);
+			this.BaseAirCorps_Retreat.Name = "BaseAirCorps_Retreat";
+			this.BaseAirCorps_Retreat.Size = new System.Drawing.Size(60, 19);
+			this.BaseAirCorps_Retreat.TabIndex = 4;
+			this.BaseAirCorps_Retreat.Text = "[退避]";
+			this.ToolTipText.SetToolTip(this.BaseAirCorps_Retreat, "出撃前に、基地航空隊が[退避]状態のときに通知します。");
+			this.BaseAirCorps_Retreat.UseVisualStyleBackColor = true;
+			// 
+			// BaseAirCorps_Standby
+			// 
+			this.BaseAirCorps_Standby.AutoSize = true;
+			this.BaseAirCorps_Standby.Location = new System.Drawing.Point(147, 22);
+			this.BaseAirCorps_Standby.Name = "BaseAirCorps_Standby";
+			this.BaseAirCorps_Standby.Size = new System.Drawing.Size(60, 19);
+			this.BaseAirCorps_Standby.TabIndex = 3;
+			this.BaseAirCorps_Standby.Text = "[待機]";
+			this.ToolTipText.SetToolTip(this.BaseAirCorps_Standby, "出撃前に、基地航空隊が[待機]状態のときに通知します。");
+			this.BaseAirCorps_Standby.UseVisualStyleBackColor = true;
+			// 
+			// BaseAirCorps_NormalMap
+			// 
+			this.BaseAirCorps_NormalMap.AutoSize = true;
+			this.BaseAirCorps_NormalMap.Location = new System.Drawing.Point(213, 22);
+			this.BaseAirCorps_NormalMap.Name = "BaseAirCorps_NormalMap";
+			this.BaseAirCorps_NormalMap.Size = new System.Drawing.Size(74, 19);
+			this.BaseAirCorps_NormalMap.TabIndex = 6;
+			this.BaseAirCorps_NormalMap.Text = "通常海域";
+			this.ToolTipText.SetToolTip(this.BaseAirCorps_NormalMap, "出撃前に、通常海域の基地航空隊が準備不足のときに通知します。");
+			this.BaseAirCorps_NormalMap.UseVisualStyleBackColor = true;
+			// 
+			// BaseAirCorps_EventMap
+			// 
+			this.BaseAirCorps_EventMap.AutoSize = true;
+			this.BaseAirCorps_EventMap.Location = new System.Drawing.Point(213, 47);
+			this.BaseAirCorps_EventMap.Name = "BaseAirCorps_EventMap";
+			this.BaseAirCorps_EventMap.Size = new System.Drawing.Size(86, 19);
+			this.BaseAirCorps_EventMap.TabIndex = 7;
+			this.BaseAirCorps_EventMap.Text = "イベント海域";
+			this.ToolTipText.SetToolTip(this.BaseAirCorps_EventMap, "出撃前に、イベント海域の基地航空隊が準備不足のときに通知します。");
+			this.BaseAirCorps_EventMap.UseVisualStyleBackColor = true;
+			// 
+			// BaseAirCorps_EquipmentRelocation
+			// 
+			this.BaseAirCorps_EquipmentRelocation.AutoSize = true;
+			this.BaseAirCorps_EquipmentRelocation.Location = new System.Drawing.Point(305, 46);
+			this.BaseAirCorps_EquipmentRelocation.Name = "BaseAirCorps_EquipmentRelocation";
+			this.BaseAirCorps_EquipmentRelocation.Size = new System.Drawing.Size(132, 19);
+			this.BaseAirCorps_EquipmentRelocation.TabIndex = 9;
+			this.BaseAirCorps_EquipmentRelocation.Text = "装備の配置転換完了";
+			this.ToolTipText.SetToolTip(this.BaseAirCorps_EquipmentRelocation, "装備の配置転換が完了したときに通知します。");
+			this.BaseAirCorps_EquipmentRelocation.UseVisualStyleBackColor = true;
+			// 
+			// BaseAirCorps_SquadronRelocation
+			// 
+			this.BaseAirCorps_SquadronRelocation.AutoSize = true;
+			this.BaseAirCorps_SquadronRelocation.Location = new System.Drawing.Point(305, 22);
+			this.BaseAirCorps_SquadronRelocation.Name = "BaseAirCorps_SquadronRelocation";
+			this.BaseAirCorps_SquadronRelocation.Size = new System.Drawing.Size(132, 19);
+			this.BaseAirCorps_SquadronRelocation.TabIndex = 8;
+			this.BaseAirCorps_SquadronRelocation.Text = "基地の配置転換完了";
+			this.ToolTipText.SetToolTip(this.BaseAirCorps_SquadronRelocation, "基地のスロットの配置転換が完了したときに通知します。\r\n「装備の配置転換完了」とは異なり、装備欄に戻った機体は通知しません。\r\n");
+			this.BaseAirCorps_SquadronRelocation.UseVisualStyleBackColor = true;
 			//
 			// AnchorageRepairNotificationLevel
 			//
@@ -882,5 +1011,16 @@
 		private System.Windows.Forms.GroupBox GroupAnchorageRepair;
 		private System.Windows.Forms.ComboBox AnchorageRepairNotificationLevel;
 		private System.Windows.Forms.Label label11;
+		private System.Windows.Forms.GroupBox GroupBaseAirCorps;
+		private System.Windows.Forms.CheckBox BaseAirCorps_SquadronRelocation;
+		private System.Windows.Forms.CheckBox BaseAirCorps_EquipmentRelocation;
+		private System.Windows.Forms.CheckBox BaseAirCorps_EventMap;
+		private System.Windows.Forms.CheckBox BaseAirCorps_NormalMap;
+		private System.Windows.Forms.CheckBox BaseAirCorps_Standby;
+		private System.Windows.Forms.CheckBox BaseAirCorps_Retreat;
+		private System.Windows.Forms.CheckBox BaseAirCorps_Rest;
+		private System.Windows.Forms.CheckBox BaseAirCorps_NotOrganized;
+		private System.Windows.Forms.CheckBox BaseAirCorps_Tired;
+		private System.Windows.Forms.CheckBox BaseAirCorps_NotSupplied;
 	}
 }

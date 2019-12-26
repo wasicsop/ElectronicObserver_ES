@@ -343,10 +343,10 @@
 			this.ShipView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.ShipView.BackgroundColor = System.Drawing.SystemColors.Control;
-			this.ShipView.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this.ShipView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.ShipView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ShipView.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.ShipView.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.ShipView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ShipView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ShipView_ShipID,
             this.ShipView_ShipType,
             this.ShipView_Name});
@@ -1999,5 +1999,7 @@
 		private System.Windows.Forms.ToolStripMenuItem StripMenu_Edit_GoogleShipName;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
 		private System.Windows.Forms.ToolStripMenuItem StripMenu_Edit_CopySpecialEquipmentTable;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+		private System.Windows.Forms.ToolStripMenuItem StripMenu_File_MergeDefaultRecord;
 	}
 }

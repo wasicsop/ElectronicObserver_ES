@@ -42,6 +42,8 @@
 			this.Name = "FormBrowserHost";
 			this.Text = "Browser";
 			this.Load += new System.EventHandler(this.FormBrowser_Load);
+            this.Click += new System.EventHandler(this.FormBrowserHost_Click);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.FormBrowserHost_Paint);
 			this.Resize += new System.EventHandler(this.FormBrowserHost_Resize);
 			this.ResumeLayout(false);
 

@@ -224,6 +224,22 @@
 			this.ToolTipInfo.InitialDelay = 500;
 			this.ToolTipInfo.ReshowDelay = 100;
 			this.ToolTipInfo.ShowAlways = true;
+            // 
+            // TopMenu_Settings
+            // 
+            this.TopMenu_Settings.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+                this.TopMenu_Settings_HighAltitude});
+            this.TopMenu_Settings.Name = "TopMenu_Settings";
+            this.TopMenu_Settings.Size = new System.Drawing.Size(61, 20);
+            this.TopMenu_Settings.Text = "Settings(&S)";
+            // 
+            // TopMenu_Settings_HighAltitude
+            // 
+            this.TopMenu_Settings_HighAltitude.CheckOnClick = true;
+            this.TopMenu_Settings_HighAltitude.Name = "TopMenu_Settings_HighAltitude";
+            this.TopMenu_Settings_HighAltitude.Size = new System.Drawing.Size(180, 22);
+            this.TopMenu_Settings_HighAltitude.Text = "High Altitude(&H)";
+            this.TopMenu_Settings_HighAltitude.Click += new System.EventHandler(this.TopMenu_Settings_HighAltitude_Click);
 			// 
 			// DialogBaseAirCorpsSimulation
 			// 
@@ -267,6 +283,7 @@
 		private System.Windows.Forms.ToolStripMenuItem TopMenu_Edit_ImportOrganization;
 		private System.Windows.Forms.ToolStripMenuItem TopMenu_Edit_Clear;
 		private System.Windows.Forms.ToolTip ToolTipInfo;
-
+		private System.Windows.Forms.ToolStripMenuItem TopMenu_Settings;
+		private System.Windows.Forms.ToolStripMenuItem TopMenu_Settings_HighAltitude;
 	}
 }

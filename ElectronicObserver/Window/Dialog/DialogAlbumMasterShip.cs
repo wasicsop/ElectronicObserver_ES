@@ -14,6 +14,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -475,7 +476,7 @@ namespace ElectronicObserver.Window.Dialog
 
 			TableConsumption.ResumeLayout();
 
-			Description.Text = ship.MessageAlbum != "" ? ship.MessageAlbum : ship.MessageGet;
+			Description.Text = ship.MessageAlbum != "" ? FormatDescription(ship.MessageAlbum) : FormatDescription(ship.MessageGet);
 			Description.Tag = ship.MessageAlbum != "" ? 1 : 0;
 
 
@@ -1143,15 +1144,21 @@ namespace ElectronicObserver.Window.Dialog
 
 			if (tag == 0 && ship.MessageAlbum.Length > 0)
 			{
-				Description.Text = ship.MessageAlbum;
+				Description.Text = FormatDescription(ship.MessageAlbum);
 				Description.Tag = 1;
-
 			}
 			else
 			{
-				Description.Text = ship.MessageGet;
+				Description.Text = FormatDescription(ship.MessageGet);
 				Description.Tag = 0;
 			}
+		}
+
+		private string FormatDescription(string description)
+		{
+			// 本家の改行がアレなので、区切り文字+改行 以外の改行を削除する
+			var regex = new Regex(@"([^、。,\.！？!\?])\r\n");
+			return regex.Replace(description, "$1");
 		}
 
 
@@ -1641,6 +1648,48 @@ namespace ElectronicObserver.Window.Dialog
 
 			}
 			Clipboard.SetText(sb.ToString());
+		}
+
+		private void StripMenu_File_MergeDefaultRecord_Click(object sender, EventArgs e)
+		{
+			if (MessageBox.Show("デフォルトレコードの情報をもとに、艦船レコードを更新します。\r\nよろしいですか？", "レコード更新確認", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Cancel)
+			{
+				return;
+			}
+
+			var parameterRecord = RecordManager.Instance.ShipParameter;
+
+
+			string temporaryPath = null;
+			try
+			{
+				temporaryPath = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+				Resource.ResourceManager.CopyFromArchive("Record/" + parameterRecord.FileName, temporaryPath, false, true);
+
+				int count = 0;
+				using (var reader = new StreamReader(temporaryPath, Utility.Configuration.Config.Log.FileEncoding))
+				{
+					while (!reader.EndOfStream)
+					{
+						count += parameterRecord.Merge(reader.ReadLine()) ? 1 : 0;
+					}
+				}
+
+				if (count == 0)
+					Utility.Logger.Add(2, "更新できるレコードがありませんでした。お使いのデータは十分に更新されています。");
+				else
+					Utility.Logger.Add(2, count + " 件の艦船レコードの更新が完了しました。開き直すと反映されます。");
+			}
+			catch (Exception ex)
+			{
+				Utility.ErrorReporter.SendErrorReport(ex, "デフォルトレコードとのマージに失敗しました。");
+			}
+			finally
+			{
+				if (temporaryPath != null)
+					File.Delete(temporaryPath);
+			}
+
 		}
 	}
 }

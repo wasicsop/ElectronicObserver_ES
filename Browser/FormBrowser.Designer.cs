@@ -223,6 +223,7 @@ namespace Browser
             this.ToolMenu_Other_RefreshIgnoreCache,
             this.ToolMenu_Other_NavigateToLogInPage,
             this.ToolMenu_Other_Navigate,
+            this.ToolMenu_Other_ClearCache,
             this.toolStripSeparator5,
             this.ToolMenu_Other_AppliesStyleSheet,
             this.toolStripSeparator6,
@@ -636,5 +637,6 @@ namespace Browser
 		private System.Windows.Forms.ToolStripMenuItem ToolMenu_Other_OpenDevTool;
 		private System.Windows.Forms.ToolStripMenuItem ToolMenu_Other_Zoom_Classic;
 		private System.Windows.Forms.ToolStripMenuItem ToolMenu_Other_RefreshIgnoreCache;
+		private System.Windows.Forms.ToolStripMenuItem ToolMenu_Other_ClearCache;
 	}
 }
