@@ -61,11 +61,56 @@ namespace ElectronicObserver.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 出撃準備ができていません：.
+        /// </summary>
+        public static string NotReadyToSortie {
+            get {
+                return ResourceManager.GetString("NotReadyToSortie", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to の配置転換が完了しました。母港に入り直すと更新されます。.
+        /// </summary>
+        public static string RelocationCompleted {
+            get {
+                return ResourceManager.GetString("RelocationCompleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 休息中.
+        /// </summary>
+        public static string Resting {
+            get {
+                return ResourceManager.GetString("Resting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 待機中.
+        /// </summary>
+        public static string Standby {
+            get {
+                return ResourceManager.GetString("Standby", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 基地航空隊報告.
         /// </summary>
         public static string Title {
             get {
                 return ResourceManager.GetString("Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 未編成.
+        /// </summary>
+        public static string Unorganized {
+            get {
+                return ResourceManager.GetString("Unorganized", resourceCulture);
             }
         }
     }

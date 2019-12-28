@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ElectronicObserver.Properties;
+using ElectronicObserver.Utility;
 
 namespace ElectronicObserver.Notifier
 {
@@ -14,7 +15,7 @@ namespace ElectronicObserver.Notifier
 	/// </summary>
 	public class NotifierBaseAirCorps : NotifierBase
 	{
-		private readonly static TimeSpan RelocationSpan = TimeSpan.FromMinutes(12);
+		private static TimeSpan RelocationSpan => TimeSpan.FromMinutes(12);
 
 		/// <summary>
 		/// 未補給時に通知する
@@ -72,9 +73,9 @@ namespace ElectronicObserver.Notifier
 
 		// supress when sortieing
 
-		private bool _isAlreadyNotified = false;
-		private bool _isInSortie = false;
-		private HashSet<int> _notifiedEquipments = new HashSet<int>();
+		private bool IsAlreadyNotified { get; set; }
+		private bool IsInSortie { get; set; }
+		private HashSet<int> NotifiedEquipments { get; set; } = new HashSet<int>();
 
 
 
@@ -108,8 +109,7 @@ namespace ElectronicObserver.Notifier
 		{
 			DialogData.Title = NotifierBaseAirCorpsResources.Title;
 			
-
-			var o = APIObserver.Instance;
+			APIObserver o = APIObserver.Instance;
 
 			o["api_port/port"].ResponseReceived += Port;
 			o["api_get_member/mapinfo"].ResponseReceived += BeforeSortie;
@@ -120,67 +120,69 @@ namespace ElectronicObserver.Notifier
 
 		private void Port(string apiname, dynamic data)
 		{
-			_isAlreadyNotified = false;
-			_isInSortie = false;
-			_notifiedEquipments.Clear();
+			IsAlreadyNotified = false;
+			IsInSortie = false;
+			NotifiedEquipments.Clear();
 		}
 
 		private void BeforeSortieEventMap(string apiname, dynamic data)
 		{
-			if (_isAlreadyNotified)
+			if (IsAlreadyNotified)
 				return;
 
 			if (!NotifiesEventMap)
 				return;
 
-			var db = KCDatabase.Instance;
+			KCDatabase db = KCDatabase.Instance;
 			CheckBaseAirCorps(db.BaseAirCorps.Values.Where(corps => db.MapArea[corps.MapAreaID].MapType == 1));
 		}
 
 		private void BeforeSortie(string apiname, dynamic data)
 		{
-			if (_isAlreadyNotified)
+			if (IsAlreadyNotified)
 				return;
 
 			if (!NotifiesNormalMap)
 				return;
 
-			var db = KCDatabase.Instance;
+			KCDatabase db = KCDatabase.Instance;
 			CheckBaseAirCorps(db.BaseAirCorps.Values.Where(corps => db.MapArea[corps.MapAreaID].MapType == 0));
 		}
 
 
 		private bool CheckBaseAirCorps(IEnumerable<BaseAirCorpsData> corpslist)
 		{
-			var db = KCDatabase.Instance;
-			var sb = new StringBuilder();
+			KCDatabase db = KCDatabase.Instance;
+			StringBuilder sb = new StringBuilder();
 			var messages = new LinkedList<string>();
 
-			foreach (var corps in corpslist)
+			foreach (BaseAirCorpsData corps in corpslist)
 			{
 				if (NotifiesNotSupplied && corps.Squadrons.Values.Any(sq => sq.State == 1 && sq.AircraftCurrent < sq.AircraftMax))
-					messages.AddLast("未補給");
+					messages.AddLast(FleetRes.SupplyNeeded);
 				if (NotifiesTired && corps.Squadrons.Values.Any(sq => sq.State == 1 && sq.Condition > 1))
-					messages.AddLast("疲労");
+					messages.AddLast(FleetRes.Fatigued);
 				if (NotifiesNotOrganized)
 				{
 					if (corps.Squadrons.Values.Any(sq => sq.State == 0))
-						messages.AddLast("未編成");
+						messages.AddLast(NotifierBaseAirCorpsResources.Unorganized);
 					if (corps.Squadrons.Values.Any(sq => sq.State == 2))
-						messages.AddLast("配置転換中");
+						messages.AddLast(Window.GeneralRes.BaseRedeployment);
 				}
 
 				if (NotifiesStandby && corps.ActionKind == 0)
-					messages.AddLast("待機中");
+					messages.AddLast(NotifierBaseAirCorpsResources.Standby);
 				if (NotifiesRetreat && corps.ActionKind == 3)
-					messages.AddLast("退避中");
+					messages.AddLast(Window.GeneralRes.Retreating);
 				if (NotifiesRest && corps.ActionKind == 4)
-					messages.AddLast("休息中");
+					messages.AddLast(NotifierBaseAirCorpsResources.Resting);
 
 				if (messages.Any())
 				{
 					if (sb.Length == 0)
-						sb.Append("出撃準備ができていません：");
+					{
+						sb.Append(NotifierBaseAirCorpsResources.NotReadyToSortie);
+					}
 					sb.Append($"#{corps.MapAreaID} {corps.Name} ({string.Join(", ", messages)})");
 				}
 				messages.Clear();
@@ -189,7 +191,7 @@ namespace ElectronicObserver.Notifier
 			if (sb.Length > 0)
 			{
 				Notify(sb.ToString());
-				_isAlreadyNotified = true;
+				IsAlreadyNotified = true;
 				return true;
 			}
 			return false;
@@ -197,23 +199,22 @@ namespace ElectronicObserver.Notifier
 
 		private void Sally(string apiname, dynamic data)
 		{
-			_isInSortie = true;
+			IsInSortie = true;
 		}
 
 
 		protected override void UpdateTimerTick()
 		{
-			var db = KCDatabase.Instance;
+			KCDatabase db = KCDatabase.Instance;
 
 			if (!db.RelocatedEquipments.Any())
 				return;
 
-			if (_isInSortie)
+			if (IsInSortie)
 				return;
 
 			if (NotifiesSquadronRelocation)
 			{
-
 				StringBuilder sb = null;
 				foreach (var corps in db.BaseAirCorps.Values.Where(corps =>
 						 (NotifiesNormalMap && db.MapArea[corps.MapAreaID].MapType == 0) ||
@@ -221,7 +222,7 @@ namespace ElectronicObserver.Notifier
 				{
 					var targetSquadrons = corps.Squadrons.Values
 						.Where(sq => sq.State == 2 && 
-						             !_notifiedEquipments.Contains(sq.EquipmentID) && 
+						             !NotifiedEquipments.Contains(sq.EquipmentID) && 
 						             (DateTime.Now - sq.RelocatedTime) >= RelocationSpan)
 						.ToList();
 
@@ -230,23 +231,23 @@ namespace ElectronicObserver.Notifier
 						sb = sb?.Append(", ") ?? new StringBuilder();
 
 						sb.Append(string.Join(", ", targetSquadrons.Select(sq =>
-							$"#{corps.MapAreaID} {corps.Name} 第{sq.SquadronID}中隊 ({sq.EquipmentInstance.NameWithLevel})")));
+							$"#{corps.MapAreaID} {corps.Name} squad {sq.SquadronID} ({sq.EquipmentInstance.NameWithLevel})")));
 
 						foreach (var sq in targetSquadrons)
-							_notifiedEquipments.Add(sq.EquipmentID);
+							NotifiedEquipments.Add(sq.EquipmentID);
 					}
 				}
 
 				if (sb != null)
 				{
-					Notify(sb.ToString() + "の配置転換が完了しました。母港に入り直すと更新されます。");
+					Notify($"{sb} {NotifierBaseAirCorpsResources.RelocationCompleted}");
 				}
 			}
 
 			if (NotifiesEquipmentRelocation)
 			{
 				var targets = db.RelocatedEquipments
-					.Where(kv => !_notifiedEquipments.Contains(kv.Key) &&
+					.Where(kv => !NotifiedEquipments.Contains(kv.Key) &&
 					             (DateTime.Now - kv.Value.RelocatedTime) >= RelocationSpan)
 					.ToList();
 
@@ -255,7 +256,7 @@ namespace ElectronicObserver.Notifier
 					Notify($"{string.Join(", ", targets.Select(kv => kv.Value.EquipmentInstance.NameWithLevel))} の配置転換が完了しました。母港に入り直すと更新されます。");
 
 					foreach (var t in targets)
-						_notifiedEquipments.Add(t.Key);
+						NotifiedEquipments.Add(t.Key);
 				}
 			}
 
@@ -274,9 +275,7 @@ namespace ElectronicObserver.Notifier
 		{
 			base.ApplyToConfiguration(config);
 
-			var c = config as Utility.Configuration.ConfigurationData.ConfigNotifierBaseAirCorps;
-
-			if (c != null)
+			if (config is Configuration.ConfigurationData.ConfigNotifierBaseAirCorps c)
 			{
 				c.NotifiesNotSupplied = NotifiesNotSupplied;
 				c.NotifiesTired = NotifiesTired;
