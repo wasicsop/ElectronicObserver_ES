@@ -388,14 +388,20 @@ namespace Browser
 			if (e.IsLoading)
 				return;
 
-		    if (Browser.Address.Contains("login/=/path="))
+			if (Browser.Address.Contains("redirect"))
+			{
+				SetCookie();
+				Browser.Refresh();
+			}
+
+			/*if (Browser.Address.Contains("login/=/path="))
 		    {
 		        SetCookie();
                 Browser.ExecuteScriptAsync(Properties.Resources.RemoveWelcomePopup);
 		        Browser.ExecuteScriptAsync(Properties.Resources.RemoveServicePopup);
-            }
+            }*/
 
-            BeginInvoke((Action)(() =>
+			BeginInvoke((Action)(() =>
 			{
 				ApplyStyleSheet();
 
