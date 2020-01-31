@@ -293,9 +293,7 @@ namespace ElectronicObserver.Data.Quest
 								s.MasterShip.BaseShip().ShipID == (int) ShipId.Uzuki ||
 								s.MasterShip.BaseShip().ShipID == (int) ShipId.Yayoi) >= 2;
 
-					bool yura =
-						members.Where(s => s?.MasterShip?.BaseShip() != null)
-							.Any(s => s.MasterShip.BaseShip().ShipID == (int) ShipId.YuraKaiNi);
+					bool yura = members.Any(s => s?.MasterShip?.ShipID == (int) ShipId.YuraKaiNi);
 
 					isAccepted = melonFlag && (mutsukis || yura);
 				}
