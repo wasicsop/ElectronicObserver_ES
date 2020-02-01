@@ -64,6 +64,8 @@ namespace ElectronicObserver.Data.Quest
 				return;
 			}
 
+			if (!MeetsSpecialRequirements()) return;
+
 			foreach (var i in equipments)
 			{
 				var eq = KCDatabase.Instance.Equipments[i];
