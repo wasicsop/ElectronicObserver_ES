@@ -298,6 +298,23 @@ namespace ElectronicObserver.Data.Quest
 					isAccepted = melonFlag && (mutsukis || yura);
 				}
 					break;
+
+				// B131
+				case 896:
+				{
+					isAccepted = memberstype.Count(t => t == ShipTypes.AviationBattleship) >= 2;
+				}
+					break;
+
+				// B132
+				case 897:
+				{
+					bool ise = members.Any(s => s?.MasterShip?.ShipID == (int)ShipId.IseKaiNi);
+					bool hyuuga = members.Any(s => s?.MasterShip?.ShipID == (int)ShipId.HyuugaKaiNi);
+
+					isAccepted = ise && hyuuga;
+				}
+					break;
 			}
 
 			// 第二ゲージでも第一ボスに行ける場合があるので、個別対応が必要

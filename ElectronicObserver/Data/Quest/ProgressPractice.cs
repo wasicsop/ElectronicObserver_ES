@@ -20,6 +20,8 @@ namespace ElectronicObserver.Data.Quest
 		Kasumi = 49,
 		Yayoi = 164,
 		Uzuki = 165,
+		IseKaiNi = 353,
+		HyuugaKaiNi = 354,
 		YuraKaiNi = 488,
 		YuubariKaiNi = 622,
 		YuubariKaiNiToku = 623,

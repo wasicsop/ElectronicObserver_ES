@@ -438,6 +438,24 @@ namespace ElectronicObserver.Data.Quest
 								new ProgressSpecialBattle(q, 1, "x", new[]{ 16 }, true),
 							}));
 							break;
+						case 896:   // B131
+							Progresses.Add(new ProgressMultiBattle(q, new[]
+							{
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 14 }, true),
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 15 }, true),
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 23 }, true),
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 72 }, true, 2),
+							}));
+							break;
+						case 897: // B132
+							Progresses.Add(new ProgressMultiBattle(q, new[]
+							{
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 45 }, true),
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 55 }, true),
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 65 }, true),
+								new ProgressSpecialBattle(q, 2, "x", new[]{ 16 }, true),
+							}));
+							break;
 
 						case 303:   //|303|「演習」で練度向上！|演習3
 							Progresses.Add(new ProgressPractice(q, 3, false));
@@ -603,6 +621,54 @@ namespace ElectronicObserver.Data.Quest
 								new ProgressDiscard(q, 3, true, new[]{ 7 }),
 								new ProgressDiscard(q, 3, true, new[]{ 8 }),
 								new ProgressDiscard(q, 3, true, new[]{ 10 }),
+							}));
+							break;
+						case 621:   // F89
+							Progresses.Add(new ProgressMultiDiscard(q, new[]
+							{
+								new ProgressDiscard(q, 2, true, new[]{ 49 }, -1),
+								new ProgressDiscard(q, 2, true, new[]{ 75 }, -1),
+								new ProgressDiscard(q, 1, true, new[]{ 51 }, -1),
+							}));
+							break;
+						case 691:   // F82
+							Progresses.Add(new ProgressMultiDiscard(q, new[]
+							{
+								new ProgressDiscard(q, 4, true, new[]{ (int)EquipmentTypes.MainGunMedium }, 2),
+								new ProgressDiscard(q, 4, true, new[]{ (int)EquipmentTypes.SecondaryGun }, 2),
+								new ProgressDiscard(q, 4, true, new[]{ (int)EquipmentTypes.AAGun }, 2),
+							}));
+							break;
+						case 692:   // F83
+							Progresses.Add(new ProgressMultiDiscard(q, new[]
+							{
+								new ProgressDiscard(q, 5, true, new[]{ (int)EquipmentTypes.MainGunSmall }, 2),
+								new ProgressDiscard(q, 5, true, new[]{ (int)EquipmentTypes.MainGunLarge, (int)EquipmentTypes.MainGunLarge }, 2),
+								new ProgressDiscard(q, 5, true, new[]{ (int)EquipmentTypes.SeaplaneRecon }, 2),
+							}));
+							break;
+						case 693:   // F84
+							Progresses.Add(new ProgressMultiDiscard(q, new[]
+							{
+								new ProgressDiscard(q, 4, true, new[]{ (int)EquipmentTypes.SeaplaneRecon,(int)EquipmentTypes.SeaplaneBomber,(int)EquipmentTypes.SeaplaneFighter, }, 2),
+								new ProgressDiscard(q, 3, true, new[]{ (int)EquipmentTypes.CarrierBasedFighter }, 2),
+								new ProgressDiscard(q, 2, true, new[]{ (int)EquipmentTypes.CarrierBasedTorpedo }, 2),
+							}));
+							break;
+						case 694:   // F85
+							Progresses.Add(new ProgressMultiDiscard(q, new[]
+							{
+								new ProgressDiscard(q, 4, true, new[]{ 26 }, -1),
+								new ProgressDiscard(q, 4, true, new[]{ 24 }, -1),
+								new ProgressDiscard(q, 2, true, new[]{ 18 }, -1),
+							}));
+							break;
+						case 695:   // F86 
+							Progresses.Add(new ProgressMultiDiscard(q, new[]
+							{
+								new ProgressDiscard(q, 4, true, new[]{ 24 }, -1),
+								new ProgressDiscard(q, 3, true, new[]{ 23 }, -1),
+								new ProgressDiscard(q, 2, true, new[]{ 26 }, -1),
 							}));
 							break;
 
