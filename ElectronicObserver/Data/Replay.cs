@@ -184,6 +184,9 @@ namespace ElectronicObserver.ReplayJSON
 		[JsonProperty("max_maphp")]
 		public int Max_maphp { get; set; }
 
+		[JsonProperty("defeat_count")]
+		public int Defeat_count { get; set; }
+
 		[JsonProperty("world")]
 		public int World { get; set; }
 

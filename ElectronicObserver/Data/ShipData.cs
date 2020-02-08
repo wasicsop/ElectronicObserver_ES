@@ -127,10 +127,15 @@ namespace ElectronicObserver.Data
         /// </summary>
         public ReadOnlyCollection<int> AllSlotMaster => Array.AsReadOnly(AllSlot.Select(id => KCDatabase.Instance.Equipments[id]?.EquipmentID ?? -1).ToArray());
 
-        /// <summary>
-        /// 全てのスロット(装備データ)
-        /// </summary>
-        public ReadOnlyCollection<EquipmentData> AllSlotInstance => Array.AsReadOnly(AllSlot.Select(id => KCDatabase.Instance.Equipments[id]).ToArray());
+		/// <summary>
+		/// 全てのスロット(マスターID)
+		/// </summary>
+		public ReadOnlyCollection<int> AllSlotMasterReplay => Array.AsReadOnly(AllSlot.Select(id => KCDatabase.Instance.Equipments[id]?.EquipmentID ?? 0).ToArray());
+
+		/// <summary>
+		/// 全てのスロット(装備データ)
+		/// </summary>
+		public ReadOnlyCollection<EquipmentData> AllSlotInstance => Array.AsReadOnly(AllSlot.Select(id => KCDatabase.Instance.Equipments[id]).ToArray());
 
         /// <summary>
         /// 全てのスロット(装備マスターデータ)

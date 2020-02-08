@@ -20,7 +20,12 @@ namespace ElectronicObserver.Data
 			Support1 = 0,
 			Support2 = 0,
 			Combined = 0,
+			Defeat_count = 0,
+			Now_maphp = 0,
+			Max_maphp = 0,
 			Fleetnum = 1,
+			World = 0,
+			Mapnum = 0,
 			Fleet1 = new List<Fleet1>(),
 			Fleet2 = new List<Fleet2>(),
 			Fleet3 = new List<Fleet3>(),
@@ -36,8 +41,11 @@ namespace ElectronicObserver.Data
 		public Lba LbaData { get; set; }
 		public Plane PlaneData { get; set; }
 		public Range RangeData { get; set; }
+
 		public dynamic DayData = null;
 		public dynamic YasenData = null;
+		public bool isPvp = false;
+
 
 		/// <summary>
 		///response wrapper for getting API data
@@ -59,8 +67,14 @@ namespace ElectronicObserver.Data
 					Battle_replay.Mapnum = db.Battle.Compass.MapInfoID;
 					Battle_replay.World = db.Battle.Compass.MapAreaID;
 					Battle_replay.Battles[0].SortieId = 1;
+					Battle_replay.Battles[0].Id = 1;
+					Battle_replay.Battles[0].BaseEXP = 0;
+					Battle_replay.Battles[0].HqEXP = 0; 
+					isPvp = false;
+					Battle_replay.Battles[0].Data = null;
 					Battle_replay.Battles[0].Yasen = new object();
-
+					YasenData = null;
+					DayData = null;
 					break;
 
 				case "api_req_sortie/battle": // normal day 
@@ -100,7 +114,7 @@ namespace ElectronicObserver.Data
 					YasenData = data;
 					break;
 
-				case "api_req_combined_battle/sp_midnight":// combined
+				case "api_req_combined_battle/sp_midnight":// combined night battle
 					YasenData = data;
 					break;
 
@@ -118,7 +132,6 @@ namespace ElectronicObserver.Data
 
 				case "api_req_combined_battle/ec_battle": // CTF enemy combined battle
 					DayData = data;
-
 					break;
 
 				case "api_req_combined_battle/ec_midnight_battle": // combined night battle
@@ -135,7 +148,6 @@ namespace ElectronicObserver.Data
 
 				case "api_req_combined_battle/each_battle_water": // STF combined
 					DayData = data;
-
 					break;
 
 				case "api_req_combined_battle/ld_shooting": // combined radar ambush
@@ -143,10 +155,16 @@ namespace ElectronicObserver.Data
 					break;
 
 				case "api_req_practice/battle": //pvp day
+					isPvp = true;
+					Battle_replay.World = 0;
+					Battle_replay.Mapnum = 0;
+					Battle_replay.Battles[0].Node = 0;
+					Battle_replay.Battles[0].Yasen = new object();
 					DayData = data;
 					break;
 
 				case "api_req_practice/midnight_battle": // pvp night
+					isPvp = true;
 					YasenData = data;
 					break;
 
@@ -154,34 +172,57 @@ namespace ElectronicObserver.Data
 				case "api_req_combined_battle/battleresult":
 				case "api_req_practice/battle_result":
 					Battle_replay.Battles[0].Drop = db.Battle.Result.DroppedShipID;
-					Battle_replay.Time = DateTime.Now.Ticks / 1000;
-
+					Battle_replay.Time = DateTime.Now.Ticks/1000;
+					Battle_replay.Battles[0].Rating = db.Battle.Result.Rank;
+					Battle_replay.Battles[0].Time = DateTime.Now.Ticks/1000;
 					SaveReplay();
+
 					break;
 
 				case "api_port/port":
 					Battle_replay.Combined = db.Fleet.CombinedFlag;
+					isPvp = false;
 					break;
 			}
 		}
 
-	
+		private void GetBattleExp()
+		{
+			KCDatabase db = KCDatabase.Instance;
+			Battle_replay.Battles[0].BaseEXP = db.Battle.Result.BaseExp;
+			Battle_replay.Battles[0].HqEXP = db.Battle.Result.AdmiralExp;
+		}
 
+		private void GetMVP()
+		{
+
+			KCDatabase db = KCDatabase.Instance;
+			Battle_replay.Battles[0].Mvp = new List<int>();
+			Battle_replay.Battles[0].Mvp.Clear();
+			if (db.Fleet.CombinedFlag > 0)
+			{
+				Battle_replay.Battles[0].Mvp = new List<int>(2){
+					db.Battle.Result.MVPIndex,
+					db.Battle.Result.MVPIndexCombined
+				};
+			}
+			else
+			{
+				Battle_replay.Battles[0].Mvp = new List<int>(1)
+				{
+					db.Battle.Result.MVPIndex
+				};
+			}
+		}
 		private void GetNodeSupport()
 		{
 			KCDatabase db = KCDatabase.Instance;
 			var fleets = db.Fleet.Fleets.Values.ToList();
-			foreach(var fleet in fleets)
+			foreach (var fleet in fleets)
 			{
-				if(fleet.ExpeditionDestination == 33 || fleet.ExpeditionDestination == 301)
+				if (fleet.ExpeditionDestination == 33 || fleet.ExpeditionDestination == 301)
 				{
-					Battle_replay.Support1 = 1;
-					Utility.Logger.Add(2, "Node support active");
-				}
-				else
-				{
-					Battle_replay.Support1 = 0;
-					Utility.Logger.Add(2, "Node support  not active");
+					Battle_replay.Support1 = fleet.ID;
 				}
 			}
 		}
@@ -194,14 +235,9 @@ namespace ElectronicObserver.Data
 			{
 				if (fleet.ExpeditionDestination == 34 || fleet.ExpeditionDestination == 302)
 				{
-					Battle_replay.Support2 = 1;
-					Utility.Logger.Add(2, "Boss support active");
+					Battle_replay.Support2 = fleet.ID;
 				}
-				else
-				{
-					Battle_replay.Support2 = 0;
-					Utility.Logger.Add(2, "Boss support not active");
-				}
+
 			}
 		}
 
@@ -216,10 +252,10 @@ namespace ElectronicObserver.Data
 			{
 				int baseID = bases[baseIndex];
 				BaseAirCorpsData baseAirCorps = KCDatabase.Instance.BaseAirCorps[baseID];
-				if (baseAirCorps.MapAreaID == db.Battle.Compass.MapAreaID )
+				if (baseAirCorps.MapAreaID == db.Battle.Compass.MapAreaID)
 				{
-					Utility.Logger.Add(2, baseID.ToString());
 					Battle_replay.Lbas.Add(new Lba());
+					Battle_replay.Lbas[MatchedBases].Rid = baseAirCorps.AirCorpsID;
 					Battle_replay.Lbas[MatchedBases].Action = baseAirCorps.ActionKind;
 					Battle_replay.Lbas[MatchedBases].Range = new Range();
 					Battle_replay.Lbas[MatchedBases].Range.ApiBase = baseAirCorps.Base_Distance;
@@ -239,12 +275,10 @@ namespace ElectronicObserver.Data
 							Battle_replay.Lbas[MatchedBases].Planes[squadronIndex].State = squadron.State;
 							Battle_replay.Lbas[MatchedBases].Planes[squadronIndex].Count = squadron.AircraftCurrent;
 							Battle_replay.Lbas[MatchedBases].Planes[squadronIndex].Morale = squadron.Condition;
-							Utility.Logger.Add(2, eq.NameWithLevel.ToString());
 						}
 						else
 						{
 							Battle_replay.Lbas[MatchedBases].Planes.Add(new Plane());
-							Utility.Logger.Add(2, "No equipment in lbas:");
 						}
 					}
 					MatchedBases++;
@@ -252,12 +286,21 @@ namespace ElectronicObserver.Data
 			}
 		}
 
-		public async void SaveReplay()
+		public void SaveReplay()
 		{
 			GetFleet1();
-			GetNodeSupport();
-			GetBossSupport();
-			GetLBAS();
+			GetFleet2();
+			GetFleet3();
+			GetFleet4();
+			GetBattleExp();
+			GetMVP();
+			if(!isPvp)
+			{
+				GetMapHP();
+				GetLBAS();
+				GetNodeSupport();
+				GetBossSupport();
+			}
 			JsonSerializerSettings KCjsonSerializer = new JsonSerializerSettings()
 			{
 				CheckAdditionalContent = true
@@ -271,7 +314,7 @@ namespace ElectronicObserver.Data
 			if (DayData != null)
 			{
 				string DayData_str = DayData.ToString();
-				Battle_replay.Battles[0].Data = JsonConvert.DeserializeObject(DayData_str, KCjsonSerializer);
+			    Battle_replay.Battles[0].Data = JsonConvert.DeserializeObject(DayData_str, KCjsonSerializer);
 			}
 
 			try
@@ -282,14 +325,20 @@ namespace ElectronicObserver.Data
 					Directory.CreateDirectory(parent);
 
 				KCDatabase db = KCDatabase.Instance;
-				info = $"{db.Battle.Compass.MapAreaID}-{db.Battle.Compass.MapInfoID}-{db.Battle.Compass.Destination}";
+				if (!isPvp)
+				{
+					info = $"{db.Battle.Compass.MapAreaID}-{db.Battle.Compass.MapInfoID}-{db.Battle.Compass.Destination}";
+				}
+				else
+				{
+					info = "practice";
+				}
+
 				string path = $"{parent}\\{DateTimeHelper.GetTimeStamp()}@{info}-Replay.txt";
 				using (StreamWriter rep_file = File.CreateText(path))
 				{
 					JsonSerializer serializer = new JsonSerializer();
 					serializer.Serialize(rep_file, Battle_replay);
-					await rep_file.FlushAsync().ConfigureAwait(false);
-					Utility.Logger.Add(2, "Replay written to:" + path);
 				}
 
 			}
@@ -298,6 +347,25 @@ namespace ElectronicObserver.Data
 			{
 
 				Utility.ErrorReporter.SendErrorReport(ex, "戦闘ログの出力に失敗しました。");
+			}
+		}
+
+		private void GetMapHP()
+		{
+			KCDatabase db = KCDatabase.Instance;
+			var maps = db.MapInfo.Values;
+
+			foreach (MapInfoData map in maps)
+			{
+				if ((map.MapAreaID == db.Battle.Compass.MapAreaID) && (map.MapInfoID == db.Battle.Compass.MapInfoID) && map.RequiredDefeatedCount != -1)
+				{
+					Battle_replay.Defeat_count = map.CurrentDefeatedCount;
+				}
+				else if ((map.MapAreaID == db.Battle.Compass.MapAreaID) && (map.MapInfoID == db.Battle.Compass.MapInfoID)&& map.MapHPMax > 0)
+				{
+					Battle_replay.Max_maphp = map.MapHPMax;
+					Battle_replay.Now_maphp = map.MapHPCurrent;
+				}
 			}
 		}
 
@@ -313,7 +381,6 @@ namespace ElectronicObserver.Data
 					continue;
 
 				ShipData ship = fleet.MembersInstance[i];
-				//Utility.Logger.Add(2, ship.Name);
 				List<int> kyouka_list = ship.Kyouka.ToList();
 				Battle_replay.Fleet1.Add(new Fleet1()
 				{
@@ -321,7 +388,7 @@ namespace ElectronicObserver.Data
 					Level = ship.Level,
 					Morale = ship.Condition,
 					Kyouka = kyouka_list,
-					Equip = ship.AllSlotMaster.ToList(),
+					Equip = ship.AllSlotMasterReplay.ToList(),
 
 				});
 
@@ -331,16 +398,18 @@ namespace ElectronicObserver.Data
 		private void GetFleet2()
 		{
 			KCDatabase db = KCDatabase.Instance;
-			FleetData fleet = db.Fleet[2]; //fleet 1
+			FleetData fleet = db.Fleet[2]; //fleet 2
 			Battle_replay.Fleet2.Clear();
-
+			if (fleet == null)
+			{
+				return;
+			}
 			for (int i = 0; i < fleet.Members.Count; i++)
 			{
 				if (fleet[i] == -1)
 					continue;
 
 				ShipData ship = fleet.MembersInstance[i];
-				//Utility.Logger.Add(2, ship.Name);
 				List<int> kyouka_list = ship.Kyouka.ToList();
 				Battle_replay.Fleet2.Add(new Fleet2()
 				{
@@ -348,7 +417,7 @@ namespace ElectronicObserver.Data
 					Level = ship.Level,
 					Morale = ship.Condition,
 					Kyouka = kyouka_list,
-					Equip = ship.AllSlotMaster.ToList(),
+					Equip = ship.AllSlotMasterReplay.ToList(),
 
 				});
 
@@ -357,16 +426,18 @@ namespace ElectronicObserver.Data
 		private void GetFleet3()
 		{
 			KCDatabase db = KCDatabase.Instance;
-			FleetData fleet = db.Fleet[3]; //fleet 1
+			FleetData fleet = db.Fleet[3]; //fleet 3
 			Battle_replay.Fleet3.Clear();
-
+			if (fleet == null)
+			{
+				return;
+			}
 			for (int i = 0; i < fleet.Members.Count; i++)
 			{
 				if (fleet[i] == -1)
 					continue;
 
 				ShipData ship = fleet.MembersInstance[i];
-				//Utility.Logger.Add(2, ship.Name);
 				List<int> kyouka_list = ship.Kyouka.ToList();
 				Battle_replay.Fleet3.Add(new Fleet3()
 				{
@@ -374,7 +445,7 @@ namespace ElectronicObserver.Data
 					Level = ship.Level,
 					Morale = ship.Condition,
 					Kyouka = kyouka_list,
-					Equip = ship.AllSlotMaster.ToList(),
+					Equip = ship.AllSlotMasterReplay.ToList(),
 
 				});
 
@@ -383,16 +454,18 @@ namespace ElectronicObserver.Data
 		private void GetFleet4()
 		{
 			KCDatabase db = KCDatabase.Instance;
-			FleetData fleet = db.Fleet[4]; //fleet 1
-			Battle_replay.Fleet3.Clear();
-
+			FleetData fleet = db.Fleet[4]; //fleet 4
+			Battle_replay.Fleet4.Clear();
+			if (fleet == null)
+			{
+				return;
+			}
 			for (int i = 0; i < fleet.Members.Count; i++)
 			{
 				if (fleet[i] == -1)
 					continue;
 
 				ShipData ship = fleet.MembersInstance[i];
-				//Utility.Logger.Add(2, ship.Name);
 				List<int> kyouka_list = ship.Kyouka.ToList();
 				Battle_replay.Fleet4.Add(new Fleet4()
 				{
@@ -400,7 +473,7 @@ namespace ElectronicObserver.Data
 					Level = ship.Level,
 					Morale = ship.Condition,
 					Kyouka = kyouka_list,
-					Equip = ship.AllSlotMaster.ToList(),
+					Equip = ship.AllSlotMasterReplay.ToList(),
 
 				});
 
