@@ -1269,29 +1269,48 @@ namespace ElectronicObserver.Window
 		/// </summary>
 		private void ContextMenuFleet_CopyFleetAnalysis_Click(object sender, EventArgs e)
         {
-
-            StringBuilder sb = new StringBuilder();
             KCDatabase db = KCDatabase.Instance;
-
-            // 手書き json の悲しみ
-            // pain and suffering
-
-            sb.Append("[");
+            List<string> ships = new List<string>();
 
             foreach (ShipData ship in db.Ships.Values.Where(s => s.IsLocked))
             {
-                if (ship == null) break;
+	            int[] apiKyouka = 
+	            { 
+		            ship.FirepowerModernized,
+		            ship.TorpedoModernized,
+		            ship.AAModernized,
+		            ship.ArmorModernized,
+		            ship.LuckModernized,
+		            ship.HPMaxModernized,
+		            ship.ASWModernized
+	            };
 
-                // ship.SallyArea defaults to -1 if it doesn't exist on api 
-                // which breaks the app, changing the default to 0 would be 
-                // easier but I'd prefer not to mess with that
-				sb.Append($"{{\"api_ship_id\":{ship.ShipID},\"api_lv\":{ship.Level},\"api_kyouka\":[{ship.FirepowerModernized},{ship.TorpedoModernized},{ship.AAModernized},{ship.ArmorModernized},{ship.LuckModernized},{ship.HPMaxModernized},{ship.ASWModernized}],\"api_sally_area\":{(ship.SallyArea >= 0 ? ship.SallyArea : 0 )}}},");
+	            int expProgress = 0;
+	            if (ExpTable.ShipExp.ContainsKey(ship.Level + 1) && ship.Level != 99)
+	            {
+		            expProgress = (ExpTable.ShipExp[ship.Level].Next - ship.ExpNext)
+			            / ExpTable.ShipExp[ship.Level].Next;
+	            }
+
+				int[] apiExp = {ship.ExpTotal, ship.ExpNext, expProgress};
+
+	            string shipId = $"\"api_ship_id\":{ship.ShipID}";
+				string level = $"\"api_lv\":{ship.Level}";
+				string kyouka = $"\"api_kyouka\":[{string.Join(",", apiKyouka)}]";
+				string exp = $"\"api_exp\":[{string.Join(",", apiExp)}]";
+				// ship.SallyArea defaults to -1 if it doesn't exist on api 
+				// which breaks the app, changing the default to 0 would be 
+				// easier but I'd prefer not to mess with that
+				string sallyArea = $"\"api_sally_area\":{(ship.SallyArea >= 0 ? ship.SallyArea : 0)}";
+
+				string[] analysisData = {shipId, level, kyouka, exp, sallyArea};
+
+				ships.Add($"{{{string.Join(",", analysisData)}}}");
 			}
 
-            sb.Remove(sb.Length - 1, 1);        // remove ","
-            sb.Append("]");
+            string json = $"[{string.Join(",", ships)}]";
 
-            Clipboard.SetData(DataFormats.StringFormat, sb.ToString());
+            Clipboard.SetData(DataFormats.StringFormat, json);
         }
 
         /// <summary>
