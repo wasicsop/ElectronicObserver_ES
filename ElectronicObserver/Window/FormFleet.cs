@@ -186,17 +186,18 @@ namespace ElectronicObserver.Window
 						"Lv sum: {0} / avg: {1:0.00}\r\n" +
 						"{2} fleet\r\n" +
 						"Support Expedition: {3}\r\n" +
-						"Total FP {4} / AA {5} / ASW {6} / LOS {7}\r\n" +
-						"Drum: {8} ({9} ships)\r\n" +
-						"Daihatsu: {10} ({11} ships, +{12:p1})\r\n" +
-						"TP: S {13} / A {14}\r\n" +
-						"Consumption: {15} fuel / {16} ammo\r\n" +
-						"({17} fuel / {18} ammo per battle)",
+						"Total FP {4} / Torp {5} / AA {6} / ASW {7} / LOS {8}\r\n" +
+						"Drum: {9} ({10} ships)\r\n" +
+						"Daihatsu: {11} ({12} ships, +{13:p1})\r\n" +
+						"TP: S {14} / A {15}\r\n" +
+						"Consumption: {16} fuel / {17} ammo\r\n" +
+						"({18} fuel / {19} ammo per battle)",
 						levelSum,
 						(double)levelSum / Math.Max(fleet.Members.Count(id => id != -1), 1),
 						Constants.GetSpeed(speed),
 						supporttype,
 						members.Sum(s => s.FirepowerTotal),
+						members.Sum(s => s.TorpedoTotal),
 						members.Sum(s => s.AATotal),
 						members.Sum(s => s.ASWTotal),
 						members.Sum(s => s.LOSTotal),
