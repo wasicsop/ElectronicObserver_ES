@@ -63,7 +63,9 @@ namespace ElectronicObserver.Utility
 
         public static async Task PeriodicUpdateCheckAsync(CancellationToken cancellationToken)
         {
-            while (true)
+	        if (!Configuration.Config.Life.CheckUpdateInformation) return;
+
+			while (true)
             {
                 // Check for update every 1 hour.
                 await Task.Delay(TimeSpan.FromHours(1), cancellationToken);
