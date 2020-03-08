@@ -18,8 +18,7 @@ namespace ElectronicObserver.Utility
         internal static readonly string AppDataFolder =
             Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + @"\\ElectronicObserver";
         internal static readonly string TranslationFolder = AppDataFolder + "\\Translations";
-        private static readonly Uri UpdateUrl =
-            new Uri(String.Format("{0}/en-US/update.json", Configuration.Config.Control.UpdateURL));
+
         internal static string MaintDate { get; set; } = string.Empty;
         internal static int MaintState { get; set; }
 
@@ -77,7 +76,8 @@ namespace ElectronicObserver.Utility
         {
             try
             {
-                using (var client = WebRequest.Create(UpdateUrl).GetResponse())
+				Uri UpdateUrl = new Uri(String.Format("{0}/en-US/update.json", Configuration.Config.Control.UpdateURL));
+				using (var client = WebRequest.Create(UpdateUrl).GetResponse())
                 {
                     var updateData = client.GetResponseStream();
                     var json = DynamicJson.Parse(updateData);
@@ -155,8 +155,8 @@ namespace ElectronicObserver.Utility
             if (isChecked) return;
             try
             {
-
-                using (var client = WebRequest.Create(UpdateUrl).GetResponse())
+				Uri UpdateUrl = new Uri(String.Format("{0}/en-US/update.json", Configuration.Config.Control.UpdateURL));
+				using (var client = WebRequest.Create(UpdateUrl).GetResponse())
                 {
                     var updateData = client.GetResponseStream();
                     var json = DynamicJson.Parse(updateData);
@@ -239,8 +239,8 @@ namespace ElectronicObserver.Utility
         }
 
         internal static void DownloadData(TranslationFile filename)
-        {
-            var url = Configuration.Config.Control.UpdateURL.AbsoluteUri + "en-US/" + $"{filename}.xml";
+		{
+			var url = Configuration.Config.Control.UpdateURL.AbsoluteUri + "en-US/" + $"{filename}.xml";
             var dest = TranslationFolder + $"\\{filename}.xml";
             try
             {
@@ -257,8 +257,8 @@ namespace ElectronicObserver.Utility
         }
 
         internal static void DownloadData(string filename)
-        {
-            var url = Configuration.Config.Control.UpdateURL.AbsoluteUri + "en-US/" + $"{filename}";
+		{
+			var url = Configuration.Config.Control.UpdateURL.AbsoluteUri + "en-US/" + $"{filename}";
             var dest = TranslationFolder + $"\\{filename}";
             try
             {
