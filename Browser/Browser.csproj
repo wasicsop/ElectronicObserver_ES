@@ -112,6 +112,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CefOp\GadgetReplaceUrlFilter.cs" />
+    <Compile Include="CefOp\GadgetUrlHandler.cs" />
     <Compile Include="CefOp\ResRequestHandler.cs" />
     <Compile Include="CefOp\DragHandler.cs" />
     <Compile Include="CefOp\KeyboardHandler.cs" />
