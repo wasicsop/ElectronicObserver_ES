@@ -1,5 +1,5 @@
 ﻿using Browser.CefOp;
-using BrowserLib;
+using BrowserLibCore;
 using CefSharp;
 using CefSharp.WinForms;
 using Nekoxy;
@@ -21,6 +21,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Globalization;
 using Browser.Properties;
+using Grpc.Core;
+using MagicOnion.Client;
 
 namespace Browser
 {
@@ -29,7 +31,7 @@ namespace Browser
 	/// </summary>
 	/// <remarks>thx KanColleViewer!</remarks>
 	[ServiceBehavior(InstanceContextMode = InstanceContextMode.Single/*, IncludeExceptionDetailInFaults = true*/)]
-	public partial class FormBrowser : Form, BrowserLib.IBrowser
+	public partial class FormBrowser : Form, BrowserLibCore.IBrowser
 	{
 
 		private readonly Size KanColleSize = new Size(1200, 720);
@@ -39,21 +41,21 @@ namespace Browser
 		private bool RestoreStyleSheet = false;
 
 		// FormBrowserHostの通信サーバ
-		private string ServerUri;
+		// private string ServerUri { get; }
 
 		// FormBrowserの通信サーバ
-		private PipeCommunicator<BrowserLib.IBrowserHost> BrowserHost;
+		// private PipeCommunicator<BrowserLib.IBrowserHost> BrowserHost { get; }
 
-		private BrowserLib.BrowserConfiguration Configuration;
+		private BrowserLibCore.IBrowserHost BrowserHost { get; set; }
+
+		private BrowserConfiguration Configuration { get; set; }
 
 		// 親プロセスが生きているか定期的に確認するためのタイマー
-		private System.Windows.Forms.Timer HeartbeatTimer = new System.Windows.Forms.Timer();
-		private IntPtr HostWindow;
+		private System.Windows.Forms.Timer HeartbeatTimer { get; } = new System.Windows.Forms.Timer();
 
+		private ChromiumWebBrowser Browser { get; set; }
 
-		private ChromiumWebBrowser Browser = null;
-
-		private string ProxySettings = null;
+		private string ProxySettings { get; set; } = null;
 
 
 		private bool _styleSheetApplied;
@@ -62,7 +64,7 @@ namespace Browser
 		/// </summary>
 		private bool StyleSheetApplied
 		{
-			get { return _styleSheetApplied; }
+			get => _styleSheetApplied;
 			set
 			{
 				if (value)
@@ -98,16 +100,11 @@ namespace Browser
 		private string _lastScreenShotPath;
 
 
-		private NumericUpDown ToolMenu_Other_Volume_VolumeControl
-		{
-			get { return (NumericUpDown)((ToolStripControlHost)ToolMenu_Other_Volume.DropDownItems["ToolMenu_Other_Volume_VolumeControlHost"]).Control; }
-		}
+		private NumericUpDown ToolMenu_Other_Volume_VolumeControl => 
+			(NumericUpDown)((ToolStripControlHost)ToolMenu_Other_Volume.DropDownItems["ToolMenu_Other_Volume_VolumeControlHost"]).Control;
 
-		private PictureBox ToolMenu_Other_LastScreenShot_Control
-		{
-			get { return (PictureBox)((ToolStripControlHost)ToolMenu_Other_LastScreenShot.DropDownItems["ToolMenu_Other_LastScreenShot_ImageHost"]).Control; }
-		}
-
+		private PictureBox ToolMenu_Other_LastScreenShot_Control => 
+			(PictureBox)((ToolStripControlHost)ToolMenu_Other_LastScreenShot.DropDownItems["ToolMenu_Other_LastScreenShot_ImageHost"]).Control;
 
 
 		/// <summary>
@@ -115,7 +112,9 @@ namespace Browser
 		/// <param name="serverUri">ホストプロセスとの通信用URL</param>
 		public FormBrowser( string serverUri )
 		{
-            CultureInfo c = CultureInfo.CurrentCulture;
+			// Debugger.Launch();
+
+			CultureInfo c = CultureInfo.CurrentCulture;
             CultureInfo ui = CultureInfo.CurrentUICulture;
             if(c.Name != "en-US" && c.Name != "ja-JP" && c.Name != "ko-KR")
             {
@@ -130,21 +129,23 @@ namespace Browser
 
 			InitializeComponent();
 
-			ServerUri = serverUri;
+			// ServerUri = serverUri;
 			StyleSheetApplied = false;
 			_volumeManager = new VolumeManager((uint)Process.GetCurrentProcess().Id);
 
 
 			// 音量設定用コントロールの追加
 			{
-				var control = new NumericUpDown();
-				control.Name = "ToolMenu_Other_Volume_VolumeControl";
-				control.Maximum = 100;
-				control.TextAlign = HorizontalAlignment.Right;
-				control.Font = ToolMenu_Other_Volume.Font;
+				NumericUpDown control = new NumericUpDown
+				{
+					Name = "ToolMenu_Other_Volume_VolumeControl",
+					Maximum = 100,
+					TextAlign = HorizontalAlignment.Right,
+					Font = ToolMenu_Other_Volume.Font,
+					Tag = false
+				};
 
 				control.ValueChanged += ToolMenu_Other_Volume_ValueChanged;
-				control.Tag = false;
 
 				var host = new ToolStripControlHost(control, "ToolMenu_Other_Volume_VolumeControlHost");
 
@@ -158,22 +159,28 @@ namespace Browser
 			// スクリーンショットプレビューコントロールの追加
 			{
 				double zoomrate = 0.5;
-				var control = new PictureBox();
-				control.Name = "ToolMenu_Other_LastScreenShot_Image";
-				control.SizeMode = PictureBoxSizeMode.Zoom;
-				control.Size = new Size((int)(KanColleSize.Width * zoomrate), (int)(KanColleSize.Height * zoomrate));
-				control.Margin = new Padding();
-				control.Image = new Bitmap((int)(KanColleSize.Width * zoomrate), (int)(KanColleSize.Height * zoomrate), PixelFormat.Format24bppRgb);
+				PictureBox control = new PictureBox
+				{
+					Name = "ToolMenu_Other_LastScreenShot_Image",
+					SizeMode = PictureBoxSizeMode.Zoom,
+					Size = new Size((int) (KanColleSize.Width * zoomrate), (int) (KanColleSize.Height * zoomrate)),
+					Margin = new Padding(),
+					Image = new Bitmap((int) (KanColleSize.Width * zoomrate), (int) (KanColleSize.Height * zoomrate),
+						PixelFormat.Format24bppRgb)
+				};
 				using (var g = Graphics.FromImage(control.Image))
 				{
 					g.Clear(SystemColors.Control);
 					g.DrawString("No screenshot yet.\r\n", Font, Brushes.Black, new Point(4, 4));
 				}
 
-				var host = new ToolStripControlHost(control, "ToolMenu_Other_LastScreenShot_ImageHost");
+				var host = new ToolStripControlHost(control, "ToolMenu_Other_LastScreenShot_ImageHost")
+				{
+					Size = new Size(control.Width + control.Margin.Horizontal,
+						control.Height + control.Margin.Vertical),
+					AutoSize = false
+				};
 
-				host.Size = new Size(control.Width + control.Margin.Horizontal, control.Height + control.Margin.Vertical);
-				host.AutoSize = false;
 				control.Location = new Point(control.Margin.Left, control.Margin.Top);
 
 				host.Click += ToolMenu_Other_LastScreenShot_ImageHost_Click;
@@ -186,32 +193,32 @@ namespace Browser
 
 		private void FormBrowser_Load(object sender, EventArgs e)
 		{
-			SetWindowLong(this.Handle, GWL_STYLE, WS_CHILD);
+			// MagicOnion default: localhost:12345 (Insecure connection)
+			string[] args = { "localhost", "12345" };
+
+			SetWindowLong(Handle, GWL_STYLE, WS_CHILD);
 
 			// ホストプロセスに接続
-			BrowserHost = new PipeCommunicator<BrowserLib.IBrowserHost>(
-				this, typeof(BrowserLib.IBrowser), ServerUri + "Browser", "Browser");
-			BrowserHost.Connect(ServerUri + "/BrowserHost");
-			BrowserHost.Faulted += BrowserHostChannel_Faulted;
+			Channel grpChannel = new Channel(args[0], int.Parse(args[1]), ChannelCredentials.Insecure);
+			BrowserHost = StreamingHubClient.Connect<BrowserLibCore.IBrowserHost, BrowserLibCore.IBrowser>(grpChannel, this);
 
-
-			ConfigurationChanged(BrowserHost.Proxy.Configuration);
-
+			ConfigurationChanged(BrowserHost.Configuration().Result);
 
 			// ウィンドウの親子設定＆ホストプロセスから接続してもらう
-			BrowserHost.Proxy.ConnectToBrowser(this.Handle);
+			Task.Run(async () => await BrowserHost.ConnectToBrowser((long)Handle)).Wait();
 
+			// it checks the host but does nothing no matter what the result is?
 			// 親ウィンドウが生きているか確認
-			HeartbeatTimer.Tick += (EventHandler)((sender2, e2) =>
+			/*HeartbeatTimer.Tick += (EventHandler)((sender2, e2) =>
 			{
-				BrowserHost.AsyncRemoteRun(() => { HostWindow = BrowserHost.Proxy.HWND; });
+				HostWindow = IntPtr.Zero; // BrowserHost.GetHWND().Result;
+				// BrowserHost.AsyncRemoteRun(() => { HostWindow = BrowserHost.Proxy.HWND; });
 			});
 			HeartbeatTimer.Interval = 2000; // 2秒ごと　
-			HeartbeatTimer.Start();
+			HeartbeatTimer.Start();*/
 
 
-			BrowserHost.AsyncRemoteRun(() => BrowserHost.Proxy.GetIconResource());
-
+			SetIconResource();
 
 			InitializeBrowser();
 		}
@@ -223,14 +230,10 @@ namespace Browser
 		/// </summary>
 		void InitializeBrowser()
 		{
-			if (Browser != null)
-				return;
+			if (Browser != null) return;
+			if (ProxySettings == null) return;
 
-			if (ProxySettings == null)
-				return;
-
-
-			var settings = new CefSettings()
+			var settings = new CefSettings
 			{
 				BrowserSubprocessPath = Path.Combine(
 						AppDomain.CurrentDomain.SetupInformation.ApplicationBase,
@@ -277,11 +280,12 @@ namespace Browser
 
 		void Exit()
 		{
-			if (!BrowserHost.Closed)
+			// if (!BrowserHost.Closed)
 			{
-				BrowserHost.Close();
+				// BrowserHost.Close();
 				HeartbeatTimer.Stop();
-				Cef.Shutdown();
+				Task.Run(async () => await BrowserHost.DisposeAsync()).Wait();
+				Cef.Shutdown(); 
 				Application.Exit();
 			}
 		}
@@ -299,7 +303,7 @@ namespace Browser
 			BeginInvoke((Action)(() => Exit()));
 		}
 
-		public void ConfigurationChanged(BrowserLib.BrowserConfiguration conf)
+		public void ConfigurationChanged(BrowserConfiguration conf)
 		{
 			Configuration = conf;
 
@@ -310,24 +314,24 @@ namespace Browser
 			ToolMenu.Dock = (DockStyle)Configuration.ToolMenuDockStyle;
 			ToolMenu.Visible = Configuration.IsToolMenuVisible;
 
-			this.SizeAdjuster.BackColor = System.Drawing.Color.FromArgb(unchecked((int)Configuration.BackColor));
-			this.ToolMenu.BackColor = System.Drawing.Color.FromArgb(unchecked((int)Configuration.BackColor));
+			SizeAdjuster.BackColor = System.Drawing.Color.FromArgb(unchecked((int)Configuration.BackColor));
+			ToolMenu.BackColor = System.Drawing.Color.FromArgb(unchecked((int)Configuration.BackColor));
 			ToolMenu_Other_ClearCache.Visible = conf.EnableDebugMenu;
 		}
 
 		private void ConfigurationUpdated()
 		{
-			BrowserHost.AsyncRemoteRun(() => BrowserHost.Proxy.ConfigurationUpdated(Configuration));
+			BrowserHost.ConfigurationUpdated(Configuration);
 		}
 
 		private void AddLog(int priority, string message)
 		{
-			BrowserHost.AsyncRemoteRun(() => BrowserHost.Proxy.AddLog(priority, message));
+			BrowserHost.AddLog(priority, message);
 		}
 
 		private void SendErrorReport(string exceptionName, string message)
 		{
-			BrowserHost.AsyncRemoteRun(() => BrowserHost.Proxy.SendErrorReport(exceptionName, message));
+			BrowserHost.SendErrorReport(exceptionName, message);
 		}
 
 
@@ -415,10 +419,16 @@ namespace Browser
 			Browser != null &&
 			Browser.IsBrowserInitialized;
 
+
+		public Action<Exception> Faulted
+		{
+			get => throw new NotImplementedException(); 
+			set => throw new NotImplementedException();
+		}
+
 		private IFrame GetMainFrame()
 		{
-			if (!IsBrowserInitialized)
-				return null;
+			if (!IsBrowserInitialized) return null;
 
 			var browser = Browser.GetBrowser();
 			var frame = browser.MainFrame;
@@ -431,8 +441,7 @@ namespace Browser
 
 		private IFrame GetGameFrame()
 		{
-			if (!IsBrowserInitialized)
-				return null;
+			if (!IsBrowserInitialized) return null;
 
 			var browser = Browser.GetBrowser();
 			var frames = browser.GetFrameIdentifiers()
@@ -459,13 +468,10 @@ namespace Browser
 		/// <summary>
 		/// スタイルシートを適用します。
 		/// </summary>
-		public void ApplyStyleSheet()
+		private void ApplyStyleSheet()
 		{
-			if (!IsBrowserInitialized)
-				return;
-
-			if (!Configuration.AppliesStyleSheet && !RestoreStyleSheet)
-				return;
+			if (!IsBrowserInitialized) return;
+			if (!Configuration.AppliesStyleSheet && !RestoreStyleSheet) return;
 
 			try
 			{
@@ -503,7 +509,7 @@ namespace Browser
 		/// <summary>
 		/// DMMによるページ更新ダイアログを非表示にします。
 		/// </summary>
-		public void DestroyDMMreloadDialog()
+		private void DestroyDMMreloadDialog()
 		{
 			if (!IsBrowserInitialized)
 				return;
@@ -562,13 +568,13 @@ namespace Browser
 		/// <summary>
 		/// ブラウザを再読み込みします。
 		/// </summary>
-		public void RefreshBrowser() => RefreshBrowser(false);
+		private void RefreshBrowser() => RefreshBrowser(false);
 
 		/// <summary>
 		/// ブラウザを再読み込みします。
 		/// </summary>
 		/// <param name="ignoreCache">キャッシュを無視するか。</param>
-		public void RefreshBrowser(bool ignoreCache)
+		private void RefreshBrowser(bool ignoreCache)
 		{
 			if (!Configuration.AppliesStyleSheet)
 				StyleSheetApplied = false;
@@ -579,15 +585,12 @@ namespace Browser
 		/// <summary>
 		/// ズームを適用します。
 		/// </summary>
-		public void ApplyZoom()
+		private void ApplyZoom()
 		{
-			if (!IsBrowserInitialized)
-				return;
-
+			if (!IsBrowserInitialized) return;
 
 			double zoomRate = Configuration.ZoomRate;
 			bool fit = Configuration.ZoomFit && StyleSheetApplied;
-
 
 			double zoomFactor;
 
@@ -599,6 +602,7 @@ namespace Browser
 			}
 			else
 			{
+				// todo Math.Clamp
 				if (zoomRate < 0.1)
 					zoomRate = 0.1;
 				if (zoomRate > 10)
@@ -690,7 +694,7 @@ namespace Browser
 		/// <summary>
 		/// スクリーンショットを撮影し、設定で指定された保存先に保存します。
 		/// </summary>
-		public async Task SaveScreenShot()
+		private async Task SaveScreenShot()
 		{
 
 			int savemode = Configuration.ScreenShotSaveMode;
@@ -793,7 +797,6 @@ namespace Browser
 						SendErrorReport(ex.ToString(), "Failed to copy screenshot to clipboard.");
 					}
 				}
-
 			}
 			catch (Exception ex)
 			{
@@ -823,69 +826,64 @@ namespace Browser
 
 			InitializeBrowser();
 
-			BrowserHost.AsyncRemoteRun(() => BrowserHost.Proxy.SetProxyCompleted());
+			BrowserHost.SetProxyCompleted();
 		}
 
 
         private void SetCookie()
         {
-            Browser.ExecuteScriptAsync(Properties.Resources.RegionCookie);
+            Browser.ExecuteScriptAsync(Resources.RegionCookie);
         }
 
 
-		public void SetIconResource(byte[] canvas)
+        private async void SetIconResource()
+        {
+	        byte[] canvas = await BrowserHost.GetIconResource();
+
+	        string[] keys =
+	        {
+		        "Browser_ScreenShot",
+		        "Browser_Zoom",
+		        "Browser_ZoomIn",
+		        "Browser_ZoomOut",
+		        "Browser_Unmute",
+		        "Browser_Mute",
+		        "Browser_Refresh",
+		        "Browser_Navigate",
+		        "Browser_Other",
+	        };
+	        int unitsize = 16 * 16 * 4;
+
+	        for (int i = 0; i < keys.Length; i++)
+	        {
+		        Bitmap bmp = new Bitmap(16, 16, PixelFormat.Format32bppArgb);
+
+		        if (canvas != null)
+		        {
+			        BitmapData bmpdata = bmp.LockBits(new Rectangle(0, 0, bmp.Width, bmp.Height),
+				        ImageLockMode.WriteOnly, PixelFormat.Format32bppArgb);
+			        Marshal.Copy(canvas, unitsize * i, bmpdata.Scan0, unitsize);
+			        bmp.UnlockBits(bmpdata);
+		        }
+
+		        Icons.Images.Add(keys[i], bmp);
+	        }
+
+	        ToolMenu_ScreenShot.Image = ToolMenu_Other_ScreenShot.Image = Icons.Images["Browser_ScreenShot"];
+	        ToolMenu_Zoom.Image = ToolMenu_Other_Zoom.Image = Icons.Images["Browser_Zoom"];
+	        ToolMenu_Other_Zoom_Increment.Image = Icons.Images["Browser_ZoomIn"];
+	        ToolMenu_Other_Zoom_Decrement.Image = Icons.Images["Browser_ZoomOut"];
+	        ToolMenu_Refresh.Image = ToolMenu_Other_Refresh.Image = Icons.Images["Browser_Refresh"];
+	        ToolMenu_NavigateToLogInPage.Image =
+		        ToolMenu_Other_NavigateToLogInPage.Image = Icons.Images["Browser_Navigate"];
+	        ToolMenu_Other.Image = Icons.Images["Browser_Other"];
+
+	        SetVolumeState();
+        }
+
+
+        private void SetVolumeState()
 		{
-
-			string[] keys = new string[] {
-				"Browser_ScreenShot",
-				"Browser_Zoom",
-				"Browser_ZoomIn",
-				"Browser_ZoomOut",
-				"Browser_Unmute",
-				"Browser_Mute",
-				"Browser_Refresh",
-				"Browser_Navigate",
-				"Browser_Other",
-			};
-			int unitsize = 16 * 16 * 4;
-
-			for (int i = 0; i < keys.Length; i++)
-			{
-				Bitmap bmp = new Bitmap(16, 16, PixelFormat.Format32bppArgb);
-
-				if (canvas != null)
-				{
-					BitmapData bmpdata = bmp.LockBits(new Rectangle(0, 0, bmp.Width, bmp.Height), ImageLockMode.WriteOnly, PixelFormat.Format32bppArgb);
-					Marshal.Copy(canvas, unitsize * i, bmpdata.Scan0, unitsize);
-					bmp.UnlockBits(bmpdata);
-				}
-
-				Icons.Images.Add(keys[i], bmp);
-			}
-
-
-			ToolMenu_ScreenShot.Image = ToolMenu_Other_ScreenShot.Image =
-				Icons.Images["Browser_ScreenShot"];
-			ToolMenu_Zoom.Image = ToolMenu_Other_Zoom.Image =
-				Icons.Images["Browser_Zoom"];
-			ToolMenu_Other_Zoom_Increment.Image =
-				Icons.Images["Browser_ZoomIn"];
-			ToolMenu_Other_Zoom_Decrement.Image =
-				Icons.Images["Browser_ZoomOut"];
-			ToolMenu_Refresh.Image = ToolMenu_Other_Refresh.Image =
-				Icons.Images["Browser_Refresh"];
-			ToolMenu_NavigateToLogInPage.Image = ToolMenu_Other_NavigateToLogInPage.Image =
-				Icons.Images["Browser_Navigate"];
-			ToolMenu_Other.Image =
-				Icons.Images["Browser_Other"];
-
-			SetVolumeState();
-		}
-
-
-		private void SetVolumeState()
-		{
-
 			bool mute;
 			float volume;
 
@@ -893,7 +891,6 @@ namespace Browser
 			{
 				mute = _volumeManager.IsMute;
 				volume = _volumeManager.Volume * 100;
-
 			}
 			catch (Exception)
 			{
@@ -941,7 +938,6 @@ namespace Browser
 
 		private void ToolMenu_Other_Zoom_Click(object sender, EventArgs e)
 		{
-
 			double zoom;
 
 			if (sender == ToolMenu_Other_Zoom_25)
@@ -990,7 +986,6 @@ namespace Browser
 
 		private void ToolMenu_Zoom_DropDownOpening(object sender, EventArgs e)
 		{
-
 			var list = ToolMenu_Other_Zoom.DropDownItems.Cast<ToolStripItem>().ToArray();
 			ToolMenu_Zoom.DropDownItems.AddRange(list);
 		}
@@ -1026,7 +1021,6 @@ namespace Browser
 			catch (Exception)
 			{
 				control.BackColor = Color.MistyRose;
-
 			}
 
 		}
@@ -1062,15 +1056,13 @@ namespace Browser
 				MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2)
 				== DialogResult.OK)
 			{
-
 				Navigate(Configuration.LogInPageURL);
 			}
-
 		}
 
 		private void ToolMenu_Other_Navigate_Click(object sender, EventArgs e)
 		{
-			BrowserHost.AsyncRemoteRun(() => BrowserHost.Proxy.RequestNavigation(Browser.GetMainFrame()?.Url ?? ""));
+			BrowserHost.RequestNavigation(Browser.GetMainFrame()?.Url ?? "");
 		}
 
 		private void ToolMenu_Other_AppliesStyleSheet_Click(object sender, EventArgs e)
@@ -1125,8 +1117,7 @@ namespace Browser
 
 		private void ContextMenuTool_Opening(object sender, CancelEventArgs e)
 		{
-
-			if (IsKanColleLoaded || ToolMenu.Visible)
+			if (IsKanColleLoaded || ToolMenu.Visible) 
 				e.Cancel = true;
 		}
 
@@ -1161,11 +1152,9 @@ namespace Browser
 
 		private void ToolMenu_Other_Alignment_DropDownOpening(object sender, EventArgs e)
 		{
-
 			foreach (var item in ToolMenu_Other_Alignment.DropDownItems)
 			{
-				var menu = item as ToolStripMenuItem;
-				if (menu != null)
+				if (item is ToolStripMenuItem menu)
 				{
 					menu.Checked = false;
 				}
@@ -1193,17 +1182,14 @@ namespace Browser
 
 		private void ToolMenu_Other_LastScreenShot_DropDownOpening(object sender, EventArgs e)
 		{
-
 			try
 			{
-
 				using (var fs = new FileStream(_lastScreenShotPath, FileMode.Open, FileAccess.Read))
 				{
 					ToolMenu_Other_LastScreenShot_Control.Image?.Dispose();
 
 					ToolMenu_Other_LastScreenShot_Control.Image = Image.FromStream(fs);
 				}
-
 			}
 			catch (Exception)
 			{
@@ -1257,7 +1243,8 @@ namespace Browser
 			if (MessageBox.Show("キャッシュをクリアするため、ブラウザを再起動します。\r\nよろしいですか？\r\n※環境によっては本ツールが終了する場合があります。その場合は再起動してください。", "ブラウザ再起動確認",
 				MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
 			{
-				BrowserHost.AsyncRemoteRun(() => BrowserHost.Proxy.ClearCache());
+				BrowserHost.ClearCache();
+				// BrowserHost.AsyncRemoteRun(() => BrowserHost.Proxy.ClearCache());
 			}
 		}
 

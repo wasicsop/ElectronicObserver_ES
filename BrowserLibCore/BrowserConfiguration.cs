@@ -1,214 +1,144 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.ServiceModel;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MessagePack;
 
-namespace BrowserLib
+namespace BrowserLibCore
 {
-	/// <summary>
-	/// FormBrowserHostのインターフェス
-	/// WCFでプロセス間通信用
-	/// </summary>
-	[ServiceContract]
-	public interface IBrowserHost
-	{
-		/// <summary>
-		/// ブラウザ側で必要な設定情報
-		/// </summary>
-		BrowserConfiguration Configuration
-		{
-			[OperationContract]
-			get;
-		}
-
-		/// <summary>
-		/// キーメッセージの送り先
-		/// </summary>
-		IntPtr HWND
-		{
-			[OperationContract]
-			get;
-		}
-
-		/// <summary>
-		/// ブラウザのウィンドウハンドルが作成されたあとホスト側で処理するために呼び出す
-		/// </summary>
-		[OperationContract]
-		void ConnectToBrowserInternal(IntPtr hwnd);
-
-		/// <summary>
-		/// エラー報告
-		/// 例外は送れるのかよく分からなかったら例外の名前だけ送るようにした
-		/// </summary>
-		[OperationContract]
-		void SendErrorReport(string exceptionName, string message);
-
-		/// <summary>
-		/// ログ追加
-		/// </summary>
-		[OperationContract]
-		void AddLog(int priority, string message);
-
-		[OperationContract]
-		void ConfigurationUpdated(BrowserConfiguration config);
-
-		[OperationContract]
-		void GetIconResource();
-
-		[OperationContract]
-		void RequestNavigation(string baseurl);
-
-		[OperationContract]
-		void SetProxyCompleted();
-
-		[OperationContract]
-		void ClearCache();
-	}
-
-	/// <summary>
-	/// ブラウザ側で必要な設定をまとめた
-	/// 更新があったときにまとめて送る
-	/// </summary>
-	[DataContract]
+	[MessagePackObject]
 	public class BrowserConfiguration
 	{
 		/// <summary>
 		/// ブラウザの拡大率 10-1000(%)
 		/// </summary>
-		[DataMember]
+		[Key(0)]
 		public double ZoomRate { get; set; }
 
 		/// <summary>
 		/// ブラウザをウィンドウサイズに合わせる
 		/// </summary>
-		[DataMember]
+		[Key(1)]
 		public bool ZoomFit { get; set; }
 
 		/// <summary>
 		/// ログインページのURL
 		/// </summary>
-		[DataMember]
+		[Key(2)]
 		public string LogInPageURL { get; set; }
 
 		/// <summary>
 		/// ブラウザを有効にするか
 		/// </summary>
-		[DataMember]
+		[Key(3)]
 		public bool IsEnabled { get; set; }
 
 		/// <summary>
 		/// スクリーンショットの保存先フォルダ
 		/// </summary>
-		[DataMember]
+		[Key(4)]
 		public string ScreenShotPath { get; set; }
 
 		/// <summary>
 		/// スクリーンショットのフォーマット
 		/// 1=jpeg, 2=png
 		/// </summary>
-		[DataMember]
+		[Key(5)]
 		public int ScreenShotFormat { get; set; }
 
 		/// <summary>
 		/// スクリーンショットの保存モード
 		/// </summary>
-		[DataMember]
+		[Key(6)]
 		public int ScreenShotSaveMode { get; set; }
 
 		/// <summary>
 		/// 適用するスタイルシート
 		/// </summary>
-		[DataMember]
+		[Key(7)]
 		public string StyleSheet { get; set; }
 
 		/// <summary>
 		/// スクロール可能かどうか
 		/// </summary>
-		[DataMember]
+		[Key(8)]
 		public bool IsScrollable { get; set; }
 
 		/// <summary>
 		/// スタイルシートを適用するか
 		/// </summary>
-		[DataMember]
+		[Key(9)]
 		public bool AppliesStyleSheet { get; set; }
 
 		/// <summary>
 		/// DMMによるページ更新ダイアログを表示するか
 		/// </summary>
-		[DataMember]
+		[Key(10)]
 		public bool IsDMMreloadDialogDestroyable { get; set; }
 
 		/// <summary>
 		/// スクリーンショットにおいて、Twitter の画像圧縮を回避するか
 		/// </summary>
-		[DataMember]
+		[Key(11)]
 		public bool AvoidTwitterDeterioration { get; set; }
 
 		/// <summary>
 		/// ツールメニューの配置
 		/// </summary>
-		[DataMember]
+		[Key(12)]
 		public int ToolMenuDockStyle { get; set; }
 
 		/// <summary>
 		/// ツールメニューの可視性
 		/// </summary>
-		[DataMember]
+		[Key(13)]
 		public bool IsToolMenuVisible { get; set; }
 
 		/// <summary>
 		/// 再読み込み時に確認ダイアログを入れるか
 		/// </summary>
-		[DataMember]
+		[Key(14)]
 		public bool ConfirmAtRefresh { get; set; }
 
 		/// <summary>
 		/// 現在の音量
 		/// </summary>
-		[DataMember]
+		[Key(15)]
 		public float Volume { get; set; }
 
 		/// <summary>
 		/// ミュートかどうか
 		/// </summary>
-		[DataMember]
+		[Key(16)]
 		public bool IsMute { get; set; }
 
-		[DataMember]
+		[Key(17)]
 		public int BackColor { get; set; }
 
 		/// <summary>
 		/// ハードウェアアクセラレーションを有効にするか
 		/// </summary>
-		[DataMember]
+		[Key(18)]
 		public bool HardwareAccelerationEnabled { get; set; }
 
 		/// <summary>
 		/// 描画バッファを保持するか
 		/// </summary>
-		[DataMember]
+		[Key(19)]
 		public bool PreserveDrawingBuffer { get; set; }
 
 		/// <summary>
 		/// カラープロファイルを sRGB 固定にするか
 		/// </summary>
-		[DataMember]
+		[Key(20)]
 		public bool ForceColorProfile { get; set; }
 
-        /// <summary>
-        /// ブラウザのログを保存するか
-        /// </summary>
-        [DataMember]
-        public bool SavesBrowserLog { get; set; }
+		/// <summary>
+		/// ブラウザのログを保存するか
+		/// </summary>
+		[Key(21)]
+		public bool SavesBrowserLog { get; set; }
 
 		/// <summary>
 		/// デバッグメニューを有効にするか
 		/// </summary>
-		[DataMember]
+		[Key(22)]
 		public bool EnableDebugMenu { get; set; }
 	}
 }

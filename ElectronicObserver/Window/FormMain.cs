@@ -483,8 +483,8 @@ namespace ElectronicObserver.Window
 					float volume = Utility.Configuration.Config.Control.LastVolume;
 					bool mute = Utility.Configuration.Config.Control.LastIsMute;
 
-					BrowserLib.VolumeManager.SetApplicationVolume(id, volume);
-					BrowserLib.VolumeManager.SetApplicationMute(id, mute);
+					BrowserLibCore.VolumeManager.SetApplicationVolume(id, volume);
+					BrowserLibCore.VolumeManager.SetApplicationMute(id, mute);
 
 					SyncBGMPlayer.Instance.SetInitialVolume((int)(volume * 100));
 					foreach (var not in NotifierManager.Instance.GetNotifiers())
@@ -539,8 +539,8 @@ namespace ElectronicObserver.Window
 				try
 				{
 					uint id = (uint)System.Diagnostics.Process.GetCurrentProcess().Id;
-					Utility.Configuration.Config.Control.LastVolume = BrowserLib.VolumeManager.GetApplicationVolume(id);
-					Utility.Configuration.Config.Control.LastIsMute = BrowserLib.VolumeManager.GetApplicationMute(id);
+					Utility.Configuration.Config.Control.LastVolume = BrowserLibCore.VolumeManager.GetApplicationVolume(id);
+					Utility.Configuration.Config.Control.LastIsMute = BrowserLibCore.VolumeManager.GetApplicationMute(id);
 
 				}
 				catch (Exception)

@@ -1,4 +1,4 @@
-﻿using BrowserLib;
+﻿using BrowserLibCore;
 using ElectronicObserver.Observer;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Properties;
@@ -18,6 +18,9 @@ using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BrowserHost;
+using MagicOnion.Hosting;
+using Microsoft.Extensions.Hosting;
 using WeifenLuo.WinFormsUI.Docking;
 
 namespace ElectronicObserver.Window
@@ -27,26 +30,31 @@ namespace ElectronicObserver.Window
 	/// ブラウザのホスト側フォーム
 	/// </summary>
 	[ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
-	public partial class FormBrowserHost : DockContent, IBrowserHost
+	public partial class FormBrowserHost : DockContent
 	{
+		private static FormBrowserHost _instance;
+		public static FormBrowserHost Instance => _instance;
 
-
-		public static readonly string BrowserExeName = "EOBrowser.exe";
+		public static string BrowserExeName => "EOBrowser.exe";
 
 
 		/// <summary>
 		/// FormBrowserHostの通信サーバ
 		/// </summary>
-		private string ServerUri = "net.pipe://localhost/" + Process.GetCurrentProcess().Id + "/ElectronicObserver";
+		private string ServerUri => "net.pipe://localhost/" + Process.GetCurrentProcess().Id + "/ElectronicObserver";
 
 		/// <summary>
 		/// FormBrowserとの通信インターフェース
 		/// </summary>
-		private PipeCommunicator<IBrowser> Browser;
+		// private PipeCommunicator<IBrowser> Browser { get; set; }
 
-		private Process BrowserProcess;
+		public List<BrowserHostHub> Hubs { get; } = new List<BrowserHostHub>();
 
-		private IntPtr BrowserWnd = IntPtr.Zero;
+		public BrowserLibCore.IBrowser Browser => Hubs.FirstOrDefault()?.Browser ?? throw new Exception();
+
+		private Process BrowserProcess { get; set; }
+
+		private IntPtr BrowserWnd { get; set; } = IntPtr.Zero;
 
 
 
@@ -66,7 +74,7 @@ namespace ElectronicObserver.Window
 		private InitializationStageFlag _initializationStage = 0;
 		private InitializationStageFlag InitializationStage
 		{
-			get { return _initializationStage; }
+			get => _initializationStage;
 			set
 			{
 				//AddLog( 1, _initializationStage + " -> " + value );
@@ -82,11 +90,11 @@ namespace ElectronicObserver.Window
 			}
 		}
 
-
-
 		public FormBrowserHost(FormMain parent)
 		{
 			InitializeComponent();
+
+			_instance = this;
 
 			Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormBrowser]);
 		}
@@ -98,27 +106,44 @@ namespace ElectronicObserver.Window
 
 		private void FormBrowser_Load(object sender, EventArgs e)
 		{
+			// without wait you get:
+			// Invoke or BeginInvoke cannot be called on a control until the window handle has been created
+			Task.Run(MakeHost).Wait();
 			LaunchBrowserProcess();
 		}
 
+		public void Connect(BrowserHostHub hub)
+		{
+			Hubs.Clear();
+			Hubs.Add(hub);
+		}
+
+		private async void MakeHost()
+		{
+			await MagicOnionHost.CreateDefaultBuilder()
+				.UseMagicOnion()
+				.RunConsoleAsync();
+		}
 
 		private void LaunchBrowserProcess()
 		{
-			// 通信サーバ起動
-			Browser = new PipeCommunicator<IBrowser>(
-				this, typeof(IBrowserHost), ServerUri, "BrowserHost");
-
 			try
 			{
 				// プロセス起動
 
-				if (System.IO.File.Exists(BrowserExeName))
+				if (File.Exists(BrowserExeName))
+				{
 					BrowserProcess = Process.Start(BrowserExeName, ServerUri);
+				}
+				else //デバッグ環境用 作業フォルダにかかわらず自分と同じフォルダのを参照する
+				{
+					string fileName =
+						Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\" +
+						BrowserExeName;
+					string arguments = ServerUri;
 
-				else    //デバッグ環境用 作業フォルダにかかわらず自分と同じフォルダのを参照する
-					BrowserProcess = Process.Start(
-						System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\" + BrowserExeName,
-						ServerUri);
+					BrowserProcess = Process.Start(fileName, arguments);
+				}
 
 				// 残りはサーバに接続してきたブラウザプロセスがドライブする
 
@@ -134,7 +159,7 @@ namespace ElectronicObserver.Window
 		internal void ConfigurationChanged()
 		{
 			Font = Utility.Configuration.Config.UI.MainFont;
-			Browser.AsyncRemoteRun(() => Browser.Proxy.ConfigurationChanged(Configuration));
+			Browser.ConfigurationChanged(ConfigurationCore);
 		}
 
 		//ロード直後の適用ではレイアウトがなぜか崩れるのでこのタイミングでも適用
@@ -143,67 +168,28 @@ namespace ElectronicObserver.Window
 			if (InitializationStage != InitializationStageFlag.Completed)       // 初期化が終わってから
 				return;
 
-			Browser.AsyncRemoteRun(() => Browser.Proxy.InitialAPIReceived());
+			Browser.InitialAPIReceived();
+
+			// Browser.AsyncRemoteRun(() => Browser.Proxy.InitialAPIReceived());
 		}
 
 
 		/// <summary>
 		/// 指定した URL のページを開きます。
 		/// </summary>
-		public void Navigate(string url)
+		private void Navigate(string url)
 		{
-			Browser.AsyncRemoteRun(() => Browser.Proxy.Navigate(url));
+			Browser.Navigate(url);
+			// Browser.AsyncRemoteRun(() => Browser.Proxy.Navigate(url));
 		}
 
 		/// <summary>
 		/// 艦これのログインページを開きます。
 		/// </summary>
-		public void NavigateToLogInPage()
+		private void NavigateToLogInPage()
 		{
 			Navigate(Utility.Configuration.Config.FormBrowser.LogInPageURL);
 		}
-
-		/// <summary>
-		/// ブラウザを再読み込みします。
-		/// </summary>
-		public void RefreshBrowser()
-		{
-			Browser.AsyncRemoteRun(() => Browser.Proxy.RefreshBrowser());
-		}
-
-		/// <summary>
-		/// ズームを適用します。
-		/// </summary>
-		public void ApplyZoom()
-		{
-			Browser.AsyncRemoteRun(() => Browser.Proxy.ApplyZoom());
-		}
-
-		/// <summary>
-		/// スタイルシートを適用します。
-		/// </summary>
-		public void ApplyStyleSheet()
-		{
-			Browser.AsyncRemoteRun(() => Browser.Proxy.ApplyStyleSheet());
-		}
-
-		/// <summary>
-		/// DMMによるページ更新ダイアログを非表示にします。
-		/// </summary>
-		public void DestroyDMMreloadDialog()
-		{
-			Browser.AsyncRemoteRun(() => Browser.Proxy.DestroyDMMreloadDialog());
-		}
-
-
-		/// <summary>
-		/// スクリーンショットを保存します。
-		/// </summary>
-		public void SaveScreenShot()
-		{
-			Browser.AsyncRemoteRun(() => Browser.Proxy.SaveScreenShot());
-		}
-
 
 		public void SendErrorReport(string exceptionName, string message)
 		{
@@ -215,42 +201,41 @@ namespace ElectronicObserver.Window
 			Utility.Logger.Add(priority, message);
 		}
 
-
-		public BrowserLib.BrowserConfiguration Configuration
+		public BrowserConfiguration ConfigurationCore
 		{
 			get
 			{
-				BrowserLib.BrowserConfiguration config = new BrowserLib.BrowserConfiguration();
 				var c = Utility.Configuration.Config.FormBrowser;
 
-				config.ZoomRate = c.ZoomRate;
-				config.ZoomFit = c.ZoomFit;
-				config.LogInPageURL = c.LogInPageURL;
-				config.IsEnabled = c.IsEnabled;
-				config.ScreenShotPath = c.ScreenShotPath;
-				config.ScreenShotFormat = c.ScreenShotFormat;
-				config.ScreenShotSaveMode = c.ScreenShotSaveMode;
-				config.StyleSheet = c.StyleSheet;
-				config.IsScrollable = c.IsScrollable;
-				config.AppliesStyleSheet = c.AppliesStyleSheet;
-				config.IsDMMreloadDialogDestroyable = c.IsDMMreloadDialogDestroyable;
-				config.AvoidTwitterDeterioration = c.AvoidTwitterDeterioration;
-				config.ToolMenuDockStyle = (int)c.ToolMenuDockStyle;
-				config.IsToolMenuVisible = c.IsToolMenuVisible;
-				config.ConfirmAtRefresh = c.ConfirmAtRefresh;
-				config.HardwareAccelerationEnabled = c.HardwareAccelerationEnabled;
-				config.PreserveDrawingBuffer = c.PreserveDrawingBuffer;
-				config.BackColor = this.BackColor.ToArgb();
-				config.ForceColorProfile = c.ForceColorProfile;
-				config.SavesBrowserLog = c.SavesBrowserLog;
-				config.EnableDebugMenu = Utility.Configuration.Config.Debug.EnableDebugMenu;
-				return config;
+				return new BrowserConfiguration
+				{
+					ZoomRate = c.ZoomRate,
+					ZoomFit = c.ZoomFit,
+					LogInPageURL = c.LogInPageURL,
+					IsEnabled = c.IsEnabled,
+					ScreenShotPath = c.ScreenShotPath,
+					ScreenShotFormat = c.ScreenShotFormat,
+					ScreenShotSaveMode = c.ScreenShotSaveMode,
+					StyleSheet = c.StyleSheet,
+					IsScrollable = c.IsScrollable,
+					AppliesStyleSheet = c.AppliesStyleSheet,
+					IsDMMreloadDialogDestroyable = c.IsDMMreloadDialogDestroyable,
+					AvoidTwitterDeterioration = c.AvoidTwitterDeterioration,
+					ToolMenuDockStyle = (int) c.ToolMenuDockStyle,
+					IsToolMenuVisible = c.IsToolMenuVisible,
+					ConfirmAtRefresh = c.ConfirmAtRefresh,
+					HardwareAccelerationEnabled = c.HardwareAccelerationEnabled,
+					PreserveDrawingBuffer = c.PreserveDrawingBuffer,
+					BackColor = BackColor.ToArgb(),
+					ForceColorProfile = c.ForceColorProfile,
+					SavesBrowserLog = c.SavesBrowserLog,
+					EnableDebugMenu = Utility.Configuration.Config.Debug.EnableDebugMenu
+				};
 			}
 		}
 
-		public void ConfigurationUpdated(BrowserLib.BrowserConfiguration config)
+		internal void ConfigurationUpdated(BrowserConfiguration config)
 		{
-
 			var c = Utility.Configuration.Config.FormBrowser;
 
 			c.ZoomRate = config.ZoomRate;
@@ -281,10 +266,11 @@ namespace ElectronicObserver.Window
 			}
 		}
 
-		public void GetIconResource()
+		public byte[] GetIconResource()
 		{
 
-			string[] keys = new string[] {
+			string[] keys = 
+			{
 				"Browser_ScreenShot",
 				"Browser_Zoom",
 				"Browser_ZoomIn",
@@ -302,37 +288,33 @@ namespace ElectronicObserver.Window
 			for (int i = 0; i < keys.Length; i++)
 			{
 				Image img = ResourceManager.Instance.Icons.Images[keys[i]];
-				if (img != null)
+				if (img == null) continue;
+
+				using (Bitmap bmp = new Bitmap(img))
 				{
-					using (Bitmap bmp = new Bitmap(img))
-					{
 
-						BitmapData bmpdata = bmp.LockBits(new Rectangle(0, 0, bmp.Width, bmp.Height), ImageLockMode.ReadOnly, PixelFormat.Format32bppArgb);
-						Marshal.Copy(bmpdata.Scan0, canvas, unitsize * i, unitsize);
-						bmp.UnlockBits(bmpdata);
+					BitmapData bmpdata = bmp.LockBits(new Rectangle(0, 0, bmp.Width, bmp.Height), ImageLockMode.ReadOnly, PixelFormat.Format32bppArgb);
+					Marshal.Copy(bmpdata.Scan0, canvas, unitsize * i, unitsize);
+					bmp.UnlockBits(bmpdata);
 
-					}
 				}
 			}
 
-			Browser.AsyncRemoteRun(() => Browser.Proxy.SetIconResource(canvas));
-
+			return canvas;
 		}
 
 
 		public void RequestNavigation(string baseurl)
 		{
-
-			using ( var dialog = new Window.Dialog.DialogTextInput( Resources.AskNavTitle, Resources.AskNavText ) ) {
+			using (var dialog = new Dialog.DialogTextInput(Resources.AskNavTitle, Resources.AskNavText))
+			{
 				dialog.InputtedText = baseurl;
 
-				if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+				if (dialog.ShowDialog() == DialogResult.OK)
 				{
-
 					Navigate(dialog.InputtedText);
 				}
 			}
-
 		}
 
 
@@ -340,37 +322,23 @@ namespace ElectronicObserver.Window
 		{
 			Utility.Logger.Add(2, "キャッシュの削除を開始するため、ブラウザを終了しています…");
 
+			Browser.CloseBrowser();
+			TerminateBrowserProcess();
+
+			await ClearCacheAsync();
+
+			Utility.Logger.Add(2, "キャッシュの削除処理が終了しました。ブラウザを再起動しています…");
+
+			_initializationStage = InitializationStageFlag.InitialAPILoaded;
 			try
 			{
-				if (!Browser?.Closed ?? false)
-				{
-					Browser.Proxy?.CloseBrowser();
-
-					await Browser.CloseAsync(this);
-
-					TerminateBrowserProcess();
-				}
+				LaunchBrowserProcess();
 			}
-			catch (Exception) { }
-
-
-			await ClearCacheAsync().ContinueWith(task =>
+			catch (Exception ex)
 			{
-				Utility.Logger.Add(2, "キャッシュの削除処理が終了しました。ブラウザを再起動しています…");
-
-				_initializationStage = InitializationStageFlag.InitialAPILoaded;
-				try
-				{
-					LaunchBrowserProcess();
-				}
-				catch (Exception ex)
-				{
-					Utility.ErrorReporter.SendErrorReport(ex, "ブラウザの再起動に失敗しました。");
-					MessageBox.Show("ブラウザプロセスの再起動に失敗しました。\r\n申し訳ありませんが本ツールを一旦終了してください。", ":(", MessageBoxButtons.OK, MessageBoxIcon.Error);
-				}
-
-
-			}, TaskScheduler.FromCurrentSynchronizationContext());
+				Utility.ErrorReporter.SendErrorReport(ex, "ブラウザの再起動に失敗しました。");
+				MessageBox.Show("ブラウザプロセスの再起動に失敗しました。\r\n申し訳ありませんが本ツールを一旦終了してください。", ":(", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
 		}
 
 		private async Task ClearCacheAsync()
@@ -417,13 +385,17 @@ namespace ElectronicObserver.Window
 			}
 		}
 
-
 		public void ConnectToBrowser(IntPtr hwnd)
+		{
+			Invoke((Action)(() => ConnectToBrowserInternal(hwnd)));
+		}
+
+		private void ConnectToBrowserInternal(IntPtr hwnd)
 		{
 			BrowserWnd = hwnd;
 
 			// 子ウィンドウに設定
-			SetParent(BrowserWnd, this.Handle);
+			SetParent(BrowserWnd, Handle);
 			MoveWindow(BrowserWnd, 0, 0, this.Width, this.Height, true);
 
 			//キー入力をブラウザに投げる
@@ -433,8 +405,9 @@ namespace ElectronicObserver.Window
 			BeginInvoke((Action)(() =>
 			{
 				// ブラウザプロセスに接続
-				Browser.Connect(ServerUri + "Browser/Browser");
-				Browser.Faulted += Browser_Faulted;
+				// todo: need browser connect?
+				// Browser.Connect(ServerUri + "Browser/Browser");
+				// Browser.Faulted += Browser_Faulted;
 
 				ConfigurationChanged();
 
@@ -444,10 +417,12 @@ namespace ElectronicObserver.Window
 					(string apiname, dynamic data) => InitialAPIReceived(apiname, data);
 
 				// プロキシをセット
-				Browser.AsyncRemoteRun(() => Browser.Proxy.SetProxy(BuildDownstreamProxy()));
+				Browser.SetProxy(BuildDownstreamProxy());
+				// Browser.AsyncRemoteRun(() => Browser.Proxy.SetProxy(BuildDownstreamProxy()));
 				APIObserver.Instance.ProxyStarted += () =>
 				{
-					Browser.AsyncRemoteRun(() => Browser.Proxy.SetProxy(BuildDownstreamProxy()));
+					Browser.SetProxy(BuildDownstreamProxy());
+					// Browser.AsyncRemoteRun(() => Browser.Proxy.SetProxy(BuildDownstreamProxy()));
 				};
 
 				InitializationStage |= InitializationStageFlag.BrowserConnected;
@@ -467,7 +442,6 @@ namespace ElectronicObserver.Window
 			else if (config.UseSystemProxy)
 			{
 				return APIObserver.Instance.ProxyPort.ToString();
-
 			}
 			else if (config.UseUpstreamProxy)
 			{
@@ -490,17 +464,23 @@ namespace ElectronicObserver.Window
 		}
 
 
-		void Browser_Faulted( Exception e ) {
-			if ( Browser.Proxy == null ) {
+		void Browser_Faulted( Exception e ) 
+		{
+			/*if ( Browser.Proxy == null ) 
+			{
 				Utility.Logger.Add( 3, Resources.BrowserClosedWithoutWarning );
-			} else {
+			} 
+			else
+			{
 				Utility.ErrorReporter.SendErrorReport( e, Resources.BrowserThrewError );
-			}
+			}*/
 		}
 
 
 		private void TerminateBrowserProcess()
 		{
+			// have to unset parent because the browsers Application.Exit call propagates up to EO otherwise
+			SetParent(BrowserWnd, IntPtr.Zero);
 			if (!BrowserProcess.WaitForExit(2000))
 			{
 				try
@@ -518,30 +498,20 @@ namespace ElectronicObserver.Window
 
 		public void CloseBrowser()
 		{
-
 			try
 			{
-
 				if (Browser == null)
 				{
 					// ブラウザを開いていない場合はnullなので
 					return;
 				}
-				if (!Browser.Closed)
-				{
-					// ブラウザプロセスが異常終了した場合などはnullになる
-					if (Browser.Proxy != null)
-					{
-						Browser.Proxy.CloseBrowser();
-					}
-					Browser.Close();
-					TerminateBrowserProcess();
-				}
 
+				Browser.CloseBrowser();
+				TerminateBrowserProcess();
 			}
 			catch (Exception ex)
-			{       //ブラウザプロセスが既に終了していた場合など
-
+			{
+				//ブラウザプロセスが既に終了していた場合など
 				Utility.ErrorReporter.SendErrorReport( ex, Resources.BrowserCloseError );
 			}
 
@@ -573,22 +543,11 @@ namespace ElectronicObserver.Window
 
 			if (InitializationStage == InitializationStageFlag.Completed && (BrowserProcess?.HasExited ?? false))
 			{
-				if (!Browser?.Closed ?? false)
-				{
-					Browser.Close();
-				}
-
 				InitializationStage = InitializationStageFlag.InitialAPILoaded;
 				LaunchBrowserProcess();
 			}
 		}
 
-
-
-		/// <summary>
-		/// ハートビート用
-		/// </summary>
-		public IntPtr HWND => this.Handle;
 
 		protected override string GetPersistString()
 		{
@@ -603,7 +562,6 @@ namespace ElectronicObserver.Window
 
 		[DllImport("user32.dll", SetLastError = true)]
 		private static extern bool MoveWindow(IntPtr hwnd, int x, int y, int cx, int cy, bool repaint);
-
 
 		#endregion
 

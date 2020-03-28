@@ -15,6 +15,7 @@ namespace Browser
 		[STAThread]
 		static void Main(string[] args)
 		{
+			// args = new[] {"test"};
 			// FormBrowserHostから起動された時は引数に通信用URLが渡される
 			if (args.Length == 0)
 			{
