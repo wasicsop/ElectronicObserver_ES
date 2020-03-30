@@ -156,7 +156,7 @@ namespace ElectronicObserver.Data
 		[DataMember]
 		private IEnumerable<ViewColumnData> ViewColumnsSerializer
 		{
-			get { return ViewColumns.Values; }
+			get { return ViewColumns.Values.ToList(); }
 			set { ViewColumns = value.ToDictionary(v => v.Name); }
 		}
 

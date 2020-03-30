@@ -204,8 +204,11 @@ namespace ElectronicObserver.Observer
 		/// </summary>
 		public void Stop()
 		{
-
-			HttpProxy.Shutdown();
+			try
+			{
+				HttpProxy.Shutdown();
+			}
+			catch { }
 
 			Utility.Logger.Add( 1, LoggerRes.APIObserverStopped );
 		}

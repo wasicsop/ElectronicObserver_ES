@@ -13,6 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.IO.Compression;
@@ -1323,8 +1324,12 @@ namespace ElectronicObserver.Window
 				MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1)
 				== System.Windows.Forms.DialogResult.Yes)
 			{
-
-				System.Diagnostics.Process.Start("https://github.com/silfumus/ElectronicObserver/wiki");
+				ProcessStartInfo psi = new ProcessStartInfo
+				{
+					FileName = "https://github.com/silfumus/ElectronicObserver/wiki",
+					UseShellExecute = true
+				};
+				Process.Start(psi);
 			}
 
 		}
@@ -1336,8 +1341,12 @@ namespace ElectronicObserver.Window
 				MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1)
 				== System.Windows.Forms.DialogResult.Yes)
 			{
-
-				System.Diagnostics.Process.Start("https://github.com/gre4bee/ElectronicObserver/issues");
+				ProcessStartInfo psi = new ProcessStartInfo
+				{
+					FileName = "https://github.com/gre4bee/ElectronicObserver/issues",
+					UseShellExecute = true
+				};
+				Process.Start(psi);
 			}
 
 		}

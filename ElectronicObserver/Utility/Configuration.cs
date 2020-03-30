@@ -525,6 +525,8 @@ namespace ElectronicObserver.Utility
 				{
 					get
 					{
+						// needed for Shift-JIS
+						Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 						switch (FileEncodingID)
 						{
 							case 0:

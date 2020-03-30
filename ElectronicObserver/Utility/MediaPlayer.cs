@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using WMPLib;
 
 
 namespace ElectronicObserver.Utility
@@ -15,8 +17,7 @@ namespace ElectronicObserver.Utility
 	/// </summary>
 	public class MediaPlayer
 	{
-
-		private dynamic _wmp;
+		private WindowsMediaPlayerClass WMP { get; }
 
 		public event Action<int> PlayStateChange = delegate { };
 		public event Action MediaEnded = delegate { };
@@ -58,22 +59,17 @@ namespace ElectronicObserver.Utility
 		{
 			try
 			{
-				var type = Type.GetTypeFromProgID("WMPlayer.OCX.7");
-				if (type != null)
+				WMP = new WindowsMediaPlayerClass
 				{
-					_wmp = Activator.CreateInstance(type);
-					_wmp.uiMode = "none";
-					_wmp.settings.autoStart = false;
-					_wmp.PlayStateChange += new Action<int>(wmp_PlayStateChange);
-				}
-				else
-				{
-					_wmp = null;
-				}
+					uiMode = "none"
+				};
+				WMP.settings.autoStart = false;
+				WMP.PlayStateChange += wmp_PlayStateChange;
+		
 			}
-			catch
+			catch (Exception e)
 			{
-				_wmp = null;
+				WMP = null;
 			}
 
 			IsLoop = false;
@@ -93,7 +89,7 @@ namespace ElectronicObserver.Utility
 		/// 利用可能かどうか
 		/// false の場合全機能が使用不可能
 		/// </summary>
-		public bool IsAvailable => _wmp != null;
+		public bool IsAvailable => WMP != null;
 
 		/// <summary>
 		/// メディアファイルのパス。
@@ -101,11 +97,11 @@ namespace ElectronicObserver.Utility
 		/// </summary>
 		public string SourcePath
 		{
-			get { return !IsAvailable ? string.Empty : _wmp.URL; }
+			get { return !IsAvailable ? string.Empty : WMP.URL; }
 			set
 			{
-				if (IsAvailable && _wmp.URL != value)
-					_wmp.URL = value;
+				if (IsAvailable && WMP.URL != value)
+					WMP.URL = value;
 			}
 		}
 
@@ -116,8 +112,8 @@ namespace ElectronicObserver.Utility
 		/// </summary>
 		public int Volume
 		{
-			get { return !IsAvailable ? 0 : _wmp.settings.volume; }
-			set { if (IsAvailable) _wmp.settings.volume = value; }
+			get { return !IsAvailable ? 0 : WMP.settings.volume; }
+			set { if (IsAvailable) WMP.settings.volume = value; }
 		}
 
 		/// <summary>
@@ -125,8 +121,8 @@ namespace ElectronicObserver.Utility
 		/// </summary>
 		public bool IsMute
 		{
-			get { return !IsAvailable ? false : _wmp.settings.mute; }
-			set { if (IsAvailable) _wmp.settings.mute = value; }
+			get { return !IsAvailable ? false : WMP.settings.mute; }
+			set { if (IsAvailable) WMP.settings.mute = value; }
 		}
 
 
@@ -141,7 +137,7 @@ namespace ElectronicObserver.Utility
 			{
 				_isLoop = value;
 				if (IsAvailable)
-					_wmp.settings.setMode("loop", _isLoop);
+					WMP.settings.setMode("loop", _isLoop);
 			}
 		}
 
@@ -156,25 +152,25 @@ namespace ElectronicObserver.Utility
 		/// </summary>
 		public double CurrentPosition
 		{
-			get { return !IsAvailable ? 0.0 : _wmp.controls.currentPosition; }
-			set { if (IsAvailable) _wmp.controls.currentPosition = value; }
+			get { return !IsAvailable ? 0.0 : WMP.controls.currentPosition; }
+			set { if (IsAvailable) WMP.controls.currentPosition = value; }
 		}
 
 		/// <summary>
 		/// 再生状態
 		/// </summary>
-		public int PlayState => !IsAvailable ? 0 : _wmp.playState;
+		public int PlayState => !IsAvailable ? 0 : (int)WMP.playState;
 
 		/// <summary>
 		/// 現在のメディアの名前
 		/// </summary>
-		public string MediaName => !IsAvailable ? string.Empty : _wmp.currentMedia?.name;
+		public string MediaName => !IsAvailable ? string.Empty : WMP.currentMedia?.name;
 
 		/// <summary>
 		/// 現在のメディアの長さ(秒単位)
 		/// なければ 0
 		/// </summary>
-		public double Duration => !IsAvailable ? 0.0 : _wmp.currentMedia?.duration ?? 0;
+		public double Duration => !IsAvailable ? 0.0 : WMP.currentMedia?.duration ?? 0;
 
 
 
@@ -281,7 +277,7 @@ namespace ElectronicObserver.Utility
 			if (_realPlaylist.Count > 0 && SourcePath != _realPlaylist[_playingIndex])
 				SourcePath = _realPlaylist[_playingIndex];
 
-			_wmp.controls.play();
+			WMP.controls.play();
 		}
 
 		/// <summary>
@@ -291,7 +287,7 @@ namespace ElectronicObserver.Utility
 		{
 			if (!IsAvailable) return;
 
-			_wmp.controls.pause();
+			WMP.controls.pause();
 		}
 
 		/// <summary>
@@ -301,7 +297,7 @@ namespace ElectronicObserver.Utility
 		{
 			if (!IsAvailable) return;
 
-			_wmp.controls.stop();
+			WMP.controls.stop();
 		}
 
 		/// <summary>
@@ -311,7 +307,7 @@ namespace ElectronicObserver.Utility
 		{
 			if (!IsAvailable) return;
 
-			_wmp.close();
+			WMP.close();
 		}
 
 

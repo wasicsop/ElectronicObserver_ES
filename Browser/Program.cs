@@ -17,7 +17,7 @@ namespace Browser
 		{
 			// args = new[] {"test"};
 			// FormBrowserHostから起動された時は引数に通信用URLが渡される
-			if (args.Length == 0)
+			if (args.Length < 2)
 			{
 				MessageBox.Show("Please start the application using ElectronicObserver.exe",
 					"Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -26,7 +26,13 @@ namespace Browser
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
 			AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
-			Application.Run(new FormBrowser(args[0]));
+			if (!int.TryParse(args[1], out int port))
+			{
+				MessageBox.Show("Please start the application using ElectronicObserver.exe",
+					"Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+				return;
+			}
+			Application.Run(new FormBrowser(args[0], port));
 		}
 
 		private static System.Reflection.Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args)

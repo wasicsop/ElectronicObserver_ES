@@ -3,7 +3,6 @@ using ElectronicObserver.Observer;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Properties;
 using ElectronicObserver.Utility.Mathematics;
-using mshtml;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,6 +18,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BrowserHost;
+using Grpc.Core;
 using MagicOnion.Hosting;
 using Microsoft.Extensions.Hosting;
 using WeifenLuo.WinFormsUI.Docking;
@@ -29,7 +29,7 @@ namespace ElectronicObserver.Window
 	/// <summary>
 	/// ブラウザのホスト側フォーム
 	/// </summary>
-	[ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
+	// [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
 	public partial class FormBrowserHost : DockContent
 	{
 		private static FormBrowserHost _instance;
@@ -121,12 +121,14 @@ namespace ElectronicObserver.Window
 		private async void MakeHost()
 		{
 			await MagicOnionHost.CreateDefaultBuilder()
-				.UseMagicOnion()
+				.UseMagicOnion(new ServerPort("localhost", 1234, ServerCredentials.Insecure))
 				.RunConsoleAsync();
 		}
 
 		private void LaunchBrowserProcess()
 		{
+			string host = "ElectronicObserver";
+			int port = 1234;
 			try
 			{
 				// プロセス起動
@@ -140,7 +142,7 @@ namespace ElectronicObserver.Window
 					string fileName =
 						Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\" +
 						BrowserExeName;
-					string arguments = ServerUri;
+					string arguments = $"{host} {port}";
 
 					BrowserProcess = Process.Start(fileName, arguments);
 				}

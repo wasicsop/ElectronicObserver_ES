@@ -30,18 +30,20 @@ namespace Browser
 	/// ブラウザを表示するフォームです。
 	/// </summary>
 	/// <remarks>thx KanColleViewer!</remarks>
-	[ServiceBehavior(InstanceContextMode = InstanceContextMode.Single/*, IncludeExceptionDetailInFaults = true*/)]
+	// [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single/*, IncludeExceptionDetailInFaults = true*/)]
 	public partial class FormBrowser : Form, BrowserLibCore.IBrowser
 	{
-
 		private readonly Size KanColleSize = new Size(1200, 720);
-		private readonly string BrowserCachePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"ElectronicObserver\CEF");
+		private readonly string BrowserCachePath = "BrowserCache"; // Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"ElectronicObserver\CEF");
 
 		private readonly string StyleClassID = Guid.NewGuid().ToString().Substring(0, 8);
 		private bool RestoreStyleSheet = false;
 
 		// FormBrowserHostの通信サーバ
 		// private string ServerUri { get; }
+
+		private string Host { get; }
+		private int Port { get; }
 
 		// FormBrowserの通信サーバ
 		// private PipeCommunicator<BrowserLib.IBrowserHost> BrowserHost { get; }
@@ -110,9 +112,12 @@ namespace Browser
 		/// <summary>
 		/// </summary>
 		/// <param name="serverUri">ホストプロセスとの通信用URL</param>
-		public FormBrowser( string serverUri )
+		public FormBrowser(string host, int port)
 		{
 			// Debugger.Launch();
+
+			Host = host;
+			Port = port;
 
 			CultureInfo c = CultureInfo.CurrentCulture;
             CultureInfo ui = CultureInfo.CurrentUICulture;
@@ -147,13 +152,13 @@ namespace Browser
 
 				control.ValueChanged += ToolMenu_Other_Volume_ValueChanged;
 
-				var host = new ToolStripControlHost(control, "ToolMenu_Other_Volume_VolumeControlHost");
+				var toolStripControlHost = new ToolStripControlHost(control, "ToolMenu_Other_Volume_VolumeControlHost");
 
-				control.Size = new Size(host.Width - control.Margin.Horizontal, host.Height - control.Margin.Vertical);
+				control.Size = new Size(toolStripControlHost.Width - control.Margin.Horizontal, toolStripControlHost.Height - control.Margin.Vertical);
 				control.Location = new Point(control.Margin.Left, control.Margin.Top);
 
 
-				ToolMenu_Other_Volume.DropDownItems.Add(host);
+				ToolMenu_Other_Volume.DropDownItems.Add(toolStripControlHost);
 			}
 
 			// スクリーンショットプレビューコントロールの追加
@@ -174,7 +179,7 @@ namespace Browser
 					g.DrawString("No screenshot yet.\r\n", Font, Brushes.Black, new Point(4, 4));
 				}
 
-				var host = new ToolStripControlHost(control, "ToolMenu_Other_LastScreenShot_ImageHost")
+				var toolStripControlHost = new ToolStripControlHost(control, "ToolMenu_Other_LastScreenShot_ImageHost")
 				{
 					Size = new Size(control.Width + control.Margin.Horizontal,
 						control.Height + control.Margin.Vertical),
@@ -183,9 +188,9 @@ namespace Browser
 
 				control.Location = new Point(control.Margin.Left, control.Margin.Top);
 
-				host.Click += ToolMenu_Other_LastScreenShot_ImageHost_Click;
+				toolStripControlHost.Click += ToolMenu_Other_LastScreenShot_ImageHost_Click;
 
-				ToolMenu_Other_LastScreenShot.DropDownItems.Insert(0, host);
+				ToolMenu_Other_LastScreenShot.DropDownItems.Insert(0, toolStripControlHost);
 			}
 
 		}
@@ -193,13 +198,10 @@ namespace Browser
 
 		private void FormBrowser_Load(object sender, EventArgs e)
 		{
-			// MagicOnion default: localhost:12345 (Insecure connection)
-			string[] args = { "localhost", "12345" };
-
 			SetWindowLong(Handle, GWL_STYLE, WS_CHILD);
 
 			// ホストプロセスに接続
-			Channel grpChannel = new Channel(args[0], int.Parse(args[1]), ChannelCredentials.Insecure);
+			Channel grpChannel = new Channel(Host, Port, ChannelCredentials.Insecure);
 			BrowserHost = StreamingHubClient.Connect<BrowserLibCore.IBrowserHost, BrowserLibCore.IBrowser>(grpChannel, this);
 
 			ConfigurationChanged(BrowserHost.Configuration().Result);
@@ -237,7 +239,7 @@ namespace Browser
 			{
 				BrowserSubprocessPath = Path.Combine(
 						AppDomain.CurrentDomain.SetupInformation.ApplicationBase,
-                        @"CefEOBrowser\bin\CefSharp.BrowserSubprocess.exe"),
+                        @"CefSharp.BrowserSubprocess.exe"),
 				CachePath = BrowserCachePath,
 				Locale = "ja",
 				AcceptLanguageList = "ja,en-US,en",        // todo: いる？
@@ -602,13 +604,7 @@ namespace Browser
 			}
 			else
 			{
-				// todo Math.Clamp
-				if (zoomRate < 0.1)
-					zoomRate = 0.1;
-				if (zoomRate > 10)
-					zoomRate = 10;
-
-				zoomFactor = zoomRate;
+				zoomFactor = Math.Clamp(zoomRate, 0.1, 10);
 			}
 
 
