@@ -127,22 +127,22 @@ namespace ElectronicObserver.Window
 
 		private void LaunchBrowserProcess()
 		{
-			string host = "ElectronicObserver";
+			string host = "localhost";
 			int port = 1234;
 			try
 			{
 				// プロセス起動
+				string arguments = $"{host} {port}";
 
 				if (File.Exists(BrowserExeName))
 				{
-					BrowserProcess = Process.Start(BrowserExeName, ServerUri);
+					BrowserProcess = Process.Start(BrowserExeName, arguments);
 				}
 				else //デバッグ環境用 作業フォルダにかかわらず自分と同じフォルダのを参照する
 				{
 					string fileName =
 						Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\" +
 						BrowserExeName;
-					string arguments = $"{host} {port}";
 
 					BrowserProcess = Process.Start(fileName, arguments);
 				}
@@ -161,7 +161,7 @@ namespace ElectronicObserver.Window
 		internal void ConfigurationChanged()
 		{
 			Font = Utility.Configuration.Config.UI.MainFont;
-			Browser.ConfigurationChanged(ConfigurationCore);
+			Browser.ConfigurationChanged();
 		}
 
 		//ロード直後の適用ではレイアウトがなぜか崩れるのでこのタイミングでも適用
@@ -347,8 +347,7 @@ namespace ElectronicObserver.Window
 		{
 			int trial;
 			Exception lastException = null;
-			// todo put cache path into config
-			var dir = new DirectoryInfo(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"ElectronicObserver\CEF"));
+			DirectoryInfo dir = new DirectoryInfo(BrowserConstants.CachePath);
 
 			for (trial = 0; trial < 4; trial++)
 			{

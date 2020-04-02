@@ -2,7 +2,6 @@
 using BrowserLibCore;
 using CefSharp;
 using CefSharp.WinForms;
-using Nekoxy;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -34,19 +33,13 @@ namespace Browser
 	public partial class FormBrowser : Form, BrowserLibCore.IBrowser
 	{
 		private readonly Size KanColleSize = new Size(1200, 720);
-		private readonly string BrowserCachePath = "BrowserCache"; // Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"ElectronicObserver\CEF");
+		private string BrowserCachePath => BrowserConstants.CachePath;
 
 		private readonly string StyleClassID = Guid.NewGuid().ToString().Substring(0, 8);
 		private bool RestoreStyleSheet = false;
 
-		// FormBrowserHostの通信サーバ
-		// private string ServerUri { get; }
-
 		private string Host { get; }
 		private int Port { get; }
-
-		// FormBrowserの通信サーバ
-		// private PipeCommunicator<BrowserLib.IBrowserHost> BrowserHost { get; }
 
 		private BrowserLibCore.IBrowserHost BrowserHost { get; set; }
 
@@ -134,7 +127,6 @@ namespace Browser
 
 			InitializeComponent();
 
-			// ServerUri = serverUri;
 			StyleSheetApplied = false;
 			_volumeManager = new VolumeManager((uint)Process.GetCurrentProcess().Id);
 
@@ -204,7 +196,7 @@ namespace Browser
 			Channel grpChannel = new Channel(Host, Port, ChannelCredentials.Insecure);
 			BrowserHost = StreamingHubClient.Connect<BrowserLibCore.IBrowserHost, BrowserLibCore.IBrowser>(grpChannel, this);
 
-			ConfigurationChanged(BrowserHost.Configuration().Result);
+			ConfigurationChanged();
 
 			// ウィンドウの親子設定＆ホストプロセスから接続してもらう
 			Task.Run(async () => await BrowserHost.ConnectToBrowser((long)Handle)).Wait();
@@ -219,6 +211,7 @@ namespace Browser
 			HeartbeatTimer.Interval = 2000; // 2秒ごと　
 			HeartbeatTimer.Start();*/
 
+			
 
 			SetIconResource();
 
@@ -305,8 +298,10 @@ namespace Browser
 			BeginInvoke((Action)(() => Exit()));
 		}
 
-		public void ConfigurationChanged(BrowserConfiguration conf)
+		public async void ConfigurationChanged()
 		{
+			BrowserConfiguration conf = await BrowserHost.Configuration();
+
 			Configuration = conf;
 
 			SizeAdjuster.AutoScroll = Configuration.IsScrollable;
@@ -811,12 +806,12 @@ namespace Browser
 			ushort port;
 			if (ushort.TryParse(proxy, out port))
 			{
-				WinInetUtil.SetProxyInProcessForNekoxy(port);
+				// WinInetUtil.SetProxyInProcessForNekoxy(port);
 				ProxySettings = "http=127.0.0.1:" + port;           // todo: 動くには動くが正しいかわからない
 			}
 			else
 			{
-				WinInetUtil.SetProxyInProcess(proxy, "local");
+				// WinInetUtil.SetProxyInProcess(proxy, "local");
 				ProxySettings = proxy;
 			}
 

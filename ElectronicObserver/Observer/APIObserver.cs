@@ -3,18 +3,22 @@ using ElectronicObserver.Data;
 using ElectronicObserver.Observer.kcsapi;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Utility.Mathematics;
-using Nekoxy;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.WebSockets;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 using System.Windows.Forms;
+using Titanium.Web.Proxy;
+using Titanium.Web.Proxy.EventArguments;
+using Titanium.Web.Proxy.Models;
 using static ElectronicObserver.Data.Constants;
 
 namespace ElectronicObserver.Observer
@@ -49,6 +53,8 @@ namespace ElectronicObserver.Observer
 		public event APIReceivedEventHandler RequestReceived = delegate { };
 		public event APIReceivedEventHandler ResponseReceived = delegate { };
 
+		private ProxyServer Proxy { get; }
+		private ExplicitProxyEndPoint Endpoint { get; set; }
 
 		private APIObserver()
 		{
@@ -142,15 +148,21 @@ namespace ElectronicObserver.Observer
 				new kcsapi.api_req_quest.stop()
 			};
 
-
-			ServerAddress = null;
-
-
-			HttpProxy.AfterSessionComplete += HttpProxy_AfterSessionComplete;
+			Proxy = new ProxyServer
+			{
+				ExceptionFunc = async exception =>
+				{
+					// todo write to output
+				},
+				TcpTimeWaitSeconds = 10,
+				ConnectionTimeOutSeconds = 15,
+				ReuseSocket = false,
+				EnableConnectionPool = false,
+				ForwardToUpstreamGateway = true
+			};
+			Proxy.CertificateManager.RootCertificate = new X509Certificate2();
+			Proxy.BeforeResponse += Server_AfterResponse;
 		}
-
-
-
 
 		/// <summary>
 		/// 通信の受信を開始します。
@@ -160,27 +172,33 @@ namespace ElectronicObserver.Observer
 		/// <returns>実際に使用されるポート番号。</returns>
 		public int Start(int portID, Control UIControl)
 		{
-
 			Utility.Configuration.ConfigurationData.ConfigConnection c = Utility.Configuration.Config.Connection;
-
 
 			this.UIControl = UIControl;
 
+			if(Proxy.ProxyRunning) Proxy.Stop();
 
-			HttpProxy.Shutdown();
 			try
 			{
-
 				if (c.UseUpstreamProxy)
-					HttpProxy.UpstreamProxyConfig = new ProxyConfig(ProxyConfigType.SpecificProxy, c.UpstreamProxyAddress, c.UpstreamProxyPort);
+				{
+					// todo upstream proxy
+					// HttpProxy.UpstreamProxyConfig = new ProxyConfig(ProxyConfigType.SpecificProxy, c.UpstreamProxyAddress, c.UpstreamProxyPort);
+				}
 				else if (c.UseSystemProxy)
-					HttpProxy.UpstreamProxyConfig = new ProxyConfig(ProxyConfigType.SystemProxy);
+				{
+					// todo system proxy
+					// HttpProxy.UpstreamProxyConfig = new ProxyConfig(ProxyConfigType.SystemProxy);
+				}
 				else
-					HttpProxy.UpstreamProxyConfig = new ProxyConfig(ProxyConfigType.DirectAccess);
+				{
+					Endpoint = new ExplicitProxyEndPoint(IPAddress.Any, portID, false);
+					Proxy.AddEndPoint(Endpoint);
+					// HttpProxy.UpstreamProxyConfig = new ProxyConfig(ProxyConfigType.DirectAccess);
+				}
 
-				HttpProxy.Startup(portID, false, false);
+				Proxy.Start();
 				ProxyPort = portID;
-
 
 				ProxyStarted();
 
@@ -198,22 +216,15 @@ namespace ElectronicObserver.Observer
 			return ProxyPort;
 		}
 
-
 		/// <summary>
 		/// 通信の受信を停止します。
 		/// </summary>
 		public void Stop()
 		{
-			try
-			{
-				HttpProxy.Shutdown();
-			}
-			catch { }
+			Proxy.Stop();
 
 			Utility.Logger.Add( 1, LoggerRes.APIObserverStopped );
 		}
-
-
 
 		public APIBase this[string key]
 		{
@@ -224,39 +235,34 @@ namespace ElectronicObserver.Observer
 			}
 		}
 
-
-
-
-		void HttpProxy_AfterSessionComplete(Session session)
+		private async Task Server_AfterResponse(object sender, SessionEventArgs e)
 		{
-
 			Utility.Configuration.ConfigurationData.ConfigConnection c = Utility.Configuration.Config.Connection;
 
-			string baseurl = session.Request.PathAndQuery;
+			string baseurl = e.HttpClient.Request.RequestUri.AbsoluteUri;
 
-            //debug
-            //Utility.Logger.Add( 1, baseurl );
+			//debug
+			//Utility.Logger.Add( 1, baseurl );
 
+			if (baseurl == ("/gadgets/makeRequest"))
+			{
+				KCDatabase db = KCDatabase.Instance;
+				if (db.Server is null)
+				{
+					string body = await e.GetResponseBodyAsString();
+					string url = body.Split('/')[2];
+					url = url.Split('\\')[0];
 
-            if (baseurl == ("/gadgets/makeRequest"))
-            {
-                KCDatabase db = KCDatabase.Instance;
-                if (db.Server is null)
-                {
-                    string body = session.Response.BodyAsString;
-                    string url = body.Split('/')[2];
-                    url = url.Split('\\')[0];
+					db.Server = getKCServer(url);
+				}
+			}
 
-                    db.Server = getKCServer(url);
-                }                
-            }
-
-            // request
-            if (baseurl.Contains("/kcsapi/"))
+			// request
+			if (baseurl.Contains("/kcsapi/"))
 			{
 
 				string url = baseurl;
-				string body = session.Request.BodyAsString;
+				string body = await e.GetResponseBodyAsString();
 
 				//保存
 				if (c.SaveReceivedData && c.SaveRequest)
@@ -286,13 +292,13 @@ namespace ElectronicObserver.Observer
 						Directory.CreateDirectory(c.SaveDataPath);
 
 
-                    if (c.SaveResponse && baseurl.Contains("/kcsapi/"))
+					if (c.SaveResponse && baseurl.Contains("/kcsapi/"))
 					{
 
 						// 非同期で書き出し処理するので取っておく
 						// stringはイミュータブルなのでOK
 						string url = baseurl;
-						string body = session.Response.BodyAsString;
+						string body = await e.GetResponseBodyAsString();
 
 						Task.Run((Action)(() =>
 						{
@@ -328,9 +334,11 @@ namespace ElectronicObserver.Observer
 							}
 						}
 
+						
+
 						// 非同期で書き出し処理するので取っておく
-						byte[] responseCopy = new byte[session.Response.Body.Length];
-						Array.Copy(session.Response.Body, responseCopy, session.Response.Body.Length);
+						byte[] responseCopy = new byte[(await e.GetResponseBody()).Length];
+						Array.Copy(await e.GetResponseBody(), responseCopy, (await e.GetResponseBody()).Length);
 
 						Task.Run((Action)(() =>
 						{
@@ -349,13 +357,13 @@ namespace ElectronicObserver.Observer
 									}
 								}
 
-								Utility.Logger.Add( 1, string.Format( LoggerRes.SavedAPI, tpath.Remove( 0, saveDataPath.Length + 1 ) ) );
+								Utility.Logger.Add(1, string.Format(LoggerRes.SavedAPI, tpath.Remove(0, saveDataPath.Length + 1)));
 
 							}
 							catch (IOException ex)
 							{   //ファイルがロックされている; 頻繁に出るのでエラーレポートを残さない
 
-								Utility.Logger.Add( 3, LoggerRes.FailedSaveAPI + ex.Message );
+								Utility.Logger.Add(3, LoggerRes.FailedSaveAPI + ex.Message);
 							}
 						}));
 
@@ -365,34 +373,26 @@ namespace ElectronicObserver.Observer
 				catch (Exception ex)
 				{
 
-					Utility.ErrorReporter.SendErrorReport( ex, LoggerRes.FailedSaveAPI );
+					Utility.ErrorReporter.SendErrorReport(ex, LoggerRes.FailedSaveAPI);
 				}
 
 			}
 
-
-
-
-			if (baseurl.Contains("/kcsapi/") && session.Response.MimeType == "text/plain")
+			if (baseurl.Contains("/kcsapi/") && e.HttpClient.Response.ContentType == "text/plain")
 			{
-
 				// 非同期でGUIスレッドに渡すので取っておく
 				// stringはイミュータブルなのでOK
 				string url = baseurl;
-				string body = session.Response.BodyAsString;
+				string body = await e.GetResponseBodyAsString();
 				UIControl.BeginInvoke((Action)(() => { LoadResponse(url, body); }));
-
 			}
 
 
 			if (ServerAddress == null && baseurl.Contains("/kcsapi/"))
 			{
-				ServerAddress = session.Request.Headers.Host;
+				ServerAddress = e.HttpClient.Request.Headers.Headers["Host"].Value;
 			}
-
 		}
-
-
 
 		public void LoadRequest(string path, string data)
 		{

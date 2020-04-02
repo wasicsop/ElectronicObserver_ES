@@ -2,7 +2,7 @@
 {
 	public interface IBrowser
 	{
-		void ConfigurationChanged(BrowserConfiguration config);
+		void ConfigurationChanged();
 		void InitialAPIReceived();
 		void Navigate(string url);
 		void CloseBrowser();
