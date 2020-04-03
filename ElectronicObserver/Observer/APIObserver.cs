@@ -405,10 +405,18 @@ namespace ElectronicObserver.Observer
 
 				var parsedData = new Dictionary<string, string>();
 
-				foreach (string unit in data.Split("&".ToCharArray()))
+				if (shortpath == "api_start2/getData")
 				{
-					string[] pair = unit.Split("=".ToCharArray());
+					string[] pair = data.Split("=".ToCharArray());
 					parsedData.Add(HttpUtility.UrlDecode(pair[0]), HttpUtility.UrlDecode(pair[1]));
+				}
+				else
+				{
+					foreach (string unit in data.Split("&".ToCharArray()))
+					{
+						string[] pair = unit.Split("=".ToCharArray());
+						parsedData.Add(HttpUtility.UrlDecode(pair[0]), HttpUtility.UrlDecode(pair[1]));
+					}
 				}
 
 
