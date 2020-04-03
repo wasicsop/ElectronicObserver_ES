@@ -180,21 +180,17 @@ namespace ElectronicObserver.Observer
 
 			try
 			{
+				Endpoint = new ExplicitProxyEndPoint(IPAddress.Any, portID, false);
+				Proxy.AddEndPoint(Endpoint);
+
 				if (c.UseUpstreamProxy)
 				{
-					// todo upstream proxy
-					// HttpProxy.UpstreamProxyConfig = new ProxyConfig(ProxyConfigType.SpecificProxy, c.UpstreamProxyAddress, c.UpstreamProxyPort);
+					Proxy.UpStreamHttpProxy = new ExternalProxy(c.UpstreamProxyAddress, c.UpstreamProxyPort);
 				}
 				else if (c.UseSystemProxy)
 				{
 					// todo system proxy
 					// HttpProxy.UpstreamProxyConfig = new ProxyConfig(ProxyConfigType.SystemProxy);
-				}
-				else
-				{
-					Endpoint = new ExplicitProxyEndPoint(IPAddress.Any, portID, false);
-					Proxy.AddEndPoint(Endpoint);
-					// HttpProxy.UpstreamProxyConfig = new ProxyConfig(ProxyConfigType.DirectAccess);
 				}
 
 				Proxy.Start();
