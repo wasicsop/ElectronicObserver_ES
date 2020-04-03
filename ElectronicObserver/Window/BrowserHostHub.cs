@@ -57,5 +57,10 @@ namespace BrowserHost
 		{
 			return Task.Run(() => FormBrowserHost.Instance.GetIconResource());
 		}
+
+		public Task<bool> IsServerAlive()
+		{
+			return Task.Run(() => true);
+		}
 	}
 }

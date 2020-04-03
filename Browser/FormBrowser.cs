@@ -201,15 +201,21 @@ namespace Browser
 			// ウィンドウの親子設定＆ホストプロセスから接続してもらう
 			Task.Run(async () => await BrowserHost.ConnectToBrowser((long)Handle)).Wait();
 
-			// it checks the host but does nothing no matter what the result is?
 			// 親ウィンドウが生きているか確認
-			/*HeartbeatTimer.Tick += (EventHandler)((sender2, e2) =>
+			HeartbeatTimer.Tick += async (sender2, e2) =>
 			{
-				HostWindow = IntPtr.Zero; // BrowserHost.GetHWND().Result;
-				// BrowserHost.AsyncRemoteRun(() => { HostWindow = BrowserHost.Proxy.HWND; });
-			});
+				try
+				{
+					bool alive = await BrowserHost.IsServerAlive();
+				}
+				catch (Exception e)
+				{
+					Debug.WriteLine("host died");
+					Exit();
+				}
+			};
 			HeartbeatTimer.Interval = 2000; // 2秒ごと　
-			HeartbeatTimer.Start();*/
+			HeartbeatTimer.Start();
 
 			
 
