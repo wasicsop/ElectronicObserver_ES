@@ -41,7 +41,7 @@ namespace ElectronicObserver.Observer
 
 		public APIDictionary APIList { get; private set; }
 
-		public string ServerAddress { get; private set; }
+		public string? ServerAddress { get; private set; }
 		public int ProxyPort { get; private set; }
 
 		public delegate void ProxyStartedEventHandler();
@@ -161,7 +161,8 @@ namespace ElectronicObserver.Observer
 				ForwardToUpstreamGateway = true
 			};
 			Proxy.CertificateManager.RootCertificate = new X509Certificate2();
-			Proxy.BeforeResponse += Server_AfterResponse;
+			Proxy.BeforeRequest += ProxyOnBeforeRequest;
+			Proxy.BeforeResponse += ProxyOnBeforeResponse;
 		}
 
 		/// <summary>
@@ -231,9 +232,37 @@ namespace ElectronicObserver.Observer
 			}
 		}
 
-		private async Task Server_AfterResponse(object sender, SessionEventArgs e)
+		private async Task ProxyOnBeforeRequest(object sender, SessionEventArgs e)
 		{
-			Utility.Configuration.ConfigurationData.ConfigConnection c = Utility.Configuration.Config.Connection;
+			Configuration.ConfigurationData.ConfigConnection c = Configuration.Config.Connection;
+
+			string baseurl = e.HttpClient.Request.RequestUri.AbsoluteUri;
+
+			// request
+			if (baseurl.Contains("/kcsapi/"))
+			{
+
+				string url = baseurl;
+				string body = await e.GetRequestBodyAsString();
+
+				//保存
+				if (c.SaveReceivedData && c.SaveRequest)
+				{
+
+					Task.Run((Action)(() =>
+					{
+						SaveRequest(url, body);
+					}));
+				}
+
+
+				UIControl.BeginInvoke((Action)(() => { LoadRequest(url, body); }));
+			}
+		}
+
+		private async Task ProxyOnBeforeResponse(object sender, SessionEventArgs e)
+		{
+			Configuration.ConfigurationData.ConfigConnection c = Configuration.Config.Connection;
 
 			string baseurl = e.HttpClient.Request.RequestUri.AbsoluteUri;
 
@@ -252,29 +281,6 @@ namespace ElectronicObserver.Observer
 					db.Server = getKCServer(url);
 				}
 			}
-
-			// request
-			if (baseurl.Contains("/kcsapi/"))
-			{
-
-				string url = baseurl;
-				string body = await e.GetResponseBodyAsString();
-
-				//保存
-				if (c.SaveReceivedData && c.SaveRequest)
-				{
-
-					Task.Run((Action)(() =>
-					{
-						SaveRequest(url, body);
-					}));
-				}
-
-
-				UIControl.BeginInvoke((Action)(() => { LoadRequest(url, body); }));
-			}
-
-
 
 			//response
 			//保存
@@ -386,7 +392,7 @@ namespace ElectronicObserver.Observer
 
 			if (ServerAddress == null && baseurl.Contains("/kcsapi/"))
 			{
-				ServerAddress = e.HttpClient.Request.Headers.Headers["Host"].Value;
+				ServerAddress = e.HttpClient.Request.Host;
 			}
 		}
 
@@ -405,12 +411,12 @@ namespace ElectronicObserver.Observer
 
 				var parsedData = new Dictionary<string, string>();
 
-				if (shortpath == "api_start2/getData")
+				/*if (shortpath == "api_start2/getData")
 				{
 					string[] pair = data.Split("=".ToCharArray());
 					parsedData.Add(HttpUtility.UrlDecode(pair[0]), HttpUtility.UrlDecode(pair[1]));
 				}
-				else
+				else*/
 				{
 					foreach (string unit in data.Split("&".ToCharArray()))
 					{
