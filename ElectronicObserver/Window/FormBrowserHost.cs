@@ -37,6 +37,8 @@ namespace ElectronicObserver.Window
 
 		public static string BrowserExeName => "EOBrowser.exe";
 
+		private string Host { get; }
+		private int Port { get; }
 
 		/// <summary>
 		/// FormBrowserHostの通信サーバ
@@ -96,6 +98,9 @@ namespace ElectronicObserver.Window
 
 			_instance = this;
 
+			Host = "localhost";
+			Port = Process.GetCurrentProcess().Id;
+
 			Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormBrowser]);
 		}
 
@@ -121,18 +126,16 @@ namespace ElectronicObserver.Window
 		private async void MakeHost()
 		{
 			await MagicOnionHost.CreateDefaultBuilder()
-				.UseMagicOnion(new ServerPort("localhost", 1234, ServerCredentials.Insecure))
+				.UseMagicOnion(new ServerPort(Host, Port, ServerCredentials.Insecure))
 				.RunConsoleAsync();
 		}
 
 		private void LaunchBrowserProcess()
 		{
-			string host = "localhost";
-			int port = 1234;
 			try
 			{
 				// プロセス起動
-				string arguments = $"{host} {port}";
+				string arguments = $"{Host} {Port}";
 
 				if (File.Exists(BrowserExeName))
 				{
