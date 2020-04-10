@@ -47,12 +47,15 @@ namespace ElectronicObserver.Window.Dialog
 		{
 			InitializeComponent();
 
-			CefSettings settings = new CefSettings
+			if (!Cef.IsInitialized)
 			{
-				CachePath = BrowserConstants.CachePath
-			};
+				CefSettings settings = new CefSettings
+				{
+					CachePath = BrowserConstants.CachePath
+				};
 
-			Cef.Initialize(settings, performDependencyCheck: true, browserProcessHandler: null);
+				Cef.Initialize(settings, performDependencyCheck: true, browserProcessHandler: null);
+			}
 
 			Text = "CefSharp";
 			WindowState = FormWindowState.Normal;
