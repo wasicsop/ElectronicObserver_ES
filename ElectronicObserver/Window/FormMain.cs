@@ -1549,7 +1549,12 @@ namespace ElectronicObserver.Window
             new Dialog.DialogKancolleProgress().Show(this);
         }
 
-        private void CallPumpkinHead(string apiname, dynamic data)
+        private void StripMenu_Tool_ExtraBrowser_Click(object sender, EventArgs e)
+        {
+	        new Dialog.DialogExtraBrowser().Show(this);
+        }
+
+		private void CallPumpkinHead(string apiname, dynamic data)
 		{
 			new DialogHalloween().Show(this);
 			APIObserver.Instance.APIList["api_port/port"].ResponseReceived -= CallPumpkinHead;

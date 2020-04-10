@@ -117,7 +117,10 @@
     <ProjectReference Include="..\DockPanelSuite\WinFormsUI\WinFormsUI.csproj" />
   </ItemGroup>
   <ItemGroup>
-	  <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+    <PackageReference Include="cef.redist.x64" Version="75.1.14" />
+    <PackageReference Include="CefSharp.Common" Version="75.1.142" />
+    <PackageReference Include="CefSharp.WinForms" Version="75.1.142" />
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
     <PackageReference Include="Microsoft.VisualBasic" Version="10.3.0" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="4.7.0" />
     <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
@@ -187,4 +190,39 @@
       <Isolated>false</Isolated>
     </COMReference>
   </ItemGroup>
+
+	<ItemGroup>
+		<!-- TODO: These updates are currently required because CefSharp.WinForms specifies
+         <Private>false</Private>, which means these libraries will not be specified in
+         the .deps.json file, and so the CoreCLR wouldn't load these. -->
+		<Reference Update="CefSharp">
+			<Private>true</Private>
+		</Reference>
+		<Reference Update="CefSharp.Core">
+			<Private>true</Private>
+		</Reference>
+		<Reference Update="CefSharp.WinForms">
+			<Private>true</Private>
+		</Reference>
+	</ItemGroup>
+
+	<Choose>
+		<When Condition="'$(PlatformTarget)' == 'x64'">
+			<ItemGroup>
+				<Reference Include="CefSharp.BrowserSubprocess.Core">
+					<HintPath>$(CefSharpBrowserProcessCore64)</HintPath>
+					<Private>true</Private>
+				</Reference>
+			</ItemGroup>
+		</When>
+		<!-- x86, Win32 and AnyCPU -->
+		<Otherwise>
+			<ItemGroup>
+				<Reference Include="CefSharp.BrowserSubprocess.Core">
+					<HintPath>$(CefSharpBrowserProcessCore32)</HintPath>
+					<Private>true</Private>
+				</Reference>
+			</ItemGroup>
+		</Otherwise>
+	</Choose>
 </Project>

@@ -115,6 +115,7 @@
 
             this.StripMenu_Help_Update = new System.Windows.Forms.ToolStripMenuItem();
             this.StripMenu_Tool_KancolleProgress = new System.Windows.Forms.ToolStripMenuItem();
+            this.StripMenu_Tool_ExtraBrowser = new System.Windows.Forms.ToolStripMenuItem();
             this.StripMenu.SuspendLayout();
             this.StripStatus.SuspendLayout();
             this.SuspendLayout();
@@ -513,7 +514,9 @@
             this.StripMenu_Tool_BaseAirCorpsSimulation,
             this.StripMenu_Tool_ExpChecker,
             this.StripMenu_Tool_ExpeditionCheck,
-            this.StripMenu_Tool_KancolleProgress});
+            this.StripMenu_Tool_KancolleProgress,
+            this.StripMenu_Tool_ExtraBrowser
+            });
             this.StripMenu_Tool.Name = "StripMenu_Tool";
             this.StripMenu_Tool.Size = new System.Drawing.Size(66, 20);
             this.StripMenu_Tool.Text = "&Tools";
@@ -786,10 +789,17 @@
             this.StripMenu_Tool_KancolleProgress.Size = new System.Drawing.Size(180, 22);
             this.StripMenu_Tool_KancolleProgress.Text = "Ship Progression List";
             this.StripMenu_Tool_KancolleProgress.Click += new System.EventHandler(this.StripMenu_Tool_KancolleProgress_Click);
-            //
-            // FormMain
-            //
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+			//
+			// StripMenu_Tool_ExtraBrowser
+			//
+			this.StripMenu_Tool_ExtraBrowser.Name = "StripMenu_Tool_ExtraBrowser";
+			this.StripMenu_Tool_ExtraBrowser.Size = new System.Drawing.Size(180, 22);
+			this.StripMenu_Tool_ExtraBrowser.Text = "Extra Browser";
+			this.StripMenu_Tool_ExtraBrowser.Click += new System.EventHandler(this.StripMenu_Tool_ExtraBrowser_Click);
+			//
+			// FormMain
+			//
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(640, 480);
             this.Controls.Add(this.MainDockPanel);
             this.Controls.Add(this.StripStatus);
@@ -899,5 +909,6 @@
         private System.Windows.Forms.ToolStripMenuItem StripMenu_Tool_ExpChecker;
         private System.Windows.Forms.ToolStripMenuItem StripMenu_Tool_ExpeditionCheck;
         private System.Windows.Forms.ToolStripMenuItem StripMenu_Tool_KancolleProgress;
+        private System.Windows.Forms.ToolStripMenuItem StripMenu_Tool_ExtraBrowser;
     }
 }
