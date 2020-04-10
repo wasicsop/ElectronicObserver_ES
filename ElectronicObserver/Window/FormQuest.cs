@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -731,10 +732,13 @@ namespace ElectronicObserver.Window
 			{
 				try
 				{
-
+					ProcessStartInfo psi = new ProcessStartInfo
+					{
+						FileName = @"https://www.google.com/search?q=" + Uri.EscapeDataString(quest.Name) + "+KanColle",
+						UseShellExecute = true
+					};
 					// google <任務名> 艦これ
-					System.Diagnostics.Process.Start(@"https://www.google.com/search?q=" + Uri.EscapeDataString(quest.Name) + "+KanColle");
-
+					Process.Start(psi);
 				}
 				catch (Exception ex)
 				{

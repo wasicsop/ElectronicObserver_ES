@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -23,9 +24,12 @@ namespace ElectronicObserver.Window.Dialog
 
 		private void TextAuthor_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
 		{
-
-			System.Diagnostics.Process.Start("https://twitter.com/andanteyk");
-
+			ProcessStartInfo psi = new ProcessStartInfo
+			{
+				FileName = "https://twitter.com/andanteyk",
+				UseShellExecute = true
+			};
+			Process.Start(psi);
 		}
 
 		private void ButtonClose_Click(object sender, EventArgs e)
@@ -37,9 +41,12 @@ namespace ElectronicObserver.Window.Dialog
 
 		private void TextInformation_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
 		{
-
-			System.Diagnostics.Process.Start("https://github.com/gre4bee/ElectronicObserver");
-
+			ProcessStartInfo psi = new ProcessStartInfo
+			{
+				FileName = "https://github.com/gre4bee/ElectronicObserver",
+				UseShellExecute = true
+			};
+			Process.Start(psi);
 		}
 
 		private void DialogVersion_Load(object sender, EventArgs e)

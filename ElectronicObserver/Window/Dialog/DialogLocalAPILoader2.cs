@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -355,7 +356,12 @@ namespace ElectronicObserver.Window.Dialog
 		{
 			try
 			{
-				System.Diagnostics.Process.Start(CurrentPath + "\\" + APIView.SelectedCells.OfType<DataGridViewCell>().First().Value.ToString());
+				ProcessStartInfo psi = new ProcessStartInfo
+				{
+					FileName = CurrentPath + "\\" + APIView.SelectedCells.OfType<DataGridViewCell>().First().Value,
+					UseShellExecute = true
+				};
+				Process.Start(psi);
 			}
 			catch (Exception ex)
 			{

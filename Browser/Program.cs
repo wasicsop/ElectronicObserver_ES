@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -59,7 +60,12 @@ Open the download page?
 						"CefSharp Load Error", MessageBoxButtons.YesNo, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1)
 						== DialogResult.Yes)
 					{
-						System.Diagnostics.Process.Start(@"https://www.microsoft.com/en-US/download/details.aspx?id=53587");
+						ProcessStartInfo psi = new ProcessStartInfo
+						{
+							FileName = @"https://www.microsoft.com/en-US/download/details.aspx?id=53587",
+							UseShellExecute = true
+						};
+						Process.Start(psi);
 					}
 
 					// なんにせよ今回は起動できないのであきらめる
@@ -70,12 +76,19 @@ Open the download page?
 					// 概ね ZoneID を外し忘れているのが原因
 
 					if (MessageBox.Show(
-@"Browser startup failed.
+						    @"Browser startup failed.
 This may be caused by the fact that the operation required for installation has not been performed.
 Do you want to open the installation guide?",
-							"Browser Load Failed", MessageBoxButtons.YesNo, MessageBoxIcon.Error)
-						== DialogResult.Yes)
-						System.Diagnostics.Process.Start(@"https://github.com/andanteyk/ElectronicObserver/wiki/Install");
+						    "Browser Load Failed", MessageBoxButtons.YesNo, MessageBoxIcon.Error)
+					    == DialogResult.Yes)
+					{
+						ProcessStartInfo psi = new ProcessStartInfo
+						{
+							FileName = @"https://github.com/andanteyk/ElectronicObserver/wiki/Install",
+							UseShellExecute = true
+						};
+						Process.Start(psi);
+					}
 
 					// なんにせよ今回は起動できないのであきらめる
 					throw;

@@ -2,6 +2,7 @@
 using ElectronicObserver.Utility.Mathematics;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -114,9 +115,12 @@ namespace ElectronicObserver.Utility
 
 					if (result == System.Windows.Forms.DialogResult.Yes)
 					{
-
-						System.Diagnostics.Process.Start("https://github.com/gre4bee/ElectronicObserver/releases/latest");
-
+						ProcessStartInfo psi = new ProcessStartInfo
+						{
+							FileName = "https://github.com/gre4bee/ElectronicObserver/releases/latest",
+							UseShellExecute = true
+						};
+						Process.Start(psi);
 					}
 					else if (result == System.Windows.Forms.DialogResult.Cancel)
 					{

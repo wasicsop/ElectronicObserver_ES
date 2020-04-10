@@ -1198,13 +1198,27 @@ namespace Browser
 		void ToolMenu_Other_LastScreenShot_ImageHost_Click(object sender, EventArgs e)
 		{
 			if (_lastScreenShotPath != null && File.Exists(_lastScreenShotPath))
-				Process.Start(_lastScreenShotPath);
+			{
+				ProcessStartInfo psi = new ProcessStartInfo
+				{
+					FileName = _lastScreenShotPath,
+					UseShellExecute = true
+				};
+				Process.Start(psi);
+			}
 		}
 
 		private void ToolMenu_Other_LastScreenShot_OpenScreenShotFolder_Click(object sender, EventArgs e)
 		{
 			if (Directory.Exists(Configuration.ScreenShotPath))
-				Process.Start(Configuration.ScreenShotPath);
+			{
+				ProcessStartInfo psi = new ProcessStartInfo
+				{
+					FileName = Configuration.ScreenShotPath,
+					UseShellExecute = true
+				};
+				Process.Start(psi);
+			}
 		}
 
 		private void ToolMenu_Other_LastScreenShot_CopyToClipboard_Click(object sender, EventArgs e)

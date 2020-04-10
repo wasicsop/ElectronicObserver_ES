@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -408,12 +409,15 @@ namespace ElectronicObserver.Window.Dialog
 						}
 
 						if (OpenImageAfterOutput.Checked)
-							System.Diagnostics.Process.Start(OutputPath.Text);
-
-
+						{
+							ProcessStartInfo psi = new ProcessStartInfo
+							{
+								FileName = OutputPath.Text,
+								UseShellExecute = true
+							};
+							Process.Start(psi);
+						}
 					}
-
-
 				}
 				else
 				{

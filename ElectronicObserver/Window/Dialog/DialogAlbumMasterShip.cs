@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -1591,10 +1592,13 @@ namespace ElectronicObserver.Window.Dialog
 
 			try
 			{
-
+				ProcessStartInfo psi = new ProcessStartInfo
+				{
+					FileName = @"https://www.google.com/search?q=" + Uri.EscapeDataString(ship.NameWithClass) + "+KanColle",
+					UseShellExecute = true
+				};
 				// google <艦船名> 艦これ
-				System.Diagnostics.Process.Start(@"https://www.google.com/search?q=" + Uri.EscapeDataString( ship.NameWithClass ) + "+KanColle");
-
+				Process.Start(psi);
 			}
 			catch (Exception ex)
 			{

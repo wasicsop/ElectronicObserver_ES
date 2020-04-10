@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -934,9 +935,12 @@ namespace ElectronicObserver.Window.Dialog
 				}
 
 				StatusInfo.Text = string.Format("Open battle history {0}.", Path.GetFileName(battleLogFile));
-				System.Diagnostics.Process.Start(battleLogFile);
-
-
+				ProcessStartInfo psi = new ProcessStartInfo
+				{
+					FileName = battleLogFile,
+					UseShellExecute = true
+				};
+				Process.Start(psi);
 			}
 			catch (Exception)
 			{
