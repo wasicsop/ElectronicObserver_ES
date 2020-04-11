@@ -19,6 +19,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Globalization;
+using Browser.ExtraBrowser;
 using Browser.Properties;
 using Grpc.Core;
 using MagicOnion.Client;
@@ -1257,6 +1258,11 @@ namespace Browser
 				BrowserHost.ClearCache();
 				// BrowserHost.AsyncRemoteRun(() => BrowserHost.Proxy.ClearCache());
 			}
+		}
+
+		public void OpenExtraBrowser()
+		{
+			new DialogExtraBrowser().Show(this);
 		}
 
 		protected override void WndProc(ref Message m)

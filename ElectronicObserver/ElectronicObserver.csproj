@@ -117,9 +117,6 @@
     <ProjectReference Include="..\DockPanelSuite\WinFormsUI\WinFormsUI.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="cef.redist.x64" Version="75.1.14" />
-    <PackageReference Include="CefSharp.Common" Version="75.1.142" />
-    <PackageReference Include="CefSharp.WinForms" Version="75.1.142" />
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
     <PackageReference Include="Microsoft.VisualBasic" Version="10.3.0" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="4.7.0" />

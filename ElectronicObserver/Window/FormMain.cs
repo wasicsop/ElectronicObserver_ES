@@ -1551,7 +1551,7 @@ namespace ElectronicObserver.Window
 
         private void StripMenu_Tool_ExtraBrowser_Click(object sender, EventArgs e)
         {
-	        new Dialog.DialogExtraBrowser().Show(this);
+			FormBrowserHost.Instance.Browser.OpenExtraBrowser();
         }
 
 		private void CallPumpkinHead(string apiname, dynamic data)

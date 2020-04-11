@@ -52,7 +52,7 @@ namespace ElectronicObserver.Window
 
 		public List<BrowserHostHub> Hubs { get; } = new List<BrowserHostHub>();
 
-		public BrowserLibCore.IBrowser Browser => Hubs.FirstOrDefault()?.Browser ?? throw new Exception();
+		public IBrowser Browser => Hubs.FirstOrDefault()?.Browser ?? throw new Exception();
 
 		private Process BrowserProcess { get; set; }
 

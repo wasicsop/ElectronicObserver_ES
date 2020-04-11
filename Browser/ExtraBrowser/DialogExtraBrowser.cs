@@ -9,36 +9,8 @@ using BrowserLibCore;
 using CefSharp;
 using CefSharp.WinForms;
 
-namespace ElectronicObserver.Window.Dialog
+namespace Browser.ExtraBrowser
 {
-	public static class ControlExtensions
-	{
-		/// <summary>
-		/// Executes the Action asynchronously on the UI thread, does not block execution on the calling thread.
-		/// </summary>
-		/// <param name="control">the control for which the update is required</param>
-		/// <param name="action">action to be performed on the control</param>
-		public static void InvokeOnUiThreadIfRequired(this System.Windows.Forms.Control control, Action action)
-		{
-			//If you are planning on using a similar function in your own code then please be sure to
-			//have a quick read over https://stackoverflow.com/questions/1874728/avoid-calling-invoke-when-the-control-is-disposed
-			//No action
-			if (control.Disposing || control.IsDisposed || !control.IsHandleCreated)
-			{
-				return;
-			}
-
-			if (control.InvokeRequired)
-			{
-				control.BeginInvoke(action);
-			}
-			else
-			{
-				action.Invoke();
-			}
-		}
-	}
-
 	public partial class DialogExtraBrowser : Form
 	{
 		private ChromiumWebBrowser Browser { get; }
@@ -46,16 +18,6 @@ namespace ElectronicObserver.Window.Dialog
 		public DialogExtraBrowser()
 		{
 			InitializeComponent();
-
-			if (!Cef.IsInitialized)
-			{
-				CefSettings settings = new CefSettings
-				{
-					CachePath = BrowserConstants.CachePath
-				};
-
-				Cef.Initialize(settings, performDependencyCheck: true, browserProcessHandler: null);
-			}
 
 			Text = "CefSharp";
 			WindowState = FormWindowState.Normal;
@@ -203,6 +165,44 @@ namespace ElectronicObserver.Window.Dialog
 		private void ShowDevToolsMenuItemClick(object sender, EventArgs e)
 		{
 			Browser.ShowDevTools();
+		}
+
+		private void DmmPointsButtonClick(object sender, EventArgs e)
+		{
+			LoadUrl("https://point.dmm.com/choice/pay");
+		}
+
+		private void AkashiListButtonClick(object sender, EventArgs e)
+		{
+			LoadUrl("https://akashi-list.me/");
+		}
+	}
+
+	public static class ControlExtensions
+	{
+		/// <summary>
+		/// Executes the Action asynchronously on the UI thread, does not block execution on the calling thread.
+		/// </summary>
+		/// <param name="control">the control for which the update is required</param>
+		/// <param name="action">action to be performed on the control</param>
+		public static void InvokeOnUiThreadIfRequired(this System.Windows.Forms.Control control, Action action)
+		{
+			//If you are planning on using a similar function in your own code then please be sure to
+			//have a quick read over https://stackoverflow.com/questions/1874728/avoid-calling-invoke-when-the-control-is-disposed
+			//No action
+			if (control.Disposing || control.IsDisposed || !control.IsHandleCreated)
+			{
+				return;
+			}
+
+			if (control.InvokeRequired)
+			{
+				control.BeginInvoke(action);
+			}
+			else
+			{
+				action.Invoke();
+			}
 		}
 	}
 }
