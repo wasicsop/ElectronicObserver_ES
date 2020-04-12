@@ -177,7 +177,7 @@ namespace ElectronicObserver.Utility.Data
 		/// 制空戦力を求めます。
 		/// </summary>
 		/// <param name="ship">対象の艦船。</param>
-		public static int GetAirSuperiority(ShipData ship, bool isAircraftLevelMaximum = false)
+		public static int GetAirSuperiority(IShipData ship, bool isAircraftLevelMaximum = false)
 		{
 
 			if (ship == null) return 0;
@@ -341,7 +341,7 @@ namespace ElectronicObserver.Utility.Data
 		/// 艦載機熟練度・改修レベルを無視した制空戦力を求めます。
 		/// </summary>
 		/// <param name="ship">対象の艦船。</param>
-		public static int GetAirSuperiorityIgnoreLevel(ShipData ship)
+		public static int GetAirSuperiorityIgnoreLevel(IShipData ship)
 		{
 			if (ship == null)
 				return 0;
@@ -359,95 +359,49 @@ namespace ElectronicObserver.Utility.Data
 			return fleet.MembersWithoutEscaped.Select(ship => GetAirSuperiorityIgnoreLevel(ship)).Sum();
 		}
 
-
-
 		/// <summary>
 		/// 索敵能力を求めます。「新判定式(33)」です。
 		/// </summary>
 		/// <param name="fleet">対象の艦隊。</param>
 		/// <param name="branchWeight">分岐点係数。2-5では1</param>
-		public static double GetSearchingAbility_New33(FleetData fleet, int branchWeight)
+		public static double GetSearchingAbility_New33(IFleetData fleet, int branchWeight, int? admiralLevel = null)
 		{
-
-			double ret = 0;
-
-			foreach (var ship in fleet.MembersWithoutEscaped)
+			static double EquipmentLoSRate(EquipmentTypes type) => type switch
 			{
-				if (ship == null)
-				{
-					ret += 2.0;
-					continue;
-				}
+				EquipmentTypes.CarrierBasedTorpedo => 0.8,
+				EquipmentTypes.JetTorpedo => 0.8,
+				EquipmentTypes.CarrierBasedRecon => 1.0,
+				EquipmentTypes.JetRecon => 1.0,
+				EquipmentTypes.SeaplaneRecon => 1.2,
+				EquipmentTypes.SeaplaneBomber => 1.1,
+				_ => 0.6
+			};
 
-				ret += Math.Sqrt(ship.LOSBase);
+			static double EquipmentLevelLoSRate(EquipmentTypes type) => type switch
+			{
+				EquipmentTypes.SeaplaneRecon => 1.2,
+				EquipmentTypes.CarrierBasedRecon => 1.2,
+				EquipmentTypes.SeaplaneBomber => 1.15,
+				EquipmentTypes.RadarSmall => 1.25,
+				EquipmentTypes.RadarLarge => 1.4,
+				_ => 0
+			};
 
-				double equipmentBonus = 0;
-				foreach (var eq in ship.AllSlotInstance.Where(eq => eq != null))
-				{
+			static double EquipmentLoS(IEquipmentData eq) =>
+				eq.MasterEquipment.LOS
+				+ EquipmentLevelLoSRate(eq.MasterEquipment.CategoryType)
+				* Math.Sqrt(eq.Level);
 
-					var category = eq.MasterEquipment.CategoryType;
+			List<IShipData> ships = fleet.MembersWithoutEscaped.Where(s => s != null).ToList();
 
-					double equipmentRate;
-					switch (category)
-					{
-						case EquipmentTypes.CarrierBasedTorpedo:
-						case EquipmentTypes.JetTorpedo:
-							equipmentRate = 0.8;
-							break;
+			double kanmusuLoS = ships.Sum(s => Math.Sqrt(s.LOSBase));
+			double equipLoS = ships.Sum(s => s.AllSlotInstance
+				                  .Where(eq => eq != null)
+				                  .Sum(eq => EquipmentLoSRate(eq.MasterEquipment.CategoryType) * EquipmentLoS(eq)));
+			double admiralLevelPenalty = Math.Ceiling((admiralLevel ?? KCDatabase.Instance.Admiral.Level) * 0.4);
+			int emptySlotBonus = 2 * (6 - ships.Count);
 
-						case EquipmentTypes.CarrierBasedRecon:
-						case EquipmentTypes.JetRecon:
-							equipmentRate = 1.0;
-							break;
-
-						case EquipmentTypes.SeaplaneRecon:
-							equipmentRate = 1.2;
-							break;
-
-						case EquipmentTypes.SeaplaneBomber:
-							equipmentRate = 1.1;
-							break;
-
-						default:
-							equipmentRate = 0.6;
-							break;
-					}
-
-					double levelRate;
-					switch (category)
-					{
-						case EquipmentTypes.SeaplaneRecon:
-						case EquipmentTypes.CarrierBasedRecon:
-							levelRate = 1.2;
-							break;
-
-						case EquipmentTypes.SeaplaneBomber:
-							levelRate = 1.15;
-							break;
-
-						case EquipmentTypes.RadarSmall:
-							levelRate = 1.25;
-							break;
-
-						case EquipmentTypes.RadarLarge:
-							levelRate = 1.4;
-							break;
-
-						default:
-							levelRate = 0;
-							break;
-					}
-
-					equipmentBonus += equipmentRate * (eq.MasterEquipment.LOS + levelRate * Math.Sqrt(eq.Level));
-				}
-
-				ret += equipmentBonus * branchWeight;
-			}
-
-			// 司令部Lv補正
-			ret -= Math.Ceiling(KCDatabase.Instance.Admiral.Level * 0.4);
-
-			return ret;
+			return kanmusuLoS + equipLoS * branchWeight - admiralLevelPenalty + emptySlotBonus;
 		}
 
 
@@ -862,7 +816,7 @@ namespace ElectronicObserver.Utility.Data
 		/// <summary>
 		/// 昼戦空母カットインの種別を取得します。
 		/// </summary>
-		public static DayAirAttackCutinKind GetDayAirAttackCutinKind(IEnumerable<EquipmentDataMaster> slot)
+		public static DayAirAttackCutinKind GetDayAirAttackCutinKind(IEnumerable<IEquipmentDataMaster> slot)
 		{
 			// note: 優先度は分からないが、とりあえず威力の高いものを優先して返す
 
@@ -1152,7 +1106,7 @@ namespace ElectronicObserver.Utility.Data
 		/// <param name="attackerShipID">攻撃艦の艦船ID。</param>
 		/// <param name="defenerShipID">防御艦の艦船ID。なければ-1</param>
 		/// <returns> 0=その他, 1=後期魚雷+潜水艦装備(x1.75), 2=後期魚雷x2(x1.6)</returns>
-		public static NightTorpedoCutinKind GetNightTorpedoCutinKind(IEnumerable<EquipmentDataMaster> slot, int attackerShipID, int defenderShipID)
+		public static NightTorpedoCutinKind GetNightTorpedoCutinKind(IEnumerable<IEquipmentDataMaster> slot, int attackerShipID, int defenderShipID)
 		{
 			slot = slot.Where(eq => eq != null);
 
@@ -1540,7 +1494,7 @@ namespace ElectronicObserver.Utility.Data
 		/// <summary>
 		/// 加重対空値を求めます。
 		/// </summary>
-		public static double GetAdjustedAAValue(ShipData ship)
+		public static double GetAdjustedAAValue(IShipData ship)
 		{
 			int equippedModifier = ship.SlotInstance.Any(s => s != null) ? 2 : 1;
 
@@ -1588,7 +1542,7 @@ namespace ElectronicObserver.Utility.Data
 		/// <summary>
 		/// 艦隊防空値を求めます。
 		/// </summary>
-		public static double GetAdjustedFleetAAValue(IEnumerable<ShipData> ships, int formation)
+		public static double GetAdjustedFleetAAValue(IEnumerable<IShipData> ships, int formation)
 		{
 			double formationBonus;
 			switch (formation)

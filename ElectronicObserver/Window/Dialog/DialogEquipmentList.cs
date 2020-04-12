@@ -321,7 +321,7 @@ namespace ElectronicObserver.Window.Dialog
 				return level + aircraftLevel * 100;
 			}
 
-			public static int CalculateID(EquipmentData eq)
+			public static int CalculateID(IEquipmentData eq)
 			{
 				return CalculateID(eq.Level, eq.AircraftLevel);
 			}

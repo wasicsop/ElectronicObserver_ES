@@ -47,7 +47,7 @@ namespace ElectronicObserver.Data
 		/// <summary>
 		/// マスター装備データ
 		/// </summary>
-		public EquipmentDataMaster EquipmentInstanceMaster => EquipmentInstance?.MasterEquipment;
+		public IEquipmentDataMaster? EquipmentInstanceMaster => EquipmentInstance?.MasterEquipment;
 
 		/// <summary>
 		/// 現在の稼働機数

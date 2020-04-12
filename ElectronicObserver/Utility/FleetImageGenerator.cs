@@ -297,7 +297,7 @@ namespace ElectronicObserver.Utility
 						// equipments
 						for (int equipmentIndex = 0; equipmentIndex < 6; equipmentIndex++)
 						{
-							EquipmentData eq = ship.AllSlotInstance[equipmentIndex];
+							IEquipmentData eq = ship.AllSlotInstance[equipmentIndex];
 							Point equipmentPointer = shipPointer + new Size(0, equipmentAreaUnitSize.Height * equipmentIndex);
 
 
@@ -808,7 +808,7 @@ namespace ElectronicObserver.Utility
 						Point equipmentPointerOrigin = shipPointer + GetAlignmentOffset(ContentAlignment.BottomRight, equipmentAreaSize, shipPaneUnitSize);
 						for (int equipmentIndex = 0; equipmentIndex < 6; equipmentIndex++)
 						{
-							EquipmentData eq = ship.AllSlotInstance[equipmentIndex];
+							IEquipmentData eq = ship.AllSlotInstance[equipmentIndex];
 
 							int yIndex = equipmentIndex;
 							if (!has5thSlot && equipmentIndex >= 5)     // 5スロ目がないとき、そのスペースを省略
@@ -1204,7 +1204,7 @@ namespace ElectronicObserver.Utility
 						Point equipmentPointerOrigin = shipPointer;
 						for (int equipmentIndex = 0; equipmentIndex < 6; equipmentIndex++)
 						{
-							EquipmentData eq = ship.AllSlotInstance[equipmentIndex];
+							IEquipmentData eq = ship.AllSlotInstance[equipmentIndex];
 
 							int yIndex = equipmentIndex;
 							if (!has5thSlot && equipmentIndex >= 5)     // 5スロ目がないとき、そのスペースを省略

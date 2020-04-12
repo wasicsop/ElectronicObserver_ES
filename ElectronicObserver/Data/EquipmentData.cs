@@ -5,15 +5,78 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ElectronicObserver.Utility.Data;
 
 namespace ElectronicObserver.Data
 {
+	public interface IEquipmentData
+	{
+		/// <summary>
+		/// 装備を一意に識別するID
+		/// </summary>
+		int MasterID { get; }
+
+		/// <summary>
+		/// 装備ID
+		/// </summary>
+		int EquipmentID { get; }
+
+		/// <summary>
+		/// 保護ロック
+		/// </summary>
+		bool IsLocked { get; }
+
+		/// <summary>
+		/// 改修Level
+		/// </summary>
+		int Level { get; }
+
+		/// <summary>
+		/// 艦載機熟練度
+		/// </summary>
+		int AircraftLevel { get; }
+
+		/// <summary>
+		/// 装備のマスターデータへの参照
+		/// </summary>
+		IEquipmentDataMaster MasterEquipment { get; }
+
+		/// <summary>
+		/// 装備名
+		/// </summary>
+		string Name { get; }
+
+		/// <summary>
+		/// 装備名(レベルを含む)
+		/// </summary>
+		string NameWithLevel { get; }
+
+		/// <summary>
+		/// 配置転換中かどうか
+		/// </summary>
+		bool IsRelocated { get; }
+
+		int ID { get; }
+
+		/// <summary>
+		/// 生の受信データ(api_data)
+		/// </summary>
+		dynamic RawData { get; }
+
+		/// <summary>
+		/// 現在のデータが有効かを取得します。
+		/// </summary>
+		bool IsAvailable { get; }
+
+		void LoadFromResponse(string apiname, dynamic data);
+		string ToString();
+	}
 
 	/// <summary>
 	/// 個別の装備データを保持します。
 	/// </summary>
 	[DebuggerDisplay("[{ID}] : {NameWithLevel}")]
-	public class EquipmentData : ResponseWrapper, IIdentifiable
+	public class EquipmentData : ResponseWrapper, IIdentifiable, IEquipmentData
 	{
 
 		/// <summary>
@@ -63,7 +126,7 @@ namespace ElectronicObserver.Data
 		/// <summary>
 		/// 装備のマスターデータへの参照
 		/// </summary>
-		public EquipmentDataMaster MasterEquipment => KCDatabase.Instance.MasterEquipments[EquipmentID];
+		public IEquipmentDataMaster MasterEquipment => KCDatabase.Instance.MasterEquipments[EquipmentID];
 
 		/// <summary>
 		/// 装備名

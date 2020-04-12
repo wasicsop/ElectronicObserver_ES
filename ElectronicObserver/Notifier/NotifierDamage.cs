@@ -204,7 +204,7 @@ namespace ElectronicObserver.Notifier
 
 
 		// 注: 退避中かどうかまではチェックしない
-		private bool IsShipDamaged(ShipData ship, int hp)
+		private bool IsShipDamaged(IShipData ship, int hp)
 		{
 			return ship != null &&
 				hp > 0 &&
@@ -215,7 +215,7 @@ namespace ElectronicObserver.Notifier
 				(ContainsSafeShip ? true : !ship.AllSlotInstanceMaster.Any(e => e?.CategoryType == EquipmentTypes.DamageControl));
 		}
 
-		private string[] GetDamagedShips(IEnumerable<ShipData> ships)
+		private string[] GetDamagedShips(IEnumerable<IShipData> ships)
 		{
 			return ships.Where(s => IsShipDamaged(s, s?.HPCurrent ?? 0)).Select(s => $"{s.NameWithLevel} ({s.HPCurrent}/{s.HPMax})").ToArray();
 		}

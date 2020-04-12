@@ -101,7 +101,7 @@ namespace ElectronicObserver.Window.Dialog
 		private void Updated()
 		{
 
-			ShipData[] ships = GetShips().ToArray();
+			IShipData[] ships = GetShips().ToArray();
 			int formation = Formation.SelectedItem as FormationComboBoxData;
 			int aaCutinKind = AACutinKind.SelectedItem as AACutinComboBoxData;
 			int enemyAircraftCount = enemySlotCountValue;
@@ -158,7 +158,7 @@ namespace ElectronicObserver.Window.Dialog
 		}
 
 
-		private IEnumerable<ShipData> GetShips()
+		private IEnumerable<IShipData> GetShips()
 		{
 			if (FleetID.SelectedIndex < 4)
 				return KCDatabase.Instance.Fleet[FleetID.SelectedIndex + 1].MembersWithoutEscaped;

@@ -12,8 +12,7 @@ namespace ElectronicObserver.Data
 	/// </summary>
 	public interface IIdentifiable
 	{
-
-		int ID { get; }
+		public int ID { get; }
 
 	}
 

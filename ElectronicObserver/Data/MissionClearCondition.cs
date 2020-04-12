@@ -389,7 +389,7 @@ namespace ElectronicObserver.Data
 
 			// nullable!
 			private FleetData targetFleet;
-			private IEnumerable<ShipData> members => (targetFleet?.MembersInstance ?? Enumerable.Empty<ShipData>()).Where(s => s != null);
+			private IEnumerable<IShipData> members => (targetFleet?.MembersInstance ?? Enumerable.Empty<ShipData>()).Where(s => s != null);
 
 
 			public MissionClearConditionResult(FleetData targetFleet)
@@ -463,7 +463,7 @@ namespace ElectronicObserver.Data
 			}
 
 
-			public MissionClearConditionResult CheckShipCount(Func<ShipData, bool> predicate, int leastCount, string whatis)
+			public MissionClearConditionResult CheckShipCount(Func<IShipData, bool> predicate, int leastCount, string whatis)
 			{
 				int actualCount = members.Count(predicate);
 				Assert(
@@ -543,7 +543,7 @@ namespace ElectronicObserver.Data
 			}
 
 
-			public MissionClearConditionResult CheckParameter(Func<ShipData, int> selector, int leastSum, string parameterName)
+			public MissionClearConditionResult CheckParameter(Func<IShipData, int> selector, int leastSum, string parameterName)
 			{
 				int actualSum = members.Sum(s => selector(s));
 				Assert(
@@ -578,7 +578,7 @@ namespace ElectronicObserver.Data
 				}), leastSum, "対潜");
 
 
-			public MissionClearConditionResult CheckEquipmentCount(Func<EquipmentData, bool> predicate, int leastCount, string whatis)
+			public MissionClearConditionResult CheckEquipmentCount(Func<IEquipmentData, bool> predicate, int leastCount, string whatis)
 			{
 				int actualCount = members.Sum(s => s.AllSlotInstance.Count(eq => eq != null && predicate(eq)));
 				Assert(actualCount >= leastCount,
@@ -590,7 +590,7 @@ namespace ElectronicObserver.Data
 				CheckEquipmentCount(eq => eq.MasterEquipment.CategoryType == equipmentType, leastCount, KCDatabase.Instance.EquipmentTypes[(int)equipmentType].Name);
 
 
-			public MissionClearConditionResult CheckEquippedShipCount(Func<EquipmentData, bool> predicate, int leastCount, string whatis)
+			public MissionClearConditionResult CheckEquippedShipCount(Func<IEquipmentData, bool> predicate, int leastCount, string whatis)
 			{
 				int actualCount = members.Count(s => s.AllSlotInstance.Any(eq => eq != null && predicate(eq)));
 				Assert(actualCount >= leastCount,

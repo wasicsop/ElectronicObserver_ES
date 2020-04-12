@@ -43,7 +43,7 @@ namespace ElectronicObserver.Data
 
 			public bool IsSucceeded => MasterID != -1;
 			public EquipmentData Equipment => KCDatabase.Instance.Equipments[MasterID];
-			public EquipmentDataMaster MasterEquipment => Equipment?.MasterEquipment;
+			public IEquipmentDataMaster? MasterEquipment => Equipment?.MasterEquipment;
 
 			public DevelopmentResult() : this(null) { }
 			public DevelopmentResult(dynamic data)
