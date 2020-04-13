@@ -1,0 +1,292 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AADirector" xml:space="preserve">
+    <value>Anti-Aircraft Director</value>
+  </data>
+  <data name="AAGun" xml:space="preserve">
+    <value>Anti-Aircraft Machine Gun</value>
+  </data>
+  <data name="AAShell" xml:space="preserve">
+    <value>Anti-Aircraft Shell</value>
+  </data>
+  <data name="APShell" xml:space="preserve">
+    <value>Armour Piercing Shell</value>
+  </data>
+  <data name="ASPatrol" xml:space="preserve">
+    <value>Anti-submarine Patrol</value>
+  </data>
+  <data name="Autogyro" xml:space="preserve">
+    <value>Autogyro</value>
+  </data>
+  <data name="AviationPersonnel" xml:space="preserve">
+    <value>Aviation Personnel</value>
+  </data>
+  <data name="CarrierBasedBomber" xml:space="preserve">
+    <value>Carrier Dive Bomber</value>
+  </data>
+  <data name="CarrierBasedFighter" xml:space="preserve">
+    <value>Carrier Fighter</value>
+  </data>
+  <data name="CarrierBasedRecon" xml:space="preserve">
+    <value>Carrier Recon</value>
+  </data>
+  <data name="CarrierBasedRecon2" xml:space="preserve">
+    <value>Carrier Recon (II)</value>
+  </data>
+  <data name="CarrierBasedTorpedo" xml:space="preserve">
+    <value>Carrier Torpedo Bomber</value>
+  </data>
+  <data name="CommandFacility" xml:space="preserve">
+    <value>Command Facility</value>
+  </data>
+  <data name="DamageControl" xml:space="preserve">
+    <value>Damage Control</value>
+  </data>
+  <data name="DepthCharge" xml:space="preserve">
+    <value>Depth Charge</value>
+  </data>
+  <data name="Engine" xml:space="preserve">
+    <value>Engine</value>
+  </data>
+  <data name="ExtraArmor" xml:space="preserve">
+    <value>Bulge</value>
+  </data>
+  <data name="ExtraArmorLarge" xml:space="preserve">
+    <value>Bulge (Large)</value>
+  </data>
+  <data name="ExtraArmorMedium" xml:space="preserve">
+    <value>Bulge (Medium)</value>
+  </data>
+  <data name="FlyingBoat" xml:space="preserve">
+    <value>Flying Boat</value>
+  </data>
+  <data name="Interceptor" xml:space="preserve">
+    <value>Interceptor</value>
+  </data>
+  <data name="JetBomber" xml:space="preserve">
+    <value>Jet Fighter Bomber</value>
+  </data>
+  <data name="JetFighter" xml:space="preserve">
+    <value>Jet Fighter</value>
+  </data>
+  <data name="JetRecon" xml:space="preserve">
+    <value>Jet Recon</value>
+  </data>
+  <data name="JetTorpedo" xml:space="preserve">
+    <value>Jet Torpedo Bomber</value>
+  </data>
+  <data name="LandBasedAttacker" xml:space="preserve">
+    <value>Land Bomber</value>
+  </data>
+  <data name="LandBasedRecon" xml:space="preserve">
+    <value>Land Recon</value>
+  </data>
+  <data name="LandingCraft" xml:space="preserve">
+    <value>Landing Craft</value>
+  </data>
+  <data name="MainGunLarge" xml:space="preserve">
+    <value>Large Calibre Main Gun</value>
+  </data>
+  <data name="MainGunLarge2" xml:space="preserve">
+    <value>Large Calibre Main Gun (II)</value>
+  </data>
+  <data name="MainGunMedium" xml:space="preserve">
+    <value>Medium Calibre Main Gun</value>
+  </data>
+  <data name="MainGunSmall" xml:space="preserve">
+    <value>Small Calibre Main Gun</value>
+  </data>
+  <data name="MidgetSubmarine" xml:space="preserve">
+    <value>Midget Submarine</value>
+  </data>
+  <data name="RadarLarge" xml:space="preserve">
+    <value>Large Radar</value>
+  </data>
+  <data name="RadarLarge2" xml:space="preserve">
+    <value>Large Radar (II)</value>
+  </data>
+  <data name="RadarSmall" xml:space="preserve">
+    <value>Small Radar</value>
+  </data>
+  <data name="Ration" xml:space="preserve">
+    <value>Ration</value>
+  </data>
+  <data name="RepairFacility" xml:space="preserve">
+    <value>Repair Facility</value>
+  </data>
+  <data name="Rocket" xml:space="preserve">
+    <value>Anti-Ground Rocket</value>
+  </data>
+  <data name="SeaplaneBomber" xml:space="preserve">
+    <value>Seaplane Bomber</value>
+  </data>
+  <data name="SeaplaneFighter" xml:space="preserve">
+    <value>Seaplane Fighter</value>
+  </data>
+  <data name="SeaplaneRecon" xml:space="preserve">
+    <value>Seaplane Recon</value>
+  </data>
+  <data name="Searchlight" xml:space="preserve">
+    <value>Searchlight</value>
+  </data>
+  <data name="SearchlightLarge" xml:space="preserve">
+    <value>Large Searchlight</value>
+  </data>
+  <data name="SecondaryGun" xml:space="preserve">
+    <value>Secondary Gun</value>
+  </data>
+  <data name="Sonar" xml:space="preserve">
+    <value>Sonar</value>
+  </data>
+  <data name="SonarLarge" xml:space="preserve">
+    <value>Large Sonar</value>
+  </data>
+  <data name="SpecialAmphibiousTank" xml:space="preserve">
+    <value>Special Amphibious tank</value>
+  </data>
+  <data name="StarShell" xml:space="preserve">
+    <value>Star Shell</value>
+    <comment>Or known as flare</comment>
+  </data>
+  <data name="SubmarineEquipment" xml:space="preserve">
+    <value>Submarine Equipment</value>
+  </data>
+  <data name="SubmarineTorpedo" xml:space="preserve">
+    <value>Submarine Torpedo</value>
+  </data>
+  <data name="Supplies" xml:space="preserve">
+    <value>Supplies</value>
+  </data>
+  <data name="SurfaceShipPersonnel" xml:space="preserve">
+    <value>Surface Ship Personnel</value>
+  </data>
+  <data name="Torpedo" xml:space="preserve">
+    <value>Torpedo</value>
+  </data>
+  <data name="TransportContainer" xml:space="preserve">
+    <value>Transport Drum</value>
+  </data>
+  <data name="TransportMaterial" xml:space="preserve">
+    <value>Transport Material</value>
+  </data>
+  <data name="VTFuse" xml:space="preserve">
+    <value>Proximity Fuse</value>
+  </data>
+</root>

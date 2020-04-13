@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Data
 {
@@ -525,9 +526,9 @@ namespace ElectronicObserver.Data
 	}
 
 	/// <summary>
-    /// 個別の艦娘データを保持します。
-    /// </summary>
-    public class ShipData : APIWrapper, IIdentifiable, IShipData
+	/// 個別の艦娘データを保持します。
+	/// </summary>
+	public class ShipData : APIWrapper, IIdentifiable, IShipData
 	{
 
 

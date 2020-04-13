@@ -45,8 +45,16 @@ namespace ElectronicObserver
 
 				Application.EnableVisualStyles();
 				Application.SetCompatibleTextRenderingDefault(false);
-				Application.Run(new FormMain());
+				try
+				{
+					// todo why does this exception happen?
+					// observed first after I added the wpf version of KC progress
+					Application.Run(new FormMain());
+				}
+				catch (System.Runtime.InteropServices.SEHException e)
+				{
 
+				}
 			}
 		}
 	}
