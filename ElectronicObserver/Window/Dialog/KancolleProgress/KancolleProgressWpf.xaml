@@ -6,7 +6,7 @@
 
         TextElement.Foreground="White"
         TextElement.FontWeight="Regular"
-        TextElement.FontSize="11"
+        TextElement.FontSize="14"
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
         Background="#000000"

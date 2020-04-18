@@ -29,7 +29,7 @@ namespace ElectronicObserver.Window.Dialog
 
             elementHost = new ElementHost {Dock = DockStyle.Fill};
 
-            ClientSize = new Size(1386, 831);
+            ClientSize = new Size(1444, 962);
             Controls.Add(elementHost);
 		}
 
