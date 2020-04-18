@@ -25,7 +25,10 @@
 		</ResourceDictionary>
 	</UserControl.Resources>
 
-	<StackPanel Orientation="Horizontal" x:Name="ShipTypeGroupContainer" Margin="20" HorizontalAlignment="Center">
+	<ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+		<StackPanel Orientation="Horizontal" x:Name="ShipTypeGroupContainer" Margin="20" HorizontalAlignment="Center">
 
-    </StackPanel>
+		</StackPanel>
+	</ScrollViewer>
+
 </UserControl>
