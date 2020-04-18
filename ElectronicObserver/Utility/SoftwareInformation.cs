@@ -133,7 +133,7 @@ namespace ElectronicObserver.Utility
 				else
 				{
 
-					Utility.Logger.Add(1, "You are currently using the latest version (" + date.ToString("yyyy/MM/dd") + " release).");
+					Utility.Logger.Add(3, "You are currently using the latest version (" + date.ToString("yyyy/MM/dd") + " release).");
 
 				}
 
