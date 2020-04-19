@@ -783,16 +783,28 @@ namespace ElectronicObserver.Window
 
 		private void ManuMain_QuestTranslate_Click(object sender, EventArgs e)
 		{
-			string output = "";
+			List<string> outputList = new List<string>();
 			foreach (QuestData quest in KCDatabase.Instance.Quest.Quests.Values)
 			{
-				if (!quest.Translated)
-				{
-					output += $"<ID>{quest.QuestID}</ID>\r\n<JP-Name>{quest.Name}</JP-Name>\r\n<JP-Detail>{quest.Description}</JP-Detail>\r\n\r\n";
-				}
+				if (quest.Translated) continue;
+
+				outputList.Add("<Quest>");
+				outputList.Add($"\t<ID>{quest.QuestID}</ID>");
+				outputList.Add($"\t<JP-Name>{quest.Name}</JP-Name>");
+				outputList.Add("\t<TR-Name></TR-Name>");
+				outputList.Add($"\t<JP-Detail>{quest.Description}</JP-Detail>");
+				outputList.Add("\t<TR-Detail></TR-Detail>");
+				outputList.Add("</Quest>");
 			}
 
-			Clipboard.SetText(output);
+			if (!outputList.Any())
+			{
+				MessageBox.Show("All your quests are translated.", "Information", MessageBoxButtons.OK,
+					MessageBoxIcon.Information);
+				return;
+			}
+
+			Clipboard.SetText(string.Join("\r\n", outputList));
 		}
 
 		protected override string GetPersistString()
