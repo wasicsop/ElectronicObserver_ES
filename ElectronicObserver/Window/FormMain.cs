@@ -94,7 +94,6 @@ namespace ElectronicObserver.Window
 			}
 			Thread.CurrentThread.CurrentCulture = c;
 			Thread.CurrentThread.CurrentUICulture = ui;
-			Translator = new DynamicTranslator();
 			Instance = this;
 			this.SetStyle(ControlStyles.SupportsTransparentBackColor, true);
 			InitializeComponent();
@@ -111,6 +110,7 @@ namespace ElectronicObserver.Window
 
 			Utility.Configuration.Instance.Load(this);
 
+			Translator = new DynamicTranslator();
 			this.MainDockPanel.Styles = Configuration.Config.UI.DockPanelSuiteStyles;
 			this.MainDockPanel.Theme = new WeifenLuo.WinFormsUI.Docking.VS2012Theme();
 			this.BackColor = this.StripMenu.BackColor = Utility.Configuration.Config.UI.BackColor;
