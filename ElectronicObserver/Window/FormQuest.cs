@@ -757,6 +757,39 @@ namespace ElectronicObserver.Window
 			return -1;
 		}
 
+		private void ManuMain_QuestDescription_Click(object sender, EventArgs e)
+		{
+			var quest = KCDatabase.Instance.Quest[GetSelectedRowQuestID()];
+			
+			if (quest != null)
+			{
+				Clipboard.SetText(quest.Description);
+			}
+		}
+
+		private void ManuMain_QuestTitle_Click(object sender, EventArgs e)
+		{
+			var quest = KCDatabase.Instance.Quest[GetSelectedRowQuestID()];
+
+			if (quest != null)
+			{
+				Clipboard.SetText(quest.Name);
+			}
+		}
+
+		private void ManuMain_QuestTranslate_Click(object sender, EventArgs e)
+		{
+			string output = "";
+			foreach (QuestData quest in KCDatabase.Instance.Quest.Quests.Values)
+			{
+				if (!quest.Translated)
+				{
+					output += $"<ID>{quest.QuestID}</ID>\r\n<JP-Name>{quest.Name}</JP-Name>\r\n<JP-Detail>{quest.Description}</JP-Detail>\r\n\r\n";
+				}
+			}
+
+			Clipboard.SetText(output);
+		}
 
 		protected override string GetPersistString()
 		{

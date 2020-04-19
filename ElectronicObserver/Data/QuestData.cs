@@ -53,6 +53,11 @@ namespace ElectronicObserver.Data
 		//undone:api_bonus_flag
 
 		/// <summary>
+		/// True if quest is translated
+		/// </summary>
+		public bool Translated => (string)RawData.api_detail.Replace("<br>", "\r\n") != Description && (string)RawData.api_title != Name;
+
+		/// <summary>
 		/// 進捗
 		/// </summary>
 		public int Progress => (int)RawData.api_progress_flag;
