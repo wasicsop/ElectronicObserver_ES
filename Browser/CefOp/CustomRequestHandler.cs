@@ -8,21 +8,30 @@ using System.Threading.Tasks;
 
 namespace Browser.CefOp
 {
-	public class CefRequestHandler : RequestHandler
+	public class CustomRequestHandler : RequestHandler
 	{
 		public delegate void RenderProcessTerminatedEventHandler(string message);
 		public event RenderProcessTerminatedEventHandler RenderProcessTerminated;
 
+		bool pixiSettingEnabled;
+
+
+
+		public CustomRequestHandler(bool pixiSettingEnabled) : base()
+		{
+			this.pixiSettingEnabled = pixiSettingEnabled;
+		}
+
 		/// <summary>
 		/// 戻る/進む操作をブロックします。
 		/// </summary>
-		protected override bool OnBeforeBrowse(IWebBrowser chromiumWebBrowser, IBrowser browser, IFrame frame, IRequest request, bool userGesture, bool isRedirect)
+		protected override bool OnBeforeBrowse(IWebBrowser browserControl, IBrowser browser, IFrame frame, IRequest request, bool userGesture, bool isRedirect)
 		{
 			if ((request.TransitionType & TransitionType.ForwardBack) != 0)
 			{
 				return true;
 			}
-			return base.OnBeforeBrowse(chromiumWebBrowser, browser, frame, request, userGesture, isRedirect);
+			return base.OnBeforeBrowse(browserControl, browser, frame, request, userGesture, isRedirect);
 		}
 
 		/// <summary>
@@ -52,6 +61,12 @@ namespace Browser.CefOp
 
 			RenderProcessTerminated(ret);
 		}
+
+		/*protected override IResourceRequestHandler GetResourceRequestHandler(IWebBrowser chromiumWebBrowser, IBrowser browser, IFrame frame, IRequest request, bool isNavigation, bool isDownload, string requestInitiator, ref bool disableDefaultHandling)
+		{
+			return new CustomResourceRequestHandler(pixiSettingEnabled);
+		}*/
+
 		protected override IResourceRequestHandler GetResourceRequestHandler(IWebBrowser chromiumWebBrowser, IBrowser browser, IFrame frame, IRequest request, bool iNavigation, bool isDownload, string requestInitiator, ref bool disableDefaultHandling)
 		{
 			//NOTE: In most cases you examine the request.Url and only handle requests you are interested in
@@ -61,7 +76,8 @@ namespace Browser.CefOp
 			}
 			if (request.Url.Contains("gadget_html5"))
 				return new GadgetUrlHandler();
-			return null;
+
+			return new CustomResourceRequestHandler(pixiSettingEnabled);
 		}
 	}
 }

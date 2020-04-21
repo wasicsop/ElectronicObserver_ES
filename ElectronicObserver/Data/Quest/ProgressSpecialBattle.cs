@@ -274,31 +274,6 @@ namespace ElectronicObserver.Data.Quest
 					isAccepted = melonFlag && mutsukis;
 				}
 					break;
-
-				// Bq13
-				case 903:
-				{
-					bool melonFlag =
-						members[0].ShipID == (int) ShipId.YuubariKaiNi ||
-						members[0].ShipID == (int) ShipId.YuubariKaiNiToku ||
-						members[0].ShipID == (int) ShipId.YuubariKaiNiD;
-
-					bool mutsukis =
-						members.Where(s => s?.MasterShip?.BaseShip() != null)
-							.Count(s =>
-								s.MasterShip.BaseShip().ShipID == (int) ShipId.Mutsuki ||
-								s.MasterShip.BaseShip().ShipID == (int) ShipId.Kisaragi ||
-								s.MasterShip.BaseShip().ShipID == (int) ShipId.Kikuzuki ||
-								s.MasterShip.BaseShip().ShipID == (int) ShipId.Mochizuki ||
-								s.MasterShip.BaseShip().ShipID == (int) ShipId.Uzuki ||
-								s.MasterShip.BaseShip().ShipID == (int) ShipId.Yayoi) >= 2;
-
-					bool yura = members.Any(s => s?.MasterShip?.ShipID == (int) ShipId.YuraKaiNi);
-
-					isAccepted = melonFlag && (mutsukis || yura);
-				}
-					break;
-
 				// B131
 				case 896:
 				{
@@ -314,6 +289,37 @@ namespace ElectronicObserver.Data.Quest
 
 					isAccepted = ise && hyuuga;
 				}
+					break;
+
+				case 903:   // |903|季|拡張「六水戦」、最前線へ！|5-1・5-4・6-4・6-5ボスS勝利各1|要旗艦夕張改二(|特|丁), 由良改二or(睦月/如月/弥生/卯月/菊月/望月2)|進捗3/4で80%
+					isAccepted = members[0]?.MasterShip?.NameReading == "ゆうばり" && members[0]?.MasterShip?.RemodelTier >= 2 &&
+						(members.Any(s => s?.ShipID == 488) || members.Count(s => {
+							switch(s?.MasterShip?.NameReading)
+							{
+								case "むつき":
+								case "きさらぎ":
+								case "やよい":
+								case "もちづき":
+								case "きくづき":
+								case "うづき":
+									return true;
+								default:
+									return false;
+							}
+						}) >= 2);
+					break;
+
+				case 904:   // |904|年(2月)|精鋭「十九駆」、躍り出る！|2-5・3-4・4-5・5-3ボスS勝利各1|要綾波改二/敷波改二
+					isAccepted = members.Any(s => s?.ShipID == 195) && members.Any(s => s?.ShipID == 627);
+					break;
+
+				case 905:   // |905|年(2月)|「海防艦」、海を護る！|1-1・1-2・1-3・1-5ボスA勝利各1/1-6終点到達1|要海防艦3, 5隻以下の編成
+					isAccepted = members.Count(s => s != null) <= 5 && memberstype.Count(t => t == ShipTypes.Escort) >= 3;
+					break;
+
+				case 912:   // |912|年(3月)|工作艦「明石」護衛任務|1-3・2-1・2-2・2-3ボスA勝利各1/1-6終点到達1|要明石旗艦, 駆逐艦3
+					isAccepted = members.FirstOrDefault()?.MasterShip?.NameReading == "あかし" && 
+						memberstype.Count(t => t == ShipTypes.Destroyer) >= 3;
 					break;
 			}
 
