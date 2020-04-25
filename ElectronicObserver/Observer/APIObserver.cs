@@ -262,6 +262,8 @@ namespace ElectronicObserver.Observer
 
 		private async Task ProxyOnBeforeResponse(object sender, SessionEventArgs e)
 		{
+			if (e.HttpClient.Response.StatusCode != 200) return;
+
 			Configuration.ConfigurationData.ConfigConnection c = Configuration.Config.Connection;
 
 			string baseurl = e.HttpClient.Request.RequestUri.AbsoluteUri;
