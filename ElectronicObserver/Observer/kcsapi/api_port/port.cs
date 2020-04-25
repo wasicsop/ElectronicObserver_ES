@@ -72,7 +72,7 @@ namespace ElectronicObserver.Observer.kcsapi.api_port
 				dataForWS.image = Utility.Configuration.Config.Control.UseFlagshipIconForRPC ? db.Fleet[1].MembersInstance[0].ShipID.ToString() : "kc_logo_512x512";
 				dataForWS.shipId = db.Fleet[1].MembersInstance[0].ShipID;
 
-				if (db.Admiral.Senka != null)
+				if (db.Admiral.Senka != null && db.Server?.Name != null)
                 {
                     dataForWS.bot.Add(string.Format("Rank {0} on {1}", db.Admiral.Senka, db.Server.Name));
                 }
