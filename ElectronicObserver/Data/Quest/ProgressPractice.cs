@@ -8,27 +8,6 @@ using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Data.Quest
 {
-	// todo: library with full enum
-	public enum ShipId
-	{
-		Mutsuki = 1,
-		Kisaragi = 2,
-		Kagerou = 17,
-		Shiranui = 18,
-		Kikuzuki = 30,
-		Mochizuki = 31,
-		Arare = 48,
-		Kasumi = 49,
-		Yayoi = 164,
-		Uzuki = 165,
-		YuraKaiNi = 488,
-		IseKaiNi = 553,
-		HyuugaKaiNi = 554,
-		YuubariKaiNi = 622,
-		YuubariKaiNiToku = 623,
-		YuubariKaiNiD = 624
-	}
-
 	/// <summary>
 	/// 演習任務の進捗を管理します。
 	/// </summary>
