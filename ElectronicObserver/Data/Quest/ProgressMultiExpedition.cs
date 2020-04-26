@@ -52,7 +52,7 @@ namespace ElectronicObserver.Data.Quest
             if (ProgressList.All(p => p.IsCleared))
                 return "100%";
             else
-                return string.Join(", ", ProgressList.Where(p => !p.IsCleared).Select(p => p.GetClearCondition() + ": " + p.ToString()));
+                return string.Join(",\n", ProgressList.Where(p => !p.IsCleared).Select(p => p.GetClearCondition() + ": " + p.ToString()));
         }
 
 
