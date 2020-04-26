@@ -353,6 +353,12 @@ namespace ElectronicObserver.Data
 		int RemodelTier { get; }
 
 		/// <summary>
+		/// 改装段階
+		/// 初期 = 0, 改 = 1, 改二 = 2, ...
+		/// </summary>
+		RemodelTier RemodelTierTyped { get; }
+
+		/// <summary>
 		/// 艦種名
 		/// </summary>
 		string ShipTypeName { get; }
@@ -406,6 +412,11 @@ namespace ElectronicObserver.Data
 		/// 艦船ID
 		/// </summary>
 		public int ShipID => (int)RawData.api_id;
+
+		/// <summary>
+		/// 艦船ID
+		/// </summary>
+		public ShipId ShipId => (ShipId)RawData.api_id;
 
 		/// <summary>
 		/// 図鑑番号
@@ -1018,6 +1029,11 @@ namespace ElectronicObserver.Data
 			}
 		}
 
+		/// <summary>
+		/// 改装段階
+		/// 初期 = 0, 改 = 1, 改二 = 2, ...
+		/// </summary>
+		public RemodelTier RemodelTierTyped => (RemodelTier) RemodelTier;
 
 		/// <summary>
 		/// 艦種名
