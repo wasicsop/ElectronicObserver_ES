@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
@@ -26,9 +28,71 @@ namespace ElectronicObserver.Data.Quest
 			GaugeIndex = gaugeIndex;
 		}
 
+		static bool HasFlagship(IEnumerable<IShipData?>? fleet, ShipId baseId, RemodelTier minRemodel = RemodelTier.Base)
+		{
+			IShipData? ship = fleet?.FirstOrDefault();
+
+			if (ship == null) return false;
+
+			return ship.MasterShip.BaseShip().ShipId == baseId && ship.MasterShip.RemodelTierTyped >= minRemodel;
+		}
+
+		static bool HasFlagship(IEnumerable<IShipData?>? fleet, ShipTypes type, params ShipTypes[] types)
+		{
+			if (fleet?.FirstOrDefault() == null) return false;
+
+			return HasShipType(fleet.Take(1), 1, type, types);
+		}
+
+		// parameter type exists to statically ensure at least 1 value
+		static bool HasShipType(IEnumerable<IShipData?>? fleet, int minCount, ShipTypes type, params ShipTypes[] types)
+		{
+			List<ShipTypes> typeList = types.ToList();
+			typeList.Add(type);
+
+			IEnumerable<IShipData>? ships = fleet?.Where(s => s != null)!;
+
+			if (ships == null) return false;
+
+			return ships.Count(s => typeList.Contains(s.MasterShip.ShipType)) >= minCount;
+		}
 
 		public override void Increment(string rank, int areaID, bool isBoss)
 		{
+			static bool HasShip(IEnumerable<IShipData?>? fleet, ShipId baseId, RemodelTier minRemodel = RemodelTier.Base)
+			{
+				IShipData? ship = fleet?.FirstOrDefault(s => s?.MasterShip.BaseShip().ShipId == baseId);
+
+				if (ship == null) return false;
+
+				return ship.MasterShip.RemodelTierTyped >= minRemodel;
+			}
+
+			static bool HasShipAtIndex(IEnumerable<IShipData?>? fleet, int index, ShipId baseId, RemodelTier minRemodel = RemodelTier.Base)
+			{
+				if (index == 0) return HasFlagship(fleet, baseId, minRemodel);
+				if (fleet == null) return false;
+
+				List<IShipData> ships = fleet.Where(s => s != null).ToList()!;
+
+				if (ships.Count <= index) return false;
+
+				IShipDataMaster? ship = ships.Skip(index).FirstOrDefault()?.MasterShip;
+
+				if (ship == null) return false;
+
+				return ship.BaseShip().ShipId == baseId && ship.RemodelTierTyped >= minRemodel;
+			}
+
+			static int CountSpecific(IEnumerable<IShipData?>? fleet, IEnumerable<(ShipId BaseId, RemodelTier MinRemodel)> ships)
+			{
+				if (fleet == null) return 0;
+
+				return fleet.Count(fm =>
+					ships.Any(s => fm?.MasterShip.BaseShip().ShipId == s.BaseId && 
+					               fm?.MasterShip.RemodelTierTyped >= s.MinRemodel));
+			}
+
 			// 邪悪
 			var Empty = (ShipTypes)(-1);
 
@@ -245,6 +309,53 @@ namespace ElectronicObserver.Data.Quest
 					             memberstype.Count(t => t == ShipTypes.Destroyer) >= 2;
 					break;
 
+				case 903: // Bq13
+					{
+					bool melonFlag =
+						members[0].ShipID == (int)ShipId.YuubariKaiNi ||
+						members[0].ShipID == (int)ShipId.YuubariKaiNiToku ||
+						members[0].ShipID == (int)ShipId.YuubariKaiNiD;
+
+					bool mutsukis =
+						members.Where(s => s?.MasterShip?.BaseShip() != null)
+							.Count(s =>
+								s.MasterShip.BaseShip().ShipID == (int)ShipId.Mutsuki ||
+								s.MasterShip.BaseShip().ShipID == (int)ShipId.Kisaragi ||
+								s.MasterShip.BaseShip().ShipID == (int)ShipId.Kikuzuki ||
+								s.MasterShip.BaseShip().ShipID == (int)ShipId.Mochizuki ||
+								s.MasterShip.BaseShip().ShipID == (int)ShipId.Uzuki ||
+								s.MasterShip.BaseShip().ShipID == (int)ShipId.Yayoi) >= 2;
+
+					bool yura = members.Any(s => s?.MasterShip?.ShipID == (int)ShipId.YuraKaiNi);
+
+					isAccepted = melonFlag && (mutsukis || yura);
+				}
+					break;
+
+				case 905: // By2
+				{
+					List<IShipData> ships = members.Where(s => s != null).ToList()!;
+
+					bool escorts = ships.Count(s => s.MasterShip.ShipType == ShipTypes.Escort) >= 3;
+					bool memberCount = ships.Count <= 5;
+
+					isAccepted = escorts && memberCount;
+				}
+					break;
+				case 912: // By4
+				{
+					bool akashi = members[0].MasterShip.ShipId switch
+					{
+						ShipId.Akashi => true,
+						ShipId.AkashiKai => true,
+						_ => false
+					};
+					bool destroyers = members.Count(s => s?.MasterShip.ShipType == ShipTypes.Destroyer) >= 3;
+
+					isAccepted = akashi && destroyers;
+				}
+					break;
+
 				// B140
 				case 901:
 					isAccepted =
@@ -276,27 +387,261 @@ namespace ElectronicObserver.Data.Quest
 				}
 					break;
 
-				// Bq13
-				case 903:
+				case 235: // B135
 				{
-					bool melonFlag =
-						members[0].ShipID == (int) ShipId.YuubariKaiNi ||
-						members[0].ShipID == (int) ShipId.YuubariKaiNiToku ||
-						members[0].ShipID == (int) ShipId.YuubariKaiNiD;
+					bool cl = HasShipType(members, 1, ShipTypes.LightCruiser);
+					bool escorts = HasShipType(members, 3, ShipTypes.Destroyer, ShipTypes.Escort);
 
-					bool mutsukis =
-						members.Where(s => s?.MasterShip?.BaseShip() != null)
-							.Count(s =>
-								s.MasterShip.BaseShip().ShipID == (int) ShipId.Mutsuki ||
-								s.MasterShip.BaseShip().ShipID == (int) ShipId.Kisaragi ||
-								s.MasterShip.BaseShip().ShipID == (int) ShipId.Kikuzuki ||
-								s.MasterShip.BaseShip().ShipID == (int) ShipId.Mochizuki ||
-								s.MasterShip.BaseShip().ShipID == (int) ShipId.Uzuki ||
-								s.MasterShip.BaseShip().ShipID == (int) ShipId.Yayoi) >= 2;
+					isAccepted = cl && escorts;
+				}
+					break;
+				case 246: // WB02
+				{
+					isAccepted = members[0]?.Level >= 100;
+				}
+					break;
+				case 251: // B26
+				{
+					bool souryuuFlag = HasFlagship(members, ShipId.Souryuu, RemodelTier.KaiNi);
+					bool hiryuu = HasShip(members, ShipId.Hiryuu, RemodelTier.KaiNi);
+					bool dd = HasShipType(members, 2, ShipTypes.Destroyer);
 
-					bool yura = members.Any(s => s?.MasterShip?.ShipID == (int) ShipId.YuraKaiNi);
+					isAccepted = souryuuFlag && hiryuu && dd;
+				}
+					break;
+				case 262: // B33
+				{
+					isAccepted = CountSpecific(members, new[]
+					{
+						(ShipId.Fusou, RemodelTier.Base),
+						(ShipId.Yamashiro, RemodelTier.Base),
+						(ShipId.Mogami, RemodelTier.Base),
+						(ShipId.Shigure, RemodelTier.Base),
+						(ShipId.Michishio, RemodelTier.Base),
+					}) == 5;
+				}
+					break;
+				case 276: // B44
+				{
+					isAccepted = CountSpecific(members, new[]
+					{
+						(ShipId.Hiei, RemodelTier.Base),
+						(ShipId.Kirishima, RemodelTier.Base),
+						(ShipId.Nagara, RemodelTier.Base),
+						(ShipId.Akatsuki, RemodelTier.Base),
+						(ShipId.Ikazuchi, RemodelTier.Base),
+						(ShipId.Inazuma, RemodelTier.Base),
+					}) == 6;
+				}
+					break;
+				case 290: // B128
+				{
+					isAccepted = HasFlagship(members, ShipId.Hiei);
+				}
+					break;
+				case 298: // B124
+				{
+					isAccepted = CountSpecific(members, new[]
+					{
+						(ShipId.Akebono, RemodelTier.Base),
+						(ShipId.Ushio, RemodelTier.Base),
+						(ShipId.Sazanami, RemodelTier.Base),
+						(ShipId.Oboro, RemodelTier.Base),
+					}) >= 2;
+				}
+					break;
+				case 831: // SB43
+				{
+					bool flagCondition = HasFlagship(members, ShipTypes.LightCruiser, ShipTypes.LightAircraftCarrier,
+						ShipTypes.SeaplaneTender);
+					bool escorts = HasShipType(members, 4, ShipTypes.Destroyer, ShipTypes.Escort);
 
-					isAccepted = melonFlag && (mutsukis || yura);
+					isAccepted = flagCondition && escorts;
+				}
+					break;
+				case 832: // SB44
+				{
+					bool naganami = HasFlagship(members, ShipId.Naganami);
+					bool escorts = CountSpecific(members, new[]
+					{
+						(ShipId.Takanami, RemodelTier.Base),
+						(ShipId.Okinami, RemodelTier.Base),
+						(ShipId.Kishinami, RemodelTier.Base),
+						(ShipId.Asashimo, RemodelTier.Base),
+					}) >= 3;
+
+					isAccepted = naganami && escorts;
+				}
+					break;
+				case 833: // B139
+				{
+					bool avOrLha = HasShipType(members, 1, ShipTypes.SeaplaneTender, ShipTypes.AmphibiousAssaultShip);
+						
+					isAccepted = avOrLha;
+				}
+					break;
+				case 856: // B99
+				{
+					bool nagatoFlag = HasFlagship(members, ShipId.Nagato, RemodelTier.KaiNi);
+					bool mutsu = HasShip(members, ShipId.Mutsu, RemodelTier.Kai);
+
+					isAccepted = nagatoFlag && mutsu;
+				}
+					break;
+				case 859: // B102
+				{
+					bool iseFlag = HasFlagship(members, ShipId.Ise);
+					bool hyuugaFlag = HasFlagship(members, ShipId.Hyuuga);
+
+					bool iseSecond = HasShipAtIndex(members, 1, ShipId.Ise);
+					bool hyuugaSecond = HasShipAtIndex(members, 1, ShipId.Hyuuga);
+
+					bool iseLevel = members.Any(s => s?.MasterShip.BaseShip().ShipId == ShipId.Ise && s.Level >= 50);
+					bool hyuugaLevel = members.Any(s => s?.MasterShip.BaseShip().ShipId == ShipId.Hyuuga && s.Level >= 50);
+
+					bool dd = HasShipType(members, 2, ShipTypes.Destroyer);
+					bool cl = HasShipType(members, 1, ShipTypes.LightCruiser);
+
+					isAccepted = (iseFlag && hyuugaSecond || hyuugaFlag && iseSecond) 
+					             && iseLevel && hyuugaLevel && dd && cl;
+				}
+					break;
+				case 863: // B104
+				{
+					bool fumizuki = HasShip(members, ShipId.Fumizuki, RemodelTier.KaiNi);
+					bool satsuki = HasShip(members, ShipId.Satsuki, RemodelTier.KaiNi);
+					bool minazuki = HasShip(members, ShipId.Minazuki, RemodelTier.Kai);
+					bool nagatsuki = HasShip(members, ShipId.Nagatsuki, RemodelTier.Kai);
+
+					isAccepted = fumizuki && satsuki && minazuki && nagatsuki;
+				}
+					break;
+				case 865: // B106
+				{
+					bool saratoga = members[0].MasterShip.ShipId == ShipId.SaratogaMkII;
+
+					isAccepted = saratoga;
+				}
+					break;
+				case 874: // B110
+				{
+					bool cl = members.Any(s => s?.MasterShip.ShipType == ShipTypes.LightCruiser);
+					bool av = members.Any(s => s?.MasterShip.ShipType == ShipTypes.SeaplaneTender);
+					bool cvl = members.Any(s => s?.MasterShip.ShipType == ShipTypes.LightAircraftCarrier);
+
+					isAccepted = cl && av && cvl;
+				}
+					break;
+				case 876: // B111
+				{
+					bool tatsuta = members[0].MasterShip.ShipId switch
+					{
+						ShipId.TatsutaKai => true,
+						ShipId.TatsutaKaiNi => true,
+						_ => false,
+					};
+					bool escorts = members.Count(s => s?.MasterShip.ShipType switch
+					{
+						ShipTypes.Destroyer => true,
+						ShipTypes.Escort => true,
+						_ => false
+					}) >= 3;
+
+					isAccepted = tatsuta && escorts;
+				}
+					break;
+				case 877: // B112
+				{
+					bool murasame = members[0].MasterShip.ShipId == ShipId.MurasameKaiNi;
+					bool escorts = members.Count(s => s?.MasterShip.ShipId switch
+					{
+						ShipId.YuraKaiNi => true,
+						ShipId.YuudachiKaiNi => true,
+						ShipId.HarusameKai => true,
+						ShipId.SamidareKai => true,
+						ShipId.AkizukiKai => true,
+						_ => false
+					}) >= 3;
+
+					isAccepted = murasame && escorts
+;
+				}
+					break;
+				case 880: // 115
+				{
+					bool destroyers = members.Count(s => s?.MasterShip.ShipType switch
+					{
+						ShipTypes.Destroyer => true,
+						_ => false
+					}) >= 3;
+
+					isAccepted = destroyers;
+				}
+					break;
+				case 882: // 7thAnvLB1 todo this ID will probably get recycled
+				{
+					bool destroyers = members.Count(s => s?.MasterShip.ShipType switch
+					{
+						ShipTypes.Destroyer => true,
+						ShipTypes.Escort => true,
+						_ => false
+					}) >= 3;
+
+					isAccepted = destroyers;
+				}
+					break;
+				case 885: // B118
+				{
+					bool ise = members.Any(s => s?.MasterShip.ShipId == ShipId.IseKaiNi);
+
+					isAccepted = ise;
+				}
+					break;
+
+				case 887: // B120
+				{
+					bool tenryuu = members.Any(s => s?.MasterShip.ShipId == ShipId.TenryuuKaiNi);
+					bool tatsuta = members.Any(s => s?.MasterShip.ShipId == ShipId.TatsutaKaiNi);
+					bool destroyers = members.Count(s => s?.MasterShip.ShipType == ShipTypes.Destroyer) >= 2;
+
+					isAccepted = tenryuu && tatsuta && destroyers;
+				}
+					break;
+
+				case 890: // B122
+				{
+					bool choukai = members.Any(s => s?.MasterShip?.ShipId == ShipId.ChoukaiKaiNi);
+					bool maya = members.Any(s => s?.MasterShip?.ShipId == ShipId.MayaKaiNi);
+
+					isAccepted = choukai && maya;
+				}
+					break;
+
+				case 891: // B123
+				{
+					bool isokaze = members.Any(s => s?.MasterShip?.ShipId == ShipId.IsokazeBKai);
+					bool hamakaze = members.Any(s => s?.MasterShip?.ShipId == ShipId.HamakazeBKai);
+					bool urakaze = members.Any(s => s?.MasterShip?.ShipId == ShipId.UrakazeDKai);
+					bool tanikaze = members.Any(s => s?.MasterShip?.ShipId == ShipId.TanikazeDKai);
+
+					isAccepted = isokaze && hamakaze && urakaze && tanikaze;
+				}
+					break;
+
+				case 892: // B126
+				{
+					bool yuugumo = members.Any(s => s?.MasterShip?.ShipID == (int)ShipId.YuugumoKaiNi);
+					bool makigumo = members.Any(s => s?.MasterShip?.ShipID == (int)ShipId.MakigumoKaiNi);
+
+					isAccepted = yuugumo && makigumo;
+				}
+					break;
+
+				case 895: // B127
+				{
+					bool clFlag = members[0].MasterShip.ShipType == ShipTypes.LightCruiser;
+
+					isAccepted = clFlag;
 				}
 					break;
 
@@ -314,6 +659,24 @@ namespace ElectronicObserver.Data.Quest
 					bool hyuuga = members.Any(s => s?.MasterShip?.ShipID == (int)ShipId.HyuugaKaiNi);
 
 					isAccepted = ise && hyuuga;
+				}
+					break;
+				case 913: // B143
+				{
+					bool shoukaku = members.Any(s => s?.MasterShip?.BaseShip().ShipID == (int)ShipId.Shoukaku);
+					bool zuikaku = members.Any(s => s?.MasterShip?.BaseShip().ShipID == (int)ShipId.Zuikaku);
+					bool oboro = members.Any(s => s?.MasterShip?.BaseShip().ShipID == (int)ShipId.Oboro);
+					bool akigumo = members.Any(s => s?.MasterShip?.BaseShip().ShipID == (int)ShipId.Akigumo);
+
+					isAccepted = shoukaku && zuikaku && oboro && akigumo;
+				}
+					break;
+				case 917: // B145
+				{
+					bool gotlandFlag = members[0]?.MasterShip?.ShipID == (int)ShipId.GotlandAndra;
+					bool destroyer = members.Any(s => s?.MasterShip?.ShipType == ShipTypes.Destroyer);
+
+					isAccepted = gotlandFlag && destroyer;
 				}
 					break;
 			}

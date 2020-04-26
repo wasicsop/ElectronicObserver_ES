@@ -419,6 +419,219 @@ namespace ElectronicObserver.Data.Quest
 							}));
 							break;
 
+						case 905:   // By2
+							Progresses.Add(new ProgressMultiBattle(q, new[]
+							{
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 11 }, true),
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 12 }, true),
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 13 }, true),
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 15 }, true),
+								new ProgressSpecialBattle(q, 1, "X", new[]{ 16 }, true),
+							}));
+							break;
+						case 912:   // By4
+							Progresses.Add(new ProgressMultiBattle(q, new[]
+							{
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 13 }, true),
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 21 }, true),
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 22 }, true),
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 23 }, true),
+								new ProgressSpecialBattle(q, 1, "X", new[]{ 16 }, true),
+							}));
+							break;
+
+						case 235: // B135
+							Progresses.Add(new ProgressMultiBattle(q, new[]
+							{
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 12 }, true),
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 13 }, true),
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 21 }, true),
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 22 }, true),
+							}));
+							break;
+						case 246: // WB02
+							Progresses.Add(new ProgressMultiBattle(q, new[]
+							{
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 43 }, true),
+							}));
+							break;
+						case 251: // B26
+							Progresses.Add(new ProgressMultiBattle(q, new[]
+							{
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 43 }, true),
+							}));
+							break;
+						case 262: // B33
+							Progresses.Add(new ProgressMultiBattle(q, new[]
+							{
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 51 }, true),
+							}));
+							break;
+						case 276: // B44
+							Progresses.Add(new ProgressMultiBattle(q, new[]
+							{
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 51 }, true),
+							}));
+							break;
+						case 290: // B128
+							Progresses.Add(new ProgressMultiBattle(q, new[]
+							{
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 53 }, true),
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 54 }, true),
+							}));
+							break;
+						case 298: // B124
+							Progresses.Add(new ProgressMultiBattle(q, new[]
+							{
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 21 }, true),
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 22 }, true),
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 23 }, true),
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 24 }, true),
+							}));
+							break;
+						case 831: // SB43
+							Progresses.Add(new ProgressMultiBattle(q, new[]
+							{
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 11 }, true),
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 12 }, true),
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 13 }, true),
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 14 }, true),
+							}));
+							break;
+						case 832: // SB44
+							Progresses.Add(new ProgressMultiBattle(q, new[]
+							{
+								new ProgressSpecialBattle(q, 2, "S", new[]{ 21 }, true),
+								new ProgressSpecialBattle(q, 2, "S", new[]{ 22 }, true),
+								new ProgressSpecialBattle(q, 1, "A", new[]{ 54 }, true),
+							}));
+							break;
+						case 833: // B139
+							Progresses.Add(new ProgressMultiBattle(q, new[]
+							{
+								new ProgressSpecialBattle(q, 1, "A", new[]{ 45 }, true),
+								new ProgressSpecialBattle(q, 1, "A", new[]{ 64 }, true),
+							}));
+							break;
+						case 856: // B99
+							Progresses.Add(new ProgressMultiBattle(q, new[]
+							{
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 45 }, true),
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 55 }, true),
+							}));
+							break;
+						case 859: // B102
+							Progresses.Add(new ProgressMultiBattle(q, new[]
+							{
+								new ProgressSpecialBattle(q, 1, "A", new[]{ 25 }, true),
+								new ProgressSpecialBattle(q, 1, "A", new[]{ 35 }, true),
+							}));
+							break;
+						case 863: // B104
+							Progresses.Add(new ProgressMultiBattle(q, new[]
+							{
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 32 }, true),
+							}));
+							break;
+						case 865: // B106
+							Progresses.Add(new ProgressMultiBattle(q, new[]
+							{
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 65 }, true),
+							}));
+							break;
+						case 874: // B110
+							Progresses.Add(new ProgressMultiBattle(q, new[]
+							{
+								new ProgressSpecialBattle(q, 2, "S", new[]{ 35 }, true),
+							}));
+							break;
+						case 876: // B111
+							Progresses.Add(new ProgressMultiBattle(q, new[]
+							{
+								new ProgressSpecialBattle(q, 2, "A", new[]{ 14 }, true),
+								new ProgressSpecialBattle(q, 2, "X", new[]{ 16 }, true),
+							}));
+							break;
+						case 877: // B112
+							Progresses.Add(new ProgressMultiBattle(q, new[]
+							{
+								new ProgressSpecialBattle(q, 1, "A", new[]{ 51 }, true),
+								new ProgressSpecialBattle(q, 1, "A", new[]{ 53 }, true),
+								new ProgressSpecialBattle(q, 1, "A", new[]{ 54 }, true),
+							}));
+							break;
+						case 880: // B115
+							Progresses.Add(new ProgressMultiBattle(q, new[]
+							{
+								new ProgressSpecialBattle(q, 1, "A", new[]{ 23 }, true),
+								new ProgressSpecialBattle(q, 1, "A", new[]{ 32 }, true),
+								new ProgressSpecialBattle(q, 1, "A", new[]{ 42 }, true),
+								new ProgressSpecialBattle(q, 1, "X", new[]{ 16 }, true),
+							}));
+							break;
+						case 882: // 7thAnvLB1 todo this ID will probably get recycled
+							Progresses.Add(new ProgressMultiBattle(q, new[]
+							{
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 12 }, true),
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 13 }, true),
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 14 }, true),
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 15 }, true),
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 21 }, true),
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 22 }, true),
+							}));
+							break;
+						case 885: // B118
+							Progresses.Add(new ProgressMultiBattle(q, new[]
+							{
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 35 }, true),
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 45 }, true),
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 64 }, true),
+							}));
+							break;
+						case 887: // B120
+							Progresses.Add(new ProgressMultiBattle(q, new[]
+							{
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 12 }, true),
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 14 }, true),
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 15 }, true),
+								new ProgressSpecialBattle(q, 1, "X", new[]{ 16 }, true),
+							}));
+							break;
+						case 890: // B122
+							Progresses.Add(new ProgressMultiBattle(q, new[]
+							{
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 14 }, true),
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 23 }, true),
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 33 }, true),
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 45 }, true),
+							}));
+							break;
+						case 891: // B123
+							Progresses.Add(new ProgressMultiBattle(q, new[]
+							{
+								new ProgressSpecialBattle(q, 1, "A", new[]{ 15 }, true),
+								new ProgressSpecialBattle(q, 1, "A", new[]{ 32 }, true),
+								new ProgressSpecialBattle(q, 1, "A", new[]{ 51 }, true),
+								new ProgressSpecialBattle(q, 1, "A", new[]{ 71 }, true),
+							}));
+							break;
+						case 892: // B126
+							Progresses.Add(new ProgressMultiBattle(q, new[]
+							{
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 53 }, true),
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 54 }, true),
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 55 }, true),
+							}));
+							break;
+						case 895: // B127
+							Progresses.Add(new ProgressMultiBattle(q, new[]
+							{
+								new ProgressSpecialBattle(q, 2, "S", new[]{ 31 }, true),
+								new ProgressSpecialBattle(q, 2, "S", new[]{ 33 }, true),
+								new ProgressSpecialBattle(q, 2, "S", new[]{ 34 }, true),
+								new ProgressSpecialBattle(q, 2, "S", new[]{ 35 }, true),
+							}));
+							break;
 						case 901:   // B140
 							Progresses.Add(new ProgressMultiBattle(q, new[]
 							{
@@ -454,6 +667,24 @@ namespace ElectronicObserver.Data.Quest
 								new ProgressSpecialBattle(q, 1, "S", new[]{ 55 }, true),
 								new ProgressSpecialBattle(q, 1, "S", new[]{ 65 }, true),
 								new ProgressSpecialBattle(q, 2, "x", new[]{ 16 }, true),
+							}));
+							break;
+						case 913: // B143
+							Progresses.Add(new ProgressMultiBattle(q, new[]
+							{
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 35 }, true),
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 52 }, true),
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 65 }, true),
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 72 }, true, 2),
+							}));
+							break;
+						case 917: // B145
+							Progresses.Add(new ProgressMultiBattle(q, new[]
+							{
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 24 }, true),
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 42 }, true),
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 44 }, true),
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 45 }, true),
 							}));
 							break;
 
@@ -512,6 +743,24 @@ namespace ElectronicObserver.Data.Quest
 								new ProgressExpedition(q, 2, new[]{ 4 }),
 								new ProgressExpedition(q, 2, new[]{ 101 }),
 								new ProgressExpedition(q, 2, new[]{ 102 }),
+							}));
+							break;
+						case 432: // D30
+							Progresses.Add(new ProgressMultiExpedition(q, new[]
+							{
+								new ProgressExpedition(q, 1, new[]{ 10 }),
+								new ProgressExpedition(q, 1, new[]{ 101 }),
+								new ProgressExpedition(q, 1, new[]{ 110 }),
+							}));
+							break;
+						case 434: // D32
+							Progresses.Add(new ProgressMultiExpedition(q, new[]
+							{
+								new ProgressExpedition(q, 1, new[]{ 3 }),
+								new ProgressExpedition(q, 1, new[]{ 5 }),
+								new ProgressExpedition(q, 1, new[]{ 9 }),
+								new ProgressExpedition(q, 1, new[]{ 100 }),
+								new ProgressExpedition(q, 1, new[]{ 101 }),
 							}));
 							break;
 
