@@ -384,6 +384,41 @@ namespace ElectronicObserver.Data.Quest
 								new ProgressBattle(q, 1, "S", new[] { 45 }, true),
 							}));
 							break;
+						case 903:   //|903|季|拡張「六水戦」、最前線へ！|5-1・5-4・6-4・6-5ボスS勝利各1|要旗艦夕張改二(|特|丁), 由良改二or(睦月/如月/弥生/卯月/菊月/望月2)|進捗3/4で80%
+							Progresses.Add(new ProgressMultiBattle(q, new[] {
+								new ProgressSpecialBattle(q, 1, "S", new[] { 51 }, true),
+								new ProgressSpecialBattle(q, 1, "S", new[] { 54 }, true),
+								new ProgressSpecialBattle(q, 1, "S", new[] { 64 }, true),
+								new ProgressSpecialBattle(q, 1, "S", new[] { 65 }, true),
+							}));
+							break;
+						
+						case 904:   //|904|年(2月)|精鋭「十九駆」、躍り出る！|2-5・3-4・4-5・5-3ボスS勝利各1|要綾波改二/敷波改二
+							Progresses.Add(new ProgressMultiBattle(q, new[] {
+								new ProgressSpecialBattle(q, 1, "S", new[] { 25 }, true),
+								new ProgressSpecialBattle(q, 1, "S", new[] { 34 }, true),
+								new ProgressSpecialBattle(q, 1, "S", new[] { 45 }, true),
+								new ProgressSpecialBattle(q, 1, "S", new[] { 53 }, true),
+							}));
+							break;
+						case 905:   //|905|年(2月)|「海防艦」、海を護る！|1-1・1-2・1-3・1-5ボスA勝利各1/1-6終点到達1|要海防艦3, 5隻以下の編成
+							Progresses.Add(new ProgressMultiBattle(q, new[] {
+								new ProgressSpecialBattle(q, 1, "A", new[] { 11 }, true),
+								new ProgressSpecialBattle(q, 1, "A", new[] { 12 }, true),
+								new ProgressSpecialBattle(q, 1, "A", new[] { 13 }, true),
+								new ProgressSpecialBattle(q, 1, "A", new[] { 15 }, true),
+								new ProgressSpecialBattle(q, 1, "x", new[] { 16 }, true),
+							}));
+							break;
+						case 912:   //|912|年(3月)|工作艦「明石」護衛任務|1-3・2-1・2-2・2-3ボスA勝利各1/1-6終点到達1|要明石旗艦, 駆逐艦3
+							Progresses.Add(new ProgressMultiBattle(q, new[] {
+								new ProgressSpecialBattle(q, 1, "A", new[] { 13 }, true),
+								new ProgressSpecialBattle(q, 1, "A", new[] { 21 }, true),
+								new ProgressSpecialBattle(q, 1, "A", new[] { 22 }, true),
+								new ProgressSpecialBattle(q, 1, "A", new[] { 23 }, true),
+								new ProgressSpecialBattle(q, 1, "x", new[] { 16 }, true),
+							}));
+							break;
 
 						case 840:   //|840|【節分任務】令和二年節分作戦|1-4・2-1・2-2ボスA勝利各1|旗艦(軽母or軽巡)1/(駆逐or海防)3
 							Progresses.Add(new ProgressMultiBattle(q, new[]
@@ -409,17 +444,8 @@ namespace ElectronicObserver.Data.Quest
 								new ProgressSpecialBattle(q, 1, "S", new[]{ 64 }, true),
 							}));
 							break;
-						case 903:   // Bq13
-							Progresses.Add(new ProgressMultiBattle(q, new[]
-							{
-								new ProgressSpecialBattle(q, 1, "S", new[]{ 51 }, true),
-								new ProgressSpecialBattle(q, 1, "S", new[]{ 54 }, true),
-								new ProgressSpecialBattle(q, 1, "S", new[]{ 64 }, true),
-								new ProgressSpecialBattle(q, 1, "S", new[]{ 65 }, true),
-							}));
-							break;
 
-						case 905:   // By2
+						/*case 905:   // By2
 							Progresses.Add(new ProgressMultiBattle(q, new[]
 							{
 								new ProgressSpecialBattle(q, 1, "S", new[]{ 11 }, true),
@@ -438,7 +464,7 @@ namespace ElectronicObserver.Data.Quest
 								new ProgressSpecialBattle(q, 1, "S", new[]{ 23 }, true),
 								new ProgressSpecialBattle(q, 1, "X", new[]{ 16 }, true),
 							}));
-							break;
+							break;*/
 
 						case 235: // B135
 							Progresses.Add(new ProgressMultiBattle(q, new[]
@@ -753,16 +779,23 @@ namespace ElectronicObserver.Data.Quest
 								new ProgressExpedition(q, 1, new[]{ 110 }),
 							}));
 							break;
-						case 434: // D32
-							Progresses.Add(new ProgressMultiExpedition(q, new[]
-							{
+                        case 434:   //|434|年(2月)|特設護衛船団司令部、活動開始！|「警備任務」「海上護衛任務」「兵站強化任務」「海峡警備行動」「タンカー護衛任務」成功各1|
+							Progresses.Add(new ProgressMultiExpedition(q, new[]{
 								new ProgressExpedition(q, 1, new[]{ 3 }),
 								new ProgressExpedition(q, 1, new[]{ 5 }),
-								new ProgressExpedition(q, 1, new[]{ 9 }),
 								new ProgressExpedition(q, 1, new[]{ 100 }),
 								new ProgressExpedition(q, 1, new[]{ 101 }),
+								new ProgressExpedition(q, 1, new[]{ 9 }),
 							}));
 							break;
+						case 436:   //|436|年(3月)|練習航海及び警備任務を実施せよ！|「練習航海」「長距離練習航海」「警備任務」「対潜警戒任務」「強行偵察任務」成功各1|
+							Progresses.Add(new ProgressMultiExpedition(q, new[]{
+								new ProgressExpedition(q, 1, new[]{ 1 }),
+								new ProgressExpedition(q, 1, new[]{ 2 }),
+								new ProgressExpedition(q, 1, new[]{ 3 }),
+								new ProgressExpedition(q, 1, new[]{ 4 }),
+								new ProgressExpedition(q, 1, new[]{ 10 }),
+							})); break;
 
 						case 503:   //|503|艦隊大整備！|入渠5
 							Progresses.Add(new ProgressDocking(q, 5));

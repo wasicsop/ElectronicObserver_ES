@@ -234,6 +234,7 @@
             this.label31 = new System.Windows.Forms.Label();
             this.label33 = new System.Windows.Forms.Label();
             this.tabPage11 = new System.Windows.Forms.TabPage();
+            this.Notification_BaseAirCorps = new System.Windows.Forms.Button();
             this.silenceFullscreen = new System.Windows.Forms.CheckBox();
             this.Notification_Silencio = new System.Windows.Forms.CheckBox();
             this.Notification_AnchorageRepair = new System.Windows.Forms.Button();
@@ -2196,10 +2197,10 @@
             this.tabPage13.Controls.Add(this.label25);
             this.tabPage13.Controls.Add(this.FormShipGroup_ShowStatusBar);
             this.tabPage13.Controls.Add(this.FormShipGroup_AutoUpdate);
-            this.tabPage13.Location = new System.Drawing.Point(4, 22);
+            this.tabPage13.Location = new System.Drawing.Point(4, 24);
             this.tabPage13.Name = "tabPage13";
             this.tabPage13.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage13.Size = new System.Drawing.Size(682, 340);
+            this.tabPage13.Size = new System.Drawing.Size(682, 338);
             this.tabPage13.TabIndex = 4;
             this.tabPage13.Text = global::ElectronicObserver.Window.Dialog.ConfigRes.Group;
             this.tabPage13.UseVisualStyleBackColor = true;
@@ -2777,6 +2778,16 @@
             this.tabPage11.TabIndex = 7;
             this.tabPage11.Text = global::ElectronicObserver.Window.Dialog.ConfigRes.Notification;
             this.tabPage11.UseVisualStyleBackColor = true;
+            // 
+            // Notification_BaseAirCorps
+            // 
+            this.Notification_BaseAirCorps.Location = new System.Drawing.Point(8, 181);
+            this.Notification_BaseAirCorps.Name = "Notification_BaseAirCorps";
+            this.Notification_BaseAirCorps.Size = new System.Drawing.Size(150, 23);
+            this.Notification_BaseAirCorps.TabIndex = 9;
+            this.Notification_BaseAirCorps.Text = "基地航空隊通知の設定...";
+            this.Notification_BaseAirCorps.UseVisualStyleBackColor = true;
+            this.Notification_BaseAirCorps.Click += new System.EventHandler(this.Notification_BaseAirCorps_Click);
             // 
             // silenceFullscreen
             // 

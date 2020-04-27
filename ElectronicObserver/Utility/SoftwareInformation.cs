@@ -32,7 +32,7 @@ namespace ElectronicObserver.Utility
 		/// <summary>
 		/// バージョン(日本語, ソフトウェア名を含みます)
 		/// </summary>
-		public static string VersionJapanese => SoftwareNameJapanese + "四四型改";
+		public static string VersionJapanese => SoftwareNameJapanese + "四五型改";
 
 
 		/// <summary>
