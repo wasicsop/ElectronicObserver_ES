@@ -835,14 +835,18 @@ namespace ElectronicObserver.Data
                     return "Nelson Touch";
                 case DayAttackKind.SpecialNagato:
                     return "Full broadside... Sounds exciting!";
-                case DayAttackKind.Shelling:
-                    return "Shelling";
                 case DayAttackKind.SpecialMutsu:
                     return "長門、いい？ いくわよ！ 主砲一斉射ッ！";
+                case DayAttackKind.SpecialColorado:
+                    return "Colorado Touch";
+                case DayAttackKind.SpecialKongo:
+                    return "僚艦夜戦突撃";
                 case DayAttackKind.ZuiunMultiAngle:
                     return "瑞雲立体攻撃";
                 case DayAttackKind.SeaAirMultiAngle:
                     return "海空立体攻撃";
+                case DayAttackKind.Shelling:
+                    return "Shelling";
                 case DayAttackKind.AirAttack:
                     return "Air Attack";
                 case DayAttackKind.DepthCharge:
@@ -896,11 +900,15 @@ namespace ElectronicObserver.Data
                     return "Nelson Touch";
                 case NightAttackKind.SpecialNagato:
                     return "Full broadside... Sounds exciting!";
-                case NightAttackKind.Shelling:
-                    return "Shelling";
                 case NightAttackKind.SpecialMutsu:
                     return "長門、いい？ いくわよ！ 主砲一斉射ッ！";
+                case NightAttackKind.SpecialColorado:
+                    return "Colorado Touch";
+                case NightAttackKind.SpecialKongo:
+                    return "僚艦夜戦突撃";
 
+                case NightAttackKind.Shelling:
+                    return "Shelling";
                 case NightAttackKind.AirAttack:
                     return ConstantsRes.AirAttack;
                 case NightAttackKind.DepthCharge:

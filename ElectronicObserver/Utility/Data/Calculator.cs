@@ -2436,6 +2436,8 @@ namespace ElectronicObserver.Utility.Data
 		/// <summary> Colorado Touch </summary>
 		SpecialColorado = 103,
 
+		/// <summary> 僚艦夜戦突撃 </summary>
+		SpecialKongo = 104,
 
 		/// <summary> 瑞雲立体攻撃 </summary>
 		ZuiunMultiAngle = 200,
@@ -2526,6 +2528,9 @@ namespace ElectronicObserver.Utility.Data
 
 		/// <summary> Colorado Touch </summary>
 		SpecialColorado = 103,
+
+		/// <summary> 僚艦夜戦突撃 </summary>
+		SpecialKongo = 104,
 
 
 		/// <summary> 砲撃 </summary>
