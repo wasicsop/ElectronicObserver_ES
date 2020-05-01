@@ -251,7 +251,7 @@ namespace ElectronicObserver.Data
                 case ShipTypes.LightAircraftCarrier:
                     return "CVL";
                 case ShipTypes.Battlecruiser:
-                    return "FBB";    // ? FBB, CC?
+                    return "BC";    // ? FBB, CC?
                 case ShipTypes.Battleship:
                     return "BB";
                 case ShipTypes.AviationBattleship:
