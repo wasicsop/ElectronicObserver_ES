@@ -594,7 +594,7 @@ namespace ElectronicObserver.Window
 
 					Equipments.SetSlotList(ship);
 					ToolTipInfo.SetToolTip(Equipments, GetEquipmentString(ship));
-
+					
 				}
 				else
 				{
@@ -653,8 +653,15 @@ namespace ElectronicObserver.Window
 
 				int[] slotmaster = ship.AllSlotMaster.ToArray();
 
+				foreach (Enum dayAttack in ship.GetDayAttacks())
+				{
+					IFleetData fleet = new FleetDataCustom();
+					sb.AppendFormat($"\r\n{GeneralRes.DayBattle}: {dayAttack} - Power: {ship.GetDayShellingPower(dayAttack, fleet)}");
+				}
+
 				sb.AppendFormat( "\r\n" +GeneralRes.DayBattle + ": {0}", Constants.GetDayAttackKind( Calculator.GetDayAttackKind( slotmaster, ship.ShipID, -1 ) ) );
 				{
+					// todo: remove after we're sure the one above works as intended
 					int shelling = ship.ShellingPower;
 					int aircraft = ship.AircraftPower;
 					if ( shelling > 0 ) {

@@ -261,6 +261,7 @@ namespace ElectronicObserver.Data
 		/// </summary>
 		public string Name => FormMain.Instance.Translator.GetTranslation(RawData.api_name, Utility.TranslationType.Equipment);
 
+		public bool IsTranslated => RawData.api_name != Name;
 
 		/// <summary>
 		/// 装備種別

@@ -1546,7 +1546,7 @@ namespace ElectronicObserver.Window
 
         private void StripMenu_Tool_KancolleProgress_Click(object sender, EventArgs e)
         {
-            new Dialog.DialogKancolleProgress().Show(this);
+	        new Dialog.DialogKancolleProgress().Show(this);
         }
 
         private void StripMenu_Tool_ExtraBrowser_Click(object sender, EventArgs e)

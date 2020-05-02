@@ -21,8 +21,8 @@ namespace ElectronicObserver.Data.Battle.Detail
 		public int[] EquipmentIDs { get; protected set; }
 		public int DefenderHP { get; protected set; }
 
-		public ShipDataMaster Attacker { get; protected set; }
-		public ShipDataMaster Defender { get; protected set; }
+		public IShipDataMaster Attacker { get; protected set; }
+		public IShipDataMaster Defender { get; protected set; }
 
 
 		/// <summary> 攻撃側インデックス </summary>

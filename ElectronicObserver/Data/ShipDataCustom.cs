@@ -74,7 +74,7 @@ namespace ElectronicObserver.Data
 		public bool IsLocked { get; set; }
 		public bool IsLockedByEquipment { get; set; }
 		public int SallyArea { get; set; }
-		public ShipDataMaster MasterShip { get; set; }
+		public IShipDataMaster MasterShip { get; set; }
 		public int RepairingDockID { get; set; }
 		public int Fleet { get; set; }
 		public string FleetWithIndex { get; set; }

@@ -318,7 +318,7 @@ namespace ElectronicObserver.Window.Dialog
 			UpdateLevelView();
 		}
 
-		private int[] GetRemodelLevelTable(ShipDataMaster ship)
+		private int[] GetRemodelLevelTable(IShipDataMaster ship)
 		{
 			while (ship.RemodelBeforeShip != null)
 				ship = ship.RemodelBeforeShip;

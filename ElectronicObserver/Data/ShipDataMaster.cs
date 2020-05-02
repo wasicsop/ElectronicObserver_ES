@@ -19,6 +19,11 @@ namespace ElectronicObserver.Data
 		int ShipID { get; }
 
 		/// <summary>
+		/// 艦船ID
+		/// </summary>
+		public ShipId ShipId { get; }
+
+		/// <summary>
 		/// 図鑑番号
 		/// </summary>
 		int AlbumNo { get; }

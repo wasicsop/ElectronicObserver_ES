@@ -117,7 +117,7 @@ namespace ElectronicObserver.Data
 		/// <summary>
 		/// 全てのスロット(装備データ)
 		/// </summary>
-		ReadOnlyCollection<IEquipmentData> AllSlotInstance { get; }
+		ReadOnlyCollection<IEquipmentData?> AllSlotInstance { get; }
 
 		/// <summary>
 		/// 全てのスロット(装備マスターデータ)
@@ -362,7 +362,7 @@ namespace ElectronicObserver.Data
 		/// <summary>
 		/// 艦船のマスターデータへの参照
 		/// </summary>
-		ShipDataMaster MasterShip { get; }
+		IShipDataMaster MasterShip { get; }
 
 		/// <summary>
 		/// 入渠中のドックID　非入渠時は-1
@@ -948,7 +948,7 @@ namespace ElectronicObserver.Data
         /// <summary>
         /// 艦船のマスターデータへの参照
         /// </summary>
-        public ShipDataMaster MasterShip => KCDatabase.Instance.MasterShips[ShipID];
+        public IShipDataMaster MasterShip => KCDatabase.Instance.MasterShips[ShipID];
 
 
         /// <summary>
@@ -1001,7 +1001,7 @@ namespace ElectronicObserver.Data
         {
             get
             {
-                ShipDataMaster master = MasterShip;
+                IShipDataMaster master = MasterShip;
                 if (master.RemodelAfterShipID <= 0)
                     return 0;
                 return Math.Max(ExpTable.ShipExp[master.RemodelAfterLevel].Total - ExpTotal, 0);

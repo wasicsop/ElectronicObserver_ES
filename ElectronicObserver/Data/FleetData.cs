@@ -28,6 +28,8 @@ namespace ElectronicObserver.Data
 		/// </summary>
 		string Name { get; }
 
+		FleetType FleetType { get; }
+
 		/// <summary>
 		/// 遠征状態
 		/// 0=未出撃, 1=遠征中, 2=遠征帰投, 3=強制帰投中
@@ -164,6 +166,8 @@ namespace ElectronicObserver.Data
 		/// 艦隊名
 		/// </summary>
 		public string Name { get; internal set; }
+
+		public FleetType FleetType => (FleetType) KCDatabase.Instance.Fleet.CombinedFlag;
 
 		/// <summary>
 		/// 遠征状態

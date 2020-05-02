@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ElectronicObserver.Utility.Data;
+using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Data
 {
@@ -20,6 +21,11 @@ namespace ElectronicObserver.Data
 		/// 装備ID
 		/// </summary>
 		int EquipmentID { get; }
+
+		/// <summary>
+		/// 装備ID
+		/// </summary>
+		EquipmentId EquipmentId { get; }
 
 		/// <summary>
 		/// 保護ロック
@@ -104,6 +110,10 @@ namespace ElectronicObserver.Data
 		/// </summary>
 		public int EquipmentID => (int)RawData.api_slotitem_id;
 
+		/// <summary>
+		/// 装備ID
+		/// </summary>
+		public EquipmentId EquipmentId => (EquipmentId)RawData.api_slotitem_id;
 
 		/// <summary>
 		/// 保護ロック
