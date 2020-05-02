@@ -70,9 +70,10 @@ namespace ElectronicObserver.Utility.Data
 		{
 			DayAttackKind.SeaAirMultiAngle => ship.HasMainGun() && ship.HasSuisei(2),
 			DayAttackKind.ZuiunMultiAngle => ship.HasMainGun() && ship.HasZuiun(2),
-			
+
 			DayAttackKind.CutinMainMain => ship.HasSeaplane() && ship.HasMainGun(2) && ship.HasApShell(),
-			DayAttackKind.CutinMainAP => ship.HasSeaplane() && ship.HasMainGun() && ship.HasApShell(),
+			DayAttackKind.CutinMainAP => ship.HasSeaplane() && ship.HasMainGun() && ship.HasSecondaryGun() &&
+			                             ship.HasApShell(),
 			DayAttackKind.CutinMainRadar => ship.HasSeaplane() && ship.HasMainGun() && ship.HasSecondaryGun() &&
 			                                ship.HasRadar(),
 			DayAttackKind.CutinMainSub => ship.HasSeaplane() && ship.HasMainGun() && ship.HasSecondaryGun(),

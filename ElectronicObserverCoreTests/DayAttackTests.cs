@@ -33,10 +33,23 @@ namespace ElectronicObserverCoreTests
 			{
 				var mock = new Mock<IEquipmentData>();
 
-				// mock.Setup(s => ).Returns(10);
 				mock.Setup(s => s.Level).Returns(10);
 				mock.Setup(s => s.MasterEquipment.CategoryType).Returns(EquipmentTypes.SeaplaneBomber);
 				mock.Setup(s => s.EquipmentId).Returns(EquipmentId.SeaplaneBomber_ZuiunKaiNi_634AirGroup);
+
+				return mock.Object;
+			}
+		}
+
+		private IEquipmentData Zuiun634
+		{
+			get
+			{
+				var mock = new Mock<IEquipmentData>();
+
+				mock.Setup(s => s.Level).Returns(10);
+				mock.Setup(s => s.MasterEquipment.CategoryType).Returns(EquipmentTypes.SeaplaneBomber);
+				mock.Setup(s => s.EquipmentId).Returns(EquipmentId.SeaplaneBomber_Zuiun_634AirGroup);
 
 				return mock.Object;
 			}
@@ -107,10 +120,10 @@ namespace ElectronicObserverCoreTests
 			mock.Setup(s => s.AllSlotInstance)
 				.Returns(new ReadOnlyCollection<IEquipmentData>(new List<IEquipmentData>
 				{
-					MainGun, 
-					MainGun, 
+					MainGun,
+					MainGun,
 					Zuiunk2,
-					Zuiunk2,
+					Zuiun634,
 					ApShell
 				}));
 			mock.Setup(s => s.Aircraft).Returns(new ReadOnlyCollection<int>(new List<int> {2, 2, 22, 22, 9}));
@@ -123,7 +136,6 @@ namespace ElectronicObserverCoreTests
 			{
 				DayAttackKind.ZuiunMultiAngle,
 				DayAttackKind.CutinMainMain,
-				DayAttackKind.CutinMainAP,
 				DayAttackKind.DoubleShelling,
 				DayAttackKind.Shelling
 			};
@@ -132,7 +144,10 @@ namespace ElectronicObserverCoreTests
 
 			Assert.Equal(expected, actual);
 
-			Assert.Equal(234, isek2.GetDayShellingPower(actual.First(), fleet));
+			Assert.Equal(234, isek2.GetDayShellingPower(actual[0], fleet));
+			Assert.Equal(261, isek2.GetDayShellingPower(actual[1], fleet));
+			Assert.Equal(208, isek2.GetDayShellingPower(actual[2], fleet));
+			Assert.Equal(174, isek2.GetDayShellingPower(actual[3], fleet));
 		}
 
 		[Fact]
