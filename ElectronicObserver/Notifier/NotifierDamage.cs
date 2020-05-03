@@ -229,7 +229,7 @@ namespace ElectronicObserver.Notifier
 			{
 				if (i == 0 && !ContainsFlagship) continue;
 
-				ShipData s = fleet.MembersInstance[i];
+				IShipData s = fleet.MembersInstance[i];
 
 				if (s != null && !fleet.EscapedShipList.Contains(s.MasterID) && IsShipDamaged(s, hps[i]))
 				{

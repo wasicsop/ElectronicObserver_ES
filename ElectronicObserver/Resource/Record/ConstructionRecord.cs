@@ -209,7 +209,7 @@ namespace ElectronicObserver.Resource.Record
 
 			ArsenalData a = KCDatabase.Instance.Arsenals[ConstructingDockID];
 			int emptyDock = KCDatabase.Instance.Arsenals.Values.Count(c => c.State == 0);
-			ShipData flagship = KCDatabase.Instance.Fleet[1].MembersInstance[0];
+			IShipData flagship = KCDatabase.Instance.Fleet[1].MembersInstance[0];
 
 			Record.Add(new ConstructionElement(a.ShipID, a.Fuel, a.Ammo, a.Steel, a.Bauxite, a.DevelopmentMaterial,
 				emptyDock, flagship.ShipID, KCDatabase.Instance.Admiral.Level));

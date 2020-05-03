@@ -265,7 +265,7 @@ namespace ElectronicObserver.Utility
 
 					for (int shipIndex = 0; shipIndex < maxShipCount; shipIndex++)
 					{
-						ShipData ship = shipIndex < fleet.Members.Count ? fleet.MembersInstance[shipIndex] : null;
+						IShipData? ship = shipIndex < fleet.Members.Count ? fleet.MembersInstance[shipIndex] : null;
 						if (ship == null)
 							continue;
 
@@ -685,7 +685,7 @@ namespace ElectronicObserver.Utility
 
 					for (int shipIndex = 0; shipIndex < maxShipCount; shipIndex++)
 					{
-						ShipData ship = shipIndex < fleet.Members.Count ? fleet.MembersInstance[shipIndex] : null;
+						IShipData? ship = shipIndex < fleet.Members.Count ? fleet.MembersInstance[shipIndex] : null;
 						if (ship == null)
 							continue;
 
@@ -1159,7 +1159,7 @@ namespace ElectronicObserver.Utility
 
 					for (int shipIndex = 0; shipIndex < maxShipCount; shipIndex++)
 					{
-						ShipData ship = shipIndex < fleet.Members.Count ? fleet.MembersInstance[shipIndex] : null;
+						IShipData? ship = shipIndex < fleet.Members.Count ? fleet.MembersInstance[shipIndex] : null;
 						if (ship == null)
 							continue;
 
@@ -1716,10 +1716,10 @@ namespace ElectronicObserver.Utility
 		{
 			public readonly Image Icon;
 			public readonly string Name;
-			public readonly Func<ShipData, string> ValueSelector;
+			public readonly Func<IShipData, string> ValueSelector;
 			public readonly bool IsCharacter;
 
-			public ShipParameterData(ResourceManager.IconContent iconIndex, string name, Func<ShipData, string> selector, bool isCharacter = false)
+			public ShipParameterData(ResourceManager.IconContent iconIndex, string name, Func<IShipData, string> selector, bool isCharacter = false)
 			{
 				Icon = ResourceManager.Instance.Icons.Images[(int)iconIndex];
 				Name = name;

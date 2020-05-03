@@ -203,7 +203,7 @@ namespace ElectronicObserver.Data.Battle.Phase
 
 
 
-		public ShipData GetFriendShip(int index)
+		public IShipData GetFriendShip(int index)
 		{
 			if (index < 0 || index >= 12)
 				return null;

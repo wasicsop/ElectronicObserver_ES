@@ -14,7 +14,7 @@ namespace ElectronicObserver.Data
 		public int ExpeditionDestination { get; set; }
 		public DateTime ExpeditionTime { get; set; }
 		public ReadOnlyCollection<int> Members { get; set; }
-		public ReadOnlyCollection<ShipData> MembersInstance { get; set; }
+		public ReadOnlyCollection<IShipData> MembersInstance { get; set; }
 		public ReadOnlyCollection<IShipData> MembersWithoutEscaped { get; set; }
 		public ReadOnlyCollection<int> EscapedShipList { get; set; }
 		public bool IsInSortie { get; set; }

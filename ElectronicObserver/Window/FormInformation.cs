@@ -521,7 +521,7 @@ namespace ElectronicObserver.Window
 			if (KCDatabase.Instance.Ships.Values.First().SallyArea == -1)   // そもそも札情報がなければやる必要はない
 				return;
 
-			IEnumerable<IEnumerable<ShipData>> group;
+			IEnumerable<IEnumerable<IShipData>> group;
 
 			if (KCDatabase.Instance.Fleet.CombinedFlag != 0)
 				group = new[] { KCDatabase.Instance.Fleet[1].MembersInstance.Concat(KCDatabase.Instance.Fleet[2].MembersInstance).Where(s => s != null) };

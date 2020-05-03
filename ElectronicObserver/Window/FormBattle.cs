@@ -796,7 +796,7 @@ namespace ElectronicObserver.Window
 					}
 					else
 					{
-						ShipData ship = bd.Initial.FriendFleet.MembersInstance[i];
+						IShipData ship = bd.Initial.FriendFleet.MembersInstance[i];
 						name = ship.NameWithLevel;
 						isEscaped = bd.Initial.FriendFleet.EscapedShipList.Contains(ship.MasterID);
 						isLandBase = ship.MasterShip.IsLandBase;
@@ -872,7 +872,7 @@ namespace ElectronicObserver.Window
 					{
 						EnableHPBar(refindex, initial.FriendInitialHPsEscort[i], resultHPs[refindex], initial.FriendMaxHPsEscort[i]);
 
-						ShipData ship = bd.Initial.FriendFleetEscort.MembersInstance[i];
+						IShipData ship = bd.Initial.FriendFleetEscort.MembersInstance[i];
 						bool isEscaped = bd.Initial.FriendFleetEscort.EscapedShipList.Contains(ship.MasterID);
 
 						var bar = HPBars[refindex];
@@ -1134,7 +1134,7 @@ namespace ElectronicObserver.Window
 
 				if (index != -1)
 				{
-					ShipData ship = fleet.MembersInstance[index];
+					IShipData ship = fleet.MembersInstance[index];
 
 					AirStage1Friend.Text = "#" + (index + (pd.IsFriendEscort ? 6 : 0) + 1);
 					AirStage1Friend.ForeColor = Utility.Configuration.Config.UI.ForeColor;

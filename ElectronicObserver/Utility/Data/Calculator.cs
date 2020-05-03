@@ -1824,7 +1824,7 @@ namespace ElectronicObserver.Utility.Data
 		/// <summary>
 		/// HP を 1 回復するために必要な入渠時間を求めます。
 		/// </summary>
-		public static TimeSpan CalculateDockingUnitTime(ShipData ship)
+		public static TimeSpan CalculateDockingUnitTime(IShipData ship)
 		{
 			int damage = ship.HPMax - ship.HPCurrent;
 			if (damage == 0)

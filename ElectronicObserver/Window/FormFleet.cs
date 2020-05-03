@@ -17,6 +17,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ElectronicObserverTypes;
 using WeifenLuo.WinFormsUI.Docking;
 
 namespace ElectronicObserver.Window
@@ -653,10 +654,39 @@ namespace ElectronicObserver.Window
 
 				int[] slotmaster = ship.AllSlotMaster.ToArray();
 
-				foreach (Enum dayAttack in ship.GetDayAttacks())
+
+
+				IFleetData fleet = KCDatabase.Instance.Fleet[Parent.FleetID]; 
+
+				List<Enum> dayAttacks = ship.GetDayAttacks().ToList();
+
+				if (dayAttacks.Any())
 				{
-					IFleetData fleet = new FleetDataCustom();
-					sb.AppendFormat($"\r\n{GeneralRes.DayBattle}: {dayAttack} - Power: {ship.GetDayShellingPower(dayAttack, fleet)}");
+					sb.AppendFormat($"\r\n{GeneralRes.DayBattle}:");
+					List<double> asRates = dayAttacks.Select(a => ship.GetDayAttackRate(a, fleet, AirState.Superiority))
+						.ToList().TotalRates();
+					List<double> asPlusRates =
+						dayAttacks.Select(a => ship.GetDayAttackRate(a, fleet)).ToList().TotalRates();
+
+					foreach ((Enum attack, double asRate, double asPlusRate) in dayAttacks
+						.Zip(asRates, (attack, rate) => (attack, rate))
+						.Zip(asPlusRates, (ar, asPlus) => (ar.attack, ar.rate, asPlus)))
+					{
+						double power = ship.GetDayShellingPower(attack, fleet);
+						string attackDisplay = attack switch
+						{
+							DayAttackKind dayAttack => Constants.GetDayAttackKind(dayAttack),
+							DayAirAttackCutinKind cvci => cvci switch
+							{
+								DayAirAttackCutinKind.FighterBomberAttacker => "CI (FBA)",
+								DayAirAttackCutinKind.BomberBomberAttacker => "CI (BBA)",
+								DayAirAttackCutinKind.BomberAttacker => "CI (BA)",
+								_ => "?"
+							},
+							_ => $"{attack}"
+						};
+						sb.AppendFormat($"\r\n・[{asRate:P1} | {asPlusRate:P1}] - {attackDisplay} - Power: {power}");
+					}
 				}
 
 				sb.AppendFormat( "\r\n" +GeneralRes.DayBattle + ": {0}", Constants.GetDayAttackKind( Calculator.GetDayAttackKind( slotmaster, ship.ShipID, -1 ) ) );

@@ -835,17 +835,17 @@ namespace ElectronicObserver.Data
                 case DayAttackKind.SpecialNelson:
                     return "Nelson Touch";
                 case DayAttackKind.SpecialNagato:
-                    return "Full broadside... Sounds exciting!";
+                    return "Nagato Touch";
                 case DayAttackKind.SpecialMutsu:
-                    return "長門、いい？ いくわよ！ 主砲一斉射ッ！";
+                    return "Mutsu Touch";
                 case DayAttackKind.SpecialColorado:
                     return "Colorado Touch";
                 case DayAttackKind.SpecialKongo:
-                    return "僚艦夜戦突撃";
+                    return "Kongou Touch";
                 case DayAttackKind.ZuiunMultiAngle:
-                    return "瑞雲立体攻撃";
+                    return "CI (Zuiun)";
                 case DayAttackKind.SeaAirMultiAngle:
-                    return "海空立体攻撃";
+                    return "CI (Suisei)";
                 case DayAttackKind.Shelling:
                     return "Shelling";
                 case DayAttackKind.AirAttack:

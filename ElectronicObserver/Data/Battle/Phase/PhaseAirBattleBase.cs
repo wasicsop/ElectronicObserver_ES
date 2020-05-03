@@ -185,7 +185,7 @@ namespace ElectronicObserver.Data.Battle.Phase
 		/// <summary>
 		/// 対空カットイン発動艦
 		/// </summary>
-		public ShipData AACutInShip => Battle.Initial.GetFriendShip(AACutInIndex);
+		public IShipData AACutInShip => Battle.Initial.GetFriendShip(AACutInIndex);
 
 		/// <summary>
 		/// 対空カットイン種別

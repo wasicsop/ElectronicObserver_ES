@@ -107,7 +107,7 @@ namespace ElectronicObserver.Data.Battle.Phase
 		/// <summary>
 		/// 自軍照明弾投射艦
 		/// </summary>
-		public ShipData FlareFriendInstance
+		public IShipData FlareFriendInstance
 		{
 			get
 			{

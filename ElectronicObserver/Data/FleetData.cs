@@ -54,7 +54,7 @@ namespace ElectronicObserver.Data
 		/// <summary>
 		/// 艦隊メンバー(艦船データ)
 		/// </summary>
-		ReadOnlyCollection<ShipData> MembersInstance { get; }
+		ReadOnlyCollection<IShipData> MembersInstance { get; }
 
 		/// <summary>
 		/// 艦隊メンバー(艦船データ、退避艦を除く)
@@ -195,13 +195,13 @@ namespace ElectronicObserver.Data
 		/// <summary>
 		/// 艦隊メンバー(艦船データ)
 		/// </summary>
-		public ReadOnlyCollection<ShipData> MembersInstance
+		public ReadOnlyCollection<IShipData> MembersInstance
 		{
 			get
 			{
 				if (_members == null) return null;
 
-				ShipData[] ships = new ShipData[_members.Length];
+				IShipData[] ships = new IShipData[_members.Length];
 				for (int i = 0; i < ships.Length; i++)
 				{
 					ships[i] = KCDatabase.Instance.Ships[_members[i]];

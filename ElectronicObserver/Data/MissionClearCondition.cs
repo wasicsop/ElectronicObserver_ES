@@ -389,8 +389,8 @@ namespace ElectronicObserver.Data
 			public ReadOnlyCollection<string> FailureReason => failureReason.AsReadOnly();
 
 			// nullable!
-			private FleetData targetFleet;
-			private IEnumerable<IShipData> members => (targetFleet?.MembersInstance ?? Enumerable.Empty<ShipData>()).Where(s => s != null);
+			private FleetData? targetFleet;
+			private IEnumerable<IShipData> members => (targetFleet?.MembersInstance ?? Enumerable.Empty<IShipData>()).Where(s => s != null);
 
 
 			public MissionClearConditionResult(FleetData targetFleet)
