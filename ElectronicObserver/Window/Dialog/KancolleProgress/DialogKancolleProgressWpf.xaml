@@ -5,8 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ElectronicObserver.Window.Dialog.KancolleProgress"
         mc:Ignorable="d"
-        Title="DialogKancolleProgressWpf" Height="450" Width="800">
-    <Grid>
-        <local:KancolleProgressWpf Height="auto" Width="auto" />
-    </Grid>
+        Title="Ship Progression List" Height="970" Width="1470">
+
+	<local:KancolleProgressWpf Height="auto" Width="auto" />
 </Window>
