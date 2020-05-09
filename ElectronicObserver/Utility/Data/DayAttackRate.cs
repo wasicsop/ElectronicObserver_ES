@@ -68,12 +68,9 @@ namespace ElectronicObserver.Utility.Data
 		};
 
 		private static double FlagshipBonus(IFleetData fleet, IShipData ship) => fleet.MembersInstance
-				.Where(s => s != null)
-				.Select(s => s.MasterID)
-				.ToList()
-				.IndexOf(ship.MasterID) switch
+				.FirstOrDefault()?.MasterShip.ShipId switch
 			{
-				0 => 15,
+				ShipId id when id == ship.MasterShip.ShipId => 15,
 				_ => 0
 			};
 

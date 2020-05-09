@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ElectronicObserver.Window;
+using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Data
 {
@@ -140,6 +141,11 @@ namespace ElectronicObserver.Data
 		/// 装備種別：アイコン
 		/// </summary>
 		int IconType { get; }
+
+		/// <summary>
+		/// 装備種別：アイコン
+		/// </summary>
+		EquipmentIconType IconTypeTyped { get; }
 
 		/// <summary>
 		/// 拡張スロットに装備可能な艦船IDのリスト
@@ -390,6 +396,10 @@ namespace ElectronicObserver.Data
 		/// 装備種別：アイコン
 		/// </summary>
 		public int IconType => (int)RawData.api_type[3];
+
+
+		/// <inheritdoc />
+		public EquipmentIconType IconTypeTyped => (EquipmentIconType)RawData.api_type[3];
 
 
 		internal int[] equippableShipsAtExpansion = new int[0];

@@ -639,6 +639,8 @@ namespace ElectronicObserver.Window
 			{
 				StringBuilder sb = new StringBuilder();
 
+				sb.AppendFormat(ship.NameWithLevel + "\r\n");
+
 				for (int i = 0; i < ship.Slot.Count; i++)
 				{
 					var eq = ship.SlotInstance[i];
@@ -672,7 +674,7 @@ namespace ElectronicObserver.Window
 						.Zip(asRates, (attack, rate) => (attack, rate))
 						.Zip(asPlusRates, (ar, asPlus) => (ar.attack, ar.rate, asPlus)))
 					{
-						double power = ship.GetDayShellingPower(attack, fleet);
+						double power = ship.GetDayAttackPower(attack, fleet);
 						string attackDisplay = attack switch
 						{
 							DayAttackKind dayAttack => Constants.GetDayAttackKind(dayAttack),
@@ -689,7 +691,7 @@ namespace ElectronicObserver.Window
 					}
 				}
 
-				sb.AppendFormat( "\r\n" +GeneralRes.DayBattle + ": {0}", Constants.GetDayAttackKind( Calculator.GetDayAttackKind( slotmaster, ship.ShipID, -1 ) ) );
+				sb.AppendFormat( "\r\n" + GeneralRes.DayBattle + ": {0}", Constants.GetDayAttackKind( Calculator.GetDayAttackKind( slotmaster, ship.ShipID, -1 ) ) );
 				{
 					// todo: remove after we're sure the one above works as intended
 					int shelling = ship.ShellingPower;
@@ -702,6 +704,36 @@ namespace ElectronicObserver.Window
 					} else if ( aircraft > 0 )
 						sb.AppendFormat( " - " + GeneralRes.Power + ": {0}", aircraft );
 				}
+				
+				List<Enum> nightAttacks = ship.GetNightAttacks().ToList();
+				List<double> nightAttackRates = nightAttacks.Select(a => ship.GetNightAttackRate(a, fleet))
+					.ToList().TotalRates();
+
+				if (nightAttacks.Any())
+				{
+					sb.AppendFormat($"\r\n{GeneralRes.NightBattle}:");
+
+					foreach ((Enum attack, double rate) in nightAttacks.Zip(nightAttackRates, (attack, rate) => (attack, rate)))
+					{
+						double power = ship.GetNightAttackPower(attack);
+						string attackDisplay = attack switch
+						{
+							NightAttackKind nightAttack => Constants.GetNightAttackKind(nightAttack),
+							CvnciKind cvnci => cvnci switch
+							{
+								CvnciKind.FighterFighterAttacker => "CI (FFA)",
+								CvnciKind.FighterAttacker => "CI (FA)",
+								CvnciKind.Phototube => "CI (Photo)",
+								CvnciKind.FighterOtherOther => "CI (FOO)",
+								_ => "?"
+							},
+							_ => $"{attack}"
+						};
+
+						sb.AppendFormat($"\r\n・[{rate:P1}] - {attackDisplay} - Power: {power}");
+					}
+				}
+
 				sb.AppendLine();
 
 				if (ship.CanAttackAtNight)
