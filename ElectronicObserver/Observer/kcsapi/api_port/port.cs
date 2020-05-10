@@ -58,34 +58,14 @@ namespace ElectronicObserver.Observer.kcsapi.api_port
                 }
             }
 
-			//api_deck_port
-			db.Fleet.LoadFromResponse(APIName, data.api_deck_port);
-			db.Fleet.CombinedFlag = data.api_combined_flag() ? (int)data.api_combined_flag : 0;
-			if (Utility.Configuration.Config.Control.EnableDiscordRPC)
-			{
-				DiscordFormat dataForWS = Instance.data;
-				dataForWS.top = Utility.Configuration.Config.Control.DiscordRPCMessage.Replace("{{secretary}}", db.Fleet[1].MembersInstance[0].Name);
+            //api_deck_port
+            db.Fleet.LoadFromResponse(APIName, data.api_deck_port);
+            db.Fleet.CombinedFlag = data.api_combined_flag() ? (int)data.api_combined_flag : 0;
 
-				dataForWS.bot = new List<string>();
-
-
-				if (db.Admiral.Senka != null)
-				{
-					dataForWS.bot.Add(string.Format("Rank {0} on {1}", db.Admiral.Senka, db.Server.Name));
-				}
-				else
-				{
-					dataForWS.bot.Add("Rank data not loaded");
-				}
-
-				if (Utility.Configuration.Config.Control.DiscordRPCShowFCM)
-					dataForWS.bot.Add(new StringBuilder("First class medals: ").Append(db.Admiral.Medals).ToString());
-
-
-				dataForWS.large = string.Format("{0} (HQ Level {1})", db.Admiral.AdmiralName, db.Admiral.Level);
-
-				dataForWS.small = db.Admiral.RankString;
-			}
+            if (Utility.Configuration.Config.Control.EnableDiscordRPC)
+            {
+                DiscordFormat dataForWS = Instance.data;
+                dataForWS.top = Utility.Configuration.Config.Control.DiscordRPCMessage.Replace("{{secretary}}", db.Fleet[1].MembersInstance[0].Name);
 
                 dataForWS.bot = new List<string>();
 
@@ -106,15 +86,10 @@ namespace ElectronicObserver.Observer.kcsapi.api_port
                     dataForWS.bot.Add(new StringBuilder("First class medals: ").Append(db.Admiral.Medals).ToString());
 
 
-			
-            dataForWS.large = string.Format("{0} (HQ Level {1})", db.Admiral.AdmiralName, db.Admiral.Level);
+                dataForWS.large = string.Format("{0} (HQ Level {1})", db.Admiral.AdmiralName, db.Admiral.Level);
 
-            dataForWS.small = db.Admiral.RankString;
-			
-			db.Battle.LoadFromResponse(APIName, data);
-			db.Replays.LoadFromResponse(APIName, data);
-			base.OnResponseReceived((object)data);
-		}
+                dataForWS.small = db.Admiral.RankString;
+            }
 
 
             // 基地航空隊　配置転換系の処理

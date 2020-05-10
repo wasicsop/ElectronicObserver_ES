@@ -40,7 +40,5 @@ namespace ElectronicObserver.Observer.kcsapi.api_req_ranking
         public override bool IsResponseSupported => true;
     }
 
-		public override string APIName => "api_req_ranking/getlist";
-	}
 
 }

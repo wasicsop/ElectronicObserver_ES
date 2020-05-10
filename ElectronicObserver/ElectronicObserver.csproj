@@ -231,6 +231,8 @@
       <DependentUpon>QuestTracking.resx</DependentUpon>
     </Compile>
     <Compile Include="Data\RelocationData.cs" />
+    <Compile Include="Data\Replay.cs" />
+    <Compile Include="Data\ReplayManager.cs" />
     <Compile Include="Data\ResponseWrapper.cs" />
     <Compile Include="Data\CompassData.cs" />
     <Compile Include="Data\ShipGraphicData.cs" />
