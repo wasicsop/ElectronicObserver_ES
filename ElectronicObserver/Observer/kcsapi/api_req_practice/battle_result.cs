@@ -15,7 +15,7 @@ namespace ElectronicObserver.Observer.kcsapi.api_req_practice
 		{
 
 			KCDatabase.Instance.Battle.LoadFromResponse(APIName, data);
-
+			KCDatabase.Instance.Replays.LoadFromResponse(APIName, data);
 
 			base.OnResponseReceived((object)data);
 		}

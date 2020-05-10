@@ -15,6 +15,7 @@ namespace ElectronicObserver.Observer.kcsapi.api_req_ranking
         {
             KCDatabase db = KCDatabase.Instance;
 
+
             string pattern = new StringBuilder("\"api_.{12}\":[0-9]*,\"api_.{12}\":\"").AppendFormat("{0}\"", db.Admiral.AdmiralName).ToString();
             Regex regex = new Regex(pattern);
 
@@ -38,5 +39,6 @@ namespace ElectronicObserver.Observer.kcsapi.api_req_ranking
 
         public override bool IsResponseSupported => true;
     }
+
 
 }

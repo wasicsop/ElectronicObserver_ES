@@ -13,6 +13,7 @@ namespace ElectronicObserver.Observer.kcsapi.api_req_sortie
 		public override void OnResponseReceived(dynamic data)
 		{
 			KCDatabase.Instance.Battle.LoadFromResponse(APIName, data);
+			KCDatabase.Instance.Replays.LoadFromResponse(APIName, data);
 			base.OnResponseReceived((object)data);
 		}
 
