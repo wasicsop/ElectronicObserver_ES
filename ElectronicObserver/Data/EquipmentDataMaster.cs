@@ -116,6 +116,7 @@ namespace ElectronicObserver.Data
 		public string Message => RawData.api_info() ? ((string)RawData.api_info).Replace("<br>", "\r\n") : "";
 		// Window.FormMain.Instance.Translator.GetTranslation(((string)RawData.api_info), Utility.TranslationType.EquipmentDesc).Replace("<br>", "\r\n"); old API for reference
 
+
 		/// <summary>
 		/// 基地航空隊：配置コスト
 		/// </summary>
@@ -235,6 +236,7 @@ namespace ElectronicObserver.Data
 					case EquipmentTypes.FlyingBoat:
 					case EquipmentTypes.LandBasedRecon:
 					case EquipmentTypes.JetRecon:
+                    
 						return true;
 
 					default:
@@ -282,7 +284,7 @@ namespace ElectronicObserver.Data
 					case EquipmentTypes.FlyingBoat:
 					case EquipmentTypes.LandBasedRecon:
 					case EquipmentTypes.JetRecon:
-						return true;
+                    	return true;
 
 					default:
 						return false;
