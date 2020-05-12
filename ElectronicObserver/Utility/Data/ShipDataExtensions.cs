@@ -7,6 +7,9 @@ namespace ElectronicObserver.Utility.Data
 {
 	public static class ShipDataExtensions
 	{
+		public static double Accuracy(this IShipData ship) =>
+			2 * Math.Sqrt(ship.Level) + 1.5 * Math.Sqrt(ship.LuckTotal);
+
 		public static int MainGunCount(this IShipData ship) => ship.AllSlotInstance
 			.Count(e => e?.MasterEquipment.IsMainGun == true);
 

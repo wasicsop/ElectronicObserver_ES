@@ -675,6 +675,7 @@ namespace ElectronicObserver.Window
 						.Zip(asPlusRates, (ar, asPlus) => (ar.attack, ar.rate, asPlus)))
 					{
 						double power = ship.GetDayAttackPower(attack, fleet);
+						double accuracy = ship.GetDayAttackAccuracy(attack, fleet);
 						string attackDisplay = attack switch
 						{
 							DayAttackKind dayAttack => Constants.GetDayAttackKind(dayAttack),
@@ -687,7 +688,7 @@ namespace ElectronicObserver.Window
 							},
 							_ => $"{attack}"
 						};
-						sb.AppendFormat($"\r\n・[{asRate:P1} | {asPlusRate:P1}] - {attackDisplay} - Power: {power}");
+						sb.AppendFormat($"\r\n・[{asRate:P1} | {asPlusRate:P1}] - {attackDisplay} - Power: {power} - Accuracy: {accuracy:0.##}");
 					}
 				}
 
@@ -716,6 +717,7 @@ namespace ElectronicObserver.Window
 					foreach ((Enum attack, double rate) in nightAttacks.Zip(nightAttackRates, (attack, rate) => (attack, rate)))
 					{
 						double power = ship.GetNightAttackPower(attack);
+						double accuracy = ship.GetNightAttackAccuracy(attack, fleet);
 						string attackDisplay = attack switch
 						{
 							NightAttackKind nightAttack => Constants.GetNightAttackKind(nightAttack),
@@ -730,7 +732,7 @@ namespace ElectronicObserver.Window
 							_ => $"{attack}"
 						};
 
-						sb.AppendFormat($"\r\n・[{rate:P1}] - {attackDisplay} - Power: {power}");
+						sb.AppendFormat($"\r\n・[{rate:P1}] - {attackDisplay} - Power: {power} - Accuracy: {accuracy:0.##}");
 					}
 				}
 
