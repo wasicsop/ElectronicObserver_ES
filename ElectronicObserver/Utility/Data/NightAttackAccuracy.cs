@@ -21,6 +21,14 @@ namespace ElectronicObserver.Utility.Data
 
 		private static int BaseAccuracy(this IFleetData fleet) => 69;
 
+		private static double ConditionMod(this IShipData ship) => ship.Condition switch
+		{
+			int condition when condition > 52 => 1.2,
+			int condition when condition > 32 => 1,
+			int condition when condition > 22 => 0.8,
+			_ => 0.5
+		};
+
 		private static double AttackKindMod(Enum attack) => attack switch
 		{
 			NightAttackKind.CutinMainMain => 2,

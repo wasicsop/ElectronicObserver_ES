@@ -33,5 +33,13 @@ namespace ElectronicObserver.Utility.Data
 
 			_ => 0
 		};
+
+		private static double ConditionMod(this IShipData ship) => ship.Condition switch
+		{
+			int condition when condition > 52 => 1.2,
+			int condition when condition > 32 => 1,
+			int condition when condition > 22 => 0.8,
+			_ => 0.5
+		};
 	}
 }

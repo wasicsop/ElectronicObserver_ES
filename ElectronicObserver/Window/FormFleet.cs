@@ -657,7 +657,7 @@ namespace ElectronicObserver.Window
 				int[] slotmaster = ship.AllSlotMaster.ToArray();
 
 
-
+				EngagementType engagement = (EngagementType)Utility.Configuration.Config.Control.PowerEngagementForm;
 				IFleetData fleet = KCDatabase.Instance.Fleet[Parent.FleetID]; 
 
 				List<Enum> dayAttacks = ship.GetDayAttacks().ToList();
@@ -674,7 +674,7 @@ namespace ElectronicObserver.Window
 						.Zip(asRates, (attack, rate) => (attack, rate))
 						.Zip(asPlusRates, (ar, asPlus) => (ar.attack, ar.rate, asPlus)))
 					{
-						double power = ship.GetDayAttackPower(attack, fleet);
+						double power = ship.GetDayAttackPower(attack, fleet, engagement);
 						double accuracy = ship.GetDayAttackAccuracy(attack, fleet);
 						string attackDisplay = attack switch
 						{
@@ -757,7 +757,8 @@ namespace ElectronicObserver.Window
 
 					if (torpedo > 0) 
 					{
-						sb.AppendFormat(ConstantsRes.TorpedoAttack + ": {0}", torpedo);
+						sb.AppendFormat(ConstantsRes.TorpedoAttack + ": Power: {0}", torpedo);
+						sb.Append($" - Accuracy: {ship.GetTorpedoAttackAccuracy(fleet):0.##}");
 					}
 					if (asw > 0)
 					{
