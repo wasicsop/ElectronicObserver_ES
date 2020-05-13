@@ -12,7 +12,7 @@ namespace ElectronicObserver.Utility.Data
 			double shipAccuracy = ship.Accuracy();
 			double equipAccuracy = ship.AllSlotInstance
 				.Where(e => e != null)
-				.Sum(e => e.MasterEquipment.Accuracy + e.AswAccuracy());
+				.Sum(e => e.MasterEquipment.Accuracy + e.AswAccuracyBonus() + e.AswAccuracy());
 
 			return (baseAccuracy + shipAccuracy + equipAccuracy)
 			       * ship.ConditionMod();
@@ -20,7 +20,7 @@ namespace ElectronicObserver.Utility.Data
 
 		private static int BaseAccuracy(this IFleetData fleet) => 80;
 
-		private static double DayAccuracyBonus(this IEquipmentData equip) => equip switch
+		private static double AswAccuracyBonus(this IEquipmentData equip) => equip switch
 		{
 			{ } when equip.MasterEquipment.IsSonar => 1.3 * Math.Sqrt(equip.Level),
 
