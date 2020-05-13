@@ -755,18 +755,21 @@ namespace ElectronicObserver.Window
 					int torpedo = ship.TorpedoPower;
 					int asw = ship.AntiSubmarinePower;
 
-					if (torpedo > 0) {
+					if (torpedo > 0) 
+					{
 						sb.AppendFormat(ConstantsRes.TorpedoAttack + ": {0}", torpedo);
 					}
 					if (asw > 0)
 					{
 						if (torpedo > 0)
-							sb.Append(" / ");
+							sb.AppendLine();
 
-						sb.AppendFormat("ASW: {0}", asw);
+						sb.AppendFormat("ASW: Power: {0}", asw);
 
 						if (ship.CanOpeningASW)
 							sb.Append(" (OASW)");
+
+						sb.Append($" - Accuracy: {ship.GetAswAttackAccuracy(fleet):0.##}");
 					}
 					if (torpedo > 0 || asw > 0)
 						sb.AppendLine();
