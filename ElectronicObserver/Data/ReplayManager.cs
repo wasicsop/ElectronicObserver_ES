@@ -40,7 +40,7 @@ namespace ElectronicObserver.Data
 		public Fleet4 Fleet4Data { get; set; }
 		public Lba LbaData { get; set; }
 		public Plane PlaneData { get; set; }
-		public Range RangeData { get; set; }
+		public ReplayJSON.Range RangeData { get; set; }
 
 		public dynamic DayData = null;
 		public dynamic YasenData = null;
@@ -257,7 +257,7 @@ namespace ElectronicObserver.Data
 					Battle_replay.Lbas.Add(new Lba());
 					Battle_replay.Lbas[MatchedBases].Rid = baseAirCorps.AirCorpsID;
 					Battle_replay.Lbas[MatchedBases].Action = baseAirCorps.ActionKind;
-					Battle_replay.Lbas[MatchedBases].Range = new Range();
+					Battle_replay.Lbas[MatchedBases].Range = new ReplayJSON.Range();
 					Battle_replay.Lbas[MatchedBases].Range.ApiBase = baseAirCorps.Base_Distance;
 					Battle_replay.Lbas[MatchedBases].Range.ApiBonus = baseAirCorps.Bonus_Distance;
 					Battle_replay.Lbas[MatchedBases].Planes = new List<Plane>(4);
@@ -380,7 +380,7 @@ namespace ElectronicObserver.Data
 				if (fleet[i] == -1)
 					continue;
 
-				ShipData ship = fleet.MembersInstance[i];
+				IShipData ship = fleet.MembersInstance[i];
 				List<int> kyouka_list = ship.Kyouka.ToList();
 				Battle_replay.Fleet1.Add(new Fleet1()
 				{
@@ -409,7 +409,7 @@ namespace ElectronicObserver.Data
 				if (fleet[i] == -1)
 					continue;
 
-				ShipData ship = fleet.MembersInstance[i];
+				IShipData ship = fleet.MembersInstance[i];
 				List<int> kyouka_list = ship.Kyouka.ToList();
 				Battle_replay.Fleet2.Add(new Fleet2()
 				{
@@ -437,7 +437,7 @@ namespace ElectronicObserver.Data
 				if (fleet[i] == -1)
 					continue;
 
-				ShipData ship = fleet.MembersInstance[i];
+				IShipData ship = fleet.MembersInstance[i];
 				List<int> kyouka_list = ship.Kyouka.ToList();
 				Battle_replay.Fleet3.Add(new Fleet3()
 				{
@@ -465,7 +465,7 @@ namespace ElectronicObserver.Data
 				if (fleet[i] == -1)
 					continue;
 
-				ShipData ship = fleet.MembersInstance[i];
+				IShipData ship = fleet.MembersInstance[i];
 				List<int> kyouka_list = ship.Kyouka.ToList();
 				Battle_replay.Fleet4.Add(new Fleet4()
 				{

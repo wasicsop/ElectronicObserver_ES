@@ -25,6 +25,7 @@ namespace ElectronicObserver.Data
 		public IEquipmentDataMaster ExpansionSlotInstanceMaster { get; set; }
 		public ReadOnlyCollection<int> AllSlot { get; set; }
 		public ReadOnlyCollection<int> AllSlotMaster { get; set; }
+		public ReadOnlyCollection<int> AllSlotMasterReplay { get; set; }
 		public ReadOnlyCollection<IEquipmentData> AllSlotInstance { get; set; }
 		public ReadOnlyCollection<IEquipmentDataMaster> AllSlotInstanceMaster { get; set; }
 		public ReadOnlyCollection<int> Aircraft { get; set; }
@@ -36,6 +37,7 @@ namespace ElectronicObserver.Data
 		public int RepairSteel { get; set; }
 		public int RepairFuel { get; set; }
 		public int Condition { get; set; }
+		public int[] Kyouka { get; set; }
 		public int FirepowerModernized { get; set; }
 		public int TorpedoModernized { get; set; }
 		public int AAModernized { get; set; }

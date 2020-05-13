@@ -114,6 +114,9 @@ namespace ElectronicObserver.Data
 		/// </summary>
 		ReadOnlyCollection<int> AllSlotMaster { get; }
 
+		public ReadOnlyCollection<int> AllSlotMasterReplay { get; }
+
+
 		/// <summary>
 		/// 全てのスロット(装備データ)
 		/// </summary>
@@ -168,6 +171,8 @@ namespace ElectronicObserver.Data
 		/// コンディション
 		/// </summary>
 		int Condition { get; }
+
+		public int[] Kyouka { get; }
 
 		/// <summary>
 		/// 火力強化値
