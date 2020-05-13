@@ -15,8 +15,10 @@ namespace ElectronicObserver.Observer.kcsapi.api_req_map
 		public override void OnResponseReceived(dynamic data)
 		{
             KCDatabase db = KCDatabase.Instance;
+			db.Replays.LoadFromResponse(APIName, data);
 
-            db.Battle.LoadFromResponse(APIName, data);
+
+           
 
             if (Utility.Configuration.Config.Control.EnableDiscordRPC)
             {
@@ -24,6 +26,8 @@ namespace ElectronicObserver.Observer.kcsapi.api_req_map
                 dataForWS.top = string.Format("Node {0}-{1} {2}", db.Battle.Compass.MapAreaID, db.Battle.Compass.MapInfoID, db.Battle.Compass.DestinationID);
 
             }
+
+			KCDatabase.Instance.Battle.LoadFromResponse(APIName, data);
 
 			base.OnResponseReceived((object)data);
 

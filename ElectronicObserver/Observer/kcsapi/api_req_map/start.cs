@@ -15,10 +15,11 @@ namespace ElectronicObserver.Observer.kcsapi.api_req_map
 		public override void OnResponseReceived(dynamic data)
 		{
 
-            KCDatabase db = KCDatabase.Instance;
+		
+			KCDatabase db = KCDatabase.Instance;
 
             db.Battle.LoadFromResponse(APIName, data);
-
+			db.Replays.LoadFromResponse(APIName, data);
             if (Utility.Configuration.Config.Control.EnableDiscordRPC)
             {
                 DiscordFormat dataForWS = Instance.data;
@@ -26,6 +27,7 @@ namespace ElectronicObserver.Observer.kcsapi.api_req_map
             }
 
             base.OnResponseReceived((object)data);
+
 
 
 			// 表示順の関係上、UIの更新をしてからデータを更新する

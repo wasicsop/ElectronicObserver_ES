@@ -640,6 +640,11 @@ namespace ElectronicObserver.Data
         /// </summary>
         public ReadOnlyCollection<int> AllSlotMaster => Array.AsReadOnly(AllSlot.Select(id => KCDatabase.Instance.Equipments[id]?.EquipmentID ?? -1).ToArray());
 
+		/// <summary>
+		/// 全てのスロット(マスターID)
+		/// </summary>
+		public ReadOnlyCollection<int> AllSlotMasterReplay => Array.AsReadOnly(AllSlot.Select(id => KCDatabase.Instance.Equipments[id]?.EquipmentID ?? 0).ToArray());
+
         /// <summary>
         /// 全てのスロット(装備データ)
         /// </summary>
@@ -702,15 +707,17 @@ namespace ElectronicObserver.Data
         public int Condition { get; internal set; }
 
 
-        #region Parameters
+		#region Parameters
 
-        /********************************************************
+		/********************************************************
 		 * 強化値：近代化改修・レベルアップによって上昇した数値
 		 * 総合値：装備込みでのパラメータ
 		 * 基本値：装備なしでのパラメータ(初期値+強化値)
 		 ********************************************************/
 
         private int[] _modernized;
+
+		public int[] Kyouka => (int[])RawData.api_kyouka;
         /// <summary>
         /// 火力強化値
         /// </summary>
