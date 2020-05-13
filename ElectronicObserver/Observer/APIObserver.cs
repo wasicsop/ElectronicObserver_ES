@@ -1,23 +1,19 @@
 ﻿using Codeplex.Data;
 using ElectronicObserver.Data;
-using ElectronicObserver.Observer.kcsapi;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Utility.Mathematics;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net;
-using System.Net.WebSockets;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 using System.Windows.Forms;
 using Titanium.Web.Proxy;
 using Titanium.Web.Proxy.EventArguments;
+using Titanium.Web.Proxy.Http;
 using Titanium.Web.Proxy.Models;
 using static ElectronicObserver.Data.Constants;
 
@@ -232,32 +228,17 @@ namespace ElectronicObserver.Observer
 			}
 		}
 
+		private Dictionary<Request, string> Requests { get; } = new Dictionary<Request, string>();
+
 		private async Task ProxyOnBeforeRequest(object sender, SessionEventArgs e)
 		{
 			Configuration.ConfigurationData.ConfigConnection c = Configuration.Config.Connection;
 
 			string baseurl = e.HttpClient.Request.RequestUri.AbsoluteUri;
 
-			// request
-			if (baseurl.Contains("/kcsapi/"))
-			{
-
-				string url = baseurl;
-				string body = await e.GetRequestBodyAsString();
-
-				//保存
-				if (c.SaveReceivedData && c.SaveRequest)
-				{
-
-					Task.Run((Action)(() =>
-					{
-						SaveRequest(url, body);
-					}));
-				}
-
-
-				UIControl.BeginInvoke((Action)(() => { LoadRequest(url, body); }));
-			}
+			e.HttpClient.Request.KeepBody = true;
+			// need to read the request body here so it's available in ProxyOnBeforeResponse
+			await e.GetRequestBodyAsString();
 		}
 
 		private async Task ProxyOnBeforeResponse(object sender, SessionEventArgs e)
@@ -267,6 +248,22 @@ namespace ElectronicObserver.Observer
 			Configuration.ConfigurationData.ConfigConnection c = Configuration.Config.Connection;
 
 			string baseurl = e.HttpClient.Request.RequestUri.AbsoluteUri;
+
+			// request
+			if (baseurl.Contains("/kcsapi/"))
+			{
+				
+				string url = baseurl;
+				string body = await e.GetRequestBodyAsString();
+
+				//保存
+				if (c.SaveReceivedData && c.SaveRequest)
+				{
+					Task.Run((Action) (() => { SaveRequest(url, body); }));
+				}
+
+				UIControl.BeginInvoke((Action) (() => { LoadRequest(url, body); }));
+			}
 
 			//debug
 			//Utility.Logger.Add( 1, baseurl );
