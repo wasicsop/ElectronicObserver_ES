@@ -228,14 +228,8 @@ namespace ElectronicObserver.Observer
 			}
 		}
 
-		private Dictionary<Request, string> Requests { get; } = new Dictionary<Request, string>();
-
 		private async Task ProxyOnBeforeRequest(object sender, SessionEventArgs e)
 		{
-			Configuration.ConfigurationData.ConfigConnection c = Configuration.Config.Connection;
-
-			string baseurl = e.HttpClient.Request.RequestUri.AbsoluteUri;
-
 			e.HttpClient.Request.KeepBody = true;
 			// need to read the request body here so it's available in ProxyOnBeforeResponse
 			await e.GetRequestBodyAsString();
