@@ -83,12 +83,33 @@ namespace ElectronicObserver.Utility.Data
 		public static bool HasNightPhototoubePlane(this IShipData ship) => ship.AllSlotInstance
 			.Any(e => e?.EquipmentId == EquipmentId.CarrierBasedBomber_SuiseiModel12_wType31PhotoelectricFuzeBombs);
 
+		public static bool HasSwordfish(this IShipData ship) => ship.AllSlotInstance
+			.Any(e => e?.MasterEquipment.IsSwordfish ?? false);
+
 		public static bool HasLateModelTorp(this IShipData ship, int count = 1) => ship.AllSlotInstance
 			.Count(e => e?.MasterEquipment.IsLateModelTorpedo == true)
 		    >= count;
 
 		public static bool HasSubmarineEquipment(this IShipData ship) => ship.AllSlotInstance
 			.Any(e => e?.MasterEquipment.CategoryType == EquipmentTypes.SubmarineEquipment);
+
+		public static bool HasNightRecon(this IShipData ship) => ship.AllSlotInstance
+			.Any(e => e?.EquipmentId switch
+			{
+				EquipmentId.SeaplaneRecon_Type98ReconSeaplane_NightRecon => true,
+				_ => false
+			});
+
+		public static bool HasStarShell(this IShipData ship) => ship.AllSlotInstance
+			.Any(e => e?.MasterEquipment.CategoryType == EquipmentTypes.StarShell);
+
+		public static bool HasSearchlight(this IShipData ship) => ship.AllSlotInstance
+			.Any(e => e?.MasterEquipment.CategoryType switch
+			{
+				EquipmentTypes.Searchlight => true,
+				EquipmentTypes.SearchlightLarge => true,
+				_ => false
+			});
 
 		public static bool IsIseClassK2(this IShipData ship) => ship.MasterShip.ShipId switch
 		{

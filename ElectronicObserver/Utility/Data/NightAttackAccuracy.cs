@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using ElectronicObserver.Data;
+using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Utility.Data
 {
@@ -14,12 +15,34 @@ namespace ElectronicObserver.Utility.Data
 				.Where(e => e != null)
 				.Sum(e => e.MasterEquipment.Accuracy);
 
-			return (baseAccuracy + shipAccuracy + equipAccuracy)
+			// if night equip is present assume it activates
+			return (fleet.NightScoutMod() * (baseAccuracy + fleet.StarShellBonus())
+			        + shipAccuracy + equipAccuracy)
 			       * ship.ConditionMod()
-			       * AttackKindMod(attack);
+			       * AttackKindMod(attack)
+			       + fleet.SearchlightBonus()
+			       + ship.HeavyCruiserBonus();
 		}
 
 		private static int BaseAccuracy(this IFleetData fleet) => 69;
+
+		private static double NightScoutMod(this IFleetData fleet) => fleet switch
+		{
+			{ } when fleet.HasNightRecon() => 1.1,
+			_ => 1
+		};
+
+		private static int StarShellBonus(this IFleetData fleet) => fleet switch
+		{
+			{ } when fleet.HasStarShell() => 5,
+			_ => 0
+		};
+
+		private static int SearchlightBonus(this IFleetData fleet) => fleet switch
+		{
+			{ } when fleet.HasSearchlight() => 7,
+			_ => 0
+		};
 
 		private static double ConditionMod(this IShipData ship) => ship.Condition switch
 		{
@@ -48,5 +71,25 @@ namespace ElectronicObserver.Utility.Data
 
 			_ => 1
 		};
+
+		private static int HeavyCruiserBonus(this IShipData ship) => ship.MasterShip.ShipType switch
+		{
+			ShipTypes.HeavyCruiser => ship.Night20CmBonus(),
+			ShipTypes.AviationCruiser => ship.Night20CmBonus(),
+			_ => 0
+		};
+
+		private static int Night20CmBonus(this IShipData ship) => ship.AllSlotInstance.Count(e => e?.EquipmentId switch
+			{
+				EquipmentId.MainGunMedium_20_3cmTwinGun => true,
+				EquipmentId.MainGunMedium_20_3cm_No_2TwinGun => true,
+				EquipmentId.MainGunMedium_20_3cm_No_3TwinGun => true,
+				_ => false
+			}) switch
+			{
+				0 => 0,
+				1 => 10,
+				_ => 15
+			};
 	}
 }

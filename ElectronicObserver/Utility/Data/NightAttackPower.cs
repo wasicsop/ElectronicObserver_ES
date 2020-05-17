@@ -7,9 +7,9 @@ namespace ElectronicObserver.Utility.Data
 {
 	public static class NightAttackPower
 	{
-		public static double GetNightAttackPower(this IShipData ship, Enum attack)
+		public static double GetNightAttackPower(this IShipData ship, Enum attack, IFleetData? fleet = null)
 		{
-			double basepower = ship.BaseNightAttackPower();
+			double basepower = ship.BaseNightAttackPower() + fleet.NightScoutBonus();
 
 			basepower *= ship.GetHPDamageBonus();
 			basepower *= NightAttackKindDamageMod(attack, ship);
@@ -20,6 +20,12 @@ namespace ElectronicObserver.Utility.Data
 
 			return basepower;
 		}
+
+		private static int NightScoutBonus(this IFleetData? fleet) => fleet switch
+		{
+			{ } when fleet.HasNightRecon() => 5,
+			_ => 0
+		};
 
 		private static double BaseNightAttackPower(this IShipData ship) => ship switch
 		{

@@ -59,7 +59,7 @@ namespace ElectronicObserver.Data
 		/// <summary>
 		/// 艦隊メンバー(艦船データ、退避艦を除く)
 		/// </summary>
-		ReadOnlyCollection<IShipData> MembersWithoutEscaped { get; }
+		ReadOnlyCollection<IShipData?>? MembersWithoutEscaped { get; }
 
 		/// <summary>
 		/// 退避艦のIDリスト

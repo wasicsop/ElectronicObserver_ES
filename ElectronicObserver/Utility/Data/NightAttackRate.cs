@@ -16,11 +16,16 @@ namespace ElectronicObserver.Utility.Data
 
 			double luckLevelPart = ship.LuckTotal switch
 			{
-				int luck when luck < 50 => 15 + luck + 0.75 * Math.Sqrt(ship.Level),
-				int luck => 65 + Math.Sqrt(luck - 50) + 0.8 * Math.Sqrt(ship.Level)
+				{ } luck when luck < 50 => 15 + luck + 0.75 * Math.Sqrt(ship.Level),
+				{ } luck => 65 + Math.Sqrt(luck - 50) + 0.8 * Math.Sqrt(ship.Level)
 			};
 
-			double baseRate = luckLevelPart + FlagshipBonus(fleet, ship) + ship.HPBonus() + ship.SkilledLookoutsBonus();
+			double baseRate = luckLevelPart
+			                  + FlagshipBonus(fleet, ship)
+			                  + ship.HpBonus()
+			                  + ship.SkilledLookoutsBonus()
+			                  + fleet.SearchlightBonus()
+			                  + fleet.StarShellBonus();
 
 			return Math.Floor(baseRate) / attackMod;
 		}
@@ -28,11 +33,11 @@ namespace ElectronicObserver.Utility.Data
 		private static double FlagshipBonus(IFleetData fleet, IShipData ship) => fleet.MembersInstance
 				.FirstOrDefault()?.MasterShip.ShipId switch
 			{
-				ShipId id when id == ship.MasterShip.ShipId => 15,
+				{ } id when id == ship.MasterShip.ShipId => 15,
 				_ => 0
 			};
 
-		private static int HPBonus(this IShipData ship) => ship.HPRate switch
+		private static int HpBonus(this IShipData ship) => ship.HPRate switch
 		{
 			_ when ship.HPRate > 0.5 => 0,
 			_ when ship.HPRate > 0.25 => 18,
@@ -64,6 +69,18 @@ namespace ElectronicObserver.Utility.Data
 			NightTorpedoCutinKind.LateModelTorpedoSubmarineEquipment => 122,
 			NightTorpedoCutinKind.LateModelTorpedo2 => 122,
 
+			_ => 0
+		};
+
+		private static int SearchlightBonus(this IFleetData fleet) => fleet switch
+		{
+			{ } when fleet.HasSearchlight() => 7,
+			_ => 0
+		};
+
+		private static int StarShellBonus(this IFleetData fleet) => fleet switch
+		{
+			{ } when fleet.HasStarShell() => 4,
 			_ => 0
 		};
 	}
