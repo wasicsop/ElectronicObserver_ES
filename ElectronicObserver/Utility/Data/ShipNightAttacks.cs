@@ -53,7 +53,7 @@ namespace ElectronicObserver.Utility.Data
 					.Concat(CarrierNightSpecialAttacks.Cast<Enum>())
 					.Concat(CarrierNightNormalAttacks.Cast<Enum>());
 			}
-			else if (ship.IsSpecialNightCarrier() || ship.IsArkRoyal())
+			else if (ship.IsSpecialNightCarrier() || ship.IsArkRoyal() && ship.HasSwordfish())
 			{
 				nightAttacks = nightAttacks
 					.Concat(new List<Enum> { NightAttackKind.DoubleShelling })
