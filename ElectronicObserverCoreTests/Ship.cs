@@ -134,16 +134,38 @@ namespace ElectronicObserverCoreTests
 				mock.Setup(s => s.Level).Returns(stats.Level ?? 1);
 				mock.Setup(s => s.HPRate).Returns(1);
 				mock.Setup(s => s.FirepowerBase).Returns(39);
-				mock.Setup(s => s.FirepowerTotal).Returns(44);
+				mock.Setup(s => s.FirepowerTotal).Returns(39 + equip.Firepower() + fits.Firepower);
 				mock.Setup(s => s.LuckTotal).Returns(stats.Luck ?? 14);
-				mock.Setup(s => s.MasterID).Returns(3);
 				mock.Setup(s => s.MasterShip.IsAircraftCarrier).Returns(true);
 				mock.Setup(s => s.AllSlotInstance).Returns(new ReadOnlyCollection<IEquipmentData?>(equip));
 				mock.Setup(s => s.Aircraft).Returns(new ReadOnlyCollection<int>(new List<int> { 14, 14, 8, 3 }));
 				mock.Setup(s => s.MasterShip.ShipId).Returns(ShipId.TaiyouKaiNi);
-				mock.Setup(s => s.MasterShip.ShipType).Returns(ShipTypes.AircraftCarrier);
+				mock.Setup(s => s.MasterShip.ShipType).Returns(ShipTypes.LightAircraftCarrier);
 
 				return mock.Object;
+		}
+
+		public static IShipData ArkRoyalKai(ShipStats? stats = null, List<IEquipmentData?>? equip = null,
+			VisibleFits? fits = null)
+		{
+			stats ??= new ShipStats();
+			equip ??= new List<IEquipmentData?>();
+			fits ??= new VisibleFits();
+
+			var mock = new Mock<IShipData>();
+
+			mock.Setup(s => s.Level).Returns(stats.Level ?? 1);
+			mock.Setup(s => s.HPRate).Returns(1);
+			mock.Setup(s => s.FirepowerBase).Returns(50);
+			mock.Setup(s => s.FirepowerTotal).Returns(50 + equip.Firepower() + fits.Firepower);
+			mock.Setup(s => s.LuckTotal).Returns(stats.Luck ?? 13);
+			mock.Setup(s => s.MasterShip.IsAircraftCarrier).Returns(true);
+			mock.Setup(s => s.AllSlotInstance).Returns(new ReadOnlyCollection<IEquipmentData?>(equip));
+			mock.Setup(s => s.Aircraft).Returns(new ReadOnlyCollection<int>(new List<int> { 24, 30, 12, 12 }));
+			mock.Setup(s => s.MasterShip.ShipId).Returns(ShipId.ArkRoyalKai);
+			mock.Setup(s => s.MasterShip.ShipType).Returns(ShipTypes.AircraftCarrier);
+
+			return mock.Object;
 		}
 	}
 }

@@ -30,6 +30,19 @@ namespace ElectronicObserverCoreTests
 			return mock.Object;
 		}
 
+		public static IEquipmentData OTO(int level = 0)
+		{
+			var mock = new Mock<IEquipmentData>();
+
+			mock.Setup(e => e.Level).Returns(level);
+			mock.Setup(e => e.MasterEquipment.Firepower).Returns(8);
+			mock.Setup(e => e.MasterEquipment.Accuracy).Returns(1);
+			mock.Setup(e => e.MasterEquipment.CategoryType).Returns(EquipmentTypes.SecondaryGun);
+			mock.Setup(e => e.MasterEquipment.IsSecondaryGun).Returns(true);
+
+			return mock.Object;
+		}
+
 		public static IEquipmentData Quint(int level = 0)
 		{
 			var mock = new Mock<IEquipmentData>();
@@ -123,6 +136,20 @@ namespace ElectronicObserverCoreTests
 			mock.Setup(e => e.MasterEquipment.CategoryType).Returns(EquipmentTypes.CarrierBasedTorpedo);
 			mock.Setup(e => e.MasterEquipment.IsNightAttacker).Returns(true);
 			mock.Setup(e => e.MasterEquipment.IsNightAircraft).Returns(true);
+
+			return mock.Object;
+		}
+
+		public static IEquipmentData SwordfishMk3Skilled(int level = 0, int proficiency = 0)
+		{
+			var mock = new Mock<IEquipmentData>();
+
+			mock.Setup(e => e.MasterEquipment.Firepower).Returns(4);
+			mock.Setup(e => e.MasterEquipment.Torpedo).Returns(8);
+			mock.Setup(e => e.MasterEquipment.ASW).Returns(10);
+			mock.Setup(e => e.MasterEquipment.Accuracy).Returns(4);
+			mock.Setup(e => e.MasterEquipment.CategoryType).Returns(EquipmentTypes.CarrierBasedTorpedo);
+			mock.Setup(e => e.MasterEquipment.IsSwordfish).Returns(true);
 
 			return mock.Object;
 		}

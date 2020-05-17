@@ -76,7 +76,7 @@ namespace ElectronicObserverCoreTests
 			{
 				ShipStats stats = new ShipStats
 				{
-					Level =  149,
+					Level = 149,
 					LoS = 90,
 					Luck = 7
 				};
@@ -100,12 +100,13 @@ namespace ElectronicObserverCoreTests
 		{
 			var fleetMock = new Mock<IFleetData>();
 
-			fleetMock.Setup(f => f.MembersInstance).Returns(new ReadOnlyCollection<IShipData>(new List<IShipData>
-			{
-				Bismarck,
-				Isek2,
-				Taihou
-			}));
+			fleetMock.Setup(f => f.MembersWithoutEscaped).Returns(new ReadOnlyCollection<IShipData?>(
+				new List<IShipData?>
+				{
+					Bismarck,
+					Isek2,
+					Taihou
+				}));
 
 			IFleetData fleet = fleetMock.Object;
 
@@ -137,12 +138,13 @@ namespace ElectronicObserverCoreTests
 		{
 			var fleetMock = new Mock<IFleetData>();
 
-			fleetMock.Setup(f => f.MembersInstance).Returns(new ReadOnlyCollection<IShipData>(new List<IShipData>
-			{
-				Bismarck,
-				Isek2,
-				Taihou
-			}));
+			fleetMock.Setup(f => f.MembersWithoutEscaped).Returns(new ReadOnlyCollection<IShipData?>(
+				new List<IShipData?>
+				{
+					Bismarck,
+					Isek2,
+					Taihou
+				}));
 
 			IFleetData fleet = fleetMock.Object;
 
@@ -177,12 +179,13 @@ namespace ElectronicObserverCoreTests
 		{
 			var fleetMock = new Mock<IFleetData>();
 
-			fleetMock.Setup(f => f.MembersInstance).Returns(new ReadOnlyCollection<IShipData>(new List<IShipData>
-			{
-				Bismarck,
-				Isek2,
-				Taihou
-			}));
+			fleetMock.Setup(f => f.MembersWithoutEscaped).Returns(new ReadOnlyCollection<IShipData?>(
+				new List<IShipData?>
+				{
+					Bismarck,
+					Isek2,
+					Taihou
+				}));
 
 			IFleetData fleet = fleetMock.Object;
 
@@ -235,7 +238,6 @@ namespace ElectronicObserverCoreTests
 			mock.Setup(s => s.FirepowerTotal).Returns(129);
 			mock.Setup(s => s.LOSBase).Returns(39);
 			mock.Setup(s => s.LuckTotal).Returns(32);
-			mock.Setup(s => s.MasterID).Returns(1);
 			mock.Setup(s => s.AllSlotInstance)
 				.Returns(new ReadOnlyCollection<IEquipmentData>(new List<IEquipmentData>
 				{
@@ -243,7 +245,7 @@ namespace ElectronicObserverCoreTests
 					mg356,
 					seaplane
 				}));
-			mock.Setup(s => s.Aircraft).Returns(new ReadOnlyCollection<int>(new List<int> { 4, 4, 4, 4 }));
+			mock.Setup(s => s.Aircraft).Returns(new ReadOnlyCollection<int>(new List<int> {4, 4, 4, 4}));
 			mock.Setup(s => s.MasterShip.ShipId).Returns(ShipId.IseKaiNi);
 			mock.Setup(s => s.MasterShip.ShipType).Returns(ShipTypes.AviationBattleship);
 
@@ -251,10 +253,11 @@ namespace ElectronicObserverCoreTests
 
 			var fleetMock = new Mock<IFleetData>();
 
-			fleetMock.Setup(f => f.MembersInstance).Returns(new ReadOnlyCollection<IShipData>(new List<IShipData>
-			{
-				Nagato
-			}));
+			fleetMock.Setup(f => f.MembersWithoutEscaped).Returns(new ReadOnlyCollection<IShipData?>(
+				new List<IShipData?>
+				{
+					Nagato
+				}));
 
 			IFleetData fleet = fleetMock.Object;
 

@@ -67,16 +67,16 @@ namespace ElectronicObserver.Utility.Data
 			_ => 0.6
 		};
 
-		private static double FlagshipBonus(IFleetData fleet, IShipData ship) => fleet.MembersInstance
+		private static double FlagshipBonus(IFleetData fleet, IShipData ship) => fleet.MembersWithoutEscaped
 				.FirstOrDefault()?.MasterShip.ShipId switch
 			{
-				ShipId id when id == ship.MasterShip.ShipId => 15,
+				{ } id when id == ship.MasterShip.ShipId => 15,
 				_ => 0
 			};
 
 		private static double SpottingLoS(this IFleetData fleet)
 		{
-			double rawLos = fleet.MembersInstance
+			double rawLos = fleet.MembersWithoutEscaped
 				.Where(s => s!= null)
 				.Sum(s => s.LOSBase + s.AllSlotInstance
 					          .Zip(s.Aircraft, (e, size) => (e, size))

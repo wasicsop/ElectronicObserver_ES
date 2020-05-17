@@ -34,7 +34,7 @@ namespace ElectronicObserverCoreTests
 
 			var fleetMock = new Mock<IFleetData>();
 
-			fleetMock.Setup(f => f.MembersInstance).Returns(new ReadOnlyCollection<IShipData>(new List<IShipData>
+			fleetMock.Setup(f => f.MembersWithoutEscaped).Returns(new ReadOnlyCollection<IShipData?>(new List<IShipData?>
 			{
 				bismarck
 			}));
@@ -83,7 +83,7 @@ namespace ElectronicObserverCoreTests
 
 			var fleetMock = new Mock<IFleetData>();
 
-			fleetMock.Setup(f => f.MembersInstance).Returns(new ReadOnlyCollection<IShipData>(new List<IShipData>
+			fleetMock.Setup(f => f.MembersWithoutEscaped).Returns(new ReadOnlyCollection<IShipData?>(new List<IShipData?>
 			{
 				akagi
 			}));
@@ -137,7 +137,7 @@ namespace ElectronicObserverCoreTests
 
 			var fleetMock = new Mock<IFleetData>();
 
-			fleetMock.Setup(f => f.MembersInstance).Returns(new ReadOnlyCollection<IShipData>(new List<IShipData>
+			fleetMock.Setup(f => f.MembersWithoutEscaped).Returns(new ReadOnlyCollection<IShipData?>(new List<IShipData?>
 			{
 				taiyou
 			}));
@@ -165,6 +165,54 @@ namespace ElectronicObserverCoreTests
 			Assert.Equal(0.478, totalRates[0], Precision);
 			Assert.Equal(0.23, totalRates[1], Precision);
 			Assert.Equal(0.292, totalRates[2], Precision);
+		}
+
+		[Fact]
+		public void ArkRoyal()
+		{
+			ShipStats stats = new ShipStats
+			{
+				Level = 130,
+				Luck = 16
+			};
+
+			List<IEquipmentData?> equip = new List<IEquipmentData?>
+			{
+				Equipment.SwordfishMk3Skilled(),
+				Equipment.ReppuuKaiNiESkilled(),
+				Equipment.OTO(10),
+				Equipment.OTO(10),
+			};
+
+			IShipData ark = Ship.ArkRoyalKai(stats, equip);
+
+			var fleetMock = new Mock<IFleetData>();
+
+			fleetMock.Setup(f => f.MembersWithoutEscaped).Returns(new ReadOnlyCollection<IShipData?>(new List<IShipData?>
+			{
+				ark
+			}));
+
+			IFleetData fleet = fleetMock.Object;
+
+			List<Enum> expected = new List<Enum>
+			{
+				NightAttackKind.DoubleShelling,
+				NightAttackKind.Shelling
+			};
+
+			List<Enum> actual = ark.GetNightAttacks().ToList();
+
+			Assert.Equal(expected, actual);
+
+			Assert.Equal(74, ark.GetNightAttackPower(actual[0]));
+			Assert.Equal(62, ark.GetNightAttackPower(actual[1]));
+
+			List<double> attackRates = actual.Select(a => ark.GetNightAttackRate(a, fleet)).ToList();
+			List<double> totalRates = attackRates.ToList().TotalRates();
+
+			Assert.Equal(0.99, totalRates[0], Precision);
+			Assert.Equal(0.01, totalRates[1], Precision);
 		}
 	}
 }

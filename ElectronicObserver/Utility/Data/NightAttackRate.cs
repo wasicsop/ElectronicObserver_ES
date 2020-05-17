@@ -30,7 +30,7 @@ namespace ElectronicObserver.Utility.Data
 			return Math.Floor(baseRate) / attackMod;
 		}
 
-		private static double FlagshipBonus(IFleetData fleet, IShipData ship) => fleet.MembersInstance
+		private static double FlagshipBonus(IFleetData fleet, IShipData ship) => fleet.MembersWithoutEscaped
 				.FirstOrDefault()?.MasterShip.ShipId switch
 			{
 				{ } id when id == ship.MasterShip.ShipId => 15,
