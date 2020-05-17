@@ -691,20 +691,6 @@ namespace ElectronicObserver.Window
 						sb.AppendFormat($"\r\n・[{asRate:P1} | {asPlusRate:P1}] - {attackDisplay} - Power: {power} - Accuracy: {accuracy:0.##}");
 					}
 				}
-
-				sb.AppendFormat( "\r\n" + GeneralRes.DayBattle + ": {0}", Constants.GetDayAttackKind( Calculator.GetDayAttackKind( slotmaster, ship.ShipID, -1 ) ) );
-				{
-					// todo: remove after we're sure the one above works as intended
-					int shelling = ship.ShellingPower;
-					int aircraft = ship.AircraftPower;
-					if ( shelling > 0 ) {
-						if ( aircraft > 0 )
-							sb.AppendFormat( " - " + GeneralRes.Shelling + ": {0} / " + GeneralRes.Bombing + ": {1}", shelling, aircraft );
-						else
-							sb.AppendFormat( " - " + GeneralRes.Power + ": {0}", shelling );
-					} else if ( aircraft > 0 )
-						sb.AppendFormat( " - " + GeneralRes.Power + ": {0}", aircraft );
-				}
 				
 				List<Enum> nightAttacks = ship.GetNightAttacks().ToList();
 				List<double> nightAttackRates = nightAttacks.Select(a => ship.GetNightAttackRate(a, fleet))
@@ -716,7 +702,7 @@ namespace ElectronicObserver.Window
 
 					foreach ((Enum attack, double rate) in nightAttacks.Zip(nightAttackRates, (attack, rate) => (attack, rate)))
 					{
-						double power = ship.GetNightAttackPower(attack);
+						double power = ship.GetNightAttackPower(attack, fleet);
 						double accuracy = ship.GetNightAttackAccuracy(attack, fleet);
 						string attackDisplay = attack switch
 						{
@@ -729,6 +715,12 @@ namespace ElectronicObserver.Window
 								CvnciKind.FighterOtherOther => "CI (FOO)",
 								_ => "?"
 							},
+							NightTorpedoCutinKind torpedoCutin => torpedoCutin switch
+							{
+								NightTorpedoCutinKind.LateModelTorpedoSubmarineEquipment => "CI (Submarine Radar)",
+								NightTorpedoCutinKind.LateModelTorpedo2 => "CI (Late Model)",
+								_ => "?"
+							},
 							_ => $"{attack}"
 						};
 
@@ -737,19 +729,6 @@ namespace ElectronicObserver.Window
 				}
 
 				sb.AppendLine();
-
-				if (ship.CanAttackAtNight)
-				{
-					sb.AppendFormat(GeneralRes.NightBattle + ": {0}", Constants.GetNightAttackKind(Calculator.GetNightAttackKind(slotmaster, ship.ShipID, -1)));
-					{
-						int night = ship.NightBattlePower;
-						if (night > 0)
-						{
-							sb.AppendFormat(" - " + GeneralRes.Power + ": {0}", night);
-						}
-					}
-					sb.AppendLine();
-				}
 
 				{
 					int torpedo = ship.TorpedoPower;
