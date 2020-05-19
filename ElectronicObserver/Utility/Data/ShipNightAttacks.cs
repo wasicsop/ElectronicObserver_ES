@@ -112,7 +112,7 @@ namespace ElectronicObserver.Utility.Data
 			NightAttackKind.CutinTorpedoTorpedo => ship.HasTorpedo(2),
 			NightAttackKind.CutinMainMain => ship.HasMainGun(3),
 			NightAttackKind.CutinMainSub => ship.HasMainGun(2) && ship.HasSecondaryGun(),
-			NightAttackKind.CutinMainTorpedo => ship.HasMainGun() && ship.HasSecondaryGun(),
+			NightAttackKind.CutinMainTorpedo => ship.HasMainGun() && ship.HasTorpedo(),
 			NightAttackKind.DoubleShelling => ship.MainGunCount() + ship.SecondaryGunCount() >= 2,
 
 			NightAttackKind.CutinTorpedoRadar => ship.HasMainGun() && ship.HasTorpedo() && ship.HasRadar(),
