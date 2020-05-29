@@ -387,6 +387,21 @@ namespace ElectronicObserver.Data.Quest
 				}
 					break;
 
+				case 883: // 7thAnvLB2
+				{
+					bool cl = HasShipType(members, 1, ShipTypes.LightCruiser);
+					bool dd = HasShipType(members, 2, ShipTypes.Destroyer);
+
+					isAccepted = cl && dd;
+				}
+					break;
+
+				case 910: // 7thAnvLB3
+				{
+					isAccepted = true;
+				}
+					break;
+
 				case 235: // B135
 				{
 					bool cl = HasShipType(members, 1, ShipTypes.LightCruiser);

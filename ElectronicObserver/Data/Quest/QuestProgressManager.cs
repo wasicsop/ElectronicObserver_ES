@@ -466,6 +466,32 @@ namespace ElectronicObserver.Data.Quest
 							}));
 							break;*/
 
+						case 341:
+							Progresses.Add(new ProgressPractice(q, 3, "A"));
+							break;
+						case 883: // 7thAnvLB2
+							Progresses.Add(new ProgressMultiBattle(q, new[]
+							{
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 23 }, true),
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 31 }, true),
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 32 }, true),
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 33 }, true),
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 34 }, true),
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 35 }, true),
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 72 }, true, 2),
+							}));
+							break;
+						case 910: // 7thAnvLB3
+							Progresses.Add(new ProgressMultiBattle(q, new[]
+							{
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 61 }, true),
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 62 }, true),
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 63 }, true),
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 64 }, true),
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 65 }, true),
+							}));
+							break;
+
 						case 235: // B135
 							Progresses.Add(new ProgressMultiBattle(q, new[]
 							{

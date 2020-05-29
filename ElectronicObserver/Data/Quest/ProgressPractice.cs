@@ -56,25 +56,29 @@ namespace ElectronicObserver.Data.Quest
 
 			if (fleet == null) return false;
 
-			switch (questId)
+			return questId switch
 			{
-				case 329:
-					return fleet.MembersInstance.Count(s => s.MasterShip.ShipType == ShipTypes.Destroyer ||
-					                                        s.MasterShip.ShipType == ShipTypes.Escort) >= 2;
+				329 => fleet.MembersInstance.Count(s => s.MasterShip.ShipType == ShipTypes.Destroyer ||
+				                                        s.MasterShip.ShipType == ShipTypes.Escort) >= 2,
+				330 => fleet.MembersInstance[0].MasterShip.IsAircraftCarrier &&
+				       fleet.MembersInstance.Count(s => s.MasterShip.IsAircraftCarrier) >= 2 &&
+				       fleet.MembersInstance.Count(s => s.MasterShip.ShipType == ShipTypes.Destroyer) >= 2,
+				337 => fleet.MembersInstance.Any(s => s.MasterShip.BaseShip().ShipID == (int) ShipId.Kagerou) &&
+				       fleet.MembersInstance.Any(s => s.MasterShip.BaseShip().ShipID == (int) ShipId.Shiranui) &&
+				       fleet.MembersInstance.Any(s => s.MasterShip.BaseShip().ShipID == (int) ShipId.Arare) &&
+				       fleet.MembersInstance.Any(s => s.MasterShip.BaseShip().ShipID == (int) ShipId.Kasumi),
+				341 => fleet.MembersInstance.Count(s => s.MasterShip.BaseShip().ShipId switch
+				{
+					ShipId.Oboro => true,
+					ShipId.Akebono => true,
+					ShipId.Sazanami => true,
+					ShipId.Ushio => true,
 
-				case 330:
-					return fleet.MembersInstance[0].MasterShip.IsAircraftCarrier &&
-					       fleet.MembersInstance.Count(s => s.MasterShip.IsAircraftCarrier) >= 2 &&
-					       fleet.MembersInstance.Count(s => s.MasterShip.ShipType == ShipTypes.Destroyer) >= 2;
+					_ => false
+				}) >= 2,
 
-				case 337:
-					return fleet.MembersInstance.Any(s => s.MasterShip.BaseShip().ShipID == (int)ShipId.Kagerou) &&
-					       fleet.MembersInstance.Any(s => s.MasterShip.BaseShip().ShipID == (int)ShipId.Shiranui) &&
-					       fleet.MembersInstance.Any(s => s.MasterShip.BaseShip().ShipID == (int)ShipId.Arare) &&
-					       fleet.MembersInstance.Any(s => s.MasterShip.BaseShip().ShipID == (int)ShipId.Kasumi);
-			}
-
-			return true;
+				_ => true,
+			};
 		}
 
 		public override string GetClearCondition() {
