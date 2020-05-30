@@ -761,6 +761,12 @@ namespace ElectronicObserver.Data.Quest
 						case 337:   //|337|「十八駆」演習！|演習S勝利3|霞+霰+陽炎+不知火|クォータリーだが1日で進捗リセット
 							Progresses.Add(new ProgressPractice(q, 3, "S"));
 							break;
+						case 339:
+							Progresses.Add(new ProgressPractice(q, 3, "S"));
+							break;
+						case 342:
+							Progresses.Add(new ProgressPractice(q, 4, "A"));
+							break;
 
 						case 402:   //|402|「遠征」を3回成功させよう！|遠征成功3
 							Progresses.Add(new ProgressExpedition(q, 3, null));
