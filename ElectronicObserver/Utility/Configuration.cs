@@ -1,11 +1,9 @@
-﻿using Codeplex.Data;
-using ElectronicObserver.Data;
+﻿using ElectronicObserver.Data;
 using ElectronicObserver.Observer;
 using ElectronicObserver.Properties;
 using ElectronicObserver.Resource.Record;
 using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.Utility.Storage;
-using ElectronicObserver.Window.Dialog;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -16,6 +14,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DynaJson;
 
 namespace ElectronicObserver.Utility
 {
@@ -1849,7 +1848,7 @@ namespace ElectronicObserver.Utility
 			if (Config.UI.ThemeMode != 2)
 			{
 				string theme = Theme.GetTheme(Config.UI.ThemeMode);
-				json = DynamicJson.Parse(theme);
+				json = JsonObject.Parse(theme);
 			}
 			else
 			{
@@ -1865,17 +1864,17 @@ namespace ElectronicObserver.Utility
 							if (!String.IsNullOrWhiteSpace(s)) sb.Append(s);
 						}
 					}
-					json = DynamicJson.Parse(sb.ToString());
+					json = JsonObject.Parse(sb.ToString());
 				}
 				catch (FileNotFoundException)
 				{
 					Logger.Add(3, @"Settings\ColorScheme.json not found.");
-					json = DynamicJson.Parse(Theme.GetTheme(0));
+					json = JsonObject.Parse(Theme.GetTheme(0));
 				}
 				catch
 				{
 					Logger.Add(3, @"Failed to read Settings\ColorScheme.json.");
-					json = DynamicJson.Parse(Theme.GetTheme(0));
+					json = JsonObject.Parse(Theme.GetTheme(0));
 				}
 			}
 

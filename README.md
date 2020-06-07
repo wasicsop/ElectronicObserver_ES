@@ -40,7 +40,7 @@ The Kancolle API is documented (in Japanese only) at the original project's [Oth
 
 ## Libraries
 
-* [DynamicJson](http://dynamicjson.codeplex.com/) (JSON read/write) - [Ms-PL](https://github.com/andanteyk/ElectronicObserver/blob/master/Licenses/Ms-PL.txt)
+* [DynaJson](https://github.com/fujieda/DynaJson) (JSON read/write) - [MIT License](https://github.com/andanteyk/ElectronicObserver/blob/master/Licenses/DynaJson.txt)
 * [DockPanel Suite](http://dockpanelsuite.com/) (Window layout) - [MIT License](https://github.com/andanteyk/ElectronicObserver/blob/master/Licenses/DockPanelSuite.txt)
 * [Nekoxy](https://github.com/veigr/Nekoxy) (Network capture) - [MIT License](https://github.com/andanteyk/ElectronicObserver/blob/master/Licenses/Nekoxy.txt)
     * [TrotiNet](http://trotinet.sourceforge.net/) - [GNU Lesser General Public License v3.0](https://github.com/andanteyk/ElectronicObserver/blob/master/Licenses/LGPL.txt)

@@ -300,13 +300,18 @@ namespace ElectronicObserver.Window.Dialog
 
 			ShipType.Text = ship.IsLandBase ? "Land Base" : ship.ShipTypeName;
 			{
+				string shipClassName = Constants.GetShipClass(ship.ShipClass);
+				bool isShipClassUnknown = shipClassName == "不明";
+
+				ShipType.Text = (ship.IsAbyssalShip ? "深海" : isShipClassUnknown ? "" : shipClassName) + (ship.IsLandBase ? "陸上施設" : ship.ShipTypeName);
+
 				var tip = new StringBuilder();
 				if (ship.IsAbyssalShip)
 					tip.AppendLine($"Ship Class ID: {ship.ShipClass}");
 				else if (Constants.GetShipClass(ship.ShipClass) == "不明" || Constants.GetShipClass(ship.ShipClass) == "Unknown")
 					tip.AppendLine($"Ship Class Unknown: {ship.ShipClass}");
 				else
-					tip.AppendLine($"{Constants.GetShipClass(ship.ShipClass)}: {ship.ShipClass}");
+					tip.AppendLine($"{shipClassName}: {ship.ShipClass}");
 
 				tip.AppendLine();
 				tip.AppendLine("Equippable:");
@@ -538,9 +543,9 @@ namespace ElectronicObserver.Window.Dialog
 							if (eq.AA != 0) sb.AppendFormat("AA {0:+0;-0}\r\n", eq.AA);
 							if (eq.Armor != 0) sb.AppendFormat("Armor {0:+0;-0}\r\n", eq.Armor);
 							if (eq.ASW != 0) sb.AppendFormat("ASW {0:+0;-0}\r\n", eq.ASW);
-							if (eq.Evasion != 0) sb.AppendFormat("Evasion {0:+0;-0}\r\n", eq.Evasion);
+							if (eq.Evasion != 0) sb.AppendFormat("{0} {1:+0;-0}\r\n", eq.CategoryType == EquipmentTypes.Interceptor ? "Interception" : "Evasion", eq.Evasion);
 							if (eq.LOS != 0) sb.AppendFormat("LOS {0:+0;-0}\r\n", eq.LOS);
-							if (eq.Accuracy != 0) sb.AppendFormat("Acc {0:+0;-0}\r\n", eq.Accuracy);
+							if (eq.Accuracy != 0) sb.AppendFormat("{0} {1:+0;-0}\r\n", eq.CategoryType == EquipmentTypes.Interceptor ? "Anti-bomb" : "Acc", eq.Accuracy);
 							if (eq.Bomber != 0) sb.AppendFormat("Bombing {0:+0;-0}\r\n", eq.Bomber);
 							sb.AppendLine("\r\nRight click to open in a new window.");
 

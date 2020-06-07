@@ -6,7 +6,7 @@ using System.Security.Cryptography;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Xml.Linq;
-using Codeplex.Data;
+using DynaJson;
 using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.Window;
 using AppSettings = ElectronicObserver.Properties.Settings;
@@ -80,7 +80,7 @@ namespace ElectronicObserver.Utility
 				using (var client = WebRequest.Create(UpdateUrl).GetResponse())
                 {
                     var updateData = client.GetResponseStream();
-                    var json = DynamicJson.Parse(updateData);
+                    var json = JsonObject.Parse(updateData);
                     DateTime date = DateTimeHelper.CSVStringToTime(json.bld_date);
 
                     if (SoftwareInformation.UpdateTime < date)
@@ -159,7 +159,7 @@ namespace ElectronicObserver.Utility
 				using (var client = WebRequest.Create(UpdateUrl).GetResponse())
                 {
                     var updateData = client.GetResponseStream();
-                    var json = DynamicJson.Parse(updateData);
+                    var json = JsonObject.Parse(updateData);
 
                     UpdateFileUrl = json.url;
                     //DownloadHash = json.hash;
@@ -195,7 +195,7 @@ namespace ElectronicObserver.Utility
             {
                 using (var sr = new StreamReader(source))
                 {
-                    var json = DynamicJson.Parse(sr.ReadToEnd());
+                    var json = JsonObject.Parse(sr.ReadToEnd());
                     currentVer = (int)json.Revision;
                 }
             }

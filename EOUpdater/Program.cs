@@ -1,10 +1,10 @@
-﻿using Codeplex.Data;
-using System;
+﻿using System;
 using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
 using System.Net;
 using System.Security.Cryptography;
+using DynaJson;
 
 namespace EOUpdater
 {
@@ -119,7 +119,7 @@ namespace EOUpdater
             {
                 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
                 var updateData = client.OpenRead(url);
-                var json = DynamicJson.Parse(updateData);
+                var json = JsonObject.Parse(updateData);
 
                 Console.WriteLine("== Update Data==");
                 Console.WriteLine(json.bld_date);
