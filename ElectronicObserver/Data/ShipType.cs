@@ -1,4 +1,4 @@
-﻿using Codeplex.Data;
+﻿using DynaJson;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -69,10 +69,6 @@ namespace ElectronicObserver.Data
 		public override void LoadFromResponse(string apiname, dynamic data)
 		{
 
-			// api_equip_type の置換処理
-			// checkme: 無駄が多い気がするのでもっといい案があったら是非
-			data = DynamicJson.Parse(Regex.Replace(data.ToString(), @"""(?<id>\d+?)""", @"""api_id_${id}"""));
-
 			base.LoadFromResponse(apiname, (object)data);
 
 
@@ -83,7 +79,7 @@ namespace ElectronicObserver.Data
 					foreach (KeyValuePair<string, object> type in RawData.api_equip_type)
 					{
 						if ((double)type.Value != 0)
-							yield return Convert.ToInt32(type.Key.Substring(7));     //skip api_id_
+							yield return Convert.ToInt32(type.Key);
 					}
 				}
 

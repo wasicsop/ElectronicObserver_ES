@@ -1206,7 +1206,7 @@ namespace ElectronicObserver.Data
                         break;
 
                     case EquipmentTypes.DepthCharge:
-                        if (slot.MasterEquipment.IsDepthChargeProjector)
+                        if (!slot.MasterEquipment.IsDepthCharge)
                             basepower += Math.Sqrt(slot.Level) * 0.75;
                         break;
 
@@ -1673,7 +1673,7 @@ namespace ElectronicObserver.Data
                     case EquipmentTypes.DepthCharge:
                         if (slot.IsDepthCharge)
                             depthChargeCount++;
-                        else
+                        else if (slot.IsDepthChargeProjector)
                             depthChargeProjectorCount++;
                         break;
                     case EquipmentTypes.SonarLarge:

@@ -27,6 +27,8 @@ namespace ElectronicObserver.Data
 		/// </summary>
 		string Name { get; }
 
+		bool IsTranslated { get; }
+
 		/// <summary>
 		/// 装備種別
 		/// </summary>
@@ -142,9 +144,7 @@ namespace ElectronicObserver.Data
 		/// </summary>
 		int IconType { get; }
 
-		/// <summary>
-		/// 装備種別：アイコン
-		/// </summary>
+		/// <inheritdoc />
 		EquipmentIconType IconTypeTyped { get; }
 
 		/// <summary>
@@ -215,7 +215,7 @@ namespace ElectronicObserver.Data
 		/// <summary> 爆雷かどうか(投射機は含まない) </summary>
 		bool IsDepthCharge { get; }
 
-		/// <summary> 爆雷投射機かどうか(爆雷は含まない) </summary>
+		/// <summary> 爆雷投射機かどうか(爆雷/対潜迫撃砲は含まない) </summary>
 		bool IsDepthChargeProjector { get; }
 
 		/// <summary> 夜間作戦航空要員かどうか </summary>
@@ -223,6 +223,9 @@ namespace ElectronicObserver.Data
 
 		/// <summary> 高高度局戦かどうか </summary>
 		bool IsHightAltitudeFighter { get; }
+
+		/// <summary> 対空噴進弾幕が発動可能なロケットランチャーかどうか </summary>
+		bool IsAARocketLauncher { get; }
 
 		int ID { get; }
 
@@ -587,8 +590,10 @@ namespace ElectronicObserver.Data
 			EquipmentID == 226 ||       // 九五式爆雷
 			EquipmentID == 227;         // 二式爆雷
 
-		/// <summary> 爆雷投射機かどうか(爆雷は含まない) </summary>
-		public bool IsDepthChargeProjector => CategoryType == EquipmentTypes.DepthCharge && !IsDepthCharge;
+		/// <summary> 爆雷投射機かどうか(爆雷/対潜迫撃砲は含まない) </summary>
+		public bool IsDepthChargeProjector => 
+			EquipmentID == 44 ||        // 九四式爆雷投射機
+			EquipmentID == 45;          // 三式爆雷投射機
 
 
 		/// <summary> 夜間作戦航空要員かどうか </summary>
@@ -600,9 +605,11 @@ namespace ElectronicObserver.Data
 		public bool IsHightAltitudeFighter =>
 			EquipmentID == 350 ||	// Me163B
 			EquipmentID == 351 ||	// 試製 秋水
-			EquipmentID == 352;		// 秋水
+			EquipmentID == 352;     // 秋水
 
-
+		/// <summary> 対空噴進弾幕が発動可能なロケットランチャーかどうか </summary>
+		public bool IsAARocketLauncher =>
+			EquipmentID == 274;
 
 
 

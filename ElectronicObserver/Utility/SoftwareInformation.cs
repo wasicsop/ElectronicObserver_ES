@@ -6,7 +6,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Codeplex.Data;
+using DynaJson;
 
 namespace ElectronicObserver.Utility
 {
@@ -32,7 +32,7 @@ namespace ElectronicObserver.Utility
 		/// <summary>
 		/// バージョン(日本語, ソフトウェア名を含みます)
 		/// </summary>
-		public static string VersionJapanese => SoftwareNameJapanese + "四五型改";
+		public static string VersionJapanese => SoftwareNameJapanese + "四六型";
 
 
 		/// <summary>
@@ -95,7 +95,7 @@ namespace ElectronicObserver.Utility
 
 			try
 			{
-				var json = DynamicJson.Parse(e.Result);
+				var json = JsonObject.Parse(e.Result);
 				DateTime date = DateTimeHelper.CSVStringToTime(json.bld_date);
 				string version = json.ver;
 				string description = json.note.Replace("<br>", "\r\n");

@@ -221,7 +221,7 @@ namespace ElectronicObserver.Utility.Data
 
 			int air = 0;
 			double reconBonus = 1.0;
-			
+
 			foreach (var sq in aircorps.Squadrons.Values)
 			{
 				if (sq == null || sq.State != 1)
@@ -392,9 +392,34 @@ namespace ElectronicObserver.Utility.Data
 				+ EquipmentLevelLoSRate(eq.MasterEquipment.CategoryType)
 				* Math.Sqrt(eq.Level);
 
+			// hack workaround for SG initial fit LoS not counting for routing
+			static int ShipLoS(IShipData ship)
+			{
+				int losBase = ship.LOSTotal - ship.AllSlotInstance
+					.Sum(e => e?.MasterEquipment.LOS ?? 0);
+
+				switch (ship.MasterShip.ShipClass)
+				{
+					case 65:        // Iowa級
+					case 69:        // Lexington級
+					case 83:        // Casablanca級
+					case 84:        // Essex級
+					case 87:        // John C.Butler級
+					case 91:        // Fletcher級
+					case 93:        // Colorado級
+					case 95:        // Northampton級
+					case 99:        // Atlanta級
+						losBase -= ship.AllSlotInstance
+							.Count(e => e?.EquipmentId == EquipmentId.RadarSmall_SGRadar_InitialModel) * 4;
+						break;
+				}
+
+				return losBase;
+			}
+
 			List<IShipData> ships = fleet.MembersWithoutEscaped.Where(s => s != null).ToList();
 
-			double kanmusuLoS = ships.Sum(s => Math.Sqrt(s.LOSBase));
+			double kanmusuLoS = ships.Sum(s => Math.Sqrt(ShipLoS(s)));
 			double equipLoS = ships.Sum(s => s.AllSlotInstance
 				                  .Where(eq => eq != null)
 				                  .Sum(eq => EquipmentLoSRate(eq.MasterEquipment.CategoryType) * EquipmentLoS(eq)));
@@ -1207,7 +1232,7 @@ namespace ElectronicObserver.Utility.Data
 					if (eq.IsHighAngleGunWithAADirector)
 						highangle_director++;
 
-					switch(eq.EquipmentID)
+					switch (eq.EquipmentID)
 					{
 						case 275:   // 10cm連装高角砲改+増設機銃
 							highangle_musashi++;
@@ -1225,7 +1250,7 @@ namespace ElectronicObserver.Utility.Data
 							highangle_atlanta_gfcs++;
 							break;
 					}
-					
+
 				}
 				else if (eq.CategoryType == EquipmentTypes.AADirector)
 				{
@@ -1629,7 +1654,7 @@ namespace ElectronicObserver.Utility.Data
 			return GetAdjustedFleetAAValue(fleet.MembersWithoutEscaped, formation);
 		}
 
-        public static double GetAarbRate(ShipData ship, double adjustedAA)
+        public static double GetAarbRate(IShipData ship, double adjustedAA)
         {
             if (ship.MasterShip.ShipType == ShipTypes.AircraftCarrier ||
                 ship.MasterShip.ShipType == ShipTypes.LightAircraftCarrier ||
@@ -1818,6 +1843,40 @@ namespace ElectronicObserver.Utility.Data
 			return (int)Math.Floor(enemyAircraftCount * proportionalAirDefense) + fixedAirDefense + 1 + (AACutinFixedBonus.ContainsKey(aaCutinKind) ? AACutinFixedBonus[aaCutinKind] : 0);
 		}
 
+
+		/// <summary>
+		/// 対空噴進弾幕の発動確率を求めます。
+		/// </summary>
+		/// <param name="ship">対象の艦船。</param>
+		public static double GetAARocketBarrageProbability(IShipData ship)
+		{
+			if (ship == null)
+				return 0;
+
+			switch (ship.MasterShip.ShipType)
+			{
+				case ShipTypes.AviationBattleship:
+				case ShipTypes.LightAircraftCarrier:
+				case ShipTypes.AircraftCarrier:
+				case ShipTypes.ArmoredAircraftCarrier:
+				case ShipTypes.SeaplaneTender:
+				case ShipTypes.AviationCruiser:
+					{
+						int rocketLauncherCount = ship.AllSlotInstanceMaster.Count(eq => eq?.IsAARocketLauncher ?? false);
+						if (rocketLauncherCount == 0)
+							return 0;
+
+						double rocket = (0.9 * ship.LuckTotal + GetAdjustedAAValue(ship)) / 281.0 + ((rocketLauncherCount - 1) * 0.15);
+						if (ship.MasterShip.ShipClass == 2) // 伊勢型
+							rocket += 0.25;
+
+						return rocket;
+					}
+
+				default:
+					return 0;
+			}
+		}
 
 
 
