@@ -312,7 +312,7 @@ namespace ElectronicObserver.Window
 			public ImageLabel Name;
 			public ShipStatusLevel Level;
 			public ShipStatusHP HP;
-			public ImageLabel Condition;
+			public ImageLabel Condition { get; set; }
 			public ShipStatusResource ShipResource;
 			public ShipStatusEquipment Equipments;
 
@@ -844,16 +844,19 @@ namespace ElectronicObserver.Window
 				// icon invisible
 				label.ImageIndex = -1;
 
-				label.BackColor =
-					cond < 20 ? Color.LightCoral :
-					cond < 30 ? Color.LightSalmon :
-					cond < 40 ? Color.Moccasin :
-					cond < 50 ? Color.Transparent :
-					Color.LightGreen;
+				(label.BackColor, label.ForeColor) = cond switch
+				{
+					{ } when cond < 20 => (Color.LightCoral, Color.Black),
+					{ } when cond < 30 => (Color.LightSalmon, Color.Black),
+					{ } when cond < 40 => (Color.Moccasin, Color.Black),
+					{ } when cond < 50 => (Color.Transparent, Utility.Configuration.Config.UI.ForeColor),
+					_ => (Color.LightGreen, Color.Black)
+				};
 			}
 			else
 			{
 				label.BackColor = Color.Transparent;
+				label.ForeColor = Utility.Configuration.Config.UI.ForeColor;
 
 				label.ImageIndex =
 					cond < 20 ? (int)ResourceManager.IconContent.ConditionVeryTired :
