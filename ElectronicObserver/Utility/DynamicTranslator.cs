@@ -108,15 +108,25 @@ namespace ElectronicObserver.Utility
 
         public string GetTranslation(string jpString, TranslationType type, int id = -1)
         {
-			var translate = true;
-			switch (type)
-			{
-				case TranslationType.Ships: translate = !Configuration.Config.UI.JapaneseShipName; break;
-				case TranslationType.ShipTypes: translate = !Configuration.Config.UI.JapaneseShipType; break;
-				case TranslationType.Equipment: translate = !Configuration.Config.UI.JapaneseEquipmentName; break;
-				case TranslationType.EquipmentDesc: translate = !Configuration.Config.UI.JapaneseEquipmentName; break;
-				case TranslationType.EquipmentType: translate = !Configuration.Config.UI.JapaneseEquipmentType; break;
-			}
+	        bool translate = type switch
+	        {
+		        TranslationType.Ships => !Configuration.Config.UI.JapaneseShipName,
+		        TranslationType.ShipTypes => !Configuration.Config.UI.JapaneseShipType,
+		        TranslationType.Equipment => !Configuration.Config.UI.JapaneseEquipmentName,
+		        TranslationType.EquipmentDesc => !Configuration.Config.UI.JapaneseEquipmentName,
+		        TranslationType.EquipmentType => !Configuration.Config.UI.JapaneseEquipmentType,
+
+				TranslationType.Expeditions => !Configuration.Config.UI.DisableOtherTranslations,
+				TranslationType.ExpeditionTitle => !Configuration.Config.UI.DisableOtherTranslations,
+				TranslationType.ExpeditionDetail => !Configuration.Config.UI.DisableOtherTranslations,
+		        TranslationType.Quests => !Configuration.Config.UI.DisableOtherTranslations,
+		        TranslationType.QuestTitle => !Configuration.Config.UI.DisableOtherTranslations,
+		        TranslationType.QuestDetail => !Configuration.Config.UI.DisableOtherTranslations,
+		        TranslationType.OperationMaps => !Configuration.Config.UI.DisableOtherTranslations,
+				TranslationType.OperationSortie => !Configuration.Config.UI.DisableOtherTranslations,
+
+		        _ => true
+	        };
 	        if (!translate) return jpString;
 	        try
 	        {

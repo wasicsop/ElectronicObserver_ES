@@ -177,6 +177,11 @@ namespace ElectronicObserver.Utility
 				public bool JapaneseEquipmentType { get; set; }
 
 				/// <summary>
+				/// Expeditions, sortie maps and quests
+				/// </summary>
+				public bool DisableOtherTranslations { get; set; }
+
+				/// <summary>
 				/// Whether to use default or normal node ID
 				/// </summary>
 				public bool UseOriginalNodeId { get; set; }
@@ -482,6 +487,7 @@ namespace ElectronicObserver.Utility
 					JapaneseShipType = false;
 					JapaneseEquipmentName = false;
 					JapaneseEquipmentType = false;
+					DisableOtherTranslations = false;
 					UseOriginalNodeId = false;
 				}
 			}

@@ -56,6 +56,7 @@
             this.Connection_Port = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.UI_DisableOtherTranslations = new System.Windows.Forms.CheckBox();
             this.UI_JapaneseEquipmentTypes = new System.Windows.Forms.CheckBox();
             this.UI_JapaneseEquipmentNames = new System.Windows.Forms.CheckBox();
             this.UI_JapaneseShipTypes = new System.Windows.Forms.CheckBox();
@@ -589,8 +590,9 @@
 			// 
 			// tabPage2
 			// 
+			this.tabPage2.Controls.Add(this.UI_DisableOtherTranslations);
 			this.tabPage2.Controls.Add(this.UI_JapaneseEquipmentTypes);
-            this.tabPage2.Controls.Add(this.UI_JapaneseEquipmentNames);
+			this.tabPage2.Controls.Add(this.UI_JapaneseEquipmentNames);
             this.tabPage2.Controls.Add(this.UI_JapaneseShipTypes);
             this.tabPage2.Controls.Add(this.UI_JapaneseShipNames);
             this.tabPage2.Controls.Add(this.UI_NodeNumbering);
@@ -653,9 +655,20 @@
             this.UI_JapaneseShipNames.Text = "Use JP ship names";
             this.UI_JapaneseShipNames.UseVisualStyleBackColor = true;
             // 
-            // UI_NodeNumbering
+            // UI_DisableOtherTranslations
             // 
-            this.UI_NodeNumbering.AutoSize = true;
+            this.UI_DisableOtherTranslations.AutoSize = true;
+            this.UI_DisableOtherTranslations.Location = new System.Drawing.Point(380, 129);
+            this.UI_DisableOtherTranslations.Name = "UI_DisableOtherTranslations";
+            this.UI_DisableOtherTranslations.Size = new System.Drawing.Size(134, 19);
+            this.UI_DisableOtherTranslations.TabIndex = 12;
+            this.UI_DisableOtherTranslations.Text = "Disable other translations";
+            this.UI_DisableOtherTranslations.UseVisualStyleBackColor = true;
+            this.ToolTipInfo.SetToolTip(this.UI_DisableOtherTranslations, "Expeditions, sortie maps and quests.");
+			// 
+			// UI_NodeNumbering
+			// 
+			this.UI_NodeNumbering.AutoSize = true;
             this.UI_NodeNumbering.Location = new System.Drawing.Point(9, 179);
             this.UI_NodeNumbering.Name = "UI_NodeNumbering";
             this.UI_NodeNumbering.Size = new System.Drawing.Size(207, 19);
@@ -3361,6 +3374,7 @@
 		private System.Windows.Forms.CheckBox UI_JapaneseEquipmentTypes;
 		private System.Windows.Forms.CheckBox UI_JapaneseEquipmentNames;
 		private System.Windows.Forms.CheckBox UI_JapaneseShipTypes;
+		private System.Windows.Forms.CheckBox UI_DisableOtherTranslations;
 		private System.Windows.Forms.CheckBox UI_NodeNumbering;
 		private System.Windows.Forms.CheckBox FormFleet_ShowAircraftLevelByNumber;
 		private System.Windows.Forms.CheckBox FormCompass_IsScrollable;
