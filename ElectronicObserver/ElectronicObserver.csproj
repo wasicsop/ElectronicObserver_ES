@@ -20,7 +20,7 @@
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <UseWindowsForms>true</UseWindowsForms>
 	<UseWPF>true</UseWPF>
-	<Platforms>x86;x64</Platforms>
+	<Platforms>x64</Platforms>
 	<Nullable>enable</Nullable>
 	<SatelliteResourceLanguages>en</SatelliteResourceLanguages>
   </PropertyGroup>
