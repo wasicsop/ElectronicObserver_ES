@@ -11,10 +11,10 @@ namespace ElectronicObserver.Utility.Data
 		{
 			double basepower = ship.BaseDayAttackPower(fleet);
 
-			basepower *= ship.GetHPDamageBonus() * EngagementDayAttackMod(engagement);
+			basepower *= ship.GetHPDamageBonus() * Damage.EngagementDayAttackMod(engagement);
 			basepower += ship.GetLightCruiserDamageBonus() + ship.GetItalianDamageBonus();
 
-			basepower = Math.Floor(Damage.Cap(basepower, 180));
+			basepower = Math.Floor(Damage.Cap(basepower, Damage.DayAttackCap));
 
 			basepower *= DayAttackMod(attack);
 
@@ -94,15 +94,6 @@ namespace ElectronicObserver.Utility.Data
 
 				_ => 0
 			};
-
-		private static double EngagementDayAttackMod(EngagementType form) => form switch
-		{
-			EngagementType.Parallel => 1.0,
-			EngagementType.HeadOn => 0.8,
-			EngagementType.TAdvantage => 1.2,
-			EngagementType.TDisadvantage => 0.6,
-			_ => 1.0
-		};
 
 		private static double DayAttackMod(Enum attackKind) => attackKind switch
 		{

@@ -733,6 +733,9 @@ namespace ElectronicObserver.Window
 					int torpedo = ship.TorpedoPower;
 					int asw = ship.AntiSubmarinePower;
 
+					DayAttackKind aswAttack = Calculator.GetDayAttackKind(ship.AllSlotMaster.ToArray(), ship.ShipID, 126, false);
+					int asw2 = ship.GetAswAttackPower(aswAttack, fleet);
+
 					if (torpedo > 0) 
 					{
 						sb.AppendFormat(ConstantsRes.TorpedoAttack + ": Power: {0}", torpedo);
@@ -743,7 +746,7 @@ namespace ElectronicObserver.Window
 						if (torpedo > 0)
 							sb.AppendLine();
 
-						sb.AppendFormat("ASW: Power: {0}", asw);
+						sb.AppendFormat("ASW: Power: {0}", asw2);
 
 						if (ship.CanOpeningASW)
 							sb.Append(" (OASW)");

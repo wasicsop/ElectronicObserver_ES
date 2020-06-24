@@ -196,5 +196,37 @@ namespace ElectronicObserverCoreTests
 
 			return mock.Object;
 		}
+
+		public static IEquipmentData HFDF(int level = 0)
+		{
+			var mock = new Mock<IEquipmentData>();
+
+			mock.Setup(e => e.MasterEquipment.ASW).Returns(15);
+			mock.Setup(e => e.MasterEquipment.IsSonar).Returns(true);
+			mock.Setup(e => e.MasterEquipment.CategoryType).Returns(EquipmentTypes.Sonar);
+
+			return mock.Object;
+		}
+
+		public static IEquipmentData AswTorpedo(int level = 0)
+		{
+			var mock = new Mock<IEquipmentData>();
+
+			mock.Setup(e => e.MasterEquipment.ASW).Returns(20);
+			mock.Setup(e => e.MasterEquipment.CategoryType).Returns(EquipmentTypes.DepthCharge);
+
+			return mock.Object;
+		}
+
+		public static IEquipmentData Type2DepthCharge(int level = 0)
+		{
+			var mock = new Mock<IEquipmentData>();
+
+			mock.Setup(e => e.MasterEquipment.ASW).Returns(7);
+			mock.Setup(e => e.MasterEquipment.CategoryType).Returns(EquipmentTypes.DepthCharge);
+			mock.Setup(e => e.MasterEquipment.IsDepthCharge).Returns(true);
+
+			return mock.Object;
+		}
 	}
 }
