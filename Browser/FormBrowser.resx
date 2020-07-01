@@ -129,4 +129,12 @@
   <data name="Other_Zoom_Rate" xml:space="preserve">
     <value>現在: {0:p1}</value>
   </data>
+  <data name="ClearCacheMessage" xml:space="preserve">
+    <value>キャッシュをクリアするため、ブラウザを再起動します。
+よろしいですか？
+※環境によっては本ツールが終了する場合があります。その場合は再起動してください。</value>
+  </data>
+  <data name="ClearCacheTitle" xml:space="preserve">
+    <value>ブラウザ再起動確認</value>
+  </data>
 </root>

@@ -1274,7 +1274,7 @@ namespace Browser
 
 		private void ToolMenu_Other_ClearCache_Click(object sender, EventArgs e)
 		{
-			if (MessageBox.Show("キャッシュをクリアするため、ブラウザを再起動します。\r\nよろしいですか？\r\n※環境によっては本ツールが終了する場合があります。その場合は再起動してください。", "ブラウザ再起動確認",
+			if (MessageBox.Show(resources.GetString("ClearCacheMessage"), resources.GetString("ClearCacheTitle"),
 				MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
 			{
 				BrowserHost.ClearCache();

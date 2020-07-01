@@ -1098,29 +1098,27 @@
             this.Control_DiscordRPCMessage.TabIndex = 10;
             this.ToolTipInfo.SetToolTip(this.Control_DiscordRPCMessage, "Allows you to choose what message to display on discord. Use {{secretary}} to put" +
         " your secretary\'s name in the message.");
-            // 
-            // Control_ShowExpeditionAlertDialog
-            // 
-            this.Control_ShowExpeditionAlertDialog.AutoSize = true;
+			// 
+			// Control_ShowExpeditionAlertDialog
+			// 
+			resources.ApplyResources(this.Control_ShowExpeditionAlertDialog, "Control_ShowExpeditionAlertDialog");
+			this.Control_ShowExpeditionAlertDialog.AutoSize = true;
             this.Control_ShowExpeditionAlertDialog.Location = new System.Drawing.Point(9, 143);
             this.Control_ShowExpeditionAlertDialog.Name = "Control_ShowExpeditionAlertDialog";
             this.Control_ShowExpeditionAlertDialog.Size = new System.Drawing.Size(181, 19);
             this.Control_ShowExpeditionAlertDialog.TabIndex = 8;
-            this.Control_ShowExpeditionAlertDialog.Text = "失敗する遠征出撃時に警告する";
-            this.ToolTipInfo.SetToolTip(this.Control_ShowExpeditionAlertDialog, "編成条件を満たさない艦隊が遠征に出発したときに、警告ダイアログを表示するかを指定します。");
+            this.ToolTipInfo.SetToolTip(this.Control_ShowExpeditionAlertDialog, resources.GetString("Control_ShowExpeditionAlertDialog.Tooltip"));
             this.Control_ShowExpeditionAlertDialog.UseVisualStyleBackColor = true;
-            // 
-            // Control_ShowSallyAreaAlertDialog
-            // 
-            this.Control_ShowSallyAreaAlertDialog.AutoSize = true;
+			// 
+			// Control_ShowSallyAreaAlertDialog
+			// 
+			resources.ApplyResources(this.Control_ShowSallyAreaAlertDialog, "Control_ShowSallyAreaAlertDialog");
+			this.Control_ShowSallyAreaAlertDialog.AutoSize = true;
             this.Control_ShowSallyAreaAlertDialog.Location = new System.Drawing.Point(9, 118);
             this.Control_ShowSallyAreaAlertDialog.Name = "Control_ShowSallyAreaAlertDialog";
             this.Control_ShowSallyAreaAlertDialog.Size = new System.Drawing.Size(236, 19);
             this.Control_ShowSallyAreaAlertDialog.TabIndex = 7;
-            this.Control_ShowSallyAreaAlertDialog.Text = "Warn before sortieing untagged ship";
-            this.ToolTipInfo.SetToolTip(this.Control_ShowSallyAreaAlertDialog, "Show a warning dialog when the fleet is sortieing to event map with untagged ship" +
-        ".\r\nDue to incomplete information, a false positive may also trigger this warning" +
-        ".");
+			this.ToolTipInfo.SetToolTip(this.Control_ShowSallyAreaAlertDialog, resources.GetString("Control_ShowSallyAreaAlertDialog.Tooltip"));
             this.Control_ShowSallyAreaAlertDialog.UseVisualStyleBackColor = true;
             // 
             // Control_PowerEngagementForm
@@ -1172,19 +1170,19 @@
             this.Control_RecordAutoSaving.Name = "Control_RecordAutoSaving";
             this.Control_RecordAutoSaving.Size = new System.Drawing.Size(121, 23);
             this.Control_RecordAutoSaving.TabIndex = 3;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
+			// 
+			// label9
+			// 
+			resources.ApplyResources(this.label9, "label9");
+			this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(6, 38);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(112, 15);
             this.label9.TabIndex = 2;
-            this.label9.Text = "レコードの自動保存：";
-            // 
-            // Control_ConditionBorder
-            // 
-            this.Control_ConditionBorder.Location = new System.Drawing.Point(124, 6);
+			// 
+			// Control_ConditionBorder
+			// 
+			this.Control_ConditionBorder.Location = new System.Drawing.Point(124, 6);
             this.Control_ConditionBorder.Maximum = new decimal(new int[] {
             49,
             0,
@@ -2359,17 +2357,16 @@
             this.tabPage12.TabIndex = 3;
             this.tabPage12.Text = "Browser";
             this.tabPage12.UseVisualStyleBackColor = true;
-            // 
-            // FormBrowser_SavesBrowserLog
-            // 
-            this.FormBrowser_SavesBrowserLog.AutoSize = true;
+			// 
+			// FormBrowser_SavesBrowserLog
+			// 
+			resources.ApplyResources(this.FormBrowser_SavesBrowserLog, "FormBrowser_SavesBrowserLog");
+			this.FormBrowser_SavesBrowserLog.AutoSize = true;
             this.FormBrowser_SavesBrowserLog.Location = new System.Drawing.Point(6, 274);
             this.FormBrowser_SavesBrowserLog.Name = "FormBrowser_SavesBrowserLog";
             this.FormBrowser_SavesBrowserLog.Size = new System.Drawing.Size(180, 19);
             this.FormBrowser_SavesBrowserLog.TabIndex = 17;
-            this.FormBrowser_SavesBrowserLog.Text = "ブラウザのエラーログを保存する *";
-            this.ToolTipInfo.SetToolTip(this.FormBrowser_SavesBrowserLog, "有効な場合、BrowserLog.log にブラウザのエラーログを保存します。\r\n問題解決に役立つかもしれませんが、書き込みによって動作が重くなる可能性があります" +
-        "。");
+            this.ToolTipInfo.SetToolTip(this.FormBrowser_SavesBrowserLog, resources.GetString("FormBrowser_SavesBrowserLog.Tooltip"));
             this.FormBrowser_SavesBrowserLog.UseVisualStyleBackColor = true;
             // 
             // FormBrowser_ForceColorProfile
@@ -2535,7 +2532,7 @@
             this.FormBrowser_ScreenShotFormat_AvoidTwitterDeterioration.Name = "FormBrowser_ScreenShotFormat_AvoidTwitterDeterioration";
             this.FormBrowser_ScreenShotFormat_AvoidTwitterDeterioration.Size = new System.Drawing.Size(199, 19);
             this.FormBrowser_ScreenShotFormat_AvoidTwitterDeterioration.TabIndex = 13;
-            this.FormBrowser_ScreenShotFormat_AvoidTwitterDeterioration.Text = "Avoid compression on Twitter";
+            this.FormBrowser_ScreenShotFormat_AvoidTwitterDeterioration.Text = "Prevent compression on Twitter";
             this.ToolTipInfo.SetToolTip(this.FormBrowser_ScreenShotFormat_AvoidTwitterDeterioration, "Apply modification to images in order to\r\nprevent Twitter from automatically conv" +
         "erting them to JPEG.");
             this.FormBrowser_ScreenShotFormat_AvoidTwitterDeterioration.UseVisualStyleBackColor = true;

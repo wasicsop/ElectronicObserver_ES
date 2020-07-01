@@ -30,6 +30,8 @@ namespace Browser
 		/// </summary>
 		private void InitializeComponent()
 		{
+
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormBrowser));
 			this.components = new System.ComponentModel.Container();
 			this.SizeAdjuster = new System.Windows.Forms.Panel();
 			this.ContextMenuTool = new System.Windows.Forms.ContextMenuStrip(this.components);

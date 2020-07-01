@@ -120,4 +120,12 @@
   <data name="Other_Zoom_Rate" xml:space="preserve">
     <value>Current: {0:p1}</value>
   </data>
+  <data name="ClearCacheMessage" xml:space="preserve">
+    <value>This will restart the browser and clear the cache.
+Are you sure?
+*Depending on the environment, the application may crash. In that case, please restart.</value>
+  </data>
+  <data name="ClearCacheTitle" xml:space="preserve">
+    <value>Browser Restart Confirmation</value>
+  </data>
 </root>
