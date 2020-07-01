@@ -742,7 +742,7 @@ namespace ElectronicObserver.Data.Quest
 			var sb = new StringBuilder(base.GetClearCondition());
 
 			if (GaugeIndex != -1)
-				sb.AppendFormat("(第{0}ゲージ)", GaugeIndex);
+				sb.AppendFormat(QuestTracking.GaugeIndex, GaugeIndex);
 
 			/*
 			switch (QuestID)

@@ -124,6 +124,15 @@ namespace ElectronicObserver.Data.Quest {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to (第{0}ゲージ).
+        /// </summary>
+        internal static string GaugeIndex {
+            get {
+                return ResourceManager.GetString("GaugeIndex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 装備改修.
         /// </summary>
         internal static string Improvement {

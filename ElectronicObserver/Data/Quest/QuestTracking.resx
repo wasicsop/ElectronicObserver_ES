@@ -165,4 +165,7 @@
   <data name="NumberOfTimes" xml:space="preserve">
     <value>回</value>
   </data>
+  <data name="GaugeIndex" xml:space="preserve">
+    <value>(第{0}ゲージ)</value>
+  </data>
 </root>
