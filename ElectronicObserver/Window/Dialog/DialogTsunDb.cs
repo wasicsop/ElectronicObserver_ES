@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
+﻿using ElectronicObserver.Utility;
+using System;
+using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace ElectronicObserver.Window.Dialog
@@ -13,6 +10,25 @@ namespace ElectronicObserver.Window.Dialog
 		public DialogTsunDb()
 		{
 			InitializeComponent();
+		}
+
+		#region Events
+		private void linkLabelTsunDbText_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+		{
+			Process.Start(new ProcessStartInfo("https://github.com/Jebzou/ElectronicObserver/wiki/Privacy-policy") { UseShellExecute = true });
+		}
+		#endregion
+
+		private void buttonEnable_Click(object sender, EventArgs e)
+		{
+			Configuration.Config.Control.SubmitDataToTsunDb = true;
+			this.Close();
+		}
+
+		private void buttonDisable_Click(object sender, EventArgs e)
+		{
+			Configuration.Config.Control.SubmitDataToTsunDb = false;
+			this.Close();
 		}
 	}
 }

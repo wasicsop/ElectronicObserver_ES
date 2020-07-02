@@ -678,6 +678,8 @@ namespace ElectronicObserver.Utility
 				/// </summary>
 				public bool UseFlagshipIconForRPC { get; set; }
 
+				public bool? SubmitDataToTsunDb { get; set; }
+
 				public ConfigControl()
 				{
 					ConditionBorder = 40;
@@ -695,6 +697,7 @@ namespace ElectronicObserver.Utility
                     DiscordRPCApplicationId = "";
                     UpdateURL = new Uri("http://raw.githubusercontent.com/gre4bee/ryuukitsune.github.io/master/Translations/");
 					UseFlagshipIconForRPC = false;
+					SubmitDataToTsunDb = null;
 				}
 			}
 			/// <summary>動作</summary>

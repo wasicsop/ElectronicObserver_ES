@@ -1,11 +1,11 @@
-﻿using Codeplex.Data;
+﻿using DynaJson;
 using ElectronicObserver.Utility;
 using Newtonsoft.Json;
 using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
-using System.Windows;
+using System.Windows.Forms;
 
 namespace ElectronicObserver.Data
 {
@@ -56,38 +56,6 @@ namespace ElectronicObserver.Data
 
 				return await httpClient.PutAsync($"https://tsundb.kc3.moe/api/{this.Url}", content);
 			}
-
-
-			/*sendData: function(payload, type) {
-				//console.debug(JSON.stringify(payload));
-				$.ajax({
-					url: `https://tsundb.kc3.moe/api/${type}`,
-					method: 'PUT',
-					headers:
-						{
-							'content-type': 'application/json',
-						'tsun-ver': 'Kasumi Kai',
-						'dataorigin': 'kc3',
-						'version': this.kc3version
-					},
-					data: JSON.stringify(payload)
-				}).done(function() {
-						console.log(`Tsun DB Submission to /${ type}
-						done.`);
-					}).fail(function(jqXHR, textStatus, error) {
-						const statusCode = jqXHR.status;
-						if (statusCode === 400)
-						{
-							// Server-side defines: '400 Bad Request' = status can be ignored
-							console.log(`Tsun DB Submission to /${ type} ${ textStatus}`, statusCode, error);
-						}
-						else
-						{
-							console.warn(`Tsun DB Submission to /${ type} ${ textStatus}`, statusCode, error);
-						}
-					});
-					return;
-				}*/
 		}
 	}
 }

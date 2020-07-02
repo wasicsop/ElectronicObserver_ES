@@ -264,6 +264,12 @@ namespace ElectronicObserver.Window
 
 			Utility.Logger.Add(3, Resources.StartupComplete);
 
+			// --- Ask confirmation to enable tsun db 
+			if (Configuration.Config.Control.SubmitDataToTsunDb is null)
+			{
+				DialogTsunDb tsunDbPrompt = new DialogTsunDb();
+				tsunDbPrompt.ShowDialog();
+			}
 		}
 
 
