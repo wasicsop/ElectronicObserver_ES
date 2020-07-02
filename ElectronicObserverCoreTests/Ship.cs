@@ -20,6 +20,11 @@ namespace ElectronicObserverCoreTests
 		public int Torpedo { get; set; }
 	}
 
+	public class OtherData
+	{
+		public int Fleet { get; set; }
+	}
+
 	public static class EquipExtensions
 	{
 		public static int Firepower(this IEnumerable<IEquipmentData?> equip) =>
@@ -32,11 +37,12 @@ namespace ElectronicObserverCoreTests
 	public static class Ship
 	{
 		public static IShipData BismarckDrei(ShipStats? stats = null, List<IEquipmentData?>? equip = null,
-			VisibleFits? fits = null)
+			VisibleFits? fits = null, OtherData? other = null)
 		{
 			stats ??= new ShipStats();
 			equip ??= new List<IEquipmentData?>();
 			fits ??= new VisibleFits();
+			other ??= new OtherData();
 
 			var mock = new Mock<IShipData>();
 
@@ -50,6 +56,7 @@ namespace ElectronicObserverCoreTests
 			mock.Setup(s => s.Aircraft).Returns(new ReadOnlyCollection<int>(new List<int> {4, 4, 4, 4}));
 			mock.Setup(s => s.MasterShip.ShipId).Returns(ShipId.BismarckDrei);
 			mock.Setup(s => s.MasterShip.ShipType).Returns(ShipTypes.Battlecruiser);
+			mock.Setup(s => s.Fleet).Returns(other.Fleet);
 
 			return mock.Object;
 		}

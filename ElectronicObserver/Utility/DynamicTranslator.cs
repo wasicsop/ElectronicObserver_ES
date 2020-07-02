@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml.Linq;
-using Codeplex.Data;
+using DynaJson;
 
 namespace ElectronicObserver.Utility
 {
@@ -108,15 +108,25 @@ namespace ElectronicObserver.Utility
 
         public string GetTranslation(string jpString, TranslationType type, int id = -1)
         {
-			var translate = true;
-			switch (type)
-			{
-				case TranslationType.Ships: translate = !Configuration.Config.UI.JapaneseShipName; break;
-				case TranslationType.ShipTypes: translate = !Configuration.Config.UI.JapaneseShipType; break;
-				case TranslationType.Equipment: translate = !Configuration.Config.UI.JapaneseEquipmentName; break;
-				case TranslationType.EquipmentDesc: translate = !Configuration.Config.UI.JapaneseEquipmentName; break;
-				case TranslationType.EquipmentType: translate = !Configuration.Config.UI.JapaneseEquipmentType; break;
-			}
+	        bool translate = type switch
+	        {
+		        TranslationType.Ships => !Configuration.Config.UI.JapaneseShipName,
+		        TranslationType.ShipTypes => !Configuration.Config.UI.JapaneseShipType,
+		        TranslationType.Equipment => !Configuration.Config.UI.JapaneseEquipmentName,
+		        TranslationType.EquipmentDesc => !Configuration.Config.UI.JapaneseEquipmentName,
+		        TranslationType.EquipmentType => !Configuration.Config.UI.JapaneseEquipmentType,
+
+				TranslationType.Expeditions => !Configuration.Config.UI.DisableOtherTranslations,
+				TranslationType.ExpeditionTitle => !Configuration.Config.UI.DisableOtherTranslations,
+				TranslationType.ExpeditionDetail => !Configuration.Config.UI.DisableOtherTranslations,
+		        TranslationType.Quests => !Configuration.Config.UI.DisableOtherTranslations,
+		        TranslationType.QuestTitle => !Configuration.Config.UI.DisableOtherTranslations,
+		        TranslationType.QuestDetail => !Configuration.Config.UI.DisableOtherTranslations,
+		        TranslationType.OperationMaps => !Configuration.Config.UI.DisableOtherTranslations,
+				TranslationType.OperationSortie => !Configuration.Config.UI.DisableOtherTranslations,
+
+		        _ => true
+	        };
 	        if (!translate) return jpString;
 	        try
 	        {
@@ -148,17 +158,17 @@ namespace ElectronicObserver.Utility
 				return id;
 			using (var sr = new StreamReader(filepath))
 		    {
-		        var json = DynamicJson.Parse(sr.ReadToEnd());
+		        var json = JsonObject.Parse(sr.ReadToEnd());
 		        var worldKey = string.Concat(worldId.ToString("D2"), areaId.ToString());
 		        var nodeKey = nodeId.ToString("D2");
 		        foreach (KeyValuePair<string, object> world in json)
 		        {
 		            if (world.Key.Remove(0, 1).PadLeft(3, '0') != worldKey) continue;
-		            var nodes = DynamicJson.Parse(world.Value.ToString());
+		            var nodes = JsonObject.Parse(world.Value.ToString());
 		            foreach (KeyValuePair<string, object> node in nodes)
 		            {
 		                if (node.Key.Remove(0, 1).PadLeft(2, '0') != nodeKey) continue;
-		                id = DynamicJson.Parse(node.Value.ToString())[1];
+		                id = JsonObject.Parse(node.Value.ToString())[1];
 		            }
 		        }
 		    }

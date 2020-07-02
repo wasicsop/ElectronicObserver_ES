@@ -466,6 +466,32 @@ namespace ElectronicObserver.Data.Quest
 							}));
 							break;*/
 
+						case 341:
+							Progresses.Add(new ProgressPractice(q, 3, "A"));
+							break;
+						case 883: // 7thAnvLB2
+							Progresses.Add(new ProgressMultiBattle(q, new[]
+							{
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 23 }, true),
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 31 }, true),
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 32 }, true),
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 33 }, true),
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 34 }, true),
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 35 }, true),
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 72 }, true, 2),
+							}));
+							break;
+						case 910: // 7thAnvLB3
+							Progresses.Add(new ProgressMultiBattle(q, new[]
+							{
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 61 }, true),
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 62 }, true),
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 63 }, true),
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 64 }, true),
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 65 }, true),
+							}));
+							break;
+
 						case 235: // B135
 							Progresses.Add(new ProgressMultiBattle(q, new[]
 							{
@@ -734,6 +760,12 @@ namespace ElectronicObserver.Data.Quest
 							break;
 						case 337:   //|337|「十八駆」演習！|演習S勝利3|霞+霰+陽炎+不知火|クォータリーだが1日で進捗リセット
 							Progresses.Add(new ProgressPractice(q, 3, "S"));
+							break;
+						case 339:
+							Progresses.Add(new ProgressPractice(q, 3, "S"));
+							break;
+						case 342:
+							Progresses.Add(new ProgressPractice(q, 4, "A"));
 							break;
 
 						case 402:   //|402|「遠征」を3回成功させよう！|遠征成功3

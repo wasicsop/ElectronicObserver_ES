@@ -1,5 +1,4 @@
-﻿using Codeplex.Data;
-using ElectronicObserver.Data;
+﻿using ElectronicObserver.Data;
 using ElectronicObserver.Observer;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Utility.Data;
@@ -313,7 +312,7 @@ namespace ElectronicObserver.Window
 			public ImageLabel Name;
 			public ShipStatusLevel Level;
 			public ShipStatusHP HP;
-			public ImageLabel Condition;
+			public ImageLabel Condition { get; set; }
 			public ShipStatusResource ShipResource;
 			public ShipStatusEquipment Equipments;
 
@@ -581,7 +580,7 @@ namespace ElectronicObserver.Window
 
 					Condition.Text = ship.Condition.ToString();
 					Condition.Tag = ship.Condition;
-					SetConditionDesign(ship.Condition);
+					SetConditionDesign(Condition, ship.Condition);
 
 					if ( ship.Condition < 49 ) {
 						TimeSpan ts = new TimeSpan( 0, (int)Math.Ceiling( ( 49 - ship.Condition ) / 3.0 ) * 3, 0 );
@@ -734,6 +733,9 @@ namespace ElectronicObserver.Window
 					int torpedo = ship.TorpedoPower;
 					int asw = ship.AntiSubmarinePower;
 
+					DayAttackKind aswAttack = Calculator.GetDayAttackKind(ship.AllSlotMaster.ToArray(), ship.ShipID, 126, false);
+					int asw2 = ship.GetAswAttackPower(aswAttack, fleet);
+
 					if (torpedo > 0) 
 					{
 						sb.AppendFormat(ConstantsRes.TorpedoAttack + ": Power: {0}", torpedo);
@@ -744,7 +746,7 @@ namespace ElectronicObserver.Window
 						if (torpedo > 0)
 							sb.AppendLine();
 
-						sb.AppendFormat("ASW: Power: {0}", asw);
+						sb.AppendFormat("ASW: Power: {0}", asw2);
 
 						if (ship.CanOpeningASW)
 							sb.Append(" (OASW)");
@@ -769,8 +771,7 @@ namespace ElectronicObserver.Window
                     double aarbRate = Calculator.GetAarbRate(ship, adjustedaa);
                     if (aarbRate > 0)
                     {
-                        sb.Append($"AARB: {aarbRate.ToString("#0.##%")}\r\n");
-                        sb.Append("Ise class and multiple rocket bonus is probably wrong!\r\n");
+                        sb.Append($"AARB: {aarbRate:p1}\r\n");
                     }
 
                 }
@@ -813,57 +814,7 @@ namespace ElectronicObserver.Window
 				return sb.ToString();
 			}
 
-			private void SetConditionDesign(int cond)
-			{
-
-				if (Condition.ImageAlign == ContentAlignment.MiddleCenter)
-				{
-					// icon invisible
-					Condition.ImageIndex = -1;
-
-					if (cond < 20)
-					{
-						Condition.BackColor = Utility.Configuration.Config.UI.Fleet_ColorConditionVeryTired;
-						Condition.ForeColor = Utility.Configuration.Config.UI.Fleet_ColorConditionText;
-					}
-					else if (cond < 30)
-					{
-						Condition.BackColor = Utility.Configuration.Config.UI.Fleet_ColorConditionTired;
-						Condition.ForeColor = Utility.Configuration.Config.UI.Fleet_ColorConditionText;
-					}
-					else if (cond < 40)
-					{
-						Condition.BackColor = Utility.Configuration.Config.UI.Fleet_ColorConditionLittleTired;
-						Condition.ForeColor = Utility.Configuration.Config.UI.Fleet_ColorConditionText;
-					}
-					else if (cond < 50)
-					{
-						Condition.BackColor = Utility.Configuration.Config.UI.BackColor;
-						Condition.ForeColor = Utility.Configuration.Config.UI.ForeColor;
-					}
-					else
-					{
-						Condition.BackColor = Utility.Configuration.Config.UI.Fleet_ColorConditionSparkle;
-						Condition.ForeColor = Utility.Configuration.Config.UI.Fleet_ColorConditionText;
-					}
-
-				} else {
-					Condition.BackColor = Utility.Configuration.Config.UI.BackColor;
-
-					if (cond < 20)
-						Condition.ImageIndex = (int)ResourceManager.IconContent.ConditionVeryTired;
-					else if (cond < 30)
-						Condition.ImageIndex = (int)ResourceManager.IconContent.ConditionTired;
-					else if (cond < 40)
-						Condition.ImageIndex = (int)ResourceManager.IconContent.ConditionLittleTired;
-					else if (cond < 50)
-						Condition.ImageIndex = (int)ResourceManager.IconContent.ConditionNormal;
-					else
-						Condition.ImageIndex = (int)ResourceManager.IconContent.ConditionSparkle;
-
-				}
-			}
-
+			
 			public void ConfigurationChanged(FormFleet parent)
 			{
 				Name.Font = parent.MainFont;
@@ -872,7 +823,7 @@ namespace ElectronicObserver.Window
 				HP.MainFont = parent.MainFont;
 				HP.SubFont = parent.SubFont;
 				Condition.Font = parent.MainFont;
-				SetConditionDesign((Condition.Tag as int?) ?? 49);
+				SetConditionDesign(Condition, (Condition.Tag as int?) ?? 49);
 				Equipments.Font = parent.SubFont;
 			}
 
@@ -887,6 +838,39 @@ namespace ElectronicObserver.Window
 
 			}
 		}
+
+		public static void SetConditionDesign(ImageLabel label, int cond)
+		{
+
+			if (label.ImageAlign == ContentAlignment.MiddleCenter)
+			{
+				// icon invisible
+				label.ImageIndex = -1;
+
+				(label.BackColor, label.ForeColor) = cond switch
+				{
+					{ } when cond < 20 => (Color.LightCoral, Color.Black),
+					{ } when cond < 30 => (Color.LightSalmon, Color.Black),
+					{ } when cond < 40 => (Color.Moccasin, Color.Black),
+					{ } when cond < 50 => (Color.Transparent, Utility.Configuration.Config.UI.ForeColor),
+					_ => (Color.LightGreen, Color.Black)
+				};
+			}
+			else
+			{
+				label.BackColor = Color.Transparent;
+				label.ForeColor = Utility.Configuration.Config.UI.ForeColor;
+
+				label.ImageIndex =
+					cond < 20 ? (int)ResourceManager.IconContent.ConditionVeryTired :
+					cond < 30 ? (int)ResourceManager.IconContent.ConditionTired :
+					cond < 40 ? (int)ResourceManager.IconContent.ConditionLittleTired :
+					cond < 50 ? (int)ResourceManager.IconContent.ConditionNormal :
+					(int)ResourceManager.IconContent.ConditionSparkle;
+
+			}
+		}
+
 
 
 
@@ -1308,8 +1292,8 @@ namespace ElectronicObserver.Window
 			sb.Append("[");
 			foreach (var ship in KCDatabase.Instance.Ships.Values.Where(s => s.IsLocked))
 			{
-				sb.AppendFormat(@"{{""api_ship_id"":{0},""api_lv"":{1},""api_kyouka"":[{2}]}},",
-					ship.ShipID, ship.Level, string.Join(",", (int[])ship.RawData.api_kyouka));
+				sb.AppendFormat(@"{{""api_ship_id"":{0},""api_lv"":{1},""api_kyouka"":[{2}],""api_exp"":[{3}]}},",
+					ship.ShipID, ship.Level, string.Join(",", (int[])ship.RawData.api_kyouka), string.Join(",", (int[])ship.RawData.api_exp));
 			}
 			sb.Remove(sb.Length - 1, 1);        // remove ","
 			sb.Append("]");
@@ -1408,9 +1392,12 @@ namespace ElectronicObserver.Window
 
 			var dialog = new DialogAntiAirDefense();
 
-			dialog.SetFleetID(FleetID);
-			dialog.Show(this);
+			if (KCDatabase.Instance.Fleet.CombinedFlag != 0 && (FleetID == 1 || FleetID == 2))
+				dialog.SetFleetID(5);
+			else
+				dialog.SetFleetID(FleetID);
 
+			dialog.Show(this);
 		}
 
 

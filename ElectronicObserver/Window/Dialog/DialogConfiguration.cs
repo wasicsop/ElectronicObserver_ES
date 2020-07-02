@@ -352,6 +352,7 @@ namespace ElectronicObserver.Window.Dialog
 			UI_JapaneseShipTypes.Checked = config.UI.JapaneseShipType;
 			UI_JapaneseEquipmentNames.Checked = config.UI.JapaneseEquipmentName;
 			UI_JapaneseEquipmentTypes.Checked = config.UI.JapaneseEquipmentType;
+			UI_DisableOtherTranslations.Checked = config.UI.DisableOtherTranslations;
 			UI_NodeNumbering.Checked = !config.UI.UseOriginalNodeId;
 			comboBox1.SelectedIndex = config.UI.ThemeMode;
 
@@ -591,6 +592,7 @@ namespace ElectronicObserver.Window.Dialog
 			config.UI.JapaneseShipType = UI_JapaneseShipTypes.Checked;
 			config.UI.JapaneseEquipmentName = UI_JapaneseEquipmentNames.Checked;
 			config.UI.JapaneseEquipmentType = UI_JapaneseEquipmentTypes.Checked;
+			config.UI.DisableOtherTranslations = UI_DisableOtherTranslations.Checked;
 			config.UI.UseOriginalNodeId = !UI_NodeNumbering.Checked;
 			config.UI.ThemeMode = comboBox1.SelectedIndex;
 

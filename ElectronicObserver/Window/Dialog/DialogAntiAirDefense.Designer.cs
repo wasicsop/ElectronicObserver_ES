@@ -32,6 +32,7 @@
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
 			this.AnnihilationProbability = new System.Windows.Forms.TextBox();
 			this.AdjustedFleetAA = new System.Windows.Forms.TextBox();
@@ -57,6 +58,7 @@
 			this.ResultView_ShootDownFixed = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.ResultView_ShootDownFailed = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.ToolTipInfo = new System.Windows.Forms.ToolTip(this.components);
+            this.ResultView_AARocketBarrageProbability = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.Panel2.SuspendLayout();
@@ -261,7 +263,8 @@
 			this.ResultView_ShootDownBoth,
 			this.ResultView_ShootDownProportional,
 			this.ResultView_ShootDownFixed,
-			this.ResultView_ShootDownFailed});
+			this.ResultView_ShootDownFailed,
+            this.ResultView_AARocketBarrageProbability});
 			dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
 			dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
 			dataGridViewCellStyle9.Font = new System.Drawing.Font("Meiryo UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
@@ -360,6 +363,17 @@
 			this.ResultView_ShootDownFailed.ReadOnly = true;
 			this.ResultView_ShootDownFailed.ToolTipText = "固定撃墜・割合撃墜の両方に失敗した場合の撃墜数";
 			this.ResultView_ShootDownFailed.Width = 80;
+            // 
+            // ResultView_AARocketBarrageProbability
+            // 
+            this.ResultView_AARocketBarrageProbability.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCellStyle3.Format = "p1";
+            this.ResultView_AARocketBarrageProbability.DefaultCellStyle = dataGridViewCellStyle3;
+            this.ResultView_AARocketBarrageProbability.HeaderText = "AARB";
+            this.ResultView_AARocketBarrageProbability.Name = "ResultView_AARocketBarrageProbability";
+            this.ResultView_AARocketBarrageProbability.ReadOnly = true;
+            this.ResultView_AARocketBarrageProbability.ToolTipText = "対空噴進弾幕の発動確率";
+            this.ResultView_AARocketBarrageProbability.Width = 80;
 			// 
 			// ToolTipInfo
 			// 
@@ -405,6 +419,9 @@
 		private System.Windows.Forms.DataGridView ResultView;
 		private System.Windows.Forms.CheckBox ShowAll;
 		private System.Windows.Forms.ToolTip ToolTipInfo;
+		private System.Windows.Forms.TextBox AdjustedFleetAA;
+		private System.Windows.Forms.Label label6;
+		private System.Windows.Forms.TextBox AnnihilationProbability;
 		private System.Windows.Forms.DataGridViewTextBoxColumn ResultView_ShipName;
 		private System.Windows.Forms.DataGridViewTextBoxColumn ResultView_AntiAir;
 		private System.Windows.Forms.DataGridViewTextBoxColumn ResultView_AdjustedAntiAir;
@@ -414,8 +431,6 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn ResultView_ShootDownProportional;
 		private System.Windows.Forms.DataGridViewTextBoxColumn ResultView_ShootDownFixed;
 		private System.Windows.Forms.DataGridViewTextBoxColumn ResultView_ShootDownFailed;
-		private System.Windows.Forms.TextBox AdjustedFleetAA;
-		private System.Windows.Forms.Label label6;
-		private System.Windows.Forms.TextBox AnnihilationProbability;
+		private System.Windows.Forms.DataGridViewTextBoxColumn ResultView_AARocketBarrageProbability;
 	}
 }

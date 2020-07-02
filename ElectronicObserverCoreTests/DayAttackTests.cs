@@ -33,7 +33,12 @@ namespace ElectronicObserverCoreTests
 					Equipment.T1ApShell(8),
 				};
 
-				IShipData bismarck = Ship.BismarckDrei(stats, equip);
+				OtherData other = new OtherData
+				{
+					Fleet = 1
+				};
+
+				IShipData bismarck = Ship.BismarckDrei(stats, equip, other: other);
 
 				return bismarck;
 			}
@@ -278,6 +283,45 @@ namespace ElectronicObserverCoreTests
 
 			Assert.Equal(0.415, totalRates[0], Precision);
 			Assert.Equal(0.585, totalRates[1], Precision);
+		}
+
+		[Fact]
+		public void DayAttackTest5()
+		{
+			var fleetMock = new Mock<IFleetData>();
+
+			fleetMock.Setup(f => f.MembersWithoutEscaped).Returns(new ReadOnlyCollection<IShipData?>(
+				new List<IShipData?>
+				{
+					Bismarck,
+					Isek2,
+					Taihou
+				}));
+			fleetMock.Setup(f => f.FleetType).Returns(FleetType.Surface);
+
+			IFleetData fleet = fleetMock.Object;
+
+			List<Enum> expected = new List<Enum>
+			{
+				DayAttackKind.CutinMainMain,
+				DayAttackKind.DoubleShelling,
+				DayAttackKind.Shelling
+			};
+
+			List<Enum> actual = Bismarck.GetDayAttacks().ToList();
+
+			Assert.Equal(expected, actual);
+
+			Assert.Equal(274, Bismarck.GetDayAttackPower(actual[0], fleet));
+			Assert.Equal(219, Bismarck.GetDayAttackPower(actual[1], fleet));
+			Assert.Equal(183, Bismarck.GetDayAttackPower(actual[2], fleet));
+
+			List<double> asAttackRates = actual.Select(a => Bismarck.GetDayAttackRate(a, fleet)).ToList();
+			List<double> totalRates = asAttackRates.ToList().TotalRates();
+
+			Assert.Equal(0.587, totalRates[0], Precision);
+			Assert.Equal(0.28, totalRates[1], Precision);
+			Assert.Equal(0.133, totalRates[2], Precision);
 		}
 	}
 }

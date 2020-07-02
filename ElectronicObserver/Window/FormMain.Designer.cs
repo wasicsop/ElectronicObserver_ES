@@ -112,6 +112,7 @@
             this.MainDockPanel = new WeifenLuo.WinFormsUI.Docking.DockPanel();
             this.StripMenu_Tool_ExpChecker = new System.Windows.Forms.ToolStripMenuItem();
             this.StripMenu_Tool_ExpeditionCheck = new System.Windows.Forms.ToolStripMenuItem();
+            this.StripMenu_View_FleetPreset = new System.Windows.Forms.ToolStripMenuItem();
 
             this.StripMenu_Help_Update = new System.Windows.Forms.ToolStripMenuItem();
             this.StripMenu_Tool_KancolleProgress = new System.Windows.Forms.ToolStripMenuItem();
@@ -288,6 +289,7 @@
             this.StripMenu_View_FleetOverview,
             this.StripMenu_View_ShipGroup,
             this.StripMenu_View_XPCalculator,
+            this.StripMenu_View_FleetPreset,
             this.toolStripSeparator1,
             this.StripMenu_View_Dock,
             this.StripMenu_View_Arsenal,
@@ -762,6 +764,13 @@
             this.MainDockPanel.Styles = null;
             this.MainDockPanel.TabIndex = 0;
             // 
+            // StripMenu_View_FleetPreset
+            //
+            this.StripMenu_View_FleetPreset.Name = "StripMenu_View_FleetPreset";
+            this.StripMenu_View_FleetPreset.Size = new System.Drawing.Size(182, 22);
+            this.StripMenu_View_FleetPreset.Text = "Presets(&P)";
+            this.StripMenu_View_FleetPreset.Click += new System.EventHandler(this.StripMenu_View_FleetPreset_Click);
+            // 
             // StripMenu_Tool_ExpeditionCheck
             // 
             this.StripMenu_Tool_ExpeditionCheck.Name = "StripMenu_Tool_ExpeditionCheck";
@@ -910,5 +919,6 @@
         private System.Windows.Forms.ToolStripMenuItem StripMenu_Tool_ExpeditionCheck;
         private System.Windows.Forms.ToolStripMenuItem StripMenu_Tool_KancolleProgress;
         private System.Windows.Forms.ToolStripMenuItem StripMenu_Tool_ExtraBrowser;
-    }
+		private System.Windows.Forms.ToolStripMenuItem StripMenu_View_FleetPreset;
+	}
 }

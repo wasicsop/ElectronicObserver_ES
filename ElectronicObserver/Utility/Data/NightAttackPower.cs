@@ -16,7 +16,7 @@ namespace ElectronicObserver.Utility.Data
 
 			basepower += ship.GetLightCruiserDamageBonus() + ship.GetItalianDamageBonus();
 
-			basepower = Math.Floor(Damage.Cap(basepower, 300));
+			basepower = Math.Floor(Damage.Cap(basepower, Damage.NightAttackCap));
 
 			return basepower;
 		}

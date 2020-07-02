@@ -169,6 +169,12 @@ namespace ElectronicObserver.Data
 		/// </summary>
 		public KCServer Server { get; set; }
 
+		/// <summary>
+		/// 艦隊編成プリセットデータ
+		/// </summary>
+		public FleetPresetManager FleetPreset { get; private set; }
+
+
 		private KCDatabase()
 		{
 
@@ -198,12 +204,12 @@ namespace ElectronicObserver.Data
 			RelocatedEquipments = new IDDictionary<RelocationData>();
 			Replays = new ReplayManager();
 			TsunDbSubmission = new TsunDbSubmissionManager();
+			FleetPreset = new FleetPresetManager();
 		}
 
 
 		public void Load()
 		{
-
 			{
 				var temp = (ShipGroupManager)ShipGroup.Load();
 				if (temp != null)

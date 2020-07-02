@@ -56,25 +56,56 @@ namespace ElectronicObserver.Data.Quest
 
 			if (fleet == null) return false;
 
-			switch (questId)
+			List<IShipData> ships = fleet.MembersInstance.Where(s => s != null).ToList();
+
+			return questId switch
 			{
-				case 329:
-					return fleet.MembersInstance.Count(s => s.MasterShip.ShipType == ShipTypes.Destroyer ||
-					                                        s.MasterShip.ShipType == ShipTypes.Escort) >= 2;
+				329 => ships.Count(s => s.MasterShip.ShipType == ShipTypes.Destroyer ||
+				                                        s.MasterShip.ShipType == ShipTypes.Escort) >= 2,
+				330 => ships[0].MasterShip.IsAircraftCarrier &&
+				       ships.Count(s => s.MasterShip.IsAircraftCarrier) >= 2 &&
+				       ships.Count(s => s.MasterShip.ShipType == ShipTypes.Destroyer) >= 2,
+				337 => ships.Any(s => s.MasterShip.BaseShip().ShipID == (int) ShipId.Kagerou) &&
+				       ships.Any(s => s.MasterShip.BaseShip().ShipID == (int) ShipId.Shiranui) &&
+				       ships.Any(s => s.MasterShip.BaseShip().ShipID == (int) ShipId.Arare) &&
+				       ships.Any(s => s.MasterShip.BaseShip().ShipID == (int) ShipId.Kasumi),
+				339 => ships.Count(s => s.MasterShip.BaseShip().ShipId switch
+				{
+					ShipId.Isonami => true,
+					ShipId.Uranami => true,
+					ShipId.Ayanami => true,
+					ShipId.Shikinami => true,
 
-				case 330:
-					return fleet.MembersInstance[0].MasterShip.IsAircraftCarrier &&
-					       fleet.MembersInstance.Count(s => s.MasterShip.IsAircraftCarrier) >= 2 &&
-					       fleet.MembersInstance.Count(s => s.MasterShip.ShipType == ShipTypes.Destroyer) >= 2;
+					_ => false
+				}) >= 4,
+				341 => ships.Count(s => s.MasterShip.BaseShip().ShipId switch
+				{
+					ShipId.Oboro => true,
+					ShipId.Akebono => true,
+					ShipId.Sazanami => true,
+					ShipId.Ushio => true,
 
-				case 337:
-					return fleet.MembersInstance.Any(s => s.MasterShip.BaseShip().ShipID == (int)ShipId.Kagerou) &&
-					       fleet.MembersInstance.Any(s => s.MasterShip.BaseShip().ShipID == (int)ShipId.Shiranui) &&
-					       fleet.MembersInstance.Any(s => s.MasterShip.BaseShip().ShipID == (int)ShipId.Arare) &&
-					       fleet.MembersInstance.Any(s => s.MasterShip.BaseShip().ShipID == (int)ShipId.Kasumi);
-			}
+					_ => false
+				}) >= 2,
+				// DD+DE >= 3 and another DD/DE or CL
+				342 => ships.Count(s => s.MasterShip.ShipType switch
+				{
+					ShipTypes.Destroyer => true,
+					ShipTypes.Escort => true,
 
-			return true;
+					_ => false
+				}) >= 3
+				&& ships.Count(s => s.MasterShip.ShipType switch
+				{
+					ShipTypes.Destroyer => true,
+					ShipTypes.Escort => true,
+					ShipTypes.LightCruiser => true,
+
+					_ => false
+				}) >= 4,
+
+				_ => true,
+			};
 		}
 
 		public override string GetClearCondition() {

@@ -17,6 +17,8 @@ namespace ElectronicObserverCoreTests
 		}
 	}
 
+	// LoS tests won't pass since the formula was changed to use LOSTotal instead of LOSBase
+	// to handle fit bonus
     public class LoSTests
     {
 	    private int AdmiralLevel => 120;
