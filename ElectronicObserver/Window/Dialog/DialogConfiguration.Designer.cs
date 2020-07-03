@@ -541,7 +541,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(48, 15);
             this.label3.TabIndex = 2;
-            this.label3.Text = $"{ConfigRes.SaveLocation}:";
+            this.label3.Text = ConfigRes.SaveLocation;
 			// 
 			// Connection_SaveDataPath
 			// 
@@ -586,7 +586,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(40, 15);
             this.label1.TabIndex = 0;
-            this.label1.Text = $"{ConfigRes.Port}:";
+            this.label1.Text = ConfigRes.Port;
 			// 
 			// tabPage2
 			// 
@@ -810,7 +810,7 @@
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(64, 15);
             this.label8.TabIndex = 4;
-            this.label8.Text = $"{ConfigRes.Subfont} :";
+            this.label8.Text = ConfigRes.Subfont;
 			// 
 			// UI_MainFontSelect
 			// 
@@ -842,7 +842,7 @@
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(71, 15);
             this.label5.TabIndex = 0;
-            this.label5.Text = $"{ConfigRes.Mainfont} :";
+            this.label5.Text = ConfigRes.Mainfont;
 			// 
 			// tabPage3
 			// 
@@ -1202,7 +1202,7 @@
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(87, 15);
             this.label7.TabIndex = 0;
-            this.label7.Text = $"{ConfigRes.MoraleBorder}:";
+            this.label7.Text = ConfigRes.MoraleBorder;
 			// 
 			// tabPage5
 			// 
@@ -1397,7 +1397,7 @@
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(90, 15);
             this.label14.TabIndex = 0;
-            this.label14.Text = $"{ConfigRes.LayoutFile}:";
+            this.label14.Text = ConfigRes.LayoutFile;
 			// 
 			// Life_TopMost
 			// 
@@ -1763,7 +1763,7 @@
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(96, 15);
             this.label13.TabIndex = 1;
-            this.label13.Text = $"{ConfigRes.LosFormula}:";
+            this.label13.Text = ConfigRes.LosFormula;
 			this.label13.Visible = false;
             // 
             // FormFleet_ShowAircraft
@@ -2547,7 +2547,7 @@
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(48, 15);
             this.label18.TabIndex = 2;
-            this.label18.Text = $"{ConfigRes.SaveLocation}:";
+            this.label18.Text = ConfigRes.SaveLocation;
 			// 
 			// FormBrowser_ScreenShotFormat_PNG
 			// 
@@ -2600,7 +2600,7 @@
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(72, 15);
             this.label17.TabIndex = 8;
-            this.label17.Text = $"{ConfigRes.LoginURL}:";
+            this.label17.Text = ConfigRes.LoginURL;
 			// 
 			// label16
 			// 
@@ -2831,7 +2831,7 @@
             this.Notification_AnchorageRepair.Name = "Notification_AnchorageRepair";
             this.Notification_AnchorageRepair.Size = new System.Drawing.Size(150, 23);
             this.Notification_AnchorageRepair.TabIndex = 6;
-            this.Notification_AnchorageRepair.Text = $"{ConfigRes.AnchorageRepairFinish}{ConfigRes.NotificationSetting}";
+            this.Notification_AnchorageRepair.Text = ConfigRes.AnchorageRepairFinish + ConfigRes.NotificationSetting;
 			this.Notification_AnchorageRepair.UseVisualStyleBackColor = true;
             this.Notification_AnchorageRepair.Click += new System.EventHandler(this.Notification_AnchorageRepair_Click);
             // 
@@ -2851,7 +2851,7 @@
             this.Notification_Damage.Name = "Notification_Damage";
             this.Notification_Damage.Size = new System.Drawing.Size(150, 23);
             this.Notification_Damage.TabIndex = 4;
-            this.Notification_Damage.Text = $"{ConfigRes.TaihaAdvance}{ConfigRes.NotificationSetting}";
+            this.Notification_Damage.Text = ConfigRes.TaihaAdvance + ConfigRes.NotificationSetting;
 			this.Notification_Damage.UseVisualStyleBackColor = true;
             this.Notification_Damage.Click += new System.EventHandler(this.Notification_Damage_Click);
             // 
@@ -2861,7 +2861,7 @@
             this.Notification_Condition.Name = "Notification_Condition";
             this.Notification_Condition.Size = new System.Drawing.Size(150, 23);
             this.Notification_Condition.TabIndex = 3;
-            this.Notification_Condition.Text = $"{ConfigRes.FatigueRestore}{ConfigRes.NotificationSetting}";
+            this.Notification_Condition.Text = ConfigRes.FatigueRestore + ConfigRes.NotificationSetting;
 			this.Notification_Condition.UseVisualStyleBackColor = true;
             this.Notification_Condition.Click += new System.EventHandler(this.Notification_Condition_Click);
             // 
@@ -2871,7 +2871,7 @@
             this.Notification_Repair.Name = "Notification_Repair";
             this.Notification_Repair.Size = new System.Drawing.Size(150, 23);
             this.Notification_Repair.TabIndex = 2;
-            this.Notification_Repair.Text = $"{ConfigRes.DockEnd}{ConfigRes.NotificationSetting}";
+            this.Notification_Repair.Text = ConfigRes.DockEnd + ConfigRes.NotificationSetting;
 			this.Notification_Repair.UseVisualStyleBackColor = true;
             this.Notification_Repair.Click += new System.EventHandler(this.Notification_Repair_Click);
             // 
@@ -2881,7 +2881,7 @@
             this.Notification_Construction.Name = "Notification_Construction";
             this.Notification_Construction.Size = new System.Drawing.Size(150, 23);
             this.Notification_Construction.TabIndex = 1;
-            this.Notification_Construction.Text = $"{ConfigRes.ConstructEnd}{ConfigRes.NotificationSetting}";
+            this.Notification_Construction.Text = ConfigRes.ConstructEnd + ConfigRes.NotificationSetting;
 			this.Notification_Construction.UseVisualStyleBackColor = true;
             this.Notification_Construction.Click += new System.EventHandler(this.Notification_Construction_Click);
             // 
@@ -2891,7 +2891,7 @@
             this.Notification_Expedition.Name = "Notification_Expedition";
             this.Notification_Expedition.Size = new System.Drawing.Size(150, 23);
             this.Notification_Expedition.TabIndex = 0;
-            this.Notification_Expedition.Text = $"{ConfigRes.ExpedReturn}{ConfigRes.NotificationSetting}";
+            this.Notification_Expedition.Text = ConfigRes.ExpedReturn + ConfigRes.NotificationSetting;
 			this.Notification_Expedition.UseVisualStyleBackColor = true;
             this.Notification_Expedition.Click += new System.EventHandler(this.Notification_Expedition_Click);
             // 
