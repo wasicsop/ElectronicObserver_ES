@@ -33,7 +33,7 @@ namespace Browser
 	{
 
 		private readonly Size KanColleSize = new Size(1200, 720);
-		private readonly string BrowserCachePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"ElectronicObserver\CEF");
+		private readonly string BrowserCachePath = "BrowserCache"; // Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"ElectronicObserver\CEF");
 
 		private readonly string StyleClassID = Guid.NewGuid().ToString().Substring(0, 8);
 		private bool RestoreStyleSheet = false;

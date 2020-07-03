@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml.Linq;
-using Codeplex.Data;
+using DynaJson;
 
 namespace ElectronicObserver.Utility
 {
@@ -148,17 +148,17 @@ namespace ElectronicObserver.Utility
 				return id;
 			using (var sr = new StreamReader(filepath))
 		    {
-		        var json = DynamicJson.Parse(sr.ReadToEnd());
+		        var json = JsonObject.Parse(sr.ReadToEnd());
 		        var worldKey = string.Concat(worldId.ToString("D2"), areaId.ToString());
 		        var nodeKey = nodeId.ToString("D2");
 		        foreach (KeyValuePair<string, object> world in json)
 		        {
 		            if (world.Key.Remove(0, 1).PadLeft(3, '0') != worldKey) continue;
-		            var nodes = DynamicJson.Parse(world.Value.ToString());
+		            var nodes = JsonObject.Parse(world.Value.ToString());
 		            foreach (KeyValuePair<string, object> node in nodes)
 		            {
 		                if (node.Key.Remove(0, 1).PadLeft(2, '0') != nodeKey) continue;
-		                id = DynamicJson.Parse(node.Value.ToString())[1];
+		                id = JsonObject.Parse(node.Value.ToString())[1];
 		            }
 		        }
 		    }

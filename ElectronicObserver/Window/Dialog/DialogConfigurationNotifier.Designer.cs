@@ -913,7 +913,8 @@
 			this.AnchorageRepairNotificationLevel.Items.AddRange(new object[] {
 			"Always",
 			"Akashi as flagship",
-			"Ship needed repair"});
+			"Ship needed repair",
+			"Preset"});
 			this.AnchorageRepairNotificationLevel.Location = new System.Drawing.Point(80, 20);
 			this.AnchorageRepairNotificationLevel.Name = "AnchorageRepairNotificationLevel";
 			this.AnchorageRepairNotificationLevel.Size = new System.Drawing.Size(160, 23);
