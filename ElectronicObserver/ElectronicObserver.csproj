@@ -62,6 +62,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>DataRes.resx</DependentUpon>
     </Compile>
+    <Compile Update="Observer\ObserverRes.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ObserverRes.resx</DependentUpon>
+    </Compile>
     <Compile Update="Window\Control\FleetState.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -216,6 +221,10 @@
     <EmbeddedResource Update="Data\DataRes.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>DataRes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Observer\ObserverRes.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ObserverRes.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Window\Dialog\DialogExpeditionCheck.resx">
       <Generator>ResXFileCodeGenerator</Generator>
