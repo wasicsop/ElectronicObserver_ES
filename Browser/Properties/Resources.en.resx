@@ -231,4 +231,30 @@ Are you sure?</value>
   <data name="ClearCache" xml:space="preserve">
     <value>Clear Cache</value>
   </data>
+  <data name="RenderProcessTerminatedBy" xml:space="preserve">
+    <value>The browser rendering process </value>
+  </data>
+  <data name="RenderProcessAbnormalTermination" xml:space="preserve">
+    <value>does not end properly.</value>
+  </data>
+  <data name="RenderProcessProcessWasKilled" xml:space="preserve">
+    <value>was terminated by another process.</value>
+  </data>
+  <data name="RenderProcessProcessCrashed" xml:space="preserve">
+    <value>has crashed.</value>
+  </data>
+  <data name="RenderProcessUnexpectedTermination" xml:space="preserve">
+    <value>was terminated unexpectedly.</value>
+  </data>
+  <data name="RenderProcessReturnWhenReloaded" xml:space="preserve">
+    <value> The process will start after being reloaded.</value>
+  </data>
+  <data name="ClearCacheTitle" xml:space="preserve">
+    <value>Browser Restart Confirmation</value>
+  </data>
+  <data name="ClearCacheMessage" xml:space="preserve">
+    <value>This will restart the browser and clear the cache.
+Are you sure?
+*Depending on the environment, the application may crash. In that case, please restart.</value>
+  </data>
 </root>

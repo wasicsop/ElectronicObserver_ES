@@ -115,6 +115,26 @@ namespace Browser.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to キャッシュをクリアするため、ブラウザを再起動します。
+        ///よろしいですか？
+        ///※環境によっては本ツールが終了する場合があります。その場合は再起動してください。.
+        /// </summary>
+        internal static string ClearCacheMessage {
+            get {
+                return ResourceManager.GetString("ClearCacheMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ブラウザ再起動確認.
+        /// </summary>
+        internal static string ClearCacheTitle {
+            get {
+                return ResourceManager.GetString("ClearCacheTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 確認.
         /// </summary>
         internal static string Confirmation {
@@ -300,6 +320,60 @@ namespace Browser.Properties {
         internal static string RemoveWelcomePopup {
             get {
                 return ResourceManager.GetString("RemoveWelcomePopup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 正常に終了しませんでした。.
+        /// </summary>
+        internal static string RenderProcessAbnormalTermination {
+            get {
+                return ResourceManager.GetString("RenderProcessAbnormalTermination", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to クラッシュしました。.
+        /// </summary>
+        internal static string RenderProcessProcessCrashed {
+            get {
+                return ResourceManager.GetString("RenderProcessProcessCrashed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 何者かによって殺害されました。.
+        /// </summary>
+        internal static string RenderProcessProcessWasKilled {
+            get {
+                return ResourceManager.GetString("RenderProcessProcessWasKilled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 再読み込みすると復帰します。.
+        /// </summary>
+        internal static string RenderProcessReturnWhenReloaded {
+            get {
+                return ResourceManager.GetString("RenderProcessReturnWhenReloaded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ブラウザの描画プロセスが.
+        /// </summary>
+        internal static string RenderProcessTerminatedBy {
+            get {
+                return ResourceManager.GetString("RenderProcessTerminatedBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 謎の死を遂げました。.
+        /// </summary>
+        internal static string RenderProcessUnexpectedTermination {
+            get {
+                return ResourceManager.GetString("RenderProcessUnexpectedTermination", resourceCulture);
             }
         }
         

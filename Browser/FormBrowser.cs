@@ -1274,7 +1274,7 @@ namespace Browser
 
 		private void ToolMenu_Other_ClearCache_Click(object sender, EventArgs e)
 		{
-			if (MessageBox.Show(resources.GetString("ClearCacheMessage"), resources.GetString("ClearCacheTitle"),
+			if (MessageBox.Show(Resources.ClearCacheMessage, Resources.ClearCacheTitle,
 				MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
 			{
 				BrowserHost.ClearCache();

@@ -405,6 +405,16 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ブラウザが起動していません。
+        ///クリックすると起動します。.
+        /// </summary>
+        internal static string BrowserProcessClickStart {
+            get {
+                return ResourceManager.GetString("BrowserProcessClickStart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 高速修復材.
         /// </summary>
         internal static string Bucket {

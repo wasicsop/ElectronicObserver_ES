@@ -117,15 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Other_Zoom_Rate" xml:space="preserve">
-    <value>Current: {0:p1}</value>
-  </data>
-  <data name="ClearCacheMessage" xml:space="preserve">
-    <value>This will restart the browser and clear the cache.
-Are you sure?
-*Depending on the environment, the application may crash. In that case, please restart.</value>
-  </data>
-  <data name="ClearCacheTitle" xml:space="preserve">
-    <value>Browser Restart Confirmation</value>
-  </data>
 </root>

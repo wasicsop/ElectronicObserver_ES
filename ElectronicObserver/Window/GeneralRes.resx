@@ -815,4 +815,8 @@
   <data name="HighAltitudeAirState" xml:space="preserve">
     <value>\r\n対高高度爆撃：制空 {0}\r\n確保: {1}\r\n優勢: {2}\r\n均衡: {3}\r\n劣勢: {4}\r\n</value>
   </data>
+  <data name="BrowserProcessClickStart" xml:space="preserve">
+    <value>ブラウザが起動していません。
+クリックすると起動します。</value>
+  </data>
 </root>

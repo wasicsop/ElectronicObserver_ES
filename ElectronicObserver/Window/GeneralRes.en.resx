@@ -846,4 +846,8 @@ Denial: {3}</value>
   <data name="HighAltitudeAirState" xml:space="preserve">
     <value>\r\nHigh Altitude：Air {0}\r\nAS+: {1}\r\nAS: {2}\r\nAP: {3}\r\nAI: {4}\r\n</value>
   </data>
+  <data name="BrowserProcessClickStart" xml:space="preserve">
+    <value>The browser process is not running.
+Please click here to restart.</value>
+  </data>
 </root>

@@ -536,7 +536,7 @@ namespace ElectronicObserver.Window
 				var image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.ConditionVeryTired];
 				e.Graphics.DrawImage(image, new Rectangle(16, 16, 16, 16));
 
-				e.Graphics.DrawString("ブラウザが起動していません。\r\nクリックすると起動します。", Utility.Configuration.Config.UI.MainFont, Brushes.Black, new PointF(48, 16));
+				e.Graphics.DrawString(GeneralRes.BrowserProcessClickStart, Utility.Configuration.Config.UI.MainFont, Brushes.Black, new PointF(48, 16));
 			}
 		}
 
