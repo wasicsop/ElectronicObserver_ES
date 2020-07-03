@@ -33,6 +33,8 @@ None of these functions interfere with KanColle normal, legal operation.
 
 The latest version of Electronic Observer is available at the [**Releases**](https://github.com/silfumus/ElectronicObserver/releases/latest) page.
 
+note: you need to have [Microsoft Visual C++ 2015 Redistributable Update 3](https://www.microsoft.com/download/details.aspx?id=52685) installed, earlier versions of windows (7, 8) might also need [KB2533623](https://support.microsoft.com/help/2533623/microsoft-security-advisory-insecure-library-loading-could-allow-remot)
+
 ## Documentations
 
 The Kancolle API is documented (in Japanese only) at the original project's [Other/Information/](https://github.com/andanteyk/ElectronicObserver/tree/develop/ElectronicObserver/Other/Information).
