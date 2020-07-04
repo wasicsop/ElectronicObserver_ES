@@ -94,7 +94,7 @@
 			<SubType>Designer</SubType>
 		</None>
 	</ItemGroup>
-	<ItemGroup>    
+	<ItemGroup>
 		<Content Include="74eo.ico" />
     <Content Include="Other\Information\apilist.txt" />
     <Content Include="Other\Information\todo.txt" />
