@@ -1,6 +1,7 @@
 ﻿using ElectronicObserver.Data.Battle.Phase;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace ElectronicObserver.Data
@@ -10,19 +11,19 @@ namespace ElectronicObserver.Data
 		protected override string Url => "";
 
 		[JsonProperty("ship")]
-		public int[]? Ship;
+		public List<int> Ship { get; private set; } = new List<int>();
 
 		[JsonProperty("lvl")]
-		public int[]? Lvl;
+		public List<int> Lvl { get; private set; } = new List<int>();
 
 		[JsonProperty("hp")]
-		public int[]? HP;
+		public List<int> HP { get; private set; } = new List<int>();
 
 		[JsonProperty("stats")]
-		public int[][]? Stats;
+		public List<int[]> Stats { get; private set; } = new List<int[]>();
 
 		[JsonProperty("equip")]
-		public int[][]? Equips;
+		public List<int[]> Equips { get; private set; } = new List<int[]>();
 
 		[JsonProperty("formation")]
 		public int Formation { get; private set; }
@@ -42,19 +43,19 @@ namespace ElectronicObserver.Data
 
 
 		[JsonProperty("shipEscort")]
-		public int[]? ShipEscort;
+		public List<int>? ShipEscort { get; private set; }
 
 		[JsonProperty("lvlEscort")]
-		public int[]? LvlEscort;
+		public List<int>? LvlEscort { get; private set; }
 
 		[JsonProperty("hpEscort")]
-		public int[]? HPEscort;
+		public List<int>? HPEscort { get; private set; }
 
 		[JsonProperty("statsEscort")]
-		public int[][]? StatsEscort;
+		public List<int[]>? StatsEscort { get; private set; }
 
 		[JsonProperty("equipEscort")]
-		public int[][]? EquipsEscort;
+		public List<int[]>? EquipsEscort { get; private set; }
 
 		public EnemyComp()
 		{
@@ -68,18 +69,12 @@ namespace ElectronicObserver.Data
 
 			int shipCount = initial.EnemyMembers.Count((id) => { return id != -1; });
 
-			Ship = initial.EnemyMembers;
-			Lvl = initial.EnemyLevels;
-			HP = initial.EnemyMaxHPs;
-			Stats = initial.EnemyParameters;
-			Equips = initial.EnemySlots;
+			Ship = initial.EnemyMembers.Take(shipCount).ToList();
+			Lvl = initial.EnemyLevels.Take(shipCount).ToList();
+			HP = initial.EnemyMaxHPs.Take(shipCount).ToList();
+			Stats = initial.EnemyParameters.Take(shipCount).ToList();
+			Equips = initial.EnemySlots.Take(shipCount).ToList();
 			Formation = db.Battle.FirstBattle.Searching.FormationEnemy;
-
-			Array.Resize(ref Ship, shipCount);
-			Array.Resize(ref Lvl, shipCount);
-			Array.Resize(ref HP, shipCount);
-			Array.Resize(ref Stats, shipCount);
-			Array.Resize(ref Equips, shipCount);
 
 			// --- If this is an event map
 			if (db.Battle.Compass.MapAreaID > 30)
@@ -94,17 +89,13 @@ namespace ElectronicObserver.Data
 			// --- If enemy fleet is combined
 			if (initial.IsEnemyCombined)
 			{
-				ShipEscort = initial.EnemyMembersEscort;
-				LvlEscort = initial.EnemyLevelsEscort;
-				HPEscort = initial.EnemyMaxHPsEscort;
-				StatsEscort = initial.EnemyParametersEscort;
-				EquipsEscort = initial.EnemySlotsEscort;
+				shipCount = initial.EnemyMembersEscort.Count((id) => { return id != -1; });
 
-				Array.Resize(ref ShipEscort, shipCount);
-				Array.Resize(ref LvlEscort, shipCount);
-				Array.Resize(ref HPEscort, shipCount);
-				Array.Resize(ref StatsEscort, shipCount);
-				Array.Resize(ref EquipsEscort, shipCount);
+				ShipEscort = initial.EnemyMembersEscort.Take(shipCount).ToList();
+				LvlEscort = initial.EnemyLevelsEscort.Take(shipCount).ToList();
+				HPEscort = initial.EnemyMaxHPsEscort.Take(shipCount).ToList();
+				StatsEscort = initial.EnemyParametersEscort.Take(shipCount).ToList();
+				EquipsEscort = initial.EnemySlotsEscort.Take(shipCount).ToList();
 			}
 
 			IsAirRaid = db.Battle.BattleMode == Battle.BattleManager.BattleModes.AirRaid;
