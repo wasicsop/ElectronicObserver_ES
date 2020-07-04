@@ -265,6 +265,7 @@
             this.Log_PlayTime = new System.Windows.Forms.Label();
             this.PlayTimeTimer = new System.Windows.Forms.Timer(this.components);
             this.checkBoxUseSecretaryIconForRPC = new System.Windows.Forms.CheckBox();
+            this.Control_EnableTsunDbSubmission = new System.Windows.Forms.CheckBox();
             this.Notification_BaseAirCorps = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -982,6 +983,7 @@
 			// tabPage4
 			// 
 			this.tabPage4.Controls.Add(this.checkBoxUseSecretaryIconForRPC);
+			this.tabPage4.Controls.Add(this.Control_EnableTsunDbSubmission);
             this.tabPage4.Controls.Add(this.label45);
             this.tabPage4.Controls.Add(this.Control_ApplicationID);
             this.tabPage4.Controls.Add(this.Control_ForceUpdate);
@@ -3092,10 +3094,20 @@
             this.checkBoxUseSecretaryIconForRPC.Text = "Use secretary icon as game picture";
             this.ToolTipInfo.SetToolTip(this.checkBoxUseSecretaryIconForRPC, "Enable Discord Rich Presence");
             this.checkBoxUseSecretaryIconForRPC.UseVisualStyleBackColor = true;
-            // 
-            // Notification_BaseAirCorps
-            // 
-            this.Notification_BaseAirCorps.Location = new System.Drawing.Point(8, 181);
+			// 
+			// Control_EnableTsunDbSubmission
+			// 
+			this.Control_EnableTsunDbSubmission.AutoSize = true;
+            this.Control_EnableTsunDbSubmission.Location = new System.Drawing.Point(9, 332);
+            this.Control_EnableTsunDbSubmission.Name = "Control_EnableTsunDbSubmission";
+            this.Control_EnableTsunDbSubmission.Size = new System.Drawing.Size(262, 19);
+            this.Control_EnableTsunDbSubmission.TabIndex = 19;
+            this.Control_EnableTsunDbSubmission.Text = "Enable TsunDb submission";
+            this.Control_EnableTsunDbSubmission.UseVisualStyleBackColor = true;
+			// 
+			// Notification_BaseAirCorps
+			// 
+			this.Notification_BaseAirCorps.Location = new System.Drawing.Point(8, 181);
             this.Notification_BaseAirCorps.Name = "Notification_BaseAirCorps";
             this.Notification_BaseAirCorps.Size = new System.Drawing.Size(150, 23);
             this.Notification_BaseAirCorps.TabIndex = 9;
@@ -3427,6 +3439,7 @@
         private System.Windows.Forms.Label label45;
         private System.Windows.Forms.TextBox Control_ApplicationID;
 		private System.Windows.Forms.CheckBox checkBoxUseSecretaryIconForRPC;
+		private System.Windows.Forms.CheckBox Control_EnableTsunDbSubmission;
 		private System.Windows.Forms.Button Notification_BaseAirCorps;
 	}
 }

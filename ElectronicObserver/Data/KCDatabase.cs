@@ -162,6 +162,8 @@ namespace ElectronicObserver.Data
 
 		public ReplayManager Replays { get; private set; }
 
+		public TsunDbSubmissionManager TsunDbSubmission { get; private set; }
+
 		/// <summary>
 		/// Current server
 		/// </summary>
@@ -201,6 +203,7 @@ namespace ElectronicObserver.Data
 			BaseAirCorps = new IDDictionary<BaseAirCorpsData>();
 			RelocatedEquipments = new IDDictionary<RelocationData>();
 			Replays = new ReplayManager();
+			TsunDbSubmission = new TsunDbSubmissionManager();
 			FleetPreset = new FleetPresetManager();
 		}
 

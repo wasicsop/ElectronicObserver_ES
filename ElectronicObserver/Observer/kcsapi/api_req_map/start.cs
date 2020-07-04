@@ -26,7 +26,9 @@ namespace ElectronicObserver.Observer.kcsapi.api_req_map
                 dataForWS.top = string.Format("Node {0}-{1} {2}", db.Battle.Compass.MapAreaID, db.Battle.Compass.MapInfoID, db.Battle.Compass.DestinationID);
             }
 
-            base.OnResponseReceived((object)data);
+			KCDatabase.Instance.TsunDbSubmission.LoadFromResponse(APIName, data);
+
+			base.OnResponseReceived((object)data);
 
 
 

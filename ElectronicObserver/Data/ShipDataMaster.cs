@@ -37,6 +37,11 @@ namespace ElectronicObserver.Data
 		/// 名前
 		/// </summary>
 		string Name { get; }
+		
+		/// <summary>
+		/// Name in japanese
+		/// </summary>
+		public string NameJP { get; }
 
 		/// <summary>
 		/// 読み
@@ -437,6 +442,11 @@ namespace ElectronicObserver.Data
 		/// 名前
 		/// </summary>
 		public string Name => Window.FormMain.Instance.Translator.GetTranslation(RawData.api_name, Utility.TranslationType.Ships);
+
+		/// <summary>
+		/// Name in japanese
+		/// </summary>
+		public string NameJP => RawData.api_name;
 
 		/// <summary>
 		/// 読み

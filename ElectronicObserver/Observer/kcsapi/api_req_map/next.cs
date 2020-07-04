@@ -28,6 +28,7 @@ namespace ElectronicObserver.Observer.kcsapi.api_req_map
             }
 
 			KCDatabase.Instance.Battle.LoadFromResponse(APIName, data);
+			KCDatabase.Instance.TsunDbSubmission.LoadFromResponse(APIName, data);
 
 			base.OnResponseReceived((object)data);
 
