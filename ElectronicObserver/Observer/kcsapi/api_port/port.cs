@@ -117,7 +117,7 @@ namespace ElectronicObserver.Observer.kcsapi.api_port
 
                 db.RelocatedEquipments.Clear();
             }
-
+			db.Replays.LoadFromResponse(APIName, data);
             db.Battle.LoadFromResponse(APIName, data);
 
 			// --- Debuff sound
