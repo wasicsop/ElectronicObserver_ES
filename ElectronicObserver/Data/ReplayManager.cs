@@ -134,8 +134,8 @@ namespace ElectronicObserver.Data
 					DayData = data;
 					break;
 
-				case "api_req_combined_battle/ec_midnight_battle": // combined night battle
-					DayData = data;
+				case "api_req_combined_battle/ec_midnight_battle": // combined normal night battle
+					YasenData = data;
 					break;
 
 				case "api_req_combined_battle/ec_night_to_day": // enemy combined night to day
