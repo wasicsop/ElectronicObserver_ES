@@ -1,8 +1,7 @@
-﻿using ElectronicObserver.Utility.Data;
+﻿using DynaJson;
+using ElectronicObserver.Resource.Record;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using static ElectronicObserver.Resource.Record.MapRecord;
 
 namespace ElectronicObserver.Data
 {
@@ -37,12 +36,20 @@ namespace ElectronicObserver.Data
 		/// <param name="api_data"></param>
 		public void ProcessEvent(dynamic api_data)
 		{
+			KCDatabase db = KCDatabase.Instance; 
+			JsonObject jData = (JsonObject)api_data;
+
 			this.CurrentMapHP = (int)api_data.api_eventmap.api_now_maphp;
 			this.MaxMapHP = (int)api_data.api_eventmap.api_max_maphp;
-			this.Difficulty = (int)api_data.api_eventmap.api_selected_rank;
-			this.GaugeNum = (int)api_data.api_gauge_num;
-			this.GaugeType = (int)api_data.api_gauge_type;
-			this.DebuffSound = (int)api_data.debuffSound;
+			this.Difficulty = db.Battle.Compass.MapInfo.EventDifficulty;
+			this.GaugeNum = db.Battle.Compass.MapInfo.CurrentGaugeIndex;
+			this.GaugeType = db.Battle.Compass.MapInfo.GaugeType;
+
+			// --- Debuff sound 
+			MapRecordElement? record = RecordManager.Instance.Map.Record
+					.Find(_record => _record.MapAreaId == db.Battle.Compass.MapInfo.MapAreaID && _record.MapId == db.Battle.Compass.MapInfo.MapID);
+
+			this.DebuffSound = 0;
 		}
 		#endregion
 	}

@@ -1,10 +1,12 @@
 ﻿using ElectronicObserver.Data;
+using ElectronicObserver.Resource.Record;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static ElectronicObserver.Observer.DiscordRPC;
+using static ElectronicObserver.Resource.Record.MapRecord;
 
 namespace ElectronicObserver.Observer.kcsapi.api_port
 {
@@ -118,7 +120,23 @@ namespace ElectronicObserver.Observer.kcsapi.api_port
 
             db.Battle.LoadFromResponse(APIName, data);
 
-            base.OnResponseReceived((object)data);
+			// --- Debuff sound
+			if (data.api_event_object() && data.api_event_object.api_m_flag2() && (int)data.api_event_object.api_m_flag2 > 0)
+			{
+				MapRecordElement? record = RecordManager.Instance.Map.Record
+					.Find(_record => _record.MapAreaId == db.Battle.Compass.MapInfo.MapAreaID && _record.MapId == db.Battle.Compass.MapInfo.MapID);
+
+				if (record == null)
+				{
+					RecordManager.Instance.Map.Add(db.Battle.Compass.MapInfo.MapAreaID, db.Battle.Compass.MapInfo.MapID, 1);
+				}
+				else
+				{
+					record.DebuffCount += 1;
+				}
+			}
+
+			base.OnResponseReceived((object)data);
         }
 
         public override string APIName => "api_port/port";
