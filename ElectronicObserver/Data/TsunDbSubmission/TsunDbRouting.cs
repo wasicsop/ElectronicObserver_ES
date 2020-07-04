@@ -29,7 +29,7 @@ namespace ElectronicObserver.Data
 		private int HqLvl;
 
 		[JsonProperty("cleared")]
-		private int Cleared;
+		private bool Cleared;
 
 		[JsonProperty("edgeID")]
 		private List<int> EdgeID = new List<int>();
@@ -116,12 +116,8 @@ namespace ElectronicObserver.Data
 			// --- Sets player's HQ level
 			this.HqLvl = db.Admiral.Level;
 
-			// Sets the map id
-			/*const mapId = this.currentMap.join('');
-			const mapData = this.mapInfo.find(i => i.api_id == mapId) || { };*/
-
 			// --- Sets whether the map is cleared or not
-			this.Cleared = db.Battle.Compass.MapInfo.IsCleared ? 1 : 0;
+			this.Cleared = db.Battle.Compass.MapInfo.IsCleared;
 
 			// --- Charts the route array using edge ids as values
 			this.EdgeID.Add((int)api_data.api_no);
@@ -153,7 +149,7 @@ namespace ElectronicObserver.Data
 
 			if (this.Fleet2.Count > 0)
 			{
-				foreach (var ship in this.Fleet1) 
+				foreach (var ship in this.Fleet2) 
 				{
 					this.FleetIds.Add(ship.Id);
 					this.FleetLevel += ship.Level;
@@ -210,7 +206,7 @@ namespace ElectronicObserver.Data
 
 				shipsData.Add(new TsunDbShipData(ship)
 				{
-					Flee = fleetData.EscapedShipList.Contains(ship.MasterID) ? 1 : 0
+					Flee = fleetData.EscapedShipList.Contains(ship.MasterID)
 				});
 			}
 

@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using ElectronicObserverTypes;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,10 +31,16 @@ namespace ElectronicObserver.Data
 		public int Speed;
 
 		[JsonProperty("flee")]
-		public int Flee;
+		public bool Flee;
 
 		[JsonProperty("equip")]
 		public int[] Equip;
+
+		[JsonProperty("stars")]
+		public int[] Stars;
+
+		[JsonProperty("ace")]
+		public int[] Ace;
 
 		[JsonProperty("exslot")]
 		public int Exslot;
@@ -41,12 +48,22 @@ namespace ElectronicObserver.Data
 		public TsunDbShipData(IShipData ship)
 		{
 			this.Id = ship.ShipID;
-			this.Name = ship.MasterShip.Name;
+			this.Name = ship.MasterShip.NameJP;
 			this.Shiplock = ship.SallyArea;
 			this.Level = ship.Level;
-			this.Type = ship.MasterShip.ShipTypeInstance.TypeID;
+			this.Type = (int)ship.MasterShip.ShipType;
 			this.Speed = ship.Speed;
+
+			// --- Equips
 			this.Equip = ship.SlotInstanceMaster.Select(eq => eq != null ? eq.EquipmentID : -1).ToArray();
+
+			// --- Stars
+			this.Stars = ship.SlotInstance.Select(eq => eq != null ? eq.Level : -1).ToArray();
+
+			// --- Ace
+			this.Ace = ship.SlotInstance.Select(eq => eq != null ? eq.AircraftLevel : -1).ToArray();
+
+			// --- Expension slot
 			this.Exslot = ship.IsExpansionSlotAvailable ? ship.ExpansionSlotInstanceMaster.EquipmentID : -1;
 		}
 		#endregion
