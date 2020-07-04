@@ -1,0 +1,59 @@
+﻿using DynaJson;
+using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+
+namespace ElectronicObserver.Data
+{
+	public class TsunDbNodeInfo : TsunDbEntity
+	{
+		protected override string Url => throw new NotImplementedException();
+
+		#region Json Properties 
+		[JsonProperty("amountOfNodes")]
+		public int AmountOfNodes;
+
+		[JsonProperty("nodeType")]
+		public int NodeType;
+		[JsonProperty("eventId")]
+		public int EventId;
+		[JsonProperty("eventKind")]
+		public int EventKind;
+		[JsonProperty("nodeColor")]
+		public int NodeColor;
+		[JsonProperty("itemGet")]
+		public object[] ItemGet;
+		#endregion
+
+		public TsunDbNodeInfo(int amountOfNodes)
+		{
+			AmountOfNodes = amountOfNodes;
+		}
+
+		#region internal methods
+		/// <summary>
+		/// Process next node data
+		/// </summary>
+		/// <param name="api_data"></param>
+		internal void ProcessNext(dynamic api_data)
+		{
+			JsonObject jData = (JsonObject)api_data;
+
+			this.NodeType = (int)api_data["api_color_no"];
+			this.EventId = (int)api_data["api_event_id"]; ;
+			this.EventKind = (int)api_data["api_event_kind"]; ;
+			this.NodeColor = (int)api_data["api_color_no"]; ;
+
+			if (jData.IsDefined("api_itemget"))
+			{
+				this.ItemGet = (object[])api_data["api_itemget"];
+			}
+			else
+			{
+				this.ItemGet = new object[0];
+			}
+			
+		}
+		#endregion
+	}
+}

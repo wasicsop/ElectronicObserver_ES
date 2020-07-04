@@ -2,6 +2,7 @@
 using ElectronicObserver.Utility;
 using Newtonsoft.Json;
 using System;
+using System.IO;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
@@ -53,6 +54,8 @@ namespace ElectronicObserver.Data
 				content.Headers.Add("dataorigin", "eo");
 				content.Headers.Add("version", SoftwareInformation.VersionEnglish);
 				content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+				if (Configuration.Config.Debug.EnableDebugMenu) File.WriteAllText($"tsundb_{this.Url}.json", contentSerialized);
 
 				return await httpClient.PutAsync($"https://tsundb.kc3.moe/api/{this.Url}", content);
 			}

@@ -22,12 +22,14 @@ namespace ElectronicObserver.Window.Dialog
 		private void buttonEnable_Click(object sender, EventArgs e)
 		{
 			Configuration.Config.Control.SubmitDataToTsunDb = true;
+			this.DialogResult = DialogResult.Yes;
 			this.Close();
 		}
 
 		private void buttonDisable_Click(object sender, EventArgs e)
 		{
 			Configuration.Config.Control.SubmitDataToTsunDb = false;
+			this.DialogResult = DialogResult.No;
 			this.Close();
 		}
 	}

@@ -137,6 +137,9 @@ namespace ElectronicObserver.Window.Dialog
 
 			_UIControl = Owner;
 
+			this.Control_EnableTsunDbSubmission.CheckStateChanged += new System.EventHandler(this.Control_EnableTsunDbSubmission_CheckStateChanged);
+
+
 		}
 
 		private void DialogConfiguration_FormClosed(object sender, FormClosedEventArgs e)
@@ -390,6 +393,7 @@ namespace ElectronicObserver.Window.Dialog
             Control_DiscordRPCMessage.ReadOnly = !config.Control.EnableDiscordRPC;
             Control_translationURL.Text = config.Control.UpdateURL.AbsoluteUri;
             Control_ApplicationID.Text = config.Control.DiscordRPCApplicationId;
+            Control_EnableTsunDbSubmission.Checked = config.Control.SubmitDataToTsunDb == true;
             checkBoxUseSecretaryIconForRPC.Checked = config.Control.UseFlagshipIconForRPC;
 
             //[デバッグ]
@@ -619,6 +623,7 @@ namespace ElectronicObserver.Window.Dialog
             config.Control.DiscordRPCShowFCM = Control_DiscordRPCShowFCM.Checked;
             config.Control.UpdateURL = new Uri(Control_translationURL.Text);
             config.Control.DiscordRPCApplicationId = Control_ApplicationID.Text;
+            config.Control.SubmitDataToTsunDb = Control_EnableTsunDbSubmission.Checked;
             config.Control.UseFlagshipIconForRPC = checkBoxUseSecretaryIconForRPC.Checked;
 
 			//[デバッグ]
@@ -980,5 +985,23 @@ namespace ElectronicObserver.Window.Dialog
         {
             SoftwareUpdater.UpdateCheck();
         }
-    }
+
+		private void RefreshTsunDbParameters(object sender, FormClosedEventArgs e)
+		{
+			Control_EnableTsunDbSubmission.Checked = (sender as DialogTsunDb).DialogResult == DialogResult.Yes;
+		}
+
+		private void Control_EnableTsunDbSubmission_CheckStateChanged(object sender, EventArgs e)
+		{
+			if (Control_EnableTsunDbSubmission.Checked == false) return;
+
+			// --- ask for confirmation
+			DialogTsunDb dialogTsunDb = new DialogTsunDb();
+			FormClosedEventHandler handler = new FormClosedEventHandler(RefreshTsunDbParameters);
+			dialogTsunDb.FormClosed += handler;
+			dialogTsunDb.ShowDialog();
+
+		}
+
+	}
 }
