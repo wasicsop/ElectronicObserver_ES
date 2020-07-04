@@ -31,7 +31,7 @@ namespace ElectronicObserver.Data
 		public int Speed { get; private set; }
 
 		[JsonProperty("flee")]
-		public bool Flee { get; private set; }
+		public bool Flee { get; set; }
 
 		[JsonProperty("equip")]
 		public int[] Equip { get; private set; }
