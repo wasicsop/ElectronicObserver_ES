@@ -11,22 +11,22 @@ namespace ElectronicObserver.Data
 
 		#region Json Properties
 		[JsonProperty("currentMapHP")]
-		private int CurrentMapHP;
+		public int CurrentMapHP { get; private set; }
 
 		[JsonProperty("maxMapHP")]
-		private int MaxMapHP;
+		public int MaxMapHP { get; private set; }
 
 		[JsonProperty("difficulty")]
-		private int Difficulty;
+		public int Difficulty { get; private set; }
 
 		[JsonProperty("gaugeNum")]
-		private int GaugeNum;
+		public int GaugeNum { get; private set; }
 
 		[JsonProperty("gaugeType")]
-		private int GaugeType;
+		public int GaugeType { get; private set; }
 
 		[JsonProperty("debuffSound")]
-		private int DebuffSound;
+		public int DebuffSound { get; private set; }
 		#endregion
 
 		#region public methods

@@ -8,31 +8,31 @@ namespace ElectronicObserver.Data
 	public class ShipDrop : TsunDbEntity
 	{
 		[JsonProperty("map")]
-		public string? Map;
+		public string? Map { get; private set; }
 
 		[JsonProperty("node")]
-		public int Node;
+		public int Node { get; private set; }
 
 		[JsonProperty("rank")]
-		public string? Rank;
+		public string? Rank { get; private set; }
 
 		[JsonProperty("cleared")]
-		public int Cleared;
+		public int Cleared { get; private set; }
 
 		[JsonProperty("enemyComp")]
-		public EnemyCompShipDrop? EnemyComp;
+		public EnemyCompShipDrop? EnemyComp { get; private set; }
 
 		[JsonProperty("hqLvl")]
-		public int HqLvl;
+		public int HqLvl { get; private set; }
 
 		[JsonProperty("difficulty")]
-		public int Difficulty;
+		public int Difficulty { get; private set; }
 
 		[JsonProperty("ship")]
-		public int Ship;
+		public int Ship { get; private set; }
 
 		[JsonProperty("counts")]
-		public Dictionary<int, int> Counts;
+		public Dictionary<int, int> Counts { get; private set; }
 
 		protected override string Url => "drops";
 

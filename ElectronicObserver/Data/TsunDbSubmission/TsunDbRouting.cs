@@ -14,65 +14,82 @@ namespace ElectronicObserver.Data
 
 		#region Json Properties
 		[JsonProperty("sortiedFleet")]
-		private int SortiedFleet;
+		public int SortiedFleet { get; private set; }
 
 		[JsonProperty("fleetType")]
-		private int FleetType;
+		public int FleetType { get; private set; }
 
 		[JsonProperty("nodeInfo")]
-		private TsunDbNodeInfo NodeInfo;
+		public TsunDbNodeInfo NodeInfo { get; private set; }
 
 		[JsonProperty("map")]
-		private string Map;
+		public string Map { get; private set; }
 
 		[JsonProperty("hqLvl")]
-		private int HqLvl;
+		public int HqLvl { get; private set; }
 
 		[JsonProperty("cleared")]
-		private bool Cleared;
+		public bool Cleared { get; private set; }
 
 		[JsonProperty("edgeID")]
-		private List<int> EdgeID = new List<int>();
+		public List<int> EdgeID { get; private set; }
 
 		[JsonProperty("nextRoute")]
-		private int NextRoute;
+		public int NextRoute { get; private set; }
 
 		[JsonProperty("fleet1")]
-		private List<TsunDbShipData> Fleet1 = new List<TsunDbShipData>();
+		public List<TsunDbShipData> Fleet1 { get; private set; }
 
 		[JsonProperty("fleet2")]
-		private List<TsunDbShipData> Fleet2 = new List<TsunDbShipData>();
+		public List<TsunDbShipData> Fleet2 { get; private set; }
 
 		[JsonProperty("fleetSpeed")]
-		private int FleetSpeed;
+		public int FleetSpeed { get; private set; }
 
 		[JsonProperty("los")]
-		private double[] LOS = new double[4];
+		public double[] LOS { get; private set; }
 
 		[JsonProperty("fleetids")]
-		private List<int> FleetIds = new List<int>();
+		public List<int> FleetIds { get; private set; }
 
 		[JsonProperty("fleetlevel")]
-		private int FleetLevel;
+		public int FleetLevel { get; private set; }
 
 		[JsonProperty("fleetoneequips")]
-		private List<int> FleetOneEquips = new List<int>();
+		public List<int> FleetOneEquips { get; private set; }
 
 		[JsonProperty("fleetoneexslots")]
-		private List<int> FleetOneExSlots = new List<int>();
+		public List<int> FleetOneExSlots { get; private set; }
 
 		[JsonProperty("fleetonetypes")]
-		private List<int> FleetOneTypes = new List<int>();
+		public List<int> FleetOneTypes { get; private set; }
 
 		[JsonProperty("fleettwoequips")]
-		private List<int> FleetTwoEquips = new List<int>();
+		public List<int> FleetTwoEquips { get; private set; }
 
 		[JsonProperty("fleettwoexslots")]
-		private List<int> FleetTwoExSlots = new List<int>();
+		public List<int> FleetTwoExSlots { get; private set; }
 
 		[JsonProperty("fleettwotypes")]
-		private List<int> FleetTwoTypes = new List<int>();
+		public List<int> FleetTwoTypes { get; private set; }
 		#endregion
+
+		public TsunDbRouting() : base()
+		{
+			FleetTwoTypes = new List<int>();
+			FleetTwoExSlots = new List<int>();
+			FleetTwoEquips = new List<int>();
+			FleetOneTypes = new List<int>();
+			FleetOneExSlots = new List<int>();
+			FleetOneEquips = new List<int>();
+			EdgeID = new List<int>();
+			FleetIds = new List<int>();
+			LOS = new double[] { 0, 0, 0, 0 };
+			Fleet1 = new List<TsunDbShipData>();
+			Fleet2 = new List<TsunDbShipData>();
+			NodeInfo = new TsunDbNodeInfo(0);
+			Map = string.Empty;
+		}
 
 		#region public methods
 		/// <summary>

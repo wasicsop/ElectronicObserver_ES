@@ -11,18 +11,22 @@ namespace ElectronicObserver.Data
 
 		#region Json Properties 
 		[JsonProperty("amountOfNodes")]
-		public int AmountOfNodes;
+		public int AmountOfNodes { get; private set; }
 
 		[JsonProperty("nodeType")]
-		public int NodeType;
+		public int NodeType { get; private set; }
+
 		[JsonProperty("eventId")]
-		public int EventId;
+		public int EventId { get; private set; }
+
 		[JsonProperty("eventKind")]
-		public int EventKind;
+		public int EventKind { get; private set; }
+
 		[JsonProperty("nodeColor")]
-		public int NodeColor;
+		public int NodeColor { get; private set; }
+
 		[JsonProperty("itemGet")]
-		public object[] ItemGet;
+		public object[] ItemGet { get; private set; }
 		#endregion
 
 		public TsunDbNodeInfo(int amountOfNodes)

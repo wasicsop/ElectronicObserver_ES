@@ -25,20 +25,20 @@ namespace ElectronicObserver.Data
 		public int[][]? Equips;
 
 		[JsonProperty("formation")]
-		public int Formation;
+		public int Formation { get; private set; }
 
 		[JsonProperty("isAirRaid")]
-		public bool IsAirRaid;
+		public bool IsAirRaid { get; private set; }
 
 
 		[JsonProperty("gaugeNum")]
-		public int GaugeNum;
+		public int GaugeNum { get; private set; }
 
 		[JsonProperty("currentHP")]
-		public int CurrentHP;
+		public int CurrentHP { get; private set; }
 
 		[JsonProperty("maxHP")]
-		public int MaxHP;
+		public int MaxHP { get; private set; }
 
 
 		[JsonProperty("shipEscort")]

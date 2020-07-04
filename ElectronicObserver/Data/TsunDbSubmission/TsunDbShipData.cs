@@ -13,37 +13,37 @@ namespace ElectronicObserver.Data
 
 		#region Json properties
 		[JsonProperty("id")]
-		public int Id;
+		public int Id { get; private set; }
 
 		[JsonProperty("name")]
-		public string Name;
+		public string Name { get; private set; }
 
 		[JsonProperty("shiplock")]
-		public int Shiplock;
+		public int Shiplock { get; private set; }
 
 		[JsonProperty("level")]
-		public int Level;
+		public int Level { get; private set; }
 
 		[JsonProperty("type")]
-		public int Type;
+		public int Type { get; private set; }
 
 		[JsonProperty("speed")]
-		public int Speed;
+		public int Speed { get; private set; }
 
 		[JsonProperty("flee")]
-		public bool Flee;
+		public bool Flee { get; private set; }
 
 		[JsonProperty("equip")]
-		public int[] Equip;
+		public int[] Equip { get; private set; }
 
 		[JsonProperty("stars")]
-		public int[] Stars;
+		public int[] Stars { get; private set; }
 
 		[JsonProperty("ace")]
-		public int[] Ace;
+		public int[] Ace { get; private set; }
 
 		[JsonProperty("exslot")]
-		public int Exslot;
+		public int Exslot { get; private set; }
 
 		public TsunDbShipData(IShipData ship)
 		{

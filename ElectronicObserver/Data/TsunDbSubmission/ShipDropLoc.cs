@@ -8,19 +8,19 @@ namespace ElectronicObserver.Data
 	public class ShipDropLoc : TsunDbEntity
 	{
 		[JsonProperty("map")]
-		public string? Map;
+		public string? Map { get; private set; }
 
 		[JsonProperty("node")]
-		public int Node;
+		public int Node { get; private set; }
 
 		[JsonProperty("rank")]
-		public string? Rank;
+		public string? Rank { get; private set; }
 
 		[JsonProperty("difficulty")]
-		public int Difficulty;
+		public int Difficulty { get; private set; }
 
 		[JsonProperty("ship")]
-		public int Ship;
+		public int Ship { get; private set; }
 
 		protected override string Url => "droplocs";
 
