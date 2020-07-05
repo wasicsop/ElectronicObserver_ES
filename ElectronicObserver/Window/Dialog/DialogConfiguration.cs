@@ -988,7 +988,9 @@ namespace ElectronicObserver.Window.Dialog
 
 		private void RefreshTsunDbParameters(object sender, FormClosedEventArgs e)
 		{
-			Control_EnableTsunDbSubmission.Checked = (sender as DialogTsunDb).DialogResult == DialogResult.Yes;
+			if (!(sender is DialogTsunDb dialog)) return;
+
+			Control_EnableTsunDbSubmission.Checked = dialog.DialogResult == DialogResult.Yes;
 		}
 
 		private void Control_EnableTsunDbSubmission_CheckStateChanged(object sender, EventArgs e)
@@ -997,10 +999,8 @@ namespace ElectronicObserver.Window.Dialog
 
 			// --- ask for confirmation
 			DialogTsunDb dialogTsunDb = new DialogTsunDb();
-			FormClosedEventHandler handler = new FormClosedEventHandler(RefreshTsunDbParameters);
-			dialogTsunDb.FormClosed += handler;
+			dialogTsunDb.FormClosed += RefreshTsunDbParameters;
 			dialogTsunDb.ShowDialog();
-
 		}
 
 	}
