@@ -1,4 +1,5 @@
-﻿using CefSharp;
+﻿using Browser.Properties;
+using CefSharp;
 using CefSharp.Handler;
 using System;
 using System.Collections.Generic;
@@ -41,23 +42,23 @@ namespace Browser.CefOp
 		{
 			// note: out of memory (例外コード: 0xe0000008) でクラッシュした場合、このイベントは呼ばれない
 
-			string ret = "ブラウザの描画プロセスが";
+			string ret = Resources.RenderProcessTerminatedBy;
 			switch (status)
 			{
 				case CefTerminationStatus.AbnormalTermination:
-					ret += "正常に終了しませんでした。";
+					ret += Resources.RenderProcessAbnormalTermination;
 					break;
 				case CefTerminationStatus.ProcessWasKilled:
-					ret += "何者かによって殺害されました。";
+					ret += Resources.RenderProcessProcessWasKilled;
 					break;
 				case CefTerminationStatus.ProcessCrashed:
-					ret += "クラッシュしました。";
+					ret += Resources.RenderProcessProcessCrashed;
 					break;
 				default:
-					ret += "謎の死を遂げました。";
+					ret += Resources.RenderProcessUnexpectedTermination;
 					break;
 			}
-			ret += "再読み込みすると復帰します。";
+			ret += Resources.RenderProcessReturnWhenReloaded;
 
 			RenderProcessTerminated(ret);
 		}

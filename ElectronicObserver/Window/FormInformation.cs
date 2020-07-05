@@ -544,7 +544,7 @@ namespace ElectronicObserver.Window
                 TextInformation.Text = "[Fleet tag warning]\r\nUntagged ships:\r\n" + string.Join("\r\n", freeShips.Select(s => s.NameWithLevel));
 
                 if (Utility.Configuration.Config.Control.ShowSallyAreaAlertDialog)
-                    MessageBox.Show("A ship without fleet tag is in the fleet.\r\nPlease recheck before sortieing.\r\n\r\n(This check can be disabled in the settings)", "Fleet Tag Warning",
+                    MessageBox.Show("A ship without fleet tag is in the fleet.\r\nPlease recheck before sortieing.\r\n\r\n(This check can be disabled in the settings)", "Fleet Tag",
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
@@ -558,8 +558,8 @@ namespace ElectronicObserver.Window
 			{
 				var mission = KCDatabase.Instance.Mission[missionID];
 				MessageBox.Show(
-					$"#{fleet.FleetID} {fleet.Name} の遠征 {mission.DisplayID}:{mission.Name} は、失敗する可能性があります。\r\n\r\n{string.Join("\r\n", result.FailureReason)}\r\n\r\n（この警告は 設定→動作 から無効化できます。）",
-					"遠征失敗警告", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+					string.Format(GeneralRes.ExpeditionFailureWarningMessage, fleet.FleetID, fleet.Name, mission.DisplayID, mission.Name, string.Join("\r\n", result.FailureReason))
+					, GeneralRes.ExpeditionFailureWarningTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning);
 			}
 		}
 

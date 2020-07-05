@@ -117,67 +117,73 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="ToolTipInfo.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <data name="FormBattle_Display7thAsSingleLine.ToolTip" xml:space="preserve">
-    <value>遊撃部隊(7隻編成)での出撃時、7隻目の情報をどこに表示するか指定します。
-有効時は6隻目の下に、無効時は随伴艦隊1隻目と同じ位置に表示されます。
-無効にすると若干スペースを節約できます。</value>
+  <data name="MissionClearTotalShipCount" xml:space="preserve">
+    <value>{0}{1} ships</value>
   </data>
-  <data name="FormBrowser_PreserveDrawingBuffer.ToolTip" xml:space="preserve">
-    <value>描画系で問題があった場合有効にすると改善するかもしれません。
-無効にするとパフォーマンスが向上する可能性があります。
-* この変更は再起動後に適用されます。</value>
+  <data name="MissionClearShipLvSum" xml:space="preserve">
+    <value>Lv Sum:</value>
   </data>
-  <metadata name="BGMPlayer_ColumnEnabled.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="BGMPlayer_ColumnContent.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="BGMPlayer_ColumnPath.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="BGMPlayer_ColumnSetting.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="FolderBrowser.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>137, 17</value>
-  </metadata>
-  <metadata name="FontSelector.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>275, 17</value>
-  </metadata>
-  <metadata name="LayoutFileBrowser.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>402, 17</value>
-  </metadata>
-  <metadata name="APIListBrowser.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>564, 17</value>
-  </metadata>
-  <metadata name="PlayTimeTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>707, 17</value>
-  </metadata>
-  <data name="FormBrowser_SavesBrowserLog.Text" xml:space="preserve">
-    <value>ブラウザのエラーログを保存する *</value>
+  <data name="MissionClearFlagshipLv" xml:space="preserve">
+    <value>Flagship Lv</value>
   </data>
-  <data name="FormBrowser_SavesBrowserLog.Tooltip" xml:space="preserve">
-    <value>有効な場合、BrowserLog.log にブラウザのエラーログを保存します。
-問題解決に役立つかもしれませんが、書き込みによって動作が重くなる可能性があります。</value>
+  <data name="MissionClearSmallShipCount" xml:space="preserve">
+    <value>(DD+DE)</value>
   </data>
-  <data name="label9.Text" xml:space="preserve">
-    <value>レコードの自動保存：</value>
+  <data name="MissionClearAircraftCarrierCount" xml:space="preserve">
+    <value>(CV+CVL+AV)</value>
   </data>
-  <data name="Control_ShowExpeditionAlertDialog.Text" xml:space="preserve">
-    <value>失敗する遠征出撃時に警告する</value>
+  <data name="MissionClearSubmarineCount" xml:space="preserve">
+    <value>(SS+SSV)</value>
   </data>
-  <data name="Control_ShowExpeditionAlertDialog.Tooltip" xml:space="preserve">
-    <value>編成条件を満たさない艦隊が遠征に出発したときに、警告ダイアログを表示するかを指定します。</value>
+  <data name="MissionClearEscortLeaderCount" xml:space="preserve">
+    <value>(CL+CT+CVE)</value>
   </data>
-  <data name="Control_ShowSallyAreaAlertDialog.Text" xml:space="preserve">
-    <value>出撃札がない艦娘が出撃したとき警告する</value>
+  <data name="MissionClearFlagshipType" xml:space="preserve">
+    <value>Flagship: </value>
   </data>
-  <data name="Control_ShowSallyAreaAlertDialog.Tooltip" xml:space="preserve">
-    <value>出撃制限の札がついていない艦娘がイベント海域に出撃したとき、警告ダイアログを表示するかを指定します。
-得られる情報が不完全な関係上、誤判定を起こす可能性があります。ご了承ください。</value>
+  <data name="MissionClearFlagshipEscortAircraftCarrier" xml:space="preserve">
+    <value>Flagship: CVE</value>
+  </data>
+  <data name="MissionClearFirepower" xml:space="preserve">
+    <value>FP</value>
+  </data>
+  <data name="MissionClearAa" xml:space="preserve">
+    <value>AA</value>
+  </data>
+  <data name="MissionClearLos" xml:space="preserve">
+    <value>LOS</value>
+  </data>
+  <data name="MissionClearAsw" xml:space="preserve">
+    <value>ASW</value>
+  </data>
+  <data name="MissionClearEquippedShipCount" xml:space="preserve">
+    <value>{0}: {1}{2} ships</value>
+  </data>
+  <data name="MissionClearSuccess" xml:space="preserve">
+    <value>Success </value>
+  </data>
+  <data name="MissionClearFailure" xml:space="preserve">
+    <value>Failure </value>
+  </data>
+  <data name="MissionClearEscortFleet" xml:space="preserve">
+    <value>Escort (1CL 2DD)</value>
+  </data>
+  <data name="MissionClearEscortFleetDD3" xml:space="preserve">
+    <value>Escort (1CL 3DD)</value>
+  </data>
+  <data name="MissionClearIncompatible" xml:space="preserve">
+    <value>Incompatible</value>
+  </data>
+  <data name="MissionClearEquipmentCount" xml:space="preserve">
+    <value>{0}: {1}{2} pcs</value>
+  </data>
+  <data name="MissionClearUnverified" xml:space="preserve">
+    <value>(Unverified)</value>
+  </data>
+  <data name="MissionClearParameter" xml:space="preserve">
+    <value>{1}{2} {0}</value>
+  </data>
+  <data name="MissionClearShipCount" xml:space="preserve">
+    <value>{1}{2} {0}</value>
   </data>
 </root>

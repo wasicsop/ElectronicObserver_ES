@@ -165,4 +165,7 @@
   <data name="NumberOfTimes" xml:space="preserve">
     <value> times</value>
   </data>
+  <data name="GaugeIndex" xml:space="preserve">
+    <value> (Phase {0})</value>
+  </data>
 </root>

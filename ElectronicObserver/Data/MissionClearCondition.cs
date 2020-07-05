@@ -451,14 +451,14 @@ namespace ElectronicObserver.Data
 						// イベント海域での支援遠征への対応
 						var mission = KCDatabase.Instance.Mission[missionID];
 
-						if (mission != null && (mission.Name == "前衛支援任務" || mission.Name == "艦隊決戦支援任務"))
+						if (mission != null && (mission.Name == "前衛支援任務" || mission.Name == "艦隊決戦支援任務" || mission.Name == "Vanguard Support Missions (1)" || mission.Name == "Vanguard Support Missions (2)"))
 						{
 							return result
 								.CheckShipCountByType(ShipTypes.Destroyer, 2);
 						}
 
 						return result
-							.AddMessage($"未対応(ID:{missionID})");
+							.AddMessage(DataRes.MissionClearIncompatible + $"(ID:{missionID})");
 					}
 			}
 		}
@@ -513,7 +513,7 @@ namespace ElectronicObserver.Data
 			}
 			public MissionClearConditionResult SuppressWarnings()
 			{
-				failureReason.Add("(未確定)");
+				failureReason.Add(DataRes.MissionClearUnverified);
 				IsSuceeded = true;
 				return this;
 			}
@@ -542,7 +542,7 @@ namespace ElectronicObserver.Data
 			{
 				int actualLevel = members.FirstOrDefault()?.Level ?? 0;
 				Assert(actualLevel >= leastLevel,
-					() => $"旗艦Lv{CurrentValue(actualLevel)}{leastLevel}");
+					() => DataRes.MissionClearFlagshipLv + $"{CurrentValue(actualLevel)}{leastLevel}");
 				return this;
 			}
 
@@ -550,7 +550,7 @@ namespace ElectronicObserver.Data
 			{
 				int actualSum = members.Sum(s => s.Level);
 				Assert(actualSum >= leastSum,
-					() => $"Lv合計{CurrentValue(actualSum)}{leastSum}");
+					() => DataRes.MissionClearShipLvSum + $"{CurrentValue(actualSum)}{leastSum}");
 				return this;
 			}
 
@@ -559,7 +559,7 @@ namespace ElectronicObserver.Data
 				int actualCount = members.Count();
 				Assert(
 					actualCount >= leastCount,
-					() => $"艦船数{CurrentValue(actualCount)}{leastCount}");
+					() => string.Format(DataRes.MissionClearTotalShipCount, CurrentValue(actualCount), leastCount));
 				return this;
 			}
 
@@ -569,7 +569,7 @@ namespace ElectronicObserver.Data
 				int actualCount = members.Count(predicate);
 				Assert(
 					actualCount >= leastCount,
-					() => $"{whatis}{CurrentValue(actualCount)}{leastCount}");
+					() => string.Format(DataRes.MissionClearShipCount, whatis, CurrentValue(actualCount), leastCount));
 				return this;
 			}
 
@@ -577,16 +577,16 @@ namespace ElectronicObserver.Data
 				CheckShipCount(s => s.MasterShip.ShipType == shipType, leastCount, KCDatabase.Instance.ShipTypes[(int)shipType].Name);
 
 			public MissionClearConditionResult CheckSmallShipCount(int leastCount) =>
-				CheckShipCount(s => s.MasterShip.ShipType == ShipTypes.Destroyer || s.MasterShip.ShipType == ShipTypes.Escort, leastCount, "(駆逐+海防)");
+				CheckShipCount(s => s.MasterShip.ShipType == ShipTypes.Destroyer || s.MasterShip.ShipType == ShipTypes.Escort, leastCount, DataRes.MissionClearSmallShipCount);
 
 			public MissionClearConditionResult CheckAircraftCarrierCount(int leastCount) =>
-				CheckShipCount(s => s.MasterShip.IsAircraftCarrier || s.MasterShip.ShipType == ShipTypes.SeaplaneTender, leastCount, "空母系");
+				CheckShipCount(s => s.MasterShip.IsAircraftCarrier || s.MasterShip.ShipType == ShipTypes.SeaplaneTender, leastCount, DataRes.MissionClearAircraftCarrierCount);
 
 			public MissionClearConditionResult CheckSubmarineCount(int leastCount) =>
-			   CheckShipCount(s => s.MasterShip.IsSubmarine, leastCount, "潜水艦系");
+			   CheckShipCount(s => s.MasterShip.IsSubmarine, leastCount, DataRes.MissionClearSubmarineCount);
 
 			public MissionClearConditionResult CheckEscortLeaderCount(int leastCount) =>
-				CheckShipCount(s => s.MasterShip.ShipType == ShipTypes.LightCruiser || s.MasterShip.ShipType == ShipTypes.TrainingCruiser || s.MasterShip.IsEscortAircraftCarrier, leastCount, "(軽巡+練巡+護衛空母)");
+				CheckShipCount(s => s.MasterShip.ShipType == ShipTypes.LightCruiser || s.MasterShip.ShipType == ShipTypes.TrainingCruiser || s.MasterShip.IsEscortAircraftCarrier, leastCount, DataRes.MissionClearEscortLeaderCount);
 
 			public MissionClearConditionResult CheckEscortFleet()
 			{
@@ -602,7 +602,7 @@ namespace ElectronicObserver.Data
 					(destroyer >= 1 && escort >= 3) ||
 					(trainingCruiser >= 1 && escort >= 2),
 					//() => "[軽巡+(駆逐+海防)2 or 護衛空母+(駆逐2 or 海防2) or 駆逐+海防3 or 練巡+海防2]"       // 厳密だけど長いので
-					() => "護衛隊(軽巡1駆逐2他)"
+					() => DataRes.MissionClearEscortFleet
 					);
 				return this;
 			}
@@ -622,7 +622,7 @@ namespace ElectronicObserver.Data
 					(destroyer >= 1 && escort >= 3) ||
 					(trainingCruiser >= 1 && escort >= 2),
 					//() => "[軽巡+(駆逐+海防)3 or 軽巡+海防2 or 護衛空母+(駆逐2 or 海防2) or 駆逐+海防3 or 練巡+海防2]"       // 厳密だけど長いので
-					() => "護衛隊(軽巡1駆逐3他)"
+					() => DataRes.MissionClearEscortFleetDD3
 					);
 				return this;
 			}
@@ -631,7 +631,7 @@ namespace ElectronicObserver.Data
 			{
 				Assert(
 				   members.FirstOrDefault()?.MasterShip?.ShipType == shipType,
-					() => $"旗艦:{KCDatabase.Instance.ShipTypes[(int)shipType].Name}");
+					() => DataRes.MissionClearFlagshipType + $"{KCDatabase.Instance.ShipTypes[(int)shipType].Name}");
 				return this;
 			}
 
@@ -639,7 +639,7 @@ namespace ElectronicObserver.Data
 			{
 				Assert(
 				   members.FirstOrDefault()?.MasterShip.IsEscortAircraftCarrier ?? false,
-					() => "旗艦:護衛空母");
+					() => DataRes.MissionClearFlagshipEscortAircraftCarrier);
 				return this;
 			}
 
@@ -649,18 +649,18 @@ namespace ElectronicObserver.Data
 				int actualSum = members.Sum(s => selector(s));
 				Assert(
 					actualSum >= leastSum,
-					() => $"{parameterName}{CurrentValue(actualSum)}{leastSum}");
+					() => string.Format(DataRes.MissionClearParameter, parameterName, CurrentValue(actualSum), leastSum));
 				return this;
 			}
 
 			public MissionClearConditionResult CheckFirepower(int leastSum) =>
-			   CheckParameter(s => s.FirepowerTotal, leastSum, "火力");
+			   CheckParameter(s => s.FirepowerTotal, leastSum, DataRes.MissionClearFirepower);
 
 			public MissionClearConditionResult CheckAA(int leastSum) =>
-				CheckParameter(s => s.AATotal, leastSum, "対空");
+				CheckParameter(s => s.AATotal, leastSum, DataRes.MissionClearAa);
 
 			public MissionClearConditionResult CheckLOS(int leastSum) =>
-			   CheckParameter(s => s.LOSTotal, leastSum, "索敵");
+			   CheckParameter(s => s.LOSTotal, leastSum, DataRes.MissionClearLos);
 
 
 			public MissionClearConditionResult CheckASW(int leastSum) =>
@@ -676,14 +676,14 @@ namespace ElectronicObserver.Data
 						default:
 							return 0;
 					}
-				}), leastSum, "対潜");
+				}), leastSum, DataRes.MissionClearAsw);
 
 
 			public MissionClearConditionResult CheckEquipmentCount(Func<IEquipmentData, bool> predicate, int leastCount, string whatis)
 			{
 				int actualCount = members.Sum(s => s.AllSlotInstance.Count(eq => eq != null && predicate(eq)));
 				Assert(actualCount >= leastCount,
-					() => $"{whatis}:装備数{CurrentValue(actualCount)}{leastCount}");
+					() => string.Format(DataRes.MissionClearEquipmentCount, whatis, CurrentValue(actualCount), leastCount));
 				return this;
 			}
 
@@ -695,7 +695,7 @@ namespace ElectronicObserver.Data
 			{
 				int actualCount = members.Count(s => s.AllSlotInstance.Any(eq => eq != null && predicate(eq)));
 				Assert(actualCount >= leastCount,
-					() => $"{whatis}:装備艦船数{CurrentValue(actualCount)}{leastCount}");
+					() => string.Format(DataRes.MissionClearEquippedShipCount, whatis, CurrentValue(actualCount), leastCount));
 				return this;
 			}
 
@@ -706,7 +706,7 @@ namespace ElectronicObserver.Data
 
 			public override string ToString()
 			{
-				return (IsSuceeded ? "成功" : "失敗") + (FailureReason.Count == 0 ? "" : (" - " + string.Join(", ", FailureReason)));
+				return (IsSuceeded ? DataRes.MissionClearSuccess : DataRes.MissionClearFailure) + (FailureReason.Count == 0 ? "" : (" - " + string.Join(", ", FailureReason)));
 			}
 		}
 

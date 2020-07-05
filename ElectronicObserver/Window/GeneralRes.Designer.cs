@@ -405,6 +405,16 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ブラウザが起動していません。
+        ///クリックすると起動します。.
+        /// </summary>
+        internal static string BrowserProcessClickStart {
+            get {
+                return ResourceManager.GetString("BrowserProcessClickStart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 高速修復材.
         /// </summary>
         internal static string Bucket {
@@ -966,6 +976,28 @@ namespace ElectronicObserver.Window {
         internal static string Expansion {
             get {
                 return ResourceManager.GetString("Expansion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to #{0} {1} の遠征 {2}:{3} は、失敗する可能性があります。
+        ///
+        ///{4}
+        ///
+        ///（この警告は 設定→動作 から無効化できます。）.
+        /// </summary>
+        internal static string ExpeditionFailureWarningMessage {
+            get {
+                return ResourceManager.GetString("ExpeditionFailureWarningMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 遠征失敗警告.
+        /// </summary>
+        internal static string ExpeditionFailureWarningTitle {
+            get {
+                return ResourceManager.GetString("ExpeditionFailureWarningTitle", resourceCulture);
             }
         }
         

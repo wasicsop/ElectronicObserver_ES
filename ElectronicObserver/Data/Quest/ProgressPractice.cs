@@ -60,11 +60,23 @@ namespace ElectronicObserver.Data.Quest
 
 			return questId switch
 			{
+				325 => ships.Any(s => s.MasterShip.ShipID == (int) ShipId.YuugumoKaiNi) &&
+					   ships.Any(s => s.MasterShip.ShipID == (int) ShipId.NaganamiKaiNi),
+				328 => ships.Any(s => s.MasterShip.ShipID == (int) ShipId.IsokazeBKai) &&
+					   ships.Any(s => s.MasterShip.ShipID == (int) ShipId.HamakazeBKai) &&
+					   ships.Any(s => s.MasterShip.ShipID == (int) ShipId.UrakazeDKai) &&
+					   ships.Any(s => s.MasterShip.ShipID == (int) ShipId.TanikazeDKai),
 				329 => ships.Count(s => s.MasterShip.ShipType == ShipTypes.Destroyer ||
-				                                        s.MasterShip.ShipType == ShipTypes.Escort) >= 2,
+									s.MasterShip.ShipType == ShipTypes.Escort) >= 2,
 				330 => ships[0].MasterShip.IsAircraftCarrier &&
 				       ships.Count(s => s.MasterShip.IsAircraftCarrier) >= 2 &&
 				       ships.Count(s => s.MasterShip.ShipType == ShipTypes.Destroyer) >= 2,
+				331 => ships[0].MasterShip.IsRegularCarrier &&
+					   ships.Count(s => s.MasterShip.IsRegularCarrier) >= 2 &&
+					   ships.Count(s => s.MasterShip.ShipType == ShipTypes.Destroyer) >= 2,
+				336 => ships.Count(s => s.MasterShip.ShipType == ShipTypes.AmphibiousAssaultShip ||
+									s.MasterShip.ShipType == ShipTypes.FleetOiler ||
+									s.MasterShip.ShipType == ShipTypes.Escort) >= 2,
 				337 => ships.Any(s => s.MasterShip.BaseShip().ShipID == (int) ShipId.Kagerou) &&
 				       ships.Any(s => s.MasterShip.BaseShip().ShipID == (int) ShipId.Shiranui) &&
 				       ships.Any(s => s.MasterShip.BaseShip().ShipID == (int) ShipId.Arare) &&

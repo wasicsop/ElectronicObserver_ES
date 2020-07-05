@@ -81,27 +81,27 @@ namespace ElectronicObserver.Observer.kcsapi.api_get_member
 						range != 0)
 					{
 						var sb = new StringBuilder();
-						sb.Append("装備シナジーを検出しました：");
+						sb.Append(ObserverRes.DetectedSynergy);
 
 						var a = new List<string>();
 						if (firepower != 0)
-							a.Add($"火力{firepower:+#;-#;0}");
+							a.Add(ObserverRes.Firepower + $"{firepower:+#;-#;0}");
 						if (torpedo != 0)
-							a.Add($"雷装{torpedo:+#;-#;0}");
+							a.Add(ObserverRes.Torpedo + $"{torpedo:+#;-#;0}");
 						if (aa != 0)
-							a.Add($"対空{aa:+#;-#;0}");
+							a.Add(ObserverRes.AntiAir + $"{aa:+#;-#;0}");
 						if (armor != 0)
-							a.Add($"装甲{armor:+#;-#;0}");
+							a.Add(ObserverRes.Armor + $"{armor:+#;-#;0}");
 						if (asw != 0)
-							a.Add($"対潜{asw:+#;-#;0}");
+							a.Add(ObserverRes.Asw + $"{asw:+#;-#;0}");
 						if (evasion != 0)
-							a.Add($"回避{evasion:+#;-#;0}");
+							a.Add(ObserverRes.Evasion + $"{evasion:+#;-#;0}");
 						if (los != 0)
-							a.Add($"索敵{los:+#;-#;0}");
+							a.Add(ObserverRes.Los + $"{los:+#;-#;0}");
 						if (luck != 0)
-							a.Add($"運{luck:+#;-#;0}");
+							a.Add(ObserverRes.Luck + $"{luck:+#;-#;0}");
 						if (range != 0)
-							a.Add($"射程{range:+#;-#;0}");
+							a.Add(ObserverRes.Range + $"{range:+#;-#;0}");
 
 						sb.Append(string.Join(", ", a));
 

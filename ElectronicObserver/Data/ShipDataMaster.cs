@@ -384,6 +384,11 @@ namespace ElectronicObserver.Data
 		bool IsAircraftCarrier { get; }
 
 		/// <summary>
+		/// Regular Carrier (CV/CVB)
+		/// </summary>
+		bool IsRegularCarrier { get; }
+
+		/// <summary>
 		/// 護衛空母か
 		/// </summary>
 		bool IsEscortAircraftCarrier { get; }
@@ -1065,6 +1070,11 @@ namespace ElectronicObserver.Data
 		/// 空母系か (軽空母/正規空母/装甲空母)
 		/// </summary>
 		public bool IsAircraftCarrier => ShipType == ShipTypes.LightAircraftCarrier || ShipType == ShipTypes.AircraftCarrier || ShipType == ShipTypes.ArmoredAircraftCarrier;
+
+		/// <summary>
+		/// Regular Carrier (CV/CVB)
+		/// </summary>
+		public bool IsRegularCarrier => ShipType == ShipTypes.AircraftCarrier || ShipType == ShipTypes.ArmoredAircraftCarrier;
 
 		/// <summary>
 		/// 護衛空母か

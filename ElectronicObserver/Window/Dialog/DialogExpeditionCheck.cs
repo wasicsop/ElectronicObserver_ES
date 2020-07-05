@@ -23,8 +23,8 @@ namespace ElectronicObserver.Window.Dialog
         {
             if (!KCDatabase.Instance.Mission.Any())
             {
-                MessageBox.Show("遠征データが読み込まれていません。\r\n艦これに再ログインし、母港画面を開いてください。",
-                    "マスタデータ未ロード", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(DialogRes.ExpeditionNotLoadedMessage,
+					DialogRes.ExpeditionNotLoadedTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Close();
                 return;
             }
@@ -78,7 +78,7 @@ namespace ElectronicObserver.Window.Dialog
                     if (result.IsSuceeded || i == 3)
                     {
                         if (!result.FailureReason.Any())
-                            cell.Value = "○";
+                            cell.Value = DialogRes.ExpeditionCheckOkSign;
                         else
                             cell.Value = string.Join(", ", result.FailureReason);
 
@@ -154,5 +154,5 @@ namespace ElectronicObserver.Window.Dialog
         {
             ResourceManager.DestroyIcon(Icon);
         }
-    }
+	}
 }

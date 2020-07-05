@@ -253,4 +253,30 @@ if (node) document.getElementsByTagName('head')[0].removeChild(node);</value>
   <data name="ClearCache" xml:space="preserve">
     <value>キャッシュを削除</value>
   </data>
+  <data name="RenderProcessTerminatedBy" xml:space="preserve">
+    <value>ブラウザの描画プロセスが</value>
+  </data>
+  <data name="RenderProcessAbnormalTermination" xml:space="preserve">
+    <value>正常に終了しませんでした。</value>
+  </data>
+  <data name="RenderProcessProcessWasKilled" xml:space="preserve">
+    <value>何者かによって殺害されました。</value>
+  </data>
+  <data name="RenderProcessProcessCrashed" xml:space="preserve">
+    <value>クラッシュしました。</value>
+  </data>
+  <data name="RenderProcessUnexpectedTermination" xml:space="preserve">
+    <value>謎の死を遂げました。</value>
+  </data>
+  <data name="RenderProcessReturnWhenReloaded" xml:space="preserve">
+    <value>再読み込みすると復帰します。</value>
+  </data>
+  <data name="ClearCacheMessage" xml:space="preserve">
+    <value>キャッシュをクリアするため、ブラウザを再起動します。
+よろしいですか？
+※環境によっては本ツールが終了する場合があります。その場合は再起動してください。</value>
+  </data>
+  <data name="ClearCacheTitle" xml:space="preserve">
+    <value>ブラウザ再起動確認</value>
+  </data>
 </root>
