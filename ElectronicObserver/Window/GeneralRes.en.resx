@@ -850,4 +850,14 @@ Denial: {3}</value>
     <value>The browser process is not running.
 Please click here to restart.</value>
   </data>
+  <data name="ExpeditionFailureWarningTitle" xml:space="preserve">
+    <value>Expedition Requirements</value>
+  </data>
+  <data name="ExpeditionFailureWarningMessage" xml:space="preserve">
+    <value>Fleet #{0} expedition to {2} may fail due to:
+
+{4}
+
+   (This check can be disabled in Settings &gt; Behavior)</value>
+  </data>
 </root>

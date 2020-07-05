@@ -660,7 +660,7 @@ namespace ElectronicObserver.Window
 			if (id != -1 && (quest != null || progress != null))
 			{
 
-				if (MessageBox.Show("Quest " + (quest != null ? ("『" + quest.Name + "』") : ("ID: " + id.ToString() + " ")) + " will be deleted from the list and have its progress reset.\r\nAre you sure?", "Confirm Quest Reset",
+				if (MessageBox.Show("Quest " + (quest != null ? ("『" + quest.Name + "』") : ("ID: " + id.ToString() + " ")) + " will be deleted from the list and have its progress reset.\r\nAre you sure?", "Reset Quest Progress",
 					MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1) == System.Windows.Forms.DialogResult.Yes)
 				{
 

@@ -32,7 +32,7 @@ namespace ElectronicObserver.Observer.kcsapi.api_req_mission
 			Utility.Logger.Add(2, string.Format("#{0} 「{1}」 has returned from expedition 「{2}: {3}」.",
 				fleet.FleetID,
 				fleet.Name,
-				fleet.ExpeditionDestination,
+				KCDatabase.Instance.Mission[fleet.ExpeditionDestination].DisplayID,
 				Window.FormMain.Instance.Translator.GetTranslation(data.api_quest_name, Utility.TranslationType.ExpeditionTitle)));
 
 

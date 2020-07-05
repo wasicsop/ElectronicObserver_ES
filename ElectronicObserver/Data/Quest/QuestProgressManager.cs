@@ -752,11 +752,23 @@ namespace ElectronicObserver.Data.Quest
 						case 311:   //|311|精鋭艦隊演習|演習勝利7|マンスリーだが1日で進捗リセット
 							Progresses.Add(new ProgressPractice(q, 7, true));
 							break;
+						case 325: //C23
+							Progresses.Add(new ProgressPractice(q, 4, true));
+							break;
+						case 328: //C27
+							Progresses.Add(new ProgressPractice(q, 4, true));
+							break;
 						case 329:   //|329|【節分任務】節分演習！|演習S勝利3|(駆逐or海防)2
 							Progresses.Add(new ProgressPractice(q, 3, "S"));
 							break;
 						case 330:   //|330|空母機動部隊、演習始め！|演習B勝利4|旗艦空母+空母1+駆逐2|クォータリーだが1日で進捗リセット
 							Progresses.Add(new ProgressPractice(q, 4, "B"));
+							break;
+						case 331: //C31
+							Progresses.Add(new ProgressPractice(q, 3, "A"));
+							break;
+						case 336:
+							Progresses.Add(new ProgressPractice(q, 4, "A"));
 							break;
 						case 337:   //|337|「十八駆」演習！|演習S勝利3|霞+霰+陽炎+不知火|クォータリーだが1日で進捗リセット
 							Progresses.Add(new ProgressPractice(q, 3, "S"));
@@ -788,6 +800,12 @@ namespace ElectronicObserver.Data.Quest
 							Progresses.Add(new ProgressExpedition(q, 4, new[] { 5 }));
 							Progresses[q.QuestID].SharedCounterShift = 1;
 							break;
+						case 425: //D23
+							Progresses.Add(new ProgressMultiExpedition(q, new[]{
+								new ProgressExpedition(q, 1, new[]{ 4 }),
+								new ProgressExpedition(q, 1, new[]{ 5 }),
+								new ProgressExpedition(q, 1, new[]{ 9 }),
+							})); break;
 						case 426:   //|426|季|海上通商航路の警戒を厳とせよ！|「警備任務」「対潜警戒任務」「海上護衛任務」「強行偵察任務」成功各1|3エリア達成時点で80%				 
 							Progresses.Add(new ProgressMultiExpedition(q, new[]{
 								new ProgressExpedition(q, 1, new[]{ 3 }),
@@ -796,6 +814,9 @@ namespace ElectronicObserver.Data.Quest
 								new ProgressExpedition(q, 1, new[]{ 10 }),
 							}));
 							break;
+						case 427: //D25
+							Progresses.Add(new ProgressExpedition(q, 1, new[] { 100 }));
+							break;
 						case 428:   //|428|季|近海に侵入する敵潜を制圧せよ！|「対潜警戒任務」「海峡警備行動」「長時間対潜警戒」成功各2|1エリア達成ごとに進捗が進む
 							Progresses.Add(new ProgressMultiExpedition(q, new[]{
 								new ProgressExpedition(q, 2, new[]{ 4 }),
@@ -803,6 +824,26 @@ namespace ElectronicObserver.Data.Quest
 								new ProgressExpedition(q, 2, new[]{ 102 }),
 							}));
 							break;
+						case 429: //D27
+							Progresses.Add(new ProgressMultiExpedition(q, new[]{
+								new ProgressExpedition(q, 1, new[]{ 3 }),
+								new ProgressExpedition(q, 1, new[]{ 100 }),
+								new ProgressExpedition(q, 1, new[]{ 110 }),
+							})); break;
+						case 430: //D28
+							Progresses.Add(new ProgressMultiExpedition(q, new[]{
+								new ProgressExpedition(q, 1, new[]{ 5 }),
+								new ProgressExpedition(q, 1, new[]{ 9 }),
+								new ProgressExpedition(q, 1, new[]{ 100 }),
+								new ProgressExpedition(q, 1, new[]{ 101 }),
+							})); break;
+						case 431: //D29
+							Progresses.Add(new ProgressMultiExpedition(q, new[]{
+								new ProgressExpedition(q, 1, new[]{ 17 }),
+								new ProgressExpedition(q, 1, new[]{ 100 }),
+								new ProgressExpedition(q, 1, new[]{ 101 }),
+								new ProgressExpedition(q, 1, new[]{ 110 }),
+							})); break;
 						case 432: // D30
 							Progresses.Add(new ProgressMultiExpedition(q, new[]
 							{
@@ -811,7 +852,15 @@ namespace ElectronicObserver.Data.Quest
 								new ProgressExpedition(q, 1, new[]{ 110 }),
 							}));
 							break;
-                        case 434:   //|434|年(2月)|特設護衛船団司令部、活動開始！|「警備任務」「海上護衛任務」「兵站強化任務」「海峡警備行動」「タンカー護衛任務」成功各1|
+						case 433: //D31
+							Progresses.Add(new ProgressMultiExpedition(q, new[]{
+								new ProgressExpedition(q, 1, new[]{ 35 }),
+								new ProgressExpedition(q, 1, new[]{ 36 }),
+								new ProgressExpedition(q, 1, new[]{ 37 }),
+								new ProgressExpedition(q, 1, new[]{ 38 }),
+								new ProgressExpedition(q, 1, new[]{ 40 }),
+							})); break;
+						case 434:   //|434|年(2月)|特設護衛船団司令部、活動開始！|「警備任務」「海上護衛任務」「兵站強化任務」「海峡警備行動」「タンカー護衛任務」成功各1|
 							Progresses.Add(new ProgressMultiExpedition(q, new[]{
 								new ProgressExpedition(q, 1, new[]{ 3 }),
 								new ProgressExpedition(q, 1, new[]{ 5 }),
@@ -820,6 +869,14 @@ namespace ElectronicObserver.Data.Quest
 								new ProgressExpedition(q, 1, new[]{ 9 }),
 							}));
 							break;
+						case 435: //20WiD1
+							Progresses.Add(new ProgressMultiExpedition(q, new[]{
+								new ProgressExpedition(q, 1, new[]{ 4 }),
+								new ProgressExpedition(q, 1, new[]{ 10 }),
+								new ProgressExpedition(q, 1, new[]{ 11 }),
+								new ProgressExpedition(q, 1, new[]{ 102 }),
+								new ProgressExpedition(q, 1, new[]{ 110 }),
+							})); break;
 						case 436:   //|436|年(3月)|練習航海及び警備任務を実施せよ！|「練習航海」「長距離練習航海」「警備任務」「対潜警戒任務」「強行偵察任務」成功各1|
 							Progresses.Add(new ProgressMultiExpedition(q, new[]{
 								new ProgressExpedition(q, 1, new[]{ 1 }),
@@ -827,6 +884,13 @@ namespace ElectronicObserver.Data.Quest
 								new ProgressExpedition(q, 1, new[]{ 3 }),
 								new ProgressExpedition(q, 1, new[]{ 4 }),
 								new ProgressExpedition(q, 1, new[]{ 10 }),
+							})); break;
+						case 437: //D34
+							Progresses.Add(new ProgressMultiExpedition(q, new[]{
+								new ProgressExpedition(q, 1, new[]{ 4 }),
+								new ProgressExpedition(q, 1, new[]{ 104 }),
+								new ProgressExpedition(q, 1, new[]{ 105 }),
+								new ProgressExpedition(q, 1, new[]{ 110 }),
 							})); break;
 
 						case 503:   //|503|艦隊大整備！|入渠5
@@ -923,6 +987,12 @@ namespace ElectronicObserver.Data.Quest
 								new ProgressDiscard(q, 4, true, new[]{ 12, 13 }),
 							}));
 							break;
+						case 685: //F76
+							Progresses.Add(new ProgressMultiDiscard(q, new[]{
+								new ProgressDiscard(q, 4, true, new[]{ 3 }, -1),
+								new ProgressDiscard(q, 1, true, new[]{ 121 }, -1),
+							}));
+							break;
 						case 686:   //|686|季|戦時改修A型高角砲の量産|12.7cm連装砲A型改二★10を第一スロ装備の特型駆逐艦旗艦, (10cm連装高角砲x4, 94式高射装置x1)廃棄, (開発資材30, 鋼材900, 新型砲熕兵装資材1)保有
 							Progresses.Add(new ProgressMultiDiscard(q, new[]{
 								new ProgressDiscard(q, 4, true, new[]{ 3 }, -1),
@@ -935,6 +1005,13 @@ namespace ElectronicObserver.Data.Quest
 								new ProgressDiscard(q, 3, true, new[]{ 7 }),
 								new ProgressDiscard(q, 3, true, new[]{ 8 }),
 								new ProgressDiscard(q, 3, true, new[]{ 10 }),
+							}));
+							break;
+						case 690: //F81
+							Progresses.Add(new ProgressMultiDiscard(q, new[]{
+								new ProgressDiscard(q, 4, true, new[]{ 6 }),
+								new ProgressDiscard(q, 4, true, new[]{ 7 }),
+								new ProgressDiscard(q, 4, true, new[]{ 8 }),
 							}));
 							break;
 						case 621:   // F89
