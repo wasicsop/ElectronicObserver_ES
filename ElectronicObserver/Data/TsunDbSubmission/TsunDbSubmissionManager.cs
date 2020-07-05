@@ -33,27 +33,31 @@ namespace ElectronicObserver.Data
 						}
 						break;
 					case "api_req_map/start":
+					{
 						RoutingSubmission = jData.IsDefined("api_eventmap") ? new TsunDbEventRouting() : new TsunDbRouting();
 
 						RoutingSubmission.ProcessStart(data);
 
-						if (RoutingSubmission.GetType() == typeof(TsunDbEventRouting))
+						if (RoutingSubmission is TsunDbEventRouting routing)
 						{
-							(RoutingSubmission as TsunDbEventRouting).ProcessEvent(data);
+							routing.ProcessEvent(data);
 						}
 
 						RoutingSubmission.SendData();
 						break;
+					}
 					case "api_req_map/next":
+					{
 						RoutingSubmission.ProcessNext(data);
 
-						if (RoutingSubmission.GetType() == typeof(TsunDbEventRouting))
+						if (RoutingSubmission is TsunDbEventRouting routing)
 						{
-							(RoutingSubmission as TsunDbEventRouting).ProcessEvent(data);
+							routing.ProcessEvent(data);
 						}
 
 						RoutingSubmission.SendData();
 						break;
+					}
 				}
 			}
 			catch (Exception ex)
