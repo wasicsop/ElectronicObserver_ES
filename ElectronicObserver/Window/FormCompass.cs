@@ -884,13 +884,7 @@ namespace ElectronicObserver.Window
 
 							if (compass.RouteChoices != null)
 							{
-								var nodechoices = new string[compass.RouteChoices.Count];
-								for (int i = 0; i < compass.RouteChoices.Count; i++)
-								{
-									nodechoices[i] = FormMain.Instance.Translator.GetMapNodes(compass.MapAreaID, compass.MapInfoID,
-										compass.RouteChoices[i]);
-								}
-								TextEventDetail.Text = string.Join(" or ", nodechoices);
+								TextEventDetail.Text = string.Join(" or ", compass.RouteChoicesDisplay);
 							}
 							else if (compass.FlavorTextType != -1)
 							{

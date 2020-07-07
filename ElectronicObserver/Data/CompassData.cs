@@ -29,7 +29,10 @@ namespace ElectronicObserver.Data
 		/// </summary>
 		public int Destination => (int)RawData.api_no;
 
-		public string DestinationID => Window.FormMain.Instance.Translator.GetMapNodes(MapAreaID, MapInfoID, Destination);
+		/// <summary>
+		/// Map Node Display ID
+		/// </summary>
+		public string DestinationID => KCDatabase.Instance.Translation.Destination.DisplayID(MapAreaID, MapInfoID, Destination);
 
 		/// <summary>
 		/// 次のセルのグラフィック
@@ -236,6 +239,22 @@ namespace ElectronicObserver.Data
 				{
 					return null;
 				}
+			}
+		}
+
+		/// <summary>
+		/// Map Node Selection Display ID
+		/// </summary>
+		public string[] RouteChoicesDisplay
+		{
+			get
+			{
+				var nodes = new string[RouteChoices.Count];
+				for (int i = 0; i < RouteChoices.Count; i++)
+				{
+					nodes[i] = KCDatabase.Instance.Translation.Destination.DisplayID(MapAreaID, MapInfoID, RouteChoices[i]);
+				}
+				return nodes;
 			}
 		}
 
