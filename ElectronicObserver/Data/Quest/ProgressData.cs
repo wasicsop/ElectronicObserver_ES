@@ -171,12 +171,13 @@ namespace ElectronicObserver.Data.Quest
 							Progress = 3;
 							break;
 
-						case 337: // rounds to 3/3
-							Progress = 2;
-							break;
-
 						default:
-							Progress = (int)Math.Max(Progress, Math.Ceiling((ProgressMax + SharedCounterShift) * 0.8) - SharedCounterShift);
+							Progress = ProgressMax switch
+							{
+								3 => 2,
+								_ => Progress = (int) Math.Max(Progress,
+									Math.Ceiling((ProgressMax + SharedCounterShift) * 0.8) - SharedCounterShift)
+							};
 							break;
 					}
 					break;
