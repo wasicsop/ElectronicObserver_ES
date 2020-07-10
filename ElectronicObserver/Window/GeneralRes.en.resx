@@ -844,7 +844,13 @@ Denial: {3}</value>
     <value>Base Exp</value>
   </data>
   <data name="HighAltitudeAirState" xml:space="preserve">
-    <value>\r\nHigh Altitude：Air {0}\r\nAS+: {1}\r\nAS: {2}\r\nAP: {3}\r\nAI: {4}\r\n</value>
+    <value>
+High Altitude：Air {0}
+AS+: {1}
+AS: {2}
+AP: {3}
+AI: {4}
+</value>
   </data>
   <data name="BrowserProcessClickStart" xml:space="preserve">
     <value>The browser process is not running.

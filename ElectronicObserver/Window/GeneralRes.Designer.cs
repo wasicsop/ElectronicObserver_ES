@@ -1146,7 +1146,13 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to \r\n対高高度爆撃：制空 {0}\r\n確保: {1}\r\n優勢: {2}\r\n均衡: {3}\r\n劣勢: {4}\r\n.
+        ///   Looks up a localized string similar to 
+        ///対高高度爆撃：制空 {0}
+        ///確保: {1}
+        ///優勢: {2}
+        ///均衡: {3}
+        ///劣勢: {4}
+        ///.
         /// </summary>
         internal static string HighAltitudeAirState {
             get {

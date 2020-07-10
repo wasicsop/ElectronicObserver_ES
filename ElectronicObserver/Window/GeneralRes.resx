@@ -813,7 +813,13 @@
     <value>獲得経験値</value>
   </data>
   <data name="HighAltitudeAirState" xml:space="preserve">
-    <value>\r\n対高高度爆撃：制空 {0}\r\n確保: {1}\r\n優勢: {2}\r\n均衡: {3}\r\n劣勢: {4}\r\n</value>
+    <value>
+対高高度爆撃：制空 {0}
+確保: {1}
+優勢: {2}
+均衡: {3}
+劣勢: {4}
+</value>
   </data>
   <data name="BrowserProcessClickStart" xml:space="preserve">
     <value>ブラウザが起動していません。
