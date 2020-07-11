@@ -33,7 +33,7 @@ namespace ElectronicObserver.Observer.kcsapi.api_req_mission
 				fleet.FleetID,
 				fleet.Name,
 				KCDatabase.Instance.Mission[fleet.ExpeditionDestination].DisplayID,
-				Window.FormMain.Instance.Translator.GetTranslation(data.api_quest_name, Utility.TranslationType.ExpeditionTitle)));
+				KCDatabase.Instance.Translation.Mission.Name(data.api_quest_name)));
 
 
 			// 獲得資源表示

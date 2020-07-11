@@ -151,7 +151,7 @@ namespace ElectronicObserver.Window
 					var sb = new StringBuilder();
 
 
-					string areaName = KCDatabase.Instance.MapArea.ContainsKey( corps.MapAreaID ) ? Window.FormMain.Instance.Translator.GetTranslation( KCDatabase.Instance.MapArea[corps.MapAreaID].Name, Utility.TranslationType.OperationMaps ) : "Unknown Area";
+					string areaName = KCDatabase.Instance.MapArea.ContainsKey( corps.MapAreaID ) ? KCDatabase.Instance.MapArea[corps.MapAreaID].Name : "Unknown Area";
 
 					sb.AppendLine( "Area: " + areaName );
 

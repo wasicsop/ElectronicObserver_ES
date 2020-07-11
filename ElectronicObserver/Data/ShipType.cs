@@ -31,7 +31,7 @@ namespace ElectronicObserver.Data
 		/// <summary>
 		/// 艦種名
 		/// </summary>
-		public string Name => Window.FormMain.Instance.Translator.GetTranslation(RawData.api_name, Utility.TranslationType.ShipTypes);
+		public string Name => KCDatabase.Instance.Translation.Ship.TypeName(RawData.api_name);
 
 		/// <summary>
 		/// 入渠時間係数

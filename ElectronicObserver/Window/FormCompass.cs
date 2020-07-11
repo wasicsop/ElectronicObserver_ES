@@ -1185,7 +1185,7 @@ namespace ElectronicObserver.Window
 				var candidate = _enemyFleetCandidate[_enemyFleetCandidateIndex];
 
 
-				TextEventDetail.Text = TextEnemyFleetName.Text = candidate.FleetName;
+				TextEventDetail.Text = TextEnemyFleetName.Text = KCDatabase.Instance.Translation.Operation.FleetName(candidate.FleetName);
 
 				if (_enemyFleetCandidate.Count > _candidatesDisplayCount)
 				{

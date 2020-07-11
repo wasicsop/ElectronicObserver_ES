@@ -433,7 +433,7 @@ namespace ElectronicObserver.Window
 			StringBuilder sb = new StringBuilder();
 
             sb.AppendLine(GeneralRes.ExpeditionReturned);
-            sb.AppendLine(Window.FormMain.Instance.Translator.GetTranslation(data.api_quest_name, Utility.TranslationType.ExpeditionTitle));
+            sb.AppendLine(KCDatabase.Instance.Translation.Mission.Name(data.api_quest_name));
             sb.AppendFormat(GeneralRes.Result + ": {0}\r\n", Constants.GetExpeditionResult((int)data.api_clear_result));
             sb.AppendFormat(GeneralRes.AdmiralXP + ": +{0}\r\n", (int)data.api_get_exp);
             sb.AppendFormat(GeneralRes.ShipXP + ": +{0}\r\n", ((int[])data.api_get_ship_exp).Min());
@@ -447,7 +447,7 @@ namespace ElectronicObserver.Window
 			StringBuilder sb = new StringBuilder();
 
             sb.AppendLine(GeneralRes.BattleComplete);
-            sb.AppendFormat(GeneralRes.EnemyName + "\r\n", Window.FormMain.Instance.Translator.GetTranslation(data.api_enemy_info.api_deck_name, Utility.TranslationType.OperationSortie));
+            sb.AppendFormat(GeneralRes.EnemyName + "\r\n", KCDatabase.Instance.Translation.Operation.FleetName(data.api_enemy_info.api_deck_name));
             sb.AppendFormat("Result: {0}-rank\r\n", data.api_win_rank);
             sb.AppendFormat(GeneralRes.AdmiralXP + ": +{0}\r\n", (int)data.api_get_exp);
 

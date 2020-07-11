@@ -1,82 +1,58 @@
 ﻿using DynaJson;
+using ElectronicObserver.Utility;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Threading;
 
 namespace ElectronicObserver.Data.Translation
 {
-	public class DestinationData
+	public class DestinationData : TranslationBase
 	{
-		public string DefaultFilePath = @"data\edges.json";
-		//private readonly string DefaultFilePath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + @"ElectronicObserver\Translations\nodes.json";
+		private string DefaultFilePath = TranslationManager.WorkingFolder + @"\destination.json";
 
-		/// <summary>
-		/// Destination Node ID (e.g: 1-1-1)
-		/// </summary>
-		public string DestinationID { get; set; }
+		private Dictionary<string, string> DestinationList;
 
 		/// <summary>
 		/// Destination Node Letter ID (e.g: 1-1-A)
 		/// </summary>
 		public string DisplayID(int map, int area, int destination)
 		{
-			string id = $"{map}-{area}-{destination}";
-			string displayID = destination.ToString();
-			if (Dict.ContainsKey(id))
-			{
-				displayID = Dict[id];
-			}
-			Utility.Logger.Add(3, string.Format("{0}: {1} ", id, displayID));
-			return displayID;
+			var dest = map.ToString() + "-" + area.ToString() + "-" + destination.ToString();
+			return IsConverted(dest) ? DestinationList[dest] : destination.ToString();
 		}
+		public bool IsConverted(string dest)
+			=> Configuration.Config.UI.UseOriginalNodeId == false && DestinationList.ContainsKey(dest);
 
-		private Dictionary<string, string> Dict { get; set; }
+		public override void Initialize()
+		{
+			DestinationList = LoadDictionary(DefaultFilePath);
+		}
 
 		public DestinationData()
 		{
-			DestinationID = "";
-			Dict = Load(DefaultFilePath);
+			Initialize();
 		}
 
-		private Dictionary<string, string> Load(string path)
+		public Dictionary<string, string> LoadDictionary(string path)
 		{
 			var dict = new Dictionary<string, string>();
-			try
+
+			var json = Load(path);
+			if (json == null) return dict;
+
+			foreach (KeyValuePair<string, object> map in json)
 			{
-				using StreamReader sr = new StreamReader(path);
-				var json = JsonObject.Parse(sr.ReadToEnd());
-				foreach (KeyValuePair<string, object> world in json)
+				if (map.Key == "version") continue;
+				var destinations = JsonObject.Parse(map.Value.ToString());
+				foreach (KeyValuePair<string, dynamic> dest in destinations)
 				{
-					var destinations = JsonObject.Parse(world.Value.ToString());
-					foreach (KeyValuePair<string, object> destination in destinations)
-					{
-						var arr = JsonObject.Parse(destination.Value.ToString());
-						string destinationID = world.Key.ToString().Remove(0, 6) + "-" + destination.Key.ToString();
-						string destinationDisplayID = arr[1].ToString();
-
-						dict.Add(destinationID, destinationDisplayID);
-						//Utility.Logger.Add(3, string.Format("{0}: {1} .", destinationID, destinationDisplayID));
-					}
+					string area = map.Key.Remove(0, 6);
+					string destination = $"{area}-{dest.Key}";
+					string displayID = dest.Value[1];
+					dict.TryAdd(destination, displayID);
 				}
-			}
-			catch (FileNotFoundException)
-			{
-
-				Utility.Logger.Add(3, string.Format("{0}: {1} does not exists.", GetType().Name, path));
-
-			}
-			catch (DirectoryNotFoundException)
-			{
-
-				Utility.Logger.Add(3, string.Format("{0}: {1} does not exists.", GetType().Name, path));
-
-			}
-			catch (Exception ex)
-			{
-
-				Utility.ErrorReporter.SendErrorReport(ex, " Failed to load " + GetType().Name);
-
 			}
 			return dict;
 		}

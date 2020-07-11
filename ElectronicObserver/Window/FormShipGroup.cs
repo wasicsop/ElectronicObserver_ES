@@ -747,7 +747,7 @@ namespace ElectronicObserver.Window
 
 			if (e.ColumnIndex == ShipView_ShipType.Index)
 			{
-				e.Value = FormMain.Instance.Translator.GetTranslation(KCDatabase.Instance.ShipTypes[(int)e.Value].Name, TranslationType.ShipTypes);
+				e.Value = KCDatabase.Instance.ShipTypes[(int)e.Value].Name;
 				e.FormattingApplied = true;
 
             }

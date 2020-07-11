@@ -380,7 +380,7 @@ namespace ElectronicObserver.Data.Battle
 			{
 				Utility.Logger.Add(2,
 					string.Format("Battled with 「{3}」 in {0}-{1}-{2} (Rank: {4}, Admiral exp+{5}, Ship exp+{6}).",
-						Compass.MapAreaID, Compass.MapInfoID, Compass.DestinationID, Result.EnemyFleetName, Result.Rank, Result.AdmiralExp, Result.BaseExp));
+						Compass.MapAreaID, Compass.MapInfoID, Compass.DestinationID, KCDatabase.Instance.Translation.Operation.FleetName(Result.EnemyFleetName), Result.Rank, Result.AdmiralExp, Result.BaseExp));
 			}
 
 

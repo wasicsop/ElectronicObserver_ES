@@ -77,7 +77,6 @@ namespace ElectronicObserver.Window
 
 		#endregion
 
-		public DynamicTranslator Translator { get; private set; }
 
 
 
@@ -112,7 +111,6 @@ namespace ElectronicObserver.Window
 
 			Utility.Configuration.Instance.Load(this);
 
-			Translator = new DynamicTranslator();
 			this.MainDockPanel.Styles = Configuration.Config.UI.DockPanelSuiteStyles;
 			this.MainDockPanel.Theme = new WeifenLuo.WinFormsUI.Docking.VS2012Theme();
 			this.BackColor = this.StripMenu.BackColor = Utility.Configuration.Config.UI.BackColor;

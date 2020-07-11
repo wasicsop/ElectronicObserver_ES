@@ -446,7 +446,7 @@ namespace ElectronicObserver.Data
 		/// <summary>
 		/// 名前
 		/// </summary>
-		public string Name => Window.FormMain.Instance.Translator.GetTranslation(RawData.api_name, Utility.TranslationType.Ships);
+		public string Name => KCDatabase.Instance.Translation.Ship.Name(RawData.api_name);
 
 		/// <summary>
 		/// Name in japanese
@@ -1058,7 +1058,7 @@ namespace ElectronicObserver.Data
 		/// <summary>
 		/// 艦種名
 		/// </summary>
-		public string ShipTypeName => Window.FormMain.Instance.Translator.GetTranslation(KCDatabase.Instance.ShipTypes[(int)ShipType].Name, Utility.TranslationType.ShipTypes);
+		public string ShipTypeName => KCDatabase.Instance.ShipTypes[(int)ShipType].Name;
 
 
 		/// <summary>

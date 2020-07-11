@@ -100,7 +100,7 @@ namespace ElectronicObserver.Window.Dialog
 
 				DataGridViewRow row = new DataGridViewRow();
 				row.CreateCells( EquipmentView );
-				row.SetValues( eq.EquipmentID, eq.IconType, FormMain.Instance.Translator.GetTranslation(eq.CategoryTypeInstance.Name, Utility.TranslationType.EquipmentType), eq.Name );
+				row.SetValues( eq.EquipmentID, eq.IconType, eq.CategoryTypeInstance.Name, eq.Name );
 				rows.Add( row );
 
 			}
@@ -233,7 +233,7 @@ namespace ElectronicObserver.Window.Dialog
 
 			TableEquipmentName.SuspendLayout();
 
-			EquipmentType.Text = FormMain.Instance.Translator.GetTranslation(eq.CategoryTypeInstance.Name, Utility.TranslationType.EquipmentType);
+			EquipmentType.Text = eq.CategoryTypeInstance.Name;
 
 			{
 				int eqicon = eq.IconType;
