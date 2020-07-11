@@ -31,7 +31,12 @@ namespace ElectronicObserver.Data
 		/// <summary>
 		/// 艦種名
 		/// </summary>
-		public string Name => KCDatabase.Instance.Translation.Ship.TypeName(RawData.api_name);
+		public string Name => RawData.api_name;
+
+		/// <summary>
+		/// Name in romaji
+		/// </summary>
+		public string NameEN => KCDatabase.Instance.Translation.Ship.TypeName(RawData.api_name);
 
 		/// <summary>
 		/// 入渠時間係数

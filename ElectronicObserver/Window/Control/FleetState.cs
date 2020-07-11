@@ -248,7 +248,7 @@ namespace ElectronicObserver.Window.Control
 						(int)ResourceManager.IconContent.FleetExpedition);
 
 					tooltip.SetToolTip(state.Label,
-						$"{dest.DisplayID}: {dest.Name}\r\nETA: {DateTimeHelper.TimeToCSVString(state.Timer)}");
+						$"{dest.DisplayID}: {dest.NameEN}\r\nETA: {DateTimeHelper.TimeToCSVString(state.Timer)}");
 
 					emphasizesSubFleetInPort = false;
 					index++;

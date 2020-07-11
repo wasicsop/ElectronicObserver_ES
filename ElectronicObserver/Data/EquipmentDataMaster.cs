@@ -27,6 +27,8 @@ namespace ElectronicObserver.Data
 		/// </summary>
 		string Name { get; }
 
+		string NameEN { get; }
+
 		bool IsTranslated { get; }
 
 		/// <summary>
@@ -268,9 +270,11 @@ namespace ElectronicObserver.Data
 		/// <summary>
 		/// 名前
 		/// </summary>
-		public string Name => KCDatabase.Instance.Translation.Equipment.Name(RawData.api_name);
+		public string Name => RawData.api_name;
 
-		public bool IsTranslated => RawData.api_name != Name;
+		public string NameEN => KCDatabase.Instance.Translation.Equipment.Name(RawData.api_name);
+
+		public bool IsTranslated => RawData.api_name != NameEN;
 
 		/// <summary>
 		/// 装備種別

@@ -296,7 +296,7 @@ namespace ElectronicObserver.Window
 
 								var target = KCDatabase.Instance.MasterShips[(int)elem.api_table_id[i]];
 								if (target != null)     //季節の衣替え艦娘の場合存在しないことがある
-									sb.AppendLine(target.Name);
+									sb.AppendLine(target.NameEN);
 							}
 						}
 
@@ -310,7 +310,7 @@ namespace ElectronicObserver.Window
                             ShipDataMaster ship = KCDatabase.Instance.MasterShips.Values.FirstOrDefault(s => s.AlbumNo == startIndex + i);
                             if (ship != null)
                             {
-                                sb.AppendLine(ship.Name);
+                                sb.AppendLine(ship.NameEN);
                             }
                         }
                     }
@@ -337,7 +337,7 @@ namespace ElectronicObserver.Window
                             EquipmentDataMaster eq = KCDatabase.Instance.MasterEquipments.Values.FirstOrDefault(s => s.AlbumNo == startIndex + i);
                             if (eq != null)
                             {
-                                sb.AppendLine(eq.Name);
+                                sb.AppendLine(eq.NameEN);
                             }
                         }
                     }
@@ -360,7 +360,7 @@ namespace ElectronicObserver.Window
 
                 EquipmentDataMaster eqm = KCDatabase.Instance.MasterEquipments[int.Parse(((string)data.api_fdata).Split(",".ToCharArray())[1])];
                 if (eqm != null)
-                    sb.AppendLine(eqm.Name);
+                    sb.AppendLine(eqm.NameEN);
 
 
                 return sb.ToString();
@@ -558,7 +558,7 @@ namespace ElectronicObserver.Window
 			{
 				var mission = KCDatabase.Instance.Mission[missionID];
 				MessageBox.Show(
-					string.Format(GeneralRes.ExpeditionFailureWarningMessage, fleet.FleetID, fleet.Name, mission.DisplayID, mission.Name, string.Join("\r\n", result.FailureReason))
+					string.Format(GeneralRes.ExpeditionFailureWarningMessage, fleet.FleetID, fleet.Name, mission.DisplayID, mission.NameEN, string.Join("\r\n", result.FailureReason))
 					, GeneralRes.ExpeditionFailureWarningTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning);
 			}
 		}

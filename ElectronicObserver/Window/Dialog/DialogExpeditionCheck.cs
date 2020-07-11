@@ -123,13 +123,13 @@ namespace ElectronicObserver.Window.Dialog
         {
             if (e.ColumnIndex == CheckView_Name.Index)
             {
-                e.Value = KCDatabase.Instance.Mission[(int)e.Value].Name;
+                e.Value = KCDatabase.Instance.Mission[(int)e.Value].NameEN;
                 e.FormattingApplied = true;
             }
             else if (e.ColumnIndex == CheckView_ID.Index)
             {
                 var mission = KCDatabase.Instance.Mission[(int)e.Value];
-                e.Value = $"{mission.DisplayID}:{KCDatabase.Instance.MapArea[mission.MapAreaID].Name}";
+                e.Value = $"{mission.DisplayID}:{KCDatabase.Instance.MapArea[mission.MapAreaID].NameEN}";
                 e.FormattingApplied = true;
             }
         }

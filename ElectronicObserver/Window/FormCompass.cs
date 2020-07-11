@@ -116,7 +116,7 @@ namespace ElectronicObserver.Window
 					ShipDataMaster ship = KCDatabase.Instance.MasterShips[shipID];
 
 
-					ShipName.Text = ship.Name;
+					ShipName.Text = ship.NameEN;
 					if(ship.IsAbyssalShip)
 					{
 						ShipName.ForeColor = ship.GetShipNameColor();
@@ -304,7 +304,7 @@ namespace ElectronicObserver.Window
 					else
 					{
 
-						ShipNames[i].Text = ship.Name;
+						ShipNames[i].Text = ship.NameEN;
 						ShipNames[i].ForeColor = ship.GetShipNameColor();
 						ShipNames[i].Tag = ship.ShipID;
 						ShipNames[i].Cursor = Cursors.Help;
@@ -494,7 +494,7 @@ namespace ElectronicObserver.Window
 			{
 				var eq = KCDatabase.Instance.MasterEquipments[slot[i]];
 				if (eq != null)
-					sb.AppendFormat("[{0}] {1}\r\n", ship.Aircraft[i], eq.Name);
+					sb.AppendFormat("[{0}] {1}\r\n", ship.Aircraft[i], eq.NameEN);
 			}
 
 			sb.AppendFormat( "\r\n" + GeneralRes.DayBattle + ": {0}\r\n" + GeneralRes.NightBattle + ": {1}\r\n",

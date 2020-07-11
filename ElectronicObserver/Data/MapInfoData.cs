@@ -31,7 +31,9 @@ namespace ElectronicObserver.Data
 		/// <summary>
 		/// 海域名
 		/// </summary>
-		public string Name => KCDatabase.Instance.Translation.Operation.MapName(RawData.api_name);
+		public string Name => RawData.api_name;
+
+		public string NameEN => KCDatabase.Instance.Translation.Operation.MapName(RawData.api_name);
 
 		/// <summary>
 		/// 難易度

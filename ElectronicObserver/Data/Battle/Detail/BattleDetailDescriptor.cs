@@ -24,7 +24,7 @@ namespace ElectronicObserver.Data.Battle.Detail
 			}
 			else
 			{
-				sb.AppendFormat("{0} ({1}-{2})", bm.Compass.MapInfo.Name, bm.Compass.MapAreaID, bm.Compass.MapInfoID);
+				sb.AppendFormat("{0} ({1}-{2})", bm.Compass.MapInfo.NameEN, bm.Compass.MapAreaID, bm.Compass.MapInfoID);
 				if (bm.Compass.MapInfo.EventDifficulty > 0)
 					sb.AppendFormat(" [{0}]", Constants.GetDifficulty(bm.Compass.MapInfo.EventDifficulty));
 				sb.Append(ConstantsRes.BattleDetail_Node).Append(bm.Compass.Destination.ToString());
@@ -267,12 +267,12 @@ namespace ElectronicObserver.Data.Battle.Detail
 							var eq = KCDatabase.Instance.MasterEquipments[p.TouchAircraftFriend];
 							if (eq != null)
 							{
-								sb.Append(ConstantsRes.BattleDetail_FriendlyNightContact).AppendLine(eq.Name);
+								sb.Append(ConstantsRes.BattleDetail_FriendlyNightContact).AppendLine(eq.NameEN);
 							}
 							eq = KCDatabase.Instance.MasterEquipments[p.TouchAircraftEnemy];
 							if (eq != null)
 							{
-								sb.Append(ConstantsRes.BattleDetail_EnemyNightContact).AppendLine(eq.Name);
+								sb.Append(ConstantsRes.BattleDetail_EnemyNightContact).AppendLine(eq.NameEN);
 							}
 						}
 
@@ -491,9 +491,9 @@ namespace ElectronicObserver.Data.Battle.Detail
 					p.AircraftLostStage1Friend, p.AircraftTotalStage1Friend,
 					p.AircraftLostStage1Enemy, p.AircraftTotalStage1Enemy);
 				if (p.TouchAircraftFriend > 0)
-					sb.AppendFormat("　Contact: {0}\r\n", KCDatabase.Instance.MasterEquipments[p.TouchAircraftFriend].Name);
+					sb.AppendFormat("　Contact: {0}\r\n", KCDatabase.Instance.MasterEquipments[p.TouchAircraftFriend].NameEN);
 				if (p.TouchAircraftEnemy > 0)
-					sb.AppendFormat("　Enemy Contact: {0}\r\n", KCDatabase.Instance.MasterEquipments[p.TouchAircraftEnemy].Name);
+					sb.AppendFormat("　Enemy Contact: {0}\r\n", KCDatabase.Instance.MasterEquipments[p.TouchAircraftEnemy].NameEN);
 			}
 			if (p.IsStage2Available)
 			{
@@ -592,7 +592,7 @@ namespace ElectronicObserver.Data.Battle.Detail
 					p.FriendlyParameters[i][0], p.FriendlyParameters[i][1], p.FriendlyParameters[i][2], p.FriendlyParameters[i][3]);
 
 				sb.Append("　");
-				sb.AppendLine(string.Join(", ", p.FriendlySlots[i].Select(id => KCDatabase.Instance.MasterEquipments[id]).Where(eq => eq != null).Select(eq => eq.Name)));
+				sb.AppendLine(string.Join(", ", p.FriendlySlots[i].Select(id => KCDatabase.Instance.MasterEquipments[id]).Where(eq => eq != null).Select(eq => eq.NameEN)));
 			}
 		}
 
@@ -678,7 +678,7 @@ namespace ElectronicObserver.Data.Battle.Detail
 				var eq = KCDatabase.Instance.MasterEquipments[result.DroppedEquipmentID];
 				if (eq != null)
 				{
-					sb.AppendFormat("　{0} {1}\r\n", eq.CategoryTypeInstance.Name, eq.Name);
+					sb.AppendFormat("　{0} {1}\r\n", eq.CategoryTypeInstance.NameEN, eq.NameEN);
 				}
 
 				var item = KCDatabase.Instance.MasterUseItems[result.DroppedItemID];

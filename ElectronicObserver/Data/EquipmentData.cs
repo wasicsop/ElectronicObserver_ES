@@ -141,7 +141,7 @@ namespace ElectronicObserver.Data
 		/// <summary>
 		/// 装備名
 		/// </summary>
-		public string Name => MasterEquipment.Name;
+		public string Name => MasterEquipment.NameEN;
 
 		/// <summary>
 		/// 装備名(レベルを含む)

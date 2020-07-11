@@ -32,7 +32,9 @@ namespace ElectronicObserver.Data
 		/// <summary>
 		/// 遠征名
 		/// </summary>
-		public string Name => KCDatabase.Instance.Translation.Mission.Name(RawData.api_name);
+		public string Name => RawData.api_name;
+
+		public string NameEN => KCDatabase.Instance.Translation.Mission.Name(RawData.api_name);
 
 		/// <summary>
 		/// 説明文

@@ -140,7 +140,7 @@ namespace ElectronicObserver.Window.Dialog
 
 			ShipView.Rows.Clear();
 
-			List<DataGridViewRow> rows = new List<DataGridViewRow>(KCDatabase.Instance.MasterShips.Values.Count(s => s.Name != "なし"));
+			List<DataGridViewRow> rows = new List<DataGridViewRow>(KCDatabase.Instance.MasterShips.Values.Count(s => s.NameEN != "なし"));
 
 			foreach (var ship in KCDatabase.Instance.MasterShips.Values)
 			{
@@ -151,7 +151,7 @@ namespace ElectronicObserver.Window.Dialog
 				row.CreateCells(ShipView);
 				row.SetValues(ship.ShipID, ship.ShipTypeName, ship.NameWithClass);
 				row.Cells[ShipView_ShipType.Index].Tag = ship.ShipType;
-				row.Cells[ShipView_Name.Index].Tag = ship.IsAbyssalShip ? null : ship.Name;
+				row.Cells[ShipView_Name.Index].Tag = ship.IsAbyssalShip ? null : ship.NameEN;
 				rows.Add(row);
 
 			}
@@ -527,7 +527,7 @@ namespace ElectronicObserver.Window.Dialog
 					else
 					{
 
-						Equipments[i].Text = eq.Name;
+						Equipments[i].Text = eq.NameEN;
 
 						int eqicon = eq.EquipmentType[3];
 						if (eqicon >= (int)ResourceManager.EquipmentContent.Locked)
@@ -538,7 +538,7 @@ namespace ElectronicObserver.Window.Dialog
 						{
 							StringBuilder sb = new StringBuilder();
 
-							sb.AppendFormat("{0} {1} (ID: {2})\r\n", eq.CategoryTypeInstance.Name, eq.Name, eq.EquipmentID);
+							sb.AppendFormat("{0} {1} (ID: {2})\r\n", eq.CategoryTypeInstance.NameEN, eq.NameEN, eq.EquipmentID);
 							if (eq.Firepower != 0) sb.AppendFormat("FP {0:+0;-0}\r\n", eq.Firepower);
 							if (eq.Torpedo != 0) sb.AppendFormat("Torp {0:+0;-0}\r\n", eq.Torpedo);
 							if (eq.AA != 0) sb.AppendFormat("AA {0:+0;-0}\r\n", eq.AA);
@@ -607,7 +607,7 @@ namespace ElectronicObserver.Window.Dialog
 				else
 				{
 					ShipDataMaster sbefore = ship.RemodelBeforeShip;
-					RemodelBeforeShipName.Text = sbefore.Name;
+					RemodelBeforeShipName.Text = sbefore.NameEN;
 					ToolTipInfo.SetToolTip(RemodelBeforeShipName, "Open with left click.\r\nRight click to open in a new window.");
 					RemodelBeforeLevel.Text = string.Format("Lv. {0}", sbefore.RemodelAfterLevel);
 					RemodelBeforeLevel.ImageIndex = GetRemodelItemImageIndex(sbefore);
@@ -628,7 +628,7 @@ namespace ElectronicObserver.Window.Dialog
 				}
 				else
 				{
-					RemodelAfterShipName.Text = ship.RemodelAfterShip.Name;
+					RemodelAfterShipName.Text = ship.RemodelAfterShip.NameEN;
 					ToolTipInfo.SetToolTip(RemodelAfterShipName, "Open with left click.\r\nRight click to open in a new window.");
 					RemodelAfterLevel.Text = string.Format("Lv. {0}", ship.RemodelAfterLevel);
 					RemodelAfterLevel.ImageIndex = GetRemodelItemImageIndex(ship);
@@ -763,8 +763,8 @@ namespace ElectronicObserver.Window.Dialog
 			if (ship == null)
 				return "";
 
-			return string.Join("\r\n", ship.EquippableCategories.Select(id => db.EquipmentTypes[id].Name)
-				.Concat(db.MasterEquipments.Values.Where(eq => eq.EquippableShipsAtExpansion.Contains(shipID)).Select(eq => eq.Name + " (Reinforcement Slot)")));
+			return string.Join("\r\n", ship.EquippableCategories.Select(id => db.EquipmentTypes[id].NameEN)
+				.Concat(db.MasterEquipments.Values.Where(eq => eq.EquippableShipsAtExpansion.Contains(shipID)).Select(eq => eq.NameEN + " (Reinforcement Slot)")));
 		}
 
 
@@ -934,11 +934,11 @@ namespace ElectronicObserver.Window.Dialog
 								ship.AlbumNo,
 								ship.IsAbyssalShip ? "深海棲艦" : Constants.GetShipClass(ship.ShipClass),
 								CsvHelper.EscapeCsvCell(ship.ShipTypeName),
-								CsvHelper.EscapeCsvCell(ship.Name),
+								CsvHelper.EscapeCsvCell(ship.NameEN),
 								CsvHelper.EscapeCsvCell(ship.NameReading),
 								ship.SortID,
-								CsvHelper.EscapeCsvCell(ship.RemodelBeforeShipID > 0 ? ship.RemodelBeforeShip.Name : "-"),
-								CsvHelper.EscapeCsvCell(ship.RemodelAfterShipID > 0 ? ship.RemodelAfterShip.Name : "-"),
+								CsvHelper.EscapeCsvCell(ship.RemodelBeforeShipID > 0 ? ship.RemodelBeforeShip.NameEN : "-"),
+								CsvHelper.EscapeCsvCell(ship.RemodelAfterShipID > 0 ? ship.RemodelAfterShip.NameEN : "-"),
 								ship.RemodelAfterLevel,
 								ship.RemodelAmmo,
 								ship.RemodelSteel,
@@ -974,11 +974,11 @@ namespace ElectronicObserver.Window.Dialog
 								ship.Aircraft[2],
 								ship.Aircraft[3],
 								ship.Aircraft[4],
-								ship.DefaultSlot != null ? (ship.DefaultSlot[0] != -1 ? KCDatabase.Instance.MasterEquipments[ship.DefaultSlot[0]].Name : (ship.SlotSize > 0 ? "(なし)" : "")) : "???",
-								ship.DefaultSlot != null ? (ship.DefaultSlot[1] != -1 ? KCDatabase.Instance.MasterEquipments[ship.DefaultSlot[1]].Name : (ship.SlotSize > 1 ? "(なし)" : "")) : "???",
-								ship.DefaultSlot != null ? (ship.DefaultSlot[2] != -1 ? KCDatabase.Instance.MasterEquipments[ship.DefaultSlot[2]].Name : (ship.SlotSize > 2 ? "(なし)" : "")) : "???",
-								ship.DefaultSlot != null ? (ship.DefaultSlot[3] != -1 ? KCDatabase.Instance.MasterEquipments[ship.DefaultSlot[3]].Name : (ship.SlotSize > 3 ? "(なし)" : "")) : "???",
-								ship.DefaultSlot != null ? (ship.DefaultSlot[4] != -1 ? KCDatabase.Instance.MasterEquipments[ship.DefaultSlot[4]].Name : (ship.SlotSize > 4 ? "(なし)" : "")) : "???",
+								ship.DefaultSlot != null ? (ship.DefaultSlot[0] != -1 ? KCDatabase.Instance.MasterEquipments[ship.DefaultSlot[0]].NameEN : (ship.SlotSize > 0 ? "(なし)" : "")) : "???",
+								ship.DefaultSlot != null ? (ship.DefaultSlot[1] != -1 ? KCDatabase.Instance.MasterEquipments[ship.DefaultSlot[1]].NameEN : (ship.SlotSize > 1 ? "(なし)" : "")) : "???",
+								ship.DefaultSlot != null ? (ship.DefaultSlot[2] != -1 ? KCDatabase.Instance.MasterEquipments[ship.DefaultSlot[2]].NameEN : (ship.SlotSize > 2 ? "(なし)" : "")) : "???",
+								ship.DefaultSlot != null ? (ship.DefaultSlot[3] != -1 ? KCDatabase.Instance.MasterEquipments[ship.DefaultSlot[3]].NameEN : (ship.SlotSize > 3 ? "(なし)" : "")) : "???",
+								ship.DefaultSlot != null ? (ship.DefaultSlot[4] != -1 ? KCDatabase.Instance.MasterEquipments[ship.DefaultSlot[4]].NameEN : (ship.SlotSize > 4 ? "(なし)" : "")) : "???",
 								DateTimeHelper.ToTimeRemainString(TimeSpan.FromMinutes(ship.BuildingTime)),
 								ship.Material[0],
 								ship.Material[1],
@@ -1036,7 +1036,7 @@ namespace ElectronicObserver.Window.Dialog
 							sw.WriteLine(string.Join(",",
 								ship.ShipID,
 								ship.AlbumNo,
-								CsvHelper.EscapeCsvCell(ship.Name),
+								CsvHelper.EscapeCsvCell(ship.NameEN),
 								CsvHelper.EscapeCsvCell(ship.NameReading),
 								(int)ship.ShipType,
 								ship.ShipClass,
@@ -1381,7 +1381,7 @@ namespace ElectronicObserver.Window.Dialog
 						continue;
 
 					if (eq != null)
-						name = eq.Name;
+						name = eq.NameEN;
 					else if (slot[i] == -1)
 						name = "(なし)";
 					else
@@ -1625,7 +1625,7 @@ namespace ElectronicObserver.Window.Dialog
 				var add = ship.SpecialEquippableCategories.Except(ship.ShipTypeInstance.EquippableCategories);
 				var sub = ship.ShipTypeInstance.EquippableCategories.Except(ship.SpecialEquippableCategories);
 
-				sb.AppendLine($"|{ship.ShipID}|{ship.NameWithClass}|{string.Join(", ", add.Select(id => KCDatabase.Instance.EquipmentTypes[id].Name))}|{string.Join(", ", sub.Select(id => KCDatabase.Instance.EquipmentTypes[id].Name))}|");
+				sb.AppendLine($"|{ship.ShipID}|{ship.NameWithClass}|{string.Join(", ", add.Select(id => KCDatabase.Instance.EquipmentTypes[id].NameEN))}|{string.Join(", ", sub.Select(id => KCDatabase.Instance.EquipmentTypes[id].NameEN))}|");
 			}
 
 			sb.AppendLine();
@@ -1652,7 +1652,7 @@ namespace ElectronicObserver.Window.Dialog
 
 				foreach (var pair in nyan.OrderBy(p => p.Key))
 				{
-					sb.AppendLine($"|{pair.Key}|{KCDatabase.Instance.MasterShips[pair.Key].NameWithClass}|{string.Join(", ", pair.Value)}|{string.Join(", ", pair.Value.Select(id => KCDatabase.Instance.MasterEquipments[id].Name))}|");
+					sb.AppendLine($"|{pair.Key}|{KCDatabase.Instance.MasterShips[pair.Key].NameWithClass}|{string.Join(", ", pair.Value)}|{string.Join(", ", pair.Value.Select(id => KCDatabase.Instance.MasterEquipments[id].NameEN))}|");
 				}
 
 			}

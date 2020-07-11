@@ -466,7 +466,7 @@ namespace ElectronicObserver.Data.Battle
 					DroppedEquipmentCount++;
 
 					if ( showLog ) {
-						Utility.Logger.Add( 2, string.Format( LoggerRes.EquipmentObtained, eq.CategoryTypeInstance.Name, eq.Name ) );
+						Utility.Logger.Add( 2, string.Format( LoggerRes.EquipmentObtained, eq.CategoryTypeInstance.NameEN, eq.NameEN ) );
 					}
 				}
 

@@ -151,7 +151,7 @@ namespace ElectronicObserver.Window
 					var sb = new StringBuilder();
 
 
-					string areaName = KCDatabase.Instance.MapArea.ContainsKey( corps.MapAreaID ) ? KCDatabase.Instance.MapArea[corps.MapAreaID].Name : "Unknown Area";
+					string areaName = KCDatabase.Instance.MapArea.ContainsKey( corps.MapAreaID ) ? KCDatabase.Instance.MapArea[corps.MapAreaID].NameEN : "Unknown Area";
 
 					sb.AppendLine( "Area: " + areaName );
 
@@ -489,7 +489,7 @@ namespace ElectronicObserver.Window
 			foreach (var corps in baseaircorps)
 			{
 
-				string areaName = KCDatabase.Instance.MapArea.ContainsKey( corps.MapAreaID ) ? KCDatabase.Instance.MapArea[corps.MapAreaID].Name : "Unknown Area";
+				string areaName = KCDatabase.Instance.MapArea.ContainsKey( corps.MapAreaID ) ? KCDatabase.Instance.MapArea[corps.MapAreaID].NameEN : "Unknown Area";
 
 				sb.AppendFormat( "{0}\t[{1}] Fighter Power {2}/Range {3}\r\n",
 					( areaid == -1 ? ( areaName + "：" ) : "" ) + corps.Name,

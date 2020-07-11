@@ -451,7 +451,7 @@ namespace ElectronicObserver.Data
 						// イベント海域での支援遠征への対応
 						var mission = KCDatabase.Instance.Mission[missionID];
 
-						if (mission != null && (mission.Name == "前衛支援任務" || mission.Name == "艦隊決戦支援任務" || mission.Name == "Vanguard Support Missions (1)" || mission.Name == "Vanguard Support Missions (2)"))
+						if (mission != null && (mission.Name == "前衛支援任務" || mission.Name == "艦隊決戦支援任務"))
 						{
 							return result
 								.CheckShipCountByType(ShipTypes.Destroyer, 2);
@@ -574,7 +574,7 @@ namespace ElectronicObserver.Data
 			}
 
 			public MissionClearConditionResult CheckShipCountByType(ShipTypes shipType, int leastCount) =>
-				CheckShipCount(s => s.MasterShip.ShipType == shipType, leastCount, KCDatabase.Instance.ShipTypes[(int)shipType].Name);
+				CheckShipCount(s => s.MasterShip.ShipType == shipType, leastCount, KCDatabase.Instance.ShipTypes[(int)shipType].NameEN);
 
 			public MissionClearConditionResult CheckSmallShipCount(int leastCount) =>
 				CheckShipCount(s => s.MasterShip.ShipType == ShipTypes.Destroyer || s.MasterShip.ShipType == ShipTypes.Escort, leastCount, DataRes.MissionClearSmallShipCount);
@@ -631,7 +631,7 @@ namespace ElectronicObserver.Data
 			{
 				Assert(
 				   members.FirstOrDefault()?.MasterShip?.ShipType == shipType,
-					() => DataRes.MissionClearFlagshipType + $"{KCDatabase.Instance.ShipTypes[(int)shipType].Name}");
+					() => DataRes.MissionClearFlagshipType + $"{KCDatabase.Instance.ShipTypes[(int)shipType].NameEN}");
 				return this;
 			}
 
@@ -688,7 +688,7 @@ namespace ElectronicObserver.Data
 			}
 
 			public MissionClearConditionResult CheckEquipmentCount(EquipmentTypes equipmentType, int leastCount) =>
-				CheckEquipmentCount(eq => eq.MasterEquipment.CategoryType == equipmentType, leastCount, KCDatabase.Instance.EquipmentTypes[(int)equipmentType].Name);
+				CheckEquipmentCount(eq => eq.MasterEquipment.CategoryType == equipmentType, leastCount, KCDatabase.Instance.EquipmentTypes[(int)equipmentType].NameEN);
 
 
 			public MissionClearConditionResult CheckEquippedShipCount(Func<IEquipmentData, bool> predicate, int leastCount, string whatis)
@@ -700,7 +700,7 @@ namespace ElectronicObserver.Data
 			}
 
 			public MissionClearConditionResult CheckEquippedShipCount(EquipmentTypes equipmentType, int leastCount) =>
-				CheckEquippedShipCount(eq => eq.MasterEquipment.CategoryType == equipmentType, leastCount, KCDatabase.Instance.EquipmentTypes[(int)equipmentType].Name);
+				CheckEquippedShipCount(eq => eq.MasterEquipment.CategoryType == equipmentType, leastCount, KCDatabase.Instance.EquipmentTypes[(int)equipmentType].NameEN);
 
 
 

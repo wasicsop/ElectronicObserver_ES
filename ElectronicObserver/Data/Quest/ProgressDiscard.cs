@@ -132,11 +132,11 @@ namespace ElectronicObserver.Data.Quest
 				switch (CategoryIndex)
 				{
 					case -1:
-						return KCDatabase.Instance.MasterEquipments[s].Name;
+						return KCDatabase.Instance.MasterEquipments[s].NameEN;
 					case 1:
 						return $"Illust[{s}]";
 					case 2:
-						return KCDatabase.Instance.EquipmentTypes[s].Name;
+						return KCDatabase.Instance.EquipmentTypes[s].NameEN;
 					case 3:
 						return $"Icon[{s}]";
 					default:

@@ -697,7 +697,7 @@ namespace ElectronicObserver.Window.Dialog
 				if (EquipmentType == null)
 					return "(unknown)";
 				else
-					return EquipmentType.Name;
+					return EquipmentType.NameEN;
 			}
 
 
@@ -778,7 +778,7 @@ namespace ElectronicObserver.Window.Dialog
 				if (EquipmentInstance != null)
 				{
 
-					var sb = new StringBuilder(EquipmentInstance.Name);
+					var sb = new StringBuilder(EquipmentInstance.NameEN);
 
 					if (Level > 0)
 						sb.Append("+").Append(Level);
@@ -857,9 +857,9 @@ namespace ElectronicObserver.Window.Dialog
 				foreach (var map in maps)
 				{
 					int mapAreaID = map.MapAreaID;
-					string name = map.Name;
+					string name = map.NameEN;
 
-					if (string.IsNullOrWhiteSpace(map.Name) || map.Name == "※")
+					if (string.IsNullOrWhiteSpace(map.NameEN) || map.NameEN == "※")
 						name = "Event Map";
 
 					var tool = new ToolStripMenuItem(string.Format("#{0} {1}", mapAreaID, name), null,

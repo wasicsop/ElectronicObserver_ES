@@ -55,7 +55,7 @@ namespace ElectronicObserver.Data
 
 			public override string ToString()
 			{
-				return IsSucceeded ? $"{MasterEquipment.CategoryTypeInstance.Name}「{MasterEquipment.Name}」" : "失敗";
+				return IsSucceeded ? $"{MasterEquipment.CategoryTypeInstance.NameEN}「{MasterEquipment.NameEN}」" : "失敗";
 			}
 		}
 		/// <summary> 開発結果 </summary>

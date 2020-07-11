@@ -118,7 +118,7 @@ namespace ElectronicObserver.Window
 				else if (arsenal.State == 2)
 				{
 					//building
-					string name = showShipName ? db.MasterShips[arsenal.ShipID].Name : "???";
+					string name = showShipName ? db.MasterShips[arsenal.ShipID].NameEN : "???";
 					ShipName.Text = name;
 					tooltip.SetToolTip(ShipName, name);
 					CompletionTime.Text = DateTimeHelper.ToTimeRemainString(arsenal.CompletionTime);
@@ -129,7 +129,7 @@ namespace ElectronicObserver.Window
 				else if (arsenal.State == 3)
 				{
 					//complete!
-					string name = showShipName ? db.MasterShips[arsenal.ShipID].Name : "???";
+					string name = showShipName ? db.MasterShips[arsenal.ShipID].NameEN : "???";
 					ShipName.Text = name;
 					tooltip.SetToolTip( ShipName, name );
 					CompletionTime.Text = GeneralRes.Complete + "!";

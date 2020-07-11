@@ -39,9 +39,9 @@ namespace ElectronicObserver.Data
 		string Name { get; }
 		
 		/// <summary>
-		/// Name in japanese
+		/// Name in romaji
 		/// </summary>
-		public string NameJP { get; }
+		string NameEN { get; }
 
 		/// <summary>
 		/// 読み
@@ -446,12 +446,12 @@ namespace ElectronicObserver.Data
 		/// <summary>
 		/// 名前
 		/// </summary>
-		public string Name => KCDatabase.Instance.Translation.Ship.Name(RawData.api_name);
+		public string Name => RawData.api_name;
 
 		/// <summary>
-		/// Name in japanese
+		/// Name in romaji
 		/// </summary>
-		public string NameJP => RawData.api_name;
+		public string NameEN => KCDatabase.Instance.Translation.Ship.Name(RawData.api_name);
 
 		/// <summary>
 		/// 読み
@@ -1006,9 +1006,9 @@ namespace ElectronicObserver.Data
 			get
 			{
 				if (!IsAbyssalShip || NameReading == "" || NameReading == "-")
-					return Name;
+					return NameEN;
 				else
-					return $"{Name} {NameReading}";
+					return $"{NameEN} {NameReading}";
 			}
 		}
 
@@ -1058,7 +1058,7 @@ namespace ElectronicObserver.Data
 		/// <summary>
 		/// 艦種名
 		/// </summary>
-		public string ShipTypeName => KCDatabase.Instance.ShipTypes[(int)ShipType].Name;
+		public string ShipTypeName => KCDatabase.Instance.ShipTypes[(int)ShipType].NameEN;
 
 
 		/// <summary>

@@ -270,7 +270,7 @@ namespace ElectronicObserver.Window.Dialog
 				row.SetValues(
 					id,
 					masterEquipments[id].IconType,
-					masterEquipments[id].Name,
+					masterEquipments[id].NameEN,
 					allCount[id],
 					remainCount[id]
 					);
@@ -279,7 +279,7 @@ namespace ElectronicObserver.Window.Dialog
 					StringBuilder sb = new StringBuilder();
 					var eq = masterEquipments[id];
 
-					sb.AppendFormat("{0} {1} (ID: {2})\r\n", eq.CategoryTypeInstance.Name, eq.Name, eq.EquipmentID);
+					sb.AppendFormat("{0} {1} (ID: {2})\r\n", eq.CategoryTypeInstance.NameEN, eq.NameEN, eq.EquipmentID);
 					if (eq.Firepower != 0) sb.AppendFormat("FP {0:+0;-0}\r\n", eq.Firepower);
 					if (eq.Torpedo != 0) sb.AppendFormat("Torp {0:+0;-0}\r\n", eq.Torpedo);
 					if (eq.AA != 0) sb.AppendFormat("AA {0:+0;-0}\r\n", eq.AA);
@@ -490,7 +490,7 @@ namespace ElectronicObserver.Window.Dialog
 
 			DetailView.ResumeLayout();
 
-			Text = EncycloRes.EquipmentList + " - " + KCDatabase.Instance.MasterEquipments[equipmentID].Name;
+			Text = EncycloRes.EquipmentList + " - " + KCDatabase.Instance.MasterEquipments[equipmentID].NameEN;
 		}
 
 

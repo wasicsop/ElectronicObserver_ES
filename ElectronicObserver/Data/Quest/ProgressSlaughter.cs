@@ -43,7 +43,7 @@ namespace ElectronicObserver.Data.Quest
 		{
 			StringBuilder sb = new StringBuilder();
 			if ( TargetShipType != null ) {
-				sb.Append( string.Join( "・", TargetShipType.OrderBy( s => s ).Select( s => KCDatabase.Instance.ShipTypes[s].Name) ) );
+				sb.Append( string.Join( "・", TargetShipType.OrderBy( s => s ).Select( s => KCDatabase.Instance.ShipTypes[s].NameEN) ) );
 			}
 
 			sb.Append( QuestTracking.Sunk );

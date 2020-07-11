@@ -360,7 +360,7 @@ namespace ElectronicObserver.Window
             row.SetValues(
                 ship.MasterID,
                 ship.MasterShip.ShipType,
-                ship.MasterShip.Name,
+                ship.MasterShip.NameEN,
                 ship.Level,
                 ship.ExpTotal,
                 ship.ExpNext,
@@ -747,7 +747,7 @@ namespace ElectronicObserver.Window
 
 			if (e.ColumnIndex == ShipView_ShipType.Index)
 			{
-				e.Value = KCDatabase.Instance.ShipTypes[(int)e.Value].Name;
+				e.Value = KCDatabase.Instance.ShipTypes[(int)e.Value].NameEN;
 				e.FormattingApplied = true;
 
             }
@@ -845,7 +845,7 @@ namespace ElectronicObserver.Window
                         e.SortResult = ship1.NameReading.CompareTo(ship2.NameReading);
 
                         if (e.SortResult == 0)
-                            e.SortResult = ship1.Name.CompareTo(ship2.Name);
+                            e.SortResult = ship1.NameEN.CompareTo(ship2.NameEN);
                         break;
 
 					case 2:     // ソートキー順
