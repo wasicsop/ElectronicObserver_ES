@@ -241,10 +241,9 @@ namespace ElectronicObserver.Window.Control
 					var dest = db.Mission[fleet.ExpeditionDestination];
 
 					state.Timer = fleet.ExpeditionTime;
-					string stateText = $"[{dest.DisplayID}] {DateTimeHelper.ToTimeRemainString(state.Timer)}";
 					state.SetInformation(FleetStates.Expedition,
-						stateText,
-						stateText,
+						$"[{dest.DisplayID}] {DateTimeHelper.ToTimeRemainString(state.Timer)}",
+						DateTimeHelper.ToTimeRemainString(state.Timer),
 						(int)ResourceManager.IconContent.FleetExpedition);
 
 					tooltip.SetToolTip(state.Label,
@@ -479,8 +478,8 @@ namespace ElectronicObserver.Window.Control
 						break;
 
 					case FleetStates.Expedition:
-						state.ShortenedText = state.ShortenedText.Substring(0, 6) + DateTimeHelper.ToTimeRemainString(state.Timer);
-						state.Text = state.ShortenedText;
+						state.ShortenedText = DateTimeHelper.ToTimeRemainString(state.Timer);
+						state.Text = state.Text.Substring(0, 5) + DateTimeHelper.ToTimeRemainString(state.Timer);
 						state.UpdateText();
 						if (Utility.Configuration.Config.FormFleet.BlinkAtCompletion && (state.Timer - DateTime.Now).TotalMilliseconds <= Utility.Configuration.Config.NotifierExpedition.AccelInterval)
 							state.Label.BackColor = DateTime.Now.Second % 2 == 0 ? Color.LightGreen : Color.Transparent;
