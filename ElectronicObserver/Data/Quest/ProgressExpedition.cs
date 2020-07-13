@@ -45,11 +45,11 @@ namespace ElectronicObserver.Data.Quest
 			StringBuilder sb = new StringBuilder();
 			if (TargetArea != null)
 			{
-				sb.Append(string.Join("・", TargetArea.OrderBy(s => s).Select(s => $"{KCDatabase.Instance.Mission[s].DisplayID}: {KCDatabase.Instance.Mission[s].NameEN}")) + " ×");
+				sb.Append(string.Join("/", TargetArea.OrderBy(s => s).Select(s => $"{KCDatabase.Instance.Mission[s].DisplayID}: {KCDatabase.Instance.Mission[s].NameEN}")) + " x ");
 			}
 			else
 			{
-				sb.Append("Expedition ×");
+				sb.Append("Expedition x ");
 			}
 			sb.Append(ProgressMax);
 

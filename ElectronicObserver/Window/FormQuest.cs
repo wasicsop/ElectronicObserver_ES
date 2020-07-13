@@ -290,12 +290,32 @@ namespace ElectronicObserver.Window
 
 				row.Cells[QuestView_State.Index].Value = (q.State == 3) ? ((bool?)null) : (q.State == 2);
 				row.Cells[QuestView_Type.Index].Value = q.LabelType >= 100 ? q.LabelType : q.Type;
+				row.Cells[QuestView_Type.Index].ToolTipText = Constants.GetQuestLabelType(q.LabelType);
 				row.Cells[QuestView_Category.Index].Value = q.Category;
+				row.Cells[QuestView_Category.Index].ToolTipText = Constants.GetQuestCategory(q.Category);
 				row.Cells[QuestView_Category.Index].Style = CSCategories[Math.Min(q.Category - 1, CSCategories.Length - 1)];
 				row.Cells[QuestView_Name.Index].Value = q.QuestID;
 				{
+					// Fit tooltip text to 80 characters
+					var sentences = q.Description.Replace(Environment.NewLine, "").Split(" ");
+					var sb = new StringBuilder();
+
+					var line = "";
+					foreach (var s in sentences)
+					{
+						if ((line + s).Length > 80)
+						{
+							sb.AppendLine(line);
+							line = "";
+						}
+						line += $"{s} ";
+					}
+					if (line.Length > 0)
+						sb.AppendLine(line);
+					var desc = sb.ToString();
+
 					var progress = KCDatabase.Instance.QuestProgress[q.QuestID];
-					row.Cells[QuestView_Name.Index].ToolTipText = $"{q.QuestID} : {q.Name}\r\n{q.Description}\r\n{progress?.GetClearCondition() ?? ""}";
+					row.Cells[QuestView_Name.Index].ToolTipText = $"{q.Name} (ID: {q.QuestID})\r\n{desc}\r\n{progress?.GetClearCondition() ?? ""}";
 				}
 				{
 					string value;

@@ -1168,9 +1168,9 @@ namespace ElectronicObserver.Data
                 case 101:
 	                return "1";
                 case 102:
-	                return "2";
+	                return "Y";
                 case 103:
-	                return "3";
+	                return "Y";
                 case 104:
 	                return "4";
                 case 105:
@@ -1195,6 +1195,52 @@ namespace ElectronicObserver.Data
             }
 
         }
+
+
+		public static string GetQuestLabelType(int id)
+		{
+			switch (id)
+			{
+				case 1:
+					return "Once";
+				case 2: 
+					return "Daily";
+				case 3: 
+					return "Weekly";
+				case 6:
+					return "Monthly";
+				case 7:
+					return "Others";
+				case 101:
+					return "Yearly (January Reset)";
+				case 102:
+					return "Yearly (February Reset)";
+				case 103:
+					return "Yearly (March Reset)";
+				case 104:
+					return "Yearly (April Reset)";
+				case 105:
+					return "Yearly (May Reset)";
+				case 106:
+					return "Yearly (June Reset)";
+				case 107:
+					return "Yearly (July Reset)";
+				case 108:
+					return "Yearly (August Reset)";
+				case 109:
+					return "Yearly (September Reset)";
+				case 110:
+					return "Yearly (October Reset)";
+				case 111:
+					return "Yearly (November Reset)";
+				case 112:
+					return "Yearly (December Reset)";
+
+				default:
+					return id.ToString();
+			}
+
+		}
 
 
         /// <summary>
