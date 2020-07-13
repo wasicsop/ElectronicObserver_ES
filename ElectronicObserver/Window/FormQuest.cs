@@ -250,6 +250,10 @@ namespace ElectronicObserver.Window
 
 			QuestView.Rows.Clear();
 
+			Color cellColor;
+			var useBackColor = false;
+			int rowsAdded = 0;
+
 			foreach (var q in KCDatabase.Instance.Quest.Quests.Values)
 			{
 
@@ -283,18 +287,23 @@ namespace ElectronicObserver.Window
 						break;
 				}
 
+				cellColor = useBackColor ? Utility.Configuration.Config.UI.SubBackColor : Utility.Configuration.Config.UI.BackColor;
 
 				DataGridViewRow row = new DataGridViewRow();
 				row.CreateCells(QuestView);
 				row.Height = 21;
 
 				row.Cells[QuestView_State.Index].Value = (q.State == 3) ? ((bool?)null) : (q.State == 2);
+				row.Cells[QuestView_State.Index].Style.BackColor = cellColor;
 				row.Cells[QuestView_Type.Index].Value = q.LabelType >= 100 ? q.LabelType : q.Type;
 				row.Cells[QuestView_Type.Index].ToolTipText = Constants.GetQuestLabelType(q.LabelType);
+				row.Cells[QuestView_Type.Index].Style.BackColor = cellColor;
 				row.Cells[QuestView_Category.Index].Value = q.Category;
 				row.Cells[QuestView_Category.Index].ToolTipText = Constants.GetQuestCategory(q.Category);
 				row.Cells[QuestView_Category.Index].Style = CSCategories[Math.Min(q.Category - 1, CSCategories.Length - 1)];
 				row.Cells[QuestView_Name.Index].Value = q.QuestID;
+				row.Cells[QuestView_Name.Index].Style.BackColor = cellColor;
+				row.Cells[QuestView_Progress.Index].Style.BackColor = cellColor;
 				{
 					// Fit tooltip text to 80 characters
 					var sentences = q.Description.Replace(Environment.NewLine, "").Split(" ");
@@ -368,6 +377,10 @@ namespace ElectronicObserver.Window
 				}
 
 				QuestView.Rows.Add(row);
+				
+				if (rowsAdded % 5 == 4)
+					useBackColor = !useBackColor;
+				rowsAdded++;
 			}
 
 
