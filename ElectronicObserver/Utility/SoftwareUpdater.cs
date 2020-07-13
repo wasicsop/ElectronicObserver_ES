@@ -112,7 +112,7 @@ namespace ElectronicObserver.Utility
             }
             catch (Exception e)
             {
-                Logger.Add(3, "Failed to download update info. " + e);
+                Logger.Add(3, "Failed to obtain update data. " + e);
             }
 			isChecked = true;
 		}
@@ -171,7 +171,7 @@ namespace ElectronicObserver.Utility
 					using var sr = new StreamReader(path);
 					var json = JsonObject.Parse(sr.ReadToEnd());
 					var fileVersion = (string)json.version;
-					Logger.Add(3, $"Checked {filename}.json file version (v{fileVersion}, latest: v{latestVersion})");
+					Logger.Add(1, $"Checked {filename}.json file version (v{fileVersion}, latest: v{latestVersion})");
 					if (fileVersion != latestVersion)
 					{
 						needUpdate = true;

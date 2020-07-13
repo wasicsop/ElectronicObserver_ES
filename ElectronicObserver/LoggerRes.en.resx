@@ -238,7 +238,7 @@
     <value>Records loaded.</value>
   </data>
   <data name="RecievedRequest" xml:space="preserve">
-    <value>Recieved request:</value>
+    <value>Received request: </value>
   </data>
   <data name="Record" xml:space="preserve">
     <value>The record </value>

@@ -63,12 +63,12 @@ namespace ElectronicObserver.Resource.Record
 			}
 			catch (FileNotFoundException)
 			{
-				Utility.Logger.Add(1, "Record " + path + " は存在しません。");
+				Utility.Logger.Add(1, "File " + path + " does not exists.");
 
 			}
 			catch (Exception ex)
 			{
-				Utility.ErrorReporter.SendErrorReport(ex, "Record " + path + " の読み込みに失敗しました。");
+				Utility.ErrorReporter.SendErrorReport(ex, "Failed to load file " + path);
 			}
 
 			return false;
@@ -101,7 +101,7 @@ namespace ElectronicObserver.Resource.Record
 			}
 			catch (Exception ex)
 			{
-				Utility.ErrorReporter.SendErrorReport(ex, "Record " + path + " の書き込みに失敗しました。");
+				Utility.ErrorReporter.SendErrorReport(ex, "Failed to write file " + path);
 			}
 
 			return false;
@@ -140,7 +140,7 @@ namespace ElectronicObserver.Resource.Record
 			}
 			catch (Exception ex)
 			{
-				Utility.ErrorReporter.SendErrorReport(ex, "Record " + path + " の書き込みに失敗しました。");
+				Utility.ErrorReporter.SendErrorReport(ex, "Failed to write file " + path);
 			}
 
 			return false;
