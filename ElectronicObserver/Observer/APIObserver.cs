@@ -97,7 +97,6 @@ namespace ElectronicObserver.Observer
 				new kcsapi.api_req_combined_battle.goback_port(),
 				new kcsapi.api_req_kousyou.remodel_slot(),
 				new kcsapi.api_get_member.material(),
-				new kcsapi.api_req_mission.return_instruction(),
 				new kcsapi.api_req_mission.result(),
 				new kcsapi.api_req_ranking.getlist(),
 				new kcsapi.api_req_sortie.airbattle(),
