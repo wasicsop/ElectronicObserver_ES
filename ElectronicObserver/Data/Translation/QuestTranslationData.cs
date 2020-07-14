@@ -15,7 +15,36 @@ namespace ElectronicObserver.Data.Translation
 
 		public bool IsTranslated(int id) => Configuration.Config.UI.DisableOtherTranslations == false && QuestList.ContainsKey(id);
 		public string Name(int id, string rawData) => IsTranslated(id) ? QuestList[id].Name : rawData;
-		public string Description(int id, string rawData) => IsTranslated(id) ? QuestList[id].Description : rawData;
+		public string Description(int id, string rawData)
+		{
+			if (IsTranslated(id))
+			{
+				// Fit tooltip text to 80 characters
+				var sentences = QuestList[id].Description.Split(" ");
+				var sb = new StringBuilder();
+
+				var line = "";
+				foreach (var s in sentences)
+				{
+					if ((line + s).Length > 80)
+					{
+						sb.AppendLine(line);
+						line = "";
+					}
+					line += $"{s} ";
+				}
+				if (line.Length > 0)
+					sb.AppendLine(line);
+				var desc = sb.ToString();
+
+				return desc;				
+			}
+			else
+			{
+				return rawData;
+			}
+		}
+
 		public override void Initialize()
 		{
 			QuestList = LoadDictionary(DefaultFilePath);

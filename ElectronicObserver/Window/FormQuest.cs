@@ -297,26 +297,8 @@ namespace ElectronicObserver.Window
 				row.Cells[QuestView_Category.Index].Style = CSCategories[Math.Min(q.Category - 1, CSCategories.Length - 1)];
 				row.Cells[QuestView_Name.Index].Value = q.QuestID;
 				{
-					// Fit tooltip text to 80 characters
-					var sentences = q.Description.Replace(Environment.NewLine, "").Split(" ");
-					var sb = new StringBuilder();
-
-					var line = "";
-					foreach (var s in sentences)
-					{
-						if ((line + s).Length > 80)
-						{
-							sb.AppendLine(line);
-							line = "";
-						}
-						line += $"{s} ";
-					}
-					if (line.Length > 0)
-						sb.AppendLine(line);
-					var desc = sb.ToString();
-
 					var progress = KCDatabase.Instance.QuestProgress[q.QuestID];
-					row.Cells[QuestView_Name.Index].ToolTipText = $"{q.Name} (ID: {q.QuestID})\r\n{desc}\r\n{progress?.GetClearCondition() ?? ""}";
+					row.Cells[QuestView_Name.Index].ToolTipText = $"{q.Name} (ID: {q.QuestID})\r\n{q.Description}\r\n{progress?.GetClearCondition() ?? ""}";
 				}
 				{
 					string value;
