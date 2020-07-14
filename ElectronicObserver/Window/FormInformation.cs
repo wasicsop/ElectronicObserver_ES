@@ -401,7 +401,7 @@ namespace ElectronicObserver.Window
 
                 if (gaugeType > 0)
                 {
-                    sb.AppendLine(string.Format("{0}-{1}{2}: {3}{4} {5} / {6}{7}",
+                    sb.AppendLine(string.Format("{0}-{1} {2}: {3}{4} {5}/{6}{7}",
                         map.MapAreaID, map.MapInfoID,
                         map.EventDifficulty > 0 ? $" [{Constants.GetDifficulty(map.EventDifficulty)}]" : "",
                         map.CurrentGaugeIndex > 0 ? $"#{map.CurrentGaugeIndex} " : "",
@@ -411,7 +411,7 @@ namespace ElectronicObserver.Window
 
                     if (map.MapAreaID > 10)
                     {
-                        rpcMapInfo = string.Format("E{0}{1}: {2}{3} {4} / {5}{6}",
+                        rpcMapInfo = string.Format("E{0} {1}: {2}{3} {4}/{5}{6}",
                             map.MapInfoID,
                             map.EventDifficulty > 0 ? $"{Constants.GetDifficulty(map.EventDifficulty)}" : "",
                             map.CurrentGaugeIndex > 0 ? $"#{map.CurrentGaugeIndex} " : "",

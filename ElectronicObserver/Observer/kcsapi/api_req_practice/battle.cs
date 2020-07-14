@@ -30,7 +30,7 @@ namespace ElectronicObserver.Observer.kcsapi.api_req_practice
             if (Utility.Configuration.Config.Control.EnableDiscordRPC)
             {
                 DiscordFormat dataForWS = Instance.data;
-                dataForWS.top = "Doing PVP";
+                dataForWS.top = "⚓ Doing PVP";
             }
 
 
