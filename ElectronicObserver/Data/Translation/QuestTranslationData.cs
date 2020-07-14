@@ -41,7 +41,7 @@ namespace ElectronicObserver.Data.Translation
 			}
 			else
 			{
-				return rawData;
+				return rawData.Replace("<br>", "\r\n");
 			}
 		}
 

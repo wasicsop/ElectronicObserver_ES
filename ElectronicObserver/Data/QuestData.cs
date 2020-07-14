@@ -48,14 +48,24 @@ namespace ElectronicObserver.Data
 		}
 
 		/// <summary>
-		/// 任務名
+		/// Name (Translated)
 		/// </summary>
 		public string Name => KCDatabase.Instance.Translation.Quest.Name(QuestID, (string)RawData.api_title);
 
 		/// <summary>
+		/// 任務名
+		/// </summary>
+		public string NameJP => (string)RawData.api_title;
+
+		/// <summary>
+		/// Description (Translated)
+		/// </summary>
+		public string Description => KCDatabase.Instance.Translation.Quest.Description(QuestID, (string)RawData.api_detail);
+
+		/// <summary>
 		/// 説明
 		/// </summary>
-		public string Description => KCDatabase.Instance.Translation.Quest.Description(QuestID, (string)RawData.api_detail).Replace("<br>", "\r\n");
+		public string DescriptionJP => (string)RawData.api_detail.Replace("<br>", "\r\n");
 
 		//undone:api_bonus_flag
 

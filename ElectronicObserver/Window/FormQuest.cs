@@ -1,4 +1,5 @@
-﻿using ElectronicObserver.Data;
+﻿using DynaJson;
+using ElectronicObserver.Data;
 using ElectronicObserver.Observer;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Utility;
@@ -804,28 +805,32 @@ namespace ElectronicObserver.Window
 
 		private void ManuMain_QuestTranslate_Click(object sender, EventArgs e)
 		{
-			List<string> outputList = new List<string>();
+			bool needTranslation = false;
+			dynamic json = new JsonObject();
 			foreach (QuestData quest in KCDatabase.Instance.Quest.Quests.Values)
 			{
 				if (quest.Translated) continue;
 
-				outputList.Add("<Quest>");
-				outputList.Add($"\t<ID>{quest.QuestID}</ID>");
-				outputList.Add($"\t<JP-Name>{quest.Name}</JP-Name>");
-				outputList.Add("\t<TR-Name></TR-Name>");
-				outputList.Add($"\t<JP-Detail>{quest.Description}</JP-Detail>");
-				outputList.Add("\t<TR-Detail></TR-Detail>");
-				outputList.Add("</Quest>");
-			}
+				json[quest.ID.ToString()] = new
+				{
+					code = "",
+					name_jp = quest.NameJP,
+					name = "",
+					desc_jp = quest.DescriptionJP.Replace("\r\n", "<br>"),
+					desc = ""
+				};
+				needTranslation = true;
+ 			}
+			string serializedOutput = json.ToString();
 
-			if (!outputList.Any())
+			if (needTranslation == false)
 			{
-				MessageBox.Show("All your quests are translated.", "Information", MessageBoxButtons.OK,
+				MessageBox.Show("All of your quests are translated.", "Information", MessageBoxButtons.OK,
 					MessageBoxIcon.Information);
 				return;
 			}
 
-			Clipboard.SetText(string.Join("\r\n", outputList));
+			Clipboard.SetText(serializedOutput);
 		}
 
 		protected override string GetPersistString()
