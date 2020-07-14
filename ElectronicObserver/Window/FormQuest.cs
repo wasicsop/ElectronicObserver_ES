@@ -250,6 +250,10 @@ namespace ElectronicObserver.Window
 			QuestView.SuspendLayout();
 			int scrollPos = QuestView.FirstDisplayedScrollingRowIndex;
 
+			// Add support for tooltip-based page numbering
+			int rowsAdded = 0;
+			int pageNumber = 1;
+
 			QuestView.Rows.Clear();
 
 			foreach (var q in KCDatabase.Instance.Quest.Quests.Values)
@@ -291,6 +295,7 @@ namespace ElectronicObserver.Window
 				row.Height = 21;
 
 				row.Cells[QuestView_State.Index].Value = (q.State == 3) ? ((bool?)null) : (q.State == 2);
+				row.Cells[QuestView_State.Index].ToolTipText = $"Page #{pageNumber}";
 				row.Cells[QuestView_Type.Index].Value = q.LabelType >= 100 ? q.LabelType : q.Type;
 				row.Cells[QuestView_Type.Index].ToolTipText = Constants.GetQuestLabelType(q.LabelType);
 				row.Cells[QuestView_Category.Index].Value = q.Category;
@@ -352,6 +357,10 @@ namespace ElectronicObserver.Window
 				}
 
 				QuestView.Rows.Add(row);
+				if (rowsAdded % 5 == 4)
+					pageNumber++;
+
+				rowsAdded++;
 			}
 
 			var useBackColor = false;
