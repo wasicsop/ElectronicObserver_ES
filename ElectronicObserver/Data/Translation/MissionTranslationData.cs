@@ -10,9 +10,9 @@ namespace ElectronicObserver.Data.Translation
 		private string DefaultFilePath = TranslationManager.WorkingFolder + @"\expedition.json";
 
 		private Dictionary<string, string> NameDictionary;
+		private bool isLoaded => Configuration.Config.UI.DisableOtherTranslations == false && NameDictionary != null;
 
-		public bool IsTranslated(string rawData)
-			=> Configuration.Config.UI.DisableOtherTranslations == false && NameDictionary.ContainsKey(rawData);
+		public bool IsTranslated(string rawData) => isLoaded && NameDictionary.ContainsKey(rawData);
 		public string Name(string rawData) => IsTranslated(rawData) ? NameDictionary[rawData] : rawData;
 
 		public void LoadDictionary(string path)

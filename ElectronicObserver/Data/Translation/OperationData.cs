@@ -12,11 +12,10 @@ namespace ElectronicObserver.Data.Translation
 
 		private Dictionary<string, string> MapList;
 		private Dictionary<string, string> FleetList;
+		private bool isLoaded => Configuration.Config.UI.DisableOtherTranslations == false && MapList != null && FleetList != null;
 
-		public bool IsMapTranslated(string rawData)
-			=> Configuration.Config.UI.DisableOtherTranslations == false && MapList.ContainsKey(rawData);
-		public bool IsFleetTranslated(string rawData)
-			=> Configuration.Config.UI.DisableOtherTranslations == false && FleetList.ContainsKey(rawData);
+		public bool IsMapTranslated(string rawData) => isLoaded && MapList.ContainsKey(rawData);
+		public bool IsFleetTranslated(string rawData) => isLoaded && FleetList.ContainsKey(rawData);
 		public string MapName(string rawData) => IsMapTranslated(rawData) ? MapList[rawData] : rawData;
 		public string FleetName(string rawData) => IsFleetTranslated(rawData) ? FleetList[rawData] : rawData;
 		public OperationData()

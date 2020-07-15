@@ -13,7 +13,7 @@ namespace ElectronicObserver.Data.Translation
 
 		private Dictionary<int, Quests> QuestList;
 
-		public bool IsTranslated(int id) => Configuration.Config.UI.DisableOtherTranslations == false && QuestList.ContainsKey(id);
+		public bool IsTranslated(int id) => Configuration.Config.UI.DisableOtherTranslations == false && QuestList != null && QuestList.ContainsKey(id);
 		public string Name(int id, string rawData) => IsTranslated(id) ? QuestList[id].Name : rawData;
 		public string Description(int id, string rawData)
 		{

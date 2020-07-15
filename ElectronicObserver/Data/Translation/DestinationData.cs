@@ -23,7 +23,7 @@ namespace ElectronicObserver.Data.Translation
 			return IsConverted(dest) ? DestinationList[dest] : destination.ToString();
 		}
 		public bool IsConverted(string dest)
-			=> Configuration.Config.UI.UseOriginalNodeId == false && DestinationList.ContainsKey(dest);
+			=> Configuration.Config.UI.UseOriginalNodeId == false && DestinationList != null && DestinationList.ContainsKey(dest);
 
 		public override void Initialize()
 		{

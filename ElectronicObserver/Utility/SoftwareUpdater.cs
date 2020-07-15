@@ -96,17 +96,23 @@ namespace ElectronicObserver.Utility
                     MaintDate = json.kancolle_mt;
                     MaintState = (int)json.event_state;
 
+					var changed = false;
+					var needReload = false;
 					foreach (string filename in Enum.GetNames(typeof(TranslationManager.TranslationFile)))
 					{
+						var key = filename;
+
 						// Temporary workaround for phasing out nodes.json
 						if (filename == "destination")
-						{
-							var str = "nodes";
-							CheckDataVersion(filename, json["tl_ver"][str].ToString());
-							continue;
-						}
-						CheckDataVersion(filename, (string)json["tl_ver"][filename]);
+							key = "nodes";
+
+						CheckDataVersion(filename, json["tl_ver"][key].ToString(), out changed);
+
+						if (changed)
+							needReload = true;
 					}
+					if (needReload)
+						KCDatabase.Instance.Translation.Initialize();
 				}
 
             }
@@ -156,10 +162,12 @@ namespace ElectronicObserver.Utility
 
         }
 
-        public static void CheckDataVersion(string filename, string latestVersion)
+        public static void CheckDataVersion(string filename, string latestVersion, out bool needReload)
         {
+			needReload = false;
+			filename += ".json";
 			var needUpdate = false;
-            var path = TranslationManager.WorkingFolder + $"\\{filename}.json";
+            var path = TranslationManager.WorkingFolder + $"\\{filename}";
 			if (File.Exists(path) == false)
 			{
 				needUpdate = true;
@@ -171,7 +179,7 @@ namespace ElectronicObserver.Utility
 					using var sr = new StreamReader(path);
 					var json = JsonObject.Parse(sr.ReadToEnd());
 					var fileVersion = (string)json.version;
-					Logger.Add(1, $"Checked {filename}.json file version (v{fileVersion}, latest: v{latestVersion})");
+					Logger.Add(1, $"Checked {filename} file version (v{fileVersion}, latest: v{latestVersion})");
 					if (fileVersion != latestVersion)
 					{
 						needUpdate = true;
@@ -185,6 +193,7 @@ namespace ElectronicObserver.Utility
             if (needUpdate)
 			{
 				DownloadData(filename, path);
+				needReload = true;
 			}
         }
 
@@ -204,7 +213,7 @@ namespace ElectronicObserver.Utility
         internal static void DownloadData(string filename, string path)
 		{
 			var url = Configuration.Config.Control.UpdateURL.AbsoluteUri + "en-US/" + $"{filename}";
-            try
+			try
             {
                 using (var client = new WebClient())
                 {

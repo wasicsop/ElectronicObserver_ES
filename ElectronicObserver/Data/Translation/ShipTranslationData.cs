@@ -15,9 +15,12 @@ namespace ElectronicObserver.Data.Translation
 		private Dictionary<string, string> TypeList;
 		private Dictionary<string, string> SuffixList;
 
+		private bool isShipLoaded => Configuration.Config.UI.JapaneseShipName == false && ShipList != null && SuffixList != null;
+		private bool isTypeLoaded => Configuration.Config.UI.JapaneseShipType == false && TypeList != null;
+
 		public string Name(string rawData)
 		{
-			if (Configuration.Config.UI.JapaneseShipName == true || ShipList == null || SuffixList == null) return rawData;
+			if (isShipLoaded == false) return rawData;
 
 			foreach (var s in ShipList.OrderByDescending(s => s.Key.Length))
 			{
@@ -45,7 +48,7 @@ namespace ElectronicObserver.Data.Translation
 			return rawData;
 		}
 
-		public string TypeName(string rawData) => Configuration.Config.UI.JapaneseShipType == false ? TypeList[rawData] : rawData;
+		public string TypeName(string rawData) => isTypeLoaded && TypeList.ContainsKey(rawData) ? TypeList[rawData] : rawData;
 		public ShipTranslationData()
 		{
 			Initialize();
