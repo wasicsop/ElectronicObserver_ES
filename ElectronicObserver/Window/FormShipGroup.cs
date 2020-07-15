@@ -842,7 +842,7 @@ namespace ElectronicObserver.Window
                         break;
 
                     case 1:     // あいうえお順
-                        e.SortResult = ship1.NameReading.CompareTo(ship2.NameReading);
+                        e.SortResult = ship1.NameReadingEN.CompareTo(ship2.NameReadingEN);
 
                         if (e.SortResult == 0)
                             e.SortResult = ship1.NameEN.CompareTo(ship2.NameEN);

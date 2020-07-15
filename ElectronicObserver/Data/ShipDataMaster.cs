@@ -457,6 +457,7 @@ namespace ElectronicObserver.Data
 		/// 読み
 		/// </summary>
 		public string NameReading => RawData.api_yomi;
+		public string NameReadingEN => Utility.Configuration.Config.UI.JapaneseShipName ? RawData.api_yomi : NameEN;
 
 		/// <summary>
 		/// 艦種
