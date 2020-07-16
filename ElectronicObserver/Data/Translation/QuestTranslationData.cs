@@ -66,17 +66,29 @@ namespace ElectronicObserver.Data.Translation
 			{
 				if (json.IsDefined(i.ToString()))
 				{
-					var code = json[i.ToString()]["code"];
-					var name = json[i.ToString()]["name"];
-					var nameJP = json[i.ToString()]["name_jp"];
-					var desc = json[i.ToString()]["desc"];
-					var descJP = json[i.ToString()]["desc_jp"];
+					string code = json[i.ToString()]["code"];
+					string name = json[i.ToString()]["name"];
+					string nameJP = json[i.ToString()]["name_jp"];
+					string desc = json[i.ToString()]["desc"];
+					string descJP = json[i.ToString()]["desc_jp"];
+
+					if (code == "")
+					{
+						int pos = name.IndexOf(":");
+						if (pos > 0 && pos < 10)
+						{
+							var ch = char.Parse(name.Substring(pos - 2, 1));
+							code = pos > 3 && char.IsLetter(ch) ? name.Substring(0, pos - 2) : name.Substring(0, pos);
+							name = name.Substring(pos + 2);
+						}
+					}
 					var quest = new Quests(code, name, nameJP, desc, descJP);
 					dict.TryAdd(i, quest);
 				}
 			}
 			return dict;
 		}
+		public Quests this[int index] => QuestList[index];
 	}
 
 	public class Quests
