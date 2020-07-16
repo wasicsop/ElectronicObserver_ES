@@ -1354,6 +1354,25 @@ namespace ElectronicObserver.Window
 
 		}
 
+		private void StripMenu_Help_Discord_Click(object sender, EventArgs e)
+		{
+
+			try
+			{
+				ProcessStartInfo psi = new ProcessStartInfo
+				{
+					FileName = @"https://discord.gg/6ZvX8DG",
+					UseShellExecute = true
+				};
+				Process.Start(psi);
+			}
+			catch (Exception ex)
+			{
+				Utility.ErrorReporter.SendErrorReport(ex, "Failed to search on Google.");
+			}
+
+		}
+
 		private void StripMenu_Help_Update_Click( object sender, EventArgs e ) 
         {
 			SoftwareInformation.CheckUpdate();
