@@ -62,8 +62,10 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.ManuMain_QuestTitle = new System.Windows.Forms.ToolStripMenuItem();
             this.ManuMain_QuestDescription = new System.Windows.Forms.ToolStripMenuItem();
-            this.MenuMain_GoogleQuest = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+			this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+			this.MenuMain_GoogleQuest = new System.Windows.Forms.ToolStripMenuItem();
+			this.MenuMain_KcwikiQuest = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.MenuMain_Initialize = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolTipInfo = new System.Windows.Forms.ToolTip(this.components);
             this.ManuMain_QuestTranslate = new System.Windows.Forms.ToolStripMenuItem();
@@ -215,8 +217,10 @@
             this.ManuMain_QuestTitle,
             this.ManuMain_QuestDescription,
             this.ManuMain_QuestTranslate,
-            this.MenuMain_GoogleQuest,
-            this.toolStripSeparator4,
+			this.toolStripSeparator5,
+			this.MenuMain_GoogleQuest,
+			this.MenuMain_KcwikiQuest,
+			this.toolStripSeparator4,
             this.MenuMain_Initialize});
             this.MenuMain.Name = "MenuMain";
             this.MenuMain.Size = new System.Drawing.Size(288, 192);
@@ -338,7 +342,7 @@
             this.MenuMain_ColumnFilter_Progress.CheckOnClick = true;
             this.MenuMain_ColumnFilter_Progress.Name = "MenuMain_ColumnFilter_Progress";
             this.MenuMain_ColumnFilter_Progress.Size = new System.Drawing.Size(140, 22);
-            this.MenuMain_ColumnFilter_Progress.Text = "&Progress";
+            this.MenuMain_ColumnFilter_Progress.Text = GeneralRes.ProgressFilter;
             this.MenuMain_ColumnFilter_Progress.Click += new System.EventHandler(this.MenuMain_ColumnFilter_Click);
             // 
             // toolStripSeparator1
@@ -350,26 +354,38 @@
             // 
             this.ManuMain_QuestTitle.Name = "ManuMain_QuestTitle";
             this.ManuMain_QuestTitle.Size = new System.Drawing.Size(287, 22);
-            this.ManuMain_QuestTitle.Text = "Copy &title to clipboard";
+            this.ManuMain_QuestTitle.Text = "Copy quest &title";
             this.ManuMain_QuestTitle.Click += new System.EventHandler(this.ManuMain_QuestTitle_Click);
             // 
             // ManuMain_QuestDescription
             // 
             this.ManuMain_QuestDescription.Name = "ManuMain_QuestDescription";
             this.ManuMain_QuestDescription.Size = new System.Drawing.Size(287, 22);
-            this.ManuMain_QuestDescription.Text = "Copy &description to clipboard";
+            this.ManuMain_QuestDescription.Text = "Copy quest &description";
             this.ManuMain_QuestDescription.Click += new System.EventHandler(this.ManuMain_QuestDescription_Click);
-            // 
-            // MenuMain_GoogleQuest
-            // 
-            this.MenuMain_GoogleQuest.Name = "MenuMain_GoogleQuest";
+			// 
+			// toolStripSeparator1
+			// 
+			this.toolStripSeparator5.Name = "toolStripSeparator5";
+			this.toolStripSeparator5.Size = new System.Drawing.Size(284, 6);
+			// 
+			// MenuMain_GoogleQuest
+			// 
+			this.MenuMain_GoogleQuest.Name = "MenuMain_GoogleQuest";
             this.MenuMain_GoogleQuest.Size = new System.Drawing.Size(287, 22);
             this.MenuMain_GoogleQuest.Text = "Search on &Google";
             this.MenuMain_GoogleQuest.Click += new System.EventHandler(this.MenuMain_GoogleQuest_Click);
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
+			// 
+			// MenuMain_KcwikiQuest
+			// 
+			this.MenuMain_KcwikiQuest.Name = "MenuMain_KcwikiQuest";
+			this.MenuMain_KcwikiQuest.Size = new System.Drawing.Size(287, 22);
+			this.MenuMain_KcwikiQuest.Text = "Search on &KancolleWiki";
+			this.MenuMain_KcwikiQuest.Click += new System.EventHandler(this.MenuMain_KcwikiQuest_Click);
+			// 
+			// toolStripSeparator4
+			// 
+			this.toolStripSeparator4.Name = "toolStripSeparator4";
             this.toolStripSeparator4.Size = new System.Drawing.Size(284, 6);
             // 
             // MenuMain_Initialize
@@ -390,7 +406,7 @@
             // 
             this.ManuMain_QuestTranslate.Name = "ManuMain_QuestTranslate";
             this.ManuMain_QuestTranslate.Size = new System.Drawing.Size(287, 22);
-            this.ManuMain_QuestTranslate.Text = "Copy &non-translated quests to clipboard";
+            this.ManuMain_QuestTranslate.Text = "Copy &non-translated quests data";
             this.ManuMain_QuestTranslate.Click += new System.EventHandler(this.ManuMain_QuestTranslate_Click);
             // 
             // FormQuest
@@ -444,7 +460,9 @@
 		private System.Windows.Forms.ToolStripMenuItem MenuMain_ShowWeekly;
 		private System.Windows.Forms.ToolStripMenuItem MenuMain_ShowMonthly;
 		private System.Windows.Forms.ToolStripMenuItem MenuMain_ShowOther;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
 		private System.Windows.Forms.ToolStripMenuItem MenuMain_GoogleQuest;
+		private System.Windows.Forms.ToolStripMenuItem MenuMain_KcwikiQuest;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
 		private System.Windows.Forms.ToolStripMenuItem ManuMain_QuestDescription;
 		private System.Windows.Forms.ToolStripMenuItem ManuMain_QuestTitle;

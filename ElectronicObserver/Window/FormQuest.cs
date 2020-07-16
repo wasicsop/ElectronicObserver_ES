@@ -304,7 +304,8 @@ namespace ElectronicObserver.Window
 				row.Cells[QuestView_Name.Index].Value = q.QuestID;
 				{
 					var progress = KCDatabase.Instance.QuestProgress[q.QuestID];
-					row.Cells[QuestView_Name.Index].ToolTipText = $"{q.Name} (ID: {q.QuestID})\r\n{q.Description}\r\n{progress?.GetClearCondition() ?? ""}";
+					var code = q.Code != "" ? $"{q.Code}: " : "";
+					row.Cells[QuestView_Name.Index].ToolTipText = $"{code}{q.Name} (ID: {q.QuestID})\r\n{q.Description}\r\n{progress?.GetClearCondition() ?? ""}";
 				}
 				{
 					string value;
@@ -745,13 +746,21 @@ namespace ElectronicObserver.Window
 
 			if (quest != null)
 			{
+				var searchKey = quest.Name;
+				if (quest.Name.Length > 25)
+					searchKey = quest.Name.Substring(0, 22) + "...";
+
 				MenuMain_GoogleQuest.Enabled = true;
-				MenuMain_GoogleQuest.Text = string.Format("Search &Google for \"{0}\"", quest.Name);
+				MenuMain_GoogleQuest.Text = string.Format("Search &Google for \"{0}\"", searchKey);
+				MenuMain_KcwikiQuest.Enabled = true;
+				MenuMain_KcwikiQuest.Text = string.Format("Open &KancolleWiki for \"{0}\"", searchKey);
 			}
 			else
 			{
 				MenuMain_GoogleQuest.Enabled = false;
 				MenuMain_GoogleQuest.Text = "Search on &Google";
+				MenuMain_KcwikiQuest.Enabled = false;
+				MenuMain_KcwikiQuest.Text = "Open on &KancolleWiki";
 			}
 		}
 
@@ -779,6 +788,35 @@ namespace ElectronicObserver.Window
 
 		}
 
+		private void MenuMain_KcwikiQuest_Click(object sender, EventArgs e)
+		{
+			var quest = KCDatabase.Instance.Quest[GetSelectedRowQuestID()];
+
+			if (quest != null)
+			{
+				try
+				{
+					var url = string.Empty;
+
+					url = quest.Code != ""
+						? @"https://en.kancollewiki.net/Quests#" + Uri.EscapeDataString(quest.Code)
+						: @"https://www.google.com/search?q=" + Uri.EscapeDataString(quest.Name) + "+" + Uri.EscapeDataString("site:en.kancollewiki.net");
+
+					ProcessStartInfo psi = new ProcessStartInfo
+					{
+						FileName = url,
+						UseShellExecute = true
+					};
+					Process.Start(psi);
+				}
+				catch (Exception ex)
+				{
+					Utility.ErrorReporter.SendErrorReport(ex, "Failed to open KancolleWiki page.");
+				}
+			}
+
+		}
+
 		private int GetSelectedRowQuestID()
 		{
 			var rows = QuestView.SelectedRows;
@@ -798,7 +836,7 @@ namespace ElectronicObserver.Window
 			
 			if (quest != null)
 			{
-				Clipboard.SetText(quest.Description);
+				Clipboard.SetText(quest.Description.Replace(Environment.NewLine, ""));
 			}
 		}
 
