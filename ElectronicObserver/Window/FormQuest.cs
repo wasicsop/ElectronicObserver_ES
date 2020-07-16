@@ -774,7 +774,7 @@ namespace ElectronicObserver.Window
 				{
 					ProcessStartInfo psi = new ProcessStartInfo
 					{
-						FileName = @"https://www.google.com/search?q=" + Uri.EscapeDataString(quest.Name) + "+KanColle",
+						FileName = @"https://www.google.com/search?q=" + Uri.EscapeDataString(quest.Code) + "+" + Uri.EscapeDataString(quest.Name) + "+KanColle",
 						UseShellExecute = true
 					};
 					// google <任務名> 艦これ
