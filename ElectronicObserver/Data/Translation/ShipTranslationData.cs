@@ -33,19 +33,23 @@ namespace ElectronicObserver.Data.Translation
 				}
 			}
 
+			var name = rawData; // prevent suffix from being replaced twice.
 			foreach (var sf in SuffixList.OrderByDescending(sf => sf.Key.Length))
 			{
 				if (rawData.Contains(sf.Key))
 				{
 					var pos = rawData.IndexOf(sf.Key);
-					rawData = rawData.Remove(pos, sf.Key.Length).Insert(pos, sf.Value);
+					rawData = rawData.Remove(pos, sf.Key.Length).Insert(pos, new String('0', sf.Value.Length));
+					name = name.Remove(pos, sf.Key.Length).Insert(pos, sf.Value);
+
 					if (rawData.Substring(pos-1,1).Contains(" ") == false)
 					{
 						rawData = rawData.Insert(pos, " ");
+						name = name.Insert(pos, " ");
 					}
 				}
 			}
-			return rawData;
+			return name;
 		}
 
 		public string TypeName(string rawData) => isTypeLoaded && TypeList.ContainsKey(rawData) ? TypeList[rawData] : rawData;
