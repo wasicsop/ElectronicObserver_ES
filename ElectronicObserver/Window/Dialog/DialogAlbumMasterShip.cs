@@ -140,7 +140,7 @@ namespace ElectronicObserver.Window.Dialog
 
 			ShipView.Rows.Clear();
 
-			List<DataGridViewRow> rows = new List<DataGridViewRow>(KCDatabase.Instance.MasterShips.Values.Count(s => s.NameEN != "なし"));
+			List<DataGridViewRow> rows = new List<DataGridViewRow>(KCDatabase.Instance.MasterShips.Values.Count(s => s.Name != "なし"));
 
 			foreach (var ship in KCDatabase.Instance.MasterShips.Values)
 			{
