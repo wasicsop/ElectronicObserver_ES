@@ -250,10 +250,6 @@ namespace ElectronicObserver.Window
 			QuestView.SuspendLayout();
 			int scrollPos = QuestView.FirstDisplayedScrollingRowIndex != null ? QuestView.FirstDisplayedScrollingRowIndex : 0;
 
-			// Add support for tooltip-based page numbering
-			int rowsAdded = 0;
-			int pageNumber = 1;
-
 			QuestView.Rows.Clear();
 
 			foreach (var q in KCDatabase.Instance.Quest.Quests.Values)
@@ -295,7 +291,6 @@ namespace ElectronicObserver.Window
 				row.Height = 21;
 
 				row.Cells[QuestView_State.Index].Value = (q.State == 3) ? ((bool?)null) : (q.State == 2);
-				row.Cells[QuestView_State.Index].ToolTipText = $"Page #{pageNumber}";
 				row.Cells[QuestView_Type.Index].Value = q.LabelType >= 100 ? q.LabelType : q.Type;
 				row.Cells[QuestView_Type.Index].ToolTipText = Constants.GetQuestLabelType(q.LabelType);
 				row.Cells[QuestView_Category.Index].Value = q.Category;
@@ -358,22 +353,6 @@ namespace ElectronicObserver.Window
 				}
 
 				QuestView.Rows.Add(row);
-				if (rowsAdded % 5 == 4)
-					pageNumber++;
-
-				rowsAdded++;
-			}
-
-			var useBackColor = false;
-			for (int i = 0; i < QuestView.Rows.Count; i++)
-			{
-				var color = useBackColor ? Configuration.Config.UI.SubBackColor : Configuration.Config.UI.BackColor;
-				QuestView.Rows[i].Cells[QuestView_State.Index].Style.BackColor = color;
-				QuestView.Rows[i].Cells[QuestView_Type.Index].Style.BackColor = color;
-				QuestView.Rows[i].Cells[QuestView_Name.Index].Style.BackColor = color;
-				QuestView.Rows[i].Cells[QuestView_Progress.Index].Style.BackColor = color;
-				if (i % 5 == 4)
-					useBackColor = !useBackColor;
 			}
 
 
@@ -394,6 +373,25 @@ namespace ElectronicObserver.Window
 			//更新時にソートする
 			if (QuestView.SortedColumn != null)
 				QuestView.Sort(QuestView.SortedColumn, QuestView.SortOrder == SortOrder.Ascending ? ListSortDirection.Ascending : ListSortDirection.Descending);
+
+
+			// Add support for tooltip-based page numbering
+			int pageNumber = 1;
+			var useBackColor = false;
+			for (int i = 0; i < QuestView.Rows.Count; i++)
+			{
+				var color = useBackColor ? Configuration.Config.UI.SubBackColor : Configuration.Config.UI.BackColor;
+				QuestView.Rows[i].Cells[QuestView_State.Index].Style.BackColor = color;
+				QuestView.Rows[i].Cells[QuestView_State.Index].ToolTipText = $"Page #{pageNumber}";
+				QuestView.Rows[i].Cells[QuestView_Type.Index].Style.BackColor = color;
+				QuestView.Rows[i].Cells[QuestView_Name.Index].Style.BackColor = color;
+				QuestView.Rows[i].Cells[QuestView_Progress.Index].Style.BackColor = color;
+				if (i % 5 == 4)
+				{
+					useBackColor = !useBackColor;
+					pageNumber++;
+				}
+			}
 
 			// Retain scroll position
 			if (QuestView.Rows.Count > scrollPos)
