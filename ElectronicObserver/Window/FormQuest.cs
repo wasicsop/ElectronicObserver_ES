@@ -248,7 +248,7 @@ namespace ElectronicObserver.Window
 			if (!KCDatabase.Instance.Quest.IsLoaded) return;
 
 			QuestView.SuspendLayout();
-			int scrollPos = QuestView.FirstDisplayedScrollingRowIndex;
+			int scrollPos = QuestView.FirstDisplayedScrollingRowIndex != null ? QuestView.FirstDisplayedScrollingRowIndex : 0;
 
 			// Add support for tooltip-based page numbering
 			int rowsAdded = 0;
