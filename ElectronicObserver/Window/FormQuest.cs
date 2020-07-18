@@ -252,7 +252,7 @@ namespace ElectronicObserver.Window
 
 			QuestView.Rows.Clear();
 
-			foreach (var q in KCDatabase.Instance.Quest.Quests.Values)
+			foreach ((QuestData q, int questIndex) in KCDatabase.Instance.Quest.Quests.Values.Select((q, i) => (q, i)))
 			{
 
 				if (MenuMain_ShowRunningOnly.Checked && !(q.State == 2 || q.State == 3))
@@ -275,13 +275,15 @@ namespace ElectronicObserver.Window
 						break;
 					case 5:
 						if (q.QuestID == 211 || q.QuestID == 212)
-						{   // 空母3か輸送5
+						{
+							// 空母3か輸送5
 							if (!MenuMain_ShowDaily.Checked) continue;
 						}
 						else
 						{
 							if (!MenuMain_ShowOther.Checked) continue;
 						}
+
 						break;
 				}
 
@@ -290,17 +292,40 @@ namespace ElectronicObserver.Window
 				row.CreateCells(QuestView);
 				row.Height = 21;
 
-				row.Cells[QuestView_State.Index].Value = (q.State == 3) ? ((bool?)null) : (q.State == 2);
+				// Add support for tooltip-based page numbering
+				Color color = (questIndex / 5 % 2) switch
+				{
+					0 => Configuration.Config.UI.BackColor,
+					_ => Configuration.Config.UI.SubBackColor
+				};
+
+				row.Cells[QuestView_State.Index].Value = (q.State == 3) ? ((bool?) null) : (q.State == 2);
+				row.Cells[QuestView_State.Index].ToolTipText = $"Page #{questIndex / 5 + 1}";
+				row.Cells[QuestView_State.Index].Style.BackColor = color;
+				row.Cells[QuestView_State.Index].Style.SelectionBackColor = color;
+
 				row.Cells[QuestView_Type.Index].Value = q.LabelType >= 100 ? q.LabelType : q.Type;
 				row.Cells[QuestView_Type.Index].ToolTipText = Constants.GetQuestLabelType(q.LabelType);
+				row.Cells[QuestView_Type.Index].Style.BackColor = color;
+				row.Cells[QuestView_Type.Index].Style.SelectionBackColor = color;
+
 				row.Cells[QuestView_Category.Index].Value = q.Category;
 				row.Cells[QuestView_Category.Index].ToolTipText = Constants.GetQuestCategory(q.Category);
-				row.Cells[QuestView_Category.Index].Style = CSCategories[Math.Min(q.Category - 1, CSCategories.Length - 1)];
+				row.Cells[QuestView_Category.Index].Style =
+					CSCategories[Math.Min(q.Category - 1, CSCategories.Length - 1)];
+
 				row.Cells[QuestView_Name.Index].Value = q.QuestID;
+				row.Cells[QuestView_Name.Index].Style.BackColor = color;
+				row.Cells[QuestView_Name.Index].Style.SelectionBackColor = color;
+
+				row.Cells[QuestView_Progress.Index].Style.BackColor = color;
+				row.Cells[QuestView_Progress.Index].Style.SelectionBackColor = color;
+
 				{
 					var progress = KCDatabase.Instance.QuestProgress[q.QuestID];
 					var code = q.Code != "" ? $"{q.Code}: " : "";
-					row.Cells[QuestView_Name.Index].ToolTipText = $"{code}{q.Name} (ID: {q.QuestID})\r\n{q.Description}\r\n{progress?.GetClearCondition() ?? ""}";
+					row.Cells[QuestView_Name.Index].ToolTipText =
+						$"{code}{q.Name} (ID: {q.QuestID})\r\n{q.Description}\r\n{progress?.GetClearCondition() ?? ""}";
 				}
 				{
 					string value;
@@ -374,25 +399,6 @@ namespace ElectronicObserver.Window
 			if (QuestView.SortedColumn != null)
 				QuestView.Sort(QuestView.SortedColumn, QuestView.SortOrder == SortOrder.Ascending ? ListSortDirection.Ascending : ListSortDirection.Descending);
 
-
-			// Add support for tooltip-based page numbering
-			int pageNumber = 1;
-			var useBackColor = false;
-			for (int i = 0; i < QuestView.Rows.Count; i++)
-			{
-				var color = useBackColor ? Configuration.Config.UI.SubBackColor : Configuration.Config.UI.BackColor;
-				QuestView.Rows[i].Cells[QuestView_State.Index].Style.BackColor = color;
-				QuestView.Rows[i].Cells[QuestView_State.Index].ToolTipText = $"Page #{pageNumber}";
-				QuestView.Rows[i].Cells[QuestView_Type.Index].Style.BackColor = color;
-				QuestView.Rows[i].Cells[QuestView_Name.Index].Style.BackColor = color;
-				QuestView.Rows[i].Cells[QuestView_Progress.Index].Style.BackColor = color;
-				if (i % 5 == 4)
-				{
-					useBackColor = !useBackColor;
-					pageNumber++;
-				}
-			}
-
 			// Retain scroll position
 			if (QuestView.Rows.Count > scrollPos)
 				QuestView.FirstDisplayedScrollingRowIndex = scrollPos;
@@ -403,28 +409,29 @@ namespace ElectronicObserver.Window
 
 		private void QuestView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
 		{
+			if (!(e.Value is int questId)) return;
 
-			if (e.Value is int)
+			if (e.ColumnIndex == QuestView_Type.Index)
 			{
-				if (e.ColumnIndex == QuestView_Type.Index)
-				{
-					e.Value = Constants.GetQuestType((int)e.Value);
-					e.FormattingApplied = true;
+				e.Value = Constants.GetQuestType(questId);
+				e.FormattingApplied = true;
 
-				}
-				else if (e.ColumnIndex == QuestView_Category.Index)
-				{
-					e.Value = Constants.GetQuestCategory((int)e.Value);
-					e.FormattingApplied = true;
+			}
+			else if (e.ColumnIndex == QuestView_Category.Index)
+			{
+				e.Value = Constants.GetQuestCategory(questId);
+				e.FormattingApplied = true;
 
-				}
-				else if (e.ColumnIndex == QuestView_Name.Index)
+			}
+			else if (e.ColumnIndex == QuestView_Name.Index)
+			{
+				var quest = KCDatabase.Instance.Quest[questId];
+				e.Value = quest switch
 				{
-					var quest = KCDatabase.Instance.Quest[(int)e.Value];
-					e.Value = quest != null ? quest.Name : "???";
-					e.FormattingApplied = true;
-
-				}
+					{} => $"{quest.Code}: {quest.Name}",
+					_ => "???"
+				};
+				e.FormattingApplied = true;
 
 			}
 
