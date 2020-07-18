@@ -87,7 +87,7 @@ namespace ElectronicObserver.Data
 				case 0:
 					sb.Append("<Empty>"); break;
 				case 1:
-					sb.Append(KCDatabase.Instance.Ships[ShipID].MasterShip.Name + ", at " + CompletionTime.ToString()); break;
+					sb.Append(KCDatabase.Instance.Ships[ShipID].MasterShip.NameEN + ", at " + CompletionTime.ToString()); break;
 			}
 
 			return sb.ToString();

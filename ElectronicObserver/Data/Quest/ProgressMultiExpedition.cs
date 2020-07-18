@@ -52,13 +52,13 @@ namespace ElectronicObserver.Data.Quest
             if (ProgressList.All(p => p.IsCleared))
                 return "100%";
             else
-                return string.Join(",\n", ProgressList.Where(p => !p.IsCleared).Select(p => p.GetClearCondition() + ": " + p.ToString()));
+                return string.Join("\r\n", ProgressList.Where(p => !p.IsCleared).Select(p => p.ToString() + " " + p.GetClearCondition()));
         }
 
 
         public override string GetClearCondition()
         {
-            return string.Join(", ", ProgressList.Select(p => p.GetClearCondition()));
+            return string.Join("\r\n", ProgressList.Select(p => p.GetClearCondition()));
         }
     }
 }

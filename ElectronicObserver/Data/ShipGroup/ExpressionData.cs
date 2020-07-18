@@ -395,7 +395,7 @@ namespace ElectronicObserver.Data.ShipGroup
 			{
 				var shiptype = KCDatabase.Instance.ShipTypes[(int)RightOperand];
 				if (shiptype != null)
-					return shiptype.Name;
+					return shiptype.NameEN;
 				else
 					return $"{(int)RightOperand} (未定義)";
 
@@ -410,7 +410,7 @@ namespace ElectronicObserver.Data.ShipGroup
 				{
 					var eq = KCDatabase.Instance.MasterEquipments[(int)RightOperand];
 					if (eq != null)
-						return eq.Name;
+						return eq.NameEN;
 					else
 						return $"{(int)RightOperand} (未定義)";
 				}
@@ -419,7 +419,7 @@ namespace ElectronicObserver.Data.ShipGroup
 			{
 				var cat = KCDatabase.Instance.EquipmentTypes[(int)RightOperand];
 				if (cat != null)
-					return cat.Name;
+					return cat.NameEN;
 				else
 					return $"{(int)RightOperand} (未定義)";
 

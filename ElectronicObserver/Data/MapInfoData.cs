@@ -28,14 +28,12 @@ namespace ElectronicObserver.Data
 		/// </summary>
 		public int MapInfoID => (int)RawData.api_no;
 
-		public string MapInfoID2 {
-			get { return Window.FormMain.Instance.Translator.GetMapNodes(MapID, MapAreaID, MapInfoID); }
-		}
-
 		/// <summary>
 		/// 海域名
 		/// </summary>
-		public string Name => Window.FormMain.Instance.Translator.GetTranslation(RawData.api_name, Utility.TranslationType.OperationMaps);
+		public string Name => RawData.api_name;
+
+		public string NameEN => KCDatabase.Instance.Translation.Operation.MapName(RawData.api_name);
 
 		/// <summary>
 		/// 難易度

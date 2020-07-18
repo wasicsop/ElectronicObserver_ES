@@ -102,6 +102,7 @@
             this.StripMenu_Help = new System.Windows.Forms.ToolStripMenuItem();
             this.StripMenu_Help_Help = new System.Windows.Forms.ToolStripMenuItem();
             this.StripMenu_Help_Issue = new System.Windows.Forms.ToolStripMenuItem();
+			this.StripMenu_Help_Discord = new System.Windows.Forms.ToolStripMenuItem();
             this.SeparatorWhitecap = new System.Windows.Forms.ToolStripSeparator();
             this.StripMenu_Help_Version = new System.Windows.Forms.ToolStripMenuItem();
             this.StripMenu_Update = new System.Windows.Forms.ToolStripMenuItem();
@@ -674,6 +675,7 @@
             this.StripMenu_Help.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.StripMenu_Help_Help,
             this.StripMenu_Help_Issue,
+			this.StripMenu_Help_Discord,
             this.SeparatorWhitecap,
             this.StripMenu_Help_Update,
             this.StripMenu_Help_Version});
@@ -695,6 +697,13 @@
             this.StripMenu_Help_Issue.Text = "&Report a Problem...";
             this.StripMenu_Help_Issue.Click += new System.EventHandler(this.StripMenu_Help_Issue_Click);
             //
+			// StripMenu_Help_Discord
+			//
+			this.StripMenu_Help_Discord.Name = "StripMenu_Help_Issue";
+			this.StripMenu_Help_Discord.Size = new System.Drawing.Size(180, 22);
+			this.StripMenu_Help_Discord.Text = "&Join us on Discord";
+			this.StripMenu_Help_Discord.Click += new System.EventHandler(this.StripMenu_Help_Discord_Click);
+			//
             // SeparatorWhitecap
             //
             this.SeparatorWhitecap.Name = "SeparatorWhitecap";
@@ -885,6 +894,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
         private System.Windows.Forms.ToolStripMenuItem StripMenu_Help_Help;
         private System.Windows.Forms.ToolStripMenuItem StripMenu_Help_Issue;
+		private System.Windows.Forms.ToolStripMenuItem StripMenu_Help_Discord;
         private System.Windows.Forms.ToolStripSeparator SeparatorWhitecap;
         private System.Windows.Forms.ToolStripMenuItem StripMenu_File_Layout;
         private System.Windows.Forms.ToolStripMenuItem StripMenu_File_Layout_Load;

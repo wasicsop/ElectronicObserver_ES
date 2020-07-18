@@ -116,7 +116,7 @@ namespace ElectronicObserver.Window
 					ShipDataMaster ship = KCDatabase.Instance.MasterShips[shipID];
 
 
-					ShipName.Text = ship.Name;
+					ShipName.Text = ship.NameEN;
 					if(ship.IsAbyssalShip)
 					{
 						ShipName.ForeColor = ship.GetShipNameColor();
@@ -304,7 +304,7 @@ namespace ElectronicObserver.Window
 					else
 					{
 
-						ShipNames[i].Text = ship.Name;
+						ShipNames[i].Text = ship.NameEN;
 						ShipNames[i].ForeColor = ship.GetShipNameColor();
 						ShipNames[i].Tag = ship.ShipID;
 						ShipNames[i].Cursor = Cursors.Help;
@@ -494,7 +494,7 @@ namespace ElectronicObserver.Window
 			{
 				var eq = KCDatabase.Instance.MasterEquipments[slot[i]];
 				if (eq != null)
-					sb.AppendFormat("[{0}] {1}\r\n", ship.Aircraft[i], eq.Name);
+					sb.AppendFormat("[{0}] {1}\r\n", ship.Aircraft[i], eq.NameEN);
 			}
 
 			sb.AppendFormat( "\r\n" + GeneralRes.DayBattle + ": {0}\r\n" + GeneralRes.NightBattle + ": {1}\r\n",
@@ -884,13 +884,7 @@ namespace ElectronicObserver.Window
 
 							if (compass.RouteChoices != null)
 							{
-								var nodechoices = new string[compass.RouteChoices.Count];
-								for (int i = 0; i < compass.RouteChoices.Count; i++)
-								{
-									nodechoices[i] = FormMain.Instance.Translator.GetMapNodes(compass.MapAreaID, compass.MapInfoID,
-										compass.RouteChoices[i]);
-								}
-								TextEventDetail.Text = string.Join(" or ", nodechoices);
+								TextEventDetail.Text = string.Join(" or ", compass.RouteChoicesDisplay);
 							}
 							else if (compass.FlavorTextType != -1)
 							{
@@ -1191,7 +1185,7 @@ namespace ElectronicObserver.Window
 				var candidate = _enemyFleetCandidate[_enemyFleetCandidateIndex];
 
 
-				TextEventDetail.Text = TextEnemyFleetName.Text = candidate.FleetName;
+				TextEventDetail.Text = TextEnemyFleetName.Text = KCDatabase.Instance.Translation.Operation.FleetName(candidate.FleetName);
 
 				if (_enemyFleetCandidate.Count > _candidatesDisplayCount)
 				{

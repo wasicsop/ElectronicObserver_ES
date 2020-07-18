@@ -77,7 +77,6 @@ namespace ElectronicObserver.Window
 
 		#endregion
 
-		public DynamicTranslator Translator { get; private set; }
 
 
 
@@ -112,7 +111,6 @@ namespace ElectronicObserver.Window
 
 			Utility.Configuration.Instance.Load(this);
 
-			Translator = new DynamicTranslator();
 			this.MainDockPanel.Styles = Configuration.Config.UI.DockPanelSuiteStyles;
 			this.MainDockPanel.Theme = new WeifenLuo.WinFormsUI.Docking.VS2012Theme();
 			this.BackColor = this.StripMenu.BackColor = Utility.Configuration.Config.UI.BackColor;
@@ -1352,6 +1350,25 @@ namespace ElectronicObserver.Window
 					UseShellExecute = true
 				};
 				Process.Start(psi);
+			}
+
+		}
+
+		private void StripMenu_Help_Discord_Click(object sender, EventArgs e)
+		{
+
+			try
+			{
+				ProcessStartInfo psi = new ProcessStartInfo
+				{
+					FileName = @"https://discord.gg/6ZvX8DG",
+					UseShellExecute = true
+				};
+				Process.Start(psi);
+			}
+			catch (Exception ex)
+			{
+				Utility.ErrorReporter.SendErrorReport(ex, "Failed to search on Google.");
 			}
 
 		}

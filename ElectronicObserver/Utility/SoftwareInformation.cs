@@ -71,6 +71,7 @@ namespace ElectronicObserver.Utility
 
 			if (!client.IsBusy)
 				client.DownloadStringAsync(uri);
+			SoftwareUpdater.UpdateCheck();
 		}
 
 		private static void DownloadStringCompleted(object sender, System.Net.DownloadStringCompletedEventArgs e)

@@ -23,7 +23,7 @@ namespace ElectronicObserver.Observer.kcsapi.api_req_map
             if (Utility.Configuration.Config.Control.EnableDiscordRPC)
             {
                 DiscordFormat dataForWS = Instance.data;
-                dataForWS.top = string.Format("Node {0}-{1} {2}", db.Battle.Compass.MapAreaID, db.Battle.Compass.MapInfoID, db.Battle.Compass.DestinationID);
+                dataForWS.top = string.Format("⚓ Sortieing to {0}-{1}-{2}: {3}", db.Battle.Compass.MapAreaID, db.Battle.Compass.MapInfoID, db.Battle.Compass.DestinationID, db.Battle.Compass.MapInfo.NameEN);
 
             }
 

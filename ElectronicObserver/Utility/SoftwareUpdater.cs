@@ -7,6 +7,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using DynaJson;
+using ElectronicObserver.Data;
+using ElectronicObserver.Data.Translation;
 using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.Window;
 using AppSettings = ElectronicObserver.Properties.Settings;
@@ -17,9 +19,8 @@ namespace ElectronicObserver.Utility
     {
         internal static readonly string AppDataFolder =
             Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + @"\\ElectronicObserver";
-        internal static readonly string TranslationFolder = AppDataFolder + "\\Translations";
 
-        internal static string MaintDate { get; set; } = string.Empty;
+		internal static string MaintDate { get; set; } = string.Empty;
         internal static int MaintState { get; set; }
 
         private static string UpdateFileUrl = string.Empty;
@@ -33,7 +34,7 @@ namespace ElectronicObserver.Utility
             if (!Directory.Exists(AppDataFolder))
                 Directory.CreateDirectory(AppDataFolder);
 
-            CheckVersion();
+            UpdateCheck();
 
             if (UpdateFileUrl != string.Empty)
             {
@@ -73,10 +74,11 @@ namespace ElectronicObserver.Utility
         }
 
         public static void UpdateCheck()
-        {
-            try
+		{
+			if (isChecked) return;
+			try
             {
-				Uri UpdateUrl = new Uri(String.Format("{0}/en-US/update.json", Configuration.Config.Control.UpdateURL));
+				Uri UpdateUrl = new Uri(string.Format("{0}/en-US/update.json", Configuration.Config.Control.UpdateURL));
 				using (var client = WebRequest.Create(UpdateUrl).GetResponse())
                 {
                     var updateData = client.GetResponseStream();
@@ -94,24 +96,34 @@ namespace ElectronicObserver.Utility
                     MaintDate = json.kancolle_mt;
                     MaintState = (int)json.event_state;
 
-                    CheckDataVersion(TranslationFile.Equipment, json.tl_ver.equipment);
-                    CheckDataVersion(TranslationFile.EquipmentTypes, json.tl_ver.equipment_type);
-                    CheckDataVersion(TranslationFile.Expeditions, json.tl_ver.expedition);
-                    CheckDataVersion(TranslationFile.Operations, json.tl_ver.operation);
-                    CheckDataVersion(TranslationFile.Quests, json.tl_ver.quest);
-                    CheckDataVersion(TranslationFile.Ships, json.tl_ver.ship);
-                    CheckDataVersion(TranslationFile.ShipTypes, json.tl_ver.ship_type);
-                    CheckDataVersion("nodes.json", (int)json.tl_ver.nodes);
-                }
+					var changed = false;
+					var needReload = false;
+					foreach (string filename in Enum.GetNames(typeof(TranslationManager.TranslationFile)))
+					{
+						var key = filename;
+
+						// Temporary workaround for phasing out nodes.json
+						if (filename == "destination")
+							key = "nodes";
+
+						CheckDataVersion(filename, json["tl_ver"][key].ToString(), out changed);
+
+						if (changed)
+							needReload = true;
+					}
+					if (needReload)
+						KCDatabase.Instance.Translation.Initialize();
+				}
 
             }
             catch (Exception e)
             {
-                Logger.Add(3, "Failed to download update info. " + e);
+                Logger.Add(3, "Failed to obtain update data. " + e);
             }
-        }
+			isChecked = true;
+		}
 
-        private static void DownloadUpdater()
+		private static void DownloadUpdater()
         {
             try
             {
@@ -150,80 +162,39 @@ namespace ElectronicObserver.Utility
 
         }
 
-        internal static void CheckVersion()
+        public static void CheckDataVersion(string filename, string latestVersion, out bool needReload)
         {
-            if (isChecked) return;
-            try
-            {
-				Uri UpdateUrl = new Uri(String.Format("{0}/en-US/update.json", Configuration.Config.Control.UpdateURL));
-				using (var client = WebRequest.Create(UpdateUrl).GetResponse())
-                {
-                    var updateData = client.GetResponseStream();
-                    var json = JsonObject.Parse(updateData);
-
-                    UpdateFileUrl = json.url;
-                    //DownloadHash = json.hash;
-                    MaintDate = json.kancolle_mt;
-                    MaintState = (int)json.event_state;
-
-                    CheckDataVersion(TranslationFile.Equipment, json.tl_ver.equipment);
-                    CheckDataVersion(TranslationFile.EquipmentTypes, json.tl_ver.equipment_type);
-                    CheckDataVersion(TranslationFile.Expeditions, json.tl_ver.expedition);
-                    CheckDataVersion(TranslationFile.Operations, json.tl_ver.operation);
-                    CheckDataVersion(TranslationFile.Quests, json.tl_ver.quest);
-                    CheckDataVersion(TranslationFile.Ships, json.tl_ver.ship);
-                    CheckDataVersion(TranslationFile.ShipTypes, json.tl_ver.ship_type);
-                    CheckDataVersion("nodes.json", (int)json.tl_ver.nodes);
-                }
-
-            }
-            catch (Exception e)
-            {
-                Logger.Add(3, "Failed to download update info. " + e);
-            }
-
-            isChecked = true;
-        }
-
-        public static void CheckDataVersion(string filename, int latestVer)
-        {
-            var source = TranslationFolder + $"\\{filename}";
-            var currentVer = 0;
-            if (!File.Exists(source))
-                DownloadData(filename);
-            try
-            {
-                using (var sr = new StreamReader(source))
-                {
-                    var json = JsonObject.Parse(sr.ReadToEnd());
-                    currentVer = (int)json.Revision;
-                }
-            }
-            catch (Exception e)
-            {
-                Logger.Add(3, "Error while checking translation data. " + e);
-            }
-            if (latestVer != currentVer)
-                DownloadData(filename);
-        }
-
-        public static void CheckDataVersion(TranslationFile filename, string latestVer)
-        {
-            var source = TranslationFolder + $"\\{filename}.xml";
-            var currentVer = "0.0.0";
-            if (!File.Exists(source))
-                DownloadData(filename);
-            try
-            {
-                var xml = XDocument.Load(source);
-                currentVer = xml.Root.Attribute("Version").Value;
-            }
-            catch (Exception e)
-            {
-                Logger.Add(3, "Error while checking translation data. " + e);
-            }
-            if (latestVer != currentVer)
-                DownloadData(filename);
+			needReload = false;
+			filename += ".json";
+			var needUpdate = false;
+            var path = TranslationManager.WorkingFolder + $"\\{filename}";
+			if (File.Exists(path) == false)
+			{
+				needUpdate = true;
+			}
+			else
+			{
+				try
+				{
+					using var sr = new StreamReader(path);
+					var json = JsonObject.Parse(sr.ReadToEnd());
+					var fileVersion = (string)json.version;
+					Logger.Add(1, $"Checked {filename} file version (v{fileVersion}, latest: v{latestVersion})");
+					if (fileVersion != latestVersion)
+					{
+						needUpdate = true;
+					}
+				}
+				catch (Exception e)
+				{
+					Logger.Add(3, "Error checking translation data. " + e);
+				}
+			}
+            if (needUpdate)
+			{
+				DownloadData(filename, path);
+				needReload = true;
+			}
         }
 
         private static string GetHash(string filename)
@@ -238,33 +209,15 @@ namespace ElectronicObserver.Utility
             }
         }
 
-        internal static void DownloadData(TranslationFile filename)
-		{
-			var url = Configuration.Config.Control.UpdateURL.AbsoluteUri + "en-US/" + $"{filename}.xml";
-            var dest = TranslationFolder + $"\\{filename}.xml";
-            try
-            {
-                using (var client = new WebClient())
-                {
-                    client.DownloadFile(new Uri(url), dest);
-                    Logger.Add(2, $"File {filename} updated.");
-                }
-            }
-            catch (Exception e)
-            {
-                Logger.Add(3, $"Failed to update {filename} data. " + e.Message);
-            }
-        }
 
-        internal static void DownloadData(string filename)
+        internal static void DownloadData(string filename, string path)
 		{
 			var url = Configuration.Config.Control.UpdateURL.AbsoluteUri + "en-US/" + $"{filename}";
-            var dest = TranslationFolder + $"\\{filename}";
-            try
+			try
             {
                 using (var client = new WebClient())
                 {
-                    client.DownloadFile(new Uri(url), dest);
+                    client.DownloadFile(new Uri(url), path);
                     Logger.Add(2, $"File {filename} updated.");
                 }
             }

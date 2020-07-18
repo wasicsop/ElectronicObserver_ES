@@ -323,7 +323,7 @@ Are you sure?</value>
     <value>Reset Quest Data</value>
   </data>
   <data name="InProgressFilter" xml:space="preserve">
-    <value>In Progress (&amp;S)</value>
+    <value>Active (&amp;S)</value>
   </data>
   <data name="IsTaiha" xml:space="preserve">
     <value>Critically damaged!</value>
@@ -454,19 +454,19 @@ Range: {17} / Speed: {18}
     <value>Shot Down</value>
   </data>
   <data name="ShowDaily" xml:space="preserve">
-    <value>Show Dailies (&amp;D)</value>
+    <value>Daily (&amp;D)</value>
   </data>
   <data name="ShowInProgressOnly" xml:space="preserve">
-    <value>Show In Progress Only (&amp;R)</value>
+    <value>Active quests (&amp;R)</value>
   </data>
   <data name="ShowMonthly" xml:space="preserve">
-    <value>Show Monthlies (&amp;M)</value>
+    <value>Monthly (&amp;M)</value>
   </data>
   <data name="ShowOneTime" xml:space="preserve">
-    <value>Show One-time Quests (&amp;O)</value>
+    <value>One-time (&amp;O)</value>
   </data>
   <data name="ShowWeekly" xml:space="preserve">
-    <value>Show Weeklies (&amp;W)</value>
+    <value>Weekly (&amp;W)</value>
   </data>
   <data name="SortiePlace" xml:space="preserve">
     <value>Sortie Location</value>
@@ -540,7 +540,7 @@ To critical damage: {1}</value>
     <value>Type</value>
   </data>
   <data name="TypeFilter" xml:space="preserve">
-    <value>&amp;Type</value>
+    <value>Type (&amp;T)</value>
   </data>
   <data name="UniqueID" xml:space="preserve">
     <value>Unique ID</value>
@@ -726,7 +726,7 @@ Bauxite: {10:+0;-0} ( regen {11:+0;-0} - resupply {12} ( {13} planes ) )</value>
     <value>Cancel</value>
   </data>
   <data name="ShowOther" xml:space="preserve">
-    <value>Show Others</value>
+    <value>Others</value>
   </data>
   <data name="BaseNotOpen" xml:space="preserve">
     <value>(Not opened)</value>

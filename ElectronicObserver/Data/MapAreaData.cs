@@ -20,6 +20,8 @@ namespace ElectronicObserver.Data
 		/// </summary>
 		public string Name => RawData.api_name;
 
+		public string NameEN => KCDatabase.Instance.Translation.Operation.MapName(RawData.api_name);
+
 		/// <summary>
 		/// 海域タイプ　0=通常, 1=イベント
 		/// </summary>

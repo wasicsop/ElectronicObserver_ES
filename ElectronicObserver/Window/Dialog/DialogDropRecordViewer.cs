@@ -276,9 +276,9 @@ namespace ElectronicObserver.Window.Dialog
 			var item = KCDatabase.Instance.MasterUseItems[elem.ItemID];
 			var eq = KCDatabase.Instance.MasterEquipments[elem.EquipmentID];
 
-			if (ship != null && ship.Name != elem.ShipName) ship = null;
+			if (ship != null && ship.NameEN != elem.ShipName) ship = null;
 			if (item != null && item.Name != elem.ItemName) item = null;
-			if (eq != null && eq.Name != elem.EquipmentName) eq = null;
+			if (eq != null && eq.NameEN != elem.EquipmentName) eq = null;
 
 			StringBuilder sb = new StringBuilder();
 

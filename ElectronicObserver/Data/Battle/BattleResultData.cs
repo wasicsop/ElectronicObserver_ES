@@ -139,7 +139,7 @@ namespace ElectronicObserver.Data.Battle
 		/// <summary>
 		/// 敵艦隊名
 		/// </summary>
-		public string EnemyFleetName => Window.FormMain.Instance.Translator.GetTranslation(RawData.api_enemy_info.api_deck_name, Utility.TranslationType.OperationSortie);
+		public string EnemyFleetName => RawData.api_enemy_info.api_deck_name;
 
 		//undone: 複数の battleresult に対応させる
 

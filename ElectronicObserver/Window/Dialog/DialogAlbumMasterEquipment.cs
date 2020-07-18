@@ -100,7 +100,7 @@ namespace ElectronicObserver.Window.Dialog
 
 				DataGridViewRow row = new DataGridViewRow();
 				row.CreateCells( EquipmentView );
-				row.SetValues( eq.EquipmentID, eq.IconType, FormMain.Instance.Translator.GetTranslation(eq.CategoryTypeInstance.Name, Utility.TranslationType.EquipmentType), eq.Name );
+				row.SetValues( eq.EquipmentID, eq.IconType, eq.CategoryTypeInstance.NameEN, eq.NameEN );
 				rows.Add( row );
 
 			}
@@ -233,7 +233,7 @@ namespace ElectronicObserver.Window.Dialog
 
 			TableEquipmentName.SuspendLayout();
 
-			EquipmentType.Text = FormMain.Instance.Translator.GetTranslation(eq.CategoryTypeInstance.Name, Utility.TranslationType.EquipmentType);
+			EquipmentType.Text = eq.CategoryTypeInstance.NameEN;
 
 			{
 				int eqicon = eq.IconType;
@@ -243,7 +243,7 @@ namespace ElectronicObserver.Window.Dialog
 
 				ToolTipInfo.SetToolTip(EquipmentType, GetEquippableShips(equipmentID));
 			}
-			EquipmentName.Text = eq.Name;
+			EquipmentName.Text = eq.NameEN;
 			ToolTipInfo.SetToolTip( EquipmentName, "Right click to copy." );
 
 			TableEquipmentName.ResumeLayout();
@@ -358,7 +358,7 @@ namespace ElectronicObserver.Window.Dialog
 			BasePanelEquipment.Visible = true;
 
 
-			this.Text = EncycloRes.EquipmentEncyclopedia + " - " + eq.Name;
+			this.Text = EncycloRes.EquipmentEncyclopedia + " - " + eq.NameEN;
 
 		}
 
@@ -417,7 +417,7 @@ namespace ElectronicObserver.Window.Dialog
 			{
 				if (shiptype.EquippableCategories.Contains(eqCategory))
 				{
-					sb.Append(shiptype.Name);
+					sb.Append(shiptype.NameEN);
 
 					if (specialShips.ContainsKey(shiptype.Type))
 					{
@@ -507,8 +507,8 @@ namespace ElectronicObserver.Window.Dialog
 							sw.WriteLine(string.Join(",",
 								eq.EquipmentID,
 								eq.AlbumNo,
-								CsvHelper.EscapeCsvCell(eq.CategoryTypeInstance.Name),
-								CsvHelper.EscapeCsvCell(eq.Name),
+								CsvHelper.EscapeCsvCell(eq.CategoryTypeInstance.NameEN),
+								CsvHelper.EscapeCsvCell(eq.NameEN),
 								eq.EquipmentType[0],
 								eq.EquipmentType[1],
 								eq.EquipmentType[2],
@@ -573,7 +573,7 @@ namespace ElectronicObserver.Window.Dialog
 							sw.WriteLine(string.Join(",",
 								eq.EquipmentID,
 								eq.AlbumNo,
-								CsvHelper.EscapeCsvCell(eq.Name),
+								CsvHelper.EscapeCsvCell(eq.NameEN),
 								eq.EquipmentType[0],
 								eq.EquipmentType[1],
 								eq.EquipmentType[2],
@@ -629,7 +629,7 @@ namespace ElectronicObserver.Window.Dialog
 					EquipmentView.Rows.OfType<DataGridViewRow>()
 					.Select(r => KCDatabase.Instance.MasterEquipments[(int)r.Cells[EquipmentView_ID.Index].Value])
 					.FirstOrDefault(
-						eq => Calculator.ToHiragana(eq.Name.ToLower()).Contains(searchWord));
+						eq => Calculator.ToHiragana(eq.NameEN.ToLower()).Contains(searchWord));
 
 				if (target != null)
 				{
@@ -667,7 +667,7 @@ namespace ElectronicObserver.Window.Dialog
 		{
 			var eq = KCDatabase.Instance.MasterEquipments[EquipmentID.Tag as int? ?? -1];
 			if (eq != null)
-				Clipboard.SetText(eq.Name);
+				Clipboard.SetText(eq.NameEN);
 			else
 				System.Media.SystemSounds.Exclamation.Play();
 		}
@@ -678,7 +678,7 @@ namespace ElectronicObserver.Window.Dialog
 			{
 				var eq = KCDatabase.Instance.MasterEquipments[EquipmentID.Tag as int? ?? -1];
 				if (eq != null)
-					Clipboard.SetText(eq.Name);
+					Clipboard.SetText(eq.NameEN);
 				else
 					System.Media.SystemSounds.Exclamation.Play();
 			}
@@ -695,7 +695,7 @@ namespace ElectronicObserver.Window.Dialog
 
 			var sb = new StringBuilder();
 
-			sb.AppendFormat("{0} {1}\r\n", eq.CategoryTypeInstance.Name, eq.Name);
+			sb.AppendFormat("{0} {1}\r\n", eq.CategoryTypeInstance.NameEN, eq.NameEN);
 			sb.AppendFormat("ID: {0} / 図鑑番号: {1} / カテゴリID: [{2}]\r\n", eq.EquipmentID, eq.AlbumNo, string.Join(", ", eq.EquipmentType));
 
 			sb.AppendLine();
@@ -786,7 +786,7 @@ namespace ElectronicObserver.Window.Dialog
 			string result = GetAppearingArea(eqID);
 
 			if ( string.IsNullOrWhiteSpace( result ) ) {
-				result = "Failed to find ship/recipe which has " + eq.Name + ".";
+				result = "Failed to find ship/recipe which has " + eq.NameEN + ".";
 			}
 
 			MessageBox.Show( result, "Ship/Recipe Search", MessageBoxButtons.OK, MessageBoxIcon.Information );
@@ -806,7 +806,7 @@ namespace ElectronicObserver.Window.Dialog
 			{
 				ProcessStartInfo psi = new ProcessStartInfo
 				{
-					FileName = @"https://www.google.com/search?q=" + Uri.EscapeDataString(eq.Name) + "+KanColle",
+					FileName = @"https://www.google.com/search?q=" + Uri.EscapeDataString(eq.NameEN) + "+KanColle",
 					UseShellExecute = true
 				};
 				// google <装備名> 艦これ

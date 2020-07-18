@@ -29,7 +29,7 @@ namespace ElectronicObserver.Window.Dialog.KancolleProgress
 				.Where(s => !s.IsAbyssalShip && s.RemodelBeforeShipID == 0)
 				.Select(s => new ShipDataCustom
 				{
-					Name = s.Name,
+					Name = s.NameEN,
 					Level = 0,
 					ShipID = s.ShipID,
 					MasterShip = s,

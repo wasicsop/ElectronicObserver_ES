@@ -69,6 +69,11 @@ namespace ElectronicObserver.Observer.kcsapi.api_port
                 DiscordFormat dataForWS = Instance.data;
                 dataForWS.top = Utility.Configuration.Config.Control.DiscordRPCMessage.Replace("{{secretary}}", db.Fleet[1].MembersInstance[0].Name);
 
+				if (db.Fleet[1].CanAnchorageRepair)
+				{
+					dataForWS.top = string.Format("🛠 Repairing {0} ships", (db.Fleet[1].Members.Count - 1).ToString());
+				}
+
                 dataForWS.bot = new List<string>();
 
 				dataForWS.image = Utility.Configuration.Config.Control.UseFlagshipIconForRPC ? db.Fleet[1].MembersInstance[0].ShipID.ToString() : "kc_logo_512x512";
@@ -85,7 +90,7 @@ namespace ElectronicObserver.Observer.kcsapi.api_port
                 }
 
                 if (Utility.Configuration.Config.Control.DiscordRPCShowFCM)
-                    dataForWS.bot.Add(new StringBuilder("First class medals: ").Append(db.Admiral.Medals).ToString());
+                    dataForWS.bot.Add(new StringBuilder("🥇 First-class medals: ").Append(db.Admiral.Medals).ToString());
 
 
                 dataForWS.large = string.Format("{0} (HQ Level {1})", db.Admiral.AdmiralName, db.Admiral.Level);

@@ -1,5 +1,6 @@
 ﻿using ElectronicObserver.Data.Battle;
 using ElectronicObserver.Data.Quest;
+using ElectronicObserver.Data.Translation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -163,6 +164,7 @@ namespace ElectronicObserver.Data
 		public ReplayManager Replays { get; private set; }
 
 		public TsunDbSubmissionManager TsunDbSubmission { get; private set; }
+		public TranslationManager Translation { get; private set; }
 
 		/// <summary>
 		/// Current server
@@ -205,6 +207,7 @@ namespace ElectronicObserver.Data
 			Replays = new ReplayManager();
 			TsunDbSubmission = new TsunDbSubmissionManager();
 			FleetPreset = new FleetPresetManager();
+			Translation = new TranslationManager();
 		}
 
 

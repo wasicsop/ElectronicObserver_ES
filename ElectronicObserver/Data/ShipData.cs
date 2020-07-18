@@ -1024,13 +1024,13 @@ namespace ElectronicObserver.Data
         /// <summary>
         /// 艦名
         /// </summary>
-        public string Name => MasterShip.Name;
+        public string Name => MasterShip.NameEN;
 
 
         /// <summary>
         /// 艦名(レベルを含む)
         /// </summary>
-        public string NameWithLevel => $"{MasterShip.Name} Lv. {Level}";
+        public string NameWithLevel => $"{MasterShip.NameEN} Lv. {Level}";
 
 
         /// <summary>

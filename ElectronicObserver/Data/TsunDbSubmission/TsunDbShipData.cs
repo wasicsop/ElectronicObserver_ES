@@ -48,7 +48,7 @@ namespace ElectronicObserver.Data
 		public TsunDbShipData(IShipData ship)
 		{
 			this.Id = ship.ShipID;
-			this.Name = ship.MasterShip.NameJP;
+			this.Name = ship.MasterShip.Name;
 			this.Shiplock = ship.SallyArea;
 			this.Level = ship.Level;
 			this.Type = (int)ship.MasterShip.ShipType;

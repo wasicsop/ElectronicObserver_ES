@@ -469,8 +469,8 @@ namespace ElectronicObserver.Window.Dialog
 				var ship = KCDatabase.Instance.MasterShips[r.ShipID];
 				var secretary = KCDatabase.Instance.MasterShips[r.FlagshipID];
 
-				if (ship != null && ship.Name != r.ShipName) ship = null;
-				if (secretary != null && secretary.Name != r.FlagshipName) secretary = null;
+				if (ship != null && ship.NameEN != r.ShipName) ship = null;
+				if (secretary != null && secretary.NameEN != r.FlagshipName) secretary = null;
 
 
 				if (args.SecretaryCategory != -1 && (secretary == null || args.SecretaryCategory != (int)secretary.ShipType))
@@ -637,7 +637,7 @@ namespace ElectronicObserver.Window.Dialog
 							c.Value[3]
 							);
 
-						var ship = KCDatabase.Instance.MasterShips.Values.FirstOrDefault(s => s.Name == c.Key);
+						var ship = KCDatabase.Instance.MasterShips.Values.FirstOrDefault(s => s.NameEN == c.Key);
 						row.Cells[1].Tag = (ship != null ? (int)ship.ShipType : 0).ToString("D4") + (ship?.NameReading ?? c.Key);
 
 						if (args.Recipe != NameAny)

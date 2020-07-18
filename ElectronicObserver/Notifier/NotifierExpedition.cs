@@ -72,7 +72,7 @@ namespace ElectronicObserver.Notifier
 		{
 
 			DialogData.Message = string.Format(NotifierRes.ExpeditionText,
-				fleetID, KCDatabase.Instance.Fleet[fleetID].Name, KCDatabase.Instance.Mission[destination].DisplayID, KCDatabase.Instance.Mission[destination].Name);
+				fleetID, KCDatabase.Instance.Fleet[fleetID].Name, KCDatabase.Instance.Mission[destination].DisplayID, KCDatabase.Instance.Mission[destination].NameEN);
 
 			base.Notify();
 		}

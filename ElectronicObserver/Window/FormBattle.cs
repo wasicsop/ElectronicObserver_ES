@@ -664,7 +664,7 @@ namespace ElectronicObserver.Window
 						label.ImageIndex = (int)ResourceManager.EquipmentContent.Seaplane;
 
 						ToolTipInfo.SetToolTip(label, ToolTipInfo.GetToolTip(label) +
-							"Contact\r\n" + string.Join("\r\n", phases1.Select(p => $"{p.PhaseName}{(KCDatabase.Instance.MasterEquipments[p.GetTouchAircraft(isFriend)]?.Name ?? "(none)")}")));
+							"Contact\r\n" + string.Join("\r\n", phases1.Select(p => $"{p.PhaseName}{(KCDatabase.Instance.MasterEquipments[p.GetTouchAircraft(isFriend)]?.NameEN ?? "(none)")}")));
 					}
 					else
 					{
@@ -1167,7 +1167,7 @@ namespace ElectronicObserver.Window
 				SearchingFriend.Text = GeneralRes.NightContact;
 				SearchingFriend.ImageIndex = (int)ResourceManager.EquipmentContent.Seaplane;
 				SearchingFriend.ImageAlign = ContentAlignment.MiddleLeft;
-				ToolTipInfo.SetToolTip( SearchingFriend, GeneralRes.NightContacting + ": " + KCDatabase.Instance.MasterEquipments[pd.TouchAircraftFriend].Name );
+				ToolTipInfo.SetToolTip( SearchingFriend, GeneralRes.NightContacting + ": " + KCDatabase.Instance.MasterEquipments[pd.TouchAircraftFriend].NameEN );
 			} else {
 				ToolTipInfo.SetToolTip( SearchingFriend, null );
 			}
@@ -1176,7 +1176,7 @@ namespace ElectronicObserver.Window
 				SearchingEnemy.Text = GeneralRes.NightContact;
 				SearchingEnemy.ImageIndex = (int)ResourceManager.EquipmentContent.Seaplane;
 				SearchingFriend.ImageAlign = ContentAlignment.MiddleLeft;
-				ToolTipInfo.SetToolTip( SearchingEnemy, GeneralRes.NightContacting + ": " + KCDatabase.Instance.MasterEquipments[pd.TouchAircraftEnemy].Name );
+				ToolTipInfo.SetToolTip( SearchingEnemy, GeneralRes.NightContacting + ": " + KCDatabase.Instance.MasterEquipments[pd.TouchAircraftEnemy].NameEN);
 			} else {
 				ToolTipInfo.SetToolTip( SearchingEnemy, null );
 			}

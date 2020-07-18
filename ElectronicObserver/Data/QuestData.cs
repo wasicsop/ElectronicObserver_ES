@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ElectronicObserver.Data.Translation;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -46,15 +47,27 @@ namespace ElectronicObserver.Data
 			set { RawData.api_state = value; }
 		}
 
+		public string Code => KCDatabase.Instance.Translation.Quest[QuestID].Code;
+
+		/// <summary>
+		/// Name (Translated)
+		/// </summary>
+		public string Name => KCDatabase.Instance.Translation.Quest.Name(QuestID, (string)RawData.api_title);
+
 		/// <summary>
 		/// 任務名
 		/// </summary>
-		public string Name => Window.FormMain.Instance.Translator.GetTranslation((string)RawData.api_title, Utility.TranslationType.QuestTitle);
+		public string NameJP => (string)RawData.api_title;
+
+		/// <summary>
+		/// Description (Translated)
+		/// </summary>
+		public string Description => KCDatabase.Instance.Translation.Quest.Description(QuestID, (string)RawData.api_detail);
 
 		/// <summary>
 		/// 説明
 		/// </summary>
-		public string Description => Window.FormMain.Instance.Translator.GetTranslation((string)RawData.api_detail, Utility.TranslationType.QuestDetail).Replace("<br>", "\r\n");
+		public string DescriptionJP => (string)RawData.api_detail.Replace("<br>", "\r\n");
 
 		//undone:api_bonus_flag
 

@@ -443,7 +443,7 @@ namespace ElectronicObserver.Observer
 			try
 			{
 
-				Utility.Logger.Add(1, "Recieved response:" + shortpath);
+				Utility.Logger.Add(1, "Received response: " + shortpath);
 
 				SystemEvents.UpdateTimerEnabled = false;
 

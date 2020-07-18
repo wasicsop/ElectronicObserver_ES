@@ -152,7 +152,7 @@ namespace ElectronicObserver.Resource.Record
 				var flagship = KCDatabase.Instance.MasterShips[FlagshipID];
 
 				EquipmentName = EquipmentID == -1 ? "(失敗)" :
-					eq?.Name ?? "???";
+					eq?.NameEN ?? "???";
 				FlagshipName = flagship?.NameWithClass ?? "???";
 				FlagshipType = (int?)flagship?.ShipType ?? -1;
 			}

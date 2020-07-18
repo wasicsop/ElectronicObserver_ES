@@ -146,7 +146,7 @@ namespace ElectronicObserver.Data.Battle.Phase
 			AircraftCount = (int)data.api_count;
 		}
 
-		public override string ToString() => $"{EquipmentInstance?.Name ?? "Unknown Plane"} x {AircraftCount}";
+		public override string ToString() => $"{EquipmentInstance?.NameEN ?? "Unknown Plane"} x {AircraftCount}";
 
 	}
 

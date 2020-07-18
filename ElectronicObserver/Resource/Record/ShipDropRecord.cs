@@ -142,7 +142,7 @@ namespace ElectronicObserver.Resource.Record
 				{
 					var eq = KCDatabase.Instance.MasterEquipments[equipmentID];
 					if (eq != null)
-						EquipmentName = eq.Name;
+						EquipmentName = eq.NameEN;
 					else
 						EquipmentName = "???";
 				}

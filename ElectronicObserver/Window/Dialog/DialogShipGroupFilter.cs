@@ -169,7 +169,7 @@ namespace ElectronicObserver.Window.Dialog
 					new DataColumn( "Value", typeof( int ) ),
 					new DataColumn( "Display", typeof( string ) ) });
 				foreach (var s in KCDatabase.Instance.MasterShips.Values.Where(s => !s.IsAbyssalShip).OrderBy(s => s.NameWithClass).OrderBy(s => s.NameReading))
-					_dtRightOperand_shipname.Rows.Add(s.ShipID, s.Name);
+					_dtRightOperand_shipname.Rows.Add(s.ShipID, s.NameEN);
 				_dtRightOperand_shipname.AcceptChanges();
 			}
 			{
@@ -183,7 +183,7 @@ namespace ElectronicObserver.Window.Dialog
 					.Distinct()
 					.OrderBy(i => i)
 					.Select(i => KCDatabase.Instance.ShipTypes[i]))
-					_dtRightOperand_shiptype.Rows.Add(st.TypeID, st.Name);
+					_dtRightOperand_shiptype.Rows.Add(st.TypeID, st.NameEN);
 				_dtRightOperand_shiptype.AcceptChanges();
 			}
 			{
@@ -223,7 +223,7 @@ namespace ElectronicObserver.Window.Dialog
 					new DataColumn( "Display", typeof( string ) ) });
 				_dtRightOperand_equipment.Rows.Add(-1, "(なし)");
 				foreach (var eq in KCDatabase.Instance.MasterEquipments.Values.Where(eq => !eq.IsAbyssalEquipment).OrderBy(eq => eq.CategoryType))
-					_dtRightOperand_equipment.Rows.Add(eq.EquipmentID, eq.Name);
+					_dtRightOperand_equipment.Rows.Add(eq.EquipmentID, eq.NameEN);
 				_dtRightOperand_equipment.Rows.Add(0, "(未開放)");
 				_dtRightOperand_equipment.AcceptChanges();
 			}
@@ -235,7 +235,7 @@ namespace ElectronicObserver.Window.Dialog
 				foreach (var category in KCDatabase.Instance.MasterEquipments.Values.Select(eq => eq.CategoryType).Distinct().OrderBy(i => i))
 				{
 					var cat = KCDatabase.Instance.EquipmentTypes[(int)category];
-					_dtRightOperand_equipmentCategory.Rows.Add(cat.TypeID, cat.Name);
+					_dtRightOperand_equipmentCategory.Rows.Add(cat.TypeID, cat.NameEN);
 				}
 				_dtRightOperand_equipmentCategory.AcceptChanges();
 			}

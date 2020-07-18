@@ -37,8 +37,8 @@ namespace ElectronicObserver.Observer.kcsapi.api_req_kousyou
 					if (result.IsSucceeded)
 					{
 						Utility.Logger.Add(2, string.Format(LoggerRes.CreatedItem,
-							result.MasterEquipment.CategoryTypeInstance.Name,
-							result.MasterEquipment.Name,
+							result.MasterEquipment.CategoryTypeInstance.NameEN,
+							result.MasterEquipment.NameEN,
 							dev.Fuel, dev.Ammo, dev.Steel, dev.Bauxite,
 							db.Fleet[1].MembersInstance[0].NameWithLevel));
 					}

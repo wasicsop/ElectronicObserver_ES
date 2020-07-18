@@ -296,7 +296,7 @@ namespace ElectronicObserver.Window
 
 								var target = KCDatabase.Instance.MasterShips[(int)elem.api_table_id[i]];
 								if (target != null)     //季節の衣替え艦娘の場合存在しないことがある
-									sb.AppendLine(target.Name);
+									sb.AppendLine(target.NameEN);
 							}
 						}
 
@@ -310,7 +310,7 @@ namespace ElectronicObserver.Window
                             ShipDataMaster ship = KCDatabase.Instance.MasterShips.Values.FirstOrDefault(s => s.AlbumNo == startIndex + i);
                             if (ship != null)
                             {
-                                sb.AppendLine(ship.Name);
+                                sb.AppendLine(ship.NameEN);
                             }
                         }
                     }
@@ -337,7 +337,7 @@ namespace ElectronicObserver.Window
                             EquipmentDataMaster eq = KCDatabase.Instance.MasterEquipments.Values.FirstOrDefault(s => s.AlbumNo == startIndex + i);
                             if (eq != null)
                             {
-                                sb.AppendLine(eq.Name);
+                                sb.AppendLine(eq.NameEN);
                             }
                         }
                     }
@@ -360,7 +360,7 @@ namespace ElectronicObserver.Window
 
                 EquipmentDataMaster eqm = KCDatabase.Instance.MasterEquipments[int.Parse(((string)data.api_fdata).Split(",".ToCharArray())[1])];
                 if (eqm != null)
-                    sb.AppendLine(eqm.Name);
+                    sb.AppendLine(eqm.NameEN);
 
 
                 return sb.ToString();
@@ -401,7 +401,7 @@ namespace ElectronicObserver.Window
 
                 if (gaugeType > 0)
                 {
-                    sb.AppendLine(string.Format("{0}-{1}{2}: {3}{4} {5} / {6}{7}",
+                    sb.AppendLine(string.Format("{0}-{1} {2}: {3}{4} {5}/{6}{7}",
                         map.MapAreaID, map.MapInfoID,
                         map.EventDifficulty > 0 ? $" [{Constants.GetDifficulty(map.EventDifficulty)}]" : "",
                         map.CurrentGaugeIndex > 0 ? $"#{map.CurrentGaugeIndex} " : "",
@@ -411,7 +411,7 @@ namespace ElectronicObserver.Window
 
                     if (map.MapAreaID > 10)
                     {
-                        rpcMapInfo = string.Format("E{0}{1}: {2}{3} {4} / {5}{6}",
+                        rpcMapInfo = string.Format("E{0} {1}: {2}{3} {4}/{5}{6}",
                             map.MapInfoID,
                             map.EventDifficulty > 0 ? $"{Constants.GetDifficulty(map.EventDifficulty)}" : "",
                             map.CurrentGaugeIndex > 0 ? $"#{map.CurrentGaugeIndex} " : "",
@@ -433,7 +433,7 @@ namespace ElectronicObserver.Window
 			StringBuilder sb = new StringBuilder();
 
             sb.AppendLine(GeneralRes.ExpeditionReturned);
-            sb.AppendLine(Window.FormMain.Instance.Translator.GetTranslation(data.api_quest_name, Utility.TranslationType.ExpeditionTitle));
+            sb.AppendLine(KCDatabase.Instance.Translation.Mission.Name(data.api_quest_name));
             sb.AppendFormat(GeneralRes.Result + ": {0}\r\n", Constants.GetExpeditionResult((int)data.api_clear_result));
             sb.AppendFormat(GeneralRes.AdmiralXP + ": +{0}\r\n", (int)data.api_get_exp);
             sb.AppendFormat(GeneralRes.ShipXP + ": +{0}\r\n", ((int[])data.api_get_ship_exp).Min());
@@ -447,7 +447,7 @@ namespace ElectronicObserver.Window
 			StringBuilder sb = new StringBuilder();
 
             sb.AppendLine(GeneralRes.BattleComplete);
-            sb.AppendFormat(GeneralRes.EnemyName + "\r\n", Window.FormMain.Instance.Translator.GetTranslation(data.api_enemy_info.api_deck_name, Utility.TranslationType.OperationSortie));
+            sb.AppendFormat(GeneralRes.EnemyName + "\r\n", KCDatabase.Instance.Translation.Operation.FleetName(data.api_enemy_info.api_deck_name));
             sb.AppendFormat("Result: {0}-rank\r\n", data.api_win_rank);
             sb.AppendFormat(GeneralRes.AdmiralXP + ": +{0}\r\n", (int)data.api_get_exp);
 
@@ -558,7 +558,7 @@ namespace ElectronicObserver.Window
 			{
 				var mission = KCDatabase.Instance.Mission[missionID];
 				MessageBox.Show(
-					string.Format(GeneralRes.ExpeditionFailureWarningMessage, fleet.FleetID, fleet.Name, mission.DisplayID, mission.Name, string.Join("\r\n", result.FailureReason))
+					string.Format(GeneralRes.ExpeditionFailureWarningMessage, fleet.FleetID, fleet.Name, mission.DisplayID, mission.NameEN, string.Join("\r\n", result.FailureReason))
 					, GeneralRes.ExpeditionFailureWarningTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning);
 			}
 		}

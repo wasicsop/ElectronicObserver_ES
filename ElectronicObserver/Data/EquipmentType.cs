@@ -22,7 +22,9 @@ namespace ElectronicObserver.Data
 		/// <summary>
 		/// 名前
 		/// </summary>
-		public string Name => Window.FormMain.Instance.Translator.GetTranslation(RawData.api_name, Utility.TranslationType.EquipmentType);
+		public string Name => RawData.api_name;
+
+		public string NameEN => KCDatabase.Instance.Translation.Equipment.TypeName(RawData.api_name);
 
 		//show_flg
 

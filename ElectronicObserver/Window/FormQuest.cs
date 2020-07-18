@@ -1,4 +1,5 @@
-﻿using ElectronicObserver.Data;
+﻿using DynaJson;
+using ElectronicObserver.Data;
 using ElectronicObserver.Observer;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Utility;
@@ -247,6 +248,7 @@ namespace ElectronicObserver.Window
 			if (!KCDatabase.Instance.Quest.IsLoaded) return;
 
 			QuestView.SuspendLayout();
+			int scrollPos = QuestView.FirstDisplayedScrollingRowIndex != null ? QuestView.FirstDisplayedScrollingRowIndex : 0;
 
 			QuestView.Rows.Clear();
 
@@ -290,12 +292,15 @@ namespace ElectronicObserver.Window
 
 				row.Cells[QuestView_State.Index].Value = (q.State == 3) ? ((bool?)null) : (q.State == 2);
 				row.Cells[QuestView_Type.Index].Value = q.LabelType >= 100 ? q.LabelType : q.Type;
+				row.Cells[QuestView_Type.Index].ToolTipText = Constants.GetQuestLabelType(q.LabelType);
 				row.Cells[QuestView_Category.Index].Value = q.Category;
+				row.Cells[QuestView_Category.Index].ToolTipText = Constants.GetQuestCategory(q.Category);
 				row.Cells[QuestView_Category.Index].Style = CSCategories[Math.Min(q.Category - 1, CSCategories.Length - 1)];
 				row.Cells[QuestView_Name.Index].Value = q.QuestID;
 				{
 					var progress = KCDatabase.Instance.QuestProgress[q.QuestID];
-					row.Cells[QuestView_Name.Index].ToolTipText = $"{q.QuestID} : {q.Name}\r\n{q.Description}\r\n{progress?.GetClearCondition() ?? ""}";
+					var code = q.Code != "" ? $"{q.Code}: " : "";
+					row.Cells[QuestView_Name.Index].ToolTipText = $"{code}{q.Name} (ID: {q.QuestID})\r\n{q.Description}\r\n{progress?.GetClearCondition() ?? ""}";
 				}
 				{
 					string value;
@@ -369,6 +374,28 @@ namespace ElectronicObserver.Window
 			if (QuestView.SortedColumn != null)
 				QuestView.Sort(QuestView.SortedColumn, QuestView.SortOrder == SortOrder.Ascending ? ListSortDirection.Ascending : ListSortDirection.Descending);
 
+
+			// Add support for tooltip-based page numbering
+			int pageNumber = 1;
+			var useBackColor = false;
+			for (int i = 0; i < QuestView.Rows.Count; i++)
+			{
+				var color = useBackColor ? Configuration.Config.UI.SubBackColor : Configuration.Config.UI.BackColor;
+				QuestView.Rows[i].Cells[QuestView_State.Index].Style.BackColor = color;
+				QuestView.Rows[i].Cells[QuestView_State.Index].ToolTipText = $"Page #{pageNumber}";
+				QuestView.Rows[i].Cells[QuestView_Type.Index].Style.BackColor = color;
+				QuestView.Rows[i].Cells[QuestView_Name.Index].Style.BackColor = color;
+				QuestView.Rows[i].Cells[QuestView_Progress.Index].Style.BackColor = color;
+				if (i % 5 == 4)
+				{
+					useBackColor = !useBackColor;
+					pageNumber++;
+				}
+			}
+
+			// Retain scroll position
+			if (QuestView.Rows.Count > scrollPos)
+				QuestView.FirstDisplayedScrollingRowIndex = scrollPos;
 
 			QuestView.ResumeLayout();
 		}
@@ -717,13 +744,21 @@ namespace ElectronicObserver.Window
 
 			if (quest != null)
 			{
+				var searchKey = quest.Name;
+				if (quest.Name.Length > 25)
+					searchKey = quest.Name.Substring(0, 22) + "...";
+
 				MenuMain_GoogleQuest.Enabled = true;
-				MenuMain_GoogleQuest.Text = string.Format("Search &Google for \"{0}\"", quest.Name);
+				MenuMain_GoogleQuest.Text = string.Format("Search &Google for \"{0}\"", searchKey);
+				MenuMain_KcwikiQuest.Enabled = true;
+				MenuMain_KcwikiQuest.Text = string.Format("Open &KancolleWiki for \"{0}\"", searchKey);
 			}
 			else
 			{
 				MenuMain_GoogleQuest.Enabled = false;
 				MenuMain_GoogleQuest.Text = "Search on &Google";
+				MenuMain_KcwikiQuest.Enabled = false;
+				MenuMain_KcwikiQuest.Text = "Open on &KancolleWiki";
 			}
 		}
 
@@ -737,7 +772,7 @@ namespace ElectronicObserver.Window
 				{
 					ProcessStartInfo psi = new ProcessStartInfo
 					{
-						FileName = @"https://www.google.com/search?q=" + Uri.EscapeDataString(quest.Name) + "+KanColle",
+						FileName = @"https://www.google.com/search?q=" + Uri.EscapeDataString(quest.Code) + "+" + Uri.EscapeDataString(quest.Name) + "+KanColle",
 						UseShellExecute = true
 					};
 					// google <任務名> 艦これ
@@ -746,6 +781,35 @@ namespace ElectronicObserver.Window
 				catch (Exception ex)
 				{
 					Utility.ErrorReporter.SendErrorReport(ex, "Failed to search on Google.");
+				}
+			}
+
+		}
+
+		private void MenuMain_KcwikiQuest_Click(object sender, EventArgs e)
+		{
+			var quest = KCDatabase.Instance.Quest[GetSelectedRowQuestID()];
+
+			if (quest != null)
+			{
+				try
+				{
+					var url = string.Empty;
+
+					url = quest.Code != ""
+						? @"https://en.kancollewiki.net/Quests#" + Uri.EscapeDataString(quest.Code)
+						: @"https://www.google.com/search?q=" + Uri.EscapeDataString(quest.Name) + "+" + Uri.EscapeDataString("site:en.kancollewiki.net");
+
+					ProcessStartInfo psi = new ProcessStartInfo
+					{
+						FileName = url,
+						UseShellExecute = true
+					};
+					Process.Start(psi);
+				}
+				catch (Exception ex)
+				{
+					Utility.ErrorReporter.SendErrorReport(ex, "Failed to open KancolleWiki page.");
 				}
 			}
 
@@ -770,7 +834,7 @@ namespace ElectronicObserver.Window
 			
 			if (quest != null)
 			{
-				Clipboard.SetText(quest.Description);
+				Clipboard.SetText(quest.Description.Replace(Environment.NewLine, ""));
 			}
 		}
 
@@ -786,28 +850,32 @@ namespace ElectronicObserver.Window
 
 		private void ManuMain_QuestTranslate_Click(object sender, EventArgs e)
 		{
-			List<string> outputList = new List<string>();
+			bool needTranslation = false;
+			dynamic json = new JsonObject();
 			foreach (QuestData quest in KCDatabase.Instance.Quest.Quests.Values)
 			{
 				if (quest.Translated) continue;
 
-				outputList.Add("<Quest>");
-				outputList.Add($"\t<ID>{quest.QuestID}</ID>");
-				outputList.Add($"\t<JP-Name>{quest.Name}</JP-Name>");
-				outputList.Add("\t<TR-Name></TR-Name>");
-				outputList.Add($"\t<JP-Detail>{quest.Description}</JP-Detail>");
-				outputList.Add("\t<TR-Detail></TR-Detail>");
-				outputList.Add("</Quest>");
-			}
+				json[quest.ID.ToString()] = new
+				{
+					code = "",
+					name_jp = quest.NameJP,
+					name = "",
+					desc_jp = quest.DescriptionJP.Replace("\r\n", "<br>"),
+					desc = ""
+				};
+				needTranslation = true;
+ 			}
+			string serializedOutput = json.ToString();
 
-			if (!outputList.Any())
+			if (needTranslation == false)
 			{
-				MessageBox.Show("All your quests are translated.", "Information", MessageBoxButtons.OK,
+				MessageBox.Show("All of your quests are translated.", "Information", MessageBoxButtons.OK,
 					MessageBoxIcon.Information);
 				return;
 			}
 
-			Clipboard.SetText(string.Join("\r\n", outputList));
+			Clipboard.SetText(serializedOutput);
 		}
 
 		protected override string GetPersistString()

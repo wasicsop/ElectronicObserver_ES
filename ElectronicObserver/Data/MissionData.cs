@@ -32,12 +32,14 @@ namespace ElectronicObserver.Data
 		/// <summary>
 		/// 遠征名
 		/// </summary>
-		public string Name => FormMain.Instance.Translator.GetTranslation(RawData.api_name, Utility.TranslationType.ExpeditionTitle);
+		public string Name => RawData.api_name;
+
+		public string NameEN => KCDatabase.Instance.Translation.Mission.Name(RawData.api_name);
 
 		/// <summary>
 		/// 説明文
 		/// </summary>
-		public string Detail => FormMain.Instance.Translator.GetTranslation(RawData.api_details, Utility.TranslationType.ExpeditionDetail);
+		public string Detail => RawData.api_details;
 
 		/// <summary>
 		/// 遠征時間(分単位)
