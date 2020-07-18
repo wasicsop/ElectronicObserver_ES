@@ -252,7 +252,11 @@ namespace ElectronicObserver.Window
 
 			QuestView.Rows.Clear();
 
-			foreach ((QuestData q, int questIndex) in KCDatabase.Instance.Quest.Quests.Values.Select((q, i) => (q, i)))
+			var indexedQuests = KCDatabase.Instance.Quest.Quests.Values
+				.OrderBy(q => q.ID)
+				.Select((q, i) => (q, i));
+
+			foreach ((QuestData q, int questIndex) in indexedQuests)
 			{
 
 				if (MenuMain_ShowRunningOnly.Checked && !(q.State == 2 || q.State == 3))
