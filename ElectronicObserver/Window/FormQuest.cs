@@ -426,9 +426,14 @@ namespace ElectronicObserver.Window
 			else if (e.ColumnIndex == QuestView_Name.Index)
 			{
 				var quest = KCDatabase.Instance.Quest[questId];
+				string code = quest.Code switch
+				{
+					"" => "", // missing translation
+					_ => $"{quest.Code}: "
+				};
 				e.Value = quest switch
 				{
-					{} => $"{quest.Code}: {quest.Name}",
+					{} => $"{code}{quest.Name}",
 					_ => "???"
 				};
 				e.FormattingApplied = true;
