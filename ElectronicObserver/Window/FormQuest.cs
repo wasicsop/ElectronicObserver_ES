@@ -248,7 +248,7 @@ namespace ElectronicObserver.Window
 			if (!KCDatabase.Instance.Quest.IsLoaded) return;
 
 			QuestView.SuspendLayout();
-			int scrollPos = QuestView.FirstDisplayedScrollingRowIndex != null ? QuestView.FirstDisplayedScrollingRowIndex : 0;
+			int scrollPos = QuestView.FirstDisplayedScrollingRowIndex;
 
 			QuestView.Rows.Clear();
 
@@ -404,7 +404,7 @@ namespace ElectronicObserver.Window
 				QuestView.Sort(QuestView.SortedColumn, QuestView.SortOrder == SortOrder.Ascending ? ListSortDirection.Ascending : ListSortDirection.Descending);
 
 			// Retain scroll position
-			if (QuestView.Rows.Count > scrollPos)
+			if (QuestView.FirstDisplayedScrollingRowIndex > 0 && QuestView.Rows.Count > scrollPos)
 				QuestView.FirstDisplayedScrollingRowIndex = scrollPos;
 
 			QuestView.ResumeLayout();
