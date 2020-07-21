@@ -400,16 +400,18 @@ namespace ElectronicObserver.Window
 
 					DateTime maintDate = now;
 					TimeSpan maintTimer = now - now;
-					if (SoftwareUpdater.MaintState != 0)
+
+					var eventState = SoftwareUpdater.LatestVersion.EventState;
+					maintDate = SoftwareUpdater.LatestVersion.MaintenanceDate;
+					if (eventState != 0)
 					{
-						maintDate = DateTimeHelper.CSVStringToTime(SoftwareUpdater.MaintDate);
 						if (maintDate < now)
 							maintDate = now;
 						maintTimer = maintDate - now;
 					}
 
 				    string maintState, message;
-                    switch (SoftwareUpdater.MaintState)
+                    switch (eventState)
                     {
                         case 1:
                             message = maintDate > now ? "Event starts in" : "Event has started!";

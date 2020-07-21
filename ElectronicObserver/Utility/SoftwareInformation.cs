@@ -71,7 +71,7 @@ namespace ElectronicObserver.Utility
 
 			if (!client.IsBusy)
 				client.DownloadStringAsync(uri);
-			SoftwareUpdater.UpdateCheck();
+			SoftwareUpdater.CheckUpdateAsync();
 		}
 
 		private static void DownloadStringCompleted(object sender, System.Net.DownloadStringCompletedEventArgs e)
@@ -105,7 +105,7 @@ namespace ElectronicObserver.Utility
 				{
 
 					Utility.Logger.Add(3, Resources.NewVersionFound + version);
-					Task.Run(() => SoftwareUpdater.UpdateSoftware());
+					//Task.Run(() => SoftwareUpdater.UpdateSoftware());
 
 					var result = System.Windows.Forms.MessageBox.Show(
 						string.Format(Resources.AskForUpdate,
