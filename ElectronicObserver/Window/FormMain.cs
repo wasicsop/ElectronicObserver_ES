@@ -224,6 +224,7 @@ namespace ElectronicObserver.Window
 
 
 			SoftwareInformation.CheckUpdate();
+			await SoftwareUpdater.CheckUpdateAsync();
 			CancellationTokenSource cts = new CancellationTokenSource();
 			Task.Run( async () => await SoftwareUpdater.PeriodicUpdateCheckAsync(cts.Token));
 

@@ -65,8 +65,6 @@ namespace ElectronicObserver.Utility
 
         public static async Task PeriodicUpdateCheckAsync(CancellationToken cancellationToken)
         {
-	        if (!Configuration.Config.Life.CheckUpdateInformation) return;
-
 			while (true)
             {
                 // Check for update every 1 hour.
@@ -76,7 +74,7 @@ namespace ElectronicObserver.Utility
         }
 
 		/// <summary>
-		/// Main update task 
+		/// Check for update data, but only update translation data.
 		/// </summary>
 		public static async Task CheckUpdateAsync()
 		{
@@ -107,7 +105,7 @@ namespace ElectronicObserver.Utility
 
 				if (Utility.Configuration.Config.Life.CheckUpdateInformation == true && SoftwareInformation.UpdateTime < LatestVersion.BuildDate)
 				{
-					FormMain.Instance.Update_Available(LatestVersion.BuildDate.ToString());
+					FormMain.Instance.Update_Available(LatestVersion.AppVersion);
 					//UpdateSoftware();
 				}
 
@@ -141,8 +139,8 @@ namespace ElectronicObserver.Utility
 				await Task.WhenAll(taskList);
 				if (needReload)
 				{
-					Logger.Add(3, "try initiliaze db");
 					KCDatabase.Instance.Translation.Initialize();
+					Logger.Add(2, "Translation files updated.");
 				}
 
 				CurrentVersion = LatestVersion;
@@ -194,36 +192,44 @@ namespace ElectronicObserver.Utility
 
 		internal static UpdateData ParseUpdate(dynamic json)
 		{
-			DateTime buildDate = DateTimeHelper.CSVStringToTime(json.bld_date);
-			var appVersion = (string)json.ver;
-			var note = (string)json.note;
-			var downloadUrl = (string)json.url;
-
-			var eqVersion = (string)json.tl_ver.equipment;
-			var expedVersion = (string)json.tl_ver.expedition;
-			string destVersion = json.tl_ver.nodes.ToString();
-			var opVersion = (string)json.tl_ver.operation;
-			var questVersion = (string)json.tl_ver.quest;
-			var shipVersion = (string)json.tl_ver.ship;
-
-			DateTime maintenanceDate = DateTimeHelper.CSVStringToTime(json.kancolle_mt);
-			var eventState = (int)json.event_state;
-
-			var data = new UpdateData
+			var data = new UpdateData();
+			try
 			{
-				BuildDate = buildDate,
-				AppVersion = appVersion,
-				Note = note,
-				AppDownloadUrl = downloadUrl,
-				Equipment = eqVersion,
-				Expedition = expedVersion,
-				Destination = destVersion,
-				Operation = opVersion,
-				Quest = questVersion,
-				Ship = shipVersion,
-				MaintenanceDate = maintenanceDate,
-				EventState = eventState
-			};
+				DateTime buildDate = DateTimeHelper.CSVStringToTime(json.bld_date);
+				var appVersion = (string)json.ver;
+				var note = (string)json.note;
+				var downloadUrl = (string)json.url;
+
+				var eqVersion = (string)json.tl_ver.equipment;
+				var expedVersion = (string)json.tl_ver.expedition;
+				string destVersion = json.tl_ver.nodes.ToString();
+				var opVersion = (string)json.tl_ver.operation;
+				var questVersion = (string)json.tl_ver.quest;
+				var shipVersion = (string)json.tl_ver.ship;
+
+				DateTime maintenanceDate = DateTimeHelper.CSVStringToTime(json.kancolle_mt);
+				var eventState = (int)json.event_state;
+
+				data = new UpdateData
+				{
+					BuildDate = buildDate,
+					AppVersion = appVersion,
+					Note = note,
+					AppDownloadUrl = downloadUrl,
+					Equipment = eqVersion,
+					Expedition = expedVersion,
+					Destination = destVersion,
+					Operation = opVersion,
+					Quest = questVersion,
+					Ship = shipVersion,
+					MaintenanceDate = maintenanceDate,
+					EventState = eventState
+				};
+			}
+			catch (Exception e)
+			{
+				Logger.Add(3, "Failed to parse update data: " + e.ToString());
+			}
 			return data;
 		}
 
@@ -236,7 +242,7 @@ namespace ElectronicObserver.Utility
 				using var client = new WebClient();
 				await client.DownloadFileTaskAsync(new Uri(url), path);
 				if (filename.Contains("update.json") == false)
-					Logger.Add(2, $"File {filename} updated.");
+					Logger.Add(1, $"File {filename} updated.");
 			}
             catch (Exception e)
             {
