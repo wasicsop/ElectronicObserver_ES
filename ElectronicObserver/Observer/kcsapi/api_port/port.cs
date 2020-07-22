@@ -126,7 +126,8 @@ namespace ElectronicObserver.Observer.kcsapi.api_port
             db.Battle.LoadFromResponse(APIName, data);
 
 			// --- Debuff sound
-			if (data.api_event_object() && data.api_event_object.api_m_flag2() && (int)data.api_event_object.api_m_flag2 > 0)
+			// todo when this gets checked compass is already null, adjust that if this info is ever needed
+			/*if (data.api_event_object() && data.api_event_object.api_m_flag2() && (int)data.api_event_object.api_m_flag2 > 0)
 			{
 				MapRecordElement? record = RecordManager.Instance.Map.Record
 					.Find(_record => _record.MapAreaId == db.Battle.Compass.MapInfo.MapAreaID && _record.MapId == db.Battle.Compass.MapInfo.MapID);
@@ -139,7 +140,7 @@ namespace ElectronicObserver.Observer.kcsapi.api_port
 				{
 					record.DebuffCount += 1;
 				}
-			}
+			}*/
 
 			base.OnResponseReceived((object)data);
         }
