@@ -208,7 +208,7 @@ namespace ElectronicObserver.Utility
 				var shipVersion = (string)json.tl_ver.ship;
 
 				DateTime maintenanceDate = DateTimeHelper.CSVStringToTime(json.kancolle_mt);
-				var eventState = (int)json.event_state;
+				var eventState = (MaintenanceState) (int)json.event_state;
 
 				data = new UpdateData
 				{
@@ -268,6 +268,7 @@ namespace ElectronicObserver.Utility
 		/// <summary>
 		/// 1=event start, 2=event end, 3=regular maintenance
 		/// </summary>
-		public int EventState { get; set; }
-	}
+		public MaintenanceState EventState { get; set; }
+}
+	public enum MaintenanceState { None = 0, EventStart = 1, EventEnd = 2, Regular = 3 };
 }
