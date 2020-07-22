@@ -11,9 +11,9 @@ namespace ElectronicObserver.Data.Translation
 	{
 		private string DefaultFilePath = TranslationManager.WorkingFolder + @"\quest.json";
 
-		private Dictionary<int, Quests> QuestList;
+		private Dictionary<int, Quests> QuestList { get; set; }
 
-		public bool IsTranslated(int id) => Configuration.Config.UI.DisableOtherTranslations == false && QuestList != null && QuestList.ContainsKey(id);
+		private bool IsTranslated(int id) => Configuration.Config.UI.DisableOtherTranslations == false && QuestList != null && QuestList.ContainsKey(id);
 		public string Name(int id, string rawData) => IsTranslated(id) ? QuestList[id].Name : rawData;
 		public string Description(int id, string rawData)
 		{
@@ -55,7 +55,7 @@ namespace ElectronicObserver.Data.Translation
 			Initialize();
 		}
 
-		public Dictionary<int, Quests> LoadDictionary(string path)
+		private Dictionary<int, Quests> LoadDictionary(string path)
 		{
 			var dict = new Dictionary<int, Quests>();
 
@@ -88,7 +88,12 @@ namespace ElectronicObserver.Data.Translation
 			}
 			return dict;
 		}
-		public Quests this[int index] => QuestList[index];
+
+		public Quests? this[int index] => QuestList.ContainsKey(index) switch
+		{
+			true => QuestList[index],
+			false => null
+		};
 	}
 
 	public class Quests

@@ -47,7 +47,7 @@ namespace ElectronicObserver.Data
 			set { RawData.api_state = value; }
 		}
 
-		public string Code => KCDatabase.Instance.Translation.Quest[QuestID].Code;
+		public string Code => KCDatabase.Instance.Translation.Quest[QuestID]?.Code ?? "";
 
 		/// <summary>
 		/// Name (Translated)
