@@ -983,7 +983,7 @@ namespace ElectronicObserver.Window.Dialog
 
         private void Control_ForceUpdate_Click(object sender, EventArgs e)
         {
-            SoftwareUpdater.UpdateCheck();
+            SoftwareUpdater.CheckUpdateAsync();
         }
 
 		private void RefreshTsunDbParameters(object sender, FormClosedEventArgs e)

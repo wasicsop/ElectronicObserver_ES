@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Net;
@@ -20,26 +21,27 @@ namespace ElectronicObserver.Utility
         internal static readonly string AppDataFolder =
             Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + @"\\ElectronicObserver";
 
-		internal static string MaintDate { get; set; } = string.Empty;
-        internal static int MaintState { get; set; }
-
-        private static string UpdateFileUrl = string.Empty;
-        private static bool isChecked;
         private static bool waitForRestart;
+		public static UpdateData CurrentVersion { get; set; } = new UpdateData();
+		public static UpdateData LatestVersion { get; set; } = new UpdateData();
 
-        public static void UpdateSoftware()
+		/// <summary>
+		/// Perform software update in background 
+		/// </summary>
+		public static void UpdateSoftware()
         {
             if (waitForRestart)
                 return;
             if (!Directory.Exists(AppDataFolder))
                 Directory.CreateDirectory(AppDataFolder);
 
-            UpdateCheck();
+			//UpdateCheck();
 
-            if (UpdateFileUrl != string.Empty)
+			var url = LatestVersion.AppDownloadUrl;
+			if (url != string.Empty)
             {
-                Logger.Add(1, string.Format("Started downloading update. {0}", UpdateFileUrl));
-                DownloadUpdate(UpdateFileUrl);
+                Logger.Add(1, string.Format("Started downloading update. {0}", url));
+                DownloadUpdate(url);
                 Logger.Add(1, "Download finished.");
             }
 
@@ -63,64 +65,90 @@ namespace ElectronicObserver.Utility
 
         public static async Task PeriodicUpdateCheckAsync(CancellationToken cancellationToken)
         {
-	        if (!Configuration.Config.Life.CheckUpdateInformation) return;
-
 			while (true)
             {
                 // Check for update every 1 hour.
                 await Task.Delay(TimeSpan.FromHours(1), cancellationToken);
-                UpdateCheck();
+				await CheckUpdateAsync();
             }
         }
 
-        public static void UpdateCheck()
+		/// <summary>
+		/// Check for update data, but only update translation data.
+		/// </summary>
+		public static async Task CheckUpdateAsync()
 		{
-			if (isChecked) return;
 			try
             {
+				var updateFile = TranslationManager.WorkingFolder + $"\\update.json";
 				Uri UpdateUrl = new Uri(string.Format("{0}/en-US/update.json", Configuration.Config.Control.UpdateURL));
-				using (var client = WebRequest.Create(UpdateUrl).GetResponse())
-                {
-                    var updateData = client.GetResponseStream();
-                    var json = JsonObject.Parse(updateData);
-                    DateTime date = DateTimeHelper.CSVStringToTime(json.bld_date);
 
-                    if (SoftwareInformation.UpdateTime < date)
-                    {
-                        FormMain.Instance.Update_Available(json.ver);
-                        UpdateSoftware();
-                    }
-
-                    UpdateFileUrl = json.url;
-                    //DownloadHash = json.hash;
-                    MaintDate = json.kancolle_mt;
-                    MaintState = (int)json.event_state;
-
-					var changed = false;
-					var needReload = false;
-					foreach (string filename in Enum.GetNames(typeof(TranslationManager.TranslationFile)))
-					{
-						var key = filename;
-
-						// Temporary workaround for phasing out nodes.json
-						if (filename == "destination")
-							key = "nodes";
-
-						CheckDataVersion(filename, json["tl_ver"][key].ToString(), out changed);
-
-						if (changed)
-							needReload = true;
-					}
-					if (needReload)
-						KCDatabase.Instance.Translation.Initialize();
+				using var client = WebRequest.Create(UpdateUrl).GetResponse();
+				var updateData = client.GetResponseStream();
+				if (updateData != null)
+				{
+					var json = JsonObject.Parse(updateData);
+					LatestVersion = ParseUpdate(json);
 				}
 
-            }
+				if (File.Exists(updateFile) == false && updateData != null)
+				{
+					using var file = File.Create(updateFile);
+					updateData.CopyTo(file);
+					CurrentVersion = new UpdateData();
+				}
+				else
+				{
+					var fileContent = File.ReadAllText(updateFile);
+					CurrentVersion = ParseUpdate(JsonObject.Parse(fileContent));
+				}
+
+				if (Utility.Configuration.Config.Life.CheckUpdateInformation == true && SoftwareInformation.UpdateTime < LatestVersion.BuildDate)
+				{
+					FormMain.Instance.Update_Available(LatestVersion.AppVersion);
+					//UpdateSoftware();
+				}
+
+				var downloadList = new List<string>();
+				var needReload = false;
+
+				if (CurrentVersion.Equipment != LatestVersion.Equipment)
+					downloadList.Add("equipment.json");
+				if (CurrentVersion.Expedition != LatestVersion.Expedition)
+					downloadList.Add("expedition.json");
+				if (CurrentVersion.Destination != LatestVersion.Destination)
+					downloadList.Add("destination.json");
+				if (CurrentVersion.Operation != LatestVersion.Operation)
+					downloadList.Add("operation.json");
+				if (CurrentVersion.Quest != LatestVersion.Quest)
+					downloadList.Add("quest.json");
+				if (CurrentVersion.Ship != LatestVersion.Ship)
+					downloadList.Add("ship.json");
+
+				if (downloadList.Count > 0)
+					needReload = true;
+				downloadList.Add("update.json");
+
+				var taskList = new List<Task>();
+				var filenames = downloadList.ToArray();
+				foreach (var filename in filenames)
+				{
+					taskList.Add(Task.Run(() => DownloadData(filename)));
+				}
+
+				await Task.WhenAll(taskList);
+				if (needReload)
+				{
+					KCDatabase.Instance.Translation.Initialize();
+					Logger.Add(2, "Translation files updated.");
+				}
+
+				CurrentVersion = LatestVersion;
+			}
             catch (Exception e)
             {
                 Logger.Add(3, "Failed to obtain update data. " + e);
             }
-			isChecked = true;
 		}
 
 		private static void DownloadUpdater()
@@ -162,69 +190,85 @@ namespace ElectronicObserver.Utility
 
         }
 
-        public static void CheckDataVersion(string filename, string latestVersion, out bool needReload)
-        {
-			needReload = false;
-			filename += ".json";
-			var needUpdate = false;
-            var path = TranslationManager.WorkingFolder + $"\\{filename}";
-			if (File.Exists(path) == false)
-			{
-				needUpdate = true;
-			}
-			else
-			{
-				try
-				{
-					using var sr = new StreamReader(path);
-					var json = JsonObject.Parse(sr.ReadToEnd());
-					var fileVersion = (string)json.version;
-					Logger.Add(1, $"Checked {filename} file version (v{fileVersion}, latest: v{latestVersion})");
-					if (fileVersion != latestVersion)
-					{
-						needUpdate = true;
-					}
-				}
-				catch (Exception e)
-				{
-					Logger.Add(3, "Error checking translation data. " + e);
-				}
-			}
-            if (needUpdate)
-			{
-				DownloadData(filename, path);
-				needReload = true;
-			}
-        }
-
-        private static string GetHash(string filename)
-        {
-            using (var sha256 = SHA256.Create())
-            {
-                using (var stream = File.OpenRead(filename))
-                {
-                    var hash = sha256.ComputeHash(stream);
-                    return BitConverter.ToString(hash).Replace("-", "");
-                }
-            }
-        }
-
-
-        internal static void DownloadData(string filename, string path)
+		internal static UpdateData ParseUpdate(dynamic json)
 		{
+			var data = new UpdateData();
+			try
+			{
+				DateTime buildDate = DateTimeHelper.CSVStringToTime(json.bld_date);
+				var appVersion = (string)json.ver;
+				var note = (string)json.note;
+				var downloadUrl = (string)json.url;
+
+				var eqVersion = (string)json.tl_ver.equipment;
+				var expedVersion = (string)json.tl_ver.expedition;
+				string destVersion = json.tl_ver.nodes.ToString();
+				var opVersion = (string)json.tl_ver.operation;
+				var questVersion = (string)json.tl_ver.quest;
+				var shipVersion = (string)json.tl_ver.ship;
+
+				DateTime maintenanceDate = DateTimeHelper.CSVStringToTime(json.kancolle_mt);
+				var eventState = (MaintenanceState) (int)json.event_state;
+
+				data = new UpdateData
+				{
+					BuildDate = buildDate,
+					AppVersion = appVersion,
+					Note = note,
+					AppDownloadUrl = downloadUrl,
+					Equipment = eqVersion,
+					Expedition = expedVersion,
+					Destination = destVersion,
+					Operation = opVersion,
+					Quest = questVersion,
+					Ship = shipVersion,
+					MaintenanceDate = maintenanceDate,
+					EventState = eventState
+				};
+			}
+			catch (Exception e)
+			{
+				Logger.Add(3, "Failed to parse update data: " + e.ToString());
+			}
+			return data;
+		}
+
+		internal static async Task DownloadData(string filename)
+		{
+			var path = TranslationManager.WorkingFolder + $"\\{filename}";
 			var url = Configuration.Config.Control.UpdateURL.AbsoluteUri + "en-US/" + $"{filename}";
 			try
             {
-                using (var client = new WebClient())
-                {
-                    client.DownloadFile(new Uri(url), path);
-                    Logger.Add(2, $"File {filename} updated.");
-                }
-            }
+				using var client = new WebClient();
+				await client.DownloadFileTaskAsync(new Uri(url), path);
+				if (filename.Contains("update.json") == false)
+					Logger.Add(1, $"File {filename} updated.");
+			}
             catch (Exception e)
             {
                 Logger.Add(3, $"Failed to update {filename} data. " + e.Message);
             }
         }
     }
+
+	public class UpdateData
+	{
+		public DateTime BuildDate { get; set; }
+		public string AppVersion { get; set; } = "0.0.0.0";
+		public string Note { get; set; } = "";
+		public string AppDownloadUrl { get; set; } = "";
+		public string Equipment { get; set; } = "";
+		public string Expedition { get; set; } = "";
+		public string Destination { get; set; } = "";
+		public string Operation { get; set; } = "";
+		public string Quest { get; set; } = "";
+		public string Ship { get; set; } = "";
+		public DateTime MaintenanceDate { get; set; }
+
+		/// <summary>
+		/// 1=event start, 2=event end, 3=regular maintenance
+		/// </summary>
+		public MaintenanceState EventState { get; set; }
+}
+	public enum MaintenanceState { None = 0, EventStart = 1, EventEnd = 2, Regular = 3 };
 }

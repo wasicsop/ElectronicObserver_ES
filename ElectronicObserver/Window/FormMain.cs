@@ -224,6 +224,7 @@ namespace ElectronicObserver.Window
 
 
 			SoftwareInformation.CheckUpdate();
+			await SoftwareUpdater.CheckUpdateAsync();
 			CancellationTokenSource cts = new CancellationTokenSource();
 			Task.Run( async () => await SoftwareUpdater.PeriodicUpdateCheckAsync(cts.Token));
 
@@ -398,44 +399,37 @@ namespace ElectronicObserver.Window
 						questReset = questReset.AddHours( 24 );
 					var questTimer = questReset - now;
 
-					DateTime maintDate = now;
-					TimeSpan maintTimer = now - now;
-					if (SoftwareUpdater.MaintState != 0)
+					TimeSpan maintTimer = new TimeSpan(0);
+					MaintenanceState eventState = SoftwareUpdater.LatestVersion.EventState;
+					DateTime maintDate = SoftwareUpdater.LatestVersion.MaintenanceDate;
+
+					if (eventState != MaintenanceState.None)
 					{
-						maintDate = DateTimeHelper.CSVStringToTime(SoftwareUpdater.MaintDate);
 						if (maintDate < now)
 							maintDate = now;
 						maintTimer = maintDate - now;
 					}
 
-				    string maintState, message;
-                    switch (SoftwareUpdater.MaintState)
-                    {
-                        case 1:
-                            message = maintDate > now ? "Event starts in" : "Event has started!";
-                            break;
-                        case 2:
-                            message = maintDate > now ? "Event ends in" : "Event period has ended.";
-                            break;
-                        case 3:
-                            message = maintDate > now ? "Maintenance starts in" : "Maintenance has started.";
-                            break;
-                        default:
-                            message = string.Empty;
-                            break;
-                    }
+					string message = eventState switch
+					{
+						MaintenanceState.EventStart => maintDate > now ? "Event starts in" : "Event has started!",
+						MaintenanceState.EventEnd => maintDate > now ? "Event ends in" : "Event period has ended.",
+						MaintenanceState.Regular => maintDate > now ? "Maintenance starts in" : "Maintenance has started.",
+						_ => string.Empty,
+					};
 
-                    if (maintDate > now)
-                    {
-                        var hours = $"{maintTimer.Days}d {maintTimer.Hours}h";
-				        if ((int)maintTimer.TotalHours < 24)
-				            hours = $"{maintTimer.Hours}h";
-				        maintState = $"{message} {hours} {maintTimer.Minutes}m {maintTimer.Seconds}s";
-                    }
-				    else
-				        maintState = message;
+					string maintState;
+					if (maintDate > now)
+					{
+						var hours = $"{maintTimer.Days}d {maintTimer.Hours}h";
+						if ((int)maintTimer.TotalHours < 24)
+							hours = $"{maintTimer.Hours}h";
+						maintState = $"{message} {hours} {maintTimer.Minutes}m {maintTimer.Seconds}s";
+					}
+					else
+						maintState = message;
 
-                    var resetMsg =
+					var resetMsg =
                         $"Next PVP reset: {(int) pvpTimer.TotalHours:D2}:{pvpTimer.Minutes:D2}:{pvpTimer.Seconds:D2}\r\n" +
                         $"Next Quest reset: {(int) questTimer.TotalHours:D2}:{questTimer.Minutes:D2}:{questTimer.Seconds:D2}\r\n" +
                         $"{maintState}";
