@@ -170,6 +170,7 @@ namespace ElectronicObserver.Window.Dialog
 			this.LevelTimer = new System.Windows.Forms.Timer(this.components);
 			this.SaveCSVDialog = new System.Windows.Forms.SaveFileDialog();
 			this.ImageLoader = new System.ComponentModel.BackgroundWorker();
+            this.Accuracy = new ElectronicObserver.Window.Control.ImageLabel();
 			this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
 			this.StripMenu_File_MergeDefaultRecord = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
@@ -1197,6 +1198,7 @@ namespace ElectronicObserver.Window.Dialog
 			this.TableParameterMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
 			this.TableParameterMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
 			this.TableParameterMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.TableParameterMain.Controls.Add(this.Accuracy, 5, 9);
 			this.TableParameterMain.Controls.Add(this.LOSSeparater, 4, 8);
 			this.TableParameterMain.Controls.Add(this.FirepowerMax, 3, 2);
 			this.TableParameterMain.Controls.Add(this.EvasionSeparater, 4, 7);
@@ -1805,6 +1807,16 @@ namespace ElectronicObserver.Window.Dialog
 			//
 			this.ImageLoader.DoWork += new System.ComponentModel.DoWorkEventHandler(this.ImageLoader_DoWork);
 			this.ImageLoader.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.ImageLoader_RunWorkerCompleted);
+            // 
+            // Accuracy
+            // 
+            this.Accuracy.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.Accuracy.Location = new System.Drawing.Point(210, 208);
+            this.Accuracy.Name = "Accuracy";
+            this.Accuracy.Size = new System.Drawing.Size(41, 16);
+            this.Accuracy.TabIndex = 25;
+            this.Accuracy.Text = "123";
+            this.Accuracy.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			//
 			// toolStripSeparator3
 			//
@@ -2020,5 +2032,6 @@ namespace ElectronicObserver.Window.Dialog
 		private System.Windows.Forms.ToolStripMenuItem StripMenu_Edit_CopySpecialEquipmentTable;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
 		private System.Windows.Forms.ToolStripMenuItem StripMenu_File_MergeDefaultRecord;
+		private Control.ImageLabel Accuracy;
 	}
 }

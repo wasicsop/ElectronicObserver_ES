@@ -49,6 +49,7 @@ namespace ElectronicObserver.Window.Dialog
 			TitleEvasion.ImageList =
 			TitleLOS.ImageList =
 			TitleLuck.ImageList =
+			Accuracy.ImageList =
 			TitleSpeed.ImageList =
 			TitleRange.ImageList =
 			Rarity.ImageList =
@@ -90,6 +91,7 @@ namespace ElectronicObserver.Window.Dialog
 			TitleEvasion.ImageIndex = (int)ResourceManager.IconContent.ParameterEvasion;
 			TitleLOS.ImageIndex = (int)ResourceManager.IconContent.ParameterLOS;
 			TitleLuck.ImageIndex = (int)ResourceManager.IconContent.ParameterLuck;
+			Accuracy.ImageIndex = (int)ResourceManager.IconContent.ParameterAccuracy;
 			TitleSpeed.ImageIndex = (int)ResourceManager.IconContent.ParameterSpeed;
 			TitleRange.ImageIndex = (int)ResourceManager.IconContent.ParameterRange;
 			Fuel.ImageIndex = (int)ResourceManager.IconContent.ResourceFuel;
@@ -368,6 +370,7 @@ namespace ElectronicObserver.Window.Dialog
 				LuckMin.Text = ship.LuckMin.ToString();
 				LuckMax.Text = ship.LuckMax.ToString();
 
+				Accuracy.Visible = false;
 			}
 			else
 			{
@@ -377,18 +380,20 @@ namespace ElectronicObserver.Window.Dialog
 				int torpedo = ship.TorpedoMax;
 				int aa = ship.AAMax;
 				int armor = ship.ArmorMax;
-				int asw = ship.ASW != null && ship.ASW.Maximum != ShipParameterRecord.Parameter.MaximumDefault ? ship.ASW.Maximum : 0;
-				int evasion = ship.Evasion != null && ship.Evasion.Maximum != ShipParameterRecord.Parameter.MaximumDefault ? ship.Evasion.Maximum : 0;
-				int los = ship.LOS != null && ship.LOS.Maximum != ShipParameterRecord.Parameter.MaximumDefault ? ship.LOS.Maximum : 0;
+				int asw = ship.ASW?.IsDetermined ?? false ? ship.ASW.Maximum : 0;
+				int evasion = ship.Evasion?.IsDetermined ?? false ? ship.Evasion.Maximum : 0;
+				int los = ship.LOS?.IsDetermined ?? false ? ship.LOS.Maximum : 0;
 				int luck = ship.LuckMax;
+				int accuracy = 0;
 
 				if (ship.DefaultSlot != null)
 				{
 					int count = ship.DefaultSlot.Count;
 					for (int i = 0; i < count; i++)
 					{
-						EquipmentDataMaster eq = KCDatabase.Instance.MasterEquipments[ship.DefaultSlot[i]];
-						if (eq == null) continue;
+						var eq = KCDatabase.Instance.MasterEquipments[ship.DefaultSlot[i]];
+						if (eq == null)
+							continue;
 
 						firepower += eq.Firepower;
 						torpedo += eq.Torpedo;
@@ -398,6 +403,7 @@ namespace ElectronicObserver.Window.Dialog
 						evasion += eq.Evasion;
 						los += eq.LOS;
 						luck += eq.Luck;
+						accuracy += eq.Accuracy;
 					}
 				}
 
@@ -421,17 +427,44 @@ namespace ElectronicObserver.Window.Dialog
 				ArmorMin.Text = ship.ArmorMax.ToString();
 				ArmorMax.Text = armor.ToString();
 
-				ASWMin.Text = ship.ASW != null && ship.ASW.Maximum != ShipParameterRecord.Parameter.MaximumDefault ? ship.ASW.Maximum.ToString() : "???";
-				ASWMax.Text = asw.ToString();
+				if (ship.ASW?.IsDetermined ?? false)
+				{
+					ASWMin.Text = ship.ASW.Maximum.ToString();
+					ASWMax.Text = asw.ToString();
+				}
+				else
+				{
+					ASWMin.Text = "???";
+					ASWMax.Text = asw.ToString("+0;-0");
+				}
 
-				EvasionMin.Text = ship.Evasion != null && ship.Evasion.Maximum != ShipParameterRecord.Parameter.MaximumDefault ? ship.Evasion.Maximum.ToString() : "???";
-				EvasionMax.Text = evasion.ToString();
+				if (ship.Evasion?.IsDetermined ?? false)
+				{
+					EvasionMin.Text = ship.Evasion.Maximum.ToString();
+					EvasionMax.Text = evasion.ToString();
+				}
+				else
+				{
+					EvasionMin.Text = "???";
+					EvasionMax.Text = evasion.ToString("+0;-0");
+				}
 
-				LOSMin.Text = ship.LOS != null && ship.LOS.Maximum != ShipParameterRecord.Parameter.MaximumDefault ? ship.LOS.Maximum.ToString() : "???";
-				LOSMax.Text = los.ToString();
+				if (ship.LOS?.IsDetermined ?? false)
+				{
+					LOSMin.Text = ship.LOS.Maximum.ToString();
+					LOSMax.Text = los.ToString();
+				}
+				else
+				{
+					LOSMin.Text = "???";
+					LOSMax.Text = los.ToString("+0;-0");
+				}
 
 				LuckMin.Text = ship.LuckMax > 0 ? ship.LuckMax.ToString() : "???";
 				LuckMax.Text = luck > 0 ? luck.ToString() : "???";
+
+				Accuracy.Text = accuracy.ToString("+0;-0");
+				Accuracy.Visible = true;
 
 			}
 			UpdateLevelParameter(ship.ShipID);
@@ -892,6 +925,7 @@ namespace ElectronicObserver.Window.Dialog
 				ship.NeedCatapult > 0 ? (int)ResourceManager.IconContent.ItemCatapult :
 				ship.NeedActionReport > 0 ? (int)ResourceManager.IconContent.ItemActionReport :
 				ship.NeedBlueprint > 0 ? (int)ResourceManager.IconContent.ItemBlueprint :
+				ship.NeedAviationMaterial > 0 ? (int)ResourceManager.IconContent.ItemAviationMaterial :
 				-1;
 		}
 
@@ -904,6 +938,8 @@ namespace ElectronicObserver.Window.Dialog
 				sb.AppendLine(EncycloRes.PrototypeCatapult + ": " + ship.NeedCatapult);
 			if (ship.NeedActionReport > 0)
 				sb.AppendLine("Action Report: " + ship.NeedActionReport);
+			if (ship.NeedAviationMaterial > 0)
+				sb.AppendLine("新型航空兵装資材: " + ship.NeedAviationMaterial);
 
 			return sb.ToString();
 		}
@@ -921,7 +957,7 @@ namespace ElectronicObserver.Window.Dialog
 					using (StreamWriter sw = new StreamWriter(SaveCSVDialog.FileName, false, Utility.Configuration.Config.Log.FileEncoding))
 					{
 
-						sw.WriteLine("艦船ID,図鑑番号,艦型,艦種,艦名,読み,ソート順,改装前,改装後,改装Lv,改装弾薬,改装鋼材,改装設計図,カタパルト,戦闘詳報,改装段階,耐久初期,耐久結婚,耐久最大,火力初期,火力最大,雷装初期,雷装最大,対空初期,対空最大,装甲初期,装甲最大,対潜初期,対潜最大,回避初期,回避最大,索敵初期,索敵最大,運初期,運最大,速力,射程,レア,スロット数,搭載機数1,搭載機数2,搭載機数3,搭載機数4,搭載機数5,初期装備1,初期装備2,初期装備3,初期装備4,初期装備5,建造時間,解体燃料,解体弾薬,解体鋼材,解体ボーキ,改修火力,改修雷装,改修対空,改修装甲,ドロップ文章,図鑑文章,搭載燃料,搭載弾薬,ボイス,リソース名,画像バージョン,ボイスバージョン,母港ボイスバージョン");
+						sw.WriteLine("艦船ID,図鑑番号,艦型,艦種,艦名,読み,ソート順,改装前,改装後,改装Lv,改装弾薬,改装鋼材,改装設計図,カタパルト,戦闘詳報,新型航空兵装資材,改装段階,耐久初期,耐久結婚,耐久最大,火力初期,火力最大,雷装初期,雷装最大,対空初期,対空最大,装甲初期,装甲最大,対潜初期,対潜最大,回避初期,回避最大,索敵初期,索敵最大,運初期,運最大,速力,射程,レア,スロット数,搭載機数1,搭載機数2,搭載機数3,搭載機数4,搭載機数5,初期装備1,初期装備2,初期装備3,初期装備4,初期装備5,建造時間,解体燃料,解体弾薬,解体鋼材,解体ボーキ,改修火力,改修雷装,改修対空,改修装甲,ドロップ文章,図鑑文章,搭載燃料,搭載弾薬,ボイス,リソース名,画像バージョン,ボイスバージョン,母港ボイスバージョン");
 
 						foreach (ShipDataMaster ship in KCDatabase.Instance.MasterShips.Values)
 						{
@@ -944,6 +980,7 @@ namespace ElectronicObserver.Window.Dialog
 								ship.NeedBlueprint > 0 ? ship.NeedBlueprint + "枚" : "-",
 								ship.NeedCatapult > 0 ? ship.NeedCatapult + "個" : "-",
 								ship.NeedActionReport > 0 ? ship.NeedActionReport + "枚" : "-",
+								ship.NeedAviationMaterial > 0 ? ship.NeedAviationMaterial + "個" : "-",
 								ship.RemodelTier,
 								ship.HPMin,
 								ship.HPMaxMarried,
@@ -1027,7 +1064,7 @@ namespace ElectronicObserver.Window.Dialog
 					using (StreamWriter sw = new StreamWriter(SaveCSVDialog.FileName, false, Utility.Configuration.Config.Log.FileEncoding))
 					{
 
-						sw.WriteLine(string.Format("艦船ID,図鑑番号,艦名,読み,艦種,艦型,ソート順,改装前,改装後,改装Lv,改装弾薬,改装鋼材,改装設計図,カタパルト,戦闘詳報,改装段階,耐久初期,耐久最大,耐久結婚,耐久改修,火力初期,火力最大,雷装初期,雷装最大,対空初期,対空最大,装甲初期,装甲最大,対潜初期最小,対潜初期最大,対潜最大,対潜{0}最小,対潜{0}最大,回避初期最小,回避初期最大,回避最大,回避{0}最小,回避{0}最大,索敵初期最小,索敵初期最大,索敵最大,索敵{0}最小,索敵{0}最大,運初期,運最大,速力,射程,レア,スロット数,搭載機数1,搭載機数2,搭載機数3,搭載機数4,搭載機数5,初期装備1,初期装備2,初期装備3,初期装備4,初期装備5,建造時間,解体燃料,解体弾薬,解体鋼材,解体ボーキ,改修火力,改修雷装,改修対空,改修装甲,ドロップ文章,図鑑文章,搭載燃料,搭載弾薬,ボイス,リソース名,画像バージョン,ボイスバージョン,母港ボイスバージョン", ExpTable.ShipMaximumLevel));
+						sw.WriteLine(string.Format("艦船ID,図鑑番号,艦名,読み,艦種,艦型,ソート順,改装前,改装後,改装Lv,改装弾薬,改装鋼材,改装設計図,カタパルト,戦闘詳報,新型航空兵装資材,改装段階,耐久初期,耐久最大,耐久結婚,耐久改修,火力初期,火力最大,雷装初期,雷装最大,対空初期,対空最大,装甲初期,装甲最大,対潜初期最小,対潜初期最大,対潜最大,対潜{0}最小,対潜{0}最大,回避初期最小,回避初期最大,回避最大,回避{0}最小,回避{0}最大,索敵初期最小,索敵初期最大,索敵最大,索敵{0}最小,索敵{0}最大,運初期,運最大,速力,射程,レア,スロット数,搭載機数1,搭載機数2,搭載機数3,搭載機数4,搭載機数5,初期装備1,初期装備2,初期装備3,初期装備4,初期装備5,建造時間,解体燃料,解体弾薬,解体鋼材,解体ボーキ,改修火力,改修雷装,改修対空,改修装甲,ドロップ文章,図鑑文章,搭載燃料,搭載弾薬,ボイス,リソース名,画像バージョン,ボイスバージョン,母港ボイスバージョン", ExpTable.ShipMaximumLevel));
 
 						foreach (ShipDataMaster ship in KCDatabase.Instance.MasterShips.Values)
 						{
@@ -1048,6 +1085,7 @@ namespace ElectronicObserver.Window.Dialog
 								ship.NeedBlueprint,
 								ship.NeedCatapult,
 								ship.NeedActionReport,
+								ship.NeedAviationMaterial,
 								ship.RemodelTier,
 								ship.HPMin,
 								ship.HPMax,
@@ -1409,6 +1447,8 @@ namespace ElectronicObserver.Window.Dialog
 						append.Add("要カタパルト");
 					if (before.NeedActionReport > 0)
 						append.Add("要戦闘詳報");
+					if (before.NeedAviationMaterial > 0)
+						append.Add("要新型航空兵装資材");
 
 					sb.AppendFormat("改造前: {0} Lv. {1} ({2})\r\n",
 						before.NameWithClass, before.RemodelAfterLevel, string.Join(", ", append));
@@ -1430,6 +1470,8 @@ namespace ElectronicObserver.Window.Dialog
 						append.Add("要カタパルト");
 					if (ship.NeedActionReport > 0)
 						append.Add("要戦闘詳報");
+					if (ship.NeedAviationMaterial > 0)
+						append.Add("要新型航空兵装資材");
 
 					sb.AppendFormat("改造後: {0} Lv. {1} ({2})\r\n",
 						ship.RemodelAfterShip.NameWithClass, ship.RemodelAfterLevel, string.Join(", ", append));
