@@ -463,7 +463,8 @@ namespace ElectronicObserver.Window
 					Name.Tag = ship.ShipID;
 					ToolTipInfo.SetToolTip(Name,
 						string.Format(
-                            "{0} {1}\r\nFP: {2}/{3}\r\nTorp: {4}/{5}\r\nAA: {6}/{7}\r\nArmor: {8}/{9}\r\nASW: {10}/{11}\r\nEvasion: {12}/{13}\r\nLOS: {14}/{15}\r\nLuck: {16}\r\nAccuracy: {17:+#;-#;+0}\r\nBombing: {18:+#;-#;+0}\r\nRange: {19} / Speed: {20}\r\n(right click to open encyclopedia)\n",
+							"{0}{1} {2}\r\nFP: {3}/{4}\r\nTorp: {5}/{6}\r\nAA: {7}/{8}\r\nArmor: {9}/{10}\r\nASW: {11}/{12}\r\nEvasion: {13}/{14}\r\nLOS: {15}/{16}\r\nLuck: {17}\r\nAccuracy: {18:+#;-#;+0}\r\nBombing: {19:+#;-#;+0}\r\nRange: {20} / Speed: {21}\r\n(right click to open encyclopedia)\n",
+							ship.SallyArea > 0 ? $"[{ship.SallyArea}] " : "",
 							ship.MasterShip.ShipTypeName, ship.NameWithLevel,
 							ship.FirepowerBase, ship.FirepowerTotal,
 							ship.TorpedoBase, ship.TorpedoTotal,

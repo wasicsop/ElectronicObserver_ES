@@ -575,6 +575,7 @@ namespace Browser
 			this.Font = new System.Drawing.Font("Meiryo UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
 			this.KeyPreview = true;
 			this.Name = "FormBrowser";
+            this.ShowInTaskbar = false;
 			this.Text = Resources.Title;
 			this.Activated += new System.EventHandler(this.FormBrowser_Activated);
 			this.Load += new System.EventHandler(this.FormBrowser_Load);
