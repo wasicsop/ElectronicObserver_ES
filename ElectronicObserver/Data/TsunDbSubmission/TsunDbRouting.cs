@@ -210,7 +210,7 @@ namespace ElectronicObserver.Data
 
 			var members = fleetData.MembersInstance.Where(s => s != null);
 
-			this.FleetSpeed = members.Select(s => s.Speed).DefaultIfEmpty(20).Min();
+			this.FleetSpeed = Math.Min(this.FleetSpeed, members.Select(s => s.Speed).Min());
 
 			foreach (int weight in new int[4] { 1, 2, 3, 4 })
 			{
