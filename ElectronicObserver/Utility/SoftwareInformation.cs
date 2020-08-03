@@ -16,7 +16,7 @@ namespace ElectronicObserver.Utility
 	/// </summary>
 	public static class SoftwareInformation
 	{
-        
+
 		/// <summary>
 		/// ソフトウェア名(日本語)
 		/// </summary>
@@ -50,48 +50,42 @@ namespace ElectronicObserver.Utility
 
 
 
-		private static System.Net.WebClient client;
-		private static readonly Uri uri =
+		private static System.Net.WebClient? Client { get; set; }
+
+		private static Uri Uri { get; } =
 			new Uri("http://raw.githubusercontent.com/gre4bee/ryuukitsune.github.io/master/Translations/en-US/update.json");
 
 		public static void CheckUpdate()
 		{
 
-			if (!Utility.Configuration.Config.Life.CheckUpdateInformation)
-				return;
+			if (!Configuration.Config.Life.CheckUpdateInformation) return;
 
-			if (client == null)
+			if (Client == null)
 			{
-				client = new System.Net.WebClient
+				Client = new System.Net.WebClient
 				{
-					Encoding = new System.Text.UTF8Encoding(false)
+					Encoding = new UTF8Encoding(false)
 				};
-				client.DownloadStringCompleted += DownloadStringCompleted;
+				Client.DownloadStringCompleted += DownloadStringCompleted;
 			}
 
-			if (!client.IsBusy)
-				client.DownloadStringAsync(uri);
+			if (!Client.IsBusy)
+				Client.DownloadStringAsync(Uri);
 		}
 
 		private static void DownloadStringCompleted(object sender, System.Net.DownloadStringCompletedEventArgs e)
 		{
-
 			if (e.Error != null)
 			{
-
-				Utility.ErrorReporter.SendErrorReport( e.Error, "Failed to obtain update data." );
+				ErrorReporter.SendErrorReport(e.Error, "Failed to obtain update data.");
 				return;
-
 			}
 
 			if (e.Result.StartsWith("<!DOCTYPE html>"))
 			{
-
-				Utility.Logger.Add( 3, "Invalid update URL." );
+				Logger.Add(3, "Invalid update URL.");
 				return;
-
 			}
-
 
 			try
 			{
@@ -102,14 +96,13 @@ namespace ElectronicObserver.Utility
 
 				if (UpdateTime < date)
 				{
-
-					Utility.Logger.Add(3, Resources.NewVersionFound + version);
-					//Task.Run(() => SoftwareUpdater.UpdateSoftware());
+					Logger.Add(3, Resources.NewVersionFound + version);
+					Task.Run(() => SoftwareUpdater.UpdateSoftware());
 
 					var result = System.Windows.Forms.MessageBox.Show(
-						string.Format(Resources.AskForUpdate,
-							version, description),
-						Resources.Update, System.Windows.Forms.MessageBoxButtons.YesNoCancel, System.Windows.Forms.MessageBoxIcon.Information,
+						string.Format(Resources.AskForUpdate, version, description),
+						Resources.Update, System.Windows.Forms.MessageBoxButtons.YesNoCancel,
+						System.Windows.Forms.MessageBoxIcon.Information,
 						System.Windows.Forms.MessageBoxDefaultButton.Button1);
 
 
@@ -125,27 +118,22 @@ namespace ElectronicObserver.Utility
 					else if (result == System.Windows.Forms.DialogResult.Cancel)
 					{
 
-						Utility.Configuration.Config.Life.CheckUpdateInformation = false;
-
+						Configuration.Config.Life.CheckUpdateInformation = false;
 					}
 
 				}
 				else
 				{
-
-					Utility.Logger.Add(3, "You are currently using the latest version (" + date.ToString("yyyy/MM/dd") + " release).");
+					Logger.Add(3,
+						"You are currently using the latest version (" + date.ToString("yyyy/MM/dd") + " release).");
 
 				}
-
 			}
 			catch (Exception ex)
 			{
-
-				Utility.ErrorReporter.SendErrorReport( ex, Resources.UpdateConnectionFailed );
+				ErrorReporter.SendErrorReport(ex, Resources.UpdateConnectionFailed);
 			}
 
 		}
-
 	}
-
 }

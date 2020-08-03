@@ -18,10 +18,10 @@ namespace ElectronicObserver.Utility
 {
     internal class SoftwareUpdater
     {
-        internal static readonly string AppDataFolder =
+        internal static string AppDataFolder =>
             Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + @"\\ElectronicObserver";
 
-        private static bool waitForRestart;
+        private static bool WaitForRestart { get; set; }
 		public static UpdateData CurrentVersion { get; set; } = new UpdateData();
 		public static UpdateData LatestVersion { get; set; } = new UpdateData();
 
@@ -30,37 +30,50 @@ namespace ElectronicObserver.Utility
 		/// </summary>
 		public static void UpdateSoftware()
         {
-            if (waitForRestart)
-                return;
+            if (WaitForRestart) return;
+
             if (!Directory.Exists(AppDataFolder))
                 Directory.CreateDirectory(AppDataFolder);
-
-			//UpdateCheck();
 
 			var url = LatestVersion.AppDownloadUrl;
 			if (url != string.Empty)
             {
-                Logger.Add(1, string.Format("Started downloading update. {0}", url));
-                DownloadUpdate(url);
-                Logger.Add(1, "Download finished.");
+	            try
+	            {
+		            Logger.Add(1, string.Format("Started downloading update. {0}", url));
+		            DownloadUpdate(url);
+		            Logger.Add(1, "Download finished.");
+				}
+	            catch
+	            {
+		            return;
+	            }
             }
 
-            DownloadUpdater();
+			try
+			{
+				DownloadUpdater();
+			}
+			catch
+			{
+				return;
+			}
+
             var updaterFile = AppDomain.CurrentDomain.SetupInformation.ApplicationBase + @"\EOUpdater.exe";
             if (!File.Exists(updaterFile)) return;
             var updater = new Process
             {
-                StartInfo =
-                {
-                    FileName = updaterFile,
-                    UseShellExecute = false,
-                    CreateNoWindow = false
-                }
+	            StartInfo =
+	            {
+		            FileName = updaterFile,
+		            UseShellExecute = false,
+		            CreateNoWindow = false,
+		            Arguments = "--restart"
+	            }
             };
-            updater.StartInfo.Arguments = "--restart";
             updater.Start();
             Logger.Add(2, "Close Electronic Observer to complete the update process. It will restart automatically.");
-            waitForRestart = true;
+            WaitForRestart = true;
         }
 
         public static async Task PeriodicUpdateCheckAsync(CancellationToken cancellationToken)
@@ -103,11 +116,11 @@ namespace ElectronicObserver.Utility
 					CurrentVersion = ParseUpdate(JsonObject.Parse(fileContent));
 				}
 
-				if (Utility.Configuration.Config.Life.CheckUpdateInformation == true && SoftwareInformation.UpdateTime < LatestVersion.BuildDate)
+				/*if (Configuration.Config.Life.CheckUpdateInformation == true && SoftwareInformation.UpdateTime < LatestVersion.BuildDate)
 				{
 					FormMain.Instance.Update_Available(LatestVersion.AppVersion);
-					//UpdateSoftware();
-				}
+					UpdateSoftware();
+				}*/
 
 				var downloadList = new List<string>();
 				var needReload = false;
@@ -155,19 +168,18 @@ namespace ElectronicObserver.Utility
         {
             try
             {
-                using (var client = new WebClient())
-                {
-                    ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-                    var url = @"https://github.com/gre4bee/ryuukitsune.github.io/raw/develop/Translations/en-US/EOUpdater.exe";
-                    var updaterFile = AppDomain.CurrentDomain.SetupInformation.ApplicationBase + @"\EOUpdater.exe";
+	            using var client = new WebClient();
+	            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+	            var url = @"https://github.com/gre4bee/ryuukitsune.github.io/raw/master/Translations/en-US/EOUpdater.exe";
+	            var updaterFile = AppDomain.CurrentDomain.SetupInformation.ApplicationBase + @"\EOUpdater.exe";
 
-                    client.DownloadFile(url, updaterFile);
-                    Logger.Add(1, "Updater download finished.");
-                }
+	            client.DownloadFile(url, updaterFile);
+	            Logger.Add(1, "Updater download finished.");
             }
             catch (Exception e)
             {
                 Logger.Add(3, "Failed to download updater. " + e);
+                throw;
             }
         }
 
@@ -175,19 +187,17 @@ namespace ElectronicObserver.Utility
         {
             try
             {
-                using (var client = new WebClient())
-                {
-                    string tempFile = AppDataFolder + @"\latest.zip"; ;
-                    ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-                    Console.WriteLine("Downloading update...");
-                    client.DownloadFile(url, tempFile);
-                }
+	            using var client = new WebClient();
+	            string tempFile = AppDataFolder + @"\latest.zip"; ;
+	            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+	            Console.WriteLine("Downloading update...");
+	            client.DownloadFile(url, tempFile);
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
+	            Logger.Add(3, "Failed to download EO. " + e.Message);
+				throw;
             }
-
         }
 
 		internal static UpdateData ParseUpdate(dynamic json)
