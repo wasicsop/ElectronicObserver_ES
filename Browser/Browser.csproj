@@ -1,11 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 	<PropertyGroup>
-		<TargetFramework>netcoreapp3.1</TargetFramework>
+		<TargetFramework>net5.0</TargetFramework>
 		<OutputType>WinExe</OutputType>
 		<AssemblyName>EOBrowser</AssemblyName>
 		<IsWebBootstrapper>false</IsWebBootstrapper>
 		<!--CefSharpAnyCpuSupport>true</CefSharpAnyCpuSupport-->
-		<Platforms>x86;x64</Platforms>
+		<Platforms>x64</Platforms>
 		<PublishUrl>publish\</PublishUrl>
 		<Install>true</Install>
 		<InstallFrom>Disk</InstallFrom>
@@ -23,13 +23,14 @@
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 		<UseWindowsForms>true</UseWindowsForms>
 		<SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+		<Nullable>enable</Nullable>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
 		<OutputPath>..\ElectronicObserver\bin\x64\Debug\</OutputPath>
 	</PropertyGroup>
 	<!--PropertyGroup>
-    <CefSharpTargetDir>CefEOBrowser\bin</CefSharpTargetDir>
-  </PropertyGroup-->
+	    <CefSharpTargetDir>CefEOBrowser\bin</CefSharpTargetDir>
+	  </PropertyGroup-->
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
 		<OutputPath>..\ElectronicObserver\bin\x64\Release\</OutputPath>
 	</PropertyGroup>
@@ -120,23 +121,10 @@
 		</Reference>
 	</ItemGroup>
 
-	<Choose>
-		<When Condition="'$(PlatformTarget)' == 'x64'">
-			<ItemGroup>
-				<Reference Include="CefSharp.BrowserSubprocess.Core">
-					<HintPath>$(CefSharpBrowserProcessCore64)</HintPath>
-					<Private>true</Private>
-				</Reference>
-			</ItemGroup>
-		</When>
-		<!-- x86, Win32 and AnyCPU -->
-		<Otherwise>
-			<ItemGroup>
-				<Reference Include="CefSharp.BrowserSubprocess.Core">
-					<HintPath>$(CefSharpBrowserProcessCore32)</HintPath>
-					<Private>true</Private>
-				</Reference>
-			</ItemGroup>
-		</Otherwise>
-	</Choose>
+	<ItemGroup>
+		<Reference Include="CefSharp.BrowserSubprocess.Core">
+			<HintPath>$(CefSharpBrowserProcessCore64)</HintPath>
+			<Private>true</Private>
+		</Reference>
+	</ItemGroup>
 </Project>
