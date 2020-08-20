@@ -93,7 +93,9 @@ namespace ElectronicObserver.Utility
 		{
 			try
             {
-				var updateFile = TranslationManager.WorkingFolder + $"\\update.json";
+	            Directory.CreateDirectory(TranslationManager.WorkingFolder);
+
+	            var updateFile = TranslationManager.WorkingFolder + $"\\update.json";
 				Uri UpdateUrl = new Uri(string.Format("{0}/en-US/update.json", Configuration.Config.Control.UpdateURL));
 
 				using var client = WebRequest.Create(UpdateUrl).GetResponse();
