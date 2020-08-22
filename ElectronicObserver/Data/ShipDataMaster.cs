@@ -226,6 +226,8 @@ namespace ElectronicObserver.Data
 		/// </summary>
 		IEnumerable<int> EquippableCategories { get; }
 
+		IEnumerable<EquipmentTypes> EquippableCategoriesTyped { get; }
+
 		/// <summary>
 		/// 建造時間(分)
 		/// </summary>
@@ -840,7 +842,7 @@ namespace ElectronicObserver.Data
 		}
 
 
-		internal int[] specialEquippableCategory = null;
+		internal int[]? specialEquippableCategory = null;
 		/// <summary>
 		/// 特殊装備カテゴリ　指定がない場合は null
 		/// </summary>
@@ -860,6 +862,7 @@ namespace ElectronicObserver.Data
 			}
 		}
 
+		public IEnumerable<EquipmentTypes> EquippableCategoriesTyped => EquippableCategories.Cast<EquipmentTypes>();
 
 		/// <summary>
 		/// 建造時間(分)

@@ -25,10 +25,16 @@
 		</ResourceDictionary>
 	</UserControl.Resources>
 
-	<ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
-		<StackPanel Orientation="Horizontal" x:Name="ShipTypeGroupContainer" Margin="20" HorizontalAlignment="Center">
 
-		</StackPanel>
-	</ScrollViewer>
+	<DockPanel>
+		<Menu Padding="5" Background="Black" Foreground="White" FontSize="16" DockPanel.Dock="Top">
+			<MenuItem Header="Ships" Click="MakeKancolleProgress"/>
+			<MenuItem Header="Event" Click="MakeEventCheckList"/>
+		</Menu>
+		<ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+			<StackPanel Orientation="Horizontal" x:Name="ShipTypeGroupContainer" Margin="20" HorizontalAlignment="Center">
 
+			</StackPanel>
+		</ScrollViewer>
+	</DockPanel>
 </UserControl>

@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Controls;
 using ElectronicObserver.Data;
 using ElectronicObserverTypes;
@@ -10,37 +11,38 @@ namespace ElectronicObserver.Window.Dialog.KancolleProgress
     /// </summary>
     public partial class ShipTypeGroupControl : UserControl
     {
-        private IGrouping<ShipTypeGroup, IShipData>? _group;
+        private IEnumerable<IShipData> _group = new List<IShipData>();
 
-        public IGrouping<ShipTypeGroup, IShipData> Group
+        private string? _groupLabel;
+
+        public string GroupLabel
         {
-            get => _group!;
+			get => _groupLabel ?? "";
+			set
+			{
+				_groupLabel = value;
+				ShipTypeGroupLabel.Content = value;
+			}
+        }
+
+        public IEnumerable<IShipData> Group
+        {
+            get => _group;
             set
             {
                 _group = value;
 
-
-                ShipTypeGroupLabel.Content = Group.Key.Display();
-
                 ShipClassContainer.Children.Clear();
 
                 var shipClassGroups = Group
-					// .GroupBy(s => s.ShipClass);
 					.GroupBy(s => s.MasterShip.ShipClass);
 
 				foreach (var shipClassGroup in shipClassGroups)
                 {
-                    /*StackPanel s = new StackPanel();
-
-                    foreach (ShipDataCustom ship in shipClassGroup)
+                    ShipClassContainer.Children.Add(new ShipClassGroupControl
                     {
-                        s.Children.Add(new Label
-                        {
-                            Content = $"{ship.Name} {ship.Level}"
-                        });
-                    }*/
-
-                    ShipClassContainer.Children.Add(new ShipClassGroupControl{ClassGroup = shipClassGroup });
+	                    ClassGroup = shipClassGroup
+                    });
                 }
             }
         }
