@@ -22,6 +22,9 @@ namespace ElectronicObserver.Data.Translation
 		{
 			if (isShipLoaded == false) return rawData;
 
+			// save current ship name to prevent suffix replacements that can show up in names
+			// tre suffix can be found in Intrepid which gets you In Trepid
+			string currentShipName = "";
 			foreach (var s in ShipList.OrderByDescending(s => s.Key.Length))
 			{
 				if (rawData.Equals(s.Key)) return s.Value;
@@ -30,6 +33,7 @@ namespace ElectronicObserver.Data.Translation
 				{
 					var pos = rawData.IndexOf(s.Key);
 					rawData = rawData.Remove(pos, s.Key.Length).Insert(pos, s.Value);
+					currentShipName = s.Key;
 				}
 			}
 
@@ -39,6 +43,9 @@ namespace ElectronicObserver.Data.Translation
 				if (rawData.Contains(sf.Key))
 				{
 					var pos = rawData.IndexOf(sf.Key);
+
+					if(pos < currentShipName.Length) continue;
+
 					rawData = rawData.Remove(pos, sf.Key.Length).Insert(pos, new String('0', sf.Value.Length));
 					name = name.Remove(pos, sf.Key.Length).Insert(pos, sf.Value);
 
