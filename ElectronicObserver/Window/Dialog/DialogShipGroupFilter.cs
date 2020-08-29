@@ -252,6 +252,49 @@ namespace ElectronicObserver.Window.Dialog
 			ConstFilterSelector.SelectedIndex = 0;
 
 			ImportGroupData(group);
+
+			Translate();
+		}
+
+		private void Translate()
+		{
+			ButtonCancel.Text = GeneralRes.Cancel;
+
+			tabPage1.Text = Properties.Window.Dialog.DialogShipGroupFilter.tabPage1;
+			tabPage2.Text = Properties.Window.Dialog.DialogShipGroupFilter.tabPage2;
+
+			label1.Text = Properties.Window.Dialog.DialogShipGroupFilter.label1;
+
+			OptimizeConstFilter.Text = Properties.Window.Dialog.DialogShipGroupFilter.OptimizeConstFilter;
+			ConvertToExpression.Text = Properties.Window.Dialog.DialogShipGroupFilter.ConvertToExpression;
+			ClearConstFilter.Text = Properties.Window.Dialog.DialogShipGroupFilter.ClearConstFilter;
+
+			ExpressionView_Expression.HeaderText = Properties.Window.Dialog.DialogShipGroupFilter.ExpressionView_Expression;
+			ExpressionView_ExternalAndOr.HeaderText = Properties.Window.Dialog.DialogShipGroupFilter.ExpressionView_ExternalAndOr;
+			ExpressionView_InternalAndOr.HeaderText = Properties.Window.Dialog.DialogShipGroupFilter.ExpressionView_InternalAndOr;
+			ExpressionView_Inverse.HeaderText = Properties.Window.Dialog.DialogShipGroupFilter.ExpressionView_Inverse;
+
+			ExpressionDetailView_LeftOperand.HeaderText = Properties.Window.Dialog.DialogShipGroupFilter.ExpressionDetailView_LeftOperand;
+			ExpressionDetailView_Operator.HeaderText = Properties.Window.Dialog.DialogShipGroupFilter.ExpressionDetailView_Operator;
+			ExpressionDetailView_RightOperand.HeaderText = Properties.Window.Dialog.DialogShipGroupFilter.ExpressionDetailView_RightOperand;
+
+			Description.Text = Properties.Window.Dialog.DialogShipGroupFilter.Description;
+
+			Expression_Add.Text = Properties.Window.Dialog.DialogShipGroupFilter.Expression_Add;
+			Expression_Delete.Text = Properties.Window.Dialog.DialogShipGroupFilter.Expression_Delete;
+
+			ExpressionDetail_Add.Text = Properties.Window.Dialog.DialogShipGroupFilter.ExpressionDetail_Add;
+			ExpressionDetail_Edit.Text = Properties.Window.Dialog.DialogShipGroupFilter.ExpressionDetail_Edit;
+			ExpressionDetail_Delete.Text = Properties.Window.Dialog.DialogShipGroupFilter.ExpressionDetail_Delete;
+
+			toolTip1.SetToolTip(ClearConstFilter, Properties.Window.Dialog.DialogShipGroupFilter.ClearConstFilter_ToolTip);
+			toolTip1.SetToolTip(ConvertToExpression, Properties.Window.Dialog.DialogShipGroupFilter.ConvertToExpression_ToolTip);
+			toolTip1.SetToolTip(OptimizeConstFilter, Properties.Window.Dialog.DialogShipGroupFilter.OptimizeConstFilter_ToolTip);
+
+			ExpressionDetailView_Enabled.ToolTipText = Properties.Window.Dialog.DialogShipGroupFilter.ExpressionDetailView_Enabled_ToolTip;
+			ExpressionView_Down.ToolTipText = Properties.Window.Dialog.DialogShipGroupFilter.ExpressionView_Down_ToolTip;
+			ExpressionView_Up.ToolTipText = Properties.Window.Dialog.DialogShipGroupFilter.ExpressionView_Up_ToolTip;
+			ExpressionView_Inverse.ToolTipText = Properties.Window.Dialog.DialogShipGroupFilter.ExpressionView_Inverse_ToolTip;
 		}
 
 		private void DialogShipGroupFilter_Load(object sender, EventArgs e)
@@ -784,7 +827,7 @@ namespace ElectronicObserver.Window.Dialog
 
 			if (selectedrow == -1)
 			{
-				MessageBox.Show("対象となる行を選択してください。", "Error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+				MessageBox.Show(Properties.Window.Dialog.DialogShipGroupFilter.SelectARow, "Error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
 				return;
 			}
 
@@ -801,13 +844,13 @@ namespace ElectronicObserver.Window.Dialog
 		private void ButtonOK_Click(object sender, EventArgs e)
 		{
 
-			DialogResult = System.Windows.Forms.DialogResult.OK;
+			DialogResult = DialogResult.OK;
 		}
 
 		private void ButtonCancel_Click(object sender, EventArgs e)
 		{
 
-			DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			DialogResult = DialogResult.Cancel;
 		}
 
 
@@ -866,7 +909,7 @@ namespace ElectronicObserver.Window.Dialog
 			int procrow = GetSelectedRow(ExpressionView);
 			if (procrow == -1)
 			{
-				MessageBox.Show("対象となる式(左側)の行を選択してください。\r\n行が存在しない場合は追加してください。", "Error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+				MessageBox.Show(Properties.Window.Dialog.DialogShipGroupFilter.SelectExpressionRow, "Error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
 				return;
 			}
 
@@ -885,14 +928,14 @@ namespace ElectronicObserver.Window.Dialog
 			int procrow = GetSelectedRow(ExpressionView);
 			if (procrow == -1)
 			{
-				MessageBox.Show("対象となる式列(左側)を選択してください。", "Error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+				MessageBox.Show(Properties.Window.Dialog.DialogShipGroupFilter.SelectSequence, "Error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
 				return;
 			}
 
 			int selectedrow = GetSelectedRow(ExpressionDetailView);
 			if (selectedrow == -1)
 			{
-				MessageBox.Show("対象となる行を選択してください。", "Error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+				MessageBox.Show(Properties.Window.Dialog.DialogShipGroupFilter.SelectTargetRow, "Error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
 				return;
 			}
 
@@ -912,14 +955,14 @@ namespace ElectronicObserver.Window.Dialog
 			int procrow = GetSelectedRow(ExpressionView);
 			if (procrow == -1)
 			{
-				MessageBox.Show("対象となる式列(左側)を選択してください。", "Error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+				MessageBox.Show(Properties.Window.Dialog.DialogShipGroupFilter.SelectSequence, "Error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
 				return;
 			}
 
 			int selectedrow = GetSelectedRow(ExpressionDetailView);
 			if (selectedrow == -1)
 			{
-				MessageBox.Show("対象となる行を選択してください。", "Error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+				MessageBox.Show(Properties.Window.Dialog.DialogShipGroupFilter.SelectTargetRow, "Error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
 				return;
 			}
 
@@ -1307,9 +1350,10 @@ namespace ElectronicObserver.Window.Dialog
 		private void ClearConstFilter_Click(object sender, EventArgs e)
 		{
 
-			if (MessageBox.Show(ConstFilterSelector.Text + " を初期化します。\r\nよろしいですか?", "初期化の確認",
+			if (MessageBox.Show(string.Format(Properties.Window.Dialog.DialogShipGroupFilter.ClearFilterWarning, ConstFilterSelector.Text),
+				Properties.Window.Dialog.DialogShipGroupFilter.ClearFilterWarningTitle,
 				MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2)
-				== System.Windows.Forms.DialogResult.Yes)
+				== DialogResult.Yes)
 			{
 
 				if (ConstFilterSelector.SelectedIndex == 0)
@@ -1329,9 +1373,9 @@ namespace ElectronicObserver.Window.Dialog
 		private void ConvertToExpression_Click(object sender, EventArgs e)
 		{
 
-			if (MessageBox.Show("現在の包含/除外リストを式に変換します。\r\n逆変換はできません。\r\nよろしいですか？", "Confirmation",
+			if (MessageBox.Show(Properties.Window.Dialog.DialogShipGroupFilter.ConvertToExpressionWarning, "Confirmation",
 					MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1)
-					== System.Windows.Forms.DialogResult.Yes)
+					== DialogResult.Yes)
 			{
 
 				if (_group.InclusionFilter.Count > 0)
@@ -1373,17 +1417,17 @@ namespace ElectronicObserver.Window.Dialog
 		{
 
 
-			if (MessageBox.Show("クリップボードからフィルタをインポートします。\r\n現在のフィルタは破棄されます。(包含/除外フィルタは維持されます)\r\nよろしいですか？\r\n",
-					"フィルタのインポートの確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-				== System.Windows.Forms.DialogResult.No)
+			if (MessageBox.Show(Properties.Window.Dialog.DialogShipGroupFilter.ImportFilterFromClipboard,
+					Properties.Window.Dialog.DialogShipGroupFilter.ImportFilterFromClipboardTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+				== DialogResult.No)
 				return;
 
 			string data = Clipboard.GetText();
 
 			if (string.IsNullOrEmpty(data))
 			{
-				MessageBox.Show("クリップボードが空です。\r\nフィルタデータをコピーしたうえで再度選択してください。\r\n",
-					"インポートできません", MessageBoxButtons.OK, MessageBoxIcon.Information);
+				MessageBox.Show(Properties.Window.Dialog.DialogShipGroupFilter.ClipboardIsEmpty,
+					Properties.Window.Dialog.DialogShipGroupFilter.CanNotImport, MessageBoxButtons.OK, MessageBoxIcon.Information);
 				return;
 			}
 
@@ -1394,7 +1438,7 @@ namespace ElectronicObserver.Window.Dialog
 				{
 					var exp = (ExpressionManager)_group.Expressions.Load(str);
 					if (exp == null)
-						throw new ArgumentException("インポートできないデータ形式です。");
+						throw new ArgumentException(Properties.Window.Dialog.DialogShipGroupFilter.FormatCanNotBeImported);
 					else
 						_group.Expressions = exp;
 				}
@@ -1405,7 +1449,7 @@ namespace ElectronicObserver.Window.Dialog
 			catch (Exception ex)
 			{
 
-				MessageBox.Show("フィルタのインポートに失敗しました。\r\n" + ex.Message, "インポートできません", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				MessageBox.Show(Properties.Window.Dialog.DialogShipGroupFilter.FilterImportFailed + ex.Message, Properties.Window.Dialog.DialogShipGroupFilter.CanNotImport, MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
 
 		}
@@ -1421,14 +1465,14 @@ namespace ElectronicObserver.Window.Dialog
 
 				Clipboard.SetText(str.ToString());
 
-				MessageBox.Show("フィルタをクリップボードにエクスポートしました。\r\n「フィルタのインポート」で取り込んだり、\r\nメモ帳等に貼り付けて保存したりしてください。\r\n",
-					"フィルタのエクスポート", MessageBoxButtons.OK, MessageBoxIcon.Information);
+				MessageBox.Show(Properties.Window.Dialog.DialogShipGroupFilter.FilterWasExported,
+					Properties.Window.Dialog.DialogShipGroupFilter.ExportingFilterTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
 
 			}
 			catch (Exception ex)
 			{
 
-				MessageBox.Show("フィルタのエクスポートに失敗しました。\r\n" + ex.Message, "エクスポートできません", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				MessageBox.Show(Properties.Window.Dialog.DialogShipGroupFilter.FilterExportFailed + ex.Message, Properties.Window.Dialog.DialogShipGroupFilter.CanNotExport, MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
 
 		}

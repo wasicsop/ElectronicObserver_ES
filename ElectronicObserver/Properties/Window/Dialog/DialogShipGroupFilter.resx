@@ -1,0 +1,284 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ClearConstFilter" xml:space="preserve">
+    <value>初期化</value>
+  </data>
+  <data name="ConvertToExpression" xml:space="preserve">
+    <value>式に変換</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>(説明)</value>
+  </data>
+  <data name="ExpressionDetailView_LeftOperand" xml:space="preserve">
+    <value>左辺</value>
+  </data>
+  <data name="ExpressionDetailView_Operator" xml:space="preserve">
+    <value>条件</value>
+  </data>
+  <data name="ExpressionDetailView_RightOperand" xml:space="preserve">
+    <value>右辺</value>
+  </data>
+  <data name="ExpressionDetail_Add" xml:space="preserve">
+    <value>追加</value>
+  </data>
+  <data name="ExpressionDetail_Delete" xml:space="preserve">
+    <value>削除</value>
+  </data>
+  <data name="ExpressionDetail_Edit" xml:space="preserve">
+    <value>上書き</value>
+  </data>
+  <data name="ExpressionView_Expression" xml:space="preserve">
+    <value>式</value>
+  </data>
+  <data name="ExpressionView_ExternalAndOr" xml:space="preserve">
+    <value>外条件</value>
+  </data>
+  <data name="ExpressionView_InternalAndOr" xml:space="preserve">
+    <value>内条件</value>
+  </data>
+  <data name="ExpressionView_Inverse" xml:space="preserve">
+    <value>否</value>
+  </data>
+  <data name="Expression_Add" xml:space="preserve">
+    <value>追加</value>
+  </data>
+  <data name="Expression_Delete" xml:space="preserve">
+    <value>削除</value>
+  </data>
+  <data name="label1" xml:space="preserve">
+    <value>フィルタの内容にかかわらず、追加/除外される艦娘のリストです。
+追加はグループ本体の右クリックメニューから行ってください。</value>
+  </data>
+  <data name="OptimizeConstFilter" xml:space="preserve">
+    <value>最適化</value>
+  </data>
+  <data name="tabPage1" xml:space="preserve">
+    <value>フィルタ</value>
+  </data>
+  <data name="tabPage2" xml:space="preserve">
+    <value>包含/除外リスト</value>
+  </data>
+  <data name="ExpressionView_Enabled" xml:space="preserve">
+    <value>有効/無効</value>
+  </data>
+  <data name="ExpressionView_Inverse_ToolTip" xml:space="preserve">
+    <value>条件を反転するか</value>
+  </data>
+  <data name="ExpressionView_Up" xml:space="preserve">
+    <value>↑</value>
+  </data>
+  <data name="ExpressionView_Up_ToolTip" xml:space="preserve">
+    <value>上へ</value>
+  </data>
+  <data name="ExpressionView_Down" xml:space="preserve">
+    <value>↓</value>
+  </data>
+  <data name="ExpressionView_Down_ToolTip" xml:space="preserve">
+    <value>下へ</value>
+  </data>
+  <data name="ExpressionDetailView_Enabled" xml:space="preserve">
+    <value>○</value>
+  </data>
+  <data name="ExpressionDetailView_Enabled_ToolTip" xml:space="preserve">
+    <value>有効/無効</value>
+  </data>
+  <data name="ConvertToExpression_ToolTip" xml:space="preserve">
+    <value>包含/除外リストを式に変換します。
+逆変換はできないのでご注意ください。</value>
+  </data>
+  <data name="OptimizeConstFilter_ToolTip" xml:space="preserve">
+    <value>存在しない艦娘をリストから削除します。</value>
+  </data>
+  <data name="ClearConstFilter_ToolTip" xml:space="preserve">
+    <value>リストの内容をすべて削除します。</value>
+  </data>
+  <data name="SelectARow" xml:space="preserve">
+    <value>対象となる行を選択してください。</value>
+  </data>
+  <data name="SelectExpressionRow" xml:space="preserve">
+    <value>対象となる式(左側)の行を選択してください。
+行が存在しない場合は追加してください。</value>
+  </data>
+  <data name="SelectSequence" xml:space="preserve">
+    <value>対象となる式列(左側)を選択してください。</value>
+  </data>
+  <data name="SelectTargetRow" xml:space="preserve">
+    <value>対象となる行を選択してください。</value>
+  </data>
+  <data name="ClearFilterWarningTitle" xml:space="preserve">
+    <value>初期化の確認</value>
+  </data>
+  <data name="ClearFilterWarning" xml:space="preserve">
+    <value>{0} を初期化します。
+よろしいですか?</value>
+  </data>
+  <data name="ConvertToExpressionWarning" xml:space="preserve">
+	  <value>現在の包含/除外リストを式に変換します。
+逆変換はできません。
+よろしいですか？</value>
+	  <comment>Converts the current inclusion/exclusion list to an expression.
+		  You cannot reverse the conversion.
+		  Are you sure?</comment>
+  </data>
+  <data name="ImportFilterFromClipboard" xml:space="preserve">
+	  <value>クリップボードからフィルタをインポートします。
+現在のフィルタは破棄されます。(包含/除外フィルタは維持されます)
+よろしいですか？
+</value>
+	  <comment>Imports a filter from the clipboard.
+		  The current filter is discarded. (Inclusion/exclusion filters will be kept.)
+		  Are you sure?</comment>
+  </data>
+  <data name="ImportFilterFromClipboardTitle" xml:space="preserve">
+	  <value>フィルタのインポートの確認</value>
+	  <comment>Checking the import of a filter</comment>
+  </data>
+  <data name="ClipboardIsEmpty" xml:space="preserve">
+	  <value>クリップボードが空です。
+フィルタデータをコピーしたうえで再度選択してください。
+</value>
+  </data>
+  <data name="CanNotImport" xml:space="preserve">
+	  <value>インポートできません</value>
+  </data>
+  <data name="FormatCanNotBeImported" xml:space="preserve">
+    <value>インポートできないデータ形式です。</value>
+  </data>
+  <data name="FilterImportFailed" xml:space="preserve">
+	  <value>フィルタのインポートに失敗しました。
+</value>
+  </data>
+  <data name="FilterWasExported" xml:space="preserve">
+	  <value>フィルタをクリップボードにエクスポートしました。
+「フィルタのインポート」で取り込んだり、
+メモ帳等に貼り付けて保存したりしてください。
+</value>
+  </data>
+  <data name="ExportingFilterTitle" xml:space="preserve">
+	  <value>フィルタのエクスポート</value>
+  </data>
+  <data name="FilterExportFailed" xml:space="preserve">
+	  <value>フィルタのエクスポートに失敗しました。
+</value>
+  </data>
+  <data name="CanNotExport" xml:space="preserve">
+	  <value>エクスポートできません</value>
+  </data>
+</root>

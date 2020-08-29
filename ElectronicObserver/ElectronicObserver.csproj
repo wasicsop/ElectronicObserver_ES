@@ -57,6 +57,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>ObserverRes.resx</DependentUpon>
     </Compile>
+    <Compile Update="Properties\Window\Dialog\DialogShipGroupFilter.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>DialogShipGroupFilter.resx</DependentUpon>
+    </Compile>
     <Compile Update="Window\Control\FleetState.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -220,6 +225,10 @@
     <EmbeddedResource Update="Observer\ObserverRes.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ObserverRes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\Window\Dialog\DialogShipGroupFilter.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>DialogShipGroupFilter.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Window\Dialog\DialogExpeditionCheck.resx">
       <Generator>ResXFileCodeGenerator</Generator>
