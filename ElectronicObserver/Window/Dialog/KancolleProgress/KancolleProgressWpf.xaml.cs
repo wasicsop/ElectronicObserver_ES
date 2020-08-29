@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -29,12 +31,13 @@ namespace ElectronicObserver.Window.Dialog.KancolleProgress
 					Level = 0,
 					ShipID = s.ShipID,
 					MasterShip = s,
-					SortID = s.SortID
+					SortID = s.SortID,
+					AllSlotInstance = new ReadOnlyCollection<IEquipmentData>(new List<IEquipmentData>())
 				})
 				.Cast<IShipData>()
 				.ToList();
 
-			MakeKancolleProgress(null, null);
+			MakeEventCheckList(null, null);
         }
 
 	    private void MakeKancolleProgress(object? sender, RoutedEventArgs? e)
@@ -83,7 +86,7 @@ namespace ElectronicObserver.Window.Dialog.KancolleProgress
 		    });
 		}
 
-		private enum EventListGroup
+		private enum DaihatsuGroup
 		{
 			None,
 			Daihatsu,
@@ -91,50 +94,110 @@ namespace ElectronicObserver.Window.Dialog.KancolleProgress
 			DaihatsuAndTank
 		}
 
-		private EventListGroup GetEventListGroup(IShipData ship) => ship switch
+		private enum FcfGroup
+		{
+			None,
+			Fcf
+		}
+
+		private enum AswGroup
+		{
+			None,
+			NoSonar,
+			SingleSonar
+		}
+
+		private DaihatsuGroup GetDaihatsuGroup(IShipData ship) => ship switch
 		{
 			_ when ship.MasterShip.EquippableCategoriesTyped.Contains(EquipmentTypes.LandingCraft) &&
 			       ship.MasterShip.EquippableCategoriesTyped.Contains(EquipmentTypes.SpecialAmphibiousTank)
-			=> EventListGroup.DaihatsuAndTank,
+			=> DaihatsuGroup.DaihatsuAndTank,
 
 			_ when ship.MasterShip.EquippableCategoriesTyped.Contains(EquipmentTypes.LandingCraft)
-			=> EventListGroup.Daihatsu,
+			=> DaihatsuGroup.Daihatsu,
 
 			_ when ship.MasterShip.EquippableCategoriesTyped.Contains(EquipmentTypes.SpecialAmphibiousTank)
-			=> EventListGroup.Tank,
+			=> DaihatsuGroup.Tank,
 
-			_ => EventListGroup.None
+			_ => DaihatsuGroup.None
 		};
 
-	    private void MakeEventCheckList(object sender, RoutedEventArgs e)
+		private FcfGroup GetFcfGroup(IShipData ship) => ship switch
+		{
+			_ when ship.MasterShip.EquippableCategoriesTyped.Contains(EquipmentTypes.CommandFacility)
+			=> FcfGroup.Fcf,
+
+			_ => FcfGroup.None
+		};
+
+		private AswGroup GetAswGroup(IShipData ship) => ship switch
+		{
+			_ when ship.CanNoSonarOpeningAsw
+			=> AswGroup.NoSonar,
+
+			_ when ship.ASWBase >= 85
+			=> AswGroup.SingleSonar,
+
+			_ => AswGroup.None
+		};
+
+		private void MakeEventCheckList(object? sender, RoutedEventArgs? e)
 	    {
 		    ShipTypeGroupContainer.Children.Clear();
 
-		    var groups = UserShips
+		    var destroyers = UserShips
 			    .Concat(AllShips)
 			    .Where(s => s.MasterShip.ShipType == ShipTypes.Destroyer)
 			    .OrderBy(s => s.MasterShip.SortID)
 			    .GroupBy(s => s.MasterShip.BaseShip().ShipId)
-				.Select(g => g
+			    .Select(g => g
 				    .OrderByDescending(s => s.Level)
 				    .ThenByDescending(s => s.SortID))
-				.SelectMany(g => g.First().Level switch
+			    .SelectMany(g => g.First().Level switch
 			    {
-					0 => g.Take(1),
-					_ => g.TakeWhile(s => s.Level > 0)
+				    0 => g.Take(1),
+				    _ => g.TakeWhile(s => s.Level > 0)
 			    })
-				.GroupBy(s => GetEventListGroup(s))
-				.Where(g => g.Key != EventListGroup.None)
-			    .OrderBy(s => s.Key);
+			    .ToList();
 
-		    foreach (IGrouping<EventListGroup, IShipData> group in groups)
+		    IEnumerable<IGrouping<T, IShipData>> GroupShips<T>(IEnumerable<IShipData> ships,
+			    Func<IShipData, T> groupSelector, Func<IGrouping<T, IShipData>, bool> groupFilter)
+				where T : Enum
 		    {
-			    ShipTypeGroupContainer.Children.Add(new ShipTypeGroupControl
-			    {
-				    GroupLabel = group.Key.Display(),
-				    Group = group
-			    });
-		    }
-		}
+				return ships
+					.GroupBy(groupSelector)
+					.Where(groupFilter)
+					.OrderBy(s => s.Key);
+			}
+
+			var daihatsuGroup = GroupShips(destroyers,
+			    s => GetDaihatsuGroup(s),
+			    g => g.Key != DaihatsuGroup.None);
+
+			var fcfGroup = GroupShips(destroyers,
+				s => GetFcfGroup(s),
+				g => g.Key != FcfGroup.None);
+
+			var openingAswGroup = GroupShips(destroyers,
+				s => GetAswGroup(s),
+				g => g.Key != AswGroup.None);
+
+
+			void DisplayGroups<T>(IEnumerable<IGrouping<T, IShipData>> groups) where T : Enum
+			{
+				foreach (IGrouping<T, IShipData> group in groups)
+				{
+					ShipTypeGroupContainer.Children.Add(new ShipTypeGroupControl
+					{
+						GroupLabel = group.Key.Display(),
+						Group = group
+					});
+				}
+			}
+
+			DisplayGroups(daihatsuGroup);
+			DisplayGroups(fcfGroup);
+			DisplayGroups(openingAswGroup);
+	    }
     }
 }

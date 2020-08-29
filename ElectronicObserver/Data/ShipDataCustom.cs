@@ -103,6 +103,7 @@ namespace ElectronicObserver.Data
 		public int NightBattlePower { get; set; }
 		public bool CanAttackSubmarine { get; set; }
 		public bool CanOpeningASW { get; set; }
+		public bool CanNoSonarOpeningAsw { get; set; }
 		public bool CanAttackAtNight { get; set; }
 		public int DamageControlID { get; set; }
 		public int ID { get; set; }

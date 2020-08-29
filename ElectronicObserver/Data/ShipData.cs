@@ -502,6 +502,8 @@ namespace ElectronicObserver.Data
 		/// </summary>
 		bool CanOpeningASW { get; }
 
+		bool CanNoSonarOpeningAsw { get; }
+
 		/// <summary>
 		/// 夜戦攻撃可能か
 		/// </summary>
@@ -1971,6 +1973,24 @@ namespace ElectronicObserver.Data
             }
         }
 
+        public bool CanNoSonarOpeningAsw => ShipID switch
+        {
+	        141 => // 五十鈴改二
+	        true,
+	        394 => // Jervis改
+	        true,
+	        478 => // 龍田改二
+	        true,
+	        681 => // Samuel B.Roberts改
+	        true,
+	        893 => // Janus改
+	        true,
+
+	        _ when MasterShip.ShipClass == 91 // Fletcher class
+	        => true,
+
+	        _ => false
+        };
 
         /// <summary>
         /// 夜戦攻撃可能か
