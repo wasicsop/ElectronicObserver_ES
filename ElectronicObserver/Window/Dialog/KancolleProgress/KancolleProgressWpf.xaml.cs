@@ -18,6 +18,8 @@ namespace ElectronicObserver.Window.Dialog.KancolleProgress
 	    private List<IShipData> UserShips { get; }
 	    private List<IShipData> AllShips { get; }
 
+		private List<IEquipmentData> UserEquipment { get; }
+
 	    public KancolleProgressWpf()
         {
             InitializeComponent();
@@ -36,6 +38,7 @@ namespace ElectronicObserver.Window.Dialog.KancolleProgress
 				})
 				.Cast<IShipData>()
 				.ToList();
+			UserEquipment = KCDatabase.Instance.Equipments.Values.Cast<IEquipmentData>().ToList();
 
 			MakeEventCheckList(null, null);
         }
@@ -135,7 +138,9 @@ namespace ElectronicObserver.Window.Dialog.KancolleProgress
 			_ when ship.CanNoSonarOpeningAsw
 			=> AswGroup.NoSonar,
 
-			_ when ship.ASWBase >= 85
+			_ when ship.ASWBase >= 100 - UserEquipment
+				.Where(e => e.MasterEquipment.IsSonar)
+				.Max(e => e.MasterEquipment.ASW)
 			=> AswGroup.SingleSonar,
 
 			_ => AswGroup.None
