@@ -10,13 +10,11 @@ using DynaJson;
 
 namespace ElectronicObserver.Utility
 {
-
 	/// <summary>
 	/// ソフトウェアの情報を保持します。
 	/// </summary>
 	public static class SoftwareInformation
 	{
-
 		/// <summary>
 		/// ソフトウェア名(日本語)
 		/// </summary>
@@ -38,26 +36,23 @@ namespace ElectronicObserver.Utility
 		/// <summary>
 		/// バージョン(英語)
 		/// </summary>
-		public static string VersionEnglish => "4.6.0.2";
-
+		public static string VersionEnglish => "4.6.1";
 
 
 		/// <summary>
 		/// 更新日時
 		/// </summary>
-		public static DateTime UpdateTime => DateTimeHelper.CSVStringToTime("2020/07/23 11:30:00");
-
-
+		public static DateTime UpdateTime => DateTimeHelper.CSVStringToTime("2020/09/12 12:30:00");
 
 
 		private static System.Net.WebClient? Client { get; set; }
 
 		private static Uri Uri { get; } =
-			new Uri("http://raw.githubusercontent.com/gre4bee/ryuukitsune.github.io/master/Translations/en-US/update.json");
+			new Uri(
+				"http://raw.githubusercontent.com/gre4bee/ryuukitsune.github.io/master/Translations/en-US/update.json");
 
 		public static void CheckUpdate()
 		{
-
 			if (!Configuration.Config.Life.CheckUpdateInformation) return;
 
 			if (Client == null)
@@ -117,23 +112,19 @@ namespace ElectronicObserver.Utility
 					}
 					else if (result == System.Windows.Forms.DialogResult.Cancel)
 					{
-
 						Configuration.Config.Life.CheckUpdateInformation = false;
 					}
-
 				}
 				else
 				{
 					Logger.Add(3,
 						"You are currently using the latest version (" + date.ToString("yyyy/MM/dd") + " release).");
-
 				}
 			}
 			catch (Exception ex)
 			{
 				ErrorReporter.SendErrorReport(ex, Resources.UpdateConnectionFailed);
 			}
-
 		}
 	}
 }
