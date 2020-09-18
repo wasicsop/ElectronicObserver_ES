@@ -64,7 +64,7 @@ namespace ElectronicObserver.Data
 			this.Ace = ship.SlotInstance.Select(eq => eq != null ? eq.AircraftLevel : -1).ToArray();
 
 			// --- Expension slot
-			this.Exslot = ship.IsExpansionSlotAvailable ? ship.ExpansionSlotInstanceMaster.EquipmentID : -1;
+			this.Exslot = ship.IsExpansionSlotAvailable && ship.ExpansionSlotInstanceMaster != null ? ship.ExpansionSlotInstanceMaster.EquipmentID : -1;
 		}
 		#endregion
 	}
