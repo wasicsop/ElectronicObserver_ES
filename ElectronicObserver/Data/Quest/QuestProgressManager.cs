@@ -739,6 +739,14 @@ namespace ElectronicObserver.Data.Quest
 								new ProgressSpecialBattle(q, 1, "S", new[]{ 45 }, true),
 							}));
 							break;
+						case 914:   //|914|３|重巡戦隊、西へ！|4-1・4-2・4-3・4-4ボスA勝利各1|要重巡3/駆逐1
+							Progresses.Add(new ProgressMultiBattle(q, new[] {
+								new ProgressSpecialBattle(q, 1, "A", new[] { 41 }, true),
+								new ProgressSpecialBattle(q, 1, "A", new[] { 42 }, true),
+								new ProgressSpecialBattle(q, 1, "A", new[] { 43 }, true),
+								new ProgressSpecialBattle(q, 1, "A", new[] { 44 }, true),
+							}));
+							break;
 
 						case 303:   //|303|「演習」で練度向上！|演習3
 							Progresses.Add(new ProgressPractice(q, 3, false));
@@ -884,13 +892,6 @@ namespace ElectronicObserver.Data.Quest
 								new ProgressExpedition(q, 1, new[]{ 3 }),
 								new ProgressExpedition(q, 1, new[]{ 4 }),
 								new ProgressExpedition(q, 1, new[]{ 10 }),
-							})); break;
-						case 437: //D34
-							Progresses.Add(new ProgressMultiExpedition(q, new[]{
-								new ProgressExpedition(q, 1, new[]{ 4 }),
-								new ProgressExpedition(q, 1, new[]{ 104 }),
-								new ProgressExpedition(q, 1, new[]{ 105 }),
-								new ProgressExpedition(q, 1, new[]{ 110 }),
 							})); break;
 
 						case 503:   //|503|艦隊大整備！|入渠5
@@ -1060,6 +1061,13 @@ namespace ElectronicObserver.Data.Quest
 								new ProgressDiscard(q, 4, true, new[]{ 24 }, -1),
 								new ProgressDiscard(q, 3, true, new[]{ 23 }, -1),
 								new ProgressDiscard(q, 2, true, new[]{ 26 }, -1),
+							}));
+							break;
+						case 657:   //|657|年(9月)|新型兵装開発整備の強化|(小口径主砲x6, 中口径主砲x5, 魚雷x4)廃棄, 鋼材4000保有|
+							Progresses.Add(new ProgressMultiDiscard(q, new[]{
+								new ProgressDiscard(q, 6, true, new[]{ 1 }),
+								new ProgressDiscard(q, 5, true, new[]{ 2 }),
+								new ProgressDiscard(q, 4, true, new[]{ 5 }),
 							}));
 							break;
 

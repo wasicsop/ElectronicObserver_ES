@@ -179,13 +179,16 @@ namespace ElectronicObserver.Window.Dialog
 			{
 				if (selectedShip.SlotSize >= 4)
 				{
-					ASWEquipmentPairs.Add(openingASWborder - 51, "[Type 4 SONARx3, 15cm ASW Rocket Launcher]");
+                    ASWEquipmentPairs.Add(openingASWborder - 67, "[HF/DF + Type144/147 ASDIC, Lightweight ASW Torpedo (Initial Test Model), RUR-4A Weapon Alpha Kai, 15cm ASW Rocket Launcher]");
+                    ASWEquipmentPairs.Add(openingASWborder - 51, "[Type 4 SONARx3, 15cm ASW Rocket Launcher]");
 					ASWEquipmentPairs.Add(openingASWborder - 48, "[Type 4 SONARx4]");
 					ASWEquipmentPairs.Add(openingASWborder - 44, "[Type 4 SONARx3, Type 3 DC]");
 				}
 				if (selectedShip.SlotSize >= 3)
 				{
-					ASWEquipmentPairs.Add(openingASWborder - 39, "[Type 4 SONARx2, 15cm ASW Rocket Launcher]");
+                    ASWEquipmentPairs.Add(openingASWborder - 52, "[HF/DF + Type144/147 ASDIC, Lightweight ASW Torpedo (Initial Test Model), RUR-4A Weapon Alpha Kai, 15cm ASW Rocket Launcher]");
+                    ASWEquipmentPairs.Add(openingASWborder - 47, "[HF/DF + Type144/147 ASDIC, RUR-4A Weapon Alpha Kai, 15cm ASW Rocket Launcher, 15cm ASW Rocket Launcher]");
+                    ASWEquipmentPairs.Add(openingASWborder - 39, "[Type 4 SONARx2, 15cm ASW Rocket Launcher]");
 					ASWEquipmentPairs.Add(openingASWborder - 36, "[Type 4 SONARx3]");
 					ASWEquipmentPairs.Add(openingASWborder - 32, "[Type 4 SONARx2, Type 3 DC]");
 					ASWEquipmentPairs.Add(openingASWborder - 28, "[Type 3 SONARx2, Type 3 DC]");
@@ -193,6 +196,11 @@ namespace ElectronicObserver.Window.Dialog
 				}
 				if (selectedShip.SlotSize >= 2)
 				{
+					ASWEquipmentPairs.Add(openingASWborder - 35, "[HF/DF + Type144/147 ASDIC, 対潜短魚雷(試作初期型)]");
+					if (ASWEquipmentPairs.ContainsKey(openingASWborder - 32))
+						ASWEquipmentPairs[openingASWborder - 32] += ", [HF/DF + Type144/147 ASDIC, RUR-4A Weapon Alpha改]";
+					else
+						ASWEquipmentPairs.Add(openingASWborder - 32, "[HF/DF + Type144/147 ASDIC, RUR-4A Weapon Alpha改]");
 					if (ASWEquipmentPairs.ContainsKey(openingASWborder - 27))
 						ASWEquipmentPairs[openingASWborder - 27] += ", [Type 4 SONAR, 15cm ASW Rocket Launcher]";
 					else
@@ -200,6 +208,7 @@ namespace ElectronicObserver.Window.Dialog
 					ASWEquipmentPairs.Add(openingASWborder - 20, "[Type 4 SONAR, Type 3 DC]");
 					ASWEquipmentPairs.Add(openingASWborder - 18, "[Type 3 SONAR, Type 3 DC]");
 				}
+				ASWEquipmentPairs.Add(openingASWborder - 15, "[HF/DF + Type144/147 ASDIC]");
 				ASWEquipmentPairs.Add(openingASWborder - 12, "[Type 4 SONAR]");
 			}
 

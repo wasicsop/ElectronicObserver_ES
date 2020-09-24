@@ -171,3 +171,4 @@ packages/
 /ElectronicObserver/ScreenShot
 
 *.bak
+/ElectronicObserver/GPUCache

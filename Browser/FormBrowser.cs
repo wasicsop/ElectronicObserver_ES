@@ -55,6 +55,7 @@ namespace Browser
 
 
 		private bool _styleSheetApplied;
+
 		/// <summary>
 		/// スタイルシートの変更が適用されているか
 		/// </summary>
@@ -79,6 +80,7 @@ namespace Browser
 						Browser.MinimumSize = new Size(0, 0);
 						Browser.Size = SizeAdjuster.Size;
 					}
+
 					SizeAdjuster.ResumeLayout();
 				}
 
@@ -96,11 +98,13 @@ namespace Browser
 		private string _lastScreenShotPath;
 
 
-		private NumericUpDown ToolMenu_Other_Volume_VolumeControl => 
-			(NumericUpDown)((ToolStripControlHost)ToolMenu_Other_Volume.DropDownItems["ToolMenu_Other_Volume_VolumeControlHost"]).Control;
+		private NumericUpDown ToolMenu_Other_Volume_VolumeControl =>
+			(NumericUpDown) ((ToolStripControlHost) ToolMenu_Other_Volume.DropDownItems[
+				"ToolMenu_Other_Volume_VolumeControlHost"]).Control;
 
-		private PictureBox ToolMenu_Other_LastScreenShot_Control => 
-			(PictureBox)((ToolStripControlHost)ToolMenu_Other_LastScreenShot.DropDownItems["ToolMenu_Other_LastScreenShot_ImageHost"]).Control;
+		private PictureBox ToolMenu_Other_LastScreenShot_Control =>
+			(PictureBox) ((ToolStripControlHost) ToolMenu_Other_LastScreenShot.DropDownItems[
+				"ToolMenu_Other_LastScreenShot_ImageHost"]).Control;
 
 
 		/// <summary>
@@ -114,17 +118,19 @@ namespace Browser
 			Port = port;
 
 			CultureInfo c = CultureInfo.CurrentCulture;
-            CultureInfo ui = CultureInfo.CurrentUICulture;
-            if(c.Name != "en-US" && c.Name != "ja-JP" && c.Name != "ko-KR")
-            {
-                c = new CultureInfo("en-US");
-            }
-            if(ui.Name != "en-US" && ui.Name != "ja-JP" && ui.Name != "ko-KR")
-            {
-                ui = new CultureInfo("en-US");
-            }
-            Thread.CurrentThread.CurrentCulture = c;
-            Thread.CurrentThread.CurrentUICulture = ui;
+			CultureInfo ui = CultureInfo.CurrentUICulture;
+			if (c.Name != "en-US" && c.Name != "ja-JP" && c.Name != "ko-KR")
+			{
+				c = new CultureInfo("en-US");
+			}
+
+			if (ui.Name != "en-US" && ui.Name != "ja-JP" && ui.Name != "ko-KR")
+			{
+				ui = new CultureInfo("en-US");
+			}
+
+			Thread.CurrentThread.CurrentCulture = c;
+			Thread.CurrentThread.CurrentUICulture = ui;
 
 			InitializeComponent();
 
@@ -146,7 +152,8 @@ namespace Browser
 
 				var toolStripControlHost = new ToolStripControlHost(control, "ToolMenu_Other_Volume_VolumeControlHost");
 
-				control.Size = new Size(toolStripControlHost.Width - control.Margin.Horizontal, toolStripControlHost.Height - control.Margin.Vertical);
+				control.Size = new Size(toolStripControlHost.Width - control.Margin.Horizontal,
+					toolStripControlHost.Height - control.Margin.Vertical);
 				control.Location = new Point(control.Margin.Left, control.Margin.Top);
 
 
@@ -184,7 +191,6 @@ namespace Browser
 
 				ToolMenu_Other_LastScreenShot.DropDownItems.Insert(0, toolStripControlHost);
 			}
-
 		}
 
 
@@ -194,12 +200,13 @@ namespace Browser
 
 			// ホストプロセスに接続
 			Channel grpChannel = new Channel(Host, Port, ChannelCredentials.Insecure);
-			BrowserHost = StreamingHubClient.Connect<BrowserLibCore.IBrowserHost, BrowserLibCore.IBrowser>(grpChannel, this);
+			BrowserHost =
+				StreamingHubClient.Connect<BrowserLibCore.IBrowserHost, BrowserLibCore.IBrowser>(grpChannel, this);
 
 			ConfigurationChanged();
 
 			// ウィンドウの親子設定＆ホストプロセスから接続してもらう
-			Task.Run(async () => await BrowserHost.ConnectToBrowser((long)Handle)).Wait();
+			Task.Run(async () => await BrowserHost.ConnectToBrowser((long) Handle)).Wait();
 
 			// 親ウィンドウが生きているか確認
 			HeartbeatTimer.Tick += async (sender2, e2) =>
@@ -217,7 +224,6 @@ namespace Browser
 			HeartbeatTimer.Interval = 2000; // 2秒ごと　
 			HeartbeatTimer.Start();
 
-			
 
 			SetIconResource();
 
@@ -237,11 +243,12 @@ namespace Browser
 			var settings = new CefSettings
 			{
 				BrowserSubprocessPath = Path.Combine(
-						AppDomain.CurrentDomain.SetupInformation.ApplicationBase,
-                        @"CefSharp.BrowserSubprocess.exe"),
-				CachePath = BrowserCachePath,
+					AppDomain.CurrentDomain.SetupInformation.ApplicationBase,
+					@"CefSharp.BrowserSubprocess.exe"),
+				CachePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),
+					BrowserCachePath),
 				Locale = "ja",
-				AcceptLanguageList = "ja,en-US,en",        // todo: いる？
+				AcceptLanguageList = "ja,en-US,en", // todo: いる？
 				LogSeverity = Configuration.SavesBrowserLog ? LogSeverity.Error : LogSeverity.Disable,
 				LogFile = "BrowserLog.log",
 			};
@@ -254,11 +261,12 @@ namespace Browser
 			// limit browser fps to fix canvas crash
 			// causes memory leak after Umikaze k2 update somehow...
 			// settings.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0"; // fix for 206 response from server for bgm
-			settings.CefCommandLineArgs.Add("disable-features", "HardwareMediaKeyHandling"); // prevent CEF from taking over media keys
+			settings.CefCommandLineArgs.Add("disable-features",
+				"HardwareMediaKeyHandling"); // prevent CEF from taking over media keys
 			if (Configuration.ForceColorProfile)
 				settings.CefCommandLineArgs.Add("force-color-profile", "srgb");
 			CefSharpSettings.SubprocessExitIfParentProcessClosed = true;
-			Cef.Initialize(settings, false, (IBrowserProcessHandler)null);
+			Cef.Initialize(settings, false, (IBrowserProcessHandler) null);
 
 			// var requestHandler = new CefRequestHandler();
 
@@ -288,7 +296,7 @@ namespace Browser
 				// BrowserHost.Close();
 				HeartbeatTimer.Stop();
 				Task.Run(async () => await BrowserHost.DisposeAsync()).Wait();
-				Cef.Shutdown(); 
+				Cef.Shutdown();
 				Application.Exit();
 			}
 		}
@@ -303,7 +311,7 @@ namespace Browser
 		{
 			HeartbeatTimer.Stop();
 			// リモートコールでClose()呼ぶのばヤバそうなので非同期にしておく
-			BeginInvoke((Action)(() => Exit()));
+			BeginInvoke((Action) (() => Exit()));
 		}
 
 		public async void ConfigurationChanged()
@@ -316,11 +324,11 @@ namespace Browser
 			ToolMenu_Other_Zoom_Fit.Checked = Configuration.ZoomFit;
 			ApplyZoom();
 			ToolMenu_Other_AppliesStyleSheet.Checked = Configuration.AppliesStyleSheet;
-			ToolMenu.Dock = (DockStyle)Configuration.ToolMenuDockStyle;
+			ToolMenu.Dock = (DockStyle) Configuration.ToolMenuDockStyle;
 			ToolMenu.Visible = Configuration.IsToolMenuVisible;
 
-			SizeAdjuster.BackColor = System.Drawing.Color.FromArgb(unchecked((int)Configuration.BackColor));
-			ToolMenu.BackColor = System.Drawing.Color.FromArgb(unchecked((int)Configuration.BackColor));
+			SizeAdjuster.BackColor = System.Drawing.Color.FromArgb(unchecked((int) Configuration.BackColor));
+			ToolMenu.BackColor = System.Drawing.Color.FromArgb(unchecked((int) Configuration.BackColor));
 			ToolMenu_Other_ClearCache.Visible = conf.EnableDebugMenu;
 		}
 
@@ -363,6 +371,7 @@ namespace Browser
 					Browser.Location = new Point(0, 0);
 					Browser.Size = SizeAdjuster.Size;
 				}
+
 				return;
 			}
 
@@ -380,6 +389,7 @@ namespace Browser
 			{
 				x = (SizeAdjuster.Width - Browser.Width) / 2;
 			}
+
 			if (!isScrollable || Browser.Height <= SizeAdjuster.Height)
 			{
 				y = (SizeAdjuster.Height - Browser.Height) / 2;
@@ -387,9 +397,9 @@ namespace Browser
 
 			//if ( x != Browser.Location.X || y != Browser.Location.Y )
 			Browser.Location = new Point(x, y);
-	    }
+		}
 
-        private void Browser_LoadingStateChanged(object sender, LoadingStateChangedEventArgs e)
+		private void Browser_LoadingStateChanged(object sender, LoadingStateChangedEventArgs e)
 		{
 			// DocumentCompleted に相当?
 			// note: 非 UI thread からコールされるので、何かしら UI に触る場合は適切な処置が必要
@@ -410,7 +420,7 @@ namespace Browser
 		        Browser.ExecuteScriptAsync(Properties.Resources.RemoveServicePopup);
             }*/
 
-			BeginInvoke((Action)(() =>
+			BeginInvoke((Action) (() =>
 			{
 				ApplyStyleSheet();
 
@@ -427,7 +437,7 @@ namespace Browser
 
 		public Action<Exception> Faulted
 		{
-			get => throw new NotImplementedException(); 
+			get => throw new NotImplementedException();
 			set => throw new NotImplementedException();
 		}
 
@@ -450,7 +460,7 @@ namespace Browser
 
 			var browser = Browser.GetBrowser();
 			var frames = browser.GetFrameIdentifiers()
-						.Select(id => browser.GetFrame(id));
+				.Select(id => browser.GetFrame(id));
 
 			return frames.FirstOrDefault(f => f?.Url?.Contains(@"http://osapi.dmm.com/gadgets/") ?? false);
 		}
@@ -462,12 +472,10 @@ namespace Browser
 
 			var browser = Browser.GetBrowser();
 			var frames = browser.GetFrameIdentifiers()
-					.Select(id => browser.GetFrame(id));
+				.Select(id => browser.GetFrame(id));
 
 			return frames.FirstOrDefault(f => f?.Url?.Contains(@"/kcs2/index.php") ?? false);
 		}
-
-
 
 
 		/// <summary>
@@ -489,7 +497,7 @@ namespace Browser
 				{
 					mainframe.EvaluateScriptAsync(string.Format(Properties.Resources.RestoreScript, StyleClassID));
 					gameframe.EvaluateScriptAsync(string.Format(Properties.Resources.RestoreScript, StyleClassID));
-				    gameframe.EvaluateScriptAsync("document.body.style.backgroundColor = \"#000000\";");
+					gameframe.EvaluateScriptAsync("document.body.style.backgroundColor = \"#000000\";");
 					StyleSheetApplied = false;
 					RestoreStyleSheet = false;
 				}
@@ -497,18 +505,15 @@ namespace Browser
 				{
 					mainframe.EvaluateScriptAsync(string.Format(Properties.Resources.PageScript, StyleClassID));
 					gameframe.EvaluateScriptAsync(string.Format(Properties.Resources.FrameScript, StyleClassID));
-				    gameframe.EvaluateScriptAsync("document.body.style.backgroundColor = \"#000000\";");
-
+					gameframe.EvaluateScriptAsync("document.body.style.backgroundColor = \"#000000\";");
 				}
 
 				StyleSheetApplied = true;
-
 			}
 			catch (Exception ex)
 			{
 				SendErrorReport(ex.ToString(), Resources.FailedToApplyStylesheet);
 			}
-
 		}
 
 		/// <summary>
@@ -534,22 +539,21 @@ namespace Browser
 			{
 				SendErrorReport(ex.ToString(), "Failed to hide DMM refresh dialog.");
 			}
-
 		}
-
 
 
 		// タイミングによっては(特に起動時)、ブラウザの初期化が完了する前に Navigate() が呼ばれることがある
 		// その場合ロードに失敗してブラウザが白画面でスタートしてしまう（手動でログインページを開けば続行は可能だが）
 		// 応急処置として失敗したとき後で再試行するようにしてみる
 		private string navigateCache = null;
+
 		private void Browser_IsBrowserInitializedChanged(object sender, EventArgs e)
 		{
 			if (IsBrowserInitialized && navigateCache != null)
 			{
 				// ロードが完了したので再試行
-				string url = navigateCache;            // 非同期コールするのでコピーを取っておく必要がある
-				BeginInvoke((Action)(() => Navigate(url)));
+				string url = navigateCache; // 非同期コールするのでコピーを取っておく必要がある
+				BeginInvoke((Action) (() => Navigate(url)));
 				navigateCache = null;
 			}
 		}
@@ -601,8 +605,8 @@ namespace Browser
 
 			if (fit)
 			{
-				double rateX = (double)SizeAdjuster.Width / KanColleSize.Width;
-				double rateY = (double)SizeAdjuster.Height / KanColleSize.Height;
+				double rateX = (double) SizeAdjuster.Width / KanColleSize.Width;
+				double rateY = (double) SizeAdjuster.Height / KanColleSize.Height;
 				zoomFactor = Math.Min(rateX, rateY);
 			}
 			else
@@ -617,9 +621,9 @@ namespace Browser
 			if (StyleSheetApplied)
 			{
 				Browser.Size = Browser.MinimumSize = new Size(
-					(int)(KanColleSize.Width * zoomFactor),
-					(int)(KanColleSize.Height * zoomFactor)
-					);
+					(int) (KanColleSize.Width * zoomFactor),
+					(int) (KanColleSize.Height * zoomFactor)
+				);
 
 				CenteringBrowser();
 			}
@@ -632,9 +636,7 @@ namespace Browser
 			{
 				ToolMenu_Other_Zoom_Current.Text = Resources.Other_Zoom_Current + $" {zoomRate:p1}";
 			}
-
 		}
-
 
 
 		/// <summary>
@@ -689,13 +691,11 @@ namespace Browser
 		}
 
 
-
 		/// <summary>
 		/// スクリーンショットを撮影し、設定で指定された保存先に保存します。
 		/// </summary>
 		private async Task SaveScreenShot()
 		{
-
 			int savemode = Configuration.ScreenShotSaveMode;
 			int format = Configuration.ScreenShotFormat;
 			string folderPath = Configuration.ScreenShotPath;
@@ -805,7 +805,6 @@ namespace Browser
 			{
 				image?.Dispose();
 			}
-
 		}
 
 
@@ -815,7 +814,7 @@ namespace Browser
 			if (ushort.TryParse(proxy, out port))
 			{
 				// WinInetUtil.SetProxyInProcessForNekoxy(port);
-				ProxySettings = "http=127.0.0.1:" + port;           // todo: 動くには動くが正しいかわからない
+				ProxySettings = "http=127.0.0.1:" + port; // todo: 動くには動くが正しいかわからない
 			}
 			else
 			{
@@ -829,56 +828,56 @@ namespace Browser
 		}
 
 
-        private void SetCookie()
-        {
-            Browser.ExecuteScriptAsync(Resources.RegionCookie);
-        }
+		private void SetCookie()
+		{
+			Browser.ExecuteScriptAsync(Resources.RegionCookie);
+		}
 
 
-        private async void SetIconResource()
-        {
-	        byte[] canvas = await BrowserHost.GetIconResource();
+		private async void SetIconResource()
+		{
+			byte[] canvas = await BrowserHost.GetIconResource();
 
-	        string[] keys =
-	        {
-		        "Browser_ScreenShot",
-		        "Browser_Zoom",
-		        "Browser_ZoomIn",
-		        "Browser_ZoomOut",
-		        "Browser_Unmute",
-		        "Browser_Mute",
-		        "Browser_Refresh",
-		        "Browser_Navigate",
-		        "Browser_Other",
-	        };
-	        int unitsize = 16 * 16 * 4;
+			string[] keys =
+			{
+				"Browser_ScreenShot",
+				"Browser_Zoom",
+				"Browser_ZoomIn",
+				"Browser_ZoomOut",
+				"Browser_Unmute",
+				"Browser_Mute",
+				"Browser_Refresh",
+				"Browser_Navigate",
+				"Browser_Other",
+			};
+			int unitsize = 16 * 16 * 4;
 
-	        for (int i = 0; i < keys.Length; i++)
-	        {
-		        Bitmap bmp = new Bitmap(16, 16, PixelFormat.Format32bppArgb);
+			for (int i = 0; i < keys.Length; i++)
+			{
+				Bitmap bmp = new Bitmap(16, 16, PixelFormat.Format32bppArgb);
 
-		        if (canvas != null)
-		        {
-			        BitmapData bmpdata = bmp.LockBits(new Rectangle(0, 0, bmp.Width, bmp.Height),
-				        ImageLockMode.WriteOnly, PixelFormat.Format32bppArgb);
-			        Marshal.Copy(canvas, unitsize * i, bmpdata.Scan0, unitsize);
-			        bmp.UnlockBits(bmpdata);
-		        }
+				if (canvas != null)
+				{
+					BitmapData bmpdata = bmp.LockBits(new Rectangle(0, 0, bmp.Width, bmp.Height),
+						ImageLockMode.WriteOnly, PixelFormat.Format32bppArgb);
+					Marshal.Copy(canvas, unitsize * i, bmpdata.Scan0, unitsize);
+					bmp.UnlockBits(bmpdata);
+				}
 
-		        Icons.Images.Add(keys[i], bmp);
-	        }
+				Icons.Images.Add(keys[i], bmp);
+			}
 
-	        ToolMenu_ScreenShot.Image = ToolMenu_Other_ScreenShot.Image = Icons.Images["Browser_ScreenShot"];
-	        ToolMenu_Zoom.Image = ToolMenu_Other_Zoom.Image = Icons.Images["Browser_Zoom"];
-	        ToolMenu_Other_Zoom_Increment.Image = Icons.Images["Browser_ZoomIn"];
-	        ToolMenu_Other_Zoom_Decrement.Image = Icons.Images["Browser_ZoomOut"];
-	        ToolMenu_Refresh.Image = ToolMenu_Other_Refresh.Image = Icons.Images["Browser_Refresh"];
-	        ToolMenu_NavigateToLogInPage.Image =
-		        ToolMenu_Other_NavigateToLogInPage.Image = Icons.Images["Browser_Navigate"];
-	        ToolMenu_Other.Image = Icons.Images["Browser_Other"];
+			ToolMenu_ScreenShot.Image = ToolMenu_Other_ScreenShot.Image = Icons.Images["Browser_ScreenShot"];
+			ToolMenu_Zoom.Image = ToolMenu_Other_Zoom.Image = Icons.Images["Browser_Zoom"];
+			ToolMenu_Other_Zoom_Increment.Image = Icons.Images["Browser_ZoomIn"];
+			ToolMenu_Other_Zoom_Decrement.Image = Icons.Images["Browser_ZoomOut"];
+			ToolMenu_Refresh.Image = ToolMenu_Other_Refresh.Image = Icons.Images["Browser_Refresh"];
+			ToolMenu_NavigateToLogInPage.Image =
+				ToolMenu_Other_NavigateToLogInPage.Image = Icons.Images["Browser_Navigate"];
+			ToolMenu_Other.Image = Icons.Images["Browser_Other"];
 
-	        SetVolumeState();
-        }
+			SetVolumeState();
+		}
 
 
 		private void TryGetVolumeManager()
@@ -915,7 +914,7 @@ namespace Browser
 			{
 				var control = ToolMenu_Other_Volume_VolumeControl;
 				control.Tag = false;
-				control.Value = (decimal)volume;
+				control.Value = (decimal) volume;
 				control.Tag = true;
 			}
 
@@ -955,7 +954,7 @@ namespace Browser
 			else if (sender == ToolMenu_Other_Zoom_50)
 				zoom = 0.50;
 			else if (sender == ToolMenu_Other_Zoom_Classic)
-				zoom = 0.667;       // 2/3 ジャストだと 799x479 になる
+				zoom = 0.667; // 2/3 ジャストだと 799x479 になる
 			else if (sender == ToolMenu_Other_Zoom_75)
 				zoom = 0.75;
 			else if (sender == ToolMenu_Other_Zoom_100)
@@ -1011,7 +1010,6 @@ namespace Browser
 			try
 			{
 				_volumeManager.ToggleMute();
-
 			}
 			catch (Exception)
 			{
@@ -1023,7 +1021,6 @@ namespace Browser
 
 		void ToolMenu_Other_Volume_ValueChanged(object sender, EventArgs e)
 		{
-
 			var control = ToolMenu_Other_Volume_VolumeControl;
 
 			if (_volumeManager == null)
@@ -1033,26 +1030,23 @@ namespace Browser
 
 			try
 			{
-				if ((bool)control.Tag)
-					_volumeManager.Volume = (float)(control.Value / 100);
+				if ((bool) control.Tag)
+					_volumeManager.Volume = (float) (control.Value / 100);
 				control.BackColor = SystemColors.Window;
-
 			}
 			catch (Exception)
 			{
 				control.BackColor = Color.MistyRose;
 			}
-
 		}
 
 
 		private void ToolMenu_Other_Refresh_Click(object sender, EventArgs e)
 		{
-
 			if (!Configuration.ConfirmAtRefresh ||
-				MessageBox.Show(Resources.ReloadDialog, Resources.Confirmation,
-                MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2)
-				== DialogResult.OK)
+			    MessageBox.Show(Resources.ReloadDialog, Resources.Confirmation,
+				    MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2)
+			    == DialogResult.OK)
 			{
 				RefreshBrowser();
 			}
@@ -1061,9 +1055,9 @@ namespace Browser
 		private void ToolMenu_Other_RefreshIgnoreCache_Click(object sender, EventArgs e)
 		{
 			if (!Configuration.ConfirmAtRefresh ||
-				MessageBox.Show(Resources.ReloadHardDialog, Resources.Confirmation,
-                MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2)
-				== DialogResult.OK)
+			    MessageBox.Show(Resources.ReloadHardDialog, Resources.Confirmation,
+				    MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2)
+			    == DialogResult.OK)
 			{
 				RefreshBrowser(true);
 			}
@@ -1071,10 +1065,9 @@ namespace Browser
 
 		private void ToolMenu_Other_NavigateToLogInPage_Click(object sender, EventArgs e)
 		{
-
 			if (MessageBox.Show(Resources.LoginDialog, Resources.Confirmation,
-				MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2)
-				== DialogResult.OK)
+				    MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2)
+			    == DialogResult.OK)
 			{
 				Navigate(Configuration.LogInPageURL);
 			}
@@ -1097,7 +1090,6 @@ namespace Browser
 
 		private void ToolMenu_Other_Alignment_Click(object sender, EventArgs e)
 		{
-
 			if (sender == ToolMenu_Other_Alignment_Top)
 				ToolMenu.Dock = DockStyle.Top;
 			else if (sender == ToolMenu_Other_Alignment_Bottom)
@@ -1107,7 +1099,7 @@ namespace Browser
 			else
 				ToolMenu.Dock = DockStyle.Right;
 
-			Configuration.ToolMenuDockStyle = (int)ToolMenu.Dock;
+			Configuration.ToolMenuDockStyle = (int) ToolMenu.Dock;
 
 			ConfigurationUpdated();
 		}
@@ -1115,29 +1107,28 @@ namespace Browser
 		private void ToolMenu_Other_Alignment_Invisible_Click(object sender, EventArgs e)
 		{
 			ToolMenu.Visible =
-			Configuration.IsToolMenuVisible = false;
+				Configuration.IsToolMenuVisible = false;
 			ConfigurationUpdated();
 		}
-
 
 
 		private void SizeAdjuster_DoubleClick(object sender, EventArgs e)
 		{
 			ToolMenu.Visible =
-			Configuration.IsToolMenuVisible = true;
+				Configuration.IsToolMenuVisible = true;
 			ConfigurationUpdated();
 		}
 
 		private void ContextMenuTool_ShowToolMenu_Click(object sender, EventArgs e)
 		{
 			ToolMenu.Visible =
-			Configuration.IsToolMenuVisible = true;
+				Configuration.IsToolMenuVisible = true;
 			ConfigurationUpdated();
 		}
 
 		private void ContextMenuTool_Opening(object sender, CancelEventArgs e)
 		{
-			if (IsKanColleLoaded || ToolMenu.Visible) 
+			if (IsKanColleLoaded || ToolMenu.Visible)
 				e.Cancel = true;
 		}
 
@@ -1163,8 +1154,6 @@ namespace Browser
 		}
 
 
-
-
 		private void FormBrowser_Activated(object sender, EventArgs e)
 		{
 			Browser.Focus();
@@ -1180,7 +1169,7 @@ namespace Browser
 				}
 			}
 
-			switch ((DockStyle)Configuration.ToolMenuDockStyle)
+			switch ((DockStyle) Configuration.ToolMenuDockStyle)
 			{
 				case DockStyle.Top:
 					ToolMenu_Other_Alignment_Top.Checked = true;
@@ -1215,7 +1204,6 @@ namespace Browser
 			{
 				// *ぷちっ*
 			}
-
 		}
 
 		void ToolMenu_Other_LastScreenShot_ImageHost_Click(object sender, EventArgs e)
@@ -1246,7 +1234,6 @@ namespace Browser
 
 		private void ToolMenu_Other_LastScreenShot_CopyToClipboard_Click(object sender, EventArgs e)
 		{
-
 			if (_lastScreenShotPath != null && File.Exists(_lastScreenShotPath))
 			{
 				try
@@ -1289,7 +1276,6 @@ namespace Browser
 
 		protected override void WndProc(ref Message m)
 		{
-
 			if (m.Msg == WM_ERASEBKGND)
 				// ignore this message
 				return;
@@ -1299,7 +1285,6 @@ namespace Browser
 
 
 		#region 呪文
-
 
 		[DllImport("user32.dll", EntryPoint = "GetWindowLongA", SetLastError = true)]
 		private static extern uint GetWindowLong(IntPtr hwnd, int nIndex);
@@ -1312,13 +1297,8 @@ namespace Browser
 		private const uint WS_VISIBLE = 0x10000000;
 		private const int WM_ERASEBKGND = 0x14;
 
-
-
-
-
 		#endregion
 	}
-
 
 
 	/// <summary>
@@ -1326,7 +1306,9 @@ namespace Browser
 	/// </summary>
 	internal class ExtraToolStrip : ToolStrip
 	{
-		public ExtraToolStrip() : base() { }
+		public ExtraToolStrip() : base()
+		{
+		}
 
 		private const uint WM_MOUSEACTIVATE = 0x21;
 		private const uint MA_ACTIVATE = 1;
@@ -1338,9 +1320,8 @@ namespace Browser
 		{
 			base.WndProc(ref m);
 
-			if (m.Msg == WM_MOUSEACTIVATE && m.Result == (IntPtr)MA_ACTIVATEANDEAT)
-				m.Result = (IntPtr)MA_ACTIVATE;
+			if (m.Msg == WM_MOUSEACTIVATE && m.Result == (IntPtr) MA_ACTIVATEANDEAT)
+				m.Result = (IntPtr) MA_ACTIVATE;
 		}
 	}
-
 }
