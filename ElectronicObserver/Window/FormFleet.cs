@@ -504,23 +504,37 @@ namespace ElectronicObserver.Window
 
 					{
 						StringBuilder tip = new StringBuilder();
-						tip.AppendFormat("Total: {0} exp.\r\n", ship.ExpTotal);
+						tip.AppendFormat("Total: {0:N0} exp.\r\n", ship.ExpTotal);
 
-						if ( !Utility.Configuration.Config.FormFleet.ShowNextExp )
-							tip.AppendFormat( GeneralRes.ToNextLevel + " exp.\r\n", ship.ExpNext );
+						if (!Utility.Configuration.Config.FormFleet.ShowNextExp)
+							tip.AppendFormat(GeneralRes.ToNextLevel + " exp.\r\n", ship.ExpNext.ToString("N0"));
 
-						if (ship.MasterShip.RemodelAfterShipID != 0 && ship.Level < ship.MasterShip.RemodelAfterLevel)
+						var remodels = db.MasterShips.Values
+							.Where(s => s.BaseShip() == ship.MasterShip.BaseShip())
+							.Where(s => s.RemodelTier > ship.MasterShip.RemodelTier)
+							.OrderBy(s => s.RemodelBeforeShip?.RemodelAfterLevel ?? 0)
+							.Select(s => (s.NameEN, s.RemodelBeforeShip?.RemodelAfterLevel ?? 0));
+
+						foreach ((var name, int remodelLevel) in remodels)
 						{
-							tip.AppendFormat(GeneralRes.ToRemodel + "\r\n", ship.MasterShip.RemodelAfterLevel - ship.Level, ship.ExpNextRemodel);
+							int neededExp = Math.Max(ExpTable.GetExpToLevelShip(ship.ExpTotal, remodelLevel), 0);
+							tip.Append($"{name}({remodelLevel}): {neededExp:N0} exp.\r\n");
 						}
-						else if (ship.Level <= 99)
+
+						if (ship.Level < 99)
 						{
-							tip.AppendFormat(GeneralRes.To99 + " exp.\r\n", Math.Max(ExpTable.GetExpToLevelShip(ship.ExpTotal, 99), 0));
+							string lv99Exp = Math.Max(ExpTable.GetExpToLevelShip(ship.ExpTotal, 99), 0).ToString("N0");
+							tip.AppendFormat(GeneralRes.To99 + " exp.\r\n", lv99Exp);
 						}
-						else
+
+						if (ship.Level < ExpTable.ShipMaximumLevel)
 						{
-							tip.AppendFormat(GeneralRes.ToX + " exp.\r\n", ExpTable.ShipMaximumLevel, Math.Max(ExpTable.GetExpToLevelShip(ship.ExpTotal, ExpTable.ShipMaximumLevel), 0));
+							string lv175Exp = Math
+								.Max(ExpTable.GetExpToLevelShip(ship.ExpTotal, ExpTable.ShipMaximumLevel), 0)
+								.ToString("N0");
+							tip.AppendFormat(GeneralRes.ToX + " exp.\r\n", ExpTable.ShipMaximumLevel, lv175Exp);
 						}
+
 
 						tip.AppendLine("(right click to calculate exp)");
 

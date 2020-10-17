@@ -72,7 +72,7 @@ namespace ElectronicObserver.Data
 		/// <summary>
 		/// 改装後の艦船
 		/// </summary>
-		ShipDataMaster RemodelAfterShip { get; }
+		ShipDataMaster? RemodelAfterShip { get; }
 
 		/// <summary>
 		/// 改装前の艦船ID
@@ -83,7 +83,7 @@ namespace ElectronicObserver.Data
 		/// <summary>
 		/// 改装前の艦船
 		/// </summary>
-		ShipDataMaster RemodelBeforeShip { get; }
+		ShipDataMaster? RemodelBeforeShip { get; }
 
 		/// <summary>
 		/// 改装に必要な弾薬
@@ -486,7 +486,7 @@ namespace ElectronicObserver.Data
 		/// <summary>
 		/// 改装後の艦船
 		/// </summary>
-		public ShipDataMaster RemodelAfterShip => RemodelAfterShipID > 0 ? KCDatabase.Instance.MasterShips[RemodelAfterShipID] : null;
+		public ShipDataMaster? RemodelAfterShip => RemodelAfterShipID > 0 ? KCDatabase.Instance.MasterShips[RemodelAfterShipID] : null;
 
 
 		/// <summary>
@@ -498,7 +498,7 @@ namespace ElectronicObserver.Data
 		/// <summary>
 		/// 改装前の艦船
 		/// </summary>
-		public ShipDataMaster RemodelBeforeShip => RemodelBeforeShipID > 0 ? KCDatabase.Instance.MasterShips[RemodelBeforeShipID] : null;
+		public ShipDataMaster? RemodelBeforeShip => RemodelBeforeShipID > 0 ? KCDatabase.Instance.MasterShips[RemodelBeforeShipID] : null;
 
 
 		/// <summary>
