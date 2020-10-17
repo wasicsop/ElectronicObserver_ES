@@ -1,4 +1,6 @@
-﻿namespace ElectronicObserver.Window.Dialog
+﻿using System.Windows.Forms;
+
+namespace ElectronicObserver.Window.Dialog
 {
 	partial class DialogConfigurationNotifier
 	{
@@ -97,6 +99,9 @@
 			this.BaseAirCorps_EventMap = new System.Windows.Forms.CheckBox();
 			this.BaseAirCorps_EquipmentRelocation = new System.Windows.Forms.CheckBox();
 			this.BaseAirCorps_SquadronRelocation = new System.Windows.Forms.CheckBox();
+			this.GroupBattleEnd = new System.Windows.Forms.GroupBox();
+			this.BattleEnd_IdleTimerEnabled = new System.Windows.Forms.CheckBox();
+			this.BattleEnd_IdleTime = new NumericUpDown();
 			this.GroupSound.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.SoundVolume)).BeginInit();
 			this.GroupImage.SuspendLayout();
@@ -910,6 +915,40 @@
 			this.BaseAirCorps_SquadronRelocation.Text = "Squadron Relocation";
 			this.ToolTipText.SetToolTip(this.BaseAirCorps_SquadronRelocation, "Notify when base slot is available again after an aircraft was removed.");
 			this.BaseAirCorps_SquadronRelocation.UseVisualStyleBackColor = true;
+			// 
+			// GroupBattleEnd
+			//
+			this.GroupBattleEnd.Controls.Add(this.BattleEnd_IdleTimerEnabled);
+			this.GroupBattleEnd.Controls.Add(this.BattleEnd_IdleTime);
+			this.GroupBattleEnd.Location = new System.Drawing.Point(12, 298);
+			this.GroupBattleEnd.Name = "GroupBattleEnd";
+			this.GroupBattleEnd.Size = new System.Drawing.Size(602, 103);
+			this.GroupBattleEnd.TabIndex = 10;
+			this.GroupBattleEnd.TabStop = false;
+			this.GroupBattleEnd.Text = "Battle end settings";
+			// 
+			// BattleEnd_IdleTimerEnabled
+			// 
+			this.BattleEnd_IdleTimerEnabled.AutoSize = true;
+			this.BattleEnd_IdleTimerEnabled.Location = new System.Drawing.Point(10, 22);
+			this.BattleEnd_IdleTimerEnabled.Name = "BattleEnd_IdleTimer";
+			this.BattleEnd_IdleTimerEnabled.Size = new System.Drawing.Size(74, 19);
+			this.BattleEnd_IdleTimerEnabled.TabIndex = 0;
+			this.BattleEnd_IdleTimerEnabled.Text = "Enable idle time";
+			this.ToolTipText.SetToolTip(this.BattleEnd_IdleTimerEnabled, "Notify a certain period of time after the battle started.");
+			this.BattleEnd_IdleTimerEnabled.UseVisualStyleBackColor = true;
+			//
+			// BattleEnd_IdleTime
+			//
+			this.BattleEnd_IdleTime.Location = new System.Drawing.Point(10, 47);
+			this.BattleEnd_IdleTime.Name = "BattleEnd_IdleTime";
+			this.BattleEnd_IdleTime.AutoSize = true;
+			this.BattleEnd_IdleTime.TabIndex = 2;
+			this.BattleEnd_IdleTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+			this.BattleEnd_IdleTime.Minimum = 1;
+			this.BattleEnd_IdleTime.Maximum = int.MaxValue;
+			this.BattleEnd_IdleTime.Text = "Idle time";
+			this.ToolTipText.SetToolTip(this.BattleEnd_IdleTime, "Specify idle time in seconds.");
 			//
 			// AnchorageRepairNotificationLevel
 			//
@@ -931,6 +970,7 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.ClientSize = new System.Drawing.Size(624, 442);
 			this.Controls.Add(this.GroupBaseAirCorps);
+			this.Controls.Add(this.GroupBattleEnd);
 			this.Controls.Add(this.GroupAnchorageRepair);
 			this.Controls.Add(this.label10);
 			this.Controls.Add(this.GroupDamage);
@@ -1043,5 +1083,8 @@
 		private System.Windows.Forms.CheckBox BaseAirCorps_NotOrganized;
 		private System.Windows.Forms.CheckBox BaseAirCorps_Tired;
 		private System.Windows.Forms.CheckBox BaseAirCorps_NotSupplied;
+		private System.Windows.Forms.GroupBox GroupBattleEnd;
+		private System.Windows.Forms.CheckBox BattleEnd_IdleTimerEnabled;
+		private System.Windows.Forms.NumericUpDown BattleEnd_IdleTime;
 	}
 }

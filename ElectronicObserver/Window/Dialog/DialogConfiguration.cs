@@ -287,6 +287,14 @@ namespace ElectronicObserver.Window.Dialog
 			}
 		}
 
+		private void Notification_BattleEnd_Click(object sender, EventArgs e)
+		{
+			using (var dialog = new DialogConfigurationNotifier(NotifierManager.Instance.BattleEnd))
+			{
+				dialog.ShowDialog(this);
+			}
+		}
+
 		private void Life_LayoutFilePathSearch_Click(object sender, EventArgs e)
 		{
 

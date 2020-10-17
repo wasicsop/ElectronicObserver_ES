@@ -121,6 +121,16 @@ namespace ElectronicObserver.Window.Dialog
 				GroupBaseAirCorps.Enabled = false;
 			}
 
+			if (notifier is NotifierBattleEnd nba)
+			{
+				BattleEnd_IdleTimerEnabled.Checked = nba.Config.IdleTimerEnabled;
+				BattleEnd_IdleTime.Value = nba.Config.IdleSeconds;
+			}
+			else
+			{
+				GroupBattleEnd.Visible = false;
+				GroupBattleEnd.Enabled = false;
+			}
 
 			DialogOpenSound.Filter = "音楽ファイル|" + string.Join(";", Utility.MediaPlayer.SupportedExtensions.Select(s => "*." + s)) + "|File|*";
 
@@ -372,6 +382,12 @@ namespace ElectronicObserver.Window.Dialog
 				nbac.NotifiesEventMap = BaseAirCorps_EventMap.Checked;
 				nbac.NotifiesSquadronRelocation = BaseAirCorps_SquadronRelocation.Checked;
 				nbac.NotifiesEquipmentRelocation = BaseAirCorps_EquipmentRelocation.Checked;
+			}
+
+			if (_notifier is NotifierBattleEnd nba)
+			{
+				nba.Config.IdleTimerEnabled = BattleEnd_IdleTimerEnabled.Checked;
+				nba.Config.IdleSeconds = (int)BattleEnd_IdleTime.Value;
 			}
 
 			return true;

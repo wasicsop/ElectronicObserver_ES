@@ -1644,6 +1644,17 @@ namespace ElectronicObserver.Utility
 				}
 			}
 
+			public class ConfigNotifierBattleEnd : ConfigNotifierBase
+			{
+				public bool IdleTimerEnabled { get; set; }
+				public int IdleSeconds { get; set; } = 300;
+
+				public ConfigNotifierBattleEnd()
+				{
+					IsEnabled = false;
+				}
+			}
+
 
 			/// <summary>[遠征帰投通知]</summary>
 			[DataMember]
@@ -1672,6 +1683,9 @@ namespace ElectronicObserver.Utility
 			/// <summary>[基地航空隊通知]</summary>
 			[DataMember]
 			public ConfigNotifierBaseAirCorps NotifierBaseAirCorps { get; private set; }
+
+			[DataMember]
+			public ConfigNotifierBattleEnd NotifierBattleEnd { get; private set; }
 
 
 			/// <summary>
@@ -1811,6 +1825,7 @@ namespace ElectronicObserver.Utility
 				NotifierDamage = new ConfigNotifierDamage();
 				NotifierAnchorageRepair = new ConfigNotifierAnchorageRepair();
 				NotifierBaseAirCorps = new ConfigNotifierBaseAirCorps();
+				NotifierBattleEnd = new ConfigNotifierBattleEnd();
 
 				BGMPlayer = new ConfigBGMPlayer();
 				FleetImageGenerator = new ConfigFleetImageGenerator();

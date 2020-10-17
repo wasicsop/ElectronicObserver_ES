@@ -236,6 +236,7 @@
             this.label33 = new System.Windows.Forms.Label();
             this.tabPage11 = new System.Windows.Forms.TabPage();
             this.Notification_BaseAirCorps = new System.Windows.Forms.Button();
+            this.Notification_BattleEnd = new System.Windows.Forms.Button();
             this.silenceFullscreen = new System.Windows.Forms.CheckBox();
             this.Notification_Silencio = new System.Windows.Forms.CheckBox();
             this.Notification_AnchorageRepair = new System.Windows.Forms.Button();
@@ -2774,6 +2775,7 @@
             // tabPage11
             // 
             this.tabPage11.Controls.Add(this.Notification_BaseAirCorps);
+            this.tabPage11.Controls.Add(this.Notification_BattleEnd);
             this.tabPage11.Controls.Add(this.silenceFullscreen);
             this.tabPage11.Controls.Add(this.Notification_Silencio);
             this.tabPage11.Controls.Add(this.Notification_AnchorageRepair);
@@ -2806,7 +2808,7 @@
             // Notification_Silencio
             // 
             this.Notification_Silencio.AutoSize = true;
-            this.Notification_Silencio.Location = new System.Drawing.Point(8, 210);
+            this.Notification_Silencio.Location = new System.Drawing.Point(8, 240);
             this.Notification_Silencio.Name = "Notification_Silencio";
             this.Notification_Silencio.Size = new System.Drawing.Size(146, 19);
             this.Notification_Silencio.TabIndex = 7;
@@ -3101,10 +3103,20 @@
             this.Notification_BaseAirCorps.Text = "AB notification";
             this.Notification_BaseAirCorps.UseVisualStyleBackColor = true;
             this.Notification_BaseAirCorps.Click += new System.EventHandler(this.Notification_BaseAirCorps_Click);
-            // 
-            // DialogConfiguration
-            // 
-            this.AcceptButton = this.ButtonOK;
+			// 
+			// Notification_BattleEnd
+			// 
+			this.Notification_BattleEnd.Location = new System.Drawing.Point(8, 211);
+            this.Notification_BattleEnd.Name = "Notification_BattleEnd";
+            this.Notification_BattleEnd.Size = new System.Drawing.Size(150, 23);
+            this.Notification_BattleEnd.TabIndex = 9;
+            this.Notification_BattleEnd.Text = "Battle end notification";
+            this.Notification_BattleEnd.UseVisualStyleBackColor = true;
+            this.Notification_BattleEnd.Click += new System.EventHandler(this.Notification_BattleEnd_Click);
+			// 
+			// DialogConfiguration
+			// 
+			this.AcceptButton = this.ButtonOK;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.CancelButton = this.ButtonCancel;
             this.ClientSize = new System.Drawing.Size(704, 441);
@@ -3428,5 +3440,6 @@
 		private System.Windows.Forms.CheckBox checkBoxUseSecretaryIconForRPC;
 		private System.Windows.Forms.CheckBox Control_EnableTsunDbSubmission;
 		private System.Windows.Forms.Button Notification_BaseAirCorps;
+		private System.Windows.Forms.Button Notification_BattleEnd; 
 	}
 }
