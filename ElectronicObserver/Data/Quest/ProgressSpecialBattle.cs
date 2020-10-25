@@ -761,7 +761,7 @@ namespace ElectronicObserver.Data.Quest
 				case 927: // B155
 				{
 					bool flag = members[0]?.MasterShip.BaseShip().ShipId == ShipId.Haguro;
-					bool count = members.Count <= 5;
+					bool count = members.Count(s => s != null) <= 5;
 
 					isAccepted = flag && count;
 				}
@@ -793,7 +793,7 @@ namespace ElectronicObserver.Data.Quest
 				{
 					bool flag = members[0]?.MasterShip.BaseShip().ShipId == ShipId.Nowaki;
 					bool second = members[1]?.MasterShip.BaseShip().ShipId == ShipId.Maikaze;
-					bool count = members.Count <= 5;
+					bool count = members.Count(s => s != null) <= 5;
 
 					isAccepted = flag && second && count;
 				}
