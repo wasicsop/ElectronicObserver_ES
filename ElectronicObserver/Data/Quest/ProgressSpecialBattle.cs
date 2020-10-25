@@ -109,10 +109,14 @@ namespace ElectronicObserver.Data.Quest
 			}
 
 			var members = fleet.MembersWithoutEscaped;
+
+			if (members == null) return;
+
 			var memberstype = members.Select(s => s?.MasterShip?.ShipType ?? Empty).ToArray();
 
 			bool isAccepted = false;
 
+			
 
 			switch (QuestID)
 			{
@@ -735,7 +739,7 @@ namespace ElectronicObserver.Data.Quest
 					break;
 				case 917: // B145
 				{
-					bool gotlandFlag = members[0]?.MasterShip?.ShipID == (int)ShipId.GotlandAndra;
+					bool gotlandFlag = members[0]?.MasterShip?.ShipID == (int)ShipId.Gotlandandra;
 					bool destroyer = members.Any(s => s?.MasterShip?.ShipType == ShipTypes.Destroyer);
 
 					isAccepted = gotlandFlag && destroyer;
@@ -745,6 +749,54 @@ namespace ElectronicObserver.Data.Quest
 				case 914:   // |914|３|重巡戦隊、西へ！|4-1・4-2・4-3・4-4ボスA勝利各1|要重巡3/駆逐1
 					isAccepted = memberstype.Count(t => t == ShipTypes.HeavyCruiser) >= 3 &&
 						memberstype.Count(t => t == ShipTypes.Destroyer) >= 1;
+					break;
+
+				case 924:   // B152
+				{
+					isAccepted = members.Count(s => s?.MasterShip.ShipType == ShipTypes.AircraftCarrier) >= 2;
+
+				}
+					break;
+
+				case 927: // B155
+				{
+					bool flag = members[0]?.MasterShip.BaseShip().ShipId == ShipId.Haguro;
+					bool count = members.Count <= 5;
+
+					isAccepted = flag && count;
+				}
+					break;
+
+				case 929: // B156
+				{
+					bool flag = members[0]?.MasterShip.BaseShip().ShipId switch
+					{
+						ShipId.Taigei => true,
+						ShipId.Jingei => true,
+
+						_ => false
+					};
+
+					bool subs = members.Count(s => s?.MasterShip.ShipType switch
+					{
+						ShipTypes.Submarine => true,
+						ShipTypes.SubmarineAircraftCarrier => true,
+
+						_ => false
+					}) >= 2;
+
+					isAccepted = flag && subs;
+				}
+					break;
+
+				case 932: // 2010LQ1
+				{
+					bool flag = members[0]?.MasterShip.BaseShip().ShipId == ShipId.Nowaki;
+					bool second = members[1]?.MasterShip.BaseShip().ShipId == ShipId.Maikaze;
+					bool count = members.Count <= 5;
+
+					isAccepted = flag && second && count;
+				}
 					break;
 			}
 

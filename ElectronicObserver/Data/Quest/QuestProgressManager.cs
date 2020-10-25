@@ -747,6 +747,34 @@ namespace ElectronicObserver.Data.Quest
 								new ProgressSpecialBattle(q, 1, "A", new[] { 44 }, true),
 							}));
 							break;
+						case 924:   // B152
+							Progresses.Add(new ProgressMultiBattle(q, new[] {
+								new ProgressSpecialBattle(q, 1, "S", new[] { 24 }, true),
+								new ProgressSpecialBattle(q, 1, "S", new[] { 25 }, true),
+								new ProgressSpecialBattle(q, 1, "S", new[] { 43 }, true),
+							}));
+							break;
+						case 927:   // B155
+							Progresses.Add(new ProgressMultiBattle(q, new[] {
+								new ProgressSpecialBattle(q, 4, "A", new[] { 73 }, true),
+							}));
+							break;
+						case 929:   // B156
+							Progresses.Add(new ProgressMultiBattle(q, new[] {
+								new ProgressSpecialBattle(q, 1, "S", new[] { 12 }, true),
+								new ProgressSpecialBattle(q, 1, "S", new[] { 13 }, true),
+								new ProgressSpecialBattle(q, 1, "S", new[] { 21 }, true),
+								new ProgressSpecialBattle(q, 1, "S", new[] { 23 }, true),
+							}));
+							break;
+						case 932:   // 2010L
+							Progresses.Add(new ProgressMultiBattle(q, new[] {
+								new ProgressSpecialBattle(q, 2, "S", new[] { 14 }, true),
+								new ProgressSpecialBattle(q, 2, "S", new[] { 22 }, true),
+								new ProgressSpecialBattle(q, 2, "S", new[] { 31 }, true),
+								new ProgressSpecialBattle(q, 2, "x", new[] { 16 }, true),
+							}));
+							break;
 
 						case 303:   //|303|「演習」で練度向上！|演習3
 							Progresses.Add(new ProgressPractice(q, 3, false));
