@@ -7,6 +7,11 @@ using ElectronicObserver.Window;
 
 namespace ElectronicObserver.Data
 {
+	public enum ResetType
+	{
+		Normal,
+		Monthly
+	}
 
 	/// <summary>
 	/// 遠征データを保持します。
@@ -40,6 +45,11 @@ namespace ElectronicObserver.Data
 		/// 説明文
 		/// </summary>
 		public string Detail => RawData.api_details;
+
+		/// <summary>
+		/// 進捗リセットタイミング
+		/// </summary>
+		public ResetType ResetType => (ResetType) RawData.api_reset_type;
 
 		/// <summary>
 		/// 遠征時間(分単位)

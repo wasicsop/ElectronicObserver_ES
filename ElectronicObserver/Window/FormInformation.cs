@@ -48,6 +48,7 @@ namespace ElectronicObserver.Window
 			o["api_req_member/get_practice_enemyinfo"].ResponseReceived += Updated;
 			o["api_get_member/picture_book"].ResponseReceived += Updated;
 			o["api_get_member/mapinfo"].ResponseReceived += Updated;
+			o["api_get_member/mission"].ResponseReceived += Updated;
 			o["api_req_mission/result"].ResponseReceived += Updated;
 			o["api_req_practice/battle_result"].ResponseReceived += Updated;
 			o["api_req_sortie/battleresult"].ResponseReceived += Updated;
@@ -112,6 +113,10 @@ namespace ElectronicObserver.Window
 
 				case "api_get_member/mapinfo":
 					TextInformation.Text = GetMapGauge(data);
+					break;
+
+				case "api_get_member/mission":
+					TextInformation.Text = GetMonthlyExpeditionStatus(data);
 					break;
 
 				case "api_req_mission/result":
@@ -427,6 +432,31 @@ namespace ElectronicObserver.Window
 			return sb.ToString();
 		}
 
+		private enum MissionState
+		{
+			New,
+			NotCompleted,
+			Completed
+		}
+
+		private string GetMonthlyExpeditionStatus(dynamic data)
+		{
+			List<(int ID, MissionState State)> missionStates = new List<(int, MissionState)>();
+			foreach (dynamic item in data.api_list_items)
+			{
+				missionStates.Add(((int) item.api_mission_id, (MissionState) item.api_state));
+			}
+
+			IEnumerable<string> unfinishedMonthlyIds =
+				from mission in KCDatabase.Instance.Mission.Values
+				where mission.ResetType == ResetType.Monthly
+				join missionState in missionStates on mission.ID equals missionState.ID into missionsWithState
+				from missionState in missionsWithState.DefaultIfEmpty()
+				where missionState.State != MissionState.Completed
+				select mission.DisplayID;
+
+			return $"Unfinished monthly expeditions: {string.Join(", ", unfinishedMonthlyIds)}";
+		}
 
 		private string GetExpeditionResult(dynamic data)
 		{
