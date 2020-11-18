@@ -1686,6 +1686,8 @@ namespace ElectronicObserver.Utility
 
 			[DataMember]
 			public ConfigNotifierBattleEnd NotifierBattleEnd { get; private set; }
+			[DataMember]
+			public ConfigNotifierBase NotifierRemodelLevel { get; private set; }
 
 
 			/// <summary>
@@ -1826,6 +1828,7 @@ namespace ElectronicObserver.Utility
 				NotifierAnchorageRepair = new ConfigNotifierAnchorageRepair();
 				NotifierBaseAirCorps = new ConfigNotifierBaseAirCorps();
 				NotifierBattleEnd = new ConfigNotifierBattleEnd();
+				NotifierRemodelLevel = new ConfigNotifierBase();
 
 				BGMPlayer = new ConfigBGMPlayer();
 				FleetImageGenerator = new ConfigFleetImageGenerator();

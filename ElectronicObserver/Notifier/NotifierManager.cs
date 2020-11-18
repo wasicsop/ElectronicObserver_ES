@@ -32,6 +32,7 @@ namespace ElectronicObserver.Notifier
 		public NotifierAnchorageRepair AnchorageRepair { get; private set; }
 		public NotifierBaseAirCorps BaseAirCorps { get; private set; }
 		public NotifierBattleEnd BattleEnd { get; private set; }
+		public NotifierRemodelLevel RemodelLevel { get; private set; }
 
 		private NotifierManager()
 		{
@@ -53,6 +54,7 @@ namespace ElectronicObserver.Notifier
 			AnchorageRepair = new NotifierAnchorageRepair(c.NotifierAnchorageRepair);
 			BaseAirCorps = new NotifierBaseAirCorps(c.NotifierBaseAirCorps);
 			BattleEnd = new NotifierBattleEnd(c.NotifierBattleEnd);
+			RemodelLevel = new NotifierRemodelLevel(c.NotifierRemodelLevel);
 		}
 
 		public void ApplyToConfiguration()
@@ -68,6 +70,7 @@ namespace ElectronicObserver.Notifier
 			AnchorageRepair.ApplyToConfiguration(c.NotifierAnchorageRepair);
 			BaseAirCorps.ApplyToConfiguration(c.NotifierBaseAirCorps);
 			BattleEnd.ApplyToConfiguration(c.NotifierBattleEnd);
+			RemodelLevel.ApplyToConfiguration(c.NotifierRemodelLevel);
 		}
 
 		public void ShowNotifier(ElectronicObserver.Window.Dialog.DialogNotifier form)
@@ -95,6 +98,7 @@ namespace ElectronicObserver.Notifier
 			yield return AnchorageRepair;
 			yield return BaseAirCorps;
 			yield return BattleEnd;
+			yield return RemodelLevel;
 		}
 
 	}

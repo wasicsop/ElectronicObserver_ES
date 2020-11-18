@@ -156,6 +156,12 @@
   <data name="FailedToLoadSound" xml:space="preserve">
     <value>通知システム: 通知音 {0} のロードに失敗しました。</value>
   </data>
+  <data name="RemodelText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="RemodelTitle" xml:space="preserve">
+    <value />
+  </data>
   <data name="RepairText" xml:space="preserve">
     <value>入渠ドック #{0} で「{1}」の修復が完了しました。</value>
   </data>

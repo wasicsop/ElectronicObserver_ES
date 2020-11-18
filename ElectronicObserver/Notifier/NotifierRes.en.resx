@@ -162,4 +162,10 @@
   <data name="RepairTitle" xml:space="preserve">
     <value>Repair Complete</value>
   </data>
+  <data name="RemodelTitle" xml:space="preserve">
+    <value>Remodel Available</value>
+  </data>
+  <data name="RemodelText" xml:space="preserve">
+    <value>{0} can now be remodeled to {1}</value>
+  </data>
 </root>

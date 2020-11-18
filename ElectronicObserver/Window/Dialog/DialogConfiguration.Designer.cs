@@ -246,6 +246,7 @@
             this.Notification_Repair = new System.Windows.Forms.Button();
             this.Notification_Construction = new System.Windows.Forms.Button();
             this.Notification_Expedition = new System.Windows.Forms.Button();
+            this.Notification_RemodelLevel = new System.Windows.Forms.Button();
             this.tabPage17 = new System.Windows.Forms.TabPage();
             this.BGMPlayer_SyncBrowserMute = new System.Windows.Forms.CheckBox();
             this.BGMPlayer_SetVolumeAll = new System.Windows.Forms.Button();
@@ -2785,6 +2786,7 @@
             this.tabPage11.Controls.Add(this.Notification_Repair);
             this.tabPage11.Controls.Add(this.Notification_Construction);
             this.tabPage11.Controls.Add(this.Notification_Expedition);
+            this.tabPage11.Controls.Add(this.Notification_RemodelLevel);
             this.tabPage11.Location = new System.Drawing.Point(4, 24);
             this.tabPage11.Name = "tabPage11";
             this.tabPage11.Padding = new System.Windows.Forms.Padding(3);
@@ -2885,10 +2887,20 @@
             this.Notification_Expedition.Text = ConfigRes.ExpedReturn + ConfigRes.NotificationSetting;
 			this.Notification_Expedition.UseVisualStyleBackColor = true;
             this.Notification_Expedition.Click += new System.EventHandler(this.Notification_Expedition_Click);
-            // 
-            // tabPage17
-            // 
-            this.tabPage17.Controls.Add(this.BGMPlayer_SyncBrowserMute);
+			// 
+			// Notification_RemodelLevel
+			// 
+			this.Notification_RemodelLevel.Location = new System.Drawing.Point(166, 6);
+            this.Notification_RemodelLevel.Name = "Notification_RemodelLevel";
+            this.Notification_RemodelLevel.Size = new System.Drawing.Size(150, 23);
+            this.Notification_RemodelLevel.TabIndex = 0;
+            this.Notification_RemodelLevel.Text = "Remodel level";
+            this.Notification_RemodelLevel.UseVisualStyleBackColor = true;
+            this.Notification_RemodelLevel.Click += new System.EventHandler(this.Notification_RemodelLevel_Click);
+			// 
+			// tabPage17
+			// 
+			this.tabPage17.Controls.Add(this.BGMPlayer_SyncBrowserMute);
             this.tabPage17.Controls.Add(this.BGMPlayer_SetVolumeAll);
             this.tabPage17.Controls.Add(this.BGMPlayer_VolumeAll);
             this.tabPage17.Controls.Add(this.BGMPlayer_Enabled);
@@ -3237,6 +3249,7 @@
 		private System.Windows.Forms.TabPage tabPage10;
 		private System.Windows.Forms.TabPage tabPage11;
 		private System.Windows.Forms.Button Notification_Expedition;
+		private System.Windows.Forms.Button Notification_RemodelLevel;
 		private System.Windows.Forms.Button Notification_Construction;
 		private System.Windows.Forms.Button Notification_Repair;
 		private System.Windows.Forms.Button Notification_Damage;

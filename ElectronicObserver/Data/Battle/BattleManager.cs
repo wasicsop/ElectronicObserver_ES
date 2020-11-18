@@ -19,6 +19,14 @@ namespace ElectronicObserver.Data.Battle
 
 		public static readonly string BattleLogPath = "BattleLog";
 
+		public delegate void ShipLevelUpHandler(IShipData ship, int nextLevel);
+
+		/// <summary>
+		/// Ship will have the level before level up
+		/// </summary>
+		/// <param name="ship"></param>
+		/// <param name="nextLevel"></param>
+		public event ShipLevelUpHandler ShipLevelUp;
 
 		/// <summary>
 		/// 羅針盤データ
@@ -396,6 +404,7 @@ namespace ElectronicObserver.Data.Battle
 						var ship = FirstBattle.Initial.FriendFleet.MembersInstance[i];
 						int increment = Math.Max(lvup[i].Length - 2, 1);
 
+						ShipLevelUp?.Invoke(ship, ship.Level + increment);
 						Utility.Logger.Add( 2, string.Format( "{0} has leveled up to lv{1}.", ship.Name, ship.Level + increment ) );
 					}
 				}
@@ -411,6 +420,7 @@ namespace ElectronicObserver.Data.Battle
 							var ship = FirstBattle.Initial.FriendFleetEscort.MembersInstance[i];
 							int increment = Math.Max(lvup[i].Length - 2, 1);
 
+							ShipLevelUp?.Invoke(ship, ship.Level + increment);
 							Utility.Logger.Add( 2, string.Format( "{0} has leveled up to lv{1}.", ship.Name, ship.Level + increment ) );
 						}
 					}

@@ -22,7 +22,7 @@ namespace ElectronicObserver.Notifier {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class NotifierRes {
+    public class NotifierRes {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace ElectronicObserver.Notifier {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ElectronicObserver.Notifier.NotifierRes", typeof(NotifierRes).Assembly);
@@ -51,7 +51,7 @@ namespace ElectronicObserver.Notifier {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace ElectronicObserver.Notifier {
         /// <summary>
         ///   Looks up a localized string similar to 泊地修理発動.
         /// </summary>
-        internal static string AnchorageRepair {
+        public static string AnchorageRepair {
             get {
                 return ResourceManager.GetString("AnchorageRepair", resourceCulture);
             }
@@ -72,7 +72,7 @@ namespace ElectronicObserver.Notifier {
         /// <summary>
         ///   Looks up a localized string similar to 泊地修理の開始から20分が経過しました。.
         /// </summary>
-        internal static string AnchorageRepairFinished {
+        public static string AnchorageRepairFinished {
             get {
                 return ResourceManager.GetString("AnchorageRepairFinished", resourceCulture);
             }
@@ -81,7 +81,7 @@ namespace ElectronicObserver.Notifier {
         /// <summary>
         ///   Looks up a localized string similar to #{0} 「{1}」に所属する艦娘の疲労が回復しました。.
         /// </summary>
-        internal static string ConditionText {
+        public static string ConditionText {
             get {
                 return ResourceManager.GetString("ConditionText", resourceCulture);
             }
@@ -90,7 +90,7 @@ namespace ElectronicObserver.Notifier {
         /// <summary>
         ///   Looks up a localized string similar to 疲労回復.
         /// </summary>
-        internal static string ConditionTitle {
+        public static string ConditionTitle {
             get {
                 return ResourceManager.GetString("ConditionTitle", resourceCulture);
             }
@@ -99,7 +99,7 @@ namespace ElectronicObserver.Notifier {
         /// <summary>
         ///   Looks up a localized string similar to 工廠ドック #{0} で「{1}」の建造が完了しました。.
         /// </summary>
-        internal static string ConstructionText {
+        public static string ConstructionText {
             get {
                 return ResourceManager.GetString("ConstructionText", resourceCulture);
             }
@@ -108,7 +108,7 @@ namespace ElectronicObserver.Notifier {
         /// <summary>
         ///   Looks up a localized string similar to 建造完了.
         /// </summary>
-        internal static string ConstructionTitle {
+        public static string ConstructionTitle {
             get {
                 return ResourceManager.GetString("ConstructionTitle", resourceCulture);
             }
@@ -117,7 +117,7 @@ namespace ElectronicObserver.Notifier {
         /// <summary>
         ///   Looks up a localized string similar to {0} が大破しています！.
         /// </summary>
-        internal static string DamagedText {
+        public static string DamagedText {
             get {
                 return ResourceManager.GetString("DamagedText", resourceCulture);
             }
@@ -126,7 +126,7 @@ namespace ElectronicObserver.Notifier {
         /// <summary>
         ///   Looks up a localized string similar to ！大破警告！.
         /// </summary>
-        internal static string DamagedTitle {
+        public static string DamagedTitle {
             get {
                 return ResourceManager.GetString("DamagedTitle", resourceCulture);
             }
@@ -135,7 +135,7 @@ namespace ElectronicObserver.Notifier {
         /// <summary>
         ///   Looks up a localized string similar to #{0} 「{1}」が遠征「{2}: {3}」から帰投しました。.
         /// </summary>
-        internal static string ExpeditionText {
+        public static string ExpeditionText {
             get {
                 return ResourceManager.GetString("ExpeditionText", resourceCulture);
             }
@@ -144,7 +144,7 @@ namespace ElectronicObserver.Notifier {
         /// <summary>
         ///   Looks up a localized string similar to 遠征帰投.
         /// </summary>
-        internal static string ExpeditionTitle {
+        public static string ExpeditionTitle {
             get {
                 return ResourceManager.GetString("ExpeditionTitle", resourceCulture);
             }
@@ -153,7 +153,7 @@ namespace ElectronicObserver.Notifier {
         /// <summary>
         ///   Looks up a localized string similar to 通知システム: 通知音の再生に失敗しました。.
         /// </summary>
-        internal static string FailedPlaySound {
+        public static string FailedPlaySound {
             get {
                 return ResourceManager.GetString("FailedPlaySound", resourceCulture);
             }
@@ -162,7 +162,7 @@ namespace ElectronicObserver.Notifier {
         /// <summary>
         ///   Looks up a localized string similar to 通知システム: 通知画像 {0} の読み込みに失敗しました。.
         /// </summary>
-        internal static string FailedToLoadImage {
+        public static string FailedToLoadImage {
             get {
                 return ResourceManager.GetString("FailedToLoadImage", resourceCulture);
             }
@@ -171,16 +171,34 @@ namespace ElectronicObserver.Notifier {
         /// <summary>
         ///   Looks up a localized string similar to 通知システム: 通知音 {0} のロードに失敗しました。.
         /// </summary>
-        internal static string FailedToLoadSound {
+        public static string FailedToLoadSound {
             get {
                 return ResourceManager.GetString("FailedToLoadSound", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string RemodelText {
+            get {
+                return ResourceManager.GetString("RemodelText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string RemodelTitle {
+            get {
+                return ResourceManager.GetString("RemodelTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 入渠ドック #{0} で「{1}」の修復が完了しました。.
         /// </summary>
-        internal static string RepairText {
+        public static string RepairText {
             get {
                 return ResourceManager.GetString("RepairText", resourceCulture);
             }
@@ -189,7 +207,7 @@ namespace ElectronicObserver.Notifier {
         /// <summary>
         ///   Looks up a localized string similar to 入渠完了.
         /// </summary>
-        internal static string RepairTitle {
+        public static string RepairTitle {
             get {
                 return ResourceManager.GetString("RepairTitle", resourceCulture);
             }
