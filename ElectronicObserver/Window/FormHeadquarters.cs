@@ -421,10 +421,11 @@ namespace ElectronicObserver.Window
 			//Resources
 			FlowPanelResource.SuspendLayout();
 			{
+				const int resourceHardcap = 350000;
 
 				Fuel.Text = db.Material.Fuel.ToString();
 
-				if (db.Material.Fuel >= 300000) {
+				if (db.Material.Fuel >= resourceHardcap) {
 					Fuel.ForeColor = configUI.Headquarters_ResourceMaxFG;
 					Fuel.BackColor = configUI.Headquarters_ResourceMaxBG;
 				}
@@ -446,7 +447,7 @@ namespace ElectronicObserver.Window
 					resmonth == null ? 0 : (db.Material.Fuel - resmonth.Fuel) ) );
 
 				Ammo.Text = db.Material.Ammo.ToString();
-				if (db.Material.Ammo >= 300000) {
+				if (db.Material.Ammo >= resourceHardcap) {
 					Ammo.ForeColor = configUI.Headquarters_ResourceMaxFG;
 					Ammo.BackColor = configUI.Headquarters_ResourceMaxBG;
 				}
@@ -468,7 +469,7 @@ namespace ElectronicObserver.Window
 					resmonth == null ? 0 : (db.Material.Ammo - resmonth.Ammo) ) );
 
 				Steel.Text = db.Material.Steel.ToString();
-				if (db.Material.Steel >= 300000) {
+				if (db.Material.Steel >= resourceHardcap) {
 					Steel.ForeColor = configUI.Headquarters_ResourceMaxFG;
 					Steel.BackColor = configUI.Headquarters_ResourceMaxBG;
 				}
@@ -490,7 +491,7 @@ namespace ElectronicObserver.Window
 					resmonth == null ? 0 : (db.Material.Steel - resmonth.Steel) ) );
 
 				Bauxite.Text = db.Material.Bauxite.ToString();
-				if (db.Material.Bauxite >= 300000) {
+				if (db.Material.Bauxite >= resourceHardcap) {
 					Bauxite.ForeColor = configUI.Headquarters_ResourceMaxFG;
 					Bauxite.BackColor = configUI.Headquarters_ResourceMaxBG;
 				}
