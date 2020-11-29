@@ -186,4 +186,7 @@
   <data name="MissionClearShipCount" xml:space="preserve">
     <value>{1}{2} {0}</value>
   </data>
+  <data name="MissionClearExcludingSeaplaneTender" xml:space="preserve">
+    <value>(Excluding AV)</value>
+  </data>
 </root>

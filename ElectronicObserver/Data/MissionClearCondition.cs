@@ -421,7 +421,7 @@ namespace ElectronicObserver.Data
 						.CheckLevelSum(300)
 						.CheckShipCount(6)
 						.CheckFlagshipType(ShipTypes.LightAircraftCarrier)
-						.CheckEscortFleet()
+						.CheckEscortFleetDD4()
 						.CheckFirepower(500)
 						.CheckAA(280)
 						.CheckASW(280)
@@ -431,8 +431,13 @@ namespace ElectronicObserver.Data
 						.CheckFlagshipLevel(35)
 						.CheckLevelSum(210)
 						.CheckShipCount(6)
-						.CheckAircraftCarrierCount(1, includesSeaplaneTender: false)
-						.CheckShipCountByType(ShipTypes.SeaplaneTender, 1)
+						.OrCondition(
+							r => r
+								.CheckShipCountByType(ShipTypes.SeaplaneTender, 2),
+							r => r
+								.CheckShipCountByType(ShipTypes.SeaplaneTender, 1)
+								.CheckAircraftCarrierCount(1, false)
+						)
 						.CheckShipCountByType(ShipTypes.LightCruiser, 1)
 						.CheckSmallShipCount(2)
 						.CheckEquippedShipCount(EquipmentTypes.TransportContainer, 3)
@@ -597,7 +602,7 @@ namespace ElectronicObserver.Data
 				CheckShipCount(s => s.MasterShip.ShipType == ShipTypes.Destroyer || s.MasterShip.ShipType == ShipTypes.Escort, leastCount, DataRes.MissionClearSmallShipCount);
 
 			public MissionClearConditionResult CheckAircraftCarrierCount(int leastCount, bool includesSeaplaneTender = true) =>
-				CheckShipCount(s => s.MasterShip.IsAircraftCarrier || (includesSeaplaneTender && s.MasterShip.ShipType == ShipTypes.SeaplaneTender), leastCount, DataRes.MissionClearAircraftCarrierCount);
+				CheckShipCount(s => s.MasterShip.IsAircraftCarrier || (includesSeaplaneTender && s.MasterShip.ShipType == ShipTypes.SeaplaneTender), leastCount, DataRes.MissionClearAircraftCarrierCount + (includesSeaplaneTender ? "" : DataRes.MissionClearExcludingSeaplaneTender));
 
 			public MissionClearConditionResult CheckSubmarineCount(int leastCount) =>
 			   CheckShipCount(s => s.MasterShip.IsSubmarine, leastCount, DataRes.MissionClearSubmarineCount);
@@ -640,6 +645,26 @@ namespace ElectronicObserver.Data
 					(trainingCruiser >= 1 && escort >= 2),
 					//() => "[軽巡+(駆逐+海防)3 or 軽巡+海防2 or 護衛空母+(駆逐2 or 海防2) or 駆逐+海防3 or 練巡+海防2]"       // 厳密だけど長いので
 					() => DataRes.MissionClearEscortFleetDD3
+					);
+				return this;
+			}
+
+			public MissionClearConditionResult CheckEscortFleetDD4()
+			{
+				int lightCruiser = members.Count(s => s.MasterShip.ShipType == ShipTypes.LightCruiser);
+				int destroyer = members.Count(s => s.MasterShip.ShipType == ShipTypes.Destroyer);
+				int trainingCruiser = members.Count(s => s.MasterShip.ShipType == ShipTypes.TrainingCruiser);
+				int escort = members.Count(s => s.MasterShip.ShipType == ShipTypes.Escort);
+				int escortAircraftCarrier = members.Count(s => s.MasterShip.ShipType == ShipTypes.LightAircraftCarrier && s.ASWBase > 0);
+
+				Assert(
+					(lightCruiser >= 1 && (destroyer + escort) >= 4) ||
+					(lightCruiser >= 1 && escort >= 2) ||
+					(escortAircraftCarrier >= 1 && (destroyer >= 2 || escort >= 2)) ||
+					(destroyer >= 1 && escort >= 3) ||
+					(trainingCruiser >= 1 && escort >= 2),
+					//() => "[軽巡+(駆逐+海防)4 or 軽巡+海防2 or 護衛空母+(駆逐2 or 海防2) or 駆逐+海防3 or 練巡+海防2]"       // 厳密だけど長いので
+					() => "護衛隊(軽巡1駆逐4他)"
 					);
 				return this;
 			}

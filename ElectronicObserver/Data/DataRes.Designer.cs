@@ -133,6 +133,15 @@ namespace ElectronicObserver.Data {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to (水母除く).
+        /// </summary>
+        internal static string MissionClearExcludingSeaplaneTender {
+            get {
+                return ResourceManager.GetString("MissionClearExcludingSeaplaneTender", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 失敗 .
         /// </summary>
         internal static string MissionClearFailure {
