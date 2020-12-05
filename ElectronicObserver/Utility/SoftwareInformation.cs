@@ -42,7 +42,7 @@ namespace ElectronicObserver.Utility
 		/// <summary>
 		/// 更新日時
 		/// </summary>
-		public static DateTime UpdateTime => DateTimeHelper.CSVStringToTime("2020/10/29 11:30:00");
+		public static DateTime UpdateTime => DateTimeHelper.CSVStringToTime("2020/12/05 15:30:00");
 
 
 		private static System.Net.WebClient? Client { get; set; }
