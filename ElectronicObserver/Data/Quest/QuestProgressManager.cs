@@ -428,7 +428,7 @@ namespace ElectronicObserver.Data.Quest
 								new ProgressSpecialBattle(q, 1, "A", new[]{ 23 }, true),
 							}));
 							break;
-						case 841:   //|841|【節分任務】令和二年西方海域節分作戦|4-1・4-2・4-3ボスS勝利各1|旗艦(水母or重巡)1/駆逐2
+						case 841:
 							Progresses.Add(new ProgressMultiBattle(q, new[]
 							{
 								new ProgressSpecialBattle(q, 1, "S", new[]{ 41 }, true),
