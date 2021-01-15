@@ -291,7 +291,6 @@ namespace ElectronicObserver.Data.Quest
 						memberstype.Any(t => t == ShipTypes.LightAircraftCarrier || t == ShipTypes.AircraftCarrier || t == ShipTypes.ArmoredAircraftCarrier);
 					break;
 
-				//|840|【節分任務】令和二年節分作戦|1-4・2-1・2-2ボスA勝利各1|旗艦(軽母or軽巡)1/(駆逐or海防)3
 				case 840:
 					isAccepted = (memberstype[0] == ShipTypes.LightAircraftCarrier ||
 					              memberstype[0] == ShipTypes.LightCruiser) &&
