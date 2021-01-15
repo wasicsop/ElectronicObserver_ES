@@ -436,10 +436,10 @@ namespace ElectronicObserver.Data.Quest
 								new ProgressSpecialBattle(q, 1, "S", new[]{ 43 }, true),
 							}));
 							break;
-						case 843:   //|843|【節分拡張任務】令和二年節分作戦、全力出撃！|5-4・5-5・6-4ボスS勝利各1|旗艦(戦艦or航空母)1/駆逐2
+						case 843:
 							Progresses.Add(new ProgressMultiBattle(q, new[]
 							{
-								new ProgressSpecialBattle(q, 1, "S", new[]{ 54 }, true),
+								new ProgressSpecialBattle(q, 1, "S", new[]{ 52 }, true),
 								new ProgressSpecialBattle(q, 1, "S", new[]{ 55 }, true),
 								new ProgressSpecialBattle(q, 1, "S", new[]{ 64 }, true),
 							}));

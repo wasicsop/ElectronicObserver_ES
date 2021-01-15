@@ -312,7 +312,6 @@ namespace ElectronicObserver.Data.Quest
 					break;
 				}
 
-				//|843|【節分拡張任務】令和二年節分作戦、全力出撃！|5-4・5-5・6-4ボスS勝利各1|旗艦(戦艦or航空母)1/駆逐2
 				case 843:
 					isAccepted = (memberstype[0] == ShipTypes.Battleship ||
 					              memberstype[0] == ShipTypes.AviationBattleship ||
