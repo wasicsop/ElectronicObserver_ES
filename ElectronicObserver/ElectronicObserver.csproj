@@ -23,6 +23,7 @@
 	<Platforms>x64</Platforms>
 	<Nullable>enable</Nullable>
 	<SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+	<LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>74eo.ico</ApplicationIcon>
