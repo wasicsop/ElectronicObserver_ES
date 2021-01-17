@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using ElectronicObserver.Utility.Mathematics;
 using System.Threading.Tasks;
+using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Data
 {

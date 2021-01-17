@@ -8,6 +8,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Resource.Record
 {
@@ -21,7 +22,7 @@ namespace ElectronicObserver.Resource.Record
 		/// パラメータの初期値と最大値の予測値を保持します。
 		/// </summary>
 		[DebuggerDisplay("[{MinimumEstMin}-{MinimumEstMax}]-{Maximum}")]
-		public class Parameter
+		public class Parameter : IParameter
 		{
 
 			/// <summary>

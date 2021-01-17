@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using ElectronicObserver.Data;
+using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Utility.Data
 {

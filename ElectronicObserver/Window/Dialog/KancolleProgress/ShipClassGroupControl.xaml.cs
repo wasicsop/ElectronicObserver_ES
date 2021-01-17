@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using ElectronicObserver.Data;
+using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Dialog.KancolleProgress
 {

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Windows.Controls;
 using ElectronicObserver.Data;
+using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Dialog.KancolleProgress
 {

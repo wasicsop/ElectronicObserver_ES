@@ -13,6 +13,7 @@ using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
 using System.Runtime.Serialization;
 using ElectronicObserver.Utility.Storage;
+using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Utility
 {

@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Windows.Media;
 using ElectronicObserver.Data;
+using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Dialog.KancolleProgress
 {

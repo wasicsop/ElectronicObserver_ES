@@ -14,6 +14,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Dialog
 {
@@ -533,7 +534,7 @@ namespace ElectronicObserver.Window.Dialog
 				}
 				else
 				{
-					var processedShips = new LinkedList<ShipDataMaster>();
+					var processedShips = new LinkedList<IShipDataMaster>();
 					processedShips.AddLast(ship);
 
 					while (processedShips.Last.Value.RemodelBeforeShip != null && !processedShips.Any(s2 => processedShips.Last.Value.RemodelBeforeShipID == s2.ShipID))
