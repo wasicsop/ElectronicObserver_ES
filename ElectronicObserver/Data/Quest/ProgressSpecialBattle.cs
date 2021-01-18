@@ -301,16 +301,10 @@ namespace ElectronicObserver.Data.Quest
 				// SeBw8 
 				case 841:
 				{
-					if (memberstype.Length < 2)
-					{
-						isAccepted = false;
-						break;
-					}
-
 					isAccepted = (memberstype[0] == ShipTypes.SeaplaneTender ||
 					              memberstype[0] == ShipTypes.HeavyCruiser ||
 					              memberstype[0] == ShipTypes.AviationCruiser) &&
-					             memberstype[0] == memberstype[1];
+					             memberstype.Count(t => t == memberstype[0]) >= 2;
 					break;
 				}
 
