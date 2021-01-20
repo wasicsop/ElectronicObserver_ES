@@ -291,34 +291,7 @@ namespace ElectronicObserver.Data.Quest
 					isAccepted =
 						memberstype.Any(t => t == ShipTypes.LightAircraftCarrier || t == ShipTypes.AircraftCarrier || t == ShipTypes.ArmoredAircraftCarrier);
 					break;
-
-				// SeBw7
-				case 840:
-					isAccepted = (memberstype[0] == ShipTypes.LightAircraftCarrier ||
-					              memberstype[0] == ShipTypes.LightCruiser) &&
-					             memberstype.Count(t => t == ShipTypes.Escort || t == ShipTypes.Destroyer) >= 3;
-					break;
-
-				// SeBw8 
-				case 841:
-				{
-					isAccepted = (memberstype[0] == ShipTypes.SeaplaneTender ||
-					              memberstype[0] == ShipTypes.HeavyCruiser ||
-					              memberstype[0] == ShipTypes.AviationCruiser) &&
-					             memberstype.Count(t => t == memberstype[0]) >= 2;
-					break;
-				}
-
-				// SeBw9
-				case 843:
-					isAccepted = (memberstype[0] == ShipTypes.Battleship ||
-					              memberstype[0] == ShipTypes.AviationBattleship ||
-					              memberstype[0] == ShipTypes.Battlecruiser ||
-					              memberstype[0] == ShipTypes.AircraftCarrier ||
-					              memberstype[0] == ShipTypes.ArmoredAircraftCarrier) &&
-					             memberstype.Count(t => t == ShipTypes.Destroyer) >= 2;
-					break;
-
+					
 				case 903: // Bq13
 					{
 					bool melonFlag =
