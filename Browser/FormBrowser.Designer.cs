@@ -573,6 +573,7 @@ namespace Browser
 			this.Controls.Add(this.SizeAdjuster);
 			this.Controls.Add(this.ToolMenu);
 			this.Font = new System.Drawing.Font("Meiryo UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
 			this.KeyPreview = true;
 			this.Name = "FormBrowser";
             this.ShowInTaskbar = false;
