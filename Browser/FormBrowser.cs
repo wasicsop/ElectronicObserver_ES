@@ -97,7 +97,7 @@ namespace Browser
 
 		private string _lastScreenShotPath;
 
-
+		private readonly string KanColleUrl = "http://www.dmm.com/netgame/social/-/gadgets/=/app_id=854854/";
 		private NumericUpDown ToolMenu_Other_Volume_VolumeControl =>
 			(NumericUpDown) ((ToolStripControlHost) ToolMenu_Other_Volume.DropDownItems[
 				"ToolMenu_Other_Volume_VolumeControlHost"]).Control;
@@ -272,8 +272,8 @@ namespace Browser
 
 			var requestHandler = new CustomRequestHandler(pixiSettingEnabled: Configuration.PreserveDrawingBuffer);
 			requestHandler.RenderProcessTerminated += (mes) => AddLog(3, mes);
-
-			Browser = new ChromiumWebBrowser(@"about:blank")
+			
+			Browser = new ChromiumWebBrowser(KanColleUrl)
 			{
 				Dock = DockStyle.Fill,
 				Size = SizeAdjuster.Size,
