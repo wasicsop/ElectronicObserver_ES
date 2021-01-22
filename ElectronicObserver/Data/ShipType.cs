@@ -11,11 +11,10 @@ using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Data
 {
-
 	/// <summary>
 	/// 艦種
 	/// </summary>
-	public class ShipType : ResponseWrapper, IIdentifiable
+	public class ShipType : ResponseWrapper, IIdentifiable, IShipType
 	{
 
 		/// <summary>
@@ -51,7 +50,7 @@ namespace ElectronicObserver.Data
 		/// 装備可能なカテゴリ一覧
 		/// </summary>
 		private int[] _equippableCategories;
-		public ReadOnlyCollection<int> EquippableCategories => Array.AsReadOnly(_equippableCategories);
+		public IList<int> EquippableCategories => Array.AsReadOnly(_equippableCategories);
 
 
 		/// <summary>

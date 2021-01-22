@@ -14,6 +14,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ElectronicObserverTypes;
 using WeifenLuo.WinFormsUI.Docking;
 
 namespace ElectronicObserver.Window
@@ -266,7 +267,7 @@ namespace ElectronicObserver.Window
 				var landing = members.Select(s => s.AllSlotInstanceMaster.Count(eq => eq?.CategoryType == EquipmentTypes.LandingCraft || eq?.CategoryType == EquipmentTypes.SpecialAmphibiousTank));
 
 
-				ToolTipInfo.SetToolTip(CombinedTag, string.Format("Drums: {0}pcs\r\nDaihatsu: {1}pcs\r\nTP: S {2} / A {3}\r\n\r\nTotal Fleet AS: {4}\r\nTotal Fleet LOS: {5:f2}\r\nFormula 33:\r\n n=1: {6:f2}\r\n n=3: {7:f2}\r\n n=4: {8:f2}",
+				ToolTipInfo.SetToolTip(CombinedTag, string.Format("Drums: {0}pcs\r\nDaihatsu: {1}pcs\r\nTP: S {2} / A {3}\r\n\r\nTotal Fleet AS: {4}\r\nTotal Fleet LOS: {5:f2}\r\nFormula 33:\r\n n=1: {6:f2}\r\n n=2: {7:f2}\r\n n=3: {8:f2}\r\n n=4: {9:f2}",
 					transport.Sum(),
 					landing.Sum(),
 					tp,
@@ -274,6 +275,7 @@ namespace ElectronicObserver.Window
 					Calculator.GetAirSuperiority(fleet1) + Calculator.GetAirSuperiority(fleet2),
 					Math.Floor(fleet1.GetSearchingAbility() * 100) / 100 + Math.Floor(fleet2.GetSearchingAbility() * 100) / 100,
 					Math.Floor(Calculator.GetSearchingAbility_New33(fleet1, 1) * 100) / 100 + Math.Floor(Calculator.GetSearchingAbility_New33(fleet2, 1) * 100) / 100,
+					Math.Floor(Calculator.GetSearchingAbility_New33(fleet1, 2) * 100) / 100 + Math.Floor(Calculator.GetSearchingAbility_New33(fleet2, 2) * 100) / 100,
 					Math.Floor(Calculator.GetSearchingAbility_New33(fleet1, 3) * 100) / 100 + Math.Floor(Calculator.GetSearchingAbility_New33(fleet2, 3) * 100) / 100,
 					Math.Floor(Calculator.GetSearchingAbility_New33(fleet1, 4) * 100) / 100 + Math.Floor(Calculator.GetSearchingAbility_New33(fleet2, 4) * 100) / 100
 					));

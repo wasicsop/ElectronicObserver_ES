@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ElectronicObserverTypes;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;

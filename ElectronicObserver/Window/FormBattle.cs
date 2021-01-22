@@ -15,6 +15,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ElectronicObserverTypes;
 using WeifenLuo.WinFormsUI.Docking;
 
 namespace ElectronicObserver.Window
@@ -791,7 +792,8 @@ namespace ElectronicObserver.Window
 						name = string.Format( "Base {0}", i + 1 );
 						isEscaped = false;
 						isLandBase = true;
-						bar.Text = "LB";        //note: Land Base (Landing Boat もあるらしいが考えつかなかったので)
+						// it's air base, not land base
+						bar.Text = "AB";        //note: Land Base (Landing Boat もあるらしいが考えつかなかったので)
 
 					}
 					else

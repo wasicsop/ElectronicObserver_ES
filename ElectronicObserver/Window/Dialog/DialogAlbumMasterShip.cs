@@ -18,6 +18,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Dialog
 {
@@ -639,7 +640,7 @@ namespace ElectronicObserver.Window.Dialog
 				}
 				else
 				{
-					ShipDataMaster sbefore = ship.RemodelBeforeShip;
+					IShipDataMaster sbefore = ship.RemodelBeforeShip;
 					RemodelBeforeShipName.Text = sbefore.NameEN;
 					ToolTipInfo.SetToolTip(RemodelBeforeShipName, "Open with left click.\r\nRight click to open in a new window.");
 					RemodelBeforeLevel.Text = string.Format("Lv. {0}", sbefore.RemodelAfterLevel);
@@ -749,10 +750,10 @@ namespace ElectronicObserver.Window.Dialog
 			}
 		}
 
-		private string EstimateParameter(int level, ShipParameterRecord.Parameter param)
+		private string EstimateParameter(int level, IParameter param)
 		{
 
-			if (param == null || param.Maximum == ShipParameterRecord.Parameter.MaximumDefault)
+			if (param == null || param.Maximum == IParameter.MaximumDefault)
 				return "???";
 
 			int min = (int)(param.MinimumEstMin + (param.Maximum - param.MinimumEstMin) * level / 99.0);
@@ -765,24 +766,24 @@ namespace ElectronicObserver.Window.Dialog
 		}
 
 
-		private string GetParameterMinBound(ShipParameterRecord.Parameter param)
+		private string GetParameterMinBound(IParameter param)
 		{
 
-			if (param == null || param.MinimumEstMax == ShipParameterRecord.Parameter.MaximumDefault)
+			if (param == null || param.MinimumEstMax == IParameter.MaximumDefault)
 				return "???";
 			else if (param.MinimumEstMin == param.MinimumEstMax)
 				return param.MinimumEstMin.ToString();
-			else if (param.MinimumEstMin == ShipParameterRecord.Parameter.MinimumDefault && param.MinimumEstMax == param.Maximum)
+			else if (param.MinimumEstMin == IParameter.MinimumDefault && param.MinimumEstMax == param.Maximum)
 				return "???";
 			else
 				return $"{param.MinimumEstMin}～{param.MinimumEstMax}";
 
 		}
 
-		private string GetParameterMax(ShipParameterRecord.Parameter param)
+		private string GetParameterMax(IParameter param)
 		{
 
-			if (param == null || param.Maximum == ShipParameterRecord.Parameter.MaximumDefault)
+			if (param == null || param.Maximum == IParameter.MaximumDefault)
 				return "???";
 			else
 				return param.Maximum.ToString();
@@ -920,7 +921,7 @@ namespace ElectronicObserver.Window.Dialog
 		}
 
 
-		private static int GetRemodelItemImageIndex(ShipDataMaster ship)
+		private static int GetRemodelItemImageIndex(IShipDataMaster ship)
 		{
 			return
 				ship.NeedCatapult > 0 ? (int)ResourceManager.IconContent.ItemCatapult :
@@ -930,7 +931,7 @@ namespace ElectronicObserver.Window.Dialog
 				-1;
 		}
 
-		private static string GetRemodelItem(ShipDataMaster ship)
+		private static string GetRemodelItem(IShipDataMaster ship)
 		{
 			StringBuilder sb = new StringBuilder();
 			if (ship.NeedBlueprint > 0)
@@ -1100,21 +1101,21 @@ namespace ElectronicObserver.Window.Dialog
 								ship.AAMax,
 								ship.ArmorMin,
 								ship.ArmorMax,
-								ship.ASW?.MinimumEstMin ?? ShipParameterRecord.Parameter.MinimumDefault,
-								ship.ASW?.MinimumEstMax ?? ShipParameterRecord.Parameter.MaximumDefault,
-								ship.ASW?.Maximum ?? ShipParameterRecord.Parameter.MaximumDefault,
-								ship.ASW?.GetEstParameterMin(ExpTable.ShipMaximumLevel) ?? ShipParameterRecord.Parameter.MinimumDefault,
-								ship.ASW?.GetEstParameterMax(ExpTable.ShipMaximumLevel) ?? ShipParameterRecord.Parameter.MaximumDefault,
-								ship.Evasion?.MinimumEstMin ?? ShipParameterRecord.Parameter.MinimumDefault,
-								ship.Evasion?.MinimumEstMax ?? ShipParameterRecord.Parameter.MaximumDefault,
-								ship.Evasion?.Maximum ?? ShipParameterRecord.Parameter.MaximumDefault,
-								ship.Evasion?.GetEstParameterMin(ExpTable.ShipMaximumLevel) ?? ShipParameterRecord.Parameter.MinimumDefault,
-								ship.Evasion?.GetEstParameterMax(ExpTable.ShipMaximumLevel) ?? ShipParameterRecord.Parameter.MaximumDefault,
-								ship.LOS?.MinimumEstMin ?? ShipParameterRecord.Parameter.MinimumDefault,
-								ship.LOS?.MinimumEstMax ?? ShipParameterRecord.Parameter.MaximumDefault,
-								ship.LOS?.Maximum ?? ShipParameterRecord.Parameter.MaximumDefault,
-								ship.LOS?.GetEstParameterMin(ExpTable.ShipMaximumLevel) ?? ShipParameterRecord.Parameter.MinimumDefault,
-								ship.LOS?.GetEstParameterMax(ExpTable.ShipMaximumLevel) ?? ShipParameterRecord.Parameter.MaximumDefault,
+								ship.ASW?.MinimumEstMin ?? IParameter.MinimumDefault,
+								ship.ASW?.MinimumEstMax ?? IParameter.MaximumDefault,
+								ship.ASW?.Maximum ?? IParameter.MaximumDefault,
+								ship.ASW?.GetEstParameterMin(ExpTable.ShipMaximumLevel) ?? IParameter.MinimumDefault,
+								ship.ASW?.GetEstParameterMax(ExpTable.ShipMaximumLevel) ?? IParameter.MaximumDefault,
+								ship.Evasion?.MinimumEstMin ?? IParameter.MinimumDefault,
+								ship.Evasion?.MinimumEstMax ?? IParameter.MaximumDefault,
+								ship.Evasion?.Maximum ?? IParameter.MaximumDefault,
+								ship.Evasion?.GetEstParameterMin(ExpTable.ShipMaximumLevel) ?? IParameter.MinimumDefault,
+								ship.Evasion?.GetEstParameterMax(ExpTable.ShipMaximumLevel) ?? IParameter.MaximumDefault,
+								ship.LOS?.MinimumEstMin ?? IParameter.MinimumDefault,
+								ship.LOS?.MinimumEstMax ?? IParameter.MaximumDefault,
+								ship.LOS?.Maximum ?? IParameter.MaximumDefault,
+								ship.LOS?.GetEstParameterMin(ExpTable.ShipMaximumLevel) ?? IParameter.MinimumDefault,
+								ship.LOS?.GetEstParameterMax(ExpTable.ShipMaximumLevel) ?? IParameter.MaximumDefault,
 								ship.LuckMin,
 								ship.LuckMax,
 								ship.Speed,

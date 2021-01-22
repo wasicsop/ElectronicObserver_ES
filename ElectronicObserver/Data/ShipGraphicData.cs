@@ -4,13 +4,14 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Data
 {
 	/// <summary>
 	/// 艦船のグラフィック設定情報を保持します。
 	/// </summary>
-	public class ShipGraphicData : ResponseWrapper, IIdentifiable
+	public class ShipGraphicData : ResponseWrapper, IIdentifiable, IShipGraphicData
 	{
 		/// <summary>
 		/// 艦船ID

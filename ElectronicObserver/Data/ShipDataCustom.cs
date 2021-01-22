@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Data
 {
@@ -15,20 +16,20 @@ namespace ElectronicObserver.Data
 		public int HPMax { get; set; }
 		public int Speed { get; set; }
 		public int Range { get; set; }
-		public ReadOnlyCollection<int> Slot { get; set; }
-		public ReadOnlyCollection<int> SlotMaster { get; set; }
-		public ReadOnlyCollection<EquipmentData> SlotInstance { get; set; }
-		public ReadOnlyCollection<IEquipmentDataMaster> SlotInstanceMaster { get; set; }
+		public IList<int> Slot { get; set; }
+		public IList<int> SlotMaster { get; set; }
+		public IList<IEquipmentData> SlotInstance { get; set; }
+		public IList<IEquipmentDataMaster> SlotInstanceMaster { get; set; }
 		public int ExpansionSlot { get; set; }
 		public int ExpansionSlotMaster { get; set; }
-		public EquipmentData ExpansionSlotInstance { get; set; }
+		public IEquipmentData ExpansionSlotInstance { get; set; }
 		public IEquipmentDataMaster ExpansionSlotInstanceMaster { get; set; }
-		public ReadOnlyCollection<int> AllSlot { get; set; }
-		public ReadOnlyCollection<int> AllSlotMaster { get; set; }
-		public ReadOnlyCollection<int> AllSlotMasterReplay { get; set; }
-		public ReadOnlyCollection<IEquipmentData> AllSlotInstance { get; set; }
-		public ReadOnlyCollection<IEquipmentDataMaster> AllSlotInstanceMaster { get; set; }
-		public ReadOnlyCollection<int> Aircraft { get; set; }
+		public IList<int> AllSlot { get; set; }
+		public IList<int> AllSlotMaster { get; set; }
+		public IList<int> AllSlotMasterReplay { get; set; }
+		public IList<IEquipmentData> AllSlotInstance { get; set; }
+		public IList<IEquipmentDataMaster> AllSlotInstanceMaster { get; set; }
+		public IList<int> Aircraft { get; set; }
 		public int AircraftTotal { get; set; }
 		public int Fuel { get; set; }
 		public int Ammo { get; set; }
@@ -91,11 +92,11 @@ namespace ElectronicObserver.Data
 		public double AmmoRate { get; set; }
 		public int SupplyFuel { get; set; }
 		public int SupplyAmmo { get; set; }
-		public ReadOnlyCollection<double> AircraftRate { get; set; }
+		public IList<double> AircraftRate { get; set; }
 		public double AircraftTotalRate { get; set; }
 		public bool IsExpansionSlotAvailable { get; set; }
 		public int AirBattlePower { get; set; }
-		public ReadOnlyCollection<int> AirBattlePowers { get; set; }
+		public IList<int> AirBattlePowers { get; set; }
 		public int ShellingPower { get; set; }
 		public int AircraftPower { get; set; }
 		public int AntiSubmarinePower { get; set; }
