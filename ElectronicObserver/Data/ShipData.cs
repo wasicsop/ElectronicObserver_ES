@@ -1401,6 +1401,9 @@ namespace ElectronicObserver.Data
                         return true;
                 }
 
+				// same as the check above, that one is handled upstream, this one is specific for our version
+                if (CanNoSonarOpeningAsw) return true;
+
                 var eqs = AllSlotInstance.Where(eq => eq != null);
 
                 switch (ShipID)
@@ -1452,21 +1455,15 @@ namespace ElectronicObserver.Data
             }
         }
 
-        public bool CanNoSonarOpeningAsw => ShipID switch
+        public bool CanNoSonarOpeningAsw => MasterShip switch
         {
-	        141 => // 五十鈴改二
-	        true,
-	        394 => // Jervis改
-	        true,
-	        478 => // 龍田改二
-	        true,
-	        681 => // Samuel B.Roberts改
-	        true,
-	        893 => // Janus改
-	        true,
-
-	        _ when MasterShip.ShipClass == 91 // Fletcher class
-	        => true,
+			{ ShipId: ShipId.JervisKai} or
+			{ ShipId: ShipId.JanusKai} or
+			{ ShipId: ShipId.SamuelBRobertsKai} or
+			{ ShipId: ShipId.IsuzuKaiNi} or
+			{ ShipId: ShipId.TatsutaKaiNi} or
+			{ ShipId: ShipId.YuubariKaiNiD} or
+			{ ShipClass: 91} => true, // Fletcher class
 
 	        _ => false
         };
