@@ -116,6 +116,14 @@ namespace ElectronicObserver.Data.Quest
 					_ => false
 				}) >= 4,
 
+				// C53
+				348 => ships.Count(s => s.MasterShip.ShipType is
+					       ShipTypes.LightCruiser or
+					       ShipTypes.TrainingCruiser
+				       ) >= 3 &&
+				       ships[0].MasterShip.ShipType is ShipTypes.LightCruiser or ShipTypes.TrainingCruiser &&
+				       ships.Count(s => s.MasterShip.ShipType is ShipTypes.Destroyer) >= 2,
+
 				_ => true,
 			};
 		}
