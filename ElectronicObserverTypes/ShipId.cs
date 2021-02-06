@@ -604,6 +604,7 @@
 		Matsu = 641,
 		KagaKaiNiGo = 646,
 		AkigumoKaiNi = 648,
+		NoshiroKaiNi = 662,
 		HiburiKai = 678,
 		DaitouKai = 679,
 		HamanamiKai = 680,
