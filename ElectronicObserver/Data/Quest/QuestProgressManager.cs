@@ -856,6 +856,12 @@ namespace ElectronicObserver.Data.Quest
 						case 348: // C53
 							Progresses.Add(new ProgressPractice(q, 4, "A"));
 							break;
+						case 349: // 2102 LQ3
+							if (DateTime.Now < new DateTime(2021, 5, 1))
+							{
+								Progresses.Add(new ProgressPractice(q, 4, "S"));
+							}
+							break;
 
 						case 402:   //|402|「遠征」を3回成功させよう！|遠征成功3
 							Progresses.Add(new ProgressExpedition(q, 3, null));
