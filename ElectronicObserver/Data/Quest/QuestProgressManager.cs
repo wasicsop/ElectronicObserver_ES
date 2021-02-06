@@ -758,6 +758,15 @@ namespace ElectronicObserver.Data.Quest
 								new ProgressSpecialBattle(q, 2, "S", new[] { 73 }, true, 2),
 							}));
 							break;
+						case 936: // B164
+							Progresses.Add(new ProgressMultiBattle(q, new[] {
+								new ProgressSpecialBattle(q, 2, "S", new[] { 24 }, true),
+								new ProgressSpecialBattle(q, 2, "S", new[] { 32 }, true),
+								new ProgressSpecialBattle(q, 2, "S", new[] { 53 }, true),
+								new ProgressSpecialBattle(q, 2, "S", new[] { 71 }, true),
+								new ProgressSpecialBattle(q, 2, "S", new[] { 72 }, true, 2),
+							}));
+							break;
 
 						case 840:   //|840|週|【節分任務】令和三年節分作戦|2-(1~3)ボスA勝利各1|要(軽母or軽巡or雷巡or練巡)旗艦/(駆逐or海防)3, 期間限定(2021/01/13～????/??/??)
 							if (DateTime.Now < new DateTime(2021, 4, 1))
