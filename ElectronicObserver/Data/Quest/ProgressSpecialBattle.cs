@@ -820,6 +820,15 @@ namespace ElectronicObserver.Data.Quest
 						             memberstype.Count(t => t == ShipTypes.LightCruiser) >= 1;
 					}
 					break;
+
+				case 238: // 2102 LQ2
+				{
+					isAccepted = memberstype[0] is 
+						ShipTypes.LightCruiser or
+						ShipTypes.HeavyCruiser or
+						ShipTypes.AviationCruiser;
+				}
+					break;
 			}
 
 			// 第二ゲージでも第一ボスに行ける場合があるので、個別対応が必要
