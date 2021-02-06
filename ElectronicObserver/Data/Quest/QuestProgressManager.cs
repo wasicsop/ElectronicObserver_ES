@@ -968,6 +968,14 @@ namespace ElectronicObserver.Data.Quest
 								new ProgressExpedition(q, 1, new[]{ 4 }),
 								new ProgressExpedition(q, 1, new[]{ 10 }),
 							})); break;
+						case 442: // D38
+							Progresses.Add(new ProgressMultiExpedition(q, new[]{
+								new ProgressExpedition(q, 1, new[]{ 29 }),
+								new ProgressExpedition(q, 1, new[]{ 30 }),
+								new ProgressExpedition(q, 1, new[]{ 131 }),
+								new ProgressExpedition(q, 1, new[]{ 133 }),
+							})); 
+							break;
 
 						case 503:   //|503|艦隊大整備！|入渠5
 							Progresses.Add(new ProgressDocking(q, 5));
