@@ -813,6 +813,13 @@ namespace ElectronicObserver.Data.Quest
 						}.Contains(memberstype.FirstOrDefault()) &&
 						memberstype.Count(t => t == ShipTypes.Destroyer) >= 2;
 					break;
+
+				case 234:   // 2102 LQ1
+					{
+						isAccepted = memberstype.Count(t => t == ShipTypes.Destroyer) >= 2 &&
+						             memberstype.Count(t => t == ShipTypes.LightCruiser) >= 1;
+					}
+					break;
 			}
 
 			// 第二ゲージでも第一ボスに行ける場合があるので、個別対応が必要
