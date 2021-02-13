@@ -152,7 +152,7 @@
     <ProjectReference Include="..\ElectronicObserverTypes\ElectronicObserverTypes.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="DynaJson" Version="2.1.0" />
+    <PackageReference Include="DynaJson" Version="2.2.0" />
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
     <PackageReference Include="Microsoft.VisualBasic" Version="10.3.0" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
@@ -162,16 +162,16 @@
     <PackageReference Include="System.Management" Version="5.0.0" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="DiscordRichPresence" Version="1.0.166" />
-    <PackageReference Include="Grpc" Version="2.33.1" />
-    <PackageReference Include="Grpc.Core" Version="2.33.1" />
-    <PackageReference Include="Grpc.Core.Api" Version="2.33.1" />
+    <PackageReference Include="DiscordRichPresence" Version="1.0.175" />
+    <PackageReference Include="Grpc" Version="2.35.0" />
+    <PackageReference Include="Grpc.Core" Version="2.35.0" />
+    <PackageReference Include="Grpc.Core.Api" Version="2.35.0" />
     <PackageReference Include="log4net" Version="2.0.12" />
     <PackageReference Include="MagicOnion" Version="3.0.13" />
     <PackageReference Include="MagicOnion.Abstractions" Version="3.0.13" />
     <PackageReference Include="MagicOnion.Hosting" Version="3.0.13" />
-    <PackageReference Include="MessagePack" Version="2.2.60" />
-    <PackageReference Include="MessagePack.Annotations" Version="2.2.60" />
+    <PackageReference Include="MessagePack" Version="2.2.85" />
+    <PackageReference Include="MessagePack.Annotations" Version="2.2.85" />
     <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="5.0.0" />
@@ -180,7 +180,7 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="5.0.0" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.1" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.FileProviders.Abstractions" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.FileProviders.Physical" Version="5.0.0" />
