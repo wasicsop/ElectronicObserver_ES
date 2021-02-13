@@ -760,11 +760,11 @@ namespace ElectronicObserver.Data.Quest
 							break;
 						case 936: // B164
 							Progresses.Add(new ProgressMultiBattle(q, new[] {
-								new ProgressSpecialBattle(q, 2, "S", new[] { 24 }, true),
-								new ProgressSpecialBattle(q, 2, "S", new[] { 32 }, true),
-								new ProgressSpecialBattle(q, 2, "S", new[] { 53 }, true),
-								new ProgressSpecialBattle(q, 2, "S", new[] { 71 }, true),
-								new ProgressSpecialBattle(q, 2, "S", new[] { 72 }, true, 2),
+								new ProgressSpecialBattle(q, 1, "S", new[] { 24 }, true),
+								new ProgressSpecialBattle(q, 1, "S", new[] { 32 }, true),
+								new ProgressSpecialBattle(q, 1, "S", new[] { 53 }, true),
+								new ProgressSpecialBattle(q, 1, "S", new[] { 71 }, true),
+								new ProgressSpecialBattle(q, 1, "S", new[] { 72 }, true, 2),
 							}));
 							break;
 
