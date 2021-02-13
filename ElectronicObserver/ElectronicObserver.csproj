@@ -1,120 +1,120 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-	<TargetFramework>net5.0-windows</TargetFramework>
-    <OutputType>WinExe</OutputType>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>publish\</PublishUrl>
-    <Install>true</Install>
-    <InstallFrom>Disk</InstallFrom>
-    <UpdateEnabled>false</UpdateEnabled>
-    <UpdateMode>Foreground</UpdateMode>
-    <UpdateInterval>7</UpdateInterval>
-    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
-    <UpdatePeriodically>false</UpdatePeriodically>
-    <UpdateRequired>false</UpdateRequired>
-    <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <UseApplicationTrust>false</UseApplicationTrust>
-    <BootstrapperEnabled>true</BootstrapperEnabled>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <UseWindowsForms>true</UseWindowsForms>
-	<UseWPF>true</UseWPF>
-	<Platforms>x64</Platforms>
-	<Nullable>enable</Nullable>
-	<SatelliteResourceLanguages>en</SatelliteResourceLanguages>
-	<LangVersion>latest</LangVersion>
-  </PropertyGroup>
-  <PropertyGroup>
-    <ApplicationIcon>74eo.ico</ApplicationIcon>
-  </PropertyGroup>
-  <PropertyGroup>
-    <NoWin32Manifest>true</NoWin32Manifest>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
-    <OutputPath>bin\x64\Debug\</OutputPath>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
-    <OutputPath>bin\x64\Release\</OutputPath>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <ItemGroup>
-	<Reference Include="DiscordRPC, Version=1.0.121.0, Culture=neutral, processorArchitecture=MSIL">
-		<HintPath>..\packages\DiscordRichPresence.1.0.121\lib\net35\DiscordRPC.dll</HintPath>
-	</Reference>
-	<Reference Include="DynaJson, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-		<HintPath>..\packages\DynaJson.2.0.0\lib\net45\DynaJson.dll</HintPath>
-	</Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Update="Data\DataRes.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>DataRes.resx</DependentUpon>
-    </Compile>
-    <Compile Update="Notifier\NotifierRes.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>NotifierRes.resx</DependentUpon>
-    </Compile>
-    <Compile Update="Observer\ObserverRes.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>ObserverRes.resx</DependentUpon>
-    </Compile>
-    <Compile Update="Properties\Window\Dialog\DialogShipGroupFilter.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>DialogShipGroupFilter.resx</DependentUpon>
-    </Compile>
-    <Compile Update="Window\Control\FleetState.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="Window\Control\ImageLabel.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Update="Window\Control\ShipStatusEquipment.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="Window\Control\ShipStatusHP.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="Window\Control\ShipStatusLevel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="Window\Control\ShipStatusResource.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="Window\Control\WindowCaptureButton.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Update="Window\Dialog\DialogExpeditionCheck.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>DialogExpeditionCheck.resx</DependentUpon>
-    </Compile>
-    <Compile Update="Window\Dialog\DialogRes.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>DialogRes.resx</DependentUpon>
-    </Compile>
-    <Compile Update="Window\GeneralRes.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>GeneralRes.resx</DependentUpon>
-    </Compile>
-    <None Include=".editorconfig" />
-    <None Update="Assets.zip">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Settings\ColorScheme.example.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Settings\ColorScheme.Dark.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
+	<PropertyGroup>
+		<TargetFramework>net5.0-windows</TargetFramework>
+		<OutputType>WinExe</OutputType>
+		<IsWebBootstrapper>false</IsWebBootstrapper>
+		<PublishUrl>publish\</PublishUrl>
+		<Install>true</Install>
+		<InstallFrom>Disk</InstallFrom>
+		<UpdateEnabled>false</UpdateEnabled>
+		<UpdateMode>Foreground</UpdateMode>
+		<UpdateInterval>7</UpdateInterval>
+		<UpdateIntervalUnits>Days</UpdateIntervalUnits>
+		<UpdatePeriodically>false</UpdatePeriodically>
+		<UpdateRequired>false</UpdateRequired>
+		<MapFileExtensions>true</MapFileExtensions>
+		<ApplicationRevision>0</ApplicationRevision>
+		<ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+		<UseApplicationTrust>false</UseApplicationTrust>
+		<BootstrapperEnabled>true</BootstrapperEnabled>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<UseWindowsForms>true</UseWindowsForms>
+		<UseWPF>true</UseWPF>
+		<Platforms>x64</Platforms>
+		<Nullable>enable</Nullable>
+		<SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+		<LangVersion>latest</LangVersion>
+	</PropertyGroup>
+	<PropertyGroup>
+		<ApplicationIcon>74eo.ico</ApplicationIcon>
+	</PropertyGroup>
+	<PropertyGroup>
+		<NoWin32Manifest>true</NoWin32Manifest>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+		<OutputPath>bin\x64\Debug\</OutputPath>
+		<CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+		<OutputPath>bin\x64\Release\</OutputPath>
+		<CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+	</PropertyGroup>
+	<ItemGroup>
+		<Reference Include="DiscordRPC, Version=1.0.121.0, Culture=neutral, processorArchitecture=MSIL">
+			<HintPath>..\packages\DiscordRichPresence.1.0.121\lib\net35\DiscordRPC.dll</HintPath>
+		</Reference>
+		<Reference Include="DynaJson, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+			<HintPath>..\packages\DynaJson.2.0.0\lib\net45\DynaJson.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+	<ItemGroup>
+		<Compile Update="Data\DataRes.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>DataRes.resx</DependentUpon>
+		</Compile>
+		<Compile Update="Notifier\NotifierRes.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>NotifierRes.resx</DependentUpon>
+		</Compile>
+		<Compile Update="Observer\ObserverRes.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>ObserverRes.resx</DependentUpon>
+		</Compile>
+		<Compile Update="Properties\Window\Dialog\DialogShipGroupFilter.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>DialogShipGroupFilter.resx</DependentUpon>
+		</Compile>
+		<Compile Update="Window\Control\FleetState.cs">
+			<SubType>UserControl</SubType>
+		</Compile>
+		<Compile Update="Window\Control\ImageLabel.cs">
+			<SubType>Component</SubType>
+		</Compile>
+		<Compile Update="Window\Control\ShipStatusEquipment.cs">
+			<SubType>UserControl</SubType>
+		</Compile>
+		<Compile Update="Window\Control\ShipStatusHP.cs">
+			<SubType>UserControl</SubType>
+		</Compile>
+		<Compile Update="Window\Control\ShipStatusLevel.cs">
+			<SubType>UserControl</SubType>
+		</Compile>
+		<Compile Update="Window\Control\ShipStatusResource.cs">
+			<SubType>UserControl</SubType>
+		</Compile>
+		<Compile Update="Window\Control\WindowCaptureButton.cs">
+			<SubType>Component</SubType>
+		</Compile>
+		<Compile Update="Window\Dialog\DialogExpeditionCheck.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>DialogExpeditionCheck.resx</DependentUpon>
+		</Compile>
+		<Compile Update="Window\Dialog\DialogRes.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>DialogRes.resx</DependentUpon>
+		</Compile>
+		<Compile Update="Window\GeneralRes.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>GeneralRes.resx</DependentUpon>
+		</Compile>
+		<None Include=".editorconfig" />
+		<None Update="Assets.zip">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="Settings\ColorScheme.example.json">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="Settings\ColorScheme.Dark.json">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
 	<ItemGroup>
 		<None Include="App.config">
 			<SubType>Designer</SubType>
@@ -122,135 +122,135 @@
 	</ItemGroup>
 	<ItemGroup>
 		<Content Include="74eo.ico" />
-    <Content Include="Other\Information\apilist.txt" />
-    <Content Include="Other\Information\todo.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
-      <Visible>False</Visible>
-      <ProductName>Microsoft .NET Framework 4.5 %28x86 和 x64%29</ProductName>
-      <Install>true</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
-      <Install>false</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.5 SP1</ProductName>
-      <Install>false</Install>
-    </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\BrowserLibCore\BrowserLibCore.csproj" />
-    <ProjectReference Include="..\DockPanelSuite\WinFormsUI\ThemeVS2012.csproj" />
-    <ProjectReference Include="..\DockPanelSuite\WinFormsUI\WinFormsUI.csproj" />
-    <ProjectReference Include="..\ElectronicObserverTypes\ElectronicObserverTypes.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="DynaJson" Version="2.2.0" />
-    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
-    <PackageReference Include="Microsoft.VisualBasic" Version="10.3.0" />
-    <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
-    <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
-    <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
-    <PackageReference Include="System.IO.FileSystem" Version="4.3.0" />
-    <PackageReference Include="System.Management" Version="5.0.0" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="DiscordRichPresence" Version="1.0.175" />
-    <PackageReference Include="Grpc" Version="2.35.0" />
-    <PackageReference Include="Grpc.Core" Version="2.35.0" />
-    <PackageReference Include="Grpc.Core.Api" Version="2.35.0" />
-    <PackageReference Include="log4net" Version="2.0.12" />
-    <PackageReference Include="MagicOnion" Version="3.0.13" />
-    <PackageReference Include="MagicOnion.Abstractions" Version="3.0.13" />
-    <PackageReference Include="MagicOnion.Hosting" Version="3.0.13" />
-    <PackageReference Include="MessagePack" Version="2.2.85" />
-    <PackageReference Include="MessagePack.Annotations" Version="2.2.85" />
-    <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="5.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Configuration" Version="5.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="5.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="5.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="5.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="5.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="5.0.0" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.1" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
-    <PackageReference Include="Microsoft.Extensions.FileProviders.Abstractions" Version="5.0.0" />
-    <PackageReference Include="Microsoft.Extensions.FileProviders.Physical" Version="5.0.0" />
-    <PackageReference Include="Microsoft.Extensions.FileSystemGlobbing" Version="5.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="5.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="5.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="5.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Configuration" Version="5.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Options" Version="5.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="5.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Primitives" Version="5.0.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
-    <PackageReference Include="System.Buffers" Version="4.5.1" />
-    <PackageReference Include="System.Collections.Immutable" Version="5.0.0" />
-    <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
-    <PackageReference Include="System.Memory" Version="4.5.4" />
-    <PackageReference Include="System.Net.NameResolution" Version="4.3.0" />
-    <PackageReference Include="System.Numerics.Vectors" Version="4.5.0" />
-    <PackageReference Include="System.Reflection.Emit" Version="4.7.0" />
-    <PackageReference Include="System.Reflection.Emit.Lightweight" Version="4.7.0" />
-    <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="5.0.0" />
-    <PackageReference Include="System.Runtime.InteropServices" Version="4.3.0" />
-    <PackageReference Include="System.Text.Encoding.CodePages" Version="5.0.0" />
-    <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.4" />
-    <PackageReference Include="System.Threading.Tasks.Parallel" Version="4.3.0" />
-    <PackageReference Include="System.Windows.Forms.DataVisualization" Version="1.0.0-prerelease.20110.1" />
-    <PackageReference Include="Titanium.Web.Proxy" Version="3.1.1344" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Remove="Observer\kcsapi\api_start2.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <COMReference Include="WMPLib.dll">
-      <Guid>6bf52a50-394a-11d3-b153-00c04f79faa6</Guid>
-      <VersionMajor>1</VersionMajor>
-      <VersionMinor>0</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>tlbimp</WrapperTool>
-      <Isolated>false</Isolated>
-    </COMReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Update="Data\DataRes.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>DataRes.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Notifier\NotifierRes.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>NotifierRes.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Observer\ObserverRes.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>ObserverRes.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Properties\Window\Dialog\DialogShipGroupFilter.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>DialogShipGroupFilter.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Window\Dialog\DialogExpeditionCheck.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>DialogExpeditionCheck.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Window\Dialog\DialogRes.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>DialogRes.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Window\GeneralRes.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>GeneralRes.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-  </ItemGroup>
+		<Content Include="Other\Information\apilist.txt" />
+		<Content Include="Other\Information\todo.txt" />
+	</ItemGroup>
+	<ItemGroup>
+		<BootstrapperPackage Include=".NETFramework,Version=v4.5">
+			<Visible>False</Visible>
+			<ProductName>Microsoft .NET Framework 4.5 %28x86 和 x64%29</ProductName>
+			<Install>true</Install>
+		</BootstrapperPackage>
+		<BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+			<Visible>False</Visible>
+			<ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+			<Install>false</Install>
+		</BootstrapperPackage>
+		<BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+			<Visible>False</Visible>
+			<ProductName>.NET Framework 3.5 SP1</ProductName>
+			<Install>false</Install>
+		</BootstrapperPackage>
+	</ItemGroup>
+	<ItemGroup>
+		<WCFMetadata Include="Service References\" />
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\BrowserLibCore\BrowserLibCore.csproj" />
+		<ProjectReference Include="..\DockPanelSuite\WinFormsUI\ThemeVS2012.csproj" />
+		<ProjectReference Include="..\DockPanelSuite\WinFormsUI\WinFormsUI.csproj" />
+		<ProjectReference Include="..\ElectronicObserverTypes\ElectronicObserverTypes.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="DynaJson" Version="2.2.0" />
+		<PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+		<PackageReference Include="Microsoft.VisualBasic" Version="10.3.0" />
+		<PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
+		<PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
+		<PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
+		<PackageReference Include="System.IO.FileSystem" Version="4.3.0" />
+		<PackageReference Include="System.Management" Version="5.0.0" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="DiscordRichPresence" Version="1.0.175" />
+		<PackageReference Include="Grpc" Version="2.35.0" />
+		<PackageReference Include="Grpc.Core" Version="2.35.0" />
+		<PackageReference Include="Grpc.Core.Api" Version="2.35.0" />
+		<PackageReference Include="log4net" Version="2.0.12" />
+		<PackageReference Include="MagicOnion" Version="3.0.13" />
+		<PackageReference Include="MagicOnion.Abstractions" Version="3.0.13" />
+		<PackageReference Include="MagicOnion.Hosting" Version="3.0.13" />
+		<PackageReference Include="MessagePack" Version="2.2.85" />
+		<PackageReference Include="MessagePack.Annotations" Version="2.2.85" />
+		<PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="5.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Configuration" Version="5.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="5.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="5.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="5.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="5.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="5.0.0" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.1" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
+		<PackageReference Include="Microsoft.Extensions.FileProviders.Abstractions" Version="5.0.0" />
+		<PackageReference Include="Microsoft.Extensions.FileProviders.Physical" Version="5.0.0" />
+		<PackageReference Include="Microsoft.Extensions.FileSystemGlobbing" Version="5.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="5.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging" Version="5.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="5.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Configuration" Version="5.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Options" Version="5.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="5.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Primitives" Version="5.0.0" />
+		<PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+		<PackageReference Include="System.Buffers" Version="4.5.1" />
+		<PackageReference Include="System.Collections.Immutable" Version="5.0.0" />
+		<PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
+		<PackageReference Include="System.Memory" Version="4.5.4" />
+		<PackageReference Include="System.Net.NameResolution" Version="4.3.0" />
+		<PackageReference Include="System.Numerics.Vectors" Version="4.5.0" />
+		<PackageReference Include="System.Reflection.Emit" Version="4.7.0" />
+		<PackageReference Include="System.Reflection.Emit.Lightweight" Version="4.7.0" />
+		<PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="5.0.0" />
+		<PackageReference Include="System.Runtime.InteropServices" Version="4.3.0" />
+		<PackageReference Include="System.Text.Encoding.CodePages" Version="5.0.0" />
+		<PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.4" />
+		<PackageReference Include="System.Threading.Tasks.Parallel" Version="4.3.0" />
+		<PackageReference Include="System.Windows.Forms.DataVisualization" Version="1.0.0-prerelease.20110.1" />
+		<PackageReference Include="Titanium.Web.Proxy" Version="3.1.1344" />
+	</ItemGroup>
+	<ItemGroup>
+		<Compile Remove="Observer\kcsapi\api_start2.cs" />
+	</ItemGroup>
+	<ItemGroup>
+		<COMReference Include="WMPLib.dll">
+			<Guid>6bf52a50-394a-11d3-b153-00c04f79faa6</Guid>
+			<VersionMajor>1</VersionMajor>
+			<VersionMinor>0</VersionMinor>
+			<Lcid>0</Lcid>
+			<WrapperTool>tlbimp</WrapperTool>
+			<Isolated>false</Isolated>
+		</COMReference>
+	</ItemGroup>
+	<ItemGroup>
+		<EmbeddedResource Update="Data\DataRes.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>DataRes.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Notifier\NotifierRes.resx">
+			<Generator>PublicResXFileCodeGenerator</Generator>
+			<LastGenOutput>NotifierRes.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Observer\ObserverRes.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>ObserverRes.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Properties\Window\Dialog\DialogShipGroupFilter.resx">
+			<Generator>PublicResXFileCodeGenerator</Generator>
+			<LastGenOutput>DialogShipGroupFilter.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Window\Dialog\DialogExpeditionCheck.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>DialogExpeditionCheck.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Window\Dialog\DialogRes.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>DialogRes.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Window\GeneralRes.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>GeneralRes.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+	</ItemGroup>
 </Project>
