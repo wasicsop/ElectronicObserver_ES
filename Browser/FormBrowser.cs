@@ -242,9 +242,6 @@ namespace Browser
 
 			var settings = new CefSettings
 			{
-				BrowserSubprocessPath = Path.Combine(
-					AppDomain.CurrentDomain.SetupInformation.ApplicationBase,
-					@"CefSharp.BrowserSubprocess.exe"),
 				CachePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),
 					BrowserCachePath),
 				Locale = "ja",
@@ -258,18 +255,29 @@ namespace Browser
 
 			settings.CefCommandLineArgs.Add("proxy-server", ProxySettings);
 			settings.CefCommandLineArgs.Add("limit-fps", "60");
-			// limit browser fps to fix canvas crash
-			// causes memory leak after Umikaze k2 update somehow...
-			// settings.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0"; // fix for 206 response from server for bgm
-			settings.CefCommandLineArgs.Add("disable-features",
-				"HardwareMediaKeyHandling"); // prevent CEF from taking over media keys
+
+			// prevent CEF from taking over media keys
+			if(settings.CefCommandLineArgs.ContainsKey("disable-features"))
+			{
+				List<string> disabledFeatures = settings.CefCommandLineArgs["disable-features"]
+					.Split(",")
+					.ToList();
+
+				disabledFeatures.Add("HardwareMediaKeyHandling");
+
+				settings.CefCommandLineArgs["disable-features"] = string.Join(",", disabledFeatures);
+			}
+			else
+			{
+				settings.CefCommandLineArgs.Add("disable-features", "HardwareMediaKeyHandling");
+			}
+
+
 			if (Configuration.ForceColorProfile)
 				settings.CefCommandLineArgs.Add("force-color-profile", "srgb");
 			CefSharpSettings.SubprocessExitIfParentProcessClosed = true;
 			Cef.Initialize(settings, false, (IBrowserProcessHandler) null);
-
-			// var requestHandler = new CefRequestHandler();
-
+			
 			var requestHandler = new CustomRequestHandler(pixiSettingEnabled: Configuration.PreserveDrawingBuffer);
 			requestHandler.RenderProcessTerminated += (mes) => AddLog(3, mes);
 			
@@ -675,7 +683,7 @@ namespace Browser
 }})();
 ";
 
-				Browser.JavascriptObjectRepository.Register(request.ID, request, true);
+				Browser.JavascriptObjectRepository.Register(request.ID, request);
 				kancolleFrame.ExecuteJavaScriptAsync(script);
 
 				return request.TaskSource.Task;
