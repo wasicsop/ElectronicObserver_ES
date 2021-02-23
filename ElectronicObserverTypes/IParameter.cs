@@ -46,18 +46,6 @@ namespace ElectronicObserverTypes
 		public bool IsDetermined { get; }
 
 		/// <summary>
-		/// 最小値の初期値
-		/// </summary>
-		public static int MinimumDefault { get; }
-
-		/// <summary>
-		/// 最大値の初期値
-		/// </summary>
-		public static int MaximumDefault { get; }
-
-
-
-		/// <summary>
 		/// パラメータを推測します。
 		/// </summary>
 		/// <param name="level">艦船のレベル。</param>

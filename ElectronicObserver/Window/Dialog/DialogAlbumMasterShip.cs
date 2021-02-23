@@ -19,6 +19,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ElectronicObserverTypes;
+using static ElectronicObserver.Resource.Record.ShipParameterRecord;
 
 namespace ElectronicObserver.Window.Dialog
 {
@@ -753,7 +754,7 @@ namespace ElectronicObserver.Window.Dialog
 		private string EstimateParameter(int level, IParameter param)
 		{
 
-			if (param == null || param.Maximum == IParameter.MaximumDefault)
+			if (param == null || param.Maximum == Parameter.MaximumDefault)
 				return "???";
 
 			int min = (int)(param.MinimumEstMin + (param.Maximum - param.MinimumEstMin) * level / 99.0);
@@ -769,11 +770,11 @@ namespace ElectronicObserver.Window.Dialog
 		private string GetParameterMinBound(IParameter param)
 		{
 
-			if (param == null || param.MinimumEstMax == IParameter.MaximumDefault)
+			if (param == null || param.MinimumEstMax == Parameter.MaximumDefault)
 				return "???";
 			else if (param.MinimumEstMin == param.MinimumEstMax)
 				return param.MinimumEstMin.ToString();
-			else if (param.MinimumEstMin == IParameter.MinimumDefault && param.MinimumEstMax == param.Maximum)
+			else if (param.MinimumEstMin == Parameter.MinimumDefault && param.MinimumEstMax == param.Maximum)
 				return "???";
 			else
 				return $"{param.MinimumEstMin}～{param.MinimumEstMax}";
@@ -783,7 +784,7 @@ namespace ElectronicObserver.Window.Dialog
 		private string GetParameterMax(IParameter param)
 		{
 
-			if (param == null || param.Maximum == IParameter.MaximumDefault)
+			if (param == null || param.Maximum == Parameter.MaximumDefault)
 				return "???";
 			else
 				return param.Maximum.ToString();
@@ -1101,21 +1102,21 @@ namespace ElectronicObserver.Window.Dialog
 								ship.AAMax,
 								ship.ArmorMin,
 								ship.ArmorMax,
-								ship.ASW?.MinimumEstMin ?? IParameter.MinimumDefault,
-								ship.ASW?.MinimumEstMax ?? IParameter.MaximumDefault,
-								ship.ASW?.Maximum ?? IParameter.MaximumDefault,
-								ship.ASW?.GetEstParameterMin(ExpTable.ShipMaximumLevel) ?? IParameter.MinimumDefault,
-								ship.ASW?.GetEstParameterMax(ExpTable.ShipMaximumLevel) ?? IParameter.MaximumDefault,
-								ship.Evasion?.MinimumEstMin ?? IParameter.MinimumDefault,
-								ship.Evasion?.MinimumEstMax ?? IParameter.MaximumDefault,
-								ship.Evasion?.Maximum ?? IParameter.MaximumDefault,
-								ship.Evasion?.GetEstParameterMin(ExpTable.ShipMaximumLevel) ?? IParameter.MinimumDefault,
-								ship.Evasion?.GetEstParameterMax(ExpTable.ShipMaximumLevel) ?? IParameter.MaximumDefault,
-								ship.LOS?.MinimumEstMin ?? IParameter.MinimumDefault,
-								ship.LOS?.MinimumEstMax ?? IParameter.MaximumDefault,
-								ship.LOS?.Maximum ?? IParameter.MaximumDefault,
-								ship.LOS?.GetEstParameterMin(ExpTable.ShipMaximumLevel) ?? IParameter.MinimumDefault,
-								ship.LOS?.GetEstParameterMax(ExpTable.ShipMaximumLevel) ?? IParameter.MaximumDefault,
+								ship.ASW?.MinimumEstMin ?? Parameter.MinimumDefault,
+								ship.ASW?.MinimumEstMax ?? Parameter.MaximumDefault,
+								ship.ASW?.Maximum ?? Parameter.MaximumDefault,
+								ship.ASW?.GetEstParameterMin(ExpTable.ShipMaximumLevel) ?? Parameter.MinimumDefault,
+								ship.ASW?.GetEstParameterMax(ExpTable.ShipMaximumLevel) ?? Parameter.MaximumDefault,
+								ship.Evasion?.MinimumEstMin ?? Parameter.MinimumDefault,
+								ship.Evasion?.MinimumEstMax ?? Parameter.MaximumDefault,
+								ship.Evasion?.Maximum ?? Parameter.MaximumDefault,
+								ship.Evasion?.GetEstParameterMin(ExpTable.ShipMaximumLevel) ?? Parameter.MinimumDefault,
+								ship.Evasion?.GetEstParameterMax(ExpTable.ShipMaximumLevel) ?? Parameter.MaximumDefault,
+								ship.LOS?.MinimumEstMin ?? Parameter.MinimumDefault,
+								ship.LOS?.MinimumEstMax ?? Parameter.MaximumDefault,
+								ship.LOS?.Maximum ?? Parameter.MaximumDefault,
+								ship.LOS?.GetEstParameterMin(ExpTable.ShipMaximumLevel) ?? Parameter.MinimumDefault,
+								ship.LOS?.GetEstParameterMax(ExpTable.ShipMaximumLevel) ?? Parameter.MaximumDefault,
 								ship.LuckMin,
 								ship.LuckMax,
 								ship.Speed,
