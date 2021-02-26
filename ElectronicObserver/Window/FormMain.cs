@@ -24,7 +24,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ElectronicObserver.Utility.Mathematics;
-using ElectronicObserver.Window.Dialog.KancolleProgress;
 using WeifenLuo.WinFormsUI.Docking;
 
 namespace ElectronicObserver.Window
