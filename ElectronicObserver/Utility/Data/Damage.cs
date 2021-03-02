@@ -5,9 +5,9 @@ namespace ElectronicObserver.Utility.Data
 {
 	public static class Damage
 	{
-		public static int DayAttackCap => 180;
-		public static int NightAttackCap => 300;
-		public static int AswAttackCap => 150;
+		public static int DayAttackCap => 220;
+		public static int NightAttackCap => 360;
+		public static int AswAttackCap => 170;
 
 		public static double Cap(double damage, double cap)
 		{
