@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
+using System.Linq;
 using System.Net;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
@@ -62,6 +64,7 @@ namespace EOUpdater
 					}
 				}
 
+				DeleteOldFiles();
 				ExtractUpdate(tempFile, destPath);
 			}
 			catch (Exception e)
@@ -78,6 +81,27 @@ namespace EOUpdater
 
 			Console.WriteLine("Update complete. You can close this window.");
 			Console.ReadKey();
+		}
+
+		private static void DeleteOldFiles()
+		{
+			string eoFolderPath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+
+			IEnumerable<string> dllFiles = Directory.EnumerateFiles(eoFolderPath, "*.dll", SearchOption.TopDirectoryOnly);
+			IEnumerable<string> configFiles = Directory.EnumerateFiles(eoFolderPath, "*.runtimeconfig.json", SearchOption.TopDirectoryOnly);
+
+			foreach (string fileName in dllFiles.Concat(configFiles))
+			{
+				try
+				{
+					File.Delete(Path.Combine(eoFolderPath, fileName));
+					// Console.WriteLine($"Deleted {fileName}");
+				}
+				catch
+				{
+					// Console.WriteLine($"Failed to delete {fileName}");
+				}
+			}
 		}
 
 		private static void ExtractUpdate(string zipPath, string extractPath)
