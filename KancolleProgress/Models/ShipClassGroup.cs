@@ -8,7 +8,7 @@ namespace KancolleProgress.Models
 #else
 	public class ShipClassGroup
 	{
-		IEnumerable<ShipViewModel> Ships { get; }
+		public IEnumerable<ShipViewModel> Ships { get; }
 
 		public ShipClassGroup(IEnumerable<ShipViewModel> Ships)
 		{
