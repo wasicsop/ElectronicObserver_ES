@@ -753,13 +753,13 @@ namespace ElectronicObserver.Data.Quest
 				}
 					break;
 
-				case 932: // 2010LQ1
+				case 932: // 2103 B5
 				{
-					bool flag = members[0]?.MasterShip.BaseShip().ShipId == ShipId.Nowaki;
-					bool second = members[1]?.MasterShip.BaseShip().ShipId == ShipId.Maikaze;
-					bool count = members.Count(s => s != null) <= 5;
+					bool flag = members[0]?.MasterShip.BaseShip().ShipId == ShipId.Amatsukaze;
+					bool second = members[1]?.MasterShip.BaseShip()
+							.ShipId is ShipId.Yukikaze or ShipId.Tokitsukaze or ShipId.Hatsukaze;
 
-					isAccepted = flag && second && count;
+					isAccepted = flag && second;
 				}
 					break;
 

@@ -743,13 +743,16 @@ namespace ElectronicObserver.Data.Quest
 								new ProgressSpecialBattle(q, 1, "S", new[] { 23 }, true),
 							}));
 							break;
-						case 932:   // 2010L
-							Progresses.Add(new ProgressMultiBattle(q, new[] {
-								new ProgressSpecialBattle(q, 2, "S", new[] { 14 }, true),
-								new ProgressSpecialBattle(q, 2, "S", new[] { 22 }, true),
-								new ProgressSpecialBattle(q, 2, "S", new[] { 31 }, true),
-								new ProgressSpecialBattle(q, 2, "x", new[] { 16 }, true),
-							}));
+						case 932:   // 2103 B5
+							if (DateTime.Now < new DateTime(2021, 6, 1))
+							{
+								Progresses.Add(new ProgressMultiBattle(q, new[]
+								{
+									new ProgressSpecialBattle(q, 2, "S", new[] {22}, true),
+									new ProgressSpecialBattle(q, 2, "S", new[] {23}, true),
+									new ProgressSpecialBattle(q, 2, "x", new[] {73}, true, 2),
+								}));
+							}
 							break;
 						case 928:   //|928|９|歴戦「第十方面艦隊」、全力出撃！|4-2・7-2(第二)・7-3(第二)ボスS勝利各2|要(羽黒/足柄/妙高/高雄/神風)2
 							Progresses.Add(new ProgressMultiBattle(q, new[] {
