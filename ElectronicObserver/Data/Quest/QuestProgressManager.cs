@@ -748,8 +748,8 @@ namespace ElectronicObserver.Data.Quest
 							{
 								Progresses.Add(new ProgressMultiBattle(q, new[]
 								{
-									new ProgressSpecialBattle(q, 2, "S", new[] {22}, true),
-									new ProgressSpecialBattle(q, 2, "S", new[] {23}, true),
+									new ProgressSpecialBattle(q, 2, "A", new[] {22}, true),
+									new ProgressSpecialBattle(q, 2, "A", new[] {23}, true),
 									new ProgressSpecialBattle(q, 2, "x", new[] {73}, true, 2),
 								}));
 							}
