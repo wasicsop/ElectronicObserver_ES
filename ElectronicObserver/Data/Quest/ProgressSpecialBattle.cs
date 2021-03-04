@@ -837,6 +837,13 @@ namespace ElectronicObserver.Data.Quest
 						ShipTypes.AviationCruiser;
 				}
 					break;
+
+				case 906: // 2103 B1
+				{
+					isAccepted = members
+						.Count(s => s?.MasterShip.ShipType is ShipTypes.Destroyer or ShipTypes.Escort) >= 3;
+				}
+					break;
 			}
 
 			// 第二ゲージでも第一ボスに行ける場合があるので、個別対応が必要
