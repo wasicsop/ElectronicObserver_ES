@@ -844,6 +844,12 @@ namespace ElectronicObserver.Data.Quest
 						.Count(s => s?.MasterShip.ShipType is ShipTypes.Destroyer or ShipTypes.Escort) >= 3;
 				}
 					break;
+				case 907: // 2103 B2
+				{
+					isAccepted = members
+						.Count(s => s?.MasterShip.ShipType is ShipTypes.Destroyer or ShipTypes.Escort) >= 4;
+				}
+					break;
 			}
 
 			// 第二ゲージでも第一ボスに行ける場合があるので、個別対応が必要

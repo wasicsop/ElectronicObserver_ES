@@ -837,6 +837,16 @@ namespace ElectronicObserver.Data.Quest
 								}));
 							}
 							break;
+						case 907:   // 2103 B2
+							if (DateTime.Now < new DateTime(2021, 6, 1))
+							{
+								Progresses.Add(new ProgressMultiBattle(q, new[] {
+									new ProgressSpecialBattle(q, 2, "S", new[] { 21 }, true),
+									new ProgressSpecialBattle(q, 2, "S", new[] { 22 }, true),
+									new ProgressSpecialBattle(q, 2, "S", new[] { 23 }, true),
+								}));
+							}
+							break;
 
 						case 303:   //|303|「演習」で練度向上！|演習3
 							Progresses.Add(new ProgressPractice(q, 3, false));
