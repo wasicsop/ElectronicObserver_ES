@@ -240,15 +240,39 @@ namespace Browser
 			if (Browser != null) return;
 			if (ProxySettings == null) return;
 
-			var settings = new CefSettings
+			CefSettings? settings;
+
+			try
 			{
-				CachePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),
-					BrowserCachePath),
-				Locale = "ja",
-				AcceptLanguageList = "ja,en-US,en", // todo: いる？
-				LogSeverity = Configuration.SavesBrowserLog ? LogSeverity.Error : LogSeverity.Disable,
-				LogFile = "BrowserLog.log",
-			};
+				settings = new CefSettings
+				{
+					CachePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),
+						BrowserCachePath),
+					Locale = "ja",
+					AcceptLanguageList = "ja,en-US,en", // todo: いる？
+					LogSeverity = Configuration.SavesBrowserLog ? LogSeverity.Error : LogSeverity.Disable,
+					LogFile = "BrowserLog.log",
+				};
+			}
+			catch (BadImageFormatException e)
+			{
+				if (MessageBox.Show(
+					    @"The browser component could not be loaded.
+Microsoft Visual C++ 2019 Redistributable is required.
+Open the download page?
+(Please install vc_redist.x64.exe)",
+					    "CefSharp Load Error", MessageBoxButtons.YesNo, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1)
+				    == DialogResult.Yes)
+				{
+					ProcessStartInfo psi = new ProcessStartInfo
+					{
+						FileName = @"https://support.microsoft.com/en-us/topic/the-latest-supported-visual-c-downloads-2647da03-1eea-4433-9aff-95f26a218cc0",
+						UseShellExecute = true
+					};
+					Process.Start(psi);
+				}
+				throw;
+			}
 
 			if (!Configuration.HardwareAccelerationEnabled)
 				settings.DisableGpuAcceleration();
