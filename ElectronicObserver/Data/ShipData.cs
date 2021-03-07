@@ -996,7 +996,7 @@ namespace ElectronicObserver.Data
             }
 
             //キャップ
-            basepower = Math.Floor(CapDamage(basepower, 150));
+            basepower = Math.Floor(CapDamage(basepower, 170));
 
             return (int)(basepower * GetAmmoDamageRate());
         }
@@ -1019,7 +1019,7 @@ namespace ElectronicObserver.Data
             basepower += GetLightCruiserDamageBonus() + GetItalianDamageBonus();
 
             // キャップ
-            basepower = Math.Floor(CapDamage(basepower, 180));
+            basepower = Math.Floor(CapDamage(basepower, 220));
 
             // 弾着観測射撃
             switch (attackKind)
@@ -1064,7 +1064,7 @@ namespace ElectronicObserver.Data
             basepower *= GetHPDamageBonus() * GetEngagementFormDamageRate(engagementForm);
 
             // キャップ
-            basepower = Math.Floor(CapDamage(basepower, 180));
+            basepower = Math.Floor(CapDamage(basepower, 220));
 
 
             // 空母カットイン
@@ -1172,7 +1172,7 @@ namespace ElectronicObserver.Data
 
 
             //キャップ
-            basepower = Math.Floor(CapDamage(basepower, 150));
+            basepower = Math.Floor(CapDamage(basepower, 170));
 
             return (int)(basepower * GetAmmoDamageRate());
         }
@@ -1191,7 +1191,7 @@ namespace ElectronicObserver.Data
             basepower *= GetTorpedoHPDamageBonus() * GetEngagementFormDamageRate(engagementForm);
 
             //キャップ
-            basepower = Math.Floor(CapDamage(basepower, 150));
+            basepower = Math.Floor(CapDamage(basepower, 180));
 
 
             return (int)(basepower * GetAmmoDamageRate());
@@ -1318,7 +1318,7 @@ namespace ElectronicObserver.Data
             basepower += GetLightCruiserDamageBonus() + GetItalianDamageBonus();
 
             //キャップ
-            basepower = Math.Floor(CapDamage(basepower, 300));
+            basepower = Math.Floor(CapDamage(basepower, 360));
 
 
             return (int)(basepower * GetAmmoDamageRate());
