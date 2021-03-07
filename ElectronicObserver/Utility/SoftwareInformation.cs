@@ -36,13 +36,13 @@ namespace ElectronicObserver.Utility
 		/// <summary>
 		/// バージョン(英語)
 		/// </summary>
-		public static string VersionEnglish => "4.6.5";
+		public static string VersionEnglish => "4.6.5.1";
 
 
 		/// <summary>
 		/// 更新日時
 		/// </summary>
-		public static DateTime UpdateTime => DateTimeHelper.CSVStringToTime("2021/01/23 16:00:00");
+		public static DateTime UpdateTime => DateTimeHelper.CSVStringToTime("2021/03/07 15:00:00");
 
 
 		private static System.Net.WebClient? Client { get; set; }
