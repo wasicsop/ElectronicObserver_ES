@@ -212,7 +212,7 @@ namespace ElectronicObserver.Utility.Data
 		/// 制空戦力を求めます。
 		/// </summary>
 		/// <param name="fleet">対象の艦隊。</param>
-		public static int GetAirSuperiority(FleetData fleet, bool isAircraftLevelMaximum = false)
+		public static int GetAirSuperiority(IFleetData fleet, bool isAircraftLevelMaximum = false)
 		{
 			if (fleet == null)
 				return 0;
@@ -362,7 +362,7 @@ namespace ElectronicObserver.Utility.Data
 		/// 艦載機熟練度・改修レベルを無視した制空戦力を求めます。
 		/// </summary>
 		/// <param name="fleet">対象の艦隊。</param>
-		public static int GetAirSuperiorityIgnoreLevel(FleetData fleet)
+		public static int GetAirSuperiorityIgnoreLevel(IFleetData fleet)
 		{
 			if (fleet == null)
 				return 0;
@@ -530,7 +530,7 @@ namespace ElectronicObserver.Utility.Data
 		/// </summary>
 		/// <param name="fleet">対象の艦隊。</param>
 		/// <returns>減少TP。</returns>
-		public static int GetTPDamage(FleetData fleet)
+		public static int GetTPDamage(IFleetData fleet)
 		{
 
 			int tp = 0;
@@ -625,7 +625,7 @@ namespace ElectronicObserver.Utility.Data
 		/// <summary>
 		/// 遠征資源の大発ボーナスを取得します。
 		/// </summary>
-		public static double GetExpeditionBonus(FleetData fleet)
+		public static double GetExpeditionBonus(IFleetData fleet)
 		{
 			var eqs = fleet.MembersInstance
 				.Where(s => s != null)
@@ -1680,7 +1680,7 @@ namespace ElectronicObserver.Utility.Data
 		/// <summary>
 		/// 艦隊防空値を求めます。
 		/// </summary>
-		public static double GetAdjustedFleetAAValue(FleetData fleet, int formation)
+		public static double GetAdjustedFleetAAValue(IFleetData fleet, int formation)
 		{
 			return GetAdjustedFleetAAValue(fleet.MembersWithoutEscaped, formation);
 		}
