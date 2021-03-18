@@ -2,6 +2,8 @@
 {
 	public enum EquipmentIconType
 	{
+		Nothing,            //0
+
 		/// <summary>小口径主砲</summary>
 		MainGunSmall = 1,
 
@@ -142,5 +144,10 @@
 
 		/// <summary>陸上対潜哨戒機</summary>
 		LandBasedASPatrol = 47,
+
+		Reserved48,         // 艦これ本体側が未実装
+		HeavyBomber,
+		Locked,
+		Unknown,
 	}
 }
