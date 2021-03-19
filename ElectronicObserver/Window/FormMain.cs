@@ -24,6 +24,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ElectronicObserver.Utility.Mathematics;
+using ElectronicObserver.Window.Wpf;
 using WeifenLuo.WinFormsUI.Docking;
 
 namespace ElectronicObserver.Window
@@ -73,6 +74,8 @@ namespace ElectronicObserver.Window
 		public FormBaseAirCorps fBaseAirCorps;
 		public FormJson fJson;
 		public FormFleetPreset fFleetPreset;
+		
+		public FormFleetWpf[] FormFleetWpf { get; private set; }
 
 		#endregion
 
@@ -215,6 +218,19 @@ namespace ElectronicObserver.Window
 			SubForms.Add(fBaseAirCorps = new FormBaseAirCorps(this));
 			SubForms.Add(fJson = new FormJson(this));
 			SubForms.Add(fFleetPreset = new FormFleetPreset(this));
+
+			FormFleetWpf = new FormFleetWpf[]
+			{
+				new(1),
+				new(2),
+				new(3),
+				new(4),
+			};
+
+			foreach (var fleetWpf in FormFleetWpf)
+			{
+				SubForms.Add(fleetWpf);
+			}
 
 			ConfigurationChanged();     //設定から初期化
 
@@ -1721,9 +1737,26 @@ namespace ElectronicObserver.Window
 			ShowForm(fFleetPreset);
 		}
 
-
 		#endregion
 
+		private void StripMenu_Wpf_Fleet_1_Click(object sender, EventArgs e)
+		{
+			ShowForm(FormFleetWpf[0]);
+		}
 
-    }
+		private void StripMenu_Wpf_Fleet_2_Click(object sender, EventArgs e)
+		{
+			ShowForm(FormFleetWpf[1]);
+		}
+
+		private void StripMenu_Wpf_Fleet_3_Click(object sender, EventArgs e)
+		{
+			ShowForm(FormFleetWpf[2]);
+		}
+
+		private void StripMenu_Wpf_Fleet_4_Click(object sender, EventArgs e)
+		{
+			ShowForm(FormFleetWpf[3]);
+		}
+	}
 }

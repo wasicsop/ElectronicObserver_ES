@@ -1,0 +1,30 @@
+﻿<UserControl x:Class="ElectronicObserver.Window.Wpf.Fleet.Views.HealthView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+
+			 x:Name="HealthControl"
+
+             d:DesignHeight="30" d:DesignWidth="80">
+    <Grid DataContext="{Binding ViewModel, ElementName=HealthControl}" Margin="2 0">
+		<Grid.RowDefinitions>
+			<RowDefinition />
+			<RowDefinition />
+		</Grid.RowDefinitions>
+
+		<TextBlock Grid.Row="0" TextAlignment="Center" Text="{Binding HPString}" d:Text="100 / 100" />
+		<ProgressBar
+			Height="4"
+			Grid.Row="1"
+			Minimum="0"
+			Maximum="{Binding HPMax}"
+			Value="{Binding HPCurrent, Mode=OneWay}"
+			Foreground="{Binding HealthBarBrush}"
+		
+			d:Value="100"
+			d:Foreground="DodgerBlue"
+		/>
+	</Grid>
+</UserControl>

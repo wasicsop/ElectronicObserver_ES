@@ -1,0 +1,17 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+>
+	<Style TargetType="UserControl">
+		<Setter Property="TextElement.Foreground" Value="White" />
+		<Setter Property="TextElement.FontWeight" Value="Regular" />
+		<Setter Property="TextElement.FontSize" Value="14" />
+		<Setter Property="TextOptions.TextFormattingMode" Value="Display" />
+		<Setter Property="TextOptions.TextRenderingMode" Value="Auto" />
+		<Setter Property="Background" Value="Black" />
+	</Style>
+
+	<Style TargetType="Image" >
+		<Setter Property="RenderOptions.BitmapScalingMode" Value="NearestNeighbor" />
+		<Setter Property="RenderOptions.EdgeMode" Value="Aliased" />
+	</Style>
+</ResourceDictionary>

@@ -1,0 +1,119 @@
+﻿<UserControl x:Class="ElectronicObserver.Window.Wpf.Fleet.Views.ShipView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:viewModels="clr-namespace:ElectronicObserver.Window.Wpf.Fleet.ViewModels"
+             xmlns:views="clr-namespace:ElectronicObserver.Window.Wpf.Fleet.Views"
+             mc:Ignorable="d" 
+
+			 x:Name="ShipControl"
+
+             d:DataContext="{Binding ViewModel, ElementName=ShipControl}"
+             d:DesignHeight="30"
+             d:DesignWidth="300">
+
+	<Border 
+		DataContext="{Binding ViewModel, ElementName=ShipControl}"
+		Visibility="{Binding ShipVisibility}"
+		BorderBrush="Gray"
+		BorderThickness="0 0 0 .5"
+	>
+		<Grid>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="{Binding NameWidth}" SharedSizeGroup="ShipName" />
+				<ColumnDefinition Width="Auto" SharedSizeGroup="ShipLevel" />
+				<ColumnDefinition Width="Auto" SharedSizeGroup="ShipExp" />
+				<ColumnDefinition Width="Auto" SharedSizeGroup="ShipHP" />
+				<ColumnDefinition Width="Auto" SharedSizeGroup="ShipCondition" />
+				<ColumnDefinition Width="Auto" SharedSizeGroup="ShipFuel" />
+				<ColumnDefinition Width="Auto" SharedSizeGroup="ShipSlots" />
+			</Grid.ColumnDefinitions>
+
+			<TextBlock 
+				Grid.Column="0"
+				Margin="2 0"
+				VerticalAlignment="Center"
+				Text="{Binding Name}"
+				ToolTip="{Binding NameToolTip}"
+				>
+				<TextBlock.InputBindings>
+					<MouseBinding Command="{Binding ShipNameRightClick}" MouseAction="RightClick" />
+				</TextBlock.InputBindings>
+			</TextBlock>
+			<views:LevelView
+				Grid.Column="1"
+				ViewModel="{Binding}"
+				ToolTip="{Binding LevelToolTip}">
+				<views:LevelView.InputBindings>
+					<MouseBinding Command="{Binding ShipLevelRightClick}" MouseAction="RightClick" />
+				</views:LevelView.InputBindings>
+			</views:LevelView>
+			<views:HealthView Grid.Column="3" ViewModel="{Binding}" ToolTip="{Binding HpToolTip}" />
+			<Border Grid.Column="4" Margin="1" Background="Transparent" ToolTip="{Binding ConditionToolTip}">
+				<Grid>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition />
+						<ColumnDefinition SharedSizeGroup="ConditionViewValue"/>
+					</Grid.ColumnDefinitions>
+
+					<Image 
+						Grid.Column="0"
+						Margin="2 0"
+						Source="{Binding ConditionImage}"
+						Visibility="{Binding ConditionImageVisibility}"
+						/>
+
+					<TextBlock
+						Grid.Column="1"
+						Padding="2 0"
+						HorizontalAlignment="Right"
+						Text="{Binding Condition}"
+						Foreground="{Binding ConditionForegroundColor}"
+						Background="{Binding ConditionBackgroundColor}"
+					/>
+				</Grid>
+			</Border>
+			<views:SupplyView Grid.Column="5" VerticalAlignment="Center" ViewModel="{Binding}" ToolTip="{Binding SupplyToolTip}" />
+			<!-- Background="Transparent" is needed for the tooltip -->
+			<Border Grid.Column="6" Background="Transparent" x:Name="ShipEquipmentControl">
+				<Border.ToolTip>
+					<TextBlock Text="{Binding EquipmentToolTip}" />
+					<!--
+					<StackPanel>
+						<TextBlock Text="{Binding NameWithLevel}"/>
+						<ItemsControl ItemsSource="{Binding Slots}">
+							<ItemsControl.ItemTemplate>
+								<DataTemplate DataType="viewModels:ShipSlotViewModel">
+									<TextBlock Text="{Binding NameWithLevel}"/>
+								</DataTemplate>
+							</ItemsControl.ItemTemplate>
+						</ItemsControl>
+						<TextBlock Text=""/>
+						<TextBlock Text="Day Attacks"/>
+						<ItemsControl ItemsSource="{Binding DayAttacks}">
+							<ItemsControl.ItemTemplate>
+								<DataTemplate DataType="system:String">
+									<TextBlock Text="{Binding}"/>
+								</DataTemplate>
+							</ItemsControl.ItemTemplate>
+						</ItemsControl>
+					</StackPanel>
+					-->
+				</Border.ToolTip>
+				<ItemsControl ItemsSource="{Binding Slots}">
+					<ItemsControl.ItemsPanel>
+						<ItemsPanelTemplate>
+							<StackPanel Orientation="Horizontal"/>
+						</ItemsPanelTemplate>
+					</ItemsControl.ItemsPanel>
+					<ItemsControl.ItemTemplate>
+						<DataTemplate DataType="viewModels:ShipSlotViewModel">
+							<views:ShipSlotView ViewModel="{Binding}" />
+						</DataTemplate>
+					</ItemsControl.ItemTemplate>
+				</ItemsControl>
+			</Border>
+		</Grid>
+	</Border>
+</UserControl>
