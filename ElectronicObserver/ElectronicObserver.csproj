@@ -263,7 +263,7 @@
 	  <Page Update="Window\Wpf\Fleet\FleetView.xaml">
 	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
 	  </Page>
-	  <Page Update="Window\Wpf\Fleet\Resources.xaml">
+	  <Page Update="Window\Wpf\Resources.xaml">
 	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
 	    <SubType>Designer</SubType>
 	  </Page>
