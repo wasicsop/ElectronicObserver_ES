@@ -1,9 +1,7 @@
 ﻿using System.Linq;
 using System.Threading;
 using System.Windows;
-using System.Windows.Forms;
-using Application = System.Windows.Application;
-using MessageBox = System.Windows.MessageBox;
+using ElectronicObserver.Window;
 
 namespace ElectronicObserver
 {
@@ -46,14 +44,24 @@ namespace ElectronicObserver
 					return;
 				}
 
-				// Application.EnableVisualStyles();
-				// Application.SetCompatibleTextRenderingDefault(false);
+#if true // change to false if you want to test in native wpf
 
-				// todo why does this exception happen?
-				// observed first after I added the wpf version of KC progress
-				// Application.Run(new FormMain());
+				System.Windows.Forms.Application.EnableVisualStyles();
+				System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
 
+				try
+				{
+					// todo why does this exception happen?
+					// observed first after I added the wpf version of KC progress
+					System.Windows.Forms.Application.Run(new FormMain());
+				}
+				catch (System.Runtime.InteropServices.SEHException ex)
+				{
+
+				}
+#else
 				new FormMainWpf().ShowDialog();
+#endif
 			}
 		}
 	}
