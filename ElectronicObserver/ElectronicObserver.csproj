@@ -30,6 +30,13 @@
 	</PropertyGroup>
 	<PropertyGroup>
 		<NoWin32Manifest>true</NoWin32Manifest>
+		<!--
+		Program = winforms
+		App = wpf
+		
+		<StartupObject>ElectronicObserver.Program</StartupObject>
+		-->
+		<StartupObject>ElectronicObserver.App</StartupObject>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
 		<OutputPath>bin\x64\Debug\</OutputPath>
