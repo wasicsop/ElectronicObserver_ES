@@ -847,6 +847,16 @@ namespace ElectronicObserver.Data.Quest
 								}));
 							}
 							break;
+						case 908:   // 2103 B3
+							if (DateTime.Now < new DateTime(2021, 6, 1))
+							{
+								Progresses.Add(new ProgressMultiBattle(q, new[] {
+									new ProgressSpecialBattle(q, 2, "S", new[] { 24 }, true),
+									new ProgressSpecialBattle(q, 2, "S", new[] { 25 }, true),
+									new ProgressSpecialBattle(q, 2, "S", new[] { 72 }, true, 2),
+								}));
+							}
+							break;
 						case 909:   // 2103 B4
 							if (DateTime.Now < new DateTime(2021, 6, 1))
 							{

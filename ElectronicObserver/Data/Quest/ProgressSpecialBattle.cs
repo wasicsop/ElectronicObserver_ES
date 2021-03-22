@@ -850,6 +850,21 @@ namespace ElectronicObserver.Data.Quest
 						.Count(s => s?.MasterShip.ShipType is ShipTypes.Destroyer or ShipTypes.Escort) >= 4;
 				}
 					break;
+				case 908: // 2103 B3
+				{
+					bool carrier = members.Any(s => s?.MasterShip.ShipType is 
+						ShipTypes.AircraftCarrier or 
+						ShipTypes.ArmoredAircraftCarrier or 
+						ShipTypes.LightAircraftCarrier);
+
+					bool heavyCruiser = members.Any(s =>
+						s?.MasterShip.ShipType is ShipTypes.HeavyCruiser or ShipTypes.AviationCruiser);
+
+					bool lightCruiser = members.Any(s => s?.MasterShip.ShipType is ShipTypes.LightCruiser);
+
+					isAccepted = carrier && heavyCruiser && lightCruiser;
+				}
+					break;
 			}
 
 			// 第二ゲージでも第一ボスに行ける場合があるので、個別対応が必要
