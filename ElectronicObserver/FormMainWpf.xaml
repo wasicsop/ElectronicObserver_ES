@@ -5,12 +5,88 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ElectronicObserver"
 
+		x:Name="FormMainWpfControl"
+
         xmlns:ui="http://schemas.modernwpf.com/2019"
+        xmlns:viewModels="clr-namespace:ElectronicObserver.ViewModels"
+        xmlns:avalonDockTesting="clr-namespace:ElectronicObserver.AvalonDockTesting"
         ui:WindowHelper.UseModernWindowStyle="True"
 
         mc:Ignorable="d"
-        Title="FormMainWpf" Height="450" Width="800">
-    <Grid>
-        
+        Title="FormMainWpf"
+		Height="450"
+        Width="800"
+>
+	<Grid DataContext="{Binding ViewModel, ElementName=FormMainWpfControl}">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition />
+		</Grid.RowDefinitions>
+
+		<Menu Grid.Row="0">
+			<MenuItem Header="View">
+				<MenuItem Header="Log" Command="{Binding OpenViewCommand}" CommandParameter="{Binding LogViewModel}" />
+			</MenuItem>
+		</Menu>
+
+		<DockingManager
+			Grid.Row="1"
+			AnchorablesSource="{Binding Views}"
+			AllowMixedOrientation="True"
+			IsVirtualizingAnchorable="True"
+			IsVirtualizingDocument="True"
+			>
+			
+			<DockingManager.Theme>
+				<Vs2013DarkTheme />
+			</DockingManager.Theme>
+
+			<DockingManager.DocumentHeaderTemplate>
+				<DataTemplate DataType="viewModels:AnchorableViewModel">
+					<StackPanel Orientation="Horizontal">
+						<Image Source="{Binding IconSource}" Margin="0,0,4,0"/>
+						<TextBlock Text="{Binding Title}" />
+					</StackPanel>
+				</DataTemplate>
+			</DockingManager.DocumentHeaderTemplate>
+
+			<DockingManager.LayoutItemTemplateSelector>
+				<local:ViewTemplateSelector>
+					<local:ViewTemplateSelector.LogViewTemplate>
+						<DataTemplate DataType="avalonDockTesting:LogViewModel">
+							<avalonDockTesting:LogView ViewModel="{Binding}" />
+						</DataTemplate>
+					</local:ViewTemplateSelector.LogViewTemplate>
+				</local:ViewTemplateSelector>
+			</DockingManager.LayoutItemTemplateSelector>
+
+			<DockingManager.LayoutItemContainerStyleSelector>
+				<local:ViewStyleSelector>
+					<local:ViewStyleSelector.AnchorableStyle>
+						<Style TargetType="LayoutAnchorableItem">
+							<Setter Property="Title" Value="{Binding Model.Title}" />
+							<Setter Property="ContentId" Value="{Binding Model.ContentId}" />
+							<Setter Property="IconSource" Value="{Binding Model.IconSource}" />
+							<Setter Property="Visibility"
+								Value="{Binding Model.IsVisible, Mode=TwoWay,
+									Converter={BoolToVisibilityConverter}}"
+							/>
+							<Setter Property="IsSelected" Value="{Binding Model.IsSelected, Mode=TwoWay}" />
+							<Setter Property="IsActive" Value="{Binding Model.IsActive, Mode=TwoWay}" />
+							<Setter Property="CanClose" Value="True" />
+							<Setter Property="CanHide" Value="False" />
+							<Setter Property="CloseCommand" Value="{Binding Model.CloseCommand}" />
+						</Style>
+					</local:ViewStyleSelector.AnchorableStyle>
+				</local:ViewStyleSelector>
+			</DockingManager.LayoutItemContainerStyleSelector>
+			
+			<LayoutRoot>
+				<LayoutPanel>
+					<LayoutAnchorablePane />
+				</LayoutPanel>
+			</LayoutRoot>
+
+		</DockingManager>
     </Grid>
 </Window>

@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ElectronicObserver.ViewModels;
 
 namespace ElectronicObserver
 {
@@ -17,6 +18,8 @@ namespace ElectronicObserver
 	/// </summary>
 	public partial class FormMainWpf : System.Windows.Window
 	{
+		public FormMainViewModel ViewModel { get; } = new();
+
 		public FormMainWpf()
 		{
 			InitializeComponent();
