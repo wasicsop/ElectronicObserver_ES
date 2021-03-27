@@ -8,14 +8,6 @@
 
              x:Name="FleetControl"
 
-             TextElement.Foreground="White"
-             TextElement.FontWeight="Regular"
-             TextElement.FontSize="12"
-             TextOptions.TextFormattingMode="Ideal"
-             TextOptions.TextRenderingMode="Auto"
-			 Background="Black"
-
-			 d:DataContext="{Binding ViewModel, ElementName=FleetControl}"
              mc:Ignorable="d" 
              d:DesignHeight="150" d:DesignWidth="200">
 	<UserControl.Resources>
@@ -45,7 +37,7 @@
 		</ResourceDictionary>
 	</UserControl.Resources>
 
-	<Grid IsSharedSizeScope="True" Visibility="{Binding FleetVisibility}">
+	<Grid DataContext="{Binding ViewModel, ElementName=FleetControl}" IsSharedSizeScope="True" Visibility="{Binding FleetVisibility}">
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto" />
 			<RowDefinition />

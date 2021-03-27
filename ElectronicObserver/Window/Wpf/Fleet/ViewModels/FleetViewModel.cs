@@ -10,6 +10,7 @@ using ElectronicObserver.Observer;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Utility.Mathematics;
+using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Control;
 using ElectronicObserver.Window.Dialog;
 using ElectronicObserverTypes;
@@ -19,7 +20,7 @@ using PropertyChanged;
 
 namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels
 {
-	public class FleetViewModel: ObservableObject
+	public class FleetViewModel : AnchorableViewModel
 	{
 		private IFleetData? _fleet;
 
@@ -112,10 +113,10 @@ namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels
 
 		private Action<ResourceManager.IconContent> SetIcon { get; }
 
-		public FleetViewModel(int fleetId, Action<ResourceManager.IconContent> setIcon)
+		public FleetViewModel(int fleetId, Action<ResourceManager.IconContent>? setIcon = null) : base($"Fleet {fleetId}")
 		{
 			FleetId = fleetId;
-			SetIcon = setIcon;
+			SetIcon = setIcon ?? (i => { });
 
 			CopyCommand = new RelayCommand(ContextMenuFleet_CopyFleet_Click);
 			CopyDeckBuilderCommand = new RelayCommand(ContextMenuFleet_CopyFleetDeckBuilder_Click);
