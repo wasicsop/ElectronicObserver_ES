@@ -261,18 +261,30 @@ namespace ElectronicObserver.Observer
 					Task.Run((Action) (() => { SaveRequest(url, body); }));
 				}
 
+				// invoke doesn't seem to be needed?
+				// wpf invoke is broken
+				if (UIControl is Control control)
+				{
+					control.BeginInvoke((Action) (() => { LoadRequest(url, body); }));
+				}
+				else
+				{
+					LoadRequest(url, body);
+				}
+				/*
 				Action invokeAction = UIControl switch
 				{
 					Control control => 
 						() => control.BeginInvoke((Action) (() => { LoadRequest(url, body); })),
 					
-					System.Windows.Controls.Control wpfControl => 
-						() => wpfControl.Dispatcher.BeginInvoke((Action)(() => { LoadRequest(url, body); })),
+					FormMainViewModel => () => System.Windows.Application.Current.MainWindow!
+						.Dispatcher.BeginInvoke((Action)(() => { LoadRequest(url, body); })),
 					
 					_ => throw new ArgumentException()
 				};
 
 				invokeAction();
+				*/
 			}
 
 			//debug
@@ -396,18 +408,28 @@ namespace ElectronicObserver.Observer
 				string url = baseurl;
 				string body = await e.GetResponseBodyAsString();
 
+				if (UIControl is Control control)
+				{
+					control.BeginInvoke((Action)(() => { LoadResponse(url, body); }));
+				}
+				else
+				{
+					LoadResponse(url, body);
+				}
+				/*
 				Action invokeAction = UIControl switch
 				{
-					Control control => 
+					Control control =>
 						() => control.BeginInvoke((Action)(() => { LoadResponse(url, body); })),
 
-					System.Windows.Controls.Control wpfControl =>
-						() => wpfControl.Dispatcher.BeginInvoke((Action)(() => { LoadResponse(url, body); })),
+					FormMainViewModel => () => System.Windows.Application.Current.MainWindow!
+						.Dispatcher.BeginInvoke((Action)(() => { LoadResponse(url, body); })),
 
 					_ => throw new ArgumentException()
 				};
 
 				invokeAction();
+				*/
 			}
 
 
