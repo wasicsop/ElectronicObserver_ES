@@ -44,7 +44,7 @@ namespace ElectronicObserver
 					return;
 				}
 
-#if true // change to false if you want to test in native wpf
+#if false // change to false if you want to test in native wpf
 
 				System.Windows.Forms.Application.EnableVisualStyles();
 				System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
