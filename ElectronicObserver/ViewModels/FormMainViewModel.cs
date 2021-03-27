@@ -25,6 +25,7 @@ using ElectronicObserver.Utility;
 using ElectronicObserver.Window;
 using ElectronicObserver.Window.Support;
 using ElectronicObserver.Window.Wpf;
+using ElectronicObserver.Window.Wpf.BrowserHost;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 using WeifenLuo.WinFormsUI.Docking;
@@ -34,6 +35,8 @@ namespace ElectronicObserver.ViewModels
 	public class FormMainViewModel : ObservableObject
 	{
 		public ObservableCollection<AnchorableViewModel> Views { get; } = new();
+
+		public BrowserHostViewModel BrowserHost { get; }
 
 		public LogViewModel LogViewModel { get; }
 
@@ -209,6 +212,7 @@ namespace ElectronicObserver.ViewModels
 
 			Utility.Logger.Add(3, Resources.StartupComplete);
 
+			Views.Add(BrowserHost = new());
 			Views.Add(LogViewModel = new());
 
 			OpenViewCommand = new RelayCommand<AnchorableViewModel>(OpenView);

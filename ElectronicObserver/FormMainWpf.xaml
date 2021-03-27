@@ -10,6 +10,7 @@
         xmlns:ui="http://schemas.modernwpf.com/2019"
         xmlns:viewModels="clr-namespace:ElectronicObserver.ViewModels"
         xmlns:avalonDockTesting="clr-namespace:ElectronicObserver.AvalonDockTesting"
+        xmlns:browserHost="clr-namespace:ElectronicObserver.Window.Wpf.BrowserHost"
         ui:WindowHelper.UseModernWindowStyle="True"
 
         mc:Ignorable="d"
@@ -25,6 +26,7 @@
 
 		<Menu Grid.Row="0">
 			<MenuItem Header="View">
+				<MenuItem Header="Browser" Command="{Binding OpenViewCommand}" CommandParameter="{Binding BrowserHost}" />
 				<MenuItem Header="Log" Command="{Binding OpenViewCommand}" CommandParameter="{Binding LogViewModel}" />
 			</MenuItem>
 		</Menu>
@@ -57,6 +59,11 @@
 							<avalonDockTesting:LogView ViewModel="{Binding}" />
 						</DataTemplate>
 					</local:ViewTemplateSelector.LogViewTemplate>
+					<local:ViewTemplateSelector.BrowserHostTemplate>
+						<DataTemplate DataType="browserHost:BrowserHostViewModel">
+							<browserHost:BrowserHostView ViewModel="{Binding}"/>
+						</DataTemplate>
+					</local:ViewTemplateSelector.BrowserHostTemplate>
 				</local:ViewTemplateSelector>
 			</DockingManager.LayoutItemTemplateSelector>
 
