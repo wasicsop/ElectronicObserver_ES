@@ -44,7 +44,7 @@ namespace ElectronicObserver.Observer
 		public delegate void ProxyStartedEventHandler();
 		public event ProxyStartedEventHandler ProxyStarted = delegate { };
 
-		private Control UIControl;
+		private object UIControl;
 
 
 		public event APIReceivedEventHandler RequestReceived = delegate { };
@@ -172,7 +172,7 @@ namespace ElectronicObserver.Observer
 		/// <param name="portID">受信に使用するポート番号。</param>
 		/// <param name="UIControl">GUI スレッドで実行するためのオブジェクト。中身は何でもいい</param>
 		/// <returns>実際に使用されるポート番号。</returns>
-		public int Start(int portID, Control UIControl)
+		public int Start(int portID, object UIControl)
 		{
 			Utility.Configuration.ConfigurationData.ConfigConnection c = Utility.Configuration.Config.Connection;
 
@@ -261,7 +261,18 @@ namespace ElectronicObserver.Observer
 					Task.Run((Action) (() => { SaveRequest(url, body); }));
 				}
 
-				UIControl.BeginInvoke((Action) (() => { LoadRequest(url, body); }));
+				Action invokeAction = UIControl switch
+				{
+					Control control => 
+						() => control.BeginInvoke((Action) (() => { LoadRequest(url, body); })),
+					
+					System.Windows.Controls.Control wpfControl => 
+						() => wpfControl.Dispatcher.BeginInvoke((Action)(() => { LoadRequest(url, body); })),
+					
+					_ => throw new ArgumentException()
+				};
+
+				invokeAction();
 			}
 
 			//debug
@@ -384,7 +395,19 @@ namespace ElectronicObserver.Observer
 				// stringはイミュータブルなのでOK
 				string url = baseurl;
 				string body = await e.GetResponseBodyAsString();
-				UIControl.BeginInvoke((Action)(() => { LoadResponse(url, body); }));
+
+				Action invokeAction = UIControl switch
+				{
+					Control control => 
+						() => control.BeginInvoke((Action)(() => { LoadResponse(url, body); })),
+
+					System.Windows.Controls.Control wpfControl =>
+						() => wpfControl.Dispatcher.BeginInvoke((Action)(() => { LoadResponse(url, body); })),
+
+					_ => throw new ArgumentException()
+				};
+
+				invokeAction();
 			}
 
 
