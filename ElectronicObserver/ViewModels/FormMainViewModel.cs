@@ -14,6 +14,7 @@ using System.Windows.Media;
 using AvalonDock;
 using AvalonDock.Controls;
 using AvalonDock.Layout;
+using AvalonDock.Layout.Serialization;
 using ElectronicObserver.AvalonDockTesting;
 using ElectronicObserver.Data;
 using ElectronicObserver.Notifier;
@@ -43,9 +44,19 @@ namespace ElectronicObserver.ViewModels
 		public LogViewModel LogViewModel { get; }
 
 		public ICommand OpenViewCommand { get; }
+		public ICommand SaveLayoutCommand { get; }
+		public ICommand LoadLayoutCommand { get; }
+
+		private DockingManager DockingManager { get; }
 		
-		public FormMainViewModel()
+		public FormMainViewModel(DockingManager dockingManager)
 		{
+			DockingManager = dockingManager;
+
+			OpenViewCommand = new RelayCommand<AnchorableViewModel>(OpenView);
+			SaveLayoutCommand = new RelayCommand(SaveLayout);
+			LoadLayoutCommand = new RelayCommand(LoadLayout);
+
 			if (!Directory.Exists("Settings"))
 				Directory.CreateDirectory("Settings");
 
@@ -228,14 +239,32 @@ namespace ElectronicObserver.ViewModels
 			Views.Add(BrowserHost = new());
 			Views.Add(LogViewModel = new());
 
-			OpenViewCommand = new RelayCommand<AnchorableViewModel>(OpenView);
+			// LoadLayout();
 		}
 
 		private void OpenView(AnchorableViewModel view)
 		{
-			view.IsVisible = true;
+			view.Visibility = Visibility.Visible;
 			view.IsSelected = true;
 			view.IsActive = true;
+		}
+
+		private string LayoutPath => @"Settings\DefaultLayout.xml";
+
+		public void SaveLayout()
+		{
+			XmlLayoutSerializer serializer = new(DockingManager);
+			serializer.Serialize(LayoutPath);
+		}
+
+		public void LoadLayout()
+		{
+			if (!File.Exists(LayoutPath)) return;
+
+			DockingManager.Layout = new LayoutRoot();
+
+			XmlLayoutSerializer serializer = new(DockingManager);
+			serializer.Deserialize(LayoutPath);
 		}
 	}
 }

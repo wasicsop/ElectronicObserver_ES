@@ -33,6 +33,12 @@
 		</Grid.RowDefinitions>
 
 		<Menu Grid.Row="0">
+			<MenuItem Header="File">
+				<MenuItem Header="Layout">
+					<MenuItem Header="Save" Command="{Binding SaveLayoutCommand}" />
+					<MenuItem Header="Load" Command="{Binding LoadLayoutCommand}" />
+				</MenuItem>
+			</MenuItem>
 			<MenuItem Header="View">
 				<MenuItem Header="Fleet">
 					<MenuItem Header="#1" Command="{Binding OpenViewCommand}" CommandParameter="{Binding Fleets[0]}" />
@@ -47,6 +53,7 @@
 		</Menu>
 
 		<DockingManager
+			x:Name="DockingManager"
 			Grid.Row="1"
 			AnchorablesSource="{Binding Views}"
 			AllowMixedOrientation="True"
@@ -94,10 +101,7 @@
 							<Setter Property="Title" Value="{Binding Model.Title}" />
 							<Setter Property="ContentId" Value="{Binding Model.ContentId}" />
 							<Setter Property="IconSource" Value="{Binding Model.IconSource}" />
-							<Setter Property="Visibility"
-								Value="{Binding Model.IsVisible, Mode=TwoWay,
-									Converter={BoolToVisibilityConverter}}"
-							/>
+							<Setter Property="Visibility" Value="{Binding Model.Visibility, Mode=TwoWay}" />
 							<Setter Property="IsSelected" Value="{Binding Model.IsSelected, Mode=TwoWay}" />
 							<Setter Property="IsActive" Value="{Binding Model.IsActive, Mode=TwoWay}" />
 							<Setter Property="CanClose" Value="True" />
@@ -110,7 +114,7 @@
 			
 			<LayoutRoot>
 				<LayoutPanel>
-					<LayoutAnchorablePane />
+					<LayoutAnchorablePane AllowDuplicateContent="False" />
 				</LayoutPanel>
 			</LayoutRoot>
 

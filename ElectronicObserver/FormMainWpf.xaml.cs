@@ -18,11 +18,23 @@ namespace ElectronicObserver
 	/// </summary>
 	public partial class FormMainWpf : System.Windows.Window
 	{
-		public FormMainViewModel ViewModel { get; } = new();
+		public static readonly DependencyProperty ViewModelProperty = DependencyProperty.Register(
+			"ViewModel", typeof(FormMainViewModel), typeof(FormMainWpf), new PropertyMetadata(default(FormMainViewModel)));
+
+		public FormMainViewModel ViewModel
+		{
+			get => (FormMainViewModel) GetValue(ViewModelProperty);
+			set => SetValue(ViewModelProperty, value);
+		}
 
 		public FormMainWpf()
 		{
 			InitializeComponent();
+
+			ViewModel = new(DockingManager);
+
+			Loaded += (_, _) => ViewModel.LoadLayout();
+			Unloaded += (_, _) => ViewModel.SaveLayout();
 		}
 	}
 }
