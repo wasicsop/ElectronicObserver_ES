@@ -26,8 +26,8 @@ using ElectronicObserver.Utility;
 using ElectronicObserver.Window;
 using ElectronicObserver.Window.Support;
 using ElectronicObserver.Window.Wpf;
-using ElectronicObserver.Window.Wpf.BrowserHost;
 using ElectronicObserver.Window.Wpf.Fleet.ViewModels;
+using ElectronicObserver.Window.Wpf.WinformsWrappers;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 using WeifenLuo.WinFormsUI.Docking;
@@ -39,7 +39,7 @@ namespace ElectronicObserver.ViewModels
 		public ObservableCollection<AnchorableViewModel> Views { get; } = new();
 
 		public List<FleetViewModel> Fleets { get; }
-		public BrowserHostViewModel BrowserHost { get; }
+		public FormBrowserHostViewModel FormBrowserHost { get; }
 
 		public LogViewModel LogViewModel { get; }
 
@@ -236,7 +236,7 @@ namespace ElectronicObserver.ViewModels
 			{
 				Views.Add(fleet);
 			}
-			Views.Add(BrowserHost = new());
+			Views.Add(FormBrowserHost = new());
 			Views.Add(LogViewModel = new());
 
 			// LoadLayout();

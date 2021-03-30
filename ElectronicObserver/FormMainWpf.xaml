@@ -16,9 +16,10 @@
         xmlns:ui="http://schemas.modernwpf.com/2019"
         xmlns:viewModels="clr-namespace:ElectronicObserver.ViewModels"
         xmlns:avalonDockTesting="clr-namespace:ElectronicObserver.AvalonDockTesting"
-        xmlns:browserHost="clr-namespace:ElectronicObserver.Window.Wpf.BrowserHost"
         xmlns:viewModels1="clr-namespace:ElectronicObserver.Window.Wpf.Fleet.ViewModels"
         xmlns:fleet="clr-namespace:ElectronicObserver.Window.Wpf.Fleet"
+        xmlns:winformsHost="clr-namespace:ElectronicObserver.Window.Wpf.WinformsHost"
+        xmlns:winformsWrappers="clr-namespace:ElectronicObserver.Window.Wpf.WinformsWrappers"
         ui:WindowHelper.UseModernWindowStyle="True"
 
         mc:Ignorable="d"
@@ -47,7 +48,7 @@
 					<MenuItem Header="#4" Command="{Binding OpenViewCommand}" CommandParameter="{Binding Fleets[3]}" />
 				</MenuItem>
 				<Separator />
-				<MenuItem Header="Browser" Command="{Binding OpenViewCommand}" CommandParameter="{Binding BrowserHost}" />
+				<MenuItem Header="Browser" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormBrowserHost}" />
 				<MenuItem Header="Log" Command="{Binding OpenViewCommand}" CommandParameter="{Binding LogViewModel}" />
 			</MenuItem>
 		</Menu>
@@ -86,11 +87,11 @@
 							<avalonDockTesting:LogView ViewModel="{Binding}" />
 						</DataTemplate>
 					</local:ViewTemplateSelector.LogViewTemplate>
-					<local:ViewTemplateSelector.BrowserHostTemplate>
-						<DataTemplate DataType="browserHost:BrowserHostViewModel">
-							<browserHost:BrowserHostView ViewModel="{Binding}"/>
+					<local:ViewTemplateSelector.WinformsHostTemplate>
+						<DataTemplate DataType="winformsWrappers:FormBrowserHostViewModel">
+							<winformsHost:WinformsHostView ViewModel="{Binding}"/>
 						</DataTemplate>
-					</local:ViewTemplateSelector.BrowserHostTemplate>
+					</local:ViewTemplateSelector.WinformsHostTemplate>
 				</local:ViewTemplateSelector>
 			</DockingManager.LayoutItemTemplateSelector>
 
