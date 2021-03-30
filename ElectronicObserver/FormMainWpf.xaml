@@ -41,6 +41,9 @@
 				</MenuItem>
 			</MenuItem>
 			<MenuItem Header="View">
+				<MenuItem Header="Browser" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormBrowserHost}" />
+			</MenuItem>
+			<MenuItem Header="Wpf">
 				<MenuItem Header="Fleet">
 					<MenuItem Header="#1" Command="{Binding OpenViewCommand}" CommandParameter="{Binding Fleets[0]}" />
 					<MenuItem Header="#2" Command="{Binding OpenViewCommand}" CommandParameter="{Binding Fleets[1]}" />
@@ -48,7 +51,6 @@
 					<MenuItem Header="#4" Command="{Binding OpenViewCommand}" CommandParameter="{Binding Fleets[3]}" />
 				</MenuItem>
 				<Separator />
-				<MenuItem Header="Browser" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormBrowserHost}" />
 				<MenuItem Header="Log" Command="{Binding OpenViewCommand}" CommandParameter="{Binding LogViewModel}" />
 			</MenuItem>
 		</Menu>
