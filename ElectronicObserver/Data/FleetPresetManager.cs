@@ -13,7 +13,7 @@ namespace ElectronicObserver.Data
 		public int MaximumCount { get; private set; }
 
 
-		public event Action PresetChanged;
+		public event Action? PresetChanged;
 
 
 		public FleetPresetManager()
@@ -28,7 +28,7 @@ namespace ElectronicObserver.Data
 			{
 				case "api_req_hensei/preset_delete":
 					Presets.Remove(int.Parse(data["api_preset_no"]));
-					PresetChanged();
+					PresetChanged?.Invoke();
 					break;
 			}
 		}
@@ -49,7 +49,7 @@ namespace ElectronicObserver.Data
 							preset.LoadFromResponse(apiname, elem.Value);
 							Presets.Add(preset);
 						}
-						PresetChanged();
+						PresetChanged?.Invoke();
 					}
 					break;
 
@@ -66,7 +66,7 @@ namespace ElectronicObserver.Data
 							preset.LoadFromResponse(apiname, data);
 							Presets.Add(preset);
 						}
-						PresetChanged();
+						PresetChanged?.Invoke();
 					}
 					break;
 			}
