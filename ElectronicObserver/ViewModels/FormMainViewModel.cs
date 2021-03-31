@@ -40,6 +40,7 @@ namespace ElectronicObserver.ViewModels
 
 		public List<FleetViewModel> Fleets { get; }
 		public FormBrowserHostViewModel FormBrowserHost { get; }
+		public FormCompassViewModel FormCompass { get; }
 
 		public LogViewModel LogViewModel { get; }
 
@@ -49,7 +50,7 @@ namespace ElectronicObserver.ViewModels
 
 		private Control View { get; }
 		private DockingManager DockingManager { get; }
-		
+
 		public FormMainViewModel(DockingManager dockingManager, Control view)
 		{
 			View = view;
@@ -239,6 +240,7 @@ namespace ElectronicObserver.ViewModels
 				Views.Add(fleet);
 			}
 			Views.Add(FormBrowserHost = new());
+			Views.Add(FormCompass = new());
 			Views.Add(LogViewModel = new());
 
 			// LoadLayout();
