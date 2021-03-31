@@ -261,30 +261,15 @@ namespace ElectronicObserver.Observer
 					Task.Run((Action) (() => { SaveRequest(url, body); }));
 				}
 
-				// invoke doesn't seem to be needed?
-				// wpf invoke is broken
-				if (UIControl is Control control)
+				switch (UIControl)
 				{
-					control.BeginInvoke((Action) (() => { LoadRequest(url, body); }));
+					case Control control:
+						control.BeginInvoke((Action) (() => { LoadRequest(url, body); }));
+						break;
+					case System.Windows.Controls.Control control:
+						control.Dispatcher.BeginInvoke((Action)(() => { LoadRequest(url, body); }));
+						break;
 				}
-				else
-				{
-					LoadRequest(url, body);
-				}
-				/*
-				Action invokeAction = UIControl switch
-				{
-					Control control => 
-						() => control.BeginInvoke((Action) (() => { LoadRequest(url, body); })),
-					
-					FormMainViewModel => () => System.Windows.Application.Current.MainWindow!
-						.Dispatcher.BeginInvoke((Action)(() => { LoadRequest(url, body); })),
-					
-					_ => throw new ArgumentException()
-				};
-
-				invokeAction();
-				*/
 			}
 
 			//debug
@@ -408,28 +393,15 @@ namespace ElectronicObserver.Observer
 				string url = baseurl;
 				string body = await e.GetResponseBodyAsString();
 
-				if (UIControl is Control control)
+				switch (UIControl)
 				{
-					control.BeginInvoke((Action)(() => { LoadResponse(url, body); }));
+					case Control control:
+						control.BeginInvoke((Action)(() => { LoadResponse(url, body); }));
+						break;
+					case System.Windows.Controls.Control control:
+						control.Dispatcher.BeginInvoke((Action)(() => LoadResponse(url, body)));
+						break;
 				}
-				else
-				{
-					LoadResponse(url, body);
-				}
-				/*
-				Action invokeAction = UIControl switch
-				{
-					Control control =>
-						() => control.BeginInvoke((Action)(() => { LoadResponse(url, body); })),
-
-					FormMainViewModel => () => System.Windows.Application.Current.MainWindow!
-						.Dispatcher.BeginInvoke((Action)(() => { LoadResponse(url, body); })),
-
-					_ => throw new ArgumentException()
-				};
-
-				invokeAction();
-				*/
 			}
 
 

@@ -47,10 +47,12 @@ namespace ElectronicObserver.ViewModels
 		public ICommand SaveLayoutCommand { get; }
 		public ICommand LoadLayoutCommand { get; }
 
+		private Control View { get; }
 		private DockingManager DockingManager { get; }
 		
-		public FormMainViewModel(DockingManager dockingManager)
+		public FormMainViewModel(DockingManager dockingManager, Control view)
 		{
+			View = view;
 			DockingManager = dockingManager;
 
 			OpenViewCommand = new RelayCommand<AnchorableViewModel>(OpenView);
@@ -144,7 +146,7 @@ namespace ElectronicObserver.ViewModels
 			#endregion
 
 
-			APIObserver.Instance.Start(Utility.Configuration.Config.Connection.Port, this);
+			APIObserver.Instance.Start(Utility.Configuration.Config.Connection.Port, View);
 
 
 			// MainDockPanel.Extender.FloatWindowFactory = new CustomFloatWindowFactory();

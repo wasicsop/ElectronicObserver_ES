@@ -31,7 +31,7 @@ namespace ElectronicObserver
 		{
 			InitializeComponent();
 
-			ViewModel = new(DockingManager);
+			ViewModel = new(DockingManager, this);
 
 			Loaded += (_, _) => ViewModel.LoadLayout();
 			Unloaded += (_, _) => ViewModel.SaveLayout();
