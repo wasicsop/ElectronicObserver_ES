@@ -8,7 +8,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using AvalonDock;
@@ -31,6 +31,7 @@ using ElectronicObserver.Window.Wpf.WinformsWrappers;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 using WeifenLuo.WinFormsUI.Docking;
+using Control = System.Windows.Controls.Control;
 
 namespace ElectronicObserver.ViewModels
 {
@@ -39,8 +40,10 @@ namespace ElectronicObserver.ViewModels
 		public ObservableCollection<AnchorableViewModel> Views { get; } = new();
 
 		public List<FleetViewModel> Fleets { get; }
-		public FormBrowserHostViewModel FormBrowserHost { get; }
+
+		public List<FormFleetViewModel> FormFleets { get; }
 		public FormCompassViewModel FormCompass { get; }
+		public FormBrowserHostViewModel FormBrowserHost { get; }
 
 		public LogViewModel LogViewModel { get; }
 
@@ -239,8 +242,21 @@ namespace ElectronicObserver.ViewModels
 			{
 				Views.Add(fleet);
 			}
-			Views.Add(FormBrowserHost = new());
+
+			FormFleets = new()
+			{
+				new(1),
+				new(2),
+				new(3),
+				new(4),
+			};
+			foreach (FormFleetViewModel fleet in FormFleets)
+			{
+				Views.Add(fleet);
+			}
 			Views.Add(FormCompass = new());
+			Views.Add(FormBrowserHost = new());
+
 			Views.Add(LogViewModel = new());
 
 			// LoadLayout();
