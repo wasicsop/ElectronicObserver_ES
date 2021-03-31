@@ -44,6 +44,7 @@ namespace ElectronicObserver.ViewModels
 		public List<FormFleetViewModel> FormFleets { get; }
 		public FormFleetOverviewViewModel FormFleetOverview { get; }
 		public FormShipGroupViewModel FormShipGroup { get; }
+		public FormFleetPresetViewModel FormFleetPreset { get; }
 		public FormCompassViewModel FormCompass { get; }
 		public FormBrowserHostViewModel FormBrowserHost { get; }
 
@@ -258,6 +259,7 @@ namespace ElectronicObserver.ViewModels
 			}
 			Views.Add(FormFleetOverview = new());
 			Views.Add(FormShipGroup = new());
+			Views.Add(FormFleetPreset = new());
 			Views.Add(FormCompass = new());
 			Views.Add(FormBrowserHost = new());
 

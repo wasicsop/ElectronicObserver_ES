@@ -49,6 +49,7 @@
 				</MenuItem>
 				<MenuItem Header="Fleet List" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormFleetOverview}" />
 				<MenuItem Header="Ship Group" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormShipGroup}" />
+				<MenuItem Header="Presets" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormFleetPreset}" />
 				<Separator />
 				<MenuItem Header="Compass" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormCompass}" />
 				<Separator />
