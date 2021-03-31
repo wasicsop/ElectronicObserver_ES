@@ -10,11 +10,11 @@ namespace ElectronicObserver.Window.Wpf.WinformsHost
 	public partial class WinformsHostView : UserControl
 	{
 		public static readonly DependencyProperty ViewModelProperty = DependencyProperty.Register(
-			"ViewModel", typeof(FormBrowserHostViewModel), typeof(WinformsHostView), new PropertyMetadata(default(FormBrowserHostViewModel)));
+			"ViewModel", typeof(WinformsHostViewModel), typeof(WinformsHostView), new PropertyMetadata(default(WinformsHostViewModel)));
 
-		public FormBrowserHostViewModel ViewModel
+		public WinformsHostViewModel ViewModel
 		{
-			get => (FormBrowserHostViewModel) GetValue(ViewModelProperty);
+			get => (WinformsHostViewModel) GetValue(ViewModelProperty);
 			set => SetValue(ViewModelProperty, value);
 		}
 
