@@ -17,10 +17,15 @@ namespace ElectronicObserver.ViewModels
 
 		public ICommand CloseCommand { get; }
 
-		protected AnchorableViewModel(string title, ImageSource? icon = null)
+		protected AnchorableViewModel(string title, ImageSource? icon = null) : this(title, title, icon)
+		{
+
+		}
+
+		protected AnchorableViewModel(string title, string contentId, ImageSource? icon = null)
 		{
 			Title = title;
-			ContentId = title;
+			ContentId = contentId;
 			IconSource = icon;
 			CloseCommand = new RelayCommand(() => Visibility = Visibility.Collapsed);
 		}

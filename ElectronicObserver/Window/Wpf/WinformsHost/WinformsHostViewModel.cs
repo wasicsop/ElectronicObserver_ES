@@ -9,7 +9,12 @@ namespace ElectronicObserver.Window.Wpf.WinformsHost
 		public DockContent? WinformsControl { get; set; }
 		public WindowsFormsHost WindowsFormsHost { get; } = new();
 
-		protected WinformsHostViewModel(string title) : base(title)
+		protected WinformsHostViewModel(string title) : this(title, title)
+		{
+			
+		}
+
+		protected WinformsHostViewModel(string title, string contentId) : base(title, contentId)
 		{
 			PropertyChanged += (sender, args) =>
 			{
