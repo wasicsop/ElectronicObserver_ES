@@ -52,6 +52,7 @@
 				<MenuItem Header="Presets" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormFleetPreset}" />
 				<Separator />
 				<MenuItem Header="Dock" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormDock}" />
+				<MenuItem Header="Arsenal" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormArsenal}" />
 				<Separator />
 				<MenuItem Header="Compass" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormCompass}" />
 				<Separator />
