@@ -1022,13 +1022,24 @@ namespace ElectronicObserver.Data.Quest
 								new ProgressExpedition(q, 1, new[]{ 4 }),
 								new ProgressExpedition(q, 1, new[]{ 10 }),
 							})); break;
-						case 442: // D38
-							Progresses.Add(new ProgressMultiExpedition(q, new[]{
+						case 442:   //|442|２|西方連絡作戦準備を実施せよ！|「西方海域偵察作戦」「潜水艦派遣演習」「潜水艦派遣作戦」「欧州方面友軍との接触」成功各1?|
+							Progresses.Add(new ProgressMultiExpedition(q, new[]
+                            {
 								new ProgressExpedition(q, 1, new[]{ 29 }),
 								new ProgressExpedition(q, 1, new[]{ 30 }),
 								new ProgressExpedition(q, 1, new[]{ 131 }),
 								new ProgressExpedition(q, 1, new[]{ 133 }),
-							})); 
+							}));
+							break;
+						case 444:   //|444|３|新兵装開発資材輸送を船団護衛せよ！|「海上護衛任務」「資源輸送任務」「タンカー護衛任務」「南西方面航空偵察作戦」「ボーキサイト輸送任務」成功各1|
+							Progresses.Add(new ProgressMultiExpedition(q, new[]
+                            {
+								new ProgressExpedition(q, 1, new[]{ 5 }),
+								new ProgressExpedition(q, 1, new[]{ 9 }),
+								new ProgressExpedition(q, 1, new[]{ 11 }),
+								new ProgressExpedition(q, 1, new[]{ 12 }),
+								new ProgressExpedition(q, 1, new[]{ 110 }),
+							}));
 							break;
 
 						case 503:   //|503|艦隊大整備！|入渠5
