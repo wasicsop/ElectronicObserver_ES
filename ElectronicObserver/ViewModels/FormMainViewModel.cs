@@ -52,6 +52,7 @@ namespace ElectronicObserver.ViewModels
 		public FormQuestViewModel FormQuest { get; }
 		public FormInformationViewModel FormInformation { get; }
 		public FormCompassViewModel FormCompass { get; }
+		public FormBattleViewModel FormBattle { get; }
 		public FormBrowserHostViewModel FormBrowserHost { get; }
 
 		public LogViewModel LogViewModel { get; }
@@ -273,6 +274,7 @@ namespace ElectronicObserver.ViewModels
 			Views.Add(FormQuest = new());
 			Views.Add(FormInformation = new());
 			Views.Add(FormCompass = new());
+			Views.Add(FormBattle = new());
 			Views.Add(FormBrowserHost = new());
 
 			Views.Add(LogViewModel = new());
