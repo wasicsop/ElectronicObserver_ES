@@ -55,6 +55,8 @@
 				<MenuItem Header="Arsenal" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormArsenal}" />
 				<MenuItem Header="AB" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormBaseAirCorps}" />
 				<Separator />
+				<MenuItem Header="HQ" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormHeadquarters}" />
+				<Separator />
 				<MenuItem Header="Compass" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormCompass}" />
 				<Separator />
 				<MenuItem Header="Browser" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormBrowserHost}" />
