@@ -57,6 +57,7 @@
 				<Separator />
 				<MenuItem Header="HQ" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormHeadquarters}" />
 				<MenuItem Header="Quest" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormQuest}" />
+				<MenuItem Header="Information" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormInformation}" />
 				<Separator />
 				<MenuItem Header="Compass" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormCompass}" />
 				<Separator />
