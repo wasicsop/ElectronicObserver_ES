@@ -53,6 +53,7 @@
 				<Separator />
 				<MenuItem Header="Dock" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormDock}" />
 				<MenuItem Header="Arsenal" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormArsenal}" />
+				<MenuItem Header="AB" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormBaseAirCorps}" />
 				<Separator />
 				<MenuItem Header="Compass" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormCompass}" />
 				<Separator />
