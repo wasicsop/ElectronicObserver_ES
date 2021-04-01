@@ -51,6 +51,8 @@
 				<MenuItem Header="Ship Group" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormShipGroup}" />
 				<MenuItem Header="Presets" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormFleetPreset}" />
 				<Separator />
+				<MenuItem Header="Dock" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormDock}" />
+				<Separator />
 				<MenuItem Header="Compass" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormCompass}" />
 				<Separator />
 				<MenuItem Header="Browser" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormBrowserHost}" />
