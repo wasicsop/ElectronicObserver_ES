@@ -63,6 +63,7 @@
 				<MenuItem Header="Battle" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormBattle}" />
 				<Separator />
 				<MenuItem Header="Browser" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormBrowserHost}" />
+				<MenuItem Header="Log" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormLog}" />
 			</MenuItem>
 			<MenuItem Header="Wpf">
 				<MenuItem Header="Fleet">
