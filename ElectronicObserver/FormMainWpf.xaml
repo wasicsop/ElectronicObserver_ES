@@ -83,6 +83,25 @@
 				<Separator />
 				<MenuItem Header="Log" Command="{Binding OpenViewCommand}" CommandParameter="{Binding LogViewModel}" />
 			</MenuItem>
+			<MenuItem Header="Tools">
+				<MenuItem Header="Equipment List" Command="{Binding OpenEquipmentListCommand}" />
+				<Separator />
+				<MenuItem Header="Drop Record" Command="{Binding OpenDropRecordCommand}" />
+				<MenuItem Header="Development Record" Command="{Binding OpenDevelopmentRecordCommand}" />
+				<MenuItem Header="Construction Record" Command="{Binding OpenConstructionRecordCommand}" />
+				<MenuItem Header="Resource Chart" Command="{Binding OpenResourceChartCommand}" />
+				<Separator />
+				<MenuItem Header="Ship Encyclopedia" Command="{Binding OpenAlbumMasterShipCommand}" />
+				<MenuItem Header="Equipment Encyclopedia" Command="{Binding OpenAlbumMasterEquipmentCommand}" />
+				<Separator />
+				<MenuItem Header="AA Defense" Command="{Binding OpenAntiAirDefenseCommand}" />
+				<MenuItem Header="Export Fleet Image" Command="{Binding OpenFleetImageGeneratorCommand}" />
+				<MenuItem Header="AB Simulator" Command="{Binding OpenBaseAirCorpsSimulationCommand}" />
+				<MenuItem Header="Exp Calculator" Command="{Binding OpenExpCheckerCommand}" />
+				<MenuItem Header="Expedition Check" Command="{Binding OpenExpeditionCheckCommand}" />
+				<MenuItem Header="Ship Progression List" Command="{Binding OpenKancolleProgressCommand}" />
+				<MenuItem Header="Extra Browser" Command="{Binding OpenExtraBrowserCommand}" />
+			</MenuItem>
 		</Menu>
 
 		<DockingManager

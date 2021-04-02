@@ -2,11 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Diagnostics.CodeAnalysis;
 using System.IO;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -21,6 +17,8 @@ using ElectronicObserver.Properties;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Resource.Record;
 using ElectronicObserver.Utility;
+using ElectronicObserver.Window;
+using ElectronicObserver.Window.Dialog;
 using ElectronicObserver.Window.Wpf.Fleet.ViewModels;
 using ElectronicObserver.Window.Wpf.WinformsWrappers;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
@@ -30,6 +28,9 @@ namespace ElectronicObserver.ViewModels
 {
 	public class FormMainViewModel : ObservableObject
 	{
+		private Control View { get; }
+		private DockingManager DockingManager { get; }
+
 		public ObservableCollection<AnchorableViewModel> Views { get; } = new();
 
 		public List<FleetViewModel> Fleets { get; }
@@ -51,18 +52,45 @@ namespace ElectronicObserver.ViewModels
 
 		public LogViewModel LogViewModel { get; }
 
+		public ICommand OpenEquipmentListCommand { get; }
+		public ICommand OpenDropRecordCommand { get; }
+		public ICommand OpenDevelopmentRecordCommand { get; }
+		public ICommand OpenConstructionRecordCommand { get; }
+		public ICommand OpenResourceChartCommand { get; }
+		public ICommand OpenAlbumMasterShipCommand { get; }
+		public ICommand OpenAlbumMasterEquipmentCommand { get; }
+		public ICommand OpenAntiAirDefenseCommand { get; }
+		public ICommand OpenFleetImageGeneratorCommand { get; }
+		public ICommand OpenBaseAirCorpsSimulationCommand { get; }
+		public ICommand OpenExpCheckerCommand { get; }
+		public ICommand OpenExpeditionCheckCommand { get; }
+		public ICommand OpenKancolleProgressCommand { get; }
+		public ICommand OpenExtraBrowserCommand { get; }
+
 		public ICommand OpenViewCommand { get; }
 		public ICommand SaveLayoutCommand { get; }
 		public ICommand LoadLayoutCommand { get; }
 		public ICommand ClosingCommand { get; }
 
-		private Control View { get; }
-		private DockingManager DockingManager { get; }
-
 		public FormMainViewModel(DockingManager dockingManager, Control view)
 		{
 			View = view;
 			DockingManager = dockingManager;
+
+			OpenEquipmentListCommand = new RelayCommand(StripMenu_Tool_EquipmentList_Click);
+			OpenDropRecordCommand = new RelayCommand(StripMenu_Tool_DropRecord_Click);
+			OpenDevelopmentRecordCommand = new RelayCommand(StripMenu_Tool_DevelopmentRecord_Click);
+			OpenConstructionRecordCommand = new RelayCommand(StripMenu_Tool_ConstructionRecord_Click);
+			OpenResourceChartCommand = new RelayCommand(StripMenu_Tool_ResourceChart_Click);
+			OpenAlbumMasterShipCommand = new RelayCommand(StripMenu_Tool_AlbumMasterShip_Click);
+			OpenAlbumMasterEquipmentCommand = new RelayCommand(StripMenu_Tool_AlbumMasterEquipment_Click);
+			OpenAntiAirDefenseCommand = new RelayCommand(StripMenu_Tool_AntiAirDefense_Click);
+			OpenFleetImageGeneratorCommand = new RelayCommand(StripMenu_Tool_FleetImageGenerator_Click);
+			OpenBaseAirCorpsSimulationCommand = new RelayCommand(StripMenu_Tool_BaseAirCorpsSimulation_Click);
+			OpenExpCheckerCommand = new RelayCommand(StripMenu_Tool_ExpChecker_Click);
+			OpenExpeditionCheckCommand = new RelayCommand(StripMenu_Tool_ExpeditionCheck_Click);
+			OpenKancolleProgressCommand = new RelayCommand(StripMenu_Tool_KancolleProgress_Click);
+			OpenExtraBrowserCommand = new RelayCommand(StripMenu_Tool_ExtraBrowser_Click);
 
 			OpenViewCommand = new RelayCommand<AnchorableViewModel>(OpenView);
 			SaveLayoutCommand = new RelayCommand(SaveLayout);
@@ -285,6 +313,130 @@ namespace ElectronicObserver.ViewModels
 			view.IsSelected = true;
 			view.IsActive = true;
 		}
+
+		#region Tools
+
+		private void StripMenu_Tool_EquipmentList_Click()
+		{
+			new DialogEquipmentList().Show();
+		}
+
+		private void StripMenu_Tool_DropRecord_Click()
+		{
+			if (KCDatabase.Instance.MasterShips.Count == 0)
+			{
+				MessageBox.Show(GeneralRes.KancolleMustBeLoaded, GeneralRes.NoMasterData, MessageBoxButton.OK, MessageBoxImage.Error);
+				return;
+			}
+
+			if (RecordManager.Instance.ShipDrop.Record.Count == 0)
+			{
+				MessageBox.Show(GeneralRes.NoDevData, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+				return;
+			}
+
+			new DialogDropRecordViewer().Show();
+		}
+
+		private void StripMenu_Tool_DevelopmentRecord_Click()
+		{
+			if (KCDatabase.Instance.MasterShips.Count == 0)
+			{
+				MessageBox.Show(GeneralRes.KancolleMustBeLoaded, GeneralRes.NoMasterData, MessageBoxButton.OK, MessageBoxImage.Error);
+				return;
+			}
+
+			if (RecordManager.Instance.Development.Record.Count == 0)
+			{
+				MessageBox.Show(GeneralRes.NoDevData, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+				return;
+			}
+
+			new DialogDevelopmentRecordViewer().Show();
+		}
+
+		private void StripMenu_Tool_ConstructionRecord_Click()
+		{
+			if (KCDatabase.Instance.MasterShips.Count == 0)
+			{
+				MessageBox.Show(GeneralRes.KancolleMustBeLoaded, GeneralRes.NoMasterData, MessageBoxButton.OK, MessageBoxImage.Error);
+				return;
+			}
+
+			if (RecordManager.Instance.Construction.Record.Count == 0)
+			{
+				MessageBox.Show(GeneralRes.NoBuildData, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+				return;
+			}
+
+			new DialogConstructionRecordViewer().Show();
+		}
+
+		private void StripMenu_Tool_ResourceChart_Click()
+		{
+			new DialogResourceChart().Show();
+		}
+
+		private void StripMenu_Tool_AlbumMasterShip_Click()
+		{
+
+			if (KCDatabase.Instance.MasterShips.Count == 0)
+			{
+				MessageBox.Show("Ship data is not loaded.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+				return;
+			}
+
+			new DialogAlbumMasterShip().Show();
+		}
+
+		private void StripMenu_Tool_AlbumMasterEquipment_Click()
+		{
+
+			if (KCDatabase.Instance.MasterEquipments.Count == 0)
+			{
+				MessageBox.Show("Equipment data is not loaded.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+				return;
+			}
+
+			new DialogAlbumMasterEquipment().Show();
+		}
+
+		private void StripMenu_Tool_AntiAirDefense_Click()
+		{
+			new DialogAntiAirDefense().Show();
+		}
+
+		private void StripMenu_Tool_FleetImageGenerator_Click()
+		{
+			new DialogFleetImageGenerator(1).Show();
+		}
+
+		private void StripMenu_Tool_BaseAirCorpsSimulation_Click()
+		{
+			new DialogBaseAirCorpsSimulation().Show();
+		}
+
+		private void StripMenu_Tool_ExpChecker_Click()
+		{
+			new DialogExpChecker().Show();
+		}
+
+		private void StripMenu_Tool_ExpeditionCheck_Click()
+		{
+			new DialogExpeditionCheck().Show();
+		}
+
+		private void StripMenu_Tool_KancolleProgress_Click()
+		{
+			new DialogKancolleProgressWpf().Show();
+		}
+
+		private void StripMenu_Tool_ExtraBrowser_Click()
+		{
+			Window.FormBrowserHost.Instance.Browser.OpenExtraBrowser();
+		}
+
+		#endregion
 
 		private string LayoutPath => @"Settings\DefaultLayout.xml";
 
