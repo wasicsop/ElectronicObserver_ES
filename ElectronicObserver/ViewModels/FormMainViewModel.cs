@@ -8,11 +8,9 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Forms;
+using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Media;
 using AvalonDock;
-using AvalonDock.Controls;
 using AvalonDock.Layout;
 using AvalonDock.Layout.Serialization;
 using ElectronicObserver.AvalonDockTesting;
@@ -23,15 +21,10 @@ using ElectronicObserver.Properties;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Resource.Record;
 using ElectronicObserver.Utility;
-using ElectronicObserver.Window;
-using ElectronicObserver.Window.Support;
-using ElectronicObserver.Window.Wpf;
 using ElectronicObserver.Window.Wpf.Fleet.ViewModels;
 using ElectronicObserver.Window.Wpf.WinformsWrappers;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
-using WeifenLuo.WinFormsUI.Docking;
-using Control = System.Windows.Controls.Control;
 
 namespace ElectronicObserver.ViewModels
 {
@@ -61,6 +54,7 @@ namespace ElectronicObserver.ViewModels
 		public ICommand OpenViewCommand { get; }
 		public ICommand SaveLayoutCommand { get; }
 		public ICommand LoadLayoutCommand { get; }
+		public ICommand ClosingCommand { get; }
 
 		private Control View { get; }
 		private DockingManager DockingManager { get; }
@@ -73,6 +67,7 @@ namespace ElectronicObserver.ViewModels
 			OpenViewCommand = new RelayCommand<AnchorableViewModel>(OpenView);
 			SaveLayoutCommand = new RelayCommand(SaveLayout);
 			LoadLayoutCommand = new RelayCommand(LoadLayout);
+			ClosingCommand = new RelayCommand<CancelEventArgs>(Close);
 
 			if (!Directory.Exists("Settings"))
 				Directory.CreateDirectory("Settings");
@@ -307,6 +302,28 @@ namespace ElectronicObserver.ViewModels
 
 			XmlLayoutSerializer serializer = new(DockingManager);
 			serializer.Deserialize(LayoutPath);
+		}
+
+		private void Close(CancelEventArgs e)
+		{
+			if (Configuration.Config.Life.ConfirmOnClosing)
+			{
+				if (MessageBox.Show(
+					    "Are you sure you want to exit?",
+					    "Electronic Observer",
+					    MessageBoxButton.YesNo,
+					    MessageBoxImage.Question,
+					    MessageBoxResult.No)
+				    == MessageBoxResult.No)
+				{
+					e.Cancel = true;
+					return;
+				}
+			}
+
+			Logger.Add(2, SoftwareInformation.SoftwareNameEnglish + Resources.IsClosing);
+
+
 		}
 	}
 }

@@ -160,6 +160,7 @@
 		<PackageReference Include="Dirkster.AvalonDock" Version="4.50.2" />
 		<PackageReference Include="Dirkster.AvalonDock.Themes.VS2013" Version="4.50.2" />
 		<PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.0.0-preview4" />
+		<PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.31" />
 		<PackageReference Include="ModernWpfUI" Version="0.9.3" />
 		<PackageReference Include="PropertyChanged.Fody" Version="3.3.2" PrivateAssets="All" />
 		<PackageReference Include="DynaJson" Version="2.2.0" />

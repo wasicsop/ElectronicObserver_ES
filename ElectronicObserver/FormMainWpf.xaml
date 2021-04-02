@@ -7,6 +7,8 @@
 
 		x:Name="FormMainWpfControl"
 
+		DataContext="{Binding ViewModel, ElementName=FormMainWpfControl}"
+
         TextElement.Foreground="White"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="12"
@@ -20,6 +22,7 @@
         xmlns:fleet="clr-namespace:ElectronicObserver.Window.Wpf.Fleet"
         xmlns:winformsHost="clr-namespace:ElectronicObserver.Window.Wpf.WinformsHost"
         xmlns:winformsWrappers="clr-namespace:ElectronicObserver.Window.Wpf.WinformsWrappers"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         ui:WindowHelper.UseModernWindowStyle="True"
 
         mc:Ignorable="d"
@@ -27,7 +30,12 @@
 		Height="450"
         Width="800"
 >
-	<Grid DataContext="{Binding ViewModel, ElementName=FormMainWpfControl}">
+	<i:Interaction.Triggers>
+		<i:EventTrigger EventName="Closing">
+			<i:InvokeCommandAction Command="{Binding ClosingCommand}" PassEventArgsToCommand="True" />
+		</i:EventTrigger>
+	</i:Interaction.Triggers>
+	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto" />
 			<RowDefinition />
