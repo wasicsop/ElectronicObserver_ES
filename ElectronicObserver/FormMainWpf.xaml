@@ -9,9 +9,10 @@
 
 		DataContext="{Binding ViewModel, ElementName=FormMainWpfControl}"
 
-        TextElement.Foreground="White"
+		TextElement.FontFamily="{Binding Font}"
+        TextElement.Foreground="{Binding FontBrush}"
+        TextElement.FontSize="{Binding FontSize}"
         TextElement.FontWeight="Regular"
-        TextElement.FontSize="12"
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
 

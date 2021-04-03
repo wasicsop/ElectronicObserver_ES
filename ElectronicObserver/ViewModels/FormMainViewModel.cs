@@ -8,6 +8,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 using AvalonDock;
 using AvalonDock.Layout;
 using AvalonDock.Layout.Serialization;
@@ -32,10 +33,17 @@ namespace ElectronicObserver.ViewModels
 	{
 		private Control View { get; }
 		private DockingManager DockingManager { get; }
+		private Configuration.ConfigurationData Config { get; }
 		private System.Windows.Forms.Timer UIUpdateTimer { get; }
 		private string LayoutPath { get; } = @"Settings\DefaultLayout.xml";
 		public bool NotificationsSilenced { get; set; }
 		private DateTime PrevPlayTimeRecorded { get; set; } = DateTime.MinValue;
+		public FontFamily Font { get; set; }
+		public double FontSize { get; set; }
+		public SolidColorBrush FontBrush { get; set; }
+		public FontFamily SubFont { get; set; }
+		public double SubFontSize { get; set; }
+		public SolidColorBrush SubFontBrush { get; set; }
 
 		public ObservableCollection<AnchorableViewModel> Views { get; } = new();
 
@@ -133,6 +141,7 @@ namespace ElectronicObserver.ViewModels
 			
 			// todo the parameter is never used, remove it later
 			Configuration.Instance.Load(null!);
+			Config = Configuration.Config;
 
 			/*
 			this.MainDockPanel.Styles = Configuration.Config.UI.DockPanelSuiteStyles;
@@ -338,6 +347,8 @@ namespace ElectronicObserver.ViewModels
 			NotificationsSilenced = NotifierManager.Instance.GetNotifiers().All(n => n.IsSilenced);
 
 			// LoadLayout();
+
+			SetFont();
 		}
 
 		#region File
@@ -608,13 +619,13 @@ namespace ElectronicObserver.ViewModels
 				TopMost = c.Life.TopMost;
 			
 			ClockFormat = c.Life.ClockFormat;
-
-			Font = c.UI.MainFont;
+			*/
+			SetFont();
+			/*
 			//StripMenu.Font = Font;
 			StripStatus.Font = Font;
 			MainDockPanel.Skin.AutoHideStripSkin.TextFont = Font;
 			MainDockPanel.Skin.DockPaneStripSkin.TextFont = Font;
-
 
 			foreach (var f in SubForms)
 			{
@@ -654,6 +665,19 @@ namespace ElectronicObserver.ViewModels
 			*/
 		}
 
+
+		private void SetFont()
+		{
+			Font = new(Config.UI.MainFont.FontData.FontFamily.Name);
+			FontSize = Config.UI.MainFont.FontData.Size;
+			FontBrush = new SolidColorBrush(Color.FromRgb(Config.UI.ForeColor.R, Config.UI.ForeColor.G,
+				Config.UI.ForeColor.B));
+
+			SubFont = new(Config.UI.SubFont.FontData.FontFamily.Name);
+			SubFontSize = Config.UI.SubFont.FontData.Size;
+			SubFontBrush = new SolidColorBrush(Color.FromRgb(Config.UI.SubForeColor.R, Config.UI.SubForeColor.G,
+				Config.UI.SubForeColor.B));
+		}
 
 		private void UIUpdateTimer_Tick(object sender, EventArgs e)
 		{
