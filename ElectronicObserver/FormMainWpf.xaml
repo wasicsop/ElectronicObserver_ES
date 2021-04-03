@@ -43,10 +43,19 @@
 
 		<Menu Grid.Row="0">
 			<MenuItem Header="File">
+				<MenuItem Header="Record">
+					<MenuItem Header="Save" Command="{Binding SaveDataCommand}" />
+					<MenuItem Header="Load" Command="{Binding LoadDataCommand}" />
+				</MenuItem>
 				<MenuItem Header="Layout">
 					<MenuItem Header="Save" Command="{Binding SaveLayoutCommand}" />
 					<MenuItem Header="Load" Command="{Binding LoadLayoutCommand}" />
 				</MenuItem>
+				<MenuItem Header="Notification">
+					<MenuItem Header="Disable" IsCheckable="True" IsChecked="{Binding NotificationsSilenced}" Command="{Binding SilenceNotificationsCommand}" />
+				</MenuItem>
+				<Separator />
+				<MenuItem Header="Settings" Command="{Binding OpenConfigurationCommand}" />
 			</MenuItem>
 			<MenuItem Header="View">
 				<MenuItem Header="Fleet">

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -31,6 +32,8 @@ namespace ElectronicObserver.ViewModels
 		private Control View { get; }
 		private DockingManager DockingManager { get; }
 		private System.Windows.Forms.Timer UIUpdateTimer { get; }
+		public bool NotificationsSilenced { get; set; }
+		private DateTime PrevPlayTimeRecorded { get; set; } = DateTime.MinValue;
 
 		public ObservableCollection<AnchorableViewModel> Views { get; } = new();
 
@@ -52,6 +55,11 @@ namespace ElectronicObserver.ViewModels
 		public FormLogViewModel FormLog { get; }
 
 		public LogViewModel LogViewModel { get; }
+
+		public ICommand SaveDataCommand { get; }
+		public ICommand LoadDataCommand { get; }
+		public ICommand SilenceNotificationsCommand { get; }
+		public ICommand OpenConfigurationCommand { get; }
 
 		public ICommand OpenEquipmentListCommand { get; }
 		public ICommand OpenDropRecordCommand { get; }
@@ -77,6 +85,11 @@ namespace ElectronicObserver.ViewModels
 		{
 			View = view;
 			DockingManager = dockingManager;
+
+			SaveDataCommand = new RelayCommand(StripMenu_File_SaveData_Save_Click);
+			LoadDataCommand = new RelayCommand(StripMenu_File_SaveData_Load_Click);
+			SilenceNotificationsCommand = new RelayCommand(StripMenu_File_Notification_MuteAll_Click);
+			OpenConfigurationCommand = new RelayCommand(StripMenu_File_Configuration_Click);
 
 			OpenEquipmentListCommand = new RelayCommand(StripMenu_Tool_EquipmentList_Click);
 			OpenDropRecordCommand = new RelayCommand(StripMenu_Tool_DropRecord_Click);
@@ -306,6 +319,8 @@ namespace ElectronicObserver.ViewModels
 
 			Views.Add(LogViewModel = new());
 
+			NotificationsSilenced = NotifierManager.Instance.GetNotifiers().All(n => n.IsSilenced);
+
 			// LoadLayout();
 		}
 
@@ -315,6 +330,42 @@ namespace ElectronicObserver.ViewModels
 			view.IsSelected = true;
 			view.IsActive = true;
 		}
+
+		#region File
+
+		private void StripMenu_File_SaveData_Save_Click()
+		{
+			RecordManager.Instance.SaveAll();
+		}
+
+		private void StripMenu_File_SaveData_Load_Click()
+		{
+			if (MessageBox.Show(Resources.AskLoad, "Confirmation",
+				    MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No)
+			    == MessageBoxResult.Yes)
+			{
+				RecordManager.Instance.Load();
+			}
+		}
+
+		private void StripMenu_File_Notification_MuteAll_Click()
+		{
+			foreach (var n in NotifierManager.Instance.GetNotifiers())
+				n.IsSilenced = NotificationsSilenced;
+		}
+
+		private void StripMenu_File_Configuration_Click()
+		{
+			UpdatePlayTime();
+
+			using DialogConfiguration dialog = new(Configuration.Config);
+			if (dialog.ShowDialog() != System.Windows.Forms.DialogResult.OK) return;
+
+			dialog.ToConfiguration(Configuration.Config);
+			Configuration.Instance.OnConfigurationChanged();
+		}
+
+		#endregion
 
 		#region Tools
 
@@ -560,6 +611,19 @@ namespace ElectronicObserver.ViewModels
 			*/
 		}
 
+		private void UpdatePlayTime()
+		{
+			var c = Configuration.Config.Log;
+			DateTime now = DateTime.Now;
+
+			double span = (now - PrevPlayTimeRecorded).TotalSeconds;
+			if (span < c.PlayTimeIgnoreInterval)
+			{
+				c.PlayTime += span;
+			}
+
+			PrevPlayTimeRecorded = now;
+		}
 
 		private string LayoutPath => @"Settings\DefaultLayout.xml";
 
