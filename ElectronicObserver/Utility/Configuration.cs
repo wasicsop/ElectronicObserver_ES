@@ -1880,6 +1880,9 @@ namespace ElectronicObserver.Utility
 
 		private void ApplyTheme()
 		{
+			// hack: force dark theme
+			Config.UI.ThemeMode = 1;
+
 			dynamic json;
 			if (Config.UI.ThemeMode != 2)
 			{
