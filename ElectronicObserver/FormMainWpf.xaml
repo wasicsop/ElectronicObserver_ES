@@ -133,6 +133,8 @@
 		<DockingManager
 			x:Name="DockingManager"
 			Grid.Row="1"
+			GridSplitterWidth="1"
+			GridSplitterHeight="1"
 			AnchorablesSource="{Binding Views}"
 			AllowMixedOrientation="True"
 			IsVirtualizingAnchorable="True"
