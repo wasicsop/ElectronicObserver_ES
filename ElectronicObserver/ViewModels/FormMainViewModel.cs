@@ -12,7 +12,6 @@ using System.Windows.Media;
 using AvalonDock;
 using AvalonDock.Layout;
 using AvalonDock.Layout.Serialization;
-using ElectronicObserver.AvalonDockTesting;
 using ElectronicObserver.Data;
 using ElectronicObserver.Notifier;
 using ElectronicObserver.Observer;
@@ -63,8 +62,6 @@ namespace ElectronicObserver.ViewModels
 		public FormBattleViewModel FormBattle { get; }
 		public FormBrowserHostViewModel FormBrowserHost { get; }
 		public FormLogViewModel FormLog { get; }
-
-		public LogViewModel LogViewModel { get; }
 
 		public ICommand SaveDataCommand { get; }
 		public ICommand LoadDataCommand { get; }
@@ -341,8 +338,6 @@ namespace ElectronicObserver.ViewModels
 			Views.Add(FormBattle = new());
 			Views.Add(FormBrowserHost = new());
 			Views.Add(FormLog = new());
-
-			Views.Add(LogViewModel = new());
 
 			NotificationsSilenced = NotifierManager.Instance.GetNotifiers().All(n => n.IsSilenced);
 

@@ -1,7 +1,5 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using AvalonDock.Controls;
-using ElectronicObserver.AvalonDockTesting;
 using ElectronicObserver.ViewModels;
 
 namespace ElectronicObserver

@@ -18,7 +18,6 @@
 
         xmlns:ui="http://schemas.modernwpf.com/2019"
         xmlns:viewModels="clr-namespace:ElectronicObserver.ViewModels"
-        xmlns:avalonDockTesting="clr-namespace:ElectronicObserver.AvalonDockTesting"
         xmlns:viewModels1="clr-namespace:ElectronicObserver.Window.Wpf.Fleet.ViewModels"
         xmlns:fleet="clr-namespace:ElectronicObserver.Window.Wpf.Fleet"
         xmlns:winformsHost="clr-namespace:ElectronicObserver.Window.Wpf.WinformsHost"
@@ -98,8 +97,6 @@
 					<MenuItem Header="#3" Command="{Binding OpenViewCommand}" CommandParameter="{Binding Fleets[2]}" />
 					<MenuItem Header="#4" Command="{Binding OpenViewCommand}" CommandParameter="{Binding Fleets[3]}" />
 				</MenuItem>
-				<Separator />
-				<MenuItem Header="Log" Command="{Binding OpenViewCommand}" CommandParameter="{Binding LogViewModel}" />
 			</MenuItem>
 			<MenuItem Header="Tools" Height="Auto">
 				<MenuItem Header="Equipment List" Command="{Binding OpenEquipmentListCommand}" />
@@ -161,11 +158,6 @@
 							<fleet:FleetView ViewModel="{Binding}" />
 						</DataTemplate>
 					</local:ViewTemplateSelector.FleetTemplate>
-					<local:ViewTemplateSelector.LogViewTemplate>
-						<DataTemplate DataType="avalonDockTesting:LogViewModel">
-							<avalonDockTesting:LogView ViewModel="{Binding}" />
-						</DataTemplate>
-					</local:ViewTemplateSelector.LogViewTemplate>
 					<local:ViewTemplateSelector.WinformsHostTemplate>
 						<DataTemplate DataType="winformsWrappers:FormBrowserHostViewModel">
 							<winformsHost:WinformsHostView ViewModel="{Binding}"/>
