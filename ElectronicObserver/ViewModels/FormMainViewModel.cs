@@ -21,6 +21,7 @@ using ElectronicObserver.Resource.Record;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Window;
 using ElectronicObserver.Window.Dialog;
+using ElectronicObserver.Window.Wpf;
 using ElectronicObserver.Window.Wpf.Fleet.ViewModels;
 using ElectronicObserver.Window.Wpf.WinformsWrappers;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
@@ -43,6 +44,45 @@ namespace ElectronicObserver.ViewModels
 		public FontFamily SubFont { get; set; }
 		public double SubFontSize { get; set; }
 		public SolidColorBrush SubFontBrush { get; set; }
+
+		#region Icons
+
+		public ImageSource? ConfigurationImageSource { get; }
+
+		public ImageSource? FleetsImageSource { get; }
+		public ImageSource? FleetOverviewImageSource { get; }
+		public ImageSource? ShipGroupImageSource { get; }
+		public ImageSource? FleetPresetImageSource { get; }
+		public ImageSource? DockImageSource { get; }
+		public ImageSource? ArsenalImageSource { get; }
+		public ImageSource? BaseAirCorpsImageSource { get; }
+		public ImageSource? HeadquartersImageSource { get; }
+		public ImageSource? QuestImageSource { get; }
+		public ImageSource? InformationImageSource { get; }
+		public ImageSource? CompassImageSource { get; }
+		public ImageSource? BattleImageSource { get; }
+		public ImageSource? BrowserHostImageSource { get; }
+		public ImageSource? LogImageSource { get; }
+
+		public ImageSource? EquipmentListImageSource { get; }
+		public ImageSource? DropRecordImageSource { get; }
+		public ImageSource? DevelopmentRecordImageSource { get; }
+		public ImageSource? ConstructionRecordImageSource { get; }
+		public ImageSource? ResourceChartImageSource { get; }
+		public ImageSource? AlbumMasterShipImageSource { get; }
+		public ImageSource? AlbumMasterEquipmentImageSource { get; }
+		public ImageSource? AntiAirDefenseImageSource { get; }
+		public ImageSource? FleetImageGeneratorImageSource { get; }
+		public ImageSource? BaseAirCorpsSimulationImageSource { get; }
+		public ImageSource? ExpCheckerImageSource { get; }
+		public ImageSource? ExpeditionCheckImageSource { get; }
+		public ImageSource? KancolleProgressImageSource { get; }
+		public ImageSource? ExtraBrowserImageSource { get; }
+
+		public ImageSource? ViewHelpImageSource { get; }
+		public ImageSource? ViewVersionImageSource { get; }
+
+		#endregion
 
 		public ObservableCollection<AnchorableViewModel> Views { get; } = new();
 
@@ -177,6 +217,42 @@ namespace ElectronicObserver.ViewModels
 			SyncBGMPlayer.Instance.ConfigurationChanged();
 
 			#region Icon settings
+
+			ConfigurationImageSource = ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormConfiguration);
+
+			FleetsImageSource = ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormFleet);
+			FleetOverviewImageSource = ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormFleet);
+			ShipGroupImageSource = ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormShipGroup);
+			FleetPresetImageSource = ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormFleetPreset);
+			DockImageSource = ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormDock);
+			ArsenalImageSource = ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormArsenal);
+			BaseAirCorpsImageSource = ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormBaseAirCorps);
+			HeadquartersImageSource = ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormHeadQuarters);
+			QuestImageSource = ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormQuest);
+			InformationImageSource = ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormInformation);
+			CompassImageSource = ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormCompass);
+			BattleImageSource = ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormBattle);
+			BrowserHostImageSource = ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormBrowser);
+			LogImageSource = ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormLog);
+
+			EquipmentListImageSource = ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormEquipmentList);
+			DropRecordImageSource = ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormDropRecord);
+			DevelopmentRecordImageSource = ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormDevelopmentRecord);
+			ConstructionRecordImageSource = ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormConstructionRecord);
+			ResourceChartImageSource = ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormResourceChart);
+			AlbumMasterShipImageSource = ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormAlbumShip);
+			AlbumMasterEquipmentImageSource = ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormAlbumEquipment);
+			AntiAirDefenseImageSource = ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormAntiAirDefense);
+			FleetImageGeneratorImageSource = ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormFleetImageGenerator);
+			BaseAirCorpsSimulationImageSource = ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormBaseAirCorps);
+			ExpCheckerImageSource = ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormExpChecker);
+			ExpeditionCheckImageSource = ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormExpeditionCheck);
+			KancolleProgressImageSource = ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormEquipmentList);
+			ExtraBrowserImageSource = ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormBrowser);
+
+			ViewHelpImageSource = ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormInformation);
+			ViewVersionImageSource = ImageSourceIcons.GetIcon(ResourceManager.IconContent.AppIcon);
+
 			/*
 			Icon = ResourceManager.Instance.AppIcon;
 
@@ -210,6 +286,7 @@ namespace ElectronicObserver.ViewModels
 			StripMenu_Tool_FleetImageGenerator.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormFleetImageGenerator];
 			StripMenu_Tool_BaseAirCorpsSimulation.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormBaseAirCorps];
 			StripMenu_Tool_ExpChecker.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormExpChecker];
+			StripMenu_Tool_ExpeditionCheck.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormExpeditionCheck];
 			StripMenu_Tool_KancolleProgress.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormEquipmentList];
 
 

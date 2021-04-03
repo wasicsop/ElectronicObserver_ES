@@ -57,7 +57,7 @@ namespace ElectronicObserver.Window
 					Cursor = Cursors.Help
 				};
 
-				State = new FleetState
+				State = new FleetState(parent.SetIcon)
 				{
 					Anchor = AnchorStyles.Left,
 					ForeColor = parent.MainFontColor,
@@ -903,13 +903,14 @@ namespace ElectronicObserver.Window
 		private TableMemberControl[] ControlMember;
 
 		private int AnchorageRepairBound;
+		public Action<ResourceManager.IconContent>? SetIcon { get; }
 
-
-		public FormFleet(FormMain parent, int fleetID)
+		public FormFleet(FormMain parent, int fleetID, Action<ResourceManager.IconContent>? setIcon = null)
 		{
 			InitializeComponent();
 
 			FleetID = fleetID;
+			SetIcon = setIcon;
 			Utility.SystemEvents.UpdateTimerTick += UpdateTimerTick;
 
 			ConfigurationChanged();

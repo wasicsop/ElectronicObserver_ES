@@ -1,4 +1,5 @@
 ﻿using System.Windows.Forms.Integration;
+using System.Windows.Media;
 using ElectronicObserver.ViewModels;
 using WeifenLuo.WinFormsUI.Docking;
 
@@ -14,7 +15,8 @@ namespace ElectronicObserver.Window.Wpf.WinformsHost
 			
 		}
 
-		protected WinformsHostViewModel(string title, string contentId) : base(title, contentId)
+		protected WinformsHostViewModel(string title, string contentId, ImageSource? icon = null)
+			: base(title, contentId, icon)
 		{
 			PropertyChanged += (sender, args) =>
 			{

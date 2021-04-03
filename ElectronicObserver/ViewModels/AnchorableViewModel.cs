@@ -13,7 +13,7 @@ namespace ElectronicObserver.ViewModels
 		public Visibility Visibility { get; set; } = Visibility.Collapsed;
 		public bool IsSelected { get; set; }
 		public bool IsActive { get; set; }
-		public ImageSource? IconSource { get; }
+		public ImageSource? IconSource { get; set; }
 
 		public ICommand CloseCommand { get; }
 

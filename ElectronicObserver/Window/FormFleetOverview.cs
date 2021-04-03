@@ -46,7 +46,7 @@ namespace ElectronicObserver.Window
 					AutoSize = true
 				};
 
-				State = new FleetState
+				State = new FleetState(null)
 				{
 					Anchor = AnchorStyles.Left,
 					Padding = new Padding(),

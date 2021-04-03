@@ -114,7 +114,7 @@ namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels
 		private Action<ResourceManager.IconContent> SetIcon { get; }
 
 		public FleetViewModel(int fleetId, Action<ResourceManager.IconContent>? setIcon = null)
-			: base($"#{fleetId}", $"Fleet{fleetId}")
+			: base($"#{fleetId}", $"Fleet{fleetId}", ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormFleet))
 		{
 			FleetId = fleetId;
 			SetIcon = setIcon ?? (i => { });
@@ -265,6 +265,7 @@ namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels
 			ImageIndex = imageIndex;
 			SetIcon(imageIndex);
 			BackColor = backColor ?? Colors.Transparent;
+			IconSource = ImageSourceIcons.GetIcon(ImageIndex);
 		}
 
 		private void UpdateFleetState(IFleetData? fleet)

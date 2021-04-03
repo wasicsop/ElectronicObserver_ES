@@ -26,7 +26,7 @@
         ui:WindowHelper.UseModernWindowStyle="True"
 
         mc:Ignorable="d"
-        Title="FormMainWpf"
+        Title="Electronic Observer"
 		Height="450"
         Width="800"
 >
@@ -63,35 +63,97 @@
 					<MenuItem Header="Disable" IsCheckable="True" IsChecked="{Binding NotificationsSilenced}" Command="{Binding SilenceNotificationsCommand}" />
 				</MenuItem>
 				<Separator />
-				<MenuItem Header="Settings" Command="{Binding OpenConfigurationCommand}" />
-			</MenuItem>
+				<MenuItem Header="Settings" Command="{Binding OpenConfigurationCommand}">
+					<MenuItem.Icon>
+						<Image Source="{Binding ConfigurationImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				</MenuItem>
 			<MenuItem Header="View" Height="Auto">
 				<MenuItem Header="Fleet">
+					<MenuItem.Icon>
+						<Image Source="{Binding FleetsImageSource}" />
+					</MenuItem.Icon>
 					<MenuItem Header="#1" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormFleets[0]}" />
 					<MenuItem Header="#2" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormFleets[1]}" />
 					<MenuItem Header="#3" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormFleets[2]}" />
 					<MenuItem Header="#4" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormFleets[3]}" />
 				</MenuItem>
-				<MenuItem Header="Fleet List" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormFleetOverview}" />
-				<MenuItem Header="Ship Group" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormShipGroup}" />
-				<MenuItem Header="Presets" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormFleetPreset}" />
+				<MenuItem Header="Fleet List" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormFleetOverview}">
+					<MenuItem.Icon>
+						<Image Source="{Binding FleetOverviewImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<MenuItem Header="Ship Group" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormShipGroup}">
+					<MenuItem.Icon>
+						<Image Source="{Binding ShipGroupImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<MenuItem Header="Presets" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormFleetPreset}">
+					<MenuItem.Icon>
+						<Image Source="{Binding FleetPresetImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
 				<Separator />
-				<MenuItem Header="Dock" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormDock}" />
-				<MenuItem Header="Arsenal" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormArsenal}" />
-				<MenuItem Header="AB" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormBaseAirCorps}" />
+				<MenuItem Header="Dock" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormDock}">
+					<MenuItem.Icon>
+						<Image Source="{Binding DockImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<MenuItem Header="Arsenal" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormArsenal}">
+					<MenuItem.Icon>
+						<Image Source="{Binding ArsenalImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<MenuItem Header="AB" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormBaseAirCorps}">
+					<MenuItem.Icon>
+						<Image Source="{Binding BaseAirCorpsImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
 				<Separator />
-				<MenuItem Header="HQ" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormHeadquarters}" />
-				<MenuItem Header="Quest" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormQuest}" />
-				<MenuItem Header="Information" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormInformation}" />
+				<MenuItem Header="HQ" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormHeadquarters}">
+					<MenuItem.Icon>
+						<Image Source="{Binding HeadquartersImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<MenuItem Header="Quest" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormQuest}">
+					<MenuItem.Icon>
+						<Image Source="{Binding QuestImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<MenuItem Header="Information" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormInformation}">
+					<MenuItem.Icon>
+						<Image Source="{Binding InformationImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
 				<Separator />
-				<MenuItem Header="Compass" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormCompass}" />
-				<MenuItem Header="Battle" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormBattle}" />
+				<MenuItem Header="Compass" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormCompass}">
+					<MenuItem.Icon>
+						<Image Source="{Binding CompassImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<MenuItem Header="Battle" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormBattle}">
+					<MenuItem.Icon>
+						<Image Source="{Binding BattleImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
 				<Separator />
-				<MenuItem Header="Browser" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormBrowserHost}" />
-				<MenuItem Header="Log" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormLog}" />
+				<MenuItem Header="Browser" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormBrowserHost}">
+					<MenuItem.Icon>
+						<Image Source="{Binding BrowserHostImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<MenuItem Header="Log" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormLog}">
+					<MenuItem.Icon>
+						<Image Source="{Binding LogImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
 			</MenuItem>
 			<MenuItem Header="Wpf" Height="Auto">
 				<MenuItem Header="Fleet">
+					<MenuItem.Icon>
+						<Image Source="{Binding FleetsImageSource}" />
+					</MenuItem.Icon>
 					<MenuItem Header="#1" Command="{Binding OpenViewCommand}" CommandParameter="{Binding Fleets[0]}" />
 					<MenuItem Header="#2" Command="{Binding OpenViewCommand}" CommandParameter="{Binding Fleets[1]}" />
 					<MenuItem Header="#3" Command="{Binding OpenViewCommand}" CommandParameter="{Binding Fleets[2]}" />
@@ -99,31 +161,95 @@
 				</MenuItem>
 			</MenuItem>
 			<MenuItem Header="Tools" Height="Auto">
-				<MenuItem Header="Equipment List" Command="{Binding OpenEquipmentListCommand}" />
+				<MenuItem Header="Equipment List" Command="{Binding OpenEquipmentListCommand}">
+					<MenuItem.Icon>
+						<Image Source="{Binding EquipmentListImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
 				<Separator />
-				<MenuItem Header="Drop Record" Command="{Binding OpenDropRecordCommand}" />
-				<MenuItem Header="Development Record" Command="{Binding OpenDevelopmentRecordCommand}" />
-				<MenuItem Header="Construction Record" Command="{Binding OpenConstructionRecordCommand}" />
-				<MenuItem Header="Resource Chart" Command="{Binding OpenResourceChartCommand}" />
+				<MenuItem Header="Drop Record" Command="{Binding OpenDropRecordCommand}">
+					<MenuItem.Icon>
+						<Image Source="{Binding DropRecordImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<MenuItem Header="Development Record" Command="{Binding OpenDevelopmentRecordCommand}">
+					<MenuItem.Icon>
+						<Image Source="{Binding DevelopmentRecordImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<MenuItem Header="Construction Record" Command="{Binding OpenConstructionRecordCommand}">
+					<MenuItem.Icon>
+						<Image Source="{Binding ConstructionRecordImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<MenuItem Header="Resource Chart" Command="{Binding OpenResourceChartCommand}">
+					<MenuItem.Icon>
+						<Image Source="{Binding ResourceChartImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
 				<Separator />
-				<MenuItem Header="Ship Encyclopedia" Command="{Binding OpenAlbumMasterShipCommand}" />
-				<MenuItem Header="Equipment Encyclopedia" Command="{Binding OpenAlbumMasterEquipmentCommand}" />
+				<MenuItem Header="Ship Encyclopedia" Command="{Binding OpenAlbumMasterShipCommand}">
+					<MenuItem.Icon>
+						<Image Source="{Binding AlbumMasterShipImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<MenuItem Header="Equipment Encyclopedia" Command="{Binding OpenAlbumMasterEquipmentCommand}">
+					<MenuItem.Icon>
+						<Image Source="{Binding AlbumMasterEquipmentImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
 				<Separator />
-				<MenuItem Header="AA Defense" Command="{Binding OpenAntiAirDefenseCommand}" />
-				<MenuItem Header="Export Fleet Image" Command="{Binding OpenFleetImageGeneratorCommand}" />
-				<MenuItem Header="AB Simulator" Command="{Binding OpenBaseAirCorpsSimulationCommand}" />
-				<MenuItem Header="Exp Calculator" Command="{Binding OpenExpCheckerCommand}" />
-				<MenuItem Header="Expedition Check" Command="{Binding OpenExpeditionCheckCommand}" />
-				<MenuItem Header="Ship Progression List" Command="{Binding OpenKancolleProgressCommand}" />
-				<MenuItem Header="Extra Browser" Command="{Binding OpenExtraBrowserCommand}" />
+				<MenuItem Header="AA Defense" Command="{Binding OpenAntiAirDefenseCommand}">
+					<MenuItem.Icon>
+						<Image Source="{Binding AntiAirDefenseImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<MenuItem Header="Export Fleet Image" Command="{Binding OpenFleetImageGeneratorCommand}">
+					<MenuItem.Icon>
+						<Image Source="{Binding FleetImageGeneratorImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<MenuItem Header="AB Simulator" Command="{Binding OpenBaseAirCorpsSimulationCommand}">
+					<MenuItem.Icon>
+						<Image Source="{Binding BaseAirCorpsSimulationImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<MenuItem Header="Exp Calculator" Command="{Binding OpenExpCheckerCommand}">
+					<MenuItem.Icon>
+						<Image Source="{Binding ExpCheckerImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<MenuItem Header="Expedition Check" Command="{Binding OpenExpeditionCheckCommand}">
+					<MenuItem.Icon>
+						<Image Source="{Binding ExpeditionCheckImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<MenuItem Header="Ship Progression List" Command="{Binding OpenKancolleProgressCommand}">
+					<MenuItem.Icon>
+						<Image Source="{Binding KancolleProgressImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<MenuItem Header="Extra Browser" Command="{Binding OpenExtraBrowserCommand}">
+					<MenuItem.Icon>
+						<Image Source="{Binding ExtraBrowserImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
 			</MenuItem>
 			<MenuItem Header="Help" Height="Auto">
-				<MenuItem Header="View Help" Command="{Binding ViewHelpCommand}" />
+				<MenuItem Header="View Help" Command="{Binding ViewHelpCommand}">
+					<MenuItem.Icon>
+						<Image Source="{Binding ViewHelpImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
 				<MenuItem Header="Report a Problem" Command="{Binding ReportIssueCommand}" />
 				<MenuItem Header="Join us on Discord" Command="{Binding JoinDiscordCommand}" />
 				<Separator />
 				<MenuItem Header="Check for Update" Command="{Binding CheckForUpdateCommand}" />
-				<MenuItem Header="About Electronic Observer" Command="{Binding ViewVersionCommand}" />
+				<MenuItem Header="About Electronic Observer" Command="{Binding ViewVersionCommand}">
+					<MenuItem.Icon>
+						<Image Source="{Binding ViewVersionImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
 			</MenuItem>
 		</Menu>
 

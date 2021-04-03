@@ -71,13 +71,15 @@ namespace ElectronicObserver.Window.Control
 				}
 			}
 
+			private Action<ResourceManager.IconContent>? SetIcon { get; }
 
-			public StateLabel()
+			public StateLabel(Action<ResourceManager.IconContent>? setIcon)
 			{
 				Label = GetDefaultLabel();
 				Label.MouseEnter += Label_MouseEnter;
 				Label.MouseLeave += Label_MouseLeave;
 				Enabled = false;
+				SetIcon = setIcon;
 			}
 
 			public static ImageLabel GetDefaultLabel()
@@ -101,6 +103,7 @@ namespace ElectronicObserver.Window.Control
 				UpdateText();
 				Label.ImageIndex = imageIndex;
 				Label.BackColor = backColor;
+				SetIcon?.Invoke((ResourceManager.IconContent)imageIndex);
 			}
 
 			public void SetInformation(FleetStates state, string text, string shortenedText, int imageIndex)
@@ -145,19 +148,20 @@ namespace ElectronicObserver.Window.Control
 
 
 		private List<StateLabel> StateLabels;
+		private Action<ResourceManager.IconContent>? SetIcon { get; }
 
-
-		public FleetState()
+		public FleetState(Action<ResourceManager.IconContent>? setIcon)
 		{
 			InitializeComponent();
 
+			SetIcon = setIcon;
 			StateLabels = new List<StateLabel>();
 		}
 
 
 		private StateLabel AddStateLabel()
 		{
-			StateLabels.Add(new StateLabel());
+			StateLabels.Add(new StateLabel(SetIcon));
 			var ret = StateLabels.Last();
 			LayoutBase.Controls.Add(ret.Label);
 			return ret;
