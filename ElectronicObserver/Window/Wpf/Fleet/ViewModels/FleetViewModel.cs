@@ -113,7 +113,8 @@ namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels
 
 		private Action<ResourceManager.IconContent> SetIcon { get; }
 
-		public FleetViewModel(int fleetId, Action<ResourceManager.IconContent>? setIcon = null) : base($"Fleet {fleetId}")
+		public FleetViewModel(int fleetId, Action<ResourceManager.IconContent>? setIcon = null)
+			: base($"#{fleetId}", $"Fleet{fleetId}")
 		{
 			FleetId = fleetId;
 			SetIcon = setIcon ?? (i => { });
