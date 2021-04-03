@@ -34,6 +34,9 @@
 		<i:EventTrigger EventName="Closing">
 			<i:InvokeCommandAction Command="{Binding ClosingCommand}" PassEventArgsToCommand="True" />
 		</i:EventTrigger>
+		<i:EventTrigger EventName="Closed">
+			<i:InvokeCommandAction Command="{Binding ClosedCommand}" />
+		</i:EventTrigger>
 	</i:Interaction.Triggers>
 	<Grid>
 		<Grid.RowDefinitions>

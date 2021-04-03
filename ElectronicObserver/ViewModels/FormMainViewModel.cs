@@ -82,6 +82,7 @@ namespace ElectronicObserver.ViewModels
 		public ICommand SaveLayoutCommand { get; }
 		public ICommand LoadLayoutCommand { get; }
 		public ICommand ClosingCommand { get; }
+		public ICommand ClosedCommand { get; }
 
 		public ICommand ViewHelpCommand { get; }
 		public ICommand ReportIssueCommand { get; }
@@ -124,6 +125,7 @@ namespace ElectronicObserver.ViewModels
 			SaveLayoutCommand = new RelayCommand(SaveLayout);
 			LoadLayoutCommand = new RelayCommand(LoadLayout);
 			ClosingCommand = new RelayCommand<CancelEventArgs>(Close);
+			ClosedCommand = new RelayCommand(Closed);
 
 			if (!Directory.Exists("Settings"))
 				Directory.CreateDirectory("Settings");
@@ -156,8 +158,8 @@ namespace ElectronicObserver.ViewModels
 					Logger_LogAdded(data);
 				}
 			});
-			Utility.Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
 			*/
+			Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
 
 			Logger.Add(2, SoftwareInformation.SoftwareNameEnglish + " is starting...");
 
@@ -591,6 +593,68 @@ namespace ElectronicObserver.ViewModels
 
 		#endregion
 
+		private void ConfigurationChanged()
+		{
+			var c = Configuration.Config;
+			/*
+			StripMenu_Debug.Enabled = StripMenu_Debug.Visible =
+				StripMenu_View_Json.Enabled = StripMenu_View_Json.Visible =
+					c.Debug.EnableDebugMenu;
+
+			StripStatus.Visible = c.Life.ShowStatusBar;
+
+			// Load で TopMost を変更するとバグるため(前述)
+			if (UIUpdateTimer.Enabled)
+				TopMost = c.Life.TopMost;
+			
+			ClockFormat = c.Life.ClockFormat;
+
+			Font = c.UI.MainFont;
+			//StripMenu.Font = Font;
+			StripStatus.Font = Font;
+			MainDockPanel.Skin.AutoHideStripSkin.TextFont = Font;
+			MainDockPanel.Skin.DockPaneStripSkin.TextFont = Font;
+
+
+			foreach (var f in SubForms)
+			{
+				f.BackColor = this.BackColor;
+				f.ForeColor = this.ForeColor;
+				if (f is FormShipGroup)
+				{ // 暂时不对舰队编成窗口应用主题
+					f.BackColor = SystemColors.Control;
+					f.ForeColor = SystemColors.ControlText;
+				}
+			}
+
+			StripStatus_Information.BackColor = System.Drawing.Color.Transparent;
+			StripStatus_Information.Margin = new Padding(-1, 1, -1, 0);
+
+
+			if (c.Life.LockLayout)
+			{
+				MainDockPanel.AllowChangeLayout = false;
+				FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+			}
+			else
+			{
+				MainDockPanel.AllowChangeLayout = true;
+				FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
+			}
+
+			StripMenu_File_Layout_LockLayout.Checked = c.Life.LockLayout;
+			MainDockPanel.CanCloseFloatWindowInLock = c.Life.CanCloseFloatWindowInLock;
+
+			StripMenu_File_Layout_TopMost.Checked = c.Life.TopMost;
+
+			StripMenu_File_Notification_MuteAll.Checked = Notifier.NotifierManager.Instance.GetNotifiers().All(n => n.IsSilenced);
+
+			if (!c.Control.UseSystemVolume)
+				_volumeUpdateState = -1;
+			*/
+		}
+
+
 		private void UIUpdateTimer_Tick(object sender, EventArgs e)
 		{
 
@@ -744,7 +808,44 @@ namespace ElectronicObserver.ViewModels
 
 			Logger.Add(2, SoftwareInformation.SoftwareNameEnglish + Resources.IsClosing);
 
+			UIUpdateTimer.Stop();
 
+			// fBrowser.CloseBrowser();
+
+			UpdatePlayTime();
+			SystemEvents.OnSystemShuttingDown();
+
+			// SaveLayout(Configuration.Config.Life.LayoutFilePath);
+
+			// 音量の保存
+			{
+				try
+				{
+					uint id = (uint)Process.GetCurrentProcess().Id;
+					Configuration.Config.Control.LastVolume = BrowserLibCore.VolumeManager.GetApplicationVolume(id);
+					Configuration.Config.Control.LastIsMute = BrowserLibCore.VolumeManager.GetApplicationMute(id);
+
+				}
+				catch (Exception)
+				{
+					/* ぷちっ */
+				}
+
+			}
+		}
+
+		private void Closed()
+		{
+			NotifierManager.Instance.ApplyToConfiguration();
+			Configuration.Instance.Save();
+			RecordManager.Instance.SavePartial();
+			KCDatabase.Instance.Save();
+			APIObserver.Instance.Stop();
+
+			Logger.Add(2, Resources.ClosingComplete);
+
+			if (Configuration.Config.Log.SaveLogFlag)
+				Logger.Save();
 		}
 	}
 }
