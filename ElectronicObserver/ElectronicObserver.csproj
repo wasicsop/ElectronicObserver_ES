@@ -150,6 +150,7 @@
 		<WCFMetadata Include="Service References\" />
 	</ItemGroup>
 	<ItemGroup>
+		<ProjectReference Include="..\AvalonDock.Themes.VS2013\AvalonDock.Themes.VS2013.csproj" />
 		<ProjectReference Include="..\BrowserLibCore\BrowserLibCore.csproj" />
 		<ProjectReference Include="..\DockPanelSuite\WinFormsUI\ThemeVS2012.csproj" />
 		<ProjectReference Include="..\DockPanelSuite\WinFormsUI\WinFormsUI.csproj" />
