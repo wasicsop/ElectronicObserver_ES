@@ -32,6 +32,7 @@ namespace ElectronicObserver.ViewModels
 		private Control View { get; }
 		private DockingManager DockingManager { get; }
 		private System.Windows.Forms.Timer UIUpdateTimer { get; }
+		private string LayoutPath { get; } = @"Settings\DefaultLayout.xml";
 		public bool NotificationsSilenced { get; set; }
 		private DateTime PrevPlayTimeRecorded { get; set; } = DateTime.MinValue;
 
@@ -324,13 +325,6 @@ namespace ElectronicObserver.ViewModels
 			// LoadLayout();
 		}
 
-		private void OpenView(AnchorableViewModel view)
-		{
-			view.Visibility = Visibility.Visible;
-			view.IsSelected = true;
-			view.IsActive = true;
-		}
-
 		#region File
 
 		private void StripMenu_File_SaveData_Save_Click()
@@ -348,6 +342,22 @@ namespace ElectronicObserver.ViewModels
 			}
 		}
 
+		public void SaveLayout()
+		{
+			XmlLayoutSerializer serializer = new(DockingManager);
+			serializer.Serialize(LayoutPath);
+		}
+
+		public void LoadLayout()
+		{
+			if (!File.Exists(LayoutPath)) return;
+
+			DockingManager.Layout = new LayoutRoot();
+
+			XmlLayoutSerializer serializer = new(DockingManager);
+			serializer.Deserialize(LayoutPath);
+		}
+
 		private void StripMenu_File_Notification_MuteAll_Click()
 		{
 			foreach (var n in NotifierManager.Instance.GetNotifiers())
@@ -363,6 +373,17 @@ namespace ElectronicObserver.ViewModels
 
 			dialog.ToConfiguration(Configuration.Config);
 			Configuration.Instance.OnConfigurationChanged();
+		}
+
+		#endregion
+
+		#region View
+
+		private void OpenView(AnchorableViewModel view)
+		{
+			view.Visibility = Visibility.Visible;
+			view.IsSelected = true;
+			view.IsActive = true;
 		}
 
 		#endregion
@@ -623,24 +644,6 @@ namespace ElectronicObserver.ViewModels
 			}
 
 			PrevPlayTimeRecorded = now;
-		}
-
-		private string LayoutPath => @"Settings\DefaultLayout.xml";
-
-		public void SaveLayout()
-		{
-			XmlLayoutSerializer serializer = new(DockingManager);
-			serializer.Serialize(LayoutPath);
-		}
-
-		public void LoadLayout()
-		{
-			if (!File.Exists(LayoutPath)) return;
-
-			DockingManager.Layout = new LayoutRoot();
-
-			XmlLayoutSerializer serializer = new(DockingManager);
-			serializer.Deserialize(LayoutPath);
 		}
 
 		private void Close(CancelEventArgs e)
