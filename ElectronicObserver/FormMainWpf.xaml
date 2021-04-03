@@ -45,8 +45,13 @@
 			<RowDefinition />
 		</Grid.RowDefinitions>
 
-		<Menu Grid.Row="0">
-			<MenuItem Header="File">
+		<Menu Grid.Row="0" Height="Auto" Padding="2">
+			<Menu.Resources>
+				<Style TargetType="MenuItem" BasedOn="{StaticResource DefaultMenuItemStyle}">
+					<Setter Property="FontSize" Value="{Binding FontSize}" />
+				</Style>
+			</Menu.Resources>
+			<MenuItem Header="File" Height="Auto">
 				<MenuItem Header="Record">
 					<MenuItem Header="Save" Command="{Binding SaveDataCommand}" />
 					<MenuItem Header="Load" Command="{Binding LoadDataCommand}" />
@@ -61,7 +66,7 @@
 				<Separator />
 				<MenuItem Header="Settings" Command="{Binding OpenConfigurationCommand}" />
 			</MenuItem>
-			<MenuItem Header="View">
+			<MenuItem Header="View" Height="Auto">
 				<MenuItem Header="Fleet">
 					<MenuItem Header="#1" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormFleets[0]}" />
 					<MenuItem Header="#2" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormFleets[1]}" />
@@ -86,7 +91,7 @@
 				<MenuItem Header="Browser" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormBrowserHost}" />
 				<MenuItem Header="Log" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormLog}" />
 			</MenuItem>
-			<MenuItem Header="Wpf">
+			<MenuItem Header="Wpf" Height="Auto">
 				<MenuItem Header="Fleet">
 					<MenuItem Header="#1" Command="{Binding OpenViewCommand}" CommandParameter="{Binding Fleets[0]}" />
 					<MenuItem Header="#2" Command="{Binding OpenViewCommand}" CommandParameter="{Binding Fleets[1]}" />
@@ -96,7 +101,7 @@
 				<Separator />
 				<MenuItem Header="Log" Command="{Binding OpenViewCommand}" CommandParameter="{Binding LogViewModel}" />
 			</MenuItem>
-			<MenuItem Header="Tools">
+			<MenuItem Header="Tools" Height="Auto">
 				<MenuItem Header="Equipment List" Command="{Binding OpenEquipmentListCommand}" />
 				<Separator />
 				<MenuItem Header="Drop Record" Command="{Binding OpenDropRecordCommand}" />
@@ -115,7 +120,7 @@
 				<MenuItem Header="Ship Progression List" Command="{Binding OpenKancolleProgressCommand}" />
 				<MenuItem Header="Extra Browser" Command="{Binding OpenExtraBrowserCommand}" />
 			</MenuItem>
-			<MenuItem Header="Help">
+			<MenuItem Header="Help" Height="Auto">
 				<MenuItem Header="View Help" Command="{Binding ViewHelpCommand}" />
 				<MenuItem Header="Report a Problem" Command="{Binding ReportIssueCommand}" />
 				<MenuItem Header="Join us on Discord" Command="{Binding JoinDiscordCommand}" />
