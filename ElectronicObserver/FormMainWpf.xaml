@@ -111,6 +111,14 @@
 				<MenuItem Header="Ship Progression List" Command="{Binding OpenKancolleProgressCommand}" />
 				<MenuItem Header="Extra Browser" Command="{Binding OpenExtraBrowserCommand}" />
 			</MenuItem>
+			<MenuItem Header="Help">
+				<MenuItem Header="View Help" Command="{Binding ViewHelpCommand}" />
+				<MenuItem Header="Report a Problem" Command="{Binding ReportIssueCommand}" />
+				<MenuItem Header="Join us on Discord" Command="{Binding JoinDiscordCommand}" />
+				<Separator />
+				<MenuItem Header="Check for Update" Command="{Binding CheckForUpdateCommand}" />
+				<MenuItem Header="About Electronic Observer" Command="{Binding ViewVersionCommand}" />
+			</MenuItem>
 		</Menu>
 
 		<DockingManager

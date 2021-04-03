@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows;
@@ -82,6 +83,12 @@ namespace ElectronicObserver.ViewModels
 		public ICommand LoadLayoutCommand { get; }
 		public ICommand ClosingCommand { get; }
 
+		public ICommand ViewHelpCommand { get; }
+		public ICommand ReportIssueCommand { get; }
+		public ICommand JoinDiscordCommand { get; }
+		public ICommand CheckForUpdateCommand { get; }
+		public ICommand ViewVersionCommand { get; }
+
 		public FormMainViewModel(DockingManager dockingManager, Control view)
 		{
 			View = view;
@@ -106,6 +113,12 @@ namespace ElectronicObserver.ViewModels
 			OpenExpeditionCheckCommand = new RelayCommand(StripMenu_Tool_ExpeditionCheck_Click);
 			OpenKancolleProgressCommand = new RelayCommand(StripMenu_Tool_KancolleProgress_Click);
 			OpenExtraBrowserCommand = new RelayCommand(StripMenu_Tool_ExtraBrowser_Click);
+
+			ViewHelpCommand = new RelayCommand(StripMenu_Help_Help_Click);
+			ReportIssueCommand = new RelayCommand(StripMenu_Help_Issue_Click);
+			JoinDiscordCommand = new RelayCommand(StripMenu_Help_Discord_Click);
+			CheckForUpdateCommand = new RelayCommand(StripMenu_Help_Update_Click);
+			ViewVersionCommand = new RelayCommand(StripMenu_Help_Version_Click);
 
 			OpenViewCommand = new RelayCommand<AnchorableViewModel>(OpenView);
 			SaveLayoutCommand = new RelayCommand(SaveLayout);
@@ -198,7 +211,7 @@ namespace ElectronicObserver.ViewModels
 			#endregion
 
 
-			APIObserver.Instance.Start(Utility.Configuration.Config.Connection.Port, View);
+			APIObserver.Instance.Start(Configuration.Config.Connection.Port, View);
 
 
 			// MainDockPanel.Extender.FloatWindowFactory = new CustomFloatWindowFactory();
@@ -279,7 +292,7 @@ namespace ElectronicObserver.ViewModels
 			UIUpdateTimer.Tick += UIUpdateTimer_Tick;
 			UIUpdateTimer.Start();
 
-			Utility.Logger.Add(3, Resources.StartupComplete);
+			Logger.Add(3, Resources.StartupComplete);
 
 			Fleets = new()
 			{
@@ -508,6 +521,72 @@ namespace ElectronicObserver.ViewModels
 		private void StripMenu_Tool_ExtraBrowser_Click()
 		{
 			Window.FormBrowserHost.Instance.Browser.OpenExtraBrowser();
+		}
+
+		#endregion
+
+		#region Help
+
+		private void StripMenu_Help_Help_Click()
+		{
+
+			if (MessageBox.Show("This will open the EO wiki with your browser.\r\nAre you sure?", "Help",
+				    MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes)
+			    == MessageBoxResult.Yes)
+			{
+				ProcessStartInfo psi = new()
+				{
+					FileName = "https://github.com/silfumus/ElectronicObserver/wiki",
+					UseShellExecute = true
+				};
+				Process.Start(psi);
+			}
+
+		}
+
+		private void StripMenu_Help_Issue_Click()
+		{
+
+			if (MessageBox.Show("This will open a page with your browser.\r\nAre you sure?", "Report A Problem",
+				    MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes)
+			    == MessageBoxResult.Yes)
+			{
+				ProcessStartInfo psi = new()
+				{
+					FileName = "https://github.com/gre4bee/ElectronicObserver/issues",
+					UseShellExecute = true
+				};
+				Process.Start(psi);
+			}
+
+		}
+
+		private void StripMenu_Help_Discord_Click()
+		{
+			try
+			{
+				ProcessStartInfo psi = new()
+				{
+					FileName = @"https://discord.gg/6ZvX8DG",
+					UseShellExecute = true
+				};
+				Process.Start(psi);
+			}
+			catch (Exception ex)
+			{
+				ErrorReporter.SendErrorReport(ex, "Failed to search on Google.");
+			}
+		}
+
+		private void StripMenu_Help_Update_Click()
+		{
+			SoftwareInformation.CheckUpdate();
+		}
+
+		private void StripMenu_Help_Version_Click()
+		{
+			using DialogVersion dialog = new();
+			dialog.ShowDialog();
 		}
 
 		#endregion
