@@ -5,6 +5,8 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -335,9 +337,9 @@ namespace ElectronicObserver.ViewModels
 			// LoadLayout(Configuration.Config.Life.LayoutFilePath);
 
 
-#if !DEBUG
+#if false // disable update checks for now
 			SoftwareInformation.CheckUpdate();
-			await SoftwareUpdater.CheckUpdateAsync();
+			Task.Run(async () => await SoftwareUpdater.CheckUpdateAsync());
 			CancellationTokenSource cts = new CancellationTokenSource();
 			Task.Run(async () => await SoftwareUpdater.PeriodicUpdateCheckAsync(cts.Token));
 #endif
