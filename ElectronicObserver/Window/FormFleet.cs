@@ -57,7 +57,7 @@ namespace ElectronicObserver.Window
 					Cursor = Cursors.Help
 				};
 
-				State = new FleetState(parent.SetIcon)
+				State = new FleetState
 				{
 					Anchor = AnchorStyles.Left,
 					ForeColor = parent.MainFontColor,
@@ -1034,7 +1034,9 @@ namespace ElectronicObserver.Window
 
 
 			if (Icon != null) ResourceManager.DestroyIcon(Icon);
-			Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[ControlFleet.State.GetIconIndex()]);
+			int iconIndex = ControlFleet.State.GetIconIndex();
+			Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[iconIndex]);
+			SetIcon?.Invoke((ResourceManager.IconContent) iconIndex);
 			if (Parent != null) Parent.Refresh();       //アイコンを更新するため
 
 		}
