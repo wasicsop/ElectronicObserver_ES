@@ -413,7 +413,7 @@ namespace ElectronicObserver.ViewModels
 			Views.Add(FormInformation = new());
 			Views.Add(FormCompass = new());
 			Views.Add(FormBattle = new());
-			Views.Add(FormBrowserHost = new());
+			Views.Add(FormBrowserHost = new() {Visibility = Visibility.Visible});
 			Views.Add(FormLog = new());
 
 			NotificationsSilenced = NotifierManager.Instance.GetNotifiers().All(n => n.IsSilenced);
