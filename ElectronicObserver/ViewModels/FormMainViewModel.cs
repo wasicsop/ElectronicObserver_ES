@@ -37,7 +37,7 @@ namespace ElectronicObserver.ViewModels
 		private DockingManager DockingManager { get; }
 		private Configuration.ConfigurationData Config { get; }
 		private System.Windows.Forms.Timer UIUpdateTimer { get; }
-		private string LayoutPath { get; } = @"Settings\DefaultLayout.xml";
+		private string LayoutPath { get; } = @"Settings\Layout\Default.xml";
 		public bool NotificationsSilenced { get; set; }
 		private DateTime PrevPlayTimeRecorded { get; set; } = DateTime.MinValue;
 		public FontFamily Font { get; set; }
@@ -174,10 +174,8 @@ namespace ElectronicObserver.ViewModels
 			ClosingCommand = new RelayCommand<CancelEventArgs>(Close);
 			ClosedCommand = new RelayCommand(Closed);
 
-			if (!Directory.Exists("Settings"))
-				Directory.CreateDirectory("Settings");
+			Directory.CreateDirectory(@"Settings\Layout");
 
-			
 			// todo the parameter is never used, remove it later
 			Configuration.Instance.Load(null!);
 			Config = Configuration.Config;
