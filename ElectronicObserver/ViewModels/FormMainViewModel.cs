@@ -65,6 +65,7 @@ namespace ElectronicObserver.ViewModels
 		public ImageSource? BattleImageSource { get; }
 		public ImageSource? BrowserHostImageSource { get; }
 		public ImageSource? LogImageSource { get; }
+		public ImageSource? JsonImageSource { get; }
 
 		public ImageSource? EquipmentListImageSource { get; }
 		public ImageSource? DropRecordImageSource { get; }
@@ -104,6 +105,7 @@ namespace ElectronicObserver.ViewModels
 		public FormBattleViewModel FormBattle { get; }
 		public FormBrowserHostViewModel FormBrowserHost { get; }
 		public FormLogViewModel FormLog { get; }
+		public FormJsonViewModel FormJson { get; }
 
 		public ICommand SaveDataCommand { get; }
 		public ICommand LoadDataCommand { get; }
@@ -234,6 +236,7 @@ namespace ElectronicObserver.ViewModels
 			BattleImageSource = ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormBattle);
 			BrowserHostImageSource = ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormBrowser);
 			LogImageSource = ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormLog);
+			JsonImageSource = ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormJson);
 
 			EquipmentListImageSource = ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormEquipmentList);
 			DropRecordImageSource = ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormDropRecord);
@@ -415,6 +418,7 @@ namespace ElectronicObserver.ViewModels
 			Views.Add(FormBattle = new());
 			Views.Add(FormBrowserHost = new() {Visibility = Visibility.Visible});
 			Views.Add(FormLog = new());
+			Views.Add(FormJson = new());
 
 			NotificationsSilenced = NotifierManager.Instance.GetNotifiers().All(n => n.IsSilenced);
 

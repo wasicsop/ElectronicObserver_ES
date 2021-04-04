@@ -148,6 +148,11 @@
 						<Image Source="{Binding LogImageSource}" />
 					</MenuItem.Icon>
 				</MenuItem>
+				<MenuItem Header="JSON" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormJson}">
+					<MenuItem.Icon>
+						<Image Source="{Binding JsonImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
 			</MenuItem>
 			<MenuItem Header="Wpf" Height="Auto">
 				<MenuItem Header="Fleet">
