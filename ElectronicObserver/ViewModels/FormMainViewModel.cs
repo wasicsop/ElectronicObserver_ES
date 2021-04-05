@@ -25,6 +25,7 @@ using ElectronicObserver.Window;
 using ElectronicObserver.Window.Dialog;
 using ElectronicObserver.Window.Wpf;
 using ElectronicObserver.Window.Wpf.Fleet.ViewModels;
+using ElectronicObserver.Window.Wpf.ShipGroup.ViewModels;
 using ElectronicObserver.Window.Wpf.WinformsWrappers;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
@@ -90,6 +91,7 @@ namespace ElectronicObserver.ViewModels
 		public ObservableCollection<AnchorableViewModel> Views { get; } = new();
 
 		public List<FleetViewModel> Fleets { get; }
+		// public ShipGroupViewModel ShipGroup { get; }
 
 		public List<FormFleetViewModel> FormFleets { get; }
 		public FormFleetOverviewViewModel FormFleetOverview { get; }
@@ -393,6 +395,7 @@ namespace ElectronicObserver.ViewModels
 			{
 				Views.Add(fleet);
 			}
+			// Views.Add(ShipGroup = new());
 
 			FormFleets = new()
 			{

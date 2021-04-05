@@ -23,6 +23,8 @@
         xmlns:winformsHost="clr-namespace:ElectronicObserver.Window.Wpf.WinformsHost"
         xmlns:winformsWrappers="clr-namespace:ElectronicObserver.Window.Wpf.WinformsWrappers"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:viewModels2="clr-namespace:ElectronicObserver.Window.Wpf.ShipGroup.ViewModels"
+        xmlns:shipGroup="clr-namespace:ElectronicObserver.Window.Wpf.ShipGroup"
         ui:WindowHelper.UseModernWindowStyle="True"
 
         mc:Ignorable="d"
@@ -164,6 +166,13 @@
 					<MenuItem Header="#3" Command="{Binding OpenViewCommand}" CommandParameter="{Binding Fleets[2]}" />
 					<MenuItem Header="#4" Command="{Binding OpenViewCommand}" CommandParameter="{Binding Fleets[3]}" />
 				</MenuItem>
+				<!--
+				<MenuItem Header="Group" Command="{Binding OpenViewCommand}" CommandParameter="{Binding ShipGroup}">
+					<MenuItem.Icon>
+						<Image Source="{Binding ShipGroupImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				-->
 			</MenuItem>
 			<MenuItem Header="Tools" Height="Auto">
 				<MenuItem Header="Equipment List" Command="{Binding OpenEquipmentListCommand}">
@@ -289,6 +298,11 @@
 							<fleet:FleetView ViewModel="{Binding}" />
 						</DataTemplate>
 					</local:ViewTemplateSelector.FleetTemplate>
+					<local:ViewTemplateSelector.ShipGroupTemplate>
+						<DataTemplate DataType="viewModels2:ShipGroupViewModel">
+							<shipGroup:ShipGroupView ViewModel="{Binding}" />
+						</DataTemplate>
+					</local:ViewTemplateSelector.ShipGroupTemplate>
 					<local:ViewTemplateSelector.WinformsHostTemplate>
 						<DataTemplate DataType="winformsWrappers:FormBrowserHostViewModel">
 							<winformsHost:WinformsHostView ViewModel="{Binding}"/>
