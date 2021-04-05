@@ -335,8 +335,6 @@ namespace ElectronicObserver.ViewModels
 			SubForms.Add(fFleetPreset = new FormFleetPreset(this));
 			*/
 
-			// ConfigurationChanged();     //設定から初期化
-
 			// LoadLayout(Configuration.Config.Life.LayoutFilePath);
 
 
@@ -422,6 +420,8 @@ namespace ElectronicObserver.ViewModels
 			Views.Add(FormBrowserHost = new() {Visibility = Visibility.Visible});
 			Views.Add(FormLog = new());
 			Views.Add(FormJson = new());
+
+			ConfigurationChanged();     //設定から初期化
 
 			NotificationsSilenced = NotifierManager.Instance.GetNotifiers().All(n => n.IsSilenced);
 
@@ -715,7 +715,15 @@ namespace ElectronicObserver.ViewModels
 					f.BackColor = SystemColors.Control;
 					f.ForeColor = SystemColors.ControlText;
 				}
+			}*/
+
+			if (FormShipGroup.WinformsControl is not null)
+			{
+				FormShipGroup.WinformsControl.BackColor = System.Drawing.SystemColors.Control;
+				FormShipGroup.WinformsControl.ForeColor = System.Drawing.SystemColors.ControlText;
 			}
+
+			/*
 
 			StripStatus_Information.BackColor = System.Drawing.Color.Transparent;
 			StripStatus_Information.Margin = new Padding(-1, 1, -1, 0);
