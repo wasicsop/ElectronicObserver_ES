@@ -28,6 +28,8 @@ namespace ElectronicObserver.Window.Wpf
 
 			InitializeComponent();
 
+			HideOnClose = true;
+
 			WpfHost.Dock = DockStyle.Fill;
 			WpfHost.Child = FleetView;
 
