@@ -25,6 +25,7 @@
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:viewModels2="clr-namespace:ElectronicObserver.Window.Wpf.ShipGroup.ViewModels"
         xmlns:shipGroup="clr-namespace:ElectronicObserver.Window.Wpf.ShipGroup"
+        xmlns:compass="clr-namespace:ElectronicObserver.Window.Wpf.Compass"
         ui:WindowHelper.UseModernWindowStyle="True"
 
         mc:Ignorable="d"
@@ -173,6 +174,12 @@
 					</MenuItem.Icon>
 				</MenuItem>
 				-->
+				<Separator />
+				<MenuItem Header="Compass" Command="{Binding OpenViewCommand}" CommandParameter="{Binding Compass}">
+					<MenuItem.Icon>
+						<Image Source="{Binding CompassImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
 			</MenuItem>
 			<MenuItem Header="Tools" Height="Auto">
 				<MenuItem Header="Equipment List" Command="{Binding OpenEquipmentListCommand}">
@@ -303,6 +310,11 @@
 							<shipGroup:ShipGroupView ViewModel="{Binding}" />
 						</DataTemplate>
 					</local:ViewTemplateSelector.ShipGroupTemplate>
+					<local:ViewTemplateSelector.CompassTemplate>
+						<DataTemplate DataType="compass:CompassViewModel">
+							<compass:CompassView ViewModel="{Binding}" />
+						</DataTemplate>
+					</local:ViewTemplateSelector.CompassTemplate>
 					<local:ViewTemplateSelector.WinformsHostTemplate>
 						<DataTemplate DataType="winformsWrappers:FormBrowserHostViewModel">
 							<winformsHost:WinformsHostView ViewModel="{Binding}"/>
