@@ -51,7 +51,7 @@ namespace ElectronicObserver.Window.Wpf.Compass.ViewModels
 
 		public string? EquipmentToolTip => Ship switch
 		{
-			not null => GetEquipmentString(Ship.ShipID, Ship.DefaultSlot.ToArray()),
+			not null => GetEquipmentString(Ship.ShipID, Slot),
 			_ => null
 		};
 
@@ -210,7 +210,7 @@ namespace ElectronicObserver.Window.Wpf.Compass.ViewModels
 
 		}
 
-		private static string GetEquipmentString(int shipID, int[] slot)
+		private static string? GetEquipmentString(int shipID, int[]? slot)
 		{
 			StringBuilder sb = new();
 			ShipDataMaster ship = KCDatabase.Instance.MasterShips[shipID];
