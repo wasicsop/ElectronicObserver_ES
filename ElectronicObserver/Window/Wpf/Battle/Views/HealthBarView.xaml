@@ -1,0 +1,64 @@
+﻿<UserControl x:Class="ElectronicObserver.Window.Wpf.Battle.Views.HealthBarView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ElectronicObserver.Window.Wpf.Battle"
+
+			 x:Name="HealthBarControl"
+
+             mc:Ignorable="d" 
+             d:DesignHeight="45" d:DesignWidth="180">
+	<Border
+		DataContext="{Binding ViewModel, ElementName=HealthBarControl}"
+		Background="{Binding BackgroundColor}"
+		ToolTip="{Binding ToolTip}"
+		>
+		<Grid Visibility="{Binding Visibility}" IsSharedSizeScope="True">
+			<Grid.Resources>
+				<Style TargetType="TextBlock">
+					<Setter Property="Margin" Value="0" />
+				</Style>
+			</Grid.Resources>
+
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="*" />
+			</Grid.RowDefinitions>
+
+			<Grid Grid.Row="0">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto" SharedSizeGroup="HealthBarSideValue" />
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="Auto" SharedSizeGroup="HealthBarSideValue" />
+				</Grid.ColumnDefinitions>
+
+				<TextBlock Grid.Column="0" Text="{Binding Text}" d:Text="DD" VerticalAlignment="Bottom" FontSize="9" Foreground="{Binding SubFontBrush}" />
+				<TextBlock Grid.Column="1" Text="{Binding Health}" d:Text="13" TextAlignment="Center" Margin="4 0" Foreground="{Binding MainFontBrush}" />
+				<TextBlock Grid.Column="2" Text="{Binding DamageTaken}" d:Text="-6" TextAlignment="Right" VerticalAlignment="Bottom" FontSize="9" Foreground="{Binding SubFontBrush}" />
+			</Grid>
+
+			<ProgressBar
+			Grid.Row="1"
+			Value="{Binding PrevValue}"
+			Maximum="{Binding MaximumValue}"
+			Foreground="DarkRed"
+
+			d:Foreground="DarkRed"
+			d:Value="19"
+			d:Maximum="29"
+		/>
+
+			<ProgressBar
+		    Grid.Row="1"
+			Value="{Binding Value}"
+			Maximum="{Binding MaximumValue}"
+			Foreground="{Binding HealthBarBrush}"
+			
+		    d:Foreground="Orange"
+			d:Value="13"
+			d:Maximum="29"
+		    />
+		</Grid>
+	</Border>
+</UserControl>
