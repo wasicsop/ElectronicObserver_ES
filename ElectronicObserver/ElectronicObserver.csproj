@@ -266,7 +266,7 @@
 			<LastGenOutput>DialogRes.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 		<EmbeddedResource Update="Window\GeneralRes.resx">
-			<Generator>ResXFileCodeGenerator</Generator>
+			<Generator>PublicResXFileCodeGenerator</Generator>
 			<LastGenOutput>GeneralRes.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 	</ItemGroup>
