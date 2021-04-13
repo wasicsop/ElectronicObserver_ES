@@ -3,6 +3,7 @@ using System.Windows.Controls;
 using ElectronicObserver.Window.Wpf.Battle;
 using ElectronicObserver.Window.Wpf.Compass;
 using ElectronicObserver.Window.Wpf.Fleet.ViewModels;
+using ElectronicObserver.Window.Wpf.Headquarters;
 using ElectronicObserver.Window.Wpf.ShipGroup.ViewModels;
 using ElectronicObserver.Window.Wpf.WinformsHost;
 
@@ -12,6 +13,7 @@ namespace ElectronicObserver
 	{
 		public DataTemplate? FleetTemplate { get; set; }
 		public DataTemplate? ShipGroupTemplate { get; set; }
+		public DataTemplate? HeadquartersTemplate { get; set; }
 		public DataTemplate? CompassTemplate { get; set; }
 		public DataTemplate? BattleTemplate { get; set; }
 
@@ -22,6 +24,7 @@ namespace ElectronicObserver
 		{
 			FleetViewModel => FleetTemplate,
 			ShipGroupViewModel => ShipGroupTemplate,
+			HeadquartersViewModel => HeadquartersTemplate,
 			CompassViewModel => CompassTemplate,
 			BattleViewModel => BattleTemplate,
 

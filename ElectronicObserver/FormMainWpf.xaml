@@ -27,6 +27,7 @@
         xmlns:shipGroup="clr-namespace:ElectronicObserver.Window.Wpf.ShipGroup"
         xmlns:compass="clr-namespace:ElectronicObserver.Window.Wpf.Compass"
         xmlns:battle="clr-namespace:ElectronicObserver.Window.Wpf.Battle"
+        xmlns:headquarters="clr-namespace:ElectronicObserver.Window.Wpf.Headquarters"
         ui:WindowHelper.UseModernWindowStyle="True"
 
         mc:Ignorable="d"
@@ -176,6 +177,12 @@
 				</MenuItem>
 				-->
 				<Separator />
+				<MenuItem Header="HQ" Command="{Binding OpenViewCommand}" CommandParameter="{Binding Headquarters}">
+					<MenuItem.Icon>
+						<Image Source="{Binding HeadquartersImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<Separator />
 				<MenuItem Header="Compass" Command="{Binding OpenViewCommand}" CommandParameter="{Binding Compass}">
 					<MenuItem.Icon>
 						<Image Source="{Binding CompassImageSource}" />
@@ -316,6 +323,11 @@
 							<shipGroup:ShipGroupView ViewModel="{Binding}" />
 						</DataTemplate>
 					</local:ViewTemplateSelector.ShipGroupTemplate>
+					<local:ViewTemplateSelector.HeadquartersTemplate>
+						<DataTemplate DataType="headquarters:HeadquartersViewModel">
+							<headquarters:HeadquartersView ViewModel="{Binding}" />
+						</DataTemplate>
+					</local:ViewTemplateSelector.HeadquartersTemplate>
 					<local:ViewTemplateSelector.CompassTemplate>
 						<DataTemplate DataType="compass:CompassViewModel">
 							<compass:CompassView ViewModel="{Binding}" />
