@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Threading;
 using System.Windows;
+using System.Windows.Controls;
 using ElectronicObserver.Window;
 
 namespace ElectronicObserver
@@ -60,6 +61,8 @@ namespace ElectronicObserver
 
 				}
 #else
+				ToolTipService.ShowDurationProperty.OverrideMetadata(
+					typeof(DependencyObject), new FrameworkPropertyMetadata(int.MaxValue));
 				new FormMainWpf().ShowDialog();
 #endif
 			}
