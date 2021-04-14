@@ -251,7 +251,7 @@ namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels
 		private DateTime StateTime { get; set; }
 		public string FleetStatusText { get; set; } = "";
 		private string FleetStatusShortText { get; set; } = "";
-		private ResourceManager.IconContent ImageIndex { get; set; }
+		private ResourceManager.IconContent ImageIndex { get; set; } = ResourceManager.IconContent.Nothing;
 		private Color BackColor { get; set; }
 		public string? FleetStatusToolTip { get; set; }
 		public ImageSource? FleetStatusImage => ImageSourceIcons.GetIcon(ImageIndex);
