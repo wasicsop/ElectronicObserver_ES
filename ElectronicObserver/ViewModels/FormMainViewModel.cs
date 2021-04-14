@@ -27,6 +27,7 @@ using ElectronicObserver.Window.Wpf;
 using ElectronicObserver.Window.Wpf.Battle;
 using ElectronicObserver.Window.Wpf.Compass;
 using ElectronicObserver.Window.Wpf.Fleet.ViewModels;
+using ElectronicObserver.Window.Wpf.FleetOverview;
 using ElectronicObserver.Window.Wpf.Headquarters;
 using ElectronicObserver.Window.Wpf.ShipGroup.ViewModels;
 using ElectronicObserver.Window.Wpf.WinformsWrappers;
@@ -94,6 +95,7 @@ namespace ElectronicObserver.ViewModels
 		public ObservableCollection<AnchorableViewModel> Views { get; } = new();
 
 		public List<FleetViewModel> Fleets { get; }
+		public FleetOverviewViewModel FleetOverview { get; }
 		// public ShipGroupViewModel ShipGroup { get; }
 		public HeadquartersViewModel Headquarters { get; }
 		public CompassViewModel Compass { get; }
@@ -399,6 +401,7 @@ namespace ElectronicObserver.ViewModels
 			{
 				Views.Add(fleet);
 			}
+			Views.Add(FleetOverview = new(Fleets));
 			// Views.Add(ShipGroup = new());
 			Views.Add(Headquarters = new());
 			Views.Add(Compass = new());

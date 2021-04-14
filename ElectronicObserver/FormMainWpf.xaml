@@ -28,6 +28,7 @@
         xmlns:compass="clr-namespace:ElectronicObserver.Window.Wpf.Compass"
         xmlns:battle="clr-namespace:ElectronicObserver.Window.Wpf.Battle"
         xmlns:headquarters="clr-namespace:ElectronicObserver.Window.Wpf.Headquarters"
+        xmlns:fleetOverview="clr-namespace:ElectronicObserver.Window.Wpf.FleetOverview"
         ui:WindowHelper.UseModernWindowStyle="True"
 
         mc:Ignorable="d"
@@ -168,6 +169,11 @@
 					<MenuItem Header="#2" Command="{Binding OpenViewCommand}" CommandParameter="{Binding Fleets[1]}" />
 					<MenuItem Header="#3" Command="{Binding OpenViewCommand}" CommandParameter="{Binding Fleets[2]}" />
 					<MenuItem Header="#4" Command="{Binding OpenViewCommand}" CommandParameter="{Binding Fleets[3]}" />
+				</MenuItem>
+				<MenuItem Header="Fleet List" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FleetOverview}">
+					<MenuItem.Icon>
+						<Image Source="{Binding FleetsImageSource}" />
+					</MenuItem.Icon>
 				</MenuItem>
 				<!--
 				<MenuItem Header="Group" Command="{Binding OpenViewCommand}" CommandParameter="{Binding ShipGroup}">
@@ -318,6 +324,11 @@
 							<fleet:FleetView ViewModel="{Binding}" />
 						</DataTemplate>
 					</local:ViewTemplateSelector.FleetTemplate>
+					<local:ViewTemplateSelector.FleetOverviewTemplate>
+						<DataTemplate DataType="fleetOverview:FleetOverviewViewModel">
+							<fleetOverview:FleetOverviewView ViewModel="{Binding}" />
+						</DataTemplate>
+					</local:ViewTemplateSelector.FleetOverviewTemplate>
 					<local:ViewTemplateSelector.ShipGroupTemplate>
 						<DataTemplate DataType="viewModels2:ShipGroupViewModel">
 							<shipGroup:ShipGroupView ViewModel="{Binding}" />
