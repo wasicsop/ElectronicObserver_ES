@@ -12,13 +12,18 @@
              mc:Ignorable="d" 
              d:DesignHeight="250" d:DesignWidth="300">
 
-	<Border Background="Transparent"
-	        DataContext="{Binding ViewModel, ElementName=BattleControl}"
-	        ContextMenuOpening="FrameworkElement_OnContextMenuOpening"
-	>
+	<Border 
+		Background="Transparent"
+		DataContext="{Binding ViewModel, ElementName=BattleControl}"
+		Visibility="{Binding ViewVisibility}"
+		ContextMenuOpening="FrameworkElement_OnContextMenuOpening"
+		>
 		<Border.ContextMenu>
 			<ContextMenu>
-				<MenuItem Header="{x:Static window:GeneralRes.RightClickMenu_ShowBattleDetail}" Command="{Binding ShowBattleDetailCommand}" />
+				<MenuItem 
+					Header="{x:Static window:GeneralRes.RightClickMenu_ShowBattleDetail}"
+					Command="{Binding ShowBattleDetailCommand}"
+					/>
 				<!--
 				<Separator />
 				<MenuItem Header="{x:Static window:GeneralRes.RightClickMenu_ShowBattleResult}" />
@@ -27,11 +32,9 @@
 		</Border.ContextMenu>
 
 		<Grid
-		Visibility="{Binding ViewVisibility}"
-		HorizontalAlignment="Center"
-		Margin="4"
-		IsSharedSizeScope="True"
-		>
+			HorizontalAlignment="Center"
+			Margin="4"
+			IsSharedSizeScope="True">
 			<Grid.Resources>
 				<Style TargetType="TextBlock">
 					<Setter Property="Margin" Value="2" />
@@ -41,133 +44,152 @@
 				</Style>
 			</Grid.Resources>
 
-			<Grid.RowDefinitions>
-				<RowDefinition Height="Auto" />
-				<RowDefinition Height="Auto" />
-				<RowDefinition Height="Auto" />
-				<RowDefinition Height="Auto" />
-				<RowDefinition Height="Auto" />
-				<RowDefinition Height="Auto" />
-				<RowDefinition Height="Auto" />
-				<RowDefinition Height="Auto" />
-				<RowDefinition Height="Auto" />
-				<RowDefinition Height="Auto" />
-			</Grid.RowDefinitions>
+			<ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto">
+				<WrapPanel Orientation="Vertical">
+					<Grid>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="Auto" />
+							<RowDefinition Height="Auto" />
+							<RowDefinition Height="Auto" />
+							<RowDefinition Height="Auto" />
+							<RowDefinition Height="Auto" />
+							<RowDefinition Height="Auto" />
+						</Grid.RowDefinitions>
 
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition SharedSizeGroup="BattleViewMainColumn" />
-				<ColumnDefinition SharedSizeGroup="BattleViewEscortColumn" />
-				<ColumnDefinition SharedSizeGroup="BattleViewEscortColumn" />
-				<ColumnDefinition SharedSizeGroup="BattleViewMainColumn" />
-			</Grid.ColumnDefinitions>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition SharedSizeGroup="BattleViewMainColumn" />
+							<ColumnDefinition SharedSizeGroup="BattleViewEscortColumn" />
+							<ColumnDefinition SharedSizeGroup="BattleViewEscortColumn" />
+							<ColumnDefinition SharedSizeGroup="BattleViewMainColumn" />
+						</Grid.ColumnDefinitions>
 
-			<TextBlock Grid.Row="0" Grid.Column="0" TextAlignment="Center" Text="{Binding FormationFriendText}" d:Text="LA"/>
-			<TextBlock Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" TextAlignment="Center" Text="{Binding FormationText}" Foreground="{Binding FormationForeColor}" d:Text="Parallel"/>
-			<TextBlock Grid.Row="0" Grid.Column="3" TextAlignment="Center" Text="{Binding FormationEnemyText}" d:Text="LA"/>
+						<TextBlock Grid.Row="0" Grid.Column="0" TextAlignment="Center" Text="{Binding FormationFriendText}" d:Text="LA"/>
+						<TextBlock Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" TextAlignment="Center" Text="{Binding FormationText}" Foreground="{Binding FormationForeColor}" d:Text="Parallel"/>
+						<TextBlock Grid.Row="0" Grid.Column="3" TextAlignment="Center" Text="{Binding FormationEnemyText}" d:Text="LA"/>
 
-			<Border Grid.Row="1" Grid.Column="0" Background="Transparent" ToolTip="{Binding SearchingFriendToolTip}">
-				<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-					<Image Source="{Binding SearchingFriendIcon}" />
-					<TextBlock TextAlignment="Center" Text="{Binding SearchingFriendText}" d:Text="Success"/>
-				</StackPanel>
-			</Border>
-			<Border Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Background="Transparent" ToolTip="{Binding SearchingToolTip}">
-				<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-					<Image Source="{Binding SearchingIcon}" />
-					<TextBlock TextAlignment="Center" Text="{Binding SearchingText}" d:Text="-" />
-				</StackPanel>
-			</Border>
-			<Border Grid.Row="1" Grid.Column="3" Background="Transparent" ToolTip="{Binding SearchingEnemyToolTip}">
-				<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-					<Image Source="{Binding SearchingEnemyIcon}" />
-					<TextBlock TextAlignment="Center" Text="{Binding SearchingEnemyText}" d:Text="Success"/>
-				</StackPanel>
-			</Border>
+						<Border Grid.Row="1" Grid.Column="0" Background="Transparent" ToolTip="{Binding SearchingFriendToolTip}">
+							<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+								<Image Source="{Binding SearchingFriendIcon}" />
+								<TextBlock TextAlignment="Center" Text="{Binding SearchingFriendText}" d:Text="Success"/>
+							</StackPanel>
+						</Border>
+						<Border Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Background="Transparent" ToolTip="{Binding SearchingToolTip}">
+							<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+								<Image Source="{Binding SearchingIcon}" />
+								<TextBlock TextAlignment="Center" Text="{Binding SearchingText}" d:Text="-" />
+							</StackPanel>
+						</Border>
+						<Border Grid.Row="1" Grid.Column="3" Background="Transparent" ToolTip="{Binding SearchingEnemyToolTip}">
+							<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+								<Image Source="{Binding SearchingEnemyIcon}" />
+								<TextBlock TextAlignment="Center" Text="{Binding SearchingEnemyText}" d:Text="Success"/>
+							</StackPanel>
+						</Border>
 
-			<Separator Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" />
+						<Separator Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" />
 
-			<Border Grid.Row="3" Grid.Column="0" Background="Transparent" ToolTip="{Binding AirStage1FriendToolTip}">
-				<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-					<Image Source="{Binding AirStage1FriendIcon}" />
-					<TextBlock Text="{Binding AirStage1FriendText}" Foreground="{Binding AirStage1FriendForeColor}" TextAlignment="Center" d:Text="-20/200"/>
-				</StackPanel>
-			</Border>
-			<TextBlock Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" TextAlignment="Center" Text="{Binding AirSuperiorityText}" ToolTip="{Binding AirSuperiorityToolTip}" Foreground="{Binding AirSuperiorityForeColor}" d:Text="AS"/>
-			<Border Grid.Row="3" Grid.Column="3" Background="Transparent" ToolTip="{Binding AirStage1EnemyToolTip}">
-				<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-					<Image Source="{Binding AirStage1EnemyIcon}" />
-					<TextBlock Text="{Binding AirStage1EnemyText}" Foreground="{Binding AirStage1EnemyForeColor}" TextAlignment="Center" d:Text="-20/200"/>
-				</StackPanel>
-			</Border>
+						<Border Grid.Row="3" Grid.Column="0" Background="Transparent" ToolTip="{Binding AirStage1FriendToolTip}">
+							<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+								<Image Source="{Binding AirStage1FriendIcon}" />
+								<TextBlock Text="{Binding AirStage1FriendText}" Foreground="{Binding AirStage1FriendForeColor}" TextAlignment="Center" d:Text="-20/200"/>
+							</StackPanel>
+						</Border>
+						<TextBlock Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" TextAlignment="Center" Text="{Binding AirSuperiorityText}" ToolTip="{Binding AirSuperiorityToolTip}" Foreground="{Binding AirSuperiorityForeColor}" d:Text="AS"/>
+						<Border Grid.Row="3" Grid.Column="3" Background="Transparent" ToolTip="{Binding AirStage1EnemyToolTip}">
+							<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+								<Image Source="{Binding AirStage1EnemyIcon}" />
+								<TextBlock Text="{Binding AirStage1EnemyText}" Foreground="{Binding AirStage1EnemyForeColor}" TextAlignment="Center" d:Text="-20/200"/>
+							</StackPanel>
+						</Border>
 
-			<Border Grid.Row="4" Grid.Column="0" Background="Transparent" ToolTip="{Binding AirStage2FriendToolTip}">
-				<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-					<Image Source="{Binding AirStage2FriendIcon}" />
-					<TextBlock Text="{Binding AirStage2FriendText}" Foreground="{Binding AirStage2FriendForeColor}" TextAlignment="Center" d:Text="-5/150"/>
-				</StackPanel>
-			</Border>
-			<Border Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Background="Transparent" ToolTip="{Binding AACutinToolTip}">
-				<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-					<Image Source="{Binding AACutinIcon}" />
-					<TextBlock Text="{Binding AACutinText}" TextAlignment="Center" d:Text="AA Defense"/>
-				</StackPanel>
-			</Border>
-			<Border Grid.Row="4" Grid.Column="3" Background="Transparent" ToolTip="{Binding AirStage2EnemyToolTip}">
-				<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-					<Image Source="{Binding AirStage2EnemyIcon}" />
-					<TextBlock Text="{Binding AirStage2EnemyText}" Foreground="{Binding AirStage2EnemyForeColor}" TextAlignment="Center" d:Text="-5/150"/>
-				</StackPanel>
-			</Border>
+						<Border Grid.Row="4" Grid.Column="0" Background="Transparent" ToolTip="{Binding AirStage2FriendToolTip}">
+							<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+								<Image Source="{Binding AirStage2FriendIcon}" />
+								<TextBlock Text="{Binding AirStage2FriendText}" Foreground="{Binding AirStage2FriendForeColor}" TextAlignment="Center" d:Text="-5/150"/>
+							</StackPanel>
+						</Border>
+						<Border Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Background="Transparent" ToolTip="{Binding AACutinToolTip}">
+							<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+								<Image Source="{Binding AACutinIcon}" />
+								<TextBlock Text="{Binding AACutinText}" TextAlignment="Center" d:Text="AA Defense"/>
+							</StackPanel>
+						</Border>
+						<Border Grid.Row="4" Grid.Column="3" Background="Transparent" ToolTip="{Binding AirStage2EnemyToolTip}">
+							<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+								<Image Source="{Binding AirStage2EnemyIcon}" />
+								<TextBlock Text="{Binding AirStage2EnemyText}" Foreground="{Binding AirStage2EnemyForeColor}" TextAlignment="Center" d:Text="-5/150" />
+							</StackPanel>
+						</Border>
 
-			<Separator Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="4" />
+						<Separator Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="4" />
+					</Grid>
 
-			<Border Grid.Row="6" Grid.Column="0" Background="Transparent" ToolTip="{Binding FleetFriendToolTip}">
-				<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-					<Image Source="{Binding FleetFriendIcon}" />
-					<TextBlock Text="{Binding FleetFriendText}" TextAlignment="Center" d:Text="Friendly"/>
-				</StackPanel>
-			</Border>
-			<TextBlock Grid.Row="6" Grid.Column="1" TextAlignment="Center" Text="Escort" Visibility="{Binding FleetFriendEscortVisible}" />
-			<TextBlock Grid.Row="6" Grid.Column="2" TextAlignment="Center" Text="Escort" Background="{Binding FleetEnemyEscortBackColor}" Visibility="{Binding FleetEnemyEscortVisible}" />
-			<TextBlock Grid.Row="6" Grid.Column="3" TextAlignment="Center" Text="Enemy"  Foreground="{Binding FleetEnemyForeColor}" Background="{Binding FleetEnemyBackColor}" />
+					<Grid>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="Auto" />
+							<RowDefinition Height="Auto" />
+							<RowDefinition Height="Auto" />
+							<RowDefinition Height="Auto" />
+						</Grid.RowDefinitions>
 
-			<ItemsControl Grid.Row="7" Grid.Column="0" ItemsSource="{Binding PlayerMainHPBars}" Margin="4">
-				<ItemsControl.ItemTemplate>
-					<DataTemplate>
-						<views:HealthBarView ViewModel="{Binding}" />
-					</DataTemplate>
-				</ItemsControl.ItemTemplate>
-			</ItemsControl>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition SharedSizeGroup="BattleViewMainColumn" />
+							<ColumnDefinition SharedSizeGroup="BattleViewEscortColumn" />
+							<ColumnDefinition SharedSizeGroup="BattleViewEscortColumn" />
+							<ColumnDefinition SharedSizeGroup="BattleViewMainColumn" />
+						</Grid.ColumnDefinitions>
 
-			<ItemsControl Grid.Row="7" Grid.Column="1" ItemsSource="{Binding PlayerEscortHPBars}" Visibility="{Binding FleetFriendEscortVisible}" Margin="4">
-				<ItemsControl.ItemTemplate>
-					<DataTemplate>
-						<views:HealthBarView ViewModel="{Binding}" />
-					</DataTemplate>
-				</ItemsControl.ItemTemplate>
-			</ItemsControl>
+						<Border Grid.Row="0" Grid.Column="0" Background="Transparent" ToolTip="{Binding FleetFriendToolTip}">
+							<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+								<Image Source="{Binding FleetFriendIcon}" />
+								<TextBlock Text="{Binding FleetFriendText}" TextAlignment="Center" d:Text="Friendly"/>
+							</StackPanel>
+						</Border>
+						<TextBlock Grid.Row="0" Grid.Column="1" TextAlignment="Center" Text="Escort" Visibility="{Binding FleetFriendEscortVisible}" />
+						<TextBlock Grid.Row="0" Grid.Column="2" TextAlignment="Center" Text="Escort" Background="{Binding FleetEnemyEscortBackColor}" Visibility="{Binding FleetEnemyEscortVisible}" />
+						<TextBlock Grid.Row="0" Grid.Column="3" TextAlignment="Center" Text="Enemy" Foreground="{Binding FleetEnemyForeColor}" Background="{Binding FleetEnemyBackColor}" />
 
-			<ItemsControl Grid.Row="7" Grid.Column="2" ItemsSource="{Binding EnemyEscortHPBars}" Visibility="{Binding FleetEnemyEscortVisible}" Margin="4">
-				<ItemsControl.ItemTemplate>
-					<DataTemplate>
-						<views:HealthBarView ViewModel="{Binding}" />
-					</DataTemplate>
-				</ItemsControl.ItemTemplate>
-			</ItemsControl>
+						<ItemsControl Grid.Row="1" Grid.Column="0" ItemsSource="{Binding PlayerMainHPBars}" Margin="4">
+							<ItemsControl.ItemTemplate>
+								<DataTemplate>
+									<views:HealthBarView ViewModel="{Binding}" />
+								</DataTemplate>
+							</ItemsControl.ItemTemplate>
+						</ItemsControl>
 
-			<ItemsControl Grid.Row="7" Grid.Column="3" ItemsSource="{Binding EnemyMainHPBars}" Margin="4">
-				<ItemsControl.ItemTemplate>
-					<DataTemplate>
-						<views:HealthBarView ViewModel="{Binding}" />
-					</DataTemplate>
-				</ItemsControl.ItemTemplate>
-			</ItemsControl>
+						<ItemsControl Grid.Row="1" Grid.Column="1" ItemsSource="{Binding PlayerEscortHPBars}" Visibility="{Binding FleetFriendEscortVisible}" Margin="4">
+							<ItemsControl.ItemTemplate>
+								<DataTemplate>
+									<views:HealthBarView ViewModel="{Binding}" />
+								</DataTemplate>
+							</ItemsControl.ItemTemplate>
+						</ItemsControl>
 
-			<TextBlock Grid.Row="8" Grid.Column="0" TextAlignment="Center" Text="{Binding DamageFriendText}" d:Text="11.6%"/>
-			<TextBlock Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2" TextAlignment="Center" Text="{Binding WinRankText}" Foreground="{Binding WinRankForeColor}" d:Text="S"/>
-			<TextBlock Grid.Row="8" Grid.Column="3" TextAlignment="Center" Text="{Binding DamageEnemyText}" d:Text="100%"/>
+						<ItemsControl Grid.Row="1" Grid.Column="2" ItemsSource="{Binding EnemyEscortHPBars}"
+			              Visibility="{Binding FleetEnemyEscortVisible}" Margin="4">
+							<ItemsControl.ItemTemplate>
+								<DataTemplate>
+									<views:HealthBarView ViewModel="{Binding}" />
+								</DataTemplate>
+							</ItemsControl.ItemTemplate>
+						</ItemsControl>
 
-			<Separator Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="4" />
+						<ItemsControl Grid.Row="1" Grid.Column="3" ItemsSource="{Binding EnemyMainHPBars}" Margin="4">
+							<ItemsControl.ItemTemplate>
+								<DataTemplate>
+									<views:HealthBarView ViewModel="{Binding}" />
+								</DataTemplate>
+							</ItemsControl.ItemTemplate>
+						</ItemsControl>
+
+						<TextBlock Grid.Row="2" Grid.Column="0" TextAlignment="Center" Text="{Binding DamageFriendText}" d:Text="11.6%" />
+						<TextBlock Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" TextAlignment="Center" Text="{Binding WinRankText}" Foreground="{Binding WinRankForeColor}" d:Text="S" />
+						<TextBlock Grid.Row="2" Grid.Column="3" TextAlignment="Center" Text="{Binding DamageEnemyText}" d:Text="100%" />
+
+						<Separator Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" />
+					</Grid>
+				</WrapPanel>
+			</ScrollViewer>
 		</Grid>
 	</Border>
 </UserControl>
