@@ -13,7 +13,7 @@
 		DataContext="{Binding ViewModel, ElementName=HealthBarControl}"
 		Background="{Binding BackgroundColor}"
 		ToolTip="{Binding ToolTip}"
-		>
+	>
 		<Grid Visibility="{Binding Visibility}" IsSharedSizeScope="True">
 			<Grid.Resources>
 				<Style TargetType="TextBlock">
@@ -26,7 +26,7 @@
 				<RowDefinition Height="*" />
 			</Grid.RowDefinitions>
 
-			<Grid Grid.Row="0">
+			<Grid Grid.Row="0" x:Name="HealthBarText">
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="Auto" SharedSizeGroup="HealthBarSideValue" />
 					<ColumnDefinition Width="*" />
@@ -39,25 +39,29 @@
 			</Grid>
 
 			<ProgressBar
-			Grid.Row="1"
-			Value="{Binding PrevValue}"
-			Maximum="{Binding MaximumValue}"
-			Foreground="DarkRed"
+				Grid.Row="1"
+				Value="{Binding PrevValue}"
+				Maximum="{Binding MaximumValue}"
+				Foreground="DarkRed"
+				Width="{Binding ActualWidth, ElementName=HealthBarText, Mode=OneWay}"
+				Margin="-1 0"
 
-			d:Foreground="DarkRed"
-			d:Value="19"
-			d:Maximum="29"
-		/>
+				d:Foreground="DarkRed"
+				d:Value="19"
+				d:Maximum="29"
+			/>
 
 			<ProgressBar
-		    Grid.Row="1"
-			Value="{Binding Value}"
-			Maximum="{Binding MaximumValue}"
-			Foreground="{Binding HealthBarBrush}"
-			
-		    d:Foreground="Orange"
-			d:Value="13"
-			d:Maximum="29"
+			    Grid.Row="1"
+				Value="{Binding Value}"
+				Maximum="{Binding MaximumValue}"
+				Foreground="{Binding HealthBarBrush}"
+			    Width="{Binding ActualWidth, ElementName=HealthBarText, Mode=OneWay}"
+			    Margin="-1 0"
+				
+			    d:Foreground="Orange"
+				d:Value="13"
+				d:Maximum="29"
 		    />
 		</Grid>
 	</Border>
