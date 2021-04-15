@@ -29,6 +29,7 @@
         xmlns:battle="clr-namespace:ElectronicObserver.Window.Wpf.Battle"
         xmlns:headquarters="clr-namespace:ElectronicObserver.Window.Wpf.Headquarters"
         xmlns:fleetOverview="clr-namespace:ElectronicObserver.Window.Wpf.FleetOverview"
+        xmlns:dock="clr-namespace:ElectronicObserver.Window.Wpf.Dock"
         ui:WindowHelper.UseModernWindowStyle="True"
 
         mc:Ignorable="d"
@@ -183,6 +184,12 @@
 				</MenuItem>
 				-->
 				<Separator />
+				<MenuItem Header="Dock" Command="{Binding OpenViewCommand}" CommandParameter="{Binding Dock}">
+					<MenuItem.Icon>
+						<Image Source="{Binding DockImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<Separator />
 				<MenuItem Header="HQ" Command="{Binding OpenViewCommand}" CommandParameter="{Binding Headquarters}">
 					<MenuItem.Icon>
 						<Image Source="{Binding HeadquartersImageSource}" />
@@ -334,6 +341,11 @@
 							<shipGroup:ShipGroupView ViewModel="{Binding}" />
 						</DataTemplate>
 					</local:ViewTemplateSelector.ShipGroupTemplate>
+					<local:ViewTemplateSelector.DockTemplate>
+						<DataTemplate DataType="dock:DockViewModel">
+							<dock:DockView ViewModel="{Binding}" />
+						</DataTemplate>
+					</local:ViewTemplateSelector.DockTemplate>
 					<local:ViewTemplateSelector.HeadquartersTemplate>
 						<DataTemplate DataType="headquarters:HeadquartersViewModel">
 							<headquarters:HeadquartersView ViewModel="{Binding}" />
