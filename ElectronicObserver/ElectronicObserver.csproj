@@ -111,6 +111,11 @@
 			<AutoGen>True</AutoGen>
 			<DependentUpon>GeneralRes.resx</DependentUpon>
 		</Compile>
+		<Compile Update="Window\Menus.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>Menus.resx</DependentUpon>
+		</Compile>
 		<Compile Update="Window\Wpf\Fleet\Views\LevelView.xaml.cs">
 		  <SubType>Code</SubType>
 		</Compile>
@@ -268,6 +273,10 @@
 		<EmbeddedResource Update="Window\GeneralRes.resx">
 			<Generator>PublicResXFileCodeGenerator</Generator>
 			<LastGenOutput>GeneralRes.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Window\Menus.resx">
+		  <Generator>PublicResXFileCodeGenerator</Generator>
+		  <LastGenOutput>Menus.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 	</ItemGroup>
 	<ItemGroup>
