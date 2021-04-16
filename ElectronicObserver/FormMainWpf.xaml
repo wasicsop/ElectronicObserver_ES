@@ -30,6 +30,7 @@
         xmlns:headquarters="clr-namespace:ElectronicObserver.Window.Wpf.Headquarters"
         xmlns:fleetOverview="clr-namespace:ElectronicObserver.Window.Wpf.FleetOverview"
         xmlns:dock="clr-namespace:ElectronicObserver.Window.Wpf.Dock"
+        xmlns:arsenal="clr-namespace:ElectronicObserver.Window.Wpf.Arsenal"
         ui:WindowHelper.UseModernWindowStyle="True"
 
         mc:Ignorable="d"
@@ -189,6 +190,11 @@
 						<Image Source="{Binding DockImageSource}" />
 					</MenuItem.Icon>
 				</MenuItem>
+				<MenuItem Header="Arsenal" Command="{Binding OpenViewCommand}" CommandParameter="{Binding Arsenal}">
+					<MenuItem.Icon>
+						<Image Source="{Binding ArsenalImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
 				<Separator />
 				<MenuItem Header="HQ" Command="{Binding OpenViewCommand}" CommandParameter="{Binding Headquarters}">
 					<MenuItem.Icon>
@@ -346,6 +352,11 @@
 							<dock:DockView ViewModel="{Binding}" />
 						</DataTemplate>
 					</local:ViewTemplateSelector.DockTemplate>
+					<local:ViewTemplateSelector.ArsenalTemplate>
+						<DataTemplate DataType="arsenal:ArsenalViewModel">
+							<arsenal:ArsenalView ViewModel="{Binding}" />
+						</DataTemplate>
+					</local:ViewTemplateSelector.ArsenalTemplate>
 					<local:ViewTemplateSelector.HeadquartersTemplate>
 						<DataTemplate DataType="headquarters:HeadquartersViewModel">
 							<headquarters:HeadquartersView ViewModel="{Binding}" />

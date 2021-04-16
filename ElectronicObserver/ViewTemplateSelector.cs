@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using ElectronicObserver.Window.Wpf.Arsenal;
 using ElectronicObserver.Window.Wpf.Battle;
 using ElectronicObserver.Window.Wpf.Compass;
 using ElectronicObserver.Window.Wpf.Dock;
@@ -17,6 +18,7 @@ namespace ElectronicObserver
 		public DataTemplate? FleetOverviewTemplate { get; set; }
 		public DataTemplate? ShipGroupTemplate { get; set; }
 		public DataTemplate? DockTemplate { get; set; }
+		public DataTemplate? ArsenalTemplate { get; set; }
 		public DataTemplate? HeadquartersTemplate { get; set; }
 		public DataTemplate? CompassTemplate { get; set; }
 		public DataTemplate? BattleTemplate { get; set; }
@@ -30,6 +32,7 @@ namespace ElectronicObserver
 			FleetOverviewViewModel => FleetOverviewTemplate,
 			ShipGroupViewModel => ShipGroupTemplate,
 			DockViewModel => DockTemplate,
+			ArsenalViewModel => ArsenalTemplate,
 			HeadquartersViewModel => HeadquartersTemplate,
 			CompassViewModel => CompassTemplate,
 			BattleViewModel => BattleTemplate,
