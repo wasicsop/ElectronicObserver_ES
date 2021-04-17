@@ -31,6 +31,7 @@
         xmlns:fleetOverview="clr-namespace:ElectronicObserver.Window.Wpf.FleetOverview"
         xmlns:dock="clr-namespace:ElectronicObserver.Window.Wpf.Dock"
         xmlns:arsenal="clr-namespace:ElectronicObserver.Window.Wpf.Arsenal"
+        xmlns:baseAirCorps="clr-namespace:ElectronicObserver.Window.Wpf.BaseAirCorps"
         ui:WindowHelper.UseModernWindowStyle="True"
 
         mc:Ignorable="d"
@@ -195,6 +196,11 @@
 						<Image Source="{Binding ArsenalImageSource}" />
 					</MenuItem.Icon>
 				</MenuItem>
+				<MenuItem Header="AB" Command="{Binding OpenViewCommand}" CommandParameter="{Binding BaseAirCorps}">
+					<MenuItem.Icon>
+						<Image Source="{Binding BaseAirCorpsImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
 				<Separator />
 				<MenuItem Header="HQ" Command="{Binding OpenViewCommand}" CommandParameter="{Binding Headquarters}">
 					<MenuItem.Icon>
@@ -357,6 +363,11 @@
 							<arsenal:ArsenalView ViewModel="{Binding}" />
 						</DataTemplate>
 					</local:ViewTemplateSelector.ArsenalTemplate>
+					<local:ViewTemplateSelector.BaseAirCorpsTemplate>
+						<DataTemplate DataType="baseAirCorps:BaseAirCorpsViewModel">
+							<baseAirCorps:BaseAirCorpsView ViewModel="{Binding}" />
+						</DataTemplate>
+					</local:ViewTemplateSelector.BaseAirCorpsTemplate>
 					<local:ViewTemplateSelector.HeadquartersTemplate>
 						<DataTemplate DataType="headquarters:HeadquartersViewModel">
 							<headquarters:HeadquartersView ViewModel="{Binding}" />

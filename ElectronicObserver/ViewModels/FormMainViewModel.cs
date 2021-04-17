@@ -25,6 +25,7 @@ using ElectronicObserver.Window;
 using ElectronicObserver.Window.Dialog;
 using ElectronicObserver.Window.Wpf;
 using ElectronicObserver.Window.Wpf.Arsenal;
+using ElectronicObserver.Window.Wpf.BaseAirCorps;
 using ElectronicObserver.Window.Wpf.Battle;
 using ElectronicObserver.Window.Wpf.Compass;
 using ElectronicObserver.Window.Wpf.Dock;
@@ -101,6 +102,7 @@ namespace ElectronicObserver.ViewModels
 		// public ShipGroupViewModel ShipGroup { get; }
 		public DockViewModel Dock { get; }
 		public ArsenalViewModel Arsenal { get; }
+		public BaseAirCorpsViewModel BaseAirCorps { get; }
 		public HeadquartersViewModel Headquarters { get; }
 		public CompassViewModel Compass { get; }
 		public BattleViewModel Battle { get; }
@@ -409,6 +411,7 @@ namespace ElectronicObserver.ViewModels
 			// Views.Add(ShipGroup = new());
 			Views.Add(Dock = new());
 			Views.Add(Arsenal = new());
+			Views.Add(BaseAirCorps = new());
 			Views.Add(Headquarters = new());
 			Views.Add(Compass = new());
 			Views.Add(Battle = new());
