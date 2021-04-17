@@ -739,7 +739,7 @@ namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels
 			}
 
 
-			Clipboard.SetData(DataFormats.StringFormat, sb.ToString());
+			Clipboard.SetText(sb.ToString());
 		}
 
 		/*
@@ -808,7 +808,7 @@ namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels
 			sb.Remove(sb.Length - 1, 1);        // remove ","
 			sb.Append(@"}");
 
-			Clipboard.SetData(DataFormats.StringFormat, sb.ToString());
+			Clipboard.SetText(sb.ToString());
 		}
 
 		/// <summary>
@@ -872,7 +872,7 @@ namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels
 				sb.Remove(sb.Length - 1, 1);
 			}
 
-			Clipboard.SetData(DataFormats.StringFormat, sb.ToString());
+			Clipboard.SetText(sb.ToString());
 		}
 
 		/// <summary>
@@ -922,7 +922,7 @@ namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels
 
 			string json = $"[{string.Join(",", ships)}]";
 
-			Clipboard.SetData(DataFormats.StringFormat, json);
+			Clipboard.SetText(json);
 		}
 		
 		/// <summary>
@@ -956,7 +956,7 @@ namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels
 			sb.Remove(sb.Length - 1, 1);        // remove ","
 			sb.Append("]");
 
-			Clipboard.SetData(DataFormats.StringFormat, sb.ToString());
+			Clipboard.SetText(sb.ToString());
 		}
 
 		private void ContextMenuFleet_AntiAirDetails_Click()
