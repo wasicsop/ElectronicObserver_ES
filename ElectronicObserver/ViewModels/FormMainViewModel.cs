@@ -31,6 +31,7 @@ using ElectronicObserver.Window.Wpf.Compass;
 using ElectronicObserver.Window.Wpf.Dock;
 using ElectronicObserver.Window.Wpf.Fleet.ViewModels;
 using ElectronicObserver.Window.Wpf.FleetOverview;
+using ElectronicObserver.Window.Wpf.FleetPreset;
 using ElectronicObserver.Window.Wpf.Headquarters;
 using ElectronicObserver.Window.Wpf.ShipGroup.ViewModels;
 using ElectronicObserver.Window.Wpf.WinformsWrappers;
@@ -100,6 +101,7 @@ namespace ElectronicObserver.ViewModels
 		public List<FleetViewModel> Fleets { get; }
 		public FleetOverviewViewModel FleetOverview { get; }
 		// public ShipGroupViewModel ShipGroup { get; }
+		public FleetPresetViewModel FleetPreset { get; }
 		public DockViewModel Dock { get; }
 		public ArsenalViewModel Arsenal { get; }
 		public BaseAirCorpsViewModel BaseAirCorps { get; }
@@ -409,6 +411,7 @@ namespace ElectronicObserver.ViewModels
 			}
 			Views.Add(FleetOverview = new(Fleets));
 			// Views.Add(ShipGroup = new());
+			Views.Add(FleetPreset = new());
 			Views.Add(Dock = new());
 			Views.Add(Arsenal = new());
 			Views.Add(BaseAirCorps = new());

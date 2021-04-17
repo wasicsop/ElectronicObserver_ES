@@ -7,6 +7,7 @@ using ElectronicObserver.Window.Wpf.Compass;
 using ElectronicObserver.Window.Wpf.Dock;
 using ElectronicObserver.Window.Wpf.Fleet.ViewModels;
 using ElectronicObserver.Window.Wpf.FleetOverview;
+using ElectronicObserver.Window.Wpf.FleetPreset;
 using ElectronicObserver.Window.Wpf.Headquarters;
 using ElectronicObserver.Window.Wpf.ShipGroup.ViewModels;
 using ElectronicObserver.Window.Wpf.WinformsHost;
@@ -18,6 +19,7 @@ namespace ElectronicObserver
 		public DataTemplate? FleetTemplate { get; set; }
 		public DataTemplate? FleetOverviewTemplate { get; set; }
 		public DataTemplate? ShipGroupTemplate { get; set; }
+		public DataTemplate? FleetPresetTemplate { get; set; }
 		public DataTemplate? DockTemplate { get; set; }
 		public DataTemplate? ArsenalTemplate { get; set; }
 		public DataTemplate? BaseAirCorpsTemplate { get; set; }
@@ -33,6 +35,7 @@ namespace ElectronicObserver
 			FleetViewModel => FleetTemplate,
 			FleetOverviewViewModel => FleetOverviewTemplate,
 			ShipGroupViewModel => ShipGroupTemplate,
+			FleetPresetViewModel => FleetPresetTemplate,
 			DockViewModel => DockTemplate,
 			ArsenalViewModel => ArsenalTemplate,
 			BaseAirCorpsViewModel => BaseAirCorpsTemplate,

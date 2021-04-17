@@ -32,6 +32,7 @@
         xmlns:dock="clr-namespace:ElectronicObserver.Window.Wpf.Dock"
         xmlns:arsenal="clr-namespace:ElectronicObserver.Window.Wpf.Arsenal"
         xmlns:baseAirCorps="clr-namespace:ElectronicObserver.Window.Wpf.BaseAirCorps"
+        xmlns:fleetPreset="clr-namespace:ElectronicObserver.Window.Wpf.FleetPreset"
         ui:WindowHelper.UseModernWindowStyle="True"
 
         mc:Ignorable="d"
@@ -185,6 +186,11 @@
 					</MenuItem.Icon>
 				</MenuItem>
 				-->
+				<MenuItem Header="Presets" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FleetPreset}">
+					<MenuItem.Icon>
+						<Image Source="{Binding FleetPresetImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
 				<Separator />
 				<MenuItem Header="Dock" Command="{Binding OpenViewCommand}" CommandParameter="{Binding Dock}">
 					<MenuItem.Icon>
@@ -353,6 +359,11 @@
 							<shipGroup:ShipGroupView ViewModel="{Binding}" />
 						</DataTemplate>
 					</local:ViewTemplateSelector.ShipGroupTemplate>
+					<local:ViewTemplateSelector.FleetPresetTemplate>
+						<DataTemplate DataType="fleetPreset:FleetPresetViewModel">
+							<fleetPreset:FleetPresetView ViewModel="{Binding}" />
+						</DataTemplate>
+					</local:ViewTemplateSelector.FleetPresetTemplate>
 					<local:ViewTemplateSelector.DockTemplate>
 						<DataTemplate DataType="dock:DockViewModel">
 							<dock:DockView ViewModel="{Binding}" />
