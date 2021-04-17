@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Threading;
@@ -162,6 +163,8 @@ namespace ElectronicObserver.ViewModels
 			View = view;
 			DockingManager = dockingManager;
 
+			#region Commands
+
 			SaveDataCommand = new RelayCommand(StripMenu_File_SaveData_Save_Click);
 			LoadDataCommand = new RelayCommand(StripMenu_File_SaveData_Load_Click);
 			SilenceNotificationsCommand = new RelayCommand(StripMenu_File_Notification_MuteAll_Click);
@@ -194,41 +197,47 @@ namespace ElectronicObserver.ViewModels
 			ClosingCommand = new RelayCommand<CancelEventArgs>(Close);
 			ClosedCommand = new RelayCommand(Closed);
 
+			#endregion
+
+			CultureInfo c = CultureInfo.CurrentCulture;
+			CultureInfo ui = CultureInfo.CurrentUICulture;
+			if (c.Name != "en-US" && c.Name != "ja-JP")
+			{
+				c = new CultureInfo("en-US");
+			}
+			if (ui.Name != "en-US" && ui.Name != "ja-JP")
+			{
+				ui = new CultureInfo("en-US");
+			}
+			Thread.CurrentThread.CurrentCulture = c;
+			Thread.CurrentThread.CurrentUICulture = ui;
+
 			Directory.CreateDirectory(@"Settings\Layout");
 
 			// todo the parameter is never used, remove it later
 			Configuration.Instance.Load(null!);
 			Config = Configuration.Config;
 
-			/*
-			this.MainDockPanel.Styles = Configuration.Config.UI.DockPanelSuiteStyles;
-			this.MainDockPanel.Theme = new WeifenLuo.WinFormsUI.Docking.VS2012Theme();
-			this.BackColor = this.StripMenu.BackColor = Utility.Configuration.Config.UI.BackColor;
-			this.ForeColor = this.StripMenu.ForeColor = Utility.Configuration.Config.UI.ForeColor;
-			this.StripStatus.BackColor = Utility.Configuration.Config.UI.StatusBarBackColor;
-			this.StripStatus.ForeColor = Utility.Configuration.Config.UI.StatusBarForeColor;
-			*/
+			SetFont();
 
-			/*
-			Utility.Logger.Instance.LogAdded += new Utility.LogAddedEventHandler((Utility.Logger.LogData data) =>
+			Utility.Logger.Instance.LogAdded += data =>
 			{
-				if (InvokeRequired)
+				if (View.CheckAccess())
 				{
 					// Invokeはメッセージキューにジョブを投げて待つので、別のBeginInvokeされたジョブが既にキューにあると、
 					// それを実行してしまい、BeginInvokeされたジョブの順番が保てなくなる
 					// GUIスレッドによる処理は、順番が重要なことがあるので、GUIスレッドからInvokeを呼び出してはいけない
-					Invoke(new Utility.LogAddedEventHandler(Logger_LogAdded), data);
+					View.Dispatcher.Invoke(new Utility.LogAddedEventHandler(Logger_LogAdded), data);
 				}
 				else
 				{
 					Logger_LogAdded(data);
 				}
-			});
-			*/
+			};
+			
 			Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
 
 			Logger.Add(2, SoftwareInformation.SoftwareNameEnglish + " is starting...");
-
 
 			ResourceManager.Instance.Load();
 			RecordManager.Instance.Load();
@@ -316,87 +325,7 @@ namespace ElectronicObserver.ViewModels
 			*/
 			#endregion
 
-
 			APIObserver.Instance.Start(Configuration.Config.Connection.Port, View);
-
-
-			// MainDockPanel.Extender.FloatWindowFactory = new CustomFloatWindowFactory();
-
-
-			// SubForms = new List<DockContent>();
-			/*
-			//form init
-			//注：一度全てshowしないとイベントを受け取れないので注意
-			fFleet = new FormFleet[4];
-			for (int i = 0; i < fFleet.Length; i++)
-			{
-				SubForms.Add(fFleet[i] = new FormFleet(this, i + 1));
-			}
-
-			SubForms.Add(fDock = new FormDock(this));
-			SubForms.Add(fArsenal = new FormArsenal(this));
-			SubForms.Add(fHeadquarters = new FormHeadquarters(this));
-			SubForms.Add(fInformation = new FormInformation(this));
-			SubForms.Add(fCompass = new FormCompass(this));
-			SubForms.Add(fLog = new FormLog(this));
-			SubForms.Add(fQuest = new FormQuest(this));
-			SubForms.Add(fBattle = new FormBattle(this));
-			SubForms.Add(fFleetOverview = new FormFleetOverview(this));
-			SubForms.Add(fShipGroup = new FormShipGroup(this));
-			SubForms.Add(fBrowser = new FormBrowserHost(this));
-			SubForms.Add(fWindowCapture = new FormWindowCapture(this));
-			SubForms.Add(fXPCalculator = new FormXPCalculator(this));
-			SubForms.Add(fBaseAirCorps = new FormBaseAirCorps(this));
-			SubForms.Add(fJson = new FormJson(this));
-			SubForms.Add(fFleetPreset = new FormFleetPreset(this));
-			*/
-
-			// LoadLayout(Configuration.Config.Life.LayoutFilePath);
-
-
-#if false // disable update checks for now
-			SoftwareInformation.CheckUpdate();
-			Task.Run(async () => await SoftwareUpdater.CheckUpdateAsync());
-			CancellationTokenSource cts = new CancellationTokenSource();
-			Task.Run(async () => await SoftwareUpdater.PeriodicUpdateCheckAsync(cts.Token));
-#endif
-			/*
-			// デバッグ: 開始時にAPIリストを読み込む
-			if (Configuration.Config.Debug.LoadAPIListOnLoad)
-			{
-
-				try
-				{
-
-					await Task.Factory.StartNew(() => LoadAPIList(Configuration.Config.Debug.APIListPath));
-
-					Activate();     // 上記ロードに時間がかかるとウィンドウが表示されなくなることがあるので
-				}
-				catch (Exception ex)
-				{
-
-					Utility.Logger.Add(3, LoggerRes.FailedLoadAPI + ex.Message);
-				}
-			}
-
-			APIObserver.Instance.ResponseReceived += (a, b) => UpdatePlayTime();
-
-
-			// 🎃
-			if (DateTime.Now.Month == 10 && DateTime.Now.Day == 31)
-			{
-				APIObserver.Instance.APIList["api_port/port"].ResponseReceived += CallPumpkinHead;
-			}
-
-			// 完了通知（ログインページを開く）
-			fBrowser.InitializeApiCompleted();
-
-			*/
-			UIUpdateTimer = new() {Interval = 1000};
-			UIUpdateTimer.Tick += UIUpdateTimer_Tick;
-			UIUpdateTimer.Start();
-
-			Logger.Add(3, Resources.StartupComplete);
 
 			Fleets = new()
 			{
@@ -447,11 +376,55 @@ namespace ElectronicObserver.ViewModels
 
 			ConfigurationChanged();     //設定から初期化
 
-			NotificationsSilenced = NotifierManager.Instance.GetNotifiers().All(n => n.IsSilenced);
-
 			// LoadLayout();
 
-			SetFont();
+#if false // disable update checks for now
+			SoftwareInformation.CheckUpdate();
+			Task.Run(async () => await SoftwareUpdater.CheckUpdateAsync());
+			CancellationTokenSource cts = new CancellationTokenSource();
+			Task.Run(async () => await SoftwareUpdater.PeriodicUpdateCheckAsync(cts.Token));
+#endif
+			/*
+			// デバッグ: 開始時にAPIリストを読み込む
+			if (Configuration.Config.Debug.LoadAPIListOnLoad)
+			{
+				try
+				{
+					await Task.Factory.StartNew(() => LoadAPIList(Configuration.Config.Debug.APIListPath));
+
+					Activate();     // 上記ロードに時間がかかるとウィンドウが表示されなくなることがあるので
+				}
+				catch (Exception ex)
+				{
+
+					Utility.Logger.Add(3, LoggerRes.FailedLoadAPI + ex.Message);
+				}
+			}
+			*/
+
+			APIObserver.Instance.ResponseReceived += (a, b) => UpdatePlayTime();
+
+
+			// 🎃
+			if (DateTime.Now.Month == 10 && DateTime.Now.Day == 31)
+			{
+				APIObserver.Instance.APIList["api_port/port"].ResponseReceived += CallPumpkinHead;
+			}
+
+			// 完了通知（ログインページを開く）
+			// fBrowser.InitializeApiCompleted();
+			if (FormBrowserHost.WinformsControl is FormBrowserHost host)
+			{
+				host.InitializeApiCompleted();
+			}
+
+			NotificationsSilenced = NotifierManager.Instance.GetNotifiers().All(n => n.IsSilenced);
+
+			UIUpdateTimer = new() { Interval = 1000 };
+			UIUpdateTimer.Tick += UIUpdateTimer_Tick;
+			UIUpdateTimer.Start();
+
+			Logger.Add(3, Resources.StartupComplete);
 		}
 
 		#region File
@@ -707,6 +680,19 @@ namespace ElectronicObserver.ViewModels
 
 		#endregion
 
+		private void CallPumpkinHead(string apiname, dynamic data)
+		{
+			new DialogHalloween().Show();
+			APIObserver.Instance.APIList["api_port/port"].ResponseReceived -= CallPumpkinHead;
+		}
+
+
+		void Logger_LogAdded(Utility.Logger.LogData data)
+		{
+			// bottom bar
+			// StripStatus_Information.Text = data.Message.Replace("\r", " ").Replace("\n", " ");
+		}
+
 		private void ConfigurationChanged()
 		{
 			var c = Configuration.Config;
@@ -944,8 +930,11 @@ namespace ElectronicObserver.ViewModels
 			Logger.Add(2, SoftwareInformation.SoftwareNameEnglish + Resources.IsClosing);
 
 			UIUpdateTimer.Stop();
-
-			// fBrowser.CloseBrowser();
+			
+			if (FormBrowserHost.WinformsControl is FormBrowserHost host)
+			{
+				host.CloseBrowser();
+			}
 
 			UpdatePlayTime();
 			SystemEvents.OnSystemShuttingDown();
