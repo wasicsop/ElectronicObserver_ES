@@ -345,7 +345,7 @@
 			<DockingManager.LayoutItemTemplateSelector>
 				<local:ViewTemplateSelector>
 					<local:ViewTemplateSelector.FleetTemplate>
-						<DataTemplate DataType="viewModels1:FleetViewModel">
+						<DataTemplate DataType="fleet:FleetViewModel">
 							<fleet:FleetView ViewModel="{Binding}" />
 						</DataTemplate>
 					</local:ViewTemplateSelector.FleetTemplate>

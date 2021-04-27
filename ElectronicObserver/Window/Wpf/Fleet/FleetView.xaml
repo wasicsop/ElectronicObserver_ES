@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:views="clr-namespace:ElectronicObserver.Window.Wpf.Fleet.Views"
              xmlns:viewModels="clr-namespace:ElectronicObserver.Window.Wpf.Fleet.ViewModels"
 
@@ -33,11 +34,13 @@
 				</ColorAnimationUsingKeyFrames>
 			</Storyboard>
 
-
+			<Style TargetType="Border">
+				<Setter Property="Background" Value="Transparent" />
+			</Style>
 		</ResourceDictionary>
 	</UserControl.Resources>
 
-	<Grid DataContext="{Binding ViewModel, ElementName=FleetControl}" IsSharedSizeScope="True" Visibility="{Binding FleetVisibility}">
+	<Grid DataContext="{Binding ViewModel, ElementName=FleetControl}" IsSharedSizeScope="True" Visibility="{Binding Visibility}">
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto" />
 			<RowDefinition />
@@ -47,6 +50,7 @@
 			<Border.Style>
 				<Style TargetType="Border">
 					<Setter Property="Background" Value="Transparent" />
+					<!--
 					<Style.Triggers>
 						<DataTrigger Binding="{Binding HasTaihaShip}" Value="True">
 							<DataTrigger.EnterActions>
@@ -59,6 +63,7 @@
 							</DataTrigger.EnterActions>
 						</DataTrigger>
 					</Style.Triggers>
+					-->
 				</Style>
 			</Border.Style>
 			<Border.ContextMenu>
@@ -75,43 +80,227 @@
 					<MenuItem Header="Save as Image..." Command="{Binding OutputFleetImageCommand}" />
 				</ContextMenu>
 			</Border.ContextMenu>
-			<StackPanel Orientation="Horizontal">
-				<TextBlock Margin="4 2" Text="{Binding Name}" ToolTip="{Binding FleetNameToolTip}"/>
-				<StackPanel Margin="4 2" Orientation="Horizontal" ToolTip="{Binding FleetStatusToolTip}">
-					<Image Margin="2 0" Source="{Binding FleetStatusImage}" />
-					<TextBlock Text="{Binding FleetStatusText}" />
+			<StackPanel Orientation="Horizontal" DataContext="{Binding ControlFleet}">
+				<Border DataContext="{Binding Name}" ToolTip="{Binding ToolTip}" >
+					<TextBlock Margin="4 2" Text="{Binding Text}" />
+				</Border>
+
+				<views:FleetStateView ViewModel="{Binding State}" />
+				<!--
+				<StackPanel Margin="4 2" Orientation="Horizontal" DataContext="{Binding State}">
+					
 				</StackPanel>
-				<StackPanel Margin="4 2" Orientation="Horizontal" ToolTip="{Binding FleetAirToolTip}">
-					<Image Margin="2 0" Source="{Binding AirImage}" />
-					<TextBlock Text="{Binding AirString}" />
-				</StackPanel>
-				<Border Margin="4 2" ToolTip="{Binding FleetLosToolTip}" Background="Transparent">
-					<Border.InputBindings>
-						<MouseBinding Command="{Binding IncreaseBranchWeightCommand}" MouseAction="LeftClick" />
-					</Border.InputBindings>
-					<StackPanel Orientation="Horizontal">
-						<Image Margin="2 0" Source="{Binding LosImage}" />
-						<TextBlock Text="{Binding LosString}" />
+				-->
+
+				<Border DataContext="{Binding AirSuperiority}" ToolTip="{Binding ToolTip}">
+					<StackPanel Margin="4 2" Orientation="Horizontal">
+						<Image Margin="2 0" Source="{Binding Icon}" />
+						<TextBlock Text="{Binding Text}" />
 					</StackPanel>
 				</Border>
-				<StackPanel Margin="4 2" Orientation="Horizontal" ToolTip="{Binding FleetAaToolTip}">
-					<Image Margin="2 0" Source="{Binding FleetAaImage}" />
-					<TextBlock Text="{Binding FleetAaString}" />
-				</StackPanel>
+
+				<Border DataContext="{Binding SearchingAbility}" ToolTip="{Binding ToolTip}" Background="Transparent">
+					<Border.InputBindings>
+						<MouseBinding
+							Command="{Binding ViewModel.ControlFleet.IncreaseBranchWeightCommand, ElementName=FleetControl}"
+						    MouseAction="LeftClick"
+						/>
+					</Border.InputBindings>
+					<StackPanel Margin="4 2" Orientation="Horizontal">
+						<Image Margin="2 0" Source="{Binding Icon}" />
+						<TextBlock Text="{Binding Text}" />
+					</StackPanel>
+				</Border>
+
+				<Border DataContext="{Binding AntiAirPower}" ToolTip="{Binding ToolTip}">
+					<StackPanel Margin="4 2" Orientation="Horizontal">
+						<Image Margin="2 0" Source="{Binding Icon}" />
+						<TextBlock Text="{Binding Text}" />
+					</StackPanel>
+				</Border>
 			</StackPanel>
 		</Border>
 
-		<ItemsControl Grid.Row="1" ItemsSource="{Binding Ships}">
-			<ItemsControl.ItemsPanel>
-				<ItemsPanelTemplate>
-					<StackPanel Orientation="Vertical"/>
-				</ItemsPanelTemplate>
-			</ItemsControl.ItemsPanel>
-			<ItemsControl.ItemTemplate>
-				<DataTemplate DataType="viewModels:ShipViewModel">
-					<views:ShipView ViewModel="{Binding}" />
-				</DataTemplate>
-			</ItemsControl.ItemTemplate>
-		</ItemsControl>
+		<ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+			<ItemsControl ItemsSource="{Binding ControlMember}">
+				<ItemsControl.ItemsPanel>
+					<ItemsPanelTemplate>
+						<StackPanel Orientation="Vertical"/>
+					</ItemsPanelTemplate>
+				</ItemsControl.ItemsPanel>
+				<ItemsControl.ItemTemplate>
+					<DataTemplate DataType="viewModels:FleetItemViewModel">
+						<Border Visibility="{Binding Visibility}">
+							<Border.Resources>
+								<Style TargetType="Border">
+									<Setter Property="Margin" Value="2 0" />
+									<Setter Property="Background" Value="Transparent" />
+								</Style>
+							</Border.Resources>
+							<StackPanel>
+								<Grid>
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition Width="Auto" MaxWidth="{Binding Name.MaxWidth}" SharedSizeGroup="ShipName" />
+										<ColumnDefinition Width="Auto" SharedSizeGroup="ShipLevel" />
+										<ColumnDefinition Width="Auto" SharedSizeGroup="ShipHealth" />
+										<ColumnDefinition Width="Auto" SharedSizeGroup="ShipCondition" />
+										<ColumnDefinition Width="Auto" SharedSizeGroup="ShipResources" />
+										<ColumnDefinition Width="Auto" SharedSizeGroup="ShipEquipment" />
+									</Grid.ColumnDefinitions>
+
+									<Border Grid.Column="0" DataContext="{Binding Name}" ToolTip="{Binding ToolTip}">
+										<Border.InputBindings>
+											<MouseBinding Command="{Binding ShipNameRightClick}" MouseAction="RightClick" />
+										</Border.InputBindings>
+										<StackPanel>
+											<TextBlock Text="{Binding Text}" Margin="2" />
+										</StackPanel>
+									</Border>
+
+									<Border Grid.Column="1" DataContext="{Binding Level}" ToolTip="{Binding ToolTip}">
+										<Border.InputBindings>
+											<MouseBinding Command="{Binding ShipLevelRightClick}" MouseAction="RightClick" />
+										</Border.InputBindings>
+										<Grid>
+											<Grid.ColumnDefinitions>
+												<ColumnDefinition Width="Auto" SharedSizeGroup="ShipLevelText" />
+												<ColumnDefinition Width="Auto" SharedSizeGroup="ShipLevelValue" />
+												<ColumnDefinition Width="Auto" SharedSizeGroup="ShipLevelNext" />
+											</Grid.ColumnDefinitions>
+
+											<TextBlock
+												Grid.Column="0"
+												Text="Lv."
+												FontFamily="{Binding SubFontFamily}"
+												FontSize="{Binding SubFontSize}"
+												Foreground="{Binding SubForeground}"
+												Margin="2"
+												VerticalAlignment="Bottom"
+											/>
+											<TextBlock Grid.Column="1" Text="{Binding Value}" Margin="0 2 2 2 " />
+											<StackPanel Grid.Column="2" Margin="2 0">
+												<StackPanel.Resources>
+													<Style TargetType="TextBlock">
+														<Setter Property="FontFamily" Value="{Binding SubFontFamily}" />
+														<Setter Property="FontSize" Value="{Binding SubFontSize}" />
+														<Setter Property="Margin" Value="0 -2" />
+													</Style>
+												</StackPanel.Resources>
+												<TextBlock
+													Text="{Binding TextNext}"
+													FontFamily="{Binding SubFontFamily}"
+													FontSize="{Binding SubFontSize}"
+													Foreground="{Binding SubForeground}"
+												/>
+												<TextBlock
+													Text="{Binding ValueNext}"
+													FontFamily="{Binding SubFontFamily}"
+													FontSize="{Binding SubFontSize}"
+													Foreground="{Binding SubForeground}"
+												/>
+											</StackPanel>
+										</Grid>
+									</Border>
+
+									<Border Grid.Column="2" DataContext="{Binding HP}" ToolTip="{Binding ToolTip}">
+										<i:Interaction.Triggers>
+											<i:EventTrigger EventName="MouseEnter">
+												<i:InvokeCommandAction Command="{Binding MouseEnterCommand}" />
+											</i:EventTrigger>
+											<i:EventTrigger EventName="MouseLeave">
+												<i:InvokeCommandAction Command="{Binding MouseLeaveCommand}" />
+											</i:EventTrigger>
+										</i:Interaction.Triggers>
+										<Grid>
+											<Grid.RowDefinitions>
+												<RowDefinition Height="*" />
+												<RowDefinition Height="Auto" />
+											</Grid.RowDefinitions>
+
+											<TextBlock
+												x:Name="HealthText"
+												Grid.Row="0"
+												Text="{Binding DisplayText}"
+												Foreground="{Binding Foreground}"
+												TextAlignment="Center"
+												HorizontalAlignment="Stretch"
+												Padding="5 0"
+											/>
+											<!-- margin -2 is to prevent progress bar from expanding endlessly -->
+											<ProgressBar
+												Grid.Row="1"
+												DataContext="{Binding AkashiRepairBar}"
+												Value="{Binding Value}"
+												Maximum="{Binding MaximumValue}"
+												Foreground="{Binding Foreground}"
+												Visibility="{Binding Visibility}"
+												MaxWidth="{Binding ActualWidth, ElementName=HealthText}"
+												Margin="-2 0"
+											/>
+											<ProgressBar
+												Grid.Row="1"
+												DataContext="{Binding HPBar}"
+												Value="{Binding Value}"
+												Maximum="{Binding MaximumValue}"
+												Foreground="{Binding Foreground}"
+												MaxWidth="{Binding ActualWidth, ElementName=HealthText}"
+												Margin="-2 0"
+											/>
+										</Grid>
+									</Border>
+
+									<Border Grid.Column="3" DataContext="{Binding Condition}" ToolTip="{Binding ToolTip}">
+										<StackPanel Orientation="Horizontal">
+											<Image Source="{Binding Icon}" />
+											<TextBlock
+												Text="{Binding Text}"
+												Foreground="{Binding Foreground}"
+												Background="{Binding Background}"
+												Padding="2"
+											/>
+										</StackPanel>
+									</Border>
+
+									<Border Grid.Column="4" DataContext="{Binding ShipResource}" ToolTip="{Binding ToolTip}">
+										<StackPanel Width="32" VerticalAlignment="Center">
+											<ProgressBar
+												DataContext="{Binding BarFuel}"
+												Value="{Binding Value}"
+												Maximum="{Binding MaximumValue}"
+												Foreground="{Binding Foreground}"
+												Margin="0 2"
+											/>
+											<ProgressBar
+												DataContext="{Binding BarAmmo}"
+												Value="{Binding Value}"
+												Maximum="{Binding MaximumValue}"
+												Foreground="{Binding Foreground}"
+												Margin="0 2"
+											/>
+										</StackPanel>
+									</Border>
+
+									<Border Grid.Column="5" DataContext="{Binding Equipments}" ToolTip="{Binding ToolTip}" x:Name="ShipEquipmentControl">
+										<ItemsControl ItemsSource="{Binding Slots}">
+											<ItemsControl.ItemsPanel>
+												<ItemsPanelTemplate>
+													<StackPanel Orientation="Horizontal" />
+												</ItemsPanelTemplate>
+											</ItemsControl.ItemsPanel>
+											<ItemsControl.ItemTemplate>
+												<DataTemplate DataType="viewModels:ShipSlotViewModel">
+													<views:ShipSlotView ViewModel="{Binding}" />
+												</DataTemplate>
+											</ItemsControl.ItemTemplate>
+										</ItemsControl>
+									</Border>
+								</Grid>
+								<Separator Margin="0 1 0 0" />
+							</StackPanel>
+						</Border>
+					</DataTemplate>
+				</ItemsControl.ItemTemplate>
+			</ItemsControl>
+		</ScrollViewer>
 	</Grid>
 </UserControl>

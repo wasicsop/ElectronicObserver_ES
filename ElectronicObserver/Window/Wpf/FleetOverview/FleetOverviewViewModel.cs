@@ -9,7 +9,7 @@ using ElectronicObserver.Resource;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.ViewModels;
-using ElectronicObserver.Window.Wpf.Fleet.ViewModels;
+using ElectronicObserver.Window.Wpf.Fleet;
 using ElectronicObserverTypes;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 

@@ -30,6 +30,7 @@ using ElectronicObserver.Window.Wpf.BaseAirCorps;
 using ElectronicObserver.Window.Wpf.Battle;
 using ElectronicObserver.Window.Wpf.Compass;
 using ElectronicObserver.Window.Wpf.Dock;
+using ElectronicObserver.Window.Wpf.Fleet;
 using ElectronicObserver.Window.Wpf.Fleet.ViewModels;
 using ElectronicObserver.Window.Wpf.FleetOverview;
 using ElectronicObserver.Window.Wpf.FleetPreset;

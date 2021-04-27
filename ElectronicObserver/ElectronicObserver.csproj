@@ -116,9 +116,6 @@
 		  <AutoGen>True</AutoGen>
 		  <DependentUpon>Menus.resx</DependentUpon>
 		</Compile>
-		<Compile Update="Window\Wpf\Fleet\Views\LevelView.xaml.cs">
-		  <SubType>Code</SubType>
-		</Compile>
 		<None Include=".editorconfig" />
 		<None Update="Assets.zip">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -286,22 +283,6 @@
 	  <Page Update="Window\Wpf\Resources.xaml">
 	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
 	    <SubType>Designer</SubType>
-	  </Page>
-	  <Page Update="Window\Wpf\Fleet\Views\HealthView.xaml">
-	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-	  </Page>
-	  <Page Update="Window\Wpf\Fleet\Views\LevelView.xaml">
-	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-	    <SubType>Designer</SubType>
-	  </Page>
-	  <Page Update="Window\Wpf\Fleet\Views\ShipSlotView.xaml">
-	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-	  </Page>
-	  <Page Update="Window\Wpf\Fleet\Views\ShipView.xaml">
-	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-	  </Page>
-	  <Page Update="Window\Wpf\Fleet\Views\SupplyView.xaml">
-	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
 	  </Page>
 	</ItemGroup>
 </Project>
