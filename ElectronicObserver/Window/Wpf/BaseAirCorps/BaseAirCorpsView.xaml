@@ -101,7 +101,7 @@
 										</ItemsControl>
 									</Border>
 								</Grid>
-								<Separator Margin="-1" />
+								<Separator Margin="0" />
 							</StackPanel>
 						</Border>
 					</DataTemplate>

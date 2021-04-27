@@ -35,10 +35,12 @@
 			<TextBlock
 				Grid.Row="0"
 				Grid.Column="1"
-				FontSize="8"
+				FontSize="{Binding FontSize}"
+				FontFamily="{Binding FontFamily}"
 				HorizontalAlignment="Center"
 				Text="{Binding LevelString}"
-				Foreground="DodgerBlue"
+				Foreground="{Binding EquipmentLevelBrush}"
+				Margin="0 -2"
 			>
 				<TextBlock.Style>
 					<Style TargetType="TextBlock">
@@ -79,10 +81,12 @@
 			<TextBlock
 				Grid.Row="1"
 				Grid.Column="1"
-				FontSize="8"
+				FontSize="{Binding FontSize}"
+				FontFamily="{Binding FontFamily}"
 				HorizontalAlignment="Center"
 				Foreground="{Binding CurrentAircraftBrush}"
 				Text="{Binding CurrentAircraftString}"
+				Margin="0 -2"
 			/>
 		</Grid>
 	</Border>

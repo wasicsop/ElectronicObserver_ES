@@ -64,8 +64,8 @@ namespace ElectronicObserver.Window.Wpf.BaseAirCorps
 						// SlotList[i].AircraftMax =
 						// SlotList[i].Level =
 						// SlotList[i].AircraftLevel = 0;
-						SlotList[i].Size = 0;
-						SlotList[i].CurrentAircraft = 0;
+						SlotList[i].AircraftMax = 0;
+						SlotList[i].AircraftCurrent = 0;
 						break;
 					case 1:     // 配属済み
 						if (eq == null)
@@ -75,8 +75,8 @@ namespace ElectronicObserver.Window.Wpf.BaseAirCorps
 						// SlotList[i].AircraftMax = squadron.AircraftMax;
 						// SlotList[i].Level = eq.Level;
 						// SlotList[i].AircraftLevel = eq.AircraftLevel;
-						SlotList[i].Size = squadron.AircraftMax;
-						SlotList[i].CurrentAircraft = squadron.AircraftCurrent;
+						SlotList[i].AircraftMax = squadron.AircraftMax;
+						SlotList[i].AircraftCurrent = squadron.AircraftCurrent;
 						break;
 				}
 				
