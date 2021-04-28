@@ -16,7 +16,7 @@
 			<local:CompassTemplateSelector>
 				<local:CompassTemplateSelector.EmptyTemplate>
 					<DataTemplate>
-						<TextBlock Text="Hello World!" />
+						<TextBlock />
 					</DataTemplate>
 				</local:CompassTemplateSelector.EmptyTemplate>
 				<local:CompassTemplateSelector.TextTemplate>
