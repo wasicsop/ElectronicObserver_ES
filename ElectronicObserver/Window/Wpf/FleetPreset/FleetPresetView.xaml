@@ -10,7 +10,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
 >
-    <Border DataContext="{Binding ViewModel, ElementName=FleetPresetControl}">
+    <Border DataContext="{Binding ViewModel, ElementName=FleetPresetControl}" Background="Transparent" Margin="0 2">
 		<ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
 			<Grid IsSharedSizeScope="True">
 				<ItemsControl ItemsSource="{Binding TableControls}">
@@ -38,7 +38,7 @@
 										<ColumnDefinition Width="Auto" MaxWidth="{Binding MaxWidth}" SharedSizeGroup="FleetPresetShip5" />
 									</Grid.ColumnDefinitions>
 
-									<Border Grid.Column="0" DataContext="{Binding Name}" Background="Transparent" ToolTip="{Binding ToolTip}">
+									<Border Grid.Column="0" Background="Transparent" ToolTip="{Binding Name.ToolTip}">
 										<Grid>
 											<Grid.ColumnDefinitions>
 												<ColumnDefinition />
@@ -47,10 +47,11 @@
 
 											<TextBlock
 												Grid.Column="0"
-												Text="{Binding Text}"
+												Text="{Binding Name.Text}"
 											/>
 
-											<Image 
+											<Image
+												Source="{Binding Condition.Icon}"
 												Grid.Column="1"
 											/>
 										</Grid>

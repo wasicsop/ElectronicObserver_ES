@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using ElectronicObserver.Data;
 using ElectronicObserver.Resource;
 using ElectronicObserver.ViewModels;
+using ElectronicObserver.Window.Wpf.Fleet.ViewModels;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 
 namespace ElectronicObserver.Window.Wpf.FleetPreset
@@ -18,6 +20,7 @@ namespace ElectronicObserver.Window.Wpf.FleetPreset
 	public class FleetPresetItemViewModel : ObservableObject
 	{
 		public FleetPresetItemControlViewModel Name { get; }
+		public FleetConditionViewModel Condition { get; } = new();
 		public List<FleetPresetItemControlViewModel> Ships { get; }
 
 		public int MaxWidth { get; set; }
@@ -46,7 +49,7 @@ namespace ElectronicObserver.Window.Wpf.FleetPreset
 			}
 
 			Name = CreateDefaultLabel();
-			// Name.ImageAlign = ContentAlignment.MiddleRight;
+			Condition.ImageAlign = ContentAlignment.MiddleRight;
 
 			// TODO: 本体側がもし 7 隻編成に対応したら変更してください
 			Ships = new();
@@ -80,6 +83,7 @@ namespace ElectronicObserver.Window.Wpf.FleetPreset
 
 			int lowestCondition = preset.MembersInstance.Where(s => s != null).Select(s => s.Condition).DefaultIfEmpty(49).Min();
 			// FormFleet.SetConditionDesign(Name, lowestCondition);
+			Condition.SetDesign(lowestCondition);
 
 			Name.ToolTip = $"最低cond: {lowestCondition}";
 
