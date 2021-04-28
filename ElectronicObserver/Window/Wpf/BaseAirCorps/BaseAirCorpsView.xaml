@@ -53,6 +53,7 @@
 									<Grid.Resources>
 										<Style TargetType="Border">
 											<Setter Property="Margin" Value="2 0" />
+											<Setter Property="Background" Value="Transparent" />
 										</Style>
 									</Grid.Resources>
 
@@ -65,7 +66,10 @@
 									</Grid.ColumnDefinitions>
 
 									<Border Grid.Column="0" DataContext="{Binding Name}" ToolTip="{Binding ToolTip}">
-										<TextBlock Text="{Binding Text}" Margin="2" />
+										<StackPanel Orientation="Horizontal">
+											<TextBlock Text="{Binding Text}" Margin="2" />
+											<Image Source="{Binding Icon}" Margin="2" />
+										</StackPanel>
 									</Border>
 
 									<Border Grid.Column="1" DataContext="{Binding ActionKind}" ToolTip="{Binding ToolTip}">
