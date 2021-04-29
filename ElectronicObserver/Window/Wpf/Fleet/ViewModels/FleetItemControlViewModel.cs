@@ -34,6 +34,13 @@ namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels
 		{
 			ShipNameRightClick = new RelayCommand(() => new DialogAlbumMasterShip(Tag).Show());
 
+			Utility.Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
+
+			ConfigurationChanged();
+		}
+
+		private void ConfigurationChanged()
+		{
 			ForeColor = Utility.Configuration.Config.UI.ForeColor;
 			BackColor = Utility.Configuration.Config.UI.BackColor;
 		}

@@ -15,6 +15,7 @@ using System.Windows.Media;
 using AvalonDock;
 using AvalonDock.Layout;
 using AvalonDock.Layout.Serialization;
+using AvalonDock.Themes;
 using ElectronicObserver.Data;
 using ElectronicObserver.Notifier;
 using ElectronicObserver.Observer;
@@ -39,6 +40,7 @@ using ElectronicObserver.Window.Wpf.ShipGroup.ViewModels;
 using ElectronicObserver.Window.Wpf.WinformsWrappers;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
+using ModernWpf;
 
 namespace ElectronicObserver.ViewModels
 {
@@ -57,6 +59,13 @@ namespace ElectronicObserver.ViewModels
 		public FontFamily SubFont { get; set; }
 		public double SubFontSize { get; set; }
 		public SolidColorBrush SubFontBrush { get; set; }
+		public List<Theme> Themes { get; } = new()
+		{
+			new Vs2013LightTheme(),
+			new Vs2013BlueTheme(),
+			new Vs2013DarkTheme(),
+		};
+		public Theme CurrentTheme { get; set; }
 
 		#region Icons
 
@@ -219,7 +228,7 @@ namespace ElectronicObserver.ViewModels
 			Configuration.Instance.Load(null!);
 			Config = Configuration.Config;
 
-			SetFont();
+			SetTheme();
 
 			Utility.Logger.Instance.LogAdded += data =>
 			{
@@ -710,7 +719,8 @@ namespace ElectronicObserver.ViewModels
 			
 			ClockFormat = c.Life.ClockFormat;
 			*/
-			SetFont();
+			SetTheme();
+			
 			/*
 			//StripMenu.Font = Font;
 			StripStatus.Font = Font;
@@ -768,13 +778,33 @@ namespace ElectronicObserver.ViewModels
 		{
 			Font = new(Config.UI.MainFont.FontData.FontFamily.Name);
 			FontSize = Config.UI.MainFont.FontData.Size;
-			FontBrush = new SolidColorBrush(Color.FromRgb(Config.UI.ForeColor.R, Config.UI.ForeColor.G,
-				Config.UI.ForeColor.B));
+			FontBrush = Config.UI.ForeColor.ToBrush();
 
 			SubFont = new(Config.UI.SubFont.FontData.FontFamily.Name);
 			SubFontSize = Config.UI.SubFont.FontData.Size;
-			SubFontBrush = new SolidColorBrush(Color.FromRgb(Config.UI.SubForeColor.R, Config.UI.SubForeColor.G,
-				Config.UI.SubForeColor.B));
+			SubFontBrush = Config.UI.SubForeColor.ToBrush();
+		}
+
+		private void SetTheme()
+		{
+			// todo switching themes doesn't update everything in runtime
+			Utility.Configuration.Instance.ApplyTheme();
+
+			CurrentTheme = Utility.Configuration.Config.UI.ThemeMode switch
+			{
+				0 => Themes[0], // light theme => light theme
+				1 => Themes[2], // dark theme => dark theme
+				_ => Themes[2], // custom theme => dark theme
+			};
+
+			ThemeManager.Current.ApplicationTheme = Utility.Configuration.Config.UI.ThemeMode switch
+			{
+				0 => ApplicationTheme.Light, // light theme => light theme
+				1 => ApplicationTheme.Dark, // dark theme => dark theme
+				_ => ApplicationTheme.Dark, // custom theme => dark theme
+			};
+
+			SetFont();
 		}
 
 		private void UIUpdateTimer_Tick(object sender, EventArgs e)

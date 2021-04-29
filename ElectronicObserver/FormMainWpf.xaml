@@ -324,14 +324,11 @@
 			GridSplitterWidth="1"
 			GridSplitterHeight="1"
 			AnchorablesSource="{Binding Views}"
+			Theme="{Binding CurrentTheme}"
 			AllowMixedOrientation="True"
 			IsVirtualizingAnchorable="True"
 			IsVirtualizingDocument="True"
 			>
-			
-			<DockingManager.Theme>
-				<Vs2013DarkTheme />
-			</DockingManager.Theme>
 
 			<DockingManager.DocumentHeaderTemplate>
 				<DataTemplate DataType="viewModels:AnchorableViewModel">

@@ -60,11 +60,6 @@ namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels
 			MouseEnterCommand = new RelayCommand(ShipStatusHP_MouseEnter);
 			MouseLeaveCommand = new RelayCommand(ShipStatusHP_MouseLeave);
 
-			MainFontColor = Utility.Configuration.Config.UI.ForeColor;
-			SubFontColor = Utility.Configuration.Config.UI.SubForeColor;
-
-			Foreground = MainForeground;
-
 			HPBar.PropertyChanged += HPBar_PropertyChanged;
 			AkashiRepairBar.PropertyChanged += AkashiRepairBar_PropertyChanged;
 			PropertyChanged += (sender, args) =>
@@ -73,6 +68,18 @@ namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels
 
 				ResumeUpdate();
 			};
+
+			Utility.Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
+
+			ConfigurationChanged();
+		}
+
+		private void ConfigurationChanged()
+		{
+			MainFontColor = Utility.Configuration.Config.UI.ForeColor;
+			SubFontColor = Utility.Configuration.Config.UI.SubForeColor;
+
+			Foreground = MainForeground;
 		}
 
 		private void ShipStatusHP_MouseEnter()
