@@ -250,15 +250,22 @@
 									</Border>
 
 									<Border Grid.Column="3" DataContext="{Binding Condition}" ToolTip="{Binding ToolTip}">
-										<StackPanel Orientation="Horizontal">
-											<Image Source="{Binding Icon}" />
+										<Grid>
+											<Grid.ColumnDefinitions>
+												<ColumnDefinition />
+												<ColumnDefinition />
+											</Grid.ColumnDefinitions>
+
+											<Image Grid.Column="0" Source="{Binding Icon}" MaxWidth="16" />
 											<TextBlock
+												Grid.Column="1"
 												Text="{Binding Text}"
+												TextAlignment="Right"
 												Foreground="{Binding Foreground}"
 												Background="{Binding Background}"
 												Padding="2"
 											/>
-										</StackPanel>
+										</Grid>
 									</Border>
 
 									<Border Grid.Column="4" DataContext="{Binding ShipResource}" ToolTip="{Binding ToolTip}">
