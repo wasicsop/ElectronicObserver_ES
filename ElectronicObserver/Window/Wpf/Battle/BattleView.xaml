@@ -70,7 +70,13 @@
 						<Border Grid.Row="1" Grid.Column="0" Background="Transparent" ToolTip="{Binding SearchingFriendToolTip}">
 							<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
 								<Image Source="{Binding SearchingFriendIcon}" />
-								<TextBlock TextAlignment="Center" Text="{Binding SearchingFriendText}" d:Text="Success"/>
+								<TextBlock
+									MaxWidth="60"
+									TextAlignment="Center"
+									Text="{Binding SearchingFriendText}"
+									TextTrimming="CharacterEllipsis"
+									d:Text="Night Contact"
+								/>
 							</StackPanel>
 						</Border>
 						<Border Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Background="Transparent" ToolTip="{Binding SearchingToolTip}">
