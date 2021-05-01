@@ -100,7 +100,13 @@
 								<TextBlock Text="{Binding AirStage1FriendText}" Foreground="{Binding AirStage1FriendForeColor}" TextAlignment="Center" d:Text="-20/200"/>
 							</StackPanel>
 						</Border>
-						<TextBlock Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" TextAlignment="Center" Text="{Binding AirSuperiorityText}" ToolTip="{Binding AirSuperiorityToolTip}" Foreground="{Binding AirSuperiorityForeColor}" d:Text="AS"/>
+						<Border Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Background="Transparent" ToolTip="{Binding AirSuperiorityToolTip}">
+							<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+								<!-- dummy image so alignment works properly -->
+								<Image />
+								<TextBlock Text="{Binding AirSuperiorityText}" Foreground="{Binding AirSuperiorityForeColor}" TextAlignment="Center" d:Text="AS"/>
+							</StackPanel>
+						</Border>
 						<Border Grid.Row="3" Grid.Column="3" Background="Transparent" ToolTip="{Binding AirStage1EnemyToolTip}">
 							<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
 								<Image Source="{Binding AirStage1EnemyIcon}" />
