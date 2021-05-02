@@ -13,7 +13,6 @@
 		<StackPanel.Resources>
 			<Style TargetType="Border">
 				<Setter Property="Padding" Value="2" />
-				<Setter Property="Margin" Value="2 0" />
 			</Style>
 			<Style TargetType="Image">
 				<Setter Property="Margin" Value="0 0 2 0" />
