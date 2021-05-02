@@ -20,9 +20,10 @@
 			</Style>
 		</StackPanel.Resources>
 		<WrapPanel>
-			<Border ToolTip="{Binding AdmiralName.ToolTip}"
-			        Visibility="{Binding AdmiralName.Visible}"
-			        Background="{Binding AdmiralName.Background}"
+			<Border
+				ToolTip="{Binding AdmiralName.ToolTip}"
+			    Visibility="{Binding AdmiralName.Visible}"
+			    Background="{Binding AdmiralName.Background}"
 			>
 				<TextBlock
 					Text="{Binding AdmiralName.Text}"
@@ -30,71 +31,74 @@
 					TextWrapping="Wrap"
 
 					d:Text="Mirai Fleet Admiral"
-					/>
+				/>
 			</Border>
-			<Border ToolTip="{Binding AdmiralComment.ToolTip}"
-			        Visibility="{Binding AdmiralComment.Visible}"
-			        >
+			<Border
+				ToolTip="{Binding AdmiralComment.ToolTip}"
+			    Visibility="{Binding AdmiralComment.Visible}"
+			>
 				<TextBlock
 					Text="{Binding AdmiralComment.Text}"
 					TextWrapping="Wrap"
 
 					d:Text="神風のまっしろおぱんちゅ"
-					/>
+				/>
 			</Border>
-			<Border ToolTip="{Binding HQLevel.ToolTip}"
-			        Visibility="{Binding HQLevel.Visible}"
-			        >
+			<Border
+				ToolTip="{Binding HQLevel.ToolTip}"
+			    Visibility="{Binding HQLevel.Visible}"
+			>
 				<StackPanel Orientation="Horizontal">
 					<TextBlock
-							Text="Lv"
-							VerticalAlignment="Bottom"
-							FontFamily="{Binding SubFont}"
-							FontSize="{Binding SubFontSize}"
-							Foreground="{Binding SubFontColor}"
+						Text="Lv"
+						VerticalAlignment="Bottom"
+						FontFamily="{Binding SubFont}"
+						FontSize="{Binding SubFontSize}"
+						Foreground="{Binding SubFontColor}"
 
-							d:Text="Lv"
-							d:FontSize="9"
-						/>
+						d:Text="Lv"
+						d:FontSize="9"
+					/>
 
 					<TextBlock
-							Text="{Binding HQLevel.Value}"
-							VerticalAlignment="Bottom"
-							Margin="4 0"
+						Text="{Binding HQLevel.Value}"
+						VerticalAlignment="Bottom"
+						Margin="4 0"
 
-							d:Text="120"
-						/>
+						d:Text="120"
+					/>
 
 					<StackPanel>
 						<TextBlock
-								Text="{Binding HQLevel.TextNext}"
-								FontFamily="{Binding SubFont}"
-								FontSize="{Binding SubFontSize}"
-								Foreground="{Binding SubFontColor}"
-								Margin="0 -2"
+							Text="{Binding HQLevel.TextNext}"
+							FontFamily="{Binding SubFont}"
+							FontSize="{Binding SubFontSize}"
+							Foreground="{Binding SubFontColor}"
+							Margin="0 -2"
 
-								d:Text="exp:"
-								d:FontSize="9"
-							/>
+							d:Text="exp:"
+							d:FontSize="9"
+						/>
 
 						<TextBlock
-								Text="{Binding HQLevel.ValueNext}"
-								FontFamily="{Binding SubFont}"
-								FontSize="{Binding SubFontSize}"
-								Foreground="{Binding SubFontColor}"
-								Margin="0 -2"
+							Text="{Binding HQLevel.ValueNext}"
+							FontFamily="{Binding SubFont}"
+							FontSize="{Binding SubFontSize}"
+							Foreground="{Binding SubFontColor}"
+							Margin="0 -2"
 
-								d:Text="75417353"
-								d:FontSize="9"
-							/>
+							d:Text="75417353"
+							d:FontSize="9"
+						/>
 					</StackPanel>
 				</StackPanel>
 			</Border>
 		</WrapPanel>
 		<WrapPanel>
-			<Border ToolTip="{Binding ShipCount.ToolTip}"
-			        Background="{Binding ShipCount.Background}"
-			        >
+			<Border
+				ToolTip="{Binding ShipCount.ToolTip}"
+				Background="{Binding ShipCount.Background}"
+			>
 				<StackPanel Orientation="Horizontal">
 					<Image Source="{Binding ShipCount.Icon}" />
 					<TextBlock
@@ -102,13 +106,14 @@
 						Foreground="{Binding ShipCount.Foreground}"
 						
 						d:Text="480/480"
-						/>
+					/>
 				</StackPanel>
 			</Border>
-			<Border ToolTip="{Binding EquipmentCount.ToolTip}"
-					Background="{Binding EquipmentCount.Background}"
-					Visibility="{Binding EquipmentCount.Visible}"
-					>
+			<Border
+				ToolTip="{Binding EquipmentCount.ToolTip}"
+				Background="{Binding EquipmentCount.Background}"
+				Visibility="{Binding EquipmentCount.Visible}"
+			>
 				<StackPanel Orientation="Horizontal">
 					<Image Source="{Binding EquipmentCount.Icon}" />
 					<TextBlock
@@ -116,15 +121,16 @@
 						Foreground="{Binding EquipmentCount.Foreground}"
 						
 						d:Text="2057/2057"
-						/>
+					/>
 				</StackPanel>
 			</Border>
 		</WrapPanel>
 		<WrapPanel>
-			<Border ToolTip="{Binding InstantRepair.ToolTip}"
-					Background="{Binding InstantRepair.Background}"
-					Visibility="{Binding InstantRepair.Visible}"
-					>
+			<Border
+				ToolTip="{Binding InstantRepair.ToolTip}"
+				Background="{Binding InstantRepair.Background}"
+				Visibility="{Binding InstantRepair.Visible}"
+			>
 				<StackPanel Orientation="Horizontal">
 					<Image Source="{Binding InstantRepair.Icon}" />
 					<TextBlock
@@ -132,13 +138,14 @@
 						Foreground="{Binding InstantRepair.Foreground}"
 						
 						d:Text="2937"
-						/>
+					/>
 				</StackPanel>
 			</Border>
-			<Border ToolTip="{Binding InstantConstruction.ToolTip}"
-					Background="{Binding InstantConstruction.Background}"
-					Visibility="{Binding InstantConstruction.Visible}"
-					>
+			<Border
+				ToolTip="{Binding InstantConstruction.ToolTip}"
+				Background="{Binding InstantConstruction.Background}"
+				Visibility="{Binding InstantConstruction.Visible}"
+			>
 				<StackPanel Orientation="Horizontal">
 					<Image Source="{Binding InstantConstruction.Icon}" />
 					<TextBlock
@@ -146,13 +153,14 @@
 						Foreground="{Binding InstantConstruction.Foreground}"
 
 						d:Text="2928"
-						/>
+					/>
 				</StackPanel>
 			</Border>
-			<Border ToolTip="{Binding DevelopmentMaterial.ToolTip}"
-					Background="{Binding DevelopmentMaterial.Background}"
-					Visibility="{Binding DevelopmentMaterial.Visible}"
-					>
+			<Border
+				ToolTip="{Binding DevelopmentMaterial.ToolTip}"
+				Background="{Binding DevelopmentMaterial.Background}"
+				Visibility="{Binding DevelopmentMaterial.Visible}"
+			>
 				<StackPanel Orientation="Horizontal">
 					<Image Source="{Binding DevelopmentMaterial.Icon}" />
 					<TextBlock
@@ -160,13 +168,14 @@
 						Foreground="{Binding DevelopmentMaterial.Foreground}"
 
 						d:Text="2493"
-						/>
+					/>
 				</StackPanel>
 			</Border>
-			<Border ToolTip="{Binding ModdingMaterial.ToolTip}"
-			        Background="{Binding ModdingMaterial.Background}"
-					Visibility="{Binding ModdingMaterial.Visible}"
-			        >
+			<Border
+				ToolTip="{Binding ModdingMaterial.ToolTip}"
+				Background="{Binding ModdingMaterial.Background}"
+				Visibility="{Binding ModdingMaterial.Visible}"
+			>
 				<StackPanel Orientation="Horizontal">
 					<Image Source="{Binding ModdingMaterial.Icon}" />
 					<TextBlock 
@@ -174,13 +183,14 @@
 						Foreground="{Binding ModdingMaterial.Foreground}"
 
 						d:Text="472"
-						/>
+					/>
 				</StackPanel>
 			</Border>
-			<Border ToolTip="{Binding FurnitureCoin.ToolTip}"
-			        Background="{Binding FurnitureCoin.Background}"
-					Visibility="{Binding FurnitureCoin.Visible}"
-			        >
+			<Border
+				ToolTip="{Binding FurnitureCoin.ToolTip}"
+				Background="{Binding FurnitureCoin.Background}"
+				Visibility="{Binding FurnitureCoin.Visible}"
+			>
 				<StackPanel Orientation="Horizontal">
 					<Image Source="{Binding FurnitureCoin.Icon}" />
 					<TextBlock
@@ -188,7 +198,7 @@
 						Foreground="{Binding FurnitureCoin.Foreground}"
 						
 						d:Text="106174"
-						/>
+					/>
 				</StackPanel>
 			</Border>
 			<Border ToolTip="{Binding DisplayUseItem.ToolTip}"
@@ -204,7 +214,8 @@
 						Text="{Binding DisplayUseItem.Text}"
 						Foreground="{Binding DisplayUseItem.Foreground}"
 
-						d:Text="123" />
+						d:Text="123"
+					/>
 				</StackPanel>
 			</Border>
 		</WrapPanel>
@@ -217,60 +228,67 @@
 			<WrapPanel>
 				<StackPanel Orientation="Horizontal">
 
-					<Border ToolTip="{Binding Fuel.ToolTip}"
+					<Border
+						ToolTip="{Binding Fuel.ToolTip}"
 				        Background="{Binding Fuel.Background}"
 				        Visibility="{Binding Fuel.Visible}"
-				>
+				    >
 						<StackPanel Orientation="Horizontal">
 							<Image Source="{Binding Fuel.Icon}" />
 							<TextBlock
-							Text="{Binding Fuel.Text}"
-							Foreground="{Binding Fuel.Foreground}"
+								Text="{Binding Fuel.Text}"
+								Foreground="{Binding Fuel.Foreground}"
 
-							d:Text="298344"
+								d:Text="298344"
 							/>
 						</StackPanel>
 					</Border>
-					<Border ToolTip="{Binding Steel.ToolTip}"
+					<Border
+						ToolTip="{Binding Steel.ToolTip}"
 				        Background="{Binding Steel.Background}"
 						Visibility="{Binding Steel.Visible}"
-				        >
+				    >
 						<StackPanel Orientation="Horizontal">
 							<Image Source="{Binding Steel.Icon}" />
 							<TextBlock
-							Text="{Binding Steel.Text}"
-							Foreground="{Binding Steel.Foreground}"
-							
-							d:Text="338637" />
+								Text="{Binding Steel.Text}"
+								Foreground="{Binding Steel.Foreground}"
+								
+								d:Text="338637"
+							/>
 						</StackPanel>
 					</Border>
 				</StackPanel>
 
 				<StackPanel Orientation="Horizontal">
-					<Border ToolTip="{Binding Ammo.ToolTip}"
-			        Background="{Binding Ammo.Background}"
-					Visibility="{Binding Ammo.Visible}"
+					<Border
+						ToolTip="{Binding Ammo.ToolTip}"
+				        Background="{Binding Ammo.Background}"
+						Visibility="{Binding Ammo.Visible}"
 			        >
 						<StackPanel Orientation="Horizontal">
 							<Image Source="{Binding Ammo.Icon}" />
 							<TextBlock
-						Text="{Binding Ammo.Text}"
-						Foreground="{Binding Ammo.Foreground}"
+								Text="{Binding Ammo.Text}"
+								Foreground="{Binding Ammo.Foreground}"
 
-						d:Text="341227" />
+								d:Text="341227"
+							/>
 						</StackPanel>
 					</Border>
-					<Border ToolTip="{Binding Bauxite.ToolTip}"
-			        Background="{Binding Bauxite.Background}"
-					Visibility="{Binding Ammo.Visible}"
+					<Border
+						ToolTip="{Binding Bauxite.ToolTip}"
+				        Background="{Binding Bauxite.Background}"
+						Visibility="{Binding Ammo.Visible}"
 			        >
 						<StackPanel Orientation="Horizontal">
 							<Image Source="{Binding Bauxite.Icon}" />
 							<TextBlock 
-						Text="{Binding Bauxite.Text}"
-						Foreground="{Binding Bauxite.Foreground}"
+								Text="{Binding Bauxite.Text}"
+								Foreground="{Binding Bauxite.Foreground}"
 
-						d:Text="341398" />
+								d:Text="341398" 
+							/>
 						</StackPanel>
 					</Border>
 				</StackPanel>
