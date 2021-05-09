@@ -48,23 +48,25 @@ namespace ElectronicObserver
 				System.Windows.Forms.Application.EnableVisualStyles();
 				System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
 
-#if false // change to false if you want to test in native wpf
-
-				try
+				if (e.Args.Contains("-wpf"))
 				{
-					// todo why does this exception happen?
-					// observed first after I added the wpf version of KC progress
-					System.Windows.Forms.Application.Run(new FormMain());
+					ToolTipService.ShowDurationProperty.OverrideMetadata(
+						typeof(DependencyObject), new FrameworkPropertyMetadata(int.MaxValue));
+					new FormMainWpf().ShowDialog();
 				}
-				catch (System.Runtime.InteropServices.SEHException ex)
+				else
 				{
+					try
+					{
+						// todo why does this exception happen?
+						// observed first after I added the wpf version of KC progress
+						System.Windows.Forms.Application.Run(new FormMain());
+					}
+					catch (System.Runtime.InteropServices.SEHException ex)
+					{
 
+					}
 				}
-#else
-				ToolTipService.ShowDurationProperty.OverrideMetadata(
-					typeof(DependencyObject), new FrameworkPropertyMetadata(int.MaxValue));
-				new FormMainWpf().ShowDialog();
-#endif
 			}
 		}
 	}
