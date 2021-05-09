@@ -6,7 +6,7 @@
 	<Application.Resources>
 		<ResourceDictionary>
 			<ResourceDictionary.MergedDictionaries>
-				<ui:ThemeResources />
+				<ui:ThemeResources RequestedTheme="Dark" />
 				<ui:XamlControlsResources UseCompactResources="True" />
 			</ResourceDictionary.MergedDictionaries>
 		</ResourceDictionary>
