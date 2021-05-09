@@ -1,0 +1,81 @@
+﻿<UserControl x:Class="ElectronicObserver.Window.Wpf.FleetOverview.FleetOverviewView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:ElectronicObserver.Window.Wpf.FleetOverview"
+             xmlns:views="clr-namespace:ElectronicObserver.Window.Wpf.Fleet.Views"
+
+             x:Name="FleetOverviewControl"
+
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+	<ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+		<Grid DataContext="{Binding ViewModel, ElementName=FleetOverviewControl}" IsSharedSizeScope="True">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+			</Grid.RowDefinitions>
+
+			<ItemsControl Grid.Row="0" ItemsSource="{Binding Fleets}">
+				<ItemsControl.ItemTemplate>
+					<DataTemplate>
+						<StackPanel>
+							<Grid>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="Auto" SharedSizeGroup="FleetOverviewTag" />
+									<ColumnDefinition Width="Auto" SharedSizeGroup="FleetOverviewText" />
+								</Grid.ColumnDefinitions>
+
+								<Border Grid.Column="0" Background="Transparent" ToolTip="{Binding ControlFleet.Name.Text}">
+									<StackPanel Orientation="Horizontal" Margin="2">
+										<TextBlock Text="{Binding Title}" />
+										<TextBlock Text=":" />
+									</StackPanel>
+								</Border>
+
+								<views:FleetStateView Grid.Column="1" ViewModel="{Binding ControlFleet.State}" />
+							</Grid>
+							<Separator Margin="0" />
+						</StackPanel>
+					</DataTemplate>
+				</ItemsControl.ItemTemplate>
+			</ItemsControl>
+
+			<StackPanel Grid.Row="1" DataContext="{Binding AnchorageRepairingTimer}" Visibility="{Binding Visibility}">
+				<Grid >
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="Auto" SharedSizeGroup="FleetOverviewTag" />
+						<ColumnDefinition Width="Auto" SharedSizeGroup="FleetOverviewText" />
+					</Grid.ColumnDefinitions>
+
+					<Border Grid.Column="1" Background="Transparent" ToolTip="{Binding ToolTip}">
+						<StackPanel Orientation="Horizontal">
+							<Image Margin="2 0" Source="{Binding Icon}" />
+							<TextBlock Text="{Binding Text}" />
+						</StackPanel>
+					</Border>
+				</Grid>
+				<Separator />
+			</StackPanel>
+
+			<StackPanel Grid.Row="2" DataContext="{Binding CombinedTag}" Visibility="{Binding Visibility}">
+				<Grid>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="Auto" SharedSizeGroup="FleetOverviewTag" />
+						<ColumnDefinition Width="Auto" SharedSizeGroup="FleetOverviewText" />
+					</Grid.ColumnDefinitions>
+
+					<Border Grid.Column="1" Background="Transparent" ToolTip="{Binding ToolTip}">
+						<StackPanel Orientation="Horizontal">
+							<Image Margin="2 0" Source="{Binding Icon}" />
+							<TextBlock Text="{Binding Text}" />
+						</StackPanel>
+					</Border>
+				</Grid>
+				<Separator />
+			</StackPanel>
+		</Grid>
+	</ScrollViewer>
+</UserControl>

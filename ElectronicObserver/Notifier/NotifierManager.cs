@@ -21,7 +21,7 @@ namespace ElectronicObserver.Notifier
 
 		#endregion
 
-		private FormMain _parentForm;
+		private object _parentForm;
 
 
 		public NotifierExpedition Expedition { get; private set; }
@@ -39,7 +39,7 @@ namespace ElectronicObserver.Notifier
 		}
 
 
-		public void Initialize(FormMain parent)
+		public void Initialize(object parent)
 		{
 
 			_parentForm = parent;
@@ -75,17 +75,40 @@ namespace ElectronicObserver.Notifier
 
 		public void ShowNotifier(ElectronicObserver.Window.Dialog.DialogNotifier form)
 		{
+			switch (_parentForm)
+			{
+				case FormMain parentForm:
+				{
+					if (form.DialogData.Alignment == NotifierDialogAlignment.CustomRelative)
+					{       //cloneしているから書き換えても問題ないはず
+						Point p = parentForm.fBrowser.PointToScreen(new Point(parentForm.fBrowser.ClientSize.Width / 2, parentForm.fBrowser.ClientSize.Height / 2));
+						p.Offset(new Point(-form.Width / 2, -form.Height / 2));
+						p.Offset(form.DialogData.Location);
 
-			if (form.DialogData.Alignment == NotifierDialogAlignment.CustomRelative)
-			{       //cloneしているから書き換えても問題ないはず
-				Point p = _parentForm.fBrowser.PointToScreen(new Point(_parentForm.fBrowser.ClientSize.Width / 2, _parentForm.fBrowser.ClientSize.Height / 2));
-				p.Offset(new Point(-form.Width / 2, -form.Height / 2));
-				p.Offset(form.DialogData.Location);
+						form.DialogData.Location = p;
+					}
+					form.FormBorderStyle = FormBorderStyle.FixedToolWindow;
+					parentForm.Invoke((MethodInvoker)form.Show);
+					break;
+				}
+				case FormMainWpf parentForm:
+				{
+					if (form.DialogData.Alignment == NotifierDialogAlignment.CustomRelative)
+					{       //cloneしているから書き換えても問題ないはず
+						if (parentForm.ViewModel.FormBrowserHost.WindowsFormsHost.Child is FormBrowserHost browserHost)
+						{
+							Point p = browserHost.PointToScreen(new Point(browserHost.ClientSize.Width / 2, browserHost.ClientSize.Height / 2));
+							p.Offset(new Point(-form.Width / 2, -form.Height / 2));
+							p.Offset(form.DialogData.Location);
 
-				form.DialogData.Location = p;
+							form.DialogData.Location = p;
+						}
+					}
+					form.FormBorderStyle = FormBorderStyle.FixedToolWindow;
+					parentForm.Dispatcher.Invoke((MethodInvoker)form.Show);
+					break;
+				}
 			}
-			form.FormBorderStyle = FormBorderStyle.FixedToolWindow;
-			_parentForm.Invoke((MethodInvoker)form.Show);
 		}
 
 		public IEnumerable<NotifierBase> GetNotifiers()

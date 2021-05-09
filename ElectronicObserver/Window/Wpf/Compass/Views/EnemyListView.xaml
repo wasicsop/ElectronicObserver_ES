@@ -1,0 +1,54 @@
+﻿<UserControl x:Class="ElectronicObserver.Window.Wpf.Compass.Views.EnemyListView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:ElectronicObserver.Window.Wpf.Compass.Views"
+
+             x:Name="EnemyListControl"
+
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+	<ScrollViewer DataContext="{Binding ViewModel, ElementName=EnemyListControl}" HorizontalScrollBarVisibility="Auto">
+		<ItemsControl ItemsSource="{Binding EnemyFleetCandidate}" Margin="2">
+			<ItemsControl.ItemsPanel>
+				<ItemsPanelTemplate>
+					<StackPanel CanHorizontallyScroll="True" Orientation="Horizontal" />
+				</ItemsPanelTemplate>
+			</ItemsControl.ItemsPanel>
+			<ItemsControl.ItemTemplate>
+				<DataTemplate>
+					<StackPanel>
+						<Border BorderThickness="1" BorderBrush="#444" Padding="2">
+							<ItemsControl ItemsSource="{Binding FleetMember}">
+								<ItemsControl.ItemTemplate>
+									<DataTemplate>
+										<TextBlock Text="{Binding Name}" MaxWidth="{Binding MaxNameWidth}" TextTrimming="CharacterEllipsis" ToolTip="{Binding NameToolTip}" Foreground="{Binding ShipNameBrush}">
+											<TextBlock.InputBindings>
+												<MouseBinding MouseAction="RightClick" Command="{Binding OpenShipEncyclopediaCommand}" CommandParameter="{Binding ShipId}" />
+											</TextBlock.InputBindings>
+										</TextBlock>
+									</DataTemplate>
+								</ItemsControl.ItemTemplate>
+							</ItemsControl>
+						</Border>
+						<Border BorderThickness="1 0 1 1" BorderBrush="#444" Padding="2">
+							<StackPanel>
+								<TextBlock Text="{Binding Formation}" TextAlignment="Right" />
+								<Grid ToolTip="{Binding AirToolTip}" HorizontalAlignment="Right">
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition Width="Auto" />
+										<ColumnDefinition Width="Auto" />
+									</Grid.ColumnDefinitions>
+									<Image Grid.Column="0" Source="{Binding AirIcon}" Margin="2" />
+									<TextBlock Grid.Column="1" Text="{Binding Air}" Margin="2" />
+								</Grid>
+							</StackPanel>
+						</Border>
+					</StackPanel>
+				</DataTemplate>
+			</ItemsControl.ItemTemplate>
+		</ItemsControl>
+	</ScrollViewer>
+</UserControl>

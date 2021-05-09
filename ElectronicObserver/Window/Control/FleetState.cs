@@ -71,7 +71,6 @@ namespace ElectronicObserver.Window.Control
 				}
 			}
 
-
 			public StateLabel()
 			{
 				Label = GetDefaultLabel();
@@ -146,11 +145,10 @@ namespace ElectronicObserver.Window.Control
 
 		private List<StateLabel> StateLabels;
 
-
 		public FleetState()
 		{
 			InitializeComponent();
-
+			
 			StateLabels = new List<StateLabel>();
 		}
 

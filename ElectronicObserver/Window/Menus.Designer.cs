@@ -22,7 +22,7 @@ namespace ElectronicObserver.Window {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Menus {
+    public class Menus {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace ElectronicObserver.Window {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ElectronicObserver.Window.Menus", typeof(Menus).Assembly);
@@ -51,7 +51,7 @@ namespace ElectronicObserver.Window {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace ElectronicObserver.Window {
         /// <summary>
         ///   Looks up a localized string similar to 下(&amp;B).
         /// </summary>
-        internal static string Alignment_Bottom {
+        public static string Alignment_Bottom {
             get {
                 return ResourceManager.GetString("Alignment_Bottom", resourceCulture);
             }
@@ -72,7 +72,7 @@ namespace ElectronicObserver.Window {
         /// <summary>
         ///   Looks up a localized string similar to 非表示(&amp;I).
         /// </summary>
-        internal static string Alignment_Invisible {
+        public static string Alignment_Invisible {
             get {
                 return ResourceManager.GetString("Alignment_Invisible", resourceCulture);
             }
@@ -81,7 +81,7 @@ namespace ElectronicObserver.Window {
         /// <summary>
         ///   Looks up a localized string similar to 左(&amp;L).
         /// </summary>
-        internal static string Alignment_Left {
+        public static string Alignment_Left {
             get {
                 return ResourceManager.GetString("Alignment_Left", resourceCulture);
             }
@@ -90,7 +90,7 @@ namespace ElectronicObserver.Window {
         /// <summary>
         ///   Looks up a localized string similar to 右(&amp;R).
         /// </summary>
-        internal static string Alignment_Right {
+        public static string Alignment_Right {
             get {
                 return ResourceManager.GetString("Alignment_Right", resourceCulture);
             }
@@ -99,7 +99,7 @@ namespace ElectronicObserver.Window {
         /// <summary>
         ///   Looks up a localized string similar to 上(&amp;T).
         /// </summary>
-        internal static string Alignment_Top {
+        public static string Alignment_Top {
             get {
                 return ResourceManager.GetString("Alignment_Top", resourceCulture);
             }
@@ -108,7 +108,7 @@ namespace ElectronicObserver.Window {
         /// <summary>
         ///   Looks up a localized string similar to コントロールウィンドウ(&amp;C).
         /// </summary>
-        internal static string ControlWindow {
+        public static string ControlWindow {
             get {
                 return ResourceManager.GetString("ControlWindow", resourceCulture);
             }
@@ -117,7 +117,7 @@ namespace ElectronicObserver.Window {
         /// <summary>
         ///   Looks up a localized string similar to 全てのウィンドウを開放(&amp;R).
         /// </summary>
-        internal static string DetachAll {
+        public static string DetachAll {
             get {
                 return ResourceManager.GetString("DetachAll", resourceCulture);
             }
@@ -126,7 +126,7 @@ namespace ElectronicObserver.Window {
         /// <summary>
         ///   Looks up a localized string similar to オンラインヘルプ(&amp;H)....
         /// </summary>
-        internal static string OnlineHelp {
+        public static string OnlineHelp {
             get {
                 return ResourceManager.GetString("OnlineHelp", resourceCulture);
             }
@@ -135,7 +135,7 @@ namespace ElectronicObserver.Window {
         /// <summary>
         ///   Looks up a localized string similar to オプション(&amp;O).
         /// </summary>
-        internal static string Option {
+        public static string Option {
             get {
                 return ResourceManager.GetString("Option", resourceCulture);
             }
@@ -144,7 +144,7 @@ namespace ElectronicObserver.Window {
         /// <summary>
         ///   Looks up a localized string similar to その他.
         /// </summary>
-        internal static string Other {
+        public static string Other {
             get {
                 return ResourceManager.GetString("Other", resourceCulture);
             }
@@ -153,7 +153,7 @@ namespace ElectronicObserver.Window {
         /// <summary>
         ///   Looks up a localized string similar to 現在%.
         /// </summary>
-        internal static string Other_Zoom_Current {
+        public static string Other_Zoom_Current {
             get {
                 return ResourceManager.GetString("Other_Zoom_Current", resourceCulture);
             }
@@ -162,7 +162,7 @@ namespace ElectronicObserver.Window {
         /// <summary>
         ///   Looks up a localized string similar to ぴったり.
         /// </summary>
-        internal static string Other_Zoom_Fit {
+        public static string Other_Zoom_Fit {
             get {
                 return ResourceManager.GetString("Other_Zoom_Fit", resourceCulture);
             }
@@ -171,7 +171,7 @@ namespace ElectronicObserver.Window {
         /// <summary>
         ///   Looks up a localized string similar to 全て再検索して取り込む(&amp;S).
         /// </summary>
-        internal static string ReattachAll {
+        public static string ReattachAll {
             get {
                 return ResourceManager.GetString("ReattachAll", resourceCulture);
             }
@@ -180,7 +180,7 @@ namespace ElectronicObserver.Window {
         /// <summary>
         ///   Looks up a localized string similar to 艦船グループ(&amp;G).
         /// </summary>
-        internal static string ShipGroup {
+        public static string ShipGroup {
             get {
                 return ResourceManager.GetString("ShipGroup", resourceCulture);
             }
@@ -189,7 +189,7 @@ namespace ElectronicObserver.Window {
         /// <summary>
         ///   Looks up a localized string similar to 艦名を表示(&amp;V).
         /// </summary>
-        internal static string ShowShipName {
+        public static string ShowShipName {
             get {
                 return ResourceManager.GetString("ShowShipName", resourceCulture);
             }
@@ -198,7 +198,7 @@ namespace ElectronicObserver.Window {
         /// <summary>
         ///   Looks up a localized string similar to ツールメニューを表示.
         /// </summary>
-        internal static string ShowToolMenu {
+        public static string ShowToolMenu {
             get {
                 return ResourceManager.GetString("ShowToolMenu", resourceCulture);
             }
@@ -207,7 +207,7 @@ namespace ElectronicObserver.Window {
         /// <summary>
         ///   Looks up a localized string similar to 試製七四式電子観測儀.
         /// </summary>
-        internal static string Title {
+        public static string Title {
             get {
                 return ResourceManager.GetString("Title", resourceCulture);
             }
@@ -216,7 +216,7 @@ namespace ElectronicObserver.Window {
         /// <summary>
         ///   Looks up a localized string similar to ウィンドウキャプチャ(&amp;W).
         /// </summary>
-        internal static string WindowCapture {
+        public static string WindowCapture {
             get {
                 return ResourceManager.GetString("WindowCapture", resourceCulture);
             }

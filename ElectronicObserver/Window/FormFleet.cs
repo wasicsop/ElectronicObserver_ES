@@ -903,13 +903,14 @@ namespace ElectronicObserver.Window
 		private TableMemberControl[] ControlMember;
 
 		private int AnchorageRepairBound;
+		public Action<ResourceManager.IconContent>? SetIcon { get; }
 
-
-		public FormFleet(FormMain parent, int fleetID)
+		public FormFleet(FormMain parent, int fleetID, Action<ResourceManager.IconContent>? setIcon = null)
 		{
 			InitializeComponent();
 
 			FleetID = fleetID;
+			SetIcon = setIcon;
 			Utility.SystemEvents.UpdateTimerTick += UpdateTimerTick;
 
 			ConfigurationChanged();
@@ -1033,7 +1034,9 @@ namespace ElectronicObserver.Window
 
 
 			if (Icon != null) ResourceManager.DestroyIcon(Icon);
-			Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[ControlFleet.State.GetIconIndex()]);
+			int iconIndex = ControlFleet.State.GetIconIndex();
+			Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[iconIndex]);
+			SetIcon?.Invoke((ResourceManager.IconContent) iconIndex);
 			if (Parent != null) Parent.Refresh();       //アイコンを更新するため
 
 		}

@@ -1,0 +1,428 @@
+﻿<Window x:Class="ElectronicObserver.FormMainWpf"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ElectronicObserver"
+
+		x:Name="FormMainWpfControl"
+
+		DataContext="{Binding ViewModel, ElementName=FormMainWpfControl}"
+
+		TextElement.FontFamily="{Binding Font}"
+        TextElement.Foreground="{Binding FontBrush}"
+        TextElement.FontSize="{Binding FontSize}"
+        TextElement.FontWeight="Regular"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+
+        xmlns:ui="http://schemas.modernwpf.com/2019"
+        xmlns:viewModels="clr-namespace:ElectronicObserver.ViewModels"
+        xmlns:viewModels1="clr-namespace:ElectronicObserver.Window.Wpf.Fleet.ViewModels"
+        xmlns:fleet="clr-namespace:ElectronicObserver.Window.Wpf.Fleet"
+        xmlns:winformsHost="clr-namespace:ElectronicObserver.Window.Wpf.WinformsHost"
+        xmlns:winformsWrappers="clr-namespace:ElectronicObserver.Window.Wpf.WinformsWrappers"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:viewModels2="clr-namespace:ElectronicObserver.Window.Wpf.ShipGroup.ViewModels"
+        xmlns:shipGroup="clr-namespace:ElectronicObserver.Window.Wpf.ShipGroup"
+        xmlns:compass="clr-namespace:ElectronicObserver.Window.Wpf.Compass"
+        xmlns:battle="clr-namespace:ElectronicObserver.Window.Wpf.Battle"
+        xmlns:headquarters="clr-namespace:ElectronicObserver.Window.Wpf.Headquarters"
+        xmlns:fleetOverview="clr-namespace:ElectronicObserver.Window.Wpf.FleetOverview"
+        xmlns:dock="clr-namespace:ElectronicObserver.Window.Wpf.Dock"
+        xmlns:arsenal="clr-namespace:ElectronicObserver.Window.Wpf.Arsenal"
+        xmlns:baseAirCorps="clr-namespace:ElectronicObserver.Window.Wpf.BaseAirCorps"
+        xmlns:fleetPreset="clr-namespace:ElectronicObserver.Window.Wpf.FleetPreset"
+        ui:WindowHelper.UseModernWindowStyle="True"
+
+        mc:Ignorable="d"
+        Title="Electronic Observer"
+		Height="450"
+        Width="800"
+>
+	<i:Interaction.Triggers>
+		<i:EventTrigger EventName="Closing">
+			<i:InvokeCommandAction Command="{Binding ClosingCommand}" PassEventArgsToCommand="True" />
+		</i:EventTrigger>
+		<i:EventTrigger EventName="Closed">
+			<i:InvokeCommandAction Command="{Binding ClosedCommand}" />
+		</i:EventTrigger>
+	</i:Interaction.Triggers>
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition />
+		</Grid.RowDefinitions>
+
+		<Menu Grid.Row="0" Height="Auto" Padding="2">
+			<Menu.Resources>
+				<Style TargetType="MenuItem" BasedOn="{StaticResource DefaultMenuItemStyle}">
+					<Setter Property="FontSize" Value="{Binding FontSize}" />
+				</Style>
+			</Menu.Resources>
+			<MenuItem Header="File" Height="Auto">
+				<MenuItem Header="Record">
+					<MenuItem Header="Save" Command="{Binding SaveDataCommand}" />
+					<MenuItem Header="Load" Command="{Binding LoadDataCommand}" />
+				</MenuItem>
+				<MenuItem Header="Layout">
+					<MenuItem Header="Save" Command="{Binding SaveLayoutCommand}" />
+					<MenuItem Header="Load" Command="{Binding LoadLayoutCommand}" />
+				</MenuItem>
+				<MenuItem Header="Notification">
+					<MenuItem Header="Disable" IsCheckable="True" IsChecked="{Binding NotificationsSilenced}" Command="{Binding SilenceNotificationsCommand}" />
+				</MenuItem>
+				<Separator />
+				<MenuItem Header="Settings" Command="{Binding OpenConfigurationCommand}">
+					<MenuItem.Icon>
+						<Image Source="{Binding ConfigurationImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+			</MenuItem>
+			<MenuItem Header="View" Height="Auto">
+				<MenuItem Header="Fleet">
+					<MenuItem.Icon>
+						<Image Source="{Binding FleetsImageSource}" />
+					</MenuItem.Icon>
+					<MenuItem Header="#1" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormFleets[0]}" />
+					<MenuItem Header="#2" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormFleets[1]}" />
+					<MenuItem Header="#3" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormFleets[2]}" />
+					<MenuItem Header="#4" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormFleets[3]}" />
+				</MenuItem>
+				<MenuItem Header="Fleet List" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormFleetOverview}">
+					<MenuItem.Icon>
+						<Image Source="{Binding FleetOverviewImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<MenuItem Header="Ship Group" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormShipGroup}">
+					<MenuItem.Icon>
+						<Image Source="{Binding ShipGroupImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<MenuItem Header="Presets" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormFleetPreset}">
+					<MenuItem.Icon>
+						<Image Source="{Binding FleetPresetImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<Separator />
+				<MenuItem Header="Dock" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormDock}">
+					<MenuItem.Icon>
+						<Image Source="{Binding DockImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<MenuItem Header="Arsenal" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormArsenal}">
+					<MenuItem.Icon>
+						<Image Source="{Binding ArsenalImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<MenuItem Header="AB" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormBaseAirCorps}">
+					<MenuItem.Icon>
+						<Image Source="{Binding BaseAirCorpsImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<Separator />
+				<MenuItem Header="HQ" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormHeadquarters}">
+					<MenuItem.Icon>
+						<Image Source="{Binding HeadquartersImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<MenuItem Header="Quest" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormQuest}">
+					<MenuItem.Icon>
+						<Image Source="{Binding QuestImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<MenuItem Header="Information" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormInformation}">
+					<MenuItem.Icon>
+						<Image Source="{Binding InformationImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<Separator />
+				<MenuItem Header="Compass" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormCompass}">
+					<MenuItem.Icon>
+						<Image Source="{Binding CompassImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<MenuItem Header="Battle" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormBattle}">
+					<MenuItem.Icon>
+						<Image Source="{Binding BattleImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<Separator />
+				<MenuItem Header="Browser" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormBrowserHost}">
+					<MenuItem.Icon>
+						<Image Source="{Binding BrowserHostImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<MenuItem Header="Log" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormLog}">
+					<MenuItem.Icon>
+						<Image Source="{Binding LogImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<MenuItem Header="JSON" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormJson}">
+					<MenuItem.Icon>
+						<Image Source="{Binding JsonImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+			</MenuItem>
+			<MenuItem Header="Wpf" Height="Auto">
+				<MenuItem Header="Fleet">
+					<MenuItem.Icon>
+						<Image Source="{Binding FleetsImageSource}" />
+					</MenuItem.Icon>
+					<MenuItem Header="#1" Command="{Binding OpenViewCommand}" CommandParameter="{Binding Fleets[0]}" />
+					<MenuItem Header="#2" Command="{Binding OpenViewCommand}" CommandParameter="{Binding Fleets[1]}" />
+					<MenuItem Header="#3" Command="{Binding OpenViewCommand}" CommandParameter="{Binding Fleets[2]}" />
+					<MenuItem Header="#4" Command="{Binding OpenViewCommand}" CommandParameter="{Binding Fleets[3]}" />
+				</MenuItem>
+				<MenuItem Header="Fleet List" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FleetOverview}">
+					<MenuItem.Icon>
+						<Image Source="{Binding FleetsImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<!--
+				<MenuItem Header="Group" Command="{Binding OpenViewCommand}" CommandParameter="{Binding ShipGroup}">
+					<MenuItem.Icon>
+						<Image Source="{Binding ShipGroupImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				-->
+				<MenuItem Header="Presets" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FleetPreset}">
+					<MenuItem.Icon>
+						<Image Source="{Binding FleetPresetImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<Separator />
+				<MenuItem Header="Dock" Command="{Binding OpenViewCommand}" CommandParameter="{Binding Dock}">
+					<MenuItem.Icon>
+						<Image Source="{Binding DockImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<MenuItem Header="Arsenal" Command="{Binding OpenViewCommand}" CommandParameter="{Binding Arsenal}">
+					<MenuItem.Icon>
+						<Image Source="{Binding ArsenalImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<MenuItem Header="AB" Command="{Binding OpenViewCommand}" CommandParameter="{Binding BaseAirCorps}">
+					<MenuItem.Icon>
+						<Image Source="{Binding BaseAirCorpsImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<Separator />
+				<MenuItem Header="HQ" Command="{Binding OpenViewCommand}" CommandParameter="{Binding Headquarters}">
+					<MenuItem.Icon>
+						<Image Source="{Binding HeadquartersImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<Separator />
+				<MenuItem Header="Compass" Command="{Binding OpenViewCommand}" CommandParameter="{Binding Compass}">
+					<MenuItem.Icon>
+						<Image Source="{Binding CompassImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<MenuItem Header="Battle" Command="{Binding OpenViewCommand}" CommandParameter="{Binding Battle}">
+					<MenuItem.Icon>
+						<Image Source="{Binding BattleImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+			</MenuItem>
+			<MenuItem Header="Tools" Height="Auto">
+				<MenuItem Header="Equipment List" Command="{Binding OpenEquipmentListCommand}">
+					<MenuItem.Icon>
+						<Image Source="{Binding EquipmentListImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<Separator />
+				<MenuItem Header="Drop Record" Command="{Binding OpenDropRecordCommand}">
+					<MenuItem.Icon>
+						<Image Source="{Binding DropRecordImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<MenuItem Header="Development Record" Command="{Binding OpenDevelopmentRecordCommand}">
+					<MenuItem.Icon>
+						<Image Source="{Binding DevelopmentRecordImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<MenuItem Header="Construction Record" Command="{Binding OpenConstructionRecordCommand}">
+					<MenuItem.Icon>
+						<Image Source="{Binding ConstructionRecordImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<MenuItem Header="Resource Chart" Command="{Binding OpenResourceChartCommand}">
+					<MenuItem.Icon>
+						<Image Source="{Binding ResourceChartImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<Separator />
+				<MenuItem Header="Ship Encyclopedia" Command="{Binding OpenAlbumMasterShipCommand}">
+					<MenuItem.Icon>
+						<Image Source="{Binding AlbumMasterShipImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<MenuItem Header="Equipment Encyclopedia" Command="{Binding OpenAlbumMasterEquipmentCommand}">
+					<MenuItem.Icon>
+						<Image Source="{Binding AlbumMasterEquipmentImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<Separator />
+				<MenuItem Header="AA Defense" Command="{Binding OpenAntiAirDefenseCommand}">
+					<MenuItem.Icon>
+						<Image Source="{Binding AntiAirDefenseImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<MenuItem Header="Export Fleet Image" Command="{Binding OpenFleetImageGeneratorCommand}">
+					<MenuItem.Icon>
+						<Image Source="{Binding FleetImageGeneratorImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<MenuItem Header="AB Simulator" Command="{Binding OpenBaseAirCorpsSimulationCommand}">
+					<MenuItem.Icon>
+						<Image Source="{Binding BaseAirCorpsSimulationImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<MenuItem Header="Exp Calculator" Command="{Binding OpenExpCheckerCommand}">
+					<MenuItem.Icon>
+						<Image Source="{Binding ExpCheckerImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<MenuItem Header="Expedition Check" Command="{Binding OpenExpeditionCheckCommand}">
+					<MenuItem.Icon>
+						<Image Source="{Binding ExpeditionCheckImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<MenuItem Header="Ship Progression List" Command="{Binding OpenKancolleProgressCommand}">
+					<MenuItem.Icon>
+						<Image Source="{Binding KancolleProgressImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<MenuItem Header="Extra Browser" Command="{Binding OpenExtraBrowserCommand}">
+					<MenuItem.Icon>
+						<Image Source="{Binding ExtraBrowserImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+			</MenuItem>
+			<MenuItem Header="Help" Height="Auto">
+				<MenuItem Header="View Help" Command="{Binding ViewHelpCommand}">
+					<MenuItem.Icon>
+						<Image Source="{Binding ViewHelpImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<MenuItem Header="Report a Problem" Command="{Binding ReportIssueCommand}" />
+				<MenuItem Header="Join us on Discord" Command="{Binding JoinDiscordCommand}" />
+				<Separator />
+				<MenuItem Header="Check for Update" Command="{Binding CheckForUpdateCommand}" />
+				<MenuItem Header="About Electronic Observer" Command="{Binding ViewVersionCommand}">
+					<MenuItem.Icon>
+						<Image Source="{Binding ViewVersionImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+			</MenuItem>
+		</Menu>
+
+		<DockingManager
+			x:Name="DockingManager"
+			Grid.Row="1"
+			GridSplitterWidth="1"
+			GridSplitterHeight="1"
+			AnchorablesSource="{Binding Views}"
+			Theme="{Binding CurrentTheme}"
+			AllowMixedOrientation="True"
+			IsVirtualizingAnchorable="True"
+			IsVirtualizingDocument="True"
+			>
+
+			<DockingManager.DocumentHeaderTemplate>
+				<DataTemplate DataType="viewModels:AnchorableViewModel">
+					<StackPanel Orientation="Horizontal">
+						<Image Source="{Binding IconSource}" Margin="0,0,4,0"/>
+						<TextBlock Text="{Binding Title}" />
+					</StackPanel>
+				</DataTemplate>
+			</DockingManager.DocumentHeaderTemplate>
+
+			<DockingManager.LayoutItemTemplateSelector>
+				<local:ViewTemplateSelector>
+					<local:ViewTemplateSelector.FleetTemplate>
+						<DataTemplate DataType="fleet:FleetViewModel">
+							<fleet:FleetView ViewModel="{Binding}" />
+						</DataTemplate>
+					</local:ViewTemplateSelector.FleetTemplate>
+					<local:ViewTemplateSelector.FleetOverviewTemplate>
+						<DataTemplate DataType="fleetOverview:FleetOverviewViewModel">
+							<fleetOverview:FleetOverviewView ViewModel="{Binding}" />
+						</DataTemplate>
+					</local:ViewTemplateSelector.FleetOverviewTemplate>
+					<local:ViewTemplateSelector.ShipGroupTemplate>
+						<DataTemplate DataType="viewModels2:ShipGroupViewModel">
+							<shipGroup:ShipGroupView ViewModel="{Binding}" />
+						</DataTemplate>
+					</local:ViewTemplateSelector.ShipGroupTemplate>
+					<local:ViewTemplateSelector.FleetPresetTemplate>
+						<DataTemplate DataType="fleetPreset:FleetPresetViewModel">
+							<fleetPreset:FleetPresetView ViewModel="{Binding}" />
+						</DataTemplate>
+					</local:ViewTemplateSelector.FleetPresetTemplate>
+					<local:ViewTemplateSelector.DockTemplate>
+						<DataTemplate DataType="dock:DockViewModel">
+							<dock:DockView ViewModel="{Binding}" />
+						</DataTemplate>
+					</local:ViewTemplateSelector.DockTemplate>
+					<local:ViewTemplateSelector.ArsenalTemplate>
+						<DataTemplate DataType="arsenal:ArsenalViewModel">
+							<arsenal:ArsenalView ViewModel="{Binding}" />
+						</DataTemplate>
+					</local:ViewTemplateSelector.ArsenalTemplate>
+					<local:ViewTemplateSelector.BaseAirCorpsTemplate>
+						<DataTemplate DataType="baseAirCorps:BaseAirCorpsViewModel">
+							<baseAirCorps:BaseAirCorpsView ViewModel="{Binding}" />
+						</DataTemplate>
+					</local:ViewTemplateSelector.BaseAirCorpsTemplate>
+					<local:ViewTemplateSelector.HeadquartersTemplate>
+						<DataTemplate DataType="headquarters:HeadquartersViewModel">
+							<headquarters:HeadquartersView ViewModel="{Binding}" />
+						</DataTemplate>
+					</local:ViewTemplateSelector.HeadquartersTemplate>
+					<local:ViewTemplateSelector.CompassTemplate>
+						<DataTemplate DataType="compass:CompassViewModel">
+							<compass:CompassView ViewModel="{Binding}" />
+						</DataTemplate>
+					</local:ViewTemplateSelector.CompassTemplate>
+					<local:ViewTemplateSelector.BattleTemplate>
+						<DataTemplate DataType="battle:BattleViewModel">
+							<battle:BattleView ViewModel="{Binding}" />
+						</DataTemplate>
+					</local:ViewTemplateSelector.BattleTemplate>
+					<local:ViewTemplateSelector.WinformsHostTemplate>
+						<DataTemplate DataType="winformsWrappers:FormBrowserHostViewModel">
+							<winformsHost:WinformsHostView ViewModel="{Binding}"/>
+						</DataTemplate>
+					</local:ViewTemplateSelector.WinformsHostTemplate>
+				</local:ViewTemplateSelector>
+			</DockingManager.LayoutItemTemplateSelector>
+
+			<DockingManager.LayoutItemContainerStyleSelector>
+				<local:ViewStyleSelector>
+					<local:ViewStyleSelector.AnchorableStyle>
+						<Style TargetType="LayoutAnchorableItem">
+							<Setter Property="Title" Value="{Binding Model.Title}" />
+							<Setter Property="ContentId" Value="{Binding Model.ContentId}" />
+							<Setter Property="IconSource" Value="{Binding Model.IconSource}" />
+							<Setter Property="Visibility" Value="{Binding Model.Visibility, Mode=TwoWay}" />
+							<Setter Property="IsSelected" Value="{Binding Model.IsSelected, Mode=TwoWay}" />
+							<Setter Property="IsActive" Value="{Binding Model.IsActive, Mode=TwoWay}" />
+							<Setter Property="CanClose" Value="True" />
+							<Setter Property="CanHide" Value="False" />
+							<Setter Property="CloseCommand" Value="{Binding Model.CloseCommand}" />
+						</Style>
+					</local:ViewStyleSelector.AnchorableStyle>
+				</local:ViewStyleSelector>
+			</DockingManager.LayoutItemContainerStyleSelector>
+			
+			<LayoutRoot>
+				<LayoutPanel>
+					<LayoutAnchorablePane AllowDuplicateContent="False" />
+				</LayoutPanel>
+			</LayoutRoot>
+
+		</DockingManager>
+    </Grid>
+</Window>

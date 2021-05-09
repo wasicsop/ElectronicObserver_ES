@@ -1,0 +1,92 @@
+﻿<UserControl x:Class="ElectronicObserver.Window.Wpf.FleetPreset.FleetPresetView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ElectronicObserver.Window.Wpf.FleetPreset"
+
+			 x:Name="FleetPresetControl"
+
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+>
+    <Border DataContext="{Binding ViewModel, ElementName=FleetPresetControl}" Background="Transparent" Margin="0 2">
+		<ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+			<Grid IsSharedSizeScope="True">
+				<ItemsControl ItemsSource="{Binding TableControls}">
+					<ItemsControl.ItemTemplate>
+						<DataTemplate DataType="local:FleetPresetItemViewModel">
+							<StackPanel>
+								<Grid>
+									<Grid.Resources>
+										<Style TargetType="Image">
+											<Setter Property="Margin" Value="2 0" />
+										</Style>
+
+										<Style TargetType="TextBlock">
+											<Setter Property="Margin" Value="4 0" />
+										</Style>
+									</Grid.Resources>
+
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition Width="Auto" SharedSizeGroup="FleetPresetName" />
+										<ColumnDefinition Width="Auto" MaxWidth="{Binding MaxWidth}" SharedSizeGroup="FleetPresetShip0" />
+										<ColumnDefinition Width="Auto" MaxWidth="{Binding MaxWidth}" SharedSizeGroup="FleetPresetShip1" />
+										<ColumnDefinition Width="Auto" MaxWidth="{Binding MaxWidth}" SharedSizeGroup="FleetPresetShip2" />
+										<ColumnDefinition Width="Auto" MaxWidth="{Binding MaxWidth}" SharedSizeGroup="FleetPresetShip3" />
+										<ColumnDefinition Width="Auto" MaxWidth="{Binding MaxWidth}" SharedSizeGroup="FleetPresetShip4" />
+										<ColumnDefinition Width="Auto" MaxWidth="{Binding MaxWidth}" SharedSizeGroup="FleetPresetShip5" />
+									</Grid.ColumnDefinitions>
+
+									<Border Grid.Column="0" Background="Transparent" ToolTip="{Binding Name.ToolTip}">
+										<Grid>
+											<Grid.ColumnDefinitions>
+												<ColumnDefinition />
+												<ColumnDefinition SharedSizeGroup="ConditionViewValue"/>
+											</Grid.ColumnDefinitions>
+
+											<TextBlock
+												Grid.Column="0"
+												Text="{Binding Name.Text}"
+											/>
+
+											<Image
+												Source="{Binding Condition.Icon}"
+												Grid.Column="1"
+											/>
+										</Grid>
+									</Border>
+
+									<Border Grid.Column="1" DataContext="{Binding Ships[0]}" ToolTip="{Binding ToolTip}">
+										<TextBlock Text="{Binding Text}" />
+									</Border>
+
+									<Border Grid.Column="2" DataContext="{Binding Ships[1]}" ToolTip="{Binding ToolTip}">
+										<TextBlock Text="{Binding Text}" />
+									</Border>
+
+									<Border Grid.Column="3" DataContext="{Binding Ships[2]}" ToolTip="{Binding ToolTip}">
+										<TextBlock Text="{Binding Text}" />
+									</Border>
+
+									<Border Grid.Column="4" DataContext="{Binding Ships[3]}" ToolTip="{Binding ToolTip}">
+										<TextBlock Text="{Binding Text}" />
+									</Border>
+
+									<Border Grid.Column="5" DataContext="{Binding Ships[4]}" ToolTip="{Binding ToolTip}">
+										<TextBlock Text="{Binding Text}" />
+									</Border>
+
+									<Border Grid.Column="6" DataContext="{Binding Ships[5]}" ToolTip="{Binding ToolTip}">
+										<TextBlock Text="{Binding Text}" />
+									</Border>
+								</Grid>
+								<Separator />
+							</StackPanel>
+						</DataTemplate>
+					</ItemsControl.ItemTemplate>
+				</ItemsControl>
+			</Grid>
+		</ScrollViewer>
+	</Border>
+</UserControl>

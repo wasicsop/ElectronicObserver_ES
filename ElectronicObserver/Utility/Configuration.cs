@@ -1878,7 +1878,7 @@ namespace ElectronicObserver.Utility
 
 		private dynamic ThemeStyle;
 
-		private void ApplyTheme()
+		public void ApplyTheme()
 		{
 			dynamic json;
 			if (Config.UI.ThemeMode != 2)

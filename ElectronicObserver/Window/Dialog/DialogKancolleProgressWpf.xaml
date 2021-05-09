@@ -6,6 +6,9 @@
         xmlns:kancolleProgress="clr-namespace:KancolleProgress;assembly=KancolleProgress"
         mc:Ignorable="d"
 
+        xmlns:ui="http://schemas.modernwpf.com/2019"
+        ui:WindowHelper.UseModernWindowStyle="True"
+
         Title="Ship Progression List"
 		WindowState="Maximized"
         Loaded="Window_Loaded">
