@@ -275,6 +275,7 @@ namespace ElectronicObserver.Window
 
 			UIUpdateTimer.Start();
 
+			StripMenu_Wpf.Visible = false;
 
 			Utility.Logger.Add(3, Resources.StartupComplete);
 		}
