@@ -30,6 +30,6 @@
   </ItemGroup>
 
   <ItemGroup>
-	  <PackageReference Include="Dirkster.AvalonDock" Version="4.50.2" />
+	  <PackageReference Include="Dirkster.AvalonDock" Version="4.50.3" />
   </ItemGroup>
 </Project>
