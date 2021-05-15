@@ -21,25 +21,28 @@
 		</ResourceDictionary>
 	</UserControl.Resources>
 
-	<DockPanel>
-		<Menu DockPanel.Dock="Top" HorizontalContentAlignment="Center">
-			<MenuItem Header="Ships"
-					  Command="{Binding SetDisplayCommand}"
-			>
-				<MenuItem.CommandParameter>
-					<viewModels:Display>Ships</viewModels:Display>
-				</MenuItem.CommandParameter>
-			</MenuItem>
-			<MenuItem Header="Event" 
-			          Command="{Binding SetDisplayCommand}"
-			>
-				<MenuItem.CommandParameter>
-					<viewModels:Display>Event</viewModels:Display>
-				</MenuItem.CommandParameter>
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition />
+		</Grid.RowDefinitions>
+
+		<Menu Grid.Row="0">
+			<MenuItem Header="File">
+				<MenuItem Header="Ships" Command="{Binding SetDisplayCommand}">
+					<MenuItem.CommandParameter>
+						<viewModels:Display>Ships</viewModels:Display>
+					</MenuItem.CommandParameter>
+				</MenuItem>
+				<MenuItem Header="Event"  Command="{Binding SetDisplayCommand}">
+					<MenuItem.CommandParameter>
+						<viewModels:Display>Event</viewModels:Display>
+					</MenuItem.CommandParameter>
+				</MenuItem>
 			</MenuItem>
 		</Menu>
 
-		<ScrollViewer Padding="20" HorizontalAlignment="Center" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+		<ScrollViewer Grid.Row="1" Padding="20" HorizontalAlignment="Center" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
 			<StackPanel Orientation="Horizontal">
 				<ItemsControl ItemsSource="{Binding TypeGroups}" HorizontalAlignment="Center">
 					<ItemsControl.ItemsPanel>
@@ -96,5 +99,5 @@
 				</Border>
 			</StackPanel>
 		</ScrollViewer>
-	</DockPanel>
+	</Grid>
 </UserControl>
