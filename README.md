@@ -33,7 +33,7 @@ None of these functions interfere with KanColle normal, legal operation.
 
 The latest version of Electronic Observer is available at the [**Releases**](https://github.com/gre4bee/ElectronicObserver/releases/latest) page.
 
-note: you need to have [Microsoft Visual C++ 2015 Redistributable Update 3](https://www.microsoft.com/download/details.aspx?id=52685) installed, earlier versions of windows (7, 8) might also need [KB2533623](https://support.microsoft.com/help/2533623/microsoft-security-advisory-insecure-library-loading-could-allow-remot)
+note: you need to have [Visual C++ 2019](https://support.microsoft.com/en-us/topic/the-latest-supported-visual-c-downloads-2647da03-1eea-4433-9aff-95f26a218cc0) [(direct link)](https://aka.ms/vs/16/release/vc_redist.x64.exe) installed, earlier versions of windows (7, 8) might also need [KB2533623](https://support.microsoft.com/help/2533623/microsoft-security-advisory-insecure-library-loading-could-allow-remot)
 
 ## Documentations
 
