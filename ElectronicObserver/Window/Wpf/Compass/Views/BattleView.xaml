@@ -18,14 +18,12 @@
 
 		<StackPanel Orientation="Horizontal">
 			<TextBlock Text="{Binding TextFormationText}" Margin="2" />
-			<Grid ToolTip="{Binding TextAirSuperiorityToolTip}" HorizontalAlignment="Right">
-				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="Auto" />
-					<ColumnDefinition Width="Auto" />
-				</Grid.ColumnDefinitions>
-				<Image Grid.Column="0" Source="{Binding AirIcon}" Margin="2" />
-				<TextBlock Grid.Column="1" Text="{Binding TextAirSuperiorityText}" Margin="2" />
-			</Grid>
+			<Border Background="Transparent" ToolTip="{Binding TextAirSuperiorityToolTip}">
+				<StackPanel Orientation="Horizontal">
+					<Image Source="{Binding AirIcon}" Margin="2" />
+					<TextBlock Text="{Binding TextAirSuperiorityText}" Margin="2" />
+				</StackPanel>
+			</Border>
 			<TextBlock Text="{Binding TextEnemyFleetNameText}" Margin="2" />
 		</StackPanel>
 

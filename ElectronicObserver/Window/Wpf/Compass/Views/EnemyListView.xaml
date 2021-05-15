@@ -36,14 +36,17 @@
 						<Border BorderThickness="1 0 1 1" BorderBrush="#444" Padding="2">
 							<StackPanel>
 								<TextBlock Text="{Binding Formation}" TextAlignment="Right" />
-								<Grid ToolTip="{Binding AirToolTip}" HorizontalAlignment="Right">
-									<Grid.ColumnDefinitions>
-										<ColumnDefinition Width="Auto" />
-										<ColumnDefinition Width="Auto" />
-									</Grid.ColumnDefinitions>
-									<Image Grid.Column="0" Source="{Binding AirIcon}" Margin="2" />
-									<TextBlock Grid.Column="1" Text="{Binding Air}" Margin="2" />
-								</Grid>
+								<Border Background="Transparent" ToolTip="{Binding AirToolTip}">
+									<Grid HorizontalAlignment="Right">
+										<Grid.ColumnDefinitions>
+											<ColumnDefinition Width="Auto" />
+											<ColumnDefinition Width="Auto" />
+										</Grid.ColumnDefinitions>
+
+										<Image Grid.Column="0" Source="{Binding AirIcon}" Margin="2" />
+										<TextBlock Grid.Column="1" Text="{Binding Air}" Margin="2" />
+									</Grid>
+								</Border>
 							</StackPanel>
 						</Border>
 					</StackPanel>
