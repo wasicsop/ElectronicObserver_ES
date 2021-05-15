@@ -48,6 +48,10 @@ namespace ElectronicObserver
 				System.Windows.Forms.Application.EnableVisualStyles();
 				System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
 
+				// hack: needed for running the winforms version
+				// remove this and the Shutdown call when moving to wpf only
+				ShutdownMode = ShutdownMode.OnExplicitShutdown;
+
 				if (e.Args.Contains("-wpf"))
 				{
 					ToolTipService.ShowDurationProperty.OverrideMetadata(
@@ -67,6 +71,8 @@ namespace ElectronicObserver
 
 					}
 				}
+
+				Shutdown();
 			}
 		}
 	}
