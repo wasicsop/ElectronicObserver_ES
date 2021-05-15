@@ -16,14 +16,26 @@
 		</Grid.RowDefinitions>
 		<StackPanel Grid.Row="0" Orientation="Horizontal">
 			<TextBlock Text="{Binding TextMapArea}" ToolTip="{Binding TextMapAreaToolTip}" Margin="2" />
-			<TextBlock Text="{Binding TextDestination}" ToolTip="{Binding TextDestinationToolTip}" Margin="2" />
-			<Image Source="{Binding TextDestinationIcon}" />
+			<Border Background="Transparent" ToolTip="{Binding TextDestinationToolTip}">
+				<StackPanel Orientation="Horizontal">
+					<TextBlock Text="{Binding TextDestination}" Margin="2" />
+					<Image Source="{Binding TextDestinationIcon}" Margin="2" />
+				</StackPanel>	
+			</Border>
 		</StackPanel>
 		<StackPanel Grid.Row="1" Orientation="Horizontal">
-			<TextBlock Text="{Binding TextEventKindText}" ToolTip="{Binding TextEventKindToolTip}" Margin="2" Foreground="{Binding TextEventKindForeColor}" />
-			<Image Source="{Binding TextEventKindIcon}" Margin="2" />
-			<Image Source="{Binding TextEventDetailIcon}" Margin="2" />
-			<TextBlock Text="{Binding TextEventDetailText}" ToolTip="{Binding TextEventDetailToolTip}" Margin="2" />
+			<Border Background="Transparent" ToolTip="{Binding TextEventKindToolTip}">
+				<StackPanel Orientation="Horizontal">
+					<TextBlock Text="{Binding TextEventKindText}" Margin="2" Foreground="{Binding TextEventKindForeColor}" />
+					<Image Source="{Binding TextEventKindIcon}" Margin="2" />
+				</StackPanel>
+			</Border>
+			<Border Background="Transparent" ToolTip="{Binding TextEventDetailToolTip}">
+				<StackPanel Orientation="Horizontal">
+					<Image Source="{Binding TextEventDetailIcon}" Margin="2" />
+					<TextBlock Text="{Binding TextEventDetailText}" Margin="2" />
+				</StackPanel>
+			</Border>
 		</StackPanel>
 	</Grid>
 </UserControl>
