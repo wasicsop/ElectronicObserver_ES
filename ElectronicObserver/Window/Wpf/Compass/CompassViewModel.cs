@@ -47,8 +47,7 @@ namespace ElectronicObserver.Window.Wpf.Compass
 			.Select(f => new EnemyFleetElementViewModel
 			{
 				EnemyFleetCandidate = f
-			})
-			.Take(6) ?? Enumerable.Empty<EnemyFleetElementViewModel>();
+			}) ?? Enumerable.Empty<EnemyFleetElementViewModel>();
 
 		public IEnumerable<MasterShipViewModel>? EnemyFleet { get; set; }
 
