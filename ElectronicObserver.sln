@@ -101,6 +101,7 @@ Global
 		{249AEFD1-9BFA-4BBD-9A46-0E3CF9CF99B6}.Debug|x64.Build.0 = Debug|x64
 		{249AEFD1-9BFA-4BBD-9A46-0E3CF9CF99B6}.Release|Any CPU.ActiveCfg = Release|x64
 		{249AEFD1-9BFA-4BBD-9A46-0E3CF9CF99B6}.Release|x64.ActiveCfg = Release|x64
+		{249AEFD1-9BFA-4BBD-9A46-0E3CF9CF99B6}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
