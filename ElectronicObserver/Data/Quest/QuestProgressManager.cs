@@ -1022,6 +1022,20 @@ namespace ElectronicObserver.Data.Quest
 								new ProgressExpedition(q, 1, new[]{ 4 }),
 								new ProgressExpedition(q, 1, new[]{ 10 }),
 							})); break;
+						case 438:   // D35
+							Progresses.Add(new ProgressMultiExpedition(q, new[]{
+								new ProgressExpedition(q, 1, new[]{ 4 }),
+								new ProgressExpedition(q, 1, new[]{ 9 }),
+								new ProgressExpedition(q, 1, new[]{ 100 }),
+								new ProgressExpedition(q, 1, new[]{ 114 }),
+							})); break;
+						case 439:   // D36
+							Progresses.Add(new ProgressMultiExpedition(q, new[]{
+								new ProgressExpedition(q, 1, new[]{ 5 }),
+								new ProgressExpedition(q, 1, new[]{ 11 }),
+								new ProgressExpedition(q, 1, new[]{ 100 }),
+								new ProgressExpedition(q, 1, new[]{ 110 }),
+							})); break;
 						case 442:   //|442|２|西方連絡作戦準備を実施せよ！|「西方海域偵察作戦」「潜水艦派遣演習」「潜水艦派遣作戦」「欧州方面友軍との接触」成功各1?|
 							Progresses.Add(new ProgressMultiExpedition(q, new[]
                             {
