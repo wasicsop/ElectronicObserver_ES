@@ -1138,7 +1138,7 @@ namespace ElectronicObserver.Data
                     return ConstantsRes.ViceAdmiral;
                 case 4:
                     return ConstantsRes.RearAdmiral;
-                case 5:
+				case 5:
                     return ConstantsRes.Captain;
                 case 6:
                     return ConstantsRes.Commander;
@@ -1158,53 +1158,30 @@ namespace ElectronicObserver.Data
         /// <summary>
         /// 任務の発生タイプを表す文字列を取得します。
         /// </summary>
-        public static string GetQuestType(int id)
+        public static string GetQuestType(int id) => id switch
         {
-            switch (id)
-            {
-                case 1:     //デイリー
-                    return ConstantsRes.Daily;
-                case 2:     //ウィークリー
-                    return ConstantsRes.Weekly;
-                case 3:     //マンスリー
-                    return ConstantsRes.Monthly;
-                case 4:     //単発
-                    return "1";
-                case 5:     //その他(輸送5/空母3)
-                    return ConstantsRes.QuestOther;
+	        1 => ConstantsRes.Daily, //デイリー
+	        2 => ConstantsRes.Weekly, //ウィークリー
+	        3 => ConstantsRes.Monthly, //マンスリー
+	        4 => "1", //単発
+	        5 => ConstantsRes.QuestOther, //その他(輸送5/空母3)
 
-                // 以下、厳密には LabelType だが面倒なので
-                case 101:
-	                return "1";
-                case 102:
-	                return "Y";
-                case 103:
-	                return "Y";
-                case 104:
-	                return "4";
-                case 105:
-	                return "5";
-                case 106:
-	                return "6";
-                case 107:
-	                return "7";
-                case 108:
-	                return "8";
-                case 109:
-	                return "9";
-                case 110:
-	                return "10";
-                case 111:
-	                return "11";
-                case 112:
-	                return "12";
+	        // 以下、厳密には LabelType だが面倒なので
+	        101 => "Y1",
+	        102 => "Y2",
+	        103 => "Y3",
+	        104 => "Y4",
+	        105 => "Y5",
+	        106 => "Y6",
+	        107 => "Y7",
+	        108 => "Y8",
+	        109 => "Y9",
+	        110 => "Y10",
+	        111 => "Y11",
+	        112 => "Y12",
 
-					default:
-                    return ConstantsRes.Question;
-            }
-
-        }
-
+	        _ => ConstantsRes.Question
+        };
 
 		public static string GetQuestLabelType(int id)
 		{
