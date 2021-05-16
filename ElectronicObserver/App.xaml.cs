@@ -52,7 +52,12 @@ namespace ElectronicObserver
 				// remove this and the Shutdown call when moving to wpf only
 				ShutdownMode = ShutdownMode.OnExplicitShutdown;
 
-				if (e.Args.Contains("-wpf"))
+				bool forceWpf = false;
+#if DEBUG
+				forceWpf = true;
+#endif
+
+				if (forceWpf || e.Args.Contains("-wpf"))
 				{
 					ToolTipService.ShowDurationProperty.OverrideMetadata(
 						typeof(DependencyObject), new FrameworkPropertyMetadata(int.MaxValue));
