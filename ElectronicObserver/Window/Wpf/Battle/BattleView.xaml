@@ -9,6 +9,10 @@
 
              x:Name="BattleControl"
 
+             TextElement.FontFamily="{Binding FontFamily, RelativeSource={RelativeSource AncestorType=Window}}"
+             TextElement.Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Window}}"
+             TextElement.FontSize="{Binding FontSize, RelativeSource={RelativeSource AncestorType=Window}}"
+
              mc:Ignorable="d" 
              d:DesignHeight="250" d:DesignWidth="300">
 

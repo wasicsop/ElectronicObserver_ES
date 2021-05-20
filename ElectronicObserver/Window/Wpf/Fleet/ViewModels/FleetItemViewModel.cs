@@ -135,7 +135,7 @@ namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels
 			HP.SubFont = Configuration.Config.UI.SubFont;
 			// Condition.Font = parent.MainFont;
 			Condition.SetDesign(Condition.Tag ?? 49);
-			// Equipments.Font = parent.SubFont;
+			Equipments.Font = Configuration.Config.UI.SubFont;
 		}
 
 		public void Update(int shipMasterID)

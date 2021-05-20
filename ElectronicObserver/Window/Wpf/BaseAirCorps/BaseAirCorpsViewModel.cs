@@ -34,6 +34,19 @@ namespace ElectronicObserver.Window.Wpf.BaseAirCorps
 			new(),
 		};
 
+		public BaseAirCorpsSquadronViewModel()
+		{
+			PropertyChanged += (sender, args) =>
+			{
+				if (args.PropertyName is not nameof(Font)) return;
+
+				foreach (ShipSlotViewModel slot in SlotList)
+				{
+					slot.Font = Font;
+				}
+			};
+		}
+
 		public void SetSlotList(BaseAirCorpsData corps)
 		{
 			int slotLength = corps?.Squadrons?.Count() ?? 0;

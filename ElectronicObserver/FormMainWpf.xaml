@@ -12,9 +12,6 @@
 		TextElement.FontFamily="{Binding Font}"
         TextElement.Foreground="{Binding FontBrush}"
         TextElement.FontSize="{Binding FontSize}"
-        TextElement.FontWeight="Regular"
-        TextOptions.TextFormattingMode="Ideal"
-        TextOptions.TextRenderingMode="Auto"
 
         xmlns:ui="http://schemas.modernwpf.com/2019"
         xmlns:viewModels="clr-namespace:ElectronicObserver.ViewModels"

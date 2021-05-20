@@ -9,14 +9,20 @@
 
              x:Name="FleetControl"
 
+             TextElement.FontFamily="{Binding FontFamily, RelativeSource={RelativeSource AncestorType=Window}}"
+             TextElement.Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Window}}"
+             TextElement.FontSize="{Binding FontSize, RelativeSource={RelativeSource AncestorType=Window}}"
+
              mc:Ignorable="d" 
              d:DesignHeight="150" d:DesignWidth="200">
 	<UserControl.Resources>
 		<ResourceDictionary>
+			<!--
+			
 			<ResourceDictionary.MergedDictionaries>
 				<ResourceDictionary Source="../Resources.xaml" />
 			</ResourceDictionary.MergedDictionaries>
-
+			
 			<Storyboard 
 				x:Key="Taiha"
 				Storyboard.TargetProperty="Background.(SolidColorBrush.Color)"
@@ -33,6 +39,8 @@
 					<DiscreteColorKeyFrame KeyTime="0:0:2" Value="Transparent"/>
 				</ColorAnimationUsingKeyFrames>
 			</Storyboard>
+			
+			-->
 
 			<Style TargetType="Border">
 				<Setter Property="Background" Value="Transparent" />

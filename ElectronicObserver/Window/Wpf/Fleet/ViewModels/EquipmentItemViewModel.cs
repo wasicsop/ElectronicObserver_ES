@@ -123,6 +123,16 @@ namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels
 
 				SetShowAircraft();
 			};
+
+			PropertyChanged += (sender, args) =>
+			{
+				if (args.PropertyName is not nameof(Font)) return;
+
+				foreach (ShipSlotViewModel slot in Slots)
+				{
+					slot.Font = Font;
+				}
+			};
 		}
 
 		public void SetShowAircraft()
