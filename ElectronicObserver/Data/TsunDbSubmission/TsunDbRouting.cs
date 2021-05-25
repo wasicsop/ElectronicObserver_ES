@@ -106,7 +106,8 @@ namespace ElectronicObserver.Data
 				.Select(fleet => fleet.Value.FleetID)
 				.Min();
 
-			this.FleetType = db.Fleet.CombinedFlag;
+			// --- Get the fleet type, if first fleet => flag of the combined fleet, else 0 (single fleet & strike force)
+			FleetType = SortiedFleet == 1 ? db.Fleet.CombinedFlag : 0;
 
 			// --- Sets amount of nodes value in NodeInfo
 			object[] cell_data = api_data["api_cell_data"];
