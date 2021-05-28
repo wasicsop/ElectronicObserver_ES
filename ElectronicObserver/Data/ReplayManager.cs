@@ -64,18 +64,21 @@ namespace ElectronicObserver.Data
 			{
 				case "api_req_map/start":
 				case "api_req_map/next":
+					int sortied_fleet = db.Fleet.Fleets.Where(fleet => fleet.Value.IsInSortie).Select(fleet => fleet.Value.FleetID).Min();
 					Battle_replay.Battles[0].Node = db.Battle.Compass.Destination;
 					Battle_replay.Mapnum = db.Battle.Compass.MapInfoID;
 					Battle_replay.World = db.Battle.Compass.MapAreaID;
 					Battle_replay.Battles[0].SortieId = 1;
 					Battle_replay.Battles[0].Id = 1;
 					Battle_replay.Battles[0].BaseEXP = 0;
-					Battle_replay.Battles[0].HqEXP = 0; 
+					Battle_replay.Battles[0].HqEXP = 0;
+					Battle_replay.Fleetnum = db.Fleet.Fleets.Where(fleet => fleet.Value.IsInSortie).Select(fleet => fleet.Value.FleetID).Min();
 					isPvp = false;
 					Battle_replay.Battles[0].Data = null;
 					Battle_replay.Battles[0].Yasen = new object();
 					YasenData = null;
 					DayData = null;
+					Battle_replay.Combined = sortied_fleet == 1 ? db.Fleet.CombinedFlag : 0;
 					break;
 
 				case "api_req_sortie/battle": // normal day 
@@ -181,7 +184,7 @@ namespace ElectronicObserver.Data
 					break;
 
 				case "api_port/port":
-					Battle_replay.Combined = db.Fleet.CombinedFlag;
+
 					isPvp = false;
 					break;
 			}
