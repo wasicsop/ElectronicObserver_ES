@@ -605,6 +605,7 @@
 		KagaKaiNiGo = 646,
 		AkigumoKaiNi = 648,
 		NoshiroKaiNi = 662,
+		AkebonoKaiNi = 665,
 		HiburiKai = 678,
 		DaitouKai = 679,
 		HamanamiKai = 680,
