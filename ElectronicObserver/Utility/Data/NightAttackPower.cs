@@ -169,7 +169,7 @@ namespace ElectronicObserver.Utility.Data
 			};
 
 		private static double DKai3GunMod(this IShipData ship) => ship.AllSlotInstance
-				.Count(e => e?.EquipmentId == EquipmentId.MainGunSmall_12_7cmTwinGunModelDKai2) switch
+				.Count(e => e?.EquipmentId == EquipmentId.MainGunSmall_12_7cmTwinGunModelDKai3) switch
 			{
 				0 => 1,
 				_ => 1.05,
