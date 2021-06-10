@@ -56,7 +56,8 @@ namespace KancolleProgress.ViewModels
 				new(this, Comparator.Equal, 175, Colors.DeepPink, "Max"),
 				new(this, Comparator.GreaterOrEqual, 99, Colors.DeepSkyBlue),
 				new(this, Comparator.GreaterOrEqual, 90, Colors.LimeGreen),
-				new(this, Comparator.GreaterOrEqual, 1, Colors.Yellow, "Collection"),
+				new(this, Comparator.GreaterOrEqual, 80, Colors.Yellow),
+				new(this, Comparator.GreaterOrEqual, 1, Colors.LightGray, "Collection"),
 				new(this, Comparator.Equal, 0, Colors.Red, "Missing"),
 			};
 
