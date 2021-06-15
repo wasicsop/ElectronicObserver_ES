@@ -87,7 +87,7 @@ namespace ElectronicObserver.Utility
 			Size fleetAirSuperiorityTitleSize = MeasureString(preg, fleetAirSuperiorityTitle, args.SmallFont, MaxValueSize, formatMiddleLeft);
 			Size fleetAirSuperiorityValueEstimatedSize = MeasureString(preg, "8888", args.MediumDigitFont, MaxValueSize, formatMiddleRight);
 			Size fleetSearchingAbilityTitleSize = MeasureString(preg, fleetSearchingAbilityTitle, args.SmallFont, MaxValueSize, formatMiddleLeft);
-			Size fleetSearchingAbilityValueEstimatedSize = MeasureString(preg, "-888.88", args.MediumDigitFont, MaxValueSize, formatMiddleRight);
+			Size fleetSearchingAbilityValueEstimatedSize = MeasureString(preg, "-888.88/ (2)-888.88/ (3)-888.88/ (4)-888.88", args.MediumDigitFont, MaxValueSize, formatMiddleRight);
 
 			Size shipIndexSize = MeasureString(preg, "#4:", args.MediumDigitFont, MaxValueSize, formatMiddleLeft);
 			Size shipNameSize = MeasureString(preg, "千代田航改二", args.LargeFont, MaxValueSize, formatMiddleLeft);      // kanji 6 char
@@ -252,8 +252,8 @@ namespace ElectronicObserver.Utility
 						g.DrawString(fleetSearchingAbilityTitle, args.SmallFont, subTextBrush, new Rectangle(fleetPointer + GetAlignmentOffset(ContentAlignment.MiddleLeft, fleetSearchingAbilityTitleSize, fleetParameterAreaSize), fleetSearchingAbilityTitleSize), formatMiddleLeft);
 						fleetPointer.X += fleetAirSuperiorityTitleSize.Width;
 
-						Size paramValueSize = MeasureString(g, fleet.GetSearchingAbilityString(), args.MediumDigitFont, MaxValueSize, formatMiddleLeft);
-						g.DrawString(fleet.GetSearchingAbilityString(), args.MediumDigitFont, mainTextBrush, new Rectangle(fleetPointer + GetAlignmentOffset(ContentAlignment.MiddleLeft, paramValueSize, fleetParameterAreaSize), paramValueSize), formatMiddleLeft);
+						Size paramValueSize = MeasureString(g, fleet.GetSearchingAbilityString() + "/ " + fleet.GetSearchingAbilityString(2) + "/ " + fleet.GetSearchingAbilityString(3) + "/ " + fleet.GetSearchingAbilityString(4), args.MediumDigitFont, MaxValueSize, formatMiddleLeft);
+						g.DrawString(fleet.GetSearchingAbilityString() + "/ " + fleet.GetSearchingAbilityString(2) + "/ " + fleet.GetSearchingAbilityString(3) + "/ " + fleet.GetSearchingAbilityString(4), args.MediumDigitFont, mainTextBrush, new Rectangle(fleetPointer + GetAlignmentOffset(ContentAlignment.MiddleLeft, paramValueSize, fleetParameterAreaSize), paramValueSize), formatMiddleLeft);
 						fleetPointer.X += paramValueSize.Width + fleetParameterAreaInnerMargin.Width;
 					}
 
@@ -504,7 +504,7 @@ namespace ElectronicObserver.Utility
 			Size fleetAirSuperiorityTitleSize = MeasureString(preg, fleetAirSuperiorityTitle, args.SmallFont, MaxValueSize, formatMiddleLeft);
 			Size fleetAirSuperiorityValueEstimatedSize = MeasureString(preg, "8888", args.MediumDigitFont, MaxValueSize, formatMiddleRight);
 			Size fleetSearchingAbilityTitleSize = MeasureString(preg, fleetSearchingAbilityTitle, args.SmallFont, MaxValueSize, formatMiddleLeft);
-			Size fleetSearchingAbilityValueEstimatedSize = MeasureString(preg, "-888.88", args.MediumDigitFont, MaxValueSize, formatMiddleRight);
+			Size fleetSearchingAbilityValueEstimatedSize = MeasureString(preg, "-888.88/ (2)-888.88/ (3)-888.88/ (4)-888.88", args.MediumDigitFont, MaxValueSize, formatMiddleRight);
 
 			Size shipIndexSize = MeasureString(preg, "#4:", args.MediumDigitFont, MaxValueSize, formatMiddleLeft);
 			Size equipmentNameSize = MeasureString(preg, "61cm五連装(酸素)魚雷", args.MediumFont, MaxValueSize, formatMiddleLeft);     // kanji 9 char
@@ -672,8 +672,8 @@ namespace ElectronicObserver.Utility
 						g.DrawString(fleetSearchingAbilityTitle, args.SmallFont, subTextBrush, new Rectangle(fleetPointer + GetAlignmentOffset(ContentAlignment.MiddleLeft, fleetSearchingAbilityTitleSize, fleetParameterAreaSize), fleetSearchingAbilityTitleSize), formatMiddleLeft);
 						fleetPointer.X += fleetAirSuperiorityTitleSize.Width;
 
-						Size paramValueSize = MeasureString(g, fleet.GetSearchingAbilityString(), args.MediumDigitFont, MaxValueSize, formatMiddleLeft);
-						g.DrawString(fleet.GetSearchingAbilityString(), args.MediumDigitFont, mainTextBrush, new Rectangle(fleetPointer + GetAlignmentOffset(ContentAlignment.MiddleLeft, paramValueSize, fleetParameterAreaSize), paramValueSize), formatMiddleLeft);
+						Size paramValueSize = MeasureString(g, fleet.GetSearchingAbilityString() + "/ " + fleet.GetSearchingAbilityString(2) + "/ " + fleet.GetSearchingAbilityString(3) + "/ " + fleet.GetSearchingAbilityString(4), args.MediumDigitFont, MaxValueSize, formatMiddleLeft);
+						g.DrawString(fleet.GetSearchingAbilityString() + "/ " + fleet.GetSearchingAbilityString(2) + "/ " + fleet.GetSearchingAbilityString(3) + "/ " + fleet.GetSearchingAbilityString(4), args.MediumDigitFont, mainTextBrush, new Rectangle(fleetPointer + GetAlignmentOffset(ContentAlignment.MiddleLeft, paramValueSize, fleetParameterAreaSize), paramValueSize), formatMiddleLeft);
 						fleetPointer.X += paramValueSize.Width + fleetParameterAreaInnerMargin.Width;
 					}
 
@@ -988,7 +988,7 @@ namespace ElectronicObserver.Utility
 			Size fleetAirSuperiorityTitleSize = MeasureString(preg, fleetAirSuperiorityTitle, args.SmallFont, MaxValueSize, formatMiddleLeft);
 			Size fleetAirSuperiorityValueEstimatedSize = MeasureString(preg, "8888", args.MediumDigitFont, MaxValueSize, formatMiddleRight);
 			Size fleetSearchingAbilityTitleSize = MeasureString(preg, fleetSearchingAbilityTitle, args.SmallFont, MaxValueSize, formatMiddleLeft);
-			Size fleetSearchingAbilityValueEstimatedSize = MeasureString(preg, "-888.88", args.MediumDigitFont, MaxValueSize, formatMiddleRight);
+			Size fleetSearchingAbilityValueEstimatedSize = MeasureString(preg, " -888.88/ (2)-888.88/ (3)-888.88/ (4)-888.88", args.MediumDigitFont, MaxValueSize, formatMiddleRight);
 
 			Size shipIndexSize = MeasureString(preg, "#4:", args.MediumDigitFont, MaxValueSize, formatMiddleLeft);
 			Size equipmentNameSize = MeasureString(preg, "61cm五連装(酸素)魚雷", args.SmallFont, MaxValueSize, formatMiddleLeft);      // kanji 9 char
@@ -1146,8 +1146,8 @@ namespace ElectronicObserver.Utility
 						g.DrawString(fleetSearchingAbilityTitle, args.SmallFont, subTextBrush, new Rectangle(fleetPointer + GetAlignmentOffset(ContentAlignment.MiddleLeft, fleetSearchingAbilityTitleSize, fleetParameterAreaSize), fleetSearchingAbilityTitleSize), formatMiddleLeft);
 						fleetPointer.X += fleetAirSuperiorityTitleSize.Width;
 
-						Size paramValueSize = MeasureString(g, fleet.GetSearchingAbilityString(), args.MediumDigitFont, MaxValueSize, formatMiddleLeft);
-						g.DrawString(fleet.GetSearchingAbilityString(), args.MediumDigitFont, mainTextBrush, new Rectangle(fleetPointer + GetAlignmentOffset(ContentAlignment.MiddleLeft, paramValueSize, fleetParameterAreaSize), paramValueSize), formatMiddleLeft);
+						Size paramValueSize = MeasureString(g, fleet.GetSearchingAbilityString() + "/ " + fleet.GetSearchingAbilityString(2) + "/ " + fleet.GetSearchingAbilityString(3) + "/ " + fleet.GetSearchingAbilityString(4), args.MediumDigitFont, MaxValueSize, formatMiddleLeft);
+						g.DrawString(fleet.GetSearchingAbilityString() + "/ " + fleet.GetSearchingAbilityString(2)+ "/ " + fleet.GetSearchingAbilityString(3)+ "/ " + fleet.GetSearchingAbilityString(4), args.MediumDigitFont, mainTextBrush, new Rectangle(fleetPointer + GetAlignmentOffset(ContentAlignment.MiddleLeft, paramValueSize, fleetParameterAreaSize), paramValueSize), formatMiddleLeft);
 						fleetPointer.X += paramValueSize.Width + fleetParameterAreaInnerMargin.Width;
 					}
 
