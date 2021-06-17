@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -118,8 +119,8 @@ namespace ElectronicObserver.Window.Wpf.Battle
 		#endregion
 
 		public List<HealthBarViewModel> HPBars { get; } = new();
-		public List<HealthBarViewModel> PlayerMainHPBars { get; } = new();
-		public List<HealthBarViewModel> PlayerEscortHPBars { get; } = new();
+		public ObservableCollection<HealthBarViewModel> PlayerMainHPBars { get; } = new();
+		public ObservableCollection<HealthBarViewModel> PlayerEscortHPBars { get; } = new();
 		public List<HealthBarViewModel> EnemyMainHPBars { get; } = new();
 		public List<HealthBarViewModel> EnemyEscortHPBars { get; } = new();
 
@@ -1295,26 +1296,32 @@ namespace ElectronicObserver.Window.Wpf.Battle
 		/// </summary>
 		private void MoveHPBar(bool hasFriend7thShip)
 		{
-			/*
+			
 			if (Utility.Configuration.Config.FormBattle.Display7thAsSingleLine && hasFriend7thShip)
 			{
-				if (_hpBarMoved)
-					return;
-				TableBottom.SetCellPosition(HPBars[BattleIndex.FriendEscort1], new TableLayoutPanelCellPosition(0, 7));
-				bool fixSize = Utility.Configuration.Config.UI.IsLayoutFixed;
-				bool showHPBar = Utility.Configuration.Config.FormBattle.ShowHPBar;
-				ControlHelper.SetTableRowStyle(TableBottom, 7, fixSize ? new RowStyle(SizeType.Absolute, showHPBar ? 21 : 16) : new RowStyle(SizeType.AutoSize));
+				if (_hpBarMoved) return;
+				
+				PlayerMainHPBars.Add(PlayerEscortHPBars[0]);
+				PlayerEscortHPBars.RemoveAt(0);
+
+				// TableBottom.SetCellPosition(HPBars[BattleIndex.FriendEscort1], new TableLayoutPanelCellPosition(0, 7));
+				// bool fixSize = Utility.Configuration.Config.UI.IsLayoutFixed;
+				// bool showHPBar = Utility.Configuration.Config.FormBattle.ShowHPBar;
+				// ControlHelper.SetTableRowStyle(TableBottom, 7, fixSize ? new RowStyle(SizeType.Absolute, showHPBar ? 21 : 16) : new RowStyle(SizeType.AutoSize));
 				_hpBarMoved = true;
 			}
 			else
 			{
-				if (!_hpBarMoved)
-					return;
-				TableBottom.SetCellPosition(HPBars[BattleIndex.FriendEscort1], new TableLayoutPanelCellPosition(1, 1));
-				ControlHelper.SetTableRowStyle(TableBottom, 7, new RowStyle(SizeType.Absolute, 0));
+				if (!_hpBarMoved) return;
+
+				PlayerEscortHPBars.Insert(0, PlayerMainHPBars[6]);
+				PlayerMainHPBars.RemoveAt(6);
+
+				// TableBottom.SetCellPosition(HPBars[BattleIndex.FriendEscort1], new TableLayoutPanelCellPosition(1, 1));
+				// ControlHelper.SetTableRowStyle(TableBottom, 7, new RowStyle(SizeType.Absolute, 0));
 				_hpBarMoved = false;
 			}
-			*/
+			
 		}
 
 
