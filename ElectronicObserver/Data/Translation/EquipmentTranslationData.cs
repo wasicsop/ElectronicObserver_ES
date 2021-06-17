@@ -10,15 +10,16 @@ namespace ElectronicObserver.Data.Translation
 	{
 		private string DefaultFilePath = TranslationManager.WorkingFolder + @"\equipment.json";
 
-		private Dictionary<string, string> EquipmentList;
-		private Dictionary<string, string> TypeList;
+		private Dictionary<string, string> EquipmentList { get; set; } = new();
+		private Dictionary<string, string> TypeList { get; set; } = new();
 
-		private bool isLoaded => Configuration.Config.UI.JapaneseEquipmentType == false && EquipmentList != null && TypeList != null;
-
-		public bool IsTranslated(string rawData)  => isLoaded && EquipmentList.ContainsKey(rawData) == true;
-		public bool IsTypeTranslated(string rawData) => isLoaded && TypeList.ContainsKey(rawData) == true;
+		private bool IsTranslated(string rawData) => Configuration.Config.UI.JapaneseEquipmentName == false &&
+		                                             EquipmentList.ContainsKey(rawData);
+		private bool IsTypeTranslated(string rawData) => Configuration.Config.UI.JapaneseEquipmentType == false
+		                                                 && TypeList.ContainsKey(rawData);
 		public string Name(string rawData) => IsTranslated(rawData) ? EquipmentList[rawData] : rawData;
 		public string TypeName(string rawData) => IsTypeTranslated(rawData) ? TypeList[rawData] : rawData;
+		
 		public EquipmentTranslationData()
 		{
 			Initialize();
