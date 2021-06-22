@@ -52,7 +52,7 @@ namespace ElectronicObserver.Window
 				Alignment = DataGridViewContentAlignment.MiddleCenter
 			};
 
-			CSCategories = new DataGridViewCellStyle[10];
+			CSCategories = new DataGridViewCellStyle[11];
 			for (int i = 0; i < CSCategories.Length; i++)
 			{
 				CSCategories[i] = new DataGridViewCellStyle(CSDefaultCenter);
@@ -77,6 +77,7 @@ namespace ElectronicObserver.Window
 						c = Utility.Configuration.Config.UI.Quest_Type5Color;
 						break;
 					case 6:     //工廠
+					case 11:
 						c = Utility.Configuration.Config.UI.Quest_Type6Color;
 						break;
 					case 7:     //改装

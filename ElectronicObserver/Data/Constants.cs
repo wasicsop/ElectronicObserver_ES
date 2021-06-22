@@ -1249,6 +1249,7 @@ namespace ElectronicObserver.Data
                 case 5:
                     return ConstantsRes.Supply;        //入渠も含むが、文字数の関係
                 case 6:
+				case 11:
                     return ConstantsRes.Construction;
                 case 7:
                     return ConstantsRes.Modernization;
