@@ -50,7 +50,15 @@ namespace ElectronicObserver.Data
 
 			if (jData.IsDefined("api_itemget"))
 			{
-				this.ItemGet = (object[])api_data["api_itemget"];
+				if (api_data["api_itemget"].IsArray)
+				{
+					this.ItemGet = (object[])api_data["api_itemget"];
+				}
+				else
+				{
+					// --- On 6-3 api_itemget is an object and not an array
+					this.ItemGet = new object[] { (object)api_data["api_itemget"] };
+				}
 			}
 			else
 			{
