@@ -62,7 +62,7 @@ namespace ElectronicObserver.Data.Translation
 			var json = Load(path);
 			if (json == null) return dict;
 
-			for (int i = 101; i < 1000; i++)
+			for (int i = 101; i < 2000; i++)
 			{
 				if (json.IsDefined(i.ToString()))
 				{
