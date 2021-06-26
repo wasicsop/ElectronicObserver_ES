@@ -32,7 +32,7 @@ namespace ElectronicObserver.Window.Wpf.Compass.ViewModels
 		?? Enumerable.Empty<MasterShipSlotViewModel>();
 
 		public int[]? Slot { get; set; }
-		public int Level { get; set; }
+		public int Level { get; set; } = -1;
 		public int Hp { get; set; }
 		public int Firepower { get; set; }
 		public int Torpedo { get; set; }
@@ -44,7 +44,7 @@ namespace ElectronicObserver.Window.Wpf.Compass.ViewModels
 		public int MaxNameWidth { get; set; }
 		public string? NameToolTip => Ship switch
 		{
-			{IsAbyssalShip: true} => GetShipString(Ship.ShipID, Ship.DefaultSlot.ToArray()),
+			{IsAbyssalShip: true} => GetShipString(Ship.ShipID, Ship.DefaultSlot.ToArray(), Level),
 			{IsAbyssalShip: false} => GetShipString(Ship.ShipID, Slot, Level, Hp, Firepower, Torpedo, Aa, Armor),
 			_ => null
 		};
@@ -81,13 +81,13 @@ namespace ElectronicObserver.Window.Wpf.Compass.ViewModels
 			new DialogAlbumMasterShip(shipId).Show();
 		}
 
-		private static string? GetShipString(int shipID, int[] slot)
+		private static string? GetShipString(int shipID, int[] slot, int level)
 		{
 
 			ShipDataMaster ship = KCDatabase.Instance.MasterShips[shipID];
 			if (ship == null) return null;
 
-			return GetShipString(shipID, slot, -1, ship.HPMin, ship.FirepowerMax, ship.TorpedoMax, ship.AAMax, ship.ArmorMax,
+			return GetShipString(shipID, slot, level, ship.HPMin, ship.FirepowerMax, ship.TorpedoMax, ship.AAMax, ship.ArmorMax,
 				ship.ASW != null && !ship.ASW.IsMaximumDefault ? ship.ASW.Maximum : -1,
 				ship.Evasion != null && !ship.Evasion.IsMaximumDefault ? ship.Evasion.Maximum : -1,
 				ship.LOS != null && !ship.LOS.IsMaximumDefault ? ship.LOS.Maximum : -1,
