@@ -166,11 +166,11 @@
 		<ProjectReference Include="..\KancolleProgress\KancolleProgress.csproj" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="Dirkster.AvalonDock" Version="4.50.3" />
+		<PackageReference Include="Dirkster.AvalonDock" Version="4.51.1" />
 		<PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.0.2" />
 		<PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.31" />
 		<PackageReference Include="ModernWpfUI" Version="0.9.4" />
-		<PackageReference Include="PropertyChanged.Fody" Version="3.3.3" PrivateAssets="All" />
+		<PackageReference Include="PropertyChanged.Fody" Version="3.4.0" PrivateAssets="All" />
 		<PackageReference Include="DynaJson" Version="2.2.0" />
 		<PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
 		<PackageReference Include="Microsoft.VisualBasic" Version="10.3.0" />
@@ -180,9 +180,9 @@
 		<PackageReference Include="System.IO.FileSystem" Version="4.3.0" />
 		<PackageReference Include="System.Management" Version="5.0.0" />
 		<PackageReference Include="DiscordRichPresence" Version="1.0.175" />
-		<PackageReference Include="Grpc" Version="2.37.1" />
-		<PackageReference Include="Grpc.Core" Version="2.37.1" />
-		<PackageReference Include="Grpc.Core.Api" Version="2.37.1" />
+		<PackageReference Include="Grpc" Version="2.38.1" />
+		<PackageReference Include="Grpc.Core" Version="2.38.1" />
+		<PackageReference Include="Grpc.Core.Api" Version="2.38.1" />
 		<PackageReference Include="log4net" Version="2.0.12" />
 		<PackageReference Include="MagicOnion" Version="3.0.13" />
 		<PackageReference Include="MagicOnion.Abstractions" Version="3.0.13" />
