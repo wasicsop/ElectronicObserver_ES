@@ -1138,6 +1138,7 @@ namespace ElectronicObserver.Data
 
             int depthChargeCount = 0;
             int depthChargeProjectorCount = 0;
+			int otherDepthChargeCount = 0;
             int sonarCount = 0;         // ソナーと大型ソナーの合算
             int largeSonarCount = 0;
 
@@ -1152,11 +1153,13 @@ namespace ElectronicObserver.Data
                         sonarCount++;
                         break;
                     case EquipmentTypes.DepthCharge:
-                        if (slot.IsDepthCharge)
-                            depthChargeCount++;
-                        else if (slot.IsDepthChargeProjector)
-                            depthChargeProjectorCount++;
-                        break;
+						if (slot.IsDepthCharge)
+							depthChargeCount++;
+						else if (slot.IsDepthChargeProjector)
+							depthChargeProjectorCount++;
+						else
+							otherDepthChargeCount++;
+						break;
                     case EquipmentTypes.SonarLarge:
                         largeSonarCount++;
                         sonarCount++;
@@ -1164,15 +1167,19 @@ namespace ElectronicObserver.Data
                 }
             }
 
-            double projector_sonar = depthChargeProjectorCount > 0 && sonarCount > 0 ? 1.15 : 1;
-            double charge_projector = depthChargeCount > 0 && depthChargeProjectorCount > 0 ? 1.1 : 1;
-            double charge_sonar = (!(projector_sonar > 1 && charge_projector > 1 && largeSonarCount > 0) && depthChargeCount > 0 && sonarCount > 0) ? 0.15 : 0;
+			double synergy = 1.0;
+			if (sonarCount > 0 && depthChargeProjectorCount > 0 && depthChargeCount > 0)
+				synergy = 1.4375;
+			else if (sonarCount > 0 && (depthChargeCount + depthChargeProjectorCount + otherDepthChargeCount) > 0)
+				synergy = 1.15;
+			else if (depthChargeProjectorCount > 0 && depthChargeCount > 0)
+				synergy = 1.1;
 
-            basepower *= projector_sonar * (charge_projector + charge_sonar);
+			basepower *= synergy;
 
 
-            //キャップ
-            basepower = Math.Floor(CapDamage(basepower, 170));
+			//キャップ
+			basepower = Math.Floor(CapDamage(basepower, 170));
 
             return (int)(basepower * GetAmmoDamageRate());
         }
@@ -1371,6 +1378,10 @@ namespace ElectronicObserver.Data
                     case ShipTypes.AmphibiousAssaultShip:
                         return AllSlotInstanceMaster.Any(eq => eq != null && eq.IsAntiSubmarineAircraft);
 
+					case ShipTypes.AircraftCarrier:
+						return ShipID == 646 &&			// 加賀改二護
+							AllSlotInstanceMaster.Any(eq => eq != null && eq.IsAntiSubmarineAircraft);
+
                     default:
                         return false;
                 }
@@ -1415,6 +1426,7 @@ namespace ElectronicObserver.Data
                     case 529:   // 大鷹改二
                     case 381:   // 神鷹改
                     case 536:   // 神鷹改二
+					case 646:	// 加賀改二護
                         return true;
 
                     case 554:   // 日向改二
