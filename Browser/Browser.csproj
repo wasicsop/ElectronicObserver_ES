@@ -55,9 +55,7 @@
 		<WCFMetadata Include="Connected Services\" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="cef.redist.x64" Version="90.6.5" />
-		<PackageReference Include="CefSharp.Common.NETCore" Version="90.6.50" />
-		<PackageReference Include="CefSharp.WinForms.NETCore" Version="90.6.50" />
+		<PackageReference Include="CefSharp.WinForms.NETCore" Version="91.1.210" />
 		<PackageReference Include="Grpc" Version="2.37.1" />
 		<PackageReference Include="Grpc.Core" Version="2.37.1" />
 		<PackageReference Include="Grpc.Core.Api" Version="2.37.1" />
