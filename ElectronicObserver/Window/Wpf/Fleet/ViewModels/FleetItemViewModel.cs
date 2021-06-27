@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -250,14 +251,11 @@ namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels
 					}
 				}
 				HP.Tag = (ship.RepairingDockID == -1 && 0.5 < ship.HPRate && ship.HPRate < 1.0) ? DateTimeHelper.FromAPITimeSpan(ship.RepairTime).TotalSeconds : 0.0;
-				if (isEscaped)
+				HP.BackColor = isEscaped switch
 				{
-					HP.BackColor = Utility.Configuration.Config.UI.SubBackColor;
-				}
-				else
-				{
-					HP.BackColor = Utility.Configuration.Config.UI.BackColor;
-				}
+					true => Utility.Configuration.Config.UI.SubBackColor,
+					_ => Color.Transparent
+				};
 				{
 					StringBuilder sb = new StringBuilder();
 					double hprate = (double)ship.HPCurrent / ship.HPMax;

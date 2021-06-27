@@ -46,6 +46,7 @@ namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels
 		public string? DisplayText { get; set; }
 
 		public SolidColorBrush Foreground { get; set; }
+		public SolidColorBrush Background => BackColor.ToBrush();
 
 		public SolidColorBrush MainForeground => MainFontColor.ToBrush();
 		public FontFamily SubFontFamily => new(SubFont.FontData.FontFamily.Name);

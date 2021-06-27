@@ -210,7 +210,7 @@
 										</Grid>
 									</Border>
 
-									<Border Grid.Column="2" DataContext="{Binding HP}" ToolTip="{Binding ToolTip}">
+									<Border Grid.Column="2" DataContext="{Binding HP}" Background="{Binding Background}" ToolTip="{Binding ToolTip}">
 										<i:Interaction.Triggers>
 											<i:EventTrigger EventName="MouseEnter">
 												<i:InvokeCommandAction Command="{Binding MouseEnterCommand}" />
