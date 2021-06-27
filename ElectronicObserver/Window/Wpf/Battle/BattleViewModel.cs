@@ -17,6 +17,7 @@ using ElectronicObserver.Window.Control;
 using ElectronicObserver.Window.Wpf.Battle.ViewModels;
 using ElectronicObserverTypes;
 using Microsoft.Toolkit.Mvvm.Input;
+using Color = System.Drawing.Color;
 
 namespace ElectronicObserver.Window.Wpf.Battle
 {
@@ -522,13 +523,13 @@ namespace ElectronicObserver.Window.Wpf.Battle
 			if (bm.IsEnemyCombined && bm.StartsFromDayBattle)
 			{
 				bool willMain = bm.WillNightBattleWithMainFleet();
-				FleetEnemyBackColor = (willMain ? System.Drawing.Color.LightSteelBlue : Utility.Configuration.Config.UI.BackColor).ToBrush();
-				FleetEnemyEscortBackColor = (willMain ? Utility.Configuration.Config.UI.BackColor : System.Drawing.Color.LightSteelBlue).ToBrush();
+				FleetEnemyBackColor = (willMain ? Color.LightSteelBlue : Color.Transparent).ToBrush();
+				FleetEnemyEscortBackColor = (willMain ? Color.Transparent : Color.LightSteelBlue).ToBrush();
 			}
 			else
 			{
 				FleetEnemyBackColor =
-				FleetEnemyEscortBackColor = Utility.Configuration.Config.UI.BackColor.ToBrush();
+				FleetEnemyEscortBackColor = Color.Transparent.ToBrush();
 			}
 
 			FleetEnemyForeColor = Utility.Configuration.Config.UI.ForeColor.ToBrush();
@@ -991,7 +992,7 @@ namespace ElectronicObserver.Window.Wpf.Battle
 				HPBars[index].Value = resultHP;
 				HPBars[index].PrevValue = initialHP;
 				HPBars[index].MaximumValue = maxHP;
-				HPBars[index].BackColor = Utility.Configuration.Config.UI.BackColor;
+				HPBars[index].BackColor = Color.Transparent;
 				HPBars[index].Visible = true;
 			}
 
@@ -1047,8 +1048,11 @@ namespace ElectronicObserver.Window.Wpf.Battle
 						bd.GetBattleDetail(refindex)
 						);
 
-					if (isEscaped) bar.BackColor = Utility.Configuration.Config.UI.Battle_ColorHPBarsEscaped;
-					else bar.BackColor = Utility.Configuration.Config.UI.BackColor;
+					bar.BackColor = isEscaped switch
+					{
+						true => Utility.Configuration.Config.UI.Battle_ColorHPBarsEscaped,
+						_ => Color.Transparent
+					};
 					// bar.RepaintHPtext();
 				}
 				else
@@ -1123,8 +1127,11 @@ namespace ElectronicObserver.Window.Wpf.Battle
 							bd.GetBattleDetail(refindex)
 							);
 
-						if (isEscaped) bar.BackColor = Utility.Configuration.Config.UI.Battle_ColorHPBarsEscaped;
-						else bar.BackColor = Utility.Configuration.Config.UI.BackColor;
+						bar.BackColor = isEscaped switch
+						{
+							true => Utility.Configuration.Config.UI.Battle_ColorHPBarsEscaped,
+							_ => Color.Transparent
+						};
 						// bar.RepaintHPtext();
 					}
 					else
@@ -1264,7 +1271,7 @@ namespace ElectronicObserver.Window.Wpf.Battle
 			HPBars[BattleIndex.EnemyMain1].BackColor = bd.Initial.IsBossDamaged switch
 			{
 				true => Utility.Configuration.Config.UI.Battle_ColorHPBarsBossDamaged,
-				_ => Utility.Configuration.Config.UI.BackColor
+				_ => Color.Transparent
 			};
 
 			if (!isBaseAirRaid)
@@ -1486,13 +1493,17 @@ namespace ElectronicObserver.Window.Wpf.Battle
 			for (int i = 0; i < friend.Members.Count; i++)
 			{
 				if (friend.EscapedShipList.Contains(friend.Members[i]))
+				{
 					HPBars[i].BackColor = Utility.Configuration.Config.UI.Battle_ColorHPBarsEscaped;
-
+				}
 				else if (br.MVPIndex == i + 1)
+				{
 					HPBars[i].BackColor = Utility.Configuration.Config.UI.Battle_ColorHPBarsMVP;
-
+				}
 				else
-					HPBars[i].BackColor = Utility.Configuration.Config.UI.BackColor;
+				{
+					HPBars[i].BackColor = Color.Transparent;
+				}
 
 				// HPBars[i].RepaintHPtext();
 			}
@@ -1502,13 +1513,17 @@ namespace ElectronicObserver.Window.Wpf.Battle
 				for (int i = 0; i < escort.Members.Count; i++)
 				{
 					if (escort.EscapedShipList.Contains(escort.Members[i]))
+					{
 						HPBars[i + 6].BackColor = Utility.Configuration.Config.UI.Battle_ColorHPBarsEscaped;
-
+					}
 					else if (br.MVPIndexCombined == i + 1)
+					{
 						HPBars[i + 6].BackColor = Utility.Configuration.Config.UI.Battle_ColorHPBarsMVP;
-
+					}
 					else
-						HPBars[i + 6].BackColor = Utility.Configuration.Config.UI.BackColor;
+					{
+						HPBars[i + 6].BackColor = Color.Transparent;
+					}
 
 					// HPBars[i + 6].RepaintHPtext();
 				}

@@ -57,7 +57,7 @@ namespace ElectronicObserver.Window.Wpf.Battle.ViewModels
 			{
 				if (args.PropertyName is not nameof(BackColor)) return;
 
-				if (BackColor == Utility.Configuration.Config.UI.BackColor)
+				if (BackColor == System.Drawing.Color.Transparent)
 				{
 					MainFontColor = Utility.Configuration.Config.UI.ForeColor;
 					SubFontColor = Utility.Configuration.Config.UI.SubForeColor;
