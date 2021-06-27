@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using Newtonsoft.Json;
 
 namespace ElectronicObserver.Data.Translation
 {
@@ -37,7 +38,7 @@ namespace ElectronicObserver.Data.Translation
 					sb.AppendLine(line);
 				var desc = sb.ToString();
 
-				return desc;				
+				return desc;
 			}
 			else
 			{
@@ -55,37 +56,67 @@ namespace ElectronicObserver.Data.Translation
 			Initialize();
 		}
 
+		public class QuestRecord
+		{
+			[JsonProperty("code")]
+			public string Code { get; set; } = "";
+			[JsonProperty("name_jp")]
+			public string NameJp { get; set; } = "";
+			[JsonProperty("name")]
+			public string Name { get; set; } = "";
+			[JsonProperty("desc_jp")]
+			public string DescJp { get; set; } = "";
+			[JsonProperty("desc")]
+			public string Desc { get; set; } = "";
+
+			// hack to parse the version entry
+			public static implicit operator QuestRecord?(string s) => null;
+		}
+
+
 		private Dictionary<int, Quests> LoadDictionary(string path)
 		{
 			var dict = new Dictionary<int, Quests>();
+			Dictionary<string, QuestRecord>? questRecords = null;
 
-			var json = Load(path);
-			if (json == null) return dict;
-
-			for (int i = 101; i < 2000; i++)
+			try
 			{
-				if (json.IsDefined(i.ToString()))
-				{
-					string code = json[i.ToString()]["code"];
-					string name = json[i.ToString()]["name"];
-					string nameJP = json[i.ToString()]["name_jp"];
-					string desc = json[i.ToString()]["desc"];
-					string descJP = json[i.ToString()]["desc_jp"];
-
-					if (code == "")
-					{
-						int pos = name.IndexOf(":");
-						if (pos > 0 && pos < 10)
-						{
-							var ch = char.Parse(name.Substring(pos - 2, 1));
-							code = pos > 3 && char.IsLetter(ch) ? name.Substring(0, pos - 2) : name.Substring(0, pos);
-							name = name.Substring(pos + 2);
-						}
-					}
-					var quest = new Quests(code, name, nameJP, desc, descJP);
-					dict.TryAdd(i, quest);
-				}
+				questRecords = JsonConvert.DeserializeObject<Dictionary<string, QuestRecord>>(File.ReadAllText(path));
 			}
+			catch (FileNotFoundException)
+			{
+				Utility.Logger.Add(3, GetType().Name + ": File does not exists.");
+			}
+			catch (DirectoryNotFoundException)
+			{
+				Utility.Logger.Add(3, GetType().Name + ": File does not exists.");
+			}
+			catch (Exception ex)
+			{
+				Utility.ErrorReporter.SendErrorReport(ex, "Failed to load " + GetType().Name);
+			}
+
+			if (questRecords == null) return dict;
+
+			foreach ((string i, QuestRecord quest) in questRecords)
+			{
+				// the quest dictionary includes version
+				// ignore that entry
+				if (!int.TryParse(i, out int questId)) continue;
+
+				if (quest.Code == "")
+				{
+					int pos = quest.Name.IndexOf(":");
+					if (pos > 0 && pos < 10)
+					{
+						var ch = char.Parse(quest.Name.Substring(pos - 2, 1));
+						quest.Code = pos > 3 && char.IsLetter(ch) ? quest.Name.Substring(0, pos - 2) : quest.Name.Substring(0, pos);
+						quest.Name = quest.Name.Substring(pos + 2);
+					}
+				}
+				dict.TryAdd(questId, new Quests(quest.Code, quest.Name, quest.NameJp, quest.Desc, quest.DescJp));
+			}
+
 			return dict;
 		}
 
@@ -103,7 +134,7 @@ namespace ElectronicObserver.Data.Translation
 		public string NameJP { get; set; }
 		public string Description { get; set; }
 		public string DescriptionJP { get; set; }
-		public Quests (string code, string name, string nameJP, string description, string descriptionJP)
+		public Quests(string code, string name, string nameJP, string description, string descriptionJP)
 		{
 			Code = code;
 			Name = name;
@@ -112,5 +143,5 @@ namespace ElectronicObserver.Data.Translation
 			Description = description;
 		}
 	}
-	
+
 }
