@@ -29,7 +29,6 @@ namespace ElectronicObserver.Resource.Record
 		public ShipDropRecord ShipDrop { get; private set; }
 		public DevelopmentRecord Development { get; private set; }
 		public ResourceRecord Resource { get; private set; }
-		public MapRecord Map { get; private set; }
 
 	private IEnumerable<RecordBase> Records
 		{
@@ -41,7 +40,6 @@ namespace ElectronicObserver.Resource.Record
 				yield return ShipDrop;
 				yield return Development;
 				yield return Resource;
-				yield return Map;
 			}
 		}
 
@@ -58,7 +56,6 @@ namespace ElectronicObserver.Resource.Record
 			ShipDrop = new ShipDropRecord();
 			Development = new DevelopmentRecord();
 			Resource = new ResourceRecord();
-			Map = new MapRecord();
 
 			foreach (var r in Records)
 				r.RegisterEvents();

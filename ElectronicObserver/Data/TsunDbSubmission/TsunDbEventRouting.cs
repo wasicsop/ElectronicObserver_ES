@@ -1,7 +1,6 @@
 ﻿using DynaJson;
 using ElectronicObserver.Resource.Record;
 using Newtonsoft.Json;
-using static ElectronicObserver.Resource.Record.MapRecord;
 
 namespace ElectronicObserver.Data
 {
@@ -44,10 +43,6 @@ namespace ElectronicObserver.Data
 			this.Difficulty = db.Battle.Compass.MapInfo.EventDifficulty;
 			this.GaugeNum = db.Battle.Compass.MapInfo.CurrentGaugeIndex;
 			this.GaugeType = db.Battle.Compass.MapInfo.GaugeType;
-
-			// --- Debuff sound 
-			MapRecordElement? record = RecordManager.Instance.Map.Record
-					.Find(_record => _record.MapAreaId == db.Battle.Compass.MapInfo.MapAreaID && _record.MapId == db.Battle.Compass.MapInfo.MapID);
 
 			this.DebuffSound = 0;
 		}

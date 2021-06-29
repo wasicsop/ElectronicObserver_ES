@@ -6,7 +6,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static ElectronicObserver.Observer.DiscordRPC;
-using static ElectronicObserver.Resource.Record.MapRecord;
 
 namespace ElectronicObserver.Observer.kcsapi.api_port
 {
