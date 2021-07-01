@@ -9,6 +9,38 @@
 				<ui:ThemeResources RequestedTheme="Dark" />
 				<ui:XamlControlsResources UseCompactResources="True" />
 			</ResourceDictionary.MergedDictionaries>
+
+			<!--
+				source: https://github.com/Kinnara/ModernWpf/blob/master/ModernWpf/Styles/ToolTip.xaml
+				only change is removing max width
+			-->
+			<Style TargetType="ToolTip" BasedOn="{StaticResource DefaultToolTipStyle}">
+				<Setter Property="Template">
+					<Setter.Value>
+						<ControlTemplate TargetType="ToolTip">
+							<ui:ThemeShadowChrome
+		                        Depth="16"
+		                        IsShadowEnabled="{TemplateBinding HasDropShadow}"
+		                        CornerRadius="{TemplateBinding ui:ControlHelper.CornerRadius}"
+		                        SnapsToDevicePixels="True">
+								<Border
+		                            Background="{TemplateBinding Background}"
+		                            CornerRadius="{TemplateBinding ui:ControlHelper.CornerRadius}">
+									<Border
+		                                BorderBrush="{TemplateBinding BorderBrush}"
+		                                BorderThickness="{TemplateBinding BorderThickness}"
+		                                Padding="{TemplateBinding Padding}"
+		                                CornerRadius="{TemplateBinding ui:ControlHelper.CornerRadius}">
+										<ui:ContentPresenterEx
+		                                    TextWrapping="Wrap"
+		                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+									</Border>
+								</Border>
+							</ui:ThemeShadowChrome>
+						</ControlTemplate>
+					</Setter.Value>
+				</Setter>
+			</Style>
 		</ResourceDictionary>
 	</Application.Resources>
 </Application>
