@@ -57,6 +57,12 @@ namespace ElectronicObserver.Utility.Data
 		public static bool HasSkilledLookouts(this IShipData ship) => ship.AllSlotInstance
 			.Any(e => e?.MasterEquipment.CategoryType == EquipmentTypes.SurfaceShipPersonnel);
 
+		public static bool HasDestroyerSkilledLookouts(this IShipData ship) => ship.AllSlotInstance
+			.Any(e => e?.EquipmentId == EquipmentId.SurfaceShipPersonnel_TorpedoSquadronSkilledLookouts);
+
+		public static bool HasDrum(this IShipData ship) => ship.AllSlotInstance
+			.Any(e => e?.MasterEquipment.CategoryType == EquipmentTypes.TransportContainer);
+
 		public static bool IsNightCarrier(this IShipData ship) =>
 			ship.HasNightAviationPersonnel() ||
 			ship.MasterShip.ShipId switch

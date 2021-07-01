@@ -141,8 +141,14 @@ namespace ElectronicObserver.Utility.Data
 			NightAttackKind.CutinMainTorpedo => 1.3,
 			NightAttackKind.DoubleShelling => 1.2,
 
-			NightAttackKind.CutinTorpedoPicket => 1.2 * ship.DGunMod() * ship.DKai3GunMod(),
-			NightAttackKind.CutinTorpedoRadar => 1.3 * ship.DGunMod() * ship.DKai3GunMod(),
+			NightAttackKind.CutinTorpedoPicket or
+				NightAttackKind.CutinTorpedoPicket2 => 1.2 * ship.DGunMod() * ship.DKai3GunMod(),
+			NightAttackKind.CutinTorpedoRadar or
+				NightAttackKind.CutinTorpedoRadar2 => 1.3 * ship.DGunMod() * ship.DKai3GunMod(),
+			NightAttackKind.CutinTorpedoDestroyerPicket or
+				NightAttackKind.CutinTorpedoDestroyerPicket2 => 1.5,
+			NightAttackKind.CutinTorpedoDrum or
+				NightAttackKind.CutinTorpedoDrum2 => 1.3,
 
 			NightTorpedoCutinKind.LateModelTorpedoSubmarineEquipment => 1.75,
 			NightTorpedoCutinKind.LateModelTorpedo2 => 1.6,

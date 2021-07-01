@@ -39,15 +39,16 @@ namespace ElectronicObserver.Utility.Data
 
 		private static int HpBonus(this IShipData ship) => ship.HPRate switch
 		{
-			_ when ship.HPRate > 0.5 => 0,
-			_ when ship.HPRate > 0.25 => 18,
+			> 0.5 => 0,
+			> 0.25 => 18,
 			_ => 0,
 		};
 
-		private static int SkilledLookoutsBonus(this IShipData ship) => ship.HasSkilledLookouts() switch
+		private static int SkilledLookoutsBonus(this IShipData ship) => ship switch
 		{
-			true => 5,
-			false => 0
+			_ when ship.HasDestroyerSkilledLookouts() => 9,
+			_ when ship.HasSkilledLookouts() => 5,
+			_ => 0
 		};
 
 		private static int AttackMod(Enum attack) => attack switch
@@ -57,8 +58,14 @@ namespace ElectronicObserver.Utility.Data
 			NightAttackKind.CutinMainSub => 130,
 			NightAttackKind.CutinMainTorpedo => 115,
 
-			NightAttackKind.CutinTorpedoRadar => 130,
-			NightAttackKind.CutinTorpedoPicket => 150,
+			NightAttackKind.CutinTorpedoRadar or
+				NightAttackKind.CutinTorpedoRadar2 => 115,
+			NightAttackKind.CutinTorpedoPicket or
+				NightAttackKind.CutinTorpedoPicket2 => 150,
+			NightAttackKind.CutinTorpedoDestroyerPicket or
+				NightAttackKind.CutinTorpedoDestroyerPicket2 => 122,
+			NightAttackKind.CutinTorpedoDrum or
+				NightAttackKind.CutinTorpedoDrum2 => 122,
 
 			CvnciKind.FighterFighterAttacker => 105,
 			CvnciKind.FighterAttacker => 115,
