@@ -611,10 +611,15 @@ namespace ElectronicObserver.Window
 
         private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
 		{
+			string name = CultureInfo.CurrentCulture.Name switch
+			{
+				"en-US" => SoftwareInformation.SoftwareNameEnglish,
+				_ => SoftwareInformation.SoftwareNameJapanese
+			};
 
 			if ( Utility.Configuration.Config.Life.ConfirmOnClosing )
             {
-				if ( MessageBox.Show( Properties.Window.FormMain.ExitConfirmation, Properties.Window.FormMain.ConfirmatonCaption, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2 )
+				if ( MessageBox.Show(string.Format(Properties.Window.FormMain.ExitConfirmation, name), Properties.Window.FormMain.ConfirmatonCaption, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2 )
 					== System.Windows.Forms.DialogResult.No )
                 {
 					e.Cancel = true;
@@ -623,7 +628,7 @@ namespace ElectronicObserver.Window
 			}
 
 
-			Utility.Logger.Add( 2, SoftwareInformation.SoftwareNameEnglish + Resources.IsClosing );
+			Utility.Logger.Add( 2, name + Resources.IsClosing );
 
 			UIUpdateTimer.Stop();
 
@@ -1848,6 +1853,7 @@ namespace ElectronicObserver.Window
 			Thread.CurrentThread.CurrentUICulture = newCultureInfo;
 
 			Translate();
+			fArsenal.Translate();
 		}
 
 		#endregion
