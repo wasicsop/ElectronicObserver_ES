@@ -1,4 +1,7 @@
-﻿using System.Linq;
+﻿using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
+using System.Linq;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
@@ -56,6 +59,8 @@ namespace ElectronicObserver
 #if DEBUG
 				forceWpf = true;
 #endif
+
+				AppCenter.Start("7fdbafa0-058a-4691-b317-a700be513b95", typeof(Analytics), typeof(Crashes));
 
 				if (forceWpf || e.Args.Contains("-wpf"))
 				{
