@@ -161,7 +161,11 @@
     <value>工廠ドック #{0}で {1}の建造を開始しました。({2}/{3}/{4}/{5}-{6} 秘書艦: {7})</value>
   </data>
   <data name="ASTooltip" xml:space="preserve">
-    <value>確保: {0}\r\n優勢: {1}\r\n均衡: {2}\r\n劣勢: {3}\r\n({4}: {5})\r\n</value>
+    <value>確保: {0}
+優勢: {1}
+均衡: {2}
+劣勢: {3}
+({4}: {5})</value>
   </data>
   <data name="ASW" xml:space="preserve">
     <value>対潜</value>
@@ -714,7 +718,10 @@
     <value>配置転換中 (開始時刻: {0})\r\n</value>
   </data>
   <data name="BaseTooltip" xml:space="preserve">
-    <value>確保: {0}\r\n優勢: {1}\r\n均衡: {2}\r\n劣勢: {3}\r\n</value>
+    <value>確保: {0}
+優勢: {1}
+均衡: {2}
+劣勢: {3}</value>
   </data>
   <data name="BaseUnassigned" xml:space="preserve">
     <value>(未配属)</value>

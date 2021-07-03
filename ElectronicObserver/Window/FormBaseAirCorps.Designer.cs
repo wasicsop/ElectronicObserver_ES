@@ -89,7 +89,7 @@
 			//
 			this.ContextMenuBaseAirCorps_DisplayRelocatedEquipments.Name = "ContextMenuBaseAirCorps_DisplayRelocatedEquipments";
 			this.ContextMenuBaseAirCorps_DisplayRelocatedEquipments.Size = new System.Drawing.Size(219, 22);
-			this.ContextMenuBaseAirCorps_DisplayRelocatedEquipments.Text = GeneralRes.ContextMenuBaseAirCorps_DisplayRelocatedEquipments;
+			this.ContextMenuBaseAirCorps_DisplayRelocatedEquipments.Text = "配置転換中の装備を確認(&R)";
 			this.ContextMenuBaseAirCorps_DisplayRelocatedEquipments.Click += new System.EventHandler(this.ContextMenuBaseAirCorps_DisplayRelocatedEquipments_Click);
 			//
 			// FormBaseAirCorps

@@ -224,7 +224,11 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 確保: {0}\r\n優勢: {1}\r\n均衡: {2}\r\n劣勢: {3}\r\n({4}: {5})\r\n.
+        ///   Looks up a localized string similar to 確保: {0}
+        ///優勢: {1}
+        ///均衡: {2}
+        ///劣勢: {3}
+        ///({4}: {5}).
         /// </summary>
         public static string ASTooltip {
             get {
@@ -305,7 +309,10 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 確保: {0}\r\n優勢: {1}\r\n均衡: {2}\r\n劣勢: {3}\r\n.
+        ///   Looks up a localized string similar to 確保: {0}
+        ///優勢: {1}
+        ///均衡: {2}
+        ///劣勢: {3}.
         /// </summary>
         public static string BaseTooltip {
             get {

@@ -1854,6 +1854,7 @@ namespace ElectronicObserver.Window
 
 			Translate();
 			fArsenal.Translate();
+			fBaseAirCorps.Translate();
 		}
 
 		#endregion
