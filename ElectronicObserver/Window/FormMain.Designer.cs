@@ -57,7 +57,6 @@
             this.StripMenu_View_Fleet_4 = new System.Windows.Forms.ToolStripMenuItem();
             this.StripMenu_View_FleetOverview = new System.Windows.Forms.ToolStripMenuItem();
             this.StripMenu_View_ShipGroup = new System.Windows.Forms.ToolStripMenuItem();
-            this.StripMenu_View_XPCalculator = new System.Windows.Forms.ToolStripMenuItem();
             this.StripMenu_View_FleetPreset = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.StripMenu_View_Dock = new System.Windows.Forms.ToolStripMenuItem();
@@ -78,8 +77,6 @@
             this.StripMenu_WindowCapture_AttachAll = new System.Windows.Forms.ToolStripMenuItem();
             this.StripMenu_WindowCapture_DetachAll = new System.Windows.Forms.ToolStripMenuItem();
             this.StripMenu_View_Json = new System.Windows.Forms.ToolStripMenuItem();
-            this.StripMenu_Wpf = new System.Windows.Forms.ToolStripMenuItem();
-            this.StripMenu_Wpf_Fleet = new System.Windows.Forms.ToolStripMenuItem();
             this.StripMenu_Tool = new System.Windows.Forms.ToolStripMenuItem();
             this.StripMenu_Tool_EquipmentList = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
@@ -119,10 +116,8 @@
             this.StripStatus_Clock = new System.Windows.Forms.ToolStripStatusLabel();
             this.UIUpdateTimer = new System.Windows.Forms.Timer(this.components);
             this.MainDockPanel = new WeifenLuo.WinFormsUI.Docking.DockPanel();
-            this.StripMenu_Wpf_Fleet_1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.StripMenu_Wpf_Fleet_2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.StripMenu_Wpf_Fleet_3 = new System.Windows.Forms.ToolStripMenuItem();
-            this.StripMenu_Wpf_Fleet_4 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
+            this.switchLanguageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.StripMenu.SuspendLayout();
             this.StripStatus.SuspendLayout();
             this.SuspendLayout();
@@ -132,7 +127,6 @@
             this.StripMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.StripMenu_File,
             this.StripMenu_View,
-            this.StripMenu_Wpf,
             this.StripMenu_Tool,
             this.StripMenu_Debug,
             this.StripMenu_Help,
@@ -163,20 +157,20 @@
             this.StripMenu_File_Record_Save,
             this.StripMenu_File_Record_Load});
             this.StripMenu_File_Record.Name = "StripMenu_File_Record";
-            this.StripMenu_File_Record.Size = new System.Drawing.Size(137, 22);
+            this.StripMenu_File_Record.Size = new System.Drawing.Size(180, 22);
             this.StripMenu_File_Record.Text = "&Record";
             // 
             // StripMenu_File_Record_Save
             // 
             this.StripMenu_File_Record_Save.Name = "StripMenu_File_Record_Save";
-            this.StripMenu_File_Record_Save.Size = new System.Drawing.Size(100, 22);
+            this.StripMenu_File_Record_Save.Size = new System.Drawing.Size(180, 22);
             this.StripMenu_File_Record_Save.Text = "&Save";
             this.StripMenu_File_Record_Save.Click += new System.EventHandler(this.StripMenu_File_SaveData_Save_Click);
             // 
             // StripMenu_File_Record_Load
             // 
             this.StripMenu_File_Record_Load.Name = "StripMenu_File_Record_Load";
-            this.StripMenu_File_Record_Load.Size = new System.Drawing.Size(100, 22);
+            this.StripMenu_File_Record_Load.Size = new System.Drawing.Size(180, 22);
             this.StripMenu_File_Record_Load.Text = "&Load";
             this.StripMenu_File_Record_Load.Click += new System.EventHandler(this.StripMenu_File_SaveData_Load_Click);
             // 
@@ -192,60 +186,60 @@
             this.toolStripSeparator10,
             this.StripMenu_File_Layout_TopMost});
             this.StripMenu_File_Layout.Name = "StripMenu_File_Layout";
-            this.StripMenu_File_Layout.Size = new System.Drawing.Size(137, 22);
+            this.StripMenu_File_Layout.Size = new System.Drawing.Size(180, 22);
             this.StripMenu_File_Layout.Text = "&Layout";
             // 
             // StripMenu_File_Layout_Load
             // 
             this.StripMenu_File_Layout_Load.Name = "StripMenu_File_Layout_Load";
-            this.StripMenu_File_Layout_Load.Size = new System.Drawing.Size(150, 22);
+            this.StripMenu_File_Layout_Load.Size = new System.Drawing.Size(180, 22);
             this.StripMenu_File_Layout_Load.Text = "&Load";
             this.StripMenu_File_Layout_Load.Click += new System.EventHandler(this.StripMenu_File_Layout_Load_Click);
             // 
             // StripMenu_File_Layout_Save
             // 
             this.StripMenu_File_Layout_Save.Name = "StripMenu_File_Layout_Save";
-            this.StripMenu_File_Layout_Save.Size = new System.Drawing.Size(150, 22);
+            this.StripMenu_File_Layout_Save.Size = new System.Drawing.Size(180, 22);
             this.StripMenu_File_Layout_Save.Text = "&Save";
             this.StripMenu_File_Layout_Save.Click += new System.EventHandler(this.StripMenu_File_Layout_Save_Click);
             // 
             // StripMenu_File_Layout_Open
             // 
             this.StripMenu_File_Layout_Open.Name = "StripMenu_File_Layout_Open";
-            this.StripMenu_File_Layout_Open.Size = new System.Drawing.Size(150, 22);
+            this.StripMenu_File_Layout_Open.Size = new System.Drawing.Size(180, 22);
             this.StripMenu_File_Layout_Open.Text = "&Open...";
             this.StripMenu_File_Layout_Open.Click += new System.EventHandler(this.StripMenu_File_Layout_Open_Click);
             // 
             // StripMenu_File_Layout_Change
             // 
             this.StripMenu_File_Layout_Change.Name = "StripMenu_File_Layout_Change";
-            this.StripMenu_File_Layout_Change.Size = new System.Drawing.Size(150, 22);
+            this.StripMenu_File_Layout_Change.Size = new System.Drawing.Size(180, 22);
             this.StripMenu_File_Layout_Change.Text = "Save &As...";
             this.StripMenu_File_Layout_Change.Click += new System.EventHandler(this.StripMenu_File_Layout_Change_Click);
             // 
             // toolStripSeparator9
             // 
             this.toolStripSeparator9.Name = "toolStripSeparator9";
-            this.toolStripSeparator9.Size = new System.Drawing.Size(147, 6);
+            this.toolStripSeparator9.Size = new System.Drawing.Size(177, 6);
             // 
             // StripMenu_File_Layout_LockLayout
             // 
             this.StripMenu_File_Layout_LockLayout.CheckOnClick = true;
             this.StripMenu_File_Layout_LockLayout.Name = "StripMenu_File_Layout_LockLayout";
-            this.StripMenu_File_Layout_LockLayout.Size = new System.Drawing.Size(150, 22);
+            this.StripMenu_File_Layout_LockLayout.Size = new System.Drawing.Size(180, 22);
             this.StripMenu_File_Layout_LockLayout.Text = "Lock Layou&t";
             this.StripMenu_File_Layout_LockLayout.Click += new System.EventHandler(this.StripMenu_File_Layout_LockLayout_Click);
             // 
             // toolStripSeparator10
             // 
             this.toolStripSeparator10.Name = "toolStripSeparator10";
-            this.toolStripSeparator10.Size = new System.Drawing.Size(147, 6);
+            this.toolStripSeparator10.Size = new System.Drawing.Size(177, 6);
             // 
             // StripMenu_File_Layout_TopMost
             // 
             this.StripMenu_File_Layout_TopMost.CheckOnClick = true;
             this.StripMenu_File_Layout_TopMost.Name = "StripMenu_File_Layout_TopMost";
-            this.StripMenu_File_Layout_TopMost.Size = new System.Drawing.Size(150, 22);
+            this.StripMenu_File_Layout_TopMost.Size = new System.Drawing.Size(180, 22);
             this.StripMenu_File_Layout_TopMost.Text = "&Always on Top";
             this.StripMenu_File_Layout_TopMost.Click += new System.EventHandler(this.StripMenu_File_Layout_TopMost_Click);
             // 
@@ -254,38 +248,38 @@
             this.StripMenu_File_Notification.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.StripMenu_File_Notification_MuteAll});
             this.StripMenu_File_Notification.Name = "StripMenu_File_Notification";
-            this.StripMenu_File_Notification.Size = new System.Drawing.Size(137, 22);
+            this.StripMenu_File_Notification.Size = new System.Drawing.Size(180, 22);
             this.StripMenu_File_Notification.Text = "&Notification";
             // 
             // StripMenu_File_Notification_MuteAll
             // 
             this.StripMenu_File_Notification_MuteAll.CheckOnClick = true;
             this.StripMenu_File_Notification_MuteAll.Name = "StripMenu_File_Notification_MuteAll";
-            this.StripMenu_File_Notification_MuteAll.Size = new System.Drawing.Size(112, 22);
+            this.StripMenu_File_Notification_MuteAll.Size = new System.Drawing.Size(180, 22);
             this.StripMenu_File_Notification_MuteAll.Text = "&Disable";
             this.StripMenu_File_Notification_MuteAll.Click += new System.EventHandler(this.StripMenu_File_Notification_MuteAll_Click);
             // 
             // toolStripSeparator6
             // 
             this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(134, 6);
+            this.toolStripSeparator6.Size = new System.Drawing.Size(177, 6);
             // 
             // StripMenu_File_Configuration
             // 
             this.StripMenu_File_Configuration.Name = "StripMenu_File_Configuration";
-            this.StripMenu_File_Configuration.Size = new System.Drawing.Size(137, 22);
+            this.StripMenu_File_Configuration.Size = new System.Drawing.Size(180, 22);
             this.StripMenu_File_Configuration.Text = "&Settings...";
             this.StripMenu_File_Configuration.Click += new System.EventHandler(this.StripMenu_File_Configuration_Click);
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(134, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(177, 6);
             // 
             // StripMenu_File_Close
             // 
             this.StripMenu_File_Close.Name = "StripMenu_File_Close";
-            this.StripMenu_File_Close.Size = new System.Drawing.Size(137, 22);
+            this.StripMenu_File_Close.Size = new System.Drawing.Size(180, 22);
             this.StripMenu_File_Close.Text = "E&xit";
             this.StripMenu_File_Close.Click += new System.EventHandler(this.StripMenu_File_Close_Click);
             // 
@@ -295,7 +289,6 @@
             this.StripMenu_View_Fleet,
             this.StripMenu_View_FleetOverview,
             this.StripMenu_View_ShipGroup,
-            this.StripMenu_View_XPCalculator,
             this.StripMenu_View_FleetPreset,
             this.toolStripSeparator1,
             this.StripMenu_View_Dock,
@@ -325,7 +318,7 @@
             this.StripMenu_View_Fleet_3,
             this.StripMenu_View_Fleet_4});
             this.StripMenu_View_Fleet.Name = "StripMenu_View_Fleet";
-            this.StripMenu_View_Fleet.Size = new System.Drawing.Size(150, 22);
+            this.StripMenu_View_Fleet.Size = new System.Drawing.Size(180, 22);
             this.StripMenu_View_Fleet.Text = "&Fleet";
             // 
             // StripMenu_View_Fleet_1
@@ -359,118 +352,111 @@
             // StripMenu_View_FleetOverview
             // 
             this.StripMenu_View_FleetOverview.Name = "StripMenu_View_FleetOverview";
-            this.StripMenu_View_FleetOverview.Size = new System.Drawing.Size(150, 22);
+            this.StripMenu_View_FleetOverview.Size = new System.Drawing.Size(180, 22);
             this.StripMenu_View_FleetOverview.Text = "Fleet &List";
             this.StripMenu_View_FleetOverview.Click += new System.EventHandler(this.StripMenu_View_FleetOverview_Click);
             // 
             // StripMenu_View_ShipGroup
             // 
             this.StripMenu_View_ShipGroup.Name = "StripMenu_View_ShipGroup";
-            this.StripMenu_View_ShipGroup.Size = new System.Drawing.Size(150, 22);
+            this.StripMenu_View_ShipGroup.Size = new System.Drawing.Size(180, 22);
             this.StripMenu_View_ShipGroup.Text = "Ship &Group";
             this.StripMenu_View_ShipGroup.Click += new System.EventHandler(this.StripMenu_View_ShipGroup_Click);
-            // 
-            // StripMenu_View_XPCalculator
-            // 
-            this.StripMenu_View_XPCalculator.Name = "StripMenu_View_XPCalculator";
-            this.StripMenu_View_XPCalculator.Size = new System.Drawing.Size(150, 22);
-            this.StripMenu_View_XPCalculator.Text = "&Exp Calculator";
-            this.StripMenu_View_XPCalculator.Click += new System.EventHandler(this.StripMenu_View_XPCalculator_Click);
             // 
             // StripMenu_View_FleetPreset
             // 
             this.StripMenu_View_FleetPreset.Name = "StripMenu_View_FleetPreset";
-            this.StripMenu_View_FleetPreset.Size = new System.Drawing.Size(150, 22);
+            this.StripMenu_View_FleetPreset.Size = new System.Drawing.Size(180, 22);
             this.StripMenu_View_FleetPreset.Text = "Presets(&P)";
             this.StripMenu_View_FleetPreset.Click += new System.EventHandler(this.StripMenu_View_FleetPreset_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(147, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
             // 
             // StripMenu_View_Dock
             // 
             this.StripMenu_View_Dock.Name = "StripMenu_View_Dock";
-            this.StripMenu_View_Dock.Size = new System.Drawing.Size(150, 22);
+            this.StripMenu_View_Dock.Size = new System.Drawing.Size(180, 22);
             this.StripMenu_View_Dock.Text = "&Dock";
             this.StripMenu_View_Dock.Click += new System.EventHandler(this.StripMenu_View_Dock_Click);
             // 
             // StripMenu_View_Arsenal
             // 
             this.StripMenu_View_Arsenal.Name = "StripMenu_View_Arsenal";
-            this.StripMenu_View_Arsenal.Size = new System.Drawing.Size(150, 22);
+            this.StripMenu_View_Arsenal.Size = new System.Drawing.Size(180, 22);
             this.StripMenu_View_Arsenal.Text = "&Arsenal";
             this.StripMenu_View_Arsenal.Click += new System.EventHandler(this.StripMenu_View_Arsenal_Click);
             // 
             // StripMenu_View_BaseAirCorps
             // 
             this.StripMenu_View_BaseAirCorps.Name = "StripMenu_View_BaseAirCorps";
-            this.StripMenu_View_BaseAirCorps.Size = new System.Drawing.Size(150, 22);
+            this.StripMenu_View_BaseAirCorps.Size = new System.Drawing.Size(180, 22);
             this.StripMenu_View_BaseAirCorps.Text = "LBA&S";
             this.StripMenu_View_BaseAirCorps.Click += new System.EventHandler(this.StripMenu_View_BaseAirCorps_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(147, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
             // 
             // StripMenu_View_Headquarters
             // 
             this.StripMenu_View_Headquarters.Name = "StripMenu_View_Headquarters";
-            this.StripMenu_View_Headquarters.Size = new System.Drawing.Size(150, 22);
+            this.StripMenu_View_Headquarters.Size = new System.Drawing.Size(180, 22);
             this.StripMenu_View_Headquarters.Text = "&HQ";
             this.StripMenu_View_Headquarters.Click += new System.EventHandler(this.StripMenu_View_Headquarters_Click);
             // 
             // StripMenu_View_Quest
             // 
             this.StripMenu_View_Quest.Name = "StripMenu_View_Quest";
-            this.StripMenu_View_Quest.Size = new System.Drawing.Size(150, 22);
+            this.StripMenu_View_Quest.Size = new System.Drawing.Size(180, 22);
             this.StripMenu_View_Quest.Text = "&Quest";
             this.StripMenu_View_Quest.Click += new System.EventHandler(this.StripMenu_View_Quest_Click);
             // 
             // StripMenu_View_Information
             // 
             this.StripMenu_View_Information.Name = "StripMenu_View_Information";
-            this.StripMenu_View_Information.Size = new System.Drawing.Size(150, 22);
+            this.StripMenu_View_Information.Size = new System.Drawing.Size(180, 22);
             this.StripMenu_View_Information.Text = "&Information";
             this.StripMenu_View_Information.Click += new System.EventHandler(this.StripMenu_View_Information_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(147, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(177, 6);
             // 
             // StripMenu_View_Compass
             // 
             this.StripMenu_View_Compass.Name = "StripMenu_View_Compass";
-            this.StripMenu_View_Compass.Size = new System.Drawing.Size(150, 22);
+            this.StripMenu_View_Compass.Size = new System.Drawing.Size(180, 22);
             this.StripMenu_View_Compass.Text = "&Compass";
             this.StripMenu_View_Compass.Click += new System.EventHandler(this.StripMenu_View_Compass_Click);
             // 
             // StripMenu_View_Battle
             // 
             this.StripMenu_View_Battle.Name = "StripMenu_View_Battle";
-            this.StripMenu_View_Battle.Size = new System.Drawing.Size(150, 22);
+            this.StripMenu_View_Battle.Size = new System.Drawing.Size(180, 22);
             this.StripMenu_View_Battle.Text = "&Battle";
             this.StripMenu_View_Battle.Click += new System.EventHandler(this.StripMenu_View_Battle_Click);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(147, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(177, 6);
             // 
             // StripMenu_View_Browser
             // 
             this.StripMenu_View_Browser.Name = "StripMenu_View_Browser";
-            this.StripMenu_View_Browser.Size = new System.Drawing.Size(150, 22);
+            this.StripMenu_View_Browser.Size = new System.Drawing.Size(180, 22);
             this.StripMenu_View_Browser.Text = "Browser";
             this.StripMenu_View_Browser.Click += new System.EventHandler(this.StripMenu_View_Browser_Click);
             // 
             // StripMenu_View_Log
             // 
             this.StripMenu_View_Log.Name = "StripMenu_View_Log";
-            this.StripMenu_View_Log.Size = new System.Drawing.Size(150, 22);
+            this.StripMenu_View_Log.Size = new System.Drawing.Size(180, 22);
             this.StripMenu_View_Log.Text = "L&og";
             this.StripMenu_View_Log.Click += new System.EventHandler(this.StripMenu_View_Log_Click);
             // 
@@ -481,51 +467,32 @@
             this.StripMenu_WindowCapture_AttachAll,
             this.StripMenu_WindowCapture_DetachAll});
             this.StripMenu_WindowCapture.Name = "StripMenu_WindowCapture";
-            this.StripMenu_WindowCapture.Size = new System.Drawing.Size(150, 22);
+            this.StripMenu_WindowCapture.Size = new System.Drawing.Size(180, 22);
             // 
             // StripMenu_WindowCapture_SubWindow
             // 
             this.StripMenu_WindowCapture_SubWindow.Name = "StripMenu_WindowCapture_SubWindow";
-            this.StripMenu_WindowCapture_SubWindow.Size = new System.Drawing.Size(67, 22);
+            this.StripMenu_WindowCapture_SubWindow.Size = new System.Drawing.Size(180, 22);
             this.StripMenu_WindowCapture_SubWindow.Click += new System.EventHandler(this.StripMenu_WindowCapture_SubWindow_Click);
             // 
             // StripMenu_WindowCapture_AttachAll
             // 
             this.StripMenu_WindowCapture_AttachAll.Name = "StripMenu_WindowCapture_AttachAll";
-            this.StripMenu_WindowCapture_AttachAll.Size = new System.Drawing.Size(67, 22);
+            this.StripMenu_WindowCapture_AttachAll.Size = new System.Drawing.Size(180, 22);
             this.StripMenu_WindowCapture_AttachAll.Click += new System.EventHandler(this.StripMenu_WindowCapture_AttachAll_Click);
             // 
             // StripMenu_WindowCapture_DetachAll
             // 
             this.StripMenu_WindowCapture_DetachAll.Name = "StripMenu_WindowCapture_DetachAll";
-            this.StripMenu_WindowCapture_DetachAll.Size = new System.Drawing.Size(67, 22);
+            this.StripMenu_WindowCapture_DetachAll.Size = new System.Drawing.Size(180, 22);
             this.StripMenu_WindowCapture_DetachAll.Click += new System.EventHandler(this.StripMenu_WindowCapture_DetachAll_Click);
             // 
             // StripMenu_View_Json
             // 
             this.StripMenu_View_Json.Name = "StripMenu_View_Json";
-            this.StripMenu_View_Json.Size = new System.Drawing.Size(150, 22);
+            this.StripMenu_View_Json.Size = new System.Drawing.Size(180, 22);
             this.StripMenu_View_Json.Text = "&JSON";
             this.StripMenu_View_Json.Click += new System.EventHandler(this.StripMenu_View_Json_Click);
-            // 
-            // StripMenu_Wpf
-            // 
-            this.StripMenu_Wpf.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.StripMenu_Wpf_Fleet});
-            this.StripMenu_Wpf.Name = "StripMenu_Wpf";
-            this.StripMenu_Wpf.Size = new System.Drawing.Size(41, 20);
-            this.StripMenu_Wpf.Text = "Wpf";
-            // 
-            // StripMenu_Wpf_Fleet
-            // 
-            this.StripMenu_Wpf_Fleet.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.StripMenu_Wpf_Fleet_1,
-            this.StripMenu_Wpf_Fleet_2,
-            this.StripMenu_Wpf_Fleet_3,
-            this.StripMenu_Wpf_Fleet_4});
-            this.StripMenu_Wpf_Fleet.Name = "StripMenu_Wpf_Fleet";
-            this.StripMenu_Wpf_Fleet.Size = new System.Drawing.Size(99, 22);
-            this.StripMenu_Wpf_Fleet.Text = "Fleet";
             // 
             // StripMenu_Tool
             // 
@@ -673,7 +640,9 @@
             this.StripMenu_Debug_LoadRecordFromOld,
             this.StripMenu_Debug_DeleteOldAPI,
             this.StripMenu_Debug_RenameShipResource,
-            this.StripMenu_Debug_LoadDataFromOld});
+            this.StripMenu_Debug_LoadDataFromOld,
+            this.toolStripSeparator12,
+            this.switchLanguageToolStripMenuItem});
             this.StripMenu_Debug.Name = "StripMenu_Debug";
             this.StripMenu_Debug.Size = new System.Drawing.Size(54, 20);
             this.StripMenu_Debug.Text = "&Debug";
@@ -835,33 +804,17 @@
             this.MainDockPanel.Styles = null;
             this.MainDockPanel.TabIndex = 0;
             // 
-            // StripMenu_Wpf_Fleet_1
+            // toolStripSeparator12
             // 
-            this.StripMenu_Wpf_Fleet_1.Name = "StripMenu_Wpf_Fleet_1";
-            this.StripMenu_Wpf_Fleet_1.Size = new System.Drawing.Size(80, 22);
-            this.StripMenu_Wpf_Fleet_1.Text = "1";
-            this.StripMenu_Wpf_Fleet_1.Click += new System.EventHandler(this.StripMenu_Wpf_Fleet_1_Click);
+            this.toolStripSeparator12.Name = "toolStripSeparator12";
+            this.toolStripSeparator12.Size = new System.Drawing.Size(293, 6);
             // 
-            // StripMenu_Wpf_Fleet_2
+            // switchLanguageToolStripMenuItem
             // 
-            this.StripMenu_Wpf_Fleet_2.Name = "StripMenu_Wpf_Fleet_2";
-            this.StripMenu_Wpf_Fleet_2.Size = new System.Drawing.Size(80, 22);
-            this.StripMenu_Wpf_Fleet_2.Text = "2";
-            this.StripMenu_Wpf_Fleet_2.Click += new System.EventHandler(this.StripMenu_Wpf_Fleet_2_Click);
-            // 
-            // StripMenu_Wpf_Fleet_3
-            // 
-            this.StripMenu_Wpf_Fleet_3.Name = "StripMenu_Wpf_Fleet_3";
-            this.StripMenu_Wpf_Fleet_3.Size = new System.Drawing.Size(80, 22);
-            this.StripMenu_Wpf_Fleet_3.Text = "3";
-            this.StripMenu_Wpf_Fleet_3.Click += new System.EventHandler(this.StripMenu_Wpf_Fleet_3_Click);
-            // 
-            // StripMenu_Wpf_Fleet_4
-            // 
-            this.StripMenu_Wpf_Fleet_4.Name = "StripMenu_Wpf_Fleet_4";
-            this.StripMenu_Wpf_Fleet_4.Size = new System.Drawing.Size(80, 22);
-            this.StripMenu_Wpf_Fleet_4.Text = "4";
-            this.StripMenu_Wpf_Fleet_4.Click += new System.EventHandler(this.StripMenu_Wpf_Fleet_4_Click);
+            this.switchLanguageToolStripMenuItem.Name = "switchLanguageToolStripMenuItem";
+            this.switchLanguageToolStripMenuItem.Size = new System.Drawing.Size(296, 22);
+            this.switchLanguageToolStripMenuItem.Text = "Switch Language";
+            this.switchLanguageToolStripMenuItem.Click += new System.EventHandler(this.SwitchLanguageToolStripMenuItem_Click);
             // 
             // FormMain
             // 
@@ -905,7 +858,6 @@
         private System.Windows.Forms.ToolStripMenuItem StripMenu_View_Fleet_2;
         private System.Windows.Forms.ToolStripMenuItem StripMenu_View_Fleet_3;
         private System.Windows.Forms.ToolStripMenuItem StripMenu_View_Fleet_4;
-        private System.Windows.Forms.ToolStripMenuItem StripMenu_View_XPCalculator;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem StripMenu_View_Dock;
         private System.Windows.Forms.ToolStripMenuItem StripMenu_View_Arsenal;
@@ -978,11 +930,7 @@
         private System.Windows.Forms.ToolStripMenuItem StripMenu_Tool_KancolleProgress;
         private System.Windows.Forms.ToolStripMenuItem StripMenu_Tool_ExtraBrowser;
 		private System.Windows.Forms.ToolStripMenuItem StripMenu_View_FleetPreset;
-		private System.Windows.Forms.ToolStripMenuItem StripMenu_Wpf;
-		private System.Windows.Forms.ToolStripMenuItem StripMenu_Wpf_Fleet;
-		private System.Windows.Forms.ToolStripMenuItem StripMenu_Wpf_Fleet_1;
-		private System.Windows.Forms.ToolStripMenuItem StripMenu_Wpf_Fleet_2;
-		private System.Windows.Forms.ToolStripMenuItem StripMenu_Wpf_Fleet_3;
-		private System.Windows.Forms.ToolStripMenuItem StripMenu_Wpf_Fleet_4;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator12;
+		private System.Windows.Forms.ToolStripMenuItem switchLanguageToolStripMenuItem;
 	}
 }

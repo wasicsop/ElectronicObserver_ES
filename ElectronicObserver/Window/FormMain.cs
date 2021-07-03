@@ -362,8 +362,6 @@ namespace ElectronicObserver.Window
 
 			UIUpdateTimer.Start();
 
-			StripMenu_Wpf.Visible = false;
-
 			Utility.Logger.Add(3, Resources.StartupComplete);
 		}
 
@@ -1825,26 +1823,22 @@ namespace ElectronicObserver.Window
 			ShowForm(fFleetPreset);
 		}
 
+		private void SwitchLanguageToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			CultureInfo c = CultureInfo.CurrentCulture;
+
+			CultureInfo newCultureInfo = new(c.Name switch
+			{
+				"en-US" => "ja-JP",
+				_ => "en-US"
+			});
+
+			Thread.CurrentThread.CurrentCulture = newCultureInfo;
+			Thread.CurrentThread.CurrentUICulture = newCultureInfo;
+
+			Translate();
+		}
+
 		#endregion
-
-		private void StripMenu_Wpf_Fleet_1_Click(object sender, EventArgs e)
-		{
-			ShowForm(FormFleetWpf[0]);
-		}
-
-		private void StripMenu_Wpf_Fleet_2_Click(object sender, EventArgs e)
-		{
-			ShowForm(FormFleetWpf[1]);
-		}
-
-		private void StripMenu_Wpf_Fleet_3_Click(object sender, EventArgs e)
-		{
-			ShowForm(FormFleetWpf[2]);
-		}
-
-		private void StripMenu_Wpf_Fleet_4_Click(object sender, EventArgs e)
-		{
-			ShowForm(FormFleetWpf[3]);
-		}
 	}
 }
