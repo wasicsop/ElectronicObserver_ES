@@ -209,9 +209,16 @@ namespace ElectronicObserver.Window
 			ConfigurationChanged();
 
 			Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormArsenal]);
+
+			Translate();
 		}
 
+		public void Translate()
+		{
+			MenuMain_ShowShipName.Text = Menus.ShowShipName;
 
+			Text = GeneralRes.Arsenal;
+		}
 
 		private void FormArsenal_Load(object sender, EventArgs e)
 		{
