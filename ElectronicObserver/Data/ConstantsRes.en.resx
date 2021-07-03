@@ -771,4 +771,16 @@
   <data name="AirIncapability" xml:space="preserve">
     <value>AI-</value>
   </data>
+  <data name="CutinTorpedoDestroyerPicket" xml:space="preserve">
+    <value>DD CI (Torpx2+Lookout)</value>
+  </data>
+  <data name="CutinTorpedoDrum" xml:space="preserve">
+    <value>DD CI (Torp+Drum+Lookout)</value>
+  </data>
+  <data name="SpecialMutsu" xml:space="preserve">
+    <value>Mutsu Touch</value>
+  </data>
+  <data name="SpecialKongou" xml:space="preserve">
+    <value>Kongou Touch</value>
+  </data>
 </root>

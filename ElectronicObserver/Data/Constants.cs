@@ -910,20 +910,20 @@ namespace ElectronicObserver.Data
                     return "DD CI (Torp+Lookout+Radar)";
                 case NightAttackKind.CutinTorpedoDestroyerPicket:
                 case NightAttackKind.CutinTorpedoDestroyerPicket2:
-                    return "駆逐カットイン(魚雷/魚雷/水雷見張員)";
+                    return ConstantsRes.CutinTorpedoDestroyerPicket;
                 case NightAttackKind.CutinTorpedoDrum:
                 case NightAttackKind.CutinTorpedoDrum2:
-                    return "駆逐カットイン(魚雷/ドラム/水雷見張員)";
+                    return ConstantsRes.CutinTorpedoDrum;
                 case NightAttackKind.SpecialNelson:
                     return "Nelson Touch";
                 case NightAttackKind.SpecialNagato:
-                    return "Full broadside... Sounds exciting!";
+                    return "Nagato Touch";
                 case NightAttackKind.SpecialMutsu:
-                    return "長門、いい？ いくわよ！ 主砲一斉射ッ！";
+                    return ConstantsRes.SpecialMutsu;
                 case NightAttackKind.SpecialColorado:
                     return "Colorado Touch";
                 case NightAttackKind.SpecialKongo:
-                    return "僚艦夜戦突撃";
+                    return ConstantsRes.SpecialKongou;
 
                 case NightAttackKind.Shelling:
                     return "Shelling";

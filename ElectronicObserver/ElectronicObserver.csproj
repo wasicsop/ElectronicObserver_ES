@@ -55,6 +55,11 @@
 		</Reference>
 	</ItemGroup>
 	<ItemGroup>
+		<Compile Update="Data\ConstantsRes.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>ConstantsRes.resx</DependentUpon>
+		</Compile>
 		<Compile Update="Data\DataRes.Designer.cs">
 			<DesignTime>True</DesignTime>
 			<AutoGen>True</AutoGen>
@@ -240,6 +245,10 @@
 		</COMReference>
 	</ItemGroup>
 	<ItemGroup>
+		<EmbeddedResource Update="Data\ConstantsRes.resx">
+		  <Generator>PublicResXFileCodeGenerator</Generator>
+		  <LastGenOutput>ConstantsRes.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
 		<EmbeddedResource Update="Data\DataRes.resx">
 			<Generator>ResXFileCodeGenerator</Generator>
 			<LastGenOutput>DataRes.Designer.cs</LastGenOutput>

@@ -771,4 +771,16 @@
   <data name="BattleDetail_Stage2AACI" xml:space="preserve">
     <value>対空カットイン ( {0}, {1}({2}) )</value>
   </data>
+  <data name="CutinTorpedoDestroyerPicket" xml:space="preserve">
+    <value>駆逐カットイン(魚雷/魚雷/水雷見張員)</value>
+  </data>
+  <data name="CutinTorpedoDrum" xml:space="preserve">
+    <value>駆逐カットイン(魚雷/ドラム/水雷見張員)</value>
+  </data>
+  <data name="SpecialMutsu" xml:space="preserve">
+    <value>長門、いい？ いくわよ！ 主砲一斉射ッ！</value>
+  </data>
+  <data name="SpecialKongou" xml:space="preserve">
+    <value>僚艦夜戦突撃</value>
+  </data>
 </root>
