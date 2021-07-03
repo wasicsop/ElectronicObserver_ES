@@ -102,6 +102,93 @@ namespace ElectronicObserver.Window
 			InitializeComponent();
 
 			this.Text = SoftwareInformation.SoftwareNameEnglish;
+
+			Translate();
+		}
+
+		private void Translate()
+		{
+			StripMenu_File.Text = Properties.Window.FormMain.File;
+
+			StripMenu_File_Record.Text = Properties.Window.FormMain.File_Record;
+			StripMenu_File_Record_Save.Text = Properties.Window.FormMain.File_Record_Save;
+			StripMenu_File_Record_Load.Text = Properties.Window.FormMain.File_Record_Load;
+
+			StripMenu_File_Layout.Text = Properties.Window.FormMain.File_Layout;
+			StripMenu_File_Layout_Load.Text = Properties.Window.FormMain.File_Layout_Load;
+			StripMenu_File_Layout_Save.Text = Properties.Window.FormMain.File_Layout_Save;
+			StripMenu_File_Layout_Open.Text = Properties.Window.FormMain.File_Layout_Open;
+			StripMenu_File_Layout_Change.Text = Properties.Window.FormMain.File_Layout_Change;
+			StripMenu_File_Layout_LockLayout.Text = Properties.Window.FormMain.File_Layout_LockLayout;
+			StripMenu_File_Layout_TopMost.Text = Properties.Window.FormMain.File_Layout_TopMost;
+
+			StripMenu_File_Notification.Text = Properties.Window.FormMain.File_Notification;
+			StripMenu_File_Notification_MuteAll.Text = Properties.Window.FormMain.File_Notification_MuteAll;
+
+			StripMenu_File_Configuration.Text = Properties.Window.FormMain.File_Configuration;
+			StripMenu_File_Close.Text = Properties.Window.FormMain.File_Close;
+
+			StripMenu_View.Text = Properties.Window.FormMain.View;
+			StripMenu_View_Fleet.Text = Properties.Window.FormMain.View_Fleet;
+			StripMenu_View_Fleet_1.Text = Properties.Window.FormMain.View_Fleet_1;
+			StripMenu_View_Fleet_2.Text = Properties.Window.FormMain.View_Fleet_2;
+			StripMenu_View_Fleet_3.Text = Properties.Window.FormMain.View_Fleet_3;
+			StripMenu_View_Fleet_4.Text = Properties.Window.FormMain.View_Fleet_4;
+			StripMenu_View_FleetOverview.Text = Properties.Window.FormMain.View_FleetOverview;
+			StripMenu_View_ShipGroup.Text = Properties.Window.FormMain.View_ShipGroup;
+			StripMenu_View_Dock.Text = Properties.Window.FormMain.View_Dock;
+			StripMenu_View_Arsenal.Text = Properties.Window.FormMain.View_Arsenal;
+			StripMenu_View_BaseAirCorps.Text = Properties.Window.FormMain.View_BaseAirCorps;
+			StripMenu_View_Headquarters.Text = Properties.Window.FormMain.View_Headquarters;
+			StripMenu_View_Quest.Text = Properties.Window.FormMain.View_Quest;
+			StripMenu_View_Information.Text = Properties.Window.FormMain.View_Information;
+			StripMenu_View_Compass.Text = Properties.Window.FormMain.View_Compass;
+			StripMenu_View_Battle.Text = Properties.Window.FormMain.View_Battle;
+			StripMenu_View_Browser.Text = Properties.Window.FormMain.View_Browser;
+			StripMenu_View_Log.Text = Properties.Window.FormMain.View_Log;
+			StripMenu_View_Json.Text = Properties.Window.FormMain.View_Json;
+			StripMenu_View_FleetPreset.Text = Properties.Window.FormMain.View_FleetPreset;
+
+			StripMenu_WindowCapture.Text = Properties.Window.FormMain.WindowCapture;
+			StripMenu_WindowCapture_SubWindow.Text = Properties.Window.FormMain.WindowCapture_SubWindow;
+			StripMenu_WindowCapture_AttachAll.Text = Properties.Window.FormMain.WindowCapture_AttachAll;
+			StripMenu_WindowCapture_DetachAll.Text = Properties.Window.FormMain.WindowCapture_DetachAll;
+
+			StripMenu_Tool.Text = Properties.Window.FormMain.Tool;
+			StripMenu_Tool_EquipmentList.Text = Properties.Window.FormMain.Tool_EquipmentList;
+			StripMenu_Tool_DropRecord.Text = Properties.Window.FormMain.Tool_DropRecord;
+			StripMenu_Tool_DevelopmentRecord.Text = Properties.Window.FormMain.Tool_DevelopmentRecord;
+			StripMenu_Tool_ConstructionRecord.Text = Properties.Window.FormMain.Tool_ConstructionRecord;
+			StripMenu_Tool_ResourceChart.Text = Properties.Window.FormMain.Tool_ResourceChart;
+			StripMenu_Tool_AlbumMasterShip.Text = Properties.Window.FormMain.Tool_AlbumMasterShip;
+			StripMenu_Tool_AlbumMasterEquipment.Text = Properties.Window.FormMain.Tool_AlbumMasterEquipment;
+			StripMenu_Tool_AntiAirDefense.Text = Properties.Window.FormMain.Tool_AntiAirDefense;
+			StripMenu_Tool_FleetImageGenerator.Text = Properties.Window.FormMain.Tool_FleetImageGenerator;
+			StripMenu_Tool_BaseAirCorpsSimulation.Text = Properties.Window.FormMain.Tool_BaseAirCorpsSimulation;
+			StripMenu_Tool_ExpChecker.Text = Properties.Window.FormMain.Tool_ExpChecker;
+			StripMenu_Tool_ExpeditionCheck.Text = Properties.Window.FormMain.Tool_ExpeditionCheck;
+			StripMenu_Tool_KancolleProgress.Text = Properties.Window.FormMain.Tool_KancolleProgress;
+			StripMenu_Tool_ExtraBrowser.Text = Properties.Window.FormMain.Tool_ExtraBrowser;
+
+			StripMenu_Debug.Text = Properties.Window.FormMain.Debug;
+			StripMenu_Debug_LoadAPIFromFile.Text = Properties.Window.FormMain.Debug_LoadAPIFromFile;
+			StripMenu_Debug_LoadInitialAPI.Text = Properties.Window.FormMain.Debug_LoadInitialAPI;
+			StripMenu_Debug_LoadRecordFromOld.Text = Properties.Window.FormMain.Debug_LoadRecordFromOld;
+			StripMenu_Debug_DeleteOldAPI.Text = Properties.Window.FormMain.Debug_DeleteOldAPI;
+			StripMenu_Debug_RenameShipResource.Text = Properties.Window.FormMain.Debug_RenameShipResource;
+			StripMenu_Debug_LoadDataFromOld.Text = Properties.Window.FormMain.Debug_LoadDataFromOld;
+
+			StripMenu_Help.Text = Properties.Window.FormMain.Help;
+			StripMenu_Help_Help.Text = Properties.Window.FormMain.Help_Help;
+			StripMenu_Help_Issue.Text = Properties.Window.FormMain.Help_Issue;
+			StripMenu_Help_Discord.Text = Properties.Window.FormMain.Help_Discord;
+			StripMenu_Help_Update.Text = Properties.Window.FormMain.Help_Update;
+			StripMenu_Help_Version.Text = Properties.Window.FormMain.Help_Version;
+
+			StripStatus_Information.Text = Properties.Window.FormMain.Information;
+			StripStatus_Clock.Text = Properties.Window.FormMain.Clock;
+
+			Text = Properties.Window.FormMain.Title;
 		}
 
 		private async void FormMain_Load(object sender, EventArgs e)
