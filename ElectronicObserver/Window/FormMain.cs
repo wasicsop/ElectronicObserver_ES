@@ -223,7 +223,13 @@ namespace ElectronicObserver.Window
 			});
 			Utility.Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
 
-			Utility.Logger.Add(2, SoftwareInformation.SoftwareNameEnglish + " is starting...");
+			string softwareName = CultureInfo.CurrentCulture.Name switch
+			{
+				"en-US" => SoftwareInformation.SoftwareNameEnglish,
+				_ => SoftwareInformation.SoftwareNameJapanese
+			};
+
+			Utility.Logger.Add(2, softwareName + Properties.Window.FormMain.Starting);
 
 
 			ResourceManager.Instance.Load();
@@ -448,7 +454,7 @@ namespace ElectronicObserver.Window
 		public void Update_Available(string newVersion)
 		{
 			StripMenu_Update.Visible = true;
-			StripMenu_Update.Text = string.Format("Electronic Observer v{0} is available!", newVersion);
+			StripMenu_Update.Text = string.Format(Properties.Window.FormMain.UpdateAvailable, newVersion);
 		}
 
 
@@ -511,6 +517,7 @@ namespace ElectronicObserver.Window
 						maintTimer = maintDate - now;
 					}
 
+					// todo: this feature isn't really used so I won't localize it for now
 					string message = eventState switch
 					{
 						MaintenanceState.EventStart => maintDate > now ? "Event starts in" : "Event has started!",
@@ -607,7 +614,7 @@ namespace ElectronicObserver.Window
 
 			if ( Utility.Configuration.Config.Life.ConfirmOnClosing )
             {
-				if ( MessageBox.Show( "Are you sure you want to exit?", "Electronic Observer", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2 )
+				if ( MessageBox.Show( Properties.Window.FormMain.ExitConfirmation, Properties.Window.FormMain.ConfirmatonCaption, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2 )
 					== System.Windows.Forms.DialogResult.No )
                 {
 					e.Cancel = true;
@@ -806,7 +813,7 @@ namespace ElectronicObserver.Window
 					LoadSubWindowsLayout(archive.GetEntry("SubWindowLayout.xml").Open());
 				}
 
-				Utility.Logger.Add(1, "Successfully loaded window layout from " + path);
+				Utility.Logger.Add(1, string.Format(Properties.Window.FormMain.LayoutLoaded, path));
 
 			}
 			catch (FileNotFoundException)
@@ -941,7 +948,7 @@ namespace ElectronicObserver.Window
 		private void StripMenu_File_SaveData_Load_Click(object sender, EventArgs e)
 		{
 
-			if ( MessageBox.Show( Resources.AskLoad, "Confirmation",
+			if ( MessageBox.Show( Resources.AskLoad, Properties.Window.FormMain.ConfirmatonCaption,
 					MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2 )
 				== System.Windows.Forms.DialogResult.Yes )
             {
@@ -1180,7 +1187,7 @@ namespace ElectronicObserver.Window
 
 			if (KCDatabase.Instance.MasterShips.Count == 0)
 			{
-				MessageBox.Show("Ship data is not loaded.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				MessageBox.Show(Properties.Window.FormMain.ShipDataNotLoaded, Properties.Window.FormMain.ErrorCaption, MessageBoxButtons.OK, MessageBoxIcon.Error);
 
 			}
 			else
@@ -1197,7 +1204,7 @@ namespace ElectronicObserver.Window
 
 			if (KCDatabase.Instance.MasterEquipments.Count == 0)
 			{
-				MessageBox.Show("Equipment data is not loaded.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				MessageBox.Show(Properties.Window.FormMain.EquipmentDataNotLoaded, Properties.Window.FormMain.ErrorCaption, MessageBoxButtons.OK, MessageBoxIcon.Error);
 
 			}
 			else
@@ -1418,13 +1425,17 @@ namespace ElectronicObserver.Window
 		private void StripMenu_Help_Help_Click(object sender, EventArgs e)
 		{
 
-			if (MessageBox.Show("This will open the EO wiki with your browser.\r\nAre you sure?", "Help",
+			if (MessageBox.Show(Properties.Window.FormMain.OpenEOWiki, Properties.Window.FormMain.HelpCaption,
 				MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1)
 				== System.Windows.Forms.DialogResult.Yes)
 			{
 				ProcessStartInfo psi = new ProcessStartInfo
 				{
-					FileName = "https://github.com/silfumus/ElectronicObserver/wiki",
+					FileName = CultureInfo.CurrentCulture.Name switch
+					{
+						"en-US" => "https://github.com/silfumus/ElectronicObserver/wiki",
+						_ => "https://github.com/andanteyk/ElectronicObserver/wiki"
+					},
 					UseShellExecute = true
 				};
 				Process.Start(psi);
@@ -1435,7 +1446,7 @@ namespace ElectronicObserver.Window
 		private void StripMenu_Help_Issue_Click(object sender, EventArgs e)
 		{
 
-			if (MessageBox.Show("This will open a page with your browser.\r\nAre you sure?", "Report A Problem",
+			if (MessageBox.Show(Properties.Window.FormMain.ReportIssue, Properties.Window.FormMain.ReportIssue,
 				MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1)
 				== System.Windows.Forms.DialogResult.Yes)
 			{
@@ -1463,7 +1474,7 @@ namespace ElectronicObserver.Window
 			}
 			catch (Exception ex)
 			{
-				Utility.ErrorReporter.SendErrorReport(ex, "Failed to search on Google.");
+				Utility.ErrorReporter.SendErrorReport(ex, Properties.Window.FormMain.FailedToOpenBrowser);
 			}
 
 		}
@@ -1502,7 +1513,7 @@ namespace ElectronicObserver.Window
 			{
 
 				dialog.Filter = "Layout Archive|*.zip|File|*";
-				dialog.Title = "Open Layout File";
+				dialog.Title = Properties.Window.FormMain.OpenLayoutCaption;
 
 
 				PathHelper.InitOpenFileDialog(Utility.Configuration.Config.Life.LayoutFilePath, dialog);
@@ -1526,7 +1537,7 @@ namespace ElectronicObserver.Window
 			{
 
 				dialog.Filter = "Layout Archive|*.zip|File|*";
-				dialog.Title = "Save Layout As";
+				dialog.Title = Properties.Window.FormMain.SaveLayoutCaption;
 
 
 				PathHelper.InitSaveFileDialog(Utility.Configuration.Config.Life.LayoutFilePath, dialog);
@@ -1563,7 +1574,7 @@ namespace ElectronicObserver.Window
 
 			if (RecordManager.Instance.ShipDrop.Record.Count == 0)
 			{
-				MessageBox.Show(GeneralRes.NoDevData, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				MessageBox.Show(GeneralRes.NoDevData, Properties.Window.FormMain.ErrorCaption, MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return;
 			}
 
@@ -1583,7 +1594,7 @@ namespace ElectronicObserver.Window
 
 			if (RecordManager.Instance.Development.Record.Count == 0)
 			{
-				MessageBox.Show(GeneralRes.NoDevData, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				MessageBox.Show(GeneralRes.NoDevData, Properties.Window.FormMain.ErrorCaption, MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return;
 			}
 
@@ -1602,7 +1613,7 @@ namespace ElectronicObserver.Window
 
 			if (RecordManager.Instance.Construction.Record.Count == 0)
 			{
-				MessageBox.Show(GeneralRes.NoBuildData, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				MessageBox.Show(GeneralRes.NoBuildData, Properties.Window.FormMain.ErrorCaption, MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return;
 			}
 

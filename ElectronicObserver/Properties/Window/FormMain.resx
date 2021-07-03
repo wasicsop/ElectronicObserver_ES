@@ -327,4 +327,49 @@
   <data name="Help_Update" xml:space="preserve">
     <value>アップデートのチェック</value>
   </data>
+  <data name="Starting" xml:space="preserve">
+    <value> を起動しています…</value>
+  </data>
+  <data name="UpdateAvailable" xml:space="preserve">
+    <value>七四式v{0}が登場</value>
+  </data>
+  <data name="ExitConfirmation" xml:space="preserve">
+    <value>{0} を終了しますか？</value>
+  </data>
+  <data name="ConfirmatonCaption" xml:space="preserve">
+    <value>確認</value>
+  </data>
+  <data name="LayoutLoaded" xml:space="preserve">
+    <value>{0} からウィンドウ レイアウトを復元しました。</value>
+  </data>
+  <data name="ShipDataNotLoaded" xml:space="preserve">
+    <value>艦船データが読み込まれていません。</value>
+  </data>
+  <data name="ErrorCaption" xml:space="preserve">
+    <value>エラー</value>
+  </data>
+  <data name="EquipmentDataNotLoaded" xml:space="preserve">
+    <value>装備データが読み込まれていません。</value>
+  </data>
+  <data name="OpenEOWiki" xml:space="preserve">
+    <value>外部ブラウザでオンラインヘルプを開きます。\r\nよろしいですか？</value>
+  </data>
+  <data name="HelpCaption" xml:space="preserve">
+    <value>ヘルプ</value>
+  </data>
+  <data name="ReportIssue" xml:space="preserve">
+    <value>外部ブラウザでオンラインヘルプを開きます。\r\nよろしいですか？</value>
+  </data>
+  <data name="ReportIssueCaption" xml:space="preserve">
+    <value>問題を報告する</value>
+  </data>
+  <data name="FailedToOpenBrowser" xml:space="preserve">
+    <value>ブラウザを開くのに失敗しました</value>
+  </data>
+  <data name="OpenLayoutCaption" xml:space="preserve">
+    <value>レイアウト ファイルを開く</value>
+  </data>
+  <data name="SaveLayoutCaption" xml:space="preserve">
+    <value>レイアウト ファイルの保存</value>
+  </data>
 </root>

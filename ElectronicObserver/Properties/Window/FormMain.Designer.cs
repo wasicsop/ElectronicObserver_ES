@@ -70,6 +70,15 @@ namespace ElectronicObserver.Properties.Window {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 確認.
+        /// </summary>
+        public static string ConfirmatonCaption {
+            get {
+                return ResourceManager.GetString("ConfirmatonCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to デバッグ(&amp;D).
         /// </summary>
         public static string Debug {
@@ -129,6 +138,42 @@ namespace ElectronicObserver.Properties.Window {
         public static string Debug_RenameShipResource {
             get {
                 return ResourceManager.GetString("Debug_RenameShipResource", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 装備データが読み込まれていません。.
+        /// </summary>
+        public static string EquipmentDataNotLoaded {
+            get {
+                return ResourceManager.GetString("EquipmentDataNotLoaded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to エラー.
+        /// </summary>
+        public static string ErrorCaption {
+            get {
+                return ResourceManager.GetString("ErrorCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} を終了しますか？.
+        /// </summary>
+        public static string ExitConfirmation {
+            get {
+                return ResourceManager.GetString("ExitConfirmation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ブラウザを開くのに失敗しました.
+        /// </summary>
+        public static string FailedToOpenBrowser {
+            get {
+                return ResourceManager.GetString("FailedToOpenBrowser", resourceCulture);
             }
         }
         
@@ -322,11 +367,92 @@ namespace ElectronicObserver.Properties.Window {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ヘルプ.
+        /// </summary>
+        public static string HelpCaption {
+            get {
+                return ResourceManager.GetString("HelpCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Now Preparing....
         /// </summary>
         public static string Information {
             get {
                 return ResourceManager.GetString("Information", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} からウィンドウ レイアウトを復元しました。.
+        /// </summary>
+        public static string LayoutLoaded {
+            get {
+                return ResourceManager.GetString("LayoutLoaded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 外部ブラウザでオンラインヘルプを開きます。\r\nよろしいですか？.
+        /// </summary>
+        public static string OpenEOWiki {
+            get {
+                return ResourceManager.GetString("OpenEOWiki", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to レイアウト ファイルを開く.
+        /// </summary>
+        public static string OpenLayoutCaption {
+            get {
+                return ResourceManager.GetString("OpenLayoutCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 外部ブラウザでオンラインヘルプを開きます。\r\nよろしいですか？.
+        /// </summary>
+        public static string ReportIssue {
+            get {
+                return ResourceManager.GetString("ReportIssue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 問題を報告する.
+        /// </summary>
+        public static string ReportIssueCaption {
+            get {
+                return ResourceManager.GetString("ReportIssueCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to レイアウト ファイルの保存.
+        /// </summary>
+        public static string SaveLayoutCaption {
+            get {
+                return ResourceManager.GetString("SaveLayoutCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 艦船データが読み込まれていません。.
+        /// </summary>
+        public static string ShipDataNotLoaded {
+            get {
+                return ResourceManager.GetString("ShipDataNotLoaded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  を起動しています….
+        /// </summary>
+        public static string Starting {
+            get {
+                return ResourceManager.GetString("Starting", resourceCulture);
             }
         }
         
@@ -471,6 +597,15 @@ namespace ElectronicObserver.Properties.Window {
         public static string Tool_ResourceChart {
             get {
                 return ResourceManager.GetString("Tool_ResourceChart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 七四式v{0}が登場.
+        /// </summary>
+        public static string UpdateAvailable {
+            get {
+                return ResourceManager.GetString("UpdateAvailable", resourceCulture);
             }
         }
         
