@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
+using Translation = ElectronicObserver.Properties.Window.FormFleetPreset;
 
 namespace ElectronicObserver.Window
 {
@@ -95,7 +96,7 @@ namespace ElectronicObserver.Window
 				int lowestCondition = preset.MembersInstance.Where(s => s != null).Select(s => s.Condition).DefaultIfEmpty(49).Min();
 				FormFleet.SetConditionDesign(Name, lowestCondition);
 
-				_tooltip.SetToolTip(Name, $"最低cond: {lowestCondition}");
+				_tooltip.SetToolTip(Name, $"{Translation.LowestCondition}: {lowestCondition}");
 
 				for (int i = 0; i < Ships.Length; i++)
 				{
@@ -184,6 +185,13 @@ namespace ElectronicObserver.Window
 			ConfigurationChanged();
 
 			Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormFleetPreset]);
+
+			Translate();
+		}
+
+		public void Translate()
+		{
+			Text = Translation.Title;
 		}
 
 		private void FormFleetPreset_Load(object sender, EventArgs e)

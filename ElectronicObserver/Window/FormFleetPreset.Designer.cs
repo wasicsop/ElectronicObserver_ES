@@ -73,7 +73,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.HideOnClose = true;
             this.Name = "FormFleetPreset";
-            this.Text = "Presets";
+            this.Text = "編成プリセット";
             this.Load += new System.EventHandler(this.FormFleetPreset_Load);
             this.Click += new System.EventHandler(this.FormFleetPreset_Click);
             this.ResumeLayout(false);

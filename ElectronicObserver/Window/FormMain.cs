@@ -1861,6 +1861,7 @@ namespace ElectronicObserver.Window
 			fDock.Translate();
 			foreach(var fleet in fFleet) fleet.Translate();
 			fFleetOverview.Translate();
+			fFleetPreset.Translate();
 		}
 
 		#endregion

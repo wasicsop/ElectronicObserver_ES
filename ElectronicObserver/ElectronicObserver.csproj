@@ -115,6 +115,11 @@
 		  <AutoGen>True</AutoGen>
 		  <DependentUpon>FormFleetOverview.resx</DependentUpon>
 		</Compile>
+		<Compile Update="Properties\Window\FormFleetPreset.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>FormFleetPreset.resx</DependentUpon>
+		</Compile>
 		<Compile Update="Properties\Window\FormMain.Designer.cs">
 		  <DesignTime>True</DesignTime>
 		  <AutoGen>True</AutoGen>
@@ -334,6 +339,10 @@
 		<EmbeddedResource Update="Properties\Window\FormFleetOverview.resx">
 		  <Generator>PublicResXFileCodeGenerator</Generator>
 		  <LastGenOutput>FormFleetOverview.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Properties\Window\FormFleetPreset.resx">
+		  <Generator>PublicResXFileCodeGenerator</Generator>
+		  <LastGenOutput>FormFleetPreset.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 		<EmbeddedResource Update="Properties\Window\FormMain.resx">
 		  <Generator>PublicResXFileCodeGenerator</Generator>
