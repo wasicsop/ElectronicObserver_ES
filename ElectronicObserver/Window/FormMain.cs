@@ -1858,6 +1858,7 @@ namespace ElectronicObserver.Window
 			fBattle.Translate();
 			fBrowser.Translate();
 			fCompass.Translate();
+			fDock.Translate();
 		}
 
 		#endregion

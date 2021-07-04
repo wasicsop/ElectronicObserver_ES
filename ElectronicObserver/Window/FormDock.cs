@@ -14,6 +14,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
+using Translation = ElectronicObserver.Properties.Window.FormDock;
 
 namespace ElectronicObserver.Window
 {
@@ -198,8 +199,13 @@ namespace ElectronicObserver.Window
 
 			Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormDock]);
 
+			Translate();
 		}
 
+		public void Translate()
+		{
+			Text = Translation.Title;
+		}
 
 		private void FormDock_Load(object sender, EventArgs e)
 		{
@@ -241,7 +247,8 @@ namespace ElectronicObserver.Window
 
 
 
-		private void TableDock_CellPaint( object sender, TableLayoutCellPaintEventArgs e ) {
+		private void TableDock_CellPaint( object sender, TableLayoutCellPaintEventArgs e ) 
+		{
 			e.Graphics.DrawLine(Utility.Configuration.Config.UI.SubBackColorPen, e.CellBounds.X, e.CellBounds.Bottom - 1, e.CellBounds.Right - 1, e.CellBounds.Bottom - 1 );
 		}
 
