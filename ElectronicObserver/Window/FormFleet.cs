@@ -18,6 +18,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ElectronicObserverTypes;
 using WeifenLuo.WinFormsUI.Docking;
+using Translation = ElectronicObserver.Properties.Window.FormFleet;
 
 namespace ElectronicObserver.Window
 {
@@ -165,13 +166,13 @@ namespace ElectronicObserver.Window
 					{
 						case 0:
 						default:
-							supporttype = "n/a"; break;
+							supporttype = Translation.SupportTypeNone; break;
 						case 1:
-							supporttype = "Aerial Support"; break;
+							supporttype = Translation.SupportTypeAerial; break;
 						case 2:
-							supporttype = "Support Shelling"; break;
+							supporttype = Translation.SupportTypeShelling; break;
 						case 3:
-							supporttype = "Long-range Torpedo Attack"; break;
+							supporttype = Translation.SupportTypeTorpedo; break;
 					}
 
 					double expeditionBonus = Calculator.GetExpeditionBonus(fleet);
@@ -182,16 +183,7 @@ namespace ElectronicObserver.Window
 					var landing = members.Select(s => s.AllSlotInstanceMaster.Count(eq => eq?.CategoryType == EquipmentTypes.LandingCraft || eq?.CategoryType == EquipmentTypes.SpecialAmphibiousTank));
 
 
-					ToolTipInfo.SetToolTip(Name, string.Format(
-						"Lv sum: {0} / avg: {1:0.00}\r\n" +
-						"{2} fleet\r\n" +
-						"Support Expedition: {3}\r\n" +
-						"Total FP {4} / Torp {5} / AA {6} / ASW {7} / LOS {8}\r\n" +
-						"Drum: {9} ({10} ships)\r\n" +
-						"Daihatsu: {11} ({12} ships, +{13:p1})\r\n" +
-						"TP: S {14} / A {15}\r\n" +
-						"Consumption: {16} fuel / {17} ammo\r\n" +
-						"({18} fuel / {19} ammo per battle)",
+					ToolTipInfo.SetToolTip(Name, string.Format(Translation.FleetNameToolTip,
 						levelSum,
 						(double)levelSum / Math.Max(fleet.Members.Count(id => id != -1), 1),
 						Constants.GetSpeed(speed),
@@ -225,34 +217,36 @@ namespace ElectronicObserver.Window
 					int airSuperiority = fleet.GetAirSuperiority();
 					bool includeLevel = Utility.Configuration.Config.FormFleet.AirSuperiorityMethod == 1;
 					AirSuperiority.Text = fleet.GetAirSuperiorityString();
-					ToolTipInfo.SetToolTip( AirSuperiority,
-						string.Format( GeneralRes.ASTooltip,
-						(int)( airSuperiority / 3.0 ),
-						(int)( airSuperiority / 1.5 ),
-						Math.Max( (int)( airSuperiority * 1.5 - 1 ), 0 ),
-						Math.Max( (int)( airSuperiority * 3.0 - 1 ), 0 ),
-						includeLevel ? "w/o Proficiency" : "w/ Proficiency",
-						includeLevel ? Calculator.GetAirSuperiorityIgnoreLevel( fleet ) : Calculator.GetAirSuperiority( fleet ) ) );
+					ToolTipInfo.SetToolTip(AirSuperiority,
+						string.Format(GeneralRes.ASTooltip,
+						(int)(airSuperiority / 3.0),
+						(int)(airSuperiority / 1.5),
+						Math.Max((int)(airSuperiority * 1.5 - 1), 0),
+						Math.Max((int)(airSuperiority * 3.0 - 1), 0),
+						includeLevel ? Translation.WithoutProficiency : Translation.WithProficiency,
+						includeLevel ? Calculator.GetAirSuperiorityIgnoreLevel(fleet) : Calculator.GetAirSuperiority(fleet)));
 				}
 
 
 				//索敵能力計算
 				SearchingAbility.Text = fleet.GetSearchingAbilityString(BranchWeight);
 				{
-					StringBuilder sb = new StringBuilder();
+					StringBuilder sb = new();
 					double probStart = fleet.GetContactProbability();
 					var probSelect = fleet.GetContactSelectionProbability();
 
-					sb.AppendFormat("Formula 33 (n={0})\r\n　(Click to switch between weighting)\r\n\r\nContact:\r\n　AS+ {1:p1} / AS {2:p1}\r\n",
+					sb.AppendFormat(Translation.FleetLosToolTip,
 						BranchWeight,
 						probStart,
 						probStart * 0.6);
 
-					if ( probSelect.Count > 0 ) {
-						sb.AppendLine( "Selection:" );
+					if (probSelect.Count > 0)
+					{
+						sb.AppendLine(Translation.ContactSelection);
 
-						foreach ( var p in probSelect.OrderBy( p => p.Key ) ) {
-							sb.AppendFormat( "　Acc+{0}: {1:p1}\r\n", p.Key, p.Value );
+						foreach ((int accuracy, double probability) in probSelect.OrderBy(p => p.Key))
+						{
+							sb.AppendFormat(Translation.ContactProbability + "\r\n", accuracy, probability);
 						}
 					}
 
@@ -266,7 +260,7 @@ namespace ElectronicObserver.Window
 
 					AntiAirPower.Text = lineahead.ToString("0.0");
 
-					sb.AppendFormat( GeneralRes.AntiAirPower,
+					sb.AppendFormat(GeneralRes.AntiAirPower,
 						lineahead,
 						Calculator.GetAdjustedFleetAAValue(fleet, 2),
 						Calculator.GetAdjustedFleetAAValue(fleet, 3));
@@ -462,8 +456,7 @@ namespace ElectronicObserver.Window
 					Name.Text = ship.MasterShip.NameWithClass;
 					Name.Tag = ship.ShipID;
 					ToolTipInfo.SetToolTip(Name,
-						string.Format(
-							"{0}{1} {2}\r\nFP: {3}/{4}\r\nTorp: {5}/{6}\r\nAA: {7}/{8}\r\nArmor: {9}/{10}\r\nASW: {11}/{12}\r\nEvasion: {13}/{14}\r\nLOS: {15}/{16}\r\nLuck: {17}\r\nAccuracy: {18:+#;-#;+0}\r\nBombing: {19:+#;-#;+0}\r\nRange: {20} / Speed: {21}\r\n(right click to open encyclopedia)\n",
+						string.Format(Translation.ShipNameToolTip,
 							ship.SallyArea > 0 ? $"[{ship.SallyArea}] " : "",
 							ship.MasterShip.ShipTypeName, ship.NameWithLevel,
 							ship.FirepowerBase, ship.FirepowerTotal,
@@ -478,7 +471,7 @@ namespace ElectronicObserver.Window
 							equipments.Any() ? equipments.Sum(eq => eq.MasterEquipment.Bomber) : 0,
 							Constants.GetRange(ship.Range),
 							Constants.GetSpeed(ship.Speed)
-							));
+						));
 					{
 						var colorscheme = Utility.Configuration.Config.FormFleet.SallyAreaColorScheme;
 
@@ -503,7 +496,7 @@ namespace ElectronicObserver.Window
 					Level.Tag = ship.MasterID;
 
 					{
-						StringBuilder tip = new StringBuilder();
+						StringBuilder tip = new ();
 						tip.AppendFormat("Total: {0:N0} exp.\r\n", ship.ExpTotal);
 
 						if (!Utility.Configuration.Config.FormFleet.ShowNextExp)
@@ -536,7 +529,7 @@ namespace ElectronicObserver.Window
 						}
 
 
-						tip.AppendLine("(right click to calculate exp)");
+						tip.AppendLine(Translation.ExpCalcHint);
 
 						ToolTipInfo.SetToolTip(Level, tip.ToString());
 					}
@@ -560,32 +553,43 @@ namespace ElectronicObserver.Window
 							HP.RepairTimeShowMode = ShipStatusHPRepairTimeShowMode.Invisible;
 						}
 					}
-					HP.Tag = ( ship.RepairingDockID == -1 && 0.5 < ship.HPRate && ship.HPRate < 1.0 ) ? DateTimeHelper.FromAPITimeSpan( ship.RepairTime ).TotalSeconds : 0.0;
-					if ( isEscaped ) {
+					HP.Tag = (ship.RepairingDockID == -1 && 0.5 < ship.HPRate && ship.HPRate < 1.0) ? DateTimeHelper.FromAPITimeSpan(ship.RepairTime).TotalSeconds : 0.0;
+					if (isEscaped)
+					{
 						HP.BackColor = Utility.Configuration.Config.UI.SubBackColor;
-					} else {
+					}
+					else
+					{
 						HP.BackColor = Utility.Configuration.Config.UI.BackColor;
 					}
 					{
 						StringBuilder sb = new StringBuilder();
 						double hprate = (double)ship.HPCurrent / ship.HPMax;
 
-						sb.AppendFormat( "HP: {0:0.0}% [{1}]\n", hprate * 100, Constants.GetDamageState( hprate ) );
-						if ( isEscaped ) {
-							sb.AppendLine( GeneralRes.Retreating );
-						} else if ( hprate > 0.50 ) {
-							sb.AppendFormat( GeneralRes.ToMidAndHeavy + "\n", ship.HPCurrent - ship.HPMax / 2, ship.HPCurrent - ship.HPMax / 4 );
-						} else if ( hprate > 0.25 ) {
-							sb.AppendFormat( GeneralRes.ToHeavy + "\n", ship.HPCurrent - ship.HPMax / 4 );
-						} else {
-							sb.AppendLine( GeneralRes.IsTaiha );
+						sb.AppendFormat("HP: {0:0.0}% [{1}]\n", hprate * 100, Constants.GetDamageState(hprate));
+						if (isEscaped)
+						{
+							sb.AppendLine(GeneralRes.Retreating);
+						}
+						else if (hprate > 0.50)
+						{
+							sb.AppendFormat(GeneralRes.ToMidAndHeavy + "\n", ship.HPCurrent - ship.HPMax / 2, ship.HPCurrent - ship.HPMax / 4);
+						}
+						else if (hprate > 0.25)
+						{
+							sb.AppendFormat(GeneralRes.ToHeavy + "\n", ship.HPCurrent - ship.HPMax / 4);
+						}
+						else
+						{
+							sb.AppendLine(GeneralRes.IsTaiha);
 						}
 
-						if ( ship.RepairTime > 0 ) {
-							var span = DateTimeHelper.FromAPITimeSpan( ship.RepairTime );
-							sb.AppendFormat( GeneralRes.DockTime + ": {0} @ {1}",
-								DateTimeHelper.ToTimeRemainString( span ),
-								DateTimeHelper.ToTimeRemainString( Calculator.CalculateDockingUnitTime( ship ) ) );
+						if (ship.RepairTime > 0)
+						{
+							var span = DateTimeHelper.FromAPITimeSpan(ship.RepairTime);
+							sb.AppendFormat(GeneralRes.DockTime + ": {0} @ {1}",
+								DateTimeHelper.ToTimeRemainString(span),
+								DateTimeHelper.ToTimeRemainString(Calculator.CalculateDockingUnitTime(ship)));
 						}
 
 						ToolTipInfo.SetToolTip(HP, sb.ToString());
@@ -597,11 +601,14 @@ namespace ElectronicObserver.Window
 					Condition.Tag = ship.Condition;
 					SetConditionDesign(Condition, ship.Condition);
 
-					if ( ship.Condition < 49 ) {
-						TimeSpan ts = new TimeSpan( 0, (int)Math.Ceiling( ( 49 - ship.Condition ) / 3.0 ) * 3, 0 );
-						ToolTipInfo.SetToolTip( Condition, string.Format( GeneralRes.FatigueRestoreTime, (int)ts.TotalMinutes, (int)ts.Seconds ) );
-					} else {
-						ToolTipInfo.SetToolTip( Condition, string.Format( GeneralRes.RemainingExpeds, (int)Math.Ceiling( ( ship.Condition - 49 ) / 3.0 ) ) );
+					if (ship.Condition < 49)
+					{
+						TimeSpan ts = new TimeSpan(0, (int)Math.Ceiling((49 - ship.Condition) / 3.0) * 3, 0);
+						ToolTipInfo.SetToolTip(Condition, string.Format(GeneralRes.FatigueRestoreTime, (int)ts.TotalMinutes, (int)ts.Seconds));
+					}
+					else
+					{
+						ToolTipInfo.SetToolTip(Condition, string.Format(GeneralRes.RemainingExpeds, (int)Math.Ceiling((ship.Condition - 49) / 3.0)));
 					}
 
 					ShipResource.SetResources(ship.Fuel, ship.FuelMax, ship.Ammo, ship.AmmoMax);
@@ -664,8 +671,8 @@ namespace ElectronicObserver.Window
 
 				{
 					var exslot = ship.ExpansionSlotInstance;
-					if ( exslot != null )
-						sb.AppendFormat( GeneralRes.Expansion + ": {0}\r\n", exslot.NameWithLevel );
+					if (exslot != null)
+						sb.AppendFormat(GeneralRes.Expansion + ": {0}\r\n", exslot.NameWithLevel);
 				}
 
 				int[] slotmaster = ship.AllSlotMaster.ToArray();
@@ -695,14 +702,14 @@ namespace ElectronicObserver.Window
 							DayAttackKind dayAttack => Constants.GetDayAttackKind(dayAttack),
 							DayAirAttackCutinKind cvci => cvci switch
 							{
-								DayAirAttackCutinKind.FighterBomberAttacker => "CI (FBA)",
-								DayAirAttackCutinKind.BomberBomberAttacker => "CI (BBA)",
-								DayAirAttackCutinKind.BomberAttacker => "CI (BA)",
+								DayAirAttackCutinKind.FighterBomberAttacker => Translation.CvciFba,
+								DayAirAttackCutinKind.BomberBomberAttacker => Translation.CvciBba,
+								DayAirAttackCutinKind.BomberAttacker => Translation.CvciBa,
 								_ => "?"
 							},
 							_ => $"{attack}"
 						};
-						sb.AppendFormat($"\r\n・[{asRate:P1} | {asPlusRate:P1}] - {attackDisplay} - Power: {power} - Accuracy: {accuracy:0.##}");
+						sb.AppendFormat($"\r\n・[{asRate:P1} | {asPlusRate:P1}] - {attackDisplay} - " + Translation.Power + $": {power} - " + Translation.Accuracy + $": {accuracy:0.##}");
 					}
 				}
 				
@@ -723,22 +730,22 @@ namespace ElectronicObserver.Window
 							NightAttackKind nightAttack => Constants.GetNightAttackKind(nightAttack),
 							CvnciKind cvnci => cvnci switch
 							{
-								CvnciKind.FighterFighterAttacker => "CI (FFA)",
-								CvnciKind.FighterAttacker => "CI (FA)",
-								CvnciKind.Phototube => "CI (Photo)",
-								CvnciKind.FighterOtherOther => "CI (FOO)",
+								CvnciKind.FighterFighterAttacker => Translation.CvnciFfa,
+								CvnciKind.FighterAttacker => Translation.CvnciFa,
+								CvnciKind.Phototube => Translation.CvnciPhoto,
+								CvnciKind.FighterOtherOther => Translation.CvnciFoo,
 								_ => "?"
 							},
 							NightTorpedoCutinKind torpedoCutin => torpedoCutin switch
 							{
-								NightTorpedoCutinKind.LateModelTorpedoSubmarineEquipment => "CI (Submarine Radar)",
-								NightTorpedoCutinKind.LateModelTorpedo2 => "CI (Late Model)",
+								NightTorpedoCutinKind.LateModelTorpedoSubmarineEquipment => Translation.LateModelTorpedoSubmarineEquipment,
+								NightTorpedoCutinKind.LateModelTorpedo2 => Translation.LateModelTorpedo2,
 								_ => "?"
 							},
 							_ => $"{attack}"
 						};
 
-						sb.AppendFormat($"\r\n・[{rate:P1}] - {attackDisplay} - Power: {power} - Accuracy: {accuracy:0.##}");
+						sb.AppendFormat($"\r\n・[{rate:P1}] - {attackDisplay} - " + Translation.Power + $": {power} - " + Translation.Accuracy + $": {accuracy:0.##}");
 					}
 				}
 
@@ -753,43 +760,44 @@ namespace ElectronicObserver.Window
 
 					if (torpedo > 0) 
 					{
-						sb.AppendFormat(ConstantsRes.TorpedoAttack + ": Power: {0}", torpedo);
-						sb.Append($" - Accuracy: {ship.GetTorpedoAttackAccuracy(fleet):0.##}");
+						sb.AppendFormat($"{ConstantsRes.TorpedoAttack}: {Translation.Power}: {torpedo}");
+						sb.Append($" - {Translation.Accuracy}: {ship.GetTorpedoAttackAccuracy(fleet):0.##}");
 					}
 					if (asw > 0)
 					{
 						if (torpedo > 0)
 							sb.AppendLine();
 
-						sb.AppendFormat("ASW: Power: {0}", asw2);
+						sb.AppendFormat($"{Translation.Asw}: {Translation.Power}: {0}", asw2);
 
 						if (ship.CanOpeningASW)
-							sb.Append(" (OASW)");
+							sb.Append(Translation.OpeningAsw);
 
-						sb.Append($" - Accuracy: {ship.GetAswAttackAccuracy(fleet):0.##}");
+						sb.Append($" - {Translation.Accuracy}: {ship.GetAswAttackAccuracy(fleet):0.##}");
 					}
 					if (torpedo > 0 || asw > 0)
 						sb.AppendLine();
 				}
 
 				{
-					int aacutin = Calculator.GetAACutinKind( ship.ShipID, slotmaster );
-					if ( aacutin != 0 ) {
-						sb.AppendFormat( GeneralRes.AntiAir + ": {0}\r\n", Constants.GetAACutinKind( aacutin ) );
+					int aacutin = Calculator.GetAACutinKind(ship.ShipID, slotmaster);
+					if (aacutin != 0)
+					{
+						sb.AppendFormat(GeneralRes.AntiAir + ": {0}\r\n", Constants.GetAACutinKind(aacutin));
 					}
-					double adjustedaa = Calculator.GetAdjustedAAValue( ship );
-					sb.AppendFormat( GeneralRes.ShipAADefense + "\r\n",
+					double adjustedaa = Calculator.GetAdjustedAAValue(ship);
+					sb.AppendFormat(GeneralRes.ShipAADefense + "\r\n",
 						adjustedaa,
 						Calculator.GetProportionalAirDefense(adjustedaa)
 						);
 
-                    double aarbRate = Calculator.GetAarbRate(ship, adjustedaa);
-                    if (aarbRate > 0)
-                    {
-                        sb.Append($"AARB: {aarbRate:p1}\r\n");
-                    }
+					double aarbRate = Calculator.GetAarbRate(ship, adjustedaa);
+					if (aarbRate > 0)
+					{
+						sb.Append($"{Translation.Aarb}: {aarbRate:p1}\r\n");
+					}
 
-                }
+				}
 
 				{
 					int airsup_min;
@@ -818,12 +826,13 @@ namespace ElectronicObserver.Window
 							airsup_str = airsup_min.ToString();
 						}
 
-						if ( airbattle > 0 )
-							sb.AppendFormat( GeneralRes.AirPower + ": {0} / Airstrike Power: {1}\r\n", airsup_str, airbattle );
+						if (airbattle > 0)
+							sb.AppendFormat(GeneralRes.AirPower + ": {0} / " + Translation.AirstrikePower + ": {1}\r\n", airsup_str, airbattle);
 						else
-							sb.AppendFormat( GeneralRes.AirPower + ": {0}\r\n", airsup_str );
-					} else if ( airbattle > 0 )
-						sb.AppendFormat("Airstrike Power: {0}\r\n", airbattle );
+							sb.AppendFormat(GeneralRes.AirPower + ": {0}\r\n", airsup_str);
+					}
+					else if (airbattle > 0)
+						sb.AppendFormat(Translation.AirstrikePower + ": {0}\r\n", airbattle);
 				}
 
 				return sb.ToString();
@@ -947,9 +956,24 @@ namespace ElectronicObserver.Window
 
 			Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormFleet]);
 
+			Translate();
 		}
 
+		public void Translate()
+		{
+			ContextMenuFleet_CopyFleet.Text = Translation.ContextMenuFleet_CopyFleet;
+			ContextMenuFleet_CopyFleetDeckBuilder.Text = Translation.ContextMenuFleet_CopyFleetDeckBuilder;
+			ContextMenuFleet_CopyKanmusuList.Text = Translation.ContextMenuFleet_CopyKanmusuList;
+			ContextMenuFleet_CopyFleetAnalysis.Text = Translation.ContextMenuFleet_CopyFleetAnalysis;
+			ContextMenuFleet_CopyFleetAnalysisLockedEquip.Text = Translation.ContextMenuFleet_CopyFleetAnalysisLockedEquip;
+			ContextMenuFleet_CopyFleetAnalysisAllEquip.Text = Translation.ContextMenuFleet_CopyFleetAnalysisAllEquip;
 
+			ContextMenuFleet_AntiAirDetails.Text = Translation.ContextMenuFleet_AntiAirDetails;
+			ContextMenuFleet_Capture.Text = Translation.ContextMenuFleet_Capture;
+			ContextMenuFleet_OutputFleetImage.Text = Translation.ContextMenuFleet_OutputFleetImage;
+
+			Text = Translation.Title;
+		}
 
 		private void FormFleet_Load(object sender, EventArgs e)
 		{
@@ -1111,7 +1135,7 @@ namespace ElectronicObserver.Window
 			FleetData fleet = db.Fleet[FleetID];
 			if (fleet == null) return;
 
-			sb.AppendFormat("{0}\tAS: {1} / LOS: {2} / TP: {3}\r\n", fleet.Name, fleet.GetAirSuperiority(), fleet.GetSearchingAbilityString(ControlFleet.BranchWeight), Calculator.GetTPDamage(fleet));
+			sb.AppendFormat(Translation.CopyFleetText + "\r\n", fleet.Name, fleet.GetAirSuperiority(), fleet.GetSearchingAbilityString(ControlFleet.BranchWeight), Calculator.GetTPDamage(fleet));
 			for (int i = 0; i < fleet.Members.Count; i++)
 			{
 				if (fleet[i] == -1)

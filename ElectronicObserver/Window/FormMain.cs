@@ -1859,6 +1859,7 @@ namespace ElectronicObserver.Window
 			fBrowser.Translate();
 			fCompass.Translate();
 			fDock.Translate();
+			foreach(var fleet in fFleet) fleet.Translate();
 		}
 
 		#endregion
