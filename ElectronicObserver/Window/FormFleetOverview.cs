@@ -16,6 +16,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ElectronicObserverTypes;
 using WeifenLuo.WinFormsUI.Docking;
+using Translation = ElectronicObserver.Properties.Window.FormFleetOverview;
 
 namespace ElectronicObserver.Window
 {
@@ -175,9 +176,14 @@ namespace ElectronicObserver.Window
 			Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormFleet]);
 
 			Utility.SystemEvents.UpdateTimerTick += UpdateTimerTick;
+
+			Translate();
 		}
 
-
+		public void Translate()
+		{
+			Text = Translation.Title;
+		}
 
 		private void FormFleetOverview_Load(object sender, EventArgs e)
 		{
@@ -267,7 +273,7 @@ namespace ElectronicObserver.Window
 				var landing = members.Select(s => s.AllSlotInstanceMaster.Count(eq => eq?.CategoryType == EquipmentTypes.LandingCraft || eq?.CategoryType == EquipmentTypes.SpecialAmphibiousTank));
 
 
-				ToolTipInfo.SetToolTip(CombinedTag, string.Format("Drums: {0}pcs\r\nDaihatsu: {1}pcs\r\nTP: S {2} / A {3}\r\n\r\nTotal Fleet AS: {4}\r\nTotal Fleet LOS: {5:f2}\r\nFormula 33:\r\n n=1: {6:f2}\r\n n=2: {7:f2}\r\n n=3: {8:f2}\r\n n=4: {9:f2}",
+				ToolTipInfo.SetToolTip(CombinedTag, string.Format(Translation.CombinedFleetToolTip,
 					transport.Sum(),
 					landing.Sum(),
 					tp,
@@ -292,7 +298,7 @@ namespace ElectronicObserver.Window
 			{
 				AnchorageRepairingTimer.Text = DateTimeHelper.ToTimeElapsedString(KCDatabase.Instance.Fleet.AnchorageRepairingTimer);
 				AnchorageRepairingTimer.Tag = KCDatabase.Instance.Fleet.AnchorageRepairingTimer;
-				ToolTipInfo.SetToolTip( AnchorageRepairingTimer, "Anchorage Repair Timer\r\nStart: " + DateTimeHelper.TimeToCSVString( KCDatabase.Instance.Fleet.AnchorageRepairingTimer ) + "\r\nRecovery: " + DateTimeHelper.TimeToCSVString( KCDatabase.Instance.Fleet.AnchorageRepairingTimer.AddMinutes( 20 ) ) );
+				ToolTipInfo.SetToolTip(AnchorageRepairingTimer, Translation.AnchorageRepairToolTip + DateTimeHelper.TimeToCSVString(KCDatabase.Instance.Fleet.AnchorageRepairingTimer) + "\r\nRecovery: " + DateTimeHelper.TimeToCSVString(KCDatabase.Instance.Fleet.AnchorageRepairingTimer.AddMinutes(20)));
 			}
 
 
