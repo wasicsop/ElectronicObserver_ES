@@ -14,6 +14,7 @@ using WeifenLuo.WinFormsUI.Docking;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Window.Support;
 using ElectronicObserver.Resource.Record;
+using Translation = ElectronicObserver.Properties.Window.FormHeadQuarters;
 
 namespace ElectronicObserver.Window
 {
@@ -69,8 +70,30 @@ namespace ElectronicObserver.Window
 
 			Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormHeadQuarters]);
 
+			Translate();
 		}
 
+		public void Translate()
+		{
+			// these are just design time and don't actually get displayed
+			AdmiralName.Text = Translation.AdmiralName;
+			AdmiralComment.Text = Translation.AdmiralComment;
+			HQLevel.Text = Translation.HQLevel;
+			ShipCount.Text = Translation.ShipCount;
+			EquipmentCount.Text = Translation.EquipmentCount;
+			InstantRepair.Text = Translation.InstantRepair;
+			InstantConstruction.Text = Translation.InstantConstruction;
+			DevelopmentMaterial.Text = Translation.DevelopmentMaterial;
+			ModdingMaterial.Text = Translation.ModdingMaterial;
+			FurnitureCoin.Text = Translation.FurnitureCoin;
+			DisplayUseItem.Text = Translation.DisplayUseItem;
+			Fuel.Text = Translation.Fuel;
+			Ammo.Text = Translation.Ammo;
+			Steel.Text = Translation.Steel;
+			Bauxite.Text = Translation.Bauxite;
+
+			Text = Translation.Title;
+		}
 
 		private void FormHeadquarters_Load(object sender, EventArgs e)
 		{
@@ -187,21 +210,21 @@ namespace ElectronicObserver.Window
 		/// </summary>
 		public static IEnumerable<string> GetItemNames()
 		{
-			yield return "Name";
-			yield return "Comment";
-			yield return "HQ Lv";
-			yield return "Ship Slots";
-			yield return "Equip Slots";
-			yield return "Instant Repair";
-			yield return "Instant Construction";
-			yield return "Development Material";
-			yield return "Improve Material";
-			yield return "Furniture Coin";
-			yield return "Fuel";
-			yield return "Ammo";
-			yield return "Steel";
-			yield return "Bauxite";
-			yield return "Other Item";
+			yield return Translation.ItemNameName;
+			yield return Translation.ItemNameComment;
+			yield return Translation.ItemNameHQLevel;
+			yield return Translation.ItemNameShipSlots;
+			yield return Translation.ItemNameEquipmentSlots;
+			yield return Translation.ItemNameInstantRepair;
+			yield return Translation.ItemNameInstantConstruction;
+			yield return Translation.ItemNameDevelopmentMaterial;
+			yield return Translation.ItemNameImproveMaterial;
+			yield return Translation.ItemNameFurnitureCoin;
+			yield return Translation.ItemNameFuel;
+			yield return Translation.ItemNameAmmo;
+			yield return Translation.ItemNameSteel;
+			yield return Translation.ItemNameBauxite;
+			yield return Translation.ItemNameOtherItem;
 		}
 
 
@@ -224,21 +247,21 @@ namespace ElectronicObserver.Window
 				StringBuilder tooltip = new StringBuilder();
 
 				var sortieCount = db.Admiral.SortieWin + db.Admiral.SortieLose;
-				tooltip.AppendFormat("Sorties: {0} / Win: {1} ({2:p2}) / Lose: {3}\r\n",
+				tooltip.AppendFormat(Translation.AdmiralNameToolTipSortie + "\r\n",
 					sortieCount, db.Admiral.SortieWin, db.Admiral.SortieWin / Math.Max(sortieCount, 1.0), db.Admiral.SortieLose);
 
-				tooltip.AppendFormat("Avg exp per sortie: {0:n2} / per victory: {1:n2}\r\n",
+				tooltip.AppendFormat(Translation.AdmiralNameToolTipSortieExp + "\r\n",
 					 db.Admiral.Exp / Math.Max(sortieCount, 1.0),
 					 db.Admiral.Exp / Math.Max(db.Admiral.SortieWin, 1.0));
 
-				tooltip.AppendFormat("Expeditions: {0} / Success: {1} ({2:p2}) / Failed: {3}\r\n",
+				tooltip.AppendFormat(Translation.AdmiralNameToolTipExpedition + "\r\n",
 					db.Admiral.MissionCount, db.Admiral.MissionSuccess, db.Admiral.MissionSuccess / Math.Max(db.Admiral.MissionCount, 1.0), db.Admiral.MissionCount - db.Admiral.MissionSuccess);
 
 				var practiceCount = db.Admiral.PracticeWin + db.Admiral.PracticeLose;
-				tooltip.AppendFormat("Naval Exercises: {0} / Win: {1} ({2:p2}) / Lose: {3}\r\n",
+				tooltip.AppendFormat(Translation.AdmiralNameToolTipPractice + "\r\n",
 					practiceCount, db.Admiral.PracticeWin, db.Admiral.PracticeWin / Math.Max(practiceCount, 1.0), db.Admiral.PracticeLose);
 
-				tooltip.AppendFormat("First-class Medals: {0}\r\n", db.Admiral.Medals);
+				tooltip.AppendFormat(Translation.AdmiralNameToolTipFirstClassMedals + "\r\n", db.Admiral.Medals);
 
 				ToolTipInfo.SetToolTip(AdmiralName, tooltip.ToString());
 			}
@@ -268,7 +291,7 @@ namespace ElectronicObserver.Window
 					if (res != null)
 					{
 						int diff = db.Admiral.Exp - res.HQExp;
-						tooltip.AppendFormat("Session: +{0} exp / {1:n2} pt\r\n", diff, diff * 7 / 10000.0);
+						tooltip.AppendFormat(Translation.HQLevelToolTipSenkaSession + "\r\n", diff, diff * 7 / 10000.0);
 					}
 				}
 				{
@@ -276,7 +299,7 @@ namespace ElectronicObserver.Window
 					if (res != null)
 					{
 						int diff = db.Admiral.Exp - res.HQExp;
-						tooltip.AppendFormat("Daily: +{0} exp / {1:n2} pt\r\n", diff, diff * 7 / 10000.0);
+						tooltip.AppendFormat(Translation.HQLevelToolTipSenkaDay + "\r\n", diff, diff * 7 / 10000.0);
 					}
 				}
 				{
@@ -284,7 +307,7 @@ namespace ElectronicObserver.Window
 					if (res != null)
 					{
 						int diff = db.Admiral.Exp - res.HQExp;
-						tooltip.AppendFormat("Monthly: +{0} exp / {1:n2} pt\r\n", diff, diff * 7 / 10000.0);
+						tooltip.AppendFormat(Translation.HQLevelToolTipSenkaMonth + "\r\n", diff, diff * 7 / 10000.0);
 					}
 				}
 
@@ -295,7 +318,7 @@ namespace ElectronicObserver.Window
 			FlowPanelFleet.SuspendLayout();
 			{
 
-				ShipCount.Text = string.Format( "{0}/{1}", RealShipCount, db.Admiral.MaxShipCount );
+				ShipCount.Text = string.Format("{0}/{1}", RealShipCount, db.Admiral.MaxShipCount);
 				if (RealShipCount > db.Admiral.MaxShipCount - 5)
 				{
 					ShipCount.BackColor = Utility.Configuration.Config.UI.Headquarters_ShipCountOverBG;
@@ -308,7 +331,7 @@ namespace ElectronicObserver.Window
 				}
 				ShipCount.Tag = RealShipCount >= db.Admiral.MaxShipCount;
 
-				EquipmentCount.Text = string.Format( "{0}/{1}", RealEquipmentCount, db.Admiral.MaxEquipmentCount );
+				EquipmentCount.Text = string.Format("{0}/{1}", RealEquipmentCount, db.Admiral.MaxEquipmentCount);
 				if (RealEquipmentCount > db.Admiral.MaxEquipmentCount + 3 - 20)
 				{
 					EquipmentCount.BackColor = Utility.Configuration.Config.UI.Headquarters_ShipCountOverBG;
@@ -335,71 +358,82 @@ namespace ElectronicObserver.Window
 			FlowPanelUseItem.SuspendLayout();
 
 			InstantRepair.Text = db.Material.InstantRepair.ToString();
-			if (db.Material.InstantRepair >= 3000) {
+			if (db.Material.InstantRepair >= 3000)
+			{
 				InstantRepair.ForeColor = configUI.Headquarters_MaterialMaxFG;
 				InstantRepair.BackColor = configUI.Headquarters_MaterialMaxBG;
 			}
-			else if (db.Material.InstantRepair < (configUI.HqResLowAlertBucket == -1 ? db.Admiral.MaxResourceRegenerationAmount : configUI.HqResLowAlertBucket)) {
+			else if (db.Material.InstantRepair < (configUI.HqResLowAlertBucket == -1 ? db.Admiral.MaxResourceRegenerationAmount : configUI.HqResLowAlertBucket))
+			{
 				InstantRepair.ForeColor = configUI.Headquarters_ResourceLowFG;
 				InstantRepair.BackColor = configUI.Headquarters_ResourceLowBG;
 			}
-			else {
+			else
+			{
 				InstantRepair.ForeColor = configUI.ForeColor;
 				InstantRepair.BackColor = Color.Transparent;
 			}
-			ToolTipInfo.SetToolTip( InstantRepair, string.Format( "Daily: {0:+##;-##;±0}\nWeekly: {1:+##;-##;±0}\nMonthly: {2:+##;-##;±0}",
-					resday == null ? 0 : ( db.Material.InstantRepair - resday.InstantRepair),
-					resweek == null ? 0 : ( db.Material.InstantRepair - resweek.InstantRepair),
-					resmonth == null ? 0 : ( db.Material.InstantRepair - resmonth.InstantRepair) ) );
+			ToolTipInfo.SetToolTip(InstantRepair, string.Format(Translation.ResourceToolTip,
+					resday == null ? 0 : (db.Material.InstantRepair - resday.InstantRepair),
+					resweek == null ? 0 : (db.Material.InstantRepair - resweek.InstantRepair),
+					resmonth == null ? 0 : (db.Material.InstantRepair - resmonth.InstantRepair)));
 
 			InstantConstruction.Text = db.Material.InstantConstruction.ToString();
-			if (db.Material.InstantConstruction >= 3000) {
+			if (db.Material.InstantConstruction >= 3000)
+			{
 				InstantConstruction.ForeColor = configUI.Headquarters_MaterialMaxFG;
 				InstantConstruction.BackColor = configUI.Headquarters_MaterialMaxBG;
 			}
-			else {
+			else
+			{
 				InstantConstruction.ForeColor = configUI.ForeColor;
 				InstantConstruction.BackColor = Color.Transparent;
 			}
-			ToolTipInfo.SetToolTip( InstantConstruction, string.Format( "Daily: {0:+##;-##;±0}\nWeekly: {1:+##;-##;±0}\nMonthly: {2:+##;-##;±0}",
+			ToolTipInfo.SetToolTip(InstantConstruction, string.Format(Translation.ResourceToolTip,
 					resday == null ? 0 : (db.Material.InstantConstruction - resday.InstantConstruction),
 					resweek == null ? 0 : (db.Material.InstantConstruction - resweek.InstantConstruction),
-					resmonth == null ? 0 : (db.Material.InstantConstruction - resmonth.InstantConstruction) ) );
+					resmonth == null ? 0 : (db.Material.InstantConstruction - resmonth.InstantConstruction)));
 
 			DevelopmentMaterial.Text = db.Material.DevelopmentMaterial.ToString();
-			if (db.Material.DevelopmentMaterial >= 3000) {
+			if (db.Material.DevelopmentMaterial >= 3000)
+			{
 				DevelopmentMaterial.ForeColor = configUI.Headquarters_MaterialMaxFG;
 				DevelopmentMaterial.BackColor = configUI.Headquarters_MaterialMaxBG;
 			}
-			else {
+			else
+			{
 				DevelopmentMaterial.ForeColor = configUI.ForeColor;
 				DevelopmentMaterial.BackColor = Color.Transparent;
 			}
-			ToolTipInfo.SetToolTip( DevelopmentMaterial, string.Format( "Daily: {0:+##;-##;±0}\nWeekly: {1:+##;-##;±0}\nMonthly: {2:+##;-##;±0}",
-					resday == null ? 0 : ( db.Material.DevelopmentMaterial - resday.DevelopmentMaterial ),
-					resweek == null ? 0 : ( db.Material.DevelopmentMaterial - resweek.DevelopmentMaterial ),
-					resmonth == null ? 0 : ( db.Material.DevelopmentMaterial - resmonth.DevelopmentMaterial ) ) );
+			ToolTipInfo.SetToolTip(DevelopmentMaterial, string.Format(Translation.ResourceToolTip,
+					resday == null ? 0 : (db.Material.DevelopmentMaterial - resday.DevelopmentMaterial),
+					resweek == null ? 0 : (db.Material.DevelopmentMaterial - resweek.DevelopmentMaterial),
+					resmonth == null ? 0 : (db.Material.DevelopmentMaterial - resmonth.DevelopmentMaterial)));
 
 			ModdingMaterial.Text = db.Material.ModdingMaterial.ToString();
-			if (db.Material.ModdingMaterial >= 3000) {
+			if (db.Material.ModdingMaterial >= 3000)
+			{
 				ModdingMaterial.ForeColor = configUI.Headquarters_MaterialMaxFG;
 				ModdingMaterial.BackColor = configUI.Headquarters_MaterialMaxBG;
 			}
-			else {
+			else
+			{
 				ModdingMaterial.ForeColor = configUI.ForeColor;
 				ModdingMaterial.BackColor = Color.Transparent;
 			}
-			ToolTipInfo.SetToolTip( ModdingMaterial, string.Format( "Daily: {0:+##;-##;±0}\nWeekly: {1:+##;-##;±0}\nMonthly: {2:+##;-##;±0}",
-					resday == null ? 0 : ( db.Material.ModdingMaterial - resday.ModdingMaterial ),
-					resweek == null ? 0 : ( db.Material.ModdingMaterial - resweek.ModdingMaterial ),
-					resmonth == null ? 0 : ( db.Material.ModdingMaterial - resmonth.ModdingMaterial ) ) );
+			ToolTipInfo.SetToolTip(ModdingMaterial, string.Format(Translation.ResourceToolTip,
+					resday == null ? 0 : (db.Material.ModdingMaterial - resday.ModdingMaterial),
+					resweek == null ? 0 : (db.Material.ModdingMaterial - resweek.ModdingMaterial),
+					resmonth == null ? 0 : (db.Material.ModdingMaterial - resmonth.ModdingMaterial)));
 
 			FurnitureCoin.Text = db.Admiral.FurnitureCoin.ToString();
-			if (db.Admiral.FurnitureCoin >= 200000) {
+			if (db.Admiral.FurnitureCoin >= 200000)
+			{
 				FurnitureCoin.ForeColor = configUI.Headquarters_CoinMaxFG;
 				FurnitureCoin.BackColor = configUI.Headquarters_CoinMaxBG;
 			}
-			else {
+			else
+			{
 				FurnitureCoin.ForeColor = configUI.ForeColor;
 				FurnitureCoin.BackColor = Color.Transparent;
 			}
@@ -408,8 +442,8 @@ namespace ElectronicObserver.Window
 				int medium = db.UseItems[11]?.Count ?? 0;
 				int large = db.UseItems[12]?.Count ?? 0;
 
-				ToolTipInfo.SetToolTip( FurnitureCoin,
-						string.Format( "(S) x {0} ( +{1} )\r\n(M) x {2} ( +{3} )\r\n(L) x {4} ( +{5} )\r\n",
+				ToolTipInfo.SetToolTip(FurnitureCoin,
+						string.Format(Translation.FurnitureCoinToolTip,
 							small, small * 200,
 							medium, medium * 400,
 							large, large * 700));
@@ -425,92 +459,108 @@ namespace ElectronicObserver.Window
 
 				Fuel.Text = db.Material.Fuel.ToString();
 
-				if (db.Material.Fuel >= resourceHardcap) {
+				if (db.Material.Fuel >= resourceHardcap)
+				{
 					Fuel.ForeColor = configUI.Headquarters_ResourceMaxFG;
 					Fuel.BackColor = configUI.Headquarters_ResourceMaxBG;
 				}
-				else if (db.Material.Fuel < (configUI.HqResLowAlertFuel == -1 ? db.Admiral.MaxResourceRegenerationAmount : configUI.HqResLowAlertFuel)) {
+				else if (db.Material.Fuel < (configUI.HqResLowAlertFuel == -1 ? db.Admiral.MaxResourceRegenerationAmount : configUI.HqResLowAlertFuel))
+				{
 					Fuel.ForeColor = configUI.Headquarters_ResourceLowFG;
 					Fuel.BackColor = configUI.Headquarters_ResourceLowBG;
 				}
-				else if (db.Material.Fuel > db.Admiral.MaxResourceRegenerationAmount) {
+				else if (db.Material.Fuel > db.Admiral.MaxResourceRegenerationAmount)
+				{
 					Fuel.ForeColor = configUI.Headquarters_ResourceOverFG;
 					Fuel.BackColor = configUI.Headquarters_ResourceOverBG;
 				}
-				else {
+				else
+				{
 					Fuel.ForeColor = configUI.ForeColor;
 					Fuel.BackColor = Color.Transparent;
 				}
-				ToolTipInfo.SetToolTip( Fuel, string.Format( "Daily: {0:+##;-##;±0}\nWeekly: {1:+##;-##;±0}\nMonthly: {2:+##;-##;±0}",
+				ToolTipInfo.SetToolTip(Fuel, string.Format(Translation.ResourceToolTip,
 					resday == null ? 0 : (db.Material.Fuel - resday.Fuel),
 					resweek == null ? 0 : (db.Material.Fuel - resweek.Fuel),
-					resmonth == null ? 0 : (db.Material.Fuel - resmonth.Fuel) ) );
+					resmonth == null ? 0 : (db.Material.Fuel - resmonth.Fuel)));
 
 				Ammo.Text = db.Material.Ammo.ToString();
-				if (db.Material.Ammo >= resourceHardcap) {
+				if (db.Material.Ammo >= resourceHardcap)
+				{
 					Ammo.ForeColor = configUI.Headquarters_ResourceMaxFG;
 					Ammo.BackColor = configUI.Headquarters_ResourceMaxBG;
 				}
-				else if (db.Material.Ammo < (configUI.HqResLowAlertAmmo == -1 ? db.Admiral.MaxResourceRegenerationAmount : configUI.HqResLowAlertAmmo)) {
+				else if (db.Material.Ammo < (configUI.HqResLowAlertAmmo == -1 ? db.Admiral.MaxResourceRegenerationAmount : configUI.HqResLowAlertAmmo))
+				{
 					Ammo.ForeColor = configUI.Headquarters_ResourceLowFG;
 					Ammo.BackColor = configUI.Headquarters_ResourceLowBG;
 				}
-				else if (db.Material.Ammo > db.Admiral.MaxResourceRegenerationAmount) {
+				else if (db.Material.Ammo > db.Admiral.MaxResourceRegenerationAmount)
+				{
 					Ammo.ForeColor = configUI.Headquarters_ResourceOverFG;
 					Ammo.BackColor = configUI.Headquarters_ResourceOverBG;
 				}
-				else {
+				else
+				{
 					Ammo.ForeColor = configUI.ForeColor;
 					Ammo.BackColor = Color.Transparent;
 				}
-				ToolTipInfo.SetToolTip( Ammo, string.Format( "Daily: {0:+##;-##;±0}\nWeekly: {1:+##;-##;±0}\nMonthly: {2:+##;-##;±0}",
+				ToolTipInfo.SetToolTip(Ammo, string.Format(Translation.ResourceToolTip,
 					resday == null ? 0 : (db.Material.Ammo - resday.Ammo),
 					resweek == null ? 0 : (db.Material.Ammo - resweek.Ammo),
-					resmonth == null ? 0 : (db.Material.Ammo - resmonth.Ammo) ) );
+					resmonth == null ? 0 : (db.Material.Ammo - resmonth.Ammo)));
 
 				Steel.Text = db.Material.Steel.ToString();
-				if (db.Material.Steel >= resourceHardcap) {
+				if (db.Material.Steel >= resourceHardcap)
+				{
 					Steel.ForeColor = configUI.Headquarters_ResourceMaxFG;
 					Steel.BackColor = configUI.Headquarters_ResourceMaxBG;
 				}
-				else if (db.Material.Steel < (configUI.HqResLowAlertSteel == -1 ? db.Admiral.MaxResourceRegenerationAmount : configUI.HqResLowAlertSteel)) {
+				else if (db.Material.Steel < (configUI.HqResLowAlertSteel == -1 ? db.Admiral.MaxResourceRegenerationAmount : configUI.HqResLowAlertSteel))
+				{
 					Steel.ForeColor = configUI.Headquarters_ResourceLowFG;
 					Steel.BackColor = configUI.Headquarters_ResourceLowBG;
 				}
-				else if (db.Material.Steel > db.Admiral.MaxResourceRegenerationAmount) {
+				else if (db.Material.Steel > db.Admiral.MaxResourceRegenerationAmount)
+				{
 					Steel.ForeColor = configUI.Headquarters_ResourceOverFG;
 					Steel.BackColor = configUI.Headquarters_ResourceOverBG;
 				}
-				else {
+				else
+				{
 					Steel.ForeColor = configUI.ForeColor;
 					Steel.BackColor = Color.Transparent;
 				}
-				ToolTipInfo.SetToolTip( Steel, string.Format( "Daily: {0:+##;-##;±0}\nWeekly: {1:+##;-##;±0}\nMonthly: {2:+##;-##;±0}",
+				ToolTipInfo.SetToolTip(Steel, string.Format(Translation.ResourceToolTip,
 					resday == null ? 0 : (db.Material.Steel - resday.Steel),
 					resweek == null ? 0 : (db.Material.Steel - resweek.Steel),
-					resmonth == null ? 0 : (db.Material.Steel - resmonth.Steel) ) );
+					resmonth == null ? 0 : (db.Material.Steel - resmonth.Steel)));
 
 				Bauxite.Text = db.Material.Bauxite.ToString();
-				if (db.Material.Bauxite >= resourceHardcap) {
+				if (db.Material.Bauxite >= resourceHardcap)
+				{
 					Bauxite.ForeColor = configUI.Headquarters_ResourceMaxFG;
 					Bauxite.BackColor = configUI.Headquarters_ResourceMaxBG;
 				}
-				else if (db.Material.Bauxite < (configUI.HqResLowAlertBauxite == -1 ? db.Admiral.MaxResourceRegenerationAmount : configUI.HqResLowAlertBauxite)) {
+				else if (db.Material.Bauxite < (configUI.HqResLowAlertBauxite == -1 ? db.Admiral.MaxResourceRegenerationAmount : configUI.HqResLowAlertBauxite))
+				{
 					Bauxite.ForeColor = configUI.Headquarters_ResourceLowFG;
 					Bauxite.BackColor = configUI.Headquarters_ResourceLowBG;
 				}
-				else if (db.Material.Bauxite > db.Admiral.MaxResourceRegenerationAmount) {
+				else if (db.Material.Bauxite > db.Admiral.MaxResourceRegenerationAmount)
+				{
 					Bauxite.ForeColor = configUI.Headquarters_ResourceOverFG;
 					Bauxite.BackColor = configUI.Headquarters_ResourceOverBG;
 				}
-				else {
+				else
+				{
 					Bauxite.ForeColor = configUI.ForeColor;
 					Bauxite.BackColor = Color.Transparent;
 				}
-				ToolTipInfo.SetToolTip( Bauxite, string.Format( "Daily: {0:+##;-##;±0}\nWeekly: {1:+##;-##;±0}\nMonthly: {2:+##;-##;±0}",
+				ToolTipInfo.SetToolTip(Bauxite, string.Format(Translation.ResourceToolTip,
 					resday == null ? 0 : (db.Material.Bauxite - resday.Bauxite),
 					resweek == null ? 0 : (db.Material.Bauxite - resweek.Bauxite),
-					resmonth == null ? 0 : (db.Material.Bauxite - resmonth.Bauxite) ) );
+					resmonth == null ? 0 : (db.Material.Bauxite - resmonth.Bauxite)));
 
 			}
 			FlowPanelResource.ResumeLayout();
@@ -531,13 +581,16 @@ namespace ElectronicObserver.Window
 
 			if (db.Ships.Count <= 0) return;
 
-			if (Utility.Configuration.Config.FormHeadquarters.BlinkAtMaximum) {
-				if (ShipCount.Tag as bool? ?? false) {
+			if (Utility.Configuration.Config.FormHeadquarters.BlinkAtMaximum)
+			{
+				if (ShipCount.Tag as bool? ?? false)
+				{
 					ShipCount.BackColor = DateTime.Now.Second % 2 == 0 ? Utility.Configuration.Config.UI.Headquarters_ShipCountOverBG : Color.Transparent;
 					ShipCount.ForeColor = DateTime.Now.Second % 2 == 0 ? Utility.Configuration.Config.UI.Headquarters_ShipCountOverFG : Utility.Configuration.Config.UI.ForeColor;
 				}
 
-				if (EquipmentCount.Tag as bool? ?? false) {
+				if (EquipmentCount.Tag as bool? ?? false)
+				{
 					EquipmentCount.BackColor = DateTime.Now.Second % 2 == 0 ? Utility.Configuration.Config.UI.Headquarters_ShipCountOverBG : Color.Transparent;
 					EquipmentCount.ForeColor = DateTime.Now.Second % 2 == 0 ? Utility.Configuration.Config.UI.Headquarters_ShipCountOverFG : Utility.Configuration.Config.UI.ForeColor;
 				}
@@ -558,11 +611,15 @@ namespace ElectronicObserver.Window
 				try
 				{
 					var mat = KCDatabase.Instance.Material;
-					Clipboard.SetText($"{mat.Fuel}/{mat.Ammo}/{mat.Steel}/{mat.Bauxite}/{mat.InstantRepair} buckets/{mat.DevelopmentMaterial} devmats/{mat.InstantConstruction} torches/{mat.ModdingMaterial} screws");
+					Clipboard.SetText($"{mat.Fuel}/{mat.Ammo}/{mat.Steel}/{mat.Bauxite}/" +
+						$"{mat.InstantRepair}{Translation.CopyToClipboardBuckets}/" +
+						$"{mat.DevelopmentMaterial}{Translation.CopyToClipboardDevelopmentMaterials}/" +
+						$"{mat.InstantConstruction}{Translation.CopyToClipboardInstantConstruction}/" +
+						$"{mat.ModdingMaterial}{Translation.CopyToClipboardImproveMaterial}");
 				}
 				catch (Exception ex)
 				{
-					Utility.Logger.Add(3, "Failed to copy resources to clipboard." + ex.Message);
+					Utility.Logger.Add(3, Translation.FailedToCopyToClipboard + ex.Message);
 				}
 			}
 		}
@@ -574,7 +631,7 @@ namespace ElectronicObserver.Window
 			var itemID = Utility.Configuration.Config.FormHeadquarters.DisplayUseItemID;
 			var item = db.UseItems[itemID];
 			var itemMaster = db.MasterUseItems[itemID];
-			string tail = "\r\n(can be changed in settings)\r\n(right click to show all items)";
+			string tail = "\r\n" + Translation.DisplayUseItemToolTipHint;
 
 
 
@@ -582,7 +639,7 @@ namespace ElectronicObserver.Window
 			{
 				case null:
 					DisplayUseItem.Text = "???";
-					ToolTipInfo.SetToolTip(DisplayUseItem, "Unknown Item (ID: " + Utility.Configuration.Config.FormHeadquarters.DisplayUseItemID + ")" + tail);
+					ToolTipInfo.SetToolTip(DisplayUseItem, string.Format(Translation.UnknownItem, Utility.Configuration.Config.FormHeadquarters.DisplayUseItemID) + tail);
 					break;
 
 				// '18 spring event special mode
@@ -592,7 +649,10 @@ namespace ElectronicObserver.Window
 				case "お茶":
 					DisplayUseItem.Text = (item?.Count ?? 0).ToString();
 					ToolTipInfo.SetToolTip(DisplayUseItem,
-						$"Rice: {db.UseItems[85]?.Count ?? 0}\r\nUmeboshi: {db.UseItems[86]?.Count ?? 0}\r\nNori: {db.UseItems[87]?.Count ?? 0}\r\nTea: {db.UseItems[88]?.Count ?? 0}\r\n{tail}");
+						$"{Translation.Rice}: {db.UseItems[85]?.Count ?? 0}\r\n" +
+						$"{Translation.Umeboshi}: {db.UseItems[86]?.Count ?? 0}\r\n" +
+						$"{Translation.Nori}: {db.UseItems[87]?.Count ?? 0}\r\n" +
+						$"{Translation.Tea}: {db.UseItems[88]?.Count ?? 0}\r\n{tail}");
 					break;
 
 				// '19 autumn event special mode
@@ -600,7 +660,8 @@ namespace ElectronicObserver.Window
 				case "鰯":
 					DisplayUseItem.Text = (item?.Count ?? 0).ToString();
 					ToolTipInfo.SetToolTip(DisplayUseItem,
-						$"秋刀魚: {db.UseItems[68]?.Count ?? 0}\r\n鰯: {db.UseItems[93]?.Count ?? 0}\r\n{tail}");
+						$"{Translation.Sanma}: {db.UseItems[68]?.Count ?? 0}\r\n" +
+						$"{Translation.Iwashi}: {db.UseItems[93]?.Count ?? 0}\r\n{tail}");
 					break;
 
 				default:
@@ -623,7 +684,7 @@ namespace ElectronicObserver.Window
                     sb.Append(item.MasterUseItem.Name).Append(" x ").Append(item.Count).AppendLine();
                 }
 
-                MessageBox.Show(sb.ToString(), "保有アイテム一覧", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(sb.ToString(), Translation.ListOfOwnedItems, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 

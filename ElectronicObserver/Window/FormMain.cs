@@ -1862,6 +1862,7 @@ namespace ElectronicObserver.Window
 			foreach(var fleet in fFleet) fleet.Translate();
 			fFleetOverview.Translate();
 			fFleetPreset.Translate();
+			fHeadquarters.Translate();
 		}
 
 		#endregion
