@@ -17,6 +17,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ElectronicObserverTypes;
 using WeifenLuo.WinFormsUI.Docking;
+using Translation = ElectronicObserver.Properties.Window.FormBattle;
 
 namespace ElectronicObserver.Window
 {
@@ -102,9 +103,41 @@ namespace ElectronicObserver.Window
 
 			Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormBattle]);
 
+			Translate();
 		}
 
+		public void Translate()
+		{
+			RightClickMenu_ShowBattleDetail.Text = GeneralRes.RightClickMenu_ShowBattleDetail;
+			RightClickMenu_ShowBattleResult.Text = GeneralRes.RightClickMenu_ShowBattleResult;
 
+			FormationFriend.Text = GeneralRes.FriendlyFormation;
+			Formation.Text = GeneralRes.EncounterType;
+			FormationEnemy.Text = GeneralRes.EnemyFormation;
+
+			AirStage2Friend.Text = GeneralRes.ShotDown;
+			AACutin.Text = GeneralRes.AntiAir;
+			AirStage2Enemy.Text = GeneralRes.ShotDown;
+
+			AirStage1Friend.Text = GeneralRes.ShotDown;
+			AirSuperiority.Text = GeneralRes.AirSuperiority;
+			AirStage1Enemy.Text = GeneralRes.ShotDown;
+
+			SearchingFriend.Text = GeneralRes.FriendlyScout;
+			Searching.Text = GeneralRes.Scouting;
+			SearchingEnemy.Text = GeneralRes.EnemyScout;
+
+			FleetFriend.Text = Translation.FleetFriend;
+			FleetFriendEscort.Text = Translation.FleetFriendEscort;
+			FleetEnemyEscort.Text = Translation.FleetEnemyEscort;
+			FleetEnemy.Text = Translation.FleetEnemy;
+
+			DamageFriend.Text = Translation.DamageFriend;
+			WinRank.Text = Translation.WinRank;
+			DamageEnemy.Text = Translation.DamageEnemy;
+
+			Text = GeneralRes.Battle;
+		}
 
 		private void FormBattle_Load(object sender, EventArgs e)
 		{
@@ -459,7 +492,7 @@ namespace ElectronicObserver.Window
 			if (pd != null && pd.IsAvailable)
 			{
 
-				Searching.Text = "LBAS";
+				Searching.Text = Translation.ABText;
 				Searching.ImageAlign = ContentAlignment.MiddleLeft;
 				Searching.ImageIndex = (int)ResourceManager.EquipmentContent.LandAttacker;
 
@@ -469,16 +502,18 @@ namespace ElectronicObserver.Window
 				foreach (var phase in pd.AirAttackUnits)
 				{
 
-					sb.AppendFormat( GeneralRes.BaseWave + " - " + GeneralRes.BaseAirCorps + " :\r\n",
-						index, phase.AirUnitID );
+					sb.AppendFormat(GeneralRes.BaseWave + " - " + GeneralRes.BaseAirCorps + " :\r\n",
+						index, phase.AirUnitID);
 
-					if ( phase.IsStage1Available ) {
+					if (phase.IsStage1Available)
+					{
 						sb.AppendFormat("　St1: " + GeneralRes.FriendlyAir + " -{0}/{1} | " + GeneralRes.EnemyAir + " -{2}/{3} | {4}\r\n",
 							phase.AircraftLostStage1Friend, phase.AircraftTotalStage1Friend,
 							phase.AircraftLostStage1Enemy, phase.AircraftTotalStage1Enemy,
 							Constants.GetAirSuperiority(phase.AirSuperiority));
 					}
-					if ( phase.IsStage2Available ) {
+					if (phase.IsStage2Available)
+					{
 						sb.AppendFormat("　St2: " + GeneralRes.FriendlyAir + " -{0}/{1} | " + GeneralRes.EnemyAir + " -{2}/{3}\r\n",
 							phase.AircraftLostStage2Friend, phase.AircraftTotalStage2Friend,
 							phase.AircraftLostStage2Enemy, phase.AircraftTotalStage2Enemy);
@@ -501,7 +536,8 @@ namespace ElectronicObserver.Window
 		/// <summary>
 		/// 基地航空隊フェーズの結果をクリアします。
 		/// </summary>
-		private void ClearBaseAirAttack() {
+		private void ClearBaseAirAttack() 
+		{
 			Searching.Text = GeneralRes.ClearBaseAirAttack;
 			Searching.ImageAlign = ContentAlignment.MiddleCenter;
 			Searching.ImageIndex = -1;
@@ -583,10 +619,11 @@ namespace ElectronicObserver.Window
 		/// <param name="phase2">第二次航空戦のデータ。発生していなければ null</param>
 		private void SetAerialWarfare(PhaseAirBattleBase phaseJet, PhaseAirBattleBase phase1, PhaseAirBattleBase phase2)
 		{
-			var phases = new[] {
-				new AerialWarfareFormatter( phaseJet, "Jet: " ),
-				new AerialWarfareFormatter( phase1, "1st: "),
-				new AerialWarfareFormatter( phase2, "2nd: "),
+			var phases = new[] 
+			{
+				new AerialWarfareFormatter(phaseJet, Translation.AerialPhaseJet),
+				new AerialWarfareFormatter(phase1, Translation.AerialPhase1),
+				new AerialWarfareFormatter(phase2, Translation.AerialPhase2),
 			};
 
 			if (!phases[0].Enabled && !phases[2].Enabled)
@@ -621,7 +658,7 @@ namespace ElectronicObserver.Window
 
 			void ClearAACutinLabel()
 			{
-				AACutin.Text = "AA Defense";
+				AACutin.Text = Translation.AirDefense;
 				AACutin.ImageAlign = ContentAlignment.MiddleCenter;
 				AACutin.ImageIndex = -1;
 				ToolTipInfo.SetToolTip(AACutin, null);
@@ -665,7 +702,8 @@ namespace ElectronicObserver.Window
 						label.ImageIndex = (int)ResourceManager.EquipmentContent.Seaplane;
 
 						ToolTipInfo.SetToolTip(label, ToolTipInfo.GetToolTip(label) +
-							"Contact\r\n" + string.Join("\r\n", phases1.Select(p => $"{p.PhaseName}{(KCDatabase.Instance.MasterEquipments[p.GetTouchAircraft(isFriend)]?.NameEN ?? "(none)")}")));
+							Translation.Contact + "\r\n" + 
+							string.Join("\r\n", phases1.Select(p => $"{p.PhaseName}{(KCDatabase.Instance.MasterEquipments[p.GetTouchAircraft(isFriend)]?.NameEN ?? Translation.None)}")));
 					}
 					else
 					{
@@ -701,8 +739,8 @@ namespace ElectronicObserver.Window
 					AACutin.ImageAlign = ContentAlignment.MiddleLeft;
 					AACutin.ImageIndex = (int)ResourceManager.EquipmentContent.HighAngleGun;
 
-					ToolTipInfo.SetToolTip(AACutin, "AACI\r\n" +
-						string.Join("\r\n", phases2.Select(p => p.PhaseName + (p.Air.IsAACutinAvailable ? $"{p.Air.AACutInShip.NameWithLevel}\r\nAACI type: {p.Air.AACutInKind} ({Constants.GetAACutinKind(p.Air.AACutInKind)})" : "(did not activate)"))));
+					ToolTipInfo.SetToolTip(AACutin, Translation.AACI + "\r\n" +
+						string.Join("\r\n", phases2.Select(p => p.PhaseName + (p.Air.IsAACutinAvailable ? $"{p.Air.AACutInShip.NameWithLevel}\r\n" + Translation.AACIType + $"{p.Air.AACutInKind} ({Constants.GetAACutinKind(p.Air.AACutInKind)})" : Translation.DidNotActivate))));
 				}
 				else
 				{
@@ -788,8 +826,9 @@ namespace ElectronicObserver.Window
 
 					var bar = HPBars[refindex];
 
-					if ( isBaseAirRaid ) {
-						name = string.Format( "Base {0}", i + 1 );
+					if (isBaseAirRaid)
+					{
+						name = string.Format(Translation.AirBase, i + 1 );
 						isEscaped = false;
 						isLandBase = true;
 						// it's air base, not land base
@@ -1021,19 +1060,19 @@ namespace ElectronicObserver.Window
 					}
 
 					FleetFriend.ImageAlign = ContentAlignment.MiddleLeft;
-					ToolTipInfo.SetToolTip(FleetFriend, "Support Expedition\r\n" + support.GetBattleDetail());
+					ToolTipInfo.SetToolTip(FleetFriend, Translation.SupportExpedition + "\r\n" + support.GetBattleDetail());
 
 					if ((isFriendCombined || hasFriend7thShip) && isEnemyCombined)
-						FleetFriend.Text = "Friendly";
+						FleetFriend.Text = Translation.FleetFriendShort;
 					else
-						FleetFriend.Text = "Friendly";
+						FleetFriend.Text = Translation.FleetFriend;
 
 				}
 				else
 				{
 					FleetFriend.ImageIndex = -1;
 					FleetFriend.ImageAlign = ContentAlignment.MiddleCenter;
-					FleetFriend.Text = "Friendly";
+					FleetFriend.Text = Translation.FleetFriend;
 					ToolTipInfo.SetToolTip(FleetFriend, null);
 
 				}
@@ -1142,8 +1181,9 @@ namespace ElectronicObserver.Window
 					AirStage1Friend.ForeColor = Utility.Configuration.Config.UI.ForeColor;
 					AirStage1Friend.ImageAlign = ContentAlignment.MiddleLeft;
 					AirStage1Friend.ImageIndex = (int)ResourceManager.EquipmentContent.Searchlight;
-					ToolTipInfo.SetToolTip( AirStage1Friend, GeneralRes.SearchlightUsed + ": " + ship.NameWithLevel );
-				} else {
+					ToolTipInfo.SetToolTip( AirStage1Friend, GeneralRes.SearchlightUsed + ": " + ship.NameWithLevel);
+				} else 
+				{
 					ToolTipInfo.SetToolTip( AirStage1Friend, null );
 				}
 			}
@@ -1157,29 +1197,37 @@ namespace ElectronicObserver.Window
 					AirStage1Enemy.ForeColor = Utility.Configuration.Config.UI.ForeColor;
 					AirStage1Enemy.ImageAlign = ContentAlignment.MiddleLeft;
 					AirStage1Enemy.ImageIndex = (int)ResourceManager.EquipmentContent.Searchlight;
-					ToolTipInfo.SetToolTip( AirStage1Enemy, GeneralRes.SearchlightUsed + ": " + pd.SearchlightEnemyInstance.NameWithClass );
-				} else {
-					ToolTipInfo.SetToolTip( AirStage1Enemy, null );
+					ToolTipInfo.SetToolTip(AirStage1Enemy, GeneralRes.SearchlightUsed + ": " + pd.SearchlightEnemyInstance.NameWithClass );
+				}
+				else
+				{
+					ToolTipInfo.SetToolTip(AirStage1Enemy, null );
 				}
 			}
 
 
 			//夜間触接判定
-			if ( pd.TouchAircraftFriend != -1 ) {
+			if (pd.TouchAircraftFriend != -1)
+			{
 				SearchingFriend.Text = GeneralRes.NightContact;
 				SearchingFriend.ImageIndex = (int)ResourceManager.EquipmentContent.Seaplane;
 				SearchingFriend.ImageAlign = ContentAlignment.MiddleLeft;
-				ToolTipInfo.SetToolTip( SearchingFriend, GeneralRes.NightContacting + ": " + KCDatabase.Instance.MasterEquipments[pd.TouchAircraftFriend].NameEN );
-			} else {
+				ToolTipInfo.SetToolTip(SearchingFriend, GeneralRes.NightContacting + ": " + KCDatabase.Instance.MasterEquipments[pd.TouchAircraftFriend].NameEN);
+			} 
+			else 
+			{
 				ToolTipInfo.SetToolTip( SearchingFriend, null );
 			}
 
-			if ( pd.TouchAircraftEnemy != -1 ) {
+			if (pd.TouchAircraftEnemy != -1)
+			{
 				SearchingEnemy.Text = GeneralRes.NightContact;
 				SearchingEnemy.ImageIndex = (int)ResourceManager.EquipmentContent.Seaplane;
 				SearchingFriend.ImageAlign = ContentAlignment.MiddleLeft;
-				ToolTipInfo.SetToolTip( SearchingEnemy, GeneralRes.NightContacting + ": " + KCDatabase.Instance.MasterEquipments[pd.TouchAircraftEnemy].NameEN);
-			} else {
+				ToolTipInfo.SetToolTip(SearchingEnemy, GeneralRes.NightContacting + ": " + KCDatabase.Instance.MasterEquipments[pd.TouchAircraftEnemy].NameEN);
+			}
+			else
+			{
 				ToolTipInfo.SetToolTip( SearchingEnemy, null );
 			}
 
@@ -1187,8 +1235,9 @@ namespace ElectronicObserver.Window
 			{
 				int index = pd.FlareIndexFriend;
 
-				if ( index != -1 ) {
-					AirStage2Friend.Text = "#" + ( index + 1 );
+				if (index != -1)
+				{
+					AirStage2Friend.Text = "#" + (index + 1);
 					AirStage2Friend.ForeColor = Utility.Configuration.Config.UI.ForeColor;
 					AirStage2Friend.ImageAlign = ContentAlignment.MiddleLeft;
 					AirStage2Friend.ImageIndex = (int)ResourceManager.EquipmentContent.Flare;
@@ -1204,14 +1253,17 @@ namespace ElectronicObserver.Window
 			{
 				int index = pd.FlareIndexEnemy;
 
-				if ( index != -1 ) {
-					AirStage2Enemy.Text = "#" + ( index + 1 );
+				if (index != -1)
+				{
+					AirStage2Enemy.Text = "#" + (index + 1);
 					AirStage2Enemy.ForeColor = Utility.Configuration.Config.UI.ForeColor;
 					AirStage2Enemy.ImageAlign = ContentAlignment.MiddleLeft;
 					AirStage2Enemy.ImageIndex = (int)ResourceManager.EquipmentContent.Flare;
-					ToolTipInfo.SetToolTip( AirStage2Enemy, GeneralRes.StarShellUsed + ": " + pd.FlareEnemyInstance.NameWithClass );
-				} else {
-					ToolTipInfo.SetToolTip( AirStage2Enemy, null );
+					ToolTipInfo.SetToolTip( AirStage2Enemy, GeneralRes.StarShellUsed + ": " + pd.FlareEnemyInstance.NameWithClass);
+				}
+				else
+				{
+					ToolTipInfo.SetToolTip(AirStage2Enemy, null);
 				}
 			}
 		}
