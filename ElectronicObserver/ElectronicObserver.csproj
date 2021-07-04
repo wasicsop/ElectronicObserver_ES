@@ -95,6 +95,11 @@
 		  <AutoGen>True</AutoGen>
 		  <DependentUpon>FormBrowserHost.resx</DependentUpon>
 		</Compile>
+		<Compile Update="Properties\Window\FormCompass.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>FormCompass.resx</DependentUpon>
+		</Compile>
 		<Compile Update="Properties\Window\FormMain.Designer.cs">
 		  <DesignTime>True</DesignTime>
 		  <AutoGen>True</AutoGen>
@@ -298,6 +303,10 @@
 		<EmbeddedResource Update="Properties\Window\FormBrowserHost.resx">
 		  <Generator>PublicResXFileCodeGenerator</Generator>
 		  <LastGenOutput>FormBrowserHost.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Properties\Window\FormCompass.resx">
+		  <Generator>PublicResXFileCodeGenerator</Generator>
+		  <LastGenOutput>FormCompass.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 		<EmbeddedResource Update="Properties\Window\FormMain.resx">
 		  <Generator>PublicResXFileCodeGenerator</Generator>

@@ -17,6 +17,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
+using Translation = ElectronicObserver.Properties.Window.FormCompass;
 
 namespace ElectronicObserver.Window
 {
@@ -521,7 +522,7 @@ namespace ElectronicObserver.Window
 		{
 			if (air > 0)
 			{
-				return string.Format("AS+: {0}\r\nAS: {1}\r\nAP: {2}\r\nAI: {3}\r\n",
+				return string.Format(Translation.AirValues,
 							(int)(air * 3.0),
 							(int)Math.Ceiling(air * 1.5),
 							(int)(air / 1.5 + 1),
@@ -611,8 +612,22 @@ namespace ElectronicObserver.Window
 
 			Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormCompass]);
 
+			Translate();
 		}
 
+		public void Translate()
+		{
+			TextMapArea.Text = Translation.TextMapArea;
+			TextDestination.Text = Translation.TextDestination;
+			TextEventKind.Text = Translation.TextEventKind;
+			TextEventDetail.Text = Translation.TextEventDetail;
+
+			TextEnemyFleetName.Text = Translation.TextEnemyFleetName;
+			TextFormation.Text = Translation.TextFormation;
+			TextAirSuperiority.Text = Translation.TextAirSuperiority;
+
+			Text = Translation.Title;
+		}
 
 		private void FormCompass_Load(object sender, EventArgs e)
 		{
@@ -724,7 +739,7 @@ namespace ElectronicObserver.Window
 
                     if (mapinfo.RequiredDefeatedCount != -1 && mapinfo.CurrentDefeatedCount < mapinfo.RequiredDefeatedCount)
                     {
-                        sb.AppendFormat("{0} defeated: {1} / {2} times\r\n",
+                        sb.AppendFormat(Translation.MapClearCount + "\r\n",
                             mapinfo.CurrentGaugeIndex > 0 ? $"#{mapinfo.CurrentGaugeIndex} " : "",
                             mapinfo.CurrentDefeatedCount, mapinfo.RequiredDefeatedCount);
 
@@ -742,7 +757,7 @@ namespace ElectronicObserver.Window
 
 					foreach (var pair in KCDatabase.Instance.Battle.SpecialAttackCount)
 					{
-						sb.AppendLine($"{Constants.GetDayAttackKind((DayAttackKind)pair.Key)} : 発動済み");
+						sb.AppendLine($"{Constants.GetDayAttackKind((DayAttackKind)pair.Key)} : " + Translation.SpecialAttackActivated);
 					}
 
 					ToolTipInfo.SetToolTip(TextMapArea, sb.Length > 0 ? sb.ToString() : null);
@@ -759,16 +774,16 @@ namespace ElectronicObserver.Window
 					switch (compass.CommentID)
 					{
 						case 1:
-							tiptext = "Enemy sighted!";
+							tiptext = Translation.EnemySighted;
 							break;
 						case 2:
-							tiptext = "Target sighted!";
+							tiptext = Translation.TargetSighted;
 							break;
 						case 3:
-							tiptext = "Course Patrol!";
+							tiptext = Translation.CoursePatrol;
 							break;
 						default:
-							tiptext = "Enemy plane sighted!";
+							tiptext = Translation.EnemyPlaneSighted;
 							break;
 					}
 					ToolTipInfo.SetToolTip(TextDestination, tiptext);
@@ -863,28 +878,28 @@ namespace ElectronicObserver.Window
 								default:
 									break;
 								case 1:
-									eventkind = "No enemy sighted.";
+									eventkind = Translation.NoEnemySighted;
 									break;
 								case 2:
-									eventkind = "Branch choice:";
+									eventkind = Translation.BranchChoice;
 									break;
 								case 3:
-									eventkind = "It's a calm sea.";
+									eventkind = Translation.CalmSea;
 									break;
 								case 4:
-									eventkind = "It's a calm strait.";
+									eventkind = Translation.CalmStrait;
 									break;
 								case 5:
-									eventkind = "I need to be careful.";
+									eventkind = Translation.NeedToBeCareful;
 									break;
 								case 6:
-									eventkind = "It's a calm sea.";
+									eventkind = Translation.CalmSea2;
 									break;
 							}
 
 							if (compass.RouteChoices != null)
 							{
-								TextEventDetail.Text = string.Join(" or ", compass.RouteChoicesDisplay);
+								TextEventDetail.Text = string.Join(Translation.BranchChoiceSeparator, compass.RouteChoicesDisplay);
 							}
 							else if (compass.FlavorTextType != -1)
 							{
@@ -955,7 +970,7 @@ namespace ElectronicObserver.Window
 							break;
 
 						case 10:    // 泊地
-							TextEventDetail.Text = compass.CanEmergencyAnchorageRepair ? "修理可能" : "";
+							TextEventDetail.Text = compass.CanEmergencyAnchorageRepair ? Translation.RepairPossibility : "";
 							break;
 
 						default:
@@ -971,7 +986,7 @@ namespace ElectronicObserver.Window
 				{
 					TextEventKind.ImageAlign = ContentAlignment.MiddleRight;
 					TextEventKind.ImageIndex = (int)ResourceManager.EquipmentContent.CarrierBasedBomber;
-					ToolTipInfo.SetToolTip(TextEventKind, "Air raid - " + Constants.GetAirRaidDamage(compass.AirRaidDamageKind));
+					ToolTipInfo.SetToolTip(TextEventKind, Translation.AirRaid + Constants.GetAirRaidDamage(compass.AirRaidDamageKind));
 				}
 				else
 				{
@@ -1011,7 +1026,7 @@ namespace ElectronicObserver.Window
 					if (itemMaster != null)
 						itemName = itemMaster.Name;
 					else
-						itemName = "Unknown item";
+						itemName = Translation.UnknownItem;
 				}
 
 				strs.AddLast(itemName + " x " + item.Amount);
@@ -1019,7 +1034,7 @@ namespace ElectronicObserver.Window
 
 			if (!strs.Any())
 			{
-				return "(none)";
+				return Translation.None;
 
 			}
 			else
@@ -1190,11 +1205,11 @@ namespace ElectronicObserver.Window
 				if (_enemyFleetCandidate.Count > _candidatesDisplayCount)
 				{
 					TextEventDetail.Text += " ▼";
-					ToolTipInfo.SetToolTip(TextEventDetail, string.Format("Fleets: {0} / {1}\r\n(left or right click to change pages)\r\n", _enemyFleetCandidateIndex + 1, _enemyFleetCandidate.Count));
+					ToolTipInfo.SetToolTip(TextEventDetail, string.Format(Translation.FleetPaging + "\r\n", _enemyFleetCandidateIndex + 1, _enemyFleetCandidate.Count));
 				}
 				else
 				{
-					ToolTipInfo.SetToolTip(TextEventDetail, string.Format("Fleets: {0}\r\n", _enemyFleetCandidate.Count));
+					ToolTipInfo.SetToolTip(TextEventDetail, string.Format(Translation.FleetCount + "\r\n", _enemyFleetCandidate.Count));
 				}
 
 				TableEnemyCandidate.SuspendLayout();
