@@ -90,6 +90,11 @@
 		  <AutoGen>True</AutoGen>
 		  <DependentUpon>FormBattle.resx</DependentUpon>
 		</Compile>
+		<Compile Update="Properties\Window\FormBrowserHost.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>FormBrowserHost.resx</DependentUpon>
+		</Compile>
 		<Compile Update="Properties\Window\FormMain.Designer.cs">
 		  <DesignTime>True</DesignTime>
 		  <AutoGen>True</AutoGen>
@@ -289,6 +294,10 @@
 		<EmbeddedResource Update="Properties\Window\FormBattle.resx">
 		  <Generator>PublicResXFileCodeGenerator</Generator>
 		  <LastGenOutput>FormBattle.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Properties\Window\FormBrowserHost.resx">
+		  <Generator>PublicResXFileCodeGenerator</Generator>
+		  <LastGenOutput>FormBrowserHost.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 		<EmbeddedResource Update="Properties\Window\FormMain.resx">
 		  <Generator>PublicResXFileCodeGenerator</Generator>

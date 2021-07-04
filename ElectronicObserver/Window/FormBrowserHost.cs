@@ -22,6 +22,7 @@ using Grpc.Core;
 using MagicOnion.Hosting;
 using Microsoft.Extensions.Hosting;
 using WeifenLuo.WinFormsUI.Docking;
+using Translation = ElectronicObserver.Properties.Window.FormBrowserHost;
 
 namespace ElectronicObserver.Window
 {
@@ -102,6 +103,13 @@ namespace ElectronicObserver.Window
 			Port = Process.GetCurrentProcess().Id;
 
 			Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormBrowser]);
+
+			Translate();
+		}
+
+		public void Translate()
+		{
+			Text = Translation.Title;
 		}
 
 		public void InitializeApiCompleted()
@@ -157,7 +165,7 @@ namespace ElectronicObserver.Window
 			{
 				Utility.ErrorReporter.SendErrorReport(ex, Resources.FailedBrowserStart);
 				MessageBox.Show(Resources.FailedBrowserStart + ex.Message,
-					"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					Translation.ErrorCaption, MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
 		}
 
@@ -325,14 +333,14 @@ namespace ElectronicObserver.Window
 
 		public async void ClearCache()
 		{
-			Utility.Logger.Add(2, "キャッシュの削除を開始するため、ブラウザを終了しています…");
+			Utility.Logger.Add(2, Translation.ClearingCache);
 
 			Browser.CloseBrowser();
 			TerminateBrowserProcess();
 
 			await ClearCacheAsync();
 
-			Utility.Logger.Add(2, "キャッシュの削除処理が終了しました。ブラウザを再起動しています…");
+			Utility.Logger.Add(2, Translation.CacheCleared);
 
 			_initializationStage = InitializationStageFlag.InitialAPILoaded;
 			try
@@ -341,15 +349,15 @@ namespace ElectronicObserver.Window
 			}
 			catch (Exception ex)
 			{
-				Utility.ErrorReporter.SendErrorReport(ex, "ブラウザの再起動に失敗しました。");
-				MessageBox.Show("ブラウザプロセスの再起動に失敗しました。\r\n申し訳ありませんが本ツールを一旦終了してください。", ":(", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				Utility.ErrorReporter.SendErrorReport(ex, Translation.FailedToRestartBrowser);
+				MessageBox.Show(Translation.BrowserFailedRestartEO, ":(", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
 		}
 
 		private async Task ClearCacheAsync()
 		{
 			int trial;
-			Exception lastException = null;
+			Exception? lastException = null;
 			DirectoryInfo dir = new DirectoryInfo(BrowserConstants.CachePath);
 
 			for (trial = 0; trial < 4; trial++)
@@ -385,7 +393,7 @@ namespace ElectronicObserver.Window
 			}
 			if (trial == 4)
 			{
-				Utility.ErrorReporter.SendErrorReport(lastException, "キャッシュの削除に失敗しました。");
+				Utility.ErrorReporter.SendErrorReport(lastException, Translation.CacheClearFailed);
 			}
 		}
 

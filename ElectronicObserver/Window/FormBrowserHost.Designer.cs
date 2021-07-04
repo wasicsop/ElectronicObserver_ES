@@ -40,7 +40,7 @@
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 			this.HideOnClose = true;
 			this.Name = "FormBrowserHost";
-			this.Text = "Browser";
+			this.Text = "ブラウザ";
 			this.Load += new System.EventHandler(this.FormBrowser_Load);
             this.Click += new System.EventHandler(this.FormBrowserHost_Click);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.FormBrowserHost_Paint);
