@@ -78,7 +78,7 @@
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 			this.HideOnClose = true;
 			this.Name = "FormLog";
-			this.Text = GeneralRes.Log;
+			this.Text = "ログ";
 			this.Load += new System.EventHandler(this.FormLog_Load);
 			this.ContextMenuLog.ResumeLayout(false);
 			this.ResumeLayout(false);

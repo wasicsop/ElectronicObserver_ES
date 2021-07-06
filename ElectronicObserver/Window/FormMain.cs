@@ -1864,6 +1864,7 @@ namespace ElectronicObserver.Window
 			fFleetPreset.Translate();
 			fHeadquarters.Translate();
 			fInformation.Translate();
+			fLog.Translate();
 		}
 
 		#endregion

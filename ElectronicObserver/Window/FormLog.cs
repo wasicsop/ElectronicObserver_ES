@@ -22,6 +22,13 @@ namespace ElectronicObserver.Window
 			InitializeComponent();
 
 			ConfigurationChanged();
+
+			Translate();
+		}
+
+		public void Translate()
+		{
+			Text = GeneralRes.Log;
 		}
 
 		private void FormLog_Load(object sender, EventArgs e)
