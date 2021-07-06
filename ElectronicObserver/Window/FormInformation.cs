@@ -14,6 +14,7 @@ using System.Windows.Forms;
 using ElectronicObserverTypes;
 using WeifenLuo.WinFormsUI.Docking;
 using static ElectronicObserver.Observer.DiscordRPC;
+using Translation = ElectronicObserver.Properties.Window.FormInformation;
 
 namespace ElectronicObserver.Window
 {
@@ -36,8 +37,14 @@ namespace ElectronicObserver.Window
 			ConfigurationChanged();
 
 			Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormInformation]);
+
+			Translate();
 		}
 
+		public void Translate()
+		{
+			Text = Translation.Title;
+		}
 
 		private void FormInformation_Load(object sender, EventArgs e)
 		{
@@ -97,8 +104,8 @@ namespace ElectronicObserver.Window
 					// '16 summer event
 					if (data.api_event_object() && data.api_event_object.api_m_flag2() && (int)data.api_event_object.api_m_flag2 > 0)
 					{
-						TextInformation.Text += "\r\n＊ギミック解除＊\r\n";
-						Utility.Logger.Add(2, "敵勢力の弱体化を確認しました！");
+						TextInformation.Text += $"\r\n{Translation.GimmickRelease}\r\n";
+						Utility.Logger.Add(2, Translation.EnemyWasWeakened);
 					}
 					break;
 
@@ -196,7 +203,7 @@ namespace ElectronicObserver.Window
 
 				expbase = (int)expbase;
 
-                sb.AppendFormat(GeneralRes.BaseExp + ": {0} / S-rank: {1}\r\n", expbase, (int)(expbase * 1.2));
+                sb.AppendFormat(GeneralRes.BaseExp + ": {0} / " + Translation.SRank +": {1}\r\n", expbase, (int)(expbase * 1.2));
 
 
 				// 練巡ボーナス計算 - きたない
@@ -261,7 +268,7 @@ namespace ElectronicObserver.Window
 						}
 					}
 
-                    sb.AppendFormat("(incl. CT Bonus: {0} / S-rank: {1})\r\n", (int)(expbase * bonus), (int)((int)(expbase * 1.2) * bonus));
+                    sb.AppendFormat(Translation.CTBonus, (int)(expbase * bonus), (int)((int)(expbase * 1.2) * bonus));
 
 
 				}
@@ -410,9 +417,9 @@ namespace ElectronicObserver.Window
                         map.MapAreaID, map.MapInfoID,
                         map.EventDifficulty > 0 ? $" [{Constants.GetDifficulty(map.EventDifficulty)}]" : "",
                         map.CurrentGaugeIndex > 0 ? $"#{map.CurrentGaugeIndex} " : "",
-                        gaugeType == 1 ? " defeated" : gaugeType == 2 ? "HP" : "TP",
+                        gaugeType == 1 ? Translation.Defeated : gaugeType == 2 ? "HP" : "TP",
                         current, max,
-                        gaugeType == 1 ? " times" : ""));
+                        gaugeType == 1 ? Translation.Times : ""));
 
                     if (map.MapAreaID > 10)
                     {
@@ -420,9 +427,9 @@ namespace ElectronicObserver.Window
                             map.MapInfoID,
                             map.EventDifficulty > 0 ? $"{Constants.GetDifficulty(map.EventDifficulty)}" : "",
                             map.CurrentGaugeIndex > 0 ? $"#{map.CurrentGaugeIndex} " : "",
-                            gaugeType == 1 ? " defeated" : gaugeType == 2 ? "HP" : "TP",
+                            gaugeType == 1 ? Translation.Defeated : gaugeType == 2 ? "HP" : "TP",
                             current, max,
-                            gaugeType == 1 ? " times" : "");
+                            gaugeType == 1 ? Translation.Times : "");
                     }
                 }
             }
@@ -455,7 +462,7 @@ namespace ElectronicObserver.Window
 				where missionState.State != MissionState.Completed
 				select mission.DisplayID;
 
-			return $"Unfinished monthly expeditions: {string.Join(", ", unfinishedMonthlyIds)}";
+			return $"{Translation.UnfinishedMonthlyExpeditions}: {string.Join(", ", unfinishedMonthlyIds)}";
 		}
 
 		private string GetExpeditionResult(dynamic data)
@@ -478,7 +485,7 @@ namespace ElectronicObserver.Window
 
             sb.AppendLine(GeneralRes.BattleComplete);
             sb.AppendFormat(GeneralRes.EnemyName + "\r\n", KCDatabase.Instance.Translation.Operation.FleetName(data.api_enemy_info.api_deck_name));
-            sb.AppendFormat("Result: {0}-rank\r\n", data.api_win_rank);
+            sb.AppendFormat(Translation.BattleResultRank + "\r\n", data.api_win_rank);
             sb.AppendFormat(GeneralRes.AdmiralXP + ": +{0}\r\n", (int)data.api_get_exp);
 
 			sb.Append(CheckGimmickUpdated(data));
@@ -490,8 +497,8 @@ namespace ElectronicObserver.Window
         {
             if (data.api_m1() && data.api_m1 != 0)
             {
-                Utility.Logger.Add(2, "Changes in event map detected!");
-                return "\r\n* Gimmick released *\r\n";
+                Utility.Logger.Add(2, Translation.ChangesInEventMapDetected);
+                return "\r\n" + Translation.GimmickRelease + "\r\n";
             }
 
 			return "";
@@ -570,10 +577,10 @@ namespace ElectronicObserver.Window
 			{
 				var freeShips = group.SelectMany(f => f).Where(s => s.SallyArea == 0);
 
-                TextInformation.Text = "[Fleet tag warning]\r\nUntagged ships:\r\n" + string.Join("\r\n", freeShips.Select(s => s.NameWithLevel));
+                TextInformation.Text = Translation.FleetTagWarning + string.Join("\r\n", freeShips.Select(s => s.NameWithLevel));
 
                 if (Utility.Configuration.Config.Control.ShowSallyAreaAlertDialog)
-                    MessageBox.Show("A ship without fleet tag is in the fleet.\r\nPlease recheck before sortieing.\r\n\r\n(This check can be disabled in the settings)", "Fleet Tag",
+                    MessageBox.Show(Translation.FleetTagAlertDialogText, Translation.FleetTagAlertDialogCaption,
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
@@ -593,8 +600,8 @@ namespace ElectronicObserver.Window
 			if (fleet.MembersInstance.Any(s => s?.FuelRate < 1 || s?.AmmoRate < 1))
 			{
 				MessageBox.Show(
-					$"#{fleet.FleetID} {fleet.Name} の遠征 {mission.DisplayID}:{mission.Name} は、失敗する可能性があります。\r\n\r\n未補給\r\n\r\n（この警告は 設定→動作 から無効化できます。）",
-					"遠征失敗警告", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+					string.Format(Translation.ExpeditionFailureFuelAmmo, fleet.FleetID, fleet.Name, mission.DisplayID, mission.Name),
+					GeneralRes.ExpeditionFailureWarningTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning);
 			}
 		}
 
