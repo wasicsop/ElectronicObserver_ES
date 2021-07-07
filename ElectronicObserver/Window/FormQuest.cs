@@ -10,11 +10,13 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
+using Translation = ElectronicObserver.Properties.Window.FormQuest;
 
 namespace ElectronicObserver.Window
 {
@@ -119,9 +121,45 @@ namespace ElectronicObserver.Window
 			}
 
 			SystemEvents.SystemShuttingDown += SystemEvents_SystemShuttingDown;
+
+			Translate();
 		}
 
+		public void Translate()
+		{
+			QuestView_Type.HeaderText = GeneralRes.Type;
+			QuestView_Category.HeaderText = GeneralRes.Category;
+			QuestView_Name.HeaderText = GeneralRes.QuestName;
+			QuestView_Progress.HeaderText = GeneralRes.Progress;
 
+			MenuProgress_Increment.Text = GeneralRes.IncrementByOne;
+			MenuProgress_Decrement.Text = GeneralRes.DecrementByOne;
+			MenuProgress_Reset.Text = Translation.MenuProgress_Reset;
+
+			MenuMain_ColumnFilter.Text = GeneralRes.FilterBy;
+			MenuMain_ColumnFilter_State.Text = GeneralRes.InProgressFilter;
+			MenuMain_ColumnFilter_Type.Text = GeneralRes.TypeFilter;
+			MenuMain_ColumnFilter_Category.Text = GeneralRes.CategoryFilter;
+			MenuMain_ColumnFilter_Name.Text = GeneralRes.NameFilter;
+			MenuMain_ColumnFilter_Progress.Text = GeneralRes.ProgressFilter;
+			MenuMain_Initialize.Text = GeneralRes.Initialize;
+
+			MenuMain_QuestFilter.Text = Translation.MenuMain_QuestFilter;
+			MenuMain_ShowWeekly.Text = GeneralRes.ShowWeekly;
+			MenuMain_ShowDaily.Text = GeneralRes.ShowDaily;
+			MenuMain_ShowOnce.Text = GeneralRes.ShowOneTime;
+			MenuMain_ShowRunningOnly.Text = GeneralRes.ShowInProgressOnly;
+			MenuMain_ShowMonthly.Text = GeneralRes.ShowMonthly;
+			MenuMain_ShowOther.Text = GeneralRes.ShowOther;
+			MenuMain_GoogleQuest.Text = Translation.LookUpQuestOnWeb;
+			MenuMain_KcwikiQuest.Text = Translation.MenuMain_KcwikiQuest;
+
+			ManuMain_QuestTitle.Text = Translation.ManuMain_QuestTitle;
+			ManuMain_QuestDescription.Text = Translation.ManuMain_QuestDescription;
+			ManuMain_QuestTranslate.Text = Translation.ManuMain_QuestTranslate;
+
+			Text = GeneralRes.Quest;
+		}
 
 		private void FormQuest_Load(object sender, EventArgs e)
 		{
@@ -305,7 +343,7 @@ namespace ElectronicObserver.Window
 				};
 
 				row.Cells[QuestView_State.Index].Value = (q.State == 3) ? ((bool?) null) : (q.State == 2);
-				row.Cells[QuestView_State.Index].ToolTipText = $"Page #{questIndex / 5 + 1}";
+				row.Cells[QuestView_State.Index].ToolTipText = $"{Translation.Page} #{questIndex / 5 + 1}";
 				row.Cells[QuestView_State.Index].Style.BackColor = color;
 				row.Cells[QuestView_State.Index].Style.SelectionBackColor = color;
 
@@ -338,7 +376,7 @@ namespace ElectronicObserver.Window
 
 					if (q.State == 3)
 					{
-						value = "Complete!";
+						value = Translation.Complete;
 						tag = 1.0;
 
 					}
@@ -390,7 +428,7 @@ namespace ElectronicObserver.Window
 			{
 				int index = QuestView.Rows.Add();
 				QuestView.Rows[index].Cells[QuestView_State.Index].Value = null;
-				QuestView.Rows[index].Cells[QuestView_Name.Index].Value = string.Format("(other quest x {0})", (KCDatabase.Instance.Quest.Count - KCDatabase.Instance.Quest.Quests.Count));
+				QuestView.Rows[index].Cells[QuestView_Name.Index].Value = string.Format(Translation.OtherQuests, (KCDatabase.Instance.Quest.Count - KCDatabase.Instance.Quest.Quests.Count));
 			}
 
 			if (KCDatabase.Instance.Quest.Quests.Count == 0)
@@ -414,7 +452,7 @@ namespace ElectronicObserver.Window
 
 		private void QuestView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
 		{
-			if (!(e.Value is int questId)) return;
+			if (e.Value is not int questId) return;
 
 			if (e.ColumnIndex == QuestView_Type.Index)
 			{
@@ -496,10 +534,12 @@ namespace ElectronicObserver.Window
 				Color col;
 				double rate;
 				bool drawgaugeback = false;
-				if (QuestView.Rows[e.RowIndex].Cells[e.ColumnIndex].Tag == null) {
+				if (QuestView.Rows[e.RowIndex].Cells[e.ColumnIndex].Tag == null)
+				{
 					rate = 0.0;
 				}
-				else {
+				else
+				{
 					rate = (double)QuestView.Rows[e.RowIndex].Cells[e.ColumnIndex].Tag;
 					drawgaugeback = true;
 				}
@@ -513,13 +553,14 @@ namespace ElectronicObserver.Window
 				else
 					col = Utility.Configuration.Config.UI.Quest_ColorProcessDefault;
 
-				using (var bgauge = new SolidBrush( col ))
-				using (var bgaugeback = new SolidBrush( Utility.Configuration.Config.UI.SubBackColor )) {
+				using (var bgauge = new SolidBrush(col))
+				using (var bgaugeback = new SolidBrush(Utility.Configuration.Config.UI.SubBackColor))
+				{
 					const int thickness = 4;
 
-					e.Graphics.FillRectangle( bback, e.CellBounds );
-					if (drawgaugeback && rate < 1.0) e.Graphics.FillRectangle( bgaugeback, new Rectangle( e.CellBounds.X, e.CellBounds.Bottom - thickness, e.CellBounds.Width, thickness ) );
-					e.Graphics.FillRectangle( bgauge, new Rectangle( e.CellBounds.X, e.CellBounds.Bottom - thickness, (int)(e.CellBounds.Width * rate), thickness ) );
+					e.Graphics.FillRectangle(bback, e.CellBounds);
+					if (drawgaugeback && rate < 1.0) e.Graphics.FillRectangle(bgaugeback, new Rectangle(e.CellBounds.X, e.CellBounds.Bottom - thickness, e.CellBounds.Width, thickness));
+					e.Graphics.FillRectangle(bgauge, new Rectangle(e.CellBounds.X, e.CellBounds.Bottom - thickness, (int)(e.CellBounds.Width * rate), thickness));
 				}
 			}
 
@@ -592,7 +633,7 @@ namespace ElectronicObserver.Window
 			{
 				DataGridViewRow row = new DataGridViewRow();
 				row.CreateCells(QuestView);
-				row.SetValues(null, null, null, "(unknown)", null);
+				row.SetValues(null, null, null, Translation.Unknown, null);
 				QuestView.Rows.Add(row);
 			}
 
@@ -663,7 +704,7 @@ namespace ElectronicObserver.Window
 				}
 				catch (Exception)
 				{
-					Utility.Logger.Add(3, string.Format("Failed to change progress of quest『{0}』.", quest.Name));
+					Utility.Logger.Add(3, string.Format(Translation.FailedToChangeQuestProgress, quest.Name));
 					System.Media.SystemSounds.Hand.Play();
 				}
 			}
@@ -687,7 +728,7 @@ namespace ElectronicObserver.Window
 				}
 				catch (Exception)
 				{
-					Utility.Logger.Add(3, string.Format("Failed to change progress of quest『{0}』.", quest.Name));
+					Utility.Logger.Add(3, string.Format(Translation.FailedToChangeQuestProgress, quest.Name));
 					System.Media.SystemSounds.Hand.Play();
 				}
 			}
@@ -704,7 +745,8 @@ namespace ElectronicObserver.Window
 			if (id != -1 && (quest != null || progress != null))
 			{
 
-				if (MessageBox.Show("Quest " + (quest != null ? ("『" + quest.Name + "』") : ("ID: " + id.ToString() + " ")) + " will be deleted from the list and have its progress reset.\r\nAre you sure?", "Reset Quest Progress",
+				if (MessageBox.Show(string.Format(Translation.QuestResetConfirmationText, (quest != null ? ($"『{quest.Name}』") : ($"ID: {id} "))), 
+					Translation.QuestResetConfirmationCaption,
 					MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1) == System.Windows.Forms.DialogResult.Yes)
 				{
 
@@ -766,16 +808,16 @@ namespace ElectronicObserver.Window
 					searchKey = quest.Name.Substring(0, 22) + "...";
 
 				MenuMain_GoogleQuest.Enabled = true;
-				MenuMain_GoogleQuest.Text = string.Format("Search &Google for \"{0}\"", searchKey);
+				MenuMain_GoogleQuest.Text = string.Format(Translation.LookUpSpecificQuestOnWeb, searchKey);
 				MenuMain_KcwikiQuest.Enabled = true;
-				MenuMain_KcwikiQuest.Text = string.Format("Open &KancolleWiki for \"{0}\"", searchKey);
+				MenuMain_KcwikiQuest.Text = string.Format(Translation.LookUpSpecificQuestOnWiki, searchKey);
 			}
 			else
 			{
 				MenuMain_GoogleQuest.Enabled = false;
-				MenuMain_GoogleQuest.Text = "Search on &Google";
+				MenuMain_GoogleQuest.Text = Translation.LookUpQuestOnWeb;
 				MenuMain_KcwikiQuest.Enabled = false;
-				MenuMain_KcwikiQuest.Text = "Open on &KancolleWiki";
+				MenuMain_KcwikiQuest.Text = Translation.MenuMain_KcwikiQuest;
 			}
 		}
 
@@ -789,7 +831,7 @@ namespace ElectronicObserver.Window
 				{
 					ProcessStartInfo psi = new ProcessStartInfo
 					{
-						FileName = @"https://www.google.com/search?q=" + Uri.EscapeDataString(quest.Code) + "+" + Uri.EscapeDataString(quest.Name) + "+KanColle",
+						FileName = @"https://www.duckduckgo.com/?q=" + Uri.EscapeDataString(quest.Code) + "+" + Uri.EscapeDataString(quest.Name) + Translation.SearchEngineKancolleSpecifier,
 						UseShellExecute = true
 					};
 					// google <任務名> 艦これ
@@ -797,7 +839,7 @@ namespace ElectronicObserver.Window
 				}
 				catch (Exception ex)
 				{
-					Utility.ErrorReporter.SendErrorReport(ex, "Failed to search on Google.");
+					Utility.ErrorReporter.SendErrorReport(ex, Translation.FailedToSearchOnWeb);
 				}
 			}
 
@@ -807,27 +849,34 @@ namespace ElectronicObserver.Window
 		{
 			var quest = KCDatabase.Instance.Quest[GetSelectedRowQuestID()];
 
-			if (quest != null)
+			if (quest == null) return;
+
+			try
 			{
-				try
+				string culture = CultureInfo.CurrentCulture.Name;
+				// wikiwiki doesn't support linking to quest code so just force it to search on the web
+				string questCode = culture switch
 				{
-					var url = string.Empty;
+					"en-US" => quest.Code,
+					_ => ""
+				};
 
-					url = quest.Code != ""
-						? @"https://en.kancollewiki.net/Quests#" + Uri.EscapeDataString(quest.Code)
-						: @"https://www.google.com/search?q=" + Uri.EscapeDataString(quest.Name) + "+" + Uri.EscapeDataString("site:en.kancollewiki.net");
-
-					ProcessStartInfo psi = new ProcessStartInfo
-					{
-						FileName = url,
-						UseShellExecute = true
-					};
-					Process.Start(psi);
-				}
-				catch (Exception ex)
+				string url = questCode switch
 				{
-					Utility.ErrorReporter.SendErrorReport(ex, "Failed to open KancolleWiki page.");
-				}
+					"" => @"https://www.duckduckgo.com/?q=" + Uri.EscapeDataString(quest.Name) + "+" + Uri.EscapeDataString(Translation.SearchOnWikiQuery),
+					_ => string.Format(Translation.SearchLinkWiki, Uri.EscapeDataString(quest.Code)),
+				};
+
+				ProcessStartInfo psi = new ProcessStartInfo
+				{
+					FileName = url,
+					UseShellExecute = true
+				};
+				Process.Start(psi);
+			}
+			catch (Exception ex)
+			{
+				Utility.ErrorReporter.SendErrorReport(ex, Translation.FailedToOpenKancolleWiki);
 			}
 
 		}
@@ -887,7 +936,7 @@ namespace ElectronicObserver.Window
 
 			if (needTranslation == false)
 			{
-				MessageBox.Show("All of your quests are translated.", "Information", MessageBoxButtons.OK,
+				MessageBox.Show(Translation.AllQuestsAreTranslated, Translation.Information, MessageBoxButtons.OK,
 					MessageBoxIcon.Information);
 				return;
 			}
