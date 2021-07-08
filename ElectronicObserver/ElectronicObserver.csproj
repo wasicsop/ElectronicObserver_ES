@@ -140,6 +140,11 @@
 		  <AutoGen>True</AutoGen>
 		  <DependentUpon>FormQuest.resx</DependentUpon>
 		</Compile>
+		<Compile Update="Properties\Window\FormShipGroup.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>FormShipGroup.resx</DependentUpon>
+		</Compile>
 		<Compile Update="Window\Control\FleetState.cs">
 			<SubType>UserControl</SubType>
 		</Compile>
@@ -374,6 +379,10 @@
 		<EmbeddedResource Update="Properties\Window\FormQuest.resx">
 		  <Generator>PublicResXFileCodeGenerator</Generator>
 		  <LastGenOutput>FormQuest.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Properties\Window\FormShipGroup.resx">
+		  <Generator>PublicResXFileCodeGenerator</Generator>
+		  <LastGenOutput>FormShipGroup.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 		<EmbeddedResource Update="Window\Dialog\DialogExpeditionCheck.resx">
 			<Generator>ResXFileCodeGenerator</Generator>

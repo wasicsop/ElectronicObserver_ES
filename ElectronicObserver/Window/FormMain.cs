@@ -1866,6 +1866,7 @@ namespace ElectronicObserver.Window
 			fInformation.Translate();
 			fLog.Translate();
 			fQuest.Translate();
+			fShipGroup.Translate();
 		}
 
 		#endregion
