@@ -431,9 +431,6 @@
   <data name="ShipName" xml:space="preserve">
     <value>艦名</value>
   </data>
-  <data name="ShipTooltip" xml:space="preserve">
-    <value>{0} {1}\n火力: {2}/{3}\n雷装: {4}/{5}\n対空: {6}/{7}\n装甲: {8}/{9}\n対潜: {10}/{11}\n回避: {12}/{13}\n索敵: {14}/{15}\n運: {16}\n射程: {17} / 速力: {18}\n(右クリックで図鑑)\n</value>
-  </data>
   <data name="ShipType" xml:space="preserve">
     <value>艦種</value>
   </data>
@@ -467,18 +464,6 @@
   <data name="Speed" xml:space="preserve">
     <value>速力</value>
   </data>
-  <data name="Stage2AATooltip" xml:space="preserve">
-    <value>第1次: -{0}/{1}\r\n第2次: -{2}/{3}\r\n</value>
-  </data>
-  <data name="Stage2ContactTooltip" xml:space="preserve">
-    <value>{0}触接中\r\n第1次: {1}\r\n第2次: {2}</value>
-  </data>
-  <data name="StageXAACI" xml:space="preserve">
-    <value>第{0}次: {1}\r\nカットイン種別: {2} ({3})\r\n</value>
-  </data>
-  <data name="StageXAACIFail" xml:space="preserve">
-    <value>第{0}次: (発動せず)\r\n</value>
-  </data>
   <data name="StarShellUsed" xml:space="preserve">
     <value>照明弾投射</value>
   </data>
@@ -501,7 +486,7 @@
     <value>大破まで: {0}</value>
   </data>
   <data name="ToMidAndHeavy" xml:space="preserve">
-    <value>中破まで: {0} / 大破まで: {1}\n</value>
+    <value>中破まで: {0} / 大破まで: {1}</value>
   </data>
   <data name="ToNextLevel" xml:space="preserve">
     <value>次のレベルまで: {0}</value>
@@ -808,7 +793,9 @@
     <value>配置転換中装備</value>
   </data>
   <data name="AntiAirPower" xml:space="preserve">
-    <value>艦隊防空\r\n単縦陣: {0:0.0} / 複縦陣: {1:0.0} / 輪形陣: {2:0.0}\r\n</value>
+    <value>艦隊防空
+単縦陣: {0:0.0} / 複縦陣: {1:0.0} / 輪形陣: {2:0.0}
+</value>
   </data>
   <data name="ShipAADefense" xml:space="preserve">
     <value>加重対空: {0} (割合撃墜: {1:p2})</value>

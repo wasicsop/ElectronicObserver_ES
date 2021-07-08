@@ -430,20 +430,6 @@ Are you sure?</value>
   <data name="ShipName" xml:space="preserve">
     <value>Name</value>
   </data>
-  <data name="ShipTooltip" xml:space="preserve">
-    <value>{0} {1}
-Firepower: {2}/{3}
-Torpedo: {4}/{5}
-AA: {6}/{7}
-Armor: {8}/{9}
-ASW: {10}/{11}
-Evasion: {12}/{13}
-LoS: {14}/{15}
-Luck: {16}
-Range: {17} / Speed: {18}
-(Right-click for encyclopedia)
-</value>
-  </data>
   <data name="ShipType" xml:space="preserve">
     <value>Ship Type</value>
   </data>
@@ -476,25 +462,6 @@ Range: {17} / Speed: {18}
   </data>
   <data name="Speed" xml:space="preserve">
     <value>Speed</value>
-  </data>
-  <data name="Stage2AATooltip" xml:space="preserve">
-    <value>Stage 1: -{0}/{1}
-Stage 2: -{2}/{3}
-</value>
-  </data>
-  <data name="Stage2ContactTooltip" xml:space="preserve">
-    <value>{0} made contact
-Stage 1: {1}
-Stage 2: {2}</value>
-  </data>
-  <data name="StageXAACI" xml:space="preserve">
-    <value>Stage {0}: {1}
-Cut-in type: {2} ({3})
-</value>
-  </data>
-  <data name="StageXAACIFail" xml:space="preserve">
-    <value>Stage {0}: (did not activate)
-</value>
   </data>
   <data name="StarShellUsed" xml:space="preserve">
     <value>Star Shell used</value>

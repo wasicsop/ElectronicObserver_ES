@@ -188,7 +188,9 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 艦隊防空\r\n単縦陣: {0:0.0} / 複縦陣: {1:0.0} / 輪形陣: {2:0.0}\r\n.
+        ///   Looks up a localized string similar to 艦隊防空
+        ///単縦陣: {0:0.0} / 複縦陣: {1:0.0} / 輪形陣: {2:0.0}
+        ///.
         /// </summary>
         public static string AntiAirPower {
             get {
@@ -1728,15 +1730,6 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} {1}\n火力: {2}/{3}\n雷装: {4}/{5}\n対空: {6}/{7}\n装甲: {8}/{9}\n対潜: {10}/{11}\n回避: {12}/{13}\n索敵: {14}/{15}\n運: {16}\n射程: {17} / 速力: {18}\n(右クリックで図鑑)\n.
-        /// </summary>
-        public static string ShipTooltip {
-            get {
-                return ResourceManager.GetString("ShipTooltip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 艦種.
         /// </summary>
         public static string ShipType {
@@ -1845,42 +1838,6 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 第1次: -{0}/{1}\r\n第2次: -{2}/{3}\r\n.
-        /// </summary>
-        public static string Stage2AATooltip {
-            get {
-                return ResourceManager.GetString("Stage2AATooltip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {0}触接中\r\n第1次: {1}\r\n第2次: {2}.
-        /// </summary>
-        public static string Stage2ContactTooltip {
-            get {
-                return ResourceManager.GetString("Stage2ContactTooltip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 第{0}次: {1}\r\nカットイン種別: {2} ({3})\r\n.
-        /// </summary>
-        public static string StageXAACI {
-            get {
-                return ResourceManager.GetString("StageXAACI", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 第{0}次: (発動せず)\r\n.
-        /// </summary>
-        public static string StageXAACIFail {
-            get {
-                return ResourceManager.GetString("StageXAACIFail", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 照明弾投射.
         /// </summary>
         public static string StarShellUsed {
@@ -1971,7 +1928,7 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 中破まで: {0} / 大破まで: {1}\n.
+        ///   Looks up a localized string similar to 中破まで: {0} / 大破まで: {1}.
         /// </summary>
         public static string ToMidAndHeavy {
             get {

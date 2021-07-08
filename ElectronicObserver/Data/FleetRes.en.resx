@@ -165,11 +165,6 @@ Baux: {2} ({3} planes)</value>
     <value>Lowest morale: {0}
 {1} effective expeditions remaining.</value>
   </data>
-  <data name="StartTime" xml:space="preserve">
-    <value>Start time : {0}
-Repair time :
-</value>
-  </data>
   <data name="SupplyNeeded" xml:space="preserve">
     <value>Resupply needed</value>
   </data>
