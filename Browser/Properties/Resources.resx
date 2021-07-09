@@ -279,4 +279,70 @@ if (node) document.getElementsByTagName('head')[0].removeChild(node);</value>
   <data name="ClearCacheTitle" xml:space="preserve">
     <value>ブラウザ再起動確認</value>
   </data>
+  <data name="ToolMenu_Other_ScreenShot" xml:space="preserve">
+    <value>スクリーンショット(&amp;S)</value>
+  </data>
+  <data name="ToolMenu_Other_LastScreenShot" xml:space="preserve">
+    <value>直前のスクリーンショット(&amp;P)</value>
+  </data>
+  <data name="ToolMenu_Other_LastScreenShot_OpenScreenShotFolder" xml:space="preserve">
+    <value>保存フォルダを開く(&amp;O)</value>
+  </data>
+  <data name="ToolMenu_Other_Volume" xml:space="preserve">
+    <value>音量(&amp;V)</value>
+  </data>
+  <data name="ToolMenu_Other_Mute" xml:space="preserve">
+    <value>ミュート(&amp;M)</value>
+  </data>
+  <data name="ToolMenu_Other_Refresh" xml:space="preserve">
+    <value>更新(&amp;R)</value>
+  </data>
+  <data name="ToolMenu_Other_NavigateToLogInPage" xml:space="preserve">
+    <value>ログインページへ移動(&amp;L)</value>
+  </data>
+  <data name="ToolMenu_Other_Navigate" xml:space="preserve">
+    <value>移動(&amp;N)...</value>
+  </data>
+  <data name="ToolMenu_Other_AppliesStyleSheet" xml:space="preserve">
+    <value>スタイルシートを適用する</value>
+  </data>
+  <data name="ToolMenu_Other_Alignment" xml:space="preserve">
+    <value>配置(&amp;A)</value>
+  </data>
+  <data name="NoScreenshotYet" xml:space="preserve">
+    <value>スクリーンショットをまだ撮影していません。</value>
+  </data>
+  <data name="InstallVisualCpp" xml:space="preserve">
+    <value>ブラウザのコンポーネントを読み込めませんでした。
+Microsoft Visual C++ 2019 Redistributableが必要です。
+ダウンロードページを開きますか？
+(vc_redist.x64.exeをインストールしてください)</value>
+  </data>
+  <data name="CefSharpLoadErrorTitle" xml:space="preserve">
+    <value>CefSharpロードエラー</value>
+  </data>
+  <data name="FailedToHideDmmRefreshDialog" xml:space="preserve">
+    <value>DMMによるページ更新ダイアログの非表示に失敗しました。</value>
+  </data>
+  <data name="KancolleNotLoadedCannotTakeScreenshot" xml:space="preserve">
+    <value>艦これが読み込まれていないため、スクリーンショットを撮ることはできません。</value>
+  </data>
+  <data name="ScreenshotSavedTo" xml:space="preserve">
+    <value>スクリーンショットを {0} に保存しました。</value>
+  </data>
+  <data name="FailedToSaveScreenshot" xml:space="preserve">
+    <value>スクリーンショットの保存に失敗しました。</value>
+  </data>
+  <data name="ScreenshotCopiedToClipboard" xml:space="preserve">
+    <value>スクリーンショットをクリップボードにコピーしました。</value>
+  </data>
+  <data name="FailedToCopyScreenshotToClipboard" xml:space="preserve">
+    <value>スクリーンショットのクリップボードへのコピーに失敗しました。</value>
+  </data>
+  <data name="LastScreenshotCopiedToClipboard" xml:space="preserve">
+    <value>スクリーンショット {0} をクリップボードにコピーしました。</value>
+  </data>
+  <data name="ToolMenu_Other_Zoom" xml:space="preserve">
+    <value>ズーム(&amp;Z)</value>
+  </data>
 </root>

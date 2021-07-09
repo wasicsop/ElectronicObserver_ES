@@ -23,6 +23,7 @@ using Browser.ExtraBrowser;
 using Browser.Properties;
 using Grpc.Core;
 using MagicOnion.Client;
+using Translation = Browser.Properties.Resources;
 
 namespace Browser
 {
@@ -175,7 +176,7 @@ namespace Browser
 				using (var g = Graphics.FromImage(control.Image))
 				{
 					g.Clear(SystemColors.Control);
-					g.DrawString("No screenshot yet.\r\n", Font, Brushes.Black, new Point(4, 4));
+					g.DrawString(Translation.NoScreenshotYet + "\r\n", Font, Brushes.Black, new Point(4, 4));
 				}
 
 				var toolStripControlHost = new ToolStripControlHost(control, "ToolMenu_Other_LastScreenShot_ImageHost")
@@ -191,8 +192,49 @@ namespace Browser
 
 				ToolMenu_Other_LastScreenShot.DropDownItems.Insert(0, toolStripControlHost);
 			}
+
+			Translate();
 		}
 
+		public void Translate()
+		{
+			ContextMenuTool_ShowToolMenu.Text = Translation.ShowToolMenu;
+			ToolMenu_ScreenShot.Text = Translation.Strip_ScreenShot;
+			ToolMenu_Zoom.Text = Translation.Strip_Zoom;
+			ToolMenu_Mute.Text = Translation.Strip_Mute;
+			ToolMenu_Refresh.Text = Translation.Strip_Refresh;
+			ToolMenu_NavigateToLogInPage.Text = Translation.NavigateToLogInPage;
+			ToolMenu_Other.Text = Translation.Other;
+
+			ToolMenu_Other_ScreenShot.Text = Translation.ToolMenu_Other_ScreenShot;
+			
+			ToolMenu_Other_LastScreenShot.Text = Translation.ToolMenu_Other_LastScreenShot;
+			ToolMenu_Other_LastScreenShot_OpenScreenShotFolder.Text = Translation.ToolMenu_Other_LastScreenShot_OpenScreenShotFolder;
+			ToolMenu_Other_LastScreenShot_CopyToClipboard.Text = Translation.LastScreenShot_CopyToClipboard;
+
+			ToolMenu_Other_Zoom.Text = Translation.ToolMenu_Other_Zoom;
+			ToolMenu_Other_Zoom_Current.Text = Translation.Other_Zoom_Current;
+			ToolMenu_Other_Zoom_Fit.Text = Translation.Zoom_to_Fit;
+
+			ToolMenu_Other_Volume.Text = Translation.ToolMenu_Other_Volume;
+			ToolMenu_Other_Mute.Text = Translation.ToolMenu_Other_Mute;
+			ToolMenu_Other_Refresh.Text = Translation.ToolMenu_Other_Refresh;
+			ToolMenu_Other_NavigateToLogInPage.Text = Translation.ToolMenu_Other_NavigateToLogInPage;
+			ToolMenu_Other_Navigate.Text = Translation.ToolMenu_Other_Navigate;
+			ToolMenu_Other_AppliesStyleSheet.Text = Translation.ToolMenu_Other_AppliesStyleSheet;
+
+			ToolMenu_Other_Alignment.Text = Translation.ToolMenu_Other_Alignment;
+			ToolMenu_Other_Alignment_Top.Text = Translation.Alignment_Top;
+			ToolMenu_Other_Alignment_Bottom.Text = Translation.Alignment_Bottom;
+			ToolMenu_Other_Alignment_Left.Text = Translation.Alignment_Left;
+			ToolMenu_Other_Alignment_Right.Text = Translation.Alignment_Right;
+			ToolMenu_Other_Alignment_Invisible.Text = Translation.Alignment_Invisible;
+
+			ToolMenu_Other_ClearCache.Text = $"{Translation.ClearCache}(&H)";
+			ToolMenu_Other_OpenDevTool.Text = Translation.OpenDevTool;
+
+			Text = Translation.Title;
+		}
 
 		private void FormBrowser_Load(object sender, EventArgs e)
 		{
@@ -256,12 +298,8 @@ namespace Browser
 			}
 			catch (BadImageFormatException e)
 			{
-				if (MessageBox.Show(
-					    @"The browser component could not be loaded.
-Microsoft Visual C++ 2019 Redistributable is required.
-Open the download page?
-(Please install vc_redist.x64.exe)",
-					    "CefSharp Load Error", MessageBoxButtons.YesNo, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1)
+				if (MessageBox.Show(Translation.InstallVisualCpp, Translation.CefSharpLoadErrorTitle, 
+					MessageBoxButtons.YesNo, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1)
 				    == DialogResult.Yes)
 				{
 					ProcessStartInfo psi = new ProcessStartInfo
@@ -569,7 +607,7 @@ Open the download page?
 			}
 			catch (Exception ex)
 			{
-				SendErrorReport(ex.ToString(), "Failed to hide DMM refresh dialog.");
+				SendErrorReport(ex.ToString(), Translation.FailedToHideDmmRefreshDialog);
 			}
 		}
 
@@ -679,7 +717,7 @@ Open the download page?
 			var kancolleFrame = GetKanColleFrame();
 			if (kancolleFrame == null)
 			{
-				AddLog(3, "KanColle is not loaded, unable to take screenshots.");
+				AddLog(3, Translation.KancolleNotLoadedCannotTakeScreenshot);
 				System.Media.SystemSounds.Beep.Play();
 				return null;
 			}
@@ -804,11 +842,11 @@ Open the download page?
 						image.Save(path, imgFormat);
 						_lastScreenShotPath = path;
 
-						AddLog(2, $"Screenshot saved to {path}.");
+						AddLog(2, string.Format(Translation.ScreenshotSavedTo, path));
 					}
 					catch (Exception ex)
 					{
-						SendErrorReport(ex.ToString(), "Failed to save screenshot.");
+						SendErrorReport(ex.ToString(), Translation.FailedToSaveScreenshot);
 					}
 				}
 
@@ -821,11 +859,11 @@ Open the download page?
 						Clipboard.SetImage(image);
 
 						if ((savemode & 3) != 3)
-							AddLog(2, "Screenshot copied to clipboard.");
+							AddLog(2, Translation.ScreenshotCopiedToClipboard);
 					}
 					catch (Exception ex)
 					{
-						SendErrorReport(ex.ToString(), "Failed to copy screenshot to clipboard.");
+						SendErrorReport(ex.ToString(), Translation.FailedToCopyScreenshotToClipboard);
 					}
 				}
 			}
@@ -1273,12 +1311,12 @@ Open the download page?
 					using (var img = new Bitmap(_lastScreenShotPath))
 					{
 						Clipboard.SetImage(img);
-						AddLog(2, string.Format("Screenshot {0} copied to clipboard.", _lastScreenShotPath));
+						AddLog(2, string.Format(Translation.LastScreenshotCopiedToClipboard, _lastScreenShotPath));
 					}
 				}
 				catch (Exception ex)
 				{
-					SendErrorReport(ex.Message, "Failed to copy screenshot to clipboard.");
+					SendErrorReport(ex.Message, Translation.FailedToCopyScreenshotToClipboard);
 				}
 			}
 		}

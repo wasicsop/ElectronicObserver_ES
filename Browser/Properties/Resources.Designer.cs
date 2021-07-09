@@ -106,6 +106,15 @@ namespace Browser.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to CefSharpロードエラー.
+        /// </summary>
+        internal static string CefSharpLoadErrorTitle {
+            get {
+                return ResourceManager.GetString("CefSharpLoadErrorTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to キャッシュを削除.
         /// </summary>
         internal static string ClearCache {
@@ -168,6 +177,33 @@ namespace Browser.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to スクリーンショットのクリップボードへのコピーに失敗しました。.
+        /// </summary>
+        internal static string FailedToCopyScreenshotToClipboard {
+            get {
+                return ResourceManager.GetString("FailedToCopyScreenshotToClipboard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DMMによるページ更新ダイアログの非表示に失敗しました。.
+        /// </summary>
+        internal static string FailedToHideDmmRefreshDialog {
+            get {
+                return ResourceManager.GetString("FailedToHideDmmRefreshDialog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to スクリーンショットの保存に失敗しました。.
+        /// </summary>
+        internal static string FailedToSaveScreenshot {
+            get {
+                return ResourceManager.GetString("FailedToSaveScreenshot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 
         ///try {{
         ///var node = document.getElementById(&apos;{0}&apos;);
@@ -187,11 +223,41 @@ namespace Browser.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ブラウザのコンポーネントを読み込めませんでした。
+        ///Microsoft Visual C++ 2019 Redistributableが必要です。
+        ///ダウンロードページを開きますか？
+        ///(vc_redist.x64.exeをインストールしてください).
+        /// </summary>
+        internal static string InstallVisualCpp {
+            get {
+                return ResourceManager.GetString("InstallVisualCpp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 艦これが読み込まれていないため、スクリーンショットを撮ることはできません。.
+        /// </summary>
+        internal static string KancolleNotLoadedCannotTakeScreenshot {
+            get {
+                return ResourceManager.GetString("KancolleNotLoadedCannotTakeScreenshot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to クリップボードにコピー(&amp;C).
         /// </summary>
         internal static string LastScreenShot_CopyToClipboard {
             get {
                 return ResourceManager.GetString("LastScreenShot_CopyToClipboard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to スクリーンショット {0} をクリップボードにコピーしました。.
+        /// </summary>
+        internal static string LastScreenshotCopiedToClipboard {
+            get {
+                return ResourceManager.GetString("LastScreenshotCopiedToClipboard", resourceCulture);
             }
         }
         
@@ -211,6 +277,15 @@ namespace Browser.Properties {
         internal static string NavigateToLogInPage {
             get {
                 return ResourceManager.GetString("NavigateToLogInPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to スクリーンショットをまだ撮影していません。.
+        /// </summary>
+        internal static string NoScreenshotYet {
+            get {
+                return ResourceManager.GetString("NoScreenshotYet", resourceCulture);
             }
         }
         
@@ -388,11 +463,29 @@ namespace Browser.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to スクリーンショットをクリップボードにコピーしました。.
+        /// </summary>
+        internal static string ScreenshotCopiedToClipboard {
+            get {
+                return ResourceManager.GetString("ScreenshotCopiedToClipboard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to スクリーンショットの撮影に失敗しました。.
         /// </summary>
         internal static string ScreenshotError {
             get {
                 return ResourceManager.GetString("ScreenshotError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to スクリーンショットを {0} に保存しました。.
+        /// </summary>
+        internal static string ScreenshotSavedTo {
+            get {
+                return ResourceManager.GetString("ScreenshotSavedTo", resourceCulture);
             }
         }
         
@@ -447,6 +540,105 @@ namespace Browser.Properties {
         internal static string Title {
             get {
                 return ResourceManager.GetString("Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 配置(&amp;A).
+        /// </summary>
+        internal static string ToolMenu_Other_Alignment {
+            get {
+                return ResourceManager.GetString("ToolMenu_Other_Alignment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to スタイルシートを適用する.
+        /// </summary>
+        internal static string ToolMenu_Other_AppliesStyleSheet {
+            get {
+                return ResourceManager.GetString("ToolMenu_Other_AppliesStyleSheet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 直前のスクリーンショット(&amp;P).
+        /// </summary>
+        internal static string ToolMenu_Other_LastScreenShot {
+            get {
+                return ResourceManager.GetString("ToolMenu_Other_LastScreenShot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 保存フォルダを開く(&amp;O).
+        /// </summary>
+        internal static string ToolMenu_Other_LastScreenShot_OpenScreenShotFolder {
+            get {
+                return ResourceManager.GetString("ToolMenu_Other_LastScreenShot_OpenScreenShotFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ミュート(&amp;M).
+        /// </summary>
+        internal static string ToolMenu_Other_Mute {
+            get {
+                return ResourceManager.GetString("ToolMenu_Other_Mute", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 移動(&amp;N)....
+        /// </summary>
+        internal static string ToolMenu_Other_Navigate {
+            get {
+                return ResourceManager.GetString("ToolMenu_Other_Navigate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ログインページへ移動(&amp;L).
+        /// </summary>
+        internal static string ToolMenu_Other_NavigateToLogInPage {
+            get {
+                return ResourceManager.GetString("ToolMenu_Other_NavigateToLogInPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 更新(&amp;R).
+        /// </summary>
+        internal static string ToolMenu_Other_Refresh {
+            get {
+                return ResourceManager.GetString("ToolMenu_Other_Refresh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to スクリーンショット(&amp;S).
+        /// </summary>
+        internal static string ToolMenu_Other_ScreenShot {
+            get {
+                return ResourceManager.GetString("ToolMenu_Other_ScreenShot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 音量(&amp;V).
+        /// </summary>
+        internal static string ToolMenu_Other_Volume {
+            get {
+                return ResourceManager.GetString("ToolMenu_Other_Volume", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ズーム(&amp;Z).
+        /// </summary>
+        internal static string ToolMenu_Other_Zoom {
+            get {
+                return ResourceManager.GetString("ToolMenu_Other_Zoom", resourceCulture);
             }
         }
         
