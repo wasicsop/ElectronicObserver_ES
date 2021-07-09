@@ -1,6 +1,8 @@
 ﻿using System;
+using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
@@ -11,15 +13,33 @@ using System.Security.Cryptography;
 
 namespace EOUpdater
 {
+	enum Language
+	{
+		Japanese,
+		English
+	}
+
 	internal class Program
 	{
 		private static readonly string AppDataFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"ElectronicObserver");
 		private const string UpdateUrl = @"https://raw.githubusercontent.com/gre4bee/ryuukitsune.github.io/master/Translations/en-US/update.json";
 
-
+		private static Language Language { get; set; }
 
 		private static void Main(string[] args)
 		{
+			Language = CultureInfo.CurrentCulture.Name switch
+			{
+				"ja-JP" => Language.Japanese,
+				_ => Language.English
+			};
+
+			Console.Title = Language switch
+			{
+				Language.Japanese => "七四式アップデータ",
+				_ => "EO updater"
+			};
+
 			var wait = true;
 			var restart = false;
 
@@ -54,12 +74,22 @@ namespace EOUpdater
 				{
 					foreach (var process in Process.GetProcessesByName("ElectronicObserver"))
 					{
-						Console.WriteLine("Close Electronic Observer to start the updating process.");
+						string s = Language switch
+						{
+							Language.Japanese => "七四式を閉じると、アップデート処理が開始されます。",
+							_ => "Close Electronic Observer to start the updating process."
+						};
+						Console.WriteLine(s);
 						process.WaitForExit();
 					}
 					foreach (var process in Process.GetProcessesByName("EOBrowser"))
 					{
-						Console.WriteLine("Close EOBrowser to start the updating process.");
+						string s = Language switch
+						{
+							Language.Japanese => "EOBrowserを閉じて、アップデート作業を開始します。",
+							_ => "Close EOBrowser to start the updating process."
+						};
+						Console.WriteLine(s);
 						process.WaitForExit();
 					}
 				}
@@ -79,7 +109,12 @@ namespace EOUpdater
 				return;
 			}
 
-			Console.WriteLine("Update complete. You can close this window.");
+			string st = Language switch
+			{
+				Language.Japanese => "アップデートが完了しました。このウィンドウを閉じることができます。",
+				_ => "Update complete. You can close this window."
+			};
+			Console.WriteLine(st);
 			Console.ReadKey();
 		}
 
@@ -109,7 +144,12 @@ namespace EOUpdater
 			var localPath = new Uri(extractPath).LocalPath;
 			using (var archive = ZipFile.Open(zipPath, ZipArchiveMode.Read))
 			{
-				Console.WriteLine("Start extracting...");
+				string s = Language switch
+				{
+					Language.Japanese => "抽出開始...",
+					_ => "Start extracting..."
+				};
+				Console.WriteLine(s);
 				foreach (var file in archive.Entries)
 				{
 					var fullname = file.FullName.Replace(@"ElectronicObserver/", "");
@@ -130,7 +170,12 @@ namespace EOUpdater
 						Console.WriteLine($"Couldn't update {fullname}");
 					}
 				}
-				Console.WriteLine("Extracting finished.");
+				s = Language switch
+				{
+					Language.Japanese => "抽出終了。",
+					_ => "Extracting finished."
+				};
+				Console.WriteLine(s);
 			}
 		}
 
@@ -158,12 +203,22 @@ namespace EOUpdater
 				DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(Rootobject));
 				Rootobject json = (Rootobject)serializer.ReadObject(updateData);
 
-				Console.WriteLine("== Update Data==");
+				string s = Language switch
+				{
+					Language.Japanese => "== 更新のデータ ==",
+					_ => "== Update Data =="
+				};
+				Console.WriteLine(s);
 				Console.WriteLine(json.bld_date);
 				Console.WriteLine(json.ver);
 				Console.WriteLine(json.note.Replace("<br>", "\r\n"));
 				Console.WriteLine(json.url);
-				Console.WriteLine("Hash: " + json.hash);
+				s = Language switch
+				{
+					Language.Japanese => "ハッシュ",
+					_ => "Hash"
+				};
+				Console.WriteLine($"{s}: {json.hash}");
 				Console.WriteLine("==========\r\n");
 
 				downloadUrl = json.url;
@@ -177,8 +232,20 @@ namespace EOUpdater
 		{
 			if (!File.Exists(tempFile) || GetHash(tempFile) != downloadHash)
 				DownloadUpdate(downloadUrl, tempFile);
-			Console.WriteLine("File: latest.zip SHA-256: " + GetHash(tempFile));
-			Console.WriteLine("Download complete.\r\n");
+
+			string s = Language switch
+			{
+				Language.Japanese => "ファイル",
+				_ => "File"
+			};
+			Console.WriteLine($"{s}: latest.zip SHA-256: {GetHash(tempFile)}");
+
+			s = Language switch
+			{
+				Language.Japanese => "ダウンロード完了。",
+				_ => "Download complete."
+			};
+			Console.WriteLine($"{s}\r\n");
 		}
 
 		private static void DownloadUpdate(string url, string tempFile)
@@ -188,7 +255,12 @@ namespace EOUpdater
 				using (var client = new WebClient())
 				{
 					ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-					Console.WriteLine("Downloading update...");
+					string s = Language switch
+					{
+						Language.Japanese => "アップデートをダウンロード中...",
+						_ => "Downloading update..."
+					};
+					Console.WriteLine(s);
 					client.DownloadFile(url, tempFile);
 				}
 			}
