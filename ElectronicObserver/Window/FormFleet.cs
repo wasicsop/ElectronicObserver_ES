@@ -972,7 +972,7 @@ namespace ElectronicObserver.Window
 			ContextMenuFleet_Capture.Text = Translation.ContextMenuFleet_Capture;
 			ContextMenuFleet_OutputFleetImage.Text = Translation.ContextMenuFleet_OutputFleetImage;
 
-			Text = Translation.Title;
+			// Text = Translation.Title;
 		}
 
 		private void FormFleet_Load(object sender, EventArgs e)
