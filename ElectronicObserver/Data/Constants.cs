@@ -28,9 +28,9 @@ namespace ElectronicObserver.Data
                 case 10:
                     return ConstantsRes.Fast;
                 case 15:
-                    return "Fast+";
+                    return ConstantsRes.FastPlus;
                 case 20:
-                    return "Fastest";
+                    return ConstantsRes.Fastest;
                 default:
                     return ConstantsRes.Unknown;
             }
@@ -112,7 +112,7 @@ namespace ElectronicObserver.Data
                 case 6:
                     return ConstantsRes.SSHoloPlus;
                 case 7:
-                    return "SS++";
+                    return ConstantsRes.SSPlusPlus;
                 default:
                     return ConstantsRes.Unknown;
             }
@@ -422,15 +422,15 @@ namespace ElectronicObserver.Data
                 case 0:
                     return ConstantsRes.StartNode;
                 case 1:
-                    return "No Event";
+                    return ConstantsRes.NoEvent;
                 case 2:
-                    return "Resources";
+                    return ConstantsRes.Resources;
                 case 3:
                     return ConstantsRes.Maelstrom;
                 case 4:
-                    return "Battle";
+                    return ConstantsRes.Battle;
                 case 5:
-                    return "Boss";
+                    return ConstantsRes.Boss;
                 case 6:
                     return ConstantsRes.Imagination;
                 case 7:
@@ -440,7 +440,7 @@ namespace ElectronicObserver.Data
                 case 9:
                     return ConstantsRes.LandNode;
                 case 10:
-                    return "Anchorage"; // todo add to res
+					return ConstantsRes.Anchorage; // todo add to res
                 default:
                     return ConstantsRes.Unknown;
             }
@@ -471,7 +471,7 @@ namespace ElectronicObserver.Data
                 case 7:
                     return ConstantsRes.NightDayBattle;       // 対連合
                 case 8:
-                    return "Radar";
+                    return ConstantsRes.RadarAmbush;
                 default:
                     return ConstantsRes.Unknown;
             }
@@ -491,35 +491,13 @@ namespace ElectronicObserver.Data
                 case 0:
                     return ConstantsRes.Unselected;
                 case 1:
-                    return "Casual";
+                    return ConstantsRes.CasualDifficulty;
                 case 2:
-                    return "Easy";
+                    return ConstantsRes.EasyDifficulty;
                 case 3:
-                    return "Medium";
+                    return ConstantsRes.MediumDifficulty;
                 case 4:
-                    return "Hard";
-                default:
-                    return ConstantsRes.Unknown;
-            }
-        }
-
-        public static string GetDifficultyJP(int value)
-        {
-
-            switch (value)
-            {
-                case -1:
-                    return ConstantsRes.NoNode;
-                case 0:
-                    return ConstantsRes.Unselected;
-                case 1:
-                    return "丁";
-                case 2:
-                    return "丙";
-                case 3:
-                    return "乙";
-                case 4:
-                    return "甲";
+                    return ConstantsRes.HardDifficulty;
                 default:
                     return ConstantsRes.Unknown;
             }
@@ -551,7 +529,6 @@ namespace ElectronicObserver.Data
                 default:
                     return -1;
             }
-
         }
 
         /// <summary>
@@ -562,15 +539,15 @@ namespace ElectronicObserver.Data
             switch (value)
             {
                 case 1:
-                    return "Resources damaged";
+                    return ConstantsRes.ABResourcesDamaged;
                 case 2:
-                    return "Resources and air squadron damaged";
+                    return ConstantsRes.ABResources_AndPlanesDamaged;
                 case 3:
-                    return "Air squadron damaged";
+                    return ConstantsRes.ABPlanesDamaged;
                 case 4:
-                    return "No damage";
+                    return ConstantsRes.ABNoDamage;
                 default:
-                    return "No air raid";
+					return ConstantsRes.ABNoAirRaid;
             }
         }
 
@@ -582,13 +559,13 @@ namespace ElectronicObserver.Data
             switch (value)
             {
                 case 1:
-                    return "Resources damaged";
+                    return ConstantsRes.ABShortResources;
                 case 2:
-                    return "Base and resources";
+                    return ConstantsRes.ABShortResourcesPlanes;
                 case 3:
-                    return "Base damaged";
+                    return ConstantsRes.ABShortPlanes;
                 case 4:
-                    return "No damage";
+                    return ConstantsRes.ABShortNoDamage;
                 default:
                     return "-";
             }
@@ -618,7 +595,7 @@ namespace ElectronicObserver.Data
                 case 5:
                     return ConstantsRes.LineAbreast;
                 case 6:
-                    return "Vanguard";
+                    return ConstantsRes.Vanguard;
                 case 11:
                     return ConstantsRes.FirstPatrolFormation;
                 case 12:
@@ -682,27 +659,27 @@ namespace ElectronicObserver.Data
             switch (id)
             {
                 case 1:
-                    return "LA";
+                    return ConstantsRes.LineAheadShort;
                 case 2:
-                    return "DL";
+                    return ConstantsRes.DoubleLineShort;
                 case 3:
-                    return "Rin";
+                    return ConstantsRes.DiamondShort;
                 case 4:
-                    return "Ech";
+                    return ConstantsRes.EchelonShort;
                 case 5:
-                    return "LAb";
+                    return ConstantsRes.LineAbreastShort;
                 case 6:
-                    return "Van";
+                    return ConstantsRes.VanguardShort;
                 case 11:
-                    return "ASW";
+                    return ConstantsRes.FirstPatrolFormationShort;
                 case 12:
-                    return "For";
+                    return ConstantsRes.SecondPatrolFormationShort;
                 case 13:
-                    return "Rin";
+                    return ConstantsRes.ThirdPatrolFormationShort;
                 case 14:
-                    return "Btl";
+                    return ConstantsRes.FirstPatrolFormationShort;
                 default:
-                    return "Unk";
+                    return ConstantsRes.Unknown;
             }
         }
 
@@ -718,9 +695,9 @@ namespace ElectronicObserver.Data
                 case 2:
                     return ConstantsRes.HeadOn;
                 case 3:
-                    return "Green T";
+                    return ConstantsRes.GreenT;
                 case 4:
-                    return "Red T";
+                    return ConstantsRes.RedT;
                 default:
                     return ConstantsRes.Unknown;
             }
@@ -826,55 +803,55 @@ namespace ElectronicObserver.Data
             switch (id)
             {
                 case DayAttackKind.NormalAttack:
-                    return "Normal Attack";
+                    return ConstantsRes.NormalAttack;
                 case DayAttackKind.Laser:
-                    return "Laser Attack";
+                    return ConstantsRes.LaserAttack;
                 case DayAttackKind.DoubleShelling:
-                    return "DA";
+                    return ConstantsRes.DoubleAttack;
                 case DayAttackKind.CutinMainSub:
-                    return "CI (MG+SG)";
+                    return ConstantsRes.CutinMainSub;
                 case DayAttackKind.CutinMainRadar:
-                    return "CI (MG+Radar)";
+                    return ConstantsRes.CutinMainRadar;
                 case DayAttackKind.CutinMainAP:
-                    return "CI (MG+AP)";
+                    return ConstantsRes.CutinMainAP;
                 case DayAttackKind.CutinMainMain:
-                    return "CI (MG+MG)";
+                    return ConstantsRes.CutinMainMain;
                 case DayAttackKind.CutinAirAttack:
-                    return "CI (Carrier)";
+                    return ConstantsRes.CutinAirAttack;
                 case DayAttackKind.SpecialNelson:
-                    return "Nelson Touch";
+                    return ConstantsRes.SpecialNelson;
                 case DayAttackKind.SpecialNagato:
-                    return "Nagato Touch";
+                    return ConstantsRes.SpecialNagato;
                 case DayAttackKind.SpecialMutsu:
-                    return "Mutsu Touch";
+                    return ConstantsRes.SpecialMutsu;
                 case DayAttackKind.SpecialColorado:
-                    return "Colorado Touch";
+                    return ConstantsRes.SpecialColorado;
                 case DayAttackKind.SpecialKongo:
-                    return "Kongou Touch";
+                    return ConstantsRes.SpecialKongou;
                 case DayAttackKind.ZuiunMultiAngle:
-                    return "CI (Zuiun)";
+                    return ConstantsRes.ZuiunMultiAngle;
                 case DayAttackKind.SeaAirMultiAngle:
-                    return "CI (Suisei)";
+                    return ConstantsRes.SeaAirMultiAngle;
                 case DayAttackKind.Shelling:
-                    return "Shelling";
+                    return ConstantsRes.Shelling;
                 case DayAttackKind.AirAttack:
-                    return "Air Attack";
+                    return ConstantsRes.AirAttack;
                 case DayAttackKind.DepthCharge:
-                    return "Depth Charge";
+                    return ConstantsRes.DepthChargeAttack;
                 case DayAttackKind.Torpedo:
-                    return "Torpedo";
+                    return ConstantsRes.TorpedoAttack;
                 case DayAttackKind.Rocket:
-                    return "Rocket Artillery";
+                    return ConstantsRes.RocketAttack;
                 case DayAttackKind.LandingDaihatsu:
-                    return "Amphibious Attack (Daihatsu)";
+                    return ConstantsRes.LandingDaihatsu;
                 case DayAttackKind.LandingTokuDaihatsu:
-                    return "Amphibious Attack(Toku Daihatsu)";
+                    return ConstantsRes.LandingTokuDaihatsu;
                 case DayAttackKind.LandingDaihatsuTank:
-                    return "Amphibious Attack(Daihatsu+Tank)";
+                    return ConstantsRes.LandingDaihatsuTank;
                 case DayAttackKind.LandingAmphibious:
                     return ConstantsRes.TankAttack;
                 case DayAttackKind.LandingTokuDaihatsuTank:
-                    return "Amphibious Attack(Toku Daihatsu+Tank)";
+                    return ConstantsRes.LandingTokuDaihatsuTank;
                 default:
                     return $"{ConstantsRes.Unknown}({(int)id})";
             }
@@ -889,25 +866,25 @@ namespace ElectronicObserver.Data
             switch (id)
             {
                 case NightAttackKind.NormalAttack:
-                    return "Shelling";
+                    return ConstantsRes.NormalAttack;
                 case NightAttackKind.DoubleShelling:
-                    return "DA";
+                    return ConstantsRes.DoubleShelling;
                 case NightAttackKind.CutinMainTorpedo:
-                    return "CI (MG+Torp)";
+                    return ConstantsRes.CutinMainTorpedo;
                 case NightAttackKind.CutinTorpedoTorpedo:
-                    return "CI (Torp×2)";
+                    return ConstantsRes.CutinTorpedoTorpedo;
                 case NightAttackKind.CutinMainSub:
-                    return "CI (MG×2+SG)";
+                    return ConstantsRes.CutinNightMainSub;
                 case NightAttackKind.CutinMainMain:
-                    return "CI (MG×3)";
+                    return ConstantsRes.CutinNightMainMain;
                 case NightAttackKind.CutinAirAttack:
-                    return "CI (Carrier)";
+                    return ConstantsRes.CutinAirAttack;
                 case NightAttackKind.CutinTorpedoRadar:
                 case NightAttackKind.CutinTorpedoRadar2:
-                    return "DD CI (MG+Torp+Radar)";
+                    return ConstantsRes.CutinTorpedoRadar;
                 case NightAttackKind.CutinTorpedoPicket:
                 case NightAttackKind.CutinTorpedoPicket2:
-                    return "DD CI (Torp+Lookout+Radar)";
+                    return ConstantsRes.CutinTorpedoPicket;
                 case NightAttackKind.CutinTorpedoDestroyerPicket:
                 case NightAttackKind.CutinTorpedoDestroyerPicket2:
                     return ConstantsRes.CutinTorpedoDestroyerPicket;
@@ -915,18 +892,17 @@ namespace ElectronicObserver.Data
                 case NightAttackKind.CutinTorpedoDrum2:
                     return ConstantsRes.CutinTorpedoDrum;
                 case NightAttackKind.SpecialNelson:
-                    return "Nelson Touch";
+                    return ConstantsRes.SpecialNelson;
                 case NightAttackKind.SpecialNagato:
-                    return "Nagato Touch";
+                    return ConstantsRes.SpecialNagato;
                 case NightAttackKind.SpecialMutsu:
                     return ConstantsRes.SpecialMutsu;
                 case NightAttackKind.SpecialColorado:
-                    return "Colorado Touch";
+                    return ConstantsRes.SpecialColorado;
                 case NightAttackKind.SpecialKongo:
                     return ConstantsRes.SpecialKongou;
-
                 case NightAttackKind.Shelling:
-                    return "Shelling";
+                    return ConstantsRes.Shelling;
                 case NightAttackKind.AirAttack:
                     return ConstantsRes.AirAttack;
                 case NightAttackKind.DepthCharge:
@@ -938,13 +914,13 @@ namespace ElectronicObserver.Data
                 case NightAttackKind.LandingDaihatsu:
                     return ConstantsRes.DaihatsuAttack;
                 case NightAttackKind.LandingTokuDaihatsu:
-                    return "Amphibious Attack (Toku Daihatsu)";
+                    return ConstantsRes.LandingTokuDaihatsu;
                 case NightAttackKind.LandingDaihatsuTank:
-                    return "Amphibious Attack (Daihatsu+Tank)";
+                    return ConstantsRes.LandingDaihatsuTank;
                 case NightAttackKind.LandingAmphibious:
                     return ConstantsRes.TankAttack;
                 case NightAttackKind.LandingTokuDaihatsuTank:
-                    return "Amphibious Attack (Toku Daihatsu+Tank)";
+                    return ConstantsRes.LandingTokuDaihatsuTank;
                 default:
                     return $"{ConstantsRes.Unknown}({(int)id})";
             }
@@ -961,11 +937,11 @@ namespace ElectronicObserver.Data
                 case 0:
                     return ConstantsRes.NoNode;
                 case 1:
-                    return ConstantsRes.HA2 + "/" + ConstantsRes.Radar + " (Akizuki)";
+                    return ConstantsRes.HA2 + "/" + ConstantsRes.Radar + ConstantsRes.Akizuki;
                 case 2:
-                    return ConstantsRes.HAGun + "/" + ConstantsRes.Radar + " (Akizuki)";
+                    return ConstantsRes.HAGun + "/" + ConstantsRes.Radar + ConstantsRes.Akizuki;
                 case 3:
-                    return ConstantsRes.HA2 + " (Akizuki)";
+                    return ConstantsRes.HA2 + ConstantsRes.Akizuki;
                 case 4:
                     return ConstantsRes.BigGun + "/" + ConstantsRes.Type3 + "/" + ConstantsRes.AADirector + "/" + ConstantsRes.Radar;
                 case 5:
@@ -979,63 +955,63 @@ namespace ElectronicObserver.Data
                 case 9:
                     return ConstantsRes.HAGun + "/" + ConstantsRes.AADirector;
                 case 10:
-                    return ConstantsRes.HAGun + "/" + ConstantsRes.AAGun + "/" + ConstantsRes.Radar + " (Maya)";
+                    return ConstantsRes.HAGun + "/" + ConstantsRes.AAGun + "/" + ConstantsRes.Radar + ConstantsRes.Maya;
                 case 11:
-                    return ConstantsRes.HAGun + "/" + ConstantsRes.AAGun + " (Maya)";
+                    return ConstantsRes.HAGun + "/" + ConstantsRes.AAGun + ConstantsRes.Maya;
                 case 12:
                     return ConstantsRes.AAGun + "/" + ConstantsRes.AAGun + ConstantsRes.Radar;
                 case 14:
-                    return ConstantsRes.HAGun + "/" + ConstantsRes.AAGun + "/" + ConstantsRes.Radar + " (Isuzu)";
+                    return ConstantsRes.HAGun + "/" + ConstantsRes.AAGun + "/" + ConstantsRes.Radar + ConstantsRes.Isuzu;
                 case 15:
-                    return ConstantsRes.HAGun + "/" + ConstantsRes.AAGun + " (Isuzu)";
+                    return ConstantsRes.HAGun + "/" + ConstantsRes.AAGun + ConstantsRes.Isuzu;
                 case 16:
-                    return ConstantsRes.HAGun + "/" + ConstantsRes.AAGun + "/" + ConstantsRes.Radar + " (Kasumi)";
+                    return ConstantsRes.HAGun + "/" + ConstantsRes.AAGun + "/" + ConstantsRes.Radar + ConstantsRes.Kasumi;
                 case 17:
-                    return ConstantsRes.HAGun + "/" + ConstantsRes.AAGun + " (Kasumi)";
+                    return ConstantsRes.HAGun + "/" + ConstantsRes.AAGun + ConstantsRes.Kasumi;
                 case 18:
-                    return ConstantsRes.AAGun + " (Satsuki)";
+                    return ConstantsRes.AAGun + ConstantsRes.Satsuki;
                 case 19:
-                    return ConstantsRes.HAGun + " (Non-piercing)/" + ConstantsRes.AAGun + " (Kinu)";
+                    return ConstantsRes.HAGun + ConstantsRes.NonPiercing + ConstantsRes.AAGun + ConstantsRes.Kinu;
                 case 20:
-                    return ConstantsRes.AAGun + " (Kinu)";
+                    return ConstantsRes.AAGun + ConstantsRes.Kinu;
                 case 21:
-                    return ConstantsRes.HAGun + "/" + ConstantsRes.Radar + " (Yura)";
+                    return ConstantsRes.HAGun + "/" + ConstantsRes.Radar + ConstantsRes.Yura;
                 case 22:
-                    return ConstantsRes.AAGun + " (Fumizuki)";
+                    return ConstantsRes.AAGun + ConstantsRes.Fumizuki;
                 case 23:
-                    return ConstantsRes.AAGun + " (Unconcentrated) (UIT-25)";
+                    return ConstantsRes.AAGun + ConstantsRes.Unconcentrated + ConstantsRes.UIT25;
                 case 24:
-                    return ConstantsRes.HAGun + "/" + ConstantsRes.AAGun + " (Unconcentrated) (Tatsuta)";
+                    return ConstantsRes.HAGun + "/" + ConstantsRes.AAGun + ConstantsRes.Unconcentrated + ConstantsRes.Tatsuta;
                 case 25:
-                    return "Rocket Launcher Kai Ni/" + ConstantsRes.Radar + "/" + ConstantsRes.Type3 + " (Ise)";
+                    return ConstantsRes.RosaK2 + "/" + ConstantsRes.Radar + "/" + ConstantsRes.Type3 + ConstantsRes.Ise;
                 case 26:
-                    return ConstantsRes.HAAAD + "/" + ConstantsRes.Radar + " (Musashi)";
+                    return ConstantsRes.HAAAD + "/" + ConstantsRes.Radar + ConstantsRes.Musashi;
                 case 28:
-                    return "Rocket Launcher Kai Ni/" + ConstantsRes.Radar + " (Ise)";
+                    return ConstantsRes.RosaK2 + "/" + ConstantsRes.Radar + ConstantsRes.Ise;
                 case 29:
-                    return ConstantsRes.HAGun + "/" + ConstantsRes.Radar + " (Hamakaze)";
+                    return ConstantsRes.HAGun + "/" + ConstantsRes.Radar + ConstantsRes.Hamakaze;
                 case 30:
-                    return ConstantsRes.HAGun + " x3 (Tenryuu)";
+                    return ConstantsRes.HAGun + " x3" + ConstantsRes.Tenryuu;
                 case 31:
-                    return ConstantsRes.HAGun + " x2 (Tenryuu)";
+                    return ConstantsRes.HAGun + " x2" + ConstantsRes.Tenryuu;
                 case 32:
-                    return "Rocket Launcher x2 or FCR/Pom-pom Gun or Rocket Launcher/Pom-pom Gun (UK)";
+                    return ConstantsRes.BriishAACI;
                 case 33:
-                    return ConstantsRes.HAGun + "/" + ConstantsRes.AAGun + " (Unconcentrated) (Gotland)";
+                    return ConstantsRes.HAGun + "/" + ConstantsRes.AAGun + ConstantsRes.Unconcentrated +"<Gotland>";
                 case 34:
-                    return "5inch Single Gun Mk.30 Kai + GFCS x2 (Johnston)";
+                    return ConstantsRes.FletcherGun + "+GFCS x2<Johnston>";
                 case 35:
-                    return "5inch Single Gun Mk.30 Kai x2 or + GFCS (Johnston)";
+                    return ConstantsRes.FletcherGun + "+GFCS/" + ConstantsRes.FletcherGun + "<Johnston>";
                 case 36:
-                    return "5inch Single Gun Mk.30 Kai x2/GFCS (Johnston)";
+                    return ConstantsRes.FletcherGun + "/GFCS<Johnston>";
                 case 37:
-                    return "5inch Single Gun Mk.30 Kai x2 (Johnston)";
+                    return ConstantsRes.FletcherGun + "<Johnston>";
                 case 39:
-                    return "Atlanta Gun + GFCS/Atlanta Gun<Atlanta>";
+                    return ConstantsRes.AtlantaGun + "+GFCS/" + ConstantsRes.AtlantaGun + "<Atlanta>";
                 case 40:
-                    return "Atlanta Gun x2/GFCS<Atlanta>";
+                    return ConstantsRes.AtlantaGun + "x2/GFCS<Atlanta>";
                 case 41:
-                    return "Atlanta Gun x2<Atlanta>";
+                    return ConstantsRes.AtlantaGun + "x2<Atlanta>";
                 default:
                     return $"{ConstantsRes.Unknown}({(int)id})";
             }
@@ -1171,22 +1147,22 @@ namespace ElectronicObserver.Data
 	        1 => ConstantsRes.Daily, //デイリー
 	        2 => ConstantsRes.Weekly, //ウィークリー
 	        3 => ConstantsRes.Monthly, //マンスリー
-	        4 => "1", //単発
+	        4 => ConstantsRes.QuestOneTime, //単発
 	        5 => ConstantsRes.QuestOther, //その他(輸送5/空母3)
 
 	        // 以下、厳密には LabelType だが面倒なので
-	        101 => "Y1",
-	        102 => "Y2",
-	        103 => "Y3",
-	        104 => "Y4",
-	        105 => "Y5",
-	        106 => "Y6",
-	        107 => "Y7",
-	        108 => "Y8",
-	        109 => "Y9",
-	        110 => "Y10",
-	        111 => "Y11",
-	        112 => "Y12",
+	        101 => ConstantsRes.QuestYearly + "1",
+	        102 => ConstantsRes.QuestYearly + "2",
+	        103 => ConstantsRes.QuestYearly + "3",
+	        104 => ConstantsRes.QuestYearly + "4",
+	        105 => ConstantsRes.QuestYearly + "5",
+	        106 => ConstantsRes.QuestYearly + "6",
+	        107 => ConstantsRes.QuestYearly + "7",
+	        108 => ConstantsRes.QuestYearly + "8",
+	        109 => ConstantsRes.QuestYearly + "9",
+	        110 => ConstantsRes.QuestYearly + "10",
+	        111 => ConstantsRes.QuestYearly + "11",
+	        112 => ConstantsRes.QuestYearly + "12",
 
 	        _ => ConstantsRes.Question
         };
@@ -1196,39 +1172,39 @@ namespace ElectronicObserver.Data
 			switch (id)
 			{
 				case 1:
-					return "Once";
+					return ConstantsRes.QuestOneTime;
 				case 2: 
-					return "Daily";
+					return ConstantsRes.Daily;
 				case 3: 
-					return "Weekly";
+					return ConstantsRes.Weekly;
 				case 6:
-					return "Monthly";
+					return ConstantsRes.Monthly;
 				case 7:
-					return "Others";
+					return ConstantsRes.QuestOther;
 				case 101:
-					return "Yearly (January Reset)";
+					return ConstantsRes.QuestYearly + ConstantsRes.January + ConstantsRes.Reset;
 				case 102:
-					return "Yearly (February Reset)";
+					return ConstantsRes.QuestYearly + ConstantsRes.February + ConstantsRes.Reset;
 				case 103:
-					return "Yearly (March Reset)";
+					return ConstantsRes.QuestYearly + ConstantsRes.March + ConstantsRes.Reset;
 				case 104:
-					return "Yearly (April Reset)";
+					return ConstantsRes.QuestYearly + ConstantsRes.April + ConstantsRes.Reset;
 				case 105:
-					return "Yearly (May Reset)";
+					return ConstantsRes.QuestYearly + ConstantsRes.May + ConstantsRes.Reset;
 				case 106:
-					return "Yearly (June Reset)";
+					return ConstantsRes.QuestYearly + ConstantsRes.June + ConstantsRes.Reset;
 				case 107:
-					return "Yearly (July Reset)";
+					return ConstantsRes.QuestYearly + ConstantsRes.July + ConstantsRes.Reset;
 				case 108:
-					return "Yearly (August Reset)";
+					return ConstantsRes.QuestYearly + ConstantsRes.August + ConstantsRes.Reset;
 				case 109:
-					return "Yearly (September Reset)";
+					return ConstantsRes.QuestYearly + ConstantsRes.September + ConstantsRes.Reset;
 				case 110:
-					return "Yearly (October Reset)";
+					return ConstantsRes.QuestYearly + ConstantsRes.October + ConstantsRes.Reset;
 				case 111:
-					return "Yearly (November Reset)";
+					return ConstantsRes.QuestYearly + ConstantsRes.November + ConstantsRes.Reset;
 				case 112:
-					return "Yearly (December Reset)";
+					return ConstantsRes.QuestYearly + ConstantsRes.December + ConstantsRes.Reset;
 
 				default:
 					return id.ToString();
@@ -1295,15 +1271,15 @@ namespace ElectronicObserver.Data
             switch (value)
             {
                 case 0:
-                    return "Normal Fleet";
+                    return ConstantsRes.NormalFleet;
                 case 1:
-                    return "Carrier TF";
+                    return ConstantsRes.CarrierTF;
                 case 2:
-                    return "Surface TF";
+                    return ConstantsRes.SurfaceTF;
                 case 3:
-                    return "Transport Fleet";
+                    return ConstantsRes.TransportFleet;
                 default:
-                    return "Unknown";
+                    return ConstantsRes.Unknown;
             }
         }
 
