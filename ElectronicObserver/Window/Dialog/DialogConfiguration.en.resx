@@ -117,41 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="FormBrowser_SavesBrowserLog.Text" xml:space="preserve">
-    <value>Save browser error log*</value>
-  </data>
-  <data name="FormBrowser_SavesBrowserLog.Tooltip" xml:space="preserve">
-    <value>Save browser error log to BrowserLog.log.
-May reduce performance.</value>
-  </data>
-  <data name="label9.Text" xml:space="preserve">
-    <value>Log Frequency:</value>
-  </data>
-  <data name="Control_ShowExpeditionAlertDialog.Tooltip" xml:space="preserve">
-    <value>Specifies whether to display a warning dialog when a fleet that 
-does not meet the formation conditions departs for an expedition.</value>
-  </data>
-  <data name="Control_ShowExpeditionAlertDialog.Text" xml:space="preserve">
-    <value>Warn when sending expedition w/ unmet requirements</value>
-  </data>
-  <data name="Control_ShowSallyAreaAlertDialog.Text" xml:space="preserve">
-    <value>Warn before sending untagged ship</value>
-  </data>
-  <data name="Control_ShowSallyAreaAlertDialog.Tooltip" xml:space="preserve">
-    <value>Show a warning dialog when sending fleet with untagged ship to event map.
-Due to incomplete information, a false positive may also trigger this warning.</value>
-  </data>
-  <data name="FormBattle_Display7thAsSingleLine.ToolTip" xml:space="preserve">
-    <value>Specify placement of the 7th ship in Striking Force fleet mode.
- If enabled, it will be displayed under the 6th ship.
- If disabled, it will be displayed as flagship of the escort fleet.
- Disabling the setting may save vertical space.</value>
-  </data>
-  <data name="FormBrowser_PreserveDrawingBuffer.ToolTip" xml:space="preserve">
-    <value>Disabling the setting may improve performance.
-Note: if preserve drawing buffer is not enabled, screenshot 
-size may be limited to browser window size.
-* Changes will take effect after application restart.
-</value>
-  </data>
 </root>
