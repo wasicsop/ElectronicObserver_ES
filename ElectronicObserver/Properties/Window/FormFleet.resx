@@ -199,7 +199,7 @@
     <value>空母カットイン(BA)</value>
   </data>
   <data name="Power" xml:space="preserve">
-    <value>力</value>
+    <value>威力</value>
   </data>
   <data name="Accuracy" xml:space="preserve">
     <value>命中</value>
