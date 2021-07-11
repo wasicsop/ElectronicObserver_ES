@@ -138,20 +138,20 @@
             this.StripMenu_File_OutputCSVData});
 			this.StripMenu_File.Name = "StripMenu_File";
 			this.StripMenu_File.Size = new System.Drawing.Size(70, 20);
-			this.StripMenu_File.Text = "&File";
+			this.StripMenu_File.Text = "ファイル(&F)";
 			//
 			// StripMenu_File_OutputCSVUser
 			//
 			this.StripMenu_File_OutputCSVUser.Name = "StripMenu_File_OutputCSVUser";
 			this.StripMenu_File_OutputCSVUser.Size = new System.Drawing.Size(203, 22);
-			this.StripMenu_File_OutputCSVUser.Text = "Export CSV (reference &use)...";
+			this.StripMenu_File_OutputCSVUser.Text = "CSV出力(閲覧用)(&U)...";
 			this.StripMenu_File_OutputCSVUser.Click += new System.EventHandler(this.StripMenu_File_OutputCSVUser_Click);
 			//
 			// StripMenu_File_OutputCSVData
 			//
 			this.StripMenu_File_OutputCSVData.Name = "StripMenu_File_OutputCSVData";
 			this.StripMenu_File_OutputCSVData.Size = new System.Drawing.Size(203, 22);
-			this.StripMenu_File_OutputCSVData.Text = "Export CSV (&data use)...";
+			this.StripMenu_File_OutputCSVData.Text = "CSV出力(データ用)(&D)...";
 			this.StripMenu_File_OutputCSVData.Click += new System.EventHandler(this.StripMenu_File_OutputCSVData_Click);
 			//
 			// StripMenu_Edit
@@ -163,7 +163,7 @@
             this.StripMenu_Edit_GoogleEquipmentName});
 			this.StripMenu_Edit.Name = "StripMenu_Edit";
 			this.StripMenu_Edit.Size = new System.Drawing.Size(60, 20);
-			this.StripMenu_Edit.Text = "&Edit";
+			this.StripMenu_Edit.Text = "編集(&E)";
 			//
 			// StripMenu_Edit_CopyEquipmentName
 			//
@@ -171,7 +171,7 @@
 			this.StripMenu_Edit_CopyEquipmentName.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift)
             | System.Windows.Forms.Keys.C)));
 			this.StripMenu_Edit_CopyEquipmentName.Size = new System.Drawing.Size(250, 22);
-			this.StripMenu_Edit_CopyEquipmentName.Text = "Copy equipment &name";
+			this.StripMenu_Edit_CopyEquipmentName.Text = "装備名をコピー(&N)";
 			this.StripMenu_Edit_CopyEquipmentName.Click += new System.EventHandler(this.StripMenu_Edit_CopyEquipmentName_Click);
 			//
 			// StripMenu_Edit_CopyEquipmentData
@@ -179,7 +179,7 @@
 			this.StripMenu_Edit_CopyEquipmentData.Name = "StripMenu_Edit_CopyEquipmentData";
 			this.StripMenu_Edit_CopyEquipmentData.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
 			this.StripMenu_Edit_CopyEquipmentData.Size = new System.Drawing.Size(250, 22);
-			this.StripMenu_Edit_CopyEquipmentData.Text = "Copy equipment &data";
+			this.StripMenu_Edit_CopyEquipmentData.Text = "装備データをコピー(&D)";
 			this.StripMenu_Edit_CopyEquipmentData.Click += new System.EventHandler(this.StripMenu_Edit_CopyEquipmentData_Click);
 			//
 			// toolStripSeparator1
@@ -192,7 +192,7 @@
 			this.StripMenu_Edit_GoogleEquipmentName.Name = "StripMenu_Edit_GoogleEquipmentName";
 			this.StripMenu_Edit_GoogleEquipmentName.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.G)));
 			this.StripMenu_Edit_GoogleEquipmentName.Size = new System.Drawing.Size(250, 22);
-			this.StripMenu_Edit_GoogleEquipmentName.Text = "Search on &Google";
+			this.StripMenu_Edit_GoogleEquipmentName.Text = "装備名でGoogle検索(&G)";
 			this.StripMenu_Edit_GoogleEquipmentName.Click += new System.EventHandler(this.StripMenu_Edit_GoogleEquipmentName_Click);
 			//
 			// StripMenu_View
@@ -201,14 +201,14 @@
             this.StripMenu_View_ShowAppearingArea});
 			this.StripMenu_View.Name = "StripMenu_View";
 			this.StripMenu_View.Size = new System.Drawing.Size(61, 20);
-			this.StripMenu_View.Text = "&View";
+			this.StripMenu_View.Text = "表示(&V)";
 			//
 			// StripMenu_View_ShowAppearingArea
 			//
 			this.StripMenu_View_ShowAppearingArea.Name = "StripMenu_View_ShowAppearingArea";
 			this.StripMenu_View_ShowAppearingArea.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
 			this.StripMenu_View_ShowAppearingArea.Size = new System.Drawing.Size(288, 22);
-			this.StripMenu_View_ShowAppearingArea.Text = "&Search on recipe/ships";
+			this.StripMenu_View_ShowAppearingArea.Text = "初期装備艦・開発レシピを検索(&S)";
 			this.StripMenu_View_ShowAppearingArea.Click += new System.EventHandler(this.StripMenu_View_ShowAppearingArea_Click);
 			//
 			// splitContainer1
@@ -311,7 +311,7 @@
 			// EquipmentView_Type
 			//
 			this.EquipmentView_Type.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-			this.EquipmentView_Type.HeaderText = "Type";
+			this.EquipmentView_Type.HeaderText = "装備種";
 			this.EquipmentView_Type.Name = "EquipmentView_Type";
 			this.EquipmentView_Type.ReadOnly = true;
 			this.EquipmentView_Type.Width = 75;
@@ -319,7 +319,7 @@
 			// EquipmentView_Name
 			//
 			this.EquipmentView_Name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.EquipmentView_Name.HeaderText = "Name";
+			this.EquipmentView_Name.HeaderText = "装備名";
 			this.EquipmentView_Name.Name = "EquipmentView_Name";
 			this.EquipmentView_Name.ReadOnly = true;
 			//
@@ -981,7 +981,7 @@
 			this.MinimumSize = new System.Drawing.Size(816, 518);
 			this.Name = "DialogAlbumMasterEquipment";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-			this.Text = "Equipment Encyclopedia";
+			this.Text = "装備図鑑";
 			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.DialogAlbumMasterEquipment_FormClosed);
 			this.Load += new System.EventHandler(this.DialogAlbumMasterEquipment_Load);
 			this.menuStrip1.ResumeLayout(false);

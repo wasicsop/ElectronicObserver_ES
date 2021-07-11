@@ -18,6 +18,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ElectronicObserverTypes;
+using Translation = ElectronicObserver.Properties.Window.Dialog.DialogAlbumMasterEquipment;
 
 namespace ElectronicObserver.Window.Dialog
 {
@@ -113,6 +114,7 @@ namespace ElectronicObserver.Window.Dialog
 			EquipmentView.Sort(EquipmentView_ID, ListSortDirection.Ascending);
 			EquipmentView.ResumeLayout();
 
+			Translate();
 		}
 
 		public DialogAlbumMasterEquipment(int equipmentID)
@@ -140,7 +142,47 @@ namespace ElectronicObserver.Window.Dialog
 		}
 
 
+		public void Translate()
+		{
+			StripMenu_File.Text = Translation.StripMenu_File;
+			StripMenu_File_OutputCSVUser.Text = Translation.StripMenu_File_OutputCSVUser;
+			StripMenu_File_OutputCSVData.Text = Translation.StripMenu_File_OutputCSVData;
 
+			StripMenu_Edit.Text = Translation.StripMenu_Edit;
+			StripMenu_Edit_CopyEquipmentName.Text = Translation.StripMenu_Edit_CopyEquipmentName;
+			StripMenu_Edit_CopyEquipmentData.Text = Translation.StripMenu_Edit_CopyEquipmentData;
+			StripMenu_Edit_GoogleEquipmentName.Text = Translation.StripMenu_Edit_GoogleEquipmentName;
+
+			StripMenu_View.Text = Translation.StripMenu_View;
+			StripMenu_View_ShowAppearingArea.Text = Translation.StripMenu_View_ShowAppearingArea;
+
+			EquipmentView_Type.HeaderText = Translation.EquipmentView_Type;
+			EquipmentView_Name.HeaderText = Translation.EquipmentView_Name;
+
+			TitleAircraftCost.Text = Translation.TitleAircraftCost;
+			TitleAircraftDistance.Text = Translation.TitleAircraftDistance;
+			imageLabel1.Text = Translation.InitialEquipmentShip;
+			imageLabel2.Text = Translation.LibraryId;
+			Description.Text = Translation.Description;
+			EquipmentType.Text = Translation.EquipmentType;
+			EquipmentName.Text = Translation.EquipmentName;
+
+			TitleRange.Text = Translation.TitleRange;
+			TitleSpeed.Text = Translation.TitleSpeed;
+			TitleBomber.Text = Translation.TitleBomber;
+			TitleLOS.Text = Translation.TitleLOS;
+			TitleFirepower.Text = Translation.TitleFirepower;
+			TitleTorpedo.Text = Translation.TitleTorpedo;
+			TitleAA.Text = Translation.TitleAA;
+			TitleArmor.Text = Translation.TitleArmor;
+			TitleASW.Text = Translation.TitleASW;
+			TitleEvasion.Text = Translation.TitleEvasion;
+			TitleAccuracy.Text = Translation.TitleAccuracy;
+
+			SaveCSVDialog.Title = Translation.SaveCSVDialog;
+
+			Text = Translation.Title;
+		}
 
 		private void EquipmentView_SortCompare(object sender, DataGridViewSortCompareEventArgs e)
 		{
@@ -244,7 +286,7 @@ namespace ElectronicObserver.Window.Dialog
 				ToolTipInfo.SetToolTip(EquipmentType, GetEquippableShips(equipmentID));
 			}
 			EquipmentName.Text = eq.NameEN;
-			ToolTipInfo.SetToolTip( EquipmentName, "Right click to copy." );
+			ToolTipInfo.SetToolTip(EquipmentName, Translation.RightClickToCopy);
 
 			TableEquipmentName.ResumeLayout();
 
@@ -264,16 +306,16 @@ namespace ElectronicObserver.Window.Dialog
 
 			if (eq.CategoryType == EquipmentTypes.Interceptor)
 			{
-				TitleAccuracy.Text = "対爆";
+				TitleAccuracy.Text = Translation.AntiBomber;
 				TitleAccuracy.ImageIndex = (int)ResourceManager.IconContent.ParameterAntiBomber;
-				TitleEvasion.Text = "迎撃";
+				TitleEvasion.Text = Translation.Interception;
 				TitleEvasion.ImageIndex = (int)ResourceManager.IconContent.ParameterInterception;
 			}
 			else
 			{
-				TitleAccuracy.Text = "命中";
+				TitleAccuracy.Text = Translation.TitleAccuracy;
 				TitleAccuracy.ImageIndex = (int)ResourceManager.IconContent.ParameterAccuracy;
-				TitleEvasion.Text = "回避";
+				TitleEvasion.Text = Translation.TitleEvasion;
 				TitleEvasion.ImageIndex = (int)ResourceManager.IconContent.ParameterEvasion;
 			}
 
@@ -389,7 +431,7 @@ namespace ElectronicObserver.Window.Dialog
 			var db = KCDatabase.Instance;
 
 			var sb = new StringBuilder();
-			sb.AppendLine("装備可能:");
+			sb.AppendLine($"{Translation.Equippable}:");
 
 			var eq = db.MasterEquipments[equipmentID];
 			if (eq == null)
@@ -421,7 +463,7 @@ namespace ElectronicObserver.Window.Dialog
 
 					if (specialShips.ContainsKey(shiptype.Type))
 					{
-						sb.Append(" (").Append(string.Join(", ", specialShips[shiptype.Type])).Append("を除く)");
+						sb.Append(" (").Append(string.Join(", ", specialShips[shiptype.Type])).Append($"{Translation.Excluding})");
 					}
 
 					sb.AppendLine();
@@ -436,7 +478,7 @@ namespace ElectronicObserver.Window.Dialog
 			}
 
 			if (eq.EquippableShipsAtExpansion.Any())
-				sb.Append("[拡張スロット] ").AppendLine(string.Join(", ", eq.EquippableShipsAtExpansion.Select(id => db.MasterShips[id].NameWithClass)));
+				sb.Append($"[{Translation.ExpansionSlot}] ").AppendLine(string.Join(", ", eq.EquippableShipsAtExpansion.Select(id => db.MasterShips[id].NameWithClass)));
 
 			return sb.ToString();
 		}
@@ -544,7 +586,7 @@ namespace ElectronicObserver.Window.Dialog
 				{
 
 					Utility.ErrorReporter.SendErrorReport( ex, EncycloRes.FailedOutputEquipCSV);
-					MessageBox.Show(EncycloRes.FailedOutputEquipCSV + "\r\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error );
+					MessageBox.Show(EncycloRes.FailedOutputEquipCSV + "\r\n" + ex.Message, Translation.DialogTitleError, MessageBoxButtons.OK, MessageBoxIcon.Error );
 				}
 
 			}
@@ -608,8 +650,8 @@ namespace ElectronicObserver.Window.Dialog
 				catch (Exception ex)
 				{
 
-					Utility.ErrorReporter.SendErrorReport(ex, "装備図鑑 CSVの出力に失敗しました。");
-					MessageBox.Show("装備図鑑 CSVの出力に失敗しました。\r\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					Utility.ErrorReporter.SendErrorReport(ex, Translation.FailedToExportCsv);
+					MessageBox.Show($"{Translation.FailedToExportCsv}\r\n" + ex.Message, Translation.DialogTitleError, MessageBoxButtons.OK, MessageBoxIcon.Error);
 				}
 
 			}
@@ -764,7 +806,7 @@ namespace ElectronicObserver.Window.Dialog
 				.ThenBy( r => r.Steel )
 				.ThenBy( r => r.Bauxite )
 				) {
-				sb.AppendFormat( "Recipe {0} / {1} / {2} / {3}\r\n",
+				sb.AppendFormat(Translation.Recipe + " {0} / {1} / {2} / {3}\r\n",
 					record.Fuel, record.Ammo, record.Steel, record.Bauxite );
 			}
 
@@ -785,11 +827,12 @@ namespace ElectronicObserver.Window.Dialog
 
 			string result = GetAppearingArea(eqID);
 
-			if ( string.IsNullOrWhiteSpace( result ) ) {
-				result = "Failed to find ship/recipe which has " + eq.NameEN + ".";
+			if (string.IsNullOrWhiteSpace(result))
+			{
+				result = string.Format(Translation.FailedToFindShipOrRecipe, eq.NameEN);
 			}
 
-			MessageBox.Show( result, "Ship/Recipe Search", MessageBoxButtons.OK, MessageBoxIcon.Information );
+			MessageBox.Show(result, Translation.ShipOrRecipeCaption, MessageBoxButtons.OK, MessageBoxIcon.Information);
 		}
 
 
@@ -806,7 +849,7 @@ namespace ElectronicObserver.Window.Dialog
 			{
 				ProcessStartInfo psi = new ProcessStartInfo
 				{
-					FileName = @"https://www.google.com/search?q=" + Uri.EscapeDataString(eq.NameEN) + "+KanColle",
+					FileName = @"https://www.duckduckgo.com/?q=" + Uri.EscapeDataString(eq.NameEN) + Translation.KancolleSpecifier,
 					UseShellExecute = true
 				};
 				// google <装備名> 艦これ
@@ -815,7 +858,7 @@ namespace ElectronicObserver.Window.Dialog
 			}
 			catch (Exception ex)
 			{
-				Utility.ErrorReporter.SendErrorReport(ex, "Failed to search on Google.");
+				Utility.ErrorReporter.SendErrorReport(ex, Translation.FailedToSearchOnWeb);
 			}
 		}
 

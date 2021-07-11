@@ -75,6 +75,11 @@
 			<AutoGen>True</AutoGen>
 			<DependentUpon>ObserverRes.resx</DependentUpon>
 		</Compile>
+		<Compile Update="Properties\Window\Dialog\DialogAlbumMasterEquipment.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>DialogAlbumMasterEquipment.resx</DependentUpon>
+		</Compile>
 		<Compile Update="Properties\Window\Dialog\DialogConfiguration.Designer.cs">
 		  <DesignTime>True</DesignTime>
 		  <AutoGen>True</AutoGen>
@@ -332,6 +337,10 @@
 		<EmbeddedResource Update="Observer\ObserverRes.resx">
 			<Generator>ResXFileCodeGenerator</Generator>
 			<LastGenOutput>ObserverRes.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Properties\Window\Dialog\DialogAlbumMasterEquipment.resx">
+		  <Generator>PublicResXFileCodeGenerator</Generator>
+		  <LastGenOutput>DialogAlbumMasterEquipment.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 		<EmbeddedResource Update="Properties\Window\Dialog\DialogConfiguration.resx">
 		  <Generator>PublicResXFileCodeGenerator</Generator>
