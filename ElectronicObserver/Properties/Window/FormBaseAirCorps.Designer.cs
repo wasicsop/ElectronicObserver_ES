@@ -88,7 +88,7 @@ namespace ElectronicObserver.Properties.Window {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0}\t[{1}] 制空戦力{2}/戦闘行動半径{3}\r\n.
+        ///   Looks up a localized string similar to {0}    [{1}] 制空戦力{2}/戦闘行動半径{3}.
         /// </summary>
         public static string CopyOrganizationFormat {
             get {
@@ -115,7 +115,7 @@ namespace ElectronicObserver.Properties.Window {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} (半径: {1})\r\n.
+        ///   Looks up a localized string similar to {0} (半径: {1}).
         /// </summary>
         public static string Range {
             get {

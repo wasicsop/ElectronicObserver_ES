@@ -118,7 +118,8 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ExpeditionNotLoadedMessage" xml:space="preserve">
-    <value>遠征データが読み込まれていません。\r\n艦これに再ログインし、母港画面を開いてください。</value>
+    <value>遠征データが読み込まれていません。
+艦これに再ログインし、母港画面を開いてください。</value>
   </data>
   <data name="ExpeditionNotLoadedTitle" xml:space="preserve">
     <value>マスタデータ未ロード</value>

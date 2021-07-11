@@ -394,7 +394,8 @@ namespace ElectronicObserver.Properties.Window {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 外部ブラウザでオンラインヘルプを開きます。\r\nよろしいですか？.
+        ///   Looks up a localized string similar to 外部ブラウザでオンラインヘルプを開きます。
+        ///よろしいですか？.
         /// </summary>
         public static string OpenEOWiki {
             get {
@@ -412,7 +413,8 @@ namespace ElectronicObserver.Properties.Window {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 外部ブラウザでオンラインヘルプを開きます。\r\nよろしいですか？.
+        ///   Looks up a localized string similar to 外部ブラウザでオンラインヘルプを開きます。
+        ///よろしいですか？.
         /// </summary>
         public static string ReportIssue {
             get {

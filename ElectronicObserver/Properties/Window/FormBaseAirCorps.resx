@@ -122,10 +122,10 @@
     <value>(なし)</value>
   </data>
   <data name="Range" xml:space="preserve">
-    <value>{0} (半径: {1})\r\n</value>
+    <value>{0} (半径: {1})</value>
   </data>
   <data name="CopyOrganizationFormat" xml:space="preserve">
-    <value>{0}\t[{1}] 制空戦力{2}/戦闘行動半径{3}\r\n</value>
+    <value>{0}    [{1}] 制空戦力{2}/戦闘行動半径{3}</value>
   </data>
   <data name="UnknownArea" xml:space="preserve">
     <value>バミューダ海域</value>

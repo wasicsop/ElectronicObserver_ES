@@ -352,13 +352,15 @@
     <value>装備データが読み込まれていません。</value>
   </data>
   <data name="OpenEOWiki" xml:space="preserve">
-    <value>外部ブラウザでオンラインヘルプを開きます。\r\nよろしいですか？</value>
+    <value>外部ブラウザでオンラインヘルプを開きます。
+よろしいですか？</value>
   </data>
   <data name="HelpCaption" xml:space="preserve">
     <value>ヘルプ</value>
   </data>
   <data name="ReportIssue" xml:space="preserve">
-    <value>外部ブラウザでオンラインヘルプを開きます。\r\nよろしいですか？</value>
+    <value>外部ブラウザでオンラインヘルプを開きます。
+よろしいですか？</value>
   </data>
   <data name="ReportIssueCaption" xml:space="preserve">
     <value>問題を報告する</value>

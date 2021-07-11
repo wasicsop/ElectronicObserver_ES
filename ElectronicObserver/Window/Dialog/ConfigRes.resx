@@ -258,7 +258,8 @@ direct にするとパフォーマンスが向上する可能性があります�
     <value>GPUレンダリング</value>
   </data>
   <data name="GPURenderingHint" xml:space="preserve">
-    <value>内蔵ブラウザでGPUレンダリングを使用するかを指定します。\r\n環境によっては処理が高速化します。</value>
+    <value>内蔵ブラウザでGPUレンダリングを使用するかを指定します。
+環境によっては処理が高速化します。</value>
   </data>
   <data name="Group" xml:space="preserve">
     <value>グループ</value>
@@ -433,7 +434,8 @@ direct にするとパフォーマンスが向上する可能性があります�
     <value>データベース</value>
   </data>
   <data name="DatabaseDescription" xml:space="preserve">
-    <value>「艦これ統計データベース」へデータを送信できます。\r\n詳細やアクセスキーの取得は以下のサイトを参照してください。(外部ブラウザが開きます)</value>
+    <value>「艦これ統計データベース」へデータを送信できます。
+詳細やアクセスキーの取得は以下のサイトを参照してください。(外部ブラウザが開きます)</value>
   </data>
   <data name="SendData" xml:space="preserve">
     <value>艦これ統計データベースに送信する</value>

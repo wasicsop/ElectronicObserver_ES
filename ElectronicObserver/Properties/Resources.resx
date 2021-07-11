@@ -225,7 +225,8 @@
   </data>
   <data name="FirstTimeDialog" xml:space="preserve">
     <value>{0} をご利用いただきありがとうございます。
-設定や使用方法については「ヘルプ」→「オンラインヘルプ」を参照してください。\r\nご使用の前に必ずご一読ください。</value>
+設定や使用方法については「ヘルプ」→「オンラインヘルプ」を参照してください。
+ご使用の前に必ずご一読ください。</value>
   </data>
   <data name="FirstTimeTitle" xml:space="preserve">
     <value>初回起動メッセージ</value>
@@ -251,13 +252,17 @@
     <value>バージョンアップに伴う確認(～1.4.6)</value>
   </data>
   <data name="FailedToDelete" xml:space="preserve">
-    <value>削除に失敗しました。\r\n</value>
+    <value>削除に失敗しました。</value>
   </data>
   <data name="GroupUpgradeFailed" xml:space="preserve">
     <value>バージョンアップに伴うグループデータの削除に失敗しました。</value>
   </data>
   <data name="NewGroupFormat" xml:space="preserve">
-    <value>バージョンアップが検出されました。\r\n艦船グループデータの互換性がなくなったため、当該データを初期化します。\r\n(古いファイルは Settings_Backup フォルダに退避されます。)\r\nよろしいですか？\r\n(初期化せずに続行した場合、エラーが発生します。)\r\n</value>
+    <value>バージョンアップが検出されました。
+艦船グループデータの互換性がなくなったため、当該データを初期化します。
+(古いファイルは Settings_Backup フォルダに退避されます。)
+よろしいですか？
+(初期化せずに続行した場合、エラーが発生します。)</value>
   </data>
   <data name="NewGroupFormatTitle" xml:space="preserve">
     <value>バージョンアップに伴う確認(～1.5.0)</value>

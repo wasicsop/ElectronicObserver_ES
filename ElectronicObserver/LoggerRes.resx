@@ -202,7 +202,9 @@
     <value>の書き込みに失敗しました。</value>
   </data>
   <data name="FailedSavingErrorReport" xml:space="preserve">
-    <value>エラーレポートの書き込みに失敗しました。\r\n{0}\r\n{1}</value>
+    <value>エラーレポートの書き込みに失敗しました。
+{0}
+{1}</value>
   </data>
   <data name="FailedSavingStorage" xml:space="preserve">
     <value>DataStorage の書き込みに失敗しました。</value>

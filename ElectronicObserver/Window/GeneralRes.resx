@@ -697,13 +697,13 @@
     <value>その他の任務を表示(&amp;R)</value>
   </data>
   <data name="BaseNotOpen" xml:space="preserve">
-    <value>(未開放)\r\n</value>
+    <value>(未開放)</value>
   </data>
   <data name="BaseRedeployment" xml:space="preserve">
     <value>配置転換中</value>
   </data>
   <data name="BaseRelocate" xml:space="preserve">
-    <value>配置転換中 (開始時刻: {0})\r\n</value>
+    <value>配置転換中 (開始時刻: {0})</value>
   </data>
   <data name="BaseTooltip" xml:space="preserve">
     <value>確保: {0}

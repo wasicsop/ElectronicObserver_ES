@@ -70,7 +70,8 @@ namespace ElectronicObserver.Window.Dialog {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 遠征データが読み込まれていません。\r\n艦これに再ログインし、母港画面を開いてください。.
+        ///   Looks up a localized string similar to 遠征データが読み込まれていません。
+        ///艦これに再ログインし、母港画面を開いてください。.
         /// </summary>
         internal static string ExpeditionNotLoadedMessage {
             get {

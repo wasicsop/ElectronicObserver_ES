@@ -284,7 +284,7 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to (未開放)\r\n.
+        ///   Looks up a localized string similar to (未開放).
         /// </summary>
         public static string BaseNotOpen {
             get {
@@ -302,7 +302,7 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 配置転換中 (開始時刻: {0})\r\n.
+        ///   Looks up a localized string similar to 配置転換中 (開始時刻: {0}).
         /// </summary>
         public static string BaseRelocate {
             get {
