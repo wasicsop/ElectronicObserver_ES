@@ -242,7 +242,9 @@ namespace ElectronicObserver.Properties.Window {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to (小) x {0} ( +{1} )\r\n(中) x {2} ( +{3} )\r\n(大) x {4} ( +{5} ).
+        ///   Looks up a localized string similar to (小) x {0} ( +{1} )
+        ///(中) x {2} ( +{3} )
+        ///(大) x {4} ( +{5} ).
         /// </summary>
         public static string FurnitureCoinToolTip {
             get {

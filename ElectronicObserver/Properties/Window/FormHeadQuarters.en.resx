@@ -198,7 +198,9 @@ Monthly: {2:+##;-##;±0}</value>
     <value> buckets</value>
   </data>
   <data name="FurnitureCoinToolTip" xml:space="preserve">
-    <value>(S) x {0} ( +{1} )\r\n(M) x {2} ( +{3} )\r\n(L) x {4} ( +{5} )</value>
+    <value>(S) x {0} ( +{1} )
+(M) x {2} ( +{3} )
+(L) x {4} ( +{5} )</value>
   </data>
   <data name="CopyToClipboardDevelopmentMaterials" xml:space="preserve">
     <value> devmats</value>
