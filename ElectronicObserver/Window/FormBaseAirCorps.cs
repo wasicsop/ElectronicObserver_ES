@@ -324,11 +324,11 @@ namespace ElectronicObserver.Window
 									break;
 							}
 
-							sb.AppendFormat(Properties.Window.FormBaseAirCorps.Range, eq.NameWithLevel, eq.MasterEquipment.AircraftDistance);
+							sb.AppendFormat($"{Properties.Window.FormBaseAirCorps.Range}\n", eq.NameWithLevel, eq.MasterEquipment.AircraftDistance);
 							break;
 
 						case 2:		// 配置転換中
-							sb.AppendFormat( GeneralRes.BaseRelocate,
+							sb.AppendFormat($"{GeneralRes.BaseRelocate}\n",
 								DateTimeHelper.TimeToCSVString( squadron.RelocatedTime ) );
 							break;
 					}
@@ -502,7 +502,7 @@ namespace ElectronicObserver.Window
 
 				string areaName = KCDatabase.Instance.MapArea.ContainsKey(corps.MapAreaID) ? KCDatabase.Instance.MapArea[corps.MapAreaID].NameEN : Properties.Window.FormBaseAirCorps.UnknownArea;
 
-				sb.AppendFormat(Properties.Window.FormBaseAirCorps.CopyOrganizationFormat,
+				sb.AppendFormat($"{Properties.Window.FormBaseAirCorps.CopyOrganizationFormat}\n",
 					(areaid == -1 ? (areaName + "：") : "") + corps.Name,
 					Constants.GetBaseAirCorpsActionKind(corps.ActionKind),
 					Calculator.GetAirSuperiority(corps),
