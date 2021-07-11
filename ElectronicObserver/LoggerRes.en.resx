@@ -202,7 +202,9 @@
     <value>could not be saved.</value>
   </data>
   <data name="FailedSavingErrorReport" xml:space="preserve">
-    <value>Failed to write error report.\r\n{0}\r\n{1}</value>
+    <value>Failed to write error report.
+{0}
+{1}</value>
   </data>
   <data name="FailedSavingStorage" xml:space="preserve">
     <value>Failed to save DataStorage.</value>

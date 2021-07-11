@@ -210,7 +210,8 @@ Battle histories are saved in the BattleLog subfolder.</value>
     <value>Show spoilers</value>
   </data>
   <data name="Log_ShowSpoilerToolTip" xml:space="preserve">
-    <value>Show developed items and dropped ships in the log.\r\nDisable this setting to hide the information.</value>
+    <value>Show developed items and dropped ships in the log.
+Disable this setting to hide the information.</value>
   </data>
   <data name="Log_LogLevelToolTip" xml:space="preserve">
     <value>Specify logging level for the program. Smaller number means more verbose logging.

@@ -142,7 +142,8 @@
     <value>Error</value>
   </data>
   <data name="OpenEOWiki" xml:space="preserve">
-    <value>This will open the EO wiki with your browser.\r\nAre you sure?</value>
+    <value>This will open the EO wiki with your browser.
+Are you sure?</value>
   </data>
   <data name="EquipmentDataNotLoaded" xml:space="preserve">
     <value>Equipment data is not loaded.</value>
@@ -151,7 +152,8 @@
     <value>Help</value>
   </data>
   <data name="ReportIssue" xml:space="preserve">
-    <value>This will open a page with your browser.\r\nAre you sure?</value>
+    <value>This will open a page with your browser.
+Are you sure?</value>
   </data>
   <data name="ReportIssueCaption" xml:space="preserve">
     <value>Report an issue</value>

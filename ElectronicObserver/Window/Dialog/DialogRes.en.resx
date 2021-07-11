@@ -118,7 +118,8 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ExpeditionNotLoadedMessage" xml:space="preserve">
-    <value>Expedition data not loaded.\r\nPlease login to KanColle and open the home screen.</value>
+    <value>Expedition data not loaded.
+Please login to KanColle and open the home screen.</value>
   </data>
   <data name="ExpeditionNotLoadedTitle" xml:space="preserve">
     <value>Expedition Data Not Loaded</value>
