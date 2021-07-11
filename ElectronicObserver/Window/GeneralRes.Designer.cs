@@ -1613,7 +1613,10 @@ namespace ElectronicObserver.Window {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 燃料: {0:+0;-0} ( 自然 {1:+0;-0} - 補給 {2} - 入渠 {3} )\r\n弾薬: {4:+0;-0} ( 自然 {5:+0;-0} - 補給 {6} )\r\n鋼材: {7:+0;-0} ( 自然 {8:+0;-0} - 入渠 {9} )\r\nボーキ: {10:+0;-0} ( 自然 {11:+0;-0} - 補給 {12} ( {13} 機 ) ).
+        ///   Looks up a localized string similar to 燃料: {0:+0;-0} ( 自然 {1:+0;-0} - 補給 {2} - 入渠 {3} )
+        ///弾薬: {4:+0;-0} ( 自然 {5:+0;-0} - 補給 {6} )
+        ///鋼材: {7:+0;-0} ( 自然 {8:+0;-0} - 入渠 {9} )
+        ///ボーキ: {10:+0;-0} ( 自然 {11:+0;-0} - 補給 {12} ( {13} 機 ) ).
         /// </summary>
         public static string ResupplyString {
             get {
