@@ -768,7 +768,7 @@ namespace ElectronicObserver.Window
 						if (torpedo > 0)
 							sb.AppendLine();
 
-						sb.AppendFormat($"{Translation.Asw}: {Translation.Power}: {0}", asw2);
+						sb.AppendFormat($"{Translation.Asw}: {Translation.Power}: {asw2}");
 
 						if (ship.CanOpeningASW)
 							sb.Append(Translation.OpeningAsw);
