@@ -20,6 +20,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ElectronicObserverTypes;
 using static ElectronicObserver.Resource.Record.ShipParameterRecord;
+using AlbumMasterTranslation = ElectronicObserver.Properties.Window.Dialog.DialogAlbumMasterEquipment;
+using Translation = ElectronicObserver.Properties.Window.Dialog.DialogAlbumMasterShip;
 
 namespace ElectronicObserver.Window.Dialog
 {
@@ -166,6 +168,8 @@ namespace ElectronicObserver.Window.Dialog
 
 			ShipView.Sort(ShipView_ShipID, ListSortDirection.Ascending);
 			ShipView.ResumeLayout();
+
+			Translate();
 		}
 
 		public DialogAlbumMasterShip(int shipID)
@@ -184,7 +188,55 @@ namespace ElectronicObserver.Window.Dialog
 
 		}
 
+		public void Translate()
+		{
+			StripMenu_File.Text = AlbumMasterTranslation.StripMenu_File;
+			StripMenu_File_OutputCSVUser.Text = AlbumMasterTranslation.StripMenu_File_OutputCSVUser;
+			StripMenu_File_OutputCSVData.Text = AlbumMasterTranslation.StripMenu_File_OutputCSVData;
+			StripMenu_File_MergeDefaultRecord.Text = Translation.StripMenu_File_MergeDefaultRecord;
 
+			StripMenu_Edit.Text = AlbumMasterTranslation.StripMenu_Edit;
+			StripMenu_Edit_EditParameter.Text = Translation.StripMenu_Edit_EditParameter;
+			StripMenu_Edit_CopyShipName.Text = Translation.StripMenu_Edit_CopyShipName;
+			StripMenu_Edit_CopyShipData.Text = Translation.StripMenu_Edit_CopyShipData;
+			StripMenu_Edit_GoogleShipName.Text = Translation.StripMenu_Edit_GoogleShipName;
+			StripMenu_Edit_CopySpecialEquipmentTable.Text = Translation.StripMenu_Edit_CopySpecialEquipmentTable;
+
+			StripMenu_View.Text = AlbumMasterTranslation.StripMenu_View;
+			StripMenu_View_ShowAppearingArea.Text = AlbumMasterTranslation.StripMenu_View_ShowAppearingArea;
+			StripMenu_View_ShowShipGraphicViewer.Text = Translation.StripMenu_View_ShowShipGraphicViewer;
+
+			ShipView_ShipType.HeaderText = EncycloRes.ShipType;
+			ShipView_Name.HeaderText = EncycloRes.ShipName;
+
+			TitleDayAttack.Text = EncycloRes.DayAttack;
+			TitleNightAttack.Text = EncycloRes.NightAttack;
+			TitleAirSuperiority.Text = EncycloRes.AirPower;
+
+			ToolTipInfo.SetToolTip(ParameterLevel, Translation.ParameterLevelToolTip);
+
+			imageLabel2.Text = AlbumMasterTranslation.LibraryId;
+
+			TitleRange.Text = AlbumMasterTranslation.TitleRange;
+			TitleSpeed.Text = AlbumMasterTranslation.TitleSpeed;
+			TitleLOS.Text = AlbumMasterTranslation.TitleLOS;
+			TitleFirepower.Text = AlbumMasterTranslation.TitleFirepower;
+			TitleTorpedo.Text = AlbumMasterTranslation.TitleTorpedo;
+			TitleAA.Text = AlbumMasterTranslation.TitleAA;
+			TitleArmor.Text = AlbumMasterTranslation.TitleArmor;
+			TitleASW.Text = AlbumMasterTranslation.TitleASW;
+			TitleEvasion.Text = AlbumMasterTranslation.TitleEvasion;
+
+			TitleParameterMax.Text = EncycloRes.Maximum;
+			TitleParameterMin.Text = EncycloRes.Initial;
+			TitleHP.Text = Translation.TitleHP;
+
+			ToolTipInfo.SetToolTip(ShipBanner, Translation.ShipBannerToolTip);
+
+			SaveCSVDialog.Title = AlbumMasterTranslation.SaveCSVDialog;
+
+			Text = EncycloRes.ShipEncyclopedia;
+		}
 
 		private void DialogAlbumMasterShip_Load(object sender, EventArgs e)
 		{
@@ -299,7 +351,7 @@ namespace ElectronicObserver.Window.Dialog
 			AlbumNo.Text = ship.AlbumNo.ToString();
 
 			ResourceName.Text = $"{ship.ResourceName} {ship.ResourceGraphicVersion}/{ship.ResourceVoiceVersion}/{ship.ResourcePortVoiceVersion}";
-			ToolTipInfo.SetToolTip(ResourceName, string.Format("Resource name: {0}\r\nGraphic ver. {1}\r\nVoice ver. {2}\r\nPort voice ver. {3}\r\n({4})",
+			ToolTipInfo.SetToolTip(ResourceName, string.Format(Translation.ResourceNameToolTip,
 				ship.ResourceName, ship.ResourceGraphicVersion, ship.ResourceVoiceVersion, ship.ResourcePortVoiceVersion, Constants.GetVoiceFlag(ship.VoiceFlag)));
 
 
@@ -312,14 +364,14 @@ namespace ElectronicObserver.Window.Dialog
 
 				var tip = new StringBuilder();
 				if (ship.IsAbyssalShip)
-					tip.AppendLine($"Ship Class ID: {ship.ShipClass}");
+					tip.AppendLine($"{Translation.ShipClassId}: {ship.ShipClass}");
 				else if (Constants.GetShipClass(ship.ShipClass) == "不明" || Constants.GetShipClass(ship.ShipClass) == "Unknown")
-					tip.AppendLine($"Ship Class Unknown: {ship.ShipClass}");
+					tip.AppendLine($"{Translation.ShipClassUnknown}: {ship.ShipClass}");
 				else
 					tip.AppendLine($"{shipClassName}: {ship.ShipClass}");
 
 				tip.AppendLine();
-				tip.AppendLine("Equippable:");
+				tip.AppendLine($"{AlbumMasterTranslation.Equippable}:");
 				tip.AppendLine(GetEquippableString(shipID));
 
 				ToolTipInfo.SetToolTip(ShipType, tip.ToString());
@@ -331,7 +383,7 @@ namespace ElectronicObserver.Window.Dialog
 				ShipName.ForeColor = SystemColors.ControlText;
 			}
 
-			ToolTipInfo.SetToolTip(ShipName, (!ship.IsAbyssalShip ? ship.NameReading + "\r\n" : "") + "Right click to copy.");
+			ToolTipInfo.SetToolTip(ShipName, (!ship.IsAbyssalShip ? ship.NameReading + "\r\n" : "") + AlbumMasterTranslation.RightClickToCopy);
 			TableShipName.ResumeLayout();
 
 
@@ -346,8 +398,8 @@ namespace ElectronicObserver.Window.Dialog
 
 				HPMin.Text = ship.HPMin.ToString();
 				HPMax.Text = ship.HPMaxMarried.ToString();
-				ToolTipInfo.SetToolTip(HPMin, string.Format("After modernization: {0} (+{1})", ship.HPMaxModernized, ship.HPMaxModernizable));
-				ToolTipInfo.SetToolTip(HPMax, string.Format("After modernization: {0} (+{1})\r\n(internal max HP: {2})", ship.HPMaxMarriedModernized, ship.HPMaxMarriedModernizable, ship.HPMax));
+				ToolTipInfo.SetToolTip(HPMin, string.Format(Translation.HpMinToolTip, ship.HPMaxModernized, ship.HPMaxModernizable));
+				ToolTipInfo.SetToolTip(HPMax, string.Format(Translation.HpMaxToolTip, ship.HPMaxMarriedModernized, ship.HPMaxMarriedModernizable, ship.HPMax));
 
 				FirepowerMin.Text = ship.FirepowerMin.ToString();
 				FirepowerMax.Text = ship.FirepowerMax.ToString();
@@ -490,7 +542,7 @@ namespace ElectronicObserver.Window.Dialog
 					.Select(id => KCDatabase.Instance.MasterEquipments[id])
 					.Where(eq => eq != null);
 				Range.Text = Constants.GetRange(Math.Max(ship.Range, availableEquipments.Any() ? availableEquipments.Max(eq => eq.Range) : 0));
-				ToolTipInfo.SetToolTip(Range, "Default Range: " + Constants.GetRange(ship.Range));
+				ToolTipInfo.SetToolTip(Range, $"{Translation.DefaultRange}: {Constants.GetRange(ship.Range)}");
 			}
 			Rarity.Text = Constants.GetShipRarity(ship.Rarity);
 			Rarity.ImageIndex = (int)ResourceManager.IconContent.RarityRed + ship.Rarity;
@@ -555,7 +607,7 @@ namespace ElectronicObserver.Window.Dialog
 					if (eq == null)
 					{
 						// 破損データが入っていた場合
-						Equipments[i].Text = "Empty";
+						Equipments[i].Text = Translation.Empty;
 						Equipments[i].ImageIndex = (int)ResourceManager.EquipmentContent.Nothing;
 
 					}
@@ -574,16 +626,16 @@ namespace ElectronicObserver.Window.Dialog
 							StringBuilder sb = new StringBuilder();
 
 							sb.AppendFormat("{0} {1} (ID: {2})\r\n", eq.CategoryTypeInstance.NameEN, eq.NameEN, eq.EquipmentID);
-							if (eq.Firepower != 0) sb.AppendFormat("FP {0:+0;-0}\r\n", eq.Firepower);
-							if (eq.Torpedo != 0) sb.AppendFormat("Torp {0:+0;-0}\r\n", eq.Torpedo);
-							if (eq.AA != 0) sb.AppendFormat("AA {0:+0;-0}\r\n", eq.AA);
-							if (eq.Armor != 0) sb.AppendFormat("Armor {0:+0;-0}\r\n", eq.Armor);
-							if (eq.ASW != 0) sb.AppendFormat("ASW {0:+0;-0}\r\n", eq.ASW);
-							if (eq.Evasion != 0) sb.AppendFormat("{0} {1:+0;-0}\r\n", eq.CategoryType == EquipmentTypes.Interceptor ? "Interception" : "Evasion", eq.Evasion);
-							if (eq.LOS != 0) sb.AppendFormat("LOS {0:+0;-0}\r\n", eq.LOS);
-							if (eq.Accuracy != 0) sb.AppendFormat("{0} {1:+0;-0}\r\n", eq.CategoryType == EquipmentTypes.Interceptor ? "Anti-bomb" : "Acc", eq.Accuracy);
-							if (eq.Bomber != 0) sb.AppendFormat("Bombing {0:+0;-0}\r\n", eq.Bomber);
-							sb.AppendLine("\r\nRight click to open in a new window.");
+							if (eq.Firepower != 0) sb.AppendFormat(Translation.Firepower + " {0:+0;-0}\r\n", eq.Firepower);
+							if (eq.Torpedo != 0) sb.AppendFormat(Translation.Torpedo + " {0:+0;-0}\r\n", eq.Torpedo);
+							if (eq.AA != 0) sb.AppendFormat(Translation.AA + " {0:+0;-0}\r\n", eq.AA);
+							if (eq.Armor != 0) sb.AppendFormat(Translation.Armor + " {0:+0;-0}\r\n", eq.Armor);
+							if (eq.ASW != 0) sb.AppendFormat(Translation.ASW + " {0:+0;-0}\r\n", eq.ASW);
+							if (eq.Evasion != 0) sb.AppendFormat("{0} {1:+0;-0}\r\n", eq.CategoryType == EquipmentTypes.Interceptor ? Translation.Interception : Translation.Evasion, eq.Evasion);
+							if (eq.LOS != 0) sb.AppendFormat(Translation.LOS + " {0:+0;-0}\r\n", eq.LOS);
+							if (eq.Accuracy != 0) sb.AppendFormat("{0} {1:+0;-0}\r\n", eq.CategoryType == EquipmentTypes.Interceptor ? Translation.AntiBomb : Translation.Accuracy, eq.Accuracy);
+							if (eq.Bomber != 0) sb.AppendFormat(Translation.Bombing + " {0:+0;-0}\r\n", eq.Bomber);
+							sb.AppendLine(Translation.RightClickToOpenInNewWindow);
 
 							ToolTipInfo.SetToolTip(Equipments[i], sb.ToString());
 						}
@@ -592,7 +644,7 @@ namespace ElectronicObserver.Window.Dialog
 				}
 				else if (i < ship.SlotSize)
 				{
-					Equipments[i].Text = "(empty)";
+					Equipments[i].Text = Translation.Empty;
 					Equipments[i].ImageIndex = (int)ResourceManager.EquipmentContent.Nothing;
 
 				}
@@ -631,7 +683,7 @@ namespace ElectronicObserver.Window.Dialog
 
 				if (ship.RemodelBeforeShipID == 0)
 				{
-					RemodelBeforeShipName.Text = "(empty)";
+					RemodelBeforeShipName.Text = Translation.Empty;
 					ToolTipInfo.SetToolTip(RemodelBeforeShipName, null);
 					RemodelBeforeLevel.Text = "";
 					RemodelBeforeLevel.ImageIndex = -1;
@@ -643,7 +695,7 @@ namespace ElectronicObserver.Window.Dialog
 				{
 					IShipDataMaster sbefore = ship.RemodelBeforeShip;
 					RemodelBeforeShipName.Text = sbefore.NameEN;
-					ToolTipInfo.SetToolTip(RemodelBeforeShipName, "Open with left click.\r\nRight click to open in a new window.");
+					ToolTipInfo.SetToolTip(RemodelBeforeShipName, Translation.RemodelBeforeShipNameToolTip);
 					RemodelBeforeLevel.Text = string.Format("Lv. {0}", sbefore.RemodelAfterLevel);
 					RemodelBeforeLevel.ImageIndex = GetRemodelItemImageIndex(sbefore);
 					ToolTipInfo.SetToolTip(RemodelBeforeLevel, GetRemodelItem(sbefore));
@@ -653,7 +705,7 @@ namespace ElectronicObserver.Window.Dialog
 
 				if (ship.RemodelAfterShipID == 0)
 				{
-					RemodelAfterShipName.Text = "(empty)";
+					RemodelAfterShipName.Text = Translation.Empty;
 					ToolTipInfo.SetToolTip(RemodelAfterShipName, null);
 					RemodelAfterLevel.Text = "";
 					RemodelAfterLevel.ImageIndex = -1;
@@ -664,7 +716,7 @@ namespace ElectronicObserver.Window.Dialog
 				else
 				{
 					RemodelAfterShipName.Text = ship.RemodelAfterShip.NameEN;
-					ToolTipInfo.SetToolTip(RemodelAfterShipName, "Open with left click.\r\nRight click to open in a new window.");
+					ToolTipInfo.SetToolTip(RemodelAfterShipName, Translation.RemodelBeforeShipNameToolTip);
 					RemodelAfterLevel.Text = string.Format("Lv. {0}", ship.RemodelAfterLevel);
 					RemodelAfterLevel.ImageIndex = GetRemodelItemImageIndex(ship);
 					ToolTipInfo.SetToolTip(RemodelAfterLevel, GetRemodelItem(ship));
@@ -940,9 +992,9 @@ namespace ElectronicObserver.Window.Dialog
 			if (ship.NeedCatapult > 0)
 				sb.AppendLine(EncycloRes.PrototypeCatapult + ": " + ship.NeedCatapult);
 			if (ship.NeedActionReport > 0)
-				sb.AppendLine("Action Report: " + ship.NeedActionReport);
+				sb.AppendLine($"{Translation.ActionReport}: " + ship.NeedActionReport);
 			if (ship.NeedAviationMaterial > 0)
-				sb.AppendLine("新型航空兵装資材: " + ship.NeedAviationMaterial);
+				sb.AppendLine($"{Translation.AviationMaterial}: " + ship.NeedAviationMaterial);
 
 			return sb.ToString();
 		}
@@ -1046,8 +1098,8 @@ namespace ElectronicObserver.Window.Dialog
 				catch (Exception ex)
 				{
 
-					Utility.ErrorReporter.SendErrorReport(ex, "艦船図鑑 CSVの出力に失敗しました。");
-					MessageBox.Show("艦船図鑑 CSVの出力に失敗しました。\r\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					Utility.ErrorReporter.SendErrorReport(ex, Translation.CsvExportFailed);
+					MessageBox.Show(Translation.CsvExportFailed + "\r\n" + ex.Message, AlbumMasterTranslation.DialogTitleError, MessageBoxButtons.OK, MessageBoxIcon.Error);
 				}
 
 			}
@@ -1161,8 +1213,8 @@ namespace ElectronicObserver.Window.Dialog
 				catch (Exception ex)
 				{
 
-					Utility.ErrorReporter.SendErrorReport(ex, "艦船図鑑 CSVの出力に失敗しました。");
-					MessageBox.Show("艦船図鑑 CSVの出力に失敗しました。\r\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					Utility.ErrorReporter.SendErrorReport(ex, Translation.CsvExportFailed);
+					MessageBox.Show(Translation.CsvExportFailed + "\r\n" + ex.Message, AlbumMasterTranslation.DialogTitleError, MessageBoxButtons.OK, MessageBoxIcon.Error);
 				}
 
 			}
@@ -1230,7 +1282,7 @@ namespace ElectronicObserver.Window.Dialog
 
 			if (_shipID <= 0)
 			{
-				MessageBox.Show("Please select a ship.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+				MessageBox.Show(Translation.SelectAShip, AlbumMasterTranslation.DialogTitleError, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
 				return;
 			}
 
@@ -1523,7 +1575,7 @@ namespace ElectronicObserver.Window.Dialog
 						s.CellID,
 						s.Difficulty,
 						EnemyFleetName = RecordManager.Instance.EnemyFleet.Record.ContainsKey(s.EnemyFleetID) ?
-						   RecordManager.Instance.EnemyFleet.Record[s.EnemyFleetID].FleetName : "Unknown"
+						   RecordManager.Instance.EnemyFleet.Record[s.EnemyFleetID].FleetName : Translation.Unknown
 					})
 					.Distinct()
 					.OrderBy(r => r.MapAreaID)
@@ -1554,7 +1606,7 @@ namespace ElectronicObserver.Window.Dialog
 					.ThenBy(r => r.DevelopmentMaterial)
 					)
 				{
-					sb.AppendFormat("Recipe {0} / {1} / {2} / {3} - {4}\r\n",
+					sb.AppendFormat(Translation.Recipe + " {0} / {1} / {2} / {3} - {4}\r\n",
 						record.Fuel, record.Ammo, record.Steel, record.Bauxite, record.DevelopmentMaterial);
 				}
 
@@ -1570,7 +1622,7 @@ namespace ElectronicObserver.Window.Dialog
 						s.MapInfoID,
 						s.CellID,
 						s.Difficulty,
-						EnemyFleetName = !string.IsNullOrWhiteSpace(s.FleetName) ? s.FleetName : "Unknown"
+						EnemyFleetName = !string.IsNullOrWhiteSpace(s.FleetName) ? s.FleetName : Translation.Unknown
 					})
 					.Distinct()
 					.OrderBy(r => r.MapAreaID)
@@ -1600,9 +1652,9 @@ namespace ElectronicObserver.Window.Dialog
 			string result = GetAppearingArea(ship.ShipID);
 
 			if (string.IsNullOrEmpty(result))
-				result = "Failed to find maps/recipe which drop " + ship.NameWithClass + ".";
+				result = string.Format(Translation.FailedToFindMapOrRecipe, ship.NameWithClass);
 
-			MessageBox.Show(result, "Map/Recipe Search", MessageBoxButtons.OK, MessageBoxIcon.Information);
+			MessageBox.Show(result, Translation.MapOrRecipeSearchCaption, MessageBoxButtons.OK, MessageBoxIcon.Information);
 		}
 
 
@@ -1625,7 +1677,7 @@ namespace ElectronicObserver.Window.Dialog
 			}
 			else
 			{
-				MessageBox.Show("Please select a ship.", "No Ship Selected", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				MessageBox.Show(Translation.SpecifyTargetShip, Translation.NoShipSelectedCaption, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 			}
 		}
 
@@ -1643,7 +1695,7 @@ namespace ElectronicObserver.Window.Dialog
 			{
 				ProcessStartInfo psi = new ProcessStartInfo
 				{
-					FileName = @"https://www.google.com/search?q=" + Uri.EscapeDataString(ship.NameWithClass) + "+KanColle",
+					FileName = @"https://www.duckduckgo.com/?q=" + Uri.EscapeDataString(ship.NameWithClass) + AlbumMasterTranslation.KancolleSpecifier,
 					UseShellExecute = true
 				};
 				// google <艦船名> 艦これ
@@ -1651,7 +1703,7 @@ namespace ElectronicObserver.Window.Dialog
 			}
 			catch (Exception ex)
 			{
-				Utility.ErrorReporter.SendErrorReport(ex, "Failed to search on Google.");
+				Utility.ErrorReporter.SendErrorReport(ex, AlbumMasterTranslation.FailedToSearchOnWeb);
 			}
 		}
 

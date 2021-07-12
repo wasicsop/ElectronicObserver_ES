@@ -216,20 +216,20 @@ namespace ElectronicObserver.Window.Dialog
             this.StripMenu_File_MergeDefaultRecord});
 			this.StripMenu_File.Name = "StripMenu_File";
 			this.StripMenu_File.Size = new System.Drawing.Size(70, 20);
-			this.StripMenu_File.Text = "&File";
+			this.StripMenu_File.Text = "ファイル(&F)";
 			//
 			// StripMenu_File_OutputCSVUser
 			//
 			this.StripMenu_File_OutputCSVUser.Name = "StripMenu_File_OutputCSVUser";
 			this.StripMenu_File_OutputCSVUser.Size = new System.Drawing.Size(203, 22);
-			this.StripMenu_File_OutputCSVUser.Text = EncycloRes.OutputCSVUser;
+			this.StripMenu_File_OutputCSVUser.Text = "CSV出力(閲覧用)(&U)...";
 			this.StripMenu_File_OutputCSVUser.Click += new System.EventHandler(this.StripMenu_File_OutputCSVUser_Click);
 			//
 			// StripMenu_File_OutputCSVData
 			//
 			this.StripMenu_File_OutputCSVData.Name = "StripMenu_File_OutputCSVData";
 			this.StripMenu_File_OutputCSVData.Size = new System.Drawing.Size(203, 22);
-			this.StripMenu_File_OutputCSVData.Text = EncycloRes.OutputCSVData;
+			this.StripMenu_File_OutputCSVData.Text = "CSV出力(データ用)(&D)...";
 			this.StripMenu_File_OutputCSVData.Click += new System.EventHandler(this.StripMenu_File_OutputCSVData_Click);
 			//
 			// StripMenu_Edit
@@ -245,13 +245,13 @@ namespace ElectronicObserver.Window.Dialog
             this.StripMenu_Edit_CopySpecialEquipmentTable});
 			this.StripMenu_Edit.Name = "StripMenu_Edit";
 			this.StripMenu_Edit.Size = new System.Drawing.Size(60, 20);
-			this.StripMenu_Edit.Text = EncycloRes.StripMenu_Edit;
+			this.StripMenu_Edit.Text = "編集(&E)";
 			//
 			// StripMenu_Edit_EditParameter
 			//
 			this.StripMenu_Edit_EditParameter.Name = "StripMenu_Edit_EditParameter";
 			this.StripMenu_Edit_EditParameter.Size = new System.Drawing.Size(250, 22);
-			this.StripMenu_Edit_EditParameter.Text = "Edit Parameter...";
+			this.StripMenu_Edit_EditParameter.Text = "パラメータの編集(&E)...";
 			this.StripMenu_Edit_EditParameter.Click += new System.EventHandler(this.StripMenu_Edit_EditParameter_Click);
 			//
 			// toolStripSeparator1
@@ -265,7 +265,7 @@ namespace ElectronicObserver.Window.Dialog
 			this.StripMenu_Edit_CopyShipName.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift)
             | System.Windows.Forms.Keys.C)));
 			this.StripMenu_Edit_CopyShipName.Size = new System.Drawing.Size(250, 22);
-			this.StripMenu_Edit_CopyShipName.Text = "Copy Ship &Name";
+			this.StripMenu_Edit_CopyShipName.Text = "艦名をコピー(&N)";
 			this.StripMenu_Edit_CopyShipName.Click += new System.EventHandler(this.StripMenu_Edit_CopyShipName_Click);
 			//
 			// StripMenu_Edit_CopyShipData
@@ -273,7 +273,7 @@ namespace ElectronicObserver.Window.Dialog
 			this.StripMenu_Edit_CopyShipData.Name = "StripMenu_Edit_CopyShipData";
 			this.StripMenu_Edit_CopyShipData.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
 			this.StripMenu_Edit_CopyShipData.Size = new System.Drawing.Size(250, 22);
-			this.StripMenu_Edit_CopyShipData.Text = "Copy Ship &Data";
+			this.StripMenu_Edit_CopyShipData.Text = "艦船データのコピー(&D)";
 			this.StripMenu_Edit_CopyShipData.Click += new System.EventHandler(this.StripMenu_Edit_CopyShipData_Click);
 			//
 			// toolStripSeparator2
@@ -286,7 +286,7 @@ namespace ElectronicObserver.Window.Dialog
 			this.StripMenu_Edit_GoogleShipName.Name = "StripMenu_Edit_GoogleShipName";
 			this.StripMenu_Edit_GoogleShipName.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.G)));
 			this.StripMenu_Edit_GoogleShipName.Size = new System.Drawing.Size(250, 22);
-			this.StripMenu_Edit_GoogleShipName.Text = "Search on &Google";
+			this.StripMenu_Edit_GoogleShipName.Text = "艦船名でGoogle検索(&G)";
 			this.StripMenu_Edit_GoogleShipName.Click += new System.EventHandler(this.StripMenu_Edit_GoogleShipName_Click);
 			//
 			// StripMenu_View
@@ -296,21 +296,21 @@ namespace ElectronicObserver.Window.Dialog
             this.StripMenu_View_ShowShipGraphicViewer});
 			this.StripMenu_View.Name = "StripMenu_View";
 			this.StripMenu_View.Size = new System.Drawing.Size(61, 20);
-			this.StripMenu_View.Text = "&View";
+			this.StripMenu_View.Text = "表示(&V)";
 			//
 			// StripMenu_View_ShowAppearingArea
 			//
 			this.StripMenu_View_ShowAppearingArea.Name = "StripMenu_View_ShowAppearingArea";
 			this.StripMenu_View_ShowAppearingArea.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
 			this.StripMenu_View_ShowAppearingArea.Size = new System.Drawing.Size(217, 22);
-			this.StripMenu_View_ShowAppearingArea.Text = "Map Dro&p";
+			this.StripMenu_View_ShowAppearingArea.Text = "出現海域を検索(&P)";
 			this.StripMenu_View_ShowAppearingArea.Click += new System.EventHandler(this.StripMenu_View_ShowAppearingArea_Click);
 			//
 			// StripMenu_View_ShowShipGraphicViewer
 			//
 			this.StripMenu_View_ShowShipGraphicViewer.Name = "StripMenu_View_ShowShipGraphicViewer";
 			this.StripMenu_View_ShowShipGraphicViewer.Size = new System.Drawing.Size(217, 22);
-			this.StripMenu_View_ShowShipGraphicViewer.Text = "Ship Image &Viewer";
+			this.StripMenu_View_ShowShipGraphicViewer.Text = "画像ビューア(&V)";
 			this.StripMenu_View_ShowShipGraphicViewer.Click += new System.EventHandler(this.StripMenu_View_ShowShipGraphicViewer_Click);
 			//
 			// splitContainer1
@@ -393,7 +393,7 @@ namespace ElectronicObserver.Window.Dialog
 			// ShipView_ShipType
 			//
 			this.ShipView_ShipType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-			this.ShipView_ShipType.HeaderText = EncycloRes.ShipType;
+			this.ShipView_ShipType.HeaderText = "艦種";
 			this.ShipView_ShipType.Name = "ShipView_ShipType";
 			this.ShipView_ShipType.ReadOnly = true;
 			this.ShipView_ShipType.Width = 80;
@@ -401,7 +401,7 @@ namespace ElectronicObserver.Window.Dialog
 			// ShipView_Name
 			//
 			this.ShipView_Name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.ShipView_Name.HeaderText = EncycloRes.ShipName;
+			this.ShipView_Name.HeaderText = "艦名";
 			this.ShipView_Name.Name = "ShipView_Name";
 			this.ShipView_Name.ReadOnly = true;
 			//
@@ -469,7 +469,7 @@ namespace ElectronicObserver.Window.Dialog
 			this.TitleDayAttack.Name = "TitleDayAttack";
 			this.TitleDayAttack.Size = new System.Drawing.Size(68, 16);
 			this.TitleDayAttack.TabIndex = 24;
-			this.TitleDayAttack.Text = EncycloRes.DayAttack;
+			this.TitleDayAttack.Text = "昼戦攻撃";
 			this.TitleDayAttack.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			//
 			// NightAttack
@@ -489,7 +489,7 @@ namespace ElectronicObserver.Window.Dialog
 			this.TitleNightAttack.Name = "TitleNightAttack";
 			this.TitleNightAttack.Size = new System.Drawing.Size(68, 16);
 			this.TitleNightAttack.TabIndex = 19;
-			this.TitleNightAttack.Text = EncycloRes.NightAttack;
+			this.TitleNightAttack.Text = "夜戦攻撃";
 			this.TitleNightAttack.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			//
 			// DayAttack
@@ -519,7 +519,7 @@ namespace ElectronicObserver.Window.Dialog
 			this.TitleAirSuperiority.Name = "TitleAirSuperiority";
 			this.TitleAirSuperiority.Size = new System.Drawing.Size(68, 16);
 			this.TitleAirSuperiority.TabIndex = 18;
-			this.TitleAirSuperiority.Text = EncycloRes.AirPower;
+			this.TitleAirSuperiority.Text = "制空戦力";
 			this.TitleAirSuperiority.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			//
 			// AlbumNo
@@ -538,7 +538,7 @@ namespace ElectronicObserver.Window.Dialog
 			this.imageLabel2.Name = "imageLabel2";
 			this.imageLabel2.Size = new System.Drawing.Size(54, 16);
 			this.imageLabel2.TabIndex = 22;
-			this.imageLabel2.Text = EncycloRes.EncyclopediaNumber + ":";
+			this.imageLabel2.Text = "図鑑番号:";
 			//
 			// Description
 			//
@@ -1423,7 +1423,7 @@ namespace ElectronicObserver.Window.Dialog
 			this.ParameterLevel.Size = new System.Drawing.Size(54, 23);
 			this.ParameterLevel.TabIndex = 6;
 			this.ParameterLevel.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			this.ToolTipInfo.SetToolTip(this.ParameterLevel, "Show predicted stats from the specified level.");
+			this.ToolTipInfo.SetToolTip(this.ParameterLevel, "レベルを指定すると予測値が表示されます。");
 			this.ParameterLevel.Value = new decimal(new int[] {
             150,
             0,
@@ -1510,7 +1510,7 @@ namespace ElectronicObserver.Window.Dialog
 			this.TitleParameterMax.Name = "TitleParameterMax";
 			this.TitleParameterMax.Size = new System.Drawing.Size(48, 16);
 			this.TitleParameterMax.TabIndex = 7;
-			this.TitleParameterMax.Text = EncycloRes.Maximum;
+			this.TitleParameterMax.Text = "最大値";
 			this.TitleParameterMax.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			//
 			// ASWMax
@@ -1556,7 +1556,7 @@ namespace ElectronicObserver.Window.Dialog
 			this.TitleParameterMin.Name = "TitleParameterMin";
 			this.TitleParameterMin.Size = new System.Drawing.Size(48, 16);
 			this.TitleParameterMin.TabIndex = 6;
-			this.TitleParameterMin.Text = EncycloRes.Initial;
+			this.TitleParameterMin.Text = "初期値";
 			this.TitleParameterMin.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			//
 			// AAMax
@@ -1783,7 +1783,7 @@ namespace ElectronicObserver.Window.Dialog
 			this.ShipBanner.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
 			this.ShipBanner.TabIndex = 4;
 			this.ShipBanner.TabStop = false;
-			this.ToolTipInfo.SetToolTip(this.ShipBanner, "Right click to open image viewer.");
+			this.ToolTipInfo.SetToolTip(this.ShipBanner, "(右クリックで画像ビューアを開く)");
 			this.ShipBanner.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ShipBanner_MouseClick);
 			//
 			// ToolTipInfo
@@ -1827,7 +1827,7 @@ namespace ElectronicObserver.Window.Dialog
 			//
 			this.StripMenu_Edit_CopySpecialEquipmentTable.Name = "StripMenu_Edit_CopySpecialEquipmentTable";
 			this.StripMenu_Edit_CopySpecialEquipmentTable.Size = new System.Drawing.Size(250, 22);
-			this.StripMenu_Edit_CopySpecialEquipmentTable.Text = "Copy &Special Equipment Table";
+			this.StripMenu_Edit_CopySpecialEquipmentTable.Text = "特殊装備テーブルをコピー(&S)";
 			this.StripMenu_Edit_CopySpecialEquipmentTable.Click += new System.EventHandler(this.StripMenu_Edit_CopySpecialEquipmentTable_Click);
 			// 
 			// toolStripSeparator4
@@ -1839,7 +1839,7 @@ namespace ElectronicObserver.Window.Dialog
 			// 
 			this.StripMenu_File_MergeDefaultRecord.Name = "StripMenu_File_MergeDefaultRecord";
 			this.StripMenu_File_MergeDefaultRecord.Size = new System.Drawing.Size(215, 22);
-			this.StripMenu_File_MergeDefaultRecord.Text = "Merge Default Record(&M)";
+			this.StripMenu_File_MergeDefaultRecord.Text = "デフォルトレコードから更新(&M)";
 			this.StripMenu_File_MergeDefaultRecord.Click += new System.EventHandler(this.StripMenu_File_MergeDefaultRecord_Click);
 			//
 			// DialogAlbumMasterShip
@@ -1854,7 +1854,7 @@ namespace ElectronicObserver.Window.Dialog
 			this.MinimumSize = new System.Drawing.Size(816, 518);
 			this.Name = "DialogAlbumMasterShip";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-			this.Text = EncycloRes.ShipEncyclopedia;
+			this.Text = "艦船図鑑";
 			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.DialogAlbumMasterShip_FormClosed);
 			this.Load += new System.EventHandler(this.DialogAlbumMasterShip_Load);
 			this.menuStrip1.ResumeLayout(false);
