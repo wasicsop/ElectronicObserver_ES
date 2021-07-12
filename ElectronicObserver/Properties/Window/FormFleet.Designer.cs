@@ -294,12 +294,12 @@ namespace ElectronicObserver.Properties.Window {
         ///   Looks up a localized string similar to Lv合計: {0} / 平均: {1:0.00}
         ///{2}艦隊
         ///支援攻撃: {3}
-        ///合計火力 {4} / 対空 {5} / 対潜 {6} / 索敵 {7}
-        ///ドラム缶搭載: {8}個 ({9}艦)
-        ///大発動艇搭載: {10}個 ({11}艦, +{12:p1})
-        ///輸送量(TP): S {13} / A {14}
-        ///総積載: 燃 {15} / 弾 {16}
-        ///(1戦当たり 燃 {17} / 弾 {18}).
+        ///合計火力 {4} / 雷装 {5} / 対空 {6} / 対潜 {7} / 索敵 {8}
+        ///ドラム缶搭載: {9}個 ({10}艦)
+        ///大発動艇搭載: {11}個 ({12}艦, +{13:p1})
+        ///輸送量(TP): S {14} / A {15}
+        ///総積載: 燃 {16} / 弾 {17}
+        ///(1戦当たり 燃 {18} / 弾 {19}).
         /// </summary>
         public static string FleetNameToolTip {
             get {
@@ -335,7 +335,7 @@ namespace ElectronicObserver.Properties.Window {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 力.
+        ///   Looks up a localized string similar to 威力.
         /// </summary>
         public static string Power {
             get {
