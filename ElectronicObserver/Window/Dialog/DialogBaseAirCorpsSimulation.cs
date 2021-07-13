@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ElectronicObserverTypes;
+using Translation = ElectronicObserver.Properties.Window.Dialog.DialogBaseAirCorpsSimulation;
 
 namespace ElectronicObserver.Window.Dialog
 {
@@ -245,17 +246,17 @@ namespace ElectronicObserver.Window.Dialog
 
 				bool isLand = eq.CategoryType == EquipmentTypes.Interceptor;
 
-				Add("FP", eq.Firepower);
-				Add("Torp", eq.Torpedo);
-				Add("Bomb", eq.Bomber);
-				Add("AA", eq.AA);
-				Add("Armor", eq.Armor);
-				Add("ASW", eq.ASW);
-				Add(isLand ? "Interception" : "Evasion", eq.Evasion);
-				Add("LOS", eq.LOS);
-				Add(isLand ? "Anti-bomber" : "Acc", eq.Accuracy);
-				AddNoSign("Cost", eq.AircraftCost);
-				AddNoSign("Range", eq.AircraftDistance);
+				Add(Translation.Firepower, eq.Firepower);
+				Add(Translation.Torpedo, eq.Torpedo);
+				Add(Translation.Bomber, eq.Bomber);
+				Add(Translation.AA, eq.AA);
+				Add(Translation.Armor, eq.Armor);
+				Add(Translation.ASW, eq.ASW);
+				Add(isLand ? Translation.Interception : Translation.Evasion, eq.Evasion);
+				Add(Translation.LOS, eq.LOS);
+				Add(isLand ? Translation.AntiBomber : Translation.Accuracy, eq.Accuracy);
+				AddNoSign(Translation.Cost, eq.AircraftCost);
+				AddNoSign(Translation.Range, eq.AircraftDistance);
 
 				return sb.ToString();
 			}
@@ -383,17 +384,17 @@ namespace ElectronicObserver.Window.Dialog
 				TitleAutoAirSuperiority = NewTitleLabel();
 				TitleAutoDistance = NewTitleLabel();
 
-				TitleAircraftCategory.Text = "Type";
-				TitleAircraft.Text = "Aircraft";
-				TitleAircraftCount.Text = "Slot";
-				TitleAirSuperioritySortie.Text = "Sortie";
-				TitleAirSuperiorityAirDefense.Text = "AD";
-				TitleDistance.Text = "Range";
-				TitleBomber.Text = "Bomb";
-				TitleTorpedo.Text = "Torp";
-				TitleOrganizationCost.Text = "Deploy";
-				TitleAutoAirSuperiority.Text = "AS";
-				TitleAutoDistance.Text = "Range";
+				TitleAircraftCategory.Text = Translation.Category;
+				TitleAircraft.Text = Translation.Aircraft;
+				TitleAircraftCount.Text = Translation.Slot;
+				TitleAirSuperioritySortie.Text = Translation.Sortie;
+				TitleAirSuperiorityAirDefense.Text = Translation.AirDefense;
+				TitleDistance.Text = Translation.Range;
+				TitleBomber.Text = Translation.Bomber;
+				TitleTorpedo.Text = Translation.Torpedo;
+				TitleOrganizationCost.Text = Translation.OrganizationCost;
+				TitleAutoAirSuperiority.Text = Translation.AirSuperiority;
+				TitleAutoDistance.Text = Translation.AutoRange;
 
 				AutoAirSuperiority = new NumericUpDown();
 				AutoAirSuperiority.Size = new Size(60, AutoAirSuperiority.Height);
@@ -428,7 +429,7 @@ namespace ElectronicObserver.Window.Dialog
 				AutoOrganizeSortie.Size = new Size(60, AutoOrganizeSortie.Height);
 				AutoOrganizeSortie.Anchor = AnchorStyles.Left | AnchorStyles.Right;
 				AutoOrganizeSortie.Margin = new Padding(2, 0, 2, 0);
-				AutoOrganizeSortie.Text = "Auto";
+				AutoOrganizeSortie.Text = Translation.AutoOrganizeSortie;
 				AutoOrganizeSortie.Click += AutoOrganize_Click;
 
 				AutoOrganizeAirDefense = new Button
@@ -436,7 +437,7 @@ namespace ElectronicObserver.Window.Dialog
 					Size = new Size(60, AutoOrganizeSortie.Height),
 					Anchor = AnchorStyles.Left | AnchorStyles.Right,
 					Margin = new Padding(2, 0, 2, 0),
-					Text = "Auto AD"
+					Text = Translation.AutoOrganizeAirDefense
 				};
 				AutoOrganizeAirDefense.Click += AutoOrganize_Click;
 
@@ -454,7 +455,7 @@ namespace ElectronicObserver.Window.Dialog
 				TotalDistance = NewTotalLabel();
 				TotalOrganizationCost = NewTotalLabel();
 
-				TitleTotal.Text = "Total";
+				TitleTotal.Text = Translation.TitleTotal;
 				DuplicateCheck.TextAlign = ContentAlignment.MiddleLeft;
 				DuplicateCheck.ForeColor = Color.Red;
 
@@ -541,7 +542,7 @@ namespace ElectronicObserver.Window.Dialog
 
 				TotalAirSuperioritySortie.Text = airSortie.ToString();
 				ToolTipInternal.SetToolTip(TotalAirSuperioritySortie,
-					string.Format("AS+: {0}\r\nAS: {1}\r\nAP: {2}\r\nAI: {3}\r\n",
+					string.Format(GeneralRes.BaseTooltip,
 						(int)(airSortie / 3.0),
 						(int)(airSortie / 1.5),
 						Math.Max((int)(airSortie * 1.5 - 1), 0),
@@ -554,7 +555,7 @@ namespace ElectronicObserver.Window.Dialog
 
 				TotalAirSuperiorityAirDefense.Text = airDefense.ToString();
 				ToolTipInternal.SetToolTip(TotalAirSuperiorityAirDefense,
-					string.Format("AS+: {0}\r\nAS: {1}\r\nAP: {2}\r\nAI: {3}\r\n",
+					string.Format(GeneralRes.BaseTooltip,
 						(int)(airDefense / 3.0),
 						(int)(airDefense / 1.5),
 						Math.Max((int)(airDefense * 1.5 - 1), 0),
@@ -595,7 +596,7 @@ namespace ElectronicObserver.Window.Dialog
 					int val = (int)e.Value;
 
 					if (val == -1)
-						e.Value = "Select";
+						e.Value = Translation.Select;
 					else
 						e.Value = Constants.GetAirSuperiority(val);
 				}
@@ -636,8 +637,8 @@ namespace ElectronicObserver.Window.Dialog
 
 				if (orgs == null || orgs.All(o => o == null))
 				{
-					MessageBox.Show("Optimization failed.\r\nThe requirement is too high or not enough plane.\r\n",
-						"Optimization Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					MessageBox.Show(Translation.OptimizationFailed,
+						Translation.OptimizationFailedTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
 					return;
 				}
 
@@ -700,7 +701,7 @@ namespace ElectronicObserver.Window.Dialog
 			public override string ToString()
 			{
 				if (EquipmentType == null)
-					return "(unknown)";
+					return Translation.Unknown;
 				else
 					return EquipmentType.NameEN;
 			}
@@ -794,7 +795,7 @@ namespace ElectronicObserver.Window.Dialog
 					return sb.ToString();
 
 				}
-				else return "(empty)";
+				else return Translation.Empty;
 			}
 		}
 
@@ -837,6 +838,23 @@ namespace ElectronicObserver.Window.Dialog
 				TableBaseAirCorpsList[i].ResumeLayout();
 			}
 
+			Translate();
+		}
+
+		public void Translate()
+		{
+			groupBox1.Text = Translation.AirBaseOne;
+			groupBox3.Text = Translation.AirBaseThree;
+			groupBox2.Text = Translation.AirBaseTwo;
+
+			TopMenu_Edit.Text = Translation.TopMenu_Edit;
+			TopMenu_Edit_ImportOrganization.Text = Translation.TopMenu_Edit_ImportOrganization;
+			TopMenu_Edit_Clear.Text = Translation.TopMenu_Edit_Clear;
+
+			TopMenu_Settings.Text = Translation.TopMenu_Settings;
+			TopMenu_Settings_HighAltitude.Text = Translation.TopMenu_Settings_HighAltitude;
+
+			Text = Translation.Title;
 		}
 
 		private void DialogBaseAirCorpsSimulation_Load(object sender, EventArgs e)
@@ -844,7 +862,7 @@ namespace ElectronicObserver.Window.Dialog
 
 			if (!KCDatabase.Instance.BaseAirCorps.Any())
 			{
-				MessageBox.Show("Failed to read LBAS information.\r\nBrowse the sortie menu ingame to retrieve the relevant data.", "Read Failed",
+				MessageBox.Show(Translation.FailedToLoadAirBaseInfo, Translation.FailedToLoadAirBaseInfoTitle,
 					MessageBoxButtons.OK, MessageBoxIcon.Error);
 				Close();
 			}
@@ -865,7 +883,7 @@ namespace ElectronicObserver.Window.Dialog
 					string name = map.NameEN;
 
 					if (string.IsNullOrWhiteSpace(map.NameEN) || map.NameEN == "※")
-						name = "Event Map";
+						name = Translation.EventMap;
 
 					var tool = new ToolStripMenuItem(string.Format("#{0} {1}", mapAreaID, name), null,
 						new EventHandler((ssender, ee) => TopMenu_Edit_MapArea_Click(mapAreaID)));
@@ -917,7 +935,7 @@ namespace ElectronicObserver.Window.Dialog
 
 				if (dupelist.Any())
 				{
-					ui.DuplicateCheck.Text = "Dupes: " + string.Join(", ", dupelist.Select(d => "#" + (d + 1)));
+					ui.DuplicateCheck.Text = $"{Translation.Dupes}: " + string.Join(", ", dupelist.Select(d => "#" + (d + 1)));
 				}
 				else
 				{
@@ -978,7 +996,7 @@ namespace ElectronicObserver.Window.Dialog
 
 		private void TopMenu_Edit_Clear_Click(object sender, EventArgs e)
 		{
-			if (MessageBox.Show("This will clear all LBAS organizations.\r\nAre you sure?", "Clear Organization", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1)
+			if (MessageBox.Show(Translation.ClearAirBaseOrganizations, Translation.ClearAirBaseOrganizationsTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1)
 				== System.Windows.Forms.DialogResult.Yes)
 			{
 

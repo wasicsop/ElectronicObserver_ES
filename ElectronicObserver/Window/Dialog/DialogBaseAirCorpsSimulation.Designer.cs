@@ -60,7 +60,7 @@
 			this.groupBox1.Size = new System.Drawing.Size(672, 194);
 			this.groupBox1.TabIndex = 0;
 			this.groupBox1.TabStop = false;
-			this.groupBox1.Text = "LBAS #1";
+			this.groupBox1.Text = "第一基地航空隊";
 			// 
 			// TableBaseAirCorps1
 			// 
@@ -118,7 +118,7 @@
 			this.groupBox3.Size = new System.Drawing.Size(672, 194);
 			this.groupBox3.TabIndex = 2;
 			this.groupBox3.TabStop = false;
-			this.groupBox3.Text = "LBAS #3";
+			this.groupBox3.Text = "第三基地航空隊";
 			// 
 			// TableBaseAirCorps3
 			// 
@@ -158,7 +158,7 @@
 			this.groupBox2.Size = new System.Drawing.Size(672, 194);
 			this.groupBox2.TabIndex = 1;
 			this.groupBox2.TabStop = false;
-			this.groupBox2.Text = "LBAS #2";
+			this.groupBox2.Text = "第二基地航空隊";
 			// 
 			// TableBaseAirCorps2
 			// 
@@ -205,19 +205,19 @@
 			this.TopMenu_Edit_Clear});
 			this.TopMenu_Edit.Name = "TopMenu_Edit";
 			this.TopMenu_Edit.Size = new System.Drawing.Size(60, 20);
-			this.TopMenu_Edit.Text = "&Edit";
+			this.TopMenu_Edit.Text = "編集(&E)";
 			// 
 			// TopMenu_Edit_ImportOrganization
 			// 
 			this.TopMenu_Edit_ImportOrganization.Name = "TopMenu_Edit_ImportOrganization";
 			this.TopMenu_Edit_ImportOrganization.Size = new System.Drawing.Size(202, 22);
-			this.TopMenu_Edit_ImportOrganization.Text = "&Import from";
+			this.TopMenu_Edit_ImportOrganization.Text = "現在の編成をインポート(&I)";
 			// 
 			// TopMenu_Edit_Clear
 			// 
 			this.TopMenu_Edit_Clear.Name = "TopMenu_Edit_Clear";
 			this.TopMenu_Edit_Clear.Size = new System.Drawing.Size(202, 22);
-			this.TopMenu_Edit_Clear.Text = "&Clear";
+			this.TopMenu_Edit_Clear.Text = "編成をクリア(&C)";
 			this.TopMenu_Edit_Clear.Click += new System.EventHandler(this.TopMenu_Edit_Clear_Click);
 			// 
 			// ToolTipInfo
@@ -233,14 +233,14 @@
                 this.TopMenu_Settings_HighAltitude});
             this.TopMenu_Settings.Name = "TopMenu_Settings";
             this.TopMenu_Settings.Size = new System.Drawing.Size(61, 20);
-            this.TopMenu_Settings.Text = "Settings(&S)";
+            this.TopMenu_Settings.Text = "設定(&S)";
             // 
             // TopMenu_Settings_HighAltitude
             // 
             this.TopMenu_Settings_HighAltitude.CheckOnClick = true;
             this.TopMenu_Settings_HighAltitude.Name = "TopMenu_Settings_HighAltitude";
             this.TopMenu_Settings_HighAltitude.Size = new System.Drawing.Size(180, 22);
-            this.TopMenu_Settings_HighAltitude.Text = "High Altitude(&H)";
+            this.TopMenu_Settings_HighAltitude.Text = "対高高度爆撃(&H)";
             this.TopMenu_Settings_HighAltitude.Click += new System.EventHandler(this.TopMenu_Settings_HighAltitude_Click);
 			// 
 			// DialogBaseAirCorpsSimulation
@@ -253,7 +253,7 @@
 			this.Font = new System.Drawing.Font("Meiryo UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
 			this.MainMenuStrip = this.menuStrip1;
 			this.Name = "DialogBaseAirCorpsSimulation";
-			this.Text = "LBAS Simulator";
+			this.Text = "基地航空隊編成シミュレーション";
 			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.DialogBaseAirCorpsSimulation_FormClosed);
 			this.Load += new System.EventHandler(this.DialogBaseAirCorpsSimulation_Load);
 			this.groupBox1.ResumeLayout(false);
