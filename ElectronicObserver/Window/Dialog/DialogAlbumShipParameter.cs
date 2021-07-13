@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Translation = ElectronicObserver.Properties.Window.Dialog.DialogAlbumShipParameter;
 
 namespace ElectronicObserver.Window.Dialog
 {
@@ -18,6 +19,8 @@ namespace ElectronicObserver.Window.Dialog
 		public DialogAlbumShipParameter()
 		{
 			InitializeComponent();
+
+			Translate();
 		}
 
 		public DialogAlbumShipParameter(int shipID)
@@ -25,6 +28,15 @@ namespace ElectronicObserver.Window.Dialog
 		{
 
 			InitView(shipID);
+		}
+
+		public void Translate()
+		{
+			ParameterView_Key.HeaderText = EncycloRes.ParameterView_Key;
+			ParameterView_Value.HeaderText = EncycloRes.ParameterView_Value;
+			ButtonCancel.Text = GeneralRes.Cancel;
+			label1.Text = EncycloRes.EditShipParameterHint;
+			Text = EncycloRes.EditShipParameter;
 		}
 
 		private void DialogAlbumShipParameter_Load(object sender, EventArgs e)
@@ -90,7 +102,7 @@ namespace ElectronicObserver.Window.Dialog
 			catch (Exception ex)
 			{
 
-				MessageBox.Show("パラメータ設定に失敗しました。\r\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				MessageBox.Show(Translation.FailedToSetParameter + "\r\n" + ex.Message, Translation.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
 
 

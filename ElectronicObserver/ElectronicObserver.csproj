@@ -85,6 +85,11 @@
 		  <AutoGen>True</AutoGen>
 		  <DependentUpon>DialogAlbumMasterShip.resx</DependentUpon>
 		</Compile>
+		<Compile Update="Properties\Window\Dialog\DialogAlbumShipParameter.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>DialogAlbumShipParameter.resx</DependentUpon>
+		</Compile>
 		<Compile Update="Properties\Window\Dialog\DialogConfiguration.Designer.cs">
 		  <DesignTime>True</DesignTime>
 		  <AutoGen>True</AutoGen>
@@ -350,6 +355,10 @@
 		<EmbeddedResource Update="Properties\Window\Dialog\DialogAlbumMasterShip.resx">
 		  <Generator>PublicResXFileCodeGenerator</Generator>
 		  <LastGenOutput>DialogAlbumMasterShip.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Properties\Window\Dialog\DialogAlbumShipParameter.resx">
+		  <Generator>PublicResXFileCodeGenerator</Generator>
+		  <LastGenOutput>DialogAlbumShipParameter.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 		<EmbeddedResource Update="Properties\Window\Dialog\DialogConfiguration.resx">
 		  <Generator>PublicResXFileCodeGenerator</Generator>
