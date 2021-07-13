@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ElectronicObserverTypes;
+using Translation = ElectronicObserver.Properties.Window.Dialog.DialogAntiAirDefense;
 
 namespace ElectronicObserver.Window.Dialog
 {
@@ -67,6 +68,53 @@ namespace ElectronicObserver.Window.Dialog
 		{
 			InitializeComponent();
 			enemySlotCountValue = (int)EnemySlotCount.Value;
+
+			Translate();
+		}
+
+		public void Translate()
+		{
+			label6.Text = Translation.WipeRate;
+			ToolTipInfo.SetToolTip(ShowAll, Translation.ShowAllToolTip);
+			label5.Text = Translation.FleetAA;
+			label4.Text = Translation.AACI;
+			label3.Text = Translation.Formation;
+			Formation.Items.Clear();
+			Formation.Items.AddRange(new object[]
+			{
+				Translation.Formation_LineAhead,
+				Translation.Formation_DoubleLine,
+				Translation.Formation_Ring
+			});
+			label2.Text = Translation.PlaneSlot;
+			label1.Text = Translation.Fleet;
+			FleetID.Items.Clear();
+			FleetID.Items.AddRange(new object[]
+			{
+				Translation.FleetID_First,
+				Translation.FleetID_Second,
+				Translation.FleetID_Third,
+				Translation.FleetID_Fourth,
+				Translation.FleetID_CombinedFleet
+			});
+
+			ResultView_ShipName.HeaderText = Translation.ResultView_ShipName;
+			ResultView_AntiAir.HeaderText = Translation.ResultView_AntiAir;
+			ResultView_AdjustedAntiAir.HeaderText = Translation.ResultView_AdjustedAntiAir;
+			ResultView_ProportionalAirDefense.HeaderText = Translation.ResultView_ProportionalAirDefense;
+			ResultView_FixedAirDefense.HeaderText = Translation.ResultView_FixedAirDefense;
+			ResultView_ShootDownBoth.HeaderText = Translation.ResultView_ShootDownBoth;
+			ResultView_ShootDownBoth.ToolTipText = Translation.ResultView_ShootDownBothToolTip;
+			ResultView_ShootDownProportional.HeaderText = Translation.ResultView_ShootDownProportional;
+			ResultView_ShootDownProportional.ToolTipText = Translation.ResultView_ShootDownProportionalToolTip;
+			ResultView_ShootDownFixed.HeaderText = Translation.ResultView_ShootDownFixed;
+			ResultView_ShootDownFixed.ToolTipText = Translation.ResultView_ShootDownFixedToolTip;
+			ResultView_ShootDownFailed.HeaderText = Translation.ResultView_ShootDownFailed;
+			ResultView_ShootDownFailed.ToolTipText = Translation.ResultView_ShootDownFailedToolTip;
+			ResultView_AARocketBarrageProbability.HeaderText = Translation.ResultView_AARocketBarrageProbability;
+			ResultView_AARocketBarrageProbability.ToolTipText = Translation.ResultView_AARocketBarrageProbabilityToolTip;
+
+			Text = Translation.Title;
 		}
 
 		private void DialogAntiAirDefense_Load(object sender, EventArgs e)
@@ -74,7 +122,7 @@ namespace ElectronicObserver.Window.Dialog
 
 			if (!KCDatabase.Instance.Fleet.IsAvailable)
 			{
-				MessageBox.Show("艦隊データが読み込まれていません。\r\n艦これを起動してから開いてください。", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				MessageBox.Show(Translation.DataNotLoaded, Translation.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
 				Close();
 				return;
 			}

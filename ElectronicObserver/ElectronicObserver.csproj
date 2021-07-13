@@ -90,6 +90,11 @@
 		  <AutoGen>True</AutoGen>
 		  <DependentUpon>DialogAlbumShipParameter.resx</DependentUpon>
 		</Compile>
+		<Compile Update="Properties\Window\Dialog\DialogAntiAirDefense.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>DialogAntiAirDefense.resx</DependentUpon>
+		</Compile>
 		<Compile Update="Properties\Window\Dialog\DialogConfiguration.Designer.cs">
 		  <DesignTime>True</DesignTime>
 		  <AutoGen>True</AutoGen>
@@ -359,6 +364,10 @@
 		<EmbeddedResource Update="Properties\Window\Dialog\DialogAlbumShipParameter.resx">
 		  <Generator>PublicResXFileCodeGenerator</Generator>
 		  <LastGenOutput>DialogAlbumShipParameter.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Properties\Window\Dialog\DialogAntiAirDefense.resx">
+		  <Generator>PublicResXFileCodeGenerator</Generator>
+		  <LastGenOutput>DialogAntiAirDefense.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 		<EmbeddedResource Update="Properties\Window\Dialog\DialogConfiguration.resx">
 		  <Generator>PublicResXFileCodeGenerator</Generator>
