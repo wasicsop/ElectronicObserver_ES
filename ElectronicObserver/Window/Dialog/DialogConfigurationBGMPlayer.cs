@@ -28,6 +28,21 @@ namespace ElectronicObserver.Window.Dialog
 
 			Text = "BGMの設定 - " + SyncBGMPlayer.SoundHandleIDToString(handle.HandleID);
 			ResultHandle = handle.Clone();
+
+
+		}
+
+		public void Translate()
+		{
+			label1.Text = ConfigRes.Path;
+			IsLoop.Text = ConfigRes.Loop;
+			label2.Text = ConfigRes.Lead;
+			label3.Text = ConfigRes.Second;
+			label4.Text = ConfigRes.Volume;
+			ButtonCancel.Text = GeneralRes.Cancel;
+			OpenMusicDialog.Title = ConfigRes.BGMPlayer_OpenMusicFile;
+
+			Text = ConfigRes.BGMPlayer_Settings;
 		}
 
 		private void DialogConfigurationBGMPlayer_Load(object sender, EventArgs e)
