@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Translation = ElectronicObserver.Properties.Window.Dialog.DialogConfigurationNotifier;
 
 namespace ElectronicObserver.Window.Dialog
 {
@@ -134,6 +135,128 @@ namespace ElectronicObserver.Window.Dialog
 
 			DialogOpenSound.Filter = "音楽ファイル|" + string.Join(";", Utility.MediaPlayer.SupportedExtensions.Select(s => "*." + s)) + "|File|*";
 
+			Translate();
+		}
+
+		public void Translate()
+		{
+			ButtonCancel.Text = ConfigRes.Cancel;
+			GroupSound.Text = NotifyRes.Sound;
+			LoopsSound.Text = ConfigRes.Loop;
+			label9.Text = ConfigRes.Volume;
+			ToolTipText.SetToolTip(SoundVolume, Translation.SoundVolumeToolTip);
+			PlaysSound.Text = NotifyRes.Enable;
+			ButtonTest.Text = NotifyRes.Test;
+			IsEnabled.Text = NotifyRes.EnableNotify;
+			GroupImage.Text = NotifyRes.Image;
+			DrawsImage.Text = NotifyRes.Enable;
+			GroupDialog.Text = NotifyRes.NotifyDialog;
+			label5.Text = NotifyRes.CloseOn + "：";
+			CloseList.Items.Clear();
+			CloseList.Items.AddRange(new object[]
+			{
+				NotifyRes.LeftClick,
+				NotifyRes.LeftDoubleClick,
+				NotifyRes.RightClick,
+				NotifyRes.RightDoubleClick,
+				NotifyRes.MiddleClick,
+				NotifyRes.MiddleDoubleClick,
+				NotifyRes.MouseOver
+			});
+			ShowWithActivation.Text = NotifyRes.ShowWithActivation;
+			ToolTipText.SetToolTip(ShowWithActivation, Translation.ShowWithActivationToolTip);
+			label4.Text = NotifyRes.Location + ":";
+			DrawsMessage.Text = NotifyRes.DisplayMessage;
+			ToolTipText.SetToolTip(DrawsMessage, NotifyRes.DisplayMessageHint);
+			HasFormBorder.Text = NotifyRes.DisplayWindowBorder;
+			ToolTipText.SetToolTip(HasFormBorder, NotifyRes.WindowBorderHint);
+			label6.Text = NotifyRes.Sec;
+			label7.Text = NotifyRes.AutoClose + ":";
+			ToolTipText.SetToolTip(ClosingInterval, NotifyRes.IntervalHint);
+			BackColorPreview.Text = NotifyRes.BackColorDisplay + ":";
+			ToolTipText.SetToolTip(BackColorPreview, NotifyRes.BackColorDispHint);
+			ToolTipText.SetToolTip(BackColorSelect, NotifyRes.BackColorSelect);
+			ForeColorPreview.Text = NotifyRes.ForeColorDisplay + ":";
+			ToolTipText.SetToolTip(ForeColorPreview, NotifyRes.ForeColorDispHint);
+			ToolTipText.SetToolTip(ForeColorSelect, NotifyRes.ForeColorSelect);
+			label3.Text = NotifyRes.Sec;
+			label2.Text = NotifyRes.HurryBy + ":";
+			ToolTipText.SetToolTip(AccelInterval, NotifyRes.HurryHint);
+			TopMostFlag.Text = NotifyRes.ShowOnTop;
+			ToolTipText.SetToolTip(LocationY, NotifyRes.LocYHint);
+			ToolTipText.SetToolTip(LocationX, NotifyRes.LocXHint);
+			label1.Text = NotifyRes.Alignment + ":";
+			Alignment.Items.Clear();
+			Alignment.Items.AddRange(new object[] 
+			{
+				NotifyRes.AlignUnset,
+				NotifyRes.AlignTopLeft,
+				NotifyRes.AlignTop,
+				NotifyRes.AlignTopRight,
+				NotifyRes.AlignLeft,
+				NotifyRes.AlignCenter,
+				NotifyRes.AlignRight,
+				NotifyRes.AlignBottomLeft,
+				NotifyRes.AlignBottom,
+				NotifyRes.AlignBottomRight,
+				NotifyRes.AlignManualAbs,
+				NotifyRes.AlignManualRel
+			});
+			ToolTipText.SetToolTip(Alignment, NotifyRes.AlignHint);
+			ShowsDialog.Text = NotifyRes.Enable;
+			GroupDamage.Text = NotifyRes.DamageOptions;
+			NotifiesAtEndpoint.Text = NotifyRes.NotifyEndNodes;
+			ContainsFlagship.Text = NotifyRes.IncludeFlagship;
+			ContainsSafeShip.Text = NotifyRes.IncludeDamecon;
+			ContainsNotLockedShip.Text = NotifyRes.IncludeUnlocked;
+			label8.Text = NotifyRes.MinLv + ":";
+			ToolTipText.SetToolTip(LevelBorder, NotifyRes.LvHint);
+			NotifiesAfter.Text = NotifyRes.NotifyAfter;
+			ToolTipText.SetToolTip(NotifiesAfter, NotifyRes.NotifyAfterHint);
+			NotifiesNow.Text = NotifyRes.NotifyNow;
+			ToolTipText.SetToolTip(NotifiesNow, NotifyRes.NotifyNowHint);
+			NotifiesBefore.Text = NotifyRes.NotifyBefore;
+			ToolTipText.SetToolTip(NotifiesBefore, NotifyRes.NotifyBeforeHint);
+			DialogOpenSound.Title = NotifyRes.OpenSound;
+			DialogOpenImage.Title = NotifyRes.OpenImage;
+			label10.Text = Translation.SettingsWillBeAppliedForTest;
+			GroupAnchorageRepair.Text = Translation.GroupAnchorageRepair;
+			label11.Text = Translation.TriggerWhen;
+			GroupBaseAirCorps.Text = Translation.GroupBaseAirCorps;
+			BaseAirCorps_NotSupplied.Text = Translation.BaseAirCorps_NotSupplied;
+			ToolTipText.SetToolTip(BaseAirCorps_NotSupplied, Translation.BaseAirCorps_NotSuppliedToolTip);
+			BaseAirCorps_Tired.Text = Translation.BaseAirCorps_Tired;
+			ToolTipText.SetToolTip(BaseAirCorps_Tired, Translation.BaseAirCorps_TiredToolTip);
+			BaseAirCorps_Rest.Text = Translation.BaseAirCorps_Rest;
+			ToolTipText.SetToolTip(BaseAirCorps_Rest, Translation.BaseAirCorps_RestToolTip);
+			BaseAirCorps_Retreat.Text = Translation.BaseAirCorps_Retreat;
+			ToolTipText.SetToolTip(BaseAirCorps_Retreat, Translation.BaseAirCorps_RetreatToolTip);
+			BaseAirCorps_Standby.Text = Translation.BaseAirCorps_Standby;
+			ToolTipText.SetToolTip(BaseAirCorps_Standby, Translation.BaseAirCorps_StandbyToolTip);
+			BaseAirCorps_NormalMap.Text = Translation.BaseAirCorps_NormalMap;
+			ToolTipText.SetToolTip(BaseAirCorps_NormalMap, Translation.BaseAirCorps_NormalMapToolTip);
+			BaseAirCorps_EventMap.Text = Translation.BaseAirCorps_EventMap;
+			ToolTipText.SetToolTip(BaseAirCorps_EventMap, Translation.BaseAirCorps_EventMapToolTip);
+			BaseAirCorps_EquipmentRelocation.Text = Translation.BaseAirCorps_EquipmentRelocation;
+			ToolTipText.SetToolTip(BaseAirCorps_EquipmentRelocation, Translation.BaseAirCorps_EquipmentRelocationToolTip);
+			BaseAirCorps_SquadronRelocation.Text = Translation.BaseAirCorps_SquadronRelocation;
+			ToolTipText.SetToolTip(BaseAirCorps_SquadronRelocation, Translation.BaseAirCorps_SquadronRelocationToolTip);
+			GroupBattleEnd.Text = Translation.GroupBattleEnd;
+			BattleEnd_IdleTimerEnabled.Text = Translation.BattleEnd_IdleTimerEnabled;
+			ToolTipText.SetToolTip(BattleEnd_IdleTimerEnabled, Translation.BattleEnd_IdleTimerEnabledToolTip);
+			BattleEnd_IdleTime.Text = Translation.BattleEnd_IdleTime;
+			ToolTipText.SetToolTip(BattleEnd_IdleTime, Translation.BattleEnd_IdleTimeToolTip);
+			AnchorageRepairNotificationLevel.Items.Clear();
+			AnchorageRepairNotificationLevel.Items.AddRange(new object[]
+			{
+				Translation.AnchorageRepairNotificationLevel_Always,
+				Translation.AnchorageRepairNotificationLevel_AkashiFlagship,
+				Translation.AnchorageRepairNotificationLevel_ShipNeededRepair,
+				Translation.AnchorageRepairNotificationLevel_Preset
+			});
+			ToolTipText.SetToolTip(AnchorageRepairNotificationLevel, Translation.AnchorageRepairNotificationLevelToolTip);
+
+			Text = NotifyRes.Title;
 		}
 
 		private void DialogConfigurationNotifier_Load(object sender, EventArgs e)
@@ -309,7 +432,7 @@ namespace ElectronicObserver.Window.Dialog
 			{
 				if (!_notifier.LoadSound(SoundPath.Text) && PlaysSound.Checked)
 				{
-					MessageBox.Show(NotifyRes.FailedLoadSound, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					MessageBox.Show(NotifyRes.FailedLoadSound, Translation.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
 					return false;
 				}
 			}
@@ -317,7 +440,7 @@ namespace ElectronicObserver.Window.Dialog
 			{
 				if (!_notifier.DialogData.LoadImage(ImagePath.Text) && DrawsImage.Checked)
 				{
-					MessageBox.Show(NotifyRes.FailedLoadImage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					MessageBox.Show(NotifyRes.FailedLoadImage, Translation.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
 					return false;
 				}
 			}
@@ -401,7 +524,7 @@ namespace ElectronicObserver.Window.Dialog
 
 			if (_notifier.DialogData.Alignment == NotifierDialogAlignment.Custom)
 			{
-				_notifier.DialogData.Message = "テスト 通知です。\r\n移動して閉じると表示位置が更新されます。";
+				_notifier.DialogData.Message = Translation.TestNotificationCustomPositioning;
 				_notifier.Notify((_sender, _e) =>
 				{
 					var dialog = _sender as DialogNotifier;
@@ -415,7 +538,7 @@ namespace ElectronicObserver.Window.Dialog
 			}
 			else
 			{
-				_notifier.DialogData.Message = "テスト 通知です。";
+				_notifier.DialogData.Message = Translation.TestNotification;
 				_notifier.Notify();
 			}
 		}

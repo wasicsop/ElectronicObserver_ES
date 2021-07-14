@@ -1,0 +1,218 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+		Microsoft ResX Schema
+
+		Version 1.3
+
+		The primary goals of this format is to allow a simple XML format 
+		that is mostly human readable. The generation and parsing of the 
+		various data types are done through the TypeConverter classes 
+		associated with the data types.
+
+		Example:
+
+		... ado.net/XML headers & schema ...
+		<resheader name="resmimetype">text/microsoft-resx</resheader>
+		<resheader name="version">1.3</resheader>
+		<resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+		<resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+		<data name="Name1">this is my long string</data>
+		<data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+		<data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+			[base64 mime encoded serialized .NET Framework object]
+		</data>
+		<data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+			[base64 mime encoded string representing a byte array form of the .NET Framework object]
+		</data>
+
+		There are any number of "resheader" rows that contain simple 
+		name/value pairs.
+
+		Each data row contains a name, and value. The row also contains a 
+		type or mimetype. Type corresponds to a .NET class that support 
+		text/value conversion through the TypeConverter architecture. 
+		Classes that don't support this are serialized and stored with the 
+		mimetype set.
+
+		The mimetype is used for serialized objects, and tells the 
+		ResXResourceReader how to depersist the object. This is currently not 
+		extensible. For a given mimetype the value must be set accordingly:
+
+		Note - application/x-microsoft.net.object.binary.base64 is the format 
+		that the ResXResourceWriter will generate, however the reader can 
+		read any of the formats listed below.
+
+		mimetype: application/x-microsoft.net.object.binary.base64
+		value   : The object must be serialized with 
+			: System.Serialization.Formatters.Binary.BinaryFormatter
+			: and then encoded with base64 encoding.
+
+		mimetype: application/x-microsoft.net.object.soap.base64
+		value   : The object must be serialized with 
+			: System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+			: and then encoded with base64 encoding.
+
+		mimetype: application/x-microsoft.net.object.bytearray.base64
+		value   : The object must be serialized into a byte array 
+			: using a System.ComponentModel.TypeConverter
+			: and then encoded with base64 encoding.
+	-->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>1.3</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="SoundVolumeToolTip" xml:space="preserve">
+    <value>通知音の音量を指定します。
+0が無音で100が最大音量です。</value>
+  </data>
+  <data name="ShowWithActivationToolTip" xml:space="preserve">
+    <value>表示時にダイアログをアクティブにします。
+無効にすると操作を妨げない代わりにダイアログが隠れやすくなります。</value>
+  </data>
+  <data name="SettingsWillBeAppliedForTest" xml:space="preserve">
+    <value>＊テストを行った時点で設定が適用されます</value>
+  </data>
+  <data name="GroupAnchorageRepair" xml:space="preserve">
+    <value>泊地修理設定</value>
+  </data>
+  <data name="TriggerWhen" xml:space="preserve">
+    <value>発動条件：</value>
+  </data>
+  <data name="GroupBaseAirCorps" xml:space="preserve">
+    <value>基地航空隊設定</value>
+  </data>
+  <data name="BaseAirCorps_NotSupplied" xml:space="preserve">
+    <value>未補給時</value>
+  </data>
+  <data name="BaseAirCorps_NotSuppliedToolTip" xml:space="preserve">
+    <value>出撃前に、いずれかの中隊が未補給のときに通知します。</value>
+  </data>
+  <data name="BaseAirCorps_Tired" xml:space="preserve">
+    <value>疲労時</value>
+  </data>
+  <data name="BaseAirCorps_TiredToolTip" xml:space="preserve">
+    <value>出撃前に、いずれかの中隊が橙疲労以上のときに通知します。</value>
+  </data>
+  <data name="BaseAirCorps_Rest" xml:space="preserve">
+    <value>[休息]</value>
+  </data>
+  <data name="BaseAirCorps_RestToolTip" xml:space="preserve">
+    <value>出撃前に、基地航空隊が[休息]状態のときに通知します。</value>
+  </data>
+  <data name="BaseAirCorps_Retreat" xml:space="preserve">
+    <value>[退避]</value>
+  </data>
+  <data name="BaseAirCorps_RetreatToolTip" xml:space="preserve">
+    <value>出撃前に、基地航空隊が[退避]状態のときに通知します。</value>
+  </data>
+  <data name="BaseAirCorps_Standby" xml:space="preserve">
+    <value>[待機]</value>
+  </data>
+  <data name="BaseAirCorps_StandbyToolTip" xml:space="preserve">
+    <value>出撃前に、基地航空隊が[待機]状態のときに通知します。</value>
+  </data>
+  <data name="BaseAirCorps_NormalMap" xml:space="preserve">
+    <value>通常海域</value>
+  </data>
+  <data name="BaseAirCorps_NormalMapToolTip" xml:space="preserve">
+    <value>出撃前に、通常海域の基地航空隊が準備不足のときに通知します。</value>
+  </data>
+  <data name="BaseAirCorps_EventMap" xml:space="preserve">
+    <value>イベント海域</value>
+  </data>
+  <data name="BaseAirCorps_EventMapToolTip" xml:space="preserve">
+    <value>出撃前に、イベント海域の基地航空隊が準備不足のときに通知します。</value>
+  </data>
+  <data name="BaseAirCorps_EquipmentRelocation" xml:space="preserve">
+    <value>装備の配置転換完了</value>
+  </data>
+  <data name="BaseAirCorps_EquipmentRelocationToolTip" xml:space="preserve">
+    <value>装備の配置転換が完了したときに通知します。</value>
+  </data>
+  <data name="BaseAirCorps_SquadronRelocation" xml:space="preserve">
+    <value>基地の配置転換完了</value>
+  </data>
+  <data name="BaseAirCorps_SquadronRelocationToolTip" xml:space="preserve">
+    <value>基地のスロットの配置転換が完了したときに通知します。
+「装備の配置転換完了」とは異なり、装備欄に戻った機体は通知しません。</value>
+  </data>
+  <data name="GroupBattleEnd" xml:space="preserve">
+    <value>バトルエンド設定</value>
+  </data>
+  <data name="BattleEnd_IdleTimerEnabled" xml:space="preserve">
+    <value>アイドルタイムの有効化</value>
+  </data>
+  <data name="BattleEnd_IdleTimerEnabledToolTip" xml:space="preserve">
+    <value>バトルが始まってから一定期間をおいて通知する。</value>
+  </data>
+  <data name="BattleEnd_IdleTime" xml:space="preserve">
+    <value>アイドルタイム</value>
+  </data>
+  <data name="BattleEnd_IdleTimeToolTip" xml:space="preserve">
+    <value>アイドルタイムを秒単位で指定します。</value>
+  </data>
+  <data name="AnchorageRepairNotificationLevel_Always" xml:space="preserve">
+    <value>いつでも</value>
+  </data>
+  <data name="AnchorageRepairNotificationLevel_AkashiFlagship" xml:space="preserve">
+    <value>明石旗艦の時</value>
+  </data>
+  <data name="AnchorageRepairNotificationLevel_ShipNeededRepair" xml:space="preserve">
+    <value>修理艦もいる時</value>
+  </data>
+  <data name="AnchorageRepairNotificationLevel_Preset" xml:space="preserve">
+    <value>プリセット編成時</value>
+  </data>
+  <data name="AnchorageRepairNotificationLevelToolTip" xml:space="preserve">
+    <value>いつでも：20分経過したら通知します。
+明石旗艦の時：上記に加え、明石旗艦の時のみ通知します。
+修理艦もいる時：上記に加え、実際に修理可能な条件の時のみ通知します。
+プリセット編成時：上記に加え、修理条件を満たしたプリセット編成を含むときにも通知します。</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>エラー</value>
+  </data>
+  <data name="TestNotificationCustomPositioning" xml:space="preserve">
+    <value>テスト 通知です。
+移動して閉じると表示位置が更新されます。</value>
+  </data>
+  <data name="TestNotification" xml:space="preserve">
+    <value>テスト 通知です。</value>
+  </data>
+</root>

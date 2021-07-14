@@ -105,6 +105,11 @@
 		  <AutoGen>True</AutoGen>
 		  <DependentUpon>DialogConfiguration.resx</DependentUpon>
 		</Compile>
+		<Compile Update="Properties\Window\Dialog\DialogConfigurationNotifier.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>DialogConfigurationNotifier.resx</DependentUpon>
+		</Compile>
 		<Compile Update="Properties\Window\Dialog\DialogShipGroupFilter.Designer.cs">
 			<DesignTime>True</DesignTime>
 			<AutoGen>True</AutoGen>
@@ -381,6 +386,10 @@
 		<EmbeddedResource Update="Properties\Window\Dialog\DialogConfiguration.resx">
 		  <Generator>PublicResXFileCodeGenerator</Generator>
 		  <LastGenOutput>DialogConfiguration.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Properties\Window\Dialog\DialogConfigurationNotifier.resx">
+		  <Generator>PublicResXFileCodeGenerator</Generator>
+		  <LastGenOutput>DialogConfigurationNotifier.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 		<EmbeddedResource Update="Properties\Window\Dialog\DialogShipGroupFilter.resx">
 			<Generator>PublicResXFileCodeGenerator</Generator>
