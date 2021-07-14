@@ -25,6 +25,15 @@ namespace ElectronicObserver.Window.Dialog
 			InitializeComponent();
 
 			Font = Utility.Configuration.Config.UI.MainFont;
+
+			Translate();
+		}
+
+		public void Translate()
+		{
+			TextBattleDetail.Text = GeneralRes.BattleDetail;
+
+			Text = GeneralRes.BattleDetail;
 		}
 
 		private void DialogBattleDetail_Load(object sender, EventArgs e)
