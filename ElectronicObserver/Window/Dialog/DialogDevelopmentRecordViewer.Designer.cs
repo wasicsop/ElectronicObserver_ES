@@ -110,7 +110,7 @@ namespace ElectronicObserver.Window.Dialog
 			this.ButtonRun.Name = "ButtonRun";
 			this.ButtonRun.Size = new System.Drawing.Size(75, 23);
 			this.ButtonRun.TabIndex = 22;
-			this.ButtonRun.Text = "Search";
+			this.ButtonRun.Text = "検索";
 			this.ButtonRun.UseVisualStyleBackColor = true;
 			this.ButtonRun.Click += new System.EventHandler(this.ButtonRun_Click);
 			// 
@@ -122,7 +122,7 @@ namespace ElectronicObserver.Window.Dialog
 			this.MergeRows.Name = "MergeRows";
 			this.MergeRows.Size = new System.Drawing.Size(62, 19);
 			this.MergeRows.TabIndex = 21;
-			this.MergeRows.Text = "Group";
+			this.MergeRows.Text = "まとめる";
 			this.MergeRows.UseVisualStyleBackColor = true;
 			// 
 			// label6
@@ -132,7 +132,7 @@ namespace ElectronicObserver.Window.Dialog
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(35, 15);
 			this.label6.TabIndex = 20;
-			this.label6.Text = "Recipe:";
+			this.label6.Text = "レシピ";
 			// 
 			// Recipe
 			// 
@@ -172,7 +172,7 @@ namespace ElectronicObserver.Window.Dialog
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(43, 15);
 			this.label5.TabIndex = 16;
-			this.label5.Text = "FS:";
+			this.label5.Text = "秘書艦";
 			// 
 			// DateEnd
 			// 
@@ -199,7 +199,7 @@ namespace ElectronicObserver.Window.Dialog
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(31, 15);
 			this.label4.TabIndex = 13;
-			this.label4.Text = "Until:";
+			this.label4.Text = "終了";
 			// 
 			// label3
 			// 
@@ -208,7 +208,7 @@ namespace ElectronicObserver.Window.Dialog
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(31, 15);
 			this.label3.TabIndex = 12;
-			this.label3.Text = "From:";
+			this.label3.Text = "開始";
 			// 
 			// label2
 			// 
@@ -217,7 +217,7 @@ namespace ElectronicObserver.Window.Dialog
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(41, 15);
 			this.label2.TabIndex = 3;
-			this.label2.Text = "Type:";
+			this.label2.Text = "カテゴリ";
 			// 
 			// EquipmentCategory
 			// 
@@ -236,7 +236,7 @@ namespace ElectronicObserver.Window.Dialog
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(43, 15);
 			this.label1.TabIndex = 1;
-			this.label1.Text = "Equip:";
+			this.label1.Text = "装備名";
 			// 
 			// EquipmentName
 			// 
@@ -303,39 +303,39 @@ namespace ElectronicObserver.Window.Dialog
 			// RecordView_Name
 			// 
 			this.RecordView_Name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.RecordView_Name.HeaderText = "Ship";
+			this.RecordView_Name.HeaderText = "名前";
 			this.RecordView_Name.Name = "RecordView_Name";
 			this.RecordView_Name.ReadOnly = true;
 			// 
 			// RecordView_Date
 			// 
-			this.RecordView_Date.HeaderText = "Date";
+			this.RecordView_Date.HeaderText = "日付";
 			this.RecordView_Date.Name = "RecordView_Date";
 			this.RecordView_Date.ReadOnly = true;
 			// 
 			// RecordView_Recipe
 			// 
-			this.RecordView_Recipe.HeaderText = "Recipe";
+			this.RecordView_Recipe.HeaderText = "レシピ";
 			this.RecordView_Recipe.Name = "RecordView_Recipe";
 			this.RecordView_Recipe.ReadOnly = true;
 			this.RecordView_Recipe.Width = 180;
 			// 
 			// RecordView_FlagshipType
 			// 
-			this.RecordView_FlagshipType.HeaderText = string.Empty;
+			this.RecordView_FlagshipType.HeaderText = "艦種";
 			this.RecordView_FlagshipType.Name = "RecordView_FlagshipType";
 			this.RecordView_FlagshipType.ReadOnly = true;
             // 
             // RecordView_Flagship
             // 
-            this.RecordView_Flagship.HeaderText = "Secretary";
+            this.RecordView_Flagship.HeaderText = "秘書艦";
 			this.RecordView_Flagship.Name = "RecordView_Flagship";
 			this.RecordView_Flagship.ReadOnly = true;
             // 
             // RecordView_Detail
             // 
             this.RecordView_Detail.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.RecordView_Detail.HeaderText = "Details";
+			this.RecordView_Detail.HeaderText = "詳細";
 			this.RecordView_Detail.Name = "RecordView_Detail";
 			this.RecordView_Detail.ReadOnly = true;
 			// 
@@ -377,7 +377,7 @@ namespace ElectronicObserver.Window.Dialog
 			this.Font = new System.Drawing.Font("Meiryo UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
 			this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.Name = "DialogDevelopmentRecordViewer";
-			this.Text = "Development Record";
+			this.Text = "開発記録";
 			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.DialogDevelopmentRecordViewer_FormClosed);
 			this.Load += new System.EventHandler(this.DialogDevelopmentRecordViewer_Load);
 			this.splitContainer1.Panel1.ResumeLayout(false);

@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ElectronicObserverTypes;
+using Translation = ElectronicObserver.Properties.Window.Dialog.DialogDevelopmentRecordViewer;
 
 namespace ElectronicObserver.Window.Dialog
 {
@@ -20,9 +21,9 @@ namespace ElectronicObserver.Window.Dialog
 
 		private DevelopmentRecord _record;
 
-		private const string NameAny = "All";
-		private const string NameNotExist = "Failed"; //(失敗)
-        private const string NameExist = "Success";
+		private string NameAny => Translation.NameAny;
+		private string NameNotExist => Translation.NameNotExist; //(失敗)
+        private string NameExist => Translation.NameExist;
 
 
 		private class SearchArgument
@@ -44,6 +45,29 @@ namespace ElectronicObserver.Window.Dialog
 			InitializeComponent();
 
 			_record = RecordManager.Instance.Development;
+
+			Translate();
+		}
+
+		public void Translate()
+		{
+			ButtonRun.Text = Translation.ButtonRun;
+			MergeRows.Text = Translation.MergeRows;
+			label6.Text = Translation.Recipe;
+			label5.Text = Translation.Flagship;
+			label4.Text = Translation.Until;
+			label3.Text = Translation.From;
+			label2.Text = Translation.Type;
+			label1.Text = Translation.EquipmentName;
+
+			RecordView_Name.HeaderText = Translation.RecordView_Name;
+			RecordView_Date.HeaderText = Translation.RecordView_Date;
+			RecordView_Recipe.HeaderText = Translation.RecordView_Recipe;
+			RecordView_FlagshipType.HeaderText = Translation.RecordView_FlagshipType;
+			RecordView_Flagship.HeaderText = Translation.RecordView_Flagship;
+			RecordView_Detail.HeaderText = Translation.RecordView_Detail;
+
+			Text = Translation.Title;
 		}
 
 		private void DialogDevelopmentRecordViewer_Load(object sender, EventArgs e)
@@ -201,9 +225,11 @@ namespace ElectronicObserver.Window.Dialog
 		private void ButtonRun_Click(object sender, EventArgs e)
 		{
 
-			if ( Searcher.IsBusy ) {
-				if ( MessageBox.Show( EncycloRes.InterruptSearch, EncycloRes.Searching, MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2 )
-					== System.Windows.Forms.DialogResult.Yes ) {
+			if (Searcher.IsBusy)
+			{
+				if (MessageBox.Show(EncycloRes.InterruptSearch, EncycloRes.Searching, MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2)
+					== System.Windows.Forms.DialogResult.Yes)
+				{
 					Searcher.CancelAsync();
 				}
 				return;
@@ -236,7 +262,7 @@ namespace ElectronicObserver.Window.Dialog
 				RecordView_Header.Width = 50;
 				RecordView_Header.HeaderText = "";
 				RecordView_Name.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-				RecordView_Name.HeaderText = "Equipment";
+				RecordView_Name.HeaderText = Translation.Equipment;
 				RecordView_Date.Width = 140;
 				RecordView_Date.Visible = true;
 				RecordView_Recipe.Width = 95;
@@ -253,12 +279,12 @@ namespace ElectronicObserver.Window.Dialog
 				RecordView_Header.HeaderText = EncycloRes.Tries;
 				RecordView_Name.AutoSizeMode = DataGridViewAutoSizeColumnMode.NotSet;
 				RecordView_Name.Width = 160;
-				RecordView_Name.HeaderText = ( ( EquipmentName.Text != NameAny && EquipmentName.Text != NameExist ) || (int)EquipmentCategory.SelectedValue != -1 ) ? "Recipe" : "Equipment";
+				RecordView_Name.HeaderText = ( ( EquipmentName.Text != NameAny && EquipmentName.Text != NameExist ) || (int)EquipmentCategory.SelectedValue != -1 ) ? Translation.Recipe : Translation.Equipment;
 				RecordView_Date.Visible = false;
 				RecordView_Recipe.Visible = false;
 				RecordView_FlagshipType.Visible = false;
 				RecordView_Flagship.Visible = false;
-				RecordView_Detail.HeaderText = ( SecretaryName.Text != NameAny || (int)SecretaryCategory.SelectedValue != -1 ) ? "Recipe Tries" : "Ship Type";
+				RecordView_Detail.HeaderText = ( SecretaryName.Text != NameAny || (int)SecretaryCategory.SelectedValue != -1 ) ? Translation.RecipeTries : Translation.ShipType;
 				RecordView_Detail.Visible = true;
 			}
 			RecordView.ColumnHeadersVisible = true;
@@ -409,13 +435,13 @@ namespace ElectronicObserver.Window.Dialog
 
 				switch (args.EquipmentName)
 				{
-					case NameAny:
+					case string s when s == NameAny:
 						break;
-					case NameExist:
+					case string s when s == NameExist:
 						if (r.EquipmentID == -1)
 							continue;
 						break;
-					case NameNotExist:
+					case string s when s == NameNotExist:
 						if (r.EquipmentID != -1)
 							continue;
 						break;
@@ -440,7 +466,7 @@ namespace ElectronicObserver.Window.Dialog
 						r.EquipmentName,
 						r.Date,
 						GetRecipeString(r),
-						shiptype?.NameEN ?? "(unknown)",
+						shiptype?.NameEN ?? Translation.Unknown,
 						r.FlagshipName,
 						null
 						);
@@ -483,7 +509,7 @@ namespace ElectronicObserver.Window.Dialog
 					if (prioritySecretary > 0)
 						key2 = currentRecipe;
 					else
-						key2 = shiptype?.NameEN ?? "(unknown)";
+						key2 = shiptype?.NameEN ?? Translation.Unknown;
 
 					if (!countsdetail.ContainsKey(key))
 					{
@@ -702,13 +728,13 @@ namespace ElectronicObserver.Window.Dialog
 				int count = RecordView.SelectedRows.OfType<DataGridViewRow>().Select(r => (int)r.Cells[RecordView_Header.Index].Value).Sum();
 				int allcount = RecordView.Rows.OfType<DataGridViewRow>().Select(r => (int)r.Cells[RecordView_Header.Index].Value).Sum();
 
-				StatusInfo.Text = string.Format("Selected items: {0} / {1} ({2:p1})",
+				StatusInfo.Text = string.Format(Translation.SelectedItems + ": {0} / {1} ({2:p1})",
 					count, allcount, (double)count / allcount);
 			}
 			else
 			{
 				int allcount = RecordView.RowCount;
-				StatusInfo.Text = string.Format("Selected items: {0} / {1} ({2:p1})",
+				StatusInfo.Text = string.Format(Translation.SelectedItems + ": {0} / {1} ({2:p1})",
 					selectedCount, allcount, (double)selectedCount / allcount);
 			}
 		}
