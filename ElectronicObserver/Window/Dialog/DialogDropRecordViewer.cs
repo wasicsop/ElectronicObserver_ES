@@ -11,6 +11,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Translation = ElectronicObserver.Properties.Window.Dialog.DialogDropRecordViewer;
 
 namespace ElectronicObserver.Window.Dialog
 {
@@ -19,10 +20,10 @@ namespace ElectronicObserver.Window.Dialog
 
 		private ShipDropRecord _record;
 
-		private const string NameAny = "(All)";
-		private const string NameNotExist = "(None)";
-		private const string NameFullPort = "(Full)";
-		private const string NameExist = "(Drop)";
+		private string NameAny => Translation.NameAny;
+		private string NameNotExist => Translation.NameNotExist;
+		private string NameFullPort => Translation.NameFullPort;
+		private string NameExist => Translation.NameExist;
 
 		private const string MapAny = "*";
 
@@ -55,6 +56,53 @@ namespace ElectronicObserver.Window.Dialog
 			InitializeComponent();
 
 			_record = RecordManager.Instance.ShipDrop;
+
+			Translate();
+		}
+
+		public void Translate()
+		{
+			ToolTipInfo.SetToolTip(ItemName, Translation.ItemNameToolTip);
+			ToolTipInfo.SetToolTip(ShipName, Translation.ShipNameToolTip);
+			ToolTipInfo.SetToolTip(EquipmentName, Translation.EquipmentNameToolTip);
+			ToolTipInfo.SetToolTip(DateBegin, Translation.DateBeginToolTip);
+
+			label2.Text = Translation.Start;
+			label3.Text = Translation.End;
+
+			ToolTipInfo.SetToolTip(DateEnd, Translation.DateEndToolTip);
+			ToolTipInfo.SetToolTip(RankS, Translation.RankSToolTip);
+			ToolTipInfo.SetToolTip(RankA, Translation.RankAToolTip);
+			ToolTipInfo.SetToolTip(RankB, Translation.RankBToolTip);
+			ToolTipInfo.SetToolTip(RankX, Translation.RankXToolTip);
+
+			label1.Text = Translation.NodeSelection;
+			ToolTipInfo.SetToolTip(MapDifficulty, Translation.MapDifficultyToolTip);
+
+			ButtonRun.Text = Translation.ButtonRun;
+
+			RecordView_Name.HeaderText = Translation.RecordView_Name;
+			RecordView_Date.HeaderText = Translation.RecordView_Date;
+			RecordView_Map.HeaderText = Translation.RecordView_Map;
+			RecordView_Rank.HeaderText = Translation.RecordView_Rank;
+			RecordView_RankS.HeaderText = Translation.RecordView_RankS;
+			RecordView_RankA.HeaderText = Translation.RecordView_RankA;
+			RecordView_RankB.HeaderText = Translation.RecordView_RankB;
+
+			IsBossOnly.Text = Translation.IsBossOnly;
+
+			ToolTipInfo.SetToolTip(MapAreaID, Translation.MapAreaIDToolTip);
+			ToolTipInfo.SetToolTip(MapInfoID, Translation.MapInfoIDToolTip);
+			ToolTipInfo.SetToolTip(MapCellID, Translation.MapCellIDToolTip);
+
+			MergeRows.Text = Translation.MergeRows;
+			ToolTipInfo.SetToolTip(MergeRows, Translation.MergeRowsToolTip);
+			LabelShipName.Text = Translation.LabelShipName;
+			LabelItemName.Text = Translation.LabelItemName;
+			LabelEquipmentName.Text = Translation.LabelEquipmentName;
+			statusStrip1.Text = Translation.statusStrip1;
+
+			Text = Translation.Title;
 		}
 
 		private void DialogDropRecordViewer_Load(object sender, EventArgs e)
@@ -348,8 +396,8 @@ namespace ElectronicObserver.Window.Dialog
 				sb.Append("-");
 				sb.Append(cell);
 			}
-			if ( isboss )
-				sb.Append( " [Boss]" );
+			if (isboss)
+				sb.Append(Translation.Boss);
 
 			if (insertEnemyFleetName)
 			{
@@ -404,9 +452,11 @@ namespace ElectronicObserver.Window.Dialog
 		private void ButtonRun_Click(object sender, EventArgs e)
 		{
 
-			if ( Searcher.IsBusy ) {
-				if ( MessageBox.Show( EncycloRes.InterruptSearch, EncycloRes.Searching, MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2 )
-					== System.Windows.Forms.DialogResult.Yes ) {
+			if (Searcher.IsBusy)
+			{
+				if (MessageBox.Show(EncycloRes.InterruptSearch, EncycloRes.Searching, MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2)
+					== System.Windows.Forms.DialogResult.Yes)
+				{
 					Searcher.CancelAsync();
 				}
 				return;
@@ -588,17 +638,17 @@ namespace ElectronicObserver.Window.Dialog
 
 					switch (args.ShipName)
 					{
-						case NameAny:
+						case string s when s == NameAny:
 							break;
-						case NameExist:
+						case string s when s == NameExist:
 							if (r.ShipID < 0)
 								continue;
 							break;
-						case NameNotExist:
+						case string s when s == NameNotExist:
 							if (r.ShipID != -1)
 								continue;
 							break;
-						case NameFullPort:
+						case string s when s == NameFullPort:
 							if (r.ShipID != -2)
 								continue;
 							break;
@@ -610,13 +660,13 @@ namespace ElectronicObserver.Window.Dialog
 
 					switch (args.ItemName)
 					{
-						case NameAny:
+						case string s when s == NameAny:
 							break;
-						case NameExist:
+						case string s when s == NameExist:
 							if (r.ItemID < 0)
 								continue;
 							break;
-						case NameNotExist:
+						case string s when s == NameNotExist:
 							if (r.ItemID != -1)
 								continue;
 							break;
@@ -918,11 +968,11 @@ namespace ElectronicObserver.Window.Dialog
 
 				if (!Directory.Exists(Data.Battle.BattleManager.BattleLogPath))
 				{
-					StatusInfo.Text = "Battle history was not found.";
+					StatusInfo.Text = Translation.BattleHistoryNotFound;
 					return;
 				}
 
-				StatusInfo.Text = "Searching battle history...";
+				StatusInfo.Text = Translation.SearchingBattleHistory;
 				string battleLogFile = Directory.EnumerateFiles(Data.Battle.BattleManager.BattleLogPath,
 					time.ToString("yyyyMMdd_HHmmss", System.Globalization.CultureInfo.InvariantCulture) + "*.txt",
 					SearchOption.TopDirectoryOnly)
@@ -930,11 +980,11 @@ namespace ElectronicObserver.Window.Dialog
 
 				if (battleLogFile == null)
 				{
-					StatusInfo.Text = "Battle history could not be found.";
+					StatusInfo.Text = Translation.BattleHistoryNotFound;
 					return;
 				}
 
-				StatusInfo.Text = string.Format("Open battle history {0}.", Path.GetFileName(battleLogFile));
+				StatusInfo.Text = string.Format(Translation.OpenBattleHistory, Path.GetFileName(battleLogFile));
 				ProcessStartInfo psi = new ProcessStartInfo
 				{
 					FileName = battleLogFile,
@@ -944,7 +994,7 @@ namespace ElectronicObserver.Window.Dialog
 			}
 			catch (Exception)
 			{
-				StatusInfo.Text = "Could not open battle history.";
+				StatusInfo.Text = Translation.CouldNotOpenBattleHistory;
 			}
 
 		}
@@ -965,13 +1015,13 @@ namespace ElectronicObserver.Window.Dialog
 				int count = RecordView.SelectedRows.OfType<DataGridViewRow>().Select(r => (int)r.Cells[RecordView_Header.Index].Value).Sum();
 				int allcount = RecordView.Rows.OfType<DataGridViewRow>().Select(r => (int)r.Cells[RecordView_Header.Index].Value).Sum();
 
-				StatusInfo.Text = string.Format("Selected items: {0} / {1} ({2:p1})",
+				StatusInfo.Text = string.Format(Translation.SelectedItems,
 					count, allcount, (double)count / allcount);
 			}
 			else
 			{
 				int allcount = RecordView.RowCount;
-				StatusInfo.Text = string.Format("Selected items: {0} / {1} ({2:p1})",
+				StatusInfo.Text = string.Format(Translation.SelectedItems,
 					selectedCount, allcount, (double)selectedCount / allcount);
 			}
 		}

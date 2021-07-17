@@ -115,6 +115,11 @@
 		  <AutoGen>True</AutoGen>
 		  <DependentUpon>DialogDevelopmentRecordViewer.resx</DependentUpon>
 		</Compile>
+		<Compile Update="Properties\Window\Dialog\DialogDropRecordViewer.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>DialogDropRecordViewer.resx</DependentUpon>
+		</Compile>
 		<Compile Update="Properties\Window\Dialog\DialogShipGroupFilter.Designer.cs">
 			<DesignTime>True</DesignTime>
 			<AutoGen>True</AutoGen>
@@ -399,6 +404,10 @@
 		<EmbeddedResource Update="Properties\Window\Dialog\DialogDevelopmentRecordViewer.resx">
 		  <Generator>PublicResXFileCodeGenerator</Generator>
 		  <LastGenOutput>DialogDevelopmentRecordViewer.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Properties\Window\Dialog\DialogDropRecordViewer.resx">
+		  <Generator>PublicResXFileCodeGenerator</Generator>
+		  <LastGenOutput>DialogDropRecordViewer.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 		<EmbeddedResource Update="Properties\Window\Dialog\DialogShipGroupFilter.resx">
 			<Generator>PublicResXFileCodeGenerator</Generator>
