@@ -58,7 +58,7 @@
 			this.groupBox1.Size = new System.Drawing.Size(260, 84);
 			this.groupBox1.TabIndex = 0;
 			this.groupBox1.TabStop = false;
-			this.groupBox1.Text = GeneralRes.Option;
+			this.groupBox1.Text = "オプション";
 			// 
 			// panel2
 			// 
@@ -148,7 +148,7 @@
 			this.ButtonCancel.Name = "ButtonCancel";
 			this.ButtonCancel.Size = new System.Drawing.Size(75, 23);
 			this.ButtonCancel.TabIndex = 2;
-			this.ButtonCancel.Text = GeneralRes.Cancel;
+			this.ButtonCancel.Text = "キャンセル";
 			this.ButtonCancel.UseVisualStyleBackColor = true;
 			this.ButtonCancel.Click += new System.EventHandler(this.ButtonCancel_Click);
 			// 

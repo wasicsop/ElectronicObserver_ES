@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Translation = ElectronicObserver.Properties.Window.Dialog.DialogShipGroupCSVOutput;
 
 namespace ElectronicObserver.Window.Dialog
 {
@@ -107,6 +108,21 @@ namespace ElectronicObserver.Window.Dialog
 
 			DialogSaveCSV.InitialDirectory = Utility.Configuration.Config.Connection.SaveDataPath;
 
+			Translate();
+		}
+
+		public void Translate()
+		{
+			groupBox1.Text = GeneralRes.Option;
+			RadioFormat_Data.Text = Translation.RadioFormat_Data;
+			RadioFormat_User.Text = Translation.RadioFormat_User;
+			RadioOutput_VisibleColumnOnly.Text = Translation.RadioOutput_VisibleColumnOnly;
+			RadioOutput_All.Text = Translation.RadioOutput_All;
+			ButtonCancel.Text = GeneralRes.Cancel;
+			groupBox2.Text = Translation.OutputDestination;
+			DialogSaveCSV.Title = Translation.DialogSaveCSV;
+
+			Text = Translation.Title;
 		}
 
 		private void DialogShipGroupCSVOutput_Load(object sender, EventArgs e)
