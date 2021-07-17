@@ -11,12 +11,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ElectronicObserverTypes;
+using Translation = ElectronicObserver.Properties.Window.Dialog.DialogExpChecker;
 
 namespace ElectronicObserver.Window.Dialog
 {
 	public partial class DialogExpChecker : Form
 	{
-		private static readonly string DefaultTitle = "Exp Calculator";
+		private string DefaultTitle => Translation.Title;
 		private DataGridViewCellStyle CellStyleModernized;
 
 
@@ -60,6 +61,7 @@ namespace ElectronicObserver.Window.Dialog
 			CellStyleModernized.BackColor =
 				CellStyleModernized.SelectionBackColor = Color.LightGreen;
 
+			Translate();
 		}
 
 		public DialogExpChecker(int shipID) : this()
@@ -68,13 +70,40 @@ namespace ElectronicObserver.Window.Dialog
 			Text = DefaultTitle;
 		}
 
+		public void Translate()
+		{
+			groupBox1.Text = Translation.DisplayCriteria;
+			label3.Text = Translation.Ship;
+			SearchInFleet.Text = Translation.SearchInFleet;
+			ToolTipInfo.SetToolTip(SearchInFleet, Translation.SearchInFleetToolTip);
+			label1.Text = Translation.SortieExp;
+			ShowAllASWEquipments.Text = Translation.ShowAllASWEquipments;
+			ToolTipInfo.SetToolTip(ShowAllASWEquipments, Translation.ShowAllASWEquipmentsToolTip);
+
+			ShowAllLevel.Text = Translation.ShowAllLevel;
+			ToolTipInfo.SetToolTip(ShowAllLevel, Translation.ShowAllLevelToolTip);
+
+			label2.Text = Translation.AswOffset;
+			ToolTipInfo.SetToolTip(ASWModernization, Translation.ASWModernizationToolTip);
+
+			ToolTipInfo.SetToolTip(ExpUnit, Translation.ExpUnitToolTip);
+			GroupExp.Text = Translation.GroupExp;
+
+			ColumnExp.HeaderText = Translation.GroupExp;
+			ColumnSortieCount.HeaderText = Translation.ColumnSortieCount;
+			ColumnASW.HeaderText = Translation.ASW;
+			ColumnEquipment.HeaderText = Translation.ColumnEquipment;
+
+			Text = Translation.Title;
+		}
+
 		private void DialogExpChecker_Load(object sender, EventArgs e)
 		{
 			var ships = KCDatabase.Instance.Ships.Values;
 
 			if (!ships.Any())
 			{
-				MessageBox.Show("No ships available.\r\nPlease return to the home port page.", "Ships Unavailable", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				MessageBox.Show(Translation.NoShipsAvailable, Translation.ShipsUnavailable, MessageBoxButtons.OK, MessageBoxIcon.Error);
 				Close();
 				return;
 			}
@@ -177,39 +206,50 @@ namespace ElectronicObserver.Window.Dialog
 			}
 			else
 			{
+				string hfdf = KCDatabase.Instance.MasterEquipments[(int)EquipmentId.Sonar_HFDF_Type144147ASDIC].NameEN;
+				string aswTorpedo = KCDatabase.Instance.MasterEquipments[(int)EquipmentId.DepthCharge_LightweightASWTorpedo_InitialTestModel].NameEN;
+				string rur = KCDatabase.Instance.MasterEquipments[(int)EquipmentId.DepthCharge_RUR4AWeaponAlphaKai].NameEN;
+				string aswRocket = KCDatabase.Instance.MasterEquipments[(int)EquipmentId.DepthCharge_Prototype15cm9tubeASWRocketLauncher].NameEN;
+				string type4 = KCDatabase.Instance.MasterEquipments[(int)EquipmentId.Sonar_Type4PassiveSONAR].NameEN;
+				string type3dc = KCDatabase.Instance.MasterEquipments[(int)EquipmentId.DepthCharge_Type3DepthChargeProjector].NameEN;
+				string type3 = KCDatabase.Instance.MasterEquipments[(int)EquipmentId.Sonar_Type3ActiveSONAR].NameEN;
+				string type2dc = KCDatabase.Instance.MasterEquipments[(int)EquipmentId.DepthCharge_Type2DepthCharge].NameEN;
+
+
 				if (selectedShip.SlotSize >= 4)
 				{
-                    ASWEquipmentPairs.Add(openingASWborder - 67, "[HF/DF + Type144/147 ASDIC, Lightweight ASW Torpedo (Initial Test Model), RUR-4A Weapon Alpha Kai, 15cm ASW Rocket Launcher]");
-                    ASWEquipmentPairs.Add(openingASWborder - 51, "[Type 4 SONARx3, 15cm ASW Rocket Launcher]");
-					ASWEquipmentPairs.Add(openingASWborder - 48, "[Type 4 SONARx4]");
-					ASWEquipmentPairs.Add(openingASWborder - 44, "[Type 4 SONARx3, Type 3 DC]");
+                    ASWEquipmentPairs.Add(openingASWborder - 67, $"[{hfdf}, {aswTorpedo}, {rur}, {aswRocket}]");
+                    ASWEquipmentPairs.Add(openingASWborder - 51, $"[{type4}x3, {aswRocket}]");
+					ASWEquipmentPairs.Add(openingASWborder - 48, $"[{type4}x4]");
+					ASWEquipmentPairs.Add(openingASWborder - 44, $"[{type4}x3, {type3dc}]");
 				}
 				if (selectedShip.SlotSize >= 3)
 				{
-                    ASWEquipmentPairs.Add(openingASWborder - 52, "[HF/DF + Type144/147 ASDIC, Lightweight ASW Torpedo (Initial Test Model), RUR-4A Weapon Alpha Kai, 15cm ASW Rocket Launcher]");
-                    ASWEquipmentPairs.Add(openingASWborder - 47, "[HF/DF + Type144/147 ASDIC, RUR-4A Weapon Alpha Kai, 15cm ASW Rocket Launcher, 15cm ASW Rocket Launcher]");
-                    ASWEquipmentPairs.Add(openingASWborder - 39, "[Type 4 SONARx2, 15cm ASW Rocket Launcher]");
-					ASWEquipmentPairs.Add(openingASWborder - 36, "[Type 4 SONARx3]");
-					ASWEquipmentPairs.Add(openingASWborder - 32, "[Type 4 SONARx2, Type 3 DC]");
-					ASWEquipmentPairs.Add(openingASWborder - 28, "[Type 3 SONARx2, Type 3 DC]");
-					ASWEquipmentPairs.Add(openingASWborder - 27, "[Type 4 SONAR, Type 3 DC, Type 2 DC]");
+                    ASWEquipmentPairs.Add(openingASWborder - 52, $"[{hfdf}, {aswTorpedo}, {rur}]");
+                    ASWEquipmentPairs.Add(openingASWborder - 47, $"[{hfdf}, {rur}, {aswRocket}]");
+
+                    ASWEquipmentPairs.Add(openingASWborder - 39, $"[{type4}x2, {aswRocket}]");
+					ASWEquipmentPairs.Add(openingASWborder - 36, $"[{type4}x3]");
+					ASWEquipmentPairs.Add(openingASWborder - 32, $"[{type4}x2, {type3dc}]");
+					ASWEquipmentPairs.Add(openingASWborder - 28, $"[{type3}x2, {type3dc}]");
+					ASWEquipmentPairs.Add(openingASWborder - 27, $"[{type4}, {type3dc}, {type2dc}]");
 				}
 				if (selectedShip.SlotSize >= 2)
 				{
-					ASWEquipmentPairs.Add(openingASWborder - 35, "[HF/DF + Type144/147 ASDIC, 対潜短魚雷(試作初期型)]");
+					ASWEquipmentPairs.Add(openingASWborder - 35, $"[{hfdf}, {aswTorpedo}]");
 					if (ASWEquipmentPairs.ContainsKey(openingASWborder - 32))
-						ASWEquipmentPairs[openingASWborder - 32] += ", [HF/DF + Type144/147 ASDIC, RUR-4A Weapon Alpha改]";
+						ASWEquipmentPairs[openingASWborder - 32] += $", [{hfdf}, {rur}]";
 					else
-						ASWEquipmentPairs.Add(openingASWborder - 32, "[HF/DF + Type144/147 ASDIC, RUR-4A Weapon Alpha改]");
+						ASWEquipmentPairs.Add(openingASWborder - 32, $"[{hfdf}, {rur}]");
 					if (ASWEquipmentPairs.ContainsKey(openingASWborder - 27))
-						ASWEquipmentPairs[openingASWborder - 27] += ", [Type 4 SONAR, 15cm ASW Rocket Launcher]";
+						ASWEquipmentPairs[openingASWborder - 27] += $", [{type4}, {aswRocket}]";
 					else
-						ASWEquipmentPairs.Add(openingASWborder - 27, "[Type 4 SONAR, 15cm ASW Rocket Launcher]");
-					ASWEquipmentPairs.Add(openingASWborder - 20, "[Type 4 SONAR, Type 3 DC]");
-					ASWEquipmentPairs.Add(openingASWborder - 18, "[Type 3 SONAR, Type 3 DC]");
+						ASWEquipmentPairs.Add(openingASWborder - 27, $"[{type4}, {aswRocket}]");
+					ASWEquipmentPairs.Add(openingASWborder - 20, $"[{type4}, {type3dc}]");
+					ASWEquipmentPairs.Add(openingASWborder - 18, $"[{type3}, {type3dc}]");
 				}
-				ASWEquipmentPairs.Add(openingASWborder - 15, "[HF/DF + Type144/147 ASDIC]");
-				ASWEquipmentPairs.Add(openingASWborder - 12, "[Type 4 SONAR]");
+				ASWEquipmentPairs.Add(openingASWborder - 15, $"[{hfdf}]");
+				ASWEquipmentPairs.Add(openingASWborder - 12, $"[{type4}]");
 			}
 
 
@@ -224,9 +264,9 @@ namespace ElectronicObserver.Window.Dialog
 
 
 			if (!aswdata.IsAvailable)
-				LabelAlert.Text = "＊Since ASW value is unknown, calculation cannot be performed.";
+				LabelAlert.Text = Translation.AswUnknown;
 			else if (!aswdata.IsDetermined)
-				LabelAlert.Text = "＊Since ASW value is still an approximation, calculation may be inaccurate.";
+				LabelAlert.Text = Translation.AswApproximated;
 			else
 				LabelAlert.Text = "";
 
@@ -264,7 +304,7 @@ namespace ElectronicObserver.Window.Dialog
 
 
 			Text = DefaultTitle + " - " + selectedShip.NameWithLevel;
-			GroupExp.Text = $"{selectedShip.NameWithLevel}: Exp. {selectedShip.ExpTotal}, ASW {selectedShip.ASWBase} (Modernization+{selectedShip.ASWModernized})";
+			GroupExp.Text = $"{selectedShip.NameWithLevel}: Exp. {selectedShip.ExpTotal}, {Translation.ASW} {selectedShip.ASWBase} ({Translation.Modernization}+{selectedShip.ASWModernized})";
 		}
 
 

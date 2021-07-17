@@ -79,7 +79,7 @@
 			this.groupBox1.Size = new System.Drawing.Size(599, 86);
 			this.groupBox1.TabIndex = 0;
 			this.groupBox1.TabStop = false;
-			this.groupBox1.Text = "Display Criteria";
+			this.groupBox1.Text = "表示条件";
 			//
 			// TextShip
 			//
@@ -101,7 +101,7 @@
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(43, 15);
 			this.label3.TabIndex = 0;
-			this.label3.Text = "Ship:";
+			this.label3.Text = "";
 			//
 			// SearchInFleet
 			//
@@ -111,8 +111,8 @@
 			this.SearchInFleet.Name = "SearchInFleet";
 			this.SearchInFleet.Size = new System.Drawing.Size(90, 19);
 			this.SearchInFleet.TabIndex = 2;
-			this.SearchInFleet.Text = "Fleet only";
-			this.ToolTipInfo.SetToolTip(this.SearchInFleet, "Display ships only from current fleets.");
+			this.SearchInFleet.Text = "艦隊から探す";
+			this.ToolTipInfo.SetToolTip(this.SearchInFleet, "現在艦隊に所属している艦のみ選択可能にします。");
 			this.SearchInFleet.UseVisualStyleBackColor = true;
 			this.SearchInFleet.CheckedChanged += new System.EventHandler(this.SearchInFleet_CheckedChanged);
 			//
@@ -124,7 +124,7 @@
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(118, 15);
 			this.label1.TabIndex = 7;
-			this.label1.Text = "Sortie exp:";
+			this.label1.Text = "出撃あたりの獲得Exp:";
 			//
 			// ShowAllASWEquipments
 			//
@@ -134,8 +134,8 @@
 			this.ShowAllASWEquipments.Name = "ShowAllASWEquipments";
 			this.ShowAllASWEquipments.Size = new System.Drawing.Size(110, 19);
 			this.ShowAllASWEquipments.TabIndex = 4;
-			this.ShowAllASWEquipments.Text = "All ASW";
-			this.ToolTipInfo.SetToolTip(this.ShowAllASWEquipments, "Display all combinations of ASW equipments.");
+			this.ShowAllASWEquipments.Text = "対潜装備全表示";
+			this.ToolTipInfo.SetToolTip(this.ShowAllASWEquipments, "すべてのソナー・爆雷の組み合わせを表示します。");
 			this.ShowAllASWEquipments.UseVisualStyleBackColor = true;
 			this.ShowAllASWEquipments.CheckedChanged += new System.EventHandler(this.ShowAllASWEquipments_CheckedChanged);
 			//
@@ -147,8 +147,8 @@
 			this.ShowAllLevel.Name = "ShowAllLevel";
 			this.ShowAllLevel.Size = new System.Drawing.Size(75, 19);
 			this.ShowAllLevel.TabIndex = 3;
-			this.ShowAllLevel.Text = "All Lv";
-			this.ToolTipInfo.SetToolTip(this.ShowAllLevel, "Display calculation from Lv 1 onwards.");
+			this.ShowAllLevel.Text = "全Lv表示";
+			this.ToolTipInfo.SetToolTip(this.ShowAllLevel, "有効な時は Lv. 1 から表示します。\r\n無効な時は次のレベルから表示します。");
 			this.ShowAllLevel.UseVisualStyleBackColor = true;
 			this.ShowAllLevel.CheckedChanged += new System.EventHandler(this.ShowAllLevel_CheckedChanged);
 			//
@@ -160,7 +160,7 @@
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(55, 15);
 			this.label2.TabIndex = 5;
-			this.label2.Text = "ASW offset";
+			this.label2.Text = "対潜改修";
 			//
 			// ASWModernization
 			//
@@ -175,7 +175,7 @@
 			this.ASWModernization.Size = new System.Drawing.Size(40, 23);
 			this.ASWModernization.TabIndex = 6;
 			this.ASWModernization.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			this.ToolTipInfo.SetToolTip(this.ASWModernization, "Offset the current ASW value by a specified value.");
+			this.ToolTipInfo.SetToolTip(this.ASWModernization, "対潜改修値を現在値から変更します。");
 			this.ASWModernization.ValueChanged += new System.EventHandler(this.ASWModernization_ValueChanged);
 			//
 			// ExpUnit
@@ -191,7 +191,7 @@
 			this.ExpUnit.Size = new System.Drawing.Size(80, 23);
 			this.ExpUnit.TabIndex = 8;
 			this.ExpUnit.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-			this.ToolTipInfo.SetToolTip(this.ExpUnit, "Insert the amount of experience gained in a single sortie.");
+			this.ToolTipInfo.SetToolTip(this.ExpUnit, "1回の出撃当たりの獲得Exp. を入力すると、出撃回数が計算できます。");
 			this.ExpUnit.Value = new decimal(new int[] {
             2268,
             0,
@@ -210,7 +210,7 @@
 			this.GroupExp.Size = new System.Drawing.Size(600, 324);
 			this.GroupExp.TabIndex = 1;
 			this.GroupExp.TabStop = false;
-			this.GroupExp.Text = "Req Exp";
+			this.GroupExp.Text = "必要Exp";
 			//
 			// LevelView
 			//
@@ -258,7 +258,7 @@
 			//
 			dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
 			this.ColumnExp.DefaultCellStyle = dataGridViewCellStyle2;
-			this.ColumnExp.HeaderText = "Req Exp";
+			this.ColumnExp.HeaderText = "必要Exp";
 			this.ColumnExp.Name = "ColumnExp";
 			this.ColumnExp.ReadOnly = true;
 			this.ColumnExp.Width = 72;
@@ -267,7 +267,7 @@
 			//
 			dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
 			this.ColumnSortieCount.DefaultCellStyle = dataGridViewCellStyle3;
-			this.ColumnSortieCount.HeaderText = "Sorties";
+			this.ColumnSortieCount.HeaderText = "出撃回数";
 			this.ColumnSortieCount.Name = "ColumnSortieCount";
 			this.ColumnSortieCount.ReadOnly = true;
 			this.ColumnSortieCount.Width = 72;
@@ -276,7 +276,7 @@
 			//
 			dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
 			this.ColumnASW.DefaultCellStyle = dataGridViewCellStyle4;
-			this.ColumnASW.HeaderText = "ASW";
+			this.ColumnASW.HeaderText = "対潜";
 			this.ColumnASW.Name = "ColumnASW";
 			this.ColumnASW.ReadOnly = true;
 			this.ColumnASW.Width = 40;
@@ -284,7 +284,7 @@
 			// ColumnEquipment
 			//
 			this.ColumnEquipment.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.ColumnEquipment.HeaderText = "ASW Equipment";
+			this.ColumnEquipment.HeaderText = "先制対潜装備";
 			this.ColumnEquipment.Name = "ColumnEquipment";
 			this.ColumnEquipment.ReadOnly = true;
 			this.ColumnEquipment.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -316,7 +316,7 @@
 			this.Font = new System.Drawing.Font("Meiryo UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
 			this.Name = "DialogExpChecker";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-			this.Text = "Exp Calculator";
+			this.Text = "";
 			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.DialogExpChecker_FormClosed);
 			this.Load += new System.EventHandler(this.DialogExpChecker_Load);
 			this.groupBox1.ResumeLayout(false);
