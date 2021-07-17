@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Translation = ElectronicObserver.Properties.Window.Dialog.DialogShipGroupColumnFilter;
 
 namespace ElectronicObserver.Window.Dialog
 {
@@ -47,6 +48,23 @@ namespace ElectronicObserver.Window.Dialog
 			ScrLkColumnCount.Minimum = 0;
 			ScrLkColumnCount.Maximum = group.ViewColumns.Count;
 			ScrLkColumnCount.Value = group.ScrollLockColumnCount;
+
+			Translate();
+		}
+
+		public void Translate()
+		{
+			ButtonCancel.Text = GeneralRes.Cancel;
+			ColumnView_Name.HeaderText = Translation.ColumnView_Name;
+			ColumnView_Visible.HeaderText = Translation.ColumnView_Visible;
+			// todo: tooltips don't exist in the Japanese version
+			// ColumnView_Visible.ToolTipText = Translation.ColumnView_VisibleToolTip;
+			ColumnView_AutoSize.HeaderText = Translation.ColumnView_AutoSize;
+			// ColumnView_AutoSize.ToolTipText = Translation.ColumnView_AutoSizeToolTip;
+			ColumnView_Width.HeaderText = Translation.ColumnView_Width;
+			label1.Text = Translation.ColumnFreezeNumber;
+
+			Text = Translation.Title;
 		}
 
 		private void DialogShipGroupColumnFilter_Load(object sender, EventArgs e)

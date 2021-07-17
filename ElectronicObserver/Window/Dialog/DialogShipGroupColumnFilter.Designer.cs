@@ -39,9 +39,9 @@
 			this.ColumnView_Down = new System.Windows.Forms.DataGridViewButtonColumn();
 			this.label1 = new System.Windows.Forms.Label();
 			this.ScrLkColumnCount = new System.Windows.Forms.NumericUpDown();
-            this.ButtonSelectedUp = new System.Windows.Forms.Button();
-            this.ButtonSelectedDown = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.ColumnView)).BeginInit();
+			this.ButtonSelectedUp = new System.Windows.Forms.Button();
+			this.ButtonSelectedDown = new System.Windows.Forms.Button();
+			((System.ComponentModel.ISupportInitialize)(this.ColumnView)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.ScrLkColumnCount)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -64,7 +64,7 @@
 			this.ButtonCancel.Name = "ButtonCancel";
 			this.ButtonCancel.Size = new System.Drawing.Size(75, 23);
 			this.ButtonCancel.TabIndex = 3;
-			this.ButtonCancel.Text = GeneralRes.Cancel;
+			this.ButtonCancel.Text = "キャンセル";
 			this.ButtonCancel.UseVisualStyleBackColor = true;
 			this.ButtonCancel.Click += new System.EventHandler(this.ButtonCancel_Click);
 			// 
@@ -101,7 +101,7 @@
 			// ColumnView_Name
 			// 
 			this.ColumnView_Name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-			this.ColumnView_Name.HeaderText = "Column";
+			this.ColumnView_Name.HeaderText = "列名";
 			this.ColumnView_Name.Name = "ColumnView_Name";
 			this.ColumnView_Name.ReadOnly = true;
 			this.ColumnView_Name.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -109,22 +109,20 @@
 			// ColumnView_Visible
 			// 
 			this.ColumnView_Visible.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-			this.ColumnView_Visible.HeaderText = " ";
-			this.ColumnView_Visible.ToolTipText = "Select to enable the specified column.";
+			this.ColumnView_Visible.HeaderText = "表示";
 			this.ColumnView_Visible.Name = "ColumnView_Visible";
 			this.ColumnView_Visible.Width = 37;
 			// 
 			// ColumnView_AutoSize
 			// 
 			this.ColumnView_AutoSize.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-			this.ColumnView_AutoSize.HeaderText = "Resize";
-			this.ColumnView_AutoSize.ToolTipText = "Select to automatically resize the specified column.";
+			this.ColumnView_AutoSize.HeaderText = "自動サイズ";
 			this.ColumnView_AutoSize.Name = "ColumnView_AutoSize";
 			this.ColumnView_AutoSize.Width = 66;
 			// 
 			// ColumnView_Width
 			// 
-			this.ColumnView_Width.HeaderText = "Width";
+			this.ColumnView_Width.HeaderText = "幅";
 			this.ColumnView_Width.Name = "ColumnView_Width";
 			this.ColumnView_Width.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
 			// 
@@ -148,7 +146,7 @@
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(120, 15);
 			this.label1.TabIndex = 5;
-			this.label1.Text = "Freeze # of column: ";
+			this.label1.Text = "列の固定: ";
 			// 
 			// ScrLkColumnCount
 			// 
@@ -158,36 +156,36 @@
 			this.ScrLkColumnCount.Size = new System.Drawing.Size(60, 23);
 			this.ScrLkColumnCount.TabIndex = 6;
 			this.ScrLkColumnCount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // ButtonSelectedUp
-            // 
-            this.ButtonSelectedUp.Location = new System.Drawing.Point(200, 327);
-            this.ButtonSelectedUp.Name = "ButtonSelectedUp";
-            this.ButtonSelectedUp.Size = new System.Drawing.Size(25, 23);
-            this.ButtonSelectedUp.TabIndex = 7;
-            this.ButtonSelectedUp.Text = "↑";
-            this.ButtonSelectedUp.UseVisualStyleBackColor = true;
-            this.ButtonSelectedUp.Click += new System.EventHandler(this.ButtonSelectedUp_Click);
-            // 
-            // ButtonSelectedDown
-            // 
-            this.ButtonSelectedDown.Location = new System.Drawing.Point(231, 327);
-            this.ButtonSelectedDown.Name = "ButtonSelectedDown";
-            this.ButtonSelectedDown.Size = new System.Drawing.Size(25, 23);
-            this.ButtonSelectedDown.TabIndex = 8;
-            this.ButtonSelectedDown.Text = "↓";
-            this.ButtonSelectedDown.UseVisualStyleBackColor = true;
-            this.ButtonSelectedDown.Click += new System.EventHandler(this.ButtonSelectedDown_Click);
-            // 
-            // DialogShipGroupColumnFilter
-            // 
-            this.AcceptButton = this.ButtonOK;
+			// 
+			// ButtonSelectedUp
+			// 
+			this.ButtonSelectedUp.Location = new System.Drawing.Point(200, 327);
+			this.ButtonSelectedUp.Name = "ButtonSelectedUp";
+			this.ButtonSelectedUp.Size = new System.Drawing.Size(25, 23);
+			this.ButtonSelectedUp.TabIndex = 7;
+			this.ButtonSelectedUp.Text = "↑";
+			this.ButtonSelectedUp.UseVisualStyleBackColor = true;
+			this.ButtonSelectedUp.Click += new System.EventHandler(this.ButtonSelectedUp_Click);
+			// 
+			// ButtonSelectedDown
+			// 
+			this.ButtonSelectedDown.Location = new System.Drawing.Point(231, 327);
+			this.ButtonSelectedDown.Name = "ButtonSelectedDown";
+			this.ButtonSelectedDown.Size = new System.Drawing.Size(25, 23);
+			this.ButtonSelectedDown.TabIndex = 8;
+			this.ButtonSelectedDown.Text = "↓";
+			this.ButtonSelectedDown.UseVisualStyleBackColor = true;
+			this.ButtonSelectedDown.Click += new System.EventHandler(this.ButtonSelectedDown_Click);
+			// 
+			// DialogShipGroupColumnFilter
+			// 
+			this.AcceptButton = this.ButtonOK;
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.CancelButton = this.ButtonCancel;
 			this.ClientSize = new System.Drawing.Size(464, 362);
-            this.Controls.Add(this.ButtonSelectedDown);
-            this.Controls.Add(this.ButtonSelectedUp);
-            this.Controls.Add(this.ScrLkColumnCount);
+			this.Controls.Add(this.ButtonSelectedDown);
+			this.Controls.Add(this.ButtonSelectedUp);
+			this.Controls.Add(this.ScrLkColumnCount);
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.ColumnView);
 			this.Controls.Add(this.ButtonCancel);
@@ -198,7 +196,7 @@
 			this.MinimizeBox = false;
 			this.Name = "DialogShipGroupColumnFilter";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-			this.Text = "Select Columns";
+			this.Text = "列の表示設定";
 			this.Load += new System.EventHandler(this.DialogShipGroupColumnFilter_Load);
 			((System.ComponentModel.ISupportInitialize)(this.ColumnView)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.ScrLkColumnCount)).EndInit();
@@ -220,7 +218,7 @@
 		private System.Windows.Forms.DataGridViewButtonColumn ColumnView_Down;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.NumericUpDown ScrLkColumnCount;
-        private System.Windows.Forms.Button ButtonSelectedUp;
-        private System.Windows.Forms.Button ButtonSelectedDown;
-    }
+		private System.Windows.Forms.Button ButtonSelectedUp;
+		private System.Windows.Forms.Button ButtonSelectedDown;
+	}
 }

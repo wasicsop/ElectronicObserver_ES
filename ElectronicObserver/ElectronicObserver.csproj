@@ -150,6 +150,11 @@
 		  <AutoGen>True</AutoGen>
 		  <DependentUpon>DialogShipGraphicViewer.resx</DependentUpon>
 		</Compile>
+		<Compile Update="Properties\Window\Dialog\DialogShipGroupColumnFilter.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>DialogShipGroupColumnFilter.resx</DependentUpon>
+		</Compile>
 		<Compile Update="Properties\Window\Dialog\DialogShipGroupCSVOutput.Designer.cs">
 		  <DesignTime>True</DesignTime>
 		  <AutoGen>True</AutoGen>
@@ -467,6 +472,10 @@
 		<EmbeddedResource Update="Properties\Window\Dialog\DialogShipGraphicViewer.resx">
 		  <Generator>PublicResXFileCodeGenerator</Generator>
 		  <LastGenOutput>DialogShipGraphicViewer.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Properties\Window\Dialog\DialogShipGroupColumnFilter.resx">
+		  <Generator>PublicResXFileCodeGenerator</Generator>
+		  <LastGenOutput>DialogShipGroupColumnFilter.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 		<EmbeddedResource Update="Properties\Window\Dialog\DialogShipGroupCSVOutput.resx">
 		  <Generator>PublicResXFileCodeGenerator</Generator>
