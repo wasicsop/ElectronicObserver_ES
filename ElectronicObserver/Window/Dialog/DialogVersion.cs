@@ -6,10 +6,12 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Translation = ElectronicObserver.Properties.Window.Dialog.DialogVersion;
 
 namespace ElectronicObserver.Window.Dialog
 {
@@ -19,7 +21,30 @@ namespace ElectronicObserver.Window.Dialog
 		{
 			InitializeComponent();
 
-			TextVersion.Text = string.Format("{0} {1} ({2} release)", SoftwareInformation.SoftwareNameEnglish, SoftwareInformation.VersionEnglish, SoftwareInformation.UpdateTime.ToString("d"));
+			Translate();
+
+			string versionText = CultureInfo.CurrentCulture.Name switch
+			{
+				"ja-JP" => SoftwareInformation.VersionJapanese,
+				_ => SoftwareInformation.SoftwareNameEnglish
+			};
+
+			TextVersion.Text = string.Format(Translation.TextVersionFormat, versionText, SoftwareInformation.VersionEnglish, SoftwareInformation.UpdateTime.ToString("d"));
+		}
+
+		public void Translate()
+		{
+			TextVersion.Text = Translation.TextVersion;
+			label1.Text = Translation.Developer;
+			TextAuthor.Text = Translation.TextAuthor;
+			ButtonClose.Text = Translation.ButtonClose;
+			TextInformation.Text = Translation.TextInformation;
+			label2.Text = Translation.ProjectSite;
+			label3.Text = Translation.ModifiedBy;
+			label4.Text = Translation.Maintainers;
+
+
+			Text = Translation.Title;
 		}
 
 		private void TextAuthor_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
