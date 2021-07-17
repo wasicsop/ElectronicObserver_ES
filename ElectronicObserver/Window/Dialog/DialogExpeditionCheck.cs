@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Translation = ElectronicObserver.Properties.Window.Dialog.DialogExpeditionCheck;
 
 namespace ElectronicObserver.Window.Dialog
 {
@@ -17,7 +18,20 @@ namespace ElectronicObserver.Window.Dialog
         public DialogExpeditionCheck()
         {
             InitializeComponent();
+
+			Translate();
         }
+
+		public void Translate()
+		{
+			CheckView_Name.HeaderText = Translation.CheckView_Name;
+			CheckView_Fleet2.HeaderText = Translation.CheckView_Fleet2;
+			CheckView_Fleet3.HeaderText = Translation.CheckView_Fleet3;
+			CheckView_Fleet4.HeaderText = Translation.CheckView_Fleet4;
+			CheckView_Condition.HeaderText = Translation.CheckView_Condition;
+
+			Text = Translation.Title;
+		}
 
         private void DialogExpeditionCheck_Load(object sender, EventArgs e)
         {
