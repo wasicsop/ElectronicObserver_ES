@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Translation = ElectronicObserver.Properties.Window.Dialog.DialogShipGroupSortOrder;
 
 namespace ElectronicObserver.Window.Dialog
 {
@@ -65,6 +66,23 @@ namespace ElectronicObserver.Window.Dialog
 
 
 			AutoSortFlag.Checked = group.AutoSortEnabled;
+
+			Translate();
+		}
+
+		public void Translate()
+		{
+			AutoSortFlag.Text = Translation.AutoSortFlag;
+			EnabledView_Name.HeaderText = Translation.EnabledView_Name;
+			EnabledView_SortDirection.HeaderText = Translation.EnabledView_SortDirection;
+			// todo: this tooltip isn't in the Japanese version
+			// EnabledView_SortDirection.ToolTipText = Translation.EnabledView_SortDirection;
+			ButtonRightAll.Text = Translation.ButtonRightAll;
+			ButtonLeftAll.Text = Translation.ButtonLeftAll;
+			DisabledView_Name.HeaderText = Translation.DisabledView_Name;
+			ButtonCancel.Text = GeneralRes.Cancel;
+
+			Text = Translation.Title;
 		}
 
 		private void DialogShipGroupSortOrder_Load(object sender, EventArgs e)

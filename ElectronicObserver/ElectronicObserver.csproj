@@ -165,6 +165,11 @@
 			<AutoGen>True</AutoGen>
 			<DependentUpon>DialogShipGroupFilter.resx</DependentUpon>
 		</Compile>
+		<Compile Update="Properties\Window\Dialog\DialogShipGroupSortOrder.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>DialogShipGroupSortOrder.resx</DependentUpon>
+		</Compile>
 		<Compile Update="Properties\Window\FormBaseAirCorps.Designer.cs">
 		  <DesignTime>True</DesignTime>
 		  <AutoGen>True</AutoGen>
@@ -484,6 +489,10 @@
 		<EmbeddedResource Update="Properties\Window\Dialog\DialogShipGroupFilter.resx">
 			<Generator>PublicResXFileCodeGenerator</Generator>
 			<LastGenOutput>DialogShipGroupFilter.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Properties\Window\Dialog\DialogShipGroupSortOrder.resx">
+		  <Generator>PublicResXFileCodeGenerator</Generator>
+		  <LastGenOutput>DialogShipGroupSortOrder.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 		<EmbeddedResource Update="Properties\Window\FormBaseAirCorps.resx">
 		  <Generator>PublicResXFileCodeGenerator</Generator>
