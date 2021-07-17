@@ -13,6 +13,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Translation = ElectronicObserver.Properties.Window.Dialog.DialogShipGroupFilter;
 
 namespace ElectronicObserver.Window.Dialog
 {
@@ -260,41 +261,54 @@ namespace ElectronicObserver.Window.Dialog
 		{
 			ButtonCancel.Text = GeneralRes.Cancel;
 
-			tabPage1.Text = Properties.Window.Dialog.DialogShipGroupFilter.tabPage1;
-			tabPage2.Text = Properties.Window.Dialog.DialogShipGroupFilter.tabPage2;
+			tabPage1.Text = Translation.tabPage1;
+			tabPage2.Text = Translation.tabPage2;
 
-			label1.Text = Properties.Window.Dialog.DialogShipGroupFilter.label1;
+			label1.Text = Translation.label1;
 
-			OptimizeConstFilter.Text = Properties.Window.Dialog.DialogShipGroupFilter.OptimizeConstFilter;
-			ConvertToExpression.Text = Properties.Window.Dialog.DialogShipGroupFilter.ConvertToExpression;
-			ClearConstFilter.Text = Properties.Window.Dialog.DialogShipGroupFilter.ClearConstFilter;
+			OptimizeConstFilter.Text = Translation.OptimizeConstFilter;
+			ConvertToExpression.Text = Translation.ConvertToExpression;
+			ClearConstFilter.Text = Translation.ClearConstFilter;
 
-			ExpressionView_Expression.HeaderText = Properties.Window.Dialog.DialogShipGroupFilter.ExpressionView_Expression;
-			ExpressionView_ExternalAndOr.HeaderText = Properties.Window.Dialog.DialogShipGroupFilter.ExpressionView_ExternalAndOr;
-			ExpressionView_InternalAndOr.HeaderText = Properties.Window.Dialog.DialogShipGroupFilter.ExpressionView_InternalAndOr;
-			ExpressionView_Inverse.HeaderText = Properties.Window.Dialog.DialogShipGroupFilter.ExpressionView_Inverse;
+			ExpressionView_Expression.HeaderText = Translation.ExpressionView_Expression;
+			ExpressionView_ExternalAndOr.HeaderText = Translation.ExpressionView_ExternalAndOr;
+			ExpressionView_InternalAndOr.HeaderText = Translation.ExpressionView_InternalAndOr;
+			ExpressionView_Inverse.HeaderText = Translation.ExpressionView_Inverse;
 
-			ExpressionDetailView_LeftOperand.HeaderText = Properties.Window.Dialog.DialogShipGroupFilter.ExpressionDetailView_LeftOperand;
-			ExpressionDetailView_Operator.HeaderText = Properties.Window.Dialog.DialogShipGroupFilter.ExpressionDetailView_Operator;
-			ExpressionDetailView_RightOperand.HeaderText = Properties.Window.Dialog.DialogShipGroupFilter.ExpressionDetailView_RightOperand;
+			ExpressionDetailView_LeftOperand.HeaderText = Translation.ExpressionDetailView_LeftOperand;
+			ExpressionDetailView_Operator.HeaderText = Translation.ExpressionDetailView_Operator;
+			ExpressionDetailView_RightOperand.HeaderText = Translation.ExpressionDetailView_RightOperand;
 
-			Description.Text = Properties.Window.Dialog.DialogShipGroupFilter.Description;
+			Description.Text = Translation.Description;
 
-			Expression_Add.Text = Properties.Window.Dialog.DialogShipGroupFilter.Expression_Add;
-			Expression_Delete.Text = Properties.Window.Dialog.DialogShipGroupFilter.Expression_Delete;
+			Expression_Add.Text = Translation.Expression_Add;
+			Expression_Delete.Text = Translation.Expression_Delete;
 
-			ExpressionDetail_Add.Text = Properties.Window.Dialog.DialogShipGroupFilter.ExpressionDetail_Add;
-			ExpressionDetail_Edit.Text = Properties.Window.Dialog.DialogShipGroupFilter.ExpressionDetail_Edit;
-			ExpressionDetail_Delete.Text = Properties.Window.Dialog.DialogShipGroupFilter.ExpressionDetail_Delete;
+			ExpressionDetail_Add.Text = Translation.ExpressionDetail_Add;
+			ExpressionDetail_Edit.Text = Translation.ExpressionDetail_Edit;
+			ExpressionDetail_Delete.Text = Translation.ExpressionDetail_Delete;
 
-			toolTip1.SetToolTip(ClearConstFilter, Properties.Window.Dialog.DialogShipGroupFilter.ClearConstFilter_ToolTip);
-			toolTip1.SetToolTip(ConvertToExpression, Properties.Window.Dialog.DialogShipGroupFilter.ConvertToExpression_ToolTip);
-			toolTip1.SetToolTip(OptimizeConstFilter, Properties.Window.Dialog.DialogShipGroupFilter.OptimizeConstFilter_ToolTip);
+			toolTip1.SetToolTip(ClearConstFilter, Translation.ClearConstFilter_ToolTip);
+			toolTip1.SetToolTip(ConvertToExpression, Translation.ConvertToExpression_ToolTip);
+			toolTip1.SetToolTip(OptimizeConstFilter, Translation.OptimizeConstFilter_ToolTip);
 
-			ExpressionDetailView_Enabled.ToolTipText = Properties.Window.Dialog.DialogShipGroupFilter.ExpressionDetailView_Enabled_ToolTip;
-			ExpressionView_Down.ToolTipText = Properties.Window.Dialog.DialogShipGroupFilter.ExpressionView_Down_ToolTip;
-			ExpressionView_Up.ToolTipText = Properties.Window.Dialog.DialogShipGroupFilter.ExpressionView_Up_ToolTip;
-			ExpressionView_Inverse.ToolTipText = Properties.Window.Dialog.DialogShipGroupFilter.ExpressionView_Inverse_ToolTip;
+			ExpressionDetailView_Enabled.ToolTipText = Translation.ExpressionDetailView_Enabled_ToolTip;
+			ExpressionView_Down.ToolTipText = Translation.ExpressionView_Down_ToolTip;
+			ExpressionView_Up.ToolTipText = Translation.ExpressionView_Up_ToolTip;
+			ExpressionView_Inverse.ToolTipText = Translation.ExpressionView_Inverse_ToolTip;
+
+			ConstFilterView_Name.HeaderText = Translation.ConstFilterView_Name;
+			ConstFilterSelector.Items.Clear();
+			ConstFilterSelector.Items.AddRange(new object[]
+			{
+				Translation.ConstFilterSelector_InclusionList,
+				Translation.ConstFilterSelector_ExclusionList
+			});
+			ButtonMenu.Text = Translation.ButtonMenu;
+			SubMenu_ImportFilter.Text = Translation.SubMenu_ImportFilter;
+			SubMenu_ExportFilter.Text = Translation.SubMenu_ExportFilter;
+
+			Text = Translation.Title;
 		}
 
 		private void DialogShipGroupFilter_Load(object sender, EventArgs e)
@@ -827,7 +841,7 @@ namespace ElectronicObserver.Window.Dialog
 
 			if (selectedrow == -1)
 			{
-				MessageBox.Show(Properties.Window.Dialog.DialogShipGroupFilter.SelectARow, "Error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+				MessageBox.Show(Translation.SelectARow, Translation.Error, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
 				return;
 			}
 
@@ -909,7 +923,7 @@ namespace ElectronicObserver.Window.Dialog
 			int procrow = GetSelectedRow(ExpressionView);
 			if (procrow == -1)
 			{
-				MessageBox.Show(Properties.Window.Dialog.DialogShipGroupFilter.SelectExpressionRow, "Error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+				MessageBox.Show(Translation.SelectExpressionRow, Translation.Error, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
 				return;
 			}
 
@@ -928,14 +942,14 @@ namespace ElectronicObserver.Window.Dialog
 			int procrow = GetSelectedRow(ExpressionView);
 			if (procrow == -1)
 			{
-				MessageBox.Show(Properties.Window.Dialog.DialogShipGroupFilter.SelectSequence, "Error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+				MessageBox.Show(Translation.SelectSequence, Translation.Error, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
 				return;
 			}
 
 			int selectedrow = GetSelectedRow(ExpressionDetailView);
 			if (selectedrow == -1)
 			{
-				MessageBox.Show(Properties.Window.Dialog.DialogShipGroupFilter.SelectTargetRow, "Error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+				MessageBox.Show(Translation.SelectTargetRow, Translation.Error, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
 				return;
 			}
 
@@ -955,14 +969,14 @@ namespace ElectronicObserver.Window.Dialog
 			int procrow = GetSelectedRow(ExpressionView);
 			if (procrow == -1)
 			{
-				MessageBox.Show(Properties.Window.Dialog.DialogShipGroupFilter.SelectSequence, "Error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+				MessageBox.Show(Translation.SelectSequence, Translation.Error, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
 				return;
 			}
 
 			int selectedrow = GetSelectedRow(ExpressionDetailView);
 			if (selectedrow == -1)
 			{
-				MessageBox.Show(Properties.Window.Dialog.DialogShipGroupFilter.SelectTargetRow, "Error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+				MessageBox.Show(Translation.SelectTargetRow, Translation.Error, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
 				return;
 			}
 
@@ -1350,8 +1364,8 @@ namespace ElectronicObserver.Window.Dialog
 		private void ClearConstFilter_Click(object sender, EventArgs e)
 		{
 
-			if (MessageBox.Show(string.Format(Properties.Window.Dialog.DialogShipGroupFilter.ClearFilterWarning, ConstFilterSelector.Text),
-				Properties.Window.Dialog.DialogShipGroupFilter.ClearFilterWarningTitle,
+			if (MessageBox.Show(string.Format(Translation.ClearFilterWarning, ConstFilterSelector.Text),
+				Translation.ClearFilterWarningTitle,
 				MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2)
 				== DialogResult.Yes)
 			{
@@ -1373,7 +1387,7 @@ namespace ElectronicObserver.Window.Dialog
 		private void ConvertToExpression_Click(object sender, EventArgs e)
 		{
 
-			if (MessageBox.Show(Properties.Window.Dialog.DialogShipGroupFilter.ConvertToExpressionWarning, "Confirmation",
+			if (MessageBox.Show(Translation.ConvertToExpressionWarning, "Confirmation",
 					MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1)
 					== DialogResult.Yes)
 			{
@@ -1417,8 +1431,8 @@ namespace ElectronicObserver.Window.Dialog
 		{
 
 
-			if (MessageBox.Show(Properties.Window.Dialog.DialogShipGroupFilter.ImportFilterFromClipboard,
-					Properties.Window.Dialog.DialogShipGroupFilter.ImportFilterFromClipboardTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+			if (MessageBox.Show(Translation.ImportFilterFromClipboard,
+					Translation.ImportFilterFromClipboardTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
 				== DialogResult.No)
 				return;
 
@@ -1426,8 +1440,8 @@ namespace ElectronicObserver.Window.Dialog
 
 			if (string.IsNullOrEmpty(data))
 			{
-				MessageBox.Show(Properties.Window.Dialog.DialogShipGroupFilter.ClipboardIsEmpty,
-					Properties.Window.Dialog.DialogShipGroupFilter.CanNotImport, MessageBoxButtons.OK, MessageBoxIcon.Information);
+				MessageBox.Show(Translation.ClipboardIsEmpty,
+					Translation.CanNotImport, MessageBoxButtons.OK, MessageBoxIcon.Information);
 				return;
 			}
 
@@ -1438,7 +1452,7 @@ namespace ElectronicObserver.Window.Dialog
 				{
 					var exp = (ExpressionManager)_group.Expressions.Load(str);
 					if (exp == null)
-						throw new ArgumentException(Properties.Window.Dialog.DialogShipGroupFilter.FormatCanNotBeImported);
+						throw new ArgumentException(Translation.FormatCanNotBeImported);
 					else
 						_group.Expressions = exp;
 				}
@@ -1449,7 +1463,7 @@ namespace ElectronicObserver.Window.Dialog
 			catch (Exception ex)
 			{
 
-				MessageBox.Show(Properties.Window.Dialog.DialogShipGroupFilter.FilterImportFailed + ex.Message, Properties.Window.Dialog.DialogShipGroupFilter.CanNotImport, MessageBoxButtons.OK, MessageBoxIcon.Error);
+				MessageBox.Show(Translation.FilterImportFailed + ex.Message, Translation.CanNotImport, MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
 
 		}
@@ -1465,14 +1479,14 @@ namespace ElectronicObserver.Window.Dialog
 
 				Clipboard.SetText(str.ToString());
 
-				MessageBox.Show(Properties.Window.Dialog.DialogShipGroupFilter.FilterWasExported,
-					Properties.Window.Dialog.DialogShipGroupFilter.ExportingFilterTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
+				MessageBox.Show(Translation.FilterWasExported,
+					Translation.ExportingFilterTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
 
 			}
 			catch (Exception ex)
 			{
 
-				MessageBox.Show(Properties.Window.Dialog.DialogShipGroupFilter.FilterExportFailed + ex.Message, Properties.Window.Dialog.DialogShipGroupFilter.CanNotExport, MessageBoxButtons.OK, MessageBoxIcon.Error);
+				MessageBox.Show(Translation.FilterExportFailed + ex.Message, Translation.CanNotExport, MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
 
 		}

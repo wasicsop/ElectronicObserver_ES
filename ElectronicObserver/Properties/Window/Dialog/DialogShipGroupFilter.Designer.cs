@@ -61,6 +61,24 @@ namespace ElectronicObserver.Properties.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to キャンセル.
+        /// </summary>
+        public static string ButtonCancel {
+            get {
+                return ResourceManager.GetString("ButtonCancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to メニュー ▼.
+        /// </summary>
+        public static string ButtonMenu {
+            get {
+                return ResourceManager.GetString("ButtonMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to エクスポートできません.
         /// </summary>
         public static string CanNotExport {
@@ -127,6 +145,33 @@ namespace ElectronicObserver.Properties.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 除外リスト.
+        /// </summary>
+        public static string ConstFilterSelector_ExclusionList {
+            get {
+                return ResourceManager.GetString("ConstFilterSelector_ExclusionList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 包含リスト.
+        /// </summary>
+        public static string ConstFilterSelector_InclusionList {
+            get {
+                return ResourceManager.GetString("ConstFilterSelector_InclusionList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 艦名.
+        /// </summary>
+        public static string ConstFilterView_Name {
+            get {
+                return ResourceManager.GetString("ConstFilterView_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 式に変換.
         /// </summary>
         public static string ConvertToExpression {
@@ -162,6 +207,15 @@ namespace ElectronicObserver.Properties.Window.Dialog {
         public static string Description {
             get {
                 return ResourceManager.GetString("Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to エラー.
+        /// </summary>
+        public static string Error {
+            get {
+                return ResourceManager.GetString("Error", resourceCulture);
             }
         }
         
@@ -355,6 +409,15 @@ namespace ElectronicObserver.Properties.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to フィルタ.
+        /// </summary>
+        public static string Filter {
+            get {
+                return ResourceManager.GetString("Filter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to フィルタのエクスポートに失敗しました。
         ///.
         /// </summary>
@@ -413,6 +476,15 @@ namespace ElectronicObserver.Properties.Window.Dialog {
         public static string ImportFilterFromClipboardTitle {
             get {
                 return ResourceManager.GetString("ImportFilterFromClipboardTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 包含/除外リスト.
+        /// </summary>
+        public static string InclusionExclusionList {
+            get {
+                return ResourceManager.GetString("InclusionExclusionList", resourceCulture);
             }
         }
         
@@ -482,6 +554,24 @@ namespace ElectronicObserver.Properties.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to フィルタのエクスポート(&amp;E).
+        /// </summary>
+        public static string SubMenu_ExportFilter {
+            get {
+                return ResourceManager.GetString("SubMenu_ExportFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to フィルタのインポート(&amp;I).
+        /// </summary>
+        public static string SubMenu_ImportFilter {
+            get {
+                return ResourceManager.GetString("SubMenu_ImportFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to フィルタ.
         /// </summary>
         public static string tabPage1 {
@@ -496,6 +586,15 @@ namespace ElectronicObserver.Properties.Window.Dialog {
         public static string tabPage2 {
             get {
                 return ResourceManager.GetString("tabPage2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to フィルタ設定.
+        /// </summary>
+        public static string Title {
+            get {
+                return ResourceManager.GetString("Title", resourceCulture);
             }
         }
     }

@@ -281,4 +281,37 @@
   <data name="CanNotExport" xml:space="preserve">
 	  <value>エクスポートできません</value>
   </data>
+  <data name="ButtonCancel" xml:space="preserve">
+    <value>キャンセル</value>
+  </data>
+  <data name="Filter" xml:space="preserve">
+    <value>フィルタ</value>
+  </data>
+  <data name="InclusionExclusionList" xml:space="preserve">
+    <value>包含/除外リスト</value>
+  </data>
+  <data name="ConstFilterView_Name" xml:space="preserve">
+    <value>艦名</value>
+  </data>
+  <data name="ConstFilterSelector_InclusionList" xml:space="preserve">
+    <value>包含リスト</value>
+  </data>
+  <data name="ConstFilterSelector_ExclusionList" xml:space="preserve">
+    <value>除外リスト</value>
+  </data>
+  <data name="ButtonMenu" xml:space="preserve">
+    <value>メニュー ▼</value>
+  </data>
+  <data name="SubMenu_ImportFilter" xml:space="preserve">
+    <value>フィルタのインポート(&amp;I)</value>
+  </data>
+  <data name="SubMenu_ExportFilter" xml:space="preserve">
+    <value>フィルタのエクスポート(&amp;E)</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>フィルタ設定</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>エラー</value>
+  </data>
 </root>
