@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
+using Translation = ElectronicObserver.Properties.Window.Dialog.DialogResourceChart;
 
 namespace ElectronicObserver.Window.Dialog
 {
@@ -55,16 +56,46 @@ namespace ElectronicObserver.Window.Dialog
 		public DialogResourceChart()
 		{
 			InitializeComponent();
+
+			Translate();
 		}
 
+		public void Translate()
+		{
+			Menu_File.Text = Translation.Menu_File;
+			Menu_File_SaveImage.Text = Translation.Menu_File_SaveImage;
 
+			Menu_Graph.Text = Translation.Menu_Graph;
+			Menu_Graph_Resource.Text = Translation.Menu_Graph_Resource;
+			Menu_Graph_ResourceDiff.Text = Translation.Menu_Graph_ResourceDiff;
+			Menu_Graph_Material.Text = Translation.Menu_Graph_Material;
+			Menu_Graph_MaterialDiff.Text = Translation.Menu_Graph_MaterialDiff;
+			Menu_Graph_Experience.Text = Translation.Menu_Graph_Experience;
+			Menu_Graph_ExperienceDiff.Text = Translation.Menu_Graph_ExperienceDiff;
+
+			Menu_Span.Text = Translation.Menu_Span;
+			Menu_Span_Day.Text = GeneralRes.Day;
+			Menu_Span_Week.Text = GeneralRes.Week;
+			Menu_Span_Month.Text = GeneralRes.Month;
+			Menu_Span_Season.Text = GeneralRes.ThreeMonths;
+			Menu_Span_Year.Text = GeneralRes.Year;
+			Menu_Span_All.Text = GeneralRes.AllData;
+
+			Menu_Option.Text = Menus.Option;
+			Menu_Option_ShowAllData.Text = Translation.Menu_Option_ShowAllData;
+			Menu_Option_DivideByDay.Text = Translation.Menu_Option_DivideByDay;
+
+			ResourceChart.Text = GeneralRes.ResourceChart;
+
+			Text = GeneralRes.ResourceChart;
+		}
 
 		private void DialogResourceChart_Load(object sender, EventArgs e)
 		{
 
 			if (!RecordManager.Instance.Resource.Record.Any())
 			{
-				MessageBox.Show("レコード データが存在しません。\n一度母港に移動してください。", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				MessageBox.Show(Translation.RecordDataDoesNotExist, Translation.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
 				Close();
 				return;
 			}
@@ -122,23 +153,23 @@ namespace ElectronicObserver.Window.Dialog
 
 			setSeries(fuel);
 			fuel.Color = Color.FromArgb(0, 128, 0);
-			fuel.LegendText = "Fuel";
+			fuel.LegendText = GeneralRes.Fuel;
 
 			setSeries(ammo);
 			ammo.Color = Color.FromArgb(255, 128, 0);
-			ammo.LegendText = "Ammo";
+			ammo.LegendText = GeneralRes.Ammo;
 
 			setSeries(steel);
 			steel.Color = Color.FromArgb(64, 64, 64);
-			steel.LegendText = "Steel";
+			steel.LegendText = GeneralRes.Steel;
 
 			setSeries(bauxite);
 			bauxite.Color = Color.FromArgb(255, 0, 0);
-			bauxite.LegendText = "Bauxite";
+			bauxite.LegendText = GeneralRes.Baux;
 
 			setSeries(instantRepair);
 			instantRepair.Color = Color.FromArgb(32, 128, 255);
-			instantRepair.LegendText = "Buckets";
+			instantRepair.LegendText = GeneralRes.Bucket;
 			instantRepair.YAxisType = AxisType.Secondary;
 
 
@@ -205,27 +236,27 @@ namespace ElectronicObserver.Window.Dialog
 			setSeries(fuel);
 			fuel.Color = Color.FromArgb(64, 0, 128, 0);
 			fuel.BorderColor = Color.FromArgb(255, 0, 128, 0);
-			fuel.LegendText = "Fuel";
+			fuel.LegendText = GeneralRes.Fuel;
 
 			setSeries(ammo);
 			ammo.Color = Color.FromArgb(64, 255, 128, 0);
 			ammo.BorderColor = Color.FromArgb(255, 255, 128, 0);
-			ammo.LegendText = "Ammo";
+			ammo.LegendText = GeneralRes.Ammo;
 
 			setSeries(steel);
 			steel.Color = Color.FromArgb(64, 64, 64, 64);
 			steel.BorderColor = Color.FromArgb(255, 64, 64, 64);
-			steel.LegendText = "Steel";
+			steel.LegendText = GeneralRes.Steel;
 
 			setSeries(bauxite);
 			bauxite.Color = Color.FromArgb(64, 255, 0, 0);
 			bauxite.BorderColor = Color.FromArgb(255, 255, 0, 0);
-			bauxite.LegendText = "Bauxite";
+			bauxite.LegendText = GeneralRes.Baux;
 
 			setSeries(instantRepair);
 			instantRepair.Color = Color.FromArgb(64, 32, 128, 255);
 			instantRepair.BorderColor = Color.FromArgb(255, 32, 128, 255);
-			instantRepair.LegendText = "Buckets";
+			instantRepair.LegendText = GeneralRes.Bucket;
 			instantRepair.YAxisType = AxisType.Secondary;
 
 
@@ -1047,7 +1078,7 @@ namespace ElectronicObserver.Window.Dialog
 				}
 				catch (Exception ex)
 				{
-					Utility.ErrorReporter.SendErrorReport(ex, "Failed to save resource chart image.");
+					Utility.ErrorReporter.SendErrorReport(ex, Translation.FailedToSaveResourceChartImage);
 				}
 			}
 		}
