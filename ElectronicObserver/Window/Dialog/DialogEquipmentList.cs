@@ -12,6 +12,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ElectronicObserverTypes;
+using Translation = ElectronicObserver.Properties.Window.Dialog.DialogEquipmentList;
+using DialogAlbumMasterShipTranslation = ElectronicObserver.Properties.Window.Dialog.DialogAlbumMasterShip;
 
 namespace ElectronicObserver.Window.Dialog
 {
@@ -76,6 +78,27 @@ namespace ElectronicObserver.Window.Dialog
 
 			#endregion
 
+			Translate();
+		}
+
+		public void Translate()
+		{
+			EquipmentView_Name.HeaderText = EncycloRes.EquipName;
+			EquipmentView_CountAll.HeaderText = EncycloRes.CountAll;
+			EquipmentView_CountRemain.HeaderText = EncycloRes.CountExtra;
+
+			TopMenu_File.Text = Translation.TopMenu_File;
+			TopMenu_File_CSVOutput.Text = Translation.TopMenu_File_CSVOutput;
+			TopMenu_File_CopyToFleetAnalysis.Text = Translation.TopMenu_File_CopyToFleetAnalysis;
+
+			SaveCSVDialog.Title = Translation.SaveCSVDialog;
+
+			DetailView_Level.HeaderText = EncycloRes.StarLevel;
+			DetailView_AircraftLevel.HeaderText = EncycloRes.SkillLevel;
+			DetailView_CountAll.HeaderText = EncycloRes.CountAll;
+			DetailView_CountRemain.HeaderText = EncycloRes.CountExtra;
+
+			Text = EncycloRes.EquipmentList;
 		}
 
 		private void DialogEquipmentList_Load(object sender, EventArgs e)
@@ -281,16 +304,16 @@ namespace ElectronicObserver.Window.Dialog
 					var eq = masterEquipments[id];
 
 					sb.AppendFormat("{0} {1} (ID: {2})\r\n", eq.CategoryTypeInstance.NameEN, eq.NameEN, eq.EquipmentID);
-					if (eq.Firepower != 0) sb.AppendFormat("FP {0:+0;-0}\r\n", eq.Firepower);
-					if (eq.Torpedo != 0) sb.AppendFormat("Torp {0:+0;-0}\r\n", eq.Torpedo);
-					if (eq.AA != 0) sb.AppendFormat("AA {0:+0;-0}\r\n", eq.AA);
-					if (eq.Armor != 0) sb.AppendFormat("Armor {0:+0;-0}\r\n", eq.Armor);
-					if (eq.ASW != 0) sb.AppendFormat("ASW {0:+0;-0}\r\n", eq.ASW);
-					if (eq.Evasion != 0) sb.AppendFormat("{0} {1:+0;-0}\r\n", eq.CategoryType == EquipmentTypes.Interceptor ? "Interception" : "Evasion", eq.Evasion);
-					if (eq.LOS != 0) sb.AppendFormat("LOS {0:+0;-0}\r\n", eq.LOS);
-					if (eq.Accuracy != 0) sb.AppendFormat("{0} {1:+0;-0}\r\n", eq.CategoryType == EquipmentTypes.Interceptor ? "Anti-bomb" : "Acc", eq.Accuracy);
-					if (eq.Bomber != 0) sb.AppendFormat("Bombing {0:+0;-0}\r\n", eq.Bomber);
-					sb.AppendLine("\r\nRight click to open in a new window.");
+					if (eq.Firepower != 0) sb.AppendFormat(DialogAlbumMasterShipTranslation.Firepower + " {0:+0;-0}\r\n", eq.Firepower);
+					if (eq.Torpedo != 0) sb.AppendFormat(DialogAlbumMasterShipTranslation.Torpedo + " {0:+0;-0}\r\n", eq.Torpedo);
+					if (eq.AA != 0) sb.AppendFormat(DialogAlbumMasterShipTranslation.AA + " {0:+0;-0}\r\n", eq.AA);
+					if (eq.Armor != 0) sb.AppendFormat(DialogAlbumMasterShipTranslation.Armor + " {0:+0;-0}\r\n", eq.Armor);
+					if (eq.ASW != 0) sb.AppendFormat(DialogAlbumMasterShipTranslation.ASW + " {0:+0;-0}\r\n", eq.ASW);
+					if (eq.Evasion != 0) sb.AppendFormat("{0} {1:+0;-0}\r\n", eq.CategoryType == EquipmentTypes.Interceptor ? DialogAlbumMasterShipTranslation.Interception : DialogAlbumMasterShipTranslation.Evasion, eq.Evasion);
+					if (eq.LOS != 0) sb.AppendFormat(DialogAlbumMasterShipTranslation.LOS + " {0:+0;-0}\r\n", eq.LOS);
+					if (eq.Accuracy != 0) sb.AppendFormat("{0} {1:+0;-0}\r\n", eq.CategoryType == EquipmentTypes.Interceptor ? DialogAlbumMasterShipTranslation.AntiBomb : DialogAlbumMasterShipTranslation.Accuracy, eq.Accuracy);
+					if (eq.Bomber != 0) sb.AppendFormat(DialogAlbumMasterShipTranslation.Bombing + " {0:+0;-0}\r\n", eq.Bomber);
+					sb.AppendLine(DialogAlbumMasterShipTranslation.RightClickToOpenInNewWindow);
 
 					row.Cells[2].ToolTipText = sb.ToString();
 				}
@@ -562,7 +585,7 @@ namespace ElectronicObserver.Window.Dialog
 				{
 
 					Utility.ErrorReporter.SendErrorReport( ex, EncycloRes.FailedOutputEqListCSV );
-					MessageBox.Show( EncycloRes.FailedOutputEqListCSV + "\r\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error );
+					MessageBox.Show(EncycloRes.FailedOutputEqListCSV + "\r\n" + ex.Message, Translation.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
 
 				}
 
