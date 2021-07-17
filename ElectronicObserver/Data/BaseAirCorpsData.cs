@@ -115,6 +115,15 @@ namespace ElectronicObserver.Data
 					SetSquadrons(apiname, data.api_plane_info);
 					break;
 
+				case "api_req_air_corps/change_deployment_base":
+					base.LoadFromResponse(apiname, (object)data);
+
+					Distance = (int)data.api_distance.api_base + (int)data.api_distance.api_bonus;
+					Base_Distance = (int)data.api_distance.api_base;
+					Bonus_Distance = (int)data.api_distance.api_bonus;
+					SetSquadrons(apiname, data.api_plane_info);
+					break;
+
 				case "api_req_air_corps/set_plane":
 					{
 						var prev = Squadrons.Values.Select(sq => sq != null && sq.State == 1 ? sq.EquipmentMasterID : 0).ToArray();
