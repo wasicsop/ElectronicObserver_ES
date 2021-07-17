@@ -145,6 +145,11 @@
 		  <AutoGen>True</AutoGen>
 		  <DependentUpon>DialogResourceChart.resx</DependentUpon>
 		</Compile>
+		<Compile Update="Properties\Window\Dialog\DialogShipGraphicViewer.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>DialogShipGraphicViewer.resx</DependentUpon>
+		</Compile>
 		<Compile Update="Properties\Window\Dialog\DialogShipGroupFilter.Designer.cs">
 			<DesignTime>True</DesignTime>
 			<AutoGen>True</AutoGen>
@@ -453,6 +458,10 @@
 		<EmbeddedResource Update="Properties\Window\Dialog\DialogResourceChart.resx">
 		  <Generator>PublicResXFileCodeGenerator</Generator>
 		  <LastGenOutput>DialogResourceChart.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Properties\Window\Dialog\DialogShipGraphicViewer.resx">
+		  <Generator>PublicResXFileCodeGenerator</Generator>
+		  <LastGenOutput>DialogShipGraphicViewer.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 		<EmbeddedResource Update="Properties\Window\Dialog\DialogShipGroupFilter.resx">
 			<Generator>PublicResXFileCodeGenerator</Generator>
