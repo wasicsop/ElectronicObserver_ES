@@ -14,6 +14,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Translation = ElectronicObserver.Properties.Window.Dialog.DialogFleetImageGenerator;
 
 namespace ElectronicObserver.Window.Dialog
 {
@@ -48,10 +49,10 @@ namespace ElectronicObserver.Window.Dialog
 
 			LoadConfiguration();
 
+			Translate();
 		}
 
-		public DialogFleetImageGenerator(int fleetID)
-			: this()
+		public DialogFleetImageGenerator(int fleetID) : this()
 		{
 
 			if (KCDatabase.Instance.Fleet.CombinedFlag > 0 && fleetID <= 2)
@@ -60,7 +61,68 @@ namespace ElectronicObserver.Window.Dialog
 				CurrentArgument.FleetIDs = new int[] { fleetID };
 		}
 
+		public void Translate()
+		{
+			tabPage1.Text = Translation.Basic;
+			GroupOutputPath.Text = Translation.GroupOutputPath;
+			SearchOutputPath.Text = Translation.SearchOutputPath;
+			ToolTipInfo.SetToolTip(SearchOutputPath, Translation.SearchOutputPathToolTip);
+			ToolTipInfo.SetToolTip(OutputPath, Translation.OutputPathToolTip);
+			groupBox7.Text = Translation.CustomText;
+			label2.Text = Translation.FleetTitle;
+			label3.Text = Translation.Comment;
+			groupBox3.Text = Translation.Mode;
+			ImageTypeBanner.Text = Translation.ImageTypeBanner;
+			ImageTypeCutin.Text = Translation.ImageTypeCutin;
+			ImageTypeCard.Text = Translation.ImageTypeCard;
+			groupBox1.Text = Translation.Fleet;
 
+			tabPage2.Text = Translation.Details;
+			groupBox2.Text = Translation.GroupOutputPath;
+			SyncronizeTitleAndFileName.Text = Translation.SyncronizeTitleAndFileName;
+			ToolTipInfo.SetToolTip(SyncronizeTitleAndFileName, Translation.SyncronizeTitleAndFileNameToolTip);
+			ToolTipInfo.SetToolTip(AutoSetFileNameToDate, Translation.AutoSetFileNameToDateToolTip);
+			ToolTipInfo.SetToolTip(OutputToClipboard, Translation.OutputToClipboardToolTip);
+			ToolTipInfo.SetToolTip(DisableOverwritePrompt, Translation.DisableOverwritePromptToolTip);
+			ToolTipInfo.SetToolTip(OpenImageAfterOutput, Translation.OpenImageAfterOutputToolTip);
+			groupBox5.Text = Translation.BackgroundImage;
+			ToolTipInfo.SetToolTip(ClearBackgroundPath, Translation.ClearBackgroundPathToolTip);
+			ToolTipInfo.SetToolTip(SearchBackgroundImagePath, Translation.SearchBackgroundImagePathToolTip);
+			ToolTipInfo.SetToolTip(BackgroundImagePath, Translation.BackgroundImagePathToolTip);
+			groupBox4.Text = Translation.Layout;
+			AvoidTwitterDeterioration.Text = Translation.AvoidTwitterDeterioration;
+			ToolTipInfo.SetToolTip(AvoidTwitterDeterioration, Translation.AvoidTwitterDeteriorationToolTip);
+			ToolTipInfo.SetToolTip(ReflectDamageGraphic, Translation.ReflectDamageGraphicToolTip);
+			label5.Text = Translation.ShipColumn;
+			ToolTipInfo.SetToolTip(HorizontalShipCount, Translation.HorizontalShipCountToolTip);
+			ToolTipInfo.SetToolTip(HorizontalFleetCount, Translation.HorizontalFleetCountToolTip);
+			label4.Text = Translation.FleetColumn;
+
+			tabPage3.Text = Translation.Font;
+			groupBox6.Text = Translation.Font;
+			ButtonClearFont.Text = Translation.ButtonClearFont;
+			// todo: this doesn't exist in the Japanese version, should it be added?
+			// ToolTipInfo.SetToolTip(ButtonClearFont, Translation.ButtonClearFontToolTip);
+			ToolTipInfo.SetToolTip(ApplyGeneralFont, Translation.ApplyGeneralFontToolTip);
+			label12.Text = Translation.DigitSmall;
+			ToolTipInfo.SetToolTip(SelectSmallDigitFont, Translation.OpenDialogToSpecifyFontSetting);
+			label11.Text = Translation.DigitMedium;
+			ToolTipInfo.SetToolTip(SelectMediumDigitFont, Translation.OpenDialogToSpecifyFontSetting);
+			label10.Text = Translation.FontSmall;
+			ToolTipInfo.SetToolTip(SelectSmallFont, Translation.OpenDialogToSpecifyFontSetting);
+			label9.Text = Translation.FontMedium;
+			ToolTipInfo.SetToolTip(SelectMediumFont, Translation.OpenDialogToSpecifyFontSetting);
+			label8.Text = Translation.FontLarge;
+			ToolTipInfo.SetToolTip(SelectLargeFont, Translation.OpenDialogToSpecifyFontSetting);
+			label7.Text = Translation.FleetTitle;
+			ToolTipInfo.SetToolTip(SelectTitleFont, Translation.OpenDialogToSpecifyFontSetting);
+			label6.Text = Translation.ChangeAll;
+			ToolTipInfo.SetToolTip(SelectGeneralFont, Translation.OpenDialogToSpecifyFontSetting);
+			OpenImageDialog.Title = Translation.OpenImageDialog;
+			SaveImageDialog.Title = Translation.SaveImageDialog;
+
+			Text = Translation.Title;
+		}
 
 		private void DialogFleetImageGenerator_Load(object sender, EventArgs e)
 		{
@@ -241,8 +303,9 @@ namespace ElectronicObserver.Window.Dialog
 			}
 			GeneralFont = SerializableFont.StringToFont(TextGeneralFont.Text, true);
 
-			if ( GeneralFont == null ) {
-				MessageBox.Show( "The specified font does not exists.", "Font Conversion Failed", MessageBoxButtons.OK, MessageBoxIcon.Error );
+			if (GeneralFont == null)
+			{
+				MessageBox.Show(Translation.SpecifiedFontDoesNotExist, Translation.FontConversionFailed, MessageBoxButtons.OK, MessageBoxIcon.Error);
 				TextGeneralFont.Text = "";
 				return;
 			}
@@ -314,41 +377,49 @@ namespace ElectronicObserver.Window.Dialog
 			var args = ApplyToArgument();
 
 			// validation
-			if ( args.FleetIDs == null || args.FleetIDs.Length == 0 ) {
-				MessageBox.Show( "Please select a fleet to export.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
+			if (args.FleetIDs == null || args.FleetIDs.Length == 0)
+			{
+				MessageBox.Show(Translation.SelectFleetToExport, Translation.InputError, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 				args.DisposeResources();
 				return;
 			}
 
-			if ( args.HorizontalFleetCount <= 0 || args.HorizontalShipCount <= 0 ) {
-				MessageBox.Show( "The fleet must contain at least 1 ship.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
+			if (args.HorizontalFleetCount <= 0 || args.HorizontalShipCount <= 0)
+			{
+				MessageBox.Show(Translation.FleetMustContainShip, Translation.InputError, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 				args.DisposeResources();
 				return;
 			}
 
-			if ( args.Fonts.Any( f => f == null ) ) {
-				MessageBox.Show( "The specified font does not exists.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
+			if (args.Fonts.Any(f => f == null))
+			{
+				MessageBox.Show(Translation.SpecifiedFontDoesNotExist, Translation.InputError, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 				args.DisposeResources();
 				return;
 			}
 
-			if ( !OutputToClipboard.Checked ) {
-				if ( string.IsNullOrWhiteSpace( OutputPath.Text ) ) {
-					MessageBox.Show( "Please enter the destination path.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
+			if (!OutputToClipboard.Checked)
+			{
+				if (string.IsNullOrWhiteSpace(OutputPath.Text))
+				{
+					MessageBox.Show(Translation.EnterDestinationPath, Translation.InputError, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 					args.DisposeResources();
 					return;
 				}
 
-				if ( OutputPath.Text.ToCharArray().Intersect( Path.GetInvalidPathChars() ).Any() ) {
-					MessageBox.Show( "The destination path contains invalid characters.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
+				if (OutputPath.Text.ToCharArray().Intersect(Path.GetInvalidPathChars()).Any())
+				{
+					MessageBox.Show(Translation.PathContainsInvalidCharacters, Translation.InputError, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 					args.DisposeResources();
 					return;
 				}
 
-				if ( !DisableOverwritePrompt.Checked && File.Exists( OutputPath.Text ) ) {
-					if ( MessageBox.Show( Path.GetFileName( OutputPath.Text ) + " already exists.\r\nDo you want to replace it?", "Overwrite Confirmation",
-						MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2 )
-						== System.Windows.Forms.DialogResult.No ) {
+				if (!DisableOverwritePrompt.Checked && File.Exists(OutputPath.Text))
+				{
+					if (MessageBox.Show(string.Format(Translation.OverwriteExistingFile, Path.GetFileName(OutputPath.Text)), Translation.OverwriteConfirmation,
+						MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2)
+						== System.Windows.Forms.DialogResult.No)
+					{
 						args.DisposeResources();
 						return;
 					}
@@ -434,14 +505,14 @@ namespace ElectronicObserver.Window.Dialog
 				CurrentArgument = args;
 				SaveConfiguration();
 
-				Utility.Logger.Add( 2, "Fleet image exported successfully." );
+				Utility.Logger.Add(2, Translation.FleetImageExportedSuccessfully);
 
 			}
 			catch (Exception ex)
 			{
 
-				ErrorReporter.SendErrorReport( ex, "Failed to export fleet image." );
-				MessageBox.Show( "Failed to export fleet image.\r\n" + ex.GetType().Name + "\r\n" + ex.Message, "Export Failure", MessageBoxButtons.OK, MessageBoxIcon.Error );
+				ErrorReporter.SendErrorReport(ex, Translation.FailedToExportFleetImage);
+				MessageBox.Show(Translation.FailedToExportFleetImage + "\r\n" + ex.GetType().Name + "\r\n" + ex.Message, Translation.ExportFailure, MessageBoxButtons.OK, MessageBoxIcon.Error);
 
 			}
 			finally
@@ -526,14 +597,14 @@ namespace ElectronicObserver.Window.Dialog
 			if (!Utility.Configuration.Config.Connection.SaveReceivedData || !Utility.Configuration.Config.Connection.SaveOtherFile)
 			{
 				visibility = true;
-				ButtonAlert.Text = @"Invalid settings (details...)";
+				ButtonAlert.Text = Translation.InvalidSettings;
 			}
 
 
 			if (!HasShipImage())
 			{
 				visibility = true;
-				ButtonAlert.Text = @"Ship image not found (details...)";
+				ButtonAlert.Text = Translation.ShipImageNotFound;
 			}
 
 			ButtonAlert.Visible = visibility;
@@ -548,9 +619,10 @@ namespace ElectronicObserver.Window.Dialog
 			if (!config.SaveReceivedData || !config.SaveOtherFile)
 			{
 
-				if ( MessageBox.Show( "It is necessary to enable save ship image option in order\r\nto export fleet image. Would you like to enable it?",
-					"Invalid Settings", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1 )
-					== System.Windows.Forms.DialogResult.Yes ) {
+				if (MessageBox.Show(Translation.EnableShipImageSaving, Translation.InvalidSettings,
+					MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1)
+					== System.Windows.Forms.DialogResult.Yes)
+				{
 
 					if (!config.SaveReceivedData)
 					{
@@ -570,21 +642,22 @@ namespace ElectronicObserver.Window.Dialog
 				switch (ImageType)
 				{
 					case 0:
-						needs = @"Open 'Organize' menu and view details of each ship";
+						needs = Translation.OpenOrganizeAndViewDetails;
 						break;
 					case 1:
-						needs = @"Sortie with the fleet";
+						needs = Translation.SortieFleet;
 						break;
 					case 2:
-						needs = @"Open 'Organize' menu";
+						needs = Translation.OpenOrganize;
 						break;
 					default:
-						needs = @"Open 'Organize' menu";
+						// todo: the English for this is probably wrong
+						needs = Translation.OpenOrganize2;
 						break;
 				}
 
-				MessageBox.Show("One or more ship image of the current fleet are missing.\r\n\r\nDelete cache and reload the game.\r\n" + needs + "\r\nto save the ship images.",
-					"Ship Image Missing", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				MessageBox.Show(string.Format(Translation.MissingImages, needs), Translation.ShipImageMissing, 
+					MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
 				UpdateButtonAlert();
 			}
@@ -602,9 +675,10 @@ namespace ElectronicObserver.Window.Dialog
 		private void ButtonClearFont_Click(object sender, EventArgs e)
 		{
 
-			if ( MessageBox.Show( "Are you sure you want to reset font\r\nsettings to the default values?", "Clear Confirmation",
-				MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2 )
-				 == System.Windows.Forms.DialogResult.Yes ) {
+			if (MessageBox.Show(Translation.ResetFontSettings, Translation.ClearConfirmation,
+				MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2)
+				 == System.Windows.Forms.DialogResult.Yes)
+			{
 
 				if (GeneralFont != null)
 					GeneralFont.Dispose();
@@ -747,7 +821,7 @@ namespace ElectronicObserver.Window.Dialog
 			SyncronizeTitleAndFileName.Enabled =
 				!OutputToClipboard.Checked;
 
-			ToolTipInfo.SetToolTip( GroupOutputPath, OutputToClipboard.Checked ? "The fleet image will be exported to the clipboard.\r\nUncheck 'Copy to clipboard' on the details tab to export fleet image to a file." : null );
+			ToolTipInfo.SetToolTip(GroupOutputPath, OutputToClipboard.Checked ? Translation.ImageWillBeExportedToClipboard : null);
 		}
 
 		private void Comment_KeyDown(object sender, KeyEventArgs e)

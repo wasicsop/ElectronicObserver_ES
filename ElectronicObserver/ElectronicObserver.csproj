@@ -135,6 +135,11 @@
 		  <AutoGen>True</AutoGen>
 		  <DependentUpon>DialogExpeditionCheck.resx</DependentUpon>
 		</Compile>
+		<Compile Update="Properties\Window\Dialog\DialogFleetImageGenerator.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>DialogFleetImageGenerator.resx</DependentUpon>
+		</Compile>
 		<Compile Update="Properties\Window\Dialog\DialogShipGroupFilter.Designer.cs">
 			<DesignTime>True</DesignTime>
 			<AutoGen>True</AutoGen>
@@ -435,6 +440,10 @@
 		<EmbeddedResource Update="Properties\Window\Dialog\DialogExpeditionCheck.resx">
 		  <Generator>PublicResXFileCodeGenerator</Generator>
 		  <LastGenOutput>DialogExpeditionCheck.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Properties\Window\Dialog\DialogFleetImageGenerator.resx">
+		  <Generator>PublicResXFileCodeGenerator</Generator>
+		  <LastGenOutput>DialogFleetImageGenerator.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 		<EmbeddedResource Update="Properties\Window\Dialog\DialogShipGroupFilter.resx">
 			<Generator>PublicResXFileCodeGenerator</Generator>
