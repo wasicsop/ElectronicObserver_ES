@@ -75,7 +75,7 @@ namespace ElectronicObserver.Window.Dialog
 			// statusStrip1
 			// 
 			this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.StatusInfo});
+			this.StatusInfo});
 			this.statusStrip1.Location = new System.Drawing.Point(0, 419);
 			this.statusStrip1.Name = "statusStrip1";
 			this.statusStrip1.Size = new System.Drawing.Size(624, 22);
@@ -131,11 +131,11 @@ namespace ElectronicObserver.Window.Dialog
 			// 
 			this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.label8.AutoSize = true;
-			this.label8.Location = new System.Drawing.Point(371, 42);
+			this.label8.Location = new System.Drawing.Point(368, 42);
 			this.label8.Name = "label8";
 			this.label8.Size = new System.Drawing.Size(55, 15);
 			this.label8.TabIndex = 42;
-			this.label8.Text = "Mats:";
+			this.label8.Text = "開発資材";
 			// 
 			// DevelopmentMaterial
 			// 
@@ -157,7 +157,7 @@ namespace ElectronicObserver.Window.Dialog
 			this.IsLargeConstruction.Name = "IsLargeConstruction";
 			this.IsLargeConstruction.Size = new System.Drawing.Size(86, 19);
 			this.IsLargeConstruction.TabIndex = 40;
-			this.IsLargeConstruction.Text = "LSC";
+			this.IsLargeConstruction.Text = "大型艦建造";
 			this.IsLargeConstruction.ThreeState = true;
 			this.IsLargeConstruction.UseVisualStyleBackColor = true;
 			// 
@@ -169,7 +169,7 @@ namespace ElectronicObserver.Window.Dialog
 			this.label7.Name = "label7";
 			this.label7.Size = new System.Drawing.Size(51, 15);
 			this.label7.TabIndex = 39;
-			this.label7.Text = "Dock:";
+			this.label7.Text = "空きドック";
 			// 
 			// EmptyDock
 			// 
@@ -188,7 +188,7 @@ namespace ElectronicObserver.Window.Dialog
 			this.ButtonRun.Name = "ButtonRun";
 			this.ButtonRun.Size = new System.Drawing.Size(75, 23);
 			this.ButtonRun.TabIndex = 37;
-			this.ButtonRun.Text = "Search";
+			this.ButtonRun.Text = "検索";
 			this.ButtonRun.UseVisualStyleBackColor = true;
 			this.ButtonRun.Click += new System.EventHandler(this.ButtonRun_Click);
 			// 
@@ -200,7 +200,7 @@ namespace ElectronicObserver.Window.Dialog
 			this.MergeRows.Name = "MergeRows";
 			this.MergeRows.Size = new System.Drawing.Size(62, 19);
 			this.MergeRows.TabIndex = 36;
-			this.MergeRows.Text = "Group";
+			this.MergeRows.Text = "まとめる";
 			this.MergeRows.UseVisualStyleBackColor = true;
 			// 
 			// label6
@@ -210,17 +210,17 @@ namespace ElectronicObserver.Window.Dialog
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(35, 15);
 			this.label6.TabIndex = 35;
-			this.label6.Text = "Recipe:";
+			this.label6.Text = "レシピ";
 			// 
 			// Recipe
 			// 
-			this.Recipe.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+			this.Recipe.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.Recipe.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.Recipe.FormattingEnabled = true;
-			this.Recipe.Location = new System.Drawing.Point(429, 10);
+			this.Recipe.Location = new System.Drawing.Point(412, 10);
 			this.Recipe.Name = "Recipe";
-			this.Recipe.Size = new System.Drawing.Size(183, 23);
+			this.Recipe.Size = new System.Drawing.Size(200, 23);
 			this.Recipe.TabIndex = 34;
 			// 
 			// SecretaryName
@@ -246,38 +246,38 @@ namespace ElectronicObserver.Window.Dialog
 			// label5
 			// 
 			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(6, 71);
+			this.label5.Location = new System.Drawing.Point(12, 71);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(43, 15);
 			this.label5.TabIndex = 31;
-			this.label5.Text = "FS:";
+			this.label5.Text = "秘書艦";
 			// 
 			// DateEnd
 			// 
-			this.DateEnd.Location = new System.Drawing.Point(230, 39);
+			this.DateEnd.Location = new System.Drawing.Point(225, 39);
 			this.DateEnd.Name = "DateEnd";
-			this.DateEnd.Size = new System.Drawing.Size(110, 23);
+			this.DateEnd.Size = new System.Drawing.Size(140, 23);
 			this.DateEnd.TabIndex = 30;
-		    this.DateEnd.Format = DateTimePickerFormat.Custom;
-		    this.DateEnd.CustomFormat = @"yyyy/MM/dd";
-            // 
-            // DateBegin
-            // 
-            this.DateBegin.Location = new System.Drawing.Point(230, 10);
+			this.DateEnd.Format = DateTimePickerFormat.Custom;
+			this.DateEnd.CustomFormat = @"yyyy/MM/dd";
+			// 
+			// DateBegin
+			// 
+			this.DateBegin.Location = new System.Drawing.Point(225, 10);
 			this.DateBegin.Name = "DateBegin";
-			this.DateBegin.Size = new System.Drawing.Size(110, 23);
+			this.DateBegin.Size = new System.Drawing.Size(140, 23);
 			this.DateBegin.TabIndex = 29;
-		    this.DateBegin.Format = DateTimePickerFormat.Custom;
-		    this.DateBegin.CustomFormat = @"yyyy/MM/dd";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
+			this.DateBegin.Format = DateTimePickerFormat.Custom;
+			this.DateBegin.CustomFormat = @"yyyy/MM/dd";
+			// 
+			// label4
+			// 
+			this.label4.AutoSize = true;
 			this.label4.Location = new System.Drawing.Point(188, 42);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(31, 15);
 			this.label4.TabIndex = 28;
-			this.label4.Text = "Until:";
+			this.label4.Text = "終了";
 			// 
 			// label3
 			// 
@@ -286,16 +286,16 @@ namespace ElectronicObserver.Window.Dialog
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(31, 15);
 			this.label3.TabIndex = 27;
-			this.label3.Text = "From:";
+			this.label3.Text = "開始";
 			// 
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(6, 13);
+			this.label2.Location = new System.Drawing.Point(12, 13);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(41, 15);
 			this.label2.TabIndex = 26;
-			this.label2.Text = "Hull:";
+			this.label2.Text = "カテゴリ";
 			// 
 			// ShipCategory
 			// 
@@ -310,11 +310,11 @@ namespace ElectronicObserver.Window.Dialog
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(6, 42);
+			this.label1.Location = new System.Drawing.Point(12, 42);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(31, 15);
 			this.label1.TabIndex = 24;
-			this.label1.Text = "Ship:";
+			this.label1.Text = "艦名";
 			// 
 			// ShipName
 			// 
@@ -336,14 +336,14 @@ namespace ElectronicObserver.Window.Dialog
 			this.RecordView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.RecordView.ColumnHeadersVisible = false;
 			this.RecordView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.RecordView_Header,
-            this.RecordView_Name,
-            this.RecordView_Date,
-            this.RecordView_Recipe,
-            this.RecordView_SecretaryShip,
-            this.RecordView_Material100,
-            this.RecordView_Material20,
-            this.RecordView_Material1});
+			this.RecordView_Header,
+			this.RecordView_Name,
+			this.RecordView_Date,
+			this.RecordView_Recipe,
+			this.RecordView_SecretaryShip,
+			this.RecordView_Material100,
+			this.RecordView_Material20,
+			this.RecordView_Material1});
 			dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
 			dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
 			dataGridViewCellStyle1.Font = new System.Drawing.Font("Meiryo UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
@@ -374,25 +374,25 @@ namespace ElectronicObserver.Window.Dialog
 			// 
 			// RecordView_Name
 			// 
-			this.RecordView_Name.HeaderText = "Ship";
+			this.RecordView_Name.HeaderText = "名前";
 			this.RecordView_Name.Name = "RecordView_Name";
 			this.RecordView_Name.ReadOnly = true;
 			// 
 			// RecordView_Date
 			// 
-			this.RecordView_Date.HeaderText = "Date";
+			this.RecordView_Date.HeaderText = "日付";
 			this.RecordView_Date.Name = "RecordView_Date";
 			this.RecordView_Date.ReadOnly = true;
 			// 
 			// RecordView_Recipe
 			// 
-			this.RecordView_Recipe.HeaderText = "Recipe";
+			this.RecordView_Recipe.HeaderText = "レシピ";
 			this.RecordView_Recipe.Name = "RecordView_Recipe";
 			this.RecordView_Recipe.ReadOnly = true;
 			// 
 			// RecordView_SecretaryShip
 			// 
-			this.RecordView_SecretaryShip.HeaderText = "Flagship";
+			this.RecordView_SecretaryShip.HeaderText = "秘書艦";
 			this.RecordView_SecretaryShip.Name = "RecordView_SecretaryShip";
 			this.RecordView_SecretaryShip.ReadOnly = true;
 			// 
@@ -428,7 +428,7 @@ namespace ElectronicObserver.Window.Dialog
 			this.Controls.Add(this.statusStrip1);
 			this.Font = new System.Drawing.Font("Meiryo UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
 			this.Name = "DialogConstructionRecordViewer";
-			this.Text = "Construction Record";
+			this.Text = "建造記録";
 			this.Load += new System.EventHandler(this.DialogConstructionRecordViewer_Load);
 			this.statusStrip1.ResumeLayout(false);
 			this.statusStrip1.PerformLayout();

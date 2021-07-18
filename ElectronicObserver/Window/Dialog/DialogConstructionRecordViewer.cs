@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ElectronicObserverTypes;
+using Translation = ElectronicObserver.Properties.Window.Dialog.DialogConstructionRecordViewer;
 
 namespace ElectronicObserver.Window.Dialog
 {
@@ -21,7 +22,7 @@ namespace ElectronicObserver.Window.Dialog
 
 		private ConstructionRecord _record;
 
-		private string NameAny = "All";
+		private string NameAny => Translation.NameAny;
 
 
 		private class SearchArgument
@@ -46,6 +47,30 @@ namespace ElectronicObserver.Window.Dialog
 			InitializeComponent();
 
 			_record = RecordManager.Instance.Construction;
+
+			Translate();
+		}
+
+		public void Translate()
+		{
+			label8.Text = Translation.DevMats;
+			IsLargeConstruction.Text = Translation.IsLargeConstruction;
+			label7.Text = Translation.EmptyDocks;
+			ButtonRun.Text = Translation.ButtonRun;
+			MergeRows.Text = Translation.MergeRows;
+			label6.Text = Translation.Recipe;
+			label5.Text = Translation.Flagship;
+			label4.Text = Translation.Until;
+			label3.Text = Translation.From;
+			label2.Text = Translation.Hull;
+			label1.Text = Translation.Ship;
+
+			RecordView_Name.HeaderText = Translation.RecordView_Name;
+			RecordView_Date.HeaderText = Translation.RecordView_Date;
+			RecordView_Recipe.HeaderText = Translation.RecordView_Recipe;
+			RecordView_SecretaryShip.HeaderText = Translation.RecordView_SecretaryShip;
+
+			Text = Translation.Title;
 		}
 
 		private void DialogConstructionRecordViewer_Load(object sender, EventArgs e)
@@ -266,9 +291,11 @@ namespace ElectronicObserver.Window.Dialog
 		private void ButtonRun_Click(object sender, EventArgs e)
 		{
 
-			if ( Searcher.IsBusy ) {
-				if ( MessageBox.Show( EncycloRes.InterruptSearch, EncycloRes.Searching, MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2 )
-					== System.Windows.Forms.DialogResult.Yes ) {
+			if (Searcher.IsBusy)
+			{
+				if (MessageBox.Show(EncycloRes.InterruptSearch, EncycloRes.Searching, MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2)
+					== System.Windows.Forms.DialogResult.Yes)
+				{
 					Searcher.CancelAsync();
 				}
 				return;
@@ -307,7 +334,7 @@ namespace ElectronicObserver.Window.Dialog
 				RecordView_Header.HeaderText = "";
 				RecordView_Name.DisplayIndex = 1;
 			    RecordView_Name.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-				RecordView_Name.HeaderText = "Ship";
+				RecordView_Name.HeaderText = Translation.RecordView_Name;
 				RecordView_Name.Visible = true;
 				RecordView_Date.DisplayIndex = 2;
 				RecordView_Date.Width = 140;
@@ -347,16 +374,16 @@ namespace ElectronicObserver.Window.Dialog
 				}
 				RecordView_Header.DisplayIndex = 1;
 				RecordView_Header.Width = 120;
-				RecordView_Header.HeaderText = "Tries";
+				RecordView_Header.HeaderText = Translation.Tries;
 				RecordView_Material100.DisplayIndex = 2;
 				RecordView_Material100.Width = 120;
-				RecordView_Material100.HeaderText = "DevMat×100";
+				RecordView_Material100.HeaderText = $"{Translation.DevMat}×100";
 				RecordView_Material20.DisplayIndex = 3;
 				RecordView_Material20.Width = 120;
-				RecordView_Material20.HeaderText = "DevMat×20";
+				RecordView_Material20.HeaderText = $"{Translation.DevMat}×20";
                 RecordView_Material1.DisplayIndex = 4;
 				RecordView_Material1.Width = 120;
-				RecordView_Material1.HeaderText = "DevMat×1";
+				RecordView_Material1.HeaderText = $"{Translation.DevMat}×1";
                 if ( args.IsLargeConstruction == CheckState.Unchecked ||
 					( args.Recipe != NameAny && args.Recipe.IndexOf( "/" ) < 4 ) ||
 					args.DevelopmentMaterial != -1 ) {
@@ -797,13 +824,13 @@ namespace ElectronicObserver.Window.Dialog
 				int count = RecordView.SelectedRows.OfType<DataGridViewRow>().Select(r => (int)r.Cells[RecordView_Header.Index].Value).Sum();
 				int allcount = RecordView.Rows.OfType<DataGridViewRow>().Select(r => (int)r.Cells[RecordView_Header.Index].Value).Sum();
 
-				StatusInfo.Text = string.Format("Selected items: {0} / {1} ({2:p1})",
+				StatusInfo.Text = string.Format(Properties.Window.Dialog.DialogDropRecordViewer.SelectedItems,
 					count, allcount, (double)count / allcount);
 			}
 			else
 			{
 				int allcount = RecordView.RowCount;
-				StatusInfo.Text = string.Format("Selected items: {0} / {1} ({2:p1})",
+				StatusInfo.Text = string.Format(Properties.Window.Dialog.DialogDropRecordViewer.SelectedItems,
 					selectedCount, allcount, (double)selectedCount / allcount);
 			}
 		}

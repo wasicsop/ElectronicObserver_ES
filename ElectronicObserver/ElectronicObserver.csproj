@@ -110,6 +110,11 @@
 		  <AutoGen>True</AutoGen>
 		  <DependentUpon>DialogConfigurationNotifier.resx</DependentUpon>
 		</Compile>
+		<Compile Update="Properties\Window\Dialog\DialogConstructionRecordViewer.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>DialogConstructionRecordViewer.resx</DependentUpon>
+		</Compile>
 		<Compile Update="Properties\Window\Dialog\DialogDevelopmentRecordViewer.Designer.cs">
 		  <DesignTime>True</DesignTime>
 		  <AutoGen>True</AutoGen>
@@ -450,6 +455,10 @@
 		<EmbeddedResource Update="Properties\Window\Dialog\DialogConfigurationNotifier.resx">
 		  <Generator>PublicResXFileCodeGenerator</Generator>
 		  <LastGenOutput>DialogConfigurationNotifier.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Properties\Window\Dialog\DialogConstructionRecordViewer.resx">
+		  <Generator>PublicResXFileCodeGenerator</Generator>
+		  <LastGenOutput>DialogConstructionRecordViewer.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 		<EmbeddedResource Update="Properties\Window\Dialog\DialogDevelopmentRecordViewer.resx">
 		  <Generator>PublicResXFileCodeGenerator</Generator>
