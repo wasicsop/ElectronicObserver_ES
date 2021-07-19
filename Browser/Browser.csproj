@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFramework>netcoreapp3.1</TargetFramework>
+		<LangVersion>preview</LangVersion>
 		<OutputType>WinExe</OutputType>
 		<AssemblyName>EOBrowser</AssemblyName>
 		<IsWebBootstrapper>false</IsWebBootstrapper>
