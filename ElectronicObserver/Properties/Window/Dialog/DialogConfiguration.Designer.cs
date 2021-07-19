@@ -1187,6 +1187,24 @@ namespace ElectronicObserver.Properties.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 英語.
+        /// </summary>
+        public static string Language_English {
+            get {
+                return ResourceManager.GetString("Language_English", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 日本語.
+        /// </summary>
+        public static string Language_Japanese {
+            get {
+                return ResourceManager.GetString("Language_Japanese", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 上記「レイアウトをロックする」が有効な時でも、
         ///フロートウィンドウ(本体とは分離したウィンドウ)を閉じられるようにするかを指定します。
         ///よくウィンドウを一時的に開く方は有効にすると便利です。.
@@ -1709,12 +1727,30 @@ namespace ElectronicObserver.Properties.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 言語：.
+        /// </summary>
+        public static string UI_LanguageLabel {
+            get {
+                return ResourceManager.GetString("UI_LanguageLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 描画プレビューです。
         ///下のバーから値を調整できます。.
         /// </summary>
         public static string UI_RenderingTestToolTip {
             get {
                 return ResourceManager.GetString("UI_RenderingTestToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to テーマや言語を変更した後は、七四式を再起動してください。.
+        /// </summary>
+        public static string UI_RestartHint {
+            get {
+                return ResourceManager.GetString("UI_RestartHint", resourceCulture);
             }
         }
         

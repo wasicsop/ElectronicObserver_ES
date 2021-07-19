@@ -15,6 +15,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DynaJson;
+using System.Globalization;
 
 namespace ElectronicObserver.Utility
 {
@@ -155,6 +156,8 @@ namespace ElectronicObserver.Utility
 				/// サブフォント
 				/// </summary>
 				public SerializableFont SubFont { get; set; }
+
+				public string Culture { get; set; }
 
 				/// <summary>
 				/// Whether to use Japanese or English ship names
@@ -482,6 +485,12 @@ namespace ElectronicObserver.Utility
 					AllowSortIndexing = true;
 					BarColorMorphing = false;
 					IsLayoutFixed = true;
+
+					Culture = CultureInfo.CurrentCulture.Name switch
+					{
+						"ja-JP" => "ja-JP",
+						_ => "en-US"
+					};
 
 					JapaneseShipName = false;
 					JapaneseShipType = false;

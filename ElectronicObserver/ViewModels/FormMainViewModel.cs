@@ -212,18 +212,10 @@ namespace ElectronicObserver.ViewModels
 			Configuration.Instance.Load();
 			Config = Configuration.Config;
 
-			CultureInfo c = CultureInfo.CurrentCulture;
-			CultureInfo ui = CultureInfo.CurrentUICulture;
-			if (c.Name != "en-US" && c.Name != "ja-JP")
-			{
-				c = new CultureInfo("en-US");
-			}
-			if (ui.Name != "en-US" && ui.Name != "ja-JP")
-			{
-				ui = new CultureInfo("en-US");
-			}
-			Thread.CurrentThread.CurrentCulture = c;
-			Thread.CurrentThread.CurrentUICulture = ui;
+			CultureInfo cultureInfo = new(Configuration.Config.UI.Culture);
+
+			Thread.CurrentThread.CurrentCulture = cultureInfo;
+			Thread.CurrentThread.CurrentUICulture = cultureInfo;
 
 			Directory.CreateDirectory(@"Settings\Layout");
 

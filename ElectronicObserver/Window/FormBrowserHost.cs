@@ -143,7 +143,7 @@ namespace ElectronicObserver.Window
 			try
 			{
 				// プロセス起動
-				string arguments = $"{Host} {Port}";
+				string arguments = $"{Host} {Port} {Utility.Configuration.Config.UI.Culture}";
 
 				if (File.Exists(BrowserExeName))
 				{

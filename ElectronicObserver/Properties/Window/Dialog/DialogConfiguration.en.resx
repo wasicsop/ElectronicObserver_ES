@@ -705,4 +705,16 @@ Are you sure?</value>
   <data name="UseLetterForNodes" xml:space="preserve">
     <value>Use letter for node assignment</value>
   </data>
+  <data name="Language_English" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="Language_Japanese" xml:space="preserve">
+    <value>Japanese</value>
+  </data>
+  <data name="UI_RestartHint" xml:space="preserve">
+    <value>You should restart EO after changing the theme or language.</value>
+  </data>
+  <data name="UI_LanguageLabel" xml:space="preserve">
+    <value>Language:</value>
+  </data>
 </root>

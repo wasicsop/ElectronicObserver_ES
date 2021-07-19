@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -33,7 +34,17 @@ namespace Browser
 					"Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
 				return;
 			}
-			Application.Run(new FormBrowser(args[0], port));
+
+			string culture = args.Length switch
+			{
+				> 2 => args[2],
+				_ => CultureInfo.CurrentCulture.Name switch
+				{
+					"ja-JP" => "ja-JP",
+					_ => "en-US"
+				}
+			};
+			Application.Run(new FormBrowser(args[0], port, culture));
 		}
 
 		private static System.Reflection.Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args)

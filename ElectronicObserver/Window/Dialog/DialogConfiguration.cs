@@ -85,7 +85,7 @@ namespace ElectronicObserver.Window.Dialog
 			UI_NodeNumbering.Text = Translation.UseLetterForNodes;
 			label21.Text = Translation.Theme;
 			comboBox1.Items.Clear();
-			comboBox1.Items.AddRange(new object[] 
+			comboBox1.Items.AddRange(new object[]
 			{
 				Translation.Theme_Light,
 				Translation.Theme_Dark,
@@ -99,6 +99,14 @@ namespace ElectronicObserver.Window.Dialog
 			ToolTipInfo.SetToolTip(UI_BarColorMorphing, Translation.UI_BarColorMorphingToolTip);
 			label8.Text = ConfigRes.Subfont;
 			label5.Text = ConfigRes.Mainfont;
+			UI_LanguageLabel.Text = Translation.UI_LanguageLabel;
+			UI_LanguageOptions.Items.Clear();
+			UI_LanguageOptions.Items.AddRange(new object[]
+			{
+				Translation.Language_English,
+				Translation.Language_Japanese
+			});
+			UI_RestartHint.Text = Translation.UI_RestartHint;
 
 			tabPage3.Text = ConfigRes.Log;
 			Log_SaveLogImmediately.Text = Translation.Log_SaveLogImmediately;
@@ -976,6 +984,11 @@ namespace ElectronicObserver.Window.Dialog
 			config.UI.ThemeMode = comboBox1.SelectedIndex;
 
 			config.UI.IsLayoutFixed = UI_IsLayoutFixed.Checked;
+			config.UI.Culture = UI_LanguageOptions.SelectedItem switch
+			{
+				string s when s == Translation.Language_Japanese => "ja-JP",
+				_ => "en-US"
+			};
 
 			//[ログ]
 			config.Log.LogLevel = (int)Log_LogLevel.Value;
@@ -1378,6 +1391,5 @@ namespace ElectronicObserver.Window.Dialog
 			dialogTsunDb.FormClosed += RefreshTsunDbParameters;
 			dialogTsunDb.ShowDialog();
 		}
-
 	}
 }

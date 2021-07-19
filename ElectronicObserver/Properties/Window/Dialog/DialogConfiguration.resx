@@ -703,4 +703,16 @@ APIリストの書式や用法はオンラインヘルプを参照してくだ�
   <data name="UseLetterForNodes" xml:space="preserve">
     <value>マスの指定にアルファベットを使用</value>
   </data>
+  <data name="Language_English" xml:space="preserve">
+    <value>英語</value>
+  </data>
+  <data name="Language_Japanese" xml:space="preserve">
+    <value>日本語</value>
+  </data>
+  <data name="UI_RestartHint" xml:space="preserve">
+    <value>テーマや言語を変更した後は、七四式を再起動してください。</value>
+  </data>
+  <data name="UI_LanguageLabel" xml:space="preserve">
+    <value>言語：</value>
+  </data>
 </root>
