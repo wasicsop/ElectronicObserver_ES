@@ -209,6 +209,9 @@ namespace ElectronicObserver.ViewModels
 
 			#endregion
 
+			Configuration.Instance.Load();
+			Config = Configuration.Config;
+
 			CultureInfo c = CultureInfo.CurrentCulture;
 			CultureInfo ui = CultureInfo.CurrentUICulture;
 			if (c.Name != "en-US" && c.Name != "ja-JP")
@@ -224,9 +227,6 @@ namespace ElectronicObserver.ViewModels
 
 			Directory.CreateDirectory(@"Settings\Layout");
 
-			// todo the parameter is never used, remove it later
-			Configuration.Instance.Load(null!);
-			Config = Configuration.Config;
 
 			SetTheme();
 

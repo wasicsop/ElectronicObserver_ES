@@ -85,6 +85,11 @@ namespace ElectronicObserver.Window
 
 		public FormMain()
 		{
+			if (!Directory.Exists("Settings"))
+				Directory.CreateDirectory("Settings");
+
+			Utility.Configuration.Instance.Load();
+
 			CultureInfo c = CultureInfo.CurrentCulture;
 			CultureInfo ui = CultureInfo.CurrentUICulture;
 			if (c.Name != "en-US" && c.Name != "ja-JP")
@@ -193,13 +198,6 @@ namespace ElectronicObserver.Window
 
 		private async void FormMain_Load(object sender, EventArgs e)
 		{
-
-			if (!Directory.Exists("Settings"))
-				Directory.CreateDirectory("Settings");
-
-
-			Utility.Configuration.Instance.Load(this);
-
 			this.MainDockPanel.Styles = Configuration.Config.UI.DockPanelSuiteStyles;
 			this.MainDockPanel.Theme = new WeifenLuo.WinFormsUI.Docking.VS2012Theme();
 			this.BackColor = this.StripMenu.BackColor = Utility.Configuration.Config.UI.BackColor;
