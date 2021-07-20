@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ElectronicObserver.Data;
 
 namespace ElectronicObserver.Window.Control
 {
@@ -82,7 +83,7 @@ namespace ElectronicObserver.Window.Control
 
 			//FIXME: サブウィンドウ状態のときToolTipが出現しない不具合を確認。
 
-			string tiptext = string.Format("Fuel: {0}/{1} ({2}%)\r\nAmmo: {3}/{4} ({5}%)",
+			string tiptext = string.Format(FleetRes.ResourceToolTip,
 				FuelCurrent, FuelMax, (int)Math.Ceiling(100.0 * FuelCurrent / FuelMax),
 				AmmoCurrent, AmmoMax, (int)Math.Ceiling(100.0 * AmmoCurrent / AmmoMax));
 

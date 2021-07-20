@@ -194,4 +194,8 @@ Repair time:
     <value>Recovery time: {0}
 (prediction error: {1})</value>
   </data>
+  <data name="ResourceToolTip" xml:space="preserve">
+    <value>Fuel: {0}/{1} ({2}%)
+Ammo: {3}/{4} ({5}%)</value>
+  </data>
 </root>

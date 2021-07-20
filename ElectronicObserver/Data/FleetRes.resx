@@ -194,4 +194,8 @@
     <value>回復目安日時: {0}
 (予測誤差: {1})</value>
   </data>
+  <data name="ResourceToolTip" xml:space="preserve">
+    <value>燃 : {0}/{1} ({2}%)
+弾 : {3}/{4} ({5}%)</value>
+  </data>
 </root>

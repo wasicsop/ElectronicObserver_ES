@@ -246,6 +246,16 @@ namespace ElectronicObserver.Data {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 燃 : {0}/{1} ({2}%)
+        ///弾 : {3}/{4} ({5}%).
+        /// </summary>
+        public static string ResourceToolTip {
+            get {
+                return ResourceManager.GetString("ResourceToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 燃 : {0}
         ///弾 : {1}
         ///ボ : {2} ({3}機).
