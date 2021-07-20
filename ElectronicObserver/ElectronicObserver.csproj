@@ -65,6 +65,11 @@
 			<AutoGen>True</AutoGen>
 			<DependentUpon>DataRes.resx</DependentUpon>
 		</Compile>
+		<Compile Update="Data\FleetRes.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>FleetRes.resx</DependentUpon>
+		</Compile>
 		<Compile Update="Notifier\NotifierRes.Designer.cs">
 			<DesignTime>True</DesignTime>
 			<AutoGen>True</AutoGen>
@@ -419,6 +424,10 @@
 		<EmbeddedResource Update="Data\DataRes.resx">
 			<Generator>ResXFileCodeGenerator</Generator>
 			<LastGenOutput>DataRes.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Data\FleetRes.resx">
+		  <Generator>PublicResXFileCodeGenerator</Generator>
+		  <LastGenOutput>FleetRes.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 		<EmbeddedResource Update="Notifier\NotifierRes.resx">
 			<Generator>PublicResXFileCodeGenerator</Generator>

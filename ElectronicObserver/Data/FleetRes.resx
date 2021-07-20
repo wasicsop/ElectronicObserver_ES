@@ -168,4 +168,30 @@
   <data name="SupplyNeeded" xml:space="preserve">
     <value>未補給</value>
   </data>
+  <data name="ExpeditionToolTip" xml:space="preserve">
+    <value>{0} : {1}
+完了日時 : {2}</value>
+  </data>
+  <data name="Repairing" xml:space="preserve">
+    <value>泊地修理中 </value>
+  </data>
+  <data name="RepairTimeHeader" xml:space="preserve">
+    <value>開始日時 : {0}
+修理時間 :
+</value>
+  </data>
+  <data name="RepairTimeDetail" xml:space="preserve">
+    <value>#{0} : {1} @ {2} x -{3} HP
+</value>
+  </data>
+  <data name="OnDock" xml:space="preserve">
+    <value>入渠中 </value>
+  </data>
+  <data name="DockCompletionTime" xml:space="preserve">
+    <value>完了日時 : </value>
+  </data>
+  <data name="RecoveryTimeToolTip" xml:space="preserve">
+    <value>回復目安日時: {0}
+(予測誤差: {1})</value>
+  </data>
 </root>

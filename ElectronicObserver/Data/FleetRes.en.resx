@@ -139,7 +139,7 @@
     <value>Fatigued </value>
   </data>
   <data name="FightingSpiritHigh" xml:space="preserve">
-    <value>Fighting Spirit High!</value>
+    <value>Sparkled fleet!</value>
   </data>
   <data name="HasReturned" xml:space="preserve">
     <value>#{0} 「{1}」 has returned.</value>
@@ -167,5 +167,31 @@ Baux: {2} ({3} planes)</value>
   </data>
   <data name="SupplyNeeded" xml:space="preserve">
     <value>Resupply needed</value>
+  </data>
+  <data name="ExpeditionToolTip" xml:space="preserve">
+    <value>{0}: {1}
+ETA: {2}</value>
+  </data>
+  <data name="Repairing" xml:space="preserve">
+    <value>Repairing </value>
+  </data>
+  <data name="RepairTimeHeader" xml:space="preserve">
+    <value>Start: {0}
+Repair time:
+</value>
+  </data>
+  <data name="RepairTimeDetail" xml:space="preserve">
+    <value>#{0} : {1} @ {2} x -{3} HP
+</value>
+  </data>
+  <data name="OnDock" xml:space="preserve">
+    <value>On dock </value>
+  </data>
+  <data name="DockCompletionTime" xml:space="preserve">
+    <value>ETA : </value>
+  </data>
+  <data name="RecoveryTimeToolTip" xml:space="preserve">
+    <value>Recovery time: {0}
+(prediction error: {1})</value>
   </data>
 </root>

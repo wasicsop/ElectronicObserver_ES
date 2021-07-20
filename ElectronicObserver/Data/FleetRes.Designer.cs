@@ -22,7 +22,7 @@ namespace ElectronicObserver.Data {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class FleetRes {
+    public class FleetRes {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace ElectronicObserver.Data {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ElectronicObserver.Data.FleetRes", typeof(FleetRes).Assembly);
@@ -51,7 +51,7 @@ namespace ElectronicObserver.Data {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace ElectronicObserver.Data {
         /// <summary>
         ///   Looks up a localized string similar to 泊地修理中 .
         /// </summary>
-        internal static string AnchorageRepairing {
+        public static string AnchorageRepairing {
             get {
                 return ResourceManager.GetString("AnchorageRepairing", resourceCulture);
             }
@@ -72,7 +72,7 @@ namespace ElectronicObserver.Data {
         /// <summary>
         ///   Looks up a localized string similar to 完了日時 .
         /// </summary>
-        internal static string CompletionTime {
+        public static string CompletionTime {
             get {
                 return ResourceManager.GetString("CompletionTime", resourceCulture);
             }
@@ -81,7 +81,7 @@ namespace ElectronicObserver.Data {
         /// <summary>
         ///   Looks up a localized string similar to ！！大破進撃中！！.
         /// </summary>
-        internal static string CriticalDamageAdvance {
+        public static string CriticalDamageAdvance {
             get {
                 return ResourceManager.GetString("CriticalDamageAdvance", resourceCulture);
             }
@@ -90,16 +90,25 @@ namespace ElectronicObserver.Data {
         /// <summary>
         ///   Looks up a localized string similar to 大破艦あり！.
         /// </summary>
-        internal static string CriticallyDamagedShip {
+        public static string CriticallyDamagedShip {
             get {
                 return ResourceManager.GetString("CriticallyDamagedShip", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 完了日時 : .
+        /// </summary>
+        public static string DockCompletionTime {
+            get {
+                return ResourceManager.GetString("DockCompletionTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 入渠中 .
         /// </summary>
-        internal static string Docking {
+        public static string Docking {
             get {
                 return ResourceManager.GetString("Docking", resourceCulture);
             }
@@ -108,16 +117,26 @@ namespace ElectronicObserver.Data {
         /// <summary>
         ///   Looks up a localized string similar to 回復目安日時.
         /// </summary>
-        internal static string EstimatedRecoveryTime {
+        public static string EstimatedRecoveryTime {
             get {
                 return ResourceManager.GetString("EstimatedRecoveryTime", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} : {1}
+        ///完了日時 : {2}.
+        /// </summary>
+        public static string ExpeditionToolTip {
+            get {
+                return ResourceManager.GetString("ExpeditionToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 疲労 .
         /// </summary>
-        internal static string Fatigued {
+        public static string Fatigued {
             get {
                 return ResourceManager.GetString("Fatigued", resourceCulture);
             }
@@ -126,7 +145,7 @@ namespace ElectronicObserver.Data {
         /// <summary>
         ///   Looks up a localized string similar to 戦意高揚！.
         /// </summary>
-        internal static string FightingSpiritHigh {
+        public static string FightingSpiritHigh {
             get {
                 return ResourceManager.GetString("FightingSpiritHigh", resourceCulture);
             }
@@ -135,7 +154,7 @@ namespace ElectronicObserver.Data {
         /// <summary>
         ///   Looks up a localized string similar to #{0}「{1}」が帰投しました。.
         /// </summary>
-        internal static string HasReturned {
+        public static string HasReturned {
             get {
                 return ResourceManager.GetString("HasReturned", resourceCulture);
             }
@@ -144,16 +163,25 @@ namespace ElectronicObserver.Data {
         /// <summary>
         ///   Looks up a localized string similar to 所属艦なし.
         /// </summary>
-        internal static string NoShips {
+        public static string NoShips {
             get {
                 return ResourceManager.GetString("NoShips", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 入渠中 .
+        /// </summary>
+        public static string OnDock {
+            get {
+                return ResourceManager.GetString("OnDock", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 遠征中 .
         /// </summary>
-        internal static string OnExped {
+        public static string OnExped {
             get {
                 return ResourceManager.GetString("OnExped", resourceCulture);
             }
@@ -162,7 +190,7 @@ namespace ElectronicObserver.Data {
         /// <summary>
         ///   Looks up a localized string similar to 出撃中.
         /// </summary>
-        internal static string OnSortie {
+        public static string OnSortie {
             get {
                 return ResourceManager.GetString("OnSortie", resourceCulture);
             }
@@ -171,9 +199,49 @@ namespace ElectronicObserver.Data {
         /// <summary>
         ///   Looks up a localized string similar to 出撃可能！.
         /// </summary>
-        internal static string ReadyToSortie {
+        public static string ReadyToSortie {
             get {
                 return ResourceManager.GetString("ReadyToSortie", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 回復目安日時: {0}
+        ///(予測誤差: {1}).
+        /// </summary>
+        public static string RecoveryTimeToolTip {
+            get {
+                return ResourceManager.GetString("RecoveryTimeToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 泊地修理中 .
+        /// </summary>
+        public static string Repairing {
+            get {
+                return ResourceManager.GetString("Repairing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to #{0} : {1} @ {2} x -{3} HP
+        ///.
+        /// </summary>
+        public static string RepairTimeDetail {
+            get {
+                return ResourceManager.GetString("RepairTimeDetail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 開始日時 : {0}
+        ///修理時間 :
+        ///.
+        /// </summary>
+        public static string RepairTimeHeader {
+            get {
+                return ResourceManager.GetString("RepairTimeHeader", resourceCulture);
             }
         }
         
@@ -182,7 +250,7 @@ namespace ElectronicObserver.Data {
         ///弾 : {1}
         ///ボ : {2} ({3}機).
         /// </summary>
-        internal static string ResupplyTooltip {
+        public static string ResupplyTooltip {
             get {
                 return ResourceManager.GetString("ResupplyTooltip", resourceCulture);
             }
@@ -192,25 +260,16 @@ namespace ElectronicObserver.Data {
         ///   Looks up a localized string similar to 最低cond: {0}
         ///あと {1} 回遠征可能.
         /// </summary>
-        internal static string SparkledTooltip {
+        public static string SparkledTooltip {
             get {
                 return ResourceManager.GetString("SparkledTooltip", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 開始日時 : {0}\r\n修理時間 :\r\n.
-        /// </summary>
-        internal static string StartTime {
-            get {
-                return ResourceManager.GetString("StartTime", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 未補給.
         /// </summary>
-        internal static string SupplyNeeded {
+        public static string SupplyNeeded {
             get {
                 return ResourceManager.GetString("SupplyNeeded", resourceCulture);
             }
