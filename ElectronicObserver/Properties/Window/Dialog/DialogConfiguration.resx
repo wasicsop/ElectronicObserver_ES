@@ -709,10 +709,17 @@ APIリストの書式や用法はオンラインヘルプを参照してくだ�
   <data name="Language_Japanese" xml:space="preserve">
     <value>日本語</value>
   </data>
+  <data name="FormBrowser_UseGadgetRedirect" xml:space="preserve">
+    <value>ガジェット・リダイレクトの使用 *</value>
+  </data>
   <data name="UI_RestartHint" xml:space="preserve">
     <value>テーマや言語を変更した後は、七四式を再起動してください。</value>
   </data>
   <data name="UI_LanguageLabel" xml:space="preserve">
     <value>言語：</value>
+  </data>
+  <data name="FormBrowser_UseGadgetRedirectToolTip" xml:space="preserve">
+    <value>外国人ブロックを回避するために、ガジェットのapiコールをリダイレクトします。
+日本にお住まいの方や、日本のVPNをご利用の方は、このオプションを無効にしておくことができます。</value>
   </data>
 </root>

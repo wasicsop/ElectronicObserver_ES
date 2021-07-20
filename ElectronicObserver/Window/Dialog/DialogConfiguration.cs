@@ -84,14 +84,14 @@ namespace ElectronicObserver.Window.Dialog
 			ToolTipInfo.SetToolTip(UI_DisableOtherTranslations, Translation.UI_DisableOtherTranslationsToolTip);
 			UI_NodeNumbering.Text = Translation.UseLetterForNodes;
 			label21.Text = Translation.Theme;
-			comboBox1.Items.Clear();
-			comboBox1.Items.AddRange(new object[]
+			UI_ThemeOptions.Items.Clear();
+			UI_ThemeOptions.Items.AddRange(new object[] 
 			{
 				Translation.Theme_Light,
 				Translation.Theme_Dark,
 				Translation.Theme_Custom
 			});
-			ToolTipInfo.SetToolTip(comboBox1, Translation.ThemeToolTip);
+			ToolTipInfo.SetToolTip(UI_ThemeOptions, Translation.ThemeToolTip);
 			ToolTipInfo.SetToolTip(UI_RenderingTest, Translation.UI_RenderingTestToolTip);
 			UI_IsLayoutFixed.Text = Translation.UI_IsLayoutFixed;
 			ToolTipInfo.SetToolTip(UI_IsLayoutFixed, Translation.UI_IsLayoutFixedToolTip);
@@ -372,6 +372,8 @@ namespace ElectronicObserver.Window.Dialog
 			label18.Text = ConfigRes.SaveLocation;
 			label17.Text = ConfigRes.LoginURL;
 			label15.Text = Translation.Zoom;
+			FormBrowser_UseGadgetRedirect.Text = Translation.FormBrowser_UseGadgetRedirect;
+			ToolTipInfo.SetToolTip(FormBrowser_UseGadgetRedirect, Translation.FormBrowser_UseGadgetRedirectToolTip);
 
 			tabPage21.Text = Translation.AB;
 			FormBaseAirCorps_ShowEventMapOnly.Text = Translation.FormBaseAirCorps_ShowEventMapOnly;
@@ -740,7 +742,12 @@ namespace ElectronicObserver.Window.Dialog
 			UI_JapaneseEquipmentTypes.Checked = config.UI.JapaneseEquipmentType;
 			UI_DisableOtherTranslations.Checked = config.UI.DisableOtherTranslations;
 			UI_NodeNumbering.Checked = !config.UI.UseOriginalNodeId;
-			comboBox1.SelectedIndex = config.UI.ThemeMode;
+			UI_ThemeOptions.SelectedIndex = config.UI.ThemeMode;
+			UI_LanguageOptions.SelectedIndex = config.UI.Culture switch
+			{
+				"ja-JP" => 1,
+				_ => 0
+			};
 
 			UI_IsLayoutFixed.Checked = config.UI.IsLayoutFixed;
 			{
@@ -884,6 +891,7 @@ namespace ElectronicObserver.Window.Dialog
 			FormBrowser_PreserveDrawingBuffer.Checked = config.FormBrowser.PreserveDrawingBuffer;
 			FormBrowser_ForceColorProfile.Checked = config.FormBrowser.ForceColorProfile;
             FormBrowser_SavesBrowserLog.Checked = config.FormBrowser.SavesBrowserLog;
+			FormBrowser_UseGadgetRedirect.Checked = config.FormBrowser.UseGadgetRedirect;
 
 			if (!config.FormBrowser.IsToolMenuVisible)
 				FormBrowser_ToolMenuDockStyle.SelectedIndex = 4;
@@ -981,8 +989,7 @@ namespace ElectronicObserver.Window.Dialog
 			config.UI.JapaneseEquipmentType = UI_JapaneseEquipmentTypes.Checked;
 			config.UI.DisableOtherTranslations = UI_DisableOtherTranslations.Checked;
 			config.UI.UseOriginalNodeId = !UI_NodeNumbering.Checked;
-			config.UI.ThemeMode = comboBox1.SelectedIndex;
-
+			config.UI.ThemeMode = UI_ThemeOptions.SelectedIndex;
 			config.UI.IsLayoutFixed = UI_IsLayoutFixed.Checked;
 			config.UI.Culture = UI_LanguageOptions.SelectedItem switch
 			{
@@ -1137,6 +1144,7 @@ namespace ElectronicObserver.Window.Dialog
 				config.FormBrowser.ToolMenuDockStyle = (DockStyle)(FormBrowser_ToolMenuDockStyle.SelectedIndex + 1);
 			}
 			config.FormBrowser.ScreenShotSaveMode = FormBrowser_ScreenShotSaveMode.SelectedIndex + 1;
+			config.FormBrowser.UseGadgetRedirect = FormBrowser_UseGadgetRedirect.Checked;
 
 			config.FormCompass.CandidateDisplayCount = (int)FormCompass_CandidateDisplayCount.Value;
 			config.FormCompass.IsScrollable = FormCompass_IsScrollable.Checked;

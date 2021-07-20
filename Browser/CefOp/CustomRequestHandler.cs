@@ -15,12 +15,13 @@ namespace Browser.CefOp
 		public event RenderProcessTerminatedEventHandler RenderProcessTerminated;
 
 		bool pixiSettingEnabled;
+		private bool UseGadgetRedirect { get; }
 
 
-
-		public CustomRequestHandler(bool pixiSettingEnabled) : base()
+		public CustomRequestHandler(bool pixiSettingEnabled, bool useGadgetRedirect) : base()
 		{
 			this.pixiSettingEnabled = pixiSettingEnabled;
+			UseGadgetRedirect = useGadgetRedirect;
 		}
 
 		/// <summary>
@@ -75,7 +76,7 @@ namespace Browser.CefOp
 			{
 				return new ResRequestHandler();
 			}
-			if (request.Url.Contains("gadget_html5"))
+			if (UseGadgetRedirect && request.Url.Contains("gadget_html5"))
 				return new GadgetUrlHandler();
 
 			return new CustomResourceRequestHandler(pixiSettingEnabled);

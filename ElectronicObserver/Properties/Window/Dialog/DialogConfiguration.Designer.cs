@@ -823,6 +823,25 @@ namespace ElectronicObserver.Properties.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ガジェット・リダイレクトの使用 *.
+        /// </summary>
+        public static string FormBrowser_UseGadgetRedirect {
+            get {
+                return ResourceManager.GetString("FormBrowser_UseGadgetRedirect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 外国人ブロックを回避するために、ガジェットのapiコールをリダイレクトします。
+        ///日本にお住まいの方や、日本のVPNをご利用の方は、このオプションを無効にしておくことができます。.
+        /// </summary>
+        public static string FormBrowser_UseGadgetRedirectToolTip {
+            get {
+                return ResourceManager.GetString("FormBrowser_UseGadgetRedirectToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 熟練度を無視.
         /// </summary>
         public static string FormFleet_AirSuperiorityMethod_Disabled {

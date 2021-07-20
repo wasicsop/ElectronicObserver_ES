@@ -329,8 +329,8 @@ namespace Browser
 				settings.CefCommandLineArgs.Add("force-color-profile", "srgb");
 			CefSharpSettings.SubprocessExitIfParentProcessClosed = true;
 			Cef.Initialize(settings, false, (IBrowserProcessHandler) null);
-
-			var requestHandler = new CustomRequestHandler(pixiSettingEnabled: Configuration.PreserveDrawingBuffer);
+			
+			var requestHandler = new CustomRequestHandler(Configuration.PreserveDrawingBuffer, Configuration.UseGadgetRedirect);
 			requestHandler.RenderProcessTerminated += (mes) => AddLog(3, mes);
 			
 			Browser = new ChromiumWebBrowser(KanColleUrl)

@@ -242,7 +242,8 @@ namespace ElectronicObserver.Window
 					BackColor = BackColor.ToArgb(),
 					ForceColorProfile = c.ForceColorProfile,
 					SavesBrowserLog = c.SavesBrowserLog,
-					EnableDebugMenu = Utility.Configuration.Config.Debug.EnableDebugMenu
+					EnableDebugMenu = Utility.Configuration.Config.Debug.EnableDebugMenu,
+					UseGadgetRedirect = c.UseGadgetRedirect,
 				};
 			}
 		}

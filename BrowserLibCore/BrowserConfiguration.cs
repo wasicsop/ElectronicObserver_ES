@@ -140,5 +140,7 @@ namespace BrowserLibCore
 		/// </summary>
 		[Key(22)]
 		public bool EnableDebugMenu { get; set; }
+		[Key(23)]
+		public bool UseGadgetRedirect { get; set; }
 	}
 }

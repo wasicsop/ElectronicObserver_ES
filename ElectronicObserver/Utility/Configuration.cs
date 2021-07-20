@@ -1284,6 +1284,11 @@ namespace ElectronicObserver.Utility
 				/// </summary>
 				public bool SavesBrowserLog { get; set; }
 
+				/// <summary>
+				/// Bypass foreigner block
+				/// </summary>
+				public bool UseGadgetRedirect { get; set; }
+
 				public ConfigFormBrowser()
 				{
 					ZoomRate = 1;
@@ -1305,6 +1310,11 @@ namespace ElectronicObserver.Utility
 					PreserveDrawingBuffer = true;
 					ForceColorProfile = false;
 					SavesBrowserLog = false;
+					UseGadgetRedirect = CultureInfo.CurrentCulture.Name switch
+					{
+						"ja-JP" => false,
+						_ => true
+					};
 				}
 			}
 			/// <summary>[ブラウザ]ウィンドウ</summary>

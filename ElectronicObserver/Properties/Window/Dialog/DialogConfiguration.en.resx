@@ -717,4 +717,11 @@ Are you sure?</value>
   <data name="UI_LanguageLabel" xml:space="preserve">
     <value>Language:</value>
   </data>
+  <data name="FormBrowser_UseGadgetRedirect" xml:space="preserve">
+    <value>Use Gadget Redirect *</value>
+  </data>
+  <data name="FormBrowser_UseGadgetRedirectToolTip" xml:space="preserve">
+    <value>Redirect the gadget api call to bypass the foreigner block.
+If you live in Japan or use a Japanese VPN you can keep this option disabled.</value>
+  </data>
 </root>
