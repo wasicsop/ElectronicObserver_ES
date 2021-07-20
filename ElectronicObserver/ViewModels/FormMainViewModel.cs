@@ -209,6 +209,8 @@ namespace ElectronicObserver.ViewModels
 
 			#endregion
 
+			Directory.CreateDirectory(@"Settings\Layout");
+
 			Configuration.Instance.Load();
 			Config = Configuration.Config;
 
@@ -216,9 +218,6 @@ namespace ElectronicObserver.ViewModels
 
 			Thread.CurrentThread.CurrentCulture = cultureInfo;
 			Thread.CurrentThread.CurrentUICulture = cultureInfo;
-
-			Directory.CreateDirectory(@"Settings\Layout");
-
 
 			SetTheme();
 
