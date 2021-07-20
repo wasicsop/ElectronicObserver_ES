@@ -491,12 +491,17 @@ namespace ElectronicObserver.Utility
 						"ja-JP" => "ja-JP",
 						_ => "en-US"
 					};
+					bool disableTranslations = CultureInfo.CurrentCulture.Name switch
+					{
+						"ja-JP" => true,
+						_ => false
+					};
 
-					JapaneseShipName = false;
-					JapaneseShipType = false;
-					JapaneseEquipmentName = false;
-					JapaneseEquipmentType = false;
-					DisableOtherTranslations = false;
+					JapaneseShipName = disableTranslations;
+					JapaneseShipType = disableTranslations;
+					JapaneseEquipmentName = disableTranslations;
+					JapaneseEquipmentType = disableTranslations;
+					DisableOtherTranslations = disableTranslations;
 					UseOriginalNodeId = false;
 				}
 			}
@@ -1882,6 +1887,34 @@ namespace ElectronicObserver.Utility
 			var temp = (ConfigurationData)_config.Load(SaveFileName);
 			if (temp != null)
 			{
+				// hack: set defaults for players that have a configuration before language was added
+				if(temp.UI.Culture == null)
+				{
+					temp.UI.Culture = CultureInfo.CurrentCulture.Name switch
+					{
+						"ja-JP" => "ja-JP",
+						_ => "en-US"
+					};
+
+					temp.FormBrowser.UseGadgetRedirect = CultureInfo.CurrentCulture.Name switch
+					{
+						"ja-JP" => false,
+						_ => true
+					};
+
+					bool disableTranslations = CultureInfo.CurrentCulture.Name switch
+					{
+						"ja-JP" => true,
+						_ => false
+					};
+
+					temp.UI.JapaneseShipName = disableTranslations;
+					temp.UI.JapaneseShipType = disableTranslations;
+					temp.UI.JapaneseEquipmentName = disableTranslations;
+					temp.UI.JapaneseEquipmentType = disableTranslations;
+					temp.UI.DisableOtherTranslations = disableTranslations;
+				}
+
 				_config = temp;
 				CheckUpdate();
 				OnConfigurationChanged();
