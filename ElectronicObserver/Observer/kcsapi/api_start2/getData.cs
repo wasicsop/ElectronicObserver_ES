@@ -240,7 +240,7 @@ namespace ElectronicObserver.Observer.kcsapi.api_start2
 
 
 
-			Utility.Logger.Add(2, "The Admiral has checked in at the base. You may now take control.");
+			Utility.Logger.Add(2, LoggerRes.GameStart);
 
 			base.OnResponseReceived((object)data);
 		}
