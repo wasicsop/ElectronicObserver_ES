@@ -40,9 +40,9 @@ namespace ElectronicObserver.Utility
             {
 	            try
 	            {
-		            Logger.Add(1, string.Format("Started downloading update. {0}", url));
+		            Logger.Add(1, string.Format(Properties.Utility.SoftwareInformation.StartedDownloadingUpdate, url));
 		            DownloadUpdate(url);
-		            Logger.Add(1, "Download finished.");
+		            Logger.Add(1, Properties.Utility.SoftwareInformation.DownloadFinished);
 				}
 	            catch
 	            {
@@ -72,7 +72,7 @@ namespace ElectronicObserver.Utility
 	            }
             };
             updater.Start();
-            Logger.Add(2, "Close Electronic Observer to complete the update process. It will restart automatically.");
+            Logger.Add(2, Properties.Utility.SoftwareInformation.CloseElectronicObserverToCompleteTheUpdate);
             WaitForRestart = true;
         }
 
@@ -155,14 +155,14 @@ namespace ElectronicObserver.Utility
 				if (needReload)
 				{
 					KCDatabase.Instance.Translation.Initialize();
-					Logger.Add(2, "Translation files updated.");
+					Logger.Add(2, Properties.Utility.SoftwareInformation.TranslationFilesUpdated);
 				}
 
 				CurrentVersion = LatestVersion;
 			}
             catch (Exception e)
             {
-                Logger.Add(3, "Failed to obtain update data. " + e);
+                Logger.Add(3, Properties.Utility.SoftwareInformation.FailedToObtainUpdateData + e);
             }
 		}
 
@@ -176,11 +176,11 @@ namespace ElectronicObserver.Utility
 	            var updaterFile = AppDomain.CurrentDomain.SetupInformation.ApplicationBase + @"\EOUpdater.exe";
 
 	            client.DownloadFile(url, updaterFile);
-	            Logger.Add(1, "Updater download finished.");
+	            Logger.Add(1, Properties.Utility.SoftwareInformation.UpdaterDownloadFinished);
             }
             catch (Exception e)
             {
-                Logger.Add(3, "Failed to download updater. " + e);
+                Logger.Add(3, Properties.Utility.SoftwareInformation.FailedToDownloadUpdater + e);
                 throw;
             }
         }
@@ -192,12 +192,12 @@ namespace ElectronicObserver.Utility
 	            using var client = new WebClient();
 	            string tempFile = AppDataFolder + @"\latest.zip"; ;
 	            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-	            Console.WriteLine("Downloading update...");
+	            Console.WriteLine(Properties.Utility.SoftwareInformation.DownloadingUpdate);
 	            client.DownloadFile(url, tempFile);
             }
             catch (Exception e)
             {
-	            Logger.Add(3, "Failed to download EO. " + e.Message);
+	            Logger.Add(3, Properties.Utility.SoftwareInformation.FailedToDownloadElectronicObserver + e.Message);
 				throw;
             }
         }
@@ -240,7 +240,7 @@ namespace ElectronicObserver.Utility
 			}
 			catch (Exception e)
 			{
-				Logger.Add(3, "Failed to parse update data: " + e.ToString());
+				Logger.Add(3, Properties.Utility.SoftwareInformation.FailedToParseUpdateData + e.ToString());
 			}
 			return data;
 		}
@@ -254,11 +254,11 @@ namespace ElectronicObserver.Utility
 				using var client = new WebClient();
 				await client.DownloadFileTaskAsync(new Uri(url), path);
 				if (filename.Contains("update.json") == false)
-					Logger.Add(1, $"File {filename} updated.");
+					Logger.Add(1, string.Format(Properties.Utility.SoftwareInformation.FileUpdated, filename));
 			}
             catch (Exception e)
             {
-                Logger.Add(3, $"Failed to update {filename} data. " + e.Message);
+                Logger.Add(3, string.Format(Properties.Utility.SoftwareInformation.FailedToUpdateFile, filename, e.Message));
             }
         }
     }

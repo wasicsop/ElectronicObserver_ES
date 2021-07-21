@@ -72,13 +72,13 @@ namespace ElectronicObserver.Utility
 		{
 			if (e.Error != null)
 			{
-				ErrorReporter.SendErrorReport(e.Error, "Failed to obtain update data.");
+				ErrorReporter.SendErrorReport(e.Error, Properties.Utility.SoftwareInformation.FailedToObtainUpdateData);
 				return;
 			}
 
 			if (e.Result.StartsWith("<!DOCTYPE html>"))
 			{
-				Logger.Add(3, "Invalid update URL.");
+				Logger.Add(3, Properties.Utility.SoftwareInformation.InvalidUpdateUrl);
 				return;
 			}
 
@@ -117,8 +117,8 @@ namespace ElectronicObserver.Utility
 				}
 				else
 				{
-					Logger.Add(3,
-						"You are currently using the latest version (" + date.ToString("yyyy/MM/dd") + " release).");
+					Logger.Add(3, string.Format(Properties.Utility.SoftwareInformation.YouAreUsingTheLatestVersion, 
+						date.ToString("yyyy/MM/dd")));
 				}
 			}
 			catch (Exception ex)
