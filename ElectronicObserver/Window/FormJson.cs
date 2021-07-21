@@ -13,6 +13,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
+using Translation = ElectronicObserver.Properties.Window.FormJson;
 
 namespace ElectronicObserver.Window
 {
@@ -22,7 +23,7 @@ namespace ElectronicObserver.Window
 
 		// yyyyMMdd_hhmmssff[S|Q]@api_path.json
 		private static readonly Regex FileNamePattern = new Regex(@"\d{8}_\d{8}([SQ])@(.*)\.json$", RegexOptions.Compiled);
-		private const string AutoUpdateDisabledMessage = "<Automatic update is disabled. Please enable it from Config tab>";
+		private string AutoUpdateDisabledMessage => Translation.AutoUpdateDisabledMessage;
 
 		private Regex _apiPattern;
 
@@ -37,6 +38,24 @@ namespace ElectronicObserver.Window
 			ConfigurationChanged();
 
 			Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormJson]);
+
+			Translate();
+		}
+
+		public void Translate()
+		{
+			TreeContextMenu_Expand.Text = Translation.TreeContextMenu_Expand;
+			TreeContextMenu_Shrink.Text = Translation.TreeContextMenu_Shrink;
+			TreeContextMenu_ShrinkParent.Text = Translation.TreeContextMenu_ShrinkParent;
+			TreeContextMenu_OutputCSV.Text = Translation.TreeContextMenu_OutputCSV;
+			TreeContextMenu_CopyToClipboard.Text = Translation.TreeContextMenu_CopyToClipboard;
+			label3.Text = Translation.LoadSavedJsonByDragging;
+			label2.Text = Translation.EnablingAutoUpdateCanBeHeavy;
+			UpdatesTree.Text = Translation.UpdatesTree;
+			label1.Text = Translation.Filter;
+			AutoUpdate.Text = Translation.AutoUpdate;
+			CSVSaver.Title = Translation.CSVSaver;
+			TreeContextMenu_CopyAsDocument.Text = Translation.TreeContextMenu_CopyAsDocument;
 		}
 
 		private void FormJson_Load(object sender, EventArgs e)
