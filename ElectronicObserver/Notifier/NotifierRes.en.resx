@@ -168,4 +168,19 @@
   <data name="RemodelText" xml:space="preserve">
     <value>{0} can now be remodeled to {1}</value>
   </data>
+  <data name="AdmiralExp" xml:space="preserve">
+    <value>Admiral Exp+</value>
+  </data>
+  <data name="ShipExp" xml:space="preserve">
+    <value>Ship Exp+</value>
+  </data>
+  <data name="ExpeditionResult" xml:space="preserve">
+    <value>Expedition result - </value>
+  </data>
+  <data name="NoResourcesGained" xml:space="preserve">
+    <value>No resources gained</value>
+  </data>
+  <data name="ShipLevelUp" xml:space="preserve">
+    <value>{0} has attained Lv. {1}.</value>
+  </data>
 </root>

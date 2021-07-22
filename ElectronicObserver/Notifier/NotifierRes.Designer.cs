@@ -61,6 +61,15 @@ namespace ElectronicObserver.Notifier {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 提督Exp+.
+        /// </summary>
+        public static string AdmiralExp {
+            get {
+                return ResourceManager.GetString("AdmiralExp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 泊地修理発動.
         /// </summary>
         public static string AnchorageRepair {
@@ -133,6 +142,15 @@ namespace ElectronicObserver.Notifier {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 遠征結果 - .
+        /// </summary>
+        public static string ExpeditionResult {
+            get {
+                return ResourceManager.GetString("ExpeditionResult", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to #{0} 「{1}」が遠征「{2}: {3}」から帰投しました。.
         /// </summary>
         public static string ExpeditionText {
@@ -178,7 +196,16 @@ namespace ElectronicObserver.Notifier {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to 獲得資源なし.
+        /// </summary>
+        public static string NoResourcesGained {
+            get {
+                return ResourceManager.GetString("NoResourcesGained", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}は{1}に改造されます。.
         /// </summary>
         public static string RemodelText {
             get {
@@ -187,7 +214,7 @@ namespace ElectronicObserver.Notifier {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to 改造可能.
         /// </summary>
         public static string RemodelTitle {
             get {
@@ -210,6 +237,24 @@ namespace ElectronicObserver.Notifier {
         public static string RepairTitle {
             get {
                 return ResourceManager.GetString("RepairTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 艦娘Exp+.
+        /// </summary>
+        public static string ShipExp {
+            get {
+                return ResourceManager.GetString("ShipExp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} が Lv. {1} になりました。.
+        /// </summary>
+        public static string ShipLevelUp {
+            get {
+                return ResourceManager.GetString("ShipLevelUp", resourceCulture);
             }
         }
     }

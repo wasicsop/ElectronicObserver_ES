@@ -157,15 +157,30 @@
     <value>通知システム: 通知音 {0} のロードに失敗しました。</value>
   </data>
   <data name="RemodelText" xml:space="preserve">
-    <value />
+    <value>{0}は{1}に改造されます。</value>
   </data>
   <data name="RemodelTitle" xml:space="preserve">
-    <value />
+    <value>改造可能</value>
   </data>
   <data name="RepairText" xml:space="preserve">
     <value>入渠ドック #{0} で「{1}」の修復が完了しました。</value>
   </data>
   <data name="RepairTitle" xml:space="preserve">
     <value>入渠完了</value>
+  </data>
+  <data name="AdmiralExp" xml:space="preserve">
+    <value>提督Exp+</value>
+  </data>
+  <data name="ShipExp" xml:space="preserve">
+    <value>艦娘Exp+</value>
+  </data>
+  <data name="ExpeditionResult" xml:space="preserve">
+    <value>遠征結果 - </value>
+  </data>
+  <data name="NoResourcesGained" xml:space="preserve">
+    <value>獲得資源なし</value>
+  </data>
+  <data name="ShipLevelUp" xml:space="preserve">
+    <value>{0} が Lv. {1} になりました。</value>
   </data>
 </root>

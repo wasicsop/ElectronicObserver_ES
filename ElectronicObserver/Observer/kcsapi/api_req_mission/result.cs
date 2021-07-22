@@ -1,4 +1,5 @@
 ﻿using ElectronicObserver.Data;
+using ElectronicObserver.Notifier;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,7 +30,7 @@ namespace ElectronicObserver.Observer.kcsapi.api_req_mission
 
 			var fleet = KCDatabase.Instance.Fleet[_fleetID];
 
-			Utility.Logger.Add(2, string.Format("#{0} 「{1}」 has returned from expedition 「{2}: {3}」.",
+			Utility.Logger.Add(2, string.Format(NotifierRes.ExpeditionText,
 				fleet.FleetID,
 				fleet.Name,
 				KCDatabase.Instance.Mission[fleet.ExpeditionDestination].DisplayID,
@@ -97,17 +98,17 @@ namespace ElectronicObserver.Observer.kcsapi.api_req_mission
 					int admiralExp = (int)data.api_get_exp;
 					if (admiralExp > 0)
 					{
-						sb.AddLast("Admiral Exp+" + admiralExp);
+						sb.AddLast(NotifierRes.AdmiralExp + admiralExp);
 					}
 
 					int shipExp = ((int[])data.api_get_ship_exp).Min();
 					if (shipExp > 0)
 					{
-						sb.AddLast("Ship Exp+" + shipExp);
+						sb.AddLast(NotifierRes.ShipExp + shipExp);
 					}
 				}
 
-				Utility.Logger.Add(2, "Expedition result - " + Constants.GetExpeditionResult((int)data.api_clear_result) + ": " + (sb.Count == 0 ? "No resources gained" : string.Join(", ", sb)));
+				Utility.Logger.Add(2, NotifierRes.ExpeditionResult + Constants.GetExpeditionResult((int)data.api_clear_result) + ": " + (sb.Count == 0 ? NotifierRes.NoResourcesGained : string.Join(", ", sb)));
 			}
 
 
@@ -130,7 +131,7 @@ namespace ElectronicObserver.Observer.kcsapi.api_req_mission
 						var ship = fleet.MembersInstance[i];
 						int increment = Math.Max(lvup[i].Length - 2, 1);
 
-						Utility.Logger.Add(2, string.Format("{0} has attained Lv. {1}.", ship.Name, ship.Level + increment));
+						Utility.Logger.Add(2, string.Format(NotifierRes.ShipLevelUp, ship.Name, ship.Level + increment));
 					}
 				}
 			}
