@@ -1,4 +1,5 @@
 ﻿using ElectronicObserver.Data;
+using ElectronicObserver.Notifier;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,9 +42,11 @@ namespace ElectronicObserver.Observer.kcsapi.api_req_air_corps
 			fuel -= KCDatabase.Instance.Material.Fuel;
 			baux -= KCDatabase.Instance.Material.Bauxite;
 
-			if ( corps.ContainsKey( _aircorpsID ) )
-			Utility.Logger.Add( 2, string.Format( "「{1}」 of Air Base #{0} has been resupplied. Cost: Fuel×{2}, Bauxite×{3}",
-				corps[_aircorpsID].MapAreaID, corps[_aircorpsID].Name, fuel, baux ) );
+			if (corps.ContainsKey(_aircorpsID))
+			{
+				Utility.Logger.Add(2, string.Format(NotifierRes.AirBaseResupplyCost,
+					corps[_aircorpsID].MapAreaID, corps[_aircorpsID].Name, fuel, baux));
+			}
 
 			base.OnResponseReceived((object)data);
 		}

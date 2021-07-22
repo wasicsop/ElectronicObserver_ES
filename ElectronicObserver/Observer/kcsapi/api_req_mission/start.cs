@@ -1,4 +1,5 @@
 ﻿using ElectronicObserver.Data;
+using ElectronicObserver.Notifier;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +26,7 @@ namespace ElectronicObserver.Observer.kcsapi.api_req_mission
 			int deckID = int.Parse(data["api_deck_id"]);
 			int destination = int.Parse(data["api_mission_id"]);
 
-			Utility.Logger.Add(2, string.Format("#{0} 「{1}」 has been sent to expedition 「{2}: {3}」.", deckID, KCDatabase.Instance.Fleet[deckID].Name, KCDatabase.Instance.Mission[destination].DisplayID, KCDatabase.Instance.Mission[destination].NameEN));
+			Utility.Logger.Add(2, string.Format(NotifierRes.HasBeenSentToExpedition, deckID, KCDatabase.Instance.Fleet[deckID].Name, KCDatabase.Instance.Mission[destination].DisplayID, KCDatabase.Instance.Mission[destination].NameEN));
 
 			base.OnRequestReceived(data);
 		}

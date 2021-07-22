@@ -1,4 +1,5 @@
 ﻿using ElectronicObserver.Data;
+using ElectronicObserver.Notifier;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,7 +31,7 @@ namespace ElectronicObserver.Observer.kcsapi.api_req_kousyou
 
 
 			foreach (var ship in ships)
-				Utility.Logger.Add(2, ship.NameWithLevel + " has been scrapped and removed from the navy list.");
+				Utility.Logger.Add(2, string.Format(NotifierRes.ShipHasBeenScrapped, ship.NameWithLevel));
 
 
 			if (discardEquipment)

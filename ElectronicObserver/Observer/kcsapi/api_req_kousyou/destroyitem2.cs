@@ -1,4 +1,5 @@
 ﻿using ElectronicObserver.Data;
+using ElectronicObserver.Notifier;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,7 +34,7 @@ namespace ElectronicObserver.Observer.kcsapi.api_req_kousyou
 
 			foreach (var item in itemsDestroyed)
 			{
-				Utility.Logger.Add(2, String.Format("{0}{1} has been scrapped.", item.Key, item.Value > 1 ? " x " + item.Value : ""));
+				Utility.Logger.Add(2, string.Format(NotifierRes.EquipmentHasBenScrapped, item.Key, item.Value > 1 ? " x " + item.Value : ""));
 			}
 
 			base.OnRequestReceived(data);

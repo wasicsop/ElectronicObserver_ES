@@ -1,4 +1,5 @@
 ﻿using ElectronicObserver.Data;
+using ElectronicObserver.Notifier;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,11 +46,13 @@ namespace ElectronicObserver.Observer.kcsapi.api_req_hokyu
 			material[3] -= db.Material.Bauxite;
 
 			{
-				var sb = new StringBuilder( "Ships resupplied. Cost: " );
+				var sb = new StringBuilder(NotifierRes.ShipsResupplied);
 
-				for ( int i = 0; i < 4; i++ ) {
-					if ( material[i] > 0 ) {
-						sb.Append( Constants.GetMaterialName( i + 1 ) ).Append("×").Append( material[i] ).Append( ", " );
+				for (int i = 0; i < 4; i++)
+				{
+					if (material[i] > 0)
+					{
+						sb.Append(Constants.GetMaterialName(i + 1)).Append("×").Append(material[i]).Append(", ");
 					}
 				}
 

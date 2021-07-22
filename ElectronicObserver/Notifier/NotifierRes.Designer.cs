@@ -70,6 +70,15 @@ namespace ElectronicObserver.Notifier {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to #{0}「{1}」へ補給を行いました。消費: 燃料x{2}, ボーキサイトx{3}.
+        /// </summary>
+        public static string AirBaseResupplyCost {
+            get {
+                return ResourceManager.GetString("AirBaseResupplyCost", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 泊地修理発動.
         /// </summary>
         public static string AnchorageRepair {
@@ -84,6 +93,24 @@ namespace ElectronicObserver.Notifier {
         public static string AnchorageRepairFinished {
             get {
                 return ResourceManager.GetString("AnchorageRepairFinished", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 基地航空隊の編成により、ボーキ {0} が消費されました。.
+        /// </summary>
+        public static string BauxiteConsumedByAddingPlaneToAirBase {
+            get {
+                return ResourceManager.GetString("BauxiteConsumedByAddingPlaneToAirBase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 高速修復材x1.
+        /// </summary>
+        public static string BucketUsed {
+            get {
+                return ResourceManager.GetString("BucketUsed", resourceCulture);
             }
         }
         
@@ -142,6 +169,33 @@ namespace ElectronicObserver.Notifier {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0}{1} を廃棄しました。.
+        /// </summary>
+        public static string EquipmentHasBenScrapped {
+            get {
+                return ResourceManager.GetString("EquipmentHasBenScrapped", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 修理完了予定: .
+        /// </summary>
+        public static string ETA {
+            get {
+                return ResourceManager.GetString("ETA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} の補強装備増設改修が完了しました。.
+        /// </summary>
+        public static string ExpansionSlotOpened {
+            get {
+                return ResourceManager.GetString("ExpansionSlotOpened", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 遠征結果 - .
         /// </summary>
         public static string ExpeditionResult {
@@ -192,6 +246,24 @@ namespace ElectronicObserver.Notifier {
         public static string FailedToLoadSound {
             get {
                 return ResourceManager.GetString("FailedToLoadSound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to #{0}「{1}」が遠征「{2}: {3}」へ出撃しました。.
+        /// </summary>
+        public static string HasBeenSentToExpedition {
+            get {
+                return ResourceManager.GetString("HasBeenSentToExpedition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to #{0}「{1}」が「{2}-{3} {4}」へ出撃しました。.
+        /// </summary>
+        public static string HasSortiedTo {
+            get {
+                return ResourceManager.GetString("HasSortiedTo", resourceCulture);
             }
         }
         
@@ -250,11 +322,56 @@ namespace ElectronicObserver.Notifier {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} を解体しました。.
+        /// </summary>
+        public static string ShipHasBeenScrapped {
+            get {
+                return ResourceManager.GetString("ShipHasBeenScrapped", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} が Lv. {1} になりました。.
         /// </summary>
         public static string ShipLevelUp {
             get {
                 return ResourceManager.GetString("ShipLevelUp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 補給を行いました。消費: .
+        /// </summary>
+        public static string ShipsResupplied {
+            get {
+                return ResourceManager.GetString("ShipsResupplied", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} Lv. {1} への改装が完了しました。.
+        /// </summary>
+        public static string ShipSuccessfullyRemodeled {
+            get {
+                return ResourceManager.GetString("ShipSuccessfullyRemodeled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ⚓ {0}-{1}-{2}: {3}に出撃します.
+        /// </summary>
+        public static string SortieingTo {
+            get {
+                return ResourceManager.GetString("SortieingTo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 入渠ドック #{0}で {1} ({2}/{3}) の修復を開始しました。(燃料x{4}, 鋼材x{5}, {6}).
+        /// </summary>
+        public static string StartedRepairingShip {
+            get {
+                return ResourceManager.GetString("StartedRepairingShip", resourceCulture);
             }
         }
     }

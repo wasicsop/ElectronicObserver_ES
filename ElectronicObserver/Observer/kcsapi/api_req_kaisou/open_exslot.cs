@@ -1,4 +1,5 @@
 ﻿using ElectronicObserver.Data;
+using ElectronicObserver.Notifier;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,7 @@ namespace ElectronicObserver.Observer.kcsapi.api_req_kaisou
 			{
 				ship.LoadFromRequest(APIName, data);
 
-				Utility.Logger.Add(2, $"{ship.NameWithLevel} の補強装備増設改修が完了しました。");
+				Utility.Logger.Add(2, string.Format(NotifierRes.ExpansionSlotOpened, ship.NameWithLevel));
 			}
 
 			base.OnRequestReceived(data);

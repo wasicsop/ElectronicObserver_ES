@@ -1,4 +1,5 @@
 ﻿using ElectronicObserver.Data;
+using ElectronicObserver.Notifier;
 using ElectronicObserver.Utility.Mathematics;
 using System;
 using System.Collections.Generic;
@@ -24,11 +25,11 @@ namespace ElectronicObserver.Observer.kcsapi.api_req_nyukyo
 			ShipData ship = db.Ships[shipID];
 
 
-			Utility.Logger.Add(2, string.Format("Started repairing {1} ({2}/{3}) on dock #{0}. (Fuel×{4}, Steel×{5}, {6})",
+			Utility.Logger.Add(2, string.Format(NotifierRes.StartedRepairingShip,
 				dock.DockID, ship.NameWithLevel,
 				ship.HPCurrent, ship.HPMax,
 				ship.RepairFuel, ship.RepairSteel,
-				bucketUsed ? "Instant Repair×1" : ("ETA: " + DateTimeHelper.TimeToCSVString(DateTime.Now + TimeSpan.FromMilliseconds(ship.RepairTime)))
+				bucketUsed ? NotifierRes.BucketUsed : (NotifierRes.ETA + DateTimeHelper.TimeToCSVString(DateTime.Now + TimeSpan.FromMilliseconds(ship.RepairTime)))
 				));
 
 

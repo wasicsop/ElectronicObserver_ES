@@ -1,4 +1,5 @@
 ﻿using ElectronicObserver.Data;
+using ElectronicObserver.Notifier;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,7 +37,7 @@ namespace ElectronicObserver.Observer.kcsapi.api_req_air_corps
 			{
 				var db = KCDatabase.Instance;
 				int consumed = db.Material.Bauxite - (int)data.api_after_bauxite;
-				Utility.Logger.Add(1, $"基地航空隊の編成により、ボーキ {consumed} が消費されました。");
+				Utility.Logger.Add(1, string.Format(NotifierRes.BauxiteConsumedByAddingPlaneToAirBase, consumed);
 			}
 
 			KCDatabase.Instance.Material.LoadFromResponse(APIName, data);

@@ -183,4 +183,37 @@
   <data name="ShipLevelUp" xml:space="preserve">
     <value>{0} has attained Lv. {1}.</value>
   </data>
+  <data name="ShipsResupplied" xml:space="preserve">
+    <value>Ships resupplied. Cost: </value>
+  </data>
+  <data name="AirBaseResupplyCost" xml:space="preserve">
+    <value>「{1}」 of Air Base #{0} has been resupplied. Cost: Fuel×{2}, Bauxite×{3}</value>
+  </data>
+  <data name="ShipSuccessfullyRemodeled" xml:space="preserve">
+    <value>{0} Lv. {1} has been successfully remodeled.</value>
+  </data>
+  <data name="EquipmentHasBenScrapped" xml:space="preserve">
+    <value>{0}{1} has been scrapped.</value>
+  </data>
+  <data name="ShipHasBeenScrapped" xml:space="preserve">
+    <value>{0} has been scrapped and removed from the navy list.</value>
+  </data>
+  <data name="SortieingTo" xml:space="preserve">
+    <value>⚓ Sortieing to {0}-{1}-{2}: {3}</value>
+  </data>
+  <data name="HasSortiedTo" xml:space="preserve">
+    <value>#{0} 「{1}」 has sortied to 「{2}-{3} {4}」.</value>
+  </data>
+  <data name="HasBeenSentToExpedition" xml:space="preserve">
+    <value>#{0} 「{1}」 has been sent to expedition 「{2}: {3}」.</value>
+  </data>
+  <data name="StartedRepairingShip" xml:space="preserve">
+    <value>Started repairing {1} ({2}/{3}) on dock #{0}. (Fuel×{4}, Steel×{5}, {6})</value>
+  </data>
+  <data name="BucketUsed" xml:space="preserve">
+    <value>Instant Repair×1</value>
+  </data>
+  <data name="ETA" xml:space="preserve">
+    <value>ETA: </value>
+  </data>
 </root>

@@ -183,4 +183,43 @@
   <data name="ShipLevelUp" xml:space="preserve">
     <value>{0} が Lv. {1} になりました。</value>
   </data>
+  <data name="ShipsResupplied" xml:space="preserve">
+    <value>補給を行いました。消費: </value>
+  </data>
+  <data name="BauxiteConsumedByAddingPlaneToAirBase" xml:space="preserve">
+    <value>基地航空隊の編成により、ボーキ {0} が消費されました。</value>
+  </data>
+  <data name="AirBaseResupplyCost" xml:space="preserve">
+    <value>#{0}「{1}」へ補給を行いました。消費: 燃料x{2}, ボーキサイトx{3}</value>
+  </data>
+  <data name="ExpansionSlotOpened" xml:space="preserve">
+    <value>{0} の補強装備増設改修が完了しました。</value>
+  </data>
+  <data name="ShipSuccessfullyRemodeled" xml:space="preserve">
+    <value>{0} Lv. {1} への改装が完了しました。</value>
+  </data>
+  <data name="EquipmentHasBenScrapped" xml:space="preserve">
+    <value>{0}{1} を廃棄しました。</value>
+  </data>
+  <data name="ShipHasBeenScrapped" xml:space="preserve">
+    <value>{0} を解体しました。</value>
+  </data>
+  <data name="SortieingTo" xml:space="preserve">
+    <value>⚓ {0}-{1}-{2}: {3}に出撃します</value>
+  </data>
+  <data name="HasSortiedTo" xml:space="preserve">
+    <value>#{0}「{1}」が「{2}-{3} {4}」へ出撃しました。</value>
+  </data>
+  <data name="HasBeenSentToExpedition" xml:space="preserve">
+    <value>#{0}「{1}」が遠征「{2}: {3}」へ出撃しました。</value>
+  </data>
+  <data name="StartedRepairingShip" xml:space="preserve">
+    <value>入渠ドック #{0}で {1} ({2}/{3}) の修復を開始しました。(燃料x{4}, 鋼材x{5}, {6})</value>
+  </data>
+  <data name="BucketUsed" xml:space="preserve">
+    <value>高速修復材x1</value>
+  </data>
+  <data name="ETA" xml:space="preserve">
+    <value>修理完了予定: </value>
+  </data>
 </root>

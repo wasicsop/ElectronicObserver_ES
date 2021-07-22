@@ -1,4 +1,5 @@
 ﻿using ElectronicObserver.Data;
+using ElectronicObserver.Notifier;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +24,7 @@ namespace ElectronicObserver.Observer.kcsapi.api_req_map
             if (Utility.Configuration.Config.Control.EnableDiscordRPC)
             {
                 DiscordFormat dataForWS = Instance.data;
-                dataForWS.top = string.Format("⚓ Sortieing to {0}-{1}-{2}: {3}", db.Battle.Compass.MapAreaID, db.Battle.Compass.MapInfoID, db.Battle.Compass.DestinationID, db.Battle.Compass.MapInfo.NameEN);
+                dataForWS.top = string.Format(NotifierRes.SortieingTo, db.Battle.Compass.MapAreaID, db.Battle.Compass.MapInfoID, db.Battle.Compass.DestinationID, db.Battle.Compass.MapInfo.NameEN);
             }
 
 			KCDatabase.Instance.TsunDbSubmission.LoadFromResponse(APIName, data);
@@ -52,7 +53,7 @@ namespace ElectronicObserver.Observer.kcsapi.api_req_map
 			int maparea = int.Parse(data["api_maparea_id"]);
 			int mapinfo = int.Parse(data["api_mapinfo_no"]);
 
-			Utility.Logger.Add(2, string.Format("#{0} 「{1}」 has sortied to 「{2}-{3} {4}」.", deckID, KCDatabase.Instance.Fleet[deckID].Name, maparea, mapinfo, KCDatabase.Instance.MapInfo[maparea * 10 + mapinfo].NameEN));
+			Utility.Logger.Add(2, string.Format(NotifierRes.HasSortiedTo, deckID, KCDatabase.Instance.Fleet[deckID].Name, maparea, mapinfo, KCDatabase.Instance.MapInfo[maparea * 10 + mapinfo].NameEN));
 
 			base.OnRequestReceived(data);
 		}
