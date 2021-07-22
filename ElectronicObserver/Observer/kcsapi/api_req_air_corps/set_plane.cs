@@ -37,7 +37,7 @@ namespace ElectronicObserver.Observer.kcsapi.api_req_air_corps
 			{
 				var db = KCDatabase.Instance;
 				int consumed = db.Material.Bauxite - (int)data.api_after_bauxite;
-				Utility.Logger.Add(1, string.Format(NotifierRes.BauxiteConsumedByAddingPlaneToAirBase, consumed);
+				Utility.Logger.Add(1, string.Format(NotifierRes.BauxiteConsumedByAddingPlaneToAirBase, consumed));
 			}
 
 			KCDatabase.Instance.Material.LoadFromResponse(APIName, data);
