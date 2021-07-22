@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Translation = ElectronicObserver.Properties.Window.Dialog.DialogLocalAPILoader2;
 
 namespace ElectronicObserver.Window.Dialog
 {
@@ -23,6 +24,26 @@ namespace ElectronicObserver.Window.Dialog
 		public DialogLocalAPILoader2()
 		{
 			InitializeComponent();
+
+			Translate();
+		}
+
+		public void Translate()
+		{
+			APIView_FileName.HeaderText = Translation.APIView_FileName;
+			ViewMenu_Execute.Text = Translation.ViewMenu_Execute;
+			ViewMenu_Delete.Text = Translation.ViewMenu_Delete;
+
+			Menu_File.Text = Translation.Menu_File;
+			Menu_File_OpenFolder.Text = Translation.Menu_File_OpenFolder;
+			Menu_File_Reload.Text = Translation.Menu_File_Reload;
+
+			ButtonSearchPrev.Text = Translation.ButtonSearchPrev;
+			ButtonSearch.Text = Translation.ButtonSearch;
+			ButtonExecuteNext.Text = Translation.ButtonExecuteNext;
+			ButtonExecute.Text = Translation.ButtonExecute;
+
+			Text = Translation.Title;
 		}
 
 		private void DialogLocalAPILoader2_Load(object sender, EventArgs e)
@@ -48,7 +69,7 @@ namespace ElectronicObserver.Window.Dialog
 			if (Directory.Exists(CurrentPath))
 				LoadFiles(CurrentPath);
 			else
-				MessageBox.Show("The folder is not specified or does not exists.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				MessageBox.Show(Translation.FolderNotSpecifiedOrDoesNotExist, Translation.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
 		}
 
 		private void ViewMenu_Execute_Click(object sender, EventArgs e)
@@ -64,7 +85,7 @@ namespace ElectronicObserver.Window.Dialog
 			if (!APICaller.IsBusy)
 				APICaller.RunWorkerAsync(APIView.SelectedRows.Cast<DataGridViewRow>().Select(row => row.Cells[APIView_FileName.Index].Value as string).OrderBy(s => s));
 			else
-				if (MessageBox.Show("The operation is already in progress.\nDo you want to interrupt the operation?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation)
+				if (MessageBox.Show(Translation.OperationAlreadyInProgress, Translation.Confirmation, MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation)
 					== System.Windows.Forms.DialogResult.Yes)
 			{
 				APICaller.CancelAsync();
@@ -102,7 +123,7 @@ namespace ElectronicObserver.Window.Dialog
 			}
 			else
 			{
-				MessageBox.Show("Please only select a single row.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+				MessageBox.Show(Translation.SelectSingleRow, Translation.Information, MessageBoxButtons.OK, MessageBoxIcon.Information);
 
 			}
 
@@ -177,8 +198,10 @@ namespace ElectronicObserver.Window.Dialog
 						data = sr.ReadToEnd();
 					}
 
-				} catch ( Exception ex ) {
-					Utility.Logger.Add( 3, string.Format( LoggerRes.FailedToLoadAPIFile, filename, ex.Message ) );
+				}
+				catch (Exception ex)
+				{
+					Utility.Logger.Add(3, string.Format(LoggerRes.FailedToLoadAPIFile, filename, ex.Message));
 					return;
 				}
 
@@ -365,7 +388,7 @@ namespace ElectronicObserver.Window.Dialog
 			}
 			catch (Exception ex)
 			{
-				Utility.Logger.Add(1, $"Failed to start with the specified API file. {ex.GetType().Name}: {ex.Message}");
+				Utility.Logger.Add(1, string.Format(Translation.FailedToStart, ex.GetType().Name, ex.Message));
 			}
 		}
 	}

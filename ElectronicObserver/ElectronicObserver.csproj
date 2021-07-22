@@ -155,6 +155,11 @@
 		  <AutoGen>True</AutoGen>
 		  <DependentUpon>DialogFleetImageGenerator.resx</DependentUpon>
 		</Compile>
+		<Compile Update="Properties\Window\Dialog\DialogLocalAPILoader2.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>DialogLocalAPILoader2.resx</DependentUpon>
+		</Compile>
 		<Compile Update="Properties\Window\Dialog\DialogResourceChart.Designer.cs">
 		  <DesignTime>True</DesignTime>
 		  <AutoGen>True</AutoGen>
@@ -506,6 +511,10 @@
 		<EmbeddedResource Update="Properties\Window\Dialog\DialogFleetImageGenerator.resx">
 		  <Generator>PublicResXFileCodeGenerator</Generator>
 		  <LastGenOutput>DialogFleetImageGenerator.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Properties\Window\Dialog\DialogLocalAPILoader2.resx">
+		  <Generator>PublicResXFileCodeGenerator</Generator>
+		  <LastGenOutput>DialogLocalAPILoader2.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 		<EmbeddedResource Update="Properties\Window\Dialog\DialogResourceChart.resx">
 		  <Generator>PublicResXFileCodeGenerator</Generator>
