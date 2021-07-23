@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ElectronicObserverTypes;
+using ElectronicObserver.Properties.Data;
 
 namespace ElectronicObserver.Data.Battle.Detail
 {
@@ -151,8 +152,8 @@ namespace ElectronicObserver.Data.Battle.Detail
 
 			if (Battle.IsPractice)
 				builder.AppendFormat("{0}{1} → {2}{3}",
-					Attacker == null ? "" : AttackerIndex.IsFriend ? "Friendly " : "Enemy ", GetAttackerName(),
-					DefenderIndex.IsFriend ? "Friendly " : "Enemy ", GetDefenderName()
+					Attacker == null ? "" : AttackerIndex.IsFriend ? $"{BattleRes.Friendly} " : $"{BattleRes.Enemy} ", GetAttackerName(),
+					DefenderIndex.IsFriend ? $"{BattleRes.Friendly} " : $"{BattleRes.Enemy} ", GetDefenderName()
 					).AppendLine();
 			else
 				builder.AppendFormat("{0} → {1}", GetAttackerName(), GetDefenderName()).AppendLine();
@@ -178,7 +179,7 @@ namespace ElectronicObserver.Data.Battle.Detail
 					builder.Append(" , ");
 
 				if (GuardsFlagship[i])
-					builder.Append("<Protected> ");
+					builder.Append($"<{BattleRes.Protected}> ");
 
 				switch (CriticalTypes[i])
 				{
@@ -216,10 +217,10 @@ namespace ElectronicObserver.Data.Battle.Detail
 					int id = defender.DamageControlID;
 
 					if (id == 42)
-						builder.AppendFormat("　Emergency Repair Personnel activated. HP{0}", (int)(defender.HPMax * 0.2)).AppendLine();
+						builder.AppendFormat($"　{BattleRes.DameconActivated} HP{0}", (int)(defender.HPMax * 0.2)).AppendLine();
 
 					else if (id == 43)
-						builder.AppendFormat("　Emergency Repair Goddess activated. HP{0}", defender.HPMax).AppendLine();
+						builder.AppendFormat($"　{BattleRes.GoddessActivated} HP{0}", defender.HPMax).AppendLine();
 
 				}
 			}
@@ -298,7 +299,7 @@ namespace ElectronicObserver.Data.Battle.Detail
 
 		protected override string GetAttackerName()
 		{
-			return "Support Fleet";
+			return BattleRes.SupportFleet;
 		}
 
 		protected override int CaclulateAttackKind(int[] slots, int attackerShipID, int defenderShipID)
@@ -317,7 +318,7 @@ namespace ElectronicObserver.Data.Battle.Detail
 				case 3:
 					return ConstantsRes.TorpedoAttack;
 				case 4:
-					return "Bombing";
+					return ConstantsRes.BombingAttack;
 				default:
 					return  ConstantsRes.Unknown;
 			}
@@ -375,14 +376,14 @@ namespace ElectronicObserver.Data.Battle.Detail
 			if (WaveIndex <= 0)
 			{
 				if (DefenderIndex.Side == BattleSides.FriendMain || DefenderIndex.Side == BattleSides.FriendEscort)
-					return "Enemy Air Squadron";
+					return BattleRes.EnemyAirSquadron;
 				else
-					return "Friendly Air Squadron";
+					return BattleRes.FriendlyAirSquadron;
 
 			}
 			else
 			{
-				return string.Format("Air Squadron Wave {0}", WaveIndex);
+				return string.Format(BattleRes.AirSquadronWave, WaveIndex);
 
 			}
 		}
@@ -390,7 +391,7 @@ namespace ElectronicObserver.Data.Battle.Detail
 		protected override string GetDefenderName()
 		{
 			if (WaveIndex < 0 && DefenderIndex.Side == BattleSides.FriendMain)
-				return string.Format("Base {0}", DefenderIndex.Index + 1);
+				return string.Format(BattleRes.Base, DefenderIndex.Index + 1);
 
 			return base.GetDefenderName();
 		}

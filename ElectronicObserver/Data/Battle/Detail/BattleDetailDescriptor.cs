@@ -1,6 +1,8 @@
 ﻿using ElectronicObserver.Data.Battle.Phase;
+using ElectronicObserver.Properties.Data;
 using ElectronicObserver.Resource.Record;
 using ElectronicObserver.Utility.Data;
+using ElectronicObserver.Window;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +21,7 @@ namespace ElectronicObserver.Data.Battle.Detail
 
 			if (bm.IsPractice)
 			{
-				sb.AppendLine("Exercise");
+				sb.AppendLine(BattleRes.Exercise);
 
 			}
 			else
@@ -37,7 +39,7 @@ namespace ElectronicObserver.Data.Battle.Detail
 				{
 					if (mapinfo.RequiredDefeatedCount != -1)
 					{
-						sb.AppendFormat("Cleared: {0} / {1} times", mapinfo.CurrentDefeatedCount, mapinfo.RequiredDefeatedCount)
+						sb.AppendFormat(BattleRes.ClearProgress, mapinfo.CurrentDefeatedCount, mapinfo.RequiredDefeatedCount)
 							.AppendLine();
 					}
 					else if (mapinfo.MapHPMax > 0)
@@ -87,7 +89,7 @@ namespace ElectronicObserver.Data.Battle.Detail
 					case PhaseBaseAirRaid p:
 
 						sb.AppendLine(ConstantsRes.BattleDetail_AirAttackUnits);
-						sb.Append("　").AppendLine(string.Join(", ", p.Squadrons.Where(sq => sq.EquipmentInstance != null).Select(sq => sq.ToString()).DefaultIfEmpty("(empty)")));
+						sb.Append("　").AppendLine(string.Join(", ", p.Squadrons.Where(sq => sq.EquipmentInstance != null).Select(sq => sq.ToString()).DefaultIfEmpty(BattleRes.Empty)));
 
 						GetBattleDetailPhaseAirBattle(sb, p);
 
@@ -145,11 +147,11 @@ namespace ElectronicObserver.Data.Battle.Detail
 
 						void appendFleetInfo(FleetData fleet)
 						{
-							sb.Append(" Air Superiority ");
+							sb.Append($" {BattleRes.AirSuperiority} ");
 							sb.Append(GetRangeString(Calculator.GetAirSuperiority(fleet, false), Calculator.GetAirSuperiority(fleet, true)));
 
 							double truncate2(double value) => Math.Floor(value * 100) / 100;
-							sb.AppendFormat(" / LOS [1] {0}, [2] {1}, [3] {2}, [4] {3}",
+							sb.AppendFormat(BattleRes.Los,
 								truncate2(Calculator.GetSearchingAbility_New33(fleet, 1)),
 								truncate2(Calculator.GetSearchingAbility_New33(fleet, 2)),
 								truncate2(Calculator.GetSearchingAbility_New33(fleet, 3)),
@@ -205,9 +207,9 @@ namespace ElectronicObserver.Data.Battle.Detail
 										airbase += Calculator.GetAirSuperiority(param.DefaultSlot[s], param.Aircraft[s], 0, 0, 1);
 								}
 							}
-							sb.AppendFormat(" AS {0} (Air Base {1})", air, airbase);
+							sb.AppendFormat(BattleRes.AirBaseAirPower, air, airbase);
 							if (indeterminate)
-								sb.Append(" (To be determined)");
+								sb.Append(BattleRes.ToBeDetermined);
 						}
 
 						if (p.EnemyMembersEscort != null)
@@ -218,7 +220,7 @@ namespace ElectronicObserver.Data.Battle.Detail
 						appendEnemyFleetInfo(p.EnemyMembers);
 
 						if (p.IsBossDamaged)
-							sb.Append(" : Boss Debuffed");
+							sb.Append(BattleRes.BossDebuffed);
 						sb.AppendLine();
 
 						OutputEnemyData(sb, p.EnemyMembersInstance, p.EnemyLevels, p.EnemyInitialHPs, p.EnemyMaxHPs, p.EnemySlotsInstance, p.EnemyParameters);
@@ -246,7 +248,7 @@ namespace ElectronicObserver.Data.Battle.Detail
 
 						if (p.RationIndexes.Length > 0)
 						{
-							sb.AppendLine("〈Combat Ration〉");
+							sb.AppendLine($"〈{BattleRes.CombatRation}〉");
 							foreach (var index in p.RationIndexes)
 							{
 								var ship = p.GetFriendShip(index);
@@ -303,11 +305,11 @@ namespace ElectronicObserver.Data.Battle.Detail
 
 
 					case PhaseSearching p:
-						sb.Append("Formation: ").Append(Constants.GetFormation(p.FormationFriend));
-						sb.Append(" / Enemy Formation: ").AppendLine(Constants.GetFormation(p.FormationEnemy));
-						sb.Append("Engagement: ").AppendLine(Constants.GetEngagementForm(p.EngagementForm));
-						sb.Append("Contact: ").Append(Constants.GetSearchingResult(p.SearchingFriend));
-						sb.Append(" / Enemy Contact: ").AppendLine(Constants.GetSearchingResult(p.SearchingEnemy));
+						sb.Append($"{BattleRes.Formation}: ").Append(Constants.GetFormation(p.FormationFriend));
+						sb.Append($" / {BattleRes.EnemyFormation}: ").AppendLine(Constants.GetFormation(p.FormationEnemy));
+						sb.Append($"{BattleRes.Engagement}: ").AppendLine(Constants.GetEngagementForm(p.EngagementForm));
+						sb.Append($"{BattleRes.Contact}: ").Append(Constants.GetSearchingResult(p.SearchingFriend));
+						sb.Append($" / {BattleRes.EnemyContact}: ").AppendLine(Constants.GetSearchingResult(p.SearchingEnemy));
 
 						sb.AppendLine();
 
@@ -316,7 +318,7 @@ namespace ElectronicObserver.Data.Battle.Detail
 					case PhaseSupport p:
 						if (p.IsAvailable)
 						{
-							sb.AppendLine("〈Support Fleet〉");
+							sb.AppendLine($"〈{BattleRes.SupportFleet}〉");
 							OutputSupportData(sb, p.SupportFleet);
 							sb.AppendLine();
 						}
@@ -325,7 +327,7 @@ namespace ElectronicObserver.Data.Battle.Detail
 					case PhaseFriendlySupport p:
 						if (p.IsAvailable)
 						{
-							sb.AppendLine("〈Friendly Fleet〉");
+							sb.AppendLine($"〈{BattleRes.FriendlyFleet}〉");
 							OutputFriendlySupportData(sb, p);
 							sb.AppendLine();
 
@@ -393,7 +395,7 @@ namespace ElectronicObserver.Data.Battle.Detail
 						if (battle.Initial.FriendMaxHPs[i] <= 0)
 							continue;
 
-						OutputResultData(sbmaster, i, string.Format("Base {0}", i + 1),
+						OutputResultData(sbmaster, i, string.Format(BattleRes.Base, i + 1),
 							battle.Initial.FriendInitialHPs[i], battle.ResultHPs[i], battle.Initial.FriendMaxHPs[i]);
 					}
 
@@ -472,7 +474,7 @@ namespace ElectronicObserver.Data.Battle.Detail
 		{
 			foreach (var corps in KCDatabase.Instance.BaseAirCorps.Values.Where(corps => corps.MapAreaID == mapAreaID))
 			{
-				sb.AppendFormat("{0} [{1}] Air Superiority {2}\r\n　{3}\r\n",
+				sb.AppendFormat("{0} [{1}] " + BattleRes.AirSuperiority + " {2}\r\n　{3}\r\n",
 					corps.Name, Constants.GetBaseAirCorpsActionKind(corps.ActionKind),
 					GetRangeString(Calculator.GetAirSuperiority(corps, false), Calculator.GetAirSuperiority(corps, true)),
 					string.Join(", ", corps.Squadrons.Values
@@ -487,23 +489,23 @@ namespace ElectronicObserver.Data.Battle.Detail
 			if (p.IsStage1Available)
 			{
 				sb.Append("Stage 1: ").AppendLine(Constants.GetAirSuperiority(p.AirSuperiority));
-				sb.AppendFormat("　Friendly: -{0}/{1}\r\n　Enemy: -{2}/{3}\r\n",
+				sb.AppendFormat($"　{BattleRes.Friendly}: -{{0}}/{{1}}\r\n　Enemy: -{{2}}/{{3}}\r\n",
 					p.AircraftLostStage1Friend, p.AircraftTotalStage1Friend,
 					p.AircraftLostStage1Enemy, p.AircraftTotalStage1Enemy);
 				if (p.TouchAircraftFriend > 0)
-					sb.AppendFormat("　Contact: {0}\r\n", KCDatabase.Instance.MasterEquipments[p.TouchAircraftFriend].NameEN);
+					sb.AppendFormat($"　{BattleRes.Contact}: {{0}}\r\n", KCDatabase.Instance.MasterEquipments[p.TouchAircraftFriend].NameEN);
 				if (p.TouchAircraftEnemy > 0)
-					sb.AppendFormat("　Enemy Contact: {0}\r\n", KCDatabase.Instance.MasterEquipments[p.TouchAircraftEnemy].NameEN);
+					sb.AppendFormat($"　{BattleRes.EnemyContact}: {{0}}\r\n", KCDatabase.Instance.MasterEquipments[p.TouchAircraftEnemy].NameEN);
 			}
 			if (p.IsStage2Available)
 			{
 				sb.Append("Stage 2: ");
 				if (p.IsAACutinAvailable)
 				{
-					sb.AppendFormat("AACI type #{2} ( {0}, {1} )", p.AACutInShip.NameWithLevel, Constants.GetAACutinKind(p.AACutInKind), p.AACutInKind);
+					sb.AppendFormat(BattleRes.AaciType, p.AACutInShip.NameWithLevel, Constants.GetAACutinKind(p.AACutInKind), p.AACutInKind);
 				}
 				sb.AppendLine();
-				sb.AppendFormat("　Friendly: -{0}/{1}\r\n　Enemy: -{2}/{3}\r\n",
+				sb.AppendFormat($"　{BattleRes.Friendly}: -{{0}}/{{1}}\r\n　{BattleRes.Enemy}: -{{2}}/{{3}}\r\n",
 					p.AircraftLostStage2Friend, p.AircraftTotalStage2Friend,
 					p.AircraftLostStage2Enemy, p.AircraftTotalStage2Enemy);
 			}
@@ -523,12 +525,17 @@ namespace ElectronicObserver.Data.Battle.Detail
 				if (ship == null)
 					continue;
 
-				sb.AppendFormat("#{0}: {1} {2} HP: {3} / {4} - FP:{5}, Torp:{6}, AA:{7}, Armor:{8}{9}\r\n",
+				sb.AppendFormat($"#{{0}}: {{1}} {{2}} " +
+					$"HP: {{3}} / {{4}} - " +
+					$"{GeneralRes.Firepower}:{{5}}, " +
+					$"{GeneralRes.Torpedo}:{{6}}, " +
+					$"{GeneralRes.AntiAir}:{{7}}, " +
+					$"{GeneralRes.Armor}:{{8}}{{9}}\r\n",
 					i + 1,
 					ship.MasterShip.ShipTypeName, ship.NameWithLevel,
 					initialHPs[i], maxHPs[i],
 					ship.FirepowerBase, ship.TorpedoBase, ship.AABase, ship.ArmorBase,
-					fleet.EscapedShipList.Contains(ship.MasterID) ? " (Escaped)" : "");
+					fleet.EscapedShipList.Contains(ship.MasterID) ? $" ({BattleRes.Escaped})" : "");
 
 				sb.Append("　");
 				sb.AppendLine(string.Join(", ", ship.AllSlotInstance.Zip(
@@ -546,7 +553,7 @@ namespace ElectronicObserver.Data.Battle.Detail
 				if (maxHPs[i] <= 0)
 					continue;
 
-				sb.AppendFormat("#{0}: Air Base Squadron #{1} HP: {2} / {3}\r\n\r\n",
+				sb.AppendFormat(BattleRes.OutputFriendBase + "\r\n\r\n",
 					i + 1,
 					i + 1,
 					initialHPs[i], maxHPs[i]);
@@ -564,7 +571,12 @@ namespace ElectronicObserver.Data.Battle.Detail
 				if (ship == null)
 					continue;
 
-				sb.AppendFormat("#{0}: {1} {2} - {3} FP, {4} Torp, {5} AA, {6} Armor\r\n",
+				sb.AppendFormat($"#{{0}}: {{1}} {{2}} - " +
+					$"{{3}} {GeneralRes.Firepower}, " +
+					$"{{4}} {GeneralRes.Torpedo}, " +
+					$"{{5}} {GeneralRes.AntiAir}, " +
+					$"{{6}} {GeneralRes.Armor}" +
+					$"\r\n",
 					i + 1,
 					ship.MasterShip.ShipTypeName, ship.NameWithLevel,
 					ship.FirepowerBase, ship.TorpedoBase, ship.AABase, ship.ArmorBase);
@@ -585,7 +597,14 @@ namespace ElectronicObserver.Data.Battle.Detail
 				if (ship == null)
 					continue;
 
-				sb.AppendFormat("#{0}: {1} {2} Lv. {3} HP: {4} / {5} - FP {6}, Torp {7}, AA {8}, Armor {9}\r\n",
+				sb.AppendFormat($"#{{0}}: {{1}} {{2}} " +
+					$"Lv. {{3}} " +
+					$"HP: {{4}} / {{5}} - " +
+					$"{GeneralRes.Firepower} {{6}}, " +
+					$"{GeneralRes.Torpedo} {{7}}, " +
+					$"{GeneralRes.AntiAir} {{8}}, " +
+					$"{GeneralRes.Armor} {{9}}" +
+					$"\r\n",
 					i + 1,
 					ship.ShipTypeName, p.FriendlyMembersInstance[i].NameWithClass, p.FriendlyLevels[i],
 					p.FriendlyInitialHPs[i], p.FriendlyMaxHPs[i],
@@ -613,7 +632,11 @@ namespace ElectronicObserver.Data.Battle.Detail
 
 				if (parameters != null)
 				{
-					sb.AppendFormat(" - FP:{0}, Torp:{1}, AA:{2}, Armor:{3}",
+					sb.AppendFormat($" - " +
+						$"{GeneralRes.Firepower}:{{0}}, " +
+						$"{GeneralRes.Torpedo}:{{1}}, " +
+						$"{GeneralRes.AntiAir}:{{2}}, " +
+						$"{GeneralRes.Armor}:{{3}}",
 					parameters[i][0], parameters[i][1], parameters[i][2], parameters[i][3]);
 				}
 
