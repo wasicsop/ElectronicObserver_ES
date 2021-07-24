@@ -137,4 +137,7 @@ Formula 33:
     <value>Anchorage Repair Timer
 Start: </value>
   </data>
+  <data name="Recovery" xml:space="preserve">
+    <value>Recovery</value>
+  </data>
 </root>

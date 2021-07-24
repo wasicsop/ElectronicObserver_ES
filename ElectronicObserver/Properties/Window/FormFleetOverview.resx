@@ -117,4 +117,7 @@
     <value>泊地修理タイマ
 開始: </value>
   </data>
+  <data name="Recovery" xml:space="preserve">
+    <value>回復</value>
+  </data>
 </root>

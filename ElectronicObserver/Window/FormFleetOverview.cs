@@ -298,7 +298,10 @@ namespace ElectronicObserver.Window
 			{
 				AnchorageRepairingTimer.Text = DateTimeHelper.ToTimeElapsedString(KCDatabase.Instance.Fleet.AnchorageRepairingTimer);
 				AnchorageRepairingTimer.Tag = KCDatabase.Instance.Fleet.AnchorageRepairingTimer;
-				ToolTipInfo.SetToolTip(AnchorageRepairingTimer, Translation.AnchorageRepairToolTip + DateTimeHelper.TimeToCSVString(KCDatabase.Instance.Fleet.AnchorageRepairingTimer) + "\r\nRecovery: " + DateTimeHelper.TimeToCSVString(KCDatabase.Instance.Fleet.AnchorageRepairingTimer.AddMinutes(20)));
+				ToolTipInfo.SetToolTip(AnchorageRepairingTimer, Translation.AnchorageRepairToolTip + 
+					DateTimeHelper.TimeToCSVString(KCDatabase.Instance.Fleet.AnchorageRepairingTimer) + 
+					$"\r\n{Translation.Recovery}: " + 
+					DateTimeHelper.TimeToCSVString(KCDatabase.Instance.Fleet.AnchorageRepairingTimer.AddMinutes(20)));
 			}
 
 

@@ -90,6 +90,15 @@ namespace ElectronicObserver.Properties.Window {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 回復.
+        /// </summary>
+        public static string Recovery {
+            get {
+                return ResourceManager.GetString("Recovery", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 艦隊.
         /// </summary>
         public static string Title {
