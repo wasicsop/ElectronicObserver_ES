@@ -106,6 +106,33 @@ namespace ElectronicObserver.Properties.Data {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0}-{1}-{2} で基地に空襲を受けました。( {3}, 被ダメージ合計: {4}, {5} ).
+        /// </summary>
+        public static string BattleFinishedBaseAirRaid {
+            get {
+                return ResourceManager.GetString("BattleFinishedBaseAirRaid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 演習 で「{0}」{1}の「{2}」と交戦しました。( ランク: {3}, 提督Exp+{4}.
+        /// </summary>
+        public static string BattleFinishedPractice {
+            get {
+                return ResourceManager.GetString("BattleFinishedPractice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}-{1}-{2} で「{3}」と交戦しました。( ランク: {4}, 提督Exp+{5}, 艦娘Exp+{6} ).
+        /// </summary>
+        public static string BattleFinishedSortie {
+            get {
+                return ResourceManager.GetString("BattleFinishedSortie", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to  : 装甲破壊.
         /// </summary>
         public static string BossDebuffed {
@@ -129,6 +156,24 @@ namespace ElectronicObserver.Properties.Data {
         public static string CombatRation {
             get {
                 return ResourceManager.GetString("CombatRation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 連合艦隊 夜戦.
+        /// </summary>
+        public static string CombinedFleetNightBattle {
+            get {
+                return ResourceManager.GetString("CombinedFleetNightBattle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 連合艦隊 レーダー射撃.
+        /// </summary>
+        public static string CombinedFleetRadarAmbush {
+            get {
+                return ResourceManager.GetString("CombinedFleetRadarAmbush", resourceCulture);
             }
         }
         
@@ -174,6 +219,15 @@ namespace ElectronicObserver.Properties.Data {
         public static string EnemyAirSquadron {
             get {
                 return ResourceManager.GetString("EnemyAirSquadron", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 対連合艦隊　夜昼戦.
+        /// </summary>
+        public static string EnemyCombinedFleetNightDayBattle {
+            get {
+                return ResourceManager.GetString("EnemyCombinedFleetNightDayBattle", resourceCulture);
             }
         }
         
@@ -268,6 +322,15 @@ namespace ElectronicObserver.Properties.Data {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} が Lv. {1} になりました。.
+        /// </summary>
+        public static string HasLeveledUp {
+            get {
+                return ResourceManager.GetString("HasLeveledUp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to  / 索敵能力 [1] {0}, [2] {1}, [3] {2}, [4] {3}.
         /// </summary>
         public static string Los {
@@ -286,11 +349,38 @@ namespace ElectronicObserver.Properties.Data {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 戦力.
+        /// </summary>
+        public static string Participant {
+            get {
+                return ResourceManager.GetString("Participant", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 索敵.
+        /// </summary>
+        public static string PhaseSearching {
+            get {
+                return ResourceManager.GetString("PhaseSearching", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to かばう.
         /// </summary>
         public static string Protected {
             get {
                 return ResourceManager.GetString("Protected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 連合艦隊-水上部隊 昼戦.
+        /// </summary>
+        public static string SuijouButaiDayBattle {
+            get {
+                return ResourceManager.GetString("SuijouButaiDayBattle", resourceCulture);
             }
         }
         
@@ -309,6 +399,15 @@ namespace ElectronicObserver.Properties.Data {
         public static string ToBeDetermined {
             get {
                 return ResourceManager.GetString("ToBeDetermined", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 不明なアイテム - ID:.
+        /// </summary>
+        public static string UnknownItem {
+            get {
+                return ResourceManager.GetString("UnknownItem", resourceCulture);
             }
         }
     }

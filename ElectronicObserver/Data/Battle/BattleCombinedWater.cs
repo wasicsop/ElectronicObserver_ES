@@ -1,4 +1,5 @@
 ﻿using ElectronicObserver.Data.Battle.Phase;
+using ElectronicObserver.Properties.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,7 +39,7 @@ namespace ElectronicObserver.Data.Battle
 
 		public override string APIName => "api_req_combined_battle/battle_water";
 
-		public override string BattleName => "Suijou Butai Day Battle";
+		public override string BattleName => BattleRes.SuijouButaiDayBattle;
 
 
 		public override IEnumerable<PhaseBase> GetPhases()

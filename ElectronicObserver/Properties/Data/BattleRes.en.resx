@@ -201,4 +201,37 @@
   <data name="OutputFriendBase" xml:space="preserve">
     <value>#{0}: Air Base Squadron #{1} HP: {2} / {3}</value>
   </data>
+  <data name="CombinedFleetNightBattle" xml:space="preserve">
+    <value>Combined Fleet Night Battle</value>
+  </data>
+  <data name="CombinedFleetRadarAmbush" xml:space="preserve">
+    <value>Combined Fleet Radar Ambush</value>
+  </data>
+  <data name="SuijouButaiDayBattle" xml:space="preserve">
+    <value>Suijou Butai Day Battle</value>
+  </data>
+  <data name="Participant" xml:space="preserve">
+    <value>Participant</value>
+  </data>
+  <data name="PhaseSearching" xml:space="preserve">
+    <value>LOS</value>
+  </data>
+  <data name="EnemyCombinedFleetNightDayBattle" xml:space="preserve">
+    <value>Enemy Combined Fleet Night→Day Battle</value>
+  </data>
+  <data name="BattleFinishedPractice" xml:space="preserve">
+    <value>Practiced with {1} {0}'s {2} fleet (Rank: {3}, Admiral exp+{4}, Ship exp+{5}).</value>
+  </data>
+  <data name="BattleFinishedBaseAirRaid" xml:space="preserve">
+    <value>Encountered air raid at {0}-{1}-{2} ({3}, Damage taken: {4}, {5}).</value>
+  </data>
+  <data name="BattleFinishedSortie" xml:space="preserve">
+    <value>Battled with 「{3}」 in {0}-{1}-{2} (Rank: {4}, Admiral exp+{5}, Ship exp+{6}).</value>
+  </data>
+  <data name="HasLeveledUp" xml:space="preserve">
+    <value>{0} has leveled up to lv{1}.</value>
+  </data>
+  <data name="UnknownItem" xml:space="preserve">
+    <value>Unknown item - ID: </value>
+  </data>
 </root>

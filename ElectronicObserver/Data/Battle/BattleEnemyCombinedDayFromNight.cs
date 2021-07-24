@@ -1,4 +1,5 @@
 ﻿using ElectronicObserver.Data.Battle.Phase;
+using ElectronicObserver.Properties.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,7 +45,7 @@ namespace ElectronicObserver.Data.Battle
 
 		public override string APIName => "api_req_combined_battle/ec_night_to_day";
 
-		public override string BattleName => "Enemy Combined Fleet Night→Day Battle";
+		public override string BattleName => BattleRes.EnemyCombinedFleetNightDayBattle;
 
 
 

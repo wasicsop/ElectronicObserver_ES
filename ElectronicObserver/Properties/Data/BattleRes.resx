@@ -181,4 +181,37 @@
   <data name="OutputFriendBase" xml:space="preserve">
     <value>#{0}: 陸上施設 第{1}基地 HP: {2} / {3}</value>
   </data>
+  <data name="CombinedFleetNightBattle" xml:space="preserve">
+    <value>連合艦隊 夜戦</value>
+  </data>
+  <data name="CombinedFleetRadarAmbush" xml:space="preserve">
+    <value>連合艦隊 レーダー射撃</value>
+  </data>
+  <data name="SuijouButaiDayBattle" xml:space="preserve">
+    <value>連合艦隊-水上部隊 昼戦</value>
+  </data>
+  <data name="Participant" xml:space="preserve">
+    <value>戦力</value>
+  </data>
+  <data name="PhaseSearching" xml:space="preserve">
+    <value>索敵</value>
+  </data>
+  <data name="EnemyCombinedFleetNightDayBattle" xml:space="preserve">
+    <value>対連合艦隊　夜昼戦</value>
+  </data>
+  <data name="BattleFinishedPractice" xml:space="preserve">
+    <value>演習 で「{0}」{1}の「{2}」と交戦しました。( ランク: {3}, 提督Exp+{4}</value>
+  </data>
+  <data name="BattleFinishedBaseAirRaid" xml:space="preserve">
+    <value>{0}-{1}-{2} で基地に空襲を受けました。( {3}, 被ダメージ合計: {4}, {5} )</value>
+  </data>
+  <data name="BattleFinishedSortie" xml:space="preserve">
+    <value>{0}-{1}-{2} で「{3}」と交戦しました。( ランク: {4}, 提督Exp+{5}, 艦娘Exp+{6} )</value>
+  </data>
+  <data name="HasLeveledUp" xml:space="preserve">
+    <value>{0} が Lv. {1} になりました。</value>
+  </data>
+  <data name="UnknownItem" xml:space="preserve">
+    <value>不明なアイテム - ID:</value>
+  </data>
 </root>

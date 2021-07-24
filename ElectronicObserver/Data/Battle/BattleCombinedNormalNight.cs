@@ -1,4 +1,5 @@
 ﻿using ElectronicObserver.Data.Battle.Phase;
+using ElectronicObserver.Properties.Data;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -32,7 +33,7 @@ namespace ElectronicObserver.Data.Battle
 
 		public override string APIName => "api_req_combined_battle/midnight_battle";
 
-		public override string BattleName => "Combined Fleet Night Battle";
+		public override string BattleName => BattleRes.CombinedFleetNightBattle;
 
 
 		public override IEnumerable<PhaseBase> GetPhases()

@@ -1,4 +1,5 @@
 ﻿using ElectronicObserver.Data.Battle.Phase;
+using ElectronicObserver.Properties.Data;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -37,8 +38,8 @@ namespace ElectronicObserver.Data.Battle
 		{
 			base.LoadFromResponse(apiname, (object)data);
 
-			Initial = new PhaseInitial(this, "Participant");
-			Searching = new PhaseSearching(this, "LOS");
+			Initial = new PhaseInitial(this, BattleRes.Participant);
+			Searching = new PhaseSearching(this, BattleRes.PhaseSearching);
 
 			_resultHPs = new int[24];
 			Array.Copy(Initial.FriendInitialHPs, 0, _resultHPs, 0, Initial.FriendInitialHPs.Length);

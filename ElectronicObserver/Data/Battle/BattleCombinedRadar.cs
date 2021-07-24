@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ElectronicObserver.Data.Battle.Phase;
+using ElectronicObserver.Properties.Data;
 
 namespace ElectronicObserver.Data.Battle
 {
@@ -26,7 +27,7 @@ namespace ElectronicObserver.Data.Battle
 
 		public override string APIName => "api_req_combined_battle/ld_shooting";
 
-		public override string BattleName => "Combined Fleet Radar Ambush";
+		public override string BattleName => BattleRes.CombinedFleetRadarAmbush;
 
 		public override IEnumerable<PhaseBase> GetPhases()
 		{

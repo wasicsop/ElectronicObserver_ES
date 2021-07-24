@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ElectronicObserverTypes;
+using ElectronicObserver.Properties.Data;
 
 namespace ElectronicObserver.Data.Battle
 {
@@ -371,7 +372,7 @@ namespace ElectronicObserver.Data.Battle
 			if (IsPractice)
 			{
 				Utility.Logger.Add(2,
-					string.Format("Practiced with {1} {0}'s {2} fleet (Rank: {3}, Admiral exp+{4}, Ship exp+{5}).",
+					string.Format(BattleRes.BattleFinishedPractice,
 						EnemyAdmiralName, EnemyAdmiralRank, Result.EnemyFleetName, Result.Rank, Result.AdmiralExp, Result.BaseExp));
 			}
 			else if (IsBaseAirRaid)
@@ -381,14 +382,14 @@ namespace ElectronicObserver.Data.Battle
 				var airraid = ((BattleBaseAirRaid)BattleDay).BaseAirRaid;
 
 				Utility.Logger.Add(2,
-					string.Format("Encountered air raid at {0}-{1}-{2} ({3}, Damage taken: {4}, {5}).",
+					string.Format(BattleRes.BattleFinishedBaseAirRaid,
 						Compass.MapAreaID, Compass.MapInfoID, Compass.DestinationID,
 						Constants.GetAirSuperiority(airraid.IsAvailable ? airraid.AirSuperiority : -1), damage, Constants.GetAirRaidDamage(Compass.AirRaidDamageKind)));
 			}
 			else
 			{
 				Utility.Logger.Add(2,
-					string.Format("Battled with 「{3}」 in {0}-{1}-{2} (Rank: {4}, Admiral exp+{5}, Ship exp+{6}).",
+					string.Format(BattleRes.BattleFinishedSortie,
 						Compass.MapAreaID, Compass.MapInfoID, Compass.DestinationID, KCDatabase.Instance.Translation.Operation.FleetName(Result.EnemyFleetName), Result.Rank, Result.AdmiralExp, Result.BaseExp));
 			}
 
@@ -406,7 +407,7 @@ namespace ElectronicObserver.Data.Battle
 						int increment = Math.Max(lvup[i].Length - 2, 1);
 
 						ShipLevelUp?.Invoke(ship, ship.Level + increment);
-						Utility.Logger.Add( 2, string.Format( "{0} has leveled up to lv{1}.", ship.Name, ship.Level + increment ) );
+						Utility.Logger.Add(2, string.Format(BattleRes.HasLeveledUp, ship.Name, ship.Level + increment));
 					}
 				}
 
@@ -422,7 +423,7 @@ namespace ElectronicObserver.Data.Battle
 							int increment = Math.Max(lvup[i].Length - 2, 1);
 
 							ShipLevelUp?.Invoke(ship, ship.Level + increment);
-							Utility.Logger.Add( 2, string.Format( "{0} has leveled up to lv{1}.", ship.Name, ship.Level + increment ) );
+							Utility.Logger.Add(2, string.Format(BattleRes.HasLeveledUp, ship.Name, ship.Level + increment));
 						}
 					}
 				}
@@ -451,8 +452,8 @@ namespace ElectronicObserver.Data.Battle
 					if (defaultSlot != null)
 						DroppedEquipmentCount += defaultSlot.Count(id => id != -1);
 
-					if ( showLog )
-						Utility.Logger.Add( 2, string.Format( LoggerRes.ShipAdded, ship.ShipTypeName, ship.NameWithClass ) );
+					if (showLog)
+						Utility.Logger.Add(2, string.Format(LoggerRes.ShipAdded, ship.ShipTypeName, ship.NameWithClass));
 				}
 
 				if (itemID != -1)
@@ -466,7 +467,7 @@ namespace ElectronicObserver.Data.Battle
 					{
 						var item = KCDatabase.Instance.UseItems[itemID];
 						var itemmaster = KCDatabase.Instance.MasterUseItems[itemID];
-						Utility.Logger.Add(2, string.Format(LoggerRes.ItemObtained, itemmaster?.Name ?? ("Unknown item - ID: " + itemID), (item?.Count ?? 0) + DroppedItemCount[itemID]));
+						Utility.Logger.Add(2, string.Format(LoggerRes.ItemObtained, itemmaster?.Name ?? (BattleRes.UnknownItem + itemID), (item?.Count ?? 0) + DroppedItemCount[itemID]));
 					}
 				}
 
@@ -476,8 +477,9 @@ namespace ElectronicObserver.Data.Battle
 					EquipmentDataMaster eq = KCDatabase.Instance.MasterEquipments[eqID];
 					DroppedEquipmentCount++;
 
-					if ( showLog ) {
-						Utility.Logger.Add( 2, string.Format( LoggerRes.EquipmentObtained, eq.CategoryTypeInstance.NameEN, eq.NameEN ) );
+					if (showLog)
+					{
+						Utility.Logger.Add(2, string.Format(LoggerRes.EquipmentObtained, eq.CategoryTypeInstance.NameEN, eq.NameEN));
 					}
 				}
 
