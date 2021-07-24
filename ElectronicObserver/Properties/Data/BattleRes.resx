@@ -214,4 +214,61 @@
   <data name="UnknownItem" xml:space="preserve">
     <value>不明なアイテム - ID:</value>
   </data>
+  <data name="BattlePhaseLandBasedJet" xml:space="preserve">
+    <value>噴式基地航空隊攻撃</value>
+  </data>
+  <data name="BattlePhaseJet" xml:space="preserve">
+    <value>噴式航空戦</value>
+  </data>
+  <data name="BattlePhaseLandBasedAir" xml:space="preserve">
+    <value>基地航空隊攻撃</value>
+  </data>
+  <data name="BattlePhaseAirBaseRaid" xml:space="preserve">
+    <value>防空戦</value>
+  </data>
+  <data name="BattlePhaseAirBattle" xml:space="preserve">
+    <value>航空戦</value>
+  </data>
+  <data name="BattlePhaseAirRaid" xml:space="preserve">
+    <value>空襲戦</value>
+  </data>
+  <data name="BattlePhaseAirAttackFirst" xml:space="preserve">
+    <value>第一次航空戦</value>
+  </data>
+  <data name="BattlePhaseAirAttackSecond" xml:space="preserve">
+    <value>第二次航空戦</value>
+  </data>
+  <data name="BattlePhaseSupportExpedition" xml:space="preserve">
+    <value>支援攻撃</value>
+  </data>
+  <data name="BattlePhaseOpeningAsw" xml:space="preserve">
+    <value>先制対潜</value>
+  </data>
+  <data name="BattlePhaseOpeningTorpedo" xml:space="preserve">
+    <value>先制雷撃</value>
+  </data>
+  <data name="BattlePhaseShellingFirst" xml:space="preserve">
+    <value>第一次砲撃戦</value>
+  </data>
+  <data name="BattlePhaseShellingSecond" xml:space="preserve">
+    <value>第二次砲撃戦</value>
+  </data>
+  <data name="BattlePhaseShellingThird" xml:space="preserve">
+    <value>第三次砲撃戦</value>
+  </data>
+  <data name="BattlePhaseClosingTorpedo" xml:space="preserve">
+    <value>雷撃戦</value>
+  </data>
+  <data name="BattlePhaseNightBattle" xml:space="preserve">
+    <value>夜戦</value>
+  </data>
+  <data name="BattlePhaseNightBattleFirst" xml:space="preserve">
+    <value>第一次夜戦</value>
+  </data>
+  <data name="BattlePhaseNightBattleSecond" xml:space="preserve">
+    <value>第二次夜戦</value>
+  </data>
+  <data name="BattlePhaseNightSupportExpedition" xml:space="preserve">
+    <value>夜間支援攻撃</value>
+  </data>
 </root>

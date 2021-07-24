@@ -234,4 +234,61 @@
   <data name="UnknownItem" xml:space="preserve">
     <value>Unknown item - ID: </value>
   </data>
+  <data name="BattlePhaseLandBasedJet" xml:space="preserve">
+    <value>Land-based Jet Air Attack</value>
+  </data>
+  <data name="BattlePhaseJet" xml:space="preserve">
+    <value>Jet Air Attack</value>
+  </data>
+  <data name="BattlePhaseLandBasedAir" xml:space="preserve">
+    <value>Land-based Air Attack</value>
+  </data>
+  <data name="BattlePhaseAirBaseRaid" xml:space="preserve">
+    <value>Air Base Air Raid</value>
+  </data>
+  <data name="BattlePhaseAirBattle" xml:space="preserve">
+    <value>Air Battle</value>
+  </data>
+  <data name="BattlePhaseAirRaid" xml:space="preserve">
+    <value>Air Raid</value>
+  </data>
+  <data name="BattlePhaseAirAttackFirst" xml:space="preserve">
+    <value>Air Attack, 1st</value>
+  </data>
+  <data name="BattlePhaseAirAttackSecond" xml:space="preserve">
+    <value>Air Attack, 2nd</value>
+  </data>
+  <data name="BattlePhaseSupportExpedition" xml:space="preserve">
+    <value>Support Expedition</value>
+  </data>
+  <data name="BattlePhaseOpeningAsw" xml:space="preserve">
+    <value>Opening ASW</value>
+  </data>
+  <data name="BattlePhaseOpeningTorpedo" xml:space="preserve">
+    <value>Opening Torpedo Salvo</value>
+  </data>
+  <data name="BattlePhaseShellingFirst" xml:space="preserve">
+    <value>Shelling, 1st Round</value>
+  </data>
+  <data name="BattlePhaseShellingSecond" xml:space="preserve">
+    <value>Shelling, 2nd Round</value>
+  </data>
+  <data name="BattlePhaseShellingThird" xml:space="preserve">
+    <value>Shelling, 3rd Round</value>
+  </data>
+  <data name="BattlePhaseClosingTorpedo" xml:space="preserve">
+    <value>Closing Torpedo Salvo</value>
+  </data>
+  <data name="BattlePhaseNightBattle" xml:space="preserve">
+    <value>Night Battle</value>
+  </data>
+  <data name="BattlePhaseNightBattleFirst" xml:space="preserve">
+    <value>Night Battle, 1st Round</value>
+  </data>
+  <data name="BattlePhaseNightBattleSecond" xml:space="preserve">
+    <value>Night Battle, 2nd Round</value>
+  </data>
+  <data name="BattlePhaseNightSupportExpedition" xml:space="preserve">
+    <value>Night Support Expedition</value>
+  </data>
 </root>

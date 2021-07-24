@@ -133,6 +133,177 @@ namespace ElectronicObserver.Properties.Data {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 第一次航空戦.
+        /// </summary>
+        public static string BattlePhaseAirAttackFirst {
+            get {
+                return ResourceManager.GetString("BattlePhaseAirAttackFirst", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 第二次航空戦.
+        /// </summary>
+        public static string BattlePhaseAirAttackSecond {
+            get {
+                return ResourceManager.GetString("BattlePhaseAirAttackSecond", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 防空戦.
+        /// </summary>
+        public static string BattlePhaseAirBaseRaid {
+            get {
+                return ResourceManager.GetString("BattlePhaseAirBaseRaid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 航空戦.
+        /// </summary>
+        public static string BattlePhaseAirBattle {
+            get {
+                return ResourceManager.GetString("BattlePhaseAirBattle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 空襲戦.
+        /// </summary>
+        public static string BattlePhaseAirRaid {
+            get {
+                return ResourceManager.GetString("BattlePhaseAirRaid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 雷撃戦.
+        /// </summary>
+        public static string BattlePhaseClosingTorpedo {
+            get {
+                return ResourceManager.GetString("BattlePhaseClosingTorpedo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 噴式航空戦.
+        /// </summary>
+        public static string BattlePhaseJet {
+            get {
+                return ResourceManager.GetString("BattlePhaseJet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 基地航空隊攻撃.
+        /// </summary>
+        public static string BattlePhaseLandBasedAir {
+            get {
+                return ResourceManager.GetString("BattlePhaseLandBasedAir", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 噴式基地航空隊攻撃.
+        /// </summary>
+        public static string BattlePhaseLandBasedJet {
+            get {
+                return ResourceManager.GetString("BattlePhaseLandBasedJet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 夜戦.
+        /// </summary>
+        public static string BattlePhaseNightBattle {
+            get {
+                return ResourceManager.GetString("BattlePhaseNightBattle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 第一次夜戦.
+        /// </summary>
+        public static string BattlePhaseNightBattleFirst {
+            get {
+                return ResourceManager.GetString("BattlePhaseNightBattleFirst", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 第二次夜戦.
+        /// </summary>
+        public static string BattlePhaseNightBattleSecond {
+            get {
+                return ResourceManager.GetString("BattlePhaseNightBattleSecond", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 夜間支援攻撃.
+        /// </summary>
+        public static string BattlePhaseNightSupportExpedition {
+            get {
+                return ResourceManager.GetString("BattlePhaseNightSupportExpedition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 先制対潜.
+        /// </summary>
+        public static string BattlePhaseOpeningAsw {
+            get {
+                return ResourceManager.GetString("BattlePhaseOpeningAsw", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 先制雷撃.
+        /// </summary>
+        public static string BattlePhaseOpeningTorpedo {
+            get {
+                return ResourceManager.GetString("BattlePhaseOpeningTorpedo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 第一次砲撃戦.
+        /// </summary>
+        public static string BattlePhaseShellingFirst {
+            get {
+                return ResourceManager.GetString("BattlePhaseShellingFirst", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 第二次砲撃戦.
+        /// </summary>
+        public static string BattlePhaseShellingSecond {
+            get {
+                return ResourceManager.GetString("BattlePhaseShellingSecond", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 第三次砲撃戦.
+        /// </summary>
+        public static string BattlePhaseShellingThird {
+            get {
+                return ResourceManager.GetString("BattlePhaseShellingThird", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 支援攻撃.
+        /// </summary>
+        public static string BattlePhaseSupportExpedition {
+            get {
+                return ResourceManager.GetString("BattlePhaseSupportExpedition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to  : 装甲破壊.
         /// </summary>
         public static string BossDebuffed {

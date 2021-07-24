@@ -1,4 +1,5 @@
 ﻿using ElectronicObserver.Data.Battle.Detail;
+using ElectronicObserver.Properties.Data;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -19,32 +20,30 @@ namespace ElectronicObserver.Data.Battle.Phase
 		public readonly string Title;
 
 
-		private string TranslatedPhaseTitle(string title) {
-			switch (title)	{
-				default: return title;
-				case "噴式基地航空隊攻撃": return "Land-based Jet Air Attack";
-				case "噴式航空戦": return "Jet Air Attack";
-				case "基地航空隊攻撃": return "Land-based Air Attack";
-				case "防空戦": return "Land Base Air Raid";
-				case "航空戦": return "Air Battle";
-				case "空襲戦": return "Air Raid";
-				case "第一次航空戦": return "Air Attack, 1st"; 
-				case "第二次航空戦": return "Air Attack, 2nd";
-				case "支援攻撃": return "Support Expedition";
-				case "先制対潜": return "Opening ASW";
-				case "先制雷撃": return "Opening Torpedo Salvo";
-				case "第一次砲撃戦": return "Shelling, 1st Round";
-				case "第二次砲撃戦": return "Shelling, 2nd Round";
-				case "第三次砲撃戦": return "Shelling, 3rd Round";
-				case "雷撃戦": return "Closing Torpedo Salvo";
-				case "夜戦": return "Night Battle";
-				case "第一次夜戦": return "Night Battle, 1st Round";
-				case "第二次夜戦": return "Night Battle, 2nd Round";
-				case "夜間支援攻撃": return "Night Support Expedition";
+		private string TranslatedPhaseTitle(string title) => title switch
+		{
+			"噴式基地航空隊攻撃" => BattleRes.BattlePhaseLandBasedJet,
+			"噴式航空戦" => BattleRes.BattlePhaseJet,
+			"基地航空隊攻撃" => BattleRes.BattlePhaseLandBasedAir,
+			"防空戦" => BattleRes.BattlePhaseAirBaseRaid,
+			"航空戦" => BattleRes.BattlePhaseAirBattle,
+			"空襲戦" => BattleRes.BattlePhaseAirRaid,
+			"第一次航空戦" => BattleRes.BattlePhaseAirAttackFirst,
+			"第二次航空戦" => BattleRes.BattlePhaseAirAttackSecond,
+			"支援攻撃" => BattleRes.BattlePhaseSupportExpedition,
+			"先制対潜" => BattleRes.BattlePhaseOpeningAsw,
+			"先制雷撃" => BattleRes.BattlePhaseOpeningTorpedo,
+			"第一次砲撃戦" => BattleRes.BattlePhaseShellingFirst,
+			"第二次砲撃戦" => BattleRes.BattlePhaseShellingSecond,
+			"第三次砲撃戦" => BattleRes.BattlePhaseShellingThird,
+			"雷撃戦" => BattleRes.BattlePhaseClosingTorpedo,
+			"夜戦" => BattleRes.BattlePhaseNightBattle,
+			"第一次夜戦" => BattleRes.BattlePhaseNightBattleFirst,
+			"第二次夜戦" => BattleRes.BattlePhaseNightBattleSecond,
+			"夜間支援攻撃" => BattleRes.BattlePhaseNightSupportExpedition,
 
-
-			}
-		}
+			_ => title,
+		};
 
 		protected PhaseBase(BattleData battle, string title)
 		{
