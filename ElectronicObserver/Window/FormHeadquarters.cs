@@ -426,8 +426,10 @@ namespace ElectronicObserver.Window
 					resweek == null ? 0 : (db.Material.ModdingMaterial - resweek.ModdingMaterial),
 					resmonth == null ? 0 : (db.Material.ModdingMaterial - resmonth.ModdingMaterial)));
 
+			const int furnitureCoinCap = 350000;
+
 			FurnitureCoin.Text = db.Admiral.FurnitureCoin.ToString();
-			if (db.Admiral.FurnitureCoin >= 200000)
+			if (db.Admiral.FurnitureCoin >= furnitureCoinCap)
 			{
 				FurnitureCoin.ForeColor = configUI.Headquarters_CoinMaxFG;
 				FurnitureCoin.BackColor = configUI.Headquarters_CoinMaxBG;
