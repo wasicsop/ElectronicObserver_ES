@@ -33,5 +33,5 @@ using ElectronicObserver.Utility;
 // すべての値を指定するか、下のように '*' を使ってビルドおよびリビジョン番号を
 // 既定値にすることができます:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("4.6.8.5")]
-[assembly: AssemblyFileVersion("4.6.8.5")]
+[assembly: AssemblyVersion("4.6.8.6")]
+[assembly: AssemblyFileVersion("4.6.8.6")]
