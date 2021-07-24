@@ -118,6 +118,7 @@ namespace ElectronicObserver.Window.Wpf.Headquarters
 			o.APIList["api_req_kousyou/destroyship"].RequestReceived += Updated;
 			o.APIList["api_req_kousyou/destroyitem2"].RequestReceived += Updated;
 			o.APIList["api_req_member/updatecomment"].RequestReceived += Updated;
+			o.APIList["api_req_kaisou/powerup"].RequestReceived += Updated;
 
 			o.APIList["api_get_member/basic"].ResponseReceived += Updated;
 			o.APIList["api_get_member/slot_item"].ResponseReceived += Updated;
