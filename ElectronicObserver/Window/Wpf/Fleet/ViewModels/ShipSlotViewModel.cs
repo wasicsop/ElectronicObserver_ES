@@ -130,7 +130,12 @@ namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels
 
 		private void AircraftChange(object sender, PropertyChangedEventArgs e)
 		{
-			if (e.PropertyName is not (nameof(AircraftCurrent) or nameof(AircraftMax) or nameof(ShowAircraft)))
+			// when EquipmentIconType changes the plane count needs to be redrawn
+			// if you equip a plane on a 0 slot, the 0 must be displayed
+			// if you equip a non-plane on a 0 slot, the 0 must not be displayed
+			// if you don't redraw when switching plane <-> non-plane, the 0 will be displayed incorrectly
+			if (e.PropertyName is not (nameof(AircraftCurrent) or nameof(AircraftMax) or nameof(ShowAircraft)
+				or nameof(EquipmentIconType)))
 			{
 				return;
 			}
