@@ -8,7 +8,7 @@
 			 x:Name="HealthBarControl"
 
              mc:Ignorable="d" 
-             d:DesignHeight="45" d:DesignWidth="180">
+             d:DesignHeight="25" d:DesignWidth="80">
 	<Border
 		DataContext="{Binding ViewModel, ElementName=HealthBarControl}"
 		Background="{Binding BackgroundColor}"
@@ -28,13 +28,13 @@
 
 			<Grid Grid.Row="0" x:Name="HealthBarText">
 				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="Auto" SharedSizeGroup="HealthBarSideValue" />
-					<ColumnDefinition Width="*" />
-					<ColumnDefinition Width="Auto" SharedSizeGroup="HealthBarSideValue" />
+					<ColumnDefinition Width="Auto" SharedSizeGroup="HealthBarSideValue" MinWidth="20" />
+					<ColumnDefinition Width="*" MinWidth="30"  />
+					<ColumnDefinition Width="Auto" SharedSizeGroup="HealthBarSideValue" MinWidth="20" />
 				</Grid.ColumnDefinitions>
 
-				<TextBlock Grid.Column="0" Text="{Binding Text}" d:Text="DD" VerticalAlignment="Bottom" FontSize="9" Foreground="{Binding SubFontBrush}" />
-				<TextBlock Grid.Column="1" Text="{Binding Health}" d:Text="13" TextAlignment="Center" Margin="4 0" Foreground="{Binding MainFontBrush}" />
+				<TextBlock Grid.Column="0" Text="{Binding Text}" d:Text="SSV" VerticalAlignment="Bottom" FontSize="9" Foreground="{Binding SubFontBrush}" />
+				<TextBlock Grid.Column="1" Text="{Binding Health}" d:Text="2400" TextAlignment="Center" Margin="4 0" Foreground="{Binding MainFontBrush}" />
 				<TextBlock Grid.Column="2" Text="{Binding DamageTaken}" d:Text="-6" TextAlignment="Right" VerticalAlignment="Bottom" FontSize="9" Foreground="{Binding SubFontBrush}" />
 			</Grid>
 
