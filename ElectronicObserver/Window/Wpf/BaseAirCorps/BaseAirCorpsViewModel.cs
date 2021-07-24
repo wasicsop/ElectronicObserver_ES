@@ -64,8 +64,6 @@ namespace ElectronicObserver.Window.Wpf.BaseAirCorps
 			{
 				var squadron = corps[i + 1];
 				IEquipmentData? eq = squadron.EquipmentInstance;
-
-				SlotList[i].Equipment = eq;
 				
 				switch (squadron.State)
 				{
@@ -77,6 +75,8 @@ namespace ElectronicObserver.Window.Wpf.BaseAirCorps
 						// SlotList[i].AircraftMax =
 						// SlotList[i].Level =
 						// SlotList[i].AircraftLevel = 0;
+						// clear equip slot even though it exists in api in case 2 (relocation)
+						SlotList[i].Equipment = null;
 						SlotList[i].AircraftMax = 0;
 						SlotList[i].AircraftCurrent = 0;
 						break;
@@ -88,6 +88,7 @@ namespace ElectronicObserver.Window.Wpf.BaseAirCorps
 						// SlotList[i].AircraftMax = squadron.AircraftMax;
 						// SlotList[i].Level = eq.Level;
 						// SlotList[i].AircraftLevel = eq.AircraftLevel;
+						SlotList[i].Equipment = eq;
 						SlotList[i].AircraftMax = squadron.AircraftMax;
 						SlotList[i].AircraftCurrent = squadron.AircraftCurrent;
 						break;
