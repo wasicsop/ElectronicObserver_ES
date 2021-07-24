@@ -49,7 +49,7 @@ namespace ElectronicObserver.Data.Quest
 			}
 			else
 			{
-				sb.Append("Expedition x ");
+				sb.Append(QuestTracking.Expedition);
 			}
 			sb.Append(ProgressMax);
 

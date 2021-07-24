@@ -134,15 +134,15 @@ namespace ElectronicObserver.Data.Quest
 					case -1:
 						return KCDatabase.Instance.MasterEquipments[s].NameEN;
 					case 1:
-						return $"Illust[{s}]";
+						return $"{QuestTracking.Illust}[{s}]";
 					case 2:
 						return KCDatabase.Instance.EquipmentTypes[s].NameEN;
 					case 3:
-						return $"Icon[{s}]";
+						return $"{QuestTracking.Icon}[{s}]";
 					default:
 						return $"???[{s}]";
 				}
-			}))) + " scrap ×" + ProgressMax + (CountsAmount ? "pcs" : "times");
+			}))) + QuestTracking.Discard + ProgressMax + (CountsAmount ? QuestTracking.NumberOfPieces : QuestTracking.NumberOfTimes);
 		}
 
 

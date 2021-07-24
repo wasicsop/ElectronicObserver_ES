@@ -71,27 +71,30 @@ namespace ElectronicObserver.Data.Quest
 				sb.Append(string.Join("・", TargetArea.OrderBy(s => s).Select(s => string.Format("{0}-{1}", s / 10, s % 10))));
 			}
 			if (IsBossOnly)
-				sb.Append(" Boss ");
+			{
+				sb.Append(QuestTracking.ClearConditionBoss);
+			}
+
 			switch (LowestRank)
 			{
 				case 0:
-					sb.Append("clear ×");
+					sb.Append(QuestTracking.ClearConditionClear);
 					break;
 				case 1:
 				default:
-					sb.Append("Battle ×");
+					sb.Append(QuestTracking.ClearConditionBattle);
 					break;
 				case 2:
 				case 3:
-					sb.Append(Constants.GetWinRank(LowestRank) + " only");
+					sb.Append(Constants.GetWinRank(LowestRank) + QuestTracking.ClearConditionOnly);
 					break;
 				case 4:
-					sb.Append("victories ×");
+					sb.Append("");
 					break;
 				case 5:
 				case 6:
 				case 7:
-					sb.Append(Constants.GetWinRank(LowestRank) + "-rank victories ×");
+					sb.Append(Constants.GetWinRank(LowestRank) + QuestTracking.ClearConditionRankVictories);
 					break;
 			}
 			sb.Append(ProgressMax);

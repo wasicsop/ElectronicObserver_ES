@@ -240,19 +240,19 @@ namespace ElectronicObserver.Data.Quest
 		{
 			var list = new List<DSPair>
 			{
-				new DSPair(Math.Min((double)sortieCount / sortieMax, 1.0), string.Format("{0}/{1} sorties", sortieCount, sortieMax)),
-				new DSPair(Math.Min((double)sWinCount / sWinMax, 1.0), string.Format("{0}/{1} S-ranks", sWinCount, sWinMax)),
-				new DSPair(Math.Min((double)bossCount / bossMax, 1.0), string.Format("{0}/{1} boss encounters", bossCount, bossMax)),
-				new DSPair(Math.Min((double)bossWinCount / bossWinMax, 1.0), string.Format("{0}/{1} boss victories", bossWinCount, bossWinMax))
+				new DSPair(Math.Min((double)sortieCount / sortieMax, 1.0), string.Format(QuestTracking.AGoSorties, sortieCount, sortieMax)),
+				new DSPair(Math.Min((double)sWinCount / sWinMax, 1.0), string.Format(QuestTracking.AGoSRanks, sWinCount, sWinMax)),
+				new DSPair(Math.Min((double)bossCount / bossMax, 1.0), string.Format(QuestTracking.AGoBossEncounters, bossCount, bossMax)),
+				new DSPair(Math.Min((double)bossWinCount / bossWinMax, 1.0), string.Format(QuestTracking.AGoBossVictories, bossWinCount, bossWinMax))
 			};
 
 			var slist = list.Where(elem => elem.Key < 1.0).OrderBy(elem => elem.Key).Select(elem => elem.Value);
-			return string.Format("{0}\n ({1:p1})", slist.Count() > 0 ? string.Join(" \n", slist) : "Complete!", ProgressPercentage);
+			return string.Format("{0}\n ({1:p1})", slist.Count() > 0 ? string.Join(" \n", slist) : $"{QuestTracking.Complete}!", ProgressPercentage);
 		}
 
 		public override string GetClearCondition()
 		{
-			return string.Format("Sortie ×{0}\nS-rank ×{1}\nboss ×{2}\nboss victories ×{3}", sortieMax, sWinMax, bossMax, bossWinMax);
+			return string.Format(QuestTracking.AGoClearCondition, sortieMax, sWinMax, bossMax, bossWinMax);
 		}
 	}
 

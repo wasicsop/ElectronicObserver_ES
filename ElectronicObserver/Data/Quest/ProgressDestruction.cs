@@ -28,7 +28,7 @@ namespace ElectronicObserver.Data.Quest
 
 		public override string GetClearCondition()
 		{
-			return "Dismantle ship ×" + ProgressMax;
+			return QuestTracking.Dismantlement + ProgressMax;
 		}
 	}
 }

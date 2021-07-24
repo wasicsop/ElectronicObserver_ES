@@ -160,12 +160,63 @@
     <value> scrap ×</value>
   </data>
   <data name="NumberOfPieces" xml:space="preserve">
-    <value> pcs</value>
+    <value>pcs</value>
   </data>
   <data name="NumberOfTimes" xml:space="preserve">
-    <value> times</value>
+    <value>times</value>
   </data>
   <data name="GaugeIndex" xml:space="preserve">
     <value> (Phase {0})</value>
+  </data>
+  <data name="AGoSorties" xml:space="preserve">
+    <value>{0}/{1} sorties</value>
+  </data>
+  <data name="AGoSRanks" xml:space="preserve">
+    <value>{0}/{1} S-ranks</value>
+  </data>
+  <data name="AGoBossEncounters" xml:space="preserve">
+    <value>{0}/{1} boss encounters</value>
+  </data>
+  <data name="AGoBossVictories" xml:space="preserve">
+    <value>{0}/{1} boss victories</value>
+  </data>
+  <data name="AGoClearCondition" xml:space="preserve">
+    <value>Sortie ×{0}
+S-rank ×{1}
+boss ×{2}
+boss victories ×{3}</value>
+  </data>
+  <data name="ClearConditionBoss" xml:space="preserve">
+    <value> Boss </value>
+  </data>
+  <data name="ClearConditionClear" xml:space="preserve">
+    <value>clear ×</value>
+  </data>
+  <data name="ClearConditionBattle" xml:space="preserve">
+    <value>Battle ×</value>
+  </data>
+  <data name="ClearConditionOnly" xml:space="preserve">
+    <value> only</value>
+  </data>
+  <data name="ClearConditionVictories" xml:space="preserve">
+    <value>victories ×</value>
+  </data>
+  <data name="ClearConditionRankVictories" xml:space="preserve">
+    <value>-rank victories ×</value>
+  </data>
+  <data name="Illust" xml:space="preserve">
+    <value>Illust</value>
+  </data>
+  <data name="Icon" xml:space="preserve">
+    <value>Icon</value>
+  </data>
+  <data name="Expedition" xml:space="preserve">
+    <value>Expedition x </value>
+  </data>
+  <data name="AutoSavedProgress" xml:space="preserve">
+    <value>Successfully autosaved mission progress.</value>
+  </data>
+  <data name="Exercise" xml:space="preserve">
+    <value>Exercise </value>
   </data>
 </root>

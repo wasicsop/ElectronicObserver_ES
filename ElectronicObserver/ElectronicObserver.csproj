@@ -70,6 +70,11 @@
 		  <AutoGen>True</AutoGen>
 		  <DependentUpon>FleetRes.resx</DependentUpon>
 		</Compile>
+		<Compile Update="Data\Quest\QuestTracking.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>QuestTracking.resx</DependentUpon>
+		</Compile>
 		<Compile Update="Notifier\NotifierRes.Designer.cs">
 			<DesignTime>True</DesignTime>
 			<AutoGen>True</AutoGen>
@@ -448,6 +453,10 @@
 		<EmbeddedResource Update="Data\FleetRes.resx">
 		  <Generator>PublicResXFileCodeGenerator</Generator>
 		  <LastGenOutput>FleetRes.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Data\Quest\QuestTracking.resx">
+		  <Generator>PublicResXFileCodeGenerator</Generator>
+		  <LastGenOutput>QuestTracking.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 		<EmbeddedResource Update="Notifier\NotifierRes.resx">
 			<Generator>PublicResXFileCodeGenerator</Generator>

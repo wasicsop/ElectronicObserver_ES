@@ -192,7 +192,7 @@ namespace ElectronicObserver.Data.Quest
 				_prevTime = DateTime.Now;
 
 				Save();
-				Utility.Logger.Add(1, "Successfully autosaved mission progress.");
+				Utility.Logger.Add(1, QuestTracking.AutoSavedProgress);
 			}
 
 		}

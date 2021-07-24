@@ -142,8 +142,9 @@ namespace ElectronicObserver.Data.Quest
 			};
 		}
 
-		public override string GetClearCondition() {
-			return "Exercise " + ( WinOnly ? "victories ×" : "×") + ProgressMax;
+		public override string GetClearCondition()
+		{
+			return QuestTracking.Exercise + (WinOnly ? QuestTracking.ClearConditionVictories : "×") + ProgressMax;
 		}
 	}
 }

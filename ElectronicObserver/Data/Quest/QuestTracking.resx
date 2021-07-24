@@ -168,4 +168,52 @@
   <data name="GaugeIndex" xml:space="preserve">
     <value>(第{0}ゲージ)</value>
   </data>
+  <data name="AGoSorties" xml:space="preserve">
+    <value>出撃 {0}/{1}</value>
+  </data>
+  <data name="AGoSRanks" xml:space="preserve">
+    <value>S勝利 {0}/{1}</value>
+  </data>
+  <data name="AGoBossEncounters" xml:space="preserve">
+    <value>ボス {0}/{1}</value>
+  </data>
+  <data name="AGoBossVictories" xml:space="preserve">
+    <value>ボス勝利 {0}/{1}</value>
+  </data>
+  <data name="AGoClearCondition" xml:space="preserve">
+    <value>出撃 {0}, S勝利 {1}, ボス {2}, ボス勝利 {3}</value>
+  </data>
+  <data name="ClearConditionBoss" xml:space="preserve">
+    <value>ボス</value>
+  </data>
+  <data name="ClearConditionClear" xml:space="preserve">
+    <value>到達</value>
+  </data>
+  <data name="ClearConditionBattle" xml:space="preserve">
+    <value>戦闘</value>
+  </data>
+  <data name="ClearConditionOnly" xml:space="preserve">
+    <value>以上</value>
+  </data>
+  <data name="ClearConditionVictories" xml:space="preserve">
+    <value>勝利</value>
+  </data>
+  <data name="ClearConditionRankVictories" xml:space="preserve">
+    <value>勝利</value>
+  </data>
+  <data name="Illust" xml:space="preserve">
+    <value>図鑑</value>
+  </data>
+  <data name="Icon" xml:space="preserve">
+    <value>アイコン</value>
+  </data>
+  <data name="Expedition" xml:space="preserve">
+    <value>遠征</value>
+  </data>
+  <data name="Exercise" xml:space="preserve">
+    <value>演習</value>
+  </data>
+  <data name="AutoSavedProgress" xml:space="preserve">
+    <value>任務進捗のオートセーブを行いました。</value>
+  </data>
 </root>
