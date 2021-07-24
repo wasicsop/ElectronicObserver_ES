@@ -470,7 +470,7 @@ namespace ElectronicObserver.Window.Control
 
 					case FleetStates.Docking:
 						state.ShortenedText = DateTimeHelper.ToTimeRemainString( state.Timer );
-						state.Text = "On dock " + state.ShortenedText;
+						state.Text = FleetRes.OnDock + state.ShortenedText;
 						state.UpdateText();
 						if (Utility.Configuration.Config.FormFleet.BlinkAtCompletion && (state.Timer - DateTime.Now).TotalMilliseconds <= Utility.Configuration.Config.NotifierRepair.AccelInterval)
 							state.Label.BackColor = DateTime.Now.Second % 2 == 0 ? Color.LightGreen : Color.Transparent;
