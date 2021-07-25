@@ -92,7 +92,13 @@
 						<Border Grid.Row="1" Grid.Column="3" Background="Transparent" ToolTip="{Binding SearchingEnemyToolTip}">
 							<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
 								<Image Source="{Binding SearchingEnemyIcon}" />
-								<TextBlock TextAlignment="Center" Text="{Binding SearchingEnemyText}" d:Text="Success"/>
+								<TextBlock
+									MaxWidth="60"
+									TextAlignment="Center"
+									Text="{Binding SearchingEnemyText}"
+									TextTrimming="CharacterEllipsis"
+									d:Text="Night Contact"
+								/>
 							</StackPanel>
 						</Border>
 
