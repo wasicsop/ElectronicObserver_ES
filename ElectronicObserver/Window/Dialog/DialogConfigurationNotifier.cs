@@ -28,6 +28,8 @@ namespace ElectronicObserver.Window.Dialog
 		{
 			InitializeComponent();
 
+			Translate();
+
 			_notifier = notifier;
 
 			//init base
@@ -134,8 +136,6 @@ namespace ElectronicObserver.Window.Dialog
 			}
 
 			DialogOpenSound.Filter = "音楽ファイル|" + string.Join(";", Utility.MediaPlayer.SupportedExtensions.Select(s => "*." + s)) + "|File|*";
-
-			Translate();
 		}
 
 		public void Translate()
