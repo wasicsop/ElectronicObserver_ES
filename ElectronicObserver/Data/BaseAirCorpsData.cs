@@ -116,8 +116,6 @@ namespace ElectronicObserver.Data
 					break;
 
 				case "api_req_air_corps/change_deployment_base":
-					base.LoadFromResponse(apiname, (object)data);
-
 					Distance = (int)data.api_distance.api_base + (int)data.api_distance.api_bonus;
 					Base_Distance = (int)data.api_distance.api_base;
 					Bonus_Distance = (int)data.api_distance.api_bonus;
