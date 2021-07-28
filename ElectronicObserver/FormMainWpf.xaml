@@ -34,8 +34,8 @@
 
         mc:Ignorable="d"
         Title="Electronic Observer"
-		Height="450"
-        Width="800"
+        d:Height="450"
+        d:Width="800"
 >
 	<i:Interaction.Triggers>
 		<i:EventTrigger EventName="Closing">
@@ -63,8 +63,8 @@
 					<MenuItem Header="Load" Command="{Binding LoadDataCommand}" />
 				</MenuItem>
 				<MenuItem Header="Layout">
-					<MenuItem Header="Save" Command="{Binding SaveLayoutCommand}" />
-					<MenuItem Header="Load" Command="{Binding LoadLayoutCommand}" />
+					<MenuItem Header="Save" Command="{Binding SaveLayoutCommand}" CommandParameter="{Binding ElementName=FormMainWpfControl}" />
+					<MenuItem Header="Load" Command="{Binding LoadLayoutCommand}" CommandParameter="{Binding ElementName=FormMainWpfControl}" />
 				</MenuItem>
 				<MenuItem Header="Notification">
 					<MenuItem Header="Disable" IsCheckable="True" IsChecked="{Binding NotificationsSilenced}" Command="{Binding SilenceNotificationsCommand}" />

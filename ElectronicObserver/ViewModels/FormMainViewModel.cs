@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -51,6 +52,7 @@ namespace ElectronicObserver.ViewModels
 		private Configuration.ConfigurationData Config { get; }
 		private System.Windows.Forms.Timer UIUpdateTimer { get; }
 		private string LayoutPath { get; } = @"Settings\Layout\Default.xml";
+		private string PositionPath => Path.ChangeExtension(LayoutPath, ".Position.json");
 		public bool NotificationsSilenced { get; set; }
 		private DateTime PrevPlayTimeRecorded { get; set; } = DateTime.MinValue;
 		public FontFamily Font { get; set; }
@@ -66,6 +68,8 @@ namespace ElectronicObserver.ViewModels
 			new Vs2013DarkTheme(),
 		};
 		public Theme CurrentTheme { get; set; }
+
+		private WindowPosition Position { get; set; } = new();
 
 		#region Icons
 
@@ -202,8 +206,8 @@ namespace ElectronicObserver.ViewModels
 			ViewVersionCommand = new RelayCommand(StripMenu_Help_Version_Click);
 
 			OpenViewCommand = new RelayCommand<AnchorableViewModel>(OpenView);
-			SaveLayoutCommand = new RelayCommand(SaveLayout);
-			LoadLayoutCommand = new RelayCommand(LoadLayout);
+			SaveLayoutCommand = new RelayCommand<object>(SaveLayout);
+			LoadLayoutCommand = new RelayCommand<object>(LoadLayout);
 			ClosingCommand = new RelayCommand<CancelEventArgs>(Close);
 			ClosedCommand = new RelayCommand(Closed);
 
@@ -445,20 +449,52 @@ namespace ElectronicObserver.ViewModels
 			}
 		}
 
-		public void SaveLayout()
+		public void SaveLayout(object? sender)
 		{
+			if (sender is not FormMainWpf window) return;
+			
 			XmlLayoutSerializer serializer = new(DockingManager);
 			serializer.Serialize(LayoutPath);
+			
+			Position.Top = window.Top;
+			Position.Left = window.Left;
+			Position.Height = window.Height;
+			Position.Width = window.Width;
+			Position.WindowState = window.WindowState;
+
+			File.WriteAllText(PositionPath, JsonSerializer.Serialize(Position, new()
+			{
+				WriteIndented = true
+			}));
 		}
 
-		public void LoadLayout()
+		public void LoadLayout(object? sender)
 		{
+			if (sender is not FormMainWpf window) return;
 			if (!File.Exists(LayoutPath)) return;
 
 			DockingManager.Layout = new LayoutRoot();
 
 			XmlLayoutSerializer serializer = new(DockingManager);
 			serializer.Deserialize(LayoutPath);
+
+			if (File.Exists(PositionPath))
+			{
+				try
+				{
+					Position = JsonSerializer.Deserialize<WindowPosition>(File.ReadAllText(PositionPath)) ?? new();
+				}
+				catch
+				{
+					// couldn't get position, keep the default
+				}
+			}
+
+			window.Top = Position.Top;
+			window.Left = Position.Left;
+			window.Width = Position.Width;
+			window.Height = Position.Height;
+			window.WindowState = Position.WindowState;
 		}
 
 		private void StripMenu_File_Notification_MuteAll_Click()

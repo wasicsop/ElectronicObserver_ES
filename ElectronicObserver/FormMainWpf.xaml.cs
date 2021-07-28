@@ -33,8 +33,8 @@ namespace ElectronicObserver
 
 			ViewModel = new(DockingManager, this);
 
-			Loaded += (_, _) => ViewModel.LoadLayout();
-			Closed += (_, _) => ViewModel.SaveLayout();
+			Loaded += (sender, _) => ViewModel.LoadLayout(sender);
+			Closed += (sender, _) => ViewModel.SaveLayout(sender);
 		}
 	}
 }
