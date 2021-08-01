@@ -51,7 +51,9 @@ namespace ElectronicObserver.ViewModels
 		private DockingManager DockingManager { get; }
 		private Configuration.ConfigurationData Config { get; }
 		private System.Windows.Forms.Timer UIUpdateTimer { get; }
-		private string LayoutPath { get; } = @"Settings\Layout\Default.xml";
+		private string DefaultLayoutPath => @"Settings\Layout\Default.xml";
+		// todo: add multi layout support after full wpf release
+		private string LayoutPath => DefaultLayoutPath; // Config.Life.LayoutFilePath;
 		private string PositionPath => Path.ChangeExtension(LayoutPath, ".Position.json");
 		public bool NotificationsSilenced { get; set; }
 		private DateTime PrevPlayTimeRecorded { get; set; } = DateTime.MinValue;
