@@ -22,7 +22,7 @@ namespace ElectronicObserver.Observer {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class ObserverRes {
+    public class ObserverRes {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace ElectronicObserver.Observer {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ElectronicObserver.Observer.ObserverRes", typeof(ObserverRes).Assembly);
@@ -51,7 +51,7 @@ namespace ElectronicObserver.Observer {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -61,9 +61,18 @@ namespace ElectronicObserver.Observer {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} 司令官Lv.{1}.
+        /// </summary>
+        public static string AdmiralNameLevel {
+            get {
+                return ResourceManager.GetString("AdmiralNameLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 対空.
         /// </summary>
-        internal static string AntiAir {
+        public static string AntiAir {
             get {
                 return ResourceManager.GetString("AntiAir", resourceCulture);
             }
@@ -72,7 +81,7 @@ namespace ElectronicObserver.Observer {
         /// <summary>
         ///   Looks up a localized string similar to 装甲.
         /// </summary>
-        internal static string Armor {
+        public static string Armor {
             get {
                 return ResourceManager.GetString("Armor", resourceCulture);
             }
@@ -81,7 +90,7 @@ namespace ElectronicObserver.Observer {
         /// <summary>
         ///   Looks up a localized string similar to 対潜.
         /// </summary>
-        internal static string Asw {
+        public static string Asw {
             get {
                 return ResourceManager.GetString("Asw", resourceCulture);
             }
@@ -90,7 +99,7 @@ namespace ElectronicObserver.Observer {
         /// <summary>
         ///   Looks up a localized string similar to 装備シナジーを検出しました：.
         /// </summary>
-        internal static string DetectedSynergy {
+        public static string DetectedSynergy {
             get {
                 return ResourceManager.GetString("DetectedSynergy", resourceCulture);
             }
@@ -99,7 +108,7 @@ namespace ElectronicObserver.Observer {
         /// <summary>
         ///   Looks up a localized string similar to 回避.
         /// </summary>
-        internal static string Evasion {
+        public static string Evasion {
             get {
                 return ResourceManager.GetString("Evasion", resourceCulture);
             }
@@ -108,16 +117,52 @@ namespace ElectronicObserver.Observer {
         /// <summary>
         ///   Looks up a localized string similar to 火力.
         /// </summary>
-        internal static string Firepower {
+        public static string Firepower {
             get {
                 return ResourceManager.GetString("Firepower", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 🥇 甲種勲章保有数: {0}.
+        /// </summary>
+        public static string FirstClassMedals {
+            get {
+                return ResourceManager.GetString("FirstClassMedals", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to アイドル.
+        /// </summary>
+        public static string Idle {
+            get {
+                return ResourceManager.GetString("Idle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 艦隊これくしょん.
+        /// </summary>
+        public static string KantaiCollection {
+            get {
+                return ResourceManager.GetString("KantaiCollection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 統合の読み込み .
+        /// </summary>
+        public static string LoadingIntegration {
+            get {
+                return ResourceManager.GetString("LoadingIntegration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 索敵.
         /// </summary>
-        internal static string Los {
+        public static string Los {
             get {
                 return ResourceManager.GetString("Los", resourceCulture);
             }
@@ -126,7 +171,7 @@ namespace ElectronicObserver.Observer {
         /// <summary>
         ///   Looks up a localized string similar to 運.
         /// </summary>
-        internal static string Luck {
+        public static string Luck {
             get {
                 return ResourceManager.GetString("Luck", resourceCulture);
             }
@@ -135,16 +180,43 @@ namespace ElectronicObserver.Observer {
         /// <summary>
         ///   Looks up a localized string similar to 射程.
         /// </summary>
-        internal static string Range {
+        public static string Range {
             get {
                 return ResourceManager.GetString("Range", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ランクデータが読み込まれない.
+        /// </summary>
+        public static string RankDataNotLoaded {
+            get {
+                return ResourceManager.GetString("RankDataNotLoaded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 🛠 {0}艦を修理する.
+        /// </summary>
+        public static string RepairingShips {
+            get {
+                return ResourceManager.GetString("RepairingShips", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {1}で{0}位.
+        /// </summary>
+        public static string ServerRank {
+            get {
+                return ResourceManager.GetString("ServerRank", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 雷装.
         /// </summary>
-        internal static string Torpedo {
+        public static string Torpedo {
             get {
                 return ResourceManager.GetString("Torpedo", resourceCulture);
             }

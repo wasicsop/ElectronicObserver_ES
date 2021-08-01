@@ -127,4 +127,28 @@
   <data name="Asw" xml:space="preserve">
     <value>対潜</value>
   </data>
+  <data name="RepairingShips" xml:space="preserve">
+    <value>🛠 {0}艦を修理する</value>
+  </data>
+  <data name="FirstClassMedals" xml:space="preserve">
+    <value>🥇 甲種勲章保有数: {0}</value>
+  </data>
+  <data name="ServerRank" xml:space="preserve">
+    <value>{1}で{0}位</value>
+  </data>
+  <data name="AdmiralNameLevel" xml:space="preserve">
+    <value>{0} 司令官Lv.{1}</value>
+  </data>
+  <data name="RankDataNotLoaded" xml:space="preserve">
+    <value>ランクデータが読み込まれない</value>
+  </data>
+  <data name="KantaiCollection" xml:space="preserve">
+    <value>艦隊これくしょん</value>
+  </data>
+  <data name="Idle" xml:space="preserve">
+    <value>アイドル</value>
+  </data>
+  <data name="LoadingIntegration" xml:space="preserve">
+    <value>統合の読み込み </value>
+  </data>
 </root>

@@ -70,7 +70,7 @@ namespace ElectronicObserver.Observer.kcsapi.api_port
 
 				if (db.Fleet[1].CanAnchorageRepair)
 				{
-					dataForWS.top = string.Format("🛠 Repairing {0} ships", (db.Fleet[1].Members.Count - 1).ToString());
+					dataForWS.top = string.Format(ObserverRes.RepairingShips, (db.Fleet[1].Members.Count - 1).ToString());
 				}
 
                 dataForWS.bot = new List<string>();
@@ -80,19 +80,21 @@ namespace ElectronicObserver.Observer.kcsapi.api_port
 
 				if (db.Admiral.Senka != null && db.Server?.Name != null)
                 {
-                    dataForWS.bot.Add(string.Format("Rank {0} on {1}", db.Admiral.Senka, db.Server.Name));
+                    dataForWS.bot.Add(string.Format(ObserverRes.ServerRank, db.Admiral.Senka, db.Server.Name));
                 }
 
-                if (!String.IsNullOrEmpty(Instance.MapInfo))
+                if (!string.IsNullOrEmpty(Instance.MapInfo))
                 {
                     dataForWS.bot.Add(Instance.MapInfo);
                 }
 
                 if (Utility.Configuration.Config.Control.DiscordRPCShowFCM)
-                    dataForWS.bot.Add(new StringBuilder("🥇 First-class medals: ").Append(db.Admiral.Medals).ToString());
+                {
+                    dataForWS.bot.Add(string.Format(ObserverRes.FirstClassMedals, db.Admiral.Medals));
+                }
 
 
-                dataForWS.large = string.Format("{0} (HQ Level {1})", db.Admiral.AdmiralName, db.Admiral.Level);
+                dataForWS.large = string.Format(ObserverRes.AdmiralNameLevel, db.Admiral.AdmiralName, db.Admiral.Level);
 
                 dataForWS.small = db.Admiral.RankString;
             }

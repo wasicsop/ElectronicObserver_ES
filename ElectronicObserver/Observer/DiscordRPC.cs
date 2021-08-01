@@ -136,12 +136,12 @@ namespace ElectronicObserver.Observer
 			data = new DiscordFormat()
 			{
 				bot = new List<string>(),
-				top = "Loading Integration...",
-				large = "Kantai Collection",
-				small = "Idle"
+				top = ObserverRes.LoadingIntegration,
+				large = ObserverRes.KantaiCollection,
+				small = ObserverRes.Idle
 			};
 
-			data.bot.Add("Rank data not loaded");
+			data.bot.Add(ObserverRes.RankDataNotLoaded);
 
 			SetActivity();
 
