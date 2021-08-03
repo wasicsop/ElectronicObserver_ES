@@ -429,9 +429,13 @@
 			</StatusBarItem>
 
 			<StatusBarItem HorizontalAlignment="Right">
-				<Border Background="Transparent" ToolTip="{Binding ClockToolTip}">
-					<TextBlock Text="{Binding Clock}" d:Text="Clock" />
-				</Border>
+				<TextBlock
+					Background="Transparent"
+					Text="{Binding Clock}"
+					ToolTip="{Binding ClockToolTip}"
+
+					d:Text="Clock"
+					/>
 			</StatusBarItem>
 		</StatusBar>
 	</Grid>
