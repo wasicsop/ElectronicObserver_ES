@@ -142,6 +142,9 @@ namespace ElectronicObserver.ViewModels
 		public FormLogViewModel FormLog { get; }
 		public FormJsonViewModel FormJson { get; }
 
+		public StripStatusViewModel StripStatus { get; } = new();
+		public int ClockFormat { get; set; }
+
 		public ICommand SaveDataCommand { get; }
 		public ICommand LoadDataCommand { get; }
 		public ICommand SilenceNotificationsCommand { get; }
@@ -729,7 +732,7 @@ namespace ElectronicObserver.ViewModels
 		void Logger_LogAdded(Utility.Logger.LogData data)
 		{
 			// bottom bar
-			// StripStatus_Information.Text = data.Message.Replace("\r", " ").Replace("\n", " ");
+			StripStatus.Information = data.Message.Replace("\r", " ").Replace("\n", " ");
 		}
 
 		private void ConfigurationChanged()
@@ -740,14 +743,16 @@ namespace ElectronicObserver.ViewModels
 				StripMenu_View_Json.Enabled = StripMenu_View_Json.Visible =
 					c.Debug.EnableDebugMenu;
 
-			StripStatus.Visible = c.Life.ShowStatusBar;
+			*/
 
+			StripStatus.Visible = c.Life.ShowStatusBar;
+			/*
 			// Load で TopMost を変更するとバグるため(前述)
 			if (UIUpdateTimer.Enabled)
 				TopMost = c.Life.TopMost;
 			
-			ClockFormat = c.Life.ClockFormat;
 			*/
+			ClockFormat = c.Life.ClockFormat;
 			SetTheme();
 			
 			/*
@@ -801,7 +806,7 @@ namespace ElectronicObserver.ViewModels
 				_volumeUpdateState = -1;
 			*/
 		}
-
+		
 
 		private void SetFont()
 		{
@@ -843,7 +848,7 @@ namespace ElectronicObserver.ViewModels
 
 			// 東京標準時
 			DateTime now = Utility.Mathematics.DateTimeHelper.GetJapanStandardTimeNow();
-			/*
+			
 			switch (ClockFormat)
 			{
 				case 0: //時計表示
@@ -892,8 +897,8 @@ namespace ElectronicObserver.ViewModels
 						$"Next Quest reset: {(int)questTimer.TotalHours:D2}:{questTimer.Minutes:D2}:{questTimer.Seconds:D2}\r\n" +
 						$"{maintState}";
 
-					StripStatus_Clock.Text = now.ToString("HH\\:mm\\:ss");
-					StripStatus_Clock.ToolTipText = now.ToString("yyyy\\/MM\\/dd (ddd)\r\n") + resetMsg;
+					StripStatus.Clock = now.ToString("HH\\:mm\\:ss");
+					StripStatus.ClockToolTip = now.ToString("yyyy\\/MM\\/dd (ddd)\r\n") + resetMsg;
 
 					break;
 
@@ -904,8 +909,8 @@ namespace ElectronicObserver.ViewModels
 							border = border.AddHours(12);
 
 						var ts = border - now;
-						StripStatus_Clock.Text = string.Format("{0:D2}:{1:D2}:{2:D2}", (int)ts.TotalHours, ts.Minutes, ts.Seconds);
-						StripStatus_Clock.ToolTipText = now.ToString("yyyy\\/MM\\/dd (ddd) HH\\:mm\\:ss");
+						StripStatus.Clock = string.Format("{0:D2}:{1:D2}:{2:D2}", (int)ts.TotalHours, ts.Minutes, ts.Seconds);
+						StripStatus.ClockToolTip = now.ToString("yyyy\\/MM\\/dd (ddd) HH\\:mm\\:ss");
 
 					}
 					break;
@@ -917,14 +922,14 @@ namespace ElectronicObserver.ViewModels
 							border = border.AddHours(24);
 
 						var ts = border - now;
-						StripStatus_Clock.Text = string.Format("{0:D2}:{1:D2}:{2:D2}", (int)ts.TotalHours, ts.Minutes, ts.Seconds);
-						StripStatus_Clock.ToolTipText = now.ToString("yyyy\\/MM\\/dd (ddd) HH\\:mm\\:ss");
+						StripStatus.Clock = string.Format("{0:D2}:{1:D2}:{2:D2}", (int)ts.TotalHours, ts.Minutes, ts.Seconds);
+						StripStatus.ClockToolTip = now.ToString("yyyy\\/MM\\/dd (ddd) HH\\:mm\\:ss");
 
 					}
 					break;
 			}
 
-
+			/*
 			// WMP コントロールによって音量が勝手に変えられてしまうため、前回終了時の音量の再設定を試みる。
 			// 10回試行してダメなら諦める(例外によるラグを防ぐため)
 			// 起動直後にやらないのはちょっと待たないと音量設定が有効にならないから

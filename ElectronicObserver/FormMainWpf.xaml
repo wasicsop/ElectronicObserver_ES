@@ -49,6 +49,7 @@
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto" />
 			<RowDefinition />
+			<RowDefinition Height="Auto" />
 		</Grid.RowDefinitions>
 
 		<Menu Grid.Row="0" Height="Auto" Padding="2">
@@ -421,5 +422,17 @@
 			</LayoutRoot>
 
 		</DockingManager>
-    </Grid>
+
+		<StatusBar Grid.Row="2" DataContext="{Binding StripStatus}" Visibility="{Binding Visibility}">
+			<StatusBarItem>
+				<TextBlock Text="{Binding Information}" d:Text="Hello world!" />
+			</StatusBarItem>
+
+			<StatusBarItem HorizontalAlignment="Right">
+				<Border Background="Transparent" ToolTip="{Binding ClockToolTip}">
+					<TextBlock Text="{Binding Clock}" d:Text="Clock" />
+				</Border>
+			</StatusBarItem>
+		</StatusBar>
+	</Grid>
 </Window>
