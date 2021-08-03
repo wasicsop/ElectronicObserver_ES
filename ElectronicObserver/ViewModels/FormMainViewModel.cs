@@ -709,8 +709,11 @@ namespace ElectronicObserver.ViewModels
 			}
 		}
 
-		private void StripMenu_Help_Update_Click()
+		private async void StripMenu_Help_Update_Click()
 		{
+			// translations and maintenance state
+			await SoftwareUpdater.CheckUpdateAsync();
+			// EO
 			SoftwareInformation.CheckUpdate();
 		}
 
