@@ -58,7 +58,7 @@ namespace ElectronicObserver.ViewModels
 		public bool NotificationsSilenced { get; set; }
 		private DateTime PrevPlayTimeRecorded { get; set; } = DateTime.MinValue;
 		public FontFamily Font { get; set; }
-		public double FontSize { get; set; }
+		public string FontSize { get; set; }
 		public SolidColorBrush FontBrush { get; set; }
 		public FontFamily SubFont { get; set; }
 		public double SubFontSize { get; set; }
@@ -811,7 +811,11 @@ namespace ElectronicObserver.ViewModels
 		private void SetFont()
 		{
 			Font = new(Config.UI.MainFont.FontData.FontFamily.Name);
-			FontSize = Config.UI.MainFont.FontData.Size;
+			FontSize = Config.UI.MainFont.FontData.Size + Config.UI.MainFont.FontData.Unit switch
+			{
+				System.Drawing.GraphicsUnit.Point => "pt",
+				_ => "px"
+			};
 			FontBrush = Config.UI.ForeColor.ToBrush();
 
 			SubFont = new(Config.UI.SubFont.FontData.FontFamily.Name);
