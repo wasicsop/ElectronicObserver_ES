@@ -889,19 +889,15 @@ namespace ElectronicObserver.ViewModels
 					};
 
 					string maintState;
-					if (maintDate > now)
+					maintState = (maintDate > now) switch
 					{
-						var hours = $"{maintTimer.Days}d {maintTimer.Hours}h";
-						if ((int)maintTimer.TotalHours < 24)
-							hours = $"{maintTimer.Hours}h";
-						maintState = $"{message} {hours} {maintTimer.Minutes}m {maintTimer.Seconds}s";
-					}
-					else
-						maintState = message;
+						true => $"{message} {maintTimer:dd\\ hh\\:mm\\:ss}",
+						_ => message
+					};
 
 					var resetMsg =
-						$"Next PVP reset: {(int)pvpTimer.TotalHours:D2}:{pvpTimer.Minutes:D2}:{pvpTimer.Seconds:D2}\r\n" +
-						$"Next Quest reset: {(int)questTimer.TotalHours:D2}:{questTimer.Minutes:D2}:{questTimer.Seconds:D2}\r\n" +
+						$"Next PVP reset: {pvpTimer:hh\\:mm\\:ss}\r\n" +
+						$"Next Quest reset: {questTimer:hh\\:mm\\:ss}\r\n" +
 						$"{maintState}";
 
 					StripStatus.Clock = now.ToString("HH\\:mm\\:ss");
@@ -916,7 +912,7 @@ namespace ElectronicObserver.ViewModels
 							border = border.AddHours(12);
 
 						var ts = border - now;
-						StripStatus.Clock = string.Format("{0:D2}:{1:D2}:{2:D2}", (int)ts.TotalHours, ts.Minutes, ts.Seconds);
+						StripStatus.Clock = ts.ToString("hh\\:mm\\:ss");
 						StripStatus.ClockToolTip = now.ToString("yyyy\\/MM\\/dd (ddd) HH\\:mm\\:ss");
 
 					}
@@ -929,7 +925,7 @@ namespace ElectronicObserver.ViewModels
 							border = border.AddHours(24);
 
 						var ts = border - now;
-						StripStatus.Clock = string.Format("{0:D2}:{1:D2}:{2:D2}", (int)ts.TotalHours, ts.Minutes, ts.Seconds);
+						StripStatus.Clock = ts.ToString("hh\\:mm\\:ss");
 						StripStatus.ClockToolTip = now.ToString("yyyy\\/MM\\/dd (ddd) HH\\:mm\\:ss");
 
 					}
