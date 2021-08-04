@@ -880,11 +880,17 @@ namespace ElectronicObserver.ViewModels
 						maintTimer = maintDate - now;
 					}
 
-					string message = eventState switch
+					string message = (eventState, maintDate > now) switch
 					{
-						MaintenanceState.EventStart => maintDate > now ? "Event starts in" : "Event has started!",
-						MaintenanceState.EventEnd => maintDate > now ? "Event ends in" : "Event period has ended.",
-						MaintenanceState.Regular => maintDate > now ? "Maintenance starts in" : "Maintenance has started.",
+						(MaintenanceState.EventStart, true)  => "Event starts in",
+						(MaintenanceState.EventStart, _) => "Event has started!",
+
+						(MaintenanceState.EventEnd, true) => "Event ends in",
+						(MaintenanceState.EventEnd, _) => "Event period has ended.",
+
+						(MaintenanceState.Regular, true) => "Maintenance starts in",
+						(MaintenanceState.Regular, _) => "Maintenance has started.",
+
 						_ => string.Empty,
 					};
 
