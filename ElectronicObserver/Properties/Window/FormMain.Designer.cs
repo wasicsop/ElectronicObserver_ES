@@ -160,6 +160,42 @@ namespace ElectronicObserver.Properties.Window {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to イベントは{0}で終了.
+        /// </summary>
+        public static string EventEndsIn {
+            get {
+                return ResourceManager.GetString("EventEndsIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to イベント期間が終了しました。.
+        /// </summary>
+        public static string EventHasEnded {
+            get {
+                return ResourceManager.GetString("EventHasEnded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to イベントがスタートしました。.
+        /// </summary>
+        public static string EventHasStarted {
+            get {
+                return ResourceManager.GetString("EventHasStarted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to イベント開始まで{0}.
+        /// </summary>
+        public static string EventStartsIn {
+            get {
+                return ResourceManager.GetString("EventStartsIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} を終了しますか？.
         /// </summary>
         public static string ExitConfirmation {
@@ -390,6 +426,42 @@ namespace ElectronicObserver.Properties.Window {
         public static string LayoutLoaded {
             get {
                 return ResourceManager.GetString("LayoutLoaded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to メンテナンスを開始しました。.
+        /// </summary>
+        public static string MaintenanceHasStarted {
+            get {
+                return ResourceManager.GetString("MaintenanceHasStarted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}後にメンテナンス開始.
+        /// </summary>
+        public static string MaintenanceStartsIn {
+            get {
+                return ResourceManager.GetString("MaintenanceStartsIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 次の練習リセット：.
+        /// </summary>
+        public static string NextExerciseReset {
+            get {
+                return ResourceManager.GetString("NextExerciseReset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 次の任務リセット：.
+        /// </summary>
+        public static string NextQuestReset {
+            get {
+                return ResourceManager.GetString("NextQuestReset", resourceCulture);
             }
         }
         

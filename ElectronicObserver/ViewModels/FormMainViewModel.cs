@@ -42,6 +42,7 @@ using ElectronicObserver.Window.Wpf.WinformsWrappers;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 using ModernWpf;
+using FormMain = ElectronicObserver.Properties.Window.FormMain;
 
 namespace ElectronicObserver.ViewModels
 {
@@ -880,30 +881,31 @@ namespace ElectronicObserver.ViewModels
 						maintTimer = maintDate - now;
 					}
 
-					string message = (eventState, maintDate > now) switch
+					bool eventOrMaintenanceStarted = maintDate <= now;
+
+					string message = (eventState, eventOrMaintenanceStarted) switch
 					{
-						(MaintenanceState.EventStart, true)  => "Event starts in",
-						(MaintenanceState.EventStart, _) => "Event has started!",
+						(MaintenanceState.EventStart, false)  => FormMain.EventStartsIn,
+						(MaintenanceState.EventStart, _) => FormMain.EventHasStarted,
 
-						(MaintenanceState.EventEnd, true) => "Event ends in",
-						(MaintenanceState.EventEnd, _) => "Event period has ended.",
+						(MaintenanceState.EventEnd, false) => FormMain.EventEndsIn,
+						(MaintenanceState.EventEnd, _) => FormMain.EventHasEnded,
 
-						(MaintenanceState.Regular, true) => "Maintenance starts in",
-						(MaintenanceState.Regular, _) => "Maintenance has started.",
+						(MaintenanceState.Regular, false) => FormMain.MaintenanceStartsIn,
+						(MaintenanceState.Regular, _) => FormMain.MaintenanceHasStarted,
 
 						_ => string.Empty,
 					};
 
-					string maintState;
-					maintState = (maintDate > now) switch
+					string maintState = (eventOrMaintenanceStarted) switch
 					{
-						true => $"{message} {maintTimer:dd\\ hh\\:mm\\:ss}",
+						false => string.Format(message, maintTimer.ToString("dd\\ hh\\:mm\\:ss")),
 						_ => message
 					};
 
 					var resetMsg =
-						$"Next PVP reset: {pvpTimer:hh\\:mm\\:ss}\r\n" +
-						$"Next Quest reset: {questTimer:hh\\:mm\\:ss}\r\n" +
+						$"{FormMain.NextExerciseReset} {pvpTimer:hh\\:mm\\:ss}\r\n" +
+						$"{FormMain.NextQuestReset} {questTimer:hh\\:mm\\:ss}\r\n" +
 						$"{maintState}";
 
 					StripStatus.Clock = now.ToString("HH\\:mm\\:ss");

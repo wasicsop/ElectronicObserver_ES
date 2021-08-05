@@ -374,4 +374,28 @@
   <data name="SaveLayoutCaption" xml:space="preserve">
     <value>レイアウト ファイルの保存</value>
   </data>
+  <data name="EventStartsIn" xml:space="preserve">
+    <value>イベント開始まで{0}</value>
+  </data>
+  <data name="EventHasStarted" xml:space="preserve">
+    <value>イベントがスタートしました。</value>
+  </data>
+  <data name="EventEndsIn" xml:space="preserve">
+    <value>イベントは{0}で終了</value>
+  </data>
+  <data name="EventHasEnded" xml:space="preserve">
+    <value>イベント期間が終了しました。</value>
+  </data>
+  <data name="MaintenanceStartsIn" xml:space="preserve">
+    <value>{0}後にメンテナンス開始</value>
+  </data>
+  <data name="MaintenanceHasStarted" xml:space="preserve">
+    <value>メンテナンスを開始しました。</value>
+  </data>
+  <data name="NextExerciseReset" xml:space="preserve">
+    <value>次の練習リセット：</value>
+  </data>
+  <data name="NextQuestReset" xml:space="preserve">
+    <value>次の任務リセット：</value>
+  </data>
 </root>
