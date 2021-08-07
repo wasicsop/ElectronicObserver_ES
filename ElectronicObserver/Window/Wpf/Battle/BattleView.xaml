@@ -25,7 +25,7 @@
 		<Border.ContextMenu>
 			<ContextMenu>
 				<MenuItem 
-					Header="{x:Static window:GeneralRes.RightClickMenu_ShowBattleDetail}"
+					Header="{Binding FormBattle.RightClickMenu_ShowBattleDetail}"
 					Command="{Binding ShowBattleDetailCommand}"
 					/>
 				<!--
