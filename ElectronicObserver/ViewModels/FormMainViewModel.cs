@@ -24,6 +24,7 @@ using ElectronicObserver.Properties;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Resource.Record;
 using ElectronicObserver.Utility;
+using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window;
 using ElectronicObserver.Window.Dialog;
 using ElectronicObserver.Window.Wpf;
@@ -39,10 +40,10 @@ using ElectronicObserver.Window.Wpf.FleetPreset;
 using ElectronicObserver.Window.Wpf.Headquarters;
 using ElectronicObserver.Window.Wpf.ShipGroup.ViewModels;
 using ElectronicObserver.Window.Wpf.WinformsWrappers;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 using ModernWpf;
-using FormMain = ElectronicObserver.Properties.Window.FormMain;
 
 namespace ElectronicObserver.ViewModels
 {
@@ -51,6 +52,7 @@ namespace ElectronicObserver.ViewModels
 		private Control View { get; }
 		private DockingManager DockingManager { get; }
 		private Configuration.ConfigurationData Config { get; }
+		public FormMainTranslationViewModel FormMain { get; }
 		private System.Windows.Forms.Timer UIUpdateTimer { get; }
 		private string DefaultLayoutPath => @"Settings\Layout\Default.xml";
 		// todo: add multi layout support after full wpf release
@@ -219,10 +221,8 @@ namespace ElectronicObserver.ViewModels
 
 			#endregion
 
-			Directory.CreateDirectory(@"Settings\Layout");
-
-			Configuration.Instance.Load();
 			Config = Configuration.Config;
+			FormMain = App.Current.Services.GetService<FormMainTranslationViewModel>()!;
 
 			CultureInfo cultureInfo = new(Configuration.Config.UI.Culture);
 
@@ -897,7 +897,7 @@ namespace ElectronicObserver.ViewModels
 						_ => string.Empty,
 					};
 
-					string maintState = (eventOrMaintenanceStarted) switch
+					string maintState = eventOrMaintenanceStarted switch
 					{
 						false => string.Format(message, maintTimer.ToString("dd\\ hh\\:mm\\:ss")),
 						_ => message

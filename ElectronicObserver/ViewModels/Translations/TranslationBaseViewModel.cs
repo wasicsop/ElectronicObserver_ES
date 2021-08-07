@@ -1,0 +1,34 @@
+﻿using System.Globalization;
+using System.Threading;
+using ElectronicObserver.Utility;
+using Microsoft.Toolkit.Mvvm.ComponentModel;
+
+namespace ElectronicObserver.ViewModels.Translations
+{
+	public class TranslationBaseViewModel : ObservableObject
+	{
+		private string Culture { get; set; }
+
+		protected TranslationBaseViewModel()
+		{
+			Culture = CultureInfo.CurrentCulture.Name;
+
+			Configuration.Instance.ConfigurationChanged += () =>
+			{
+				CultureInfo cultureInfo = new(Configuration.Config.UI.Culture);
+
+				Thread.CurrentThread.CurrentCulture = cultureInfo;
+				Thread.CurrentThread.CurrentUICulture = cultureInfo;
+
+				Culture = Configuration.Config.UI.Culture;
+			};
+
+			PropertyChanged += (_, args) =>
+			{
+				if (args.PropertyName is not nameof(Culture)) return;
+
+				OnPropertyChanged("");
+			};
+		}
+	}
+}

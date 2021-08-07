@@ -1,11 +1,16 @@
-﻿using Microsoft.AppCenter;
+﻿using System;
+using System.IO;
+using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 using System.Linq;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
+using ElectronicObserver.Utility;
+using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace ElectronicObserver
 {
@@ -14,6 +19,14 @@ namespace ElectronicObserver
 	/// </summary>
 	public partial class App : Application
 	{
+		public new static App Current => (App)Application.Current;
+		public IServiceProvider Services { get; set; } = default!;
+
+		public App()
+		{
+			this.InitializeComponent();
+		}
+
 		protected override void OnStartup(StartupEventArgs e)
 		{
 			bool allowMultiInstance = e.Args.Contains("-m") || e.Args.Contains("--multi-instance");
@@ -64,6 +77,16 @@ namespace ElectronicObserver
 
 				if (forceWpf || e.Args.Contains("-wpf"))
 				{
+					Directory.CreateDirectory(@"Settings\Layout");
+
+					Configuration.Instance.Load();
+
+					ServiceCollection services = new();
+
+					services.AddSingleton<FormMainTranslationViewModel>();
+
+					Services = services.BuildServiceProvider();
+
 					ToolTipService.ShowDurationProperty.OverrideMetadata(
 						typeof(DependencyObject), new FrameworkPropertyMetadata(int.MaxValue));
 					new FormMainWpf().ShowDialog();
