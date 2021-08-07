@@ -8,7 +8,7 @@ namespace ElectronicObserver.ViewModels
 {
 	public class AnchorableViewModel : ObservableObject
 	{
-		public string Title { get; }
+		public string Title { get; set; }
 		public string ContentId { get; }
 		public Visibility Visibility { get; set; } = Visibility.Collapsed;
 		public bool IsSelected { get; set; }

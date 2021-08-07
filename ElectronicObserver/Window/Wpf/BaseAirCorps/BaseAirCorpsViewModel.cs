@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -11,9 +13,11 @@ using ElectronicObserver.Resource;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.ViewModels;
+using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Control;
 using ElectronicObserver.Window.Wpf.Fleet.ViewModels;
 using ElectronicObserverTypes;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 
@@ -122,6 +126,8 @@ namespace ElectronicObserver.Window.Wpf.BaseAirCorps
 
 	public class BaseAirCorpsItemViewModel : ObservableObject
 	{
+		public FormBaseAirCorpsTranslationViewModel FormBaseAirCorps { get; }
+
 		public BaseAirCorpsItemControlViewModel Name { get; }
 		public BaseAirCorpsItemControlViewModel ActionKind { get; }
 		public BaseAirCorpsItemControlViewModel AirSuperiority { get; }
@@ -130,12 +136,13 @@ namespace ElectronicObserver.Window.Wpf.BaseAirCorps
 
 		public int MapAreaId { get; set; }
 		public Visibility Visibility { get; set; } = Visibility.Collapsed;
-
 		public ICommand CopyOrganizationCommand { get; }
 		public ICommand DisplayRelocatedEquipmentsCommand { get; }
 
 		public BaseAirCorpsItemViewModel(ICommand copyOrganizationCommand, ICommand displayRelocatedEquipmentsCommand)
 		{
+			FormBaseAirCorps = App.Current.Services.GetService<FormBaseAirCorpsTranslationViewModel>()!;
+
 			CopyOrganizationCommand = copyOrganizationCommand;
 			DisplayRelocatedEquipmentsCommand = displayRelocatedEquipmentsCommand;
 
@@ -231,9 +238,9 @@ namespace ElectronicObserver.Window.Wpf.BaseAirCorps
 				var sb = new StringBuilder();
 
 
-				string areaName = KCDatabase.Instance.MapArea.ContainsKey(corps.MapAreaID) ? KCDatabase.Instance.MapArea[corps.MapAreaID].NameEN : "Unknown Area";
+				string areaName = KCDatabase.Instance.MapArea.ContainsKey(corps.MapAreaID) ? KCDatabase.Instance.MapArea[corps.MapAreaID].NameEN : FormBaseAirCorps.UnknownArea;
 
-				sb.AppendLine("Area: " + areaName);
+				sb.AppendLine(FormBaseAirCorps.Area + areaName);
 
 				// state
 
@@ -263,7 +270,7 @@ namespace ElectronicObserver.Window.Wpf.BaseAirCorps
 					// 未補給
 					// Name.ImageAlign = ContentAlignment.MiddleRight;
 					Name.ImageIndex = ResourceManager.IconContent.FleetNotReplenished;
-					sb.AppendLine("未補給");
+					sb.AppendLine(FormBaseAirCorps.Unsupplied);
 
 				}
 				else
@@ -273,7 +280,7 @@ namespace ElectronicObserver.Window.Wpf.BaseAirCorps
 
 				}
 
-				sb.AppendLine(string.Format("合計制空: 防空 {0} / 対高高度 {1}",
+				sb.AppendLine(string.Format(FormBaseAirCorps.AirControlSummary,
 					db.BaseAirCorps.Values.Where(c => c.MapAreaID == corps.MapAreaID && c.ActionKind == 2).Select(c => Calculator.GetAirSuperiority(c)).DefaultIfEmpty(0).Sum(),
 					db.BaseAirCorps.Values.Where(c => c.MapAreaID == corps.MapAreaID && c.ActionKind == 2).Select(c => Calculator.GetAirSuperiority(c, isHighAltitude: true)).DefaultIfEmpty(0).Sum()
 					));
@@ -328,7 +335,7 @@ namespace ElectronicObserver.Window.Wpf.BaseAirCorps
 
 				Squadrons.SetSlotList(corps);
 				Squadrons.ToolTip = GetEquipmentString(corps);
-				Distance.ToolTip = string.Format("Total Distance: {0}", corps.Distance);
+				Distance.ToolTip = string.Format(FormBaseAirCorps.TotalDistance, corps.Distance);
 
 			}
 
@@ -380,7 +387,7 @@ namespace ElectronicObserver.Window.Wpf.BaseAirCorps
 				{
 					case 0:     // 未配属
 					default:
-						sb.AppendLine("(empty)");
+						sb.AppendLine(FormBaseAirCorps.Empty);
 						break;
 
 					case 1:     // 配属済み
@@ -403,7 +410,7 @@ namespace ElectronicObserver.Window.Wpf.BaseAirCorps
 								break;
 						}
 
-						sb.AppendFormat("{0} (Range: {1})\r\n", eq.NameWithLevel, eq.MasterEquipment.AircraftDistance);
+						sb.AppendFormat(FormBaseAirCorps.Range, eq.NameWithLevel, eq.MasterEquipment.AircraftDistance);
 						break;
 
 					case 2:     // 配置転換中
@@ -419,6 +426,8 @@ namespace ElectronicObserver.Window.Wpf.BaseAirCorps
 
 	public class BaseAirCorpsViewModel : AnchorableViewModel
 	{
+		public FormBaseAirCorpsTranslationViewModel FormBaseAirCorps { get; }
+
 		public List<BaseAirCorpsItemViewModel> ControlMember { get; }
 
 		public ICommand CopyOrganizationCommand { get; }
@@ -427,6 +436,11 @@ namespace ElectronicObserver.Window.Wpf.BaseAirCorps
 		public BaseAirCorpsViewModel() : base("AB", "BaseAirCorps",
 			ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormBaseAirCorps))
 		{
+			FormBaseAirCorps = App.Current.Services.GetService<FormBaseAirCorpsTranslationViewModel>()!;
+
+			Title = FormBaseAirCorps.Title;
+			FormBaseAirCorps.PropertyChanged += (_, _) => Title = FormBaseAirCorps.Title;
+
 			CopyOrganizationCommand = new RelayCommand<int?>(ContextMenuBaseAirCorps_CopyOrganization_Click);
 			DisplayRelocatedEquipmentsCommand = new RelayCommand(ContextMenuBaseAirCorps_DisplayRelocatedEquipments_Click);
 
@@ -560,7 +574,7 @@ namespace ElectronicObserver.Window.Wpf.BaseAirCorps
 
 				string areaName = KCDatabase.Instance.MapArea.ContainsKey(corps.MapAreaID) ? KCDatabase.Instance.MapArea[corps.MapAreaID].NameEN : "Unknown Area";
 
-				sb.AppendFormat("{0}\t[{1}] Fighter Power {2}/Range {3}\r\n",
+				sb.AppendFormat($"{FormBaseAirCorps.CopyOrganizationFormat}\n",
 					(areaid == -1 ? (areaName + "：") : "") + corps.Name,
 					Constants.GetBaseAirCorpsActionKind(corps.ActionKind),
 					Calculator.GetAirSuperiority(corps),
@@ -588,7 +602,7 @@ namespace ElectronicObserver.Window.Wpf.BaseAirCorps
 							{
 								var eq = sq[i].EquipmentInstance;
 
-								sb.Append(eq?.NameWithLevel ?? "(empty)");
+								sb.Append(eq?.NameWithLevel ?? FormBaseAirCorps.Empty);
 
 								if (sq[i].AircraftCurrent < sq[i].AircraftMax)
 									sb.AppendFormat("[{0}/{1}]", sq[i].AircraftCurrent, sq[i].AircraftMax);

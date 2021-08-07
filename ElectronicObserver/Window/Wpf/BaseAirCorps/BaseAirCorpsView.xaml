@@ -23,11 +23,16 @@
 		>
 		<Border.ContextMenu>
 			<ContextMenu>
-				<MenuItem Header="Copy" Command="{Binding CopyOrganizationCommand}" />
+				<MenuItem
+					Header="{Binding FormBaseAirCorps.ContextMenuBaseAirCorps_CopyOrganization}"
+					Command="{Binding CopyOrganizationCommand}"
+					d:Header="Copy"
+				/>
 				<Separator />
 				<MenuItem
-					Header="{x:Static window:GeneralRes.ContextMenuBaseAirCorps_DisplayRelocatedEquipments}"
+					Header="{Binding FormBaseAirCorps.ContextMenuBaseAirCorps_DisplayRelocatedEquipments}"
 					Command="{Binding DisplayRelocatedEquipmentsCommand}"
+					d:Header="Check for aircraft being transferred (_R)"
 				/>
 			</ContextMenu>
 		</Border.ContextMenu>
@@ -40,14 +45,16 @@
 							<Border.ContextMenu>
 								<ContextMenu>
 									<MenuItem
-										Header="Copy"
+										Header="{Binding FormBaseAirCorps.ContextMenuBaseAirCorps_CopyOrganization}"
 										Command="{Binding CopyOrganizationCommand}"
 										CommandParameter="{Binding MapAreaId}"
+										d:Header="Copy"
 									/>
 									<Separator />
 									<MenuItem
-										Header="{x:Static window:GeneralRes.ContextMenuBaseAirCorps_DisplayRelocatedEquipments}"
+										Header="{Binding FormBaseAirCorps.ContextMenuBaseAirCorps_DisplayRelocatedEquipments}"
 										Command="{Binding DisplayRelocatedEquipmentsCommand}"
+										d:Header="Check for aircraft being transferred (_R)"
 									/>
 								</ContextMenu>
 							</Border.ContextMenu>
