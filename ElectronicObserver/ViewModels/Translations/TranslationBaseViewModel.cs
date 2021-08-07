@@ -11,7 +11,7 @@ namespace ElectronicObserver.ViewModels.Translations
 
 		protected TranslationBaseViewModel()
 		{
-			Culture = CultureInfo.CurrentCulture.Name;
+			Culture = Configuration.Config.UI.Culture;
 
 			Configuration.Instance.ConfigurationChanged += () =>
 			{
