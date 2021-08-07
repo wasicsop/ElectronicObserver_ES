@@ -13,9 +13,11 @@ using ElectronicObserver.Data.Battle.Phase;
 using ElectronicObserver.Observer;
 using ElectronicObserver.Resource;
 using ElectronicObserver.ViewModels;
+using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Control;
 using ElectronicObserver.Window.Wpf.Battle.ViewModels;
 using ElectronicObserverTypes;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.Input;
 using Color = System.Drawing.Color;
 
@@ -23,6 +25,8 @@ namespace ElectronicObserver.Window.Wpf.Battle
 {
 	public class BattleViewModel : AnchorableViewModel
 	{
+		public FormBattleTranslationViewModel FormBattle { get; }
+
 		private SolidColorBrush WinRankColor_Win {get;} = Utility.Configuration.Config.UI.ForeColor.ToBrush();
 		private SolidColorBrush WinRankColor_Lose { get; } = Utility.Configuration.Config.UI.Color_Red.ToBrush();
 
@@ -130,6 +134,11 @@ namespace ElectronicObserver.Window.Wpf.Battle
 		public BattleViewModel() : base("Battle", "Battle",
 			ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormBattle))
 		{
+			FormBattle = App.Current.Services.GetService<FormBattleTranslationViewModel>()!;
+
+			Title = FormBattle.Title;
+			FormBattle.PropertyChanged += (_, _) => Title = FormBattle.Title;
+
 			ShowBattleDetailCommand = new RelayCommand(() =>
 			{
 				var bm = KCDatabase.Instance.Battle;
@@ -575,7 +584,7 @@ namespace ElectronicObserver.Window.Wpf.Battle
 			if (pd?.IsAvailable == true)
 			{
 
-				SearchingText = "LBAS";
+				SearchingText = FormBattle.ABText;
 				// Searching.ImageAlign = ContentAlignment.MiddleLeft;
 				// Searching.ImageIndex = (int)ResourceManager.EquipmentContent.LandAttacker;
 				SearchingIcon = ImageSourceIcons.GetEquipmentIcon(EquipmentIconType.LandBasedAttacker);
@@ -709,9 +718,9 @@ namespace ElectronicObserver.Window.Wpf.Battle
 		{
 			var phases = new[]
 			{
-				new AerialWarfareFormatter(phaseJet, "Jet: "),
-				new AerialWarfareFormatter(phase1, "1st: "),
-				new AerialWarfareFormatter(phase2, "2nd: "),
+				new AerialWarfareFormatter(phaseJet, FormBattle.AerialPhaseJet),
+				new AerialWarfareFormatter(phase1, FormBattle.AerialPhase1),
+				new AerialWarfareFormatter(phase2, FormBattle.AerialPhase2),
 			};
 
 			if (!phases[0].Enabled && !phases[2].Enabled)
@@ -753,7 +762,7 @@ namespace ElectronicObserver.Window.Wpf.Battle
 
 			void ClearAACutinLabel()
 			{
-				AACutinText = "AA Defense";
+				AACutinText = FormBattle.AirDefense;
 				AACutinIcon = null;
 				AACutinToolTip = null;
 			}
@@ -799,7 +808,8 @@ namespace ElectronicObserver.Window.Wpf.Battle
 						// label.ImageIndex = (int)ResourceManager.EquipmentContent.Seaplane;
 
 						icon = ImageSourceIcons.GetEquipmentIcon(EquipmentIconType.Seaplane);
-						toolTip += "Contact\r\n" + string.Join("\r\n", phases1.Select(p => $"{p.PhaseName}{(KCDatabase.Instance.MasterEquipments[p.GetTouchAircraft(isFriend)]?.NameEN ?? "(none)")}"));
+						toolTip += FormBattle.Contact + "\r\n" + 
+						           string.Join("\r\n", phases1.Select(p => $"{p.PhaseName}{(KCDatabase.Instance.MasterEquipments[p.GetTouchAircraft(isFriend)]?.NameEN ?? FormBattle.None)}"));
 					}
 					else
 					{
@@ -859,10 +869,10 @@ namespace ElectronicObserver.Window.Wpf.Battle
 					// AACutin.ImageIndex = (int)ResourceManager.EquipmentContent.HighAngleGun;
 					AACutinIcon = ImageSourceIcons.GetEquipmentIcon(EquipmentIconType.HighAngleGun);
 
-					AACutinToolTip = "AACI\r\n" + string.Join("\r\n", phases2
+					AACutinToolTip = FormBattle.AACI + "\r\n" + string.Join("\r\n", phases2
 						.Select(p => p.PhaseName + (p.Air.IsAACutinAvailable ?
-							$"{p.Air.AACutInShip.NameWithLevel}\r\nAACI type: {p.Air.AACutInKind} ({Constants.GetAACutinKind(p.Air.AACutInKind)})"
-							: "(did not activate)")));
+							$"{p.Air.AACutInShip.NameWithLevel}\r\n{FormBattle.AACIType}{p.Air.AACutInKind} ({Constants.GetAACutinKind(p.Air.AACutInKind)})"
+							: FormBattle.DidNotActivate)));
 				}
 				else
 				{
@@ -976,7 +986,7 @@ namespace ElectronicObserver.Window.Wpf.Battle
 
 					if (isBaseAirRaid)
 					{
-						name = string.Format("Base {0}", i + 1);
+						name = string.Format(FormBattle.AirBase, i + 1);
 						isEscaped = false;
 						isLandBase = true;
 						// it's air base, not land base
@@ -1207,18 +1217,18 @@ namespace ElectronicObserver.Window.Wpf.Battle
 					});
 
 					// FleetFriend.ImageAlign = ContentAlignment.MiddleLeft;
-					FleetFriendToolTip =  "Support Expedition\r\n" + support.GetBattleDetail();
+					FleetFriendToolTip = FormBattle.SupportExpedition + "\r\n" + support.GetBattleDetail();
 
 					if ((isFriendCombined || hasFriend7thShip) && isEnemyCombined)
-						FleetFriendText = "Friendly";
+						FleetFriendText = FormBattle.FleetFriendShort;
 					else
-						FleetFriendText = "Friendly";
+						FleetFriendText = FormBattle.FleetFriend;
 
 				}
 				else
 				{
 					FleetFriendIcon = null;
-					FleetFriendText = "Friendly";
+					FleetFriendText = FormBattle.FleetFriend;
 					FleetFriendToolTip = null;
 
 				}

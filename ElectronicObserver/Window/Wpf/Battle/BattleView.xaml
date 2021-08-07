@@ -167,9 +167,9 @@
 								<TextBlock Text="{Binding FleetFriendText}" TextAlignment="Center" d:Text="Friendly"/>
 							</StackPanel>
 						</Border>
-						<TextBlock Grid.Row="0" Grid.Column="1" TextAlignment="Center" Text="Escort" Visibility="{Binding FleetFriendEscortVisible}" />
-						<TextBlock Grid.Row="0" Grid.Column="2" TextAlignment="Center" Text="Escort" Background="{Binding FleetEnemyEscortBackColor}" Visibility="{Binding FleetEnemyEscortVisible}" />
-						<TextBlock Grid.Row="0" Grid.Column="3" TextAlignment="Center" Text="Enemy" Foreground="{Binding FleetEnemyForeColor}" Background="{Binding FleetEnemyBackColor}" />
+						<TextBlock Grid.Row="0" Grid.Column="1" TextAlignment="Center" Text="{Binding FormBattle.FleetFriendEscort}" d:Text="Escort" Visibility="{Binding FleetFriendEscortVisible}" />
+						<TextBlock Grid.Row="0" Grid.Column="2" TextAlignment="Center" Text="{Binding FormBattle.FleetEnemyEscort}" d:Text="Escort" Background="{Binding FleetEnemyEscortBackColor}" Visibility="{Binding FleetEnemyEscortVisible}" />
+						<TextBlock Grid.Row="0" Grid.Column="3" TextAlignment="Center" Text="{Binding FormBattle.FleetEnemy}" d:Text="Enemy" Foreground="{Binding FleetEnemyForeColor}" Background="{Binding FleetEnemyBackColor}" />
 
 						<ItemsControl Grid.Row="1" Grid.Column="0" ItemsSource="{Binding PlayerMainHPBars}" Margin="4">
 							<ItemsControl.ItemTemplate>
