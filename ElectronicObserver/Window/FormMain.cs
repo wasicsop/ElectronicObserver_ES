@@ -1441,7 +1441,7 @@ namespace ElectronicObserver.Window
 		private void StripMenu_Help_Issue_Click(object sender, EventArgs e)
 		{
 
-			if (MessageBox.Show(Properties.Window.FormMain.ReportIssue, Properties.Window.FormMain.ReportIssue,
+			if (MessageBox.Show(Properties.Window.FormMain.ReportIssue, Properties.Window.FormMain.ReportIssueCaption,
 				MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1)
 				== System.Windows.Forms.DialogResult.Yes)
 			{

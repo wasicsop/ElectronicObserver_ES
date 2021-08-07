@@ -279,7 +279,13 @@ namespace ElectronicObserver.ViewModels
 
 			Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
 
-			Logger.Add(2, SoftwareInformation.SoftwareNameEnglish + " is starting...");
+			string softwareName = CultureInfo.CurrentCulture.Name switch
+			{
+				"en-US" => SoftwareInformation.SoftwareNameEnglish,
+				_ => SoftwareInformation.SoftwareNameJapanese
+			};
+
+			Utility.Logger.Add(2, softwareName + Properties.Window.FormMain.Starting);
 
 			ResourceManager.Instance.Load();
 			RecordManager.Instance.Load();
@@ -481,7 +487,7 @@ namespace ElectronicObserver.ViewModels
 
 		private void StripMenu_File_SaveData_Load_Click()
 		{
-			if (MessageBox.Show(Resources.AskLoad, "Confirmation",
+			if (MessageBox.Show(Resources.AskLoad, Properties.Window.FormMain.ConfirmatonCaption,
 				    MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No)
 			    == MessageBoxResult.Yes)
 			{
@@ -586,7 +592,7 @@ namespace ElectronicObserver.ViewModels
 
 			if (RecordManager.Instance.ShipDrop.Record.Count == 0)
 			{
-				MessageBox.Show(GeneralRes.NoDevData, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+				MessageBox.Show(GeneralRes.NoDevData, Properties.Window.FormMain.ErrorCaption, MessageBoxButton.OK, MessageBoxImage.Error);
 				return;
 			}
 
@@ -604,7 +610,7 @@ namespace ElectronicObserver.ViewModels
 
 			if (RecordManager.Instance.Development.Record.Count == 0)
 			{
-				MessageBox.Show(GeneralRes.NoDevData, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+				MessageBox.Show(GeneralRes.NoDevData, Properties.Window.FormMain.ErrorCaption, MessageBoxButton.OK, MessageBoxImage.Error);
 				return;
 			}
 
@@ -622,7 +628,7 @@ namespace ElectronicObserver.ViewModels
 
 			if (RecordManager.Instance.Construction.Record.Count == 0)
 			{
-				MessageBox.Show(GeneralRes.NoBuildData, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+				MessageBox.Show(GeneralRes.NoBuildData, Properties.Window.FormMain.ErrorCaption, MessageBoxButton.OK, MessageBoxImage.Error);
 				return;
 			}
 
@@ -639,7 +645,7 @@ namespace ElectronicObserver.ViewModels
 
 			if (KCDatabase.Instance.MasterShips.Count == 0)
 			{
-				MessageBox.Show("Ship data is not loaded.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+				MessageBox.Show(Properties.Window.FormMain.ShipDataNotLoaded, Properties.Window.FormMain.ErrorCaption, MessageBoxButton.OK, MessageBoxImage.Error);
 				return;
 			}
 
@@ -651,7 +657,7 @@ namespace ElectronicObserver.ViewModels
 
 			if (KCDatabase.Instance.MasterEquipments.Count == 0)
 			{
-				MessageBox.Show("Equipment data is not loaded.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+				MessageBox.Show(Properties.Window.FormMain.EquipmentDataNotLoaded, Properties.Window.FormMain.ErrorCaption, MessageBoxButton.OK, MessageBoxImage.Error);
 				return;
 			}
 
@@ -743,7 +749,7 @@ namespace ElectronicObserver.ViewModels
 				catch (Exception ex)
 				{
 
-					MessageBox.Show("Failed to load API List.\r\n" + ex.Message, "Error",
+					MessageBox.Show("Failed to load API List.\r\n" + ex.Message, Properties.Window.FormMain.ErrorCaption,
 						MessageBoxButton.OK, MessageBoxImage.Error);
 
 				}
@@ -826,7 +832,7 @@ namespace ElectronicObserver.ViewModels
 
 			if (KCDatabase.Instance.MasterShips.Count == 0)
 			{
-				MessageBox.Show("Please load normal api_start2 first.", "Error", MessageBoxButton.OK,
+				MessageBox.Show("Please load normal api_start2 first.", Properties.Window.FormMain.ErrorCaption, MessageBoxButton.OK,
 					MessageBoxImage.Information);
 				return;
 			}
@@ -863,7 +869,7 @@ namespace ElectronicObserver.ViewModels
 				catch (Exception ex)
 				{
 
-					MessageBox.Show("Failed to load API.\r\n" + ex.Message, "Error",
+					MessageBox.Show("Failed to load API.\r\n" + ex.Message, Properties.Window.FormMain.ErrorCaption,
 						MessageBoxButton.OK, MessageBoxImage.Error);
 				}
 			}
@@ -874,7 +880,7 @@ namespace ElectronicObserver.ViewModels
 
 			if (KCDatabase.Instance.MasterShips.Count == 0)
 			{
-				MessageBox.Show("Please load normal api_start2 first.", "Error", MessageBoxButton.OK,
+				MessageBox.Show("Please load normal api_start2 first.", Properties.Window.FormMain.ErrorCaption, MessageBoxButton.OK,
 					MessageBoxImage.Information);
 				return;
 			}
@@ -916,7 +922,7 @@ namespace ElectronicObserver.ViewModels
 				catch (Exception ex)
 				{
 
-					MessageBox.Show("Failed to load API.\r\n" + ex.Message, "Error",
+					MessageBox.Show("Failed to load API.\r\n" + ex.Message, Properties.Window.FormMain.ErrorCaption,
 						MessageBoxButton.OK, MessageBoxImage.Error);
 				}
 			}
@@ -942,7 +948,7 @@ namespace ElectronicObserver.ViewModels
 				catch (Exception ex)
 				{
 
-					MessageBox.Show("Failed to delete.\r\n" + ex.Message, "Error", MessageBoxButton.OK,
+					MessageBox.Show("Failed to delete.\r\n" + ex.Message, Properties.Window.FormMain.ErrorCaption, MessageBoxButton.OK,
 						MessageBoxImage.Error);
 				}
 
@@ -998,7 +1004,7 @@ namespace ElectronicObserver.ViewModels
 
 			if (KCDatabase.Instance.MasterShips.Count == 0)
 			{
-				MessageBox.Show("Ship data is not loaded.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+				MessageBox.Show("Ship data is not loaded.", Properties.Window.FormMain.ErrorCaption, MessageBoxButton.OK, MessageBoxImage.Error);
 				return;
 			}
 
@@ -1038,7 +1044,7 @@ namespace ElectronicObserver.ViewModels
 				{
 
 					Utility.ErrorReporter.SendErrorReport(ex, "艦船リソースのリネームに失敗しました。");
-					MessageBox.Show("艦船リソースのリネームに失敗しました。\r\n" + ex.Message, "Error", MessageBoxButton.OK,
+					MessageBox.Show("艦船リソースのリネームに失敗しました。\r\n" + ex.Message, Properties.Window.FormMain.ErrorCaption, MessageBoxButton.OK,
 						MessageBoxImage.Error);
 
 				}
@@ -1132,7 +1138,7 @@ namespace ElectronicObserver.ViewModels
 		private void StripMenu_Help_Help_Click()
 		{
 
-			if (MessageBox.Show("This will open the EO wiki with your browser.\r\nAre you sure?", "Help",
+			if (MessageBox.Show(Properties.Window.FormMain.OpenEOWiki, Properties.Window.FormMain.HelpCaption,
 				    MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes)
 			    == MessageBoxResult.Yes)
 			{
@@ -1149,7 +1155,7 @@ namespace ElectronicObserver.ViewModels
 		private void StripMenu_Help_Issue_Click()
 		{
 
-			if (MessageBox.Show("This will open a page with your browser.\r\nAre you sure?", "Report A Problem",
+			if (MessageBox.Show(Properties.Window.FormMain.ReportIssue, Properties.Window.FormMain.ReportIssueCaption,
 				    MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes)
 			    == MessageBoxResult.Yes)
 			{
@@ -1176,7 +1182,7 @@ namespace ElectronicObserver.ViewModels
 			}
 			catch (Exception ex)
 			{
-				ErrorReporter.SendErrorReport(ex, "Failed to search on Google.");
+				ErrorReporter.SendErrorReport(ex, Properties.Window.FormMain.FailedToOpenBrowser);
 			}
 		}
 
@@ -1454,11 +1460,17 @@ namespace ElectronicObserver.ViewModels
 
 		private void Close(CancelEventArgs e)
 		{
+			string name = CultureInfo.CurrentCulture.Name switch
+			{
+				"en-US" => SoftwareInformation.SoftwareNameEnglish,
+				_ => SoftwareInformation.SoftwareNameJapanese
+			};
+
 			if (Configuration.Config.Life.ConfirmOnClosing)
 			{
 				if (MessageBox.Show(
-					    "Are you sure you want to exit?",
-					    "Electronic Observer",
+					    string.Format(Properties.Window.FormMain.ExitConfirmation, name),
+					    Properties.Window.FormMain.ConfirmatonCaption,
 					    MessageBoxButton.YesNo,
 					    MessageBoxImage.Question,
 					    MessageBoxResult.No)
@@ -1469,7 +1481,7 @@ namespace ElectronicObserver.ViewModels
 				}
 			}
 
-			Logger.Add(2, SoftwareInformation.SoftwareNameEnglish + Resources.IsClosing);
+			Logger.Add(2, name + Resources.IsClosing);
 
 			UIUpdateTimer.Stop();
 
