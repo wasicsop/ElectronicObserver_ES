@@ -157,7 +157,7 @@
 						<Image Source="{Binding LogImageSource}" />
 					</MenuItem.Icon>
 				</MenuItem>
-				<MenuItem Header="{Binding FormMain.StripMenu_View_Json}" d:Header="JSON" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormJson}">
+				<MenuItem Header="{Binding FormMain.StripMenu_View_Json}" d:Header="JSON" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormJson}" Visibility="{Binding DebugVisibility}">
 					<MenuItem.Icon>
 						<Image Source="{Binding JsonImageSource}" />
 					</MenuItem.Icon>
@@ -298,6 +298,15 @@
 						<Image Source="{Binding ExtraBrowserImageSource}" />
 					</MenuItem.Icon>
 				</MenuItem>
+			</MenuItem>
+			<MenuItem Header="{Binding FormMain.StripMenu_Debug}" d:Header="Debug" Height="Auto" Visibility="{Binding DebugVisibility}">
+				<MenuItem Header="{Binding FormMain.StripMenu_Debug_LoadAPIFromFile}" d:Header="Load API From File..." Command="{Binding LoadAPIFromFileCommand}" />
+				<MenuItem Header="{Binding FormMain.StripMenu_Debug_LoadInitialAPI}" d:Header="Load Initial API (_I)..." Command="{Binding LoadInitialAPICommand}" />
+				<Separator />
+				<MenuItem Header="{Binding FormMain.StripMenu_Debug_LoadRecordFromOld}" d:Header="Load from _Old api__start2..." Command="{Binding LoadRecordFromOldCommand}" />
+				<MenuItem Header="{Binding FormMain.StripMenu_Debug_DeleteOldAPI}" d:Header="_Delete Old API Data" Command="{Binding DeleteOldAPICommand}" />
+				<MenuItem Header="{Binding FormMain.StripMenu_Debug_RenameShipResource}" d:Header="_Rename Ship Resource..." Command="{Binding RenameShipResourceCommand}" />
+				<MenuItem Header="{Binding FormMain.StripMenu_Debug_LoadDataFromOld}" d:Header="Re_store Abyssal Data from Old api_start2..." Command="{Binding LoadDataFromOldCommand}" />
 			</MenuItem>
 			<MenuItem Header="{Binding FormMain.StripMenu_Help}" d:Header="Help" Height="Auto">
 				<MenuItem Header="{Binding FormMain.StripMenu_Help_Help}" d:Header="View Help" Command="{Binding ViewHelpCommand}">
