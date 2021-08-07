@@ -45,11 +45,7 @@ namespace ElectronicObserver.Window.Wpf.Battle.ViewModels
 		};
 
 		public SolidColorBrush? BackgroundColor => BackColor.ToBrush();
-		public Visibility Visibility => Visible switch
-		{
-			true => Visibility.Visible,
-			_ => Visibility.Collapsed
-		};
+		public Visibility Visibility => Visible.ToVisibility();
 
 		public HealthBarViewModel()
 		{

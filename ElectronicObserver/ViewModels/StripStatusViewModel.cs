@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using ElectronicObserver.Window.Wpf;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 
 namespace ElectronicObserver.ViewModels
@@ -10,11 +11,7 @@ namespace ElectronicObserver.ViewModels
 		public string? ClockToolTip { get; set; }
 		public bool Visible { get; set; }
 
-		public Visibility Visibility => Visible switch
-		{
-			true => Visibility.Visible,
-			_ => Visibility.Collapsed
-		};
+		public Visibility Visibility => Visible.ToVisibility();
 
 	}
 }

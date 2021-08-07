@@ -135,11 +135,7 @@ namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels
 				true => BarColorIncrement,
 				_ => BarColorDecrement
 			};
-			AkashiRepairBar.Visibility = (HPBar.Value < AkashiRepairBar.Value) switch
-			{
-				true => Visibility.Visible,
-				_ => Visibility.Collapsed
-			};
+			AkashiRepairBar.Visibility = (HPBar.Value < AkashiRepairBar.Value).ToVisibility();
 		}
 
 		private string GetDifferenceString()

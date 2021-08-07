@@ -159,11 +159,7 @@ namespace ElectronicObserver.ViewModels
 		public int ClockFormat { get; set; }
 
 		private bool DebugEnabled { get; set; }
-		public Visibility DebugVisibility => DebugEnabled switch
-		{
-			true => Visibility.Visible,
-			_ => Visibility.Collapsed
-		};
+		public Visibility DebugVisibility => DebugEnabled.ToVisibility();
 
 		#region Commands
 

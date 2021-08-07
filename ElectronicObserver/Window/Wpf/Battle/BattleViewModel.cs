@@ -251,11 +251,7 @@ namespace ElectronicObserver.Window.Wpf.Battle
 					SetDamageRate(bm);
 
 					// BaseLayoutPanel.Visible = !hideDuringBattle;
-					ViewVisibility = hideDuringBattle switch
-					{
-						true => Visibility.Collapsed,
-						_ => Visibility.Visible
-					};
+					ViewVisibility = (!hideDuringBattle).ToVisibility();
 					break;
 
 
@@ -273,11 +269,7 @@ namespace ElectronicObserver.Window.Wpf.Battle
 						SetDamageRate(bm);
 
 						// BaseLayoutPanel.Visible = !hideDuringBattle;
-						ViewVisibility = hideDuringBattle switch
-						{
-							true => Visibility.Collapsed,
-							_ => Visibility.Visible
-						};
+						ViewVisibility = (!hideDuringBattle).ToVisibility();
 					}
 					break;
 
@@ -290,11 +282,7 @@ namespace ElectronicObserver.Window.Wpf.Battle
 						SetDamageRate(bm);
 
 						// BaseLayoutPanel.Visible = !hideDuringBattle;
-						ViewVisibility = hideDuringBattle switch
-						{
-							true => Visibility.Collapsed,
-							_ => Visibility.Visible
-						};
+						ViewVisibility = (!hideDuringBattle).ToVisibility();
 					}
 					break;
 
@@ -310,11 +298,7 @@ namespace ElectronicObserver.Window.Wpf.Battle
 						SetDamageRate(bm);
 
 						// BaseLayoutPanel.Visible = !hideDuringBattle;
-						ViewVisibility = hideDuringBattle switch
-						{
-							true => Visibility.Collapsed,
-							_ => Visibility.Visible
-						};
+						ViewVisibility = (!hideDuringBattle).ToVisibility();
 					}
 					break;
 
@@ -329,11 +313,7 @@ namespace ElectronicObserver.Window.Wpf.Battle
 						SetDamageRate(bm);
 
 						// BaseLayoutPanel.Visible = !hideDuringBattle;
-						ViewVisibility = hideDuringBattle switch
-						{
-							true => Visibility.Collapsed,
-							_ => Visibility.Visible
-						};
+						ViewVisibility = (!hideDuringBattle).ToVisibility();
 					}
 					break;
 
@@ -359,11 +339,7 @@ namespace ElectronicObserver.Window.Wpf.Battle
 						SetDamageRate(bm);
 
 						// BaseLayoutPanel.Visible = !hideDuringBattle;
-						ViewVisibility = hideDuringBattle switch
-						{
-							true => Visibility.Collapsed,
-							_ => Visibility.Visible
-						};
+						ViewVisibility = (!hideDuringBattle).ToVisibility();
 					}
 					break;
 
@@ -384,11 +360,7 @@ namespace ElectronicObserver.Window.Wpf.Battle
 						SetDamageRate(bm);
 
 						// BaseLayoutPanel.Visible = !hideDuringBattle;
-						ViewVisibility = hideDuringBattle switch
-						{
-							true => Visibility.Collapsed,
-							_ => Visibility.Visible
-						};
+						ViewVisibility = (!hideDuringBattle).ToVisibility();
 					}
 					break;
 
@@ -403,11 +375,7 @@ namespace ElectronicObserver.Window.Wpf.Battle
 						SetDamageRate(bm);
 
 						// BaseLayoutPanel.Visible = !hideDuringBattle;
-						ViewVisibility = hideDuringBattle switch
-						{
-							true => Visibility.Collapsed,
-							_ => Visibility.Visible
-						};
+						ViewVisibility = (!hideDuringBattle).ToVisibility();
 					}
 					break;
 
@@ -420,11 +388,7 @@ namespace ElectronicObserver.Window.Wpf.Battle
 						SetDamageRate(bm);
 
 						// BaseLayoutPanel.Visible = !hideDuringBattle;
-						ViewVisibility = hideDuringBattle switch
-						{
-							true => Visibility.Collapsed,
-							_ => Visibility.Visible
-						};
+						ViewVisibility = (!hideDuringBattle).ToVisibility();
 					}
 					break;
 
@@ -440,11 +404,7 @@ namespace ElectronicObserver.Window.Wpf.Battle
 						SetDamageRate(bm);
 
 						// BaseLayoutPanel.Visible = !hideDuringBattle;
-						ViewVisibility = hideDuringBattle switch
-						{
-							true => Visibility.Collapsed,
-							_ => Visibility.Visible
-						};
+						ViewVisibility = (!hideDuringBattle).ToVisibility();
 					}
 					break;
 
@@ -469,11 +429,7 @@ namespace ElectronicObserver.Window.Wpf.Battle
 						SetDamageRate(bm);
 
 						// BaseLayoutPanel.Visible = !hideDuringBattle;
-						ViewVisibility = hideDuringBattle switch
-						{
-							true => Visibility.Collapsed,
-							_ => Visibility.Visible
-						};
+						ViewVisibility = (!hideDuringBattle).ToVisibility();
 					}
 					break;
 
