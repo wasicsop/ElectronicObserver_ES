@@ -81,26 +81,7 @@ namespace ElectronicObserver
 
 					Configuration.Instance.Load();
 
-					ServiceCollection services = new();
-
-					services.AddSingleton<FormArsenalTranslationViewModel>();
-					services.AddSingleton<FormBaseAirCorpsTranslationViewModel>();
-					services.AddSingleton<FormBattleTranslationViewModel>();
-					services.AddSingleton<FormBrowserHostTranslationViewModel>();
-					services.AddSingleton<FormCompassTranslationViewModel>();
-					services.AddSingleton<FormDockTranslationViewModel>();
-					services.AddSingleton<FormFleetTranslationViewModel>();
-					services.AddSingleton<FormFleetOverviewTranslationViewModel>();
-					services.AddSingleton<FormFleetPresetTranslationViewModel>();
-					services.AddSingleton<FormHeadquartersTranslationViewModel>();
-					services.AddSingleton<FormInformationTranslationViewModel>();
-					services.AddSingleton<FormJsonTranslationViewModel>();
-					services.AddSingleton<FormLogTranslationViewModel>();
-					services.AddSingleton<FormMainTranslationViewModel>();
-					services.AddSingleton<FormQuestTranslationViewModel>();
-					services.AddSingleton<FormShipGroupTranslationViewModel>();
-
-					Services = services.BuildServiceProvider();
+					Services = ConfigureServices();
 
 					ToolTipService.ShowDurationProperty.OverrideMetadata(
 						typeof(DependencyObject), new FrameworkPropertyMetadata(int.MaxValue));
@@ -122,6 +103,30 @@ namespace ElectronicObserver
 
 				Shutdown();
 			}
+		}
+
+		private IServiceProvider ConfigureServices()
+		{
+			ServiceCollection services = new();
+
+			services.AddSingleton<FormArsenalTranslationViewModel>();
+			services.AddSingleton<FormBaseAirCorpsTranslationViewModel>();
+			services.AddSingleton<FormBattleTranslationViewModel>();
+			services.AddSingleton<FormBrowserHostTranslationViewModel>();
+			services.AddSingleton<FormCompassTranslationViewModel>();
+			services.AddSingleton<FormDockTranslationViewModel>();
+			services.AddSingleton<FormFleetTranslationViewModel>();
+			services.AddSingleton<FormFleetOverviewTranslationViewModel>();
+			services.AddSingleton<FormFleetPresetTranslationViewModel>();
+			services.AddSingleton<FormHeadquartersTranslationViewModel>();
+			services.AddSingleton<FormInformationTranslationViewModel>();
+			services.AddSingleton<FormJsonTranslationViewModel>();
+			services.AddSingleton<FormLogTranslationViewModel>();
+			services.AddSingleton<FormMainTranslationViewModel>();
+			services.AddSingleton<FormQuestTranslationViewModel>();
+			services.AddSingleton<FormShipGroupTranslationViewModel>();
+
+			return services.BuildServiceProvider();
 		}
 	}
 }
