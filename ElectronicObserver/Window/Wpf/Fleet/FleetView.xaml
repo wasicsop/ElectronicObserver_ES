@@ -76,16 +76,16 @@
 			</Border.Style>
 			<Border.ContextMenu>
 				<ContextMenu>
-					<MenuItem Header="Copy" Command="{Binding CopyCommand}" />
-					<MenuItem Header="Copy (deck-builder)" Command="{Binding CopyDeckBuilderCommand}" />
-					<MenuItem Header="Copy Ship List (kancolle-calc)" Command="{Binding CopyKanmusuListCommand}" />
-					<MenuItem Header="Copy Ship List (kancolle-fleetanalysis)" Command="{Binding CopyFleetAnalysisCommand}" />
-					<MenuItem Header="Copy Locked Equip (kancolle-fleetanalysis)" Command="{Binding CopyFleetAnalysisEquipCommand}" />
-					<MenuItem Header="Copy All Equip (kancolle-fleetanalysis)" Command="{Binding CopyFleetAnalysisAllEquipCommand}" />
+					<MenuItem Header="{Binding FormFleet.ContextMenuFleet_CopyFleet}" d:Header="Copy" Command="{Binding CopyCommand}" />
+					<MenuItem Header="{Binding FormFleet.ContextMenuFleet_CopyFleetDeckBuilder}" d:Header="Copy (deck-builder)" Command="{Binding CopyDeckBuilderCommand}" />
+					<MenuItem Header="{Binding FormFleet.ContextMenuFleet_CopyKanmusuList}" d:Header="Copy Ship List (kancolle-calc)" Command="{Binding CopyKanmusuListCommand}" />
+					<MenuItem Header="{Binding FormFleet.ContextMenuFleet_CopyFleetAnalysis}" d:Header="Copy Ship List (kancolle-fleetanalysis)" Command="{Binding CopyFleetAnalysisCommand}" />
+					<MenuItem Header="{Binding FormFleet.ContextMenuFleet_CopyFleetAnalysisLockedEquip}" d:Header="Copy Locked Equip (kancolle-fleetanalysis)" Command="{Binding CopyFleetAnalysisEquipCommand}" />
+					<MenuItem Header="{Binding FormFleet.ContextMenuFleet_CopyFleetAnalysisAllEquip}" d:Header="Copy All Equip (kancolle-fleetanalysis)" Command="{Binding CopyFleetAnalysisAllEquipCommand}" />
 					<Separator />
-					<MenuItem Header="AA Defense" Command="{Binding AntiAirDetailsCommand}" />
-					<MenuItem Header="Copy as Image" />
-					<MenuItem Header="Save as Image..." Command="{Binding OutputFleetImageCommand}" />
+					<MenuItem Header="{Binding FormFleet.ContextMenuFleet_AntiAirDetails}" d:Header="AA Defense" Command="{Binding AntiAirDetailsCommand}" />
+					<MenuItem Header="{Binding FormFleet.ContextMenuFleet_Capture}" d:Header="Copy as Image" />
+					<MenuItem Header="{Binding FormFleet.ContextMenuFleet_OutputFleetImage}" d:Header="Save as Image..." Command="{Binding OutputFleetImageCommand}" />
 				</ContextMenu>
 			</Border.ContextMenu>
 			<StackPanel Orientation="Horizontal" DataContext="{Binding ControlFleet}">

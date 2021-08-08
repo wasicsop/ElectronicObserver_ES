@@ -1,15 +1,21 @@
 ﻿using System;
+using ElectronicObserver.ViewModels.Translations;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 
 namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels
 {
 	public class ShipResourceViewModel : ObservableObject
 	{
+		public FormFleetTranslationViewModel FormFleet { get; }
+
 		public ProgressBarProps BarFuel { get; } = new();
 		public ProgressBarProps BarAmmo { get; } = new();
 
 		public ShipResourceViewModel()
 		{
+			FormFleet = App.Current.Services.GetService<FormFleetTranslationViewModel>()!;
+
 			BarFuel.PropertyChanged += Bar_PropertyChanged;
 			BarAmmo.PropertyChanged += Bar_PropertyChanged;
 		}
@@ -22,7 +28,7 @@ namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels
 			}
 		}
 
-		public string ToolTip => string.Format("Fuel: {0}/{1} ({2}%)\r\nAmmo: {3}/{4} ({5}%)",
+		public string ToolTip => string.Format(FormFleet.ResourceToolTip,
 			BarFuel.Value, BarFuel.MaximumValue,
 			(int)Math.Ceiling(100.0 * BarFuel.Value / BarFuel.MaximumValue),
 			BarAmmo.Value, BarAmmo.MaximumValue,
