@@ -11,6 +11,8 @@ using ElectronicObserver.Resource;
 using ElectronicObserver.Resource.Record;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.ViewModels;
+using ElectronicObserver.ViewModels.Translations;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 
@@ -39,6 +41,8 @@ namespace ElectronicObserver.Window.Wpf.Headquarters
 
 	public class HeadquartersViewModel : AnchorableViewModel
 	{
+		public FormHeadquartersTranslationViewModel FormHeadquarters { get; }
+
 		public Visibility Visible { get; set; } = Visibility.Collapsed;
 
 		public FontFamily MainFont { get; set; }
@@ -73,6 +77,11 @@ namespace ElectronicObserver.Window.Wpf.Headquarters
 		public HeadquartersViewModel() : base("HQ", "Headquarters",
 			ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormHeadQuarters))
 		{
+			FormHeadquarters = App.Current.Services.GetService<FormHeadquartersTranslationViewModel>()!;
+
+			Title = FormHeadquarters.Title;
+			FormHeadquarters.PropertyChanged += (_, _) => Title = FormHeadquarters.Title;
+
 			ShowResourceChartCommand = new RelayCommand(Resource_MouseClick);
 			CopyResourcesCommand = new RelayCommand(Resource_MouseDoubleClick);
 			ViewUseItemsCommand = new RelayCommand(DisplayUseItem_MouseClick);
@@ -229,21 +238,23 @@ namespace ElectronicObserver.Window.Wpf.Headquarters
 		/// </summary>
 		public static IEnumerable<string> GetItemNames()
 		{
-			yield return "Name";
-			yield return "Comment";
-			yield return "HQ Lv";
-			yield return "Ship Slots";
-			yield return "Equip Slots";
-			yield return "Instant Repair";
-			yield return "Instant Construction";
-			yield return "Development Material";
-			yield return "Improve Material";
-			yield return "Furniture Coin";
-			yield return "Fuel";
-			yield return "Ammo";
-			yield return "Steel";
-			yield return "Bauxite";
-			yield return "Other Item";
+			var formHeadquarters = App.Current.Services.GetService<FormHeadquartersTranslationViewModel>()!;
+
+			yield return formHeadquarters.ItemNameName;
+			yield return formHeadquarters.ItemNameComment;
+			yield return formHeadquarters.ItemNameHQLevel;
+			yield return formHeadquarters.ItemNameShipSlots;
+			yield return formHeadquarters.ItemNameEquipmentSlots;
+			yield return formHeadquarters.ItemNameInstantRepair;
+			yield return formHeadquarters.ItemNameInstantConstruction;
+			yield return formHeadquarters.ItemNameDevelopmentMaterial;
+			yield return formHeadquarters.ItemNameImproveMaterial;
+			yield return formHeadquarters.ItemNameFurnitureCoin;
+			yield return formHeadquarters.ItemNameFuel;
+			yield return formHeadquarters.ItemNameAmmo;
+			yield return formHeadquarters.ItemNameSteel;
+			yield return formHeadquarters.ItemNameBauxite;
+			yield return formHeadquarters.ItemNameOtherItem;
 		}
 
 
@@ -266,21 +277,21 @@ namespace ElectronicObserver.Window.Wpf.Headquarters
 				StringBuilder tooltip = new();
 
 				var sortieCount = db.Admiral.SortieWin + db.Admiral.SortieLose;
-				tooltip.AppendFormat("Sorties: {0} / Win: {1} ({2:p2}) / Lose: {3}\r\n",
+				tooltip.AppendFormat(FormHeadquarters.AdmiralNameToolTipSortie + "\r\n",
 					sortieCount, db.Admiral.SortieWin, db.Admiral.SortieWin / Math.Max(sortieCount, 1.0), db.Admiral.SortieLose);
 
-				tooltip.AppendFormat("Avg exp per sortie: {0:n2} / per victory: {1:n2}\r\n",
+				tooltip.AppendFormat(FormHeadquarters.AdmiralNameToolTipSortieExp + "\r\n",
 					 db.Admiral.Exp / Math.Max(sortieCount, 1.0),
 					 db.Admiral.Exp / Math.Max(db.Admiral.SortieWin, 1.0));
 
-				tooltip.AppendFormat("Expeditions: {0} / Success: {1} ({2:p2}) / Failed: {3}\r\n",
+				tooltip.AppendFormat(FormHeadquarters.AdmiralNameToolTipExpedition + "\r\n",
 					db.Admiral.MissionCount, db.Admiral.MissionSuccess, db.Admiral.MissionSuccess / Math.Max(db.Admiral.MissionCount, 1.0), db.Admiral.MissionCount - db.Admiral.MissionSuccess);
 
 				var practiceCount = db.Admiral.PracticeWin + db.Admiral.PracticeLose;
-				tooltip.AppendFormat("Naval Exercises: {0} / Win: {1} ({2:p2}) / Lose: {3}\r\n",
+				tooltip.AppendFormat(FormHeadquarters.AdmiralNameToolTipPractice + "\r\n",
 					practiceCount, db.Admiral.PracticeWin, db.Admiral.PracticeWin / Math.Max(practiceCount, 1.0), db.Admiral.PracticeLose);
 
-				tooltip.AppendFormat("First-class Medals: {0}\r\n", db.Admiral.Medals);
+				tooltip.AppendFormat(FormHeadquarters.AdmiralNameToolTipFirstClassMedals + "\r\n", db.Admiral.Medals);
 
 				AdmiralName.ToolTip = tooltip.ToString();
 			}
@@ -311,7 +322,7 @@ namespace ElectronicObserver.Window.Wpf.Headquarters
 					if (res != null)
 					{
 						int diff = db.Admiral.Exp - res.HQExp;
-						tooltip.AppendFormat("Session: +{0} exp / {1:n2} pt\r\n", diff, diff * 7 / 10000.0);
+						tooltip.AppendFormat(FormHeadquarters.HQLevelToolTipSenkaSession + "\r\n", diff, diff * 7 / 10000.0);
 					}
 				}
 				{
@@ -319,7 +330,7 @@ namespace ElectronicObserver.Window.Wpf.Headquarters
 					if (res != null)
 					{
 						int diff = db.Admiral.Exp - res.HQExp;
-						tooltip.AppendFormat("Daily: +{0} exp / {1:n2} pt\r\n", diff, diff * 7 / 10000.0);
+						tooltip.AppendFormat(FormHeadquarters.HQLevelToolTipSenkaDay + "\r\n", diff, diff * 7 / 10000.0);
 					}
 				}
 				{
@@ -327,7 +338,7 @@ namespace ElectronicObserver.Window.Wpf.Headquarters
 					if (res != null)
 					{
 						int diff = db.Admiral.Exp - res.HQExp;
-						tooltip.AppendFormat("Monthly: +{0} exp / {1:n2} pt\r\n", diff, diff * 7 / 10000.0);
+						tooltip.AppendFormat(FormHeadquarters.HQLevelToolTipSenkaMonth + "\r\n", diff, diff * 7 / 10000.0);
 					}
 				}
 
@@ -393,7 +404,7 @@ namespace ElectronicObserver.Window.Wpf.Headquarters
 				InstantRepair.ForeColor = configUI.ForeColor;
 				InstantRepair.BackColor = System.Drawing.Color.Transparent;
 			}
-			InstantRepair.ToolTip = string.Format("Daily: {0:+##;-##;±0}\nWeekly: {1:+##;-##;±0}\nMonthly: {2:+##;-##;±0}",
+			InstantRepair.ToolTip = string.Format(FormHeadquarters.ResourceToolTip,
 					resday == null ? 0 : (db.Material.InstantRepair - resday.InstantRepair),
 					resweek == null ? 0 : (db.Material.InstantRepair - resweek.InstantRepair),
 					resmonth == null ? 0 : (db.Material.InstantRepair - resmonth.InstantRepair));
@@ -409,7 +420,7 @@ namespace ElectronicObserver.Window.Wpf.Headquarters
 				InstantConstruction.ForeColor = configUI.ForeColor;
 				InstantConstruction.BackColor = System.Drawing.Color.Transparent;
 			}
-			InstantConstruction.ToolTip = string.Format("Daily: {0:+##;-##;±0}\nWeekly: {1:+##;-##;±0}\nMonthly: {2:+##;-##;±0}",
+			InstantConstruction.ToolTip = string.Format(FormHeadquarters.ResourceToolTip,
 					resday == null ? 0 : (db.Material.InstantConstruction - resday.InstantConstruction),
 					resweek == null ? 0 : (db.Material.InstantConstruction - resweek.InstantConstruction),
 					resmonth == null ? 0 : (db.Material.InstantConstruction - resmonth.InstantConstruction));
@@ -425,7 +436,7 @@ namespace ElectronicObserver.Window.Wpf.Headquarters
 				DevelopmentMaterial.ForeColor = configUI.ForeColor;
 				DevelopmentMaterial.BackColor = System.Drawing.Color.Transparent;
 			}
-			DevelopmentMaterial.ToolTip = string.Format("Daily: {0:+##;-##;±0}\nWeekly: {1:+##;-##;±0}\nMonthly: {2:+##;-##;±0}",
+			DevelopmentMaterial.ToolTip = string.Format(FormHeadquarters.ResourceToolTip,
 					resday == null ? 0 : (db.Material.DevelopmentMaterial - resday.DevelopmentMaterial),
 					resweek == null ? 0 : (db.Material.DevelopmentMaterial - resweek.DevelopmentMaterial),
 					resmonth == null ? 0 : (db.Material.DevelopmentMaterial - resmonth.DevelopmentMaterial));
@@ -441,7 +452,7 @@ namespace ElectronicObserver.Window.Wpf.Headquarters
 				ModdingMaterial.ForeColor = configUI.ForeColor;
 				ModdingMaterial.BackColor = System.Drawing.Color.Transparent;
 			}
-			ModdingMaterial.ToolTip = string.Format("Daily: {0:+##;-##;±0}\nWeekly: {1:+##;-##;±0}\nMonthly: {2:+##;-##;±0}",
+			ModdingMaterial.ToolTip = string.Format(FormHeadquarters.ResourceToolTip,
 					resday == null ? 0 : (db.Material.ModdingMaterial - resday.ModdingMaterial),
 					resweek == null ? 0 : (db.Material.ModdingMaterial - resweek.ModdingMaterial),
 					resmonth == null ? 0 : (db.Material.ModdingMaterial - resmonth.ModdingMaterial));
@@ -464,7 +475,7 @@ namespace ElectronicObserver.Window.Wpf.Headquarters
 				int medium = db.UseItems[11]?.Count ?? 0;
 				int large = db.UseItems[12]?.Count ?? 0;
 
-				FurnitureCoin.ToolTip = string.Format("(S) x {0} ( +{1} )\r\n(M) x {2} ( +{3} )\r\n(L) x {4} ( +{5} )\r\n",
+				FurnitureCoin.ToolTip = string.Format(FormHeadquarters.FurnitureCoinToolTip,
 					small, small * 200,
 					medium, medium * 400,
 					large, large * 700);
@@ -500,7 +511,7 @@ namespace ElectronicObserver.Window.Wpf.Headquarters
 					Fuel.ForeColor = configUI.ForeColor;
 					Fuel.BackColor = System.Drawing.Color.Transparent;
 				}
-				Fuel.ToolTip = string.Format("Daily: {0:+##;-##;±0}\nWeekly: {1:+##;-##;±0}\nMonthly: {2:+##;-##;±0}",
+				Fuel.ToolTip = string.Format(FormHeadquarters.ResourceToolTip,
 					resday == null ? 0 : (db.Material.Fuel - resday.Fuel),
 					resweek == null ? 0 : (db.Material.Fuel - resweek.Fuel),
 					resmonth == null ? 0 : (db.Material.Fuel - resmonth.Fuel));
@@ -526,7 +537,7 @@ namespace ElectronicObserver.Window.Wpf.Headquarters
 					Ammo.ForeColor = configUI.ForeColor;
 					Ammo.BackColor = System.Drawing.Color.Transparent;
 				}
-				Ammo.ToolTip = string.Format("Daily: {0:+##;-##;±0}\nWeekly: {1:+##;-##;±0}\nMonthly: {2:+##;-##;±0}",
+				Ammo.ToolTip = string.Format(FormHeadquarters.ResourceToolTip,
 					resday == null ? 0 : (db.Material.Ammo - resday.Ammo),
 					resweek == null ? 0 : (db.Material.Ammo - resweek.Ammo),
 					resmonth == null ? 0 : (db.Material.Ammo - resmonth.Ammo));
@@ -552,7 +563,7 @@ namespace ElectronicObserver.Window.Wpf.Headquarters
 					Steel.ForeColor = configUI.ForeColor;
 					Steel.BackColor = System.Drawing.Color.Transparent;
 				}
-				Steel.ToolTip = string.Format("Daily: {0:+##;-##;±0}\nWeekly: {1:+##;-##;±0}\nMonthly: {2:+##;-##;±0}",
+				Steel.ToolTip = string.Format(FormHeadquarters.ResourceToolTip,
 					resday == null ? 0 : (db.Material.Steel - resday.Steel),
 					resweek == null ? 0 : (db.Material.Steel - resweek.Steel),
 					resmonth == null ? 0 : (db.Material.Steel - resmonth.Steel));
@@ -578,7 +589,7 @@ namespace ElectronicObserver.Window.Wpf.Headquarters
 					Bauxite.ForeColor = configUI.ForeColor;
 					Bauxite.BackColor = System.Drawing.Color.Transparent;
 				}
-				Bauxite.ToolTip = string.Format("Daily: {0:+##;-##;±0}\nWeekly: {1:+##;-##;±0}\nMonthly: {2:+##;-##;±0}",
+				Bauxite.ToolTip = string.Format(FormHeadquarters.ResourceToolTip,
 					resday == null ? 0 : (db.Material.Bauxite - resday.Bauxite),
 					resweek == null ? 0 : (db.Material.Bauxite - resweek.Bauxite),
 					resmonth == null ? 0 : (db.Material.Bauxite - resmonth.Bauxite));
@@ -628,12 +639,15 @@ namespace ElectronicObserver.Window.Wpf.Headquarters
 			try
 			{
 				var mat = KCDatabase.Instance.Material;
-				Clipboard.SetText(
-					$"{mat.Fuel}/{mat.Ammo}/{mat.Steel}/{mat.Bauxite}/{mat.InstantRepair} buckets/{mat.DevelopmentMaterial} devmats/{mat.InstantConstruction} torches/{mat.ModdingMaterial} screws");
+				Clipboard.SetText($"{mat.Fuel}/{mat.Ammo}/{mat.Steel}/{mat.Bauxite}/" +
+				                  $"{mat.InstantRepair}{FormHeadquarters.CopyToClipboardBuckets}/" +
+				                  $"{mat.DevelopmentMaterial}{FormHeadquarters.CopyToClipboardDevelopmentMaterials}/" +
+				                  $"{mat.InstantConstruction}{FormHeadquarters.CopyToClipboardInstantConstruction}/" +
+				                  $"{mat.ModdingMaterial}{FormHeadquarters.CopyToClipboardImproveMaterial}");
 			}
 			catch (Exception ex)
 			{
-				Utility.Logger.Add(3, "Failed to copy resources to clipboard." + ex.Message);
+				Utility.Logger.Add(3, FormHeadquarters.FailedToCopyToClipboard + ex.Message);
 			}
 		}
 
@@ -645,7 +659,7 @@ namespace ElectronicObserver.Window.Wpf.Headquarters
 			var itemID = Utility.Configuration.Config.FormHeadquarters.DisplayUseItemID;
 			var item = db.UseItems[itemID];
 			var itemMaster = db.MasterUseItems[itemID];
-			string tail = "\r\n(can be changed in settings)\r\n(right click to show all items)";
+			string tail = "\r\n" + FormHeadquarters.DisplayUseItemToolTipHint;
 
 
 
@@ -653,7 +667,8 @@ namespace ElectronicObserver.Window.Wpf.Headquarters
 			{
 				case null:
 					DisplayUseItem.Text = "???";
-					DisplayUseItem.ToolTip = "Unknown Item (ID: " + Utility.Configuration.Config.FormHeadquarters.DisplayUseItemID + ")" + tail;
+					DisplayUseItem.ToolTip = string.Format(FormHeadquarters.UnknownItem,
+						Utility.Configuration.Config.FormHeadquarters.DisplayUseItemID) + tail;
 					break;
 
 				// '18 spring event special mode
@@ -662,14 +677,22 @@ namespace ElectronicObserver.Window.Wpf.Headquarters
 				case "海苔":
 				case "お茶":
 					DisplayUseItem.Text = (item?.Count ?? 0).ToString();
-					DisplayUseItem.ToolTip = $"Rice: {db.UseItems[85]?.Count ?? 0}\r\nUmeboshi: {db.UseItems[86]?.Count ?? 0}\r\nNori: {db.UseItems[87]?.Count ?? 0}\r\nTea: {db.UseItems[88]?.Count ?? 0}\r\n{tail}";
+					DisplayUseItem.ToolTip = 
+						$"{FormHeadquarters.Rice}: {db.UseItems[85]?.Count ?? 0}\r\n" +
+						$"{FormHeadquarters.Umeboshi}: {db.UseItems[86]?.Count ?? 0}\r\n" +
+						$"{FormHeadquarters.Nori}: {db.UseItems[87]?.Count ?? 0}\r\n" +
+						$"{FormHeadquarters.Tea}: {db.UseItems[88]?.Count ?? 0}\r\n" +
+						$"{tail}";
 					break;
 
 				// '19 autumn event special mode
 				case "秋刀魚":
 				case "鰯":
 					DisplayUseItem.Text = (item?.Count ?? 0).ToString();
-					DisplayUseItem.ToolTip = $"秋刀魚: {db.UseItems[68]?.Count ?? 0}\r\n鰯: {db.UseItems[93]?.Count ?? 0}\r\n{tail}";
+					DisplayUseItem.ToolTip = 
+						$"{FormHeadquarters.Sanma}: {db.UseItems[68]?.Count ?? 0}\r\n" +
+						$"{FormHeadquarters.Iwashi}: {db.UseItems[93]?.Count ?? 0}\r\n" +
+						$"{tail}";
 					break;
 
 				default:
@@ -688,7 +711,7 @@ namespace ElectronicObserver.Window.Wpf.Headquarters
 				sb.Append(item.MasterUseItem.Name).Append(" x ").Append(item.Count).AppendLine();
 			}
 
-			MessageBox.Show(sb.ToString(), "保有アイテム一覧", MessageBoxButton.OK, MessageBoxImage.Information);
+			MessageBox.Show(sb.ToString(), FormHeadquarters.ListOfOwnedItems, MessageBoxButton.OK, MessageBoxImage.Information);
 		}
 
 		private int RealShipCount
