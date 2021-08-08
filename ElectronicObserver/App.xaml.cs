@@ -89,6 +89,7 @@ namespace ElectronicObserver
 					services.AddSingleton<FormCompassTranslationViewModel>();
 					services.AddSingleton<FormDockTranslationViewModel>();
 					services.AddSingleton<FormFleetTranslationViewModel>();
+					services.AddSingleton<FormFleetOverviewTranslationViewModel>();
 					services.AddSingleton<FormMainTranslationViewModel>();
 
 					Services = services.BuildServiceProvider();

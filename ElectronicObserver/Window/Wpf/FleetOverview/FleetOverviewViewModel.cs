@@ -9,8 +9,10 @@ using ElectronicObserver.Resource;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.ViewModels;
+using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Wpf.Fleet;
 using ElectronicObserverTypes;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 
 namespace ElectronicObserver.Window.Wpf.FleetOverview
@@ -28,6 +30,8 @@ namespace ElectronicObserver.Window.Wpf.FleetOverview
 
 	public class FleetOverviewViewModel : AnchorableViewModel
 	{
+		public FormFleetOverviewTranslationViewModel FormFleetOverview { get; }
+
 		public List<FleetViewModel> Fleets { get; }
 		public FleetOverviewItemViewModel AnchorageRepairingTimer { get; }
 		public FleetOverviewItemViewModel CombinedTag { get; }
@@ -35,6 +39,11 @@ namespace ElectronicObserver.Window.Wpf.FleetOverview
 		public FleetOverviewViewModel(List<FleetViewModel> fleets) : base("Fleets", "Fleets",
 			ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormFleet))
 		{
+			FormFleetOverview = App.Current.Services.GetService<FormFleetOverviewTranslationViewModel>()!;
+
+			Title = FormFleetOverview.Title;
+			FormFleetOverview.PropertyChanged += (_, _) => Title = FormFleetOverview.Title;
+
 			Fleets = fleets;
 
 			//api register
@@ -156,7 +165,7 @@ namespace ElectronicObserver.Window.Wpf.FleetOverview
 				var landing = members.Select(s => s.AllSlotInstanceMaster.Count(eq => eq?.CategoryType == EquipmentTypes.LandingCraft || eq?.CategoryType == EquipmentTypes.SpecialAmphibiousTank));
 
 
-				CombinedTag.ToolTip = string.Format("Drums: {0}pcs\r\nDaihatsu: {1}pcs\r\nTP: S {2} / A {3}\r\n\r\nTotal Fleet AS: {4}\r\nTotal Fleet LOS: {5:f2}\r\nFormula 33:\r\n n=1: {6:f2}\r\n n=2: {7:f2}\r\n n=3: {8:f2}\r\n n=4: {9:f2}",
+				CombinedTag.ToolTip = string.Format(FormFleetOverview.CombinedFleetToolTip,
 					transport.Sum(),
 					landing.Sum(),
 					tp,
@@ -181,7 +190,11 @@ namespace ElectronicObserver.Window.Wpf.FleetOverview
 			{
 				AnchorageRepairingTimer.Text = DateTimeHelper.ToTimeElapsedString(KCDatabase.Instance.Fleet.AnchorageRepairingTimer);
 				AnchorageRepairingTimer.Tag = KCDatabase.Instance.Fleet.AnchorageRepairingTimer;
-				AnchorageRepairingTimer.ToolTip = "Anchorage Repair Timer\r\nStart: " + DateTimeHelper.TimeToCSVString(KCDatabase.Instance.Fleet.AnchorageRepairingTimer) + "\r\nRecovery: " + DateTimeHelper.TimeToCSVString(KCDatabase.Instance.Fleet.AnchorageRepairingTimer.AddMinutes(20));
+				AnchorageRepairingTimer.ToolTip = 
+					FormFleetOverview.AnchorageRepairToolTip + 
+					DateTimeHelper.TimeToCSVString(KCDatabase.Instance.Fleet.AnchorageRepairingTimer) + 
+					$"\r\n{FormFleetOverview.Recovery}: " + 
+					DateTimeHelper.TimeToCSVString(KCDatabase.Instance.Fleet.AnchorageRepairingTimer.AddMinutes(20));
 			}
 			
 		}
