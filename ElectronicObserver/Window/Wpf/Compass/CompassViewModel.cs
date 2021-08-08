@@ -10,15 +10,17 @@ using ElectronicObserver.Resource;
 using ElectronicObserver.Resource.Record;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.ViewModels;
+using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Wpf.Compass.ViewModels;
 using ElectronicObserverTypes;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace ElectronicObserver.Window.Wpf.Compass
 {
 	public class CompassViewModel : AnchorableViewModel
 	{
 		private KCDatabase Db { get; }
-
+		public FormCompassTranslationViewModel FormCompass { get; }
 		public string? TextMapArea { get; set; }
 		public string? TextMapAreaToolTip { get; set; }
 
@@ -62,6 +64,10 @@ namespace ElectronicObserver.Window.Wpf.Compass
 			ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormCompass))
 		{
 			Db = KCDatabase.Instance;
+			FormCompass = App.Current.Services.GetService<FormCompassTranslationViewModel>()!;
+
+			Title = FormCompass.Title;
+			FormCompass.PropertyChanged += (_, _) => Title = FormCompass.Title;
 
 			APIObserver o = APIObserver.Instance;
 
@@ -174,7 +180,7 @@ namespace ElectronicObserver.Window.Wpf.Compass
 					if (mapinfo.RequiredDefeatedCount != -1 &&
 					    mapinfo.CurrentDefeatedCount < mapinfo.RequiredDefeatedCount)
 					{
-						sb.AppendFormat("{0} defeated: {1} / {2} times\r\n",
+						sb.AppendFormat(FormCompass.MapClearCount + "\r\n",
 							mapinfo.CurrentGaugeIndex > 0 ? $"#{mapinfo.CurrentGaugeIndex} " : "",
 							mapinfo.CurrentDefeatedCount, mapinfo.RequiredDefeatedCount);
 
@@ -192,7 +198,7 @@ namespace ElectronicObserver.Window.Wpf.Compass
 
 					foreach (var pair in KCDatabase.Instance.Battle.SpecialAttackCount)
 					{
-						sb.AppendLine($"{Constants.GetDayAttackKind((DayAttackKind) pair.Key)} : 発動済み");
+						sb.AppendLine($"{Constants.GetDayAttackKind((DayAttackKind) pair.Key)} : {FormCompass.SpecialAttackActivated}");
 					}
 					/*
 					ToolTipInfo.SetToolTip(TextMapArea, sb.Length > 0 ? sb.ToString() : null);
@@ -218,10 +224,10 @@ namespace ElectronicObserver.Window.Wpf.Compass
 					TextDestinationIcon = ImageSourceIcons.GetEquipmentIcon(EquipmentIconType.Seaplane);
 					TextDestinationToolTip = compass.CommentID switch
 					{
-						1 => "Enemy sighted!",
-						2 => "Target sighted!",
-						3 => "Course Patrol!",
-						_ => "Enemy plane sighted!"
+						1 => FormCompass.EnemySighted,
+						2 => FormCompass.TargetSighted,
+						3 => FormCompass.CoursePatrol,
+						_ => FormCompass.EnemyPlaneSighted
 					};
 					
 
@@ -324,28 +330,28 @@ namespace ElectronicObserver.Window.Wpf.Compass
 								default:
 									break;
 								case 1:
-									eventkind = "No enemy sighted.";
+									eventkind = FormCompass.NoEnemySighted;
 									break;
 								case 2:
-									eventkind = "Branch choice:";
+									eventkind = FormCompass.BranchChoice;
 									break;
 								case 3:
-									eventkind = "It's a calm sea.";
+									eventkind = FormCompass.CalmSea;
 									break;
 								case 4:
-									eventkind = "It's a calm strait.";
+									eventkind = FormCompass.CalmStrait;
 									break;
 								case 5:
-									eventkind = "I need to be careful.";
+									eventkind = FormCompass.NeedToBeCareful;
 									break;
 								case 6:
-									eventkind = "It's a calm sea.";
+									eventkind = FormCompass.CalmSea2;
 									break;
 							}
 
 							if (compass.RouteChoices != null)
 							{
-								TextEventDetailText = string.Join(" or ", compass.RouteChoicesDisplay);
+								TextEventDetailText = string.Join(FormCompass.BranchChoiceSeparator, compass.RouteChoicesDisplay);
 							}
 							else if (compass.FlavorTextType != -1)
 							{
@@ -402,7 +408,7 @@ namespace ElectronicObserver.Window.Wpf.Compass
 							break;
 
 						case 10:    // 泊地
-							TextEventDetailText = compass.CanEmergencyAnchorageRepair ? "修理可能" : "";
+							TextEventDetailText = compass.CanEmergencyAnchorageRepair ? FormCompass.RepairPossibility : "";
 							break;
 
 						default:
@@ -420,7 +426,7 @@ namespace ElectronicObserver.Window.Wpf.Compass
 					// TextEventKind.ImageIndex = (int)ResourceManager.EquipmentContent.CarrierBasedBomber;
 					// ToolTipInfo.SetToolTip(TextEventKind, "Air raid - " + Constants.GetAirRaidDamage(compass.AirRaidDamageKind));
 					TextEventKindIcon = ImageSourceIcons.GetEquipmentIcon(EquipmentIconType.CarrierBasedBomber);
-					TextEventKindToolTip = "Air raid - " + Constants.GetAirRaidDamage(compass.AirRaidDamageKind);
+					TextEventKindToolTip = FormCompass.AirRaid + Constants.GetAirRaidDamage(compass.AirRaidDamageKind);
 				}
 				else
 				{
@@ -514,7 +520,7 @@ namespace ElectronicObserver.Window.Wpf.Compass
 				ToolTipInfo.SetToolTip(TextEventDetail, string.Format("Fleets: {0}\r\n", _enemyFleetCandidate.Count));
 			}
 			*/
-			TextEventDetailToolTip = string.Format("Fleets: {0}\r\n", _enemyFleetCandidate.Count);
+			TextEventDetailToolTip = string.Format(FormCompass.FleetCount + "\r\n", _enemyFleetCandidate.Count);
 			/*
 			TableEnemyCandidate.SuspendLayout();
 			for (int i = 0; i < ControlCandidates.Length; i++)
@@ -555,7 +561,7 @@ namespace ElectronicObserver.Window.Wpf.Compass
 					if (itemMaster != null)
 						itemName = itemMaster.Name;
 					else
-						itemName = "Unknown item";
+						itemName = FormCompass.UnknownItem;
 				}
 
 				strs.AddLast(itemName + " x " + item.Amount);
@@ -563,7 +569,7 @@ namespace ElectronicObserver.Window.Wpf.Compass
 
 			if (!strs.Any())
 			{
-				return "(none)";
+				return FormCompass.None;
 
 			}
 			else
@@ -667,11 +673,11 @@ namespace ElectronicObserver.Window.Wpf.Compass
 			.Take(6);
 		}
 
-		private static string? GetAirSuperiorityString(int air)
+		private string? GetAirSuperiorityString(int air)
 		{
 			if (air > 0)
 			{
-				return string.Format("AS+: {0}\r\nAS: {1}\r\nAP: {2}\r\nAI: {3}\r\n",
+				return string.Format(FormCompass.AirValues,
 					(int)(air * 3.0),
 					(int)Math.Ceiling(air * 1.5),
 					(int)(air / 1.5 + 1),

@@ -5,7 +5,9 @@ using System.Windows.Media;
 using ElectronicObserver.Data;
 using ElectronicObserver.Resource.Record;
 using ElectronicObserver.Utility.Data;
+using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserverTypes;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 
 namespace ElectronicObserver.Window.Wpf.Compass.ViewModels
@@ -13,6 +15,7 @@ namespace ElectronicObserver.Window.Wpf.Compass.ViewModels
 	public class EnemyFleetElementViewModel : ObservableObject
 	{
 		private KCDatabase Db { get; }
+		public FormCompassTranslationViewModel FormCompass { get; }
 		public EnemyFleetRecord.EnemyFleetElement EnemyFleetCandidate { get; set; } = default!;
 
 		public IEnumerable<MasterShipViewModel> FleetMember => EnemyFleetCandidate.FleetMember
@@ -34,13 +37,14 @@ namespace ElectronicObserver.Window.Wpf.Compass.ViewModels
 		public EnemyFleetElementViewModel()
 		{
 			Db = KCDatabase.Instance;
+			FormCompass = App.Current.Services.GetService<FormCompassTranslationViewModel>()!;
 		}
 
-		private static string? GetAirSuperiorityString(int air)
+		private string? GetAirSuperiorityString(int air)
 		{
 			if (air > 0)
 			{
-				return string.Format("AS+: {0}\r\nAS: {1}\r\nAP: {2}\r\nAI: {3}\r\n",
+				return string.Format(FormCompass.AirValues,
 					(int)(air * 3.0),
 					(int)Math.Ceiling(air * 1.5),
 					(int)(air / 1.5 + 1),
