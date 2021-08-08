@@ -428,13 +428,12 @@ namespace ElectronicObserver.ViewModels
 			ConfigurationChanged(); //設定から初期化
 
 			// LoadLayout();
-
-#if false // disable update checks for now
+			
 			SoftwareInformation.CheckUpdate();
 			Task.Run(async () => await SoftwareUpdater.CheckUpdateAsync());
-			CancellationTokenSource cts = new CancellationTokenSource();
+			CancellationTokenSource cts = new();
 			Task.Run(async () => await SoftwareUpdater.PeriodicUpdateCheckAsync(cts.Token));
-#endif
+
 			/*
 			// デバッグ: 開始時にAPIリストを読み込む
 			if (Configuration.Config.Debug.LoadAPIListOnLoad)
