@@ -6,7 +6,9 @@ using System.Text;
 using ElectronicObserver.Data;
 using ElectronicObserver.Resource;
 using ElectronicObserver.ViewModels;
+using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Wpf.Fleet.ViewModels;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 
 namespace ElectronicObserver.Window.Wpf.FleetPreset
@@ -19,6 +21,8 @@ namespace ElectronicObserver.Window.Wpf.FleetPreset
 
 	public class FleetPresetItemViewModel : ObservableObject
 	{
+		public FormFleetPresetTranslationViewModel FormFleetPreset { get; }
+
 		public FleetPresetItemControlViewModel Name { get; }
 		public FleetConditionViewModel Condition { get; } = new();
 		public List<FleetPresetItemControlViewModel> Ships { get; }
@@ -27,6 +31,8 @@ namespace ElectronicObserver.Window.Wpf.FleetPreset
 
 		public FleetPresetItemViewModel()
 		{
+			FormFleetPreset = App.Current.Services.GetService<FormFleetPresetTranslationViewModel>()!;
+
 			FleetPresetItemControlViewModel CreateDefaultLabel()
 			{
 				return new ()
@@ -85,7 +91,7 @@ namespace ElectronicObserver.Window.Wpf.FleetPreset
 			// FormFleet.SetConditionDesign(Name, lowestCondition);
 			Condition.SetDesign(lowestCondition);
 
-			Name.ToolTip = $"最低cond: {lowestCondition}";
+			Name.ToolTip = $"{FormFleetPreset.LowestCondition}: {lowestCondition}";
 
 			for (int i = 0; i < Ships.Count; i++)
 			{
@@ -141,11 +147,17 @@ namespace ElectronicObserver.Window.Wpf.FleetPreset
 
 	public class FleetPresetViewModel : AnchorableViewModel
 	{
+		public FormFleetPresetTranslationViewModel FormFleetPreset { get; }
 		public ObservableCollection<FleetPresetItemViewModel> TableControls { get; }
 
 		public FleetPresetViewModel() : base("Presets", "FleetPreset",
 			ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormFleetPreset))
 		{
+			FormFleetPreset = App.Current.Services.GetService<FormFleetPresetTranslationViewModel>()!;
+
+			Title = FormFleetPreset.Title;
+			FormFleetPreset.PropertyChanged += (_, _) => Title = FormFleetPreset.Title;
+
 			TableControls = new();
 			ConfigurationChanged();
 
