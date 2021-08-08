@@ -14,16 +14,16 @@
 
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-	<Border Background="Transparent">
+	<Border Background="Transparent" DataContext="{Binding ViewModel, ElementName=ArsenalControl}">
 		<Border.ContextMenu>
 			<ContextMenu>
 				<MenuItem
-					Header="{x:Static window:Menus.ShowShipName}"
+					Header="{Binding FormArsenal.MenuMain_ShowShipName}"
 					IsCheckable="True"
 					IsChecked="{Binding ShowShipName}" />
 			</ContextMenu>
 		</Border.ContextMenu>
-		<Grid DataContext="{Binding ViewModel, ElementName=ArsenalControl}" IsSharedSizeScope="True">
+		<Grid IsSharedSizeScope="True">
 			<ItemsControl ItemsSource="{Binding Arsenals}">
 				<ItemsControl.ItemTemplate>
 					<DataTemplate DataType="local:ArsenalItemViewModel">

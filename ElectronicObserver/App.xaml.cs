@@ -83,6 +83,7 @@ namespace ElectronicObserver
 
 					ServiceCollection services = new();
 
+					services.AddSingleton<FormArsenalTranslationViewModel>();
 					services.AddSingleton<FormBaseAirCorpsTranslationViewModel>();
 					services.AddSingleton<FormBattleTranslationViewModel>();
 					services.AddSingleton<FormBrowserHostTranslationViewModel>();

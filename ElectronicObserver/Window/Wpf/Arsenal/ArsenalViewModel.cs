@@ -7,6 +7,8 @@ using ElectronicObserver.Observer;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.ViewModels;
+using ElectronicObserver.ViewModels.Translations;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 
 namespace ElectronicObserver.Window.Wpf.Arsenal
@@ -155,6 +157,7 @@ namespace ElectronicObserver.Window.Wpf.Arsenal
 
 	public class ArsenalViewModel : AnchorableViewModel
 	{
+		public FormArsenalTranslationViewModel FormArsenal { get; }
 		public List<ArsenalItemViewModel> Arsenals { get; }
 		public bool ShowShipName { get; set; }
 		private int _buildingID;
@@ -162,6 +165,11 @@ namespace ElectronicObserver.Window.Wpf.Arsenal
 		public ArsenalViewModel() : base("Arsenal", "Arsenal",
 			ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormArsenal))
 		{
+			FormArsenal = App.Current.Services.GetService<FormArsenalTranslationViewModel>()!;
+
+			Title = FormArsenal.Title;
+			FormArsenal.PropertyChanged += (_, _) => Title = FormArsenal.Title;
+
 			Arsenals = new()
 			{
 				new(),
