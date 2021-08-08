@@ -8,14 +8,17 @@ using ElectronicObserver.Data;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Utility.Mathematics;
+using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Control;
 using ElectronicObserverTypes;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 
 namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels
 {
 	public class FleetItemViewModel : ObservableObject
 	{
+		public FormFleetTranslationViewModel FormFleet { get; }
 		private FleetViewModel Parent { get; }
 		private bool Visible { get; set; }
 
@@ -30,6 +33,8 @@ namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels
 
 		public FleetItemViewModel(FleetViewModel parent)
 		{
+			FormFleet = App.Current.Services.GetService<FormFleetTranslationViewModel>()!;
+
 			Parent = parent;
 
 			Name = new() {Text = "*nothing*"};
@@ -153,7 +158,7 @@ namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels
 				Name.Text = ship.MasterShip.NameWithClass;
 				Name.Tag = ship.ShipID;
 				Name.ToolTip = string.Format(
-					"{0}{1} {2}\r\nFP: {3}/{4}\r\nTorp: {5}/{6}\r\nAA: {7}/{8}\r\nArmor: {9}/{10}\r\nASW: {11}/{12}\r\nEvasion: {13}/{14}\r\nLOS: {15}/{16}\r\nLuck: {17}\r\nAccuracy: {18:+#;-#;+0}\r\nBombing: {19:+#;-#;+0}\r\nRange: {20} / Speed: {21}\r\n(right click to open encyclopedia)\n",
+					FormFleet.ShipNameToolTip,
 					ship.SallyArea > 0 ? $"[{ship.SallyArea}] " : "",
 					ship.MasterShip.ShipTypeName, ship.NameWithLevel,
 					ship.FirepowerBase, ship.FirepowerTotal,
@@ -226,7 +231,7 @@ namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels
 					}
 
 
-					tip.AppendLine("(right click to calculate exp)");
+					tip.AppendLine(FormFleet.ExpCalcHint);
 
 					Level.ToolTip = tip.ToString();
 				}
@@ -366,14 +371,17 @@ namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels
 						DayAttackKind dayAttack => Constants.GetDayAttackKind(dayAttack),
 						DayAirAttackCutinKind cvci => cvci switch
 						{
-							DayAirAttackCutinKind.FighterBomberAttacker => "CI (FBA)",
-							DayAirAttackCutinKind.BomberBomberAttacker => "CI (BBA)",
-							DayAirAttackCutinKind.BomberAttacker => "CI (BA)",
+							DayAirAttackCutinKind.FighterBomberAttacker => FormFleet.CvciFba,
+							DayAirAttackCutinKind.BomberBomberAttacker => FormFleet.CvciBba,
+							DayAirAttackCutinKind.BomberAttacker => FormFleet.CvciBa,
 							_ => "?"
 						},
 						_ => $"{attack}"
 					};
-					sb.AppendFormat($"\r\n・[{asRate:P1} | {asPlusRate:P1}] - {attackDisplay} - Power: {power} - Accuracy: {accuracy:0.##}");
+					sb.AppendFormat($"\r\n・[{asRate:P1} | {asPlusRate:P1}] - " +
+					                $"{attackDisplay} - " +
+					                $"{FormFleet.Power}: {power} - " +
+					                $"{FormFleet.Accuracy}: {accuracy:0.##}");
 				}
 			}
 
@@ -394,22 +402,25 @@ namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels
 						NightAttackKind nightAttack => Constants.GetNightAttackKind(nightAttack),
 						CvnciKind cvnci => cvnci switch
 						{
-							CvnciKind.FighterFighterAttacker => "CI (FFA)",
-							CvnciKind.FighterAttacker => "CI (FA)",
-							CvnciKind.Phototube => "CI (Photo)",
-							CvnciKind.FighterOtherOther => "CI (FOO)",
+							CvnciKind.FighterFighterAttacker => FormFleet.CvnciFfa,
+							CvnciKind.FighterAttacker => FormFleet.CvnciFa,
+							CvnciKind.Phototube => FormFleet.CvnciPhoto,
+							CvnciKind.FighterOtherOther => FormFleet.CvnciFoo,
 							_ => "?"
 						},
 						NightTorpedoCutinKind torpedoCutin => torpedoCutin switch
 						{
-							NightTorpedoCutinKind.LateModelTorpedoSubmarineEquipment => "CI (Submarine Radar)",
-							NightTorpedoCutinKind.LateModelTorpedo2 => "CI (Late Model)",
+							NightTorpedoCutinKind.LateModelTorpedoSubmarineEquipment => FormFleet.LateModelTorpedoSubmarineEquipment,
+							NightTorpedoCutinKind.LateModelTorpedo2 => FormFleet.LateModelTorpedo2,
 							_ => "?"
 						},
 						_ => $"{attack}"
 					};
 
-					sb.AppendFormat($"\r\n・[{rate:P1}] - {attackDisplay} - Power: {power} - Accuracy: {accuracy:0.##}");
+					sb.AppendFormat($"\r\n・[{rate:P1}] - " +
+					                $"{attackDisplay} - " +
+					                $"{FormFleet.Power}: {power} - " +
+					                $"{FormFleet.Accuracy}: {accuracy:0.##}");
 				}
 			}
 
@@ -424,20 +435,21 @@ namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels
 
 				if (torpedo > 0)
 				{
-					sb.AppendFormat(ConstantsRes.TorpedoAttack + ": Power: {0}", torpedo);
-					sb.Append($" - Accuracy: {ship.GetTorpedoAttackAccuracy(fleet):0.##}");
+					sb.Append($"{ConstantsRes.TorpedoAttack}: " +
+					          $"{FormFleet.Power}: {torpedo} - " +
+					          $"{FormFleet.Accuracy}: {ship.GetTorpedoAttackAccuracy(fleet):0.##}");
 				}
 				if (asw > 0)
 				{
 					if (torpedo > 0)
 						sb.AppendLine();
 
-					sb.AppendFormat("ASW: Power: {0}", asw2);
+					sb.AppendFormat($"{FormFleet.Asw}: {FormFleet.Power}: {asw2}");
 
 					if (ship.CanOpeningASW)
-						sb.Append(" (OASW)");
+						sb.Append(FormFleet.OpeningAsw);
 
-					sb.Append($" - Accuracy: {ship.GetAswAttackAccuracy(fleet):0.##}");
+					sb.Append($" - {FormFleet.Accuracy}: {ship.GetAswAttackAccuracy(fleet):0.##}");
 				}
 				if (torpedo > 0 || asw > 0)
 					sb.AppendLine();
@@ -458,7 +470,7 @@ namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels
 				double aarbRate = Calculator.GetAarbRate(ship, adjustedaa);
 				if (aarbRate > 0)
 				{
-					sb.Append($"AARB: {aarbRate:p1}\r\n");
+					sb.Append($"{FormFleet.Aarb}: {aarbRate:p1}\r\n");
 				}
 
 			}
@@ -491,12 +503,12 @@ namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels
 					}
 
 					if (airbattle > 0)
-						sb.AppendFormat(GeneralRes.AirPower + ": {0} / Airstrike Power: {1}\r\n", airsup_str, airbattle);
+						sb.Append($"{GeneralRes.AirPower}: {airsup_str} / {FormFleet.AirstrikePower}: {airbattle}\r\n");
 					else
-						sb.AppendFormat(GeneralRes.AirPower + ": {0}\r\n", airsup_str);
+						sb.Append($"{GeneralRes.AirPower}: {airsup_str}\r\n");
 				}
 				else if (airbattle > 0)
-					sb.AppendFormat("Airstrike Power: {0}\r\n", airbattle);
+					sb.Append($"{FormFleet.AirstrikePower}: {airbattle}\r\n");
 			}
 
 			return sb.ToString();

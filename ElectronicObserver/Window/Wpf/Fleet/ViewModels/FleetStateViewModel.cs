@@ -6,17 +6,22 @@ using ElectronicObserver.Data;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Utility.Mathematics;
+using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Control;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 
 namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels
 {
 	public class FleetStateViewModel : ObservableObject
 	{
+		public FormFleetTranslationViewModel FormFleet { get; }
 		public ObservableCollection<StateLabel> StateLabels { get; }
 
 		public FleetStateViewModel()
 		{
+			FormFleet = App.Current.Services.GetService<FormFleetTranslationViewModel>()!;
+
 			StateLabels = new();
 		}
 
@@ -59,7 +64,7 @@ namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels
 			{
 				var state = GetStateLabel(index);
 
-				state.SetInformation(FleetStates.NoShip, "No Ships Assigned", "", (int)ResourceManager.IconContent.FleetNoShip);
+				state.SetInformation(FleetStates.NoShip, FormFleet.NoShips, "", (int)ResourceManager.IconContent.FleetNoShip);
 				state.Label.ToolTip = null;
 
 				emphasizesSubFleetInPort = false;
@@ -77,7 +82,7 @@ namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels
 					{
 						var state = GetStateLabel(index);
 
-						state.SetInformation(FleetStates.SortieDamaged, "！！Advancing at critical damage！！", "！！Advancing at critical damage！！", (int)ResourceManager.IconContent.FleetSortieDamaged, colorDanger);
+						state.SetInformation(FleetStates.SortieDamaged, FormFleet.CriticalDamageAdvance, FormFleet.CriticalDamageAdvance, (int)ResourceManager.IconContent.FleetSortieDamaged, colorDanger);
 						state.Label.ToolTip = null;
 
 						index++;
@@ -87,7 +92,7 @@ namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels
 					{   //出撃中
 						var state = GetStateLabel(index);
 
-						state.SetInformation(FleetStates.Sortie, "On sortie", "", (int)ResourceManager.IconContent.FleetSortie);
+						state.SetInformation(FleetStates.Sortie, FormFleet.OnSortie, "", (int)ResourceManager.IconContent.FleetSortie);
 						state.Label.ToolTip = null;
 
 						index++;
@@ -108,8 +113,8 @@ namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels
 						DateTimeHelper.ToTimeRemainString(state.Timer),
 						(int)ResourceManager.IconContent.FleetExpedition);
 
-					state.Label.ToolTip =
-						$"{dest.DisplayID}: {dest.NameEN}\r\nETA: {DateTimeHelper.TimeToCSVString(state.Timer)}";
+					state.Label.ToolTip = string.Format(FormFleet.ExpeditionToolTip,
+							dest.DisplayID, dest.NameEN, DateTimeHelper.TimeToCSVString(state.Timer));
 
 					emphasizesSubFleetInPort = false;
 					index++;
@@ -120,7 +125,7 @@ namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels
 				{
 					var state = GetStateLabel(index);
 
-					state.SetInformation(FleetStates.Damaged, "Critically damaged ship!", "Critically damaged ship!", (int)ResourceManager.IconContent.FleetDamaged, colorDanger);
+					state.SetInformation(FleetStates.Damaged, FormFleet.CriticallyDamagedShip, FormFleet.CriticallyDamagedShip, (int)ResourceManager.IconContent.FleetDamaged, colorDanger);
 					state.Label.ToolTip = null;
 
 					emphasizesSubFleetInPort = false;
@@ -134,13 +139,13 @@ namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels
 
 					state.Timer = db.Fleet.AnchorageRepairingTimer;
 					state.SetInformation(FleetStates.AnchorageRepairing,
-						"Repairing " + DateTimeHelper.ToTimeElapsedString(state.Timer),
+						FormFleet.Repairing + DateTimeHelper.ToTimeElapsedString(state.Timer),
 						DateTimeHelper.ToTimeElapsedString(state.Timer),
 						(int)ResourceManager.IconContent.FleetAnchorageRepairing);
 
 
 					StringBuilder sb = new StringBuilder();
-					sb.AppendFormat("Start: {0}\r\nRepair time:\r\n",
+					sb.AppendFormat(FormFleet.RepairTimeHeader,
 						DateTimeHelper.TimeToCSVString(db.Fleet.AnchorageRepairingTimer));
 
 					for (int i = 0; i < fleet.Members.Count; i++)
@@ -150,7 +155,7 @@ namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels
 						{
 							var totaltime = DateTimeHelper.FromAPITimeSpan(ship.RepairTime);
 							var unittime = Calculator.CalculateDockingUnitTime(ship);
-							sb.AppendFormat("#{0} : {1} @ {2} x -{3} HP\r\n",
+							sb.AppendFormat(FormFleet.RepairTimeDetail,
 								i + 1,
 								DateTimeHelper.ToTimeRemainString(totaltime),
 								DateTimeHelper.ToTimeRemainString(unittime),
@@ -179,11 +184,11 @@ namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels
 
 						state.Timer = new DateTime(ntime);
 						state.SetInformation(FleetStates.Docking,
-							"On dock " + DateTimeHelper.ToTimeRemainString(state.Timer),
+							FormFleet.OnDock + DateTimeHelper.ToTimeRemainString(state.Timer),
 							DateTimeHelper.ToTimeRemainString(state.Timer),
 							(int)ResourceManager.IconContent.FleetDocking);
 
-						state.Label.ToolTip = "ETA : " + DateTimeHelper.TimeToCSVString(state.Timer);
+						state.Label.ToolTip = FormFleet.DockCompletionTime + DateTimeHelper.TimeToCSVString(state.Timer);
 
 						emphasizesSubFleetInPort = false;
 						index++;
@@ -204,8 +209,8 @@ namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels
 					{
 						var state = GetStateLabel(index);
 
-						state.SetInformation(FleetStates.NotReplenished, "Supply needed", "", (int)ResourceManager.IconContent.FleetNotReplenished, colorInPort);
-						state.Label.ToolTip = string.Format("Fuel: {0}\r\nAmmo: {1}\r\nBaux: {2} ({3} planes)", fuel, ammo, bauxite, aircraft);
+						state.SetInformation(FleetStates.NotReplenished, FormFleet.SupplyNeeded, "", (int)ResourceManager.IconContent.FleetNotReplenished, colorInPort);
+						state.Label.ToolTip = string.Format(FormFleet.ResupplyTooltip, fuel, ammo, bauxite, aircraft);
 
 						index++;
 					}
@@ -234,7 +239,7 @@ namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels
 							iconIndex,
 							colorInPort);
 
-						state.Label.ToolTip = string.Format("Recovery time: {0}\r\n(prediction error: {1})",
+						state.Label.ToolTip = string.Format(FormFleet.RecoveryTimeToolTip,
 							DateTimeHelper.TimeToCSVString(state.Timer), DateTimeHelper.ToTimeRemainString(TimeSpan.FromSeconds(db.Fleet.ConditionBorderAccuracy)));
 
 						index++;
@@ -244,8 +249,8 @@ namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels
 					{       //戦意高揚
 						var state = GetStateLabel(index);
 
-						state.SetInformation(FleetStates.Sparkled, "Sparkled fleet!", "", (int)ResourceManager.IconContent.ConditionSparkle, colorInPort);
-						state.Label.ToolTip = string.Format("Lowest morale: {0}\r\nEffective for {1} expeditions.", cond, Math.Ceiling((cond - 49) / 3.0));
+						state.SetInformation(FleetStates.Sparkled, FormFleet.FightingSpiritHigh, "", (int)ResourceManager.IconContent.ConditionSparkle, colorInPort);
+						state.Label.ToolTip = string.Format(FormFleet.SparkledTooltip, cond, Math.Ceiling((cond - 49) / 3.0));
 
 						index++;
 					}
@@ -257,7 +262,7 @@ namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels
 				{
 					var state = GetStateLabel(index);
 
-					state.SetInformation(FleetStates.Ready, "Ready to sortie!", "", (int)ResourceManager.IconContent.FleetReady, colorInPort);
+					state.SetInformation(FleetStates.Ready, FormFleet.ReadyToSortie, "", (int)ResourceManager.IconContent.FleetReady, colorInPort);
 					state.Label.ToolTip = null;
 
 					index++;
@@ -329,7 +334,7 @@ namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels
 
 					case FleetStates.Docking:
 						state.ShortenedText = DateTimeHelper.ToTimeRemainString(state.Timer);
-						state.Text = "On dock " + state.ShortenedText;
+						state.Text = FormFleet.OnDock + state.ShortenedText;
 						state.UpdateText();
 						if (Utility.Configuration.Config.FormFleet.BlinkAtCompletion && (state.Timer - DateTime.Now).TotalMilliseconds <= Utility.Configuration.Config.NotifierRepair.AccelInterval)
 							state.Label.BackColor = DateTime.Now.Second % 2 == 0 ? System.Drawing.Color.LightGreen : System.Drawing.Color.Transparent;
@@ -345,7 +350,7 @@ namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels
 
 					case FleetStates.Tired:
 						state.ShortenedText = DateTimeHelper.ToTimeRemainString(state.Timer);
-						state.Text = "Fatigued " + state.ShortenedText;
+						state.Text = FormFleet.Fatigued + state.ShortenedText;
 						state.UpdateText();
 						if (Utility.Configuration.Config.FormFleet.BlinkAtCompletion && (state.Timer - DateTime.Now).TotalMilliseconds <= 0)
 							state.Label.BackColor = DateTime.Now.Second % 2 == 0 ? System.Drawing.Color.LightGreen : System.Drawing.Color.Transparent;
@@ -353,7 +358,7 @@ namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels
 
 					case FleetStates.AnchorageRepairing:
 						state.ShortenedText = DateTimeHelper.ToTimeElapsedString(KCDatabase.Instance.Fleet.AnchorageRepairingTimer);
-						state.Text = "Repairing " + state.ShortenedText;
+						state.Text = FormFleet.Repairing + state.ShortenedText;
 						state.UpdateText();
 						break;
 

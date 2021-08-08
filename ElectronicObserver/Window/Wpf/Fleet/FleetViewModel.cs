@@ -8,16 +8,20 @@ using ElectronicObserver.Observer;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.ViewModels;
+using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Control;
 using ElectronicObserver.Window.Dialog;
 using ElectronicObserver.Window.Wpf.Fleet.ViewModels;
 using ElectronicObserverTypes;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.Input;
 
 namespace ElectronicObserver.Window.Wpf.Fleet
 {
 	public class FleetViewModel : AnchorableViewModel
 	{
+		public FormFleetTranslationViewModel FormFleet { get; }
+
 		public FleetStatusViewModel ControlFleet { get; }
 		public List<FleetItemViewModel> ControlMember { get; } = new();
 
@@ -37,6 +41,11 @@ namespace ElectronicObserver.Window.Wpf.Fleet
 		public FleetViewModel(int fleetId) : base($"#{fleetId}", $"Fleet{fleetId}",
 			ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormFleet))
 		{
+			FormFleet = App.Current.Services.GetService<FormFleetTranslationViewModel>()!;
+
+			Title = $"#{fleetId}";
+			FormFleet.PropertyChanged += (_, _) => Title = $"#{fleetId}";
+
 			FleetId = fleetId;
 
 			#region Commands
@@ -408,7 +417,7 @@ namespace ElectronicObserver.Window.Wpf.Fleet
 			FleetData fleet = db.Fleet[FleetId];
 			if (fleet == null) return;
 
-			sb.AppendFormat("{0}\tAS: {1} / LOS: {2} / TP: {3}\r\n", fleet.Name, fleet.GetAirSuperiority(), fleet.GetSearchingAbilityString(ControlFleet.BranchWeight), Calculator.GetTPDamage(fleet));
+			sb.AppendFormat(FormFleet.CopyFleetText + "\r\n", fleet.Name, fleet.GetAirSuperiority(), fleet.GetSearchingAbilityString(ControlFleet.BranchWeight), Calculator.GetTPDamage(fleet));
 			for (int i = 0; i < fleet.Members.Count; i++)
 			{
 				if (fleet[i] == -1)

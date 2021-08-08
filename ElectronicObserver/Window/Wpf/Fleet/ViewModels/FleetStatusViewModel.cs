@@ -5,7 +5,9 @@ using System.Windows.Input;
 using ElectronicObserver.Data;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Utility.Data;
+using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserverTypes;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 
@@ -13,6 +15,8 @@ namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels
 {
 	public class FleetStatusViewModel : ObservableObject
 	{
+		public FormFleetTranslationViewModel FormFleet { get; }
+
 		public FleetItemControlViewModel Name { get; }
 		public FleetStateViewModel State { get; }
 		public FleetItemControlViewModel AirSuperiority { get; }
@@ -26,6 +30,8 @@ namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels
 
 		public FleetStatusViewModel(int fleetId)
 		{
+			FormFleet = App.Current.Services.GetService<FormFleetTranslationViewModel>()!;
+
 			FleetId = fleetId;
 
 			IncreaseBranchWeightCommand = new RelayCommand(SearchingAbility_Click);
@@ -123,13 +129,13 @@ namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels
 				{
 					case 0:
 					default:
-						supporttype = "n/a"; break;
+						supporttype = FormFleet.SupportTypeNone; break;
 					case 1:
-						supporttype = "Aerial Support"; break;
+						supporttype = FormFleet.SupportTypeAerial; break;
 					case 2:
-						supporttype = "Support Shelling"; break;
+						supporttype = FormFleet.SupportTypeShelling; break;
 					case 3:
-						supporttype = "Long-range Torpedo Attack"; break;
+						supporttype = FormFleet.SupportTypeTorpedo; break;
 				}
 
 				double expeditionBonus = Calculator.GetExpeditionBonus(fleet);
@@ -140,16 +146,7 @@ namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels
 				var landing = members.Select(s => s.AllSlotInstanceMaster.Count(eq => eq?.CategoryType == EquipmentTypes.LandingCraft || eq?.CategoryType == EquipmentTypes.SpecialAmphibiousTank));
 
 
-				Name.ToolTip = string.Format(
-					"Lv sum: {0} / avg: {1:0.00}\r\n" +
-					"{2} fleet\r\n" +
-					"Support Expedition: {3}\r\n" +
-					"Total FP {4} / Torp {5} / AA {6} / ASW {7} / LOS {8}\r\n" +
-					"Drum: {9} ({10} ships)\r\n" +
-					"Daihatsu: {11} ({12} ships, +{13:p1})\r\n" +
-					"TP: S {14} / A {15}\r\n" +
-					"Consumption: {16} fuel / {17} ammo\r\n" +
-					"({18} fuel / {19} ammo per battle)",
+				Name.ToolTip = string.Format(FormFleet.FleetNameToolTip,
 					levelSum,
 					(double)levelSum / Math.Max(fleet.Members.Count(id => id != -1), 1),
 					Constants.GetSpeed(speed),
@@ -187,7 +184,7 @@ namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels
 					(int)(airSuperiority / 1.5),
 					Math.Max((int)(airSuperiority * 1.5 - 1), 0),
 					Math.Max((int)(airSuperiority * 3.0 - 1), 0),
-					includeLevel ? "w/o Proficiency" : "w/ Proficiency",
+					includeLevel ? FormFleet.WithoutProficiency : FormFleet.WithProficiency,
 					includeLevel ? Calculator.GetAirSuperiorityIgnoreLevel(fleet) : Calculator.GetAirSuperiority(fleet));
 			}
 
@@ -199,18 +196,18 @@ namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels
 				double probStart = fleet.GetContactProbability();
 				var probSelect = fleet.GetContactSelectionProbability();
 
-				sb.AppendFormat("Formula 33 (n={0})\r\n　(Click to switch between weighting)\r\n\r\nContact:\r\n　AS+ {1:p1} / AS {2:p1}\r\n",
+				sb.AppendFormat(FormFleet.FleetLosToolTip,
 					BranchWeight,
 					probStart,
 					probStart * 0.6);
 
 				if (probSelect.Count > 0)
 				{
-					sb.AppendLine("Selection:");
+					sb.AppendLine(FormFleet.ContactSelection);
 
-					foreach (var p in probSelect.OrderBy(p => p.Key))
+					foreach ((int accuracy, double probability) in probSelect.OrderBy(p => p.Key))
 					{
-						sb.AppendFormat("　Acc+{0}: {1:p1}\r\n", p.Key, p.Value);
+						sb.AppendFormat(FormFleet.ContactProbability + "\r\n", accuracy, probability);
 					}
 				}
 
