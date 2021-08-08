@@ -6,6 +6,8 @@ using ElectronicObserver.Observer;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.ViewModels;
+using ElectronicObserver.ViewModels.Translations;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 
 namespace ElectronicObserver.Window.Wpf.Dock
@@ -118,11 +120,17 @@ namespace ElectronicObserver.Window.Wpf.Dock
 
 	public class DockViewModel : AnchorableViewModel
 	{
+		public FormDockTranslationViewModel FormDock { get; }
 		public List<DockItemViewModel> Docks { get; }
 
 		public DockViewModel() : base("Dock", "Dock",
 			ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormDock))
 		{
+			FormDock = App.Current.Services.GetService<FormDockTranslationViewModel>()!;
+
+			Title = FormDock.Title;
+			FormDock.PropertyChanged += (_, _) => Title = FormDock.Title;
+
 			Docks = new()
 			{
 				new(),
