@@ -410,7 +410,7 @@ namespace ElectronicObserver.Window.Wpf.BaseAirCorps
 								break;
 						}
 
-						sb.AppendFormat(FormBaseAirCorps.Range, eq.NameWithLevel, eq.MasterEquipment.AircraftDistance);
+						sb.AppendFormat($"{ FormBaseAirCorps.Range}\n", eq.NameWithLevel, eq.MasterEquipment.AircraftDistance);
 						break;
 
 					case 2:     // 配置転換中
