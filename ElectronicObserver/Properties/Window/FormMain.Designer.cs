@@ -448,7 +448,7 @@ namespace ElectronicObserver.Properties.Window {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 次の練習リセット：.
+        ///   Looks up a localized string similar to 次の演習リセット：.
         /// </summary>
         public static string NextExerciseReset {
             get {

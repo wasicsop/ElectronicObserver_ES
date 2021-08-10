@@ -151,4 +151,7 @@
   <data name="LoadingIntegration" xml:space="preserve">
     <value>統合の読み込み </value>
   </data>
+  <data name="DoingExercises" xml:space="preserve">
+    <value>⚓ 演習</value>
+  </data>
 </root>

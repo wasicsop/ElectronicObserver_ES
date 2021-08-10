@@ -106,6 +106,15 @@ namespace ElectronicObserver.Observer {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ⚓ 演習.
+        /// </summary>
+        public static string DoingExercises {
+            get {
+                return ResourceManager.GetString("DoingExercises", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 回避.
         /// </summary>
         public static string Evasion {

@@ -171,4 +171,7 @@
   <data name="LoadingIntegration" xml:space="preserve">
     <value>Loading Integration...</value>
   </data>
+  <data name="DoingExercises" xml:space="preserve">
+    <value>⚓ Doing PVP</value>
+  </data>
 </root>
