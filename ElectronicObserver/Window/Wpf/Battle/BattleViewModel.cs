@@ -775,8 +775,10 @@ namespace ElectronicObserver.Window.Wpf.Battle
 				AirSuperiorityText = Constants.GetAirSuperiority(phases[1].Air.AirSuperiority);
 				AirSuperiorityForeColor = (phases[1].Air.AirSuperiority switch
 				{
-					// AS+ or AS
-					1 or 2 => Utility.Configuration.Config.UI.Color_Green,
+					// AS+
+					1 => Utility.Configuration.Config.UI.Color_Yellow,
+					// AS
+					2 => Utility.Configuration.Config.UI.Color_Green,
 					// AI or AI-
 					3 or 4 => Utility.Configuration.Config.UI.Color_Red,
 
@@ -837,12 +839,12 @@ namespace ElectronicObserver.Window.Wpf.Battle
 				// ClearAircraftLabel(AirStage1Enemy);
 
 				AirStage1FriendText = "-";
-				AirStage1FriendForeColor = System.Drawing.SystemColors.ControlText.ToBrush();
+				AirStage1FriendForeColor = Utility.Configuration.Config.UI.ForeColor.ToBrush();
 				AirStage1FriendIcon = null;
 				AirStage1FriendToolTip = null;
 
 				AirStage1EnemyText = "-";
-				AirStage1EnemyForeColor = System.Drawing.SystemColors.ControlText.ToBrush();
+				AirStage1EnemyForeColor = Utility.Configuration.Config.UI.ForeColor.ToBrush();
 				AirStage1EnemyIcon = null;
 				AirStage1EnemyToolTip = null;
 			}
@@ -884,12 +886,12 @@ namespace ElectronicObserver.Window.Wpf.Battle
 				// ClearAircraftLabel(AirStage2Friend);
 				// ClearAircraftLabel(AirStage2Enemy);
 				AirStage2FriendText = "-";
-				AirStage2FriendForeColor = System.Drawing.SystemColors.ControlText.ToBrush();
+				AirStage2FriendForeColor = Utility.Configuration.Config.UI.ForeColor.ToBrush();
 				AirStage2FriendIcon = null;
 				AirStage2FriendToolTip = null;
 
 				AirStage2EnemyText = "-";
-				AirStage2EnemyForeColor = System.Drawing.SystemColors.ControlText.ToBrush();
+				AirStage2EnemyForeColor = Utility.Configuration.Config.UI.ForeColor.ToBrush();
 				AirStage2EnemyIcon = null;
 				AirStage2EnemyToolTip = null;
 
@@ -908,22 +910,22 @@ namespace ElectronicObserver.Window.Wpf.Battle
 			// ClearAircraftLabel(AirStage2Enemy);
 
 			AirStage1FriendText = "-";
-			AirStage1FriendForeColor = System.Drawing.SystemColors.ControlText.ToBrush();
+			AirStage1FriendForeColor = Utility.Configuration.Config.UI.ForeColor.ToBrush();
 			AirStage1FriendIcon = null;
 			AirStage1FriendToolTip = null;
 
 			AirStage1EnemyText = "-";
-			AirStage1EnemyForeColor = System.Drawing.SystemColors.ControlText.ToBrush();
+			AirStage1EnemyForeColor = Utility.Configuration.Config.UI.ForeColor.ToBrush();
 			AirStage1EnemyIcon = null;
 			AirStage1EnemyToolTip = null;
 
 			AirStage2FriendText = "-";
-			AirStage2FriendForeColor = System.Drawing.SystemColors.ControlText.ToBrush();
+			AirStage2FriendForeColor = Utility.Configuration.Config.UI.ForeColor.ToBrush();
 			AirStage2FriendIcon = null;
 			AirStage2FriendToolTip = null;
 
 			AirStage2EnemyText = "-";
-			AirStage2EnemyForeColor = System.Drawing.SystemColors.ControlText.ToBrush();
+			AirStage2EnemyForeColor = Utility.Configuration.Config.UI.ForeColor.ToBrush();
 			AirStage2EnemyIcon = null;
 			AirStage2EnemyToolTip = null;
 
