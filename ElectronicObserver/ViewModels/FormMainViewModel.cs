@@ -79,8 +79,8 @@ namespace ElectronicObserver.ViewModels
 			new Vs2013BlueTheme(),
 			new Vs2013DarkTheme(),
 		};
-
 		public Theme CurrentTheme { get; set; }
+		public Color BackgroundColor { get; set; }
 
 		private WindowPosition Position { get; set; } = new();
 
@@ -1302,6 +1302,8 @@ namespace ElectronicObserver.ViewModels
 		{
 			// todo switching themes doesn't update everything in runtime
 			Utility.Configuration.Instance.ApplyTheme();
+
+			BackgroundColor = Config.UI.BackColor.ToBrush().Color;
 
 			CurrentTheme = Utility.Configuration.Config.UI.ThemeMode switch
 			{
