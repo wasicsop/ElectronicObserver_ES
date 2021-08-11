@@ -775,10 +775,8 @@ namespace ElectronicObserver.Window.Wpf.Battle
 				AirSuperiorityText = Constants.GetAirSuperiority(phases[1].Air.AirSuperiority);
 				AirSuperiorityForeColor = (phases[1].Air.AirSuperiority switch
 				{
-					// AS+
-					1 => Utility.Configuration.Config.UI.Color_Yellow,
-					// AS
-					2 => Utility.Configuration.Config.UI.Color_Green,
+					// AS+ or AS
+					1 or 2 => Utility.Configuration.Config.UI.Color_Green,
 					// AI or AI-
 					3 or 4 => Utility.Configuration.Config.UI.Color_Red,
 
