@@ -1,50 +1,56 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+using System.Windows;
 
 namespace Browser
 {
-	static class Program
+	/// <summary>
+	/// Interaction logic for App.xaml
+	/// </summary>
+	public partial class App : Application
 	{
-		/// <summary>
-		/// アプリケーションのメイン エントリ ポイントです。
-		/// </summary>
-		[STAThread]
-		static void Main(string[] args)
+		public new static App Current => (App)Application.Current;
+		public IServiceProvider Services { get; set; } = default!;
+
+		public App()
 		{
+			this.InitializeComponent();
+		}
+
+		protected override void OnStartup(StartupEventArgs e)
+		{
+			// Debugger.Launch();
 			// args = new[] {"test"};
 			// FormBrowserHostから起動された時は引数に通信用URLが渡される
-			if (args.Length < 2)
+			if (e.Args.Length < 2)
 			{
 				MessageBox.Show("Please start the application using ElectronicObserver.exe",
-					"Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-				return;
-			}
-			Application.EnableVisualStyles();
-			Application.SetCompatibleTextRenderingDefault(false);
-			AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
-			if (!int.TryParse(args[1], out int port))
-			{
-				MessageBox.Show("Please start the application using ElectronicObserver.exe",
-					"Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+					"Information", MessageBoxButton.OK, MessageBoxImage.Information);
 				return;
 			}
 
-			string culture = args.Length switch
+			System.Windows.Forms.Application.EnableVisualStyles();
+			System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
+			System.AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
+			if (!int.TryParse(e.Args[1], out int port))
 			{
-				> 2 => args[2],
+				MessageBox.Show("Please start the application using ElectronicObserver.exe",
+					"Information", MessageBoxButton.OK, MessageBoxImage.Information);
+				return;
+			}
+
+			string culture = e.Args.Length switch
+			{
+				> 2 => e.Args[2],
 				_ => CultureInfo.CurrentCulture.Name switch
 				{
 					"ja-JP" => "ja-JP",
 					_ => "en-US"
 				}
 			};
-			Application.Run(new FormBrowser(args[0], port, culture));
+			System.Windows.Forms.Application.Run(new FormBrowser(e.Args[0], port, culture));
 		}
 
 		private static System.Reflection.Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args)
@@ -64,12 +70,12 @@ namespace Browser
 				catch (IOException ex) when (ex is FileNotFoundException || ex is FileLoadException)
 				{
 					if (MessageBox.Show(
-$@"The browser component could not be loaded.
+						    $@"The browser component could not be loaded.
 Microsoft Visual C++ 2015 Redistributable is required.
 Open the download page?
 (Please install vc_redist.{(Environment.Is64BitProcess ? "x64" : "x86")}.exe)",
-						"CefSharp Load Error", MessageBoxButtons.YesNo, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1)
-						== DialogResult.Yes)
+						    "CefSharp Load Error", MessageBoxButton.YesNo, MessageBoxImage.Error, MessageBoxResult.Yes)
+					    == MessageBoxResult.Yes)
 					{
 						ProcessStartInfo psi = new ProcessStartInfo
 						{
@@ -90,8 +96,8 @@ Open the download page?
 						    @"Browser startup failed.
 This may be caused by the fact that the operation required for installation has not been performed.
 Do you want to open the installation guide?",
-						    "Browser Load Failed", MessageBoxButtons.YesNo, MessageBoxIcon.Error)
-					    == DialogResult.Yes)
+						    "Browser Load Failed", MessageBoxButton.YesNo, MessageBoxImage.Error)
+					    == MessageBoxResult.Yes)
 					{
 						ProcessStartInfo psi = new ProcessStartInfo
 						{
@@ -107,5 +113,6 @@ Do you want to open the installation guide?",
 			}
 			return null;
 		}
+
 	}
 }

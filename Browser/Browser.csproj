@@ -23,6 +23,7 @@
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 		<GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
 		<UseWindowsForms>true</UseWindowsForms>
+		<UseWPF>true</UseWPF>
 		<SatelliteResourceLanguages>en</SatelliteResourceLanguages>
 		<Nullable>enable</Nullable>
 	</PropertyGroup>
@@ -31,6 +32,10 @@
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
 		<OutputPath>..\ElectronicObserver\bin\x64\Release\</OutputPath>
+	</PropertyGroup>
+	<PropertyGroup>
+		<NoWin32Manifest>true</NoWin32Manifest>
+		<StartupObject>Browser.App</StartupObject>
 	</PropertyGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\BrowserLibCore\BrowserLibCore.csproj" />
@@ -67,6 +72,7 @@
 		<PackageReference Include="MessagePack.Annotations" Version="2.2.85" />
 		<PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="5.0.0" />
 		<PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+		<PackageReference Include="ModernWpfUI" Version="0.9.4" />
 		<PackageReference Include="System.Buffers" Version="4.5.1" />
 		<PackageReference Include="System.Collections.Immutable" Version="5.0.0" />
 		<PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
