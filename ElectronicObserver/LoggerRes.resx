@@ -302,4 +302,7 @@
   <data name="ImprovedEqSuccess" xml:space="preserve">
     <value>{0} への改修に成功しました。</value>
   </data>
+  <data name="ClearedQuest" xml:space="preserve">
+    <value>任務『{0}』を達成しました。</value>
+  </data>
 </root>

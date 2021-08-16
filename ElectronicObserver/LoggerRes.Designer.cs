@@ -22,7 +22,7 @@ namespace ElectronicObserver {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class LoggerRes {
+    public class LoggerRes {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace ElectronicObserver {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ElectronicObserver.LoggerRes", typeof(LoggerRes).Assembly);
@@ -51,7 +51,7 @@ namespace ElectronicObserver {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace ElectronicObserver {
         /// <summary>
         ///   Looks up a localized string similar to 追加情報 : {0}.
         /// </summary>
-        internal static string AdditionalInfo {
+        public static string AdditionalInfo {
             get {
                 return ResourceManager.GetString("AdditionalInfo", resourceCulture);
             }
@@ -72,7 +72,7 @@ namespace ElectronicObserver {
         /// <summary>
         ///   Looks up a localized string similar to 通信内容 : {0}.
         /// </summary>
-        internal static string APIData {
+        public static string APIData {
             get {
                 return ResourceManager.GetString("APIData", resourceCulture);
             }
@@ -81,7 +81,7 @@ namespace ElectronicObserver {
         /// <summary>
         ///   Looks up a localized string similar to APIObserver: ポート {0} 番で受信を開始しました。.
         /// </summary>
-        internal static string APIObserverStarted {
+        public static string APIObserverStarted {
             get {
                 return ResourceManager.GetString("APIObserverStarted", resourceCulture);
             }
@@ -90,7 +90,7 @@ namespace ElectronicObserver {
         /// <summary>
         ///   Looks up a localized string similar to APIObserver: 受信を停止しました。.
         /// </summary>
-        internal static string APIObserverStopped {
+        public static string APIObserverStopped {
             get {
                 return ResourceManager.GetString("APIObserverStopped", resourceCulture);
             }
@@ -99,16 +99,25 @@ namespace ElectronicObserver {
         /// <summary>
         ///   Looks up a localized string similar to のパラメータを更新しました。.
         /// </summary>
-        internal static string ChangedParameters {
+        public static string ChangedParameters {
             get {
                 return ResourceManager.GetString("ChangedParameters", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 任務『{0}』を達成しました。.
+        /// </summary>
+        public static string ClearedQuest {
+            get {
+                return ResourceManager.GetString("ClearedQuest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} をコピーしました。.
         /// </summary>
-        internal static string Copied {
+        public static string Copied {
             get {
                 return ResourceManager.GetString("Copied", resourceCulture);
             }
@@ -117,7 +126,7 @@ namespace ElectronicObserver {
         /// <summary>
         ///   Looks up a localized string similar to {0}「{1}」の開発に成功しました。({2}/{3}/{4}/{5} 秘書艦: {6}).
         /// </summary>
-        internal static string CreatedItem {
+        public static string CreatedItem {
             get {
                 return ResourceManager.GetString("CreatedItem", resourceCulture);
             }
@@ -126,7 +135,7 @@ namespace ElectronicObserver {
         /// <summary>
         ///   Looks up a localized string similar to  を除籍しました。.
         /// </summary>
-        internal static string Decomissioned {
+        public static string Decomissioned {
             get {
                 return ResourceManager.GetString("Decomissioned", resourceCulture);
             }
@@ -135,7 +144,7 @@ namespace ElectronicObserver {
         /// <summary>
         ///   Looks up a localized string similar to は存在しません。.
         /// </summary>
-        internal static string DoesNotExist {
+        public static string DoesNotExist {
             get {
                 return ResourceManager.GetString("DoesNotExist", resourceCulture);
             }
@@ -144,7 +153,7 @@ namespace ElectronicObserver {
         /// <summary>
         ///   Looks up a localized string similar to {0}「{1}」を入手しました。.
         /// </summary>
-        internal static string EquipmentObtained {
+        public static string EquipmentObtained {
             get {
                 return ResourceManager.GetString("EquipmentObtained", resourceCulture);
             }
@@ -153,7 +162,7 @@ namespace ElectronicObserver {
         /// <summary>
         ///   Looks up a localized string similar to 艦これ統計データベースへの送信中にエラーが発生しました。.
         /// </summary>
-        internal static string ErrorDatabaseSending {
+        public static string ErrorDatabaseSending {
             get {
                 return ResourceManager.GetString("ErrorDatabaseSending", resourceCulture);
             }
@@ -162,7 +171,7 @@ namespace ElectronicObserver {
         /// <summary>
         ///   Looks up a localized string similar to エラー : {0}.
         /// </summary>
-        internal static string ErrorField {
+        public static string ErrorField {
             get {
                 return ResourceManager.GetString("ErrorField", resourceCulture);
             }
@@ -171,7 +180,7 @@ namespace ElectronicObserver {
         /// <summary>
         ///   Looks up a localized string similar to エラーレポート : {0}.
         /// </summary>
-        internal static string ErrorReport {
+        public static string ErrorReport {
             get {
                 return ResourceManager.GetString("ErrorReport", resourceCulture);
             }
@@ -180,7 +189,7 @@ namespace ElectronicObserver {
         /// <summary>
         ///   Looks up a localized string similar to flashの品質設定を行いました。.
         /// </summary>
-        internal static string ExecutedFlashQualitySetting {
+        public static string ExecutedFlashQualitySetting {
             get {
                 return ResourceManager.GetString("ExecutedFlashQualitySetting", resourceCulture);
             }
@@ -189,7 +198,7 @@ namespace ElectronicObserver {
         /// <summary>
         ///   Looks up a localized string similar to #{0}「{1}」が遠征「{2}: {3}」へ出撃しました。.
         /// </summary>
-        internal static string ExpedStarted {
+        public static string ExpedStarted {
             get {
                 return ResourceManager.GetString("ExpedStarted", resourceCulture);
             }
@@ -198,7 +207,7 @@ namespace ElectronicObserver {
         /// <summary>
         ///   Looks up a localized string similar to に失敗しました。.
         /// </summary>
-        internal static string Failed {
+        public static string Failed {
             get {
                 return ResourceManager.GetString("Failed", resourceCulture);
             }
@@ -207,7 +216,7 @@ namespace ElectronicObserver {
         /// <summary>
         ///   Looks up a localized string similar to 艦これ統計データベースへの {0} の送信に失敗しました。{1}.
         /// </summary>
-        internal static string FailedDatabaseSend {
+        public static string FailedDatabaseSend {
             get {
                 return ResourceManager.GetString("FailedDatabaseSend", resourceCulture);
             }
@@ -216,7 +225,7 @@ namespace ElectronicObserver {
         /// <summary>
         ///   Looks up a localized string similar to API読み込みに失敗しました。.
         /// </summary>
-        internal static string FailedLoadAPI {
+        public static string FailedLoadAPI {
             get {
                 return ResourceManager.GetString("FailedLoadAPI", resourceCulture);
             }
@@ -225,7 +234,7 @@ namespace ElectronicObserver {
         /// <summary>
         ///   Looks up a localized string similar to 　の読み込みに失敗しました。.
         /// </summary>
-        internal static string FailedLoading {
+        public static string FailedLoading {
             get {
                 return ResourceManager.GetString("FailedLoading", resourceCulture);
             }
@@ -234,7 +243,7 @@ namespace ElectronicObserver {
         /// <summary>
         ///   Looks up a localized string similar to レコードのロードに失敗しました。.
         /// </summary>
-        internal static string FailedLoadingRecords {
+        public static string FailedLoadingRecords {
             get {
                 return ResourceManager.GetString("FailedLoadingRecords", resourceCulture);
             }
@@ -243,7 +252,7 @@ namespace ElectronicObserver {
         /// <summary>
         ///   Looks up a localized string similar to リソースファイルの読み込みに失敗しました。.
         /// </summary>
-        internal static string FailedLoadingResource {
+        public static string FailedLoadingResource {
             get {
                 return ResourceManager.GetString("FailedLoadingResource", resourceCulture);
             }
@@ -252,7 +261,7 @@ namespace ElectronicObserver {
         /// <summary>
         ///   Looks up a localized string similar to DataStorage の読み込みに失敗しました。.
         /// </summary>
-        internal static string FailedLoadingStorage {
+        public static string FailedLoadingStorage {
             get {
                 return ResourceManager.GetString("FailedLoadingStorage", resourceCulture);
             }
@@ -261,7 +270,7 @@ namespace ElectronicObserver {
         /// <summary>
         ///   Looks up a localized string similar to ウィンドウ レイアウトの復元に失敗しました。.
         /// </summary>
-        internal static string FailedLoadLayout {
+        public static string FailedLoadLayout {
             get {
                 return ResourceManager.GetString("FailedLoadLayout", resourceCulture);
             }
@@ -270,7 +279,7 @@ namespace ElectronicObserver {
         /// <summary>
         ///   Looks up a localized string similar to サブウィンドウ レイアウトの復元に失敗しました。.
         /// </summary>
-        internal static string FailedLoadSubLayout {
+        public static string FailedLoadSubLayout {
             get {
                 return ResourceManager.GetString("FailedLoadSubLayout", resourceCulture);
             }
@@ -279,7 +288,7 @@ namespace ElectronicObserver {
         /// <summary>
         ///   Looks up a localized string similar to ウィンドウ状態の復元に失敗しました。.
         /// </summary>
-        internal static string FailedLoadWindowPlacement {
+        public static string FailedLoadWindowPlacement {
             get {
                 return ResourceManager.GetString("FailedLoadWindowPlacement", resourceCulture);
             }
@@ -288,7 +297,7 @@ namespace ElectronicObserver {
         /// <summary>
         ///   Looks up a localized string similar to 艦船リソースのリネームに失敗しました。.
         /// </summary>
-        internal static string FailedResourceRename {
+        public static string FailedResourceRename {
             get {
                 return ResourceManager.GetString("FailedResourceRename", resourceCulture);
             }
@@ -297,7 +306,7 @@ namespace ElectronicObserver {
         /// <summary>
         ///   Looks up a localized string similar to 通信内容の保存に失敗しました。 .
         /// </summary>
-        internal static string FailedSaveAPI {
+        public static string FailedSaveAPI {
             get {
                 return ResourceManager.GetString("FailedSaveAPI", resourceCulture);
             }
@@ -306,7 +315,7 @@ namespace ElectronicObserver {
         /// <summary>
         ///   Looks up a localized string similar to サブウィンドウ レイアウトの保存に失敗しました。.
         /// </summary>
-        internal static string FailedSaveLayout {
+        public static string FailedSaveLayout {
             get {
                 return ResourceManager.GetString("FailedSaveLayout", resourceCulture);
             }
@@ -315,7 +324,7 @@ namespace ElectronicObserver {
         /// <summary>
         ///   Looks up a localized string similar to ウィンドウ状態の保存に失敗しました。.
         /// </summary>
-        internal static string FailedSaveWindowPlacement {
+        public static string FailedSaveWindowPlacement {
             get {
                 return ResourceManager.GetString("FailedSaveWindowPlacement", resourceCulture);
             }
@@ -324,16 +333,18 @@ namespace ElectronicObserver {
         /// <summary>
         ///   Looks up a localized string similar to の書き込みに失敗しました。.
         /// </summary>
-        internal static string FailedSaving {
+        public static string FailedSaving {
             get {
                 return ResourceManager.GetString("FailedSaving", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to エラーレポートの書き込みに失敗しました。\r\n{0}\r\n{1}.
+        ///   Looks up a localized string similar to エラーレポートの書き込みに失敗しました。
+        ///{0}
+        ///{1}.
         /// </summary>
-        internal static string FailedSavingErrorReport {
+        public static string FailedSavingErrorReport {
             get {
                 return ResourceManager.GetString("FailedSavingErrorReport", resourceCulture);
             }
@@ -342,7 +353,7 @@ namespace ElectronicObserver {
         /// <summary>
         ///   Looks up a localized string similar to DataStorage の書き込みに失敗しました。.
         /// </summary>
-        internal static string FailedSavingStorage {
+        public static string FailedSavingStorage {
             get {
                 return ResourceManager.GetString("FailedSavingStorage", resourceCulture);
             }
@@ -351,7 +362,7 @@ namespace ElectronicObserver {
         /// <summary>
         ///   Looks up a localized string similar to {0} のコピーに失敗しました。{1}.
         /// </summary>
-        internal static string FailedToCopy {
+        public static string FailedToCopy {
             get {
                 return ResourceManager.GetString("FailedToCopy", resourceCulture);
             }
@@ -360,7 +371,7 @@ namespace ElectronicObserver {
         /// <summary>
         ///   Looks up a localized string similar to APIファイル {0} の読み込みに失敗しました。{1}.
         /// </summary>
-        internal static string FailedToLoadAPIFile {
+        public static string FailedToLoadAPIFile {
             get {
                 return ResourceManager.GetString("FailedToLoadAPIFile", resourceCulture);
             }
@@ -369,7 +380,7 @@ namespace ElectronicObserver {
         /// <summary>
         ///   Looks up a localized string similar to 提督が鎮守府に着任しました。これより艦隊の指揮を執ります。.
         /// </summary>
-        internal static string GameStart {
+        public static string GameStart {
             get {
                 return ResourceManager.GetString("GameStart", resourceCulture);
             }
@@ -378,7 +389,7 @@ namespace ElectronicObserver {
         /// <summary>
         ///   Looks up a localized string similar to 画像リソース {0} の読み込みに失敗しました。.
         /// </summary>
-        internal static string ImageCantBeLoaded {
+        public static string ImageCantBeLoaded {
             get {
                 return ResourceManager.GetString("ImageCantBeLoaded", resourceCulture);
             }
@@ -387,7 +398,7 @@ namespace ElectronicObserver {
         /// <summary>
         ///   Looks up a localized string similar to 画像リソース {0} は存在しません。.
         /// </summary>
-        internal static string ImageDoesNotExist {
+        public static string ImageDoesNotExist {
             get {
                 return ResourceManager.GetString("ImageDoesNotExist", resourceCulture);
             }
@@ -396,7 +407,7 @@ namespace ElectronicObserver {
         /// <summary>
         ///   Looks up a localized string similar to {0} への改修に成功しました。.
         /// </summary>
-        internal static string ImprovedEqSuccess {
+        public static string ImprovedEqSuccess {
             get {
                 return ResourceManager.GetString("ImprovedEqSuccess", resourceCulture);
             }
@@ -405,7 +416,7 @@ namespace ElectronicObserver {
         /// <summary>
         ///   Looks up a localized string similar to {0} の改修に失敗しました。.
         /// </summary>
-        internal static string ImprovedFailure {
+        public static string ImprovedFailure {
             get {
                 return ResourceManager.GetString("ImprovedFailure", resourceCulture);
             }
@@ -414,7 +425,7 @@ namespace ElectronicObserver {
         /// <summary>
         ///   Looks up a localized string similar to の改修に成功しました。( .
         /// </summary>
-        internal static string ImprovedSuccess {
+        public static string ImprovedSuccess {
             get {
                 return ResourceManager.GetString("ImprovedSuccess", resourceCulture);
             }
@@ -423,7 +434,7 @@ namespace ElectronicObserver {
         /// <summary>
         ///   Looks up a localized string similar to の初期装備を記録しました。.
         /// </summary>
-        internal static string InitialEquipRegistered {
+        public static string InitialEquipRegistered {
             get {
                 return ResourceManager.GetString("InitialEquipRegistered", resourceCulture);
             }
@@ -432,7 +443,7 @@ namespace ElectronicObserver {
         /// <summary>
         ///   Looks up a localized string similar to 開発に失敗しました。({0}/{1}/{2}/{3} 秘書艦: {4}).
         /// </summary>
-        internal static string ItemCreationFailed {
+        public static string ItemCreationFailed {
             get {
                 return ResourceManager.GetString("ItemCreationFailed", resourceCulture);
             }
@@ -441,7 +452,7 @@ namespace ElectronicObserver {
         /// <summary>
         ///   Looks up a localized string similar to アイテム「{0}」を入手しました。( 合計: {1}個 ).
         /// </summary>
-        internal static string ItemObtained {
+        public static string ItemObtained {
             get {
                 return ResourceManager.GetString("ItemObtained", resourceCulture);
             }
@@ -450,7 +461,7 @@ namespace ElectronicObserver {
         /// <summary>
         ///   Looks up a localized string similar to {0} とケッコンカッコカリしました。おめでとうございます！.
         /// </summary>
-        internal static string JustMarried {
+        public static string JustMarried {
             get {
                 return ResourceManager.GetString("JustMarried", resourceCulture);
             }
@@ -459,7 +470,7 @@ namespace ElectronicObserver {
         /// <summary>
         ///   Looks up a localized string similar to レコードをロードしました。.
         /// </summary>
-        internal static string LoadedRecords {
+        public static string LoadedRecords {
             get {
                 return ResourceManager.GetString("LoadedRecords", resourceCulture);
             }
@@ -468,7 +479,7 @@ namespace ElectronicObserver {
         /// <summary>
         ///   Looks up a localized string similar to MVP候補が複数存在します。ログを確認してください。.
         /// </summary>
-        internal static string MultiplePossibleMvps {
+        public static string MultiplePossibleMvps {
             get {
                 return ResourceManager.GetString("MultiplePossibleMvps", resourceCulture);
             }
@@ -477,7 +488,7 @@ namespace ElectronicObserver {
         /// <summary>
         ///   Looks up a localized string similar to Request を受信しました :.
         /// </summary>
-        internal static string RecievedRequest {
+        public static string RecievedRequest {
             get {
                 return ResourceManager.GetString("RecievedRequest", resourceCulture);
             }
@@ -486,7 +497,7 @@ namespace ElectronicObserver {
         /// <summary>
         ///   Looks up a localized string similar to レコード .
         /// </summary>
-        internal static string Record {
+        public static string Record {
             get {
                 return ResourceManager.GetString("Record", resourceCulture);
             }
@@ -495,7 +506,7 @@ namespace ElectronicObserver {
         /// <summary>
         ///   Looks up a localized string similar to レコードのオートセーブに失敗しました。.
         /// </summary>
-        internal static string RecordAutosaveFailure {
+        public static string RecordAutosaveFailure {
             get {
                 return ResourceManager.GetString("RecordAutosaveFailure", resourceCulture);
             }
@@ -504,7 +515,7 @@ namespace ElectronicObserver {
         /// <summary>
         ///   Looks up a localized string similar to レコードのオートセーブを行いました。.
         /// </summary>
-        internal static string RecordAutosaveSuccess {
+        public static string RecordAutosaveSuccess {
             get {
                 return ResourceManager.GetString("RecordAutosaveSuccess", resourceCulture);
             }
@@ -513,7 +524,7 @@ namespace ElectronicObserver {
         /// <summary>
         ///   Looks up a localized string similar to のパラメータを記録しました。.
         /// </summary>
-        internal static string RegisteredParameters {
+        public static string RegisteredParameters {
             get {
                 return ResourceManager.GetString("RegisteredParameters", resourceCulture);
             }
@@ -522,7 +533,7 @@ namespace ElectronicObserver {
         /// <summary>
         ///   Looks up a localized string similar to Request の受信中にエラーが発生しました。.
         /// </summary>
-        internal static string RequestError {
+        public static string RequestError {
             get {
                 return ResourceManager.GetString("RequestError", resourceCulture);
             }
@@ -531,7 +542,7 @@ namespace ElectronicObserver {
         /// <summary>
         ///   Looks up a localized string similar to エラーコードを含むメッセージを受信しました。.
         /// </summary>
-        internal static string ResponseHadErrorCode {
+        public static string ResponseHadErrorCode {
             get {
                 return ResourceManager.GetString("ResponseHadErrorCode", resourceCulture);
             }
@@ -540,7 +551,7 @@ namespace ElectronicObserver {
         /// <summary>
         ///   Looks up a localized string similar to 通信からファイル {0} を保存しました。.
         /// </summary>
-        internal static string SavedAPI {
+        public static string SavedAPI {
             get {
                 return ResourceManager.GetString("SavedAPI", resourceCulture);
             }
@@ -549,7 +560,7 @@ namespace ElectronicObserver {
         /// <summary>
         ///   Looks up a localized string similar to 艦これ統計データベースへ {0} を送信しました。.
         /// </summary>
-        internal static string SentDatabase {
+        public static string SentDatabase {
             get {
                 return ResourceManager.GetString("SentDatabase", resourceCulture);
             }
@@ -558,7 +569,7 @@ namespace ElectronicObserver {
         /// <summary>
         ///   Looks up a localized string similar to {0}「{1}」が戦列に加わりました。.
         /// </summary>
-        internal static string ShipAdded {
+        public static string ShipAdded {
             get {
                 return ResourceManager.GetString("ShipAdded", resourceCulture);
             }
@@ -567,7 +578,7 @@ namespace ElectronicObserver {
         /// <summary>
         ///   Looks up a localized string similar to {0}「{1}」の建造が完了しました。.
         /// </summary>
-        internal static string ShipConstructed {
+        public static string ShipConstructed {
             get {
                 return ResourceManager.GetString("ShipConstructed", resourceCulture);
             }
@@ -576,7 +587,7 @@ namespace ElectronicObserver {
         /// <summary>
         ///   Looks up a localized string similar to を解体しました。.
         /// </summary>
-        internal static string ShipScrapped {
+        public static string ShipScrapped {
             get {
                 return ResourceManager.GetString("ShipScrapped", resourceCulture);
             }
@@ -585,7 +596,7 @@ namespace ElectronicObserver {
         /// <summary>
         ///   Looks up a localized string similar to #{0}「{1}」が「{2}-{3} {4}」へ出撃しました。.
         /// </summary>
-        internal static string SortiedTo {
+        public static string SortiedTo {
             get {
                 return ResourceManager.GetString("SortiedTo", resourceCulture);
             }
@@ -594,7 +605,7 @@ namespace ElectronicObserver {
         /// <summary>
         ///   Looks up a localized string similar to DataStorage {0} は存在しません。.
         /// </summary>
-        internal static string StorageDoesNotExist {
+        public static string StorageDoesNotExist {
             get {
                 return ResourceManager.GetString("StorageDoesNotExist", resourceCulture);
             }
@@ -603,7 +614,7 @@ namespace ElectronicObserver {
         /// <summary>
         ///   Looks up a localized string similar to DataStorage ファイルは存在しません。.
         /// </summary>
-        internal static string StorageFileDoesNotExist {
+        public static string StorageFileDoesNotExist {
             get {
                 return ResourceManager.GetString("StorageFileDoesNotExist", resourceCulture);
             }

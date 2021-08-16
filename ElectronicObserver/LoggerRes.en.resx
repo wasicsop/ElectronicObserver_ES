@@ -302,4 +302,7 @@
   <data name="FailedToCopy" xml:space="preserve">
     <value>Failed to copy {0}. {1}</value>
   </data>
+  <data name="ClearedQuest" xml:space="preserve">
+    <value>Cleared quest 「{0}」.</value>
+  </data>
 </root>
