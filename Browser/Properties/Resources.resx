@@ -345,4 +345,19 @@ Microsoft Visual C++ 2019 Redistributableが必要です。
   <data name="ToolMenu_Other_Zoom" xml:space="preserve">
     <value>ズーム(&amp;Z)</value>
   </data>
+  <data name="File" xml:space="preserve">
+    <value>ファイル(_F)</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>バック</value>
+  </data>
+  <data name="Forward" xml:space="preserve">
+    <value>フォワード</value>
+  </data>
+  <data name="DmmPoints" xml:space="preserve">
+    <value>DMMポイント</value>
+  </data>
+  <data name="AkashiList" xml:space="preserve">
+    <value>明石リスト</value>
+  </data>
 </root>

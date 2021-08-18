@@ -1,7 +1,6 @@
 ﻿using Browser.CefOp;
 using BrowserLibCore;
 using CefSharp;
-using CefSharp.WinForms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -32,8 +31,9 @@ namespace Browser
 	/// </summary>
 	/// <remarks>thx KanColleViewer!</remarks>
 	// [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single/*, IncludeExceptionDetailInFaults = true*/)]
-	public partial class FormBrowser : Form, BrowserLibCore.IBrowser
+	public partial class FormBrowser : Form//, BrowserLibCore.IBrowser
 	{
+#if false
 		private readonly Size KanColleSize = new Size(1200, 720);
 		private string BrowserCachePath => BrowserConstants.CachePath;
 
@@ -896,6 +896,7 @@ namespace Browser
 
 		private async void SetIconResource()
 		{
+			/*
 			byte[] canvas = await BrowserHost.GetIconResource();
 
 			string[] keys =
@@ -937,6 +938,7 @@ namespace Browser
 			ToolMenu_Other.Image = Icons.Images["Browser_Other"];
 
 			SetVolumeState();
+			*/
 		}
 
 
@@ -1331,7 +1333,7 @@ namespace Browser
 
 		public void OpenExtraBrowser()
 		{
-			new DialogExtraBrowser().Show(this);
+			// new DialogExtraBrowser().Show(this);
 		}
 
 		protected override void WndProc(ref Message m)
@@ -1344,7 +1346,7 @@ namespace Browser
 		}
 
 
-		#region 呪文
+#region 呪文
 
 		[DllImport("user32.dll", EntryPoint = "GetWindowLongA", SetLastError = true)]
 		private static extern uint GetWindowLong(IntPtr hwnd, int nIndex);
@@ -1357,7 +1359,8 @@ namespace Browser
 		private const uint WS_VISIBLE = 0x10000000;
 		private const int WM_ERASEBKGND = 0x14;
 
-		#endregion
+#endregion
+#endif
 	}
 
 

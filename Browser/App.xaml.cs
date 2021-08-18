@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace Browser
 {
@@ -22,25 +24,31 @@ namespace Browser
 		protected override void OnStartup(StartupEventArgs e)
 		{
 			// Debugger.Launch();
-			// args = new[] {"test"};
+			// string host = "test";
+			// int port = 1;
+			// string culture = "en-US";
 			// FormBrowserHostから起動された時は引数に通信用URLが渡される
+			
 			if (e.Args.Length < 2)
 			{
 				MessageBox.Show("Please start the application using ElectronicObserver.exe",
 					"Information", MessageBoxButton.OK, MessageBoxImage.Information);
 				return;
 			}
-
+			
+			/*
 			System.Windows.Forms.Application.EnableVisualStyles();
 			System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
+			*/
 			System.AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
+			
+			string host = e.Args[0];
 			if (!int.TryParse(e.Args[1], out int port))
 			{
 				MessageBox.Show("Please start the application using ElectronicObserver.exe",
 					"Information", MessageBoxButton.OK, MessageBoxImage.Information);
 				return;
 			}
-
 			string culture = e.Args.Length switch
 			{
 				> 2 => e.Args[2],
@@ -50,7 +58,19 @@ namespace Browser
 					_ => "en-US"
 				}
 			};
-			System.Windows.Forms.Application.Run(new FormBrowser(e.Args[0], port, culture));
+
+			ServiceCollection services = new();
+
+			services.AddSingleton<FormBrowserTranslationViewModel>();
+
+			Services = services.BuildServiceProvider();
+
+			// System.Windows.Forms.Application.Run(new FormBrowser(e.Args[0], port, culture));
+
+			ToolTipService.ShowDurationProperty.OverrideMetadata(
+				typeof(DependencyObject), new FrameworkPropertyMetadata(int.MaxValue));
+
+			new BrowserView(host, port, culture).ShowDialog();
 		}
 
 		private static System.Reflection.Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args)
