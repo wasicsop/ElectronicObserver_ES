@@ -29,6 +29,9 @@
 
 		<Menu Grid.Row="0">
 			<MenuItem Header="File">
+				<MenuItem Header="Export as CSV" Command="{Binding ExportAsCsvCommand}" />
+			</MenuItem>
+			<MenuItem Header="View">
 				<MenuItem Header="Ships" Command="{Binding SetDisplayCommand}">
 					<MenuItem.CommandParameter>
 						<viewModels:Display>Ships</viewModels:Display>

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
+using System.Text;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -10,6 +12,7 @@ using ElectronicObserverTypes.Mocks;
 using KancolleProgress.Models;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
+using Microsoft.Win32;
 using ShipTypeGroup = KancolleProgress.Models.ShipTypeGroup;
 using ShipTypes = ElectronicObserverTypes.ShipTypes;
 
@@ -21,12 +24,12 @@ namespace KancolleProgress.ViewModels
 		Event
 	}
 	
-	public class KancolleProgressViewModel :  ObservableObject
+	public class KancolleProgressViewModel : ObservableObject
 	{
 		public IEnumerable<IShipData> UserShips { get; set; } = Enumerable.Empty<IShipData>();
 		public IEnumerable<IShipDataMaster> AllShips { get; set; } = Enumerable.Empty<IShipDataMaster>();
 		public IEnumerable<IEquipmentData> UserEquipment { get; set; } = Enumerable.Empty<IEquipmentData>();
-		public IEnumerable<ShipTypeGroup>? TypeGroups { get; set; }
+		public IEnumerable<ShipTypeGroup> TypeGroups { get; set; }
 		
 		public ObservableCollection<ColorFilter> ColorFilters { get; }
 		public IEnumerable<MockShipData>? BaseShips { get; private set; }
@@ -44,12 +47,14 @@ namespace KancolleProgress.ViewModels
 			.FirstOrDefault(f => ColorFilter.Compare(f, level))?.Brush ?? new SolidColorBrush();
 
 		public ICommand SetDisplayCommand { get; }
+		public ICommand ExportAsCsvCommand { get; }
 
 		public Display Display { get; set; } = Display.Ships;
 		
 		public KancolleProgressViewModel()
 		{
 			SetDisplayCommand = new RelayCommand<Display>(display => Display = display);
+			ExportAsCsvCommand = new RelayCommand(ExportAsCsv);
 
 			List<ColorFilter> colorFilters = new()
 			{
@@ -271,6 +276,52 @@ namespace KancolleProgress.ViewModels
 			TypeGroups = DisplayGroups(daihatsuGroup)
 				.Concat(DisplayGroups(fcfGroup))
 				.Concat(DisplayGroups(openingAswGroup));
+		}
+
+		private void ExportAsCsv()
+		{
+			List<List<ShipViewModel>> shipLists = TypeGroups
+				.Select(g => g.ClassGroups.SelectMany(c => c.Ships).ToList())
+				.ToList();
+
+			StringBuilder sb = new();
+
+			for (int i = 0; i < shipLists.Max(s => s.Count); i++)
+			{
+				foreach (List<ShipViewModel> shipList in shipLists)
+				{
+					if (shipList.Count > i)
+					{
+						sb.Append(shipList[i].Name);
+					}
+
+					sb.Append(",");
+
+					if (shipList.Count > i)
+					{
+						sb.Append(shipList[i].Level);
+					}
+
+					sb.Append(",");
+				}
+
+				sb.AppendLine();
+			}
+
+			SaveFileDialog dialog = new()
+			{
+				FileName = "Ships",
+				DefaultExt = ".csv",
+				Filter = "CSV UTF-8 (Comma delimited) (*.csv)|*.csv",
+				
+			};
+
+			bool? result = dialog.ShowDialog();
+
+			if (result is true)
+			{
+				File.WriteAllText(dialog.FileName, sb.ToString(), Encoding.UTF8);
+			}
 		}
 	}
 }
