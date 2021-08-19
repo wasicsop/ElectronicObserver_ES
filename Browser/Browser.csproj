@@ -61,8 +61,9 @@
 		<WCFMetadata Include="Connected Services\" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="CefSharp.Common.NETCore" Version="91.1.230" />
-		<PackageReference Include="CefSharp.Wpf.NETCore" Version="91.1.230" />
+		<PackageReference Include="CefSharp.Common.NETCore" Version="92.0.251" />
+		<PackageReference Include="CefSharp.WinForms.NETCore" Version="92.0.251" />
+		<PackageReference Include="CefSharp.Wpf.NETCore" Version="91.1.251" />
 		<PackageReference Include="Grpc" Version="2.38.1" />
 		<PackageReference Include="Grpc.Core" Version="2.38.1" />
 		<PackageReference Include="Grpc.Core.Api" Version="2.38.1" />

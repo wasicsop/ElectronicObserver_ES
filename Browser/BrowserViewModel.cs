@@ -10,6 +10,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Forms.Integration;
 using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
@@ -17,7 +18,7 @@ using Browser.CefOp;
 using Browser.ExtraBrowser;
 using BrowserLibCore;
 using CefSharp;
-using CefSharp.Wpf;
+using CefSharp.WinForms;
 using CefSharp.Wpf.Internals;
 using Grpc.Core;
 using MagicOnion.Client;
@@ -60,6 +61,7 @@ namespace Browser
 
 		private string Host { get; }
 		private int Port { get; }
+		private string Culture { get; }
 		private BrowserLibCore.IBrowserHost BrowserHost { get; set; }
 		private string? ProxySettings { get; set; }
 
@@ -81,6 +83,7 @@ namespace Browser
 		};
 		public Visibility ToolMenuVisibility { get; set; } = Visibility.Visible;
 
+		public WindowsFormsHost BrowserWrapper { get; } = new();
 		public ChromiumWebBrowser? Browser { get; set; }
 		public double ActualWidth { get; set; }
 		public double ActualHeight { get; set; }
@@ -149,6 +152,7 @@ namespace Browser
 
 			Host = host;
 			Port = port;
+			Culture = culture;
 			
 			CultureInfo c = new(culture);
 			
@@ -313,15 +317,49 @@ namespace Browser
 			Browser = new ChromiumWebBrowser(KanColleUrl)
 			{
 				RequestHandler = requestHandler,
+				KeyboardHandler = new KeyboardHandler(),
 				MenuHandler = new MenuHandler(),
 				DragHandler = new DragHandler(),
 			};
 
-			Browser.WpfKeyboardHandler = new WpfKeyboardHandler(Browser);
+			// Browser.WpfKeyboardHandler = new WpfKeyboardHandler(Browser);
 
 			Browser.BrowserSettings.StandardFontFamily = "Microsoft YaHei"; // Fixes text rendering position too high
 			Browser.LoadingStateChanged += Browser_LoadingStateChanged;
 			Browser.IsBrowserInitializedChanged += Browser_IsBrowserInitializedChanged;
+
+			BrowserWrapper.Child = Browser;
+			Browser.PreviewKeyDown += (sender, args) =>
+			{
+				CultureInfo c = new(Culture);
+
+				Thread.CurrentThread.CurrentCulture = c;
+				Thread.CurrentThread.CurrentUICulture = c;
+
+				switch (args.KeyCode)
+				{
+					case System.Windows.Forms.Keys.F2:
+						ScreenshotCommand.Execute(null);
+						break;
+					case System.Windows.Forms.Keys.F5:
+						// hard refresh if ctrl is pressed
+						if ((args.Modifiers & System.Windows.Forms.Keys.Control) == System.Windows.Forms.Keys.Control)
+						{
+							HardRefreshCommand.Execute(null);
+						}
+						else
+						{
+							RefreshCommand.Execute(null);
+						}
+						break;
+					case System.Windows.Forms.Keys.F7:
+						MuteCommand.Execute(null);
+						break;
+					case System.Windows.Forms.Keys.F12:
+						OpenDevtoolsCommand.Execute(null);
+						break;
+				}
+			};
 		}
 
 		private void Exit()
@@ -415,12 +453,12 @@ namespace Browser
 			App.Current.Dispatcher.Invoke(() =>
 			{
 				if (Counter > 0) return;
-				if (!Browser.Address.Contains("redirect")) return;
+				if (!Browser!.Address.Contains("redirect")) return;
 
 				Counter++;
 
 				SetCookie();
-				Browser.ReloadCommand.Execute(null);
+				Browser.Reload();
 			});
 
 			/*if (Browser.Address.Contains("login/=/path="))
@@ -536,7 +574,7 @@ namespace Browser
 		// 応急処置として失敗したとき後で再試行するようにしてみる
 		private string? NavigateCache { get; set; }
 
-		private void Browser_IsBrowserInitializedChanged(object sender, DependencyPropertyChangedEventArgs e)
+		private void Browser_IsBrowserInitializedChanged(object sender, EventArgs e)
 		{
 			if (Browser is not { IsBrowserInitialized: true } && NavigateCache is not null)
 			{
@@ -616,9 +654,9 @@ namespace Browser
 
 				Browser.Width = newWidth;
 				Browser.Height = newHeight;
-
-				Browser.MinWidth = newWidth;
-				Browser.MinHeight = newHeight;
+				
+				// Browser.MinWidth = newWidth;
+				// Browser.MinHeight = newHeight;
 			}
 
 			CurrentZoom = fit switch

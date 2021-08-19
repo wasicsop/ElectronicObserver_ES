@@ -443,7 +443,7 @@
 			</Border.InputBindings>
 
 			<ContentControl
-				Content="{Binding Browser}"
+				Content="{Binding BrowserWrapper}"
 				SizeChanged="FrameworkElement_OnSizeChanged">
 				<!--
 				<wpf:ChromiumWebBrowser
