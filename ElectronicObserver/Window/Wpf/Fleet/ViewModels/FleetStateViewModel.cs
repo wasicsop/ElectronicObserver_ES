@@ -234,7 +234,7 @@ namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels
 
 						state.Timer = (DateTime)fleet.ConditionTime;
 						state.SetInformation(FleetStates.Tired,
-							"Fatigued " + DateTimeHelper.ToTimeRemainString(state.Timer),
+							FormFleet.Fatigued + DateTimeHelper.ToTimeRemainString(state.Timer),
 							DateTimeHelper.ToTimeRemainString(state.Timer),
 							iconIndex,
 							colorInPort);
