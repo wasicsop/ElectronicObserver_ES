@@ -448,6 +448,15 @@ namespace ElectronicObserver.Properties.Window {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to あなたのWindowsユーザーは、現在の場所にファイルを作成する権限を持っていません。七四式フォルダをデスクトップ上など、書き込み権限のある場所に移動してください。.
+        /// </summary>
+        public static string MissingPermissions {
+            get {
+                return ResourceManager.GetString("MissingPermissions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 次の演習リセット：.
         /// </summary>
         public static string NextExerciseReset {

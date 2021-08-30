@@ -77,7 +77,17 @@ namespace ElectronicObserver
 
 				if (forceWpf || e.Args.Contains("-wpf"))
 				{
-					Directory.CreateDirectory(@"Settings\Layout");
+					try
+					{
+						Directory.CreateDirectory(@"Settings\Layout");
+					}
+					catch (UnauthorizedAccessException)
+					{
+						MessageBox.Show(ElectronicObserver.Properties.Window.FormMain.MissingPermissions, 
+							ElectronicObserver.Properties.Window.FormMain.ErrorCaption, 
+							MessageBoxButton.OK, MessageBoxImage.Error);
+						throw;
+					}
 
 					Configuration.Instance.Load();
 

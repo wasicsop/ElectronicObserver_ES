@@ -398,4 +398,7 @@
   <data name="NextQuestReset" xml:space="preserve">
     <value>次の任務リセット：</value>
   </data>
+  <data name="MissingPermissions" xml:space="preserve">
+    <value>あなたのWindowsユーザーは、現在の場所にファイルを作成する権限を持っていません。七四式フォルダをデスクトップ上など、書き込み権限のある場所に移動してください。</value>
+  </data>
 </root>

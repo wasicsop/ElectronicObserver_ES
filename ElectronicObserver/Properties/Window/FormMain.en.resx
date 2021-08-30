@@ -398,4 +398,7 @@ Are you sure?</value>
   <data name="NextQuestReset" xml:space="preserve">
     <value>Next quest reset:</value>
   </data>
+  <data name="MissingPermissions" xml:space="preserve">
+    <value>Your Windows user doesn't have permissions to create files in the current location. Please move the EO folder to a location where you have write access, for example, on your desktop.</value>
+  </data>
 </root>

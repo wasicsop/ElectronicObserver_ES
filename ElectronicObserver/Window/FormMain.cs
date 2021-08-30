@@ -85,9 +85,17 @@ namespace ElectronicObserver.Window
 
 		public FormMain()
 		{
-			if (!Directory.Exists("Settings"))
-				Directory.CreateDirectory("Settings");
-
+			try
+			{
+				if (!Directory.Exists("Settings"))
+					Directory.CreateDirectory("Settings");
+			}
+			catch (UnauthorizedAccessException)
+			{
+				MessageBox.Show(Properties.Window.FormMain.MissingPermissions, Properties.Window.FormMain.ErrorCaption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+				throw;
+			}
+			
 			Utility.Configuration.Instance.Load();
 
 			CultureInfo cultureInfo = new(Configuration.Config.UI.Culture);
