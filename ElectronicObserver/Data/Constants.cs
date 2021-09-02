@@ -677,7 +677,7 @@ namespace ElectronicObserver.Data
                 case 13:
                     return ConstantsRes.ThirdPatrolFormationShort;
                 case 14:
-                    return ConstantsRes.FirstPatrolFormationShort;
+                    return ConstantsRes.FourthPatrolFormationShort;
                 default:
                     return ConstantsRes.Unknown;
             }
