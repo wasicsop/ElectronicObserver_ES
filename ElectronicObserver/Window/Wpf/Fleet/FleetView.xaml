@@ -160,8 +160,8 @@
 										<Border.InputBindings>
 											<MouseBinding Command="{Binding ShipNameRightClick}" MouseAction="RightClick" />
 										</Border.InputBindings>
-										<StackPanel>
-											<TextBlock Text="{Binding Text}" Margin="2" />
+										<StackPanel  Background="{Binding Background}">
+											<TextBlock Text="{Binding Text}" Margin="2" Foreground="{Binding Foreground}"/>
 										</StackPanel>
 									</Border>
 
