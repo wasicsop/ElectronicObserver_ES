@@ -59,7 +59,7 @@ namespace ElectronicObserver.Window.Wpf.FleetPreset
 
 			// TODO: 本体側がもし 7 隻編成に対応したら変更してください
 			Ships = new();
-			for (int i = 0; i < 6; i++)
+			for (int i = 0; i < 7; i++)
 			{
 				Ships.Add(CreateDefaultLabel());
 			}
