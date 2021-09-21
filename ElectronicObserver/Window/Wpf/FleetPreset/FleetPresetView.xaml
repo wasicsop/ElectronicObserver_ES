@@ -40,6 +40,7 @@
 										<ColumnDefinition Width="Auto" MaxWidth="{Binding MaxWidth}" SharedSizeGroup="FleetPresetShip3" />
 										<ColumnDefinition Width="Auto" MaxWidth="{Binding MaxWidth}" SharedSizeGroup="FleetPresetShip4" />
 										<ColumnDefinition Width="Auto" MaxWidth="{Binding MaxWidth}" SharedSizeGroup="FleetPresetShip5" />
+										<ColumnDefinition Width="Auto" MaxWidth="{Binding MaxWidth}" SharedSizeGroup="FleetPresetShip6" />
 									</Grid.ColumnDefinitions>
 
 									<Border Grid.Column="0" Background="Transparent" ToolTip="{Binding Name.ToolTip}">
@@ -62,7 +63,7 @@
 									</Border>
 
 									<Border Grid.Column="1" DataContext="{Binding Ships[0]}" ToolTip="{Binding ToolTip}">
-										<TextBlock Text="{Binding Text}" />
+										<TextBlock Text="{Binding Text}"/>
 									</Border>
 
 									<Border Grid.Column="2" DataContext="{Binding Ships[1]}" ToolTip="{Binding ToolTip}">
@@ -82,6 +83,10 @@
 									</Border>
 
 									<Border Grid.Column="6" DataContext="{Binding Ships[5]}" ToolTip="{Binding ToolTip}">
+										<TextBlock Text="{Binding Text}" />
+									</Border>
+									
+									<Border Grid.Column="7" DataContext="{Binding Ships[6]}" ToolTip="{Binding ToolTip}">
 										<TextBlock Text="{Binding Text}" />
 									</Border>
 								</Grid>
