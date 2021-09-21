@@ -740,7 +740,7 @@ namespace ElectronicObserver.Window
 					AACutin.ImageIndex = (int)ResourceManager.EquipmentContent.HighAngleGun;
 
 					ToolTipInfo.SetToolTip(AACutin, Translation.AACI + "\r\n" +
-						string.Join("\r\n", phases2.Select(p => p.PhaseName + (p.Air.IsAACutinAvailable ? $"{p.Air.AACutInShip.NameWithLevel}\r\n" + Translation.AACIType + $"{p.Air.AACutInKind} ({Constants.GetAACutinKind(p.Air.AACutInKind)})" : Translation.DidNotActivate))));
+						string.Join("\r\n", phases2.Select(p => p.PhaseName + (p.Air.IsAACutinAvailable ? $"{p.Air.AACutInShipName}\r\n" + Translation.AACIType + $"{p.Air.AACutInKind} ({Constants.GetAACutinKind(p.Air.AACutInKind)})" : Translation.DidNotActivate))));
 				}
 				else
 				{
