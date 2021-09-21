@@ -498,7 +498,7 @@ namespace ElectronicObserver.Data.Battle.Detail
 			if (p.IsStage1Available)
 			{
 				sb.Append("Stage 1: ").AppendLine(Constants.GetAirSuperiority(p.AirSuperiority));
-				sb.AppendFormat($"　{BattleRes.Friendly}: -{{0}}/{{1}}\r\n　Enemy: -{{2}}/{{3}}\r\n",
+				sb.AppendFormat($"　{BattleRes.Friendly}: -{{0}}/{{1}}\r\n　{BattleRes.Enemy}: -{{2}}/{{3}}\r\n",
 					p.AircraftLostStage1Friend, p.AircraftTotalStage1Friend,
 					p.AircraftLostStage1Enemy, p.AircraftTotalStage1Enemy);
 				if (p.TouchAircraftFriend > 0)
