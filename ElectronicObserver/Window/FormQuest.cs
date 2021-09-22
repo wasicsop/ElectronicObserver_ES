@@ -853,15 +853,7 @@ namespace ElectronicObserver.Window
 
 			try
 			{
-				string culture = CultureInfo.CurrentCulture.Name;
-				// wikiwiki doesn't support linking to quest code so just force it to search on the web
-				string questCode = culture switch
-				{
-					"en-US" => quest.Code,
-					_ => ""
-				};
-
-				string url = questCode switch
+				string url = quest.Code switch
 				{
 					"" => @"https://www.duckduckgo.com/?q=" + Uri.EscapeDataString(quest.Name) + "+" + Uri.EscapeDataString(Translation.SearchOnWikiQuery),
 					_ => string.Format(Translation.SearchLinkWiki, Uri.EscapeDataString(quest.Code)),

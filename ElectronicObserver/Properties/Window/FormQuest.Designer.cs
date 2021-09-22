@@ -243,7 +243,7 @@ namespace ElectronicObserver.Properties.Window {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://wikiwiki.jp/kancolle/任務#{0}.
+        ///   Looks up a localized string similar to https://wikiwiki.jp/kancolle/任務#id-{0}.
         /// </summary>
         public static string SearchLinkWiki {
             get {

@@ -145,8 +145,8 @@
     <value>+艦これ</value>
   </data>
   <data name="SearchLinkWiki" xml:space="preserve">
-    <value>https://wikiwiki.jp/kancolle/任務#{0}</value>
-    <comment>wikiwiki doesn't support linking to quest codes so that string is never used, it's just here as a placeholder</comment>
+    <value>https://wikiwiki.jp/kancolle/任務#id-{0}</value>
+    
   </data>
   <data name="SearchOnWikiQuery" xml:space="preserve">
     <value>site:wikiwiki.jp/kancolle</value>
