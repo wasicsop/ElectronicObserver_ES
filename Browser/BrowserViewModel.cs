@@ -85,6 +85,8 @@ namespace Browser
 
 		public WindowsFormsHost BrowserWrapper { get; } = new();
 		public ChromiumWebBrowser? Browser { get; set; }
+
+		public DpiScale DpiScale { get; set; }
 		public double ActualWidth { get; set; }
 		public double ActualHeight { get; set; }
 
@@ -635,8 +637,8 @@ namespace Browser
 
 			if (fit)
 			{
-				double rateX = ActualWidth / KanColleSize.Width;
-				double rateY = ActualHeight / KanColleSize.Height;
+				double rateX = ActualWidth * DpiScale.DpiScaleX / KanColleSize.Width;
+				double rateY = ActualHeight * DpiScale.DpiScaleY / KanColleSize.Height;
 
 				zoomFactor = Math.Min(rateX, rateY);
 			}
@@ -645,7 +647,8 @@ namespace Browser
 				zoomFactor = Math.Clamp(zoomRate, 0.1, 10);
 			}
 
-			Browser.SetZoomLevel(Math.Log(zoomFactor, 1.2));
+			// DpiScaleX and DpiScaleY should always be the same so it doesn't matter which one you use
+			Browser.SetZoomLevel(Math.Log(zoomFactor / DpiScale.DpiScaleX, 1.2));
 
 			if (StyleSheetApplied)
 			{

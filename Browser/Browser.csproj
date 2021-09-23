@@ -34,8 +34,8 @@
 		<OutputPath>..\ElectronicObserver\bin\x64\Release\</OutputPath>
 	</PropertyGroup>
 	<PropertyGroup>
-		<NoWin32Manifest>true</NoWin32Manifest>
 		<StartupObject>Browser.App</StartupObject>
+		<ApplicationManifest>app.manifest</ApplicationManifest>
 	</PropertyGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\BrowserLibCore\BrowserLibCore.csproj" />

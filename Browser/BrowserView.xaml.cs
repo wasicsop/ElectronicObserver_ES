@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace Browser
 {
@@ -24,6 +25,8 @@ namespace Browser
 		private void FrameworkElement_OnSizeChanged(object sender, SizeChangedEventArgs e)
 		{
 			if (sender is not FrameworkElement control) return;
+
+			ViewModel.DpiScale = VisualTreeHelper.GetDpi(this);
 
 			ViewModel.ActualHeight = control.ActualHeight;
 			ViewModel.ActualWidth = control.ActualWidth;
