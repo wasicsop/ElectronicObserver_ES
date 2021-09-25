@@ -66,16 +66,11 @@ namespace ElectronicObserver
 
 				// hack: needed for running the winforms version
 				// remove this and the Shutdown call when moving to wpf only
-				ShutdownMode = ShutdownMode.OnExplicitShutdown;
-
-				bool forceWpf = false;
-#if DEBUG
-				forceWpf = true;
-#endif
+				// ShutdownMode = ShutdownMode.OnExplicitShutdown;
 
 				AppCenter.Start("7fdbafa0-058a-4691-b317-a700be513b95", typeof(Analytics), typeof(Crashes));
 
-				if (forceWpf || e.Args.Contains("-wpf"))
+				if (true)
 				{
 					try
 					{
@@ -111,7 +106,7 @@ namespace ElectronicObserver
 					}
 				}
 
-				Shutdown();
+				// Shutdown();
 			}
 		}
 
