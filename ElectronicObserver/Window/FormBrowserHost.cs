@@ -21,6 +21,7 @@ using BrowserHost;
 using Grpc.Core;
 using MagicOnion.Hosting;
 using Microsoft.Extensions.Hosting;
+using ModernWpf;
 using WeifenLuo.WinFormsUI.Docking;
 using Translation = ElectronicObserver.Properties.Window.FormBrowserHost;
 
@@ -321,6 +322,10 @@ namespace ElectronicObserver.Window
 			return canvas;
 		}
 
+		public int GetTheme()
+		{
+			return App.Current.Dispatcher.Invoke(() => (int)ThemeManager.Current.ApplicationTheme);
+		}
 
 		public void RequestNavigation(string baseurl)
 		{

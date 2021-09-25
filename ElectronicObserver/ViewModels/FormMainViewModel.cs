@@ -252,8 +252,6 @@ namespace ElectronicObserver.ViewModels
 			Thread.CurrentThread.CurrentCulture = cultureInfo;
 			Thread.CurrentThread.CurrentUICulture = cultureInfo;
 
-			SetTheme();
-
 			Utility.Logger.Instance.LogAdded += data =>
 			{
 				if (View.CheckAccess())

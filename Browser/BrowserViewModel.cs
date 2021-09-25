@@ -25,6 +25,7 @@ using MagicOnion.Client;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
+using ModernWpf;
 
 namespace Browser
 {
@@ -408,6 +409,8 @@ namespace Browser
 				true => Visibility.Visible,
 				_ => Visibility.Collapsed
 			};
+
+			ThemeManager.Current.ApplicationTheme = (ApplicationTheme) await BrowserHost.GetTheme();
 
 			// SizeAdjuster.BackColor = System.Drawing.Color.FromArgb(unchecked((int)Configuration.BackColor));
 			// ToolMenu.BackColor = System.Drawing.Color.FromArgb(unchecked((int)Configuration.BackColor));

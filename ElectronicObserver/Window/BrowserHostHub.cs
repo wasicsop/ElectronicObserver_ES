@@ -62,5 +62,10 @@ namespace BrowserHost
 		{
 			return Task.Run(() => true);
 		}
+
+		public Task<int> GetTheme()
+		{
+			return Task.Run(() => FormBrowserHost.Instance.GetTheme());
+		}
 	}
 }
