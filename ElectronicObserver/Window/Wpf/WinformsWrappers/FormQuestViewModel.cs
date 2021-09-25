@@ -9,7 +9,7 @@ namespace ElectronicObserver.Window.Wpf.WinformsWrappers
 	{
 		public FormQuestTranslationViewModel FormQuest { get; }
 
-		public FormQuestViewModel() : base("Quests", "FormQuest",
+		public FormQuestViewModel() : base("Quests", "Quest",
 			ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormQuest))
 		{
 			FormQuest = App.Current.Services.GetService<FormQuestTranslationViewModel>()!;

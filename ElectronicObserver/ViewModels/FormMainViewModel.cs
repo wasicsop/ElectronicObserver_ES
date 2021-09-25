@@ -127,30 +127,22 @@ namespace ElectronicObserver.ViewModels
 		public ObservableCollection<AnchorableViewModel> Views { get; } = new();
 
 		public List<FleetViewModel> Fleets { get; }
-
 		public FleetOverviewViewModel FleetOverview { get; }
-
+		public FormShipGroupViewModel FormShipGroup { get; }
 		// public ShipGroupViewModel ShipGroup { get; }
 		public FleetPresetViewModel FleetPreset { get; }
+
 		public DockViewModel Dock { get; }
 		public ArsenalViewModel Arsenal { get; }
 		public BaseAirCorpsViewModel BaseAirCorps { get; }
+
 		public HeadquartersViewModel Headquarters { get; }
+		public FormQuestViewModel FormQuest { get; }
+		public FormInformationViewModel FormInformation { get; }
+
 		public CompassViewModel Compass { get; }
 		public BattleViewModel Battle { get; }
 
-		public List<FormFleetViewModel> FormFleets { get; }
-		public FormFleetOverviewViewModel FormFleetOverview { get; }
-		public FormShipGroupViewModel FormShipGroup { get; }
-		public FormFleetPresetViewModel FormFleetPreset { get; }
-		public FormDockViewModel FormDock { get; }
-		public FormArsenalViewModel FormArsenal { get; }
-		public FormBaseAirCorpsViewModel FormBaseAirCorps { get; }
-		public FormHeadquartersViewModel FormHeadquarters { get; }
-		public FormQuestViewModel FormQuest { get; }
-		public FormInformationViewModel FormInformation { get; }
-		public FormCompassViewModel FormCompass { get; }
-		public FormBattleViewModel FormBattle { get; }
 		public FormBrowserHostViewModel FormBrowserHost { get; }
 		public FormLogViewModel FormLog { get; }
 		public FormJsonViewModel FormJson { get; }
@@ -387,40 +379,22 @@ namespace ElectronicObserver.ViewModels
 			{
 				Views.Add(fleet);
 			}
-
 			Views.Add(FleetOverview = new FleetOverviewViewModel(Fleets));
+			Views.Add(FormShipGroup = new FormShipGroupViewModel());
 			// Views.Add(ShipGroup = new());
 			Views.Add(FleetPreset = new FleetPresetViewModel());
+
 			Views.Add(Dock = new DockViewModel());
 			Views.Add(Arsenal = new ArsenalViewModel());
 			Views.Add(BaseAirCorps = new BaseAirCorpsViewModel());
+
 			Views.Add(Headquarters = new HeadquartersViewModel());
+			Views.Add(FormQuest = new FormQuestViewModel());
+			Views.Add(FormInformation = new FormInformationViewModel());
+
 			Views.Add(Compass = new CompassViewModel());
 			Views.Add(Battle = new BattleViewModel());
 
-			FormFleets = new List<FormFleetViewModel>()
-			{
-				new(1),
-				new(2),
-				new(3),
-				new(4),
-			};
-			foreach (FormFleetViewModel fleet in FormFleets)
-			{
-				Views.Add(fleet);
-			}
-
-			Views.Add(FormFleetOverview = new FormFleetOverviewViewModel());
-			Views.Add(FormShipGroup = new FormShipGroupViewModel());
-			Views.Add(FormFleetPreset = new FormFleetPresetViewModel());
-			Views.Add(FormDock = new FormDockViewModel());
-			Views.Add(FormArsenal = new FormArsenalViewModel());
-			Views.Add(FormBaseAirCorps = new FormBaseAirCorpsViewModel());
-			Views.Add(FormHeadquarters = new FormHeadquartersViewModel());
-			Views.Add(FormQuest = new FormQuestViewModel());
-			Views.Add(FormInformation = new FormInformationViewModel());
-			Views.Add(FormCompass = new FormCompassViewModel());
-			Views.Add(FormBattle = new FormBattleViewModel());
 			Views.Add(FormBrowserHost = new FormBrowserHostViewModel() {Visibility = Visibility.Visible});
 			Views.Add(FormLog = new FormLogViewModel());
 			Views.Add(FormJson = new FormJsonViewModel());

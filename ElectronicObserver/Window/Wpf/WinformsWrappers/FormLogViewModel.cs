@@ -9,7 +9,7 @@ namespace ElectronicObserver.Window.Wpf.WinformsWrappers
 	{
 		public FormLogTranslationViewModel FormLog { get; }
 
-		public FormLogViewModel() : base("Log", "FormLog",
+		public FormLogViewModel() : base("Log", "Log",
 			ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormLog))
 		{
 			FormLog = App.Current.Services.GetService<FormLogTranslationViewModel>()!;

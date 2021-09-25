@@ -9,7 +9,7 @@ namespace ElectronicObserver.Window.Wpf.WinformsWrappers
 	{
 		public FormInformationTranslationViewModel FormInformation { get; }
 
-		public FormInformationViewModel() : base("Info", "FormInformation",
+		public FormInformationViewModel() : base("Info", "Information",
 			ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormInformation))
 		{
 			FormInformation = App.Current.Services.GetService<FormInformationTranslationViewModel>()!;

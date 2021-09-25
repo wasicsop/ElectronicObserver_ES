@@ -85,12 +85,12 @@
 					<MenuItem.Icon>
 						<Image Source="{Binding FleetsImageSource}" />
 					</MenuItem.Icon>
-					<MenuItem Header="{Binding FormMain.StripMenu_View_Fleet_1}" d:Header="#1" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormFleets[0]}" />
-					<MenuItem Header="{Binding FormMain.StripMenu_View_Fleet_2}" d:Header="#2" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormFleets[1]}" />
-					<MenuItem Header="{Binding FormMain.StripMenu_View_Fleet_3}" d:Header="#3" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormFleets[2]}" />
-					<MenuItem Header="{Binding FormMain.StripMenu_View_Fleet_4}" d:Header="#4" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormFleets[3]}" />
+					<MenuItem Header="{Binding FormMain.StripMenu_View_Fleet_1}" d:Header="#1" Command="{Binding OpenViewCommand}" CommandParameter="{Binding Fleets[0]}" />
+					<MenuItem Header="{Binding FormMain.StripMenu_View_Fleet_2}" d:Header="#2" Command="{Binding OpenViewCommand}" CommandParameter="{Binding Fleets[1]}" />
+					<MenuItem Header="{Binding FormMain.StripMenu_View_Fleet_3}" d:Header="#3" Command="{Binding OpenViewCommand}" CommandParameter="{Binding Fleets[2]}" />
+					<MenuItem Header="{Binding FormMain.StripMenu_View_Fleet_4}" d:Header="#4" Command="{Binding OpenViewCommand}" CommandParameter="{Binding Fleets[3]}" />
 				</MenuItem>
-				<MenuItem Header="{Binding FormMain.StripMenu_View_FleetOverview}" d:Header="Fleet List" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormFleetOverview}">
+				<MenuItem Header="{Binding FormMain.StripMenu_View_FleetOverview}" d:Header="Fleet List" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FleetOverview}">
 					<MenuItem.Icon>
 						<Image Source="{Binding FleetOverviewImageSource}" />
 					</MenuItem.Icon>
@@ -100,29 +100,29 @@
 						<Image Source="{Binding ShipGroupImageSource}" />
 					</MenuItem.Icon>
 				</MenuItem>
-				<MenuItem Header="{Binding FormMain.StripMenu_View_FleetPreset}" d:Header="Presets" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormFleetPreset}">
+				<MenuItem Header="{Binding FormMain.StripMenu_View_FleetPreset}" d:Header="Presets" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FleetPreset}">
 					<MenuItem.Icon>
 						<Image Source="{Binding FleetPresetImageSource}" />
 					</MenuItem.Icon>
 				</MenuItem>
 				<Separator />
-				<MenuItem Header="{Binding FormMain.StripMenu_View_Dock}" d:Header="Dock" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormDock}">
+				<MenuItem Header="{Binding FormMain.StripMenu_View_Dock}" d:Header="Dock" Command="{Binding OpenViewCommand}" CommandParameter="{Binding Dock}">
 					<MenuItem.Icon>
 						<Image Source="{Binding DockImageSource}" />
 					</MenuItem.Icon>
 				</MenuItem>
-				<MenuItem Header="{Binding FormMain.StripMenu_View_Arsenal}" d:Header="Arsenal" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormArsenal}">
+				<MenuItem Header="{Binding FormMain.StripMenu_View_Arsenal}" d:Header="Arsenal" Command="{Binding OpenViewCommand}" CommandParameter="{Binding Arsenal}">
 					<MenuItem.Icon>
 						<Image Source="{Binding ArsenalImageSource}" />
 					</MenuItem.Icon>
 				</MenuItem>
-				<MenuItem Header="{Binding FormMain.StripMenu_View_BaseAirCorps}" d:Header="AB" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormBaseAirCorps}">
+				<MenuItem Header="{Binding FormMain.StripMenu_View_BaseAirCorps}" d:Header="AB" Command="{Binding OpenViewCommand}" CommandParameter="{Binding BaseAirCorps}">
 					<MenuItem.Icon>
 						<Image Source="{Binding BaseAirCorpsImageSource}" />
 					</MenuItem.Icon>
 				</MenuItem>
 				<Separator />
-				<MenuItem Header="{Binding FormMain.StripMenu_View_Headquarters}" d:Header="HQ" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormHeadquarters}">
+				<MenuItem Header="{Binding FormMain.StripMenu_View_Headquarters}" d:Header="HQ" Command="{Binding OpenViewCommand}" CommandParameter="{Binding Headquarters}">
 					<MenuItem.Icon>
 						<Image Source="{Binding HeadquartersImageSource}" />
 					</MenuItem.Icon>
@@ -138,12 +138,12 @@
 					</MenuItem.Icon>
 				</MenuItem>
 				<Separator />
-				<MenuItem Header="{Binding FormMain.StripMenu_View_Compass}" d:Header="Compass" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormCompass}">
+				<MenuItem Header="{Binding FormMain.StripMenu_View_Compass}" d:Header="Compass" Command="{Binding OpenViewCommand}" CommandParameter="{Binding Compass}">
 					<MenuItem.Icon>
 						<Image Source="{Binding CompassImageSource}" />
 					</MenuItem.Icon>
 				</MenuItem>
-				<MenuItem Header="{Binding FormMain.StripMenu_View_Battle}" d:Header="Battle" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormBattle}">
+				<MenuItem Header="{Binding FormMain.StripMenu_View_Battle}" d:Header="Battle" Command="{Binding OpenViewCommand}" CommandParameter="{Binding Battle}">
 					<MenuItem.Icon>
 						<Image Source="{Binding BattleImageSource}" />
 					</MenuItem.Icon>
@@ -162,67 +162,6 @@
 				<MenuItem Header="{Binding FormMain.StripMenu_View_Json}" d:Header="JSON" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FormJson}" Visibility="{Binding DebugVisibility}">
 					<MenuItem.Icon>
 						<Image Source="{Binding JsonImageSource}" />
-					</MenuItem.Icon>
-				</MenuItem>
-			</MenuItem>
-			<MenuItem Header="Wpf" Height="Auto">
-				<MenuItem Header="Fleet">
-					<MenuItem.Icon>
-						<Image Source="{Binding FleetsImageSource}" />
-					</MenuItem.Icon>
-					<MenuItem Header="#1" Command="{Binding OpenViewCommand}" CommandParameter="{Binding Fleets[0]}" />
-					<MenuItem Header="#2" Command="{Binding OpenViewCommand}" CommandParameter="{Binding Fleets[1]}" />
-					<MenuItem Header="#3" Command="{Binding OpenViewCommand}" CommandParameter="{Binding Fleets[2]}" />
-					<MenuItem Header="#4" Command="{Binding OpenViewCommand}" CommandParameter="{Binding Fleets[3]}" />
-				</MenuItem>
-				<MenuItem Header="Fleet List" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FleetOverview}">
-					<MenuItem.Icon>
-						<Image Source="{Binding FleetsImageSource}" />
-					</MenuItem.Icon>
-				</MenuItem>
-				<!--
-				<MenuItem Header="Group" Command="{Binding OpenViewCommand}" CommandParameter="{Binding ShipGroup}">
-					<MenuItem.Icon>
-						<Image Source="{Binding ShipGroupImageSource}" />
-					</MenuItem.Icon>
-				</MenuItem>
-				-->
-				<MenuItem Header="Presets" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FleetPreset}">
-					<MenuItem.Icon>
-						<Image Source="{Binding FleetPresetImageSource}" />
-					</MenuItem.Icon>
-				</MenuItem>
-				<Separator />
-				<MenuItem Header="Dock" Command="{Binding OpenViewCommand}" CommandParameter="{Binding Dock}">
-					<MenuItem.Icon>
-						<Image Source="{Binding DockImageSource}" />
-					</MenuItem.Icon>
-				</MenuItem>
-				<MenuItem Header="Arsenal" Command="{Binding OpenViewCommand}" CommandParameter="{Binding Arsenal}">
-					<MenuItem.Icon>
-						<Image Source="{Binding ArsenalImageSource}" />
-					</MenuItem.Icon>
-				</MenuItem>
-				<MenuItem Header="AB" Command="{Binding OpenViewCommand}" CommandParameter="{Binding BaseAirCorps}">
-					<MenuItem.Icon>
-						<Image Source="{Binding BaseAirCorpsImageSource}" />
-					</MenuItem.Icon>
-				</MenuItem>
-				<Separator />
-				<MenuItem Header="HQ" Command="{Binding OpenViewCommand}" CommandParameter="{Binding Headquarters}">
-					<MenuItem.Icon>
-						<Image Source="{Binding HeadquartersImageSource}" />
-					</MenuItem.Icon>
-				</MenuItem>
-				<Separator />
-				<MenuItem Header="Compass" Command="{Binding OpenViewCommand}" CommandParameter="{Binding Compass}">
-					<MenuItem.Icon>
-						<Image Source="{Binding CompassImageSource}" />
-					</MenuItem.Icon>
-				</MenuItem>
-				<MenuItem Header="Battle" Command="{Binding OpenViewCommand}" CommandParameter="{Binding Battle}">
-					<MenuItem.Icon>
-						<Image Source="{Binding BattleImageSource}" />
 					</MenuItem.Icon>
 				</MenuItem>
 			</MenuItem>
