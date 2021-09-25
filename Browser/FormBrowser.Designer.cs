@@ -30,7 +30,7 @@ namespace Browser
 		/// </summary>
 		private void InitializeComponent()
 		{
-
+#if false
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormBrowser));
 			this.components = new System.ComponentModel.Container();
 			this.SizeAdjuster = new System.Windows.Forms.Panel();
@@ -585,7 +585,7 @@ namespace Browser
 			this.ToolMenu.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
-
+#endif
 		}
 
 		#endregion
@@ -650,5 +650,6 @@ namespace Browser
 		private System.Windows.Forms.ToolStripMenuItem ToolMenu_Other_Zoom_Classic;
 		private System.Windows.Forms.ToolStripMenuItem ToolMenu_Other_RefreshIgnoreCache;
 		private System.Windows.Forms.ToolStripMenuItem ToolMenu_Other_ClearCache;
+
 	}
 }

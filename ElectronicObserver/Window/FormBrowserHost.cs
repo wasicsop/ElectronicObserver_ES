@@ -280,7 +280,7 @@ namespace ElectronicObserver.Window
 			}
 		}
 
-		public byte[] GetIconResource()
+		public byte[][] GetIconResource()
 		{
 
 			string[] keys = 
@@ -296,14 +296,17 @@ namespace ElectronicObserver.Window
 				"Browser_Other",
 			};
 			int unitsize = 16 * 16 * 4;
-
-			byte[] canvas = new byte[unitsize * keys.Length];
+			//  
+			//  unitsize
+			byte[][] canvas = new byte[keys.Length][];
 
 			for (int i = 0; i < keys.Length; i++)
 			{
 				Image img = ResourceManager.Instance.Icons.Images[keys[i]];
 				if (img == null) continue;
 
+				canvas[i] = (byte[]) new ImageConverter().ConvertTo(img, typeof(byte[]));
+				/*
 				using (Bitmap bmp = new Bitmap(img))
 				{
 
@@ -312,6 +315,7 @@ namespace ElectronicObserver.Window
 					bmp.UnlockBits(bmpdata);
 
 				}
+				*/
 			}
 
 			return canvas;

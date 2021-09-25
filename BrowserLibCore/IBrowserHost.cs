@@ -13,7 +13,7 @@ namespace BrowserLibCore
 		Task SetProxyCompleted();
 		Task RequestNavigation(string v);
 		Task ClearCache();
-		Task<byte[]> GetIconResource();
+		Task<byte[][]> GetIconResource();
 		Task<bool> IsServerAlive();
 	}
 }

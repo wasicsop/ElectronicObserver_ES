@@ -323,4 +323,19 @@ Open the download page?
   <data name="ToolMenu_Other_Zoom" xml:space="preserve">
     <value>&amp;Zoom</value>
   </data>
+  <data name="File" xml:space="preserve">
+    <value>_File</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="Forward" xml:space="preserve">
+    <value>Forward</value>
+  </data>
+  <data name="DmmPoints" xml:space="preserve">
+    <value>DMM Points</value>
+  </data>
+  <data name="AkashiList" xml:space="preserve">
+    <value>Akashi List</value>
+  </data>
 </root>
