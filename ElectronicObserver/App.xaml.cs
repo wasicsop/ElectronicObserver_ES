@@ -90,6 +90,8 @@ namespace ElectronicObserver
 
 					ToolTipService.ShowDurationProperty.OverrideMetadata(
 						typeof(DependencyObject), new FrameworkPropertyMetadata(int.MaxValue));
+					ToolTipService.InitialShowDelayProperty.OverrideMetadata(
+						typeof(DependencyObject), new FrameworkPropertyMetadata(0));
 					new FormMainWpf().ShowDialog();
 				}
 				else
