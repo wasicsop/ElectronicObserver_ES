@@ -45,7 +45,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 using ModernWpf;
-using Control = System.Windows.Controls.Control;
 using MessageBox = System.Windows.MessageBox;
 using Timer = System.Windows.Forms.Timer;
 
@@ -53,16 +52,16 @@ namespace ElectronicObserver.ViewModels
 {
 	public class FormMainViewModel : ObservableObject
 	{
-		private Control View { get; }
+		private FormMainWpf Window { get; }
 		private DockingManager DockingManager { get; }
 		private Configuration.ConfigurationData Config { get; }
 		public FormMainTranslationViewModel FormMain { get; }
 		private System.Windows.Forms.Timer UIUpdateTimer { get; }
 
-		private string DefaultLayoutPath => @"Settings\Layout\Default.xml";
-
-		// todo: add multi layout support after full wpf release
-		private string LayoutPath => DefaultLayoutPath; // Config.Life.LayoutFilePath;
+		private string LayoutFolder => @"Settings\Layout";
+		private string DefaultLayoutPath => Path.Combine(LayoutFolder, "Default.xml");
+		private string LayoutPath => Config.Life.LayoutFilePath;
+		
 		private string PositionPath => Path.ChangeExtension(LayoutPath, ".Position.json");
 		public bool NotificationsSilenced { get; set; }
 		private DateTime PrevPlayTimeRecorded { get; set; } = DateTime.MinValue;
@@ -157,6 +156,8 @@ namespace ElectronicObserver.ViewModels
 
 		public ICommand SaveDataCommand { get; }
 		public ICommand LoadDataCommand { get; }
+		public ICommand OpenLayoutCommand { get; }
+		public ICommand SaveLayoutAsCommand { get; }
 		public ICommand SilenceNotificationsCommand { get; }
 		public ICommand OpenConfigurationCommand { get; }
 
@@ -196,15 +197,17 @@ namespace ElectronicObserver.ViewModels
 
 		#endregion
 
-		public FormMainViewModel(DockingManager dockingManager, Control view)
+		public FormMainViewModel(DockingManager dockingManager, FormMainWpf window)
 		{
-			View = view;
+			Window = window;
 			DockingManager = dockingManager;
 
 			#region Commands
 
 			SaveDataCommand = new RelayCommand(StripMenu_File_SaveData_Save_Click);
 			LoadDataCommand = new RelayCommand(StripMenu_File_SaveData_Load_Click);
+			OpenLayoutCommand = new RelayCommand(StripMenu_File_Layout_Open_Click);
+			SaveLayoutAsCommand = new RelayCommand(StripMenu_File_Layout_Change_Click);
 			SilenceNotificationsCommand = new RelayCommand(StripMenu_File_Notification_MuteAll_Click);
 			OpenConfigurationCommand = new RelayCommand(StripMenu_File_Configuration_Click);
 
@@ -254,12 +257,12 @@ namespace ElectronicObserver.ViewModels
 
 			Utility.Logger.Instance.LogAdded += data =>
 			{
-				if (View.CheckAccess())
+				if (Window.CheckAccess())
 				{
 					// Invokeはメッセージキューにジョブを投げて待つので、別のBeginInvokeされたジョブが既にキューにあると、
 					// それを実行してしまい、BeginInvokeされたジョブの順番が保てなくなる
 					// GUIスレッドによる処理は、順番が重要なことがあるので、GUIスレッドからInvokeを呼び出してはいけない
-					View.Dispatcher.Invoke(new Utility.LogAddedEventHandler(Logger_LogAdded), data);
+					Window.Dispatcher.Invoke(new Utility.LogAddedEventHandler(Logger_LogAdded), data);
 				}
 				else
 				{
@@ -280,7 +283,7 @@ namespace ElectronicObserver.ViewModels
 			ResourceManager.Instance.Load();
 			RecordManager.Instance.Load();
 			KCDatabase.Instance.Load();
-			NotifierManager.Instance.Initialize(View);
+			NotifierManager.Instance.Initialize(Window);
 			SyncBGMPlayer.Instance.ConfigurationChanged();
 
 			#region Icon settings
@@ -364,7 +367,7 @@ namespace ElectronicObserver.ViewModels
 
 			#endregion
 
-			APIObserver.Instance.Start(Configuration.Config.Connection.Port, View);
+			APIObserver.Instance.Start(Configuration.Config.Connection.Port, Window);
 
 			Fleets = new List<FleetViewModel>()
 			{
@@ -488,6 +491,10 @@ namespace ElectronicObserver.ViewModels
 		public void LoadLayout(object? sender)
 		{
 			if (sender is not FormMainWpf window) return;
+			if (Path.GetExtension(LayoutPath) is ".zip")
+			{
+				Config.Life.LayoutFilePath = DefaultLayoutPath;
+			}
 			if (!File.Exists(LayoutPath)) return;
 
 			DockingManager.Layout = new LayoutRoot();
@@ -513,6 +520,40 @@ namespace ElectronicObserver.ViewModels
 			window.Width = Position.Width;
 			window.Height = Position.Height;
 			window.WindowState = Position.WindowState;
+		}
+
+		private string LayoutFilter => "Layout File|*.xml";
+
+		private void StripMenu_File_Layout_Open_Click()
+		{
+			using OpenFileDialog dialog = new()
+			{
+				Filter = LayoutFilter,
+				Title = Properties.Window.FormMain.OpenLayoutCaption
+			};
+
+			PathHelper.InitOpenFileDialog(Configuration.Config.Life.LayoutFilePath, dialog);
+
+			if (dialog.ShowDialog() != System.Windows.Forms.DialogResult.OK) return;
+
+			Configuration.Config.Life.LayoutFilePath = PathHelper.GetPathFromOpenFileDialog(dialog);
+			LoadLayout(Window);
+		}
+
+		private void StripMenu_File_Layout_Change_Click()
+		{
+			using SaveFileDialog dialog = new()
+			{
+				Filter = LayoutFilter,
+				Title = Properties.Window.FormMain.SaveLayoutCaption
+			};
+
+			PathHelper.InitSaveFileDialog(Configuration.Config.Life.LayoutFilePath, dialog);
+
+			if (dialog.ShowDialog() != System.Windows.Forms.DialogResult.OK) return;
+
+			Configuration.Config.Life.LayoutFilePath = PathHelper.GetPathFromSaveFileDialog(dialog);
+			SaveLayout(Window);
 		}
 
 		private void StripMenu_File_Notification_MuteAll_Click()
@@ -667,7 +708,7 @@ namespace ElectronicObserver.ViewModels
 
 		private void StripMenu_Tool_ExtraBrowser_Click()
 		{
-			Window.FormBrowserHost.Instance.Browser.OpenExtraBrowser();
+			ElectronicObserver.Window.FormBrowserHost.Instance.Browser.OpenExtraBrowser();
 		}
 
 		#endregion
@@ -779,14 +820,14 @@ namespace ElectronicObserver.ViewModels
 						using StreamReader sr2 = new(files[files.Length - 1]);
 						if (isRequest)
 						{
-							View.Dispatcher.Invoke((Action) (() =>
+							Window.Dispatcher.Invoke((Action) (() =>
 							{
 								APIObserver.Instance.LoadRequest("/kcsapi/" + line, sr2.ReadToEnd());
 							}));
 						}
 						else
 						{
-							View.Dispatcher.Invoke((Action) (() =>
+							Window.Dispatcher.Invoke((Action) (() =>
 							{
 								APIObserver.Instance.LoadResponse("/kcsapi/" + line, sr2.ReadToEnd());
 							}));

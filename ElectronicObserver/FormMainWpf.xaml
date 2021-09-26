@@ -59,6 +59,8 @@
 				<MenuItem Header="{Binding FormMain.StripMenu_File_Layout}" d:Header="Layout">
 					<MenuItem Header="{Binding FormMain.StripMenu_File_Layout_Save}" d:Header="Save" Command="{Binding SaveLayoutCommand}" CommandParameter="{Binding ElementName=FormMainWpfControl}" />
 					<MenuItem Header="{Binding FormMain.StripMenu_File_Layout_Load}" d:Header="Load" Command="{Binding LoadLayoutCommand}" CommandParameter="{Binding ElementName=FormMainWpfControl}" />
+					<MenuItem Header="{Binding FormMain.StripMenu_File_Layout_Open}" d:Header="Open" Command="{Binding OpenLayoutCommand}" />
+					<MenuItem Header="{Binding FormMain.StripMenu_File_Layout_Change}" d:Header="Save as" Command="{Binding SaveLayoutAsCommand}" />
 				</MenuItem>
 				<MenuItem Header="{Binding FormMain.StripMenu_File_Notification}" d:Header="Notification">
 					<MenuItem Header="{Binding FormMain.StripMenu_File_Notification_MuteAll}" d:Header="Disable" IsCheckable="True" IsChecked="{Binding NotificationsSilenced}" Command="{Binding SilenceNotificationsCommand}" />
