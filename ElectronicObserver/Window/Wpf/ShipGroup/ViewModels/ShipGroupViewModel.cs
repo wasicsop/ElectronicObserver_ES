@@ -26,7 +26,7 @@ namespace ElectronicObserver.Window.Wpf.ShipGroup.ViewModels
 		public ICommand SelectGroupCommand { get; }
 
 		public ShipGroupViewModel() : base("Group", "Group",
-			ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormShipGroup))
+			ImageSourceIcons.GetIcon(IconContent.FormShipGroup))
 		{
 			Db = KCDatabase.Instance;
 

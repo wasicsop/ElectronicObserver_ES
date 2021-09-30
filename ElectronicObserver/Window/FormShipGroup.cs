@@ -301,7 +301,7 @@ namespace ElectronicObserver.Window
             Utility.Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
 
             IsRowsUpdating = false;
-            Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormShipGroup]);
+            Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[(int)IconContent.FormShipGroup]);
 
         }
 

@@ -259,13 +259,13 @@ namespace ElectronicObserver.Window.Dialog
 				column.Width = 20;
 
 			LabelShipName.ImageList = ResourceManager.Instance.Icons;
-			LabelShipName.ImageIndex = (int)ResourceManager.IconContent.HeadQuartersShip;
+			LabelShipName.ImageIndex = (int)IconContent.HeadQuartersShip;
 			LabelItemName.ImageList = ResourceManager.Instance.Icons;
-			LabelItemName.ImageIndex = (int)ResourceManager.IconContent.ItemPresentBox;
+			LabelItemName.ImageIndex = (int)IconContent.ItemPresentBox;
 			LabelEquipmentName.ImageList = ResourceManager.Instance.Equipments;
 			LabelEquipmentName.ImageIndex = (int)ResourceManager.EquipmentContent.MainGunL;
 
-			Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.ItemPresentBox]);
+			Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[(int)IconContent.ItemPresentBox]);
 		}
 
 		private void DialogDropRecordViewer_FormClosed(object sender, FormClosedEventArgs e)

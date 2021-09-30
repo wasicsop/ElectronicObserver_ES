@@ -132,7 +132,7 @@ namespace ElectronicObserver.Window.Wpf.Battle
 		public ICommand ShowBattleDetailCommand { get; }
 
 		public BattleViewModel() : base("Battle", "Battle",
-			ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormBattle))
+			ImageSourceIcons.GetIcon(IconContent.FormBattle))
 		{
 			FormBattle = App.Current.Services.GetService<FormBattleTranslationViewModel>()!;
 

@@ -117,7 +117,7 @@ namespace ElectronicObserver.Window.Wpf.BaseAirCorps
 		public ImageSource? Icon => ImageIndex switch
 		{
 			ResourceManager.EquipmentContent e => ImageSourceIcons.GetEquipmentIcon((EquipmentIconType)e),
-			ResourceManager.IconContent i => ImageSourceIcons.GetIcon(i),
+			IconContent i => ImageSourceIcons.GetIcon(i),
 			_ => null
 		};
 
@@ -196,7 +196,7 @@ namespace ElectronicObserver.Window.Wpf.BaseAirCorps
 				// TextAlign = ContentAlignment.MiddleLeft,
 				// ImageAlign = ContentAlignment.MiddleLeft,
 				// ImageList = ResourceManager.Instance.Icons,
-				ImageIndex = ResourceManager.IconContent.ParameterAircraftDistance,
+				ImageIndex = IconContent.ParameterAircraftDistance,
 				// Padding = new Padding(2, 2, 2, 2),
 				// Margin = new Padding(2, 0, 2, 0),
 				// AutoSize = true,
@@ -252,14 +252,14 @@ namespace ElectronicObserver.Window.Wpf.BaseAirCorps
 					if (tired == 2)
 					{
 						// Name.ImageAlign = ContentAlignment.MiddleRight;
-						Name.ImageIndex = ResourceManager.IconContent.ConditionTired;
+						Name.ImageIndex = IconContent.ConditionTired;
 						sb.AppendLine(GeneralRes.Tired);
 
 					}
 					else
 					{
 						// Name.ImageAlign = ContentAlignment.MiddleRight;
-						Name.ImageIndex = ResourceManager.IconContent.ConditionVeryTired;
+						Name.ImageIndex = IconContent.ConditionVeryTired;
 						sb.AppendLine(GeneralRes.VeryTired);
 
 					}
@@ -269,7 +269,7 @@ namespace ElectronicObserver.Window.Wpf.BaseAirCorps
 				{
 					// 未補給
 					// Name.ImageAlign = ContentAlignment.MiddleRight;
-					Name.ImageIndex = ResourceManager.IconContent.FleetNotReplenished;
+					Name.ImageIndex = IconContent.FleetNotReplenished;
 					sb.AppendLine(FormBaseAirCorps.Unsupplied);
 
 				}
@@ -434,7 +434,7 @@ namespace ElectronicObserver.Window.Wpf.BaseAirCorps
 		public ICommand DisplayRelocatedEquipmentsCommand { get; }
 
 		public BaseAirCorpsViewModel() : base("AB", "BaseAirCorps",
-			ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormBaseAirCorps))
+			ImageSourceIcons.GetIcon(IconContent.FormBaseAirCorps))
 		{
 			FormBaseAirCorps = App.Current.Services.GetService<FormBaseAirCorpsTranslationViewModel>()!;
 
@@ -523,16 +523,16 @@ namespace ElectronicObserver.Window.Wpf.BaseAirCorps
 				bool isTired = squadrons.Any(s => s.State == 1 && s.Condition == 2);
 				bool isVeryTired = squadrons.Any(s => s.State == 1 && s.Condition == 3);
 
-				ResourceManager.IconContent imageIndex;
+				IconContent imageIndex;
 
 				if (isNotReplenished)
-					imageIndex = ResourceManager.IconContent.FleetNotReplenished;
+					imageIndex = IconContent.FleetNotReplenished;
 				else if (isVeryTired)
-					imageIndex = ResourceManager.IconContent.ConditionVeryTired;
+					imageIndex = IconContent.ConditionVeryTired;
 				else if (isTired)
-					imageIndex = ResourceManager.IconContent.ConditionTired;
+					imageIndex = IconContent.ConditionTired;
 				else
-					imageIndex = ResourceManager.IconContent.FormBaseAirCorps;
+					imageIndex = IconContent.FormBaseAirCorps;
 
 				IconSource = ImageSourceIcons.GetIcon(imageIndex);
 

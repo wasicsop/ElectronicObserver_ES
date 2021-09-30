@@ -6,7 +6,7 @@ namespace ElectronicObserver.Window.Wpf.WinformsWrappers
 	public class FormBaseAirCorpsViewModel : WinformsHostViewModel
 	{
 		public FormBaseAirCorpsViewModel() : base("AB", "FormBaseAirCorps", 
-			ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormBaseAirCorps))
+			ImageSourceIcons.GetIcon(IconContent.FormBaseAirCorps))
 		{
 			// todo remove parameter cause it's never used
 			WinformsControl = new FormBaseAirCorps(null!) { TopLevel = false };

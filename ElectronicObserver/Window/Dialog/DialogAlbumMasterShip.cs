@@ -87,33 +87,33 @@ namespace ElectronicObserver.Window.Dialog
 			Equipment5.ImageList =
 				ResourceManager.Instance.Equipments;
 
-			TitleHP.ImageIndex = (int)ResourceManager.IconContent.ParameterHP;
-			TitleFirepower.ImageIndex = (int)ResourceManager.IconContent.ParameterFirepower;
-			TitleTorpedo.ImageIndex = (int)ResourceManager.IconContent.ParameterTorpedo;
-			TitleAA.ImageIndex = (int)ResourceManager.IconContent.ParameterAA;
-			TitleArmor.ImageIndex = (int)ResourceManager.IconContent.ParameterArmor;
-			TitleASW.ImageIndex = (int)ResourceManager.IconContent.ParameterASW;
-			TitleEvasion.ImageIndex = (int)ResourceManager.IconContent.ParameterEvasion;
-			TitleLOS.ImageIndex = (int)ResourceManager.IconContent.ParameterLOS;
-			TitleLuck.ImageIndex = (int)ResourceManager.IconContent.ParameterLuck;
-			Accuracy.ImageIndex = (int)ResourceManager.IconContent.ParameterAccuracy;
-			TitleSpeed.ImageIndex = (int)ResourceManager.IconContent.ParameterSpeed;
-			TitleRange.ImageIndex = (int)ResourceManager.IconContent.ParameterRange;
-			Fuel.ImageIndex = (int)ResourceManager.IconContent.ResourceFuel;
-			Ammo.ImageIndex = (int)ResourceManager.IconContent.ResourceAmmo;
-			TitleBuildingTime.ImageIndex = (int)ResourceManager.IconContent.FormArsenal;
-			MaterialFuel.ImageIndex = (int)ResourceManager.IconContent.ResourceFuel;
-			MaterialAmmo.ImageIndex = (int)ResourceManager.IconContent.ResourceAmmo;
-			MaterialSteel.ImageIndex = (int)ResourceManager.IconContent.ResourceSteel;
-			MaterialBauxite.ImageIndex = (int)ResourceManager.IconContent.ResourceBauxite;
-			PowerUpFirepower.ImageIndex = (int)ResourceManager.IconContent.ParameterFirepower;
-			PowerUpTorpedo.ImageIndex = (int)ResourceManager.IconContent.ParameterTorpedo;
-			PowerUpAA.ImageIndex = (int)ResourceManager.IconContent.ParameterAA;
-			PowerUpArmor.ImageIndex = (int)ResourceManager.IconContent.ParameterArmor;
-			RemodelBeforeAmmo.ImageIndex = (int)ResourceManager.IconContent.ResourceAmmo;
-			RemodelBeforeSteel.ImageIndex = (int)ResourceManager.IconContent.ResourceSteel;
-			RemodelAfterAmmo.ImageIndex = (int)ResourceManager.IconContent.ResourceAmmo;
-			RemodelAfterSteel.ImageIndex = (int)ResourceManager.IconContent.ResourceSteel;
+			TitleHP.ImageIndex = (int)IconContent.ParameterHP;
+			TitleFirepower.ImageIndex = (int)IconContent.ParameterFirepower;
+			TitleTorpedo.ImageIndex = (int)IconContent.ParameterTorpedo;
+			TitleAA.ImageIndex = (int)IconContent.ParameterAA;
+			TitleArmor.ImageIndex = (int)IconContent.ParameterArmor;
+			TitleASW.ImageIndex = (int)IconContent.ParameterASW;
+			TitleEvasion.ImageIndex = (int)IconContent.ParameterEvasion;
+			TitleLOS.ImageIndex = (int)IconContent.ParameterLOS;
+			TitleLuck.ImageIndex = (int)IconContent.ParameterLuck;
+			Accuracy.ImageIndex = (int)IconContent.ParameterAccuracy;
+			TitleSpeed.ImageIndex = (int)IconContent.ParameterSpeed;
+			TitleRange.ImageIndex = (int)IconContent.ParameterRange;
+			Fuel.ImageIndex = (int)IconContent.ResourceFuel;
+			Ammo.ImageIndex = (int)IconContent.ResourceAmmo;
+			TitleBuildingTime.ImageIndex = (int)IconContent.FormArsenal;
+			MaterialFuel.ImageIndex = (int)IconContent.ResourceFuel;
+			MaterialAmmo.ImageIndex = (int)IconContent.ResourceAmmo;
+			MaterialSteel.ImageIndex = (int)IconContent.ResourceSteel;
+			MaterialBauxite.ImageIndex = (int)IconContent.ResourceBauxite;
+			PowerUpFirepower.ImageIndex = (int)IconContent.ParameterFirepower;
+			PowerUpTorpedo.ImageIndex = (int)IconContent.ParameterTorpedo;
+			PowerUpAA.ImageIndex = (int)IconContent.ParameterAA;
+			PowerUpArmor.ImageIndex = (int)IconContent.ParameterArmor;
+			RemodelBeforeAmmo.ImageIndex = (int)IconContent.ResourceAmmo;
+			RemodelBeforeSteel.ImageIndex = (int)IconContent.ResourceSteel;
+			RemodelAfterAmmo.ImageIndex = (int)IconContent.ResourceAmmo;
+			RemodelAfterSteel.ImageIndex = (int)IconContent.ResourceSteel;
 			TitleAirSuperiority.ImageIndex = (int)ResourceManager.EquipmentContent.CarrierBasedFighter;
 			TitleDayAttack.ImageIndex = (int)ResourceManager.EquipmentContent.Seaplane;
 			TitleNightAttack.ImageIndex = (int)ResourceManager.EquipmentContent.Torpedo;
@@ -241,7 +241,7 @@ namespace ElectronicObserver.Window.Dialog
 		private void DialogAlbumMasterShip_Load(object sender, EventArgs e)
 		{
 
-			this.Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormAlbumShip]);
+			this.Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[(int)IconContent.FormAlbumShip]);
 
 		}
 
@@ -545,7 +545,7 @@ namespace ElectronicObserver.Window.Dialog
 				ToolTipInfo.SetToolTip(Range, $"{Translation.DefaultRange}: {Constants.GetRange(ship.Range)}");
 			}
 			Rarity.Text = Constants.GetShipRarity(ship.Rarity);
-			Rarity.ImageIndex = (int)ResourceManager.IconContent.RarityRed + ship.Rarity;
+			Rarity.ImageIndex = (int)IconContent.RarityRed + ship.Rarity;
 
 			TableParameterSub.ResumeLayout();
 
@@ -977,10 +977,10 @@ namespace ElectronicObserver.Window.Dialog
 		private static int GetRemodelItemImageIndex(IShipDataMaster ship)
 		{
 			return
-				ship.NeedCatapult > 0 ? (int)ResourceManager.IconContent.ItemCatapult :
-				ship.NeedActionReport > 0 ? (int)ResourceManager.IconContent.ItemActionReport :
-				ship.NeedBlueprint > 0 ? (int)ResourceManager.IconContent.ItemBlueprint :
-				ship.NeedAviationMaterial > 0 ? (int)ResourceManager.IconContent.ItemAviationMaterial :
+				ship.NeedCatapult > 0 ? (int)IconContent.ItemCatapult :
+				ship.NeedActionReport > 0 ? (int)IconContent.ItemActionReport :
+				ship.NeedBlueprint > 0 ? (int)IconContent.ItemBlueprint :
+				ship.NeedAviationMaterial > 0 ? (int)IconContent.ItemAviationMaterial :
 				-1;
 		}
 

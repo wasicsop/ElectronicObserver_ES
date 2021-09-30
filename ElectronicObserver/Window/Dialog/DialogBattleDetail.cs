@@ -38,7 +38,7 @@ namespace ElectronicObserver.Window.Dialog
 
 		private void DialogBattleDetail_Load(object sender, EventArgs e)
 		{
-			this.Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormBattle]);
+			this.Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[(int)IconContent.FormBattle]);
 		}
 
 		private void DialogBattleDetail_FormClosed(object sender, FormClosedEventArgs e)

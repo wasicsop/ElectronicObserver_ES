@@ -362,7 +362,7 @@ namespace ElectronicObserver.Utility
 								if (0 <= eq.AircraftLevel && eq.AircraftLevel <= 7)
 								{
 									var point = equipmentPointer + GetAlignmentOffset(ContentAlignment.MiddleLeft, EquipmentIconSize, equipmentAreaUnitSize);
-									g.DrawImage(ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.AircraftLevel0 + eq.AircraftLevel], point.X, point.Y, EquipmentIconSize.Width, EquipmentIconSize.Height);
+									g.DrawImage(ResourceManager.Instance.Icons.Images[(int)IconContent.AircraftLevel0 + eq.AircraftLevel], point.X, point.Y, EquipmentIconSize.Width, EquipmentIconSize.Height);
 								}
 								equipmentPointer.X += EquipmentIconSize.Width;
 
@@ -722,16 +722,16 @@ namespace ElectronicObserver.Utility
 
 							var rectoffset = GetAlignmentOffset(ContentAlignment.MiddleLeft, EquipmentIconSize, paramNameSize);
 
-							void DrawParam(ResourceManager.IconContent icon, int value)
+							void DrawParam(IconContent icon, int value)
 							{
 								g.DrawImage(ResourceManager.Instance.Icons.Images[(int)icon], new Rectangle(shipPointer + rectoffset, EquipmentIconSize));
 								shipPointer.X += EquipmentIconSize.Width;
 								g.DrawString(value.ToString(), args.MediumDigitFont, mainTextBrush, new Rectangle(shipPointer, mediumDigit3Size), formatMiddleRight);
 								shipPointer.X += mediumDigit3Size.Width + EquipmentIconSize.Width;
 							}
-							DrawParam(ResourceManager.IconContent.ParameterHP, ship.HPMax);
-							DrawParam(ResourceManager.IconContent.ParameterASW, ship.ASWTotal);
-							DrawParam(ResourceManager.IconContent.ParameterLuck, ship.LuckTotal);
+							DrawParam(IconContent.ParameterHP, ship.HPMax);
+							DrawParam(IconContent.ParameterASW, ship.ASWTotal);
+							DrawParam(IconContent.ParameterLuck, ship.LuckTotal);
 
 							shipPointer.Y -= offset;
 						}
@@ -1191,7 +1191,7 @@ namespace ElectronicObserver.Utility
 							shipParameterPointer.Y += levelSize.Height;
 
 							//luck
-							g.DrawImage(ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.ParameterLuck],
+							g.DrawImage(ResourceManager.Instance.Icons.Images[(int)IconContent.ParameterLuck],
 								shipParameterPointer.X, shipParameterPointer.Y, EquipmentIconSize.Width, EquipmentIconSize.Height);
 							g.DrawString(ship.LuckTotal.ToString(), args.SmallDigitFont, mainTextBrush, new Rectangle(shipParameterPointer + paramNameSize, smallDigit3Size), formatMiddleRight);
 						}
@@ -1485,7 +1485,7 @@ namespace ElectronicObserver.Utility
 					}
 					{   // distance
 						var iconpos = basePointer + GetAlignmentOffset(ContentAlignment.MiddleLeft, EquipmentIconSize, baseParameterAreaSize);
-						g.DrawImage(ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.ParameterAircraftDistance], iconpos.X, iconpos.Y, EquipmentIconSize.Width, EquipmentIconSize.Height);
+						g.DrawImage(ResourceManager.Instance.Icons.Images[(int)IconContent.ParameterAircraftDistance], iconpos.X, iconpos.Y, EquipmentIconSize.Width, EquipmentIconSize.Height);
 						basePointer.X += EquipmentIconSize.Width;
 
 						g.DrawString(baseDistanceTitle, args.SmallFont, subTextBrush, new Rectangle(basePointer + GetAlignmentOffset(ContentAlignment.MiddleLeft, baseDistanceTitleSize, baseParameterAreaSize), baseDistanceTitleSize), formatMiddleLeft);
@@ -1556,7 +1556,7 @@ namespace ElectronicObserver.Utility
 							if (0 <= eq.AircraftLevel && eq.AircraftLevel <= 7)
 							{
 								var point = equipmentPointer + GetAlignmentOffset(ContentAlignment.MiddleLeft, EquipmentIconSize, equipmentAreaUnitSize);
-								g.DrawImage(ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.AircraftLevel0 + eq.AircraftLevel], point.X, point.Y, EquipmentIconSize.Width, EquipmentIconSize.Height);
+								g.DrawImage(ResourceManager.Instance.Icons.Images[(int)IconContent.AircraftLevel0 + eq.AircraftLevel], point.X, point.Y, EquipmentIconSize.Width, EquipmentIconSize.Height);
 							}
 							equipmentPointer.X += EquipmentIconSize.Width;
 
@@ -1720,7 +1720,7 @@ namespace ElectronicObserver.Utility
 			public readonly Func<IShipData, string> ValueSelector;
 			public readonly bool IsCharacter;
 
-			public ShipParameterData(ResourceManager.IconContent iconIndex, string name, Func<IShipData, string> selector, bool isCharacter = false)
+			public ShipParameterData(IconContent iconIndex, string name, Func<IShipData, string> selector, bool isCharacter = false)
 			{
 				Icon = ResourceManager.Instance.Icons.Images[(int)iconIndex];
 				Name = name;
@@ -1730,18 +1730,18 @@ namespace ElectronicObserver.Utility
 		}
 
 		protected static readonly ShipParameterData[] ParameterDataList = new[] {
-			new ShipParameterData( ResourceManager.IconContent.ParameterHP, "耐久", ship => ship.HPMax.ToString() ),
-			new ShipParameterData( ResourceManager.IconContent.ParameterFirepower, "火力", ship => ship.FirepowerTotal.ToString() ),
-			new ShipParameterData( ResourceManager.IconContent.ParameterArmor, "装甲", ship => ship.ArmorTotal.ToString() ),
-			new ShipParameterData( ResourceManager.IconContent.ParameterTorpedo, "雷装", ship => ship.TorpedoTotal.ToString() ),
-			new ShipParameterData( ResourceManager.IconContent.ParameterEvasion, "回避", ship => ship.EvasionTotal.ToString() ),
-			new ShipParameterData( ResourceManager.IconContent.ParameterAA, "対空", ship => ship.AATotal.ToString() ),
-			new ShipParameterData( ResourceManager.IconContent.ParameterAircraft, "制空", ship => Calculator.GetAirSuperiority(ship).ToString() ),
-			new ShipParameterData( ResourceManager.IconContent.ParameterASW, "対潜", ship => ship.ASWTotal.ToString() ),
-			new ShipParameterData( ResourceManager.IconContent.ParameterSpeed, "速力", ship => Constants.GetSpeed( ship.Speed ), true ),
-			new ShipParameterData( ResourceManager.IconContent.ParameterLOS, "索敵", ship => ship.LOSTotal.ToString() ),
-			new ShipParameterData( ResourceManager.IconContent.ParameterRange, "射程", ship => Constants.GetRange( ship.Range ), true ),
-			new ShipParameterData( ResourceManager.IconContent.ParameterLuck, "運", ship => ship.LuckTotal.ToString() ),
+			new ShipParameterData( IconContent.ParameterHP, "耐久", ship => ship.HPMax.ToString() ),
+			new ShipParameterData( IconContent.ParameterFirepower, "火力", ship => ship.FirepowerTotal.ToString() ),
+			new ShipParameterData( IconContent.ParameterArmor, "装甲", ship => ship.ArmorTotal.ToString() ),
+			new ShipParameterData( IconContent.ParameterTorpedo, "雷装", ship => ship.TorpedoTotal.ToString() ),
+			new ShipParameterData( IconContent.ParameterEvasion, "回避", ship => ship.EvasionTotal.ToString() ),
+			new ShipParameterData( IconContent.ParameterAA, "対空", ship => ship.AATotal.ToString() ),
+			new ShipParameterData( IconContent.ParameterAircraft, "制空", ship => Calculator.GetAirSuperiority(ship).ToString() ),
+			new ShipParameterData( IconContent.ParameterASW, "対潜", ship => ship.ASWTotal.ToString() ),
+			new ShipParameterData( IconContent.ParameterSpeed, "速力", ship => Constants.GetSpeed( ship.Speed ), true ),
+			new ShipParameterData( IconContent.ParameterLOS, "索敵", ship => ship.LOSTotal.ToString() ),
+			new ShipParameterData( IconContent.ParameterRange, "射程", ship => Constants.GetRange( ship.Range ), true ),
+			new ShipParameterData( IconContent.ParameterLuck, "運", ship => ship.LuckTotal.ToString() ),
 		};
 
 

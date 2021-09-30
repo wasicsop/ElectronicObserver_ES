@@ -11,7 +11,7 @@ namespace ElectronicObserver.Window.Wpf.WinformsWrappers
 		public FormBrowserHostTranslationViewModel FormBrowserHost { get; }
 
 		public FormBrowserHostViewModel() : base("Browser", "Browser",
-			ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormBrowser))
+			ImageSourceIcons.GetIcon(IconContent.FormBrowser))
 		{
 			FormBrowserHost = App.Current.Services.GetService<FormBrowserHostTranslationViewModel>()!;
 

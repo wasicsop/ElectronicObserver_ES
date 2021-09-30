@@ -504,7 +504,7 @@ namespace ElectronicObserver.Window.Dialog
 		private void DialogConfiguration_Load(object sender, EventArgs e)
 		{
 
-			this.Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormConfiguration]);
+			this.Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[(int)IconContent.FormConfiguration]);
 
 			_UIControl = Owner;
 

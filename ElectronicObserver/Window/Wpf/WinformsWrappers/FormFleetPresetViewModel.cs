@@ -6,7 +6,7 @@ namespace ElectronicObserver.Window.Wpf.WinformsWrappers
 	public class FormFleetPresetViewModel : WinformsHostViewModel
 	{
 		public FormFleetPresetViewModel() : base("Presets", "FormFleetPreset",
-			ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormFleetPreset))
+			ImageSourceIcons.GetIcon(IconContent.FormFleetPreset))
 		{
 			// todo remove parameter cause it's never used
 			WinformsControl = new FormFleetPreset(null!) { TopLevel = false };

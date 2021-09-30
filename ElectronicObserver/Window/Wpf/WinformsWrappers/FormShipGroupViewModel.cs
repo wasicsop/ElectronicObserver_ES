@@ -10,7 +10,7 @@ namespace ElectronicObserver.Window.Wpf.WinformsWrappers
 		public FormShipGroupTranslationViewModel FormShipGroup { get; }
 
 		public FormShipGroupViewModel() : base("Group", "ShipGroup",
-			ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormShipGroup))
+			ImageSourceIcons.GetIcon(IconContent.FormShipGroup))
 		{
 			FormShipGroup = App.Current.Services.GetService<FormShipGroupTranslationViewModel>()!;
 

@@ -7,9 +7,9 @@ namespace ElectronicObserver.Window.Wpf
 {
 	public static class ImageSourceIcons
 	{
-		public static ImageSource? GetIcon(ResourceManager.IconContent type) => type switch
+		public static ImageSource? GetIcon(IconContent type) => type switch
 		{
-			ResourceManager.IconContent.Nothing => null,
+			IconContent.Nothing => null,
 			_ => BytesToImageSource(GetBytes(ResourceManager.Instance.Icons.Images[(int) type]))
 		};
 

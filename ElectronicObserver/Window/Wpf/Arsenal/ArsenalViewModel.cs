@@ -163,7 +163,7 @@ namespace ElectronicObserver.Window.Wpf.Arsenal
 		private int _buildingID;
 
 		public ArsenalViewModel() : base("Arsenal", "Arsenal",
-			ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormArsenal))
+			ImageSourceIcons.GetIcon(IconContent.FormArsenal))
 		{
 			FormArsenal = App.Current.Services.GetService<FormArsenalTranslationViewModel>()!;
 

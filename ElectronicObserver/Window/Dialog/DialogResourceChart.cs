@@ -115,7 +115,7 @@ namespace ElectronicObserver.Window.Dialog
 			SwitchMenuStrip(Menu_Span, 2);
 
 
-			Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormResourceChart]);
+			Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[(int)IconContent.FormResourceChart]);
 
 			UpdateChart();
 		}

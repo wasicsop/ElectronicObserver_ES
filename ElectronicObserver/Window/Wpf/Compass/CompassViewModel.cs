@@ -61,7 +61,7 @@ namespace ElectronicObserver.Window.Wpf.Compass
 		private BattleViewModel BattleViewModel { get; } = new();
 
 		public CompassViewModel() : base("Compass", "Compass",
-			ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormCompass))
+			ImageSourceIcons.GetIcon(IconContent.FormCompass))
 		{
 			Db = KCDatabase.Instance;
 			FormCompass = App.Current.Services.GetService<FormCompassTranslationViewModel>()!;

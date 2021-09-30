@@ -195,7 +195,7 @@ namespace ElectronicObserver.Window.Control
 			{
 				var state = GetStateLabel(index);
 
-				state.SetInformation(FleetStates.NoShip, FleetRes.NoShips, "", (int)ResourceManager.IconContent.FleetNoShip);
+				state.SetInformation(FleetStates.NoShip, FleetRes.NoShips, "", (int)IconContent.FleetNoShip);
 				tooltip.SetToolTip(state.Label, null);
 
 				emphasizesSubFleetInPort = false;
@@ -213,7 +213,7 @@ namespace ElectronicObserver.Window.Control
 					{
 						var state = GetStateLabel(index);
 
-						state.SetInformation(FleetStates.SortieDamaged, FleetRes.CriticalDamageAdvance, FleetRes.CriticalDamageAdvance, (int)ResourceManager.IconContent.FleetSortieDamaged, colorDanger);
+						state.SetInformation(FleetStates.SortieDamaged, FleetRes.CriticalDamageAdvance, FleetRes.CriticalDamageAdvance, (int)IconContent.FleetSortieDamaged, colorDanger);
 						tooltip.SetToolTip(state.Label, null);
 
 						index++;
@@ -223,7 +223,7 @@ namespace ElectronicObserver.Window.Control
 					{   //出撃中
 						var state = GetStateLabel(index);
 
-						state.SetInformation(FleetStates.Sortie, FleetRes.OnSortie, "", (int)ResourceManager.IconContent.FleetSortie);
+						state.SetInformation(FleetStates.Sortie, FleetRes.OnSortie, "", (int)IconContent.FleetSortie);
 						tooltip.SetToolTip(state.Label, null);
 
 						index++;
@@ -242,7 +242,7 @@ namespace ElectronicObserver.Window.Control
 					state.SetInformation(FleetStates.Expedition,
 						$"[{dest.DisplayID}] {DateTimeHelper.ToTimeRemainString(state.Timer)}",
 						DateTimeHelper.ToTimeRemainString(state.Timer),
-						(int)ResourceManager.IconContent.FleetExpedition);
+						(int)IconContent.FleetExpedition);
 
 					tooltip.SetToolTip(state.Label,
 						string.Format(FleetRes.ExpeditionToolTip, 
@@ -257,7 +257,7 @@ namespace ElectronicObserver.Window.Control
 				{
 					var state = GetStateLabel(index);
 
-					state.SetInformation(FleetStates.Damaged, FleetRes.CriticallyDamagedShip, FleetRes.CriticallyDamagedShip, (int)ResourceManager.IconContent.FleetDamaged, colorDanger);
+					state.SetInformation(FleetStates.Damaged, FleetRes.CriticallyDamagedShip, FleetRes.CriticallyDamagedShip, (int)IconContent.FleetDamaged, colorDanger);
 					tooltip.SetToolTip(state.Label, null);
 
 					emphasizesSubFleetInPort = false;
@@ -273,7 +273,7 @@ namespace ElectronicObserver.Window.Control
 					state.SetInformation(FleetStates.AnchorageRepairing,
 						FleetRes.Repairing + DateTimeHelper.ToTimeElapsedString(state.Timer),
 						DateTimeHelper.ToTimeElapsedString(state.Timer),
-						(int)ResourceManager.IconContent.FleetAnchorageRepairing);
+						(int)IconContent.FleetAnchorageRepairing);
 
 
 					StringBuilder sb = new StringBuilder();
@@ -318,7 +318,7 @@ namespace ElectronicObserver.Window.Control
 						state.SetInformation(FleetStates.Docking,
 							 FleetRes.OnDock + DateTimeHelper.ToTimeRemainString(state.Timer),
 							 DateTimeHelper.ToTimeRemainString(state.Timer),
-							 (int)ResourceManager.IconContent.FleetDocking);
+							 (int)IconContent.FleetDocking);
 
 						tooltip.SetToolTip(state.Label, FleetRes.DockCompletionTime + DateTimeHelper.TimeToCSVString(state.Timer));
 
@@ -341,7 +341,7 @@ namespace ElectronicObserver.Window.Control
 					{
 						var state = GetStateLabel(index);
 
-						state.SetInformation(FleetStates.NotReplenished, FleetRes.SupplyNeeded, "", (int)ResourceManager.IconContent.FleetNotReplenished, colorInPort);
+						state.SetInformation(FleetStates.NotReplenished, FleetRes.SupplyNeeded, "", (int)IconContent.FleetNotReplenished, colorInPort);
 						tooltip.SetToolTip(state.Label, string.Format(FleetRes.ResupplyTooltip, fuel, ammo, bauxite, aircraft));
 
 						index++;
@@ -358,11 +358,11 @@ namespace ElectronicObserver.Window.Control
 
 						int iconIndex;
 						if (cond < 20)
-							iconIndex = (int)ResourceManager.IconContent.ConditionVeryTired;
+							iconIndex = (int)IconContent.ConditionVeryTired;
 						else if (cond < 30)
-							iconIndex = (int)ResourceManager.IconContent.ConditionTired;
+							iconIndex = (int)IconContent.ConditionTired;
 						else
-							iconIndex = (int)ResourceManager.IconContent.ConditionLittleTired;
+							iconIndex = (int)IconContent.ConditionLittleTired;
 
 						state.Timer = (DateTime)fleet.ConditionTime;
 						state.SetInformation(FleetStates.Tired,
@@ -381,7 +381,7 @@ namespace ElectronicObserver.Window.Control
 					{       //戦意高揚
 						var state = GetStateLabel(index);
 
-						state.SetInformation(FleetStates.Sparkled, FleetRes.FightingSpiritHigh, "", (int)ResourceManager.IconContent.ConditionSparkle, colorInPort);
+						state.SetInformation(FleetStates.Sparkled, FleetRes.FightingSpiritHigh, "", (int)IconContent.ConditionSparkle, colorInPort);
 						tooltip.SetToolTip(state.Label, string.Format(FleetRes.SparkledTooltip, cond, Math.Ceiling((cond - 49) / 3.0)));
 
 						index++;
@@ -394,7 +394,7 @@ namespace ElectronicObserver.Window.Control
 				{
 					var state = GetStateLabel(index);
 
-					state.SetInformation(FleetStates.Ready, FleetRes.ReadyToSortie, "", (int)ResourceManager.IconContent.FleetReady, colorInPort);
+					state.SetInformation(FleetStates.Ready, FleetRes.ReadyToSortie, "", (int)IconContent.FleetReady, colorInPort);
 					tooltip.SetToolTip(state.Label, null);
 
 					index++;
@@ -507,7 +507,7 @@ namespace ElectronicObserver.Window.Control
 		public int GetIconIndex()
 		{
 			var first = StateLabels.Where(s => s.Enabled).OrderBy(s => s.State).FirstOrDefault();
-			return first == null ? (int)ResourceManager.IconContent.FormFleet : first.Label.ImageIndex;
+			return first == null ? (int)IconContent.FormFleet : first.Label.ImageIndex;
 		}
 
 	}

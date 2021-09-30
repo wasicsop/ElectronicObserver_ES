@@ -886,11 +886,11 @@ namespace ElectronicObserver.Window
 				label.ForeColor = Utility.Configuration.Config.UI.ForeColor;
 
 				label.ImageIndex =
-					cond < 20 ? (int)ResourceManager.IconContent.ConditionVeryTired :
-					cond < 30 ? (int)ResourceManager.IconContent.ConditionTired :
-					cond < 40 ? (int)ResourceManager.IconContent.ConditionLittleTired :
-					cond < 50 ? (int)ResourceManager.IconContent.ConditionNormal :
-					(int)ResourceManager.IconContent.ConditionSparkle;
+					cond < 20 ? (int)IconContent.ConditionVeryTired :
+					cond < 30 ? (int)IconContent.ConditionTired :
+					cond < 40 ? (int)IconContent.ConditionLittleTired :
+					cond < 50 ? (int)IconContent.ConditionNormal :
+					(int)IconContent.ConditionSparkle;
 
 			}
 		}
@@ -912,9 +912,9 @@ namespace ElectronicObserver.Window
 		private TableMemberControl[] ControlMember;
 
 		private int AnchorageRepairBound;
-		public Action<ResourceManager.IconContent>? SetIcon { get; }
+		public Action<IconContent>? SetIcon { get; }
 
-		public FormFleet(FormMain parent, int fleetID, Action<ResourceManager.IconContent>? setIcon = null)
+		public FormFleet(FormMain parent, int fleetID, Action<IconContent>? setIcon = null)
 		{
 			InitializeComponent();
 
@@ -954,7 +954,7 @@ namespace ElectronicObserver.Window
 
 			ConfigurationChanged();     //fixme: 苦渋の決断
 
-			Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormFleet]);
+			Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[(int)IconContent.FormFleet]);
 
 			Translate();
 		}
@@ -1060,7 +1060,7 @@ namespace ElectronicObserver.Window
 			if (Icon != null) ResourceManager.DestroyIcon(Icon);
 			int iconIndex = ControlFleet.State.GetIconIndex();
 			Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[iconIndex]);
-			SetIcon?.Invoke((ResourceManager.IconContent) iconIndex);
+			SetIcon?.Invoke((IconContent) iconIndex);
 			if (Parent != null) Parent.Refresh();       //アイコンを更新するため
 
 		}

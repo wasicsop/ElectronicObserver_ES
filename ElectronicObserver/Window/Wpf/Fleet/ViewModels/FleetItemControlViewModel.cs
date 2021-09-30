@@ -24,7 +24,7 @@ namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels
 		public SolidColorBrush Background => BackColor.ToBrush();
 		public ImageSource? Icon => ImageIndex switch
 		{
-			ResourceManager.IconContent i => ImageSourceIcons.GetIcon(i),
+			IconContent i => ImageSourceIcons.GetIcon(i),
 			ResourceManager.EquipmentContent e => ImageSourceIcons.GetEquipmentIcon((EquipmentIconType)e),
 			_ => null
 		};

@@ -90,7 +90,7 @@ namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels
 			Text = text;
 			ShortenedText = shortenedText;
 			UpdateText();
-			Label.ImageIndex = (ResourceManager.IconContent) imageIndex;
+			Label.ImageIndex = (IconContent) imageIndex;
 			Label.BackColor = backColor;
 		}
 

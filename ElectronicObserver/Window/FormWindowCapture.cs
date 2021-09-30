@@ -34,8 +34,8 @@ namespace ElectronicObserver.Window
 			InitializeComponent();
 
 			this.parent = parent;
-			this.Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormWindowCapture]);
-			this.windowCaptureButton.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormWindowCapture];
+			this.Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[(int)IconContent.FormWindowCapture]);
+			this.windowCaptureButton.Image = ResourceManager.Instance.Icons.Images[(int)IconContent.FormWindowCapture];
 
 			SystemEvents.SystemShuttingDown += SystemEvents_SystemShuttingDown;
 		}

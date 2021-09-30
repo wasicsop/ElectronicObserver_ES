@@ -36,10 +36,10 @@ namespace ElectronicObserver.Window.Wpf
 			Controls.Add(WpfHost);
 
 			Text = $"#{fleetId}";
-			Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormFleet]);
+			Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[(int)IconContent.FormFleet]);
 		}
 
-		private void SetIcon(ResourceManager.IconContent icon)
+		private void SetIcon(IconContent icon)
 		{
 			if (Icon != null) ResourceManager.DestroyIcon(Icon);
 			Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[(int)icon]);

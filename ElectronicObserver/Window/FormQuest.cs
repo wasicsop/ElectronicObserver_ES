@@ -195,7 +195,7 @@ namespace ElectronicObserver.Window
 
 			Utility.Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
 
-			Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormQuest]);
+			Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[(int)IconContent.FormQuest]);
 
 			IsLoaded = true;
 		}

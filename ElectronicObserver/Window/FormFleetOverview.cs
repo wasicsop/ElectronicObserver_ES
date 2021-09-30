@@ -140,7 +140,7 @@ namespace ElectronicObserver.Window
 					Padding = new Padding(0, 1, 0, 1),
 					Margin = new Padding(2, 1, 2, 1),
 					ImageList = ResourceManager.Instance.Icons,
-					ImageIndex = (int)ResourceManager.IconContent.FleetAnchorageRepairing,
+					ImageIndex = (int)IconContent.FleetAnchorageRepairing,
 					Text = "-",
 					AutoSize = true
 				};
@@ -158,7 +158,7 @@ namespace ElectronicObserver.Window
 					Padding = new Padding(0, 1, 0, 1),
 					Margin = new Padding(2, 1, 2, 1),
 					ImageList = ResourceManager.Instance.Icons,
-					ImageIndex = (int)ResourceManager.IconContent.FleetCombined,
+					ImageIndex = (int)IconContent.FleetCombined,
 					Text = "-",
 					AutoSize = true,
 					Visible = false
@@ -173,7 +173,7 @@ namespace ElectronicObserver.Window
 
 			ConfigurationChanged();
 
-			Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormFleet]);
+			Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[(int)IconContent.FormFleet]);
 
 			Utility.SystemEvents.UpdateTimerTick += UpdateTimerTick;
 

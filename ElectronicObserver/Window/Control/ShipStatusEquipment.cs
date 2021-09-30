@@ -845,7 +845,7 @@ namespace ElectronicObserver.Window.Control
 						{
 							var area = new Rectangle(origin.X + LayoutParam.ImageSize.Width, origin.Y,
 								LayoutParam.ImageSize.Width, LayoutParam.ImageSize.Height);
-							e.Graphics.DrawImage(ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.AircraftLevelTop0 + slot.AircraftLevel], area);
+							e.Graphics.DrawImage(ResourceManager.Instance.Icons.Images[(int)IconContent.AircraftLevelTop0 + slot.AircraftLevel], area);
 						}
 
 
@@ -864,7 +864,7 @@ namespace ElectronicObserver.Window.Control
 						else
 						{
 							e.Graphics.FillRectangle(_overlayBrush, new Rectangle(origin.X, origin.Y, LayoutParam.ImageSize.Width, LayoutParam.ImageSize.Height / 2));
-							e.Graphics.DrawImage(ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.AircraftLevelTop0 + slot.AircraftLevel], new Rectangle(origin, LayoutParam.ImageSize));
+							e.Graphics.DrawImage(ResourceManager.Instance.Icons.Images[(int)IconContent.AircraftLevelTop0 + slot.AircraftLevel], new Rectangle(origin, LayoutParam.ImageSize));
 						}
 					}
 

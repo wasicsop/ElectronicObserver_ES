@@ -16,7 +16,7 @@ namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels
 
 		public SolidColorBrush Foreground => ForeColor.ToBrush();
 		public SolidColorBrush Background => BackColor.ToBrush();
-		public ImageSource? Icon => ImageSourceIcons.GetIcon((ResourceManager.IconContent) ImageIndex);
+		public ImageSource? Icon => ImageSourceIcons.GetIcon((IconContent) ImageIndex);
 
 
 		public void SetDesign(int cond)
@@ -42,11 +42,11 @@ namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels
 
 				ImageIndex = cond switch
 				{
-					< 20 => (int) ResourceManager.IconContent.ConditionVeryTired,
-					< 30 => (int) ResourceManager.IconContent.ConditionTired,
-					< 40 => (int) ResourceManager.IconContent.ConditionLittleTired,
-					< 50 => (int) ResourceManager.IconContent.ConditionNormal,
-					_ => (int) ResourceManager.IconContent.ConditionSparkle
+					< 20 => (int) IconContent.ConditionVeryTired,
+					< 30 => (int) IconContent.ConditionTired,
+					< 40 => (int) IconContent.ConditionLittleTired,
+					< 50 => (int) IconContent.ConditionNormal,
+					_ => (int) IconContent.ConditionSparkle
 				};
 			}
 		}

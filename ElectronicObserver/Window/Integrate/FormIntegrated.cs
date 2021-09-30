@@ -161,7 +161,7 @@ namespace ElectronicObserver.Window.Integrate
 
 			this.parent = parent;
 
-			windowCaptureButton.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormWindowCapture];
+			windowCaptureButton.Image = ResourceManager.Instance.Icons.Images[(int)IconContent.FormWindowCapture];
 
 			titleComboBox.Items.AddRange(MATCH_COMBO_ITEMS);
 			classNameComboBox.Items.AddRange(MATCH_COMBO_ITEMS);

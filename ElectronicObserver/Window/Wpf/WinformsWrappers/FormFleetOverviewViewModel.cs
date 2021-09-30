@@ -6,7 +6,7 @@ namespace ElectronicObserver.Window.Wpf.WinformsWrappers
 	public class FormFleetOverviewViewModel : WinformsHostViewModel
 	{
 		public FormFleetOverviewViewModel() : base("Fleets", "FormFleets",
-			ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormFleet))
+			ImageSourceIcons.GetIcon(IconContent.FormFleet))
 		{
 			// todo remove parameter cause it's never used
 			WinformsControl = new FormFleetOverview(null!) { TopLevel = false };

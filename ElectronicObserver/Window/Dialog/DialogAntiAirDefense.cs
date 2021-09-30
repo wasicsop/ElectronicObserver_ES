@@ -134,7 +134,7 @@ namespace ElectronicObserver.Window.Dialog
 			UpdateAACutinKind(ShowAll.Checked);
 			UpdateFormation();
 
-			this.Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormAntiAirDefense]);
+			this.Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[(int)IconContent.FormAntiAirDefense]);
 		}
 
 		private void DialogAntiAirDefense_FormClosed(object sender, FormClosedEventArgs e)

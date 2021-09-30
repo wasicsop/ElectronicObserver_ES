@@ -34,29 +34,29 @@ namespace ElectronicObserver.Window
 			ImageList icons = ResourceManager.Instance.Icons;
 
 			ShipCount.ImageList = icons;
-			ShipCount.ImageIndex = (int)ResourceManager.IconContent.HeadQuartersShip;
+			ShipCount.ImageIndex = (int)IconContent.HeadQuartersShip;
 			EquipmentCount.ImageList = icons;
-			EquipmentCount.ImageIndex = (int)ResourceManager.IconContent.HeadQuartersEquipment;
+			EquipmentCount.ImageIndex = (int)IconContent.HeadQuartersEquipment;
 			InstantRepair.ImageList = icons;
-			InstantRepair.ImageIndex = (int)ResourceManager.IconContent.ItemInstantRepair;
+			InstantRepair.ImageIndex = (int)IconContent.ItemInstantRepair;
 			InstantConstruction.ImageList = icons;
-			InstantConstruction.ImageIndex = (int)ResourceManager.IconContent.ItemInstantConstruction;
+			InstantConstruction.ImageIndex = (int)IconContent.ItemInstantConstruction;
 			DevelopmentMaterial.ImageList = icons;
-			DevelopmentMaterial.ImageIndex = (int)ResourceManager.IconContent.ItemDevelopmentMaterial;
+			DevelopmentMaterial.ImageIndex = (int)IconContent.ItemDevelopmentMaterial;
 			ModdingMaterial.ImageList = icons;
-			ModdingMaterial.ImageIndex = (int)ResourceManager.IconContent.ItemModdingMaterial;
+			ModdingMaterial.ImageIndex = (int)IconContent.ItemModdingMaterial;
 			FurnitureCoin.ImageList = icons;
-			FurnitureCoin.ImageIndex = (int)ResourceManager.IconContent.ItemFurnitureCoin;
+			FurnitureCoin.ImageIndex = (int)IconContent.ItemFurnitureCoin;
 			Fuel.ImageList = icons;
-			Fuel.ImageIndex = (int)ResourceManager.IconContent.ResourceFuel;
+			Fuel.ImageIndex = (int)IconContent.ResourceFuel;
 			Ammo.ImageList = icons;
-			Ammo.ImageIndex = (int)ResourceManager.IconContent.ResourceAmmo;
+			Ammo.ImageIndex = (int)IconContent.ResourceAmmo;
 			Steel.ImageList = icons;
-			Steel.ImageIndex = (int)ResourceManager.IconContent.ResourceSteel;
+			Steel.ImageIndex = (int)IconContent.ResourceSteel;
 			Bauxite.ImageList = icons;
-			Bauxite.ImageIndex = (int)ResourceManager.IconContent.ResourceBauxite;
+			Bauxite.ImageIndex = (int)IconContent.ResourceBauxite;
 			DisplayUseItem.ImageList = icons;
-			DisplayUseItem.ImageIndex = (int)ResourceManager.IconContent.ItemPresentBox;
+			DisplayUseItem.ImageIndex = (int)IconContent.ItemPresentBox;
 
 
 			ControlHelper.SetDoubleBuffered(FlowPanelMaster);
@@ -68,7 +68,7 @@ namespace ElectronicObserver.Window
 
 			ConfigurationChanged();
 
-			Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormHeadQuarters]);
+			Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[(int)IconContent.FormHeadQuarters]);
 
 			Translate();
 		}

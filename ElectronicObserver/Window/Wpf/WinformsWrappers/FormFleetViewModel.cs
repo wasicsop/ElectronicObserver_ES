@@ -6,7 +6,7 @@ namespace ElectronicObserver.Window.Wpf.WinformsWrappers
 	public class FormFleetViewModel : WinformsHostViewModel
 	{
 		public FormFleetViewModel(int fleetId) : base($"#{fleetId}", $"FormFleet{fleetId}",
-			ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormFleet))
+			ImageSourceIcons.GetIcon(IconContent.FormFleet))
 		{
 			// todo remove parameter cause it's never used
 			WinformsControl = new FormFleet(null!, fleetId, SetIcon) { TopLevel = false };
@@ -14,7 +14,7 @@ namespace ElectronicObserver.Window.Wpf.WinformsWrappers
 			WindowsFormsHost.Child = WinformsControl;
 		}
 
-		private void SetIcon(ResourceManager.IconContent icon)
+		private void SetIcon(IconContent icon)
 		{
 			IconSource = ImageSourceIcons.GetIcon(icon);
 		}

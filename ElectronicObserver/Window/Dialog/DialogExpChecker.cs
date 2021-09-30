@@ -116,7 +116,7 @@ namespace ElectronicObserver.Window.Dialog
 				TextShip.SelectedItem = TextShip.Items.OfType<ComboShipData>().FirstOrDefault(f => f.Ship.MasterID == DefaultShipID);
 
 
-			this.Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormExpChecker]);
+			this.Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[(int)IconContent.FormExpChecker]);
 		}
 
 		private void DialogExpChecker_FormClosed(object sender, FormClosedEventArgs e)

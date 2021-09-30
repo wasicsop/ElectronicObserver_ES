@@ -75,7 +75,7 @@ namespace ElectronicObserver.Window.Wpf.Headquarters
 		public ICommand ViewUseItemsCommand { get; }
 
 		public HeadquartersViewModel() : base("HQ", "Headquarters",
-			ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormHeadQuarters))
+			ImageSourceIcons.GetIcon(IconContent.FormHeadQuarters))
 		{
 			FormHeadquarters = App.Current.Services.GetService<FormHeadquartersTranslationViewModel>()!;
 
@@ -86,18 +86,18 @@ namespace ElectronicObserver.Window.Wpf.Headquarters
 			CopyResourcesCommand = new RelayCommand(Resource_MouseDoubleClick);
 			ViewUseItemsCommand = new RelayCommand(DisplayUseItem_MouseClick);
 
-			ShipCount.Icon = ImageSourceIcons.GetIcon(ResourceManager.IconContent.HeadQuartersShip);
-			EquipmentCount.Icon = ImageSourceIcons.GetIcon(ResourceManager.IconContent.HeadQuartersEquipment);
-			InstantRepair.Icon = ImageSourceIcons.GetIcon(ResourceManager.IconContent.ItemInstantRepair);
-			InstantConstruction.Icon = ImageSourceIcons.GetIcon(ResourceManager.IconContent.ItemInstantConstruction);
-			DevelopmentMaterial.Icon = ImageSourceIcons.GetIcon(ResourceManager.IconContent.ItemDevelopmentMaterial);
-			ModdingMaterial.Icon = ImageSourceIcons.GetIcon(ResourceManager.IconContent.ItemModdingMaterial);
-			FurnitureCoin.Icon = ImageSourceIcons.GetIcon(ResourceManager.IconContent.ItemFurnitureCoin);
-			DisplayUseItem.Icon = ImageSourceIcons.GetIcon(ResourceManager.IconContent.ItemPresentBox);
-			Fuel.Icon = ImageSourceIcons.GetIcon(ResourceManager.IconContent.ResourceFuel);
-			Ammo.Icon = ImageSourceIcons.GetIcon(ResourceManager.IconContent.ResourceAmmo);
-			Steel.Icon = ImageSourceIcons.GetIcon(ResourceManager.IconContent.ResourceSteel);
-			Bauxite.Icon = ImageSourceIcons.GetIcon(ResourceManager.IconContent.ResourceBauxite);
+			ShipCount.Icon = ImageSourceIcons.GetIcon(IconContent.HeadQuartersShip);
+			EquipmentCount.Icon = ImageSourceIcons.GetIcon(IconContent.HeadQuartersEquipment);
+			InstantRepair.Icon = ImageSourceIcons.GetIcon(IconContent.ItemInstantRepair);
+			InstantConstruction.Icon = ImageSourceIcons.GetIcon(IconContent.ItemInstantConstruction);
+			DevelopmentMaterial.Icon = ImageSourceIcons.GetIcon(IconContent.ItemDevelopmentMaterial);
+			ModdingMaterial.Icon = ImageSourceIcons.GetIcon(IconContent.ItemModdingMaterial);
+			FurnitureCoin.Icon = ImageSourceIcons.GetIcon(IconContent.ItemFurnitureCoin);
+			DisplayUseItem.Icon = ImageSourceIcons.GetIcon(IconContent.ItemPresentBox);
+			Fuel.Icon = ImageSourceIcons.GetIcon(IconContent.ResourceFuel);
+			Ammo.Icon = ImageSourceIcons.GetIcon(IconContent.ResourceAmmo);
+			Steel.Icon = ImageSourceIcons.GetIcon(IconContent.ResourceSteel);
+			Bauxite.Icon = ImageSourceIcons.GetIcon(IconContent.ResourceBauxite);
 
 			Items = new()
 			{

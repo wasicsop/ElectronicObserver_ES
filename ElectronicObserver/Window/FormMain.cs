@@ -239,41 +239,41 @@ namespace ElectronicObserver.Window
 			#region Icon settings
 			Icon = ResourceManager.Instance.AppIcon;
 
-			StripMenu_File_Configuration.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormConfiguration];
+			StripMenu_File_Configuration.Image = ResourceManager.Instance.Icons.Images[(int)IconContent.FormConfiguration];
 
-			StripMenu_View_Fleet.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormFleet];
-			StripMenu_View_FleetOverview.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormFleet];
-			StripMenu_View_ShipGroup.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormShipGroup];
-			StripMenu_View_Dock.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormDock];
-			StripMenu_View_Arsenal.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormArsenal];
-			StripMenu_View_Headquarters.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormHeadQuarters];
-			StripMenu_View_Quest.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormQuest];
-			StripMenu_View_Information.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormInformation];
-			StripMenu_View_Compass.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormCompass];
-			StripMenu_View_Battle.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormBattle];
-			StripMenu_View_Browser.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormBrowser];
-			StripMenu_View_Log.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormLog];
-			StripMenu_WindowCapture.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormWindowCapture];
-			StripMenu_View_BaseAirCorps.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormBaseAirCorps];
-			StripMenu_View_Json.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormJson];
-			StripMenu_View_FleetPreset.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormFleetPreset];
+			StripMenu_View_Fleet.Image = ResourceManager.Instance.Icons.Images[(int)IconContent.FormFleet];
+			StripMenu_View_FleetOverview.Image = ResourceManager.Instance.Icons.Images[(int)IconContent.FormFleet];
+			StripMenu_View_ShipGroup.Image = ResourceManager.Instance.Icons.Images[(int)IconContent.FormShipGroup];
+			StripMenu_View_Dock.Image = ResourceManager.Instance.Icons.Images[(int)IconContent.FormDock];
+			StripMenu_View_Arsenal.Image = ResourceManager.Instance.Icons.Images[(int)IconContent.FormArsenal];
+			StripMenu_View_Headquarters.Image = ResourceManager.Instance.Icons.Images[(int)IconContent.FormHeadQuarters];
+			StripMenu_View_Quest.Image = ResourceManager.Instance.Icons.Images[(int)IconContent.FormQuest];
+			StripMenu_View_Information.Image = ResourceManager.Instance.Icons.Images[(int)IconContent.FormInformation];
+			StripMenu_View_Compass.Image = ResourceManager.Instance.Icons.Images[(int)IconContent.FormCompass];
+			StripMenu_View_Battle.Image = ResourceManager.Instance.Icons.Images[(int)IconContent.FormBattle];
+			StripMenu_View_Browser.Image = ResourceManager.Instance.Icons.Images[(int)IconContent.FormBrowser];
+			StripMenu_View_Log.Image = ResourceManager.Instance.Icons.Images[(int)IconContent.FormLog];
+			StripMenu_WindowCapture.Image = ResourceManager.Instance.Icons.Images[(int)IconContent.FormWindowCapture];
+			StripMenu_View_BaseAirCorps.Image = ResourceManager.Instance.Icons.Images[(int)IconContent.FormBaseAirCorps];
+			StripMenu_View_Json.Image = ResourceManager.Instance.Icons.Images[(int)IconContent.FormJson];
+			StripMenu_View_FleetPreset.Image = ResourceManager.Instance.Icons.Images[(int)IconContent.FormFleetPreset];
 
-			StripMenu_Tool_EquipmentList.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormEquipmentList];
-			StripMenu_Tool_DropRecord.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormDropRecord];
-			StripMenu_Tool_DevelopmentRecord.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormDevelopmentRecord];
-			StripMenu_Tool_ConstructionRecord.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormConstructionRecord];
-			StripMenu_Tool_ResourceChart.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormResourceChart];
-			StripMenu_Tool_AlbumMasterShip.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormAlbumShip];
-			StripMenu_Tool_AlbumMasterEquipment.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormAlbumEquipment];
-			StripMenu_Tool_AntiAirDefense.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormAntiAirDefense];
-			StripMenu_Tool_FleetImageGenerator.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormFleetImageGenerator];
-			StripMenu_Tool_BaseAirCorpsSimulation.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormBaseAirCorps];
-			StripMenu_Tool_ExpChecker.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormExpChecker];
-		    StripMenu_Tool_KancolleProgress.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormEquipmentList];
+			StripMenu_Tool_EquipmentList.Image = ResourceManager.Instance.Icons.Images[(int)IconContent.FormEquipmentList];
+			StripMenu_Tool_DropRecord.Image = ResourceManager.Instance.Icons.Images[(int)IconContent.FormDropRecord];
+			StripMenu_Tool_DevelopmentRecord.Image = ResourceManager.Instance.Icons.Images[(int)IconContent.FormDevelopmentRecord];
+			StripMenu_Tool_ConstructionRecord.Image = ResourceManager.Instance.Icons.Images[(int)IconContent.FormConstructionRecord];
+			StripMenu_Tool_ResourceChart.Image = ResourceManager.Instance.Icons.Images[(int)IconContent.FormResourceChart];
+			StripMenu_Tool_AlbumMasterShip.Image = ResourceManager.Instance.Icons.Images[(int)IconContent.FormAlbumShip];
+			StripMenu_Tool_AlbumMasterEquipment.Image = ResourceManager.Instance.Icons.Images[(int)IconContent.FormAlbumEquipment];
+			StripMenu_Tool_AntiAirDefense.Image = ResourceManager.Instance.Icons.Images[(int)IconContent.FormAntiAirDefense];
+			StripMenu_Tool_FleetImageGenerator.Image = ResourceManager.Instance.Icons.Images[(int)IconContent.FormFleetImageGenerator];
+			StripMenu_Tool_BaseAirCorpsSimulation.Image = ResourceManager.Instance.Icons.Images[(int)IconContent.FormBaseAirCorps];
+			StripMenu_Tool_ExpChecker.Image = ResourceManager.Instance.Icons.Images[(int)IconContent.FormExpChecker];
+		    StripMenu_Tool_KancolleProgress.Image = ResourceManager.Instance.Icons.Images[(int)IconContent.FormEquipmentList];
 
 
-            StripMenu_Help_Help.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormInformation];
-			StripMenu_Help_Version.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.AppIcon];
+            StripMenu_Help_Help.Image = ResourceManager.Instance.Icons.Images[(int)IconContent.FormInformation];
+			StripMenu_Help_Version.Image = ResourceManager.Instance.Icons.Images[(int)IconContent.AppIcon];
 			#endregion
 
 

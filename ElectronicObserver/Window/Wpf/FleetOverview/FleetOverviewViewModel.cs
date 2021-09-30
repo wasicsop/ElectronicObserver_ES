@@ -37,7 +37,7 @@ namespace ElectronicObserver.Window.Wpf.FleetOverview
 		public FleetOverviewItemViewModel CombinedTag { get; }
 
 		public FleetOverviewViewModel(List<FleetViewModel> fleets) : base("Fleets", "Fleets",
-			ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormFleet))
+			ImageSourceIcons.GetIcon(IconContent.FormFleet))
 		{
 			FormFleetOverview = App.Current.Services.GetService<FormFleetOverviewTranslationViewModel>()!;
 
@@ -86,7 +86,7 @@ namespace ElectronicObserver.Window.Wpf.FleetOverview
 				// ImageList = ResourceManager.Instance.Icons,
 				// ImageIndex = (int)ResourceManager.IconContent.FleetAnchorageRepairing,
 				Text = "-",
-				Icon = ImageSourceIcons.GetIcon(ResourceManager.IconContent.FleetAnchorageRepairing),
+				Icon = ImageSourceIcons.GetIcon(IconContent.FleetAnchorageRepairing),
 				// AutoSize = true
 				Visible = false
 			};
@@ -101,7 +101,7 @@ namespace ElectronicObserver.Window.Wpf.FleetOverview
 				// ImageList = ResourceManager.Instance.Icons,
 				// ImageIndex = (int)ResourceManager.IconContent.FleetCombined,
 				Text = "-",
-				Icon = ImageSourceIcons.GetIcon(ResourceManager.IconContent.FleetCombined),
+				Icon = ImageSourceIcons.GetIcon(IconContent.FleetCombined),
 
 				// AutoSize = true,
 				Visible = false

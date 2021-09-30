@@ -151,7 +151,7 @@ namespace ElectronicObserver.Window.Wpf.FleetPreset
 		public ObservableCollection<FleetPresetItemViewModel> TableControls { get; }
 
 		public FleetPresetViewModel() : base("Presets", "FleetPreset",
-			ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormFleetPreset))
+			ImageSourceIcons.GetIcon(IconContent.FormFleetPreset))
 		{
 			FormFleetPreset = App.Current.Services.GetService<FormFleetPresetTranslationViewModel>()!;
 

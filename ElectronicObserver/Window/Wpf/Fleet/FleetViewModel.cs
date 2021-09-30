@@ -39,7 +39,7 @@ namespace ElectronicObserver.Window.Wpf.Fleet
 		public IRelayCommand OutputFleetImageCommand { get; }
 		
 		public FleetViewModel(int fleetId) : base($"#{fleetId}", $"Fleet{fleetId}",
-			ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormFleet))
+			ImageSourceIcons.GetIcon(IconContent.FormFleet))
 		{
 			FormFleet = App.Current.Services.GetService<FormFleetTranslationViewModel>()!;
 
@@ -133,7 +133,7 @@ namespace ElectronicObserver.Window.Wpf.Fleet
 			}
 
 			int iconIndex = ControlFleet.State.GetIconIndex();
-			IconSource = ImageSourceIcons.GetIcon((ResourceManager.IconContent)iconIndex);
+			IconSource = ImageSourceIcons.GetIcon((IconContent)iconIndex);
 		}
 
 		void UpdateTimerTick()

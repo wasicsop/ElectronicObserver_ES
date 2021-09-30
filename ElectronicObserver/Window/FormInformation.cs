@@ -36,7 +36,7 @@ namespace ElectronicObserver.Window
 
 			ConfigurationChanged();
 
-			Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormInformation]);
+			Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[(int)IconContent.FormInformation]);
 
 			Translate();
 		}

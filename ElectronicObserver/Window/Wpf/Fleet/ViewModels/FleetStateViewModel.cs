@@ -64,7 +64,7 @@ namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels
 			{
 				var state = GetStateLabel(index);
 
-				state.SetInformation(FleetStates.NoShip, FormFleet.NoShips, "", (int)ResourceManager.IconContent.FleetNoShip);
+				state.SetInformation(FleetStates.NoShip, FormFleet.NoShips, "", (int)IconContent.FleetNoShip);
 				state.Label.ToolTip = null;
 
 				emphasizesSubFleetInPort = false;
@@ -82,7 +82,7 @@ namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels
 					{
 						var state = GetStateLabel(index);
 
-						state.SetInformation(FleetStates.SortieDamaged, FormFleet.CriticalDamageAdvance, FormFleet.CriticalDamageAdvance, (int)ResourceManager.IconContent.FleetSortieDamaged, colorDanger);
+						state.SetInformation(FleetStates.SortieDamaged, FormFleet.CriticalDamageAdvance, FormFleet.CriticalDamageAdvance, (int)IconContent.FleetSortieDamaged, colorDanger);
 						state.Label.ToolTip = null;
 
 						index++;
@@ -92,7 +92,7 @@ namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels
 					{   //出撃中
 						var state = GetStateLabel(index);
 
-						state.SetInformation(FleetStates.Sortie, FormFleet.OnSortie, "", (int)ResourceManager.IconContent.FleetSortie);
+						state.SetInformation(FleetStates.Sortie, FormFleet.OnSortie, "", (int)IconContent.FleetSortie);
 						state.Label.ToolTip = null;
 
 						index++;
@@ -111,7 +111,7 @@ namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels
 					state.SetInformation(FleetStates.Expedition,
 						$"[{dest.DisplayID}] {DateTimeHelper.ToTimeRemainString(state.Timer)}",
 						DateTimeHelper.ToTimeRemainString(state.Timer),
-						(int)ResourceManager.IconContent.FleetExpedition);
+						(int)IconContent.FleetExpedition);
 
 					state.Label.ToolTip = string.Format(FormFleet.ExpeditionToolTip,
 							dest.DisplayID, dest.NameEN, DateTimeHelper.TimeToCSVString(state.Timer));
@@ -125,7 +125,7 @@ namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels
 				{
 					var state = GetStateLabel(index);
 
-					state.SetInformation(FleetStates.Damaged, FormFleet.CriticallyDamagedShip, FormFleet.CriticallyDamagedShip, (int)ResourceManager.IconContent.FleetDamaged, colorDanger);
+					state.SetInformation(FleetStates.Damaged, FormFleet.CriticallyDamagedShip, FormFleet.CriticallyDamagedShip, (int)IconContent.FleetDamaged, colorDanger);
 					state.Label.ToolTip = null;
 
 					emphasizesSubFleetInPort = false;
@@ -141,7 +141,7 @@ namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels
 					state.SetInformation(FleetStates.AnchorageRepairing,
 						FormFleet.Repairing + DateTimeHelper.ToTimeElapsedString(state.Timer),
 						DateTimeHelper.ToTimeElapsedString(state.Timer),
-						(int)ResourceManager.IconContent.FleetAnchorageRepairing);
+						(int)IconContent.FleetAnchorageRepairing);
 
 
 					StringBuilder sb = new StringBuilder();
@@ -186,7 +186,7 @@ namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels
 						state.SetInformation(FleetStates.Docking,
 							FormFleet.OnDock + DateTimeHelper.ToTimeRemainString(state.Timer),
 							DateTimeHelper.ToTimeRemainString(state.Timer),
-							(int)ResourceManager.IconContent.FleetDocking);
+							(int)IconContent.FleetDocking);
 
 						state.Label.ToolTip = FormFleet.DockCompletionTime + DateTimeHelper.TimeToCSVString(state.Timer);
 
@@ -209,7 +209,7 @@ namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels
 					{
 						var state = GetStateLabel(index);
 
-						state.SetInformation(FleetStates.NotReplenished, FormFleet.SupplyNeeded, "", (int)ResourceManager.IconContent.FleetNotReplenished, colorInPort);
+						state.SetInformation(FleetStates.NotReplenished, FormFleet.SupplyNeeded, "", (int)IconContent.FleetNotReplenished, colorInPort);
 						state.Label.ToolTip = string.Format(FormFleet.ResupplyTooltip, fuel, ammo, bauxite, aircraft);
 
 						index++;
@@ -226,11 +226,11 @@ namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels
 
 						int iconIndex;
 						if (cond < 20)
-							iconIndex = (int)ResourceManager.IconContent.ConditionVeryTired;
+							iconIndex = (int)IconContent.ConditionVeryTired;
 						else if (cond < 30)
-							iconIndex = (int)ResourceManager.IconContent.ConditionTired;
+							iconIndex = (int)IconContent.ConditionTired;
 						else
-							iconIndex = (int)ResourceManager.IconContent.ConditionLittleTired;
+							iconIndex = (int)IconContent.ConditionLittleTired;
 
 						state.Timer = (DateTime)fleet.ConditionTime;
 						state.SetInformation(FleetStates.Tired,
@@ -249,7 +249,7 @@ namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels
 					{       //戦意高揚
 						var state = GetStateLabel(index);
 
-						state.SetInformation(FleetStates.Sparkled, FormFleet.FightingSpiritHigh, "", (int)ResourceManager.IconContent.ConditionSparkle, colorInPort);
+						state.SetInformation(FleetStates.Sparkled, FormFleet.FightingSpiritHigh, "", (int)IconContent.ConditionSparkle, colorInPort);
 						state.Label.ToolTip = string.Format(FormFleet.SparkledTooltip, cond, Math.Ceiling((cond - 49) / 3.0));
 
 						index++;
@@ -262,7 +262,7 @@ namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels
 				{
 					var state = GetStateLabel(index);
 
-					state.SetInformation(FleetStates.Ready, FormFleet.ReadyToSortie, "", (int)ResourceManager.IconContent.FleetReady, colorInPort);
+					state.SetInformation(FleetStates.Ready, FormFleet.ReadyToSortie, "", (int)IconContent.FleetReady, colorInPort);
 					state.Label.ToolTip = null;
 
 					index++;
@@ -369,9 +369,9 @@ namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels
 		public int GetIconIndex()
 		{
 			var first = StateLabels.Where(s => s.Enabled).OrderBy(s => s.State).FirstOrDefault();
-			return first == null ? (int)ResourceManager.IconContent.FormFleet : first.Label.ImageIndex switch
+			return first == null ? (int)IconContent.FormFleet : first.Label.ImageIndex switch
 			{
-				ResourceManager.IconContent i => (int)i,
+				IconContent i => (int)i,
 				ResourceManager.EquipmentContent e => (int)e,
 				_ => -1
 			};

@@ -83,7 +83,7 @@ namespace ElectronicObserver.Window
 					TextAlign = ContentAlignment.MiddleLeft,
 					ImageAlign = ContentAlignment.MiddleLeft,
 					ImageList = ResourceManager.Instance.Icons,
-					ImageIndex = (int)ResourceManager.IconContent.ParameterAircraftDistance,
+					ImageIndex = (int)IconContent.ParameterAircraftDistance,
 					Padding = new Padding(2, 2, 2, 2),
 					Margin = new Padding(2, 0, 2, 0),
 					AutoSize = true,
@@ -165,14 +165,14 @@ namespace ElectronicObserver.Window
 						if (tired == 2)
 						{
 							Name.ImageAlign = ContentAlignment.MiddleRight;
-							Name.ImageIndex = (int)ResourceManager.IconContent.ConditionTired;
+							Name.ImageIndex = (int)IconContent.ConditionTired;
 							sb.AppendLine( GeneralRes.Tired );
 
 						}
 						else
 						{
 							Name.ImageAlign = ContentAlignment.MiddleRight;
-							Name.ImageIndex = (int)ResourceManager.IconContent.ConditionVeryTired;
+							Name.ImageIndex = (int)IconContent.ConditionVeryTired;
 							sb.AppendLine( GeneralRes.VeryTired );
 
 						}
@@ -182,7 +182,7 @@ namespace ElectronicObserver.Window
 					{
 						// 未補給
 						Name.ImageAlign = ContentAlignment.MiddleRight;
-						Name.ImageIndex = (int)ResourceManager.IconContent.FleetNotReplenished;
+						Name.ImageIndex = (int)IconContent.FleetNotReplenished;
 						sb.AppendLine(Properties.Window.FormBaseAirCorps.Unsupplied);
 
 					}
@@ -365,7 +365,7 @@ namespace ElectronicObserver.Window
 
 			ConfigurationChanged();
 
-			Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormBaseAirCorps]);
+			Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[(int)IconContent.FormBaseAirCorps]);
 
 			Translate();
 		}
@@ -458,13 +458,13 @@ namespace ElectronicObserver.Window
 				int imageIndex;
 
 				if (isNotReplenished)
-					imageIndex = (int)ResourceManager.IconContent.FleetNotReplenished;
+					imageIndex = (int)IconContent.FleetNotReplenished;
 				else if (isVeryTired)
-					imageIndex = (int)ResourceManager.IconContent.ConditionVeryTired;
+					imageIndex = (int)IconContent.ConditionVeryTired;
 				else if (isTired)
-					imageIndex = (int)ResourceManager.IconContent.ConditionTired;
+					imageIndex = (int)IconContent.ConditionTired;
 				else
-					imageIndex = (int)ResourceManager.IconContent.FormBaseAirCorps;
+					imageIndex = (int)IconContent.FormBaseAirCorps;
 
 				if (Icon != null) ResourceManager.DestroyIcon(Icon);
 				Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[imageIndex]);

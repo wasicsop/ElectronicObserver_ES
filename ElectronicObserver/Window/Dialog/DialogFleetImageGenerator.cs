@@ -127,7 +127,7 @@ namespace ElectronicObserver.Window.Dialog
 		private void DialogFleetImageGenerator_Load(object sender, EventArgs e)
 		{
 
-			this.Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormFleetImageGenerator]);
+			this.Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[(int)IconContent.FormFleetImageGenerator]);
 
 			ApplyToUI(CurrentArgument);
 

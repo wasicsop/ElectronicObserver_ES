@@ -52,23 +52,23 @@ namespace ElectronicObserver.Window.Dialog
 
 			EquipmentType.ImageList = ResourceManager.Instance.Equipments;
 
-			TitleFirepower.ImageIndex = (int)ResourceManager.IconContent.ParameterFirepower;
-			TitleTorpedo.ImageIndex = (int)ResourceManager.IconContent.ParameterTorpedo;
-			TitleAA.ImageIndex = (int)ResourceManager.IconContent.ParameterAA;
-			TitleArmor.ImageIndex = (int)ResourceManager.IconContent.ParameterArmor;
-			TitleASW.ImageIndex = (int)ResourceManager.IconContent.ParameterASW;
-			TitleEvasion.ImageIndex = (int)ResourceManager.IconContent.ParameterEvasion;
-			TitleLOS.ImageIndex = (int)ResourceManager.IconContent.ParameterLOS;
-			TitleAccuracy.ImageIndex = (int)ResourceManager.IconContent.ParameterAccuracy;
-			TitleBomber.ImageIndex = (int)ResourceManager.IconContent.ParameterBomber;
-			TitleSpeed.ImageIndex = (int)ResourceManager.IconContent.ParameterSpeed;
-			TitleRange.ImageIndex = (int)ResourceManager.IconContent.ParameterRange;
-			TitleAircraftCost.ImageIndex = (int)ResourceManager.IconContent.ParameterAircraftCost;
-			TitleAircraftDistance.ImageIndex = (int)ResourceManager.IconContent.ParameterAircraftDistance;
-			MaterialFuel.ImageIndex = (int)ResourceManager.IconContent.ResourceFuel;
-			MaterialAmmo.ImageIndex = (int)ResourceManager.IconContent.ResourceAmmo;
-			MaterialSteel.ImageIndex = (int)ResourceManager.IconContent.ResourceSteel;
-			MaterialBauxite.ImageIndex = (int)ResourceManager.IconContent.ResourceBauxite;
+			TitleFirepower.ImageIndex = (int)IconContent.ParameterFirepower;
+			TitleTorpedo.ImageIndex = (int)IconContent.ParameterTorpedo;
+			TitleAA.ImageIndex = (int)IconContent.ParameterAA;
+			TitleArmor.ImageIndex = (int)IconContent.ParameterArmor;
+			TitleASW.ImageIndex = (int)IconContent.ParameterASW;
+			TitleEvasion.ImageIndex = (int)IconContent.ParameterEvasion;
+			TitleLOS.ImageIndex = (int)IconContent.ParameterLOS;
+			TitleAccuracy.ImageIndex = (int)IconContent.ParameterAccuracy;
+			TitleBomber.ImageIndex = (int)IconContent.ParameterBomber;
+			TitleSpeed.ImageIndex = (int)IconContent.ParameterSpeed;
+			TitleRange.ImageIndex = (int)IconContent.ParameterRange;
+			TitleAircraftCost.ImageIndex = (int)IconContent.ParameterAircraftCost;
+			TitleAircraftDistance.ImageIndex = (int)IconContent.ParameterAircraftDistance;
+			MaterialFuel.ImageIndex = (int)IconContent.ResourceFuel;
+			MaterialAmmo.ImageIndex = (int)IconContent.ResourceAmmo;
+			MaterialSteel.ImageIndex = (int)IconContent.ResourceSteel;
+			MaterialBauxite.ImageIndex = (int)IconContent.ResourceBauxite;
 
 
 			BasePanelEquipment.Visible = false;
@@ -137,7 +137,7 @@ namespace ElectronicObserver.Window.Dialog
 		private void DialogAlbumMasterEquipment_Load(object sender, EventArgs e)
 		{
 
-			this.Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormAlbumEquipment]);
+			this.Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[(int)IconContent.FormAlbumEquipment]);
 
 		}
 
@@ -307,16 +307,16 @@ namespace ElectronicObserver.Window.Dialog
 			if (eq.CategoryType == EquipmentTypes.Interceptor)
 			{
 				TitleAccuracy.Text = Translation.AntiBomber;
-				TitleAccuracy.ImageIndex = (int)ResourceManager.IconContent.ParameterAntiBomber;
+				TitleAccuracy.ImageIndex = (int)IconContent.ParameterAntiBomber;
 				TitleEvasion.Text = Translation.Interception;
-				TitleEvasion.ImageIndex = (int)ResourceManager.IconContent.ParameterInterception;
+				TitleEvasion.ImageIndex = (int)IconContent.ParameterInterception;
 			}
 			else
 			{
 				TitleAccuracy.Text = Translation.TitleAccuracy;
-				TitleAccuracy.ImageIndex = (int)ResourceManager.IconContent.ParameterAccuracy;
+				TitleAccuracy.ImageIndex = (int)IconContent.ParameterAccuracy;
 				TitleEvasion.Text = Translation.TitleEvasion;
-				TitleEvasion.ImageIndex = (int)ResourceManager.IconContent.ParameterEvasion;
+				TitleEvasion.ImageIndex = (int)IconContent.ParameterEvasion;
 			}
 
 			TableParameterMain.ResumeLayout();
@@ -328,7 +328,7 @@ namespace ElectronicObserver.Window.Dialog
 			Speed.Text = EncycloRes.None; //Constants.GetSpeed( eq.Speed );
 			Range.Text = Constants.GetRange( eq.Range );
 			Rarity.Text = Constants.GetEquipmentRarity( eq.Rarity );
-			Rarity.ImageIndex = (int)ResourceManager.IconContent.RarityRed + Constants.GetEquipmentRarityID( eq.Rarity );		//checkme
+			Rarity.ImageIndex = (int)IconContent.RarityRed + Constants.GetEquipmentRarityID( eq.Rarity );		//checkme
 
 			TableParameterSub.ResumeLayout();
 

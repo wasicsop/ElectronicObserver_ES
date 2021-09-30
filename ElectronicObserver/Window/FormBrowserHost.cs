@@ -103,7 +103,7 @@ namespace ElectronicObserver.Window
 			Host = "localhost";
 			Port = Process.GetCurrentProcess().Id;
 
-			Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormBrowser]);
+			Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[(int)IconContent.FormBrowser]);
 
 			Translate();
 		}
@@ -551,7 +551,7 @@ namespace ElectronicObserver.Window
 		{
 			if (BrowserProcess?.HasExited ?? false)
 			{
-				var image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.ConditionVeryTired];
+				var image = ResourceManager.Instance.Icons.Images[(int)IconContent.ConditionVeryTired];
 				e.Graphics.DrawImage(image, new Rectangle(16, 16, 16, 16));
 
 				e.Graphics.DrawString(GeneralRes.BrowserProcessClickStart, Utility.Configuration.Config.UI.MainFont, Brushes.Black, new PointF(48, 16));

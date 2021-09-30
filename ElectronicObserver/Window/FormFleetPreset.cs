@@ -184,7 +184,7 @@ namespace ElectronicObserver.Window
 			TableControls = new List<TablePresetControl>();
 			ConfigurationChanged();
 
-			Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormFleetPreset]);
+			Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[(int)IconContent.FormFleetPreset]);
 
 			Translate();
 		}

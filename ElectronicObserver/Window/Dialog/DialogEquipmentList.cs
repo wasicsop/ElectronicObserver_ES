@@ -106,7 +106,7 @@ namespace ElectronicObserver.Window.Dialog
 
 			UpdateView();
 
-			this.Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormEquipmentList]);
+			this.Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[(int)IconContent.FormEquipmentList]);
 
 		}
 

@@ -105,7 +105,7 @@ namespace ElectronicObserver.Window.Dialog
 		private void DialogShipGraphicViewer_Load(object sender, EventArgs e)
 		{
 
-			this.Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormAlbumShip]);
+			this.Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[(int)IconContent.FormAlbumShip]);
 
 			RefreshImage();
 		}

@@ -30,7 +30,7 @@ namespace ElectronicObserver.Window.Wpf.Fleet
 			InitializeComponent();
 		}
 
-		public FleetView(int fleetId, Action<ResourceManager.IconContent> setIcon)
+		public FleetView(int fleetId, Action<IconContent> setIcon)
         {
 			/*
 	        ViewModel = new(fleetId, setIcon);

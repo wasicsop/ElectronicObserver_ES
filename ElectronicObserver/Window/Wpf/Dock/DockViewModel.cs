@@ -124,7 +124,7 @@ namespace ElectronicObserver.Window.Wpf.Dock
 		public List<DockItemViewModel> Docks { get; }
 
 		public DockViewModel() : base("Dock", "Dock",
-			ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormDock))
+			ImageSourceIcons.GetIcon(IconContent.FormDock))
 		{
 			FormDock = App.Current.Services.GetService<FormDockTranslationViewModel>()!;
 

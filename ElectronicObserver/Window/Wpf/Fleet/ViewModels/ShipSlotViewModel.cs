@@ -70,14 +70,14 @@ namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels
 
 		private static ImageSource?[] AircraftLevelIcons { get; } =
 		{
-			ImageSourceIcons.GetIcon(ResourceManager.IconContent.AircraftLevelTop0),
-			ImageSourceIcons.GetIcon(ResourceManager.IconContent.AircraftLevelTop1),
-			ImageSourceIcons.GetIcon(ResourceManager.IconContent.AircraftLevelTop2),
-			ImageSourceIcons.GetIcon(ResourceManager.IconContent.AircraftLevelTop3),
-			ImageSourceIcons.GetIcon(ResourceManager.IconContent.AircraftLevelTop4),
-			ImageSourceIcons.GetIcon(ResourceManager.IconContent.AircraftLevelTop5),
-			ImageSourceIcons.GetIcon(ResourceManager.IconContent.AircraftLevelTop6),
-			ImageSourceIcons.GetIcon(ResourceManager.IconContent.AircraftLevelTop7),
+			ImageSourceIcons.GetIcon(IconContent.AircraftLevelTop0),
+			ImageSourceIcons.GetIcon(IconContent.AircraftLevelTop1),
+			ImageSourceIcons.GetIcon(IconContent.AircraftLevelTop2),
+			ImageSourceIcons.GetIcon(IconContent.AircraftLevelTop3),
+			ImageSourceIcons.GetIcon(IconContent.AircraftLevelTop4),
+			ImageSourceIcons.GetIcon(IconContent.AircraftLevelTop5),
+			ImageSourceIcons.GetIcon(IconContent.AircraftLevelTop6),
+			ImageSourceIcons.GetIcon(IconContent.AircraftLevelTop7),
 		};
 
 		public ShipSlotViewModel()

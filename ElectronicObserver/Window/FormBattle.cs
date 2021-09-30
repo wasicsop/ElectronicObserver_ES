@@ -101,7 +101,7 @@ namespace ElectronicObserver.Window
 			BaseLayoutPanel.Visible = false;
 
 
-			Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormBattle]);
+			Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[(int)IconContent.FormBattle]);
 
 			Translate();
 		}

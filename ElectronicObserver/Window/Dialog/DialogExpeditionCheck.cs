@@ -44,7 +44,7 @@ namespace ElectronicObserver.Window.Dialog
             }
 
 
-            Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormExpeditionCheck]);
+            Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[(int)IconContent.FormExpeditionCheck]);
         }
 
 

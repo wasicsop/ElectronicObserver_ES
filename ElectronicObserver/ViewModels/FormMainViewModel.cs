@@ -288,41 +288,41 @@ namespace ElectronicObserver.ViewModels
 
 			#region Icon settings
 
-			ConfigurationImageSource = ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormConfiguration);
+			ConfigurationImageSource = ImageSourceIcons.GetIcon(IconContent.FormConfiguration);
 
-			FleetsImageSource = ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormFleet);
-			FleetOverviewImageSource = ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormFleet);
-			ShipGroupImageSource = ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormShipGroup);
-			FleetPresetImageSource = ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormFleetPreset);
-			DockImageSource = ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormDock);
-			ArsenalImageSource = ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormArsenal);
-			BaseAirCorpsImageSource = ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormBaseAirCorps);
-			HeadquartersImageSource = ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormHeadQuarters);
-			QuestImageSource = ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormQuest);
-			InformationImageSource = ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormInformation);
-			CompassImageSource = ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormCompass);
-			BattleImageSource = ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormBattle);
-			BrowserHostImageSource = ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormBrowser);
-			LogImageSource = ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormLog);
-			JsonImageSource = ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormJson);
+			FleetsImageSource = ImageSourceIcons.GetIcon(IconContent.FormFleet);
+			FleetOverviewImageSource = ImageSourceIcons.GetIcon(IconContent.FormFleet);
+			ShipGroupImageSource = ImageSourceIcons.GetIcon(IconContent.FormShipGroup);
+			FleetPresetImageSource = ImageSourceIcons.GetIcon(IconContent.FormFleetPreset);
+			DockImageSource = ImageSourceIcons.GetIcon(IconContent.FormDock);
+			ArsenalImageSource = ImageSourceIcons.GetIcon(IconContent.FormArsenal);
+			BaseAirCorpsImageSource = ImageSourceIcons.GetIcon(IconContent.FormBaseAirCorps);
+			HeadquartersImageSource = ImageSourceIcons.GetIcon(IconContent.FormHeadQuarters);
+			QuestImageSource = ImageSourceIcons.GetIcon(IconContent.FormQuest);
+			InformationImageSource = ImageSourceIcons.GetIcon(IconContent.FormInformation);
+			CompassImageSource = ImageSourceIcons.GetIcon(IconContent.FormCompass);
+			BattleImageSource = ImageSourceIcons.GetIcon(IconContent.FormBattle);
+			BrowserHostImageSource = ImageSourceIcons.GetIcon(IconContent.FormBrowser);
+			LogImageSource = ImageSourceIcons.GetIcon(IconContent.FormLog);
+			JsonImageSource = ImageSourceIcons.GetIcon(IconContent.FormJson);
 
-			EquipmentListImageSource = ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormEquipmentList);
-			DropRecordImageSource = ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormDropRecord);
-			DevelopmentRecordImageSource = ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormDevelopmentRecord);
-			ConstructionRecordImageSource = ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormConstructionRecord);
-			ResourceChartImageSource = ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormResourceChart);
-			AlbumMasterShipImageSource = ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormAlbumShip);
-			AlbumMasterEquipmentImageSource = ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormAlbumEquipment);
-			AntiAirDefenseImageSource = ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormAntiAirDefense);
-			FleetImageGeneratorImageSource = ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormFleetImageGenerator);
-			BaseAirCorpsSimulationImageSource = ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormBaseAirCorps);
-			ExpCheckerImageSource = ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormExpChecker);
-			ExpeditionCheckImageSource = ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormExpeditionCheck);
-			KancolleProgressImageSource = ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormEquipmentList);
-			ExtraBrowserImageSource = ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormBrowser);
+			EquipmentListImageSource = ImageSourceIcons.GetIcon(IconContent.FormEquipmentList);
+			DropRecordImageSource = ImageSourceIcons.GetIcon(IconContent.FormDropRecord);
+			DevelopmentRecordImageSource = ImageSourceIcons.GetIcon(IconContent.FormDevelopmentRecord);
+			ConstructionRecordImageSource = ImageSourceIcons.GetIcon(IconContent.FormConstructionRecord);
+			ResourceChartImageSource = ImageSourceIcons.GetIcon(IconContent.FormResourceChart);
+			AlbumMasterShipImageSource = ImageSourceIcons.GetIcon(IconContent.FormAlbumShip);
+			AlbumMasterEquipmentImageSource = ImageSourceIcons.GetIcon(IconContent.FormAlbumEquipment);
+			AntiAirDefenseImageSource = ImageSourceIcons.GetIcon(IconContent.FormAntiAirDefense);
+			FleetImageGeneratorImageSource = ImageSourceIcons.GetIcon(IconContent.FormFleetImageGenerator);
+			BaseAirCorpsSimulationImageSource = ImageSourceIcons.GetIcon(IconContent.FormBaseAirCorps);
+			ExpCheckerImageSource = ImageSourceIcons.GetIcon(IconContent.FormExpChecker);
+			ExpeditionCheckImageSource = ImageSourceIcons.GetIcon(IconContent.FormExpeditionCheck);
+			KancolleProgressImageSource = ImageSourceIcons.GetIcon(IconContent.FormEquipmentList);
+			ExtraBrowserImageSource = ImageSourceIcons.GetIcon(IconContent.FormBrowser);
 
-			ViewHelpImageSource = ImageSourceIcons.GetIcon(ResourceManager.IconContent.FormInformation);
-			ViewVersionImageSource = ImageSourceIcons.GetIcon(ResourceManager.IconContent.AppIcon);
+			ViewHelpImageSource = ImageSourceIcons.GetIcon(IconContent.FormInformation);
+			ViewVersionImageSource = ImageSourceIcons.GetIcon(IconContent.AppIcon);
 
 			/*
 			Icon = ResourceManager.Instance.AppIcon;

@@ -907,7 +907,7 @@ namespace ElectronicObserver.Window.Dialog
 			}
 
 			ClientSize = tableLayoutPanel2.PreferredSize;
-			this.Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.FormBaseAirCorps]);
+			this.Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[(int)IconContent.FormBaseAirCorps]);
 
 		}
 
