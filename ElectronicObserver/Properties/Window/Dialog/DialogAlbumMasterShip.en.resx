@@ -234,4 +234,10 @@ Right click to open in a new window.</value>
   <data name="NoShipSelectedCaption" xml:space="preserve">
     <value>No Ship Selected</value>
   </data>
+  <data name="Installation" xml:space="preserve">
+    <value>Installation</value>
+  </data>
+  <data name="ReinforcementSlot" xml:space="preserve">
+    <value>Reinforcement Slot</value>
+  </data>
 </root>

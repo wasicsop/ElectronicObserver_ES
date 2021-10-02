@@ -222,4 +222,10 @@
   <data name="NoShipSelectedCaption" xml:space="preserve">
     <value>ビューア：対象未指定</value>
   </data>
+  <data name="Installation" xml:space="preserve">
+    <value>陸上施設</value>
+  </data>
+  <data name="ReinforcementSlot" xml:space="preserve">
+    <value>補強スロット</value>
+  </data>
 </root>

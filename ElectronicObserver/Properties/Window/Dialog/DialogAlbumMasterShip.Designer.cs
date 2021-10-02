@@ -206,6 +206,15 @@ namespace ElectronicObserver.Properties.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 陸上施設.
+        /// </summary>
+        public static string Installation {
+            get {
+                return ResourceManager.GetString("Installation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 迎撃.
         /// </summary>
         public static string Interception {
@@ -256,6 +265,15 @@ namespace ElectronicObserver.Properties.Window.Dialog {
         public static string Recipe {
             get {
                 return ResourceManager.GetString("Recipe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 補強スロット.
+        /// </summary>
+        public static string ReinforcementSlot {
+            get {
+                return ResourceManager.GetString("ReinforcementSlot", resourceCulture);
             }
         }
         

@@ -851,7 +851,7 @@ namespace ElectronicObserver.Window.Dialog
 				return "";
 
 			return string.Join("\r\n", ship.EquippableCategories.Select(id => db.EquipmentTypes[id].NameEN)
-				.Concat(db.MasterEquipments.Values.Where(eq => eq.EquippableShipsAtExpansion.Contains(shipID)).Select(eq => eq.NameEN + " (Reinforcement Slot)")));
+				.Concat(db.MasterEquipments.Values.Where(eq => eq.EquippableShipsAtExpansion.Contains(shipID)).Select(eq => eq.NameEN + $" ({Translation.ReinforcementSlot})")));
 		}
 
 
