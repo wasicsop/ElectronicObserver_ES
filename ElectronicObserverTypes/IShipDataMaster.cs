@@ -211,7 +211,7 @@ namespace ElectronicObserverTypes
 		/// <summary>
 		/// 初期装備のID
 		/// </summary>
-		IList<int> DefaultSlot { get; }
+		IList<int>? DefaultSlot { get; }
 
 		/// <summary>
 		/// 特殊装備カテゴリ　指定がない場合は null

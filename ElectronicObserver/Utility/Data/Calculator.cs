@@ -201,7 +201,7 @@ namespace ElectronicObserver.Utility.Data
 		/// 制空戦力を求めます。
 		/// </summary>
 		/// <param name="ship">対象の艦船。</param>
-		public static int GetAirSuperiority(ShipDataMaster ship)
+		public static int GetAirSuperiority(IShipDataMaster ship)
 		{
 			if (ship?.DefaultSlot == null)
 				return 0;
@@ -687,7 +687,7 @@ namespace ElectronicObserver.Utility.Data
 		/// <param name="attackerShipID">攻撃艦の艦船ID。</param>
 		/// <param name="defenderShipID">防御艦の艦船ID。なければ-1</param>
 		/// <param name="includeSpecialAttack">弾着観測砲撃を含むか。falseなら除外して計算</param>
-		public static DayAttackKind GetDayAttackKind(int[] slot, int attackerShipID, int defenderShipID, bool includeSpecialAttack = true)
+		public static DayAttackKind GetDayAttackKind(int[]? slot, int attackerShipID, int defenderShipID, bool includeSpecialAttack = true)
 		{
 
 			int reconCount = 0;
@@ -905,7 +905,7 @@ namespace ElectronicObserver.Utility.Data
 		/// <param name="defenderShipID">防御艦の艦船ID。なければ-1</param>
 		/// <param name="includeSpecialAttack">カットイン/連撃の判定を含むか。falseなら除外して計算</param>
 		/// <param name="nightAirAttackFlag">夜戦空母攻撃フラグ</param>
-		public static NightAttackKind GetNightAttackKind(int[] slot, int attackerShipID, int defenderShipID, bool includeSpecialAttack = true, bool nightAirAttackFlag = false)
+		public static NightAttackKind GetNightAttackKind(int[]? slot, int attackerShipID, int defenderShipID, bool includeSpecialAttack = true, bool nightAirAttackFlag = false)
 		{
 
 			int mainGunCount = 0;
