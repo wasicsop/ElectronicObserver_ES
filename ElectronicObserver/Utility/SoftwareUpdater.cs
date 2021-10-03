@@ -91,11 +91,12 @@ namespace ElectronicObserver.Utility
 		/// </summary>
 		public static async Task CheckUpdateAsync()
 		{
-			try
-            {
-	            Directory.CreateDirectory(TranslationManager.WorkingFolder);
+			Directory.CreateDirectory(TranslationManager.WorkingFolder);
 
-	            var updateFile = TranslationManager.WorkingFolder + $"\\update.json";
+			var updateFile = TranslationManager.WorkingFolder + $"\\update.json";
+
+			try
+			{
 				Uri UpdateUrl = new Uri(string.Format("{0}/en-US/update.json", Configuration.Config.Control.UpdateURL));
 
 				using var client = WebRequest.Create(UpdateUrl).GetResponse();
@@ -159,6 +160,13 @@ namespace ElectronicObserver.Utility
 				}
 
 				CurrentVersion = LatestVersion;
+			}
+			catch (JsonParserException e)
+			{
+				// file exist but isn't valid json
+				// file gets corrupted somehow?
+				File.Delete(updateFile);
+				CheckUpdateAsync();
 			}
             catch (Exception e)
             {
