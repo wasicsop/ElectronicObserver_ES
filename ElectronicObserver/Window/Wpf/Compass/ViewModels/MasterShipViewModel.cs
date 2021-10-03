@@ -7,6 +7,7 @@ using System.Windows.Media;
 using ElectronicObserver.Data;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Window.Dialog;
+using ElectronicObserver.Window.Tools.DialogAlbumMasterShip;
 using ElectronicObserverTypes;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
@@ -78,7 +79,7 @@ namespace ElectronicObserver.Window.Wpf.Compass.ViewModels
 
 		private void OpenShipEncyclopedia(int shipId)
 		{
-			new DialogAlbumMasterShip(shipId).Show();
+			new DialogAlbumMasterShipWpf(shipId).Show();
 		}
 
 		private static string? GetShipString(int shipID, int[] slot, int level)

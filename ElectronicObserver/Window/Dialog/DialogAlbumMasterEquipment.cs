@@ -17,6 +17,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ElectronicObserver.Window.Tools.DialogAlbumMasterShip;
 using ElectronicObserverTypes;
 using Translation = ElectronicObserver.Properties.Window.Dialog.DialogAlbumMasterEquipment;
 
@@ -493,7 +494,7 @@ namespace ElectronicObserver.Window.Dialog
 				if (index >= 0)
 				{
 					Cursor = Cursors.AppStarting;
-					new DialogAlbumMasterShip(((ShipDataMaster)DefaultSlots.Items[index]).ShipID).Show(Owner);
+					new DialogAlbumMasterShipWpf(((ShipDataMaster)DefaultSlots.Items[index]).ShipID).Show();
 					Cursor = Cursors.Default;
 				}
 			}

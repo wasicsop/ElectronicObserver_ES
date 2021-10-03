@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ElectronicObserver.Data;
 using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Tools.DialogAlbumMasterShip
@@ -29,6 +30,15 @@ namespace ElectronicObserver.Window.Tools.DialogAlbumMasterShip
             // ViewModel.PropertyChanged += SelectedChipChanged;
             DataContext = ViewModel;
 
+		}
+
+		public DialogAlbumMasterShipWpf(int shipId) : this()
+		{
+			IShipDataMaster ship = KCDatabase.Instance.MasterShips[shipId];
+			ViewModel = new(ship);
+
+			// ViewModel.PropertyChanged += SelectedChipChanged;
+			DataContext = ViewModel;
 		}
 
 		public DialogAlbumMasterShipWpf(IShipDataMaster ship) : this()

@@ -28,6 +28,7 @@ using ElectronicObserver.Utility;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window;
 using ElectronicObserver.Window.Dialog;
+using ElectronicObserver.Window.Tools.DialogAlbumMasterShip;
 using ElectronicObserver.Window.Wpf;
 using ElectronicObserver.Window.Wpf.Arsenal;
 using ElectronicObserver.Window.Wpf.BaseAirCorps;
@@ -661,7 +662,7 @@ namespace ElectronicObserver.ViewModels
 				return;
 			}
 
-			new DialogAlbumMasterShip().Show();
+			new DialogAlbumMasterShipWpf().Show();
 		}
 
 		private void StripMenu_Tool_AlbumMasterEquipment_Click()
