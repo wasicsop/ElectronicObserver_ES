@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using ElectronicObserver.Data;
 using ElectronicObserver.Utility.Data;
+using ElectronicObserverTypes;
 using Xunit;
 using Moq;
 

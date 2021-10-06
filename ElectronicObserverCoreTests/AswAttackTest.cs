@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using ElectronicObserver.Data;
 using ElectronicObserver.Utility.Data;
+using ElectronicObserverTypes;
 using Moq;
 using Xunit;
+using FleetDataCustom = ElectronicObserver.Data.FleetDataCustom;
 
 namespace ElectronicObserverCoreTests
 {
