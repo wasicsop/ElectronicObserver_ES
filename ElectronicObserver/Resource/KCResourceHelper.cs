@@ -80,7 +80,7 @@ namespace ElectronicObserver.Resource
 		/// <summary>
 		/// 最新のリソースへのパスを取得します。
 		/// </summary>
-		public static string GetLatestResourcePath(string resourcePath)
+		public static string? GetLatestResourcePath(string resourcePath)
 		{
 			string root = Utility.Configuration.Config.Connection.SaveDataPath + "\\" + Path.GetDirectoryName(resourcePath);
 
@@ -101,10 +101,10 @@ namespace ElectronicObserver.Resource
 		}
 
 
-		public static string GetShipImagePath(int shipID, bool isDamaged, string resourceType)
+		public static string? GetShipImagePath(int shipID, bool isDamaged, string resourceType)
 			=> GetLatestResourcePath(GetShipResourcePath(shipID, isDamaged, resourceType));
 
-		public static string GetEquipmentImagePath(int equipmentID, string resourceType)
+		public static string? GetEquipmentImagePath(int equipmentID, string resourceType)
 			=> GetLatestResourcePath(GetEquipmentResourcePath(equipmentID, resourceType));
 
 		public static bool HasShipImage(int shipID, bool isDamaged, string resourceType)
@@ -121,10 +121,10 @@ namespace ElectronicObserver.Resource
 		/// <param name="isDamaged">中破しているかどうか。</param>
 		/// <param name="resourceType">画像種別。同クラスの定数を使用します。</param>
 		/// <returns>成功した場合は艦船画像。失敗した場合は null。</returns>
-		public static Bitmap LoadShipImage(int shipID, bool isDamaged, string resourceType)
+		public static Bitmap? LoadShipImage(int shipID, bool isDamaged, string resourceType)
 		{
 			string resourcepath = GetShipResourcePath(shipID, isDamaged, resourceType);
-			string realpath = GetLatestResourcePath(resourcepath);
+			string? realpath = GetLatestResourcePath(resourcepath);
 
 			if (realpath == null)
 				return null;
@@ -138,10 +138,10 @@ namespace ElectronicObserver.Resource
 		/// <param name="equipmentID">装備ID。</param>
 		/// <param name="resourceType">画像種別。同クラスの定数を使用します。</param>
 		/// <returns>成功した場合は装備画像。失敗した場合は null。</returns>
-		public static Bitmap LoadEquipmentImage(int equipmentID, string resourceType)
+		public static Bitmap? LoadEquipmentImage(int equipmentID, string resourceType)
 		{
 			string resourcepath = GetEquipmentResourcePath(equipmentID, resourceType);
-			string realpath = GetLatestResourcePath(resourcepath);
+			string? realpath = GetLatestResourcePath(resourcepath);
 
 			if (realpath == null)
 				return null;
