@@ -280,6 +280,9 @@
 		  <AutoGen>True</AutoGen>
 		  <DependentUpon>FormShipGroup.resx</DependentUpon>
 		</Compile>
+		<Compile Update="ViewModels\Translations\ImageTextControl.xaml.cs">
+		  <SubType>Code</SubType>
+		</Compile>
 		<Compile Update="Window\Control\FleetState.cs">
 			<SubType>UserControl</SubType>
 		</Compile>
@@ -648,6 +651,10 @@
 		</EmbeddedResource>
 	</ItemGroup>
 	<ItemGroup>
+	  <Page Update="ViewModels\Translations\ImageTextControl.xaml">
+	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+	    <SubType>Designer</SubType>
+	  </Page>
 	  <Page Update="Window\Wpf\Fleet\FleetView.xaml">
 	    <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
 	  </Page>

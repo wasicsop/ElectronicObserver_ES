@@ -17,6 +17,10 @@
 			<converters:RangeConverter x:Key="RangeConverter" />
 			<converters:ShipRarityConverter x:Key="ShipRarityConverter" />
 			<converters:ShipToBannerImageConverter x:Key="ShipToBannerImageConverter" />
+			<converters:EquipmentRarityConverter x:Key="EquipmentRarityConverter" />
+			<converters:EquipmentToImageConverter x:Key="EquipmentToImageConverter" />
+			<converters:EquipmentStatValueConverter x:Key="EquipmentStatValueConverter" />
+			<converters:EquipmentStatForegroundConverter x:Key="EquipmentStatForegroundConverter" />
 
 				<!--
 				source: https://github.com/Kinnara/ModernWpf/blob/master/ModernWpf/Styles/ToolTip.xaml

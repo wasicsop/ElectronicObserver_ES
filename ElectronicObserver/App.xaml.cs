@@ -134,7 +134,8 @@ namespace ElectronicObserver
 			services.AddSingleton<FormShipGroupTranslationViewModel>();
 
 			services.AddSingleton<DialogAlbumMasterShipTranslationViewModel>();
-
+			services.AddSingleton<DialogAlbumMasterEquipmentTranslationViewModel>();
+			
 			return services.BuildServiceProvider();
 		}
 	}
