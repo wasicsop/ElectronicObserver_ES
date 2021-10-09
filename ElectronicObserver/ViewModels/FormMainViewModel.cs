@@ -28,6 +28,7 @@ using ElectronicObserver.Utility;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window;
 using ElectronicObserver.Window.Dialog;
+using ElectronicObserver.Window.Tools.DialogAlbumMasterEquipment;
 using ElectronicObserver.Window.Tools.DialogAlbumMasterShip;
 using ElectronicObserver.Window.Wpf;
 using ElectronicObserver.Window.Wpf.Arsenal;
@@ -674,7 +675,7 @@ namespace ElectronicObserver.ViewModels
 				return;
 			}
 
-			new DialogAlbumMasterEquipment().Show();
+			new DialogAlbumMasterEquipmentWpf().Show();
 		}
 
 		private void StripMenu_Tool_AntiAirDefense_Click()

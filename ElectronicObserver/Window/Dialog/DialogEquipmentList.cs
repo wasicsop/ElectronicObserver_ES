@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ElectronicObserver.Window.Tools.DialogAlbumMasterEquipment;
 using ElectronicObserverTypes;
 using Translation = ElectronicObserver.Properties.Window.Dialog.DialogEquipmentList;
 using DialogAlbumMasterShipTranslation = ElectronicObserver.Properties.Window.Dialog.DialogAlbumMasterShip;
@@ -345,7 +346,7 @@ namespace ElectronicObserver.Window.Dialog
 				if ((e.Button & System.Windows.Forms.MouseButtons.Right) != 0)
 				{
 					Cursor = Cursors.AppStarting;
-					new DialogAlbumMasterEquipment(equipmentID).Show(Owner);
+					new DialogAlbumMasterEquipmentWpf(equipmentID).Show();
 					Cursor = Cursors.Default;
 				}
 			}

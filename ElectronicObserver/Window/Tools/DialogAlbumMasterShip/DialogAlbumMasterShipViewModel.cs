@@ -15,6 +15,7 @@ using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.Utility.Storage;
 using ElectronicObserver.Window.Dialog;
+using ElectronicObserver.Window.Tools.DialogAlbumMasterEquipment;
 using Microsoft.Toolkit.Mvvm.Input;
 using static ElectronicObserver.Resource.Record.ShipParameterRecord;
 
@@ -123,7 +124,7 @@ namespace ElectronicObserver.Window.Tools.DialogAlbumMasterShip
 		{
 			if (equip is null) return;
 
-			new DialogAlbumMasterEquipment(equip.ID).Show();
+			new DialogAlbumMasterEquipmentWpf(equip.ID).Show();
 		}
 
 
