@@ -46,7 +46,7 @@ namespace ElectronicObserver.Data
 		public dynamic DayData = null;
 		public dynamic YasenData = null;
 		public bool isPvp = false;
-
+		public bool is_ignored = false;
 
 		/// <summary>
 		///response wrapper for getting API data
@@ -184,7 +184,7 @@ namespace ElectronicObserver.Data
 					break;
 
 				case "api_port/port":
-
+					is_ignored = false;
 					isPvp = false;
 					break;
 			}
@@ -337,12 +337,25 @@ namespace ElectronicObserver.Data
 				{
 					info = "practice";
 				}
+				string maps_file = @"Settings\ignored_maps.txt";
 
-				string path = $"{parent}\\{DateTimeHelper.GetTimeStamp()}@{info}-Replay.txt";
-				using (StreamWriter rep_file = File.CreateText(path))
+				if (File.Exists(maps_file))
 				{
-					JsonSerializer serializer = new JsonSerializer();
-					serializer.Serialize(rep_file, Battle_replay);
+					foreach (var line in File.ReadLines(maps_file))
+					{
+						if ($"{db.Battle.Compass.MapAreaID}-{db.Battle.Compass.MapInfoID}" == line)
+							is_ignored = true;
+						break;
+					};
+				}
+				string path = $"{parent}\\{DateTimeHelper.GetTimeStamp()}@{info}-Replay.txt";
+				if (!is_ignored)
+				{
+					using (StreamWriter rep_file = File.CreateText(path))
+					{
+						JsonSerializer serializer = new JsonSerializer();
+						serializer.Serialize(rep_file, Battle_replay);
+					}
 				}
 
 			}
