@@ -17,7 +17,6 @@
 		<ApplicationVersion>1.0.0.%2a</ApplicationVersion>
 		<UseApplicationTrust>false</UseApplicationTrust>
 		<BootstrapperEnabled>true</BootstrapperEnabled>
-		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 		<UseWindowsForms>true</UseWindowsForms>
 		<UseWPF>true</UseWPF>
 		<Platforms>x64</Platforms>
@@ -31,6 +30,16 @@
 	<PropertyGroup>
 		<NoWin32Manifest>true</NoWin32Manifest>
 		<StartupObject>ElectronicObserver.App</StartupObject>
+		<Title>Electronic Observer</Title>
+		<Description />
+		<Configuration />
+		<Company />
+		<Product>ElectronicObserver</Product>
+		<Copyright>Copyright ©  2014 Andante</Copyright>
+		<Trademark />
+		<Culture />
+		<AssemblyVersion>4.7.0.0</AssemblyVersion>
+		<FileVersion>4.7.0.0</FileVersion>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
 		<OutputPath>bin\x64\Debug\</OutputPath>
