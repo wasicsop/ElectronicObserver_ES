@@ -339,7 +339,7 @@ namespace ElectronicObserver.Data
 				}
 				string maps_file = @"Settings\ignored_maps.txt";
 
-				if (File.Exists(maps_file))
+				if (File.Exists(maps_file) && !isPvp)
 				{
 					foreach (var line in File.ReadLines(maps_file))
 					{
