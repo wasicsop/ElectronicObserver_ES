@@ -344,8 +344,10 @@ namespace ElectronicObserver.Data
 					foreach (var line in File.ReadLines(maps_file))
 					{
 						if ($"{db.Battle.Compass.MapAreaID}-{db.Battle.Compass.MapInfoID}" == line)
+						{
 							is_ignored = true;
-						break;
+							break;
+						}
 					};
 				}
 				string path = $"{parent}\\{DateTimeHelper.GetTimeStamp()}@{info}-Replay.txt";
