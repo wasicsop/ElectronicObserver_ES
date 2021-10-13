@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms.Integration;
+﻿using System.Windows.Forms;
+using System.Windows.Forms.Integration;
 using System.Windows.Media;
 using ElectronicObserver.ViewModels;
 using WeifenLuo.WinFormsUI.Docking;
@@ -23,6 +24,7 @@ namespace ElectronicObserver.Window.Wpf.WinformsHost
 				if (args.PropertyName is not nameof(WinformsControl)) return;
 				if (WinformsControl is null) return;
 
+				WinformsControl.FormBorderStyle = FormBorderStyle.None;
 				WindowsFormsHost.Child = WinformsControl;
 
 				WinformsControl.BackColor = Utility.Configuration.Config.UI.BackColor;

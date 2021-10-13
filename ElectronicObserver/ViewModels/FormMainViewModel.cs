@@ -28,6 +28,7 @@ using ElectronicObserver.Utility;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window;
 using ElectronicObserver.Window.Dialog;
+using ElectronicObserver.Window.Integrate;
 using ElectronicObserver.Window.Tools.DialogAlbumMasterEquipment;
 using ElectronicObserver.Window.Tools.DialogAlbumMasterShip;
 using ElectronicObserver.Window.Wpf;
@@ -43,6 +44,7 @@ using ElectronicObserver.Window.Wpf.FleetPreset;
 using ElectronicObserver.Window.Wpf.Headquarters;
 using ElectronicObserver.Window.Wpf.ShipGroup.ViewModels;
 using ElectronicObserver.Window.Wpf.WinformsWrappers;
+using MessagePack;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
@@ -52,7 +54,7 @@ using Timer = System.Windows.Forms.Timer;
 
 namespace ElectronicObserver.ViewModels
 {
-	public class FormMainViewModel : ObservableObject
+	public partial class FormMainViewModel : ObservableObject
 	{
 		private FormMainWpf Window { get; }
 		private DockingManager DockingManager { get; }
@@ -63,8 +65,9 @@ namespace ElectronicObserver.ViewModels
 		private string LayoutFolder => @"Settings\Layout";
 		private string DefaultLayoutPath => Path.Combine(LayoutFolder, "Default.xml");
 		private string LayoutPath => Config.Life.LayoutFilePath;
-		
 		private string PositionPath => Path.ChangeExtension(LayoutPath, ".Position.json");
+		private string IntegratePath => Path.ChangeExtension(LayoutPath, ".Integrate.json");
+		
 		public bool NotificationsSilenced { get; set; }
 		private DateTime PrevPlayTimeRecorded { get; set; } = DateTime.MinValue;
 		public FontFamily Font { get; set; }
@@ -104,6 +107,7 @@ namespace ElectronicObserver.ViewModels
 		public ImageSource? BrowserHostImageSource { get; }
 		public ImageSource? LogImageSource { get; }
 		public ImageSource? JsonImageSource { get; }
+		public ImageSource? WindowCaptureImageSource { get; }
 
 		public ImageSource? EquipmentListImageSource { get; }
 		public ImageSource? DropRecordImageSource { get; }
@@ -147,6 +151,7 @@ namespace ElectronicObserver.ViewModels
 		public FormBrowserHostViewModel FormBrowserHost { get; }
 		public FormLogViewModel FormLog { get; }
 		public FormJsonViewModel FormJson { get; }
+		public FormWindowCaptureViewModel WindowCapture { get; }
 
 		public StripStatusViewModel StripStatus { get; } = new();
 		public int ClockFormat { get; set; }
@@ -307,6 +312,7 @@ namespace ElectronicObserver.ViewModels
 			BrowserHostImageSource = ImageSourceIcons.GetIcon(IconContent.FormBrowser);
 			LogImageSource = ImageSourceIcons.GetIcon(IconContent.FormLog);
 			JsonImageSource = ImageSourceIcons.GetIcon(IconContent.FormJson);
+			WindowCaptureImageSource = ImageSourceIcons.GetIcon(IconContent.FormWindowCapture);
 
 			EquipmentListImageSource = ImageSourceIcons.GetIcon(IconContent.FormEquipmentList);
 			DropRecordImageSource = ImageSourceIcons.GetIcon(IconContent.FormDropRecord);
@@ -401,6 +407,7 @@ namespace ElectronicObserver.ViewModels
 			Views.Add(FormBrowserHost = new FormBrowserHostViewModel() {Visibility = Visibility.Visible});
 			Views.Add(FormLog = new FormLogViewModel());
 			Views.Add(FormJson = new FormJsonViewModel());
+			Views.Add(WindowCapture = new FormWindowCaptureViewModel(this));
 
 			ConfigurationChanged(); //設定から初期化
 
@@ -488,6 +495,14 @@ namespace ElectronicObserver.ViewModels
 			{
 				WriteIndented = true
 			}));
+
+			IEnumerable<FormIntegrate.WindowInfo> integrateWindows = Views
+				.OfType<FormIntegrateViewModel>()
+				.Select(i => (i.WinformsControl! as FormIntegrate)!.WindowData);
+
+			byte[]? data = MessagePackSerializer.Serialize(integrateWindows);
+
+			File.WriteAllText(IntegratePath, MessagePackSerializer.ConvertToJson(data));
 		}
 
 		public void LoadLayout(object? sender)
@@ -522,6 +537,26 @@ namespace ElectronicObserver.ViewModels
 			window.Width = Position.Width;
 			window.Height = Position.Height;
 			window.WindowState = Position.WindowState;
+
+			if (File.Exists(IntegratePath) && WindowCapture.WinformsControl is FormWindowCapture capture)
+			{
+				capture.CloseAll();
+
+				string integrateString = File.ReadAllText(IntegratePath);
+				byte[]? data = MessagePackSerializer.ConvertFromJson(integrateString);
+
+				IEnumerable<FormIntegrate.WindowInfo> integrateWindows = MessagePackSerializer
+					.Deserialize<IEnumerable<FormIntegrate.WindowInfo>>(data);
+
+				foreach (FormIntegrate.WindowInfo info in integrateWindows)
+				{
+					// the constructor captures it so no need to call AddCapturedWindow
+					FormIntegrate integrate = new(this, info);
+					// capture.AddCapturedWindow(integrate);
+				}
+
+				capture.AttachAll();
+			}
 		}
 
 		private string LayoutFilter => "Layout File|*.xml";
@@ -584,6 +619,46 @@ namespace ElectronicObserver.ViewModels
 			view.Visibility = Visibility.Visible;
 			view.IsSelected = true;
 			view.IsActive = true;
+		}
+
+		public void CloseIntegrate(FormIntegrateViewModel integrate)
+		{
+			if (integrate.WinformsControl is FormIntegrate i)
+			{
+				i.Detach();
+				if (WindowCapture.WinformsControl is FormWindowCapture capture)
+				{
+					capture.CapturedWindows.Remove(i);
+				}
+			}
+			
+			Views.Remove(integrate);
+
+			// AvalonDock always hides anchorables, but integrate anchorables should always be closed
+			List<LayoutAnchorable> integrateAnchorables = DockingManager.Layout.Hidden
+				.Where(a => a.ContentId.StartsWith(FormIntegrate.Prefix))
+				.ToList();
+
+			foreach (LayoutAnchorable anchorable in integrateAnchorables)
+			{
+				DockingManager.Layout.Hidden.Remove(anchorable);
+			}
+		}
+
+		[ICommand]
+		private void StripMenu_WindowCapture_AttachAll_Click()
+		{
+			if (WindowCapture is not { WinformsControl: FormWindowCapture fwc }) return;
+
+			fwc.AttachAll();
+		}
+
+		[ICommand]
+		private void StripMenu_WindowCapture_DetachAll_Click()
+		{
+			if (WindowCapture is not { WinformsControl: FormWindowCapture fwc }) return;
+
+			fwc.DetachAll();
 		}
 
 		#endregion

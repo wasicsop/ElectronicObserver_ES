@@ -289,6 +289,11 @@
 		  <AutoGen>True</AutoGen>
 		  <DependentUpon>FormShipGroup.resx</DependentUpon>
 		</Compile>
+		<Compile Update="Properties\Window\FormWindowCapture.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>FormWindowCapture.resx</DependentUpon>
+		</Compile>
 		<Compile Update="ViewModels\Translations\ImageTextControl.xaml.cs">
 		  <SubType>Code</SubType>
 		</Compile>
@@ -638,6 +643,10 @@
 		<EmbeddedResource Update="Properties\Window\FormShipGroup.resx">
 		  <Generator>PublicResXFileCodeGenerator</Generator>
 		  <LastGenOutput>FormShipGroup.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Properties\Window\FormWindowCapture.resx">
+		  <Generator>PublicResXFileCodeGenerator</Generator>
+		  <LastGenOutput>FormWindowCapture.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 		<EmbeddedResource Update="Window\Dialog\DialogExpeditionCheck.resx">
 			<Generator>ResXFileCodeGenerator</Generator>

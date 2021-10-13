@@ -12,18 +12,27 @@ using System.Management;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Windows.Forms;
+using ElectronicObserver.ViewModels;
+using MessagePack;
+using Microsoft.Toolkit.Mvvm.ComponentModel;
 using WeifenLuo.WinFormsUI.Docking;
 
 namespace ElectronicObserver.Window.Integrate
 {
-
+	
 	/// <summary>
 	/// 取り込むウィンドウのベースとなるフォーム
 	/// </summary>
+	[INotifyPropertyChanged]
 	public partial class FormIntegrate : DockContent
 	{
 
 		public readonly static String PREFIX = "FormIntegrated_";
+
+		public static string Prefix => "Integrate_";
+
+		public string PersistString =>
+			Prefix + string.GetHashCode(titleTextBox.Text + classNameTextBox.Text + fileNameTextBox.Text);
 
 		[DataContract(Name = "MatchControl")]
 		public enum MatchControl
@@ -38,6 +47,7 @@ namespace ElectronicObserver.Window.Integrate
 			Ignore
 		}
 
+		[MessagePackObject(true)]
 		[DataContract(Name = "MatchString")]
 		public class MatchString
 		{
@@ -47,6 +57,12 @@ namespace ElectronicObserver.Window.Integrate
 
 			[DataMember]
 			public MatchControl MatchControl { get; set; }
+
+			// needed for MessagePack, it doesn't recognize the other constructor for some reason
+			public MatchString()
+			{
+				
+			}
 
 			public MatchString(String name, MatchControl match)
 			{
@@ -71,6 +87,7 @@ namespace ElectronicObserver.Window.Integrate
 			}
 		}
 
+		[MessagePackObject(true)]
 		[DataContract(Name = "WindowInfo")]
 		public sealed class WindowInfo : DataStorage
 		{
@@ -93,6 +110,17 @@ namespace ElectronicObserver.Window.Integrate
 				Initialize();
 			}
 
+			public WindowInfo(string currentTitle, MatchString title, MatchString className,
+				MatchString processFilePath)
+			{
+				Initialize();
+
+				CurrentTitle = currentTitle;
+				Title = title;
+				ClassName = className;
+				ProcessFilePath = processFilePath;
+			}
+
 			public override void Initialize()
 			{
 			}
@@ -112,12 +140,12 @@ namespace ElectronicObserver.Window.Integrate
 				  "条件を無視"
 		};
 
-		private FormMain parent;
+		private object parent;
 
 		/// <summary>
 		/// 次のウィンドウキャプチャ時に必要な情報
 		/// </summary>
-		WindowInfo WindowData
+		public WindowInfo WindowData
 		{
 			get
 			{
@@ -144,6 +172,8 @@ namespace ElectronicObserver.Window.Integrate
 				classNameComboBox.SelectedIndex = (int)value.ClassName.MatchControl;
 				fileNameTextBox.Text = value.ProcessFilePath.Name;
 				fileNameComboBox.SelectedIndex = (int)value.ProcessFilePath.MatchControl;
+
+				OnPropertyChanged(nameof(Text));
 			}
 		}
 
@@ -152,10 +182,10 @@ namespace ElectronicObserver.Window.Integrate
 		// 戻すときに必要になる情報
 		private uint origStyle;
 		private IntPtr origOwner;
-		private WinAPI.RECT origWindowRect;
+		private WinAPI.RECT origWindowRect;	
 		private IntPtr origMenu;
 
-		public FormIntegrate(FormMain parent)
+		public FormIntegrate(object parent, WindowInfo? info = null)
 		{
 			InitializeComponent();
 
@@ -172,7 +202,20 @@ namespace ElectronicObserver.Window.Integrate
 			Utility.Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
 			ConfigurationChanged();
 
-			parent.WindowCapture.AddCapturedWindow(this);
+			switch (parent)
+			{
+				case FormMain main:
+					main.WindowCapture.AddCapturedWindow(this);
+					break;
+
+				case FormMainViewModel { WindowCapture: {WinformsControl: FormWindowCapture fwc} }:
+					if (info is not null)
+					{
+						WindowData = info;
+					}
+					fwc.AddCapturedWindow(this);
+					break;
+			}
 		}
 
 		void ConfigurationChanged()
@@ -337,11 +380,13 @@ namespace ElectronicObserver.Window.Integrate
 			if (showFloating)
 			{
 				// このウィンドウの大きさ・位置を設定
-				Show(parent.MainPanel, new Rectangle(
+				/*
+				 Show(parent.MainPanel, new Rectangle(
 					origWindowRect.left,
 					origWindowRect.top,
 					origWindowRect.right - origWindowRect.left,
 					origWindowRect.bottom - origWindowRect.top));
+				*/
 			}
 
 			// ターゲットを子ウィンドウに設定
@@ -358,6 +403,8 @@ namespace ElectronicObserver.Window.Integrate
 			WinAPI.MoveWindow(hWnd, 0, 0, this.Width, this.Height, true);
 
 			this.attachingWindow = hWnd;
+
+			OnPropertyChanged(nameof(Icon));
 		}
 
 		private void InternalDetach()
@@ -433,7 +480,7 @@ namespace ElectronicObserver.Window.Integrate
 			StringBuilder stringBuilder = new StringBuilder(capacity);
 			WinAPI.GetWindowText(hWnd, stringBuilder, stringBuilder.Capacity);
 
-			if (MessageBox.Show(stringBuilder.ToString() + "\r\n" + FormWindowCapture.WARNING_MESSAGE,
+			if (MessageBox.Show(stringBuilder.ToString() + "\r\n" + FormWindowCapture.WarningMessage,
 				"ウィンドウキャプチャの確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
 				== System.Windows.Forms.DialogResult.Yes)
 			{

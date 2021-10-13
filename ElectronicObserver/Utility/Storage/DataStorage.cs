@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Serialization;
+using MessagePack;
 
 namespace ElectronicObserver.Utility.Storage
 {
@@ -18,7 +19,9 @@ namespace ElectronicObserver.Utility.Storage
 	[DataContract(Name = "DataStorage")]
 	public abstract class DataStorage : IExtensibleDataObject
 	{
-
+		// ExtensionDataObject is for DataContractSerializer only
+		// MessagePack should ignore it
+		[IgnoreMember]
 		public ExtensionDataObject ExtensionData { get; set; }
 
 		public abstract void Initialize();

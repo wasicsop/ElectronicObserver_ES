@@ -156,6 +156,23 @@
 						<Image Source="{Binding JsonImageSource}" />
 					</MenuItem.Icon>
 				</MenuItem>
+				<MenuItem Header="{Binding FormMain.StripMenu_WindowCapture}"
+				          d:Header="Window Capture" >
+					<MenuItem.Icon>
+						<Image Source="{Binding WindowCaptureImageSource}" />
+					</MenuItem.Icon>
+
+					<MenuItem Header="{Binding FormMain.StripMenu_WindowCapture_SubWindow}"
+					          d:Header="Sub Window (_C)"
+							  Command="{Binding OpenViewCommand}"
+					          CommandParameter="{Binding WindowCapture}" />
+					<MenuItem Header="{Binding FormMain.StripMenu_WindowCapture_AttachAll}"
+					          d:Header="Attach All (_S)"
+					          Command="{Binding StripMenu_WindowCapture_AttachAll_ClickCommand}" />
+					<MenuItem Header="{Binding FormMain.StripMenu_WindowCapture_DetachAll}"
+					          d:Header="Detach All (_R)"
+					          Command="{Binding StripMenu_WindowCapture_DetachAll_ClickCommand}" />
+				</MenuItem>
 			</MenuItem>
 			<MenuItem Header="{Binding FormMain.StripMenu_Tool}" d:Header="Tools" Height="Auto">
 				<MenuItem Header="{Binding FormMain.StripMenu_Tool_EquipmentList}" d:Header="Equipment List" Command="{Binding OpenEquipmentListCommand}">

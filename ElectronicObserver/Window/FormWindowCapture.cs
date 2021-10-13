@@ -6,10 +6,15 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Windows;
 using System.Windows.Forms;
+using ElectronicObserver.ViewModels;
+using ElectronicObserver.Window.Wpf.WinformsWrappers;
 using WeifenLuo.WinFormsUI.Docking;
+using MessageBox = System.Windows.Forms.MessageBox;
 
 namespace ElectronicObserver.Window
 {
@@ -20,16 +25,13 @@ namespace ElectronicObserver.Window
 	public partial class FormWindowCapture : DockContent
 	{
 
-		public static readonly String WARNING_MESSAGE =
-				"This window will be captured. Are you sure?\r\n\r\n" +
-				"Warning: the captured window may become unstable and lead to loss of data.\r\n" +
-				"Save your data and return to port before capturing.";
+		public static string WarningMessage => Properties.Window.FormWindowCapture.WarningMessage;
 
-		private FormMain parent;
+		private object parent;
 
-		private List<FormIntegrate> capturedWindows = new List<FormIntegrate>();
+		public List<FormIntegrate> CapturedWindows { get; } = new();
 
-		public FormWindowCapture(FormMain parent)
+		public FormWindowCapture(object parent)
 		{
 			InitializeComponent();
 
@@ -50,7 +52,22 @@ namespace ElectronicObserver.Window
 		/// </summary>
 		public void AddCapturedWindow(FormIntegrate form)
 		{
-			capturedWindows.Add(form);
+			CapturedWindows.Add(form);
+			if (parent is FormMainViewModel main)
+			{
+				FormIntegrateViewModel? integrate = main.Views
+					.OfType<FormIntegrateViewModel>()
+					.FirstOrDefault(i => i.ContentId == form.PersistString);
+
+				if (integrate is not null)
+				{
+					integrate.WinformsControl = form;
+				}
+				else
+				{
+					main.Views.Add(new FormIntegrateViewModel(form, main) {Visibility = Visibility.Visible});
+				}
+			}
 		}
 
 		/// <summary>
@@ -58,7 +75,7 @@ namespace ElectronicObserver.Window
 		/// </summary>
 		public void AttachAll()
 		{
-			capturedWindows.ForEach(form => form.Grab());
+			CapturedWindows.ForEach(form => form.Grab());
 		}
 
 		/// <summary>
@@ -67,9 +84,9 @@ namespace ElectronicObserver.Window
 		public void DetachAll()
 		{
 			// ウィンドウのzオーダー維持のためデタッチはアタッチの逆順で行う
-			for (int i = capturedWindows.Count; i > 0; --i)
+			for (int i = CapturedWindows.Count; i > 0; --i)
 			{
-				capturedWindows[i - 1].Detach();
+				CapturedWindows[i - 1].Detach();
 			}
 		}
 
@@ -79,8 +96,16 @@ namespace ElectronicObserver.Window
 		public void CloseAll()
 		{
 			DetachAll();
-			capturedWindows.ForEach(form => form.Close());
-			capturedWindows.Clear();
+			CapturedWindows.ForEach(form => form.Close());
+			CapturedWindows.Clear();
+			if (parent is FormMainViewModel main)
+			{
+				List<FormIntegrateViewModel> integrates = main.Views.OfType<FormIntegrateViewModel>().ToList();
+				foreach (FormIntegrateViewModel integrate in integrates)
+				{
+					main.Views.Remove(integrate);
+				}
+			}
 		}
 
 		private void windowCaptureButton_WindowCaptured(IntPtr hWnd)
@@ -90,8 +115,9 @@ namespace ElectronicObserver.Window
 			StringBuilder stringBuilder = new StringBuilder(capacity);
 			WinAPI.GetWindowText(hWnd, stringBuilder, stringBuilder.Capacity);
 
-			if (MessageBox.Show(stringBuilder.ToString() + "\r\n" + WARNING_MESSAGE,
-				"Window Capture Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+			if (MessageBox.Show(stringBuilder.ToString() + "\r\n" + WarningMessage,
+				Properties.Window.FormWindowCapture.WindowCaptureConfirmation, 
+				MessageBoxButtons.YesNo, MessageBoxIcon.Question)
 				== System.Windows.Forms.DialogResult.Yes)
 			{
 
