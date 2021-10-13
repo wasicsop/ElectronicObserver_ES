@@ -36,7 +36,7 @@ namespace ElectronicObserver.Utility
 		/// <summary>
 		/// バージョン(英語)
 		/// </summary>
-		public static string VersionEnglish => "4.7.0";
+		public static string VersionEnglish => "5.0.0";
 
 
 		/// <summary>
