@@ -388,31 +388,31 @@
 		<ProjectReference Include="..\KancolleProgress\KancolleProgress.csproj" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="Dirkster.AvalonDock" Version="4.51.1" />
-		<PackageReference Include="Microsoft.AppCenter.Analytics" Version="4.3.0" />
-		<PackageReference Include="Microsoft.AppCenter.Crashes" Version="4.3.0" />
+		<PackageReference Include="Dirkster.AvalonDock" Version="4.60.0" />
+		<PackageReference Include="Microsoft.AppCenter.Analytics" Version="4.4.0" />
+		<PackageReference Include="Microsoft.AppCenter.Crashes" Version="4.4.0" />
 		<PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.1.0" />
-		<PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.31" />
+		<PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.37" />
 		<PackageReference Include="ModernWpfUI" Version="0.9.4" />
 		<PackageReference Include="PropertyChanged.Fody" Version="3.4.0" PrivateAssets="All" />
 		<PackageReference Include="DynaJson" Version="2.2.0" />
 		<PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
 		<PackageReference Include="Microsoft.VisualBasic" Version="10.3.0" />
 		<PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
-		<PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
+		<PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
 		<PackageReference Include="System.Diagnostics.EventLog" Version="5.0.1" />
 		<PackageReference Include="System.IO.FileSystem" Version="4.3.0" />
 		<PackageReference Include="System.Management" Version="5.0.0" />
 		<PackageReference Include="DiscordRichPresence" Version="1.0.175" />
-		<PackageReference Include="Grpc" Version="2.38.1" />
-		<PackageReference Include="Grpc.Core" Version="2.38.1" />
-		<PackageReference Include="Grpc.Core.Api" Version="2.38.1" />
+		<PackageReference Include="Grpc" Version="2.41.0" />
+		<PackageReference Include="Grpc.Core" Version="2.41.0" />
+		<PackageReference Include="Grpc.Core.Api" Version="2.41.0" />
 		<PackageReference Include="log4net" Version="2.0.12" />
 		<PackageReference Include="MagicOnion" Version="3.0.13" />
 		<PackageReference Include="MagicOnion.Abstractions" Version="3.0.13" />
 		<PackageReference Include="MagicOnion.Hosting" Version="3.0.13" />
-		<PackageReference Include="MessagePack" Version="2.2.85" />
-		<PackageReference Include="MessagePack.Annotations" Version="2.2.85" />
+		<PackageReference Include="MessagePack" Version="2.3.85" />
+		<PackageReference Include="MessagePack.Annotations" Version="2.3.85" />
 		<PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="5.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Configuration" Version="5.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="5.0.0" />
@@ -421,7 +421,7 @@
 		<PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="5.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="5.0.0" />
-		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.1" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.2" />
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
 		<PackageReference Include="Microsoft.Extensions.FileProviders.Abstractions" Version="5.0.0" />
 		<PackageReference Include="Microsoft.Extensions.FileProviders.Physical" Version="5.0.0" />
@@ -448,7 +448,7 @@
 		<PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.4" />
 		<PackageReference Include="System.Threading.Tasks.Parallel" Version="4.3.0" />
 		<PackageReference Include="System.Windows.Forms.DataVisualization" Version="1.0.0-prerelease.20110.1" />
-		<PackageReference Include="Titanium.Web.Proxy" Version="3.1.1344" />
+		<PackageReference Include="Titanium.Web.Proxy" Version="3.1.1397" />
 	</ItemGroup>
 	<ItemGroup>
 		<Compile Remove="Observer\kcsapi\api_start2.cs" />
