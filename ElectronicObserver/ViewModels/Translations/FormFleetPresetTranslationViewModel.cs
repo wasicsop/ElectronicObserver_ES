@@ -1,9 +1,8 @@
-﻿namespace ElectronicObserver.ViewModels.Translations
-{
-	public class FormFleetPresetTranslationViewModel : TranslationBaseViewModel
-	{
-		public string Title => Properties.Window.FormFleetPreset.Title;
+﻿namespace ElectronicObserver.ViewModels.Translations;
 
-		public string LowestCondition => Properties.Window.FormFleetPreset.LowestCondition;
-	}
+public class FormFleetPresetTranslationViewModel : TranslationBaseViewModel
+{
+	public string Title => Properties.Window.FormFleetPreset.Title;
+
+	public string LowestCondition => Properties.Window.FormFleetPreset.LowestCondition;
 }

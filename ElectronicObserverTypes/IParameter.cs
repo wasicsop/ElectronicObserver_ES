@@ -1,66 +1,65 @@
 ﻿using System;
 
-namespace ElectronicObserverTypes
+namespace ElectronicObserverTypes;
+
+public interface IParameter
 {
-	public interface IParameter
-	{
-		/// <summary>
-		/// 初期値(推測値)
-		/// </summary>
-		public int Minimum { get; }
+	/// <summary>
+	/// 初期値(推測値)
+	/// </summary>
+	public int Minimum { get; }
 
-		/// <summary>
-		/// 最大値
-		/// </summary>
-		public int Maximum { get; }
+	/// <summary>
+	/// 最大値
+	/// </summary>
+	public int Maximum { get; }
 
-		/// <summary>
-		/// 初期値の推測下限
-		/// </summary>
-		public int MinimumEstMin { get; }
+	/// <summary>
+	/// 初期値の推測下限
+	/// </summary>
+	public int MinimumEstMin { get; }
 
-		/// <summary>
-		/// 初期値の推測上限
-		/// </summary>
-		public int MinimumEstMax { get; }
+	/// <summary>
+	/// 初期値の推測上限
+	/// </summary>
+	public int MinimumEstMax { get; }
 
 
-		/// <summary>
-		/// 初期値がデフォルト状態かどうか
-		/// </summary>
-		public bool IsMinimumDefault { get; }
+	/// <summary>
+	/// 初期値がデフォルト状態かどうか
+	/// </summary>
+	public bool IsMinimumDefault { get; }
 
-		/// <summary>
-		/// 最大値がデフォルト状態かどうか
-		/// </summary>
-		public bool IsMaximumDefault { get; }
+	/// <summary>
+	/// 最大値がデフォルト状態かどうか
+	/// </summary>
+	public bool IsMaximumDefault { get; }
 
-		/// <summary>
-		/// 有効なデータか
-		/// </summary>
-		public bool IsAvailable { get; }
+	/// <summary>
+	/// 有効なデータか
+	/// </summary>
+	public bool IsAvailable { get; }
 
-		/// <summary>
-		/// 値が特定されているか
-		/// </summary>
-		public bool IsDetermined { get; }
+	/// <summary>
+	/// 値が特定されているか
+	/// </summary>
+	public bool IsDetermined { get; }
 
-		/// <summary>
-		/// パラメータを推測します。
-		/// </summary>
-		/// <param name="level">艦船のレベル。</param>
-		/// <param name="current">現在値。</param>
-		/// <param name="max">最大値。</param>
-		/// <returns>予測パラメータが範囲外の値をとったとき true 。</returns>
-		public bool SetEstParameter(int level, int current, int max);
+	/// <summary>
+	/// パラメータを推測します。
+	/// </summary>
+	/// <param name="level">艦船のレベル。</param>
+	/// <param name="current">現在値。</param>
+	/// <param name="max">最大値。</param>
+	/// <returns>予測パラメータが範囲外の値をとったとき true 。</returns>
+	public bool SetEstParameter(int level, int current, int max);
 
 
 
-		// level > 99 のとき、最小値と最大値が反転するため
-		public int GetEstParameterMin(int level);
+	// level > 99 のとき、最小値と最大値が反転するため
+	public int GetEstParameterMin(int level);
 
-		public int GetEstParameterMax(int level);
+	public int GetEstParameterMax(int level);
 
-		public int GetParameter(int level);
-	}
+	public int GetParameter(int level);
 }

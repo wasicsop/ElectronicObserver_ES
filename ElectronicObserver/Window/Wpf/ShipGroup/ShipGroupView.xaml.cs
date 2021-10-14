@@ -12,32 +12,31 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ElectronicObserver.Window.Wpf.ShipGroup.ViewModels;
 
-namespace ElectronicObserver.Window.Wpf.ShipGroup
+namespace ElectronicObserver.Window.Wpf.ShipGroup;
+
+/// <summary>
+/// Interaction logic for ShipGroupView.xaml
+/// </summary>
+public partial class ShipGroupView : UserControl
 {
-    /// <summary>
-    /// Interaction logic for ShipGroupView.xaml
-    /// </summary>
-    public partial class ShipGroupView : UserControl
-    {
-	    public static readonly DependencyProperty ViewModelProperty = DependencyProperty.Register(
-		    "ViewModel", typeof(ShipGroupViewModel), typeof(ShipGroupView), new PropertyMetadata(default(ShipGroupViewModel), PropertyChangedCallback));
+	public static readonly DependencyProperty ViewModelProperty = DependencyProperty.Register(
+		"ViewModel", typeof(ShipGroupViewModel), typeof(ShipGroupView), new PropertyMetadata(default(ShipGroupViewModel), PropertyChangedCallback));
 
-	    private static void PropertyChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
-	    {
-		    if (d is not ShipGroupView view) return;
+	private static void PropertyChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+	{
+		if (d is not ShipGroupView view) return;
 
-		    view.ViewModel.DataGrid = view.DataGrid;
-	    }
+		view.ViewModel.DataGrid = view.DataGrid;
+	}
 
-	    public ShipGroupViewModel ViewModel
-	    {
-		    get => (ShipGroupViewModel) GetValue(ViewModelProperty);
-		    set => SetValue(ViewModelProperty, value);
-	    }
+	public ShipGroupViewModel ViewModel
+	{
+		get => (ShipGroupViewModel) GetValue(ViewModelProperty);
+		set => SetValue(ViewModelProperty, value);
+	}
 
-	    public ShipGroupView()
-        {
-            InitializeComponent();
-        }
-    }
+	public ShipGroupView()
+	{
+		InitializeComponent();
+	}
 }

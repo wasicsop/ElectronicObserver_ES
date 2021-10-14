@@ -2,17 +2,16 @@
 using System.Windows.Controls;
 using ElectronicObserver.ViewModels;
 
-namespace ElectronicObserver
+namespace ElectronicObserver;
+
+public class ViewStyleSelector : StyleSelector
 {
-	public class ViewStyleSelector : StyleSelector
-	{
-		public Style? AnchorableStyle { get; set; }
+	public Style? AnchorableStyle { get; set; }
 		
-		public override Style? SelectStyle(object item, DependencyObject container) => item switch
-		{
-			AnchorableViewModel => AnchorableStyle,
+	public override Style? SelectStyle(object item, DependencyObject container) => item switch
+	{
+		AnchorableViewModel => AnchorableStyle,
 			
-			_ => base.SelectStyle(item, container)
-		};
-	}
+		_ => base.SelectStyle(item, container)
+	};
 }

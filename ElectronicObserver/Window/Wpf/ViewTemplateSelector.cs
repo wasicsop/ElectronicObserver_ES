@@ -11,50 +11,49 @@ using ElectronicObserver.Window.Wpf.FleetPreset;
 using ElectronicObserver.Window.Wpf.Headquarters;
 using ElectronicObserver.Window.Wpf.WinformsHost;
 
-namespace ElectronicObserver.Window.Wpf
+namespace ElectronicObserver.Window.Wpf;
+
+public class ViewTemplateSelector : DataTemplateSelector
 {
-	public class ViewTemplateSelector : DataTemplateSelector
+	public DataTemplate? Fleet { get; set; }
+	public DataTemplate? FleetOverview { get; set; }
+	public DataTemplate? Group { get; set; }
+	public DataTemplate? FleetPreset { get; set; }
+
+	public DataTemplate? Dock { get; set; }
+	public DataTemplate? Arsenal { get; set; }
+	public DataTemplate? BaseAirCorps { get; set; }
+
+	public DataTemplate? Headquarters { get; set; }
+	public DataTemplate? Quest { get; set; }
+	public DataTemplate? Information { get; set; }
+
+	public DataTemplate? Compass { get; set; }
+	public DataTemplate? Battle { get; set; }
+
+	public DataTemplate? BrowserHost { get; set; }
+	public DataTemplate? Log { get; set; }
+	public DataTemplate? Json { get; set; }
+
+	public DataTemplate? WinformsHost { get; set; }
+
+	public override DataTemplate? SelectTemplate(object item, DependencyObject container) => item switch
 	{
-		public DataTemplate? Fleet { get; set; }
-		public DataTemplate? FleetOverview { get; set; }
-		public DataTemplate? Group { get; set; }
-		public DataTemplate? FleetPreset { get; set; }
+		FleetViewModel => Fleet,
+		FleetOverviewViewModel => FleetOverview,
+		FleetPresetViewModel => FleetPreset,
 
-		public DataTemplate? Dock { get; set; }
-		public DataTemplate? Arsenal { get; set; }
-		public DataTemplate? BaseAirCorps { get; set; }
+		DockViewModel => Dock,
+		ArsenalViewModel => Arsenal,
+		BaseAirCorpsViewModel => BaseAirCorps,
 
-		public DataTemplate? Headquarters { get; set; }
-		public DataTemplate? Quest { get; set; }
-		public DataTemplate? Information { get; set; }
+		HeadquartersViewModel => Headquarters,
 
-		public DataTemplate? Compass { get; set; }
-		public DataTemplate? Battle { get; set; }
+		CompassViewModel => Compass,
+		BattleViewModel => Battle,
 
-		public DataTemplate? BrowserHost { get; set; }
-		public DataTemplate? Log { get; set; }
-		public DataTemplate? Json { get; set; }
+		WinformsHostViewModel => WinformsHost,
 
-		public DataTemplate? WinformsHost { get; set; }
-
-		public override DataTemplate? SelectTemplate(object item, DependencyObject container) => item switch
-		{
-			FleetViewModel => Fleet,
-			FleetOverviewViewModel => FleetOverview,
-			FleetPresetViewModel => FleetPreset,
-
-			DockViewModel => Dock,
-			ArsenalViewModel => Arsenal,
-			BaseAirCorpsViewModel => BaseAirCorps,
-
-			HeadquartersViewModel => Headquarters,
-
-			CompassViewModel => Compass,
-			BattleViewModel => Battle,
-
-			WinformsHostViewModel => WinformsHost,
-
-			_ => base.SelectTemplate(item, container)
-		};
-	}
+		_ => base.SelectTemplate(item, container)
+	};
 }

@@ -4,12 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ElectronicObserver.Observer.kcsapi.api_get_member
+namespace ElectronicObserver.Observer.kcsapi.api_get_member;
+
+public class record : APIBase
 {
-
-	public class record : APIBase
-	{
-		public override string APIName => "api_get_member/record";
-	}
-
+	public override string APIName => "api_get_member/record";
 }

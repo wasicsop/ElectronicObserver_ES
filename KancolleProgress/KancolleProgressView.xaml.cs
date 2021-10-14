@@ -3,38 +3,37 @@ using System.Windows.Controls;
 using ElectronicObserverTypes;
 using KancolleProgress.ViewModels;
 
-namespace KancolleProgress
+namespace KancolleProgress;
+
+/// <summary>
+/// Interaction logic for KancolleProgress.xaml
+/// </summary>
+public partial class KancolleProgressView : UserControl
 {
-	/// <summary>
-	/// Interaction logic for KancolleProgress.xaml
-	/// </summary>
-	public partial class KancolleProgressView : UserControl
+	public KancolleProgressViewModel ViewModel { get; }
+	internal static KancolleProgressViewModel Instance { get; private set; } = null!;
+
+	public IEnumerable<IShipData> UserShips
 	{
-		public KancolleProgressViewModel ViewModel { get; }
-		internal static KancolleProgressViewModel Instance { get; private set; } = null!;
+		set => ViewModel.UserShips = value;
+	}
 
-		public IEnumerable<IShipData> UserShips
-		{
-			set => ViewModel.UserShips = value;
-		}
+	public IEnumerable<IShipDataMaster> AllShips
+	{
+		set => ViewModel.AllShips = value;
+	}
 
-		public IEnumerable<IShipDataMaster> AllShips
-		{
-			set => ViewModel.AllShips = value;
-		}
+	public IEnumerable<IEquipmentData> UserEquipment
+	{
+		set => ViewModel.UserEquipment = value;
+	}
 
-		public IEnumerable<IEquipmentData> UserEquipment
-		{
-			set => ViewModel.UserEquipment = value;
-		}
+	public KancolleProgressView()
+	{
+		ViewModel = new KancolleProgressViewModel();
+		Instance = ViewModel;
+		DataContext = ViewModel;
 
-		public KancolleProgressView()
-		{
-			ViewModel = new KancolleProgressViewModel();
-			Instance = ViewModel;
-			DataContext = ViewModel;
-
-			InitializeComponent();
-		}
+		InitializeComponent();
 	}
 }

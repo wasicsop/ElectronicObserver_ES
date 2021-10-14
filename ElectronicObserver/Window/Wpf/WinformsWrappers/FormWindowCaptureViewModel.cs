@@ -4,23 +4,22 @@ using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Wpf.WinformsHost;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace ElectronicObserver.Window.Wpf.WinformsWrappers
+namespace ElectronicObserver.Window.Wpf.WinformsWrappers;
+
+public class FormWindowCaptureViewModel : WinformsHostViewModel
 {
-	public class FormWindowCaptureViewModel : WinformsHostViewModel
+	private FormWindowCaptureTranslationViewModel FormWindowCapture { get; }
+
+	public FormWindowCaptureViewModel(FormMainViewModel parent) : base("Window Capture", "WindowCapture",
+		ImageSourceIcons.GetIcon(IconContent.FormJson))
 	{
-		private FormWindowCaptureTranslationViewModel FormWindowCapture { get; }
+		FormWindowCapture = App.Current.Services.GetService<FormWindowCaptureTranslationViewModel>()!;
 
-		public FormWindowCaptureViewModel(FormMainViewModel parent) : base("Window Capture", "WindowCapture",
-			ImageSourceIcons.GetIcon(IconContent.FormJson))
-		{
-			FormWindowCapture = App.Current.Services.GetService<FormWindowCaptureTranslationViewModel>()!;
+		Title = FormWindowCapture.Title;
+		FormWindowCapture.PropertyChanged += (_, _) => Title = FormWindowCapture.Title;
 
-			Title = FormWindowCapture.Title;
-			FormWindowCapture.PropertyChanged += (_, _) => Title = FormWindowCapture.Title;
+		WinformsControl = new FormWindowCapture(parent) { TopLevel = false };
 
-			WinformsControl = new FormWindowCapture(parent) { TopLevel = false };
-
-			WindowsFormsHost.Child = WinformsControl;
-		}
+		WindowsFormsHost.Child = WinformsControl;
 	}
 }

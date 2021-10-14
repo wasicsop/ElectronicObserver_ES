@@ -5,17 +5,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ElectronicObserver.Observer.kcsapi.api_get_member
+namespace ElectronicObserver.Observer.kcsapi.api_get_member;
+
+public class preset_deck : APIBase
 {
-	public class preset_deck : APIBase
+	public override void OnResponseReceived(dynamic data)
 	{
-		public override void OnResponseReceived(dynamic data)
-		{
-			KCDatabase.Instance.FleetPreset.LoadFromResponse(APIName, data);
+		KCDatabase.Instance.FleetPreset.LoadFromResponse(APIName, data);
 
-			base.OnResponseReceived((object)data);
-		}
-
-		public override string APIName => "api_get_member/preset_deck";
+		base.OnResponseReceived((object)data);
 	}
+
+	public override string APIName => "api_get_member/preset_deck";
 }

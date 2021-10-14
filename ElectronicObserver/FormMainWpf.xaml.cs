@@ -11,30 +11,29 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using ElectronicObserver.ViewModels;
 
-namespace ElectronicObserver
+namespace ElectronicObserver;
+
+/// <summary>
+/// Interaction logic for FormMainWpf.xaml
+/// </summary>
+public partial class FormMainWpf : System.Windows.Window
 {
-	/// <summary>
-	/// Interaction logic for FormMainWpf.xaml
-	/// </summary>
-	public partial class FormMainWpf : System.Windows.Window
+	public static readonly DependencyProperty ViewModelProperty = DependencyProperty.Register(
+		"ViewModel", typeof(FormMainViewModel), typeof(FormMainWpf), new PropertyMetadata(default(FormMainViewModel)));
+
+	public FormMainViewModel ViewModel
 	{
-		public static readonly DependencyProperty ViewModelProperty = DependencyProperty.Register(
-			"ViewModel", typeof(FormMainViewModel), typeof(FormMainWpf), new PropertyMetadata(default(FormMainViewModel)));
+		get => (FormMainViewModel) GetValue(ViewModelProperty);
+		set => SetValue(ViewModelProperty, value);
+	}
 
-		public FormMainViewModel ViewModel
-		{
-			get => (FormMainViewModel) GetValue(ViewModelProperty);
-			set => SetValue(ViewModelProperty, value);
-		}
+	public FormMainWpf()
+	{
+		InitializeComponent();
 
-		public FormMainWpf()
-		{
-			InitializeComponent();
+		ViewModel = new(DockingManager, this);
 
-			ViewModel = new(DockingManager, this);
-
-			Loaded += (sender, _) => ViewModel.LoadLayout(sender);
-			Closed += (sender, _) => ViewModel.SaveLayout(sender);
-		}
+		Loaded += (sender, _) => ViewModel.LoadLayout(sender);
+		Closed += (sender, _) => ViewModel.SaveLayout(sender);
 	}
 }

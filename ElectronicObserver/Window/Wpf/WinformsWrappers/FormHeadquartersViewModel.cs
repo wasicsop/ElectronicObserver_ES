@@ -1,17 +1,16 @@
 ﻿using ElectronicObserver.Resource;
 using ElectronicObserver.Window.Wpf.WinformsHost;
 
-namespace ElectronicObserver.Window.Wpf.WinformsWrappers
-{
-	public class FormHeadquartersViewModel : WinformsHostViewModel
-	{
-		public FormHeadquartersViewModel() : base("HQ", "FormHeadquarters",
-			ImageSourceIcons.GetIcon(IconContent.FormHeadQuarters))
-		{
-			// todo remove parameter cause it's never used
-			WinformsControl = new FormHeadquarters(null!) { TopLevel = false };
+namespace ElectronicObserver.Window.Wpf.WinformsWrappers;
 
-			WindowsFormsHost.Child = WinformsControl;
-		}
+public class FormHeadquartersViewModel : WinformsHostViewModel
+{
+	public FormHeadquartersViewModel() : base("HQ", "FormHeadquarters",
+		ImageSourceIcons.GetIcon(IconContent.FormHeadQuarters))
+	{
+		// todo remove parameter cause it's never used
+		WinformsControl = new FormHeadquarters(null!) { TopLevel = false };
+
+		WindowsFormsHost.Child = WinformsControl;
 	}
 }

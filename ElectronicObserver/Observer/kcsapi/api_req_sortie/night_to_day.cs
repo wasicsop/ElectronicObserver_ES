@@ -5,21 +5,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ElectronicObserver.Observer.kcsapi.api_req_sortie
+namespace ElectronicObserver.Observer.kcsapi.api_req_sortie;
+
+public class night_to_day : APIBase
 {
-	public class night_to_day : APIBase
+
+	public override void OnResponseReceived(dynamic data)
 	{
 
-		public override void OnResponseReceived(dynamic data)
-		{
+		KCDatabase.Instance.Battle.LoadFromResponse(APIName, data);
+		KCDatabase.Instance.Replays.LoadFromResponse(APIName, data);
 
-			KCDatabase.Instance.Battle.LoadFromResponse(APIName, data);
-			KCDatabase.Instance.Replays.LoadFromResponse(APIName, data);
-
-			base.OnResponseReceived((object)data);
-		}
-
-
-		public override string APIName => "api_req_sortie/night_to_day";
+		base.OnResponseReceived((object)data);
 	}
+
+
+	public override string APIName => "api_req_sortie/night_to_day";
 }

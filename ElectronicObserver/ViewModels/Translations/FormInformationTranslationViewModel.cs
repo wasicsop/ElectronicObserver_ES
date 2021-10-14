@@ -1,7 +1,6 @@
-﻿namespace ElectronicObserver.ViewModels.Translations
+﻿namespace ElectronicObserver.ViewModels.Translations;
+
+public class FormInformationTranslationViewModel : TranslationBaseViewModel
 {
-	public class FormInformationTranslationViewModel : TranslationBaseViewModel
-	{
-		public string Title => Properties.Window.FormInformation.Title;
-	}
+	public string Title => Properties.Window.FormInformation.Title;
 }

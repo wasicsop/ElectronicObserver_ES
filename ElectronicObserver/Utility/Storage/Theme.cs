@@ -4,16 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ElectronicObserver.Utility.Storage
-{
-    public class Theme
-    {
-        public static string GetTheme(int mode)
-        {
-	        return mode == 0 ? LightMode : DarkMode;
-        }
+namespace ElectronicObserver.Utility.Storage;
 
-        const string LightMode = @"
+public class Theme
+{
+	public static string GetTheme(int mode)
+	{
+		return mode == 0 ? LightMode : DarkMode;
+	}
+
+	const string LightMode = @"
 			[
 				{
 					""name"": ""Light"",
@@ -177,7 +177,7 @@ namespace ElectronicObserver.Utility.Storage
 			]
 		";
 
-        const string DarkMode = @"
+	const string DarkMode = @"
 		[
 			{
 				""name"": ""Dark"",
@@ -340,5 +340,4 @@ namespace ElectronicObserver.Utility.Storage
 			}
 		]
 		";
-    }
 }

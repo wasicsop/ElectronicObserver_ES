@@ -3,25 +3,24 @@ using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Wpf.WinformsHost;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace ElectronicObserver.Window.Wpf.WinformsWrappers
+namespace ElectronicObserver.Window.Wpf.WinformsWrappers;
+
+// prefix with Form so it doesn't clash with the wpf versions
+public class FormBrowserHostViewModel : WinformsHostViewModel
 {
-	// prefix with Form so it doesn't clash with the wpf versions
-	public class FormBrowserHostViewModel : WinformsHostViewModel
+	public FormBrowserHostTranslationViewModel FormBrowserHost { get; }
+
+	public FormBrowserHostViewModel() : base("Browser", "Browser",
+		ImageSourceIcons.GetIcon(IconContent.FormBrowser))
 	{
-		public FormBrowserHostTranslationViewModel FormBrowserHost { get; }
+		FormBrowserHost = App.Current.Services.GetService<FormBrowserHostTranslationViewModel>()!;
 
-		public FormBrowserHostViewModel() : base("Browser", "Browser",
-			ImageSourceIcons.GetIcon(IconContent.FormBrowser))
-		{
-			FormBrowserHost = App.Current.Services.GetService<FormBrowserHostTranslationViewModel>()!;
+		Title = FormBrowserHost.Title;
+		FormBrowserHost.PropertyChanged += (_, _) => Title = FormBrowserHost.Title;
 
-			Title = FormBrowserHost.Title;
-			FormBrowserHost.PropertyChanged += (_, _) => Title = FormBrowserHost.Title;
+		// todo remove parameter cause it's never used
+		WinformsControl = new FormBrowserHost(null!) {TopLevel = false};
 
-			// todo remove parameter cause it's never used
-			WinformsControl = new FormBrowserHost(null!) {TopLevel = false};
-
-			WindowsFormsHost.Child = WinformsControl;
-		}
+		WindowsFormsHost.Child = WinformsControl;
 	}
 }

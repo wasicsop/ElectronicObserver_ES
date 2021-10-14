@@ -1,28 +1,27 @@
 ﻿using System;
 using ElectronicObserverTypes;
 
-namespace ElectronicObserver.Utility.Data
+namespace ElectronicObserver.Utility.Data;
+
+public static class Damage
 {
-	public static class Damage
+	public static int DayAttackCap => 220;
+	public static int NightAttackCap => 360;
+	public static int AswAttackCap => 170;
+
+	public static double Cap(double damage, double cap)
 	{
-		public static int DayAttackCap => 220;
-		public static int NightAttackCap => 360;
-		public static int AswAttackCap => 170;
+		if (damage < cap) return damage;
 
-		public static double Cap(double damage, double cap)
-		{
-			if (damage < cap) return damage;
-
-			return cap + Math.Sqrt(damage - cap);
-		}
-
-		public static double EngagementDayAttackMod(EngagementType form) => form switch
-		{
-			EngagementType.Parallel => 1.0,
-			EngagementType.HeadOn => 0.8,
-			EngagementType.TAdvantage => 1.2,
-			EngagementType.TDisadvantage => 0.6,
-			_ => 1.0
-		};
+		return cap + Math.Sqrt(damage - cap);
 	}
+
+	public static double EngagementDayAttackMod(EngagementType form) => form switch
+	{
+		EngagementType.Parallel => 1.0,
+		EngagementType.HeadOn => 0.8,
+		EngagementType.TAdvantage => 1.2,
+		EngagementType.TDisadvantage => 0.6,
+		_ => 1.0
+	};
 }

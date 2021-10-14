@@ -1,8 +1,7 @@
-﻿namespace ElectronicObserver.Window.Tools.DialogAlbumMasterShip
+﻿namespace ElectronicObserver.Window.Tools.DialogAlbumMasterShip;
+
+public enum EquipmentStatus
 {
-	public enum EquipmentStatus
-	{
-		Known,
-		Unknown
-	}
+	Known,
+	Unknown
 }

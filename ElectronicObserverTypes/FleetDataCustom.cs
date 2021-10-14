@@ -1,7 +1,6 @@
-﻿namespace ElectronicObserverTypes
+﻿namespace ElectronicObserverTypes;
+
+public class FleetDataCustom
 {
-	public class FleetDataCustom
-	{
 		
-	}
 }

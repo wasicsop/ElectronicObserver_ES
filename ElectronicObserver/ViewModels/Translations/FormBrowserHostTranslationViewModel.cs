@@ -1,7 +1,6 @@
-﻿namespace ElectronicObserver.ViewModels.Translations
+﻿namespace ElectronicObserver.ViewModels.Translations;
+
+public class FormBrowserHostTranslationViewModel : TranslationBaseViewModel
 {
-	public class FormBrowserHostTranslationViewModel : TranslationBaseViewModel
-	{
-		public string Title => Properties.Window.FormBrowserHost.Title;
-	}
+	public string Title => Properties.Window.FormBrowserHost.Title;
 }

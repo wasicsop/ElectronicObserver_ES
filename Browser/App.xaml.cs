@@ -6,133 +6,132 @@ using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace Browser
+namespace Browser;
+
+/// <summary>
+/// Interaction logic for App.xaml
+/// </summary>
+public partial class App : Application
 {
-	/// <summary>
-	/// Interaction logic for App.xaml
-	/// </summary>
-	public partial class App : Application
+	public new static App Current => (App)Application.Current;
+	public IServiceProvider Services { get; set; } = default!;
+
+	public App()
 	{
-		public new static App Current => (App)Application.Current;
-		public IServiceProvider Services { get; set; } = default!;
+		this.InitializeComponent();
+	}
 
-		public App()
+	protected override void OnStartup(StartupEventArgs e)
+	{
+		// Debugger.Launch();
+		// string host = "test";
+		// int port = 1;
+		// string culture = "en-US";
+		// FormBrowserHostから起動された時は引数に通信用URLが渡される
+			
+		if (e.Args.Length < 2)
 		{
-			this.InitializeComponent();
+			MessageBox.Show("Please start the application using ElectronicObserver.exe",
+				"Information", MessageBoxButton.OK, MessageBoxImage.Information);
+			return;
 		}
-
-		protected override void OnStartup(StartupEventArgs e)
+			
+		/*
+		System.Windows.Forms.Application.EnableVisualStyles();
+		System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
+		*/
+		System.AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
+			
+		string host = e.Args[0];
+		if (!int.TryParse(e.Args[1], out int port))
 		{
-			// Debugger.Launch();
-			// string host = "test";
-			// int port = 1;
-			// string culture = "en-US";
-			// FormBrowserHostから起動された時は引数に通信用URLが渡される
-			
-			if (e.Args.Length < 2)
-			{
-				MessageBox.Show("Please start the application using ElectronicObserver.exe",
-					"Information", MessageBoxButton.OK, MessageBoxImage.Information);
-				return;
-			}
-			
-			/*
-			System.Windows.Forms.Application.EnableVisualStyles();
-			System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
-			*/
-			System.AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
-			
-			string host = e.Args[0];
-			if (!int.TryParse(e.Args[1], out int port))
-			{
-				MessageBox.Show("Please start the application using ElectronicObserver.exe",
-					"Information", MessageBoxButton.OK, MessageBoxImage.Information);
-				return;
-			}
-			string culture = e.Args.Length switch
-			{
-				> 2 => e.Args[2],
-				_ => CultureInfo.CurrentCulture.Name switch
-				{
-					"ja-JP" => "ja-JP",
-					_ => "en-US"
-				}
-			};
-
-			ServiceCollection services = new();
-
-			services.AddSingleton<FormBrowserTranslationViewModel>();
-
-			Services = services.BuildServiceProvider();
-
-			// System.Windows.Forms.Application.Run(new FormBrowser(e.Args[0], port, culture));
-
-			ToolTipService.ShowDurationProperty.OverrideMetadata(
-				typeof(DependencyObject), new FrameworkPropertyMetadata(int.MaxValue));
-
-			new BrowserView(host, port, culture).ShowDialog();
+			MessageBox.Show("Please start the application using ElectronicObserver.exe",
+				"Information", MessageBoxButton.OK, MessageBoxImage.Information);
+			return;
 		}
-
-		private static System.Reflection.Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args)
+		string culture = e.Args.Length switch
 		{
-			if (args.Name.StartsWith("CefSharp"))
+			> 2 => e.Args[2],
+			_ => CultureInfo.CurrentCulture.Name switch
 			{
-				string asmname = args.Name.Split(",".ToCharArray(), 2)[0] + ".dll";
-				string arch = System.IO.Path.Combine(AppDomain.CurrentDomain.SetupInformation.ApplicationBase, Environment.Is64BitProcess ? "x64" : "x86", asmname);
+				"ja-JP" => "ja-JP",
+				_ => "en-US"
+			}
+		};
 
-				if (!System.IO.File.Exists(arch))
-					return null;
+		ServiceCollection services = new();
 
-				try
-				{
-					return System.Reflection.Assembly.LoadFile(arch);
-				}
-				catch (IOException ex) when (ex is FileNotFoundException || ex is FileLoadException)
-				{
-					if (MessageBox.Show(
-						    $@"The browser component could not be loaded.
+		services.AddSingleton<FormBrowserTranslationViewModel>();
+
+		Services = services.BuildServiceProvider();
+
+		// System.Windows.Forms.Application.Run(new FormBrowser(e.Args[0], port, culture));
+
+		ToolTipService.ShowDurationProperty.OverrideMetadata(
+			typeof(DependencyObject), new FrameworkPropertyMetadata(int.MaxValue));
+
+		new BrowserView(host, port, culture).ShowDialog();
+	}
+
+	private static System.Reflection.Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args)
+	{
+		if (args.Name.StartsWith("CefSharp"))
+		{
+			string asmname = args.Name.Split(",".ToCharArray(), 2)[0] + ".dll";
+			string arch = System.IO.Path.Combine(AppDomain.CurrentDomain.SetupInformation.ApplicationBase, Environment.Is64BitProcess ? "x64" : "x86", asmname);
+
+			if (!System.IO.File.Exists(arch))
+				return null;
+
+			try
+			{
+				return System.Reflection.Assembly.LoadFile(arch);
+			}
+			catch (IOException ex) when (ex is FileNotFoundException || ex is FileLoadException)
+			{
+				if (MessageBox.Show(
+					    $@"The browser component could not be loaded.
 Microsoft Visual C++ 2015 Redistributable is required.
 Open the download page?
 (Please install vc_redist.{(Environment.Is64BitProcess ? "x64" : "x86")}.exe)",
-						    "CefSharp Load Error", MessageBoxButton.YesNo, MessageBoxImage.Error, MessageBoxResult.Yes)
-					    == MessageBoxResult.Yes)
-					{
-						ProcessStartInfo psi = new ProcessStartInfo
-						{
-							FileName = @"https://www.microsoft.com/en-US/download/details.aspx?id=53587",
-							UseShellExecute = true
-						};
-						Process.Start(psi);
-					}
-
-					// なんにせよ今回は起動できないのであきらめる
-					throw;
-				}
-				catch (NotSupportedException)
+					    "CefSharp Load Error", MessageBoxButton.YesNo, MessageBoxImage.Error, MessageBoxResult.Yes)
+				    == MessageBoxResult.Yes)
 				{
-					// 概ね ZoneID を外し忘れているのが原因
+					ProcessStartInfo psi = new ProcessStartInfo
+					{
+						FileName = @"https://www.microsoft.com/en-US/download/details.aspx?id=53587",
+						UseShellExecute = true
+					};
+					Process.Start(psi);
+				}
 
-					if (MessageBox.Show(
-						    @"Browser startup failed.
+				// なんにせよ今回は起動できないのであきらめる
+				throw;
+			}
+			catch (NotSupportedException)
+			{
+				// 概ね ZoneID を外し忘れているのが原因
+
+				if (MessageBox.Show(
+					    @"Browser startup failed.
 This may be caused by the fact that the operation required for installation has not been performed.
 Do you want to open the installation guide?",
-						    "Browser Load Failed", MessageBoxButton.YesNo, MessageBoxImage.Error)
-					    == MessageBoxResult.Yes)
+					    "Browser Load Failed", MessageBoxButton.YesNo, MessageBoxImage.Error)
+				    == MessageBoxResult.Yes)
+				{
+					ProcessStartInfo psi = new ProcessStartInfo
 					{
-						ProcessStartInfo psi = new ProcessStartInfo
-						{
-							FileName = @"https://github.com/andanteyk/ElectronicObserver/wiki/Install",
-							UseShellExecute = true
-						};
-						Process.Start(psi);
-					}
-
-					// なんにせよ今回は起動できないのであきらめる
-					throw;
+						FileName = @"https://github.com/andanteyk/ElectronicObserver/wiki/Install",
+						UseShellExecute = true
+					};
+					Process.Start(psi);
 				}
-			}
-			return null;
-		}
 
+				// なんにせよ今回は起動できないのであきらめる
+				throw;
+			}
+		}
+		return null;
 	}
+
 }

@@ -3,24 +3,23 @@ using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Wpf.WinformsHost;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace ElectronicObserver.Window.Wpf.WinformsWrappers
+namespace ElectronicObserver.Window.Wpf.WinformsWrappers;
+
+public class FormShipGroupViewModel : WinformsHostViewModel
 {
-	public class FormShipGroupViewModel : WinformsHostViewModel
+	public FormShipGroupTranslationViewModel FormShipGroup { get; }
+
+	public FormShipGroupViewModel() : base("Group", "ShipGroup",
+		ImageSourceIcons.GetIcon(IconContent.FormShipGroup))
 	{
-		public FormShipGroupTranslationViewModel FormShipGroup { get; }
+		FormShipGroup = App.Current.Services.GetService<FormShipGroupTranslationViewModel>()!;
 
-		public FormShipGroupViewModel() : base("Group", "ShipGroup",
-			ImageSourceIcons.GetIcon(IconContent.FormShipGroup))
-		{
-			FormShipGroup = App.Current.Services.GetService<FormShipGroupTranslationViewModel>()!;
+		Title = FormShipGroup.Title;
+		FormShipGroup.PropertyChanged += (_, _) => Title = FormShipGroup.Title;
 
-			Title = FormShipGroup.Title;
-			FormShipGroup.PropertyChanged += (_, _) => Title = FormShipGroup.Title;
+		// todo remove parameter cause it's never used
+		WinformsControl = new FormShipGroup(null!) { TopLevel = false };
 
-			// todo remove parameter cause it's never used
-			WinformsControl = new FormShipGroup(null!) { TopLevel = false };
-
-			WindowsFormsHost.Child = WinformsControl;
-		}
+		WindowsFormsHost.Child = WinformsControl;
 	}
 }

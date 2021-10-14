@@ -1,17 +1,16 @@
 ﻿using ElectronicObserver.Resource;
 using ElectronicObserver.Window.Wpf.WinformsHost;
 
-namespace ElectronicObserver.Window.Wpf.WinformsWrappers
-{
-	public class FormJsonViewModel : WinformsHostViewModel
-	{
-		public FormJsonViewModel() : base("JSON", "Json",
-			ImageSourceIcons.GetIcon(IconContent.FormJson))
-		{
-			// todo remove parameter cause it's never used
-			WinformsControl = new FormJson(null!) { TopLevel = false };
+namespace ElectronicObserver.Window.Wpf.WinformsWrappers;
 
-			WindowsFormsHost.Child = WinformsControl;
-		}
+public class FormJsonViewModel : WinformsHostViewModel
+{
+	public FormJsonViewModel() : base("JSON", "Json",
+		ImageSourceIcons.GetIcon(IconContent.FormJson))
+	{
+		// todo remove parameter cause it's never used
+		WinformsControl = new FormJson(null!) { TopLevel = false };
+
+		WindowsFormsHost.Child = WinformsControl;
 	}
 }

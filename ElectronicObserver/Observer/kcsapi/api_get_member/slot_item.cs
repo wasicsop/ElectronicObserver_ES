@@ -5,37 +5,32 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ElectronicObserver.Observer.kcsapi.api_get_member
+namespace ElectronicObserver.Observer.kcsapi.api_get_member;
+
+public class slot_item : APIBase
 {
 
 
-	public class slot_item : APIBase
+	public override void OnResponseReceived(dynamic data)
 	{
 
+		KCDatabase db = KCDatabase.Instance;
 
-		public override void OnResponseReceived(dynamic data)
+
+		db.Equipments.Clear();
+		foreach (var elem in data)
 		{
 
-			KCDatabase db = KCDatabase.Instance;
+			var eq = new EquipmentData();
+			eq.LoadFromResponse(APIName, elem);
+			db.Equipments.Add(eq);
 
-
-			db.Equipments.Clear();
-			foreach (var elem in data)
-			{
-
-				var eq = new EquipmentData();
-				eq.LoadFromResponse(APIName, elem);
-				db.Equipments.Add(eq);
-
-			}
-
-			db.Battle.LoadFromResponse(APIName, data);
-
-			base.OnResponseReceived((object)data);
 		}
 
-		public override string APIName => "api_get_member/slot_item";
+		db.Battle.LoadFromResponse(APIName, data);
+
+		base.OnResponseReceived((object)data);
 	}
 
-
+	public override string APIName => "api_get_member/slot_item";
 }

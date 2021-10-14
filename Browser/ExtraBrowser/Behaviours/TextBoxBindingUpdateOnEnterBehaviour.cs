@@ -2,27 +2,26 @@
 using System.Windows.Input;
 using Microsoft.Xaml.Behaviors;
 
-namespace Browser.ExtraBrowser.Behaviours
+namespace Browser.ExtraBrowser.Behaviours;
+
+public class TextBoxBindingUpdateOnEnterBehaviour : Behavior<TextBox>
 {
-    public class TextBoxBindingUpdateOnEnterBehaviour : Behavior<TextBox>
-    {
-        protected override void OnAttached()
-        {
-            AssociatedObject.KeyDown += OnTextBoxKeyDown;
-        }
+	protected override void OnAttached()
+	{
+		AssociatedObject.KeyDown += OnTextBoxKeyDown;
+	}
 
-        protected override void OnDetaching()
-        {
-            AssociatedObject.KeyDown -= OnTextBoxKeyDown;
-        }
+	protected override void OnDetaching()
+	{
+		AssociatedObject.KeyDown -= OnTextBoxKeyDown;
+	}
 
-        private void OnTextBoxKeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Enter)
-            {
-                var txtBox = sender as TextBox;
-                txtBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
-            }
-        }
-    }
+	private void OnTextBoxKeyDown(object sender, KeyEventArgs e)
+	{
+		if (e.Key == Key.Enter)
+		{
+			var txtBox = sender as TextBox;
+			txtBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+		}
+	}
 }

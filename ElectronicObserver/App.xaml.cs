@@ -12,132 +12,131 @@ using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace ElectronicObserver
+namespace ElectronicObserver;
+
+/// <summary>
+/// Interaction logic for App.xaml
+/// </summary>
+public partial class App : Application
 {
-	/// <summary>
-	/// Interaction logic for App.xaml
-	/// </summary>
-	public partial class App : Application
+	public new static App Current => (App)Application.Current;
+	public IServiceProvider Services { get; set; } = default!;
+
+	public App()
 	{
-		public new static App Current => (App)Application.Current;
-		public IServiceProvider Services { get; set; } = default!;
+		this.InitializeComponent();
+	}
 
-		public App()
+	protected override void OnStartup(StartupEventArgs e)
+	{
+		bool allowMultiInstance = e.Args.Contains("-m") || e.Args.Contains("--multi-instance");
+
+
+		using (var mutex = new Mutex(false, Application.ResourceAssembly.Location.Replace('\\', '/'),
+			out var created))
 		{
-			this.InitializeComponent();
-		}
 
-		protected override void OnStartup(StartupEventArgs e)
-		{
-			bool allowMultiInstance = e.Args.Contains("-m") || e.Args.Contains("--multi-instance");
+			/*
+			bool hasHandle = false;
 
-
-			using (var mutex = new Mutex(false, Application.ResourceAssembly.Location.Replace('\\', '/'),
-				out var created))
+			try
 			{
+				hasHandle = mutex.WaitOne(0, false);
+			}
+			catch (AbandonedMutexException)
+			{
+				hasHandle = true;
+			}
+			*/
 
-				/*
-				bool hasHandle = false;
+			if (!created && !allowMultiInstance)
+			{
+				// 多重起動禁止
+				MessageBox.Show(
+					"Electronic Observer already started.\r\nIn case of false positive, start using option -m via commandline.",
+					Utility.SoftwareInformation.SoftwareNameEnglish,
+					MessageBoxButton.OK,
+					MessageBoxImage.Exclamation
+				);
+				return;
+			}
 
+			System.Windows.Forms.Application.EnableVisualStyles();
+			System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
+
+			// hack: needed for running the winforms version
+			// remove this and the Shutdown call when moving to wpf only
+			// ShutdownMode = ShutdownMode.OnExplicitShutdown;
+
+			AppCenter.Start("7fdbafa0-058a-4691-b317-a700be513b95", typeof(Analytics), typeof(Crashes));
+
+			if (true)
+			{
 				try
 				{
-					hasHandle = mutex.WaitOne(0, false);
+					Directory.CreateDirectory(@"Settings\Layout");
 				}
-				catch (AbandonedMutexException)
+				catch (UnauthorizedAccessException)
 				{
-					hasHandle = true;
-				}
-				*/
-
-				if (!created && !allowMultiInstance)
-				{
-					// 多重起動禁止
-					MessageBox.Show(
-						"Electronic Observer already started.\r\nIn case of false positive, start using option -m via commandline.",
-						Utility.SoftwareInformation.SoftwareNameEnglish,
-						MessageBoxButton.OK,
-						MessageBoxImage.Exclamation
-					);
-					return;
+					MessageBox.Show(ElectronicObserver.Properties.Window.FormMain.MissingPermissions, 
+						ElectronicObserver.Properties.Window.FormMain.ErrorCaption, 
+						MessageBoxButton.OK, MessageBoxImage.Error);
+					throw;
 				}
 
-				System.Windows.Forms.Application.EnableVisualStyles();
-				System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
+				Configuration.Instance.Load();
 
-				// hack: needed for running the winforms version
-				// remove this and the Shutdown call when moving to wpf only
-				// ShutdownMode = ShutdownMode.OnExplicitShutdown;
+				Services = ConfigureServices();
 
-				AppCenter.Start("7fdbafa0-058a-4691-b317-a700be513b95", typeof(Analytics), typeof(Crashes));
-
-				if (true)
-				{
-					try
-					{
-						Directory.CreateDirectory(@"Settings\Layout");
-					}
-					catch (UnauthorizedAccessException)
-					{
-						MessageBox.Show(ElectronicObserver.Properties.Window.FormMain.MissingPermissions, 
-							ElectronicObserver.Properties.Window.FormMain.ErrorCaption, 
-							MessageBoxButton.OK, MessageBoxImage.Error);
-						throw;
-					}
-
-					Configuration.Instance.Load();
-
-					Services = ConfigureServices();
-
-					ToolTipService.ShowDurationProperty.OverrideMetadata(
-						typeof(DependencyObject), new FrameworkPropertyMetadata(int.MaxValue));
-					ToolTipService.InitialShowDelayProperty.OverrideMetadata(
-						typeof(DependencyObject), new FrameworkPropertyMetadata(0));
-					new FormMainWpf().ShowDialog();
-				}
-				else
-				{
-					try
-					{
-						// todo why does this exception happen?
-						// observed first after I added the wpf version of KC progress
-						System.Windows.Forms.Application.Run(new FormMain());
-					}
-					catch (System.Runtime.InteropServices.SEHException ex)
-					{
-
-					}
-				}
-
-				// Shutdown();
+				ToolTipService.ShowDurationProperty.OverrideMetadata(
+					typeof(DependencyObject), new FrameworkPropertyMetadata(int.MaxValue));
+				ToolTipService.InitialShowDelayProperty.OverrideMetadata(
+					typeof(DependencyObject), new FrameworkPropertyMetadata(0));
+				new FormMainWpf().ShowDialog();
 			}
+			else
+			{
+				try
+				{
+					// todo why does this exception happen?
+					// observed first after I added the wpf version of KC progress
+					System.Windows.Forms.Application.Run(new FormMain());
+				}
+				catch (System.Runtime.InteropServices.SEHException ex)
+				{
+
+				}
+			}
+
+			// Shutdown();
 		}
+	}
 
-		private IServiceProvider ConfigureServices()
-		{
-			ServiceCollection services = new();
+	private IServiceProvider ConfigureServices()
+	{
+		ServiceCollection services = new();
 
-			services.AddSingleton<FormArsenalTranslationViewModel>();
-			services.AddSingleton<FormBaseAirCorpsTranslationViewModel>();
-			services.AddSingleton<FormBattleTranslationViewModel>();
-			services.AddSingleton<FormBrowserHostTranslationViewModel>();
-			services.AddSingleton<FormCompassTranslationViewModel>();
-			services.AddSingleton<FormDockTranslationViewModel>();
-			services.AddSingleton<FormFleetTranslationViewModel>();
-			services.AddSingleton<FormFleetOverviewTranslationViewModel>();
-			services.AddSingleton<FormFleetPresetTranslationViewModel>();
-			services.AddSingleton<FormHeadquartersTranslationViewModel>();
-			services.AddSingleton<FormInformationTranslationViewModel>();
-			services.AddSingleton<FormJsonTranslationViewModel>();
-			services.AddSingleton<FormLogTranslationViewModel>();
-			services.AddSingleton<FormMainTranslationViewModel>();
-			services.AddSingleton<FormQuestTranslationViewModel>();
-			services.AddSingleton<FormShipGroupTranslationViewModel>();
-			services.AddSingleton<FormWindowCaptureTranslationViewModel>();
+		services.AddSingleton<FormArsenalTranslationViewModel>();
+		services.AddSingleton<FormBaseAirCorpsTranslationViewModel>();
+		services.AddSingleton<FormBattleTranslationViewModel>();
+		services.AddSingleton<FormBrowserHostTranslationViewModel>();
+		services.AddSingleton<FormCompassTranslationViewModel>();
+		services.AddSingleton<FormDockTranslationViewModel>();
+		services.AddSingleton<FormFleetTranslationViewModel>();
+		services.AddSingleton<FormFleetOverviewTranslationViewModel>();
+		services.AddSingleton<FormFleetPresetTranslationViewModel>();
+		services.AddSingleton<FormHeadquartersTranslationViewModel>();
+		services.AddSingleton<FormInformationTranslationViewModel>();
+		services.AddSingleton<FormJsonTranslationViewModel>();
+		services.AddSingleton<FormLogTranslationViewModel>();
+		services.AddSingleton<FormMainTranslationViewModel>();
+		services.AddSingleton<FormQuestTranslationViewModel>();
+		services.AddSingleton<FormShipGroupTranslationViewModel>();
+		services.AddSingleton<FormWindowCaptureTranslationViewModel>();
 
-			services.AddSingleton<DialogAlbumMasterShipTranslationViewModel>();
-			services.AddSingleton<DialogAlbumMasterEquipmentTranslationViewModel>();
+		services.AddSingleton<DialogAlbumMasterShipTranslationViewModel>();
+		services.AddSingleton<DialogAlbumMasterEquipmentTranslationViewModel>();
 			
-			return services.BuildServiceProvider();
-		}
+		return services.BuildServiceProvider();
 	}
 }

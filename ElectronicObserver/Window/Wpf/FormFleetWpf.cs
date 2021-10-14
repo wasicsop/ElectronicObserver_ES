@@ -15,35 +15,34 @@ using ElectronicObserver.Window.Wpf.Fleet;
 using ElectronicObserverTypes;
 using WeifenLuo.WinFormsUI.Docking;
 
-namespace ElectronicObserver.Window.Wpf
+namespace ElectronicObserver.Window.Wpf;
+
+public partial class FormFleetWpf : DockContent
 {
-	public partial class FormFleetWpf : DockContent
+	private ElementHost WpfHost { get; } = new();
+	private FleetView FleetView { get; }
+
+	public FormFleetWpf(int fleetId)
 	{
-		private ElementHost WpfHost { get; } = new();
-		private FleetView FleetView { get; }
+		FleetView = new(fleetId, SetIcon);
 
-		public FormFleetWpf(int fleetId)
-		{
-			FleetView = new(fleetId, SetIcon);
+		InitializeComponent();
 
-			InitializeComponent();
+		HideOnClose = true;
 
-			HideOnClose = true;
+		WpfHost.Dock = DockStyle.Fill;
+		WpfHost.Child = FleetView;
 
-			WpfHost.Dock = DockStyle.Fill;
-			WpfHost.Child = FleetView;
+		Controls.Add(WpfHost);
 
-			Controls.Add(WpfHost);
+		Text = $"#{fleetId}";
+		Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[(int)IconContent.FormFleet]);
+	}
 
-			Text = $"#{fleetId}";
-			Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[(int)IconContent.FormFleet]);
-		}
-
-		private void SetIcon(IconContent icon)
-		{
-			if (Icon != null) ResourceManager.DestroyIcon(Icon);
-			Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[(int)icon]);
-			// Refresh();
-		}
+	private void SetIcon(IconContent icon)
+	{
+		if (Icon != null) ResourceManager.DestroyIcon(Icon);
+		Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[(int)icon]);
+		// Refresh();
 	}
 }

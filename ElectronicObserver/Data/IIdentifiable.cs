@@ -4,16 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ElectronicObserver.Data
+namespace ElectronicObserver.Data;
+
+/// <summary>
+/// 固有のIDを取得できることを示します。
+/// </summary>
+public interface IIdentifiable
 {
-
-	/// <summary>
-	/// 固有のIDを取得できることを示します。
-	/// </summary>
-	public interface IIdentifiable
-	{
-		public int ID { get; }
-
-	}
+	public int ID { get; }
 
 }

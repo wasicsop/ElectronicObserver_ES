@@ -1,12 +1,11 @@
-﻿namespace BrowserLibCore
+﻿namespace BrowserLibCore;
+
+public interface IBrowser
 {
-	public interface IBrowser
-	{
-		void ConfigurationChanged();
-		void InitialAPIReceived();
-		void Navigate(string url);
-		void CloseBrowser();
-		void SetProxy(string v);
-		void OpenExtraBrowser();
-	}
+	void ConfigurationChanged();
+	void InitialAPIReceived();
+	void Navigate(string url);
+	void CloseBrowser();
+	void SetProxy(string v);
+	void OpenExtraBrowser();
 }

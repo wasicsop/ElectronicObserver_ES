@@ -8,123 +8,122 @@ using System.Text;
 using System.Threading.Tasks;
 using DynaJson;
 
-namespace ElectronicObserver.Utility
+namespace ElectronicObserver.Utility;
+
+/// <summary>
+/// ソフトウェアの情報を保持します。
+/// </summary>
+public static class SoftwareInformation
 {
 	/// <summary>
-	/// ソフトウェアの情報を保持します。
+	/// ソフトウェア名(日本語)
 	/// </summary>
-	public static class SoftwareInformation
+	public static string SoftwareNameJapanese => "七四式電子観測儀";
+
+
+	/// <summary>
+	/// ソフトウェア名(英語)
+	/// </summary>
+	public static string SoftwareNameEnglish => "Electronic Observer";
+
+
+	/// <summary>
+	/// バージョン(日本語, ソフトウェア名を含みます)
+	/// </summary>
+	public static string VersionJapanese => SoftwareNameJapanese + "四七型";
+
+
+	/// <summary>
+	/// バージョン(英語)
+	/// </summary>
+	public static string VersionEnglish => "5.0.0";
+
+
+	/// <summary>
+	/// 更新日時
+	/// </summary>
+	public static DateTime UpdateTime => DateTimeHelper.CSVStringToTime("2021/09/21 12:00:00");
+
+
+	private static System.Net.WebClient? Client { get; set; }
+
+	private static Uri Uri { get; } =
+		new Uri(
+			"http://raw.githubusercontent.com/gre4bee/ryuukitsune.github.io/master/Translations/en-US/update.json");
+
+	public static void CheckUpdate()
 	{
-		/// <summary>
-		/// ソフトウェア名(日本語)
-		/// </summary>
-		public static string SoftwareNameJapanese => "七四式電子観測儀";
+		if (!Configuration.Config.Life.CheckUpdateInformation) return;
 
-
-		/// <summary>
-		/// ソフトウェア名(英語)
-		/// </summary>
-		public static string SoftwareNameEnglish => "Electronic Observer";
-
-
-		/// <summary>
-		/// バージョン(日本語, ソフトウェア名を含みます)
-		/// </summary>
-		public static string VersionJapanese => SoftwareNameJapanese + "四七型";
-
-
-		/// <summary>
-		/// バージョン(英語)
-		/// </summary>
-		public static string VersionEnglish => "5.0.0";
-
-
-		/// <summary>
-		/// 更新日時
-		/// </summary>
-		public static DateTime UpdateTime => DateTimeHelper.CSVStringToTime("2021/09/21 12:00:00");
-
-
-		private static System.Net.WebClient? Client { get; set; }
-
-		private static Uri Uri { get; } =
-			new Uri(
-				"http://raw.githubusercontent.com/gre4bee/ryuukitsune.github.io/master/Translations/en-US/update.json");
-
-		public static void CheckUpdate()
+		if (Client == null)
 		{
-			if (!Configuration.Config.Life.CheckUpdateInformation) return;
-
-			if (Client == null)
+			Client = new System.Net.WebClient
 			{
-				Client = new System.Net.WebClient
-				{
-					Encoding = new UTF8Encoding(false)
-				};
-				Client.DownloadStringCompleted += DownloadStringCompleted;
-			}
-
-			if (!Client.IsBusy)
-				Client.DownloadStringAsync(Uri);
+				Encoding = new UTF8Encoding(false)
+			};
+			Client.DownloadStringCompleted += DownloadStringCompleted;
 		}
 
-		private static void DownloadStringCompleted(object sender, System.Net.DownloadStringCompletedEventArgs e)
+		if (!Client.IsBusy)
+			Client.DownloadStringAsync(Uri);
+	}
+
+	private static void DownloadStringCompleted(object sender, System.Net.DownloadStringCompletedEventArgs e)
+	{
+		if (e.Error != null)
 		{
-			if (e.Error != null)
-			{
-				ErrorReporter.SendErrorReport(e.Error, Properties.Utility.SoftwareInformation.FailedToObtainUpdateData);
-				return;
-			}
+			ErrorReporter.SendErrorReport(e.Error, Properties.Utility.SoftwareInformation.FailedToObtainUpdateData);
+			return;
+		}
 
-			if (e.Result.StartsWith("<!DOCTYPE html>"))
-			{
-				Logger.Add(3, Properties.Utility.SoftwareInformation.InvalidUpdateUrl);
-				return;
-			}
+		if (e.Result.StartsWith("<!DOCTYPE html>"))
+		{
+			Logger.Add(3, Properties.Utility.SoftwareInformation.InvalidUpdateUrl);
+			return;
+		}
 
-			try
-			{
-				var json = JsonObject.Parse(e.Result);
-				DateTime date = DateTimeHelper.CSVStringToTime(json.bld_date);
-				string version = json.ver;
-				string description = json.note.Replace("<br>", "\r\n");
+		try
+		{
+			var json = JsonObject.Parse(e.Result);
+			DateTime date = DateTimeHelper.CSVStringToTime(json.bld_date);
+			string version = json.ver;
+			string description = json.note.Replace("<br>", "\r\n");
 
-				if (UpdateTime < date)
+			if (UpdateTime < date)
+			{
+				Logger.Add(3, Resources.NewVersionFound + version);
+				Task.Run(() => SoftwareUpdater.UpdateSoftware());
+
+				var result = System.Windows.Forms.MessageBox.Show(
+					string.Format(Resources.AskForUpdate, version, description),
+					Resources.Update, System.Windows.Forms.MessageBoxButtons.YesNoCancel,
+					System.Windows.Forms.MessageBoxIcon.Information,
+					System.Windows.Forms.MessageBoxDefaultButton.Button1);
+
+
+				if (result == System.Windows.Forms.DialogResult.Yes)
 				{
-					Logger.Add(3, Resources.NewVersionFound + version);
-					Task.Run(() => SoftwareUpdater.UpdateSoftware());
-
-					var result = System.Windows.Forms.MessageBox.Show(
-						string.Format(Resources.AskForUpdate, version, description),
-						Resources.Update, System.Windows.Forms.MessageBoxButtons.YesNoCancel,
-						System.Windows.Forms.MessageBoxIcon.Information,
-						System.Windows.Forms.MessageBoxDefaultButton.Button1);
-
-
-					if (result == System.Windows.Forms.DialogResult.Yes)
+					ProcessStartInfo psi = new ProcessStartInfo
 					{
-						ProcessStartInfo psi = new ProcessStartInfo
-						{
-							FileName = "https://github.com/gre4bee/ElectronicObserver/releases/latest",
-							UseShellExecute = true
-						};
-						Process.Start(psi);
-					}
-					else if (result == System.Windows.Forms.DialogResult.Cancel)
-					{
-						Configuration.Config.Life.CheckUpdateInformation = false;
-					}
+						FileName = "https://github.com/gre4bee/ElectronicObserver/releases/latest",
+						UseShellExecute = true
+					};
+					Process.Start(psi);
 				}
-				else
+				else if (result == System.Windows.Forms.DialogResult.Cancel)
 				{
-					Logger.Add(3, string.Format(Properties.Utility.SoftwareInformation.YouAreUsingTheLatestVersion, 
-						date.ToString("yyyy/MM/dd")));
+					Configuration.Config.Life.CheckUpdateInformation = false;
 				}
 			}
-			catch (Exception ex)
+			else
 			{
-				ErrorReporter.SendErrorReport(ex, Resources.UpdateConnectionFailed);
+				Logger.Add(3, string.Format(Properties.Utility.SoftwareInformation.YouAreUsingTheLatestVersion, 
+					date.ToString("yyyy/MM/dd")));
 			}
+		}
+		catch (Exception ex)
+		{
+			ErrorReporter.SendErrorReport(ex, Resources.UpdateConnectionFailed);
 		}
 	}
 }

@@ -3,24 +3,23 @@ using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Wpf.WinformsHost;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace ElectronicObserver.Window.Wpf.WinformsWrappers
+namespace ElectronicObserver.Window.Wpf.WinformsWrappers;
+
+public class FormLogViewModel : WinformsHostViewModel
 {
-	public class FormLogViewModel : WinformsHostViewModel
+	public FormLogTranslationViewModel FormLog { get; }
+
+	public FormLogViewModel() : base("Log", "Log",
+		ImageSourceIcons.GetIcon(IconContent.FormLog))
 	{
-		public FormLogTranslationViewModel FormLog { get; }
+		FormLog = App.Current.Services.GetService<FormLogTranslationViewModel>()!;
 
-		public FormLogViewModel() : base("Log", "Log",
-			ImageSourceIcons.GetIcon(IconContent.FormLog))
-		{
-			FormLog = App.Current.Services.GetService<FormLogTranslationViewModel>()!;
+		Title = FormLog.Title;
+		FormLog.PropertyChanged += (_, _) => Title = FormLog.Title;
 
-			Title = FormLog.Title;
-			FormLog.PropertyChanged += (_, _) => Title = FormLog.Title;
+		// todo remove parameter cause it's never used
+		WinformsControl = new FormLog(null!) { TopLevel = false };
 
-			// todo remove parameter cause it's never used
-			WinformsControl = new FormLog(null!) { TopLevel = false };
-
-			WindowsFormsHost.Child = WinformsControl;
-		}
+		WindowsFormsHost.Child = WinformsControl;
 	}
 }

@@ -5,43 +5,39 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ElectronicObserver.Observer.kcsapi.api_get_member
+namespace ElectronicObserver.Observer.kcsapi.api_get_member;
+
+public class kdock : APIBase
 {
 
-	public class kdock : APIBase
+
+	public override void OnResponseReceived(dynamic data)
 	{
 
+		KCDatabase db = KCDatabase.Instance;
 
-		public override void OnResponseReceived(dynamic data)
+		foreach (var ars in data)
 		{
 
-			KCDatabase db = KCDatabase.Instance;
+			int id = (int)ars.api_id;
 
-			foreach (var ars in data)
+			if (!db.Arsenals.ContainsKey(id))
 			{
+				var a = new ArsenalData();
+				a.LoadFromResponse(APIName, ars);
+				db.Arsenals.Add(a);
 
-				int id = (int)ars.api_id;
-
-				if (!db.Arsenals.ContainsKey(id))
-				{
-					var a = new ArsenalData();
-					a.LoadFromResponse(APIName, ars);
-					db.Arsenals.Add(a);
-
-				}
-				else
-				{
-					db.Arsenals[id].LoadFromResponse(APIName, ars);
-				}
 			}
-
-
-			base.OnResponseReceived((object)data);
+			else
+			{
+				db.Arsenals[id].LoadFromResponse(APIName, ars);
+			}
 		}
 
 
-		public override string APIName => "api_get_member/kdock";
+		base.OnResponseReceived((object)data);
 	}
 
-}
 
+	public override string APIName => "api_get_member/kdock";
+}

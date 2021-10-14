@@ -5,19 +5,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ElectronicObserver.Observer.kcsapi.api_req_combined_battle
+namespace ElectronicObserver.Observer.kcsapi.api_req_combined_battle;
+
+public class ld_shooting : APIBase
 {
-	public class ld_shooting : APIBase
+	public override void OnResponseReceived(dynamic data)
 	{
-		public override void OnResponseReceived(dynamic data)
-		{
 
-			KCDatabase.Instance.Battle.LoadFromResponse(APIName, data);
-			KCDatabase.Instance.Replays.LoadFromResponse(APIName, data);
+		KCDatabase.Instance.Battle.LoadFromResponse(APIName, data);
+		KCDatabase.Instance.Replays.LoadFromResponse(APIName, data);
 
-			base.OnResponseReceived((object)data);
-		}
-
-		public override string APIName => "api_req_combined_battle/ld_shooting";
+		base.OnResponseReceived((object)data);
 	}
+
+	public override string APIName => "api_req_combined_battle/ld_shooting";
 }

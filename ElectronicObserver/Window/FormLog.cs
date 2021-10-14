@@ -10,91 +10,89 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
 
-namespace ElectronicObserver.Window
+namespace ElectronicObserver.Window;
+
+public partial class FormLog : DockContent
 {
 
-	public partial class FormLog : DockContent
+
+	public FormLog(FormMain parent)
+	{
+		InitializeComponent();
+
+		ConfigurationChanged();
+
+		Translate();
+	}
+
+	public void Translate()
+	{
+		Text = GeneralRes.Log;
+	}
+
+	private void FormLog_Load(object sender, EventArgs e)
 	{
 
-
-		public FormLog(FormMain parent)
+		foreach (var log in Utility.Logger.Log)
 		{
-			InitializeComponent();
-
-			ConfigurationChanged();
-
-			Translate();
+			if (log.Priority >= Utility.Configuration.Config.Log.LogLevel)
+				LogList.Items.Add(log.ToString());
 		}
+		LogList.TopIndex = LogList.Items.Count - 1;
 
-		public void Translate()
+		Utility.Logger.Instance.LogAdded += new Utility.LogAddedEventHandler((Utility.Logger.LogData data) =>
 		{
-			Text = GeneralRes.Log;
-		}
-
-		private void FormLog_Load(object sender, EventArgs e)
-		{
-
-			foreach (var log in Utility.Logger.Log)
+			if (InvokeRequired)
 			{
-				if (log.Priority >= Utility.Configuration.Config.Log.LogLevel)
-					LogList.Items.Add(log.ToString());
+				// Invokeはメッセージキューにジョブを投げて待つので、別のBeginInvokeされたジョブが既にキューにあると、
+				// それを実行してしまい、BeginInvokeされたジョブの順番が保てなくなる
+				// GUIスレッドによる処理は、順番が重要なことがあるので、GUIスレッドからInvokeを呼び出してはいけない
+				Invoke(new Utility.LogAddedEventHandler(Logger_LogAdded), data);
 			}
-			LogList.TopIndex = LogList.Items.Count - 1;
-
-			Utility.Logger.Instance.LogAdded += new Utility.LogAddedEventHandler((Utility.Logger.LogData data) =>
+			else
 			{
-				if (InvokeRequired)
-				{
-					// Invokeはメッセージキューにジョブを投げて待つので、別のBeginInvokeされたジョブが既にキューにあると、
-					// それを実行してしまい、BeginInvokeされたジョブの順番が保てなくなる
-					// GUIスレッドによる処理は、順番が重要なことがあるので、GUIスレッドからInvokeを呼び出してはいけない
-					Invoke(new Utility.LogAddedEventHandler(Logger_LogAdded), data);
-				}
-				else
-				{
-					Logger_LogAdded(data);
-				}
-			});
+				Logger_LogAdded(data);
+			}
+		});
 
-			Utility.Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
+		Utility.Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
 
-			Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[(int)IconContent.FormLog]);
-		}
+		Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[(int)IconContent.FormLog]);
+	}
 
 
-		void ConfigurationChanged()
-		{
+	void ConfigurationChanged()
+	{
 
-			LogList.Font = Font = Utility.Configuration.Config.UI.MainFont;
-			LogList.ForeColor = Utility.Configuration.Config.UI.ForeColor;
-			LogList.BackColor = Utility.Configuration.Config.UI.BackColor;
-		}
-
-
-		void Logger_LogAdded(Utility.Logger.LogData data)
-		{
-
-			int index = LogList.Items.Add(data.ToString());
-			LogList.TopIndex = index;
-
-		}
+		LogList.Font = Font = Utility.Configuration.Config.UI.MainFont;
+		LogList.ForeColor = Utility.Configuration.Config.UI.ForeColor;
+		LogList.BackColor = Utility.Configuration.Config.UI.BackColor;
+	}
 
 
+	void Logger_LogAdded(Utility.Logger.LogData data)
+	{
 
-		private void ContextMenuLog_Clear_Click(object sender, EventArgs e)
-		{
-
-			LogList.Items.Clear();
-
-		}
-
-
-
-		protected override string GetPersistString()
-		{
-			return "Log";
-		}
-
+		int index = LogList.Items.Add(data.ToString());
+		LogList.TopIndex = index;
 
 	}
+
+
+
+	private void ContextMenuLog_Clear_Click(object sender, EventArgs e)
+	{
+
+		LogList.Items.Clear();
+
+	}
+
+
+
+	protected override string GetPersistString()
+	{
+		return "Log";
+	}
+
+
 }

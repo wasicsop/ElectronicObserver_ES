@@ -6,50 +6,48 @@ using System.Text;
 using System.Threading.Tasks;
 using ElectronicObserverTypes;
 
-namespace ElectronicObserver.Data.Quest
+namespace ElectronicObserver.Data.Quest;
+
+/// <summary>
+/// 特定艦種撃沈任務の進捗を管理します。
+/// </summary>
+[DataContract(Name = "ProgressSlaughter")]
+public class ProgressSlaughter : ProgressData
 {
 
 	/// <summary>
-	/// 特定艦種撃沈任務の進捗を管理します。
+	/// 対象となる艦種リスト
+	/// 互換性維持のため enum ではなく int で管理する
 	/// </summary>
-	[DataContract(Name = "ProgressSlaughter")]
-	public class ProgressSlaughter : ProgressData
+	[DataMember]
+	private HashSet<int> TargetShipType { get; set; }
+
+	public ProgressSlaughter(QuestData quest, int maxCount, int[] targetShipType)
+		: base(quest, maxCount)
 	{
 
-		/// <summary>
-		/// 対象となる艦種リスト
-		/// 互換性維持のため enum ではなく int で管理する
-		/// </summary>
-		[DataMember]
-		private HashSet<int> TargetShipType { get; set; }
+		TargetShipType = targetShipType == null ? null : new HashSet<int>(targetShipType);
 
-		public ProgressSlaughter(QuestData quest, int maxCount, int[] targetShipType)
-			: base(quest, maxCount)
-		{
+	}
 
-			TargetShipType = targetShipType == null ? null : new HashSet<int>(targetShipType);
 
+	public void Increment(ShipTypes shipType)
+	{
+		if (TargetShipType.Contains((int)shipType))
+			Increment();
+	}
+
+
+	public override string GetClearCondition()
+	{
+		StringBuilder sb = new StringBuilder();
+		if ( TargetShipType != null ) {
+			sb.Append( string.Join( "・", TargetShipType.OrderBy( s => s ).Select( s => KCDatabase.Instance.ShipTypes[s].NameEN) ) );
 		}
 
+		sb.Append( QuestTracking.Sunk );
+		sb.Append( ProgressMax );
 
-		public void Increment(ShipTypes shipType)
-		{
-			if (TargetShipType.Contains((int)shipType))
-				Increment();
-		}
-
-
-		public override string GetClearCondition()
-		{
-			StringBuilder sb = new StringBuilder();
-			if ( TargetShipType != null ) {
-				sb.Append( string.Join( "・", TargetShipType.OrderBy( s => s ).Select( s => KCDatabase.Instance.ShipTypes[s].NameEN) ) );
-			}
-
-			sb.Append( QuestTracking.Sunk );
-			sb.Append( ProgressMax );
-
-			return sb.ToString();
-		}
+		return sb.ToString();
 	}
 }

@@ -24,15 +24,15 @@ using Grpc.Core;
 using MagicOnion.Client;
 using Translation = Browser.Properties.Resources;
 
-namespace Browser
+namespace Browser;
+
+/// <summary>
+/// ブラウザを表示するフォームです。
+/// </summary>
+/// <remarks>thx KanColleViewer!</remarks>
+// [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single/*, IncludeExceptionDetailInFaults = true*/)]
+public partial class FormBrowser : Form//, BrowserLibCore.IBrowser
 {
-	/// <summary>
-	/// ブラウザを表示するフォームです。
-	/// </summary>
-	/// <remarks>thx KanColleViewer!</remarks>
-	// [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single/*, IncludeExceptionDetailInFaults = true*/)]
-	public partial class FormBrowser : Form//, BrowserLibCore.IBrowser
-	{
 #if false
 		private readonly Size KanColleSize = new Size(1200, 720);
 		private string BrowserCachePath => BrowserConstants.CachePath;
@@ -1361,30 +1361,29 @@ namespace Browser
 
 #endregion
 #endif
+}
+
+
+/// <summary>
+/// ウィンドウが非アクティブ状態から1回のクリックでボタンが押せる ToolStrip です。
+/// </summary>
+internal class ExtraToolStrip : ToolStrip
+{
+	public ExtraToolStrip() : base()
+	{
 	}
 
+	private const uint WM_MOUSEACTIVATE = 0x21;
+	private const uint MA_ACTIVATE = 1;
+	private const uint MA_ACTIVATEANDEAT = 2;
+	private const uint MA_NOACTIVATE = 3;
+	private const uint MA_NOACTIVATEANDEAT = 4;
 
-	/// <summary>
-	/// ウィンドウが非アクティブ状態から1回のクリックでボタンが押せる ToolStrip です。
-	/// </summary>
-	internal class ExtraToolStrip : ToolStrip
+	protected override void WndProc(ref Message m)
 	{
-		public ExtraToolStrip() : base()
-		{
-		}
+		base.WndProc(ref m);
 
-		private const uint WM_MOUSEACTIVATE = 0x21;
-		private const uint MA_ACTIVATE = 1;
-		private const uint MA_ACTIVATEANDEAT = 2;
-		private const uint MA_NOACTIVATE = 3;
-		private const uint MA_NOACTIVATEANDEAT = 4;
-
-		protected override void WndProc(ref Message m)
-		{
-			base.WndProc(ref m);
-
-			if (m.Msg == WM_MOUSEACTIVATE && m.Result == (IntPtr) MA_ACTIVATEANDEAT)
-				m.Result = (IntPtr) MA_ACTIVATE;
-		}
+		if (m.Msg == WM_MOUSEACTIVATE && m.Result == (IntPtr) MA_ACTIVATEANDEAT)
+			m.Result = (IntPtr) MA_ACTIVATE;
 	}
 }

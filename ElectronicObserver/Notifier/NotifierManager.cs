@@ -7,123 +7,120 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ElectronicObserver.Notifier
+namespace ElectronicObserver.Notifier;
+
+public sealed class NotifierManager
 {
 
-	public sealed class NotifierManager
+	#region Singleton
+
+	private static readonly NotifierManager instance = new NotifierManager();
+
+	public static NotifierManager Instance => instance;
+
+	#endregion
+
+	private object _parentForm;
+
+
+	public NotifierExpedition Expedition { get; private set; }
+	public NotifierConstruction Construction { get; private set; }
+	public NotifierRepair Repair { get; private set; }
+	public NotifierCondition Condition { get; private set; }
+	public NotifierDamage Damage { get; private set; }
+	public NotifierAnchorageRepair AnchorageRepair { get; private set; }
+	public NotifierBaseAirCorps BaseAirCorps { get; private set; }
+	public NotifierBattleEnd BattleEnd { get; private set; }
+	public NotifierRemodelLevel RemodelLevel { get; private set; }
+
+	private NotifierManager()
+	{
+	}
+
+
+	public void Initialize(object parent)
 	{
 
-		#region Singleton
+		_parentForm = parent;
 
-		private static readonly NotifierManager instance = new NotifierManager();
+		var c = Utility.Configuration.Config;
 
-		public static NotifierManager Instance => instance;
+		Expedition = new NotifierExpedition(c.NotifierExpedition);
+		Construction = new NotifierConstruction(c.NotifierConstruction);
+		Repair = new NotifierRepair(c.NotifierRepair);
+		Condition = new NotifierCondition(c.NotifierCondition);
+		Damage = new NotifierDamage(c.NotifierDamage);
+		AnchorageRepair = new NotifierAnchorageRepair(c.NotifierAnchorageRepair);
+		BaseAirCorps = new NotifierBaseAirCorps(c.NotifierBaseAirCorps);
+		BattleEnd = new NotifierBattleEnd(c.NotifierBattleEnd);
+		RemodelLevel = new NotifierRemodelLevel(c.NotifierRemodelLevel);
+	}
 
-		#endregion
+	public void ApplyToConfiguration()
+	{
 
-		private object _parentForm;
+		var c = Utility.Configuration.Config;
 
+		Expedition.ApplyToConfiguration(c.NotifierExpedition);
+		Construction.ApplyToConfiguration(c.NotifierConstruction);
+		Repair.ApplyToConfiguration(c.NotifierRepair);
+		Condition.ApplyToConfiguration(c.NotifierCondition);
+		Damage.ApplyToConfiguration(c.NotifierDamage);
+		AnchorageRepair.ApplyToConfiguration(c.NotifierAnchorageRepair);
+		BaseAirCorps.ApplyToConfiguration(c.NotifierBaseAirCorps);
+		BattleEnd.ApplyToConfiguration(c.NotifierBattleEnd);
+		RemodelLevel.ApplyToConfiguration(c.NotifierRemodelLevel);
+	}
 
-		public NotifierExpedition Expedition { get; private set; }
-		public NotifierConstruction Construction { get; private set; }
-		public NotifierRepair Repair { get; private set; }
-		public NotifierCondition Condition { get; private set; }
-		public NotifierDamage Damage { get; private set; }
-		public NotifierAnchorageRepair AnchorageRepair { get; private set; }
-		public NotifierBaseAirCorps BaseAirCorps { get; private set; }
-		public NotifierBattleEnd BattleEnd { get; private set; }
-		public NotifierRemodelLevel RemodelLevel { get; private set; }
-
-		private NotifierManager()
+	public void ShowNotifier(ElectronicObserver.Window.Dialog.DialogNotifier form)
+	{
+		switch (_parentForm)
 		{
-		}
-
-
-		public void Initialize(object parent)
-		{
-
-			_parentForm = parent;
-
-			var c = Utility.Configuration.Config;
-
-			Expedition = new NotifierExpedition(c.NotifierExpedition);
-			Construction = new NotifierConstruction(c.NotifierConstruction);
-			Repair = new NotifierRepair(c.NotifierRepair);
-			Condition = new NotifierCondition(c.NotifierCondition);
-			Damage = new NotifierDamage(c.NotifierDamage);
-			AnchorageRepair = new NotifierAnchorageRepair(c.NotifierAnchorageRepair);
-			BaseAirCorps = new NotifierBaseAirCorps(c.NotifierBaseAirCorps);
-			BattleEnd = new NotifierBattleEnd(c.NotifierBattleEnd);
-			RemodelLevel = new NotifierRemodelLevel(c.NotifierRemodelLevel);
-		}
-
-		public void ApplyToConfiguration()
-		{
-
-			var c = Utility.Configuration.Config;
-
-			Expedition.ApplyToConfiguration(c.NotifierExpedition);
-			Construction.ApplyToConfiguration(c.NotifierConstruction);
-			Repair.ApplyToConfiguration(c.NotifierRepair);
-			Condition.ApplyToConfiguration(c.NotifierCondition);
-			Damage.ApplyToConfiguration(c.NotifierDamage);
-			AnchorageRepair.ApplyToConfiguration(c.NotifierAnchorageRepair);
-			BaseAirCorps.ApplyToConfiguration(c.NotifierBaseAirCorps);
-			BattleEnd.ApplyToConfiguration(c.NotifierBattleEnd);
-			RemodelLevel.ApplyToConfiguration(c.NotifierRemodelLevel);
-		}
-
-		public void ShowNotifier(ElectronicObserver.Window.Dialog.DialogNotifier form)
-		{
-			switch (_parentForm)
+			case FormMain parentForm:
 			{
-				case FormMain parentForm:
-				{
-					if (form.DialogData.Alignment == NotifierDialogAlignment.CustomRelative)
-					{       //cloneしているから書き換えても問題ないはず
-						Point p = parentForm.fBrowser.PointToScreen(new Point(parentForm.fBrowser.ClientSize.Width / 2, parentForm.fBrowser.ClientSize.Height / 2));
+				if (form.DialogData.Alignment == NotifierDialogAlignment.CustomRelative)
+				{       //cloneしているから書き換えても問題ないはず
+					Point p = parentForm.fBrowser.PointToScreen(new Point(parentForm.fBrowser.ClientSize.Width / 2, parentForm.fBrowser.ClientSize.Height / 2));
+					p.Offset(new Point(-form.Width / 2, -form.Height / 2));
+					p.Offset(form.DialogData.Location);
+
+					form.DialogData.Location = p;
+				}
+				form.FormBorderStyle = FormBorderStyle.FixedToolWindow;
+				parentForm.Invoke((MethodInvoker)form.Show);
+				break;
+			}
+			case FormMainWpf parentForm:
+			{
+				if (form.DialogData.Alignment == NotifierDialogAlignment.CustomRelative)
+				{       //cloneしているから書き換えても問題ないはず
+					if (parentForm.ViewModel.FormBrowserHost.WindowsFormsHost.Child is FormBrowserHost browserHost)
+					{
+						Point p = browserHost.PointToScreen(new Point(browserHost.ClientSize.Width / 2, browserHost.ClientSize.Height / 2));
 						p.Offset(new Point(-form.Width / 2, -form.Height / 2));
 						p.Offset(form.DialogData.Location);
 
 						form.DialogData.Location = p;
 					}
-					form.FormBorderStyle = FormBorderStyle.FixedToolWindow;
-					parentForm.Invoke((MethodInvoker)form.Show);
-					break;
 				}
-				case FormMainWpf parentForm:
-				{
-					if (form.DialogData.Alignment == NotifierDialogAlignment.CustomRelative)
-					{       //cloneしているから書き換えても問題ないはず
-						if (parentForm.ViewModel.FormBrowserHost.WindowsFormsHost.Child is FormBrowserHost browserHost)
-						{
-							Point p = browserHost.PointToScreen(new Point(browserHost.ClientSize.Width / 2, browserHost.ClientSize.Height / 2));
-							p.Offset(new Point(-form.Width / 2, -form.Height / 2));
-							p.Offset(form.DialogData.Location);
-
-							form.DialogData.Location = p;
-						}
-					}
-					form.FormBorderStyle = FormBorderStyle.FixedToolWindow;
-					parentForm.Dispatcher.Invoke((MethodInvoker)form.Show);
-					break;
-				}
+				form.FormBorderStyle = FormBorderStyle.FixedToolWindow;
+				parentForm.Dispatcher.Invoke((MethodInvoker)form.Show);
+				break;
 			}
 		}
+	}
 
-		public IEnumerable<NotifierBase> GetNotifiers()
-		{
-			yield return Expedition;
-			yield return Construction;
-			yield return Repair;
-			yield return Condition;
-			yield return Damage;
-			yield return AnchorageRepair;
-			yield return BaseAirCorps;
-			yield return BattleEnd;
-			yield return RemodelLevel;
-		}
-
+	public IEnumerable<NotifierBase> GetNotifiers()
+	{
+		yield return Expedition;
+		yield return Construction;
+		yield return Repair;
+		yield return Condition;
+		yield return Damage;
+		yield return AnchorageRepair;
+		yield return BaseAirCorps;
+		yield return BattleEnd;
+		yield return RemodelLevel;
 	}
 
 }

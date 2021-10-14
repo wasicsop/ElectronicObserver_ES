@@ -1,4 +1,3 @@
-﻿namespace ElectronicObserver.Window.Wpf.Compass.ViewModels
-{
-	public class EnemyListViewModel : BaseViewModel { }
-}
+﻿namespace ElectronicObserver.Window.Wpf.Compass.ViewModels;
+
+public class EnemyListViewModel : BaseViewModel { }

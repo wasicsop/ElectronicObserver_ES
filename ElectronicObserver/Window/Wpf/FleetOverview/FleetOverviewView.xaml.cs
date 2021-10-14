@@ -11,25 +11,24 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ElectronicObserver.Window.Wpf.FleetOverview
+namespace ElectronicObserver.Window.Wpf.FleetOverview;
+
+/// <summary>
+/// Interaction logic for FleetOverviewView.xaml
+/// </summary>
+public partial class FleetOverviewView : UserControl
 {
-    /// <summary>
-    /// Interaction logic for FleetOverviewView.xaml
-    /// </summary>
-    public partial class FleetOverviewView : UserControl
-    {
-	    public static readonly DependencyProperty ViewModelProperty = DependencyProperty.Register(
-		    "ViewModel", typeof(FleetOverviewViewModel), typeof(FleetOverviewView), new PropertyMetadata(default(FleetOverviewViewModel)));
+	public static readonly DependencyProperty ViewModelProperty = DependencyProperty.Register(
+		"ViewModel", typeof(FleetOverviewViewModel), typeof(FleetOverviewView), new PropertyMetadata(default(FleetOverviewViewModel)));
 
-	    public FleetOverviewViewModel ViewModel
-	    {
-		    get => (FleetOverviewViewModel) GetValue(ViewModelProperty);
-		    set => SetValue(ViewModelProperty, value);
-	    }
+	public FleetOverviewViewModel ViewModel
+	{
+		get => (FleetOverviewViewModel) GetValue(ViewModelProperty);
+		set => SetValue(ViewModelProperty, value);
+	}
 
-        public FleetOverviewView()
-        {
-            InitializeComponent();
-        }
-    }
+	public FleetOverviewView()
+	{
+		InitializeComponent();
+	}
 }

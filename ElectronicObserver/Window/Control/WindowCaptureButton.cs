@@ -12,155 +12,153 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ElectronicObserver.Window.Control
+namespace ElectronicObserver.Window.Control;
+
+public partial class WindowCaptureButton : Button
 {
 
-	public partial class WindowCaptureButton : Button
+	private FormCapturing CapturingImageWindow = new FormCapturing();
+	private FormCandidate CandidateBoxWindow = new FormCandidate();
+
+	private bool selectingWindow = false;
+	private IntPtr currentCandidate;
+
+	public delegate void WindowCapturedDelegate(IntPtr hWnd);
+	public event WindowCapturedDelegate WindowCaptured = delegate { };
+
+	public WindowCaptureButton()
+	{
+		InitializeComponent();
+	}
+
+	private void OnMouseMoved()
+	{
+		Point cursor = System.Windows.Forms.Cursor.Position;
+
+		CapturingImageWindow.Location = new Point(
+			cursor.X - this.Image.Width / 2,
+			cursor.Y - this.Image.Height / 2
+		);
+
+		IntPtr newCandidate = RootWindowFromPoint(cursor);
+		if (currentCandidate != newCandidate)
+		{
+			if (newCandidate == IntPtr.Zero)
+			{
+				CandidateBoxWindow.Visible = false;
+			}
+			else
+			{
+				// ウィンドウ選択が変わったので移動
+				WinAPI.GetWindowRect(newCandidate, out WinAPI.RECT candidateRect);
+				CandidateBoxWindow.Bounds = new Rectangle(candidateRect.left, candidateRect.top,
+					candidateRect.right - candidateRect.left, candidateRect.bottom - candidateRect.top);
+				if (!CandidateBoxWindow.Visible)
+				{
+					CandidateBoxWindow.Visible = true;
+				}
+			}
+			currentCandidate = newCandidate;
+		}
+	}
+
+	private void OnMouseUp()
 	{
 
-		private FormCapturing CapturingImageWindow = new FormCapturing();
-		private FormCandidate CandidateBoxWindow = new FormCandidate();
+		IntPtr selected = currentCandidate;
+		OnCanceled();
 
-		private bool selectingWindow = false;
-		private IntPtr currentCandidate;
-
-		public delegate void WindowCapturedDelegate(IntPtr hWnd);
-		public event WindowCapturedDelegate WindowCaptured = delegate { };
-
-		public WindowCaptureButton()
+		if (selected != IntPtr.Zero)
 		{
-			InitializeComponent();
+			WindowCaptured(selected);
+			/*
+			int capacity = WinAPI.GetWindowTextLength( selected ) * 2;
+			StringBuilder stringBuilder = new StringBuilder( capacity );
+			WinAPI.GetWindowText( selected, stringBuilder, stringBuilder.Capacity );
+
+			MessageBox.Show( stringBuilder.ToString() );
+			 * */
 		}
+	}
 
-		private void OnMouseMoved()
+	private void OnCanceled()
+	{
+		CapturingImageWindow.Visible = false;
+		CandidateBoxWindow.Visible = false;
+		currentCandidate = IntPtr.Zero;
+		selectingWindow = false;
+	}
+
+	private IntPtr RootWindowFromPoint(Point cursor)
+	{
+		StringBuilder className = new StringBuilder(256);
+		StringBuilder windowText = new StringBuilder(256);
+		IntPtr result = IntPtr.Zero;
+		int currentProcessId = System.Diagnostics.Process.GetCurrentProcess().Id;
+		WinAPI.EnumWindows((WinAPI.EnumWindowsDelegate)((hWnd, lparam) =>
 		{
-			Point cursor = System.Windows.Forms.Cursor.Position;
-
-			CapturingImageWindow.Location = new Point(
-				cursor.X - this.Image.Width / 2,
-				cursor.Y - this.Image.Height / 2
-				);
-
-			IntPtr newCandidate = RootWindowFromPoint(cursor);
-			if (currentCandidate != newCandidate)
+			if (CapturingImageWindow.Handle != hWnd &&
+			    CandidateBoxWindow.Handle != hWnd)
 			{
-				if (newCandidate == IntPtr.Zero)
+				WinAPI.GetClassName(hWnd, className, className.Capacity);
+				WinAPI.GetWindowText(hWnd, windowText, windowText.Capacity);
+				WinAPI.GetWindowThreadProcessId(hWnd, out uint processId);
+				if (className.Length > 0 &&
+				    windowText.Length > 0 &&
+				    WinAPI.IsWindowVisible(hWnd) &&
+				    windowText.ToString() != "Program Manager" &&
+				    processId != currentProcessId)
 				{
-					CandidateBoxWindow.Visible = false;
-				}
-				else
-				{
-					// ウィンドウ選択が変わったので移動
-					WinAPI.GetWindowRect(newCandidate, out WinAPI.RECT candidateRect);
-					CandidateBoxWindow.Bounds = new Rectangle(candidateRect.left, candidateRect.top,
-						candidateRect.right - candidateRect.left, candidateRect.bottom - candidateRect.top);
-					if (!CandidateBoxWindow.Visible)
+					WinAPI.GetWindowRect(hWnd, out WinAPI.RECT rect);
+					if (rect.left <= cursor.X && cursor.X <= rect.right && rect.top <= cursor.Y && cursor.Y <= rect.bottom)
 					{
-						CandidateBoxWindow.Visible = true;
+						result = hWnd;
+						return false;
 					}
 				}
-				currentCandidate = newCandidate;
 			}
-		}
+			return true;
+		}), IntPtr.Zero);
+		return result;
+	}
 
-		private void OnMouseUp()
+	protected override void WndProc(ref Message m)
+	{
+		if (selectingWindow)
 		{
-
-			IntPtr selected = currentCandidate;
-			OnCanceled();
-
-			if (selected != IntPtr.Zero)
+			// マウスをキャプチャしている時だけ
+			switch (m.Msg)
 			{
-				WindowCaptured(selected);
-				/*
-				int capacity = WinAPI.GetWindowTextLength( selected ) * 2;
-				StringBuilder stringBuilder = new StringBuilder( capacity );
-				WinAPI.GetWindowText( selected, stringBuilder, stringBuilder.Capacity );
-
-				MessageBox.Show( stringBuilder.ToString() );
-				 * */
+				case WinAPI.WM_MOUSEMOVE:
+					OnMouseMoved();
+					break;
+				case WinAPI.WM_LBUTTONUP:
+					OnMouseUp();
+					break;
+				case WinAPI.WM_CANCELMODE:
+				case WinAPI.WM_CAPTURECHANGED:
+					OnCanceled();
+					break;
 			}
+			return;
 		}
+		base.WndProc(ref m);
+	}
 
-		private void OnCanceled()
-		{
-			CapturingImageWindow.Visible = false;
-			CandidateBoxWindow.Visible = false;
-			currentCandidate = IntPtr.Zero;
-			selectingWindow = false;
-		}
+	protected override void OnMouseDown(MouseEventArgs mevent)
+	{
+		base.OnMouseDown(mevent);
+		Capture = true;
+		selectingWindow = true;
 
-		private IntPtr RootWindowFromPoint(Point cursor)
-		{
-			StringBuilder className = new StringBuilder(256);
-			StringBuilder windowText = new StringBuilder(256);
-			IntPtr result = IntPtr.Zero;
-			int currentProcessId = System.Diagnostics.Process.GetCurrentProcess().Id;
-			WinAPI.EnumWindows((WinAPI.EnumWindowsDelegate)((hWnd, lparam) =>
-			{
-				if (CapturingImageWindow.Handle != hWnd &&
-					CandidateBoxWindow.Handle != hWnd)
-				{
-					WinAPI.GetClassName(hWnd, className, className.Capacity);
-					WinAPI.GetWindowText(hWnd, windowText, windowText.Capacity);
-					WinAPI.GetWindowThreadProcessId(hWnd, out uint processId);
-					if (className.Length > 0 &&
-						windowText.Length > 0 &&
-						WinAPI.IsWindowVisible(hWnd) &&
-						windowText.ToString() != "Program Manager" &&
-						processId != currentProcessId)
-					{
-						WinAPI.GetWindowRect(hWnd, out WinAPI.RECT rect);
-						if (rect.left <= cursor.X && cursor.X <= rect.right && rect.top <= cursor.Y && cursor.Y <= rect.bottom)
-						{
-							result = hWnd;
-							return false;
-						}
-					}
-				}
-				return true;
-			}), IntPtr.Zero);
-			return result;
-		}
+		Point cursor = System.Windows.Forms.Cursor.Position;
+		CapturingImageWindow.Location = new Point(
+			cursor.X - this.Image.Width / 2,
+			cursor.Y - this.Image.Height / 2
+		);
 
-		protected override void WndProc(ref Message m)
-		{
-			if (selectingWindow)
-			{
-				// マウスをキャプチャしている時だけ
-				switch (m.Msg)
-				{
-					case WinAPI.WM_MOUSEMOVE:
-						OnMouseMoved();
-						break;
-					case WinAPI.WM_LBUTTONUP:
-						OnMouseUp();
-						break;
-					case WinAPI.WM_CANCELMODE:
-					case WinAPI.WM_CAPTURECHANGED:
-						OnCanceled();
-						break;
-				}
-				return;
-			}
-			base.WndProc(ref m);
-		}
-
-		protected override void OnMouseDown(MouseEventArgs mevent)
-		{
-			base.OnMouseDown(mevent);
-			Capture = true;
-			selectingWindow = true;
-
-			Point cursor = System.Windows.Forms.Cursor.Position;
-			CapturingImageWindow.Location = new Point(
-				cursor.X - this.Image.Width / 2,
-				cursor.Y - this.Image.Height / 2
-				);
-
-			CapturingImageWindow.BackgroundImage = Image;
-			CapturingImageWindow.Show();
-			CapturingImageWindow.Size = this.Image.Size;
-		}
+		CapturingImageWindow.BackgroundImage = Image;
+		CapturingImageWindow.Show();
+		CapturingImageWindow.Size = this.Image.Size;
 	}
 }

@@ -8,29 +8,28 @@ using Moq;
 using Xunit;
 using FleetDataCustom = ElectronicObserver.Data.FleetDataCustom;
 
-namespace ElectronicObserverCoreTests
+namespace ElectronicObserverCoreTests;
+
+public class AswAttackTest
 {
-	public class AswAttackTest
+	[Fact]
+	public void DayAttackTest1()
 	{
-		[Fact]
-		public void DayAttackTest1()
+		IFleetData fleet = new FleetDataCustom();
+
+		var mock = new Mock<IShipData>();
+
+		mock.Setup(s => s.ASWBase).Returns(58);
+		mock.Setup(s => s.HPRate).Returns(1);
+		mock.Setup(s => s.AllSlotInstance).Returns(new ReadOnlyCollection<IEquipmentData?>(new List<IEquipmentData?>
 		{
-			IFleetData fleet = new FleetDataCustom();
+			Equipment.HFDF(),
+			Equipment.AswTorpedo(),
+			Equipment.Type2DepthCharge()
+		}));
 
-			var mock = new Mock<IShipData>();
+		IShipData akebono = mock.Object;
 
-			mock.Setup(s => s.ASWBase).Returns(58);
-			mock.Setup(s => s.HPRate).Returns(1);
-			mock.Setup(s => s.AllSlotInstance).Returns(new ReadOnlyCollection<IEquipmentData?>(new List<IEquipmentData?>
-			{
-				Equipment.HFDF(),
-				Equipment.AswTorpedo(),
-				Equipment.Type2DepthCharge()
-			}));
-
-			IShipData akebono = mock.Object;
-
-			Assert.Equal(104, akebono.GetAswAttackPower(DayAttackKind.DepthCharge, fleet));
-		}
+		Assert.Equal(104, akebono.GetAswAttackPower(DayAttackKind.DepthCharge, fleet));
 	}
 }

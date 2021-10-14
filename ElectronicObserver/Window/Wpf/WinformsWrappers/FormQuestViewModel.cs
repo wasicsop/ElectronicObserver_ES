@@ -3,24 +3,23 @@ using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Wpf.WinformsHost;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace ElectronicObserver.Window.Wpf.WinformsWrappers
+namespace ElectronicObserver.Window.Wpf.WinformsWrappers;
+
+public class FormQuestViewModel : WinformsHostViewModel
 {
-	public class FormQuestViewModel : WinformsHostViewModel
+	public FormQuestTranslationViewModel FormQuest { get; }
+
+	public FormQuestViewModel() : base("Quests", "Quest",
+		ImageSourceIcons.GetIcon(IconContent.FormQuest))
 	{
-		public FormQuestTranslationViewModel FormQuest { get; }
+		FormQuest = App.Current.Services.GetService<FormQuestTranslationViewModel>()!;
 
-		public FormQuestViewModel() : base("Quests", "Quest",
-			ImageSourceIcons.GetIcon(IconContent.FormQuest))
-		{
-			FormQuest = App.Current.Services.GetService<FormQuestTranslationViewModel>()!;
+		Title = FormQuest.Title;
+		FormQuest.PropertyChanged += (_, _) => Title = FormQuest.Title;
 
-			Title = FormQuest.Title;
-			FormQuest.PropertyChanged += (_, _) => Title = FormQuest.Title;
+		// todo remove parameter cause it's never used
+		WinformsControl = new FormQuest(null!) { TopLevel = false };
 
-			// todo remove parameter cause it's never used
-			WinformsControl = new FormQuest(null!) { TopLevel = false };
-
-			WindowsFormsHost.Child = WinformsControl;
-		}
+		WindowsFormsHost.Child = WinformsControl;
 	}
 }

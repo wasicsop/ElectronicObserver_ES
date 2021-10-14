@@ -7,30 +7,29 @@ using ElectronicObserver.Data;
 using ElectronicObserver.Resource;
 using ElectronicObserverTypes;
 
-namespace ElectronicObserver.Converters
+namespace ElectronicObserver.Converters;
+
+public class ShipToBannerImageConverter : IValueConverter
 {
-	public class ShipToBannerImageConverter : IValueConverter
+	public object? Convert(object value, Type targetType, object parameter, CultureInfo culture)
 	{
-		public object? Convert(object value, Type targetType, object parameter, CultureInfo culture)
+		if (value is not IShipDataMaster ship) return null;
+
+		try
 		{
-			if (value is not IShipDataMaster ship) return null;
+			string imageUri = KCResourceHelper
+				.GetShipImagePath(ship.ID, false, KCResourceHelper.ResourceTypeShipBanner);
 
-			try
-			{
-				string imageUri = KCResourceHelper
-					.GetShipImagePath(ship.ID, false, KCResourceHelper.ResourceTypeShipBanner);
-
-				return new BitmapImage(new Uri(imageUri));
-			}
-			catch
-			{
-				return null;
-			}
+			return new BitmapImage(new Uri(imageUri));
 		}
-
-		public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+		catch
 		{
-			throw new NotSupportedException();
+			return null;
 		}
+	}
+
+	public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+	{
+		throw new NotSupportedException();
 	}
 }

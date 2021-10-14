@@ -9,235 +9,230 @@ using System.Threading.Tasks;
 using ElectronicObserverTypes;
 using static ElectronicObserver.Data.Constants;
 
-namespace ElectronicObserver.Data
+namespace ElectronicObserver.Data;
+
+/// <summary>
+/// 艦これのデータを扱う中核です。
+/// </summary>
+public sealed class KCDatabase
 {
 
 
+	#region Singleton
+
+	private static readonly KCDatabase instance = new KCDatabase();
+
+	public static KCDatabase Instance => instance;
+
+	#endregion
+
+
+
 	/// <summary>
-	/// 艦これのデータを扱う中核です。
+	/// 艦船のマスターデータ
 	/// </summary>
-	public sealed class KCDatabase
+	public IDDictionary<ShipDataMaster> MasterShips { get; private set; }
+
+	/// <summary>
+	/// 艦種データ
+	/// </summary>
+	public IDDictionary<ShipType> ShipTypes { get; private set; }
+
+	/// <summary>
+	/// 艦船グラフィックデータ
+	/// </summary>
+	public IDDictionary<ShipGraphicData> ShipGraphics { get; private set; }
+
+	/// <summary>
+	/// 装備のマスターデータ
+	/// </summary>
+	public IDDictionary<EquipmentDataMaster> MasterEquipments { get; private set; }
+
+	/// <summary>
+	/// 装備種別
+	/// </summary>
+	public IDDictionary<EquipmentType> EquipmentTypes { get; private set; }
+
+
+	/// <summary>
+	/// 保有艦娘のデータ
+	/// </summary>
+	public IDDictionary<ShipData> Ships { get; private set; }
+
+	/// <summary>
+	/// 保有装備のデータ
+	/// </summary>
+	public IDDictionary<EquipmentData> Equipments { get; private set; }
+
+
+	/// <summary>
+	/// 提督・司令部データ
+	/// </summary>
+	public AdmiralData Admiral { get; private set; }
+
+
+	/// <summary>
+	/// アイテムのマスターデータ
+	/// </summary>
+	public IDDictionary<UseItemMaster> MasterUseItems { get; private set; }
+
+	/// <summary>
+	/// アイテムデータ
+	/// </summary>
+	public IDDictionary<UseItem> UseItems { get; private set; }
+
+
+	/// <summary>
+	/// 工廠ドックデータ
+	/// </summary>
+	public IDDictionary<ArsenalData> Arsenals { get; private set; }
+
+	/// <summary>
+	/// 入渠ドックデータ
+	/// </summary>
+	public IDDictionary<DockData> Docks { get; private set; }
+
+	/// <summary>
+	/// 開発データ
+	/// </summary>
+	public DevelopmentData Development { get; private set; }
+
+
+	/// <summary>
+	/// 艦隊データ
+	/// </summary>
+	public FleetManager Fleet { get; private set; }
+
+
+	/// <summary>
+	/// 資源データ
+	/// </summary>
+	public MaterialData Material { get; private set; }
+
+
+	/// <summary>
+	/// 任務データ
+	/// </summary>
+	public QuestManager Quest { get; private set; }
+
+	/// <summary>
+	/// 任務進捗データ
+	/// </summary>
+	public QuestProgressManager QuestProgress { get; private set; }
+
+
+	/// <summary>
+	/// 戦闘データ
+	/// </summary>
+	public BattleManager Battle { get; private set; }
+
+
+	/// <summary>
+	/// 海域カテゴリデータ
+	/// </summary>
+	public IDDictionary<MapAreaData> MapArea { get; private set; }
+
+	/// <summary>
+	/// 海域データ
+	/// </summary>
+	public IDDictionary<MapInfoData> MapInfo { get; private set; }
+
+
+	/// <summary>
+	/// 遠征データ
+	/// </summary>
+	public IDDictionary<MissionData> Mission { get; private set; }
+
+
+	/// <summary>
+	/// 艦船グループデータ
+	/// </summary>
+	public ShipGroupManager ShipGroup { get; private set; }
+
+
+	/// <summary>
+	/// 基地航空隊データ
+	/// </summary>
+	public IDDictionary<BaseAirCorpsData> BaseAirCorps { get; private set; }
+
+	/// <summary>
+	/// 配置転換中装備データ
+	/// </summary>
+	public IDDictionary<RelocationData> RelocatedEquipments { get; private set; }
+
+	public ReplayManager Replays { get; private set; }
+
+	public TsunDbSubmissionManager TsunDbSubmission { get; private set; }
+	public TranslationManager Translation { get; private set; }
+
+	/// <summary>
+	/// Current server
+	/// </summary>
+	public KCServer Server { get; set; }
+
+	/// <summary>
+	/// 艦隊編成プリセットデータ
+	/// </summary>
+	public FleetPresetManager FleetPreset { get; private set; }
+
+
+	private KCDatabase()
 	{
 
-
-		#region Singleton
-
-		private static readonly KCDatabase instance = new KCDatabase();
-
-		public static KCDatabase Instance => instance;
-
-		#endregion
-
-
-
-		/// <summary>
-		/// 艦船のマスターデータ
-		/// </summary>
-		public IDDictionary<ShipDataMaster> MasterShips { get; private set; }
-
-		/// <summary>
-		/// 艦種データ
-		/// </summary>
-		public IDDictionary<ShipType> ShipTypes { get; private set; }
-
-		/// <summary>
-		/// 艦船グラフィックデータ
-		/// </summary>
-		public IDDictionary<ShipGraphicData> ShipGraphics { get; private set; }
-
-		/// <summary>
-		/// 装備のマスターデータ
-		/// </summary>
-		public IDDictionary<EquipmentDataMaster> MasterEquipments { get; private set; }
-
-		/// <summary>
-		/// 装備種別
-		/// </summary>
-		public IDDictionary<EquipmentType> EquipmentTypes { get; private set; }
+		MasterShips = new IDDictionary<ShipDataMaster>();
+		ShipTypes = new IDDictionary<ShipType>();
+		ShipGraphics = new IDDictionary<ShipGraphicData>();
+		MasterEquipments = new IDDictionary<EquipmentDataMaster>();
+		EquipmentTypes = new IDDictionary<EquipmentType>();
+		Ships = new IDDictionary<ShipData>();
+		Equipments = new IDDictionary<EquipmentData>();
+		Admiral = new AdmiralData();
+		MasterUseItems = new IDDictionary<UseItemMaster>();
+		UseItems = new IDDictionary<UseItem>();
+		Arsenals = new IDDictionary<ArsenalData>();
+		Docks = new IDDictionary<DockData>();
+		Development = new DevelopmentData();
+		Fleet = new FleetManager();
+		Material = new MaterialData();
+		Quest = new QuestManager();
+		QuestProgress = new QuestProgressManager();
+		Battle = new BattleManager();
+		MapArea = new IDDictionary<MapAreaData>();
+		MapInfo = new IDDictionary<MapInfoData>();
+		Mission = new IDDictionary<MissionData>();
+		ShipGroup = new ShipGroupManager();
+		BaseAirCorps = new IDDictionary<BaseAirCorpsData>();
+		RelocatedEquipments = new IDDictionary<RelocationData>();
+		Replays = new ReplayManager();
+		TsunDbSubmission = new TsunDbSubmissionManager();
+		FleetPreset = new FleetPresetManager();
+		Translation = new TranslationManager();
+	}
 
 
-		/// <summary>
-		/// 保有艦娘のデータ
-		/// </summary>
-		public IDDictionary<ShipData> Ships { get; private set; }
-
-		/// <summary>
-		/// 保有装備のデータ
-		/// </summary>
-		public IDDictionary<EquipmentData> Equipments { get; private set; }
-
-
-		/// <summary>
-		/// 提督・司令部データ
-		/// </summary>
-		public AdmiralData Admiral { get; private set; }
-
-
-		/// <summary>
-		/// アイテムのマスターデータ
-		/// </summary>
-		public IDDictionary<UseItemMaster> MasterUseItems { get; private set; }
-
-		/// <summary>
-		/// アイテムデータ
-		/// </summary>
-		public IDDictionary<UseItem> UseItems { get; private set; }
-
-
-		/// <summary>
-		/// 工廠ドックデータ
-		/// </summary>
-		public IDDictionary<ArsenalData> Arsenals { get; private set; }
-
-		/// <summary>
-		/// 入渠ドックデータ
-		/// </summary>
-		public IDDictionary<DockData> Docks { get; private set; }
-
-		/// <summary>
-		/// 開発データ
-		/// </summary>
-		public DevelopmentData Development { get; private set; }
-
-
-		/// <summary>
-		/// 艦隊データ
-		/// </summary>
-		public FleetManager Fleet { get; private set; }
-
-
-		/// <summary>
-		/// 資源データ
-		/// </summary>
-		public MaterialData Material { get; private set; }
-
-
-		/// <summary>
-		/// 任務データ
-		/// </summary>
-		public QuestManager Quest { get; private set; }
-
-		/// <summary>
-		/// 任務進捗データ
-		/// </summary>
-		public QuestProgressManager QuestProgress { get; private set; }
-
-
-		/// <summary>
-		/// 戦闘データ
-		/// </summary>
-		public BattleManager Battle { get; private set; }
-
-
-		/// <summary>
-		/// 海域カテゴリデータ
-		/// </summary>
-		public IDDictionary<MapAreaData> MapArea { get; private set; }
-
-		/// <summary>
-		/// 海域データ
-		/// </summary>
-		public IDDictionary<MapInfoData> MapInfo { get; private set; }
-
-
-		/// <summary>
-		/// 遠征データ
-		/// </summary>
-		public IDDictionary<MissionData> Mission { get; private set; }
-
-
-		/// <summary>
-		/// 艦船グループデータ
-		/// </summary>
-		public ShipGroupManager ShipGroup { get; private set; }
-
-
-		/// <summary>
-		/// 基地航空隊データ
-		/// </summary>
-		public IDDictionary<BaseAirCorpsData> BaseAirCorps { get; private set; }
-
-		/// <summary>
-		/// 配置転換中装備データ
-		/// </summary>
-		public IDDictionary<RelocationData> RelocatedEquipments { get; private set; }
-
-		public ReplayManager Replays { get; private set; }
-
-		public TsunDbSubmissionManager TsunDbSubmission { get; private set; }
-		public TranslationManager Translation { get; private set; }
-
-		/// <summary>
-		/// Current server
-		/// </summary>
-		public KCServer Server { get; set; }
-
-		/// <summary>
-		/// 艦隊編成プリセットデータ
-		/// </summary>
-		public FleetPresetManager FleetPreset { get; private set; }
-
-
-		private KCDatabase()
+	public void Load()
+	{
 		{
-
-			MasterShips = new IDDictionary<ShipDataMaster>();
-			ShipTypes = new IDDictionary<ShipType>();
-			ShipGraphics = new IDDictionary<ShipGraphicData>();
-			MasterEquipments = new IDDictionary<EquipmentDataMaster>();
-			EquipmentTypes = new IDDictionary<EquipmentType>();
-			Ships = new IDDictionary<ShipData>();
-			Equipments = new IDDictionary<EquipmentData>();
-			Admiral = new AdmiralData();
-			MasterUseItems = new IDDictionary<UseItemMaster>();
-			UseItems = new IDDictionary<UseItem>();
-			Arsenals = new IDDictionary<ArsenalData>();
-			Docks = new IDDictionary<DockData>();
-			Development = new DevelopmentData();
-			Fleet = new FleetManager();
-			Material = new MaterialData();
-			Quest = new QuestManager();
-			QuestProgress = new QuestProgressManager();
-			Battle = new BattleManager();
-			MapArea = new IDDictionary<MapAreaData>();
-			MapInfo = new IDDictionary<MapInfoData>();
-			Mission = new IDDictionary<MissionData>();
-			ShipGroup = new ShipGroupManager();
-			BaseAirCorps = new IDDictionary<BaseAirCorpsData>();
-			RelocatedEquipments = new IDDictionary<RelocationData>();
-			Replays = new ReplayManager();
-			TsunDbSubmission = new TsunDbSubmissionManager();
-			FleetPreset = new FleetPresetManager();
-			Translation = new TranslationManager();
+			var temp = (ShipGroupManager)ShipGroup.Load();
+			if (temp != null)
+				ShipGroup = temp;
 		}
-
-
-		public void Load()
 		{
+			var temp = QuestProgress.Load();
+			if (temp != null)
 			{
-				var temp = (ShipGroupManager)ShipGroup.Load();
-				if (temp != null)
-					ShipGroup = temp;
+				if (QuestProgress != null)
+					QuestProgress.RemoveEvents();
+				QuestProgress = temp;
 			}
-			{
-				var temp = QuestProgress.Load();
-				if (temp != null)
-				{
-					if (QuestProgress != null)
-						QuestProgress.RemoveEvents();
-					QuestProgress = temp;
-				}
-			}
-
-		}
-
-		public void Save()
-		{
-			ShipGroup.Save();
-			QuestProgress.Save();
 		}
 
 	}
 
+	public void Save()
+	{
+		ShipGroup.Save();
+		QuestProgress.Save();
+	}
 
 }

@@ -7,37 +7,36 @@ using ElectronicObserver.Resource;
 using ElectronicObserver.Window.Wpf.Fleet.ViewModels;
 using ElectronicObserverTypes;
 
-namespace ElectronicObserver.Window.Wpf.Fleet
+namespace ElectronicObserver.Window.Wpf.Fleet;
+
+/// <summary>
+/// Interaction logic for FleetView.xaml
+/// </summary>
+public partial class FleetView : UserControl
 {
-    /// <summary>
-    /// Interaction logic for FleetView.xaml
-    /// </summary>
-    public partial class FleetView : UserControl
-    {
-	    public static readonly DependencyProperty ViewModelProperty = DependencyProperty.Register(
-		    "ViewModel", typeof(FleetViewModel), typeof(FleetView), new PropertyMetadata(default(FleetViewModel)));
+	public static readonly DependencyProperty ViewModelProperty = DependencyProperty.Register(
+		"ViewModel", typeof(FleetViewModel), typeof(FleetView), new PropertyMetadata(default(FleetViewModel)));
 
-	    public FleetViewModel ViewModel
-	    {
-		    get => (FleetViewModel) GetValue(ViewModelProperty);
-		    set => SetValue(ViewModelProperty, value);
-	    }
+	public FleetViewModel ViewModel
+	{
+		get => (FleetViewModel) GetValue(ViewModelProperty);
+		set => SetValue(ViewModelProperty, value);
+	}
 
-		// public FleetViewModel ViewModel { get; }
+	// public FleetViewModel ViewModel { get; }
 
-		public FleetView()
-		{
-			InitializeComponent();
-		}
+	public FleetView()
+	{
+		InitializeComponent();
+	}
 
-		public FleetView(int fleetId, Action<IconContent> setIcon)
-        {
-			/*
-	        ViewModel = new(fleetId, setIcon);
-	        DataContext = ViewModel;
-			*/
+	public FleetView(int fleetId, Action<IconContent> setIcon)
+	{
+		/*
+        ViewModel = new(fleetId, setIcon);
+        DataContext = ViewModel;
+		*/
 
-            InitializeComponent();
-        }
-    }
+		InitializeComponent();
+	}
 }

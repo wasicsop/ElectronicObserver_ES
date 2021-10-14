@@ -6,148 +6,145 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ElectronicObserver.Data.Battle.Phase
+namespace ElectronicObserver.Data.Battle.Phase;
+
+/// <summary>
+/// 基地航空隊攻撃フェーズの処理を行います。
+/// </summary>
+public class PhaseBaseAirAttack : PhaseBase
 {
 
+
 	/// <summary>
-	/// 基地航空隊攻撃フェーズの処理を行います。
+	/// 基地航空隊攻撃フェーズの、個々の攻撃フェーズの処理を行います。
 	/// </summary>
-	public class PhaseBaseAirAttack : PhaseBase
+	public class PhaseBaseAirAttackUnit : PhaseAirBattleBase
 	{
 
 
-		/// <summary>
-		/// 基地航空隊攻撃フェーズの、個々の攻撃フェーズの処理を行います。
-		/// </summary>
-		public class PhaseBaseAirAttackUnit : PhaseAirBattleBase
-		{
-
-
-			public PhaseBaseAirAttackUnit(BattleData data, string title, int index)
-				: base(data, title)
-			{
-
-				AirAttackIndex = index;
-				AirBattleData = data.RawData.api_air_base_attack[index];
-				StageFlag = AirBattleData.api_stage_flag() ? (int[])AirBattleData.api_stage_flag : null;
-
-				LaunchedShipIndexEnemy = GetLaunchedShipIndex(0);
-
-				_squadrons = GetSquadrons().ToArray();
-
-				TorpedoFlags = ConcatStage3Array<int>("api_frai_flag", "api_erai_flag");
-				BomberFlags = ConcatStage3Array<int>("api_fbak_flag", "api_ebak_flag");
-				Criticals = ConcatStage3Array<int>("api_fcl_flag", "api_ecl_flag");
-				Damages = ConcatStage3Array<double>("api_fdam", "api_edam");
-			}
-
-
-			public override void EmulateBattle(int[] hps, int[] damages)
-			{
-
-				if (!IsAvailable) return;
-
-				CalculateAttack(AirAttackIndex + 1, hps);
-			}
-
-
-			/// <summary>
-			/// 攻撃ID (第n波, 0から始まる)
-			/// </summary>
-			public int AirAttackIndex { get; private set; }
-
-			/// <summary>
-			/// 航空隊ID
-			/// </summary>
-			public int AirUnitID => (int)AirBattleData.api_base_id;
-
-
-
-			private BattleBaseAirCorpsSquadron[] _squadrons;
-			/// <summary>
-			/// 参加した航空中隊データ
-			/// </summary>
-			public ReadOnlyCollection<BattleBaseAirCorpsSquadron> Squadrons => Array.AsReadOnly(_squadrons);
-
-			private IEnumerable<BattleBaseAirCorpsSquadron> GetSquadrons()
-			{
-				foreach (dynamic d in AirBattleData.api_squadron_plane)
-					yield return new BattleBaseAirCorpsSquadron(d);
-			}
-
-		}
-
-
-
-		public PhaseBaseAirAttack(BattleData data, string title)
+		public PhaseBaseAirAttackUnit(BattleData data, string title, int index)
 			: base(data, title)
 		{
 
-			AirAttackUnits = new List<PhaseBaseAirAttackUnit>();
+			AirAttackIndex = index;
+			AirBattleData = data.RawData.api_air_base_attack[index];
+			StageFlag = AirBattleData.api_stage_flag() ? (int[])AirBattleData.api_stage_flag : null;
 
-			if (!IsAvailable)
-				return;
+			LaunchedShipIndexEnemy = GetLaunchedShipIndex(0);
 
+			_squadrons = GetSquadrons().ToArray();
 
-			int i = 0;
-			foreach (var unit in RawData.api_air_base_attack)
-			{
-				AirAttackUnits.Add(new PhaseBaseAirAttackUnit(data, title, i));
-				i++;
-			}
-
+			TorpedoFlags = ConcatStage3Array<int>("api_frai_flag", "api_erai_flag");
+			BomberFlags = ConcatStage3Array<int>("api_fbak_flag", "api_ebak_flag");
+			Criticals = ConcatStage3Array<int>("api_fcl_flag", "api_ecl_flag");
+			Damages = ConcatStage3Array<double>("api_fdam", "api_edam");
 		}
-
-
-		/// <summary>
-		/// 個々の攻撃フェーズのデータ
-		/// </summary>
-		public List<PhaseBaseAirAttackUnit> AirAttackUnits { get; private set; }
-
-
-
-		public override bool IsAvailable => RawData.api_air_base_attack();
 
 
 		public override void EmulateBattle(int[] hps, int[] damages)
 		{
 
-			if (!IsAvailable)
-				return;
+			if (!IsAvailable) return;
 
-			foreach (var a in AirAttackUnits)
-			{
-
-				a.EmulateBattle(hps, damages);
-			}
+			CalculateAttack(AirAttackIndex + 1, hps);
 		}
 
 
-		protected override IEnumerable<BattleDetail> SearchBattleDetails(int index)
+		/// <summary>
+		/// 攻撃ID (第n波, 0から始まる)
+		/// </summary>
+		public int AirAttackIndex { get; private set; }
+
+		/// <summary>
+		/// 航空隊ID
+		/// </summary>
+		public int AirUnitID => (int)AirBattleData.api_base_id;
+
+
+
+		private BattleBaseAirCorpsSquadron[] _squadrons;
+		/// <summary>
+		/// 参加した航空中隊データ
+		/// </summary>
+		public ReadOnlyCollection<BattleBaseAirCorpsSquadron> Squadrons => Array.AsReadOnly(_squadrons);
+
+		private IEnumerable<BattleBaseAirCorpsSquadron> GetSquadrons()
 		{
-			return AirAttackUnits.SelectMany(p => p.BattleDetails).Where(d => d.DefenderIndex == index);
+			foreach (dynamic d in AirBattleData.api_squadron_plane)
+				yield return new BattleBaseAirCorpsSquadron(d);
+		}
+
+	}
+
+
+
+	public PhaseBaseAirAttack(BattleData data, string title)
+		: base(data, title)
+	{
+
+		AirAttackUnits = new List<PhaseBaseAirAttackUnit>();
+
+		if (!IsAvailable)
+			return;
+
+
+		int i = 0;
+		foreach (var unit in RawData.api_air_base_attack)
+		{
+			AirAttackUnits.Add(new PhaseBaseAirAttackUnit(data, title, i));
+			i++;
 		}
 
 	}
 
 
 	/// <summary>
-	/// 戦闘に参加した基地航空隊中隊のデータ
+	/// 個々の攻撃フェーズのデータ
 	/// </summary>
-	public class BattleBaseAirCorpsSquadron
+	public List<PhaseBaseAirAttackUnit> AirAttackUnits { get; private set; }
+
+
+
+	public override bool IsAvailable => RawData.api_air_base_attack();
+
+
+	public override void EmulateBattle(int[] hps, int[] damages)
 	{
-		public int EquipmentID { get; private set; }
-		public int AircraftCount { get; private set; }
-		public EquipmentDataMaster EquipmentInstance => KCDatabase.Instance.MasterEquipments[EquipmentID];
 
-		public BattleBaseAirCorpsSquadron(dynamic data)
+		if (!IsAvailable)
+			return;
+
+		foreach (var a in AirAttackUnits)
 		{
-			EquipmentID = (int)data.api_mst_id;
-			AircraftCount = (int)data.api_count;
+
+			a.EmulateBattle(hps, damages);
 		}
-
-		public override string ToString() => $"{EquipmentInstance?.NameEN ?? "Unknown Plane"} x {AircraftCount}";
-
 	}
+
+
+	protected override IEnumerable<BattleDetail> SearchBattleDetails(int index)
+	{
+		return AirAttackUnits.SelectMany(p => p.BattleDetails).Where(d => d.DefenderIndex == index);
+	}
+
+}
+
+
+/// <summary>
+/// 戦闘に参加した基地航空隊中隊のデータ
+/// </summary>
+public class BattleBaseAirCorpsSquadron
+{
+	public int EquipmentID { get; private set; }
+	public int AircraftCount { get; private set; }
+	public EquipmentDataMaster EquipmentInstance => KCDatabase.Instance.MasterEquipments[EquipmentID];
+
+	public BattleBaseAirCorpsSquadron(dynamic data)
+	{
+		EquipmentID = (int)data.api_mst_id;
+		AircraftCount = (int)data.api_count;
+	}
+
+	public override string ToString() => $"{EquipmentInstance?.NameEN ?? "Unknown Plane"} x {AircraftCount}";
 
 }

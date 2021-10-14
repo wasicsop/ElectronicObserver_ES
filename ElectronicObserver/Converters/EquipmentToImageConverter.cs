@@ -5,34 +5,33 @@ using System.Globalization;
 using System.Windows.Data;
 using System.Windows.Media.Imaging;
 
-namespace ElectronicObserver.Converters
+namespace ElectronicObserver.Converters;
+
+public class EquipmentToImageConverter : IValueConverter
 {
-	public class EquipmentToImageConverter : IValueConverter
+	public object? Convert(object value, Type targetType, object parameter, CultureInfo culture)
 	{
-		public object? Convert(object value, Type targetType, object parameter, CultureInfo culture)
+		if (value is not IEquipmentDataMaster equipment) return null;
+
+		try
 		{
-			if (value is not IEquipmentDataMaster equipment) return null;
+			string? imageUri = KCResourceHelper.GetEquipmentImagePath(equipment.ID, KCResourceHelper.ResourceTypeEquipmentCard) ??
+			                   KCResourceHelper.GetEquipmentImagePath(equipment.ID, KCResourceHelper.ResourceTypeEquipmentCardSmall);
 
-			try
+			return imageUri switch
 			{
-				string? imageUri = KCResourceHelper.GetEquipmentImagePath(equipment.ID, KCResourceHelper.ResourceTypeEquipmentCard) ??
-								   KCResourceHelper.GetEquipmentImagePath(equipment.ID, KCResourceHelper.ResourceTypeEquipmentCardSmall);
-
-				return imageUri switch
-				{
-					null => null,
-					_ => new BitmapImage(new Uri(imageUri))
-				};
-			}
-			catch
-			{
-				return null;
-			}
+				null => null,
+				_ => new BitmapImage(new Uri(imageUri))
+			};
 		}
-
-		public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+		catch
 		{
-			throw new NotSupportedException();
+			return null;
 		}
+	}
+
+	public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+	{
+		throw new NotSupportedException();
 	}
 }

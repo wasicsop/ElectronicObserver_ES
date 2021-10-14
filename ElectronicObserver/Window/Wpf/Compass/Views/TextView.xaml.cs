@@ -11,25 +11,24 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ElectronicObserver.Window.Wpf.Compass.Views
+namespace ElectronicObserver.Window.Wpf.Compass.Views;
+
+/// <summary>
+/// Interaction logic for TextView.xaml
+/// </summary>
+public partial class TextView : UserControl
 {
-	/// <summary>
-	/// Interaction logic for TextView.xaml
-	/// </summary>
-	public partial class TextView : UserControl
+	public static readonly DependencyProperty ViewModelProperty = DependencyProperty.Register(
+		"ViewModel", typeof(CompassViewModel), typeof(TextView), new PropertyMetadata(default(CompassViewModel)));
+
+	public CompassViewModel ViewModel
 	{
-		public static readonly DependencyProperty ViewModelProperty = DependencyProperty.Register(
-			"ViewModel", typeof(CompassViewModel), typeof(TextView), new PropertyMetadata(default(CompassViewModel)));
+		get => (CompassViewModel) GetValue(ViewModelProperty);
+		set => SetValue(ViewModelProperty, value);
+	}
 
-		public CompassViewModel ViewModel
-		{
-			get => (CompassViewModel) GetValue(ViewModelProperty);
-			set => SetValue(ViewModelProperty, value);
-		}
-
-		public TextView()
-		{
-			InitializeComponent();
-		}
+	public TextView()
+	{
+		InitializeComponent();
 	}
 }

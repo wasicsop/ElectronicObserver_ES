@@ -5,28 +5,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ElectronicObserver.Observer.kcsapi.api_req_air_corps
+namespace ElectronicObserver.Observer.kcsapi.api_req_air_corps;
+
+public class set_action : APIBase
 {
-	public class set_action : APIBase
+
+	public override bool IsRequestSupported => true;
+
+
+	public override void OnRequestReceived(Dictionary<string, string> data)
 	{
 
-		public override bool IsRequestSupported => true;
-
-
-		public override void OnRequestReceived(Dictionary<string, string> data)
+		int areaID = int.Parse(data["api_area_id"]);
+		foreach (var c in KCDatabase.Instance.BaseAirCorps.Values.Where(b => b.MapAreaID == areaID))
 		{
-
-			int areaID = int.Parse(data["api_area_id"]);
-			foreach (var c in KCDatabase.Instance.BaseAirCorps.Values.Where(b => b.MapAreaID == areaID))
-			{
-				c.LoadFromRequest(APIName, data);
-			}
-
-			base.OnRequestReceived(data);
+			c.LoadFromRequest(APIName, data);
 		}
 
-
-		public override string APIName => "api_req_air_corps/set_action";
+		base.OnRequestReceived(data);
 	}
 
+
+	public override string APIName => "api_req_air_corps/set_action";
 }

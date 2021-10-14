@@ -1,8 +1,7 @@
-﻿namespace ElectronicObserver.Window.Tools.DialogAlbumMasterShip
+﻿namespace ElectronicObserver.Window.Tools.DialogAlbumMasterShip;
+
+public enum DisplayedMessage
 {
-	public enum DisplayedMessage
-	{
-		Album,
-		Get
-	}
+	Album,
+	Get
 }
