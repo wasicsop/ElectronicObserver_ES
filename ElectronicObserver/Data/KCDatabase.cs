@@ -1,12 +1,7 @@
 ﻿using ElectronicObserver.Data.Battle;
 using ElectronicObserver.Data.Quest;
 using ElectronicObserver.Data.Translation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ElectronicObserverTypes;
+using ElectronicObserver.Window.Dialog.QuestTrackerManager;
 using static ElectronicObserver.Data.Constants;
 
 namespace ElectronicObserver.Data;
@@ -176,6 +171,9 @@ public sealed class KCDatabase
 	public FleetPresetManager FleetPreset { get; private set; }
 
 
+	private QuestTrackerManagerViewModel? _questRequirements;
+	public QuestTrackerManagerViewModel QuestTrackerManagers => _questRequirements ??= new();
+
 	private KCDatabase()
 	{
 
@@ -227,12 +225,14 @@ public sealed class KCDatabase
 			}
 		}
 
+		QuestTrackerManagers.Load();
 	}
 
 	public void Save()
 	{
 		ShipGroup.Save();
 		QuestProgress.Save();
+		QuestTrackerManagers.Save();
 	}
 
 }
