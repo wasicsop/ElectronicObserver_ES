@@ -401,4 +401,7 @@
   <data name="MissingPermissions" xml:space="preserve">
     <value>あなたのWindowsユーザーは、現在の場所にファイルを作成する権限を持っていません。七四式フォルダをデスクトップ上など、書き込み権限のある場所に移動してください。</value>
   </data>
+  <data name="QuestDataNotLoaded" xml:space="preserve">
+    <value>任務データが読み込まれていません。</value>
+  </data>
 </root>

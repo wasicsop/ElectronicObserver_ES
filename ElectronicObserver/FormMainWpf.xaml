@@ -248,6 +248,11 @@
 						<Image Source="{Binding ExtraBrowserImageSource}" />
 					</MenuItem.Icon>
 				</MenuItem>
+				<MenuItem Header="{Binding FormMain.StripMenu_Tool_QuestTrackerManager}" Command="{Binding OpenQuestTrackerManagerCommand}">
+					<MenuItem.Icon>
+						<Image Source="{Binding QuestImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
 			</MenuItem>
 			<MenuItem Header="{Binding FormMain.StripMenu_Debug}" d:Header="Debug" Height="Auto" Visibility="{Binding DebugVisibility}">
 				<MenuItem Header="{Binding FormMain.StripMenu_Debug_LoadAPIFromFile}" d:Header="Load API From File..." Command="{Binding LoadAPIFromFileCommand}" />

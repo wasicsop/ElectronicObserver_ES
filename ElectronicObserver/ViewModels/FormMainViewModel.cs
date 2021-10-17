@@ -1,19 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Text.Json;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Forms;
-using System.Windows.Input;
-using System.Windows.Media;
-using AvalonDock;
+﻿using AvalonDock;
 using AvalonDock.Layout;
 using AvalonDock.Layout.Serialization;
 using AvalonDock.Themes;
@@ -28,6 +13,7 @@ using ElectronicObserver.Utility;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window;
 using ElectronicObserver.Window.Dialog;
+using ElectronicObserver.Window.Dialog.QuestTrackerManager;
 using ElectronicObserver.Window.Integrate;
 using ElectronicObserver.Window.Tools.DialogAlbumMasterEquipment;
 using ElectronicObserver.Window.Tools.DialogAlbumMasterShip;
@@ -38,17 +24,30 @@ using ElectronicObserver.Window.Wpf.Battle;
 using ElectronicObserver.Window.Wpf.Compass;
 using ElectronicObserver.Window.Wpf.Dock;
 using ElectronicObserver.Window.Wpf.Fleet;
-using ElectronicObserver.Window.Wpf.Fleet.ViewModels;
 using ElectronicObserver.Window.Wpf.FleetOverview;
 using ElectronicObserver.Window.Wpf.FleetPreset;
 using ElectronicObserver.Window.Wpf.Headquarters;
-using ElectronicObserver.Window.Wpf.ShipGroup.ViewModels;
 using ElectronicObserver.Window.Wpf.WinformsWrappers;
 using MessagePack;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 using ModernWpf;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Text.Json;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Forms;
+using System.Windows.Input;
+using System.Windows.Media;
 using MessageBox = System.Windows.MessageBox;
 using Timer = System.Windows.Forms.Timer;
 
@@ -67,7 +66,7 @@ public partial class FormMainViewModel : ObservableObject
 	private string LayoutPath => Config.Life.LayoutFilePath;
 	private string PositionPath => Path.ChangeExtension(LayoutPath, ".Position.json");
 	private string IntegratePath => Path.ChangeExtension(LayoutPath, ".Integrate.json");
-		
+
 	public bool NotificationsSilenced { get; set; }
 	private DateTime PrevPlayTimeRecorded { get; set; } = DateTime.MinValue;
 	public FontFamily Font { get; set; }
@@ -404,7 +403,7 @@ public partial class FormMainViewModel : ObservableObject
 		Views.Add(Compass = new CompassViewModel());
 		Views.Add(Battle = new BattleViewModel());
 
-		Views.Add(FormBrowserHost = new FormBrowserHostViewModel() {Visibility = Visibility.Visible});
+		Views.Add(FormBrowserHost = new FormBrowserHostViewModel() { Visibility = Visibility.Visible });
 		Views.Add(FormLog = new FormLogViewModel());
 		Views.Add(FormJson = new FormJsonViewModel());
 		Views.Add(WindowCapture = new FormWindowCaptureViewModel(this));
@@ -412,7 +411,7 @@ public partial class FormMainViewModel : ObservableObject
 		ConfigurationChanged(); //設定から初期化
 
 		// LoadLayout();
-			
+
 		SoftwareInformation.CheckUpdate();
 		Task.Run(async () => await SoftwareUpdater.CheckUpdateAsync());
 		CancellationTokenSource cts = new();
@@ -454,7 +453,7 @@ public partial class FormMainViewModel : ObservableObject
 
 		NotificationsSilenced = NotifierManager.Instance.GetNotifiers().All(n => n.IsSilenced);
 
-		UIUpdateTimer = new Timer() {Interval = 1000};
+		UIUpdateTimer = new Timer() { Interval = 1000 };
 		UIUpdateTimer.Tick += UIUpdateTimer_Tick;
 		UIUpdateTimer.Start();
 
@@ -471,8 +470,8 @@ public partial class FormMainViewModel : ObservableObject
 	private void StripMenu_File_SaveData_Load_Click()
 	{
 		if (MessageBox.Show(Resources.AskLoad, Properties.Window.FormMain.ConfirmatonCaption,
-			    MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No)
-		    == MessageBoxResult.Yes)
+				MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No)
+			== MessageBoxResult.Yes)
 		{
 			RecordManager.Instance.Load();
 		}
@@ -524,7 +523,7 @@ public partial class FormMainViewModel : ObservableObject
 			try
 			{
 				Position = JsonSerializer.Deserialize<WindowPosition>(File.ReadAllText(PositionPath)) ??
-				           new WindowPosition();
+						   new WindowPosition();
 			}
 			catch
 			{
@@ -631,7 +630,7 @@ public partial class FormMainViewModel : ObservableObject
 				capture.CapturedWindows.Remove(i);
 			}
 		}
-			
+
 		Views.Remove(integrate);
 
 		// AvalonDock always hides anchorables, but integrate anchorables should always be closed
@@ -788,6 +787,18 @@ public partial class FormMainViewModel : ObservableObject
 		ElectronicObserver.Window.FormBrowserHost.Instance.Browser.OpenExtraBrowser();
 	}
 
+	[ICommand]
+	private void OpenQuestTrackerManager()
+	{
+		if (!KCDatabase.Instance.Quest.IsLoaded)
+		{
+			MessageBox.Show(Properties.Window.FormMain.QuestDataNotLoaded, Properties.Window.FormMain.ErrorCaption, MessageBoxButton.OK, MessageBoxImage.Error);
+			return;
+		}
+
+		new QuestTrackerManagerWindow().Show();
+	}
+
 	#endregion
 
 	#region Debug
@@ -897,17 +908,17 @@ public partial class FormMainViewModel : ObservableObject
 					using StreamReader sr2 = new(files[files.Length - 1]);
 					if (isRequest)
 					{
-						Window.Dispatcher.Invoke((Action) (() =>
-						{
-							APIObserver.Instance.LoadRequest("/kcsapi/" + line, sr2.ReadToEnd());
-						}));
+						Window.Dispatcher.Invoke((Action)(() =>
+					   {
+						   APIObserver.Instance.LoadRequest("/kcsapi/" + line, sr2.ReadToEnd());
+					   }));
 					}
 					else
 					{
-						Window.Dispatcher.Invoke((Action) (() =>
-						{
-							APIObserver.Instance.LoadResponse("/kcsapi/" + line, sr2.ReadToEnd());
-						}));
+						Window.Dispatcher.Invoke((Action)(() =>
+					   {
+						   APIObserver.Instance.LoadResponse("/kcsapi/" + line, sr2.ReadToEnd());
+					   }));
 					}
 
 					//System.Diagnostics.Debug.WriteLine( "APIList Loader: API " + line + " File " + files[files.Length-1] + " Loaded." );
@@ -942,16 +953,16 @@ public partial class FormMainViewModel : ObservableObject
 
 				foreach (dynamic elem in json.api_data.api_mst_ship)
 				{
-					if (elem.api_name != "なし" && KCDatabase.Instance.MasterShips.ContainsKey((int) elem.api_id) &&
-					    KCDatabase.Instance.MasterShips[(int) elem.api_id].Name == elem.api_name)
+					if (elem.api_name != "なし" && KCDatabase.Instance.MasterShips.ContainsKey((int)elem.api_id) &&
+						KCDatabase.Instance.MasterShips[(int)elem.api_id].Name == elem.api_name)
 					{
-						RecordManager.Instance.ShipParameter.UpdateParameter((int) elem.api_id, 1,
-							(int) elem.api_tais[0], (int) elem.api_tais[1], (int) elem.api_kaih[0],
-							(int) elem.api_kaih[1], (int) elem.api_saku[0], (int) elem.api_saku[1]);
+						RecordManager.Instance.ShipParameter.UpdateParameter((int)elem.api_id, 1,
+							(int)elem.api_tais[0], (int)elem.api_tais[1], (int)elem.api_kaih[0],
+							(int)elem.api_kaih[1], (int)elem.api_saku[0], (int)elem.api_saku[1]);
 
 						int[] defaultslot = Enumerable.Repeat(-1, 5).ToArray();
-						((int[]) elem.api_defeq).CopyTo(defaultslot, 0);
-						RecordManager.Instance.ShipParameter.UpdateDefaultSlot((int) elem.api_id, defaultslot);
+						((int[])elem.api_defeq).CopyTo(defaultslot, 0);
+						RecordManager.Instance.ShipParameter.UpdateDefaultSlot((int)elem.api_id, defaultslot);
 					}
 				}
 			}
@@ -995,12 +1006,12 @@ public partial class FormMainViewModel : ObservableObject
 					foreach (dynamic elem in json.api_data.api_mst_ship)
 					{
 
-						var ship = KCDatabase.Instance.MasterShips[(int) elem.api_id];
+						var ship = KCDatabase.Instance.MasterShips[(int)elem.api_id];
 
 						if (elem.api_name != "なし" && ship != null && ship.IsAbyssalShip)
 						{
 
-							KCDatabase.Instance.MasterShips[(int) elem.api_id].LoadFromResponse("api_start2", elem);
+							KCDatabase.Instance.MasterShips[(int)elem.api_id].LoadFromResponse("api_start2", elem);
 						}
 					}
 				}
@@ -1021,8 +1032,8 @@ public partial class FormMainViewModel : ObservableObject
 	{
 
 		if (MessageBox.Show("This will delete old API data.\r\nAre you sure?", "Confirmation",
-			    MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No)
-		    == MessageBoxResult.Yes)
+				MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No)
+			== MessageBoxResult.Yes)
 		{
 
 			try
@@ -1098,10 +1109,10 @@ public partial class FormMainViewModel : ObservableObject
 		}
 
 		if (MessageBox.Show("通信から保存した艦船リソース名を持つファイル及びフォルダを、艦船名に置換します。\r\n" +
-		                    "対象は指定されたフォルダ以下のすべてのファイル及びフォルダです。\r\n" +
-		                    "続行しますか？", "艦船リソースをリネーム", MessageBoxButton.YesNo, MessageBoxImage.Question,
-			    MessageBoxResult.Yes)
-		    == MessageBoxResult.Yes)
+							"対象は指定されたフォルダ以下のすべてのファイル及びフォルダです。\r\n" +
+							"続行しますか？", "艦船リソースをリネーム", MessageBoxButton.YesNo, MessageBoxImage.Question,
+				MessageBoxResult.Yes)
+			== MessageBoxResult.Yes)
 		{
 
 			string path = null;
@@ -1228,8 +1239,8 @@ public partial class FormMainViewModel : ObservableObject
 	{
 
 		if (MessageBox.Show(Properties.Window.FormMain.OpenEOWiki, Properties.Window.FormMain.HelpCaption,
-			    MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes)
-		    == MessageBoxResult.Yes)
+				MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes)
+			== MessageBoxResult.Yes)
 		{
 			ProcessStartInfo psi = new()
 			{
@@ -1245,8 +1256,8 @@ public partial class FormMainViewModel : ObservableObject
 	{
 
 		if (MessageBox.Show(Properties.Window.FormMain.ReportIssue, Properties.Window.FormMain.ReportIssueCaption,
-			    MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes)
-		    == MessageBoxResult.Yes)
+				MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes)
+			== MessageBoxResult.Yes)
 		{
 			ProcessStartInfo psi = new()
 			{
@@ -1307,7 +1318,7 @@ public partial class FormMainViewModel : ObservableObject
 	private void ConfigurationChanged()
 	{
 		var c = Configuration.Config;
-			
+
 		DebugEnabled = c.Debug.EnableDebugMenu;
 
 		StripStatus.Visible = c.Life.ShowStatusBar;
@@ -1477,29 +1488,29 @@ public partial class FormMainViewModel : ObservableObject
 				break;
 
 			case 1: //演習更新まで
-			{
-				var border = now.Date.AddHours(3);
-				while (border < now)
-					border = border.AddHours(12);
+				{
+					var border = now.Date.AddHours(3);
+					while (border < now)
+						border = border.AddHours(12);
 
-				var ts = border - now;
-				StripStatus.Clock = ts.ToString("hh\\:mm\\:ss");
-				StripStatus.ClockToolTip = now.ToString("yyyy\\/MM\\/dd (ddd) HH\\:mm\\:ss");
+					var ts = border - now;
+					StripStatus.Clock = ts.ToString("hh\\:mm\\:ss");
+					StripStatus.ClockToolTip = now.ToString("yyyy\\/MM\\/dd (ddd) HH\\:mm\\:ss");
 
-			}
+				}
 				break;
 
 			case 2: //任務更新まで
-			{
-				var border = now.Date.AddHours(5);
-				if (border < now)
-					border = border.AddHours(24);
+				{
+					var border = now.Date.AddHours(5);
+					if (border < now)
+						border = border.AddHours(24);
 
-				var ts = border - now;
-				StripStatus.Clock = ts.ToString("hh\\:mm\\:ss");
-				StripStatus.ClockToolTip = now.ToString("yyyy\\/MM\\/dd (ddd) HH\\:mm\\:ss");
+					var ts = border - now;
+					StripStatus.Clock = ts.ToString("hh\\:mm\\:ss");
+					StripStatus.ClockToolTip = now.ToString("yyyy\\/MM\\/dd (ddd) HH\\:mm\\:ss");
 
-			}
+				}
 				break;
 		}
 
@@ -1560,12 +1571,12 @@ public partial class FormMainViewModel : ObservableObject
 		if (Configuration.Config.Life.ConfirmOnClosing)
 		{
 			if (MessageBox.Show(
-				    string.Format(Properties.Window.FormMain.ExitConfirmation, name),
-				    Properties.Window.FormMain.ConfirmatonCaption,
-				    MessageBoxButton.YesNo,
-				    MessageBoxImage.Question,
-				    MessageBoxResult.No)
-			    == MessageBoxResult.No)
+					string.Format(Properties.Window.FormMain.ExitConfirmation, name),
+					Properties.Window.FormMain.ConfirmatonCaption,
+					MessageBoxButton.YesNo,
+					MessageBoxImage.Question,
+					MessageBoxResult.No)
+				== MessageBoxResult.No)
 			{
 				e.Cancel = true;
 				return;
@@ -1590,7 +1601,7 @@ public partial class FormMainViewModel : ObservableObject
 		{
 			try
 			{
-				uint id = (uint) Process.GetCurrentProcess().Id;
+				uint id = (uint)Process.GetCurrentProcess().Id;
 				Configuration.Config.Control.LastVolume = BrowserLibCore.VolumeManager.GetApplicationVolume(id);
 				Configuration.Config.Control.LastIsMute = BrowserLibCore.VolumeManager.GetApplicationMute(id);
 

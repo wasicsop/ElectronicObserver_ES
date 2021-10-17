@@ -401,4 +401,7 @@ Are you sure?</value>
   <data name="MissingPermissions" xml:space="preserve">
     <value>Your Windows user doesn't have permissions to create files in the current location. Please move the EO folder to a location where you have write access, for example, on your desktop.</value>
   </data>
+  <data name="QuestDataNotLoaded" xml:space="preserve">
+    <value>Quest data is not loaded.</value>
+  </data>
 </root>
