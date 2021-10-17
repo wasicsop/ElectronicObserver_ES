@@ -219,6 +219,11 @@
 		  <AutoGen>True</AutoGen>
 		  <DependentUpon>DialogVersion.resx</DependentUpon>
 		</Compile>
+		<Compile Update="Properties\Window\Dialog\QuestTrackerManager.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>QuestTrackerManager.resx</DependentUpon>
+		</Compile>
 		<Compile Update="Properties\Window\FormBaseAirCorps.Designer.cs">
 		  <DesignTime>True</DesignTime>
 		  <AutoGen>True</AutoGen>
@@ -587,6 +592,10 @@
 		<EmbeddedResource Update="Properties\Window\Dialog\DialogVersion.resx">
 		  <Generator>PublicResXFileCodeGenerator</Generator>
 		  <LastGenOutput>DialogVersion.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Properties\Window\Dialog\QuestTrackerManager.resx">
+		  <Generator>PublicResXFileCodeGenerator</Generator>
+		  <LastGenOutput>QuestTrackerManager.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 		<EmbeddedResource Update="Properties\Window\FormBaseAirCorps.resx">
 		  <Generator>PublicResXFileCodeGenerator</Generator>

@@ -1,0 +1,22 @@
+﻿using ElectronicObserver.Window.Dialog.QuestTrackerManager.ViewModels.Conditions;
+using System;
+using System.Windows;
+using System.Windows.Controls;
+
+namespace ElectronicObserver.Window.Dialog.QuestTrackerManager;
+
+public class ConditionTemplateSelector : DataTemplateSelector
+{
+	public DataTemplate? Group { get; set; }
+	public DataTemplate? ShipType { get; set; }
+	public DataTemplate? Ship { get; set; }
+
+	public override DataTemplate? SelectTemplate(object item, DependencyObject container) => item switch
+	{
+		GroupConditionViewModel => Group,
+		ShipTypeConditionViewModel => ShipType,
+		ShipConditionViewModel => Ship,
+
+		_ => throw new NotImplementedException(),
+	};
+}

@@ -21,8 +21,9 @@
 			<converters:EquipmentToImageConverter x:Key="EquipmentToImageConverter" />
 			<converters:EquipmentStatValueConverter x:Key="EquipmentStatValueConverter" />
 			<converters:EquipmentStatForegroundConverter x:Key="EquipmentStatForegroundConverter" />
+			<converters:EnumDisplayConverter x:Key="EnumDisplayConverter" />
 
-				<!--
+			<!--
 				source: https://github.com/Kinnara/ModernWpf/blob/master/ModernWpf/Styles/ToolTip.xaml
 				only change is removing max width
 			-->

@@ -136,7 +136,8 @@ public partial class App : Application
 
 		services.AddSingleton<DialogAlbumMasterShipTranslationViewModel>();
 		services.AddSingleton<DialogAlbumMasterEquipmentTranslationViewModel>();
-			
+		services.AddSingleton<QuestTrackerManagerTranslationViewModel>();
+
 		return services.BuildServiceProvider();
 	}
 }

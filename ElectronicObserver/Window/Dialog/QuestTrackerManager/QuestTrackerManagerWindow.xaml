@@ -1,0 +1,120 @@
+﻿<Window x:Class="ElectronicObserver.Window.Dialog.QuestTrackerManager.QuestTrackerManagerWindow"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:ui="http://schemas.modernwpf.com/2019"
+		xmlns:viewModels="clr-namespace:ElectronicObserver.Window.Dialog.QuestTrackerManager.ViewModels"
+		Name="QuestTrackerManagerView"
+		d:DataContext="{Binding ViewModel, ElementName=QuestTrackerManagerView}"
+		ui:WindowHelper.UseModernWindowStyle="True"
+		mc:Ignorable="d"
+		Title="{Binding Translation.Title}"
+		Height="450"
+		Width="800">
+	<Window.Resources>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="Views/Styles.xaml" />
+				<ResourceDictionary Source="Views/CommonTemplates.xaml" />
+				<ResourceDictionary Source="Views/TaskTemplates.xaml" />
+				<ResourceDictionary Source="Views/ConditionTemplates.xaml" />
+			</ResourceDictionary.MergedDictionaries>
+
+			<DataTemplate x:Key="TrackerTemplate"
+						  DataType="{x:Type viewModels:TrackerViewModel}">
+				<DataTemplate.Resources>
+					<ResourceDictionary Source="Views/Styles.xaml" />
+				</DataTemplate.Resources>
+
+				<StackPanel>
+					<StackPanel Orientation="Horizontal">
+						<Button Content="ｘ"
+								Command="{Binding DataContext.RemoveTrackerCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}"
+								CommandParameter="{Binding}" />
+						<Button Content="{Binding ViewModel.Translation.Copy, ElementName=QuestTrackerManagerView}"
+								Command="{Binding CopyTrackerCommand}" />
+						<CheckBox Content="{Binding ViewModel.Translation.ShowDetails, ElementName=QuestTrackerManagerView}"
+								  IsChecked="{Binding ShowDetails}" />
+						<TextBlock Text="{Binding Model.Quest.Display}" />
+
+						<ItemsControl ItemsSource="{Binding Tasks}"
+									  ItemTemplate="{StaticResource ShortTaskDisplayTemplate}">
+							<ItemsControl.ItemsPanel>
+								<ItemsPanelTemplate>
+									<StackPanel Orientation="Horizontal" />
+								</ItemsPanelTemplate>
+							</ItemsControl.ItemsPanel>
+						</ItemsControl>
+					</StackPanel>
+
+					<StackPanel Visibility="{Binding ShowDetails, Converter={StaticResource BooleanToVisibilityConverter}}">
+						<TextBlock Text="{Binding Description}"
+								   TextWrapping="Wrap" />
+
+						<StackPanel Orientation="Horizontal">
+							<Button Content="＋"
+									Command="{Binding AddTaskCommand}" />
+
+							<ComboBox ItemsSource="{Binding TaskTypes}"
+									  SelectedItem="{Binding TaskTypeType}"
+									  ItemTemplate="{StaticResource EnumDisplayerTemplate}" />
+						</StackPanel>
+
+						<ItemsControl ItemsSource="{Binding Tasks}"
+									  ItemTemplateSelector="{StaticResource TaskTemplateSelector}" />
+
+						<ContentControl Content="{Binding GroupConditions}"
+										ContentTemplate="{StaticResource GroupConditionTemplate}" />
+					</StackPanel>
+					<Separator />
+				</StackPanel>
+			</DataTemplate>
+
+		</ResourceDictionary>
+	</Window.Resources>
+
+	<Border Style="{StaticResource BorderSpacing}">
+		<ScrollViewer>
+			<Grid>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+					<RowDefinition />
+				</Grid.RowDefinitions>
+
+				<Menu Grid.Row="0">
+					<MenuItem Header="{Binding Translation.File}">
+						<MenuItem Header="{Binding Translation.CopyTrackersToClipboard}"
+						          Command="{Binding CopyTrackersToClipboardCommand}" />
+						<MenuItem Header="{Binding Translation.Load}"
+						          Command="{Binding LoadTrackerFromClipboardCommand}" />
+					</MenuItem>
+				</Menu>
+
+				<StackPanel Grid.Row="1">
+					<StackPanel Orientation="Horizontal">
+						<Button Content="＋"
+								Command="{Binding AddTrackerCommand}" />
+						<ComboBox ItemsSource="{Binding Quests}"
+								  SelectedItem="{Binding Quest}">
+							<ComboBox.ItemTemplate>
+								<DataTemplate>
+									<TextBlock Text="{Binding Display}" />
+								</DataTemplate>
+							</ComboBox.ItemTemplate>
+						</ComboBox>
+					</StackPanel>
+
+					<TextBlock Text="{Binding Quest.Description}" />
+					<Separator />
+				</StackPanel>
+
+				<ItemsControl Grid.Row="2"
+							  ItemsSource="{Binding Trackers}"
+							  ItemTemplate="{StaticResource TrackerTemplate}">
+				</ItemsControl>
+			</Grid>
+		</ScrollViewer>
+	</Border>
+</Window>
