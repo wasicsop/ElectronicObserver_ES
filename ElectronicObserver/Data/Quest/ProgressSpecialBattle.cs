@@ -565,17 +565,13 @@ public class ProgressSpecialBattle : ProgressBattle
 					;
 			}
 				break;
-			case 880: // 115
+			case 880: // B115
 			{
-				bool destroyers = members.Count(s => s?.MasterShip.ShipType switch
-				{
-					ShipTypes.Destroyer => true,
-					_ => false
-				}) >= 3;
+				bool destroyers = members.Count(s => s?.MasterShip.ShipType is ShipTypes.Destroyer) >= 4;
 
 				isAccepted = destroyers;
 			}
-				break;
+			break;
 			case 882: // 7thAnvLB1 todo this ID will probably get recycled
 			{
 				bool destroyers = members.Count(s => s?.MasterShip.ShipType switch
