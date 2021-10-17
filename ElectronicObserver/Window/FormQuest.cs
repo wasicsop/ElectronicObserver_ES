@@ -1,6 +1,5 @@
 ﻿using DynaJson;
 using ElectronicObserver.Data;
-using ElectronicObserver.Observer;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Window.Support;
@@ -10,10 +9,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
-using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
 using Translation = ElectronicObserver.Properties.Window.FormQuest;
@@ -341,7 +337,7 @@ public partial class FormQuest : DockContent
 				_ => Configuration.Config.UI.SubBackColor
 			};
 
-			row.Cells[QuestView_State.Index].Value = (q.State == 3) ? ((bool?) null) : (q.State == 2);
+			row.Cells[QuestView_State.Index].Value = (q.State == 3) ? ((bool?)null) : (q.State == 2);
 			row.Cells[QuestView_State.Index].ToolTipText = $"{Translation.Page} #{questIndex / 5 + 1}";
 			row.Cells[QuestView_State.Index].Style.BackColor = color;
 			row.Cells[QuestView_State.Index].Style.SelectionBackColor = color;
@@ -381,8 +377,14 @@ public partial class FormQuest : DockContent
 				}
 				else
 				{
-
-					if (KCDatabase.Instance.QuestProgress.Progresses.ContainsKey(q.QuestID))
+					var tracker = KCDatabase.Instance.QuestTrackerManagers.Trackers
+						.FirstOrDefault(t => t.QuestId == q.QuestID);
+					if (tracker is not null)
+					{
+						value = tracker.ProgressDisplay ?? "100%";
+						tag = tracker.Progress;
+					}
+					else if (KCDatabase.Instance.QuestProgress.Progresses.ContainsKey(q.QuestID))
 					{
 						var p = KCDatabase.Instance.QuestProgress[q.QuestID];
 
@@ -475,7 +477,7 @@ public partial class FormQuest : DockContent
 			};
 			e.Value = quest switch
 			{
-				{} => $"{code}{quest.Name}",
+				{ } => $"{code}{quest.Name}",
 				_ => "???"
 			};
 			e.FormattingApplied = true;
@@ -492,7 +494,7 @@ public partial class FormQuest : DockContent
 		if (e.Column.Index == QuestView_State.Index)
 		{
 			e.SortResult = (e.CellValue1 == null ? 2 : ((bool)e.CellValue1 ? 1 : 0)) -
-			               (e.CellValue2 == null ? 2 : ((bool)e.CellValue2 ? 1 : 0));
+						   (e.CellValue2 == null ? 2 : ((bool)e.CellValue2 ? 1 : 0));
 		}
 		else
 		{
@@ -522,8 +524,8 @@ public partial class FormQuest : DockContent
 	{
 
 		if (e.ColumnIndex != QuestView_Progress.Index ||
-		    e.RowIndex < 0 ||
-		    (e.PaintParts & DataGridViewPaintParts.Background) == 0)
+			e.RowIndex < 0 ||
+			(e.PaintParts & DataGridViewPaintParts.Background) == 0)
 			return;
 
 
@@ -744,7 +746,7 @@ public partial class FormQuest : DockContent
 		if (id != -1 && (quest != null || progress != null))
 		{
 
-			if (MessageBox.Show(string.Format(Translation.QuestResetConfirmationText, (quest != null ? ($"『{quest.Name}』") : ($"ID: {id} "))), 
+			if (MessageBox.Show(string.Format(Translation.QuestResetConfirmationText, (quest != null ? ($"『{quest.Name}』") : ($"ID: {id} "))),
 				Translation.QuestResetConfirmationCaption,
 				MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1) == System.Windows.Forms.DialogResult.Yes)
 			{
@@ -888,7 +890,7 @@ public partial class FormQuest : DockContent
 	private void ManuMain_QuestDescription_Click(object sender, EventArgs e)
 	{
 		var quest = KCDatabase.Instance.Quest[GetSelectedRowQuestID()];
-			
+
 		if (quest != null)
 		{
 			Clipboard.SetText(quest.Description.Replace(Environment.NewLine, ""));
