@@ -43,5 +43,12 @@ public class ExpeditionTask : ObservableObject, IQuestTaskViewModel
 		{
 			OnPropertyChanged(nameof(Display));
 		};
+
+		PropertyChanged += (_, e) =>
+		{
+			if (e.PropertyName is not nameof(Display)) return;
+
+			KCDatabase.Instance.Quest.OnQuestUpdated();
+		};
 	}
 }
