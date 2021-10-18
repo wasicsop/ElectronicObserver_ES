@@ -470,8 +470,8 @@ public partial class FormMainViewModel : ObservableObject
 	private void StripMenu_File_SaveData_Load_Click()
 	{
 		if (MessageBox.Show(Resources.AskLoad, Properties.Window.FormMain.ConfirmatonCaption,
-				MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No)
-			== MessageBoxResult.Yes)
+			    MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No)
+		    == MessageBoxResult.Yes)
 		{
 			RecordManager.Instance.Load();
 		}
@@ -523,7 +523,7 @@ public partial class FormMainViewModel : ObservableObject
 			try
 			{
 				Position = JsonSerializer.Deserialize<WindowPosition>(File.ReadAllText(PositionPath)) ??
-						   new WindowPosition();
+				           new WindowPosition();
 			}
 			catch
 			{
@@ -680,7 +680,8 @@ public partial class FormMainViewModel : ObservableObject
 
 		if (RecordManager.Instance.ShipDrop.Record.Count == 0)
 		{
-			MessageBox.Show(GeneralRes.NoDevData, Properties.Window.FormMain.ErrorCaption, MessageBoxButton.OK, MessageBoxImage.Error);
+			MessageBox.Show(GeneralRes.NoDevData, Properties.Window.FormMain.ErrorCaption, MessageBoxButton.OK,
+				MessageBoxImage.Error);
 			return;
 		}
 
@@ -698,7 +699,8 @@ public partial class FormMainViewModel : ObservableObject
 
 		if (RecordManager.Instance.Development.Record.Count == 0)
 		{
-			MessageBox.Show(GeneralRes.NoDevData, Properties.Window.FormMain.ErrorCaption, MessageBoxButton.OK, MessageBoxImage.Error);
+			MessageBox.Show(GeneralRes.NoDevData, Properties.Window.FormMain.ErrorCaption, MessageBoxButton.OK,
+				MessageBoxImage.Error);
 			return;
 		}
 
@@ -716,7 +718,8 @@ public partial class FormMainViewModel : ObservableObject
 
 		if (RecordManager.Instance.Construction.Record.Count == 0)
 		{
-			MessageBox.Show(GeneralRes.NoBuildData, Properties.Window.FormMain.ErrorCaption, MessageBoxButton.OK, MessageBoxImage.Error);
+			MessageBox.Show(GeneralRes.NoBuildData, Properties.Window.FormMain.ErrorCaption, MessageBoxButton.OK,
+				MessageBoxImage.Error);
 			return;
 		}
 
@@ -733,7 +736,8 @@ public partial class FormMainViewModel : ObservableObject
 
 		if (KCDatabase.Instance.MasterShips.Count == 0)
 		{
-			MessageBox.Show(Properties.Window.FormMain.ShipDataNotLoaded, Properties.Window.FormMain.ErrorCaption, MessageBoxButton.OK, MessageBoxImage.Error);
+			MessageBox.Show(Properties.Window.FormMain.ShipDataNotLoaded, Properties.Window.FormMain.ErrorCaption,
+				MessageBoxButton.OK, MessageBoxImage.Error);
 			return;
 		}
 
@@ -745,7 +749,8 @@ public partial class FormMainViewModel : ObservableObject
 
 		if (KCDatabase.Instance.MasterEquipments.Count == 0)
 		{
-			MessageBox.Show(Properties.Window.FormMain.EquipmentDataNotLoaded, Properties.Window.FormMain.ErrorCaption, MessageBoxButton.OK, MessageBoxImage.Error);
+			MessageBox.Show(Properties.Window.FormMain.EquipmentDataNotLoaded, Properties.Window.FormMain.ErrorCaption,
+				MessageBoxButton.OK, MessageBoxImage.Error);
 			return;
 		}
 
@@ -792,7 +797,8 @@ public partial class FormMainViewModel : ObservableObject
 	{
 		if (!KCDatabase.Instance.Quest.IsLoaded)
 		{
-			MessageBox.Show(Properties.Window.FormMain.QuestDataNotLoaded, Properties.Window.FormMain.ErrorCaption, MessageBoxButton.OK, MessageBoxImage.Error);
+			MessageBox.Show(Properties.Window.FormMain.QuestDataNotLoaded, Properties.Window.FormMain.ErrorCaption,
+				MessageBoxButton.OK, MessageBoxImage.Error);
 			return;
 		}
 
@@ -909,16 +915,16 @@ public partial class FormMainViewModel : ObservableObject
 					if (isRequest)
 					{
 						Window.Dispatcher.Invoke((Action)(() =>
-					   {
-						   APIObserver.Instance.LoadRequest("/kcsapi/" + line, sr2.ReadToEnd());
-					   }));
+						{
+							APIObserver.Instance.LoadRequest("/kcsapi/" + line, sr2.ReadToEnd());
+						}));
 					}
 					else
 					{
 						Window.Dispatcher.Invoke((Action)(() =>
-					   {
-						   APIObserver.Instance.LoadResponse("/kcsapi/" + line, sr2.ReadToEnd());
-					   }));
+						{
+							APIObserver.Instance.LoadResponse("/kcsapi/" + line, sr2.ReadToEnd());
+						}));
 					}
 
 					//System.Diagnostics.Debug.WriteLine( "APIList Loader: API " + line + " File " + files[files.Length-1] + " Loaded." );
@@ -932,7 +938,8 @@ public partial class FormMainViewModel : ObservableObject
 
 		if (KCDatabase.Instance.MasterShips.Count == 0)
 		{
-			MessageBox.Show("Please load normal api_start2 first.", Properties.Window.FormMain.ErrorCaption, MessageBoxButton.OK,
+			MessageBox.Show("Please load normal api_start2 first.", Properties.Window.FormMain.ErrorCaption,
+				MessageBoxButton.OK,
 				MessageBoxImage.Information);
 			return;
 		}
@@ -954,7 +961,7 @@ public partial class FormMainViewModel : ObservableObject
 				foreach (dynamic elem in json.api_data.api_mst_ship)
 				{
 					if (elem.api_name != "なし" && KCDatabase.Instance.MasterShips.ContainsKey((int)elem.api_id) &&
-						KCDatabase.Instance.MasterShips[(int)elem.api_id].Name == elem.api_name)
+					    KCDatabase.Instance.MasterShips[(int)elem.api_id].Name == elem.api_name)
 					{
 						RecordManager.Instance.ShipParameter.UpdateParameter((int)elem.api_id, 1,
 							(int)elem.api_tais[0], (int)elem.api_tais[1], (int)elem.api_kaih[0],
@@ -980,7 +987,8 @@ public partial class FormMainViewModel : ObservableObject
 
 		if (KCDatabase.Instance.MasterShips.Count == 0)
 		{
-			MessageBox.Show("Please load normal api_start2 first.", Properties.Window.FormMain.ErrorCaption, MessageBoxButton.OK,
+			MessageBox.Show("Please load normal api_start2 first.", Properties.Window.FormMain.ErrorCaption,
+				MessageBoxButton.OK,
 				MessageBoxImage.Information);
 			return;
 		}
@@ -1032,8 +1040,8 @@ public partial class FormMainViewModel : ObservableObject
 	{
 
 		if (MessageBox.Show("This will delete old API data.\r\nAre you sure?", "Confirmation",
-				MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No)
-			== MessageBoxResult.Yes)
+			    MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No)
+		    == MessageBoxResult.Yes)
 		{
 
 			try
@@ -1048,7 +1056,8 @@ public partial class FormMainViewModel : ObservableObject
 			catch (Exception ex)
 			{
 
-				MessageBox.Show("Failed to delete.\r\n" + ex.Message, Properties.Window.FormMain.ErrorCaption, MessageBoxButton.OK,
+				MessageBox.Show("Failed to delete.\r\n" + ex.Message, Properties.Window.FormMain.ErrorCaption,
+					MessageBoxButton.OK,
 					MessageBoxImage.Error);
 			}
 
@@ -1104,15 +1113,16 @@ public partial class FormMainViewModel : ObservableObject
 
 		if (KCDatabase.Instance.MasterShips.Count == 0)
 		{
-			MessageBox.Show("Ship data is not loaded.", Properties.Window.FormMain.ErrorCaption, MessageBoxButton.OK, MessageBoxImage.Error);
+			MessageBox.Show("Ship data is not loaded.", Properties.Window.FormMain.ErrorCaption, MessageBoxButton.OK,
+				MessageBoxImage.Error);
 			return;
 		}
 
 		if (MessageBox.Show("通信から保存した艦船リソース名を持つファイル及びフォルダを、艦船名に置換します。\r\n" +
-							"対象は指定されたフォルダ以下のすべてのファイル及びフォルダです。\r\n" +
-							"続行しますか？", "艦船リソースをリネーム", MessageBoxButton.YesNo, MessageBoxImage.Question,
-				MessageBoxResult.Yes)
-			== MessageBoxResult.Yes)
+		                    "対象は指定されたフォルダ以下のすべてのファイル及びフォルダです。\r\n" +
+		                    "続行しますか？", "艦船リソースをリネーム", MessageBoxButton.YesNo, MessageBoxImage.Question,
+			    MessageBoxResult.Yes)
+		    == MessageBoxResult.Yes)
 		{
 
 			string path = null;
@@ -1144,7 +1154,8 @@ public partial class FormMainViewModel : ObservableObject
 			{
 
 				Utility.ErrorReporter.SendErrorReport(ex, "艦船リソースのリネームに失敗しました。");
-				MessageBox.Show("艦船リソースのリネームに失敗しました。\r\n" + ex.Message, Properties.Window.FormMain.ErrorCaption, MessageBoxButton.OK,
+				MessageBox.Show("艦船リソースのリネームに失敗しました。\r\n" + ex.Message, Properties.Window.FormMain.ErrorCaption,
+					MessageBoxButton.OK,
 					MessageBoxImage.Error);
 
 			}
@@ -1239,8 +1250,8 @@ public partial class FormMainViewModel : ObservableObject
 	{
 
 		if (MessageBox.Show(Properties.Window.FormMain.OpenEOWiki, Properties.Window.FormMain.HelpCaption,
-				MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes)
-			== MessageBoxResult.Yes)
+			    MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes)
+		    == MessageBoxResult.Yes)
 		{
 			ProcessStartInfo psi = new()
 			{
@@ -1256,8 +1267,8 @@ public partial class FormMainViewModel : ObservableObject
 	{
 
 		if (MessageBox.Show(Properties.Window.FormMain.ReportIssue, Properties.Window.FormMain.ReportIssueCaption,
-				MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes)
-			== MessageBoxResult.Yes)
+			    MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes)
+		    == MessageBoxResult.Yes)
 		{
 			ProcessStartInfo psi = new()
 			{
@@ -1488,29 +1499,29 @@ public partial class FormMainViewModel : ObservableObject
 				break;
 
 			case 1: //演習更新まで
-				{
-					var border = now.Date.AddHours(3);
-					while (border < now)
-						border = border.AddHours(12);
+			{
+				var border = now.Date.AddHours(3);
+				while (border < now)
+					border = border.AddHours(12);
 
-					var ts = border - now;
-					StripStatus.Clock = ts.ToString("hh\\:mm\\:ss");
-					StripStatus.ClockToolTip = now.ToString("yyyy\\/MM\\/dd (ddd) HH\\:mm\\:ss");
+				var ts = border - now;
+				StripStatus.Clock = ts.ToString("hh\\:mm\\:ss");
+				StripStatus.ClockToolTip = now.ToString("yyyy\\/MM\\/dd (ddd) HH\\:mm\\:ss");
 
-				}
+			}
 				break;
 
 			case 2: //任務更新まで
-				{
-					var border = now.Date.AddHours(5);
-					if (border < now)
-						border = border.AddHours(24);
+			{
+				var border = now.Date.AddHours(5);
+				if (border < now)
+					border = border.AddHours(24);
 
-					var ts = border - now;
-					StripStatus.Clock = ts.ToString("hh\\:mm\\:ss");
-					StripStatus.ClockToolTip = now.ToString("yyyy\\/MM\\/dd (ddd) HH\\:mm\\:ss");
+				var ts = border - now;
+				StripStatus.Clock = ts.ToString("hh\\:mm\\:ss");
+				StripStatus.ClockToolTip = now.ToString("yyyy\\/MM\\/dd (ddd) HH\\:mm\\:ss");
 
-				}
+			}
 				break;
 		}
 
@@ -1571,12 +1582,12 @@ public partial class FormMainViewModel : ObservableObject
 		if (Configuration.Config.Life.ConfirmOnClosing)
 		{
 			if (MessageBox.Show(
-					string.Format(Properties.Window.FormMain.ExitConfirmation, name),
-					Properties.Window.FormMain.ConfirmatonCaption,
-					MessageBoxButton.YesNo,
-					MessageBoxImage.Question,
-					MessageBoxResult.No)
-				== MessageBoxResult.No)
+				    string.Format(Properties.Window.FormMain.ExitConfirmation, name),
+				    Properties.Window.FormMain.ConfirmatonCaption,
+				    MessageBoxButton.YesNo,
+				    MessageBoxImage.Question,
+				    MessageBoxResult.No)
+			    == MessageBoxResult.No)
 			{
 				e.Cancel = true;
 				return;
