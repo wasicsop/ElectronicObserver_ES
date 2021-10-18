@@ -536,8 +536,8 @@ public sealed class QuestProgressManager : DataStorage
 					case 833: // B139
 						Progresses.Add(new ProgressMultiBattle(q, new[]
 						{
-							new ProgressSpecialBattle(q, 1, "A", new[]{ 45 }, true),
-							new ProgressSpecialBattle(q, 1, "A", new[]{ 64 }, true),
+							new ProgressSpecialBattle(q, 2, "A", new[]{ 45 }, true),
+							new ProgressSpecialBattle(q, 2, "A", new[]{ 64 }, true),
 						}));
 						break;
 					case 856: // B99
