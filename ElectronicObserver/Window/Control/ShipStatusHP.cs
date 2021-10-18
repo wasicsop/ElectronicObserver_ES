@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -378,10 +378,10 @@ public partial class ShipStatusHP : UserControl
 
 		_maximumDigit = 999;
 
-		_mainFont = new Font( "Meiryo UI", 12, FontStyle.Regular, GraphicsUnit.Pixel );
+		_mainFont = new Font("Meiryo UI", 12, FontStyle.Regular, GraphicsUnit.Pixel);
 		_mainFontColor = Utility.Configuration.Config.UI.ForeColor;
 
-		_subFont = new Font( "Meiryo UI", 10, FontStyle.Regular, GraphicsUnit.Pixel );
+		_subFont = new Font("Meiryo UI", 10, FontStyle.Regular, GraphicsUnit.Pixel);
 		_subFontColor = Utility.Configuration.Config.UI.SubForeColor;
 
 		_repairFontColor = Utility.Configuration.Config.UI.Fleet_ColorRepairTimerText;
@@ -396,19 +396,23 @@ public partial class ShipStatusHP : UserControl
 
 	public void RepaintHPtext()
 	{
-		if (this.BackColor == Utility.Configuration.Config.UI.BackColor) {
+		if (this.BackColor == Utility.Configuration.Config.UI.BackColor)
+		{
 			_mainFontColor = Utility.Configuration.Config.UI.ForeColor;
 			_subFontColor = Utility.Configuration.Config.UI.SubForeColor;
 		}
-		else if (this.BackColor == Utility.Configuration.Config.UI.Battle_ColorHPBarsMVP) {
+		else if (this.BackColor == Utility.Configuration.Config.UI.Battle_ColorHPBarsMVP)
+		{
 			_mainFontColor = Utility.Configuration.Config.UI.Battle_ColorTextMVP;
 			_subFontColor = Utility.Configuration.Config.UI.Battle_ColorTextMVP2;
 		}
-		else if (this.BackColor == Utility.Configuration.Config.UI.Battle_ColorHPBarsEscaped) {
+		else if (this.BackColor == Utility.Configuration.Config.UI.Battle_ColorHPBarsEscaped)
+		{
 			_mainFontColor = Utility.Configuration.Config.UI.Battle_ColorTextEscaped;
 			_subFontColor = Utility.Configuration.Config.UI.Battle_ColorTextEscaped2;
 		}
-		else if (this.BackColor == Utility.Configuration.Config.UI.Battle_ColorHPBarsBossDamaged) {
+		else if (this.BackColor == Utility.Configuration.Config.UI.Battle_ColorHPBarsBossDamaged)
+		{
 			_mainFontColor = Utility.Configuration.Config.UI.Battle_ColorTextBossDamaged;
 			_subFontColor = Utility.Configuration.Config.UI.Battle_ColorTextBossDamaged2;
 		}
@@ -426,7 +430,7 @@ public partial class ShipStatusHP : UserControl
 
 
 		if (RepairTimeShowMode == ShipStatusHPRepairTimeShowMode.Visible ||
-		    (RepairTimeShowMode == ShipStatusHPRepairTimeShowMode.MouseOver && _onMouse))
+			(RepairTimeShowMode == ShipStatusHPRepairTimeShowMode.MouseOver && _onMouse))
 		{
 			string timestr = DateTimeHelper.ToTimeRemainString((DateTime)RepairTime);
 

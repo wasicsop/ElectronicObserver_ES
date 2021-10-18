@@ -22,7 +22,7 @@ public class HealthBarViewModel : ObservableObject
 	public string DamageTaken => (Value - PrevValue).ToString("+0;-0;-0");
 	public SolidColorBrush MainFontBrush => MainFontColor.ToBrush();
 	public SolidColorBrush SubFontBrush => SubFontColor.ToBrush();
-	public SolidColorBrush HealthBarBrush => ProgressBarColor((double) Value / MaximumValue);
+	public SolidColorBrush HealthBarBrush => ProgressBarColor((double)Value / MaximumValue);
 
 	private List<SolidColorBrush> ProgressBarColors { get; } = new()
 	{

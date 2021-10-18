@@ -35,7 +35,7 @@ public class FleetPresetItemViewModel : ObservableObject
 
 		FleetPresetItemControlViewModel CreateDefaultLabel()
 		{
-			return new ()
+			return new()
 			{
 				Text = "",
 				// Anchor = AnchorStyles.Left,
@@ -171,7 +171,7 @@ public class FleetPresetViewModel : AnchorableViewModel
 		var config = Utility.Configuration.Config;
 		// Font = Utility.Configuration.Config.UI.MainFont;
 		bool fixShipNameWidth = config.FormFleet.FixShipNameWidth;
-			
+
 		// TablePresets.SuspendLayout();
 		foreach (var item in TableControls)
 			item.ConfigurationChanged();
@@ -184,7 +184,7 @@ public class FleetPresetViewModel : AnchorableViewModel
 		ControlHelper.SetTableRowStyles(TablePresets, ControlHelper.GetDefaultRowStyle());
 		*/
 		// TablePresets.ResumeLayout();
-			
+
 	}
 
 	private void Updated()
@@ -192,7 +192,7 @@ public class FleetPresetViewModel : AnchorableViewModel
 		var presets = KCDatabase.Instance.FleetPreset;
 		if (presets == null || presets.MaximumCount <= 0)
 			return;
-			
+
 		// TablePresets.Enabled = false;
 		// TablePresets.SuspendLayout();
 

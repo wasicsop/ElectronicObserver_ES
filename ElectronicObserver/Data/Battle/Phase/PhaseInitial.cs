@@ -175,7 +175,7 @@ public class PhaseInitial : PhaseBase
 		FriendMaxHPs = GetArrayOrDefault("api_f_maxhps", mainMemberCount);
 		FriendMaxHPsEscort = GetArrayOrDefault("api_f_maxhps_combined", escortMemberCount);
 		EnemyMaxHPs = GetArrayOrDefault("api_e_maxhps", mainMemberCount);
-		EnemyMaxHPsEscort = GetArrayOrDefault("api_e_maxhps_combined",escortMemberCount);
+		EnemyMaxHPsEscort = GetArrayOrDefault("api_e_maxhps_combined", escortMemberCount);
 
 
 		EnemySlots = GetArraysOrDefault("api_eSlot", mainMemberCount, 5);

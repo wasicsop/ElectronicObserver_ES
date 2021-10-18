@@ -1,11 +1,11 @@
-﻿using ElectronicObserver.Utility.Data;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ElectronicObserverTypes;
 using ElectronicObserver.Properties.Data;
+using ElectronicObserver.Utility.Data;
+using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Data.Battle.Detail;
 
@@ -209,7 +209,7 @@ public abstract class BattleDetail
 
 		// damage control
 		if (beforeHP > 0 && afterHP <= 0 && DefenderIndex.IsFriend && !Battle.IsPractice && !Battle.IsBaseAirRaid)
-		{				
+		{
 			var defender = (DefenderIndex.Side == BattleSides.FriendEscort ? Battle.Initial.FriendFleetEscort : Battle.Initial.FriendFleet)
 				?.MembersInstance?.ElementAtOrDefault(DefenderIndex.Index);
 			if (defender != null)
@@ -320,7 +320,7 @@ public class BattleSupportDetail : BattleDetail
 			case 4:
 				return ConstantsRes.BombingAttack;
 			default:
-				return  ConstantsRes.Unknown;
+				return ConstantsRes.Unknown;
 		}
 	}
 
@@ -405,13 +405,13 @@ public class BattleAirDetail : BattleDayDetail
 		switch (AttackType)
 		{
 			case 1:
-				return  ConstantsRes.TorpedoAttack;
+				return ConstantsRes.TorpedoAttack;
 			case 2:
 				return ConstantsRes.BombingAttack;
 			case 3:
 				return ConstantsRes.TorpBombingAttack;
 			default:
-				return  ConstantsRes.Unknown;
+				return ConstantsRes.Unknown;
 		}
 	}
 

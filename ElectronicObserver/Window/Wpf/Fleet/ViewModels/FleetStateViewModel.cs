@@ -52,7 +52,7 @@ public class FleetStateViewModel : ObservableObject
 
 
 		bool emphasizesSubFleetInPort = Utility.Configuration.Config.FormFleet.EmphasizesSubFleetInPort &&
-		                                (db.Fleet.CombinedFlag > 0 ? fleet.FleetID >= 3 : fleet.FleetID >= 2);
+										(db.Fleet.CombinedFlag > 0 ? fleet.FleetID >= 3 : fleet.FleetID >= 2);
 		var displayMode = (FleetStateDisplayModes)Utility.Configuration.Config.FormFleet.FleetStateDisplayMode;
 
 		System.Drawing.Color colorDanger = System.Drawing.Color.LightCoral;

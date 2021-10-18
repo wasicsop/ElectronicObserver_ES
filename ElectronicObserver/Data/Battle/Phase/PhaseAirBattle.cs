@@ -1,9 +1,9 @@
-﻿using ElectronicObserver.Data.Battle.Detail;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ElectronicObserver.Data.Battle.Detail;
 using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Data.Battle.Phase;
@@ -52,7 +52,7 @@ public class PhaseAirBattle : PhaseAirBattleBase
 
 		var firepower = new int[12];
 		var launchedIndex = LaunchedShipIndexFriend;
-			
+
 		foreach (int i in launchedIndex)
 		{
 			var ship = Battle.Initial.GetFriendShip(i);
@@ -75,7 +75,7 @@ public class PhaseAirBattle : PhaseAirBattleBase
 					case EquipmentTypes.SeaplaneBomber:
 						firepower[i] += (int)(1.0 * (slots[s].Bomber * Math.Sqrt(aircrafts[s]) + 25));
 						break;
-						
+
 					// 噴式爆撃機
 					case EquipmentTypes.JetBomber:
 						firepower[i] += (int)(1.0 / Math.Sqrt(2) * (slots[s].Bomber * Math.Sqrt(aircrafts[s]) + 25));

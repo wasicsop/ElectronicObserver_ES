@@ -1,10 +1,10 @@
-﻿using ElectronicObserver.Data;
-using ElectronicObserver.Resource.Record;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ElectronicObserver.Data;
+using ElectronicObserver.Resource.Record;
 using static ElectronicObserver.Observer.DiscordRPC;
 
 namespace ElectronicObserver.Observer.kcsapi.api_port;

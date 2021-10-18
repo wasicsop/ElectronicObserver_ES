@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using ElectronicObserver.ReplayJSON;
-using Newtonsoft.Json;
 using System.IO;
 using System.Linq;
-using ElectronicObserver.Utility.Mathematics;
 using System.Threading.Tasks;
+using ElectronicObserver.ReplayJSON;
+using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserverTypes;
+using Newtonsoft.Json;
 
 namespace ElectronicObserver.Data;
 
@@ -176,9 +176,9 @@ public class ReplayManager : ResponseWrapper
 			case "api_req_combined_battle/battleresult":
 			case "api_req_practice/battle_result":
 				Battle_replay.Battles[0].Drop = db.Battle.Result.DroppedShipID;
-				Battle_replay.Time = DateTime.Now.Ticks/1000;
+				Battle_replay.Time = DateTime.Now.Ticks / 1000;
 				Battle_replay.Battles[0].Rating = db.Battle.Result.Rank;
-				Battle_replay.Battles[0].Time = DateTime.Now.Ticks/1000;
+				Battle_replay.Battles[0].Time = DateTime.Now.Ticks / 1000;
 				SaveReplay();
 
 				break;
@@ -298,7 +298,7 @@ public class ReplayManager : ResponseWrapper
 		GetFleet4();
 		GetBattleExp();
 		GetMVP();
-		if(!isPvp)
+		if (!isPvp)
 		{
 			GetMapHP();
 			GetLBAS();
@@ -380,7 +380,7 @@ public class ReplayManager : ResponseWrapper
 			{
 				Battle_replay.Defeat_count = map.CurrentDefeatedCount;
 			}
-			else if ((map.MapAreaID == db.Battle.Compass.MapAreaID) && (map.MapInfoID == db.Battle.Compass.MapInfoID)&& map.MapHPMax > 0)
+			else if ((map.MapAreaID == db.Battle.Compass.MapAreaID) && (map.MapInfoID == db.Battle.Compass.MapInfoID) && map.MapHPMax > 0)
 			{
 				Battle_replay.Max_maphp = map.MapHPMax;
 				Battle_replay.Now_maphp = map.MapHPCurrent;

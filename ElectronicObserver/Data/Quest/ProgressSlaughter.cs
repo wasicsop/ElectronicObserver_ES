@@ -41,12 +41,13 @@ public class ProgressSlaughter : ProgressData
 	public override string GetClearCondition()
 	{
 		StringBuilder sb = new StringBuilder();
-		if ( TargetShipType != null ) {
-			sb.Append( string.Join( "・", TargetShipType.OrderBy( s => s ).Select( s => KCDatabase.Instance.ShipTypes[s].NameEN) ) );
+		if (TargetShipType != null)
+		{
+			sb.Append(string.Join("・", TargetShipType.OrderBy(s => s).Select(s => KCDatabase.Instance.ShipTypes[s].NameEN)));
 		}
 
-		sb.Append( QuestTracking.Sunk );
-		sb.Append( ProgressMax );
+		sb.Append(QuestTracking.Sunk);
+		sb.Append(ProgressMax);
 
 		return sb.ToString();
 	}

@@ -1,13 +1,13 @@
-﻿using ElectronicObserver.Window.Dialog.QuestTrackerManager.Enums;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows;
+using ElectronicObserver.Window.Dialog.QuestTrackerManager.Enums;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.Models.Conditions;
 using ElectronicObserver.Window.Wpf;
 using ElectronicObserverTypes;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Windows;
 
 namespace ElectronicObserver.Window.Dialog.QuestTrackerManager.ViewModels.Conditions;
 

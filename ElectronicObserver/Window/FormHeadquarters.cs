@@ -1,7 +1,4 @@
-﻿using ElectronicObserver.Data;
-using ElectronicObserver.Observer;
-using ElectronicObserver.Resource;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,10 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WeifenLuo.WinFormsUI.Docking;
+using ElectronicObserver.Data;
+using ElectronicObserver.Observer;
+using ElectronicObserver.Resource;
+using ElectronicObserver.Resource.Record;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Window.Support;
-using ElectronicObserver.Resource.Record;
+using WeifenLuo.WinFormsUI.Docking;
 using Translation = ElectronicObserver.Properties.Window.FormHeadQuarters;
 
 namespace ElectronicObserver.Window;
@@ -613,10 +613,10 @@ public partial class FormHeadquarters : DockContent
 			{
 				var mat = KCDatabase.Instance.Material;
 				Clipboard.SetText($"{mat.Fuel}/{mat.Ammo}/{mat.Steel}/{mat.Bauxite}/" +
-				                  $"{mat.InstantRepair}{Translation.CopyToClipboardBuckets}/" +
-				                  $"{mat.DevelopmentMaterial}{Translation.CopyToClipboardDevelopmentMaterials}/" +
-				                  $"{mat.InstantConstruction}{Translation.CopyToClipboardInstantConstruction}/" +
-				                  $"{mat.ModdingMaterial}{Translation.CopyToClipboardImproveMaterial}");
+								  $"{mat.InstantRepair}{Translation.CopyToClipboardBuckets}/" +
+								  $"{mat.DevelopmentMaterial}{Translation.CopyToClipboardDevelopmentMaterials}/" +
+								  $"{mat.InstantConstruction}{Translation.CopyToClipboardInstantConstruction}/" +
+								  $"{mat.ModdingMaterial}{Translation.CopyToClipboardImproveMaterial}");
 			}
 			catch (Exception ex)
 			{
@@ -676,7 +676,7 @@ public partial class FormHeadquarters : DockContent
 
 	private void DisplayUseItem_MouseClick(object sender, MouseEventArgs e)
 	{
-		if(e.Button == MouseButtons.Right)
+		if (e.Button == MouseButtons.Right)
 		{
 			var db = KCDatabase.Instance;
 			var sb = new StringBuilder();

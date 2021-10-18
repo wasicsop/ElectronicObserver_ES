@@ -1,14 +1,14 @@
-﻿using ElectronicObserver.Data.Battle.Detail;
-using ElectronicObserver.Resource.Record;
-using ElectronicObserver.Utility.Mathematics;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ElectronicObserverTypes;
+using ElectronicObserver.Data.Battle.Detail;
 using ElectronicObserver.Properties.Data;
+using ElectronicObserver.Resource.Record;
+using ElectronicObserver.Utility.Mathematics;
+using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Data.Battle;
 
@@ -655,7 +655,7 @@ public class BattleManager : ResponseWrapper
 
 
 		if ((BattleMode & BattleModes.BattlePhaseMask) == BattleModes.AirRaid ||
-		    (BattleMode & BattleModes.BattlePhaseMask) == BattleModes.Radar)
+			(BattleMode & BattleModes.BattlePhaseMask) == BattleModes.Radar)
 			return GetWinRankAirRaid(friendcount, friendsunk, friendrate);
 		else
 			return GetWinRank(friendcount, enemycount, friendsunk, enemysunk, friendrate, enemyrate,

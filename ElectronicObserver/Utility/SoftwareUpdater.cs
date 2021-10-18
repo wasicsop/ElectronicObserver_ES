@@ -228,7 +228,7 @@ internal class SoftwareUpdater
 			var shipVersion = (string)json.tl_ver.ship;
 
 			DateTime maintenanceDate = DateTimeHelper.CSVStringToTime(json.kancolle_mt);
-			var eventState = (MaintenanceState) (int)json.event_state;
+			var eventState = (MaintenanceState)(int)json.event_state;
 
 			data = new UpdateData
 			{

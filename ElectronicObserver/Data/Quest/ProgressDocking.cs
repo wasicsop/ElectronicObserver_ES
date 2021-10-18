@@ -19,7 +19,8 @@ public class ProgressDocking : ProgressData
 	{
 	}
 
-	public override string GetClearCondition() {
+	public override string GetClearCondition()
+	{
 		return QuestTracking.Repair + ProgressMax;
 	}
 }

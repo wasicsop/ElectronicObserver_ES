@@ -1,9 +1,4 @@
-﻿using BrowserLibCore;
-using ElectronicObserver.Observer;
-using ElectronicObserver.Resource;
-using ElectronicObserver.Properties;
-using ElectronicObserver.Utility.Mathematics;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -18,6 +13,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BrowserHost;
+using BrowserLibCore;
+using ElectronicObserver.Observer;
+using ElectronicObserver.Properties;
+using ElectronicObserver.Resource;
+using ElectronicObserver.Utility.Mathematics;
 using Grpc.Core;
 using MagicOnion.Hosting;
 using Microsoft.Extensions.Hosting;
@@ -234,7 +234,7 @@ public partial class FormBrowserHost : DockContent
 				AppliesStyleSheet = c.AppliesStyleSheet,
 				IsDMMreloadDialogDestroyable = c.IsDMMreloadDialogDestroyable,
 				AvoidTwitterDeterioration = c.AvoidTwitterDeterioration,
-				ToolMenuDockStyle = (int) c.ToolMenuDockStyle,
+				ToolMenuDockStyle = (int)c.ToolMenuDockStyle,
 				IsToolMenuVisible = c.IsToolMenuVisible,
 				ConfirmAtRefresh = c.ConfirmAtRefresh,
 				HardwareAccelerationEnabled = c.HardwareAccelerationEnabled,
@@ -283,7 +283,7 @@ public partial class FormBrowserHost : DockContent
 	public byte[][] GetIconResource()
 	{
 
-		string[] keys = 
+		string[] keys =
 		{
 			"Browser_ScreenShot",
 			"Browser_Zoom",
@@ -305,7 +305,7 @@ public partial class FormBrowserHost : DockContent
 			Image img = ResourceManager.Instance.Icons.Images[keys[i]];
 			if (img == null) continue;
 
-			canvas[i] = (byte[]) new ImageConverter().ConvertTo(img, typeof(byte[]));
+			canvas[i] = (byte[])new ImageConverter().ConvertTo(img, typeof(byte[]));
 			/*
 			using (Bitmap bmp = new Bitmap(img))
 			{
@@ -485,7 +485,7 @@ public partial class FormBrowserHost : DockContent
 	}
 
 
-	void Browser_Faulted( Exception e ) 
+	void Browser_Faulted(Exception e)
 	{
 		/*if ( Browser.Proxy == null ) 
 		{
@@ -533,7 +533,7 @@ public partial class FormBrowserHost : DockContent
 		catch (Exception ex)
 		{
 			//ブラウザプロセスが既に終了していた場合など
-			Utility.ErrorReporter.SendErrorReport( ex, Resources.BrowserCloseError );
+			Utility.ErrorReporter.SendErrorReport(ex, Resources.BrowserCloseError);
 		}
 
 	}

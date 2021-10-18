@@ -1,8 +1,4 @@
-﻿using ElectronicObserver.Data;
-using ElectronicObserver.Resource;
-using ElectronicObserver.Resource.Record;
-using ElectronicObserver.Utility.Mathematics;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,6 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ElectronicObserver.Data;
+using ElectronicObserver.Resource;
+using ElectronicObserver.Resource.Record;
+using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserverTypes;
 using Translation = ElectronicObserver.Properties.Window.Dialog.DialogDevelopmentRecordViewer;
 
@@ -228,7 +228,7 @@ public partial class DialogDevelopmentRecordViewer : Form
 		if (Searcher.IsBusy)
 		{
 			if (MessageBox.Show(EncycloRes.InterruptSearch, EncycloRes.Searching, MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2)
-			    == System.Windows.Forms.DialogResult.Yes)
+				== System.Windows.Forms.DialogResult.Yes)
 			{
 				Searcher.CancelAsync();
 			}
@@ -279,12 +279,12 @@ public partial class DialogDevelopmentRecordViewer : Form
 			RecordView_Header.HeaderText = EncycloRes.Tries;
 			RecordView_Name.AutoSizeMode = DataGridViewAutoSizeColumnMode.NotSet;
 			RecordView_Name.Width = 160;
-			RecordView_Name.HeaderText = ( ( EquipmentName.Text != NameAny && EquipmentName.Text != NameExist ) || (int)EquipmentCategory.SelectedValue != -1 ) ? Translation.Recipe : Translation.Equipment;
+			RecordView_Name.HeaderText = ((EquipmentName.Text != NameAny && EquipmentName.Text != NameExist) || (int)EquipmentCategory.SelectedValue != -1) ? Translation.Recipe : Translation.Equipment;
 			RecordView_Date.Visible = false;
 			RecordView_Recipe.Visible = false;
 			RecordView_FlagshipType.Visible = false;
 			RecordView_Flagship.Visible = false;
-			RecordView_Detail.HeaderText = ( SecretaryName.Text != NameAny || (int)SecretaryCategory.SelectedValue != -1 ) ? Translation.RecipeTries : Translation.ShipType;
+			RecordView_Detail.HeaderText = (SecretaryName.Text != NameAny || (int)SecretaryCategory.SelectedValue != -1) ? Translation.RecipeTries : Translation.ShipType;
 			RecordView_Detail.Visible = true;
 		}
 		RecordView.ColumnHeadersVisible = true;
@@ -602,7 +602,7 @@ public partial class DialogDevelopmentRecordViewer : Form
 			RecordView.Sort(RecordView.SortedColumn ?? RecordView_Header,
 				RecordView.SortOrder == SortOrder.Ascending ? ListSortDirection.Ascending : ListSortDirection.Descending);
 
-			StatusInfo.Text = EncycloRes.SearchComplete + "(" + (int)( DateTime.Now - (DateTime)StatusInfo.Tag ).TotalMilliseconds + " ms)";
+			StatusInfo.Text = EncycloRes.SearchComplete + "(" + (int)(DateTime.Now - (DateTime)StatusInfo.Tag).TotalMilliseconds + " ms)";
 
 		}
 		else

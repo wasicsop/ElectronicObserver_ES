@@ -37,7 +37,7 @@ public class FleetViewModel : AnchorableViewModel
 
 	public IRelayCommand AntiAirDetailsCommand { get; }
 	public IRelayCommand OutputFleetImageCommand { get; }
-		
+
 	public FleetViewModel(int fleetId) : base($"#{fleetId}", $"Fleet{fleetId}",
 		ImageSourceIcons.GetIcon(IconContent.FormFleet))
 	{
@@ -408,7 +408,7 @@ public class FleetViewModel : AnchorableViewModel
 	}
 
 	#region Commands
-		
+
 	private void ContextMenuFleet_CopyFleet_Click()
 	{
 
@@ -629,7 +629,7 @@ public class FleetViewModel : AnchorableViewModel
 			if (ExpTable.ShipExp.ContainsKey(ship.Level + 1) && ship.Level != 99)
 			{
 				expProgress = (ExpTable.ShipExp[ship.Level].Next - ship.ExpNext)
-				              / ExpTable.ShipExp[ship.Level].Next;
+							  / ExpTable.ShipExp[ship.Level].Next;
 			}
 
 			int[] apiExp = { ship.ExpTotal, ship.ExpNext, expProgress };
@@ -652,7 +652,7 @@ public class FleetViewModel : AnchorableViewModel
 
 		Clipboard.SetText(json);
 	}
-		
+
 	/// <summary>
 	/// <see cref="https://kancolle-fleetanalysis.firebaseapp.com"/>
 	/// </summary>

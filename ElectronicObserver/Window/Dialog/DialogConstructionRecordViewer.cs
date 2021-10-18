@@ -1,8 +1,4 @@
-﻿using ElectronicObserver.Data;
-using ElectronicObserver.Resource;
-using ElectronicObserver.Resource.Record;
-using ElectronicObserver.Utility.Mathematics;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,6 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ElectronicObserver.Data;
+using ElectronicObserver.Resource;
+using ElectronicObserver.Resource.Record;
+using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserverTypes;
 using Translation = ElectronicObserver.Properties.Window.Dialog.DialogConstructionRecordViewer;
 
@@ -294,7 +294,7 @@ public partial class DialogConstructionRecordViewer : Form
 		if (Searcher.IsBusy)
 		{
 			if (MessageBox.Show(EncycloRes.InterruptSearch, EncycloRes.Searching, MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2)
-			    == System.Windows.Forms.DialogResult.Yes)
+				== System.Windows.Forms.DialogResult.Yes)
 			{
 				Searcher.CancelAsync();
 			}
@@ -384,9 +384,10 @@ public partial class DialogConstructionRecordViewer : Form
 			RecordView_Material1.DisplayIndex = 4;
 			RecordView_Material1.Width = 120;
 			RecordView_Material1.HeaderText = $"{Translation.DevMat}×1";
-			if ( args.IsLargeConstruction == CheckState.Unchecked ||
-			     ( args.Recipe != NameAny && args.Recipe.IndexOf( "/" ) < 4 ) ||
-			     args.DevelopmentMaterial != -1 ) {
+			if (args.IsLargeConstruction == CheckState.Unchecked ||
+				 (args.Recipe != NameAny && args.Recipe.IndexOf("/") < 4) ||
+				 args.DevelopmentMaterial != -1)
+			{
 				RecordView_Material100.Visible = false;
 				RecordView_Material20.Visible = false;
 				RecordView_Material1.Visible = false;
@@ -517,7 +518,7 @@ public partial class DialogConstructionRecordViewer : Form
 				continue;
 
 			if (args.IsLargeConstruction != CheckState.Indeterminate &&
-			    (args.IsLargeConstruction == CheckState.Checked) != r.IsLargeDock)
+				(args.IsLargeConstruction == CheckState.Checked) != r.IsLargeDock)
 				continue;
 
 
@@ -710,7 +711,7 @@ public partial class DialogConstructionRecordViewer : Form
 			RecordView.Sort(RecordView.SortedColumn ?? RecordView_Header,
 				RecordView.SortOrder == SortOrder.Ascending ? ListSortDirection.Ascending : ListSortDirection.Descending);
 
-			StatusInfo.Text = EncycloRes.SearchComplete + "(" + (int)( DateTime.Now - (DateTime)StatusInfo.Tag ).TotalMilliseconds + " ms)";
+			StatusInfo.Text = EncycloRes.SearchComplete + "(" + (int)(DateTime.Now - (DateTime)StatusInfo.Tag).TotalMilliseconds + " ms)";
 
 		}
 		else

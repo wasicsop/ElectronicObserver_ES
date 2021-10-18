@@ -169,7 +169,7 @@ public abstract class ProgressData : IIdentifiable
 						Progress = ProgressMax switch
 						{
 							3 => 2,
-							_ => Progress = (int) Math.Max(Progress,
+							_ => Progress = (int)Math.Max(Progress,
 								Math.Ceiling((ProgressMax + SharedCounterShift) * 0.8) - SharedCounterShift)
 						};
 						break;

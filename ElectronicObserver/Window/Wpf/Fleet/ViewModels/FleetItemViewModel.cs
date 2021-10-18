@@ -37,7 +37,7 @@ public class FleetItemViewModel : ObservableObject
 
 		Parent = parent;
 
-		Name = new() {Text = "*nothing*"};
+		Name = new() { Text = "*nothing*" };
 		// Name.SuspendLayout();
 		// Name.Anchor = AnchorStyles.Left;
 		// Name.TextAlign = ContentAlignment.MiddleLeft;
@@ -178,8 +178,8 @@ public class FleetItemViewModel : ObservableObject
 				var colorscheme = Utility.Configuration.Config.FormFleet.SallyAreaColorScheme;
 
 				if (Utility.Configuration.Config.FormFleet.AppliesSallyAreaColor &&
-				    (colorscheme?.Count ?? 0) > 0 &&
-				    ship.SallyArea > 0)
+					(colorscheme?.Count ?? 0) > 0 &&
+					ship.SallyArea > 0)
 				{
 					if (Utility.Configuration.Config.UI.ThemeMode != 0)
 						Name.ForeColor = Utility.Configuration.Config.UI.BackColor;
@@ -379,9 +379,9 @@ public class FleetItemViewModel : ObservableObject
 					_ => $"{attack}"
 				};
 				sb.AppendFormat($"\r\n・[{asRate:P1} | {asPlusRate:P1}] - " +
-				                $"{attackDisplay} - " +
-				                $"{FormFleet.Power}: {power} - " +
-				                $"{FormFleet.Accuracy}: {accuracy:0.##}");
+								$"{attackDisplay} - " +
+								$"{FormFleet.Power}: {power} - " +
+								$"{FormFleet.Accuracy}: {accuracy:0.##}");
 			}
 		}
 
@@ -418,9 +418,9 @@ public class FleetItemViewModel : ObservableObject
 				};
 
 				sb.AppendFormat($"\r\n・[{rate:P1}] - " +
-				                $"{attackDisplay} - " +
-				                $"{FormFleet.Power}: {power} - " +
-				                $"{FormFleet.Accuracy}: {accuracy:0.##}");
+								$"{attackDisplay} - " +
+								$"{FormFleet.Power}: {power} - " +
+								$"{FormFleet.Accuracy}: {accuracy:0.##}");
 			}
 		}
 
@@ -436,8 +436,8 @@ public class FleetItemViewModel : ObservableObject
 			if (torpedo > 0)
 			{
 				sb.Append($"{ConstantsRes.TorpedoAttack}: " +
-				          $"{FormFleet.Power}: {torpedo} - " +
-				          $"{FormFleet.Accuracy}: {ship.GetTorpedoAttackAccuracy(fleet):0.##}");
+						  $"{FormFleet.Power}: {torpedo} - " +
+						  $"{FormFleet.Accuracy}: {ship.GetTorpedoAttackAccuracy(fleet):0.##}");
 			}
 			if (asw > 0)
 			{

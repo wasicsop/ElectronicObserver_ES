@@ -35,10 +35,10 @@ public static class DayAttackPower
 
 	private static double CarrierBasePower(this IShipData ship, IFleetData fleet) =>
 		Math.Floor((ship.FirepowerTotal + ship.TorpedoBase +
-		            ship.AllSlotInstance.Sum(e => e?.MasterEquipment.Torpedo ?? 0) +
-		            Math.Floor(ship.AllSlotInstance.Sum(e => e?.MasterEquipment.Bomber ?? 0) * 1.3) +
-		            ship.GetDayBattleEquipmentLevelBonus() +
-		            fleet.CombinedFleetDayAttackBonus(ship)) * 1.5) + 55;
+					ship.AllSlotInstance.Sum(e => e?.MasterEquipment.Torpedo ?? 0) +
+					Math.Floor(ship.AllSlotInstance.Sum(e => e?.MasterEquipment.Bomber ?? 0) * 1.3) +
+					ship.GetDayBattleEquipmentLevelBonus() +
+					fleet.CombinedFleetDayAttackBonus(ship)) * 1.5) + 55;
 
 	private static double GetDayBattleEquipmentLevelBonus(this IShipData ship) =>
 		ship.AllSlotInstance.Sum(e => e.DayFirepowerBonus());

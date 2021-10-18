@@ -43,8 +43,8 @@ public static class DayAttackRate
 		double shipLos = ship.AllSlotInstance.Sum(e => e?.MasterEquipment.LOS ?? 0);
 
 		double baseRate = 10 + luckPart + AirStateBonus(state) + FlagshipBonus(fleet, ship) +
-		                  Math.Floor(fleet.SpottingLoS() + AirStateShipModifier(state) * shipLos) *
-		                  AirStateFleetModifier(state);
+						  Math.Floor(fleet.SpottingLoS() + AirStateShipModifier(state) * shipLos) *
+						  AirStateFleetModifier(state);
 
 		return Math.Floor(baseRate) / attackMod;
 	}
@@ -69,20 +69,20 @@ public static class DayAttackRate
 
 	private static double FlagshipBonus(IFleetData fleet, IShipData ship) => fleet.MembersWithoutEscaped
 			.FirstOrDefault()?.MasterShip.ShipId switch
-		{
-			{ } id when id == ship.MasterShip.ShipId => 15,
-			_ => 0
-		};
+	{
+		{ } id when id == ship.MasterShip.ShipId => 15,
+		_ => 0
+	};
 
 	private static double SpottingLoS(this IFleetData fleet)
 	{
 		double rawLos = fleet.MembersWithoutEscaped
-			.Where(s => s!= null)
+			.Where(s => s != null)
 			.Sum(s => s.LOSBase + s.AllSlotInstance
 				.Zip(s.Aircraft, (e, size) => (e, size))
 				.Where(slot => slot.e?.MasterEquipment.CategoryType switch
 				{
-					EquipmentTypes.SeaplaneRecon  => true,
+					EquipmentTypes.SeaplaneRecon => true,
 					EquipmentTypes.SeaplaneBomber => true,
 					_ => false
 				})

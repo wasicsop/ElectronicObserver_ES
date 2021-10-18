@@ -1,29 +1,29 @@
-﻿using DynaJson;
-using ElectronicObserver.Properties;
-using ElectronicObserver.Data;
-using ElectronicObserver.Notifier;
-using ElectronicObserver.Observer;
-using ElectronicObserver.Resource;
-using ElectronicObserver.Resource.Record;
-using ElectronicObserver.Utility;
-using ElectronicObserver.Window.Dialog;
-using ElectronicObserver.Window.Integrate;
-using ElectronicObserver.Window.Support;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Text;
-using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DynaJson;
+using ElectronicObserver.Data;
+using ElectronicObserver.Notifier;
+using ElectronicObserver.Observer;
+using ElectronicObserver.Properties;
+using ElectronicObserver.Resource;
+using ElectronicObserver.Resource.Record;
+using ElectronicObserver.Utility;
 using ElectronicObserver.Utility.Mathematics;
+using ElectronicObserver.Window.Dialog;
+using ElectronicObserver.Window.Integrate;
+using ElectronicObserver.Window.Support;
 using ElectronicObserver.Window.Wpf;
 using WeifenLuo.WinFormsUI.Docking;
 
@@ -74,7 +74,7 @@ public partial class FormMain : Form
 	public FormBaseAirCorps fBaseAirCorps;
 	public FormJson fJson;
 	public FormFleetPreset fFleetPreset;
-		
+
 	public FormFleetWpf[] FormFleetWpf { get; private set; }
 
 	#endregion
@@ -95,7 +95,7 @@ public partial class FormMain : Form
 			MessageBox.Show(Properties.Window.FormMain.MissingPermissions, Properties.Window.FormMain.ErrorCaption, MessageBoxButtons.OK, MessageBoxIcon.Error);
 			throw;
 		}
-			
+
 		Utility.Configuration.Instance.Load();
 
 		CultureInfo cultureInfo = new(Configuration.Config.UI.Culture);
@@ -332,7 +332,7 @@ public partial class FormMain : Form
 		SoftwareInformation.CheckUpdate();
 		await SoftwareUpdater.CheckUpdateAsync();
 		CancellationTokenSource cts = new CancellationTokenSource();
-		Task.Run( async () => await SoftwareUpdater.PeriodicUpdateCheckAsync(cts.Token));
+		Task.Run(async () => await SoftwareUpdater.PeriodicUpdateCheckAsync(cts.Token));
 
 		// デバッグ: 開始時にAPIリストを読み込む
 		if (Configuration.Config.Debug.LoadAPIListOnLoad)
@@ -348,7 +348,7 @@ public partial class FormMain : Form
 			catch (Exception ex)
 			{
 
-				Utility.Logger.Add( 3, LoggerRes.FailedLoadAPI + ex.Message );
+				Utility.Logger.Add(3, LoggerRes.FailedLoadAPI + ex.Message);
 			}
 		}
 
@@ -427,7 +427,7 @@ public partial class FormMain : Form
 		StripStatus_Information.Margin = new Padding(-1, 1, -1, 0);
 
 
-		if ( c.Life.LockLayout )
+		if (c.Life.LockLayout)
 		{
 			MainDockPanel.AllowChangeLayout = false;
 			FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -492,16 +492,17 @@ public partial class FormMain : Form
 		// 東京標準時
 		DateTime now = Utility.Mathematics.DateTimeHelper.GetJapanStandardTimeNow();
 
-		switch ( ClockFormat ) {
-			case 0:	//時計表示
-				var pvpReset = now.Date.AddHours( 3 );
+		switch (ClockFormat)
+		{
+			case 0: //時計表示
+				var pvpReset = now.Date.AddHours(3);
 				while (pvpReset < now)
-					pvpReset = pvpReset.AddHours( 12 );
+					pvpReset = pvpReset.AddHours(12);
 				var pvpTimer = pvpReset - now;
 
-				var questReset = now.Date.AddHours( 5 );
+				var questReset = now.Date.AddHours(5);
 				if (questReset < now)
-					questReset = questReset.AddHours( 24 );
+					questReset = questReset.AddHours(24);
 				var questTimer = questReset - now;
 
 				TimeSpan maintTimer = new TimeSpan(0);
@@ -536,12 +537,12 @@ public partial class FormMain : Form
 					maintState = message;
 
 				var resetMsg =
-					$"Next PVP reset: {(int) pvpTimer.TotalHours:D2}:{pvpTimer.Minutes:D2}:{pvpTimer.Seconds:D2}\r\n" +
-					$"Next Quest reset: {(int) questTimer.TotalHours:D2}:{questTimer.Minutes:D2}:{questTimer.Seconds:D2}\r\n" +
+					$"Next PVP reset: {(int)pvpTimer.TotalHours:D2}:{pvpTimer.Minutes:D2}:{pvpTimer.Seconds:D2}\r\n" +
+					$"Next Quest reset: {(int)questTimer.TotalHours:D2}:{questTimer.Minutes:D2}:{questTimer.Seconds:D2}\r\n" +
 					$"{maintState}";
 
-				StripStatus_Clock.Text = now.ToString( "HH\\:mm\\:ss" );
-				StripStatus_Clock.ToolTipText = now.ToString( "yyyy\\/MM\\/dd (ddd)\r\n" ) + resetMsg;
+				StripStatus_Clock.Text = now.ToString("HH\\:mm\\:ss");
+				StripStatus_Clock.ToolTipText = now.ToString("yyyy\\/MM\\/dd (ddd)\r\n") + resetMsg;
 
 				break;
 
@@ -556,7 +557,7 @@ public partial class FormMain : Form
 				StripStatus_Clock.ToolTipText = now.ToString("yyyy\\/MM\\/dd (ddd) HH\\:mm\\:ss");
 
 			}
-				break;
+			break;
 
 			case 2: //任務更新まで
 			{
@@ -569,7 +570,7 @@ public partial class FormMain : Form
 				StripStatus_Clock.ToolTipText = now.ToString("yyyy\\/MM\\/dd (ddd) HH\\:mm\\:ss");
 
 			}
-				break;
+			break;
 		}
 
 
@@ -615,10 +616,10 @@ public partial class FormMain : Form
 			_ => SoftwareInformation.SoftwareNameJapanese
 		};
 
-		if ( Utility.Configuration.Config.Life.ConfirmOnClosing )
+		if (Utility.Configuration.Config.Life.ConfirmOnClosing)
 		{
-			if ( MessageBox.Show(string.Format(Properties.Window.FormMain.ExitConfirmation, name), Properties.Window.FormMain.ConfirmatonCaption, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2 )
-			     == System.Windows.Forms.DialogResult.No )
+			if (MessageBox.Show(string.Format(Properties.Window.FormMain.ExitConfirmation, name), Properties.Window.FormMain.ConfirmatonCaption, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2)
+				 == System.Windows.Forms.DialogResult.No)
 			{
 				e.Cancel = true;
 				return;
@@ -626,7 +627,7 @@ public partial class FormMain : Form
 		}
 
 
-		Utility.Logger.Add( 2, name + Resources.IsClosing );
+		Utility.Logger.Add(2, name + Resources.IsClosing);
 
 		UIUpdateTimer.Stop();
 
@@ -668,7 +669,7 @@ public partial class FormMain : Form
 		APIObserver.Instance.Stop();
 
 
-		Utility.Logger.Add( 2, Resources.ClosingComplete );
+		Utility.Logger.Add(2, Resources.ClosingComplete);
 
 		if (Utility.Configuration.Config.Log.SaveLogFlag)
 			Utility.Logger.Save();
@@ -875,13 +876,13 @@ public partial class FormMain : Form
 			}
 
 
-			Utility.Logger.Add( 1, string.Format(Resources.LayoutSaved, path) );
+			Utility.Logger.Add(1, string.Format(Resources.LayoutSaved, path));
 
 		}
 		catch (Exception ex)
 		{
 
-			Utility.ErrorReporter.SendErrorReport( ex, LoggerRes.FailedSaveLayout );
+			Utility.ErrorReporter.SendErrorReport(ex, LoggerRes.FailedSaveLayout);
 		}
 
 	}
@@ -951,9 +952,9 @@ public partial class FormMain : Form
 	private void StripMenu_File_SaveData_Load_Click(object sender, EventArgs e)
 	{
 
-		if ( MessageBox.Show( Resources.AskLoad, Properties.Window.FormMain.ConfirmatonCaption,
-			     MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2 )
-		     == System.Windows.Forms.DialogResult.Yes )
+		if (MessageBox.Show(Resources.AskLoad, Properties.Window.FormMain.ConfirmatonCaption,
+				 MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2)
+			 == System.Windows.Forms.DialogResult.Yes)
 		{
 			RecordManager.Instance.Load();
 		}
@@ -986,8 +987,8 @@ public partial class FormMain : Form
 				catch (Exception ex)
 				{
 
-					MessageBox.Show( "Failed to load API List.\r\n" + ex.Message, "Error",
-						MessageBoxButtons.OK, MessageBoxIcon.Error );
+					MessageBox.Show("Failed to load API List.\r\n" + ex.Message, "Error",
+						MessageBoxButtons.OK, MessageBoxIcon.Error);
 
 				}
 
@@ -1080,9 +1081,9 @@ public partial class FormMain : Form
 	private void StripMenu_Debug_LoadRecordFromOld_Click(object sender, EventArgs e)
 	{
 
-		if ( KCDatabase.Instance.MasterShips.Count == 0 )
+		if (KCDatabase.Instance.MasterShips.Count == 0)
 		{
-			MessageBox.Show( "Please load normal api_start2 first.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information );
+			MessageBox.Show("Please load normal api_start2 first.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
 			return;
 		}
 
@@ -1121,8 +1122,8 @@ public partial class FormMain : Form
 				catch (Exception ex)
 				{
 
-					MessageBox.Show( "Failed to load API.\r\n" + ex.Message, "Error",
-						MessageBoxButtons.OK, MessageBoxIcon.Error );
+					MessageBox.Show("Failed to load API.\r\n" + ex.Message, "Error",
+						MessageBoxButtons.OK, MessageBoxIcon.Error);
 				}
 			}
 		}
@@ -1132,9 +1133,9 @@ public partial class FormMain : Form
 	private void StripMenu_Debug_LoadDataFromOld_Click(object sender, EventArgs e)
 	{
 
-		if ( KCDatabase.Instance.MasterShips.Count == 0 )
+		if (KCDatabase.Instance.MasterShips.Count == 0)
 		{
-			MessageBox.Show( "Please load normal api_start2 first.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information );
+			MessageBox.Show("Please load normal api_start2 first.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
 			return;
 		}
 
@@ -1224,7 +1225,7 @@ public partial class FormMain : Form
 	{
 
 		if (MessageBox.Show("This will delete old API data.\r\nAre you sure?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2)
-		    == System.Windows.Forms.DialogResult.Yes)
+			== System.Windows.Forms.DialogResult.Yes)
 		{
 
 			try
@@ -1308,9 +1309,9 @@ public partial class FormMain : Form
 		}
 
 		if (MessageBox.Show("通信から保存した艦船リソース名を持つファイル及びフォルダを、艦船名に置換します。\r\n" +
-		                    "対象は指定されたフォルダ以下のすべてのファイル及びフォルダです。\r\n" +
-		                    "続行しますか？", "艦船リソースをリネーム", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1)
-		    == System.Windows.Forms.DialogResult.Yes)
+							"対象は指定されたフォルダ以下のすべてのファイル及びフォルダです。\r\n" +
+							"続行しますか？", "艦船リソースをリネーム", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1)
+			== System.Windows.Forms.DialogResult.Yes)
 		{
 
 			string path = null;
@@ -1429,8 +1430,8 @@ public partial class FormMain : Form
 	{
 
 		if (MessageBox.Show(Properties.Window.FormMain.OpenEOWiki, Properties.Window.FormMain.HelpCaption,
-			    MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1)
-		    == System.Windows.Forms.DialogResult.Yes)
+				MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1)
+			== System.Windows.Forms.DialogResult.Yes)
 		{
 			ProcessStartInfo psi = new ProcessStartInfo
 			{
@@ -1450,8 +1451,8 @@ public partial class FormMain : Form
 	{
 
 		if (MessageBox.Show(Properties.Window.FormMain.ReportIssue, Properties.Window.FormMain.ReportIssueCaption,
-			    MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1)
-		    == System.Windows.Forms.DialogResult.Yes)
+				MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1)
+			== System.Windows.Forms.DialogResult.Yes)
 		{
 			ProcessStartInfo psi = new ProcessStartInfo
 			{
@@ -1482,7 +1483,7 @@ public partial class FormMain : Form
 
 	}
 
-	private void StripMenu_Help_Update_Click( object sender, EventArgs e ) 
+	private void StripMenu_Help_Update_Click(object sender, EventArgs e)
 	{
 		SoftwareInformation.CheckUpdate();
 	}
@@ -1857,7 +1858,7 @@ public partial class FormMain : Form
 		fBrowser.Translate();
 		fCompass.Translate();
 		fDock.Translate();
-		foreach(var fleet in fFleet) fleet.Translate();
+		foreach (var fleet in fFleet) fleet.Translate();
 		fFleetOverview.Translate();
 		fFleetPreset.Translate();
 		fHeadquarters.Translate();

@@ -28,9 +28,9 @@ public class NotifierRemodelLevel : NotifierBase
 		{
 			ShipDataMaster? nextRemodelShip = db.MasterShips.Values
 				.Where(s => s.BaseShip() == ship.MasterShip.BaseShip())
-				.Where(s => s.RemodelBeforeShip != null) 
-				.FirstOrDefault(s => s.RemodelBeforeShip!.RemodelAfterLevel > ship.Level && 
-				                     s.RemodelBeforeShip!.RemodelAfterLevel <= nextLevel);
+				.Where(s => s.RemodelBeforeShip != null)
+				.FirstOrDefault(s => s.RemodelBeforeShip!.RemodelAfterLevel > ship.Level &&
+									 s.RemodelBeforeShip!.RemodelAfterLevel <= nextLevel);
 
 			if (nextRemodelShip is null) return;
 

@@ -1,9 +1,9 @@
-﻿using ElectronicObserver.Data.Battle.Phase;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ElectronicObserver.Data.Battle.Phase;
 
 namespace ElectronicObserver.Data.Battle;
 
@@ -22,7 +22,7 @@ public class BattleNightOnly : BattleNight
 		FriendlyShelling = new PhaseFriendlyShelling(this, "友軍艦隊援護");
 		Support = new PhaseSupport(this, "夜間支援攻撃", true);
 		NightBattle = new PhaseNightBattle(this, "夜戦", 0);
-			
+
 
 		foreach (var phase in GetPhases())
 			phase.EmulateBattle(_resultHPs, _attackDamages);
@@ -33,7 +33,7 @@ public class BattleNightOnly : BattleNight
 
 	public override string BattleName => ConstantsRes.Title_NightOnly;
 
-	
+
 
 	public override IEnumerable<PhaseBase> GetPhases()
 	{

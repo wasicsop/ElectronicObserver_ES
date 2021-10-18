@@ -118,7 +118,7 @@ public class FleetOverviewViewModel : AnchorableViewModel
 	void ConfigurationChanged()
 	{
 		// TableFleet.SuspendLayout();
-			
+
 		// AutoScroll = Utility.Configuration.Config.FormFleet.IsScrollable;
 
 		/*
@@ -140,7 +140,7 @@ public class FleetOverviewViewModel : AnchorableViewModel
 
 	private void Updated(string apiname, dynamic data)
 	{
-			
+
 		// TableFleet.SuspendLayout();
 
 		// TableFleet.RowCount = KCDatabase.Instance.Fleet.Fleets.Values.Count(f => f.IsAvailable);
@@ -190,13 +190,13 @@ public class FleetOverviewViewModel : AnchorableViewModel
 		{
 			AnchorageRepairingTimer.Text = DateTimeHelper.ToTimeElapsedString(KCDatabase.Instance.Fleet.AnchorageRepairingTimer);
 			AnchorageRepairingTimer.Tag = KCDatabase.Instance.Fleet.AnchorageRepairingTimer;
-			AnchorageRepairingTimer.ToolTip = 
-				FormFleetOverview.AnchorageRepairToolTip + 
-				DateTimeHelper.TimeToCSVString(KCDatabase.Instance.Fleet.AnchorageRepairingTimer) + 
-				$"\r\n{FormFleetOverview.Recovery}: " + 
+			AnchorageRepairingTimer.ToolTip =
+				FormFleetOverview.AnchorageRepairToolTip +
+				DateTimeHelper.TimeToCSVString(KCDatabase.Instance.Fleet.AnchorageRepairingTimer) +
+				$"\r\n{FormFleetOverview.Recovery}: " +
 				DateTimeHelper.TimeToCSVString(KCDatabase.Instance.Fleet.AnchorageRepairingTimer.AddMinutes(20));
 		}
-			
+
 	}
 
 

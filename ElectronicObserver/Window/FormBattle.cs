@@ -1,12 +1,4 @@
-﻿using ElectronicObserver.Data;
-using ElectronicObserver.Data.Battle;
-using ElectronicObserver.Data.Battle.Detail;
-using ElectronicObserver.Data.Battle.Phase;
-using ElectronicObserver.Observer;
-using ElectronicObserver.Resource;
-using ElectronicObserver.Window.Control;
-using ElectronicObserver.Window.Support;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ElectronicObserver.Data;
+using ElectronicObserver.Data.Battle;
+using ElectronicObserver.Data.Battle.Detail;
+using ElectronicObserver.Data.Battle.Phase;
+using ElectronicObserver.Observer;
+using ElectronicObserver.Resource;
+using ElectronicObserver.Window.Control;
+using ElectronicObserver.Window.Support;
 using ElectronicObserverTypes;
 using WeifenLuo.WinFormsUI.Docking;
 using Translation = ElectronicObserver.Properties.Window.FormBattle;
@@ -225,7 +225,7 @@ public partial class FormBattle : DockContent
 
 				BaseLayoutPanel.Visible = !hideDuringBattle;
 			}
-				break;
+			break;
 
 			case "api_req_battle_midnight/battle":
 			case "api_req_practice/midnight_battle":
@@ -237,7 +237,7 @@ public partial class FormBattle : DockContent
 
 				BaseLayoutPanel.Visible = !hideDuringBattle;
 			}
-				break;
+			break;
 
 			case "api_req_battle_midnight/sp_midnight":
 			{
@@ -252,7 +252,7 @@ public partial class FormBattle : DockContent
 
 				BaseLayoutPanel.Visible = !hideDuringBattle;
 			}
-				break;
+			break;
 
 			case "api_req_sortie/airbattle":
 			{
@@ -266,7 +266,7 @@ public partial class FormBattle : DockContent
 
 				BaseLayoutPanel.Visible = !hideDuringBattle;
 			}
-				break;
+			break;
 
 			case "api_req_sortie/night_to_day":
 			{
@@ -291,7 +291,7 @@ public partial class FormBattle : DockContent
 
 				BaseLayoutPanel.Visible = !hideDuringBattle;
 			}
-				break;
+			break;
 
 			case "api_req_combined_battle/battle":
 			case "api_req_combined_battle/battle_water":
@@ -311,7 +311,7 @@ public partial class FormBattle : DockContent
 
 				BaseLayoutPanel.Visible = !hideDuringBattle;
 			}
-				break;
+			break;
 
 			case "api_req_combined_battle/airbattle":
 			{
@@ -325,7 +325,7 @@ public partial class FormBattle : DockContent
 
 				BaseLayoutPanel.Visible = !hideDuringBattle;
 			}
-				break;
+			break;
 
 			case "api_req_combined_battle/midnight_battle":
 			case "api_req_combined_battle/ec_midnight_battle":
@@ -337,7 +337,7 @@ public partial class FormBattle : DockContent
 
 				BaseLayoutPanel.Visible = !hideDuringBattle;
 			}
-				break;
+			break;
 
 			case "api_req_combined_battle/sp_midnight":
 			{
@@ -352,7 +352,7 @@ public partial class FormBattle : DockContent
 
 				BaseLayoutPanel.Visible = !hideDuringBattle;
 			}
-				break;
+			break;
 
 			case "api_req_combined_battle/ec_night_to_day":
 			{
@@ -376,7 +376,7 @@ public partial class FormBattle : DockContent
 
 				BaseLayoutPanel.Visible = !hideDuringBattle;
 			}
-				break;
+			break;
 
 			case "api_req_sortie/battleresult":
 			case "api_req_combined_battle/battleresult":
@@ -387,7 +387,7 @@ public partial class FormBattle : DockContent
 
 				BaseLayoutPanel.Visible = true;
 			}
-				break;
+			break;
 
 		}
 
@@ -431,7 +431,7 @@ public partial class FormBattle : DockContent
 			FleetEnemy.BackColor =
 				FleetEnemyEscort.BackColor = Utility.Configuration.Config.UI.BackColor;
 		}
-		
+
 		FleetEnemy.ForeColor = Utility.Configuration.Config.UI.ForeColor;
 
 		switch (bm.FirstBattle.Searching.EngagementForm)
@@ -535,7 +535,7 @@ public partial class FormBattle : DockContent
 	/// <summary>
 	/// 基地航空隊フェーズの結果をクリアします。
 	/// </summary>
-	private void ClearBaseAirAttack() 
+	private void ClearBaseAirAttack()
 	{
 		Searching.Text = GeneralRes.ClearBaseAirAttack;
 		Searching.ImageAlign = ContentAlignment.MiddleCenter;
@@ -618,7 +618,7 @@ public partial class FormBattle : DockContent
 	/// <param name="phase2">第二次航空戦のデータ。発生していなければ null</param>
 	private void SetAerialWarfare(PhaseAirBattleBase phaseJet, PhaseAirBattleBase phase1, PhaseAirBattleBase phase2)
 	{
-		var phases = new[] 
+		var phases = new[]
 		{
 			new AerialWarfareFormatter(phaseJet, Translation.AerialPhaseJet),
 			new AerialWarfareFormatter(phase1, Translation.AerialPhase1),
@@ -701,8 +701,8 @@ public partial class FormBattle : DockContent
 					label.ImageIndex = (int)ResourceManager.EquipmentContent.Seaplane;
 
 					ToolTipInfo.SetToolTip(label, ToolTipInfo.GetToolTip(label) +
-					                              Translation.Contact + "\r\n" + 
-					                              string.Join("\r\n", phases1.Select(p => $"{p.PhaseName}{(KCDatabase.Instance.MasterEquipments[p.GetTouchAircraft(isFriend)]?.NameEN ?? Translation.None)}")));
+												  Translation.Contact + "\r\n" +
+												  string.Join("\r\n", phases1.Select(p => $"{p.PhaseName}{(KCDatabase.Instance.MasterEquipments[p.GetTouchAircraft(isFriend)]?.NameEN ?? Translation.None)}")));
 				}
 				else
 				{
@@ -739,7 +739,7 @@ public partial class FormBattle : DockContent
 				AACutin.ImageIndex = (int)ResourceManager.EquipmentContent.HighAngleGun;
 
 				ToolTipInfo.SetToolTip(AACutin, Translation.AACI + "\r\n" +
-				                                string.Join("\r\n", phases2.Select(p => p.PhaseName + (p.Air.IsAACutinAvailable ? $"{p.Air.AACutInShipName}\r\n" + Translation.AACIType + $"{p.Air.AACutInKind} ({Constants.GetAACutinKind(p.Air.AACutInKind)})" : Translation.DidNotActivate))));
+												string.Join("\r\n", phases2.Select(p => p.PhaseName + (p.Air.IsAACutinAvailable ? $"{p.Air.AACutInShipName}\r\n" + Translation.AACIType + $"{p.Air.AACutInKind} ({Constants.GetAACutinKind(p.Air.AACutInKind)})" : Translation.DidNotActivate))));
 			}
 			else
 			{
@@ -827,7 +827,7 @@ public partial class FormBattle : DockContent
 
 				if (isBaseAirRaid)
 				{
-					name = string.Format(Translation.AirBase, i + 1 );
+					name = string.Format(Translation.AirBase, i + 1);
 					isEscaped = false;
 					isLandBase = true;
 					// it's air base, not land base
@@ -843,8 +843,8 @@ public partial class FormBattle : DockContent
 					bar.Text = Constants.GetShipClassClassification(ship.MasterShip.ShipType);
 				}
 
-				ToolTipInfo.SetToolTip( bar, string.Format
-				( "{0}\r\nHP: ({1} → {2})/{3} ({4}) [{5}]\r\n" + GeneralRes.DamageDone + ": {6}\r\n\r\n{7}",
+				ToolTipInfo.SetToolTip(bar, string.Format
+				("{0}\r\nHP: ({1} → {2})/{3} ({4}) [{5}]\r\n" + GeneralRes.DamageDone + ": {6}\r\n\r\n{7}",
 					name,
 					Math.Max(bar.PrevValue, 0),
 					Math.Max(bar.Value, 0),
@@ -855,7 +855,7 @@ public partial class FormBattle : DockContent
 					bd.GetBattleDetail(refindex)
 				));
 
-				if ( isEscaped ) bar.BackColor = Utility.Configuration.Config.UI.Battle_ColorHPBarsEscaped;
+				if (isEscaped) bar.BackColor = Utility.Configuration.Config.UI.Battle_ColorHPBarsEscaped;
 				else bar.BackColor = Utility.Configuration.Config.UI.BackColor;
 				bar.RepaintHPtext();
 			}
@@ -918,7 +918,7 @@ public partial class FormBattle : DockContent
 					var bar = HPBars[refindex];
 					bar.Text = Constants.GetShipClassClassification(ship.MasterShip.ShipType);
 
-					ToolTipInfo.SetToolTip( bar, string.Format(
+					ToolTipInfo.SetToolTip(bar, string.Format(
 						"{0} Lv. {1}\r\nHP: ({2} → {3})/{4} ({5}) [{6}]\r\n" + GeneralRes.DamageDone + ": {7}\r\n\r\n{8}",
 						ship.MasterShip.NameWithClass,
 						ship.Level,
@@ -931,7 +931,7 @@ public partial class FormBattle : DockContent
 						bd.GetBattleDetail(refindex)
 					));
 
-					if ( isEscaped ) bar.BackColor = Utility.Configuration.Config.UI.Battle_ColorHPBarsEscaped;
+					if (isEscaped) bar.BackColor = Utility.Configuration.Config.UI.Battle_ColorHPBarsEscaped;
 					else bar.BackColor = Utility.Configuration.Config.UI.BackColor;
 					bar.RepaintHPtext();
 				}
@@ -1084,7 +1084,8 @@ public partial class FormBattle : DockContent
 			HPBars[BattleIndex.EnemyMain1].RepaintHPtext();
 		}
 
-		if ( !isBaseAirRaid ) {
+		if (!isBaseAirRaid)
+		{
 			foreach (int i in bd.MVPShipIndexes)
 			{
 				HPBars[BattleIndex.Get(BattleSides.FriendMain, i)].BackColor = Utility.Configuration.Config.UI.Battle_ColorHPBarsMVP;
@@ -1180,10 +1181,11 @@ public partial class FormBattle : DockContent
 				AirStage1Friend.ForeColor = Utility.Configuration.Config.UI.ForeColor;
 				AirStage1Friend.ImageAlign = ContentAlignment.MiddleLeft;
 				AirStage1Friend.ImageIndex = (int)ResourceManager.EquipmentContent.Searchlight;
-				ToolTipInfo.SetToolTip( AirStage1Friend, GeneralRes.SearchlightUsed + ": " + ship.NameWithLevel);
-			} else 
+				ToolTipInfo.SetToolTip(AirStage1Friend, GeneralRes.SearchlightUsed + ": " + ship.NameWithLevel);
+			}
+			else
 			{
-				ToolTipInfo.SetToolTip( AirStage1Friend, null );
+				ToolTipInfo.SetToolTip(AirStage1Friend, null);
 			}
 		}
 
@@ -1196,11 +1198,11 @@ public partial class FormBattle : DockContent
 				AirStage1Enemy.ForeColor = Utility.Configuration.Config.UI.ForeColor;
 				AirStage1Enemy.ImageAlign = ContentAlignment.MiddleLeft;
 				AirStage1Enemy.ImageIndex = (int)ResourceManager.EquipmentContent.Searchlight;
-				ToolTipInfo.SetToolTip(AirStage1Enemy, GeneralRes.SearchlightUsed + ": " + pd.SearchlightEnemyInstance.NameWithClass );
+				ToolTipInfo.SetToolTip(AirStage1Enemy, GeneralRes.SearchlightUsed + ": " + pd.SearchlightEnemyInstance.NameWithClass);
 			}
 			else
 			{
-				ToolTipInfo.SetToolTip(AirStage1Enemy, null );
+				ToolTipInfo.SetToolTip(AirStage1Enemy, null);
 			}
 		}
 
@@ -1212,10 +1214,10 @@ public partial class FormBattle : DockContent
 			SearchingFriend.ImageIndex = (int)ResourceManager.EquipmentContent.Seaplane;
 			SearchingFriend.ImageAlign = ContentAlignment.MiddleLeft;
 			ToolTipInfo.SetToolTip(SearchingFriend, GeneralRes.NightContacting + ": " + KCDatabase.Instance.MasterEquipments[pd.TouchAircraftFriend].NameEN);
-		} 
-		else 
+		}
+		else
 		{
-			ToolTipInfo.SetToolTip( SearchingFriend, null );
+			ToolTipInfo.SetToolTip(SearchingFriend, null);
 		}
 
 		if (pd.TouchAircraftEnemy != -1)
@@ -1227,7 +1229,7 @@ public partial class FormBattle : DockContent
 		}
 		else
 		{
-			ToolTipInfo.SetToolTip( SearchingEnemy, null );
+			ToolTipInfo.SetToolTip(SearchingEnemy, null);
 		}
 
 		//照明弾投射判定
@@ -1258,7 +1260,7 @@ public partial class FormBattle : DockContent
 				AirStage2Enemy.ForeColor = Utility.Configuration.Config.UI.ForeColor;
 				AirStage2Enemy.ImageAlign = ContentAlignment.MiddleLeft;
 				AirStage2Enemy.ImageIndex = (int)ResourceManager.EquipmentContent.Flare;
-				ToolTipInfo.SetToolTip( AirStage2Enemy, GeneralRes.StarShellUsed + ": " + pd.FlareEnemyInstance.NameWithClass);
+				ToolTipInfo.SetToolTip(AirStage2Enemy, GeneralRes.StarShellUsed + ": " + pd.FlareEnemyInstance.NameWithClass);
 			}
 			else
 			{

@@ -14,7 +14,7 @@ public partial class HealthBarView : UserControl
 
 	public HealthBarViewModel ViewModel
 	{
-		get => (HealthBarViewModel) GetValue(ViewModelProperty);
+		get => (HealthBarViewModel)GetValue(ViewModelProperty);
 		set => SetValue(ViewModelProperty, value);
 	}
 

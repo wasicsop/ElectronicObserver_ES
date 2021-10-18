@@ -1,10 +1,10 @@
-﻿using ElectronicObserver.Data;
-using ElectronicObserver.Notifier;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ElectronicObserver.Data;
+using ElectronicObserver.Notifier;
 using static ElectronicObserver.Observer.DiscordRPC;
 
 namespace ElectronicObserver.Observer.kcsapi.api_req_map;
@@ -15,7 +15,7 @@ public class start : APIBase
 	public override void OnResponseReceived(dynamic data)
 	{
 
-		
+
 		KCDatabase db = KCDatabase.Instance;
 
 		db.Battle.LoadFromResponse(APIName, data);

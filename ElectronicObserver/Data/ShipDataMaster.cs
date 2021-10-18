@@ -1,5 +1,4 @@
-﻿using ElectronicObserver.Resource.Record;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
@@ -7,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ElectronicObserver.Resource.Record;
 using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Data;
@@ -660,7 +660,7 @@ public class ShipDataMaster : ResponseWrapper, IIdentifiable, IShipDataMaster
 	/// 改装段階
 	/// 初期 = 0, 改 = 1, 改二 = 2, ...
 	/// </summary>
-	public RemodelTier RemodelTierTyped => (RemodelTier) RemodelTier;
+	public RemodelTier RemodelTierTyped => (RemodelTier)RemodelTier;
 
 	/// <summary>
 	/// 艦種名

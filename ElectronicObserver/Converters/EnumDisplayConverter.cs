@@ -1,7 +1,7 @@
-﻿using ElectronicObserverTypes;
-using System;
+﻿using System;
 using System.Globalization;
 using System.Windows.Data;
+using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Converters;
 

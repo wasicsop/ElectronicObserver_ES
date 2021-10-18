@@ -89,8 +89,8 @@ public class ProgressSpecialBattle : ProgressBattle
 			if (fleet == null) return 0;
 
 			return fleet.Count(fm =>
-				ships.Any(s => fm?.MasterShip.BaseShip().ShipId == s.BaseId && 
-				               fm?.MasterShip.RemodelTierTyped >= s.MinRemodel));
+				ships.Any(s => fm?.MasterShip.BaseShip().ShipId == s.BaseId &&
+							   fm?.MasterShip.RemodelTierTyped >= s.MinRemodel));
 		}
 
 		// 邪悪
@@ -116,7 +116,7 @@ public class ProgressSpecialBattle : ProgressBattle
 
 		bool isAccepted = false;
 
-			
+
 
 		switch (QuestID)
 		{
@@ -141,7 +141,7 @@ public class ProgressSpecialBattle : ProgressBattle
 				}
 				isAccepted = nachi && myoukou && haguro;
 			}
-				break;
+			break;
 
 			// |257|月|「水雷戦隊」南西へ！|1-4ボスS勝利1|要軽巡旗艦、軽巡3隻まで、他駆逐艦　他艦種禁止
 			case 257:
@@ -187,7 +187,7 @@ public class ProgressSpecialBattle : ProgressBattle
 				}
 				isAccepted = battleships == 3 && hasLightCruiser;
 			}
-				break;
+			break;
 
 			// |264|月|「空母機動部隊」西へ！|4-2ボスS勝利1|要(空母or軽母or装母)2/駆逐2
 			case 264:
@@ -291,7 +291,7 @@ public class ProgressSpecialBattle : ProgressBattle
 				isAccepted =
 					memberstype.Any(t => t == ShipTypes.LightAircraftCarrier || t == ShipTypes.AircraftCarrier || t == ShipTypes.ArmoredAircraftCarrier);
 				break;
-					
+
 			case 903: // Bq13
 			{
 				bool melonFlag =
@@ -313,7 +313,7 @@ public class ProgressSpecialBattle : ProgressBattle
 
 				isAccepted = melonFlag && (mutsukis || yura);
 			}
-				break;
+			break;
 
 			case 905: // By2
 			{
@@ -324,7 +324,7 @@ public class ProgressSpecialBattle : ProgressBattle
 
 				isAccepted = escorts && memberCount;
 			}
-				break;
+			break;
 			case 912: // By4
 			{
 				bool akashi = members[0].MasterShip.ShipId switch
@@ -337,14 +337,14 @@ public class ProgressSpecialBattle : ProgressBattle
 
 				isAccepted = akashi && destroyers;
 			}
-				break;
+			break;
 
 			// B140
 			case 901:
 				isAccepted =
-					members[0].ShipID == (int) ShipId.YuubariKaiNi ||
-					members[0].ShipID == (int) ShipId.YuubariKaiNiToku ||
-					members[0].ShipID == (int) ShipId.YuubariKaiNiD;
+					members[0].ShipID == (int)ShipId.YuubariKaiNi ||
+					members[0].ShipID == (int)ShipId.YuubariKaiNiToku ||
+					members[0].ShipID == (int)ShipId.YuubariKaiNiD;
 				break;
 
 			// B141
@@ -352,23 +352,23 @@ public class ProgressSpecialBattle : ProgressBattle
 			{
 
 				bool melonFlag =
-					members[0].ShipID == (int) ShipId.YuubariKaiNi ||
-					members[0].ShipID == (int) ShipId.YuubariKaiNiToku ||
-					members[0].ShipID == (int) ShipId.YuubariKaiNiD;
+					members[0].ShipID == (int)ShipId.YuubariKaiNi ||
+					members[0].ShipID == (int)ShipId.YuubariKaiNiToku ||
+					members[0].ShipID == (int)ShipId.YuubariKaiNiD;
 
 				bool mutsukis =
 					members.Where(s => s?.MasterShip?.BaseShip() != null)
 						.Count(s =>
-							s.MasterShip.BaseShip().ShipID == (int) ShipId.Mutsuki ||
-							s.MasterShip.BaseShip().ShipID == (int) ShipId.Kisaragi ||
-							s.MasterShip.BaseShip().ShipID == (int) ShipId.Kikuzuki ||
-							s.MasterShip.BaseShip().ShipID == (int) ShipId.Mochizuki ||
-							s.MasterShip.BaseShip().ShipID == (int) ShipId.Uzuki ||
-							s.MasterShip.BaseShip().ShipID == (int) ShipId.Yayoi) >= 3;
+							s.MasterShip.BaseShip().ShipID == (int)ShipId.Mutsuki ||
+							s.MasterShip.BaseShip().ShipID == (int)ShipId.Kisaragi ||
+							s.MasterShip.BaseShip().ShipID == (int)ShipId.Kikuzuki ||
+							s.MasterShip.BaseShip().ShipID == (int)ShipId.Mochizuki ||
+							s.MasterShip.BaseShip().ShipID == (int)ShipId.Uzuki ||
+							s.MasterShip.BaseShip().ShipID == (int)ShipId.Yayoi) >= 3;
 
 				isAccepted = melonFlag && mutsukis;
 			}
-				break;
+			break;
 
 			case 883: // 7thAnvLB2
 			{
@@ -377,13 +377,13 @@ public class ProgressSpecialBattle : ProgressBattle
 
 				isAccepted = cl && dd;
 			}
-				break;
+			break;
 
 			case 910: // 7thAnvLB3
 			{
 				isAccepted = true;
 			}
-				break;
+			break;
 
 			case 235: // B135
 			{
@@ -392,12 +392,12 @@ public class ProgressSpecialBattle : ProgressBattle
 
 				isAccepted = cl && escorts;
 			}
-				break;
+			break;
 			case 246: // WB02
 			{
 				isAccepted = members[0]?.Level >= 100;
 			}
-				break;
+			break;
 			case 251: // B26
 			{
 				bool souryuuFlag = HasFlagship(members, ShipId.Souryuu, RemodelTier.KaiNi);
@@ -406,7 +406,7 @@ public class ProgressSpecialBattle : ProgressBattle
 
 				isAccepted = souryuuFlag && hiryuu && dd;
 			}
-				break;
+			break;
 			case 262: // B33
 			{
 				isAccepted = CountSpecific(members, new[]
@@ -418,7 +418,7 @@ public class ProgressSpecialBattle : ProgressBattle
 					(ShipId.Michishio, RemodelTier.Base),
 				}) == 5;
 			}
-				break;
+			break;
 			case 276: // B44
 			{
 				isAccepted = CountSpecific(members, new[]
@@ -431,12 +431,12 @@ public class ProgressSpecialBattle : ProgressBattle
 					(ShipId.Inazuma, RemodelTier.Base),
 				}) == 6;
 			}
-				break;
+			break;
 			case 290: // B128
 			{
 				isAccepted = HasFlagship(members, ShipId.Hiei);
 			}
-				break;
+			break;
 			case 298: // B124
 			{
 				isAccepted = CountSpecific(members, new[]
@@ -447,7 +447,7 @@ public class ProgressSpecialBattle : ProgressBattle
 					(ShipId.Oboro, RemodelTier.Base),
 				}) >= 2;
 			}
-				break;
+			break;
 			case 831: // SB43
 			{
 				bool flagCondition = HasFlagship(members, ShipTypes.LightCruiser, ShipTypes.LightAircraftCarrier,
@@ -456,7 +456,7 @@ public class ProgressSpecialBattle : ProgressBattle
 
 				isAccepted = flagCondition && escorts;
 			}
-				break;
+			break;
 			case 832: // SB44
 			{
 				bool naganami = HasFlagship(members, ShipId.Naganami);
@@ -470,14 +470,14 @@ public class ProgressSpecialBattle : ProgressBattle
 
 				isAccepted = naganami && escorts;
 			}
-				break;
+			break;
 			case 833: // B139
 			{
 				bool avOrLha = HasShipType(members, 1, ShipTypes.SeaplaneTender, ShipTypes.AmphibiousAssaultShip);
-						
+
 				isAccepted = avOrLha;
 			}
-				break;
+			break;
 			case 856: // B99
 			{
 				bool nagatoFlag = HasFlagship(members, ShipId.Nagato, RemodelTier.KaiNi);
@@ -485,7 +485,7 @@ public class ProgressSpecialBattle : ProgressBattle
 
 				isAccepted = nagatoFlag && mutsu;
 			}
-				break;
+			break;
 			case 859: // B102
 			{
 				bool iseFlag = HasFlagship(members, ShipId.Ise);
@@ -500,10 +500,10 @@ public class ProgressSpecialBattle : ProgressBattle
 				bool dd = HasShipType(members, 2, ShipTypes.Destroyer);
 				bool cl = HasShipType(members, 1, ShipTypes.LightCruiser);
 
-				isAccepted = (iseFlag && hyuugaSecond || hyuugaFlag && iseSecond) 
-				             && iseLevel && hyuugaLevel && dd && cl;
+				isAccepted = (iseFlag && hyuugaSecond || hyuugaFlag && iseSecond)
+							 && iseLevel && hyuugaLevel && dd && cl;
 			}
-				break;
+			break;
 			case 863: // B104
 			{
 				bool fumizuki = HasShip(members, ShipId.Fumizuki, RemodelTier.KaiNi);
@@ -513,14 +513,14 @@ public class ProgressSpecialBattle : ProgressBattle
 
 				isAccepted = fumizuki && satsuki && minazuki && nagatsuki;
 			}
-				break;
+			break;
 			case 865: // B106
 			{
 				bool saratoga = members[0].MasterShip.ShipId == ShipId.SaratogaMkII;
 
 				isAccepted = saratoga;
 			}
-				break;
+			break;
 			case 874: // B110
 			{
 				bool cl = members.Any(s => s?.MasterShip.ShipType == ShipTypes.LightCruiser);
@@ -529,7 +529,7 @@ public class ProgressSpecialBattle : ProgressBattle
 
 				isAccepted = cl && av && cvl;
 			}
-				break;
+			break;
 			case 876: // B111
 			{
 				bool tatsuta = members[0].MasterShip.ShipId switch
@@ -547,7 +547,7 @@ public class ProgressSpecialBattle : ProgressBattle
 
 				isAccepted = tatsuta && escorts;
 			}
-				break;
+			break;
 			case 877: // B112
 			{
 				bool murasame = members[0].MasterShip.ShipId == ShipId.MurasameKaiNi;
@@ -564,7 +564,7 @@ public class ProgressSpecialBattle : ProgressBattle
 				isAccepted = murasame && escorts
 					;
 			}
-				break;
+			break;
 			case 880: // B115
 			{
 				bool destroyers = members.Count(s => s?.MasterShip.ShipType is ShipTypes.Destroyer) >= 4;
@@ -583,14 +583,14 @@ public class ProgressSpecialBattle : ProgressBattle
 
 				isAccepted = destroyers;
 			}
-				break;
+			break;
 			case 885: // B118
 			{
 				bool ise = members.Any(s => s?.MasterShip.ShipId == ShipId.IseKaiNi);
 
 				isAccepted = ise;
 			}
-				break;
+			break;
 
 			case 887: // B120
 			{
@@ -600,7 +600,7 @@ public class ProgressSpecialBattle : ProgressBattle
 
 				isAccepted = tenryuu && tatsuta && destroyers;
 			}
-				break;
+			break;
 
 			case 890: // B122
 			{
@@ -609,7 +609,7 @@ public class ProgressSpecialBattle : ProgressBattle
 
 				isAccepted = choukai && maya;
 			}
-				break;
+			break;
 
 			case 891: // B123
 			{
@@ -620,7 +620,7 @@ public class ProgressSpecialBattle : ProgressBattle
 
 				isAccepted = isokaze && hamakaze && urakaze && tanikaze;
 			}
-				break;
+			break;
 
 			case 892: // B126
 			{
@@ -629,7 +629,7 @@ public class ProgressSpecialBattle : ProgressBattle
 
 				isAccepted = yuugumo && makigumo;
 			}
-				break;
+			break;
 
 			case 895: // B127
 			{
@@ -637,14 +637,14 @@ public class ProgressSpecialBattle : ProgressBattle
 
 				isAccepted = clFlag;
 			}
-				break;
+			break;
 
 			// B131
 			case 896:
 			{
 				isAccepted = memberstype.Count(t => t == ShipTypes.AviationBattleship) >= 2;
 			}
-				break;
+			break;
 
 			// B132
 			case 897:
@@ -654,7 +654,7 @@ public class ProgressSpecialBattle : ProgressBattle
 
 				isAccepted = ise && hyuuga;
 			}
-				break;
+			break;
 
 			/*case 903:   // |903|季|拡張「六水戦」、最前線へ！|5-1・5-4・6-4・6-5ボスS勝利各1|要旗艦夕張改二(|特|丁), 由良改二or(睦月/如月/弥生/卯月/菊月/望月2)|進捗3/4で80%
 				isAccepted = members[0]?.MasterShip?.NameReading == "ゆうばり" && members[0]?.MasterShip?.RemodelTier >= 2 &&
@@ -696,7 +696,7 @@ public class ProgressSpecialBattle : ProgressBattle
 
 				isAccepted = shoukaku && zuikaku && oboro && akigumo;
 			}
-				break;
+			break;
 			case 917: // B145
 			{
 				bool gotlandFlag = members[0]?.MasterShip?.ShipID == (int)ShipId.Gotlandandra;
@@ -704,11 +704,11 @@ public class ProgressSpecialBattle : ProgressBattle
 
 				isAccepted = gotlandFlag && destroyer;
 			}
-				break;
+			break;
 
 			case 914:   // |914|３|重巡戦隊、西へ！|4-1・4-2・4-3・4-4ボスA勝利各1|要重巡3/駆逐1
 				isAccepted = memberstype.Count(t => t == ShipTypes.HeavyCruiser) >= 3 &&
-				             memberstype.Count(t => t == ShipTypes.Destroyer) >= 1;
+							 memberstype.Count(t => t == ShipTypes.Destroyer) >= 1;
 				break;
 
 			case 924:   // B152
@@ -716,7 +716,7 @@ public class ProgressSpecialBattle : ProgressBattle
 				isAccepted = members.Count(s => s?.MasterShip.ShipType == ShipTypes.AircraftCarrier) >= 2;
 
 			}
-				break;
+			break;
 
 			case 927: // B155
 			{
@@ -725,7 +725,7 @@ public class ProgressSpecialBattle : ProgressBattle
 
 				isAccepted = flag && count;
 			}
-				break;
+			break;
 
 			case 929: // B156
 			{
@@ -747,7 +747,7 @@ public class ProgressSpecialBattle : ProgressBattle
 
 				isAccepted = flag && subs;
 			}
-				break;
+			break;
 
 			case 932: // 2103 B5
 			{
@@ -757,7 +757,7 @@ public class ProgressSpecialBattle : ProgressBattle
 
 				isAccepted = flag && second;
 			}
-				break;
+			break;
 
 			case 928:   //|928|９|歴戦「第十方面艦隊」、全力出撃！|4-2・7-2(第二)・7-3(第二)ボスS勝利各2|要(羽黒/足柄/妙高/高雄/神風)2
 				isAccepted = members.Count(s =>
@@ -782,7 +782,7 @@ public class ProgressSpecialBattle : ProgressBattle
 					members[0].MasterShip.ShipId is ShipId.NoshiroKaiNi &&
 					memberstype.Count(t => t is ShipTypes.Destroyer) >= 3;
 			}
-				break;
+			break;
 
 			case 937: // B165
 			{
@@ -791,7 +791,7 @@ public class ProgressSpecialBattle : ProgressBattle
 
 				isAccepted = akebono && ushio;
 			}
-				break;
+			break;
 
 
 			case 840:   //|840|週|【節分任務】令和三年節分作戦|2-(1~3)ボスA勝利各1|要(軽母or軽巡or雷巡or練巡)旗艦/(駆逐or海防)3, 期間限定(2021/01/13～????/??/??)
@@ -830,36 +830,36 @@ public class ProgressSpecialBattle : ProgressBattle
 			case 234:   // 2102 LQ1
 			{
 				isAccepted = memberstype.Count(t => t == ShipTypes.Destroyer) >= 2 &&
-				             memberstype.Count(t => t == ShipTypes.LightCruiser) >= 1;
+							 memberstype.Count(t => t == ShipTypes.LightCruiser) >= 1;
 			}
-				break;
+			break;
 
 			case 238: // 2102 LQ2
 			{
-				isAccepted = memberstype[0] is 
+				isAccepted = memberstype[0] is
 					ShipTypes.LightCruiser or
 					ShipTypes.HeavyCruiser or
 					ShipTypes.AviationCruiser;
 			}
-				break;
+			break;
 
 			case 906: // 2103 B1
 			{
 				isAccepted = members
 					.Count(s => s?.MasterShip.ShipType is ShipTypes.Destroyer or ShipTypes.Escort) >= 3;
 			}
-				break;
+			break;
 			case 907: // 2103 B2
 			{
 				isAccepted = members
 					.Count(s => s?.MasterShip.ShipType is ShipTypes.Destroyer or ShipTypes.Escort) >= 4;
 			}
-				break;
+			break;
 			case 908: // 2103 B3
 			{
-				bool carrier = members.Any(s => s?.MasterShip.ShipType is 
-					ShipTypes.AircraftCarrier or 
-					ShipTypes.ArmoredAircraftCarrier or 
+				bool carrier = members.Any(s => s?.MasterShip.ShipType is
+					ShipTypes.AircraftCarrier or
+					ShipTypes.ArmoredAircraftCarrier or
 					ShipTypes.LightAircraftCarrier);
 
 				bool heavyCruiser = members.Any(s =>
@@ -869,7 +869,7 @@ public class ProgressSpecialBattle : ProgressBattle
 
 				isAccepted = carrier && heavyCruiser && lightCruiser;
 			}
-				break;
+			break;
 		}
 
 		// 第二ゲージでも第一ボスに行ける場合があるので、個別対応が必要

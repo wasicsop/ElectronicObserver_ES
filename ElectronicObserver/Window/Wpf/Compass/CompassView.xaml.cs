@@ -23,7 +23,7 @@ public partial class CompassView : UserControl
 
 	public CompassViewModel ViewModel
 	{
-		get => (CompassViewModel) GetValue(ViewModelProperty);
+		get => (CompassViewModel)GetValue(ViewModelProperty);
 		set => SetValue(ViewModelProperty, value);
 	}
 

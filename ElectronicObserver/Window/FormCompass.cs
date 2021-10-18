@@ -1,13 +1,4 @@
-﻿using ElectronicObserver.Data;
-using ElectronicObserver.Data.Battle;
-using ElectronicObserver.Observer;
-using ElectronicObserver.Resource;
-using ElectronicObserver.Resource.Record;
-using ElectronicObserver.Utility.Data;
-using ElectronicObserver.Window.Control;
-using ElectronicObserver.Window.Dialog;
-using ElectronicObserver.Window.Support;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,6 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ElectronicObserver.Data;
+using ElectronicObserver.Data.Battle;
+using ElectronicObserver.Observer;
+using ElectronicObserver.Resource;
+using ElectronicObserver.Resource.Record;
+using ElectronicObserver.Utility.Data;
+using ElectronicObserver.Window.Control;
+using ElectronicObserver.Window.Dialog;
+using ElectronicObserver.Window.Support;
 using WeifenLuo.WinFormsUI.Docking;
 using Translation = ElectronicObserver.Properties.Window.FormCompass;
 
@@ -117,7 +117,7 @@ public partial class FormCompass : DockContent
 
 
 				ShipName.Text = ship.NameEN;
-				if(ship.IsAbyssalShip)
+				if (ship.IsAbyssalShip)
 				{
 					ShipName.ForeColor = ship.GetShipNameColor();
 				}
@@ -125,7 +125,7 @@ public partial class FormCompass : DockContent
 				{
 					ShipName.ForeColor = Utility.Configuration.Config.UI.ForeColor;
 				}
-				ToolTipInfo.SetToolTip( ShipName, GetShipString( shipID, slot ) );
+				ToolTipInfo.SetToolTip(ShipName, GetShipString(shipID, slot));
 
 				Equipments.SetSlotList(shipID, slot);
 				Equipments.Visible = true;
@@ -427,57 +427,57 @@ public partial class FormCompass : DockContent
 			sb.Append("Lv. ").Append(level.ToString());
 		sb.Append(" (ID: ").Append(shipID).AppendLine(")");
 
-		sb.Append( EncycloRes.HP + ": " ).Append( hp ).AppendLine();
+		sb.Append(EncycloRes.HP + ": ").Append(hp).AppendLine();
 
-		sb.Append( GeneralRes.Firepower + ": " ).Append( firepower_c );
-		if ( firepower_c != firepower )
-			sb.Append( "/" ).Append( firepower );
+		sb.Append(GeneralRes.Firepower + ": ").Append(firepower_c);
+		if (firepower_c != firepower)
+			sb.Append("/").Append(firepower);
 		sb.AppendLine();
 
-		sb.Append( GeneralRes.Torpedo + ": " ).Append( torpedo_c );
-		if ( torpedo_c != torpedo )
-			sb.Append( "/" ).Append( torpedo );
+		sb.Append(GeneralRes.Torpedo + ": ").Append(torpedo_c);
+		if (torpedo_c != torpedo)
+			sb.Append("/").Append(torpedo);
 		sb.AppendLine();
 
-		sb.Append( GeneralRes.AntiAir + ": " ).Append( aa_c );
-		if ( aa_c != aa )
-			sb.Append( "/" ).Append( aa );
+		sb.Append(GeneralRes.AntiAir + ": ").Append(aa_c);
+		if (aa_c != aa)
+			sb.Append("/").Append(aa);
 		sb.AppendLine();
 
-		sb.Append( GeneralRes.Armor + ": " ).Append( armor_c );
-		if ( armor_c != armor )
-			sb.Append( "/" ).Append( armor );
+		sb.Append(GeneralRes.Armor + ": ").Append(armor_c);
+		if (armor_c != armor)
+			sb.Append("/").Append(armor);
 		sb.AppendLine();
 
-		sb.Append( GeneralRes.ASW + ": " );
-		if ( asw_c < 0 ) sb.Append( "???" );
-		else sb.Append( asw_c );
-		if ( asw_c != asw )
-			sb.Append( "/" ).Append( asw );
+		sb.Append(GeneralRes.ASW + ": ");
+		if (asw_c < 0) sb.Append("???");
+		else sb.Append(asw_c);
+		if (asw_c != asw)
+			sb.Append("/").Append(asw);
 		sb.AppendLine();
 
-		sb.Append( GeneralRes.Evasion + ": " );
-		if ( evasion_c < 0 ) sb.Append( "???" );
-		else sb.Append( evasion_c );
-		if ( evasion_c != evasion )
-			sb.Append( "/" ).Append( evasion );
+		sb.Append(GeneralRes.Evasion + ": ");
+		if (evasion_c < 0) sb.Append("???");
+		else sb.Append(evasion_c);
+		if (evasion_c != evasion)
+			sb.Append("/").Append(evasion);
 		sb.AppendLine();
 
-		sb.Append( GeneralRes.LoS + ": " );
-		if ( los_c < 0 ) sb.Append( "???" );
-		else sb.Append( los_c );
-		if ( los_c != los )
-			sb.Append( "/" ).Append( los );
+		sb.Append(GeneralRes.LoS + ": ");
+		if (los_c < 0) sb.Append("???");
+		else sb.Append(los_c);
+		if (los_c != los)
+			sb.Append("/").Append(los);
 		sb.AppendLine();
 
-		sb.Append( GeneralRes.Luck + ": " ).Append( luck_c );
-		if ( luck_c != luck )
-			sb.Append( "/" ).Append( luck );
+		sb.Append(GeneralRes.Luck + ": ").Append(luck_c);
+		if (luck_c != luck)
+			sb.Append("/").Append(luck);
 		sb.AppendLine();
 
-		sb.AppendFormat( GeneralRes.Range + ": {0} / " + GeneralRes.Speed + ": {1}\r\n" + GeneralRes.Encyclopedia + "\r\n",
-			Constants.GetRange( range ),
-			Constants.GetSpeed( ship.Speed ) );
+		sb.AppendFormat(GeneralRes.Range + ": {0} / " + GeneralRes.Speed + ": {1}\r\n" + GeneralRes.Encyclopedia + "\r\n",
+			Constants.GetRange(range),
+			Constants.GetSpeed(ship.Speed));
 
 		return sb.ToString();
 
@@ -497,20 +497,22 @@ public partial class FormCompass : DockContent
 				sb.AppendFormat("[{0}] {1}\r\n", ship.Aircraft[i], eq.NameEN);
 		}
 
-		sb.AppendFormat( "\r\n" + GeneralRes.DayBattle + ": {0}\r\n" + GeneralRes.NightBattle + ": {1}\r\n",
-			Constants.GetDayAttackKind( Calculator.GetDayAttackKind( slot, ship.ShipID, -1 ) ),
-			Constants.GetNightAttackKind( Calculator.GetNightAttackKind( slot, ship.ShipID, -1 ) ) );
+		sb.AppendFormat("\r\n" + GeneralRes.DayBattle + ": {0}\r\n" + GeneralRes.NightBattle + ": {1}\r\n",
+			Constants.GetDayAttackKind(Calculator.GetDayAttackKind(slot, ship.ShipID, -1)),
+			Constants.GetNightAttackKind(Calculator.GetNightAttackKind(slot, ship.ShipID, -1)));
 
 		{
-			int aacutin = Calculator.GetAACutinKind( shipID, slot );
-			if ( aacutin != 0 ) {
-				sb.AppendFormat( GeneralRes.AntiAir + ": {0}\r\n", Constants.GetAACutinKind( aacutin ) );
+			int aacutin = Calculator.GetAACutinKind(shipID, slot);
+			if (aacutin != 0)
+			{
+				sb.AppendFormat(GeneralRes.AntiAir + ": {0}\r\n", Constants.GetAACutinKind(aacutin));
 			}
 		}
 		{
-			int airsup = Calculator.GetAirSuperiority( slot, ship.Aircraft.ToArray() );
-			if ( airsup > 0 ) {
-				sb.AppendFormat( GeneralRes.AirPower + ": {0}\r\n", airsup );
+			int airsup = Calculator.GetAirSuperiority(slot, ship.Aircraft.ToArray());
+			if (airsup > 0)
+			{
+				sb.AppendFormat(GeneralRes.AirPower + ": {0}\r\n", airsup);
 			}
 		}
 
@@ -700,7 +702,7 @@ public partial class FormCompass : DockContent
 		{
 
 			TextMapArea.Text = GeneralRes.Practice;
-			TextDestination.Text = string.Format( "{0} {1}", data.api_nickname, Constants.GetAdmiralRank( (int)data.api_rank ) );
+			TextDestination.Text = string.Format("{0} {1}", data.api_nickname, Constants.GetAdmiralRank((int)data.api_rank));
 			TextDestination.ImageAlign = ContentAlignment.MiddleCenter;
 			TextDestination.ImageIndex = -1;
 			ToolTipInfo.SetToolTip(TextDestination, null);
@@ -730,8 +732,8 @@ public partial class FormCompass : DockContent
 			_enemyFleetCandidateIndex = -1;
 
 
-			TextMapArea.Text = string.Format( GeneralRes.Map + ": {0}-{1}{2}", compass.MapAreaID, compass.MapInfoID,
-				compass.MapInfo.EventDifficulty > 0 ? " [" + Constants.GetDifficulty( compass.MapInfo.EventDifficulty ) + "]" : "" );
+			TextMapArea.Text = string.Format(GeneralRes.Map + ": {0}-{1}{2}", compass.MapAreaID, compass.MapInfoID,
+				compass.MapInfo.EventDifficulty > 0 ? " [" + Constants.GetDifficulty(compass.MapInfo.EventDifficulty) + "]" : "");
 			{
 				var mapinfo = compass.MapInfo;
 				var sb = new StringBuilder();
@@ -763,8 +765,8 @@ public partial class FormCompass : DockContent
 			}
 
 
-			TextDestination.Text = string.Format( GeneralRes.NextNode + ": {0}{1}", compass.DestinationID, ( compass.IsEndPoint ? GeneralRes.EndNode : "" ) );
-			if ( compass.LaunchedRecon != 0 )
+			TextDestination.Text = string.Format(GeneralRes.NextNode + ": {0}{1}", compass.DestinationID, (compass.IsEndPoint ? GeneralRes.EndNode : ""));
+			if (compass.LaunchedRecon != 0)
 			{
 				TextDestination.ImageAlign = ContentAlignment.MiddleRight;
 				TextDestination.ImageIndex = (int)ResourceManager.EquipmentContent.Seaplane;
@@ -817,7 +819,7 @@ public partial class FormCompass : DockContent
 						TextEventKind.ForeColor = Utility.Configuration.Config.UI.Color_Green;
 						TextEventDetail.Text = GetMaterialInfo(compass);
 						break;
-					case 8:		//船団護衛成功
+					case 8:     //船団護衛成功
 						TextEventDetail.Text = GetMaterialInfo(compass);
 						break;
 
@@ -846,7 +848,7 @@ public partial class FormCompass : DockContent
 							(double)compass.WhirlpoolItemAmount / Math.Max(materialmax, 1));
 
 					}
-						break;
+					break;
 
 					case 4:     //通常戦闘
 						if (compass.EventKind >= 2)
@@ -858,7 +860,7 @@ public partial class FormCompass : DockContent
 						UpdateEnemyFleet();
 						break;
 
-					case 5:		//ボス戦闘
+					case 5:     //ボス戦闘
 						TextEventKind.ForeColor = Utility.Configuration.Config.UI.Color_Red;
 
 						if (compass.EventKind >= 2)
@@ -915,8 +917,9 @@ public partial class FormCompass : DockContent
 					case 7:     //航空戦or航空偵察
 						TextEventKind.ForeColor = getColorFromEventKind(compass.EventKind);
 
-						switch ( compass.EventKind ) {
-							case 0:		//航空偵察
+						switch (compass.EventKind)
+						{
+							case 0:     //航空偵察
 								eventkind = GeneralRes.AerialRecon;
 
 								switch (compass.AirReconnaissanceResult)
@@ -1068,7 +1071,7 @@ public partial class FormCompass : DockContent
 		_enemyFleetCandidateIndex = 0;
 
 
-		if ( _enemyFleetCandidate.Count == 0 )
+		if (_enemyFleetCandidate.Count == 0)
 		{
 			TextEventDetail.Text = GeneralRes.NoFleetCandidates;
 			TextEnemyFleetName.Text = GeneralRes.EnemyUnknown;
@@ -1287,9 +1290,9 @@ public partial class FormCompass : DockContent
 		return "Compass";
 	}
 
-	private void TableEnemyMember_CellPaint( object sender, TableLayoutCellPaintEventArgs e )
+	private void TableEnemyMember_CellPaint(object sender, TableLayoutCellPaintEventArgs e)
 	{
-		e.Graphics.DrawLine( Utility.Configuration.Config.UI.SubBackColorPen, e.CellBounds.X, e.CellBounds.Bottom - 1, e.CellBounds.Right - 1, e.CellBounds.Bottom - 1 );
+		e.Graphics.DrawLine(Utility.Configuration.Config.UI.SubBackColorPen, e.CellBounds.X, e.CellBounds.Bottom - 1, e.CellBounds.Right - 1, e.CellBounds.Bottom - 1);
 	}
 
 	private void TableEnemyCandidateMember_CellPaint(object sender, TableLayoutCellPaintEventArgs e)

@@ -1,8 +1,8 @@
-﻿using ElectronicObserver.Data.Battle.Phase;
-using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using ElectronicObserver.Data.Battle.Phase;
+using Newtonsoft.Json;
 
 namespace ElectronicObserver.Data;
 

@@ -1,12 +1,4 @@
-﻿using ElectronicObserver.Data;
-using ElectronicObserver.Resource;
-using ElectronicObserver.Resource.Record;
-using ElectronicObserver.Utility.Data;
-using ElectronicObserver.Utility.Mathematics;
-using ElectronicObserver.Utility.Storage;
-using ElectronicObserver.Window.Control;
-using ElectronicObserver.Window.Support;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,6 +9,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ElectronicObserver.Data;
+using ElectronicObserver.Resource;
+using ElectronicObserver.Resource.Record;
+using ElectronicObserver.Utility.Data;
+using ElectronicObserver.Utility.Mathematics;
+using ElectronicObserver.Utility.Storage;
+using ElectronicObserver.Window.Control;
+using ElectronicObserver.Window.Support;
 using ElectronicObserver.Window.Tools.DialogAlbumMasterShip;
 using ElectronicObserverTypes;
 using Translation = ElectronicObserver.Properties.Window.Dialog.DialogAlbumMasterEquipment;
@@ -101,9 +101,9 @@ public partial class DialogAlbumMasterEquipment : Form
 			if (eq.Name == "なし") continue;
 
 			DataGridViewRow row = new DataGridViewRow();
-			row.CreateCells( EquipmentView );
-			row.SetValues( eq.EquipmentID, eq.IconType, eq.CategoryTypeInstance.NameEN, eq.NameEN );
-			rows.Add( row );
+			row.CreateCells(EquipmentView);
+			row.SetValues(eq.EquipmentID, eq.IconType, eq.CategoryTypeInstance.NameEN, eq.NameEN);
+			rows.Add(row);
 
 		}
 		EquipmentView.Rows.AddRange(rows.ToArray());
@@ -327,9 +327,9 @@ public partial class DialogAlbumMasterEquipment : Form
 		TableParameterSub.SuspendLayout();
 
 		Speed.Text = EncycloRes.None; //Constants.GetSpeed( eq.Speed );
-		Range.Text = Constants.GetRange( eq.Range );
-		Rarity.Text = Constants.GetEquipmentRarity( eq.Rarity );
-		Rarity.ImageIndex = (int)IconContent.RarityRed + Constants.GetEquipmentRarityID( eq.Rarity );		//checkme
+		Range.Text = Constants.GetRange(eq.Range);
+		Rarity.Text = Constants.GetEquipmentRarity(eq.Rarity);
+		Rarity.ImageIndex = (int)IconContent.RarityRed + Constants.GetEquipmentRarityID(eq.Rarity);     //checkme
 
 		TableParameterSub.ResumeLayout();
 
@@ -586,8 +586,8 @@ public partial class DialogAlbumMasterEquipment : Form
 			catch (Exception ex)
 			{
 
-				Utility.ErrorReporter.SendErrorReport( ex, EncycloRes.FailedOutputEquipCSV);
-				MessageBox.Show(EncycloRes.FailedOutputEquipCSV + "\r\n" + ex.Message, Translation.DialogTitleError, MessageBoxButtons.OK, MessageBoxIcon.Error );
+				Utility.ErrorReporter.SendErrorReport(ex, EncycloRes.FailedOutputEquipCSV);
+				MessageBox.Show(EncycloRes.FailedOutputEquipCSV + "\r\n" + ex.Message, Translation.DialogTitleError, MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
 
 		}
@@ -802,13 +802,14 @@ public partial class DialogAlbumMasterEquipment : Form
 				r.Bauxite
 			})
 			.Distinct()
-			.OrderBy( r => r.Fuel )
-			.ThenBy( r => r.Ammo )
-			.ThenBy( r => r.Steel )
-			.ThenBy( r => r.Bauxite )
-		) {
+			.OrderBy(r => r.Fuel)
+			.ThenBy(r => r.Ammo)
+			.ThenBy(r => r.Steel)
+			.ThenBy(r => r.Bauxite)
+		)
+		{
 			sb.AppendFormat(Translation.Recipe + " {0} / {1} / {2} / {3}\r\n",
-				record.Fuel, record.Ammo, record.Steel, record.Bauxite );
+				record.Fuel, record.Ammo, record.Steel, record.Bauxite);
 		}
 
 		return sb.ToString();

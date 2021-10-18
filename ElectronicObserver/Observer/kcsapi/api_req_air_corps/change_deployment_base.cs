@@ -1,5 +1,5 @@
-﻿using ElectronicObserver.Data;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using ElectronicObserver.Data;
 
 namespace ElectronicObserver.Observer.kcsapi.api_req_air_corps;
 

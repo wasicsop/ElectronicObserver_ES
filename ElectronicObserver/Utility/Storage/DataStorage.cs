@@ -63,7 +63,7 @@ public abstract class DataStorage : IExtensibleDataObject
 		catch (Exception ex)
 		{
 
-			Utility.ErrorReporter.SendErrorReport( ex, "Failed to write " + GetType().Name );
+			Utility.ErrorReporter.SendErrorReport(ex, "Failed to write " + GetType().Name);
 		}
 
 	}
@@ -102,19 +102,19 @@ public abstract class DataStorage : IExtensibleDataObject
 		catch (FileNotFoundException)
 		{
 
-			Utility.Logger.Add( 3, string.Format( "{0}: {1} does not exists.", GetType().Name, path ) );
+			Utility.Logger.Add(3, string.Format("{0}: {1} does not exists.", GetType().Name, path));
 
 		}
 		catch (DirectoryNotFoundException)
 		{
 
-			Utility.Logger.Add( 3, string.Format( "{0}: {1} does not exists.", GetType().Name, path ) );
+			Utility.Logger.Add(3, string.Format("{0}: {1} does not exists.", GetType().Name, path));
 
 		}
 		catch (Exception ex)
 		{
 
-			Utility.ErrorReporter.SendErrorReport( ex, " Failed to load " + GetType().Name );
+			Utility.ErrorReporter.SendErrorReport(ex, " Failed to load " + GetType().Name);
 
 		}
 
@@ -149,7 +149,7 @@ public abstract class DataStorage : IExtensibleDataObject
 		catch (Exception ex)
 		{
 
-			Utility.ErrorReporter.SendErrorReport( ex, "Failed to write " + GetType().Name );
+			Utility.ErrorReporter.SendErrorReport(ex, "Failed to write " + GetType().Name);
 		}
 
 	}
@@ -172,19 +172,19 @@ public abstract class DataStorage : IExtensibleDataObject
 		catch (FileNotFoundException)
 		{
 
-			Utility.Logger.Add( 3, GetType().Name + ": File does not exists." );
+			Utility.Logger.Add(3, GetType().Name + ": File does not exists.");
 
 		}
 		catch (DirectoryNotFoundException)
 		{
 
-			Utility.Logger.Add( 3, GetType().Name + ": File does not exists." );
+			Utility.Logger.Add(3, GetType().Name + ": File does not exists.");
 
 		}
 		catch (Exception ex)
 		{
 
-			Utility.ErrorReporter.SendErrorReport( ex, "Failed to load " + GetType().Name );
+			Utility.ErrorReporter.SendErrorReport(ex, "Failed to load " + GetType().Name);
 
 		}
 
@@ -205,13 +205,13 @@ public abstract class DataStorage : IExtensibleDataObject
 		catch (DirectoryNotFoundException)
 		{
 
-			Utility.Logger.Add( 3, GetType().Name + ": File does not exists." );
+			Utility.Logger.Add(3, GetType().Name + ": File does not exists.");
 
 		}
 		catch (Exception ex)
 		{
 
-			Utility.ErrorReporter.SendErrorReport( ex, "Failed to load " + GetType().Name );
+			Utility.ErrorReporter.SendErrorReport(ex, "Failed to load " + GetType().Name);
 
 		}
 

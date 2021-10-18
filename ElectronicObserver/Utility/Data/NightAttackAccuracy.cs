@@ -17,11 +17,11 @@ public static class NightAttackAccuracy
 
 		// if night equip is present assume it activates
 		return (fleet.NightScoutMod() * (baseAccuracy + fleet.StarShellBonus())
-		        + shipAccuracy + equipAccuracy)
-		       * ship.ConditionMod()
-		       * AttackKindMod(attack)
-		       + fleet.SearchlightBonus()
-		       + ship.HeavyCruiserBonus();
+				+ shipAccuracy + equipAccuracy)
+			   * ship.ConditionMod()
+			   * AttackKindMod(attack)
+			   + fleet.SearchlightBonus()
+			   + ship.HeavyCruiserBonus();
 	}
 
 	private static int BaseAccuracy(this IFleetData fleet) => 69;
@@ -86,9 +86,9 @@ public static class NightAttackAccuracy
 			EquipmentId.MainGunMedium_20_3cm_No_3TwinGun => true,
 			_ => false
 		}) switch
-		{
-			0 => 0,
-			1 => 10,
-			_ => 15
-		};
+	{
+		0 => 0,
+		1 => 10,
+		_ => 15
+	};
 }

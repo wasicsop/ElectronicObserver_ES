@@ -1,13 +1,13 @@
-﻿using ElectronicObserver.Data.Battle.Phase;
-using ElectronicObserver.Properties.Data;
-using ElectronicObserver.Resource.Record;
-using ElectronicObserver.Utility.Data;
-using ElectronicObserver.Window;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ElectronicObserver.Data.Battle.Phase;
+using ElectronicObserver.Properties.Data;
+using ElectronicObserver.Resource.Record;
+using ElectronicObserver.Utility.Data;
+using ElectronicObserver.Window;
 
 namespace ElectronicObserver.Data.Battle.Detail;
 
@@ -290,17 +290,17 @@ public static class BattleDetailDescriptor
 					}
 				}
 
-					if (p.FlareIndexFriend != -1)
-					{
-						sb.AppendFormat(ConstantsRes.BattleDetail_FriendlySearchlight + "\r\n", p.FlareFriendInstance.NameWithLevel, p.FlareIndexFriend + 1);
-					}
-					if (p.FlareIndexEnemy != -1)
-					{
-						sb.AppendFormat(ConstantsRes.BattleDetail_EnemySearchlight + "\r\n", p.FlareEnemyInstance.NameWithClass, p.FlareIndexEnemy + 1);
-					}
+				if (p.FlareIndexFriend != -1)
+				{
+					sb.AppendFormat(ConstantsRes.BattleDetail_FriendlySearchlight + "\r\n", p.FlareFriendInstance.NameWithLevel, p.FlareIndexFriend + 1);
+				}
+				if (p.FlareIndexEnemy != -1)
+				{
+					sb.AppendFormat(ConstantsRes.BattleDetail_EnemySearchlight + "\r\n", p.FlareEnemyInstance.NameWithClass, p.FlareIndexEnemy + 1);
+				}
 
-					sb.AppendLine();
-					break;
+				sb.AppendLine();
+				break;
 
 
 				case PhaseSearching p:
@@ -534,11 +534,11 @@ public static class BattleDetailDescriptor
 				continue;
 
 			sb.AppendFormat($"#{{0}}: {{1}} {{2}} " +
-			                $"HP: {{3}} / {{4}} - " +
-			                $"{GeneralRes.Firepower}:{{5}}, " +
-			                $"{GeneralRes.Torpedo}:{{6}}, " +
-			                $"{GeneralRes.AntiAir}:{{7}}, " +
-			                $"{GeneralRes.Armor}:{{8}}{{9}}\r\n",
+							$"HP: {{3}} / {{4}} - " +
+							$"{GeneralRes.Firepower}:{{5}}, " +
+							$"{GeneralRes.Torpedo}:{{6}}, " +
+							$"{GeneralRes.AntiAir}:{{7}}, " +
+							$"{GeneralRes.Armor}:{{8}}{{9}}\r\n",
 				i + 1,
 				ship.MasterShip.ShipTypeName, ship.NameWithLevel,
 				initialHPs[i], maxHPs[i],
@@ -580,11 +580,11 @@ public static class BattleDetailDescriptor
 				continue;
 
 			sb.AppendFormat($"#{{0}}: {{1}} {{2}} - " +
-			                $"{{3}} {GeneralRes.Firepower}, " +
-			                $"{{4}} {GeneralRes.Torpedo}, " +
-			                $"{{5}} {GeneralRes.AntiAir}, " +
-			                $"{{6}} {GeneralRes.Armor}" +
-			                $"\r\n",
+							$"{{3}} {GeneralRes.Firepower}, " +
+							$"{{4}} {GeneralRes.Torpedo}, " +
+							$"{{5}} {GeneralRes.AntiAir}, " +
+							$"{{6}} {GeneralRes.Armor}" +
+							$"\r\n",
 				i + 1,
 				ship.MasterShip.ShipTypeName, ship.NameWithLevel,
 				ship.FirepowerBase, ship.TorpedoBase, ship.AABase, ship.ArmorBase);
@@ -606,13 +606,13 @@ public static class BattleDetailDescriptor
 				continue;
 
 			sb.AppendFormat($"#{{0}}: {{1}} {{2}} " +
-			                $"Lv. {{3}} " +
-			                $"HP: {{4}} / {{5}} - " +
-			                $"{GeneralRes.Firepower} {{6}}, " +
-			                $"{GeneralRes.Torpedo} {{7}}, " +
-			                $"{GeneralRes.AntiAir} {{8}}, " +
-			                $"{GeneralRes.Armor} {{9}}" +
-			                $"\r\n",
+							$"Lv. {{3}} " +
+							$"HP: {{4}} / {{5}} - " +
+							$"{GeneralRes.Firepower} {{6}}, " +
+							$"{GeneralRes.Torpedo} {{7}}, " +
+							$"{GeneralRes.AntiAir} {{8}}, " +
+							$"{GeneralRes.Armor} {{9}}" +
+							$"\r\n",
 				i + 1,
 				ship.ShipTypeName, p.FriendlyMembersInstance[i].NameWithClass, p.FriendlyLevels[i],
 				p.FriendlyInitialHPs[i], p.FriendlyMaxHPs[i],
@@ -645,10 +645,10 @@ public static class BattleDetailDescriptor
 			if (parameters != null)
 			{
 				sb.AppendFormat($" - " +
-				                $"{GeneralRes.Firepower}:{{0}}, " +
-				                $"{GeneralRes.Torpedo}:{{1}}, " +
-				                $"{GeneralRes.AntiAir}:{{2}}, " +
-				                $"{GeneralRes.Armor}:{{3}}",
+								$"{GeneralRes.Firepower}:{{0}}, " +
+								$"{GeneralRes.Torpedo}:{{1}}, " +
+								$"{GeneralRes.AntiAir}:{{2}}, " +
+								$"{GeneralRes.Armor}:{{3}}",
 					parameters[i][0], parameters[i][1], parameters[i][2], parameters[i][3]);
 			}
 

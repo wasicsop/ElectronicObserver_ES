@@ -1,10 +1,10 @@
-﻿using ElectronicObserver.Data;
-using ElectronicObserver.Observer;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ElectronicObserver.Data;
+using ElectronicObserver.Observer;
 
 namespace ElectronicObserver.Notifier;
 
@@ -83,7 +83,7 @@ public class NotifierAnchorageRepair : NotifierBase
 
 					case 3:     // プリセット込み
 						clear = fleets.Fleets.Values.Any(f => f.CanAnchorageRepair) ||
-						        KCDatabase.Instance.FleetPreset.Presets.Values.Any(p => FleetData.CanAnchorageRepairWithMember(p.MembersInstance));
+								KCDatabase.Instance.FleetPreset.Presets.Values.Any(p => FleetData.CanAnchorageRepairWithMember(p.MembersInstance));
 						break;
 				}
 

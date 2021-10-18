@@ -1,8 +1,8 @@
-﻿using BrowserLibCore;
-using MagicOnion.Server.Hubs;
+﻿using System;
 using System.Threading.Tasks;
+using BrowserLibCore;
 using ElectronicObserver.Window;
-using System;
+using MagicOnion.Server.Hubs;
 
 namespace BrowserHost;
 
@@ -14,7 +14,7 @@ public class BrowserHostHub : StreamingHubBase<IBrowserHost, IBrowser>, IBrowser
 	public Task<BrowserConfiguration> Configuration()
 	{
 		return Task.Run(() => FormBrowserHost.Instance.ConfigurationCore);
-	} 
+	}
 
 	public async Task ConnectToBrowser(long handle)
 	{

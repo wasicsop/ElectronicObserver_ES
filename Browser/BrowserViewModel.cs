@@ -156,9 +156,9 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 		Host = host;
 		Port = port;
 		Culture = culture;
-			
+
 		CultureInfo c = new(culture);
-			
+
 		Thread.CurrentThread.CurrentCulture = c;
 		Thread.CurrentThread.CurrentUICulture = c;
 
@@ -204,7 +204,7 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 			ToolMenu_Other_Volume_ValueChanged();
 		};
 	}
-		
+
 	public void OnLoaded(object sender, RoutedEventArgs e)
 	{
 		if (sender is not Window window) return;
@@ -228,7 +228,7 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 			{
 				bool alive = await BrowserHost.IsServerAlive();
 			}
-			catch (Exception e)
+			catch (Exception)
 			{
 				Debug.WriteLine("host died");
 				Exit();
@@ -267,11 +267,11 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 				LogFile = "BrowserLog.log",
 			};
 		}
-		catch (BadImageFormatException e)
+		catch (BadImageFormatException)
 		{
 			if (MessageBox.Show(FormBrowser.InstallVisualCpp, FormBrowser.CefSharpLoadErrorTitle,
-				    MessageBoxButton.YesNo, MessageBoxImage.Error, MessageBoxResult.Yes)
-			    == MessageBoxResult.Yes)
+					MessageBoxButton.YesNo, MessageBoxImage.Error, MessageBoxResult.Yes)
+				== MessageBoxResult.Yes)
 			{
 				ProcessStartInfo psi = new()
 				{
@@ -410,13 +410,13 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 			_ => Visibility.Collapsed
 		};
 
-		ThemeManager.Current.ApplicationTheme = (ApplicationTheme) await BrowserHost.GetTheme();
+		ThemeManager.Current.ApplicationTheme = (ApplicationTheme)await BrowserHost.GetTheme();
 
 		// SizeAdjuster.BackColor = System.Drawing.Color.FromArgb(unchecked((int)Configuration.BackColor));
 		// ToolMenu.BackColor = System.Drawing.Color.FromArgb(unchecked((int)Configuration.BackColor));
 		// ToolMenu_Other_ClearCache.Visible = conf.EnableDebugMenu;
 	}
-		
+
 	private void ConfigurationUpdated()
 	{
 		BrowserHost.ConfigurationUpdated(Configuration);
@@ -600,7 +600,7 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 			StyleSheetApplied = false;
 		}
 
-		if (Browser is not {IsBrowserInitialized: true}) return;
+		if (Browser is not { IsBrowserInitialized: true }) return;
 
 		Browser.Load(url);
 		// 大方ロードできないのであとで再試行する
@@ -655,12 +655,12 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 
 		if (StyleSheetApplied)
 		{
-			int newWidth = (int) (KanColleSize.Width * zoomFactor);
-			int newHeight = (int) (KanColleSize.Height * zoomFactor);
+			int newWidth = (int)(KanColleSize.Width * zoomFactor);
+			int newHeight = (int)(KanColleSize.Height * zoomFactor);
 
 			Browser.Width = newWidth;
 			Browser.Height = newHeight;
-				
+
 			// Browser.MinWidth = newWidth;
 			// Browser.MinHeight = newHeight;
 		}
@@ -690,7 +690,7 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 		{
 			var request = new ScreenShotPacket();
 
-			if (Browser is not {IsBrowserInitialized: true}) return request.TaskSource.Task;
+			if (Browser is not { IsBrowserInitialized: true }) return request.TaskSource.Task;
 
 
 			string script = $@"
@@ -978,7 +978,7 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 		}
 		catch (Exception)
 		{
-				
+
 		}
 
 		SetVolumeState();
@@ -995,7 +995,7 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 		{
 			if (VolumeManager is not null)
 			{
-				VolumeManager.Volume = (float) Volume / 100;
+				VolumeManager.Volume = (float)Volume / 100;
 				// control.BackColor = System.Drawing.SystemColors.Window;
 			}
 			else
@@ -1013,9 +1013,9 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 	private void ToolMenu_Other_Refresh_Click()
 	{
 		if (!Configuration.ConfirmAtRefresh ||
-		    MessageBox.Show(FormBrowser.ReloadDialog, FormBrowser.Confirmation,
-			    MessageBoxButton.OKCancel, MessageBoxImage.Exclamation, MessageBoxResult.Cancel)
-		    == MessageBoxResult.OK)
+			MessageBox.Show(FormBrowser.ReloadDialog, FormBrowser.Confirmation,
+				MessageBoxButton.OKCancel, MessageBoxImage.Exclamation, MessageBoxResult.Cancel)
+			== MessageBoxResult.OK)
 		{
 			RefreshBrowser();
 		}
@@ -1024,9 +1024,9 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 	private void ToolMenu_Other_RefreshIgnoreCache_Click()
 	{
 		if (!Configuration.ConfirmAtRefresh ||
-		    MessageBox.Show(FormBrowser.ReloadHardDialog, FormBrowser.Confirmation,
-			    MessageBoxButton.OKCancel, MessageBoxImage.Exclamation, MessageBoxResult.Cancel)
-		    == MessageBoxResult.OK)
+			MessageBox.Show(FormBrowser.ReloadHardDialog, FormBrowser.Confirmation,
+				MessageBoxButton.OKCancel, MessageBoxImage.Exclamation, MessageBoxResult.Cancel)
+			== MessageBoxResult.OK)
 		{
 			RefreshBrowser(true);
 		}
@@ -1035,8 +1035,8 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 	private void ToolMenu_Other_NavigateToLogInPage_Click()
 	{
 		if (MessageBox.Show(FormBrowser.LoginDialog, FormBrowser.Confirmation,
-			    MessageBoxButton.OKCancel, MessageBoxImage.Question, MessageBoxResult.Cancel)
-		    == MessageBoxResult.OK)
+				MessageBoxButton.OKCancel, MessageBoxImage.Question, MessageBoxResult.Cancel)
+			== MessageBoxResult.OK)
 		{
 			Navigate(Configuration.LogInPageURL);
 		}
@@ -1068,7 +1068,7 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 		ConfigurationUpdated();
 		*/
 	}
-		
+
 	private void FormBrowser_Activated(object sender, EventArgs e)
 	{
 		Browser?.Focus();
@@ -1116,7 +1116,7 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 
 	private void ToolMenu_Other_OpenDevTool_Click()
 	{
-		if (Browser is not {IsBrowserInitialized:true}) return;
+		if (Browser is not { IsBrowserInitialized: true }) return;
 
 		Browser.GetBrowser().ShowDevTools();
 	}

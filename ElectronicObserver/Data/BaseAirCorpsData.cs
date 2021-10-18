@@ -93,7 +93,7 @@ public class BaseAirCorpsData : APIWrapper, IIdentifiable
 				}
 
 			}
-				break;
+			break;
 		}
 	}
 
@@ -140,7 +140,7 @@ public class BaseAirCorpsData : APIWrapper, IIdentifiable
 				Base_Distance = (int)data.api_distance.api_base;
 				Bonus_Distance = (int)data.api_distance.api_bonus;
 			}
-				break;
+			break;
 
 			case "api_req_air_corps/supply":
 				SetSquadrons(apiname, data.api_plane_info);

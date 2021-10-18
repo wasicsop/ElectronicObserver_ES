@@ -14,7 +14,7 @@ public partial class WinformsHostView : UserControl
 
 	public WinformsHostViewModel ViewModel
 	{
-		get => (WinformsHostViewModel) GetValue(ViewModelProperty);
+		get => (WinformsHostViewModel)GetValue(ViewModelProperty);
 		set => SetValue(ViewModelProperty, value);
 	}
 

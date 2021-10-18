@@ -1,8 +1,8 @@
-﻿using ElectronicObserver.Utility;
-using ElectronicObserver.Utility.Storage;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using ElectronicObserver.Utility;
+using ElectronicObserver.Utility.Storage;
 
 namespace ElectronicObserver.Data.Translation;
 

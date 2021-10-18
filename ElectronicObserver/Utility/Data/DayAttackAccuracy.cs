@@ -1,8 +1,8 @@
-﻿using ElectronicObserver.Data;
-using ElectronicObserverTypes;
-using System;
+﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using ElectronicObserver.Data;
+using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Utility.Data;
 
@@ -17,9 +17,9 @@ public static class DayAttackAccuracy
 			.Sum(e => e.MasterEquipment.Accuracy + e.DayAccuracyBonus());
 
 		return (baseAccuracy + shipAccuracy + equipAccuracy)
-		       * ship.ConditionMod()
-		       * AttackKindMod(attack)
-		       * ship.ApShellMod();
+			   * ship.ConditionMod()
+			   * AttackKindMod(attack)
+			   * ship.ApShellMod();
 	}
 
 	private static int BaseAccuracy(this IFleetData fleet, IShipData ship) => (fleet.FleetType, ship.Fleet) switch
@@ -61,9 +61,9 @@ public static class DayAttackAccuracy
 		EquipmentTypes.RadarLarge2 => Math.Sqrt(equip.Level),
 
 		EquipmentTypes.MainGunSmall => Math.Sqrt(equip.Level),
-		EquipmentTypes.MainGunMedium => Math.Sqrt(equip.Level), 
+		EquipmentTypes.MainGunMedium => Math.Sqrt(equip.Level),
 		EquipmentTypes.MainGunLarge => Math.Sqrt(equip.Level),
-		EquipmentTypes.MainGunLarge2 => Math.Sqrt(equip.Level), 
+		EquipmentTypes.MainGunLarge2 => Math.Sqrt(equip.Level),
 		EquipmentTypes.SecondaryGun => Math.Sqrt(equip.Level),
 		EquipmentTypes.APShell => Math.Sqrt(equip.Level),
 		EquipmentTypes.AADirector => Math.Sqrt(equip.Level),

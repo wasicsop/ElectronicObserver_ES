@@ -1,11 +1,11 @@
-﻿using ElectronicObserver.Data;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using ElectronicObserver.Data;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Window.Dialog;
 using ElectronicObserverTypes;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace ElectronicObserver.Window.Tools.DialogAlbumMasterEquipment;
 

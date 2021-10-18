@@ -1,12 +1,12 @@
-﻿using ElectronicObserver.Data;
-using ElectronicObserver.Observer;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
+using ElectronicObserver.Data;
+using ElectronicObserver.Observer;
 
 namespace ElectronicObserver.Utility;
 
@@ -309,10 +309,10 @@ public sealed class SyncBGMPlayer
 	private bool Play(SoundHandle sh)
 	{
 		if (Enabled &&
-		    sh != null &&
-		    sh.Enabled &&
-		    !string.IsNullOrWhiteSpace(sh.Path) &&
-		    sh.HandleID != _currentSoundHandleID)
+			sh != null &&
+			sh.Enabled &&
+			!string.IsNullOrWhiteSpace(sh.Path) &&
+			sh.HandleID != _currentSoundHandleID)
 		{
 
 
@@ -387,7 +387,7 @@ public sealed class SyncBGMPlayer
 			case SoundHandleID.ImprovementArsenal:
 				return "改修工廠";
 			default:
-				return  ConstantsRes.Unknown;
+				return ConstantsRes.Unknown;
 		}
 	}
 }

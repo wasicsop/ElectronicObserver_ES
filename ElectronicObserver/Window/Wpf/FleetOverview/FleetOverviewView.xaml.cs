@@ -23,7 +23,7 @@ public partial class FleetOverviewView : UserControl
 
 	public FleetOverviewViewModel ViewModel
 	{
-		get => (FleetOverviewViewModel) GetValue(ViewModelProperty);
+		get => (FleetOverviewViewModel)GetValue(ViewModelProperty);
 		set => SetValue(ViewModelProperty, value);
 	}
 

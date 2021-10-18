@@ -31,7 +31,7 @@ public partial class ShipGroupView : UserControl
 
 	public ShipGroupViewModel ViewModel
 	{
-		get => (ShipGroupViewModel) GetValue(ViewModelProperty);
+		get => (ShipGroupViewModel)GetValue(ViewModelProperty);
 		set => SetValue(ViewModelProperty, value);
 	}
 

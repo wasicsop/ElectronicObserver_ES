@@ -1,5 +1,4 @@
-﻿using ElectronicObserver.Observer;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ElectronicObserver.Observer;
 using Translation = ElectronicObserver.Properties.Window.Dialog.DialogLocalAPILoader2;
 
 namespace ElectronicObserver.Window.Dialog;
@@ -86,7 +86,7 @@ public partial class DialogLocalAPILoader2 : Form
 			APICaller.RunWorkerAsync(APIView.SelectedRows.Cast<DataGridViewRow>().Select(row => row.Cells[APIView_FileName.Index].Value as string).OrderBy(s => s));
 		else
 		if (MessageBox.Show(Translation.OperationAlreadyInProgress, Translation.Confirmation, MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation)
-		    == System.Windows.Forms.DialogResult.Yes)
+			== System.Windows.Forms.DialogResult.Yes)
 		{
 			APICaller.CancelAsync();
 		}

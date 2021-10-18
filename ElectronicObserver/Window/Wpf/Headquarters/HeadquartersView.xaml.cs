@@ -23,7 +23,7 @@ public partial class HeadquartersView : UserControl
 
 	public HeadquartersViewModel ViewModel
 	{
-		get => (HeadquartersViewModel) GetValue(ViewModelProperty);
+		get => (HeadquartersViewModel)GetValue(ViewModelProperty);
 		set => SetValue(ViewModelProperty, value);
 	}
 

@@ -260,14 +260,14 @@ public class HeadquartersViewModel : AnchorableViewModel
 
 	void Updated(string apiname, dynamic data)
 	{
-			
+
 		KCDatabase db = KCDatabase.Instance;
 
 		var configUI = Utility.Configuration.Config.UI;
 
 		if (!db.Admiral.IsAvailable)
 			return;
-			
+
 		//FlowPanelMaster.SuspendLayout();
 
 		//Admiral
@@ -295,10 +295,10 @@ public class HeadquartersViewModel : AnchorableViewModel
 
 			AdmiralName.ToolTip = tooltip.ToString();
 		}
-			
+
 		AdmiralComment.Text = db.Admiral.Comment;
 		//FlowPanelAdmiral.ResumeLayout();
-			
+
 		//HQ Level
 		HQLevel.Value = db.Admiral.Level;
 		{
@@ -344,7 +344,7 @@ public class HeadquartersViewModel : AnchorableViewModel
 
 			HQLevel.ToolTip = tooltip.ToString();
 		}
-			
+
 		//Fleet
 		// FlowPanelFleet.SuspendLayout();
 		{
@@ -640,10 +640,10 @@ public class HeadquartersViewModel : AnchorableViewModel
 		{
 			var mat = KCDatabase.Instance.Material;
 			Clipboard.SetText($"{mat.Fuel}/{mat.Ammo}/{mat.Steel}/{mat.Bauxite}/" +
-			                  $"{mat.InstantRepair}{FormHeadquarters.CopyToClipboardBuckets}/" +
-			                  $"{mat.DevelopmentMaterial}{FormHeadquarters.CopyToClipboardDevelopmentMaterials}/" +
-			                  $"{mat.InstantConstruction}{FormHeadquarters.CopyToClipboardInstantConstruction}/" +
-			                  $"{mat.ModdingMaterial}{FormHeadquarters.CopyToClipboardImproveMaterial}");
+							  $"{mat.InstantRepair}{FormHeadquarters.CopyToClipboardBuckets}/" +
+							  $"{mat.DevelopmentMaterial}{FormHeadquarters.CopyToClipboardDevelopmentMaterials}/" +
+							  $"{mat.InstantConstruction}{FormHeadquarters.CopyToClipboardInstantConstruction}/" +
+							  $"{mat.ModdingMaterial}{FormHeadquarters.CopyToClipboardImproveMaterial}");
 		}
 		catch (Exception ex)
 		{
@@ -654,7 +654,7 @@ public class HeadquartersViewModel : AnchorableViewModel
 
 	private void UpdateDisplayUseItem()
 	{
-			
+
 		var db = KCDatabase.Instance;
 		var itemID = Utility.Configuration.Config.FormHeadquarters.DisplayUseItemID;
 		var item = db.UseItems[itemID];
@@ -677,7 +677,7 @@ public class HeadquartersViewModel : AnchorableViewModel
 			case "海苔":
 			case "お茶":
 				DisplayUseItem.Text = (item?.Count ?? 0).ToString();
-				DisplayUseItem.ToolTip = 
+				DisplayUseItem.ToolTip =
 					$"{FormHeadquarters.Rice}: {db.UseItems[85]?.Count ?? 0}\r\n" +
 					$"{FormHeadquarters.Umeboshi}: {db.UseItems[86]?.Count ?? 0}\r\n" +
 					$"{FormHeadquarters.Nori}: {db.UseItems[87]?.Count ?? 0}\r\n" +
@@ -689,7 +689,7 @@ public class HeadquartersViewModel : AnchorableViewModel
 			case "秋刀魚":
 			case "鰯":
 				DisplayUseItem.Text = (item?.Count ?? 0).ToString();
-				DisplayUseItem.ToolTip = 
+				DisplayUseItem.ToolTip =
 					$"{FormHeadquarters.Sanma}: {db.UseItems[68]?.Count ?? 0}\r\n" +
 					$"{FormHeadquarters.Iwashi}: {db.UseItems[93]?.Count ?? 0}\r\n" +
 					$"{tail}";

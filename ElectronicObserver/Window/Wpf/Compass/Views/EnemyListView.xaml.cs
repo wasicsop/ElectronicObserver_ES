@@ -13,7 +13,7 @@ public partial class EnemyListView : UserControl
 
 	public CompassViewModel ViewModel
 	{
-		get => (CompassViewModel) GetValue(ViewModelProperty);
+		get => (CompassViewModel)GetValue(ViewModelProperty);
 		set => SetValue(ViewModelProperty, value);
 	}
 

@@ -1,12 +1,4 @@
-﻿using ElectronicObserver.Data;
-using ElectronicObserver.Observer;
-using ElectronicObserver.Resource;
-using ElectronicObserver.Utility.Data;
-using ElectronicObserver.Utility.Mathematics;
-using ElectronicObserver.Window.Control;
-using ElectronicObserver.Window.Dialog;
-using ElectronicObserver.Window.Support;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -16,6 +8,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ElectronicObserver.Data;
+using ElectronicObserver.Observer;
+using ElectronicObserver.Resource;
+using ElectronicObserver.Utility.Data;
+using ElectronicObserver.Utility.Mathematics;
+using ElectronicObserver.Window.Control;
+using ElectronicObserver.Window.Dialog;
+using ElectronicObserver.Window.Support;
 using ElectronicObserverTypes;
 using WeifenLuo.WinFormsUI.Docking;
 using Translation = ElectronicObserver.Properties.Window.FormFleet;
@@ -475,8 +475,8 @@ public partial class FormFleet : DockContent
 					var colorscheme = Utility.Configuration.Config.FormFleet.SallyAreaColorScheme;
 
 					if (Utility.Configuration.Config.FormFleet.AppliesSallyAreaColor &&
-					    (colorscheme?.Count ?? 0) > 0 &&
-					    ship.SallyArea > 0)
+						(colorscheme?.Count ?? 0) > 0 &&
+						ship.SallyArea > 0)
 					{
 						if (Utility.Configuration.Config.UI.ThemeMode != 0)
 							Name.ForeColor = Utility.Configuration.Config.UI.BackColor;
@@ -495,7 +495,7 @@ public partial class FormFleet : DockContent
 				Level.Tag = ship.MasterID;
 
 				{
-					StringBuilder tip = new ();
+					StringBuilder tip = new();
 					tip.AppendFormat("Total: {0:N0} exp.\r\n", ship.ExpTotal);
 
 					if (!Utility.Configuration.Config.FormFleet.ShowNextExp)
@@ -615,7 +615,7 @@ public partial class FormFleet : DockContent
 
 				Equipments.SetSlotList(ship);
 				ToolTipInfo.SetToolTip(Equipments, GetEquipmentString(ship));
-					
+
 			}
 			else
 			{
@@ -678,7 +678,7 @@ public partial class FormFleet : DockContent
 
 
 			EngagementType engagement = (EngagementType)Utility.Configuration.Config.Control.PowerEngagementForm;
-			IFleetData fleet = KCDatabase.Instance.Fleet[Parent.FleetID]; 
+			IFleetData fleet = KCDatabase.Instance.Fleet[Parent.FleetID];
 
 			List<Enum> dayAttacks = ship.GetDayAttacks().ToList();
 
@@ -711,7 +711,7 @@ public partial class FormFleet : DockContent
 					sb.AppendFormat($"\r\n・[{asRate:P1} | {asPlusRate:P1}] - {attackDisplay} - " + Translation.Power + $": {power} - " + Translation.Accuracy + $": {accuracy:0.##}");
 				}
 			}
-				
+
 			List<Enum> nightAttacks = ship.GetNightAttacks().ToList();
 			List<double> nightAttackRates = nightAttacks.Select(a => ship.GetNightAttackRate(a, fleet))
 				.ToList().TotalRates();
@@ -757,7 +757,7 @@ public partial class FormFleet : DockContent
 				DayAttackKind aswAttack = Calculator.GetDayAttackKind(ship.AllSlotMaster.ToArray(), ship.ShipID, 126, false);
 				int asw2 = ship.GetAswAttackPower(aswAttack, fleet);
 
-				if (torpedo > 0) 
+				if (torpedo > 0)
 				{
 					sb.AppendFormat($"{ConstantsRes.TorpedoAttack}: {Translation.Power}: {torpedo}");
 					sb.Append($" - {Translation.Accuracy}: {ship.GetTorpedoAttackAccuracy(fleet):0.##}");
@@ -837,7 +837,7 @@ public partial class FormFleet : DockContent
 			return sb.ToString();
 		}
 
-			
+
 		public void ConfigurationChanged(FormFleet parent)
 		{
 			Name.Font = parent.MainFont;
@@ -938,7 +938,7 @@ public partial class FormFleet : DockContent
 		TableFleet.SuspendLayout();
 		// TableFleet.BorderStyle = BorderStyle.FixedSingle;
 		TableFleet.BackColor = Utility.Configuration.Config.UI.SubBackColor;
-		ControlFleet = new TableFleetControl( this, TableFleet );
+		ControlFleet = new TableFleetControl(this, TableFleet);
 		TableFleet.ResumeLayout();
 
 
@@ -1059,7 +1059,7 @@ public partial class FormFleet : DockContent
 		if (Icon != null) ResourceManager.DestroyIcon(Icon);
 		int iconIndex = ControlFleet.State.GetIconIndex();
 		Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[iconIndex]);
-		SetIcon?.Invoke((IconContent) iconIndex);
+		SetIcon?.Invoke((IconContent)iconIndex);
 		if (Parent != null) Parent.Refresh();       //アイコンを更新するため
 
 	}
@@ -1142,7 +1142,7 @@ public partial class FormFleet : DockContent
 
 			ShipData ship = db.Ships[fleet[i]];
 
-			sb.AppendFormat( "{0}/Lv{1}\t", ship.MasterShip.NameEN, ship.Level );
+			sb.AppendFormat("{0}/Lv{1}\t", ship.MasterShip.NameEN, ship.Level);
 
 			var eq = ship.AllSlotInstance;
 
@@ -1354,8 +1354,8 @@ public partial class FormFleet : DockContent
 
 		foreach (ShipData ship in db.Ships.Values.Where(s => s.IsLocked))
 		{
-			int[] apiKyouka = 
-			{ 
+			int[] apiKyouka =
+			{
 				ship.FirepowerModernized,
 				ship.TorpedoModernized,
 				ship.AAModernized,
@@ -1369,10 +1369,10 @@ public partial class FormFleet : DockContent
 			if (ExpTable.ShipExp.ContainsKey(ship.Level + 1) && ship.Level != 99)
 			{
 				expProgress = (ExpTable.ShipExp[ship.Level].Next - ship.ExpNext)
-				              / ExpTable.ShipExp[ship.Level].Next;
+							  / ExpTable.ShipExp[ship.Level].Next;
 			}
 
-			int[] apiExp = {ship.ExpTotal, ship.ExpNext, expProgress};
+			int[] apiExp = { ship.ExpTotal, ship.ExpNext, expProgress };
 
 			string shipId = $"\"api_ship_id\":{ship.ShipID}";
 			string level = $"\"api_lv\":{ship.Level}";
@@ -1383,7 +1383,7 @@ public partial class FormFleet : DockContent
 			// easier but I'd prefer not to mess with that
 			string sallyArea = $"\"api_sally_area\":{(ship.SallyArea >= 0 ? ship.SallyArea : 0)}";
 
-			string[] analysisData = {shipId, level, kyouka, exp, sallyArea};
+			string[] analysisData = { shipId, level, kyouka, exp, sallyArea };
 
 			ships.Add($"{{{string.Join(",", analysisData)}}}");
 		}
@@ -1548,8 +1548,9 @@ public partial class FormFleet : DockContent
 
 
 
-	private void TableMember_CellPaint( object sender, TableLayoutCellPaintEventArgs e ) {
-		e.Graphics.DrawLine(Utility.Configuration.Config.UI.SubBackColorPen, e.CellBounds.X, e.CellBounds.Bottom - 1, e.CellBounds.Right - 1, e.CellBounds.Bottom - 1 );
+	private void TableMember_CellPaint(object sender, TableLayoutCellPaintEventArgs e)
+	{
+		e.Graphics.DrawLine(Utility.Configuration.Config.UI.SubBackColorPen, e.CellBounds.X, e.CellBounds.Bottom - 1, e.CellBounds.Right - 1, e.CellBounds.Bottom - 1);
 	}
 
 

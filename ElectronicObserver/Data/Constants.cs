@@ -1,9 +1,9 @@
-﻿using ElectronicObserver.Utility.Data;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ElectronicObserver.Utility.Data;
 using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Data;
@@ -377,7 +377,7 @@ public static class Constants
 			case 83: return "Casablanca級";
 			case 84: return "Essex級";
 			case 85: return "日振型";
-			case 86: return "呂号潜水艦";			// "潜水艦" が艦種と被るので省くべき?
+			case 86: return "呂号潜水艦";            // "潜水艦" が艦種と被るので省くべき?
 			case 87: return "John C.Butler級";
 			case 88: return "Nelson級";
 			case 89: return "Gotland級";
@@ -395,7 +395,7 @@ public static class Constants
 			case 101: return "松型";
 			case 102: return "South Dakota級";
 			case 103: return "巡潜丙型";
-			case 104: return "丁型海防艦";		// 86 に同じ
+			case 104: return "丁型海防艦";       // 86 に同じ
 			case 105: return "Yorktown級";
 			case 106: return "St. Louis級";
 			case 107: return "North Carolina級";
@@ -996,7 +996,7 @@ public static class Constants
 			case 32:
 				return ConstantsRes.BriishAACI;
 			case 33:
-				return ConstantsRes.HAGun + "/" + ConstantsRes.AAGun + ConstantsRes.Unconcentrated +"<Gotland>";
+				return ConstantsRes.HAGun + "/" + ConstantsRes.AAGun + ConstantsRes.Unconcentrated + "<Gotland>";
 			case 34:
 				return ConstantsRes.FletcherGun + "+GFCS x2<Johnston>";
 			case 35:
@@ -1172,9 +1172,9 @@ public static class Constants
 		{
 			case 1:
 				return ConstantsRes.QuestOneTime;
-			case 2: 
+			case 2:
 				return ConstantsRes.Daily;
-			case 3: 
+			case 3:
 				return ConstantsRes.Weekly;
 			case 6:
 				return ConstantsRes.Monthly;

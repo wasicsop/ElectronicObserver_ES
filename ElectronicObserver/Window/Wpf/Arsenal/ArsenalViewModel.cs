@@ -203,7 +203,7 @@ public class ArsenalViewModel : AnchorableViewModel
 
 	void Updated(string apiname, dynamic data)
 	{
-			
+
 		if (_buildingID != -1 && apiname == "api_get_member/kdock")
 		{
 
@@ -243,7 +243,7 @@ public class ArsenalViewModel : AnchorableViewModel
 		}
 
 		UpdateUI();
-			
+
 	}
 
 	void UpdateUI()

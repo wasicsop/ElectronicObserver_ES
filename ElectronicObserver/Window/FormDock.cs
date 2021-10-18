@@ -1,10 +1,4 @@
-﻿using ElectronicObserver.Data;
-using ElectronicObserver.Observer;
-using ElectronicObserver.Resource;
-using ElectronicObserver.Utility.Mathematics;
-using ElectronicObserver.Window.Control;
-using ElectronicObserver.Window.Support;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,6 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ElectronicObserver.Data;
+using ElectronicObserver.Observer;
+using ElectronicObserver.Resource;
+using ElectronicObserver.Utility.Mathematics;
+using ElectronicObserver.Window.Control;
+using ElectronicObserver.Window.Support;
 using WeifenLuo.WinFormsUI.Docking;
 using Translation = ElectronicObserver.Properties.Window.FormDock;
 
@@ -97,8 +97,8 @@ public partial class FormDock : DockContent
 
 			RepairTime.BackColor = Color.Transparent;
 			RepairTime.ForeColor = Utility.Configuration.Config.UI.ForeColor;
-			ToolTipInfo.SetToolTip( ShipName, null );
-			ToolTipInfo.SetToolTip( RepairTime, null );
+			ToolTipInfo.SetToolTip(ShipName, null);
+			ToolTipInfo.SetToolTip(RepairTime, null);
 
 			if (dock == null || dock.State == -1)
 			{
@@ -123,7 +123,7 @@ public partial class FormDock : DockContent
 				ToolTipInfo.SetToolTip(ShipName, db.Ships[dock.ShipID].NameWithLevel);
 				RepairTime.Text = DateTimeHelper.ToTimeRemainString(dock.CompletionTime);
 				RepairTime.Tag = dock.CompletionTime;
-				ToolTipInfo.SetToolTip( RepairTime, GeneralRes.TimeToCompletion + ":" + DateTimeHelper.TimeToCSVString( dock.CompletionTime ) );
+				ToolTipInfo.SetToolTip(RepairTime, GeneralRes.TimeToCompletion + ":" + DateTimeHelper.TimeToCSVString(dock.CompletionTime));
 
 			}
 
@@ -140,7 +140,8 @@ public partial class FormDock : DockContent
 
 				RepairTime.Text = DateTimeHelper.ToTimeRemainString(time);
 
-				if ( Utility.Configuration.Config.FormDock.BlinkAtCompletion && ( time - DateTime.Now ).TotalMilliseconds <= Utility.Configuration.Config.NotifierRepair.AccelInterval ) {
+				if (Utility.Configuration.Config.FormDock.BlinkAtCompletion && (time - DateTime.Now).TotalMilliseconds <= Utility.Configuration.Config.NotifierRepair.AccelInterval)
+				{
 					RepairTime.BackColor = DateTime.Now.Second % 2 == 0 ? Utility.Configuration.Config.UI.Dock_RepairFinishedBG : Color.Transparent;
 					RepairTime.ForeColor = DateTime.Now.Second % 2 == 0 ? Utility.Configuration.Config.UI.Dock_RepairFinishedFG : Utility.Configuration.Config.UI.ForeColor;
 				}
@@ -246,9 +247,9 @@ public partial class FormDock : DockContent
 
 
 
-	private void TableDock_CellPaint( object sender, TableLayoutCellPaintEventArgs e ) 
+	private void TableDock_CellPaint(object sender, TableLayoutCellPaintEventArgs e)
 	{
-		e.Graphics.DrawLine(Utility.Configuration.Config.UI.SubBackColorPen, e.CellBounds.X, e.CellBounds.Bottom - 1, e.CellBounds.Right - 1, e.CellBounds.Bottom - 1 );
+		e.Graphics.DrawLine(Utility.Configuration.Config.UI.SubBackColorPen, e.CellBounds.X, e.CellBounds.Bottom - 1, e.CellBounds.Right - 1, e.CellBounds.Bottom - 1);
 	}
 
 

@@ -1,5 +1,4 @@
-﻿using ElectronicObserver.Resource;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,6 +10,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ElectronicObserver.Resource;
 
 namespace ElectronicObserver.Window.Dialog;
 
@@ -84,11 +84,11 @@ public partial class DialogHalloween : Form
 				DrawBackground();
 
 				//
-			{
-				string mes = "T r i c k   o r   T r e a t !";
-				paintbrush.DrawString(mes, Font, Brushes.White, (int)(canvas.Width / 2 - mes.Length * Font.Size / 4) + 1, canvas.Height * 1 / 8 + 1);
-				paintbrush.DrawString(mes, Font, Brushes.Red, (int)(canvas.Width / 2 - mes.Length * Font.Size / 4), canvas.Height * 1 / 8);
-			}
+				{
+					string mes = "T r i c k   o r   T r e a t !";
+					paintbrush.DrawString(mes, Font, Brushes.White, (int)(canvas.Width / 2 - mes.Length * Font.Size / 4) + 1, canvas.Height * 1 / 8 + 1);
+					paintbrush.DrawString(mes, Font, Brushes.Red, (int)(canvas.Width / 2 - mes.Length * Font.Size / 4), canvas.Height * 1 / 8);
+				}
 
 				paintbrush.DrawImage(fairies[3],
 					canvas.Width / 2 - fairies[3].Width / 2 + (cursorPosition.X >= canvas.Width / 2 ? fairies[3].Width : 0),
@@ -108,17 +108,17 @@ public partial class DialogHalloween : Form
 
 				//
 
-			{
-				string mes = "B o o o o o o o o o o o o ! !";
-				paintbrush.DrawString(mes, Font, Brushes.White, (int)(canvas.Width / 2 - mes.Length * Font.Size / 4) + 1, canvas.Height * 1 / 8 + 1);
-				paintbrush.DrawString(mes, Font, Brushes.Red, (int)(canvas.Width / 2 - mes.Length * Font.Size / 4), canvas.Height * 1 / 8);
-			}
+				{
+					string mes = "B o o o o o o o o o o o o ! !";
+					paintbrush.DrawString(mes, Font, Brushes.White, (int)(canvas.Width / 2 - mes.Length * Font.Size / 4) + 1, canvas.Height * 1 / 8 + 1);
+					paintbrush.DrawString(mes, Font, Brushes.Red, (int)(canvas.Width / 2 - mes.Length * Font.Size / 4), canvas.Height * 1 / 8);
+				}
 
-			{
-				string mes = "* Open config and press OK to restore  ";
-				paintbrush.DrawString(mes, Font, Brushes.White, (int)(canvas.Width - mes.Length * Font.Size / 2) + 1, canvas.Height * 15 / 16 + 1);
-				paintbrush.DrawString(mes, Font, Brushes.Brown, (int)(canvas.Width - mes.Length * Font.Size / 2), canvas.Height * 15 / 16);
-			}
+				{
+					string mes = "* Open config and press OK to restore  ";
+					paintbrush.DrawString(mes, Font, Brushes.White, (int)(canvas.Width - mes.Length * Font.Size / 2) + 1, canvas.Height * 15 / 16 + 1);
+					paintbrush.DrawString(mes, Font, Brushes.Brown, (int)(canvas.Width - mes.Length * Font.Size / 2), canvas.Height * 15 / 16);
+				}
 
 				for (int i = 0; i < fairiesVector.Length; i++)
 				{
@@ -126,10 +126,10 @@ public partial class DialogHalloween : Form
 					fairiesVector[i].Y += fairiesVector[i].Height;
 
 					if ((fairiesVector[i].X < 0 && fairiesVector[i].Width < 0) ||
-					    (fairiesVector[i].X >= canvas.Width - fairies[i].Width && fairiesVector[i].Width > 0))
+						(fairiesVector[i].X >= canvas.Width - fairies[i].Width && fairiesVector[i].Width > 0))
 						fairiesVector[i].Width *= -1;
 					if ((fairiesVector[i].Y < 0 && fairiesVector[i].Height < 0) ||
-					    (fairiesVector[i].Y >= canvas.Height - fairies[i].Height && fairiesVector[i].Height > 0))
+						(fairiesVector[i].Y >= canvas.Height - fairies[i].Height && fairiesVector[i].Height > 0))
 						fairiesVector[i].Height *= -1;
 
 					paintbrush.DrawImage(fairies[i], new Rectangle(
@@ -148,94 +148,94 @@ public partial class DialogHalloween : Form
 				DrawBackground();
 
 				//
-			{
-				string mes = "T h a n k   y o u ! !";
-				paintbrush.DrawString(mes, Font, Brushes.White, (int)(canvas.Width / 2 - mes.Length * Font.Size / 4) + 1, canvas.Height * 1 / 8 + 1);
-				paintbrush.DrawString(mes, Font, Brushes.Red, (int)(canvas.Width / 2 - mes.Length * Font.Size / 4), canvas.Height * 1 / 8);
-			}
+				{
+					string mes = "T h a n k   y o u ! !";
+					paintbrush.DrawString(mes, Font, Brushes.White, (int)(canvas.Width / 2 - mes.Length * Font.Size / 4) + 1, canvas.Height * 1 / 8 + 1);
+					paintbrush.DrawString(mes, Font, Brushes.Red, (int)(canvas.Width / 2 - mes.Length * Font.Size / 4), canvas.Height * 1 / 8);
+				}
 
-			{
-				string mes = "* Set comment \"jackolantern\"  ";
-				paintbrush.DrawString(mes, Font, Brushes.White, (int)(canvas.Width - mes.Length * Font.Size / 2) + 1, canvas.Height * 15 / 16 + 1);
-				paintbrush.DrawString(mes, Font, Brushes.Brown, (int)(canvas.Width - mes.Length * Font.Size / 2), canvas.Height * 15 / 16);
-			}
+				{
+					string mes = "* Set comment \"jackolantern\"  ";
+					paintbrush.DrawString(mes, Font, Brushes.White, (int)(canvas.Width - mes.Length * Font.Size / 2) + 1, canvas.Height * 15 / 16 + 1);
+					paintbrush.DrawString(mes, Font, Brushes.Brown, (int)(canvas.Width - mes.Length * Font.Size / 2), canvas.Height * 15 / 16);
+				}
 
 
 				// green girl
-			{
-				int w = fairies[0].Width;
-				int h = fairies[0].Height;
-				Point org = new Point(8 + w / 2, canvas.Height / 2 - h / 2);
-				switch (tick * 2 / GetFPS() % 4)
 				{
-					case 0:
-						paintbrush.DrawImage(fairies[0], new Point[] {
+					int w = fairies[0].Width;
+					int h = fairies[0].Height;
+					Point org = new Point(8 + w / 2, canvas.Height / 2 - h / 2);
+					switch (tick * 2 / GetFPS() % 4)
+					{
+						case 0:
+							paintbrush.DrawImage(fairies[0], new Point[] {
 							new Point( org.X, org.Y ),
 							new Point( org.X + w, org.Y ),
 							new Point( org.X, org.Y + h ),
 						});
-						break;
-					case 1:
-						paintbrush.DrawImage(fairies[0], new Point[] {
+							break;
+						case 1:
+							paintbrush.DrawImage(fairies[0], new Point[] {
 							new Point( org.X + w, org.Y ),
 							new Point( org.X + w, org.Y + h ),
 							new Point( org.X, org.Y ),
 						});
-						break;
-					case 2:
-						paintbrush.DrawImage(fairies[0], new Point[] {
+							break;
+						case 2:
+							paintbrush.DrawImage(fairies[0], new Point[] {
 							new Point( org.X + w, org.Y + h ),
 							new Point( org.X, org.Y + h ),
 							new Point( org.X + w, org.Y ),
 						});
-						break;
-					case 3:
-						paintbrush.DrawImage(fairies[0], new Point[] {
+							break;
+						case 3:
+							paintbrush.DrawImage(fairies[0], new Point[] {
 							new Point( org.X, org.Y + h ),
 							new Point( org.X, org.Y ),
 							new Point( org.X + w, org.Y + h ),
 						});
-						break;
+							break;
+					}
 				}
-			}
 
 
 				//peach girl
-			{
-				int beattick = 8;
-				int phase = (int)(tick / 0.4 / GetFPS()) % beattick;
-				bool isInverted = phase >= beattick / 2;
-				paintbrush.ResetTransform();
-				paintbrush.DrawImage(fairies[1], new Rectangle(
-					64 + 8 + 32 + (isInverted ? fairies[1].Width : 0),
-					canvas.Height / 2 - fairies[1].Height / 2 + (phase % 4 == 0 ? ((int)(Math.Sin(tick % 4 / 2.0 * Math.PI) * 8)) : 0),
-					fairies[1].Width * (isInverted ? -1 : 1),
-					fairies[1].Height));
-			}
+				{
+					int beattick = 8;
+					int phase = (int)(tick / 0.4 / GetFPS()) % beattick;
+					bool isInverted = phase >= beattick / 2;
+					paintbrush.ResetTransform();
+					paintbrush.DrawImage(fairies[1], new Rectangle(
+						64 + 8 + 32 + (isInverted ? fairies[1].Width : 0),
+						canvas.Height / 2 - fairies[1].Height / 2 + (phase % 4 == 0 ? ((int)(Math.Sin(tick % 4 / 2.0 * Math.PI) * 8)) : 0),
+						fairies[1].Width * (isInverted ? -1 : 1),
+						fairies[1].Height));
+				}
 
 				//bird girl
-			{
-				int beattick = 1 * GetFPS();
-				int phase = tick / beattick % 4;
-				bool horizontalInverted = phase == 1 || phase == 2;
-				bool verticalInverted = phase == 2 || phase == 3;
-				paintbrush.DrawImage(fairies[2], new Rectangle(
-					128 + 8 + 32 + (horizontalInverted ? fairies[2].Width : 0) + (int)Math.Round((rand.NextDouble() * 2.0 - 1.0) * 8),
-					canvas.Height / 2 - fairies[2].Height / 2 + (verticalInverted ? fairies[2].Height : 0) + (int)Math.Round((rand.NextDouble() * 2.0 - 1.0) * 8),
-					fairies[2].Width * (horizontalInverted ? -1 : 1),
-					fairies[2].Height * (verticalInverted ? -1 : 1)));
-			}
+				{
+					int beattick = 1 * GetFPS();
+					int phase = tick / beattick % 4;
+					bool horizontalInverted = phase == 1 || phase == 2;
+					bool verticalInverted = phase == 2 || phase == 3;
+					paintbrush.DrawImage(fairies[2], new Rectangle(
+						128 + 8 + 32 + (horizontalInverted ? fairies[2].Width : 0) + (int)Math.Round((rand.NextDouble() * 2.0 - 1.0) * 8),
+						canvas.Height / 2 - fairies[2].Height / 2 + (verticalInverted ? fairies[2].Height : 0) + (int)Math.Round((rand.NextDouble() * 2.0 - 1.0) * 8),
+						fairies[2].Width * (horizontalInverted ? -1 : 1),
+						fairies[2].Height * (verticalInverted ? -1 : 1)));
+				}
 
 				//witch girl
-			{
-				double rad = 16;
-				double angle = (double)tick / GetFPS() * Math.PI % (2 * Math.PI);
-				paintbrush.DrawImage(fairies[3], new Rectangle(
-					192 + 8 + 32 + (int)(Math.Cos(angle) * rad) + (Math.Cos(angle) >= 0 ? fairies[3].Width : 0),
-					canvas.Height / 2 - fairies[3].Height / 2 + (int)(Math.Sin(angle) * rad),
-					fairies[3].Width * (Math.Cos(angle) >= 0 ? -1 : 1),
-					fairies[3].Height));
-			}
+				{
+					double rad = 16;
+					double angle = (double)tick / GetFPS() * Math.PI % (2 * Math.PI);
+					paintbrush.DrawImage(fairies[3], new Rectangle(
+						192 + 8 + 32 + (int)(Math.Cos(angle) * rad) + (Math.Cos(angle) >= 0 ? fairies[3].Width : 0),
+						canvas.Height / 2 - fairies[3].Height / 2 + (int)(Math.Sin(angle) * rad),
+						fairies[3].Width * (Math.Cos(angle) >= 0 ? -1 : 1),
+						fairies[3].Height));
+				}
 
 				break;
 		}

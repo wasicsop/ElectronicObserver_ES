@@ -1,10 +1,10 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserverTypes;
-using Xunit;
 using Moq;
+using Xunit;
 
 namespace ElectronicObserverCoreTests;
 
@@ -96,7 +96,7 @@ public class LoSTests
 		// no equip, non-kai Kamikaze class
 		var mockFleet = new Mock<IFleetData>();
 
-		ReadOnlyCollection<IShipData> ships = new ReadOnlyCollection<IShipData>(new []{ Kamikaze, Asakaze, Harukaze, Matsukaze, Hatakaze });
+		ReadOnlyCollection<IShipData> ships = new ReadOnlyCollection<IShipData>(new[] { Kamikaze, Asakaze, Harukaze, Matsukaze, Hatakaze });
 		mockFleet.Setup(f => f.MembersWithoutEscaped).Returns(ships);
 
 		IFleetData fleet = mockFleet.Object;

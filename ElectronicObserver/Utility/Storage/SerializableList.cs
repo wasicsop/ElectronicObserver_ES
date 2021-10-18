@@ -71,8 +71,8 @@ public class SerializableList<T> where T : IConvertible
 		catch (Exception ex)
 		{
 
-			if ( !suppressError )
-				Utility.ErrorReporter.SendErrorReport( ex, "SerializableList: StringToList " + LoggerRes.Failed );
+			if (!suppressError)
+				Utility.ErrorReporter.SendErrorReport(ex, "SerializableList: StringToList " + LoggerRes.Failed);
 		}
 
 		return null;
@@ -91,8 +91,8 @@ public class SerializableList<T> where T : IConvertible
 		catch (Exception ex)
 		{
 
-			if ( !suppressError )
-				Utility.ErrorReporter.SendErrorReport( ex, "SerializableList: ListToString " + LoggerRes.Failed );
+			if (!suppressError)
+				Utility.ErrorReporter.SendErrorReport(ex, "SerializableList: ListToString " + LoggerRes.Failed);
 		}
 
 		return "";

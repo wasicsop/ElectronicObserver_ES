@@ -73,9 +73,9 @@ public static class ShipDayAttacks
 
 		DayAttackKind.CutinMainMain => ship.HasSeaplane() && ship.HasMainGun(2) && ship.HasApShell(),
 		DayAttackKind.CutinMainAP => ship.HasSeaplane() && ship.HasMainGun() && ship.HasSecondaryGun() &&
-		                             ship.HasApShell(),
+									 ship.HasApShell(),
 		DayAttackKind.CutinMainRadar => ship.HasSeaplane() && ship.HasMainGun() && ship.HasSecondaryGun() &&
-		                                ship.HasRadar(),
+										ship.HasRadar(),
 		DayAttackKind.CutinMainSub => ship.HasSeaplane() && ship.HasMainGun() && ship.HasSecondaryGun(),
 		DayAttackKind.DoubleShelling => ship.HasSeaplane() && ship.HasMainGun(2),
 

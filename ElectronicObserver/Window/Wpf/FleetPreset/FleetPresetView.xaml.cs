@@ -23,7 +23,7 @@ public partial class FleetPresetView : UserControl
 
 	public FleetPresetViewModel ViewModel
 	{
-		get => (FleetPresetViewModel) GetValue(ViewModelProperty);
+		get => (FleetPresetViewModel)GetValue(ViewModelProperty);
 		set => SetValue(ViewModelProperty, value);
 	}
 

@@ -19,7 +19,7 @@ public class FormBrowserHostViewModel : WinformsHostViewModel
 		FormBrowserHost.PropertyChanged += (_, _) => Title = FormBrowserHost.Title;
 
 		// todo remove parameter cause it's never used
-		WinformsControl = new FormBrowserHost(null!) {TopLevel = false};
+		WinformsControl = new FormBrowserHost(null!) { TopLevel = false };
 
 		WindowsFormsHost.Child = WinformsControl;
 	}

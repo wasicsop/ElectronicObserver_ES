@@ -1,9 +1,9 @@
-﻿using ElectronicObserver.Data.Battle.Detail;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ElectronicObserver.Data.Battle.Detail;
 using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Data.Battle.Phase;
@@ -142,7 +142,7 @@ public class PhaseFriendlyShelling : PhaseBase
 			var nightinitial = (Battle as BattleNight)?.NightInitial;
 
 			if (nightinitial != null &&
-			    0 <= index && index < nightinitial.EnemyMembersInstance.Length)
+				0 <= index && index < nightinitial.EnemyMembersInstance.Length)
 				return nightinitial.EnemyMembersInstance[index];
 			return null;
 		}
@@ -207,7 +207,7 @@ public class PhaseFriendlyShelling : PhaseBase
 			var nightinitial = (Battle as BattleNight)?.NightInitial;
 
 			if (nightinitial != null &&
-			    0 <= index && index < nightinitial.EnemyMembersInstance.Length)
+				0 <= index && index < nightinitial.EnemyMembersInstance.Length)
 				return nightinitial.EnemyMembersInstance[index];
 			return null;
 		}

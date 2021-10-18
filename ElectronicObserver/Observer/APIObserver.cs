@@ -1,9 +1,4 @@
-﻿using ElectronicObserver.Data;
-using DynaJson;
-using ElectronicObserver.Observer.kcsapi;
-using ElectronicObserver.Utility;
-using ElectronicObserver.Utility.Mathematics;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
@@ -12,6 +7,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Windows.Forms;
+using DynaJson;
+using ElectronicObserver.Data;
+using ElectronicObserver.Observer.kcsapi;
+using ElectronicObserver.Utility;
+using ElectronicObserver.Utility.Mathematics;
 using Titanium.Web.Proxy;
 using Titanium.Web.Proxy.EventArguments;
 using Titanium.Web.Proxy.Http;
@@ -177,7 +177,7 @@ public sealed class APIObserver
 
 		this.UIControl = UIControl;
 
-		if(Proxy.ProxyRunning) Proxy.Stop();
+		if (Proxy.ProxyRunning) Proxy.Stop();
 
 		try
 		{
@@ -199,13 +199,13 @@ public sealed class APIObserver
 
 			ProxyStarted();
 
-			Utility.Logger.Add( 1, string.Format( LoggerRes.APIObserverStarted, portID ) );
+			Utility.Logger.Add(1, string.Format(LoggerRes.APIObserverStarted, portID));
 
 		}
 		catch (Exception ex)
 		{
 
-			Utility.Logger.Add( 3, "APIObserver: Failed to start observation. " + ex.Message );
+			Utility.Logger.Add(3, "APIObserver: Failed to start observation. " + ex.Message);
 			ProxyPort = 0;
 		}
 
@@ -220,7 +220,7 @@ public sealed class APIObserver
 	{
 		Proxy.Stop();
 
-		Utility.Logger.Add( 1, LoggerRes.APIObserverStopped );
+		Utility.Logger.Add(1, LoggerRes.APIObserverStopped);
 	}
 
 	public APIBase this[string key]
@@ -250,20 +250,20 @@ public sealed class APIObserver
 		// request
 		if (baseurl.Contains("/kcsapi/"))
 		{
-				
+
 			string url = baseurl;
 			string body = await e.GetRequestBodyAsString();
 
 			//保存
 			if (c.SaveReceivedData && c.SaveRequest)
 			{
-				Task.Run((Action) (() => { SaveRequest(url, body); }));
+				Task.Run((Action)(() => { SaveRequest(url, body); }));
 			}
 
 			switch (UIControl)
 			{
 				case Control control:
-					control.BeginInvoke((Action) (() => { LoadRequest(url, body); }));
+					control.BeginInvoke((Action)(() => { LoadRequest(url, body); }));
 					break;
 				case System.Windows.Controls.Control control:
 					control.Dispatcher.BeginInvoke((Action)(() => { LoadRequest(url, body); }));
@@ -341,7 +341,7 @@ public sealed class APIObserver
 						}
 					}
 
-						
+
 
 					// 非同期で書き出し処理するので取っておく
 					byte[] responseCopy = new byte[(await e.GetResponseBody()).Length];
@@ -418,14 +418,14 @@ public sealed class APIObserver
 		try
 		{
 
-			Utility.Logger.Add( 1, LoggerRes.RecievedRequest + shortpath );
+			Utility.Logger.Add(1, LoggerRes.RecievedRequest + shortpath);
 
 			SystemEvents.UpdateTimerEnabled = false;
 
 
 			var parsedData = new Dictionary<string, string>();
 
-				
+
 			foreach (string unit in data.Split("&".ToCharArray()))
 			{
 				string[] pair = unit.Split("=".ToCharArray());
@@ -439,7 +439,7 @@ public sealed class APIObserver
 		catch (Exception ex)
 		{
 
-			ErrorReporter.SendErrorReport( ex, LoggerRes.RequestError, shortpath, data );
+			ErrorReporter.SendErrorReport(ex, LoggerRes.RequestError, shortpath, data);
 
 		}
 		finally
@@ -487,7 +487,9 @@ public sealed class APIObserver
 			{
 				ResponseReceived(shortpath, json);
 				APIList.OnResponseReceived(shortpath, json);
-			} else if (shortpath.Contains("api_req_ranking")) {
+			}
+			else if (shortpath.Contains("api_req_ranking"))
+			{
 				shortpath = "api_req_ranking/getlist";
 				ResponseReceived(shortpath, json.api_data);
 				APIList.OnResponseReceived(shortpath, json.api_data);
@@ -540,7 +542,7 @@ public sealed class APIObserver
 		catch (Exception ex)
 		{
 
-			Utility.ErrorReporter.SendErrorReport( ex, LoggerRes.FailedSaveAPI );
+			Utility.ErrorReporter.SendErrorReport(ex, LoggerRes.FailedSaveAPI);
 
 		}
 	}
@@ -569,6 +571,6 @@ public sealed class APIObserver
 
 
 
-	}  
+	}
 
 }

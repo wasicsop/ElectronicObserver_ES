@@ -237,13 +237,13 @@ public class EquipmentDataMaster : ResponseWrapper, IIdentifiable, IEquipmentDat
 				case EquipmentTypes.JetFighter:
 				case EquipmentTypes.JetBomber:
 				case EquipmentTypes.JetTorpedo:
-					
+
 				case EquipmentTypes.CarrierBasedRecon:
 				case EquipmentTypes.SeaplaneRecon:
 				case EquipmentTypes.FlyingBoat:
 				case EquipmentTypes.LandBasedRecon:
 				case EquipmentTypes.JetRecon:
-                    
+
 					return true;
 
 				default:

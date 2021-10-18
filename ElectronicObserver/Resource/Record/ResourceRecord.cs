@@ -1,13 +1,13 @@
-﻿using ElectronicObserver.Data;
-using ElectronicObserver.Observer;
-using ElectronicObserver.Utility;
-using ElectronicObserver.Utility.Mathematics;
-using ElectronicObserver.Utility.Storage;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ElectronicObserver.Data;
+using ElectronicObserver.Observer;
+using ElectronicObserver.Utility;
+using ElectronicObserver.Utility.Mathematics;
+using ElectronicObserver.Utility.Storage;
 
 namespace ElectronicObserver.Resource.Record;
 
@@ -125,7 +125,7 @@ public class ResourceRecord : RecordBase
 
 		public override string SaveLine()
 		{
-			return string.Join(",", 
+			return string.Join(",",
 				DateTimeHelper.TimeToCSVString(Date),
 				Fuel,
 				Ammo,
@@ -257,7 +257,7 @@ public class ResourceRecord : RecordBase
 			target = new DateTime(now.Year, now.Month, now.Day, 14, 0, 0);
 		}
 
-		if(isDst)
+		if (isDst)
 			target += new TimeSpan(1, 0, 0);
 
 		return GetRecord(target.Add(DateTimeHelper.GetTimeDifference()));

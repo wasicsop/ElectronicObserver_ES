@@ -1,9 +1,9 @@
-﻿using ElectronicObserver.Data.Battle.Phase;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ElectronicObserver.Data.Battle.Phase;
 
 namespace ElectronicObserver.Data.Battle;
 
@@ -32,7 +32,7 @@ public class BattleAirRaid : BattleDay
 
 	public override string BattleName => ConstantsRes.Title_NormalFleetAirRaid;
 
-		
+
 	public override IEnumerable<PhaseBase> GetPhases()
 	{
 		yield return Initial;

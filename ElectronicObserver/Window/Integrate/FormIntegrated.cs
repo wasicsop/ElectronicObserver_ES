@@ -1,7 +1,4 @@
-﻿using ElectronicObserver.Resource;
-using ElectronicObserver.Utility;
-using ElectronicObserver.Utility.Storage;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +9,9 @@ using System.Management;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Windows.Forms;
+using ElectronicObserver.Resource;
+using ElectronicObserver.Utility;
+using ElectronicObserver.Utility.Storage;
 using ElectronicObserver.ViewModels;
 using MessagePack;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
@@ -60,7 +60,7 @@ public partial class FormIntegrate : DockContent
 		// needed for MessagePack, it doesn't recognize the other constructor for some reason
 		public MatchString()
 		{
-				
+
 		}
 
 		public MatchString(String name, MatchControl match)
@@ -127,8 +127,8 @@ public partial class FormIntegrate : DockContent
 		public bool Match(String title, String className, String filePath)
 		{
 			return Title.Match(title) &&
-			       ClassName.Match(className) &&
-			       ProcessFilePath.Match(filePath);
+				   ClassName.Match(className) &&
+				   ProcessFilePath.Match(filePath);
 		}
 	}
 
@@ -181,7 +181,7 @@ public partial class FormIntegrate : DockContent
 	// 戻すときに必要になる情報
 	private uint origStyle;
 	private IntPtr origOwner;
-	private WinAPI.RECT origWindowRect;	
+	private WinAPI.RECT origWindowRect;
 	private IntPtr origMenu;
 
 	public FormIntegrate(object parent, WindowInfo? info = null)
@@ -207,7 +207,7 @@ public partial class FormIntegrate : DockContent
 				main.WindowCapture.AddCapturedWindow(this);
 				break;
 
-			case FormMainViewModel { WindowCapture: {WinformsControl: FormWindowCapture fwc} }:
+			case FormMainViewModel { WindowCapture: { WinformsControl: FormWindowCapture fwc } }:
 				if (info is not null)
 				{
 					WindowData = info;
@@ -270,9 +270,9 @@ public partial class FormIntegrate : DockContent
 			WinAPI.GetWindowText(hWnd, windowText, windowText.Capacity);
 			WinAPI.GetWindowThreadProcessId(hWnd, out uint processId);
 			if (info.ClassName.Match(className.ToString()) &&
-			    info.Title.Match(windowText.ToString()) &&
-			    WinAPI.IsWindowVisible(hWnd) &&
-			    processId != currentProcessId)
+				info.Title.Match(windowText.ToString()) &&
+				WinAPI.IsWindowVisible(hWnd) &&
+				processId != currentProcessId)
 			{
 				String fileName = GetMainModuleFilepath((int)processId);
 				if (info.ProcessFilePath.Match(fileName))
@@ -391,11 +391,11 @@ public partial class FormIntegrate : DockContent
 		// ターゲットを子ウィンドウに設定
 		uint newStyle = origStyle;
 		newStyle &= unchecked((uint)~(WinAPI.WS_POPUP |
-		                              WinAPI.WS_CAPTION |
-		                              WinAPI.WS_BORDER |
-		                              WinAPI.WS_THICKFRAME |
-		                              WinAPI.WS_MINIMIZEBOX |
-		                              WinAPI.WS_MAXIMIZEBOX));
+									  WinAPI.WS_CAPTION |
+									  WinAPI.WS_BORDER |
+									  WinAPI.WS_THICKFRAME |
+									  WinAPI.WS_MINIMIZEBOX |
+									  WinAPI.WS_MAXIMIZEBOX));
 		newStyle |= WinAPI.WS_CHILD;
 		WinAPI.SetWindowLong(hWnd, WinAPI.GWL_STYLE, new IntPtr(unchecked((int)newStyle)));
 		WinAPI.SetParent(hWnd, this.Handle);
@@ -480,8 +480,8 @@ public partial class FormIntegrate : DockContent
 		WinAPI.GetWindowText(hWnd, stringBuilder, stringBuilder.Capacity);
 
 		if (MessageBox.Show(stringBuilder.ToString() + "\r\n" + FormWindowCapture.WarningMessage,
-			    "ウィンドウキャプチャの確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-		    == System.Windows.Forms.DialogResult.Yes)
+				"ウィンドウキャプチャの確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+			== System.Windows.Forms.DialogResult.Yes)
 		{
 
 			Attach(hWnd, false);

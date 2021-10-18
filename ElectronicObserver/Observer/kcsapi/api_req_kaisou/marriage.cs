@@ -1,9 +1,9 @@
-﻿using ElectronicObserver.Data;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ElectronicObserver.Data;
 
 namespace ElectronicObserver.Observer.kcsapi.api_req_kaisou;
 
@@ -14,7 +14,7 @@ public class marriage : APIBase
 	{
 
 		Utility.Logger.Add(2, string.Format(LoggerRes.JustMarried, KCDatabase.Instance.Ships[(int)data.api_id].Name));
-            
+
 		var db = KCDatabase.Instance;
 		int id = (int)data.api_id;
 		var ship = db.Ships[id];

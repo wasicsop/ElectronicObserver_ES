@@ -18,7 +18,7 @@ public class FleetHpViewModel : ObservableObject
 	/// <summary>
 	/// バーの色(増加分)
 	/// </summary>
-	public SolidColorBrush BarColorIncrement { get; set; } = new(Color.FromArgb(255,68,255,0));
+	public SolidColorBrush BarColorIncrement { get; set; } = new(Color.FromArgb(255, 68, 255, 0));
 
 	/// <summary>
 	/// バーの色(減少分)
@@ -146,7 +146,7 @@ public class FleetHpViewModel : ObservableObject
 	public void ResumeUpdate()
 	{
 		if (RepairTimeShowMode is ShipStatusHPRepairTimeShowMode.Visible ||
-		    (RepairTimeShowMode is ShipStatusHPRepairTimeShowMode.MouseOver && _onMouse))
+			(RepairTimeShowMode is ShipStatusHPRepairTimeShowMode.MouseOver && _onMouse))
 		{
 			DisplayText = DateTimeHelper.ToTimeRemainString(RepairTime);
 			Foreground = SubForeground;

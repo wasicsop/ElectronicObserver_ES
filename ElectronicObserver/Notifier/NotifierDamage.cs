@@ -1,11 +1,11 @@
-﻿using ElectronicObserver.Data;
-using ElectronicObserver.Data.Battle;
-using ElectronicObserver.Observer;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ElectronicObserver.Data;
+using ElectronicObserver.Data.Battle;
+using ElectronicObserver.Observer;
 using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Notifier;
@@ -207,12 +207,12 @@ public class NotifierDamage : NotifierBase
 	private bool IsShipDamaged(IShipData ship, int hp)
 	{
 		return ship != null &&
-		       hp > 0 &&
-		       (double)hp / ship.HPMax <= 0.25 &&
-		       ship.RepairingDockID == -1 &&
-		       ship.Level >= LevelBorder &&
-		       (ContainsNotLockedShip ? true : (ship.IsLocked || ship.SlotInstance.Count(q => q != null && q.IsLocked) > 0)) &&
-		       (ContainsSafeShip ? true : !ship.AllSlotInstanceMaster.Any(e => e?.CategoryType == EquipmentTypes.DamageControl));
+			   hp > 0 &&
+			   (double)hp / ship.HPMax <= 0.25 &&
+			   ship.RepairingDockID == -1 &&
+			   ship.Level >= LevelBorder &&
+			   (ContainsNotLockedShip ? true : (ship.IsLocked || ship.SlotInstance.Count(q => q != null && q.IsLocked) > 0)) &&
+			   (ContainsSafeShip ? true : !ship.AllSlotInstanceMaster.Any(e => e?.CategoryType == EquipmentTypes.DamageControl));
 	}
 
 	private string[] GetDamagedShips(IEnumerable<IShipData> ships)

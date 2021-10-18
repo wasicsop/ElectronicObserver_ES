@@ -5,7 +5,7 @@ namespace ElectronicObserver.Window.Wpf.WinformsWrappers;
 
 public class FormBaseAirCorpsViewModel : WinformsHostViewModel
 {
-	public FormBaseAirCorpsViewModel() : base("AB", "FormBaseAirCorps", 
+	public FormBaseAirCorpsViewModel() : base("AB", "FormBaseAirCorps",
 		ImageSourceIcons.GetIcon(IconContent.FormBaseAirCorps))
 	{
 		// todo remove parameter cause it's never used

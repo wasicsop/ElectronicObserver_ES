@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ElectronicObserver.Resource;
 using ElectronicObserver.Data;
-using ElectronicObserver.Utility.Mathematics;
+using ElectronicObserver.Resource;
 using ElectronicObserver.Utility.Data;
+using ElectronicObserver.Utility.Mathematics;
 
 namespace ElectronicObserver.Window.Control;
 
@@ -147,7 +147,7 @@ public partial class FleetState : UserControl
 	public FleetState()
 	{
 		InitializeComponent();
-			
+
 		StateLabels = new List<StateLabel>();
 	}
 
@@ -182,7 +182,7 @@ public partial class FleetState : UserControl
 
 
 		bool emphasizesSubFleetInPort = Utility.Configuration.Config.FormFleet.EmphasizesSubFleetInPort &&
-		                                (db.Fleet.CombinedFlag > 0 ? fleet.FleetID >= 3 : fleet.FleetID >= 2);
+										(db.Fleet.CombinedFlag > 0 ? fleet.FleetID >= 3 : fleet.FleetID >= 2);
 		var displayMode = (FleetStateDisplayModes)Utility.Configuration.Config.FormFleet.FleetStateDisplayMode;
 
 		Color colorDanger = Color.LightCoral;
@@ -244,7 +244,7 @@ public partial class FleetState : UserControl
 					(int)IconContent.FleetExpedition);
 
 				tooltip.SetToolTip(state.Label,
-					string.Format(FleetRes.ExpeditionToolTip, 
+					string.Format(FleetRes.ExpeditionToolTip,
 						dest.DisplayID, dest.NameEN, DateTimeHelper.TimeToCSVString(state.Timer)));
 
 				emphasizesSubFleetInPort = false;
@@ -468,7 +468,7 @@ public partial class FleetState : UserControl
 					break;
 
 				case FleetStates.Docking:
-					state.ShortenedText = DateTimeHelper.ToTimeRemainString( state.Timer );
+					state.ShortenedText = DateTimeHelper.ToTimeRemainString(state.Timer);
 					state.Text = FleetRes.OnDock + state.ShortenedText;
 					state.UpdateText();
 					if (Utility.Configuration.Config.FormFleet.BlinkAtCompletion && (state.Timer - DateTime.Now).TotalMilliseconds <= Utility.Configuration.Config.NotifierRepair.AccelInterval)
@@ -484,7 +484,7 @@ public partial class FleetState : UserControl
 					break;
 
 				case FleetStates.Tired:
-					state.ShortenedText = DateTimeHelper.ToTimeRemainString( state.Timer );
+					state.ShortenedText = DateTimeHelper.ToTimeRemainString(state.Timer);
 					state.Text = FleetRes.Fatigued + state.ShortenedText;
 					state.UpdateText();
 					if (Utility.Configuration.Config.FormFleet.BlinkAtCompletion && (state.Timer - DateTime.Now).TotalMilliseconds <= 0)
@@ -492,7 +492,7 @@ public partial class FleetState : UserControl
 					break;
 
 				case FleetStates.AnchorageRepairing:
-					state.ShortenedText = DateTimeHelper.ToTimeElapsedString( KCDatabase.Instance.Fleet.AnchorageRepairingTimer );
+					state.ShortenedText = DateTimeHelper.ToTimeElapsedString(KCDatabase.Instance.Fleet.AnchorageRepairingTimer);
 					state.Text = FleetRes.Repairing + state.ShortenedText;
 					state.UpdateText();
 					break;

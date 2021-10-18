@@ -1,4 +1,11 @@
-﻿using ElectronicObserver.Data;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Windows;
+using ElectronicObserver.Data;
 using ElectronicObserver.Resource.Record;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Utility.Storage;
@@ -9,13 +16,6 @@ using ElectronicObserverTypes;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Windows;
 
 namespace ElectronicObserver.Window.Tools.DialogAlbumMasterEquipment;
 
@@ -35,7 +35,7 @@ public partial class DialogAlbumMasterEquipmentViewModel : ObservableObject
 		bool Search(string searchWord) => Calculator.ToHiragana(equip.NameEN.ToLower()).Contains(searchWord);
 
 		return Search(Calculator.ToHiragana(filter.ToLower())) ||
-		       Search(Calculator.RomaToHira(filter));
+			   Search(Calculator.RomaToHira(filter));
 	}
 
 	public EquipmentDataViewModel? SelectedEquipment { get; set; }
@@ -280,7 +280,7 @@ public partial class DialogAlbumMasterEquipmentViewModel : ObservableObject
 			ProcessStartInfo psi = new()
 			{
 				FileName = @"https://www.duckduckgo.com/?q=" + Uri.EscapeDataString(eq.NameEN) +
-				           Properties.Window.Dialog.DialogAlbumMasterEquipment.KancolleSpecifier,
+						   Properties.Window.Dialog.DialogAlbumMasterEquipment.KancolleSpecifier,
 				UseShellExecute = true
 			};
 			// google <装備名> 艦これ

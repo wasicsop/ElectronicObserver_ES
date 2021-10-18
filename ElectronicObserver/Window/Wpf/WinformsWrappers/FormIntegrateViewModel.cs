@@ -1,12 +1,12 @@
-﻿using ElectronicObserver.Resource;
+﻿using System.Windows;
+using System.Windows.Input;
+using System.Windows.Interop;
+using System.Windows.Media.Imaging;
+using ElectronicObserver.Resource;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Integrate;
 using ElectronicObserver.Window.Wpf.WinformsHost;
 using Microsoft.Toolkit.Mvvm.Input;
-using System.Windows;
-using System.Windows.Input;
-using System.Windows.Interop;
-using System.Windows.Media.Imaging;
 
 namespace ElectronicObserver.Window.Wpf.WinformsWrappers;
 

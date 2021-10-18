@@ -1,9 +1,9 @@
-﻿using ElectronicObserver.Data;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ElectronicObserver.Data;
 
 namespace ElectronicObserver.Observer.kcsapi.api_req_battle_midnight;
 
@@ -19,4 +19,5 @@ public class battle : APIBase
 		base.OnResponseReceived((object)data);
 	}
 
-	public override string APIName => "api_req_battle_midnight/battle"; }
+	public override string APIName => "api_req_battle_midnight/battle";
+}

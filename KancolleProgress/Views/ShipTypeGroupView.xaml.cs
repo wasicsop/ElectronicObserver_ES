@@ -13,10 +13,10 @@ public sealed partial class ShipTypeGroupView : UserControl
 
 	public ShipTypeGroup ShipTypeGroup
 	{
-		get => (ShipTypeGroup) GetValue(ShipTypeGroupProperty);
+		get => (ShipTypeGroup)GetValue(ShipTypeGroupProperty);
 		set => SetValue(ShipTypeGroupProperty, value);
 	}
-		
+
 	public ShipTypeGroupView()
 	{
 		this.InitializeComponent();

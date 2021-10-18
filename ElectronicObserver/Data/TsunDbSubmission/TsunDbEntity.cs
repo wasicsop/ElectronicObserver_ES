@@ -1,10 +1,10 @@
-﻿using ElectronicObserver.Utility;
-using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.IO;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using ElectronicObserver.Utility;
+using Newtonsoft.Json;
 
 namespace ElectronicObserver.Data;
 
@@ -36,7 +36,7 @@ public abstract class TsunDbEntity
 	}
 
 	private async Task<HttpResponseMessage> HttpSendData()
-	{			
+	{
 		using (var httpClient = new HttpClient())
 		{
 			JsonSerializerSettings jsonSerializer = new JsonSerializerSettings()

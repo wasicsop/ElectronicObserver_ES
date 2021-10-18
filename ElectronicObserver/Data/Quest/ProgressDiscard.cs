@@ -104,21 +104,21 @@ public class ProgressDiscard : ProgressData
 		{
 			case 621: // needs CL flag equipped with id 37 equip in first slot
 				return fleet.MembersInstance[0].MasterShip.ShipType == ShipTypes.LightCruiser &&
-				       fleet.MembersInstance[0].SlotInstance[0]?.EquipmentID == 37;
+					   fleet.MembersInstance[0].SlotInstance[0]?.EquipmentID == 37;
 
 			case 685: // Fubuki-class FS w/ id 294 equip in 1st slot
 				return (fleet.MembersInstance[0].MasterShip.BaseShip().ShipID == (int)ShipId.Fubuki ||
-				        fleet.MembersInstance[0].MasterShip.BaseShip().ShipID == (int)ShipId.Shirayuki ||
-				        fleet.MembersInstance[0].MasterShip.BaseShip().ShipID == (int)ShipId.Hatsuyuki ||
-				        fleet.MembersInstance[0].MasterShip.BaseShip().ShipID == (int)ShipId.Miyuki ||
-				        fleet.MembersInstance[0].MasterShip.BaseShip().ShipID == (int)ShipId.Murakumo ||
-				        fleet.MembersInstance[0].MasterShip.BaseShip().ShipID == (int)ShipId.Isonami ||
-				        fleet.MembersInstance[0].MasterShip.BaseShip().ShipID == (int)ShipId.Uranami) &&
-				       fleet.MembersInstance[0].SlotInstance[0]?.EquipmentID == 294;
+						fleet.MembersInstance[0].MasterShip.BaseShip().ShipID == (int)ShipId.Shirayuki ||
+						fleet.MembersInstance[0].MasterShip.BaseShip().ShipID == (int)ShipId.Hatsuyuki ||
+						fleet.MembersInstance[0].MasterShip.BaseShip().ShipID == (int)ShipId.Miyuki ||
+						fleet.MembersInstance[0].MasterShip.BaseShip().ShipID == (int)ShipId.Murakumo ||
+						fleet.MembersInstance[0].MasterShip.BaseShip().ShipID == (int)ShipId.Isonami ||
+						fleet.MembersInstance[0].MasterShip.BaseShip().ShipID == (int)ShipId.Uranami) &&
+					   fleet.MembersInstance[0].SlotInstance[0]?.EquipmentID == 294;
 			case 695: // needs Ise k2 or Hyuuga k2 flag with id 57 in first slot
-				return (fleet.MembersInstance[0].MasterShip.ShipID == (int) ShipId.IseKaiNi ||
-				        fleet.MembersInstance[0].MasterShip.ShipID == (int) ShipId.HyuugaKaiNi) &&
-				       fleet.MembersInstance[0].SlotInstance[0]?.EquipmentID == 57;
+				return (fleet.MembersInstance[0].MasterShip.ShipID == (int)ShipId.IseKaiNi ||
+						fleet.MembersInstance[0].MasterShip.ShipID == (int)ShipId.HyuugaKaiNi) &&
+					   fleet.MembersInstance[0].SlotInstance[0]?.EquipmentID == 57;
 		}
 
 		return true;

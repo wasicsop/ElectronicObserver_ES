@@ -1,9 +1,4 @@
-﻿using DynaJson;
-using ElectronicObserver.Data;
-using ElectronicObserver.Resource;
-using ElectronicObserver.Utility;
-using ElectronicObserver.Window.Support;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,6 +6,11 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using DynaJson;
+using ElectronicObserver.Data;
+using ElectronicObserver.Resource;
+using ElectronicObserver.Utility;
+using ElectronicObserver.Window.Support;
 using WeifenLuo.WinFormsUI.Docking;
 using Translation = ElectronicObserver.Properties.Window.FormQuest;
 

@@ -16,7 +16,7 @@ public static class AswAttackAccuracy
 			.Sum(e => e.MasterEquipment.Accuracy + e.AswAccuracyBonus() + e.AswAccuracy());
 
 		return (baseAccuracy + shipAccuracy + equipAccuracy)
-		       * ship.ConditionMod();
+			   * ship.ConditionMod();
 	}
 
 	private static int BaseAccuracy(this IFleetData fleet) => 80;

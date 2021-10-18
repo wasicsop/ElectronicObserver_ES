@@ -64,7 +64,7 @@ public class EquipmentItemViewModel : ObservableObject
 	[Browsable(true), Category("Appearance"), DefaultValue(typeof(Color), "255, 170, 0")]
 	[Description("艦載機熟練度の文字色( Lv. 4 ~ 7 )を指定します。")]
 	public System.Drawing.Color AircraftLevelColorHigh { get; set; }
-		
+
 	/// <summary>
 	/// 不正スロットの背景色
 	/// </summary>

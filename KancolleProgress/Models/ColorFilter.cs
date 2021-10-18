@@ -12,7 +12,7 @@ public enum Comparator
 	GreaterOrEqual
 }
 
-public class ColorFilter: ObservableObject
+public class ColorFilter : ObservableObject
 {
 	private KancolleProgressViewModel ViewModel { get; }
 	private Comparator Comparator { get; }
@@ -23,7 +23,7 @@ public class ColorFilter: ObservableObject
 	public int Count => ViewModel.BaseShips?.Count(s => Compare(this, s)) ?? 0;
 
 	public static bool Compare(ColorFilter filter, MockShipData ship) => Compare(filter, ship.Level);
-		
+
 	public static bool Compare(ColorFilter filter, int level) => filter.Comparator switch
 	{
 		Comparator.Equal => level == filter.Level,

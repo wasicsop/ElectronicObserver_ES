@@ -21,21 +21,21 @@ public static class NightAttackRate
 		};
 
 		double baseRate = luckLevelPart
-		                  + FlagshipBonus(fleet, ship)
-		                  + ship.HpBonus()
-		                  + ship.SkilledLookoutsBonus()
-		                  + fleet.SearchlightBonus()
-		                  + fleet.StarShellBonus();
+						  + FlagshipBonus(fleet, ship)
+						  + ship.HpBonus()
+						  + ship.SkilledLookoutsBonus()
+						  + fleet.SearchlightBonus()
+						  + fleet.StarShellBonus();
 
 		return Math.Floor(baseRate) / attackMod;
 	}
 
 	private static double FlagshipBonus(IFleetData fleet, IShipData ship) => fleet.MembersWithoutEscaped
 			.FirstOrDefault()?.MasterShip.ShipId switch
-		{
-			{ } id when id == ship.MasterShip.ShipId => 15,
-			_ => 0
-		};
+	{
+		{ } id when id == ship.MasterShip.ShipId => 15,
+		_ => 0
+	};
 
 	private static int HpBonus(this IShipData ship) => ship.HPRate switch
 	{

@@ -24,7 +24,7 @@ public partial class FleetStateView : UserControl
 
 	public FleetStateViewModel ViewModel
 	{
-		get { return (FleetStateViewModel) GetValue(ViewModelProperty); }
+		get { return (FleetStateViewModel)GetValue(ViewModelProperty); }
 		set { SetValue(ViewModelProperty, value); }
 	}
 

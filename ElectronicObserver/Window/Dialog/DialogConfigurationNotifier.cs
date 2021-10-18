@@ -1,6 +1,4 @@
-﻿using ElectronicObserver.Notifier;
-using ElectronicObserver.Utility.Data;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ElectronicObserver.Notifier;
+using ElectronicObserver.Utility.Data;
 using Translation = ElectronicObserver.Properties.Window.Dialog.DialogConfigurationNotifier;
 
 namespace ElectronicObserver.Window.Dialog;
@@ -101,7 +101,7 @@ public partial class DialogConfigurationNotifier : Form
 		}
 
 		var nbac = notifier as NotifierBaseAirCorps;
-		if(nbac != null)
+		if (nbac != null)
 		{
 			BaseAirCorps_NotSupplied.Checked = nbac.NotifiesNotSupplied;
 			BaseAirCorps_Tired.Checked = nbac.NotifiesTired;
@@ -186,7 +186,7 @@ public partial class DialogConfigurationNotifier : Form
 		ToolTipText.SetToolTip(LocationX, NotifyRes.LocXHint);
 		label1.Text = NotifyRes.Alignment + ":";
 		Alignment.Items.Clear();
-		Alignment.Items.AddRange(new object[] 
+		Alignment.Items.AddRange(new object[]
 		{
 			NotifyRes.AlignUnset,
 			NotifyRes.AlignTopLeft,
@@ -492,7 +492,7 @@ public partial class DialogConfigurationNotifier : Form
 		}
 
 		var nbac = _notifier as NotifierBaseAirCorps;
-		if(nbac != null)
+		if (nbac != null)
 		{
 			nbac.NotifiesNotSupplied = BaseAirCorps_NotSupplied.Checked;
 			nbac.NotifiesTired = BaseAirCorps_Tired.Checked;

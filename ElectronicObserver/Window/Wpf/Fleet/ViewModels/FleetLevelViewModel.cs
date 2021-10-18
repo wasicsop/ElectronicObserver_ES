@@ -20,7 +20,7 @@ public class FleetLevelViewModel : ObservableObject
 	public FontFamily SubFontFamily => new(SubFont.FontData.FontFamily.Name);
 	public double SubFontSize => SubFont.FontData.Size;
 	public SolidColorBrush SubForeground => SubFontColor.ToBrush();
-		
+
 	public IRelayCommand ShipLevelRightClick { get; }
 
 	public FleetLevelViewModel()

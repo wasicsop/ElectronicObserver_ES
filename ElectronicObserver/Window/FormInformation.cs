@@ -1,8 +1,4 @@
-﻿using ElectronicObserver.Data;
-using ElectronicObserver.Observer;
-using ElectronicObserver.Resource;
-using ElectronicObserver.Utility.Data;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,6 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ElectronicObserver.Data;
+using ElectronicObserver.Observer;
+using ElectronicObserver.Resource;
+using ElectronicObserver.Utility.Data;
 using ElectronicObserverTypes;
 using WeifenLuo.WinFormsUI.Docking;
 using static ElectronicObserver.Observer.DiscordRPC;
@@ -169,7 +169,7 @@ public partial class FormInformation : DockContent
 				}
 
 			}
-				break;
+			break;
 
 			case "api_req_practice/battle":
 				_inSortie = new List<int>() { KCDatabase.Instance.Battle.BattleDay.Initial.FriendFleetID };
@@ -202,7 +202,7 @@ public partial class FormInformation : DockContent
 
 			expbase = (int)expbase;
 
-			sb.AppendFormat(GeneralRes.BaseExp + ": {0} / " + Translation.SRank +": {1}\r\n", expbase, (int)(expbase * 1.2));
+			sb.AppendFormat(GeneralRes.BaseExp + ": {0} / " + Translation.SRank + ": {1}\r\n", expbase, (int)(expbase * 1.2));
 
 
 			// 練巡ボーナス計算 - きたない
@@ -450,7 +450,7 @@ public partial class FormInformation : DockContent
 		List<(int ID, MissionState State)> missionStates = new List<(int, MissionState)>();
 		foreach (dynamic item in data.api_list_items)
 		{
-			missionStates.Add(((int) item.api_mission_id, (MissionState) item.api_state));
+			missionStates.Add(((int)item.api_mission_id, (MissionState)item.api_state));
 		}
 
 		IEnumerable<string> unfinishedMonthlyIds =

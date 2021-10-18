@@ -70,7 +70,7 @@ public class DockItemViewModel : ObservableObject
 	{
 		KCDatabase db = KCDatabase.Instance;
 		DockData dock = db.Docks[dockID];
-			
+
 		RepairTime.BackColor = System.Drawing.Color.Transparent;
 		RepairTime.ForeColor = Utility.Configuration.Config.UI.ForeColor;
 		ShipName.ToolTip = null;

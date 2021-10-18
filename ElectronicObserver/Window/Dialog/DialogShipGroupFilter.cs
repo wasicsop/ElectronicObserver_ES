@@ -1,9 +1,4 @@
-﻿using ElectronicObserver.Data;
-using ElectronicObserver.Data.ShipGroup;
-using ElectronicObserver.Utility.Data;
-using ElectronicObserver.Utility.Mathematics;
-using ElectronicObserver.Window.Support;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,6 +8,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ElectronicObserver.Data;
+using ElectronicObserver.Data.ShipGroup;
+using ElectronicObserver.Utility.Data;
+using ElectronicObserver.Utility.Mathematics;
+using ElectronicObserver.Window.Support;
 using Translation = ElectronicObserver.Properties.Window.Dialog.DialogShipGroupFilter;
 
 namespace ElectronicObserver.Window.Dialog;
@@ -808,7 +808,7 @@ public partial class DialogShipGroupFilter : Form
 		int detailIndex = ExpressionDetailView.SelectedRows.Count == 0 ? -1 : ExpressionDetailView.SelectedRows[0].Index;
 
 		if (index < 0 || _group.Expressions.Expressions.Count <= index ||
-		    detailIndex < 0 || _group.Expressions[index].Expressions.Count <= detailIndex) return;
+			detailIndex < 0 || _group.Expressions[index].Expressions.Count <= detailIndex) return;
 
 		ExpressionData exp = _group.Expressions[index][detailIndex];
 
@@ -1186,7 +1186,7 @@ public partial class DialogShipGroupFilter : Form
 
 		int procrow = GetSelectedRow(ExpressionView);
 		if (procrow < 0 || procrow >= _group.Expressions.Expressions.Count ||
-		    e.RowIndex >= _group.Expressions[procrow].Expressions.Count)
+			e.RowIndex >= _group.Expressions[procrow].Expressions.Count)
 		{
 			return;
 		}
@@ -1241,7 +1241,7 @@ public partial class DialogShipGroupFilter : Form
 					Description.Text = "(未在籍)";
 				}
 			}
-				break;
+			break;
 
 			case ".ShipID":
 			{
@@ -1255,13 +1255,13 @@ public partial class DialogShipGroupFilter : Form
 					Description.Text = "(存在せず)";
 				}
 			}
-				break;
+			break;
 
 			case ".RepairTime":
 			{
 				Description.Text = string.Format("(ミリ秒単位) {0}", DateTimeHelper.ToTimeRemainString(DateTimeHelper.FromAPITimeSpan(intvalue)));
 			}
-				break;
+			break;
 
 			case ".MasterShip.AlbumNo":
 			{
@@ -1272,7 +1272,7 @@ public partial class DialogShipGroupFilter : Form
 					Description.Text = ship.ShipTypeName + " " + ship.NameWithClass;
 
 			}
-				break;
+			break;
 
 			case ".MasterShip.RemodelBeforeShipID":
 			{
@@ -1292,7 +1292,7 @@ public partial class DialogShipGroupFilter : Form
 					}
 				}
 			}
-				break;
+			break;
 
 			case ".MasterShip.RemodelAfterShipID":
 			{
@@ -1312,7 +1312,7 @@ public partial class DialogShipGroupFilter : Form
 					}
 				}
 			}
-				break;
+			break;
 		}
 
 		if (left.Contains("Rate"))
@@ -1365,9 +1365,9 @@ public partial class DialogShipGroupFilter : Form
 	{
 
 		if (MessageBox.Show(string.Format(Translation.ClearFilterWarning, ConstFilterSelector.Text),
-			    Translation.ClearFilterWarningTitle,
-			    MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2)
-		    == DialogResult.Yes)
+				Translation.ClearFilterWarningTitle,
+				MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2)
+			== DialogResult.Yes)
 		{
 
 			if (ConstFilterSelector.SelectedIndex == 0)
@@ -1388,8 +1388,8 @@ public partial class DialogShipGroupFilter : Form
 	{
 
 		if (MessageBox.Show(Translation.ConvertToExpressionWarning, "Confirmation",
-			    MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1)
-		    == DialogResult.Yes)
+				MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1)
+			== DialogResult.Yes)
 		{
 
 			if (_group.InclusionFilter.Count > 0)
@@ -1432,8 +1432,8 @@ public partial class DialogShipGroupFilter : Form
 
 
 		if (MessageBox.Show(Translation.ImportFilterFromClipboard,
-			    Translation.ImportFilterFromClipboardTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-		    == DialogResult.No)
+				Translation.ImportFilterFromClipboardTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+			== DialogResult.No)
 			return;
 
 		string data = Clipboard.GetText();

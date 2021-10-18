@@ -91,7 +91,7 @@ public sealed class ResourceManager
 		NightFighter,
 		NightAttacker,
 		LandASPatrol,
-		Reserved48,			// 艦これ本体側が未実装
+		Reserved48,         // 艦これ本体側が未実装
 		HeavyBomber,
 		Locked,
 		Unknown,
@@ -129,8 +129,8 @@ public sealed class ResourceManager
 		catch (Exception ex)
 		{
 
-			Utility.ErrorReporter.SendErrorReport( ex, LoggerRes.FailedLoadingResource);
-			MessageBox.Show( LoggerRes.FailedLoadingResource + "\r\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error );
+			Utility.ErrorReporter.SendErrorReport(ex, LoggerRes.FailedLoadingResource);
+			MessageBox.Show(LoggerRes.FailedLoadingResource + "\r\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
 			FillWithBlankImage(Icons, Enum.GetValues(typeof(IconContent)).Length);
 			FillWithBlankImage(Equipments, Enum.GetValues(typeof(EquipmentContent)).Length);
@@ -351,9 +351,10 @@ public sealed class ResourceManager
 
 		var entry = arc.GetEntry(path);
 
-		if ( entry == null ) {
-			Utility.Logger.Add( 3, string.Format( LoggerRes.ImageDoesNotExist, path ) );
-			imglist.Images.Add( name, new Bitmap( imglist.ImageSize.Width, imglist.ImageSize.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb ) );
+		if (entry == null)
+		{
+			Utility.Logger.Add(3, string.Format(LoggerRes.ImageDoesNotExist, path));
+			imglist.Images.Add(name, new Bitmap(imglist.ImageSize.Width, imglist.ImageSize.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb));
 			return;
 		}
 
@@ -378,8 +379,8 @@ public sealed class ResourceManager
 		catch (Exception)
 		{
 
-			Utility.Logger.Add( 3, string.Format( LoggerRes.ImageCantBeLoaded, path ) );
-			imglist.Images.Add( name, CreateBlankImage() );
+			Utility.Logger.Add(3, string.Format(LoggerRes.ImageCantBeLoaded, path));
+			imglist.Images.Add(name, CreateBlankImage());
 			return;
 		}
 
@@ -390,8 +391,9 @@ public sealed class ResourceManager
 
 		var entry = arc.GetEntry(path);
 
-		if ( entry == null ) {
-			Utility.Logger.Add( 3, string.Format( LoggerRes.ImageDoesNotExist, path ) );
+		if (entry == null)
+		{
+			Utility.Logger.Add(3, string.Format(LoggerRes.ImageDoesNotExist, path));
 			return null;
 		}
 
@@ -418,7 +420,7 @@ public sealed class ResourceManager
 		catch (Exception)
 		{
 
-			Utility.Logger.Add( 3, string.Format( LoggerRes.ImageCantBeLoaded ) );
+			Utility.Logger.Add(3, string.Format(LoggerRes.ImageCantBeLoaded));
 		}
 
 		return null;

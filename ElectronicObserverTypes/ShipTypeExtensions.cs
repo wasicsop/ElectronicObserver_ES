@@ -47,7 +47,7 @@ public static class ShipTypeExtensions
 
 		ShipTypeGroup.Submarines => new[]
 		{
-			ShipTypes.Submarine, 
+			ShipTypes.Submarine,
 			ShipTypes.SubmarineAircraftCarrier
 		},
 

@@ -23,7 +23,7 @@ public partial class DockView : UserControl
 
 	public DockViewModel ViewModel
 	{
-		get => (DockViewModel) GetValue(ViewModelProperty);
+		get => (DockViewModel)GetValue(ViewModelProperty);
 		set => SetValue(ViewModelProperty, value);
 	}
 

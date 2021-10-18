@@ -24,7 +24,7 @@ public partial class ExtraBrowserWindow : Window
 	{
 		Browser.Address = "https://akashi-list.me/";
 	}
-		
+
 	private void ShowDevToolsMenuItemClick(object sender, RoutedEventArgs e)
 	{
 		Browser.ShowDevTools();

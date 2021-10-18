@@ -1,11 +1,11 @@
-﻿using ElectronicObserver.Data;
-using ElectronicObserver.Utility.Mathematics;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ElectronicObserver.Data;
+using ElectronicObserver.Utility.Mathematics;
 
 namespace ElectronicObserver.Resource.Record;
 
@@ -79,11 +79,12 @@ public sealed class RecordManager
 		foreach (var r in Records)
 			succeeded &= r.Load(MasterPath);
 
-		if ( logging ) {
-			if ( succeeded )
-				Utility.Logger.Add( 2, LoggerRes.LoadedRecords );
+		if (logging)
+		{
+			if (succeeded)
+				Utility.Logger.Add(2, LoggerRes.LoadedRecords);
 			else
-				Utility.Logger.Add( 3, LoggerRes.FailedLoadingRecords );
+				Utility.Logger.Add(3, LoggerRes.FailedLoadingRecords);
 		}
 
 		return succeeded;
@@ -101,11 +102,12 @@ public sealed class RecordManager
 		foreach (var r in Records)
 			succeeded &= r.SaveAll(MasterPath);
 
-		if ( logging ) {
-			if ( succeeded )
-				Utility.Logger.Add( 2, "Records saved." );
+		if (logging)
+		{
+			if (succeeded)
+				Utility.Logger.Add(2, "Records saved.");
 			else
-				Utility.Logger.Add( 2, "Failed to save records." );
+				Utility.Logger.Add(2, "Failed to save records.");
 		}
 
 		return succeeded;
@@ -134,11 +136,12 @@ public sealed class RecordManager
 
 		}
 
-		if ( logging ) {
-			if ( succeeded )
-				Utility.Logger.Add( 2, "Records saved." );
+		if (logging)
+		{
+			if (succeeded)
+				Utility.Logger.Add(2, "Records saved.");
 			else
-				Utility.Logger.Add( 2, "Failed to save records." );
+				Utility.Logger.Add(2, "Failed to save records.");
 		}
 
 		return succeeded;
@@ -175,10 +178,13 @@ public sealed class RecordManager
 			if (Records.Any(r => r.NeedToSave))
 			{
 
-				if ( SavePartial( false ) ) {
-					Utility.Logger.Add( 1, LoggerRes.RecordAutosaveSuccess );
-				} else {
-					Utility.Logger.Add( 3, LoggerRes.RecordAutosaveFailure );
+				if (SavePartial(false))
+				{
+					Utility.Logger.Add(1, LoggerRes.RecordAutosaveSuccess);
+				}
+				else
+				{
+					Utility.Logger.Add(3, LoggerRes.RecordAutosaveFailure);
 				}
 			}
 		}

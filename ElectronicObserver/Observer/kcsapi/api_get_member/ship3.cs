@@ -1,9 +1,9 @@
-﻿using ElectronicObserver.Data;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ElectronicObserver.Data;
 
 namespace ElectronicObserver.Observer.kcsapi.api_get_member;
 
@@ -40,9 +40,9 @@ public class ship3 : APIBase
 
 			// 装備シナジー検出カッコカリ
 			if (!isRemodeled &&
-			    ship.MasterShip.ASW.IsDetermined &&
-			    ship.MasterShip.Evasion.IsDetermined &&
-			    ship.MasterShip.LOS.IsDetermined)
+				ship.MasterShip.ASW.IsDetermined &&
+				ship.MasterShip.Evasion.IsDetermined &&
+				ship.MasterShip.LOS.IsDetermined)
 			{
 				int firepower = ship.FirepowerTotal - ship.FirepowerBase;
 				int torpedo = ship.TorpedoTotal - ship.TorpedoBase;
@@ -70,14 +70,14 @@ public class ship3 : APIBase
 				range = ship.Range - range;
 
 				if (firepower != 0 ||
-				    torpedo != 0 ||
-				    aa != 0 ||
-				    armor != 0 ||
-				    asw != 0 ||
-				    evasion != 0 ||
-				    los != 0 ||
-				    luck != 0 ||
-				    range != 0)
+					torpedo != 0 ||
+					aa != 0 ||
+					armor != 0 ||
+					asw != 0 ||
+					evasion != 0 ||
+					los != 0 ||
+					luck != 0 ||
+					range != 0)
 				{
 					var sb = new StringBuilder();
 					sb.Append(ObserverRes.DetectedSynergy);

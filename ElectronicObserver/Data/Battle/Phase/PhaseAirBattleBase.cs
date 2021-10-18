@@ -1,9 +1,9 @@
-﻿using ElectronicObserver.Data.Battle.Detail;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ElectronicObserver.Data.Battle.Detail;
 using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Data.Battle.Phase;
@@ -190,7 +190,7 @@ public abstract class PhaseAirBattleBase : PhaseBase
 	/// <summary>
 	/// 対空カットイン発動艦の名前
 	/// </summary>
-	public virtual string AACutInShipName => AACutInShip.NameWithLevel; 
+	public virtual string AACutInShipName => AACutInShip.NameWithLevel;
 
 	/// <summary>
 	/// 対空カットイン種別

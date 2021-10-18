@@ -1,7 +1,7 @@
-﻿using ElectronicObserverTypes;
+﻿using System.Collections.ObjectModel;
+using ElectronicObserverTypes;
 using MessagePack;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
-using System.Collections.ObjectModel;
 
 namespace ElectronicObserver.Window.Dialog.QuestTrackerManager.Models.Conditions;
 

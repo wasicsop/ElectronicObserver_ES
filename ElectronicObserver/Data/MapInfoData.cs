@@ -87,7 +87,7 @@ public class MapInfoData : APIWrapper, IIdentifiable
 	/// 2=HP制(デフォルト), 3=TP制
 	/// </summary>
 	public int GaugeType { get; private set; }
-		
+
 	/// <summary>
 	/// 現在のゲージ本数　未指定なら 0
 	/// </summary>

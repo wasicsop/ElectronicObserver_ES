@@ -1,9 +1,9 @@
-﻿using ElectronicObserver.Data;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ElectronicObserver.Data;
 
 namespace ElectronicObserver.Notifier;
 
@@ -29,7 +29,8 @@ public class NotifierRepair : NotifierBase
 	}
 
 
-	private void Initialize() {
+	private void Initialize()
+	{
 		DialogData.Title = NotifierRes.RepairTitle;
 		processedFlags = new Dictionary<int, bool>();
 	}
@@ -67,8 +68,8 @@ public class NotifierRepair : NotifierBase
 	public void Notify(int dockID, int shipID)
 	{
 
-		DialogData.Message = string.Format( NotifierRes.RepairText,
-			dockID, KCDatabase.Instance.Ships[shipID].NameWithLevel );
+		DialogData.Message = string.Format(NotifierRes.RepairText,
+			dockID, KCDatabase.Instance.Ships[shipID].NameWithLevel);
 
 		base.Notify();
 	}

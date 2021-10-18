@@ -1,9 +1,4 @@
-﻿using ElectronicObserver.Resource;
-using ElectronicObserver.Utility;
-using ElectronicObserver.Utility.Data;
-using ElectronicObserver.Utility.Mathematics;
-using ElectronicObserver.Window.Control;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
@@ -12,6 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ElectronicObserver.Resource;
+using ElectronicObserver.Utility;
+using ElectronicObserver.Utility.Data;
+using ElectronicObserver.Utility.Mathematics;
+using ElectronicObserver.Window.Control;
 using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Data;
@@ -32,7 +32,7 @@ public class FleetData : APIWrapper, IIdentifiable, IFleetData
 	/// </summary>
 	public string Name { get; internal set; }
 
-	public FleetType FleetType => (FleetType) KCDatabase.Instance.Fleet.CombinedFlag;
+	public FleetType FleetType => (FleetType)KCDatabase.Instance.Fleet.CombinedFlag;
 
 	/// <summary>
 	/// 遠征状態
@@ -143,8 +143,9 @@ public class FleetData : APIWrapper, IIdentifiable, IFleetData
 				ExpeditionTime = DateTimeHelper.FromAPITime((long)RawData.api_mission[2]);
 
 				_escapedShipList.Clear();
-				if ( IsInSortie ) {
-					Utility.Logger.Add( 2, string.Format(　FleetRes.HasReturned, FleetID, Name ) );
+				if (IsInSortie)
+				{
+					Utility.Logger.Add(2, string.Format(FleetRes.HasReturned, FleetID, Name));
 				}
 				IsInSortie = false;
 				IsInPractice = false;
@@ -268,7 +269,7 @@ public class FleetData : APIWrapper, IIdentifiable, IFleetData
 
 
 			}
-				break;
+			break;
 
 
 			case "api_req_kousyou/destroyship":
@@ -285,7 +286,7 @@ public class FleetData : APIWrapper, IIdentifiable, IFleetData
 					}
 				}
 			}
-				break;
+			break;
 
 			case "api_req_kaisou/powerup":
 			{
@@ -301,7 +302,7 @@ public class FleetData : APIWrapper, IIdentifiable, IFleetData
 					}
 				}
 			}
-				break;
+			break;
 
 			case "api_req_mission/start":
 				ExpeditionState = 1;
@@ -494,8 +495,8 @@ public class FleetData : APIWrapper, IIdentifiable, IFleetData
 			if (shellingCount == 0)
 			{
 				if (aircraftCarrierCount >= 1 ||
-				    aircraftAuxiliaryCount >= 2 ||
-				    aircraftShellingCount >= 2)
+					aircraftAuxiliaryCount >= 2 ||
+					aircraftShellingCount >= 2)
 					return 1;   // 空撃
 			}
 			if (shellingCount == 1)
@@ -505,8 +506,8 @@ public class FleetData : APIWrapper, IIdentifiable, IFleetData
 			}
 
 			if (battleshipCount >= 2 ||
-			    (battleshipCount == 1 && heavyCruiserCount >= 3) ||
-			    heavyCruiserCount >= 4)
+				(battleshipCount == 1 && heavyCruiserCount >= 3) ||
+				heavyCruiserCount >= 4)
 				return 2;       // 砲撃
 
 			return 3;           // 雷撃
@@ -538,15 +539,15 @@ public class FleetData : APIWrapper, IIdentifiable, IFleetData
 		}
 	}
 
-	public static bool CanAnchorageRepairWithMember(IEnumerable<IShipData> membersInstance) 
+	public static bool CanAnchorageRepairWithMember(IEnumerable<IShipData> membersInstance)
 	{
 		var flagship = membersInstance.FirstOrDefault();
 		return flagship?.MasterShip?.ShipType == ShipTypes.RepairShip &&
-		       flagship.HPRate > 0.5 &&
-		       flagship.RepairingDockID == -1 &&
-		       membersInstance.All(s => s == null || (KCDatabase.Instance.Fleet[s.Fleet]?.ExpeditionState ?? 0) == 0) &&
-		       membersInstance.Take(2 + flagship.SlotInstance.Count(eq => eq?.MasterEquipment?.CategoryType == EquipmentTypes.RepairFacility))
-			       .Any(ship => ship?.RepairingDockID == -1 && 0.5 < ship.HPRate && ship.HPRate < 1.0);
+			   flagship.HPRate > 0.5 &&
+			   flagship.RepairingDockID == -1 &&
+			   membersInstance.All(s => s == null || (KCDatabase.Instance.Fleet[s.Fleet]?.ExpeditionState ?? 0) == 0) &&
+			   membersInstance.Take(2 + flagship.SlotInstance.Count(eq => eq?.MasterEquipment?.CategoryType == EquipmentTypes.RepairFacility))
+				   .Any(ship => ship?.RepairingDockID == -1 && 0.5 < ship.HPRate && ship.HPRate < 1.0);
 	}
 
 

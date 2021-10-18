@@ -1,11 +1,11 @@
-﻿using ElectronicObserver.Utility.Data;
-using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using ElectronicObserver.Utility.Data;
 using ElectronicObserverTypes;
+using Newtonsoft.Json;
 
 namespace ElectronicObserver.Data;
 
@@ -168,7 +168,7 @@ public class TsunDbRouting : TsunDbEntity
 
 		if (this.Fleet2.Count > 0)
 		{
-			foreach (var ship in this.Fleet2) 
+			foreach (var ship in this.Fleet2)
 			{
 				this.FleetIds.Add(ship.Id);
 				this.FleetLevel += ship.Level;

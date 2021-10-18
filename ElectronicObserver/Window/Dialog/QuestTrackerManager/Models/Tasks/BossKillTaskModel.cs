@@ -1,7 +1,7 @@
-﻿using ElectronicObserver.Window.Dialog.QuestTrackerManager.Enums;
+﻿using System;
+using ElectronicObserver.Window.Dialog.QuestTrackerManager.Enums;
 using MessagePack;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
-using System;
 
 namespace ElectronicObserver.Window.Dialog.QuestTrackerManager.Models.Tasks;
 

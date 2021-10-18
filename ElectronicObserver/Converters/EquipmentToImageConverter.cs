@@ -1,9 +1,9 @@
-﻿using ElectronicObserver.Resource;
-using ElectronicObserverTypes;
-using System;
+﻿using System;
 using System.Globalization;
 using System.Windows.Data;
 using System.Windows.Media.Imaging;
+using ElectronicObserver.Resource;
+using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Converters;
 
@@ -16,7 +16,7 @@ public class EquipmentToImageConverter : IValueConverter
 		try
 		{
 			string? imageUri = KCResourceHelper.GetEquipmentImagePath(equipment.ID, KCResourceHelper.ResourceTypeEquipmentCard) ??
-			                   KCResourceHelper.GetEquipmentImagePath(equipment.ID, KCResourceHelper.ResourceTypeEquipmentCardSmall);
+							   KCResourceHelper.GetEquipmentImagePath(equipment.ID, KCResourceHelper.ResourceTypeEquipmentCardSmall);
 
 			return imageUri switch
 			{

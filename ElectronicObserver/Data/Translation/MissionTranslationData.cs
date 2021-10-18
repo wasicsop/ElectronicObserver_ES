@@ -1,7 +1,7 @@
-﻿using ElectronicObserver.Utility;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using ElectronicObserver.Utility;
 
 namespace ElectronicObserver.Data.Translation;
 
@@ -18,7 +18,7 @@ public class MissionTranslationData : TranslationBase
 	public void LoadDictionary(string path)
 	{
 		var json = Load(path);
-		if(json == null) return;
+		if (json == null) return;
 
 		for (int i = 1; i < 1000; i++)
 		{

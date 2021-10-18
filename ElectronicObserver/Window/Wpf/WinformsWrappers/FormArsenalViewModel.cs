@@ -9,7 +9,7 @@ public class FormArsenalViewModel : WinformsHostViewModel
 		ImageSourceIcons.GetIcon(IconContent.FormArsenal))
 	{
 		// todo remove parameter cause it's never used
-		WinformsControl = new FormArsenal(null!) {TopLevel = false};
+		WinformsControl = new FormArsenal(null!) { TopLevel = false };
 
 		WindowsFormsHost.Child = WinformsControl;
 	}

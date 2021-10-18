@@ -59,7 +59,7 @@ public class ShipSlotViewModel : ObservableObject
 	public SolidColorBrush CurrentAircraftBrush => CurrentAircraftColor.ToBrush();
 
 	public EquipmentIconType EquipmentIconType { get; set; } = EquipmentIconType.Nothing;
-		
+
 	public ImageSource? EquipmentIcon => ImageSourceIcons.GetEquipmentIcon(EquipmentIconType);
 
 	public ImageSource? AircraftLevelIcon => AircraftLevel switch

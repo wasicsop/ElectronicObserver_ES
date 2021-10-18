@@ -1,21 +1,21 @@
-﻿using ElectronicObserver.Data;
-using ElectronicObserver.ViewModels.Translations;
-using ElectronicObserverTypes;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Toolkit.Mvvm.ComponentModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows;
+using ElectronicObserver.Data;
 using ElectronicObserver.Resource.Record;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.Utility.Storage;
+using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Dialog;
 using ElectronicObserver.Window.Tools.DialogAlbumMasterEquipment;
+using ElectronicObserverTypes;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 using static ElectronicObserver.Resource.Record.ShipParameterRecord;
 
@@ -30,7 +30,7 @@ public partial class DialogAlbumMasterShipViewModel : ObservableObject
 
 	public string Title => SelectedShip switch
 	{
-		{} ship => DialogAlbumMasterShip.Title + " - " + ship.Ship.NameWithClass,
+		{ } ship => DialogAlbumMasterShip.Title + " - " + ship.Ship.NameWithClass,
 		_ => DialogAlbumMasterShip.Title
 	};
 
@@ -61,7 +61,7 @@ public partial class DialogAlbumMasterShipViewModel : ObservableObject
 			Calculator.ToHiragana(ship.NameReading.ToLower()).StartsWith(searchWord);
 
 		return Search(Calculator.ToHiragana(filter.ToLower())) ||
-		       Search(Calculator.RomaToHira(filter));
+			   Search(Calculator.RomaToHira(filter));
 	}
 
 	public int Level { get; set; } = 175;

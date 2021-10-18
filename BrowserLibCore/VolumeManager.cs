@@ -30,7 +30,7 @@ public class VolumeManager
 	private static ISimpleAudioVolume GetVolumeObject(Predicate<uint> checkProcessID)
 	{
 
-		ISimpleAudioVolume ret = null;
+		ISimpleAudioVolume? ret = null;
 
 		// スピーカーデバイスの取得
 		IMMDeviceEnumerator deviceEnumerator = (IMMDeviceEnumerator)(new MMDeviceEnumerator());
@@ -52,7 +52,7 @@ public class VolumeManager
 		for (int i = 0; i < count; i++)
 		{
 			IAudioSessionControl ctl;
-			IAudioSessionControl2 ctl2;
+			IAudioSessionControl2? ctl2;
 
 			sessionEnumerator.GetSession(i, out ctl);
 

@@ -10,7 +10,7 @@ public static class ImageSourceIcons
 	public static ImageSource? GetIcon(IconContent type) => type switch
 	{
 		IconContent.Nothing => null,
-		_ => BytesToImageSource(GetBytes(ResourceManager.Instance.Icons.Images[(int) type]))
+		_ => BytesToImageSource(GetBytes(ResourceManager.Instance.Icons.Images[(int)type]))
 	};
 
 	public static ImageSource? GetEquipmentIcon(EquipmentIconType type) =>

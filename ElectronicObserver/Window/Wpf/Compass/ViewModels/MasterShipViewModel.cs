@@ -19,18 +19,18 @@ public class MasterShipViewModel : ObservableObject
 	public IShipDataMaster? Ship { get; set; }
 
 	public IEnumerable<MasterShipSlotViewModel> Slots => Slot?.Select(id => id switch
-		                                                     {
-			                                                     > 0 => KCDatabase.Instance.MasterEquipments[id],
-			                                                     _ => null
-		                                                     })
-		                                                     .Zip(Ship?.Aircraft ?? Enumerable.Empty<int>(), (equip, size) => (Equipment: equip, Size: size))
-		                                                     .Select(s => new MasterShipSlotViewModel
-		                                                     {
-			                                                     Equipment = s.Equipment,
-			                                                     Size = s.Size
-		                                                     })
-		                                                     .Take(Math.Max(Slot?.Count(id => id > 0) ?? 0, Ship?.SlotSize ?? 0)) 
-	                                                     ?? Enumerable.Empty<MasterShipSlotViewModel>();
+															 {
+																 > 0 => KCDatabase.Instance.MasterEquipments[id],
+																 _ => null
+															 })
+															 .Zip(Ship?.Aircraft ?? Enumerable.Empty<int>(), (equip, size) => (Equipment: equip, Size: size))
+															 .Select(s => new MasterShipSlotViewModel
+															 {
+																 Equipment = s.Equipment,
+																 Size = s.Size
+															 })
+															 .Take(Math.Max(Slot?.Count(id => id > 0) ?? 0, Ship?.SlotSize ?? 0))
+														 ?? Enumerable.Empty<MasterShipSlotViewModel>();
 
 	public int[]? Slot { get; set; }
 	public int Level { get; set; } = -1;
@@ -45,8 +45,8 @@ public class MasterShipViewModel : ObservableObject
 	public int MaxNameWidth { get; set; }
 	public string? NameToolTip => Ship switch
 	{
-		{IsAbyssalShip: true} => GetShipString(Ship.ShipID, Ship.DefaultSlot.ToArray(), Level),
-		{IsAbyssalShip: false} => GetShipString(Ship.ShipID, Slot, Level, Hp, Firepower, Torpedo, Aa, Armor),
+		{ IsAbyssalShip: true } => GetShipString(Ship.ShipID, Ship.DefaultSlot.ToArray(), Level),
+		{ IsAbyssalShip: false } => GetShipString(Ship.ShipID, Slot, Level, Hp, Firepower, Torpedo, Aa, Armor),
 		_ => null
 	};
 
@@ -58,7 +58,7 @@ public class MasterShipViewModel : ObservableObject
 
 	public SolidColorBrush ShipNameBrush => Ship switch
 	{
-		{IsAbyssalShip: true} => Ship.GetShipNameColor().ToBrush(),
+		{ IsAbyssalShip: true } => Ship.GetShipNameColor().ToBrush(),
 		_ => Utility.Configuration.Config.UI.ForeColor.ToBrush()
 	};
 
@@ -66,7 +66,7 @@ public class MasterShipViewModel : ObservableObject
 
 	public MasterShipViewModel()
 	{
-		OpenShipEncyclopediaCommand = new RelayCommand<int>(OpenShipEncyclopedia,id => id > 0);
+		OpenShipEncyclopediaCommand = new RelayCommand<int>(OpenShipEncyclopedia, id => id > 0);
 
 		Utility.Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
 		ConfigurationChanged();

@@ -1,6 +1,6 @@
-﻿using Newtonsoft.Json;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
+using Newtonsoft.Json;
 
 namespace ElectronicObserver.ReplayJSON;
 
@@ -105,13 +105,13 @@ public class Plane
 
 	[JsonProperty("count")]
 	public int Count { get; set; }
-		
+
 	[JsonProperty("stars")]
 	public int Stars { get; set; }
 
 	[JsonProperty("ace")]
 	public int Ace { get; set; }
-		
+
 	[JsonProperty("state")]
 	public int State { get; set; }
 

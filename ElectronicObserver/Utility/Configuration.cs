@@ -1,12 +1,7 @@
-﻿using ElectronicObserver.Data;
-using ElectronicObserver.Observer;
-using ElectronicObserver.Properties;
-using ElectronicObserver.Resource.Record;
-using ElectronicObserver.Utility.Mathematics;
-using ElectronicObserver.Utility.Storage;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -15,7 +10,12 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DynaJson;
-using System.Globalization;
+using ElectronicObserver.Data;
+using ElectronicObserver.Observer;
+using ElectronicObserver.Properties;
+using ElectronicObserver.Resource.Record;
+using ElectronicObserver.Utility.Mathematics;
+using ElectronicObserver.Utility.Storage;
 
 namespace ElectronicObserver.Utility;
 
@@ -250,9 +250,9 @@ public sealed class Configuration
 			{
 				if (BarColorSchemes == null) return;
 				if (!_barColorMorphing)
-					BarColorScheme = new List<SerializableColor>( BarColorSchemes[0] );
+					BarColorScheme = new List<SerializableColor>(BarColorSchemes[0]);
 				else
-					BarColorScheme = new List<SerializableColor>( BarColorSchemes[1] );
+					BarColorScheme = new List<SerializableColor>(BarColorSchemes[1]);
 			}
 
 			/// <summary>
@@ -445,9 +445,12 @@ public sealed class Configuration
 			[IgnoreDataMember] // 受损状态 BOSS 副文字色
 			public Color Battle_ColorTextBossDamaged2 { get; set; }
 
-			public bool RemoveBarShadow {
-				get {
-					switch (ThemeID) {
+			public bool RemoveBarShadow
+			{
+				get
+				{
+					switch (ThemeID)
+					{
 						case 0: return true;
 						case 1: return true;
 						default: return false;
@@ -465,8 +468,8 @@ public sealed class Configuration
 
 			public ConfigUI()
 			{
-				MainFont = new Font( "Meiryo UI", 12, FontStyle.Regular, GraphicsUnit.Pixel );
-				SubFont = new Font( "Meiryo UI", 10, FontStyle.Regular, GraphicsUnit.Pixel );
+				MainFont = new Font("Meiryo UI", 12, FontStyle.Regular, GraphicsUnit.Pixel);
+				SubFont = new Font("Meiryo UI", 10, FontStyle.Regular, GraphicsUnit.Pixel);
 				ThemeMode = 0;
 				ThemeID = 0;
 				MaxAkashiPerHP = 5;
@@ -1886,7 +1889,7 @@ public sealed class Configuration
 		if (temp != null)
 		{
 			// hack: set defaults for players that have a configuration before language was added
-			if(temp.UI.Culture == null)
+			if (temp.UI.Culture == null)
 			{
 				temp.UI.Culture = CultureInfo.CurrentCulture.Name switch
 				{
@@ -1919,8 +1922,8 @@ public sealed class Configuration
 		}
 		else
 		{
-			MessageBox.Show( String.Format(Resources.FirstTimeDialog, SoftwareInformation.SoftwareNameEnglish),
-				Resources.FirstTimeTitle, MessageBoxButtons.OK, MessageBoxIcon.Information );
+			MessageBox.Show(String.Format(Resources.FirstTimeDialog, SoftwareInformation.SoftwareNameEnglish),
+				Resources.FirstTimeTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
 		}
 
 		ApplyTheme();
@@ -2120,11 +2123,16 @@ public sealed class Configuration
 		Config.UI.Battle_ColorTextBossDamaged2 = ThemePanelColor("battle", "textBossDamaged2");
 	}
 
-	private Color ThemeColor(string type, string name) {
-		if (ThemeStyle.IsDefined(type) && ThemeStyle[type].IsDefined(name)) {
+	private Color ThemeColor(string type, string name)
+	{
+		if (ThemeStyle.IsDefined(type) && ThemeStyle[type].IsDefined(name))
+		{
 			return ColorTranslator.FromHtml(ThemeStyle[type][name]);
-		} else {
-			switch (type + "_" + name) {
+		}
+		else
+		{
+			switch (type + "_" + name)
+			{
 				case "basicColors_red":
 					return Color.Red;
 				case "basicColors_orange":
@@ -2159,11 +2167,16 @@ public sealed class Configuration
 		}
 	}
 
-	private Color ThemePanelColor(string form, string name) {
-		if (ThemeStyle.IsDefined("panelColors") && ThemeStyle["panelColors"].IsDefined(form) && ThemeStyle["panelColors"][form].IsDefined(name)) {
+	private Color ThemePanelColor(string form, string name)
+	{
+		if (ThemeStyle.IsDefined("panelColors") && ThemeStyle["panelColors"].IsDefined(form) && ThemeStyle["panelColors"][form].IsDefined(name))
+		{
 			return ColorTranslator.FromHtml(ThemeStyle["panelColors"][form][name]);
-		} else {
-			switch (form + "_" + name) {
+		}
+		else
+		{
+			switch (form + "_" + name)
+			{
 				// 视图 - 舰队
 				case "fleet_conditionVeryTired":
 					return Config.UI.Color_Red;
@@ -2217,7 +2230,7 @@ public sealed class Configuration
 				case "compass_eventKind5":
 					return Config.UI.Color_Red;
 				case "compass_overlayBrush": // %75 透明度背景色
-					return Color.FromArgb( 0xC0, Config.UI.BackColor );
+					return Color.FromArgb(0xC0, Config.UI.BackColor);
 				// 视图 - 战斗
 				case "battle_barMVP":
 					return Config.UI.Color_Blue;
@@ -2244,106 +2257,119 @@ public sealed class Configuration
 		}
 	}
 
-	private String ThemeColorHex( string type, string name ) {
-		if (ThemeStyle.IsDefined( type ) && ThemeStyle[type].IsDefined( name )) {
+	private String ThemeColorHex(string type, string name)
+	{
+		if (ThemeStyle.IsDefined(type) && ThemeStyle[type].IsDefined(name))
+		{
 			return ThemeStyle[type][name];
 		}
-		else {
-			switch (type + "_" + name) {
+		else
+		{
+			switch (type + "_" + name)
+			{
 				case "panelColors_tabActiveFG":
-					return ThemeColorHex( "panelColors", "foreground2" );
+					return ThemeColorHex("panelColors", "foreground2");
 				case "panelColors_tabActiveBG":
-					return ThemeColorHex( "panelColors", "background2" );
+					return ThemeColorHex("panelColors", "background2");
 				case "panelColors_tabLostFocusFG":
-					return ThemeColorHex( "panelColors", "foreground2" );
+					return ThemeColorHex("panelColors", "foreground2");
 				case "panelColors_tabLostFocusBG":
-					return ThemeColorHex( "panelColors", "background2" );
+					return ThemeColorHex("panelColors", "background2");
 				case "panelColors_tabHoverFG":
-					return ThemeColorHex( "panelColors", "foreground2" );
+					return ThemeColorHex("panelColors", "foreground2");
 				case "panelColors_tabHoverBG":
-					return ThemeColorHex( "panelColors", "background2" );
+					return ThemeColorHex("panelColors", "background2");
 				default:
-					var c = ThemeColor( type, name );
-					return "#" + c.R.ToString( "X2" ) + c.G.ToString( "X2" ) + c.B.ToString( "X2" );
+					var c = ThemeColor(type, name);
+					return "#" + c.R.ToString("X2") + c.G.ToString("X2") + c.B.ToString("X2");
 			}
 		}
 	}
 
-	private String ThemePanelColorHex( string form, string name ) {
-		if (ThemeStyle.IsDefined( "panelColors" ) && ThemeStyle["panelColors"].IsDefined( form ) && ThemeStyle["panelColors"][form].IsDefined( name )) {
+	private String ThemePanelColorHex(string form, string name)
+	{
+		if (ThemeStyle.IsDefined("panelColors") && ThemeStyle["panelColors"].IsDefined(form) && ThemeStyle["panelColors"][form].IsDefined(name))
+		{
 			return ThemeStyle["panelColors"][form][name];
 		}
-		else {
-			switch (form + "_" + name) {
+		else
+		{
+			switch (form + "_" + name)
+			{
 				// 面板分割线
 				case "skin_panelSplitter":
-					return ThemeColorHex( "panelColors", "background2" );
+					return ThemeColorHex("panelColors", "background2");
 				case "skin_docTabBarFG":
-					return ThemeColorHex( "panelColors", "foreground2" );
+					return ThemeColorHex("panelColors", "foreground2");
 				case "skin_docTabBarBG":
-					return ThemeColorHex( "panelColors", "background" );
+					return ThemeColorHex("panelColors", "background");
 				case "skin_docTabActiveFG":
-					return ThemeColorHex( "panelColors", "foreground" );
+					return ThemeColorHex("panelColors", "foreground");
 				case "skin_docTabActiveBG":
-					return ThemeColorHex( "panelColors", "background2" );
+					return ThemeColorHex("panelColors", "background2");
 				case "skin_docTabActiveLostFocusFG":
-					return ThemeColorHex( "panelColors", "foreground" );
+					return ThemeColorHex("panelColors", "foreground");
 				case "skin_docTabActiveLostFocusBG":
-					return ThemeColorHex( "panelColors", "background2" );
+					return ThemeColorHex("panelColors", "background2");
 				case "skin_docTabInactiveHoverFG":
-					return ThemeColorHex( "panelColors", "foreground" );
+					return ThemeColorHex("panelColors", "foreground");
 				case "skin_docTabInactiveHoverBG":
-					return ThemeColorHex( "panelColors", "background2" );
+					return ThemeColorHex("panelColors", "background2");
 				case "skin_docBtnActiveHoverFG":
-					return ThemeColorHex( "panelColors", "foreground" );
+					return ThemeColorHex("panelColors", "foreground");
 				case "skin_docBtnActiveHoverBG":
-					return ThemeColorHex( "panelColors", "background2" );
+					return ThemeColorHex("panelColors", "background2");
 				case "skin_docBtnActiveLostFocusHoverFG":
-					return ThemeColorHex( "panelColors", "foreground" );
+					return ThemeColorHex("panelColors", "foreground");
 				case "skin_docBtnActiveLostFocusHoverBG":
-					return ThemeColorHex( "panelColors", "background2" );
+					return ThemeColorHex("panelColors", "background2");
 				case "skin_docBtnInactiveHoverFG":
-					return ThemeColorHex( "panelColors", "foreground" );
+					return ThemeColorHex("panelColors", "foreground");
 				case "skin_docBtnInactiveHoverBG":
-					return ThemeColorHex( "panelColors", "background2" );
+					return ThemeColorHex("panelColors", "background2");
 				case "skin_toolTabBarFG":
-					return ThemeColorHex( "panelColors", "foreground2" );
+					return ThemeColorHex("panelColors", "foreground2");
 				case "skin_toolTabBarBG":
-					return ThemeColorHex( "panelColors", "background" );
+					return ThemeColorHex("panelColors", "background");
 				case "skin_toolTabActive":
-					return ThemeColorHex( "panelColors", "foreground" );
+					return ThemeColorHex("panelColors", "foreground");
 				case "skin_toolTitleActiveFG":
-					return ThemeColorHex( "panelColors", "foreground" );
+					return ThemeColorHex("panelColors", "foreground");
 				case "skin_toolTitleActiveBG":
-					return ThemeColorHex( "panelColors", "background2" );
+					return ThemeColorHex("panelColors", "background2");
 				case "skin_toolTitleLostFocusFG":
-					return ThemeColorHex( "panelColors", "foreground2" );
+					return ThemeColorHex("panelColors", "foreground2");
 				case "skin_toolTitleLostFocusBG":
-					return ThemeColorHex( "panelColors", "background" );
+					return ThemeColorHex("panelColors", "background");
 				case "skin_toolTitleDotActive":
-					return ThemeColorHex( "panelColors", "background" );
+					return ThemeColorHex("panelColors", "background");
 				case "skin_toolTitleDotLostFocus":
-					return ThemeColorHex( "panelColors", "background2" );
+					return ThemeColorHex("panelColors", "background2");
 				case "skin_autoHideTabBarFG":
-					return ThemeColorHex( "panelColors", "background2" );
+					return ThemeColorHex("panelColors", "background2");
 				case "skin_autoHideTabBarBG":
-					return ThemeColorHex( "panelColors", "background" );
+					return ThemeColorHex("panelColors", "background");
 				case "skin_autoHideTabActive":
-					return ThemeColorHex( "panelColors", "foreground" );
+					return ThemeColorHex("panelColors", "foreground");
 				case "skin_autoHideTabInactive":
-					return ThemeColorHex( "panelColors", "foreground2" );
+					return ThemeColorHex("panelColors", "foreground2");
 				default:
-					var c = ThemePanelColor( form, name );
-					return "#" + c.R.ToString( "X2" ) + c.G.ToString( "X2" ) + c.B.ToString( "X2" );
+					var c = ThemePanelColor(form, name);
+					return "#" + c.R.ToString("X2") + c.G.ToString("X2") + c.B.ToString("X2");
 			}
 		}
 	}
 
-	private Color ThemeBarColor(int type, int index) {
-		if (ThemeStyle.IsDefined("barColors") && ThemeStyle["barColors"].IsDefined(type) && ThemeStyle["barColors"][type].IsDefined(11)) {
+	private Color ThemeBarColor(int type, int index)
+	{
+		if (ThemeStyle.IsDefined("barColors") && ThemeStyle["barColors"].IsDefined(type) && ThemeStyle["barColors"][type].IsDefined(11))
+		{
 			return ColorTranslator.FromHtml(ThemeStyle["barColors"][type][index]);
-		} else {
-			switch (type + "_" + index) {
+		}
+		else
+		{
+			switch (type + "_" + index)
+			{
 				case "0_0":
 					return Config.UI.Color_Red;
 				case "0_1":
@@ -2369,29 +2395,29 @@ public sealed class Configuration
 				case "0_11":
 					return Config.UI.SubBackColor;
 				case "1_0":
-					return ThemeBarColor( 0, 0 );
+					return ThemeBarColor(0, 0);
 				case "1_1":
-					return ThemeBarColor( 0, 1 );
+					return ThemeBarColor(0, 1);
 				case "1_2":
-					return ThemeBarColor( 0, 2 );
+					return ThemeBarColor(0, 2);
 				case "1_3":
-					return ThemeBarColor( 0, 3 );
+					return ThemeBarColor(0, 3);
 				case "1_4":
-					return ThemeBarColor( 0, 4 );
+					return ThemeBarColor(0, 4);
 				case "1_5":
-					return ThemeBarColor( 0, 5 );
+					return ThemeBarColor(0, 5);
 				case "1_6":
-					return ThemeBarColor( 0, 6 );
+					return ThemeBarColor(0, 6);
 				case "1_7":
-					return ThemeBarColor( 0, 7 );
+					return ThemeBarColor(0, 7);
 				case "1_8":
-					return ThemeBarColor( 0, 8 );
+					return ThemeBarColor(0, 8);
 				case "1_9":
-					return ThemeBarColor( 0, 9 );
+					return ThemeBarColor(0, 9);
 				case "1_10":
-					return ThemeBarColor( 0, 10 );
+					return ThemeBarColor(0, 10);
 				case "1_11":
-					return ThemeBarColor( 0, 11 );
+					return ThemeBarColor(0, 11);
 				default:
 					return Color.Magenta;
 			}
@@ -2414,8 +2440,9 @@ public sealed class Configuration
 		if (dt <= DateTimeHelper.CSVStringToTime("2017/03/30 00:00:00"))
 		{
 
-			if ( MessageBox.Show( "Due to recent KanColle changes, Electronic Observer needs to convert current records data.\r\nStart the conversion?\r\n(You may encounter unexpected error if you skip this step)", "Version Update Confirmation(～2.5.5.1)",
-				MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1 ) == DialogResult.Yes ) {
+			if (MessageBox.Show("Due to recent KanColle changes, Electronic Observer needs to convert current records data.\r\nStart the conversion?\r\n(You may encounter unexpected error if you skip this step)", "Version Update Confirmation(～2.5.5.1)",
+				MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
+			{
 
 				// 敵編成レコードの敵編成ID再計算とドロップレコードの敵編成ID振りなおし
 				// ~ver. 2.8.2 更新で内部処理が変わったので要確認
@@ -2450,8 +2477,10 @@ public sealed class Configuration
 
 					shipDropRecord.SaveAll(RecordManager.Instance.MasterPath);
 
-				} catch ( Exception ex ) {
-					ErrorReporter.SendErrorReport( ex, "CheckUpdate: Failed to reset ShipDropRecord ID." );
+				}
+				catch (Exception ex)
+				{
+					ErrorReporter.SendErrorReport(ex, "CheckUpdate: Failed to reset ShipDropRecord ID.");
 				}
 
 
@@ -2500,8 +2529,10 @@ public sealed class Configuration
 					Directory.Delete(defaultRecordPath, true);
 
 
-				} catch ( Exception ex ) {
-					ErrorReporter.SendErrorReport( ex, "Failed to reorganize ShipParameterRecord." );
+				}
+				catch (Exception ex)
+				{
+					ErrorReporter.SendErrorReport(ex, "Failed to reorganize ShipParameterRecord.");
 				}
 
 			}
@@ -2686,8 +2717,8 @@ public sealed class Configuration
 				Utility.ErrorReporter.SendErrorReport(ex, "~2.8.2 Record conversion: failed.");
 
 				if (MessageBox.Show($"An error occurred during record conversion to the latest version.\r\n\r\n{ex.Message}\r\n\r\nDo you want to try again?\r\n(Selecting 'No' may result in loss of recorded data.)",
-					    "~2.8.2 Record conversion:" + ex.GetType().Name, MessageBoxButtons.YesNo, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1)
-				    == DialogResult.Yes)
+						"~2.8.2 Record conversion:" + ex.GetType().Name, MessageBoxButtons.YesNo, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1)
+					== DialogResult.Yes)
 					continue;
 				else
 					break;

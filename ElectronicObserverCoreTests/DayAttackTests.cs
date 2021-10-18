@@ -250,7 +250,7 @@ public class DayAttackTests
 				mg356,
 				seaplane
 			}));
-		mock.Setup(s => s.Aircraft).Returns(new ReadOnlyCollection<int>(new List<int> {4, 4, 4, 4}));
+		mock.Setup(s => s.Aircraft).Returns(new ReadOnlyCollection<int>(new List<int> { 4, 4, 4, 4 }));
 		mock.Setup(s => s.MasterShip.ShipId).Returns(ShipId.IseKaiNi);
 		mock.Setup(s => s.MasterShip.ShipType).Returns(ShipTypes.AviationBattleship);
 

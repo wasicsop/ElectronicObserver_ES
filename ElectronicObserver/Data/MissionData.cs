@@ -49,7 +49,7 @@ public class MissionData : APIWrapper, IIdentifiable
 	/// <summary>
 	/// 進捗リセットタイミング
 	/// </summary>
-	public ResetType ResetType => (ResetType) RawData.api_reset_type;
+	public ResetType ResetType => (ResetType)RawData.api_reset_type;
 
 	/// <summary>
 	/// 遠征時間(分単位)

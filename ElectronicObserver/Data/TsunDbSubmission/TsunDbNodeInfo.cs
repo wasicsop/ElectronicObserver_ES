@@ -1,7 +1,7 @@
-﻿using DynaJson;
-using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using DynaJson;
+using Newtonsoft.Json;
 
 namespace ElectronicObserver.Data;
 
@@ -64,7 +64,7 @@ public class TsunDbNodeInfo : TsunDbEntity
 		{
 			this.ItemGet = new object[0];
 		}
-			
+
 	}
 	#endregion
 }

@@ -1,8 +1,4 @@
-﻿using ElectronicObserver.Data;
-using ElectronicObserver.Resource;
-using ElectronicObserver.Resource.Record;
-using ElectronicObserver.Utility.Mathematics;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,6 +7,10 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using ElectronicObserver.Data;
+using ElectronicObserver.Resource;
+using ElectronicObserver.Resource.Record;
+using ElectronicObserver.Utility.Mathematics;
 using Translation = ElectronicObserver.Properties.Window.Dialog.DialogDropRecordViewer;
 
 namespace ElectronicObserver.Window.Dialog;
@@ -455,7 +455,7 @@ public partial class DialogDropRecordViewer : Form
 		if (Searcher.IsBusy)
 		{
 			if (MessageBox.Show(EncycloRes.InterruptSearch, EncycloRes.Searching, MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2)
-			    == System.Windows.Forms.DialogResult.Yes)
+				== System.Windows.Forms.DialogResult.Yes)
 			{
 				Searcher.CancelAsync();
 			}
@@ -570,9 +570,9 @@ public partial class DialogDropRecordViewer : Form
 					continue;
 
 				if (((r.Rank == "SS" || r.Rank == "S") && !args.RankS) ||
-				    ((r.Rank == "A") && !args.RankA) ||
-				    ((r.Rank == "B") && !args.RankB) ||
-				    ((Constants.GetWinRank(r.Rank) <= 3) && !args.RankX))
+					((r.Rank == "A") && !args.RankA) ||
+					((r.Rank == "B") && !args.RankB) ||
+					((Constants.GetWinRank(r.Rank) <= 3) && !args.RankX))
 					continue;
 
 
@@ -826,7 +826,7 @@ public partial class DialogDropRecordViewer : Form
 			RecordView.Sort(RecordView.SortedColumn ?? RecordView_Header,
 				RecordView.SortOrder == SortOrder.Ascending ? ListSortDirection.Ascending : ListSortDirection.Descending);
 
-			StatusInfo.Text = EncycloRes.SearchComplete + " (" + (int)( DateTime.Now - (DateTime)StatusInfo.Tag ).TotalMilliseconds + " ms)";
+			StatusInfo.Text = EncycloRes.SearchComplete + " (" + (int)(DateTime.Now - (DateTime)StatusInfo.Tag).TotalMilliseconds + " ms)";
 
 		}
 		else
@@ -915,9 +915,9 @@ public partial class DialogDropRecordViewer : Form
 			// merged
 
 			if (e.ColumnIndex == RecordView_Header.Index ||
-			    e.ColumnIndex == RecordView_RankS.Index ||
-			    e.ColumnIndex == RecordView_RankA.Index ||
-			    e.ColumnIndex == RecordView_RankB.Index)
+				e.ColumnIndex == RecordView_RankS.Index ||
+				e.ColumnIndex == RecordView_RankA.Index ||
+				e.ColumnIndex == RecordView_RankB.Index)
 			{
 
 				if (RecordView[e.ColumnIndex, e.RowIndex].Tag is double)

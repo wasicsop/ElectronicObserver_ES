@@ -1,12 +1,12 @@
-﻿using ElectronicObserver.Data;
-using ElectronicObserver.Resource.Record;
-using ElectronicObserver.Utility.Mathematics;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ElectronicObserver.Data;
+using ElectronicObserver.Resource.Record;
+using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Utility.Data;
@@ -64,7 +64,7 @@ public static class Calculator
 		{ EquipmentTypes.SeaplaneFighter,       0.2 },
 		{ EquipmentTypes.Interceptor,           0.2 },
 		{ EquipmentTypes.LandBasedAttacker,     0.5 },
-		{ EquipmentTypes.HeavyBomber,		    0.5 },
+		{ EquipmentTypes.HeavyBomber,           0.5 },
 	};
 
 
@@ -131,8 +131,8 @@ public static class Calculator
 		}
 
 		return (int)((eq.AA + levelBonus + interceptorBonus) * Math.Sqrt(count)
-		             + Math.Sqrt(aircraftExp / 10.0)
-		             + (AircraftLevelBonus.ContainsKey(category) ? AircraftLevelBonus[category][aircraftLevel] : 0));
+					 + Math.Sqrt(aircraftExp / 10.0)
+					 + (AircraftLevelBonus.ContainsKey(category) ? AircraftLevelBonus[category][aircraftLevel] : 0));
 	}
 
 
@@ -636,7 +636,7 @@ public static class Calculator
 			.Where(eq => eq != null && EquipmentExpeditionBonus.ContainsKey(eq.EquipmentID));
 
 		double normalBonus = eqs.Sum(eq => EquipmentExpeditionBonus[eq.EquipmentID])
-		                     + fleet.MembersInstance.Count(s => s != null && s.ShipID == 487) * 0.05;        // 鬼怒改二
+							 + fleet.MembersInstance.Count(s => s != null && s.ShipID == 487) * 0.05;        // 鬼怒改二
 
 		normalBonus = Math.Min(normalBonus, 0.2);
 		double levelBonus = eqs.Any() ? (0.01 * normalBonus * eqs.Average(eq => eq.Level)) : 0;
@@ -1043,15 +1043,15 @@ public static class Calculator
 				return NightAttackKind.CutinMainTorpedo;
 
 			else if ((mainGunCount == 2 && subGunCount == 0 & torpedoCount == 0) ||
-			         (mainGunCount == 1 && subGunCount > 0) ||
-			         (subGunCount >= 2 && torpedoCount <= 1))
+					 (mainGunCount == 1 && subGunCount > 0) ||
+					 (subGunCount >= 2 && torpedoCount <= 1))
 				return NightAttackKind.DoubleShelling;
 
 			// 空母カットイン
 			if (nightPersonnelCount > 0)
 			{
 				if (nightFighterCount > 0 &&
-				    (nightAttackerCount > 0 || (nightFighterCount + swordfishCount + nightCapableBomberCount) >= 3))
+					(nightAttackerCount > 0 || (nightFighterCount + swordfishCount + nightCapableBomberCount) >= 3))
 					return NightAttackKind.CutinAirAttack;
 				else if (nightBomberCount > 0 && (nightFighterCount + nightAttackerCount > 0))
 					return NightAttackKind.CutinAirAttack;
@@ -1691,11 +1691,11 @@ public static class Calculator
 	public static double GetAarbRate(IShipData ship, double adjustedAA)
 	{
 		if (ship.MasterShip.ShipType == ShipTypes.AircraftCarrier ||
-		    ship.MasterShip.ShipType == ShipTypes.LightAircraftCarrier ||
-		    ship.MasterShip.ShipType == ShipTypes.ArmoredAircraftCarrier ||
-		    ship.MasterShip.ShipType == ShipTypes.AviationBattleship ||
-		    ship.MasterShip.ShipType == ShipTypes.AviationCruiser ||
-		    ship.MasterShip.ShipType == ShipTypes.SeaplaneTender)
+			ship.MasterShip.ShipType == ShipTypes.LightAircraftCarrier ||
+			ship.MasterShip.ShipType == ShipTypes.ArmoredAircraftCarrier ||
+			ship.MasterShip.ShipType == ShipTypes.AviationBattleship ||
+			ship.MasterShip.ShipType == ShipTypes.AviationCruiser ||
+			ship.MasterShip.ShipType == ShipTypes.SeaplaneTender)
 		{
 			int rocketCount = ship.AllSlotInstance
 				.Where(eq => eq != null)

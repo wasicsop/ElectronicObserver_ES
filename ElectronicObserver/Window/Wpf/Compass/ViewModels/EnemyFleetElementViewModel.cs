@@ -24,7 +24,7 @@ public class EnemyFleetElementViewModel : ObservableObject
 			< 1 => null,
 			_ => Db.MasterShips[i]
 		})
-		.Select(s => new MasterShipViewModel {Ship = s})
+		.Select(s => new MasterShipViewModel { Ship = s })
 		.Take(6);
 
 	public string Formation => Constants.GetFormationShort(EnemyFleetCandidate.Formation);

@@ -1,8 +1,4 @@
-﻿using ElectronicObserver.Data;
-using ElectronicObserver.Resource;
-using ElectronicObserver.Window.Control;
-using ElectronicObserver.Window.Support;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,6 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ElectronicObserver.Data;
+using ElectronicObserver.Resource;
+using ElectronicObserver.Window.Control;
+using ElectronicObserver.Window.Support;
 using WeifenLuo.WinFormsUI.Docking;
 using Translation = ElectronicObserver.Properties.Window.FormFleetPreset;
 

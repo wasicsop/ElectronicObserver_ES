@@ -25,7 +25,7 @@ public partial class BattleView : UserControl
 
 	public BattleViewModel ViewModel
 	{
-		get => (BattleViewModel) GetValue(ViewModelProperty);
+		get => (BattleViewModel)GetValue(ViewModelProperty);
 		set => SetValue(ViewModelProperty, value);
 	}
 

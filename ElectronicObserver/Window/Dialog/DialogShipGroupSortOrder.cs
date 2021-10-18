@@ -1,6 +1,4 @@
-﻿using ElectronicObserver.Data;
-using ElectronicObserver.Window.Support;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ElectronicObserver.Data;
+using ElectronicObserver.Window.Support;
 using Translation = ElectronicObserver.Properties.Window.Dialog.DialogShipGroupSortOrder;
 
 namespace ElectronicObserver.Window.Dialog;
@@ -152,7 +152,7 @@ public partial class DialogShipGroupSortOrder : Form
 	{
 
 		e.SortResult = (int)DisabledView.Rows[e.RowIndex1].Tag -
-		               (int)DisabledView.Rows[e.RowIndex2].Tag;
+					   (int)DisabledView.Rows[e.RowIndex2].Tag;
 		e.Handled = true;
 
 	}

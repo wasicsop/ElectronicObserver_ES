@@ -1,9 +1,9 @@
-﻿using ElectronicObserver.Utility.Mathematics;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ElectronicObserver.Utility.Mathematics;
 
 namespace ElectronicObserver.Data;
 
@@ -68,7 +68,7 @@ public class DockData : ResponseWrapper, IIdentifiable
 				ShipID = (int)RawData.api_ship_id;
 				CompletionTime = DateTimeHelper.FromAPITime((long)RawData.api_complete_time);
 			}
-				break;
+			break;
 		}
 
 

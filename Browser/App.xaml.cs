@@ -1,10 +1,10 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using System;
+﻿using System;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Browser;
 
@@ -28,20 +28,20 @@ public partial class App : Application
 		// int port = 1;
 		// string culture = "en-US";
 		// FormBrowserHostから起動された時は引数に通信用URLが渡される
-			
+
 		if (e.Args.Length < 2)
 		{
 			MessageBox.Show("Please start the application using ElectronicObserver.exe",
 				"Information", MessageBoxButton.OK, MessageBoxImage.Information);
 			return;
 		}
-			
+
 		/*
 		System.Windows.Forms.Application.EnableVisualStyles();
 		System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
 		*/
 		System.AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
-			
+
 		string host = e.Args[0];
 		if (!int.TryParse(e.Args[1], out int port))
 		{
@@ -90,12 +90,12 @@ public partial class App : Application
 			catch (IOException ex) when (ex is FileNotFoundException || ex is FileLoadException)
 			{
 				if (MessageBox.Show(
-					    $@"The browser component could not be loaded.
+						$@"The browser component could not be loaded.
 Microsoft Visual C++ 2015 Redistributable is required.
 Open the download page?
 (Please install vc_redist.{(Environment.Is64BitProcess ? "x64" : "x86")}.exe)",
-					    "CefSharp Load Error", MessageBoxButton.YesNo, MessageBoxImage.Error, MessageBoxResult.Yes)
-				    == MessageBoxResult.Yes)
+						"CefSharp Load Error", MessageBoxButton.YesNo, MessageBoxImage.Error, MessageBoxResult.Yes)
+					== MessageBoxResult.Yes)
 				{
 					ProcessStartInfo psi = new ProcessStartInfo
 					{
@@ -113,11 +113,11 @@ Open the download page?
 				// 概ね ZoneID を外し忘れているのが原因
 
 				if (MessageBox.Show(
-					    @"Browser startup failed.
+						@"Browser startup failed.
 This may be caused by the fact that the operation required for installation has not been performed.
 Do you want to open the installation guide?",
-					    "Browser Load Failed", MessageBoxButton.YesNo, MessageBoxImage.Error)
-				    == MessageBoxResult.Yes)
+						"Browser Load Failed", MessageBoxButton.YesNo, MessageBoxImage.Error)
+					== MessageBoxResult.Yes)
 				{
 					ProcessStartInfo psi = new ProcessStartInfo
 					{

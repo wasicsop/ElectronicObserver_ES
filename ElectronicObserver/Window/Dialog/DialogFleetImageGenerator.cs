@@ -1,8 +1,4 @@
-﻿using ElectronicObserver.Data;
-using ElectronicObserver.Resource;
-using ElectronicObserver.Utility;
-using ElectronicObserver.Utility.Storage;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,6 +10,10 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ElectronicObserver.Data;
+using ElectronicObserver.Resource;
+using ElectronicObserver.Utility;
+using ElectronicObserver.Utility.Storage;
 using Translation = ElectronicObserver.Properties.Window.Dialog.DialogFleetImageGenerator;
 
 namespace ElectronicObserver.Window.Dialog;
@@ -417,8 +417,8 @@ public partial class DialogFleetImageGenerator : Form
 			if (!DisableOverwritePrompt.Checked && File.Exists(OutputPath.Text))
 			{
 				if (MessageBox.Show(string.Format(Translation.OverwriteExistingFile, Path.GetFileName(OutputPath.Text)), Translation.OverwriteConfirmation,
-					    MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2)
-				    == System.Windows.Forms.DialogResult.No)
+						MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2)
+					== System.Windows.Forms.DialogResult.No)
 				{
 					args.DisposeResources();
 					return;
@@ -476,7 +476,7 @@ public partial class DialogFleetImageGenerator : Form
 
 							image.Save(OutputPath.Text, codecInfo, encoderParams);
 						}
-							break;
+						break;
 					}
 
 					if (OpenImageAfterOutput.Checked)
@@ -620,8 +620,8 @@ public partial class DialogFleetImageGenerator : Form
 		{
 
 			if (MessageBox.Show(Translation.EnableShipImageSaving, Translation.InvalidSettings,
-				    MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1)
-			    == System.Windows.Forms.DialogResult.Yes)
+					MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1)
+				== System.Windows.Forms.DialogResult.Yes)
 			{
 
 				if (!config.SaveReceivedData)
@@ -656,7 +656,7 @@ public partial class DialogFleetImageGenerator : Form
 					break;
 			}
 
-			MessageBox.Show(string.Format(Translation.MissingImages, needs), Translation.ShipImageMissing, 
+			MessageBox.Show(string.Format(Translation.MissingImages, needs), Translation.ShipImageMissing,
 				MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
 			UpdateButtonAlert();
@@ -676,8 +676,8 @@ public partial class DialogFleetImageGenerator : Form
 	{
 
 		if (MessageBox.Show(Translation.ResetFontSettings, Translation.ClearConfirmation,
-			    MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2)
-		    == System.Windows.Forms.DialogResult.Yes)
+				MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2)
+			== System.Windows.Forms.DialogResult.Yes)
 		{
 
 			if (GeneralFont != null)

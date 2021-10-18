@@ -12,11 +12,11 @@ public static class AswAttackPower
 	{
 		int eqpower = ship.EquipmentAswPower();
 		double basepower = (Math.Sqrt(ship.ASWBase) * 2
-		                    + eqpower * 1.5 + ship.GetAntiSubmarineEquipmentLevelBonus()
-		                    + AswAttackConstant(attack))
-		                   * ship.GetHPDamageBonus()
-		                   * Damage.EngagementDayAttackMod(engagement)
-		                   * ship.AswMod();
+							+ eqpower * 1.5 + ship.GetAntiSubmarineEquipmentLevelBonus()
+							+ AswAttackConstant(attack))
+						   * ship.GetHPDamageBonus()
+						   * Damage.EngagementDayAttackMod(engagement)
+						   * ship.AswMod();
 
 		basepower = Damage.Cap(basepower, Damage.AswAttackCap);
 

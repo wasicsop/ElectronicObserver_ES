@@ -1,5 +1,4 @@
-﻿using ElectronicObserver.Notifier;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,6 +9,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ElectronicObserver.Notifier;
 
 namespace ElectronicObserver.Window.Dialog;
 
@@ -195,7 +195,7 @@ public partial class DialogNotifier : Form
 		catch (Exception ex)
 		{
 
-			Utility.ErrorReporter.SendErrorReport(ex, NotifyRes.NotifyDisplayError );
+			Utility.ErrorReporter.SendErrorReport(ex, NotifyRes.NotifyDisplayError);
 		}
 	}
 
@@ -217,7 +217,7 @@ public partial class DialogNotifier : Form
 		if ((e.Button & System.Windows.Forms.MouseButtons.Left) != 0)
 		{
 			if ((flag & NotifierDialogClickFlags.Left) != 0 ||
-			    ((flag & NotifierDialogClickFlags.LeftDouble) != 0 && e.Clicks > 1))
+				((flag & NotifierDialogClickFlags.LeftDouble) != 0 && e.Clicks > 1))
 			{
 				Close();
 				return;
@@ -227,7 +227,7 @@ public partial class DialogNotifier : Form
 		if ((e.Button & System.Windows.Forms.MouseButtons.Right) != 0)
 		{
 			if ((flag & NotifierDialogClickFlags.Right) != 0 ||
-			    ((flag & NotifierDialogClickFlags.RightDouble) != 0 && e.Clicks > 1))
+				((flag & NotifierDialogClickFlags.RightDouble) != 0 && e.Clicks > 1))
 			{
 				Close();
 				return;
@@ -237,7 +237,7 @@ public partial class DialogNotifier : Form
 		if ((e.Button & System.Windows.Forms.MouseButtons.Middle) != 0)
 		{
 			if ((flag & NotifierDialogClickFlags.Middle) != 0 ||
-			    ((flag & NotifierDialogClickFlags.MiddleDouble) != 0 && e.Clicks > 1))
+				((flag & NotifierDialogClickFlags.MiddleDouble) != 0 && e.Clicks > 1))
 			{
 				Close();
 				return;

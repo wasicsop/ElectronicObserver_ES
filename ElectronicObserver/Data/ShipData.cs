@@ -1,12 +1,12 @@
-﻿using ElectronicObserver.Utility.Data;
-using ElectronicObserver.Utility.Mathematics;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ElectronicObserver.Utility.Data;
+using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Data;
@@ -905,8 +905,8 @@ public class ShipData : APIWrapper, IIdentifiable, IShipData
 	private double GetLightCruiserDamageBonus()
 	{
 		if (MasterShip.ShipType == ShipTypes.LightCruiser ||
-		    MasterShip.ShipType == ShipTypes.TorpedoCruiser ||
-		    MasterShip.ShipType == ShipTypes.TrainingCruiser)
+			MasterShip.ShipType == ShipTypes.TorpedoCruiser ||
+			MasterShip.ShipType == ShipTypes.TrainingCruiser)
 		{
 
 			int single = 0;
@@ -1043,7 +1043,7 @@ public class ShipData : APIWrapper, IIdentifiable, IShipData
 			case DayAttackKind.SeaAirMultiAngle:
 				basepower *= 1.3;
 				break;
-				
+
 		}
 
 		return (int)(basepower * GetAmmoDamageRate());
@@ -1217,13 +1217,13 @@ public class ShipData : APIWrapper, IIdentifiable, IShipData
 			var airs = SlotInstance.Zip(Aircraft, (eq, count) => new { eq, master = eq?.MasterEquipment, count }).Where(a => a.eq != null);
 
 			basepower = FirepowerBase +
-			            airs.Where(p => p.master.IsNightAircraft)
-				            .Sum(p => p.master.Firepower + p.master.Torpedo + p.master.Bomber +
-				                      3 * p.count +
-				                      0.45 * (p.master.Firepower + p.master.Torpedo + p.master.Bomber + p.master.ASW) * Math.Sqrt(p.count) + Math.Sqrt(p.eq.Level)) +
-			            airs.Where(p => p.master.IsSwordfish || p.master.EquipmentID == 154 || p.master.EquipmentID == 320)   // 零戦62型(爆戦/岩井隊)、彗星一二型(三一号光電管爆弾搭載機)
-				            .Sum(p => p.master.Firepower + p.master.Torpedo + p.master.Bomber +
-				                      0.3 * (p.master.Firepower + p.master.Torpedo + p.master.Bomber + p.master.ASW) * Math.Sqrt(p.count) + Math.Sqrt(p.eq.Level));
+						airs.Where(p => p.master.IsNightAircraft)
+							.Sum(p => p.master.Firepower + p.master.Torpedo + p.master.Bomber +
+									  3 * p.count +
+									  0.45 * (p.master.Firepower + p.master.Torpedo + p.master.Bomber + p.master.ASW) * Math.Sqrt(p.count) + Math.Sqrt(p.eq.Level)) +
+						airs.Where(p => p.master.IsSwordfish || p.master.EquipmentID == 154 || p.master.EquipmentID == 320)   // 零戦62型(爆戦/岩井隊)、彗星一二型(三一号光電管爆弾搭載機)
+							.Sum(p => p.master.Firepower + p.master.Torpedo + p.master.Bomber +
+									  0.3 * (p.master.Firepower + p.master.Torpedo + p.master.Bomber + p.master.ASW) * Math.Sqrt(p.count) + Math.Sqrt(p.eq.Level));
 
 		}
 		else if (ShipID == 515 || ShipID == 393)
@@ -1267,7 +1267,7 @@ public class ShipData : APIWrapper, IIdentifiable, IShipData
 						break;
 				}
 			}
-				break;
+			break;
 
 			case NightAttackKind.CutinMainSub:
 				basepower *= 1.75;
@@ -1292,7 +1292,7 @@ public class ShipData : APIWrapper, IIdentifiable, IShipData
 				else
 					basepower *= 1.18;
 			}
-				break;
+			break;
 
 			case NightAttackKind.CutinTorpedoRadar:
 			{
@@ -1305,12 +1305,12 @@ public class ShipData : APIWrapper, IIdentifiable, IShipData
 
 				basepower *= baseModifier;
 			}
-                    
-				break;
+
+			break;
 
 			case NightAttackKind.CutinTorpedoPicket:
 			{
-				double baseModifier = 1.25;		// TODO: 処理の共通化
+				double baseModifier = 1.25;     // TODO: 処理の共通化
 				int typeDmod2 = AllSlotInstanceMaster.Count(eq => eq?.EquipmentID == 267);  // 12.7cm連装砲D型改二
 				int typeDmod3 = AllSlotInstanceMaster.Count(eq => eq?.EquipmentID == 366);  // 12.7cm連装砲D型改三
 				var modifierTable = new double[] { 1, 1.25, 1.4 };
@@ -1319,7 +1319,7 @@ public class ShipData : APIWrapper, IIdentifiable, IShipData
 
 				basepower *= baseModifier;
 			}
-				break;
+			break;
 		}
 
 		basepower += GetLightCruiserDamageBonus() + GetItalianDamageBonus();
@@ -1379,8 +1379,8 @@ public class ShipData : APIWrapper, IIdentifiable, IShipData
 					return AllSlotInstanceMaster.Any(eq => eq != null && eq.IsAntiSubmarineAircraft);
 
 				case ShipTypes.AircraftCarrier:
-					return ShipID == 646 &&			// 加賀改二護
-					       AllSlotInstanceMaster.Any(eq => eq != null && eq.IsAntiSubmarineAircraft);
+					return ShipID == 646 &&         // 加賀改二護
+						   AllSlotInstanceMaster.Any(eq => eq != null && eq.IsAntiSubmarineAircraft);
 
 				default:
 					return false;
@@ -1426,11 +1426,11 @@ public class ShipData : APIWrapper, IIdentifiable, IShipData
 				case 529:   // 大鷹改二
 				case 381:   // 神鷹改
 				case 536:   // 神鷹改二
-				case 646:	// 加賀改二護
+				case 646:   // 加賀改二護
 					return true;
 
 				case 554:   // 日向改二
-					// カ号観測機, オ号観測機改, オ号観測機改二
+							// カ号観測機, オ号観測機改, オ号観測機改二
 					if (eqs.Count(eq => eq.EquipmentID == 69 || eq.EquipmentID == 324 || eq.EquipmentID == 325) >= 2)
 						return true;
 					// S-51J, S-51J改
@@ -1472,13 +1472,13 @@ public class ShipData : APIWrapper, IIdentifiable, IShipData
 
 	public bool CanNoSonarOpeningAsw => MasterShip switch
 	{
-		{ ShipId: ShipId.JervisKai} or
-			{ ShipId: ShipId.JanusKai} or
-			{ ShipId: ShipId.SamuelBRobertsKai} or
-			{ ShipId: ShipId.IsuzuKaiNi} or
-			{ ShipId: ShipId.TatsutaKaiNi} or
-			{ ShipId: ShipId.YuubariKaiNiD} or
-			{ ShipClass: 91} => true, // Fletcher class
+		{ ShipId: ShipId.JervisKai } or
+		{ ShipId: ShipId.JanusKai } or
+		{ ShipId: ShipId.SamuelBRobertsKai } or
+		{ ShipId: ShipId.IsuzuKaiNi } or
+		{ ShipId: ShipId.TatsutaKaiNi } or
+		{ ShipId: ShipId.YuubariKaiNiD } or
+		{ ShipClass: 91 } => true, // Fletcher class
 
 		_ => false
 	};
@@ -1513,7 +1513,7 @@ public class ShipData : APIWrapper, IIdentifiable, IShipData
 
 				// Saratoga Mk.II/赤城改二戊/加賀改二戊 は不要
 				bool hasNightPersonnel = master.ShipID == 545 || master.ShipID == 599 || master.ShipID == 610 ||
-				                         AllSlotInstanceMaster.Any(eq => eq != null && eq.IsNightAviationPersonnel);
+										 AllSlotInstanceMaster.Any(eq => eq != null && eq.IsNightAviationPersonnel);
 
 				bool hasNightAircraft = AllSlotInstanceMaster.Any(eq => eq != null && eq.IsNightAircraft);
 
@@ -1599,7 +1599,7 @@ public class ShipData : APIWrapper, IIdentifiable, IShipData
 					db.Equipments.Remove(Slot[i]);
 				}
 			}
-				break;
+			break;
 
 			case "api_req_kaisou/open_exslot":
 				ExpansionSlot = -1;

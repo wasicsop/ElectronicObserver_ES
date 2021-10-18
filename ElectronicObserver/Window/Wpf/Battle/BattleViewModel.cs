@@ -27,7 +27,7 @@ public class BattleViewModel : AnchorableViewModel
 {
 	public FormBattleTranslationViewModel FormBattle { get; }
 
-	private SolidColorBrush WinRankColor_Win {get;} = Utility.Configuration.Config.UI.ForeColor.ToBrush();
+	private SolidColorBrush WinRankColor_Win { get; } = Utility.Configuration.Config.UI.ForeColor.ToBrush();
 	private SolidColorBrush WinRankColor_Lose { get; } = Utility.Configuration.Config.UI.Color_Red.ToBrush();
 
 	public Visibility ViewVisibility { get; set; } = Visibility.Collapsed;
@@ -237,7 +237,7 @@ public class BattleViewModel : AnchorableViewModel
 		TableTop.SuspendLayout();
 		TableBottom.SuspendLayout();
 		*/
-			
+
 		switch (apiname)
 		{
 
@@ -280,7 +280,7 @@ public class BattleViewModel : AnchorableViewModel
 				// BaseLayoutPanel.Visible = !hideDuringBattle;
 				ViewVisibility = (!hideDuringBattle).ToVisibility();
 			}
-				break;
+			break;
 
 			case "api_req_battle_midnight/battle":
 			case "api_req_practice/midnight_battle":
@@ -293,7 +293,7 @@ public class BattleViewModel : AnchorableViewModel
 				// BaseLayoutPanel.Visible = !hideDuringBattle;
 				ViewVisibility = (!hideDuringBattle).ToVisibility();
 			}
-				break;
+			break;
 
 			case "api_req_battle_midnight/sp_midnight":
 			{
@@ -309,7 +309,7 @@ public class BattleViewModel : AnchorableViewModel
 				// BaseLayoutPanel.Visible = !hideDuringBattle;
 				ViewVisibility = (!hideDuringBattle).ToVisibility();
 			}
-				break;
+			break;
 
 			case "api_req_sortie/airbattle":
 			{
@@ -324,7 +324,7 @@ public class BattleViewModel : AnchorableViewModel
 				// BaseLayoutPanel.Visible = !hideDuringBattle;
 				ViewVisibility = (!hideDuringBattle).ToVisibility();
 			}
-				break;
+			break;
 
 			case "api_req_sortie/night_to_day":
 			{
@@ -350,7 +350,7 @@ public class BattleViewModel : AnchorableViewModel
 				// BaseLayoutPanel.Visible = !hideDuringBattle;
 				ViewVisibility = (!hideDuringBattle).ToVisibility();
 			}
-				break;
+			break;
 
 			case "api_req_combined_battle/battle":
 			case "api_req_combined_battle/battle_water":
@@ -371,7 +371,7 @@ public class BattleViewModel : AnchorableViewModel
 				// BaseLayoutPanel.Visible = !hideDuringBattle;
 				ViewVisibility = (!hideDuringBattle).ToVisibility();
 			}
-				break;
+			break;
 
 			case "api_req_combined_battle/airbattle":
 			{
@@ -386,7 +386,7 @@ public class BattleViewModel : AnchorableViewModel
 				// BaseLayoutPanel.Visible = !hideDuringBattle;
 				ViewVisibility = (!hideDuringBattle).ToVisibility();
 			}
-				break;
+			break;
 
 			case "api_req_combined_battle/midnight_battle":
 			case "api_req_combined_battle/ec_midnight_battle":
@@ -399,7 +399,7 @@ public class BattleViewModel : AnchorableViewModel
 				// BaseLayoutPanel.Visible = !hideDuringBattle;
 				ViewVisibility = (!hideDuringBattle).ToVisibility();
 			}
-				break;
+			break;
 
 			case "api_req_combined_battle/sp_midnight":
 			{
@@ -415,7 +415,7 @@ public class BattleViewModel : AnchorableViewModel
 				// BaseLayoutPanel.Visible = !hideDuringBattle;
 				ViewVisibility = (!hideDuringBattle).ToVisibility();
 			}
-				break;
+			break;
 
 			case "api_req_combined_battle/ec_night_to_day":
 			{
@@ -440,7 +440,7 @@ public class BattleViewModel : AnchorableViewModel
 				// BaseLayoutPanel.Visible = !hideDuringBattle;
 				ViewVisibility = (!hideDuringBattle).ToVisibility();
 			}
-				break;
+			break;
 
 			case "api_req_sortie/battleresult":
 			case "api_req_combined_battle/battleresult":
@@ -452,7 +452,7 @@ public class BattleViewModel : AnchorableViewModel
 				// BaseLayoutPanel.Visible = true;
 				ViewVisibility = Visibility.Visible;
 			}
-				break;
+			break;
 
 		}
 		/*
@@ -570,7 +570,7 @@ public class BattleViewModel : AnchorableViewModel
 		SearchingFriendText = "-";
 		SearchingFriendIcon = null;
 		SearchingFriendToolTip = null;
-			
+
 		SearchingEnemyText = "-";
 		SearchingEnemyIcon = null;
 		SearchingEnemyToolTip = null;
@@ -588,7 +588,7 @@ public class BattleViewModel : AnchorableViewModel
 			// Searching.ImageAlign = ContentAlignment.MiddleLeft;
 			// Searching.ImageIndex = (int)ResourceManager.EquipmentContent.LandAttacker;
 			SearchingIcon = ImageSourceIcons.GetEquipmentIcon(EquipmentIconType.LandBasedAttacker);
-				
+
 			var sb = new StringBuilder();
 			int index = 1;
 
@@ -771,7 +771,7 @@ public class BattleViewModel : AnchorableViewModel
 		{
 			bool needAppendInfo = phases[0].Stage1Enabled || phases[2].Stage1Enabled;
 			var phases1 = phases.Where(p => p.Stage1Enabled);
-				
+
 			AirSuperiorityText = Constants.GetAirSuperiority(phases[1].Air.AirSuperiority);
 			AirSuperiorityForeColor = (phases[1].Air.AirSuperiority switch
 			{
@@ -783,13 +783,13 @@ public class BattleViewModel : AnchorableViewModel
 				_ => Utility.Configuration.Config.UI.ForeColor
 			}).ToBrush();
 
-			AirSuperiorityToolTip = needAppendInfo ? 
-				string.Join("", phases1.Select(p => $"{p.PhaseName}{Constants.GetAirSuperiority(p.Air.AirSuperiority)}\r\n")) 
+			AirSuperiorityToolTip = needAppendInfo ?
+				string.Join("", phases1.Select(p => $"{p.PhaseName}{Constants.GetAirSuperiority(p.Air.AirSuperiority)}\r\n"))
 				: null;
-				
+
 			// SetShootdown(AirStage1Friend, 1, true, needAppendInfo);
 			// SetShootdown(AirStage1Enemy, 1, false, needAppendInfo);
-				
+
 
 			(AirStage1FriendText, AirStage1FriendToolTip, AirStage1FriendForeColor, AirStage1FriendIcon) =
 				SetShootdown(1, true, needAppendInfo);
@@ -808,8 +808,8 @@ public class BattleViewModel : AnchorableViewModel
 					// label.ImageIndex = (int)ResourceManager.EquipmentContent.Seaplane;
 
 					icon = ImageSourceIcons.GetEquipmentIcon(EquipmentIconType.Seaplane);
-					toolTip += FormBattle.Contact + "\r\n" + 
-					           string.Join("\r\n", phases1.Select(p => $"{p.PhaseName}{(KCDatabase.Instance.MasterEquipments[p.GetTouchAircraft(isFriend)]?.NameEN ?? FormBattle.None)}"));
+					toolTip += FormBattle.Contact + "\r\n" +
+							   string.Join("\r\n", phases1.Select(p => $"{p.PhaseName}{(KCDatabase.Instance.MasterEquipments[p.GetTouchAircraft(isFriend)]?.NameEN ?? FormBattle.None)}"));
 				}
 				else
 				{
@@ -820,7 +820,7 @@ public class BattleViewModel : AnchorableViewModel
 
 				return (toolTip, icon);
 			}
-				
+
 			// SetTouch(AirStage1Friend, true);
 			// SetTouch(AirStage1Enemy, false);
 
@@ -829,7 +829,7 @@ public class BattleViewModel : AnchorableViewModel
 		}
 		else
 		{
-				
+
 			AirSuperiorityText = Constants.GetAirSuperiority(-1);
 			AirSuperiorityToolTip = null;
 
@@ -1269,11 +1269,11 @@ public class BattleViewModel : AnchorableViewModel
 	/// </summary>
 	private void MoveHPBar(bool hasFriend7thShip)
 	{
-			
+
 		if (Utility.Configuration.Config.FormBattle.Display7thAsSingleLine && hasFriend7thShip)
 		{
 			if (_hpBarMoved) return;
-				
+
 			PlayerMainHPBars.Add(PlayerEscortHPBars[0]);
 			PlayerEscortHPBars.RemoveAt(0);
 
@@ -1294,7 +1294,7 @@ public class BattleViewModel : AnchorableViewModel
 			// ControlHelper.SetTableRowStyle(TableBottom, 7, new RowStyle(SizeType.Absolute, 0));
 			_hpBarMoved = false;
 		}
-			
+
 	}
 
 
@@ -1303,7 +1303,7 @@ public class BattleViewModel : AnchorableViewModel
 	/// </summary>
 	private void SetDamageRate(BattleManager bm)
 	{
-			
+
 		int rank = bm.PredictWinRank(out double friendrate, out double enemyrate);
 
 		DamageFriendText = friendrate.ToString("p1");
@@ -1322,7 +1322,7 @@ public class BattleViewModel : AnchorableViewModel
 		}
 
 		// WinRank.MinimumSize = Utility.Configuration.Config.UI.IsLayoutFixed ? new Size(DefaultBarSize.Width, 0) : new Size(HPBars[0].Width, 0);
-			
+
 	}
 
 	/// <summary>
@@ -1433,7 +1433,7 @@ public class BattleViewModel : AnchorableViewModel
 	/// <param name="bm">戦闘データ。</param>
 	private void SetMVPShip(BattleManager bm)
 	{
-			
+
 		bool isCombined = bm.IsCombinedBattle;
 
 		var bd = bm.StartsFromDayBattle ? (BattleData)bm.BattleDay : (BattleData)bm.BattleNight;
@@ -1455,7 +1455,7 @@ public class BattleViewModel : AnchorableViewModel
 		}
 		//*/
 
-			
+
 		for (int i = 0; i < friend.Members.Count; i++)
 		{
 			if (friend.EscapedShipList.Contains(friend.Members[i]))
@@ -1494,7 +1494,7 @@ public class BattleViewModel : AnchorableViewModel
 				// HPBars[i + 6].RepaintHPtext();
 			}
 		}
-			
+
 		/*// debug
 		if ( WinRank.Text.First().ToString() != bm.Result.Rank ) {
 			Utility.Logger.Add( 1, string.Format( "戦闘評価予測が誤っています。(予測: {0}, 実際: {1})", WinRank.Text.First().ToString(), bm.Result.Rank ) );

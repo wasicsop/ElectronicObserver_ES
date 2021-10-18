@@ -10,17 +10,17 @@ namespace KancolleProgress.Views;
 public sealed partial class ShipView : UserControl
 {
 	public static readonly DependencyProperty ShipProperty = DependencyProperty.Register(
-		"Ship", 
-		typeof(ShipViewModel), 
-		typeof(ShipView), 
+		"Ship",
+		typeof(ShipViewModel),
+		typeof(ShipView),
 		new PropertyMetadata(default(ShipViewModel)));
 
 	public ShipViewModel Ship
 	{
-		get => (ShipViewModel) GetValue(ShipProperty);
+		get => (ShipViewModel)GetValue(ShipProperty);
 		set => SetValue(ShipProperty, value);
 	}
-		
+
 	public ShipView()
 	{
 		this.InitializeComponent();

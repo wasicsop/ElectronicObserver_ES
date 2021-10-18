@@ -1,10 +1,10 @@
-﻿using DynaJson;
-using ElectronicObserver.Utility;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Threading;
+using DynaJson;
+using ElectronicObserver.Utility;
 
 namespace ElectronicObserver.Data.Translation;
 

@@ -1,10 +1,10 @@
-﻿using ElectronicObserver.Window.Dialog.QuestTrackerManager.Models.Conditions;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using ElectronicObserver.Window.Dialog.QuestTrackerManager.Models.Conditions;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.Models.Tasks;
 using MessagePack;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
 
 namespace ElectronicObserver.Window.Dialog.QuestTrackerManager.Models;
 

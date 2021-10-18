@@ -1,9 +1,9 @@
-﻿using ElectronicObserver.Data;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ElectronicObserver.Data;
 
 namespace ElectronicObserver.Observer.kcsapi.api_req_kaisou;
 
@@ -11,7 +11,7 @@ public class slot_exchange_index : APIBase
 {
 	public override bool IsResponseSupported => true;
 
-		
+
 	public override void OnResponseReceived(dynamic data)
 	{
 		int shipID = (int)data.api_ship_data.api_id;

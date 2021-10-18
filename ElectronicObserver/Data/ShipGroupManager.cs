@@ -1,13 +1,13 @@
-﻿using ElectronicObserver.Resource;
-using ElectronicObserver.Utility.Storage;
-using Microsoft.VisualBasic.FileIO;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
+using ElectronicObserver.Resource;
+using ElectronicObserver.Utility.Storage;
+using Microsoft.VisualBasic.FileIO;
 
 namespace ElectronicObserver.Data;
 

@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 using System.Linq;
+using System.Runtime.InteropServices;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ElectronicObserver.Data;
-using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Resource;
-using System.Drawing.Drawing2D;
-using System.Drawing.Imaging;
-using System.Runtime.InteropServices;
-using System.Runtime.Serialization;
+using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Utility.Storage;
 using ElectronicObserverTypes;
 
@@ -251,8 +251,8 @@ public class FleetImageGenerator
 					g.DrawString(fleetSearchingAbilityTitle, args.SmallFont, subTextBrush, new Rectangle(fleetPointer + GetAlignmentOffset(ContentAlignment.MiddleLeft, fleetSearchingAbilityTitleSize, fleetParameterAreaSize), fleetSearchingAbilityTitleSize), formatMiddleLeft);
 					fleetPointer.X += fleetAirSuperiorityTitleSize.Width;
 
-					Size paramValueSize = MeasureString(g," "+ fleet.GetSearchingAbilityString() + "/ " + fleet.GetSearchingAbilityString(2) + "/ " + fleet.GetSearchingAbilityString(3) + "/ " + fleet.GetSearchingAbilityString(4), args.MediumDigitFont, MaxValueSize, formatMiddleLeft);
-					g.DrawString(" "+fleet.GetSearchingAbilityString() + "/ " + fleet.GetSearchingAbilityString(2) + "/ " + fleet.GetSearchingAbilityString(3) + "/ " + fleet.GetSearchingAbilityString(4), args.MediumDigitFont, mainTextBrush, new Rectangle(fleetPointer + GetAlignmentOffset(ContentAlignment.MiddleLeft, paramValueSize, fleetParameterAreaSize), paramValueSize), formatMiddleLeft);
+					Size paramValueSize = MeasureString(g, " " + fleet.GetSearchingAbilityString() + "/ " + fleet.GetSearchingAbilityString(2) + "/ " + fleet.GetSearchingAbilityString(3) + "/ " + fleet.GetSearchingAbilityString(4), args.MediumDigitFont, MaxValueSize, formatMiddleLeft);
+					g.DrawString(" " + fleet.GetSearchingAbilityString() + "/ " + fleet.GetSearchingAbilityString(2) + "/ " + fleet.GetSearchingAbilityString(3) + "/ " + fleet.GetSearchingAbilityString(4), args.MediumDigitFont, mainTextBrush, new Rectangle(fleetPointer + GetAlignmentOffset(ContentAlignment.MiddleLeft, paramValueSize, fleetParameterAreaSize), paramValueSize), formatMiddleLeft);
 					fleetPointer.X += paramValueSize.Width + fleetParameterAreaInnerMargin.Width;
 				}
 
@@ -671,8 +671,8 @@ public class FleetImageGenerator
 					g.DrawString(fleetSearchingAbilityTitle, args.SmallFont, subTextBrush, new Rectangle(fleetPointer + GetAlignmentOffset(ContentAlignment.MiddleLeft, fleetSearchingAbilityTitleSize, fleetParameterAreaSize), fleetSearchingAbilityTitleSize), formatMiddleLeft);
 					fleetPointer.X += fleetAirSuperiorityTitleSize.Width;
 
-					Size paramValueSize = MeasureString(g," "+fleet.GetSearchingAbilityString() + "/ " + fleet.GetSearchingAbilityString(2) + "/ " + fleet.GetSearchingAbilityString(3) + "/ " + fleet.GetSearchingAbilityString(4), args.MediumDigitFont, MaxValueSize, formatMiddleLeft);
-					g.DrawString( " "+fleet.GetSearchingAbilityString() + "/ " + fleet.GetSearchingAbilityString(2) + "/ " + fleet.GetSearchingAbilityString(3) + "/ " + fleet.GetSearchingAbilityString(4), args.MediumDigitFont, mainTextBrush, new Rectangle(fleetPointer + GetAlignmentOffset(ContentAlignment.MiddleLeft, paramValueSize, fleetParameterAreaSize), paramValueSize), formatMiddleLeft);
+					Size paramValueSize = MeasureString(g, " " + fleet.GetSearchingAbilityString() + "/ " + fleet.GetSearchingAbilityString(2) + "/ " + fleet.GetSearchingAbilityString(3) + "/ " + fleet.GetSearchingAbilityString(4), args.MediumDigitFont, MaxValueSize, formatMiddleLeft);
+					g.DrawString(" " + fleet.GetSearchingAbilityString() + "/ " + fleet.GetSearchingAbilityString(2) + "/ " + fleet.GetSearchingAbilityString(3) + "/ " + fleet.GetSearchingAbilityString(4), args.MediumDigitFont, mainTextBrush, new Rectangle(fleetPointer + GetAlignmentOffset(ContentAlignment.MiddleLeft, paramValueSize, fleetParameterAreaSize), paramValueSize), formatMiddleLeft);
 					fleetPointer.X += paramValueSize.Width + fleetParameterAreaInnerMargin.Width;
 				}
 
@@ -1145,8 +1145,8 @@ public class FleetImageGenerator
 					g.DrawString(fleetSearchingAbilityTitle, args.SmallFont, subTextBrush, new Rectangle(fleetPointer + GetAlignmentOffset(ContentAlignment.MiddleLeft, fleetSearchingAbilityTitleSize, fleetParameterAreaSize), fleetSearchingAbilityTitleSize), formatMiddleLeft);
 					fleetPointer.X += fleetAirSuperiorityTitleSize.Width;
 
-					Size paramValueSize = MeasureString(g, " "+fleet.GetSearchingAbilityString() + "/ " + fleet.GetSearchingAbilityString(2) + "/ " + fleet.GetSearchingAbilityString(3) + "/ " + fleet.GetSearchingAbilityString(4), args.MediumDigitFont, MaxValueSize, formatMiddleLeft);
-					g.DrawString(" "+fleet.GetSearchingAbilityString() + "/ " + fleet.GetSearchingAbilityString(2)+ "/ " + fleet.GetSearchingAbilityString(3)+ "/ " + fleet.GetSearchingAbilityString(4), args.MediumDigitFont, mainTextBrush, new Rectangle(fleetPointer + GetAlignmentOffset(ContentAlignment.MiddleLeft, paramValueSize, fleetParameterAreaSize), paramValueSize), formatMiddleLeft);
+					Size paramValueSize = MeasureString(g, " " + fleet.GetSearchingAbilityString() + "/ " + fleet.GetSearchingAbilityString(2) + "/ " + fleet.GetSearchingAbilityString(3) + "/ " + fleet.GetSearchingAbilityString(4), args.MediumDigitFont, MaxValueSize, formatMiddleLeft);
+					g.DrawString(" " + fleet.GetSearchingAbilityString() + "/ " + fleet.GetSearchingAbilityString(2) + "/ " + fleet.GetSearchingAbilityString(3) + "/ " + fleet.GetSearchingAbilityString(4), args.MediumDigitFont, mainTextBrush, new Rectangle(fleetPointer + GetAlignmentOffset(ContentAlignment.MiddleLeft, paramValueSize, fleetParameterAreaSize), paramValueSize), formatMiddleLeft);
 					fleetPointer.X += paramValueSize.Width + fleetParameterAreaInnerMargin.Width;
 				}
 

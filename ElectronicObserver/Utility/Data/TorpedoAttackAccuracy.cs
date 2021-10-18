@@ -18,7 +18,7 @@ public static class TorpedoAttackAccuracy
 		// ReSharper disable once PossibleLossOfFraction
 		// it's floored in the formula so the loss is intended
 		return (baseAccuracy + shipAccuracy + equipAccuracy + ship.TorpedoPower / 5)
-		       * ship.ConditionMod();
+			   * ship.ConditionMod();
 	}
 
 	private static int BaseAccuracy(this IFleetData fleet) => 85;

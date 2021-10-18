@@ -1,10 +1,10 @@
-﻿using ElectronicObserver.Data;
-using ElectronicObserver.Observer;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ElectronicObserver.Data;
+using ElectronicObserver.Observer;
 using ElectronicObserver.Properties;
 using ElectronicObserver.Utility;
 
@@ -108,7 +108,7 @@ public class NotifierBaseAirCorps : NotifierBase
 	private void Initalize()
 	{
 		DialogData.Title = NotifierBaseAirCorpsResources.Title;
-			
+
 		APIObserver o = APIObserver.Instance;
 
 		o["api_port/port"].ResponseReceived += Port;
@@ -221,9 +221,9 @@ public class NotifierBaseAirCorps : NotifierBase
 				(NotifiesEventMap && db.MapArea[corps.MapAreaID].MapType == 1)))
 			{
 				var targetSquadrons = corps.Squadrons.Values
-					.Where(sq => sq.State == 2 && 
-					             !NotifiedEquipments.Contains(sq.EquipmentID) && 
-					             (DateTime.Now - sq.RelocatedTime) >= RelocationSpan)
+					.Where(sq => sq.State == 2 &&
+								 !NotifiedEquipments.Contains(sq.EquipmentID) &&
+								 (DateTime.Now - sq.RelocatedTime) >= RelocationSpan)
 					.ToList();
 
 				if (targetSquadrons.Any())
@@ -248,7 +248,7 @@ public class NotifierBaseAirCorps : NotifierBase
 		{
 			var targets = db.RelocatedEquipments
 				.Where(kv => !NotifiedEquipments.Contains(kv.Key) &&
-				             (DateTime.Now - kv.Value.RelocatedTime) >= RelocationSpan)
+							 (DateTime.Now - kv.Value.RelocatedTime) >= RelocationSpan)
 				.ToList();
 
 			if (targets.Any())

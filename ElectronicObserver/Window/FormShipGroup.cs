@@ -1,13 +1,4 @@
-﻿using ElectronicObserver.Data;
-using ElectronicObserver.Data.ShipGroup;
-using ElectronicObserver.Observer;
-using ElectronicObserver.Resource;
-using ElectronicObserver.Utility;
-using ElectronicObserver.Utility.Mathematics;
-using ElectronicObserver.Window.Control;
-using ElectronicObserver.Window.Dialog;
-using ElectronicObserver.Window.Support;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,6 +8,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ElectronicObserver.Data;
+using ElectronicObserver.Data.ShipGroup;
+using ElectronicObserver.Observer;
+using ElectronicObserver.Resource;
+using ElectronicObserver.Utility;
+using ElectronicObserver.Utility.Mathematics;
+using ElectronicObserver.Window.Control;
+using ElectronicObserver.Window.Dialog;
+using ElectronicObserver.Window.Support;
 using WeifenLuo.WinFormsUI.Docking;
 using Translation = ElectronicObserver.Properties.Window.FormShipGroup;
 
@@ -815,7 +815,7 @@ public partial class FormShipGroup : DockContent
 				int totalShipCount = group.Members.Count;
 				var levels = ShipView.SelectedRows.Cast<DataGridViewRow>().Select(r => (int)r.Cells[ShipView_Level.Index].Value);
 				var exp = ShipView.SelectedRows.Cast<DataGridViewRow>().Select(r => (int)r.Cells[ShipView_Exp.Index].Value);
-                    
+
 				Status_ShipCount.Text = string.Format(Translation.SelectedShips, selectedShipCount, totalShipCount);
 				Status_LevelTotal.Text = string.Format(Translation.TotalAndAverageLevel, levels.Sum(), levels.Average());
 				Status_LevelAverage.Text = string.Format(Translation.TotalAndAverageExp, exp.Sum(), exp.Average());
@@ -887,10 +887,10 @@ public partial class FormShipGroup : DockContent
 
 		}
 		else if (e.ColumnIndex == ShipView_Aircraft1.Index ||
-		         e.ColumnIndex == ShipView_Aircraft2.Index ||
-		         e.ColumnIndex == ShipView_Aircraft3.Index ||
-		         e.ColumnIndex == ShipView_Aircraft4.Index ||
-		         e.ColumnIndex == ShipView_Aircraft5.Index)
+				 e.ColumnIndex == ShipView_Aircraft2.Index ||
+				 e.ColumnIndex == ShipView_Aircraft3.Index ||
+				 e.ColumnIndex == ShipView_Aircraft4.Index ||
+				 e.ColumnIndex == ShipView_Aircraft5.Index)
 		{   // AircraftTotal は 0 でも表示する
 			if (((Fraction)e.Value).Max == 0)
 			{
@@ -1147,8 +1147,8 @@ public partial class FormShipGroup : DockContent
 		if (group != null)
 		{
 			if (MessageBox.Show(string.Format(Translation.DialogGroupDeleteDescription, group.Name), Translation.DialogGroupDeleteTitle,
-				    MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2)
-			    == System.Windows.Forms.DialogResult.Yes)
+					MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2)
+				== System.Windows.Forms.DialogResult.Yes)
 			{
 
 				if (SelectedTab == senderLabel)

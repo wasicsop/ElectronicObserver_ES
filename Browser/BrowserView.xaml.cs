@@ -34,7 +34,7 @@ public partial class BrowserView : Window
 
 	private void FrameworkElement_OnContextMenuOpening(object sender, ContextMenuEventArgs e)
 	{
-			
+
 	}
 }
 /*

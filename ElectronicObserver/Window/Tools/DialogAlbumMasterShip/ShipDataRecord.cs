@@ -55,8 +55,8 @@ public partial class ShipDataRecord : ObservableObject
 	};
 
 	public string ShipTypeToolTip => ShipTypeToolTipHeader + "\n\n" +
-	                                 $"{DialogAlbumMasterShip.Equippable}:\n" +
-	                                 EquippableString;
+									 $"{DialogAlbumMasterShip.Equippable}:\n" +
+									 EquippableString;
 
 	private string ShipTypeToolTipHeader => Ship.IsAbyssalShip switch
 	{
@@ -112,7 +112,7 @@ public partial class ShipDataRecord : ObservableObject
 	public string FirepowerMin => Ship.IsAbyssalShip switch
 	{
 		true => Ship.FirepowerMax.ToString(),
-		_=> Ship.FirepowerMin.ToString()
+		_ => Ship.FirepowerMin.ToString()
 	};
 	public string FirepowerMax => Ship.IsAbyssalShip switch
 	{
@@ -391,13 +391,13 @@ public partial class ShipDataRecord : ObservableObject
 	public string RemodelBeforeShipName => RemodelBeforeShip?.NameEN ?? DialogAlbumMasterShip.Empty;
 	public string? RemodelBeforeShipNameToolTip => RemodelBeforeShip switch
 	{
-		{} => DialogAlbumMasterShip.RemodelBeforeShipNameToolTip,
+		{ } => DialogAlbumMasterShip.RemodelBeforeShipNameToolTip,
 		_ => null
 	};
 
 	public string? RemodelBeforeLevel => RemodelBeforeShip switch
 	{
-		{} => string.Format("Lv. {0}", RemodelBeforeShip.RemodelAfterLevel),
+		{ } => string.Format("Lv. {0}", RemodelBeforeShip.RemodelAfterLevel),
 		_ => null
 	};
 
@@ -467,7 +467,7 @@ public partial class ShipDataRecord : ObservableObject
 
 		_ => "???"
 	};
-		
+
 	public string AirPower => Calculator.GetAirSuperiority(Ship).ToString();
 	public string DayAttack => Constants.GetDayAttackKind(Calculator.GetDayAttackKind(Ship.DefaultSlot?.ToArray(), Ship.ShipID, -1));
 	public string NightAttack => Constants.GetNightAttackKind(Calculator.GetNightAttackKind(Ship.DefaultSlot?.ToArray(), Ship.ShipID, -1));

@@ -1,7 +1,4 @@
-﻿using DynaJson;
-using ElectronicObserver.Observer;
-using ElectronicObserver.Resource;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +9,9 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DynaJson;
+using ElectronicObserver.Observer;
+using ElectronicObserver.Resource;
 using WeifenLuo.WinFormsUI.Docking;
 using Translation = ElectronicObserver.Properties.Window.FormJson;
 
@@ -579,7 +579,7 @@ public partial class FormJson : DockContent
 						sb.Append("\t");
 					sb.Append(p);
 
-					int tab = (int)Math.Ceiling( (24 - (p.Length /*+ indentLevel * 4*/)) / 4.0);
+					int tab = (int)Math.Ceiling((24 - (p.Length /*+ indentLevel * 4*/)) / 4.0);
 					for (int i = 0; i < tab; i++)
 						sb.Append("\t");
 					sb.Append("：");

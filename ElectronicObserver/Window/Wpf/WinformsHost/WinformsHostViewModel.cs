@@ -13,7 +13,7 @@ public class WinformsHostViewModel : AnchorableViewModel
 
 	protected WinformsHostViewModel(string title) : this(title, title)
 	{
-			
+
 	}
 
 	protected WinformsHostViewModel(string title, string contentId, ImageSource? icon = null)

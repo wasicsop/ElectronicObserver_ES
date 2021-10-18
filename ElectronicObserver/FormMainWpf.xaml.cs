@@ -23,7 +23,7 @@ public partial class FormMainWpf : System.Windows.Window
 
 	public FormMainViewModel ViewModel
 	{
-		get => (FormMainViewModel) GetValue(ViewModelProperty);
+		get => (FormMainViewModel)GetValue(ViewModelProperty);
 		set => SetValue(ViewModelProperty, value);
 	}
 

@@ -1,9 +1,9 @@
-﻿using ElectronicObserver.Data;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ElectronicObserver.Data;
 
 namespace ElectronicObserver.Notifier;
 
@@ -69,8 +69,8 @@ public class NotifierConstruction : NotifierBase
 	public void Notify(int arsenalID, int shipID)
 	{
 
-		DialogData.Message = string.Format( NotifierRes.ConstructionText,
-			arsenalID, Utility.Configuration.Config.FormArsenal.ShowShipName ? KCDatabase.Instance.MasterShips[shipID].NameWithClass : "艦娘" );
+		DialogData.Message = string.Format(NotifierRes.ConstructionText,
+			arsenalID, Utility.Configuration.Config.FormArsenal.ShowShipName ? KCDatabase.Instance.MasterShips[shipID].NameWithClass : "艦娘");
 
 		base.Notify();
 	}

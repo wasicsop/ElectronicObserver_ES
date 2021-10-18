@@ -1,5 +1,5 @@
-﻿using ElectronicObserverTypes;
-using System.ComponentModel;
+﻿using System.ComponentModel;
+using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Dialog.QuestTrackerManager.ViewModels.Conditions;
 

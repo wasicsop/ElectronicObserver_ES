@@ -163,15 +163,15 @@ public static class WinAPI
 	public const int WS_TILEDWINDOW = WS_OVERLAPPEDWINDOW;
 
 	public const int WS_OVERLAPPEDWINDOW = (WS_OVERLAPPED |
-	                                        WS_CAPTION |
-	                                        WS_SYSMENU |
-	                                        WS_THICKFRAME |
-	                                        WS_MINIMIZEBOX |
-	                                        WS_MAXIMIZEBOX);
+											WS_CAPTION |
+											WS_SYSMENU |
+											WS_THICKFRAME |
+											WS_MINIMIZEBOX |
+											WS_MAXIMIZEBOX);
 
 	public const uint WS_POPUPWINDOW = (WS_POPUP |
-	                                    WS_BORDER |
-	                                    WS_SYSMENU);
+										WS_BORDER |
+										WS_SYSMENU);
 
 	public const int WS_CHILDWINDOW = (WS_CHILD);
 }

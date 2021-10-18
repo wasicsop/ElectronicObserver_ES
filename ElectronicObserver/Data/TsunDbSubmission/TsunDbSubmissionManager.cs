@@ -1,6 +1,6 @@
-﻿using DynaJson;
+﻿using System;
+using DynaJson;
 using ElectronicObserver.Utility;
-using System;
 
 namespace ElectronicObserver.Data;
 

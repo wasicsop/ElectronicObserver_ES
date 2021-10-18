@@ -1,7 +1,7 @@
-﻿using ElectronicObserver.Utility;
-using System;
+﻿using System;
 using System.Diagnostics;
 using System.Windows.Forms;
+using ElectronicObserver.Utility;
 
 namespace ElectronicObserver.Window.Dialog;
 

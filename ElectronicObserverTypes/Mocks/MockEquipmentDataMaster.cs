@@ -2,7 +2,7 @@
 
 namespace ElectronicObserverTypes.Mocks;
 
-public class MockEquipmentDataMaster: IEquipmentDataMaster
+public class MockEquipmentDataMaster : IEquipmentDataMaster
 {
 	public bool IsSurfaceRadar { get; set; }
 	public bool IsSonar { get; set; }

@@ -1,11 +1,4 @@
-﻿using ElectronicObserver.Data;
-using ElectronicObserver.Observer;
-using ElectronicObserver.Resource;
-using ElectronicObserver.Utility.Data;
-using ElectronicObserver.Utility.Mathematics;
-using ElectronicObserver.Window.Control;
-using ElectronicObserver.Window.Support;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,6 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ElectronicObserver.Data;
+using ElectronicObserver.Observer;
+using ElectronicObserver.Resource;
+using ElectronicObserver.Utility.Data;
+using ElectronicObserver.Utility.Mathematics;
+using ElectronicObserver.Window.Control;
+using ElectronicObserver.Window.Support;
 using ElectronicObserverTypes;
 using WeifenLuo.WinFormsUI.Docking;
 using Translation = ElectronicObserver.Properties.Window.FormFleetOverview;
@@ -297,10 +297,10 @@ public partial class FormFleetOverview : DockContent
 		{
 			AnchorageRepairingTimer.Text = DateTimeHelper.ToTimeElapsedString(KCDatabase.Instance.Fleet.AnchorageRepairingTimer);
 			AnchorageRepairingTimer.Tag = KCDatabase.Instance.Fleet.AnchorageRepairingTimer;
-			ToolTipInfo.SetToolTip(AnchorageRepairingTimer, Translation.AnchorageRepairToolTip + 
-			                                                DateTimeHelper.TimeToCSVString(KCDatabase.Instance.Fleet.AnchorageRepairingTimer) + 
-			                                                $"\r\n{Translation.Recovery}: " + 
-			                                                DateTimeHelper.TimeToCSVString(KCDatabase.Instance.Fleet.AnchorageRepairingTimer.AddMinutes(20)));
+			ToolTipInfo.SetToolTip(AnchorageRepairingTimer, Translation.AnchorageRepairToolTip +
+															DateTimeHelper.TimeToCSVString(KCDatabase.Instance.Fleet.AnchorageRepairingTimer) +
+															$"\r\n{Translation.Recovery}: " +
+															DateTimeHelper.TimeToCSVString(KCDatabase.Instance.Fleet.AnchorageRepairingTimer.AddMinutes(20)));
 		}
 
 

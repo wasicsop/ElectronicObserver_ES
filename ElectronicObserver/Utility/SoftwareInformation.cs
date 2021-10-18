@@ -1,12 +1,12 @@
-﻿using ElectronicObserver.Properties;
-using ElectronicObserver.Utility.Mathematics;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DynaJson;
+using ElectronicObserver.Properties;
+using ElectronicObserver.Utility.Mathematics;
 
 namespace ElectronicObserver.Utility;
 
@@ -117,7 +117,7 @@ public static class SoftwareInformation
 			}
 			else
 			{
-				Logger.Add(3, string.Format(Properties.Utility.SoftwareInformation.YouAreUsingTheLatestVersion, 
+				Logger.Add(3, string.Format(Properties.Utility.SoftwareInformation.YouAreUsingTheLatestVersion,
 					date.ToString("yyyy/MM/dd")));
 			}
 		}

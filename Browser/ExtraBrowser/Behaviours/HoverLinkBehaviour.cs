@@ -26,7 +26,7 @@ public class HoverLinkBehaviour : Behavior<ChromiumWebBrowser>
 	{
 		AssociatedObject.StatusMessage -= OnStatusMessageChanged;
 	}
-        
+
 	private void OnStatusMessageChanged(object sender, StatusMessageEventArgs e)
 	{
 		var chromiumWebBrowser = sender as ChromiumWebBrowser;

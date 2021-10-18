@@ -1,8 +1,5 @@
 ﻿using System;
 using System.IO;
-using Microsoft.AppCenter;
-using Microsoft.AppCenter.Analytics;
-using Microsoft.AppCenter.Crashes;
 using System.Linq;
 using System.Threading;
 using System.Windows;
@@ -10,6 +7,9 @@ using System.Windows.Controls;
 using ElectronicObserver.Utility;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace ElectronicObserver;
@@ -78,8 +78,8 @@ public partial class App : Application
 				}
 				catch (UnauthorizedAccessException)
 				{
-					MessageBox.Show(ElectronicObserver.Properties.Window.FormMain.MissingPermissions, 
-						ElectronicObserver.Properties.Window.FormMain.ErrorCaption, 
+					MessageBox.Show(ElectronicObserver.Properties.Window.FormMain.MissingPermissions,
+						ElectronicObserver.Properties.Window.FormMain.ErrorCaption,
 						MessageBoxButton.OK, MessageBoxImage.Error);
 					throw;
 				}

@@ -181,7 +181,7 @@ public class ShipGroupViewModel : AnchorableViewModel
 		foreach ((string key, ShipGroupData.ViewColumnData column) in
 			Db.ShipGroup.ShipGroups.Values.First(g => g.Name == name).ViewColumns)
 		{
-			if(!column.Visible) continue;
+			if (!column.Visible) continue;
 
 			DataGrid.Columns.Add(MakeColumn(GetColumnName(key), GetColumnBinding(key), column.Width));
 		}

@@ -3,7 +3,7 @@ using System.Drawing;
 
 namespace ElectronicObserverTypes.Mocks;
 
-public class MockShipDataMaster: IShipDataMaster
+public class MockShipDataMaster : IShipDataMaster
 {
 	public int ShipID { get; set; }
 	public ShipId ShipId { get; set; }

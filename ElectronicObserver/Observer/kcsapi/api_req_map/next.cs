@@ -1,9 +1,9 @@
-﻿using ElectronicObserver.Data;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ElectronicObserver.Data;
 using ElectronicObserver.Notifier;
 using static ElectronicObserver.Observer.DiscordRPC;
 
@@ -18,7 +18,7 @@ public class next : APIBase
 		db.Replays.LoadFromResponse(APIName, data);
 
 
-           
+
 
 		if (Utility.Configuration.Config.Control.EnableDiscordRPC)
 		{

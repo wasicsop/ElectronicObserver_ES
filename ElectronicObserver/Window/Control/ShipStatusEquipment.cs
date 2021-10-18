@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 using System.Data;
+using System.Drawing;
+using System.Drawing.Design;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ElectronicObserver.Data;
-using System.Drawing.Design;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Window.Support;
@@ -343,7 +343,7 @@ public partial class ShipStatusEquipment : UserControl
 
 
 
-	private Brush _overlayBrush = new SolidBrush( Utility.Configuration.Config.UI.Compass_ColoroverlayBrush );
+	private Brush _overlayBrush = new SolidBrush(Utility.Configuration.Config.UI.Compass_ColoroverlayBrush);
 
 
 	[System.Diagnostics.DebuggerDisplay("[{PreferredSize.Width}, {PreferredSize.Height}]")]
@@ -468,14 +468,14 @@ public partial class ShipStatusEquipment : UserControl
 
 		base.Font = new Font("Meiryo UI", 10, FontStyle.Regular, GraphicsUnit.Pixel);
 
-		_aircraftColorDisabled = Color.FromArgb( 0xAA, 0xAA, 0xAA );
+		_aircraftColorDisabled = Color.FromArgb(0xAA, 0xAA, 0xAA);
 		_aircraftColorLost = Utility.Configuration.Config.UI.Color_Magenta;
 		_aircraftColorDamaged = Utility.Configuration.Config.UI.Color_Red;
 		_aircraftColorFull = Utility.Configuration.Config.UI.ForeColor;
 
 		_equipmentLevelColor = Utility.Configuration.Config.UI.Fleet_EquipmentLevelColor;
-		_aircraftLevelColorLow = Color.FromArgb( 0x66, 0x99, 0xEE );
-		_aircraftLevelColorHigh = Color.FromArgb( 0xFF, 0xAA, 0x00 );
+		_aircraftLevelColorLow = Color.FromArgb(0x66, 0x99, 0xEE);
+		_aircraftLevelColorHigh = Color.FromArgb(0xFF, 0xAA, 0x00);
 
 		_invalidSlotColor = Color.FromArgb(0x40, 0xFF, 0x00, 0x00);
 		_invalidSlotBrush = new SolidBrush(_invalidSlotColor);
@@ -807,10 +807,10 @@ public partial class ShipStatusEquipment : UserControl
 			{
 
 				if (LevelVisibility == LevelVisibilityFlag.LevelOnly ||
-				    LevelVisibility == LevelVisibilityFlag.Both ||
-				    LevelVisibility == LevelVisibilityFlag.AircraftLevelOverlay ||
-				    (LevelVisibility == LevelVisibilityFlag.LevelPriority && (!_onMouse || slot.AircraftLevel == 0)) ||
-				    (LevelVisibility == LevelVisibilityFlag.AircraftLevelPriority && (_onMouse || slot.AircraftLevel == 0)))
+					LevelVisibility == LevelVisibilityFlag.Both ||
+					LevelVisibility == LevelVisibilityFlag.AircraftLevelOverlay ||
+					(LevelVisibility == LevelVisibilityFlag.LevelPriority && (!_onMouse || slot.AircraftLevel == 0)) ||
+					(LevelVisibility == LevelVisibilityFlag.AircraftLevelPriority && (_onMouse || slot.AircraftLevel == 0)))
 				{
 
 					TextRenderer.DrawText(e.Graphics, slot.Level >= 10 ? "★" : "+" + slot.Level, Font,
@@ -827,9 +827,9 @@ public partial class ShipStatusEquipment : UserControl
 			{
 
 				if (LevelVisibility == LevelVisibilityFlag.AircraftLevelOnly ||
-				    LevelVisibility == LevelVisibilityFlag.Both ||
-				    (LevelVisibility == LevelVisibilityFlag.AircraftLevelPriority && (!_onMouse || slot.Level == 0)) ||
-				    (LevelVisibility == LevelVisibilityFlag.LevelPriority && (_onMouse || slot.Level == 0)))
+					LevelVisibility == LevelVisibilityFlag.Both ||
+					(LevelVisibility == LevelVisibilityFlag.AircraftLevelPriority && (!_onMouse || slot.Level == 0)) ||
+					(LevelVisibility == LevelVisibilityFlag.LevelPriority && (_onMouse || slot.Level == 0)))
 				{
 					// 右上に描画
 

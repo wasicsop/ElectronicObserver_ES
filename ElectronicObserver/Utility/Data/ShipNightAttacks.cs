@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
 using ElectronicObserver.Data;
 using ElectronicObserverTypes;
 
@@ -18,10 +18,10 @@ public static class ShipNightAttacks
 			IEnumerable<Enum> specialAttack = SubmarineNightSpecialAttacks.Cast<Enum>()
 					.Concat(SurfaceShipNightSpecialAttacks.Cast<Enum>())
 					.FirstOrDefault(ship.CanDo!) switch
-				{
-					Enum attack => new List<Enum> { attack },
-					_ => Enumerable.Empty<Enum>()
-				};
+			{
+				Enum attack => new List<Enum> { attack },
+				_ => Enumerable.Empty<Enum>()
+			};
 
 			nightAttacks = nightAttacks
 				.Concat(specialAttack)
@@ -38,7 +38,7 @@ public static class ShipNightAttacks
 			IEnumerable<Enum> specialAttack =
 				SurfaceShipNightSpecialAttacks.Cast<Enum>().FirstOrDefault(ship.CanDo!) switch
 				{
-					NightAttackKind attack => new List<Enum> {attack},
+					NightAttackKind attack => new List<Enum> { attack },
 					_ => Enumerable.Empty<Enum>()
 				};
 
@@ -123,26 +123,26 @@ public static class ShipNightAttacks
 
 		NightAttackKind.CutinTorpedoRadar => ship.HasMainGun() && ship.HasTorpedo() && ship.HasRadar(),
 		NightAttackKind.CutinTorpedoRadar2 => ship.CanDo(NightAttackKind.CutinTorpedoRadar) &&
-		                                      ship.DestroyerCutinTwoHitAvailable(),
+											  ship.DestroyerCutinTwoHitAvailable(),
 		NightAttackKind.CutinTorpedoPicket => ship.HasTorpedo() && ship.HasSkilledLookouts() && ship.HasRadar(),
 		NightAttackKind.CutinTorpedoPicket2 => ship.CanDo(NightAttackKind.CutinTorpedoPicket) &&
-		                                       ship.DestroyerCutinTwoHitAvailable(),
+											   ship.DestroyerCutinTwoHitAvailable(),
 		NightAttackKind.CutinTorpedoDestroyerPicket => ship.HasTorpedo(2) && ship.HasDestroyerSkilledLookouts(),
 		NightAttackKind.CutinTorpedoDestroyerPicket2 => ship.CanDo(NightAttackKind.CutinTorpedoDestroyerPicket) &&
-		                                                ship.DestroyerCutinTwoHitAvailable(),
+														ship.DestroyerCutinTwoHitAvailable(),
 		NightAttackKind.CutinTorpedoDrum => ship.HasTorpedo() && ship.HasDestroyerSkilledLookouts() &&
-		                                    ship.HasDrum(),
+											ship.HasDrum(),
 		NightAttackKind.CutinTorpedoDrum2 => ship.CanDo(NightAttackKind.CutinTorpedoDrum) &&
-		                                     ship.DestroyerCutinTwoHitAvailable(),
+											 ship.DestroyerCutinTwoHitAvailable(),
 
 		CvnciKind.FighterFighterAttacker => ship.HasNightFighter(2) && ship.HasNightAttacker(),
 		CvnciKind.FighterAttacker => ship.IsNightCarrier() && ship.HasNightFighter() && ship.HasNightAttacker(),
 		CvnciKind.Phototube => ship.HasNightPhototoubePlane() &&
-		                       (ship.HasNightFighter() || ship.HasNightAttacker()),
+							   (ship.HasNightFighter() || ship.HasNightAttacker()),
 		CvnciKind.FighterOtherOther => ship.HasNightFighter() && ship.HasNightAircraft(3),
 
 		NightTorpedoCutinKind.LateModelTorpedoSubmarineEquipment => ship.HasLateModelTorp() &&
-		                                                            ship.HasSubmarineEquipment(),
+																	ship.HasSubmarineEquipment(),
 		NightTorpedoCutinKind.LateModelTorpedo2 => ship.HasLateModelTorp(2),
 
 		NightAttackKind.Shelling => true,

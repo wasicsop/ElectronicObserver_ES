@@ -1,7 +1,4 @@
-﻿using ElectronicObserver.Data;
-using ElectronicObserver.Resource;
-using ElectronicObserver.Utility.Data;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ElectronicObserver.Data;
+using ElectronicObserver.Resource;
+using ElectronicObserver.Utility.Data;
 using ElectronicObserverTypes;
 using Translation = ElectronicObserver.Properties.Window.Dialog.DialogAntiAirDefense;
 
@@ -278,9 +278,9 @@ public partial class DialogAntiAirDefense : Form
 	{
 
 		if (e.ColumnIndex == ResultView_ShootDownBoth.Index ||
-		    e.ColumnIndex == ResultView_ShootDownProportional.Index ||
-		    e.ColumnIndex == ResultView_ShootDownFixed.Index ||
-		    e.ColumnIndex == ResultView_ShootDownFailed.Index)
+			e.ColumnIndex == ResultView_ShootDownProportional.Index ||
+			e.ColumnIndex == ResultView_ShootDownFixed.Index ||
+			e.ColumnIndex == ResultView_ShootDownFailed.Index)
 		{
 
 			int value = e.Value as int? ?? 0;

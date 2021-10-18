@@ -1,7 +1,4 @@
-﻿using ElectronicObserver.Observer;
-using ElectronicObserver.Utility.Mathematics;
-using ElectronicObserver.Utility.Storage;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -9,6 +6,9 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
+using ElectronicObserver.Observer;
+using ElectronicObserver.Utility.Mathematics;
+using ElectronicObserver.Utility.Storage;
 using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Data.Quest;
@@ -392,7 +392,7 @@ public sealed class QuestProgressManager : DataStorage
 							new ProgressSpecialBattle(q, 1, "S", new[] { 65 }, true),
 						}));
 						break;
-						
+
 					case 904:   //|904|年(2月)|精鋭「十九駆」、躍り出る！|2-5・3-4・4-5・5-3ボスS勝利各1|要綾波改二/敷波改二
 						Progresses.Add(new ProgressMultiBattle(q, new[] {
 							new ProgressSpecialBattle(q, 1, "S", new[] { 25 }, true),

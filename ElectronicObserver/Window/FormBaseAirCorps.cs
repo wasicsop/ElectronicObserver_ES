@@ -1,14 +1,14 @@
-﻿using ElectronicObserver.Data;
+﻿using System;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
+using ElectronicObserver.Data;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.Window.Control;
 using ElectronicObserver.Window.Support;
-using System;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
 
 namespace ElectronicObserver.Window;
@@ -151,9 +151,9 @@ public partial class FormBaseAirCorps : DockContent
 				var sb = new StringBuilder();
 
 
-				string areaName = KCDatabase.Instance.MapArea.ContainsKey( corps.MapAreaID ) ? KCDatabase.Instance.MapArea[corps.MapAreaID].NameEN : "Unknown Area";
+				string areaName = KCDatabase.Instance.MapArea.ContainsKey(corps.MapAreaID) ? KCDatabase.Instance.MapArea[corps.MapAreaID].NameEN : "Unknown Area";
 
-				sb.AppendLine(Properties.Window.FormBaseAirCorps.Area + areaName );
+				sb.AppendLine(Properties.Window.FormBaseAirCorps.Area + areaName);
 
 				// state
 
@@ -166,14 +166,14 @@ public partial class FormBaseAirCorps : DockContent
 					{
 						Name.ImageAlign = ContentAlignment.MiddleRight;
 						Name.ImageIndex = (int)IconContent.ConditionTired;
-						sb.AppendLine( GeneralRes.Tired );
+						sb.AppendLine(GeneralRes.Tired);
 
 					}
 					else
 					{
 						Name.ImageAlign = ContentAlignment.MiddleRight;
 						Name.ImageIndex = (int)IconContent.ConditionVeryTired;
-						sb.AppendLine( GeneralRes.VeryTired );
+						sb.AppendLine(GeneralRes.VeryTired);
 
 					}
 
@@ -192,7 +192,7 @@ public partial class FormBaseAirCorps : DockContent
 					Name.ImageIndex = -1;
 
 				}
-					
+
 				sb.AppendLine(string.Format(Properties.Window.FormBaseAirCorps.AirControlSummary,
 					db.BaseAirCorps.Values.Where(c => c.MapAreaID == corps.MapAreaID && c.ActionKind == 2).Select(c => Calculator.GetAirSuperiority(c)).DefaultIfEmpty(0).Sum(),
 					db.BaseAirCorps.Values.Where(c => c.MapAreaID == corps.MapAreaID && c.ActionKind == 2).Select(c => Calculator.GetAirSuperiority(c, isHighAltitude: true)).DefaultIfEmpty(0).Sum()
@@ -231,8 +231,8 @@ public partial class FormBaseAirCorps : DockContent
 						int airSuperiorityHighAltitudeMax = Calculator.GetAirSuperiority(corps, isAircraftLevelMaximum: true, isHighAltitude: true);
 
 						tip.AppendFormat(GeneralRes.HighAltitudeAirState,
-							Utility.Configuration.Config.FormFleet.ShowAirSuperiorityRange && airSuperiorityHighAltitude != airSuperiorityHighAltitudeMax ? 
-								$"{airSuperiorityHighAltitude} ～ {airSuperiorityHighAltitudeMax}" : 
+							Utility.Configuration.Config.FormFleet.ShowAirSuperiorityRange && airSuperiorityHighAltitude != airSuperiorityHighAltitudeMax ?
+								$"{airSuperiorityHighAltitude} ～ {airSuperiorityHighAltitudeMax}" :
 								airSuperiorityHighAltitude.ToString(),
 							(int)(airSuperiorityHighAltitude / 3.0),
 							(int)(airSuperiorityHighAltitude / 1.5),
@@ -287,7 +287,7 @@ public partial class FormBaseAirCorps : DockContent
 		{
 			var sb = new StringBuilder();
 
-			if ( corps == null )
+			if (corps == null)
 				return GeneralRes.BaseNotOpen;
 
 			foreach (var squadron in corps.Squadrons.Values)
@@ -327,9 +327,9 @@ public partial class FormBaseAirCorps : DockContent
 						sb.AppendFormat($"{Properties.Window.FormBaseAirCorps.Range}\n", eq.NameWithLevel, eq.MasterEquipment.AircraftDistance);
 						break;
 
-					case 2:		// 配置転換中
+					case 2:     // 配置転換中
 						sb.AppendFormat($"{GeneralRes.BaseRelocate}\n",
-							DateTimeHelper.TimeToCSVString( squadron.RelocatedTime ) );
+							DateTimeHelper.TimeToCSVString(squadron.RelocatedTime));
 						break;
 				}
 			}
@@ -516,7 +516,7 @@ public partial class FormBaseAirCorps : DockContent
 				if (i > 0)
 					sb.Append(", ");
 
-				if (sq[i] == null) 
+				if (sq[i] == null)
 				{
 					sb.Append(GeneralRes.BaseUnknown);
 					continue;
@@ -536,7 +536,7 @@ public partial class FormBaseAirCorps : DockContent
 						if (sq[i].AircraftCurrent < sq[i].AircraftMax)
 							sb.AppendFormat("[{0}/{1}]", sq[i].AircraftCurrent, sq[i].AircraftMax);
 					}
-						break;
+					break;
 					case 2:
 						sb.Append("(" + GeneralRes.BaseRedeployment + ")");
 						break;

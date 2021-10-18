@@ -1,7 +1,4 @@
-﻿using ElectronicObserver.Resource;
-using ElectronicObserver.Utility;
-using ElectronicObserver.Window.Integrate;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,7 +8,10 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows;
 using System.Windows.Forms;
+using ElectronicObserver.Resource;
+using ElectronicObserver.Utility;
 using ElectronicObserver.ViewModels;
+using ElectronicObserver.Window.Integrate;
 using ElectronicObserver.Window.Wpf.WinformsWrappers;
 using WeifenLuo.WinFormsUI.Docking;
 using MessageBox = System.Windows.Forms.MessageBox;
@@ -64,7 +64,7 @@ public partial class FormWindowCapture : DockContent
 			}
 			else
 			{
-				main.Views.Add(new FormIntegrateViewModel(form, main) {Visibility = Visibility.Visible});
+				main.Views.Add(new FormIntegrateViewModel(form, main) { Visibility = Visibility.Visible });
 			}
 		}
 	}
@@ -115,9 +115,9 @@ public partial class FormWindowCapture : DockContent
 		WinAPI.GetWindowText(hWnd, stringBuilder, stringBuilder.Capacity);
 
 		if (MessageBox.Show(stringBuilder.ToString() + "\r\n" + WarningMessage,
-			    Properties.Window.FormWindowCapture.WindowCaptureConfirmation, 
-			    MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-		    == System.Windows.Forms.DialogResult.Yes)
+				Properties.Window.FormWindowCapture.WindowCaptureConfirmation,
+				MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+			== System.Windows.Forms.DialogResult.Yes)
 		{
 
 			FormIntegrate form = new FormIntegrate(parent);

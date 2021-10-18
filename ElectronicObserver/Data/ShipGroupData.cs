@@ -1,6 +1,4 @@
-﻿using ElectronicObserver.Data.ShipGroup;
-using ElectronicObserver.Utility.Storage;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -13,6 +11,8 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Serialization;
+using ElectronicObserver.Data.ShipGroup;
+using ElectronicObserver.Utility.Storage;
 
 namespace ElectronicObserver.Data;
 

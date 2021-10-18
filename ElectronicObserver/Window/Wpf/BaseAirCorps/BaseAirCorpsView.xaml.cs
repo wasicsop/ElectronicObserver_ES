@@ -24,7 +24,7 @@ public partial class BaseAirCorpsView : UserControl
 
 	public BaseAirCorpsViewModel ViewModel
 	{
-		get => (BaseAirCorpsViewModel) GetValue(ViewModelProperty);
+		get => (BaseAirCorpsViewModel)GetValue(ViewModelProperty);
 		set => SetValue(ViewModelProperty, value);
 	}
 

@@ -1,10 +1,10 @@
-﻿using DynaJson;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DynaJson;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserverTypes;
 
@@ -124,7 +124,7 @@ public class EquipmentData : ResponseWrapper, IIdentifiable, IEquipmentData
 				data.api_locked = 0;
 				data.api_level = 0;
 			}
-				break;
+			break;
 
 			default:
 				break;

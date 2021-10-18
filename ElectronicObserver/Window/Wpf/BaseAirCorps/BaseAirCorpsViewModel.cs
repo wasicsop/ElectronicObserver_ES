@@ -68,7 +68,7 @@ public class BaseAirCorpsSquadronViewModel : BaseAirCorpsItemControlViewModel
 		{
 			var squadron = corps[i + 1];
 			IEquipmentData? eq = squadron.EquipmentInstance;
-				
+
 			switch (squadron.State)
 			{
 				case 0:     // 未配属
@@ -97,7 +97,7 @@ public class BaseAirCorpsSquadronViewModel : BaseAirCorpsItemControlViewModel
 					SlotList[i].AircraftCurrent = squadron.AircraftCurrent;
 					break;
 			}
-				
+
 		}
 
 		// _slotSize = slotLength;
@@ -121,7 +121,7 @@ public class BaseAirCorpsItemControlViewModel : ObservableObject
 		_ => null
 	};
 
-		
+
 }
 
 public class BaseAirCorpsItemViewModel : ObservableObject
@@ -217,7 +217,7 @@ public class BaseAirCorpsItemViewModel : ObservableObject
 		// ConfigurationChanged(parent);
 
 		// ToolTipInfo = parent.ToolTipInfo;
-			
+
 	}
 
 	public void Update(int baseAirCorpsID)
@@ -346,13 +346,13 @@ public class BaseAirCorpsItemViewModel : ObservableObject
 					Distance.Visible =
 						Squadrons.Visible =
 							baseAirCorpsID != -1;
-		
+
 		Visibility = (baseAirCorpsID != -1).ToVisibility();
 	}
 
 	public void ConfigurationChanged()
 	{
-			
+
 		var config = Utility.Configuration.Config;
 
 		var mainfont = config.UI.MainFont;
@@ -367,7 +367,7 @@ public class BaseAirCorpsItemViewModel : ObservableObject
 		Squadrons.ShowAircraft = config.FormFleet.ShowAircraft;
 		Squadrons.ShowAircraftLevelByNumber = config.FormFleet.ShowAircraftLevelByNumber;
 		Squadrons.LevelVisibility = config.FormFleet.EquipmentLevelVisibility;
-			
+
 	}
 
 
@@ -607,7 +607,7 @@ public class BaseAirCorpsViewModel : AnchorableViewModel
 						if (sq[i].AircraftCurrent < sq[i].AircraftMax)
 							sb.AppendFormat("[{0}/{1}]", sq[i].AircraftCurrent, sq[i].AircraftMax);
 					}
-						break;
+					break;
 					case 2:
 						sb.Append("(" + GeneralRes.BaseRedeployment + ")");
 						break;
@@ -616,7 +616,7 @@ public class BaseAirCorpsViewModel : AnchorableViewModel
 
 			sb.AppendLine();
 		}
-			
+
 		Clipboard.SetText(sb.ToString());
 	}
 

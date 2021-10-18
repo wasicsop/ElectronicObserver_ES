@@ -68,8 +68,8 @@ public static class NightAttackPower
 	private static double CarrierBasePower(this IShipData ship) =>
 		ship.FirepowerBase
 		+ ship.AllSlotInstance.Zip(ship.Aircraft, (e, size) => (e, size))
-			.Where(slot => (slot.e?.MasterEquipment.IsNightAircraft ?? false) || 
-			               (slot.e?.IsNightCapableAircraft() ?? false))
+			.Where(slot => (slot.e?.MasterEquipment.IsNightAircraft ?? false) ||
+						   (slot.e?.IsNightCapableAircraft() ?? false))
 			.Sum(slot => slot.e!.NightPlanePower(slot.size));
 
 	private static double NightPlanePower(this IEquipmentData equip, int size) =>
@@ -80,10 +80,10 @@ public static class NightAttackPower
 		+ Math.Sqrt(equip.Level);
 
 	private static double NightPlaneDamageBonus(this IEquipmentData equip) =>
-		equip.NightPlanePowerMod() * (equip.MasterEquipment.Firepower 
-		                              + equip.MasterEquipment.Torpedo 
-		                              + equip.MasterEquipment.ASW 
-		                              + equip.MasterEquipment.Bomber);
+		equip.NightPlanePowerMod() * (equip.MasterEquipment.Firepower
+									  + equip.MasterEquipment.Torpedo
+									  + equip.MasterEquipment.ASW
+									  + equip.MasterEquipment.Bomber);
 
 	private static double NightPlaneCountMod(this IEquipmentData equip) => equip switch
 	{
@@ -168,16 +168,16 @@ public static class NightAttackPower
 				EquipmentId.MainGunSmall_12_7cmTwinGunModelDKai3 => true,
 				_ => false
 			}) switch
-		{
-			0 => 1,
-			1 => 1.25,
-			_ => 1.25 * 1.125
-		};
+	{
+		0 => 1,
+		1 => 1.25,
+		_ => 1.25 * 1.125
+	};
 
 	private static double DKai3GunMod(this IShipData ship) => ship.AllSlotInstance
 			.Count(e => e?.EquipmentId == EquipmentId.MainGunSmall_12_7cmTwinGunModelDKai3) switch
-		{
-			0 => 1,
-			_ => 1.05,
-		};
+	{
+		0 => 1,
+		_ => 1.05,
+	};
 }

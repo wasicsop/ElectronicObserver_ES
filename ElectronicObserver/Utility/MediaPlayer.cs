@@ -64,7 +64,7 @@ public class MediaPlayer
 			};
 			WMP.settings.autoStart = false;
 			WMP.PlayStateChange += wmp_PlayStateChange;
-		
+
 		}
 		catch (Exception e)
 		{

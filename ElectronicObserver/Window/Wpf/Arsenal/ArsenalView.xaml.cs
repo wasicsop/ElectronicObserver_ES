@@ -23,7 +23,7 @@ public partial class ArsenalView : UserControl
 
 	public ArsenalViewModel ViewModel
 	{
-		get => (ArsenalViewModel) GetValue(ViewModelProperty);
+		get => (ArsenalViewModel)GetValue(ViewModelProperty);
 		set => SetValue(ViewModelProperty, value);
 	}
 

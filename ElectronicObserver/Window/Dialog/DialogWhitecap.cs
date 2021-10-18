@@ -1,5 +1,4 @@
-﻿using ElectronicObserver.Utility.Mathematics;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,6 +9,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ElectronicObserver.Utility.Mathematics;
 
 namespace ElectronicObserver.Window.Dialog;
 
@@ -300,9 +300,9 @@ public partial class DialogWhitecap : Form
 					case 19:
 						//*/
 						if (value != 0 ||
-						    GetCell(currentDim, x + 1, y) != 0 ||
-						    GetCell(currentDim, x, y + 1) != 0 ||
-						    GetCell(currentDim, x + 1, y + 1) != 0)
+							GetCell(currentDim, x + 1, y) != 0 ||
+							GetCell(currentDim, x, y + 1) != 0 ||
+							GetCell(currentDim, x + 1, y + 1) != 0)
 							col = FromRgb(0xFFFFFF);
 						else if (
 							GetCell(currentDim, x - 1, y) != 0 ||
@@ -420,7 +420,7 @@ public partial class DialogWhitecap : Form
 								col = FromRgb(0x000000);
 						}
 					}
-						break;
+					break;
 
 					case 25:
 					{
@@ -440,7 +440,7 @@ public partial class DialogWhitecap : Form
 								col = FromRgb(0x000000);
 						}
 					}
-						break;
+					break;
 
 					case 26:
 					{
@@ -451,9 +451,9 @@ public partial class DialogWhitecap : Form
 						else
 						{
 							if (GetCell(currentDim, x - 1, y) != 0 ||
-							    GetCell(currentDim, x + 1, y) != 0 ||
-							    GetCell(currentDim, x, y - 1) != 0 ||
-							    GetCell(currentDim, x, y + 1) != 0)
+								GetCell(currentDim, x + 1, y) != 0 ||
+								GetCell(currentDim, x, y - 1) != 0 ||
+								GetCell(currentDim, x, y + 1) != 0)
 							{
 								col = FromRgb(0xEEFFEE);
 							}
@@ -463,7 +463,7 @@ public partial class DialogWhitecap : Form
 							}
 						}
 					}
-						break;
+					break;
 
 					case 27:
 					{
@@ -481,7 +481,7 @@ public partial class DialogWhitecap : Form
 							col = FromRgb(0x000022);
 						}
 					}
-						break;
+					break;
 
 					default:
 						col = value != 0 ? FromRgb(0xFFFFFF) : FromRgb(0x000000);

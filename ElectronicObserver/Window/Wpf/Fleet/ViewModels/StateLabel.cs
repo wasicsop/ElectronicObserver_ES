@@ -90,7 +90,7 @@ public class StateLabel : ObservableObject
 		Text = text;
 		ShortenedText = shortenedText;
 		UpdateText();
-		Label.ImageIndex = (IconContent) imageIndex;
+		Label.ImageIndex = (IconContent)imageIndex;
 		Label.BackColor = backColor;
 	}
 

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -176,7 +176,7 @@ public partial class ShipStatusLevel : UserControl
 		get
 		{
 			return _textSizeCache ??
-			       (_textSizeCache = TextRenderer.MeasureText(Text, SubFont, MaxSize, TextFormatText) - new Size(!string.IsNullOrEmpty(Text) ? (int)(SubFont.Size / 2.0) : 0, 0)).Value;
+				   (_textSizeCache = TextRenderer.MeasureText(Text, SubFont, MaxSize, TextFormatText) - new Size(!string.IsNullOrEmpty(Text) ? (int)(SubFont.Size / 2.0) : 0, 0)).Value;
 		}
 	}
 
@@ -186,7 +186,7 @@ public partial class ShipStatusLevel : UserControl
 		get
 		{
 			return _valueSizeCache ??
-			       (_valueSizeCache = TextRenderer.MeasureText(Math.Max(Value, MaximumValue).ToString(), MainFont, MaxSize, TextFormatValue) - new Size((int)(MainFont.Size / 2.0), 0)).Value;
+				   (_valueSizeCache = TextRenderer.MeasureText(Math.Max(Value, MaximumValue).ToString(), MainFont, MaxSize, TextFormatValue) - new Size((int)(MainFont.Size / 2.0), 0)).Value;
 		}
 	}
 
@@ -196,9 +196,9 @@ public partial class ShipStatusLevel : UserControl
 		get
 		{
 			return _textNextSizeCache ??
-			       (_textNextSizeCache = TextNext == null ?
-				       Size.Empty :
-				       (TextRenderer.MeasureText(TextNext, SubFont, MaxSize, TextFormatText) - new Size(!string.IsNullOrEmpty(TextNext) ? (int)(SubFont.Size / 2.0) : 0, 0))).Value;
+				   (_textNextSizeCache = TextNext == null ?
+					   Size.Empty :
+					   (TextRenderer.MeasureText(TextNext, SubFont, MaxSize, TextFormatText) - new Size(!string.IsNullOrEmpty(TextNext) ? (int)(SubFont.Size / 2.0) : 0, 0))).Value;
 		}
 	}
 
@@ -208,9 +208,9 @@ public partial class ShipStatusLevel : UserControl
 		get
 		{
 			return _valueNextSizeCache ??
-			       (_valueNextSizeCache = TextNext == null ?
-				       Size.Empty :
-				       (TextRenderer.MeasureText(Math.Max(ValueNext, MaximumValueNext).ToString(), SubFont, MaxSize, TextFormatText) - new Size((int)(MainFont.Size / 2.0), 0))).Value;
+				   (_valueNextSizeCache = TextNext == null ?
+					   Size.Empty :
+					   (TextRenderer.MeasureText(Math.Max(ValueNext, MaximumValueNext).ToString(), SubFont, MaxSize, TextFormatText) - new Size((int)(MainFont.Size / 2.0), 0))).Value;
 		}
 	}
 

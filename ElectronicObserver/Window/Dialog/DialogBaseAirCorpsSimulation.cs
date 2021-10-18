@@ -1,8 +1,4 @@
-﻿using ElectronicObserver.Data;
-using ElectronicObserver.Resource;
-using ElectronicObserver.Utility.Data;
-using ElectronicObserver.Window.Support;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,6 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ElectronicObserver.Data;
+using ElectronicObserver.Resource;
+using ElectronicObserver.Utility.Data;
+using ElectronicObserver.Window.Support;
 using ElectronicObserverTypes;
 using Translation = ElectronicObserver.Properties.Window.Dialog.DialogBaseAirCorpsSimulation;
 
@@ -207,7 +207,7 @@ public partial class DialogBaseAirCorpsSimulation : Form
 			}
 			else
 			{
-				int aircraftCount = 
+				int aircraftCount =
 					equipment.EquipmentInstance.CategoryType == EquipmentTypes.HeavyBomber ? 9 :
 					equipment.EquipmentInstance.IsCombatAircraft ? 18 : 4;
 				AircraftCount.Value = AircraftCount.Maximum = aircraftCount;
@@ -997,7 +997,7 @@ public partial class DialogBaseAirCorpsSimulation : Form
 	private void TopMenu_Edit_Clear_Click(object sender, EventArgs e)
 	{
 		if (MessageBox.Show(Translation.ClearAirBaseOrganizations, Translation.ClearAirBaseOrganizationsTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1)
-		    == System.Windows.Forms.DialogResult.Yes)
+			== System.Windows.Forms.DialogResult.Yes)
 		{
 
 			for (int i = 0; i < BaseAirCorpsUIList.Length; i++)
@@ -1095,7 +1095,7 @@ public partial class DialogBaseAirCorpsSimulation : Form
 
 			// 攻撃隊の射程調整
 			while (attackerfp.Count(f => f.master.AircraftDistance + extendedDistance >= minimumDistance) < (4 - (extendedDistance > 0 ? 1 : 0) - fighterSlot) &&
-			       extendedDistance < 3)
+				   extendedDistance < 3)
 				extendedDistance++;
 
 
@@ -1108,7 +1108,7 @@ public partial class DialogBaseAirCorpsSimulation : Form
 				int reconDistance = extendedDistance * extendedDistance + (minimumDistance - extendedDistance);
 
 				var recon = available.Where(eqp => SquadronReconCategories.Contains(eqp.master.CategoryType) &&
-				                                   eqp.master.AircraftDistance >= reconDistance)
+												   eqp.master.AircraftDistance >= reconDistance)
 					.OrderBy(eqp => eqp.master.AircraftCost)
 					.FirstOrDefault();
 

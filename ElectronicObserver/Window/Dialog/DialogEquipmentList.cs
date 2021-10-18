@@ -1,7 +1,4 @@
-﻿using ElectronicObserver.Data;
-using ElectronicObserver.Resource;
-using ElectronicObserver.Window.Support;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,10 +8,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ElectronicObserver.Data;
+using ElectronicObserver.Resource;
+using ElectronicObserver.Window.Support;
 using ElectronicObserver.Window.Tools.DialogAlbumMasterEquipment;
 using ElectronicObserverTypes;
-using Translation = ElectronicObserver.Properties.Window.Dialog.DialogEquipmentList;
 using DialogAlbumMasterShipTranslation = ElectronicObserver.Properties.Window.Dialog.DialogAlbumMasterShip;
+using Translation = ElectronicObserver.Properties.Window.Dialog.DialogEquipmentList;
 
 namespace ElectronicObserver.Window.Dialog;
 
@@ -223,15 +223,15 @@ public partial class DialogEquipmentList : Form
 	{
 
 		if (rowIndex1 < 0 ||
-		    rowIndex1 >= DetailView.Rows.Count ||
-		    rowIndex2 < 0 ||
-		    rowIndex2 >= DetailView.Rows.Count)
+			rowIndex1 >= DetailView.Rows.Count ||
+			rowIndex2 < 0 ||
+			rowIndex2 >= DetailView.Rows.Count)
 			return false;
 
 		return ((IComparable)DetailView[DetailView_Level.Index, rowIndex1].Value)
-		       .CompareTo(DetailView[DetailView_Level.Index, rowIndex2].Value) == 0 &&
-		       ((IComparable)DetailView[DetailView_AircraftLevel.Index, rowIndex1].Value)
-		       .CompareTo(DetailView[DetailView_AircraftLevel.Index, rowIndex2].Value) == 0;
+			   .CompareTo(DetailView[DetailView_Level.Index, rowIndex2].Value) == 0 &&
+			   ((IComparable)DetailView[DetailView_AircraftLevel.Index, rowIndex1].Value)
+			   .CompareTo(DetailView[DetailView_AircraftLevel.Index, rowIndex2].Value) == 0;
 	}
 
 
@@ -554,9 +554,10 @@ public partial class DialogEquipmentList : Form
 			try
 			{
 
-				using ( StreamWriter sw = new StreamWriter( SaveCSVDialog.FileName, false, Utility.Configuration.Config.Log.FileEncoding ) ) {
-					sw.WriteLine( EncycloRes.EquipListCSVFormat );
-					string arg = string.Format( "{{{0}}}", string.Join( "},{", Enumerable.Range( 0, 8 ) ) );
+				using (StreamWriter sw = new StreamWriter(SaveCSVDialog.FileName, false, Utility.Configuration.Config.Log.FileEncoding))
+				{
+					sw.WriteLine(EncycloRes.EquipListCSVFormat);
+					string arg = string.Format("{{{0}}}", string.Join("},{", Enumerable.Range(0, 8)));
 
 					foreach (var eq in KCDatabase.Instance.Equipments.Values)
 					{
@@ -585,7 +586,7 @@ public partial class DialogEquipmentList : Form
 			catch (Exception ex)
 			{
 
-				Utility.ErrorReporter.SendErrorReport( ex, EncycloRes.FailedOutputEqListCSV );
+				Utility.ErrorReporter.SendErrorReport(ex, EncycloRes.FailedOutputEqListCSV);
 				MessageBox.Show(EncycloRes.FailedOutputEqListCSV + "\r\n" + ex.Message, Translation.Error, MessageBoxButtons.OK, MessageBoxIcon.Error);
 
 			}

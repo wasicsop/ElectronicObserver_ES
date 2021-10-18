@@ -14,7 +14,7 @@ public partial class ShipSlotView : UserControl
 
 	public ShipSlotViewModel ViewModel
 	{
-		get { return (ShipSlotViewModel) GetValue(ViewModelProperty); }
+		get { return (ShipSlotViewModel)GetValue(ViewModelProperty); }
 		set { SetValue(ViewModelProperty, value); }
 	}
 

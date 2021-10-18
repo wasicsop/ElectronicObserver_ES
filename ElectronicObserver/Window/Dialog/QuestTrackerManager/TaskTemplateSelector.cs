@@ -1,7 +1,7 @@
-﻿using ElectronicObserver.Window.Dialog.QuestTrackerManager.ViewModels.Tasks;
-using System;
+﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using ElectronicObserver.Window.Dialog.QuestTrackerManager.ViewModels.Tasks;
 
 namespace ElectronicObserver.Window.Dialog.QuestTrackerManager;
 

@@ -1,9 +1,9 @@
-﻿using DynaJson;
-using ElectronicObserver.Utility;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using DynaJson;
+using ElectronicObserver.Utility;
 
 namespace ElectronicObserver.Data.Translation;
 
@@ -44,12 +44,12 @@ public class ShipTranslationData : TranslationBase
 			{
 				var pos = rawData.IndexOf(sf.Key);
 
-				if(pos < currentShipName.Length) continue;
+				if (pos < currentShipName.Length) continue;
 
 				rawData = rawData.Remove(pos, sf.Key.Length).Insert(pos, new String('0', sf.Value.Length));
 				name = name.Remove(pos, sf.Key.Length).Insert(pos, sf.Value);
 
-				if (rawData.Substring(pos-1,1).Contains(" ") == false)
+				if (rawData.Substring(pos - 1, 1).Contains(" ") == false)
 				{
 					rawData = rawData.Insert(pos, " ");
 					name = name.Insert(pos, " ");
@@ -76,7 +76,7 @@ public class ShipTranslationData : TranslationBase
 	{
 		var json = Load(path);
 		if (json == null) return;
-			
+
 		foreach (KeyValuePair<string, object> category in json)
 		{
 			if (category.Key == "version") continue;

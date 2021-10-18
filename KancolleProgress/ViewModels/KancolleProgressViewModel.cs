@@ -23,14 +23,14 @@ public enum Display
 	Ships,
 	Event
 }
-	
+
 public class KancolleProgressViewModel : ObservableObject
 {
 	public IEnumerable<IShipData> UserShips { get; set; } = Enumerable.Empty<IShipData>();
 	public IEnumerable<IShipDataMaster> AllShips { get; set; } = Enumerable.Empty<IShipDataMaster>();
 	public IEnumerable<IEquipmentData> UserEquipment { get; set; } = Enumerable.Empty<IEquipmentData>();
 	public IEnumerable<ShipTypeGroup> TypeGroups { get; set; }
-		
+
 	public ObservableCollection<ColorFilter> ColorFilters { get; }
 	public IEnumerable<MockShipData>? BaseShips { get; private set; }
 
@@ -50,7 +50,7 @@ public class KancolleProgressViewModel : ObservableObject
 	public ICommand ExportAsCsvCommand { get; }
 
 	public Display Display { get; set; } = Display.Ships;
-		
+
 	public KancolleProgressViewModel()
 	{
 		SetDisplayCommand = new RelayCommand<Display>(display => Display = display);
@@ -97,8 +97,8 @@ public class KancolleProgressViewModel : ObservableObject
 
 	private void MakeKancolleProgress()
 	{
-		if(!AllShips.Any()) return;
-		if(!UserShips.Any()) return;
+		if (!AllShips.Any()) return;
+		if (!UserShips.Any()) return;
 
 		Dictionary<int, MockShipData> baseShips = AllShips
 			.Where(s => !s.IsAbyssalShip && s.RemodelBeforeShipID == 0)
@@ -166,7 +166,7 @@ public class KancolleProgressViewModel : ObservableObject
 	private DaihatsuGroup GetDaihatsuGroup(IShipData ship) => ship switch
 	{
 		_ when ship.MasterShip.EquippableCategoriesTyped.Contains(EquipmentTypes.LandingCraft) &&
-		       ship.MasterShip.EquippableCategoriesTyped.Contains(EquipmentTypes.SpecialAmphibiousTank)
+			   ship.MasterShip.EquippableCategoriesTyped.Contains(EquipmentTypes.SpecialAmphibiousTank)
 			=> DaihatsuGroup.DaihatsuAndTank,
 
 		_ when ship.MasterShip.EquippableCategoriesTyped.Contains(EquipmentTypes.LandingCraft)
@@ -313,7 +313,7 @@ public class KancolleProgressViewModel : ObservableObject
 			FileName = "Ships",
 			DefaultExt = ".csv",
 			Filter = "CSV UTF-8 (Comma delimited) (*.csv)|*.csv",
-				
+
 		};
 
 		bool? result = dialog.ShowDialog();

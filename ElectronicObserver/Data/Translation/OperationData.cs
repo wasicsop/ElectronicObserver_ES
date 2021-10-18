@@ -1,8 +1,8 @@
-﻿using DynaJson;
-using ElectronicObserver.Utility;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using DynaJson;
+using ElectronicObserver.Utility;
 
 namespace ElectronicObserver.Data.Translation;
 
@@ -33,7 +33,7 @@ public class OperationData : TranslationBase
 	{
 		var json = Load(path);
 		if (json == null) return;
-			
+
 		foreach (KeyValuePair<string, object> category in json)
 		{
 			if (category.Key == "version") continue;

@@ -22,7 +22,7 @@ public class ShipResourceViewModel : ObservableObject
 
 	private void Bar_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
 	{
-		if(e.PropertyName is nameof(ProgressBarProps.Value) or nameof(ProgressBarProps.MaximumValue))
+		if (e.PropertyName is nameof(ProgressBarProps.Value) or nameof(ProgressBarProps.MaximumValue))
 		{
 			OnPropertyChanged(nameof(ToolTip));
 		}
@@ -39,7 +39,7 @@ public class ShipResourceViewModel : ObservableObject
 		BarFuel.Value = fuelCurrent;
 		BarFuel.MaximumValue = fuelMax;
 		BarFuel.Foreground = BarFuel.GetColor(BarFuel.Value, BarFuel.MaximumValue, BarFuel.ColorMorphing).ToBrush();
-			
+
 		BarAmmo.Value = ammoCurrent;
 		BarAmmo.MaximumValue = ammoMax;
 		BarAmmo.Foreground = BarAmmo.GetColor(BarAmmo.Value, BarAmmo.MaximumValue, BarAmmo.ColorMorphing).ToBrush();

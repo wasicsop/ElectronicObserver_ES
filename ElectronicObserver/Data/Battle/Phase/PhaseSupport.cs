@@ -1,9 +1,9 @@
-﻿using ElectronicObserver.Data.Battle.Detail;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ElectronicObserver.Data.Battle.Detail;
 
 namespace ElectronicObserver.Data.Battle.Phase;
 
@@ -42,7 +42,7 @@ public class PhaseSupport : PhaseBase
 					Criticals = new int[12];
 				}
 			}
-				break;
+			break;
 			case 2:     // 砲撃
 			case 3:     // 雷撃
 			{
@@ -55,7 +55,7 @@ public class PhaseSupport : PhaseBase
 				Criticals = new int[12];
 				Array.Copy(cl, Criticals, cl.Length);
 			}
-				break;
+			break;
 			default:
 				Damages = new double[12];
 				Criticals = new int[12];

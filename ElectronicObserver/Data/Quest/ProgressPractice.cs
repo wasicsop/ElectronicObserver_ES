@@ -60,27 +60,27 @@ public class ProgressPractice : ProgressData
 
 		return questId switch
 		{
-			325 => ships.Any(s => s.MasterShip.ShipID == (int) ShipId.YuugumoKaiNi) &&
-			       ships.Any(s => s.MasterShip.ShipID == (int) ShipId.NaganamiKaiNi),
-			328 => ships.Any(s => s.MasterShip.ShipID == (int) ShipId.IsokazeBKai) &&
-			       ships.Any(s => s.MasterShip.ShipID == (int) ShipId.HamakazeBKai) &&
-			       ships.Any(s => s.MasterShip.ShipID == (int) ShipId.UrakazeDKai) &&
-			       ships.Any(s => s.MasterShip.ShipID == (int) ShipId.TanikazeDKai),
+			325 => ships.Any(s => s.MasterShip.ShipID == (int)ShipId.YuugumoKaiNi) &&
+				   ships.Any(s => s.MasterShip.ShipID == (int)ShipId.NaganamiKaiNi),
+			328 => ships.Any(s => s.MasterShip.ShipID == (int)ShipId.IsokazeBKai) &&
+				   ships.Any(s => s.MasterShip.ShipID == (int)ShipId.HamakazeBKai) &&
+				   ships.Any(s => s.MasterShip.ShipID == (int)ShipId.UrakazeDKai) &&
+				   ships.Any(s => s.MasterShip.ShipID == (int)ShipId.TanikazeDKai),
 			329 => ships.Count(s => s.MasterShip.ShipType == ShipTypes.Destroyer ||
-			                        s.MasterShip.ShipType == ShipTypes.Escort) >= 2,
+									s.MasterShip.ShipType == ShipTypes.Escort) >= 2,
 			330 => ships[0].MasterShip.IsAircraftCarrier &&
-			       ships.Count(s => s.MasterShip.IsAircraftCarrier) >= 2 &&
-			       ships.Count(s => s.MasterShip.ShipType == ShipTypes.Destroyer) >= 2,
+				   ships.Count(s => s.MasterShip.IsAircraftCarrier) >= 2 &&
+				   ships.Count(s => s.MasterShip.ShipType == ShipTypes.Destroyer) >= 2,
 			331 => ships[0].MasterShip.IsRegularCarrier &&
-			       ships.Count(s => s.MasterShip.IsRegularCarrier) >= 2 &&
-			       ships.Count(s => s.MasterShip.ShipType == ShipTypes.Destroyer) >= 2,
+				   ships.Count(s => s.MasterShip.IsRegularCarrier) >= 2 &&
+				   ships.Count(s => s.MasterShip.ShipType == ShipTypes.Destroyer) >= 2,
 			336 => ships.Count(s => s.MasterShip.ShipType == ShipTypes.AmphibiousAssaultShip ||
-			                        s.MasterShip.ShipType == ShipTypes.FleetOiler ||
-			                        s.MasterShip.ShipType == ShipTypes.Escort) >= 2,
-			337 => ships.Any(s => s.MasterShip.BaseShip().ShipID == (int) ShipId.Kagerou) &&
-			       ships.Any(s => s.MasterShip.BaseShip().ShipID == (int) ShipId.Shiranui) &&
-			       ships.Any(s => s.MasterShip.BaseShip().ShipID == (int) ShipId.Arare) &&
-			       ships.Any(s => s.MasterShip.BaseShip().ShipID == (int) ShipId.Kasumi),
+									s.MasterShip.ShipType == ShipTypes.FleetOiler ||
+									s.MasterShip.ShipType == ShipTypes.Escort) >= 2,
+			337 => ships.Any(s => s.MasterShip.BaseShip().ShipID == (int)ShipId.Kagerou) &&
+				   ships.Any(s => s.MasterShip.BaseShip().ShipID == (int)ShipId.Shiranui) &&
+				   ships.Any(s => s.MasterShip.BaseShip().ShipID == (int)ShipId.Arare) &&
+				   ships.Any(s => s.MasterShip.BaseShip().ShipID == (int)ShipId.Kasumi),
 			339 => ships.Count(s => s.MasterShip.BaseShip().ShipId switch
 			{
 				ShipId.Isonami => true,
@@ -101,28 +101,28 @@ public class ProgressPractice : ProgressData
 			}) >= 2,
 			// DD+DE >= 3 and another DD/DE or CL
 			342 => ships.Count(s => s.MasterShip.ShipType switch
-			       {
-				       ShipTypes.Destroyer => true,
-				       ShipTypes.Escort => true,
+				   {
+					   ShipTypes.Destroyer => true,
+					   ShipTypes.Escort => true,
 
-				       _ => false
-			       }) >= 3
-			       && ships.Count(s => s.MasterShip.ShipType switch
-			       {
-				       ShipTypes.Destroyer => true,
-				       ShipTypes.Escort => true,
-				       ShipTypes.LightCruiser => true,
+					   _ => false
+				   }) >= 3
+				   && ships.Count(s => s.MasterShip.ShipType switch
+				   {
+					   ShipTypes.Destroyer => true,
+					   ShipTypes.Escort => true,
+					   ShipTypes.LightCruiser => true,
 
-				       _ => false
-			       }) >= 4,
+					   _ => false
+				   }) >= 4,
 
 			// C53
 			348 => ships.Count(s => s.MasterShip.ShipType is
-				       ShipTypes.LightCruiser or
-				       ShipTypes.TrainingCruiser
-			       ) >= 3 &&
-			       ships[0].MasterShip.ShipType is ShipTypes.LightCruiser or ShipTypes.TrainingCruiser &&
-			       ships.Count(s => s.MasterShip.ShipType is ShipTypes.Destroyer) >= 2,
+					   ShipTypes.LightCruiser or
+					   ShipTypes.TrainingCruiser
+				   ) >= 3 &&
+				   ships[0].MasterShip.ShipType is ShipTypes.LightCruiser or ShipTypes.TrainingCruiser &&
+				   ships.Count(s => s.MasterShip.ShipType is ShipTypes.Destroyer) >= 2,
 
 			// 2102 LQ3
 			349 =>

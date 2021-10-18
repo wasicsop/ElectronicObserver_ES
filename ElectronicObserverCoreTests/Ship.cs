@@ -53,7 +53,7 @@ public static class Ship
 		mock.Setup(s => s.LOSBase).Returns(stats.LoS ?? 22);
 		mock.Setup(s => s.LuckTotal).Returns(stats.Luck ?? 26);
 		mock.Setup(s => s.AllSlotInstance).Returns(new ReadOnlyCollection<IEquipmentData?>(equip));
-		mock.Setup(s => s.Aircraft).Returns(new ReadOnlyCollection<int>(new List<int> {4, 4, 4, 4}));
+		mock.Setup(s => s.Aircraft).Returns(new ReadOnlyCollection<int>(new List<int> { 4, 4, 4, 4 }));
 		mock.Setup(s => s.MasterShip.ShipId).Returns(ShipId.BismarckDrei);
 		mock.Setup(s => s.MasterShip.ShipType).Returns(ShipTypes.Battlecruiser);
 		mock.Setup(s => s.Fleet).Returns(other.Fleet);
@@ -99,7 +99,7 @@ public static class Ship
 		mock.Setup(s => s.LuckTotal).Returns(stats.Luck ?? 20);
 		mock.Setup(s => s.MasterShip.IsAircraftCarrier).Returns(true);
 		mock.Setup(s => s.AllSlotInstance).Returns(new ReadOnlyCollection<IEquipmentData?>(equip));
-		mock.Setup(s => s.Aircraft).Returns(new ReadOnlyCollection<int>(new List<int> {21, 21, 32, 12, 4}));
+		mock.Setup(s => s.Aircraft).Returns(new ReadOnlyCollection<int>(new List<int> { 21, 21, 32, 12, 4 }));
 		mock.Setup(s => s.MasterShip.ShipId).Returns(ShipId.AkagiKaiNi);
 		mock.Setup(s => s.MasterShip.ShipType).Returns(ShipTypes.AircraftCarrier);
 

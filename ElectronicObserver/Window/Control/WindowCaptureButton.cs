@@ -1,7 +1,4 @@
-﻿using ElectronicObserver.Resource;
-using ElectronicObserver.Utility;
-using ElectronicObserver.Window.Integrate;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,6 +8,9 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ElectronicObserver.Resource;
+using ElectronicObserver.Utility;
+using ElectronicObserver.Window.Integrate;
 
 namespace ElectronicObserver.Window.Control;
 
@@ -98,16 +98,16 @@ public partial class WindowCaptureButton : Button
 		WinAPI.EnumWindows((WinAPI.EnumWindowsDelegate)((hWnd, lparam) =>
 		{
 			if (CapturingImageWindow.Handle != hWnd &&
-			    CandidateBoxWindow.Handle != hWnd)
+				CandidateBoxWindow.Handle != hWnd)
 			{
 				WinAPI.GetClassName(hWnd, className, className.Capacity);
 				WinAPI.GetWindowText(hWnd, windowText, windowText.Capacity);
 				WinAPI.GetWindowThreadProcessId(hWnd, out uint processId);
 				if (className.Length > 0 &&
-				    windowText.Length > 0 &&
-				    WinAPI.IsWindowVisible(hWnd) &&
-				    windowText.ToString() != "Program Manager" &&
-				    processId != currentProcessId)
+					windowText.Length > 0 &&
+					WinAPI.IsWindowVisible(hWnd) &&
+					windowText.ToString() != "Program Manager" &&
+					processId != currentProcessId)
 				{
 					WinAPI.GetWindowRect(hWnd, out WinAPI.RECT rect);
 					if (rect.left <= cursor.X && cursor.X <= rect.right && rect.top <= cursor.Y && cursor.Y <= rect.bottom)

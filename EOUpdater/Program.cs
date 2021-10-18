@@ -165,7 +165,7 @@ namespace EOUpdater
 					{
 						file.ExtractToFile(completeFileName, true);
 					}
-					catch (Exception e)
+					catch (Exception)
 					{
 						Console.WriteLine($"Couldn't update {fullname}");
 					}

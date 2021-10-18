@@ -35,7 +35,7 @@ public class TsunDbEventRouting : TsunDbRouting
 	/// <param name="api_data"></param>
 	public void ProcessEvent(dynamic api_data)
 	{
-		KCDatabase db = KCDatabase.Instance; 
+		KCDatabase db = KCDatabase.Instance;
 		JsonObject jData = (JsonObject)api_data;
 
 		this.CurrentMapHP = (int)api_data.api_eventmap.api_now_maphp;

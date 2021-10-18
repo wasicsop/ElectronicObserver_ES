@@ -16,7 +16,7 @@ public class FleetConditionViewModel : ObservableObject
 
 	public SolidColorBrush Foreground => ForeColor.ToBrush();
 	public SolidColorBrush Background => BackColor.ToBrush();
-	public ImageSource? Icon => ImageSourceIcons.GetIcon((IconContent) ImageIndex);
+	public ImageSource? Icon => ImageSourceIcons.GetIcon((IconContent)ImageIndex);
 
 
 	public void SetDesign(int cond)
@@ -42,11 +42,11 @@ public class FleetConditionViewModel : ObservableObject
 
 			ImageIndex = cond switch
 			{
-				< 20 => (int) IconContent.ConditionVeryTired,
-				< 30 => (int) IconContent.ConditionTired,
-				< 40 => (int) IconContent.ConditionLittleTired,
-				< 50 => (int) IconContent.ConditionNormal,
-				_ => (int) IconContent.ConditionSparkle
+				< 20 => (int)IconContent.ConditionVeryTired,
+				< 30 => (int)IconContent.ConditionTired,
+				< 40 => (int)IconContent.ConditionLittleTired,
+				< 50 => (int)IconContent.ConditionNormal,
+				_ => (int)IconContent.ConditionSparkle
 			};
 		}
 	}

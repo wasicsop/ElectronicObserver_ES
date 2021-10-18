@@ -178,7 +178,7 @@ public class CompassViewModel : AnchorableViewModel
 				var sb = new StringBuilder();
 
 				if (mapinfo.RequiredDefeatedCount != -1 &&
-				    mapinfo.CurrentDefeatedCount < mapinfo.RequiredDefeatedCount)
+					mapinfo.CurrentDefeatedCount < mapinfo.RequiredDefeatedCount)
 				{
 					sb.AppendFormat(FormCompass.MapClearCount + "\r\n",
 						mapinfo.CurrentGaugeIndex > 0 ? $"#{mapinfo.CurrentGaugeIndex} " : "",
@@ -198,7 +198,7 @@ public class CompassViewModel : AnchorableViewModel
 
 				foreach (var pair in KCDatabase.Instance.Battle.SpecialAttackCount)
 				{
-					sb.AppendLine($"{Constants.GetDayAttackKind((DayAttackKind) pair.Key)} : {FormCompass.SpecialAttackActivated}");
+					sb.AppendLine($"{Constants.GetDayAttackKind((DayAttackKind)pair.Key)} : {FormCompass.SpecialAttackActivated}");
 				}
 				/*
 				ToolTipInfo.SetToolTip(TextMapArea, sb.Length > 0 ? sb.ToString() : null);
@@ -213,7 +213,7 @@ public class CompassViewModel : AnchorableViewModel
 
 			// ex: node 1
 			TextDestination = string.Format(GeneralRes.NextNode + ": {0}{1}", compass.DestinationID, (compass.IsEndPoint ? GeneralRes.EndNode : ""));
-				
+
 			if (compass.LaunchedRecon != 0)
 			{
 				/*
@@ -229,7 +229,7 @@ public class CompassViewModel : AnchorableViewModel
 					3 => FormCompass.CoursePatrol,
 					_ => FormCompass.EnemyPlaneSighted
 				};
-					
+
 
 			}
 			else
@@ -299,7 +299,7 @@ public class CompassViewModel : AnchorableViewModel
 							(double)compass.WhirlpoolItemAmount / Math.Max(materialmax, 1));
 
 					}
-						break;
+					break;
 
 					case 4:     //通常戦闘
 						if (compass.EventKind >= 2)
@@ -448,7 +448,7 @@ public class CompassViewModel : AnchorableViewModel
 	private void UpdateEnemyFleet()
 	{
 		CompassData compass = Db.Battle.Compass;
-			
+
 		CurrentViewModel = EnemyListViewModel;
 
 		_enemyFleetCandidate = RecordManager.Instance.EnemyFleet.Record.Values.Where(
@@ -656,20 +656,20 @@ public class CompassViewModel : AnchorableViewModel
 		// int hp, int firepower, int torpedo, int aa, int armor
 		// hps[i], parameters[i][0], parameters[i][1], parameters[i][2], parameters[i][3]
 		EnemyFleet = enemies.Select((shipId, i) => new MasterShipViewModel
+		{
+			Ship = shipId switch
 			{
-				Ship = shipId switch
-				{
-					> 0 => Db.MasterShips[shipId],
-					_ => null
-				},
-				Slot = slots[i],
-				Level = levels[i],
-				Hp = hps[i],
-				Firepower = parameters[i][0],
-				Torpedo = parameters[i][1],
-				Aa = parameters[i][2],
-				Armor = parameters[i][3],
-			})
+				> 0 => Db.MasterShips[shipId],
+				_ => null
+			},
+			Slot = slots[i],
+			Level = levels[i],
+			Hp = hps[i],
+			Firepower = parameters[i][0],
+			Torpedo = parameters[i][1],
+			Aa = parameters[i][2],
+			Armor = parameters[i][3],
+		})
 			.Take(6);
 	}
 

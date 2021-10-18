@@ -1,6 +1,6 @@
 ﻿namespace ElectronicObserverTypes.Mocks;
 
-public class MockEquipmentData: IEquipmentData
+public class MockEquipmentData : IEquipmentData
 {
 	public int MasterID { get; set; }
 	public int EquipmentID { get; set; }

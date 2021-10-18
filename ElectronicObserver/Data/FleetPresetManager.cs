@@ -51,7 +51,7 @@ public class FleetPresetManager : APIWrapper
 				}
 				PresetChanged?.Invoke();
 			}
-				break;
+			break;
 
 			case "api_req_hensei/preset_register":
 			{
@@ -68,7 +68,7 @@ public class FleetPresetManager : APIWrapper
 				}
 				PresetChanged?.Invoke();
 			}
-				break;
+			break;
 		}
 
 		base.LoadFromResponse(apiname, (object)data);

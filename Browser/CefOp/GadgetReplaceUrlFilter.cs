@@ -1,8 +1,8 @@
-﻿using CefSharp;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using CefSharp;
 namespace Browser.CefOp;
 
 public class GadgetReplaceFilter : IResponseFilter

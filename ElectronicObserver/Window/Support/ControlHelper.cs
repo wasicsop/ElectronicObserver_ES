@@ -178,9 +178,9 @@ public static class ControlHelper
 
 
 				if (left != -1 &&
-				    top != -1 &&
-				    bottom != -1 &&
-				    right != -1)
+					top != -1 &&
+					bottom != -1 &&
+					right != -1)
 				{
 					ret = new Rectangle(left, top, right - left + 1, bottom - top + 1);
 				}

@@ -1,13 +1,13 @@
-﻿using ElectronicObserver.Data;
-using ElectronicObserver.Data.Battle;
-using ElectronicObserver.Observer;
-using ElectronicObserver.Utility.Storage;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ElectronicObserver.Data;
+using ElectronicObserver.Data.Battle;
+using ElectronicObserver.Observer;
+using ElectronicObserver.Utility.Storage;
 using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Resource.Record;
@@ -1082,7 +1082,7 @@ public class ShipParameterRecord : RecordBase
 			void checkNoAircraft(int id, int[] eqs)
 			{
 				if (id <= 0 ||
-				    this[id].Aircraft != null)
+					this[id].Aircraft != null)
 					return;
 
 				if (eqs.Select(eqid => db.MasterEquipments[eqid]).All(eq => !eq?.IsAircraft ?? true))

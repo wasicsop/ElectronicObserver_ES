@@ -1,7 +1,7 @@
-﻿using DiscordRPC;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using DiscordRPC;
 
 namespace ElectronicObserver.Observer;
 
@@ -145,7 +145,8 @@ class DiscordRPC
 
 		SetActivity();
 
-		Task task = Task.Run(async () => {
+		Task task = Task.Run(async () =>
+		{
 			for (; ; )
 			{
 				await Task.Delay(15000);

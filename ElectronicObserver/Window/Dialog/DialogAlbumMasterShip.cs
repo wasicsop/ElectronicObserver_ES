@@ -1,12 +1,4 @@
-﻿using ElectronicObserver.Data;
-using ElectronicObserver.Resource;
-using ElectronicObserver.Resource.Record;
-using ElectronicObserver.Utility.Data;
-using ElectronicObserver.Utility.Mathematics;
-using ElectronicObserver.Utility.Storage;
-using ElectronicObserver.Window.Control;
-using ElectronicObserver.Window.Support;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -18,6 +10,14 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ElectronicObserver.Data;
+using ElectronicObserver.Resource;
+using ElectronicObserver.Resource.Record;
+using ElectronicObserver.Utility.Data;
+using ElectronicObserver.Utility.Mathematics;
+using ElectronicObserver.Utility.Storage;
+using ElectronicObserver.Window.Control;
+using ElectronicObserver.Window.Support;
 using ElectronicObserverTypes;
 using static ElectronicObserver.Resource.Record.ShipParameterRecord;
 using AlbumMasterTranslation = ElectronicObserver.Properties.Window.Dialog.DialogAlbumMasterEquipment;
@@ -378,7 +378,7 @@ public partial class DialogAlbumMasterShip : Form
 		}
 		ShipName.Text = ship.NameWithClass;
 		ShipName.ForeColor = ship.GetShipNameColor();
-		if(ShipName.ForeColor == Color.FromArgb( 0xFF, 0xFF, 0xFF ))
+		if (ShipName.ForeColor == Color.FromArgb(0xFF, 0xFF, 0xFF))
 		{
 			ShipName.ForeColor = SystemColors.ControlText;
 		}

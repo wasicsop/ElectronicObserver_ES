@@ -18,7 +18,7 @@ public class CompassTemplateSelector : DataTemplateSelector
 		TextViewModel => TextTemplate,
 		EnemyListViewModel => EnemyListTemplate,
 		BattleViewModel => BattleTemplate,
-			
+
 		_ => base.SelectTemplate(item, container)
 	};
 }

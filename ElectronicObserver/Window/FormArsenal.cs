@@ -1,10 +1,4 @@
-﻿using ElectronicObserver.Data;
-using ElectronicObserver.Observer;
-using ElectronicObserver.Resource;
-using ElectronicObserver.Utility.Mathematics;
-using ElectronicObserver.Window.Control;
-using ElectronicObserver.Window.Support;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,6 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ElectronicObserver.Data;
+using ElectronicObserver.Observer;
+using ElectronicObserver.Resource;
+using ElectronicObserver.Utility.Mathematics;
+using ElectronicObserver.Window.Control;
+using ElectronicObserver.Window.Support;
 using WeifenLuo.WinFormsUI.Docking;
 
 namespace ElectronicObserver.Window;
@@ -95,8 +95,8 @@ public partial class FormArsenal : DockContent
 
 			CompletionTime.BackColor = Color.Transparent;
 			CompletionTime.ForeColor = Utility.Configuration.Config.UI.ForeColor;
-			tooltip.SetToolTip( ShipName, null );
-			tooltip.SetToolTip( CompletionTime, null );
+			tooltip.SetToolTip(ShipName, null);
+			tooltip.SetToolTip(CompletionTime, null);
 
 			if (arsenal == null || arsenal.State == -1)
 			{
@@ -122,7 +122,7 @@ public partial class FormArsenal : DockContent
 				tooltip.SetToolTip(ShipName, name);
 				CompletionTime.Text = DateTimeHelper.ToTimeRemainString(arsenal.CompletionTime);
 				CompletionTime.Tag = arsenal.CompletionTime;
-				tooltip.SetToolTip( CompletionTime, GeneralRes.TimeToCompletion + ":" + DateTimeHelper.TimeToCSVString( arsenal.CompletionTime ) );
+				tooltip.SetToolTip(CompletionTime, GeneralRes.TimeToCompletion + ":" + DateTimeHelper.TimeToCSVString(arsenal.CompletionTime));
 
 			}
 			else if (arsenal.State == 3)
@@ -130,7 +130,7 @@ public partial class FormArsenal : DockContent
 				//complete!
 				string name = showShipName ? db.MasterShips[arsenal.ShipID].NameEN : "???";
 				ShipName.Text = name;
-				tooltip.SetToolTip( ShipName, name );
+				tooltip.SetToolTip(ShipName, name);
 				CompletionTime.Text = GeneralRes.Complete + "!";
 				CompletionTime.Tag = null;
 
@@ -149,7 +149,8 @@ public partial class FormArsenal : DockContent
 
 				CompletionTime.Text = DateTimeHelper.ToTimeRemainString(time);
 
-				if ( Utility.Configuration.Config.FormArsenal.BlinkAtCompletion && ( time - DateTime.Now ).TotalMilliseconds <= Utility.Configuration.Config.NotifierConstruction.AccelInterval ) {
+				if (Utility.Configuration.Config.FormArsenal.BlinkAtCompletion && (time - DateTime.Now).TotalMilliseconds <= Utility.Configuration.Config.NotifierConstruction.AccelInterval)
+				{
 					CompletionTime.BackColor = DateTime.Now.Second % 2 == 0 ? Utility.Configuration.Config.UI.Arsenal_BuildCompleteBG : Color.Transparent;
 					CompletionTime.ForeColor = DateTime.Now.Second % 2 == 0 ? Utility.Configuration.Config.UI.Arsenal_BuildCompleteFG : Utility.Configuration.Config.UI.ForeColor;
 				}
@@ -173,7 +174,7 @@ public partial class FormArsenal : DockContent
 			CompletionTime.Font = parent.Font;
 			CompletionTime.BackColor = Color.Transparent;
 			ShipName.ForeColor = CompletionTime.ForeColor = Utility.Configuration.Config.UI.ForeColor;
-			ShipName.MaximumSize = new Size( config.MaxShipNameWidth, ShipName.MaximumSize.Height );
+			ShipName.MaximumSize = new Size(config.MaxShipNameWidth, ShipName.MaximumSize.Height);
 		}
 
 		public void Dispose()
@@ -249,7 +250,7 @@ public partial class FormArsenal : DockContent
 			if (Utility.Configuration.Config.Log.ShowSpoiler && Utility.Configuration.Config.FormArsenal.ShowShipName)
 			{
 
-				name = string.Format( "{0} {1}", ship.ShipTypeName, ship.NameWithClass );
+				name = string.Format("{0} {1}", ship.ShipTypeName, ship.NameWithClass);
 
 			}
 			else
@@ -258,7 +259,7 @@ public partial class FormArsenal : DockContent
 				name = GeneralRes.ShipGirl;
 			}
 
-			Utility.Logger.Add( 2, string.Format( GeneralRes.ArsenalLog,
+			Utility.Logger.Add(2, string.Format(GeneralRes.ArsenalLog,
 				_buildingID,
 				name,
 				arsenal.Fuel,
@@ -332,8 +333,9 @@ public partial class FormArsenal : DockContent
 	}
 
 
-	private void TableArsenal_CellPaint( object sender, TableLayoutCellPaintEventArgs e ) {
-		e.Graphics.DrawLine(Utility.Configuration.Config.UI.SubBackColorPen, e.CellBounds.X, e.CellBounds.Bottom - 1, e.CellBounds.Right - 1, e.CellBounds.Bottom - 1 );
+	private void TableArsenal_CellPaint(object sender, TableLayoutCellPaintEventArgs e)
+	{
+		e.Graphics.DrawLine(Utility.Configuration.Config.UI.SubBackColorPen, e.CellBounds.X, e.CellBounds.Bottom - 1, e.CellBounds.Right - 1, e.CellBounds.Bottom - 1);
 	}
 
 

@@ -1,9 +1,4 @@
-﻿using ElectronicObserver.Notifier;
-using ElectronicObserver.Observer;
-using ElectronicObserver.Resource;
-using ElectronicObserver.Utility;
-using ElectronicObserver.Utility.Storage;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +10,11 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ElectronicObserver.Notifier;
+using ElectronicObserver.Observer;
+using ElectronicObserver.Resource;
+using ElectronicObserver.Utility;
+using ElectronicObserver.Utility.Storage;
 using Translation = ElectronicObserver.Properties.Window.Dialog.DialogConfiguration;
 
 namespace ElectronicObserver.Window.Dialog;
@@ -85,7 +85,7 @@ public partial class DialogConfiguration : Form
 		UI_NodeNumbering.Text = Translation.UseLetterForNodes;
 		label21.Text = Translation.Theme;
 		UI_ThemeOptions.Items.Clear();
-		UI_ThemeOptions.Items.AddRange(new object[] 
+		UI_ThemeOptions.Items.AddRange(new object[]
 		{
 			Translation.Theme_Light,
 			Translation.Theme_Dark,
@@ -144,7 +144,7 @@ public partial class DialogConfiguration : Form
 		Control_ShowSallyAreaAlertDialog.Text = Translation.Control_ShowSallyAreaAlertDialog;
 		ToolTipInfo.SetToolTip(Control_ShowSallyAreaAlertDialog, Translation.Control_ShowSallyAreaAlertDialogTooltip);
 		Control_PowerEngagementForm.Items.Clear();
-		Control_PowerEngagementForm.Items.AddRange(new object[] 
+		Control_PowerEngagementForm.Items.AddRange(new object[]
 		{
 			Translation.Control_PowerEngagementForm_Parallel,
 			Translation.Control_PowerEngagementForm_HeadOn,
@@ -575,7 +575,7 @@ public partial class DialogConfiguration : Form
 
 					Clipboard.SetData(DataFormats.StringFormat, "file:///" + dialog.FileName.Replace('\\', '/'));
 
-					MessageBox.Show(Translation.ProxyAutoConfigSaved, Translation.PacSavedTitle, 
+					MessageBox.Show(Translation.ProxyAutoConfigSaved, Translation.PacSavedTitle,
 						MessageBoxButtons.OK, MessageBoxIcon.Information);
 
 

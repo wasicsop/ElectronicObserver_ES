@@ -19,7 +19,8 @@ public class ProgressImprovement : ProgressData
 	{
 	}
 
-	public override string GetClearCondition() {
+	public override string GetClearCondition()
+	{
 		return QuestTracking.Improvement + ProgressMax;
 	}
 }

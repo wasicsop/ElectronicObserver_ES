@@ -1,9 +1,9 @@
-﻿using ElectronicObserver.Utility.Mathematics;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ElectronicObserver.Utility.Mathematics;
 
 namespace ElectronicObserver.Data;
 
@@ -137,7 +137,7 @@ public class QuestManager : APIWrapper
 				Quests.Remove(id);
 				Count--;
 			}
-				break;
+			break;
 			case "api_req_quest/stop":
 				Quests[int.Parse(data["api_quest_id"])].State = 1;
 				break;

@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Text;
 using System.Linq;
+using System.Text;
 using System.Windows.Forms;
 using ElectronicObserver;
-using ElectronicObserver.Observer;
 using ElectronicObserver.Data;
+using ElectronicObserver.Observer;
 using ElectronicObserver.Utility;
 
 namespace ElectronicObserver.Window;
@@ -98,7 +98,7 @@ public partial class FormXPCalculator : WeifenLuo.WinFormsUI.Docking.DockContent
 		}
 		if (checkFlagship.Checked) sortieXP *= 1.5;
 		if (checkMVP.Checked) sortieXP *= 2;
-            
+
 		battleXP.Text = sortieXP.ToString();
 		ShipData ship = selectShip.SelectedItem as ShipData;
 		if (ship != null)

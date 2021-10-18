@@ -1,7 +1,4 @@
-﻿using ElectronicObserver.Data;
-using ElectronicObserver.Resource;
-using ElectronicObserver.Resource.Record;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,6 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
+using ElectronicObserver.Data;
+using ElectronicObserver.Resource;
+using ElectronicObserver.Resource.Record;
 using Translation = ElectronicObserver.Properties.Window.Dialog.DialogResourceChart;
 
 namespace ElectronicObserver.Window.Dialog;
@@ -846,7 +846,7 @@ public partial class DialogResourceChart : Form
 					m = 12;
 				border = new DateTime(now.Year - (now.Month < 3 ? 1 : 0), m, 1);
 			}
-				break;
+			break;
 			case ChartSpan.YearFirst:
 				border = new DateTime(now.Year, 1, 1);
 				break;
@@ -921,12 +921,16 @@ public partial class DialogResourceChart : Form
 		ResourceChart.ChartAreas[0].AxisY.Interval = unit;
 		ResourceChart.ChartAreas[0].AxisY.MinorGrid.Interval = unit / 2;
 
-		if (ResourceChart.Series.Where(s => s.Enabled).Any(s => s.YAxisType == AxisType.Secondary)) {
+		if (ResourceChart.Series.Where(s => s.Enabled).Any(s => s.YAxisType == AxisType.Secondary))
+		{
 			ResourceChart.ChartAreas[0].AxisY2.Enabled = AxisEnabled.True;
-			if (ResourceChart.Series.Count(s => s.Enabled) == 1) {
+			if (ResourceChart.Series.Count(s => s.Enabled) == 1)
+			{
 				ResourceChart.ChartAreas[0].AxisY2.MajorGrid.Enabled = true;
 				ResourceChart.ChartAreas[0].AxisY2.MinorGrid.Enabled = true;
-			} else {
+			}
+			else
+			{
 				ResourceChart.ChartAreas[0].AxisY2.MajorGrid.Enabled = false;
 				ResourceChart.ChartAreas[0].AxisY2.MinorGrid.Enabled = false;
 			}
@@ -934,7 +938,9 @@ public partial class DialogResourceChart : Form
 			ResourceChart.ChartAreas[0].AxisY2.Maximum = ResourceChart.ChartAreas[0].AxisY.Maximum / 100;
 			ResourceChart.ChartAreas[0].AxisY2.Interval = unit / 100;
 			ResourceChart.ChartAreas[0].AxisY2.MinorGrid.Interval = unit / 200;
-		} else {
+		}
+		else
+		{
 			ResourceChart.ChartAreas[0].AxisY2.Enabled = AxisEnabled.False;
 		}
 

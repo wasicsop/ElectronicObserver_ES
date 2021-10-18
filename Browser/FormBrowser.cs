@@ -1,13 +1,11 @@
-﻿using Browser.CefOp;
-using BrowserLibCore;
-using CefSharp;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -17,9 +15,11 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Globalization;
+using Browser.CefOp;
 using Browser.ExtraBrowser;
 using Browser.Properties;
+using BrowserLibCore;
+using CefSharp;
 using Grpc.Core;
 using MagicOnion.Client;
 using Translation = Browser.Properties.Resources;
@@ -1346,7 +1346,7 @@ public partial class FormBrowser : Form//, BrowserLibCore.IBrowser
 		}
 
 
-#region 呪文
+	#region 呪文
 
 		[DllImport("user32.dll", EntryPoint = "GetWindowLongA", SetLastError = true)]
 		private static extern uint GetWindowLong(IntPtr hwnd, int nIndex);
@@ -1359,7 +1359,7 @@ public partial class FormBrowser : Form//, BrowserLibCore.IBrowser
 		private const uint WS_VISIBLE = 0x10000000;
 		private const int WM_ERASEBKGND = 0x14;
 
-#endregion
+	#endregion
 #endif
 }
 
@@ -1383,7 +1383,7 @@ internal class ExtraToolStrip : ToolStrip
 	{
 		base.WndProc(ref m);
 
-		if (m.Msg == WM_MOUSEACTIVATE && m.Result == (IntPtr) MA_ACTIVATEANDEAT)
-			m.Result = (IntPtr) MA_ACTIVATE;
+		if (m.Msg == WM_MOUSEACTIVATE && m.Result == (IntPtr)MA_ACTIVATEANDEAT)
+			m.Result = (IntPtr)MA_ACTIVATE;
 	}
 }

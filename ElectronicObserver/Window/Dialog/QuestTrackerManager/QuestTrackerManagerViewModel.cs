@@ -1,4 +1,9 @@
-﻿using ElectronicObserver.Data;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.IO;
+using System.Linq;
+using System.Windows;
+using ElectronicObserver.Data;
 using ElectronicObserver.Observer;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.Models;
@@ -7,11 +12,6 @@ using MessagePack;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.IO;
-using System.Linq;
-using System.Windows;
 
 namespace ElectronicObserver.Window.Dialog.QuestTrackerManager;
 

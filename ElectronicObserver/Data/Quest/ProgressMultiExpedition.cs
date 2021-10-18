@@ -24,7 +24,7 @@ public class ProgressMultiExpedition : ProgressData
 	}
 
 
-	public void Increment(int areaID) 
+	public void Increment(int areaID)
 	{
 		foreach (var p in ProgressList)
 			p.Increment(areaID);

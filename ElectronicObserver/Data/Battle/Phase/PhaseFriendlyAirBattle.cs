@@ -1,6 +1,6 @@
-﻿using ElectronicObserver.Data.Battle.Detail;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using ElectronicObserver.Data.Battle.Detail;
 
 namespace ElectronicObserver.Data.Battle.Phase;
 

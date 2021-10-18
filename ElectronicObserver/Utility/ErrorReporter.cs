@@ -1,10 +1,10 @@
-﻿using ElectronicObserver.Utility.Mathematics;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ElectronicObserver.Utility.Mathematics;
 
 namespace ElectronicObserver.Utility;
 
@@ -57,8 +57,8 @@ public class ErrorReporter
 				if (connectionName != null && connectionData != null)
 				{
 					sw.WriteLine();
-					sw.WriteLine( LoggerRes.APIData, connectionName );
-					sw.WriteLine( connectionData );
+					sw.WriteLine(LoggerRes.APIData, connectionName);
+					sw.WriteLine(connectionData);
 				}
 			}
 
@@ -66,7 +66,7 @@ public class ErrorReporter
 		catch (Exception)
 		{
 
-			Utility.Logger.Add( 3, string.Format( LoggerRes.FailedSavingErrorReport, ex.Message, ex.StackTrace ) );
+			Utility.Logger.Add(3, string.Format(LoggerRes.FailedSavingErrorReport, ex.Message, ex.StackTrace));
 		}
 
 	}

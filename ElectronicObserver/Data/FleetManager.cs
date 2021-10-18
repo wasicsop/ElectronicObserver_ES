@@ -1,9 +1,9 @@
-﻿using ElectronicObserver.Utility.Mathematics;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ElectronicObserver.Utility.Mathematics;
 
 namespace ElectronicObserver.Data;
 
@@ -87,7 +87,7 @@ public class FleetManager : APIWrapper
 						battle.FirstBattle.Initial.FriendFleetEscort.Escape(index - 6);
 				}
 			}
-				break;
+			break;
 
 			case "api_get_member/ndock":
 				foreach (var fleet in Fleets.Values)
@@ -113,7 +113,7 @@ public class FleetManager : APIWrapper
 				}
 
 			}
-				break;
+			break;
 
 			default:
 				base.LoadFromResponse(apiname, (object)data);
@@ -171,7 +171,7 @@ public class FleetManager : APIWrapper
 					Fleets[i].LoadFromRequest(apiname, data);
 
 			}
-				break;
+			break;
 
 			case "api_req_map/start":
 			{
@@ -182,7 +182,7 @@ public class FleetManager : APIWrapper
 				}
 				Fleets[fleetID].IsInSortie = true;
 			}
-				goto default;
+			goto default;
 
 			case "api_req_hensei/combined":
 				CombinedFlag = int.Parse(data["api_combined_type"]);
@@ -194,7 +194,7 @@ public class FleetManager : APIWrapper
 				Fleets[fleetID].IsInSortie = true;
 				Fleets[fleetID].IsInPractice = true;
 			}
-				break;
+			break;
 
 			default:
 				foreach (int i in Fleets.Keys)
@@ -368,7 +368,7 @@ public class FleetManager : APIWrapper
 		}
 
 
-		LabelFinally:
+LabelFinally:
 		LastConditionUpdated = now;
 
 		foreach (var f in Fleets.Values)
