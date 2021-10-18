@@ -127,6 +127,8 @@ csharp_space_between_method_call_empty_parameter_list_parentheses = false
 # Wrapping preferences
 csharp_preserve_single_line_statements = true
 csharp_preserve_single_line_blocks = true
+# IDE0160: Convert to block scoped namespace
+csharp_style_namespace_declarations = file_scoped
 ###############################
 # VB Coding Conventions       #
 ###############################
