@@ -40,6 +40,8 @@ public partial class QuestTrackerManagerViewModel : ObservableObject
 
 		ao.APIList["api_req_sortie/battleresult"].ResponseReceived += BattleFinished;
 		ao.APIList["api_req_combined_battle/battleresult"].ResponseReceived += BattleFinished;
+
+		ao.APIList["api_req_mission/result"].ResponseReceived += ExpeditionCompleted;
 	}
 
 	private void BattleFinished(string apiname, dynamic data)
@@ -60,6 +62,24 @@ public partial class QuestTrackerManagerViewModel : ObservableObject
 
 		// p.Increment(bm.Result.Rank, bm.Compass.MapAreaID * 10 + bm.Compass.MapInfoID, bm.Compass.EventID == 5);
 
+	}
+
+	void ExpeditionCompleted(string apiname, dynamic data)
+	{
+		// 遠征失敗
+		if ((int)data.api_clear_result == 0) return;
+
+		FleetData? fleet = KCDatabase.Instance.Fleet.Fleets.Values
+			.FirstOrDefault(f => f.Members.Contains((int)data.api_ship_id[1]));
+
+		if (fleet == null) return;
+
+		int areaId = fleet.ExpeditionDestination;
+
+		foreach (TrackerViewModel tracker in Trackers.Where(t => t.State == 2))
+		{
+			tracker.Increment(fleet, areaId);
+		}
 	}
 
 	[ICommand]

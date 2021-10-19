@@ -51,4 +51,12 @@ public class ExpeditionTask : ObservableObject, IQuestTaskViewModel
 			KCDatabase.Instance.Quest.OnQuestUpdated();
 		};
 	}
+
+	public void Increment(int areaId)
+	{
+		if (areaId == Model.Expedition.MissionId)
+		{
+			Model.Progress++;
+		}
+	}
 }

@@ -126,4 +126,14 @@ public partial class TrackerViewModel : ObservableObject
 			task.Increment(FromString(resultRank), compassMapAreaId, compassMapInfoId);
 		}
 	}
+
+	public void Increment(IFleetData fleet, int areaId)
+	{
+		if (!GroupConditions.ConditionMet(fleet)) return;
+
+		foreach (ExpeditionTask task in Tasks.OfType<ExpeditionTask>())
+		{
+			task.Increment(areaId);
+		}
+	}
 }
