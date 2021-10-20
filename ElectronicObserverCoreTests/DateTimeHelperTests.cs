@@ -11,7 +11,8 @@ public class DateTimeHelperTests
 	{
 		DateTime now = DateTime.Now;
 		
-		Assert.Equal(now, DateTimeHelper.GetJapanStandardTime(now));
+		Assert.Equal(now, DateTimeHelper.GetJapanStandardTimeNow(now));
+		Assert.NotEqual(now, DateTimeHelper.GetJapanStandardTimeNow());
 	}
 
 	[Fact]
