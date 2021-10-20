@@ -238,6 +238,26 @@ public static class DateTimeHelper
 	}
 
 
+	/// <param name="currentTime">Current JST time, used for testing only.</param>
+	public static bool IsCrossedDailyQuestReset(DateTime previousTime, DateTime? currentTime = null)
+		=> IsCrossedDay(previousTime, 5, 0, 0, currentTime);
+
+	/// <param name="currentTime">Current JST time, used for testing only.</param>
+	public static bool IsCrossedWeeklyQuestReset(DateTime previousTime, DateTime? currentTime = null)
+		=> IsCrossedWeek(previousTime, DayOfWeek.Monday, 5, 0, 0, currentTime);
+
+	/// <param name="currentTime">Current JST time, used for testing only.</param>
+	public static bool IsCrossedMonthlyQuestReset(DateTime previousTime, DateTime? currentTime = null)
+		=> IsCrossedMonth(previousTime, 1, 5, 0, 0, currentTime);
+
+	/// <param name="currentTime">Current JST time, used for testing only.</param>
+	public static bool IsCrossedQuarterlyQuestReset(DateTime previousTime, DateTime? currentTime = null)
+		=> IsCrossedQuarter(previousTime, 0, 1, 5, 0, 0, currentTime);
+
+	/// <param name="currentTime">Current JST time, used for testing only.</param>
+	public static bool IsCrossedYearlyQuestReset(DateTime previousTime, int month, DateTime? currentTime = null)
+		=> IsCrossedYear(previousTime, month, 1, 5, 0, 0, currentTime);
+
 
 	/// <summary>
 	/// ファイル名の一部として利用できるフォーマットの現在日時文字列を取得します。
