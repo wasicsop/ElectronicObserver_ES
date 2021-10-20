@@ -169,6 +169,24 @@ namespace ElectronicObserver.Properties.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ボス殺し.
+        /// </summary>
+        public static string QuestTaskType_BossKill {
+            get {
+                return ResourceManager.GetString("QuestTaskType_BossKill", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 遠征.
+        /// </summary>
+        public static string QuestTaskType_Expedition {
+            get {
+                return ResourceManager.GetString("QuestTaskType_Expedition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 任意の改造.
         /// </summary>
         public static string RemodelComparisonType_Any {
@@ -210,24 +228,6 @@ namespace ElectronicObserver.Properties.Window.Dialog {
         public static string Title {
             get {
                 return ResourceManager.GetString("Title", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to ボス殺し.
-        /// </summary>
-        public static string TrackableTaskType_BossKill {
-            get {
-                return ResourceManager.GetString("TrackableTaskType_BossKill", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 遠征.
-        /// </summary>
-        public static string TrackableTaskType_Expedition {
-            get {
-                return ResourceManager.GetString("TrackableTaskType_Expedition", resourceCulture);
             }
         }
         

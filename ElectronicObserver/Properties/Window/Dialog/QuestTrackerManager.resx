@@ -124,10 +124,10 @@
   <data name="RemodelComparisonType_Exact" xml:space="preserve">
     <value>正確改造</value>
   </data>
-  <data name="TrackableTaskType_BossKill" xml:space="preserve">
+  <data name="QuestTaskType_BossKill" xml:space="preserve">
     <value>ボス殺し</value>
   </data>
-  <data name="TrackableTaskType_Expedition" xml:space="preserve">
+  <data name="QuestTaskType_Expedition" xml:space="preserve">
     <value>遠征</value>
   </data>
   <data name="Flagship" xml:space="preserve">

@@ -144,10 +144,10 @@
   <data name="RemodelComparisonType_Exact" xml:space="preserve">
     <value>Exact remodel</value>
   </data>
-  <data name="TrackableTaskType_BossKill" xml:space="preserve">
+  <data name="QuestTaskType_BossKill" xml:space="preserve">
     <value>Boss kill</value>
   </data>
-  <data name="TrackableTaskType_Expedition" xml:space="preserve">
+  <data name="QuestTaskType_Expedition" xml:space="preserve">
     <value>Expedition</value>
   </data>
   <data name="Flagship" xml:space="preserve">

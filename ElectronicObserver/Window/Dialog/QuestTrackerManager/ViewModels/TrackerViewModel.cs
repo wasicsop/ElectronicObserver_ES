@@ -17,8 +17,8 @@ namespace ElectronicObserver.Window.Dialog.QuestTrackerManager.ViewModels;
 
 public partial class TrackerViewModel : ObservableObject
 {
-	public IEnumerable<TrackableTaskType> TaskTypes { get; }
-	public TrackableTaskType TaskTypeType { get; set; } = TrackableTaskType.BossKill;
+	public IEnumerable<QuestTaskType> TaskTypes { get; }
+	public QuestTaskType TaskTypeType { get; set; } = QuestTaskType.BossKill;
 
 	public IEnumerable<IQuestTaskViewModel> Tasks { get; set; }
 	public GroupConditionViewModel GroupConditions { get; }
@@ -54,7 +54,7 @@ public partial class TrackerViewModel : ObservableObject
 		Tasks = MakeTasks();
 		GroupConditions = new(Model.Conditions) { CanBeRemoved = false };
 
-		TaskTypes = Enum.GetValues(typeof(TrackableTaskType)).Cast<TrackableTaskType>();
+		TaskTypes = Enum.GetValues(typeof(QuestTaskType)).Cast<QuestTaskType>();
 		Model.PropertyChanged += (_, e) =>
 		{
 			if (e.PropertyName is not nameof(Model.Quest.Id)) return;
@@ -84,8 +84,8 @@ public partial class TrackerViewModel : ObservableObject
 	{
 		Model.Tasks.Add(TaskTypeType switch
 		{
-			TrackableTaskType.BossKill => new BossKillTaskModel(),
-			TrackableTaskType.Expedition => new ExpeditionTaskModel(),
+			QuestTaskType.BossKill => new BossKillTaskModel(),
+			QuestTaskType.Expedition => new ExpeditionTaskModel(),
 		});
 	}
 
