@@ -1,12 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Windows;
 using ElectronicObserver.Data;
 using ElectronicObserver.Observer;
+using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.ViewModels.Translations;
+using ElectronicObserver.Window.Dialog.QuestTrackerManager.Enums;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.Models;
+using ElectronicObserver.Window.Dialog.QuestTrackerManager.Models.Tasks;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.ViewModels;
 using MessagePack;
 using Microsoft.Extensions.DependencyInjection;
@@ -24,6 +28,8 @@ public partial class QuestTrackerManagerViewModel : ObservableObject
 
 	public QuestModel? Quest { get; set; }
 
+	private DateTime LastQuestListUpdate { get; set; } = new(2000, 1, 1);
+
 	public QuestTrackerManagerViewModel()
 	{
 		Translation = App.Current.Services.GetService<QuestTrackerManagerTranslationViewModel>()!;
@@ -38,10 +44,56 @@ public partial class QuestTrackerManagerViewModel : ObservableObject
 	{
 		var ao = APIObserver.Instance;
 
+		ao.APIList["api_get_member/questlist"].ResponseReceived += QuestUpdated;
+
 		ao.APIList["api_req_sortie/battleresult"].ResponseReceived += BattleFinished;
 		ao.APIList["api_req_combined_battle/battleresult"].ResponseReceived += BattleFinished;
 
 		ao.APIList["api_req_mission/result"].ResponseReceived += ExpeditionCompleted;
+	}
+
+	private void QuestUpdated(string apiname, dynamic data)
+	{
+		QuestManager quests = KCDatabase.Instance.Quest;
+
+		bool ShouldQuestReset(QuestModel quest) => quest.ResetType switch
+		{
+			QuestResetType.Daily => DateTimeHelper.IsCrossedDailyQuestReset(LastQuestListUpdate),
+			QuestResetType.Weekly => DateTimeHelper.IsCrossedWeeklyQuestReset(LastQuestListUpdate),
+			QuestResetType.Monthly => DateTimeHelper.IsCrossedMonthlyQuestReset(LastQuestListUpdate),
+			QuestResetType.Quarterly => DateTimeHelper.IsCrossedQuarterlyQuestReset(LastQuestListUpdate),
+
+			QuestResetType.January => DateTimeHelper.IsCrossedYearlyQuestReset(LastQuestListUpdate, 1),
+			QuestResetType.February => DateTimeHelper.IsCrossedYearlyQuestReset(LastQuestListUpdate, 2),
+			QuestResetType.March => DateTimeHelper.IsCrossedYearlyQuestReset(LastQuestListUpdate, 3),
+			QuestResetType.April => DateTimeHelper.IsCrossedYearlyQuestReset(LastQuestListUpdate, 4),
+			QuestResetType.May => DateTimeHelper.IsCrossedYearlyQuestReset(LastQuestListUpdate, 5),
+			QuestResetType.June => DateTimeHelper.IsCrossedYearlyQuestReset(LastQuestListUpdate, 6),
+			QuestResetType.July => DateTimeHelper.IsCrossedYearlyQuestReset(LastQuestListUpdate, 7),
+			QuestResetType.August => DateTimeHelper.IsCrossedYearlyQuestReset(LastQuestListUpdate, 8),
+			QuestResetType.September => DateTimeHelper.IsCrossedYearlyQuestReset(LastQuestListUpdate, 9),
+			QuestResetType.October => DateTimeHelper.IsCrossedYearlyQuestReset(LastQuestListUpdate, 10),
+			QuestResetType.November => DateTimeHelper.IsCrossedYearlyQuestReset(LastQuestListUpdate, 11),
+			QuestResetType.December => DateTimeHelper.IsCrossedYearlyQuestReset(LastQuestListUpdate, 12),
+
+			_ => false
+		};
+
+		//消えている・達成済みの任務の進捗情報を削除
+		if (!quests.IsLoadCompleted) return;
+
+		IEnumerable<TrackerViewModel> trackersToReset = Trackers
+			.Where(t => !quests.Quests.ContainsKey(t.QuestId) || ShouldQuestReset(t.Model.Quest));
+
+		foreach (TrackerViewModel tracker in trackersToReset)
+		{
+			foreach (IQuestTask task in tracker.Model.Tasks)
+			{
+				task.Progress = 0;
+			}
+		}
+
+		LastQuestListUpdate = DateTime.Now;
 	}
 
 	private void BattleFinished(string apiname, dynamic data)
@@ -167,8 +219,8 @@ public partial class QuestTrackerManagerViewModel : ObservableObject
 		LoadProgress();
 	}
 
-	private string CustomTrackerPath => Path.Combine("Settings", "QuestTrackers.json");
-	private string ProgressPath => Path.Combine("Settings", "QuestProgress.json");
+	private string CustomTrackerPath => Path.Combine("Record", "QuestTrackers.json");
+	private string ProgressPath => Path.Combine("Record", "QuestProgress.json");
 
 	private void SaveExistingTrackers()
 	{
@@ -203,7 +255,8 @@ public partial class QuestTrackerManagerViewModel : ObservableObject
 	{
 		try
 		{
-			IEnumerable<ProgressRecord> progresses = Trackers.Select(t => new ProgressRecord(t.Model.Quest.Id, t.Model.GetProgress()));
+			QuestProgressRecord progresses = new(LastQuestListUpdate, 
+				Trackers.Select(t => new QuestTrackerProgressRecord(t.QuestId, t.GetProgress())));
 			byte[] progressBytes = MessagePackSerializer.Serialize(progresses);
 			File.WriteAllText(ProgressPath, MessagePackSerializer.ConvertToJson(progressBytes));
 		}
@@ -219,12 +272,13 @@ public partial class QuestTrackerManagerViewModel : ObservableObject
 		try
 		{
 			byte[] data = MessagePackSerializer.ConvertFromJson(File.ReadAllText(ProgressPath));
-			IEnumerable<ProgressRecord> progresses = MessagePackSerializer.Deserialize<IEnumerable<ProgressRecord>>(data);
-			foreach (ProgressRecord progress in progresses)
+			QuestProgressRecord progress = MessagePackSerializer.Deserialize<QuestProgressRecord>(data);
+			foreach ((int questId, IEnumerable<int> progresses) in progress.TrackerProgresses)
 			{
-				Trackers.FirstOrDefault(t => t.QuestId == progress.QuestId)
-					?.Model.SetProgress(progress.Progresses);
+				Trackers.FirstOrDefault(t => t.QuestId == questId)?.SetProgress(progresses);
 			}
+
+			LastQuestListUpdate = progress.LastQuestListUpdate;
 		}
 		catch
 		{

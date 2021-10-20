@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
+﻿using System.Collections.ObjectModel;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.Models.Conditions;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.Models.Tasks;
 using MessagePack;
@@ -21,18 +19,5 @@ public class TrackerModel : ObservableObject
 		Quest = quest;
 		Tasks = tasks ?? new();
 		Conditions = conditions ?? new();
-	}
-
-	public void SetProgress(IEnumerable<int> progresses)
-	{
-		foreach ((IQuestTask task, int progress) in Tasks.Zip(progresses, (t, p) => (t, p)))
-		{
-			task.Progress = progress;
-		}
-	}
-
-	public IEnumerable<int> GetProgress()
-	{
-		return Tasks.Select(t => t.Progress);
 	}
 }

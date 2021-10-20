@@ -136,4 +136,17 @@ public partial class TrackerViewModel : ObservableObject
 			task.Increment(areaId);
 		}
 	}
+
+	public void SetProgress(IEnumerable<int> progresses)
+	{
+		foreach ((IQuestTask task, int progress) in Model.Tasks.Zip(progresses, (t, p) => (t, p)))
+		{
+			task.Progress = progress;
+		}
+	}
+
+	public IEnumerable<int> GetProgress()
+	{
+		return Model.Tasks.Select(t => t.Progress);
+	}
 }
