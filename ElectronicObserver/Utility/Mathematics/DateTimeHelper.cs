@@ -302,8 +302,8 @@ public static class DateTimeHelper
 
 	/// <summary>
 	/// 現在の東京標準時を取得します。
-	/// <param name="currentTime">Current JST time, used for testing only.</param>
 	/// </summary>
+	/// <param name="currentTime">Current JST time, used for testing only.</param>
 	public static DateTime GetJapanStandardTimeNow(DateTime? currentTime = null)
 	{
 		return currentTime ?? DateTime.UtcNow + new TimeSpan(9, 0, 0);
