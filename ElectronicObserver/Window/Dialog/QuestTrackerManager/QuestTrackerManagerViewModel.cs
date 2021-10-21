@@ -46,8 +46,8 @@ public partial class QuestTrackerManagerViewModel : ObservableObject
 
 		ao.APIList["api_get_member/questlist"].ResponseReceived += QuestUpdated;
 
-		ao.APIList["api_req_sortie/battleresult"].ResponseReceived += BattleFinished;
-		ao.APIList["api_req_combined_battle/battleresult"].ResponseReceived += BattleFinished;
+		ao.APIList["api_req_sortie/battleresult"].ResponseReceived += BossBattleFinished;
+		ao.APIList["api_req_combined_battle/battleresult"].ResponseReceived += BossBattleFinished;
 
 		ao.APIList["api_req_mission/result"].ResponseReceived += ExpeditionCompleted;
 	}
@@ -96,7 +96,7 @@ public partial class QuestTrackerManagerViewModel : ObservableObject
 		LastQuestListUpdate = DateTime.Now;
 	}
 
-	private void BattleFinished(string apiname, dynamic data)
+	private void BossBattleFinished(string apiname, dynamic data)
 	{
 		var bm = KCDatabase.Instance.Battle;
 		var battle = bm.SecondBattle ?? bm.FirstBattle;
