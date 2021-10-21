@@ -88,6 +88,12 @@ public partial class TrackerViewModel : ObservableObject
 			QuestTaskType.BossKill => new BossKillTaskModel(),
 			QuestTaskType.Expedition => new ExpeditionTaskModel(),
 			QuestTaskType.BattleNodeId => new BattleNodeIdTaskModel(),
+			QuestTaskType.World7Map2Boss1 => new BattleNodeIdTaskModel
+			{
+				Map = new(7, 2),
+				Name = "-1",
+				NodeIds = new List<int> { 7 }
+			},
 		});
 	}
 

@@ -170,4 +170,7 @@
   <data name="QuestTaskType_BattleNodeId" xml:space="preserve">
     <value>戦闘マスID</value>
   </data>
+  <data name="QuestTaskType_7_2_1" xml:space="preserve">
+    <value>7-2-1</value>
+  </data>
 </root>
