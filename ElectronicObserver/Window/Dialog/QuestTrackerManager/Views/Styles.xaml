@@ -8,6 +8,13 @@
 				Value="4" />
 	</Style>
 
+	<Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource DefaultTextBoxStyle}">
+		<Setter Property="VerticalAlignment"
+		        Value="Center" />
+		<Setter Property="Margin"
+		        Value="4" />
+	</Style>
+
 	<Style TargetType="{x:Type ComboBox}"
 		   BasedOn="{StaticResource DefaultComboBoxStyle}">
 		<Setter Property="VerticalAlignment"
