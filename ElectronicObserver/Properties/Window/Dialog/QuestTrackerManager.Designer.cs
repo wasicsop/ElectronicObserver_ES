@@ -169,6 +169,15 @@ namespace ElectronicObserver.Properties.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 戦闘マスID.
+        /// </summary>
+        public static string QuestTaskType_BattleNodeId {
+            get {
+                return ResourceManager.GetString("QuestTaskType_BattleNodeId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ボス殺し.
         /// </summary>
         public static string QuestTaskType_BossKill {

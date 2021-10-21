@@ -78,8 +78,73 @@
 		</StackPanel>
 	</DataTemplate>
 
+	<DataTemplate x:Key="BattleNodeIdTaskTemplate"
+				  DataType="{x:Type questTasks:BattleNodeIdTaskViewModel}">
+		<DataTemplate.Resources>
+			<DataTemplate x:Key="MapTemplate"
+						  DataType="{x:Type models:MapInfoModel}">
+				<TextBlock Text="{Binding Display}" />
+			</DataTemplate>
+		</DataTemplate.Resources>
+
+		<StackPanel Orientation="Horizontal">
+			<Button Content="ｘ"
+					Command="{Binding DataContext.RemoveTaskCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}"
+					CommandParameter="{Binding Model}" />
+
+			<ComboBox ItemsSource="{Binding AllMaps}"
+					  SelectedItem="{Binding Model.Map, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+					  ItemTemplate="{StaticResource MapTemplate}" />
+
+			<ComboBox ItemsSource="{Binding Ranks}"
+					  SelectedItem="{Binding Model.Rank, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+					  ItemTemplate="{StaticResource EnumDisplayerTemplate}" />
+
+
+			<controls:NumberBox Value="{Binding Model.Progress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+								Minimum="0"
+								Maximum="{Binding Model.Count}" />
+
+
+			<controls:NumberBox Value="{Binding Model.Count, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+								Minimum="1" />
+
+			<Border BorderBrush="Gray"
+					BorderThickness="1">
+				<StackPanel Orientation="Horizontal">
+					<StackPanel.Resources>
+						<ResourceDictionary Source="Styles.xaml" />
+					</StackPanel.Resources>
+					<Button Content="+"
+							Command="{Binding AddNodeIdCommand}" />
+					<ItemsControl ItemsSource="{Binding NodeIds}">
+						<ItemsControl.ItemsPanel>
+							<ItemsPanelTemplate>
+								<StackPanel Orientation="Horizontal" />
+							</ItemsPanelTemplate>
+						</ItemsControl.ItemsPanel>
+						<ItemsControl.ItemTemplate>
+							<DataTemplate>
+								<StackPanel Orientation="Horizontal">
+									<controls:NumberBox Value="{Binding Id}"
+														Margin="4 4 -1 4" />
+									<Button Content="ｘ"
+											Margin="-1 4 4 4"
+											Command="{Binding DataContext.RemoveNodeIdCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}"
+											CommandParameter="{Binding}" />
+								</StackPanel>
+							</DataTemplate>
+						</ItemsControl.ItemTemplate>
+					</ItemsControl>
+					<TextBox Text="{Binding Model.Name, UpdateSourceTrigger=PropertyChanged}" />
+				</StackPanel>
+			</Border>
+		</StackPanel>
+	</DataTemplate>
+
 	<questTrackerManager:TaskTemplateSelector x:Key="TaskTemplateSelector"
 											  BossKill="{StaticResource BossKillTaskTemplate}"
-											  Expedition="{StaticResource ExpeditionTaskTemplate}" />
+											  Expedition="{StaticResource ExpeditionTaskTemplate}"
+											  BattleNodeId="{StaticResource BattleNodeIdTaskTemplate}" />
 
 </ResourceDictionary>

@@ -187,4 +187,7 @@ Do you want to overwrite these quest trackers?</value>
   <data name="CopyTrackersToClipboard" xml:space="preserve">
     <value>Copy trackers to clipboard</value>
   </data>
+  <data name="QuestTaskType_BattleNodeId" xml:space="preserve">
+    <value>Battle node ID</value>
+  </data>
 </root>

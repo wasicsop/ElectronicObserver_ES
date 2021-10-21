@@ -167,4 +167,7 @@
   <data name="CopyTrackersToClipboard" xml:space="preserve">
     <value>トラッカーをクリップボードにコピー</value>
   </data>
+  <data name="QuestTaskType_BattleNodeId" xml:space="preserve">
+    <value>戦闘マスID</value>
+  </data>
 </root>

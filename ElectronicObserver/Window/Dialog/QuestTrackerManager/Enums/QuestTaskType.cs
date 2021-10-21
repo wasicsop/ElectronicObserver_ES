@@ -8,4 +8,6 @@ public enum QuestTaskType
 	BossKill,
 	[Display(ResourceType = typeof(Properties.Window.Dialog.QuestTrackerManager), Name = "QuestTaskType_Expedition")]
 	Expedition,
+	[Display(ResourceType = typeof(Properties.Window.Dialog.QuestTrackerManager), Name = "QuestTaskType_BattleNodeId")]
+	BattleNodeId,
 }

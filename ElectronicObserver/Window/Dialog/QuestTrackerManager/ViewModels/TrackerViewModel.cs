@@ -76,6 +76,7 @@ public partial class TrackerViewModel : ObservableObject
 		{
 			BossKillTaskModel b => (IQuestTaskViewModel)new BossKillTaskViewModel(b),
 			ExpeditionTaskModel e => new ExpeditionTask(e),
+			BattleNodeIdTaskModel b => new BattleNodeIdTaskViewModel(b),
 		});
 	}
 
@@ -86,6 +87,7 @@ public partial class TrackerViewModel : ObservableObject
 		{
 			QuestTaskType.BossKill => new BossKillTaskModel(),
 			QuestTaskType.Expedition => new ExpeditionTaskModel(),
+			QuestTaskType.BattleNodeId => new BattleNodeIdTaskModel(),
 		});
 	}
 
@@ -116,6 +118,16 @@ public partial class TrackerViewModel : ObservableObject
 		"SS" => BattleRank.SS,
 		_ => BattleRank.Any,
 	};
+
+	public void Increment(IFleetData fleet, string resultRank, int compassMapAreaId, int compassMapInfoId, int nodeId)
+	{
+		if (!GroupConditions.ConditionMet(fleet)) return;
+
+		foreach (BattleNodeIdTaskViewModel task in Tasks.OfType<BattleNodeIdTaskViewModel>())
+		{
+			task.Increment(FromString(resultRank), compassMapAreaId, compassMapInfoId, nodeId);
+		}
+	}
 
 	public void Increment(IFleetData fleet, string resultRank, int compassMapAreaId, int compassMapInfoId)
 	{
