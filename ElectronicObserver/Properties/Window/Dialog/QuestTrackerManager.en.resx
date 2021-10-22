@@ -199,4 +199,7 @@ Do you want to overwrite these quest trackers?</value>
   <data name="QuestTaskType_7_3_1" xml:space="preserve">
     <value>7-3-1</value>
   </data>
+  <data name="QuestTaskType_7_3_2" xml:space="preserve">
+    <value>7-3-2</value>
+  </data>
 </root>
