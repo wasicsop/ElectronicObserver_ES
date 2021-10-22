@@ -187,6 +187,15 @@ namespace ElectronicObserver.Properties.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 7-3-1.
+        /// </summary>
+        public static string QuestTaskType_7_3_1 {
+            get {
+                return ResourceManager.GetString("QuestTaskType_7_3_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 戦闘マスID.
         /// </summary>
         public static string QuestTaskType_BattleNodeId {

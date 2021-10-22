@@ -14,4 +14,6 @@ public enum QuestTaskType
 	World7Map2Boss1,
 	[Display(ResourceType = typeof(Properties.Window.Dialog.QuestTrackerManager), Name = "QuestTaskType_7_2_2")]
 	World7Map2Boss2,
+	[Display(ResourceType = typeof(Properties.Window.Dialog.QuestTrackerManager), Name = "QuestTaskType_7_3_1")]
+	World7Map3Boss1,
 }
