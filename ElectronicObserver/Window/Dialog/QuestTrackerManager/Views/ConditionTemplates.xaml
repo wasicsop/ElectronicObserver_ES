@@ -136,6 +136,9 @@
 					<controls:NumberBox Value="{Binding Model.Count}"
 										Maximum="12"
 										Minimum="1" />
+
+					<CheckBox Content="{Binding ViewModel.Translation.MustBeFlagship, ElementName=QuestTrackerManagerView}"
+					          IsChecked="{Binding MustBeFlagship}" />
 				</StackPanel>
 			</StackPanel>
 		</Border>
