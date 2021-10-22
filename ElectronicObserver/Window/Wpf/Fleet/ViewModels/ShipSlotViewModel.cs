@@ -50,7 +50,7 @@ public class ShipSlotViewModel : ObservableObject
 	public string CurrentAircraftString { get; set; } = "";
 
 	public FontFamily FontFamily => new(Font.FontData.FontFamily.Name);
-	public float FontSize => Font.FontData.Size;
+	public float FontSize => Font.FontData.ToSize();
 
 	public System.Drawing.Color EquipmentLevelColor { get; set; }
 	public SolidColorBrush EquipmentLevelBrush => EquipmentLevelColor.ToBrush();
