@@ -1286,15 +1286,11 @@ namespace ElectronicObserver.ViewModels
 		private void SetFont()
 		{
 			Font = new FontFamily(Config.UI.MainFont.FontData.FontFamily.Name);
-			FontSize = Config.UI.MainFont.FontData.Size * Config.UI.MainFont.FontData.Unit switch
-			{
-				System.Drawing.GraphicsUnit.Point => 4 / 3.0,
-				_ => 1
-			};
+			FontSize = Config.UI.MainFont.FontData.ToSize();
 			FontBrush = Config.UI.ForeColor.ToBrush();
 
 			SubFont = new FontFamily(Config.UI.SubFont.FontData.FontFamily.Name);
-			SubFontSize = Config.UI.SubFont.FontData.Size;
+			SubFontSize = Config.UI.SubFont.FontData.ToSize();
 			SubFontBrush = Config.UI.SubForeColor.ToBrush();
 		}
 

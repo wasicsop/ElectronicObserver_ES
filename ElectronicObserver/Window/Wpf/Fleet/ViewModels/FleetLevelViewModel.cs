@@ -18,7 +18,7 @@ namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels
 		public System.Drawing.Color SubFontColor { get; set; }
 
 		public FontFamily SubFontFamily => new(SubFont.FontData.FontFamily.Name);
-		public double SubFontSize => SubFont.FontData.Size;
+		public double SubFontSize => SubFont.FontData.ToSize();
 		public SolidColorBrush SubForeground => SubFontColor.ToBrush();
 		
 		public IRelayCommand ShipLevelRightClick { get; }

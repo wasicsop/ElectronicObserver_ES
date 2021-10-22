@@ -156,9 +156,9 @@ namespace ElectronicObserver.Window.Wpf.Headquarters
 		void ConfigurationChanged()
 		{
 			MainFont = new(Utility.Configuration.Config.UI.MainFont.FontData.FontFamily.Name);
-			MainFontSize = Utility.Configuration.Config.UI.MainFont.FontData.Size;
+			MainFontSize = Utility.Configuration.Config.UI.MainFont.FontData.ToSize();
 			SubFont = new(Utility.Configuration.Config.UI.SubFont.FontData.FontFamily.Name);
-			SubFontSize = Utility.Configuration.Config.UI.SubFont.FontData.Size;
+			SubFontSize = Utility.Configuration.Config.UI.SubFont.FontData.ToSize();
 			MainFontColor = Utility.Configuration.Config.UI.ForeColor.ToBrush();
 			SubFontColor = Utility.Configuration.Config.UI.SubForeColor.ToBrush();
 

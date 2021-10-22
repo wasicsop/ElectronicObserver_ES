@@ -87,7 +87,7 @@ namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels
 		public string? ToolTip { get; set; }
 
 		public FontFamily FontFamily => new(Font.FontData.Name);
-		public float FontSize => Font.FontData.Size;
+		public float FontSize => Font.FontData.ToSize();
 
 		public List<ShipSlotViewModel> Slots { get; } = new()
 		{

@@ -13,5 +13,11 @@ namespace ElectronicObserver.Window.Wpf
 
 		public static SolidColorBrush ToBrush(this System.Drawing.Color color) =>
 			new(Color.FromArgb(color.A, color.R, color.G, color.B));
+
+		public static float ToSize(this System.Drawing.Font font) => font.Size * font.Unit switch
+		{
+			System.Drawing.GraphicsUnit.Point => 4 / 3f,
+			_ => 1
+		};
 	}
 }
