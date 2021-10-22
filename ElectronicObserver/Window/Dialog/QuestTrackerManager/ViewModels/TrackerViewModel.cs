@@ -94,6 +94,12 @@ public partial class TrackerViewModel : ObservableObject
 				Name = "-1",
 				NodeIds = new List<int> { 7 }
 			},
+			QuestTaskType.World7Map2Boss2 => new BattleNodeIdTaskModel
+			{
+				Map = new(7, 2),
+				Name = "-2",
+				NodeIds = new List<int> { 15 }
+			},
 		});
 	}
 
