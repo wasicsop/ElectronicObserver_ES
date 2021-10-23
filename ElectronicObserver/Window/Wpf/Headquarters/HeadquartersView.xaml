@@ -13,15 +13,16 @@
 
              mc:Ignorable="d" 
              d:DesignHeight="250" d:DesignWidth="130">
-	<StackPanel DataContext="{Binding ViewModel, ElementName=HeadquartersControl}" Visibility="{Binding Visible}">
-		<StackPanel.Resources>
+	<WrapPanel DataContext="{Binding ViewModel, ElementName=HeadquartersControl}" Visibility="{Binding Visible}">
+		<WrapPanel.Resources>
 			<Style TargetType="Border">
 				<Setter Property="Padding" Value="2" />
 			</Style>
 			<Style TargetType="Image">
 				<Setter Property="Margin" Value="0 0 2 0" />
+				<Setter Property="Height" Value="16" />
 			</Style>
-		</StackPanel.Resources>
+		</WrapPanel.Resources>
 		<WrapPanel>
 			<Border
 				ToolTip="{Binding AdmiralName.ToolTip}"
@@ -228,9 +229,8 @@
 				<MouseBinding MouseAction="RightClick" Command="{Binding ShowResourceChartCommand}" />
 				<MouseBinding MouseAction="LeftDoubleClick" Command="{Binding CopyResourcesCommand}" />
 			</Border.InputBindings>
-			<WrapPanel>
-				<StackPanel Orientation="Horizontal">
-
+			<WrapPanel Orientation="Horizontal">
+				<WrapPanel Orientation="Vertical">
 					<Border
 						ToolTip="{Binding Fuel.ToolTip}"
 				        Background="{Binding Fuel.Background}"
@@ -246,29 +246,12 @@
 							/>
 						</StackPanel>
 					</Border>
-					<Border
-						ToolTip="{Binding Steel.ToolTip}"
-				        Background="{Binding Steel.Background}"
-						Visibility="{Binding Steel.Visible}"
-				    >
-						<StackPanel Orientation="Horizontal">
-							<Image Source="{Binding Steel.Icon}" />
-							<TextBlock
-								Text="{Binding Steel.Text}"
-								Foreground="{Binding Steel.Foreground}"
-								
-								d:Text="338637"
-							/>
-						</StackPanel>
-					</Border>
-				</StackPanel>
 
-				<StackPanel Orientation="Horizontal">
 					<Border
 						ToolTip="{Binding Ammo.ToolTip}"
-				        Background="{Binding Ammo.Background}"
+						Background="{Binding Ammo.Background}"
 						Visibility="{Binding Ammo.Visible}"
-			        >
+					>
 						<StackPanel Orientation="Horizontal">
 							<Image Source="{Binding Ammo.Icon}" />
 							<TextBlock
@@ -279,6 +262,25 @@
 							/>
 						</StackPanel>
 					</Border>
+				</WrapPanel>
+
+				<WrapPanel Orientation="Vertical">
+					<Border
+						ToolTip="{Binding Steel.ToolTip}"
+						Background="{Binding Steel.Background}"
+						Visibility="{Binding Steel.Visible}"
+					>
+						<StackPanel Orientation="Horizontal">
+							<Image Source="{Binding Steel.Icon}" />
+							<TextBlock
+								Text="{Binding Steel.Text}"
+								Foreground="{Binding Steel.Foreground}"
+
+								d:Text="338637"
+							/>
+						</StackPanel>
+					</Border>
+					
 					<Border
 						ToolTip="{Binding Bauxite.ToolTip}"
 				        Background="{Binding Bauxite.Background}"
@@ -294,8 +296,8 @@
 							/>
 						</StackPanel>
 					</Border>
-				</StackPanel>
+				</WrapPanel>
 			</WrapPanel>
 		</Border>
-	</StackPanel>
+	</WrapPanel>
 </UserControl>
