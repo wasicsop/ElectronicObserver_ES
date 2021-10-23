@@ -5,6 +5,7 @@ using System.Windows.Data;
 using System.Windows.Media.Imaging;
 using ElectronicObserver.Data;
 using ElectronicObserver.Resource;
+using ElectronicObserver.Window.Wpf;
 using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Converters;
@@ -17,10 +18,10 @@ public class ShipToBannerImageConverter : IValueConverter
 
 		try
 		{
-			string imageUri = KCResourceHelper
+			string? imageUri = KCResourceHelper
 				.GetShipImagePath(ship.ID, false, KCResourceHelper.ResourceTypeShipBanner);
 
-			return new BitmapImage(new Uri(imageUri));
+			return new BitmapImage(new Uri(imageUri, UriKind.RelativeOrAbsolute).ToAbsolute());
 		}
 		catch
 		{

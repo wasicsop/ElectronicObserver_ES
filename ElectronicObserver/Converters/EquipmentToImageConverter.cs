@@ -3,6 +3,7 @@ using System.Globalization;
 using System.Windows.Data;
 using System.Windows.Media.Imaging;
 using ElectronicObserver.Resource;
+using ElectronicObserver.Window.Wpf;
 using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Converters;
@@ -21,7 +22,7 @@ public class EquipmentToImageConverter : IValueConverter
 			return imageUri switch
 			{
 				null => null,
-				_ => new BitmapImage(new Uri(imageUri))
+				_ => new BitmapImage(new Uri(imageUri, UriKind.RelativeOrAbsolute).ToAbsolute())
 			};
 		}
 		catch

@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System;
+using System.Diagnostics;
+using System.Windows;
 using System.Windows.Media;
 
 namespace ElectronicObserver.Window.Wpf;
@@ -18,5 +20,11 @@ public static class Extensions
 	{
 		System.Drawing.GraphicsUnit.Point => 4 / 3f,
 		_ => 1
+	};
+
+	public static Uri ToAbsolute(this Uri uri) => uri switch
+	{
+		{ IsAbsoluteUri: true } => uri,
+		_ => new(new Uri(Process.GetCurrentProcess().MainModule.FileName), uri)
 	};
 }
