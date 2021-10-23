@@ -32,7 +32,7 @@ public partial class GroupConditionViewModel : ObservableObject, IConditionViewM
 	private string Separator => GroupOperator switch
 	{
 		Operator.Or => "\n",
-		_ => ""
+		_ => " "
 	};
 
 	private string Grouping(string s) => GroupOperator switch
