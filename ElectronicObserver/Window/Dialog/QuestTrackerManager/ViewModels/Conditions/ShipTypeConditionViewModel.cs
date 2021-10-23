@@ -17,9 +17,9 @@ public partial class ShipTypeConditionViewModel : ObservableObject, IConditionVi
 
 	public bool MustBeFlagship { get; set; }
 
-	public string Display => $"({CountConditionDisplay}) >= {Model.Count} {FlagshipConditionDisplay}";
+	public string Display => $"({CountConditionDisplay}) >= {Model.Count}{FlagshipConditionDisplay}";
 
-	private string CountConditionDisplay => string.Join(Properties.Window.Dialog.QuestTrackerManager.Operator_Or,
+	private string CountConditionDisplay => string.Join($" {Properties.Window.Dialog.QuestTrackerManager.Operator_Or} ",
 		Model.Types.Select(s => s.Display()));
 
 	private string FlagshipConditionDisplay => MustBeFlagship switch
@@ -31,6 +31,8 @@ public partial class ShipTypeConditionViewModel : ObservableObject, IConditionVi
 	public ShipTypeConditionViewModel(ShipTypeConditionModel model)
 	{
 		Model = model;
+
+		MustBeFlagship = Model.MustBeFlagship;
 
 		AllTypes = Enum.GetValues(typeof(ShipTypes)).Cast<ShipTypes>();
 
