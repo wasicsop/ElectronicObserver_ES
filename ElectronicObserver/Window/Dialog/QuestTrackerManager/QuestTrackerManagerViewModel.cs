@@ -13,6 +13,7 @@ using ElectronicObserver.Window.Dialog.QuestTrackerManager.Models;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.Models.Tasks;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.ViewModels;
 using MessagePack;
+using MessagePack.Resolvers;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
@@ -29,6 +30,11 @@ public partial class QuestTrackerManagerViewModel : ObservableObject
 	public QuestModel? Quest { get; set; }
 
 	private DateTime LastQuestListUpdate { get; set; } = new(2000, 1, 1);
+
+	// MessagePack has a bug when converting DateTime to json
+	// adding these options avoids it by using a different DateTime representaion
+	MessagePackSerializerOptions DateTimeOptions => MessagePackSerializerOptions.Standard
+		.WithResolver(CompositeResolver.Create(NativeDateTimeResolver.Instance, TypelessObjectResolver.Instance));
 
 	public QuestTrackerManagerViewModel()
 	{
@@ -276,7 +282,7 @@ public partial class QuestTrackerManagerViewModel : ObservableObject
 		{
 			QuestProgressRecord progresses = new(LastQuestListUpdate, 
 				Trackers.Select(t => new QuestTrackerProgressRecord(t.QuestId, t.GetProgress())));
-			byte[] progressBytes = MessagePackSerializer.Serialize(progresses);
+			byte[] progressBytes = MessagePackSerializer.Serialize(progresses, DateTimeOptions);
 			File.WriteAllText(ProgressPath, MessagePackSerializer.ConvertToJson(progressBytes));
 		}
 		catch
@@ -290,8 +296,9 @@ public partial class QuestTrackerManagerViewModel : ObservableObject
 
 		try
 		{
-			byte[] data = MessagePackSerializer.ConvertFromJson(File.ReadAllText(ProgressPath));
-			QuestProgressRecord progress = MessagePackSerializer.Deserialize<QuestProgressRecord>(data);
+			string json = File.ReadAllText(ProgressPath);
+			byte[] data = MessagePackSerializer.ConvertFromJson(json);
+			QuestProgressRecord progress = MessagePackSerializer.Deserialize<QuestProgressRecord>(data, DateTimeOptions);
 			foreach ((int questId, IEnumerable<int> progresses) in progress.TrackerProgresses)
 			{
 				Trackers.FirstOrDefault(t => t.QuestId == questId)?.SetProgress(progresses);
