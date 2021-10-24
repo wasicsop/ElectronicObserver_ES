@@ -68,10 +68,12 @@ public partial class ShipTypeConditionViewModel : ObservableObject, IConditionVi
 
 	public bool ConditionMet(IFleetData fleet)
 	{
-		bool flagshipCondition = !Model.MustBeFlagship ||
-			Model.Types.Contains(fleet.MembersInstance[0].MasterShip.ShipType);
+		List<IShipData> ships = fleet.MembersInstance.Where(s => s is not null).ToList();
 
-		bool countCondition = fleet.MembersInstance
+		bool flagshipCondition = !Model.MustBeFlagship ||
+			Model.Types.Contains(ships[0].MasterShip.ShipType);
+
+		bool countCondition = ships
 			.Count(s => Model.Types.Contains(s.MasterShip.ShipType)) >= Model.Count;
 
 		return flagshipCondition && countCondition;
