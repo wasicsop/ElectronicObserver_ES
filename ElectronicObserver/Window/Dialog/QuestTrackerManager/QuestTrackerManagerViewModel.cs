@@ -32,7 +32,7 @@ public partial class QuestTrackerManagerViewModel : ObservableObject
 	private DateTime LastQuestListUpdate { get; set; } = new(2000, 1, 1);
 
 	// MessagePack has a bug when converting DateTime to json
-	// adding these options avoids it by using a different DateTime representaion
+	// adding these options avoids it by using a different DateTime representation
 	MessagePackSerializerOptions DateTimeOptions => MessagePackSerializerOptions.Standard
 		.WithResolver(CompositeResolver.Create(NativeDateTimeResolver.Instance, TypelessObjectResolver.Instance));
 
