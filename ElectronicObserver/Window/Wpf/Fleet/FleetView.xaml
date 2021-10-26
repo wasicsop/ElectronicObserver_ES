@@ -83,6 +83,10 @@
 					<MenuItem Header="{Binding FormFleet.ContextMenuFleet_CopyFleetAnalysisLockedEquip}" d:Header="Copy Locked Equip (kancolle-fleetanalysis)" Command="{Binding CopyFleetAnalysisEquipCommand}" />
 					<MenuItem Header="{Binding FormFleet.ContextMenuFleet_CopyFleetAnalysisAllEquip}" d:Header="Copy All Equip (kancolle-fleetanalysis)" Command="{Binding CopyFleetAnalysisAllEquipCommand}" />
 					<Separator />
+					<MenuItem Header="{Binding FormFleet.CopyToFleetAnalysisSpreadsheetShips}" Command="{Binding CopyFleetAnalysisShipsShortCommand}" />
+					<MenuItem Header="{Binding FormFleet.CopyToFleetAnalysisSpreadsheetLockedEquipment}" Command="{Binding CopyFleetAnalysisLockedEquipShortCommand}" />
+					<MenuItem Header="{Binding FormFleet.CopyToFleetAnalysisSpreadsheetAllEquipment}" Command="{Binding CopyFleetAnalysisAllEquipShortCommand}" />
+					<Separator />
 					<MenuItem Header="{Binding FormFleet.ContextMenuFleet_AntiAirDetails}" d:Header="AA Defense" Command="{Binding AntiAirDetailsCommand}" />
 					<MenuItem Header="{Binding FormFleet.ContextMenuFleet_Capture}" d:Header="Copy as Image" />
 					<MenuItem Header="{Binding FormFleet.ContextMenuFleet_OutputFleetImage}" d:Header="Save as Image..." Command="{Binding OutputFleetImageCommand}" />

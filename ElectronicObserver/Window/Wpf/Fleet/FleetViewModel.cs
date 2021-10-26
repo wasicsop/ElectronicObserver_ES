@@ -18,7 +18,7 @@ using Microsoft.Toolkit.Mvvm.Input;
 
 namespace ElectronicObserver.Window.Wpf.Fleet;
 
-public class FleetViewModel : AnchorableViewModel
+public partial class FleetViewModel : AnchorableViewModel
 {
 	public FormFleetTranslationViewModel FormFleet { get; }
 
@@ -679,6 +679,89 @@ public class FleetViewModel : AnchorableViewModel
 		foreach (EquipmentData equip in db.Equipments.Values.Where(eq => allEquipment || eq.IsLocked))
 		{
 			sb.Append($"{{\"api_slotitem_id\":{equip.EquipmentID},\"api_level\":{equip.Level}}},");
+		}
+
+		sb.Remove(sb.Length - 1, 1);        // remove ","
+		sb.Append("]");
+
+		Clipboard.SetText(sb.ToString());
+	}
+
+	/// <summary>
+	/// Short versions are for the fleet analysis spreadsheet
+	/// <see cref="https://docs.google.com/spreadsheets/d/1NuLlff6EXM0XQ_qNHP9lEOosbwHXamaVNJb72M7ZLoY"/>
+	/// </summary>
+	[ICommand]
+	private void CopyFleetAnalysisShipsShort()
+	{
+		KCDatabase db = KCDatabase.Instance;
+		List<string> ships = new List<string>();
+
+		foreach (ShipData ship in db.Ships.Values.Where(s => s.IsLocked))
+		{
+			int[] apiKyouka =
+			{
+				ship.FirepowerModernized,
+				ship.TorpedoModernized,
+				ship.AAModernized,
+				ship.ArmorModernized,
+				ship.LuckModernized,
+				ship.HPMaxModernized,
+				ship.ASWModernized
+			};
+
+			int expProgress = 0;
+			if (ExpTable.ShipExp.ContainsKey(ship.Level + 1) && ship.Level != 99)
+			{
+				expProgress = (ExpTable.ShipExp[ship.Level].Next - ship.ExpNext) / ExpTable.ShipExp[ship.Level].Next;
+			}
+
+			int[] apiExp = { ship.ExpTotal, ship.ExpNext, expProgress };
+
+			string shipId = $"\"id\":{ship.ShipID}";
+			string level = $"\"lv\":{ship.Level}";
+			string kyouka = $"\"st\":[{string.Join(",", apiKyouka)}]";
+			string exp = $"\"exp\":[{string.Join(",", apiExp)}]";
+
+			string[] analysisData = { shipId, level, kyouka, exp };
+
+			ships.Add($"{{{string.Join(",", analysisData)}}}");
+		}
+
+		string json = $"[{string.Join(",", ships)}]";
+
+		Clipboard.SetText(json);
+	}
+
+	[ICommand]
+	private void CopyFleetAnalysisLockedEquipShort()
+	{
+		GenerateEquipListShort(false);
+	}
+
+	[ICommand]
+	private void CopyFleetAnalysisAllEquipShort()
+	{
+		GenerateEquipListShort(true);
+	}
+
+	/// <summary>
+	/// <see cref="https://docs.google.com/spreadsheets/d/1ppbOl9MR_8g_CPDpgMVDdRnhEMRTjg4x78bCg8uLzdg"/>
+	/// </summary>
+	/// <param name="allEquipment"></param>
+	private void GenerateEquipListShort(bool allEquipment)
+	{
+		StringBuilder sb = new StringBuilder();
+		KCDatabase db = KCDatabase.Instance;
+
+		// 手書き json の悲しみ
+		// pain and suffering
+
+		sb.Append("[");
+
+		foreach (EquipmentData equip in db.Equipments.Values.Where(eq => allEquipment || eq.IsLocked))
+		{
+			sb.Append($"{{\"id\":{equip.EquipmentID},\"lv\":{equip.Level}}},");
 		}
 
 		sb.Remove(sb.Length - 1, 1);        // remove ","

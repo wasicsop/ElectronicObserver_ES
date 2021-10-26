@@ -256,4 +256,13 @@ Range: {20} / Speed: {21}
   <data name="CopyFleetText" xml:space="preserve">
     <value>{0}    AS: {1} / LOS: {2} / TP: {3}</value>
   </data>
+  <data name="CopyToFleetAnalysisSpreadsheetShips" xml:space="preserve">
+    <value>Copy Ship List (fleet analysis spreadsheet)</value>
+  </data>
+  <data name="CopyToFleetAnalysisSpreadsheetLockedEquipment" xml:space="preserve">
+    <value>Copy Locked Equip (fleet analysis spreadsheet)</value>
+  </data>
+  <data name="CopyToFleetAnalysisSpreadsheetAllEquipment" xml:space="preserve">
+    <value>Copy All Equip (fleet analysis spreadsheet)</value>
+  </data>
 </root>

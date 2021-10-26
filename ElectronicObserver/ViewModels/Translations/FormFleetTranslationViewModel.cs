@@ -66,6 +66,10 @@ public class FormFleetTranslationViewModel : TranslationBaseViewModel
 	public string ContextMenuFleet_CopyFleetAnalysisLockedEquip => Properties.Window.FormFleet.ContextMenuFleet_CopyFleetAnalysisLockedEquip.Replace("_", "__").Replace("&", "_");
 	public string ContextMenuFleet_CopyFleetAnalysisAllEquip => Properties.Window.FormFleet.ContextMenuFleet_CopyFleetAnalysisAllEquip.Replace("_", "__").Replace("&", "_");
 
+	public string CopyToFleetAnalysisSpreadsheetShips => Properties.Window.FormFleet.CopyToFleetAnalysisSpreadsheetShips;
+	public string CopyToFleetAnalysisSpreadsheetLockedEquipment => Properties.Window.FormFleet.CopyToFleetAnalysisSpreadsheetLockedEquipment;
+	public string CopyToFleetAnalysisSpreadsheetAllEquipment => Properties.Window.FormFleet.CopyToFleetAnalysisSpreadsheetAllEquipment;
+
 	public string ContextMenuFleet_AntiAirDetails => Properties.Window.FormFleet.ContextMenuFleet_AntiAirDetails.Replace("_", "__").Replace("&", "_");
 	public string ContextMenuFleet_Capture => Properties.Window.FormFleet.ContextMenuFleet_Capture.Replace("_", "__").Replace("&", "_");
 	public string ContextMenuFleet_OutputFleetImage => Properties.Window.FormFleet.ContextMenuFleet_OutputFleetImage.Replace("_", "__").Replace("&", "_");

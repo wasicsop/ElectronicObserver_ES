@@ -237,4 +237,13 @@
   <data name="CopyFleetText" xml:space="preserve">
     <value>{0}    制空戦力{1} / 索敵能力 {2} / 輸送能力 {3}</value>
   </data>
+  <data name="CopyToFleetAnalysisSpreadsheetShips" xml:space="preserve">
+    <value>艦隊分析スプレッドシート艦娘へコピー</value>
+  </data>
+  <data name="CopyToFleetAnalysisSpreadsheetLockedEquipment" xml:space="preserve">
+    <value>艦隊分析スプレッドシートロックされた装備コピー</value>
+  </data>
+  <data name="CopyToFleetAnalysisSpreadsheetAllEquipment" xml:space="preserve">
+    <value>艦隊分析スプレッドシート全装備コピー</value>
+  </data>
 </root>

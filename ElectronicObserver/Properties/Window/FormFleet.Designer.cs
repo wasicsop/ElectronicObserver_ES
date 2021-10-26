@@ -19,7 +19,7 @@ namespace ElectronicObserver.Properties.Window {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class FormFleet {
@@ -201,6 +201,33 @@ namespace ElectronicObserver.Properties.Window {
         public static string CopyFleetText {
             get {
                 return ResourceManager.GetString("CopyFleetText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 艦隊分析スプレッドシート全装備コピー.
+        /// </summary>
+        public static string CopyToFleetAnalysisSpreadsheetAllEquipment {
+            get {
+                return ResourceManager.GetString("CopyToFleetAnalysisSpreadsheetAllEquipment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 艦隊分析スプレッドシートロックされた装備コピー.
+        /// </summary>
+        public static string CopyToFleetAnalysisSpreadsheetLockedEquipment {
+            get {
+                return ResourceManager.GetString("CopyToFleetAnalysisSpreadsheetLockedEquipment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 艦隊分析スプレッドシート艦娘へコピー.
+        /// </summary>
+        public static string CopyToFleetAnalysisSpreadsheetShips {
+            get {
+                return ResourceManager.GetString("CopyToFleetAnalysisSpreadsheetShips", resourceCulture);
             }
         }
         
