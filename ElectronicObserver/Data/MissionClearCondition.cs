@@ -715,17 +715,17 @@ public static class MissionClearCondition
 		}
 
 		public MissionClearConditionResult CheckFirepower(int leastSum) =>
-			CheckParameter(s => s.FirepowerTotal, leastSum, DataRes.MissionClearFirepower);
+			CheckParameter(s => s.ExpeditionFirePowerTotal, leastSum, DataRes.MissionClearFirepower);
 
 		public MissionClearConditionResult CheckAA(int leastSum) =>
-			CheckParameter(s => s.AATotal, leastSum, DataRes.MissionClearAa);
+			CheckParameter(s => s.ExpeditionAATotal, leastSum, DataRes.MissionClearAa);
 
 		public MissionClearConditionResult CheckLOS(int leastSum) =>
-			CheckParameter(s => s.LOSTotal, leastSum, DataRes.MissionClearLos);
+			CheckParameter(s => s.ExpeditionLOSTotal, leastSum, DataRes.MissionClearLos);
 
 
 		public MissionClearConditionResult CheckASW(int leastSum) =>
-			CheckParameter(s => s.ASWTotal - s.AllSlotInstance.Sum(eq =>
+			CheckParameter(s => s.ExpeditionASWTotal - s.AllSlotInstance.Sum(eq =>
 			{
 				if (eq == null) return 0;
 				switch (eq.MasterEquipment.CategoryType)

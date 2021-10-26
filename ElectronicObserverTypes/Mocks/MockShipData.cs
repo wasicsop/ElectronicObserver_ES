@@ -81,6 +81,10 @@ public class MockShipData : IShipData
 	public int LuckTotal { get; set; }
 	public int BomberTotal { get; set; }
 	public int AccuracyTotal { get; set; }
+	public int ExpeditionFirePowerTotal { get; }
+	public int ExpeditionASWTotal { get; }
+	public int ExpeditionLOSTotal { get; }
+	public int ExpeditionAATotal { get; }
 	public int FirepowerBase { get; set; }
 	public int TorpedoBase { get; set; }
 	public int AABase { get; set; }

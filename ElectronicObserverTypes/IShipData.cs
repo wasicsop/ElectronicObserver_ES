@@ -482,7 +482,22 @@ public interface IShipData
 	/// 夜戦威力
 	/// </summary>
 	int NightBattlePower { get; }
-
+	/// <summary>
+	/// FirePower Total for Expedition
+	/// </summary>
+	int ExpeditionFirePowerTotal { get; }
+	/// <summary>
+	/// ASW Total for Expedition
+	/// </summary>
+	int ExpeditionASWTotal { get; }
+	/// <summary>
+	/// LOS Total for Expedition
+	/// </summary>
+	int ExpeditionLOSTotal { get; }
+	/// <summary>
+	/// AA Total for Expedition
+	/// </summary>
+	int ExpeditionAATotal { get; }
 	/// <summary>
 	/// 対潜攻撃可能か
 	/// </summary>
