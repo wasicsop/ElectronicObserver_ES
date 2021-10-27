@@ -1486,6 +1486,8 @@ public static class Calculator
 
 			case 597:   // Atlanta
 			case 696:   // Atlanta改
+				if (highangle_atlanta_gfcs >= 2)
+					return 38;
 				if (highangle_atlanta_gfcs >= 1 && highangle_atlanta >= 1)
 					return 39;
 				if (highangle_atlanta_gfcs + highangle_atlanta >= 2)
@@ -1813,6 +1815,7 @@ public static class Calculator
 		{ 35, 6 },
 		{ 36, 6 },
 		{ 37, 4 },
+		{ 38, 10 },
 		{ 39, 10 },
 		{ 40, 10 },
 		{ 41, 9 },
@@ -1859,6 +1862,7 @@ public static class Calculator
 		{ 35, 1.55 },
 		{ 36, 1.55 },
 		{ 37, 1.45 },
+		{ 38, 1.85 },
 		{ 39, 1.7 },
 		{ 40, 1.7 },
 		{ 41, 1.65 },

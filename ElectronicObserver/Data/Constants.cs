@@ -1005,6 +1005,8 @@ public static class Constants
 				return ConstantsRes.FletcherGun + "/GFCS<Johnston>";
 			case 37:
 				return ConstantsRes.FletcherGun + "<Johnston>";
+			case 38:
+				return ConstantsRes.AtlantaGun + "+GFCS x2<Atlanta>";
 			case 39:
 				return ConstantsRes.AtlantaGun + "+GFCS/" + ConstantsRes.AtlantaGun + "<Atlanta>";
 			case 40:
