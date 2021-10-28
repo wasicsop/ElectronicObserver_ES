@@ -715,7 +715,7 @@ public static class MissionClearCondition
 		}
 
 		public MissionClearConditionResult CheckFirepower(int leastSum) =>
-			CheckParameter(s => s.ExpeditionFirePowerTotal, leastSum, DataRes.MissionClearFirepower);
+			CheckParameter(s => s.ExpeditionFirepowerTotal, leastSum, DataRes.MissionClearFirepower);
 
 		public MissionClearConditionResult CheckAA(int leastSum) =>
 			CheckParameter(s => s.ExpeditionAATotal, leastSum, DataRes.MissionClearAa);

@@ -102,7 +102,7 @@ public class ShipDataCustom : IShipData
 	public int AntiSubmarinePower { get; set; }
 	public int TorpedoPower { get; set; }
 	public int NightBattlePower { get; set; }
-	public int ExpeditionFirePowerTotal { get; set; }
+	public int ExpeditionFirepowerTotal { get; set; }
 	public int ExpeditionASWTotal { get; set; }
 	public int ExpeditionLOSTotal { get; set; }
 	public int ExpeditionAATotal { get; set; }

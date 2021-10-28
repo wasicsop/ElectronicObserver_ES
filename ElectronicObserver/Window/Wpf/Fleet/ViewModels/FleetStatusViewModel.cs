@@ -167,7 +167,7 @@ public class FleetStatusViewModel : ObservableObject
 				ammototal,
 				fuelunit,
 				ammounit,
-				members.Sum(s => s.ExpeditionFirePowerTotal),
+				members.Sum(s => s.ExpeditionFirepowerTotal),
 				members.Sum(s => s.ExpeditionAATotal),
 				members.Sum(s => s.ExpeditionASWTotal),
 				members.Sum(s => s.ExpeditionLOSTotal)

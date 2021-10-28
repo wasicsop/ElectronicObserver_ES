@@ -485,7 +485,7 @@ public interface IShipData
 	/// <summary>
 	/// FirePower Total for Expedition
 	/// </summary>
-	int ExpeditionFirePowerTotal { get; }
+	int ExpeditionFirepowerTotal { get; }
 	/// <summary>
 	/// ASW Total for Expedition
 	/// </summary>
