@@ -1132,15 +1132,14 @@ public class ShipData : APIWrapper, IIdentifiable, IShipData
 		{
 			if (slot == null)
 				continue;
-			if (slot.MasterEquipment.IsHighAngleGun || slot.MasterEquipment.CategoryType == EquipmentTypes.AAGun)
+
+			baseaa += slot.MasterEquipment.CategoryType switch
 			{
-				baseaa += slot.MasterEquipment.CategoryType switch
-				{
-					EquipmentTypes.AAGun => 0.9 * slot.Level,
-					_ when slot.MasterEquipment.IsHighAngleGun => 0.3 * slot.Level,
-					_ => 0,
-				};
-			}
+				EquipmentTypes.AAGun => 0.9 * slot.Level,
+				_ when slot.MasterEquipment.IsHighAngleGun => 0.3 * slot.Level,
+				_ => 0,
+			};
+
 		}
 		return (int)baseaa;
 	}
