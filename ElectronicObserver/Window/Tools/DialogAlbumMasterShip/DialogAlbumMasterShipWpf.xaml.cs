@@ -27,35 +27,37 @@ public partial class DialogAlbumMasterShipWpf : System.Windows.Window
 	{
 		InitializeComponent();
 
-		// ViewModel.PropertyChanged += SelectedChipChanged;
+		ViewModel.PropertyChanged += SelectedShipChanged;
 		DataContext = ViewModel;
-
 	}
 
 	public DialogAlbumMasterShipWpf(int shipId) : this()
 	{
 		IShipDataMaster ship = KCDatabase.Instance.MasterShips[shipId];
-		ViewModel = new(ship);
-
-		// ViewModel.PropertyChanged += SelectedChipChanged;
-		DataContext = ViewModel;
+		ViewModel.ChangeShipCommand.Execute(ship);
 	}
 
 	public DialogAlbumMasterShipWpf(IShipDataMaster ship) : this()
 	{
-		ViewModel = new(ship);
-
-		// ViewModel.PropertyChanged += SelectedChipChanged;
-		DataContext = ViewModel;
+		ViewModel.ChangeShipCommand.Execute(ship);
 	}
-
-	// todo: doesn't work for some reason
-	private void SelectedChipChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
+	
+	private void SelectedShipChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
 	{
 		if (e.PropertyName is not nameof(ViewModel.SelectedShip)) return;
+
+		ScrollIntoView();
+	}
+
+	private void DataGrid_OnTargetUpdated(object? sender, DataTransferEventArgs e)
+	{
+		ScrollIntoView();
+	}
+
+	private void ScrollIntoView()
+	{
 		if (ViewModel.SelectedShip is null) return;
 
-		DataGrid.UpdateLayout();
 		DataGrid.ScrollIntoView(ViewModel.SelectedShip);
 	}
 

@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Input;
 
 namespace ElectronicObserver.Window.Tools.DialogAlbumMasterEquipment;
@@ -28,6 +29,17 @@ public partial class DialogAlbumMasterEquipmentWpf : System.Windows.Window
 	private void SelectedEquipmentChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
 	{
 		if (e.PropertyName is not nameof(ViewModel.SelectedEquipment)) return;
+		
+		ScrollIntoView();
+	}
+
+	private void DataGrid_OnTargetUpdated(object? sender, DataTransferEventArgs e)
+	{
+		ScrollIntoView();
+	}
+
+	private void ScrollIntoView()
+	{
 		if (ViewModel.SelectedEquipment is null) return;
 
 		DataGrid.ScrollIntoView(ViewModel.SelectedEquipment);

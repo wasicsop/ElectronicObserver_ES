@@ -24,11 +24,9 @@ public partial class DialogAlbumMasterEquipmentViewModel : ObservableObject
 	private IEnumerable<EquipmentDataViewModel> AllEquipment { get; }
 	public DialogAlbumMasterEquipmentTranslationViewModel DialogAlbumMasterEquipment { get; }
 
-	public IEnumerable<EquipmentDataViewModel> Equipment => AllEquipment.Where(e => SearchFilter switch
-	{
-		null or "" => true,
-		string f => Matches(e.Equipment, f),
-	});
+	// must be List and not IEnumerable, otherwise ScrollIntoView doesn't work
+	// probably due to multiple enumeration
+	public List<EquipmentDataViewModel> Equipment { get; set; }
 
 	private bool Matches(IEquipmentDataMaster equip, string filter)
 	{
@@ -59,9 +57,21 @@ public partial class DialogAlbumMasterEquipmentViewModel : ObservableObject
 	{
 		AllEquipment = KCDatabase.Instance.MasterEquipments.Values
 			.Select(e => new EquipmentDataViewModel(e));
+		Equipment = AllEquipment.ToList();
 
 		DialogAlbumMasterEquipment =
 			App.Current.Services.GetService<DialogAlbumMasterEquipmentTranslationViewModel>()!;
+
+		PropertyChanged += (sender, args) =>
+		{
+			if (args.PropertyName is not nameof(SearchFilter)) return;
+
+			Equipment = AllEquipment.Where(e => SearchFilter switch
+			{
+				null or "" => true,
+				string f => Matches(e.Equipment, f),
+			}).ToList();
+		};
 	}
 
 	[ICommand]

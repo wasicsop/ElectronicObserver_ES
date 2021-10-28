@@ -46,12 +46,10 @@ public partial class DialogAlbumMasterShipViewModel : ObservableObject
 		_ => DialogAlbumMasterShip.TitleParameterMax
 	};
 
-	public IEnumerable<ShipDataRecord> Ships => AllShips.Where(s => SearchFilter switch
-	{
-		null or "" => true,
-		string f => Matches(s.Ship, f),
-	});
-
+	// must be List and not IEnumerable, otherwise ScrollIntoView doesn't work
+	// probably due to multiple enumeration
+	public List<ShipDataRecord> Ships { get; set; }
+	
 	private static bool Matches(IShipDataMaster ship, string filter)
 	{
 		filter = Calculator.RomaToHira(filter);
@@ -78,6 +76,7 @@ public partial class DialogAlbumMasterShipViewModel : ObservableObject
 	public DialogAlbumMasterShipViewModel()
 	{
 		AllShips = KCDatabase.Instance.MasterShips.Values.Select(s => new ShipDataRecord(s));
+		Ships = AllShips.ToList();
 
 		DialogAlbumMasterShip = App.Current.Services.GetService<DialogAlbumMasterShipTranslationViewModel>()!;
 
@@ -95,6 +94,17 @@ public partial class DialogAlbumMasterShipViewModel : ObservableObject
 			if (SelectedShip is null) return;
 
 			SelectedShip.Level = Level;
+		};
+
+		PropertyChanged += (sender, args) =>
+		{
+			if (args.PropertyName is not nameof(SearchFilter)) return;
+
+			Ships = AllShips.Where(s => SearchFilter switch
+			{
+				null or "" => true,
+				string f => Matches(s.Ship, f),
+			}).ToList();
 		};
 	}
 
