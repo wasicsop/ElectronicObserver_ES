@@ -462,6 +462,9 @@
 		<Compile Remove="Observer\kcsapi\api_start2.cs" />
 	</ItemGroup>
 	<ItemGroup>
+	  <None Remove="Splashscreen.png" />
+	</ItemGroup>
+	<ItemGroup>
 		<COMReference Include="WMPLib.dll">
 			<Guid>6bf52a50-394a-11d3-b153-00c04f79faa6</Guid>
 			<VersionMajor>1</VersionMajor>
@@ -470,6 +473,9 @@
 			<WrapperTool>tlbimp</WrapperTool>
 			<Isolated>false</Isolated>
 		</COMReference>
+	</ItemGroup>
+	<ItemGroup>
+	  <SplashScreen Include="SplashScreen.png" />
 	</ItemGroup>
 	<ItemGroup>
 		<EmbeddedResource Update="Data\ConstantsRes.resx">
