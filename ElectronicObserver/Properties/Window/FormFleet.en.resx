@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ContextMenuFleet_CopyFleet" xml:space="preserve">
     <value>&amp;Copy</value>
@@ -163,12 +163,13 @@
     <value>Lv sum: {0} / avg: {1:0.00}
 {2} fleet
 Support Expedition: {3}
-Total FP {4} / Torp {5} / AA {6} / ASW {7} / LOS {8}
+Total FP {4} ({20}) / Torp {5} / AA {6} ({21}) / ASW {7} ({22}) / LOS {8} ({23})
 Drum: {9} ({10} ships)
 Daihatsu: {11} ({12} ships, +{13:p1})
 TP: S {14} / A {15}
 Consumption: {16} fuel / {17} ammo
-({18} fuel / {19} ammo per battle)</value>
+({18} fuel / {19} ammo per battle)
+</value>
   </data>
   <data name="WithoutProficiency" xml:space="preserve">
     <value>w/o Proficiency</value>
