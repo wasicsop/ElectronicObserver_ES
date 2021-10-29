@@ -92,7 +92,13 @@ public partial class App : Application
 					typeof(DependencyObject), new FrameworkPropertyMetadata(int.MaxValue));
 				ToolTipService.InitialShowDelayProperty.OverrideMetadata(
 					typeof(DependencyObject), new FrameworkPropertyMetadata(0));
-				new FormMainWpf().ShowDialog();
+
+				FormMainWpf mainWindow = new();
+
+				MainWindow = mainWindow;
+				ShutdownMode = ShutdownMode.OnMainWindowClose;
+
+				mainWindow.ShowDialog();
 			}
 			else
 			{
