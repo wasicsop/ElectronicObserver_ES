@@ -65,6 +65,8 @@ public static class AswAttackPower
 
 	private static double AswMod(this IShipData ship)
 	{
+		// https://twitter.com/KennethWWKK/status/1454281174877028359?s=20
+
 		bool smallSonar = ship.AllSlotInstance.Any(eq => eq?.MasterEquipment.CategoryType == EquipmentTypes.Sonar);
 		bool largeSonar = ship.AllSlotInstance.Any(eq => eq?.MasterEquipment.CategoryType == EquipmentTypes.SonarLarge);
 		bool sonarType = smallSonar || largeSonar;

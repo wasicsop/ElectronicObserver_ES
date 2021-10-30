@@ -352,15 +352,24 @@ public class EquipmentDataMaster : ResponseWrapper, IIdentifiable, IEquipmentDat
 	public bool IsSonar => CategoryType == EquipmentTypes.Sonar || CategoryType == EquipmentTypes.SonarLarge;
 
 	/// <summary> 爆雷かどうか(投射機は含まない) </summary>
-	public bool IsDepthCharge =>
-		EquipmentID == 226 ||       // 九五式爆雷
-		EquipmentID == 227;         // 二式爆雷
+	public bool IsDepthCharge => EquipmentID is
+		226 or	// 九五式爆雷
+		227 or	// 二式爆雷
+		378 or	// 対潜短魚雷(試作初期型)
+		439;	// Hedgehog(初期型)
+
 
 	/// <summary> 爆雷投射機かどうか(爆雷/対潜迫撃砲は含まない) </summary>
-	public bool IsDepthChargeProjector =>
-		EquipmentID == 44 ||        // 九四式爆雷投射機
-		EquipmentID == 45;          // 三式爆雷投射機
+	public bool IsDepthChargeProjector => EquipmentID is
+		44 or	// 九四式爆雷投射機
+		45 or	// 三式爆雷投射機
+		287 or	// 三式爆雷投射機 集中配備
+		288 or	// 試製15cm9連装対潜噴進砲
+		377;	// RUR-4A Weapon Alpha改
 
+	public bool IsAswMortar => EquipmentID is
+		346 or	// 二式12cm迫撃砲改
+		347;	// 二式12cm迫撃砲改 集中配備
 
 	/// <summary> 夜間作戦航空要員かどうか </summary>
 	public bool IsNightAviationPersonnel =>
