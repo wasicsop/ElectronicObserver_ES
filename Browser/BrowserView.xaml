@@ -226,7 +226,7 @@
 	<Grid>
 
 	<DockPanel>
-		<Menu Height="Auto" DockPanel.Dock="{Binding ToolMenuDock}" Visibility="{Binding ToolMenuVisibility}">
+		<Menu Height="Auto" DockPanel.Dock="{Binding ToolMenuDock}" Visibility="{Binding ToolMenuVisibility}" Background="{DynamicResource SystemControlBackgroundAltHighBrush}">
 			<Menu.Resources>
 				<Style TargetType="MenuItem" BasedOn="{StaticResource DefaultMenuItemStyle}">
 					<Setter Property="FontSize" Value="12" />
@@ -433,7 +433,7 @@
 		<Border
 			HorizontalAlignment="Stretch"
 			VerticalAlignment="Stretch"
-			Background="Transparent"
+			Background="{DynamicResource SystemControlBackgroundAltHighBrush}"
 		>
 			<Border.InputBindings>
 				<MouseBinding Gesture="LeftDoubleClick" Command="{Binding SetToolMenuVisibilityCommand}">
