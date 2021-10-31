@@ -391,7 +391,7 @@
 				<MenuItem Header="{Binding FormBrowser.ClearCache}" Command="{Binding ClearCacheCommand}" />
 				<Separator />
 				<MenuItem Header="{Binding FormBrowser.ToolMenu_Other_AppliesStyleSheet}"
-					IsChecked="{Binding StyleSheetApplied}"
+					IsChecked="{Binding StyleSheetEnabled}"
 					IsCheckable="True"
 				/>
 				<Separator />

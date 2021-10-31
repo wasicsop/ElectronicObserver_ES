@@ -73,8 +73,13 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 	private string BrowserCachePath => BrowserConstants.CachePath;
 
 	private string StyleClassID { get; } = Guid.NewGuid().ToString().Substring(0, 8);
-	public bool StyleSheetApplied { get; set; }
-	private bool RestoreStyleSheet { get; set; }
+
+	// user setting for stylesheet
+	public bool StyleSheetEnabled { get; set; }
+	// todo: flag to temporarily disable the stylesheet
+	// seems to be used for when you navigate to something other than kancolle
+	public bool ShouldStyleSheetApply { get; set; } = true;
+	public bool StyleSheetApplied => StyleSheetEnabled && ShouldStyleSheetApply;
 
 	public Dock ToolMenuDock { get; set; } = Dock.Top;
 	public Orientation ToolMenuOrientation => ToolMenuDock switch
@@ -162,8 +167,6 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 		Thread.CurrentThread.CurrentCulture = c;
 		Thread.CurrentThread.CurrentUICulture = c;
 
-		StyleSheetApplied = false;
-
 		PropertyChanged += (sender, args) =>
 		{
 			if (Configuration is null) return;
@@ -177,13 +180,9 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 		PropertyChanged += (sender, args) =>
 		{
 			if (Configuration is null) return;
-			if (args.PropertyName is not nameof(StyleSheetApplied)) return;
+			if (args.PropertyName is not nameof(StyleSheetEnabled)) return;
 
-			Configuration.AppliesStyleSheet = StyleSheetApplied;
-			if (!Configuration.AppliesStyleSheet)
-			{
-				RestoreStyleSheet = true;
-			}
+			Configuration.AppliesStyleSheet = StyleSheetEnabled;
 
 			ApplyStyleSheet();
 			ApplyZoom();
@@ -393,7 +392,7 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 
 		ZoomFit = Configuration.ZoomFit;
 		ApplyZoom();
-		StyleSheetApplied = Configuration.AppliesStyleSheet;
+		StyleSheetEnabled = Configuration.AppliesStyleSheet;
 
 		ToolMenuDock = Configuration.ToolMenuDockStyle switch
 		{
@@ -523,7 +522,6 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 	private void ApplyStyleSheet()
 	{
 		if (Browser is not { IsBrowserInitialized: true }) return;
-		if (!Configuration.AppliesStyleSheet && !RestoreStyleSheet) return;
 
 		try
 		{
@@ -532,13 +530,11 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 			if (mainframe == null || gameframe == null)
 				return;
 
-			if (RestoreStyleSheet)
+			if (!StyleSheetApplied)
 			{
 				mainframe.EvaluateScriptAsync(string.Format(Properties.Resources.RestoreScript, StyleClassID));
 				gameframe.EvaluateScriptAsync(string.Format(Properties.Resources.RestoreScript, StyleClassID));
 				gameframe.EvaluateScriptAsync("document.body.style.backgroundColor = \"#000000\";");
-				StyleSheetApplied = false;
-				RestoreStyleSheet = false;
 			}
 			else
 			{
@@ -546,8 +542,6 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 				gameframe.EvaluateScriptAsync(string.Format(Properties.Resources.FrameScript, StyleClassID));
 				gameframe.EvaluateScriptAsync("document.body.style.backgroundColor = \"#000000\";");
 			}
-
-			StyleSheetApplied = true;
 		}
 		catch (Exception ex)
 		{
@@ -595,10 +589,12 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 	/// </summary>
 	public void Navigate(string url)
 	{
+		/*
 		if (url != Configuration.LogInPageURL || !Configuration.AppliesStyleSheet)
 		{
-			StyleSheetApplied = false;
+			ShouldStyleSheetApply = false;
 		}
+		*/
 
 		if (Browser is not { IsBrowserInitialized: true }) return;
 
@@ -618,11 +614,6 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 	/// <param name="ignoreCache">キャッシュを無視するか。</param>
 	private void RefreshBrowser(bool ignoreCache)
 	{
-		if (!Configuration.AppliesStyleSheet)
-		{
-			StyleSheetApplied = false;
-		}
-
 		Browser.Reload(ignoreCache);
 	}
 
