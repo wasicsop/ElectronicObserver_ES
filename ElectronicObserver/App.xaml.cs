@@ -68,7 +68,9 @@ public partial class App : Application
 			// remove this and the Shutdown call when moving to wpf only
 			// ShutdownMode = ShutdownMode.OnExplicitShutdown;
 
+#if !DEBUG
 			AppCenter.Start("7fdbafa0-058a-4691-b317-a700be513b95", typeof(Analytics), typeof(Crashes));
+#endif
 
 			if (true)
 			{
