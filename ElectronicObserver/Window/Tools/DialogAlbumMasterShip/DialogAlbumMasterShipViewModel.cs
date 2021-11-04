@@ -49,7 +49,7 @@ public partial class DialogAlbumMasterShipViewModel : ObservableObject
 	// must be List and not IEnumerable, otherwise ScrollIntoView doesn't work
 	// probably due to multiple enumeration
 	public List<ShipDataRecord> Ships { get; set; }
-	
+
 	private static bool Matches(IShipDataMaster ship, string filter)
 	{
 		filter = Calculator.RomaToHira(filter);

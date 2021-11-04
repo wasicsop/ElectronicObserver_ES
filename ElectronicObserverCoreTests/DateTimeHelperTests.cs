@@ -10,7 +10,7 @@ public class DateTimeHelperTests
 	public void TestingOverrideWorks()
 	{
 		DateTime now = DateTime.Now;
-		
+
 		Assert.Equal(now, DateTimeHelper.GetJapanStandardTimeNow(now));
 		Assert.NotEqual(now, DateTimeHelper.GetJapanStandardTimeNow());
 	}

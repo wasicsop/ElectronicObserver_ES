@@ -29,7 +29,7 @@ public partial class DialogAlbumMasterEquipmentWpf : System.Windows.Window
 	private void SelectedEquipmentChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
 	{
 		if (e.PropertyName is not nameof(ViewModel.SelectedEquipment)) return;
-		
+
 		ScrollIntoView();
 	}
 

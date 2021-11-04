@@ -41,7 +41,7 @@ public partial class DialogAlbumMasterShipWpf : System.Windows.Window
 	{
 		ViewModel.ChangeShipCommand.Execute(ship);
 	}
-	
+
 	private void SelectedShipChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
 	{
 		if (e.PropertyName is not nameof(ViewModel.SelectedShip)) return;

@@ -63,7 +63,7 @@ public partial class BattleNodeIdTaskViewModel : ObservableObject, IQuestTaskVie
 	public BattleNodeIdTaskViewModel(BattleNodeIdTaskModel model)
 	{
 		Model = model;
-		NodeIds = new(Model.NodeIds.Select(i => new NodeIdViewModel{Id = i}));
+		NodeIds = new(Model.NodeIds.Select(i => new NodeIdViewModel { Id = i }));
 
 		AllMaps = KCDatabase.Instance.MapInfo.Values
 			.Select(m => new MapInfoModel(m.MapAreaID, m.MapInfoID));
