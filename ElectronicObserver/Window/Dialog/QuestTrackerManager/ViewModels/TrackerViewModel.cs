@@ -77,6 +77,7 @@ public partial class TrackerViewModel : ObservableObject
 			BossKillTaskModel b => (IQuestTaskViewModel)new BossKillTaskViewModel(b),
 			ExpeditionTaskModel e => new ExpeditionTask(e),
 			BattleNodeIdTaskModel b => new BattleNodeIdTaskViewModel(b),
+			EquipmentScrapTaskModel e => new EquipmentScrapTaskViewModel(e),
 		});
 	}
 
@@ -112,6 +113,7 @@ public partial class TrackerViewModel : ObservableObject
 				Name = "-2",
 				NodeIds = new List<int> { 18, 23, 24, 25 },
 			},
+			QuestTaskType.EquipmentScrap => new EquipmentScrapTaskModel(),
 		});
 	}
 
@@ -170,6 +172,14 @@ public partial class TrackerViewModel : ObservableObject
 		foreach (ExpeditionTask task in Tasks.OfType<ExpeditionTask>())
 		{
 			task.Increment(areaId);
+		}
+	}
+
+	public void Increment(IEnumerable<EquipmentId> ids)
+	{
+		foreach (EquipmentScrapTaskViewModel task in Tasks.OfType<EquipmentScrapTaskViewModel>())
+		{
+			task.Increment(ids);
 		}
 	}
 

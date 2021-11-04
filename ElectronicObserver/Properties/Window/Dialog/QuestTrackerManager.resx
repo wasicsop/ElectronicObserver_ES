@@ -182,4 +182,7 @@
   <data name="QuestTaskType_7_3_2" xml:space="preserve">
     <value>7-3-2</value>
   </data>
+  <data name="QuestTaskType_EquipmentScrap" xml:space="preserve">
+    <value>装備廃棄</value>
+  </data>
 </root>

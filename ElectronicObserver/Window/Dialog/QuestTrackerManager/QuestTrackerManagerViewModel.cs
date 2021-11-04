@@ -12,6 +12,7 @@ using ElectronicObserver.Window.Dialog.QuestTrackerManager.Enums;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.Models;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.Models.Tasks;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.ViewModels;
+using ElectronicObserverTypes;
 using MessagePack;
 using MessagePack.Resolvers;
 using Microsoft.Extensions.DependencyInjection;
@@ -159,6 +160,18 @@ public partial class QuestTrackerManagerViewModel : ObservableObject
 		}
 	}
 
+	public void EquipmentDiscarded(string apiname, Dictionary<string, string> data)
+	{
+		IEnumerable<IEquipmentData> discardedEquipment = data["api_slotitem_ids"]
+			.Split(",".ToCharArray())
+			.Select(s => KCDatabase.Instance.Equipments[int.Parse(s)]);
+
+		foreach (TrackerViewModel tracker in Trackers.Where(t => t.State == 2))
+		{
+			tracker.Increment(discardedEquipment.Select(e => e.EquipmentId));
+		}
+	}
+
 	[ICommand]
 	private void CopyTrackersToClipboard()
 	{
@@ -280,7 +293,7 @@ public partial class QuestTrackerManagerViewModel : ObservableObject
 	{
 		try
 		{
-			QuestProgressRecord progresses = new(LastQuestListUpdate, 
+			QuestProgressRecord progresses = new(LastQuestListUpdate,
 				Trackers.Select(t => new QuestTrackerProgressRecord(t.QuestId, t.GetProgress())));
 			byte[] progressBytes = MessagePackSerializer.Serialize(progresses, DateTimeOptions);
 			File.WriteAllText(ProgressPath, MessagePackSerializer.ConvertToJson(progressBytes));
