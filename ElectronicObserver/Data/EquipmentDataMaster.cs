@@ -21,6 +21,9 @@ public class EquipmentDataMaster : ResponseWrapper, IIdentifiable, IEquipmentDat
 	/// </summary>
 	public int EquipmentID => (int)RawData.api_id;
 
+	/// <inheritdoc />
+	public EquipmentId EquipmentId => (EquipmentId)EquipmentID;
+
 	/// <summary>
 	/// 図鑑番号
 	/// </summary>

@@ -10,6 +10,11 @@ public interface IEquipmentDataMaster
 	int EquipmentID { get; }
 
 	/// <summary>
+	/// EquipmentID with a type
+	/// </summary>
+	EquipmentId EquipmentId { get; }
+
+	/// <summary>
 	/// 図鑑番号
 	/// </summary>
 	int AlbumNo { get; }

@@ -12,6 +12,7 @@ public class MockEquipmentDataMaster : IEquipmentDataMaster
 	public bool IsHightAltitudeFighter { get; set; }
 	public bool IsAARocketLauncher { get; set; }
 	public int ID { get; set; }
+	public EquipmentId EquipmentId { get; set; }
 	public dynamic RawData { get; set; }
 	public bool IsAvailable { get; set; }
 	public void LoadFromResponse(string apiname, dynamic data)
