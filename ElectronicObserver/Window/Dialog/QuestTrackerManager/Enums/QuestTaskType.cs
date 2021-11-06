@@ -20,4 +20,6 @@ public enum QuestTaskType
 	World7Map3Boss2,
 	[Display(ResourceType = typeof(Properties.Window.Dialog.QuestTrackerManager), Name = "QuestTaskType_EquipmentScrap")]
 	EquipmentScrap,
+	[Display(ResourceType = typeof(Properties.Window.Dialog.QuestTrackerManager), Name = "QuestTaskType_EquipmentCategoryScrap")]
+	EquipmentCategoryScrap,
 }

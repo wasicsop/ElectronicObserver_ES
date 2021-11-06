@@ -205,4 +205,7 @@ Do you want to overwrite these quest trackers?</value>
   <data name="QuestTaskType_EquipmentScrap" xml:space="preserve">
     <value>Equipment scrap</value>
   </data>
+  <data name="QuestTaskType_EquipmentCategoryScrap" xml:space="preserve">
+    <value>Equipment category scrap</value>
+  </data>
 </root>

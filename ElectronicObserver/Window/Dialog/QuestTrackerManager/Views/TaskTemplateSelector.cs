@@ -11,6 +11,7 @@ public class TaskTemplateSelector : DataTemplateSelector
 	public DataTemplate? Expedition { get; set; }
 	public DataTemplate? BattleNodeId { get; set; }
 	public DataTemplate? EquipmentScrap { get; set; }
+	public DataTemplate? EquipmentCategoryScrap { get; set; }
 
 	public override DataTemplate? SelectTemplate(object item, DependencyObject container) => item switch
 	{
@@ -18,6 +19,7 @@ public class TaskTemplateSelector : DataTemplateSelector
 		ExpeditionTask => Expedition,
 		BattleNodeIdTaskViewModel => BattleNodeId,
 		EquipmentScrapTaskViewModel => EquipmentScrap,
+		EquipmentCategoryScrapTaskViewModel => EquipmentCategoryScrap,
 
 		_ => throw new NotImplementedException(),
 	};

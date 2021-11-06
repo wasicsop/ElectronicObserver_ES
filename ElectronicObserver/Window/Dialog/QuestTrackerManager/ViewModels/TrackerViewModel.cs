@@ -114,6 +114,7 @@ public partial class TrackerViewModel : ObservableObject
 				NodeIds = new List<int> { 18, 23, 24, 25 },
 			},
 			QuestTaskType.EquipmentScrap => new EquipmentScrapTaskModel(),
+			QuestTaskType.EquipmentCategoryScrap => new EquipmentCategoryScrapTaskModel(),
 		});
 	}
 
@@ -180,6 +181,14 @@ public partial class TrackerViewModel : ObservableObject
 		foreach (EquipmentScrapTaskViewModel task in Tasks.OfType<EquipmentScrapTaskViewModel>())
 		{
 			task.Increment(ids);
+		}
+	}
+
+	public void Increment(IEnumerable<EquipmentTypes> categories)
+	{
+		foreach (EquipmentCategoryScrapTaskViewModel task in Tasks.OfType<EquipmentCategoryScrapTaskViewModel>())
+		{
+			task.Increment(categories);
 		}
 	}
 

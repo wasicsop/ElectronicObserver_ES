@@ -167,11 +167,33 @@
 								Minimum="1" />
 		</StackPanel>
 	</DataTemplate>
-	
+
+	<DataTemplate x:Key="EquipmentCategoryScrapTaskTemplate"
+				  DataType="{x:Type questTasks:EquipmentCategoryScrapTaskViewModel}">
+
+		<StackPanel Orientation="Horizontal">
+			<Button Content="ｘ"
+					Command="{Binding DataContext.RemoveTaskCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}"
+					CommandParameter="{Binding Model}" />
+
+			<ComboBox ItemsSource="{Binding Categories}"
+					  SelectedItem="{Binding Model.Category}"
+					  ItemTemplate="{StaticResource EnumDisplayerTemplate}" />
+
+			<controls:NumberBox Value="{Binding Model.Progress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+								Minimum="0"
+								Maximum="{Binding Model.Count}" />
+
+			<controls:NumberBox Value="{Binding Model.Count, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+								Minimum="1" />
+		</StackPanel>
+	</DataTemplate>
+
 	<questTrackerManager:TaskTemplateSelector x:Key="TaskTemplateSelector"
 											  BossKill="{StaticResource BossKillTaskTemplate}"
 											  Expedition="{StaticResource ExpeditionTaskTemplate}"
 											  BattleNodeId="{StaticResource BattleNodeIdTaskTemplate}"
-											  EquipmentScrap="{StaticResource EquipmentScrapTaskTemplate}"/>
+											  EquipmentScrap="{StaticResource EquipmentScrapTaskTemplate}"
+											  EquipmentCategoryScrap="{StaticResource EquipmentCategoryScrapTaskTemplate}" />
 
 </ResourceDictionary>
