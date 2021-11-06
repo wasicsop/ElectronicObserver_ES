@@ -20,7 +20,9 @@ public partial class TrackerViewModel : ObservableObject
 	public IEnumerable<QuestTaskType> TaskTypes { get; }
 	public QuestTaskType TaskTypeType { get; set; } = QuestTaskType.BossKill;
 
-	public IEnumerable<IQuestTaskViewModel> Tasks { get; set; }
+	// when this was an IEnumerable, the call from FormQuest to ProgressDisplay caused
+	// exponential NotifyPropertyChange events from the changed value (x2 each time)
+	public List<IQuestTaskViewModel> Tasks { get; set; }
 	public GroupConditionViewModel GroupConditions { get; }
 
 	public bool ShowDetails { get; set; }
@@ -34,7 +36,7 @@ public partial class TrackerViewModel : ObservableObject
 	};
 	public string Display => string.Join(" \n", Tasks.Select(t => t.Display));
 
-	public string? ProgressDisplay =>
+	public string? ProgressDisplay => 
 		string.Join(" \n", Tasks.Select(t => t.Progress).Where(p => !string.IsNullOrEmpty(p))) switch
 		{
 			null or "" => null,
@@ -70,16 +72,14 @@ public partial class TrackerViewModel : ObservableObject
 		};
 	}
 
-	private IEnumerable<IQuestTaskViewModel> MakeTasks()
+	private List<IQuestTaskViewModel> MakeTasks() => Model.Tasks.Select(t => t switch
 	{
-		return Model.Tasks.Select(t => t switch
-		{
-			BossKillTaskModel b => (IQuestTaskViewModel)new BossKillTaskViewModel(b),
-			ExpeditionTaskModel e => new ExpeditionTask(e),
-			BattleNodeIdTaskModel b => new BattleNodeIdTaskViewModel(b),
-			EquipmentScrapTaskModel e => new EquipmentScrapTaskViewModel(e),
-		});
-	}
+		BossKillTaskModel b => (IQuestTaskViewModel)new BossKillTaskViewModel(b),
+		ExpeditionTaskModel e => new ExpeditionTask(e),
+		BattleNodeIdTaskModel b => new BattleNodeIdTaskViewModel(b),
+		EquipmentScrapTaskModel e => new EquipmentScrapTaskViewModel(e),
+		EquipmentCategoryScrapTaskModel e => new EquipmentCategoryScrapTaskViewModel(e),
+	}).ToList();
 
 	[ICommand]
 	private void AddTask()
