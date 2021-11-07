@@ -175,6 +175,11 @@ public partial class QuestTrackerManagerViewModel : ObservableObject
 		{
 			tracker.Increment(discardedEquipment.Select(e => e.MasterEquipment.CategoryType));
 		}
+
+		foreach (TrackerViewModel tracker in Trackers.Where(t => t.State == 2))
+		{
+			tracker.Increment(discardedEquipment.Select(e => (EquipmentCardType)e.MasterEquipment.CardType));
+		}
 	}
 
 	[ICommand]

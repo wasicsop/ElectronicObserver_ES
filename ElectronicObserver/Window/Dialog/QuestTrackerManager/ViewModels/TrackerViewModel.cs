@@ -79,6 +79,7 @@ public partial class TrackerViewModel : ObservableObject
 		BattleNodeIdTaskModel b => new BattleNodeIdTaskViewModel(b),
 		EquipmentScrapTaskModel e => new EquipmentScrapTaskViewModel(e),
 		EquipmentCategoryScrapTaskModel e => new EquipmentCategoryScrapTaskViewModel(e),
+		EquipmentCardTypeScrapTaskModel e => new EquipmentCardTypeScrapTaskViewModel(e),
 	}).ToList();
 
 	[ICommand]
@@ -115,6 +116,7 @@ public partial class TrackerViewModel : ObservableObject
 			},
 			QuestTaskType.EquipmentScrap => new EquipmentScrapTaskModel(),
 			QuestTaskType.EquipmentCategoryScrap => new EquipmentCategoryScrapTaskModel(),
+			QuestTaskType.EquipmentCardTypeScrap => new EquipmentCardTypeScrapTaskModel(),
 		});
 	}
 
@@ -189,6 +191,14 @@ public partial class TrackerViewModel : ObservableObject
 		foreach (EquipmentCategoryScrapTaskViewModel task in Tasks.OfType<EquipmentCategoryScrapTaskViewModel>())
 		{
 			task.Increment(categories);
+		}
+	}
+
+	public void Increment(IEnumerable<EquipmentCardType> cardTypes)
+	{
+		foreach (EquipmentCardTypeScrapTaskViewModel task in Tasks.OfType<EquipmentCardTypeScrapTaskViewModel>())
+		{
+			task.Increment(cardTypes);
 		}
 	}
 

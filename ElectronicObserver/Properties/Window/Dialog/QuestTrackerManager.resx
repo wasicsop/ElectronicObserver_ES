@@ -188,4 +188,7 @@
   <data name="QuestTaskType_EquipmentCategoryScrap" xml:space="preserve">
     <value>装備カテゴリ廃棄</value>
   </data>
+  <data name="QuestTaskType_EquipmentCardTypeScrap" xml:space="preserve">
+    <value>装備図鑑表示廃棄</value>
+  </data>
 </root>
