@@ -191,4 +191,7 @@
   <data name="QuestTaskType_EquipmentCardTypeScrap" xml:space="preserve">
     <value>装備図鑑表示廃棄</value>
   </data>
+  <data name="QuestTaskType_EquipmentIconTypeScrap" xml:space="preserve">
+    <value>装備アイコンID廃棄</value>
+  </data>
 </root>

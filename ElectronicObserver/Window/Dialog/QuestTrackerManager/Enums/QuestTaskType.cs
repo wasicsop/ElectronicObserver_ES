@@ -24,4 +24,6 @@ public enum QuestTaskType
 	EquipmentCategoryScrap,
 	[Display(ResourceType = typeof(Properties.Window.Dialog.QuestTrackerManager), Name = "QuestTaskType_EquipmentCardTypeScrap")]
 	EquipmentCardTypeScrap,
+	[Display(ResourceType = typeof(Properties.Window.Dialog.QuestTrackerManager), Name = "QuestTaskType_EquipmentIconTypeScrap")]
+	EquipmentIconTypeScrap,
 }

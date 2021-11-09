@@ -180,6 +180,11 @@ public partial class QuestTrackerManagerViewModel : ObservableObject
 		{
 			tracker.Increment(discardedEquipment.Select(e => (EquipmentCardType)e.MasterEquipment.CardType));
 		}
+
+		foreach (TrackerViewModel tracker in Trackers.Where(t => t.State == 2))
+		{
+			tracker.Increment(discardedEquipment.Select(e => e.MasterEquipment.IconTypeTyped));
+		}
 	}
 
 	[ICommand]
