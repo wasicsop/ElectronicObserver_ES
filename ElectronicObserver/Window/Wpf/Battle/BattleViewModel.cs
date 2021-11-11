@@ -1506,9 +1506,18 @@ public class BattleViewModel : AnchorableViewModel
 
 	void ConfigurationChanged()
 	{
-		/*
 		var config = Utility.Configuration.Config;
 
+		System.Drawing.Color[] colorScheme = config.UI.BarColorScheme.Select(col => col.ColorData).ToArray();
+
+		foreach (HealthBarViewModel hpBar in HPBars)
+		{
+			hpBar.SetBarColorScheme(colorScheme);
+			hpBar.ColorMorphing = config.UI.BarColorMorphing;
+		}
+		
+
+		/*
 		MainFont = TableTop.Font = TableBottom.Font = Font = config.UI.MainFont;
 		SubFont = config.UI.SubFont;
 
