@@ -107,4 +107,14 @@
 	    <LastGenOutput>Resources.Designer.cs</LastGenOutput>
 	  </EmbeddedResource>
 	</ItemGroup>
+	<!--
+		cd $(MSBuildProjectDirectory)
+		cd ..\ElectronicObserver\bin\x64\publish\
+		del vk_swiftshader.dll
+		del vk_swiftshader_icd.json
+		del vulkan-1.dll
+	-->
+	<Target Name="PostPublish" AfterTargets="Publish">
+		<Exec Command="cd $(MSBuildProjectDirectory)&#xD;&#xA;cd ..\ElectronicObserver\bin\x64\publish\&#xD;&#xA;del vk_swiftshader.dll&#xD;&#xA;del vk_swiftshader_icd.json&#xD;&#xA;del vulkan-1.dll" />
+	</Target>
 </Project>
