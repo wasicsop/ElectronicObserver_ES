@@ -155,8 +155,8 @@ public class Theme
 							""shipClass4"": ""#006600"",
 							""shipClass5"": ""#880000"",
 							""shipClass6"": ""#0088FF"",
-							""shipClass7"": ""#FF00FF"",
-							""shipDestroyed"": ""#0000FF"",
+							""shipClass7"": ""#0000FF"",
+							""shipDestroyed"": ""#FF00FF"",
 							""eventKind3"": ""#000080"",
 							""eventKind6"": ""#006400"",
 							""eventKind5"": ""#8B0000""
@@ -316,11 +316,11 @@ public class Theme
 					""compass"": {
 						""shipClass2"": ""#FF0000"",
 						""shipClass3"": ""#FF8800"",
-						""shipClass4"": ""#0088FF"",
-						""shipClass5"": ""#FF0000"",
-						""shipClass6"": ""#FF8800"",
-						""shipClass7"": ""#FFFFFF"",
-						""shipDestroyed"": ""#FF0000"",
+						""shipClass4"": ""#00AA00"",
+						""shipClass5"": ""#AA0000"",
+						""shipClass6"": ""#0088FF"",
+						""shipClass7"": ""#0000FF"",
+						""shipDestroyed"": ""#FF00FF"",
 						""eventKind3"": ""#FFFFFF"",
 						""eventKind6"": ""#FFFFFF"",
 						""eventKind5"": ""#FFFFFF""
