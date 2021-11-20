@@ -127,7 +127,7 @@
 											Width="110" />
 
 						<DataGridTextColumn Header="{Binding DataContext.DialogAlbumMasterShip.ShipView_Name, Source={x:Reference Proxy}}"
-											Binding="{Binding Ship.NameEN}"
+											Binding="{Binding Ship.NameWithClass}"
 											Width="120" />
 					</DataGrid.Columns>
 				</DataGrid>
@@ -189,7 +189,7 @@
 							<StackPanel Orientation="Horizontal">
 								<TextBlock Text="{Binding SelectedShip.ShipType}"
 										   ToolTip="{Binding SelectedShip.ShipTypeToolTip}" />
-								<TextBlock Text="{Binding SelectedShip.Ship.NameEN}"
+								<TextBlock Text="{Binding SelectedShip.Ship.NameWithClass}"
 										   Foreground="{Binding SelectedShip.NameColor}"
 										   ToolTip="{Binding SelectedShip.ShipNameToolTip}">
 									<TextBlock.InputBindings>
