@@ -24,7 +24,7 @@
 		<GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
 		<UseWindowsForms>true</UseWindowsForms>
 		<UseWPF>true</UseWPF>
-		<SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+		<SatelliteResourceLanguages>en;ja</SatelliteResourceLanguages>
 		<Nullable>enable</Nullable>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">

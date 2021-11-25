@@ -21,7 +21,7 @@
 		<UseWPF>true</UseWPF>
 		<Platforms>x64</Platforms>
 		<Nullable>enable</Nullable>
-		<SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+		<SatelliteResourceLanguages>en;ja</SatelliteResourceLanguages>
 		<LangVersion>latest</LangVersion>
 	</PropertyGroup>
 	<PropertyGroup>
