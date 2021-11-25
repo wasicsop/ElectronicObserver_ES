@@ -30,7 +30,7 @@ public static class SoftwareInformation
 	/// <summary>
 	/// バージョン(日本語, ソフトウェア名を含みます)
 	/// </summary>
-	public static string VersionJapanese => SoftwareNameJapanese + "四七型";
+	public static string VersionJapanese => SoftwareNameJapanese + "四七型改";
 
 
 	/// <summary>
