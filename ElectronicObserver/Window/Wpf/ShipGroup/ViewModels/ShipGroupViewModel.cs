@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Controls;
@@ -8,27 +9,145 @@ using ElectronicObserver.Data;
 using ElectronicObserver.Observer;
 using ElectronicObserver.Resource;
 using ElectronicObserver.ViewModels;
+using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserverTypes;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace ElectronicObserver.Window.Wpf.ShipGroup.ViewModels;
+
+public record ShipGroupItemViewModel(IShipData Ship)
+{
+	public int MasterId => Ship.MasterID;
+	public string ShipTypeName => Ship.MasterShip.ShipTypeName;
+	public string Name => Ship.Name;
+	public int Level => Ship.Level;
+	public int ExpTotal => Ship.ExpTotal;
+	public int ExpNext => Ship.ExpNext;
+	public int ExpRemodel => Ship.ExpNextRemodel;
+	public string Hp => $"{Ship.HPCurrent}/{Ship.HPMax}";
+	public int Condition => Ship.Condition;
+	public int Fuel => Ship.Fuel;
+	public int Ammo => Ship.Ammo;
+
+	public IEquipmentData? Slot1 => Ship.AllSlotInstance[0];
+	public IEquipmentData? Slot2 => Ship.AllSlotInstance[1];
+	public IEquipmentData? Slot3 => Ship.AllSlotInstance[2];
+	public IEquipmentData? Slot4 => Ship.AllSlotInstance[3];
+	public IEquipmentData? Slot5 => Ship.AllSlotInstance[4];
+	public string ExpansionSlot => Ship.ExpansionSlotInstance?.NameWithLevel ?? "";
+
+	public string Aircraft1 => $"{Ship.Aircraft[0]}/{Ship.MasterShip.Aircraft[0]}";
+	public string Aircraft2 => $"{Ship.Aircraft[1]}/{Ship.MasterShip.Aircraft[1]}";
+	public string Aircraft3 => $"{Ship.Aircraft[2]}/{Ship.MasterShip.Aircraft[2]}";
+	public string Aircraft4 => $"{Ship.Aircraft[3]}/{Ship.MasterShip.Aircraft[3]}";
+	public string Aircraft5 => $"{Ship.Aircraft[4]}/{Ship.MasterShip.Aircraft[4]}";
+	public string AircraftTotal => $"{Ship.AircraftTotal}/{Ship.MasterShip.AircraftTotal}";
+
+	public string Fleet => Ship.FleetWithIndex;
+	public int RepairTime => Ship.RepairTime;
+	public int RepairSteel => Ship.RepairSteel;
+	public int RepairFuel => Ship.RepairFuel;
+
+	public int Firepower => Ship.FirepowerBase;
+	public int FirepowerRemain => Ship.FirepowerRemain;
+	public int FirepowerTotal => Ship.FirepowerTotal;
+
+	public int Torpedo => Ship.TorpedoBase;
+	public int TorpedoRemain => Ship.TorpedoRemain;
+	public int TorpedoTotal => Ship.TorpedoTotal;
+
+	public int AA => Ship.AABase;
+	public int AARemain => Ship.AARemain;
+	public int AATotal => Ship.AATotal;
+
+	public int Armor => Ship.ArmorBase;
+	public int ArmorRemain => Ship.ArmorRemain;
+	public int ArmorTotal => Ship.ArmorTotal;
+
+	public int ASW => Ship.ASWBase;
+	public int ASWTotal => Ship.ASWTotal;
+
+	public int Evasion => Ship.EvasionBase;
+	public int EvasionTotal => Ship.EvasionTotal;
+
+	public int LOS => Ship.LOSBase;
+	public int LOSTotal => Ship.LOSTotal;
+
+	public int Luck => Ship.LuckBase;
+	public int LuckRemain => Ship.LuckRemain;
+	public int LuckTotal => Ship.LuckTotal;
+
+	public int BomberTotal => Ship.BomberTotal;
+	public int Speed => Ship.Speed;
+	public int Range => Ship.Range;
+
+	public int AirBattlePower => Ship.AirBattlePower;
+	public int ShellingPower => Ship.ShellingPower;
+	public int AircraftPower => Ship.AircraftPower;
+	public int AntiSubmarinePower => Ship.AntiSubmarinePower;
+	public int TorpedoPower => Ship.TorpedoPower;
+	public int NightBattlePower => Ship.NightBattlePower;
+
+	public bool Locked => Ship.IsLocked;
+	public int SallyArea => Ship.SallyArea;
+}
 
 public class ShipGroupViewModel : AnchorableViewModel
 {
 	private KCDatabase Db { get; }
 
-	public ObservableCollection<IShipData> Ships { get; set; } = new();
-	public ObservableCollection<ShipGroupData> Groups { get; }
+	public FormShipGroupTranslationViewModel FormShipGroup { get; }
 
-	public DataGrid? DataGrid { get; set; }
+	public ObservableCollection<ShipGroupItemViewModel> Ships { get; set; } = new();
+	public ObservableCollection<ShipGroupData> Groups { get; }
+	public ShipGroupData? SelectedGroup { get; set; }
 
 	public ICommand SelectGroupCommand { get; }
+	public List<ShipGroupItemViewModel> SelectedShips { get; set; } = new();
+
+	public string StatusBarText => MakeStatusBarText(SelectedGroup, SelectedShips);
+
+	private string MakeStatusBarText(ShipGroupData? group, List<ShipGroupItemViewModel> selectedShips)
+	{
+		if (group is null) return "";
+
+		int membersCount = group.MembersInstance.Count(s => s != null);
+		int levelsum = group.MembersInstance.Sum(s => s?.Level ?? 0);
+		double levelAverage = levelsum / Math.Max(membersCount, 1.0);
+		int expsum = group.MembersInstance.Sum(s => s?.ExpTotal ?? 0);
+		double expAverage = expsum / Math.Max(membersCount, 1.0);
+
+		string statusBarText = "";
+
+		if (selectedShips.Count > 1)
+		{
+			int selectedShipCount = selectedShips.Count;
+			int totalShipCount = group.Members.Count;
+			IEnumerable<int> levels = selectedShips.Select(s => s.Level);
+			IEnumerable<int> exp = selectedShips.Select(s => s.ExpTotal);
+
+			statusBarText += string.Format(Properties.Window.FormShipGroup.SelectedShips, selectedShipCount, totalShipCount);
+			statusBarText += string.Format(Properties.Window.FormShipGroup.TotalAndAverageLevel, levels.Sum(), levels.Average());
+			statusBarText += string.Format(Properties.Window.FormShipGroup.TotalAndAverageExp, exp.Sum(), exp.Average());
+		}
+		else
+		{
+			statusBarText += string.Format(Properties.Window.FormShipGroup.ShipCount, group.Members.Count);
+			statusBarText += string.Format(Properties.Window.FormShipGroup.TotalAndAverageLevel, levelsum, levelAverage);
+			statusBarText += string.Format(Properties.Window.FormShipGroup.TotalAndAverageExp, expsum, expAverage);
+		}
+
+		return statusBarText;
+	}
 
 	public ShipGroupViewModel() : base("Group", "Group",
 		ImageSourceIcons.GetIcon(IconContent.FormShipGroup))
 	{
 		Db = KCDatabase.Instance;
+
+		FormShipGroup = App.Current.Services.GetService<FormShipGroupTranslationViewModel>()!;
 
 		SelectGroupCommand = new RelayCommand<string>(ShipGroupSelected);
 
@@ -43,157 +162,20 @@ public class ShipGroupViewModel : AnchorableViewModel
 
 	private void APIUpdated(string apiname, dynamic data)
 	{
-		Ships = new(Db.Ships.Values);
+		SetShips();
 	}
-
-	private static string GetColumnBinding(string winformsName) => winformsName switch
-	{
-		"ShipView_ID" => nameof(IShipData.MasterID),
-		"ShipView_ShipType" => "MasterShip.ShipTypeName",
-		"ShipView_Name" => nameof(IShipData.Name),
-		"ShipView_Level" => nameof(IShipData.Level),
-		"ShipView_Exp" => nameof(IShipData.ExpTotal),
-		"ShipView_Next" => nameof(IShipData.ExpNext),
-		"ShipView_NextRemodel" => nameof(IShipData.ExpNextRemodel),
-		"ShipView_HP" => nameof(IShipData.HPCurrent),
-		"ShipView_Condition" => nameof(IShipData.Condition),
-		"ShipView_Fuel" => nameof(IShipData.FuelRate),
-		"ShipView_Ammo" => nameof(IShipData.AmmoRate),
-		"ShipView_Slot1" => "AllSlotInstance[0]",
-		"ShipView_Slot2" => "AllSlotInstance[1]",
-		"ShipView_Slot3" => "AllSlotInstance[2]",
-		"ShipView_Slot4" => "AllSlotInstance[3]",
-		"ShipView_Slot5" => "AllSlotInstance[4]",
-		"ShipView_ExpansionSlot" => "ExpansionSlotInstance.NameWithLevel",
-		"ShipView_Aircraft1" => "Aircraft[0]",
-		"ShipView_Aircraft2" => "Aircraft[1]",
-		"ShipView_Aircraft3" => "Aircraft[2]",
-		"ShipView_Aircraft4" => "Aircraft[3]",
-		"ShipView_Aircraft5" => "Aircraft[4]",
-		"ShipView_AircraftTotal" => nameof(IShipData.AircraftTotal),
-		"ShipView_Fleet" => nameof(IShipData.Fleet),
-		"ShipView_RepairTime" => nameof(IShipData.RepairTime),
-		"ShipView_RepairSteel" => nameof(IShipData.RepairSteel),
-		"ShipView_RepairFuel" => nameof(IShipData.RepairFuel),
-		"ShipView_Firepower" => nameof(IShipData.FirepowerBase),
-		"ShipView_FirepowerRemain" => nameof(IShipData.FirepowerRemain),
-		"ShipView_FirepowerTotal" => nameof(IShipData.FirepowerTotal),
-		"ShipView_Torpedo" => nameof(IShipData.TorpedoBase),
-		"ShipView_TorpedoRemain" => nameof(IShipData.TorpedoRemain),
-		"ShipView_TorpedoTotal" => nameof(IShipData.TorpedoTotal),
-		"ShipView_AA" => nameof(IShipData.AABase),
-		"ShipView_AARemain" => nameof(IShipData.AARemain),
-		"ShipView_AATotal" => nameof(IShipData.AATotal),
-		"ShipView_Armor" => nameof(IShipData.ArmorBase),
-		"ShipView_ArmorRemain" => nameof(IShipData.ArmorRemain),
-		"ShipView_ArmorTotal" => nameof(IShipData.ArmorTotal),
-		"ShipView_ASW" => nameof(IShipData.ASWBase),
-		"ShipView_ASWTotal" => nameof(IShipData.ASWTotal),
-		"ShipView_Evasion" => nameof(IShipData.EvasionBase),
-		"ShipView_EvasionTotal" => nameof(IShipData.EvasionTotal),
-		"ShipView_LOS" => nameof(IShipData.LOSBase),
-		"ShipView_LOSTotal" => nameof(IShipData.LOSTotal),
-		"ShipView_Luck" => nameof(IShipData.LuckBase),
-		"ShipView_LuckRemain" => nameof(IShipData.LuckRemain),
-		"ShipView_LuckTotal" => nameof(IShipData.LuckTotal),
-		"ShipView_BomberTotal" => nameof(IShipData.BomberTotal),
-		"ShipView_Speed" => nameof(IShipData.Speed),
-		"ShipView_Range" => nameof(IShipData.Range),
-		"ShipView_AirBattlePower" => nameof(IShipData.AirBattlePower),
-		"ShipView_ShellingPower" => nameof(IShipData.ShellingPower),
-		"ShipView_AircraftPower" => nameof(IShipData.AircraftPower),
-		"ShipView_AntiSubmarinePower" => nameof(IShipData.AntiSubmarinePower),
-		"ShipView_TorpedoPower" => nameof(IShipData.TorpedoPower),
-		"ShipView_NightBattlePower" => nameof(IShipData.NightBattlePower),
-		"ShipView_Locked" => nameof(IShipData.IsLocked),
-		"ShipView_SallyArea" => nameof(IShipData.SallyArea),
-	};
-
-	private static string GetColumnName(string winformsName) => winformsName switch
-	{
-		"ShipView_ID" => "ID",
-		"ShipView_ShipType" => "Type",
-		"ShipView_Name" => nameof(IShipData.Name),
-		"ShipView_Level" => "Lv",
-		"ShipView_Exp" => "Exp",
-		"ShipView_Next" => "next",
-		"ShipView_NextRemodel" => "Remodel",
-		"ShipView_HP" => "HP",
-		"ShipView_Condition" => "Cond",
-		"ShipView_Fuel" => "Fuel",
-		"ShipView_Ammo" => "Ammo",
-		"ShipView_Slot1" => "Eq 1",
-		"ShipView_Slot2" => "Eq 2",
-		"ShipView_Slot3" => "Eq 3",
-		"ShipView_Slot4" => "Eq 4",
-		"ShipView_Slot5" => "Eq 5",
-		"ShipView_ExpansionSlot" => "Expansion",
-		"ShipView_Aircraft1" => "Aircraft 1",
-		"ShipView_Aircraft2" => "Aircraft 2",
-		"ShipView_Aircraft3" => "Aircraft 3",
-		"ShipView_Aircraft4" => "Aircraft 4",
-		"ShipView_Aircraft5" => "Aircraft 5",
-		"ShipView_AircraftTotal" => "Aircraft",
-		"ShipView_Fleet" => "Position",
-		"ShipView_RepairTime" => "Repair",
-		"ShipView_RepairSteel" => "Steel",
-		"ShipView_RepairFuel" => "Fuel",
-		"ShipView_Firepower" => "FP",
-		"ShipView_FirepowerRemain" => "FP",
-		"ShipView_FirepowerTotal" => "FP",
-		"ShipView_Torpedo" => "Torpedo",
-		"ShipView_TorpedoRemain" => "Torpedo",
-		"ShipView_TorpedoTotal" => "Torpedo",
-		"ShipView_AA" => "AA",
-		"ShipView_AARemain" => "AA",
-		"ShipView_AATotal" => "AA",
-		"ShipView_Armor" => "Armor",
-		"ShipView_ArmorRemain" => "Armor",
-		"ShipView_ArmorTotal" => "Armor",
-		"ShipView_ASW" => "ASW",
-		"ShipView_ASWTotal" => "ASW",
-		"ShipView_Evasion" => "Evasion",
-		"ShipView_EvasionTotal" => "Evasion",
-		"ShipView_LOS" => "LoS",
-		"ShipView_LOSTotal" => "LoS",
-		"ShipView_Luck" => "Luck",
-		"ShipView_LuckRemain" => "Luck",
-		"ShipView_LuckTotal" => "Luck",
-		"ShipView_BomberTotal" => "Bombers Total",
-		"ShipView_Speed" => "Speed",
-		"ShipView_Range" => "Range",
-		"ShipView_AirBattlePower" => "Air",
-		"ShipView_ShellingPower" => "Shelling Power",
-		"ShipView_AircraftPower" => "Bombing Power",
-		"ShipView_AntiSubmarinePower" => "ASW Power",
-		"ShipView_TorpedoPower" => "Torpedo Power",
-		"ShipView_NightBattlePower" => "NB",
-		"ShipView_Locked" => "Lock",
-		"ShipView_SallyArea" => "Fleet",
-	};
-
 
 	private void ShipGroupSelected(string name)
 	{
-		if (DataGrid is null) return;
+		SelectedGroup = Db.ShipGroup.ShipGroups.Values.First(g => g.Name == name);
+		SetShips();
+	}
 
-		DataGrid.Columns.Clear();
-		foreach ((string key, ShipGroupData.ViewColumnData column) in
-			Db.ShipGroup.ShipGroups.Values.First(g => g.Name == name).ViewColumns)
-		{
-			if (!column.Visible) continue;
+	private void SetShips()
+	{
+		if (SelectedGroup is null) return;
 
-			DataGrid.Columns.Add(MakeColumn(GetColumnName(key), GetColumnBinding(key), column.Width));
-		}
+		Ships = new(SelectedGroup.MembersInstance.Where(s => s is not null).Select(s => new ShipGroupItemViewModel(s)));
 
-		static DataGridTextColumn MakeColumn(string header, string binding, int width) => new()
-		{
-			Header = header,
-			Binding = new Binding(binding)
-			{
-				Mode = BindingMode.OneTime
-			},
-			Width = new DataGridLength(width)
-		};
 	}
 }

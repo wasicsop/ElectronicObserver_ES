@@ -42,6 +42,7 @@ using ElectronicObserver.Window.Wpf.Fleet;
 using ElectronicObserver.Window.Wpf.FleetOverview;
 using ElectronicObserver.Window.Wpf.FleetPreset;
 using ElectronicObserver.Window.Wpf.Headquarters;
+using ElectronicObserver.Window.Wpf.ShipGroup.ViewModels;
 using ElectronicObserver.Window.Wpf.WinformsWrappers;
 using MessagePack;
 using Microsoft.Extensions.DependencyInjection;
@@ -133,7 +134,7 @@ public partial class FormMainViewModel : ObservableObject
 	public List<FleetViewModel> Fleets { get; }
 	public FleetOverviewViewModel FleetOverview { get; }
 	public FormShipGroupViewModel FormShipGroup { get; }
-	// public ShipGroupViewModel ShipGroup { get; }
+	public ShipGroupViewModel ShipGroup { get; }
 	public FleetPresetViewModel FleetPreset { get; }
 
 	public DockViewModel Dock { get; }

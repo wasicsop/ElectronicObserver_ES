@@ -9,6 +9,7 @@ using ElectronicObserver.Window.Wpf.Fleet;
 using ElectronicObserver.Window.Wpf.FleetOverview;
 using ElectronicObserver.Window.Wpf.FleetPreset;
 using ElectronicObserver.Window.Wpf.Headquarters;
+using ElectronicObserver.Window.Wpf.ShipGroup.ViewModels;
 using ElectronicObserver.Window.Wpf.WinformsHost;
 
 namespace ElectronicObserver.Window.Wpf;
@@ -41,6 +42,7 @@ public class ViewTemplateSelector : DataTemplateSelector
 	{
 		FleetViewModel => Fleet,
 		FleetOverviewViewModel => FleetOverview,
+		ShipGroupViewModel => Group,
 		FleetPresetViewModel => FleetPreset,
 
 		DockViewModel => Dock,

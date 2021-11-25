@@ -13,7 +13,8 @@
                     xmlns:battle="clr-namespace:ElectronicObserver.Window.Wpf.Battle"
 
                     xmlns:winformsHost="clr-namespace:ElectronicObserver.Window.Wpf.WinformsHost"
-                    xmlns:winformsWrappers="clr-namespace:ElectronicObserver.Window.Wpf.WinformsWrappers" xmlns:wpf="clr-namespace:ElectronicObserver.Window.Wpf">
+                    xmlns:winformsWrappers="clr-namespace:ElectronicObserver.Window.Wpf.WinformsWrappers" xmlns:wpf="clr-namespace:ElectronicObserver.Window.Wpf"
+                    xmlns:viewModels="clr-namespace:ElectronicObserver.Window.Wpf.ShipGroup.ViewModels">
 
 	<DataTemplate x:Key="FleetTemplate" DataType="{x:Type fleet:FleetViewModel}">
 		<fleet:FleetView ViewModel="{Binding}" />
@@ -21,11 +22,9 @@
 	<DataTemplate x:Key="FleetOverviewTemplate" DataType="{x:Type fleetOverview:FleetOverviewViewModel}">
 		<fleetOverview:FleetOverviewView ViewModel="{Binding}" />
 	</DataTemplate>
-	<!--
-	<DataTemplate x:Key="ShipGroupTemplate" DataType="shipGroup:ShipGroupViewModel">
+	<DataTemplate x:Key="ShipGroupTemplate" DataType="viewModels:ShipGroupViewModel">
 		<shipGroup:ShipGroupView ViewModel="{Binding}" />
 	</DataTemplate>
-	-->
 	<DataTemplate x:Key="FleetPresetTemplate" DataType="{x:Type fleetPreset:FleetPresetViewModel}">
 		<fleetPreset:FleetPresetView ViewModel="{Binding}" />
 	</DataTemplate>
@@ -57,8 +56,9 @@
 
 	<wpf:ViewTemplateSelector x:Key="ViewTemplateSelector"
 	                          Fleet="{StaticResource FleetTemplate}"
-	                          FleetOverview="{StaticResource FleetOverviewTemplate}"
-	                          FleetPreset="{StaticResource FleetPresetTemplate}"
+							  FleetOverview="{StaticResource FleetOverviewTemplate}"
+							  Group="{StaticResource ShipGroupTemplate}"
+							  FleetPreset="{StaticResource FleetPresetTemplate}"
 
 	                          Dock="{StaticResource DockTemplate}"
 	                          Arsenal="{StaticResource ArsenalTemplate}"

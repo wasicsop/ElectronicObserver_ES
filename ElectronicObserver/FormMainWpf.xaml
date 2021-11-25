@@ -92,6 +92,15 @@
 						<Image Source="{Binding ShipGroupImageSource}" />
 					</MenuItem.Icon>
 				</MenuItem>
+				<MenuItem Header="{Binding FormMain.StripMenu_View_ShipGroup}"
+				          d:Header="Ship Group"
+				          Command="{Binding OpenViewCommand}"
+				          CommandParameter="{Binding ShipGroup}"
+				          Visibility="Collapsed">
+					<MenuItem.Icon>
+						<Image Source="{Binding ShipGroupImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
 				<MenuItem Header="{Binding FormMain.StripMenu_View_FleetPreset}" d:Header="Presets" Command="{Binding OpenViewCommand}" CommandParameter="{Binding FleetPreset}">
 					<MenuItem.Icon>
 						<Image Source="{Binding FleetPresetImageSource}" />
@@ -283,6 +292,7 @@
 
 		<DockingManager
 			x:Name="DockingManager"
+			Language="ja-JP"
 			Grid.Row="1"
 			GridSplitterWidth="1"
 			GridSplitterHeight="1"
