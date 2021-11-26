@@ -85,7 +85,7 @@ public partial class DialogExpeditionCheck : Form
 				results[2],
 				results[3]);
 
-			row.Cells[1].ToolTipText = $"ID: {mission.MissionID} ({mission.ExpeditionDamageType})";
+			row.Cells[1].ToolTipText = $"ID: {mission.MissionID} ({mission.ExpeditionType.Display()})";
 
 			for (int i = 0; i < 4; i++)
 			{
@@ -95,28 +95,34 @@ public partial class DialogExpeditionCheck : Form
 				if (result.IsSuceeded || i == 3)
 				{
 					if (!result.FailureReason.Any())
-						if (mission.DamageType != ExpeditionDamageType.TypeTwoExpedition)
+					{
+						if (mission.ExpeditionType is ExpeditionType.CombatTypeTwoExpedition)
 						{
-							cell.Value = DialogRes.ExpeditionCheckOkSign;
+							cell.Value = result switch
+							{
+								{ SuccessType: BattleExpeditionSuccessType.GreatSuccess } => DialogRes.ExpeditionCheckDoubleOkSign,
+								_ => DialogRes.ExpeditionCheckOkSign
+							} + string.Join(", ", result.SuccessPercent);
+
+							cell.ToolTipText = string.Join("\n", result.SuccessPercent);
 						}
 						else
 						{
-							if (result.NoStatsExceeded == 4)
-							{
-								cell.Value = "🗸🗸";
-								cell.ToolTipText = string.Join("\n", result.successPercent);
-							}
 							cell.Value = DialogRes.ExpeditionCheckOkSign;
-							cell.ToolTipText = string.Join("\n", result.successPercent);
 						}
+					}
 					else
+					{
 						cell.Value = string.Join(", ", result.FailureReason);
+						cell.ToolTipText = string.Join("\n", result.FailureReason);
+					}
 
 					cell.Style = defaultStyle;
 				}
 				else
 				{
 					cell.Value = string.Join(", ", result.FailureReason);
+					cell.ToolTipText = string.Join("\n", result.FailureReason);
 					cell.Style = failedStyle;
 				}
 			}

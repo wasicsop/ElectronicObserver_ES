@@ -515,8 +515,9 @@ public static class MissionClearCondition
 		/// 遠征が成功するかどうか
 		/// </summary>
 		public bool IsSuceeded { get; private set; }
-		public int NoStatsExceeded { get; private set; }
-		public List<string> successPercent;
+
+		public BattleExpeditionSuccessType SuccessType { get; private set; } = BattleExpeditionSuccessType.GreatSuccess;
+		public List<string> SuccessPercent { get; }
 		private List<string> failureReason;
 
 		/// <summary>
@@ -534,8 +535,7 @@ public static class MissionClearCondition
 			this.targetFleet = targetFleet;
 			IsSuceeded = true;
 			failureReason = new List<string>();
-			successPercent = new List<string>();
-			NoStatsExceeded = 0;
+			SuccessPercent = new List<string>();
 		}
 
 
@@ -712,19 +712,20 @@ public static class MissionClearCondition
 		{
 			int actualSum = members.Sum(s => selector(s));
 			var percentage = (double)actualSum / leastSum;
-			string IsStatExceeded = "";
-			if (parameterName == DataRes.MissionClearAsw || parameterName == DataRes.MissionClearFirepower || parameterName == DataRes.MissionClearAa || parameterName == DataRes.MissionClearLos)
+			string isStatExceeded = "★";
+
+			if (percentage < 2.17)
 			{
-				if (actualSum >= leastSum * 2.17)
-				{
-					NoStatsExceeded++;
-					IsStatExceeded = "★";
-				}
-				successPercent.Add(string.Format("{3}: {4} ({0}) {1}/{2}", percentage.ToString("0.0%"), actualSum, leastSum, parameterName, IsStatExceeded));
+				SuccessType = BattleExpeditionSuccessType.Success;
+				isStatExceeded = "";
 			}
+
+			SuccessPercent.Add(string.Format("{3}: {4} ({0:P2}) {1}/{2}", percentage, actualSum, leastSum,
+				parameterName, isStatExceeded));
+
 			Assert(
-				actualSum >= leastSum,
-				() => string.Format(DataRes.MissionClearParameter, parameterName, CurrentValue(actualSum), leastSum));
+			actualSum >= leastSum,
+			() => string.Format(DataRes.MissionClearParameter, parameterName, CurrentValue(actualSum), leastSum));
 			return this;
 		}
 

@@ -127,4 +127,7 @@ Please login to KanColle and open the home screen.</value>
   <data name="ExpeditionCheckOkSign" xml:space="preserve">
     <value>✔️</value>
   </data>
+  <data name="ExpeditionCheckDoubleOkSign" xml:space="preserve">
+    <value>🗸🗸</value>
+  </data>
 </root>

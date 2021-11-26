@@ -54,8 +54,10 @@ public class MissionData : APIWrapper, IIdentifiable
 	/// <summary>
 	/// Expedition Damage Type: 0="Normal" 1="Type 1" 2="Type 2"
 	/// </summary>
-	public int ExpeditionDamageType => (int)RawData.api_damage_type;
-	public ExpeditionDamageType DamageType => (ExpeditionDamageType)ExpeditionDamageType;
+	private int ExpeditionDamageType => (int)RawData.api_damage_type;
+
+	public ExpeditionType ExpeditionType => (ExpeditionType)ExpeditionDamageType;
+
 	/// <summary>
 	/// 遠征時間(分単位)
 	/// </summary>
@@ -86,5 +88,5 @@ public class MissionData : APIWrapper, IIdentifiable
 
 
 	public int ID => MissionID;
-	public override string ToString() => $"[{MissionID}] {Name} (Type: {ExpeditionDamageType}";
+	public override string ToString() => $"[{MissionID}] {Name} (Type: {ExpeditionType.Display()}";
 }
