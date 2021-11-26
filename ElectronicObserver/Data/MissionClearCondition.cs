@@ -515,7 +515,8 @@ public static class MissionClearCondition
 		/// 遠征が成功するかどうか
 		/// </summary>
 		public bool IsSuceeded { get; private set; }
-
+		public int NoStatsExceeded { get; private set; }
+		public List<string> successPercent;
 		private List<string> failureReason;
 
 		/// <summary>
@@ -533,6 +534,8 @@ public static class MissionClearCondition
 			this.targetFleet = targetFleet;
 			IsSuceeded = true;
 			failureReason = new List<string>();
+			successPercent = new List<string>();
+			NoStatsExceeded = 0;
 		}
 
 
@@ -708,6 +711,17 @@ public static class MissionClearCondition
 		public MissionClearConditionResult CheckParameter(Func<IShipData, int> selector, int leastSum, string parameterName)
 		{
 			int actualSum = members.Sum(s => selector(s));
+			var percentage = (double)actualSum / leastSum;
+			string IsStatExceeded = "";
+			if (parameterName == DataRes.MissionClearAsw || parameterName == DataRes.MissionClearFirepower || parameterName == DataRes.MissionClearAa || parameterName == DataRes.MissionClearLos)
+			{
+				if (actualSum >= leastSum * 2.17)
+				{
+					NoStatsExceeded++;
+					IsStatExceeded = "★";
+				}
+				successPercent.Add(string.Format("{3}: {4} ({0}) {1}/{2}", percentage.ToString("0.0%"), actualSum, leastSum, parameterName, IsStatExceeded));
+			}
 			Assert(
 				actualSum >= leastSum,
 				() => string.Format(DataRes.MissionClearParameter, parameterName, CurrentValue(actualSum), leastSum));

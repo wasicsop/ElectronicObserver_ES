@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ElectronicObserver.Data;
 using ElectronicObserver.Resource;
+using ElectronicObserverTypes;
 using Translation = ElectronicObserver.Properties.Window.Dialog.DialogExpeditionCheck;
 
 namespace ElectronicObserver.Window.Dialog;
@@ -84,7 +85,7 @@ public partial class DialogExpeditionCheck : Form
 				results[2],
 				results[3]);
 
-			row.Cells[1].ToolTipText = $"ID: {mission.MissionID}";
+			row.Cells[1].ToolTipText = $"ID: {mission.MissionID} ({mission.ExpeditionDamageType})";
 
 			for (int i = 0; i < 4; i++)
 			{
@@ -94,7 +95,20 @@ public partial class DialogExpeditionCheck : Form
 				if (result.IsSuceeded || i == 3)
 				{
 					if (!result.FailureReason.Any())
-						cell.Value = DialogRes.ExpeditionCheckOkSign;
+						if (mission.DamageType != ExpeditionDamageType.TypeTwoExpedition)
+						{
+							cell.Value = DialogRes.ExpeditionCheckOkSign;
+						}
+						else
+						{
+							if (result.NoStatsExceeded == 4)
+							{
+								cell.Value = "🗸🗸";
+								cell.ToolTipText = string.Join("\n", result.successPercent);
+							}
+							cell.Value = DialogRes.ExpeditionCheckOkSign;
+							cell.ToolTipText = string.Join("\n", result.successPercent);
+						}
 					else
 						cell.Value = string.Join(", ", result.FailureReason);
 

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ElectronicObserver.Window;
+using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Data;
 
@@ -50,7 +51,11 @@ public class MissionData : APIWrapper, IIdentifiable
 	/// 進捗リセットタイミング
 	/// </summary>
 	public ResetType ResetType => (ResetType)RawData.api_reset_type;
-
+	/// <summary>
+	/// Expedition Damage Type: 0="Normal" 1="Type 1" 2="Type 2"
+	/// </summary>
+	public int ExpeditionDamageType => (int)RawData.api_damage_type;
+	public ExpeditionDamageType DamageType => (ExpeditionDamageType)ExpeditionDamageType;
 	/// <summary>
 	/// 遠征時間(分単位)
 	/// </summary>
@@ -81,5 +86,5 @@ public class MissionData : APIWrapper, IIdentifiable
 
 
 	public int ID => MissionID;
-	public override string ToString() => $"[{MissionID}] {Name}";
+	public override string ToString() => $"[{MissionID}] {Name} (Type: {ExpeditionDamageType}";
 }
