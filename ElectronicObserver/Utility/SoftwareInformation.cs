@@ -42,7 +42,7 @@ public static class SoftwareInformation
 	/// <summary>
 	/// 更新日時
 	/// </summary>
-	public static DateTime UpdateTime => DateTimeHelper.CSVStringToTime("2021/09/21 12:00:00");
+	public static DateTime UpdateTime => DateTimeHelper.CSVStringToTime("2021/11/27 12:00:00");
 
 
 	private static System.Net.WebClient? Client { get; set; }
