@@ -23,7 +23,7 @@ using Color = System.Drawing.Color;
 
 namespace ElectronicObserver.Window.Wpf.Battle;
 
-public class BattleViewModel : AnchorableViewModel
+public partial class BattleViewModel : AnchorableViewModel
 {
 	public FormBattleTranslationViewModel FormBattle { get; }
 
@@ -129,8 +129,6 @@ public class BattleViewModel : AnchorableViewModel
 	public List<HealthBarViewModel> EnemyMainHPBars { get; } = new();
 	public List<HealthBarViewModel> EnemyEscortHPBars { get; } = new();
 
-	public ICommand ShowBattleDetailCommand { get; }
-
 	public BattleViewModel() : base("Battle", "Battle",
 		ImageSourceIcons.GetIcon(IconContent.FormBattle))
 	{
@@ -138,21 +136,6 @@ public class BattleViewModel : AnchorableViewModel
 
 		Title = FormBattle.Title;
 		FormBattle.PropertyChanged += (_, _) => Title = FormBattle.Title;
-
-		ShowBattleDetailCommand = new RelayCommand(() =>
-		{
-			var bm = KCDatabase.Instance.Battle;
-
-			if (bm == null || bm.BattleMode == BattleManager.BattleModes.Undefined)
-				return;
-
-			var dialog = new Dialog.DialogBattleDetail
-			{
-				BattleDetailText = BattleDetailDescriptor.GetBattleDetail(bm),
-				// Location = RightClickMenu.Location
-			};
-			dialog.Show();
-		});
 
 		for (int i = 0; i < 24; i++)
 		{
@@ -224,6 +207,27 @@ public class BattleViewModel : AnchorableViewModel
 
 		Utility.Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
 		ConfigurationChanged();
+	}
+
+	[ICommand]
+	private void ShowBattleDetail()
+	{
+		var bm = KCDatabase.Instance.Battle;
+
+		if (bm == null || bm.BattleMode == BattleManager.BattleModes.Undefined) return;
+
+		var dialog = new Dialog.DialogBattleDetail
+		{
+			BattleDetailText = BattleDetailDescriptor.GetBattleDetail(bm),
+			// Location = RightClickMenu.Location
+		};
+		dialog.Show();
+	}
+
+	[ICommand]
+	private void ShowBattleResult()
+	{
+		ViewVisibility = Visibility.Visible;
 	}
 
 	private void Updated(string apiname, dynamic data)

@@ -19,23 +19,23 @@
 	<Border 
 		Background="Transparent"
 		DataContext="{Binding ViewModel, ElementName=BattleControl}"
-		Visibility="{Binding ViewVisibility}"
 		ContextMenuOpening="FrameworkElement_OnContextMenuOpening"
 		>
 		<Border.ContextMenu>
 			<ContextMenu>
-				<MenuItem 
+				<MenuItem
 					Header="{Binding FormBattle.RightClickMenu_ShowBattleDetail}"
-					Command="{Binding ShowBattleDetailCommand}"
-					/>
-				<!--
+					Command="{Binding ShowBattleDetailCommand}"/>
 				<Separator />
-				<MenuItem Header="{x:Static window:GeneralRes.RightClickMenu_ShowBattleResult}" />
-				-->
+				<MenuItem
+					Header="{Binding FormBattle.RightClickMenu_ShowBattleResult}"
+					Command="{Binding ShowBattleResultCommand}"/>
+
 			</ContextMenu>
 		</Border.ContextMenu>
 
 		<Grid
+			Visibility="{Binding ViewVisibility}"
 			HorizontalAlignment="Center"
 			Margin="4"
 			IsSharedSizeScope="True">
