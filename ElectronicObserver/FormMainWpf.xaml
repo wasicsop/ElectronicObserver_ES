@@ -9,6 +9,8 @@
 
 		DataContext="{Binding ViewModel, ElementName=FormMainWpfControl}"
 
+		Topmost="{Binding Topmost}"
+
 		TextElement.FontFamily="{Binding Font}"
         TextElement.Foreground="{Binding FontBrush}"
         TextElement.FontSize="{Binding FontSize}"
@@ -61,6 +63,8 @@
 					<MenuItem Header="{Binding FormMain.StripMenu_File_Layout_Load}" d:Header="Load" Command="{Binding LoadLayoutCommand}" CommandParameter="{Binding ElementName=FormMainWpfControl}" />
 					<MenuItem Header="{Binding FormMain.StripMenu_File_Layout_Open}" d:Header="Open" Command="{Binding OpenLayoutCommand}" />
 					<MenuItem Header="{Binding FormMain.StripMenu_File_Layout_Change}" d:Header="Save as" Command="{Binding SaveLayoutAsCommand}" />
+					<Separator />
+					<MenuItem Header="{Binding FormMain.StripMenu_File_Layout_TopMost}" d:Header="Always On Top (M)" IsCheckable="True" IsChecked="{Binding Topmost}" />
 				</MenuItem>
 				<MenuItem Header="{Binding FormMain.StripMenu_File_Notification}" d:Header="Notification">
 					<MenuItem Header="{Binding FormMain.StripMenu_File_Notification_MuteAll}" d:Header="Disable" IsCheckable="True" IsChecked="{Binding NotificationsSilenced}" Command="{Binding SilenceNotificationsCommand}" />

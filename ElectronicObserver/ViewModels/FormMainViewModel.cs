@@ -61,6 +61,7 @@ public partial class FormMainViewModel : ObservableObject
 	private Configuration.ConfigurationData Config { get; }
 	public FormMainTranslationViewModel FormMain { get; }
 	private System.Windows.Forms.Timer UIUpdateTimer { get; }
+	public bool Topmost { get; set; }
 
 	private string LayoutFolder => @"Settings\Layout";
 	private string DefaultLayoutPath => Path.Combine(LayoutFolder, "Default.xml");
@@ -293,6 +294,10 @@ public partial class FormMainViewModel : ObservableObject
 		NotifierManager.Instance.Initialize(Window);
 		SyncBGMPlayer.Instance.ConfigurationChanged();
 
+		UIUpdateTimer = new Timer() { Interval = 1000 };
+		UIUpdateTimer.Tick += UIUpdateTimer_Tick;
+		UIUpdateTimer.Start();
+
 		#region Icon settings
 
 		ConfigurationImageSource = ImageSourceIcons.GetIcon(IconContent.FormConfiguration);
@@ -454,11 +459,22 @@ public partial class FormMainViewModel : ObservableObject
 
 		NotificationsSilenced = NotifierManager.Instance.GetNotifiers().All(n => n.IsSilenced);
 
-		UIUpdateTimer = new Timer() { Interval = 1000 };
-		UIUpdateTimer.Tick += UIUpdateTimer_Tick;
-		UIUpdateTimer.Start();
+		PropertyChanged += (sender, args) =>
+		{
+			if (args.PropertyName is not nameof(Topmost)) return;
+
+			Configuration.Config.Life.TopMost = Topmost;
+			ConfigurationChanged();
+		};
 
 		Logger.Add(3, Resources.StartupComplete);
+	}
+
+	// Toggle TopMost of Main Form back and forth to workaround a .Net Bug: KB2756203 (~win7) / KB2769674 (win8~)
+	private void RefreshTopMost()
+	{
+		Topmost = !Topmost;
+		Topmost = !Topmost;
 	}
 
 	#region File
@@ -666,7 +682,9 @@ public partial class FormMainViewModel : ObservableObject
 
 	private void StripMenu_Tool_EquipmentList_Click()
 	{
-		new DialogEquipmentList().Show();
+		DialogEquipmentList equipmentList = new DialogEquipmentList();
+		RefreshTopMost();
+		equipmentList.Show();
 	}
 
 	private void StripMenu_Tool_DropRecord_Click()
@@ -728,7 +746,9 @@ public partial class FormMainViewModel : ObservableObject
 
 	private void StripMenu_Tool_ResourceChart_Click()
 	{
-		new DialogResourceChart().Show();
+		DialogResourceChart resourceChart = new();
+		RefreshTopMost();
+		resourceChart.Show();
 	}
 
 	private void StripMenu_Tool_AlbumMasterShip_Click()
@@ -741,7 +761,9 @@ public partial class FormMainViewModel : ObservableObject
 			return;
 		}
 
-		new DialogAlbumMasterShipWpf().Show();
+		DialogAlbumMasterShipWpf albumMasterShip = new();
+		RefreshTopMost();
+		albumMasterShip.Show();
 	}
 
 	private void StripMenu_Tool_AlbumMasterEquipment_Click()
@@ -754,7 +776,9 @@ public partial class FormMainViewModel : ObservableObject
 			return;
 		}
 
-		new DialogAlbumMasterEquipmentWpf().Show();
+		DialogAlbumMasterEquipmentWpf dialogAlbumMasterEquipment = new();
+		RefreshTopMost();
+		dialogAlbumMasterEquipment.Show();
 	}
 
 	private void StripMenu_Tool_AntiAirDefense_Click()
@@ -1333,12 +1357,12 @@ public partial class FormMainViewModel : ObservableObject
 		DebugEnabled = c.Debug.EnableDebugMenu;
 
 		StripStatus.Visible = c.Life.ShowStatusBar;
-		/*
+
 		// Load で TopMost を変更するとバグるため(前述)
 		if (UIUpdateTimer.Enabled)
-			TopMost = c.Life.TopMost;
+			Topmost = c.Life.TopMost;
 		
-		*/
+
 		ClockFormat = c.Life.ClockFormat;
 		SetTheme();
 
@@ -1384,9 +1408,9 @@ public partial class FormMainViewModel : ObservableObject
 
 		StripMenu_File_Layout_LockLayout.Checked = c.Life.LockLayout;
 		MainDockPanel.CanCloseFloatWindowInLock = c.Life.CanCloseFloatWindowInLock;
-
-		StripMenu_File_Layout_TopMost.Checked = c.Life.TopMost;
-
+		*/
+		Topmost = c.Life.TopMost;
+		/*
 		StripMenu_File_Notification_MuteAll.Checked = Notifier.NotifierManager.Instance.GetNotifiers().All(n => n.IsSilenced);
 
 		if (!c.Control.UseSystemVolume)
