@@ -25,6 +25,7 @@ public class WinformsHostViewModel : AnchorableViewModel
 			if (WinformsControl is null) return;
 
 			WinformsControl.FormBorderStyle = FormBorderStyle.None;
+			WinformsControl.TopLevel = false;
 			WindowsFormsHost.Child = WinformsControl;
 
 			WinformsControl.BackColor = Utility.Configuration.Config.UI.BackColor;
