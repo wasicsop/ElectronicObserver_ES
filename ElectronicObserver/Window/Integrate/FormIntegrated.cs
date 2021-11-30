@@ -7,6 +7,7 @@ using System.Drawing;
 using System.IO;
 using System.Management;
 using System.Runtime.Serialization;
+using System.Security.Cryptography;
 using System.Text;
 using System.Windows.Forms;
 using ElectronicObserver.Resource;
@@ -30,8 +31,16 @@ public partial class FormIntegrate : DockContent
 
 	public static string Prefix => "Integrate_";
 
-	public string PersistString =>
-		Prefix + string.GetHashCode(titleTextBox.Text + classNameTextBox.Text + fileNameTextBox.Text);
+	public string PersistString => MakePersistString();
+
+	private string MakePersistString()
+	{
+		using SHA256 sha256 = SHA256.Create();
+		byte[] bytes = Encoding.UTF8.GetBytes(titleTextBox.Text + classNameTextBox.Text + fileNameTextBox.Text);
+		string hash = BitConverter.ToString(sha256.ComputeHash(bytes));
+
+		return Prefix + hash;
+	}
 
 	[DataContract(Name = "MatchControl")]
 	public enum MatchControl
