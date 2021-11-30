@@ -36,6 +36,7 @@ public partial class FormIntegrate : DockContent
 	private string MakePersistString()
 	{
 		using SHA256 sha256 = SHA256.Create();
+
 		byte[] bytes = Encoding.UTF8.GetBytes(titleTextBox.Text + classNameTextBox.Text + fileNameTextBox.Text);
 		string hash = BitConverter.ToString(sha256.ComputeHash(bytes));
 

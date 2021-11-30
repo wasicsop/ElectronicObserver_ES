@@ -21,6 +21,7 @@ public class FormIntegrateViewModel : WinformsHostViewModel
 	{
 		Integrate = integrate;
 
+		Title = integrate.WindowData.CurrentTitle;
 		integrate.TopLevel = false;
 		WinformsControl = integrate;
 
@@ -45,4 +46,6 @@ public class FormIntegrateViewModel : WinformsHostViewModel
 			Title = Integrate.Text;
 		};
 	}
+
+	public void RaiseContentIdChanged() => OnPropertyChanged(nameof(ContentId));
 }

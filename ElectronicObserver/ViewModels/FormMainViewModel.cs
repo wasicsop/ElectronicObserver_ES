@@ -498,6 +498,11 @@ public partial class FormMainViewModel : ObservableObject
 	{
 		if (sender is not FormMainWpf window) return;
 
+		foreach (FormIntegrateViewModel integrate in Views.OfType<FormIntegrateViewModel>())
+		{
+			integrate.RaiseContentIdChanged();
+		}
+
 		XmlLayoutSerializer serializer = new(DockingManager);
 		serializer.Serialize(LayoutPath);
 
@@ -532,6 +537,26 @@ public partial class FormMainViewModel : ObservableObject
 
 		DockingManager.Layout = new LayoutRoot();
 
+		if (File.Exists(IntegratePath) && WindowCapture.WinformsControl is FormWindowCapture capture)
+		{
+			capture.CloseAll();
+
+			string integrateString = File.ReadAllText(IntegratePath);
+			byte[]? data = MessagePackSerializer.ConvertFromJson(integrateString);
+
+			IEnumerable<FormIntegrate.WindowInfo> integrateWindows = MessagePackSerializer
+				.Deserialize<IEnumerable<FormIntegrate.WindowInfo>>(data);
+
+			foreach (FormIntegrate.WindowInfo info in integrateWindows)
+			{
+				// the constructor captures it so no need to call AddCapturedWindow
+				FormIntegrate integrate = new(this, info);
+				// capture.AddCapturedWindow(integrate);
+			}
+
+			capture.AttachAll();
+		}
+
 		XmlLayoutSerializer serializer = new(DockingManager);
 		serializer.Deserialize(LayoutPath);
 
@@ -552,26 +577,6 @@ public partial class FormMainViewModel : ObservableObject
 		window.Width = Position.Width;
 		window.Height = Position.Height;
 		window.WindowState = Position.WindowState;
-
-		if (File.Exists(IntegratePath) && WindowCapture.WinformsControl is FormWindowCapture capture)
-		{
-			capture.CloseAll();
-
-			string integrateString = File.ReadAllText(IntegratePath);
-			byte[]? data = MessagePackSerializer.ConvertFromJson(integrateString);
-
-			IEnumerable<FormIntegrate.WindowInfo> integrateWindows = MessagePackSerializer
-				.Deserialize<IEnumerable<FormIntegrate.WindowInfo>>(data);
-
-			foreach (FormIntegrate.WindowInfo info in integrateWindows)
-			{
-				// the constructor captures it so no need to call AddCapturedWindow
-				FormIntegrate integrate = new(this, info);
-				// capture.AddCapturedWindow(integrate);
-			}
-
-			capture.AttachAll();
-		}
 	}
 
 	private string LayoutFilter => "Layout File|*.xml";
