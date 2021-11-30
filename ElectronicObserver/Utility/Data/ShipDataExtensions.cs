@@ -50,6 +50,12 @@ public static class ShipDataExtensions
 		.Zip(ship.Aircraft, (e, size) => (e, size))
 		.Any(s => s.size > 0 && s.e?.MasterEquipment.CategoryType == EquipmentTypes.CarrierBasedTorpedo);
 
+	public static bool HasJetBomber(this IShipData ship, int count = 1) =>
+		ship.AllSlotInstance
+			.Zip(ship.Aircraft, (e, size) => (e, size))
+			.Count(s => s.size > 0 && s.e?.MasterEquipment.CategoryType is EquipmentTypes.JetBomber)
+		>= count;
+
 	public static bool HasTorpedo(this IShipData ship, int count = 1) => ship.AllSlotInstance
 																			 .Count(e => e?.MasterEquipment.IsTorpedo == true)
 																		 >= count;

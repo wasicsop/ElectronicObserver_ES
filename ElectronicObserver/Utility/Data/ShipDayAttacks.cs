@@ -85,7 +85,7 @@ public static class ShipDayAttacks
 		DayAirAttackCutinKind.BomberBomberAttacker => ship.HasBomber(2) && ship.HasAttacker(),
 		DayAirAttackCutinKind.BomberAttacker => ship.HasBomber() && ship.HasAttacker(),
 
-		DayAttackKind.AirAttack => ship.HasBomber() || ship.HasAttacker(),
+		DayAttackKind.AirAttack => ship.HasBomber() || ship.HasAttacker() || ship.HasJetBomber(),
 
 		_ => false
 	};
