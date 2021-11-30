@@ -557,8 +557,27 @@ public partial class FormMainViewModel : ObservableObject
 			capture.AttachAll();
 		}
 
-		XmlLayoutSerializer serializer = new(DockingManager);
-		serializer.Deserialize(LayoutPath);
+		try
+		{
+			XmlLayoutSerializer serializer = new(DockingManager);
+			serializer.Deserialize(LayoutPath);
+		}
+		catch
+		{
+			if (MessageBox.Show(FormMain.LayoutLoadFailed, FormMain.LayoutLoadFailedTitle,
+					MessageBoxButton.YesNo, MessageBoxImage.Error, MessageBoxResult.Yes)
+				== MessageBoxResult.Yes)
+			{
+				ProcessStartInfo psi = new()
+				{
+					FileName = @"https://github.com/gre4bee/ElectronicObserver/issues/71",
+					UseShellExecute = true
+				};
+				Process.Start(psi);
+			}
+
+			throw;
+		}
 
 		if (File.Exists(PositionPath))
 		{
@@ -593,8 +612,25 @@ public partial class FormMainViewModel : ObservableObject
 
 		if (dialog.ShowDialog() != System.Windows.Forms.DialogResult.OK) return;
 
+		string oldLayoutPath = Configuration.Config.Life.LayoutFilePath;
 		Configuration.Config.Life.LayoutFilePath = PathHelper.GetPathFromOpenFileDialog(dialog);
-		LoadLayout(Window);
+
+		try
+		{
+			LoadLayout(Window);
+		}
+		catch
+		{
+			try
+			{
+				Configuration.Config.Life.LayoutFilePath = oldLayoutPath;
+				LoadLayout(Window);
+			}
+			catch
+			{
+				// can't really do anything if the old layout is broken for some reason
+			}
+		}
 	}
 
 	private void StripMenu_File_Layout_Change_Click()
@@ -1366,7 +1402,7 @@ public partial class FormMainViewModel : ObservableObject
 		// Load で TopMost を変更するとバグるため(前述)
 		if (UIUpdateTimer.Enabled)
 			Topmost = c.Life.TopMost;
-		
+
 
 		ClockFormat = c.Life.ClockFormat;
 		SetTheme();

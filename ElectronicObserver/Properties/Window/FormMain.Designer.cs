@@ -430,6 +430,28 @@ namespace ElectronicObserver.Properties.Window {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 有効なレイアウトファイルがあるかどうか確認してください。
+        ///バージョン5.0.0ではレイアウトが壊れたため、それ以前に作成したレイアウトは動作しなくなりました。
+        ///詳細や既存のレイアウトの取得については、こちらのgithub issueをご覧ください： https://github.com/gre4bee/ElectronicObserver/issues/71
+        ///
+        ///このgithub issueを開きますか？.
+        /// </summary>
+        public static string LayoutLoadFailed {
+            get {
+                return ResourceManager.GetString("LayoutLoadFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to レイアウトの読み込みに失敗.
+        /// </summary>
+        public static string LayoutLoadFailedTitle {
+            get {
+                return ResourceManager.GetString("LayoutLoadFailedTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to メンテナンスを開始しました。.
         /// </summary>
         public static string MaintenanceHasStarted {
