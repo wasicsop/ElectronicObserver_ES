@@ -414,4 +414,7 @@
   <data name="LayoutLoadFailedTitle" xml:space="preserve">
     <value>レイアウトの読み込みに失敗</value>
   </data>
+  <data name="CopyingToClipboardFailed" xml:space="preserve">
+    <value>クリップボードへのコピーに失敗しました。</value>
+  </data>
 </root>

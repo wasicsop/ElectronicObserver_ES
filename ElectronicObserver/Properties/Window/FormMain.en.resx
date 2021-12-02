@@ -414,4 +414,7 @@ For more information or to get an existing layout, please see this github issue:
 
 Do you want to open this github issue?</value>
   </data>
+  <data name="CopyingToClipboardFailed" xml:space="preserve">
+    <value>Copying to clipboard failed.</value>
+  </data>
 </root>

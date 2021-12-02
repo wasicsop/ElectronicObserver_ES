@@ -135,7 +135,7 @@ public partial class TrackerViewModel : ObservableObject
 	{
 		List<TrackerModel> trackers = new() { Model };
 		byte[] data = MessagePackSerializer.Serialize(trackers);
-		Clipboard.SetText(MessagePackSerializer.ConvertToJson(data));
+		Clipboard.SetDataObject(MessagePackSerializer.ConvertToJson(data));
 	}
 
 	private BattleRank FromString(string rank) => rank.ToUpper() switch

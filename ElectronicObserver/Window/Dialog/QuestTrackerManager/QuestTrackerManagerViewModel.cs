@@ -192,7 +192,7 @@ public partial class QuestTrackerManagerViewModel : ObservableObject
 	{
 		List<TrackerModel> trackers = Trackers.Select(t => t.Model).ToList();
 		byte[] data = MessagePackSerializer.Serialize(trackers);
-		Clipboard.SetText(MessagePackSerializer.ConvertToJson(data));
+		Clipboard.SetDataObject(MessagePackSerializer.ConvertToJson(data));
 	}
 
 	[ICommand]

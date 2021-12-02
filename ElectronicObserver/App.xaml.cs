@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
@@ -25,6 +26,17 @@ public partial class App : Application
 	public App()
 	{
 		this.InitializeComponent();
+
+		DispatcherUnhandledException += (sender, args) =>
+		{
+			// https://stackoverflow.com/questions/12769264/openclipboard-failed-when-copy-pasting-data-from-wpf-datagrid
+			const int CLIPBRD_E_CANT_OPEN = unchecked((int)0x800401D0);
+
+			if (args.Exception is not COMException { ErrorCode: CLIPBRD_E_CANT_OPEN }) return;
+
+			Logger.Add(3, ElectronicObserver.Properties.Window.FormMain.CopyingToClipboardFailed);
+			args.Handled = true;
+		};
 	}
 
 	protected override void OnStartup(StartupEventArgs e)

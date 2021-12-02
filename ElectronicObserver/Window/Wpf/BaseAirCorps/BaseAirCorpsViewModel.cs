@@ -617,7 +617,7 @@ public class BaseAirCorpsViewModel : AnchorableViewModel
 			sb.AppendLine();
 		}
 
-		Clipboard.SetText(sb.ToString());
+		Clipboard.SetDataObject(sb.ToString());
 	}
 
 	private void ContextMenuBaseAirCorps_DisplayRelocatedEquipments_Click()

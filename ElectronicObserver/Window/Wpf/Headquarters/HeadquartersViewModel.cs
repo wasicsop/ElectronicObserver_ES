@@ -639,11 +639,14 @@ public class HeadquartersViewModel : AnchorableViewModel
 		try
 		{
 			var mat = KCDatabase.Instance.Material;
-			Clipboard.SetText($"{mat.Fuel}/{mat.Ammo}/{mat.Steel}/{mat.Bauxite}/" +
-							  $"{mat.InstantRepair}{FormHeadquarters.CopyToClipboardBuckets}/" +
-							  $"{mat.DevelopmentMaterial}{FormHeadquarters.CopyToClipboardDevelopmentMaterials}/" +
-							  $"{mat.InstantConstruction}{FormHeadquarters.CopyToClipboardInstantConstruction}/" +
-							  $"{mat.ModdingMaterial}{FormHeadquarters.CopyToClipboardImproveMaterial}");
+			Clipboard.SetDataObject
+			(
+				$"{mat.Fuel}/{mat.Ammo}/{mat.Steel}/{mat.Bauxite}/" +
+				$"{mat.InstantRepair}{FormHeadquarters.CopyToClipboardBuckets}/" +
+				$"{mat.DevelopmentMaterial}{FormHeadquarters.CopyToClipboardDevelopmentMaterials}/" +
+				$"{mat.InstantConstruction}{FormHeadquarters.CopyToClipboardInstantConstruction}/" +
+				$"{mat.ModdingMaterial}{FormHeadquarters.CopyToClipboardImproveMaterial}"
+			);
 		}
 		catch (Exception ex)
 		{

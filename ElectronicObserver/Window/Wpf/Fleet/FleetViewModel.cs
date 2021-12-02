@@ -467,7 +467,7 @@ public partial class FleetViewModel : AnchorableViewModel
 		}
 
 
-		Clipboard.SetText(sb.ToString());
+		Clipboard.SetDataObject(sb.ToString());
 	}
 
 	/*
@@ -536,7 +536,7 @@ public partial class FleetViewModel : AnchorableViewModel
 		sb.Remove(sb.Length - 1, 1);        // remove ","
 		sb.Append(@"}");
 
-		Clipboard.SetText(sb.ToString());
+		Clipboard.SetDataObject(sb.ToString());
 	}
 
 	/// <summary>
@@ -600,7 +600,7 @@ public partial class FleetViewModel : AnchorableViewModel
 			sb.Remove(sb.Length - 1, 1);
 		}
 
-		Clipboard.SetText(sb.ToString());
+		Clipboard.SetDataObject(sb.ToString());
 	}
 
 	/// <summary>
@@ -650,7 +650,7 @@ public partial class FleetViewModel : AnchorableViewModel
 
 		string json = $"[{string.Join(",", ships)}]";
 
-		Clipboard.SetText(json);
+		Clipboard.SetDataObject(json);
 	}
 
 	/// <summary>
@@ -684,7 +684,7 @@ public partial class FleetViewModel : AnchorableViewModel
 		sb.Remove(sb.Length - 1, 1);        // remove ","
 		sb.Append("]");
 
-		Clipboard.SetText(sb.ToString());
+		Clipboard.SetDataObject(sb.ToString());
 	}
 
 	/// <summary>
@@ -730,7 +730,7 @@ public partial class FleetViewModel : AnchorableViewModel
 
 		string json = $"[{string.Join(",", ships)}]";
 
-		Clipboard.SetText(json);
+		Clipboard.SetDataObject(json);
 	}
 
 	[ICommand]
@@ -767,7 +767,7 @@ public partial class FleetViewModel : AnchorableViewModel
 		sb.Remove(sb.Length - 1, 1);        // remove ","
 		sb.Append("]");
 
-		Clipboard.SetText(sb.ToString());
+		Clipboard.SetDataObject(sb.ToString());
 	}
 
 	private void ContextMenuFleet_AntiAirDetails_Click()

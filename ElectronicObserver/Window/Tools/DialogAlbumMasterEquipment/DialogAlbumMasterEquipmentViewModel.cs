@@ -215,7 +215,7 @@ public partial class DialogAlbumMasterEquipmentViewModel : ObservableObject
 	{
 		IEquipmentDataMaster? eq = SelectedEquipment?.Equipment;
 		if (eq != null)
-			Clipboard.SetText(eq.NameEN);
+			Clipboard.SetDataObject(eq.NameEN);
 		else
 			System.Media.SystemSounds.Exclamation.Play();
 	}
@@ -272,7 +272,7 @@ public partial class DialogAlbumMasterEquipmentViewModel : ObservableObject
 		sb.AppendLine(result);
 
 
-		Clipboard.SetText(sb.ToString());
+		Clipboard.SetDataObject(sb.ToString());
 	}
 
 	[ICommand]

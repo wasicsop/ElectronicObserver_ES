@@ -416,7 +416,7 @@ public partial class DialogAlbumMasterShipViewModel : ObservableObject
 	{
 		if (SelectedShip is not null)
 		{
-			Clipboard.SetText(SelectedShip.Ship.NameWithClass);
+			Clipboard.SetDataObject(SelectedShip.Ship.NameWithClass);
 		}
 		else
 		{
@@ -565,7 +565,7 @@ public partial class DialogAlbumMasterShipViewModel : ObservableObject
 			sb.AppendLine(result);
 		}
 
-		Clipboard.SetText(sb.ToString());
+		Clipboard.SetDataObject(sb.ToString());
 	}
 
 	[ICommand]
@@ -641,7 +641,7 @@ public partial class DialogAlbumMasterShipViewModel : ObservableObject
 			}
 
 		}
-		Clipboard.SetText(sb.ToString());
+		Clipboard.SetDataObject(sb.ToString());
 	}
 
 

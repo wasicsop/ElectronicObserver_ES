@@ -79,6 +79,15 @@ namespace ElectronicObserver.Properties.Window {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to クリップボードへのコピーに失敗しました。.
+        /// </summary>
+        public static string CopyingToClipboardFailed {
+            get {
+                return ResourceManager.GetString("CopyingToClipboardFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to デバッグ(&amp;D).
         /// </summary>
         public static string Debug {
