@@ -248,7 +248,7 @@ public partial class FormQuest : DockContent
 
 		foreach (DataGridViewRow row in QuestView.Rows)
 		{
-			QuestView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+			row.Height = 21;
 		}
 
 		Updated();
