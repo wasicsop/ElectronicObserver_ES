@@ -252,6 +252,7 @@ public partial class FleetViewModel : AnchorableViewModel
 				// member.HP.MaximumSize = isLayoutFixed ? new Size(int.MaxValue, (int)ControlHelper.GetDefaultRowStyle().Height - member.HP.Margin.Vertical) : Size.Empty;
 				// member.HP.ResumeUpdate();
 
+				member.Level.NextVisible = showNext;
 				member.Level.TextNext = showNext ? "next:" : null;
 
 				member.Condition.ImageAlign = showConditionIcon ? System.Drawing.ContentAlignment.MiddleLeft : System.Drawing.ContentAlignment.MiddleCenter;

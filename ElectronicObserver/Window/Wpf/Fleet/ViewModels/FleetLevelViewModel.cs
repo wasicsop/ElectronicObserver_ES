@@ -16,6 +16,7 @@ public class FleetLevelViewModel : ObservableObject
 	public string? ToolTip { get; set; }
 	public SerializableFont SubFont { get; set; }
 	public System.Drawing.Color SubFontColor { get; set; }
+	public bool NextVisible { get; set; }
 
 	public FontFamily SubFontFamily => new(SubFont.FontData.FontFamily.Name);
 	public double SubFontSize => SubFont.FontData.ToSize();
