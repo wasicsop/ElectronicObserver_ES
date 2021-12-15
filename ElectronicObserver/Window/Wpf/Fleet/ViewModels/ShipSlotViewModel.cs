@@ -145,8 +145,17 @@ public class ShipSlotViewModel : ObservableObject
 	public object? AircraftLevelContent => (AircraftLevel, NumericProficiency) switch
 	{
 		( > 0, true) => $"{AircraftLevel}",
-		( >= 0 and < 8, _) => AircraftLevelPaths[AircraftLevel],
-		_ => AircraftLevelPaths[0]
+
+		(0, _) => null,
+		(1, _) => new Path { Data = Geometry.Parse(Proficiency1Path), Fill = LowProficiencyBrush },
+		(2, _) => new Path { Data = Geometry.Parse(Proficiency2Path), Fill = LowProficiencyBrush },
+		(3, _) => new Path { Data = Geometry.Parse(Proficiency3Path), Fill = LowProficiencyBrush },
+		(4, _) => new Path { Data = Geometry.Parse(Proficiency4Path), Fill = HighProficiencyBrush },
+		(5, _) => new Path { Data = Geometry.Parse(Proficiency5Path), Fill = HighProficiencyBrush },
+		(6, _) => new Path { Data = Geometry.Parse(Proficiency6Path), Fill = HighProficiencyBrush },
+		(7, _) => new Path { Data = Geometry.Parse(Proficiency7Path), Fill = HighProficiencyBrush },
+
+		_ => null
 	};
 
 	// copied from ING
@@ -161,18 +170,6 @@ public class ShipSlotViewModel : ObservableObject
 
 	private static SolidColorBrush LowProficiencyBrush { get; } = new(Color.FromRgb(102, 153, 238));
 	private static SolidColorBrush HighProficiencyBrush { get; } = new(Color.FromRgb(255, 170, 0));
-
-	private static Path?[] AircraftLevelPaths { get; } =
-	{
-		null,
-		new() { Data = Geometry.Parse(Proficiency1Path), Fill = LowProficiencyBrush },
-		new() { Data = Geometry.Parse(Proficiency2Path), Fill = LowProficiencyBrush },
-		new() { Data = Geometry.Parse(Proficiency3Path), Fill = LowProficiencyBrush },
-		new() { Data = Geometry.Parse(Proficiency4Path), Fill = HighProficiencyBrush },
-		new() { Data = Geometry.Parse(Proficiency5Path), Fill = HighProficiencyBrush },
-		new() { Data = Geometry.Parse(Proficiency6Path), Fill = HighProficiencyBrush },
-		new() { Data = Geometry.Parse(Proficiency7Path), Fill = HighProficiencyBrush },
-	};
 
 	public ShipSlotViewModel()
 	{
