@@ -2,8 +2,10 @@
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Media;
+using System.Windows.Shapes;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Utility.Storage;
+using ElectronicObserver.Window.Control;
 using ElectronicObserverTypes;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using PropertyChanged;
@@ -62,22 +64,114 @@ public class ShipSlotViewModel : ObservableObject
 
 	public ImageSource? EquipmentIcon => ImageSourceIcons.GetEquipmentIcon(EquipmentIconType);
 
-	public ImageSource? AircraftLevelIcon => AircraftLevel switch
+	private bool NumericProficiency { get; set; }
+	private LevelVisibilityFlag LevelVisibilityFlag { get; set; }
+
+	public int AircraftProficiencyColumn => LevelVisibilityFlag switch
 	{
-		>= 0 and < 8 => AircraftLevelIcons[AircraftLevel],
-		_ => AircraftLevelIcons[0]
+		LevelVisibilityFlag.AircraftLevelOverlay => 0,
+		_ => 1
 	};
 
-	private static ImageSource?[] AircraftLevelIcons { get; } =
+	public bool EquipmentLevelVisible => LevelVisibilityFlag switch
 	{
-		ImageSourceIcons.GetIcon(IconContent.AircraftLevelTop0),
-		ImageSourceIcons.GetIcon(IconContent.AircraftLevelTop1),
-		ImageSourceIcons.GetIcon(IconContent.AircraftLevelTop2),
-		ImageSourceIcons.GetIcon(IconContent.AircraftLevelTop3),
-		ImageSourceIcons.GetIcon(IconContent.AircraftLevelTop4),
-		ImageSourceIcons.GetIcon(IconContent.AircraftLevelTop5),
-		ImageSourceIcons.GetIcon(IconContent.AircraftLevelTop6),
-		ImageSourceIcons.GetIcon(IconContent.AircraftLevelTop7),
+		LevelVisibilityFlag.Invisible => false,
+		LevelVisibilityFlag.AircraftLevelOnly => false,
+
+		LevelVisibilityFlag.LevelOnly or
+		LevelVisibilityFlag.LevelPriority or
+		LevelVisibilityFlag.AircraftLevelOverlay or
+		LevelVisibilityFlag.Both => true,
+
+		_ when AircraftLevel is 0 => true,
+
+		_ => false
+	};
+
+	public bool AircraftProficiencyVisible => LevelVisibilityFlag switch
+	{
+		LevelVisibilityFlag.Invisible => false,
+		LevelVisibilityFlag.LevelOnly => false,
+
+		LevelVisibilityFlag.AircraftLevelOnly or
+		LevelVisibilityFlag.AircraftLevelPriority or
+		LevelVisibilityFlag.AircraftLevelOverlay or
+		LevelVisibilityFlag.Both => true,
+
+		_ when LevelString is "" => true,
+
+		_ => false
+	};
+
+	public bool EquipmentLevelHoverVisible => LevelVisibilityFlag switch
+	{
+		LevelVisibilityFlag.Invisible or
+		LevelVisibilityFlag.AircraftLevelOnly => false,
+
+		LevelVisibilityFlag.LevelPriority when AircraftLevel > 0 => false,
+		LevelVisibilityFlag.AircraftLevelPriority when LevelString is "" => false,
+
+		_ => true
+	};
+
+	public bool AircraftProficiencyHoverVisible => LevelVisibilityFlag switch
+	{
+		LevelVisibilityFlag.Invisible or
+		LevelVisibilityFlag.LevelOnly => false,
+
+		LevelVisibilityFlag.LevelPriority when AircraftLevel == 0 => false,
+		LevelVisibilityFlag.AircraftLevelPriority when LevelString is not "" => false,
+
+		_ => true
+	};
+
+	public SolidColorBrush ProficiencyBrush => AircraftLevel switch
+	{
+		> 3 => HighProficiencyBrush,
+		_ => LowProficiencyBrush
+	};
+
+	public double ProficiencyScaleX => NumericProficiency switch
+	{
+		false => Font.FontData.ToSize() * 0.1,
+		_ => 1
+	};
+	public double ProficiencyScaleY => NumericProficiency switch
+	{
+		false => Font.FontData.ToSize() * 0.04,
+		_ => 1
+	};
+
+	public object? AircraftLevelContent => (AircraftLevel, NumericProficiency) switch
+	{
+		( > 0, true) => $"{AircraftLevel}",
+		( >= 0 and < 8, _) => AircraftLevelPaths[AircraftLevel],
+		_ => AircraftLevelPaths[0]
+	};
+
+	// copied from ING
+	// https://github.com/amatukaze/ing/blob/master/src/Core/Desktop/Sakuno.ING.Views.Desktop.Common/Controls/AerialProficiencyPresenter.cs
+	private const string Proficiency1Path = "M0,0 L0,20 2,20 2,0";
+	private const string Proficiency2Path = "M0,0 L0,20 2,20 2,0 M4,0 L4,20 6,20 6,0";
+	private const string Proficiency3Path = "M0,0 L0,20 2,20 2,0 M4,0 L4,20 6,20 6,0 M8,0 L8,20 10,20 10,0";
+	private const string Proficiency4Path = "M0,0 L5,20 7,20 2,0";
+	private const string Proficiency5Path = "M0,0 L5,20 7,20 2,0 M5,0 10,20 12,20 7,0";
+	private const string Proficiency6Path = "M0,0 L5,20 7,20 2,0 M5,0 10,20 12,20 7,0 M10,0 15,20 17,20 12,0 ";
+	private const string Proficiency7Path = "M0,0 L5,10 0,20 2,20 7,10 2,0 M5,0 L10,10 5,20 7,20 12,10 7,0";
+
+	private static SolidColorBrush LowProficiencyBrush { get; } = new(Color.FromRgb(102, 153, 238));
+	private static SolidColorBrush HighProficiencyBrush { get; } = new(Color.FromRgb(255, 170, 0));
+
+	private static Path?[] AircraftLevelPaths { get; } =
+	{
+		null,
+		new() { Data = Geometry.Parse(Proficiency1Path), Fill = LowProficiencyBrush },
+		new() { Data = Geometry.Parse(Proficiency2Path), Fill = LowProficiencyBrush },
+		new() { Data = Geometry.Parse(Proficiency3Path), Fill = LowProficiencyBrush },
+		new() { Data = Geometry.Parse(Proficiency4Path), Fill = HighProficiencyBrush },
+		new() { Data = Geometry.Parse(Proficiency5Path), Fill = HighProficiencyBrush },
+		new() { Data = Geometry.Parse(Proficiency6Path), Fill = HighProficiencyBrush },
+		new() { Data = Geometry.Parse(Proficiency7Path), Fill = HighProficiencyBrush },
 	};
 
 	public ShipSlotViewModel()
@@ -97,7 +191,16 @@ public class ShipSlotViewModel : ObservableObject
 		InvalidSlotColor = System.Drawing.Color.FromArgb(0x40, 0xFF, 0x00, 0x00);
 		*/
 
+		ConfigurationChanged();
+
 		PropertyChanged += AircraftChange;
+		Utility.Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
+	}
+
+	private void ConfigurationChanged()
+	{
+		NumericProficiency = Utility.Configuration.Config.FormFleet.ShowAircraftLevelByNumber;
+		LevelVisibilityFlag = Utility.Configuration.Config.FormFleet.EquipmentLevelVisibility;
 	}
 
 	/// <summary>

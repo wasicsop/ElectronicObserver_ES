@@ -15,15 +15,15 @@
 		DataContext="{Binding ViewModel, ElementName=ShipSlotControl}"
 		Visibility="{Binding SlotVisibility}"
 		>
-		<Grid Width="32">
+		<Grid MinWidth="32">
 			<Grid.RowDefinitions>
-				<RowDefinition Height="Auto" />
-				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" SharedSizeGroup="EquipmentRow" />
+				<RowDefinition Height="Auto" SharedSizeGroup="EquipmentRow" />
 			</Grid.RowDefinitions>
 
 			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="Auto" />
-				<ColumnDefinition Width="*" />
+				<ColumnDefinition Width="Auto" SharedSizeGroup="EquipmentColumn1" />
+				<ColumnDefinition Width="*" SharedSizeGroup="EquipmentColumn2" />
 			</Grid.ColumnDefinitions>
 
 			<Image
@@ -45,39 +45,40 @@
 				>
 				<TextBlock.Style>
 					<Style TargetType="TextBlock">
-						<Setter Property="Visibility" Value="Hidden" />
+						<Setter Property="Visibility" Value="{Binding EquipmentLevelVisible, Converter={StaticResource BooleanToHiddenConverter}}" />
 						<Style.Triggers>
 							<DataTrigger Binding="{Binding ElementName=ShipEquipmentControl, Path=IsMouseOver}" Value="True">
-								<Setter Property="Visibility" Value="Visible" />
-							</DataTrigger>
-							<DataTrigger Binding="{Binding AircraftLevel}" Value="0">
-								<Setter Property="Visibility" Value="Visible" />
+								<Setter Property="Visibility" Value="{Binding EquipmentLevelHoverVisible, Converter={StaticResource BooleanToHiddenConverter}}" />
 							</DataTrigger>
 						</Style.Triggers>
 					</Style>
 				</TextBlock.Style>
 			</TextBlock>
 
-			<Image
+			<ContentControl
 				Grid.Row="0"
-				Grid.RowSpan="2"
-				Grid.Column="1"
-				Source="{Binding AircraftLevelIcon}"
+				Grid.Column="{Binding AircraftProficiencyColumn}"
+				Margin="0 -2"
+				HorizontalAlignment="Center"
+				VerticalAlignment="Center"
+				Content="{Binding AircraftLevelContent}"
+				FontSize="{Binding FontSize}"
+				Foreground="{Binding ProficiencyBrush}"
 				>
-				<Image.Style>
-					<Style TargetType="Image">
-						<Setter Property="Visibility" Value="Visible" />
+				<ContentControl.LayoutTransform>
+					<ScaleTransform ScaleX="{Binding ProficiencyScaleX}" ScaleY="{Binding ProficiencyScaleY}" />
+				</ContentControl.LayoutTransform>
+				<ContentControl.Style>
+					<Style TargetType="ContentControl">
+						<Setter Property="Visibility" Value="{Binding AircraftProficiencyVisible, Converter={StaticResource BooleanToHiddenConverter}}" />
 						<Style.Triggers>
 							<DataTrigger Binding="{Binding ElementName=ShipEquipmentControl, Path=IsMouseOver}" Value="True">
-								<Setter Property="Visibility" Value="Collapsed" />
-							</DataTrigger>
-							<DataTrigger Binding="{Binding LevelString}" Value="">
-								<Setter Property="Visibility" Value="Visible" />
+								<Setter Property="Visibility" Value="{Binding AircraftProficiencyHoverVisible, Converter={StaticResource BooleanToHiddenConverter}}" />
 							</DataTrigger>
 						</Style.Triggers>
 					</Style>
-				</Image.Style>
-			</Image>
+				</ContentControl.Style>
+			</ContentControl>
 
 			<TextBlock
 				Grid.Row="1"
