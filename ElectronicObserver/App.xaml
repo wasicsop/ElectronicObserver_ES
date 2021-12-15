@@ -1,17 +1,19 @@
-﻿<Application x:Class="ElectronicObserver.App"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-
-             xmlns:ui="http://schemas.modernwpf.com/2019"
-             xmlns:converters="clr-namespace:ElectronicObserver.Converters">
+﻿<Application
+	x:Class="ElectronicObserver.App"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:converters="clr-namespace:ElectronicObserver.Converters"
+	xmlns:ui="http://schemas.modernwpf.com/2019"
+	>
 	<Application.Resources>
 		<ResourceDictionary>
 			<ResourceDictionary.MergedDictionaries>
-				<ui:ThemeResources RequestedTheme="Dark" AccentColor="DodgerBlue" />
+				<ui:ThemeResources AccentColor="DodgerBlue" RequestedTheme="Dark" />
 				<ui:XamlControlsResources UseCompactResources="True" />
 			</ResourceDictionary.MergedDictionaries>
 
 			<BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+			<converters:BooleanToHiddenConverter x:Key="BooleanToHiddenConverter" />
 			<converters:ImageSourceConverter x:Key="ImageSourceConverter" />
 			<converters:SpeedConverter x:Key="SpeedConverter" />
 			<converters:RangeConverter x:Key="RangeConverter" />
@@ -27,26 +29,24 @@
 				source: https://github.com/Kinnara/ModernWpf/blob/master/ModernWpf/Styles/ToolTip.xaml
 				only change is removing max width
 			-->
-			<Style TargetType="ToolTip" BasedOn="{StaticResource DefaultToolTipStyle}">
+			<Style BasedOn="{StaticResource DefaultToolTipStyle}" TargetType="ToolTip">
 				<Setter Property="Template">
 					<Setter.Value>
 						<ControlTemplate TargetType="ToolTip">
 							<ui:ThemeShadowChrome
-		                        Depth="16"
-		                        IsShadowEnabled="{TemplateBinding HasDropShadow}"
-		                        CornerRadius="{TemplateBinding ui:ControlHelper.CornerRadius}"
-		                        SnapsToDevicePixels="True">
-								<Border
-		                            Background="{TemplateBinding Background}"
-		                            CornerRadius="{TemplateBinding ui:ControlHelper.CornerRadius}">
+								CornerRadius="{TemplateBinding ui:ControlHelper.CornerRadius}"
+								Depth="16"
+								IsShadowEnabled="{TemplateBinding HasDropShadow}"
+								SnapsToDevicePixels="True"
+								>
+								<Border Background="{TemplateBinding Background}" CornerRadius="{TemplateBinding ui:ControlHelper.CornerRadius}">
 									<Border
-		                                BorderBrush="{TemplateBinding BorderBrush}"
-		                                BorderThickness="{TemplateBinding BorderThickness}"
-		                                Padding="{TemplateBinding Padding}"
-		                                CornerRadius="{TemplateBinding ui:ControlHelper.CornerRadius}">
-										<ui:ContentPresenterEx
-		                                    TextWrapping="Wrap"
-		                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+										Padding="{TemplateBinding Padding}"
+										BorderBrush="{TemplateBinding BorderBrush}"
+										BorderThickness="{TemplateBinding BorderThickness}"
+										CornerRadius="{TemplateBinding ui:ControlHelper.CornerRadius}"
+										>
+										<ui:ContentPresenterEx SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" TextWrapping="Wrap" />
 									</Border>
 								</Border>
 							</ui:ThemeShadowChrome>
