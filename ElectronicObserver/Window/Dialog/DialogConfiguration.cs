@@ -15,6 +15,7 @@ using ElectronicObserver.Observer;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Utility.Storage;
+using ElectronicObserver.Window.Control;
 using Translation = ElectronicObserver.Properties.Window.Dialog.DialogConfiguration;
 
 namespace ElectronicObserver.Window.Dialog;
@@ -1051,7 +1052,7 @@ public partial class DialogConfiguration : Form
 		config.FormFleet.FixShipNameWidth = FormFleet_FixShipNameWidth.Checked;
 		config.FormFleet.ShortenHPBar = FormFleet_ShortenHPBar.Checked;
 		config.FormFleet.ShowNextExp = FormFleet_ShowNextExp.Checked;
-		config.FormFleet.EquipmentLevelVisibility = (Window.Control.ShipStatusEquipment.LevelVisibilityFlag)FormFleet_EquipmentLevelVisibility.SelectedIndex;
+		config.FormFleet.EquipmentLevelVisibility = (LevelVisibilityFlag)FormFleet_EquipmentLevelVisibility.SelectedIndex;
 		config.FormFleet.ShowAircraftLevelByNumber = FormFleet_ShowAircraftLevelByNumber.Checked;
 		config.FormFleet.AirSuperiorityMethod = FormFleet_AirSuperiorityMethod.SelectedIndex;
 		config.FormFleet.ShowAnchorageRepairingTimer = FormFleet_ShowAnchorageRepairingTimer.Checked;

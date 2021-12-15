@@ -82,7 +82,7 @@ public class EquipmentItemViewModel : ObservableObject
 	[Description("艦載機搭載数を表示するかを指定します。")]
 	public bool ShowAircraft { get; set; }
 
-	public ShipStatusEquipment.LevelVisibilityFlag LevelVisibility { get; set; }
+	public LevelVisibilityFlag LevelVisibility { get; set; }
 	public bool ShowAircraftLevelByNumber { get; set; }
 	public string? ToolTip { get; set; }
 

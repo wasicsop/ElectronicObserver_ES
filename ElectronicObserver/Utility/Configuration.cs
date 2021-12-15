@@ -16,6 +16,7 @@ using ElectronicObserver.Properties;
 using ElectronicObserver.Resource.Record;
 using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.Utility.Storage;
+using ElectronicObserver.Window.Control;
 
 namespace ElectronicObserver.Utility;
 
@@ -955,7 +956,7 @@ public sealed class Configuration
 			/// <summary>
 			/// 装備の改修レベル・艦載機熟練度の表示フラグ
 			/// </summary>
-			public Window.Control.ShipStatusEquipment.LevelVisibilityFlag EquipmentLevelVisibility { get; set; }
+			public LevelVisibilityFlag EquipmentLevelVisibility { get; set; }
 
 			/// <summary>
 			/// 艦載機熟練度を数字で表示するフラグ
@@ -1050,7 +1051,7 @@ public sealed class Configuration
 				FixShipNameWidth = false;
 				ShortenHPBar = false;
 				ShowNextExp = true;
-				EquipmentLevelVisibility = Window.Control.ShipStatusEquipment.LevelVisibilityFlag.Both;
+				EquipmentLevelVisibility = LevelVisibilityFlag.Both;
 				ShowAircraftLevelByNumber = false;
 				AirSuperiorityMethod = 1;
 				ShowAnchorageRepairingTimer = true;
