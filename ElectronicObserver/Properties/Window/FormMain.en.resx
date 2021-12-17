@@ -417,4 +417,10 @@ Do you want to open this github issue?</value>
   <data name="CopyingToClipboardFailed" xml:space="preserve">
     <value>Copying to clipboard failed.</value>
   </data>
+  <data name="Adjustment" xml:space="preserve">
+    <value>Adjustment</value>
+  </data>
+  <data name="GridSplitterSize" xml:space="preserve">
+    <value>Grid splitter size</value>
+  </data>
 </root>

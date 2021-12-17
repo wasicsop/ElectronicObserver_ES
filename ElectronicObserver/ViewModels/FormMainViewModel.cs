@@ -62,6 +62,8 @@ public partial class FormMainViewModel : ObservableObject
 	public FormMainTranslationViewModel FormMain { get; }
 	private System.Windows.Forms.Timer UIUpdateTimer { get; }
 	public bool Topmost { get; set; }
+	public int GridSplitterSize { get; set; } = 1;
+
 
 	private string LayoutFolder => @"Settings\Layout";
 	private string DefaultLayoutPath => Path.Combine(LayoutFolder, "Default.xml");
@@ -465,6 +467,13 @@ public partial class FormMainViewModel : ObservableObject
 
 			Configuration.Config.Life.TopMost = Topmost;
 			ConfigurationChanged();
+		};
+
+		PropertyChanged += (sender, args) =>
+		{
+			if (args.PropertyName is not nameof(GridSplitterSize)) return;
+
+			LoadLayout(Window);
 		};
 
 		Logger.Add(3, Resources.StartupComplete);

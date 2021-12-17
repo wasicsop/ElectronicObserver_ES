@@ -9,6 +9,7 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:options="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"
 	xmlns:reskeys="clr-namespace:AvalonDock.Themes.VS2013.Themes;assembly=AvalonDock.Themes.VS2013"
+	xmlns:system="clr-namespace:System;assembly=System.Runtime"
 	xmlns:ui="http://schemas.modernwpf.com/2019"
 	xmlns:viewModels="clr-namespace:ElectronicObserver.ViewModels"
 	x:Name="FormMainWpfControl"
@@ -149,6 +150,24 @@
 						Command="{Binding SaveLayoutAsCommand}"
 						Header="{Binding FormMain.StripMenu_File_Layout_Change}"
 						/>
+					<Separator />
+					<MenuItem Header="{Binding FormMain.Adjustment}">
+						<StackPanel>
+							<TextBlock Margin="0 2" Text="{Binding FormMain.GridSplitterSize}" />
+							<ComboBox SelectedValue="{Binding GridSplitterSize}">
+								<system:Int32>0</system:Int32>
+								<system:Int32>1</system:Int32>
+								<system:Int32>2</system:Int32>
+								<system:Int32>3</system:Int32>
+								<system:Int32>4</system:Int32>
+								<system:Int32>5</system:Int32>
+								<system:Int32>6</system:Int32>
+								<system:Int32>7</system:Int32>
+								<system:Int32>8</system:Int32>
+								<system:Int32>9</system:Int32>
+							</ComboBox>
+						</StackPanel>
+					</MenuItem>
 					<Separator />
 					<MenuItem
 						d:Header="Always On Top (M)"
@@ -615,8 +634,8 @@
 			Grid.Row="1"
 			AllowMixedOrientation="True"
 			AnchorablesSource="{Binding Views}"
-			GridSplitterHeight="1"
-			GridSplitterWidth="1"
+			GridSplitterHeight="{Binding GridSplitterSize}"
+			GridSplitterWidth="{Binding GridSplitterSize}"
 			IsVirtualizingAnchorable="True"
 			IsVirtualizingDocument="True"
 			Language="ja-JP"
@@ -630,6 +649,18 @@
 					Color="{Binding BackgroundColor}"
 					/>
 			</DockingManager.Resources>
+
+			<DockingManager.GridSplitterVerticalStyle>
+				<Style TargetType="LayoutGridResizerControl">
+					<Setter Property="Width" Value="{Binding GridSplitterSize}" />
+				</Style>
+			</DockingManager.GridSplitterVerticalStyle>
+
+			<DockingManager.GridSplitterHorizontalStyle>
+				<Style TargetType="LayoutGridResizerControl">
+					<Setter Property="Height" Value="{Binding GridSplitterSize}" />
+				</Style>
+			</DockingManager.GridSplitterHorizontalStyle>
 
 			<DockingManager.DocumentHeaderTemplate>
 				<DataTemplate DataType="LayoutAnchorable">

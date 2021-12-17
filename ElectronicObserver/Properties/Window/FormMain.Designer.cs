@@ -61,6 +61,15 @@ namespace ElectronicObserver.Properties.Window {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 調整.
+        /// </summary>
+        public static string Adjustment {
+            get {
+                return ResourceManager.GetString("Adjustment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Clock.
         /// </summary>
         public static string Clock {
@@ -354,6 +363,15 @@ namespace ElectronicObserver.Properties.Window {
         public static string File_Record_Save {
             get {
                 return ResourceManager.GetString("File_Record_Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to グリッドスプリッターのサイズ.
+        /// </summary>
+        public static string GridSplitterSize {
+            get {
+                return ResourceManager.GetString("GridSplitterSize", resourceCulture);
             }
         }
         

@@ -19,7 +19,9 @@ public class FormMainTranslationViewModel : TranslationBaseViewModel
 	public string StripMenu_File_Layout_Save => Properties.Window.FormMain.File_Layout_Save.Replace("_", "__").Replace("&", "_");
 	public string StripMenu_File_Layout_Open => Properties.Window.FormMain.File_Layout_Open.Replace("_", "__").Replace("&", "_");
 	public string StripMenu_File_Layout_Change => Properties.Window.FormMain.File_Layout_Change.Replace("_", "__").Replace("&", "_");
+	public string Adjustment => Properties.Window.FormMain.Adjustment.Replace("_", "__").Replace("&", "_");
 	public string StripMenu_File_Layout_LockLayout => Properties.Window.FormMain.File_Layout_LockLayout.Replace("_", "__").Replace("&", "_");
+	public string GridSplitterSize => Properties.Window.FormMain.GridSplitterSize.Replace("_", "__").Replace("&", "_");
 	public string StripMenu_File_Layout_TopMost => Properties.Window.FormMain.File_Layout_TopMost.Replace("_", "__").Replace("&", "_");
 	public string LayoutLoadFailed => Properties.Window.FormMain.LayoutLoadFailed.Replace("_", "__").Replace("&", "_");
 	public string LayoutLoadFailedTitle => Properties.Window.FormMain.LayoutLoadFailedTitle.Replace("_", "__").Replace("&", "_");
