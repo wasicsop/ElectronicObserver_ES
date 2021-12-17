@@ -477,6 +477,12 @@ public partial class FormMainViewModel : ObservableObject
 		Topmost = !Topmost;
 	}
 
+	[ICommand]
+	private void AutoHide(LayoutAnchorable anchorable)
+	{
+		anchorable.ToggleAutoHide();
+	}
+
 	#region File
 
 	private void StripMenu_File_SaveData_Save_Click()
