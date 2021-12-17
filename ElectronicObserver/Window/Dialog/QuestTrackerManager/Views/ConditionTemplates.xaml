@@ -1,70 +1,76 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-					xmlns:questTrackerManager="clr-namespace:ElectronicObserver.Window.Dialog.QuestTrackerManager"
-					xmlns:controls="http://schemas.modernwpf.com/2019"
-					xmlns:conditions="clr-namespace:ElectronicObserver.Window.Dialog.QuestTrackerManager.ViewModels.Conditions">
+﻿<ResourceDictionary
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:conditions="clr-namespace:ElectronicObserver.Window.Dialog.QuestTrackerManager.ViewModels.Conditions"
+	xmlns:controls="http://schemas.modernwpf.com/2019"
+	xmlns:questTrackerManager="clr-namespace:ElectronicObserver.Window.Dialog.QuestTrackerManager"
+	>
 
 	<ResourceDictionary.MergedDictionaries>
 		<ResourceDictionary Source="Styles.xaml" />
 		<ResourceDictionary Source="CommonTemplates.xaml" />
 	</ResourceDictionary.MergedDictionaries>
 
-	<DataTemplate x:Key="GroupConditionTemplate"
-				  DataType="{x:Type conditions:GroupConditionViewModel}">
+	<DataTemplate x:Key="GroupConditionTemplate" DataType="{x:Type conditions:GroupConditionViewModel}">
 		<DataTemplate.Resources>
 			<ResourceDictionary Source="Styles.xaml" />
 		</DataTemplate.Resources>
-		<Border Style="{StaticResource BorderSpacing}"
-				BorderBrush="Gray"
-				BorderThickness="1">
+		<Border
+			BorderBrush="Gray"
+			BorderThickness="1"
+			Style="{StaticResource BorderSpacing}"
+			>
 			<StackPanel>
 				<StackPanel Orientation="Horizontal">
-					<!-- 
-							the command binding breaks on the top group condition
-							because it's hosted in a ContentControl rather than an ItemsControl
-							
-							that's good though because the top group condition shouldn't be removed
-							-->
-					<Button Content="ｘ"
-							Visibility="{Binding RemoveButtonVisibility}"
-							Command="{Binding DataContext.RemoveConditionCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ItemsControl}}"
-							CommandParameter="{Binding Model}" />
+					<!--
+						the command binding breaks on the top group condition
+						because it's hosted in a ContentControl rather than an ItemsControl
+						
+						that's good though because the top group condition shouldn't be removed
+					-->
+					<Button
+						Command="{Binding DataContext.RemoveConditionCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ItemsControl}}"
+						CommandParameter="{Binding Model}"
+						Content="ｘ"
+						Visibility="{Binding RemoveButtonVisibility}"
+						/>
 
-					<ComboBox ItemsSource="{Binding Operators}"
-							  SelectedItem="{Binding GroupOperator}"
-							  ItemTemplate="{StaticResource EnumDisplayerTemplate}" />
+					<ComboBox
+						ItemTemplate="{StaticResource EnumDisplayerTemplate}"
+						ItemsSource="{Binding Operators}"
+						SelectedItem="{Binding GroupOperator}"
+						/>
 
-					<TextBlock Text="{Binding Display}"
-							   TextWrapping="Wrap" />
+					<TextBlock Text="{Binding Display}" TextWrapping="Wrap" />
 				</StackPanel>
 
 				<StackPanel Orientation="Horizontal">
-					<Button Content="＋"
-							Command="{Binding AddConditionCommand}" />
+					<Button Command="{Binding AddConditionCommand}" Content="＋" />
 
-					<ComboBox ItemsSource="{Binding ConditionTypes}"
-							  SelectedItem="{Binding SelectedConditionType}"
-							  ItemTemplate="{StaticResource EnumDisplayerTemplate}" />
+					<ComboBox
+						ItemTemplate="{StaticResource EnumDisplayerTemplate}"
+						ItemsSource="{Binding ConditionTypes}"
+						SelectedItem="{Binding SelectedConditionType}"
+						/>
 				</StackPanel>
 
-				<ItemsControl ItemsSource="{Binding Conditions}"
-							  ItemTemplateSelector="{DynamicResource ConditionTemplateSelector}" />
+				<ItemsControl ItemTemplateSelector="{DynamicResource ConditionTemplateSelector}" ItemsSource="{Binding Conditions}" />
 			</StackPanel>
 		</Border>
 	</DataTemplate>
 
-	<DataTemplate x:Key="ShipConditionTemplate"
-				  DataType="{x:Type conditions:ShipConditionViewModel}">
+	<DataTemplate x:Key="ShipConditionTemplate" DataType="{x:Type conditions:ShipConditionViewModel}">
 		<DataTemplate.Resources>
 			<ResourceDictionary Source="Styles.xaml" />
 		</DataTemplate.Resources>
 		<StackPanel Orientation="Horizontal">
-			<Button Content="ｘ"
-					Command="{Binding DataContext.RemoveConditionCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ItemsControl}}"
-					CommandParameter="{Binding Model}" />
+			<Button
+				Command="{Binding DataContext.RemoveConditionCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ItemsControl}}"
+				CommandParameter="{Binding Model}"
+				Content="ｘ"
+				/>
 
-			<ComboBox ItemsSource="{Binding Ships}"
-					  SelectedItem="{Binding Ship, Mode=TwoWay}">
+			<ComboBox ItemsSource="{Binding Ships}" SelectedItem="{Binding Ship, Mode=TwoWay}">
 				<ComboBox.ItemTemplate>
 					<DataTemplate>
 						<TextBlock Text="{Binding NameEN}" />
@@ -72,41 +78,46 @@
 				</ComboBox.ItemTemplate>
 			</ComboBox>
 
-			<ComboBox ItemsSource="{Binding RemodelComparisonTypes}"
-					  SelectedItem="{Binding RemodelComparisonType}"
-					  ItemTemplate="{StaticResource EnumDisplayerTemplate}" />
+			<ComboBox
+				ItemTemplate="{StaticResource EnumDisplayerTemplate}"
+				ItemsSource="{Binding RemodelComparisonTypes}"
+				SelectedItem="{Binding RemodelComparisonType}"
+				/>
 
-			<CheckBox Content="{Binding ViewModel.Translation.MustBeFlagship, ElementName=QuestTrackerManagerView}"
-					  IsChecked="{Binding MustBeFlagship}" />
+			<CheckBox Content="{Binding ViewModel.Translation.MustBeFlagship, ElementName=QuestTrackerManagerView}" IsChecked="{Binding MustBeFlagship}" />
 
 			<TextBlock Text="{Binding Display}" />
 		</StackPanel>
 	</DataTemplate>
 
-	<DataTemplate x:Key="ShipTypeConditionTemplate"
-				  DataType="{x:Type conditions:ShipTypeConditionViewModel}">
+	<DataTemplate x:Key="ShipTypeConditionTemplate" DataType="{x:Type conditions:ShipTypeConditionViewModel}">
 		<DataTemplate.Resources>
 			<ResourceDictionary Source="Styles.xaml" />
 		</DataTemplate.Resources>
-		<Border BorderBrush="Gray"
-				BorderThickness="1"
-				Margin="2">
+		<Border
+			Margin="2"
+			BorderBrush="Gray"
+			BorderThickness="1"
+			>
 			<StackPanel>
 				<StackPanel Orientation="Horizontal">
-					<Button Content="ｘ"
-							Command="{Binding DataContext.RemoveConditionCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ItemsControl}}"
-							CommandParameter="{Binding Model}" />
+					<Button
+						Command="{Binding DataContext.RemoveConditionCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ItemsControl}}"
+						CommandParameter="{Binding Model}"
+						Content="ｘ"
+						/>
 
 					<TextBlock Text="{Binding Display}" />
 				</StackPanel>
 
 				<StackPanel Orientation="Horizontal">
-					<Button Content="＋"
-							Command="{Binding AddTypeCommand}" />
+					<Button Command="{Binding AddTypeCommand}" Content="＋" />
 
-					<ComboBox ItemsSource="{Binding AllTypes}"
-							  SelectedItem="{Binding SelectedType}"
-							  ItemTemplate="{StaticResource EnumDisplayerTemplate}" />
+					<ComboBox
+						ItemTemplate="{StaticResource EnumDisplayerTemplate}"
+						ItemsSource="{Binding AllTypes}"
+						SelectedItem="{Binding SelectedType}"
+						/>
 
 				</StackPanel>
 
@@ -114,7 +125,7 @@
 					<ItemsControl ItemsSource="{Binding Model.Types}">
 						<ItemsControl.ItemsPanel>
 							<ItemsPanelTemplate>
-								<StackPanel Orientation="Horizontal"></StackPanel>
+								<StackPanel Orientation="Horizontal" />
 							</ItemsPanelTemplate>
 						</ItemsControl.ItemsPanel>
 						<ItemsControl.ItemTemplate>
@@ -126,27 +137,32 @@
 								<StackPanel Orientation="Horizontal">
 									<TextBlock Text="{Binding Converter={StaticResource EnumDisplayConverter}}" />
 
-									<Button Content="ｘ"
-											Command="{Binding DataContext.RemoveTypeCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ItemsControl}}"
-											CommandParameter="{Binding}" />
+									<Button
+										Command="{Binding DataContext.RemoveTypeCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ItemsControl}}"
+										CommandParameter="{Binding}"
+										Content="ｘ"
+										/>
 								</StackPanel>
 							</DataTemplate>
 						</ItemsControl.ItemTemplate>
 					</ItemsControl>
-					<controls:NumberBox Value="{Binding Model.Count}"
-										Maximum="12"
-										Minimum="1" />
+					<controls:NumberBox
+						Maximum="12"
+						Minimum="1"
+						Value="{Binding Model.Count}"
+						/>
 
-					<CheckBox Content="{Binding ViewModel.Translation.MustBeFlagship, ElementName=QuestTrackerManagerView}"
-					          IsChecked="{Binding MustBeFlagship}" />
+					<CheckBox Content="{Binding ViewModel.Translation.MustBeFlagship, ElementName=QuestTrackerManagerView}" IsChecked="{Binding MustBeFlagship}" />
 				</StackPanel>
 			</StackPanel>
 		</Border>
 	</DataTemplate>
 
-	<questTrackerManager:ConditionTemplateSelector x:Key="ConditionTemplateSelector"
-												   Group="{StaticResource GroupConditionTemplate}"
-												   Ship="{StaticResource ShipConditionTemplate}"
-												   ShipType="{StaticResource ShipTypeConditionTemplate}" />
+	<questTrackerManager:ConditionTemplateSelector
+		x:Key="ConditionTemplateSelector"
+		Group="{StaticResource GroupConditionTemplate}"
+		Ship="{StaticResource ShipConditionTemplate}"
+		ShipType="{StaticResource ShipTypeConditionTemplate}"
+		/>
 
 </ResourceDictionary>
