@@ -158,9 +158,35 @@
 		</Border>
 	</DataTemplate>
 
+	<DataTemplate x:Key="PartialShipConditionTemplate" DataType="{x:Type conditions:PartialShipConditionViewModel}">
+		<DataTemplate.Resources>
+			<ResourceDictionary Source="Styles.xaml" />
+		</DataTemplate.Resources>
+		<Border
+			BorderBrush="Gray"
+			BorderThickness="1"
+			Style="{StaticResource BorderSpacing}"
+			>
+			<StackPanel>
+				<StackPanel Orientation="Horizontal">
+					<TextBlock Text="{Binding Display}" TextWrapping="Wrap" />
+				</StackPanel>
+
+				<StackPanel Orientation="Horizontal">
+					<Button Command="{Binding AddConditionCommand}" Content="＋" />
+					<controls:NumberBox Minimum="0" Value="{Binding Model.Count}" />
+				</StackPanel>
+
+				<ItemsControl ItemTemplate="{StaticResource ShipConditionTemplate}" ItemsSource="{Binding Conditions}" />
+			</StackPanel>
+		</Border>
+	</DataTemplate>
+
+
 	<questTrackerManager:ConditionTemplateSelector
 		x:Key="ConditionTemplateSelector"
 		Group="{StaticResource GroupConditionTemplate}"
+		PartialShip="{StaticResource PartialShipConditionTemplate}"
 		Ship="{StaticResource ShipConditionTemplate}"
 		ShipType="{StaticResource ShipTypeConditionTemplate}"
 		/>

@@ -79,6 +79,15 @@ namespace ElectronicObserver.Properties.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 艦（一部）.
+        /// </summary>
+        public static string ConditionType_PartialShip {
+            get {
+                return ResourceManager.GetString("ConditionType_PartialShip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 艦.
         /// </summary>
         public static string ConditionType_Ship {

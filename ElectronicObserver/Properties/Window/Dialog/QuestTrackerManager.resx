@@ -194,4 +194,7 @@
   <data name="QuestTaskType_EquipmentIconTypeScrap" xml:space="preserve">
     <value>装備アイコンID廃棄</value>
   </data>
+  <data name="ConditionType_PartialShip" xml:space="preserve">
+    <value>艦（一部）</value>
+  </data>
 </root>
