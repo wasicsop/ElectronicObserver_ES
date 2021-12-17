@@ -152,9 +152,14 @@
 						/>
 					<Separator />
 					<MenuItem Header="{Binding FormMain.Adjustment}">
+						<MenuItem
+							Header="{Binding FormMain.StripMenu_File_Layout_LockLayout}"
+							IsCheckable="True"
+							IsChecked="{Binding LockLayout}"
+							/>
 						<StackPanel>
 							<TextBlock Margin="0 2" Text="{Binding FormMain.GridSplitterSize}" />
-							<ComboBox SelectedValue="{Binding GridSplitterSize}">
+							<ComboBox IsEnabled="{Binding CanChangeGridSplitterSize}" SelectedValue="{Binding GridSplitterSize}">
 								<system:Int32>0</system:Int32>
 								<system:Int32>1</system:Int32>
 								<system:Int32>2</system:Int32>
