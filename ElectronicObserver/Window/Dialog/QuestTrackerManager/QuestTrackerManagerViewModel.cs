@@ -53,6 +53,10 @@ public partial class QuestTrackerManagerViewModel : ObservableObject
 
 		ao.APIList["api_get_member/questlist"].ResponseReceived += QuestUpdated;
 
+		ao.APIList["api_req_map/start"].ResponseReceived += StartSortie;
+
+		ao.APIList["api_req_map/next"].ResponseReceived += NextSortie;
+
 		ao.APIList["api_req_sortie/battleresult"].ResponseReceived += BattleFinished;
 		ao.APIList["api_req_combined_battle/battleresult"].ResponseReceived += BattleFinished;
 
@@ -104,6 +108,30 @@ public partial class QuestTrackerManagerViewModel : ObservableObject
 		}
 
 		LastQuestListUpdate = DateTime.Now;
+	}
+
+	void StartSortie(string apiname, dynamic data)
+	{
+		var compass = KCDatabase.Instance.Battle.Compass;
+
+		var fleet = KCDatabase.Instance.Fleet.Fleets.Values.FirstOrDefault(f => f.IsInSortie);
+
+		foreach (TrackerViewModel tracker in Trackers.Where(t => t.State == 2))
+		{
+			tracker.Increment(fleet, compass.MapAreaID, compass.MapInfoID, compass.Destination);
+		}
+	}
+
+	private void NextSortie(string apiname, dynamic data)
+	{
+		var compass = KCDatabase.Instance.Battle.Compass;
+
+		var fleet = KCDatabase.Instance.Fleet.Fleets.Values.FirstOrDefault(f => f.IsInSortie);
+
+		foreach (TrackerViewModel tracker in Trackers.Where(t => t.State == 2))
+		{
+			tracker.Increment(fleet, compass.MapAreaID, compass.MapInfoID, compass.Destination);
+		}
 	}
 
 	private void BattleFinished(string apiname, dynamic data)

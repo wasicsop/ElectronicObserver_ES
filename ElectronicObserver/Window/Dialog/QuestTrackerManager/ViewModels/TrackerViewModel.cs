@@ -81,6 +81,7 @@ public partial class TrackerViewModel : ObservableObject
 		EquipmentCategoryScrapTaskModel e => new EquipmentCategoryScrapTaskViewModel(e),
 		EquipmentCardTypeScrapTaskModel e => new EquipmentCardTypeScrapTaskViewModel(e),
 		EquipmentIconTypeScrapTaskModel e => new EquipmentIconTypeScrapTaskViewModel(e),
+		NodeReachTaskModel n => new NodeReachTaskViewModel(n),
 	}).ToList();
 
 	[ICommand]
@@ -119,6 +120,7 @@ public partial class TrackerViewModel : ObservableObject
 			QuestTaskType.EquipmentCategoryScrap => new EquipmentCategoryScrapTaskModel(),
 			QuestTaskType.EquipmentCardTypeScrap => new EquipmentCardTypeScrapTaskModel(),
 			QuestTaskType.EquipmentIconTypeScrap => new EquipmentIconTypeScrapTaskModel(),
+			QuestTaskType.NodeReach => new NodeReachTaskModel()
 		});
 	}
 
@@ -209,6 +211,16 @@ public partial class TrackerViewModel : ObservableObject
 		foreach (EquipmentIconTypeScrapTaskViewModel task in Tasks.OfType<EquipmentIconTypeScrapTaskViewModel>())
 		{
 			task.Increment(iconTypes);
+		}
+	}
+
+	public void Increment(IFleetData fleet, int compassMapAreaId, int compassMapInfoId, int nodeId)
+	{
+		if (!GroupConditions.ConditionMet(fleet)) return;
+
+		foreach (NodeReachTaskViewModel task in Tasks.OfType<NodeReachTaskViewModel>())
+		{
+			task.Increment(compassMapAreaId, compassMapInfoId, nodeId);
 		}
 	}
 

@@ -217,4 +217,7 @@ Do you want to overwrite these quest trackers?</value>
   <data name="ConditionType_PartialShip" xml:space="preserve">
     <value>Ship (partial)</value>
   </data>
+  <data name="QuestTaskType_NodeReach" xml:space="preserve">
+    <value>Node reach</value>
+  </data>
 </root>

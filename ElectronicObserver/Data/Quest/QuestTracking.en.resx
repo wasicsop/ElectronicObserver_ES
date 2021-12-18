@@ -219,4 +219,7 @@ boss victories ×{3}</value>
   <data name="Exercise" xml:space="preserve">
     <value>Exercise </value>
   </data>
+  <data name="Reach" xml:space="preserve">
+    <value> reach</value>
+  </data>
 </root>

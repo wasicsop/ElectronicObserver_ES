@@ -277,6 +277,15 @@ namespace ElectronicObserver.Properties.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ノード到達.
+        /// </summary>
+        public static string QuestTaskType_NodeReach {
+            get {
+                return ResourceManager.GetString("QuestTaskType_NodeReach", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 任意の改造.
         /// </summary>
         public static string RemodelComparisonType_Any {

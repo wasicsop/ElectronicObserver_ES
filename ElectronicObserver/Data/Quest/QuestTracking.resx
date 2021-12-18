@@ -216,4 +216,7 @@
   <data name="AutoSavedProgress" xml:space="preserve">
     <value>任務進捗のオートセーブを行いました。</value>
   </data>
+  <data name="Reach" xml:space="preserve">
+    <value>到達</value>
+  </data>
 </root>

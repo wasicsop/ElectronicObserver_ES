@@ -257,6 +257,66 @@
 		</StackPanel>
 	</DataTemplate>
 
+	<DataTemplate x:Key="NodeReachTaskTemplate" DataType="{x:Type questTasks:NodeReachTaskViewModel}">
+		<DataTemplate.Resources>
+			<DataTemplate x:Key="MapTemplate" DataType="{x:Type models:MapInfoModel}">
+				<TextBlock Text="{Binding Display}" />
+			</DataTemplate>
+		</DataTemplate.Resources>
+
+		<StackPanel Orientation="Horizontal">
+			<Button
+				Command="{Binding DataContext.RemoveTaskCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}"
+				CommandParameter="{Binding Model}"
+				Content="ｘ"
+				/>
+
+			<ComboBox
+				ItemTemplate="{StaticResource MapTemplate}"
+				ItemsSource="{Binding AllMaps}"
+				SelectedItem="{Binding Model.Map, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+				/>
+
+			<controls:NumberBox
+				Maximum="{Binding Model.Count}"
+				Minimum="0"
+				Value="{Binding Model.Progress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+				/>
+
+			<controls:NumberBox Minimum="1" Value="{Binding Model.Count, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+			<Border BorderBrush="Gray" BorderThickness="1">
+				<StackPanel Orientation="Horizontal">
+					<StackPanel.Resources>
+						<ResourceDictionary Source="Styles.xaml" />
+					</StackPanel.Resources>
+					<Button Command="{Binding AddNodeIdCommand}" Content="+" />
+					<ItemsControl ItemsSource="{Binding NodeIds}">
+						<ItemsControl.ItemsPanel>
+							<ItemsPanelTemplate>
+								<StackPanel Orientation="Horizontal" />
+							</ItemsPanelTemplate>
+						</ItemsControl.ItemsPanel>
+						<ItemsControl.ItemTemplate>
+							<DataTemplate>
+								<StackPanel Orientation="Horizontal">
+									<controls:NumberBox Margin="4 4 -1 4" Value="{Binding Id}" />
+									<Button
+										Margin="-1 4 4 4"
+										Command="{Binding DataContext.RemoveNodeIdCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}"
+										CommandParameter="{Binding}"
+										Content="ｘ"
+										/>
+								</StackPanel>
+							</DataTemplate>
+						</ItemsControl.ItemTemplate>
+					</ItemsControl>
+					<TextBox Text="{Binding Model.Name, UpdateSourceTrigger=PropertyChanged}" />
+				</StackPanel>
+			</Border>
+		</StackPanel>
+	</DataTemplate>
+
 	<questTrackerManager:TaskTemplateSelector
 		x:Key="TaskTemplateSelector"
 		BattleNodeId="{StaticResource BattleNodeIdTaskTemplate}"
@@ -266,6 +326,7 @@
 		EquipmentIconTypeScrap="{StaticResource EquipmentIconTypeScrapTaskTemplate}"
 		EquipmentScrap="{StaticResource EquipmentScrapTaskTemplate}"
 		Expedition="{StaticResource ExpeditionTaskTemplate}"
+		NodeReach="{StaticResource NodeReachTaskTemplate}"
 		/>
 
 </ResourceDictionary>
