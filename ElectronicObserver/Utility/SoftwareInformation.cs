@@ -36,13 +36,13 @@ public static class SoftwareInformation
 	/// <summary>
 	/// バージョン(英語)
 	/// </summary>
-	public static string VersionEnglish => "5.0.1";
+	public static string VersionEnglish => "5.0.2";
 
 
 	/// <summary>
 	/// 更新日時
 	/// </summary>
-	public static DateTime UpdateTime => DateTimeHelper.CSVStringToTime("2021/12/04 12:00:00");
+	public static DateTime UpdateTime => DateTimeHelper.CSVStringToTime("2021/12/19 12:00:00");
 
 
 	private static System.Net.WebClient? Client { get; set; }
