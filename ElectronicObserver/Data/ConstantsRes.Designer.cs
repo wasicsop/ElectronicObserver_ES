@@ -19,7 +19,7 @@ namespace ElectronicObserver.Data {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class ConstantsRes {
@@ -2388,6 +2388,33 @@ namespace ElectronicObserver.Data {
         public static string SpecialNelson {
             get {
                 return ResourceManager.GetString("SpecialNelson", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 潜水艦隊攻撃 (2・3).
+        /// </summary>
+        public static string SpecialSubmarineTender23 {
+            get {
+                return ResourceManager.GetString("SpecialSubmarineTender23", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 潜水艦隊攻撃 (2・4).
+        /// </summary>
+        public static string SpecialSubmarineTender24 {
+            get {
+                return ResourceManager.GetString("SpecialSubmarineTender24", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 潜水艦隊攻撃 (3・4).
+        /// </summary>
+        public static string SpecialSubmarineTender34 {
+            get {
+                return ResourceManager.GetString("SpecialSubmarineTender34", resourceCulture);
             }
         }
         

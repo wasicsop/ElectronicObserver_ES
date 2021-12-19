@@ -1062,4 +1062,13 @@
   <data name="SurfaceTF" xml:space="preserve">
     <value>Surface TF</value>
   </data>
+  <data name="SpecialSubmarineTender23" xml:space="preserve">
+    <value>Submarine fleet attack (2, 3)</value>
+  </data>
+  <data name="SpecialSubmarineTender34" xml:space="preserve">
+    <value>Submarine fleet attack (3, 4)</value>
+  </data>
+  <data name="SpecialSubmarineTender24" xml:space="preserve">
+    <value>Submarine fleet attack (2, 4)</value>
+  </data>
 </root>

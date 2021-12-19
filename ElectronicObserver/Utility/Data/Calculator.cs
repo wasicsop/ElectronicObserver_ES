@@ -2498,6 +2498,16 @@ public enum DayAttackKind
 	SeaAirMultiAngle = 201,
 
 
+	/// <summary> 潜水艦隊攻撃 (参加潜水艦ポジション2・3) </summary>
+	SpecialSubmarineTender23 = 300,
+
+	/// <summary> 潜水艦隊攻撃 (参加潜水艦ポジション3・4) </summary>
+	SpecialSubmarineTender34 = 301,
+
+	/// <summary> 潜水艦隊攻撃 (参加潜水艦ポジション2・4) </summary>
+	SpecialSubmarineTender24 = 302,
+
+
 	/// <summary> 砲撃 </summary>
 	Shelling = 1000,
 
@@ -2601,6 +2611,16 @@ public enum NightAttackKind
 
 	/// <summary> 僚艦夜戦突撃 </summary>
 	SpecialKongo = 104,
+
+
+	/// <summary> 潜水艦隊攻撃 (参加潜水艦ポジション2・3) </summary>
+	SpecialSubmarineTender23 = 300,
+
+	/// <summary> 潜水艦隊攻撃 (参加潜水艦ポジション3・4) </summary>
+	SpecialSubmarineTender34 = 301,
+
+	/// <summary> 潜水艦隊攻撃 (参加潜水艦ポジション2・4) </summary>
+	SpecialSubmarineTender24 = 302,
 
 
 	/// <summary> 砲撃 </summary>

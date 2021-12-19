@@ -831,6 +831,12 @@ public static class Constants
 				return ConstantsRes.ZuiunMultiAngle;
 			case DayAttackKind.SeaAirMultiAngle:
 				return ConstantsRes.SeaAirMultiAngle;
+			case DayAttackKind.SpecialSubmarineTender23:
+				return ConstantsRes.SpecialSubmarineTender23;
+			case DayAttackKind.SpecialSubmarineTender34:
+				return ConstantsRes.SpecialSubmarineTender34;
+			case DayAttackKind.SpecialSubmarineTender24:
+				return ConstantsRes.SpecialSubmarineTender24;
 			case DayAttackKind.Shelling:
 				return ConstantsRes.Shelling;
 			case DayAttackKind.AirAttack:
@@ -900,6 +906,12 @@ public static class Constants
 				return ConstantsRes.SpecialColorado;
 			case NightAttackKind.SpecialKongo:
 				return ConstantsRes.SpecialKongou;
+			case NightAttackKind.SpecialSubmarineTender23:
+				return ConstantsRes.SpecialSubmarineTender23;
+			case NightAttackKind.SpecialSubmarineTender34:
+				return ConstantsRes.SpecialSubmarineTender34;
+			case NightAttackKind.SpecialSubmarineTender24:
+				return ConstantsRes.SpecialSubmarineTender24;
 			case NightAttackKind.Shelling:
 				return ConstantsRes.Shelling;
 			case NightAttackKind.AirAttack:
