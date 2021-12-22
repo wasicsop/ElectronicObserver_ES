@@ -1,52 +1,53 @@
-﻿<Window x:Class="Browser.BrowserView"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Browser"
-        xmlns:wpf="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf"
-        mc:Ignorable="d"
-
-		Name="BrowserWindow"
-
-        xmlns:ui="http://schemas.modernwpf.com/2019"
-        xmlns:system="clr-namespace:System;assembly=System.Runtime"
-
-        Foreground="{StaticResource SystemControlPageTextBaseHighBrush}"
-		Background="{StaticResource SystemControlPageBackgroundAltHighBrush}"
-		BorderBrush="{StaticResource WindowBorder}"
-		BorderThickness="1"
-		FontFamily="{StaticResource ContentControlThemeFontFamily}"
-		FontSize="{StaticResource ControlContentThemeFontSize}"
-		UseLayoutRounding="True"
-
-        ui:ThemeManager.IsThemeAware="True"
-        ui:TitleBar.Background="Transparent"
-		ui:TitleBar.Foreground="{DynamicResource SystemControlForegroundBaseHighBrush}" 
-		ui:TitleBar.InactiveBackground="Transparent" 
-		ui:TitleBar.InactiveForeground="{DynamicResource SystemControlDisabledBaseMediumLowBrush}" 
-		ui:TitleBar.BackButtonStyle="{StaticResource TitleBarBackButtonStyle}" 
-		ui:WindowHelper.FixMaximizedWindow="True" 
-
-        d:DataContext="{Binding ViewModel, ElementName=BrowserWindow}"
-
-		Height="450" Width="800">
+﻿<Window
+	x:Class="Browser.BrowserView"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:local="clr-namespace:Browser"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:system="clr-namespace:System;assembly=System.Runtime"
+	xmlns:ui="http://schemas.modernwpf.com/2019"
+	xmlns:wpf="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf"
+	Name="BrowserWindow"
+	Width="800"
+	Height="450"
+	d:DataContext="{Binding ViewModel, ElementName=BrowserWindow}"
+	ui:ThemeManager.IsThemeAware="True"
+	ui:TitleBar.BackButtonStyle="{StaticResource TitleBarBackButtonStyle}"
+	ui:TitleBar.Background="Transparent"
+	ui:TitleBar.Foreground="{DynamicResource SystemControlForegroundBaseHighBrush}"
+	ui:TitleBar.InactiveBackground="Transparent"
+	ui:TitleBar.InactiveForeground="{DynamicResource SystemControlDisabledBaseMediumLowBrush}"
+	ui:WindowHelper.FixMaximizedWindow="True"
+	Background="{StaticResource SystemControlPageBackgroundAltHighBrush}"
+	BorderBrush="{StaticResource WindowBorder}"
+	BorderThickness="1"
+	FontFamily="{StaticResource ContentControlThemeFontFamily}"
+	FontSize="{StaticResource ControlContentThemeFontSize}"
+	Foreground="{StaticResource SystemControlPageTextBaseHighBrush}"
+	UseLayoutRounding="True"
+	mc:Ignorable="d"
+	>
 
 	<!--
-	these break the app:
-	
-	WindowChrome.WindowChrome="{DynamicResource DefaultWindowChrome}"
+		these break the app:
+		
+		WindowChrome.WindowChrome="{DynamicResource DefaultWindowChrome}"
 	-->
 
-	<!-- 
-	xmlns:ui="http://schemas.modernwpf.com/2019"
-	ui:WindowHelper.UseModernWindowStyle="True"
+	<!--
+		xmlns:ui="http://schemas.modernwpf.com/2019"
+		ui:WindowHelper.UseModernWindowStyle="True"
 	-->
 
 	<Window.InputBindings>
 		<KeyBinding Key="F2" Command="{Binding ScreenshotCommand}" />
 		<KeyBinding Key="F5" Command="{Binding RefreshCommand}" />
-		<KeyBinding Modifiers="Control" Key="F5" Command="{Binding HardRefreshCommand}" />
+		<KeyBinding
+			Key="F5"
+			Command="{Binding HardRefreshCommand}"
+			Modifiers="Control"
+			/>
 		<KeyBinding Key="F7" Command="{Binding MuteCommand}" />
 		<KeyBinding Key="F12" Command="{Binding OpenDevtoolsCommand}" />
 	</Window.InputBindings>
@@ -64,75 +65,86 @@
 
 		<ControlTemplate x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type MenuItem}, ResourceId=TopLevelHeaderTemplateKey}" TargetType="MenuItem">
 			<Grid
-            x:Name="ContentRoot"
-            Background="{TemplateBinding Background}"
-            SnapsToDevicePixels="True">
+				x:Name="ContentRoot"
+				Background="{TemplateBinding Background}"
+				SnapsToDevicePixels="True"
+				>
 
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="Auto" />
 					<ColumnDefinition Width="*" />
 				</Grid.ColumnDefinitions>
 				<Viewbox
-						x:Name="IconRoot"
-						Grid.Column="0"
-						HorizontalAlignment="Center"
-						VerticalAlignment="Center"
-						Width="16"
-						Height="16"
-						Margin="4 0 0 0">
+					x:Name="IconRoot"
+					Grid.Column="0"
+					Width="16"
+					Height="16"
+					Margin="4 0 0 0"
+					HorizontalAlignment="Center"
+					VerticalAlignment="Center"
+					>
 					<ContentPresenter
-							x:Name="IconContent"
-							ContentSource="Icon"
-							HorizontalAlignment="Center"
-							SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+						x:Name="IconContent"
+						HorizontalAlignment="Center"
+						ContentSource="Icon"
+						SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+						/>
 				</Viewbox>
-				<Border Grid.Column="0" Grid.ColumnSpan="2"
-                x:Name="Background"
-                Background="{TemplateBinding Background}"
-                BorderThickness="{TemplateBinding BorderThickness}"
-                BorderBrush="{TemplateBinding BorderBrush}" />
+				<Border
+					x:Name="Background"
+					Grid.Column="0"
+					Grid.ColumnSpan="2"
+					Background="{TemplateBinding Background}"
+					BorderBrush="{TemplateBinding BorderBrush}"
+					BorderThickness="{TemplateBinding BorderThickness}"
+					/>
 
-				<ContentPresenter Grid.Column="1"
-                ContentSource="Header"
-                RecognizesAccessKey="True"
-                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                Margin="0 0 4 0"
-                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+				<ContentPresenter
+					Grid.Column="1"
+					Margin="0 0 4 0"
+					VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+					ContentSource="Header"
+					RecognizesAccessKey="True"
+					SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+					/>
 
 				<ui:MenuPopup
-                x:Name="PART_Popup"
-                AllowsTransparency="true"
-                Focusable="false"
-                IsOpen="{Binding IsSubmenuOpen, RelativeSource={RelativeSource TemplatedParent}}"
-                PopupAnimation="{DynamicResource {x:Static SystemParameters.MenuPopupAnimationKey}}"
-                Placement="Bottom">
-					<ui:ThemeShadowChrome
-                    IsShadowEnabled="{DynamicResource {x:Static SystemParameters.DropShadowKey}}"
-                    CornerRadius="{DynamicResource OverlayCornerRadius}">
+					x:Name="PART_Popup"
+					AllowsTransparency="true"
+					Focusable="false"
+					IsOpen="{Binding IsSubmenuOpen, RelativeSource={RelativeSource TemplatedParent}}"
+					Placement="Bottom"
+					PopupAnimation="{DynamicResource {x:Static SystemParameters.MenuPopupAnimationKey}}"
+					>
+					<ui:ThemeShadowChrome CornerRadius="{DynamicResource OverlayCornerRadius}" IsShadowEnabled="{DynamicResource {x:Static SystemParameters.DropShadowKey}}">
 						<Border
-                        x:Name="SubMenuRoot"
-                        Background="{DynamicResource MenuFlyoutPresenterBackground}"
-                        CornerRadius="{DynamicResource OverlayCornerRadius}">
+							x:Name="SubMenuRoot"
+							Background="{DynamicResource MenuFlyoutPresenterBackground}"
+							CornerRadius="{DynamicResource OverlayCornerRadius}"
+							>
 							<Grid>
 								<ScrollViewer
-                                x:Name="SubMenuScrollViewer"
-                                Style="{DynamicResource {ComponentResourceKey ResourceId=MenuScrollViewer,
-                                                                              TypeInTargetAssembly={x:Type FrameworkElement}}}"
-                                Margin="{DynamicResource MenuFlyoutPresenterThemePadding}"
-                                MinWidth="{DynamicResource FlyoutThemeMinWidth}">
+									x:Name="SubMenuScrollViewer"
+									MinWidth="{DynamicResource FlyoutThemeMinWidth}"
+									Margin="{DynamicResource MenuFlyoutPresenterThemePadding}"
+									Style="{DynamicResource {ComponentResourceKey ResourceId=MenuScrollViewer,
+									                                              TypeInTargetAssembly={x:Type FrameworkElement}}}"
+									>
 									<ItemsPresenter
-                                    RenderOptions.ClearTypeHint="Enabled"
-                                    Margin="{StaticResource MenuFlyoutScrollerMargin}"
-                                    KeyboardNavigation.DirectionalNavigation="Cycle"
-                                    KeyboardNavigation.TabNavigation="Cycle"
-                                    Grid.IsSharedSizeScope="true"
-                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+										Margin="{StaticResource MenuFlyoutScrollerMargin}"
+										Grid.IsSharedSizeScope="true"
+										KeyboardNavigation.DirectionalNavigation="Cycle"
+										KeyboardNavigation.TabNavigation="Cycle"
+										RenderOptions.ClearTypeHint="Enabled"
+										SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+										/>
 								</ScrollViewer>
 								<Border
-                                x:Name="SubMenuBorder"
-                                BorderBrush="{DynamicResource MenuFlyoutPresenterBorderBrush}"
-                                BorderThickness="{DynamicResource MenuFlyoutPresenterBorderThemeThickness}"
-                                CornerRadius="{DynamicResource OverlayCornerRadius}" />
+									x:Name="SubMenuBorder"
+									BorderBrush="{DynamicResource MenuFlyoutPresenterBorderBrush}"
+									BorderThickness="{DynamicResource MenuFlyoutPresenterBorderThemeThickness}"
+									CornerRadius="{DynamicResource OverlayCornerRadius}"
+									/>
 							</Grid>
 						</Border>
 					</ui:ThemeShadowChrome>
@@ -140,7 +152,7 @@
 			</Grid>
 			<ControlTemplate.Triggers>
 				<Trigger Property="Icon" Value="{x:Null}">
-					<Setter Property="Visibility" TargetName="IconRoot" Value="Collapsed" />
+					<Setter TargetName="IconRoot" Property="Visibility" Value="Collapsed" />
 				</Trigger>
 				<Trigger Property="IsSuspendingPopupAnimation" Value="true">
 					<Setter TargetName="PART_Popup" Property="PopupAnimation" Value="None" />
@@ -153,7 +165,7 @@
 					<Setter TargetName="Background" Property="BorderBrush" Value="{DynamicResource MenuBarItemBorderBrushPointerOver}" />
 					<Setter TargetName="IconContent" Property="TextElement.Foreground" Value="{DynamicResource MenuBarItemBorderBrushPointerOver}" />
 				</Trigger>
-				<!-- Selected -->
+				<!--  Selected  -->
 				<Trigger Property="IsSubmenuOpen" Value="True">
 					<Setter TargetName="Background" Property="Background" Value="{DynamicResource MenuBarItemBackgroundSelected}" />
 					<Setter TargetName="Background" Property="BorderBrush" Value="{DynamicResource MenuBarItemBorderBrushSelected}" />
@@ -168,45 +180,52 @@
 		</ControlTemplate>
 
 		<ControlTemplate x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type MenuItem}, ResourceId=TopLevelItemTemplateKey}" TargetType="MenuItem">
-			<Border x:Name="Background"
-			        Background="{TemplateBinding Background}"
-			        BorderThickness="{TemplateBinding BorderThickness}"
-			        BorderBrush="{TemplateBinding BorderBrush}">
-			<Grid
-				x:Name="ContentRoot"
+			<Border
+				x:Name="Background"
 				Background="{TemplateBinding Background}"
-				SnapsToDevicePixels="True">
+				BorderBrush="{TemplateBinding BorderBrush}"
+				BorderThickness="{TemplateBinding BorderThickness}"
+				>
+				<Grid
+					x:Name="ContentRoot"
+					Background="{TemplateBinding Background}"
+					SnapsToDevicePixels="True"
+					>
 
-				<Grid.ColumnDefinitions>
-					<ColumnDefinition SharedSizeGroup="{TemplateBinding Visibility, Converter={StaticResource SharedSizeGroupConverter}, ConverterParameter=MenuItemIconColumnGroup}" Width="Auto" />
-					<ColumnDefinition Width="*" />
-				</Grid.ColumnDefinitions>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="Auto" SharedSizeGroup="{TemplateBinding Visibility, Converter={StaticResource SharedSizeGroupConverter}, ConverterParameter=MenuItemIconColumnGroup}" />
+						<ColumnDefinition Width="*" />
+					</Grid.ColumnDefinitions>
 
-				<Viewbox
-					x:Name="IconRoot"
-					Grid.Column="0"
-					HorizontalAlignment="Left"
-					VerticalAlignment="Center"
-					Width="16"
-					Height="16"
-					Margin="4">
+					<Viewbox
+						x:Name="IconRoot"
+						Grid.Column="0"
+						Width="16"
+						Height="16"
+						Margin="4"
+						HorizontalAlignment="Left"
+						VerticalAlignment="Center"
+						>
+						<ContentPresenter
+							x:Name="IconContent"
+							ContentSource="Icon"
+							SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+							/>
+					</Viewbox>
+
 					<ContentPresenter
-						x:Name="IconContent"
-						ContentSource="Icon"
-						SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
-				</Viewbox>
-
-				<ContentPresenter Grid.Column="1"
-				                  ContentSource="Header"
-				                  RecognizesAccessKey="True"
-				                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-				                  Margin="0"
-				                  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
-			</Grid>
-					</Border>
+						Grid.Column="1"
+						Margin="0"
+						VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+						ContentSource="Header"
+						RecognizesAccessKey="True"
+						SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+						/>
+				</Grid>
+			</Border>
 			<ControlTemplate.Triggers>
 				<Trigger Property="Icon" Value="{x:Null}">
-					<Setter Property="Visibility" TargetName="IconRoot" Value="Collapsed" />
+					<Setter TargetName="IconRoot" Property="Visibility" Value="Collapsed" />
 				</Trigger>
 				<Trigger Property="IsMouseOver" Value="True">
 					<Setter TargetName="Background" Property="Background" Value="{DynamicResource MenuBarItemBackgroundPointerOver}" />
@@ -225,236 +244,395 @@
 
 	<Grid>
 
-	<DockPanel>
-		<Menu Height="Auto" DockPanel.Dock="{Binding ToolMenuDock}" Visibility="{Binding ToolMenuVisibility}" Background="{DynamicResource SystemControlBackgroundAltHighBrush}">
-			<Menu.Resources>
-				<Style TargetType="MenuItem" BasedOn="{StaticResource DefaultMenuItemStyle}">
-					<Setter Property="FontSize" Value="12" />
-				</Style>
-			</Menu.Resources>
-			<Menu.ItemsPanel>
-				<ItemsPanelTemplate>
-					<StackPanel Orientation="{Binding ToolMenuOrientation}" />
-				</ItemsPanelTemplate>
-			</Menu.ItemsPanel>
-			<MenuItem Height="Auto" Command="{Binding ScreenshotCommand}">
-				<MenuItem.Icon>
-					<Image Source="{Binding Icons.Screenshot}" />
-				</MenuItem.Icon>
-			</MenuItem>
-			<MenuItem Height="Auto">
-				<MenuItem.Icon>
-					<Image Source="{Binding Icons.Zoom}" />
-				</MenuItem.Icon>
-				<MenuItem.Header>
-					<Path Style="{DynamicResource DownArrow}"/>
-				</MenuItem.Header>
-				<MenuItem Header="{Binding CurrentZoom}" IsEnabled="False" />
-				<Separator/>
-				<MenuItem Header="{Binding FormBrowser.Zoom_to_Fit}" IsChecked="{Binding ZoomFit}" IsCheckable="True" />
-				<Separator/>
-				<MenuItem Header="-20%" Command="{Binding ModifyZoomCommand}" CommandParameter="-0.2" >
-					<MenuItem.Icon>
-						<Image Source="{Binding Icons.ZoomOut}"/>
-					</MenuItem.Icon>
-				</MenuItem>
-				<MenuItem Header="+20%" Command="{Binding ModifyZoomCommand}" CommandParameter="0.2">
-					<MenuItem.Icon>
-						<Image Source="{Binding Icons.ZoomIn}"/>
-					</MenuItem.Icon>
-				</MenuItem>
-				<Separator/>
-				<MenuItem Header="25%" Command="{Binding SetZoomCommand}" CommandParameter="0.25" />
-				<MenuItem Header="50%" Command="{Binding SetZoomCommand}" CommandParameter="0.5" />
-				<MenuItem Header="67% (Classic)" Command="{Binding SetZoomCommand}" CommandParameter="0.67"/>
-				<MenuItem Header="75%" Command="{Binding SetZoomCommand}" CommandParameter="0.75" />
-				<Separator/>
-				<MenuItem Header="100%" Command="{Binding SetZoomCommand}" CommandParameter="1"/>
-				<Separator/>
-				<MenuItem Header="150%" Command="{Binding SetZoomCommand}" CommandParameter="1.5" />
-				<MenuItem Header="200%" Command="{Binding SetZoomCommand}" CommandParameter="2" />
-				<MenuItem Header="250%" Command="{Binding SetZoomCommand}" CommandParameter="2.5" />
-				<MenuItem Header="300%" Command="{Binding SetZoomCommand}" CommandParameter="3" />
-				<MenuItem Header="400%" Command="{Binding SetZoomCommand}" CommandParameter="4" />
-			</MenuItem>
-			<MenuItem Height="Auto" Command="{Binding MuteCommand}">
-				<MenuItem.Icon>
-					<Image Source="{Binding MuteStateImage}" />
-				</MenuItem.Icon>
-			</MenuItem>
-			<MenuItem Height="Auto" Command="{Binding RefreshCommand}">
-				<MenuItem.Icon>
-					<Image Source="{Binding Icons.Refresh}"/>
-				</MenuItem.Icon>
-			</MenuItem>
-			<MenuItem Height="Auto" Command="{Binding GoToLoginPageCommand}">
-				<MenuItem.Icon>
-					<Image Source="{Binding Icons.Navigate}"/>
-				</MenuItem.Icon>
-			</MenuItem>
-			<MenuItem Height="Auto">
-				<MenuItem.Icon>
-					<Image Source="{Binding Icons.Other}"/>
-				</MenuItem.Icon>
-				<MenuItem.Header>
-					<Path Style="{DynamicResource DownArrow}"/>
-				</MenuItem.Header>
-				<MenuItem Header="{Binding FormBrowser.ToolMenu_Other_ScreenShot}" Command="{Binding ScreenshotCommand}" InputGestureText="F2">
+		<DockPanel>
+			<Menu
+				Height="Auto"
+				Background="{DynamicResource SystemControlBackgroundAltHighBrush}"
+				DockPanel.Dock="{Binding ToolMenuDock}"
+				Visibility="{Binding ToolMenuVisibility}"
+				>
+				<Menu.Resources>
+					<Style BasedOn="{StaticResource DefaultMenuItemStyle}" TargetType="MenuItem">
+						<Setter Property="FontSize" Value="12" />
+					</Style>
+				</Menu.Resources>
+				<Menu.ItemsPanel>
+					<ItemsPanelTemplate>
+						<StackPanel Orientation="{Binding ToolMenuOrientation}" />
+					</ItemsPanelTemplate>
+				</Menu.ItemsPanel>
+				<MenuItem Height="Auto" Command="{Binding ScreenshotCommand}">
 					<MenuItem.Icon>
 						<Image Source="{Binding Icons.Screenshot}" />
 					</MenuItem.Icon>
 				</MenuItem>
-				<MenuItem Header="{Binding FormBrowser.ToolMenu_Other_LastScreenShot}" d:Header="Previous Screenshot">
-					<MenuItem Height="Auto" Width="Auto" ContextMenuOpening="FrameworkElement_OnContextMenuOpening">
-						<MenuItem.Header>
-							<Grid>
-								<TextBlock Text="{Binding FormBrowser.NoScreenshotYet}"/>
-								<Image Width="600" Height="360" Source="{Binding LastScreenShotPath}">
-									<Image.InputBindings>
-										<MouseBinding Gesture="LeftClick" Command="{Binding OpenLastScreenshotCommand}" />
-									</Image.InputBindings>
-								</Image>
-							</Grid>
-						</MenuItem.Header>
-					</MenuItem>
-					<Separator />
-					<MenuItem Header="{Binding FormBrowser.ToolMenu_Other_LastScreenShot_OpenScreenShotFolder}" Command="{Binding OpenScreenshotFolderCommand}" />
-					<MenuItem Header="{Binding FormBrowser.LastScreenShot_CopyToClipboard}" Command="{Binding CopyLastScreenshotCommand}" />
-				</MenuItem>
-				<Separator />
-				<MenuItem Header="{Binding FormBrowser.ToolMenu_Other_Zoom}">
+				<MenuItem Height="Auto">
 					<MenuItem.Icon>
 						<Image Source="{Binding Icons.Zoom}" />
 					</MenuItem.Icon>
+					<MenuItem.Header>
+						<Path Style="{DynamicResource DownArrow}" />
+					</MenuItem.Header>
 					<MenuItem Header="{Binding CurrentZoom}" IsEnabled="False" />
-					<Separator/>
-					<MenuItem Header="{Binding FormBrowser.Zoom_to_Fit}" IsChecked="{Binding ZoomFit}" IsCheckable="True" />
-					<Separator/>
-					<MenuItem Header="-20%" Command="{Binding ModifyZoomCommand}" CommandParameter="-0.2" >
+					<Separator />
+					<MenuItem
+						Header="{Binding FormBrowser.Zoom_to_Fit}"
+						IsCheckable="True"
+						IsChecked="{Binding ZoomFit}"
+						/>
+					<Separator />
+					<MenuItem
+						Command="{Binding ModifyZoomCommand}"
+						CommandParameter="-0.2"
+						Header="-20%"
+						>
 						<MenuItem.Icon>
-							<Image Source="{Binding Icons.ZoomOut}"/>
+							<Image Source="{Binding Icons.ZoomOut}" />
 						</MenuItem.Icon>
 					</MenuItem>
-					<MenuItem Header="+20%" Command="{Binding ModifyZoomCommand}" CommandParameter="0.2">
+					<MenuItem
+						Command="{Binding ModifyZoomCommand}"
+						CommandParameter="0.2"
+						Header="+20%"
+						>
 						<MenuItem.Icon>
-							<Image Source="{Binding Icons.ZoomIn}"/>
+							<Image Source="{Binding Icons.ZoomIn}" />
 						</MenuItem.Icon>
 					</MenuItem>
-					<Separator/>
-					<MenuItem Header="25%" Command="{Binding SetZoomCommand}" CommandParameter="0.25" />
-					<MenuItem Header="50%" Command="{Binding SetZoomCommand}" CommandParameter="0.5" />
-					<MenuItem Header="67% (Classic)" Command="{Binding SetZoomCommand}" CommandParameter="0.67"/>
-					<MenuItem Header="75%" Command="{Binding SetZoomCommand}" CommandParameter="0.75" />
-					<Separator/>
-					<MenuItem Header="100%" Command="{Binding SetZoomCommand}" CommandParameter="1"/>
-					<Separator/>
-					<MenuItem Header="150%" Command="{Binding SetZoomCommand}" CommandParameter="1.5" />
-					<MenuItem Header="200%" Command="{Binding SetZoomCommand}" CommandParameter="2" />
-					<MenuItem Header="250%" Command="{Binding SetZoomCommand}" CommandParameter="2.5" />
-					<MenuItem Header="300%" Command="{Binding SetZoomCommand}" CommandParameter="3" />
-					<MenuItem Header="400%" Command="{Binding SetZoomCommand}" CommandParameter="4" />
+					<Separator />
+					<MenuItem
+						Command="{Binding SetZoomCommand}"
+						CommandParameter="0.25"
+						Header="25%"
+						/>
+					<MenuItem
+						Command="{Binding SetZoomCommand}"
+						CommandParameter="0.5"
+						Header="50%"
+						/>
+					<MenuItem
+						Command="{Binding SetZoomCommand}"
+						CommandParameter="0.67"
+						Header="67% (Classic)"
+						/>
+					<MenuItem
+						Command="{Binding SetZoomCommand}"
+						CommandParameter="0.75"
+						Header="75%"
+						/>
+					<Separator />
+					<MenuItem
+						Command="{Binding SetZoomCommand}"
+						CommandParameter="1"
+						Header="100%"
+						/>
+					<Separator />
+					<MenuItem
+						Command="{Binding SetZoomCommand}"
+						CommandParameter="1.5"
+						Header="150%"
+						/>
+					<MenuItem
+						Command="{Binding SetZoomCommand}"
+						CommandParameter="2"
+						Header="200%"
+						/>
+					<MenuItem
+						Command="{Binding SetZoomCommand}"
+						CommandParameter="2.5"
+						Header="250%"
+						/>
+					<MenuItem
+						Command="{Binding SetZoomCommand}"
+						CommandParameter="3"
+						Header="300%"
+						/>
+					<MenuItem
+						Command="{Binding SetZoomCommand}"
+						CommandParameter="4"
+						Header="400%"
+						/>
 				</MenuItem>
-				<Separator />
-				<MenuItem Header="{Binding FormBrowser.ToolMenu_Other_Volume}" d:Header="Volume">
-					<MenuItem>
-						<MenuItem.Header>
-							<StackPanel Orientation="Horizontal">
-								<ui:NumberBox Value="{Binding Volume}" Minimum="0" Maximum="100" Margin="4" />
-								<Slider
-									Value="{Binding Volume}"
-							        Width="200" 
-							        Minimum="0" 
-							        Maximum="100"
-								/>
-							</StackPanel>
-						</MenuItem.Header>
-					</MenuItem>
-				</MenuItem>
-				<MenuItem Header="{Binding FormBrowser.ToolMenu_Other_Mute}" Command="{Binding MuteCommand}" InputGestureText="F7">
+				<MenuItem Height="Auto" Command="{Binding MuteCommand}">
 					<MenuItem.Icon>
 						<Image Source="{Binding MuteStateImage}" />
 					</MenuItem.Icon>
 				</MenuItem>
-				<Separator />
-				<MenuItem Header="{Binding FormBrowser.ToolMenu_Other_Refresh}" Command="{Binding RefreshCommand}" InputGestureText="F5">
+				<MenuItem Height="Auto" Command="{Binding RefreshCommand}">
 					<MenuItem.Icon>
-						<Image Source="{Binding Icons.Refresh}"/>
+						<Image Source="{Binding Icons.Refresh}" />
 					</MenuItem.Icon>
 				</MenuItem>
-				<MenuItem Header="{Binding FormBrowser.RefreshIgnoreCache}" Command="{Binding HardRefreshCommand}" InputGestureText="Ctrl+F5" d:Header="Hard Refresh" />
-				<MenuItem Header="{Binding FormBrowser.ToolMenu_Other_NavigateToLogInPage}" Command="{Binding GoToLoginPageCommand}">
+				<MenuItem Height="Auto" Command="{Binding GoToLoginPageCommand}">
 					<MenuItem.Icon>
-						<Image Source="{Binding Icons.Navigate}"/>
+						<Image Source="{Binding Icons.Navigate}" />
 					</MenuItem.Icon>
 				</MenuItem>
-				<MenuItem Header="{Binding FormBrowser.ToolMenu_Other_Navigate}" Command="{Binding GoToCommand}" />
-				<MenuItem Header="{Binding FormBrowser.ClearCache}" Command="{Binding ClearCacheCommand}" />
-				<Separator />
-				<MenuItem Header="{Binding FormBrowser.ToolMenu_Other_AppliesStyleSheet}"
-					IsChecked="{Binding StyleSheetEnabled}"
-					IsCheckable="True"
-				/>
-				<Separator />
-				<MenuItem Header="{Binding FormBrowser.ToolMenu_Other_Alignment}" d:Header="Alignment" >
-					<MenuItem Header="{Binding FormBrowser.Alignment_Top}" Command="{Binding SetToolMenuAlignmentCommand}" d:Header="Top">
-						<MenuItem.CommandParameter >
-							<Dock>Top</Dock>
-						</MenuItem.CommandParameter>
+				<MenuItem Height="Auto">
+					<MenuItem.Icon>
+						<Image Source="{Binding Icons.Other}" />
+					</MenuItem.Icon>
+					<MenuItem.Header>
+						<Path Style="{DynamicResource DownArrow}" />
+					</MenuItem.Header>
+					<MenuItem
+						Command="{Binding ScreenshotCommand}"
+						Header="{Binding FormBrowser.ToolMenu_Other_ScreenShot}"
+						InputGestureText="F2"
+						>
+						<MenuItem.Icon>
+							<Image Source="{Binding Icons.Screenshot}" />
+						</MenuItem.Icon>
 					</MenuItem>
-					<MenuItem Header="{Binding FormBrowser.Alignment_Bottom}" Command="{Binding SetToolMenuAlignmentCommand}" d:Header="Bottom">
-						<MenuItem.CommandParameter >
-							<Dock>Bottom</Dock>
-						</MenuItem.CommandParameter>
+					<MenuItem d:Header="Previous Screenshot" Header="{Binding FormBrowser.ToolMenu_Other_LastScreenShot}">
+						<MenuItem
+							Width="Auto"
+							Height="Auto"
+							ContextMenuOpening="FrameworkElement_OnContextMenuOpening"
+							>
+							<MenuItem.Header>
+								<Grid>
+									<TextBlock Text="{Binding FormBrowser.NoScreenshotYet}" />
+									<Image
+										Width="600"
+										Height="360"
+										Source="{Binding LastScreenShotPath}"
+										>
+										<Image.InputBindings>
+											<MouseBinding Command="{Binding OpenLastScreenshotCommand}" Gesture="LeftClick" />
+										</Image.InputBindings>
+									</Image>
+								</Grid>
+							</MenuItem.Header>
+						</MenuItem>
+						<Separator />
+						<MenuItem Command="{Binding OpenScreenshotFolderCommand}" Header="{Binding FormBrowser.ToolMenu_Other_LastScreenShot_OpenScreenShotFolder}" />
+						<MenuItem Command="{Binding CopyLastScreenshotCommand}" Header="{Binding FormBrowser.LastScreenShot_CopyToClipboard}" />
 					</MenuItem>
-					<MenuItem Header="{Binding FormBrowser.Alignment_Left}" Command="{Binding SetToolMenuAlignmentCommand}" d:Header="Left">
-						<MenuItem.CommandParameter >
-							<Dock>Left</Dock>
-						</MenuItem.CommandParameter>
+					<Separator />
+					<MenuItem Header="{Binding FormBrowser.ToolMenu_Other_Zoom}">
+						<MenuItem.Icon>
+							<Image Source="{Binding Icons.Zoom}" />
+						</MenuItem.Icon>
+						<MenuItem Header="{Binding CurrentZoom}" IsEnabled="False" />
+						<Separator />
+						<MenuItem
+							Header="{Binding FormBrowser.Zoom_to_Fit}"
+							IsCheckable="True"
+							IsChecked="{Binding ZoomFit}"
+							/>
+						<Separator />
+						<MenuItem
+							Command="{Binding ModifyZoomCommand}"
+							CommandParameter="-0.2"
+							Header="-20%"
+							>
+							<MenuItem.Icon>
+								<Image Source="{Binding Icons.ZoomOut}" />
+							</MenuItem.Icon>
+						</MenuItem>
+						<MenuItem
+							Command="{Binding ModifyZoomCommand}"
+							CommandParameter="0.2"
+							Header="+20%"
+							>
+							<MenuItem.Icon>
+								<Image Source="{Binding Icons.ZoomIn}" />
+							</MenuItem.Icon>
+						</MenuItem>
+						<Separator />
+						<MenuItem
+							Command="{Binding SetZoomCommand}"
+							CommandParameter="0.25"
+							Header="25%"
+							/>
+						<MenuItem
+							Command="{Binding SetZoomCommand}"
+							CommandParameter="0.5"
+							Header="50%"
+							/>
+						<MenuItem
+							Command="{Binding SetZoomCommand}"
+							CommandParameter="0.67"
+							Header="67% (Classic)"
+							/>
+						<MenuItem
+							Command="{Binding SetZoomCommand}"
+							CommandParameter="0.75"
+							Header="75%"
+							/>
+						<Separator />
+						<MenuItem
+							Command="{Binding SetZoomCommand}"
+							CommandParameter="1"
+							Header="100%"
+							/>
+						<Separator />
+						<MenuItem
+							Command="{Binding SetZoomCommand}"
+							CommandParameter="1.5"
+							Header="150%"
+							/>
+						<MenuItem
+							Command="{Binding SetZoomCommand}"
+							CommandParameter="2"
+							Header="200%"
+							/>
+						<MenuItem
+							Command="{Binding SetZoomCommand}"
+							CommandParameter="2.5"
+							Header="250%"
+							/>
+						<MenuItem
+							Command="{Binding SetZoomCommand}"
+							CommandParameter="3"
+							Header="300%"
+							/>
+						<MenuItem
+							Command="{Binding SetZoomCommand}"
+							CommandParameter="4"
+							Header="400%"
+							/>
 					</MenuItem>
-					<MenuItem Header="{Binding FormBrowser.Alignment_Right}" Command="{Binding SetToolMenuAlignmentCommand}" d:Header="Right">
-						<MenuItem.CommandParameter >
-							<Dock>Right</Dock>
-						</MenuItem.CommandParameter>
+					<Separator />
+					<MenuItem d:Header="Volume" Header="{Binding FormBrowser.ToolMenu_Other_Volume}">
+						<MenuItem>
+							<MenuItem.Header>
+								<StackPanel Orientation="Horizontal">
+									<ui:NumberBox
+										Margin="4"
+										Maximum="100"
+										Minimum="0"
+										Value="{Binding Volume}"
+										/>
+									<Slider
+										Width="200"
+										Maximum="100"
+										Minimum="0"
+										Value="{Binding Volume}"
+										/>
+								</StackPanel>
+							</MenuItem.Header>
+						</MenuItem>
 					</MenuItem>
-					<MenuItem Header="{Binding FormBrowser.Alignment_Invisible}" Command="{Binding SetToolMenuVisibilityCommand}" d:Header="Invisible">
-						<MenuItem.CommandParameter>
-							<Visibility>Collapsed</Visibility>
-						</MenuItem.CommandParameter>
+					<MenuItem
+						Command="{Binding MuteCommand}"
+						Header="{Binding FormBrowser.ToolMenu_Other_Mute}"
+						InputGestureText="F7"
+						>
+						<MenuItem.Icon>
+							<Image Source="{Binding MuteStateImage}" />
+						</MenuItem.Icon>
 					</MenuItem>
+					<Separator />
+					<MenuItem
+						Command="{Binding RefreshCommand}"
+						Header="{Binding FormBrowser.ToolMenu_Other_Refresh}"
+						InputGestureText="F5"
+						>
+						<MenuItem.Icon>
+							<Image Source="{Binding Icons.Refresh}" />
+						</MenuItem.Icon>
+					</MenuItem>
+					<MenuItem
+						d:Header="Hard Refresh"
+						Command="{Binding HardRefreshCommand}"
+						Header="{Binding FormBrowser.RefreshIgnoreCache}"
+						InputGestureText="Ctrl+F5"
+						/>
+					<MenuItem Command="{Binding GoToLoginPageCommand}" Header="{Binding FormBrowser.ToolMenu_Other_NavigateToLogInPage}">
+						<MenuItem.Icon>
+							<Image Source="{Binding Icons.Navigate}" />
+						</MenuItem.Icon>
+					</MenuItem>
+					<MenuItem Command="{Binding GoToCommand}" Header="{Binding FormBrowser.ToolMenu_Other_Navigate}" />
+					<MenuItem Command="{Binding ClearCacheCommand}" Header="{Binding FormBrowser.ClearCache}" />
+					<Separator />
+					<MenuItem
+						Header="{Binding FormBrowser.ToolMenu_Other_AppliesStyleSheet}"
+						IsCheckable="True"
+						IsChecked="{Binding StyleSheetEnabled}"
+						/>
+					<Separator />
+					<MenuItem d:Header="Alignment" Header="{Binding FormBrowser.ToolMenu_Other_Alignment}">
+						<MenuItem
+							d:Header="Top"
+							Command="{Binding SetToolMenuAlignmentCommand}"
+							Header="{Binding FormBrowser.Alignment_Top}"
+							>
+							<MenuItem.CommandParameter>
+								<Dock>Top</Dock>
+							</MenuItem.CommandParameter>
+						</MenuItem>
+						<MenuItem
+							d:Header="Bottom"
+							Command="{Binding SetToolMenuAlignmentCommand}"
+							Header="{Binding FormBrowser.Alignment_Bottom}"
+							>
+							<MenuItem.CommandParameter>
+								<Dock>Bottom</Dock>
+							</MenuItem.CommandParameter>
+						</MenuItem>
+						<MenuItem
+							d:Header="Left"
+							Command="{Binding SetToolMenuAlignmentCommand}"
+							Header="{Binding FormBrowser.Alignment_Left}"
+							>
+							<MenuItem.CommandParameter>
+								<Dock>Left</Dock>
+							</MenuItem.CommandParameter>
+						</MenuItem>
+						<MenuItem
+							d:Header="Right"
+							Command="{Binding SetToolMenuAlignmentCommand}"
+							Header="{Binding FormBrowser.Alignment_Right}"
+							>
+							<MenuItem.CommandParameter>
+								<Dock>Right</Dock>
+							</MenuItem.CommandParameter>
+						</MenuItem>
+						<MenuItem
+							d:Header="Invisible"
+							Command="{Binding SetToolMenuVisibilityCommand}"
+							Header="{Binding FormBrowser.Alignment_Invisible}"
+							>
+							<MenuItem.CommandParameter>
+								<Visibility>Collapsed</Visibility>
+							</MenuItem.CommandParameter>
+						</MenuItem>
+					</MenuItem>
+					<MenuItem
+						d:Header="Developer Tools"
+						Command="{Binding OpenDevtoolsCommand}"
+						Header="{Binding FormBrowser.OpenDevTool}"
+						InputGestureText="F12"
+						/>
 				</MenuItem>
-				<MenuItem Header="{Binding FormBrowser.OpenDevTool}"
-				Command="{Binding OpenDevtoolsCommand}"
-				InputGestureText="F12"
+			</Menu>
 
-				d:Header="Developer Tools" />
-			</MenuItem>
-		</Menu>
+			<Border
+				HorizontalAlignment="Stretch"
+				VerticalAlignment="Stretch"
+				Background="{DynamicResource SystemControlBackgroundAltHighBrush}"
+				>
+				<Border.InputBindings>
+					<MouseBinding Command="{Binding SetToolMenuVisibilityCommand}" Gesture="LeftDoubleClick">
+						<MouseBinding.CommandParameter>
+							<Visibility>Visible</Visibility>
+						</MouseBinding.CommandParameter>
+					</MouseBinding>
+				</Border.InputBindings>
 
-		<Border
-			HorizontalAlignment="Stretch"
-			VerticalAlignment="Stretch"
-			Background="{DynamicResource SystemControlBackgroundAltHighBrush}"
-		>
-			<Border.InputBindings>
-				<MouseBinding Gesture="LeftDoubleClick" Command="{Binding SetToolMenuVisibilityCommand}">
-					<MouseBinding.CommandParameter>
-						<Visibility>Visible</Visibility>
-					</MouseBinding.CommandParameter>
-				</MouseBinding>
-			</Border.InputBindings>
-
-			<ContentControl
-				Content="{Binding BrowserWrapper}"
-				SizeChanged="FrameworkElement_OnSizeChanged">
-				<!--
+				<ContentControl Content="{Binding BrowserWrapper}" SizeChanged="FrameworkElement_OnSizeChanged">
+					<!--
 				<wpf:ChromiumWebBrowser
-						x:Name="Browser" 
-						Address="http://www.dmm.com/netgame/social/-/gadgets/=/app_id=854854/" 
+						x:Name="Browser"
+						Address="http://www.dmm.com/netgame/social/-/gadgets/=/app_id=854854/"
 						FontFamily="Microsoft YaHei" />
 				-->
-			</ContentControl>
-		</Border>
-	</DockPanel>
+				</ContentControl>
+			</Border>
+		</DockPanel>
 
 
 	</Grid>
