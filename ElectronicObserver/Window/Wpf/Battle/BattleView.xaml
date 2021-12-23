@@ -32,7 +32,6 @@
 
 		<Grid
 			Margin="4"
-			HorizontalAlignment="Center"
 			IsSharedSizeScope="True"
 			Visibility="{Binding ViewVisibility}"
 			>
