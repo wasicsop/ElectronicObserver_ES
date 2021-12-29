@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using ElectronicObserver.Data;
@@ -43,6 +44,12 @@ public partial class BattleNodeIdTaskViewModel : ObservableObject, IQuestTaskVie
 		{
 			null or "" => $"({string.Join("・", Model.NodeIds)})",
 			_ => Model.Name
+		});
+
+		sb.Append(CultureInfo.CurrentCulture.Name switch
+		{
+			"ja-JP" => "",
+			_ => " "
 		});
 
 		sb.Append(Model.Rank switch
