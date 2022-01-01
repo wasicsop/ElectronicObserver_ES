@@ -15,6 +15,9 @@ public class AnchorableViewModel : ObservableObject
 	public bool IsActive { get; set; }
 	public ImageSource? IconSource { get; set; }
 
+	public bool CanFloat { get; set; }
+	public bool CanClose { get; set; }
+
 	public virtual ICommand CloseCommand { get; }
 
 	protected AnchorableViewModel(string title, string contentId, ImageSource? icon = null)
@@ -22,6 +25,6 @@ public class AnchorableViewModel : ObservableObject
 		Title = title;
 		ContentId = contentId;
 		IconSource = icon;
-		CloseCommand = new RelayCommand(() => Visibility = Visibility.Collapsed);
+		CloseCommand = new RelayCommand(() => Visibility = Visibility.Collapsed, () => CanClose);
 	}
 }

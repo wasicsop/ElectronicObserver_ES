@@ -65,6 +65,7 @@ public partial class FormMainViewModel : ObservableObject
 	public int GridSplitterSize { get; set; } = 1;
 	public bool CanChangeGridSplitterSize { get; set; }
 	public bool LockLayout { get; set; }
+	public bool CanAutoHide => !LockLayout;
 
 	private string LayoutFolder => @"Settings\Layout";
 	private string DefaultLayoutPath => Path.Combine(LayoutFolder, "Default.xml");
@@ -620,6 +621,8 @@ public partial class FormMainViewModel : ObservableObject
 		window.Width = Position.Width;
 		window.Height = Position.Height;
 		window.WindowState = Position.WindowState;
+
+		SetAnchorableProperties();
 	}
 
 	private string LayoutFilter => "Layout File|*.xml";
@@ -1490,6 +1493,14 @@ public partial class FormMainViewModel : ObservableObject
 		*/
 	}
 
+	private void SetAnchorableProperties()
+	{
+		foreach (AnchorableViewModel view in Views)
+		{
+			view.CanFloat = !LockLayout;
+			view.CanClose = !LockLayout;
+		}
+	}
 
 	private void SetFont()
 	{

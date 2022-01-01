@@ -62,7 +62,7 @@
 					Focusable="False"
 					Style="{StaticResource AvalonDockThemeVs2013ButtonStyle}"
 					ToolTip="{x:Static avalonDockProperties:Resources.Anchorable_BtnAutoHide_Hint}"
-					Visibility="{Binding Path=IsEnabled, RelativeSource={RelativeSource Self}, Mode=OneWay, Converter={BoolToVisibilityConverter}}"
+					Visibility="{Binding DataContext.CanAutoHide, ElementName=FormMainWpfControl, Converter={BoolToVisibilityConverter}}"
 					>
 					<Path
 						x:Name="PART_ImgAutoHidePin"
@@ -687,7 +687,8 @@
 							<Setter Property="Visibility" Value="{Binding Model.Visibility, Mode=TwoWay}" />
 							<Setter Property="IsSelected" Value="{Binding Model.IsSelected, Mode=TwoWay}" />
 							<Setter Property="IsActive" Value="{Binding Model.IsActive, Mode=TwoWay}" />
-							<Setter Property="CanClose" Value="True" />
+							<Setter Property="CanFloat" Value="{Binding Model.CanFloat}" />
+							<Setter Property="CanClose" Value="{Binding Model.CanClose, Mode=TwoWay}" />
 							<Setter Property="CanHide" Value="False" />
 							<Setter Property="CloseCommand" Value="{Binding Model.CloseCommand}" />
 						</Style>
