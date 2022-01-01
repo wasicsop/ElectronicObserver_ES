@@ -195,13 +195,13 @@ Are you sure?</value>
     <value>&amp;Layout</value>
   </data>
   <data name="File_Layout_Change" xml:space="preserve">
-    <value>&amp;Change Layout...</value>
+    <value>Save &amp;as...</value>
   </data>
   <data name="File_Layout_Load" xml:space="preserve">
-    <value>&amp;Reload Layout</value>
+    <value>&amp;Load</value>
   </data>
   <data name="File_Layout_LockLayout" xml:space="preserve">
-    <value>Lock Layout (&amp;T)</value>
+    <value>Lock layout (&amp;T)</value>
   </data>
   <data name="File_Layout_Open" xml:space="preserve">
     <value>&amp;Open...</value>
