@@ -1484,6 +1484,7 @@ public partial class FormMainViewModel : ObservableObject
 			true => 0,
 			_ => 1
 		};
+		SetAnchorableProperties();
 		Topmost = c.Life.TopMost;
 		/*
 		StripMenu_File_Notification_MuteAll.Checked = Notifier.NotifierManager.Instance.GetNotifiers().All(n => n.IsSilenced);
