@@ -73,6 +73,7 @@ public partial class GroupConditionViewModel : ObservableObject, IConditionViewM
 			ShipTypeConditionModel g => new ShipTypeConditionViewModel(g),
 			PartialShipConditionModel p => new PartialShipConditionViewModel(p),
 			AllowedShipTypesConditionModel a => new AllowedShipTypesConditionViewModel(a),
+			ShipPositionConditionModel p => new ShipPositionConditionViewModel(p),
 		}).ToList();
 
 		foreach (IConditionViewModel condition in conditions)
@@ -98,6 +99,7 @@ public partial class GroupConditionViewModel : ObservableObject, IConditionViewM
 			ConditionType.ShipType => new ShipTypeConditionModel(),
 			ConditionType.PartialShip => new PartialShipConditionModel(),
 			ConditionType.AllowedShipTypes => new AllowedShipTypesConditionModel(),
+			ConditionType.ShipPosition => new ShipPositionConditionModel(),
 
 			_ => throw new NotImplementedException(),
 		});

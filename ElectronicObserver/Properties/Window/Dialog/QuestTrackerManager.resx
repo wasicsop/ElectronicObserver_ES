@@ -203,4 +203,10 @@
   <data name="ConditionType_AllowedShipTypes" xml:space="preserve">
     <value>許可艦種</value>
   </data>
+  <data name="ConditionType_ShipPosition" xml:space="preserve">
+    <value>艦位置</value>
+  </data>
+  <data name="Position" xml:space="preserve">
+    <value>位置</value>
+  </data>
 </root>

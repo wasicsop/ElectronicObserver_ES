@@ -106,6 +106,15 @@ namespace ElectronicObserver.Properties.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 艦位置.
+        /// </summary>
+        public static string ConditionType_ShipPosition {
+            get {
+                return ResourceManager.GetString("ConditionType_ShipPosition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 艦種.
         /// </summary>
         public static string ConditionType_ShipType {
@@ -183,6 +192,15 @@ namespace ElectronicObserver.Properties.Window.Dialog {
         public static string Operator_Or {
             get {
                 return ResourceManager.GetString("Operator_Or", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 位置.
+        /// </summary>
+        public static string Position {
+            get {
+                return ResourceManager.GetString("Position", resourceCulture);
             }
         }
         

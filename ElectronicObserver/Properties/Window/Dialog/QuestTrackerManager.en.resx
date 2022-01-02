@@ -223,4 +223,10 @@ Do you want to overwrite these quest trackers?</value>
   <data name="ConditionType_AllowedShipTypes" xml:space="preserve">
     <value>Allowed ship types</value>
   </data>
+  <data name="ConditionType_ShipPosition" xml:space="preserve">
+    <value>Ship position</value>
+  </data>
+  <data name="Position" xml:space="preserve">
+    <value>Position</value>
+  </data>
 </root>
