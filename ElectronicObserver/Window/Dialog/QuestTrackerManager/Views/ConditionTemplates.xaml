@@ -182,9 +182,71 @@
 		</Border>
 	</DataTemplate>
 
+	<DataTemplate x:Key="AllowedShipTypesConditionTemplate" DataType="{x:Type conditions:AllowedShipTypesConditionViewModel}">
+		<DataTemplate.Resources>
+			<ResourceDictionary Source="Styles.xaml" />
+		</DataTemplate.Resources>
+		<Border
+			Margin="2"
+			BorderBrush="Gray"
+			BorderThickness="1"
+			>
+			<StackPanel>
+				<StackPanel Orientation="Horizontal">
+					<Button
+						Command="{Binding DataContext.RemoveConditionCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ItemsControl}}"
+						CommandParameter="{Binding Model}"
+						Content="ｘ"
+						/>
+
+					<TextBlock Text="{Binding Display}" />
+				</StackPanel>
+
+				<StackPanel Orientation="Horizontal">
+					<Button Command="{Binding AddTypeCommand}" Content="＋" />
+
+					<ComboBox
+						ItemTemplate="{StaticResource EnumDisplayerTemplate}"
+						ItemsSource="{Binding AllTypes}"
+						SelectedItem="{Binding SelectedType}"
+						/>
+
+				</StackPanel>
+
+				<StackPanel Orientation="Horizontal">
+					<ItemsControl ItemsSource="{Binding Model.Types}">
+						<ItemsControl.ItemsPanel>
+							<ItemsPanelTemplate>
+								<StackPanel Orientation="Horizontal" />
+							</ItemsPanelTemplate>
+						</ItemsControl.ItemsPanel>
+						<ItemsControl.ItemTemplate>
+							<DataTemplate>
+								<DataTemplate.Resources>
+									<ResourceDictionary Source="Styles.xaml" />
+								</DataTemplate.Resources>
+
+								<StackPanel Orientation="Horizontal">
+									<TextBlock Text="{Binding Converter={StaticResource EnumDisplayConverter}}" />
+
+									<Button
+										Command="{Binding DataContext.RemoveTypeCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ItemsControl}}"
+										CommandParameter="{Binding}"
+										Content="ｘ"
+										/>
+								</StackPanel>
+							</DataTemplate>
+						</ItemsControl.ItemTemplate>
+					</ItemsControl>
+				</StackPanel>
+			</StackPanel>
+		</Border>
+	</DataTemplate>
+
 
 	<questTrackerManager:ConditionTemplateSelector
 		x:Key="ConditionTemplateSelector"
+		AllowedShipTypes="{StaticResource AllowedShipTypesConditionTemplate}"
 		Group="{StaticResource GroupConditionTemplate}"
 		PartialShip="{StaticResource PartialShipConditionTemplate}"
 		Ship="{StaticResource ShipConditionTemplate}"

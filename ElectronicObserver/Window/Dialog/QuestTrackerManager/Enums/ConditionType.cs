@@ -12,4 +12,6 @@ public enum ConditionType
 	ShipType,
 	[Display(ResourceType = typeof(Properties.Window.Dialog.QuestTrackerManager), Name = "ConditionType_PartialShip")]
 	PartialShip,
+	[Display(ResourceType = typeof(Properties.Window.Dialog.QuestTrackerManager), Name = "ConditionType_AllowedShipTypes")]
+	AllowedShipTypes,
 }

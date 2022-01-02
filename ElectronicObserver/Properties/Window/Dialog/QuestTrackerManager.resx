@@ -200,4 +200,7 @@
   <data name="QuestTaskType_NodeReach" xml:space="preserve">
     <value>ノード到達</value>
   </data>
+  <data name="ConditionType_AllowedShipTypes" xml:space="preserve">
+    <value>許可艦種</value>
+  </data>
 </root>

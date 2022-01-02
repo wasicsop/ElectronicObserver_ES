@@ -70,6 +70,15 @@ namespace ElectronicObserver.Properties.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 許可艦種.
+        /// </summary>
+        public static string ConditionType_AllowedShipTypes {
+            get {
+                return ResourceManager.GetString("ConditionType_AllowedShipTypes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to グループ.
         /// </summary>
         public static string ConditionType_Group {

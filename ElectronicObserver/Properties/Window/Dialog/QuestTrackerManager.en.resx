@@ -220,4 +220,7 @@ Do you want to overwrite these quest trackers?</value>
   <data name="QuestTaskType_NodeReach" xml:space="preserve">
     <value>Node reach</value>
   </data>
+  <data name="ConditionType_AllowedShipTypes" xml:space="preserve">
+    <value>Allowed ship types</value>
+  </data>
 </root>
