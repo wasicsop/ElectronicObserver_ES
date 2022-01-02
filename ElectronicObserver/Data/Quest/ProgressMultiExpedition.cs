@@ -55,7 +55,7 @@ public class ProgressMultiExpedition : ProgressData
 		if (ProgressList.All(p => p.IsCleared))
 			return "100%";
 		else
-			return string.Join("\r\n", ProgressList.Where(p => !p.IsCleared).Select(p => p.ToString() + " " + p.GetClearCondition()));
+			return string.Join(" \r\n", ProgressList.Where(p => !p.IsCleared).Select(p => p.ToString() + " " + p.GetClearCondition()));
 	}
 
 
