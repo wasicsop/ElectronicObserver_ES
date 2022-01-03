@@ -266,7 +266,7 @@ public sealed class APIObserver
 					control.BeginInvoke((Action)(() => { LoadRequest(url, body); }));
 					break;
 				case System.Windows.Controls.Control control:
-					control.Dispatcher.BeginInvoke((Action)(() => { LoadRequest(url, body); }));
+					control.Dispatcher.Invoke(() => LoadRequest(url, body));
 					break;
 			}
 		}
@@ -398,7 +398,7 @@ public sealed class APIObserver
 					control.BeginInvoke((Action)(() => { LoadResponse(url, body); }));
 					break;
 				case System.Windows.Controls.Control control:
-					control.Dispatcher.BeginInvoke((Action)(() => LoadResponse(url, body)));
+					control.Dispatcher.Invoke(() => LoadResponse(url, body));
 					break;
 			}
 		}
