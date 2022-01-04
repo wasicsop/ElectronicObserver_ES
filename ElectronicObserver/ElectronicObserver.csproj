@@ -346,6 +346,9 @@
 		  <AutoGen>True</AutoGen>
 		  <DependentUpon>Menus.resx</DependentUpon>
 		</Compile>
+		<Compile Update="Window\Wpf\ShipGroupWinforms\FormShipGroup.cs">
+		  <SubType>Form</SubType>
+		</Compile>
 		<None Include=".editorconfig" />
 		<None Update="Assets.zip">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
