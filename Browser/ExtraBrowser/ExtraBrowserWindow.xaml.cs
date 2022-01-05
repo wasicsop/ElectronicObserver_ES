@@ -2,8 +2,11 @@
 using System.Drawing;
 using System.IO;
 using System.Windows;
+using System.Windows.Input;
+using System.Windows.Shapes;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Web.WebView2.Core;
+using Microsoft.Web.WebView2.Wpf;
 using Windows.Graphics.Imaging;
 
 namespace Browser.ExtraBrowser;
@@ -17,22 +20,24 @@ public partial class ExtraBrowserWindow : Window
 	public ExtraBrowserWindow()
 	{
 		FormBrowser = App.Current.Services.GetService<FormBrowserTranslationViewModel>()!;
-		Environment.SetEnvironmentVariable("WEBVIEW2_ADDITIONAL_BROWSER_ARGUMENTS", "--proxy-server=\"http=127.0.0.1:40621\"");
 		InitializeComponent();
 		InitializeAsync();
 	}
 
 	private async void InitializeAsync()
 	{
-		CoreWebView2Environment env = await CoreWebView2Environment.CreateAsync();
-		await Browser.EnsureCoreWebView2Async(null);
-		Browser.CoreWebView2.WebResourceRequested += CoreWebView2_WebResourceRequested;
-		Browser.CoreWebView2.WebMessageReceived += UpdateAddressBar;
-		Browser.CoreWebView2.AddWebResourceRequestedFilter("*", CoreWebView2WebResourceContext.Script);
-		Browser.CoreWebView2.NavigationCompleted += OnNavigationCompleted;
-		Browser.CoreWebView2.FrameCreated += OnFrameCreated;
-		SetCookie();
-		Browser.CoreWebView2.Navigate("http://www.dmm.com/netgame/social/-/gadgets/=/app_id=854854/");
+		var path = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "temp_browser");
+		var env = await CoreWebView2Environment.CreateAsync(userDataFolder: path);
+
+		await Browser.EnsureCoreWebView2Async(env);
+		//Browser.CoreWebView2.WebResourceRequested += CoreWebView2_WebResourceRequested;
+		//Browser.CoreWebView2.AddWebResourceRequestedFilter("*", CoreWebView2WebResourceContext.Script);
+		//Browser.CoreWebView2.NavigationCompleted += OnNavigationCompleted;
+		//Browser.CoreWebView2.FrameCreated += OnFrameCreated;
+		//SetCookie();
+		//Browser.CoreWebView2.Navigate("http://www.dmm.com/netgame/social/-/gadgets/=/app_id=854854/");
+		Browser.Source = new Uri("http://www.duckduckgo.com");
+		txtBoxAddress.Text = "http://www.duckduckgo.com";
 	}
 
 	private void OnNavigationCompleted(object? sender, CoreWebView2NavigationCompletedEventArgs e)
@@ -86,23 +91,21 @@ public partial class ExtraBrowserWindow : Window
 	private void DmmPointsButtonClick(object sender, RoutedEventArgs e)
 	{
 		Browser.CoreWebView2.Navigate("https://point.dmm.com/choice/pay");
+		txtBoxAddress.Text = "https://point.dmm.com/choice/pay";
 	}
 
 	private void AkashiListButtonClick(object sender, RoutedEventArgs e)
 	{
 		Browser.CoreWebView2.Navigate("https://akashi-list.me/");
+		txtBoxAddress.Text = "https://akashi-list.me/";
 	}
+
 
 	private void ShowDevToolsMenuItemClick(object sender, RoutedEventArgs e)
 	{
 		Browser.CoreWebView2.OpenDevToolsWindow();
 	}
-	private void UpdateAddressBar(object sender, CoreWebView2WebMessageReceivedEventArgs args)
-	{
-		String uri = args.TryGetWebMessageAsString();
-		txtBoxAddress.Text = uri;
-		Browser.CoreWebView2.PostWebMessageAsString(uri);
-	}
+
 	private void BackButtonClick(object sender, RoutedEventArgs e)
 	{
 		if (Browser.CoreWebView2.CanGoBack)
@@ -123,7 +126,6 @@ public partial class ExtraBrowserWindow : Window
 		{
 			if (gameframe != null)
 			{
-
 				Browser.ExecuteScriptAsync(String.Format(Properties.Resources.PageScript, StyleClassID));
 				gameframe.ExecuteScriptAsync(String.Format(Properties.Resources.FrameScript, StyleClassID));
 				gameframe.ExecuteScriptAsync("document.body.style.backgroundColor = \"#000000\";");
@@ -134,12 +136,22 @@ public partial class ExtraBrowserWindow : Window
 			}
 		}
 	}
-	private async void ScreenShotButtonClick(object sender, RoutedEventArgs e)
+	private void BoxAddressKeyDown(object sender, KeyEventArgs e)
 	{
-		using (FileStream fileStream = File.Create("output.png"))
+		if (e.Key == Key.Enter)
 		{
-			await Browser.CoreWebView2.CapturePreviewAsync(CoreWebView2CapturePreviewImageFormat.Png, fileStream).ConfigureAwait(false);
-			await fileStream.FlushAsync().ConfigureAwait(false);
+			if (Browser != null && Browser.CoreWebView2 != null)
+			{
+				var url = txtBoxAddress.Text;
+				if (Uri.IsWellFormedUriString(url, UriKind.Absolute))
+				{
+					Browser?.CoreWebView2.Navigate(url);
+				}
+				else
+				{
+					e.Handled = true;
+				}
+			}
 		}
 	}
 }

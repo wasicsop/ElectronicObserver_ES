@@ -44,7 +44,6 @@
 				<ColumnDefinition Width="Auto" />
 				<ColumnDefinition Width="Auto" />
 				<ColumnDefinition Width="Auto" />
-				<ColumnDefinition Width="Auto" />
 				<ColumnDefinition />
 			</Grid.ColumnDefinitions>
 			<Button
@@ -59,7 +58,6 @@
 				/>
 			<Button
 				Grid.Column="2"
-				Width="4"
 				Margin="2 5 0 5"
 				HorizontalAlignment="Left"
 				Click="DmmPointsButtonClick"
@@ -70,17 +68,13 @@
 				Click="AkashiListButtonClick"
 				Content="{Binding FormBrowser.AkashiList, ElementName=ExtraBrowser}"
 				/>
-			<Button
-				Grid.Column="4"
-				Click="ScreenShotButtonClick"
-				Content="ScreenShot"
-				/>
 			<TextBox
 				x:Name="txtBoxAddress"
-				Grid.Column="5"
+				Grid.Column="4"
 				BorderBrush="Gray"
 				BorderThickness="1"
 				FontSize="12"
+				KeyDown="BoxAddressKeyDown"
 				/>
 		</Grid>
 		<Border
@@ -88,7 +82,7 @@
 			BorderBrush="Gray"
 			BorderThickness="0 1"
 			>
-			<wv2:WebView2 x:Name="Browser" Source="https://www.duckduckgo.com" />
+			<wv2:WebView2 Name="Browser" />
 		</Border>
 		<StatusBar
 			Grid.Row="3"
