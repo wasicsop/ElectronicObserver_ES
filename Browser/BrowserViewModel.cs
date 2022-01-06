@@ -238,7 +238,7 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 		HeartbeatTimer.Start();
 
 		SetIconResource();
-		Browser = new WebView2 { };
+		Browser = new WebView2();
 		InitializeAsync();
 	}
 
@@ -250,7 +250,13 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 	{
 		if (Browser.CoreWebView2 != null) return;
 		if (ProxySettings == null) return;
-		Environment.SetEnvironmentVariable("WEBVIEW2_ADDITIONAL_BROWSER_ARGUMENTS", $"--proxy-server=\"" + ProxySettings + "\" --disable-features=\"HardwareMediaKeyHandling\"");
+		string colorArgs = "";
+		if (Configuration.ForceColorProfile)
+		{
+			colorArgs = @"--force-color-profile=""sRGB""";
+		}
+
+		Environment.SetEnvironmentVariable("WEBVIEW2_ADDITIONAL_BROWSER_ARGUMENTS", $"--proxy-server=\"{ProxySettings}\" --disable-features=\"HardwareMediaKeyHandling\" " + colorArgs);
 		Environment.SetEnvironmentVariable("WEBVIEW2_USER_DATA_FOLDER", BrowserCachePath);
 		await Browser.EnsureCoreWebView2Async(null);
 		Browser.Source = new Uri("about:blank");
@@ -261,11 +267,31 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 		Browser.CoreWebView2.FrameCreated += CoreWebView2_FrameCreated;
 		Browser.CoreWebView2.NavigationStarting += CoreWebView2_NavigationStarted;
 		Browser.CoreWebView2.ProcessFailed += CoreWebView2_ProcessFailed;
-		//Browser.CoreWebView2.Settings.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:95.0) Gecko/20100101 Firefox/95.0";
+		Browser.PreviewKeyDown += Browser_PreviewKeyDown;
 		SetCookie();
 		Browser.CoreWebView2.Navigate(KanColleUrl);
 	}
 
+	private void Browser_PreviewKeyDown(object sender, KeyEventArgs e)
+	{
+		if (Browser.CoreWebView2 == null) return;
+		switch (e.Key)
+		{
+			case Key.F5:
+				RefreshCommand.Execute(null);
+				break;
+			case Key.F12:
+				OpenDevtoolsCommand.Execute(null);
+				break;
+			case Key.F2:
+				ScreenshotCommand.Execute(null);
+				break;
+			case Key.F7:
+				MuteCommand.Execute(null);
+				break;
+		}
+
+	}
 
 	private void CoreWebView2_ProcessFailed(object? sender, CoreWebView2ProcessFailedEventArgs e)
 	{
