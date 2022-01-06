@@ -322,13 +322,13 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 
 		if (e.Uri.Contains(@"/rt.gsspat.jp/"))
 		{
-				e.Cancel = true;
-			}
+			e.Cancel = true;
+		}
 		if (new Uri(e.Uri).Host.Contains("accounts.google.com"))
 		{
-				var settings = Browser.CoreWebView2.Settings;
-				settings.UserAgent = "Chrome";
-			}
+			var settings = Browser.CoreWebView2.Settings;
+			settings.UserAgent = "Chrome";
+		}
 		if (gameframe != null)
 		{
 			e.Cancel = true;
@@ -351,7 +351,7 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 		{
 			e.Request.Uri = e.Request.Uri.Replace("http://203.104.209.7/gadget_html5/", "https://kcwiki.github.io/cache/gadget_html5/");
 		}
-		if (e.Request.Uri.Contains(@"kcs2/resources/bgm/"))
+		if (e.Request.Uri.Contains("/kcs2/resources/bgm/"))
 		{
 			//not working in webview2
 			//e.Request.Headers.RemoveHeader("Range");
@@ -945,7 +945,7 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 	private void ToolMenu_Other_OpenDevTool_Click()
 	{
 		if (Browser is not { IsInitialized: true }) return;
-
+		if (Browser.CoreWebView2 is null) return;
 		Browser.CoreWebView2.OpenDevToolsWindow();
 	}
 
