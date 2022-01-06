@@ -292,21 +292,17 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 
 	private void CoreWebView2_NavigationStarted(object? sender, CoreWebView2NavigationStartingEventArgs e)
 	{
+		if (Browser.CoreWebView2 == null) return;
+
 		if (e.Uri.Contains(@"/rt.gsspat.jp/"))
 		{
-			if (Browser.CoreWebView2 != null)
-			{
 				e.Cancel = true;
 			}
-		}
 		if (new Uri(e.Uri).Host.Contains("accounts.google.com"))
 		{
-			if (Browser.CoreWebView2 != null)
-			{
 				var settings = Browser.CoreWebView2.Settings;
 				settings.UserAgent = "Chrome";
 			}
-		}
 		if (gameframe != null)
 		{
 			e.Cancel = true;
