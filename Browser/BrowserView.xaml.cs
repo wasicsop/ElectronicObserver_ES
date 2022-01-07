@@ -1,12 +1,6 @@
-﻿using System;
-using System.Security.Policy;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using BrowserLibCore;
-using CefSharp.Internals;
-using Microsoft.Web.WebView2.Core;
-using Microsoft.Web.WebView2.Wpf;
 namespace Browser;
 
 /// <summary>

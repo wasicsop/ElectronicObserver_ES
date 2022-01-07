@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Drawing;
-using System.IO;
 using System.Windows;
 using System.Windows.Input;
-using System.Windows.Shapes;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Web.WebView2.Core;
-using Microsoft.Web.WebView2.Wpf;
-using Windows.Graphics.Imaging;
 
 namespace Browser.ExtraBrowser;
 
