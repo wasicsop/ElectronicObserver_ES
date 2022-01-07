@@ -21,16 +21,6 @@ namespace ElectronicObserver.Window.Wpf.ShipGroupWinforms;
 
 public partial class FormShipGroup : DockContent
 {
-
-
-	/// <summary>タブ背景色(アクティブ)</summary>
-	private readonly Color TabActiveColor = Color.FromArgb(0xFF, 0xFF, 0xCC);
-
-	/// <summary>タブ背景色(非アクティブ)</summary>
-	private readonly Color TabInactiveColor = SystemColors.Control;
-
-
-
 	// セル背景色
 	private readonly Color CellColorRed = Color.FromArgb(0xFF, 0xBB, 0xBB);
 	private readonly Color CellColorOrange = Color.FromArgb(0xFF, 0xDD, 0xBB);
@@ -47,26 +37,24 @@ public partial class FormShipGroup : DockContent
 		CSRedRight, CSOrangeRight, CSYellowRight, CSGreenRight, CSGrayRight, CSCherryRight,
 		CSBlueRight, CSPurpleRight, CSCyanRight, CSIsLocked;
 
-	/// <summary>選択中のタブ</summary>
-	private ImageLabel SelectedTab = null;
-
 	/// <summary>選択中のグループ</summary>
-	private ShipGroupData CurrentGroup => SelectedTab == null ? null : KCDatabase.Instance.ShipGroup[(int)SelectedTab.Tag];
-
+	private ShipGroupData? CurrentGroup => ViewModel.SelectedGroup?.Group;
 
 	private bool IsRowsUpdating;
-	private int _splitterDistance;
 	private int _shipNameSortMethod;
 
+	private ShipGroupWinformsViewModel ViewModel { get; }
+	public DataGridView DataGrid => ShipView;
 
-	public FormShipGroup(FormMain parent)
+	public FormShipGroup(FormMain parent, ShipGroupWinformsViewModel viewModel)
 	{
+		ViewModel = viewModel;
+
 		InitializeComponent();
 
 		ControlHelper.SetDoubleBuffered(ShipView);
 
 		IsRowsUpdating = true;
-		_splitterDistance = -1;
 
 		foreach (DataGridViewColumn column in ShipView.Columns)
 		{
@@ -153,6 +141,13 @@ public partial class FormShipGroup : DockContent
 		SystemEvents.SystemShuttingDown += SystemShuttingDown;
 
 		Translate();
+
+		ViewModel.PropertyChanged += (_, args) =>
+		{
+			if (args.PropertyName is not nameof(ShipGroupWinformsViewModel.SelectedGroup)) return;
+
+			ChangeShipView(ViewModel.SelectedGroup, ViewModel.PreviousGroup);
+		};
 	}
 
 	public void Translate()
@@ -233,13 +228,6 @@ public partial class FormShipGroup : DockContent
 		MenuMember_SortOrder.Text = Translation.MenuMember_SortOrder;
 		MenuMember_CSVOutput.Text = Translation.MenuMember_CSVOutput;
 
-		MenuGroup_Add.Text = Translation.MenuGroup_Add;
-		MenuGroup_Copy.Text = Translation.MenuGroup_Copy;
-		MenuGroup_Rename.Text = Translation.MenuGroup_Rename;
-		MenuGroup_Delete.Text = Translation.MenuGroup_Delete;
-		MenuGroup_AutoUpdate.Text = Translation.MenuGroup_AutoUpdate;
-		MenuGroup_ShowStatusBar.Text = Translation.MenuGroup_ShowStatusBar;
-
 		Text = Translation.Title;
 	}
 
@@ -261,18 +249,16 @@ public partial class FormShipGroup : DockContent
 			for (int i = 0; i < ShipView.Columns.Count; i++)
 			{
 				var newdata = new ShipGroupData.ViewColumnData(ShipView.Columns[i]);
-				if (SelectedTab == null)
+				if (ViewModel.SelectedGroup == null)
 					newdata.Visible = true;     //初期状態では全行が非表示のため
 				group.ViewColumns.Add(ShipView.Columns[i].Name, newdata);
 			}
 		}
 
-
 		foreach (var g in groups.ShipGroups.Values)
 		{
-			TabPanel.Controls.Add(CreateTabLabel(g.GroupID));
+			ViewModel.Groups.Add(new(g));
 		}
-
 
 		//*/
 		{
@@ -299,7 +285,6 @@ public partial class FormShipGroup : DockContent
 
 		IsRowsUpdating = false;
 		Icon = ResourceManager.ImageToIcon(ResourceManager.Instance.Icons.Images[(int)IconContent.FormShipGroup]);
-
 	}
 
 
@@ -308,7 +293,7 @@ public partial class FormShipGroup : DockContent
 
 		var config = Utility.Configuration.Config;
 
-		ShipView.Font = StatusBar.Font = Font = config.UI.MainFont;
+		ShipView.Font = Font = config.UI.MainFont;
 
 		CSDefaultLeft.Font =
 			CSDefaultCenter.Font =
@@ -322,11 +307,6 @@ public partial class FormShipGroup : DockContent
 											CSIsLocked.Font =
 												config.UI.MainFont;
 
-		foreach (System.Windows.Forms.Control c in TabPanel.Controls)
-			c.Font = Font;
-
-		MenuGroup_AutoUpdate.Checked = config.FormShipGroup.AutoUpdate;
-		MenuGroup_ShowStatusBar.Checked = config.FormShipGroup.ShowStatusBar;
 		_shipNameSortMethod = config.FormShipGroup.ShipNameSortMethod;
 
 
@@ -355,75 +335,12 @@ public partial class FormShipGroup : DockContent
 
 	}
 
-
-	// レイアウトロード時に呼ばれる
-	public void ConfigureFromPersistString(string persistString)
-	{
-
-		string[] args = persistString.Split("?=&".ToCharArray());
-
-		for (int i = 1; i < args.Length - 1; i += 2)
-		{
-			switch (args[i])
-			{
-				case "SplitterDistance":
-					// 直接変えるとサイズが足りないか何かで変更が適用されないことがあるため、 Resize イベント中に変更する(ために値を記録する)
-					// しかし Resize イベントだけだと呼ばれないことがあるため、直接変えてもおく
-					// つらい
-					splitContainer1.SplitterDistance = _splitterDistance = int.Parse(args[i + 1]);
-					break;
-			}
-		}
-	}
-
-
-	protected override string GetPersistString() => "ShipGroup?SplitterDistance=" + splitContainer1.SplitterDistance;
-
-
-
-	/// <summary>
-	/// 指定したグループIDに基づいてタブ ラベルを生成します。
-	/// </summary>
-	private ImageLabel CreateTabLabel(int id)
-	{
-
-		ImageLabel label = new ImageLabel
-		{
-			Text = KCDatabase.Instance.ShipGroup[id].Name,
-			Anchor = AnchorStyles.Left,
-			Font = ShipView.Font,
-			BackColor = TabInactiveColor,
-			BorderStyle = BorderStyle.FixedSingle,
-			Padding = new Padding(4, 4, 4, 4),
-			Margin = new Padding(0, 0, 0, 0),
-			ImageAlign = ContentAlignment.MiddleCenter,
-			AutoSize = true,
-			Cursor = Cursors.Hand
-		};
-
-		//イベントと固有IDの追加(内部データとの紐付)
-		label.Click += TabLabel_Click;
-		label.MouseDown += TabLabel_MouseDown;
-		label.MouseMove += TabLabel_MouseMove;
-		label.MouseUp += TabLabel_MouseUp;
-		label.ContextMenuStrip = MenuGroup;
-		label.Tag = id;
-
-		return label;
-	}
-
-
-
-
-	void TabLabel_Click(object sender, EventArgs e)
-	{
-		ChangeShipView(sender as ImageLabel);
-	}
-
 	private void APIUpdated(string apiname, dynamic data)
 	{
-		if (MenuGroup_AutoUpdate.Checked)
-			ChangeShipView(SelectedTab);
+		if (ViewModel.AutoUpdate)
+		{
+			ChangeShipView(ViewModel.SelectedGroup, ViewModel.PreviousGroup);
+		}
 	}
 
 
@@ -597,13 +514,8 @@ public partial class FormShipGroup : DockContent
 	/// 指定したタブのグループのShipViewを作成します。
 	/// </summary>
 	/// <param name="target">作成するビューのグループデータ</param>
-	private void BuildShipView(ImageLabel target)
+	private void BuildShipView(ShipGroupData group)
 	{
-		if (target == null)
-			return;
-
-		ShipGroupData group = KCDatabase.Instance.ShipGroup[(int)target.Tag];
-
 		IsRowsUpdating = true;
 		ShipView.SuspendLayout();
 
@@ -680,9 +592,9 @@ public partial class FormShipGroup : DockContent
 			int expsum = group.MembersInstance.Sum(s => s?.ExpTotal ?? 0);
 			double expAverage = expsum / Math.Max(membersCount, 1.0);
 
-			Status_ShipCount.Text = string.Format(Translation.ShipCount, group.Members.Count);
-			Status_LevelTotal.Text = string.Format(Translation.TotalAndAverageLevel, levelsum, levelAverage);
-			Status_LevelAverage.Text = string.Format(Translation.TotalAndAverageExp, expsum, expAverage);
+			ViewModel.ShipCountText = string.Format(Translation.ShipCount, group.Members.Count);
+			ViewModel.LevelTotalText = string.Format(Translation.TotalAndAverageLevel, levelsum, levelAverage);
+			ViewModel.LevelAverageText = string.Format(Translation.TotalAndAverageExp, expsum, expAverage);
 		}
 	}
 
@@ -690,14 +602,12 @@ public partial class FormShipGroup : DockContent
 	/// <summary>
 	/// ShipViewを指定したタブに切り替えます。
 	/// </summary>
-	private void ChangeShipView(ImageLabel target)
+	private void ChangeShipView(ShipGroupItem? groupItem, ShipGroupItem? previousGroupItem)
 	{
+		ShipGroupData? group = groupItem?.Group;
+		ShipGroupData? previousGroup = previousGroupItem?.Group;
 
-		if (target == null) return;
-
-
-		var group = KCDatabase.Instance.ShipGroup[(int)target.Tag];
-		var currentGroup = CurrentGroup;
+		var currentGroup = previousGroup;
 
 		int headIndex = 0;
 		List<int> selectedIDList = new List<int>();
@@ -725,16 +635,7 @@ public partial class FormShipGroup : DockContent
 			}
 		}
 
-
-		if (SelectedTab != null)
-			SelectedTab.BackColor = TabInactiveColor;
-
-		SelectedTab = target;
-
-
-		BuildShipView(SelectedTab);
-		SelectedTab.BackColor = TabActiveColor;
-
+		BuildShipView(group);
 
 		if (0 <= headIndex && headIndex < ShipView.Rows.Count)
 		{
@@ -813,9 +714,9 @@ public partial class FormShipGroup : DockContent
 				var levels = ShipView.SelectedRows.Cast<DataGridViewRow>().Select(r => (int)r.Cells[ShipView_Level.Index].Value);
 				var exp = ShipView.SelectedRows.Cast<DataGridViewRow>().Select(r => (int)r.Cells[ShipView_Exp.Index].Value);
 
-				Status_ShipCount.Text = string.Format(Translation.SelectedShips, selectedShipCount, totalShipCount);
-				Status_LevelTotal.Text = string.Format(Translation.TotalAndAverageLevel, levels.Sum(), levels.Average());
-				Status_LevelAverage.Text = string.Format(Translation.TotalAndAverageExp, exp.Sum(), exp.Average());
+				ViewModel.ShipCountText = string.Format(Translation.SelectedShips, selectedShipCount, totalShipCount);
+				ViewModel.LevelTotalText = string.Format(Translation.TotalAndAverageLevel, levels.Sum(), levels.Average());
+				ViewModel.LevelAverageText = string.Format(Translation.TotalAndAverageExp, exp.Sum(), exp.Average());
 
 			}
 			else
@@ -826,17 +727,17 @@ public partial class FormShipGroup : DockContent
 				int expsum = group.MembersInstance.Sum(s => s?.ExpTotal ?? 0);
 				double expAverage = expsum / Math.Max(membersCount, 1.0);
 
-				Status_ShipCount.Text = string.Format(Translation.ShipCount, group.Members.Count);
-				Status_LevelTotal.Text = string.Format(Translation.TotalAndAverageLevel, levelsum, levelAverage);
-				Status_LevelAverage.Text = string.Format(Translation.TotalAndAverageExp, expsum, expAverage);
+				ViewModel.ShipCountText = string.Format(Translation.ShipCount, group.Members.Count);
+				ViewModel.LevelTotalText = string.Format(Translation.TotalAndAverageLevel, levelsum, levelAverage);
+				ViewModel.LevelAverageText = string.Format(Translation.TotalAndAverageExp, expsum, expAverage);
 			}
 
 		}
 		else
 		{
-			Status_ShipCount.Text =
-				Status_LevelTotal.Text =
-					Status_LevelAverage.Text = "";
+			ViewModel.ShipCountText =
+			ViewModel.LevelTotalText =
+			ViewModel.LevelAverageText = "";
 		}
 	}
 
@@ -1075,164 +976,12 @@ public partial class FormShipGroup : DockContent
 	}
 
 
-
-
-	#region メニュー:グループ操作
-
-	private void MenuGroup_Add_Click(object sender, EventArgs e)
-	{
-
-		using (var dialog = new DialogTextInput(Translation.DialogGroupAddTitle, Translation.DialogGroupAddDescription))
-		{
-
-			if (dialog.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
-			{
-
-				var group = KCDatabase.Instance.ShipGroup.Add();
-
-
-				group.Name = dialog.InputtedText.Trim();
-
-				for (int i = 0; i < ShipView.Columns.Count; i++)
-				{
-					var newdata = new ShipGroupData.ViewColumnData(ShipView.Columns[i]);
-					if (SelectedTab == null)
-						newdata.Visible = true;     //初期状態では全行が非表示のため
-					group.ViewColumns.Add(ShipView.Columns[i].Name, newdata);
-				}
-
-				TabPanel.Controls.Add(CreateTabLabel(group.GroupID));
-
-			}
-
-		}
-
-	}
-
-	private void MenuGroup_Copy_Click(object sender, EventArgs e)
-	{
-		//想定外
-		if (MenuGroup.SourceControl is not ImageLabel senderLabel) return;
-
-		using (var dialog = new DialogTextInput(Translation.DialogGroupCopyTitle, Translation.DialogGroupCopyDescription))
-		{
-
-			if (dialog.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
-			{
-
-				var group = KCDatabase.Instance.ShipGroup[(int)senderLabel.Tag].Clone();
-
-				group.GroupID = KCDatabase.Instance.ShipGroup.GetUniqueID();
-				group.Name = dialog.InputtedText.Trim();
-
-				KCDatabase.Instance.ShipGroup.ShipGroups.Add(group);
-
-				TabPanel.Controls.Add(CreateTabLabel(group.GroupID));
-
-			}
-		}
-
-	}
-
-	private void MenuGroup_Delete_Click(object sender, EventArgs e)
-	{
-		//想定外
-		if (MenuGroup.SourceControl is not ImageLabel senderLabel) return;
-
-		ShipGroupData group = KCDatabase.Instance.ShipGroup[(int)senderLabel.Tag];
-
-		if (group != null)
-		{
-			if (MessageBox.Show(string.Format(Translation.DialogGroupDeleteDescription, group.Name), Translation.DialogGroupDeleteTitle,
-					MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2)
-				== System.Windows.Forms.DialogResult.Yes)
-			{
-
-				if (SelectedTab == senderLabel)
-				{
-					ShipView.Rows.Clear();
-					SelectedTab = null;
-				}
-				KCDatabase.Instance.ShipGroup.ShipGroups.Remove(group);
-				TabPanel.Controls.Remove(senderLabel);
-				senderLabel.Dispose();
-			}
-
-		}
-		else
-		{
-			MessageBox.Show(Translation.DialogCouldNotDeleteGroupDescription, Translation.DialogErrorTitle, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-		}
-	}
-
-	private void MenuGroup_Rename_Click(object sender, EventArgs e)
-	{
-		if (MenuGroup.SourceControl is not ImageLabel senderLabel) return;
-
-		ShipGroupData group = KCDatabase.Instance.ShipGroup[(int)senderLabel.Tag];
-
-		if (group != null)
-		{
-
-			using (var dialog = new DialogTextInput(Translation.DialogGroupRenameTitle, Translation.DialogGroupRenameDescription))
-			{
-
-				dialog.InputtedText = group.Name;
-
-				if (dialog.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
-				{
-
-					group.Name = senderLabel.Text = dialog.InputtedText.Trim();
-
-				}
-			}
-
-		}
-		else
-		{
-			MessageBox.Show(Translation.DialogCouldNotRenameGroupDescription, Translation.DialogErrorTitle, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-		}
-
-	}
-
-
-	private void TabPanel_DoubleClick(object sender, EventArgs e)
-	{
-
-		MenuGroup_Add.PerformClick();
-
-	}
-
-
-
-	#endregion
-
-
 	#region メニューON/OFF操作
-	private void MenuGroup_Opening(object sender, CancelEventArgs e)
-	{
-
-		if (MenuGroup.SourceControl == TabPanel || SelectedTab == null)
-		{
-			MenuGroup_Add.Enabled = true;
-			MenuGroup_Copy.Enabled = false;
-			MenuGroup_Rename.Enabled = false;
-			MenuGroup_Delete.Enabled = false;
-		}
-		else
-		{
-			MenuGroup_Add.Enabled = true;
-			MenuGroup_Copy.Enabled = true;
-			MenuGroup_Rename.Enabled = true;
-			MenuGroup_Delete.Enabled = true;
-		}
-
-	}
 
 	private void MenuMember_Opening(object sender, CancelEventArgs e)
 	{
 
-		if (SelectedTab == null)
+		if (ViewModel.SelectedGroup is null)
 		{
 
 			e.Cancel = true;
@@ -1275,7 +1024,7 @@ public partial class FormShipGroup : DockContent
 	private void MenuMember_ColumnFilter_Click(object sender, EventArgs e)
 	{
 
-		ShipGroupData group = CurrentGroup;
+		ShipGroupData? group = CurrentGroup;
 
 		if (group == null)
 		{
@@ -1340,7 +1089,7 @@ public partial class FormShipGroup : DockContent
 						KCDatabase.Instance.ShipGroup.ShipGroups.Remove(id);
 						KCDatabase.Instance.ShipGroup.ShipGroups.Add(group);
 
-						ChangeShipView(SelectedTab);
+						ChangeShipView(ViewModel.SelectedGroup, ViewModel.PreviousGroup);
 					}
 				}
 			}
@@ -1459,7 +1208,9 @@ public partial class FormShipGroup : DockContent
 					group.AddInclusionFilter(GetSelectedShipID());
 
 					if (group.ID == CurrentGroup.ID)
-						ChangeShipView(SelectedTab);
+					{
+						ChangeShipView(ViewModel.SelectedGroup, ViewModel.PreviousGroup);
+					}
 				}
 
 			}
@@ -1487,8 +1238,11 @@ public partial class FormShipGroup : DockContent
 				for (int i = 0; i < ShipView.Columns.Count; i++)
 				{
 					var newdata = new ShipGroupData.ViewColumnData(ShipView.Columns[i]);
-					if (SelectedTab == null)
+					if (ViewModel.SelectedGroup == null)
+					{
 						newdata.Visible = true;     //初期状態では全行が非表示のため
+					}
+
 					group.ViewColumns.Add(ShipView.Columns[i].Name, newdata);
 				}
 
@@ -1499,7 +1253,7 @@ public partial class FormShipGroup : DockContent
 
 				group.AddInclusionFilter(ships);
 
-				TabPanel.Controls.Add(CreateTabLabel(group.GroupID));
+				ViewModel.Groups.Add(new(group));
 
 			}
 
@@ -1509,14 +1263,12 @@ public partial class FormShipGroup : DockContent
 	private void MenuMember_Exclude_Click(object sender, EventArgs e)
 	{
 
-		var group = CurrentGroup;
-		if (group != null)
-		{
+		ShipGroupData group = CurrentGroup;
+		if (group is null) return;
 
-			group.AddExclusionFilter(GetSelectedShipID());
+		group.AddExclusionFilter(GetSelectedShipID());
 
-			ChangeShipView(SelectedTab);
-		}
+		ChangeShipView(ViewModel.SelectedGroup, ViewModel.PreviousGroup);
 
 	}
 
@@ -1535,7 +1287,7 @@ public partial class FormShipGroup : DockContent
 
 		IEnumerable<ShipData> ships;
 
-		if (SelectedTab == null)
+		if (ViewModel.SelectedGroup is null)
 		{
 			ships = KCDatabase.Instance.Ships.Values;
 		}
@@ -1721,150 +1473,20 @@ public partial class FormShipGroup : DockContent
 
 	}
 
-
-
-
 	#endregion
-
-
-	#region タブ操作系
-
-	private Point? _tempMouse = null;
-	void TabLabel_MouseDown(object sender, MouseEventArgs e)
-	{
-		if (e.Button == System.Windows.Forms.MouseButtons.Left)
-		{
-			_tempMouse = TabPanel.PointToClient(e.Location);
-		}
-		else
-		{
-			_tempMouse = null;
-		}
-	}
-
-	void TabLabel_MouseMove(object sender, MouseEventArgs e)
-	{
-
-		if (_tempMouse != null)
-		{
-
-			Rectangle move = new Rectangle(
-				_tempMouse.Value.X - SystemInformation.DragSize.Width / 2,
-				_tempMouse.Value.Y - SystemInformation.DragSize.Height / 2,
-				SystemInformation.DragSize.Width,
-				SystemInformation.DragSize.Height
-			);
-
-			if (!move.Contains(TabPanel.PointToClient(e.Location)))
-			{
-				TabPanel.DoDragDrop(sender, DragDropEffects.All);
-				_tempMouse = null;
-			}
-		}
-
-	}
-
-	void TabLabel_MouseUp(object sender, MouseEventArgs e)
-	{
-		_tempMouse = null;
-	}
-
-
-	private void TabPanel_DragEnter(object sender, DragEventArgs e)
-	{
-
-		if (e.Data.GetDataPresent(typeof(ImageLabel)))
-		{
-			e.Effect = DragDropEffects.Move;
-		}
-		else
-		{
-			e.Effect = DragDropEffects.None;
-		}
-
-	}
-
-	private void TabPanel_QueryContinueDrag(object sender, QueryContinueDragEventArgs e)
-	{
-
-		//右クリックでキャンセル
-		if ((e.KeyState & 2) != 0)
-		{
-			e.Action = DragAction.Cancel;
-		}
-
-	}
-
-
-	private void TabPanel_DragDrop(object sender, DragEventArgs e)
-	{
-
-		//fixme:カッコカリ　範囲外にドロップすると端に行く
-
-		Point mp = TabPanel.PointToClient(new Point(e.X, e.Y));
-
-		var item = TabPanel.GetChildAtPoint(mp);
-
-		int index = TabPanel.Controls.GetChildIndex(item, false);
-
-		TabPanel.Controls.SetChildIndex((System.Windows.Forms.Control)e.Data.GetData(typeof(ImageLabel)), index);
-
-		TabPanel.Invalidate();
-
-	}
-
-	#endregion
-
-
-	private void MenuGroup_ShowStatusBar_CheckedChanged(object sender, EventArgs e)
-	{
-
-		StatusBar.Visible = MenuGroup_ShowStatusBar.Checked;
-
-	}
-
 
 
 	void SystemShuttingDown()
 	{
+		Utility.Configuration.Config.FormShipGroup.AutoUpdate = ViewModel.AutoUpdate;
+		Utility.Configuration.Config.FormShipGroup.ShowStatusBar = ViewModel.ShowStatusBar;
+		Utility.Configuration.Config.FormShipGroup.GroupHeight = ViewModel.GroupHeight.Value;
 
-		Utility.Configuration.Config.FormShipGroup.AutoUpdate = MenuGroup_AutoUpdate.Checked;
-		Utility.Configuration.Config.FormShipGroup.ShowStatusBar = MenuGroup_ShowStatusBar.Checked;
-
-
-
-		ShipGroupManager groups = KCDatabase.Instance.ShipGroup;
-
-
-		List<ImageLabel> list = TabPanel.Controls.OfType<ImageLabel>().OrderBy(c => TabPanel.Controls.GetChildIndex(c)).ToList();
-
-		for (int i = 0; i < list.Count; i++)
+		// update group IDs to match their current order
+		// the serializer saves groups ordered by ID to preserve user reordering
+		foreach ((ShipGroupData group, int i) in ViewModel.Groups.Select((g, i) => (g.Group, i)))
 		{
-
-			ShipGroupData group = groups[(int)list[i].Tag];
-			if (group != null)
-				group.GroupID = i + 1;
-		}
-
-	}
-
-
-	private void FormShipGroup_Resize(object sender, EventArgs e)
-	{
-		if (_splitterDistance != -1 && splitContainer1.Height > 0)
-		{
-			try
-			{
-				splitContainer1.SplitterDistance = _splitterDistance;
-				_splitterDistance = -1;
-
-			}
-			catch (Exception)
-			{
-				// *ぷちっ*
-			}
+			group.GroupID = i + 1;
 		}
 	}
-
-
 }

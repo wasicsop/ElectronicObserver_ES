@@ -10,6 +10,7 @@ using ElectronicObserver.Window.Wpf.FleetOverview;
 using ElectronicObserver.Window.Wpf.FleetPreset;
 using ElectronicObserver.Window.Wpf.Headquarters;
 using ElectronicObserver.Window.Wpf.ShipGroup.ViewModels;
+using ElectronicObserver.Window.Wpf.ShipGroupWinforms;
 using ElectronicObserver.Window.Wpf.WinformsHost;
 
 namespace ElectronicObserver.Window.Wpf;
@@ -19,6 +20,7 @@ public class ViewTemplateSelector : DataTemplateSelector
 	public DataTemplate? Fleet { get; set; }
 	public DataTemplate? FleetOverview { get; set; }
 	public DataTemplate? Group { get; set; }
+	public DataTemplate? GroupWinforms { get; set; }
 	public DataTemplate? FleetPreset { get; set; }
 
 	public DataTemplate? Dock { get; set; }
@@ -43,6 +45,7 @@ public class ViewTemplateSelector : DataTemplateSelector
 		FleetViewModel => Fleet,
 		FleetOverviewViewModel => FleetOverview,
 		ShipGroupViewModel => Group,
+		ShipGroupWinformsViewModel => GroupWinforms,
 		FleetPresetViewModel => FleetPreset,
 
 		DockViewModel => Dock,

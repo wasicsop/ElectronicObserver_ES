@@ -43,6 +43,7 @@ using ElectronicObserver.Window.Wpf.FleetOverview;
 using ElectronicObserver.Window.Wpf.FleetPreset;
 using ElectronicObserver.Window.Wpf.Headquarters;
 using ElectronicObserver.Window.Wpf.ShipGroup.ViewModels;
+using ElectronicObserver.Window.Wpf.ShipGroupWinforms;
 using ElectronicObserver.Window.Wpf.WinformsWrappers;
 using MessagePack;
 using Microsoft.Extensions.DependencyInjection;
@@ -138,7 +139,7 @@ public partial class FormMainViewModel : ObservableObject
 
 	public List<FleetViewModel> Fleets { get; }
 	public FleetOverviewViewModel FleetOverview { get; }
-	public FormShipGroupViewModel FormShipGroup { get; }
+	public ShipGroupWinformsViewModel FormShipGroup { get; }
 	public ShipGroupViewModel ShipGroup { get; }
 	public FleetPresetViewModel FleetPreset { get; }
 
@@ -398,7 +399,7 @@ public partial class FormMainViewModel : ObservableObject
 			Views.Add(fleet);
 		}
 		Views.Add(FleetOverview = new FleetOverviewViewModel(Fleets));
-		Views.Add(FormShipGroup = new FormShipGroupViewModel());
+		Views.Add(FormShipGroup = new ShipGroupWinformsViewModel());
 		// Views.Add(ShipGroup = new());
 		Views.Add(FleetPreset = new FleetPresetViewModel());
 
@@ -1451,10 +1452,10 @@ public partial class FormMainViewModel : ObservableObject
 			}
 		}*/
 
-		if (FormShipGroup.WinformsControl is not null)
+		if (FormShipGroup.ShipGroup is not null)
 		{
-			FormShipGroup.WinformsControl.BackColor = System.Drawing.SystemColors.Control;
-			FormShipGroup.WinformsControl.ForeColor = System.Drawing.SystemColors.ControlText;
+			FormShipGroup.ShipGroup.BackColor = System.Drawing.SystemColors.Control;
+			FormShipGroup.ShipGroup.ForeColor = System.Drawing.SystemColors.ControlText;
 		}
 
 		/*
