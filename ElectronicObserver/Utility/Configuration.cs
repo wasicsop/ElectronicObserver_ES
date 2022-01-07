@@ -1175,6 +1175,8 @@ public sealed class Configuration
 			/// </summary>
 			public int ShipNameSortMethod { get; set; }
 
+			public double GroupHeight { get; set; }
+
 			public ConfigFormShipGroup()
 			{
 				AutoUpdate = true;
