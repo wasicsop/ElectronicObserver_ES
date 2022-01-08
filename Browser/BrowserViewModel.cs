@@ -247,10 +247,11 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 		{
 			colorArgs = @"--force-color-profile=""sRGB""";
 		}
-
-		Environment.SetEnvironmentVariable("WEBVIEW2_ADDITIONAL_BROWSER_ARGUMENTS", $"--proxy-server=\"{ProxySettings}\" --disable-features=\"HardwareMediaKeyHandling\" " + colorArgs);
-		Environment.SetEnvironmentVariable("WEBVIEW2_USER_DATA_FOLDER", BrowserCachePath);
-		await Browser.EnsureCoreWebView2Async(null);
+		var corewebviewoptions = new CoreWebView2EnvironmentOptions() { AdditionalBrowserArguments = $"--proxy-server=\"{ProxySettings}\" --disable-features=\"HardwareMediaKeyHandling\" " + colorArgs };
+		var env = await CoreWebView2Environment.CreateAsync(null, userDataFolder: BrowserCachePath, options: corewebviewoptions);
+		//Environment.SetEnvironmentVariable("WEBVIEW2_ADDITIONAL_BROWSER_ARGUMENTS", $"--proxy-server=\"{ProxySettings}\" --disable-features=\"HardwareMediaKeyHandling\" " + colorArgs);
+		//Environment.SetEnvironmentVariable("WEBVIEW2_USER_DATA_FOLDER", BrowserCachePath);
+		await Browser.EnsureCoreWebView2Async(env);
 		Browser.Source = new Uri("about:blank");
 		Browser.CoreWebView2.WebResourceRequested += CoreWebView2_WebResourceRequested;
 		Browser.CoreWebView2.AddWebResourceRequestedFilter("*", CoreWebView2WebResourceContext.Script);
@@ -259,9 +260,19 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 		Browser.CoreWebView2.FrameCreated += CoreWebView2_FrameCreated;
 		Browser.CoreWebView2.NavigationStarting += CoreWebView2_NavigationStarted;
 		Browser.CoreWebView2.ProcessFailed += CoreWebView2_ProcessFailed;
+		Browser.CoreWebView2.ContextMenuRequested += CoreWebView2_ContextMenuRequested;
 		Browser.PreviewKeyDown += Browser_PreviewKeyDown;
 		SetCookie();
 		Browser.CoreWebView2.Navigate(KanColleUrl);
+	}
+
+	private void CoreWebView2_ContextMenuRequested(object? sender, CoreWebView2ContextMenuRequestedEventArgs e)
+	{
+		if (Browser.CoreWebView2 == null) return;
+		if (gameframe != null)
+		{
+			//e.Handled = true;
+		}
 	}
 
 	private void Browser_PreviewKeyDown(object sender, KeyEventArgs e)

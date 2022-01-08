@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Input;
+using BrowserLibCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Web.WebView2.Core;
-
 namespace Browser.ExtraBrowser;
 
 public partial class ExtraBrowserWindow : Window
@@ -21,7 +21,7 @@ public partial class ExtraBrowserWindow : Window
 
 	private async void InitializeAsync()
 	{
-		var path = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "temp_browser");
+		var path = System.IO.Path.Combine(BrowserConstants.CachePath, @"\ExtraBrowser");
 		var env = await CoreWebView2Environment.CreateAsync(userDataFolder: path);
 
 		await Browser.EnsureCoreWebView2Async(env);
