@@ -107,8 +107,7 @@ public class VolumeManager
 	/// <returns>データ。取得に失敗した場合は null。</returns>
 	private static ISimpleAudioVolume GetVolumeObject(string processName, out uint processID)
 	{
-		var currentProcess = Process.GetCurrentProcess();
-		var processes = Process.GetProcessesByName(processName).Where(p => GetParentProcess(p)?.Id == currentProcess.Id).ToArray();
+		var processes = Process.GetProcessesByName(processName);
 		uint succeededId = 0;
 		var volume = GetVolumeObject(pid =>
 		{
@@ -122,7 +121,6 @@ public class VolumeManager
 		processID = succeededId;
 		return volume;
 	}
-
 
 	public static VolumeManager CreateInstanceByProcessName(string processName)
 	{

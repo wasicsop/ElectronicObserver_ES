@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.Globalization;
 using System.IO;
-using System.Linq;
-using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
@@ -14,19 +12,16 @@ using System.Windows.Forms.Integration;
 using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
-using Browser.CefOp;
 using Browser.ExtraBrowser;
 using BrowserLibCore;
-using CefSharp;
-using CefSharp.WinForms;
-using CefSharp.Wpf.Internals;
 using Grpc.Core;
 using MagicOnion.Client;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
+using Microsoft.Web.WebView2.Core;
+using Microsoft.Web.WebView2.Wpf;
 using ModernWpf;
-
 namespace Browser;
 
 public class ImageProvider
@@ -64,11 +59,11 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 	private int Port { get; }
 	private string Culture { get; }
 	private BrowserLibCore.IBrowserHost BrowserHost { get; set; }
-	private string? ProxySettings { get; set; }
+	public string? ProxySettings { get; set; }
 
 	public ImageProvider? Icons { get; set; }
-
-	private Size KanColleSize { get; } = new(1200, 720);
+	public WebView2? Browser { get; set; }
+	private System.Drawing.Size KanColleSize { get; } = new(1200, 720);
 	private string KanColleUrl => "http://www.dmm.com/netgame/social/-/gadgets/=/app_id=854854/";
 	private string BrowserCachePath => BrowserConstants.CachePath;
 
@@ -90,7 +85,6 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 	public Visibility ToolMenuVisibility { get; set; } = Visibility.Visible;
 
 	public WindowsFormsHost BrowserWrapper { get; } = new();
-	public ChromiumWebBrowser? Browser { get; set; }
 
 	public DpiScale DpiScale { get; set; }
 	public double ActualWidth { get; set; }
@@ -105,7 +99,8 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 	private VolumeManager? VolumeManager { get; set; }
 	public int Volume { get; set; }
 	public ImageSource? MuteStateImage { get; set; }
-
+	public CoreWebView2Frame? gameframe { get; private set; }
+	public CoreWebView2Frame? kancolleframe { get; private set; }
 	public bool ZoomFit { get; set; }
 	public string CurrentZoom { get; set; } = "";
 
@@ -134,10 +129,9 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 	/// <param name="serverUri">ホストプロセスとの通信用URL</param>
 	public BrowserViewModel(string host, int port, string culture)
 	{
-		// Debugger.Launch();
+		//Debugger.Launch();
 
 		FormBrowser = App.Current.Services.GetService<FormBrowserTranslationViewModel>()!;
-
 		ScreenshotCommand = new RelayCommand(ToolMenu_Other_ScreenShot_Click);
 		SetZoomCommand = new RelayCommand<string>(SetZoom);
 		ModifyZoomCommand = new RelayCommand<string>(ModifyZoom);
@@ -161,7 +155,6 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 		Host = host;
 		Port = port;
 		Culture = culture;
-
 		CultureInfo c = new(culture);
 
 		Thread.CurrentThread.CurrentCulture = c;
@@ -206,7 +199,7 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 
 	public void OnLoaded(object sender, RoutedEventArgs e)
 	{
-		if (sender is not Window window) return;
+		if (sender is not System.Windows.Window window) return;
 
 		IntPtr handle = new WindowInteropHelper(window).Handle;
 		SetWindowLong(handle, GWL_STYLE, WS_CHILD);
@@ -237,132 +230,146 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 		HeartbeatTimer.Start();
 
 		SetIconResource();
-
-		InitializeBrowser();
+		Browser = new WebView2();
+		InitializeAsync();
 	}
 
 	/// <summary>
 	/// ブラウザを初期化します。
 	/// 最初の呼び出しのみ有効です。二回目以降は何もしません。
 	/// </summary>
-	private void InitializeBrowser()
+	public async void InitializeAsync()
 	{
-		if (Browser != null) return;
+		if (Browser.CoreWebView2 != null) return;
 		if (ProxySettings == null) return;
-
-		Cef.EnableHighDPISupport();
-
-		CefSettings? settings;
-
-		try
-		{
-			settings = new CefSettings
-			{
-				CachePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),
-					BrowserCachePath),
-				Locale = "ja",
-				AcceptLanguageList = "ja,en-US,en", // todo: いる？
-				LogSeverity = Configuration.SavesBrowserLog ? LogSeverity.Error : LogSeverity.Disable,
-				LogFile = "BrowserLog.log",
-			};
-		}
-		catch (BadImageFormatException)
-		{
-			if (MessageBox.Show(FormBrowser.InstallVisualCpp, FormBrowser.CefSharpLoadErrorTitle,
-					MessageBoxButton.YesNo, MessageBoxImage.Error, MessageBoxResult.Yes)
-				== MessageBoxResult.Yes)
-			{
-				ProcessStartInfo psi = new()
-				{
-					FileName = @"https://support.microsoft.com/en-us/topic/the-latest-supported-visual-c-downloads-2647da03-1eea-4433-9aff-95f26a218cc0",
-					UseShellExecute = true
-				};
-				Process.Start(psi);
-			}
-			throw;
-		}
-
-		if (!Configuration.HardwareAccelerationEnabled)
-			settings.DisableGpuAcceleration();
-
-		settings.CefCommandLineArgs.Add("proxy-server", ProxySettings);
-		settings.CefCommandLineArgs.Add("limit-fps", "60");
-
-		// prevent CEF from taking over media keys
-		if (settings.CefCommandLineArgs.ContainsKey("disable-features"))
-		{
-			List<string> disabledFeatures = settings.CefCommandLineArgs["disable-features"]
-				.Split(",")
-				.ToList();
-
-			disabledFeatures.Add("HardwareMediaKeyHandling");
-
-			settings.CefCommandLineArgs["disable-features"] = string.Join(",", disabledFeatures);
-		}
-		else
-		{
-			settings.CefCommandLineArgs.Add("disable-features", "HardwareMediaKeyHandling");
-		}
-
-
+		string colorArgs = "";
 		if (Configuration.ForceColorProfile)
 		{
-			settings.CefCommandLineArgs.Add("force-color-profile", "srgb");
+			colorArgs = @"--force-color-profile=""sRGB""";
+		}
+		var corewebviewoptions = new CoreWebView2EnvironmentOptions() { AdditionalBrowserArguments = $"--proxy-server=\"{ProxySettings}\" --disable-features=\"HardwareMediaKeyHandling\" " + colorArgs };
+		var env = await CoreWebView2Environment.CreateAsync(null, userDataFolder: BrowserCachePath, options: corewebviewoptions);
+		//Environment.SetEnvironmentVariable("WEBVIEW2_ADDITIONAL_BROWSER_ARGUMENTS", $"--proxy-server=\"{ProxySettings}\" --disable-features=\"HardwareMediaKeyHandling\" " + colorArgs);
+		//Environment.SetEnvironmentVariable("WEBVIEW2_USER_DATA_FOLDER", BrowserCachePath);
+		await Browser.EnsureCoreWebView2Async(env);
+		Browser.Source = new Uri("about:blank");
+		Browser.CoreWebView2.WebResourceRequested += CoreWebView2_WebResourceRequested;
+		Browser.CoreWebView2.AddWebResourceRequestedFilter("*", CoreWebView2WebResourceContext.Script);
+		Browser.CoreWebView2.AddWebResourceRequestedFilter("*", CoreWebView2WebResourceContext.Media);
+		Browser.CoreWebView2.NavigationCompleted += CoreWebView2_NavigationCompleted;
+		Browser.CoreWebView2.FrameCreated += CoreWebView2_FrameCreated;
+		Browser.CoreWebView2.NavigationStarting += CoreWebView2_NavigationStarted;
+		Browser.CoreWebView2.ProcessFailed += CoreWebView2_ProcessFailed;
+		Browser.CoreWebView2.ContextMenuRequested += CoreWebView2_ContextMenuRequested;
+		Browser.PreviewKeyDown += Browser_PreviewKeyDown;
+		SetCookie();
+		Browser.CoreWebView2.Navigate(KanColleUrl);
+	}
+
+	private void CoreWebView2_ContextMenuRequested(object? sender, CoreWebView2ContextMenuRequestedEventArgs e)
+	{
+		if (Browser.CoreWebView2 == null) return;
+		if (gameframe != null)
+		{
+			//e.Handled = true;
+		}
+	}
+
+	private void Browser_PreviewKeyDown(object sender, KeyEventArgs e)
+	{
+		if (Browser.CoreWebView2 == null) return;
+		switch (e.Key)
+		{
+			case Key.F5:
+				RefreshCommand.Execute(null);
+				break;
+			case Key.F12:
+				OpenDevtoolsCommand.Execute(null);
+				break;
+			case Key.F2:
+				ScreenshotCommand.Execute(null);
+				break;
+			case Key.F7:
+				MuteCommand.Execute(null);
+				break;
 		}
 
-		CefSharpSettings.SubprocessExitIfParentProcessClosed = true;
-		Cef.Initialize(settings, false, (IBrowserProcessHandler?)null);
-
-		var requestHandler = new CustomRequestHandler(Configuration.PreserveDrawingBuffer, Configuration.UseGadgetRedirect);
-		requestHandler.RenderProcessTerminated += (mes) => AddLog(3, mes);
-
-		Browser = new ChromiumWebBrowser(KanColleUrl)
-		{
-			RequestHandler = requestHandler,
-			KeyboardHandler = new KeyboardHandler(),
-			MenuHandler = new MenuHandler(),
-			DragHandler = new DragHandler(),
-		};
-
-		// Browser.WpfKeyboardHandler = new WpfKeyboardHandler(Browser);
-
-		Browser.BrowserSettings.StandardFontFamily = "Microsoft YaHei"; // Fixes text rendering position too high
-		Browser.LoadingStateChanged += Browser_LoadingStateChanged;
-		Browser.IsBrowserInitializedChanged += Browser_IsBrowserInitializedChanged;
-
-		BrowserWrapper.Child = Browser;
-		Browser.PreviewKeyDown += (sender, args) =>
-		{
-			CultureInfo c = new(Culture);
-
-			Thread.CurrentThread.CurrentCulture = c;
-			Thread.CurrentThread.CurrentUICulture = c;
-
-			switch (args.KeyCode)
-			{
-				case System.Windows.Forms.Keys.F2:
-					ScreenshotCommand.Execute(null);
-					break;
-				case System.Windows.Forms.Keys.F5:
-					// hard refresh if ctrl is pressed
-					if ((args.Modifiers & System.Windows.Forms.Keys.Control) == System.Windows.Forms.Keys.Control)
-					{
-						HardRefreshCommand.Execute(null);
-					}
-					else
-					{
-						RefreshCommand.Execute(null);
-					}
-					break;
-				case System.Windows.Forms.Keys.F7:
-					MuteCommand.Execute(null);
-					break;
-				case System.Windows.Forms.Keys.F12:
-					OpenDevtoolsCommand.Execute(null);
-					break;
-			}
-		};
 	}
+
+	private void CoreWebView2_ProcessFailed(object? sender, CoreWebView2ProcessFailedEventArgs e)
+	{
+		switch (e.ProcessFailedKind)
+		{
+			case CoreWebView2ProcessFailedKind.BrowserProcessExited:
+				AddLog(2, "Browser Process Exited");
+				break;
+			case CoreWebView2ProcessFailedKind.GpuProcessExited:
+				AddLog(2, "GPU Process Exited");
+				break;
+			case CoreWebView2ProcessFailedKind.RenderProcessUnresponsive:
+				AddLog(2, "Render Process Unresponsive");
+				break;
+			case CoreWebView2ProcessFailedKind.UnknownProcessExited:
+				AddLog(2, "Unknown Process Exited");
+				break;
+			default:
+				AddLog(2, "Proccess Failed");
+				break;
+		}
+	}
+
+
+	private void CoreWebView2_NavigationStarted(object? sender, CoreWebView2NavigationStartingEventArgs e)
+	{
+		if (Browser.CoreWebView2 == null) return;
+
+		if (e.Uri.Contains(@"/rt.gsspat.jp/"))
+		{
+			e.Cancel = true;
+		}
+		if (new Uri(e.Uri).Host.Contains("accounts.google.com"))
+		{
+			var settings = Browser.CoreWebView2.Settings;
+			settings.UserAgent = "Chrome";
+		}
+		if (gameframe != null)
+		{
+			e.Cancel = true;
+		}
+	}
+	private void CoreWebView2_FrameCreated(object? sender, CoreWebView2FrameCreatedEventArgs e)
+	{
+		if (e.Frame.Name.Contains(@"game_frame"))
+		{
+			gameframe = e.Frame;
+		}
+		if (e.Frame.Name.Contains(@"htmlWrap"))
+		{
+			kancolleframe = e.Frame;
+		}
+	}
+	private void CoreWebView2_WebResourceRequested(object? sender, CoreWebView2WebResourceRequestedEventArgs e)
+	{
+		if (e.Request.Uri.Contains(@"gadget_html5") && Configuration.UseGadgetRedirect)
+		{
+			e.Request.Uri = e.Request.Uri.Replace("http://203.104.209.7/gadget_html5/", "https://kcwiki.github.io/cache/gadget_html5/");
+		}
+		if (e.Request.Uri.Contains("/kcs2/resources/bgm/"))
+		{
+			//not working in webview2
+			//e.Request.Headers.RemoveHeader("Range");
+		}
+	}
+	private void CoreWebView2_NavigationCompleted(object? sender, CoreWebView2NavigationCompletedEventArgs e)
+	{
+		if (e.IsSuccess)
+		{
+			ApplyStyleSheet();
+			ApplyZoom();
+			SetCookie();
+		}
+	}
+
 
 	private void Exit()
 	{
@@ -373,7 +380,7 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 			{
 				HeartbeatTimer.Stop();
 				Task.Run(async () => await BrowserHost.DisposeAsync()).Wait();
-				Cef.Shutdown();
+				Browser.Dispose();
 				App.Current.Shutdown();
 			});
 		}
@@ -447,100 +454,27 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 	// hack: it makes an infinite loop in the wpf version for some reason
 	private int Counter { get; set; }
 
-	private void Browser_LoadingStateChanged(object sender, LoadingStateChangedEventArgs e)
-	{
-		// DocumentCompleted に相当?
-		// note: 非 UI thread からコールされるので、何かしら UI に触る場合は適切な処置が必要
 
-		if (e.IsLoading) return;
-
-		App.Current.Dispatcher.Invoke(() =>
-		{
-			if (Counter > 0) return;
-			if (!Browser!.Address.Contains("redirect")) return;
-
-			Counter++;
-
-			SetCookie();
-			Browser.Reload();
-		});
-
-		/*if (Browser.Address.Contains("login/=/path="))
-	    {
-	        SetCookie();
-            Browser.ExecuteScriptAsync(Properties.Resources.RemoveWelcomePopup);
-	        Browser.ExecuteScriptAsync(Properties.Resources.RemoveServicePopup);
-        }*/
-
-		App.Current.Dispatcher.BeginInvoke((Action)(() =>
-		{
-			ApplyStyleSheet();
-
-			ApplyZoom();
-			DestroyDMMreloadDialog();
-		}));
-	}
-
-	private IFrame? GetMainFrame()
-	{
-		if (Browser is not { IsBrowserInitialized: true }) return null;
-
-		var browser = Browser.GetBrowser();
-		var frame = browser.MainFrame;
-
-		if (frame?.Url?.Contains(@"http://www.dmm.com/netgame/social/") ?? false)
-			return frame;
-
-		return null;
-	}
-
-	private IFrame? GetGameFrame()
-	{
-		if (Browser is not { IsBrowserInitialized: true }) return null;
-
-		var browser = Browser.GetBrowser();
-		var frames = browser.GetFrameIdentifiers()
-			.Select(id => browser.GetFrame(id));
-
-		return frames.FirstOrDefault(f => f?.Url?.Contains(@"http://osapi.dmm.com/gadgets/") ?? false);
-	}
-
-	private IFrame? GetKanColleFrame()
-	{
-		if (Browser is not { IsBrowserInitialized: true }) return null;
-
-		var browser = Browser.GetBrowser();
-		var frames = browser.GetFrameIdentifiers()
-			.Select(id => browser.GetFrame(id));
-
-		return frames.FirstOrDefault(f => f?.Url?.Contains(@"/kcs2/index.php") ?? false);
-	}
-
-	/// <summary>
-	/// スタイルシートを適用します。
-	/// </summary>
 	private void ApplyStyleSheet()
 	{
-		if (Browser is not { IsBrowserInitialized: true }) return;
-
+		if (Browser is not { IsInitialized: true }) return;
 		try
 		{
-			var mainframe = GetMainFrame();
-			var gameframe = GetGameFrame();
-			if (mainframe == null || gameframe == null)
+
+			if (gameframe == null)
 				return;
 
 			if (!StyleSheetApplied)
 			{
-				mainframe.EvaluateScriptAsync(string.Format(Properties.Resources.RestoreScript, StyleClassID));
-				gameframe.EvaluateScriptAsync(string.Format(Properties.Resources.RestoreScript, StyleClassID));
-				gameframe.EvaluateScriptAsync("document.body.style.backgroundColor = \"#000000\";");
+				Browser.ExecuteScriptAsync(string.Format(Properties.Resources.RestoreScript, StyleClassID));
+				gameframe.ExecuteScriptAsync(string.Format(Properties.Resources.RestoreScript, StyleClassID));
+				gameframe.ExecuteScriptAsync("document.body.style.backgroundColor = \"#000000\";");
 			}
 			else
 			{
-				mainframe.EvaluateScriptAsync(string.Format(Properties.Resources.PageScript, StyleClassID));
-				gameframe.EvaluateScriptAsync(string.Format(Properties.Resources.FrameScript, StyleClassID));
-				gameframe.EvaluateScriptAsync("document.body.style.backgroundColor = \"#000000\";");
+				Browser.ExecuteScriptAsync(String.Format(Properties.Resources.PageScript, StyleClassID));
+				gameframe.ExecuteScriptAsync(String.Format(Properties.Resources.FrameScript, StyleClassID));
+				gameframe.ExecuteScriptAsync("document.body.style.backgroundColor = \"#000000\";");
 			}
 		}
 		catch (Exception ex)
@@ -554,12 +488,12 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 	/// </summary>
 	private void DestroyDMMreloadDialog()
 	{
-		if (Browser is not { IsBrowserInitialized: true }) return;
+		if (Browser is not { IsInitialized: true }) return;
 		if (!Configuration.IsDMMreloadDialogDestroyable) return;
 
 		try
 		{
-			GetMainFrame()?.EvaluateScriptAsync(Properties.Resources.DMMScript);
+			Browser?.CoreWebView2.ExecuteScriptAsync(Properties.Resources.DMMScript);
 		}
 		catch (Exception ex)
 		{
@@ -573,36 +507,15 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 	// 応急処置として失敗したとき後で再試行するようにしてみる
 	private string? NavigateCache { get; set; }
 
-	private void Browser_IsBrowserInitializedChanged(object sender, EventArgs e)
-	{
-		if (Browser is not { IsBrowserInitialized: true } && NavigateCache is not null)
-		{
-			// ロードが完了したので再試行
-			string url = NavigateCache; // 非同期コールするのでコピーを取っておく必要がある
-			App.Current.Dispatcher.BeginInvoke((Action)(() => Navigate(url)));
-			NavigateCache = null;
-		}
-	}
+
 
 	/// <summary>
 	/// 指定した URL のページを開きます。
 	/// </summary>
 	public void Navigate(string url)
 	{
-		/*
-		if (url != Configuration.LogInPageURL || !Configuration.AppliesStyleSheet)
-		{
-			ShouldStyleSheetApply = false;
-		}
-		*/
-
-		if (Browser is not { IsBrowserInitialized: true }) return;
-
-		Browser.Load(url);
-		// 大方ロードできないのであとで再試行する
-		NavigateCache = url;
+		Browser.CoreWebView2?.Navigate(url);
 	}
-
 	/// <summary>
 	/// ブラウザを再読み込みします。
 	/// </summary>
@@ -614,7 +527,8 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 	/// <param name="ignoreCache">キャッシュを無視するか。</param>
 	private void RefreshBrowser(bool ignoreCache)
 	{
-		Browser.Reload(ignoreCache);
+		//Browser.Reload(ignoreCache);
+		Browser.CoreWebView2.Reload();
 	}
 
 	/// <summary>
@@ -622,8 +536,7 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 	/// </summary>
 	private void ApplyZoom()
 	{
-		if (Browser is not { IsBrowserInitialized: true }) return;
-
+		if (Browser is not { IsInitialized: true }) return;
 		double zoomRate = Configuration.ZoomRate;
 		bool fit = Configuration.ZoomFit && StyleSheetApplied;
 
@@ -642,9 +555,9 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 		}
 
 		// DpiScaleX and DpiScaleY should always be the same so it doesn't matter which one you use
-		Browser.SetZoomLevel(Math.Log(zoomFactor / DpiScale.DpiScaleX, 1.2));
+		Browser.ZoomFactor = zoomFactor;
 
-		if (StyleSheetApplied)
+		if (StyleSheetApplied && gameframe != null)
 		{
 			int newWidth = (int)(KanColleSize.Width * zoomFactor);
 			int newHeight = (int)(KanColleSize.Height * zoomFactor);
@@ -655,6 +568,11 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 			// Browser.MinWidth = newWidth;
 			// Browser.MinHeight = newHeight;
 		}
+		else
+		{
+			Browser.Width = double.NaN;
+			Browser.Height = double.NaN;
+		}
 
 		CurrentZoom = fit switch
 		{
@@ -662,57 +580,6 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 			_ => FormBrowser.Other_Zoom_Current + $" {zoomRate:p1}"
 		};
 	}
-
-	/// <summary>
-	/// スクリーンショットを撮影します。
-	/// </summary>
-	private async Task<System.Drawing.Bitmap?> TakeScreenShot()
-	{
-		var kancolleFrame = GetKanColleFrame();
-		if (kancolleFrame == null)
-		{
-			AddLog(3, FormBrowser.KancolleNotLoadedCannotTakeScreenshot);
-			System.Media.SystemSounds.Beep.Play();
-			return null;
-		}
-
-
-		Task<ScreenShotPacket> InternalTakeScreenShot()
-		{
-			var request = new ScreenShotPacket();
-
-			if (Browser is not { IsBrowserInitialized: true }) return request.TaskSource.Task;
-
-
-			string script = $@"
-(async function()
-{{
-	await CefSharp.BindObjectAsync('{request.ID}');
-
-	let canvas = document.querySelector('canvas');
-	requestAnimationFrame(() =>
-	{{
-		let dataurl = canvas.toDataURL('image/png');
-		{request.ID}.complete(dataurl);
-	}});
-}})();
-";
-
-			Browser.JavascriptObjectRepository.Register(request.ID, request);
-			kancolleFrame.ExecuteJavaScriptAsync(script);
-
-			return request.TaskSource.Task;
-		}
-
-		var result = await InternalTakeScreenShot();
-
-		// ごみ掃除
-		Browser!.JavascriptObjectRepository.UnRegister(result.ID);
-		kancolleFrame.ExecuteJavaScriptAsync($@"delete {result.ID}");
-
-		return result.GetImage();
-	}
-
 	/// <summary>
 	/// スクリーンショットを撮影し、設定で指定された保存先に保存します。
 	/// </summary>
@@ -723,108 +590,62 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 		string folderPath = Configuration.ScreenShotPath;
 		bool is32bpp = format != 1 && Configuration.AvoidTwitterDeterioration;
 
-		System.Drawing.Bitmap? image = null;
-		try
+		// to file
+		if ((savemode & 1) != 0)
 		{
-			image = await TakeScreenShot();
-
-
-			if (image == null) return;
-
-			if (is32bpp)
+			try
 			{
-				if (image.PixelFormat != System.Drawing.Imaging.PixelFormat.Format32bppArgb)
-				{
-					var imgalt = new System.Drawing.Bitmap(image.Width, image.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
-					using (var g = System.Drawing.Graphics.FromImage(imgalt))
-					{
-						g.DrawImage(image, new System.Drawing.Rectangle(0, 0, imgalt.Width, imgalt.Height));
-					}
+				if (!Directory.Exists(folderPath))
+					Directory.CreateDirectory(folderPath);
 
-					image.Dispose();
-					image = imgalt;
+				CoreWebView2CapturePreviewImageFormat imgFormat;
+				string ext;
+				switch (format)
+				{
+					case 1:
+						imgFormat = CoreWebView2CapturePreviewImageFormat.Jpeg;
+						ext = "jpg";
+						break;
+					case 2:
+					default:
+						imgFormat = CoreWebView2CapturePreviewImageFormat.Png;
+						ext = "png";
+						break;
 				}
-
-				// 不透明ピクセルのみだと jpeg 化されてしまうため、1px だけわずかに透明にする
-				System.Drawing.Color temp = image.GetPixel(image.Width - 1, image.Height - 1);
-				image.SetPixel(image.Width - 1, image.Height - 1, System.Drawing.Color.FromArgb(252, temp.R, temp.G, temp.B));
-			}
-			else
-			{
-				if (image.PixelFormat != System.Drawing.Imaging.PixelFormat.Format24bppRgb)
+				string path = $"{folderPath}\\{DateTime.Now:yyyyMMdd_HHmmssff}.{ext}";
+				LastScreenShotPath = System.IO.Path.GetFullPath(path);
+				using (FileStream fileStream = File.Create(path))
 				{
-					var imgalt = new System.Drawing.Bitmap(image.Width, image.Height, System.Drawing.Imaging.PixelFormat.Format24bppRgb);
-					using (var g = System.Drawing.Graphics.FromImage(imgalt))
-					{
-						g.DrawImage(image, new System.Drawing.Rectangle(0, 0, imgalt.Width, imgalt.Height));
-					}
-
-					image.Dispose();
-					image = imgalt;
-				}
-			}
-
-
-			// to file
-			if ((savemode & 1) != 0)
-			{
-				try
-				{
-					if (!Directory.Exists(folderPath))
-						Directory.CreateDirectory(folderPath);
-
-					string ext;
-					System.Drawing.Imaging.ImageFormat imgFormat;
-
-					switch (format)
-					{
-						case 1:
-							ext = "jpg";
-							imgFormat = System.Drawing.Imaging.ImageFormat.Jpeg;
-							break;
-						case 2:
-						default:
-							ext = "png";
-							imgFormat = System.Drawing.Imaging.ImageFormat.Png;
-							break;
-					}
-
-					string path = $"{folderPath}\\{DateTime.Now:yyyyMMdd_HHmmssff}.{ext}";
-					image.Save(path, imgFormat);
-					LastScreenShotPath = Path.GetFullPath(path);
-
+					await Browser.CoreWebView2.CapturePreviewAsync(CoreWebView2CapturePreviewImageFormat.Png, fileStream).ConfigureAwait(false);
+					await fileStream.FlushAsync().ConfigureAwait(false);
 					AddLog(2, string.Format(FormBrowser.ScreenshotSavedTo, path));
 				}
-				catch (Exception ex)
-				{
-					SendErrorReport(ex.ToString(), FormBrowser.FailedToSaveScreenshot);
-				}
 			}
-
-
-			// to clipboard
-			if ((savemode & 2) != 0)
+			catch (Exception ex)
 			{
-				try
-				{
-					Clipboard.SetImage(image.ToBitmapSource());
-
-					if ((savemode & 3) != 3)
-						AddLog(2, FormBrowser.ScreenshotCopiedToClipboard);
-				}
-				catch (Exception ex)
-				{
-					SendErrorReport(ex.ToString(), FormBrowser.FailedToCopyScreenshotToClipboard);
-				}
+				SendErrorReport(ex.ToString(), FormBrowser.FailedToSaveScreenshot);
 			}
 		}
-		catch (Exception ex)
+		if ((savemode & 2) != 0)
 		{
-			SendErrorReport(ex.ToString(), FormBrowser.ScreenshotError);
-		}
-		finally
-		{
-			image?.Dispose();
+			try
+			{
+				string tempfolderpath = $@"{folderPath}\Temp\";
+				if (!Directory.Exists(tempfolderpath))
+					Directory.CreateDirectory(tempfolderpath);
+				string temppath = $@"{tempfolderpath}\{DateTime.Now:yyyyMMdd_HHmmssff}.png";
+				using (FileStream fileStream = File.Create(temppath))
+				{
+					await Browser.CoreWebView2.CapturePreviewAsync(CoreWebView2CapturePreviewImageFormat.Png, fileStream).ConfigureAwait(false);
+					await fileStream.FlushAsync().ConfigureAwait(false);
+				}
+				using var img = new Bitmap(temppath);
+				App.Current.Dispatcher.Invoke(() => Clipboard.SetImage(img.ToBitmapSource()));
+			}
+			catch (Exception ex)
+			{
+				SendErrorReport(ex.ToString(), FormBrowser.FailedToSaveScreenshot);
+			}
 		}
 	}
 
@@ -840,15 +661,34 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 			// WinInetUtil.SetProxyInProcess(proxy, "local");
 			ProxySettings = proxy;
 		}
-
-		InitializeBrowser();
-
+		InitializeAsync();
 		BrowserHost.SetProxyCompleted();
 	}
 
 	private void SetCookie()
 	{
-		Browser.ExecuteScriptAsync(FormBrowser.RegionCookie);
+		var gamesCookies = Browser.CoreWebView2.CookieManager.CreateCookie("ckcy", "1", "games.dmm.com", "/");
+		gamesCookies.Expires = DateTime.Now.AddYears(6);
+		gamesCookies.IsSecure = true;
+		Browser.CoreWebView2.CookieManager.AddOrUpdateCookie(gamesCookies);
+		var dmmCookie = Browser.CoreWebView2.CookieManager.CreateCookie("ckcy", "1", ".dmm.com", "/");
+		dmmCookie.Expires = DateTime.Now.AddYears(6);
+		dmmCookie.IsSecure = true;
+		Browser.CoreWebView2.CookieManager.AddOrUpdateCookie(dmmCookie);
+		var acccountsCookie = Browser.CoreWebView2.CookieManager.CreateCookie("ckcy", "1", "accounts.dmm.com", "/");
+		acccountsCookie.Expires = DateTime.Now.AddYears(6);
+		acccountsCookie.IsSecure = true;
+		Browser.CoreWebView2.CookieManager.AddOrUpdateCookie(acccountsCookie);
+		var osapiCookie = Browser.CoreWebView2.CookieManager.CreateCookie("ckcy", "1", "osapi.dmm.com", "/");
+		acccountsCookie.Expires = DateTime.Now.AddYears(6);
+		acccountsCookie.IsSecure = true;
+		Browser.CoreWebView2.CookieManager.AddOrUpdateCookie(osapiCookie);
+		var gameserverCookie = Browser.CoreWebView2.CookieManager.CreateCookie("ckcy", "1", "203.104.209.7", "/");
+		acccountsCookie.Expires = DateTime.Now.AddYears(6);
+		Browser.CoreWebView2.CookieManager.AddOrUpdateCookie(gameserverCookie);
+		var gamepathCookie = Browser.CoreWebView2.CookieManager.CreateCookie("ckcy", "1", "www.dmm.com", "/netgame/");
+		acccountsCookie.Expires = DateTime.Now.AddYears(6);
+		Browser.CoreWebView2.CookieManager.AddOrUpdateCookie(gamepathCookie);
 	}
 
 	private async void SetIconResource()
@@ -862,7 +702,7 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 
 	private void TryGetVolumeManager()
 	{
-		VolumeManager = VolumeManager.CreateInstanceByProcessName("CefSharp.BrowserSubprocess");
+		VolumeManager = VolumeManager.CreateInstanceByProcessName("msedgewebview2");
 	}
 
 	private void SetVolumeState()
@@ -1035,7 +875,7 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 
 	private void ToolMenu_Other_Navigate_Click()
 	{
-		BrowserHost.RequestNavigation(Browser.GetMainFrame()?.Url ?? "");
+		BrowserHost.RequestNavigation(Browser.CoreWebView2?.Source ?? "");
 	}
 
 	private void ToolMenu_Other_AppliesStyleSheet_Click()
@@ -1062,7 +902,7 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 
 	private void FormBrowser_Activated(object sender, EventArgs e)
 	{
-		Browser?.Focus();
+		//Browser?.Focus();
 	}
 
 	void ToolMenu_Other_LastScreenShot_ImageHost_Click()
@@ -1107,9 +947,9 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 
 	private void ToolMenu_Other_OpenDevTool_Click()
 	{
-		if (Browser is not { IsBrowserInitialized: true }) return;
-
-		Browser.GetBrowser().ShowDevTools();
+		if (Browser is not { IsInitialized: true }) return;
+		if (Browser.CoreWebView2 is null) return;
+		Browser.CoreWebView2.OpenDevToolsWindow();
 	}
 
 	private void ToolMenu_Other_ClearCache_Click()
@@ -1136,7 +976,7 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 		base.WndProc(ref m);
 	}
 
-*/
+	*/
 
 	#region 呪文
 
