@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Globalization;
 using System.IO;
 using System.Runtime.InteropServices;
@@ -597,48 +598,47 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 		bool is32bpp = format != 1 && Configuration.AvoidTwitterDeterioration;
 
 		// to file
-		//if ((savemode & 1) != 0)
-		//{
 		try
 		{
 			if (!Directory.Exists(folderPath))
 				Directory.CreateDirectory(folderPath);
 
-			CoreWebView2CapturePreviewImageFormat imgFormat;
+			ImageFormat imageFormat = null;
+			CoreWebView2CapturePreviewImageFormat browserImageFormat;
 			string ext;
 			switch (format)
 			{
 				case 1:
-					imgFormat = CoreWebView2CapturePreviewImageFormat.Jpeg;
+					imageFormat = ImageFormat.Jpeg;
+					browserImageFormat = CoreWebView2CapturePreviewImageFormat.Jpeg;
 					ext = "jpg";
 					break;
 				case 2:
 				default:
-					imgFormat = CoreWebView2CapturePreviewImageFormat.Png;
+					imageFormat = ImageFormat.Png;
+					browserImageFormat = CoreWebView2CapturePreviewImageFormat.Png;
 					ext = "png";
 					break;
 			}
-			string path = $"{folderPath}\\{DateTime.Now:yyyyMMdd_HHmmssff}.{ext}";
-			using (FileStream fileStream = File.Create(path))
-			{
-				await Browser.CoreWebView2.CapturePreviewAsync(imgFormat, fileStream).ConfigureAwait(false);
-				await fileStream.FlushAsync().ConfigureAwait(false);
-				if (savemode == 1 || savemode == 3)
-				{
-					AddLog(2, string.Format(FormBrowser.ScreenshotSavedTo, path));
-					LastScreenShotPath = Path.GetFullPath(path);
-				}
 
+			string path = $"{folderPath}\\{DateTime.Now:yyyyMMdd_HHmmssff}.{ext}";
+
+			await using MemoryStream memoryStream = new();
+			await Browser.CoreWebView2.CapturePreviewAsync(browserImageFormat, memoryStream).ConfigureAwait(false);
+
+			Bitmap image = (Bitmap)Bitmap.FromStream(memoryStream, true);
+
+			if (savemode is 1 or 3)
+			{
+				image.Save(path, imageFormat);
+				AddLog(2, string.Format(FormBrowser.ScreenshotSavedTo, path));
+				LastScreenShotPath = Path.GetFullPath(path);
 			}
+
 			if ((savemode & 2) != 0)
 			{
-				using var img = new Bitmap(path);
-				App.Current.Dispatcher.Invoke(() => Clipboard.SetImage(img.ToBitmapSource()));
+				App.Current.Dispatcher.Invoke(() => Clipboard.SetImage(image.ToBitmapSource()));
 				AddLog(2, string.Format(FormBrowser.ScreenshotCopiedToClipboard));
-			}
-			if (savemode == 2)
-			{
-				File.Delete(path);
 			}
 		}
 		catch (Exception ex)
