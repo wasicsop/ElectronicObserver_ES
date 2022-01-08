@@ -12,6 +12,7 @@ using System.Windows.Forms.Integration;
 using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using Browser.ExtraBrowser;
 using BrowserLibCore;
 using Grpc.Core;
@@ -22,6 +23,7 @@ using Microsoft.Toolkit.Mvvm.Input;
 using Microsoft.Web.WebView2.Core;
 using Microsoft.Web.WebView2.Wpf;
 using ModernWpf;
+
 namespace Browser;
 
 public class ImageProvider
@@ -595,61 +597,53 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 		bool is32bpp = format != 1 && Configuration.AvoidTwitterDeterioration;
 
 		// to file
-		if ((savemode & 1) != 0)
+		//if ((savemode & 1) != 0)
+		//{
+		try
 		{
-			try
-			{
-				if (!Directory.Exists(folderPath))
-					Directory.CreateDirectory(folderPath);
+			if (!Directory.Exists(folderPath))
+				Directory.CreateDirectory(folderPath);
 
-				CoreWebView2CapturePreviewImageFormat imgFormat;
-				string ext;
-				switch (format)
-				{
-					case 1:
-						imgFormat = CoreWebView2CapturePreviewImageFormat.Jpeg;
-						ext = "jpg";
-						break;
-					case 2:
-					default:
-						imgFormat = CoreWebView2CapturePreviewImageFormat.Png;
-						ext = "png";
-						break;
-				}
-				string path = $"{folderPath}\\{DateTime.Now:yyyyMMdd_HHmmssff}.{ext}";
-				LastScreenShotPath = System.IO.Path.GetFullPath(path);
-				using (FileStream fileStream = File.Create(path))
-				{
-					await Browser.CoreWebView2.CapturePreviewAsync(CoreWebView2CapturePreviewImageFormat.Png, fileStream).ConfigureAwait(false);
-					await fileStream.FlushAsync().ConfigureAwait(false);
-					AddLog(2, string.Format(FormBrowser.ScreenshotSavedTo, path));
-				}
-			}
-			catch (Exception ex)
+			CoreWebView2CapturePreviewImageFormat imgFormat;
+			string ext;
+			switch (format)
 			{
-				SendErrorReport(ex.ToString(), FormBrowser.FailedToSaveScreenshot);
+				case 1:
+					imgFormat = CoreWebView2CapturePreviewImageFormat.Jpeg;
+					ext = "jpg";
+					break;
+				case 2:
+				default:
+					imgFormat = CoreWebView2CapturePreviewImageFormat.Png;
+					ext = "png";
+					break;
+			}
+			string path = $"{folderPath}\\{DateTime.Now:yyyyMMdd_HHmmssff}.{ext}";
+			using (FileStream fileStream = File.Create(path))
+			{
+				await Browser.CoreWebView2.CapturePreviewAsync(imgFormat, fileStream).ConfigureAwait(false);
+				await fileStream.FlushAsync().ConfigureAwait(false);
+				if (savemode == 1 || savemode == 3)
+				{
+					AddLog(2, string.Format(FormBrowser.ScreenshotSavedTo, path));
+					LastScreenShotPath = Path.GetFullPath(path);
+				}
+
+			}
+			if ((savemode & 2) != 0)
+			{
+				using var img = new Bitmap(path);
+				App.Current.Dispatcher.Invoke(() => Clipboard.SetImage(img.ToBitmapSource()));
+				AddLog(2, string.Format(FormBrowser.ScreenshotCopiedToClipboard));
+			}
+			if (savemode == 2)
+			{
+				File.Delete(path);
 			}
 		}
-		if ((savemode & 2) != 0)
+		catch (Exception ex)
 		{
-			try
-			{
-				string tempfolderpath = $@"{folderPath}\Temp\";
-				if (!Directory.Exists(tempfolderpath))
-					Directory.CreateDirectory(tempfolderpath);
-				string temppath = $@"{tempfolderpath}\{DateTime.Now:yyyyMMdd_HHmmssff}.png";
-				using (FileStream fileStream = File.Create(temppath))
-				{
-					await Browser.CoreWebView2.CapturePreviewAsync(CoreWebView2CapturePreviewImageFormat.Png, fileStream).ConfigureAwait(false);
-					await fileStream.FlushAsync().ConfigureAwait(false);
-				}
-				using var img = new Bitmap(temppath);
-				App.Current.Dispatcher.Invoke(() => Clipboard.SetImage(img.ToBitmapSource()));
-			}
-			catch (Exception ex)
-			{
-				SendErrorReport(ex.ToString(), FormBrowser.FailedToSaveScreenshot);
-			}
+			SendErrorReport(ex.ToString(), FormBrowser.FailedToSaveScreenshot);
 		}
 	}
 
