@@ -4,6 +4,7 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:data="clr-namespace:ElectronicObserver.Data"
+	xmlns:dd="urn:gong-wpf-dragdrop"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:shipGroupWinforms="clr-namespace:ElectronicObserver.Window.Wpf.ShipGroupWinforms"
 	xmlns:ui="http://schemas.modernwpf.com/2019"
@@ -66,7 +67,12 @@
 			</Border.ContextMenu>
 
 			<ScrollViewer ui:ScrollViewerHelper.AutoHideScrollBars="False" VerticalScrollBarVisibility="Visible">
-				<ItemsControl ItemsSource="{Binding Groups}">
+				<ItemsControl
+					dd:DragDrop.IsDragSource="True"
+					dd:DragDrop.IsDropTarget="True"
+					dd:DragDrop.UseDefaultDragAdorner="True"
+					ItemsSource="{Binding Groups}"
+					>
 					<ItemsControl.ItemsPanel>
 						<ItemsPanelTemplate>
 							<WrapPanel Orientation="Horizontal" />

@@ -400,6 +400,7 @@
 	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="Dirkster.AvalonDock" Version="4.60.0" />
+		<PackageReference Include="gong-wpf-dragdrop" Version="3.0.0" />
 		<PackageReference Include="Microsoft.AppCenter.Analytics" Version="4.3.0" />
 		<PackageReference Include="Microsoft.AppCenter.Crashes" Version="4.3.0" />
 		<PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.1.0" />
