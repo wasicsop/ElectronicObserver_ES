@@ -46,8 +46,16 @@ public static class NightAttackRate
 
 	private static int SkilledLookoutsBonus(this IShipData ship) => ship switch
 	{
-		_ when ship.HasDestroyerSkilledLookouts() => 9,
+		{
+			MasterShip.ShipType:
+				ShipTypes.Destroyer or
+				ShipTypes.LightCruiser or
+				ShipTypes.TorpedoCruiser or
+				ShipTypes.TrainingCruiser
+		} when ship.HasDestroyerSkilledLookouts() => 9,
+
 		_ when ship.HasSkilledLookouts() => 5,
+
 		_ => 0
 	};
 
