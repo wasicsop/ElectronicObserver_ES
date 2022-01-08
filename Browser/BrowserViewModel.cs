@@ -63,6 +63,7 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 
 	public ImageProvider? Icons { get; set; }
 	public WebView2? Browser { get; set; }
+	public bool IsRefreshing { get; set; }
 	private System.Drawing.Size KanColleSize { get; } = new(1200, 720);
 	private string KanColleUrl => "http://www.dmm.com/netgame/social/-/gadgets/=/app_id=854854/";
 	private string BrowserCachePath => BrowserConstants.CachePath;
@@ -332,7 +333,8 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 			var settings = Browser.CoreWebView2.Settings;
 			settings.UserAgent = "Chrome";
 		}
-		if (gameframe != null)
+
+		if (gameframe != null && !IsRefreshing)
 		{
 			e.Cancel = true;
 		}
@@ -342,6 +344,7 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 		if (e.Frame.Name.Contains(@"game_frame"))
 		{
 			gameframe = e.Frame;
+			IsRefreshing = false;
 		}
 		if (e.Frame.Name.Contains(@"htmlWrap"))
 		{
@@ -529,6 +532,7 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 	{
 		//Browser.Reload(ignoreCache);
 		Browser.CoreWebView2.Reload();
+		IsRefreshing = true;
 	}
 
 	/// <summary>
