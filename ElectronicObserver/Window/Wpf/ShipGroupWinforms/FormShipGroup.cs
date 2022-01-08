@@ -604,6 +604,8 @@ public partial class FormShipGroup : DockContent
 	/// </summary>
 	private void ChangeShipView(ShipGroupItem? groupItem, ShipGroupItem? previousGroupItem)
 	{
+		if (ViewModel.SelectedGroup is null) return;
+
 		ShipGroupData? group = groupItem?.Group;
 		ShipGroupData? previousGroup = previousGroupItem?.Group;
 
