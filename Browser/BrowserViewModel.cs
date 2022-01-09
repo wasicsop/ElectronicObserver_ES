@@ -90,7 +90,6 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 
 	public WindowsFormsHost BrowserWrapper { get; } = new();
 
-	public DpiScale DpiScale { get; set; }
 	public double ActualWidth { get; set; }
 	public double ActualHeight { get; set; }
 
@@ -551,8 +550,8 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 
 		if (fit)
 		{
-			double rateX = ActualWidth * DpiScale.DpiScaleX / KanColleSize.Width;
-			double rateY = ActualHeight * DpiScale.DpiScaleY / KanColleSize.Height;
+			double rateX = ActualWidth / KanColleSize.Width;
+			double rateY = ActualHeight / KanColleSize.Height;
 
 			zoomFactor = Math.Min(rateX, rateY);
 		}

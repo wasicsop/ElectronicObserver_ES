@@ -24,8 +24,6 @@ public partial class BrowserView : Window
 	{
 		if (sender is not FrameworkElement control) return;
 
-		ViewModel.DpiScale = VisualTreeHelper.GetDpi(this);
-
 		ViewModel.ActualHeight = control.ActualHeight;
 		ViewModel.ActualWidth = control.ActualWidth;
 	}
