@@ -13,7 +13,6 @@ using System.Windows.Forms.Integration;
 using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using Browser.ExtraBrowser;
 using BrowserLibCore;
 using Grpc.Core;
@@ -250,7 +249,7 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 		{
 			colorArgs = @"--force-color-profile=""sRGB""";
 		}
-		var corewebviewoptions = new CoreWebView2EnvironmentOptions() { AdditionalBrowserArguments = $"--proxy-server=\"{ProxySettings}\" --disable-features=\"HardwareMediaKeyHandling\" " + colorArgs };
+		var corewebviewoptions = new CoreWebView2EnvironmentOptions() { AdditionalBrowserArguments = $"--proxy-server=\"{ProxySettings}\" --disable-features=\"HardwareMediaKeyHandling\" --lang=\"ja\" " + colorArgs };
 		var env = await CoreWebView2Environment.CreateAsync(null, userDataFolder: BrowserCachePath, options: corewebviewoptions);
 		//Environment.SetEnvironmentVariable("WEBVIEW2_ADDITIONAL_BROWSER_ARGUMENTS", $"--proxy-server=\"{ProxySettings}\" --disable-features=\"HardwareMediaKeyHandling\" " + colorArgs);
 		//Environment.SetEnvironmentVariable("WEBVIEW2_USER_DATA_FOLDER", BrowserCachePath);
