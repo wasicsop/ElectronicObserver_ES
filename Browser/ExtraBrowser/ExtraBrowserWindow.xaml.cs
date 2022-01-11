@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
 using BrowserLibCore;
@@ -148,5 +149,10 @@ public partial class ExtraBrowserWindow : Window
 				}
 			}
 		}
+	}
+	protected override void OnClosing(CancelEventArgs e)
+	{
+		Browser?.Dispose();
+		base.OnClosing(e);
 	}
 }
