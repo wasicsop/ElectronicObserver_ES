@@ -21,7 +21,7 @@ public partial class ExtraBrowserWindow : Window
 
 	private async void InitializeAsync()
 	{
-		var path = System.IO.Path.Combine(BrowserConstants.CachePath, @"\ExtraBrowser");
+		var path = BrowserConstants.CachePath + @"\ExtraBrowser";
 		var env = await CoreWebView2Environment.CreateAsync(userDataFolder: path);
 
 		await Browser.EnsureCoreWebView2Async(env);
