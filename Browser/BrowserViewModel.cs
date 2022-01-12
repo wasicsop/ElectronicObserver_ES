@@ -245,11 +245,21 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 		if (Browser.CoreWebView2 != null) return;
 		if (ProxySettings == null) return;
 		string colorArgs = "";
+		string gpuArgs = "";
+		string loggingArgs = "";
 		if (Configuration.ForceColorProfile)
 		{
 			colorArgs = @"--force-color-profile=""sRGB""";
 		}
-		var corewebviewoptions = new CoreWebView2EnvironmentOptions() { AdditionalBrowserArguments = $"--proxy-server=\"{ProxySettings}\" --disable-features=\"HardwareMediaKeyHandling\" --lang=\"ja\" " + colorArgs };
+		if (!Configuration.HardwareAccelerationEnabled)
+		{
+			gpuArgs = @"--disable-gpu";
+		}
+		if (Configuration.SavesBrowserLog)
+		{
+			loggingArgs = "--log-level=2";
+		}
+		var corewebviewoptions = new CoreWebView2EnvironmentOptions() { AdditionalBrowserArguments = $"--proxy-server=\"{ProxySettings}\" --disable-features=\"HardwareMediaKeyHandling\" --lang=\"ja\" --log-file=\"BrowserLog.log\" " + colorArgs + " " + gpuArgs + " " + loggingArgs };
 		var env = await CoreWebView2Environment.CreateAsync(null, userDataFolder: BrowserCachePath, options: corewebviewoptions);
 		//Environment.SetEnvironmentVariable("WEBVIEW2_ADDITIONAL_BROWSER_ARGUMENTS", $"--proxy-server=\"{ProxySettings}\" --disable-features=\"HardwareMediaKeyHandling\" " + colorArgs);
 		//Environment.SetEnvironmentVariable("WEBVIEW2_USER_DATA_FOLDER", BrowserCachePath);
