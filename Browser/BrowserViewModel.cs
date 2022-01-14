@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
@@ -56,6 +57,7 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 {
 	public FormBrowserTranslationViewModel FormBrowser { get; }
 	private BrowserConfiguration Configuration { get; set; }
+	public static CoreWebView2Environment? Environment { get; private set; }
 
 	private string Host { get; }
 	private int Port { get; }
@@ -244,26 +246,40 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 	{
 		if (Browser.CoreWebView2 != null) return;
 		if (ProxySettings == null) return;
-		string colorArgs = "";
-		string gpuArgs = "";
-		string loggingArgs = "";
+
+		List<string> browserArgs = new()
+		{
+			$"--proxy-server=\"{ProxySettings}\"",
+			"--disable-features=\"HardwareMediaKeyHandling\"",
+			"--lang=\"ja\"",
+			"--log-file=\"BrowserLog.log\" ",
+		};
+
 		if (Configuration.ForceColorProfile)
 		{
-			colorArgs = @"--force-color-profile=""sRGB""";
+			browserArgs.Add("--force-color-profile=\"sRGB\"");
 		}
+
 		if (!Configuration.HardwareAccelerationEnabled)
 		{
-			gpuArgs = @"--disable-gpu";
+			browserArgs.Add("--disable-gpu");
 		}
+
 		if (Configuration.SavesBrowserLog)
 		{
-			loggingArgs = "--log-level=2";
+			browserArgs.Add("--log-level=2");
 		}
-		var corewebviewoptions = new CoreWebView2EnvironmentOptions() { AdditionalBrowserArguments = $"--proxy-server=\"{ProxySettings}\" --disable-features=\"HardwareMediaKeyHandling\" --lang=\"ja\" --log-file=\"BrowserLog.log\" " + colorArgs + " " + gpuArgs + " " + loggingArgs };
+
+		var corewebviewoptions = new CoreWebView2EnvironmentOptions
+		{
+			AdditionalBrowserArguments = string.Join(" ", browserArgs)
+		};
 		var env = await CoreWebView2Environment.CreateAsync(null, userDataFolder: BrowserCachePath, options: corewebviewoptions);
-		//Environment.SetEnvironmentVariable("WEBVIEW2_ADDITIONAL_BROWSER_ARGUMENTS", $"--proxy-server=\"{ProxySettings}\" --disable-features=\"HardwareMediaKeyHandling\" " + colorArgs);
-		//Environment.SetEnvironmentVariable("WEBVIEW2_USER_DATA_FOLDER", BrowserCachePath);
+
+		Environment = env;
+
 		await Browser.EnsureCoreWebView2Async(env);
+
 		Browser.Source = new Uri("about:blank");
 		Browser.CoreWebView2.WebResourceRequested += CoreWebView2_WebResourceRequested;
 		Browser.CoreWebView2.AddWebResourceRequestedFilter("*", CoreWebView2WebResourceContext.Script);

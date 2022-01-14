@@ -22,16 +22,8 @@ public partial class ExtraBrowserWindow : Window
 
 	private async void InitializeAsync()
 	{
-		var path = BrowserConstants.CachePath + @"\ExtraBrowser";
-		var env = await CoreWebView2Environment.CreateAsync(userDataFolder: path);
-
-		await Browser.EnsureCoreWebView2Async(env);
-		//Browser.CoreWebView2.WebResourceRequested += CoreWebView2_WebResourceRequested;
-		//Browser.CoreWebView2.AddWebResourceRequestedFilter("*", CoreWebView2WebResourceContext.Script);
-		//Browser.CoreWebView2.NavigationCompleted += OnNavigationCompleted;
-		//Browser.CoreWebView2.FrameCreated += OnFrameCreated;
-		//SetCookie();
-		//Browser.CoreWebView2.Navigate("http://www.dmm.com/netgame/social/-/gadgets/=/app_id=854854/");
+		await Browser.EnsureCoreWebView2Async(BrowserViewModel.Environment);
+		
 		Browser.Source = new Uri("http://www.duckduckgo.com");
 		txtBoxAddress.Text = "http://www.duckduckgo.com";
 	}
