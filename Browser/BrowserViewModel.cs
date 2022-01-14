@@ -68,6 +68,7 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 	public ImageProvider? Icons { get; set; }
 	public WebView2? Browser { get; set; }
 	public bool IsRefreshing { get; set; }
+	public bool IsNavigating { get; set; }
 	private System.Drawing.Size KanColleSize { get; } = new(1200, 720);
 	private string KanColleUrl => "http://www.dmm.com/netgame/social/-/gadgets/=/app_id=854854/";
 	private string BrowserCachePath => BrowserConstants.CachePath;
@@ -321,7 +322,10 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 				MuteCommand.Execute(null);
 				break;
 		}
-
+		if (e.Key == Key.F5 && (e.Key == Key.LeftCtrl || e.Key == Key.RightCtrl))
+		{
+			HardRefreshCommand.Execute(null);
+		}
 	}
 
 	private void CoreWebView2_ProcessFailed(object? sender, CoreWebView2ProcessFailedEventArgs e)
@@ -350,7 +354,7 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 	private void CoreWebView2_NavigationStarted(object? sender, CoreWebView2NavigationStartingEventArgs e)
 	{
 		if (Browser.CoreWebView2 == null) return;
-
+		if (IsNavigating) return;
 		if (e.Uri.Contains(@"/rt.gsspat.jp/"))
 		{
 			e.Cancel = true;
@@ -360,7 +364,6 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 			var settings = Browser.CoreWebView2.Settings;
 			settings.UserAgent = "Chrome";
 		}
-
 		if (gameframe != null && !IsRefreshing)
 		{
 			e.Cancel = true;
@@ -372,6 +375,7 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 		{
 			gameframe = e.Frame;
 			IsRefreshing = false;
+			IsNavigating = false;
 		}
 		if (e.Frame.Name.Contains(@"htmlWrap"))
 		{
@@ -545,6 +549,7 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 	public void Navigate(string url)
 	{
 		Browser.CoreWebView2?.Navigate(url);
+		IsNavigating = true;
 	}
 	/// <summary>
 	/// ブラウザを再読み込みします。
@@ -558,7 +563,14 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 	private void RefreshBrowser(bool ignoreCache)
 	{
 		//Browser.Reload(ignoreCache);
-		Browser.CoreWebView2.Reload();
+		if (ignoreCache)
+		{
+			Browser.CoreWebView2.ExecuteScriptAsync("window.location.reload(true)");
+		}
+		else
+		{
+			Browser.CoreWebView2.Reload();
+		}
 		IsRefreshing = true;
 	}
 
