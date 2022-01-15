@@ -88,9 +88,19 @@ public partial class ShipTypeConditionViewModel : ObservableObject, IConditionVi
 		bool flagshipCondition = !Model.MustBeFlagship ||
 			Model.Types.Contains(ships[0].MasterShip.ShipType);
 
-		bool countCondition = ships
-			.Count(s => Model.Types.Contains(s.MasterShip.ShipType)) >= Model.Count;
+		int shipCount = ships.Count(s => Model.Types.Contains(s.MasterShip.ShipType));
+
+		bool countCondition = Compare(shipCount, Model.Count, Model.ComparisonType);
 
 		return flagshipCondition && countCondition;
 	}
+
+	private static bool Compare(IComparable a, IComparable b, ComparisonType comparisonType) =>
+		comparisonType switch
+		{
+			ComparisonType.Equal => a.CompareTo(b) == 0,
+			ComparisonType.LessOrEqual => a.CompareTo(b) <= 0,
+
+			_ => a.CompareTo(b) >= 0
+		};
 }
