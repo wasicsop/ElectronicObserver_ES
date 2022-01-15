@@ -147,10 +147,17 @@
 							</DataTemplate>
 						</ItemsControl.ItemTemplate>
 					</ItemsControl>
+
 					<controls:NumberBox
 						Maximum="12"
 						Minimum="1"
 						Value="{Binding Model.Count}"
+						/>
+
+					<ComboBox
+						ItemTemplate="{StaticResource EnumDisplayerTemplate}"
+						ItemsSource="{Binding ComparisonTypes}"
+						SelectedItem="{Binding ComparisonType}"
 						/>
 
 					<CheckBox Content="{Binding ViewModel.Translation.MustBeFlagship, ElementName=QuestTrackerManagerView}" IsChecked="{Binding MustBeFlagship}" />

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using ElectronicObserver.Window.Dialog.QuestTrackerManager.Enums;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.Models.Conditions;
 using ElectronicObserverTypes;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
@@ -15,12 +16,17 @@ public partial class ShipTypeConditionViewModel : ObservableObject, IConditionVi
 	public ShipTypes SelectedType { get; set; } = ShipTypes.Destroyer;
 	public IEnumerable<ShipTypes> AllTypes { get; }
 
+	public ComparisonType ComparisonType { get; set; }
+	public IEnumerable<ComparisonType> ComparisonTypes { get; }
+
 	public bool MustBeFlagship { get; set; }
 
-	public string Display => $"({CountConditionDisplay}) >= {Model.Count}{FlagshipConditionDisplay}";
+	public string Display => $"({CountConditionDisplay}) {ComparisonTypeDisplay} {Model.Count}{FlagshipConditionDisplay}";
 
 	private string CountConditionDisplay => string.Join($" {Properties.Window.Dialog.QuestTrackerManager.Operator_Or} ",
 		Model.Types.Select(s => s.Display()));
+
+	private string ComparisonTypeDisplay => ComparisonType.Display();
 
 	private string FlagshipConditionDisplay => MustBeFlagship switch
 	{
@@ -33,8 +39,10 @@ public partial class ShipTypeConditionViewModel : ObservableObject, IConditionVi
 		Model = model;
 
 		MustBeFlagship = Model.MustBeFlagship;
+		ComparisonType = Model.ComparisonType;
 
 		AllTypes = Enum.GetValues(typeof(ShipTypes)).Cast<ShipTypes>();
+		ComparisonTypes = Enum.GetValues<ComparisonType>();
 
 		Model.PropertyChanged += (sender, args) =>
 		{
@@ -51,6 +59,13 @@ public partial class ShipTypeConditionViewModel : ObservableObject, IConditionVi
 			if (args.PropertyName is not nameof(MustBeFlagship)) return;
 
 			Model.MustBeFlagship = MustBeFlagship;
+		};
+
+		PropertyChanged += (sender, args) =>
+		{
+			if (args.PropertyName is not nameof(ComparisonType)) return;
+
+			Model.ComparisonType = ComparisonType;
 		};
 	}
 
