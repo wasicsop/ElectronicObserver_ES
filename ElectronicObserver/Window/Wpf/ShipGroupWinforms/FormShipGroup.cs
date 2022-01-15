@@ -1091,7 +1091,12 @@ public partial class FormShipGroup : DockContent
 						KCDatabase.Instance.ShipGroup.ShipGroups.Remove(id);
 						KCDatabase.Instance.ShipGroup.ShipGroups.Add(group);
 
-						ChangeShipView(ViewModel.SelectedGroup, ViewModel.PreviousGroup);
+						int groupIndex = ViewModel.Groups.IndexOf(ViewModel.Groups.First(g => g.Group.ID == id));
+						ShipGroupItem updatedGroup = new(group);
+						ViewModel.Groups.RemoveAt(groupIndex);
+						ViewModel.Groups.Insert(groupIndex, updatedGroup);
+						
+						ViewModel.SelectGroupCommand.Execute(updatedGroup);
 					}
 				}
 			}
