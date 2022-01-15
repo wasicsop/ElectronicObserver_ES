@@ -19,7 +19,7 @@ namespace Browser.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Resources {
@@ -684,6 +684,33 @@ namespace Browser.Properties {
         public static string ToolMenu_Other_Zoom {
             get {
                 return ResourceManager.GetString("ToolMenu_Other_Zoom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to WebView2のダウンロードが完了しました。インストールを開始します。.
+        /// </summary>
+        public static string WebView2DownloadComplete {
+            get {
+                return ResourceManager.GetString("WebView2DownloadComplete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to WebView2のインストールが完了しました。.
+        /// </summary>
+        public static string WebView2InstallationComplete {
+            get {
+                return ResourceManager.GetString("WebView2InstallationComplete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to WebView2 が見つかりません。ダウンロードを開始します。.
+        /// </summary>
+        public static string WebView2NotFound {
+            get {
+                return ResourceManager.GetString("WebView2NotFound", resourceCulture);
             }
         }
         

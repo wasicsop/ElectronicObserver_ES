@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.Globalization;
 using System.IO;
+using System.Net.Http;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
@@ -134,7 +135,7 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 	/// <param name="serverUri">ホストプロセスとの通信用URL</param>
 	public BrowserViewModel(string host, int port, string culture)
 	{
-		//Debugger.Launch();
+		// Debugger.Launch();
 
 		FormBrowser = App.Current.Services.GetService<FormBrowserTranslationViewModel>()!;
 		ScreenshotCommand = new RelayCommand(ToolMenu_Other_ScreenShot_Click);
@@ -202,7 +203,7 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 		};
 	}
 
-	public void OnLoaded(object sender, RoutedEventArgs e)
+	public async void OnLoaded(object sender, RoutedEventArgs e)
 	{
 		if (sender is not System.Windows.Window window) return;
 
@@ -235,8 +236,50 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 		HeartbeatTimer.Start();
 
 		SetIconResource();
+
+		await WebView2Check();
+
 		Browser = new WebView2();
 		InitializeAsync();
+	}
+
+	private async Task WebView2Check()
+	{
+		string? version = null;
+
+		try
+		{
+			version = CoreWebView2Environment.GetAvailableBrowserVersionString();
+		}
+		catch
+		{
+			// no webview2 version available
+		}
+
+		if (version is not null) return;
+
+		AddLog(2, FormBrowser.WebView2NotFound);
+
+		const string webView2InstallerName = "MicrosoftEdgeWebView2Setup.exe";
+		// this is scoped so the installer file closes before we attempt to run it 
+		{
+			HttpClient client = new();
+
+			await using Stream stream = await client.GetStreamAsync("https://go.microsoft.com/fwlink/p/?LinkId=2124703");
+			await using FileStream file = new(webView2InstallerName, FileMode.CreateNew);
+
+			await stream.CopyToAsync(file);
+		}
+
+		AddLog(2, FormBrowser.WebView2DownloadComplete);
+
+		ProcessStartInfo psi = new(webView2InstallerName, "/install");
+		using Process? process = Process.Start(psi);
+		await process.WaitForExitAsync();
+
+		File.Delete(webView2InstallerName);
+
+		AddLog(2, FormBrowser.WebView2InstallationComplete);
 	}
 
 	/// <summary>
@@ -245,6 +288,7 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 	/// </summary>
 	public async void InitializeAsync()
 	{
+		if (Browser is null) return;
 		if (Browser.CoreWebView2 != null) return;
 		if (ProxySettings == null) return;
 

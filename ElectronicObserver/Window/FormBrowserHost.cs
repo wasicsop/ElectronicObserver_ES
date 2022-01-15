@@ -85,7 +85,8 @@ public partial class FormBrowserHost : DockContent
 			{
 				if (Utility.Configuration.Config.FormBrowser.IsEnabled)
 				{
-					NavigateToLogInPage();
+					// browser handles the navigation
+					// NavigateToLogInPage();
 				}
 			}
 

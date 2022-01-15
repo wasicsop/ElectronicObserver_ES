@@ -338,4 +338,13 @@ Open the download page?
   <data name="AkashiList" xml:space="preserve">
     <value>Akashi List</value>
   </data>
+  <data name="WebView2NotFound" xml:space="preserve">
+    <value>WebView2 not found. Starting download.</value>
+  </data>
+  <data name="WebView2DownloadComplete" xml:space="preserve">
+    <value>WebView2 download complete. Starting installation.</value>
+  </data>
+  <data name="WebView2InstallationComplete" xml:space="preserve">
+    <value>WebView2 installation complete.</value>
+  </data>
 </root>
