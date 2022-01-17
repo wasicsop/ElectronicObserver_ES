@@ -47,12 +47,6 @@ public class BrowserHostHub : StreamingHubBase<IBrowserHost, IBrowser>, IBrowser
 	{
 		await Task.Run(() => FormBrowserHost.Instance.RequestNavigation(v));
 	}
-
-	public async Task ClearCache()
-	{
-		await Task.Run(() => FormBrowserHost.Instance.ClearCache());
-	}
-
 	public Task<byte[][]> GetIconResource()
 	{
 		return Task.Run(() => FormBrowserHost.Instance.GetIconResource());

@@ -23,6 +23,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 using Microsoft.Web.WebView2.Core;
+using Microsoft.Web.WebView2.Core.DevToolsProtocolExtension;
 using Microsoft.Web.WebView2.Wpf;
 using ModernWpf;
 
@@ -59,7 +60,7 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 	public FormBrowserTranslationViewModel FormBrowser { get; }
 	private BrowserConfiguration Configuration { get; set; }
 	public static CoreWebView2Environment? Environment { get; private set; }
-
+	public DevToolsProtocolHelper DevToolsHelper { get; set; }
 	private string Host { get; }
 	private int Port { get; }
 	private string Culture { get; }
@@ -377,7 +378,7 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 		Environment = env;
 
 		await Browser.EnsureCoreWebView2Async(env);
-
+		DevToolsHelper = Browser.CoreWebView2.GetDevToolsProtocolHelper();
 		Browser.Source = new Uri("about:blank");
 		Browser.CoreWebView2.WebResourceRequested += CoreWebView2_WebResourceRequested;
 		Browser.CoreWebView2.AddWebResourceRequestedFilter("*", CoreWebView2WebResourceContext.Script);
@@ -666,7 +667,7 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 		//Browser.Reload(ignoreCache);
 		if (ignoreCache)
 		{
-			Browser.CoreWebView2.ExecuteScriptAsync("window.location.reload(true)");
+			DevToolsHelper.Page.ReloadAsync(true);
 		}
 		else
 		{
@@ -1092,7 +1093,7 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 		if (MessageBox.Show(FormBrowser.ClearCacheMessage, FormBrowser.ClearCacheTitle,
 			MessageBoxButton.YesNo, MessageBoxImage.Warning, MessageBoxResult.No) == MessageBoxResult.Yes)
 		{
-			BrowserHost.ClearCache();
+			DevToolsHelper.Network.ClearBrowserCacheAsync();
 		}
 	}
 

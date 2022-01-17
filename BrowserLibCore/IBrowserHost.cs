@@ -12,7 +12,6 @@ public interface IBrowserHost : IStreamingHub<IBrowserHost, IBrowser>
 	Task ConfigurationUpdated(BrowserConfiguration configuration);
 	Task SetProxyCompleted();
 	Task RequestNavigation(string v);
-	Task ClearCache();
 	Task<byte[][]> GetIconResource();
 	Task<bool> IsServerAlive();
 	Task<int> GetTheme();
