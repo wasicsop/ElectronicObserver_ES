@@ -214,7 +214,7 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 		Channel grpChannel = new(Host, Port, ChannelCredentials.Insecure);
 		BrowserHost = StreamingHubClient.Connect<BrowserLibCore.IBrowserHost, BrowserLibCore.IBrowser>(grpChannel, this);
 
-		ConfigurationChanged();
+		await Task.Run(ConfigurationChanged);
 
 		// ウィンドウの親子設定＆ホストプロセスから接続してもらう
 		Task.Run(async () => await BrowserHost.ConnectToBrowser((long)handle)).Wait();
@@ -494,7 +494,10 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 			_ => Visibility.Collapsed
 		};
 
+		await App.Current.Dispatcher.BeginInvoke(async () =>
+		{
 		ThemeManager.Current.ApplicationTheme = (ApplicationTheme)await BrowserHost.GetTheme();
+		});
 
 		// SizeAdjuster.BackColor = System.Drawing.Color.FromArgb(unchecked((int)Configuration.BackColor));
 		// ToolMenu.BackColor = System.Drawing.Color.FromArgb(unchecked((int)Configuration.BackColor));
