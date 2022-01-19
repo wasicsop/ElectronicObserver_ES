@@ -245,6 +245,7 @@ public partial class FormBrowserHost : DockContent
 				SavesBrowserLog = c.SavesBrowserLog,
 				EnableDebugMenu = Utility.Configuration.Config.Debug.EnableDebugMenu,
 				UseGadgetRedirect = c.UseGadgetRedirect,
+				UseVulkanWorkaround = c.UseVulkanWorkaround,
 			};
 		}
 	}

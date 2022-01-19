@@ -1298,6 +1298,12 @@ public sealed class Configuration
 			/// </summary>
 			public bool UseGadgetRedirect { get; set; }
 
+			/// <summary>
+			/// Rename WebView2 vulkan files so it can't use the vulkan software rendering implementation
+			/// This fixes performance on older CPUs
+			/// </summary>
+			public bool UseVulkanWorkaround { get; set; }
+
 			public ConfigFormBrowser()
 			{
 				ZoomRate = 1;
@@ -1324,6 +1330,7 @@ public sealed class Configuration
 					"ja-JP" => false,
 					_ => true
 				};
+				UseVulkanWorkaround = false;
 			}
 		}
 		/// <summary>[ブラウザ]ウィンドウ</summary>

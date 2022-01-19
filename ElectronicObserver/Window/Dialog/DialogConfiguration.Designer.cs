@@ -271,6 +271,7 @@
             this.APIListBrowser = new System.Windows.Forms.OpenFileDialog();
             this.Log_PlayTime = new System.Windows.Forms.Label();
             this.PlayTimeTimer = new System.Windows.Forms.Timer(this.components);
+            this.FormBrowser_UseVulkanWorkaround = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Connection_UpstreamProxyPort)).BeginInit();
@@ -632,7 +633,7 @@
             this.UI_RestartHint.TabIndex = 20;
             this.UI_RestartHint.Text = "You should restart EO after changing the theme or language.";
             // 
-            // LanguageOptions
+            // UI_LanguageOptions
             // 
             this.UI_LanguageOptions.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.UI_LanguageOptions.FormattingEnabled = true;
@@ -640,17 +641,17 @@
             "English",
             "Japanese"});
             this.UI_LanguageOptions.Location = new System.Drawing.Point(83, 248);
-            this.UI_LanguageOptions.Name = "LanguageOptions";
+            this.UI_LanguageOptions.Name = "UI_LanguageOptions";
             this.UI_LanguageOptions.Size = new System.Drawing.Size(80, 23);
             this.UI_LanguageOptions.TabIndex = 19;
             this.ToolTipInfo.SetToolTip(this.UI_LanguageOptions, "Use the specified color theme.\nChanges will take effect after restart.\nCustom opt" +
         "ion will use color values from Settings\\ColorScheme.json");
             // 
-            // LanguageLabel
+            // UI_LanguageLabel
             // 
             this.UI_LanguageLabel.AutoSize = true;
             this.UI_LanguageLabel.Location = new System.Drawing.Point(9, 251);
-            this.UI_LanguageLabel.Name = "LanguageLabel";
+            this.UI_LanguageLabel.Name = "UI_LanguageLabel";
             this.UI_LanguageLabel.Size = new System.Drawing.Size(68, 15);
             this.UI_LanguageLabel.TabIndex = 18;
             this.UI_LanguageLabel.Text = "Language:";
@@ -725,7 +726,7 @@
             this.label21.TabIndex = 16;
             this.label21.Text = "Theme:";
             // 
-            // comboBox1
+            // UI_ThemeOptions
             // 
             this.UI_ThemeOptions.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.UI_ThemeOptions.FormattingEnabled = true;
@@ -734,7 +735,7 @@
             "Dark",
             "Custom"});
             this.UI_ThemeOptions.Location = new System.Drawing.Point(67, 219);
-            this.UI_ThemeOptions.Name = "comboBox1";
+            this.UI_ThemeOptions.Name = "UI_ThemeOptions";
             this.UI_ThemeOptions.Size = new System.Drawing.Size(80, 23);
             this.UI_ThemeOptions.TabIndex = 17;
             this.ToolTipInfo.SetToolTip(this.UI_ThemeOptions, "Use the specified color theme.\nChanges will take effect after restart.\nCustom opt" +
@@ -789,7 +790,7 @@
             this.UI_RenderingTest.RepairFontColor = System.Drawing.Color.Empty;
             this.UI_RenderingTest.RepairTime = new System.DateTime(2017, 6, 18, 0, 0, 59, 159);
             this.UI_RenderingTest.RepairTimeShowMode = ElectronicObserver.Window.Control.ShipStatusHPRepairTimeShowMode.Invisible;
-            this.UI_RenderingTest.Size = new System.Drawing.Size(136, 20);
+            this.UI_RenderingTest.Size = new System.Drawing.Size(108, 20);
             this.UI_RenderingTest.SubFontColor = System.Drawing.Color.Empty;
             this.UI_RenderingTest.TabIndex = 12;
             this.UI_RenderingTest.Text = "Rendering Test: ";
@@ -2388,6 +2389,7 @@
             // 
             // tabPage12
             // 
+            this.tabPage12.Controls.Add(this.FormBrowser_UseVulkanWorkaround);
             this.tabPage12.Controls.Add(this.FormBrowser_UseGadgetRedirect);
             this.tabPage12.Controls.Add(this.FormBrowser_SavesBrowserLog);
             this.tabPage12.Controls.Add(this.FormBrowser_ForceColorProfile);
@@ -3169,6 +3171,16 @@
             this.PlayTimeTimer.Interval = 1000;
             this.PlayTimeTimer.Tick += new System.EventHandler(this.PlayTimeTimer_Tick);
             // 
+            // FormBrowser_UseVulkanWorkaround
+            // 
+            this.FormBrowser_UseVulkanWorkaround.AutoSize = true;
+            this.FormBrowser_UseVulkanWorkaround.Location = new System.Drawing.Point(242, 199);
+            this.FormBrowser_UseVulkanWorkaround.Name = "FormBrowser_UseVulkanWorkaround";
+            this.FormBrowser_UseVulkanWorkaround.Size = new System.Drawing.Size(88, 19);
+            this.FormBrowser_UseVulkanWorkaround.TabIndex = 18;
+            this.FormBrowser_UseVulkanWorkaround.Text = "checkBox1";
+            this.FormBrowser_UseVulkanWorkaround.UseVisualStyleBackColor = true;
+            // 
             // DialogConfiguration
             // 
             this.AcceptButton = this.ButtonOK;
@@ -3502,5 +3514,6 @@
 		private System.Windows.Forms.Label UI_RestartHint;
 		private System.Windows.Forms.ComboBox UI_LanguageOptions;
 		private System.Windows.Forms.Label UI_LanguageLabel;
+		private System.Windows.Forms.CheckBox FormBrowser_UseVulkanWorkaround;
 	}
 }

@@ -140,6 +140,10 @@ public class BrowserConfiguration
 	/// </summary>
 	[Key(22)]
 	public bool EnableDebugMenu { get; set; }
+
 	[Key(23)]
 	public bool UseGadgetRedirect { get; set; }
+
+	[Key(24)]
+	public bool UseVulkanWorkaround { get; set; }
 }

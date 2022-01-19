@@ -724,4 +724,10 @@ Are you sure?</value>
     <value>Redirect the gadget api call to bypass the foreigner block.
 If you live in Japan or use a Japanese VPN you can keep this option disabled.</value>
   </data>
+  <data name="FormBrowser_UseVulkanWorkaround" xml:space="preserve">
+    <value>Vulkan workaround *</value>
+  </data>
+  <data name="FormBrowser_UseVulkanWorkaroundToolTip" xml:space="preserve">
+    <value>Removes the WebView2 files required for the vulkan software rendering implementation, which can cause high CPU load on older hardware.</value>
+  </data>
 </root>

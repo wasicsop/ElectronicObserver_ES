@@ -722,4 +722,10 @@ APIリストの書式や用法はオンラインヘルプを参照してくだ�
     <value>外国人ブロックを回避するために、ガジェットのapiコールをリダイレクトします。
 日本にお住まいの方や、日本のVPNをご利用の方は、このオプションを無効にしておくことができます。</value>
   </data>
+  <data name="FormBrowser_UseVulkanWorkaround" xml:space="preserve">
+    <value>Vulkanの回避策 *</value>
+  </data>
+  <data name="FormBrowser_UseVulkanWorkaroundToolTip" xml:space="preserve">
+    <value>古いハードウェアで高いCPU負荷を引き起こす可能性のあるvulkanソフトウェアレンダリング実装に必要なWebView2ファイルを削除しました。</value>
+  </data>
 </root>

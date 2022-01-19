@@ -317,6 +317,15 @@ namespace Browser.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to パーミッションがないため、vulkan の回避策を適用できない。七四式を管理者として実行すると、回避策が機能します。.
+        /// </summary>
+        public static string MissingPermissionsToRenameVulkanFiles {
+            get {
+                return ResourceManager.GetString("MissingPermissionsToRenameVulkanFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Go to Login Page.
         /// </summary>
         public static string NavigateToLogInPage {
