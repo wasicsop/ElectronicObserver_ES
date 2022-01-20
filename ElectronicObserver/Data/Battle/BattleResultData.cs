@@ -237,6 +237,11 @@ public class BattleResultData : ResponseWrapper
 		}
 	}
 
+	/// <summary>
+	/// api_first_clear is 1 when clearing a map for the first time
+	/// for maps with gauges it's 1 every time the last gauge is cleared
+	/// </summary>
+	public bool IsFirstClear => RawData.api_first_clear > 0;
 
 	public override void LoadFromResponse(string apiname, dynamic data)
 	{
