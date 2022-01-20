@@ -30,11 +30,7 @@
 			</ContextMenu>
 		</Border.ContextMenu>
 
-		<Grid
-			Margin="4"
-			IsSharedSizeScope="True"
-			Visibility="{Binding ViewVisibility}"
-			>
+		<Grid Margin="4" IsSharedSizeScope="True">
 			<Grid.Resources>
 				<Style TargetType="TextBlock">
 					<Setter Property="Margin" Value="2" />
@@ -46,7 +42,7 @@
 
 			<ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
 				<WrapPanel Orientation="Vertical">
-					<Grid>
+					<Grid Visibility="{Binding ViewVisible, Converter={StaticResource BooleanToHiddenConverter}}">
 						<Grid.RowDefinitions>
 							<RowDefinition Height="Auto" />
 							<RowDefinition Height="Auto" />
@@ -271,6 +267,7 @@
 							Grid.Column="0"
 							Background="Transparent"
 							ToolTip="{Binding FleetFriendToolTip}"
+							Visibility="{Binding PlayerFleetVisible, Converter={StaticResource BooleanToHiddenConverter}}"
 							>
 							<StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
 								<Image Source="{Binding FleetFriendIcon}" />
@@ -287,7 +284,7 @@
 							d:Text="Escort"
 							Text="{Binding FormBattle.FleetFriendEscort}"
 							TextAlignment="Center"
-							Visibility="{Binding FleetFriendEscortVisible}"
+							Visibility="{Binding FleetFriendEscortVisible, Converter={StaticResource BooleanToHiddenConverter}}"
 							/>
 						<TextBlock
 							Grid.Row="0"
@@ -296,7 +293,7 @@
 							Background="{Binding FleetEnemyEscortBackColor}"
 							Text="{Binding FormBattle.FleetEnemyEscort}"
 							TextAlignment="Center"
-							Visibility="{Binding FleetEnemyEscortVisible}"
+							Visibility="{Binding FleetEnemyEscortVisible, Converter={StaticResource BooleanToHiddenConverter}}"
 							/>
 						<TextBlock
 							Grid.Row="0"
@@ -306,6 +303,7 @@
 							Foreground="{Binding FleetEnemyForeColor}"
 							Text="{Binding FormBattle.FleetEnemy}"
 							TextAlignment="Center"
+							Visibility="{Binding ViewVisible, Converter={StaticResource BooleanToHiddenConverter}}"
 							/>
 
 						<ItemsControl
@@ -313,6 +311,7 @@
 							Grid.Column="0"
 							Margin="4"
 							ItemsSource="{Binding PlayerMainHPBars}"
+							Visibility="{Binding PlayerFleetVisible, Converter={StaticResource BooleanToHiddenConverter}}"
 							>
 							<ItemsControl.ItemTemplate>
 								<DataTemplate>
@@ -326,7 +325,7 @@
 							Grid.Column="1"
 							Margin="4"
 							ItemsSource="{Binding PlayerEscortHPBars}"
-							Visibility="{Binding FleetFriendEscortVisible}"
+							Visibility="{Binding FleetFriendEscortVisible, Converter={StaticResource BooleanToHiddenConverter}}"
 							>
 							<ItemsControl.ItemTemplate>
 								<DataTemplate>
@@ -340,7 +339,7 @@
 							Grid.Column="2"
 							Margin="4"
 							ItemsSource="{Binding EnemyEscortHPBars}"
-							Visibility="{Binding FleetEnemyEscortVisible}"
+							Visibility="{Binding FleetEnemyEscortVisible, Converter={StaticResource BooleanToHiddenConverter}}"
 							>
 							<ItemsControl.ItemTemplate>
 								<DataTemplate>
@@ -354,6 +353,7 @@
 							Grid.Column="3"
 							Margin="4"
 							ItemsSource="{Binding EnemyMainHPBars}"
+							Visibility="{Binding ViewVisible, Converter={StaticResource BooleanToHiddenConverter}}"
 							>
 							<ItemsControl.ItemTemplate>
 								<DataTemplate>
@@ -368,6 +368,7 @@
 							d:Text="11.6%"
 							Text="{Binding DamageFriendText}"
 							TextAlignment="Center"
+							Visibility="{Binding ViewVisible, Converter={StaticResource BooleanToHiddenConverter}}"
 							/>
 						<TextBlock
 							Grid.Row="2"
@@ -377,6 +378,7 @@
 							Foreground="{Binding WinRankForeColor}"
 							Text="{Binding WinRankText}"
 							TextAlignment="Center"
+							Visibility="{Binding ViewVisible, Converter={StaticResource BooleanToHiddenConverter}}"
 							/>
 						<TextBlock
 							Grid.Row="2"
@@ -384,12 +386,14 @@
 							d:Text="100%"
 							Text="{Binding DamageEnemyText}"
 							TextAlignment="Center"
+							Visibility="{Binding ViewVisible, Converter={StaticResource BooleanToHiddenConverter}}"
 							/>
 
 						<Separator
 							Grid.Row="3"
 							Grid.Column="0"
 							Grid.ColumnSpan="4"
+							Visibility="{Binding ViewVisible, Converter={StaticResource BooleanToHiddenConverter}}"
 							/>
 					</Grid>
 				</WrapPanel>
