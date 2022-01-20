@@ -36,7 +36,7 @@ public partial class TrackerViewModel : ObservableObject
 	};
 	public string Display => string.Join(" \n", Tasks.Select(t => t.Display));
 
-	public string? ProgressDisplay => 
+	public string? ProgressDisplay =>
 		string.Join(" \n", Tasks.Select(t => t.Progress).Where(p => !string.IsNullOrEmpty(p))) switch
 		{
 			null or "" => null,
@@ -82,6 +82,7 @@ public partial class TrackerViewModel : ObservableObject
 		EquipmentCardTypeScrapTaskModel e => new EquipmentCardTypeScrapTaskViewModel(e),
 		EquipmentIconTypeScrapTaskModel e => new EquipmentIconTypeScrapTaskViewModel(e),
 		NodeReachTaskModel n => new NodeReachTaskViewModel(n),
+		MapFirstClearTaskModel m => new MapFirstClearTaskViewModel(m),
 	}).ToList();
 
 	[ICommand]
@@ -120,7 +121,8 @@ public partial class TrackerViewModel : ObservableObject
 			QuestTaskType.EquipmentCategoryScrap => new EquipmentCategoryScrapTaskModel(),
 			QuestTaskType.EquipmentCardTypeScrap => new EquipmentCardTypeScrapTaskModel(),
 			QuestTaskType.EquipmentIconTypeScrap => new EquipmentIconTypeScrapTaskModel(),
-			QuestTaskType.NodeReach => new NodeReachTaskModel()
+			QuestTaskType.NodeReach => new NodeReachTaskModel(),
+			QuestTaskType.MapFirstClear => new MapFirstClearTaskModel(),
 		});
 	}
 
@@ -221,6 +223,16 @@ public partial class TrackerViewModel : ObservableObject
 		foreach (NodeReachTaskViewModel task in Tasks.OfType<NodeReachTaskViewModel>())
 		{
 			task.Increment(compassMapAreaId, compassMapInfoId, nodeId);
+		}
+	}
+
+	public void Increment(IFleetData fleet, int compassMapAreaId, int compassMapInfoId)
+	{
+		if (!GroupConditions.ConditionMet(fleet)) return;
+
+		foreach (MapFirstClearTaskViewModel task in Tasks.OfType<MapFirstClearTaskViewModel>())
+		{
+			task.Increment(compassMapAreaId, compassMapInfoId);
 		}
 	}
 

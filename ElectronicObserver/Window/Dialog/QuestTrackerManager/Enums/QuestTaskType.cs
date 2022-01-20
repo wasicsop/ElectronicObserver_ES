@@ -28,4 +28,6 @@ public enum QuestTaskType
 	EquipmentIconTypeScrap,
 	[Display(ResourceType = typeof(Properties.Window.Dialog.QuestTrackerManager), Name = "QuestTaskType_NodeReach")]
 	NodeReach,
+	[Display(ResourceType = typeof(Properties.Window.Dialog.QuestTrackerManager), Name = "QuestTaskType_MapFirstClear")]
+	MapFirstClear,
 }

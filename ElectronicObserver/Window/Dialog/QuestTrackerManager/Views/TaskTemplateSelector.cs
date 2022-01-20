@@ -15,6 +15,7 @@ public class TaskTemplateSelector : DataTemplateSelector
 	public DataTemplate? EquipmentCardTypeScrap { get; set; }
 	public DataTemplate? EquipmentIconTypeScrap { get; set; }
 	public DataTemplate? NodeReach { get; set; }
+	public DataTemplate? MapFirstClear { get; set; }
 
 	public override DataTemplate? SelectTemplate(object item, DependencyObject container) => item switch
 	{
@@ -26,6 +27,7 @@ public class TaskTemplateSelector : DataTemplateSelector
 		EquipmentCardTypeScrapTaskViewModel => EquipmentCardTypeScrap,
 		EquipmentIconTypeScrapTaskViewModel => EquipmentIconTypeScrap,
 		NodeReachTaskViewModel => NodeReach,
+		MapFirstClearTaskViewModel => MapFirstClear,
 
 		_ => throw new NotImplementedException(),
 	};

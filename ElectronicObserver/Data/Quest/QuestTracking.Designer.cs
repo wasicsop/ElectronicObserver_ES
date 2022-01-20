@@ -286,6 +286,15 @@ namespace ElectronicObserver.Data.Quest {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 初回クリア.
+        /// </summary>
+        public static string MapFirstClear {
+            get {
+                return ResourceManager.GetString("MapFirstClear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 近代化改修.
         /// </summary>
         public static string Modernization {

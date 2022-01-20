@@ -219,4 +219,7 @@
   <data name="Reach" xml:space="preserve">
     <value>到達</value>
   </data>
+  <data name="MapFirstClear" xml:space="preserve">
+    <value>初回クリア</value>
+  </data>
 </root>

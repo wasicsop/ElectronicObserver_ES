@@ -222,4 +222,7 @@ boss victories ×{3}</value>
   <data name="Reach" xml:space="preserve">
     <value> reach ×</value>
   </data>
+  <data name="MapFirstClear" xml:space="preserve">
+    <value> first clear </value>
+  </data>
 </root>

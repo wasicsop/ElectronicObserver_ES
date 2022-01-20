@@ -209,4 +209,7 @@
   <data name="Position" xml:space="preserve">
     <value>位置</value>
   </data>
+  <data name="QuestTaskType_MapFirstClear" xml:space="preserve">
+    <value>作戦初回クリア</value>
+  </data>
 </root>

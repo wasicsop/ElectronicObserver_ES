@@ -304,6 +304,15 @@ namespace ElectronicObserver.Properties.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 作戦初回クリア.
+        /// </summary>
+        public static string QuestTaskType_MapFirstClear {
+            get {
+                return ResourceManager.GetString("QuestTaskType_MapFirstClear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ノード到達.
         /// </summary>
         public static string QuestTaskType_NodeReach {
