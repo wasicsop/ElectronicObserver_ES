@@ -41,9 +41,7 @@ public static class EquipmentDataExtensions
 		equip?.EquipmentId == EquipmentId.CarrierBasedBomber_SuiseiModel12_wType31PhotoelectricFuzeBombs ||
 		equip?.EquipmentId == EquipmentId.CarrierBasedBomber_ZeroFighterbomberModel62_IwaiSquadron;
 
-	public static bool IsIncluded(this IEquipmentData? equip) => equip?.MasterEquipment.CategoryType switch
-	{
-		EquipmentTypes.Ration or EquipmentTypes.DamageControl or EquipmentTypes.Supplies => false,
-		_ => true
-	};
+	public static bool UsesSlotSpace(this IEquipmentDataMaster equip) => equip.CategoryType 
+		is not (EquipmentTypes.Ration or EquipmentTypes.DamageControl or EquipmentTypes.Supplies);
+
 }

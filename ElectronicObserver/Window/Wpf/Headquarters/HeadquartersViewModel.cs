@@ -732,10 +732,13 @@ public class HeadquartersViewModel : AnchorableViewModel
 	{
 		get
 		{
-			if (KCDatabase.Instance.Battle != null)
-				return KCDatabase.Instance.Equipments.Values.Count(e => e.IsIncluded()) + KCDatabase.Instance.Battle.DroppedEquipmentCount;
+			int equipmentCount = KCDatabase.Instance.Equipments.Values
+				.Count(e => e.MasterEquipment.UsesSlotSpace());
 
-			return KCDatabase.Instance.Equipments.Values.Count(e => e.IsIncluded());
+			if (KCDatabase.Instance.Battle != null)
+				return equipmentCount + KCDatabase.Instance.Battle.DroppedEquipmentCount;
+
+			return equipmentCount;
 		}
 	}
 

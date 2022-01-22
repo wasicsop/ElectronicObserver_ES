@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using ElectronicObserver.Data.Battle.Detail;
 using ElectronicObserver.Properties.Data;
 using ElectronicObserver.Resource.Record;
+using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserverTypes;
 
@@ -447,9 +448,18 @@ public class BattleManager : ResponseWrapper
 				ShipDataMaster ship = KCDatabase.Instance.MasterShips[shipID];
 				DroppedShipCount++;
 
-				var defaultSlot = ship.DefaultSlot;
+				IEnumerable<EquipmentDataMaster?>? defaultSlot = ship.DefaultSlot?.Select(i => i switch
+				{
+					<= 1 => null,
+					_ => KCDatabase.Instance.MasterEquipments[i]
+				});
+
 				if (defaultSlot != null)
-					DroppedEquipmentCount += defaultSlot.Count(id => id != -1);
+				{
+					DroppedEquipmentCount += defaultSlot
+						.Where(e => e is not null)
+						.Count(e => e!.UsesSlotSpace());
+				}
 
 				if (showLog)
 					Utility.Logger.Add(2, string.Format(LoggerRes.ShipAdded, ship.ShipTypeName, ship.NameWithClass));
@@ -474,7 +484,7 @@ public class BattleManager : ResponseWrapper
 			{
 
 				EquipmentDataMaster eq = KCDatabase.Instance.MasterEquipments[eqID];
-				if(eq.CategoryType != EquipmentTypes.Supplies || eq.CategoryType != EquipmentTypes.Ration || eq.CategoryType != EquipmentTypes.DamageControl)
+				if(eq.UsesSlotSpace())
 				{
 					DroppedEquipmentCount++;
 				}
