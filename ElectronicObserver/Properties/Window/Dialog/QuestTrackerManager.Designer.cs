@@ -295,6 +295,15 @@ namespace ElectronicObserver.Properties.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 演習.
+        /// </summary>
+        public static string QuestTaskType_Exercise {
+            get {
+                return ResourceManager.GetString("QuestTaskType_Exercise", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 遠征.
         /// </summary>
         public static string QuestTaskType_Expedition {

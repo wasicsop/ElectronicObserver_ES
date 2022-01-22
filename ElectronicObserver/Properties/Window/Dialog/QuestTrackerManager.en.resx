@@ -232,4 +232,7 @@ Do you want to overwrite these quest trackers?</value>
   <data name="QuestTaskType_MapFirstClear" xml:space="preserve">
     <value>Map first clear</value>
   </data>
+  <data name="QuestTaskType_Exercise" xml:space="preserve">
+    <value>PvP</value>
+  </data>
 </root>

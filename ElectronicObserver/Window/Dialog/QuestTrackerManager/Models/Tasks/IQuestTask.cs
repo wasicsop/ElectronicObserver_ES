@@ -11,6 +11,7 @@ namespace ElectronicObserver.Window.Dialog.QuestTrackerManager.Models.Tasks;
 [Union(6, typeof(EquipmentIconTypeScrapTaskModel))]
 [Union(7, typeof(NodeReachTaskModel))]
 [Union(8, typeof(MapFirstClearTaskModel))]
+[Union(9, typeof(ExerciseTaskModel))]
 public interface IQuestTask
 {
 	int Progress { get; set; }

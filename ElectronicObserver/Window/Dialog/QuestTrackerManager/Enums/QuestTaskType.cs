@@ -30,4 +30,6 @@ public enum QuestTaskType
 	NodeReach,
 	[Display(ResourceType = typeof(Properties.Window.Dialog.QuestTrackerManager), Name = "QuestTaskType_MapFirstClear")]
 	MapFirstClear,
+	[Display(ResourceType = typeof(Properties.Window.Dialog.QuestTrackerManager), Name = "QuestTaskType_Exercise")]
+	Exercise,
 }

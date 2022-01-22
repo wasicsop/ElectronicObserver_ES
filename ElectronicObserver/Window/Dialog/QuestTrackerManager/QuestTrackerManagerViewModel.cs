@@ -66,6 +66,8 @@ public partial class QuestTrackerManagerViewModel : ObservableObject
 		ao.APIList["api_req_sortie/battleresult"].ResponseReceived += MapClearedFirstTime;
 		ao.APIList["api_req_combined_battle/battleresult"].ResponseReceived += MapClearedFirstTime;
 
+		ao.APIList["api_req_practice/battle_result"].ResponseReceived += PracticeFinished;
+
 		ao.APIList["api_req_mission/result"].ResponseReceived += ExpeditionCompleted;
 	}
 
@@ -188,6 +190,19 @@ public partial class QuestTrackerManagerViewModel : ObservableObject
 		foreach (TrackerViewModel tracker in Trackers.Where(t => t.State == 2))
 		{
 			tracker.Increment(fleet, bm.Compass.MapAreaID, bm.Compass.MapInfoID);
+		}
+	}
+
+	private void PracticeFinished(string apiname, dynamic data)
+	{
+		IFleetData? fleet = KCDatabase.Instance.Fleet.Fleets.Values
+			.FirstOrDefault(f => f.IsInPractice);
+
+		if (fleet is null) return;
+
+		foreach (TrackerViewModel tracker in Trackers.Where(t => t.State == 2))
+		{
+			tracker.Increment(fleet, (string)data.api_win_rank);
 		}
 	}
 

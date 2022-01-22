@@ -349,6 +349,31 @@
 		</StackPanel>
 	</DataTemplate>
 
+	<DataTemplate x:Key="ExerciseTaskTemplate" DataType="{x:Type questTasks:ExerciseTaskViewModel}">
+		<StackPanel Orientation="Horizontal">
+			<Button
+				Command="{Binding DataContext.RemoveTaskCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}"
+				CommandParameter="{Binding Model}"
+				Content="ｘ"
+				/>
+
+			<ComboBox
+				ItemTemplate="{StaticResource EnumDisplayerTemplate}"
+				ItemsSource="{Binding Ranks}"
+				SelectedItem="{Binding Model.Rank, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+				/>
+
+			<controls:NumberBox
+				Maximum="{Binding Model.Count}"
+				Minimum="0"
+				Value="{Binding Model.Progress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+				/>
+
+			<controls:NumberBox Minimum="1" Value="{Binding Model.Count, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+		</StackPanel>
+	</DataTemplate>
+
+
 	<questTrackerManager:TaskTemplateSelector
 		x:Key="TaskTemplateSelector"
 		BattleNodeId="{StaticResource BattleNodeIdTaskTemplate}"
@@ -357,6 +382,7 @@
 		EquipmentCategoryScrap="{StaticResource EquipmentCategoryScrapTaskTemplate}"
 		EquipmentIconTypeScrap="{StaticResource EquipmentIconTypeScrapTaskTemplate}"
 		EquipmentScrap="{StaticResource EquipmentScrapTaskTemplate}"
+		Exercise="{StaticResource ExerciseTaskTemplate}"
 		Expedition="{StaticResource ExpeditionTaskTemplate}"
 		MapFirstClear="{StaticResource MapFirstClearTaskTemplate}"
 		NodeReach="{StaticResource NodeReachTaskTemplate}"
