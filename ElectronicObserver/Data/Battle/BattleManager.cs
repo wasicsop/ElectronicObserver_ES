@@ -474,7 +474,10 @@ public class BattleManager : ResponseWrapper
 			{
 
 				EquipmentDataMaster eq = KCDatabase.Instance.MasterEquipments[eqID];
-				DroppedEquipmentCount++;
+				if(eq.CategoryType != EquipmentTypes.Supplies || eq.CategoryType != EquipmentTypes.Ration || eq.CategoryType != EquipmentTypes.DamageControl)
+				{
+					DroppedEquipmentCount++;
+				}
 
 				if (showLog)
 				{

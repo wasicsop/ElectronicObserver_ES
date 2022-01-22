@@ -12,6 +12,7 @@ using ElectronicObserver.Resource.Record;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.ViewModels.Translations;
+using ElectronicObserverTypes;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
@@ -732,9 +733,9 @@ public class HeadquartersViewModel : AnchorableViewModel
 		get
 		{
 			if (KCDatabase.Instance.Battle != null)
-				return KCDatabase.Instance.Equipments.Count + KCDatabase.Instance.Battle.DroppedEquipmentCount;
+				return KCDatabase.Instance.Equipments.Values.Count(e => e.IsIncluded()) + KCDatabase.Instance.Battle.DroppedEquipmentCount;
 
-			return KCDatabase.Instance.Equipments.Count;
+			return KCDatabase.Instance.Equipments.Values.Count(e => e.IsIncluded());
 		}
 	}
 
