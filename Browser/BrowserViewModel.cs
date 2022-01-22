@@ -379,6 +379,7 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 
 		await Browser.EnsureCoreWebView2Async(env);
 		DevToolsHelper = Browser.CoreWebView2.GetDevToolsProtocolHelper();
+		Browser.CoreWebView2.Settings.AreDefaultScriptDialogsEnabled = false;
 		Browser.Source = new Uri("about:blank");
 		Browser.CoreWebView2.WebResourceRequested += CoreWebView2_WebResourceRequested;
 		Browser.CoreWebView2.AddWebResourceRequestedFilter("*", CoreWebView2WebResourceContext.Script);
@@ -392,6 +393,8 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 		SetCookie();
 		Browser.CoreWebView2.Navigate(KanColleUrl);
 	}
+
+
 
 	private void CoreWebView2_ContextMenuRequested(object? sender, CoreWebView2ContextMenuRequestedEventArgs e)
 	{
