@@ -4,13 +4,18 @@ using System.Linq;
 using ElectronicObserver.Data;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.Enums;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.Models.Conditions;
+using ElectronicObserver.Window.Dialog.ShipPicker;
 using ElectronicObserverTypes;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
+using Microsoft.Toolkit.Mvvm.Input;
 
 namespace ElectronicObserver.Window.Dialog.QuestTrackerManager.ViewModels.Conditions;
 
-public class ShipPositionConditionViewModel : ObservableObject, IConditionViewModel
+public partial class ShipPositionConditionViewModel : ObservableObject, IConditionViewModel
 {
+	private ShipPickerViewModel ShipPickerViewModel { get; }
+
 	private IShipDataMaster? _ship;
 
 	public IShipDataMaster Ship
@@ -42,6 +47,8 @@ public class ShipPositionConditionViewModel : ObservableObject, IConditionViewMo
 
 	public ShipPositionConditionViewModel(ShipPositionConditionModel model)
 	{
+		ShipPickerViewModel = App.Current.Services.GetService<ShipPickerViewModel>()!;
+
 		RemodelComparisonTypes = Enum.GetValues<RemodelComparisonType>();
 
 		Model = model;
@@ -69,6 +76,16 @@ public class ShipPositionConditionViewModel : ObservableObject, IConditionViewMo
 
 			Model.Position = Position;
 		};
+	}
+
+	[ICommand]
+	private void OpenShipPicker()
+	{
+		ShipPickerView shipPicker = new(ShipPickerViewModel);
+		if (shipPicker.ShowDialog() is true)
+		{
+			Ship = shipPicker.PickedShip!;
+		}
 	}
 
 	public bool ConditionMet(IFleetData fleet)

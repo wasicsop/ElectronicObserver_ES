@@ -8,6 +8,7 @@ using System.Windows.Controls;
 using ElectronicObserver.Utility;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window;
+using ElectronicObserver.Window.Dialog.ShipPicker;
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
@@ -157,6 +158,8 @@ public partial class App : Application
 		services.AddSingleton<DialogAlbumMasterShipTranslationViewModel>();
 		services.AddSingleton<DialogAlbumMasterEquipmentTranslationViewModel>();
 		services.AddSingleton<QuestTrackerManagerTranslationViewModel>();
+
+		services.AddSingleton<ShipPickerViewModel>();
 
 		return services.BuildServiceProvider();
 	}
