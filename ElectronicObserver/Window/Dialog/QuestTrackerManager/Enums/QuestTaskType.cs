@@ -32,4 +32,6 @@ public enum QuestTaskType
 	MapFirstClear,
 	[Display(ResourceType = typeof(Properties.Window.Dialog.QuestTrackerManager), Name = "QuestTaskType_Exercise")]
 	Exercise,
+	[Display(ResourceType = typeof(Properties.Window.Dialog.QuestTrackerManager), Name = "QuestTaskType_World1Map6ResourceNode")]
+	World1Map6ResourceNode,
 }

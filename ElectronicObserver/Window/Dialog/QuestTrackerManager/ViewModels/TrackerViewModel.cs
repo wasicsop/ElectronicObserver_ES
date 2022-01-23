@@ -125,6 +125,12 @@ public partial class TrackerViewModel : ObservableObject
 			QuestTaskType.NodeReach => new NodeReachTaskModel(),
 			QuestTaskType.MapFirstClear => new MapFirstClearTaskModel(),
 			QuestTaskType.Exercise => new ExerciseTaskModel(),
+			QuestTaskType.World1Map6ResourceNode => new NodeReachTaskModel
+			{
+				Map = new(1, 6),
+				Name = "N",
+				NodeIds = new List<int> { 14, 17 }
+			},
 		});
 	}
 

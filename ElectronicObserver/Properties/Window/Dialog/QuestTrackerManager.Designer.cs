@@ -331,6 +331,15 @@ namespace ElectronicObserver.Properties.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 1-6N.
+        /// </summary>
+        public static string QuestTaskType_World1Map6ResourceNode {
+            get {
+                return ResourceManager.GetString("QuestTaskType_World1Map6ResourceNode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 任意の改造.
         /// </summary>
         public static string RemodelComparisonType_Any {

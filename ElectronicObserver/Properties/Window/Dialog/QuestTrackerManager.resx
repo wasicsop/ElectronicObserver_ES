@@ -215,4 +215,7 @@
   <data name="QuestTaskType_Exercise" xml:space="preserve">
     <value>演習</value>
   </data>
+  <data name="QuestTaskType_World1Map6ResourceNode" xml:space="preserve">
+    <value>1-6N</value>
+  </data>
 </root>
