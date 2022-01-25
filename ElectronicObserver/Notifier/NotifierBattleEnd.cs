@@ -1,8 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Timers;
-using ElectronicObserver.Data;
-using ElectronicObserver.Data.Battle;
+﻿using System.Timers;
 using ElectronicObserver.Observer;
 using ElectronicObserver.Utility;
 
@@ -76,6 +72,7 @@ public class NotifierBattleEnd : NotifierBase
 
 	void CloseAll(string apiname, dynamic data)
 	{
+		Timer?.Stop();
 		DialogData.OnCloseAll();
 	}
 
