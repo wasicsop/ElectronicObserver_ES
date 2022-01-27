@@ -110,7 +110,7 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 	public CoreWebView2Frame? kancolleframe { get; private set; }
 	public bool ZoomFit { get; set; }
 	public string CurrentZoom { get; set; } = "";
-
+	public int CurrentVolume { get; set; }
 	public ICommand ScreenshotCommand { get; }
 	public ICommand SetZoomCommand { get; }
 	public ICommand ModifyZoomCommand { get; }
@@ -856,8 +856,9 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 				TryGetVolumeManager();
 			}
 
-			mute = VolumeManager?.IsMute ?? false;
+			//mute = VolumeManager?.IsMute ?? false;
 			volume = (VolumeManager?.Volume ?? 1) * 100;
+			mute = volume == 0;
 		}
 		catch (Exception)
 		{
@@ -943,7 +944,20 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 			}
 			else
 			{
-				VolumeManager.ToggleMute();
+				//VolumeManager.ToggleMute();
+				if (Volume >= 1)
+				{
+					VolumeManager.Volume = (float)0 / 100;
+					CurrentVolume = Volume;
+				}
+				else
+				{
+					if (CurrentVolume == 0)
+					{
+						CurrentVolume = 50;
+					}
+					VolumeManager.Volume = (float)CurrentVolume / 100;
+				}
 			}
 		}
 		catch (Exception)
