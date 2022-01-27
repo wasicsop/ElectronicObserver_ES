@@ -128,6 +128,11 @@ public partial class DialogExpeditionCheck : Form
 
 							cell.ToolTipText = string.Join("\n", result.SuccessPercent);
 						}
+						else if (mission.ExpeditionType is ExpeditionType.CombatTypeOneExpedition)
+						{
+							cell.Value = DialogRes.ExpeditionCheckOkSign + string.Join(", ", result.SuccessPercent);
+							cell.ToolTipText = string.Join("\n", result.SuccessPercent);
+						}
 						else
 						{
 							cell.Value = DialogRes.ExpeditionCheckOkSign;
