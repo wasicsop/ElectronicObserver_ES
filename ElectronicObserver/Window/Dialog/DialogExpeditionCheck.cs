@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ElectronicObserver.Data;
 using ElectronicObserver.Resource;
+using ElectronicObserver.Utility;
 using ElectronicObserverTypes;
 using Translation = ElectronicObserver.Properties.Window.Dialog.DialogExpeditionCheck;
 
@@ -20,7 +21,28 @@ public partial class DialogExpeditionCheck : Form
 	{
 		InitializeComponent();
 
+		Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
+		ConfigurationChanged();
+
 		Translate();
+	}
+
+	private void ConfigurationChanged()
+	{
+		Configuration.ConfigurationData c = Configuration.Config;
+
+		Font = c.UI.MainFont.FontData;
+
+		if (c.UI.IsLayoutFixed)
+		{
+			CheckView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
+			CheckView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+		}
+		else
+		{
+			CheckView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
+			CheckView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+		}
 	}
 
 	public void Translate()
