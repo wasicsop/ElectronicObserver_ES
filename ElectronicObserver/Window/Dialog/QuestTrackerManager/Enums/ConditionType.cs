@@ -16,4 +16,6 @@ public enum ConditionType
 	AllowedShipTypes,
 	[Display(ResourceType = typeof(Properties.Window.Dialog.QuestTrackerManager), Name = "ConditionType_ShipPosition")]
 	ShipPosition,
+	[Display(ResourceType = typeof(Properties.Window.Dialog.QuestTrackerManager), Name = "ConditionType_ShipNationality")]
+	ShipNationality,
 }

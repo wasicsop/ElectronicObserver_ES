@@ -218,4 +218,10 @@
   <data name="QuestTaskType_World1Map6ResourceNode" xml:space="preserve">
     <value>1-6N</value>
   </data>
+  <data name="ConditionType_ShipNationality" xml:space="preserve">
+    <value>艦国籍</value>
+  </data>
+  <data name="Kanmusu" xml:space="preserve">
+    <value>艦娘</value>
+  </data>
 </root>

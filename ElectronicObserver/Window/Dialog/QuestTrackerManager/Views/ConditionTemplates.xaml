@@ -285,6 +285,81 @@
 		</StackPanel>
 	</DataTemplate>
 
+	<DataTemplate x:Key="ShipNationalityConditionTemplate" DataType="{x:Type conditions:ShipNationalityConditionViewModel}">
+		<DataTemplate.Resources>
+			<ResourceDictionary Source="Styles.xaml" />
+		</DataTemplate.Resources>
+		<Border
+			Margin="2"
+			BorderBrush="Gray"
+			BorderThickness="1"
+			>
+			<StackPanel>
+				<StackPanel Orientation="Horizontal">
+					<Button
+						Command="{Binding DataContext.RemoveConditionCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ItemsControl}}"
+						CommandParameter="{Binding Model}"
+						Content="ｘ"
+						/>
+
+					<TextBlock Text="{Binding Display}" />
+				</StackPanel>
+
+				<StackPanel Orientation="Horizontal">
+					<Button Command="{Binding AddTypeCommand}" Content="＋" />
+
+					<ComboBox
+						ItemTemplate="{StaticResource EnumDisplayerTemplate}"
+						ItemsSource="{Binding AllNationalities}"
+						SelectedItem="{Binding SelectedNationality}"
+						/>
+
+				</StackPanel>
+
+				<StackPanel Orientation="Horizontal">
+					<ItemsControl ItemsSource="{Binding Model.Nationalities}">
+						<ItemsControl.ItemsPanel>
+							<ItemsPanelTemplate>
+								<StackPanel Orientation="Horizontal" />
+							</ItemsPanelTemplate>
+						</ItemsControl.ItemsPanel>
+						<ItemsControl.ItemTemplate>
+							<DataTemplate>
+								<DataTemplate.Resources>
+									<ResourceDictionary Source="Styles.xaml" />
+								</DataTemplate.Resources>
+
+								<StackPanel Orientation="Horizontal">
+									<TextBlock Text="{Binding Converter={StaticResource EnumDisplayConverter}}" />
+
+									<Button
+										Command="{Binding DataContext.RemoveTypeCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ItemsControl}}"
+										CommandParameter="{Binding}"
+										Content="ｘ"
+										/>
+								</StackPanel>
+							</DataTemplate>
+						</ItemsControl.ItemTemplate>
+					</ItemsControl>
+
+					<controls:NumberBox
+						Maximum="12"
+						Minimum="1"
+						Value="{Binding Model.Count}"
+						/>
+
+					<ComboBox
+						ItemTemplate="{StaticResource EnumDisplayerTemplate}"
+						ItemsSource="{Binding ComparisonTypes}"
+						SelectedItem="{Binding ComparisonType}"
+						/>
+
+					<CheckBox Content="{Binding ViewModel.Translation.MustBeFlagship, ElementName=QuestTrackerManagerView}" IsChecked="{Binding MustBeFlagship}" />
+				</StackPanel>
+			</StackPanel>
+		</Border>
+	</DataTemplate>
+
 
 	<questTrackerManager:ConditionTemplateSelector
 		x:Key="ConditionTemplateSelector"
@@ -292,6 +367,7 @@
 		Group="{StaticResource GroupConditionTemplate}"
 		PartialShip="{StaticResource PartialShipConditionTemplate}"
 		Ship="{StaticResource ShipConditionTemplate}"
+		ShipNationality="{StaticResource ShipNationalityConditionTemplate}"
 		ShipPosition="{StaticResource ShipPositionConditionTemplate}"
 		ShipType="{StaticResource ShipTypeConditionTemplate}"
 		/>

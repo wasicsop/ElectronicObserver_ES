@@ -8,6 +8,7 @@ namespace ElectronicObserver.Window.Dialog.QuestTrackerManager.Models.Conditions
 [Union(3, typeof(PartialShipConditionModel))]
 [Union(4, typeof(AllowedShipTypesConditionModel))]
 [Union(5, typeof(ShipPositionConditionModel))]
+[Union(6, typeof(ShipNationalityConditionModel))]
 public interface ICondition
 {
 }

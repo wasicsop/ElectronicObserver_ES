@@ -238,4 +238,10 @@ Do you want to overwrite these quest trackers?</value>
   <data name="QuestTaskType_World1Map6ResourceNode" xml:space="preserve">
     <value>1-6N</value>
   </data>
+  <data name="ConditionType_ShipNationality" xml:space="preserve">
+    <value>Ship nationality</value>
+  </data>
+  <data name="Kanmusu" xml:space="preserve">
+    <value> ship</value>
+  </data>
 </root>
