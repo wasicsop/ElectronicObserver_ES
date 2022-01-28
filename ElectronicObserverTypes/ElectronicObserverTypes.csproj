@@ -10,17 +10,26 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="Properties\ExpeditionType.Designer.cs">
-	    <DesignTime>True</DesignTime>
-	    <AutoGen>True</AutoGen>
-	    <DependentUpon>ExpeditionType.resx</DependentUpon>
-	  </Compile>
+		<Compile Update="Properties\ExpeditionType.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>ExpeditionType.resx</DependentUpon>
+		</Compile>
+		<Compile Update="Properties\ShipNationality.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>ShipNationality.resx</DependentUpon>
+		</Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <EmbeddedResource Update="Properties\ExpeditionType.resx">
-	    <Generator>PublicResXFileCodeGenerator</Generator>
-	    <LastGenOutput>ExpeditionType.Designer.cs</LastGenOutput>
-	  </EmbeddedResource>
+		<EmbeddedResource Update="Properties\ExpeditionType.resx">
+			<Generator>PublicResXFileCodeGenerator</Generator>
+			<LastGenOutput>ExpeditionType.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Properties\ShipNationality.resx">
+			<Generator>PublicResXFileCodeGenerator</Generator>
+			<LastGenOutput>ShipNationality.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
 	</ItemGroup>
 </Project>

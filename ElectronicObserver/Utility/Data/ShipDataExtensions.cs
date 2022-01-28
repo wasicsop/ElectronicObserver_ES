@@ -226,4 +226,26 @@ public static class ShipDataExtensions
 				return 0;
 		}
 	}
+
+	public static ShipNationality Nationality(this IShipDataMaster ship)
+	{
+		if (ship.IsAbyssalShip) return ShipNationality.Unknown;
+
+		return ship.SortID switch
+		{
+			< 1000 => ShipNationality.Unknown,
+			< 30000 => ShipNationality.Japanese,
+			< 31000 => ShipNationality.German,
+			< 32000 => ShipNationality.Italian,
+			< 33000 => ShipNationality.American,
+			< 34000 => ShipNationality.British,
+			< 35000 => ShipNationality.French,
+			< 36000 => ShipNationality.Russian,
+			< 37000 => ShipNationality.Swedish,
+			< 38000 => ShipNationality.Dutch,
+			< 39000 => ShipNationality.Australian,
+
+			_ => ShipNationality.Unknown
+		};
+	}
 }
