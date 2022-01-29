@@ -15,6 +15,7 @@ using System.Windows.Forms.Integration;
 using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using Browser.ExtraBrowser;
 using BrowserLibCore;
 using Grpc.Core;
@@ -102,6 +103,7 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 	private bool IsKanColleLoaded { get; set; }
 
 	public string? LastScreenShotPath { get; set; }
+	public BitmapSource? LastScreenshot { get; set; }
 
 	private VolumeManager? VolumeManager { get; set; }
 	public int RealVolume { get; set; }
@@ -772,6 +774,8 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 			await Browser.CoreWebView2.CapturePreviewAsync(browserImageFormat, memoryStream).ConfigureAwait(false);
 
 			Bitmap image = (Bitmap)Bitmap.FromStream(memoryStream, true);
+			
+			await App.Current.Dispatcher.BeginInvoke(() => LastScreenshot = image.ToBitmapSource());
 
 			if (savemode is 1 or 3)
 			{
@@ -1115,12 +1119,11 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 
 	private void ToolMenu_Other_LastScreenShot_CopyToClipboard_Click()
 	{
-		if (LastScreenShotPath is null || !File.Exists(LastScreenShotPath)) return;
+		if (LastScreenshot is null) return;
 
 		try
 		{
-			using var img = new System.Drawing.Bitmap(LastScreenShotPath);
-			Clipboard.SetImage(img.ToBitmapSource());
+			Clipboard.SetImage(LastScreenshot);
 			AddLog(2, string.Format(FormBrowser.LastScreenshotCopiedToClipboard, LastScreenShotPath));
 		}
 		catch (Exception ex)

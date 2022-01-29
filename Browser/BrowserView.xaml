@@ -407,7 +407,7 @@
 									<Image
 										Width="600"
 										Height="360"
-										Source="{Binding LastScreenShotPath}"
+										Source="{Binding LastScreenshot}"
 										>
 										<Image.InputBindings>
 											<MouseBinding Command="{Binding OpenLastScreenshotCommand}" Gesture="LeftClick" />
