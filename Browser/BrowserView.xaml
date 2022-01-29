@@ -355,7 +355,18 @@
 				</MenuItem>
 				<MenuItem Height="Auto" Command="{Binding MuteCommand}">
 					<MenuItem.Icon>
-						<Image Source="{Binding MuteStateImage}" />
+						<Image>
+							<Image.Style>
+								<Style TargetType="{x:Type Image}">
+									<Setter Property="Source" Value="{Binding Icons.Unmute}" />
+									<Style.Triggers>
+										<DataTrigger Binding="{Binding IsMuted}" Value="True">
+											<Setter Property="Source" Value="{Binding Icons.Mute}" />
+										</DataTrigger>
+									</Style.Triggers>
+								</Style>
+							</Image.Style>
+						</Image>
 					</MenuItem.Icon>
 				</MenuItem>
 				<MenuItem Height="Auto" Command="{Binding RefreshCommand}">
@@ -503,13 +514,13 @@
 										Margin="4"
 										Maximum="100"
 										Minimum="0"
-										Value="{Binding Volume}"
+										Value="{Binding RealVolume}"
 										/>
 									<Slider
 										Width="200"
 										Maximum="100"
 										Minimum="0"
-										Value="{Binding Volume}"
+										Value="{Binding RealVolume}"
 										/>
 								</StackPanel>
 							</MenuItem.Header>

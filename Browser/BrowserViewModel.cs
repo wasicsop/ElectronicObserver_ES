@@ -104,13 +104,17 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 	public string? LastScreenShotPath { get; set; }
 
 	private VolumeManager? VolumeManager { get; set; }
-	public int Volume { get; set; }
-	public ImageSource? MuteStateImage { get; set; }
+	public int RealVolume { get; set; }
+	// gets set to 0 when in muted state, and to RealVolume when in un-muted state
+	public int WorkaroundVolume { get; set; }
+	public bool IsMuted { get; set; }
+
 	public CoreWebView2Frame? gameframe { get; private set; }
 	public CoreWebView2Frame? kancolleframe { get; private set; }
+
 	public bool ZoomFit { get; set; }
 	public string CurrentZoom { get; set; } = "";
-	public int CurrentVolume { get; set; }
+
 	public ICommand ScreenshotCommand { get; }
 	public ICommand SetZoomCommand { get; }
 	public ICommand ModifyZoomCommand { get; }
@@ -136,7 +140,7 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 	/// <param name="serverUri">ホストプロセスとの通信用URL</param>
 	public BrowserViewModel(string host, int port, string culture)
 	{
-		// Debugger.Launch();
+		// System.Diagnostics.Debugger.Launch();
 
 		FormBrowser = App.Current.Services.GetService<FormBrowserTranslationViewModel>()!;
 		ScreenshotCommand = new RelayCommand(ToolMenu_Other_ScreenShot_Click);
@@ -198,7 +202,7 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 
 		PropertyChanged += (sender, args) =>
 		{
-			if (args.PropertyName is not nameof(Volume)) return;
+			if (args.PropertyName is not nameof(RealVolume)) return;
 
 			ToolMenu_Other_Volume_ValueChanged();
 		};
@@ -587,7 +591,7 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 		DestroyDMMreloadDialog();
 
 		//起動直後はまだ音声が鳴っていないのでミュートできないため、この時点で有効化
-		SetVolumeState();
+		InitializeVolumeState();
 	}
 
 	// hack: it makes an infinite loop in the wpf version for some reason
@@ -844,6 +848,36 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 		VolumeManager = VolumeManager.CreateInstanceByProcessName("msedgewebview2");
 	}
 
+	private void InitializeVolumeState()
+	{
+		bool mute;
+		float volume;
+
+		try
+		{
+			if (VolumeManager == null)
+			{
+				TryGetVolumeManager();
+			}
+
+			mute = VolumeManager?.IsMute ?? false;
+			volume = (VolumeManager?.Volume ?? 1) * 100;
+		}
+		catch (Exception)
+		{
+			// 音量データ取得不能時
+			VolumeManager = null;
+			mute = false;
+			volume = 100;
+		}
+
+		RealVolume = (int)volume;
+		IsMuted = mute;
+		Configuration.Volume = volume;
+		Configuration.IsMute = mute;
+		ConfigurationUpdated();
+	}
+
 	private void SetVolumeState()
 	{
 		bool mute;
@@ -856,7 +890,7 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 				TryGetVolumeManager();
 			}
 
-			//mute = VolumeManager?.IsMute ?? false;
+			// mute = VolumeManager?.IsMute ?? false;
 			volume = (VolumeManager?.Volume ?? 1) * 100;
 			mute = volume == 0;
 		}
@@ -868,13 +902,7 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 			volume = 100;
 		}
 
-		MuteStateImage = mute switch
-		{
-			true => Icons?.Mute,
-			_ => Icons?.Unmute,
-		};
-
-		Volume = (int)volume;
+		WorkaroundVolume = (int)volume;
 		Configuration.Volume = volume;
 		Configuration.IsMute = mute;
 		ConfigurationUpdated();
@@ -944,20 +972,20 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 			}
 			else
 			{
-				//VolumeManager.ToggleMute();
-				if (Volume >= 1)
+				// VolumeManager.ToggleMute();
+
+				if (IsMuted)
 				{
-					VolumeManager.Volume = (float)0 / 100;
-					CurrentVolume = Volume;
+					IsMuted = false;
+					WorkaroundVolume = RealVolume;
 				}
 				else
 				{
-					if (CurrentVolume == 0)
-					{
-						CurrentVolume = 50;
-					}
-					VolumeManager.Volume = (float)CurrentVolume / 100;
+					IsMuted = true;
+					WorkaroundVolume = 0;
 				}
+
+				VolumeManager.Volume = (float)WorkaroundVolume / 100;
 			}
 		}
 		catch (Exception)
@@ -979,7 +1007,10 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 		{
 			if (VolumeManager is not null)
 			{
-				VolumeManager.Volume = (float)Volume / 100;
+				IsMuted = false;
+				VolumeManager.IsMute = false;
+				WorkaroundVolume = RealVolume;
+				VolumeManager.Volume = (float)WorkaroundVolume / 100;
 				// control.BackColor = System.Drawing.SystemColors.Window;
 			}
 			else
