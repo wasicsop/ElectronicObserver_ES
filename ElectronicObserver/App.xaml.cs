@@ -30,6 +30,13 @@ public partial class App : Application
 
 		DispatcherUnhandledException += (sender, args) =>
 		{
+			if (args.Exception.StackTrace?.Contains("AvalonDock.Controls.TransformExtensions.TransformActualSizeToAncestor") ?? false)
+			{
+				// hack: ignore the exception when trying to resize the autohide area
+				args.Handled = true;
+				return;
+			}
+
 			// https://stackoverflow.com/questions/12769264/openclipboard-failed-when-copy-pasting-data-from-wpf-datagrid
 			const int CLIPBRD_E_CANT_OPEN = unchecked((int)0x800401D0);
 
