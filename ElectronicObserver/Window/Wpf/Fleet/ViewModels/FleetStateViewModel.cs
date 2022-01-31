@@ -114,7 +114,7 @@ public class FleetStateViewModel : ObservableObject
 				state.SetInformation(FleetStates.Expedition,
 					$"[{dest.DisplayID}] {DateTimeHelper.ToTimeRemainString(state.Timer)}",
 					DateTimeHelper.ToTimeRemainString(state.Timer),
-					(int)IconContent.FleetExpedition,colorNotExpeditionFG,colorNotExpeditionBG);
+					(int)IconContent.FleetExpedition);
 
 				state.Label.ToolTip = string.Format(FormFleet.ExpeditionToolTip,
 					dest.DisplayID, dest.NameEN, DateTimeHelper.TimeToCSVString(state.Timer));
@@ -279,7 +279,10 @@ public class FleetStateViewModel : ObservableObject
 			for (int i = 0; i < index; i++)
 			{
 				if (StateLabels[i].Label.BackColor == System.Drawing.Color.Transparent)
-					StateLabels[i].Label.BackColor = System.Drawing.Color.LightGreen;
+				{ 
+					StateLabels[i].Label.BackColor = colorNotExpeditionBG;
+					StateLabels[i].Label.ForeColor = colorNotExpeditionFG;
+				}
 			}
 		}
 
@@ -319,6 +322,9 @@ public class FleetStateViewModel : ObservableObject
 
 	public void RefreshFleetState()
 	{
+		System.Drawing.Color colorExpeditionOverBG = ElectronicObserver.Utility.Configuration.Config.UI.FleetOverview_ExpeditionOverBG;
+		System.Drawing.Color colorExpeditionOverFG = ElectronicObserver.Utility.Configuration.Config.UI.FleetOverview_ExpeditionOverFG;
+		System.Drawing.Color colorForeColor = ElectronicObserver.Utility.Configuration.Config.UI.ForeColor;
 		foreach (var state in StateLabels)
 		{
 			if (!state.Enabled) continue;
@@ -348,7 +354,10 @@ public class FleetStateViewModel : ObservableObject
 					state.Text = state.Text.Substring(0, 5) + DateTimeHelper.ToTimeRemainString(state.Timer);
 					state.UpdateText();
 					if (Utility.Configuration.Config.FormFleet.BlinkAtCompletion && (state.Timer - DateTime.Now).TotalMilliseconds <= Utility.Configuration.Config.NotifierExpedition.AccelInterval)
-						state.Label.BackColor = DateTime.Now.Second % 2 == 0 ? System.Drawing.Color.LightGreen : System.Drawing.Color.Transparent;
+					{
+						state.Label.BackColor = DateTime.Now.Second % 2 == 0 ? colorExpeditionOverBG : System.Drawing.Color.Transparent;
+						state.Label.ForeColor = DateTime.Now.Second % 2 == 0 ? colorExpeditionOverFG : colorForeColor;
+					}
 					break;
 
 				case FleetStates.Tired:
