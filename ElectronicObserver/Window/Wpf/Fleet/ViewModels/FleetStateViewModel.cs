@@ -62,6 +62,9 @@ public class FleetStateViewModel : ObservableObject
 		System.Drawing.Color colorNotExpeditionBG = Utility.Configuration.Config.UI.FleetOverview_AlertNotInExpeditionBG;
 		System.Drawing.Color colorNotExpeditionFG = Utility.Configuration.Config.UI.FleetOverview_AlertNotInExpeditionFG;
 
+		System.Drawing.Color colorInExpeditionBG = Utility.Configuration.Config.UI.BackColor;
+		System.Drawing.Color colorInExpeditionFG = Utility.Configuration.Config.UI.ForeColor;
+
 		//所属艦なし
 		if (fleet == null || fleet.Members.All(id => id == -1))
 		{
@@ -114,7 +117,7 @@ public class FleetStateViewModel : ObservableObject
 				state.SetInformation(FleetStates.Expedition,
 					$"[{dest.DisplayID}] {DateTimeHelper.ToTimeRemainString(state.Timer)}",
 					DateTimeHelper.ToTimeRemainString(state.Timer),
-					(int)IconContent.FleetExpedition);
+					(int)IconContent.FleetExpedition,colorInExpeditionBG,colorInExpeditionFG);
 
 				state.Label.ToolTip = string.Format(FormFleet.ExpeditionToolTip,
 					dest.DisplayID, dest.NameEN, DateTimeHelper.TimeToCSVString(state.Timer));
