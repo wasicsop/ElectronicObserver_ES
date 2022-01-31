@@ -57,7 +57,8 @@ public class FleetStateViewModel : ObservableObject
 
 		System.Drawing.Color colorDangerBG = Utility.Configuration.Config.UI.FleetOverview_ShipDamagedBG;
 		System.Drawing.Color colorDangerFG = Utility.Configuration.Config.UI.FleetOverview_ShipDamagedFG;
-		System.Drawing.Color colorInPort = System.Drawing.Color.Transparent;
+		System.Drawing.Color colorInPortBG = Utility.Configuration.Config.UI.BackColor;
+		System.Drawing.Color colorInPortFG = Utility.Configuration.Config.UI.ForeColor;
 
 		System.Drawing.Color colorNotExpeditionBG = Utility.Configuration.Config.UI.FleetOverview_AlertNotInExpeditionBG;
 		System.Drawing.Color colorNotExpeditionFG = Utility.Configuration.Config.UI.FleetOverview_AlertNotInExpeditionFG;
@@ -215,7 +216,7 @@ public class FleetStateViewModel : ObservableObject
 				{
 					var state = GetStateLabel(index);
 
-					state.SetInformation(FleetStates.NotReplenished, FormFleet.SupplyNeeded, "", (int)IconContent.FleetNotReplenished, colorInPort);
+					state.SetInformation(FleetStates.NotReplenished, FormFleet.SupplyNeeded, "", (int)IconContent.FleetNotReplenished, colorInPortBG,colorInPortFG);
 					state.Label.ToolTip = string.Format(FormFleet.ResupplyTooltip, fuel, ammo, bauxite, aircraft);
 
 					index++;
@@ -243,7 +244,7 @@ public class FleetStateViewModel : ObservableObject
 						FormFleet.Fatigued + DateTimeHelper.ToTimeRemainString(state.Timer),
 						DateTimeHelper.ToTimeRemainString(state.Timer),
 						iconIndex,
-						colorInPort);
+						colorInPortBG);
 
 					state.Label.ToolTip = string.Format(FormFleet.RecoveryTimeToolTip,
 						DateTimeHelper.TimeToCSVString(state.Timer), DateTimeHelper.ToTimeRemainString(TimeSpan.FromSeconds(db.Fleet.ConditionBorderAccuracy)));
@@ -255,7 +256,7 @@ public class FleetStateViewModel : ObservableObject
 				{       //戦意高揚
 					var state = GetStateLabel(index);
 
-					state.SetInformation(FleetStates.Sparkled, FormFleet.FightingSpiritHigh, "", (int)IconContent.ConditionSparkle, colorInPort);
+					state.SetInformation(FleetStates.Sparkled, FormFleet.FightingSpiritHigh, "", (int)IconContent.ConditionSparkle, colorInPortBG);
 					state.Label.ToolTip = string.Format(FormFleet.SparkledTooltip, cond, Math.Ceiling((cond - 49) / 3.0));
 
 					index++;
@@ -268,7 +269,7 @@ public class FleetStateViewModel : ObservableObject
 			{
 				var state = GetStateLabel(index);
 
-				state.SetInformation(FleetStates.Ready, FormFleet.ReadyToSortie, "", (int)IconContent.FleetReady, colorInPort);
+				state.SetInformation(FleetStates.Ready, FormFleet.ReadyToSortie, "", (int)IconContent.FleetReady, colorInPortBG);
 				state.Label.ToolTip = null;
 
 				index++;
