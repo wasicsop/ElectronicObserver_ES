@@ -55,7 +55,8 @@ public class FleetStateViewModel : ObservableObject
 										(db.Fleet.CombinedFlag > 0 ? fleet.FleetID >= 3 : fleet.FleetID >= 2);
 		var displayMode = (FleetStateDisplayModes)Utility.Configuration.Config.FormFleet.FleetStateDisplayMode;
 
-		System.Drawing.Color colorDanger = System.Drawing.Color.LightCoral;
+		System.Drawing.Color colorDangerBG = Utility.Configuration.Config.UI.FleetOverview_ShipDamagedBG;
+		System.Drawing.Color colorDangerFG = Utility.Configuration.Config.UI.FleetOverview_ShipDamagedFG;
 		System.Drawing.Color colorInPort = System.Drawing.Color.Transparent;
 
 
@@ -82,7 +83,7 @@ public class FleetStateViewModel : ObservableObject
 				{
 					var state = GetStateLabel(index);
 
-					state.SetInformation(FleetStates.SortieDamaged, FormFleet.CriticalDamageAdvance, FormFleet.CriticalDamageAdvance, (int)IconContent.FleetSortieDamaged, colorDanger);
+					state.SetInformation(FleetStates.SortieDamaged, FormFleet.CriticalDamageAdvance, FormFleet.CriticalDamageAdvance, (int)IconContent.FleetSortieDamaged, colorDangerBG, colorDangerFG);
 					state.Label.ToolTip = null;
 
 					index++;
@@ -125,7 +126,7 @@ public class FleetStateViewModel : ObservableObject
 			{
 				var state = GetStateLabel(index);
 
-				state.SetInformation(FleetStates.Damaged, FormFleet.CriticallyDamagedShip, FormFleet.CriticallyDamagedShip, (int)IconContent.FleetDamaged, colorDanger);
+				state.SetInformation(FleetStates.Damaged, FormFleet.CriticallyDamagedShip, FormFleet.CriticallyDamagedShip, (int)IconContent.FleetDamaged, colorDangerBG, colorDangerFG);
 				state.Label.ToolTip = null;
 
 				emphasizesSubFleetInPort = false;

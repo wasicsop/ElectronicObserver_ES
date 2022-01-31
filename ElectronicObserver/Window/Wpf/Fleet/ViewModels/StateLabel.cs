@@ -93,6 +93,16 @@ public class StateLabel : ObservableObject
 		Label.ImageIndex = (IconContent)imageIndex;
 		Label.BackColor = backColor;
 	}
+	public void SetInformation(FleetStates state, string text, string shortenedText, int imageIndex, System.Drawing.Color backColor, System.Drawing.Color forecolor)
+	{
+		State = state;
+		Text = text;
+		ShortenedText = shortenedText;
+		UpdateText();
+		Label.ImageIndex = (IconContent)imageIndex;
+		Label.BackColor = backColor;
+		Label.ForeColor = forecolor;
+	}
 
 	public void SetInformation(FleetStates state, string text, string shortenedText, int imageIndex)
 	{
