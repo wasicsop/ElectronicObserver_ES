@@ -246,6 +246,8 @@ public partial class FormBrowserHost : DockContent
 				EnableDebugMenu = Utility.Configuration.Config.Debug.EnableDebugMenu,
 				UseGadgetRedirect = c.UseGadgetRedirect,
 				UseVulkanWorkaround = c.UseVulkanWorkaround,
+				Volume = c.Volume,
+				IsMute = c.IsMute,
 			};
 		}
 	}
@@ -273,6 +275,8 @@ public partial class FormBrowserHost : DockContent
 		c.PreserveDrawingBuffer = config.PreserveDrawingBuffer;
 		c.ForceColorProfile = config.ForceColorProfile;
 		c.SavesBrowserLog = config.SavesBrowserLog;
+		c.Volume = config.Volume;
+		c.IsMute = config.IsMute;
 		//Utility.Configuration.Config.Debug.EnableDebugMenu = config.EnableDebugMenu;
 
 		// volume

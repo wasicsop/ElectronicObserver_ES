@@ -107,9 +107,12 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 
 	private VolumeManager? VolumeManager { get; set; }
 	public int RealVolume { get; set; }
-	// gets set to 0 when in muted state, and to RealVolume when in un-muted state
-	public int WorkaroundVolume { get; set; }
 	public bool IsMuted { get; set; }
+	private float WorkaroundVolume => IsMuted switch
+	{
+		true => 0,
+		_ => RealVolume
+	};
 
 	public CoreWebView2Frame? gameframe { get; private set; }
 	public CoreWebView2Frame? kancolleframe { get; private set; }
@@ -563,6 +566,9 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 			ThemeManager.Current.ApplicationTheme = (ApplicationTheme)await BrowserHost.GetTheme();
 		});
 
+		IsMuted = Configuration.IsMute;
+		RealVolume = (int)Configuration.Volume;
+
 		// SizeAdjuster.BackColor = System.Drawing.Color.FromArgb(unchecked((int)Configuration.BackColor));
 		// ToolMenu.BackColor = System.Drawing.Color.FromArgb(unchecked((int)Configuration.BackColor));
 		// ToolMenu_Other_ClearCache.Visible = conf.EnableDebugMenu;
@@ -593,7 +599,7 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 		DestroyDMMreloadDialog();
 
 		//起動直後はまだ音声が鳴っていないのでミュートできないため、この時点で有効化
-		InitializeVolumeState();
+		SetVolumeState();
 	}
 
 	// hack: it makes an infinite loop in the wpf version for some reason
@@ -843,8 +849,6 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 		byte[][] canvas = await BrowserHost.GetIconResource();
 
 		Icons = new(canvas);
-
-		SetVolumeState();
 	}
 
 	private void TryGetVolumeManager()
@@ -852,63 +856,28 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 		VolumeManager = VolumeManager.CreateInstanceByProcessName("msedgewebview2");
 	}
 
-	private void InitializeVolumeState()
-	{
-		bool mute;
-		float volume;
-
-		try
-		{
-			if (VolumeManager == null)
-			{
-				TryGetVolumeManager();
-			}
-
-			mute = VolumeManager?.IsMute ?? false;
-			volume = (VolumeManager?.Volume ?? 1) * 100;
-		}
-		catch (Exception)
-		{
-			// 音量データ取得不能時
-			VolumeManager = null;
-			mute = false;
-			volume = 100;
-		}
-
-		RealVolume = (int)volume;
-		IsMuted = mute;
-		Configuration.Volume = volume;
-		Configuration.IsMute = mute;
-		ConfigurationUpdated();
-	}
-
 	private void SetVolumeState()
 	{
-		bool mute;
-		float volume;
-
 		try
 		{
-			if (VolumeManager == null)
+			if (VolumeManager is null)
 			{
 				TryGetVolumeManager();
 			}
 
-			// mute = VolumeManager?.IsMute ?? false;
-			volume = (VolumeManager?.Volume ?? 1) * 100;
-			mute = volume == 0;
+			if (VolumeManager is not null)
+			{
+				VolumeManager.Volume = WorkaroundVolume / 100;
+			}
 		}
 		catch (Exception)
 		{
 			// 音量データ取得不能時
 			VolumeManager = null;
-			mute = false;
-			volume = 100;
 		}
-
-		WorkaroundVolume = (int)volume;
-		Configuration.Volume = volume;
-		Configuration.IsMute = mute;
+		
+		Configuration.Volume = RealVolume;
+		Configuration.IsMute = IsMuted;
 		ConfigurationUpdated();
 	}
 
@@ -978,16 +947,7 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 			{
 				// VolumeManager.ToggleMute();
 
-				if (IsMuted)
-				{
-					IsMuted = false;
-					WorkaroundVolume = RealVolume;
-				}
-				else
-				{
-					IsMuted = true;
-					WorkaroundVolume = 0;
-				}
+				IsMuted = !IsMuted;
 
 				VolumeManager.Volume = (float)WorkaroundVolume / 100;
 			}
@@ -1013,8 +973,7 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 			{
 				IsMuted = false;
 				VolumeManager.IsMute = false;
-				WorkaroundVolume = RealVolume;
-				VolumeManager.Volume = (float)WorkaroundVolume / 100;
+				VolumeManager.Volume = WorkaroundVolume / 100;
 				// control.BackColor = System.Drawing.SystemColors.Window;
 			}
 			else
@@ -1027,6 +986,10 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 		catch (Exception)
 		{
 		}
+
+		Configuration.IsMute = IsMuted;
+		Configuration.Volume = RealVolume;
+		ConfigurationUpdated();
 	}
 
 	private void ToolMenu_Other_Refresh_Click()

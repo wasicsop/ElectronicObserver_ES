@@ -1304,6 +1304,10 @@ public sealed class Configuration
 			/// </summary>
 			public bool UseVulkanWorkaround { get; set; }
 
+			public float Volume { get; set; }
+
+			public bool IsMute { get; set; }
+
 			public ConfigFormBrowser()
 			{
 				ZoomRate = 1;
@@ -1331,6 +1335,8 @@ public sealed class Configuration
 					_ => true
 				};
 				UseVulkanWorkaround = false;
+				Volume = 100;
+				IsMute = false;
 			}
 		}
 		/// <summary>[ブラウザ]ウィンドウ</summary>
