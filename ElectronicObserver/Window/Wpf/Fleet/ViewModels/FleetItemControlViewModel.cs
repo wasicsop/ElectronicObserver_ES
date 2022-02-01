@@ -7,6 +7,7 @@ using ElectronicObserver.Window.Tools.DialogAlbumMasterShip;
 using ElectronicObserverTypes;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
+using Color = System.Drawing.Color;
 
 namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels;
 
@@ -16,8 +17,8 @@ public class FleetItemControlViewModel : ObservableObject
 	public string? Text { get; set; }
 	public int Tag { get; set; }
 	public string? ToolTip { get; set; }
-	public System.Drawing.Color ForeColor { get; set; }
-	public System.Drawing.Color BackColor { get; set; }
+	public Color ForeColor { get; set; }
+	public Color BackColor { get; set; }
 	public bool Visible { get; set; }
 	public Enum? ImageIndex { get; set; }
 
@@ -43,6 +44,6 @@ public class FleetItemControlViewModel : ObservableObject
 	private void ConfigurationChanged()
 	{
 		ForeColor = Utility.Configuration.Config.UI.ForeColor;
-		BackColor = Utility.Configuration.Config.UI.BackColor;
+		BackColor = Color.Transparent;
 	}
 }

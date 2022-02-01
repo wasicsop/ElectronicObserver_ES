@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using ElectronicObserver.Data;
@@ -55,16 +56,17 @@ public class FleetStateViewModel : ObservableObject
 										(db.Fleet.CombinedFlag > 0 ? fleet.FleetID >= 3 : fleet.FleetID >= 2);
 		var displayMode = (FleetStateDisplayModes)Utility.Configuration.Config.FormFleet.FleetStateDisplayMode;
 
-		System.Drawing.Color colorDangerBG = Utility.Configuration.Config.UI.FleetOverview_ShipDamagedBG;
-		System.Drawing.Color colorDangerFG = Utility.Configuration.Config.UI.FleetOverview_ShipDamagedFG;
-		System.Drawing.Color colorInPortBG = Utility.Configuration.Config.UI.BackColor;
-		System.Drawing.Color colorInPortFG = Utility.Configuration.Config.UI.ForeColor;
+		Color colorDangerFG = Utility.Configuration.Config.UI.FleetOverview_ShipDamagedFG;
+		Color colorDangerBG = Utility.Configuration.Config.UI.FleetOverview_ShipDamagedBG;
+		
+		Color colorInPortFG = Utility.Configuration.Config.UI.ForeColor;
+		Color colorInPortBG = Color.Transparent;
 
-		System.Drawing.Color colorNotExpeditionBG = Utility.Configuration.Config.UI.FleetOverview_AlertNotInExpeditionBG;
-		System.Drawing.Color colorNotExpeditionFG = Utility.Configuration.Config.UI.FleetOverview_AlertNotInExpeditionFG;
+		Color colorNotExpeditionFG = Utility.Configuration.Config.UI.FleetOverview_AlertNotInExpeditionFG;
+		Color colorNotExpeditionBG = Utility.Configuration.Config.UI.FleetOverview_AlertNotInExpeditionBG;
 
-		System.Drawing.Color colorInExpeditionBG = Utility.Configuration.Config.UI.BackColor;
-		System.Drawing.Color colorInExpeditionFG = Utility.Configuration.Config.UI.ForeColor;
+		Color colorInExpeditionFG = Utility.Configuration.Config.UI.ForeColor;
+		Color colorInExpeditionBG = Color.Transparent;
 
 		//所属艦なし
 		if (fleet == null || fleet.Members.All(id => id == -1))
@@ -326,9 +328,21 @@ public class FleetStateViewModel : ObservableObject
 
 	public void RefreshFleetState()
 	{
-		System.Drawing.Color colorExpeditionOverBG = ElectronicObserver.Utility.Configuration.Config.UI.FleetOverview_ExpeditionOverBG;
-		System.Drawing.Color colorExpeditionOverFG = ElectronicObserver.Utility.Configuration.Config.UI.FleetOverview_ExpeditionOverFG;
-		System.Drawing.Color colorForeColor = ElectronicObserver.Utility.Configuration.Config.UI.ForeColor;
+		Color foreColor = Utility.Configuration.Config.UI.ForeColor;
+		Color backColor = Color.Transparent;
+
+		Color shipDamagedFG = Utility.Configuration.Config.UI.FleetOverview_ShipDamagedFG;
+		Color shipDamagedBG = Utility.Configuration.Config.UI.FleetOverview_ShipDamagedBG;
+
+		Color expeditionOverFG = Utility.Configuration.Config.UI.FleetOverview_ExpeditionOverFG;
+		Color expeditionOverBG = Utility.Configuration.Config.UI.FleetOverview_ExpeditionOverBG;
+
+		Color repairFinishedFG = Utility.Configuration.Config.UI.Dock_RepairFinishedFG;
+		Color repairFinishedBG = Utility.Configuration.Config.UI.Dock_RepairFinishedBG;
+
+		Color tiredRecoveredFG = Utility.Configuration.Config.UI.FleetOverview_TiredRecoveredFG;
+		Color tiredRecoveredBG = Utility.Configuration.Config.UI.FleetOverview_TiredRecoveredBG;
+
 		foreach (var state in StateLabels)
 		{
 			if (!state.Enabled) continue;
@@ -338,11 +352,13 @@ public class FleetStateViewModel : ObservableObject
 
 				case FleetStates.Damaged:
 					if (Utility.Configuration.Config.FormFleet.BlinkAtDamaged)
-						state.Label.BackColor = DateTime.Now.Second % 2 == 0 ? System.Drawing.Color.LightCoral : System.Drawing.Color.Transparent;
+						state.Label.ForeColor = DateTime.Now.Second % 2 == 0 ? shipDamagedFG : foreColor;
+						state.Label.BackColor = DateTime.Now.Second % 2 == 0 ? shipDamagedBG : backColor;
 					break;
 
 				case FleetStates.SortieDamaged:
-					state.Label.BackColor = DateTime.Now.Second % 2 == 0 ? System.Drawing.Color.LightCoral : System.Drawing.Color.Transparent;
+					state.Label.ForeColor = DateTime.Now.Second % 2 == 0 ? shipDamagedFG : foreColor;
+					state.Label.BackColor = DateTime.Now.Second % 2 == 0 ? shipDamagedBG : backColor;
 					break;
 
 				case FleetStates.Docking:
@@ -350,7 +366,10 @@ public class FleetStateViewModel : ObservableObject
 					state.Text = FormFleet.OnDock + state.ShortenedText;
 					state.UpdateText();
 					if (Utility.Configuration.Config.FormFleet.BlinkAtCompletion && (state.Timer - DateTime.Now).TotalMilliseconds <= Utility.Configuration.Config.NotifierRepair.AccelInterval)
-						state.Label.BackColor = DateTime.Now.Second % 2 == 0 ? System.Drawing.Color.LightGreen : System.Drawing.Color.Transparent;
+					{
+						state.Label.ForeColor = DateTime.Now.Second % 2 == 0 ? repairFinishedFG : foreColor;
+						state.Label.BackColor = DateTime.Now.Second % 2 == 0 ? repairFinishedBG : backColor;
+					}
 					break;
 
 				case FleetStates.Expedition:
@@ -359,8 +378,8 @@ public class FleetStateViewModel : ObservableObject
 					state.UpdateText();
 					if (Utility.Configuration.Config.FormFleet.BlinkAtCompletion && (state.Timer - DateTime.Now).TotalMilliseconds <= Utility.Configuration.Config.NotifierExpedition.AccelInterval)
 					{
-						state.Label.BackColor = DateTime.Now.Second % 2 == 0 ? colorExpeditionOverBG : System.Drawing.Color.Transparent;
-						state.Label.ForeColor = DateTime.Now.Second % 2 == 0 ? colorExpeditionOverFG : colorForeColor;
+						state.Label.ForeColor = DateTime.Now.Second % 2 == 0 ? expeditionOverFG : foreColor;
+						state.Label.BackColor = DateTime.Now.Second % 2 == 0 ? expeditionOverBG : backColor;
 					}
 					break;
 
@@ -369,7 +388,10 @@ public class FleetStateViewModel : ObservableObject
 					state.Text = FormFleet.Fatigued + state.ShortenedText;
 					state.UpdateText();
 					if (Utility.Configuration.Config.FormFleet.BlinkAtCompletion && (state.Timer - DateTime.Now).TotalMilliseconds <= 0)
-						state.Label.BackColor = DateTime.Now.Second % 2 == 0 ? System.Drawing.Color.LightGreen : System.Drawing.Color.Transparent;
+					{
+						state.Label.ForeColor = DateTime.Now.Second % 2 == 0 ? tiredRecoveredFG : foreColor;
+						state.Label.BackColor = DateTime.Now.Second % 2 == 0 ? tiredRecoveredBG : backColor;
+					}
 					break;
 
 				case FleetStates.AnchorageRepairing:

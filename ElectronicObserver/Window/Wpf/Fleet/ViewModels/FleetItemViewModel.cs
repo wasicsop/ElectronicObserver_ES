@@ -188,7 +188,7 @@ public class FleetItemViewModel : ObservableObject
 				else
 				{
 					Name.ForeColor = Utility.Configuration.Config.UI.ForeColor;
-					Name.BackColor = Utility.Configuration.Config.UI.BackColor;
+					Name.BackColor = Color.Transparent;
 				}
 			}
 
