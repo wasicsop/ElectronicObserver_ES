@@ -281,6 +281,8 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 		const string webView2InstallerName = "MicrosoftEdgeWebView2Setup.exe";
 		// this is scoped so the installer file closes before we attempt to run it 
 		{
+				File.Delete(webView2InstallerName);
+
 			HttpClient client = new();
 
 			await using Stream stream = await client.GetStreamAsync("https://go.microsoft.com/fwlink/p/?LinkId=2124703");
