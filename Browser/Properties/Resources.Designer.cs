@@ -268,6 +268,15 @@ namespace Browser.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to WebView2をインストールしようとしたときにエラーが発生しました。WebView2を手動でインストールしてください。.
+        /// </summary>
+        public static string InstallationFailed {
+            get {
+                return ResourceManager.GetString("InstallationFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ブラウザのコンポーネントを読み込めませんでした。
         ///Microsoft Visual C++ 2019 Redistributableが必要です。
         ///ダウンロードページを開きますか？
@@ -340,6 +349,15 @@ namespace Browser.Properties {
         public static string NoScreenshotYet {
             get {
                 return ResourceManager.GetString("NoScreenshotYet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 古いバージョンのWebView2が検出されました。最新版をダウンロードします。.
+        /// </summary>
+        public static string OlderBrowserVersionDetected {
+            get {
+                return ResourceManager.GetString("OlderBrowserVersionDetected", resourceCulture);
             }
         }
         

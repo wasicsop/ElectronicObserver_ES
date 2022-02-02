@@ -268,6 +268,13 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 
 		if (version is not null)
 		{
+			if (CoreWebView2Environment.CompareBrowserVersions(version, "97.0.1072.76") < 0)
+			{
+				AddLog(2, FormBrowser.OlderBrowserVersionDetected);
+
+				await InstallWebView2();
+			}
+
 			if (Configuration.UseVulkanWorkaround)
 			{
 				await RenameVulkanFiles(version);
@@ -278,28 +285,40 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 
 		AddLog(2, FormBrowser.WebView2NotFound);
 
-		const string webView2InstallerName = "MicrosoftEdgeWebView2Setup.exe";
-		// this is scoped so the installer file closes before we attempt to run it 
+		await InstallWebView2();
+	}
+
+	private async Task InstallWebView2()
+	{
+		try
 		{
+			const string webView2InstallerName = "MicrosoftEdgeWebView2Setup.exe";
+			// this is scoped so the installer file closes before we attempt to run it 
+			{
 				File.Delete(webView2InstallerName);
 
-			HttpClient client = new();
+				HttpClient client = new();
 
-			await using Stream stream = await client.GetStreamAsync("https://go.microsoft.com/fwlink/p/?LinkId=2124703");
-			await using FileStream file = new(webView2InstallerName, FileMode.CreateNew);
+				await using Stream stream = await client.GetStreamAsync("https://go.microsoft.com/fwlink/p/?LinkId=2124703");
+				await using FileStream file = new(webView2InstallerName, FileMode.CreateNew);
 
-			await stream.CopyToAsync(file);
+				await stream.CopyToAsync(file);
+			}
+
+			AddLog(2, FormBrowser.WebView2DownloadComplete);
+
+			ProcessStartInfo psi = new(webView2InstallerName, "/install");
+			using Process? process = Process.Start(psi);
+			await process.WaitForExitAsync();
+
+			File.Delete(webView2InstallerName);
+
+			AddLog(2, FormBrowser.WebView2InstallationComplete);
 		}
-
-		AddLog(2, FormBrowser.WebView2DownloadComplete);
-
-		ProcessStartInfo psi = new(webView2InstallerName, "/install");
-		using Process? process = Process.Start(psi);
-		await process.WaitForExitAsync();
-
-		File.Delete(webView2InstallerName);
-
-		AddLog(2, FormBrowser.WebView2InstallationComplete);
+		catch (Exception ex)
+		{
+			SendErrorReport(ex.Message, FormBrowser.InstallationFailed);
+		}
 	}
 
 	private async Task RenameVulkanFiles(string version)

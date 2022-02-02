@@ -80,4 +80,6 @@ public class FormBrowserTranslationViewModel
 	public string WebView2NotFound => Properties.Resources.WebView2NotFound;
 	public string WebView2DownloadComplete => Properties.Resources.WebView2DownloadComplete;
 	public string WebView2InstallationComplete => Properties.Resources.WebView2InstallationComplete;
+	public string OlderBrowserVersionDetected => Properties.Resources.OlderBrowserVersionDetected;
+	public string InstallationFailed => Properties.Resources.InstallationFailed;
 }

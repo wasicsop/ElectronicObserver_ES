@@ -372,4 +372,10 @@ Microsoft Visual C++ 2019 Redistributableが必要です。
   <data name="MissingPermissionsToRenameVulkanFiles" xml:space="preserve">
     <value>パーミッションがないため、vulkan の回避策を適用できない。七四式を管理者として実行すると、回避策が機能します。</value>
   </data>
+  <data name="OlderBrowserVersionDetected" xml:space="preserve">
+    <value>古いバージョンのWebView2が検出されました。最新版をダウンロードします。</value>
+  </data>
+  <data name="InstallationFailed" xml:space="preserve">
+    <value>WebView2をインストールしようとしたときにエラーが発生しました。WebView2を手動でインストールしてください。</value>
+  </data>
 </root>

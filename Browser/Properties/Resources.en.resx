@@ -350,4 +350,10 @@ Open the download page?
   <data name="MissingPermissionsToRenameVulkanFiles" xml:space="preserve">
     <value>Unable to apply vulkan workaround due to missing permissions. Run Electronic Observer as administrator for the workaround to work.</value>
   </data>
+  <data name="OlderBrowserVersionDetected" xml:space="preserve">
+    <value>An older version of WebView2 was detected. Downloading the latest version.</value>
+  </data>
+  <data name="InstallationFailed" xml:space="preserve">
+    <value>An error occurred while trying to install WebView2. Please install WebView2 manually.</value>
+  </data>
 </root>
