@@ -499,7 +499,7 @@ public class BattleManager : ResponseWrapper
 			// 満員判定
 			if (shipID == -1 && (
 				KCDatabase.Instance.Admiral.MaxShipCount - (KCDatabase.Instance.Ships.Count + DroppedShipCount) <= 0 ||
-				KCDatabase.Instance.Admiral.MaxEquipmentCount - (KCDatabase.Instance.Equipments.Count + DroppedEquipmentCount) <= 0))
+				KCDatabase.Instance.Admiral.MaxEquipmentCount - (KCDatabase.Instance.Equipments.Values.Count(e => e.MasterEquipment.UsesSlotSpace()) + DroppedEquipmentCount) <= 0))
 			{
 				shipID = -2;
 			}
