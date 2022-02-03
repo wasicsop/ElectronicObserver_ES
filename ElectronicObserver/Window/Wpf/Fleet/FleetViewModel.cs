@@ -639,12 +639,13 @@ public partial class FleetViewModel : AnchorableViewModel
 			string level = $"\"api_lv\":{ship.Level}";
 			string kyouka = $"\"api_kyouka\":[{string.Join(",", apiKyouka)}]";
 			string exp = $"\"api_exp\":[{string.Join(",", apiExp)}]";
+			string slotEx = $"\"api_slot_ex\":{ship.ExpansionSlot}";
 			// ship.SallyArea defaults to -1 if it doesn't exist on api 
 			// which breaks the app, changing the default to 0 would be 
 			// easier but I'd prefer not to mess with that
 			string sallyArea = $"\"api_sally_area\":{(ship.SallyArea >= 0 ? ship.SallyArea : 0)}";
 
-			string[] analysisData = { shipId, level, kyouka, exp, sallyArea };
+			string[] analysisData = { shipId, level, kyouka, exp, slotEx, sallyArea };
 
 			ships.Add($"{{{string.Join(",", analysisData)}}}");
 		}
