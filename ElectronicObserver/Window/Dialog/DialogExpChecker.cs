@@ -103,7 +103,7 @@ public partial class DialogExpChecker : Form
 
 		if (!ships.Any())
 		{
-			MessageBox.Show(Translation.NoShipsAvailable, Translation.ShipsUnavailable, MessageBoxButtons.OK, MessageBoxIcon.Error);
+			MessageBox.Show(new Form { TopMost = true },Translation.NoShipsAvailable, Translation.ShipsUnavailable, MessageBoxButtons.OK, MessageBoxIcon.Error);
 			Close();
 			return;
 		}
