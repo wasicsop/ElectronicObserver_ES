@@ -42,6 +42,7 @@ using ElectronicObserver.Window.Wpf.Fleet;
 using ElectronicObserver.Window.Wpf.FleetOverview;
 using ElectronicObserver.Window.Wpf.FleetPreset;
 using ElectronicObserver.Window.Wpf.Headquarters;
+using ElectronicObserver.Window.Wpf.Quest;
 using ElectronicObserver.Window.Wpf.ShipGroup.ViewModels;
 using ElectronicObserver.Window.Wpf.ShipGroupWinforms;
 using ElectronicObserver.Window.Wpf.WinformsWrappers;
@@ -148,7 +149,7 @@ public partial class FormMainViewModel : ObservableObject
 	public BaseAirCorpsViewModel BaseAirCorps { get; }
 
 	public HeadquartersViewModel Headquarters { get; }
-	public FormQuestViewModel FormQuest { get; }
+	public QuestViewModel Quest { get; }
 	public FormInformationViewModel FormInformation { get; }
 
 	public CompassViewModel Compass { get; }
@@ -408,7 +409,7 @@ public partial class FormMainViewModel : ObservableObject
 		Views.Add(BaseAirCorps = new BaseAirCorpsViewModel());
 
 		Views.Add(Headquarters = new HeadquartersViewModel());
-		Views.Add(FormQuest = new FormQuestViewModel());
+		Views.Add(Quest = new QuestViewModel());
 		Views.Add(FormInformation = new FormInformationViewModel());
 
 		Views.Add(Compass = new CompassViewModel());

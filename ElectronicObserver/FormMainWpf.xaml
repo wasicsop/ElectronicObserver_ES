@@ -321,7 +321,7 @@
 				<MenuItem
 					d:Header="Quest"
 					Command="{Binding OpenViewCommand}"
-					CommandParameter="{Binding FormQuest}"
+					CommandParameter="{Binding Quest}"
 					Header="{Binding FormMain.StripMenu_View_Quest}"
 					>
 					<MenuItem.Icon>

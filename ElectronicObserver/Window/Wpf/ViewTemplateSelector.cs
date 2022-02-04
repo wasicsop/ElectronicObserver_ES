@@ -9,6 +9,7 @@ using ElectronicObserver.Window.Wpf.Fleet;
 using ElectronicObserver.Window.Wpf.FleetOverview;
 using ElectronicObserver.Window.Wpf.FleetPreset;
 using ElectronicObserver.Window.Wpf.Headquarters;
+using ElectronicObserver.Window.Wpf.Quest;
 using ElectronicObserver.Window.Wpf.ShipGroup.ViewModels;
 using ElectronicObserver.Window.Wpf.ShipGroupWinforms;
 using ElectronicObserver.Window.Wpf.WinformsHost;
@@ -53,6 +54,7 @@ public class ViewTemplateSelector : DataTemplateSelector
 		BaseAirCorpsViewModel => BaseAirCorps,
 
 		HeadquartersViewModel => Headquarters,
+		QuestViewModel => Quest,
 
 		CompassViewModel => Compass,
 		BattleViewModel => Battle,
