@@ -755,7 +755,7 @@ public partial class FormMainViewModel : ObservableObject
 	{
 		DialogEquipmentList equipmentList = new DialogEquipmentList();
 		RefreshTopMost();
-		equipmentList.ShowExt(this);
+		equipmentList.ShowDialogExt(this);
 	}
 	private void StripMenu_Tool_DropRecord_Click()
 	{
@@ -773,7 +773,7 @@ public partial class FormMainViewModel : ObservableObject
 			return;
 		}
 
-		new DialogDropRecordViewer().ShowExt(this);
+		new DialogDropRecordViewer().ShowDialogExt(this);
 	}
 
 	private void StripMenu_Tool_DevelopmentRecord_Click()
@@ -792,7 +792,7 @@ public partial class FormMainViewModel : ObservableObject
 			return;
 		}
 
-		new DialogDevelopmentRecordViewer().ShowExt(this);
+		new DialogDevelopmentRecordViewer().ShowDialogExt(this);
 	}
 
 	private void StripMenu_Tool_ConstructionRecord_Click()
@@ -811,14 +811,14 @@ public partial class FormMainViewModel : ObservableObject
 			return;
 		}
 
-		new DialogConstructionRecordViewer().ShowExt(this);
+		new DialogConstructionRecordViewer().ShowDialogExt(this);
 	}
 
 	private void StripMenu_Tool_ResourceChart_Click()
 	{
 		DialogResourceChart resourceChart = new();
 		RefreshTopMost();
-		resourceChart.ShowExt(this);
+		resourceChart.ShowDialogExt(this);
 	}
 
 	private void StripMenu_Tool_AlbumMasterShip_Click()
@@ -853,27 +853,27 @@ public partial class FormMainViewModel : ObservableObject
 
 	private void StripMenu_Tool_AntiAirDefense_Click()
 	{
-		new DialogAntiAirDefense().ShowExt(this);
+		new DialogAntiAirDefense().ShowDialogExt(this);
 	}
 
 	private void StripMenu_Tool_FleetImageGenerator_Click()
 	{
-		new DialogFleetImageGenerator(1).ShowExt(this);
+		new DialogFleetImageGenerator(1).ShowDialogExt(this);
 	}
 
 	private void StripMenu_Tool_BaseAirCorpsSimulation_Click()
 	{
-		new DialogBaseAirCorpsSimulation().ShowExt(this);
+		new DialogBaseAirCorpsSimulation().ShowDialogExt(this);
 	}
 
 	private void StripMenu_Tool_ExpChecker_Click()
 	{
-		new DialogExpChecker().ShowExt(this);
+		new DialogExpChecker().ShowDialogExt(this);
 	}
 
 	private void StripMenu_Tool_ExpeditionCheck_Click()
 	{
-		new DialogExpeditionCheck().ShowExt(this);
+		new DialogExpeditionCheck().ShowDialogExt(this);
 	}
 
 	private void StripMenu_Tool_KancolleProgress_Click()
@@ -923,7 +923,7 @@ public partial class FormMainViewModel : ObservableObject
 			}
 		}
 		/*/
-		new DialogLocalAPILoader2().ShowExt(this);
+		new DialogLocalAPILoader2().ShowDialogExt(this);
 		//*/
 	}
 
@@ -1409,7 +1409,7 @@ public partial class FormMainViewModel : ObservableObject
 
 	private void CallPumpkinHead(string apiname, dynamic data)
 	{
-		new DialogHalloween().ShowExt(this);
+		new DialogHalloween().ShowDialogExt(this);
 		APIObserver.Instance.APIList["api_port/port"].ResponseReceived -= CallPumpkinHead;
 	}
 
