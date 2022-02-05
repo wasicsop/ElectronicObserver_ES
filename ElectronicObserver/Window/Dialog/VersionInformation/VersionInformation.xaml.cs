@@ -23,7 +23,7 @@ public partial class VersionInformationWindow
 			_ => SoftwareInformation.SoftwareNameEnglish
 		};
 
-		TextVersion.Text = string.Format(Translation.TextVersionFormat, versionText, SoftwareInformation.VersionEnglish, SoftwareInformation.UpdateTime.ToString("d"));
+		TextVersion.Text = string.Format(Translation.TextVersionFormat, versionText, SoftwareInformation.VersionEnglish, SoftwareInformation.UpdateTime.ToString("yyyy/MM/dd"));
 
 		// https://github.com/Kinnara/ModernWpf/issues/378
 		SourceInitialized += (s, a) =>
