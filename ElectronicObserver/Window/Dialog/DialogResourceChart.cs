@@ -11,6 +11,7 @@ using System.Windows.Forms.DataVisualization.Charting;
 using ElectronicObserver.Data;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Resource.Record;
+using ElectronicObserver.ViewModels;
 using Translation = ElectronicObserver.Properties.Window.Dialog.DialogResourceChart;
 
 namespace ElectronicObserver.Window.Dialog;
@@ -1073,7 +1074,7 @@ public partial class DialogResourceChart : Form
 	private void Menu_File_SaveImage_Click(object sender, EventArgs e)
 	{
 
-		if (SaveImageDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+		if (SaveImageDialog.ShowDialog(App.Current.MainWindow) == System.Windows.Forms.DialogResult.OK)
 		{
 			try
 			{

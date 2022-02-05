@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using DynaJson;
 using ElectronicObserver.Observer;
 using ElectronicObserver.Resource;
+using ElectronicObserver.ViewModels;
 using WeifenLuo.WinFormsUI.Docking;
 using Translation = ElectronicObserver.Properties.Window.FormJson;
 
@@ -452,7 +453,7 @@ public partial class FormJson : DockContent
 	private void TreeContextMenu_OutputCSV_Click(object sender, EventArgs e)
 	{
 
-		if (CSVSaver.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+		if (CSVSaver.ShowDialog(App.Current.MainWindow) == System.Windows.Forms.DialogResult.OK)
 		{
 
 			try

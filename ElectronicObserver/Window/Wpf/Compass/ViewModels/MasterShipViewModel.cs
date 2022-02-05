@@ -6,6 +6,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using ElectronicObserver.Data;
 using ElectronicObserver.Utility.Data;
+using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Dialog;
 using ElectronicObserver.Window.Tools.DialogAlbumMasterShip;
 using ElectronicObserverTypes;
@@ -79,7 +80,7 @@ public class MasterShipViewModel : ObservableObject
 
 	private void OpenShipEncyclopedia(int shipId)
 	{
-		new DialogAlbumMasterShipWpf(shipId).Show();
+		new DialogAlbumMasterShipWpf(shipId).Show(App.Current.MainWindow);
 	}
 
 	private static string? GetShipString(int shipID, int[] slot, int level)

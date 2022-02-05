@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ElectronicObserver.ViewModels;
 
 namespace ElectronicObserver.Utility;
 
@@ -71,7 +72,7 @@ public static class PathHelper
 
 		InitOpenFileDialog(path, dialog);
 
-		if (dialog.ShowDialog() == DialogResult.OK)
+		if (dialog.ShowDialog(App.Current.MainWindow) == DialogResult.OK)
 		{
 			return GetPathFromOpenFileDialog(dialog);
 		}
@@ -141,7 +142,7 @@ public static class PathHelper
 
 		InitSaveFileDialog(path, dialog);
 
-		if (dialog.ShowDialog() == DialogResult.OK)
+		if (dialog.ShowDialog(App.Current.MainWindow) == DialogResult.OK)
 		{
 			return GetPathFromSaveFileDialog(dialog);
 		}
@@ -197,7 +198,7 @@ public static class PathHelper
 
 		InitFolderBrowserDialog(path, dialog);
 
-		if (dialog.ShowDialog() == DialogResult.OK)
+		if (dialog.ShowDialog(App.Current.MainWindow) == DialogResult.OK)
 		{
 
 			return GetPathFromFolderBrowserDialog(dialog);

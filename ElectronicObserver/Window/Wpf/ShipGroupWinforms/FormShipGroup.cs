@@ -11,6 +11,7 @@ using ElectronicObserver.Observer;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Utility.Mathematics;
+using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Control;
 using ElectronicObserver.Window.Dialog;
 using ElectronicObserver.Window.Support;
@@ -1040,7 +1041,7 @@ public partial class FormShipGroup : DockContent
 			using (var dialog = new DialogShipGroupColumnFilter(ShipView, group))
 			{
 
-				if (dialog.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+				if (dialog.ShowDialog(App.Current.MainWindow) == System.Windows.Forms.DialogResult.OK)
 				{
 
 					group.ViewColumns = dialog.Result.ToDictionary(r => r.Name);
@@ -1079,7 +1080,7 @@ public partial class FormShipGroup : DockContent
 				using (var dialog = new DialogShipGroupFilter(group))
 				{
 
-					if (dialog.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+					if (dialog.ShowDialog(App.Current.MainWindow) == System.Windows.Forms.DialogResult.OK)
 					{
 
 						// replace
@@ -1154,7 +1155,7 @@ public partial class FormShipGroup : DockContent
 				using (var dialog = new DialogShipGroupSortOrder(ShipView, group))
 				{
 
-					if (dialog.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+					if (dialog.ShowDialog(App.Current.MainWindow) == System.Windows.Forms.DialogResult.OK)
 					{
 
 						group.AutoSortEnabled = dialog.AutoSortEnabled;
@@ -1206,7 +1207,7 @@ public partial class FormShipGroup : DockContent
 			KCDatabase.Instance.ShipGroup.ShipGroups.Values.ToArray()))
 		{
 
-			if (dialog.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+			if (dialog.ShowDialog(App.Current.MainWindow) == System.Windows.Forms.DialogResult.OK)
 			{
 
 				var group = (ShipGroupData)dialog.SelectedItem;
@@ -1235,7 +1236,7 @@ public partial class FormShipGroup : DockContent
 		using (var dialog = new DialogTextInput(Translation.DialogGroupAddTitle, Translation.DialogGroupAddDescription))
 		{
 
-			if (dialog.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+			if (dialog.ShowDialog(App.Current.MainWindow) == System.Windows.Forms.DialogResult.OK)
 			{
 
 				var group = KCDatabase.Instance.ShipGroup.Add();
@@ -1315,7 +1316,7 @@ public partial class FormShipGroup : DockContent
 		using (var dialog = new DialogShipGroupCSVOutput())
 		{
 
-			if (dialog.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+			if (dialog.ShowDialog(App.Current.MainWindow) == System.Windows.Forms.DialogResult.OK)
 			{
 
 				try

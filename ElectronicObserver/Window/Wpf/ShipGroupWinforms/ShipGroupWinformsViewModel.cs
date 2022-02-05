@@ -106,7 +106,7 @@ public partial class ShipGroupWinformsViewModel : AnchorableViewModel
 	{
 		using DialogTextInput dialog = new(FormShipGroup.DialogGroupAddTitle, FormShipGroup.DialogGroupAddDescription);
 
-		if (dialog.ShowDialog() != DialogResult.OK) return;
+		if (dialog.ShowDialog(App.Current.MainWindow) != DialogResult.OK) return;
 
 		ShipGroupData group = KCDatabase.Instance.ShipGroup.Add();
 		group.Name = dialog.InputtedText.Trim();
@@ -129,7 +129,7 @@ public partial class ShipGroupWinformsViewModel : AnchorableViewModel
 	{
 		using var dialog = new DialogTextInput(FormShipGroup.DialogGroupCopyTitle, FormShipGroup.DialogGroupCopyDescription);
 
-		if (dialog.ShowDialog() != DialogResult.OK) return;
+		if (dialog.ShowDialog(App.Current.MainWindow) != DialogResult.OK) return;
 
 		var newGroup = group.Group.Clone();
 
@@ -147,7 +147,7 @@ public partial class ShipGroupWinformsViewModel : AnchorableViewModel
 		using var dialog = new DialogTextInput(FormShipGroup.DialogGroupRenameTitle, FormShipGroup.DialogGroupRenameDescription);
 		dialog.InputtedText = group.Name;
 
-		if (dialog.ShowDialog() == DialogResult.OK)
+		if (dialog.ShowDialog(App.Current.MainWindow) == DialogResult.OK)
 		{
 			group.Name = dialog.InputtedText.Trim();
 		}

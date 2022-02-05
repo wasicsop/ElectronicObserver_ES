@@ -14,6 +14,7 @@ using ElectronicObserver.Data;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Utility.Storage;
+using ElectronicObserver.ViewModels;
 using Translation = ElectronicObserver.Properties.Window.Dialog.DialogFleetImageGenerator;
 
 namespace ElectronicObserver.Window.Dialog;
@@ -337,7 +338,7 @@ public partial class DialogFleetImageGenerator : Form
 	private void SelectGeneralFont_Click(object sender, EventArgs e)
 	{
 		fontDialog1.Font = GeneralFont;
-		if (fontDialog1.ShowDialog() == DialogResult.OK)
+		if (fontDialog1.ShowDialog(App.Current.MainWindow) == DialogResult.OK)
 		{
 			GeneralFont = fontDialog1.Font;
 			TextGeneralFont.Text = SerializableFont.FontToString(GeneralFont, true);
@@ -347,7 +348,7 @@ public partial class DialogFleetImageGenerator : Form
 	private void SelectFont_Click(object sender, EventArgs e, int index)
 	{
 		fontDialog1.Font = SerializableFont.StringToFont(TextFontList[index].Text, true);
-		if (fontDialog1.ShowDialog() == DialogResult.OK)
+		if (fontDialog1.ShowDialog(App.Current.MainWindow) == DialogResult.OK)
 		{
 			TextFontList[index].Text = SerializableFont.FontToString(fontDialog1.Font, true);
 		}
@@ -357,7 +358,7 @@ public partial class DialogFleetImageGenerator : Form
 	private void SearchBackgroundImagePath_Click(object sender, EventArgs e)
 	{
 		OpenImageDialog.FileName = BackgroundImagePath.Text;
-		if (OpenImageDialog.ShowDialog() == DialogResult.OK)
+		if (OpenImageDialog.ShowDialog(App.Current.MainWindow) == DialogResult.OK)
 		{
 			BackgroundImagePath.Text = OpenImageDialog.FileName;
 		}
@@ -795,7 +796,7 @@ public partial class DialogFleetImageGenerator : Form
 		catch (Exception)
 		{
 		}
-		if (SaveImageDialog.ShowDialog() == DialogResult.OK)
+		if (SaveImageDialog.ShowDialog(App.Current.MainWindow) == DialogResult.OK)
 		{
 			OutputPath.Text = SaveImageDialog.FileName;
 		}

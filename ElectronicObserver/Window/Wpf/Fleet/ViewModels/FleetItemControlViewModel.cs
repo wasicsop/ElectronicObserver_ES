@@ -2,6 +2,7 @@
 using System.Windows.Media;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Utility.Storage;
+using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Dialog;
 using ElectronicObserver.Window.Tools.DialogAlbumMasterShip;
 using ElectronicObserverTypes;
@@ -34,7 +35,7 @@ public class FleetItemControlViewModel : ObservableObject
 
 	public FleetItemControlViewModel()
 	{
-		ShipNameRightClick = new RelayCommand(() => new DialogAlbumMasterShipWpf(Tag).Show());
+		ShipNameRightClick = new RelayCommand(() => new DialogAlbumMasterShipWpf(Tag).Show(App.Current.MainWindow));
 
 		Utility.Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
 

@@ -10,6 +10,7 @@ using ElectronicObserver.Resource.Record;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.Utility.Storage;
+using ElectronicObserver.ViewModels;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Dialog;
 using ElectronicObserver.Window.Tools.DialogAlbumMasterEquipment;
@@ -126,7 +127,7 @@ public partial class DialogAlbumMasterShipViewModel : ObservableObject
 	{
 		if (ship is null) return;
 
-		new DialogAlbumMasterShipWpf(ship).Show();
+		new DialogAlbumMasterShipWpf(ship).Show(App.Current.MainWindow);
 	}
 
 	[ICommand]
@@ -134,7 +135,7 @@ public partial class DialogAlbumMasterShipViewModel : ObservableObject
 	{
 		if (equip is null) return;
 
-		new DialogAlbumMasterEquipmentWpf(equip.ID).Show();
+		new DialogAlbumMasterEquipmentWpf(equip.ID).Show(App.Current.MainWindow);
 	}
 
 
@@ -151,7 +152,7 @@ public partial class DialogAlbumMasterShipViewModel : ObservableObject
 	[ICommand]
 	private void StripMenu_File_OutputCSVData_Click()
 	{
-		if (SaveCSVDialog.ShowDialog() != System.Windows.Forms.DialogResult.OK) return;
+		if (SaveCSVDialog.ShowDialog(App.Current.MainWindow) != System.Windows.Forms.DialogResult.OK) return;
 
 		try
 		{
@@ -256,7 +257,7 @@ public partial class DialogAlbumMasterShipViewModel : ObservableObject
 	[ICommand]
 	private void StripMenu_File_OutputCSVUser_Click()
 	{
-		if (SaveCSVDialog.ShowDialog() != System.Windows.Forms.DialogResult.OK) return;
+		if (SaveCSVDialog.ShowDialog(App.Current.MainWindow) != System.Windows.Forms.DialogResult.OK) return;
 
 		try
 		{
@@ -407,7 +408,7 @@ public partial class DialogAlbumMasterShipViewModel : ObservableObject
 
 		using DialogAlbumShipParameter dialog = new(SelectedShip.Ship.ShipID);
 
-		dialog.ShowDialog();
+		dialog.ShowDialog(App.Current.MainWindow);
 		OnPropertyChanged(nameof(SelectedShip));
 	}
 
@@ -669,7 +670,7 @@ public partial class DialogAlbumMasterShipViewModel : ObservableObject
 	{
 		if (SelectedShip is not null)
 		{
-			new DialogShipGraphicViewer(SelectedShip.Ship.ShipID).Show();
+			new DialogShipGraphicViewer(SelectedShip.Ship.ShipID).Show(App.Current.MainWindow);
 		}
 		else
 		{

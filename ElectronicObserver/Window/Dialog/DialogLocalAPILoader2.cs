@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ElectronicObserver.Observer;
+using ElectronicObserver.ViewModels;
 using Translation = ElectronicObserver.Properties.Window.Dialog.DialogLocalAPILoader2;
 
 namespace ElectronicObserver.Window.Dialog;
@@ -57,7 +58,7 @@ public partial class DialogLocalAPILoader2 : Form
 
 		FolderBrowser.SelectedPath = Utility.Configuration.Config.Connection.SaveDataPath;
 
-		if (FolderBrowser.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+		if (FolderBrowser.ShowDialog(App.Current.MainWindow) == System.Windows.Forms.DialogResult.OK)
 		{
 			LoadFiles(FolderBrowser.SelectedPath);
 		}

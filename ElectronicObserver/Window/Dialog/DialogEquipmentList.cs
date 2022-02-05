@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ElectronicObserver.Data;
 using ElectronicObserver.Resource;
+using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Support;
 using ElectronicObserver.Window.Tools.DialogAlbumMasterEquipment;
 using ElectronicObserverTypes;
@@ -346,7 +347,7 @@ public partial class DialogEquipmentList : Form
 			if ((e.Button & System.Windows.Forms.MouseButtons.Right) != 0)
 			{
 				Cursor = Cursors.AppStarting;
-				new DialogAlbumMasterEquipmentWpf(equipmentID).Show();
+				new DialogAlbumMasterEquipmentWpf(equipmentID).Show(App.Current.MainWindow);
 				Cursor = Cursors.Default;
 			}
 		}
@@ -548,7 +549,7 @@ public partial class DialogEquipmentList : Form
 	private void Menu_File_CSVOutput_Click(object sender, EventArgs e)
 	{
 
-		if (SaveCSVDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+		if (SaveCSVDialog.ShowDialog(App.Current.MainWindow) == System.Windows.Forms.DialogResult.OK)
 		{
 
 			try

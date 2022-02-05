@@ -782,7 +782,7 @@ public partial class FleetViewModel : AnchorableViewModel
 		else
 			dialog.SetFleetID(FleetId);
 
-		dialog.Show();
+		dialog.Show(App.Current.MainWindow);
 	}
 
 	/*
@@ -803,7 +803,7 @@ public partial class FleetViewModel : AnchorableViewModel
 	{
 		using (var dialog = new DialogFleetImageGenerator(FleetId))
 		{
-			dialog.ShowDialog();
+			dialog.ShowDialog(App.Current.MainWindow);
 		}
 	}
 	#endregion

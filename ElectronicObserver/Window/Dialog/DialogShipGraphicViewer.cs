@@ -13,6 +13,7 @@ using System.Windows.Forms;
 using ElectronicObserver.Data;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Resource.Record;
+using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Support;
 using ElectronicObserverTypes;
 using Translation = ElectronicObserver.Properties.Window.Dialog.DialogShipGraphicViewer;
@@ -353,7 +354,7 @@ public partial class DialogShipGraphicViewer : Form
 
 	private void TopMenu_File_Open_Click(object sender, EventArgs e)
 	{
-		if (OpenSwfDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+		if (OpenSwfDialog.ShowDialog(App.Current.MainWindow) == System.Windows.Forms.DialogResult.OK)
 		{
 			Open(OpenSwfDialog.FileNames);
 		}

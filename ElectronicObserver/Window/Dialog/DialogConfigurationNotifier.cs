@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ElectronicObserver.Notifier;
 using ElectronicObserver.Utility.Data;
+using ElectronicObserver.ViewModels;
 using Translation = ElectronicObserver.Properties.Window.Dialog.DialogConfigurationNotifier;
 
 namespace ElectronicObserver.Window.Dialog;
@@ -332,7 +333,7 @@ public partial class DialogConfigurationNotifier : Form
 			catch (Exception) { }
 		}
 
-		if (DialogOpenSound.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+		if (DialogOpenSound.ShowDialog(App.Current.MainWindow) == System.Windows.Forms.DialogResult.OK)
 		{
 			SoundPath.Text = DialogOpenSound.FileName;
 		}
@@ -352,7 +353,7 @@ public partial class DialogConfigurationNotifier : Form
 			catch (Exception) { }
 		}
 
-		if (DialogOpenImage.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+		if (DialogOpenImage.ShowDialog(App.Current.MainWindow) == System.Windows.Forms.DialogResult.OK)
 		{
 			ImagePath.Text = DialogOpenImage.FileName;
 		}
@@ -363,7 +364,7 @@ public partial class DialogConfigurationNotifier : Form
 	{
 
 		DialogColor.Color = ForeColorPreview.ForeColor;
-		if (DialogColor.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+		if (DialogColor.ShowDialog(App.Current.MainWindow) == System.Windows.Forms.DialogResult.OK)
 		{
 			ForeColorPreview.ForeColor = DialogColor.Color;
 		}
@@ -373,7 +374,7 @@ public partial class DialogConfigurationNotifier : Form
 	{
 
 		DialogColor.Color = BackColorPreview.ForeColor;
-		if (DialogColor.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+		if (DialogColor.ShowDialog(App.Current.MainWindow) == System.Windows.Forms.DialogResult.OK)
 		{
 			BackColorPreview.ForeColor = DialogColor.Color;
 		}

@@ -15,6 +15,7 @@ using ElectronicObserver.Observer;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Utility.Storage;
+using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Control;
 using Translation = ElectronicObserver.Properties.Window.Dialog.DialogConfiguration;
 
@@ -473,7 +474,7 @@ public partial class DialogConfiguration : Form
 
 		FontSelector.Font = UI_MainFont.Font;
 
-		if (FontSelector.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+		if (FontSelector.ShowDialog(App.Current.MainWindow) == System.Windows.Forms.DialogResult.OK)
 		{
 
 			SerializableFont font = new SerializableFont(FontSelector.Font);
@@ -491,7 +492,7 @@ public partial class DialogConfiguration : Form
 
 		FontSelector.Font = UI_SubFont.Font;
 
-		if (FontSelector.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+		if (FontSelector.ShowDialog(App.Current.MainWindow) == System.Windows.Forms.DialogResult.OK)
 		{
 
 			SerializableFont font = new SerializableFont(FontSelector.Font);
@@ -558,7 +559,7 @@ public partial class DialogConfiguration : Form
 			dialog.InitialDirectory = System.IO.Directory.GetCurrentDirectory();
 			dialog.FileName = System.IO.Directory.GetCurrentDirectory() + "\\proxy.pac";
 
-			if (dialog.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+			if (dialog.ShowDialog(App.Current.MainWindow) == System.Windows.Forms.DialogResult.OK)
 			{
 
 				try
@@ -604,7 +605,7 @@ public partial class DialogConfiguration : Form
 
 		using (var dialog = new DialogConfigurationNotifier(NotifierManager.Instance.Expedition))
 		{
-			dialog.ShowDialog(this);
+			dialog.ShowDialog(App.Current.MainWindow);
 		}
 	}
 
@@ -613,7 +614,7 @@ public partial class DialogConfiguration : Form
 
 		using (var dialog = new DialogConfigurationNotifier(NotifierManager.Instance.Construction))
 		{
-			dialog.ShowDialog(this);
+			dialog.ShowDialog(App.Current.MainWindow);
 		}
 	}
 
@@ -622,7 +623,7 @@ public partial class DialogConfiguration : Form
 
 		using (var dialog = new DialogConfigurationNotifier(NotifierManager.Instance.Repair))
 		{
-			dialog.ShowDialog(this);
+			dialog.ShowDialog(App.Current.MainWindow);
 		}
 	}
 
@@ -631,7 +632,7 @@ public partial class DialogConfiguration : Form
 
 		using (var dialog = new DialogConfigurationNotifier(NotifierManager.Instance.Condition))
 		{
-			dialog.ShowDialog(this);
+			dialog.ShowDialog(App.Current.MainWindow);
 		}
 	}
 
@@ -640,7 +641,7 @@ public partial class DialogConfiguration : Form
 
 		using (var dialog = new DialogConfigurationNotifier(NotifierManager.Instance.Damage))
 		{
-			dialog.ShowDialog(this);
+			dialog.ShowDialog(App.Current.MainWindow);
 		}
 	}
 
@@ -649,7 +650,7 @@ public partial class DialogConfiguration : Form
 
 		using (var dialog = new DialogConfigurationNotifier(NotifierManager.Instance.AnchorageRepair))
 		{
-			dialog.ShowDialog(this);
+			dialog.ShowDialog(App.Current.MainWindow);
 		}
 	}
 
@@ -657,7 +658,7 @@ public partial class DialogConfiguration : Form
 	{
 		using (var dialog = new DialogConfigurationNotifier(NotifierManager.Instance.BaseAirCorps))
 		{
-			dialog.ShowDialog(this);
+			dialog.ShowDialog(App.Current.MainWindow);
 		}
 	}
 
@@ -665,14 +666,14 @@ public partial class DialogConfiguration : Form
 	{
 		using (var dialog = new DialogConfigurationNotifier(NotifierManager.Instance.BattleEnd))
 		{
-			dialog.ShowDialog(this);
+			dialog.ShowDialog(App.Current.MainWindow);
 		}
 	}
 
 	private void Notification_RemodelLevel_Click(object sender, EventArgs e)
 	{
 		using var dialog = new DialogConfigurationNotifier(NotifierManager.Instance.RemodelLevel);
-		dialog.ShowDialog(this);
+		dialog.ShowDialog(App.Current.MainWindow);
 	}
 
 	private void Life_LayoutFilePathSearch_Click(object sender, EventArgs e)
@@ -1209,7 +1210,7 @@ public partial class DialogConfiguration : Form
 
 			using (var dialog = new DialogConfigurationBGMPlayer(BGMHandles[handleID]))
 			{
-				if (dialog.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+				if (dialog.ShowDialog(App.Current.MainWindow) == System.Windows.Forms.DialogResult.OK)
 				{
 					BGMHandles[handleID] = dialog.ResultHandle;
 				}
@@ -1402,6 +1403,6 @@ public partial class DialogConfiguration : Form
 		// --- ask for confirmation
 		DialogTsunDb dialogTsunDb = new DialogTsunDb();
 		dialogTsunDb.FormClosed += RefreshTsunDbParameters;
-		dialogTsunDb.ShowDialog();
+		dialogTsunDb.ShowDialog(App.Current.MainWindow);
 	}
 }

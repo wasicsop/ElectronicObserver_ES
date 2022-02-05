@@ -59,7 +59,7 @@ namespace ElectronicObserver.ViewModels;
 
 public partial class FormMainViewModel : ObservableObject
 {
-	public FormMainWpf Window { get; }
+	private FormMainWpf Window { get; }
 	private DockingManager DockingManager { get; }
 	private Configuration.ConfigurationData Config { get; }
 	public FormMainTranslationViewModel FormMain { get; }
@@ -640,7 +640,7 @@ public partial class FormMainViewModel : ObservableObject
 
 		PathHelper.InitOpenFileDialog(Configuration.Config.Life.LayoutFilePath, dialog);
 
-		if (dialog.ShowDialog() != System.Windows.Forms.DialogResult.OK) return;
+		if (dialog.ShowDialog(App.Current.MainWindow) != System.Windows.Forms.DialogResult.OK) return;
 
 		string oldLayoutPath = Configuration.Config.Life.LayoutFilePath;
 		Configuration.Config.Life.LayoutFilePath = PathHelper.GetPathFromOpenFileDialog(dialog);
@@ -673,7 +673,7 @@ public partial class FormMainViewModel : ObservableObject
 
 		PathHelper.InitSaveFileDialog(Configuration.Config.Life.LayoutFilePath, dialog);
 
-		if (dialog.ShowDialog() != System.Windows.Forms.DialogResult.OK) return;
+		if (dialog.ShowDialog(App.Current.MainWindow) != System.Windows.Forms.DialogResult.OK) return;
 
 		Configuration.Config.Life.LayoutFilePath = PathHelper.GetPathFromSaveFileDialog(dialog);
 		SaveLayout(Window);
@@ -690,7 +690,7 @@ public partial class FormMainViewModel : ObservableObject
 		UpdatePlayTime();
 
 		using DialogConfiguration dialog = new(Configuration.Config);
-		if (dialog.ShowDialog() != System.Windows.Forms.DialogResult.OK) return;
+		if (dialog.ShowDialog(App.Current.MainWindow) != System.Windows.Forms.DialogResult.OK) return;
 
 		dialog.ToConfiguration(Configuration.Config);
 		Configuration.Instance.OnConfigurationChanged();
@@ -755,7 +755,7 @@ public partial class FormMainViewModel : ObservableObject
 	{
 		DialogEquipmentList equipmentList = new DialogEquipmentList();
 		RefreshTopMost();
-		equipmentList.ShowDialogExt(this);
+		equipmentList.Show(Window);
 	}
 	private void StripMenu_Tool_DropRecord_Click()
 	{
@@ -773,7 +773,7 @@ public partial class FormMainViewModel : ObservableObject
 			return;
 		}
 
-		new DialogDropRecordViewer().ShowDialogExt(this);
+		new DialogDropRecordViewer().Show(Window);
 	}
 
 	private void StripMenu_Tool_DevelopmentRecord_Click()
@@ -792,7 +792,7 @@ public partial class FormMainViewModel : ObservableObject
 			return;
 		}
 
-		new DialogDevelopmentRecordViewer().ShowDialogExt(this);
+		new DialogDevelopmentRecordViewer().Show(Window);
 	}
 
 	private void StripMenu_Tool_ConstructionRecord_Click()
@@ -811,14 +811,14 @@ public partial class FormMainViewModel : ObservableObject
 			return;
 		}
 
-		new DialogConstructionRecordViewer().ShowDialogExt(this);
+		new DialogConstructionRecordViewer().Show(Window);
 	}
 
 	private void StripMenu_Tool_ResourceChart_Click()
 	{
 		DialogResourceChart resourceChart = new();
 		RefreshTopMost();
-		resourceChart.ShowDialogExt(this);
+		resourceChart.Show(Window);
 	}
 
 	private void StripMenu_Tool_AlbumMasterShip_Click()
@@ -833,7 +833,7 @@ public partial class FormMainViewModel : ObservableObject
 
 		DialogAlbumMasterShipWpf albumMasterShip = new();
 		RefreshTopMost();
-		albumMasterShip.ShowDialogExt(this);
+		albumMasterShip.Show(Window);
 	}
 
 	private void StripMenu_Tool_AlbumMasterEquipment_Click()
@@ -848,37 +848,37 @@ public partial class FormMainViewModel : ObservableObject
 
 		DialogAlbumMasterEquipmentWpf dialogAlbumMasterEquipment = new();
 		RefreshTopMost();
-		dialogAlbumMasterEquipment.ShowDialogExt(this);
+		dialogAlbumMasterEquipment.Show(Window);
 	}
 
 	private void StripMenu_Tool_AntiAirDefense_Click()
 	{
-		new DialogAntiAirDefense().ShowDialogExt(this);
+		new DialogAntiAirDefense().Show(Window);
 	}
 
 	private void StripMenu_Tool_FleetImageGenerator_Click()
 	{
-		new DialogFleetImageGenerator(1).ShowDialogExt(this);
+		new DialogFleetImageGenerator(1).Show(Window);
 	}
 
 	private void StripMenu_Tool_BaseAirCorpsSimulation_Click()
 	{
-		new DialogBaseAirCorpsSimulation().ShowDialogExt(this);
+		new DialogBaseAirCorpsSimulation().Show(Window);
 	}
 
 	private void StripMenu_Tool_ExpChecker_Click()
 	{
-		new DialogExpChecker().ShowDialogExt(this);
+		new DialogExpChecker().Show(Window);
 	}
 
 	private void StripMenu_Tool_ExpeditionCheck_Click()
 	{
-		new DialogExpeditionCheck().ShowDialogExt(this);
+		new DialogExpeditionCheck().Show(Window);
 	}
 
 	private void StripMenu_Tool_KancolleProgress_Click()
 	{
-		new DialogKancolleProgressWpf().ShowDialogExt(this);
+		new DialogKancolleProgressWpf().Show(Window);
 	}
 
 	private void StripMenu_Tool_ExtraBrowser_Click()
@@ -896,7 +896,7 @@ public partial class FormMainViewModel : ObservableObject
 			return;
 		}
 
-		new QuestTrackerManagerWindow().ShowDialogExt(this);
+		new QuestTrackerManagerWindow().Show(Window);
 	}
 
 	#endregion
@@ -923,7 +923,7 @@ public partial class FormMainViewModel : ObservableObject
 			}
 		}
 		/*/
-		new DialogLocalAPILoader2().ShowDialogExt(this);
+		new DialogLocalAPILoader2().Show(Window);
 		//*/
 	}
 
@@ -937,7 +937,7 @@ public partial class FormMainViewModel : ObservableObject
 		if (!string.IsNullOrWhiteSpace(Utility.Configuration.Config.Debug.APIListPath))
 			ofd.FileName = Utility.Configuration.Config.Debug.APIListPath;
 
-		if (ofd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+		if (ofd.ShowDialog(App.Current.MainWindow) == System.Windows.Forms.DialogResult.OK)
 		{
 
 			try
@@ -1044,7 +1044,7 @@ public partial class FormMainViewModel : ObservableObject
 		ofd.Title = "Build Record from Old api_start2";
 		ofd.Filter = "api_start2|*api_start2*.json|JSON|*.json|File|*";
 
-		if (ofd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+		if (ofd.ShowDialog(App.Current.MainWindow) == System.Windows.Forms.DialogResult.OK)
 		{
 
 			try
@@ -1094,7 +1094,7 @@ public partial class FormMainViewModel : ObservableObject
 		ofd.Filter = "api_start2|*api_start2*.json|JSON|*.json|File|*";
 		ofd.InitialDirectory = Utility.Configuration.Config.Connection.SaveDataPath;
 
-		if (ofd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+		if (ofd.ShowDialog(App.Current.MainWindow) == System.Windows.Forms.DialogResult.OK)
 		{
 
 			try
@@ -1224,7 +1224,7 @@ public partial class FormMainViewModel : ObservableObject
 			using (FolderBrowserDialog dialog = new())
 			{
 				dialog.SelectedPath = Configuration.Config.Connection.SaveDataPath;
-				if (dialog.ShowDialog() == DialogResult.OK)
+				if (dialog.ShowDialog(App.Current.MainWindow) == DialogResult.OK)
 				{
 					path = dialog.SelectedPath;
 				}
@@ -1402,14 +1402,14 @@ public partial class FormMainViewModel : ObservableObject
 	private void StripMenu_Help_Version_Click()
 	{
 		VersionInformationWindow? window = new VersionInformationWindow();
-		window.ShowDialogExt(this);
+		window.ShowDialog(Window);
 	}
 
 	#endregion
 
 	private void CallPumpkinHead(string apiname, dynamic data)
 	{
-		new DialogHalloween().ShowDialogExt(this);
+		new DialogHalloween().Show(Window);
 		APIObserver.Instance.APIList["api_port/port"].ResponseReceived -= CallPumpkinHead;
 	}
 

@@ -18,6 +18,7 @@ using ElectronicObserver.Observer;
 using ElectronicObserver.Properties;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Utility.Mathematics;
+using ElectronicObserver.ViewModels;
 using Grpc.Core;
 using MagicOnion.Hosting;
 using Microsoft.Extensions.Hosting;
@@ -338,10 +339,13 @@ public partial class FormBrowserHost : DockContent
 		{
 			dialog.InputtedText = baseurl;
 
-			if (dialog.ShowDialog() == DialogResult.OK)
+			App.Current.Dispatcher.Invoke(() =>
 			{
-				Navigate(dialog.InputtedText);
-			}
+				if (dialog.ShowDialog(App.Current.MainWindow) == DialogResult.OK)
+				{
+					Navigate(dialog.InputtedText);
+				}
+			});
 		}
 	}
 	public void ConnectToBrowser(IntPtr hwnd)

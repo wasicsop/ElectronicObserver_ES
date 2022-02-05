@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using ElectronicObserver.Data;
+using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.Enums;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.Models.Conditions;
 using ElectronicObserver.Window.Dialog.ShipPicker;
@@ -82,7 +83,7 @@ public partial class ShipPositionConditionViewModel : ObservableObject, IConditi
 	private void OpenShipPicker()
 	{
 		ShipPickerView shipPicker = new(ShipPickerViewModel);
-		if (shipPicker.ShowDialog() is true)
+		if (shipPicker.ShowDialog(App.Current.MainWindow) is true)
 		{
 			Ship = shipPicker.PickedShip!;
 		}

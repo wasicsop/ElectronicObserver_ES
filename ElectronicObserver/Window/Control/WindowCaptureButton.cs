@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Utility;
+using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Integrate;
 
 namespace ElectronicObserver.Window.Control;
@@ -158,7 +159,7 @@ public partial class WindowCaptureButton : Button
 		);
 
 		CapturingImageWindow.BackgroundImage = Image;
-		CapturingImageWindow.Show();
+		CapturingImageWindow.Show(App.Current.MainWindow);
 		CapturingImageWindow.Size = this.Image.Size;
 	}
 }

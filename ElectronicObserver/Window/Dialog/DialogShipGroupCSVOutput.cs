@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ElectronicObserver.ViewModels;
 using Translation = ElectronicObserver.Properties.Window.Dialog.DialogShipGroupCSVOutput;
 
 namespace ElectronicObserver.Window.Dialog;
@@ -134,7 +135,7 @@ public partial class DialogShipGroupCSVOutput : Form
 	private void ButtonOutputPathSearch_Click(object sender, EventArgs e)
 	{
 
-		if (DialogSaveCSV.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+		if (DialogSaveCSV.ShowDialog(App.Current.MainWindow) == System.Windows.Forms.DialogResult.OK)
 		{
 
 			TextOutputPath.Text = DialogSaveCSV.FileName;

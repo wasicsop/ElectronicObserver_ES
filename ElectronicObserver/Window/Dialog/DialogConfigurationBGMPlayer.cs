@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ElectronicObserver.Utility;
+using ElectronicObserver.ViewModels;
 
 namespace ElectronicObserver.Window.Dialog;
 
@@ -80,7 +81,7 @@ public partial class DialogConfigurationBGMPlayer : Form
 
 	private void FilePathSearch_Click(object sender, EventArgs e)
 	{
-		if (OpenMusicDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+		if (OpenMusicDialog.ShowDialog(App.Current.MainWindow) == System.Windows.Forms.DialogResult.OK)
 		{
 			FilePath.Text = OpenMusicDialog.FileName;
 		}

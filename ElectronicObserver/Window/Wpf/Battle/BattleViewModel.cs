@@ -225,7 +225,7 @@ public partial class BattleViewModel : AnchorableViewModel
 			BattleDetailText = BattleDetailDescriptor.GetBattleDetail(bm),
 			// Location = RightClickMenu.Location
 		};
-		dialog.Show();
+		dialog.Show(App.Current.MainWindow);
 	}
 
 	[ICommand]

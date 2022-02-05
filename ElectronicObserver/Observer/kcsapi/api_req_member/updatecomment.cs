@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ElectronicObserver.Data;
+using ElectronicObserver.ViewModels;
 
 namespace ElectronicObserver.Observer.kcsapi.api_req_member;
 
@@ -19,7 +20,7 @@ public class updatecomment : APIBase
 		// 🎃
 		if (data["api_cmt"].ToLower() == "jackolantern")
 		{
-			new Window.Dialog.DialogHalloween().Show();
+			new Window.Dialog.DialogHalloween().Show(App.Current.MainWindow);
 		}
 
 		KCDatabase.Instance.Admiral.LoadFromRequest(APIName, data);

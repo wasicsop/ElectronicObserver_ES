@@ -1,5 +1,6 @@
 ﻿using System.Windows.Media;
 using ElectronicObserver.Utility.Storage;
+using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Dialog;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
@@ -26,6 +27,6 @@ public class FleetLevelViewModel : ObservableObject
 
 	public FleetLevelViewModel()
 	{
-		ShipLevelRightClick = new RelayCommand(() => new DialogExpChecker(Tag).Show());
+		ShipLevelRightClick = new RelayCommand(() => new DialogExpChecker(Tag).Show(App.Current.MainWindow));
 	}
 }

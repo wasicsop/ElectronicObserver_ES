@@ -9,6 +9,7 @@ using ElectronicObserver.Data;
 using ElectronicObserver.Resource.Record;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Utility.Storage;
+using ElectronicObserver.ViewModels;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Dialog;
 using ElectronicObserver.Window.Tools.DialogAlbumMasterShip;
@@ -79,7 +80,7 @@ public partial class DialogAlbumMasterEquipmentViewModel : ObservableObject
 	{
 		if (ship is null) return;
 
-		new DialogAlbumMasterShipWpf(ship).Show();
+		new DialogAlbumMasterShipWpf(ship).Show(App.Current.MainWindow);
 	}
 
 	[ICommand]
@@ -87,13 +88,13 @@ public partial class DialogAlbumMasterEquipmentViewModel : ObservableObject
 	{
 		if (equip is null) return;
 
-		new DialogAlbumMasterEquipmentWpf(equip.ID).Show();
+		new DialogAlbumMasterEquipmentWpf(equip.ID).Show(App.Current.MainWindow);
 	}
 
 	[ICommand]
 	private void StripMenu_File_OutputCSVUser_Click()
 	{
-		if (SaveCSVDialog.ShowDialog() != System.Windows.Forms.DialogResult.OK) return;
+		if (SaveCSVDialog.ShowDialog(App.Current.MainWindow) != System.Windows.Forms.DialogResult.OK) return;
 
 		try
 		{
@@ -153,7 +154,7 @@ public partial class DialogAlbumMasterEquipmentViewModel : ObservableObject
 	[ICommand]
 	private void StripMenu_File_OutputCSVData_Click()
 	{
-		if (SaveCSVDialog.ShowDialog() != System.Windows.Forms.DialogResult.OK) return;
+		if (SaveCSVDialog.ShowDialog(App.Current.MainWindow) != System.Windows.Forms.DialogResult.OK) return;
 
 		try
 		{

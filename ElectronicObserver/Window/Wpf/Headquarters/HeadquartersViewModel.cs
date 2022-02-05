@@ -631,7 +631,7 @@ public class HeadquartersViewModel : AnchorableViewModel
 
 	private void Resource_MouseClick()
 	{
-		new Dialog.DialogResourceChart().Show();
+		new Dialog.DialogResourceChart().Show(App.Current.MainWindow);
 	}
 
 	private void Resource_MouseDoubleClick()

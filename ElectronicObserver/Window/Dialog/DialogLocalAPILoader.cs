@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ElectronicObserver.Observer;
+using ElectronicObserver.ViewModels;
 
 namespace ElectronicObserver.Window.Dialog;
 
@@ -126,7 +127,7 @@ public partial class DialogLocalAPILoader : Form
 
 		FileOpener.Filter = APIList.SelectedItem.ToString() + "|*" + (APICategory.SelectedIndex == 0 ? "Q" : "S") + "@" + APIList.SelectedItem.ToString().Replace('/', '@') + ".json|JSON|*.json;*.js|File|*";
 
-		if (FileOpener.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+		if (FileOpener.ShowDialog(App.Current.MainWindow) == System.Windows.Forms.DialogResult.OK)
 		{
 			TextFilePath.Text = FileOpener.FileName;
 		}
