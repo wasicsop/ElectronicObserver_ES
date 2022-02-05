@@ -431,7 +431,7 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 		if (Browser.CoreWebView2 == null) return;
 		if (gameframe != null)
 		{
-			//e.Handled = true;
+			e.Handled = !Configuration.IsBrowserContextMenuEnabled;
 		}
 	}
 

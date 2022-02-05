@@ -376,6 +376,8 @@ public partial class DialogConfiguration : Form
 		label15.Text = Translation.Zoom;
 		FormBrowser_UseGadgetRedirect.Text = Translation.FormBrowser_UseGadgetRedirect;
 		ToolTipInfo.SetToolTip(FormBrowser_UseGadgetRedirect, Translation.FormBrowser_UseGadgetRedirectToolTip);
+		FormBrowser_IsContextMenuEnabled.Text = Translation.FormBrowser_ShowContextMenu;
+		ToolTipInfo.SetToolTip(FormBrowser_IsContextMenuEnabled, Translation.FormBrowser_ShowContextMenuToolTip);
 		FormBrowser_UseVulkanWorkaround.Text = Translation.FormBrowser_UseVulkanWorkaround;
 		ToolTipInfo.SetToolTip(FormBrowser_UseVulkanWorkaround, Translation.FormBrowser_UseVulkanWorkaroundToolTip);
 
@@ -896,6 +898,7 @@ public partial class DialogConfiguration : Form
 		FormBrowser_ForceColorProfile.Checked = config.FormBrowser.ForceColorProfile;
 		FormBrowser_SavesBrowserLog.Checked = config.FormBrowser.SavesBrowserLog;
 		FormBrowser_UseGadgetRedirect.Checked = config.FormBrowser.UseGadgetRedirect;
+		FormBrowser_IsContextMenuEnabled.Checked = config.FormBrowser.IsBrowserContextMenuEnabled;
 		FormBrowser_UseVulkanWorkaround.Checked = config.FormBrowser.UseVulkanWorkaround;
 
 		if (!config.FormBrowser.IsToolMenuVisible)
@@ -1150,6 +1153,7 @@ public partial class DialogConfiguration : Form
 		}
 		config.FormBrowser.ScreenShotSaveMode = FormBrowser_ScreenShotSaveMode.SelectedIndex + 1;
 		config.FormBrowser.UseGadgetRedirect = FormBrowser_UseGadgetRedirect.Checked;
+		config.FormBrowser.IsBrowserContextMenuEnabled = FormBrowser_IsContextMenuEnabled.Checked;
 		config.FormBrowser.UseVulkanWorkaround = FormBrowser_UseVulkanWorkaround.Checked;
 
 		config.FormCompass.CandidateDisplayCount = (int)FormCompass_CandidateDisplayCount.Value;

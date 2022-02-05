@@ -29,8 +29,8 @@
 		private void InitializeComponent()
 		{
             this.components = new System.ComponentModel.Container();
-            ElectronicObserver.Window.Control.StatusBarModule statusBarModule2 = new ElectronicObserver.Window.Control.StatusBarModule();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            ElectronicObserver.Window.Control.StatusBarModule statusBarModule1 = new ElectronicObserver.Window.Control.StatusBarModule();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.label19 = new System.Windows.Forms.Label();
@@ -202,6 +202,7 @@
             this.FormBattle_HideDuringBattle = new System.Windows.Forms.CheckBox();
             this.FormBattle_IsScrollable = new System.Windows.Forms.CheckBox();
             this.tabPage12 = new System.Windows.Forms.TabPage();
+            this.FormBrowser_UseVulkanWorkaround = new System.Windows.Forms.CheckBox();
             this.FormBrowser_UseGadgetRedirect = new System.Windows.Forms.CheckBox();
             this.FormBrowser_SavesBrowserLog = new System.Windows.Forms.CheckBox();
             this.FormBrowser_ForceColorProfile = new System.Windows.Forms.CheckBox();
@@ -271,7 +272,7 @@
             this.APIListBrowser = new System.Windows.Forms.OpenFileDialog();
             this.Log_PlayTime = new System.Windows.Forms.Label();
             this.PlayTimeTimer = new System.Windows.Forms.Timer(this.components);
-            this.FormBrowser_UseVulkanWorkaround = new System.Windows.Forms.CheckBox();
+            this.FormBrowser_IsContextMenuEnabled = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Connection_UpstreamProxyPort)).BeginInit();
@@ -775,12 +776,12 @@
             // 
             this.UI_RenderingTest.AutoSize = true;
             this.UI_RenderingTest.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            statusBarModule2.BarColor0Begin = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            statusBarModule2.BarColor0End = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            statusBarModule2.MaximumValue = 500;
-            statusBarModule2.PrevValue = 401;
-            statusBarModule2.Value = 401;
-            this.UI_RenderingTest.HPBar = statusBarModule2;
+            statusBarModule1.BarColor0Begin = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            statusBarModule1.BarColor0End = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            statusBarModule1.MaximumValue = 500;
+            statusBarModule1.PrevValue = 401;
+            statusBarModule1.Value = 401;
+            this.UI_RenderingTest.HPBar = statusBarModule1;
             this.UI_RenderingTest.Location = new System.Drawing.Point(16, 3);
             this.UI_RenderingTest.MainFontColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.UI_RenderingTest.Margin = new System.Windows.Forms.Padding(16, 3, 16, 3);
@@ -2390,6 +2391,7 @@
             // tabPage12
             // 
             this.tabPage12.Controls.Add(this.FormBrowser_UseVulkanWorkaround);
+            this.tabPage12.Controls.Add(this.FormBrowser_IsContextMenuEnabled);
             this.tabPage12.Controls.Add(this.FormBrowser_UseGadgetRedirect);
             this.tabPage12.Controls.Add(this.FormBrowser_SavesBrowserLog);
             this.tabPage12.Controls.Add(this.FormBrowser_ForceColorProfile);
@@ -2416,6 +2418,16 @@
             this.tabPage12.TabIndex = 3;
             this.tabPage12.Text = "ブラウザ";
             this.tabPage12.UseVisualStyleBackColor = true;
+            // 
+            // FormBrowser_UseVulkanWorkaround
+            // 
+            this.FormBrowser_UseVulkanWorkaround.AutoSize = true;
+            this.FormBrowser_UseVulkanWorkaround.Location = new System.Drawing.Point(242, 199);
+            this.FormBrowser_UseVulkanWorkaround.Name = "FormBrowser_UseVulkanWorkaround";
+            this.FormBrowser_UseVulkanWorkaround.Size = new System.Drawing.Size(88, 19);
+            this.FormBrowser_UseVulkanWorkaround.TabIndex = 18;
+            this.FormBrowser_UseVulkanWorkaround.Text = "checkBox1";
+            this.FormBrowser_UseVulkanWorkaround.UseVisualStyleBackColor = true;
             // 
             // FormBrowser_UseGadgetRedirect
             // 
@@ -3059,14 +3071,14 @@
             this.BGMPlayer_ColumnContent,
             this.BGMPlayer_ColumnPath,
             this.BGMPlayer_ColumnSetting});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Meiryo UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.BGMPlayer_ControlGrid.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Meiryo UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.BGMPlayer_ControlGrid.DefaultCellStyle = dataGridViewCellStyle1;
             this.BGMPlayer_ControlGrid.Location = new System.Drawing.Point(6, 35);
             this.BGMPlayer_ControlGrid.MultiSelect = false;
             this.BGMPlayer_ControlGrid.Name = "BGMPlayer_ControlGrid";
@@ -3171,15 +3183,15 @@
             this.PlayTimeTimer.Interval = 1000;
             this.PlayTimeTimer.Tick += new System.EventHandler(this.PlayTimeTimer_Tick);
             // 
-            // FormBrowser_UseVulkanWorkaround
+            // FormBrowser_IsContextMenuEnabled
             // 
-            this.FormBrowser_UseVulkanWorkaround.AutoSize = true;
-            this.FormBrowser_UseVulkanWorkaround.Location = new System.Drawing.Point(242, 199);
-            this.FormBrowser_UseVulkanWorkaround.Name = "FormBrowser_UseVulkanWorkaround";
-            this.FormBrowser_UseVulkanWorkaround.Size = new System.Drawing.Size(88, 19);
-            this.FormBrowser_UseVulkanWorkaround.TabIndex = 18;
-            this.FormBrowser_UseVulkanWorkaround.Text = "checkBox1";
-            this.FormBrowser_UseVulkanWorkaround.UseVisualStyleBackColor = true;
+            this.FormBrowser_IsContextMenuEnabled.AutoSize = true;
+            this.FormBrowser_IsContextMenuEnabled.Location = new System.Drawing.Point(453, 31);
+            this.FormBrowser_IsContextMenuEnabled.Name = "FormBrowser_IsContextMenuEnabled";
+            this.FormBrowser_IsContextMenuEnabled.Size = new System.Drawing.Size(109, 19);
+            this.FormBrowser_IsContextMenuEnabled.TabIndex = 17;
+            this.FormBrowser_IsContextMenuEnabled.Text = "Context menu";
+            this.FormBrowser_IsContextMenuEnabled.UseVisualStyleBackColor = true;
             // 
             // DialogConfiguration
             // 
@@ -3515,5 +3527,6 @@
 		private System.Windows.Forms.ComboBox UI_LanguageOptions;
 		private System.Windows.Forms.Label UI_LanguageLabel;
 		private System.Windows.Forms.CheckBox FormBrowser_UseVulkanWorkaround;
+		private System.Windows.Forms.CheckBox FormBrowser_IsContextMenuEnabled;
 	}
 }

@@ -728,4 +728,10 @@ APIリストの書式や用法はオンラインヘルプを参照してくだ�
   <data name="FormBrowser_UseVulkanWorkaroundToolTip" xml:space="preserve">
     <value>古いハードウェアで高いCPU負荷を引き起こす可能性のあるvulkanソフトウェアレンダリング実装に必要なWebView2ファイルを削除しました。</value>
   </data>
+  <data name="FormBrowser_ShowContextMenu" xml:space="preserve">
+    <value>コンテキストメニューを表示する</value>
+  </data>
+  <data name="FormBrowser_ShowContextMenuToolTip" xml:space="preserve">
+    <value>ブラウザ上で右クリックすると、コンテキストメニューが表示されます。</value>
+  </data>
 </root>

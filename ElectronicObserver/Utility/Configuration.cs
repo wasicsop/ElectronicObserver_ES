@@ -1308,6 +1308,8 @@ public sealed class Configuration
 
 			public bool IsMute { get; set; }
 
+			public bool IsBrowserContextMenuEnabled { get; set; }
+
 			public ConfigFormBrowser()
 			{
 				ZoomRate = 1;
@@ -1337,6 +1339,7 @@ public sealed class Configuration
 				UseVulkanWorkaround = false;
 				Volume = 100;
 				IsMute = false;
+				IsBrowserContextMenuEnabled = true;
 			}
 		}
 		/// <summary>[ブラウザ]ウィンドウ</summary>

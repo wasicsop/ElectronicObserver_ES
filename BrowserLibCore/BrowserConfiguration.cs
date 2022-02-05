@@ -146,4 +146,7 @@ public class BrowserConfiguration
 
 	[Key(24)]
 	public bool UseVulkanWorkaround { get; set; }
+
+	[Key(25)]
+	public bool IsBrowserContextMenuEnabled { get; set; }
 }

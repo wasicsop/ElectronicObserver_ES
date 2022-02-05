@@ -249,6 +249,7 @@ public partial class FormBrowserHost : DockContent
 				UseVulkanWorkaround = c.UseVulkanWorkaround,
 				Volume = c.Volume,
 				IsMute = c.IsMute,
+				IsBrowserContextMenuEnabled = c.IsBrowserContextMenuEnabled,
 			};
 		}
 	}
@@ -278,6 +279,7 @@ public partial class FormBrowserHost : DockContent
 		c.SavesBrowserLog = config.SavesBrowserLog;
 		c.Volume = config.Volume;
 		c.IsMute = config.IsMute;
+		c.IsBrowserContextMenuEnabled = config.IsBrowserContextMenuEnabled;
 		//Utility.Configuration.Config.Debug.EnableDebugMenu = config.EnableDebugMenu;
 
 		// volume

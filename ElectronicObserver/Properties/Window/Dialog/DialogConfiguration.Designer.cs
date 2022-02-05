@@ -823,6 +823,24 @@ namespace ElectronicObserver.Properties.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to コンテキストメニューを表示する.
+        /// </summary>
+        public static string FormBrowser_ShowContextMenu {
+            get {
+                return ResourceManager.GetString("FormBrowser_ShowContextMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ブラウザ上で右クリックすると、コンテキストメニューが表示されます。.
+        /// </summary>
+        public static string FormBrowser_ShowContextMenuToolTip {
+            get {
+                return ResourceManager.GetString("FormBrowser_ShowContextMenuToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ガジェット・リダイレクトの使用 *.
         /// </summary>
         public static string FormBrowser_UseGadgetRedirect {
