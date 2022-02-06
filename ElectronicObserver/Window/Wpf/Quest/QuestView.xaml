@@ -16,7 +16,14 @@
 	>
 	<UserControl.Resources>
 		<local:QuestViewBindingProxy x:Key="Proxy" DataContext="{Binding}" />
-
+		<!--
+		<Style
+			x:Key="QuestNameStyle"
+			BasedOn="{StaticResource DefaultTextBlockStyle}"
+			TargetType="{x:Type TextBlock}"
+			>
+			<Setter Property="TextTrimming" Value="CharacterEllipsis" />
+		</Style>		-->
 		<ContextMenu x:Key="MainContextMenu" DataContext="{StaticResource Proxy}">
 			<MenuItem Header="{Binding DataContext.FormQuest.MenuMain_QuestFilter}">
 				<MenuItem
@@ -197,8 +204,16 @@
 						<Style BasedOn="{StaticResource DefaultDataGridCellStyle}" TargetType="DataGridCell">
 							<Setter Property="ToolTip" Value="{Binding QuestView_NameToolTip}" />
 							<Setter Property="ContextMenu" Value="{StaticResource MainContextMenu}" />
+
 						</Style>
 					</DataGridTextColumn.CellStyle>
+
+					<DataGridTextColumn.ElementStyle>
+						<Style BasedOn="{StaticResource DataGridTextBlockStyle}" TargetType="TextBlock">
+							<Setter Property="TextTrimming" Value="CharacterEllipsis" />
+							<Setter Property="Padding" Value="5 0 0 0" />
+						</Style>
+					</DataGridTextColumn.ElementStyle>
 				</DataGridTextColumn>
 
 				<DataGridTemplateColumn
