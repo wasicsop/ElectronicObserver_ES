@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Linq;
 using DynaJson;
 using ElectronicObserver.Utility;
+using ElectronicObserver.Utility.Data;
 
 namespace ElectronicObserver.Data;
 
@@ -26,7 +28,7 @@ public class TsunDbSubmissionManager : ResponseWrapper
 			switch (apiname)
 			{
 				case "api_req_sortie/battleresult":
-					if (db.Ships.Count < db.Admiral.MaxShipCount && db.Equipments.Count < db.Admiral.MaxEquipmentCount)
+					if (db.Ships.Count < db.Admiral.MaxShipCount && (db.Equipments.Values.Count(e => e.MasterEquipment.UsesSlotSpace()) < db.Admiral.MaxEquipmentCount))
 					{
 						new ShipDrop(data).SendData();
 						new ShipDropLoc(data).SendData();
