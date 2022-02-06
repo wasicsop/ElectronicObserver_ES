@@ -43,14 +43,14 @@ public partial class QuestViewModel : AnchorableViewModel
 
 	public string WebSearchText => SelectedQuest switch
 	{
-		{ QuestName: { } } => string.Format(Translation.LookUpSpecificQuestOnWeb, SearchKey),
-		_ => Translation.LookUpQuestOnWeb
+		{ QuestName: { } } => string.Format(FormQuest.LookUpSpecificQuestOnWeb, SearchKey),
+		_ => FormQuest.LookUpQuestOnWeb
 	};
 
 	public string WikiSearchText => SelectedQuest switch
 	{
-		{ QuestName: { } } => string.Format(Translation.LookUpSpecificQuestOnWiki, SearchKey),
-		_ => Translation.MenuMain_KcwikiQuest
+		{ QuestName: { } } => string.Format(FormQuest.LookUpSpecificQuestOnWiki, SearchKey),
+		_ => FormQuest.MenuMain_KcwikiQuest
 	};
 
 	private bool IsLoaded { get; set; }
