@@ -19,7 +19,7 @@ namespace ElectronicObserver.Properties.Data {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class BattleRes {
@@ -115,7 +115,7 @@ namespace ElectronicObserver.Properties.Data {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 演習 で「{0}」{1}の「{2}」と交戦しました。( ランク: {3}, 提督Exp+{4}.
+        ///   Looks up a localized string similar to 演習 で「{0}」{1}の「{2}」と交戦しました。( ランク: {3}, 提督Exp+{4}, 艦娘Exp+{5} ).
         /// </summary>
         public static string BattleFinishedPractice {
             get {
