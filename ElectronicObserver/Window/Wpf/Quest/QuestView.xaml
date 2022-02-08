@@ -159,6 +159,7 @@
 					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
 					Header="{Binding DataContext.FormQuest.QuestView_Type, Source={StaticResource Proxy}}"
 					SortDirection="{Binding DataContext.TypeColumn.SortDirection, Mode='TwoWay', Source={StaticResource Proxy}}"
+					SortMemberPath="QuestView_Type"
 					Visibility="{Binding DataContext.TypeColumn.Visible, Converter={StaticResource BooleanToVisibilityConverter}, Source={StaticResource Proxy}}"
 					>
 					<DataGridTextColumn.CellStyle>
@@ -178,6 +179,7 @@
 					Foreground="{Binding QuestView_CategoryForeground}"
 					Header="{Binding DataContext.FormQuest.QuestView_Category, Source={StaticResource Proxy}}"
 					SortDirection="{Binding DataContext.CategoryColumn.SortDirection, Mode='TwoWay', Source={StaticResource Proxy}}"
+					SortMemberPath="QuestView_Category"
 					Visibility="{Binding DataContext.CategoryColumn.Visible, Converter={StaticResource BooleanToVisibilityConverter}, Source={StaticResource Proxy}}"
 					>
 					<DataGridTextColumn.CellStyle>
@@ -202,6 +204,7 @@
 					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
 					Header="{Binding DataContext.FormQuest.QuestView_Name, Source={StaticResource Proxy}}"
 					SortDirection="{Binding DataContext.NameColumn.SortDirection, Mode='TwoWay', Source={StaticResource Proxy}}"
+					SortMemberPath="QuestId"
 					Visibility="{Binding DataContext.NameColumn.Visible, Converter={StaticResource BooleanToVisibilityConverter}, Source={StaticResource Proxy}}"
 					>
 					<DataGridTextColumn.CellStyle>
