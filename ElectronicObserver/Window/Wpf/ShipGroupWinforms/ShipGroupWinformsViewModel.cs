@@ -89,7 +89,11 @@ public partial class ShipGroupWinformsViewModel : AnchorableViewModel
 	[ICommand]
 	private void SelectGroup(ShipGroupItem group)
 	{
-		if (group == SelectedGroup) return;
+		if (group == SelectedGroup)
+		{
+			OnPropertyChanged(nameof(SelectedGroup));
+			return;
+		}
 
 		PreviousGroup = SelectedGroup;
 		SelectedGroup = group;
