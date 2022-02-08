@@ -283,6 +283,11 @@
 					<Setter Property="ContextMenu" Value="{StaticResource MainContextMenu}" />
 					<Setter Property="Padding" Value="5 0" />
 					<Setter Property="Template" Value="{StaticResource DataGridColumnHeaderTemplate}" />
+					<Style.Triggers>
+						<Trigger Property="SortDirection" Value="{x:Null}">
+							<Setter Property="Padding" Value="5 0" />
+						</Trigger>
+					</Style.Triggers>
 				</Style>
 			</DataGrid.ColumnHeaderStyle>
 
