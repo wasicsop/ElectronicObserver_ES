@@ -1119,6 +1119,8 @@ public sealed class Configuration
 			/// </summary>
 			public SerializableList<int> ColumnWidth { get; set; }
 
+			public SerializableList<int>? ColumnSort { get; set; }
+
 			/// <summary>
 			/// どの行をソートしていたか
 			/// </summary>
@@ -1142,6 +1144,7 @@ public sealed class Configuration
 				ShowOther = true;
 				ColumnFilter = null;        //実際の初期化は FormQuest で行う
 				ColumnWidth = null;         //上に同じ
+				ColumnSort = null;          //上に同じ
 				SortParameter = 3 << 1 | 0;
 				ProgressAutoSaving = 1;
 				AllowUserToSortRows = true;

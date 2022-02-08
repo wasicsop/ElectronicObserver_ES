@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Media;
@@ -26,5 +27,17 @@ public static class Extensions
 	{
 		{ IsAbsoluteUri: true } => uri,
 		_ => new(new Uri(Process.GetCurrentProcess().MainModule.FileName), uri)
+	};
+
+	public static int ToSerializableValue(this ListSortDirection? sortDirection) => sortDirection switch
+	{
+		null => -1,
+		{ } => (int)sortDirection
+	};
+
+	public static ListSortDirection? ToSortDirection(this int sortDirection) => sortDirection switch
+	{
+		0 or 1 => (ListSortDirection)sortDirection,
+		_ => null
 	};
 }

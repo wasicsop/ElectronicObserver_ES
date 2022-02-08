@@ -186,14 +186,21 @@ public partial class QuestViewModel : AnchorableViewModel
 			c.FormQuest.ColumnWidth = Columns.Select(column => (int)column.Width.DisplayValue).ToList();
 		}
 
+		if (c.FormQuest.ColumnSort == null || ((List<int>)c.FormQuest.ColumnSort).Count != columnCount)
+		{
+			c.FormQuest.ColumnSort = Columns.Select(column => column.SortDirection.ToSerializableValue()).ToList();
+		}
+
 		{
 			List<bool> list = c.FormQuest.ColumnFilter;
 			List<int> widths = c.FormQuest.ColumnWidth;
+			List<ListSortDirection?> sorts = c.FormQuest.ColumnSort.List.Select(s => s.ToSortDirection()).ToList();
 
-			foreach ((ColumnViewModel column, bool visible, int width) in Columns.Zip(list, widths))
+			foreach ((ColumnViewModel column, int i) in Columns.Select((column, i) => (column, i)))
 			{
-				column.Visible = visible;
-				column.Width = new DataGridLength(width);
+				column.Visible = list[i];
+				column.Width = new DataGridLength(widths[i]);
+				column.SortDirection = sorts[i];
 			}
 		}
 		/*
@@ -235,6 +242,7 @@ public partial class QuestViewModel : AnchorableViewModel
 
 			*/
 			Configuration.Config.FormQuest.ColumnWidth = Columns.Select(c => (int)c.Width.DisplayValue).ToList();
+			Configuration.Config.FormQuest.ColumnSort = Columns.Select(c => c.SortDirection.ToSerializableValue()).ToList();
 
 		}
 		catch (Exception)
