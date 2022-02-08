@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ElectronicObserver.Window;
 
@@ -86,7 +82,6 @@ public sealed class NotifierManager
 
 					form.DialogData.Location = p;
 				}
-				form.FormBorderStyle = FormBorderStyle.FixedToolWindow;
 				parentForm.Invoke((MethodInvoker)form.Show);
 				break;
 			}
@@ -103,7 +98,6 @@ public sealed class NotifierManager
 						form.DialogData.Location = p;
 					}
 				}
-				form.FormBorderStyle = FormBorderStyle.FixedToolWindow;
 				parentForm.Dispatcher.Invoke((MethodInvoker)form.Show);
 				break;
 			}
