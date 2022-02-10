@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using ElectronicObserver.Utility.Mathematics;
@@ -107,9 +106,9 @@ public class FleetHpViewModel : ObservableObject
 
 		DisplayText = $"{HPBar.Value} / {HPBar.MaximumValue}";
 		HPBar.Foreground = HPBar.GetColor(HPBar.Value, HPBar.MaximumValue, HPBar.ColorMorphing).ToBrush();
-
 		AkashiRepairBar.Value = HPBar.Value;
 		AkashiRepairBar.MaximumValue = HPBar.MaximumValue;
+
 		/*
 		// I don't think decrement ever happens
 		AkashiRepairBar.Foreground = (HPBar.Value < AkashiRepairBar.Value) switch
@@ -135,6 +134,7 @@ public class FleetHpViewModel : ObservableObject
 			true => BarColorIncrement,
 			_ => BarColorDecrement
 		};
+		HPBar.Foreground = HPBar.GetColor(AkashiRepairBar.Value, HPBar.MaximumValue, HPBar.ColorMorphing).ToBrush();
 		AkashiRepairBar.Visibility = (HPBar.Value < AkashiRepairBar.Value).ToVisibility();
 	}
 
