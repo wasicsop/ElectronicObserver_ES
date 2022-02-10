@@ -610,8 +610,6 @@ public partial class FormShipGroup : DockContent
 		ShipGroupData? group = groupItem?.Group;
 		ShipGroupData? previousGroup = previousGroupItem?.Group;
 
-		var currentGroup = previousGroup;
-
 		int headIndex = 0;
 		List<int> selectedIDList = new List<int>();
 
@@ -621,12 +619,12 @@ public partial class FormShipGroup : DockContent
 			return;
 		}
 
-		if (currentGroup != null)
+		if (previousGroup != null)
 		{
 
-			UpdateMembers(currentGroup);
+			UpdateMembers(previousGroup);
 
-			if (CurrentGroup.GroupID != group.GroupID)
+			if (previousGroup.GroupID != group.GroupID)
 			{
 				ShipView.Rows.Clear();      //別グループの行の並び順を引き継がせないようにする
 

@@ -89,18 +89,19 @@ public partial class ShipGroupWinformsViewModel : AnchorableViewModel
 	[ICommand]
 	private void SelectGroup(ShipGroupItem group)
 	{
-		if (group == SelectedGroup)
-		{
-			OnPropertyChanged(nameof(SelectedGroup));
-			return;
-		}
-
 		PreviousGroup = SelectedGroup;
 		SelectedGroup = group;
 
 		SelectedGroup.IsSelected = true;
 
 		if (PreviousGroup is null) return;
+
+		if (PreviousGroup == SelectedGroup)
+		{
+			// force DataGrid refresh when clicking the current group
+			OnPropertyChanged(nameof(SelectedGroup));
+			return;
+		}
 
 		PreviousGroup.IsSelected = false;
 	}
