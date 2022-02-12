@@ -70,6 +70,8 @@ public class QuestItemViewModel
 		_ => Configuration.Config.UI.Quest_ColorProcessDefault.ToBrush()
 	};
 
+	public SolidColorBrush Background { get; set; }
+
 	public QuestItemViewModel()
 	{
 

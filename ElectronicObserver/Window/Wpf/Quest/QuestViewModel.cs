@@ -301,7 +301,7 @@ public partial class QuestViewModel : AnchorableViewModel
 			QuestItemViewModel row = new(q, questIndex);
 			// row.Height = 21;
 			// Add support for tooltip-based page numbering
-			SolidColorBrush color = (questIndex / 5 % 2) switch
+			row.Background = (questIndex / 5 % 2) switch
 			{
 				0 => Configuration.Config.UI.BackColor.ToBrush(),
 				_ => Configuration.Config.UI.SubBackColor.ToBrush()

@@ -291,6 +291,12 @@
 				</Style>
 			</DataGrid.ColumnHeaderStyle>
 
+			<DataGrid.RowStyle>
+				<Style d:DataContext="{d:DesignInstance local:QuestItemViewModel}" TargetType="DataGridRow">
+					<Setter Property="Background" Value="{Binding Background}" />
+				</Style>
+			</DataGrid.RowStyle>
+
 			<ui:DataGridHelper.CheckBoxColumnElementStyle>
 				<Style BasedOn="{StaticResource DataGridReadOnlyCheckBoxStyle}" TargetType="CheckBox">
 					<Setter Property="Margin" Value="0" />
