@@ -366,9 +366,16 @@
 							<Setter Property="ToolTip" Value="{Binding QuestView_CategoryToolTip}" />
 							<Setter Property="ContextMenu" Value="{StaticResource MainContextMenu}" />
 							<Setter Property="Background" Value="{Binding QuestView_CategoryBackground}" />
-							<Setter Property="HorizontalAlignment" Value="Center" />
+							<Setter Property="HorizontalAlignment" Value="Stretch" />
 						</Style>
 					</DataGridTextColumn.CellStyle>
+
+					<DataGridTextColumn.ElementStyle>
+						<Style BasedOn="{StaticResource DataGridTextBlockStyle}" TargetType="TextBlock">
+							<Setter Property="TextAlignment" Value="Center" />
+							<Setter Property="Padding" Value="5 0" />
+						</Style>
+					</DataGridTextColumn.ElementStyle>
 				</DataGridTextColumn>
 
 				<DataGridTextColumn
