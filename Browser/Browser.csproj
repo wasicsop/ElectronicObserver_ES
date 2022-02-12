@@ -20,7 +20,6 @@
 		<ApplicationVersion>5.1.0.0</ApplicationVersion>
 		<UseApplicationTrust>false</UseApplicationTrust>
 		<BootstrapperEnabled>true</BootstrapperEnabled>
-		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 		<GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
 		<UseWindowsForms>true</UseWindowsForms>
 		<UseWPF>true</UseWPF>
@@ -36,6 +35,14 @@
 	<PropertyGroup>
 		<StartupObject>Browser.App</StartupObject>
 		<ApplicationManifest>app.manifest</ApplicationManifest>
+		<Title>EOBrowser</Title>
+		<Description />
+		<Configuration />
+		<Company />
+		<Product>ElectronicObserver</Product>
+		<Copyright>Copyright ©  2015 Andante</Copyright>
+		<Trademark />
+		<Culture />
 		<AssemblyVersion>5.1.1.0</AssemblyVersion>
 		<FileVersion>5.1.1.0</FileVersion>
 		<Version>5.1.1.0</Version>
