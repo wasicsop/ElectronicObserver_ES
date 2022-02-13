@@ -105,9 +105,9 @@ public sealed class RecordManager
 		if (logging)
 		{
 			if (succeeded)
-				Utility.Logger.Add(2, "Records saved.");
+				Utility.Logger.Add(2, Properties.ResourceRecord.RecordManager_RecordsSaved);
 			else
-				Utility.Logger.Add(2, "Failed to save records.");
+				Utility.Logger.Add(2, Properties.ResourceRecord.RecordManager_FailedToSaveRecords);
 		}
 
 		return succeeded;
@@ -139,9 +139,9 @@ public sealed class RecordManager
 		if (logging)
 		{
 			if (succeeded)
-				Utility.Logger.Add(2, "Records saved.");
+				Utility.Logger.Add(2, Properties.ResourceRecord.RecordManager_RecordsSaved);
 			else
-				Utility.Logger.Add(2, "Failed to save records.");
+				Utility.Logger.Add(2, Properties.ResourceRecord.RecordManager_FailedToSaveRecords);
 		}
 
 		return succeeded;

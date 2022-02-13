@@ -102,12 +102,12 @@ public abstract class RecordBase
 		}
 		catch (FileNotFoundException)
 		{
-			Utility.Logger.Add(1, "File " + path + " does not exists.");
+			Utility.Logger.Add(1, string.Format(Properties.ResourceRecord.RecordBase_RecordDoesNotExist, path));
 
 		}
 		catch (Exception ex)
 		{
-			Utility.ErrorReporter.SendErrorReport(ex, "Failed to load file " + path);
+			Utility.ErrorReporter.SendErrorReport(ex, string.Format(Properties.ResourceRecord.RecordBase_FailedToLoadRecord, path));
 		}
 
 		return false;
@@ -140,7 +140,7 @@ public abstract class RecordBase
 		}
 		catch (Exception ex)
 		{
-			Utility.ErrorReporter.SendErrorReport(ex, "Failed to write file " + path);
+			Utility.ErrorReporter.SendErrorReport(ex, string.Format(Properties.ResourceRecord.RecordBase_FailedToWriteRecord, path));
 		}
 
 		return false;
@@ -179,7 +179,7 @@ public abstract class RecordBase
 		}
 		catch (Exception ex)
 		{
-			Utility.ErrorReporter.SendErrorReport(ex, "Failed to write file " + path);
+			Utility.ErrorReporter.SendErrorReport(ex, string.Format(Properties.ResourceRecord.RecordBase_FailedToWriteRecord, path));
 		}
 
 		return false;

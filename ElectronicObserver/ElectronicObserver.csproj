@@ -107,6 +107,11 @@
 		  <AutoGen>True</AutoGen>
 		  <DependentUpon>BattleRes.resx</DependentUpon>
 		</Compile>
+		<Compile Update="Properties\ResourceRecord.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>ResourceRecord.resx</DependentUpon>
+		</Compile>
 		<Compile Update="Properties\Utility\SoftwareInformation.Designer.cs">
 		  <DesignTime>True</DesignTime>
 		  <AutoGen>True</AutoGen>
@@ -408,9 +413,7 @@
 	https://github.com/dotnet/core/issues/7176
 	-->
 	<ItemGroup>
-		<FrameworkReference
-			Update="Microsoft.WindowsDesktop.App;Microsoft.WindowsDesktop.App.WPF;Microsoft.WindowsDesktop.App.WindowsForms"
-			TargetingPackVersion="6.0.0" />
+		<FrameworkReference Update="Microsoft.WindowsDesktop.App;Microsoft.WindowsDesktop.App.WPF;Microsoft.WindowsDesktop.App.WindowsForms" TargetingPackVersion="6.0.0" />
 	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="Dirkster.AvalonDock" Version="4.60.0" />
@@ -531,6 +534,10 @@
 		<EmbeddedResource Update="Properties\Data\BattleRes.resx">
 		  <Generator>PublicResXFileCodeGenerator</Generator>
 		  <LastGenOutput>BattleRes.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Properties\ResourceRecord.resx">
+		  <Generator>PublicResXFileCodeGenerator</Generator>
+		  <LastGenOutput>ResourceRecord.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 		<EmbeddedResource Update="Properties\Utility\SoftwareInformation.resx">
 		  <Generator>PublicResXFileCodeGenerator</Generator>
