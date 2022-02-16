@@ -102,10 +102,10 @@ public class NightAttackTests
 
 		Assert.Equal(expected, actual);
 
-		Assert.Equal(314, akagi.GetNightAttackPower(actual[0]));
-		Assert.Equal(313, akagi.GetNightAttackPower(actual[1]));
-		Assert.Equal(313, akagi.GetNightAttackPower(actual[2]));
-		Assert.Equal(310, akagi.GetNightAttackPower(actual[3]));
+		Assert.Equal(371, akagi.GetNightAttackPower(actual[0]));
+		Assert.Equal(371, akagi.GetNightAttackPower(actual[1]));
+		Assert.Equal(370, akagi.GetNightAttackPower(actual[2]));
+		Assert.Equal(366, akagi.GetNightAttackPower(actual[3]));
 
 		List<double> attackRates = actual.Select(a => akagi.GetNightAttackRate(a, fleet)).ToList();
 		List<double> totalRates = attackRates.ToList().TotalRates();

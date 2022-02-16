@@ -168,7 +168,7 @@ public static class Equipment
 	{
 		var mock = new Mock<IEquipmentData>();
 
-		mock.Setup(e => e.MasterEquipment.Bomber).Returns(11);
+		mock.Setup(e => e.MasterEquipment.Bomber).Returns(10);
 		mock.Setup(e => e.MasterEquipment.LOS).Returns(3);
 		mock.Setup(e => e.MasterEquipment.CategoryType).Returns(EquipmentTypes.CarrierBasedBomber);
 

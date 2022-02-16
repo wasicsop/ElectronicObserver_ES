@@ -205,10 +205,10 @@ public class DayAttackTests
 		List<Enum> actual = Taihou.GetDayAttacks().ToList();
 
 		Assert.Equal(expected, actual);
-		Assert.Equal(230, Taihou.GetDayAttackPower(actual[0], fleet));
-		Assert.Equal(220, Taihou.GetDayAttackPower(actual[1], fleet));
-		Assert.Equal(211, Taihou.GetDayAttackPower(actual[2], fleet));
-		Assert.Equal(184, Taihou.GetDayAttackPower(actual[3], fleet));
+		Assert.Equal(248, Taihou.GetDayAttackPower(actual[0], fleet));
+		Assert.Equal(238, Taihou.GetDayAttackPower(actual[1], fleet));
+		Assert.Equal(228, Taihou.GetDayAttackPower(actual[2], fleet));
+		Assert.Equal(199, Taihou.GetDayAttackPower(actual[3], fleet));
 
 		List<double> asAttackRates = actual.Select(a => Taihou.GetDayAttackRate(a, fleet)).ToList();
 		List<double> totalRates = asAttackRates.ToList().TotalRates();
@@ -312,9 +312,9 @@ public class DayAttackTests
 
 		Assert.Equal(expected, actual);
 
-		Assert.Equal(274, Bismarck.GetDayAttackPower(actual[0], fleet));
-		Assert.Equal(219, Bismarck.GetDayAttackPower(actual[1], fleet));
-		Assert.Equal(183, Bismarck.GetDayAttackPower(actual[2], fleet));
+		Assert.Equal(286, Bismarck.GetDayAttackPower(actual[0], fleet));
+		Assert.Equal(229, Bismarck.GetDayAttackPower(actual[1], fleet));
+		Assert.Equal(191, Bismarck.GetDayAttackPower(actual[2], fleet));
 
 		List<double> asAttackRates = actual.Select(a => Bismarck.GetDayAttackRate(a, fleet)).ToList();
 		List<double> totalRates = asAttackRates.ToList().TotalRates();
