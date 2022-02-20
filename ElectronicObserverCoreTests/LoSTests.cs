@@ -528,4 +528,43 @@ public class LoSTests
 		Assert.Equal(expected3, actual3.RoundDown(2));
 		Assert.Equal(expected4, actual4.RoundDown(2));
 	}
+
+	[Fact(DisplayName = "SG Initial LoS fit doesn't count for routing")]
+	public void SgInitialFit()
+	{
+		IShipData fletcher = new ShipDataMock(Db.MasterShips[ShipId.FletcherMkII])
+		{
+			Level = 110,
+			LosFit = 4,
+			AllSlotInstance = new List<IEquipmentData>
+			{
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunSmall_5inchSingleGunMk_30Kai]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunSmall_5inchSingleGunMk_30Kai]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.RadarSmall_SGRadar_InitialModel]),
+			},
+		};
+
+		FleetDataMock fleet = new()
+		{
+			MembersWithoutEscaped = new(new List<IShipData?>
+			{
+				fletcher
+			})
+		};
+
+		double expected1 = -24.84;
+		double expected2 = -20.04;
+		double expected3 = -15.24;
+		double expected4 = -10.44;
+
+		double actual1 = Calculator.GetSearchingAbility_New33(fleet, 1, AdmiralLevel);
+		double actual2 = Calculator.GetSearchingAbility_New33(fleet, 2, AdmiralLevel);
+		double actual3 = Calculator.GetSearchingAbility_New33(fleet, 3, AdmiralLevel);
+		double actual4 = Calculator.GetSearchingAbility_New33(fleet, 4, AdmiralLevel);
+
+		Assert.Equal(expected1, actual1.RoundDown(2));
+		Assert.Equal(expected2, actual2.RoundDown(2));
+		Assert.Equal(expected3, actual3.RoundDown(2));
+		Assert.Equal(expected4, actual4.RoundDown(2));
+	}
 }
