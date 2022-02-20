@@ -17,8 +17,6 @@ public static class NumberExtensions
 	}
 }
 
-// LoS tests won't pass since the formula was changed to use LOSTotal instead of LOSBase
-// to handle fit bonus
 public class LoSTests
 {
 	private int AdmiralLevel => 120;
@@ -27,10 +25,11 @@ public class LoSTests
 	{
 		get
 		{
-			var mock = new Mock<IShipData>();
+			Mock<IShipData> mock = new();
 
-			mock.Setup(s => s.LOSBase).Returns(27);
+			mock.Setup(s => s.LOSTotal).Returns(27);
 			mock.Setup(s => s.AllSlotInstance).Returns(NoEquip);
+			mock.Setup(s => s.MasterShip.ShipClass).Returns(66);
 
 			return mock.Object;
 		}
@@ -40,10 +39,11 @@ public class LoSTests
 	{
 		get
 		{
-			var mock = new Mock<IShipData>();
+			Mock<IShipData> mock = new();
 
-			mock.Setup(s => s.LOSBase).Returns(28);
+			mock.Setup(s => s.LOSTotal).Returns(28);
 			mock.Setup(s => s.AllSlotInstance).Returns(NoEquip);
+			mock.Setup(s => s.MasterShip.ShipClass).Returns(66);
 
 			return mock.Object;
 		}
@@ -53,10 +53,11 @@ public class LoSTests
 	{
 		get
 		{
-			var mock = new Mock<IShipData>();
+			Mock<IShipData> mock = new();
 
-			mock.Setup(s => s.LOSBase).Returns(26);
+			mock.Setup(s => s.LOSTotal).Returns(26);
 			mock.Setup(s => s.AllSlotInstance).Returns(NoEquip);
+			mock.Setup(s => s.MasterShip.ShipClass).Returns(66);
 
 			return mock.Object;
 		}
@@ -66,10 +67,11 @@ public class LoSTests
 	{
 		get
 		{
-			var mock = new Mock<IShipData>();
+			Mock<IShipData> mock = new();
 
-			mock.Setup(s => s.LOSBase).Returns(28);
+			mock.Setup(s => s.LOSTotal).Returns(28);
 			mock.Setup(s => s.AllSlotInstance).Returns(NoEquip);
+			mock.Setup(s => s.MasterShip.ShipClass).Returns(66);
 
 			return mock.Object;
 		}
@@ -79,24 +81,25 @@ public class LoSTests
 	{
 		get
 		{
-			var mock = new Mock<IShipData>();
+			Mock<IShipData> mock = new();
 
-			mock.Setup(s => s.LOSBase).Returns(26);
+			mock.Setup(s => s.LOSTotal).Returns(26);
 			mock.Setup(s => s.AllSlotInstance).Returns(NoEquip);
+			mock.Setup(s => s.MasterShip.ShipClass).Returns(66);
 
 			return mock.Object;
 		}
 	}
 
-	private ReadOnlyCollection<IEquipmentData> NoEquip => new ReadOnlyCollection<IEquipmentData>(new List<IEquipmentData>());
+	private ReadOnlyCollection<IEquipmentData> NoEquip => new(new List<IEquipmentData>());
 
 	[Fact]
 	public void LoSTest1()
 	{
 		// no equip, non-kai Kamikaze class
-		var mockFleet = new Mock<IFleetData>();
+		Mock<IFleetData> mockFleet = new();
 
-		ReadOnlyCollection<IShipData> ships = new ReadOnlyCollection<IShipData>(new[] { Kamikaze, Asakaze, Harukaze, Matsukaze, Hatakaze });
+		ReadOnlyCollection<IShipData> ships = new(new[] { Kamikaze, Asakaze, Harukaze, Matsukaze, Hatakaze });
 		mockFleet.Setup(f => f.MembersWithoutEscaped).Returns(ships);
 
 		IFleetData fleet = mockFleet.Object;
@@ -111,25 +114,26 @@ public class LoSTests
 	public void LoSTest2()
 	{
 		// Perth with maxed night recon
-		var mockFleet = new Mock<IFleetData>();
+		Mock<IFleetData> mockFleet = new();
 
-		var nightReconMock = new Mock<IEquipmentData>();
+		Mock<IEquipmentData> nightReconMock = new();
 		nightReconMock.Setup(e => e.MasterEquipment.CategoryType).Returns(EquipmentTypes.SeaplaneRecon);
 		nightReconMock.Setup(e => e.MasterEquipment.LOS).Returns(3);
 		nightReconMock.Setup(e => e.Level).Returns(10);
 		IEquipmentData nightRecon = nightReconMock.Object;
 
-		ReadOnlyCollection<IEquipmentData> perthGear = new ReadOnlyCollection<IEquipmentData>(new List<IEquipmentData>
+		ReadOnlyCollection<IEquipmentData> perthGear = new(new List<IEquipmentData>
 		{
 			nightRecon
 		});
 
-		var perthMock = new Mock<IShipData>();
-		perthMock.Setup(s => s.LOSBase).Returns(77);
+		Mock<IShipData> perthMock = new();
+		perthMock.Setup(s => s.LOSTotal).Returns(80);
 		perthMock.Setup(s => s.AllSlotInstance).Returns(perthGear);
+		perthMock.Setup(s => s.MasterShip.ShipClass).Returns(96);
 		IShipData perth = perthMock.Object;
 
-		ReadOnlyCollection<IShipData> ships = new ReadOnlyCollection<IShipData>(new[] { perth });
+		ReadOnlyCollection<IShipData> ships = new(new[] { perth });
 		mockFleet.Setup(f => f.MembersWithoutEscaped).Returns(ships);
 
 		IFleetData fleet = mockFleet.Object;
@@ -153,51 +157,57 @@ public class LoSTests
 	[Fact]
 	public void LoSTest3()
 	{
-		var mockFleet = new Mock<IFleetData>();
+		Mock<IFleetData> mockFleet = new();
 
-		var nightReconMock = new Mock<IEquipmentData>();
+		Mock<IEquipmentData> nightReconMock = new();
 		nightReconMock.Setup(e => e.MasterEquipment.CategoryType).Returns(EquipmentTypes.SeaplaneRecon);
 		nightReconMock.Setup(e => e.MasterEquipment.LOS).Returns(3);
 		nightReconMock.Setup(e => e.Level).Returns(0);
 		IEquipmentData nightRecon = nightReconMock.Object;
 
-		ReadOnlyCollection<IEquipmentData> nisshinGear = new ReadOnlyCollection<IEquipmentData>(new List<IEquipmentData>
+		ReadOnlyCollection<IEquipmentData> nisshinGear = new(new List<IEquipmentData>
 		{
 			nightRecon,
 			nightRecon,
 		});
 
-		var nisshinMock = new Mock<IShipData>();
-		nisshinMock.Setup(s => s.LOSBase).Returns(121);
+		Mock<IShipData> nisshinMock = new();
+		nisshinMock.Setup(s => s.LOSTotal).Returns(127);
 		nisshinMock.Setup(s => s.AllSlotInstance).Returns(nisshinGear);
+		nisshinMock.Setup(s => s.MasterShip.ShipClass).Returns(90);
 		IShipData nisshin = nisshinMock.Object;
 
-		var yuubariMock = new Mock<IShipData>();
-		yuubariMock.Setup(s => s.LOSBase).Returns(74);
+		Mock<IShipData> yuubariMock = new();
+		yuubariMock.Setup(s => s.LOSTotal).Returns(74);
 		yuubariMock.Setup(s => s.AllSlotInstance).Returns(NoEquip);
+		yuubariMock.Setup(s => s.MasterShip.ShipClass).Returns(34);
 		IShipData yuubari = yuubariMock.Object;
 
-		var kuroshioMock = new Mock<IShipData>();
-		kuroshioMock.Setup(s => s.LOSBase).Returns(60);
+		Mock<IShipData> kuroshioMock = new();
+		kuroshioMock.Setup(s => s.LOSTotal).Returns(60);
 		kuroshioMock.Setup(s => s.AllSlotInstance).Returns(NoEquip);
+		kuroshioMock.Setup(s => s.MasterShip.ShipClass).Returns(30);
 		IShipData kuroshio = kuroshioMock.Object;
 
-		var kagerouMock = new Mock<IShipData>();
-		kagerouMock.Setup(s => s.LOSBase).Returns(62);
+		Mock<IShipData> kagerouMock = new();
+		kagerouMock.Setup(s => s.LOSTotal).Returns(62);
 		kagerouMock.Setup(s => s.AllSlotInstance).Returns(NoEquip);
+		kagerouMock.Setup(s => s.MasterShip.ShipClass).Returns(30);
 		IShipData kagerou = kagerouMock.Object;
 
-		var shiranuiMock = new Mock<IShipData>();
-		shiranuiMock.Setup(s => s.LOSBase).Returns(63);
+		Mock<IShipData> shiranuiMock = new();
+		shiranuiMock.Setup(s => s.LOSTotal).Returns(63);
 		shiranuiMock.Setup(s => s.AllSlotInstance).Returns(NoEquip);
+		shiranuiMock.Setup(s => s.MasterShip.ShipClass).Returns(30);
 		IShipData shiranui = shiranuiMock.Object;
 
-		var naganamiMock = new Mock<IShipData>();
-		naganamiMock.Setup(s => s.LOSBase).Returns(66);
+		Mock<IShipData> naganamiMock = new();
+		naganamiMock.Setup(s => s.LOSTotal).Returns(66);
 		naganamiMock.Setup(s => s.AllSlotInstance).Returns(NoEquip);
+		naganamiMock.Setup(s => s.MasterShip.ShipClass).Returns(38);
 		IShipData naganami = naganamiMock.Object;
 
-		ReadOnlyCollection<IShipData> ships = new ReadOnlyCollection<IShipData>(new[] { nisshin, yuubari, kuroshio, kagerou, shiranui, naganami });
+		ReadOnlyCollection<IShipData> ships = new(new[] { nisshin, yuubari, kuroshio, kagerou, shiranui, naganami });
 		mockFleet.Setup(f => f.MembersWithoutEscaped).Returns(ships);
 
 		IFleetData fleet = mockFleet.Object;
@@ -221,63 +231,69 @@ public class LoSTests
 	[Fact]
 	public void LoSTest4()
 	{
-		var mockFleet = new Mock<IFleetData>();
+		Mock<IFleetData> mockFleet = new();
 
-		var nightReconMock = new Mock<IEquipmentData>();
+		Mock<IEquipmentData> nightReconMock = new();
 		nightReconMock.Setup(e => e.MasterEquipment.CategoryType).Returns(EquipmentTypes.SeaplaneRecon);
 		nightReconMock.Setup(e => e.MasterEquipment.LOS).Returns(3);
 		nightReconMock.Setup(e => e.Level).Returns(0);
 		IEquipmentData nightRecon = nightReconMock.Object;
 
-		var skilledLookoutsMock = new Mock<IEquipmentData>();
+		Mock<IEquipmentData> skilledLookoutsMock = new();
 		skilledLookoutsMock.Setup(e => e.MasterEquipment.CategoryType).Returns(EquipmentTypes.SurfaceShipPersonnel);
 		skilledLookoutsMock.Setup(e => e.MasterEquipment.LOS).Returns(2);
 		skilledLookoutsMock.Setup(e => e.Level).Returns(0);
 		IEquipmentData skilledLookouts = skilledLookoutsMock.Object;
 
-		ReadOnlyCollection<IEquipmentData> nisshinGear = new ReadOnlyCollection<IEquipmentData>(new List<IEquipmentData>
+		ReadOnlyCollection<IEquipmentData> nisshinGear = new(new List<IEquipmentData>
 		{
 			nightRecon,
 			nightRecon,
 			skilledLookouts
 		});
 
-		var nisshinMock = new Mock<IShipData>();
-		nisshinMock.Setup(s => s.LOSBase).Returns(121);
+		Mock<IShipData> nisshinMock = new();
+		nisshinMock.Setup(s => s.LOSTotal).Returns(129);
 		nisshinMock.Setup(s => s.AllSlotInstance).Returns(nisshinGear);
+		nisshinMock.Setup(s => s.MasterShip.ShipClass).Returns(90);
 		IShipData nisshin = nisshinMock.Object;
 
-		ReadOnlyCollection<IEquipmentData> skilledLookout = new ReadOnlyCollection<IEquipmentData>(new List<IEquipmentData>
+		ReadOnlyCollection<IEquipmentData> skilledLookout = new(new List<IEquipmentData>
 		{
 			skilledLookouts
 		});
 
-		var yuubariMock = new Mock<IShipData>();
-		yuubariMock.Setup(s => s.LOSBase).Returns(74);
+		Mock<IShipData> yuubariMock = new();
+		yuubariMock.Setup(s => s.LOSTotal).Returns(76);
 		yuubariMock.Setup(s => s.AllSlotInstance).Returns(skilledLookout);
+		yuubariMock.Setup(s => s.MasterShip.ShipClass).Returns(34);
 		IShipData yuubari = yuubariMock.Object;
 
-		var kuroshioMock = new Mock<IShipData>();
-		kuroshioMock.Setup(s => s.LOSBase).Returns(60);
+		Mock<IShipData> kuroshioMock = new();
+		kuroshioMock.Setup(s => s.LOSTotal).Returns(62);
 		kuroshioMock.Setup(s => s.AllSlotInstance).Returns(skilledLookout);
+		kuroshioMock.Setup(s => s.MasterShip.ShipClass).Returns(30);
 		IShipData kuroshio = kuroshioMock.Object;
 
-		var kagerouMock = new Mock<IShipData>();
-		kagerouMock.Setup(s => s.LOSBase).Returns(62);
+		Mock<IShipData> kagerouMock = new();
+		kagerouMock.Setup(s => s.LOSTotal).Returns(64);
 		kagerouMock.Setup(s => s.AllSlotInstance).Returns(skilledLookout);
+		kagerouMock.Setup(s => s.MasterShip.ShipClass).Returns(30);
 		IShipData kagerou = kagerouMock.Object;
 
-		var shiranuiMock = new Mock<IShipData>();
-		shiranuiMock.Setup(s => s.LOSBase).Returns(63);
+		Mock<IShipData> shiranuiMock = new();
+		shiranuiMock.Setup(s => s.LOSTotal).Returns(65);
 		shiranuiMock.Setup(s => s.AllSlotInstance).Returns(skilledLookout);
+		shiranuiMock.Setup(s => s.MasterShip.ShipClass).Returns(30);
 		IShipData shiranui = shiranuiMock.Object;
 
-		var naganamiMock = new Mock<IShipData>();
-		naganamiMock.Setup(s => s.LOSBase).Returns(66);
+		Mock<IShipData> naganamiMock = new();
+		naganamiMock.Setup(s => s.LOSTotal).Returns(68);
 		naganamiMock.Setup(s => s.AllSlotInstance).Returns(skilledLookout);
+		naganamiMock.Setup(s => s.MasterShip.ShipClass).Returns(38);
 		IShipData naganami = naganamiMock.Object;
 
-		ReadOnlyCollection<IShipData> ships = new ReadOnlyCollection<IShipData>(new[] { nisshin, yuubari, kuroshio, kagerou, shiranui, naganami });
+		ReadOnlyCollection<IShipData> ships = new(new[] { nisshin, yuubari, kuroshio, kagerou, shiranui, naganami });
 		mockFleet.Setup(f => f.MembersWithoutEscaped).Returns(ships);
 
 		IFleetData fleet = mockFleet.Object;
