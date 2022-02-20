@@ -5,6 +5,11 @@ namespace ElectronicObserverTypes;
 
 public static class ShipDataExtensions
 {
+	/// <summary>
+	/// 深海棲艦かどうか
+	/// </summary>
+	public static bool IsAbyssalShip(this IShipDataMaster ship) => ship.ShipID > 1500;
+
 	public static double Accuracy(this IShipData ship) =>
 		2 * Math.Sqrt(ship.Level) + 1.5 * Math.Sqrt(ship.LuckTotal);
 
@@ -66,6 +71,19 @@ public static class ShipDataExtensions
 
 	public static bool HasDrum(this IShipData ship) => ship.AllSlotInstance
 		.Any(e => e?.MasterEquipment.CategoryType == EquipmentTypes.TransportContainer);
+
+	/// <summary>
+	/// 空母系か (軽空母/正規空母/装甲空母)
+	/// </summary>
+	public static bool IsAircraftCarrier(this IShipData ship) => ship.MasterShip.IsAircraftCarrier();
+
+	/// <summary>
+	/// 空母系か (軽空母/正規空母/装甲空母)
+	/// </summary>
+	public static bool IsAircraftCarrier(this IShipDataMaster ship) => ship.ShipType is
+		ShipTypes.LightAircraftCarrier or
+		ShipTypes.AircraftCarrier or
+		ShipTypes.ArmoredAircraftCarrier;
 
 	public static bool IsNightCarrier(this IShipData ship) =>
 		ship.HasNightAviationPersonnel() ||
