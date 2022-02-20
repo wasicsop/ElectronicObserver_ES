@@ -29,6 +29,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KancolleProgress", "Kancoll
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AvalonDock.Themes.VS2013", "AvalonDock.Themes.VS2013\AvalonDock.Themes.VS2013.csproj", "{249AEFD1-9BFA-4BBD-9A46-0E3CF9CF99B6}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElectronicObserver.TestData", "ElectronicObserver.TestData\ElectronicObserver.TestData.csproj", "{EED09122-C133-4195-8AFA-A2AB74BC06EA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -75,6 +77,9 @@ Global
 		{249AEFD1-9BFA-4BBD-9A46-0E3CF9CF99B6}.Debug|x64.Build.0 = Debug|x64
 		{249AEFD1-9BFA-4BBD-9A46-0E3CF9CF99B6}.Release|x64.ActiveCfg = Release|x64
 		{249AEFD1-9BFA-4BBD-9A46-0E3CF9CF99B6}.Release|x64.Build.0 = Release|x64
+		{EED09122-C133-4195-8AFA-A2AB74BC06EA}.Debug|x64.ActiveCfg = Debug|x64
+		{EED09122-C133-4195-8AFA-A2AB74BC06EA}.Debug|x64.Build.0 = Debug|x64
+		{EED09122-C133-4195-8AFA-A2AB74BC06EA}.Release|x64.ActiveCfg = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
