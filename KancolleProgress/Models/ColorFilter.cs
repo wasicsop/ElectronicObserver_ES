@@ -22,7 +22,7 @@ public class ColorFilter : ObservableObject
 
 	public int Count => ViewModel.BaseShips?.Count(s => Compare(this, s)) ?? 0;
 
-	public static bool Compare(ColorFilter filter, MockShipData ship) => Compare(filter, ship.Level);
+	public static bool Compare(ColorFilter filter, ShipDataMock ship) => Compare(filter, ship.Level);
 
 	public static bool Compare(ColorFilter filter, int level) => filter.Comparator switch
 	{

@@ -1,37 +1,23 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
+using ElectronicObserverTypes.Extensions;
 
 namespace ElectronicObserverTypes.Mocks;
 
-public class MockShipDataMaster : IShipDataMaster
+public class ShipDataMasterMock : IShipDataMaster
 {
-	public int ShipID { get; set; }
+	public int ShipID => (int)ShipId;
 	public ShipId ShipId { get; set; }
 	public int AlbumNo { get; set; }
 	public int SortID { get; set; }
 	public string Name { get; set; }
 	public string NameEN { get; set; }
 	public string NameReading { get; set; }
+	public ShipTypes ShipType { get; set; }
 	public int ShipClass { get; set; }
 	public int RemodelAfterLevel { get; set; }
 	public int RemodelAfterShipID { get; set; }
 	public IShipDataMaster? RemodelAfterShip { get; set; }
-	public int ASWModernizable { get; set; }
-	public bool IsAbyssalShip { get; set; }
-	public string NameWithClass { get; set; }
-	public IShipType ShipTypeInstance { get; set; }
-	public bool IsLandBase { get; set; }
-	public bool IsListedInAlbum { get; set; }
-	public int RemodelTier { get; set; }
-	public RemodelTier RemodelTierTyped { get; set; }
-	public string ShipTypeName { get; set; }
-	public bool IsSubmarine { get; set; }
-	public bool IsAircraftCarrier { get; set; }
-	public bool IsRegularCarrier { get; set; }
-	public bool IsEscortAircraftCarrier { get; set; }
-	public int ID { get; set; }
-	public dynamic RawData { get; set; }
-	public bool IsAvailable { get; set; }
 	public int RemodelBeforeShipID { get; set; }
 	public IShipDataMaster? RemodelBeforeShip { get; set; }
 	public int RemodelAmmo { get; set; }
@@ -40,16 +26,17 @@ public class MockShipDataMaster : IShipDataMaster
 	public int NeedCatapult { get; set; }
 	public int NeedActionReport { get; set; }
 	public int NeedAviationMaterial { get; set; }
+	public int NeedArmamentMaterial { get; set; }
 	public int HPMin { get; set; }
 	public int HPMax { get; set; }
-	public int ArmorMin { get; set; }
-	public int ArmorMax { get; set; }
 	public int FirepowerMin { get; set; }
 	public int FirepowerMax { get; set; }
 	public int TorpedoMin { get; set; }
 	public int TorpedoMax { get; set; }
 	public int AAMin { get; set; }
 	public int AAMax { get; set; }
+	public int ArmorMin { get; set; }
+	public int ArmorMax { get; set; }
 	public IParameter ASW { get; set; }
 	public IParameter Evasion { get; set; }
 	public IParameter LOS { get; set; }
@@ -61,22 +48,9 @@ public class MockShipDataMaster : IShipDataMaster
 	public IList<int> Aircraft { get; set; }
 	public int AircraftTotal { get; set; }
 	public IList<int> DefaultSlot { get; set; }
-	public IEnumerable<int> SpecialEquippableCategories { get; set; }
-	public IEnumerable<int> EquippableCategories { get; set; }
-	public Color GetShipNameColor()
-	{
-		throw new System.NotImplementedException();
-	}
-
-	public void LoadFromResponse(string apiname, dynamic data)
-	{
-		throw new System.NotImplementedException();
-	}
-
-	public IShipDataMaster BaseShip() => BaseShipProperty;
-	public ShipTypes ShipType { get; set; }
+	public IEnumerable<int>? SpecialEquippableCategories { get; set; }
+	public IEnumerable<int> EquippableCategories { get; }
 	public IEnumerable<EquipmentTypes> EquippableCategoriesTyped { get; set; }
-
 	public int BuildingTime { get; set; }
 	public IList<int> Material { get; set; }
 	public IList<int> PowerUp { get; set; }
@@ -88,16 +62,45 @@ public class MockShipDataMaster : IShipDataMaster
 	public int VoiceFlag { get; set; }
 	public IShipGraphicData GraphicData { get; set; }
 	public string ResourceName { get; set; }
-	public string ResourceGraphicVersion { get; set; }
-	public string ResourceVoiceVersion { get; set; }
-	public string ResourcePortVoiceVersion { get; set; }
+	public string? ResourceGraphicVersion { get; set; }
+	public string? ResourceVoiceVersion { get; set; }
+	public string? ResourcePortVoiceVersion { get; set; }
 	public int OriginalCostumeShipID { get; set; }
-	public int HPMaxMarried { get; set; }
-	public int HPMaxModernizable { get; set; }
-	public int HPMaxMarriedModernizable { get; set; }
-	public int HPMaxModernized { get; set; }
-	public int HPMaxMarriedModernized { get; set; }
+	public int HPMaxMarried => this.HpMaxMarried();
+	public int HPMaxModernizable => this.HpMaxModernizable();
+	public int HPMaxMarriedModernizable => this.HpMaxMarriedModernizable();
+	public int HPMaxModernized => this.HpMaxModernized();
+	public int HPMaxMarriedModernized => this.HpMaxMarriedModernized();
+	public int ASWModernizable => this.AswModernizable();
 
+	public bool IsAbyssalShip => this.IsAbyssalShip();
+	public string NameWithClass { get; set; }
+	public IShipType ShipTypeInstance { get; set; }
+	public bool IsLandBase { get; set; }
+	public bool IsListedInAlbum { get; set; }
+	public int RemodelTier { get; set; }
+	public RemodelTier RemodelTierTyped { get; set; }
+	public string ShipTypeName { get; set; }
+	public bool IsSubmarine { get; set; }
+	public bool IsAircraftCarrier => this.IsAircraftCarrier();
+	public bool IsRegularCarrier { get; set; }
+	public bool IsEscortAircraftCarrier { get; set; }
+	public int ID => ShipID;
+
+	public dynamic RawData { get; set; }
+	public bool IsAvailable { get; set; }
+
+	public Color GetShipNameColor()
+	{
+		throw new System.NotImplementedException();
+	}
+
+	public void LoadFromResponse(string apiname, dynamic data)
+	{
+		throw new System.NotImplementedException();
+	}
+
+	public IShipDataMaster BaseShip() => BaseShipProperty;
 	// set base ship here to avoid duplicating logic
 	public IShipDataMaster BaseShipProperty { get; set; }
 }

@@ -33,7 +33,7 @@ public class KancolleProgressViewModel : ObservableObject
 	public IEnumerable<ShipTypeGroup> TypeGroups { get; set; }
 
 	public ObservableCollection<ColorFilter> ColorFilters { get; }
-	public IEnumerable<MockShipData>? BaseShips { get; private set; }
+	public IEnumerable<ShipDataMock>? BaseShips { get; private set; }
 
 	public Visibility ColorFilterVisibility => Display switch
 	{
@@ -41,7 +41,7 @@ public class KancolleProgressViewModel : ObservableObject
 		_ => Visibility.Collapsed
 	};
 
-	public SolidColorBrush ShipColorBrush(MockShipData ship) => ColorFilters
+	public SolidColorBrush ShipColorBrush(ShipDataMock ship) => ColorFilters
 		.FirstOrDefault(f => ColorFilter.Compare(f, ship))?.Brush ?? new SolidColorBrush();
 
 	public SolidColorBrush ShipColorBrush(int level) => ColorFilters
@@ -101,14 +101,13 @@ public class KancolleProgressViewModel : ObservableObject
 		if (!AllShips.Any()) return;
 		if (!UserShips.Any()) return;
 
-		Dictionary<int, MockShipData> baseShips = AllShips
+		Dictionary<int, ShipDataMock> baseShips = AllShips
 			.Where(s => !s.IsAbyssalShip && s.RemodelBeforeShipID == 0)
-			.Select(s => new MockShipData
+			.Select(s => new ShipDataMock(s)
 			{
 				Name = s.NameEN,
 				Level = 0,
 				ShipID = s.ShipID,
-				MasterShip = s,
 				SortID = s.SortID
 			})
 			.ToDictionary(s => s.ShipID, s => s);
@@ -208,12 +207,11 @@ public class KancolleProgressViewModel : ObservableObject
 
 		IEnumerable<IShipData> allShips = AllShips
 			.Where(s => !s.IsAbyssalShip)
-			.Select(s => new MockShipData
+			.Select(s => new ShipDataMock(s)
 			{
 				Name = s.NameEN,
 				Level = 0,
 				ShipID = s.ShipID,
-				MasterShip = s,
 				SortID = s.SortID
 			})
 			.ToList<IShipData>();
