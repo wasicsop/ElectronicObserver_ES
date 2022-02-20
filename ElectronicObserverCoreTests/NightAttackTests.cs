@@ -5,14 +5,22 @@ using System.Linq;
 using ElectronicObserver.Data;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserverTypes;
+using ElectronicObserverTypes.Mocks;
 using Moq;
 using Xunit;
 
 namespace ElectronicObserverCoreTests;
 
+[Collection(DatabaseCollection.Name)]
 public class NightAttackTests
 {
+	private DatabaseFixture Db { get; }
 	private int Precision => 3;
+
+	public NightAttackTests(DatabaseFixture db)
+	{
+		Db = db;
+	}
 
 	[Fact]
 	public void NightAttackTest1()
@@ -207,6 +215,212 @@ public class NightAttackTests
 
 		Assert.Equal(74, ark.GetNightAttackPower(actual[0]));
 		Assert.Equal(62, ark.GetNightAttackPower(actual[1]));
+
+		List<double> attackRates = actual.Select(a => ark.GetNightAttackRate(a, fleet)).ToList();
+		List<double> totalRates = attackRates.ToList().TotalRates();
+
+		Assert.Equal(0.99, totalRates[0], Precision);
+		Assert.Equal(0.01, totalRates[1], Precision);
+	}
+
+	[Fact]
+	public void NightAttackTest1TestData()
+	{
+		IShipData bismarck = new ShipDataMock(Db.MasterShips[ShipId.BismarckDrei])
+		{
+			Level = 175,
+			LuckBase = 84,
+			AllSlotInstance = new List<IEquipmentData>
+			{
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunLarge_46cmTripleGunKai])
+				{
+					Level = 10,
+				},
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Torpedo_61cmQuintuple_OxygenTorpedo])
+				{
+					Level = 10,
+				},
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Torpedo_61cmQuintuple_OxygenTorpedo])
+				{
+					Level = 10,
+				},
+			}
+		};
+
+		var fleetMock = new Mock<IFleetData>();
+
+		fleetMock.Setup(f => f.MembersWithoutEscaped).Returns(new ReadOnlyCollection<IShipData?>(new List<IShipData?>
+		{
+			bismarck
+		}));
+
+		IFleetData fleet = fleetMock.Object;
+
+		List<Enum> expected = new List<Enum>
+		{
+			NightAttackKind.CutinTorpedoTorpedo,
+			NightAttackKind.Shelling
+		};
+
+		List<Enum> actual = bismarck.GetNightAttacks().ToList();
+
+		Assert.Equal(expected, actual);
+
+		Assert.Equal(293, bismarck.GetNightAttackPower(actual[0]));
+		Assert.Equal(195, bismarck.GetNightAttackPower(actual[1]));
+
+		List<double> attackRates = actual.Select(a => bismarck.GetNightAttackRate(a, fleet)).ToList();
+		List<double> totalRates = attackRates.ToList().TotalRates();
+
+		Assert.Equal(0.787, totalRates[0], Precision);
+		Assert.Equal(0.213, totalRates[1], Precision);
+	}
+
+	[Fact]
+	public void NightAttackTest2TestData()
+	{
+		IShipData akagi = new ShipDataMock(Db.MasterShips[ShipId.AkagiKaiNi])
+		{
+			Level = 122,
+			LuckBase = 25,
+			AllSlotInstance = new List<IEquipmentData>
+			{
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.CarrierBasedTorpedo_PrototypeType97TorpedoBomberKaiNo_3ModelE_wType6AirborneRadarKai]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.CarrierBasedFighter_ReppuuKaiNiModelE_CarDiv1Skilled]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.CarrierBasedTorpedo_PrototypeType97TorpedoBomberKaiNo_3ModelE_wType6AirborneRadarKai]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.CarrierBasedFighter_ReppuuKaiNiModelE]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.AviationPersonnel_NightOperationAviationPersonnel]),
+			}
+		};
+
+		var fleetMock = new Mock<IFleetData>();
+
+		fleetMock.Setup(f => f.MembersWithoutEscaped).Returns(new ReadOnlyCollection<IShipData?>(new List<IShipData?>
+		{
+			akagi
+		}));
+
+		IFleetData fleet = fleetMock.Object;
+
+		List<Enum> expected = new List<Enum>
+		{
+			CvnciKind.FighterFighterAttacker,
+			CvnciKind.FighterAttacker,
+			CvnciKind.FighterOtherOther,
+			NightAttackKind.AirAttack
+		};
+
+		List<Enum> actual = akagi.GetNightAttacks().ToList();
+
+		Assert.Equal(expected, actual);
+
+		Assert.Equal(371, akagi.GetNightAttackPower(actual[0]));
+		Assert.Equal(371, akagi.GetNightAttackPower(actual[1]));
+		Assert.Equal(370, akagi.GetNightAttackPower(actual[2]));
+		Assert.Equal(366, akagi.GetNightAttackPower(actual[3]));
+
+		List<double> attackRates = actual.Select(a => akagi.GetNightAttackRate(a, fleet)).ToList();
+		List<double> totalRates = attackRates.ToList().TotalRates();
+
+		Assert.Equal(0.6, totalRates[0], Precision);
+		Assert.Equal(0.219, totalRates[1], Precision);
+		Assert.Equal(0.091, totalRates[2], Precision);
+		Assert.Equal(0.09, totalRates[3], Precision);
+	}
+
+	[Fact]
+	public void NightAttackTest3TestData()
+	{
+		IShipData taiyou = new ShipDataMock(Db.MasterShips[ShipId.TaiyouKaiNi])
+		{
+			Level = 125,
+			LuckBase = 17,
+			AllSlotInstance = new List<IEquipmentData>
+			{
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.CarrierBasedTorpedo_PrototypeType97TorpedoBomberKaiNo_3ModelE_wType6AirborneRadarKai]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.CarrierBasedTorpedo_PrototypeType97TorpedoBomberKaiNo_3ModelE_wType6AirborneRadarKai]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.CarrierBasedFighter_ReppuuKaiNiModelE_CarDiv1Skilled]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.AviationPersonnel_NightOperationAviationPersonnel]),
+
+			},
+		};
+
+		var fleetMock = new Mock<IFleetData>();
+
+		fleetMock.Setup(f => f.MembersWithoutEscaped).Returns(new ReadOnlyCollection<IShipData?>(new List<IShipData?>
+		{
+			taiyou
+		}));
+
+		IFleetData fleet = fleetMock.Object;
+
+		List<Enum> expected = new List<Enum>
+		{
+			CvnciKind.FighterAttacker,
+			CvnciKind.FighterOtherOther,
+			NightAttackKind.AirAttack
+		};
+
+		List<Enum> actual = taiyou.GetNightAttacks().ToList();
+
+		Assert.Equal(expected, actual);
+
+		Assert.Equal(251, taiyou.GetNightAttackPower(actual[0]));
+		Assert.Equal(247, taiyou.GetNightAttackPower(actual[1]));
+		Assert.Equal(209, taiyou.GetNightAttackPower(actual[2]));
+
+		List<double> attackRates = actual.Select(a => taiyou.GetNightAttackRate(a, fleet)).ToList();
+		List<double> totalRates = attackRates.ToList().TotalRates();
+
+		Assert.Equal(0.478, totalRates[0], Precision);
+		Assert.Equal(0.23, totalRates[1], Precision);
+		Assert.Equal(0.292, totalRates[2], Precision);
+	}
+
+	[Fact]
+	public void ArkRoyalTestData()
+	{
+		IShipData ark = new ShipDataMock(Db.MasterShips[ShipId.ArkRoyalKai])
+		{
+			Level = 130,
+			LuckBase = 16,
+			FirepowerFit = 4,
+			AllSlotInstance = new List<IEquipmentData>
+			{
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.CarrierBasedTorpedo_SwordfishMk_III_Skilled]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.CarrierBasedFighter_ReppuuKaiNiModelE_CarDiv1Skilled]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SecondaryGun_OTO152mmTripleRapidfireGun])
+				{
+					Level = 10,
+				},
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SecondaryGun_OTO152mmTripleRapidfireGun])
+				{
+					Level = 10,
+				},
+			},
+		};
+
+		var fleetMock = new Mock<IFleetData>();
+
+		fleetMock.Setup(f => f.MembersWithoutEscaped).Returns(new ReadOnlyCollection<IShipData?>(new List<IShipData?>
+		{
+			ark
+		}));
+
+		IFleetData fleet = fleetMock.Object;
+
+		List<Enum> expected = new List<Enum>
+		{
+			NightAttackKind.DoubleShelling,
+			NightAttackKind.Shelling
+		};
+
+		List<Enum> actual = ark.GetNightAttacks().ToList();
+
+		Assert.Equal(expected, actual);
+
+		Assert.Equal(75, ark.GetNightAttackPower(actual[0]));
+		Assert.Equal(63, ark.GetNightAttackPower(actual[1]));
 
 		List<double> attackRates = actual.Select(a => ark.GetNightAttackRate(a, fleet)).ToList();
 		List<double> totalRates = attackRates.ToList().TotalRates();

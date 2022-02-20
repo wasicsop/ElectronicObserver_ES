@@ -23,6 +23,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\ElectronicObserver.TestData\ElectronicObserver.TestData.csproj" />
 		<ProjectReference Include="..\ElectronicObserver\ElectronicObserver.csproj" />
 	</ItemGroup>
 

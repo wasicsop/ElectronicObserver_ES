@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserverTypes;
+using ElectronicObserverTypes.Mocks;
 using Moq;
 using Xunit;
 
@@ -17,8 +18,11 @@ public static class NumberExtensions
 	}
 }
 
+[Collection(DatabaseCollection.Name)]
 public class LoSTests
 {
+	private DatabaseFixture Db { get; }
+
 	private int AdmiralLevel => 120;
 
 	private IShipData Kamikaze
@@ -92,6 +96,11 @@ public class LoSTests
 	}
 
 	private ReadOnlyCollection<IEquipmentData> NoEquip => new(new List<IEquipmentData>());
+
+	public LoSTests(DatabaseFixture db)
+	{
+		Db = db;
+	}
 
 	[Fact]
 	public void LoSTest1()
@@ -292,6 +301,212 @@ public class LoSTests
 		naganamiMock.Setup(s => s.AllSlotInstance).Returns(skilledLookout);
 		naganamiMock.Setup(s => s.MasterShip.ShipClass).Returns(38);
 		IShipData naganami = naganamiMock.Object;
+
+		ReadOnlyCollection<IShipData> ships = new(new[] { nisshin, yuubari, kuroshio, kagerou, shiranui, naganami });
+		mockFleet.Setup(f => f.MembersWithoutEscaped).Returns(ships);
+
+		IFleetData fleet = mockFleet.Object;
+
+		double expected1 = 17.68;
+		double expected2 = 32.08;
+		double expected3 = 46.48;
+		double expected4 = 60.88;
+
+		double actual1 = Calculator.GetSearchingAbility_New33(fleet, 1, AdmiralLevel);
+		double actual2 = Calculator.GetSearchingAbility_New33(fleet, 2, AdmiralLevel);
+		double actual3 = Calculator.GetSearchingAbility_New33(fleet, 3, AdmiralLevel);
+		double actual4 = Calculator.GetSearchingAbility_New33(fleet, 4, AdmiralLevel);
+
+		Assert.Equal(expected1, actual1.RoundDown(2));
+		Assert.Equal(expected2, actual2.RoundDown(2));
+		Assert.Equal(expected3, actual3.RoundDown(2));
+		Assert.Equal(expected4, actual4.RoundDown(2));
+	}
+
+	[Fact]
+	public void LoSTest1TestData()
+	{
+		// no equip, non-kai Kamikaze class
+		Mock<IFleetData> mockFleet = new();
+
+		ReadOnlyCollection<IShipData> ships = new(new[]
+		{
+			new ShipDataMock(Db.MasterShips[ShipId.Kamikaze]) {Level = 175},
+			new ShipDataMock(Db.MasterShips[ShipId.Asakaze]) {Level = 175},
+			new ShipDataMock(Db.MasterShips[ShipId.Harukaze]) {Level = 175},
+			new ShipDataMock(Db.MasterShips[ShipId.Matsukaze]) {Level = 175},
+			new ShipDataMock(Db.MasterShips[ShipId.Hatakaze]) {Level = 175},
+		});
+		mockFleet.Setup(f => f.MembersWithoutEscaped).Returns(ships);
+
+		IFleetData fleet = mockFleet.Object;
+
+		double expected = -20.03;
+		double actual = Calculator.GetSearchingAbility_New33(fleet, 1, AdmiralLevel);
+
+		Assert.Equal(expected, actual.RoundDown(2));
+	}
+
+	[Fact]
+	public void LoSTest2TestData()
+	{
+		// Perth with maxed night recon
+		Mock<IFleetData> mockFleet = new();
+
+		IShipData perth = new ShipDataMock(Db.MasterShips[ShipId.PerthKai])
+		{
+			Level = 168,
+			AllSlotInstance = new List<IEquipmentData>
+			{
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SeaplaneRecon_Type98ReconSeaplane_NightRecon])
+				{
+					Level = 10,
+				},
+			},
+		};
+
+		ReadOnlyCollection<IShipData> ships = new(new[] { perth });
+		mockFleet.Setup(f => f.MembersWithoutEscaped).Returns(ships);
+
+		IFleetData fleet = mockFleet.Object;
+
+		double expected1 = -21.08;
+		double expected2 = -12.92;
+		double expected3 = -4.77;
+		double expected4 = 3.38;
+
+		double actual1 = Calculator.GetSearchingAbility_New33(fleet, 1, AdmiralLevel);
+		double actual2 = Calculator.GetSearchingAbility_New33(fleet, 2, AdmiralLevel);
+		double actual3 = Calculator.GetSearchingAbility_New33(fleet, 3, AdmiralLevel);
+		double actual4 = Calculator.GetSearchingAbility_New33(fleet, 4, AdmiralLevel);
+
+		Assert.Equal(expected1, actual1.RoundDown(2));
+		Assert.Equal(expected2, actual2.RoundDown(2));
+		Assert.Equal(expected3, actual3.RoundDown(2));
+		Assert.Equal(expected4, actual4.RoundDown(2));
+	}
+
+	[Fact]
+	public void LoSTest3TestData()
+	{
+		Mock<IFleetData> mockFleet = new();
+
+		IShipData nisshin = new ShipDataMock(Db.MasterShips[ShipId.NisshinA])
+		{
+			Level = 151,
+			AllSlotInstance = new List<IEquipmentData>
+			{
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SeaplaneRecon_Type98ReconSeaplane_NightRecon]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SeaplaneRecon_Type98ReconSeaplane_NightRecon]),
+			},
+		};
+
+		IShipData yuubari = new ShipDataMock(Db.MasterShips[ShipId.YuubariKaiNiToku])
+		{
+			Level = 159,
+		};
+
+		IShipData kuroshio = new ShipDataMock(Db.MasterShips[ShipId.KuroshioKaiNi])
+		{
+			Level = 162,
+		};
+
+		IShipData kagerou = new ShipDataMock(Db.MasterShips[ShipId.KagerouKaiNi])
+		{
+			Level = 162,
+		};
+
+		IShipData shiranui = new ShipDataMock(Db.MasterShips[ShipId.ShiranuiKaiNi])
+		{
+			Level = 161,
+		};
+
+		IShipData naganami = new ShipDataMock(Db.MasterShips[ShipId.NaganamiKaiNi])
+		{
+			Level = 164,
+		};
+
+		ReadOnlyCollection<IShipData> ships = new(new[] { nisshin, yuubari, kuroshio, kagerou, shiranui, naganami });
+		mockFleet.Setup(f => f.MembersWithoutEscaped).Returns(ships);
+
+		IFleetData fleet = mockFleet.Object;
+
+		double expected1 = 10.48;
+		double expected2 = 17.68;
+		double expected3 = 24.88;
+		double expected4 = 32.08;
+
+		double actual1 = Calculator.GetSearchingAbility_New33(fleet, 1, AdmiralLevel);
+		double actual2 = Calculator.GetSearchingAbility_New33(fleet, 2, AdmiralLevel);
+		double actual3 = Calculator.GetSearchingAbility_New33(fleet, 3, AdmiralLevel);
+		double actual4 = Calculator.GetSearchingAbility_New33(fleet, 4, AdmiralLevel);
+
+		Assert.Equal(expected1, actual1.RoundDown(2));
+		Assert.Equal(expected2, actual2.RoundDown(2));
+		Assert.Equal(expected3, actual3.RoundDown(2));
+		Assert.Equal(expected4, actual4.RoundDown(2));
+	}
+
+	[Fact]
+	public void LoSTest4TestData()
+	{
+		Mock<IFleetData> mockFleet = new();
+
+		IShipData nisshin = new ShipDataMock(Db.MasterShips[ShipId.NisshinA])
+		{
+			Level = 151,
+			AllSlotInstance = new List<IEquipmentData>
+			{
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SeaplaneRecon_Type98ReconSeaplane_NightRecon]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SeaplaneRecon_Type98ReconSeaplane_NightRecon]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SurfaceShipPersonnel_SkilledLookouts]),
+			},
+		};
+
+		IShipData yuubari = new ShipDataMock(Db.MasterShips[ShipId.YuubariKaiNiToku])
+		{
+			Level = 159,
+			AllSlotInstance = new List<IEquipmentData>
+			{
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SurfaceShipPersonnel_SkilledLookouts]),
+			},
+		};
+
+		IShipData kuroshio = new ShipDataMock(Db.MasterShips[ShipId.KuroshioKaiNi])
+		{
+			Level = 162,
+			AllSlotInstance = new List<IEquipmentData>
+			{
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SurfaceShipPersonnel_SkilledLookouts]),
+			},
+		};
+
+		IShipData kagerou = new ShipDataMock(Db.MasterShips[ShipId.KagerouKaiNi])
+		{
+			Level = 162,
+			AllSlotInstance = new List<IEquipmentData>
+			{
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SurfaceShipPersonnel_SkilledLookouts]),
+			},
+		};
+
+		IShipData shiranui = new ShipDataMock(Db.MasterShips[ShipId.ShiranuiKaiNi])
+		{
+			Level = 161,
+			AllSlotInstance = new List<IEquipmentData>
+			{
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SurfaceShipPersonnel_SkilledLookouts]),
+			},
+		};
+
+		IShipData naganami = new ShipDataMock(Db.MasterShips[ShipId.NaganamiKaiNi])
+		{
+			Level = 164,
+			AllSlotInstance = new List<IEquipmentData>
+			{
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SurfaceShipPersonnel_SkilledLookouts]),
+			},
+		};
 
 		ReadOnlyCollection<IShipData> ships = new(new[] { nisshin, yuubari, kuroshio, kagerou, shiranui, naganami });
 		mockFleet.Setup(f => f.MembersWithoutEscaped).Returns(ships);
