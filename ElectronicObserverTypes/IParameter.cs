@@ -12,17 +12,17 @@ public interface IParameter
 	/// <summary>
 	/// 最大値
 	/// </summary>
-	public int Maximum { get; }
+	public int Maximum { get; set; }
 
 	/// <summary>
 	/// 初期値の推測下限
 	/// </summary>
-	public int MinimumEstMin { get; }
+	public int MinimumEstMin { get; set; }
 
 	/// <summary>
 	/// 初期値の推測上限
 	/// </summary>
-	public int MinimumEstMax { get; }
+	public int MinimumEstMax { get; set; }
 
 
 	/// <summary>

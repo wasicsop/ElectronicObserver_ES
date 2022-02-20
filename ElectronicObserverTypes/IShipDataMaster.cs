@@ -108,6 +108,11 @@ public interface IShipDataMaster
 	public int NeedAviationMaterial { get; }
 
 	/// <summary>
+	/// 改装に必要な 新型兵装資材 の個数
+	/// </summary>
+	public int NeedArmamentMaterial { get; }
+
+	/// <summary>
 	/// 耐久初期値
 	/// </summary>
 	int HPMin { get; }
