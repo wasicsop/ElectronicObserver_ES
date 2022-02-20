@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ElectronicObserverTypes;
+namespace ElectronicObserverTypes.Extensions;
 
 public static class ShipTypeExtensions
 {

@@ -10,6 +10,7 @@ using ElectronicObserver.Resource.Record;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserverTypes;
+using ElectronicObserverTypes.Extensions;
 
 namespace ElectronicObserver.Data.Battle;
 

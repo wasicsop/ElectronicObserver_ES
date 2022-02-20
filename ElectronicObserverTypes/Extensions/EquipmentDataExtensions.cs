@@ -1,4 +1,4 @@
-﻿namespace ElectronicObserverTypes;
+﻿namespace ElectronicObserverTypes.Extensions;
 
 public static class EquipmentDataExtensions
 {

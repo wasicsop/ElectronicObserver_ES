@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace ElectronicObserverTypes;
+namespace ElectronicObserverTypes.Extensions;
 
 public static class ShipDataExtensions
 {

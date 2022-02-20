@@ -7,6 +7,7 @@ using ElectronicObserver.Window.Dialog.QuestTrackerManager.Enums;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.Models.Conditions;
 using ElectronicObserver.Window.Dialog.ShipPicker;
 using ElectronicObserverTypes;
+using ElectronicObserverTypes.Extensions;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;

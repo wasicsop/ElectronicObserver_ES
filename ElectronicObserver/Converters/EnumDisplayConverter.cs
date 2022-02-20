@@ -3,6 +3,7 @@ using System.Globalization;
 using System.Windows.Data;
 using ElectronicObserver.Data;
 using ElectronicObserverTypes;
+using ElectronicObserverTypes.Extensions;
 
 namespace ElectronicObserver.Converters;
 

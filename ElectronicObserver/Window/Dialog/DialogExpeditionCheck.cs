@@ -11,6 +11,7 @@ using ElectronicObserver.Data;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Utility;
 using ElectronicObserverTypes;
+using ElectronicObserverTypes.Extensions;
 using Translation = ElectronicObserver.Properties.Window.Dialog.DialogExpeditionCheck;
 
 namespace ElectronicObserver.Window.Dialog;

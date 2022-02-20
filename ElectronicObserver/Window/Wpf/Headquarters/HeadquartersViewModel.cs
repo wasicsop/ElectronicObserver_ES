@@ -13,6 +13,7 @@ using ElectronicObserver.Utility.Data;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserverTypes;
+using ElectronicObserverTypes.Extensions;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
