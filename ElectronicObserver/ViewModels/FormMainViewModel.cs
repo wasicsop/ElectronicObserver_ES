@@ -54,6 +54,11 @@ using Microsoft.Toolkit.Mvvm.Input;
 using ModernWpf;
 using MessageBox = System.Windows.MessageBox;
 using Timer = System.Windows.Forms.Timer;
+#if DEBUG
+using System.Text.Encodings.Web;
+using ElectronicObserverTypes;
+using Microsoft.EntityFrameworkCore;
+#endif
 
 namespace ElectronicObserver.ViewModels;
 
@@ -96,7 +101,7 @@ public partial class FormMainViewModel : ObservableObject
 
 	private WindowPosition Position { get; set; } = new();
 
-	#region Icons
+#region Icons
 
 	public ImageSource? ConfigurationImageSource { get; }
 
@@ -135,7 +140,7 @@ public partial class FormMainViewModel : ObservableObject
 	public ImageSource? ViewHelpImageSource { get; }
 	public ImageSource? ViewVersionImageSource { get; }
 
-	#endregion
+#endregion
 
 	public ObservableCollection<AnchorableViewModel> Views { get; } = new();
 
@@ -167,7 +172,15 @@ public partial class FormMainViewModel : ObservableObject
 	private bool DebugEnabled { get; set; }
 	public Visibility DebugVisibility => DebugEnabled.ToVisibility();
 
-	#region Commands
+	private string GeneratedDataFolder => "Generated";
+	public bool GenerateMasterDataVisible =>
+#if DEBUG
+		true;
+#else
+		false;
+#endif
+
+#region Commands
 
 	public ICommand SaveDataCommand { get; }
 	public ICommand LoadDataCommand { get; }
@@ -210,14 +223,14 @@ public partial class FormMainViewModel : ObservableObject
 	public ICommand ClosingCommand { get; }
 	public ICommand ClosedCommand { get; }
 
-	#endregion
+#endregion
 
 	public FormMainViewModel(DockingManager dockingManager, FormMainWpf window)
 	{
 		Window = window;
 		DockingManager = dockingManager;
 
-		#region Commands
+#region Commands
 
 		SaveDataCommand = new RelayCommand(StripMenu_File_SaveData_Save_Click);
 		LoadDataCommand = new RelayCommand(StripMenu_File_SaveData_Load_Click);
@@ -260,7 +273,7 @@ public partial class FormMainViewModel : ObservableObject
 		ClosingCommand = new RelayCommand<CancelEventArgs>(Close);
 		ClosedCommand = new RelayCommand(Closed);
 
-		#endregion
+#endregion
 
 		Config = Configuration.Config;
 		FormMain = App.Current.Services.GetService<FormMainTranslationViewModel>()!;
@@ -305,7 +318,7 @@ public partial class FormMainViewModel : ObservableObject
 		UIUpdateTimer.Tick += UIUpdateTimer_Tick;
 		UIUpdateTimer.Start();
 
-		#region Icon settings
+#region Icon settings
 
 		ConfigurationImageSource = ImageSourceIcons.GetIcon(IconContent.FormConfiguration);
 
@@ -385,7 +398,7 @@ public partial class FormMainViewModel : ObservableObject
 		StripMenu_Help_Version.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.AppIcon];
 		*/
 
-		#endregion
+#endregion
 
 		APIObserver.Instance.Start(Configuration.Config.Connection.Port, Window);
 
@@ -505,7 +518,7 @@ public partial class FormMainViewModel : ObservableObject
 		anchorable.ToggleAutoHide();
 	}
 
-	#region File
+#region File
 
 	private void StripMenu_File_SaveData_Save_Click()
 	{
@@ -696,9 +709,9 @@ public partial class FormMainViewModel : ObservableObject
 		Configuration.Instance.OnConfigurationChanged();
 	}
 
-	#endregion
+#endregion
 
-	#region View
+#region View
 
 	private void OpenView(AnchorableViewModel view)
 	{
@@ -747,9 +760,9 @@ public partial class FormMainViewModel : ObservableObject
 		fwc.DetachAll();
 	}
 
-	#endregion
+#endregion
 
-	#region Tools
+#region Tools
 
 	private void StripMenu_Tool_EquipmentList_Click()
 	{
@@ -899,9 +912,9 @@ public partial class FormMainViewModel : ObservableObject
 		new QuestTrackerManagerWindow().Show(Window);
 	}
 
-	#endregion
+#endregion
 
-	#region Debug
+#region Debug
 
 	private void StripMenu_Debug_LoadAPIFromFile_Click()
 	{
@@ -1335,10 +1348,178 @@ public partial class FormMainViewModel : ObservableObject
 		return count;
 	}
 
+	[ICommand]
+	private async Task GenerateMasterData()
+	{
+#if DEBUG
+		void GetMissingDataFromWiki(IShipDataMaster ship, Dictionary<ShipId, IShipDataMaster> wikiShips)
+		{
+			if (!wikiShips.TryGetValue(ship.ShipId, out IShipDataMaster wikiShip)) return;
 
-	#endregion
+			if (!ship.ASW.IsDetermined)
+			{
+				if (wikiShip.ASW.Minimum >= 0)
+				{
+					ship.ASW.MinimumEstMin = wikiShip.ASW.Minimum;
+					ship.ASW.MinimumEstMax = wikiShip.ASW.Minimum;
+				}
 
-	#region Help
+				if (wikiShip.ASW.Maximum >= 0)
+				{
+					ship.ASW.Maximum = wikiShip.ASW.Maximum;
+				}
+			}
+
+			if (!ship.LOS.IsDetermined)
+			{
+				if (wikiShip.LOS.Minimum >= 0)
+				{
+					ship.LOS.MinimumEstMin = wikiShip.LOS.Minimum;
+					ship.LOS.MinimumEstMax = wikiShip.LOS.Minimum;
+				}
+
+				if (wikiShip.LOS.Maximum >= 0)
+				{
+					ship.LOS.Maximum = wikiShip.LOS.Maximum;
+				}
+			}
+
+			if (!ship.Evasion.IsDetermined)
+			{
+				if (wikiShip.Evasion.Minimum >= 0)
+				{
+					ship.Evasion.MinimumEstMin = wikiShip.Evasion.Minimum;
+					ship.Evasion.MinimumEstMax = wikiShip.Evasion.Minimum;
+				}
+
+				if (wikiShip.Evasion.Maximum >= 0)
+				{
+					ship.Evasion.Maximum = wikiShip.Evasion.Maximum;
+				}
+			}
+
+			RecordManager.Instance.ShipParameter.UpdateDefaultSlot(ship.ShipID, wikiShip.DefaultSlot.ToArray());
+		}
+
+		void GetMissingAbyssalDataFromWiki(IShipDataMaster ship, Dictionary<ShipId, IShipDataMaster> wikiAbyssalShips)
+		{
+			if (!wikiAbyssalShips.TryGetValue(ship.ShipId, out IShipDataMaster wikiShip)) return;
+
+			if (!ship.ASW.IsDetermined)
+			{
+				if (wikiShip.ASW.Minimum >= 0)
+				{
+					ship.ASW.MinimumEstMin = wikiShip.ASW.MinimumEstMin;
+					ship.ASW.MinimumEstMax = wikiShip.ASW.MinimumEstMax;
+				}
+
+				if (wikiShip.ASW.Maximum >= 0)
+				{
+					ship.ASW.Maximum = wikiShip.ASW.Maximum;
+				}
+			}
+
+			if (!ship.LOS.IsDetermined)
+			{
+				if (wikiShip.LOS.Minimum >= 0)
+				{
+					ship.LOS.MinimumEstMin = wikiShip.LOS.MinimumEstMin;
+					ship.LOS.MinimumEstMax = wikiShip.LOS.MinimumEstMax;
+				}
+
+				if (wikiShip.LOS.Maximum >= 0)
+				{
+					ship.LOS.Maximum = wikiShip.LOS.Maximum;
+				}
+			}
+
+			if (!ship.Evasion.IsDetermined)
+			{
+				if (wikiShip.Evasion.Minimum >= 0)
+				{
+					ship.Evasion.MinimumEstMin = wikiShip.Evasion.MinimumEstMin;
+					ship.Evasion.MinimumEstMax = wikiShip.Evasion.MinimumEstMax;
+				}
+
+				if (wikiShip.Evasion.Maximum >= 0)
+				{
+					ship.Evasion.Maximum = wikiShip.Evasion.Maximum;
+				}
+			}
+
+			RecordManager.Instance.ShipParameter.UpdateDefaultSlot(ship.ShipID, wikiShip.DefaultSlot.ToArray());
+			RecordManager.Instance.ShipParameter.UpdateAircraft(ship.ShipID, wikiShip.Aircraft.ToArray());
+
+			ShipParameterRecord.ShipParameterElement e = RecordManager.Instance.ShipParameter[ship.ShipID] ?? new();
+
+			e.HPMin = wikiShip.HPMin;
+			e.HPMax = wikiShip.HPMax;
+			e.FirepowerMin = wikiShip.FirepowerMin;
+			e.FirepowerMax = wikiShip.FirepowerMax;
+			e.TorpedoMin = wikiShip.TorpedoMin;
+			e.TorpedoMax = wikiShip.TorpedoMax;
+			e.AAMin = wikiShip.AAMin;
+			e.AAMax = wikiShip.AAMax;
+			e.ArmorMin = wikiShip.ArmorMin;
+			e.ArmorMax = wikiShip.ArmorMax;
+			e.LuckMin = wikiShip.LuckMin;
+			e.LuckMax = wikiShip.LuckMax;
+
+			RecordManager.Instance.ShipParameter.Update(e);
+		}
+
+		Directory.CreateDirectory(GeneratedDataFolder);
+
+		await using TestData.TestDataContext db = new();
+		await db.Database.MigrateAsync();
+
+		await db.Database.ExecuteSqlRawAsync($"DELETE FROM [{nameof(TestData.TestDataContext.MasterShips)}]");
+		await db.Database.ExecuteSqlRawAsync($"DELETE FROM [{nameof(TestData.TestDataContext.MasterEquipment)}]");
+
+		List<IEquipmentDataMaster> wikiEquipment = TestData.Wiki.WikiDataParser.Equipment();
+		List<IEquipmentDataMaster> wikiAbyssalEquipment = TestData.Wiki.WikiDataParser.AbyssalEquipment();
+
+		Dictionary<ShipId, IShipDataMaster> wikiShips = TestData.Wiki.WikiDataParser.Ships(wikiEquipment);
+		Dictionary<ShipId, IShipDataMaster> wikiAbyssalShips = TestData.Wiki.WikiDataParser.AbyssalShips(wikiAbyssalEquipment);
+
+		foreach (ShipDataMaster ship in KCDatabase.Instance.MasterShips.Values)
+		{
+			if (ship.IsAbyssalShip)
+			{
+				GetMissingAbyssalDataFromWiki(ship, wikiAbyssalShips);
+			}
+			else
+			{
+				GetMissingDataFromWiki(ship, wikiShips);
+			}
+
+			await db.MasterShips.AddAsync(new(ship));
+		}
+
+		foreach (EquipmentDataMaster equipment in KCDatabase.Instance.MasterEquipments.Values)
+		{
+			await db.MasterEquipment.AddAsync(new(equipment));
+		}
+
+		await db.SaveChangesAsync();
+
+		var masterShips = db.MasterShips.ToList();
+		var masterEquipment = db.MasterEquipment.ToList();
+
+		JsonSerializerOptions options = new()
+		{
+			WriteIndented = true,
+			Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
+		};
+
+		await File.WriteAllTextAsync(Path.Combine(GeneratedDataFolder, "ships.json"), JsonSerializer.Serialize(masterShips, options));
+		await File.WriteAllTextAsync(Path.Combine(GeneratedDataFolder, "equipment.json"), JsonSerializer.Serialize(masterEquipment, options));
+#endif
+	}
+
+#endregion
+
+#region Help
 
 	private void StripMenu_Help_Help_Click()
 	{
@@ -1405,7 +1586,7 @@ public partial class FormMainViewModel : ObservableObject
 		window.ShowDialog(Window);
 	}
 
-	#endregion
+#endregion
 
 	private void CallPumpkinHead(string apiname, dynamic data)
 	{

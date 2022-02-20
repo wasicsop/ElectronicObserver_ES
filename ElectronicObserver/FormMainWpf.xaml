@@ -591,6 +591,12 @@
 					Command="{Binding LoadDataFromOldCommand}"
 					Header="{Binding FormMain.StripMenu_Debug_LoadDataFromOld}"
 					/>
+				<Separator Visibility="{Binding GenerateMasterDataVisible, Converter={BoolToVisibilityConverter}}" />
+				<MenuItem
+					Command="{Binding GenerateMasterDataCommand}"
+					Header="Generate Master Data"
+					Visibility="{Binding GenerateMasterDataVisible, Converter={BoolToVisibilityConverter}}"
+					/>
 			</MenuItem>
 			<MenuItem
 				Height="Auto"
