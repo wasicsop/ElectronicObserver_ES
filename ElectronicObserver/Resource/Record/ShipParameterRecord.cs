@@ -655,7 +655,7 @@ public class ShipParameterRecord : RecordBase
 	}
 
 
-	public ShipParameterElement this[int i]
+	public ShipParameterElement? this[int i]
 	{
 		get
 		{
@@ -663,6 +663,8 @@ public class ShipParameterRecord : RecordBase
 		}
 		set
 		{
+			if (value is null) return;
+
 			if (!Record.ContainsKey(i))
 			{
 				Record.Add(i, value);
@@ -772,29 +774,6 @@ public class ShipParameterRecord : RecordBase
 					KCDatabase.Instance.MasterShips[shipID].NameWithClass));
 
 		e.DefaultSlot = slot;
-
-		Update(e);
-	}
-
-	/// <summary>
-	/// 搭載機数を更新します。
-	/// </summary>
-	/// <param name="shipID">艦船ID。</param>
-	/// <param name="aircraft">搭載機数配列。</param>
-	public void UpdateAircraft(int shipID, int[] aircraft)
-	{
-		ShipParameterElement e = this[shipID] ?? new ShipParameterElement { ShipID = shipID };
-
-		if (e.Aircraft == null || !e.Aircraft.SequenceEqual(aircraft))
-		{
-			// todo: log, it's used internally only right now, so there's no real need
-			/*
-			Utility.Logger.Add(2, string.Format(Properties.ResourceRecord.ShipParameterRecord_StockEquipmentUpdated,
-				KCDatabase.Instance.MasterShips[shipID].NameWithClass));
-			*/
-		}
-
-		e.Aircraft = aircraft;
 
 		Update(e);
 	}
