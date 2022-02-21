@@ -17,10 +17,12 @@ public static class DayAttackAccuracy
 			.Where(e => e != null)
 			.Sum(e => e.MasterEquipment.Accuracy + e.DayAccuracyBonus());
 
-		return (baseAccuracy + shipAccuracy + equipAccuracy)
-			   * ship.ConditionMod()
-			   * AttackKindMod(attack)
-			   * ship.ApShellMod();
+		double f1 = Math.Floor(baseAccuracy + shipAccuracy + equipAccuracy);
+		double f2 = Math.Floor(f1 * ship.ConditionMod() /* + gun fit */);
+
+		// todo: we currently assume the AP shell bonus always applies
+		// this is done for simplicity and consistency with damage calculation
+		return f2 * AttackKindMod(attack) * ship.ApShellMod();
 	}
 
 	private static int BaseAccuracy(this IFleetData fleet, IShipData ship) => (fleet.FleetType, ship.Fleet) switch
