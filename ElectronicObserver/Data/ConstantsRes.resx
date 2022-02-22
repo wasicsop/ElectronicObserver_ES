@@ -1071,4 +1071,16 @@
   <data name="SpecialSubmarineTender24" xml:space="preserve">
     <value>潜水艦隊攻撃 (2・4)</value>
   </data>
+  <data name="ShellingSupport" xml:space="preserve">
+    <value>砲撃支援</value>
+  </data>
+  <data name="AirstrikeSupport" xml:space="preserve">
+    <value>航空支援</value>
+  </data>
+  <data name="AntiSubmarineSupport" xml:space="preserve">
+    <value>対潜支援</value>
+  </data>
+  <data name="TorpedoSupport" xml:space="preserve">
+    <value>雷撃支援</value>
+  </data>
 </root>

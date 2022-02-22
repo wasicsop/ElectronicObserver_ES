@@ -1071,4 +1071,16 @@
   <data name="SpecialSubmarineTender24" xml:space="preserve">
     <value>Submarine fleet attack (2, 4)</value>
   </data>
+  <data name="ShellingSupport" xml:space="preserve">
+    <value>Shelling Support</value>
+  </data>
+  <data name="AirstrikeSupport" xml:space="preserve">
+    <value>Airstrike Support</value>
+  </data>
+  <data name="AntiSubmarineSupport" xml:space="preserve">
+    <value>Anti-Submarine Support</value>
+  </data>
+  <data name="TorpedoSupport" xml:space="preserve">
+    <value>Torpedo Support</value>
+  </data>
 </root>

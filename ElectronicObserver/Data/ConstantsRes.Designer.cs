@@ -232,6 +232,15 @@ namespace ElectronicObserver.Data {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 航空支援.
+        /// </summary>
+        public static string AirstrikeSupport {
+            get {
+                return ResourceManager.GetString("AirstrikeSupport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 航空優勢.
         /// </summary>
         public static string AirSuperiority {
@@ -273,6 +282,15 @@ namespace ElectronicObserver.Data {
         public static string Anchorage {
             get {
                 return ResourceManager.GetString("Anchorage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 対潜支援.
+        /// </summary>
+        public static string AntiSubmarineSupport {
+            get {
+                return ResourceManager.GetString("AntiSubmarineSupport", resourceCulture);
             }
         }
         
@@ -2284,6 +2302,15 @@ namespace ElectronicObserver.Data {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 砲撃支援.
+        /// </summary>
+        public static string ShellingSupport {
+            get {
+                return ResourceManager.GetString("ShellingSupport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 艦娘.
         /// </summary>
         public static string ShipGirl {
@@ -2766,6 +2793,15 @@ namespace ElectronicObserver.Data {
         public static string TorpedoAttack {
             get {
                 return ResourceManager.GetString("TorpedoAttack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 雷撃支援.
+        /// </summary>
+        public static string TorpedoSupport {
+            get {
+                return ResourceManager.GetString("TorpedoSupport", resourceCulture);
             }
         }
         

@@ -8,6 +8,7 @@ public static class Damage
 	public static int DayAttackCap => 220;
 	public static int NightAttackCap => 360;
 	public static int AswAttackCap => 170;
+	public static int SupportAttackCap => 170;
 
 	public static double Cap(double damage, double cap)
 	{
