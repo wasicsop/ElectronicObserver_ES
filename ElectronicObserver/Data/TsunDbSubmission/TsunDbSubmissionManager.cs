@@ -2,7 +2,7 @@
 using System.Linq;
 using DynaJson;
 using ElectronicObserver.Utility;
-using ElectronicObserver.Utility.Data;
+using ElectronicObserverTypes.Extensions;
 
 namespace ElectronicObserver.Data;
 
