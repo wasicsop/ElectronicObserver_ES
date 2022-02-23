@@ -352,8 +352,10 @@ public class FleetStateViewModel : ObservableObject
 
 				case FleetStates.Damaged:
 					if (Utility.Configuration.Config.FormFleet.BlinkAtDamaged)
+					{
 						state.Label.ForeColor = DateTime.Now.Second % 2 == 0 ? shipDamagedFG : foreColor;
-					state.Label.BackColor = DateTime.Now.Second % 2 == 0 ? shipDamagedBG : backColor;
+						state.Label.BackColor = DateTime.Now.Second % 2 == 0 ? shipDamagedBG : backColor;
+					}
 					break;
 
 				case FleetStates.SortieDamaged:
