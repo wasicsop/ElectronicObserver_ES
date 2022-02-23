@@ -58,7 +58,7 @@ public class FleetStateViewModel : ObservableObject
 
 		Color colorDangerFG = Utility.Configuration.Config.UI.FleetOverview_ShipDamagedFG;
 		Color colorDangerBG = Utility.Configuration.Config.UI.FleetOverview_ShipDamagedBG;
-		
+
 		Color colorInPortFG = Utility.Configuration.Config.UI.ForeColor;
 		Color colorInPortBG = Color.Transparent;
 
@@ -120,7 +120,7 @@ public class FleetStateViewModel : ObservableObject
 				state.SetInformation(FleetStates.Expedition,
 					$"[{dest.DisplayID}] {DateTimeHelper.ToTimeRemainString(state.Timer)}",
 					DateTimeHelper.ToTimeRemainString(state.Timer),
-					(int)IconContent.FleetExpedition,colorInExpeditionBG,colorInExpeditionFG);
+					(int)IconContent.FleetExpedition, colorInExpeditionBG, colorInExpeditionFG);
 
 				state.Label.ToolTip = string.Format(FormFleet.ExpeditionToolTip,
 					dest.DisplayID, dest.NameEN, DateTimeHelper.TimeToCSVString(state.Timer));
@@ -218,7 +218,7 @@ public class FleetStateViewModel : ObservableObject
 				{
 					var state = GetStateLabel(index);
 
-					state.SetInformation(FleetStates.NotReplenished, FormFleet.SupplyNeeded, "", (int)IconContent.FleetNotReplenished, colorInPortBG,colorInPortFG);
+					state.SetInformation(FleetStates.NotReplenished, FormFleet.SupplyNeeded, "", (int)IconContent.FleetNotReplenished, colorInPortBG, colorInPortFG);
 					state.Label.ToolTip = string.Format(FormFleet.ResupplyTooltip, fuel, ammo, bauxite, aircraft);
 
 					index++;
@@ -285,7 +285,7 @@ public class FleetStateViewModel : ObservableObject
 			for (int i = 0; i < index; i++)
 			{
 				if (StateLabels[i].Label.BackColor == System.Drawing.Color.Transparent)
-				{ 
+				{
 					StateLabels[i].Label.BackColor = colorNotExpeditionBG;
 					StateLabels[i].Label.ForeColor = colorNotExpeditionFG;
 				}
@@ -353,7 +353,7 @@ public class FleetStateViewModel : ObservableObject
 				case FleetStates.Damaged:
 					if (Utility.Configuration.Config.FormFleet.BlinkAtDamaged)
 						state.Label.ForeColor = DateTime.Now.Second % 2 == 0 ? shipDamagedFG : foreColor;
-						state.Label.BackColor = DateTime.Now.Second % 2 == 0 ? shipDamagedBG : backColor;
+					state.Label.BackColor = DateTime.Now.Second % 2 == 0 ? shipDamagedBG : backColor;
 					break;
 
 				case FleetStates.SortieDamaged:
