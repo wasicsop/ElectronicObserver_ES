@@ -284,7 +284,7 @@
 							d:Text="Escort"
 							Text="{Binding FormBattle.FleetFriendEscort}"
 							TextAlignment="Center"
-							Visibility="{Binding FleetFriendEscortVisible, Converter={StaticResource BooleanToHiddenConverter}}"
+							Visibility="{Binding FleetFriendEscortVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
 							/>
 						<TextBlock
 							Grid.Row="0"
@@ -293,7 +293,7 @@
 							Background="{Binding FleetEnemyEscortBackColor}"
 							Text="{Binding FormBattle.FleetEnemyEscort}"
 							TextAlignment="Center"
-							Visibility="{Binding FleetEnemyEscortVisible, Converter={StaticResource BooleanToHiddenConverter}}"
+							Visibility="{Binding FleetEnemyEscortVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
 							/>
 						<TextBlock
 							Grid.Row="0"
@@ -325,7 +325,7 @@
 							Grid.Column="1"
 							Margin="4"
 							ItemsSource="{Binding PlayerEscortHPBars}"
-							Visibility="{Binding FleetFriendEscortVisible, Converter={StaticResource BooleanToHiddenConverter}}"
+							Visibility="{Binding FleetFriendEscortVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
 							>
 							<ItemsControl.ItemTemplate>
 								<DataTemplate>
@@ -339,7 +339,7 @@
 							Grid.Column="2"
 							Margin="4"
 							ItemsSource="{Binding EnemyEscortHPBars}"
-							Visibility="{Binding FleetEnemyEscortVisible, Converter={StaticResource BooleanToHiddenConverter}}"
+							Visibility="{Binding FleetEnemyEscortVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
 							>
 							<ItemsControl.ItemTemplate>
 								<DataTemplate>
