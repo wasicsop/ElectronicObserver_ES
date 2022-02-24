@@ -57,7 +57,7 @@
 		</StackPanel>
 	</DataTemplate>
 
-	<DataTemplate x:Key="ExpeditionTaskTemplate" DataType="{x:Type questTasks:ExpeditionTask}">
+	<DataTemplate x:Key="ExpeditionTaskTemplate" DataType="{x:Type questTasks:ExpeditionTaskViewModel}">
 		<DataTemplate.Resources>
 			<DataTemplate x:Key="ExpeditionTemplate" DataType="{x:Type models:ExpeditionModel}">
 				<TextBlock Text="{Binding Display}" />

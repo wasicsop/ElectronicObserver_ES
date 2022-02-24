@@ -75,7 +75,7 @@ public partial class TrackerViewModel : ObservableObject
 	private List<IQuestTaskViewModel> MakeTasks() => Model.Tasks.Select(t => t switch
 	{
 		BossKillTaskModel b => (IQuestTaskViewModel)new BossKillTaskViewModel(b),
-		ExpeditionTaskModel e => new ExpeditionTask(e),
+		ExpeditionTaskModel e => new ExpeditionTaskViewModel(e),
 		BattleNodeIdTaskModel b => new BattleNodeIdTaskViewModel(b),
 		EquipmentScrapTaskModel e => new EquipmentScrapTaskViewModel(e),
 		EquipmentCategoryScrapTaskModel e => new EquipmentCategoryScrapTaskViewModel(e),
@@ -186,7 +186,7 @@ public partial class TrackerViewModel : ObservableObject
 	{
 		if (!GroupConditions.ConditionMet(fleet)) return;
 
-		foreach (ExpeditionTask task in Tasks.OfType<ExpeditionTask>())
+		foreach (ExpeditionTaskViewModel task in Tasks.OfType<ExpeditionTaskViewModel>())
 		{
 			task.Increment(areaId);
 		}

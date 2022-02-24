@@ -21,7 +21,7 @@ public class TaskTemplateSelector : DataTemplateSelector
 	public override DataTemplate? SelectTemplate(object item, DependencyObject container) => item switch
 	{
 		BossKillTaskViewModel => BossKill,
-		ExpeditionTask => Expedition,
+		ExpeditionTaskViewModel => Expedition,
 		BattleNodeIdTaskViewModel => BattleNodeId,
 		EquipmentScrapTaskViewModel => EquipmentScrap,
 		EquipmentCategoryScrapTaskViewModel => EquipmentCategoryScrap,

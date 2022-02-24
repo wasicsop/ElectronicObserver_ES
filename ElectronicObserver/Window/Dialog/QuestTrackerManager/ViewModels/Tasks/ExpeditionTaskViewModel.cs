@@ -8,7 +8,7 @@ using Microsoft.Toolkit.Mvvm.ComponentModel;
 
 namespace ElectronicObserver.Window.Dialog.QuestTrackerManager.ViewModels.Tasks;
 
-public class ExpeditionTask : ObservableObject, IQuestTaskViewModel
+public class ExpeditionTaskViewModel : ObservableObject, IQuestTaskViewModel
 {
 	public IEnumerable<ExpeditionModel> Expeditions { get; }
 
@@ -32,7 +32,7 @@ public class ExpeditionTask : ObservableObject, IQuestTaskViewModel
 		return sb.ToString();
 	}
 
-	public ExpeditionTask(ExpeditionTaskModel model)
+	public ExpeditionTaskViewModel(ExpeditionTaskModel model)
 	{
 		Model = model;
 
