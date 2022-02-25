@@ -292,11 +292,11 @@ public static class BattleDetailDescriptor
 
 				if (p.FlareIndexFriend != -1)
 				{
-					sb.AppendFormat(ConstantsRes.BattleDetail_FriendlySearchlight + "\r\n", p.FlareFriendInstance.NameWithLevel, p.FlareIndexFriend + 1);
+					sb.AppendFormat(ConstantsRes.BattleDetail_FriendlyStarshell + "\r\n", p.FlareFriendInstance.NameWithLevel, p.FlareIndexFriend + 1);
 				}
 				if (p.FlareIndexEnemy != -1)
 				{
-					sb.AppendFormat(ConstantsRes.BattleDetail_EnemySearchlight + "\r\n", p.FlareEnemyInstance.NameWithClass, p.FlareIndexEnemy + 1);
+					sb.AppendFormat(ConstantsRes.BattleDetail_EnemyStarshell + "\r\n", p.FlareEnemyInstance.NameWithClass, p.FlareIndexEnemy + 1);
 				}
 
 				sb.AppendLine();
