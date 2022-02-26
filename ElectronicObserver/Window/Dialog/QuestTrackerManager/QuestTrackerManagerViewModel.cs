@@ -300,6 +300,8 @@ public partial class QuestTrackerManagerViewModel : ObservableObject
 				}
 			}
 		}
+
+		KCDatabase.Instance.Quest.OnQuestUpdated();
 	}
 
 	[ICommand]
@@ -314,6 +316,8 @@ public partial class QuestTrackerManagerViewModel : ObservableObject
 		};
 
 		Trackers.Add(tracker);
+
+		KCDatabase.Instance.Quest.OnQuestUpdated();
 	}
 
 	[ICommand]
@@ -322,6 +326,8 @@ public partial class QuestTrackerManagerViewModel : ObservableObject
 		if (tracker is null) return;
 
 		Trackers.Remove(tracker);
+
+		KCDatabase.Instance.Quest.OnQuestUpdated();
 	}
 
 	public void Save()
