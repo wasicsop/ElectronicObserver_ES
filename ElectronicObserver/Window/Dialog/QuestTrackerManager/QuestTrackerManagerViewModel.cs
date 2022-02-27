@@ -106,8 +106,10 @@ public partial class QuestTrackerManagerViewModel : ObservableObject
 
 		foreach (TrackerViewModel tracker in trackersToReset)
 		{
-			foreach (IQuestTask task in tracker.Model.Tasks)
+			foreach (IQuestTask? task in tracker.Model.Tasks)
 			{
+				if (task is null) continue;
+
 				task.Progress = 0;
 			}
 		}
@@ -121,6 +123,8 @@ public partial class QuestTrackerManagerViewModel : ObservableObject
 
 		var fleet = KCDatabase.Instance.Fleet.Fleets.Values.FirstOrDefault(f => f.IsInSortie);
 
+		if (fleet is null) return;
+
 		foreach (TrackerViewModel tracker in Trackers.Where(t => t.State == 2))
 		{
 			tracker.Increment(fleet, compass.MapAreaID, compass.MapInfoID, compass.Destination);
@@ -132,6 +136,8 @@ public partial class QuestTrackerManagerViewModel : ObservableObject
 		var compass = KCDatabase.Instance.Battle.Compass;
 
 		var fleet = KCDatabase.Instance.Fleet.Fleets.Values.FirstOrDefault(f => f.IsInSortie);
+
+		if (fleet is null) return;
 
 		foreach (TrackerViewModel tracker in Trackers.Where(t => t.State == 2))
 		{
