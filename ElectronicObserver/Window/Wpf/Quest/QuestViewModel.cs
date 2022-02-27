@@ -370,7 +370,7 @@ public partial class QuestViewModel : AnchorableViewModel
 						.FirstOrDefault(t => t.QuestId == q.QuestID);
 					if (tracker is not null)
 					{
-						value = tracker.ProgressDisplay ?? "100%";
+						value = tracker.ProgressDisplay;
 						tag = tracker.Progress;
 					}
 					else if (KCDatabase.Instance.QuestProgress.Progresses.ContainsKey(q.QuestID))

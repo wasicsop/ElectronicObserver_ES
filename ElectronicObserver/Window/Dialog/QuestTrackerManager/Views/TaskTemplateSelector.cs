@@ -17,6 +17,7 @@ public class TaskTemplateSelector : DataTemplateSelector
 	public DataTemplate? NodeReach { get; set; }
 	public DataTemplate? MapFirstClear { get; set; }
 	public DataTemplate? Exercise { get; set; }
+	public DataTemplate? Unknown { get; set; }
 
 	public override DataTemplate? SelectTemplate(object item, DependencyObject container) => item switch
 	{
@@ -31,6 +32,6 @@ public class TaskTemplateSelector : DataTemplateSelector
 		MapFirstClearTaskViewModel => MapFirstClear,
 		ExerciseTaskViewModel => Exercise,
 
-		_ => throw new NotImplementedException(),
+		_ => Unknown
 	};
 }

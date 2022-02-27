@@ -22,26 +22,39 @@ public partial class TrackerViewModel : ObservableObject
 
 	// when this was an IEnumerable, the call from FormQuest to ProgressDisplay caused
 	// exponential NotifyPropertyChange events from the changed value (x2 each time)
-	public List<IQuestTaskViewModel> Tasks { get; set; }
+	public List<IQuestTaskViewModel?> Tasks { get; set; }
 	public GroupConditionViewModel GroupConditions { get; }
 
 	public bool ShowDetails { get; set; }
 
 	public TrackerModel Model { get; }
 
-	public double Progress => Model.Tasks.Count switch
+	public double Progress => Model.Tasks.Count(t => t is not null) switch
 	{
-		> 0 => Model.Tasks.Average(t => (double)t.Progress / t.Count),
+		> 0 => Model.Tasks.Where(t => t is not null).Average(t => (double)t.Progress / t.Count),
 		_ => 0
 	};
 	public string Display => string.Join(" \n", Tasks.Select(t => t.Display));
 
-	public string? ProgressDisplay =>
-		string.Join(" \n", Tasks.Select(t => t.Progress).Where(p => !string.IsNullOrEmpty(p))) switch
+	public string ProgressDisplay => Tasks.Count switch
+	{
+		0 => "-",
+		_ => string.Join(" \n", TaskProgressDisplays) switch
 		{
-			null or "" => null,
+			null or "" => "100%",
 			string s => s
-		};
+		}
+	};
+
+	private List<string?> TaskProgressDisplays => Tasks
+		.Select(t => t switch
+		{
+			null => Properties.Window.Dialog.QuestTrackerManager.UnknownTask,
+			_ => t.Progress
+		})
+		.Where(p => !string.IsNullOrEmpty(p))
+		.ToList();
+
 	public string ClearCondition => string.Join(" \n", Tasks.Select(t => t.ClearCondition));
 
 	public int QuestId => Model.Quest.Id;
@@ -72,7 +85,7 @@ public partial class TrackerViewModel : ObservableObject
 		};
 	}
 
-	private List<IQuestTaskViewModel> MakeTasks() => Model.Tasks.Select(t => t switch
+	private List<IQuestTaskViewModel?> MakeTasks() => Model.Tasks.Select(t => t switch
 	{
 		BossKillTaskModel b => (IQuestTaskViewModel)new BossKillTaskViewModel(b),
 		ExpeditionTaskModel e => new ExpeditionTaskViewModel(e),
@@ -84,6 +97,7 @@ public partial class TrackerViewModel : ObservableObject
 		NodeReachTaskModel n => new NodeReachTaskViewModel(n),
 		MapFirstClearTaskModel m => new MapFirstClearTaskViewModel(m),
 		ExerciseTaskModel e => new ExerciseTaskViewModel(e),
+		_ => null
 	}).ToList();
 
 	[ICommand]
@@ -256,14 +270,16 @@ public partial class TrackerViewModel : ObservableObject
 
 	public void SetProgress(IEnumerable<int> progresses)
 	{
-		foreach ((IQuestTask task, int progress) in Model.Tasks.Zip(progresses, (t, p) => (t, p)))
+		foreach ((IQuestTask? task, int progress) in Model.Tasks.Zip(progresses, (t, p) => (t, p)))
 		{
+			if (task is null) continue;
+
 			task.Progress = progress;
 		}
 	}
 
 	public IEnumerable<int> GetProgress()
 	{
-		return Model.Tasks.Select(t => t.Progress);
+		return Model.Tasks.Select(t => t?.Progress ?? 0);
 	}
 }

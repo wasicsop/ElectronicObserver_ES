@@ -373,6 +373,9 @@
 		</StackPanel>
 	</DataTemplate>
 
+	<DataTemplate x:Key="UnknownTaskTemplate">
+		<TextBlock Padding="4" Text="{Binding ViewModel.Translation.UnknownTask, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=questTrackerManager:QuestTrackerManagerWindow}}" />
+	</DataTemplate>
 
 	<questTrackerManager:TaskTemplateSelector
 		x:Key="TaskTemplateSelector"
@@ -386,6 +389,7 @@
 		Expedition="{StaticResource ExpeditionTaskTemplate}"
 		MapFirstClear="{StaticResource MapFirstClearTaskTemplate}"
 		NodeReach="{StaticResource NodeReachTaskTemplate}"
+		Unknown="{StaticResource UnknownTaskTemplate}"
 		/>
 
 </ResourceDictionary>

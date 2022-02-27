@@ -14,6 +14,7 @@ public class ConditionTemplateSelector : DataTemplateSelector
 	public DataTemplate? AllowedShipTypes { get; set; }
 	public DataTemplate? ShipPosition { get; set; }
 	public DataTemplate? ShipNationality { get; set; }
+	public DataTemplate? Unknown { get; set; }
 
 	public override DataTemplate? SelectTemplate(object item, DependencyObject container) => item switch
 	{
@@ -25,6 +26,6 @@ public class ConditionTemplateSelector : DataTemplateSelector
 		ShipPositionConditionViewModel => ShipPosition,
 		ShipNationalityConditionViewModel => ShipNationality,
 
-		_ => throw new NotImplementedException(),
+		_ => Unknown
 	};
 }

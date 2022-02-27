@@ -416,11 +416,29 @@ namespace ElectronicObserver.Properties.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 未知要件、七四式の最新版を使用していることを確認してください。.
+        /// </summary>
+        public static string UnknownCondition {
+            get {
+                return ResourceManager.GetString("UnknownCondition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 不明任務.
         /// </summary>
         public static string UnknownQuest {
             get {
                 return ResourceManager.GetString("UnknownQuest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 未知のタスク、七四式の最新版を使用していることを確認してください。.
+        /// </summary>
+        public static string UnknownTask {
+            get {
+                return ResourceManager.GetString("UnknownTask", resourceCulture);
             }
         }
         

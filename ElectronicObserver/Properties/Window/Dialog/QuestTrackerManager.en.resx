@@ -244,4 +244,10 @@ Do you want to overwrite these quest trackers?</value>
   <data name="Kanmusu" xml:space="preserve">
     <value> ship</value>
   </data>
+  <data name="UnknownTask" xml:space="preserve">
+    <value>Unknown task, make sure you have the latest version of Electronic Observer.</value>
+  </data>
+  <data name="UnknownCondition" xml:space="preserve">
+    <value>Unknown condition, make sure you have the latest version of Electronic Observer.</value>
+  </data>
 </root>

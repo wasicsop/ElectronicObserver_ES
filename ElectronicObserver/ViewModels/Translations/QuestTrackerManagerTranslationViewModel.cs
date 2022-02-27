@@ -14,5 +14,8 @@ public class QuestTrackerManagerTranslationViewModel : TranslationBaseViewModel
 	public string Warning => QuestTrackerManager.Warning;
 	public string TrackerOverwrite => QuestTrackerManager.TrackerOverwrite;
 
+	public string UnknownTask => QuestTrackerManager.UnknownTask;
+	public string UnknownCondition => QuestTrackerManager.UnknownCondition;
+
 	public string Title => QuestTrackerManager.Title;
 }

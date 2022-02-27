@@ -19,7 +19,7 @@ public partial class GroupConditionViewModel : ObservableObject, IConditionViewM
 
 	public GroupConditionModel Model { get; }
 
-	public IEnumerable<IConditionViewModel> Conditions { get; set; }
+	public IEnumerable<IConditionViewModel?> Conditions { get; set; }
 
 	public IEnumerable<Operator> Operators { get; }
 	public Operator GroupOperator { get; set; }
@@ -28,7 +28,7 @@ public partial class GroupConditionViewModel : ObservableObject, IConditionViewM
 	public ConditionType SelectedConditionType { get; set; } = ConditionType.ShipType;
 
 	public string Display => string.Join($"{Separator}{GroupOperator.Display()}{Separator}",
-		Conditions.Select(c => Grouping(c.Display)));
+		Conditions.Select(c => Grouping(c?.Display ?? Properties.Window.Dialog.QuestTrackerManager.UnknownCondition)));
 
 	private string Separator => GroupOperator switch
 	{
@@ -65,9 +65,9 @@ public partial class GroupConditionViewModel : ObservableObject, IConditionViewM
 		};
 	}
 
-	private IEnumerable<IConditionViewModel> CreateViewModels(GroupConditionModel model)
+	private IEnumerable<IConditionViewModel?> CreateViewModels(GroupConditionModel model)
 	{
-		List<IConditionViewModel> conditions = model.Conditions.Select(c => c switch
+		List<IConditionViewModel?> conditions = model.Conditions.Select(c => c switch
 		{
 			GroupConditionModel g => (IConditionViewModel)new GroupConditionViewModel(g),
 			ShipConditionModel s => new ShipConditionViewModel(s),
@@ -76,10 +76,13 @@ public partial class GroupConditionViewModel : ObservableObject, IConditionViewM
 			AllowedShipTypesConditionModel a => new AllowedShipTypesConditionViewModel(a),
 			ShipPositionConditionModel p => new ShipPositionConditionViewModel(p),
 			ShipNationalityConditionModel n => new ShipNationalityConditionViewModel(n),
+			_ => null
 		}).ToList();
 
-		foreach (IConditionViewModel condition in conditions)
+		foreach (IConditionViewModel? condition in conditions)
 		{
+			if (condition is null) continue;
+
 			condition.PropertyChanged += (sender, args) =>
 			{
 				if (args.PropertyName is not nameof(IConditionViewModel.Display)) return;
@@ -118,12 +121,14 @@ public partial class GroupConditionViewModel : ObservableObject, IConditionViewM
 
 	public bool ConditionMet(IFleetData fleet)
 	{
-		if (!Conditions.Any()) return true;
+		List<IConditionViewModel> conditions = Conditions.Where(c => c is not null).ToList()!;
+
+		if (!conditions.Any()) return true;
 
 		return GroupOperator switch
 		{
-			Operator.And => Conditions.All(c => c.ConditionMet(fleet)),
-			Operator.Or => Conditions.Any(c => c.ConditionMet(fleet)),
+			Operator.And => conditions.All(c => c.ConditionMet(fleet)),
+			Operator.Or => conditions.Any(c => c.ConditionMet(fleet)),
 
 			_ => throw new NotImplementedException()
 		};

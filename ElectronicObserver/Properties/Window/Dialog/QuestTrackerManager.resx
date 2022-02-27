@@ -224,4 +224,10 @@
   <data name="Kanmusu" xml:space="preserve">
     <value>艦娘</value>
   </data>
+  <data name="UnknownTask" xml:space="preserve">
+    <value>未知のタスク、七四式の最新版を使用していることを確認してください。</value>
+  </data>
+  <data name="UnknownCondition" xml:space="preserve">
+    <value>未知要件、七四式の最新版を使用していることを確認してください。</value>
+  </data>
 </root>

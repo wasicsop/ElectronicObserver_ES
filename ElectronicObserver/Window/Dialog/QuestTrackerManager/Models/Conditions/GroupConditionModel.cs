@@ -9,5 +9,7 @@ namespace ElectronicObserver.Window.Dialog.QuestTrackerManager.Models.Conditions
 public class GroupConditionModel : ObservableObject, ICondition
 {
 	[Key(0)] public Operator GroupOperator { get; set; } = Operator.And;
-	[Key(1)] public ObservableCollection<ICondition> Conditions { get; set; } = new();
+	// can be null if the deserializer doesn't know about the condition type
+	// for example an older version of EO not having a new condition
+	[Key(1)] public ObservableCollection<ICondition?> Conditions { get; set; } = new();
 }
