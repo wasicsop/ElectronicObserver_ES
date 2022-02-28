@@ -29,6 +29,7 @@ public class AswAttackTest
 		var mock = new Mock<IShipData>();
 
 		mock.Setup(s => s.ASWBase).Returns(58);
+		mock.Setup(s => s.ASWTotal).Returns(100);
 		mock.Setup(s => s.HPRate).Returns(1);
 		mock.Setup(s => s.AllSlotInstance).Returns(new ReadOnlyCollection<IEquipmentData?>(new List<IEquipmentData?>
 		{
