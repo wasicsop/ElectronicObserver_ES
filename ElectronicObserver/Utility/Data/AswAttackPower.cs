@@ -11,7 +11,9 @@ public static class AswAttackPower
 	public static int GetAswAttackPower(this IShipData ship, Enum attack, IFleetData fleet,
 		EngagementType engagement = EngagementType.Parallel)
 	{
-		int eqpower = ship.EquipmentAswPower();
+		int aswFit = ship.ASWTotal - ship.ASWBase
+			- ship.AllSlotInstance.Where(eq => eq is not null).Sum(eq => eq.MasterEquipment.ASW);
+		int eqpower = ship.EquipmentAswPower() + aswFit;
 		double basepower = (Math.Sqrt(ship.ASWBase) * 2
 							+ eqpower * 1.5 + ship.GetAntiSubmarineEquipmentLevelBonus()
 							+ AswAttackConstant(attack))
