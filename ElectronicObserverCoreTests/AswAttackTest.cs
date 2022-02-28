@@ -60,4 +60,24 @@ public class AswAttackTest
 
 		Assert.Equal(104, akebono.GetAswAttackPower(DayAttackKind.DepthCharge, fleet));
 	}
+
+	[Fact]
+	public void AswFitBonusTest()
+	{
+		FleetDataCustom fleet = new();
+
+		ShipDataMock kamikaze = new(Db.MasterShips[ShipId.KamikazeKai])
+		{
+			Level = 175,
+			ASWModernized = 9,
+			LuckBase = 99,
+			AswFit = 3,
+			AllSlotInstance = new List<IEquipmentData>
+			{
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Sonar_Type3ActiveSONAR]),
+			},
+		};
+
+		Assert.Equal(54, kamikaze.GetAswAttackPower(DayAttackKind.DepthCharge, fleet));
+	}
 }
