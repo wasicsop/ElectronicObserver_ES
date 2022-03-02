@@ -259,7 +259,7 @@
 					<Border
 						Background="{Binding Bauxite.Background}"
 						ToolTip="{Binding Bauxite.ToolTip}"
-						Visibility="{Binding Ammo.Visible}"
+						Visibility="{Binding Bauxite.Visible}"
 						>
 						<StackPanel Orientation="Horizontal">
 							<Image Source="{Binding Bauxite.Icon}" />
