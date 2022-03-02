@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ElectronicObserver.Data;
-using ElectronicObserver.Resource.Record;
 using static ElectronicObserver.Observer.DiscordRPC;
 
 namespace ElectronicObserver.Observer.kcsapi.api_port;
@@ -69,7 +66,7 @@ public class port : APIBase
 
 			if (db.Fleet[1].CanAnchorageRepair)
 			{
-				dataForWS.top = string.Format(ObserverRes.RepairingShips, (db.Fleet[1].Members.Count - 1).ToString());
+				dataForWS.top = string.Format(ObserverRes.RepairingShips, (db.Fleet[1].MembersInstance.Count(s => s != null) - 1).ToString());
 			}
 
 			dataForWS.bot = new List<string>();
