@@ -173,16 +173,13 @@ public static class ShipDataExtensions
 		_ => false
 	};
 
-	public static bool IsSpecialNightCarrier(this IShipData ship) => ship.MasterShip.ShipId switch
-	{
-		ShipId.GrafZeppelin => true,
-		ShipId.GrafZeppelinKai => true,
-		ShipId.Saratoga => true,
-		ShipId.TaiyouKaiNi => true,
-		ShipId.ShinyouKaiNi => true,
-
-		_ => false
-	};
+	public static bool IsSpecialNightCarrier(this IShipData ship) => ship.MasterShip.ShipId is
+		ShipId.GrafZeppelin or
+		ShipId.GrafZeppelinKai or
+		ShipId.Saratoga or
+		ShipId.TaiyouKaiNi or
+		ShipId.ShinyouKaiNi or
+		ShipId.UnyouKaiNi;
 
 	public static bool IsArkRoyal(this IShipData ship) => ship.MasterShip.ShipId switch
 	{
