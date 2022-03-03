@@ -230,6 +230,7 @@ public class NightAttackTests
 		{
 			Level = 175,
 			LuckBase = 84,
+			Condition = 49,
 			AllSlotInstance = new List<IEquipmentData>
 			{
 				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunLarge_46cmTripleGunKai])
@@ -247,11 +248,21 @@ public class NightAttackTests
 			}
 		};
 
+		IShipData gotland = new ShipDataMock(Db.MasterShips[ShipId.Gotlandandra])
+		{
+			AllSlotInstance = new List<IEquipmentData>()
+			{
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SeaplaneRecon_Type98ReconSeaplane_NightRecon]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.StarShell_StarShell]),
+			}
+		};
+
 		var fleetMock = new Mock<IFleetData>();
 
 		fleetMock.Setup(f => f.MembersWithoutEscaped).Returns(new ReadOnlyCollection<IShipData?>(new List<IShipData?>
 		{
-			bismarck
+			bismarck,
+			gotland
 		}));
 
 		IFleetData fleet = fleetMock.Object;
@@ -272,8 +283,11 @@ public class NightAttackTests
 		List<double> attackRates = actual.Select(a => bismarck.GetNightAttackRate(a, fleet)).ToList();
 		List<double> totalRates = attackRates.ToList().TotalRates();
 
-		Assert.Equal(0.787, totalRates[0], Precision);
-		Assert.Equal(0.213, totalRates[1], Precision);
+		Assert.Equal(0.82, totalRates[0], Precision);
+		Assert.Equal(0.18, totalRates[1], Precision);
+
+		Assert.Equal(206, bismarck.GetNightAttackAccuracy(actual[0], fleet).RoundDown());
+		Assert.Equal(125, bismarck.GetNightAttackAccuracy(actual[1], fleet).RoundDown());
 	}
 
 	[Fact]
