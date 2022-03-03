@@ -140,6 +140,10 @@ internal class SoftwareUpdater
 				downloadList.Add("quest.json");
 			if (CurrentVersion.Ship != LatestVersion.Ship)
 				downloadList.Add("ship.json");
+			if (CurrentVersion.QuestTrackers < LatestVersion.QuestTrackers)
+			{
+				downloadList.Add("QuestTrackers.json");
+			}
 
 			if (downloadList.Count > 0)
 				needReload = true;
@@ -156,6 +160,7 @@ internal class SoftwareUpdater
 			if (needReload)
 			{
 				KCDatabase.Instance.Translation.Initialize();
+				KCDatabase.Instance.SystemQuestTrackerManager.Load();
 				Logger.Add(2, Properties.Utility.SoftwareInformation.TranslationFilesUpdated);
 			}
 
@@ -227,6 +232,12 @@ internal class SoftwareUpdater
 			var questVersion = (string)json.tl_ver.quest;
 			var shipVersion = (string)json.tl_ver.ship;
 
+			int questTrackersVersion = json.QuestTrackers() switch
+			{
+				true => (int)json.QuestTrackers,
+				_ => 0
+			};
+
 			DateTime maintenanceDate = DateTimeHelper.CSVStringToTime(json.kancolle_mt);
 			var eventState = (MaintenanceState)(int)json.event_state;
 
@@ -242,6 +253,7 @@ internal class SoftwareUpdater
 				Operation = opVersion,
 				Quest = questVersion,
 				Ship = shipVersion,
+				QuestTrackers = questTrackersVersion,
 				MaintenanceDate = maintenanceDate,
 				EventState = eventState
 			};
@@ -283,6 +295,7 @@ public class UpdateData
 	public string Operation { get; set; } = "";
 	public string Quest { get; set; } = "";
 	public string Ship { get; set; } = "";
+	public int QuestTrackers { get; set; }
 	public DateTime MaintenanceDate { get; set; }
 
 	/// <summary>
