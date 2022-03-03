@@ -17,8 +17,10 @@ public static class NightAttackAccuracy
 			.Sum(e => e.MasterEquipment.Accuracy);
 
 		// if night equip is present assume it activates
-		return (fleet.NightScoutMod() * (baseAccuracy + fleet.StarShellBonus())
-				+ shipAccuracy + equipAccuracy)
+		return Math.Floor(fleet.NightScoutMod()
+						  * (baseAccuracy + fleet.StarShellBonus())
+						  + shipAccuracy
+						  + equipAccuracy)
 			   * ship.ConditionMod()
 			   * AttackKindMod(attack)
 			   + fleet.SearchlightBonus()
