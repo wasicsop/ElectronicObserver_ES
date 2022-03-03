@@ -8,7 +8,7 @@ using Microsoft.Toolkit.Mvvm.ComponentModel;
 namespace ElectronicObserver.Window.Dialog.QuestTrackerManager.Models.Tasks;
 
 [MessagePackObject]
-public class BattleNodeIdTaskModel : ObservableObject, IQuestTask
+public class BattleNodeIdTaskModel : ObservableObject, IBattleQuestTask
 {
 	[Key(0)] public MapInfoModel Map { get; set; } = new(1, 1);
 	[Key(1)] public BattleRank Rank { get; set; } = BattleRank.S;

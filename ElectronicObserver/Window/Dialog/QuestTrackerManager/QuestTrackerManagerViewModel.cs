@@ -36,7 +36,7 @@ public partial class QuestTrackerManagerViewModel : QuestTrackerManagerBase
 	private void CopyTrackersToClipboard()
 	{
 		List<TrackerModel> trackers = Trackers.Select(t => t.Model).ToList();
-		byte[] data = MessagePackSerializer.Serialize(trackers);
+		byte[] data = MessagePackSerializer.Serialize(trackers.SortTrackers());
 		Clipboard.SetDataObject(MessagePackSerializer.ConvertToJson(data));
 	}
 

@@ -160,7 +160,7 @@ public partial class TrackerViewModel : ObservableObject
 	private void CopyTracker()
 	{
 		List<TrackerModel> trackers = new() { Model };
-		byte[] data = MessagePackSerializer.Serialize(trackers);
+		byte[] data = MessagePackSerializer.Serialize(trackers.SortTrackers());
 		Clipboard.SetDataObject(MessagePackSerializer.ConvertToJson(data));
 	}
 
