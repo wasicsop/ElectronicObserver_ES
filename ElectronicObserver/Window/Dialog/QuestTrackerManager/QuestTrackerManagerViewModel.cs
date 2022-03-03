@@ -22,6 +22,8 @@ public partial class QuestTrackerManagerViewModel : QuestTrackerManagerBase
 
 	public QuestModel? Quest { get; set; }
 
+	public bool DebugEnabled => Utility.Configuration.Config.Debug.EnableDebugMenu;
+
 	public QuestTrackerManagerViewModel()
 	{
 		Translation = App.Current.Services.GetService<QuestTrackerManagerTranslationViewModel>()!;
@@ -54,6 +56,20 @@ public partial class QuestTrackerManagerViewModel : QuestTrackerManagerBase
 		{
 			// ignored
 		}
+	}
+
+	[ICommand]
+	private void CopyAllTrackersToClipboard()
+	{
+		// Copy all trackers from quest tracker manager and system trackers.
+		// In case of duplicates, the one from quest tracker manager will be copied.
+		List<TrackerModel> trackers = Trackers
+			.Union(KCDatabase.Instance.SystemQuestTrackerManager.Trackers)
+			.Select(t => t.Model)
+			.DistinctBy(t => t.Quest.Id)
+			.ToList();
+		byte[] data = MessagePackSerializer.Serialize(trackers.SortTrackers());
+		Clipboard.SetDataObject(MessagePackSerializer.ConvertToJson(data));
 	}
 
 	private void MergeTrackers(List<TrackerModel> trackers)

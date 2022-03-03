@@ -85,6 +85,9 @@
 					<MenuItem Command="{Binding CopyTrackersToClipboardCommand}" Header="{Binding Translation.CopyTrackersToClipboard}" />
 					<MenuItem Command="{Binding LoadTrackerFromClipboardCommand}" Header="{Binding Translation.Load}" />
 				</MenuItem>
+				<MenuItem Header="Debug" Visibility="{Binding DebugEnabled, Converter={StaticResource BooleanToVisibilityConverter}}">
+					<MenuItem Command="{Binding CopyAllTrackersToClipboardCommand}" Header="Copy all trackers" />
+				</MenuItem>
 			</Menu>
 
 			<StackPanel Grid.Row="1">
