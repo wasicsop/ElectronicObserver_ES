@@ -73,43 +73,39 @@
 	</Window.Resources>
 
 	<Border Style="{StaticResource BorderSpacing}">
-		<ScrollViewer>
-			<Grid>
-				<Grid.RowDefinitions>
-					<RowDefinition Height="Auto" />
-					<RowDefinition Height="Auto" />
-					<RowDefinition />
-				</Grid.RowDefinitions>
+		<Grid>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition />
+			</Grid.RowDefinitions>
 
-				<Menu Grid.Row="0">
-					<MenuItem Header="{Binding Translation.File}">
-						<MenuItem Command="{Binding CopyTrackersToClipboardCommand}" Header="{Binding Translation.CopyTrackersToClipboard}" />
-						<MenuItem Command="{Binding LoadTrackerFromClipboardCommand}" Header="{Binding Translation.Load}" />
-					</MenuItem>
-				</Menu>
+			<Menu Grid.Row="0">
+				<MenuItem Header="{Binding Translation.File}">
+					<MenuItem Command="{Binding CopyTrackersToClipboardCommand}" Header="{Binding Translation.CopyTrackersToClipboard}" />
+					<MenuItem Command="{Binding LoadTrackerFromClipboardCommand}" Header="{Binding Translation.Load}" />
+				</MenuItem>
+			</Menu>
 
-				<StackPanel Grid.Row="1">
-					<StackPanel Orientation="Horizontal">
-						<Button Command="{Binding AddTrackerCommand}" Content="＋" />
-						<ComboBox ItemsSource="{Binding Quests}" SelectedItem="{Binding Quest}">
-							<ComboBox.ItemTemplate>
-								<DataTemplate>
-									<TextBlock Text="{Binding Display}" />
-								</DataTemplate>
-							</ComboBox.ItemTemplate>
-						</ComboBox>
-					</StackPanel>
-
-					<TextBlock Text="{Binding Quest.Description}" />
-					<Separator />
+			<StackPanel Grid.Row="1">
+				<StackPanel Orientation="Horizontal">
+					<Button Command="{Binding AddTrackerCommand}" Content="＋" />
+					<ComboBox ItemsSource="{Binding Quests}" SelectedItem="{Binding Quest}">
+						<ComboBox.ItemTemplate>
+							<DataTemplate>
+								<TextBlock Text="{Binding Display}" />
+							</DataTemplate>
+						</ComboBox.ItemTemplate>
+					</ComboBox>
 				</StackPanel>
 
-				<ItemsControl
-					Grid.Row="2"
-					ItemTemplate="{StaticResource TrackerTemplate}"
-					ItemsSource="{Binding Trackers}"
-					/>
-			</Grid>
-		</ScrollViewer>
+				<TextBlock Text="{Binding Quest.Description}" />
+				<Separator />
+			</StackPanel>
+
+			<ScrollViewer Grid.Row="2">
+				<ItemsControl ItemTemplate="{StaticResource TrackerTemplate}" ItemsSource="{Binding Trackers}" />
+			</ScrollViewer>
+		</Grid>
 	</Border>
 </Window>
