@@ -116,7 +116,7 @@ public class ShipDataMock : IShipData
 	public Dictionary<string, string> RequestData { get; set; }
 	public dynamic RawData { get; set; }
 	public bool IsAvailable { get; set; }
-	public int ASWBase => MasterShip.ASW.GetParameter(Level);
+	public int ASWBase => MasterShip.ASW.GetParameter(Level) + ASWModernized;
 	public int LOSBase => MasterShip.LOS.GetParameter(Level);
 	public int LuckBase
 	{
