@@ -174,6 +174,9 @@ public sealed class KCDatabase
 	private QuestTrackerManagerViewModel? _questRequirements;
 	public QuestTrackerManagerViewModel QuestTrackerManagers => _questRequirements ??= new();
 
+	private SystemQuestTrackerManager? _systemQuestTrackerManager;
+	public SystemQuestTrackerManager SystemQuestTrackerManager => _systemQuestTrackerManager ??= new();
+
 	private KCDatabase()
 	{
 
@@ -233,6 +236,7 @@ public sealed class KCDatabase
 		ShipGroup.Save();
 		QuestProgress.Save();
 		QuestTrackerManagers.Save();
+		SystemQuestTrackerManager.Save();
 	}
 
 }

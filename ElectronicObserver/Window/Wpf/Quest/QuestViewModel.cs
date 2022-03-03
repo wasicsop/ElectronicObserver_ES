@@ -14,6 +14,7 @@ using ElectronicObserver.Resource;
 using ElectronicObserver.Utility;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.ViewModels.Translations;
+using ElectronicObserver.Window.Dialog.QuestTrackerManager.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.Input;
 using Translation = ElectronicObserver.Properties.Window.FormQuest;
@@ -366,12 +367,20 @@ public partial class QuestViewModel : AnchorableViewModel
 				}
 				else
 				{
-					var tracker = KCDatabase.Instance.QuestTrackerManagers.Trackers
+					TrackerViewModel? tracker = KCDatabase.Instance.QuestTrackerManagers.Trackers
 						.FirstOrDefault(t => t.QuestId == q.QuestID);
+					TrackerViewModel? systemTracker = KCDatabase.Instance.SystemQuestTrackerManager.Trackers
+						.FirstOrDefault(t => t.QuestId == q.QuestID);
+
 					if (tracker is not null)
 					{
 						value = tracker.ProgressDisplay;
 						tag = tracker.Progress;
+					}
+					else if (systemTracker is not null)
+					{
+						value = systemTracker.ProgressDisplay;
+						tag = systemTracker.Progress;
 					}
 					else if (KCDatabase.Instance.QuestProgress.Progresses.ContainsKey(q.QuestID))
 					{
