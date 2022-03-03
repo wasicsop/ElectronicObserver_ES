@@ -159,9 +159,14 @@ public partial class TrackerViewModel : ObservableObject
 	[ICommand]
 	private void CopyTracker()
 	{
+		Clipboard.SetDataObject(SerializeTracker());
+	}
+
+	public string SerializeTracker()
+	{
 		List<TrackerModel> trackers = new() { Model };
 		byte[] data = MessagePackSerializer.Serialize(trackers.SortTrackers());
-		Clipboard.SetDataObject(MessagePackSerializer.ConvertToJson(data));
+		return MessagePackSerializer.ConvertToJson(data);
 	}
 
 	private BattleRank FromString(string rank) => rank.ToUpper() switch

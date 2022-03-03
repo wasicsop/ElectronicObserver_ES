@@ -34,6 +34,21 @@ public partial class QuestTrackerManagerViewModel : QuestTrackerManagerBase
 		SubscribeToApis();
 	}
 
+	private static List<TrackerModel> DeserializeTrackers(string json)
+	{
+		try
+		{
+			byte[] data = MessagePackSerializer.ConvertFromJson(json);
+			return MessagePackSerializer.Deserialize<List<TrackerModel>>(data);
+		}
+		catch
+		{
+			// ignored
+		}
+
+		return new();
+	}
+
 	[ICommand]
 	private void CopyTrackersToClipboard()
 	{
@@ -125,6 +140,46 @@ public partial class QuestTrackerManagerViewModel : QuestTrackerManagerBase
 		Trackers.Remove(tracker);
 
 		KCDatabase.Instance.Quest.OnQuestUpdated();
+	}
+
+	public void ManageTracker(int questId)
+	{
+		foreach (TrackerViewModel trackerViewModel in Trackers)
+		{
+			trackerViewModel.ShowDetails = false;
+		}
+
+		if (Trackers.FirstOrDefault(t => t.Model.Quest.Id == questId) is { } tracker)
+		{
+			tracker.ShowDetails = true;
+		}
+		else if (KCDatabase.Instance.SystemQuestTrackerManager.Trackers.FirstOrDefault(t => t.Model.Quest.Id == questId)
+				 is { } systemTracker)
+		{
+			TrackerModel? copiedTracker = DeserializeTrackers(systemTracker.SerializeTracker()).FirstOrDefault();
+			if (copiedTracker is null)
+			{
+				// log
+				// no idea how copying could fail
+				return;
+			}
+
+			TrackerViewModel vm = new(copiedTracker) { ShowDetails = true };
+
+			vm.SetProgress(systemTracker.GetProgress());
+
+			Trackers.Add(vm);
+		}
+		else
+		{
+			TrackerViewModel vm = new(new TrackerModel(new QuestModel(questId)))
+			{
+				ShowDetails = true,
+			};
+
+			Trackers.Add(vm);
+			KCDatabase.Instance.Quest.OnQuestUpdated();
+		}
 	}
 
 	public void Save()

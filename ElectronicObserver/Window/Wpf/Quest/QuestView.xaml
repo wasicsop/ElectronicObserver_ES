@@ -103,6 +103,8 @@
 			<MenuItem Command="{Binding DataContext.MenuProgress_Decrement_ClickCommand}" Header="{Binding DataContext.FormQuest.MenuProgress_Decrement}" />
 			<Separator />
 			<MenuItem Command="{Binding DataContext.MenuProgress_Reset_ClickCommand}" Header="{Binding DataContext.FormQuest.MenuProgress_Reset}" />
+			<Separator />
+			<MenuItem Command="{Binding DataContext.ManageTrackerCommand}" Header="Manage quest tracker" />
 		</ContextMenu>
 
 		<!--

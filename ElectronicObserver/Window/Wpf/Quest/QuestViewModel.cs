@@ -14,6 +14,7 @@ using ElectronicObserver.Resource;
 using ElectronicObserver.Utility;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.ViewModels.Translations;
+using ElectronicObserver.Window.Dialog.QuestTrackerManager;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.Input;
@@ -695,5 +696,14 @@ public partial class QuestViewModel : AnchorableViewModel
 		}
 
 		Updated();
+	}
+
+	[ICommand]
+	private void ManageTracker()
+	{
+		if (SelectedQuest is null) return;
+
+		KCDatabase.Instance.QuestTrackerManagers.ManageTracker(SelectedQuest.QuestId);
+		new QuestTrackerManagerWindow().Show(App.Current.MainWindow);
 	}
 }
