@@ -229,6 +229,7 @@ public sealed class KCDatabase
 		}
 
 		QuestTrackerManagers.Load();
+		SystemQuestTrackerManager.Load();
 	}
 
 	public void Save()
