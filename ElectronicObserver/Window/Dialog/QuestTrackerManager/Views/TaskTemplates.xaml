@@ -45,15 +45,15 @@
 				SelectedItem="{Binding Model.Rank, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
 				/>
 
-
 			<controls:NumberBox
 				Maximum="{Binding Model.Count}"
 				Minimum="0"
 				Value="{Binding Model.Progress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
 				/>
 
-
 			<controls:NumberBox Minimum="1" Value="{Binding Model.Count, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+			<TextBlock VerticalAlignment="Center" Text="{Binding Display}" />
 		</StackPanel>
 	</DataTemplate>
 
@@ -84,6 +84,8 @@
 				/>
 
 			<controls:NumberBox Minimum="1" Value="{Binding Model.Count, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+			<TextBlock VerticalAlignment="Center" Text="{Binding Display}" />
 		</StackPanel>
 	</DataTemplate>
 
@@ -113,13 +115,11 @@
 				SelectedItem="{Binding Model.Rank, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
 				/>
 
-
 			<controls:NumberBox
 				Maximum="{Binding Model.Count}"
 				Minimum="0"
 				Value="{Binding Model.Progress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
 				/>
-
 
 			<controls:NumberBox Minimum="1" Value="{Binding Model.Count, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
@@ -152,11 +152,12 @@
 					<TextBox Text="{Binding Model.Name, UpdateSourceTrigger=PropertyChanged}" />
 				</StackPanel>
 			</Border>
+
+			<TextBlock VerticalAlignment="Center" Text="{Binding Display}" />
 		</StackPanel>
 	</DataTemplate>
 
 	<DataTemplate x:Key="EquipmentScrapTaskTemplate" DataType="{x:Type questTasks:EquipmentScrapTaskViewModel}">
-
 		<StackPanel Orientation="Horizontal">
 			<Button
 				Command="{Binding DataContext.RemoveTaskCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}"
@@ -179,11 +180,12 @@
 				/>
 
 			<controls:NumberBox Minimum="1" Value="{Binding Model.Count, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+			<TextBlock VerticalAlignment="Center" Text="{Binding Display}" />
 		</StackPanel>
 	</DataTemplate>
 
 	<DataTemplate x:Key="EquipmentCategoryScrapTaskTemplate" DataType="{x:Type questTasks:EquipmentCategoryScrapTaskViewModel}">
-
 		<StackPanel Orientation="Horizontal">
 			<Button
 				Command="{Binding DataContext.RemoveTaskCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}"
@@ -204,11 +206,12 @@
 				/>
 
 			<controls:NumberBox Minimum="1" Value="{Binding Model.Count, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+			<TextBlock VerticalAlignment="Center" Text="{Binding Display}" />
 		</StackPanel>
 	</DataTemplate>
 
 	<DataTemplate x:Key="EquipmentCardTypeScrapTaskTemplate" DataType="{x:Type questTasks:EquipmentCardTypeScrapTaskViewModel}">
-
 		<StackPanel Orientation="Horizontal">
 			<Button
 				Command="{Binding DataContext.RemoveTaskCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}"
@@ -229,11 +232,12 @@
 				/>
 
 			<controls:NumberBox Minimum="1" Value="{Binding Model.Count, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+			<TextBlock VerticalAlignment="Center" Text="{Binding Display}" />
 		</StackPanel>
 	</DataTemplate>
 
 	<DataTemplate x:Key="EquipmentIconTypeScrapTaskTemplate" DataType="{x:Type questTasks:EquipmentIconTypeScrapTaskViewModel}">
-
 		<StackPanel Orientation="Horizontal">
 			<Button
 				Command="{Binding DataContext.RemoveTaskCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}"
@@ -254,6 +258,8 @@
 				/>
 
 			<controls:NumberBox Minimum="1" Value="{Binding Model.Count, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+			<TextBlock VerticalAlignment="Center" Text="{Binding Display}" />
 		</StackPanel>
 	</DataTemplate>
 
@@ -314,6 +320,8 @@
 					<TextBox Text="{Binding Model.Name, UpdateSourceTrigger=PropertyChanged}" />
 				</StackPanel>
 			</Border>
+
+			<TextBlock VerticalAlignment="Center" Text="{Binding Display}" />
 		</StackPanel>
 	</DataTemplate>
 
@@ -337,15 +345,15 @@
 				SelectedItem="{Binding Model.Map, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
 				/>
 
-
 			<controls:NumberBox
 				Maximum="{Binding Model.Count}"
 				Minimum="0"
 				Value="{Binding Model.Progress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
 				/>
 
-
 			<controls:NumberBox Minimum="1" Value="{Binding Model.Count, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+			<TextBlock VerticalAlignment="Center" Text="{Binding Display}" />
 		</StackPanel>
 	</DataTemplate>
 
@@ -370,6 +378,8 @@
 				/>
 
 			<controls:NumberBox Minimum="1" Value="{Binding Model.Count, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+			<TextBlock VerticalAlignment="Center" Text="{Binding Display}" />
 		</StackPanel>
 	</DataTemplate>
 
