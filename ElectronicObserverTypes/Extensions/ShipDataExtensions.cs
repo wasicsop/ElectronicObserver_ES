@@ -90,7 +90,8 @@ public static class ShipDataExtensions
 		ship.MasterShip.ShipId is
 			ShipId.SaratogaMkII or
 			ShipId.AkagiKaiNiE or
-			ShipId.KagaKaiNiE;
+			ShipId.KagaKaiNiE or
+			ShipId.RyuuhouKaiNiE;
 
 	private static bool HasNightAviationPersonnel(this IShipData ship) => ship.AllSlotInstance
 		.Any(e => e?.MasterEquipment.IsNightAviationPersonnel == true);
