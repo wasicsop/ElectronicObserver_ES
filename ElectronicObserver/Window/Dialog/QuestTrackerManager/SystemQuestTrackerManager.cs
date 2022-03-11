@@ -54,7 +54,7 @@ public class SystemQuestTrackerManager : QuestTrackerManagerBase
 		}
 	}
 
-	public void Save()
+	public override void Save()
 	{
 		SaveProgress();
 	}

@@ -182,7 +182,7 @@ public partial class QuestTrackerManagerViewModel : QuestTrackerManagerBase
 		}
 	}
 
-	public void Save()
+	public override void Save()
 	{
 		SaveExistingTrackers();
 		SaveProgress();

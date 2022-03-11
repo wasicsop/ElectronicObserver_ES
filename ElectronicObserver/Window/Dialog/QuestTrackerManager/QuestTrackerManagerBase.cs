@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using ElectronicObserver.Data;
+using ElectronicObserver.Data.Quest;
 using ElectronicObserver.Observer;
 using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.Enums;
@@ -30,6 +31,8 @@ public abstract class QuestTrackerManagerBase
 	{
 		var ao = APIObserver.Instance;
 
+		ao.APIList["api_port/port"].ResponseReceived += TimerSave;
+
 		ao.APIList["api_get_member/questlist"].ResponseReceived += QuestUpdated;
 
 		ao.APIList["api_req_map/start"].ResponseReceived += StartSortie;
@@ -48,6 +51,16 @@ public abstract class QuestTrackerManagerBase
 		ao.APIList["api_req_practice/battle_result"].ResponseReceived += PracticeFinished;
 
 		ao.APIList["api_req_mission/result"].ResponseReceived += ExpeditionCompleted;
+	}
+
+	private void TimerSave(string apiname, dynamic data)
+	{
+		if (!DateTimeHelper.IsCrossedHour(LastQuestListUpdate)) return;
+
+		LastQuestListUpdate = DateTime.Now;
+
+		Save();
+		Utility.Logger.Add(1, QuestTracking.AutoSavedProgress);
 	}
 
 	private void QuestUpdated(string apiname, dynamic data)
@@ -234,4 +247,6 @@ public abstract class QuestTrackerManagerBase
 			tracker.Increment(discardedEquipment.Select(e => e.MasterEquipment.IconTypeTyped));
 		}
 	}
+
+	public abstract void Save();
 }
