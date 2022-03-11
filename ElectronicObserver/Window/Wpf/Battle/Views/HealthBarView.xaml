@@ -1,20 +1,21 @@
-﻿<UserControl x:Class="ElectronicObserver.Window.Wpf.Battle.Views.HealthBarView"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:ElectronicObserver.Window.Wpf.Battle"
-
-			 x:Name="HealthBarControl"
-
-             mc:Ignorable="d" 
-             d:DesignHeight="25" d:DesignWidth="80">
-	<Border
-		DataContext="{Binding ViewModel, ElementName=HealthBarControl}"
-		Background="{Binding BackgroundColor}"
-		ToolTip="{Binding ToolTip}"
+﻿<UserControl
+	x:Class="ElectronicObserver.Window.Wpf.Battle.Views.HealthBarView"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:local="clr-namespace:ElectronicObserver.Window.Wpf.Battle"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	x:Name="HealthBarControl"
+	d:DesignHeight="25"
+	d:DesignWidth="80"
+	mc:Ignorable="d"
 	>
-		<Grid Visibility="{Binding Visibility}" IsSharedSizeScope="True">
+	<Border
+		Background="{Binding BackgroundColor}"
+		DataContext="{Binding ViewModel, ElementName=HealthBarControl}"
+		ToolTip="{Binding ToolTip}"
+		>
+		<Grid IsSharedSizeScope="True" Visibility="{Binding Visibility}">
 			<Grid.Resources>
 				<Style TargetType="TextBlock">
 					<Setter Property="Margin" Value="0" />
@@ -26,43 +27,71 @@
 				<RowDefinition Height="*" />
 			</Grid.RowDefinitions>
 
-			<Grid Grid.Row="0" x:Name="HealthBarText">
+			<Grid x:Name="HealthBarText" Grid.Row="0">
 				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="Auto" SharedSizeGroup="HealthBarSideValue" MinWidth="20" />
-					<ColumnDefinition Width="*" MinWidth="30"  />
-					<ColumnDefinition Width="Auto" SharedSizeGroup="HealthBarSideValue" MinWidth="20" />
+					<ColumnDefinition
+						Width="Auto"
+						MinWidth="20"
+						SharedSizeGroup="HealthBarSideValue"
+						/>
+					<ColumnDefinition Width="*" MinWidth="30" />
+					<ColumnDefinition
+						Width="Auto"
+						MinWidth="20"
+						SharedSizeGroup="HealthBarSideValue"
+						/>
 				</Grid.ColumnDefinitions>
 
-				<TextBlock Grid.Column="0" Text="{Binding Text}" d:Text="SSV" VerticalAlignment="Bottom" FontSize="9" Foreground="{Binding SubFontBrush}" />
-				<TextBlock Grid.Column="1" Text="{Binding Health}" d:Text="2400" TextAlignment="Center" Margin="4 0" Foreground="{Binding MainFontBrush}" />
-				<TextBlock Grid.Column="2" Text="{Binding DamageTaken}" d:Text="-6" TextAlignment="Right" VerticalAlignment="Bottom" FontSize="9" Foreground="{Binding SubFontBrush}" />
+				<TextBlock
+					Grid.Column="0"
+					VerticalAlignment="Bottom"
+					d:Text="SSV"
+					FontSize="9"
+					Foreground="{Binding SubFontBrush}"
+					Text="{Binding Text}"
+					/>
+				<TextBlock
+					Grid.Column="1"
+					Margin="4 0"
+					d:Text="2400"
+					Foreground="{Binding MainFontBrush}"
+					Text="{Binding Health}"
+					TextAlignment="Center"
+					/>
+				<TextBlock
+					Grid.Column="2"
+					VerticalAlignment="Bottom"
+					d:Text="-6"
+					FontSize="9"
+					Foreground="{Binding SubFontBrush}"
+					Text="{Binding DamageTaken}"
+					TextAlignment="Right"
+					/>
 			</Grid>
 
 			<ProgressBar
 				Grid.Row="1"
-				Value="{Binding PrevValue}"
-				Maximum="{Binding MaximumValue}"
-				Foreground="DarkRed"
 				Width="{Binding ActualWidth, ElementName=HealthBarText, Mode=OneWay}"
 				Margin="-1 0"
-
 				d:Foreground="DarkRed"
-				d:Value="19"
 				d:Maximum="29"
-			/>
+				d:Value="19"
+				Foreground="DarkRed"
+				Maximum="{Binding MaximumValue}"
+				Value="{Binding PrevValue}"
+				/>
 
 			<ProgressBar
-			    Grid.Row="1"
-				Value="{Binding Value}"
-				Maximum="{Binding MaximumValue}"
-				Foreground="{Binding HealthBarBrush}"
-			    Width="{Binding ActualWidth, ElementName=HealthBarText, Mode=OneWay}"
-			    Margin="-1 0"
-				
-			    d:Foreground="Orange"
-				d:Value="13"
+				Grid.Row="1"
+				Width="{Binding ActualWidth, ElementName=HealthBarText, Mode=OneWay}"
+				Margin="-1 0"
+				d:Foreground="Orange"
 				d:Maximum="29"
-		    />
+				d:Value="13"
+				Foreground="{Binding HealthBarBrush}"
+				Maximum="{Binding MaximumValue}"
+				Value="{Binding Value}"
+				/>
 		</Grid>
 	</Border>
 </UserControl>
