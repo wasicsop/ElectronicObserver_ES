@@ -17,7 +17,7 @@ namespace ElectronicObserver.Data.Battle;
 /// <summary>
 /// 戦闘関連の処理を統括して扱います。
 /// </summary>
-public class BattleManager : ResponseWrapper
+public class BattleManager : APIWrapper
 {
 
 	public static readonly string BattleLogPath = "BattleLog";
@@ -150,6 +150,16 @@ public class BattleManager : ResponseWrapper
 	/// 演習の敵提督階級
 	/// </summary>
 	public string EnemyAdmiralRank { get; internal set; }
+
+	/// <summary>
+	/// True if Resupply was used before the battle
+	/// </summary>
+	public bool ResupplyUsed { get; private set; }
+
+	/// <summary>
+	/// True if ration was used before the battle
+	/// </summary>
+	public bool RationUsed { get; private set; }
 
 
 	/// <summary>
@@ -355,6 +365,17 @@ public class BattleManager : ResponseWrapper
 
 	}
 
+	public override void LoadFromRequest(string apiname, Dictionary<string, string> data)
+	{
+		switch (apiname)
+		{
+			case "api_req_sortie/battle":
+				ResupplyUsed = data.ContainsKey("api_supply_flag") && data["api_supply_flag"] == "1";
+				RationUsed = data.ContainsKey("api_ration_flag") && data["api_ration_flag"] == "1";
+				break;
+		}
+
+	}
 
 	/// <summary>
 	/// 戦闘終了時に各種データの収集を行います。

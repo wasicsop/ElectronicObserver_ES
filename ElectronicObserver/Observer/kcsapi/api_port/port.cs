@@ -122,6 +122,12 @@ public class port : APIBase
 		db.Replays.LoadFromResponse(APIName, data);
 		db.Battle.LoadFromResponse(APIName, data);
 
+		// --- Reset airbase strike points
+		foreach (BaseAirCorpsData airCorpBase in db.BaseAirCorps.Values)
+		{
+			airCorpBase.LoadFromResponse(APIName, data);
+		}
+
 		// --- Debuff sound
 		// todo when this gets checked compass is already null, adjust that if this info is ever needed
 		/*if (data.api_event_object() && data.api_event_object.api_m_flag2() && (int)data.api_event_object.api_m_flag2 > 0)

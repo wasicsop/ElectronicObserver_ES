@@ -15,9 +15,19 @@ public class battle : APIBase
 
 		KCDatabase.Instance.Battle.LoadFromResponse(APIName, data);
 		KCDatabase.Instance.Replays.LoadFromResponse(APIName, data);
+		KCDatabase.Instance.TsunDbSubmission.LoadFromResponse(APIName, data);
 
 		base.OnResponseReceived((object)data);
 	}
+
+	public override void OnRequestReceived(Dictionary<string, string> data)
+	{
+		KCDatabase.Instance.Battle.LoadFromRequest(APIName, data);
+
+		base.OnRequestReceived(data);
+	}
+
+	public override bool IsRequestSupported => true;
 
 	public override string APIName => "api_req_sortie/battle";
 }

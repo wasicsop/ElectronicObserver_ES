@@ -221,28 +221,13 @@ public class ReplayManager : ResponseWrapper
 	private void GetNodeSupport()
 	{
 		KCDatabase db = KCDatabase.Instance;
-		var fleets = db.Fleet.Fleets.Values.ToList();
-		foreach (var fleet in fleets)
-		{
-			if (fleet.ExpeditionDestination == 33 || fleet.ExpeditionDestination == 301)
-			{
-				Battle_replay.Support1 = fleet.ID;
-			}
-		}
+		Battle_replay.Support1 = db.Fleet.NodeSupportFleet ?? 0;
 	}
 
 	private void GetBossSupport()
 	{
 		KCDatabase db = KCDatabase.Instance;
-		var fleets = db.Fleet.Fleets.Values.ToList();
-		foreach (var fleet in fleets)
-		{
-			if (fleet.ExpeditionDestination == 34 || fleet.ExpeditionDestination == 302)
-			{
-				Battle_replay.Support2 = fleet.ID;
-			}
-
-		}
+		Battle_replay.Support2 = db.Fleet.BossSupportFleet ?? 0;
 	}
 
 	private void GetLBAS()
