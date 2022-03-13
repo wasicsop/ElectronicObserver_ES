@@ -15,7 +15,6 @@ public class FleetManager : APIWrapper
 
 	public IDDictionary<FleetData> Fleets { get; private set; }
 
-
 	/// <summary>
 	/// 連合艦隊フラグ
 	/// </summary>
@@ -48,6 +47,14 @@ public class FleetManager : APIWrapper
 
 	/// <summary> コンディションが回復する秒オフセット の精度[秒] </summary>
 	public double ConditionBorderAccuracy => ConditionPredictMax - ConditionPredictMin;
+
+	public int? NodeSupportFleet => Fleets.Values.FirstOrDefault(fleet => fleet.ExpeditionDestination == 33 || fleet.ExpeditionDestination == 301)?.ID;
+
+	public int? BossSupportFleet => Fleets.Values.FirstOrDefault(fleet => fleet.ExpeditionDestination == 34 || fleet.ExpeditionDestination == 302)?.ID;
+
+	public FleetData? NodeSupportFleetInstance => NodeSupportFleet is int nodeSupportIndex ? this[nodeSupportIndex] : null;
+
+	public FleetData? BossSupportFleetInstance => BossSupportFleet is int bossSupportIndex ? this[bossSupportIndex] : null;
 
 
 	public FleetManager()

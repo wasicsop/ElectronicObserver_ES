@@ -343,4 +343,9 @@ public class CompassData : ResponseWrapper
 	/// 対応する海域情報
 	/// </summary>
 	public MapInfoData MapInfo => KCDatabase.Instance.MapInfo[MapAreaID * 10 + MapInfoID];
+
+	/// <summary>
+	/// True if boss node
+	/// </summary>
+	public bool IsBossNode => EventID == 5;
 }

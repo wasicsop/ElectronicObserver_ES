@@ -52,6 +52,11 @@ public class BaseAirCorpsData : APIWrapper, IIdentifiable
 	/// </summary>
 	public int ActionKind { get; private set; }
 
+	/// <summary>
+	/// List of points (edge ?) the LBAS will strike
+	/// </summary>
+	public List<int> StrikePoints { get; private set; } = new List<int>();
+
 
 	/// <summary>
 	/// 航空中隊情報
@@ -92,6 +97,12 @@ public class BaseAirCorpsData : APIWrapper, IIdentifiable
 					ActionKind = actions[index];
 				}
 
+			}
+			break;
+
+			case "api_req_map/start_air_base":
+			{
+				SetStrikePoints(data);
 			}
 			break;
 		}
@@ -145,6 +156,12 @@ public class BaseAirCorpsData : APIWrapper, IIdentifiable
 			case "api_req_air_corps/supply":
 				SetSquadrons(apiname, data.api_plane_info);
 				break;
+
+
+			case "api_port/port":
+				// Reset Strike points after the sortie
+				StrikePoints.Clear();
+				break;
 		}
 	}
 
@@ -170,7 +187,21 @@ public class BaseAirCorpsData : APIWrapper, IIdentifiable
 		}
 	}
 
+	private void SetStrikePoints(Dictionary<string, string> data)
+	{
+		// --- The request doesn't specify the map area ID, so we'll need to rely on the data from the start API
+		int currentArea = KCDatabase.Instance.Battle.Compass.MapAreaID;
 
+		if (currentArea != MapAreaID) return;
+
+		string key = $"api_strike_point_{AirCorpsID}";
+
+		if (!data.ContainsKey(key)) return;
+
+		// --- Points are sent as edges separated by a comma (,)
+		string rawPoints = data[key];
+		StrikePoints = rawPoints.Split(",").Select(pointAsString => int.Parse(pointAsString)).ToList();
+	}
 
 	public override string ToString() => $"[{MapAreaID}:{AirCorpsID}] {Name}";
 
