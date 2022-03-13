@@ -89,22 +89,11 @@ public class TsunDbFleetsAndAirBaseData : TsunDbEntity
 	/// <summary>
 	/// Prepare a fleet and returns it
 	/// </summary>
-	/// <param name="fleet"></param>
+	/// <param name="fleetData"></param>
 	/// <returns></returns>
-	private List<TsunDbBattleShipData> PrepareFleet(FleetData fleetData)
-	{
-		List<TsunDbBattleShipData> shipsData = new List<TsunDbBattleShipData>();
-
-		var members = fleetData.MembersInstance.Where(s => s != null);
-
-		foreach (IShipData ship in fleetData.MembersInstance)
-		{
-			if (ship is null) continue;
-
-			shipsData.Add(new TsunDbBattleShipData(ship, fleetData));
-		}
-
-		return shipsData;
-	}
+	private List<TsunDbBattleShipData> PrepareFleet(FleetData fleetData) => fleetData.MembersInstance
+		.Where(s => s != null)
+		.Select(ship => new TsunDbBattleShipData(ship, fleetData))
+		.ToList();
 	#endregion
 }

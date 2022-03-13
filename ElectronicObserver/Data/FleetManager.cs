@@ -48,9 +48,9 @@ public class FleetManager : APIWrapper
 	/// <summary> コンディションが回復する秒オフセット の精度[秒] </summary>
 	public double ConditionBorderAccuracy => ConditionPredictMax - ConditionPredictMin;
 
-	public int? NodeSupportFleet => Fleets.Values.FirstOrDefault(fleet => fleet.ExpeditionDestination == 33 || fleet.ExpeditionDestination == 301)?.ID;
+	public int? NodeSupportFleet => Fleets.Values.FirstOrDefault(fleet => fleet.ExpeditionDestination is 33 or 301)?.ID;
 
-	public int? BossSupportFleet => Fleets.Values.FirstOrDefault(fleet => fleet.ExpeditionDestination == 34 || fleet.ExpeditionDestination == 302)?.ID;
+	public int? BossSupportFleet => Fleets.Values.FirstOrDefault(fleet => fleet.ExpeditionDestination is 34 or 302)?.ID;
 
 	public FleetData? NodeSupportFleetInstance => NodeSupportFleet is int nodeSupportIndex ? this[nodeSupportIndex] : null;
 

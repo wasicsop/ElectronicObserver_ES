@@ -221,13 +221,13 @@ public class ReplayManager : ResponseWrapper
 	private void GetNodeSupport()
 	{
 		KCDatabase db = KCDatabase.Instance;
-		Battle_replay.Support1 = db.Fleet.NodeSupportFleet is int fleetIndex ? fleetIndex : 0;
+		Battle_replay.Support1 = db.Fleet.NodeSupportFleet ?? 0;
 	}
 
 	private void GetBossSupport()
 	{
 		KCDatabase db = KCDatabase.Instance;
-		Battle_replay.Support2 = db.Fleet.BossSupportFleet is int fleetIndex ? fleetIndex : 0;
+		Battle_replay.Support2 = db.Fleet.BossSupportFleet ?? 0;
 	}
 
 	private void GetLBAS()
