@@ -77,6 +77,13 @@ public static class WikiDataParser
 
 		foreach (WikiShip ship in wikiShips.Values)
 		{
+			// if any equip is null, set the whole default equip as unknown
+			if (ship._equipment.Any(s => s.equipment is { ValueKind: JsonValueKind.Null }))
+			{
+				ships.First(s => s.ShipID == ship._api_id).DefaultSlot = null;
+				continue;
+			}
+
 			try
 			{
 				ships.First(s => s.ShipID == ship._api_id).DefaultSlot = ship._equipment
@@ -135,6 +142,13 @@ public static class WikiDataParser
 
 		foreach (WikiAbyssalShip ship in wikiShips.Values)
 		{
+			// if any equip is null, set the whole default equip as unknown
+			if (ship._equipment.Any(s => s.equipment is { ValueKind: JsonValueKind.Null }))
+			{
+				masterShips.First(s => s.ShipID == ship._api_id).DefaultSlot = null;
+				continue;
+			}
+
 			masterShips.First(s => s.ShipID == ship._api_id).DefaultSlot = ship._equipment
 				.Select(s => s.equipment switch
 				{
