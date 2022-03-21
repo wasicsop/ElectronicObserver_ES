@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ElectronicObserver.Data.Battle.Detail;
+using ElectronicObserver.Data.Battle.Phase;
 using ElectronicObserver.Properties.Data;
 using ElectronicObserver.Resource.Record;
 using ElectronicObserver.Utility.Data;
@@ -50,6 +51,11 @@ public class BattleManager : APIWrapper
 	/// 戦闘結果データ
 	/// </summary>
 	public BattleResultData Result { get; private set; }
+
+	// In the api, heavy base air raid is implemented as 3 different air raid battles
+	// If we decide to collapse it down into 1 battle, this should be deleted
+	// and heavy base air raid moved to BattleDay like regular BattleBaseAirRaid
+	public List<BattleBaseAirRaid> HeavyBaseAirRaids { get; } = new();
 
 	[Flags]
 	public enum BattleModes
@@ -117,7 +123,13 @@ public class BattleManager : APIWrapper
 	/// <summary>
 	/// 1回目の戦闘
 	/// </summary>
-	public BattleData FirstBattle => StartsFromDayBattle ? (BattleData)BattleDay : BattleNight;
+	public BattleData FirstBattle => HeavyBaseAirRaids switch
+	{
+		// first battle gets used for things like engagement
+		// remove this part if heavy air raids get moved to BattleDay
+		{ Count: > 0 } => HeavyBaseAirRaids.Last(),
+		_ => StartsFromDayBattle ? BattleDay : BattleNight
+	};
 
 	/// <summary>
 	/// 2回目の戦闘
@@ -185,6 +197,8 @@ public class BattleManager : APIWrapper
 	{
 		//base.LoadFromResponse( apiname, data );	//不要
 
+		HeavyBaseAirRaids.Clear();
+
 		switch (apiname)
 		{
 			case "api_req_map/start":
@@ -203,6 +217,19 @@ public class BattleManager : APIWrapper
 					BattleDay.LoadFromResponse(apiname, Compass.AirRaidData);
 					BattleFinished();
 				}
+				break;
+
+			case "api_req_map/air_raid":
+				BattleMode = BattleModes.BaseAirRaid;
+				// BattleDay = new BattleHeavyBaseAirRaid();
+				// BattleDay.LoadFromResponse(apiname, data.api_destruction_battle[0]);
+				foreach (dynamic airraid in data.api_destruction_battle)
+				{
+					BattleBaseAirRaid raid = new();
+					raid.LoadFromResponse(apiname, airraid);
+					HeavyBaseAirRaids.Add(raid);
+				}
+				BattleFinished();
 				break;
 
 			case "api_req_sortie/battle":
@@ -399,14 +426,30 @@ public class BattleManager : APIWrapper
 		}
 		else if (IsBaseAirRaid)
 		{
-			var initialHPs = BattleDay.Initial.FriendInitialHPs.TakeWhile(hp => hp >= 0);
-			var damage = initialHPs.Zip(BattleDay.ResultHPs.Take(initialHPs.Count()), (initial, result) => initial - result).Sum();
-			var airraid = ((BattleBaseAirRaid)BattleDay).BaseAirRaid;
+			if (BattleDay is BattleBaseAirRaid { BaseAirRaid: { } airraid })
+			{
+				var initialHPs = BattleDay.Initial.FriendInitialHPs.TakeWhile(hp => hp >= 0);
+				var damage = initialHPs.Zip(BattleDay.ResultHPs.Take(initialHPs.Count()), (initial, result) => initial - result).Sum();
 
-			Utility.Logger.Add(2,
+				Utility.Logger.Add(2,
 				string.Format(BattleRes.BattleFinishedBaseAirRaid,
 					Compass.MapAreaID, Compass.MapInfoID, Compass.DestinationID,
 					Constants.GetAirSuperiority(airraid.IsAvailable ? airraid.AirSuperiority : -1), damage, Constants.GetAirRaidDamage(Compass.AirRaidDamageKind)));
+			}
+
+			foreach (BattleBaseAirRaid battleBaseAirRaid in HeavyBaseAirRaids)
+			{
+				List<int> initialHPs = battleBaseAirRaid.Initial.FriendInitialHPs.TakeWhile(hp => hp >= 0).ToList();
+				int damage = initialHPs.Zip(battleBaseAirRaid.ResultHPs.Take(initialHPs.Count()), (initial, result) => initial - result).Sum();
+				PhaseBaseAirRaid baseAirRaid = battleBaseAirRaid.BaseAirRaid;
+
+				int airRaidDamageKind = (int)battleBaseAirRaid.RawData.api_lost_kind;
+
+				Utility.Logger.Add(2,
+					string.Format(BattleRes.BattleFinishedBaseAirRaid,
+						Compass.MapAreaID, Compass.MapInfoID, Compass.DestinationID,
+						Constants.GetAirSuperiority(baseAirRaid.IsAvailable ? baseAirRaid.AirSuperiority : -1), damage, Constants.GetAirRaidDamage(airRaidDamageKind)));
+			}
 		}
 		else
 		{
@@ -506,7 +549,7 @@ public class BattleManager : APIWrapper
 			{
 
 				EquipmentDataMaster eq = KCDatabase.Instance.MasterEquipments[eqID];
-				if(eq.UsesSlotSpace())
+				if (eq.UsesSlotSpace())
 				{
 					DroppedEquipmentCount++;
 				}

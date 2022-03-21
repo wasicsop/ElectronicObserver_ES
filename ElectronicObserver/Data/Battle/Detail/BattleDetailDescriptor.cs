@@ -56,10 +56,20 @@ public static class BattleDetailDescriptor
 		}
 		sb.AppendLine();
 
-
-		sb.AppendFormat("◆ {0} ◆\r\n", bm.FirstBattle.BattleName).AppendLine(GetBattleDetail(bm.FirstBattle));
-		if (bm.SecondBattle != null)
-			sb.AppendFormat("◆ {0} ◆\r\n", bm.SecondBattle.BattleName).AppendLine(GetBattleDetail(bm.SecondBattle));
+		if (bm.HeavyBaseAirRaids.Count > 0)
+		{
+			foreach (BattleBaseAirRaid baseAirRaid in bm.HeavyBaseAirRaids)
+			{
+				sb.AppendFormat("◆ {0} ◆\r\n", baseAirRaid.BattleName)
+					.AppendLine(GetBattleDetail(baseAirRaid));
+			}
+		}
+		else
+		{
+			sb.AppendFormat("◆ {0} ◆\r\n", bm.FirstBattle.BattleName).AppendLine(GetBattleDetail(bm.FirstBattle));
+			if (bm.SecondBattle != null)
+				sb.AppendFormat("◆ {0} ◆\r\n", bm.SecondBattle.BattleName).AppendLine(GetBattleDetail(bm.SecondBattle));
+		}
 
 
 		if (bm.Result != null)

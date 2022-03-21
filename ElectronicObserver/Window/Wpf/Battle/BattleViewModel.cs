@@ -184,6 +184,7 @@ public partial class BattleViewModel : AnchorableViewModel
 		o["api_port/port"].ResponseReceived += Updated;
 		o["api_req_map/start"].ResponseReceived += Updated;
 		o["api_req_map/next"].ResponseReceived += Updated;
+		o["api_req_map/air_raid"].ResponseReceived += Updated;
 		o["api_req_sortie/battle"].ResponseReceived += Updated;
 		o["api_req_sortie/battleresult"].ResponseReceived += Updated;
 		o["api_req_battle_midnight/battle"].ResponseReceived += Updated;
@@ -277,6 +278,23 @@ public partial class BattleViewModel : AnchorableViewModel
 				PlayerFleetVisible = true;
 				break;
 
+			case "api_req_map/air_raid":
+				if (!bm.HeavyBaseAirRaids.Any())
+				{
+					ViewVisible = false;
+					break;
+				}
+
+				SetFormation(bm);
+				ClearSearchingResult();
+				ClearBaseAirAttack();
+				SetAerialWarfare(null, bm.HeavyBaseAirRaids.Last().BaseAirRaid);
+				SetHPBar(bm.HeavyBaseAirRaids.Last());
+				SetDamageRate(bm);
+				
+				ViewVisible = !hideDuringBattle;
+				PlayerFleetVisible = true;
+				break;
 
 			case "api_req_sortie/battle":
 			case "api_req_practice/battle":
