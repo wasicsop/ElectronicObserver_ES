@@ -39,4 +39,5 @@ public class FormQuestTranslationViewModel : TranslationBaseViewModel
 	public string MenuProgress_Increment => GeneralRes.IncrementByOne.Replace("_", "__").Replace("&", "_");
 	public string MenuProgress_Decrement => GeneralRes.DecrementByOne.Replace("_", "__").Replace("&", "_");
 	public string MenuProgress_Reset => Properties.Window.FormQuest.MenuProgress_Reset.Replace("_", "__").Replace("&", "_");
+	public string ModifyProgress => Properties.Window.FormQuest.ModifyProgress;
 }

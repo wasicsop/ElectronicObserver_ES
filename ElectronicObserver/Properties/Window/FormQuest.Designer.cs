@@ -19,7 +19,7 @@ namespace ElectronicObserver.Properties.Window {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class FormQuest {
@@ -192,6 +192,15 @@ namespace ElectronicObserver.Properties.Window {
         public static string MenuProgress_Reset {
             get {
                 return ResourceManager.GetString("MenuProgress_Reset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 進捗状況の修正(_M).
+        /// </summary>
+        public static string ModifyProgress {
+            get {
+                return ResourceManager.GetString("ModifyProgress", resourceCulture);
             }
         }
         
