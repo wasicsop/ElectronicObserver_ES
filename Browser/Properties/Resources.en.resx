@@ -253,9 +253,7 @@ Are you sure?</value>
     <value>Browser Restart Confirmation</value>
   </data>
   <data name="ClearCacheMessage" xml:space="preserve">
-    <value>This will restart the browser and clear the cache.
-Are you sure?
-*Depending on the environment, the application may crash. In that case, please restart.</value>
+    <value>Are you sure you want to clear your cache?</value>
   </data>
   <data name="ToolMenu_Other_ScreenShot" xml:space="preserve">
     <value>&amp;Screenshot</value>
@@ -355,5 +353,8 @@ Open the download page?
   </data>
   <data name="InstallationFailed" xml:space="preserve">
     <value>An error occurred while trying to install WebView2. Please install WebView2 manually.</value>
+  </data>
+  <data name="CacheCleared" xml:space="preserve">
+    <value>Cache has been cleared.</value>
   </data>
 </root>
