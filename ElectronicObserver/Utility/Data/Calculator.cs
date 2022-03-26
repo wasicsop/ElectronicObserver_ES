@@ -8,6 +8,7 @@ using ElectronicObserver.Data;
 using ElectronicObserver.Resource.Record;
 using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserverTypes;
+using ElectronicObserverTypes.Extensions;
 
 namespace ElectronicObserver.Utility.Data;
 
@@ -55,18 +56,6 @@ public static class Calculator
 		0, 10, 25, 40, 55, 70, 85, 100, 120
 	};
 
-	/// <summary>
-	/// 各装備カテゴリにおける制空値の改修ボーナス
-	/// </summary>
-	private static readonly Dictionary<EquipmentTypes, double> LevelBonus = new Dictionary<EquipmentTypes, double>() {
-		{ EquipmentTypes.CarrierBasedFighter,   0.2 },
-		{ EquipmentTypes.CarrierBasedBomber,    0.25 },
-		{ EquipmentTypes.SeaplaneFighter,       0.2 },
-		{ EquipmentTypes.Interceptor,           0.2 },
-		{ EquipmentTypes.LandBasedAttacker,     0.5 },
-		{ EquipmentTypes.HeavyBomber,           0.5 },
-	};
-
 
 
 	/// <summary>
@@ -100,7 +89,7 @@ public static class Calculator
 		}
 
 
-		double levelBonus = LevelBonus.ContainsKey(category) ? LevelBonus[category] : 0;    // 改修レベル補正
+		double levelBonus = eq.AircraftAaLevelCoefficient();
 
 		if (category == EquipmentTypes.LandBasedAttacker || category == EquipmentTypes.HeavyBomber)
 			levelBonus *= Math.Sqrt(level);
