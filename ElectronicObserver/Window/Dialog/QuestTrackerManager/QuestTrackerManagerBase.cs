@@ -249,4 +249,6 @@ public abstract class QuestTrackerManagerBase
 	}
 
 	public abstract void Save();
+
+	public TrackerViewModel? GetTrackerById(int id) => Trackers.FirstOrDefault(t => t.QuestId == id);
 }

@@ -350,11 +350,17 @@ public partial class QuestViewModel : AnchorableViewModel
 
 			{
 				var progress = KCDatabase.Instance.QuestProgress[q.QuestID];
+				var tracker = KCDatabase.Instance.QuestTrackerManagers.GetTrackerById(q.QuestID) ??
+							  KCDatabase.Instance.SystemQuestTrackerManager.GetTrackerById(q.QuestID);
 				// var code = q.Code != "" ? $"{q.Code}: " : "";
 				// row.Cells[QuestView_Name.Index].ToolTipText =
 				// 	$"{code}{q.Name} (ID: {q.QuestID})\r\n{q.Description}\r\n{progress?.GetClearCondition() ?? ""}";
 
-				row.QuestView_NameToolTip = $"{row.QuestView_Name} (ID: {q.QuestID})\r\n{q.Description}\r\n{progress?.GetClearCondition() ?? ""}";
+				row.QuestView_NameToolTip =
+					$"{row.QuestView_Name} (ID: {q.QuestID})\r\n" +
+					$"{q.Description}\r\n" +
+					$"{tracker?.ClearCondition ?? progress?.GetClearCondition() ?? ""}\r\n" +
+					$"{tracker?.GroupConditions.Display ?? progress?.GetClearCondition() ?? ""}";
 			}
 			{
 				string value;
@@ -368,10 +374,8 @@ public partial class QuestViewModel : AnchorableViewModel
 				}
 				else
 				{
-					TrackerViewModel? tracker = KCDatabase.Instance.QuestTrackerManagers.Trackers
-						.FirstOrDefault(t => t.QuestId == q.QuestID);
-					TrackerViewModel? systemTracker = KCDatabase.Instance.SystemQuestTrackerManager.Trackers
-						.FirstOrDefault(t => t.QuestId == q.QuestID);
+					TrackerViewModel? tracker = KCDatabase.Instance.QuestTrackerManagers.GetTrackerById(q.QuestID);
+					TrackerViewModel? systemTracker = KCDatabase.Instance.SystemQuestTrackerManager.GetTrackerById(q.QuestID);
 
 					if (tracker is not null)
 					{

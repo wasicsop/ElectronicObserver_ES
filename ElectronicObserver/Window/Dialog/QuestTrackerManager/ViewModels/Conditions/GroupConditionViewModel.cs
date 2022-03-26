@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
+using ElectronicObserver.Data;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.Enums;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.Models.Conditions;
 using ElectronicObserver.Window.Wpf;
@@ -59,6 +60,13 @@ public partial class GroupConditionViewModel : ObservableObject, IConditionViewM
 			if (args.PropertyName is not nameof(GroupOperator)) return;
 
 			Model.GroupOperator = GroupOperator;
+		};
+
+		PropertyChanged += (sender, args) =>
+		{
+			if (args.PropertyName is not nameof(Display)) return;
+
+			KCDatabase.Instance.Quest.OnQuestUpdated();
 		};
 
 		Model.Conditions.CollectionChanged += (_, e) =>
