@@ -1517,6 +1517,57 @@ public partial class FormMainViewModel : ObservableObject
 #endif
 	}
 
+	[ICommand]
+	private void GenerateShipIdEnum()
+	{
+		static string CleanName(string name) => name
+			.Replace(" ", "")
+			.Replace(")", "")
+			.Replace("-", "")
+			.Replace("/", "")
+			.Replace(".", "")
+			.Replace("(", "")
+			.Replace("+", "")
+			.Replace("'", "");
+
+		List<string> enumValues = KCDatabase.Instance.MasterShips.Values
+			.Where(e => !e.IsAbyssalShip)
+			.Select(s => (Name: CleanName(s.NameEN), Id: s.ShipID))
+			.GroupBy(t => t.Name)
+			.SelectMany(g => g.Count() switch
+			{
+				// if the name is the same, append the ID (Souya)
+				> 1 => g.Select(t => (Name: $"{t.Name}{t.Id}", t.Id)).ToList(),
+				1 => new List<(string Name, int Id)> { (g.First().Name, g.First().Id) }
+			})
+			.OrderBy(t => t.Id)
+			.Select(t => $"{t.Name} = {t.Id}")
+			.ToList();
+
+		System.Windows.Clipboard.SetText(string.Join(",\n", enumValues));
+	}
+
+	[ICommand]
+	private void GenerateEquipmentIdEnum()
+	{
+		static string CleanName(string name) => name
+			.Replace(" ", "")
+			.Replace(")", "")
+			.Replace("-", "")
+			.Replace("/", "")
+			.Replace(".", "_")
+			.Replace("(", "_")
+			.Replace("&", "_")
+			.Replace("+", "_");
+
+		List<string> enumValues = KCDatabase.Instance.MasterEquipments.Values
+			.Where(e => !e.IsAbyssalEquipment)
+			.Select(eq => $"{eq.CategoryType}_{CleanName(eq.NameEN)} = {eq.ID}")
+			.ToList();
+
+		System.Windows.Clipboard.SetText(string.Join(",\n", enumValues));
+	}
+
 #endregion
 
 #region Help

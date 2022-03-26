@@ -592,11 +592,11 @@
 					Header="{Binding FormMain.StripMenu_Debug_LoadDataFromOld}"
 					/>
 				<Separator Visibility="{Binding GenerateMasterDataVisible, Converter={BoolToVisibilityConverter}}" />
-				<MenuItem
-					Command="{Binding GenerateMasterDataCommand}"
-					Header="Generate Master Data"
-					Visibility="{Binding GenerateMasterDataVisible, Converter={BoolToVisibilityConverter}}"
-					/>
+				<MenuItem Header="Data Generation" Visibility="{Binding GenerateMasterDataVisible, Converter={BoolToVisibilityConverter}}">
+					<MenuItem Command="{Binding GenerateMasterDataCommand}" Header="Generate Master Data" />
+					<MenuItem Command="{Binding GenerateShipIdEnumCommand}" Header="Generate Ship ID Enum" />
+					<MenuItem Command="{Binding GenerateEquipmentIdEnumCommand}" Header="Generate Equipment ID Enum" />
+				</MenuItem>
 			</MenuItem>
 			<MenuItem
 				Height="Auto"
