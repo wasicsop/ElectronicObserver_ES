@@ -4,7 +4,6 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using ElectronicObserver.Data;
 using ElectronicObserver.Resource.Record;
@@ -16,11 +15,10 @@ using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Dialog;
 using ElectronicObserver.Window.Tools.DialogAlbumMasterEquipment;
 using ElectronicObserverTypes;
-using ElectronicObserverTypes.Extensions;
-using Kawazu;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
+using WanaKanaNet;
 using static ElectronicObserver.Resource.Record.ShipParameterRecord;
 
 namespace ElectronicObserver.Window.Tools.DialogAlbumMasterShip;
@@ -30,8 +28,8 @@ public partial class DialogAlbumMasterShipViewModel : ObservableObject
 	private IEnumerable<ShipDataRecord> AllShips { get; }
 	public DialogAlbumMasterShipTranslationViewModel DialogAlbumMasterShip { get; }
 
-	public string SearchFilter { get; set; } = "";
-	public string RomajiSearchFilter { get; set; } = "";
+	public string? SearchFilter { get; set; } = "";
+	public string? RomajiSearchFilter { get; set; } = "";
 
 	public string Title => SelectedShip switch
 	{
@@ -55,19 +53,10 @@ public partial class DialogAlbumMasterShipViewModel : ObservableObject
 	// probably due to multiple enumeration
 	public List<ShipDataRecord> Ships { get; set; }
 
-	private static KawazuConverter Converter { get; } = new();
-	private static async Task<string> ToRomaji(string? s)
-	{
-		if (string.IsNullOrEmpty(s)) return "";
-		if (s.ToCharArray().All(c => char.IsAscii(c) || char.IsDigit(c))) return s;
-
-		return await Converter.Convert(s, To.Romaji);
-	}
-
 	private static Dictionary<ShipId, string> RomajiCache { get; } = new();
 	private static Dictionary<ShipId, string> NameWithClassCache { get; } = new();
 
-	private static async Task<string> GetRomajiName(IShipDataMaster ship)
+	private static string GetRomajiName(IShipDataMaster ship)
 	{
 		if (!RomajiCache.ContainsKey(ship.ShipId))
 		{
@@ -76,8 +65,8 @@ public partial class DialogAlbumMasterShipViewModel : ObservableObject
 				true => ship.NameWithClass.ToLower(),
 				_ => ship.NameReading,
 			};
-			
-			RomajiCache.Add(ship.ShipId, await ToRomaji(name));
+
+			RomajiCache.Add(ship.ShipId, WanaKana.ToRomaji(name));
 		}
 
 		return RomajiCache[ship.ShipId];
@@ -93,7 +82,7 @@ public partial class DialogAlbumMasterShipViewModel : ObservableObject
 		return NameWithClassCache[ship.ShipId];
 	}
 
-	private static async Task<bool> Matches(IShipDataMaster ship, string filter, string romajiFilter)
+	private static bool Matches(IShipDataMaster ship, string filter, string romajiFilter)
 	{
 		bool literalSearch = GetNameWithClass(ship).Contains(filter.ToLower());
 		if (!ship.IsAbyssalShip)
@@ -108,13 +97,13 @@ public partial class DialogAlbumMasterShipViewModel : ObservableObject
 
 		// when using kanji to filter, only do a literal search
 		// 神 matches 北上 if you use romaji compare
-		if (filter.ToCharArray().Any(c => c.IsKanji())) return false;
+		if (filter.ToCharArray().Any(WanaKana.IsKanji)) return false;
 		// abyssals should get matched with literal search only
 		if (ship.IsAbyssalShip) return false;
 		// when using English ship names, do literal searches only
 		if (!Utility.Configuration.Config.UI.JapaneseShipName) return false;
 
-		string romajiName = await GetRomajiName(ship);
+		string romajiName = GetRomajiName(ship);
 
 		bool result = romajiName.Contains(romajiFilter.ToLower());
 
@@ -157,30 +146,30 @@ public partial class DialogAlbumMasterShipViewModel : ObservableObject
 			SelectedShip.Level = Level;
 		};
 
-		PropertyChanged += async (sender, args) =>
+		PropertyChanged += (sender, args) =>
 		{
 			if (args.PropertyName is not nameof(SearchFilter)) return;
 
-			RomajiSearchFilter = await ToRomaji(SearchFilter);
+			RomajiSearchFilter = WanaKana.ToRomaji(SearchFilter ?? "");
 		};
 
-		PropertyChanged += async (sender, args) =>
+		PropertyChanged += (sender, args) =>
 		{
 			if (args.PropertyName is not nameof(RomajiSearchFilter)) return;
 
-			Ships = (await AllShips.Where(async s => RomajiSearchFilter switch
+			Ships = AllShips.Where(s => RomajiSearchFilter switch
 			{
 				null or "" => true,
-				string f => await Matches(s.Ship, SearchFilter, f),
-			})).ToList();
+				string f => Matches(s.Ship, SearchFilter, f),
+			}).ToList();
 		};
 	}
 
-	private async void PopulateCache()
+	private void PopulateCache()
 	{
 		foreach (ShipDataRecord ship in Ships)
 		{
-			await GetRomajiName(ship.Ship);
+			GetRomajiName(ship.Ship);
 			GetNameWithClass(ship.Ship);
 		}
 	}

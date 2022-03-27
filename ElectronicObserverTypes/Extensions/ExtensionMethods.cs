@@ -1,33 +1,15 @@
 ﻿using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Resources;
-using System.Threading.Tasks;
 
 namespace ElectronicObserverTypes.Extensions;
 
 // I have no better name right now
 public static class ExtensionMethods
 {
-	public static bool IsKanji(this char c) => c >= 0x4E00 && c <= 0x9FBF;
-
-	public static async Task<IEnumerable<T>> Where<T>(this IEnumerable<T> source, Func<T, Task<bool>> predicate)
-	{
-		var results = new ConcurrentQueue<T>();
-		var tasks = source.Select(
-			async x =>
-			{
-				if (await predicate(x))
-					results.Enqueue(x);
-			});
-		await Task.WhenAll(tasks);
-		return results;
-	}
-
 	public static string Display(this Enum enumValue) =>
 		enumValue.GetType()
 			.GetMember(enumValue.ToString())
