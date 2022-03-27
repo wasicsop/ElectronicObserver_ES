@@ -424,6 +424,9 @@
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
 		<PackageReference Include="gong-wpf-dragdrop" Version="3.0.0" />
+		<PackageReference Include="Kawazu" Version="1.1.4" />
+		<PackageReference Include="LibNMeCab" Version="0.10.2" />
+		<PackageReference Include="LibNMeCab.IpaDicBin" Version="0.10.0" />
 		<PackageReference Include="Microsoft.AppCenter.Analytics" Version="4.3.0" />
 		<PackageReference Include="Microsoft.AppCenter.Crashes" Version="4.3.0" />
 		<PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.39" />
