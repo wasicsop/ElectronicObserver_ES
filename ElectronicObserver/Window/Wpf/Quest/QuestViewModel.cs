@@ -360,7 +360,7 @@ public partial class QuestViewModel : AnchorableViewModel
 					$"{row.QuestView_Name} (ID: {q.QuestID})\r\n" +
 					$"{q.Description}\r\n" +
 					$"{tracker?.ClearCondition ?? progress?.GetClearCondition() ?? ""}\r\n" +
-					$"{tracker?.GroupConditions.Display ?? progress?.GetClearCondition() ?? ""}";
+					$"{tracker?.GroupConditions.Display ?? ""}";
 			}
 			{
 				string value;
