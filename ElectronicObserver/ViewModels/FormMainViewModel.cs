@@ -101,7 +101,7 @@ public partial class FormMainViewModel : ObservableObject
 
 	private WindowPosition Position { get; set; } = new();
 
-#region Icons
+	#region Icons
 
 	public ImageSource? ConfigurationImageSource { get; }
 
@@ -140,7 +140,7 @@ public partial class FormMainViewModel : ObservableObject
 	public ImageSource? ViewHelpImageSource { get; }
 	public ImageSource? ViewVersionImageSource { get; }
 
-#endregion
+	#endregion
 
 	public ObservableCollection<AnchorableViewModel> Views { get; } = new();
 
@@ -180,7 +180,7 @@ public partial class FormMainViewModel : ObservableObject
 		false;
 #endif
 
-#region Commands
+	#region Commands
 
 	public ICommand SaveDataCommand { get; }
 	public ICommand LoadDataCommand { get; }
@@ -223,14 +223,14 @@ public partial class FormMainViewModel : ObservableObject
 	public ICommand ClosingCommand { get; }
 	public ICommand ClosedCommand { get; }
 
-#endregion
+	#endregion
 
 	public FormMainViewModel(DockingManager dockingManager, FormMainWpf window)
 	{
 		Window = window;
 		DockingManager = dockingManager;
 
-#region Commands
+		#region Commands
 
 		SaveDataCommand = new RelayCommand(StripMenu_File_SaveData_Save_Click);
 		LoadDataCommand = new RelayCommand(StripMenu_File_SaveData_Load_Click);
@@ -273,7 +273,7 @@ public partial class FormMainViewModel : ObservableObject
 		ClosingCommand = new RelayCommand<CancelEventArgs>(Close);
 		ClosedCommand = new RelayCommand(Closed);
 
-#endregion
+		#endregion
 
 		Config = Configuration.Config;
 		FormMain = App.Current.Services.GetService<FormMainTranslationViewModel>()!;
@@ -318,7 +318,7 @@ public partial class FormMainViewModel : ObservableObject
 		UIUpdateTimer.Tick += UIUpdateTimer_Tick;
 		UIUpdateTimer.Start();
 
-#region Icon settings
+		#region Icon settings
 
 		ConfigurationImageSource = ImageSourceIcons.GetIcon(IconContent.FormConfiguration);
 
@@ -398,7 +398,7 @@ public partial class FormMainViewModel : ObservableObject
 		StripMenu_Help_Version.Image = ResourceManager.Instance.Icons.Images[(int)ResourceManager.IconContent.AppIcon];
 		*/
 
-#endregion
+		#endregion
 
 		APIObserver.Instance.Start(Configuration.Config.Connection.Port, Window);
 
@@ -518,7 +518,7 @@ public partial class FormMainViewModel : ObservableObject
 		anchorable.ToggleAutoHide();
 	}
 
-#region File
+	#region File
 
 	private void StripMenu_File_SaveData_Save_Click()
 	{
@@ -709,9 +709,9 @@ public partial class FormMainViewModel : ObservableObject
 		Configuration.Instance.OnConfigurationChanged();
 	}
 
-#endregion
+	#endregion
 
-#region View
+	#region View
 
 	private void OpenView(AnchorableViewModel view)
 	{
@@ -760,9 +760,9 @@ public partial class FormMainViewModel : ObservableObject
 		fwc.DetachAll();
 	}
 
-#endregion
+	#endregion
 
-#region Tools
+	#region Tools
 
 	private void StripMenu_Tool_EquipmentList_Click()
 	{
@@ -912,9 +912,9 @@ public partial class FormMainViewModel : ObservableObject
 		new QuestTrackerManagerWindow().Show(Window);
 	}
 
-#endregion
+	#endregion
 
-#region Debug
+	#region Debug
 
 	private void StripMenu_Debug_LoadAPIFromFile_Click()
 	{
@@ -1568,9 +1568,9 @@ public partial class FormMainViewModel : ObservableObject
 		System.Windows.Clipboard.SetText(string.Join(",\n", enumValues));
 	}
 
-#endregion
+	#endregion
 
-#region Help
+	#region Help
 
 	private void StripMenu_Help_Help_Click()
 	{
@@ -1637,7 +1637,7 @@ public partial class FormMainViewModel : ObservableObject
 		window.ShowDialog(Window);
 	}
 
-#endregion
+	#endregion
 
 	private void CallPumpkinHead(string apiname, dynamic data)
 	{
