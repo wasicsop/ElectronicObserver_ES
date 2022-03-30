@@ -52,8 +52,10 @@ public class TsunDbBattleLBASData : TsunDbEntity
 	{
 		PlaneIds = airCorp.Squadrons.Values.Select(squadron => squadron.EquipmentID).ToList();
 		PlaneCounts = airCorp.Squadrons.Values.Select(squadron => squadron.AircraftCurrent).ToList();
-		PlaneProfiencies = airCorp.Squadrons.Values.Select(squadron => squadron.EquipmentInstance.AircraftLevel).ToList();
-		PlaneImprovements = airCorp.Squadrons.Values.Select(squadron => squadron.EquipmentInstance.Level).ToList();
+
+		PlaneProfiencies = airCorp.Squadrons.Values.Select(squadron => squadron.EquipmentInstance?.AircraftLevel ?? -1).ToList();
+		PlaneImprovements = airCorp.Squadrons.Values.Select(squadron => squadron.EquipmentInstance?.Level ?? -1).ToList();
+
 		PlaneMorale = airCorp.Squadrons.Values.Select(squadron => squadron.Condition).ToList();
 		StrikePoints = airCorp.StrikePoints;
 	}
