@@ -54,7 +54,6 @@ public partial class DialogAlbumMasterShipViewModel : ObservableObject
 	public List<ShipDataRecord> Ships { get; set; }
 
 	private static Dictionary<ShipId, string> RomajiCache { get; } = new();
-	private static Dictionary<ShipId, string> NameWithClassCache { get; } = new();
 
 	private static string GetRomajiName(IShipDataMaster ship)
 	{
@@ -72,19 +71,9 @@ public partial class DialogAlbumMasterShipViewModel : ObservableObject
 		return RomajiCache[ship.ShipId];
 	}
 
-	private static string GetNameWithClass(IShipDataMaster ship)
-	{
-		if (!NameWithClassCache.ContainsKey(ship.ShipId))
-		{
-			NameWithClassCache.Add(ship.ShipId, ship.NameWithClass.ToLower());
-		}
-
-		return NameWithClassCache[ship.ShipId];
-	}
-
 	private static bool Matches(IShipDataMaster ship, string filter, string romajiFilter)
 	{
-		bool literalSearch = GetNameWithClass(ship).Contains(filter.ToLower());
+		bool literalSearch = ship.NameWithClass.ToLower().Contains(filter.ToLower());
 		if (!ship.IsAbyssalShip)
 		{
 			literalSearch |= ship.NameReading.Contains(filter.ToLower());
@@ -170,7 +159,6 @@ public partial class DialogAlbumMasterShipViewModel : ObservableObject
 		foreach (ShipDataRecord ship in Ships)
 		{
 			GetRomajiName(ship.Ship);
-			GetNameWithClass(ship.Ship);
 		}
 	}
 

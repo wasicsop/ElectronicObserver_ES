@@ -11,7 +11,6 @@ using ElectronicObserver.Data;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Resource.Record;
 using ElectronicObserver.Utility.Mathematics;
-using ElectronicObserverTypes;
 using Translation = ElectronicObserver.Properties.Window.Dialog.DialogDropRecordViewer;
 
 namespace ElectronicObserver.Window.Dialog;
@@ -114,21 +113,8 @@ public partial class DialogDropRecordViewer : Form
 			.Distinct()
 			.Except(new[] { NameNotExist, NameFullPort });
 
-		Dictionary<ShipId, string> nameWithClassCache = new();
-
-		string TryGetShipNameWithClass(ShipDataMaster ship)
-		{
-			if (!nameWithClassCache.TryGetValue(ship.ShipId, out string? name))
-			{
-				name = ship.NameWithClass;
-				nameWithClassCache.Add(ship.ShipId, name);
-			}
-
-			return name;
-		}
-
 		var includedShipObjects = includedShipNames
-			.Select(name => KCDatabase.Instance.MasterShips.Values.FirstOrDefault(ship => TryGetShipNameWithClass(ship) == name))
+			.Select(name => KCDatabase.Instance.MasterShips.Values.FirstOrDefault(ship => ship.NameWithClass == name))
 			.Where(s => s != null);
 
 		var removedShipNames = includedShipNames.Except(includedShipObjects.Select(s => s.NameWithClass));
