@@ -195,8 +195,8 @@ boss victories ×{3}</value>
   <data name="ClearConditionBattle" xml:space="preserve">
     <value>Battle ×</value>
   </data>
-  <data name="ClearConditionOnly" xml:space="preserve">
-    <value> only</value>
+  <data name="ClearConditionOrHigher" xml:space="preserve">
+    <value> or higher ×</value>
   </data>
   <data name="ClearConditionVictories" xml:space="preserve">
     <value>victories ×</value>
