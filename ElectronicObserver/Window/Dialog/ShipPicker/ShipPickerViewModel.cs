@@ -2,17 +2,22 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Data;
+using ElectronicObserver.Window.Tools.DropRecordViewer;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Extensions;
-using Microsoft.Toolkit.Mvvm.ComponentModel;
-using Microsoft.Toolkit.Mvvm.Input;
 
 namespace ElectronicObserver.Window.Dialog.ShipPicker;
 
 public partial class ShipPickerViewModel : ObservableObject
 {
 	public List<Filter> TypeFilters { get; }
+
+	// todo adding drop record options like this feels really hacky
+	// might wanna figure out a better way to handle this
+	public List<DropRecordOption>? DropRecordOptions { get; set; }
 
 	private List<IShipDataMaster> AllShips => KCDatabase.Instance.MasterShips.Values
 		.Where(s => !s.IsAbyssalShip)
@@ -23,6 +28,7 @@ public partial class ShipPickerViewModel : ObservableObject
 	public ObservableCollection<ClassGroup> ShipClassGroups { get; set; } = new();
 
 	public IShipDataMaster? PickedShip { get; private set; }
+	public DropRecordOption? PickedOption { get; private set; }
 
 	public ShipPickerViewModel()
 	{
@@ -38,6 +44,16 @@ public partial class ShipPickerViewModel : ObservableObject
 	private void SelectShip(IShipDataMaster ship)
 	{
 		PickedShip = ship;
+	}
+
+
+	[ICommand]
+	private void SelectOption(DropRecordOption? option)
+	{
+		// it should never be null but ICommand doesn't work if it's not a nullable enum parameter
+		if (option is null) return;
+
+		PickedOption = option;
 	}
 
 	private void Filter_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)

@@ -164,6 +164,7 @@ public partial class App : Application
 
 		services.AddSingleton<DialogAlbumMasterShipTranslationViewModel>();
 		services.AddSingleton<DialogAlbumMasterEquipmentTranslationViewModel>();
+		services.AddSingleton<DialogDropRecordViewerTranslationViewModel>();
 		services.AddSingleton<QuestTrackerManagerTranslationViewModel>();
 
 		services.AddSingleton<ShipPickerViewModel>();

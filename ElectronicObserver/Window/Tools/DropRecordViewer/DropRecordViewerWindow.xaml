@@ -1,0 +1,329 @@
+﻿<Window
+	x:Class="ElectronicObserver.Window.Tools.DropRecordViewer.DropRecordViewerWindow"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:local="clr-namespace:ElectronicObserver.Window.Tools.DropRecordViewer"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:ui="http://schemas.modernwpf.com/2019"
+	Title="{Binding DialogDropRecordViewer.Title}"
+	Width="730"
+	Height="450"
+	d:DataContext="{d:DesignInstance local:DropRecordViewerViewModel}"
+	ui:WindowHelper.UseModernWindowStyle="True"
+	FontFamily="{Binding Font}"
+	FontSize="{Binding FontSize}"
+	Foreground="{Binding FontBrush}"
+	mc:Ignorable="d"
+	>
+	<Window.Resources>
+		<local:DropRecordViewerBindingProxy x:Key="Proxy" DataContext="{Binding}" />
+		<local:DropFilterToDisplayConverter x:Key="DropFilterToDisplayConverter" />
+		<local:DifficultyToDisplayConverter x:Key="DifficultyToDisplayConverter" />
+	</Window.Resources>
+
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="*" />
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
+
+		<Grid Grid.Row="0" Margin="5 0">
+			<Grid.Resources>
+				<Style TargetType="TextBlock">
+					<Setter Property="VerticalAlignment" Value="Center" />
+					<Setter Property="Margin" Value="4 0" />
+				</Style>
+				<Style BasedOn="{StaticResource DefaultCheckBoxStyle}" TargetType="CheckBox">
+					<Setter Property="VerticalAlignment" Value="Center" />
+					<Setter Property="Margin" Value="4" />
+				</Style>
+				<Style BasedOn="{StaticResource DefaultButtonStyle}" TargetType="Button">
+					<Setter Property="VerticalAlignment" Value="Center" />
+					<Setter Property="Margin" Value="4" />
+				</Style>
+				<Style BasedOn="{StaticResource DefaultComboBoxStyle}" TargetType="ComboBox">
+					<Setter Property="VerticalAlignment" Value="Center" />
+					<Setter Property="Margin" Value="4 0" />
+				</Style>
+			</Grid.Resources>
+			<Grid.RowDefinitions>
+				<RowDefinition />
+				<RowDefinition />
+				<RowDefinition />
+			</Grid.RowDefinitions>
+
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition Width="Auto" />
+			</Grid.ColumnDefinitions>
+
+			<Image
+				Grid.Row="0"
+				Grid.Column="0"
+				Source="{Binding ShipIcon}"
+				/>
+			<TextBlock
+				Grid.Row="0"
+				Grid.Column="1"
+				HorizontalAlignment="Right"
+				Text="{Binding DialogDropRecordViewer.LabelShipName}"
+				/>
+			<Button
+				Grid.Row="0"
+				Grid.Column="2"
+				Command="{Binding OpenShipPickerCommand}"
+				Content="{Binding ShipSearchOption, Converter={StaticResource DropFilterToDisplayConverter}}"
+				ToolTip="{Binding DialogDropRecordViewer.ShipNameToolTip}"
+				/>
+
+
+			<Image
+				Grid.Row="1"
+				Grid.Column="0"
+				Source="{Binding ItemIcon}"
+				/>
+			<TextBlock
+				Grid.Row="1"
+				Grid.Column="1"
+				HorizontalAlignment="Right"
+				Text="{Binding DialogDropRecordViewer.LabelItemName}"
+				/>
+			<ComboBox
+				Grid.Row="1"
+				Grid.Column="2"
+				ItemsSource="{Binding Items}"
+				SelectedItem="{Binding ItemSearchOption}"
+				ToolTip="{Binding DialogDropRecordViewer.ItemNameToolTip}"
+				>
+				<ComboBox.ItemTemplate>
+					<DataTemplate>
+						<TextBlock Text="{Binding Converter={StaticResource DropFilterToDisplayConverter}}" />
+					</DataTemplate>
+				</ComboBox.ItemTemplate>
+			</ComboBox>
+
+			<TextBlock
+				Grid.Row="0"
+				Grid.Column="3"
+				HorizontalAlignment="Center"
+				Text="{Binding DialogDropRecordViewer.Start}"
+				/>
+			<DatePicker
+				Grid.Row="0"
+				Grid.Column="4"
+				HorizontalAlignment="Stretch"
+				DisplayDateEnd="{Binding MaxDate}"
+				DisplayDateStart="{Binding MinDate}"
+				FirstDayOfWeek="Monday"
+				SelectedDate="{Binding DateBegin}"
+				ToolTip="{Binding DialogDropRecordViewer.DateBeginToolTip}"
+				/>
+
+			<TextBlock
+				Grid.Row="1"
+				Grid.Column="3"
+				HorizontalAlignment="Center"
+				Text="{Binding DialogDropRecordViewer.End}"
+				/>
+			<DatePicker
+				Grid.Row="1"
+				Grid.Column="4"
+				HorizontalAlignment="Stretch"
+				DisplayDateEnd="{Binding MaxDate}"
+				DisplayDateStart="{Binding MinDate}"
+				FirstDayOfWeek="Monday"
+				SelectedDate="{Binding DateEnd}"
+				ToolTip="{Binding DialogDropRecordViewer.DateEndToolTip}"
+				/>
+
+			<StackPanel
+				Grid.Row="2"
+				Grid.Column="3"
+				Grid.ColumnSpan="2"
+				HorizontalAlignment="Center"
+				Orientation="Horizontal"
+				>
+				<CheckBox
+					MinWidth="50"
+					Content="S"
+					IsChecked="{Binding RankS}"
+					ToolTip="{Binding DialogDropRecordViewer.RankSToolTip}"
+					/>
+				<CheckBox
+					MinWidth="50"
+					Content="A"
+					IsChecked="{Binding RankA}"
+					ToolTip="{Binding DialogDropRecordViewer.RankAToolTip}"
+					/>
+				<CheckBox
+					MinWidth="50"
+					Content="B"
+					IsChecked="{Binding RankB}"
+					ToolTip="{Binding DialogDropRecordViewer.RankBToolTip}"
+					/>
+				<CheckBox
+					MinWidth="50"
+					Content="X"
+					IsChecked="{Binding RankX}"
+					ToolTip="{Binding DialogDropRecordViewer.RankXToolTip}"
+					/>
+			</StackPanel>
+
+			<TextBlock
+				Grid.Row="0"
+				Grid.Column="5"
+				Text="{Binding DialogDropRecordViewer.NodeSelection}"
+				/>
+			<ComboBox
+				Grid.Row="0"
+				Grid.Column="6"
+				ItemsSource="{Binding Difficulties}"
+				SelectedItem="{Binding MapDifficulty}"
+				ToolTip="{Binding DialogDropRecordViewer.MapDifficultyToolTip}"
+				>
+				<ComboBox.ItemTemplate>
+					<DataTemplate>
+						<TextBlock Text="{Binding Converter={StaticResource DifficultyToDisplayConverter}}" />
+					</DataTemplate>
+				</ComboBox.ItemTemplate>
+			</ComboBox>
+			<CheckBox
+				Grid.Row="0"
+				Grid.Column="7"
+				Content="{Binding DialogDropRecordViewer.IsBossOnly}"
+				IsChecked="{Binding IsBossOnly}"
+				IsThreeState="True"
+				/>
+
+			<ComboBox
+				Grid.Row="1"
+				Grid.Column="5"
+				ItemsSource="{Binding Worlds}"
+				SelectedItem="{Binding MapAreaID}"
+				ToolTip="{Binding DialogDropRecordViewer.MapAreaIDToolTip}"
+				/>
+			<ComboBox
+				Grid.Row="1"
+				Grid.Column="6"
+				ItemsSource="{Binding Maps}"
+				SelectedItem="{Binding MapInfoID}"
+				ToolTip="{Binding DialogDropRecordViewer.MapInfoIDToolTip}"
+				/>
+			<ComboBox
+				Grid.Row="1"
+				Grid.Column="7"
+				IsEnabled="{Binding MapCellIdEnabled}"
+				ItemsSource="{Binding Cells}"
+				SelectedItem="{Binding MapCellID}"
+				ToolTip="{Binding DialogDropRecordViewer.MapCellIDToolTip}"
+				/>
+
+			<CheckBox
+				Grid.Row="2"
+				Grid.Column="6"
+				MinWidth="60"
+				Content="{Binding DialogDropRecordViewer.MergeRows}"
+				IsChecked="{Binding MergeRows}"
+				ToolTip="{Binding DialogDropRecordViewer.MergeRowsToolTip}"
+				/>
+			<Button
+				Grid.Row="2"
+				Grid.Column="7"
+				Command="{Binding StartSearchCommand}"
+				Content="{Binding DialogDropRecordViewer.ButtonRun}"
+				/>
+		</Grid>
+
+		<DataGrid
+			Grid.Row="1"
+			AutoGenerateColumns="False"
+			ColumnWidth="*"
+			HeadersVisibility="Column"
+			IsReadOnly="True"
+			ItemsSource="{Binding Rows}"
+			SelectionChanged="Selector_OnSelectionChanged"
+			>
+			<!--
+				no idea how to do right click the mvvm way
+			-->
+			<DataGrid.RowStyle>
+				<Style BasedOn="{StaticResource DefaultDataGridRowStyle}" TargetType="DataGridRow">
+					<EventSetter Event="MouseDoubleClick" Handler="EventSetter_OnHandler" />
+				</Style>
+			</DataGrid.RowStyle>
+			<DataGrid.Columns>
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding Index}"
+					Visibility="{Binding DataContext.RawRows, Converter={StaticResource BooleanToVisibilityConverter}, Source={StaticResource Proxy}}"
+					/>
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding Name}"
+					Header="{Binding DataContext.DialogDropRecordViewer.RecordView_Name, Source={StaticResource Proxy}}"
+					/>
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding DateDisplay}"
+					Header="{Binding DataContext.DialogDropRecordViewer.RecordView_Date, Source={StaticResource Proxy}}"
+					Visibility="{Binding DataContext.RawRows, Converter={StaticResource BooleanToVisibilityConverter}, Source={StaticResource Proxy}}"
+					/>
+				<DataGridTextColumn
+					Width="*"
+					Binding="{Binding MapDescription}"
+					Header="{Binding DataContext.DialogDropRecordViewer.RecordView_Map, Source={StaticResource Proxy}}"
+					Visibility="{Binding DataContext.RawRows, Converter={StaticResource BooleanToVisibilityConverter}, Source={StaticResource Proxy}}"
+					/>
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding Rank}"
+					Header="{Binding DataContext.DialogDropRecordViewer.RecordView_Rank, Source={StaticResource Proxy}}"
+					Visibility="{Binding DataContext.RawRows, Converter={StaticResource BooleanToVisibilityConverter}, Source={StaticResource Proxy}}"
+					/>
+
+				<!--
+					regular and merged row displays are basically 2 different data grids
+					the name column gets used for both displays
+				-->
+				<DataGridTextColumn
+					Binding="{Binding CountDisplay}"
+					Header="{Binding DataContext.DialogDropRecordViewer.Tries, Source={StaticResource Proxy}}"
+					SortMemberPath="MergedRate"
+					Visibility="{Binding DataContext.MergeRows, Converter={StaticResource BooleanToVisibilityConverter}, Source={StaticResource Proxy}}"
+					/>
+				<DataGridTextColumn
+					Binding="{Binding RankDisplayS}"
+					Header="{Binding DataContext.DialogDropRecordViewer.RecordView_RankS, Source={StaticResource Proxy}}"
+					SortMemberPath="CountS"
+					Visibility="{Binding DataContext.MergeRows, Converter={StaticResource BooleanToVisibilityConverter}, Source={StaticResource Proxy}}"
+					/>
+				<DataGridTextColumn
+					Binding="{Binding RankDisplayA}"
+					Header="{Binding DataContext.DialogDropRecordViewer.RecordView_RankA, Source={StaticResource Proxy}}"
+					SortMemberPath="CountA"
+					Visibility="{Binding DataContext.MergeRows, Converter={StaticResource BooleanToVisibilityConverter}, Source={StaticResource Proxy}}"
+					/>
+				<DataGridTextColumn
+					Binding="{Binding RankDisplayB}"
+					Header="{Binding DataContext.DialogDropRecordViewer.RecordView_RankB, Source={StaticResource Proxy}}"
+					SortMemberPath="CountB"
+					Visibility="{Binding DataContext.MergeRows, Converter={StaticResource BooleanToVisibilityConverter}, Source={StaticResource Proxy}}"
+					/>
+			</DataGrid.Columns>
+		</DataGrid>
+
+		<StatusBar Grid.Row="2">
+			<StatusBarItem>
+				<TextBlock Text="{Binding StatusInfoText}" />
+			</StatusBarItem>
+		</StatusBar>
+	</Grid>
+</Window>

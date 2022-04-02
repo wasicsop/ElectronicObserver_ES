@@ -104,4 +104,7 @@ public class FormMainTranslationViewModel : TranslationBaseViewModel
 
 	public string NextExerciseReset => Properties.Window.FormMain.NextExerciseReset.Replace("_", "__").Replace("&", "_");
 	public string NextQuestReset => Properties.Window.FormMain.NextQuestReset.Replace("_", "__").Replace("&", "_");
+
+	public string Old => Properties.Window.FormMain.Old;
+	public string New => Properties.Window.FormMain.New;
 }

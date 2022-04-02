@@ -423,4 +423,10 @@
   <data name="GridSplitterSize" xml:space="preserve">
     <value>グリッドスプリッターのサイズ</value>
   </data>
+  <data name="Old" xml:space="preserve">
+    <value>旧</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>新</value>
+  </data>
 </root>

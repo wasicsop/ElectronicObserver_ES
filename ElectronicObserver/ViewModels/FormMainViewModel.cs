@@ -33,6 +33,7 @@ using ElectronicObserver.Window.Dialog.VersionInformation;
 using ElectronicObserver.Window.Integrate;
 using ElectronicObserver.Window.Tools.DialogAlbumMasterEquipment;
 using ElectronicObserver.Window.Tools.DialogAlbumMasterShip;
+using ElectronicObserver.Window.Tools.DropRecordViewer;
 using ElectronicObserver.Window.Wpf;
 using ElectronicObserver.Window.Wpf.Arsenal;
 using ElectronicObserver.Window.Wpf.BaseAirCorps;
@@ -240,7 +241,7 @@ public partial class FormMainViewModel : ObservableObject
 		OpenConfigurationCommand = new RelayCommand(StripMenu_File_Configuration_Click);
 
 		OpenEquipmentListCommand = new RelayCommand(StripMenu_Tool_EquipmentList_Click);
-		OpenDropRecordCommand = new RelayCommand(StripMenu_Tool_DropRecord_Click);
+		OpenDropRecordCommand = new RelayCommand<bool>(StripMenu_Tool_DropRecord_Click);
 		OpenDevelopmentRecordCommand = new RelayCommand(StripMenu_Tool_DevelopmentRecord_Click);
 		OpenConstructionRecordCommand = new RelayCommand(StripMenu_Tool_ConstructionRecord_Click);
 		OpenResourceChartCommand = new RelayCommand(StripMenu_Tool_ResourceChart_Click);
@@ -770,7 +771,8 @@ public partial class FormMainViewModel : ObservableObject
 		RefreshTopMost();
 		equipmentList.Show(Window);
 	}
-	private void StripMenu_Tool_DropRecord_Click()
+
+	private void StripMenu_Tool_DropRecord_Click(bool useNewVersion)
 	{
 		if (KCDatabase.Instance.MasterShips.Count == 0)
 		{
@@ -786,7 +788,14 @@ public partial class FormMainViewModel : ObservableObject
 			return;
 		}
 
-		new DialogDropRecordViewer().Show(Window);
+		if (useNewVersion)
+		{
+			new DropRecordViewerWindow().Show(Window);
+		}
+		else
+		{
+			new DialogDropRecordViewer().Show(Window);
+		}
 	}
 
 	private void StripMenu_Tool_DevelopmentRecord_Click()
