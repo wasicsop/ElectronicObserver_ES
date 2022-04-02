@@ -184,7 +184,7 @@ public sealed class Configuration
 			public bool DisableOtherTranslations { get; set; }
 
 			/// <summary>
-			/// Whether to use default or normal node ID
+			/// Use the real integer ID when true, translate to letter when false
 			/// </summary>
 			public bool UseOriginalNodeId { get; set; }
 
