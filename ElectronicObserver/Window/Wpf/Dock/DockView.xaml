@@ -26,7 +26,7 @@
 							</Grid.Resources>
 
 							<Grid.ColumnDefinitions>
-								<ColumnDefinition MaxWidth="60" SharedSizeGroup="DockShipName" />
+								<ColumnDefinition MaxWidth="{Binding ShipName.MaximumWidth}" SharedSizeGroup="DockShipName" />
 								<ColumnDefinition SharedSizeGroup="DockRepairTime" />
 							</Grid.ColumnDefinitions>
 

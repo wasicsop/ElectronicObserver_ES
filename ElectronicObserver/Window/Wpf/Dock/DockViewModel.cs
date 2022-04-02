@@ -19,6 +19,7 @@ public class DockItemControlViewModel : ObservableObject
 	public System.Drawing.Color BackColor { get; set; }
 	public string? ToolTip { get; set; }
 	public DateTime? Tag { get; set; }
+	public int MaximumWidth { get; set; }
 
 	public SolidColorBrush Foreground => ForeColor.ToBrush();
 	public SolidColorBrush Background => BackColor.ToBrush();
@@ -63,8 +64,11 @@ public class DockItemViewModel : ObservableObject
 			Visible = true
 			*/
 		};
-	}
 
+		Utility.Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
+		ConfigurationChanged();
+	}
+	
 	//データ更新時
 	public void Update(int dockID)
 	{
@@ -115,6 +119,11 @@ public class DockItemViewModel : ObservableObject
 			RepairTime.BackColor = DateTime.Now.Second % 2 == 0 ? Utility.Configuration.Config.UI.Dock_RepairFinishedBG : System.Drawing.Color.Transparent;
 			RepairTime.ForeColor = DateTime.Now.Second % 2 == 0 ? Utility.Configuration.Config.UI.Dock_RepairFinishedFG : Utility.Configuration.Config.UI.ForeColor;
 		}
+	}
+
+	private void ConfigurationChanged()
+	{
+		ShipName.MaximumWidth = Utility.Configuration.Config.FormDock.MaxShipNameWidth;
 	}
 }
 
@@ -188,5 +197,6 @@ public class DockViewModel : AnchorableViewModel
 			TableDock.ResumeLayout();
 		}
 		*/
+
 	}
 }
