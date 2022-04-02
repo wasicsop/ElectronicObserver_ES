@@ -36,7 +36,7 @@ public static class SoftwareInformation
 	/// <summary>
 	/// バージョン(英語)
 	/// </summary>
-	public static string VersionEnglish => "5.1.3.0";
+	public static string VersionEnglish => typeof(App).Assembly.GetName().Version.ToString();
 
 
 	/// <summary>
