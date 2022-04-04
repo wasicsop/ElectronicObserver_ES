@@ -31,5 +31,14 @@ public partial class QuestView : UserControl
 	public QuestView()
 	{
 		InitializeComponent();
+
+		DataGrid.Sorting += (sender, args) =>
+		{
+			// dispatcher is needed to get the SortDescriptions value after sorting
+			// without the dispatcher you get the old value before the sorting
+			Dispatcher.BeginInvoke(() => ViewModel.SortDescriptions = DataGrid.Items.SortDescriptions.ToList());
+		};
 	}
+
+
 }

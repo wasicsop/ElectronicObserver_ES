@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Forms;
 using System.Windows.Media;
 using DynaJson;
@@ -29,7 +30,9 @@ public partial class QuestViewModel : AnchorableViewModel
 	public SolidColorBrush FontBrush { get; set; }
 
 	public FormQuestTranslationViewModel FormQuest { get; }
-	public ObservableCollection<QuestItemViewModel> Quests { get; set; } = new();
+	private ObservableCollection<QuestItemViewModel> Quests { get; set; } = new();
+	public ICollectionView View { get; set; }
+	public List<SortDescription> SortDescriptions { get; set; }
 
 	public QuestItemViewModel? SelectedQuest { get; set; }
 
@@ -75,6 +78,7 @@ public partial class QuestViewModel : AnchorableViewModel
 	public QuestViewModel() : base("Quest", "Quest", ImageSourceIcons.GetIcon(IconContent.FormQuest))
 	{
 		FormQuest = App.Current.Services.GetService<FormQuestTranslationViewModel>()!;
+		View = CollectionViewSource.GetDefaultView(Quests);
 
 		Title = FormQuest.Title;
 		FormQuest.PropertyChanged += (_, _) => Title = FormQuest.Title;
@@ -228,6 +232,8 @@ public partial class QuestViewModel : AnchorableViewModel
 		}
 		*/
 
+		SortDescriptions = c.FormQuest.SortDescriptions;
+
 		Updated();
 	}
 
@@ -244,8 +250,10 @@ public partial class QuestViewModel : AnchorableViewModel
 
 			*/
 			Configuration.Config.FormQuest.ColumnWidth = Columns.Select(c => (int)c.Width.DisplayValue).ToList();
+			// ColumnSort only gives you a visual indication for sorting
+			// SortDescriptions do the actual sorting
 			Configuration.Config.FormQuest.ColumnSort = Columns.Select(c => c.SortDirection.ToSerializableValue()).ToList();
-
+			Configuration.Config.FormQuest.SortDescriptions = SortDescriptions;
 		}
 		catch (Exception)
 		{
@@ -466,6 +474,14 @@ public partial class QuestViewModel : AnchorableViewModel
 		// 	QuestView.FirstDisplayedScrollingRowIndex = scrollPos;
 
 		// QuestView.ResumeLayout();
+		ICollectionView view = CollectionViewSource.GetDefaultView(Quests);
+
+		foreach (SortDescription description in SortDescriptions)
+		{
+			view.SortDescriptions.Add(description);
+		}
+
+		View = view;
 	}
 
 	[ICommand]

@@ -264,6 +264,7 @@
 
 	<Grid DataContext="{Binding ViewModel, ElementName=QuestControl}">
 		<DataGrid
+			x:Name="DataGrid"
 			AutoGenerateColumns="False"
 			CanUserAddRows="False"
 			CanUserDeleteRows="False"
@@ -273,7 +274,7 @@
 			HeadersVisibility="Column"
 			HorizontalScrollBarVisibility="Disabled"
 			IsReadOnly="True"
-			ItemsSource="{Binding Quests, IsAsync=True}"
+			ItemsSource="{Binding View, IsAsync=True}"
 			SelectedItem="{Binding SelectedQuest}"
 			SelectionMode="Single"
 			>
