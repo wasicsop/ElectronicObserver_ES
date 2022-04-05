@@ -291,6 +291,7 @@
 							Grid.Column="2"
 							d:Text="Escort"
 							Background="{Binding FleetEnemyEscortBackColor}"
+							Foreground="{Binding FleetEnemyEscortForeColor}"
 							Text="{Binding FormBattle.FleetEnemyEscort}"
 							TextAlignment="Center"
 							Visibility="{Binding FleetEnemyEscortVisible, Converter={StaticResource BooleanToVisibilityConverter}}"

@@ -106,6 +106,7 @@ public partial class BattleViewModel : AnchorableViewModel
 	private bool IsPlayerCombinedFleet { get; set; }
 	public bool FleetFriendEscortVisible => IsPlayerCombinedFleet && PlayerFleetVisible;
 
+	public SolidColorBrush? FleetEnemyEscortForeColor { get; set; }
 	public SolidColorBrush? FleetEnemyEscortBackColor { get; set; }
 	private bool IsEnemyCombinedFleet { get; set; }
 	public bool FleetEnemyEscortVisible => IsEnemyCombinedFleet && ViewVisible;
@@ -291,7 +292,7 @@ public partial class BattleViewModel : AnchorableViewModel
 				SetAerialWarfare(null, bm.HeavyBaseAirRaids.Last().BaseAirRaid);
 				SetHPBar(bm.HeavyBaseAirRaids.Last());
 				SetDamageRate(bm);
-				
+
 				ViewVisible = !hideDuringBattle;
 				PlayerFleetVisible = true;
 				break;
@@ -522,25 +523,52 @@ public partial class BattleViewModel : AnchorableViewModel
 		FormationEnemyText = Constants.GetFormationShort(bm.FirstBattle.Searching.FormationEnemy);
 		FormationText = Constants.GetEngagementForm(bm.FirstBattle.Searching.EngagementForm);
 
-		FleetEnemyForeColor = bm.Compass?.EventID switch
-		{
-			5 => Utility.Configuration.Config.UI.Color_Red.ToBrush(),
-			_ => System.Drawing.SystemColors.ControlText.ToBrush()
-		};
+
 
 		if (bm.IsEnemyCombined && bm.StartsFromDayBattle)
 		{
+			// highlights for the fleet you'll fight in night battle
+			// todo: this should probably go to config
+			Color highlightForeColor = Color.Black;
+			Color highlightBackColor = Color.LightSteelBlue;
+
 			bool willMain = bm.WillNightBattleWithMainFleet();
-			FleetEnemyBackColor = (willMain ? Color.LightSteelBlue : Color.Transparent).ToBrush();
-			FleetEnemyEscortBackColor = (willMain ? Color.Transparent : Color.LightSteelBlue).ToBrush();
+
+			FleetEnemyForeColor = bm.Compass?.EventID switch
+			{
+				5 => Utility.Configuration.Config.UI.Color_Red.ToBrush(),
+				_ when willMain => highlightForeColor.ToBrush(),
+				_ => Utility.Configuration.Config.UI.ForeColor.ToBrush()
+			};
+
+			FleetEnemyBackColor = willMain switch
+			{
+				true => highlightBackColor.ToBrush(),
+				_ => Color.Transparent.ToBrush()
+			};
+
+			FleetEnemyEscortForeColor = willMain switch
+			{
+				true => Utility.Configuration.Config.UI.ForeColor.ToBrush(),
+				_ => highlightForeColor.ToBrush()
+			};
+
+			FleetEnemyEscortBackColor = willMain switch
+			{
+				true => Color.Transparent.ToBrush(),
+				_ => highlightBackColor.ToBrush()
+			};
 		}
 		else
 		{
-			FleetEnemyBackColor =
-				FleetEnemyEscortBackColor = Color.Transparent.ToBrush();
+			FleetEnemyForeColor = bm.Compass?.EventID switch
+			{
+				5 => Utility.Configuration.Config.UI.Color_Red.ToBrush(),
+				_ => Utility.Configuration.Config.UI.ForeColor.ToBrush()
+			};
+			FleetEnemyEscortForeColor = Utility.Configuration.Config.UI.ForeColor.ToBrush();
+			FleetEnemyBackColor = FleetEnemyEscortBackColor = Color.Transparent.ToBrush();
 		}
-
-		FleetEnemyForeColor = Utility.Configuration.Config.UI.ForeColor.ToBrush();
 
 		FormationForeColor = (bm.FirstBattle.Searching.EngagementForm switch
 		{
