@@ -62,6 +62,35 @@
 				<Setter Property="FontFamily" Value="{Binding DataContext.Font, Source={StaticResource Proxy}}" />
 				<Setter Property="FontSize" Value="{Binding DataContext.FontSize, Source={StaticResource Proxy}}" />
 				<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
+				<!--
+					copied from https://github.com/Kinnara/ModernWpf/blob/master/ModernWpf/Styles/MenuItem.xaml#L415
+					change is the foreground on the last trigger
+				-->
+				<Style.Triggers>
+					<Trigger Property="Role" Value="TopLevelHeader">
+						<Setter Property="Background" Value="{DynamicResource MenuBarItemBackground}" />
+						<Setter Property="BorderBrush" Value="{DynamicResource MenuBarItemBorderBrush}" />
+						<Setter Property="BorderThickness" Value="{DynamicResource MenuBarItemBorderThickness}" />
+						<Setter Property="Template" Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly={x:Type MenuItem}, ResourceId=TopLevelHeaderTemplateKey}}" />
+						<Setter Property="IsTabStop" Value="True" />
+						<Setter Property="Height" Value="{StaticResource MenuBarHeight}" />
+					</Trigger>
+					<Trigger Property="Role" Value="TopLevelItem">
+						<Setter Property="Background" Value="{DynamicResource MenuBarItemBackground}" />
+						<Setter Property="BorderBrush" Value="{DynamicResource MenuBarItemBorderBrush}" />
+						<Setter Property="BorderThickness" Value="{DynamicResource MenuBarItemBorderThickness}" />
+						<Setter Property="Template" Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly={x:Type MenuItem}, ResourceId=TopLevelItemTemplateKey}}" />
+						<Setter Property="IsTabStop" Value="True" />
+						<Setter Property="Height" Value="{StaticResource MenuBarHeight}" />
+					</Trigger>
+					<Trigger Property="Role" Value="SubmenuHeader">
+						<Setter Property="Background" Value="{DynamicResource MenuFlyoutSubItemRevealBackground}" />
+						<Setter Property="BorderBrush" Value="{DynamicResource MenuFlyoutSubItemRevealBorderBrush}" />
+						<Setter Property="BorderThickness" Value="{DynamicResource MenuFlyoutSubItemRevealBorderThickness}" />
+						<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
+						<Setter Property="Template" Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly={x:Type MenuItem}, ResourceId=SubmenuHeaderTemplateKey}}" />
+					</Trigger>
+				</Style.Triggers>
 			</Style>
 			<Style BasedOn="{StaticResource DefaultStatusBarStyle}" TargetType="StatusBar">
 				<Setter Property="FontFamily" Value="{Binding DataContext.Font, Source={StaticResource Proxy}}" />
