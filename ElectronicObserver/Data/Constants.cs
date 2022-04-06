@@ -288,7 +288,7 @@ public static class Constants
 	/// <summary>
 	/// 艦型を表す文字列を取得します。
 	/// </summary>
-	public static string GetShipClass(int id)
+	public static string GetShipClass(int id, ShipId shipId = ShipId.Unknown)
 	{
 		switch (id)
 		{
@@ -400,6 +400,15 @@ public static class Constants
 			case 106: return "St. Louis級";
 			case 107: return "North Carolina級";
 			case 108: return "Town級";
+			case 109: return "潜高型";
+			case 110: return "Brooklyn級";
+			case 111 when shipId is ShipId.Souya699: return "耐氷型雑用運送艦";
+			case 111 when shipId is ShipId.Souya645: return "LL01";
+			case 111 when shipId is ShipId.Souya650: return "PL107";
+			case 112: return "Illustrious級";
+			case 113: return "Conte di Cavour級";
+			case 114: return "Gato級";
+			case 115: return "特2TL型";
 			default: return "不明";
 		}
 	}

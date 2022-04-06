@@ -69,7 +69,13 @@ public partial class ShipPickerViewModel : WindowViewModelBase
 			.Select(g => new ClassGroup
 			{
 				Id = g.Key,
-				Name = Constants.GetShipClass(g.Key),
+				Name = g.Key switch
+				{
+					111 => $"{Constants.GetShipClass(g.Key, ShipId.Souya699)}・" +
+						   $"{Constants.GetShipClass(g.Key, ShipId.Souya645)}・" +
+						   $"{Constants.GetShipClass(g.Key, ShipId.Souya650)}",
+					_ => Constants.GetShipClass(g.Key)
+				},
 				Ships = g.ToList(),
 			}).ToList());
 	}
