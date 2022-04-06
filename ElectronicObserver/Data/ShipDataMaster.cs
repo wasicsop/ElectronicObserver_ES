@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ElectronicObserver.Resource.Record;
 using ElectronicObserverTypes;
 
@@ -43,9 +39,9 @@ public class ShipDataMaster : ResponseWrapper, IIdentifiable, IShipDataMaster
 	public string Name => RawData.api_name;
 
 	/// <summary>
-	/// Name in romaji
+	/// Localized name
 	/// </summary>
-	public string NameEN => KCDatabase.Instance.Translation.Ship.Name(RawData.api_name);
+	public string NameEN => KCDatabase.Instance.Translation.Ship.Name(RawData.api_name, ShipId);
 
 	/// <summary>
 	/// 読み

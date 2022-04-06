@@ -13,6 +13,7 @@ public class FormBrowserTranslationViewModel
 	public string ClearCacheMessage => Properties.Resources.ClearCacheMessage.Replace("_", "__").Replace("&", "_");
 	public string ClearCacheTitle => Properties.Resources.ClearCacheTitle.Replace("_", "__").Replace("&", "_");
 	public string Confirmation => Properties.Resources.Confirmation.Replace("_", "__").Replace("&", "_");
+	public string CacheCleared => Properties.Resources.CacheCleared;
 	public string DMMScript => Properties.Resources.DMMScript.Replace("_", "__").Replace("&", "_");
 	public string FailedToApplyStylesheet => Properties.Resources.FailedToApplyStylesheet.Replace("_", "__").Replace("&", "_");
 	public string FailedToCopyScreenshotToClipboard => Properties.Resources.FailedToCopyScreenshotToClipboard.Replace("_", "__").Replace("&", "_");

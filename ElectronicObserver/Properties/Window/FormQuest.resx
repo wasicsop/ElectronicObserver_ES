@@ -169,4 +169,7 @@
   <data name="ManuMain_QuestTranslate" xml:space="preserve">
     <value>翻訳されていない任務データをコピー(&amp;N)</value>
   </data>
+  <data name="ModifyProgress" xml:space="preserve">
+    <value>進捗状況の修正(_M)</value>
+  </data>
 </root>

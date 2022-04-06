@@ -187,4 +187,7 @@ Are you sure?</value>
   <data name="ManuMain_QuestTranslate" xml:space="preserve">
     <value>Copy &amp;non-translated quests data</value>
   </data>
+  <data name="ModifyProgress" xml:space="preserve">
+    <value>_Modify progress</value>
+  </data>
 </root>

@@ -47,7 +47,7 @@ public class ShipDataMasterMock : IShipDataMaster
 	public int SlotSize { get; set; }
 	public IList<int> Aircraft { get; set; }
 	public int AircraftTotal { get; set; }
-	public IList<int> DefaultSlot { get; set; }
+	public IList<int>? DefaultSlot { get; set; }
 	public IEnumerable<int>? SpecialEquippableCategories { get; set; }
 	public IEnumerable<int> EquippableCategories { get; }
 	public IEnumerable<EquipmentTypes> EquippableCategoriesTyped { get; set; }

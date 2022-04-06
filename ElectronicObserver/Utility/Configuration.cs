@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
@@ -184,7 +185,7 @@ public sealed class Configuration
 			public bool DisableOtherTranslations { get; set; }
 
 			/// <summary>
-			/// Whether to use default or normal node ID
+			/// Use the real integer ID when true, translate to letter when false
 			/// </summary>
 			public bool UseOriginalNodeId { get; set; }
 
@@ -1120,6 +1121,8 @@ public sealed class Configuration
 			public SerializableList<int> ColumnWidth { get; set; }
 
 			public SerializableList<int>? ColumnSort { get; set; }
+
+			public List<SortDescription> SortDescriptions { get; set; } = new();
 
 			/// <summary>
 			/// どの行をソートしていたか

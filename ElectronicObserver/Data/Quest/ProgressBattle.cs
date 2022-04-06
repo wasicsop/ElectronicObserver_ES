@@ -85,7 +85,7 @@ public class ProgressBattle : ProgressData
 				break;
 			case 2:
 			case 3:
-				sb.Append(Constants.GetWinRank(LowestRank) + QuestTracking.ClearConditionOnly);
+				sb.Append(Constants.GetWinRank(LowestRank) + QuestTracking.ClearConditionOrHigher);
 				break;
 			case 4:
 				sb.Append(QuestTracking.ClearConditionVictories);

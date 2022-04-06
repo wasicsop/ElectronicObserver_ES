@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using ElectronicObserverTypes.Extensions;
 
 namespace ElectronicObserverTypes.Mocks;
@@ -98,7 +97,7 @@ public class ShipDataMock : IShipData
 	public int TorpedoBase => Math.Min(MasterShip.TorpedoMin + TorpedoModernized, MasterShip.TorpedoMax);
 	public int AABase => Math.Min(MasterShip.AAMin + AAModernized, MasterShip.AAMax);
 	public int ArmorBase => Math.Min(MasterShip.ArmorMin + ArmorModernized, MasterShip.ArmorMax);
-	public int EvasionBase { get; set; }
+	public int EvasionBase => MasterShip.Evasion.GetParameter(Level);
 	public int ShipID { get; set; }
 	public int MasterID { get; set; }
 	public int SortID { get; set; }

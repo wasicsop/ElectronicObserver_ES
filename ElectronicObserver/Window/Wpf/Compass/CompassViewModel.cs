@@ -74,6 +74,7 @@ public class CompassViewModel : AnchorableViewModel
 		o["api_port/port"].ResponseReceived += Updated;
 		o["api_req_map/start"].ResponseReceived += Updated;
 		o["api_req_map/next"].ResponseReceived += Updated;
+		o["api_req_map/air_raid"].ResponseReceived += Updated;
 		o["api_req_member/get_practice_enemyinfo"].ResponseReceived += Updated;
 
 		o["api_req_sortie/battle"].ResponseReceived += BattleStarted;
@@ -427,6 +428,13 @@ public class CompassViewModel : AnchorableViewModel
 				// ToolTipInfo.SetToolTip(TextEventKind, "Air raid - " + Constants.GetAirRaidDamage(compass.AirRaidDamageKind));
 				TextEventKindIcon = ImageSourceIcons.GetEquipmentIcon(EquipmentIconType.CarrierBasedBomber);
 				TextEventKindToolTip = FormCompass.AirRaid + Constants.GetAirRaidDamage(compass.AirRaidDamageKind);
+			}
+			else if (Db.Battle.HeavyBaseAirRaids.Any())
+			{
+				int apiLostKind = (int)Db.Battle.HeavyBaseAirRaids.Last().RawData.api_lost_kind;
+
+				TextEventKindIcon = ImageSourceIcons.GetEquipmentIcon(EquipmentIconType.CarrierBasedBomber);
+				TextEventKindToolTip = FormCompass.AirRaid + Constants.GetAirRaidDamage(apiLostKind);
 			}
 			else
 			{

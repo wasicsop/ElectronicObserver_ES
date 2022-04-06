@@ -8,16 +8,13 @@ namespace ElectronicObserver.Window.Tools.DialogAlbumMasterEquipment;
 /// <summary>
 /// Interaction logic for DialogAlbumMasterEquipmentWpf.xaml
 /// </summary>
-public partial class DialogAlbumMasterEquipmentWpf : System.Windows.Window
+public partial class DialogAlbumMasterEquipmentWpf
 {
-	public DialogAlbumMasterEquipmentViewModel ViewModel { get; } = new();
-
-	public DialogAlbumMasterEquipmentWpf()
+	public DialogAlbumMasterEquipmentWpf() : base(new DialogAlbumMasterEquipmentViewModel())
 	{
 		InitializeComponent();
 
 		ViewModel.PropertyChanged += SelectedEquipmentChanged;
-		DataContext = ViewModel;
 	}
 
 	public DialogAlbumMasterEquipmentWpf(int equipId) : this()

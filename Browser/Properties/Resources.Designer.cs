@@ -124,6 +124,15 @@ namespace Browser.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to キャッシュの削除処理が終了しました。.
+        /// </summary>
+        public static string CacheCleared {
+            get {
+                return ResourceManager.GetString("CacheCleared", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to CefSharpロードエラー.
         /// </summary>
         public static string CefSharpLoadErrorTitle {
@@ -142,9 +151,7 @@ namespace Browser.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to キャッシュをクリアするため、ブラウザを再起動します。
-        ///よろしいですか？
-        ///※環境によっては本ツールが終了する場合があります。その場合は再起動してください。.
+        ///   Looks up a localized string similar to 本当にキャッシュをクリアするのですか？.
         /// </summary>
         public static string ClearCacheMessage {
             get {

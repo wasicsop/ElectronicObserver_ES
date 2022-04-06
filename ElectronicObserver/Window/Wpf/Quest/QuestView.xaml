@@ -104,7 +104,7 @@
 			<Separator />
 			<MenuItem Command="{Binding DataContext.MenuProgress_Reset_ClickCommand}" Header="{Binding DataContext.FormQuest.MenuProgress_Reset}" />
 			<Separator />
-			<MenuItem Command="{Binding DataContext.ManageTrackerCommand}" Header="Manage quest tracker" />
+			<MenuItem Command="{Binding DataContext.ManageTrackerCommand}" Header="{Binding DataContext.FormQuest.ModifyProgress}" />
 		</ContextMenu>
 
 		<!--
@@ -264,6 +264,7 @@
 
 	<Grid DataContext="{Binding ViewModel, ElementName=QuestControl}">
 		<DataGrid
+			x:Name="DataGrid"
 			AutoGenerateColumns="False"
 			CanUserAddRows="False"
 			CanUserDeleteRows="False"
@@ -273,7 +274,7 @@
 			HeadersVisibility="Column"
 			HorizontalScrollBarVisibility="Disabled"
 			IsReadOnly="True"
-			ItemsSource="{Binding Quests, IsAsync=True}"
+			ItemsSource="{Binding View, IsAsync=True}"
 			SelectedItem="{Binding SelectedQuest}"
 			SelectionMode="Single"
 			>

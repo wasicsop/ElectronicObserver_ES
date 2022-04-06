@@ -31,6 +31,8 @@
 				<ResourceDictionary Source="Window/Wpf/ViewTemplates.xaml" />
 			</ResourceDictionary.MergedDictionaries>
 
+			<viewModels:MainWindowBindingProxy x:Key="Proxy" DataContext="{Binding}" />
+
 			<Style x:Key="AvalonDockThemeVs2013ButtonStyle" TargetType="Button">
 				<Setter Property="Background" Value="Transparent" />
 				<Setter Property="BorderThickness" Value="1" />
@@ -49,6 +51,51 @@
 						</ControlTemplate>
 					</Setter.Value>
 				</Setter>
+			</Style>
+
+			<Style BasedOn="{StaticResource DefaultToolTipStyleEO}" TargetType="ToolTip">
+				<Setter Property="FontFamily" Value="{Binding DataContext.Font, Source={StaticResource Proxy}}" />
+				<Setter Property="FontSize" Value="{Binding DataContext.FontSize, Source={StaticResource Proxy}}" />
+				<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
+			</Style>
+			<Style BasedOn="{StaticResource DefaultMenuItemStyle}" TargetType="MenuItem">
+				<Setter Property="FontFamily" Value="{Binding DataContext.Font, Source={StaticResource Proxy}}" />
+				<Setter Property="FontSize" Value="{Binding DataContext.FontSize, Source={StaticResource Proxy}}" />
+				<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
+				<!--
+					copied from https://github.com/Kinnara/ModernWpf/blob/master/ModernWpf/Styles/MenuItem.xaml#L415
+					change is the foreground on the last trigger
+				-->
+				<Style.Triggers>
+					<Trigger Property="Role" Value="TopLevelHeader">
+						<Setter Property="Background" Value="{DynamicResource MenuBarItemBackground}" />
+						<Setter Property="BorderBrush" Value="{DynamicResource MenuBarItemBorderBrush}" />
+						<Setter Property="BorderThickness" Value="{DynamicResource MenuBarItemBorderThickness}" />
+						<Setter Property="Template" Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly={x:Type MenuItem}, ResourceId=TopLevelHeaderTemplateKey}}" />
+						<Setter Property="IsTabStop" Value="True" />
+						<Setter Property="Height" Value="{StaticResource MenuBarHeight}" />
+					</Trigger>
+					<Trigger Property="Role" Value="TopLevelItem">
+						<Setter Property="Background" Value="{DynamicResource MenuBarItemBackground}" />
+						<Setter Property="BorderBrush" Value="{DynamicResource MenuBarItemBorderBrush}" />
+						<Setter Property="BorderThickness" Value="{DynamicResource MenuBarItemBorderThickness}" />
+						<Setter Property="Template" Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly={x:Type MenuItem}, ResourceId=TopLevelItemTemplateKey}}" />
+						<Setter Property="IsTabStop" Value="True" />
+						<Setter Property="Height" Value="{StaticResource MenuBarHeight}" />
+					</Trigger>
+					<Trigger Property="Role" Value="SubmenuHeader">
+						<Setter Property="Background" Value="{DynamicResource MenuFlyoutSubItemRevealBackground}" />
+						<Setter Property="BorderBrush" Value="{DynamicResource MenuFlyoutSubItemRevealBorderBrush}" />
+						<Setter Property="BorderThickness" Value="{DynamicResource MenuFlyoutSubItemRevealBorderThickness}" />
+						<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
+						<Setter Property="Template" Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly={x:Type MenuItem}, ResourceId=SubmenuHeaderTemplateKey}}" />
+					</Trigger>
+				</Style.Triggers>
+			</Style>
+			<Style BasedOn="{StaticResource DefaultStatusBarStyle}" TargetType="StatusBar">
+				<Setter Property="FontFamily" Value="{Binding DataContext.Font, Source={StaticResource Proxy}}" />
+				<Setter Property="FontSize" Value="{Binding DataContext.FontSize, Source={StaticResource Proxy}}" />
+				<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
 			</Style>
 
 			<ControlTemplate x:Key="AutoHideButtonTemplate" d:DataContext="{d:DesignInstance LayoutAnchorable}">
@@ -105,11 +152,6 @@
 			Height="Auto"
 			Padding="2"
 			>
-			<Menu.Resources>
-				<Style BasedOn="{StaticResource DefaultMenuItemStyle}" TargetType="MenuItem">
-					<Setter Property="FontSize" Value="{Binding FontSize}" />
-				</Style>
-			</Menu.Resources>
 			<MenuItem
 				Height="Auto"
 				d:Header="File"
@@ -429,14 +471,20 @@
 					</MenuItem.Icon>
 				</MenuItem>
 				<Separator />
-				<MenuItem
-					d:Header="Drop Record"
-					Command="{Binding OpenDropRecordCommand}"
-					Header="{Binding FormMain.StripMenu_Tool_DropRecord}"
-					>
+				<MenuItem d:Header="Drop Record" Header="{Binding FormMain.StripMenu_Tool_DropRecord}">
 					<MenuItem.Icon>
 						<Image Source="{Binding DropRecordImageSource}" />
 					</MenuItem.Icon>
+					<MenuItem Command="{Binding OpenDropRecordCommand}" Header="{Binding FormMain.Old}">
+						<MenuItem.CommandParameter>
+							<system:Boolean>False</system:Boolean>
+						</MenuItem.CommandParameter>
+					</MenuItem>
+					<MenuItem Command="{Binding OpenDropRecordCommand}" Header="{Binding FormMain.New}">
+						<MenuItem.CommandParameter>
+							<system:Boolean>True</system:Boolean>
+						</MenuItem.CommandParameter>
+					</MenuItem>
 				</MenuItem>
 				<MenuItem
 					d:Header="Development Record"
@@ -592,11 +640,11 @@
 					Header="{Binding FormMain.StripMenu_Debug_LoadDataFromOld}"
 					/>
 				<Separator Visibility="{Binding GenerateMasterDataVisible, Converter={BoolToVisibilityConverter}}" />
-				<MenuItem
-					Command="{Binding GenerateMasterDataCommand}"
-					Header="Generate Master Data"
-					Visibility="{Binding GenerateMasterDataVisible, Converter={BoolToVisibilityConverter}}"
-					/>
+				<MenuItem Header="Data Generation" Visibility="{Binding GenerateMasterDataVisible, Converter={BoolToVisibilityConverter}}">
+					<MenuItem Command="{Binding GenerateMasterDataCommand}" Header="Generate Master Data" />
+					<MenuItem Command="{Binding GenerateShipIdEnumCommand}" Header="Generate Ship ID Enum" />
+					<MenuItem Command="{Binding GenerateEquipmentIdEnumCommand}" Header="Generate Equipment ID Enum" />
+				</MenuItem>
 			</MenuItem>
 			<MenuItem
 				Height="Auto"

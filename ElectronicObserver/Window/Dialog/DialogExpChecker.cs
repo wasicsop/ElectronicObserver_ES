@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ElectronicObserver.Data;
 using ElectronicObserver.Resource;
+using ElectronicObserver.Utility;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserverTypes;
 using Translation = ElectronicObserver.Properties.Window.Dialog.DialogExpChecker;
@@ -61,6 +62,9 @@ public partial class DialogExpChecker : Form
 		CellStyleModernized.BackColor =
 			CellStyleModernized.SelectionBackColor = Color.LightGreen;
 
+		Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
+		ConfigurationChanged();
+
 		Translate();
 	}
 
@@ -68,6 +72,24 @@ public partial class DialogExpChecker : Form
 	{
 		DefaultShipID = shipID;
 		Text = DefaultTitle;
+	}
+
+	private void ConfigurationChanged()
+	{
+		Configuration.ConfigurationData c = Configuration.Config;
+
+		Font = c.UI.MainFont.FontData;
+
+		if (c.UI.IsLayoutFixed)
+		{
+			LevelView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
+			LevelView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+		}
+		else
+		{
+			LevelView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
+			LevelView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+		}
 	}
 
 	public void Translate()
@@ -103,7 +125,7 @@ public partial class DialogExpChecker : Form
 
 		if (!ships.Any())
 		{
-			MessageBox.Show(new Form { TopMost = true },Translation.NoShipsAvailable, Translation.ShipsUnavailable, MessageBoxButtons.OK, MessageBoxIcon.Error);
+			MessageBox.Show(new Form { TopMost = true }, Translation.NoShipsAvailable, Translation.ShipsUnavailable, MessageBoxButtons.OK, MessageBoxIcon.Error);
 			Close();
 			return;
 		}

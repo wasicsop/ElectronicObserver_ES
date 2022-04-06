@@ -506,6 +506,15 @@ namespace ElectronicObserver.Properties.Window {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 新.
+        /// </summary>
+        public static string New {
+            get {
+                return ResourceManager.GetString("New", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 次の演習リセット：.
         /// </summary>
         public static string NextExerciseReset {
@@ -520,6 +529,15 @@ namespace ElectronicObserver.Properties.Window {
         public static string NextQuestReset {
             get {
                 return ResourceManager.GetString("NextQuestReset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 旧.
+        /// </summary>
+        public static string Old {
+            get {
+                return ResourceManager.GetString("Old", resourceCulture);
             }
         }
         

@@ -11,6 +11,7 @@ using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Control;
 using ElectronicObserverTypes;
+using ElectronicObserverTypes.Extensions;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 
@@ -457,6 +458,27 @@ public class FleetItemViewModel : ObservableObject
 			}
 			if (torpedo > 0 || asw > 0)
 				sb.AppendLine();
+		}
+
+		{
+			sb.Append($"{GeneralRes.Evasion}: ");
+
+			if (ship.MasterShip.IsSubmarine)
+			{
+				sb.Append($"{GeneralRes.ASW}: {ship.AswEvasion()}");
+			}
+			else
+			{
+				sb.Append
+				(
+					$"{ConstantsRes.Shelling}: {ship.ShellingEvasion()} - " +
+					$"{ConstantsRes.TorpedoAttack}: {ship.TorpedoEvasion()} - " +
+					$"{ConstantsRes.AirBattle}: {ship.AirstrikeEvasion()} - " +
+					$"{ConstantsRes.NightBattle}: {ship.NightEvasion()}"
+				);
+			}
+
+			sb.AppendLine();
 		}
 
 		{

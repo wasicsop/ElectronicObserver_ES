@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ElectronicObserver.Data;
 using ElectronicObserver.Resource;
+using ElectronicObserver.Utility;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Window.Support;
 using ElectronicObserverTypes;
@@ -838,7 +839,18 @@ public partial class DialogBaseAirCorpsSimulation : Form
 			TableBaseAirCorpsList[i].ResumeLayout();
 		}
 
+		Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
+		ConfigurationChanged();
+
 		Translate();
+	}
+
+	private void ConfigurationChanged()
+	{
+		Configuration.ConfigurationData c = Configuration.Config;
+
+		Font = c.UI.MainFont.FontData;
+		menuStrip1.Font = Font;
 	}
 
 	public void Translate()

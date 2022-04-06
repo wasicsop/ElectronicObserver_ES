@@ -192,7 +192,7 @@
   <data name="ClearConditionBattle" xml:space="preserve">
     <value>戦闘</value>
   </data>
-  <data name="ClearConditionOnly" xml:space="preserve">
+  <data name="ClearConditionOrHigher" xml:space="preserve">
     <value>以上</value>
   </data>
   <data name="ClearConditionVictories" xml:space="preserve">

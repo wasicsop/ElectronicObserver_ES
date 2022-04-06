@@ -1,27 +1,37 @@
-﻿<Window x:Class="ElectronicObserver.Window.Tools.DialogAlbumMasterShip.DialogAlbumMasterShipWpf"
-		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-		xmlns:local="clr-namespace:ElectronicObserver.Window.Tools.DialogAlbumMasterShip"
-		xmlns:ui="http://schemas.modernwpf.com/2019"
-		xmlns:electronicObserverTypes="clr-namespace:ElectronicObserverTypes;assembly=ElectronicObserverTypes"
-		xmlns:resource="clr-namespace:ElectronicObserver.Resource"
-		xmlns:common="clr-namespace:ElectronicObserver.Window.Tools.Common"
-		ui:WindowHelper.UseModernWindowStyle="True"
-		x:Name="DialogAlbumMasterShipView"
-		mc:Ignorable="d"
-		Title="{Binding Title}"
-		Height="630"
-		MinHeight="630"
-		Width="850"
-		MinWidth="850">
+﻿<common1:WindowBase
+	x:Class="ElectronicObserver.Window.Tools.DialogAlbumMasterShip.DialogAlbumMasterShipWpf"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:common="clr-namespace:ElectronicObserver.Window.Tools.Common"
+	xmlns:common1="clr-namespace:ElectronicObserver.Common"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:electronicObserverTypes="clr-namespace:ElectronicObserverTypes;assembly=ElectronicObserverTypes"
+	xmlns:local="clr-namespace:ElectronicObserver.Window.Tools.DialogAlbumMasterShip"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:resource="clr-namespace:ElectronicObserver.Resource"
+	xmlns:ui="http://schemas.modernwpf.com/2019"
+	x:Name="DialogAlbumMasterShipView"
+	Title="{Binding Title}"
+	Width="850"
+	Height="630"
+	MinWidth="850"
+	MinHeight="630"
+	ui:WindowHelper.UseModernWindowStyle="True"
+	x:TypeArguments="local:DialogAlbumMasterShipViewModel"
+	mc:Ignorable="d"
+	>
 	<d:Window.DataContext>
 		<local:DialogAlbumMasterShipViewModel />
 	</d:Window.DataContext>
 
 	<Window.Resources>
+		<local:AlbumMasterShipBindingProxy x:Key="Proxy" DataContext="{Binding}" />
 
+		<Style BasedOn="{StaticResource DefaultMenuItemStyle}" TargetType="MenuItem">
+			<Setter Property="FontFamily" Value="{Binding DataContext.Font, Source={StaticResource Proxy}}" />
+			<Setter Property="FontSize" Value="{Binding DataContext.FontSize, Source={StaticResource Proxy}}" />
+			<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
+		</Style>
 	</Window.Resources>
 
 	<Grid>
@@ -30,42 +40,26 @@
 			<RowDefinition Height="*" />
 		</Grid.RowDefinitions>
 
-		<!--
-			hack: gives datagrid access to translations
-		-->
-		<FrameworkElement x:Name="Proxy"
-						  DataContext="{Binding}" />
-
 		<Menu Grid.Row="0">
 			<MenuItem Header="{Binding DialogAlbumMasterShip.StripMenu_File}">
-				<MenuItem Header="{Binding DialogAlbumMasterShip.StripMenu_File_OutputCSVUser}"
-						  Command="{Binding StripMenu_File_OutputCSVUser_ClickCommand}" />
-				<MenuItem Header="{Binding DialogAlbumMasterShip.StripMenu_File_OutputCSVData}"
-						  Command="{Binding StripMenu_File_OutputCSVData_ClickCommand}" />
+				<MenuItem Command="{Binding StripMenu_File_OutputCSVUser_ClickCommand}" Header="{Binding DialogAlbumMasterShip.StripMenu_File_OutputCSVUser}" />
+				<MenuItem Command="{Binding StripMenu_File_OutputCSVData_ClickCommand}" Header="{Binding DialogAlbumMasterShip.StripMenu_File_OutputCSVData}" />
 				<Separator />
-				<MenuItem Header="{Binding DialogAlbumMasterShip.StripMenu_File_MergeDefaultRecord}"
-						  Command="{Binding StripMenu_File_MergeDefaultRecord_ClickCommand}" />
+				<MenuItem Command="{Binding StripMenu_File_MergeDefaultRecord_ClickCommand}" Header="{Binding DialogAlbumMasterShip.StripMenu_File_MergeDefaultRecord}" />
 			</MenuItem>
 			<MenuItem Header="{Binding DialogAlbumMasterShip.StripMenu_Edit}">
-				<MenuItem Header="{Binding DialogAlbumMasterShip.StripMenu_Edit_EditParameter}"
-						  Command="{Binding StripMenu_Edit_EditParameter_ClickCommand}" />
+				<MenuItem Command="{Binding StripMenu_Edit_EditParameter_ClickCommand}" Header="{Binding DialogAlbumMasterShip.StripMenu_Edit_EditParameter}" />
 				<Separator />
-				<MenuItem Header="{Binding DialogAlbumMasterShip.StripMenu_Edit_CopyShipName}"
-						  Command="{Binding StripMenu_Edit_CopyShipName_ClickCommand}" />
-				<MenuItem Header="{Binding DialogAlbumMasterShip.StripMenu_Edit_CopyShipData}"
-						  Command="{Binding StripMenu_Edit_CopyShipData_ClickCommand}" />
+				<MenuItem Command="{Binding StripMenu_Edit_CopyShipName_ClickCommand}" Header="{Binding DialogAlbumMasterShip.StripMenu_Edit_CopyShipName}" />
+				<MenuItem Command="{Binding StripMenu_Edit_CopyShipData_ClickCommand}" Header="{Binding DialogAlbumMasterShip.StripMenu_Edit_CopyShipData}" />
 				<Separator />
-				<MenuItem Header="{Binding DialogAlbumMasterShip.StripMenu_Edit_GoogleShipName}"
-						  Command="{Binding StripMenu_Edit_GoogleShipName_ClickCommand}" />
+				<MenuItem Command="{Binding StripMenu_Edit_GoogleShipName_ClickCommand}" Header="{Binding DialogAlbumMasterShip.StripMenu_Edit_GoogleShipName}" />
 				<Separator />
-				<MenuItem Header="{Binding DialogAlbumMasterShip.StripMenu_Edit_CopySpecialEquipmentTable}"
-						  Command="{Binding StripMenu_Edit_CopySpecialEquipmentTable_ClickCommand}" />
+				<MenuItem Command="{Binding StripMenu_Edit_CopySpecialEquipmentTable_ClickCommand}" Header="{Binding DialogAlbumMasterShip.StripMenu_Edit_CopySpecialEquipmentTable}" />
 			</MenuItem>
 			<MenuItem Header="{Binding DialogAlbumMasterShip.StripMenu_View}">
-				<MenuItem Header="{Binding DialogAlbumMasterShip.StripMenu_View_ShowAppearingArea}"
-						  Command="{Binding StripMenu_View_ShowAppearingArea_ClickCommand}" />
-				<MenuItem Header="{Binding DialogAlbumMasterShip.StripMenu_View_ShowShipGraphicViewer}"
-						  Command="{Binding StripMenu_View_ShowShipGraphicViewer_ClickCommand}" />
+				<MenuItem Command="{Binding StripMenu_View_ShowAppearingArea_ClickCommand}" Header="{Binding DialogAlbumMasterShip.StripMenu_View_ShowAppearingArea}" />
+				<MenuItem Command="{Binding StripMenu_View_ShowShipGraphicViewer_ClickCommand}" Header="{Binding DialogAlbumMasterShip.StripMenu_View_ShowShipGraphicViewer}" />
 			</MenuItem>
 		</Menu>
 
@@ -81,78 +75,100 @@
 					<RowDefinition Height="*" />
 				</Grid.RowDefinitions>
 
-				<TextBox Grid.Row="0"
-						 Grid.Column="0"
-						 Margin="4"
-						 Text="{Binding SearchFilter, UpdateSourceTrigger=PropertyChanged}" />
+				<TextBox
+					Grid.Row="0"
+					Grid.Column="0"
+					Margin="4"
+					Text="{Binding SearchFilter, UpdateSourceTrigger=PropertyChanged}"
+					/>
 
-				<DataGrid x:Name="DataGrid"
-						  Grid.Column="0"
-						  Grid.Row="1"
-						  ItemsSource="{Binding Ships, IsAsync=True, NotifyOnTargetUpdated=True}"
-						  TargetUpdated="DataGrid_OnTargetUpdated"
-						  SelectedItem="{Binding SelectedShip}"
-						  SelectionMode="Single"
-						  SelectionUnit="FullRow"
-						  RowHeight="26"
-						  AutoGenerateColumns="False"
-						  EnableRowVirtualization="True"
-						  EnableColumnVirtualization="True"
-						  HeadersVisibility="Column"
-						  CanUserAddRows="False"
-						  CanUserDeleteRows="False"
-						  CanUserResizeRows="False"
-						  CanUserReorderColumns="False"
-						  VirtualizingStackPanel.IsVirtualizing="True"
-						  VirtualizingStackPanel.VirtualizationMode="Recycling"
-						  IsReadOnly="True">
+				<DataGrid
+					x:Name="DataGrid"
+					Grid.Row="1"
+					Grid.Column="0"
+					AutoGenerateColumns="False"
+					CanUserAddRows="False"
+					CanUserDeleteRows="False"
+					CanUserReorderColumns="False"
+					CanUserResizeRows="False"
+					EnableColumnVirtualization="True"
+					EnableRowVirtualization="True"
+					HeadersVisibility="Column"
+					IsReadOnly="True"
+					ItemsSource="{Binding Ships, IsAsync=True, NotifyOnTargetUpdated=True}"
+					SelectedItem="{Binding SelectedShip}"
+					SelectionMode="Single"
+					SelectionUnit="FullRow"
+					TargetUpdated="DataGrid_OnTargetUpdated"
+					VirtualizingStackPanel.IsVirtualizing="True"
+					VirtualizingStackPanel.VirtualizationMode="Recycling"
+					>
+					<DataGrid.ColumnHeaderStyle>
+						<Style BasedOn="{StaticResource DefaultDataGridColumnHeaderStyle}" TargetType="{x:Type DataGridColumnHeader}">
+							<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
+							<Setter Property="FontFamily" Value="{Binding DataContext.Font, Source={StaticResource Proxy}}" />
+							<Setter Property="FontSize" Value="{Binding DataContext.FontSize, Source={StaticResource Proxy}}" />
+						</Style>
+					</DataGrid.ColumnHeaderStyle>
 					<!--
 						no idea how to do right click the mvvm way
 					-->
 					<DataGrid.RowStyle>
-						<Style TargetType="DataGridRow"
-							   BasedOn="{StaticResource DefaultDataGridRowStyle}">
-							<EventSetter Event="MouseRightButtonUp"
-										 Handler="EventSetter_OnHandler" />
+						<Style BasedOn="{StaticResource DefaultDataGridRowStyle}" TargetType="DataGridRow">
+							<EventSetter Event="MouseRightButtonUp" Handler="EventSetter_OnHandler" />
 						</Style>
 					</DataGrid.RowStyle>
 
 					<DataGrid.Columns>
-						<DataGridTextColumn Header="ID"
-											Binding="{Binding Ship.ID}"
-											Width="60" />
+						<DataGridTextColumn
+							Width="60"
+							Binding="{Binding Ship.ID}"
+							FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
+							FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
+							Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
+							Header="ID"
+							/>
 
-						<DataGridTextColumn Header="{Binding DataContext.DialogAlbumMasterShip.ShipView_ShipType, Source={x:Reference Proxy}}"
-											Binding="{Binding Ship.ShipTypeName}"
-											Width="110" />
+						<DataGridTextColumn
+							Width="110"
+							Binding="{Binding Ship.ShipTypeName}"
+							FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
+							FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
+							Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
+							Header="{Binding DataContext.DialogAlbumMasterShip.ShipView_ShipType, Source={StaticResource Proxy}}"
+							/>
 
-						<DataGridTextColumn Header="{Binding DataContext.DialogAlbumMasterShip.ShipView_Name, Source={x:Reference Proxy}}"
-											Binding="{Binding Ship.NameWithClass}"
-											Width="120" />
+						<DataGridTextColumn
+							Width="120"
+							Binding="{Binding Ship.NameWithClass}"
+							FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
+							FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
+							Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
+							Header="{Binding DataContext.DialogAlbumMasterShip.ShipView_Name, Source={StaticResource Proxy}}"
+							/>
 					</DataGrid.Columns>
 				</DataGrid>
 			</Grid>
 
-			<Grid Grid.Column="1"
-				  IsSharedSizeScope="True"
-				  Visibility="{Binding DetailsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+			<Grid
+				Grid.Column="1"
+				IsSharedSizeScope="True"
+				Visibility="{Binding DetailsVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
+				>
 				<Grid.RowDefinitions>
 					<RowDefinition Height="Auto" />
 					<RowDefinition Height="Auto" />
 					<RowDefinition Height="Auto" />
 				</Grid.RowDefinitions>
 
-				<Grid Grid.Row="0"
-					  MinWidth="510">
+				<Grid Grid.Row="0" MinWidth="510">
 					<Grid.Resources>
 						<Style TargetType="TextBlock">
-							<Setter Property="Margin"
-									Value="4 0" />
+							<Setter Property="Margin" Value="4 0" />
 						</Style>
 
 						<Style TargetType="StackPanel">
-							<Setter Property="Margin"
-									Value="4 0" />
+							<Setter Property="Margin" Value="4 0" />
 						</Style>
 					</Grid.Resources>
 
@@ -174,12 +190,13 @@
 							</StackPanel>
 
 							<StackPanel Orientation="Horizontal">
-								<TextBlock Text="{Binding SelectedShip.ResourceNameText}"
-										   ToolTip="{Binding SelectedShip.ResourceNameToolTip}"
-										   Background="Transparent">
+								<TextBlock
+									Background="Transparent"
+									Text="{Binding SelectedShip.ResourceNameText}"
+									ToolTip="{Binding SelectedShip.ResourceNameToolTip}"
+									>
 									<TextBlock.InputBindings>
-										<MouseBinding MouseAction="RightClick"
-													  Command="{Binding ResourceName_MouseClickCommand}" />
+										<MouseBinding Command="{Binding ResourceName_MouseClickCommand}" MouseAction="RightClick" />
 									</TextBlock.InputBindings>
 								</TextBlock>
 							</StackPanel>
@@ -187,27 +204,28 @@
 
 						<StackPanel Orientation="Horizontal">
 							<StackPanel Orientation="Horizontal">
-								<TextBlock Text="{Binding SelectedShip.ShipType}"
-										   ToolTip="{Binding SelectedShip.ShipTypeToolTip}" />
-								<TextBlock Text="{Binding SelectedShip.Ship.NameWithClass}"
-										   Foreground="{Binding SelectedShip.NameColor}"
-										   ToolTip="{Binding SelectedShip.ShipNameToolTip}">
+								<TextBlock Text="{Binding SelectedShip.ShipType}" ToolTip="{Binding SelectedShip.ShipTypeToolTip}" />
+								<TextBlock
+									Foreground="{Binding SelectedShip.NameColor}"
+									Text="{Binding SelectedShip.Ship.NameWithClass}"
+									ToolTip="{Binding SelectedShip.ShipNameToolTip}"
+									>
 									<TextBlock.InputBindings>
-										<MouseBinding MouseAction="RightClick"
-													  Command="{Binding StripMenu_Edit_CopyShipName_ClickCommand}" />
+										<MouseBinding Command="{Binding StripMenu_Edit_CopyShipName_ClickCommand}" MouseAction="RightClick" />
 									</TextBlock.InputBindings>
 								</TextBlock>
 							</StackPanel>
 						</StackPanel>
 					</StackPanel>
 
-					<Image Grid.Column="1"
-						   Height="40"
-						   Source="{Binding SelectedShip.Ship, Converter={StaticResource ShipToBannerImageConverter}, IsAsync=True}"
-						   ToolTip="{Binding SelectedShip.ShipBannerToolTip}">
+					<Image
+						Grid.Column="1"
+						Height="40"
+						Source="{Binding SelectedShip.Ship, Converter={StaticResource ShipToBannerImageConverter}, IsAsync=True}"
+						ToolTip="{Binding SelectedShip.ShipBannerToolTip}"
+						>
 						<Image.InputBindings>
-							<MouseBinding MouseAction="RightClick"
-										  Command="{Binding StripMenu_View_ShowShipGraphicViewer_ClickCommand}" />
+							<MouseBinding Command="{Binding StripMenu_View_ShowShipGraphicViewer_ClickCommand}" MouseAction="RightClick" />
 						</Image.InputBindings>
 					</Image>
 				</Grid>
@@ -218,8 +236,7 @@
 						<ColumnDefinition Width="*" />
 					</Grid.ColumnDefinitions>
 
-					<Grid Grid.Column="0"
-						  Margin="10">
+					<Grid Grid.Column="0" Margin="10">
 						<Grid.RowDefinitions>
 							<RowDefinition Height="Auto" />
 							<RowDefinition />
@@ -231,85 +248,102 @@
 								<Grid.ColumnDefinitions>
 									<ColumnDefinition SharedSizeGroup="Icon" />
 									<ColumnDefinition SharedSizeGroup="IconText" />
-									<ColumnDefinition MinWidth="60"
-													  SharedSizeGroup="Base" />
-									<ColumnDefinition MinWidth="60"
-													  SharedSizeGroup="Max" />
-									<ColumnDefinition MinWidth="60"
-													  SharedSizeGroup="Scaled" />
+									<ColumnDefinition MinWidth="60" SharedSizeGroup="Base" />
+									<ColumnDefinition MinWidth="60" SharedSizeGroup="Max" />
+									<ColumnDefinition MinWidth="60" SharedSizeGroup="Scaled" />
 								</Grid.ColumnDefinitions>
 
-								<TextBlock Grid.Column="2"
-										   Text="{Binding TitleParameterMin}" />
-								<TextBlock Grid.Column="3"
-										   Text="{Binding TitleParameterMax}" />
-								<ui:NumberBox Grid.Column="4"
-											  Value="{Binding Level, UpdateSourceTrigger=PropertyChanged}"
-											  Minimum="1" />
+								<TextBlock Grid.Column="2" Text="{Binding TitleParameterMin}" />
+								<TextBlock Grid.Column="3" Text="{Binding TitleParameterMax}" />
+								<ui:NumberBox
+									Grid.Column="4"
+									FontSize="{Binding FontSize}"
+									Minimum="1"
+									Value="{Binding Level, UpdateSourceTrigger=PropertyChanged}"
+									/>
 							</Grid>
 							<Separator />
 						</StackPanel>
 
 						<StackPanel Grid.Row="1">
-							<local:ShipStatControl StatName="{Binding DialogAlbumMasterShip.TitleHP}"
-												   Base="{Binding SelectedShip.HpMin}"
-												   BaseToolTip="{Binding SelectedShip.HpMinToolTip}"
-												   Max="{Binding SelectedShip.HpMax}"
-												   MaxToolTip="{Binding SelectedShip.HpMaxToolTip}"
-												   Icon="{Binding Source={x:Static resource:IconContent.ParameterHP}, Converter={StaticResource ImageSourceConverter}}" />
+							<local:ShipStatControl
+								Base="{Binding SelectedShip.HpMin}"
+								BaseToolTip="{Binding SelectedShip.HpMinToolTip}"
+								Icon="{Binding Source={x:Static resource:IconContent.ParameterHP}, Converter={StaticResource ImageSourceConverter}}"
+								Max="{Binding SelectedShip.HpMax}"
+								MaxToolTip="{Binding SelectedShip.HpMaxToolTip}"
+								StatName="{Binding DialogAlbumMasterShip.TitleHP}"
+								/>
 
-							<local:ShipStatControl StatName="{Binding DialogAlbumMasterShip.Firepower}"
-												   Base="{Binding SelectedShip.FirepowerMin}"
-												   Max="{Binding SelectedShip.FirepowerMax}"
-												   Icon="{Binding Source={x:Static resource:IconContent.ParameterFirepower}, Converter={StaticResource ImageSourceConverter}}" />
+							<local:ShipStatControl
+								Base="{Binding SelectedShip.FirepowerMin}"
+								Icon="{Binding Source={x:Static resource:IconContent.ParameterFirepower}, Converter={StaticResource ImageSourceConverter}}"
+								Max="{Binding SelectedShip.FirepowerMax}"
+								StatName="{Binding DialogAlbumMasterShip.Firepower}"
+								/>
 
-							<local:ShipStatControl StatName="{Binding DialogAlbumMasterShip.Torpedo}"
-												   Base="{Binding SelectedShip.TorpedoMin}"
-												   Max="{Binding SelectedShip.TorpedoMax}"
-												   Icon="{Binding Source={x:Static resource:IconContent.ParameterTorpedo}, Converter={StaticResource ImageSourceConverter}}" />
+							<local:ShipStatControl
+								Base="{Binding SelectedShip.TorpedoMin}"
+								Icon="{Binding Source={x:Static resource:IconContent.ParameterTorpedo}, Converter={StaticResource ImageSourceConverter}}"
+								Max="{Binding SelectedShip.TorpedoMax}"
+								StatName="{Binding DialogAlbumMasterShip.Torpedo}"
+								/>
 
-							<local:ShipStatControl StatName="{Binding DialogAlbumMasterShip.AA}"
-												   Base="{Binding SelectedShip.AaMin}"
-												   Max="{Binding SelectedShip.AaMax}"
-												   Icon="{Binding Source={x:Static resource:IconContent.ParameterAA}, Converter={StaticResource ImageSourceConverter}}" />
+							<local:ShipStatControl
+								Base="{Binding SelectedShip.AaMin}"
+								Icon="{Binding Source={x:Static resource:IconContent.ParameterAA}, Converter={StaticResource ImageSourceConverter}}"
+								Max="{Binding SelectedShip.AaMax}"
+								StatName="{Binding DialogAlbumMasterShip.AA}"
+								/>
 
-							<local:ShipStatControl StatName="{Binding DialogAlbumMasterShip.Armor}"
-												   Base="{Binding SelectedShip.ArmorMin}"
-												   Max="{Binding SelectedShip.ArmorMax}"
-												   Icon="{Binding Source={x:Static resource:IconContent.ParameterArmor}, Converter={StaticResource ImageSourceConverter}}" />
+							<local:ShipStatControl
+								Base="{Binding SelectedShip.ArmorMin}"
+								Icon="{Binding Source={x:Static resource:IconContent.ParameterArmor}, Converter={StaticResource ImageSourceConverter}}"
+								Max="{Binding SelectedShip.ArmorMax}"
+								StatName="{Binding DialogAlbumMasterShip.Armor}"
+								/>
 
-							<local:ShipStatControl StatName="{Binding DialogAlbumMasterShip.ASW}"
-												   Base="{Binding SelectedShip.AswMin}"
-												   Max="{Binding SelectedShip.AswMax}"
-												   Scaled="{Binding SelectedShip.AswCurrent}"
-												   Icon="{Binding Source={x:Static resource:IconContent.ParameterASW}, Converter={StaticResource ImageSourceConverter}}" />
+							<local:ShipStatControl
+								Base="{Binding SelectedShip.AswMin}"
+								Icon="{Binding Source={x:Static resource:IconContent.ParameterASW}, Converter={StaticResource ImageSourceConverter}}"
+								Max="{Binding SelectedShip.AswMax}"
+								Scaled="{Binding SelectedShip.AswCurrent}"
+								StatName="{Binding DialogAlbumMasterShip.ASW}"
+								/>
 
-							<local:ShipStatControl StatName="{Binding DialogAlbumMasterShip.Evasion}"
-												   Base="{Binding SelectedShip.EvasionMin}"
-												   Max="{Binding SelectedShip.EvasionMax}"
-												   Scaled="{Binding SelectedShip.EvasionCurrent}"
-												   Icon="{Binding Source={x:Static resource:IconContent.ParameterEvasion}, Converter={StaticResource ImageSourceConverter}}" />
+							<local:ShipStatControl
+								Base="{Binding SelectedShip.EvasionMin}"
+								Icon="{Binding Source={x:Static resource:IconContent.ParameterEvasion}, Converter={StaticResource ImageSourceConverter}}"
+								Max="{Binding SelectedShip.EvasionMax}"
+								Scaled="{Binding SelectedShip.EvasionCurrent}"
+								StatName="{Binding DialogAlbumMasterShip.Evasion}"
+								/>
 
-							<local:ShipStatControl StatName="{Binding DialogAlbumMasterShip.LOS}"
-												   Base="{Binding SelectedShip.LosMin}"
-												   Max="{Binding SelectedShip.LosMax}"
-												   Scaled="{Binding SelectedShip.LosCurrent}"
-												   Icon="{Binding Source={x:Static resource:IconContent.ParameterLOS}, Converter={StaticResource ImageSourceConverter}}" />
+							<local:ShipStatControl
+								Base="{Binding SelectedShip.LosMin}"
+								Icon="{Binding Source={x:Static resource:IconContent.ParameterLOS}, Converter={StaticResource ImageSourceConverter}}"
+								Max="{Binding SelectedShip.LosMax}"
+								Scaled="{Binding SelectedShip.LosCurrent}"
+								StatName="{Binding DialogAlbumMasterShip.LOS}"
+								/>
 
-							<local:ShipStatControl StatName="{Binding DialogAlbumMasterShip.Luck}"
-												   Base="{Binding SelectedShip.LuckMin}"
-												   Max="{Binding SelectedShip.LuckMax}"
-												   Icon="{Binding Source={x:Static resource:IconContent.ParameterLuck}, Converter={StaticResource ImageSourceConverter}}" />
+							<local:ShipStatControl
+								Base="{Binding SelectedShip.LuckMin}"
+								Icon="{Binding Source={x:Static resource:IconContent.ParameterLuck}, Converter={StaticResource ImageSourceConverter}}"
+								Max="{Binding SelectedShip.LuckMax}"
+								StatName="{Binding DialogAlbumMasterShip.Luck}"
+								/>
 
-							<local:ShipStatControl StatName="{Binding DialogAlbumMasterShip.Accuracy}"
-												   Base="{Binding SelectedShip.AccuracyMin}"
-												   Max="{Binding SelectedShip.AccuracyMax}"
-												   Scaled="{Binding SelectedShip.AccuracyCurrent}"
-												   Icon="{Binding Source={x:Static resource:IconContent.ParameterAccuracy}, Converter={StaticResource ImageSourceConverter}}" />
+							<local:ShipStatControl
+								Base="{Binding SelectedShip.AccuracyMin}"
+								Icon="{Binding Source={x:Static resource:IconContent.ParameterAccuracy}, Converter={StaticResource ImageSourceConverter}}"
+								Max="{Binding SelectedShip.AccuracyMax}"
+								Scaled="{Binding SelectedShip.AccuracyCurrent}"
+								StatName="{Binding DialogAlbumMasterShip.Accuracy}"
+								/>
 						</StackPanel>
 
-						<StackPanel Grid.Row="2"
-									Margin="0 10">
+						<StackPanel Grid.Row="2" Margin="0 10">
 							<Grid>
 								<Grid.RowDefinitions>
 									<RowDefinition />
@@ -330,102 +364,136 @@
 									<ColumnDefinition SharedSizeGroup="Scaled" />
 								</Grid.ColumnDefinitions>
 
-								<Image Grid.Row="0"
-									   Grid.Column="0"
-									   Source="{Binding Source={x:Static resource:IconContent.ParameterSpeed}, Converter={StaticResource ImageSourceConverter}}" />
+								<Image
+									Grid.Row="0"
+									Grid.Column="0"
+									Source="{Binding Source={x:Static resource:IconContent.ParameterSpeed}, Converter={StaticResource ImageSourceConverter}}"
+									/>
 
-								<TextBlock Grid.Row="0"
-										   Grid.Column="1"
-										   Text="速力"
-										   HorizontalAlignment="Right"
-										   Margin="2 0" />
+								<TextBlock
+									Grid.Row="0"
+									Grid.Column="1"
+									Margin="2 0"
+									HorizontalAlignment="Right"
+									Text="速力"
+									/>
 
-								<TextBlock Grid.Row="0"
-										   Grid.Column="2"
-										   Text="{Binding SelectedShip.Speed, Converter={StaticResource SpeedConverter}}"
-										   HorizontalAlignment="Right"
-										   Margin="8 0" />
+								<TextBlock
+									Grid.Row="0"
+									Grid.Column="2"
+									Margin="8 0"
+									HorizontalAlignment="Right"
+									Text="{Binding SelectedShip.Speed, Converter={StaticResource SpeedConverter}}"
+									/>
 
-								<Separator Grid.Row="1"
-										   Grid.Column="0"
-										   Grid.ColumnSpan="5" />
+								<Separator
+									Grid.Row="1"
+									Grid.Column="0"
+									Grid.ColumnSpan="5"
+									/>
 
-								<TextBlock Grid.Row="2"
-										   Grid.Column="1"
-										   Text="レア"
-										   HorizontalAlignment="Right"
-										   Margin="2 0" />
+								<TextBlock
+									Grid.Row="2"
+									Grid.Column="1"
+									Margin="2 0"
+									HorizontalAlignment="Right"
+									Text="レア"
+									/>
 
-								<common:ImageTextControl Grid.Row="2"
-														Grid.Column="2"
-														Text="{Binding SelectedShip.Ship.Rarity, Converter={StaticResource ShipRarityConverter}}"
-														Image="{Binding SelectedShip.RarityIcon, Converter={StaticResource ImageSourceConverter}}"
-														HorizontalAlignment="Right"
-														Margin="8 0" />
+								<common:ImageTextControl
+									Grid.Row="2"
+									Grid.Column="2"
+									Margin="8 0"
+									HorizontalAlignment="Right"
+									Image="{Binding SelectedShip.RarityIcon, Converter={StaticResource ImageSourceConverter}}"
+									Text="{Binding SelectedShip.Ship.Rarity, Converter={StaticResource ShipRarityConverter}}"
+									/>
 
-								<Separator Grid.Row="3"
-										   Grid.Column="0"
-										   Grid.ColumnSpan="5" />
+								<Separator
+									Grid.Row="3"
+									Grid.Column="0"
+									Grid.ColumnSpan="5"
+									/>
 
-								<Image Grid.Row="4"
-									   Grid.Column="0"
-									   Source="{Binding Source={x:Static resource:IconContent.ParameterRange}, Converter={StaticResource ImageSourceConverter}}" />
+								<Image
+									Grid.Row="4"
+									Grid.Column="0"
+									Source="{Binding Source={x:Static resource:IconContent.ParameterRange}, Converter={StaticResource ImageSourceConverter}}"
+									/>
 
-								<TextBlock Grid.Row="4"
-										   Grid.Column="1"
-										   Text="射程"
-										   HorizontalAlignment="Right"
-										   Margin="2 0" />
+								<TextBlock
+									Grid.Row="4"
+									Grid.Column="1"
+									Margin="2 0"
+									HorizontalAlignment="Right"
+									Text="射程"
+									/>
 
-								<TextBlock Grid.Row="4"
-										   Grid.Column="2"
-										   Text="{Binding SelectedShip.Range, Converter={StaticResource RangeConverter}}"
-										   ToolTip="{Binding SelectedShip.RangeToolTip}"
-										   HorizontalAlignment="Right"
-										   Margin="8 0" />
+								<TextBlock
+									Grid.Row="4"
+									Grid.Column="2"
+									Margin="8 0"
+									HorizontalAlignment="Right"
+									Text="{Binding SelectedShip.Range, Converter={StaticResource RangeConverter}}"
+									ToolTip="{Binding SelectedShip.RangeToolTip}"
+									/>
 
-								<Separator Grid.Row="5"
-										   Grid.Column="0"
-										   Grid.ColumnSpan="5" />
+								<Separator
+									Grid.Row="5"
+									Grid.Column="0"
+									Grid.ColumnSpan="5"
+									/>
 
-								<TextBlock Grid.Row="6"
-										   Grid.Column="1"
-										   Text="消費"
-										   HorizontalAlignment="Right"
-										   Margin="2 0" />
+								<TextBlock
+									Grid.Row="6"
+									Grid.Column="1"
+									Margin="2 0"
+									HorizontalAlignment="Right"
+									Text="消費"
+									/>
 
-								<common:ImageTextControl Grid.Row="6"
-														Grid.Column="2"
-														Text="{Binding SelectedShip.Fuel}"
-														Image="{Binding Source={x:Static resource:IconContent.ResourceFuel}, Converter={StaticResource ImageSourceConverter}}"
-														HorizontalAlignment="Right"
-														Margin="8 0" />
+								<common:ImageTextControl
+									Grid.Row="6"
+									Grid.Column="2"
+									Margin="8 0"
+									HorizontalAlignment="Right"
+									Image="{Binding Source={x:Static resource:IconContent.ResourceFuel}, Converter={StaticResource ImageSourceConverter}}"
+									Text="{Binding SelectedShip.Fuel}"
+									/>
 
-								<common:ImageTextControl Grid.Row="6"
-														Grid.Column="3"
-														Text="{Binding SelectedShip.Ammo}"
-														Image="{Binding Source={x:Static resource:IconContent.ResourceAmmo}, Converter={StaticResource ImageSourceConverter}}"
-														HorizontalAlignment="Right"
-														Margin="8 0" />
+								<common:ImageTextControl
+									Grid.Row="6"
+									Grid.Column="3"
+									Margin="8 0"
+									HorizontalAlignment="Right"
+									Image="{Binding Source={x:Static resource:IconContent.ResourceAmmo}, Converter={StaticResource ImageSourceConverter}}"
+									Text="{Binding SelectedShip.Ammo}"
+									/>
 
-								<Border Grid.Row="6"
-										Grid.Column="0"
-										Grid.ColumnSpan="5"
-										Background="Transparent"
-										ToolTip="{Binding SelectedShip.ConsumptionToolTip}" />
+								<Border
+									Grid.Row="6"
+									Grid.Column="0"
+									Grid.ColumnSpan="5"
+									Background="Transparent"
+									ToolTip="{Binding SelectedShip.ConsumptionToolTip}"
+									/>
 
-								<Separator Grid.Row="7"
-										   Grid.Column="0"
-										   Grid.ColumnSpan="5" />
+								<Separator
+									Grid.Row="7"
+									Grid.Column="0"
+									Grid.ColumnSpan="5"
+									/>
 							</Grid>
 
 
 						</StackPanel>
 					</Grid>
 
-					<Grid Grid.Column="1"
-						  Margin="10"
-						  HorizontalAlignment="Stretch">
+					<Grid
+						Grid.Column="1"
+						Margin="10"
+						HorizontalAlignment="Stretch"
+						>
 						<Grid.RowDefinitions>
 							<RowDefinition Height="*" />
 							<RowDefinition Height="Auto" />
@@ -433,8 +501,7 @@
 							<RowDefinition Height="Auto" />
 						</Grid.RowDefinitions>
 
-						<ItemsControl Grid.Row="0"
-									  ItemsSource="{Binding SelectedShip.Slots}">
+						<ItemsControl Grid.Row="0" ItemsSource="{Binding SelectedShip.Slots}">
 							<ItemsControl.ItemTemplate>
 								<DataTemplate DataType="{x:Type local:EquipmentSlot}">
 									<StackPanel>
@@ -445,23 +512,30 @@
 												<ColumnDefinition SharedSizeGroup="EquipmentName" />
 											</Grid.ColumnDefinitions>
 
-											<TextBlock Grid.Column="0"
-													   Text="{Binding Size}"
-													   Margin="4 0"
-													   HorizontalAlignment="Right" />
-											<Image Grid.Column="1"
-												   Source="{Binding IconType, Converter={StaticResource ImageSourceConverter}}" />
-											<TextBlock Grid.Column="2"
-													   Text="{Binding Name}"
-													   Margin="4 0" />
-											<Border Grid.Column="1"
-													Grid.ColumnSpan="2"
-													Background="Transparent"
-													ToolTip="{Binding ToolTip}">
+											<TextBlock
+												Grid.Column="0"
+												Margin="4 0"
+												HorizontalAlignment="Right"
+												Text="{Binding Size}"
+												/>
+											<Image Grid.Column="1" Source="{Binding IconType, Converter={StaticResource ImageSourceConverter}}" />
+											<TextBlock
+												Grid.Column="2"
+												Margin="4 0"
+												Text="{Binding Name}"
+												/>
+											<Border
+												Grid.Column="1"
+												Grid.ColumnSpan="2"
+												Background="Transparent"
+												ToolTip="{Binding ToolTip}"
+												>
 												<Border.InputBindings>
-													<MouseBinding MouseAction="RightClick"
-																  Command="{Binding DataContext.OpenEquipmentEncyclopediaCommand, ElementName=DialogAlbumMasterShipView}"
-																  CommandParameter="{Binding Equipment}" />
+													<MouseBinding
+														Command="{Binding DataContext.OpenEquipmentEncyclopediaCommand, ElementName=DialogAlbumMasterShipView}"
+														CommandParameter="{Binding Equipment}"
+														MouseAction="RightClick"
+														/>
 												</Border.InputBindings>
 											</Border>
 										</Grid>
@@ -471,38 +545,33 @@
 							</ItemsControl.ItemTemplate>
 						</ItemsControl>
 
-						<StackPanel Grid.Row="1"
-									Orientation="Horizontal"
-									Margin="0 4">
+						<StackPanel
+							Grid.Row="1"
+							Margin="0 4"
+							Orientation="Horizontal"
+							>
 							<Image Source="{Binding Source={x:Static resource:IconContent.FormArsenal}, Converter={StaticResource ImageSourceConverter}}" />
 							<TextBlock Text="建造時間" />
-							<TextBlock Text="{Binding SelectedShip.BuildingTime}"
-									   Margin="4 0" />
+							<TextBlock Margin="4 0" Text="{Binding SelectedShip.BuildingTime}" />
 						</StackPanel>
 
 						<StackPanel Grid.Row="2">
 							<StackPanel Orientation="Horizontal">
 								<StackPanel.Resources>
 									<Style TargetType="{x:Type common:ImageTextControl}">
-										<Setter Property="Margin"
-												Value="0 0 4 0" />
+										<Setter Property="Margin" Value="0 0 4 0" />
 									</Style>
 								</StackPanel.Resources>
 
-								<TextBlock Text="解体"
-										   Margin="4 0" />
+								<TextBlock Margin="4 0" Text="解体" />
 
-								<common:ImageTextControl Image="{Binding Source={x:Static resource:IconContent.ResourceFuel}, Converter={StaticResource ImageSourceConverter}}"
-														Text="{Binding SelectedShip.Ship.Material[0]}" />
+								<common:ImageTextControl Image="{Binding Source={x:Static resource:IconContent.ResourceFuel}, Converter={StaticResource ImageSourceConverter}}" Text="{Binding SelectedShip.Ship.Material[0]}" />
 
-								<common:ImageTextControl Image="{Binding Source={x:Static resource:IconContent.ResourceAmmo}, Converter={StaticResource ImageSourceConverter}}"
-														Text="{Binding SelectedShip.Ship.Material[1]}" />
+								<common:ImageTextControl Image="{Binding Source={x:Static resource:IconContent.ResourceAmmo}, Converter={StaticResource ImageSourceConverter}}" Text="{Binding SelectedShip.Ship.Material[1]}" />
 
-								<common:ImageTextControl Image="{Binding Source={x:Static resource:IconContent.ResourceSteel}, Converter={StaticResource ImageSourceConverter}}"
-														Text="{Binding SelectedShip.Ship.Material[2]}" />
+								<common:ImageTextControl Image="{Binding Source={x:Static resource:IconContent.ResourceSteel}, Converter={StaticResource ImageSourceConverter}}" Text="{Binding SelectedShip.Ship.Material[2]}" />
 
-								<common:ImageTextControl Image="{Binding Source={x:Static resource:IconContent.ResourceBauxite}, Converter={StaticResource ImageSourceConverter}}"
-														Text="{Binding SelectedShip.Ship.Material[3]}" />
+								<common:ImageTextControl Image="{Binding Source={x:Static resource:IconContent.ResourceBauxite}, Converter={StaticResource ImageSourceConverter}}" Text="{Binding SelectedShip.Ship.Material[3]}" />
 
 							</StackPanel>
 							<Separator />
@@ -510,52 +579,50 @@
 							<StackPanel Orientation="Horizontal">
 								<StackPanel.Resources>
 									<Style TargetType="{x:Type common:ImageTextControl}">
-										<Setter Property="Margin"
-												Value="0 0 4 0" />
+										<Setter Property="Margin" Value="0 0 4 0" />
 									</Style>
 								</StackPanel.Resources>
 
-								<TextBlock Text="改修"
-										   Margin="4 0" />
+								<TextBlock Margin="4 0" Text="改修" />
 
-								<common:ImageTextControl Image="{Binding Source={x:Static resource:IconContent.ParameterFirepower}, Converter={StaticResource ImageSourceConverter}}"
-														Text="{Binding SelectedShip.Ship.PowerUp[0]}" />
+								<common:ImageTextControl Image="{Binding Source={x:Static resource:IconContent.ParameterFirepower}, Converter={StaticResource ImageSourceConverter}}" Text="{Binding SelectedShip.Ship.PowerUp[0]}" />
 
-								<common:ImageTextControl Image="{Binding Source={x:Static resource:IconContent.ParameterTorpedo}, Converter={StaticResource ImageSourceConverter}}"
-														Text="{Binding SelectedShip.Ship.PowerUp[1]}" />
+								<common:ImageTextControl Image="{Binding Source={x:Static resource:IconContent.ParameterTorpedo}, Converter={StaticResource ImageSourceConverter}}" Text="{Binding SelectedShip.Ship.PowerUp[1]}" />
 
-								<common:ImageTextControl Image="{Binding Source={x:Static resource:IconContent.ParameterAA}, Converter={StaticResource ImageSourceConverter}}"
-														Text="{Binding SelectedShip.Ship.PowerUp[2]}" />
+								<common:ImageTextControl Image="{Binding Source={x:Static resource:IconContent.ParameterAA}, Converter={StaticResource ImageSourceConverter}}" Text="{Binding SelectedShip.Ship.PowerUp[2]}" />
 
-								<common:ImageTextControl Image="{Binding Source={x:Static resource:IconContent.ParameterArmor}, Converter={StaticResource ImageSourceConverter}}"
-														Text="{Binding SelectedShip.Ship.PowerUp[3]}" />
+								<common:ImageTextControl Image="{Binding Source={x:Static resource:IconContent.ParameterArmor}, Converter={StaticResource ImageSourceConverter}}" Text="{Binding SelectedShip.Ship.PowerUp[3]}" />
 
 							</StackPanel>
 							<Separator />
 						</StackPanel>
 
-						<StackPanel Grid.Row="3"
-									Margin="0 10"
-									Visibility="{Binding SelectedShip.IsPlayerShip, Converter={StaticResource BooleanToVisibilityConverter}}">
+						<StackPanel
+							Grid.Row="3"
+							Margin="0 10"
+							Visibility="{Binding SelectedShip.IsPlayerShip, Converter={StaticResource BooleanToVisibilityConverter}}"
+							>
 							<StackPanel>
 								<StackPanel.Resources>
 									<Style TargetType="TextBlock">
-										<Setter Property="Margin"
-												Value="4 0" />
+										<Setter Property="Margin" Value="4 0" />
 									</Style>
 								</StackPanel.Resources>
 
 								<StackPanel Orientation="Horizontal">
 									<TextBlock Text="改装前" />
-									<TextBlock Text="{Binding SelectedShip.RemodelBeforeShipName}"
-											   ToolTip="{Binding SelectedShip.RemodelBeforeShipNameToolTip}">
+									<TextBlock Text="{Binding SelectedShip.RemodelBeforeShipName}" ToolTip="{Binding SelectedShip.RemodelBeforeShipNameToolTip}">
 										<TextBlock.InputBindings>
-											<MouseBinding Command="{Binding ChangeShipCommand}"
-														  CommandParameter="{Binding SelectedShip.Ship.RemodelBeforeShip}"
-														  MouseAction="LeftClick" />
-											<MouseBinding Command="{Binding OpenShipEncyclopediaCommand}"
-														  CommandParameter="{Binding SelectedShip.Ship.RemodelBeforeShip}"
-														  MouseAction="RightClick" />
+											<MouseBinding
+												Command="{Binding ChangeShipCommand}"
+												CommandParameter="{Binding SelectedShip.Ship.RemodelBeforeShip}"
+												MouseAction="LeftClick"
+												/>
+											<MouseBinding
+												Command="{Binding OpenShipEncyclopediaCommand}"
+												CommandParameter="{Binding SelectedShip.Ship.RemodelBeforeShip}"
+												MouseAction="RightClick"
+												/>
 										</TextBlock.InputBindings>
 									</TextBlock>
 								</StackPanel>
@@ -567,11 +634,9 @@
 										<ColumnDefinition SharedSizeGroup="RemodelSteel" />
 									</Grid.ColumnDefinitions>
 
-									<StackPanel Grid.Column="0"
-												Orientation="Horizontal">
+									<StackPanel Grid.Column="0" Orientation="Horizontal">
 										<TextBlock Text="{Binding SelectedShip.RemodelBeforeLevel}" />
-										<Border Background="Transparent"
-												ToolTip="{Binding SelectedShip.RemodelBeforeItemsToolTip}">
+										<Border Background="Transparent" ToolTip="{Binding SelectedShip.RemodelBeforeItemsToolTip}">
 											<ItemsControl ItemsSource="{Binding SelectedShip.RemodelBeforeItems}">
 												<ItemsControl.ItemsPanel>
 													<ItemsPanelTemplate>
@@ -580,21 +645,24 @@
 												</ItemsControl.ItemsPanel>
 												<ItemsControl.ItemTemplate>
 													<DataTemplate>
-														<common:ImageTextControl Image="{Binding Icon, Converter={StaticResource ImageSourceConverter}}"
-																				Text="{Binding Count}" />
+														<common:ImageTextControl Image="{Binding Icon, Converter={StaticResource ImageSourceConverter}}" Text="{Binding Count}" />
 													</DataTemplate>
 												</ItemsControl.ItemTemplate>
 											</ItemsControl>
 										</Border>
 									</StackPanel>
 
-									<common:ImageTextControl Grid.Column="1"
-															Text="{Binding SelectedShip.RemodelBeforeAmmo, FallbackValue='-'}"
-															Image="{Binding Source={x:Static resource:IconContent.ResourceAmmo}, Converter={StaticResource ImageSourceConverter}}" />
+									<common:ImageTextControl
+										Grid.Column="1"
+										Image="{Binding Source={x:Static resource:IconContent.ResourceAmmo}, Converter={StaticResource ImageSourceConverter}}"
+										Text="{Binding SelectedShip.RemodelBeforeAmmo, FallbackValue='-'}"
+										/>
 
-									<common:ImageTextControl Grid.Column="2"
-															Text="{Binding SelectedShip.RemodelBeforeSteel, FallbackValue='-'}"
-															Image="{Binding Source={x:Static resource:IconContent.ResourceSteel}, Converter={StaticResource ImageSourceConverter}}" />
+									<common:ImageTextControl
+										Grid.Column="2"
+										Image="{Binding Source={x:Static resource:IconContent.ResourceSteel}, Converter={StaticResource ImageSourceConverter}}"
+										Text="{Binding SelectedShip.RemodelBeforeSteel, FallbackValue='-'}"
+										/>
 								</Grid>
 								<Separator />
 							</StackPanel>
@@ -602,22 +670,24 @@
 							<StackPanel>
 								<StackPanel.Resources>
 									<Style TargetType="TextBlock">
-										<Setter Property="Margin"
-												Value="4 0" />
+										<Setter Property="Margin" Value="4 0" />
 									</Style>
 								</StackPanel.Resources>
 
 								<StackPanel Orientation="Horizontal">
 									<TextBlock Text="改装後" />
-									<TextBlock Text="{Binding SelectedShip.RemodelAfterShipName}"
-											   ToolTip="{Binding SelectedShip.RemodelAfterShipNameToolTip}">
+									<TextBlock Text="{Binding SelectedShip.RemodelAfterShipName}" ToolTip="{Binding SelectedShip.RemodelAfterShipNameToolTip}">
 										<TextBlock.InputBindings>
-											<MouseBinding Command="{Binding ChangeShipCommand}"
-														  CommandParameter="{Binding SelectedShip.Ship.RemodelAfterShip}"
-														  MouseAction="LeftClick" />
-											<MouseBinding Command="{Binding OpenShipEncyclopediaCommand}"
-														  CommandParameter="{Binding SelectedShip.Ship.RemodelAfterShip}"
-														  MouseAction="RightClick" />
+											<MouseBinding
+												Command="{Binding ChangeShipCommand}"
+												CommandParameter="{Binding SelectedShip.Ship.RemodelAfterShip}"
+												MouseAction="LeftClick"
+												/>
+											<MouseBinding
+												Command="{Binding OpenShipEncyclopediaCommand}"
+												CommandParameter="{Binding SelectedShip.Ship.RemodelAfterShip}"
+												MouseAction="RightClick"
+												/>
 										</TextBlock.InputBindings>
 									</TextBlock>
 								</StackPanel>
@@ -629,11 +699,9 @@
 										<ColumnDefinition SharedSizeGroup="RemodelSteel" />
 									</Grid.ColumnDefinitions>
 
-									<StackPanel Grid.Column="0"
-												Orientation="Horizontal">
+									<StackPanel Grid.Column="0" Orientation="Horizontal">
 										<TextBlock Text="{Binding SelectedShip.RemodelAfterLevel}" />
-										<Border Background="Transparent"
-												ToolTip="{Binding SelectedShip.RemodelAfterItemsToolTip}">
+										<Border Background="Transparent" ToolTip="{Binding SelectedShip.RemodelAfterItemsToolTip}">
 											<ItemsControl ItemsSource="{Binding SelectedShip.RemodelAfterItems}">
 												<ItemsControl.ItemsPanel>
 													<ItemsPanelTemplate>
@@ -642,60 +710,63 @@
 												</ItemsControl.ItemsPanel>
 												<ItemsControl.ItemTemplate>
 													<DataTemplate>
-														<common:ImageTextControl Image="{Binding Icon, Converter={StaticResource ImageSourceConverter}}"
-																				Text="{Binding Count}" />
+														<common:ImageTextControl Image="{Binding Icon, Converter={StaticResource ImageSourceConverter}}" Text="{Binding Count}" />
 													</DataTemplate>
 												</ItemsControl.ItemTemplate>
 											</ItemsControl>
 										</Border>
 									</StackPanel>
 
-									<common:ImageTextControl Grid.Column="1"
-															Text="{Binding SelectedShip.RemodelAfterAmmo, FallbackValue='-'}"
-															Image="{Binding Source={x:Static resource:IconContent.ResourceAmmo}, Converter={StaticResource ImageSourceConverter}}" />
+									<common:ImageTextControl
+										Grid.Column="1"
+										Image="{Binding Source={x:Static resource:IconContent.ResourceAmmo}, Converter={StaticResource ImageSourceConverter}}"
+										Text="{Binding SelectedShip.RemodelAfterAmmo, FallbackValue='-'}"
+										/>
 
-									<common:ImageTextControl Grid.Column="2"
-															Text="{Binding SelectedShip.RemodelAfterSteel, FallbackValue='-'}"
-															Image="{Binding Source={x:Static resource:IconContent.ResourceSteel}, Converter={StaticResource ImageSourceConverter}}" />
+									<common:ImageTextControl
+										Grid.Column="2"
+										Image="{Binding Source={x:Static resource:IconContent.ResourceSteel}, Converter={StaticResource ImageSourceConverter}}"
+										Text="{Binding SelectedShip.RemodelAfterSteel, FallbackValue='-'}"
+										/>
 								</Grid>
 								<Separator />
 							</StackPanel>
 						</StackPanel>
 
-						<StackPanel Grid.Row="3"
-									Margin="0 10"
-									Visibility="{Binding SelectedShip.IsAbyssalShip, Converter={StaticResource BooleanToVisibilityConverter}}">
+						<StackPanel
+							Grid.Row="3"
+							Margin="0 10"
+							Visibility="{Binding SelectedShip.IsAbyssalShip, Converter={StaticResource BooleanToVisibilityConverter}}"
+							>
 							<StackPanel Orientation="Horizontal">
-								<common:ImageTextControl Text="{Binding DialogAlbumMasterShip.TitleAirSuperiority}"
-														Image="{Binding Source={x:Static electronicObserverTypes:EquipmentIconType.CarrierBasedFighter}, Converter={StaticResource ImageSourceConverter}}" />
+								<common:ImageTextControl Image="{Binding Source={x:Static electronicObserverTypes:EquipmentIconType.CarrierBasedFighter}, Converter={StaticResource ImageSourceConverter}}" Text="{Binding DialogAlbumMasterShip.TitleAirSuperiority}" />
 								<TextBlock Text="{Binding SelectedShip.AirPower}" />
 							</StackPanel>
 
 							<StackPanel Orientation="Horizontal">
-								<common:ImageTextControl Text="{Binding DialogAlbumMasterShip.TitleDayAttack}"
-														Image="{Binding Source={x:Static electronicObserverTypes:EquipmentIconType.Seaplane}, Converter={StaticResource ImageSourceConverter}}" />
+								<common:ImageTextControl Image="{Binding Source={x:Static electronicObserverTypes:EquipmentIconType.Seaplane}, Converter={StaticResource ImageSourceConverter}}" Text="{Binding DialogAlbumMasterShip.TitleDayAttack}" />
 								<TextBlock Text="{Binding SelectedShip.DayAttack}" />
 							</StackPanel>
 
 							<StackPanel Orientation="Horizontal">
-								<common:ImageTextControl Text="{Binding DialogAlbumMasterShip.TitleNightAttack}"
-														Image="{Binding Source={x:Static electronicObserverTypes:EquipmentIconType.Torpedo}, Converter={StaticResource ImageSourceConverter}}" />
+								<common:ImageTextControl Image="{Binding Source={x:Static electronicObserverTypes:EquipmentIconType.Torpedo}, Converter={StaticResource ImageSourceConverter}}" Text="{Binding DialogAlbumMasterShip.TitleNightAttack}" />
 								<TextBlock Text="{Binding SelectedShip.NightAttack}" />
 							</StackPanel>
 						</StackPanel>
 					</Grid>
 				</Grid>
 
-				<TextBlock Grid.Row="2"
-						   Text="{Binding SelectedShip.Message}"
-						   Margin="10 0"
-						   Background="Transparent">
+				<TextBlock
+					Grid.Row="2"
+					Margin="10 0"
+					Background="Transparent"
+					Text="{Binding SelectedShip.Message}"
+					>
 					<TextBlock.InputBindings>
-						<MouseBinding Command="{Binding SelectedShip.SwitchMessageCommand}"
-									  MouseAction="LeftClick" />
+						<MouseBinding Command="{Binding SelectedShip.SwitchMessageCommand}" MouseAction="LeftClick" />
 					</TextBlock.InputBindings>
 				</TextBlock>
 			</Grid>
 		</Grid>
 	</Grid>
-</Window>
+</common1:WindowBase>

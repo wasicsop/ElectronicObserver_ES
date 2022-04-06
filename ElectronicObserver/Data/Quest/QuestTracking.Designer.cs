@@ -162,9 +162,9 @@ namespace ElectronicObserver.Data.Quest {
         /// <summary>
         ///   Looks up a localized string similar to 以上.
         /// </summary>
-        public static string ClearConditionOnly {
+        public static string ClearConditionOrHigher {
             get {
-                return ResourceManager.GetString("ClearConditionOnly", resourceCulture);
+                return ResourceManager.GetString("ClearConditionOrHigher", resourceCulture);
             }
         }
         

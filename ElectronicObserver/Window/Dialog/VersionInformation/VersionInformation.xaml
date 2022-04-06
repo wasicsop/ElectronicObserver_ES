@@ -20,6 +20,7 @@
 
 		<StackPanel Grid.Row="0">
 			<TextBlock Name="TextVersion" d:Text="Electronic Observer 5.x.x.x" />
+			<TextBlock Name="RuntimeVersion" d:Text="dotnet 6.0.1" />
 			<TextBlock Margin="0 10 0 0">
 				<Run x:Name="TextAuthor" d:Text="Developed by:" />
 				<Hyperlink
@@ -38,11 +39,9 @@
 				<Hyperlink NavigateUri="https://github.com/gre4bee/ElectronicObserver" RequestNavigate="OpenHyperlink">
 					github
 				</Hyperlink>
-				<Run Text="," />
 				<Hyperlink NavigateUri="https://discord.gg/6ZvX8DG" RequestNavigate="OpenHyperlink">
 					discord
 				</Hyperlink>
-				<Run Text="," />
 				<Hyperlink NavigateUri="https://twitter.com/74EOEN" RequestNavigate="OpenHyperlink">
 					twitter
 				</Hyperlink>

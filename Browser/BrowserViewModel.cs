@@ -1123,12 +1123,13 @@ public class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowser
 		Browser.CoreWebView2.OpenDevToolsWindow();
 	}
 
-	private void ToolMenu_Other_ClearCache_Click()
+	private async void ToolMenu_Other_ClearCache_Click()
 	{
 		if (MessageBox.Show(FormBrowser.ClearCacheMessage, FormBrowser.ClearCacheTitle,
 			MessageBoxButton.YesNo, MessageBoxImage.Warning, MessageBoxResult.No) == MessageBoxResult.Yes)
 		{
-			DevToolsHelper.Network.ClearBrowserCacheAsync();
+			await DevToolsHelper.Network.ClearBrowserCacheAsync();
+			AddLog(2, FormBrowser.CacheCleared);
 		}
 	}
 

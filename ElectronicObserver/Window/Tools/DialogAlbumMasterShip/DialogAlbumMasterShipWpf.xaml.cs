@@ -19,16 +19,13 @@ namespace ElectronicObserver.Window.Tools.DialogAlbumMasterShip;
 /// <summary>
 /// Interaction logic for DialogAlbumMasterShipWpf.xaml
 /// </summary>
-public partial class DialogAlbumMasterShipWpf : System.Windows.Window
+public partial class DialogAlbumMasterShipWpf
 {
-	private DialogAlbumMasterShipViewModel ViewModel { get; } = new();
-
-	public DialogAlbumMasterShipWpf()
+	public DialogAlbumMasterShipWpf() : base(new DialogAlbumMasterShipViewModel())
 	{
 		InitializeComponent();
 
 		ViewModel.PropertyChanged += SelectedShipChanged;
-		DataContext = ViewModel;
 	}
 
 	public DialogAlbumMasterShipWpf(int shipId) : this()

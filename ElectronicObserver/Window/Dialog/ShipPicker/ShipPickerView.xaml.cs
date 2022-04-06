@@ -11,24 +11,21 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ElectronicObserver.Window.Tools.DropRecordViewer;
 using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Dialog.ShipPicker;
 /// <summary>
 /// Interaction logic for ShipPickerView.xaml
 /// </summary>
-public partial class ShipPickerView : System.Windows.Window
+public partial class ShipPickerView
 {
-	public ShipPickerViewModel ViewModel { get; }
-
-	public ShipPickerView(ShipPickerViewModel viewModel)
+	public ShipPickerView(ShipPickerViewModel viewModel) : base(viewModel)
 	{
 		InitializeComponent();
-
-		ViewModel = viewModel;
+		
 		ViewModel.PropertyChanged += ViewModel_PropertyChanged;
-
-		DataContext = ViewModel;
+		ViewModel.PropertyChanged += ViewModel_PropertyChanged2;
 
 		Closing += ShipPicker_Closing;
 	}
@@ -36,6 +33,7 @@ public partial class ShipPickerView : System.Windows.Window
 	private void ShipPicker_Closing(object? sender, System.ComponentModel.CancelEventArgs e)
 	{
 		ViewModel.PropertyChanged -= ViewModel_PropertyChanged;
+		ViewModel.PropertyChanged -= ViewModel_PropertyChanged2;
 	}
 
 	private void ViewModel_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -43,8 +41,19 @@ public partial class ShipPickerView : System.Windows.Window
 		if (e.PropertyName is not nameof(ViewModel.PickedShip)) return;
 
 		PickedShip = ViewModel.PickedShip;
+		PickedOption = null;
+		DialogResult = true;
+	}
+
+	private void ViewModel_PropertyChanged2(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
+	{
+		if (e.PropertyName is not nameof(ViewModel.PickedOption)) return;
+
+		PickedShip = null;
+		PickedOption = ViewModel.PickedOption;
 		DialogResult = true;
 	}
 
 	public IShipDataMaster? PickedShip { get; private set; }
+	public DropRecordOption? PickedOption { get; private set; }
 }

@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows;
+using ElectronicObserver.Common;
 using ElectronicObserver.Data;
 using ElectronicObserver.Resource.Record;
 using ElectronicObserver.Utility.Data;
@@ -15,12 +16,11 @@ using ElectronicObserver.Window.Dialog;
 using ElectronicObserver.Window.Tools.DialogAlbumMasterShip;
 using ElectronicObserverTypes;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 
 namespace ElectronicObserver.Window.Tools.DialogAlbumMasterEquipment;
 
-public partial class DialogAlbumMasterEquipmentViewModel : ObservableObject
+public partial class DialogAlbumMasterEquipmentViewModel : WindowViewModelBase
 {
 	private IEnumerable<EquipmentDataViewModel> AllEquipment { get; }
 	public DialogAlbumMasterEquipmentTranslationViewModel DialogAlbumMasterEquipment { get; }

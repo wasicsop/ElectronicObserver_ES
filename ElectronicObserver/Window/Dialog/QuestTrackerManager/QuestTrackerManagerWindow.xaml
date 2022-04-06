@@ -1,27 +1,75 @@
-﻿<Window
+﻿<common:WindowBase
 	x:Class="ElectronicObserver.Window.Dialog.QuestTrackerManager.QuestTrackerManagerWindow"
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:common="clr-namespace:ElectronicObserver.Common"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:questTrackerManager="clr-namespace:ElectronicObserver.Window.Dialog.QuestTrackerManager"
+	xmlns:system="clr-namespace:System;assembly=System.Runtime"
 	xmlns:ui="http://schemas.modernwpf.com/2019"
 	xmlns:viewModels="clr-namespace:ElectronicObserver.Window.Dialog.QuestTrackerManager.ViewModels"
-	Name="QuestTrackerManagerView"
+	x:Name="QuestTrackerManagerView"
 	Title="{Binding Translation.Title}"
 	Width="800"
 	Height="450"
-	d:DataContext="{Binding ViewModel, ElementName=QuestTrackerManagerView}"
+	d:DataContext="{d:DesignInstance questTrackerManager:QuestTrackerManagerViewModel}"
 	ui:WindowHelper.UseModernWindowStyle="True"
+	x:TypeArguments="questTrackerManager:QuestTrackerManagerViewModel"
 	mc:Ignorable="d"
 	>
 	<Window.Resources>
 		<ResourceDictionary>
 			<ResourceDictionary.MergedDictionaries>
+				<!--
 				<ResourceDictionary Source="Views/Styles.xaml" />
+				-->
 				<ResourceDictionary Source="Views/CommonTemplates.xaml" />
 				<ResourceDictionary Source="Views/TaskTemplates.xaml" />
 				<ResourceDictionary Source="Views/ConditionTemplates.xaml" />
 			</ResourceDictionary.MergedDictionaries>
+
+			<questTrackerManager:QuestTrackerManagerBindingProxy x:Key="Proxy" DataContext="{Binding}" />
+
+			<Style BasedOn="{StaticResource DefaultMenuItemStyle}" TargetType="MenuItem">
+				<Setter Property="FontFamily" Value="{Binding DataContext.Font, Source={StaticResource Proxy}}" />
+				<Setter Property="FontSize" Value="{Binding DataContext.FontSize, Source={StaticResource Proxy}}" />
+				<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
+			</Style>
+			<Style BasedOn="{StaticResource DefaultButtonStyle}" TargetType="Button">
+				<Setter Property="FontFamily" Value="{Binding DataContext.Font, Source={StaticResource Proxy}}" />
+				<Setter Property="FontSize" Value="{Binding DataContext.FontSize, Source={StaticResource Proxy}}" />
+				<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
+				<Setter Property="Margin" Value="2" />
+			</Style>
+			<Style BasedOn="{StaticResource DefaultCheckBoxStyle}" TargetType="CheckBox">
+				<Setter Property="FontFamily" Value="{Binding DataContext.Font, Source={StaticResource Proxy}}" />
+				<Setter Property="FontSize" Value="{Binding DataContext.FontSize, Source={StaticResource Proxy}}" />
+				<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
+				<Setter Property="VerticalAlignment" Value="Center" />
+				<Setter Property="Margin" Value="4 0" />
+			</Style>
+			<Style BasedOn="{StaticResource DefaultComboBoxStyle}" TargetType="ComboBox">
+				<Setter Property="FontFamily" Value="{Binding DataContext.Font, Source={StaticResource Proxy}}" />
+				<Setter Property="FontSize" Value="{Binding DataContext.FontSize, Source={StaticResource Proxy}}" />
+				<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
+				<Setter Property="VerticalAlignment" Value="Center" />
+				<Setter Property="Margin" Value="4" />
+			</Style>
+			<Style BasedOn="{StaticResource DefaultTextBoxStyle}" TargetType="{x:Type TextBox}">
+				<Setter Property="FontFamily" Value="{Binding DataContext.Font, Source={StaticResource Proxy}}" />
+				<Setter Property="FontSize" Value="{Binding DataContext.FontSize, Source={StaticResource Proxy}}" />
+				<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
+				<Setter Property="VerticalAlignment" Value="Center" />
+				<Setter Property="Margin" Value="4" />
+			</Style>
+			<Style TargetType="{x:Type ui:NumberBox}">
+				<Setter Property="FontFamily" Value="{Binding DataContext.Font, Source={StaticResource Proxy}}" />
+				<Setter Property="FontSize" Value="{Binding DataContext.FontSize, Source={StaticResource Proxy}}" />
+				<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
+				<Setter Property="VerticalAlignment" Value="Center" />
+				<Setter Property="Margin" Value="4" />
+			</Style>
 
 			<DataTemplate x:Key="TrackerTemplate" DataType="{x:Type viewModels:TrackerViewModel}">
 				<DataTemplate.Resources>
@@ -111,4 +159,4 @@
 			</ScrollViewer>
 		</Grid>
 	</Border>
-</Window>
+</common:WindowBase>

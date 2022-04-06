@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using ElectronicObserver.Common;
 using ElectronicObserver.Data;
+using ElectronicObserver.Data.Quest;
 using ElectronicObserver.Observer;
 using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.Enums;
@@ -15,7 +17,7 @@ using MessagePack.Resolvers;
 
 namespace ElectronicObserver.Window.Dialog.QuestTrackerManager;
 
-public abstract class QuestTrackerManagerBase
+public abstract class QuestTrackerManagerBase : WindowViewModelBase
 {
 	public ObservableCollection<TrackerViewModel> Trackers { get; } = new();
 
@@ -29,6 +31,8 @@ public abstract class QuestTrackerManagerBase
 	protected void SubscribeToApis()
 	{
 		var ao = APIObserver.Instance;
+
+		ao.APIList["api_port/port"].ResponseReceived += TimerSave;
 
 		ao.APIList["api_get_member/questlist"].ResponseReceived += QuestUpdated;
 
@@ -48,6 +52,16 @@ public abstract class QuestTrackerManagerBase
 		ao.APIList["api_req_practice/battle_result"].ResponseReceived += PracticeFinished;
 
 		ao.APIList["api_req_mission/result"].ResponseReceived += ExpeditionCompleted;
+	}
+
+	private void TimerSave(string apiname, dynamic data)
+	{
+		if (!DateTimeHelper.IsCrossedHour(LastQuestListUpdate)) return;
+
+		LastQuestListUpdate = DateTime.Now;
+
+		Save();
+		Utility.Logger.Add(1, QuestTracking.AutoSavedProgress);
 	}
 
 	private void QuestUpdated(string apiname, dynamic data)
@@ -234,4 +248,8 @@ public abstract class QuestTrackerManagerBase
 			tracker.Increment(discardedEquipment.Select(e => e.MasterEquipment.IconTypeTyped));
 		}
 	}
+
+	public abstract void Save();
+
+	public TrackerViewModel? GetTrackerById(int id) => Trackers.FirstOrDefault(t => t.QuestId == id);
 }

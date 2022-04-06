@@ -423,4 +423,10 @@ Do you want to open this github issue?</value>
   <data name="GridSplitterSize" xml:space="preserve">
     <value>Grid splitter size</value>
   </data>
+  <data name="Old" xml:space="preserve">
+    <value>Old</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>New</value>
+  </data>
 </root>

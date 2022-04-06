@@ -10,8 +10,8 @@ using System.Windows.Forms;
 using ElectronicObserver.Data;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Resource.Record;
+using ElectronicObserver.Utility;
 using ElectronicObserver.Utility.Mathematics;
-using ElectronicObserverTypes;
 using Translation = ElectronicObserver.Properties.Window.Dialog.DialogDropRecordViewer;
 
 namespace ElectronicObserver.Window.Dialog;
@@ -58,7 +58,29 @@ public partial class DialogDropRecordViewer : Form
 
 		_record = RecordManager.Instance.ShipDrop;
 
+		Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
+		ConfigurationChanged();
+
 		Translate();
+	}
+
+	private void ConfigurationChanged()
+	{
+		Configuration.ConfigurationData c = Configuration.Config;
+
+		Font = c.UI.MainFont.FontData;
+		statusStrip1.Font = Font;
+
+		if (c.UI.IsLayoutFixed)
+		{
+			RecordView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
+			RecordView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+		}
+		else
+		{
+			RecordView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
+			RecordView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+		}
 	}
 
 	public void Translate()
@@ -114,21 +136,8 @@ public partial class DialogDropRecordViewer : Form
 			.Distinct()
 			.Except(new[] { NameNotExist, NameFullPort });
 
-		Dictionary<ShipId, string> nameWithClassCache = new();
-
-		string TryGetShipNameWithClass(ShipDataMaster ship)
-		{
-			if (!nameWithClassCache.TryGetValue(ship.ShipId, out string? name))
-			{
-				name = ship.NameWithClass;
-				nameWithClassCache.Add(ship.ShipId, name);
-			}
-
-			return name;
-		}
-
 		var includedShipObjects = includedShipNames
-			.Select(name => KCDatabase.Instance.MasterShips.Values.FirstOrDefault(ship => TryGetShipNameWithClass(ship) == name))
+			.Select(name => KCDatabase.Instance.MasterShips.Values.FirstOrDefault(ship => ship.NameWithClass == name))
 			.Where(s => s != null);
 
 		var removedShipNames = includedShipNames.Except(includedShipObjects.Select(s => s.NameWithClass));

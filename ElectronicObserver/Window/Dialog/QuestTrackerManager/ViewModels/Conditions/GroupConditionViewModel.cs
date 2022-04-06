@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
+using ElectronicObserver.Data;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.Enums;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.Models.Conditions;
 using ElectronicObserver.Window.Wpf;
@@ -28,18 +29,20 @@ public partial class GroupConditionViewModel : ObservableObject, IConditionViewM
 	public ConditionType SelectedConditionType { get; set; } = ConditionType.ShipType;
 
 	public string Display => string.Join($"{Separator}{GroupOperator.Display()}{Separator}",
-		Conditions.Select(c => Grouping(c?.Display ?? Properties.Window.Dialog.QuestTrackerManager.UnknownCondition)));
+		Conditions.Select(ConditionDisplay));
 
 	private string Separator => GroupOperator switch
 	{
-		Operator.Or => "\n",
+		// Operator.Or => "\n",
 		_ => " "
 	};
 
-	private string Grouping(string s) => GroupOperator switch
+	private string ConditionDisplay(IConditionViewModel? condition) => condition switch
 	{
-		Operator.Or => $"({s})",
-		_ => s
+		null => Properties.Window.Dialog.QuestTrackerManager.UnknownCondition,
+		_ when GroupOperator is Operator.Or => condition.Display,
+		GroupConditionViewModel { GroupOperator: Operator.Or } => $"({condition.Display})",
+		_ => condition.Display
 	};
 
 	public GroupConditionViewModel(GroupConditionModel model)
@@ -57,6 +60,13 @@ public partial class GroupConditionViewModel : ObservableObject, IConditionViewM
 			if (args.PropertyName is not nameof(GroupOperator)) return;
 
 			Model.GroupOperator = GroupOperator;
+		};
+
+		PropertyChanged += (sender, args) =>
+		{
+			if (args.PropertyName is not nameof(Display)) return;
+
+			KCDatabase.Instance.Quest.OnQuestUpdated();
 		};
 
 		Model.Conditions.CollectionChanged += (_, e) =>

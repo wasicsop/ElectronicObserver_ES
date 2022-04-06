@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Globalization;
+using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Navigation;
 using System.Windows.Threading;
@@ -24,6 +25,7 @@ public partial class VersionInformationWindow
 		};
 
 		TextVersion.Text = string.Format(Translation.TextVersionFormat, versionText, SoftwareInformation.VersionEnglish, SoftwareInformation.UpdateTime.ToString("yyyy/MM/dd"));
+		RuntimeVersion.Text = RuntimeInformation.FrameworkDescription;
 
 		// https://github.com/Kinnara/ModernWpf/issues/378
 		SourceInitialized += (s, a) =>

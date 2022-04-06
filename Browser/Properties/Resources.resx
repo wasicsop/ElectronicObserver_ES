@@ -272,9 +272,7 @@ if (node) document.getElementsByTagName('head')[0].removeChild(node);</value>
     <value>再読み込みすると復帰します。</value>
   </data>
   <data name="ClearCacheMessage" xml:space="preserve">
-    <value>キャッシュをクリアするため、ブラウザを再起動します。
-よろしいですか？
-※環境によっては本ツールが終了する場合があります。その場合は再起動してください。</value>
+    <value>本当にキャッシュをクリアするのですか？</value>
   </data>
   <data name="ClearCacheTitle" xml:space="preserve">
     <value>ブラウザ再起動確認</value>
@@ -377,5 +375,8 @@ Microsoft Visual C++ 2019 Redistributableが必要です。
   </data>
   <data name="InstallationFailed" xml:space="preserve">
     <value>WebView2をインストールしようとしたときにエラーが発生しました。WebView2を手動でインストールしてください。</value>
+  </data>
+  <data name="CacheCleared" xml:space="preserve">
+    <value>キャッシュの削除処理が終了しました。</value>
   </data>
 </root>

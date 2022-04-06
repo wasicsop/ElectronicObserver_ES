@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using ElectronicObserverTypes.Evasion;
 
 namespace ElectronicObserverTypes.Extensions;
 
@@ -12,6 +13,21 @@ public static class ShipDataExtensions
 
 	public static double Accuracy(this IShipData ship) =>
 		2 * Math.Sqrt(ship.Level) + 1.5 * Math.Sqrt(ship.LuckTotal);
+
+	public static double ShellingEvasion(this IShipData ship) =>
+		new ShellingEvasion(ship).PostcapValue;
+
+	public static double TorpedoEvasion(this IShipData ship) =>
+		new TorpedoEvasion(ship).PostcapValue;
+
+	public static double AirstrikeEvasion(this IShipData ship) =>
+		new AirstrikeEvasion(ship).PostcapValue;
+
+	public static double AswEvasion(this IShipData ship) =>
+		new AswEvasion(ship).PostcapValue;
+
+	public static double NightEvasion(this IShipData ship) =>
+		new NightEvasion(ship).PostcapValue;
 
 	public static int MainGunCount(this IShipData ship) => ship.AllSlotInstance
 		.Count(e => e?.MasterEquipment.IsMainGun == true);
@@ -33,6 +49,9 @@ public static class ShipDataExtensions
 
 	public static bool HasRadar(this IShipData ship) => ship.AllSlotInstance
 		.Any(e => e?.MasterEquipment.IsRadar == true);
+
+	public static bool HasSurfaceRadar(this IShipData ship) => ship.AllSlotInstance
+		.Any(e => e?.MasterEquipment.IsSurfaceRadar is true);
 
 	public static bool HasSuisei634(this IShipData ship, int count = 1) => ship.AllSlotInstance
 		.Count(e => e.IsSuisei634()) >= count;

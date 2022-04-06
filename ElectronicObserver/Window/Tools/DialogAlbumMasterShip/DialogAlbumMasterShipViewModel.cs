@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows;
+using ElectronicObserver.Common;
 using ElectronicObserver.Data;
 using ElectronicObserver.Resource.Record;
 using ElectronicObserver.Utility.Data;
@@ -16,18 +17,19 @@ using ElectronicObserver.Window.Dialog;
 using ElectronicObserver.Window.Tools.DialogAlbumMasterEquipment;
 using ElectronicObserverTypes;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
+using WanaKanaNet;
 using static ElectronicObserver.Resource.Record.ShipParameterRecord;
 
 namespace ElectronicObserver.Window.Tools.DialogAlbumMasterShip;
 
-public partial class DialogAlbumMasterShipViewModel : ObservableObject
+public partial class DialogAlbumMasterShipViewModel : WindowViewModelBase
 {
 	private IEnumerable<ShipDataRecord> AllShips { get; }
 	public DialogAlbumMasterShipTranslationViewModel DialogAlbumMasterShip { get; }
 
-	public string SearchFilter { get; set; } = "";
+	public string? SearchFilter { get; set; } = "";
+	public string? RomajiSearchFilter { get; set; } = "";
 
 	public string Title => SelectedShip switch
 	{
@@ -51,16 +53,50 @@ public partial class DialogAlbumMasterShipViewModel : ObservableObject
 	// probably due to multiple enumeration
 	public List<ShipDataRecord> Ships { get; set; }
 
-	private static bool Matches(IShipDataMaster ship, string filter)
+	private static Dictionary<ShipId, string> RomajiCache { get; } = new();
+
+	private static string GetRomajiName(IShipDataMaster ship)
 	{
-		filter = Calculator.RomaToHira(filter);
+		if (!RomajiCache.ContainsKey(ship.ShipId))
+		{
+			string name = ship.IsAbyssalShip switch
+			{
+				true => ship.NameWithClass.ToLower(),
+				_ => ship.NameReading,
+			};
 
-		bool Search(string searchWord) =>
-			Calculator.ToHiragana(ship.NameWithClass.ToLower()).StartsWith(searchWord) ||
-			Calculator.ToHiragana(ship.NameReading.ToLower()).StartsWith(searchWord);
+			RomajiCache.Add(ship.ShipId, WanaKana.ToRomaji(name));
+		}
 
-		return Search(Calculator.ToHiragana(filter.ToLower())) ||
-			   Search(Calculator.RomaToHira(filter));
+		return RomajiCache[ship.ShipId];
+	}
+
+	private static bool Matches(IShipDataMaster ship, string filter, string romajiFilter)
+	{
+		bool literalSearch = ship.NameWithClass.ToLower().Contains(filter.ToLower());
+		if (!ship.IsAbyssalShip)
+		{
+			literalSearch |= ship.NameReading.Contains(filter.ToLower());
+		}
+
+		if (literalSearch)
+		{
+			return true;
+		}
+
+		// when using kanji to filter, only do a literal search
+		// 神 matches 北上 if you use romaji compare
+		if (filter.ToCharArray().Any(WanaKana.IsKanji)) return false;
+		// abyssals should get matched with literal search only
+		if (ship.IsAbyssalShip) return false;
+		// when using English ship names, do literal searches only
+		if (!Utility.Configuration.Config.UI.JapaneseShipName) return false;
+
+		string romajiName = GetRomajiName(ship);
+
+		bool result = romajiName.Contains(romajiFilter.ToLower());
+
+		return result;
 	}
 
 	public int Level { get; set; } = 175;
@@ -78,6 +114,8 @@ public partial class DialogAlbumMasterShipViewModel : ObservableObject
 	{
 		AllShips = KCDatabase.Instance.MasterShips.Values.Select(s => new ShipDataRecord(s));
 		Ships = AllShips.ToList();
+
+		PopulateCache();
 
 		DialogAlbumMasterShip = App.Current.Services.GetService<DialogAlbumMasterShipTranslationViewModel>()!;
 
@@ -101,12 +139,27 @@ public partial class DialogAlbumMasterShipViewModel : ObservableObject
 		{
 			if (args.PropertyName is not nameof(SearchFilter)) return;
 
-			Ships = AllShips.Where(s => SearchFilter switch
+			RomajiSearchFilter = WanaKana.ToRomaji(SearchFilter ?? "");
+		};
+
+		PropertyChanged += (sender, args) =>
+		{
+			if (args.PropertyName is not nameof(RomajiSearchFilter)) return;
+
+			Ships = AllShips.Where(s => RomajiSearchFilter switch
 			{
 				null or "" => true,
-				string f => Matches(s.Ship, f),
+				string f => Matches(s.Ship, SearchFilter, f),
 			}).ToList();
 		};
+	}
+
+	private void PopulateCache()
+	{
+		foreach (ShipDataRecord ship in Ships)
+		{
+			GetRomajiName(ship.Ship);
+		}
 	}
 
 	public DialogAlbumMasterShipViewModel(IShipDataMaster ship) : this()
@@ -272,7 +325,7 @@ public partial class DialogAlbumMasterShipViewModel : ObservableObject
 				sw.WriteLine(string.Join(",",
 					ship.ShipID,
 					ship.AlbumNo,
-					ship.IsAbyssalShip ? "深海棲艦" : Constants.GetShipClass(ship.ShipClass),
+					ship.IsAbyssalShip ? "深海棲艦" : Constants.GetShipClass(ship.ShipClass, ship.ShipId),
 					CsvHelper.EscapeCsvCell(ship.ShipTypeName),
 					CsvHelper.EscapeCsvCell(ship.NameEN),
 					CsvHelper.EscapeCsvCell(ship.NameReading),

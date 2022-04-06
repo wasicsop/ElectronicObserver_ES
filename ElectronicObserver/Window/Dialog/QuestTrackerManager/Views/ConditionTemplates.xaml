@@ -22,7 +22,12 @@
 			Style="{StaticResource BorderSpacing}"
 			>
 			<StackPanel>
-				<StackPanel Orientation="Horizontal">
+				<Grid>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="Auto" />
+						<ColumnDefinition Width="Auto" />
+						<ColumnDefinition />
+					</Grid.ColumnDefinitions>
 					<!--
 						the command binding breaks on the top group condition
 						because it's hosted in a ContentControl rather than an ItemsControl
@@ -30,6 +35,7 @@
 						that's good though because the top group condition shouldn't be removed
 					-->
 					<Button
+						Grid.Column="0"
 						Command="{Binding DataContext.RemoveConditionCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ItemsControl}}"
 						CommandParameter="{Binding Model}"
 						Content="ｘ"
@@ -37,13 +43,18 @@
 						/>
 
 					<ComboBox
+						Grid.Column="1"
 						ItemTemplate="{StaticResource EnumDisplayerTemplate}"
 						ItemsSource="{Binding Operators}"
 						SelectedItem="{Binding GroupOperator}"
 						/>
 
-					<TextBlock Text="{Binding Display}" TextWrapping="Wrap" />
-				</StackPanel>
+					<TextBlock
+						Grid.Column="2"
+						Text="{Binding Display}"
+						TextWrapping="Wrap"
+						/>
+				</Grid>
 
 				<StackPanel Orientation="Horizontal">
 					<Button Command="{Binding AddConditionCommand}" Content="＋" />

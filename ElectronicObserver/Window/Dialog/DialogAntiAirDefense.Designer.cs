@@ -267,7 +267,6 @@
             this.ResultView_AARocketBarrageProbability});
 			dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
 			dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
-			dataGridViewCellStyle9.Font = new System.Drawing.Font("Meiryo UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
 			dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText;
 			dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Window;
 			dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.ControlText;

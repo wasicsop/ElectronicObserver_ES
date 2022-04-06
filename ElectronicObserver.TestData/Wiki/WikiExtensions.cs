@@ -84,7 +84,7 @@ public static class WikiExtensions
 		LuckMax = wikiShip._luck ?? 0,
 		Speed = wikiShip._speed,
 		Range = wikiShip._range ?? -1,
-		Aircraft = wikiShip._equipment.Select(s => s.size.ToIntValue())
+		Aircraft = wikiShip._equipment.Select(s => s.size.ToIntValueAircraft())
 			.Concat(Enumerable.Repeat<int>(default, 5)).Take(5).ToArray(),
 	};
 
@@ -113,6 +113,12 @@ public static class WikiExtensions
 		{ ValueKind: JsonValueKind.False } => 0,
 		// unknown value?
 		_ => -1
+	};
+
+	public static int ToIntValueAircraft(this JsonElement value) => value switch
+	{
+		{ ValueKind: JsonValueKind.Number } n => n.GetInt32(),
+		_ => 0
 	};
 
 	public static string ToStringValue(this JsonElement value) => value switch

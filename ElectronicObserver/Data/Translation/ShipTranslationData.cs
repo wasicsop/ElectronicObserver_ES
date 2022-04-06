@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using DynaJson;
 using ElectronicObserver.Utility;
+using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Data.Translation;
 
@@ -18,13 +18,26 @@ public class ShipTranslationData : TranslationBase
 	private bool isShipLoaded => Configuration.Config.UI.JapaneseShipName == false && ShipList != null && SuffixList != null;
 	private bool isTypeLoaded => Configuration.Config.UI.JapaneseShipType == false && TypeList != null;
 
-	public string Name(string rawData)
+	private Dictionary<ShipId, string> NameCache { get; } = new();
+
+	public string Name(string rawData, ShipId shipId)
 	{
 		if (isShipLoaded == false) return rawData;
 
+		if (!NameCache.ContainsKey(shipId))
+		{
+			NameCache.Add(shipId, TranslateName(rawData));
+		}
+
+		return NameCache[shipId];
+	}
+
+	private string TranslateName(string rawData)
+	{
 		// save current ship name to prevent suffix replacements that can show up in names
 		// tre suffix can be found in Intrepid which gets you In Trepid
 		string currentShipName = "";
+
 		foreach (var s in ShipList.OrderByDescending(s => s.Key.Length))
 		{
 			if (rawData.Equals(s.Key)) return s.Value;
@@ -38,6 +51,7 @@ public class ShipTranslationData : TranslationBase
 		}
 
 		var name = rawData; // prevent suffix from being replaced twice.
+
 		foreach (var sf in SuffixList.OrderByDescending(sf => sf.Key.Length))
 		{
 			if (rawData.Contains(sf.Key))
@@ -56,6 +70,7 @@ public class ShipTranslationData : TranslationBase
 				}
 			}
 		}
+
 		return name;
 	}
 
@@ -66,6 +81,7 @@ public class ShipTranslationData : TranslationBase
 	}
 	public override void Initialize()
 	{
+		NameCache.Clear();
 		ShipList = new Dictionary<string, string>();
 		TypeList = new Dictionary<string, string>();
 		SuffixList = new Dictionary<string, string>();

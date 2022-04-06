@@ -106,6 +106,7 @@ public partial class BattleViewModel : AnchorableViewModel
 	private bool IsPlayerCombinedFleet { get; set; }
 	public bool FleetFriendEscortVisible => IsPlayerCombinedFleet && PlayerFleetVisible;
 
+	public SolidColorBrush? FleetEnemyEscortForeColor { get; set; }
 	public SolidColorBrush? FleetEnemyEscortBackColor { get; set; }
 	private bool IsEnemyCombinedFleet { get; set; }
 	public bool FleetEnemyEscortVisible => IsEnemyCombinedFleet && ViewVisible;
@@ -184,6 +185,7 @@ public partial class BattleViewModel : AnchorableViewModel
 		o["api_port/port"].ResponseReceived += Updated;
 		o["api_req_map/start"].ResponseReceived += Updated;
 		o["api_req_map/next"].ResponseReceived += Updated;
+		o["api_req_map/air_raid"].ResponseReceived += Updated;
 		o["api_req_sortie/battle"].ResponseReceived += Updated;
 		o["api_req_sortie/battleresult"].ResponseReceived += Updated;
 		o["api_req_battle_midnight/battle"].ResponseReceived += Updated;
@@ -277,6 +279,23 @@ public partial class BattleViewModel : AnchorableViewModel
 				PlayerFleetVisible = true;
 				break;
 
+			case "api_req_map/air_raid":
+				if (!bm.HeavyBaseAirRaids.Any())
+				{
+					ViewVisible = false;
+					break;
+				}
+
+				SetFormation(bm);
+				ClearSearchingResult();
+				ClearBaseAirAttack();
+				SetAerialWarfare(null, bm.HeavyBaseAirRaids.Last().BaseAirRaid);
+				SetHPBar(bm.HeavyBaseAirRaids.Last());
+				SetDamageRate(bm);
+
+				ViewVisible = !hideDuringBattle;
+				PlayerFleetVisible = true;
+				break;
 
 			case "api_req_sortie/battle":
 			case "api_req_practice/battle":
@@ -504,25 +523,52 @@ public partial class BattleViewModel : AnchorableViewModel
 		FormationEnemyText = Constants.GetFormationShort(bm.FirstBattle.Searching.FormationEnemy);
 		FormationText = Constants.GetEngagementForm(bm.FirstBattle.Searching.EngagementForm);
 
-		FleetEnemyForeColor = bm.Compass?.EventID switch
-		{
-			5 => Utility.Configuration.Config.UI.Color_Red.ToBrush(),
-			_ => System.Drawing.SystemColors.ControlText.ToBrush()
-		};
+
 
 		if (bm.IsEnemyCombined && bm.StartsFromDayBattle)
 		{
+			// highlights for the fleet you'll fight in night battle
+			// todo: this should probably go to config
+			Color highlightForeColor = Color.Black;
+			Color highlightBackColor = Color.LightSteelBlue;
+
 			bool willMain = bm.WillNightBattleWithMainFleet();
-			FleetEnemyBackColor = (willMain ? Color.LightSteelBlue : Color.Transparent).ToBrush();
-			FleetEnemyEscortBackColor = (willMain ? Color.Transparent : Color.LightSteelBlue).ToBrush();
+
+			FleetEnemyForeColor = bm.Compass?.EventID switch
+			{
+				5 => Utility.Configuration.Config.UI.Color_Red.ToBrush(),
+				_ when willMain => highlightForeColor.ToBrush(),
+				_ => Utility.Configuration.Config.UI.ForeColor.ToBrush()
+			};
+
+			FleetEnemyBackColor = willMain switch
+			{
+				true => highlightBackColor.ToBrush(),
+				_ => Color.Transparent.ToBrush()
+			};
+
+			FleetEnemyEscortForeColor = willMain switch
+			{
+				true => Utility.Configuration.Config.UI.ForeColor.ToBrush(),
+				_ => highlightForeColor.ToBrush()
+			};
+
+			FleetEnemyEscortBackColor = willMain switch
+			{
+				true => Color.Transparent.ToBrush(),
+				_ => highlightBackColor.ToBrush()
+			};
 		}
 		else
 		{
-			FleetEnemyBackColor =
-				FleetEnemyEscortBackColor = Color.Transparent.ToBrush();
+			FleetEnemyForeColor = bm.Compass?.EventID switch
+			{
+				5 => Utility.Configuration.Config.UI.Color_Red.ToBrush(),
+				_ => Utility.Configuration.Config.UI.ForeColor.ToBrush()
+			};
+			FleetEnemyEscortForeColor = Utility.Configuration.Config.UI.ForeColor.ToBrush();
+			FleetEnemyBackColor = FleetEnemyEscortBackColor = Color.Transparent.ToBrush();
 		}
-
-		FleetEnemyForeColor = Utility.Configuration.Config.UI.ForeColor.ToBrush();
 
 		FormationForeColor = (bm.FirstBattle.Searching.EngagementForm switch
 		{
@@ -995,7 +1041,14 @@ public partial class BattleViewModel : AnchorableViewModel
 			HPBars[index].Visible = false;
 		}
 
-
+		void SetEnemyBackground(int index)
+		{
+			HPBars[index].BackColor = HPBars[index].Value switch
+			{
+				< 1 => Color.FromArgb(0x40, 0x4D, 0xA6, 0xDF),
+				_ => Color.Transparent
+			};
+		}
 
 		// friend main
 		for (int i = 0; i < initial.FriendInitialHPs.Length; i++)
@@ -1068,6 +1121,7 @@ public partial class BattleViewModel : AnchorableViewModel
 
 				var bar = HPBars[refindex];
 				bar.Text = Constants.GetShipClassClassification(ship.ShipType);
+				SetEnemyBackground(refindex);
 
 				bar.ToolTip =
 					string.Format("{0} Lv. {1}\r\nHP: ({2} → {3})/{4} ({5}) [{6}]\r\n\r\n{7}",
@@ -1164,6 +1218,7 @@ public partial class BattleViewModel : AnchorableViewModel
 
 					var bar = HPBars[refindex];
 					bar.Text = Constants.GetShipClassClassification(ship.ShipType);
+					SetEnemyBackground(refindex);
 
 					bar.ToolTip =
 						string.Format("{0} Lv. {1}\r\nHP: ({2} → {3})/{4} ({5}) [{6}]\r\n\r\n{7}",
@@ -1258,11 +1313,15 @@ public partial class BattleViewModel : AnchorableViewModel
 			}
 		}
 
-		HPBars[BattleIndex.EnemyMain1].BackColor = bd.Initial.IsBossDamaged switch
+		// sunk background should be prioritized
+		if (HPBars[BattleIndex.EnemyMain1].Value > 0)
 		{
-			true => Utility.Configuration.Config.UI.Battle_ColorHPBarsBossDamaged,
-			_ => Color.Transparent
-		};
+			HPBars[BattleIndex.EnemyMain1].BackColor = bd.Initial.IsBossDamaged switch
+			{
+				true => Utility.Configuration.Config.UI.Battle_ColorHPBarsBossDamaged,
+				_ => Color.Transparent
+			};
+		}
 
 		if (!isBaseAirRaid)
 		{

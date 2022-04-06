@@ -29,7 +29,11 @@
 				source: https://github.com/Kinnara/ModernWpf/blob/master/ModernWpf/Styles/ToolTip.xaml
 				only change is removing max width
 			-->
-			<Style BasedOn="{StaticResource DefaultToolTipStyle}" TargetType="ToolTip">
+			<Style
+				x:Key="DefaultToolTipStyleEO"
+				BasedOn="{StaticResource DefaultToolTipStyle}"
+				TargetType="ToolTip"
+				>
 				<Setter Property="Template">
 					<Setter.Value>
 						<ControlTemplate TargetType="ToolTip">

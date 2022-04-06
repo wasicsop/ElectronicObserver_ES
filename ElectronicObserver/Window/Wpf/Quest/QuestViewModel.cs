@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Forms;
 using System.Windows.Media;
 using DynaJson;
@@ -29,7 +30,9 @@ public partial class QuestViewModel : AnchorableViewModel
 	public SolidColorBrush FontBrush { get; set; }
 
 	public FormQuestTranslationViewModel FormQuest { get; }
-	public ObservableCollection<QuestItemViewModel> Quests { get; set; } = new();
+	private ObservableCollection<QuestItemViewModel> Quests { get; set; } = new();
+	public ICollectionView View { get; set; }
+	public List<SortDescription> SortDescriptions { get; set; }
 
 	public QuestItemViewModel? SelectedQuest { get; set; }
 
@@ -75,6 +78,7 @@ public partial class QuestViewModel : AnchorableViewModel
 	public QuestViewModel() : base("Quest", "Quest", ImageSourceIcons.GetIcon(IconContent.FormQuest))
 	{
 		FormQuest = App.Current.Services.GetService<FormQuestTranslationViewModel>()!;
+		View = CollectionViewSource.GetDefaultView(Quests);
 
 		Title = FormQuest.Title;
 		FormQuest.PropertyChanged += (_, _) => Title = FormQuest.Title;
@@ -228,6 +232,8 @@ public partial class QuestViewModel : AnchorableViewModel
 		}
 		*/
 
+		SortDescriptions = c.FormQuest.SortDescriptions;
+
 		Updated();
 	}
 
@@ -244,8 +250,10 @@ public partial class QuestViewModel : AnchorableViewModel
 
 			*/
 			Configuration.Config.FormQuest.ColumnWidth = Columns.Select(c => (int)c.Width.DisplayValue).ToList();
+			// ColumnSort only gives you a visual indication for sorting
+			// SortDescriptions do the actual sorting
 			Configuration.Config.FormQuest.ColumnSort = Columns.Select(c => c.SortDirection.ToSerializableValue()).ToList();
-
+			Configuration.Config.FormQuest.SortDescriptions = SortDescriptions;
 		}
 		catch (Exception)
 		{
@@ -350,11 +358,17 @@ public partial class QuestViewModel : AnchorableViewModel
 
 			{
 				var progress = KCDatabase.Instance.QuestProgress[q.QuestID];
+				var tracker = KCDatabase.Instance.QuestTrackerManagers.GetTrackerById(q.QuestID) ??
+							  KCDatabase.Instance.SystemQuestTrackerManager.GetTrackerById(q.QuestID);
 				// var code = q.Code != "" ? $"{q.Code}: " : "";
 				// row.Cells[QuestView_Name.Index].ToolTipText =
 				// 	$"{code}{q.Name} (ID: {q.QuestID})\r\n{q.Description}\r\n{progress?.GetClearCondition() ?? ""}";
 
-				row.QuestView_NameToolTip = $"{row.QuestView_Name} (ID: {q.QuestID})\r\n{q.Description}\r\n{progress?.GetClearCondition() ?? ""}";
+				row.QuestView_NameToolTip =
+					$"{row.QuestView_Name} (ID: {q.QuestID})\r\n" +
+					$"{q.Description}\r\n" +
+					$"{tracker?.ClearCondition ?? progress?.GetClearCondition() ?? ""}\r\n" +
+					$"{tracker?.GroupConditions.Display ?? ""}";
 			}
 			{
 				string value;
@@ -368,10 +382,8 @@ public partial class QuestViewModel : AnchorableViewModel
 				}
 				else
 				{
-					TrackerViewModel? tracker = KCDatabase.Instance.QuestTrackerManagers.Trackers
-						.FirstOrDefault(t => t.QuestId == q.QuestID);
-					TrackerViewModel? systemTracker = KCDatabase.Instance.SystemQuestTrackerManager.Trackers
-						.FirstOrDefault(t => t.QuestId == q.QuestID);
+					TrackerViewModel? tracker = KCDatabase.Instance.QuestTrackerManagers.GetTrackerById(q.QuestID);
+					TrackerViewModel? systemTracker = KCDatabase.Instance.SystemQuestTrackerManager.GetTrackerById(q.QuestID);
 
 					if (tracker is not null)
 					{
@@ -462,6 +474,14 @@ public partial class QuestViewModel : AnchorableViewModel
 		// 	QuestView.FirstDisplayedScrollingRowIndex = scrollPos;
 
 		// QuestView.ResumeLayout();
+		ICollectionView view = CollectionViewSource.GetDefaultView(Quests);
+
+		foreach (SortDescription description in SortDescriptions)
+		{
+			view.SortDescriptions.Add(description);
+		}
+
+		View = view;
 	}
 
 	[ICommand]
