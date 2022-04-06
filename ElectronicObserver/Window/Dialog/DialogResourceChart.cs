@@ -11,6 +11,7 @@ using System.Windows.Forms.DataVisualization.Charting;
 using ElectronicObserver.Data;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Resource.Record;
+using ElectronicObserver.Utility;
 using ElectronicObserver.ViewModels;
 using Translation = ElectronicObserver.Properties.Window.Dialog.DialogResourceChart;
 
@@ -57,7 +58,19 @@ public partial class DialogResourceChart : Form
 	{
 		InitializeComponent();
 
+		Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
+		ConfigurationChanged();
+
 		Translate();
+	}
+
+	private void ConfigurationChanged()
+	{
+		Configuration.ConfigurationData c = Configuration.Config;
+
+		Font = c.UI.MainFont.FontData;
+		ResourceChart.Font = Font;
+		menuStrip1.Font = Font;
 	}
 
 	public void Translate()

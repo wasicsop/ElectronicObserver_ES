@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ElectronicObserver.Data;
 using ElectronicObserver.Resource;
+using ElectronicObserver.Utility;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserverTypes;
 using Translation = ElectronicObserver.Properties.Window.Dialog.DialogAntiAirDefense;
@@ -69,7 +70,28 @@ public partial class DialogAntiAirDefense : Form
 		InitializeComponent();
 		enemySlotCountValue = (int)EnemySlotCount.Value;
 
+		Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
+		ConfigurationChanged();
+
 		Translate();
+	}
+
+	private void ConfigurationChanged()
+	{
+		Configuration.ConfigurationData c = Configuration.Config;
+
+		Font = c.UI.MainFont.FontData;
+
+		if (c.UI.IsLayoutFixed)
+		{
+			ResultView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
+			ResultView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+		}
+		else
+		{
+			ResultView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
+			ResultView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+		}
 	}
 
 	public void Translate()

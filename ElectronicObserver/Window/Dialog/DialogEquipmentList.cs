@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ElectronicObserver.Data;
 using ElectronicObserver.Resource;
+using ElectronicObserver.Utility;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Support;
 using ElectronicObserver.Window.Tools.DialogAlbumMasterEquipment;
@@ -80,7 +81,35 @@ public partial class DialogEquipmentList : Form
 
 		#endregion
 
+		Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
+		ConfigurationChanged();
+
 		Translate();
+	}
+
+	private void ConfigurationChanged()
+	{
+		Configuration.ConfigurationData c = Configuration.Config;
+
+		Font = c.UI.MainFont.FontData;
+		TopMenu.Font = Font;
+
+		if (c.UI.IsLayoutFixed)
+		{
+			EquipmentView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
+			EquipmentView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+
+			DetailView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
+			DetailView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+		}
+		else
+		{
+			EquipmentView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
+			EquipmentView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+
+			DetailView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
+			DetailView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+		}
 	}
 
 	public void Translate()

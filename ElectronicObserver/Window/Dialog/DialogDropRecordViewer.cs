@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using ElectronicObserver.Data;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Resource.Record;
+using ElectronicObserver.Utility;
 using ElectronicObserver.Utility.Mathematics;
 using Translation = ElectronicObserver.Properties.Window.Dialog.DialogDropRecordViewer;
 
@@ -57,7 +58,29 @@ public partial class DialogDropRecordViewer : Form
 
 		_record = RecordManager.Instance.ShipDrop;
 
+		Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
+		ConfigurationChanged();
+
 		Translate();
+	}
+
+	private void ConfigurationChanged()
+	{
+		Configuration.ConfigurationData c = Configuration.Config;
+
+		Font = c.UI.MainFont.FontData;
+		statusStrip1.Font = Font;
+
+		if (c.UI.IsLayoutFixed)
+		{
+			RecordView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
+			RecordView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+		}
+		else
+		{
+			RecordView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
+			RecordView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+		}
 	}
 
 	public void Translate()

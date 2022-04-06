@@ -60,6 +60,16 @@ public partial class DialogFleetImageGenerator : Form
 			CurrentArgument.FleetIDs = new int[] { 1, 2 };
 		else
 			CurrentArgument.FleetIDs = new int[] { fleetID };
+
+		Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
+		ConfigurationChanged();
+	}
+
+	private void ConfigurationChanged()
+	{
+		Configuration.ConfigurationData c = Configuration.Config;
+
+		Font = c.UI.MainFont.FontData;
 	}
 
 	public void Translate()
