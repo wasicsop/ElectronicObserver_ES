@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using ElectronicObserver.Common;
 using ElectronicObserver.Data;
 using ElectronicObserver.Window.Tools.DropRecordViewer;
 using ElectronicObserverTypes;
@@ -11,7 +11,7 @@ using ElectronicObserverTypes.Extensions;
 
 namespace ElectronicObserver.Window.Dialog.ShipPicker;
 
-public partial class ShipPickerViewModel : ObservableObject
+public partial class ShipPickerViewModel : WindowViewModelBase
 {
 	public List<Filter> TypeFilters { get; }
 

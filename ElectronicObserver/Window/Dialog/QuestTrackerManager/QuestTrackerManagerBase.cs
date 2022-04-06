@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using ElectronicObserver.Common;
 using ElectronicObserver.Data;
 using ElectronicObserver.Data.Quest;
 using ElectronicObserver.Observer;
@@ -16,7 +17,7 @@ using MessagePack.Resolvers;
 
 namespace ElectronicObserver.Window.Dialog.QuestTrackerManager;
 
-public abstract class QuestTrackerManagerBase
+public abstract class QuestTrackerManagerBase : WindowViewModelBase
 {
 	public ObservableCollection<TrackerViewModel> Trackers { get; } = new();
 

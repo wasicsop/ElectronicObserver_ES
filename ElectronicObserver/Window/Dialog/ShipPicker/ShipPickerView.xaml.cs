@@ -18,19 +18,14 @@ namespace ElectronicObserver.Window.Dialog.ShipPicker;
 /// <summary>
 /// Interaction logic for ShipPickerView.xaml
 /// </summary>
-public partial class ShipPickerView : System.Windows.Window
+public partial class ShipPickerView
 {
-	public ShipPickerViewModel ViewModel { get; }
-
-	public ShipPickerView(ShipPickerViewModel viewModel)
+	public ShipPickerView(ShipPickerViewModel viewModel) : base(viewModel)
 	{
 		InitializeComponent();
-
-		ViewModel = viewModel;
+		
 		ViewModel.PropertyChanged += ViewModel_PropertyChanged;
 		ViewModel.PropertyChanged += ViewModel_PropertyChanged2;
-
-		DataContext = ViewModel;
 
 		Closing += ShipPicker_Closing;
 	}

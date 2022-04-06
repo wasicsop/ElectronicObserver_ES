@@ -1,16 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Windows.Media;
-using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using ElectronicObserver.Common;
 using ElectronicObserver.Data;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Resource.Record;
@@ -20,12 +18,11 @@ using ElectronicObserver.Window.Dialog;
 using ElectronicObserver.Window.Dialog.ShipPicker;
 using ElectronicObserver.Window.Wpf;
 using ElectronicObserverTypes;
-using ElectronicObserverTypes.Extensions;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace ElectronicObserver.Window.Tools.DropRecordViewer;
 
-public partial class DropRecordViewerViewModel : ObservableObject
+public partial class DropRecordViewerViewModel : WindowViewModelBase
 {
 	public FontFamily Font { get; set; }
 	public double FontSize { get; set; }
@@ -73,7 +70,7 @@ public partial class DropRecordViewerViewModel : ObservableObject
 	public bool RawRows => !MergeRows;
 	public string StatusInfoText { get; set; }
 	public DateTime StatusInfoTag { get; set; }
-	
+
 	private string NameNotExist => DialogDropRecordViewer.NameNotExist;
 	private const string MapAny = "*";
 

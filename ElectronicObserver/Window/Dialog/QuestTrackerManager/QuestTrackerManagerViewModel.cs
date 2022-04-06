@@ -13,7 +13,6 @@ using Microsoft.Toolkit.Mvvm.Input;
 
 namespace ElectronicObserver.Window.Dialog.QuestTrackerManager;
 
-[ObservableObject]
 public partial class QuestTrackerManagerViewModel : QuestTrackerManagerBase
 {
 	public QuestTrackerManagerTranslationViewModel Translation { get; }

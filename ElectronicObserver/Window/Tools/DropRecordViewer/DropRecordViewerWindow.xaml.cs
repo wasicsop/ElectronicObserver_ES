@@ -6,15 +6,11 @@ namespace ElectronicObserver.Window.Tools.DropRecordViewer;
 /// <summary>
 /// Interaction logic for DropRecordViewerWindow.xaml
 /// </summary>
-public partial class DropRecordViewerWindow : System.Windows.Window
+public partial class DropRecordViewerWindow
 {
-	private DropRecordViewerViewModel ViewModel = new();
-
-	public DropRecordViewerWindow()
+	public DropRecordViewerWindow() : base(new DropRecordViewerViewModel())
 	{
 		InitializeComponent();
-
-		DataContext = ViewModel;
 	}
 
 	private void Selector_OnSelectionChanged(object sender, SelectionChangedEventArgs e)

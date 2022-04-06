@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows;
+using ElectronicObserver.Common;
 using ElectronicObserver.Data;
 using ElectronicObserver.Resource.Record;
 using ElectronicObserver.Utility.Data;
@@ -16,14 +17,13 @@ using ElectronicObserver.Window.Dialog;
 using ElectronicObserver.Window.Tools.DialogAlbumMasterEquipment;
 using ElectronicObserverTypes;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 using WanaKanaNet;
 using static ElectronicObserver.Resource.Record.ShipParameterRecord;
 
 namespace ElectronicObserver.Window.Tools.DialogAlbumMasterShip;
 
-public partial class DialogAlbumMasterShipViewModel : ObservableObject
+public partial class DialogAlbumMasterShipViewModel : WindowViewModelBase
 {
 	private IEnumerable<ShipDataRecord> AllShips { get; }
 	public DialogAlbumMasterShipTranslationViewModel DialogAlbumMasterShip { get; }

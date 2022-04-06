@@ -1,46 +1,11 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-					xmlns:ui="http://schemas.modernwpf.com/2019">
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 	<Style TargetType="{x:Type TextBlock}">
-		<Setter Property="VerticalAlignment"
-				Value="Center" />
-		<Setter Property="Margin"
-				Value="4" />
+		<Setter Property="VerticalAlignment" Value="Center" />
+		<Setter Property="Margin" Value="4" />
 	</Style>
 
-	<Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource DefaultTextBoxStyle}">
-		<Setter Property="VerticalAlignment"
-		        Value="Center" />
-		<Setter Property="Margin"
-		        Value="4" />
-	</Style>
-
-	<Style TargetType="{x:Type ComboBox}"
-		   BasedOn="{StaticResource DefaultComboBoxStyle}">
-		<Setter Property="VerticalAlignment"
-				Value="Center" />
-		<Setter Property="Margin"
-				Value="4" />
-	</Style>
-
-	<Style TargetType="{x:Type ui:NumberBox}">
-		<Setter Property="VerticalAlignment"
-				Value="Center" />
-		<Setter Property="Margin"
-				Value="4" />
-	</Style>
-
-	<Style TargetType="{x:Type Border}"
-		   x:Key="BorderSpacing">
-		<Setter Property="Margin"
-				Value="2" />
-		<Setter Property="Padding"
-				Value="2" />
-	</Style>
-
-	<Style TargetType="{x:Type Button}"
-		   BasedOn="{StaticResource DefaultButtonStyle}">
-		<Setter Property="Margin"
-				Value="2" />
+	<Style x:Key="BorderSpacing" TargetType="{x:Type Border}">
+		<Setter Property="Margin" Value="2" />
+		<Setter Property="Padding" Value="2" />
 	</Style>
 </ResourceDictionary>
