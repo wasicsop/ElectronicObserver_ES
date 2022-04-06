@@ -5,9 +5,9 @@ namespace ElectronicObserver.Data;
 
 public class TsunDbBattleData : TsunDbEntity
 {
-	protected override string Url => "battle";
+	protected override string Url => "eventbattle";
 
-	protected override bool IsBetaAPI => true;
+	protected override bool IsBetaAPI => false;
 
 	private static KCDatabase Database => KCDatabase.Instance;
 
@@ -64,7 +64,7 @@ public class TsunDbBattleData : TsunDbEntity
 	/// Raw battle data
 	/// </summary>
 	[JsonProperty("rawapi")]
-	public string RawApi { get; private set; }
+	public object? RawApi { get; private set; }
 
 	/// <summary>
 	/// Amount of edges in the map
@@ -80,7 +80,7 @@ public class TsunDbBattleData : TsunDbEntity
 	#endregion
 
 	#region Constructor
-	public TsunDbBattleData(string apiName, string rawApi)
+	public TsunDbBattleData(string apiName, dynamic rawApi)
 	{
 		Map = string.Format("{0}-{1}", Database.Battle.Compass.MapAreaID, Database.Battle.Compass.MapInfoID);
 		Node = Database.Battle.Compass.Destination;
@@ -96,7 +96,13 @@ public class TsunDbBattleData : TsunDbEntity
 		Formation = Database.Battle.FirstBattle.Searching.FormationFriend;
 		AmountOfNodes = TsunDbSubmissionManager.CurrentMapAmountOfNodes;
 
-		RawApi = rawApi;
+		// --- Send data as Json : used the same workaround as replay (serialize then deserialiaze as object with CheckAdditionalContent as true)
+		string rawDataAsString = rawApi.ToString();
+		RawApi = JsonConvert.DeserializeObject(rawDataAsString, new JsonSerializerSettings()
+		{
+			CheckAdditionalContent = true
+		});
+
 		ApiName = apiName;
 	}
 	#endregion

@@ -91,7 +91,10 @@ public class TsunDbSubmissionManager : ResponseWrapper
 				case "api_req_combined_battle/midnight_battle":
 				case "api_req_combined_battle/ec_midnight_battle":
 				{
-					new TsunDbBattleData(apiname, data.ToString()).SendData();
+					if (db.Battle.Compass.MapAreaID > 20)
+					{
+						new TsunDbBattleData(apiname, data).SendData();
+					}
 					break;
 				}
 			}
