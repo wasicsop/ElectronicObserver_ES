@@ -91,7 +91,7 @@ public sealed class ResourceManager
 		NightFighter,
 		NightAttacker,
 		LandASPatrol,
-		Reserved48,         // 艦これ本体側が未実装
+		LandAssaulter,
 		HeavyBomber,
 		Locked,
 		Unknown,
@@ -337,7 +337,7 @@ public sealed class ResourceManager
 			LoadImageFromArchive(Equipments, archive, mstpath + @"Equipment/NightFighter.png", "Equipment_NightFighter");
 			LoadImageFromArchive(Equipments, archive, mstpath + @"Equipment/NightAttacker.png", "Equipment_NightAttacker");
 			LoadImageFromArchive(Equipments, archive, mstpath + @"Equipment/LandASPatrol.png", "Equipment_LandASPatrol");
-			LoadImageFromArchive(Equipments, archive, mstpath + @"Equipment/Unknown.png", "Equipment_Reserved48");                   // 艦これ本体側が未実装
+			LoadImageFromArchive(Equipments, archive, mstpath + @"Equipment/LandAttacker.png", "Equipment_LandAssaulter"); // todo: using the land attacker icon temporarily till we have a land assaulter icon
 			LoadImageFromArchive(Equipments, archive, mstpath + @"Equipment/HeavyBomber.png", "Equipment_HeavyBomber");
 			LoadImageFromArchive(Equipments, archive, mstpath + @"Equipment/Locked.png", "Equipment_Locked");
 			LoadImageFromArchive(Equipments, archive, mstpath + @"Equipment/Unknown.png", "Equipment_Unknown");
