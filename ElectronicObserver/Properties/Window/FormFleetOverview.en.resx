@@ -121,8 +121,8 @@
     <value>Fleets</value>
   </data>
   <data name="CombinedFleetToolTip" xml:space="preserve">
-    <value>Drums: {0}pcs
-Daihatsu: {1}pcs
+    <value>Drums: {0} ({12} ships)
+Daihatsu: {1} ({13} ships)
 Surface Radar:{10} ({11} ships)
 TP: S {2} / A {3}
 

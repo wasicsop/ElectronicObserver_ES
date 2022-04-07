@@ -177,7 +177,9 @@ public class FleetOverviewViewModel : AnchorableViewModel
 				Math.Floor(Calculator.GetSearchingAbility_New33(fleet1, 3) * 100) / 100 + Math.Floor(Calculator.GetSearchingAbility_New33(fleet2, 3) * 100) / 100,
 				Math.Floor(Calculator.GetSearchingAbility_New33(fleet1, 4) * 100) / 100 + Math.Floor(Calculator.GetSearchingAbility_New33(fleet2, 4) * 100) / 100,
 				radar.Sum(),
-				radar.Count(i => i > 0)
+				radar.Count(i => i > 0),
+				transport.Count(i => i> 0),
+				landing.Count(i => i > 0)
 
 			);
 

@@ -71,8 +71,8 @@ namespace ElectronicObserver.Properties.Window {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ドラム缶搭載: {0}個
-        ///大発動艇搭載: {1}個
+        ///   Looks up a localized string similar to ドラム缶搭載: {0} ({12}艦)
+        ///大発動艇搭載: {1} ({13}艦)
         ///水上電探: {10} ({11}艦)
         ///輸送量(TP): S {2} / A {3}
         ///
