@@ -103,7 +103,7 @@
   <data name="CombinedFleetToolTip" xml:space="preserve">
     <value>ドラム缶搭載: {0}個
 大発動艇搭載: {1}個
-電探: {10} ({11}}艦)
+水上電探: {10} ({11}}艦)
 輸送量(TP): S {2} / A {3}
 
 制空戦力合計: {4}
