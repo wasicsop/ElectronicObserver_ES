@@ -144,7 +144,7 @@ public class FleetStatusViewModel : ObservableObject
 			// 各艦ごとの ドラム缶 or 大発系 を搭載している個数
 			var transport = members.Select(s => s.AllSlotInstanceMaster.Count(eq => eq?.CategoryType == EquipmentTypes.TransportContainer));
 			var landing = members.Select(s => s.AllSlotInstanceMaster.Count(eq => eq?.CategoryType == EquipmentTypes.LandingCraft || eq?.CategoryType == EquipmentTypes.SpecialAmphibiousTank));
-
+			var radar = members.Select(s => s.AllSlotInstanceMaster.Count(eq => eq?.IsSurfaceRadar == true));
 
 			Name.ToolTip = string.Format(FormFleet.FleetNameToolTip,
 				levelSum,
@@ -170,7 +170,9 @@ public class FleetStatusViewModel : ObservableObject
 				members.Sum(s => s.ExpeditionFirepowerTotal),
 				members.Sum(s => s.ExpeditionAATotal),
 				members.Sum(s => s.ExpeditionASWTotal),
-				members.Sum(s => s.ExpeditionLOSTotal)
+				members.Sum(s => s.ExpeditionLOSTotal),
+				radar.Sum(),
+				radar.Count(i => i > 0)
 			);
 
 		}
