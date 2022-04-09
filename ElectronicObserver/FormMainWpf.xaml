@@ -486,14 +486,20 @@
 						</MenuItem.CommandParameter>
 					</MenuItem>
 				</MenuItem>
-				<MenuItem
-					d:Header="Development Record"
-					Command="{Binding OpenDevelopmentRecordCommand}"
-					Header="{Binding FormMain.StripMenu_Tool_DevelopmentRecord}"
-					>
+				<MenuItem d:Header="Development Record" Header="{Binding FormMain.StripMenu_Tool_DevelopmentRecord}">
 					<MenuItem.Icon>
 						<Image Source="{Binding DevelopmentRecordImageSource}" />
 					</MenuItem.Icon>
+					<MenuItem Command="{Binding OpenDevelopmentRecordCommand}" Header="{Binding FormMain.Old}">
+						<MenuItem.CommandParameter>
+							<system:Boolean>False</system:Boolean>
+						</MenuItem.CommandParameter>
+					</MenuItem>
+					<MenuItem Command="{Binding OpenDevelopmentRecordCommand}" Header="{Binding FormMain.New}">
+						<MenuItem.CommandParameter>
+							<system:Boolean>True</system:Boolean>
+						</MenuItem.CommandParameter>
+					</MenuItem>
 				</MenuItem>
 				<MenuItem
 					d:Header="Construction Record"

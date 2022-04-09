@@ -31,6 +31,7 @@ using ElectronicObserver.Window.Dialog;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager;
 using ElectronicObserver.Window.Dialog.VersionInformation;
 using ElectronicObserver.Window.Integrate;
+using ElectronicObserver.Window.Tools.DevelopmentRecordViewer;
 using ElectronicObserver.Window.Tools.DialogAlbumMasterEquipment;
 using ElectronicObserver.Window.Tools.DialogAlbumMasterShip;
 using ElectronicObserver.Window.Tools.DropRecordViewer;
@@ -242,7 +243,7 @@ public partial class FormMainViewModel : ObservableObject
 
 		OpenEquipmentListCommand = new RelayCommand(StripMenu_Tool_EquipmentList_Click);
 		OpenDropRecordCommand = new RelayCommand<bool>(StripMenu_Tool_DropRecord_Click);
-		OpenDevelopmentRecordCommand = new RelayCommand(StripMenu_Tool_DevelopmentRecord_Click);
+		OpenDevelopmentRecordCommand = new RelayCommand<bool>(StripMenu_Tool_DevelopmentRecord_Click);
 		OpenConstructionRecordCommand = new RelayCommand(StripMenu_Tool_ConstructionRecord_Click);
 		OpenResourceChartCommand = new RelayCommand(StripMenu_Tool_ResourceChart_Click);
 		OpenAlbumMasterShipCommand = new RelayCommand(StripMenu_Tool_AlbumMasterShip_Click);
@@ -798,7 +799,7 @@ public partial class FormMainViewModel : ObservableObject
 		}
 	}
 
-	private void StripMenu_Tool_DevelopmentRecord_Click()
+	private void StripMenu_Tool_DevelopmentRecord_Click(bool useNewVersion)
 	{
 		if (KCDatabase.Instance.MasterShips.Count == 0)
 		{
@@ -814,7 +815,14 @@ public partial class FormMainViewModel : ObservableObject
 			return;
 		}
 
-		new DialogDevelopmentRecordViewer().Show(Window);
+		if (useNewVersion)
+		{
+			new DevelopmentRecordViewerWindow().Show(Window);
+		}
+		else
+		{
+			new DialogDevelopmentRecordViewer().Show(Window);
+		}
 	}
 
 	private void StripMenu_Tool_ConstructionRecord_Click()

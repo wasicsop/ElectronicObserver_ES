@@ -1,0 +1,316 @@
+﻿<common:WindowBase
+	x:Class="ElectronicObserver.Window.Tools.DevelopmentRecordViewer.DevelopmentRecordViewerWindow"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:common="clr-namespace:ElectronicObserver.Common"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:local="clr-namespace:ElectronicObserver.Window.Tools.DevelopmentRecordViewer"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:ui="http://schemas.modernwpf.com/2019"
+	Title="{Binding DialogDevelopmentRecordViewer.Title}"
+	Width="650"
+	Height="480"
+	d:DataContext="{d:DesignInstance local:DevelopmentRecordViewerViewModel}"
+	ui:WindowHelper.UseModernWindowStyle="True"
+	x:TypeArguments="local:DevelopmentRecordViewerViewModel"
+	mc:Ignorable="d"
+	>
+	<Window.Resources>
+		<local:DevelopmentRecordViewerBindingProxy x:Key="Proxy" DataContext="{Binding}" />
+		<local:DevelopmentFilterToDisplayConverter x:Key="DevelopmentFilterToDisplayConverter" />
+
+		<Style TargetType="TextBlock">
+			<Setter Property="VerticalAlignment" Value="Center" />
+			<Setter Property="Margin" Value="4 0" />
+		</Style>
+		<Style BasedOn="{StaticResource DefaultCheckBoxStyle}" TargetType="CheckBox">
+			<Setter Property="VerticalAlignment" Value="Center" />
+			<Setter Property="Margin" Value="4 0" />
+			<Setter Property="FontFamily" Value="{Binding DataContext.Font, Source={StaticResource Proxy}}" />
+			<Setter Property="FontSize" Value="{Binding DataContext.FontSize, Source={StaticResource Proxy}}" />
+			<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
+		</Style>
+		<Style BasedOn="{StaticResource DefaultButtonStyle}" TargetType="Button">
+			<Setter Property="VerticalAlignment" Value="Center" />
+			<Setter Property="Margin" Value="4 0" />
+			<Setter Property="FontFamily" Value="{Binding DataContext.Font, Source={StaticResource Proxy}}" />
+			<Setter Property="FontSize" Value="{Binding DataContext.FontSize, Source={StaticResource Proxy}}" />
+			<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
+		</Style>
+		<Style BasedOn="{StaticResource DefaultComboBoxStyle}" TargetType="ComboBox">
+			<Setter Property="VerticalAlignment" Value="Center" />
+			<Setter Property="Margin" Value="4 0" />
+			<Setter Property="FontFamily" Value="{Binding DataContext.Font, Source={StaticResource Proxy}}" />
+			<Setter Property="FontSize" Value="{Binding DataContext.FontSize, Source={StaticResource Proxy}}" />
+			<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
+		</Style>
+		<Style BasedOn="{StaticResource DefaultDatePickerStyle}" TargetType="DatePicker">
+			<Setter Property="Margin" Value="4" />
+			<Setter Property="FontFamily" Value="{Binding DataContext.Font, Source={StaticResource Proxy}}" />
+			<Setter Property="FontSize" Value="{Binding DataContext.FontSize, Source={StaticResource Proxy}}" />
+			<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
+		</Style>
+	</Window.Resources>
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition />
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
+
+		<Grid Grid.Row="0" Margin="5 0">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
+			</Grid.RowDefinitions>
+
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition Width="Auto" />
+			</Grid.ColumnDefinitions>
+
+			<TextBlock
+				Grid.Row="0"
+				Grid.Column="0"
+				Text="{Binding DialogDevelopmentRecordViewer.Type}"
+				/>
+			<ComboBox
+				Grid.Row="0"
+				Grid.Column="1"
+				ItemsSource="{Binding Categories}"
+				SelectedItem="{Binding SelectedCategory}"
+				>
+				<ComboBox.ItemTemplate>
+					<DataTemplate>
+						<TextBlock Text="{Binding Converter={StaticResource DevelopmentFilterToDisplayConverter}}" />
+					</DataTemplate>
+				</ComboBox.ItemTemplate>
+			</ComboBox>
+
+			<TextBlock
+				Grid.Row="1"
+				Grid.Column="0"
+				Text="{Binding DialogDevelopmentRecordViewer.EquipmentName}"
+				/>
+			<ComboBox
+				Grid.Row="1"
+				Grid.Column="1"
+				ItemsSource="{Binding Equipment}"
+				SelectedItem="{Binding SelectedEquipment}"
+				>
+				<ComboBox.ItemTemplate>
+					<DataTemplate>
+						<TextBlock Text="{Binding Converter={StaticResource DevelopmentFilterToDisplayConverter}}" />
+					</DataTemplate>
+				</ComboBox.ItemTemplate>
+			</ComboBox>
+
+			<TextBlock
+				Grid.Row="2"
+				Grid.Column="0"
+				Text="{Binding DialogDevelopmentRecordViewer.Flagship}"
+				/>
+			<ComboBox
+				Grid.Row="2"
+				Grid.Column="1"
+				ItemsSource="{Binding FlagshipTypes}"
+				SelectedItem="{Binding SelectedFlagshipType}"
+				>
+				<ComboBox.ItemTemplate>
+					<DataTemplate>
+						<TextBlock Text="{Binding Converter={StaticResource DevelopmentFilterToDisplayConverter}}" />
+					</DataTemplate>
+				</ComboBox.ItemTemplate>
+			</ComboBox>
+
+			<TextBlock
+				Grid.Row="0"
+				Grid.Column="2"
+				Text="{Binding DialogDevelopmentRecordViewer.From}"
+				/>
+			<DatePicker
+				Grid.Row="0"
+				Grid.Column="3"
+				DisplayDateEnd="{Binding DateEnd}"
+				DisplayDateStart="{Binding DateBegin}"
+				SelectedDate="{Binding DateBegin}"
+				/>
+
+			<TextBlock
+				Grid.Row="1"
+				Grid.Column="2"
+				Text="{Binding DialogDevelopmentRecordViewer.Until}"
+				/>
+			<DatePicker
+				Grid.Row="1"
+				Grid.Column="3"
+				DisplayDateEnd="{Binding DateEnd}"
+				DisplayDateStart="{Binding DateBegin}"
+				SelectedDate="{Binding DateEnd}"
+				/>
+
+			<ComboBox
+				Grid.Row="2"
+				Grid.Column="2"
+				Grid.ColumnSpan="2"
+				ItemsSource="{Binding Flagships}"
+				SelectedItem="{Binding SelectedFlagship}"
+				>
+				<ComboBox.ItemTemplate>
+					<DataTemplate>
+						<TextBlock Text="{Binding Converter={StaticResource DevelopmentFilterToDisplayConverter}}" />
+					</DataTemplate>
+				</ComboBox.ItemTemplate>
+			</ComboBox>
+
+			<TextBlock
+				Grid.Row="0"
+				Grid.Column="4"
+				Text="{Binding DialogDevelopmentRecordViewer.Recipe}"
+				/>
+			<ComboBox
+				Grid.Row="0"
+				Grid.Column="5"
+				Grid.ColumnSpan="2"
+				HorizontalAlignment="Stretch"
+				ItemsSource="{Binding Recipes}"
+				SelectedItem="{Binding SelectedRecipe}"
+				>
+				<ComboBox.ItemTemplate>
+					<DataTemplate>
+						<TextBlock Text="{Binding Converter={StaticResource DevelopmentFilterToDisplayConverter}}" />
+					</DataTemplate>
+				</ComboBox.ItemTemplate>
+			</ComboBox>
+
+			<CheckBox
+				Grid.Row="2"
+				Grid.Column="5"
+				MinWidth="60"
+				Content="{Binding DialogDevelopmentRecordViewer.MergeRows}"
+				IsChecked="{Binding MergeRows}"
+				/>
+			<Button
+				Grid.Row="2"
+				Grid.Column="6"
+				Command="{Binding StartSearchCommand}"
+				Content="{Binding DialogDevelopmentRecordViewer.ButtonRun}"
+				/>
+		</Grid>
+
+		<DataGrid
+			Grid.Row="1"
+			AutoGenerateColumns="False"
+			ColumnWidth="*"
+			HeadersVisibility="Column"
+			IsReadOnly="True"
+			ItemsSource="{Binding Rows}"
+			SelectionChanged="Selector_OnSelectionChanged"
+			>
+			<DataGrid.ColumnHeaderStyle>
+				<Style BasedOn="{StaticResource DefaultDataGridColumnHeaderStyle}" TargetType="{x:Type DataGridColumnHeader}">
+					<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
+					<Setter Property="FontFamily" Value="{Binding DataContext.Font, Source={StaticResource Proxy}}" />
+					<Setter Property="FontSize" Value="{Binding DataContext.FontSize, Source={StaticResource Proxy}}" />
+				</Style>
+			</DataGrid.ColumnHeaderStyle>
+
+			<DataGrid.Columns>
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding Index}"
+					FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
+					FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
+					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
+					Visibility="{Binding DataContext.RawRows, Converter={StaticResource BooleanToVisibilityConverter}, Source={StaticResource Proxy}}"
+					/>
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding EquipmentName}"
+					FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
+					FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
+					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
+					Header="{Binding DataContext.DialogDevelopmentRecordViewer.Equipment, Source={StaticResource Proxy}}"
+					Visibility="{Binding DataContext.RawRows, Converter={StaticResource BooleanToVisibilityConverter}, Source={StaticResource Proxy}}"
+					/>
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding DateDisplay}"
+					FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
+					FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
+					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
+					Header="{Binding DataContext.DialogDevelopmentRecordViewer.RecordView_Date, Source={StaticResource Proxy}}"
+					Visibility="{Binding DataContext.RawRows, Converter={StaticResource BooleanToVisibilityConverter}, Source={StaticResource Proxy}}"
+					/>
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding GetRecipeString}"
+					FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
+					FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
+					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
+					Header="{Binding DataContext.DialogDevelopmentRecordViewer.RecordView_Recipe, Source={StaticResource Proxy}}"
+					Visibility="{Binding DataContext.RawRows, Converter={StaticResource BooleanToVisibilityConverter}, Source={StaticResource Proxy}}"
+					/>
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding ShipTypeNameEn}"
+					FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
+					FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
+					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
+					Header="{Binding DataContext.DialogDevelopmentRecordViewer.RecordView_FlagshipType, Source={StaticResource Proxy}}"
+					Visibility="{Binding DataContext.RawRows, Converter={StaticResource BooleanToVisibilityConverter}, Source={StaticResource Proxy}}"
+					/>
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding FlagshipName}"
+					FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
+					FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
+					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
+					Header="{Binding DataContext.DialogDevelopmentRecordViewer.RecordView_Flagship, Source={StaticResource Proxy}}"
+					Visibility="{Binding DataContext.RawRows, Converter={StaticResource BooleanToVisibilityConverter}, Source={StaticResource Proxy}}"
+					/>
+
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding CountDisplay}"
+					FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
+					FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
+					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
+					Header="{Binding DataContext.DialogDevelopmentRecordViewer.Tries, Source={StaticResource Proxy}}"
+					SortMemberPath="Count"
+					Visibility="{Binding DataContext.MergeRows, Converter={StaticResource BooleanToVisibilityConverter}, Source={StaticResource Proxy}}"
+					/>
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding EquipmentName}"
+					FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
+					FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
+					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
+					Header="{Binding DataContext.DialogDevelopmentRecordViewer.Equipment, Source={StaticResource Proxy}}"
+					Visibility="{Binding DataContext.MergeRows, Converter={StaticResource BooleanToVisibilityConverter}, Source={StaticResource Proxy}}"
+					/>
+				<DataGridTextColumn
+					Width="Auto"
+					Binding="{Binding Summary}"
+					FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
+					FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
+					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
+					Header="{Binding DataContext.SummaryHeader, Source={StaticResource Proxy}}"
+					Visibility="{Binding DataContext.MergeRows, Converter={StaticResource BooleanToVisibilityConverter}, Source={StaticResource Proxy}}"
+					/>
+			</DataGrid.Columns>
+		</DataGrid>
+
+		<StatusBar Grid.Row="2">
+			<StatusBarItem>
+				<TextBlock Text="{Binding StatusInfoText}" />
+			</StatusBarItem>
+		</StatusBar>
+	</Grid>
+</common:WindowBase>
