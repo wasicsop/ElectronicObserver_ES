@@ -461,14 +461,20 @@
 				d:Header="Tools"
 				Header="{Binding FormMain.StripMenu_Tool}"
 				>
-				<MenuItem
-					d:Header="Equipment List"
-					Command="{Binding OpenEquipmentListCommand}"
-					Header="{Binding FormMain.StripMenu_Tool_EquipmentList}"
-					>
+				<MenuItem d:Header="Equipment List" Header="{Binding FormMain.StripMenu_Tool_EquipmentList}">
 					<MenuItem.Icon>
 						<Image Source="{Binding EquipmentListImageSource}" />
 					</MenuItem.Icon>
+					<MenuItem Command="{Binding OpenEquipmentListCommand}" Header="{Binding FormMain.Old}">
+						<MenuItem.CommandParameter>
+							<system:Boolean>False</system:Boolean>
+						</MenuItem.CommandParameter>
+					</MenuItem>
+					<MenuItem Command="{Binding OpenEquipmentListCommand}" Header="{Binding FormMain.New}">
+						<MenuItem.CommandParameter>
+							<system:Boolean>True</system:Boolean>
+						</MenuItem.CommandParameter>
+					</MenuItem>
 				</MenuItem>
 				<Separator />
 				<MenuItem d:Header="Drop Record" Header="{Binding FormMain.StripMenu_Tool_DropRecord}">

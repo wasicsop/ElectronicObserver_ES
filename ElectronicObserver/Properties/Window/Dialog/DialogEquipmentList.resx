@@ -115,4 +115,10 @@
   <data name="Error" xml:space="preserve">
     <value>エラー</value>
   </data>
+  <data name="View" xml:space="preserve">
+    <value>表示(_V)</value>
+  </data>
+  <data name="ShowLockedEquipmentOnly" xml:space="preserve">
+    <value>ロックされた装備のみを表示(_L)</value>
+  </data>
 </root>

@@ -1,0 +1,308 @@
+﻿<common:WindowBase
+	x:Class="ElectronicObserver.Window.Tools.EquipmentList.EquipmentListWindow"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:common="clr-namespace:ElectronicObserver.Common"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:local="clr-namespace:ElectronicObserver.Window.Tools.EquipmentList"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:ui="http://schemas.modernwpf.com/2019"
+	Title="{Binding Title}"
+	Width="800"
+	Height="510"
+	d:DataContext="{d:DesignInstance local:EquipmentListViewModel}"
+	ui:WindowHelper.UseModernWindowStyle="True"
+	x:TypeArguments="local:EquipmentListViewModel"
+	mc:Ignorable="d"
+	>
+	<Window.Resources>
+		<local:EquipmentListBindingProxy x:Key="Proxy" DataContext="{Binding}" />
+
+		<Style BasedOn="{StaticResource DefaultToolTipStyleEO}" TargetType="ToolTip">
+			<Setter Property="FontFamily" Value="{Binding DataContext.Font, Source={StaticResource Proxy}}" />
+			<Setter Property="FontSize" Value="{Binding DataContext.FontSize, Source={StaticResource Proxy}}" />
+			<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
+		</Style>
+
+		<Style BasedOn="{StaticResource DefaultMenuItemStyle}" TargetType="MenuItem">
+			<Setter Property="FontFamily" Value="{Binding DataContext.Font, Source={StaticResource Proxy}}" />
+			<Setter Property="FontSize" Value="{Binding DataContext.FontSize, Source={StaticResource Proxy}}" />
+			<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
+			<!--
+				copied from https://github.com/Kinnara/ModernWpf/blob/master/ModernWpf/Styles/MenuItem.xaml#L415
+				change is the foreground on the last trigger
+			-->
+			<Style.Triggers>
+				<Trigger Property="Role" Value="TopLevelHeader">
+					<Setter Property="Background" Value="{DynamicResource MenuBarItemBackground}" />
+					<Setter Property="BorderBrush" Value="{DynamicResource MenuBarItemBorderBrush}" />
+					<Setter Property="BorderThickness" Value="{DynamicResource MenuBarItemBorderThickness}" />
+					<Setter Property="Template" Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly={x:Type MenuItem}, ResourceId=TopLevelHeaderTemplateKey}}" />
+					<Setter Property="IsTabStop" Value="True" />
+					<Setter Property="Height" Value="{StaticResource MenuBarHeight}" />
+				</Trigger>
+				<Trigger Property="Role" Value="TopLevelItem">
+					<Setter Property="Background" Value="{DynamicResource MenuBarItemBackground}" />
+					<Setter Property="BorderBrush" Value="{DynamicResource MenuBarItemBorderBrush}" />
+					<Setter Property="BorderThickness" Value="{DynamicResource MenuBarItemBorderThickness}" />
+					<Setter Property="Template" Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly={x:Type MenuItem}, ResourceId=TopLevelItemTemplateKey}}" />
+					<Setter Property="IsTabStop" Value="True" />
+					<Setter Property="Height" Value="{StaticResource MenuBarHeight}" />
+				</Trigger>
+				<Trigger Property="Role" Value="SubmenuHeader">
+					<Setter Property="Background" Value="{DynamicResource MenuFlyoutSubItemRevealBackground}" />
+					<Setter Property="BorderBrush" Value="{DynamicResource MenuFlyoutSubItemRevealBorderBrush}" />
+					<Setter Property="BorderThickness" Value="{DynamicResource MenuFlyoutSubItemRevealBorderThickness}" />
+					<Setter Property="Template" Value="{DynamicResource {ComponentResourceKey TypeInTargetAssembly={x:Type MenuItem}, ResourceId=SubmenuHeaderTemplateKey}}" />
+				</Trigger>
+			</Style.Triggers>
+		</Style>
+
+		<DataTemplate x:Key="AircraftProficiencyTemplate" DataType="local:EquipmentListDetailRow">
+			<Border Background="Transparent" ToolTip="{Binding AircraftLevel}">
+				<Path HorizontalAlignment="Center" VerticalAlignment="Center">
+					<Path.Resources>
+						<SolidColorBrush x:Key="LowProficiencyBrush" Color="#669999" />
+						<SolidColorBrush x:Key="HighProficiencyBrush" Color="#ffaa00" />
+					</Path.Resources>
+					<Path.Style>
+						<Style TargetType="Path">
+							<Style.Triggers>
+								<DataTrigger Binding="{Binding AircraftLevel}" Value="1">
+									<Setter Property="Data" Value="M0,0 L0,20 2,20 2,0" />
+									<Setter Property="Fill" Value="{StaticResource LowProficiencyBrush}" />
+								</DataTrigger>
+								<DataTrigger Binding="{Binding AircraftLevel}" Value="2">
+									<Setter Property="Data" Value="M0,0 L0,20 2,20 2,0 M4,0 L4,20 6,20 6,0" />
+									<Setter Property="Fill" Value="{StaticResource LowProficiencyBrush}" />
+								</DataTrigger>
+								<DataTrigger Binding="{Binding AircraftLevel}" Value="3">
+									<Setter Property="Data" Value="M0,0 L0,20 2,20 2,0 M4,0 L4,20 6,20 6,0 M8,0 L8,20 10,20 10,0" />
+									<Setter Property="Fill" Value="{StaticResource LowProficiencyBrush}" />
+								</DataTrigger>
+								<DataTrigger Binding="{Binding AircraftLevel}" Value="4">
+									<Setter Property="Data" Value="M0,0 L5,20 7,20 2,0" />
+									<Setter Property="Fill" Value="{StaticResource HighProficiencyBrush}" />
+								</DataTrigger>
+								<DataTrigger Binding="{Binding AircraftLevel}" Value="5">
+									<Setter Property="Data" Value="M0,0 L5,20 7,20 2,0 M5,0 10,20 12,20 7,0" />
+									<Setter Property="Fill" Value="{StaticResource HighProficiencyBrush}" />
+								</DataTrigger>
+								<DataTrigger Binding="{Binding AircraftLevel}" Value="6">
+									<Setter Property="Data" Value="M0,0 L5,20 7,20 2,0 M5,0 10,20 12,20 7,0 M10,0 15,20 17,20 12,0" />
+									<Setter Property="Fill" Value="{StaticResource HighProficiencyBrush}" />
+								</DataTrigger>
+								<DataTrigger Binding="{Binding AircraftLevel}" Value="7">
+									<Setter Property="Data" Value="M0,0 L5,10 0,20 2,20 7,10 2,0 M5,0 L10,10 5,20 7,20 12,10 7,0" />
+									<Setter Property="Fill" Value="{StaticResource HighProficiencyBrush}" />
+								</DataTrigger>
+							</Style.Triggers>
+						</Style>
+					</Path.Style>
+				</Path>
+			</Border>
+		</DataTemplate>
+	</Window.Resources>
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition />
+		</Grid.RowDefinitions>
+
+		<Menu Grid.Row="0">
+			<MenuItem Header="{Binding DataContext.DialogEquipmentList.TopMenu_File, Source={StaticResource Proxy}}">
+				<MenuItem Command="{Binding SaveAsCsvCommand}" Header="{Binding DataContext.DialogEquipmentList.TopMenu_File_CSVOutput, Source={StaticResource Proxy}}" />
+				<MenuItem Command="{Binding UpdateCommand}" Header="{Binding DataContext.DialogEquipmentList.TopMenu_File_Update, Source={StaticResource Proxy}}" />
+				<MenuItem Command="{Binding CopyToFleetAnalysisCommand}" Header="{Binding DataContext.DialogEquipmentList.TopMenu_File_CopyToFleetAnalysis, Source={StaticResource Proxy}}" />
+			</MenuItem>
+			<MenuItem Header="{Binding DataContext.DialogEquipmentList.View, Source={StaticResource Proxy}}">
+				<MenuItem
+					Header="{Binding DataContext.DialogEquipmentList.ShowLockedEquipmentOnly, Source={StaticResource Proxy}}"
+					IsCheckable="True"
+					IsChecked="{Binding ShowLockedEquipmentOnly}"
+					/>
+			</MenuItem>
+		</Menu>
+
+		<Grid Grid.Row="1">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition />
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition />
+			</Grid.ColumnDefinitions>
+
+			<DataGrid
+				Grid.Column="0"
+				AutoGenerateColumns="False"
+				ColumnWidth="*"
+				HeadersVisibility="Column"
+				IsReadOnly="True"
+				ItemsSource="{Binding Rows}"
+				SelectedItem="{Binding SelectedRow}"
+				SelectionMode="Single"
+				>
+				<DataGrid.ColumnHeaderStyle>
+					<Style BasedOn="{StaticResource DefaultDataGridColumnHeaderStyle}" TargetType="{x:Type DataGridColumnHeader}">
+						<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
+						<Setter Property="FontFamily" Value="{Binding DataContext.Font, Source={StaticResource Proxy}}" />
+						<Setter Property="FontSize" Value="{Binding DataContext.FontSize, Source={StaticResource Proxy}}" />
+					</Style>
+				</DataGrid.ColumnHeaderStyle>
+				<DataGrid.RowStyle>
+					<Style BasedOn="{StaticResource DefaultDataGridRowStyle}" TargetType="DataGridRow">
+						<!--
+							no idea how to do right click the mvvm way
+						-->
+						<EventSetter Event="MouseRightButtonUp" Handler="OpenEquipmentEncyclopedia" />
+					</Style>
+				</DataGrid.RowStyle>
+				<DataGrid.Columns>
+					<DataGridTextColumn
+						Width="Auto"
+						Binding="{Binding Id}"
+						FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
+						FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
+						Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
+						Header="ID"
+						>
+						<DataGridTextColumn.CellStyle>
+							<Style BasedOn="{StaticResource DefaultDataGridCellStyle}" TargetType="DataGridCell">
+								<Setter Property="HorizontalAlignment" Value="Right" />
+							</Style>
+						</DataGridTextColumn.CellStyle>
+					</DataGridTextColumn>
+					<DataGridTemplateColumn Width="Auto" SortMemberPath="IconType">
+						<DataGridTemplateColumn.CellTemplate>
+							<DataTemplate DataType="local:EquipmentListRow">
+								<Image Height="16" Source="{Binding IconType, Converter={StaticResource ImageSourceConverter}}" />
+							</DataTemplate>
+						</DataGridTemplateColumn.CellTemplate>
+					</DataGridTemplateColumn>
+					<DataGridTextColumn
+						Width="Auto"
+						Binding="{Binding Name}"
+						FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
+						FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
+						Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
+						Header="{Binding DataContext.DialogEquipmentList.EquipmentView_Name, Source={StaticResource Proxy}}"
+						>
+						<DataGridTextColumn.CellStyle>
+							<Style BasedOn="{StaticResource DefaultDataGridCellStyle}" TargetType="DataGridCell">
+								<Setter Property="ToolTip" Value="{Binding ToolTipText}" />
+							</Style>
+						</DataGridTextColumn.CellStyle>
+					</DataGridTextColumn>
+					<DataGridTextColumn
+						Width="Auto"
+						Binding="{Binding AllCount}"
+						FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
+						FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
+						Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
+						Header="{Binding DataContext.DialogEquipmentList.EquipmentView_CountAll, Source={StaticResource Proxy}}"
+						>
+						<DataGridTextColumn.CellStyle>
+							<Style BasedOn="{StaticResource DefaultDataGridCellStyle}" TargetType="DataGridCell">
+								<Setter Property="HorizontalAlignment" Value="Right" />
+							</Style>
+						</DataGridTextColumn.CellStyle>
+					</DataGridTextColumn>
+					<DataGridTextColumn
+						Width="Auto"
+						Binding="{Binding RemainCount}"
+						FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
+						FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
+						Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
+						Header="{Binding DataContext.DialogEquipmentList.EquipmentView_CountRemain, Source={StaticResource Proxy}}"
+						>
+						<DataGridTextColumn.CellStyle>
+							<Style BasedOn="{StaticResource DefaultDataGridCellStyle}" TargetType="DataGridCell">
+								<Setter Property="HorizontalAlignment" Value="Right" />
+							</Style>
+						</DataGridTextColumn.CellStyle>
+					</DataGridTextColumn>
+				</DataGrid.Columns>
+			</DataGrid>
+			<GridSplitter
+				Grid.Column="1"
+				Width="4"
+				HorizontalAlignment="Center"
+				VerticalAlignment="Stretch"
+				ResizeBehavior="PreviousAndNext"
+				ResizeDirection="Columns"
+				/>
+			<DataGrid
+				Grid.Column="2"
+				AutoGenerateColumns="False"
+				ColumnWidth="*"
+				HeadersVisibility="Column"
+				IsReadOnly="True"
+				ItemsSource="{Binding DetailRows}"
+				>
+				<DataGrid.ColumnHeaderStyle>
+					<Style BasedOn="{StaticResource DefaultDataGridColumnHeaderStyle}" TargetType="{x:Type DataGridColumnHeader}">
+						<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
+						<Setter Property="FontFamily" Value="{Binding DataContext.Font, Source={StaticResource Proxy}}" />
+						<Setter Property="FontSize" Value="{Binding DataContext.FontSize, Source={StaticResource Proxy}}" />
+					</Style>
+				</DataGrid.ColumnHeaderStyle>
+				<DataGrid.Columns>
+					<DataGridTextColumn
+						Width="Auto"
+						Binding="{Binding Level}"
+						FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
+						FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
+						Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
+						Header="{Binding DataContext.DialogEquipmentList.DetailView_Level, Source={StaticResource Proxy}}"
+						>
+						<DataGridTextColumn.CellStyle>
+							<Style BasedOn="{StaticResource DefaultDataGridCellStyle}" TargetType="DataGridCell">
+								<Setter Property="HorizontalAlignment" Value="Right" />
+							</Style>
+						</DataGridTextColumn.CellStyle>
+					</DataGridTextColumn>
+					<DataGridTemplateColumn
+						Width="Auto"
+						CellTemplate="{StaticResource AircraftProficiencyTemplate}"
+						Header="{Binding DataContext.DialogEquipmentList.DetailView_AircraftLevel, Source={StaticResource Proxy}}"
+						/>
+					<DataGridTextColumn
+						Width="Auto"
+						Binding="{Binding CountAll}"
+						FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
+						FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
+						Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
+						Header="{Binding DataContext.DialogEquipmentList.DetailView_CountAll, Source={StaticResource Proxy}}"
+						>
+						<DataGridTextColumn.CellStyle>
+							<Style BasedOn="{StaticResource DefaultDataGridCellStyle}" TargetType="DataGridCell">
+								<Setter Property="HorizontalAlignment" Value="Right" />
+							</Style>
+						</DataGridTextColumn.CellStyle>
+					</DataGridTextColumn>
+					<DataGridTextColumn
+						Width="Auto"
+						Binding="{Binding CountRemain}"
+						FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
+						FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
+						Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
+						Header="{Binding DataContext.DialogEquipmentList.DetailView_CountRemain, Source={StaticResource Proxy}}"
+						>
+						<DataGridTextColumn.CellStyle>
+							<Style BasedOn="{StaticResource DefaultDataGridCellStyle}" TargetType="DataGridCell">
+								<Setter Property="HorizontalAlignment" Value="Right" />
+							</Style>
+						</DataGridTextColumn.CellStyle>
+					</DataGridTextColumn>
+					<DataGridTextColumn
+						Width="Auto"
+						Binding="{Binding EquippedShip}"
+						FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
+						FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
+						Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
+						Header="装備艦"
+						/>
+				</DataGrid.Columns>
+			</DataGrid>
+		</Grid>
+	</Grid>
+</common:WindowBase>

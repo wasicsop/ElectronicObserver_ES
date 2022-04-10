@@ -135,4 +135,10 @@
   <data name="Error" xml:space="preserve">
     <value>Error</value>
   </data>
+  <data name="View" xml:space="preserve">
+    <value>_View</value>
+  </data>
+  <data name="ShowLockedEquipmentOnly" xml:space="preserve">
+    <value>Show _locked equipment only</value>
+  </data>
 </root>

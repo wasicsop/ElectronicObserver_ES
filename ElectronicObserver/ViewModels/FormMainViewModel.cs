@@ -35,6 +35,7 @@ using ElectronicObserver.Window.Tools.DevelopmentRecordViewer;
 using ElectronicObserver.Window.Tools.DialogAlbumMasterEquipment;
 using ElectronicObserver.Window.Tools.DialogAlbumMasterShip;
 using ElectronicObserver.Window.Tools.DropRecordViewer;
+using ElectronicObserver.Window.Tools.EquipmentList;
 using ElectronicObserver.Window.Wpf;
 using ElectronicObserver.Window.Wpf.Arsenal;
 using ElectronicObserver.Window.Wpf.BaseAirCorps;
@@ -241,7 +242,7 @@ public partial class FormMainViewModel : ObservableObject
 		SilenceNotificationsCommand = new RelayCommand(StripMenu_File_Notification_MuteAll_Click);
 		OpenConfigurationCommand = new RelayCommand(StripMenu_File_Configuration_Click);
 
-		OpenEquipmentListCommand = new RelayCommand(StripMenu_Tool_EquipmentList_Click);
+		OpenEquipmentListCommand = new RelayCommand<bool>(StripMenu_Tool_EquipmentList_Click);
 		OpenDropRecordCommand = new RelayCommand<bool>(StripMenu_Tool_DropRecord_Click);
 		OpenDevelopmentRecordCommand = new RelayCommand<bool>(StripMenu_Tool_DevelopmentRecord_Click);
 		OpenConstructionRecordCommand = new RelayCommand(StripMenu_Tool_ConstructionRecord_Click);
@@ -766,11 +767,18 @@ public partial class FormMainViewModel : ObservableObject
 
 	#region Tools
 
-	private void StripMenu_Tool_EquipmentList_Click()
+	private void StripMenu_Tool_EquipmentList_Click(bool useNewVersion)
 	{
-		DialogEquipmentList equipmentList = new DialogEquipmentList();
-		RefreshTopMost();
-		equipmentList.Show(Window);
+		if (useNewVersion)
+		{
+			new EquipmentListWindow().Show(Window);
+		}
+		else
+		{
+			DialogEquipmentList equipmentList = new DialogEquipmentList();
+			RefreshTopMost();
+			equipmentList.Show(Window);
+		}
 	}
 
 	private void StripMenu_Tool_DropRecord_Click(bool useNewVersion)
