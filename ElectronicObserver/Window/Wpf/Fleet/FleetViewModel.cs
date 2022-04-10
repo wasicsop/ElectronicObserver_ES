@@ -660,15 +660,15 @@ public partial class FleetViewModel : AnchorableViewModel
 	/// </summary>
 	private void ContextMenuFleet_CopyFleetAnalysisLockedEquip_Click()
 	{
-		GenerateEquipList(false);
+		Clipboard.SetDataObject(GenerateEquipList(false));
 	}
 
 	private void ContextMenuFleet_CopyFleetAnalysisAllEquip_Click()
 	{
-		GenerateEquipList(true);
+		Clipboard.SetDataObject(GenerateEquipList(true));
 	}
 
-	private void GenerateEquipList(bool allEquipment)
+	public static string GenerateEquipList(bool allEquipment)
 	{
 		StringBuilder sb = new StringBuilder();
 		KCDatabase db = KCDatabase.Instance;
@@ -686,7 +686,7 @@ public partial class FleetViewModel : AnchorableViewModel
 		sb.Remove(sb.Length - 1, 1);        // remove ","
 		sb.Append("]");
 
-		Clipboard.SetDataObject(sb.ToString());
+		return sb.ToString();
 	}
 
 	/// <summary>
