@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Windows.Controls;
 using System.Windows.Forms;
 using System.Windows.Media;
 using CommunityToolkit.Mvvm.Input;
@@ -73,6 +74,8 @@ public partial class DropRecordViewerViewModel : WindowViewModelBase
 
 	private string NameNotExist => DialogDropRecordViewer.NameNotExist;
 	private const string MapAny = "*";
+
+	public string Today => $"{DialogDropRecordViewer.Today}: {DateTime.Now:yyyy/MM/dd}";
 
 	public DropRecordViewerViewModel()
 	{
@@ -697,6 +700,14 @@ public partial class DropRecordViewerViewModel : WindowViewModelBase
 		StatusInfoTag = DateTime.Now;
 
 		Searcher.RunWorkerAsync();
+	}
+
+	[ICommand]
+	private void SelectToday(Calendar? calendar)
+	{
+		if (calendar is null) return;
+		
+		calendar.SelectedDate = DateTime.Now;
 	}
 
 	public void RecordView_CellDoubleClick()

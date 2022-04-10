@@ -57,4 +57,6 @@ public class DialogDropRecordViewerTranslationViewModel : TranslationBaseViewMod
 	public string SearchingBattleHistory => DialogDropRecordViewer.SearchingBattleHistory;
 	public string OpenBattleHistory => DialogDropRecordViewer.OpenBattleHistory;
 	public string CouldNotOpenBattleHistory => DialogDropRecordViewer.CouldNotOpenBattleHistory;
+
+	public string Today => DialogDropRecordViewer.Today;
 }
