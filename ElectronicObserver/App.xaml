@@ -58,6 +58,68 @@
 					</Setter.Value>
 				</Setter>
 			</Style>
+
+			<!--
+				copied from https://github.com/Kinnara/ModernWpf/blob/master/ModernWpf/Styles/Calendar.xaml#L419
+				added today button
+				
+				ViewModels of controls that use DatePicker need to implement:
+				1. SelectTodayCommand - ICommand that sets the date to today, ex:
+				2. Today - string that's displayed on the button
+			-->
+			<Style
+				x:Key="DatePickerCalendarStyle"
+				BasedOn="{StaticResource DefaultCalendarStyle}"
+				TargetType="Calendar"
+				>
+				<Setter Property="Template">
+					<Setter.Value>
+						<ControlTemplate TargetType="Calendar">
+							<ui:ThemeShadowChrome
+								x:Name="Shdw"
+								ui:OpeningAnimationHelper.Storyboard="{DynamicResource OpeningStoryboard}"
+								CornerRadius="{TemplateBinding ui:ControlHelper.CornerRadius}"
+								IsShadowEnabled="{DynamicResource {x:Static SystemParameters.DropShadowKey}}"
+								SnapsToDevicePixels="True"
+								>
+								<ui:ThemeShadowChrome.Resources>
+									<Storyboard x:Key="OpeningStoryboard">
+										<DoubleAnimation
+											Storyboard.Target="{Binding ElementName=Shdw}"
+											Storyboard.TargetProperty="Opacity"
+											From="0"
+											To="1"
+											Duration="0:0:0.100"
+											/>
+									</Storyboard>
+								</ui:ThemeShadowChrome.Resources>
+								<StackPanel x:Name="PART_Root">
+									<CalendarItem
+										x:Name="PART_CalendarItem"
+										ui:ControlHelper.CornerRadius="{TemplateBinding ui:ControlHelper.CornerRadius}"
+										Background="{TemplateBinding Background}"
+										BorderBrush="{TemplateBinding BorderBrush}"
+										BorderThickness="{TemplateBinding BorderThickness}"
+										Style="{TemplateBinding CalendarItemStyle}"
+										/>
+									<Border
+										Background="{TemplateBinding Background}"
+										BorderBrush="{TemplateBinding BorderBrush}"
+										BorderThickness="{TemplateBinding BorderThickness}"
+										>
+										<Button
+											HorizontalAlignment="Center"
+											Command="{Binding SelectTodayCommand}"
+											CommandParameter="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}}"
+											Content="{Binding Today}"
+											/>
+									</Border>
+								</StackPanel>
+							</ui:ThemeShadowChrome>
+						</ControlTemplate>
+					</Setter.Value>
+				</Setter>
+			</Style>
 		</ResourceDictionary>
 	</Application.Resources>
 </Application>
