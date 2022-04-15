@@ -71,6 +71,9 @@ public partial class App : Application
 
 			if (!created && !allowMultiInstance)
 			{
+				System.Windows.Window temp = new() { Visibility = Visibility.Hidden };
+				temp.Show();
+
 				// 多重起動禁止
 				MessageBox.Show(
 					"Electronic Observer already started.\r\nIn case of false positive, start using option -m via commandline.",
@@ -171,7 +174,7 @@ public partial class App : Application
 		services.AddSingleton<DialogConstructionRecordViewerTranslationViewModel>();
 		services.AddSingleton<DialogEquipmentListTranslationViewModel>();
 		services.AddSingleton<QuestTrackerManagerTranslationViewModel>();
-		
+
 		services.AddSingleton<ShipPickerViewModel>();
 
 		return services.BuildServiceProvider();

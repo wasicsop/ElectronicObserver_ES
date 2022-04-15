@@ -1947,6 +1947,9 @@ public sealed class Configuration
 		}
 		else
 		{
+			System.Windows.Window tempWindow = new() { Visibility = System.Windows.Visibility.Hidden };
+			tempWindow.Show();
+
 			MessageBox.Show(String.Format(Resources.FirstTimeDialog, SoftwareInformation.SoftwareNameEnglish),
 				Resources.FirstTimeTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
 		}
