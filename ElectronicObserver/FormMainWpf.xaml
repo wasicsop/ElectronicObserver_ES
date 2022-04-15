@@ -507,14 +507,20 @@
 						</MenuItem.CommandParameter>
 					</MenuItem>
 				</MenuItem>
-				<MenuItem
-					d:Header="Construction Record"
-					Command="{Binding OpenConstructionRecordCommand}"
-					Header="{Binding FormMain.StripMenu_Tool_ConstructionRecord}"
-					>
+				<MenuItem d:Header="Construction Record" Header="{Binding FormMain.StripMenu_Tool_ConstructionRecord}">
 					<MenuItem.Icon>
 						<Image Source="{Binding ConstructionRecordImageSource}" />
 					</MenuItem.Icon>
+					<MenuItem Command="{Binding OpenConstructionRecordCommand}" Header="{Binding FormMain.Old}">
+						<MenuItem.CommandParameter>
+							<system:Boolean>False</system:Boolean>
+						</MenuItem.CommandParameter>
+					</MenuItem>
+					<MenuItem Command="{Binding OpenConstructionRecordCommand}" Header="{Binding FormMain.New}">
+						<MenuItem.CommandParameter>
+							<system:Boolean>True</system:Boolean>
+						</MenuItem.CommandParameter>
+					</MenuItem>
 				</MenuItem>
 				<MenuItem
 					d:Header="Resource Chart"

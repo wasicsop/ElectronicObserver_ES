@@ -166,6 +166,7 @@ public partial class App : Application
 		services.AddSingleton<DialogAlbumMasterEquipmentTranslationViewModel>();
 		services.AddSingleton<DialogDevelopmentRecordViewerTranslationViewModel>();
 		services.AddSingleton<DialogDropRecordViewerTranslationViewModel>();
+		services.AddSingleton<DialogConstructionRecordViewerTranslationViewModel>();
 		services.AddSingleton<DialogEquipmentListTranslationViewModel>();
 		services.AddSingleton<QuestTrackerManagerTranslationViewModel>();
 		
