@@ -64,7 +64,7 @@
 				added today button
 				
 				ViewModels of controls that use DatePicker need to implement:
-				1. SelectTodayCommand - ICommand that sets the date to today, ex:
+				1. SelectTodayCommand - ICommand that sets the date to today
 				2. Today - string that's displayed on the button
 			-->
 			<Style
