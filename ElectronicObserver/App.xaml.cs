@@ -78,6 +78,8 @@ public partial class App : Application
 					MessageBoxButton.OK,
 					MessageBoxImage.Exclamation
 				);
+
+				Shutdown();
 				return;
 			}
 
