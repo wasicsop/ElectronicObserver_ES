@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
 using ElectronicObserver.Data;
@@ -50,6 +51,8 @@ public partial class DevelopmentRecordViewerViewModel : WindowViewModelBase
 	};
 
 	private string NameNotExist => Properties.Window.Dialog.DialogDevelopmentRecordViewer.NameNotExist; //(失敗)
+
+	public string Today => $"{DialogDevelopmentRecordViewer.Today}: {DateTime.Now:yyyy/MM/dd}";
 
 	public DevelopmentRecordViewerViewModel()
 	{
@@ -450,5 +453,13 @@ public partial class DevelopmentRecordViewerViewModel : WindowViewModelBase
 		StatusInfoTag = DateTime.Now;
 
 		Searcher.RunWorkerAsync();
+	}
+
+	[ICommand]
+	private void SelectToday(Calendar? calendar)
+	{
+		if (calendar is null) return;
+
+		calendar.SelectedDate = DateTime.Now;
 	}
 }

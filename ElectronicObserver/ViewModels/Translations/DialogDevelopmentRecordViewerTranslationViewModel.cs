@@ -25,4 +25,6 @@ public class DialogDevelopmentRecordViewerTranslationViewModel : TranslationBase
 	public string RecipeTries => Properties.Window.Dialog.DialogDevelopmentRecordViewer.RecipeTries;
 	
 	public string SelectedItems => Properties.Window.Dialog.DialogDevelopmentRecordViewer.SelectedItems;
+	
+	public string Today => Properties.Window.Dialog.DialogDropRecordViewer.Today;
 }
