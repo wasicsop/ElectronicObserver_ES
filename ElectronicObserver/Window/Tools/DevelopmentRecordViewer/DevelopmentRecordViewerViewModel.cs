@@ -39,6 +39,8 @@ public partial class DevelopmentRecordViewerViewModel : WindowViewModelBase
 
 	public DateTime DateBegin { get; set; }
 	public DateTime DateEnd { get; set; }
+	public DateTime MinDate { get; set; }
+	public DateTime MaxDate { get; set; }
 	public bool MergeRows { get; set; }
 	public bool RawRows => !MergeRows;
 	public string StatusInfoText { get; set; }
@@ -82,6 +84,12 @@ public partial class DevelopmentRecordViewerViewModel : WindowViewModelBase
 
 	private void Loaded()
 	{
+		DateBegin = Record.Record.First().Date.Date;
+		MinDate = Record.Record.First().Date.Date;
+
+		DateEnd = DateTime.Now.AddDays(1).Date;
+		MaxDate = DateTime.Now.AddDays(1).Date;
+
 		var includedEquipmentNames = Record.Record
 			.Select(r => r.EquipmentName)
 			.Distinct()
@@ -147,9 +155,6 @@ public partial class DevelopmentRecordViewerViewModel : WindowViewModelBase
 			.Cast<object>()
 			.Prepend(DevelopmentRecordOption.All)
 			.ToList();
-
-		DateBegin = Record.Record.First().Date.Date;
-		DateEnd = DateTime.Now.AddDays(1).Date;
 	}
 
 	private string GetRecipeString(int[] resources)
