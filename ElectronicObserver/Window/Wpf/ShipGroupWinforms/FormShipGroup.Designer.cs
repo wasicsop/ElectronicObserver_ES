@@ -38,6 +38,16 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             this.ShipView = new System.Windows.Forms.DataGridView();
+            this.MenuMember = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.MenuMember_AddToGroup = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuMember_CreateGroup = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuMember_Exclude = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.MenuMember_Filter = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuMember_ColumnFilter = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuMember_SortOrder = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.MenuMember_CSVOutput = new System.Windows.Forms.ToolStripMenuItem();
             this.ShipView_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ShipView_ShipType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ShipView_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -97,16 +107,7 @@
             this.ShipView_NightBattlePower = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ShipView_Locked = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ShipView_SallyArea = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MenuMember = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.MenuMember_AddToGroup = new System.Windows.Forms.ToolStripMenuItem();
-            this.MenuMember_CreateGroup = new System.Windows.Forms.ToolStripMenuItem();
-            this.MenuMember_Exclude = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.MenuMember_Filter = new System.Windows.Forms.ToolStripMenuItem();
-            this.MenuMember_ColumnFilter = new System.Windows.Forms.ToolStripMenuItem();
-            this.MenuMember_SortOrder = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.MenuMember_CSVOutput = new System.Windows.Forms.ToolStripMenuItem();
+            this.SortId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.ShipView)).BeginInit();
             this.MenuMember.SuspendLayout();
             this.SuspendLayout();
@@ -178,7 +179,8 @@
             this.ShipView_TorpedoPower,
             this.ShipView_NightBattlePower,
             this.ShipView_Locked,
-            this.ShipView_SallyArea});
+            this.ShipView_SallyArea,
+            this.SortId});
             this.ShipView.ContextMenuStrip = this.MenuMember;
             dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
@@ -202,6 +204,84 @@
             this.ShipView.SelectionChanged += new System.EventHandler(this.ShipView_SelectionChanged);
             this.ShipView.SortCompare += new System.Windows.Forms.DataGridViewSortCompareEventHandler(this.ShipView_SortCompare);
             this.ShipView.Sorted += new System.EventHandler(this.ShipView_Sorted);
+            // 
+            // MenuMember
+            // 
+            this.MenuMember.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MenuMember_AddToGroup,
+            this.MenuMember_CreateGroup,
+            this.MenuMember_Exclude,
+            this.toolStripSeparator2,
+            this.MenuMember_Filter,
+            this.MenuMember_ColumnFilter,
+            this.MenuMember_SortOrder,
+            this.toolStripSeparator3,
+            this.MenuMember_CSVOutput});
+            this.MenuMember.Name = "MenuMember";
+            this.MenuMember.Size = new System.Drawing.Size(280, 170);
+            this.MenuMember.Opening += new System.ComponentModel.CancelEventHandler(this.MenuMember_Opening);
+            // 
+            // MenuMember_AddToGroup
+            // 
+            this.MenuMember_AddToGroup.Name = "MenuMember_AddToGroup";
+            this.MenuMember_AddToGroup.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D)));
+            this.MenuMember_AddToGroup.Size = new System.Drawing.Size(279, 22);
+            this.MenuMember_AddToGroup.Text = "グループへ追加(&A)...";
+            this.MenuMember_AddToGroup.Click += new System.EventHandler(this.MenuMember_AddToGroup_Click);
+            // 
+            // MenuMember_CreateGroup
+            // 
+            this.MenuMember_CreateGroup.Name = "MenuMember_CreateGroup";
+            this.MenuMember_CreateGroup.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+            | System.Windows.Forms.Keys.D)));
+            this.MenuMember_CreateGroup.Size = new System.Drawing.Size(279, 22);
+            this.MenuMember_CreateGroup.Text = "新規グループの作成(&N)...";
+            this.MenuMember_CreateGroup.Click += new System.EventHandler(this.MenuMember_CreateGroup_Click);
+            // 
+            // MenuMember_Exclude
+            // 
+            this.MenuMember_Exclude.Name = "MenuMember_Exclude";
+            this.MenuMember_Exclude.Size = new System.Drawing.Size(279, 22);
+            this.MenuMember_Exclude.Text = "除外(&E)";
+            this.MenuMember_Exclude.Click += new System.EventHandler(this.MenuMember_Exclude_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(276, 6);
+            // 
+            // MenuMember_Filter
+            // 
+            this.MenuMember_Filter.Name = "MenuMember_Filter";
+            this.MenuMember_Filter.Size = new System.Drawing.Size(279, 22);
+            this.MenuMember_Filter.Text = "フィルタ設定(&F)...";
+            this.MenuMember_Filter.Click += new System.EventHandler(this.MenuMember_Filter_Click);
+            // 
+            // MenuMember_ColumnFilter
+            // 
+            this.MenuMember_ColumnFilter.Name = "MenuMember_ColumnFilter";
+            this.MenuMember_ColumnFilter.Size = new System.Drawing.Size(279, 22);
+            this.MenuMember_ColumnFilter.Text = "列の表示設定(&C)...";
+            this.MenuMember_ColumnFilter.Click += new System.EventHandler(this.MenuMember_ColumnFilter_Click);
+            // 
+            // MenuMember_SortOrder
+            // 
+            this.MenuMember_SortOrder.Name = "MenuMember_SortOrder";
+            this.MenuMember_SortOrder.Size = new System.Drawing.Size(279, 22);
+            this.MenuMember_SortOrder.Text = "自動ソート設定(&S)...";
+            this.MenuMember_SortOrder.Click += new System.EventHandler(this.MenuMember_SortOrder_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(276, 6);
+            // 
+            // MenuMember_CSVOutput
+            // 
+            this.MenuMember_CSVOutput.Name = "MenuMember_CSVOutput";
+            this.MenuMember_CSVOutput.Size = new System.Drawing.Size(279, 22);
+            this.MenuMember_CSVOutput.Text = "CSV出力(&O)...";
+            this.MenuMember_CSVOutput.Click += new System.EventHandler(this.MenuMember_CSVOutput_Click);
             // 
             // ShipView_ID
             // 
@@ -635,83 +715,12 @@
             this.ShipView_SallyArea.ReadOnly = true;
             this.ShipView_SallyArea.Width = 80;
             // 
-            // MenuMember
+            // SortId
             // 
-            this.MenuMember.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.MenuMember_AddToGroup,
-            this.MenuMember_CreateGroup,
-            this.MenuMember_Exclude,
-            this.toolStripSeparator2,
-            this.MenuMember_Filter,
-            this.MenuMember_ColumnFilter,
-            this.MenuMember_SortOrder,
-            this.toolStripSeparator3,
-            this.MenuMember_CSVOutput});
-            this.MenuMember.Name = "MenuMember";
-            this.MenuMember.Size = new System.Drawing.Size(280, 170);
-            this.MenuMember.Opening += new System.ComponentModel.CancelEventHandler(this.MenuMember_Opening);
-            // 
-            // MenuMember_AddToGroup
-            // 
-            this.MenuMember_AddToGroup.Name = "MenuMember_AddToGroup";
-            this.MenuMember_AddToGroup.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D)));
-            this.MenuMember_AddToGroup.Size = new System.Drawing.Size(279, 22);
-            this.MenuMember_AddToGroup.Text = "グループへ追加(&A)...";
-            this.MenuMember_AddToGroup.Click += new System.EventHandler(this.MenuMember_AddToGroup_Click);
-            // 
-            // MenuMember_CreateGroup
-            // 
-            this.MenuMember_CreateGroup.Name = "MenuMember_CreateGroup";
-            this.MenuMember_CreateGroup.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
-            | System.Windows.Forms.Keys.D)));
-            this.MenuMember_CreateGroup.Size = new System.Drawing.Size(279, 22);
-            this.MenuMember_CreateGroup.Text = "新規グループの作成(&N)...";
-            this.MenuMember_CreateGroup.Click += new System.EventHandler(this.MenuMember_CreateGroup_Click);
-            // 
-            // MenuMember_Exclude
-            // 
-            this.MenuMember_Exclude.Name = "MenuMember_Exclude";
-            this.MenuMember_Exclude.Size = new System.Drawing.Size(279, 22);
-            this.MenuMember_Exclude.Text = "除外(&E)";
-            this.MenuMember_Exclude.Click += new System.EventHandler(this.MenuMember_Exclude_Click);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(276, 6);
-            // 
-            // MenuMember_Filter
-            // 
-            this.MenuMember_Filter.Name = "MenuMember_Filter";
-            this.MenuMember_Filter.Size = new System.Drawing.Size(279, 22);
-            this.MenuMember_Filter.Text = "フィルタ設定(&F)...";
-            this.MenuMember_Filter.Click += new System.EventHandler(this.MenuMember_Filter_Click);
-            // 
-            // MenuMember_ColumnFilter
-            // 
-            this.MenuMember_ColumnFilter.Name = "MenuMember_ColumnFilter";
-            this.MenuMember_ColumnFilter.Size = new System.Drawing.Size(279, 22);
-            this.MenuMember_ColumnFilter.Text = "列の表示設定(&C)...";
-            this.MenuMember_ColumnFilter.Click += new System.EventHandler(this.MenuMember_ColumnFilter_Click);
-            // 
-            // MenuMember_SortOrder
-            // 
-            this.MenuMember_SortOrder.Name = "MenuMember_SortOrder";
-            this.MenuMember_SortOrder.Size = new System.Drawing.Size(279, 22);
-            this.MenuMember_SortOrder.Text = "自動ソート設定(&S)...";
-            this.MenuMember_SortOrder.Click += new System.EventHandler(this.MenuMember_SortOrder_Click);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(276, 6);
-            // 
-            // MenuMember_CSVOutput
-            // 
-            this.MenuMember_CSVOutput.Name = "MenuMember_CSVOutput";
-            this.MenuMember_CSVOutput.Size = new System.Drawing.Size(279, 22);
-            this.MenuMember_CSVOutput.Text = "CSV出力(&O)...";
-            this.MenuMember_CSVOutput.Click += new System.EventHandler(this.MenuMember_CSVOutput_Click);
+            this.SortId.HeaderText = "Sort ID";
+            this.SortId.Name = "SortId";
+            this.SortId.ReadOnly = true;
+            this.SortId.Width = 80;
             // 
             // FormShipGroup
             // 
@@ -741,6 +750,10 @@
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
 		private System.Windows.Forms.ToolStripMenuItem MenuMember_Filter;
 		private System.Windows.Forms.ToolStripMenuItem MenuMember_SortOrder;
+		private System.Windows.Forms.ToolStripMenuItem MenuMember_AddToGroup;
+		private System.Windows.Forms.ToolStripMenuItem MenuMember_CreateGroup;
+		private System.Windows.Forms.ToolStripMenuItem MenuMember_Exclude;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
 		private System.Windows.Forms.DataGridViewTextBoxColumn ShipView_ID;
 		private System.Windows.Forms.DataGridViewTextBoxColumn ShipView_ShipType;
 		private System.Windows.Forms.DataGridViewTextBoxColumn ShipView_Name;
@@ -800,9 +813,6 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn ShipView_NightBattlePower;
 		private System.Windows.Forms.DataGridViewTextBoxColumn ShipView_Locked;
 		private System.Windows.Forms.DataGridViewTextBoxColumn ShipView_SallyArea;
-		private System.Windows.Forms.ToolStripMenuItem MenuMember_AddToGroup;
-		private System.Windows.Forms.ToolStripMenuItem MenuMember_CreateGroup;
-		private System.Windows.Forms.ToolStripMenuItem MenuMember_Exclude;
-		private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+		private System.Windows.Forms.DataGridViewTextBoxColumn SortId;
 	}
 }

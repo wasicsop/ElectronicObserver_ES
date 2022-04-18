@@ -277,4 +277,7 @@ This action cannot be undone.</value>
   <data name="ExportToCsvFail" xml:space="preserve">
     <value>Failed to create a ship group CSV.</value>
   </data>
+  <data name="SortId" xml:space="preserve">
+    <value>Sort ID</value>
+  </data>
 </root>

@@ -263,4 +263,7 @@
   <data name="ExportToCsvFail" xml:space="preserve">
     <value>艦船グループ CSV の出力に失敗しました。</value>
   </data>
+  <data name="SortId" xml:space="preserve">
+    <value>ソートID</value>
+  </data>
 </root>
