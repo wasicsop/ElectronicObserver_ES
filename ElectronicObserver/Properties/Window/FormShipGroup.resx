@@ -266,4 +266,7 @@
   <data name="SortId" xml:space="preserve">
     <value>ソートID</value>
   </data>
+  <data name="RepairTimeUnit" xml:space="preserve">
+    <value>HP1あたり</value>
+  </data>
 </root>

@@ -178,6 +178,11 @@ public class ShipData : APIWrapper, IIdentifiable, IShipData
 	public int RepairTime => (int)RawData.api_ndock_time;
 
 	/// <summary>
+	/// Time needed to repair 1 HP (in milliseconds)
+	/// </summary>
+	public int RepairTimeUnit => (int)Calculator.CalculateDockingUnitTime(this).TotalMilliseconds;
+
+	/// <summary>
 	/// 入渠にかかる鋼材
 	/// </summary>
 	public int RepairSteel => (int)RawData.api_ndock_item[1];

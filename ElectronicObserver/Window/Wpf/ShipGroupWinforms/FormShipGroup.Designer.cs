@@ -108,6 +108,7 @@
             this.ShipView_Locked = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ShipView_SallyArea = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SortId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RepairTimeUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.ShipView)).BeginInit();
             this.MenuMember.SuspendLayout();
             this.SuspendLayout();
@@ -180,7 +181,8 @@
             this.ShipView_NightBattlePower,
             this.ShipView_Locked,
             this.ShipView_SallyArea,
-            this.SortId});
+            this.SortId,
+            this.RepairTimeUnit});
             this.ShipView.ContextMenuStrip = this.MenuMember;
             dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
@@ -722,6 +724,12 @@
             this.SortId.ReadOnly = true;
             this.SortId.Width = 80;
             // 
+            // RepairUnitTime
+            // 
+            this.RepairTimeUnit.HeaderText = "1HP repair time";
+            this.RepairTimeUnit.Name = "RepairTimeUnit";
+            this.RepairTimeUnit.ReadOnly = true;
+            // 
             // FormShipGroup
             // 
             this.AutoHidePortion = 150D;
@@ -814,5 +822,6 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn ShipView_Locked;
 		private System.Windows.Forms.DataGridViewTextBoxColumn ShipView_SallyArea;
 		private System.Windows.Forms.DataGridViewTextBoxColumn SortId;
+		private System.Windows.Forms.DataGridViewTextBoxColumn RepairTimeUnit;
 	}
 }

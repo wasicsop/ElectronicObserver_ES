@@ -280,4 +280,7 @@ This action cannot be undone.</value>
   <data name="SortId" xml:space="preserve">
     <value>Sort ID</value>
   </data>
+  <data name="RepairTimeUnit" xml:space="preserve">
+    <value>1 HP Repair Time</value>
+  </data>
 </root>

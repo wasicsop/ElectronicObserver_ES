@@ -386,6 +386,15 @@ namespace ElectronicObserver.Properties.Window {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to HP1あたり.
+        /// </summary>
+        public static string RepairTimeUnit {
+            get {
+                return ResourceManager.GetString("RepairTimeUnit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 選択: {0} / {1}隻.
         /// </summary>
         public static string SelectedShips {

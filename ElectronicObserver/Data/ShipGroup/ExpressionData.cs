@@ -101,6 +101,7 @@ public class ExpressionData : ICloneable
 		{ ".SlotSize", ExpressionDataRes.SlotSize},
 		{ ".RepairingDockID", ExpressionDataRes.RepairingDockID},
 		{ ".RepairTime", ExpressionDataRes.RepairTime },
+		{ ".RepairTimeUnit", Properties.Window.FormShipGroup.RepairTimeUnit },
 		{ ".RepairSteel", ExpressionDataRes.RepairSteel },
 		{ ".RepairFuel", ExpressionDataRes.RepairFuel },
 		//強化値シリーズは省略
@@ -428,7 +429,7 @@ public class ExpressionData : ICloneable
 			return ((double)RightOperand).ToString("P0");
 
 		}
-		else if (LeftOperand == ".RepairTime")
+		else if (LeftOperand is ".RepairTime" or ".RepairTimeUnit")
 		{
 			return DateTimeHelper.ToTimeRemainString(DateTimeHelper.FromAPITimeSpan((int)RightOperand));
 

@@ -632,6 +632,7 @@ public partial class DialogShipGroupFilter : Form
 					Description.Text = "-1=未入渠, 1～4=入渠中(ドック番号)";
 					break;
 				case ".RepairTime":
+				case ".RepairTimeUnit":
 					RightOperand_NumericUpDown.Minimum = 0;
 					RightOperand_NumericUpDown.Maximum = int.MaxValue;
 					RightOperand_NumericUpDown.Increment = 60000;
@@ -1258,6 +1259,7 @@ public partial class DialogShipGroupFilter : Form
 			break;
 
 			case ".RepairTime":
+			case ".RepairTimeUnit":
 			{
 				Description.Text = string.Format("(ミリ秒単位) {0}", DateTimeHelper.ToTimeRemainString(DateTimeHelper.FromAPITimeSpan(intvalue)));
 			}
