@@ -64,7 +64,12 @@ public partial class FormWindowCapture : DockContent
 			}
 			else
 			{
-				main.Views.Add(new FormIntegrateViewModel(form, main) { Visibility = Visibility.Visible });
+				main.Views.Add(new FormIntegrateViewModel(form, main)
+				{
+					Visibility = Visibility.Visible,
+					CanClose = !main.LockLayout,
+					CanFloat = !main.LockLayout,
+				});
 			}
 		}
 	}
