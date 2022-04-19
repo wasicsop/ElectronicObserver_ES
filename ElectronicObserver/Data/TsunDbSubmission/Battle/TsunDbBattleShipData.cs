@@ -94,6 +94,6 @@ public class TsunDbBattleShipData
 		Flee = fleetData.EscapedShipList.Contains(ship.ShipID);
 
 		Fuel = ship.Fuel;
-		Ammo = ship.Fuel;
+		Ammo = ship.Ammo;
 	}
 }
