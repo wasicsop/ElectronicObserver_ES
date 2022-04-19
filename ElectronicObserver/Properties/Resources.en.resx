@@ -269,4 +269,8 @@ If you continue without initializing, errors may occur.
   <data name="NewGroupFormatTitle" xml:space="preserve">
     <value>Upgrade Confirmation (~1.5.0)</value>
   </data>
+  <data name="MultiInstanceNotification" xml:space="preserve">
+    <value>Electronic Observer already started.
+In case of false positive, start using option -m via commandline.</value>
+  </data>
 </root>

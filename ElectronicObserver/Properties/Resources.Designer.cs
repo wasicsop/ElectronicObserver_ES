@@ -19,10 +19,10 @@ namespace ElectronicObserver.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace ElectronicObserver.Properties {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ElectronicObserver.Properties.Resources", typeof(Resources).Assembly);
@@ -51,7 +51,7 @@ namespace ElectronicObserver.Properties {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace ElectronicObserver.Properties {
         /// <summary>
         ///   Looks up a localized string similar to  を終了しますか？.
         /// </summary>
-        internal static string AskClose {
+        public static string AskClose {
             get {
                 return ResourceManager.GetString("AskClose", resourceCulture);
             }
@@ -76,7 +76,7 @@ namespace ElectronicObserver.Properties {
         ///ダウンロードページを開きますか？
         ///(キャンセルすると以降表示しません).
         /// </summary>
-        internal static string AskForUpdate {
+        public static string AskForUpdate {
             get {
                 return ResourceManager.GetString("AskForUpdate", resourceCulture);
             }
@@ -86,7 +86,7 @@ namespace ElectronicObserver.Properties {
         ///   Looks up a localized string similar to セーブしていないレコードが失われる可能性があります。
         ///ロードしますか？.
         /// </summary>
-        internal static string AskLoad {
+        public static string AskLoad {
             get {
                 return ResourceManager.GetString("AskLoad", resourceCulture);
             }
@@ -96,7 +96,7 @@ namespace ElectronicObserver.Properties {
         ///   Looks up a localized string similar to ログインページへ移動します。
         ///よろしいですか？.
         /// </summary>
-        internal static string AskLogin {
+        public static string AskLogin {
             get {
                 return ResourceManager.GetString("AskLogin", resourceCulture);
             }
@@ -105,7 +105,7 @@ namespace ElectronicObserver.Properties {
         /// <summary>
         ///   Looks up a localized string similar to 移動先の URL を入力してください。.
         /// </summary>
-        internal static string AskNavText {
+        public static string AskNavText {
             get {
                 return ResourceManager.GetString("AskNavText", resourceCulture);
             }
@@ -114,7 +114,7 @@ namespace ElectronicObserver.Properties {
         /// <summary>
         ///   Looks up a localized string similar to 移動先の入力.
         /// </summary>
-        internal static string AskNavTitle {
+        public static string AskNavTitle {
             get {
                 return ResourceManager.GetString("AskNavTitle", resourceCulture);
             }
@@ -123,7 +123,7 @@ namespace ElectronicObserver.Properties {
         /// <summary>
         ///   Looks up a localized string similar to ブラウザ.
         /// </summary>
-        internal static string Browser {
+        public static string Browser {
             get {
                 return ResourceManager.GetString("Browser", resourceCulture);
             }
@@ -132,7 +132,7 @@ namespace ElectronicObserver.Properties {
         /// <summary>
         ///   Looks up a localized string similar to ブラウザプロセスが予期せず終了しました。.
         /// </summary>
-        internal static string BrowserClosedWithoutWarning {
+        public static string BrowserClosedWithoutWarning {
             get {
                 return ResourceManager.GetString("BrowserClosedWithoutWarning", resourceCulture);
             }
@@ -141,7 +141,7 @@ namespace ElectronicObserver.Properties {
         /// <summary>
         ///   Looks up a localized string similar to ブラウザの終了中にエラーが発生しました。.
         /// </summary>
-        internal static string BrowserCloseError {
+        public static string BrowserCloseError {
             get {
                 return ResourceManager.GetString("BrowserCloseError", resourceCulture);
             }
@@ -150,7 +150,7 @@ namespace ElectronicObserver.Properties {
         /// <summary>
         ///   Looks up a localized string similar to ブラウザプロセス間で通信エラーが発生しました。.
         /// </summary>
-        internal static string BrowserThrewError {
+        public static string BrowserThrewError {
             get {
                 return ResourceManager.GetString("BrowserThrewError", resourceCulture);
             }
@@ -159,7 +159,7 @@ namespace ElectronicObserver.Properties {
         /// <summary>
         ///   Looks up a localized string similar to 閉じる.
         /// </summary>
-        internal static string Close {
+        public static string Close {
             get {
                 return ResourceManager.GetString("Close", resourceCulture);
             }
@@ -168,7 +168,7 @@ namespace ElectronicObserver.Properties {
         /// <summary>
         ///   Looks up a localized string similar to 終了処理が完了しました。.
         /// </summary>
-        internal static string ClosingComplete {
+        public static string ClosingComplete {
             get {
                 return ResourceManager.GetString("ClosingComplete", resourceCulture);
             }
@@ -177,7 +177,7 @@ namespace ElectronicObserver.Properties {
         /// <summary>
         ///   Looks up a localized string similar to 開発.
         /// </summary>
-        internal static string DevelopedBy {
+        public static string DevelopedBy {
             get {
                 return ResourceManager.GetString("DevelopedBy", resourceCulture);
             }
@@ -186,7 +186,7 @@ namespace ElectronicObserver.Properties {
         /// <summary>
         ///   Looks up a localized string similar to ブラウザプロセスの起動に失敗しました。.
         /// </summary>
-        internal static string FailedBrowserStart {
+        public static string FailedBrowserStart {
             get {
                 return ResourceManager.GetString("FailedBrowserStart", resourceCulture);
             }
@@ -195,7 +195,7 @@ namespace ElectronicObserver.Properties {
         /// <summary>
         ///   Looks up a localized string similar to バージョンアップに伴うレコードのコンバートに失敗しました。.
         /// </summary>
-        internal static string FailedNewRecords {
+        public static string FailedNewRecords {
             get {
                 return ResourceManager.GetString("FailedNewRecords", resourceCulture);
             }
@@ -208,16 +208,16 @@ namespace ElectronicObserver.Properties {
         ///(データが破壊される可能性があります)
         ///.
         /// </summary>
-        internal static string FailedRecordDialog {
+        public static string FailedRecordDialog {
             get {
                 return ResourceManager.GetString("FailedRecordDialog", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 削除に失敗しました。\r\n.
+        ///   Looks up a localized string similar to 削除に失敗しました。.
         /// </summary>
-        internal static string FailedToDelete {
+        public static string FailedToDelete {
             get {
                 return ResourceManager.GetString("FailedToDelete", resourceCulture);
             }
@@ -225,9 +225,10 @@ namespace ElectronicObserver.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to {0} をご利用いただきありがとうございます。
-        ///設定や使用方法については「ヘルプ」→「オンラインヘルプ」を参照してください。\r\nご使用の前に必ずご一読ください。.
+        ///設定や使用方法については「ヘルプ」→「オンラインヘルプ」を参照してください。
+        ///ご使用の前に必ずご一読ください。.
         /// </summary>
-        internal static string FirstTimeDialog {
+        public static string FirstTimeDialog {
             get {
                 return ResourceManager.GetString("FirstTimeDialog", resourceCulture);
             }
@@ -236,7 +237,7 @@ namespace ElectronicObserver.Properties {
         /// <summary>
         ///   Looks up a localized string similar to 初回起動メッセージ.
         /// </summary>
-        internal static string FirstTimeTitle {
+        public static string FirstTimeTitle {
             get {
                 return ResourceManager.GetString("FirstTimeTitle", resourceCulture);
             }
@@ -245,7 +246,7 @@ namespace ElectronicObserver.Properties {
         /// <summary>
         ///   Looks up a localized string similar to バージョンアップに伴うグループデータの削除に失敗しました。.
         /// </summary>
-        internal static string GroupUpgradeFailed {
+        public static string GroupUpgradeFailed {
             get {
                 return ResourceManager.GetString("GroupUpgradeFailed", resourceCulture);
             }
@@ -254,7 +255,7 @@ namespace ElectronicObserver.Properties {
         /// <summary>
         ///   Looks up a localized string similar to ヘルプ.
         /// </summary>
-        internal static string Help {
+        public static string Help {
             get {
                 return ResourceManager.GetString("Help", resourceCulture);
             }
@@ -264,7 +265,7 @@ namespace ElectronicObserver.Properties {
         ///   Looks up a localized string similar to レイアウトが初期化されました。
         ///「表示」メニューからお好みのウィンドウを追加してください。.
         /// </summary>
-        internal static string InitLayout {
+        public static string InitLayout {
             get {
                 return ResourceManager.GetString("InitLayout", resourceCulture);
             }
@@ -273,7 +274,7 @@ namespace ElectronicObserver.Properties {
         /// <summary>
         ///   Looks up a localized string similar to  を終了しています….
         /// </summary>
-        internal static string IsClosing {
+        public static string IsClosing {
             get {
                 return ResourceManager.GetString("IsClosing", resourceCulture);
             }
@@ -282,7 +283,7 @@ namespace ElectronicObserver.Properties {
         /// <summary>
         ///   Looks up a localized string similar to {0}からウィンドウ レイアウトを復元しました。.
         /// </summary>
-        internal static string LayoutLoaded {
+        public static string LayoutLoaded {
             get {
                 return ResourceManager.GetString("LayoutLoaded", resourceCulture);
             }
@@ -291,16 +292,30 @@ namespace ElectronicObserver.Properties {
         /// <summary>
         ///   Looks up a localized string similar to {0}へウィンドウ レイアウトを保存しました。.
         /// </summary>
-        internal static string LayoutSaved {
+        public static string LayoutSaved {
             get {
                 return ResourceManager.GetString("LayoutSaved", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to バージョンアップが検出されました。\r\n艦船グループデータの互換性がなくなったため、当該データを初期化します。\r\n(古いファイルは Settings_Backup フォルダに退避されます。)\r\nよろしいですか？\r\n(初期化せずに続行した場合、エラーが発生します。)\r\n.
+        ///   Looks up a localized string similar to 既に起動しています。多重起動はできません。
+        ///誤検出の場合は、コマンドラインから -m オプションを付けて起動してください。.
         /// </summary>
-        internal static string NewGroupFormat {
+        public static string MultiInstanceNotification {
+            get {
+                return ResourceManager.GetString("MultiInstanceNotification", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to バージョンアップが検出されました。
+        ///艦船グループデータの互換性がなくなったため、当該データを初期化します。
+        ///(古いファイルは Settings_Backup フォルダに退避されます。)
+        ///よろしいですか？
+        ///(初期化せずに続行した場合、エラーが発生します。).
+        /// </summary>
+        public static string NewGroupFormat {
             get {
                 return ResourceManager.GetString("NewGroupFormat", resourceCulture);
             }
@@ -309,7 +324,7 @@ namespace ElectronicObserver.Properties {
         /// <summary>
         ///   Looks up a localized string similar to バージョンアップに伴う確認(～1.5.0).
         /// </summary>
-        internal static string NewGroupFormatTitle {
+        public static string NewGroupFormatTitle {
             get {
                 return ResourceManager.GetString("NewGroupFormatTitle", resourceCulture);
             }
@@ -322,7 +337,7 @@ namespace ElectronicObserver.Properties {
         ///よろしいですか？
         ///(コンバートせずに続行した場合、読み込めなくなる可能性があります。).
         /// </summary>
-        internal static string NewRecordFormat {
+        public static string NewRecordFormat {
             get {
                 return ResourceManager.GetString("NewRecordFormat", resourceCulture);
             }
@@ -331,7 +346,7 @@ namespace ElectronicObserver.Properties {
         /// <summary>
         ///   Looks up a localized string similar to バージョンアップに伴う確認(～1.4.6).
         /// </summary>
-        internal static string NewRecordTitle {
+        public static string NewRecordTitle {
             get {
                 return ResourceManager.GetString("NewRecordTitle", resourceCulture);
             }
@@ -340,7 +355,7 @@ namespace ElectronicObserver.Properties {
         /// <summary>
         ///   Looks up a localized string similar to 新しいバージョンがリリースされています！ :.
         /// </summary>
-        internal static string NewVersionFound {
+        public static string NewVersionFound {
             get {
                 return ResourceManager.GetString("NewVersionFound", resourceCulture);
             }
@@ -349,7 +364,7 @@ namespace ElectronicObserver.Properties {
         /// <summary>
         ///   Looks up a localized string similar to 装備データが読み込まれていません。.
         /// </summary>
-        internal static string NoEquipData {
+        public static string NoEquipData {
             get {
                 return ResourceManager.GetString("NoEquipData", resourceCulture);
             }
@@ -358,7 +373,7 @@ namespace ElectronicObserver.Properties {
         /// <summary>
         ///   Looks up a localized string similar to ウィンドウ レイアウト ファイルは存在しません。.
         /// </summary>
-        internal static string NoLayoutFound {
+        public static string NoLayoutFound {
             get {
                 return ResourceManager.GetString("NoLayoutFound", resourceCulture);
             }
@@ -367,7 +382,7 @@ namespace ElectronicObserver.Properties {
         /// <summary>
         ///   Looks up a localized string similar to 艦船データが読み込まれていません。.
         /// </summary>
-        internal static string NoShipData {
+        public static string NoShipData {
             get {
                 return ResourceManager.GetString("NoShipData", resourceCulture);
             }
@@ -376,7 +391,7 @@ namespace ElectronicObserver.Properties {
         /// <summary>
         ///   Looks up a localized string similar to レイアウト ファイルを開く.
         /// </summary>
-        internal static string OpenLayout {
+        public static string OpenLayout {
             get {
                 return ResourceManager.GetString("OpenLayout", resourceCulture);
             }
@@ -385,7 +400,7 @@ namespace ElectronicObserver.Properties {
         /// <summary>
         ///   Looks up a localized string similar to 配布元(不具合報告・連絡はこちらへ).
         /// </summary>
-        internal static string OriginalSite {
+        public static string OriginalSite {
             get {
                 return ResourceManager.GetString("OriginalSite", resourceCulture);
             }
@@ -394,7 +409,7 @@ namespace ElectronicObserver.Properties {
         /// <summary>
         ///   Looks up a localized string similar to 七四式電子観測儀.
         /// </summary>
-        internal static string SoftwareName {
+        public static string SoftwareName {
             get {
                 return ResourceManager.GetString("SoftwareName", resourceCulture);
             }
@@ -403,7 +418,7 @@ namespace ElectronicObserver.Properties {
         /// <summary>
         ///   Looks up a localized string similar to 起動処理が完了しました。.
         /// </summary>
-        internal static string StartupComplete {
+        public static string StartupComplete {
             get {
                 return ResourceManager.GetString("StartupComplete", resourceCulture);
             }
@@ -412,7 +427,7 @@ namespace ElectronicObserver.Properties {
         /// <summary>
         ///   Looks up a localized string similar to 翻訳版元.
         /// </summary>
-        internal static string TranslatedSite {
+        public static string TranslatedSite {
             get {
                 return ResourceManager.GetString("TranslatedSite", resourceCulture);
             }
@@ -421,7 +436,7 @@ namespace ElectronicObserver.Properties {
         /// <summary>
         ///   Looks up a localized string similar to 翻訳版.
         /// </summary>
-        internal static string TranslatedVer {
+        public static string TranslatedVer {
             get {
                 return ResourceManager.GetString("TranslatedVer", resourceCulture);
             }
@@ -430,7 +445,7 @@ namespace ElectronicObserver.Properties {
         /// <summary>
         ///   Looks up a localized string similar to アップデート情報.
         /// </summary>
-        internal static string Update {
+        public static string Update {
             get {
                 return ResourceManager.GetString("Update", resourceCulture);
             }
@@ -439,7 +454,7 @@ namespace ElectronicObserver.Properties {
         /// <summary>
         ///   Looks up a localized string similar to アップデート情報の処理に失敗しました。.
         /// </summary>
-        internal static string UpdateConnectionFailed {
+        public static string UpdateConnectionFailed {
             get {
                 return ResourceManager.GetString("UpdateConnectionFailed", resourceCulture);
             }
@@ -448,7 +463,7 @@ namespace ElectronicObserver.Properties {
         /// <summary>
         ///   Looks up a localized string similar to バージョン.
         /// </summary>
-        internal static string VersionTitle {
+        public static string VersionTitle {
             get {
                 return ResourceManager.GetString("VersionTitle", resourceCulture);
             }
@@ -457,7 +472,7 @@ namespace ElectronicObserver.Properties {
         /// <summary>
         ///   Looks up a localized string similar to 現在.
         /// </summary>
-        internal static string ZoomCurrent {
+        public static string ZoomCurrent {
             get {
                 return ResourceManager.GetString("ZoomCurrent", resourceCulture);
             }

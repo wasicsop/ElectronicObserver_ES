@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -74,10 +75,17 @@ public partial class App : Application
 				System.Windows.Window temp = new() { Visibility = Visibility.Hidden };
 				temp.Show();
 
+				string caption = CultureInfo.CurrentCulture.Name switch
+				{
+					"ja-JP" => SoftwareInformation.SoftwareNameJapanese,
+					_ => SoftwareInformation.SoftwareNameEnglish
+				};
+
 				// 多重起動禁止
-				MessageBox.Show(
-					"Electronic Observer already started.\r\nIn case of false positive, start using option -m via commandline.",
-					Utility.SoftwareInformation.SoftwareNameEnglish,
+				MessageBox.Show
+				(
+					ElectronicObserver.Properties.Resources.MultiInstanceNotification,
+					caption,
 					MessageBoxButton.OK,
 					MessageBoxImage.Exclamation
 				);
