@@ -12,7 +12,7 @@ using Color = System.Drawing.Color;
 
 namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels;
 
-public class FleetItemControlViewModel : ObservableObject
+public partial class FleetItemControlViewModel : ObservableObject
 {
 	public int MaxWidth { get; set; }
 	public string? Text { get; set; }
@@ -31,15 +31,18 @@ public class FleetItemControlViewModel : ObservableObject
 		ResourceManager.EquipmentContent e => ImageSourceIcons.GetEquipmentIcon((EquipmentIconType)e),
 		_ => null
 	};
-	public IRelayCommand ShipNameRightClick { get; }
 
 	public FleetItemControlViewModel()
 	{
-		ShipNameRightClick = new RelayCommand(() => new DialogAlbumMasterShipWpf(Tag).Show(App.Current.MainWindow));
-
 		Utility.Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
 
 		ConfigurationChanged();
+	}
+
+	[ICommand]
+	private void OpenShipEncyclopedia()
+	{
+		new DialogAlbumMasterShipWpf(Tag).Show(App.Current.MainWindow);
 	}
 
 	private void ConfigurationChanged()

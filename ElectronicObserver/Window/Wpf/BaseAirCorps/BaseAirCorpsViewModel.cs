@@ -424,14 +424,11 @@ public class BaseAirCorpsItemViewModel : ObservableObject
 	}
 }
 
-public class BaseAirCorpsViewModel : AnchorableViewModel
+public partial class BaseAirCorpsViewModel : AnchorableViewModel
 {
 	public FormBaseAirCorpsTranslationViewModel FormBaseAirCorps { get; }
 
 	public List<BaseAirCorpsItemViewModel> ControlMember { get; }
-
-	public ICommand CopyOrganizationCommand { get; }
-	public ICommand DisplayRelocatedEquipmentsCommand { get; }
 
 	public BaseAirCorpsViewModel() : base("AB", "BaseAirCorps",
 		ImageSourceIcons.GetIcon(IconContent.FormBaseAirCorps))
@@ -440,9 +437,6 @@ public class BaseAirCorpsViewModel : AnchorableViewModel
 
 		Title = FormBaseAirCorps.Title;
 		FormBaseAirCorps.PropertyChanged += (_, _) => Title = FormBaseAirCorps.Title;
-
-		CopyOrganizationCommand = new RelayCommand<int?>(ContextMenuBaseAirCorps_CopyOrganization_Click);
-		DisplayRelocatedEquipmentsCommand = new RelayCommand(ContextMenuBaseAirCorps_DisplayRelocatedEquipments_Click);
 
 		ControlMember = new();
 		// TableMember.SuspendLayout();
@@ -558,7 +552,8 @@ public class BaseAirCorpsViewModel : AnchorableViewModel
 		*/
 	}
 
-	private void ContextMenuBaseAirCorps_CopyOrganization_Click(int? areaid)
+	[ICommand]
+	private void CopyOrganization(int? areaid)
 	{
 		areaid ??= -1;
 
@@ -620,7 +615,8 @@ public class BaseAirCorpsViewModel : AnchorableViewModel
 		Clipboard.SetDataObject(sb.ToString());
 	}
 
-	private void ContextMenuBaseAirCorps_DisplayRelocatedEquipments_Click()
+	[ICommand]
+	private void DisplayRelocatedEquipments()
 	{
 		string message = string.Join("\r\n", KCDatabase.Instance.RelocatedEquipments.Values
 			.Where(eq => eq.EquipmentInstance != null)

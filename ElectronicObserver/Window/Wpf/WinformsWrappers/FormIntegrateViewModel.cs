@@ -10,15 +10,18 @@ using ElectronicObserver.Window.Wpf.WinformsHost;
 
 namespace ElectronicObserver.Window.Wpf.WinformsWrappers;
 
-public class FormIntegrateViewModel : WinformsHostViewModel
+public partial class FormIntegrateViewModel : WinformsHostViewModel
 {
+	private FormMainViewModel Parent { get; }
 	private FormIntegrate Integrate { get; }
 	public override string ContentId => Integrate.PersistString;
-	public override ICommand CloseCommand { get; }
+	// workaround because source generator can't see CanClose
+	public bool CanClose2 => CanClose;
 
 	public FormIntegrateViewModel(FormIntegrate integrate, FormMainViewModel parent)
 		: base("Integrate", "Integrate", ImageSourceIcons.GetIcon(IconContent.FormJson))
 	{
+		Parent = parent;
 		Integrate = integrate;
 
 		Title = integrate.WindowData.CurrentTitle;
@@ -26,8 +29,6 @@ public class FormIntegrateViewModel : WinformsHostViewModel
 		WinformsControl = integrate;
 
 		WindowsFormsHost.Child = WinformsControl;
-
-		CloseCommand = new RelayCommand(() => parent.CloseIntegrate(this));
 
 		integrate.PropertyChanged += (sender, args) =>
 		{
@@ -48,4 +49,10 @@ public class FormIntegrateViewModel : WinformsHostViewModel
 	}
 
 	public void RaiseContentIdChanged() => OnPropertyChanged(nameof(ContentId));
+
+	[ICommand(CanExecute = nameof(CanClose2))]
+	protected override void Close()
+	{
+		Parent.CloseIntegrate(this);
+	}
 }

@@ -211,7 +211,7 @@
 										ToolTip="{Binding ToolTip}"
 										>
 										<Border.InputBindings>
-											<MouseBinding Command="{Binding ShipNameRightClick}" MouseAction="RightClick" />
+											<MouseBinding Command="{Binding OpenShipEncyclopediaCommand}" MouseAction="RightClick" />
 										</Border.InputBindings>
 										<StackPanel Background="{Binding Background}">
 											<TextBlock
@@ -228,7 +228,7 @@
 										ToolTip="{Binding ToolTip}"
 										>
 										<Border.InputBindings>
-											<MouseBinding Command="{Binding ShipLevelRightClick}" MouseAction="RightClick" />
+											<MouseBinding Command="{Binding OpenExpCheckerCommand}" MouseAction="RightClick" />
 										</Border.InputBindings>
 										<Grid>
 											<Grid.ColumnDefinitions>

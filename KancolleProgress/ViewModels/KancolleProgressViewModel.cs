@@ -25,7 +25,7 @@ public enum Display
 	Event
 }
 
-public class KancolleProgressViewModel : ObservableObject
+public partial class KancolleProgressViewModel : ObservableObject
 {
 	public IEnumerable<IShipData> UserShips { get; set; } = Enumerable.Empty<IShipData>();
 	public IEnumerable<IShipDataMaster> AllShips { get; set; } = Enumerable.Empty<IShipDataMaster>();
@@ -47,16 +47,10 @@ public class KancolleProgressViewModel : ObservableObject
 	public SolidColorBrush ShipColorBrush(int level) => ColorFilters
 		.FirstOrDefault(f => ColorFilter.Compare(f, level))?.Brush ?? new SolidColorBrush();
 
-	public ICommand SetDisplayCommand { get; }
-	public ICommand ExportAsCsvCommand { get; }
-
 	public Display Display { get; set; } = Display.Ships;
 
 	public KancolleProgressViewModel()
 	{
-		SetDisplayCommand = new RelayCommand<Display>(display => Display = display);
-		ExportAsCsvCommand = new RelayCommand(ExportAsCsv);
-
 		List<ColorFilter> colorFilters = new()
 		{
 			new(this, Comparator.Equal, 175, Colors.DeepPink, "Max"),
@@ -277,6 +271,13 @@ public class KancolleProgressViewModel : ObservableObject
 			.Concat(DisplayGroups(openingAswGroup));
 	}
 
+	[ICommand]
+	private void SetDisplay(Display display)
+	{
+		Display = display;
+	}
+
+	[ICommand]
 	private void ExportAsCsv()
 	{
 		List<List<ShipViewModel>> shipLists = TypeGroups

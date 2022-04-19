@@ -13,7 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels;
 
-public class FleetStatusViewModel : ObservableObject
+public partial class FleetStatusViewModel : ObservableObject
 {
 	public FormFleetTranslationViewModel FormFleet { get; }
 
@@ -26,15 +26,11 @@ public class FleetStatusViewModel : ObservableObject
 	private int FleetId { get; }
 	public int BranchWeight { get; private set; } = 1;
 
-	public ICommand IncreaseBranchWeightCommand { get; }
-
 	public FleetStatusViewModel(int fleetId)
 	{
 		FormFleet = App.Current.Services.GetService<FormFleetTranslationViewModel>()!;
 
 		FleetId = fleetId;
-
-		IncreaseBranchWeightCommand = new RelayCommand(SearchingAbility_Click);
 
 		Name = new()
 		{
@@ -95,7 +91,8 @@ public class FleetStatusViewModel : ObservableObject
 		ConfigurationChanged();
 	}
 
-	private void SearchingAbility_Click()
+	[ICommand]
+	private void IncreaseBranchWeight()
 	{
 		BranchWeight--;
 		if (BranchWeight <= 0)

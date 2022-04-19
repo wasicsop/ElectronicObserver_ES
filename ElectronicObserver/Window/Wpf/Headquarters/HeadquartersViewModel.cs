@@ -41,7 +41,7 @@ public class HQLevelViewModel : HeadquarterItemViewModel
 	public int ValueNext { get; set; }
 }
 
-public class HeadquartersViewModel : AnchorableViewModel
+public partial class HeadquartersViewModel : AnchorableViewModel
 {
 	public FormHeadquartersTranslationViewModel FormHeadquarters { get; }
 
@@ -72,10 +72,6 @@ public class HeadquartersViewModel : AnchorableViewModel
 
 	private List<HeadquarterItemViewModel> Items { get; }
 
-	public ICommand ShowResourceChartCommand { get; }
-	public ICommand CopyResourcesCommand { get; }
-	public ICommand ViewUseItemsCommand { get; }
-
 	public HeadquartersViewModel() : base("HQ", "Headquarters",
 		ImageSourceIcons.GetIcon(IconContent.FormHeadQuarters))
 	{
@@ -83,10 +79,6 @@ public class HeadquartersViewModel : AnchorableViewModel
 
 		Title = FormHeadquarters.Title;
 		FormHeadquarters.PropertyChanged += (_, _) => Title = FormHeadquarters.Title;
-
-		ShowResourceChartCommand = new RelayCommand(Resource_MouseClick);
-		CopyResourcesCommand = new RelayCommand(Resource_MouseDoubleClick);
-		ViewUseItemsCommand = new RelayCommand(DisplayUseItem_MouseClick);
 
 		ShipCount.Icon = ImageSourceIcons.GetIcon(IconContent.HeadQuartersShip);
 		EquipmentCount.Icon = ImageSourceIcons.GetIcon(IconContent.HeadQuartersEquipment);
@@ -629,13 +621,14 @@ public class HeadquartersViewModel : AnchorableViewModel
 		}
 	}
 
-
-	private void Resource_MouseClick()
+	[ICommand]
+	private void ShowResourceChart()
 	{
 		new Dialog.DialogResourceChart().Show(App.Current.MainWindow);
 	}
 
-	private void Resource_MouseDoubleClick()
+	[ICommand]
+	private void CopyResources()
 	{
 		try
 		{
@@ -706,7 +699,8 @@ public class HeadquartersViewModel : AnchorableViewModel
 		}
 	}
 
-	private void DisplayUseItem_MouseClick()
+	[ICommand]
+	private void ViewUseItems()
 	{
 		var db = KCDatabase.Instance;
 		var sb = new StringBuilder();

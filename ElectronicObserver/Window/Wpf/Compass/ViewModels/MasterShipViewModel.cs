@@ -15,7 +15,7 @@ using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Wpf.Compass.ViewModels;
 
-public class MasterShipViewModel : ObservableObject
+public partial class MasterShipViewModel : ObservableObject
 {
 	public IShipDataMaster? Ship { get; set; }
 
@@ -63,12 +63,8 @@ public class MasterShipViewModel : ObservableObject
 		_ => Utility.Configuration.Config.UI.ForeColor.ToBrush()
 	};
 
-	public ICommand OpenShipEncyclopediaCommand { get; }
-
 	public MasterShipViewModel()
 	{
-		OpenShipEncyclopediaCommand = new RelayCommand<int>(OpenShipEncyclopedia, id => id > 0);
-
 		Utility.Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
 		ConfigurationChanged();
 	}
@@ -78,6 +74,9 @@ public class MasterShipViewModel : ObservableObject
 		MaxNameWidth = Utility.Configuration.Config.FormCompass.MaxShipNameWidth;
 	}
 
+	private bool CanOpenShipEncyclopedia(int id) => id > 0;
+
+	[ICommand(CanExecute = nameof(CanOpenShipEncyclopedia))]
 	private void OpenShipEncyclopedia(int shipId)
 	{
 		new DialogAlbumMasterShipWpf(shipId).Show(App.Current.MainWindow);

@@ -184,100 +184,10 @@ public partial class FormMainViewModel : ObservableObject
 		false;
 #endif
 
-	#region Commands
-
-	public ICommand SaveDataCommand { get; }
-	public ICommand LoadDataCommand { get; }
-	public ICommand OpenLayoutCommand { get; }
-	public ICommand SaveLayoutAsCommand { get; }
-	public ICommand SilenceNotificationsCommand { get; }
-	public ICommand OpenConfigurationCommand { get; }
-
-	public ICommand OpenEquipmentListCommand { get; }
-	public ICommand OpenDropRecordCommand { get; }
-	public ICommand OpenDevelopmentRecordCommand { get; }
-	public ICommand OpenConstructionRecordCommand { get; }
-	public ICommand OpenResourceChartCommand { get; }
-	public ICommand OpenAlbumMasterShipCommand { get; }
-	public ICommand OpenAlbumMasterEquipmentCommand { get; }
-	public ICommand OpenAntiAirDefenseCommand { get; }
-	public ICommand OpenFleetImageGeneratorCommand { get; }
-	public ICommand OpenBaseAirCorpsSimulationCommand { get; }
-	public ICommand OpenExpCheckerCommand { get; }
-	public ICommand OpenExpeditionCheckCommand { get; }
-	public ICommand OpenKancolleProgressCommand { get; }
-	public ICommand OpenExtraBrowserCommand { get; }
-
-	public ICommand LoadAPIFromFileCommand { get; }
-	public ICommand LoadInitialAPICommand { get; }
-	public ICommand LoadRecordFromOldCommand { get; }
-	public ICommand LoadDataFromOldCommand { get; }
-	public ICommand DeleteOldAPICommand { get; }
-	public ICommand RenameShipResourceCommand { get; }
-
-	public ICommand ViewHelpCommand { get; }
-	public ICommand ReportIssueCommand { get; }
-	public ICommand JoinDiscordCommand { get; }
-	public ICommand CheckForUpdateCommand { get; }
-	public ICommand ViewVersionCommand { get; }
-
-	public ICommand OpenViewCommand { get; }
-	public ICommand SaveLayoutCommand { get; }
-	public ICommand LoadLayoutCommand { get; }
-	public ICommand ClosingCommand { get; }
-	public ICommand ClosedCommand { get; }
-
-	#endregion
-
 	public FormMainViewModel(DockingManager dockingManager, FormMainWpf window)
 	{
 		Window = window;
 		DockingManager = dockingManager;
-
-		#region Commands
-
-		SaveDataCommand = new RelayCommand(StripMenu_File_SaveData_Save_Click);
-		LoadDataCommand = new RelayCommand(StripMenu_File_SaveData_Load_Click);
-		OpenLayoutCommand = new RelayCommand(StripMenu_File_Layout_Open_Click);
-		SaveLayoutAsCommand = new RelayCommand(StripMenu_File_Layout_Change_Click);
-		SilenceNotificationsCommand = new RelayCommand(StripMenu_File_Notification_MuteAll_Click);
-		OpenConfigurationCommand = new RelayCommand(StripMenu_File_Configuration_Click);
-
-		OpenEquipmentListCommand = new RelayCommand<bool>(StripMenu_Tool_EquipmentList_Click);
-		OpenDropRecordCommand = new RelayCommand<bool>(StripMenu_Tool_DropRecord_Click);
-		OpenDevelopmentRecordCommand = new RelayCommand<bool>(StripMenu_Tool_DevelopmentRecord_Click);
-		OpenConstructionRecordCommand = new RelayCommand<bool>(StripMenu_Tool_ConstructionRecord_Click);
-		OpenResourceChartCommand = new RelayCommand(StripMenu_Tool_ResourceChart_Click);
-		OpenAlbumMasterShipCommand = new RelayCommand(StripMenu_Tool_AlbumMasterShip_Click);
-		OpenAlbumMasterEquipmentCommand = new RelayCommand(StripMenu_Tool_AlbumMasterEquipment_Click);
-		OpenAntiAirDefenseCommand = new RelayCommand(StripMenu_Tool_AntiAirDefense_Click);
-		OpenFleetImageGeneratorCommand = new RelayCommand(StripMenu_Tool_FleetImageGenerator_Click);
-		OpenBaseAirCorpsSimulationCommand = new RelayCommand(StripMenu_Tool_BaseAirCorpsSimulation_Click);
-		OpenExpCheckerCommand = new RelayCommand(StripMenu_Tool_ExpChecker_Click);
-		OpenExpeditionCheckCommand = new RelayCommand(StripMenu_Tool_ExpeditionCheck_Click);
-		OpenKancolleProgressCommand = new RelayCommand(StripMenu_Tool_KancolleProgress_Click);
-		OpenExtraBrowserCommand = new RelayCommand(StripMenu_Tool_ExtraBrowser_Click);
-
-		LoadAPIFromFileCommand = new RelayCommand(StripMenu_Debug_LoadAPIFromFile_Click);
-		LoadInitialAPICommand = new RelayCommand(StripMenu_Debug_LoadInitialAPI_Click);
-		LoadRecordFromOldCommand = new RelayCommand(StripMenu_Debug_LoadRecordFromOld_Click);
-		LoadDataFromOldCommand = new RelayCommand(StripMenu_Debug_LoadDataFromOld_Click);
-		DeleteOldAPICommand = new RelayCommand(StripMenu_Debug_DeleteOldAPI_Click);
-		RenameShipResourceCommand = new RelayCommand(StripMenu_Debug_RenameShipResource_Click);
-
-		ViewHelpCommand = new RelayCommand(StripMenu_Help_Help_Click);
-		ReportIssueCommand = new RelayCommand(StripMenu_Help_Issue_Click);
-		JoinDiscordCommand = new RelayCommand(StripMenu_Help_Discord_Click);
-		CheckForUpdateCommand = new RelayCommand(StripMenu_Help_Update_Click);
-		ViewVersionCommand = new RelayCommand(StripMenu_Help_Version_Click);
-
-		OpenViewCommand = new RelayCommand<AnchorableViewModel>(OpenView);
-		SaveLayoutCommand = new RelayCommand<object>(SaveLayout);
-		LoadLayoutCommand = new RelayCommand<object>(LoadLayout);
-		ClosingCommand = new RelayCommand<CancelEventArgs>(Close);
-		ClosedCommand = new RelayCommand(Closed);
-
-		#endregion
 
 		Config = Configuration.Config;
 		FormMain = App.Current.Services.GetService<FormMainTranslationViewModel>()!;
@@ -524,12 +434,14 @@ public partial class FormMainViewModel : ObservableObject
 
 	#region File
 
-	private void StripMenu_File_SaveData_Save_Click()
+	[ICommand]
+	private void SaveData()
 	{
 		RecordManager.Instance.SaveAll();
 	}
 
-	private void StripMenu_File_SaveData_Load_Click()
+	[ICommand]
+	private void LoadData()
 	{
 		if (MessageBox.Show(Resources.AskLoad, Properties.Window.FormMain.ConfirmatonCaption,
 				MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No)
@@ -539,6 +451,7 @@ public partial class FormMainViewModel : ObservableObject
 		}
 	}
 
+	[ICommand]
 	public void SaveLayout(object? sender)
 	{
 		if (sender is not FormMainWpf window) return;
@@ -570,7 +483,8 @@ public partial class FormMainViewModel : ObservableObject
 
 		File.WriteAllText(IntegratePath, MessagePackSerializer.ConvertToJson(data));
 	}
-
+	
+	[ICommand]
 	public void LoadLayout(object? sender)
 	{
 		if (sender is not FormMainWpf window) return;
@@ -647,7 +561,8 @@ public partial class FormMainViewModel : ObservableObject
 
 	private string LayoutFilter => "Layout File|*.xml";
 
-	private void StripMenu_File_Layout_Open_Click()
+	[ICommand]
+	private void OpenLayout()
 	{
 		using OpenFileDialog dialog = new()
 		{
@@ -680,7 +595,8 @@ public partial class FormMainViewModel : ObservableObject
 		}
 	}
 
-	private void StripMenu_File_Layout_Change_Click()
+	[ICommand]
+	private void SaveLayoutAs()
 	{
 		using SaveFileDialog dialog = new()
 		{
@@ -696,13 +612,15 @@ public partial class FormMainViewModel : ObservableObject
 		SaveLayout(Window);
 	}
 
-	private void StripMenu_File_Notification_MuteAll_Click()
+	[ICommand]
+	private void SilenceNotifications()
 	{
 		foreach (var n in NotifierManager.Instance.GetNotifiers())
 			n.IsSilenced = NotificationsSilenced;
 	}
 
-	private void StripMenu_File_Configuration_Click()
+	[ICommand]
+	private void OpenConfiguration()
 	{
 		UpdatePlayTime();
 
@@ -717,6 +635,7 @@ public partial class FormMainViewModel : ObservableObject
 
 	#region View
 
+	[ICommand]
 	private void OpenView(AnchorableViewModel view)
 	{
 		view.Visibility = Visibility.Visible;
@@ -724,6 +643,7 @@ public partial class FormMainViewModel : ObservableObject
 		view.IsActive = true;
 	}
 
+	[ICommand]
 	public void CloseIntegrate(FormIntegrateViewModel integrate)
 	{
 		if (integrate.WinformsControl is FormIntegrate i)
@@ -768,7 +688,8 @@ public partial class FormMainViewModel : ObservableObject
 
 	#region Tools
 
-	private void StripMenu_Tool_EquipmentList_Click(bool useNewVersion)
+	[ICommand]
+	private void OpenEquipmentList(bool useNewVersion)
 	{
 		if (useNewVersion)
 		{
@@ -782,7 +703,8 @@ public partial class FormMainViewModel : ObservableObject
 		}
 	}
 
-	private void StripMenu_Tool_DropRecord_Click(bool useNewVersion)
+	[ICommand]
+	private void OpenDropRecord(bool useNewVersion)
 	{
 		if (KCDatabase.Instance.MasterShips.Count == 0)
 		{
@@ -808,7 +730,8 @@ public partial class FormMainViewModel : ObservableObject
 		}
 	}
 
-	private void StripMenu_Tool_DevelopmentRecord_Click(bool useNewVersion)
+	[ICommand]
+	private void OpenDevelopmentRecord(bool useNewVersion)
 	{
 		if (KCDatabase.Instance.MasterShips.Count == 0)
 		{
@@ -834,7 +757,8 @@ public partial class FormMainViewModel : ObservableObject
 		}
 	}
 
-	private void StripMenu_Tool_ConstructionRecord_Click(bool useNewVersion)
+	[ICommand]
+	private void OpenConstructionRecord(bool useNewVersion)
 	{
 		if (KCDatabase.Instance.MasterShips.Count == 0)
 		{
@@ -860,14 +784,16 @@ public partial class FormMainViewModel : ObservableObject
 		}
 	}
 
-	private void StripMenu_Tool_ResourceChart_Click()
+	[ICommand]
+	private void OpenResourceChart()
 	{
 		DialogResourceChart resourceChart = new();
 		RefreshTopMost();
 		resourceChart.Show(Window);
 	}
 
-	private void StripMenu_Tool_AlbumMasterShip_Click()
+	[ICommand]
+	private void OpenAlbumMasterShip()
 	{
 
 		if (KCDatabase.Instance.MasterShips.Count == 0)
@@ -882,7 +808,8 @@ public partial class FormMainViewModel : ObservableObject
 		albumMasterShip.Show(Window);
 	}
 
-	private void StripMenu_Tool_AlbumMasterEquipment_Click()
+	[ICommand]
+	private void OpenAlbumMasterEquipment()
 	{
 
 		if (KCDatabase.Instance.MasterEquipments.Count == 0)
@@ -897,37 +824,44 @@ public partial class FormMainViewModel : ObservableObject
 		dialogAlbumMasterEquipment.Show(Window);
 	}
 
-	private void StripMenu_Tool_AntiAirDefense_Click()
+	[ICommand]
+	private void OpenAntiAirDefense()
 	{
 		new DialogAntiAirDefense().Show(Window);
 	}
 
-	private void StripMenu_Tool_FleetImageGenerator_Click()
+	[ICommand]
+	private void OpenFleetImageGenerator()
 	{
 		new DialogFleetImageGenerator(1).Show(Window);
 	}
 
-	private void StripMenu_Tool_BaseAirCorpsSimulation_Click()
+	[ICommand]
+	private void OpenBaseAirCorpsSimulation()
 	{
 		new DialogBaseAirCorpsSimulation().Show(Window);
 	}
 
-	private void StripMenu_Tool_ExpChecker_Click()
+	[ICommand]
+	private void OpenExpChecker()
 	{
 		new DialogExpChecker().Show(Window);
 	}
 
-	private void StripMenu_Tool_ExpeditionCheck_Click()
+	[ICommand]
+	private void OpenExpeditionCheck()
 	{
 		new DialogExpeditionCheck().Show(Window);
 	}
 
-	private void StripMenu_Tool_KancolleProgress_Click()
+	[ICommand]
+	private void OpenKancolleProgress()
 	{
 		new DialogKancolleProgressWpf().Show(Window);
 	}
 
-	private void StripMenu_Tool_ExtraBrowser_Click()
+	[ICommand]
+	private void OpenExtraBrowser()
 	{
 		ElectronicObserver.Window.FormBrowserHost.Instance.Browser.OpenExtraBrowser();
 	}
@@ -949,7 +883,8 @@ public partial class FormMainViewModel : ObservableObject
 
 	#region Debug
 
-	private void StripMenu_Debug_LoadAPIFromFile_Click()
+	[ICommand]
+	private void LoadAPIFromFile()
 	{
 
 		/*/
@@ -973,7 +908,8 @@ public partial class FormMainViewModel : ObservableObject
 		//*/
 	}
 
-	private async void StripMenu_Debug_LoadInitialAPI_Click()
+	[ICommand]
+	private async void LoadInitialAPI()
 	{
 		using OpenFileDialog ofd = new();
 
@@ -1003,6 +939,7 @@ public partial class FormMainViewModel : ObservableObject
 		}
 	}
 
+	[ICommand]
 	private void LoadAPIList(string path)
 	{
 
@@ -1073,7 +1010,8 @@ public partial class FormMainViewModel : ObservableObject
 		}
 	}
 
-	private void StripMenu_Debug_LoadRecordFromOld_Click()
+	[ICommand]
+	private void LoadRecordFromOld()
 	{
 
 		if (KCDatabase.Instance.MasterShips.Count == 0)
@@ -1122,7 +1060,8 @@ public partial class FormMainViewModel : ObservableObject
 		}
 	}
 
-	private void StripMenu_Debug_LoadDataFromOld_Click()
+	[ICommand]
+	private void LoadDataFromOld()
 	{
 
 		if (KCDatabase.Instance.MasterShips.Count == 0)
@@ -1176,7 +1115,8 @@ public partial class FormMainViewModel : ObservableObject
 		}
 	}
 
-	private async void StripMenu_Debug_DeleteOldAPI_Click()
+	[ICommand]
+	private async void DeleteOldAPI()
 	{
 
 		if (MessageBox.Show("This will delete old API data.\r\nAre you sure?", "Confirmation",
@@ -1187,7 +1127,7 @@ public partial class FormMainViewModel : ObservableObject
 			try
 			{
 
-				int count = await Task.Factory.StartNew(() => DeleteOldAPI());
+				int count = await Task.Factory.StartNew(() => DeleteOldAPIInternal());
 
 				MessageBox.Show("Delete successful.\r\n" + count + " files deleted.", "Delete Successful",
 					MessageBoxButton.OK, MessageBoxImage.Information);
@@ -1206,7 +1146,7 @@ public partial class FormMainViewModel : ObservableObject
 
 	}
 
-	private int DeleteOldAPI()
+	private int DeleteOldAPIInternal()
 	{
 
 
@@ -1248,7 +1188,8 @@ public partial class FormMainViewModel : ObservableObject
 		return count;
 	}
 
-	private async void StripMenu_Debug_RenameShipResource_Click()
+	[ICommand]
+	private async void RenameShipResource()
 	{
 
 		if (KCDatabase.Instance.MasterShips.Count == 0)
@@ -1305,7 +1246,6 @@ public partial class FormMainViewModel : ObservableObject
 		}
 
 	}
-
 
 	private int RenameShipResource(string path)
 	{
@@ -1605,7 +1545,8 @@ public partial class FormMainViewModel : ObservableObject
 
 	#region Help
 
-	private void StripMenu_Help_Help_Click()
+	[ICommand]
+	private void ViewHelp()
 	{
 
 		if (MessageBox.Show(Properties.Window.FormMain.OpenEOWiki, Properties.Window.FormMain.HelpCaption,
@@ -1622,7 +1563,8 @@ public partial class FormMainViewModel : ObservableObject
 
 	}
 
-	private void StripMenu_Help_Issue_Click()
+	[ICommand]
+	private void ReportIssue()
 	{
 
 		if (MessageBox.Show(Properties.Window.FormMain.ReportIssue, Properties.Window.FormMain.ReportIssueCaption,
@@ -1639,7 +1581,8 @@ public partial class FormMainViewModel : ObservableObject
 
 	}
 
-	private void StripMenu_Help_Discord_Click()
+	[ICommand]
+	private void JoinDiscord()
 	{
 		try
 		{
@@ -1656,7 +1599,8 @@ public partial class FormMainViewModel : ObservableObject
 		}
 	}
 
-	private async void StripMenu_Help_Update_Click()
+	[ICommand]
+	private async void CheckForUpdate()
 	{
 		// translations and maintenance state
 		await SoftwareUpdater.CheckUpdateAsync();
@@ -1664,7 +1608,8 @@ public partial class FormMainViewModel : ObservableObject
 		SoftwareInformation.CheckUpdate();
 	}
 
-	private void StripMenu_Help_Version_Click()
+	[ICommand]
+	private void ViewVersion()
 	{
 		VersionInformationWindow? window = new VersionInformationWindow();
 		window.ShowDialog(Window);
@@ -1942,7 +1887,8 @@ public partial class FormMainViewModel : ObservableObject
 		PrevPlayTimeRecorded = now;
 	}
 
-	private void Close(CancelEventArgs e)
+	[ICommand]
+	private void Closing(CancelEventArgs e)
 	{
 		string name = CultureInfo.CurrentCulture.Name switch
 		{
@@ -1996,6 +1942,7 @@ public partial class FormMainViewModel : ObservableObject
 		}
 	}
 
+	[ICommand]
 	private void Closed()
 	{
 		NotifierManager.Instance.ApplyToConfiguration();

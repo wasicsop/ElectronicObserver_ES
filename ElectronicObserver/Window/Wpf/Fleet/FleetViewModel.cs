@@ -28,16 +28,6 @@ public partial class FleetViewModel : AnchorableViewModel
 	public int FleetId { get; }
 	public int AnchorageRepairBound { get; set; }
 
-	public IRelayCommand CopyCommand { get; }
-	public IRelayCommand CopyDeckBuilderCommand { get; }
-	public IRelayCommand CopyKanmusuListCommand { get; }
-	public IRelayCommand CopyFleetAnalysisCommand { get; }
-	public IRelayCommand CopyFleetAnalysisEquipCommand { get; }
-	public IRelayCommand CopyFleetAnalysisAllEquipCommand { get; }
-
-	public IRelayCommand AntiAirDetailsCommand { get; }
-	public IRelayCommand OutputFleetImageCommand { get; }
-
 	public FleetViewModel(int fleetId) : base($"#{fleetId}", $"Fleet{fleetId}",
 		ImageSourceIcons.GetIcon(IconContent.FormFleet))
 	{
@@ -47,20 +37,6 @@ public partial class FleetViewModel : AnchorableViewModel
 		FormFleet.PropertyChanged += (_, _) => Title = $"#{fleetId}";
 
 		FleetId = fleetId;
-
-		#region Commands
-
-		CopyCommand = new RelayCommand(ContextMenuFleet_CopyFleet_Click);
-		CopyDeckBuilderCommand = new RelayCommand(ContextMenuFleet_CopyFleetDeckBuilder_Click);
-		CopyKanmusuListCommand = new RelayCommand(ContextMenuFleet_CopyKanmusuList_Click);
-		CopyFleetAnalysisCommand = new RelayCommand(ContextMenuFleet_CopyFleetAnalysis_Click);
-		CopyFleetAnalysisEquipCommand = new RelayCommand(ContextMenuFleet_CopyFleetAnalysisLockedEquip_Click);
-		CopyFleetAnalysisAllEquipCommand = new RelayCommand(ContextMenuFleet_CopyFleetAnalysisAllEquip_Click);
-
-		AntiAirDetailsCommand = new RelayCommand(ContextMenuFleet_AntiAirDetails_Click);
-		OutputFleetImageCommand = new RelayCommand(ContextMenuFleet_OutputFleetImage_Click);
-
-		#endregion
 
 		Utility.SystemEvents.UpdateTimerTick += UpdateTimerTick;
 
@@ -410,7 +386,8 @@ public partial class FleetViewModel : AnchorableViewModel
 
 	#region Commands
 
-	private void ContextMenuFleet_CopyFleet_Click()
+	[ICommand]
+	private void Copy()
 	{
 
 		StringBuilder sb = new StringBuilder();
@@ -484,7 +461,8 @@ public partial class FleetViewModel : AnchorableViewModel
 	/// 「艦隊デッキビルダー」用編成コピー
 	/// <see cref="http://www.kancolle-calc.net/deckbuilder.html"/>
 	/// </summary>
-	private void ContextMenuFleet_CopyFleetDeckBuilder_Click()
+	[ICommand]
+	private void CopyDeckBuilder()
 	{
 
 		StringBuilder sb = new StringBuilder();
@@ -544,7 +522,8 @@ public partial class FleetViewModel : AnchorableViewModel
 	/// 「艦隊晒しページ」用編成コピー
 	/// <see cref="http://kancolle-calc.net/kanmusu_list.html"/>
 	/// </summary>
-	private void ContextMenuFleet_CopyKanmusuList_Click()
+	[ICommand]
+	private void CopyKanmusuList()
 	{
 
 		StringBuilder sb = new StringBuilder();
@@ -608,7 +587,8 @@ public partial class FleetViewModel : AnchorableViewModel
 	/// 
 	/// <see cref="https://kancolle-fleetanalysis.firebaseapp.com"/>
 	/// </summary>
-	private void ContextMenuFleet_CopyFleetAnalysis_Click()
+	[ICommand]
+	private void CopyFleetAnalysis()
 	{
 		KCDatabase db = KCDatabase.Instance;
 		List<string> ships = new List<string>();
@@ -658,12 +638,14 @@ public partial class FleetViewModel : AnchorableViewModel
 	/// <summary>
 	/// <see cref="https://kancolle-fleetanalysis.firebaseapp.com"/>
 	/// </summary>
-	private void ContextMenuFleet_CopyFleetAnalysisLockedEquip_Click()
+	[ICommand]
+	private void CopyFleetAnalysisEquip()
 	{
 		Clipboard.SetDataObject(GenerateEquipList(false));
 	}
 
-	private void ContextMenuFleet_CopyFleetAnalysisAllEquip_Click()
+	[ICommand]
+	private void CopyFleetAnalysisAllEquip()
 	{
 		Clipboard.SetDataObject(GenerateEquipList(true));
 	}
@@ -772,7 +754,8 @@ public partial class FleetViewModel : AnchorableViewModel
 		Clipboard.SetDataObject(sb.ToString());
 	}
 
-	private void ContextMenuFleet_AntiAirDetails_Click()
+	[ICommand]
+	private void AntiAirDetails()
 	{
 
 		var dialog = new DialogAntiAirDefense();
@@ -798,8 +781,8 @@ public partial class FleetViewModel : AnchorableViewModel
 	}
 	*/
 
-
-	private void ContextMenuFleet_OutputFleetImage_Click()
+	[ICommand]
+	private void OutputFleetImage()
 	{
 		using (var dialog = new DialogFleetImageGenerator(FleetId))
 		{

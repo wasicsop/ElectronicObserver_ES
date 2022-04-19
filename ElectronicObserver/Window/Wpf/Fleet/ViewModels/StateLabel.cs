@@ -8,7 +8,7 @@ using ElectronicObserver.Window.Control;
 
 namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels;
 
-public class StateLabel : ObservableObject
+public partial class StateLabel : ObservableObject
 {
 	public FleetStates State { get; set; }
 	public FleetItemControlViewModel Label { get; set; }
@@ -61,14 +61,8 @@ public class StateLabel : ObservableObject
 	public string? DisplayText => (!AutoShorten || _onmouse) ? Text : ShortenedText;
 	public Visibility Visibility => Enabled.ToVisibility();
 
-	public ICommand MouseEnterCommand { get; }
-	public ICommand MouseLeaveCommand { get; }
-
 	public StateLabel()
 	{
-		MouseEnterCommand = new RelayCommand(Label_MouseEnter);
-		MouseLeaveCommand = new RelayCommand(Label_MouseLeave);
-
 		Label = GetDefaultLabel();
 		// Label.MouseEnter += Label_MouseEnter;
 		// Label.MouseLeave += Label_MouseLeave;
@@ -109,14 +103,15 @@ public class StateLabel : ObservableObject
 		// Label.Text = (!AutoShorten || _onmouse) ? Text : ShortenedText;
 	}
 
-
-	void Label_MouseEnter()
+	[ICommand]
+	void MouseEnter()
 	{
 		_onmouse = true;
 		UpdateText();
 	}
 
-	void Label_MouseLeave()
+	[ICommand]
+	void MouseLeave()
 	{
 		_onmouse = false;
 		UpdateText();
