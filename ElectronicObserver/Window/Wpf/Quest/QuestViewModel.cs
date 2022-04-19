@@ -8,6 +8,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Forms;
 using System.Windows.Media;
+using CommunityToolkit.Mvvm.Input;
 using DynaJson;
 using ElectronicObserver.Data;
 using ElectronicObserver.Data.Quest;
@@ -18,7 +19,6 @@ using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Toolkit.Mvvm.Input;
 using Translation = ElectronicObserver.Properties.Window.FormQuest;
 
 namespace ElectronicObserver.Window.Wpf.Quest;

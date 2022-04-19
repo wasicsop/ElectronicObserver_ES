@@ -1,8 +1,8 @@
 ﻿using System.Linq;
 using System.Windows.Media;
+using CommunityToolkit.Mvvm.ComponentModel;
 using ElectronicObserverTypes.Mocks;
 using KancolleProgress.ViewModels;
-using Microsoft.Toolkit.Mvvm.ComponentModel;
 
 namespace KancolleProgress.Models;
 

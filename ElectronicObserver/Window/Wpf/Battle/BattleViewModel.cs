@@ -6,6 +6,7 @@ using System.Text;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
+using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Data;
 using ElectronicObserver.Data.Battle;
 using ElectronicObserver.Data.Battle.Detail;
@@ -18,7 +19,6 @@ using ElectronicObserver.Window.Control;
 using ElectronicObserver.Window.Wpf.Battle.ViewModels;
 using ElectronicObserverTypes;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Toolkit.Mvvm.Input;
 using Color = System.Drawing.Color;
 
 namespace ElectronicObserver.Window.Wpf.Battle;

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Data;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.Enums;
@@ -9,8 +11,6 @@ using ElectronicObserver.Window.Dialog.ShipPicker;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Extensions;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Toolkit.Mvvm.ComponentModel;
-using Microsoft.Toolkit.Mvvm.Input;
 
 namespace ElectronicObserver.Window.Dialog.QuestTrackerManager.ViewModels.Conditions;
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Media;
+using CommunityToolkit.Mvvm.ComponentModel;
 using ElectronicObserver.Data;
 using ElectronicObserver.Observer;
 using ElectronicObserver.Resource;
@@ -9,7 +10,6 @@ using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.ViewModels.Translations;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Toolkit.Mvvm.ComponentModel;
 
 namespace ElectronicObserver.Window.Wpf.Arsenal;
 

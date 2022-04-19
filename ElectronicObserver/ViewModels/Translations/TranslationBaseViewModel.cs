@@ -1,7 +1,7 @@
 ﻿using System.Globalization;
 using System.Threading;
+using CommunityToolkit.Mvvm.ComponentModel;
 using ElectronicObserver.Utility;
-using Microsoft.Toolkit.Mvvm.ComponentModel;
 
 namespace ElectronicObserver.ViewModels.Translations;
 

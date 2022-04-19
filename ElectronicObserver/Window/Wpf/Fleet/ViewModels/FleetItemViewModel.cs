@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows;
+using CommunityToolkit.Mvvm.ComponentModel;
 using ElectronicObserver.Data;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Utility.Data;
@@ -13,7 +14,6 @@ using ElectronicObserver.Window.Control;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Extensions;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Toolkit.Mvvm.ComponentModel;
 
 namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels;
 

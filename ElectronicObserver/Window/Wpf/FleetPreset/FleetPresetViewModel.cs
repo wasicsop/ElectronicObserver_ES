@@ -3,13 +3,13 @@ using System.Collections.ObjectModel;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using CommunityToolkit.Mvvm.ComponentModel;
 using ElectronicObserver.Data;
 using ElectronicObserver.Resource;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Wpf.Fleet.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Toolkit.Mvvm.ComponentModel;
 
 namespace ElectronicObserver.Window.Wpf.FleetPreset;
 

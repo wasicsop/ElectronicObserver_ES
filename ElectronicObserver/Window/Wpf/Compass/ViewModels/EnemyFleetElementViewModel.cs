@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Media;
+using CommunityToolkit.Mvvm.ComponentModel;
 using ElectronicObserver.Data;
 using ElectronicObserver.Resource.Record;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserverTypes;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Toolkit.Mvvm.ComponentModel;
 
 namespace ElectronicObserver.Window.Wpf.Compass.ViewModels;
 

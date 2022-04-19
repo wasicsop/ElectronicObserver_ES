@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows;
+using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Data;
 using ElectronicObserver.Observer;
 using ElectronicObserver.Resource;
@@ -14,7 +15,6 @@ using ElectronicObserver.Window.Dialog;
 using ElectronicObserver.Window.Wpf.Fleet.ViewModels;
 using ElectronicObserverTypes;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Toolkit.Mvvm.Input;
 
 namespace ElectronicObserver.Window.Wpf.Fleet;
 

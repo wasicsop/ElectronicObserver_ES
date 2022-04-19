@@ -1,6 +1,6 @@
 ﻿using System.Windows;
+using CommunityToolkit.Mvvm.ComponentModel;
 using ElectronicObserver.Window.Wpf;
-using Microsoft.Toolkit.Mvvm.ComponentModel;
 
 namespace ElectronicObserver.ViewModels;
 

@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Windows.Input;
 using System.Windows.Media;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.Utility.Storage;
 using ElectronicObserver.Window.Control;
-using Microsoft.Toolkit.Mvvm.ComponentModel;
-using Microsoft.Toolkit.Mvvm.Input;
 
 namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels;
 

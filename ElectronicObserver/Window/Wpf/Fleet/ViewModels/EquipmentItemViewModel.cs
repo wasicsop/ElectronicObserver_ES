@@ -3,10 +3,10 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Media;
+using CommunityToolkit.Mvvm.ComponentModel;
 using ElectronicObserver.Utility.Storage;
 using ElectronicObserver.Window.Control;
 using ElectronicObserverTypes;
-using Microsoft.Toolkit.Mvvm.ComponentModel;
 
 namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels;
 

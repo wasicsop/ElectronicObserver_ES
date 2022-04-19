@@ -1,7 +1,7 @@
 ﻿using System;
+using CommunityToolkit.Mvvm.ComponentModel;
 using ElectronicObserverTypes;
 using MessagePack;
-using Microsoft.Toolkit.Mvvm.ComponentModel;
 
 namespace ElectronicObserver.Window.Dialog.QuestTrackerManager.Models.Tasks;
 

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Input;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Window.Control;
-using Microsoft.Toolkit.Mvvm.ComponentModel;
-using Microsoft.Toolkit.Mvvm.Input;
 
 namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels;
 

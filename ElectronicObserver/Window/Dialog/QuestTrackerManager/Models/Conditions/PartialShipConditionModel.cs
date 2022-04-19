@@ -1,6 +1,6 @@
 ﻿using System.Collections.ObjectModel;
+using CommunityToolkit.Mvvm.ComponentModel;
 using MessagePack;
-using Microsoft.Toolkit.Mvvm.ComponentModel;
 
 namespace ElectronicObserver.Window.Dialog.QuestTrackerManager.Models.Conditions;
 

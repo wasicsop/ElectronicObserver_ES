@@ -10,12 +10,12 @@ using System.Runtime.Serialization;
 using System.Security.Cryptography;
 using System.Text;
 using System.Windows.Forms;
+using CommunityToolkit.Mvvm.ComponentModel;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Utility.Storage;
 using ElectronicObserver.ViewModels;
 using MessagePack;
-using Microsoft.Toolkit.Mvvm.ComponentModel;
 using WeifenLuo.WinFormsUI.Docking;
 
 namespace ElectronicObserver.Window.Integrate;

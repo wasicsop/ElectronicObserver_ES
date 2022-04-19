@@ -1,6 +1,6 @@
 ﻿using System.Windows.Media;
+using CommunityToolkit.Mvvm.ComponentModel;
 using ElectronicObserverTypes;
-using Microsoft.Toolkit.Mvvm.ComponentModel;
 
 namespace ElectronicObserver.Window.Wpf.Compass.ViewModels;
 

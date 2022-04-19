@@ -2,14 +2,14 @@
 using System.Linq;
 using System.Text;
 using System.Windows.Input;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Data;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserverTypes;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Toolkit.Mvvm.ComponentModel;
-using Microsoft.Toolkit.Mvvm.Input;
 
 namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels;
 

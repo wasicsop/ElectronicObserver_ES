@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Windows.Controls;
-using Microsoft.Toolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace ElectronicObserver.Window.Wpf.Quest;
 

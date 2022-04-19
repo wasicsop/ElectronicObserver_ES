@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Media;
-using Microsoft.Toolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace ElectronicObserver.Window.Wpf.Battle.ViewModels;
 

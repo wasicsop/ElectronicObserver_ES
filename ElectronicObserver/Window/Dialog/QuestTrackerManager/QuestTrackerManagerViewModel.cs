@@ -2,14 +2,13 @@
 using System.IO;
 using System.Linq;
 using System.Windows;
+using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Data;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.Models;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.ViewModels;
 using MessagePack;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Toolkit.Mvvm.ComponentModel;
-using Microsoft.Toolkit.Mvvm.Input;
 
 namespace ElectronicObserver.Window.Dialog.QuestTrackerManager;
 

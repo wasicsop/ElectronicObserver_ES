@@ -80,6 +80,7 @@
 		<WCFMetadata Include="Connected Services\" />
 	</ItemGroup>
 	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0-preview3" />
 		<PackageReference Include="Grpc" Version="2.41.1" />
 		<PackageReference Include="Grpc.Core" Version="2.41.1" />
 		<PackageReference Include="Grpc.Core.Api" Version="2.41.1" />
@@ -93,7 +94,6 @@
 		<PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="5.0.0" />
 		<PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.2" />
-		<PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.1.1" />
 		<PackageReference Include="Microsoft.Web.WebView2" Version="1.0.1133-prerelease" />
 		<PackageReference Include="Microsoft.Web.WebView2.DevToolsProtocolExtension" Version="1.0.824" />
 		<PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.37" />

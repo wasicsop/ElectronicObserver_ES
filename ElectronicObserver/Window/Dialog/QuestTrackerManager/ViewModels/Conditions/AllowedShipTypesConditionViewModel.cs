@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.Models.Conditions;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Extensions;
-using Microsoft.Toolkit.Mvvm.ComponentModel;
-using Microsoft.Toolkit.Mvvm.Input;
 
 namespace ElectronicObserver.Window.Dialog.QuestTrackerManager.ViewModels.Conditions;
 

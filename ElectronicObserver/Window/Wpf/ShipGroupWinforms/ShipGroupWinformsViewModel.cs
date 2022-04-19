@@ -2,14 +2,14 @@
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Forms.Integration;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Data;
 using ElectronicObserver.Resource;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Dialog;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Toolkit.Mvvm.ComponentModel;
-using Microsoft.Toolkit.Mvvm.Input;
 using MessageBox = System.Windows.Forms.MessageBox;
 
 namespace ElectronicObserver.Window.Wpf.ShipGroupWinforms;

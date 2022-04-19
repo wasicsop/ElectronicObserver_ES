@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows;
+using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
 using ElectronicObserver.Data;
 using ElectronicObserver.Resource.Record;
@@ -16,7 +17,6 @@ using ElectronicObserver.Window.Dialog;
 using ElectronicObserver.Window.Tools.DialogAlbumMasterShip;
 using ElectronicObserverTypes;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Toolkit.Mvvm.Input;
 
 namespace ElectronicObserver.Window.Tools.DialogAlbumMasterEquipment;
 

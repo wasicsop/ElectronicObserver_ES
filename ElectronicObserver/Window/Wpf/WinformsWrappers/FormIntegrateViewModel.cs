@@ -2,11 +2,11 @@
 using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media.Imaging;
+using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Resource;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Integrate;
 using ElectronicObserver.Window.Wpf.WinformsHost;
-using Microsoft.Toolkit.Mvvm.Input;
 
 namespace ElectronicObserver.Window.Wpf.WinformsWrappers;
 

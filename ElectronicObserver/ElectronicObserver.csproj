@@ -423,7 +423,7 @@
 		<FrameworkReference Update="Microsoft.WindowsDesktop.App;Microsoft.WindowsDesktop.App.WPF;Microsoft.WindowsDesktop.App.WindowsForms" TargetingPackVersion="6.0.0" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0-preview2" />
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0-preview3" />
 		<PackageReference Include="Dirkster.AvalonDock" Version="4.60.0" />
 		<PackageReference Include="DotnetRuntimeBootstrapper" Version="2.2.0">
 			<PrivateAssets>all</PrivateAssets>

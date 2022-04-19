@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Windows.Input;
 using System.Windows.Media;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Data;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Dialog;
 using ElectronicObserver.Window.Tools.DialogAlbumMasterShip;
 using ElectronicObserverTypes;
-using Microsoft.Toolkit.Mvvm.ComponentModel;
-using Microsoft.Toolkit.Mvvm.Input;
 
 namespace ElectronicObserver.Window.Wpf.Compass.ViewModels;
 

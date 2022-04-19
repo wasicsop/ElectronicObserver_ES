@@ -8,6 +8,8 @@ using System.Text;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Data;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Utility.Data;
@@ -18,8 +20,6 @@ using ElectronicObserver.Window.Control;
 using ElectronicObserver.Window.Wpf.Fleet.ViewModels;
 using ElectronicObserverTypes;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Toolkit.Mvvm.ComponentModel;
-using Microsoft.Toolkit.Mvvm.Input;
 
 namespace ElectronicObserver.Window.Wpf.BaseAirCorps;
 

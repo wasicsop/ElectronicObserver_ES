@@ -1,7 +1,7 @@
 ﻿using System;
+using CommunityToolkit.Mvvm.ComponentModel;
 using ElectronicObserver.ViewModels.Translations;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Toolkit.Mvvm.ComponentModel;
 
 namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels;
 

@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Windows.Media;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Utility.Storage;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Dialog;
 using ElectronicObserver.Window.Tools.DialogAlbumMasterShip;
 using ElectronicObserverTypes;
-using Microsoft.Toolkit.Mvvm.ComponentModel;
-using Microsoft.Toolkit.Mvvm.Input;
 using Color = System.Drawing.Color;
 
 namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels;

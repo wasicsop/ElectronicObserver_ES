@@ -5,6 +5,8 @@ using System.Text;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Data;
 using ElectronicObserver.Observer;
 using ElectronicObserver.Resource;
@@ -15,8 +17,6 @@ using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Extensions;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Toolkit.Mvvm.ComponentModel;
-using Microsoft.Toolkit.Mvvm.Input;
 
 namespace ElectronicObserver.Window.Wpf.Headquarters;
 

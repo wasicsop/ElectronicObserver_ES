@@ -1,9 +1,9 @@
 ﻿using System.Windows.Media;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Utility.Storage;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Dialog;
-using Microsoft.Toolkit.Mvvm.ComponentModel;
-using Microsoft.Toolkit.Mvvm.Input;
 
 namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels;
 

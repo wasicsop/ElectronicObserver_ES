@@ -4,13 +4,13 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Data;
 using ElectronicObserver.Data.Quest;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.Enums;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.Models;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.Models.Tasks;
-using Microsoft.Toolkit.Mvvm.ComponentModel;
-using Microsoft.Toolkit.Mvvm.Input;
 
 namespace ElectronicObserver.Window.Dialog.QuestTrackerManager.ViewModels.Tasks;
 
