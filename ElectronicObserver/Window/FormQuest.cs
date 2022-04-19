@@ -146,7 +146,7 @@ public partial class FormQuest : DockContent
 		MenuMain_ShowRunningOnly.Text = GeneralRes.ShowInProgressOnly;
 		MenuMain_ShowMonthly.Text = GeneralRes.ShowMonthly;
 		MenuMain_ShowOther.Text = GeneralRes.ShowOther;
-		MenuMain_GoogleQuest.Text = Translation.LookUpQuestOnWeb;
+		MenuMain_GoogleQuest.Text = Translation.LookUpQuestOnDuckDuckGo;
 		MenuMain_KcwikiQuest.Text = Translation.MenuMain_KcwikiQuest;
 
 		ManuMain_QuestTitle.Text = Translation.ManuMain_QuestTitle;
@@ -809,14 +809,14 @@ public partial class FormQuest : DockContent
 				searchKey = quest.Name.Substring(0, 22) + "...";
 
 			MenuMain_GoogleQuest.Enabled = true;
-			MenuMain_GoogleQuest.Text = string.Format(Translation.LookUpSpecificQuestOnWeb, searchKey);
+			MenuMain_GoogleQuest.Text = string.Format(Translation.LookUpSpecificQuestOnDuckDuckGo, searchKey);
 			MenuMain_KcwikiQuest.Enabled = true;
 			MenuMain_KcwikiQuest.Text = string.Format(Translation.LookUpSpecificQuestOnWiki, searchKey);
 		}
 		else
 		{
 			MenuMain_GoogleQuest.Enabled = false;
-			MenuMain_GoogleQuest.Text = Translation.LookUpQuestOnWeb;
+			MenuMain_GoogleQuest.Text = Translation.LookUpQuestOnDuckDuckGo;
 			MenuMain_KcwikiQuest.Enabled = false;
 			MenuMain_KcwikiQuest.Text = Translation.MenuMain_KcwikiQuest;
 		}
@@ -840,7 +840,7 @@ public partial class FormQuest : DockContent
 			}
 			catch (Exception ex)
 			{
-				Utility.ErrorReporter.SendErrorReport(ex, Translation.FailedToSearchOnWeb);
+				Utility.ErrorReporter.SendErrorReport(ex, Translation.FailedToSearchOnDuckDuckGo);
 			}
 		}
 

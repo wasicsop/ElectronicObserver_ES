@@ -103,7 +103,7 @@
   <data name="MenuMain_QuestFilter" xml:space="preserve">
     <value>表示フィルタ(&amp;Q)</value>
   </data>
-  <data name="LookUpQuestOnWeb" xml:space="preserve">
+  <data name="LookUpQuestOnDuckDuckGo" xml:space="preserve">
     <value>任務名でDuckDuckGo検索(&amp;G)</value>
   </data>
   <data name="MenuMain_KcwikiQuest" xml:space="preserve">
@@ -132,13 +132,13 @@
   <data name="QuestResetConfirmationCaption" xml:space="preserve">
     <value>任務削除の確認</value>
   </data>
-  <data name="LookUpSpecificQuestOnWeb" xml:space="preserve">
+  <data name="LookUpSpecificQuestOnDuckDuckGo" xml:space="preserve">
     <value>『{0}』でDuckDuckGo検索(&amp;G)</value>
   </data>
   <data name="LookUpSpecificQuestOnWiki" xml:space="preserve">
     <value>任務名でwikiwiki検索(&amp;K)</value>
   </data>
-  <data name="FailedToSearchOnWeb" xml:space="preserve">
+  <data name="FailedToSearchOnDuckDuckGo" xml:space="preserve">
     <value>任務名の DuckDuckGo 検索に失敗しました。</value>
   </data>
   <data name="SearchEngineKancolleSpecifier" xml:space="preserve">
@@ -171,5 +171,14 @@
   </data>
   <data name="ModifyProgress" xml:space="preserve">
     <value>進捗状況の修正(_M)</value>
+  </data>
+  <data name="LookUpSpecificQuestOnStartpage" xml:space="preserve">
+    <value>『{0}』で_Startpage検索</value>
+  </data>
+  <data name="FailedToSearchOnStartpage" xml:space="preserve">
+    <value>任務名の Startpage 検索に失敗しました。</value>
+  </data>
+  <data name="LookUpQuestOnStartpage" xml:space="preserve">
+    <value>任務名で_Startpage検索</value>
   </data>
 </root>

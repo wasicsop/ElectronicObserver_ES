@@ -26,8 +26,10 @@ public class FormQuestTranslationViewModel : TranslationBaseViewModel
 	public string MenuMain_ColumnFilter_Name => GeneralRes.NameFilter.Replace("_", "__").Replace("&", "_");
 	public string MenuMain_ColumnFilter_Progress => GeneralRes.ProgressFilter.Replace("_", "__").Replace("&", "_");
 
-	public string LookUpQuestOnWeb => Properties.Window.FormQuest.LookUpQuestOnWeb.Replace("_", "__").Replace("&", "_");
-	public string LookUpSpecificQuestOnWeb => Properties.Window.FormQuest.LookUpSpecificQuestOnWeb.Replace("_", "__").Replace("&", "_");
+	public string LookUpQuestOnDuckDuckGo => Properties.Window.FormQuest.LookUpQuestOnDuckDuckGo.Replace("_", "__").Replace("&", "_");
+	public string LookUpQuestOnStartpage => Properties.Window.FormQuest.LookUpQuestOnStartpage;
+	public string LookUpSpecificQuestOnDuckDuckGo => Properties.Window.FormQuest.LookUpSpecificQuestOnDuckDuckGo.Replace("_", "__").Replace("&", "_");
+	public string LookUpSpecificQuestOnStartpage => Properties.Window.FormQuest.LookUpSpecificQuestOnStartpage;
 	public string MenuMain_KcwikiQuest => Properties.Window.FormQuest.MenuMain_KcwikiQuest.Replace("_", "__").Replace("&", "_");
 	public string LookUpSpecificQuestOnWiki => Properties.Window.FormQuest.LookUpSpecificQuestOnWiki.Replace("_", "__").Replace("&", "_");
 	public string ManuMain_QuestTitle => Properties.Window.FormQuest.ManuMain_QuestTitle.Replace("_", "__").Replace("&", "_");

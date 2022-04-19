@@ -46,10 +46,16 @@ public partial class QuestViewModel : AnchorableViewModel
 		_ => ""
 	};
 
-	public string WebSearchText => SelectedQuest switch
+	public string DuckDuckGoSearchText => SelectedQuest switch
 	{
-		{ QuestName: { } } => string.Format(FormQuest.LookUpSpecificQuestOnWeb, SearchKey),
-		_ => FormQuest.LookUpQuestOnWeb
+		{ QuestName: { } } => string.Format(FormQuest.LookUpSpecificQuestOnDuckDuckGo, SearchKey),
+		_ => FormQuest.LookUpQuestOnDuckDuckGo
+	};
+
+	public string StartpageSearchText => SelectedQuest switch
+	{
+		{ QuestName: { } } => string.Format(FormQuest.LookUpSpecificQuestOnStartpage, SearchKey),
+		_ => FormQuest.LookUpQuestOnStartpage
 	};
 
 	public string WikiSearchText => SelectedQuest switch
@@ -582,7 +588,7 @@ public partial class QuestViewModel : AnchorableViewModel
 	}
 
 	[ICommand]
-	private void MenuMain_GoogleQuest_Click()
+	private void LookUpOnDuckDuckGo()
 	{
 		if (SelectedQuest is null) return;
 
@@ -598,12 +604,38 @@ public partial class QuestViewModel : AnchorableViewModel
 					Translation.SearchEngineKancolleSpecifier,
 				UseShellExecute = true
 			};
-			// google <任務名> 艦これ
+
 			Process.Start(psi);
 		}
 		catch (Exception ex)
 		{
-			ErrorReporter.SendErrorReport(ex, Translation.FailedToSearchOnWeb);
+			ErrorReporter.SendErrorReport(ex, Translation.FailedToSearchOnDuckDuckGo);
+		}
+	}
+
+	[ICommand]
+	private void LookUpOnStartpage()
+	{
+		if (SelectedQuest is null) return;
+
+		try
+		{
+			ProcessStartInfo psi = new ProcessStartInfo
+			{
+				FileName =
+					@"https://www.startpage.com/do/metasearch.pl?query=" +
+					Uri.EscapeDataString(SelectedQuest.QuestCode) +
+					"+" +
+					Uri.EscapeDataString(SelectedQuest.QuestName) +
+					Translation.SearchEngineKancolleSpecifier,
+				UseShellExecute = true
+			};
+
+			Process.Start(psi);
+		}
+		catch (Exception ex)
+		{
+			ErrorReporter.SendErrorReport(ex, Translation.FailedToSearchOnStartpage);
 		}
 	}
 

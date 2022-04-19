@@ -85,8 +85,13 @@
 			<MenuItem Command="{Binding DataContext.ManuMain_QuestTranslate_ClickCommand}" Header="{Binding DataContext.FormQuest.ManuMain_QuestTranslate}" />
 			<Separator />
 			<MenuItem
-				Command="{Binding DataContext.MenuMain_GoogleQuest_ClickCommand}"
-				Header="{Binding DataContext.WebSearchText}"
+				Command="{Binding DataContext.LookUpOnDuckDuckGoCommand}"
+				Header="{Binding DataContext.DuckDuckGoSearchText}"
+				IsEnabled="{Binding DataContext.WebSearchEnabled}"
+				/>
+			<MenuItem
+				Command="{Binding DataContext.LookUpOnStartpageCommand}"
+				Header="{Binding DataContext.StartpageSearchText}"
 				IsEnabled="{Binding DataContext.WebSearchEnabled}"
 				/>
 			<MenuItem

@@ -123,7 +123,7 @@
   <data name="MenuMain_QuestFilter" xml:space="preserve">
     <value>&amp;Filter by</value>
   </data>
-  <data name="LookUpQuestOnWeb" xml:space="preserve">
+  <data name="LookUpQuestOnDuckDuckGo" xml:space="preserve">
     <value>Search on DuckDuckGo(&amp;G)</value>
   </data>
   <data name="MenuMain_KcwikiQuest" xml:space="preserve">
@@ -151,13 +151,13 @@ Are you sure?</value>
   <data name="QuestResetConfirmationCaption" xml:space="preserve">
     <value>Reset Quest Progress</value>
   </data>
-  <data name="LookUpSpecificQuestOnWeb" xml:space="preserve">
+  <data name="LookUpSpecificQuestOnDuckDuckGo" xml:space="preserve">
     <value>Search DuckDuckGo(&amp;G) for "{0}"</value>
   </data>
   <data name="LookUpSpecificQuestOnWiki" xml:space="preserve">
     <value>Open &amp;KancolleWiki for "{0}"</value>
   </data>
-  <data name="FailedToSearchOnWeb" xml:space="preserve">
+  <data name="FailedToSearchOnDuckDuckGo" xml:space="preserve">
     <value>Failed to search on DuckDuckGo.</value>
   </data>
   <data name="SearchEngineKancolleSpecifier" xml:space="preserve">
@@ -189,5 +189,14 @@ Are you sure?</value>
   </data>
   <data name="ModifyProgress" xml:space="preserve">
     <value>_Modify progress</value>
+  </data>
+  <data name="LookUpSpecificQuestOnStartpage" xml:space="preserve">
+    <value>Search _Startpage for "{0}"</value>
+  </data>
+  <data name="FailedToSearchOnStartpage" xml:space="preserve">
+    <value>Failed to search on Startpage.</value>
+  </data>
+  <data name="LookUpQuestOnStartpage" xml:space="preserve">
+    <value>Search on _Startpage</value>
   </data>
 </root>

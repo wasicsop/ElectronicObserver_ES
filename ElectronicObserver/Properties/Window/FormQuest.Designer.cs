@@ -99,9 +99,18 @@ namespace ElectronicObserver.Properties.Window {
         /// <summary>
         ///   Looks up a localized string similar to 任務名の DuckDuckGo 検索に失敗しました。.
         /// </summary>
-        public static string FailedToSearchOnWeb {
+        public static string FailedToSearchOnDuckDuckGo {
             get {
-                return ResourceManager.GetString("FailedToSearchOnWeb", resourceCulture);
+                return ResourceManager.GetString("FailedToSearchOnDuckDuckGo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 任務名の Startpage 検索に失敗しました。.
+        /// </summary>
+        public static string FailedToSearchOnStartpage {
+            get {
+                return ResourceManager.GetString("FailedToSearchOnStartpage", resourceCulture);
             }
         }
         
@@ -117,18 +126,36 @@ namespace ElectronicObserver.Properties.Window {
         /// <summary>
         ///   Looks up a localized string similar to 任務名でDuckDuckGo検索(&amp;G).
         /// </summary>
-        public static string LookUpQuestOnWeb {
+        public static string LookUpQuestOnDuckDuckGo {
             get {
-                return ResourceManager.GetString("LookUpQuestOnWeb", resourceCulture);
+                return ResourceManager.GetString("LookUpQuestOnDuckDuckGo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 任務名で_Startpage検索.
+        /// </summary>
+        public static string LookUpQuestOnStartpage {
+            get {
+                return ResourceManager.GetString("LookUpQuestOnStartpage", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to 『{0}』でDuckDuckGo検索(&amp;G).
         /// </summary>
-        public static string LookUpSpecificQuestOnWeb {
+        public static string LookUpSpecificQuestOnDuckDuckGo {
             get {
-                return ResourceManager.GetString("LookUpSpecificQuestOnWeb", resourceCulture);
+                return ResourceManager.GetString("LookUpSpecificQuestOnDuckDuckGo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 『{0}』で_Startpage検索.
+        /// </summary>
+        public static string LookUpSpecificQuestOnStartpage {
+            get {
+                return ResourceManager.GetString("LookUpSpecificQuestOnStartpage", resourceCulture);
             }
         }
         
