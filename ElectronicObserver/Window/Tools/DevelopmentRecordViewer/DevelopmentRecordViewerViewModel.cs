@@ -465,6 +465,6 @@ public partial class DevelopmentRecordViewerViewModel : WindowViewModelBase
 	{
 		if (calendar is null) return;
 
-		calendar.SelectedDate = DateTime.Now;
+		calendar.SelectedDate = DateTime.Now.Date;
 	}
 }

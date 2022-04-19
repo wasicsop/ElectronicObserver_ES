@@ -707,7 +707,7 @@ public partial class DropRecordViewerViewModel : WindowViewModelBase
 	{
 		if (calendar is null) return;
 		
-		calendar.SelectedDate = DateTime.Now;
+		calendar.SelectedDate = DateTime.Now.Date;
 	}
 
 	public void RecordView_CellDoubleClick()

@@ -706,6 +706,6 @@ public partial class ConstructionRecordViewerViewModel : WindowViewModelBase
 	{
 		if (calendar is null) return;
 
-		calendar.SelectedDate = DateTime.Now;
+		calendar.SelectedDate = DateTime.Now.Date;
 	}
 }
