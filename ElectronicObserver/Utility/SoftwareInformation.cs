@@ -44,8 +44,7 @@ public static class SoftwareInformation
 	/// <summary>
 	/// 更新日時
 	/// </summary>
-	public static DateTime UpdateTime => typeof(App).Assembly.GetLinkerTime();
-
+	public static DateTime UpdateTime => new(Generated.BuildInfo.TimeStamp);
 
 	private static System.Net.WebClient? Client { get; set; }
 
