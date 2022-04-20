@@ -41,7 +41,7 @@ public partial class ShipPickerViewModel : WindowViewModelBase
 	}
 
 	[ICommand]
-	private void SelectShip(IShipDataMaster ship)
+	private void SelectShip(IShipDataMaster? ship)
 	{
 		PickedShip = ship;
 	}
@@ -50,9 +50,6 @@ public partial class ShipPickerViewModel : WindowViewModelBase
 	[ICommand]
 	private void SelectOption(DropRecordOption? option)
 	{
-		// it should never be null but ICommand doesn't work if it's not a nullable enum parameter
-		if (option is null) return;
-
 		PickedOption = option;
 	}
 

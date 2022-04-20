@@ -23,7 +23,10 @@ public partial class ShipPickerView
 	public ShipPickerView(ShipPickerViewModel viewModel) : base(viewModel)
 	{
 		InitializeComponent();
-		
+
+		ViewModel.SelectShipCommand.Execute(null);
+		ViewModel.SelectOptionCommand.Execute(null);
+
 		ViewModel.PropertyChanged += ViewModel_PropertyChanged;
 		ViewModel.PropertyChanged += ViewModel_PropertyChanged2;
 
