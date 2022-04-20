@@ -16,7 +16,7 @@ namespace ElectronicObserver.Generated
 {{
     public static class BuildInfo
     {{
-        public static long TimeStamp => {DateTime.Now.Ticks};
+        public static long TimeStamp => {DateTime.UtcNow.Ticks};
     }}
 }}");
 

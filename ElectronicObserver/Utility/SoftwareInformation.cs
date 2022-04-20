@@ -42,7 +42,7 @@ public static class SoftwareInformation
 	/// <summary>
 	/// 更新日時
 	/// </summary>
-	public static DateTime UpdateTime => new(Generated.BuildInfo.TimeStamp);
+	public static DateTime UpdateTime => new DateTime(Generated.BuildInfo.TimeStamp) + TimeSpan.FromHours(9);
 
 	private static System.Net.WebClient? Client { get; set; }
 
