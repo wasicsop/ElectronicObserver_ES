@@ -41,7 +41,6 @@
 		<AssemblyVersion>5.1.3.3</AssemblyVersion>
 		<FileVersion>5.1.3.3</FileVersion>
 		<Version>5.1.3.3</Version>
-		<SourceRevisionId>build$([System.DateTime]::UtcNow.ToString("yyyy-MM-ddTHH:mm:ss"))</SourceRevisionId>
 		<AnalysisLevel>preview</AnalysisLevel>
 		<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
 	</PropertyGroup>
