@@ -77,7 +77,7 @@ public partial class FleetViewModel : AnchorableViewModel
 		o.ApiReqKousyou_Destroyship.ResponseReceived += Updated;
 		o.ApiGetMember_Ship3.ResponseReceived += Updated;
 		o.ApiReqKaisou_Powerup.ResponseReceived += Updated;        //requestのほうは面倒なのでこちらでまとめてやる
-		o["api_get_member/deck"].ResponseReceived += Updated;
+		o.ApiGetMember_Deck.ResponseReceived += Updated;
 		o["api_get_member/slot_item"].ResponseReceived += Updated;
 		o.ApiReqMap_Start.ResponseReceived += Updated;
 		o["api_req_map/next"].ResponseReceived += Updated;
