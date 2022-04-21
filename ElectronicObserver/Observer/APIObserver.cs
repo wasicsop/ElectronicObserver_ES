@@ -44,6 +44,12 @@ public sealed class APIObserver
 	/// </summary>
 	public APIBase ApiReqNyukyo_Start => this["api_req_nyukyo/start"];
 
+	/// <summary>
+	/// Use bucket on docked ship (this doesn't happen if you use a bucket while docking) <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L846" />
+	/// </summary>
+	public APIBase ApiReqNyukyo_Speedchange => this["api_req_nyukyo/speedchange"];
+
 	#endregion
 
 	public string? ServerAddress { get; private set; }

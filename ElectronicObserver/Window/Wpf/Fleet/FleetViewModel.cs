@@ -60,7 +60,7 @@ public partial class FleetViewModel : AnchorableViewModel
 		APIObserver o = APIObserver.Instance;
 
 		o.ApiReqNyukyo_Start.RequestReceived += Updated;
-		o["api_req_nyukyo/speedchange"].RequestReceived += Updated;
+		o.ApiReqNyukyo_Speedchange.RequestReceived += Updated;
 		o["api_req_hensei/change"].RequestReceived += Updated;
 		o["api_req_kousyou/destroyship"].RequestReceived += Updated;
 		o["api_req_member/updatedeckname"].RequestReceived += Updated;
