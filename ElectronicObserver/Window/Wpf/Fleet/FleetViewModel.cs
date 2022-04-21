@@ -62,7 +62,7 @@ public partial class FleetViewModel : AnchorableViewModel
 		o.ApiReqNyukyo_Start.RequestReceived += Updated;
 		o.ApiReqNyukyo_Speedchange.RequestReceived += Updated;
 		o.ApiReqHensei_Change.RequestReceived += Updated;
-		o["api_req_kousyou/destroyship"].RequestReceived += Updated;
+		o.ApiReqKousyou_Destroyship.RequestReceived += Updated;
 		o["api_req_member/updatedeckname"].RequestReceived += Updated;
 		o["api_req_kaisou/remodeling"].RequestReceived += Updated;
 		o["api_req_map/start"].RequestReceived += Updated;
@@ -74,7 +74,7 @@ public partial class FleetViewModel : AnchorableViewModel
 		o["api_get_member/ndock"].ResponseReceived += Updated;
 		o["api_req_kousyou/getship"].ResponseReceived += Updated;
 		o["api_req_hokyu/charge"].ResponseReceived += Updated;
-		o["api_req_kousyou/destroyship"].ResponseReceived += Updated;
+		o.ApiReqKousyou_Destroyship.ResponseReceived += Updated;
 		o["api_get_member/ship3"].ResponseReceived += Updated;
 		o["api_req_kaisou/powerup"].ResponseReceived += Updated;        //requestのほうは面倒なのでこちらでまとめてやる
 		o["api_get_member/deck"].ResponseReceived += Updated;

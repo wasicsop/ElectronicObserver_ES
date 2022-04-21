@@ -56,6 +56,12 @@ public sealed class APIObserver
 	/// </summary>
 	public APIBase ApiReqHensei_Change => this["api_req_hensei/change"];
 
+	/// <summary>
+	/// Ship scrap <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L767" />
+	/// </summary>
+	public APIBase ApiReqKousyou_Destroyship => this["api_req_kousyou/destroyship"];
+
 	#endregion
 
 	public string? ServerAddress { get; private set; }
