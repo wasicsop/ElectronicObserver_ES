@@ -86,6 +86,12 @@ public sealed class APIObserver
 	/// </summary>
 	public APIBase ApiReqHensei_Combined => this["api_req_hensei/combined"];
 
+	/// <summary>
+	/// Ship hole-punch <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L1460" />
+	/// </summary>
+	public APIBase ApiReqKaisou_OpenExslot => this["api_req_kaisou/open_exslot"];
+
 	#endregion
 
 	public string? ServerAddress { get; private set; }
