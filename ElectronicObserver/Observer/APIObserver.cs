@@ -50,6 +50,12 @@ public sealed class APIObserver
 	/// </summary>
 	public APIBase ApiReqNyukyo_Speedchange => this["api_req_nyukyo/speedchange"];
 
+	/// <summary>
+	/// Fleet reorganization <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L1198" />
+	/// </summary>
+	public APIBase ApiReqHensei_Change => this["api_req_hensei/change"];
+
 	#endregion
 
 	public string? ServerAddress { get; private set; }
