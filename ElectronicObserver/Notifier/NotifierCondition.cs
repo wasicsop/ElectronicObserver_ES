@@ -41,7 +41,7 @@ public class NotifierCondition : NotifierBase
 
 		APIObserver o = APIObserver.Instance;
 
-		o["api_port/port"].ResponseReceived += ClearFlags;
+		o.ApiPort_Port.ResponseReceived += ClearFlags;
 
 	}
 

@@ -991,7 +991,7 @@ public partial class FormFleet : DockContent
 		o.ApiReqHensei_Combined.RequestReceived += Updated;
 		o.ApiReqKaisou_OpenExslot.RequestReceived += Updated;
 
-		o["api_port/port"].ResponseReceived += Updated;
+		o.ApiPort_Port.ResponseReceived += Updated;
 		o["api_get_member/ship2"].ResponseReceived += Updated;
 		o["api_get_member/ndock"].ResponseReceived += Updated;
 		o["api_req_kousyou/getship"].ResponseReceived += Updated;

@@ -66,7 +66,7 @@ public sealed class RecordManager
 		}
 
 		_prevTime = DateTime.Now;
-		Observer.APIObserver.Instance["api_port/port"].ResponseReceived += TimerSave;
+		Observer.APIObserver.Instance.ApiPort_Port.ResponseReceived += TimerSave;
 	}
 
 	public bool Load(bool logging = true)

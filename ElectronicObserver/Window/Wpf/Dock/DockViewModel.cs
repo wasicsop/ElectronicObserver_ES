@@ -153,7 +153,7 @@ public class DockViewModel : AnchorableViewModel
 		o.ApiReqNyukyo_Start.RequestReceived += Updated;
 		o.ApiReqNyukyo_Speedchange.RequestReceived += Updated;
 
-		o.APIList["api_port/port"].ResponseReceived += Updated;
+		o.ApiPort_Port.ResponseReceived += Updated;
 		o.APIList["api_get_member/ndock"].ResponseReceived += Updated;
 
 		Utility.Configuration.Instance.ConfigurationChanged += ConfigurationChanged;

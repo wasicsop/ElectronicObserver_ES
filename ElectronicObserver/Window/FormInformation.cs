@@ -50,7 +50,7 @@ public partial class FormInformation : DockContent
 
 		APIObserver o = APIObserver.Instance;
 
-		o["api_port/port"].ResponseReceived += Updated;
+		o.ApiPort_Port.ResponseReceived += Updated;
 		o["api_req_member/get_practice_enemyinfo"].ResponseReceived += Updated;
 		o["api_get_member/picture_book"].ResponseReceived += Updated;
 		o["api_get_member/mapinfo"].ResponseReceived += Updated;

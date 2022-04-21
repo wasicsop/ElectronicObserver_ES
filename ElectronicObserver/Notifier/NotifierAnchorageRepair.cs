@@ -43,7 +43,7 @@ public class NotifierAnchorageRepair : NotifierBase
 
 		APIObserver o = APIObserver.Instance;
 
-		o["api_port/port"].ResponseReceived += ClearFlag;
+		o.ApiPort_Port.ResponseReceived += ClearFlag;
 	}
 
 	void ClearFlag(string apiname, dynamic data)

@@ -32,7 +32,7 @@ public abstract class QuestTrackerManagerBase : WindowViewModelBase
 	{
 		var ao = APIObserver.Instance;
 
-		ao.APIList["api_port/port"].ResponseReceived += TimerSave;
+		ao.ApiPort_Port.ResponseReceived += TimerSave;
 
 		ao.APIList["api_get_member/questlist"].ResponseReceived += QuestUpdated;
 

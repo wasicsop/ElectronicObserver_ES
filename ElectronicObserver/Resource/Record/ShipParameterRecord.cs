@@ -614,7 +614,7 @@ public class ShipParameterRecord : RecordBase
 
 		ao["api_start2/getData"].ResponseReceived += GameStart;
 
-		ao["api_port/port"].ResponseReceived += ParameterLoaded;
+		ao.ApiPort_Port.ResponseReceived += ParameterLoaded;
 
 		ao["api_get_member/ship3"].ResponseReceived += EquipmentChanged;
 

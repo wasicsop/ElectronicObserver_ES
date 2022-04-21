@@ -162,7 +162,7 @@ public class ResourceRecord : RecordBase
 		var ao = APIObserver.Instance;
 
 		ao["api_start2/getData"].ResponseReceived += ResourceRecord_Started;
-		ao["api_port/port"].ResponseReceived += ResourceRecord_Updated;
+		ao.ApiPort_Port.ResponseReceived += ResourceRecord_Updated;
 	}
 
 

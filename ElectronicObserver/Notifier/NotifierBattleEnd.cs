@@ -23,7 +23,7 @@ public class NotifierBattleEnd : NotifierBase
 
 		APIObserver o = APIObserver.Instance;
 
-		o["api_port/port"].ResponseReceived += CloseAll;
+		o.ApiPort_Port.ResponseReceived += CloseAll;
 
 		o["api_req_sortie/battleresult"].ResponseReceived += BattleFinished;
 		o["api_req_combined_battle/battleresult"].ResponseReceived += BattleFinished;

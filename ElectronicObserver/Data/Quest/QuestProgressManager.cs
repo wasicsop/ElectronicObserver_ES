@@ -118,7 +118,7 @@ public sealed class QuestProgressManager : DataStorage
 
 		ao.APIList["api_req_kaisou/powerup"].ResponseReceived += Modernized;
 
-		ao.APIList["api_port/port"].ResponseReceived += TimerSave;
+		ao.ApiPort_Port.ResponseReceived += TimerSave;
 
 
 		_prevTime = DateTime.Now;
@@ -158,7 +158,7 @@ public sealed class QuestProgressManager : DataStorage
 
 		ao.APIList["api_req_kaisou/powerup"].ResponseReceived -= Modernized;
 
-		ao.APIList["api_port/port"].ResponseReceived -= TimerSave;
+		ao.ApiPort_Port.ResponseReceived -= TimerSave;
 
 	}
 

@@ -52,7 +52,7 @@ public partial class FormXPCalculator : WeifenLuo.WinFormsUI.Docking.DockContent
 	public void FormXPCalculator_Load(object sender, EventArgs e)
 	{
 		APIObserver o = APIObserver.Instance;
-		o.APIList["api_port/port"].ResponseReceived += ShipsUpdated;
+		o.ApiPort_Port.ResponseReceived += ShipsUpdated;
 	}
 
 	public void ShipsUpdated(string apiname, dynamic data)

@@ -358,7 +358,7 @@ public partial class FormMain : Form
 		// 🎃
 		if (DateTime.Now.Month == 10 && DateTime.Now.Day == 31)
 		{
-			APIObserver.Instance.APIList["api_port/port"].ResponseReceived += CallPumpkinHead;
+			APIObserver.Instance.ApiPort_Port.ResponseReceived += CallPumpkinHead;
 		}
 
 		// 完了通知（ログインページを開く）
@@ -1689,7 +1689,7 @@ public partial class FormMain : Form
 	private void CallPumpkinHead(string apiname, dynamic data)
 	{
 		new DialogHalloween().Show(this);
-		APIObserver.Instance.APIList["api_port/port"].ResponseReceived -= CallPumpkinHead;
+		APIObserver.Instance.ApiPort_Port.ResponseReceived -= CallPumpkinHead;
 	}
 
 

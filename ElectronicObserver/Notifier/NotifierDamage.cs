@@ -86,7 +86,7 @@ public class NotifierDamage : NotifierBase
 
 		APIObserver o = APIObserver.Instance;
 
-		o["api_port/port"].ResponseReceived += CloseAll;
+		o.ApiPort_Port.ResponseReceived += CloseAll;
 
 		o.ApiReqMap_Start.ResponseReceived += InSortie;
 		o["api_req_map/next"].ResponseReceived += InSortie;

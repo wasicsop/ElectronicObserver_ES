@@ -384,7 +384,7 @@ public partial class FormBaseAirCorps : DockContent
 
 		var api = Observer.APIObserver.Instance;
 
-		api["api_port/port"].ResponseReceived += Updated;
+		api.ApiPort_Port.ResponseReceived += Updated;
 		api["api_get_member/mapinfo"].ResponseReceived += Updated;
 		api["api_get_member/base_air_corps"].ResponseReceived += Updated;
 		api["api_req_air_corps/change_deployment_base"].ResponseReceived += Updated;

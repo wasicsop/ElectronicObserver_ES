@@ -92,6 +92,12 @@ public sealed class APIObserver
 	/// </summary>
 	public APIBase ApiReqKaisou_OpenExslot => this["api_req_kaisou/open_exslot"];
 
+	/// <summary>
+	/// Get to main screen (home port) <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L603" />
+	/// </summary>
+	public APIBase ApiPort_Port => this["api_port/port"];
+
 	#endregion
 
 	public string? ServerAddress { get; private set; }
