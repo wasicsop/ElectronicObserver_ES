@@ -104,7 +104,7 @@ public sealed class QuestProgressManager : DataStorage
 
 		ao.ApiReqNyukyo_Start.RequestReceived += StartRepair;
 
-		ao.APIList["api_req_hokyu/charge"].ResponseReceived += Supplied;
+		ao.ApiReqHokyu_Charge.ResponseReceived += Supplied;
 
 		ao.APIList["api_req_kousyou/createitem"].ResponseReceived += EquipmentDeveloped;
 
@@ -144,7 +144,7 @@ public sealed class QuestProgressManager : DataStorage
 
 		ao.ApiReqNyukyo_Start.RequestReceived -= StartRepair;
 
-		ao.APIList["api_req_hokyu/charge"].ResponseReceived -= Supplied;
+		ao.ApiReqHokyu_Charge.ResponseReceived -= Supplied;
 
 		ao.APIList["api_req_kousyou/createitem"].ResponseReceived -= EquipmentDeveloped;
 

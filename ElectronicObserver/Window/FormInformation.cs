@@ -59,7 +59,7 @@ public partial class FormInformation : DockContent
 		o["api_req_practice/battle_result"].ResponseReceived += Updated;
 		o["api_req_sortie/battleresult"].ResponseReceived += Updated;
 		o["api_req_combined_battle/battleresult"].ResponseReceived += Updated;
-		o["api_req_hokyu/charge"].ResponseReceived += Updated;
+		o.ApiReqHokyu_Charge.ResponseReceived += Updated;
 		o.ApiReqMap_Start.ResponseReceived += Updated;
 		o["api_req_map/next"].ResponseReceived += Updated;
 		o["api_req_practice/battle"].ResponseReceived += Updated;

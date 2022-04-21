@@ -127,7 +127,7 @@ public partial class HeadquartersViewModel : AnchorableViewModel
 		o.ApiPort_Port.ResponseReceived += Updated;
 		o.ApiGetMember_Ship2.ResponseReceived += Updated;
 		o.ApiReqKousyou_Getship.ResponseReceived += Updated;
-		o.APIList["api_req_hokyu/charge"].ResponseReceived += Updated;
+		o.ApiReqHokyu_Charge.ResponseReceived += Updated;
 		o.ApiReqKousyou_Destroyship.ResponseReceived += Updated;
 		o.APIList["api_req_kousyou/destroyitem2"].ResponseReceived += Updated;
 		o.APIList["api_req_kaisou/powerup"].ResponseReceived += Updated;

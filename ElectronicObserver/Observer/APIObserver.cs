@@ -116,6 +116,12 @@ public sealed class APIObserver
 	/// </summary>
 	public APIBase ApiReqKousyou_Getship => this["api_req_kousyou/getship"];
 
+	/// <summary>
+	/// Resupply <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L1163" />
+	/// </summary>
+	public APIBase ApiReqHokyu_Charge => this["api_req_hokyu/charge"];
+
 	#endregion
 
 	public string? ServerAddress { get; private set; }
