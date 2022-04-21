@@ -640,7 +640,7 @@ public partial class FormCompass : DockContent
 
 		o.ApiPort_Port.ResponseReceived += Updated;
 		o.ApiReqMap_Start.ResponseReceived += Updated;
-		o["api_req_map/next"].ResponseReceived += Updated;
+		o.ApiReqMap_Next.ResponseReceived += Updated;
 		o["api_req_member/get_practice_enemyinfo"].ResponseReceived += Updated;
 
 		o["api_req_sortie/battle"].ResponseReceived += BattleStarted;

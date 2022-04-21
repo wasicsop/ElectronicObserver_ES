@@ -148,6 +148,12 @@ public sealed class APIObserver
 	/// </summary>
 	public APIBase ApiGetMember_SlotItem => this["api_get_member/slot_item"];
 
+	/// <summary>
+	/// Sortie advance <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L1627" />
+	/// </summary>
+	public APIBase ApiReqMap_Next => this["api_req_map/next"];
+
 	#endregion
 
 	public string? ServerAddress { get; private set; }

@@ -93,7 +93,7 @@ public sealed class QuestProgressManager : DataStorage
 
 		ao.ApiReqMap_Start.ResponseReceived += StartSortie;
 
-		ao.APIList["api_req_map/next"].ResponseReceived += NextSortie;
+		ao.ApiReqMap_Next.ResponseReceived += NextSortie;
 
 		ao.APIList["api_req_sortie/battleresult"].ResponseReceived += BattleFinished;
 		ao.APIList["api_req_combined_battle/battleresult"].ResponseReceived += BattleFinished;
@@ -133,7 +133,7 @@ public sealed class QuestProgressManager : DataStorage
 
 		ao.ApiReqMap_Start.ResponseReceived -= StartSortie;
 
-		ao.APIList["api_req_map/next"].ResponseReceived -= NextSortie;
+		ao.ApiReqMap_Next.ResponseReceived -= NextSortie;
 
 		ao.APIList["api_req_sortie/battleresult"].ResponseReceived -= BattleFinished;
 		ao.APIList["api_req_combined_battle/battleresult"].ResponseReceived -= BattleFinished;

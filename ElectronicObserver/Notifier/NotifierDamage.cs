@@ -89,7 +89,7 @@ public class NotifierDamage : NotifierBase
 		o.ApiPort_Port.ResponseReceived += CloseAll;
 
 		o.ApiReqMap_Start.ResponseReceived += InSortie;
-		o["api_req_map/next"].ResponseReceived += InSortie;
+		o.ApiReqMap_Next.ResponseReceived += InSortie;
 
 		o["api_get_member/mapinfo"].ResponseReceived += BeforeSortie;
 

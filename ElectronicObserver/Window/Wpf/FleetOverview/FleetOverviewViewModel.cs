@@ -68,7 +68,7 @@ public class FleetOverviewViewModel : AnchorableViewModel
 		o.ApiReqKaisou_Powerup.ResponseReceived += Updated; //requestのほうは面倒なのでこちらでまとめてやる
 		o.ApiGetMember_Deck.ResponseReceived += Updated;
 		o.ApiReqMap_Start.ResponseReceived += Updated;
-		o["api_req_map/next"].ResponseReceived += Updated;
+		o.ApiReqMap_Next.ResponseReceived += Updated;
 		o["api_get_member/ship_deck"].ResponseReceived += Updated;
 		o["api_req_hensei/preset_select"].ResponseReceived += Updated;
 		o["api_req_kaisou/slot_exchange_index"].ResponseReceived += Updated;
