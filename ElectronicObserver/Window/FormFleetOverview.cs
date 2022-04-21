@@ -205,7 +205,7 @@ public partial class FormFleetOverview : DockContent
 		o.ApiReqKousyou_Getship.ResponseReceived += Updated;
 		o.ApiReqHokyu_Charge.ResponseReceived += Updated;
 		o.ApiReqKousyou_Destroyship.ResponseReceived += Updated;
-		o["api_get_member/ship3"].ResponseReceived += Updated;
+		o.ApiGetMember_Ship3.ResponseReceived += Updated;
 		o["api_req_kaisou/powerup"].ResponseReceived += Updated;        //requestのほうは面倒なのでこちらでまとめてやる
 		o["api_get_member/deck"].ResponseReceived += Updated;
 		o.ApiReqMap_Start.ResponseReceived += Updated;

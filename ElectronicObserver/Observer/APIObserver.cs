@@ -122,6 +122,12 @@ public sealed class APIObserver
 	/// </summary>
 	public APIBase ApiReqHokyu_Charge => this["api_req_hokyu/charge"];
 
+	/// <summary>
+	/// Happens when adding or removing equipment on a ship (doesn't happen when switching equipment between slots) <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L1505" />
+	/// </summary>
+	public APIBase ApiGetMember_Ship3 => this["api_get_member/ship3"];
+
 	#endregion
 
 	public string? ServerAddress { get; private set; }

@@ -616,7 +616,7 @@ public class ShipParameterRecord : RecordBase
 
 		ao.ApiPort_Port.ResponseReceived += ParameterLoaded;
 
-		ao["api_get_member/ship3"].ResponseReceived += EquipmentChanged;
+		ao.ApiGetMember_Ship3.ResponseReceived += EquipmentChanged;
 
 		ao["api_get_member/picture_book"].ResponseReceived += AlbumOpened;
 
