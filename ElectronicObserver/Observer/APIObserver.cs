@@ -98,6 +98,12 @@ public sealed class APIObserver
 	/// </summary>
 	public APIBase ApiPort_Port => this["api_port/port"];
 
+	/// <summary>
+	/// 艦船情報 (?) <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L2382" />
+	/// </summary>
+	public APIBase ApiGetMember_Ship2 => this["api_get_member/ship2"];
+
 	#endregion
 
 	public string? ServerAddress { get; private set; }
