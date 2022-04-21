@@ -114,7 +114,7 @@ public partial class HeadquartersViewModel : AnchorableViewModel
 
 		APIObserver o = APIObserver.Instance;
 
-		o.APIList["api_req_nyukyo/start"].RequestReceived += Updated;
+		o.ApiReqNyukyo_Start.RequestReceived += Updated;
 		o.APIList["api_req_nyukyo/speedchange"].RequestReceived += Updated;
 		o.APIList["api_req_kousyou/createship"].RequestReceived += Updated;
 		o.APIList["api_req_kousyou/createship_speedchange"].RequestReceived += Updated;

@@ -190,7 +190,7 @@ public partial class FormFleetOverview : DockContent
 		//api register
 		APIObserver o = APIObserver.Instance;
 
-		o["api_req_nyukyo/start"].RequestReceived += Updated;
+		o.ApiReqNyukyo_Start.RequestReceived += Updated;
 		o["api_req_nyukyo/speedchange"].RequestReceived += Updated;
 		o["api_req_hensei/change"].RequestReceived += Updated;
 		o["api_req_kousyou/destroyship"].RequestReceived += Updated;

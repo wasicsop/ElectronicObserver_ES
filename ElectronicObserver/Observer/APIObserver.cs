@@ -36,6 +36,16 @@ public sealed class APIObserver
 
 	public APIDictionary APIList { get; private set; }
 
+	#region API members
+
+	/// <summary>
+	/// Send ship to dock <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L838" />
+	/// </summary>
+	public APIBase ApiReqNyukyo_Start => this["api_req_nyukyo/start"];
+
+	#endregion
+
 	public string? ServerAddress { get; private set; }
 	public int ProxyPort { get; private set; }
 

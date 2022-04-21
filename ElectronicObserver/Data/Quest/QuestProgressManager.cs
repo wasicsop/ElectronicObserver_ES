@@ -102,7 +102,7 @@ public sealed class QuestProgressManager : DataStorage
 
 		ao.APIList["api_req_mission/result"].ResponseReceived += ExpeditionCompleted;
 
-		ao.APIList["api_req_nyukyo/start"].RequestReceived += StartRepair;
+		ao.ApiReqNyukyo_Start.RequestReceived += StartRepair;
 
 		ao.APIList["api_req_hokyu/charge"].ResponseReceived += Supplied;
 
@@ -142,7 +142,7 @@ public sealed class QuestProgressManager : DataStorage
 
 		ao.APIList["api_req_mission/result"].ResponseReceived -= ExpeditionCompleted;
 
-		ao.APIList["api_req_nyukyo/start"].RequestReceived -= StartRepair;
+		ao.ApiReqNyukyo_Start.RequestReceived -= StartRepair;
 
 		ao.APIList["api_req_hokyu/charge"].ResponseReceived -= Supplied;
 

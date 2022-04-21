@@ -150,7 +150,7 @@ public class DockViewModel : AnchorableViewModel
 
 		APIObserver o = APIObserver.Instance;
 
-		o.APIList["api_req_nyukyo/start"].RequestReceived += Updated;
+		o.ApiReqNyukyo_Start.RequestReceived += Updated;
 		o.APIList["api_req_nyukyo/speedchange"].RequestReceived += Updated;
 
 		o.APIList["api_port/port"].ResponseReceived += Updated;
