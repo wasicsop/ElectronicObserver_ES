@@ -184,7 +184,7 @@ public class ArsenalViewModel : AnchorableViewModel
 		o["api_req_kousyou/createship_speedchange"].RequestReceived += Updated;
 
 		o["api_get_member/kdock"].ResponseReceived += Updated;
-		o["api_req_kousyou/getship"].ResponseReceived += Updated;
+		o.ApiReqKousyou_Getship.ResponseReceived += Updated;
 		o["api_get_member/require_info"].ResponseReceived += Updated;
 
 		Utility.Configuration.Instance.ConfigurationChanged += ConfigurationChanged;

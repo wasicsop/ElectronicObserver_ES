@@ -202,7 +202,7 @@ public partial class FormFleetOverview : DockContent
 		o.ApiPort_Port.ResponseReceived += Updated;
 		o.ApiGetMember_Ship2.ResponseReceived += Updated;
 		o.ApiGetMember_Ndock.ResponseReceived += Updated;
-		o["api_req_kousyou/getship"].ResponseReceived += Updated;
+		o.ApiReqKousyou_Getship.ResponseReceived += Updated;
 		o["api_req_hokyu/charge"].ResponseReceived += Updated;
 		o.ApiReqKousyou_Destroyship.ResponseReceived += Updated;
 		o["api_get_member/ship3"].ResponseReceived += Updated;

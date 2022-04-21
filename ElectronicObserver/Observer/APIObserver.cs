@@ -110,6 +110,12 @@ public sealed class APIObserver
 	/// </summary>
 	public APIBase ApiGetMember_Ndock => this["api_get_member/ndock"];
 
+	/// <summary>
+	/// Get ship from construction <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L740" />
+	/// </summary>
+	public APIBase ApiReqKousyou_Getship => this["api_req_kousyou/getship"];
+
 	#endregion
 
 	public string? ServerAddress { get; private set; }
