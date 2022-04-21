@@ -74,6 +74,12 @@ public sealed class APIObserver
 	/// </summary>
 	public APIBase ApiReqKaisou_Remodeling => this["api_req_kaisou/remodeling"];
 
+	/// <summary>
+	/// Sortie start <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L1579" />
+	/// </summary>
+	public APIBase ApiReqMap_Start => this["api_req_map/start"];
+
 	#endregion
 
 	public string? ServerAddress { get; private set; }

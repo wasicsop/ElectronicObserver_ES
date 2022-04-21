@@ -114,7 +114,7 @@ public class NotifierBaseAirCorps : NotifierBase
 		o["api_port/port"].ResponseReceived += Port;
 		o["api_get_member/mapinfo"].ResponseReceived += BeforeSortie;
 		o["api_get_member/sortie_conditions"].ResponseReceived += BeforeSortieEventMap;
-		o["api_req_map/start"].RequestReceived += Sally;
+		o.ApiReqMap_Start.RequestReceived += Sally;
 	}
 
 

@@ -183,7 +183,7 @@ public partial class BattleViewModel : AnchorableViewModel
 		APIObserver o = APIObserver.Instance;
 
 		o["api_port/port"].ResponseReceived += Updated;
-		o["api_req_map/start"].ResponseReceived += Updated;
+		o.ApiReqMap_Start.ResponseReceived += Updated;
 		o["api_req_map/next"].ResponseReceived += Updated;
 		o["api_req_map/air_raid"].ResponseReceived += Updated;
 		o["api_req_sortie/battle"].ResponseReceived += Updated;

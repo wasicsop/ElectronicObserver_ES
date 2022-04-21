@@ -987,7 +987,7 @@ public partial class FormFleet : DockContent
 		o.ApiReqKousyou_Destroyship.RequestReceived += Updated;
 		o.ApiReqMember_Updatedeckname.RequestReceived += Updated;
 		o.ApiReqKaisou_Remodeling.RequestReceived += Updated;
-		o["api_req_map/start"].RequestReceived += Updated;
+		o.ApiReqMap_Start.RequestReceived += Updated;
 		o["api_req_hensei/combined"].RequestReceived += Updated;
 		o["api_req_kaisou/open_exslot"].RequestReceived += Updated;
 
@@ -1001,7 +1001,7 @@ public partial class FormFleet : DockContent
 		o["api_req_kaisou/powerup"].ResponseReceived += Updated;        //requestのほうは面倒なのでこちらでまとめてやる
 		o["api_get_member/deck"].ResponseReceived += Updated;
 		o["api_get_member/slot_item"].ResponseReceived += Updated;
-		o["api_req_map/start"].ResponseReceived += Updated;
+		o.ApiReqMap_Start.ResponseReceived += Updated;
 		o["api_req_map/next"].ResponseReceived += Updated;
 		o["api_get_member/ship_deck"].ResponseReceived += Updated;
 		o["api_req_hensei/preset_select"].ResponseReceived += Updated;

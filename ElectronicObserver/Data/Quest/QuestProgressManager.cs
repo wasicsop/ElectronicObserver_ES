@@ -91,7 +91,7 @@ public sealed class QuestProgressManager : DataStorage
 
 		ao.APIList["api_get_member/questlist"].ResponseReceived += QuestUpdated;
 
-		ao.APIList["api_req_map/start"].ResponseReceived += StartSortie;
+		ao.ApiReqMap_Start.ResponseReceived += StartSortie;
 
 		ao.APIList["api_req_map/next"].ResponseReceived += NextSortie;
 
@@ -131,7 +131,7 @@ public sealed class QuestProgressManager : DataStorage
 
 		ao.APIList["api_get_member/questlist"].ResponseReceived -= QuestUpdated;
 
-		ao.APIList["api_req_map/start"].ResponseReceived -= StartSortie;
+		ao.ApiReqMap_Start.ResponseReceived -= StartSortie;
 
 		ao.APIList["api_req_map/next"].ResponseReceived -= NextSortie;
 

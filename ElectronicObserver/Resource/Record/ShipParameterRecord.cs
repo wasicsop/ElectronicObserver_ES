@@ -642,7 +642,7 @@ public class ShipParameterRecord : RecordBase
 
 		ao["api_req_map/next"].ResponseReceived += SortieNext;
 
-		ao["api_req_map/start"].ResponseReceived += SortieStart;
+		ao.ApiReqMap_Start.ResponseReceived += SortieStart;
 		ao["api_get_member/slot_item"].ResponseReceived += SortieEnd;
 
 		ao["api_req_kousyou/getship"].ResponseReceived += ConstructionReceived;

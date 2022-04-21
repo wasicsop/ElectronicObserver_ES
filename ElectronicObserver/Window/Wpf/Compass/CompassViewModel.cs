@@ -72,7 +72,7 @@ public class CompassViewModel : AnchorableViewModel
 		APIObserver o = APIObserver.Instance;
 
 		o["api_port/port"].ResponseReceived += Updated;
-		o["api_req_map/start"].ResponseReceived += Updated;
+		o.ApiReqMap_Start.ResponseReceived += Updated;
 		o["api_req_map/next"].ResponseReceived += Updated;
 		o["api_req_map/air_raid"].ResponseReceived += Updated;
 		o["api_req_member/get_practice_enemyinfo"].ResponseReceived += Updated;
