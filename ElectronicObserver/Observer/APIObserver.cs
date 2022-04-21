@@ -62,6 +62,12 @@ public sealed class APIObserver
 	/// </summary>
 	public APIBase ApiReqKousyou_Destroyship => this["api_req_kousyou/destroyship"];
 
+	/// <summary>
+	/// Change fleet name <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L1239" />
+	/// </summary>
+	public APIBase ApiReqMember_Updatedeckname => this["api_req_member/updatedeckname"];
+
 	#endregion
 
 	public string? ServerAddress { get; private set; }

@@ -194,7 +194,7 @@ public partial class FormFleetOverview : DockContent
 		o.ApiReqNyukyo_Speedchange.RequestReceived += Updated;
 		o.ApiReqHensei_Change.RequestReceived += Updated;
 		o.ApiReqKousyou_Destroyship.RequestReceived += Updated;
-		o["api_req_member/updatedeckname"].RequestReceived += Updated;
+		o.ApiReqMember_Updatedeckname.RequestReceived += Updated;
 		o["api_req_map/start"].RequestReceived += Updated;
 		o["api_req_hensei/combined"].RequestReceived += Updated;
 		o["api_req_kaisou/open_exslot"].RequestReceived += Updated;
