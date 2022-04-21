@@ -216,7 +216,7 @@ public partial class FormDock : DockContent
 		o.ApiReqNyukyo_Speedchange.RequestReceived += Updated;
 
 		o.ApiPort_Port.ResponseReceived += Updated;
-		o.APIList["api_get_member/ndock"].ResponseReceived += Updated;
+		o.ApiGetMember_Ndock.ResponseReceived += Updated;
 
 		Utility.Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
 	}

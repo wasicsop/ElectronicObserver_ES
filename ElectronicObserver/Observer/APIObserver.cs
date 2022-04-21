@@ -104,6 +104,12 @@ public sealed class APIObserver
 	/// </summary>
 	public APIBase ApiGetMember_Ship2 => this["api_get_member/ship2"];
 
+	/// <summary>
+	/// Go to dock screen (also happens after docking a ship, doesn't happen after bucketing a ship that's already in docks) <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L826" />
+	/// </summary>
+	public APIBase ApiGetMember_Ndock => this["api_get_member/ndock"];
+
 	#endregion
 
 	public string? ServerAddress { get; private set; }
