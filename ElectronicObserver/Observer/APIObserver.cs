@@ -128,6 +128,12 @@ public sealed class APIObserver
 	/// </summary>
 	public APIBase ApiGetMember_Ship3 => this["api_get_member/ship3"];
 
+	/// <summary>
+	/// Ship modernization <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L1125" />
+	/// </summary>
+	public APIBase ApiReqKaisou_Powerup => this["api_req_kaisou/powerup"];
+
 	#endregion
 
 	public string? ServerAddress { get; private set; }

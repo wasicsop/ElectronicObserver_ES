@@ -116,7 +116,7 @@ public sealed class QuestProgressManager : DataStorage
 
 		ao.APIList["api_req_kousyou/remodel_slot"].ResponseReceived += EquipmentRemodeled;
 
-		ao.APIList["api_req_kaisou/powerup"].ResponseReceived += Modernized;
+		ao.ApiReqKaisou_Powerup.ResponseReceived += Modernized;
 
 		ao.ApiPort_Port.ResponseReceived += TimerSave;
 
@@ -156,7 +156,7 @@ public sealed class QuestProgressManager : DataStorage
 
 		ao.APIList["api_req_kousyou/remodel_slot"].ResponseReceived -= EquipmentRemodeled;
 
-		ao.APIList["api_req_kaisou/powerup"].ResponseReceived -= Modernized;
+		ao.ApiReqKaisou_Powerup.ResponseReceived -= Modernized;
 
 		ao.ApiPort_Port.ResponseReceived -= TimerSave;
 

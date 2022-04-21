@@ -115,7 +115,7 @@ public partial class FormHeadquarters : DockContent
 		o.ApiReqHokyu_Charge.ResponseReceived += Updated;
 		o.ApiReqKousyou_Destroyship.ResponseReceived += Updated;
 		o.APIList["api_req_kousyou/destroyitem2"].ResponseReceived += Updated;
-		o.APIList["api_req_kaisou/powerup"].ResponseReceived += Updated;
+		o.ApiReqKaisou_Powerup.ResponseReceived += Updated;
 		o.APIList["api_req_kousyou/createitem"].ResponseReceived += Updated;
 		o.APIList["api_req_kousyou/remodel_slot"].ResponseReceived += Updated;
 		o.APIList["api_get_member/material"].ResponseReceived += Updated;
