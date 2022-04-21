@@ -80,6 +80,12 @@ public sealed class APIObserver
 	/// </summary>
 	public APIBase ApiReqMap_Start => this["api_req_map/start"];
 
+	/// <summary>
+	/// Make a combined fleet <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L3375" />
+	/// </summary>
+	public APIBase ApiReqHensei_Combined => this["api_req_hensei/combined"];
+
 	#endregion
 
 	public string? ServerAddress { get; private set; }
