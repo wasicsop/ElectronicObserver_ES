@@ -140,6 +140,14 @@ public sealed class APIObserver
 	/// </summary>
 	public APIBase ApiGetMember_Deck => this["api_get_member/deck"];
 
+	/// <summary>
+	/// After finishing a sortie <br />
+	/// After finishing a quest that rewards ships or equipment <br />
+	/// After remodeling a ship <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L685" />
+	/// </summary>
+	public APIBase ApiGetMember_SlotItem => this["api_get_member/slot_item"];
+
 	#endregion
 
 	public string? ServerAddress { get; private set; }
