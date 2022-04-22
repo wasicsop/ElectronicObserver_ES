@@ -49,7 +49,7 @@ public abstract class QuestTrackerManagerBase : WindowViewModelBase
 		ao.ApiReqSortie_BattleResult.ResponseReceived += MapClearedFirstTime;
 		ao.ApiReqCombinedFleet_BattleResult.ResponseReceived += MapClearedFirstTime;
 
-		ao.APIList["api_req_practice/battle_result"].ResponseReceived += PracticeFinished;
+		ao.ApiReqPractice_BattleResult.ResponseReceived += PracticeFinished;
 
 		ao.APIList["api_req_mission/result"].ResponseReceived += ExpeditionCompleted;
 	}

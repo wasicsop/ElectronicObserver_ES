@@ -98,7 +98,7 @@ public sealed class QuestProgressManager : DataStorage
 		ao.ApiReqSortie_BattleResult.ResponseReceived += BattleFinished;
 		ao.ApiReqCombinedFleet_BattleResult.ResponseReceived += BattleFinished;
 
-		ao.APIList["api_req_practice/battle_result"].ResponseReceived += PracticeFinished;
+		ao.ApiReqPractice_BattleResult.ResponseReceived += PracticeFinished;
 
 		ao.APIList["api_req_mission/result"].ResponseReceived += ExpeditionCompleted;
 
@@ -138,7 +138,7 @@ public sealed class QuestProgressManager : DataStorage
 		ao.ApiReqSortie_BattleResult.ResponseReceived -= BattleFinished;
 		ao.ApiReqCombinedFleet_BattleResult.ResponseReceived -= BattleFinished;
 
-		ao.APIList["api_req_practice/battle_result"].ResponseReceived -= PracticeFinished;
+		ao.ApiReqPractice_BattleResult.ResponseReceived -= PracticeFinished;
 
 		ao.APIList["api_req_mission/result"].ResponseReceived -= ExpeditionCompleted;
 

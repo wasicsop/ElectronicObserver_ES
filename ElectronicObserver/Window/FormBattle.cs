@@ -169,7 +169,7 @@ public partial class FormBattle : DockContent
 		o.ApiReqCombinedFleet_BattleResult.ResponseReceived += Updated;
 		o["api_req_practice/battle"].ResponseReceived += Updated;
 		o["api_req_practice/midnight_battle"].ResponseReceived += Updated;
-		o["api_req_practice/battle_result"].ResponseReceived += Updated;
+		o.ApiReqPractice_BattleResult.ResponseReceived += Updated;
 
 		Utility.Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
 
