@@ -122,7 +122,7 @@ public partial class FormHeadquarters : DockContent
 		o.ApiGetMember_ShipDeck.ResponseReceived += Updated;
 		o.ApiReqAirCorps_SetPlane.ResponseReceived += Updated;
 		o.ApiReqAirCorps_Supply.ResponseReceived += Updated;
-		o.APIList["api_get_member/useitem"].ResponseReceived += Updated;
+		o.ApiGetMember_UseItem.ResponseReceived += Updated;
 
 
 		Utility.Configuration.Instance.ConfigurationChanged += ConfigurationChanged;

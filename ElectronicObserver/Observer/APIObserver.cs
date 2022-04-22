@@ -306,6 +306,17 @@ public sealed class APIObserver
 	/// </summary>
 	public supply ApiReqAirCorps_Supply => (supply)this["api_req_air_corps/supply"];
 
+	/// <summary>
+	/// List of items <br />
+	/// After finishing a sortie <br />
+	/// After finishing an expedition <br />
+	/// After finishing a quest that rewards an item <br />
+	/// After marriage <br />
+	/// After using Mamiya/Irako <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L698" />
+	/// </summary>
+	public useitem ApiGetMember_UseItem => (useitem)this["api_get_member/useitem"];
+
 	#endregion
 
 	public string? ServerAddress { get; private set; }
