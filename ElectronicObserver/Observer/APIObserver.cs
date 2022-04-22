@@ -166,6 +166,12 @@ public sealed class APIObserver
 	/// </summary>
 	public APIBase ApiReqHensei_PresetSelect => this["api_req_hensei/preset_select"];
 
+	/// <summary>
+	/// Drag and drop equipment between slots <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L1473" />
+	/// </summary>
+	public APIBase ApiReqKaisou_SlotExchangeIndex => this["api_req_kaisou/slot_exchange_index"];
+
 	#endregion
 
 	public string? ServerAddress { get; private set; }
