@@ -51,7 +51,7 @@ public abstract class QuestTrackerManagerBase : WindowViewModelBase
 
 		ao.ApiReqPractice_BattleResult.ResponseReceived += PracticeFinished;
 
-		ao.APIList["api_req_mission/result"].ResponseReceived += ExpeditionCompleted;
+		ao.ApiReqMission_Result.ResponseReceived += ExpeditionCompleted;
 	}
 
 	private void TimerSave(string apiname, dynamic data)

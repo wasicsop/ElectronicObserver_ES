@@ -100,7 +100,7 @@ public sealed class QuestProgressManager : DataStorage
 
 		ao.ApiReqPractice_BattleResult.ResponseReceived += PracticeFinished;
 
-		ao.APIList["api_req_mission/result"].ResponseReceived += ExpeditionCompleted;
+		ao.ApiReqMission_Result.ResponseReceived += ExpeditionCompleted;
 
 		ao.ApiReqNyukyo_Start.RequestReceived += StartRepair;
 
@@ -140,7 +140,7 @@ public sealed class QuestProgressManager : DataStorage
 
 		ao.ApiReqPractice_BattleResult.ResponseReceived -= PracticeFinished;
 
-		ao.APIList["api_req_mission/result"].ResponseReceived -= ExpeditionCompleted;
+		ao.ApiReqMission_Result.ResponseReceived -= ExpeditionCompleted;
 
 		ao.ApiReqNyukyo_Start.RequestReceived -= StartRepair;
 

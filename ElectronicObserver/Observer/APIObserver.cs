@@ -224,6 +224,13 @@ public sealed class APIObserver
 	public kcsapi.api_req_practice.battle_result ApiReqPractice_BattleResult =>
 		(kcsapi.api_req_practice.battle_result)this["api_req_practice/battle_result"];
 
+	/// <summary>
+	/// Expedition finish <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L1138" />
+	/// </summary>
+	public kcsapi.api_req_mission.result ApiReqMission_Result =>
+		(kcsapi.api_req_mission.result)this["api_req_mission/result"];
+
 	#endregion
 
 	public string? ServerAddress { get; private set; }
