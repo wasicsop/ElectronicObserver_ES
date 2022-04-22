@@ -75,7 +75,7 @@ public class CompassViewModel : AnchorableViewModel
 		o.ApiReqMap_Start.ResponseReceived += Updated;
 		o.ApiReqMap_Next.ResponseReceived += Updated;
 		o["api_req_map/air_raid"].ResponseReceived += Updated;
-		o["api_req_member/get_practice_enemyinfo"].ResponseReceived += Updated;
+		o.ApiReqMember_GetPracticeEnemyInfo.ResponseReceived += Updated;
 
 		o["api_req_sortie/battle"].ResponseReceived += BattleStarted;
 		o["api_req_battle_midnight/sp_midnight"].ResponseReceived += BattleStarted;

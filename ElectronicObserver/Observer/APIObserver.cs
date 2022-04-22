@@ -12,6 +12,7 @@ using ElectronicObserver.Data;
 using ElectronicObserver.Observer.kcsapi;
 using ElectronicObserver.Observer.kcsapi.api_get_member;
 using ElectronicObserver.Observer.kcsapi.api_req_air_corps;
+using ElectronicObserver.Observer.kcsapi.api_req_member;
 using ElectronicObserver.Observer.kcsapi.api_req_sortie;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Utility.Mathematics;
@@ -329,6 +330,14 @@ public sealed class APIObserver
 	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L2426" />
 	/// </summary>
 	public sortie_conditions ApiGetMember_SortieConditions => (sortie_conditions)this["api_get_member/sortie_conditions"];
+
+	/// <summary>
+	/// Player details when clicking an opponent in practice <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L1296" />
+	/// </summary>
+	public get_practice_enemyinfo ApiReqMember_GetPracticeEnemyInfo =>
+		(get_practice_enemyinfo)this["api_req_member/get_practice_enemyinfo"];
+
 
 	#endregion
 
