@@ -166,7 +166,7 @@ public partial class FormQuest : DockContent
 
 		o.APIList["api_req_quest/clearitemget"].RequestReceived += rec;
 
-		o.APIList["api_get_member/questlist"].ResponseReceived += rec;
+		o.ApiGetMember_QuestList.ResponseReceived += rec;
 		//*/
 
 		KCDatabase.Instance.Quest.QuestUpdated += Updated;

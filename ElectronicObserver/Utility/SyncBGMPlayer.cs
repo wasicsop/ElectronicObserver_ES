@@ -169,7 +169,7 @@ public sealed class SyncBGMPlayer
 
 		o["api_get_member/payitem"].ResponseReceived += PlayItem;
 
-		o["api_get_member/questlist"].ResponseReceived += PlayQuest;
+		o.ApiGetMember_QuestList.ResponseReceived += PlayQuest;
 
 		o["api_get_member/picture_book"].ResponseReceived += PlayAlbum;
 

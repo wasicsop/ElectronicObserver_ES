@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using DynaJson;
 using ElectronicObserver.Data;
 using ElectronicObserver.Observer.kcsapi;
+using ElectronicObserver.Observer.kcsapi.api_get_member;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Utility.Mathematics;
 using Titanium.Web.Proxy;
@@ -195,6 +196,12 @@ public sealed class APIObserver
 	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L3520" />
 	/// </summary>
 	public APIBase ApiReqMap_AnchorageRepair => this["api_req_map/anchorage_repair"];
+
+	/// <summary>
+	/// Go to quest screen <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L892" />
+	/// </summary>
+	public questlist ApiGetMember_QuestList => (questlist)this["api_get_member/questlist"];
 
 	#endregion
 

@@ -34,7 +34,7 @@ public abstract class QuestTrackerManagerBase : WindowViewModelBase
 
 		ao.ApiPort_Port.ResponseReceived += TimerSave;
 
-		ao.APIList["api_get_member/questlist"].ResponseReceived += QuestUpdated;
+		ao.ApiGetMember_QuestList.ResponseReceived += QuestUpdated;
 
 		ao.ApiReqMap_Start.ResponseReceived += StartSortie;
 
