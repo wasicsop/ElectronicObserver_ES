@@ -184,6 +184,12 @@ public sealed class APIObserver
 	/// </summary>
 	public APIBase ApiReqKaisou_SlotDeprive => this["api_req_kaisou/slot_deprive"];
 
+	/// <summary>
+	/// Marriage <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L3390" />
+	/// </summary>
+	public APIBase ApiReqKaisou_Marriage => this["api_req_kaisou/marriage"];
+
 	#endregion
 
 	public string? ServerAddress { get; private set; }
