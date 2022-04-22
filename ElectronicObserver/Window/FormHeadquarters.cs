@@ -104,7 +104,7 @@ public partial class FormHeadquarters : DockContent
 		o.ApiReqKousyou_CreateShip.RequestReceived += Updated;
 		o.ApiReqKousyou_CreateShipSpeedChange.RequestReceived += Updated;
 		o.ApiReqKousyou_Destroyship.RequestReceived += Updated;
-		o.APIList["api_req_kousyou/destroyitem2"].RequestReceived += Updated;
+		o.ApiReqKousyou_DestroyItem2.RequestReceived += Updated;
 		o.APIList["api_req_member/updatecomment"].RequestReceived += Updated;
 
 		o.APIList["api_get_member/basic"].ResponseReceived += Updated;
@@ -114,7 +114,7 @@ public partial class FormHeadquarters : DockContent
 		o.ApiReqKousyou_Getship.ResponseReceived += Updated;
 		o.ApiReqHokyu_Charge.ResponseReceived += Updated;
 		o.ApiReqKousyou_Destroyship.ResponseReceived += Updated;
-		o.APIList["api_req_kousyou/destroyitem2"].ResponseReceived += Updated;
+		o.ApiReqKousyou_DestroyItem2.ResponseReceived += Updated;
 		o.ApiReqKaisou_Powerup.ResponseReceived += Updated;
 		o.ApiReqKousyou_CreateItem.ResponseReceived += Updated;
 		o.ApiReqKousyou_RemodelSlot.ResponseReceived += Updated;

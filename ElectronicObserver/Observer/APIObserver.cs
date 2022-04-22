@@ -265,6 +265,13 @@ public sealed class APIObserver
 	public kcsapi.api_req_kousyou.createship_speedchange ApiReqKousyou_CreateShipSpeedChange =>
 		(kcsapi.api_req_kousyou.createship_speedchange)this["api_req_kousyou/createship_speedchange"];
 
+	/// <summary>
+	/// Equipment scrap <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L775" />
+	/// </summary>
+	public kcsapi.api_req_kousyou.destroyitem2 ApiReqKousyou_DestroyItem2 =>
+		(kcsapi.api_req_kousyou.destroyitem2)this["api_req_kousyou/destroyitem2"];
+
 
 	#endregion
 
