@@ -367,6 +367,12 @@ public sealed class APIObserver
 	public sp_midnight ApiReqBattleMidnight_SpMidnight =>
 		(sp_midnight)this["api_req_battle_midnight/sp_midnight"];
 
+	/// <summary>
+	/// Normal fleet air battle <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L2033" />
+	/// </summary>
+	public airbattle ApiReqSortie_AirBattle => (airbattle)this["api_req_sortie/airbattle"];
+
 	#endregion
 
 	public string? ServerAddress { get; private set; }
