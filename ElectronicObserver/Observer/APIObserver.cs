@@ -379,6 +379,12 @@ public sealed class APIObserver
 	/// </summary>
 	public ld_airbattle ApiReqSortie_LdAirBattle => (ld_airbattle)this["api_req_sortie/ld_airbattle"];
 
+	/// <summary>
+	/// Normal fleet (?) night to day <br />
+	/// todo: documentation
+	/// </summary>
+	public night_to_day ApiReqSortie_NightToDay => (night_to_day)this["api_req_sortie/night_to_day"];
+
 	#endregion
 
 	public string? ServerAddress { get; private set; }
