@@ -11,6 +11,7 @@ using DynaJson;
 using ElectronicObserver.Data;
 using ElectronicObserver.Observer.kcsapi;
 using ElectronicObserver.Observer.kcsapi.api_get_member;
+using ElectronicObserver.Observer.kcsapi.api_req_air_corps;
 using ElectronicObserver.Observer.kcsapi.api_req_sortie;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Utility.Mathematics;
@@ -292,6 +293,12 @@ public sealed class APIObserver
 	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L703" />
 	/// </summary>
 	public material ApiGetMember_Material => (material)this["api_get_member/material"];
+
+	/// <summary>
+	/// Add plane to AB <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L2448" />
+	/// </summary>
+	public set_plane ApiReqAirCorps_SetPlane => (set_plane)this["api_req_air_corps/set_plane"];
 
 	#endregion
 
