@@ -354,6 +354,13 @@ public sealed class APIObserver
 	public battle ApiReqSortie_Battle => (battle)this["api_req_sortie/battle"];
 
 	/// <summary>
+	/// Normal fleet night battle after day battle <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L1967" />
+	/// </summary>
+	public kcsapi.api_req_battle_midnight.battle ApiReqBattleMidnight_Battle =>
+		(kcsapi.api_req_battle_midnight.battle)this["api_req_battle_midnight/battle"];
+
+	/// <summary>
 	/// Normal fleet night battle only <br />
 	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L2007" />
 	/// </summary>
