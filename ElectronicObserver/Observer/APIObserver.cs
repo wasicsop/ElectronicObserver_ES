@@ -154,6 +154,12 @@ public sealed class APIObserver
 	/// </summary>
 	public APIBase ApiReqMap_Next => this["api_req_map/next"];
 
+	/// <summary>
+	/// Sortie advance (right before api_req_map/next) <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L2392" />
+	/// </summary>
+	public APIBase ApiGetMember_ShipDeck => this["api_get_member/ship_deck"];
+
 	#endregion
 
 	public string? ServerAddress { get; private set; }
