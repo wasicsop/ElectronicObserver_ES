@@ -373,6 +373,12 @@ public sealed class APIObserver
 	/// </summary>
 	public airbattle ApiReqSortie_AirBattle => (airbattle)this["api_req_sortie/airbattle"];
 
+	/// <summary>
+	/// Normal fleet long distance air battle (like the one in 1-6?) <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L2055" />
+	/// </summary>
+	public ld_airbattle ApiReqSortie_LdAirBattle => (ld_airbattle)this["api_req_sortie/ld_airbattle"];
+
 	#endregion
 
 	public string? ServerAddress { get; private set; }
