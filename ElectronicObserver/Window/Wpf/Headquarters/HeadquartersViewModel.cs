@@ -117,7 +117,7 @@ public partial class HeadquartersViewModel : AnchorableViewModel
 		o.ApiReqNyukyo_Start.RequestReceived += Updated;
 		o.ApiReqNyukyo_Speedchange.RequestReceived += Updated;
 		o.ApiReqKousyou_CreateShip.RequestReceived += Updated;
-		o.APIList["api_req_kousyou/createship_speedchange"].RequestReceived += Updated;
+		o.ApiReqKousyou_CreateShipSpeedChange.RequestReceived += Updated;
 		o.ApiReqKousyou_Destroyship.RequestReceived += Updated;
 		o.APIList["api_req_kousyou/destroyitem2"].RequestReceived += Updated;
 		o.APIList["api_req_member/updatecomment"].RequestReceived += Updated;

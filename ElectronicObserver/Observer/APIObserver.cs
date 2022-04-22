@@ -258,6 +258,14 @@ public sealed class APIObserver
 	/// </summary>
 	public kcsapi.api_start2.getData ApiStart2_GetData => (kcsapi.api_start2.getData)this["api_start2/getData"];
 
+	/// <summary>
+	/// Use torch on a ship that's in construction <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L733" />
+	/// </summary>
+	public kcsapi.api_req_kousyou.createship_speedchange ApiReqKousyou_CreateShipSpeedChange =>
+		(kcsapi.api_req_kousyou.createship_speedchange)this["api_req_kousyou/createship_speedchange"];
+
+
 	#endregion
 
 	public string? ServerAddress { get; private set; }
