@@ -166,7 +166,7 @@ public partial class FormBattle : DockContent
 		o["api_req_combined_battle/each_battle"].ResponseReceived += Updated;
 		o["api_req_combined_battle/each_battle_water"].ResponseReceived += Updated;
 		o["api_req_combined_battle/ld_shooting"].ResponseReceived += Updated;
-		o["api_req_combined_battle/battleresult"].ResponseReceived += Updated;
+		o.ApiReqCombinedFleet_BattleResult.ResponseReceived += Updated;
 		o["api_req_practice/battle"].ResponseReceived += Updated;
 		o["api_req_practice/midnight_battle"].ResponseReceived += Updated;
 		o["api_req_practice/battle_result"].ResponseReceived += Updated;

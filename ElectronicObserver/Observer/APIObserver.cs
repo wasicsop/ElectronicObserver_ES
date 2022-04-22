@@ -210,6 +210,13 @@ public sealed class APIObserver
 	/// </summary>
 	public battleresult ApiReqSortie_BattleResult => (battleresult)this["api_req_sortie/battleresult"];
 
+	/// <summary>
+	/// Combined fleet battle finish <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L3324" />
+	/// </summary>
+	public kcsapi.api_req_combined_battle.battleresult ApiReqCombinedFleet_BattleResult => 
+		(kcsapi.api_req_combined_battle.battleresult)this["api_req_combined_battle/battleresult"];
+
 	#endregion
 
 	public string? ServerAddress { get; private set; }
