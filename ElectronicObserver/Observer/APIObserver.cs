@@ -245,6 +245,13 @@ public sealed class APIObserver
 	public kcsapi.api_req_kousyou.createship ApiReqKousyou_CreateShip =>
 		(kcsapi.api_req_kousyou.createship)this["api_req_kousyou/createship"];
 
+	/// <summary>
+	/// Equipment upgrade <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L811" />
+	/// </summary>
+	public kcsapi.api_req_kousyou.remodel_slot ApiReqKousyou_RemodelSlot =>
+		(kcsapi.api_req_kousyou.remodel_slot)this["api_req_kousyou/remodel_slot"];
+
 	#endregion
 
 	public string? ServerAddress { get; private set; }

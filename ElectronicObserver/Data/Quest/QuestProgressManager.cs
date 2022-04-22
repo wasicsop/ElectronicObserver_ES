@@ -114,7 +114,7 @@ public sealed class QuestProgressManager : DataStorage
 
 		// 装備廃棄はイベント前に装備データが削除されてしまうので destroyitem2 から直接呼ばれる
 
-		ao.APIList["api_req_kousyou/remodel_slot"].ResponseReceived += EquipmentRemodeled;
+		ao.ApiReqKousyou_RemodelSlot.ResponseReceived += EquipmentRemodeled;
 
 		ao.ApiReqKaisou_Powerup.ResponseReceived += Modernized;
 
@@ -154,7 +154,7 @@ public sealed class QuestProgressManager : DataStorage
 
 		// 装備廃棄は(ry
 
-		ao.APIList["api_req_kousyou/remodel_slot"].ResponseReceived -= EquipmentRemodeled;
+		ao.ApiReqKousyou_RemodelSlot.ResponseReceived -= EquipmentRemodeled;
 
 		ao.ApiReqKaisou_Powerup.ResponseReceived -= Modernized;
 
