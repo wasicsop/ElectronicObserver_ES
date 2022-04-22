@@ -612,7 +612,7 @@ public class ShipParameterRecord : RecordBase
 	{
 		APIObserver ao = APIObserver.Instance;
 
-		ao["api_start2/getData"].ResponseReceived += GameStart;
+		ao.ApiStart2_GetData.ResponseReceived += GameStart;
 
 		ao.ApiPort_Port.ResponseReceived += ParameterLoaded;
 

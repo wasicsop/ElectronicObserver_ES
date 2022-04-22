@@ -252,6 +252,12 @@ public sealed class APIObserver
 	public kcsapi.api_req_kousyou.remodel_slot ApiReqKousyou_RemodelSlot =>
 		(kcsapi.api_req_kousyou.remodel_slot)this["api_req_kousyou/remodel_slot"];
 
+	/// <summary>
+	/// Login <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L9" />
+	/// </summary>
+	public kcsapi.api_start2.getData ApiStart2_GetData => (kcsapi.api_start2.getData)this["api_start2/getData"];
+
 	#endregion
 
 	public string? ServerAddress { get; private set; }

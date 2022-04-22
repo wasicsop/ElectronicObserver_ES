@@ -378,7 +378,7 @@ public partial class FormBrowserHost : DockContent
 
 			Utility.Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
 
-			APIObserver.Instance.APIList["api_start2/getData"].ResponseReceived +=
+			APIObserver.Instance.ApiStart2_GetData.ResponseReceived +=
 				(string apiname, dynamic data) => InitialAPIReceived(apiname, data);
 
 			// プロキシをセット
