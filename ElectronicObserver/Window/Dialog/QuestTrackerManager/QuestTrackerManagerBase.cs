@@ -40,13 +40,13 @@ public abstract class QuestTrackerManagerBase : WindowViewModelBase
 
 		ao.ApiReqMap_Next.ResponseReceived += NextSortie;
 
-		ao.APIList["api_req_sortie/battleresult"].ResponseReceived += BattleFinished;
+		ao.ApiReqSortie_BattleResult.ResponseReceived += BattleFinished;
 		ao.APIList["api_req_combined_battle/battleresult"].ResponseReceived += BattleFinished;
 
-		ao.APIList["api_req_sortie/battleresult"].ResponseReceived += BossBattleFinished;
+		ao.ApiReqSortie_BattleResult.ResponseReceived += BossBattleFinished;
 		ao.APIList["api_req_combined_battle/battleresult"].ResponseReceived += BossBattleFinished;
 
-		ao.APIList["api_req_sortie/battleresult"].ResponseReceived += MapClearedFirstTime;
+		ao.ApiReqSortie_BattleResult.ResponseReceived += MapClearedFirstTime;
 		ao.APIList["api_req_combined_battle/battleresult"].ResponseReceived += MapClearedFirstTime;
 
 		ao.APIList["api_req_practice/battle_result"].ResponseReceived += PracticeFinished;

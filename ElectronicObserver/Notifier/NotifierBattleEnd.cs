@@ -25,7 +25,7 @@ public class NotifierBattleEnd : NotifierBase
 
 		o.ApiPort_Port.ResponseReceived += CloseAll;
 
-		o["api_req_sortie/battleresult"].ResponseReceived += BattleFinished;
+		o.ApiReqSortie_BattleResult.ResponseReceived += BattleFinished;
 		o["api_req_combined_battle/battleresult"].ResponseReceived += BattleFinished;
 
 		o["api_req_sortie/battle"].ResponseReceived += BattleStarted;

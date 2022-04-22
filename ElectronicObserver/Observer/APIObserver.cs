@@ -11,6 +11,7 @@ using DynaJson;
 using ElectronicObserver.Data;
 using ElectronicObserver.Observer.kcsapi;
 using ElectronicObserver.Observer.kcsapi.api_get_member;
+using ElectronicObserver.Observer.kcsapi.api_req_sortie;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Utility.Mathematics;
 using Titanium.Web.Proxy;
@@ -202,6 +203,12 @@ public sealed class APIObserver
 	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L892" />
 	/// </summary>
 	public questlist ApiGetMember_QuestList => (questlist)this["api_get_member/questlist"];
+
+	/// <summary>
+	/// Normal fleet battle finish <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L2326" />
+	/// </summary>
+	public battleresult ApiReqSortie_BattleResult => (battleresult)this["api_req_sortie/battleresult"];
 
 	#endregion
 
