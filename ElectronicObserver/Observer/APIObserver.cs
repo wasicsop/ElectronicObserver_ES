@@ -172,6 +172,12 @@ public sealed class APIObserver
 	/// </summary>
 	public APIBase ApiReqKaisou_SlotExchangeIndex => this["api_req_kaisou/slot_exchange_index"];
 
+	/// <summary>
+	/// Login <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L553" />
+	/// </summary>
+	public APIBase ApiGetMember_RequireInfo => this["api_get_member/require_info"];
+
 	#endregion
 
 	public string? ServerAddress { get; private set; }

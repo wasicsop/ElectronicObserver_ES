@@ -213,7 +213,7 @@ public partial class FormFleetOverview : DockContent
 		o.ApiGetMember_ShipDeck.ResponseReceived += Updated;
 		o.ApiReqHensei_PresetSelect.ResponseReceived += Updated;
 		o.ApiReqKaisou_SlotExchangeIndex.ResponseReceived += Updated;
-		o["api_get_member/require_info"].ResponseReceived += Updated;
+		o.ApiGetMember_RequireInfo.ResponseReceived += Updated;
 		o["api_req_kaisou/slot_deprive"].ResponseReceived += Updated;
 		o["api_req_kaisou/marriage"].ResponseReceived += Updated;
 		o["api_req_map/anchorage_repair"].ResponseReceived += Updated;

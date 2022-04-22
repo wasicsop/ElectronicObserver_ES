@@ -230,7 +230,7 @@ public partial class FormArsenal : DockContent
 
 		o["api_get_member/kdock"].ResponseReceived += Updated;
 		o.ApiReqKousyou_Getship.ResponseReceived += Updated;
-		o["api_get_member/require_info"].ResponseReceived += Updated;
+		o.ApiGetMember_RequireInfo.ResponseReceived += Updated;
 
 		Utility.Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
 
