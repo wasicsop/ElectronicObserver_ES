@@ -279,6 +279,12 @@ public sealed class APIObserver
 	public kcsapi.api_req_member.updatecomment ApiReqMember_UpdateComment =>
 		(kcsapi.api_req_member.updatecomment)this["api_req_member/updatecomment"];
 
+	/// <summary>
+	/// 艦隊司令部情報 (?) <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L568" />
+	/// </summary>
+	public basic ApiGetMember_Basic => (basic)this["api_get_member/basic"];
+
 	#endregion
 
 	public string? ServerAddress { get; private set; }
