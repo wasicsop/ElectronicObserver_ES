@@ -91,7 +91,7 @@ public class NotifierDamage : NotifierBase
 		o.ApiReqMap_Start.ResponseReceived += InSortie;
 		o.ApiReqMap_Next.ResponseReceived += InSortie;
 
-		o["api_get_member/mapinfo"].ResponseReceived += BeforeSortie;
+		o.ApiGetMember_MapInfo.ResponseReceived += BeforeSortie;
 
 		o.ApiReqSortie_BattleResult.ResponseReceived += BattleFinished;
 		o.ApiReqCombinedFleet_BattleResult.ResponseReceived += BattleFinished;

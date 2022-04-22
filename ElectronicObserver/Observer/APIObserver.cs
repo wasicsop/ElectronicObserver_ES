@@ -317,6 +317,12 @@ public sealed class APIObserver
 	/// </summary>
 	public useitem ApiGetMember_UseItem => (useitem)this["api_get_member/useitem"];
 
+	/// <summary>
+	/// Sortie screen
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L2399" />
+	/// </summary>
+	public mapinfo ApiGetMember_MapInfo => (mapinfo)this["api_get_member/mapinfo"];
+
 	#endregion
 
 	public string? ServerAddress { get; private set; }
