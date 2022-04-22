@@ -345,6 +345,12 @@ public sealed class APIObserver
 	/// </summary>
 	public air_raid ApiReqMap_AirRaid => (air_raid)this["api_req_map/air_raid"];
 
+	/// <summary>
+	/// Normal fleet day battle <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L1752" />
+	/// </summary>
+	public battle ApiReqSortie_Battle => (battle)this["api_req_sortie/battle"];
+
 	#endregion
 
 	public string? ServerAddress { get; private set; }

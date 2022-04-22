@@ -186,7 +186,7 @@ public partial class BattleViewModel : AnchorableViewModel
 		o.ApiReqMap_Start.ResponseReceived += Updated;
 		o.ApiReqMap_Next.ResponseReceived += Updated;
 		o.ApiReqMap_AirRaid.ResponseReceived += Updated;
-		o["api_req_sortie/battle"].ResponseReceived += Updated;
+		o.ApiReqSortie_Battle.ResponseReceived += Updated;
 		o.ApiReqSortie_BattleResult.ResponseReceived += Updated;
 		o["api_req_battle_midnight/battle"].ResponseReceived += Updated;
 		o["api_req_battle_midnight/sp_midnight"].ResponseReceived += Updated;

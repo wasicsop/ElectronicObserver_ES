@@ -621,7 +621,7 @@ public class ShipParameterRecord : RecordBase
 		ao["api_get_member/picture_book"].ResponseReceived += AlbumOpened;
 
 		//戦闘系：最初のフェーズのみ要るから夜戦(≠開幕)は不要
-		ao["api_req_sortie/battle"].ResponseReceived += BattleStart;
+		ao.ApiReqSortie_Battle.ResponseReceived += BattleStart;
 		ao["api_req_battle_midnight/sp_midnight"].ResponseReceived += BattleStart;
 		ao["api_req_sortie/airbattle"].ResponseReceived += BattleStart;
 		ao["api_req_sortie/ld_airbattle"].ResponseReceived += BattleStart;
