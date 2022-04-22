@@ -113,7 +113,7 @@ public class NotifierBaseAirCorps : NotifierBase
 
 		o.ApiPort_Port.ResponseReceived += Port;
 		o.ApiGetMember_MapInfo.ResponseReceived += BeforeSortie;
-		o["api_get_member/sortie_conditions"].ResponseReceived += BeforeSortieEventMap;
+		o.ApiGetMember_SortieConditions.ResponseReceived += BeforeSortieEventMap;
 		o.ApiReqMap_Start.RequestReceived += Sally;
 	}
 

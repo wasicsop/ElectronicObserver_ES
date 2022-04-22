@@ -323,6 +323,13 @@ public sealed class APIObserver
 	/// </summary>
 	public mapinfo ApiGetMember_MapInfo => (mapinfo)this["api_get_member/mapinfo"];
 
+	/// <summary>
+	/// Event sortie condition (sortie win rate needs to be above 75%) <br />
+	/// Happens right before the sortie <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L2426" />
+	/// </summary>
+	public sortie_conditions ApiGetMember_SortieConditions => (sortie_conditions)this["api_get_member/sortie_conditions"];
+
 	#endregion
 
 	public string? ServerAddress { get; private set; }
