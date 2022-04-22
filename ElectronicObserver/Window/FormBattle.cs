@@ -153,7 +153,7 @@ public partial class FormBattle : DockContent
 		o.ApiReqSortie_AirBattle.ResponseReceived += Updated;
 		o.ApiReqSortie_LdAirBattle.ResponseReceived += Updated;
 		o.ApiReqSortie_NightToDay.ResponseReceived += Updated;
-		o["api_req_sortie/ld_shooting"].ResponseReceived += Updated;
+		o.ApiReqSortie_LdShooting.ResponseReceived += Updated;
 		o["api_req_combined_battle/battle"].ResponseReceived += Updated;
 		o["api_req_combined_battle/midnight_battle"].ResponseReceived += Updated;
 		o["api_req_combined_battle/sp_midnight"].ResponseReceived += Updated;

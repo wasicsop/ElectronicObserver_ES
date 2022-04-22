@@ -385,6 +385,13 @@ public sealed class APIObserver
 	/// </summary>
 	public night_to_day ApiReqSortie_NightToDay => (night_to_day)this["api_req_sortie/night_to_day"];
 
+	/// <summary>
+	/// Normal fleet radar ambush <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L2075" />
+	/// </summary>
+	public ld_shooting ApiReqSortie_LdShooting => (ld_shooting)this["api_req_sortie/ld_shooting"];
+
+
 	#endregion
 
 	public string? ServerAddress { get; private set; }
