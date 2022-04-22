@@ -644,7 +644,7 @@ public partial class FormCompass : DockContent
 		o.ApiReqMember_GetPracticeEnemyInfo.ResponseReceived += Updated;
 
 		o.ApiReqSortie_Battle.ResponseReceived += BattleStarted;
-		o["api_req_battle_midnight/sp_midnight"].ResponseReceived += BattleStarted;
+		o.ApiReqBattleMidnight_SpMidnight.ResponseReceived += BattleStarted;
 		o["api_req_sortie/night_to_day"].ResponseReceived += BattleStarted;
 		o["api_req_sortie/airbattle"].ResponseReceived += BattleStarted;
 		o["api_req_sortie/ld_airbattle"].ResponseReceived += BattleStarted;

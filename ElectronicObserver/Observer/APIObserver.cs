@@ -12,6 +12,7 @@ using ElectronicObserver.Data;
 using ElectronicObserver.Observer.kcsapi;
 using ElectronicObserver.Observer.kcsapi.api_get_member;
 using ElectronicObserver.Observer.kcsapi.api_req_air_corps;
+using ElectronicObserver.Observer.kcsapi.api_req_battle_midnight;
 using ElectronicObserver.Observer.kcsapi.api_req_map;
 using ElectronicObserver.Observer.kcsapi.api_req_member;
 using ElectronicObserver.Observer.kcsapi.api_req_sortie;
@@ -22,6 +23,7 @@ using Titanium.Web.Proxy.EventArguments;
 using Titanium.Web.Proxy.Http;
 using Titanium.Web.Proxy.Models;
 using static ElectronicObserver.Data.Constants;
+using battle = ElectronicObserver.Observer.kcsapi.api_req_sortie.battle;
 
 namespace ElectronicObserver.Observer;
 
@@ -350,6 +352,13 @@ public sealed class APIObserver
 	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L1752" />
 	/// </summary>
 	public battle ApiReqSortie_Battle => (battle)this["api_req_sortie/battle"];
+
+	/// <summary>
+	/// Normal fleet night battle only <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L2007" />
+	/// </summary>
+	public sp_midnight ApiReqBattleMidnight_SpMidnight =>
+		(sp_midnight)this["api_req_battle_midnight/sp_midnight"];
 
 	#endregion
 

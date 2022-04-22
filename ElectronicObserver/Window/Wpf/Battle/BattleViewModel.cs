@@ -189,7 +189,7 @@ public partial class BattleViewModel : AnchorableViewModel
 		o.ApiReqSortie_Battle.ResponseReceived += Updated;
 		o.ApiReqSortie_BattleResult.ResponseReceived += Updated;
 		o["api_req_battle_midnight/battle"].ResponseReceived += Updated;
-		o["api_req_battle_midnight/sp_midnight"].ResponseReceived += Updated;
+		o.ApiReqBattleMidnight_SpMidnight.ResponseReceived += Updated;
 		o["api_req_sortie/airbattle"].ResponseReceived += Updated;
 		o["api_req_sortie/ld_airbattle"].ResponseReceived += Updated;
 		o["api_req_sortie/night_to_day"].ResponseReceived += Updated;

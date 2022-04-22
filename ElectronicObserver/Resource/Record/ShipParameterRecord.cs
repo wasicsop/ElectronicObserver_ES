@@ -622,7 +622,7 @@ public class ShipParameterRecord : RecordBase
 
 		//戦闘系：最初のフェーズのみ要るから夜戦(≠開幕)は不要
 		ao.ApiReqSortie_Battle.ResponseReceived += BattleStart;
-		ao["api_req_battle_midnight/sp_midnight"].ResponseReceived += BattleStart;
+		ao.ApiReqBattleMidnight_SpMidnight.ResponseReceived += BattleStart;
 		ao["api_req_sortie/airbattle"].ResponseReceived += BattleStart;
 		ao["api_req_sortie/ld_airbattle"].ResponseReceived += BattleStart;
 		ao["api_req_sortie/night_to_day"].ResponseReceived += BattleStart;
