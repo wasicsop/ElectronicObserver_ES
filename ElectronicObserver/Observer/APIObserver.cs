@@ -300,6 +300,12 @@ public sealed class APIObserver
 	/// </summary>
 	public set_plane ApiReqAirCorps_SetPlane => (set_plane)this["api_req_air_corps/set_plane"];
 
+	/// <summary>
+	/// AB resupply <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L2486" />
+	/// </summary>
+	public supply ApiReqAirCorps_Supply => (supply)this["api_req_air_corps/supply"];
+
 	#endregion
 
 	public string? ServerAddress { get; private set; }

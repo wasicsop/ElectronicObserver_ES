@@ -136,7 +136,7 @@ public partial class HeadquartersViewModel : AnchorableViewModel
 		o.ApiGetMember_Material.ResponseReceived += Updated;
 		o.ApiGetMember_ShipDeck.ResponseReceived += Updated;
 		o.ApiReqAirCorps_SetPlane.ResponseReceived += Updated;
-		o.APIList["api_req_air_corps/supply"].ResponseReceived += Updated;
+		o.ApiReqAirCorps_Supply.ResponseReceived += Updated;
 		o.APIList["api_get_member/useitem"].ResponseReceived += Updated;
 
 

@@ -391,7 +391,7 @@ public partial class FormBaseAirCorps : DockContent
 		api["api_req_air_corps/change_name"].ResponseReceived += Updated;
 		api["api_req_air_corps/set_action"].ResponseReceived += Updated;
 		api.ApiReqAirCorps_SetPlane.ResponseReceived += Updated;
-		api["api_req_air_corps/supply"].ResponseReceived += Updated;
+		api.ApiReqAirCorps_Supply.ResponseReceived += Updated;
 		api["api_req_air_corps/expand_base"].ResponseReceived += Updated;
 
 		Utility.Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
