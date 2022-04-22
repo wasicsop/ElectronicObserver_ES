@@ -1009,7 +1009,7 @@ public partial class FormFleet : DockContent
 		o.ApiGetMember_RequireInfo.ResponseReceived += Updated;
 		o.ApiReqKaisou_SlotDeprive.ResponseReceived += Updated;
 		o.ApiReqKaisou_Marriage.ResponseReceived += Updated;
-		o["api_req_map/anchorage_repair"].ResponseReceived += Updated;
+		o.ApiReqMap_AnchorageRepair.ResponseReceived += Updated;
 
 		//追加するときは FormFleetOverview にも同様に追加してください
 

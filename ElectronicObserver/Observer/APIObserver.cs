@@ -190,6 +190,12 @@ public sealed class APIObserver
 	/// </summary>
 	public APIBase ApiReqKaisou_Marriage => this["api_req_kaisou/marriage"];
 
+	/// <summary>
+	/// Anchorage repair <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L3520" />
+	/// </summary>
+	public APIBase ApiReqMap_AnchorageRepair => this["api_req_map/anchorage_repair"];
+
 	#endregion
 
 	public string? ServerAddress { get; private set; }

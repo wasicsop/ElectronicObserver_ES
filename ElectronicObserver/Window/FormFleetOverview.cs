@@ -216,7 +216,7 @@ public partial class FormFleetOverview : DockContent
 		o.ApiGetMember_RequireInfo.ResponseReceived += Updated;
 		o.ApiReqKaisou_SlotDeprive.ResponseReceived += Updated;
 		o.ApiReqKaisou_Marriage.ResponseReceived += Updated;
-		o["api_req_map/anchorage_repair"].ResponseReceived += Updated;
+		o.ApiReqMap_AnchorageRepair.ResponseReceived += Updated;
 
 		Utility.Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
 	}
