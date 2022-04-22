@@ -160,6 +160,12 @@ public sealed class APIObserver
 	/// </summary>
 	public APIBase ApiGetMember_ShipDeck => this["api_get_member/ship_deck"];
 
+	/// <summary>
+	/// Load fleet preset <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L1225" />
+	/// </summary>
+	public APIBase ApiReqHensei_PresetSelect => this["api_req_hensei/preset_select"];
+
 	#endregion
 
 	public string? ServerAddress { get; private set; }

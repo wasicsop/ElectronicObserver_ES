@@ -1004,7 +1004,7 @@ public partial class FormFleet : DockContent
 		o.ApiReqMap_Start.ResponseReceived += Updated;
 		o.ApiReqMap_Next.ResponseReceived += Updated;
 		o.ApiGetMember_ShipDeck.ResponseReceived += Updated;
-		o["api_req_hensei/preset_select"].ResponseReceived += Updated;
+		o.ApiReqHensei_PresetSelect.ResponseReceived += Updated;
 		o["api_req_kaisou/slot_exchange_index"].ResponseReceived += Updated;
 		o["api_get_member/require_info"].ResponseReceived += Updated;
 		o["api_req_kaisou/slot_deprive"].ResponseReceived += Updated;
