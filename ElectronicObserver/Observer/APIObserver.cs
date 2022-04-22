@@ -285,6 +285,14 @@ public sealed class APIObserver
 	/// </summary>
 	public basic ApiGetMember_Basic => (basic)this["api_get_member/basic"];
 
+	/// <summary>
+	/// After remodeling <br />
+	/// After building a ship <br />
+	/// After finishing a quest that rewards resources (fuel, ammo, steel, bauxite, bucket, torch, nail, screw) <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L703" />
+	/// </summary>
+	public material ApiGetMember_Material => (material)this["api_get_member/material"];
+
 	#endregion
 
 	public string? ServerAddress { get; private set; }
