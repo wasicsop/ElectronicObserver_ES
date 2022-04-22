@@ -170,7 +170,7 @@ public class DevelopmentRecord : RecordBase
 
 	public override void RegisterEvents()
 	{
-		APIObserver.Instance["api_req_kousyou/createitem"].ResponseReceived += DevelopmentEnd;
+		APIObserver.Instance.ApiReqKousyou_CreateItem.ResponseReceived += DevelopmentEnd;
 	}
 
 

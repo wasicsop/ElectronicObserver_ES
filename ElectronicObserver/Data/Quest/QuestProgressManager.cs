@@ -106,7 +106,7 @@ public sealed class QuestProgressManager : DataStorage
 
 		ao.ApiReqHokyu_Charge.ResponseReceived += Supplied;
 
-		ao.APIList["api_req_kousyou/createitem"].ResponseReceived += EquipmentDeveloped;
+		ao.ApiReqKousyou_CreateItem.ResponseReceived += EquipmentDeveloped;
 
 		ao.APIList["api_req_kousyou/createship"].RequestReceived += ShipConstructed;
 
@@ -146,7 +146,7 @@ public sealed class QuestProgressManager : DataStorage
 
 		ao.ApiReqHokyu_Charge.ResponseReceived -= Supplied;
 
-		ao.APIList["api_req_kousyou/createitem"].ResponseReceived -= EquipmentDeveloped;
+		ao.ApiReqKousyou_CreateItem.ResponseReceived -= EquipmentDeveloped;
 
 		ao.APIList["api_req_kousyou/createship"].RequestReceived -= ShipConstructed;
 

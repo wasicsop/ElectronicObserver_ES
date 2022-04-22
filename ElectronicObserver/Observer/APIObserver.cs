@@ -231,6 +231,13 @@ public sealed class APIObserver
 	public kcsapi.api_req_mission.result ApiReqMission_Result =>
 		(kcsapi.api_req_mission.result)this["api_req_mission/result"];
 
+	/// <summary>
+	/// Equipment development <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L749" />
+	/// </summary>
+	public kcsapi.api_req_kousyou.createitem ApiReqKousyou_CreateItem =>
+		(kcsapi.api_req_kousyou.createitem)this["api_req_kousyou/createitem"];
+
 	#endregion
 
 	public string? ServerAddress { get; private set; }
