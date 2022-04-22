@@ -272,6 +272,12 @@ public sealed class APIObserver
 	public kcsapi.api_req_kousyou.destroyitem2 ApiReqKousyou_DestroyItem2 =>
 		(kcsapi.api_req_kousyou.destroyitem2)this["api_req_kousyou/destroyitem2"];
 
+	/// <summary>
+	/// Change admiral comment <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L1245" />
+	/// </summary>
+	public kcsapi.api_req_member.updatecomment ApiReqMember_UpdateComment =>
+		(kcsapi.api_req_member.updatecomment)this["api_req_member/updatecomment"];
 
 	#endregion
 

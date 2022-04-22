@@ -105,7 +105,7 @@ public partial class FormHeadquarters : DockContent
 		o.ApiReqKousyou_CreateShipSpeedChange.RequestReceived += Updated;
 		o.ApiReqKousyou_Destroyship.RequestReceived += Updated;
 		o.ApiReqKousyou_DestroyItem2.RequestReceived += Updated;
-		o.APIList["api_req_member/updatecomment"].RequestReceived += Updated;
+		o.ApiReqMember_UpdateComment.RequestReceived += Updated;
 
 		o.APIList["api_get_member/basic"].ResponseReceived += Updated;
 		o.ApiGetMember_SlotItem.ResponseReceived += Updated;
