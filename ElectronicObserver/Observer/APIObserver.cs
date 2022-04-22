@@ -12,6 +12,7 @@ using ElectronicObserver.Data;
 using ElectronicObserver.Observer.kcsapi;
 using ElectronicObserver.Observer.kcsapi.api_get_member;
 using ElectronicObserver.Observer.kcsapi.api_req_air_corps;
+using ElectronicObserver.Observer.kcsapi.api_req_map;
 using ElectronicObserver.Observer.kcsapi.api_req_member;
 using ElectronicObserver.Observer.kcsapi.api_req_sortie;
 using ElectronicObserver.Utility;
@@ -338,6 +339,11 @@ public sealed class APIObserver
 	public get_practice_enemyinfo ApiReqMember_GetPracticeEnemyInfo =>
 		(get_practice_enemyinfo)this["api_req_member/get_practice_enemyinfo"];
 
+	/// <summary>
+	/// Heavy air raid <br />
+	/// todo: documentation
+	/// </summary>
+	public air_raid ApiReqMap_AirRaid => (air_raid)this["api_req_map/air_raid"];
 
 	#endregion
 
