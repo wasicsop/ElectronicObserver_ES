@@ -514,6 +514,13 @@ public sealed class APIObserver
 	/// </summary>
 	public base_air_corps ApiGetMember_BaseAirCorps => (base_air_corps)this["api_get_member/base_air_corps"];
 
+	/// <summary>
+	/// Move AB planes between different bases <br />
+	/// todo: documentation
+	/// </summary>
+	public kcsapi.api_req_air_corps.change_deployment_base ApiReqAirCorps_ChangeDeploymentBase =>
+		(kcsapi.api_req_air_corps.change_deployment_base)this["api_req_air_corps/change_deployment_base"];
+
 	#endregion
 
 	public string? ServerAddress { get; private set; }
