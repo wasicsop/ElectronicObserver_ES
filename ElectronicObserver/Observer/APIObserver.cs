@@ -633,6 +633,13 @@ public sealed class APIObserver
 	public kcsapi.api_req_sortie.goback_port ApiReqSortie_GoBackPort =>
 		(kcsapi.api_req_sortie.goback_port)this["api_req_sortie/goback_port"];
 
+	/// <summary>
+	/// Item exchange (?) (eg. medals -> blueprint) <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L3414" />
+	/// </summary>
+	public kcsapi.api_req_member.itemuse ApiReqMember_ItemUse =>
+		(kcsapi.api_req_member.itemuse)this["api_req_member/itemuse"];
+
 	#endregion
 
 	public string? ServerAddress { get; private set; }
