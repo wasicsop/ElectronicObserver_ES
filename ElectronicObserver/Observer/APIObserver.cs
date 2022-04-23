@@ -611,6 +611,13 @@ public sealed class APIObserver
 	public kcsapi.api_req_kousyou.remodel_slotlist ApiReqKousyou_RemodelSlotList =>
 		(kcsapi.api_req_kousyou.remodel_slotlist)this["api_req_kousyou/remodel_slotlist"];
 
+	/// <summary>
+	/// FCF <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L3368" />
+	/// </summary>
+	public kcsapi.api_req_combined_battle.goback_port ApiReqCombinedBattle_GoBackPort =>
+		(kcsapi.api_req_combined_battle.goback_port)this["api_req_combined_battle/goback_port"];
+
 	#endregion
 
 	public string? ServerAddress { get; private set; }
