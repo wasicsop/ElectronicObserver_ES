@@ -645,7 +645,7 @@ public class ShipParameterRecord : RecordBase
 		ao.ApiReqMap_Start.ResponseReceived += SortieStart;
 		ao.ApiGetMember_SlotItem.ResponseReceived += SortieEnd;
 
-		ao.ApiReqKousyou_Getship.ResponseReceived += ConstructionReceived;
+		ao.ApiReqKousyou_GetShip.ResponseReceived += ConstructionReceived;
 
 		ao.ApiReqKaisou_Remodeling.RequestReceived += RemodelingStart;
 		ao.ApiGetMember_SlotItem.ResponseReceived += RemodelingEnd;

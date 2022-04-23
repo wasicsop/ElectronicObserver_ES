@@ -48,7 +48,7 @@ public sealed class APIObserver
 	/// Use bucket on docked ship (this doesn't happen if you use a bucket while docking) <br />
 	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L846" />
 	/// </summary>
-	public kcsapi.api_req_nyukyo.speedchange ApiReqNyukyo_Speedchange =>
+	public kcsapi.api_req_nyukyo.speedchange ApiReqNyukyo_SpeedChange =>
 		(kcsapi.api_req_nyukyo.speedchange)this["api_req_nyukyo/speedchange"];
 
 	/// <summary>
@@ -62,14 +62,14 @@ public sealed class APIObserver
 	/// Ship scrap <br />
 	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L767" />
 	/// </summary>
-	public kcsapi.api_req_kousyou.destroyship ApiReqKousyou_Destroyship =>
+	public kcsapi.api_req_kousyou.destroyship ApiReqKousyou_DestroyShip =>
 		(kcsapi.api_req_kousyou.destroyship)this["api_req_kousyou/destroyship"];
 
 	/// <summary>
 	/// Change fleet name <br />
 	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L1239" />
 	/// </summary>
-	public kcsapi.api_req_member.updatedeckname ApiReqMember_Updatedeckname =>
+	public kcsapi.api_req_member.updatedeckname ApiReqMember_UpdateDeckName =>
 		(kcsapi.api_req_member.updatedeckname)this["api_req_member/updatedeckname"];
 
 	/// <summary>
@@ -97,7 +97,7 @@ public sealed class APIObserver
 	/// Ship hole-punch <br />
 	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L1460" />
 	/// </summary>
-	public kcsapi.api_req_kaisou.open_exslot ApiReqKaisou_OpenExslot =>
+	public kcsapi.api_req_kaisou.open_exslot ApiReqKaisou_OpenExSlot =>
 		(kcsapi.api_req_kaisou.open_exslot)this["api_req_kaisou/open_exslot"];
 
 	/// <summary>
@@ -117,14 +117,14 @@ public sealed class APIObserver
 	/// Go to dock screen (also happens after docking a ship, doesn't happen after bucketing a ship that's already in docks) <br />
 	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L826" />
 	/// </summary>
-	public kcsapi.api_get_member.ndock ApiGetMember_Ndock =>
+	public kcsapi.api_get_member.ndock ApiGetMember_NDock =>
 		(kcsapi.api_get_member.ndock)this["api_get_member/ndock"];
 
 	/// <summary>
 	/// Get ship from construction <br />
 	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L740" />
 	/// </summary>
-	public kcsapi.api_req_kousyou.getship ApiReqKousyou_Getship =>
+	public kcsapi.api_req_kousyou.getship ApiReqKousyou_GetShip =>
 		(kcsapi.api_req_kousyou.getship)this["api_req_kousyou/getship"];
 
 	/// <summary>
@@ -145,7 +145,7 @@ public sealed class APIObserver
 	/// Ship modernization <br />
 	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L1125" />
 	/// </summary>
-	public kcsapi.api_req_kaisou.powerup ApiReqKaisou_Powerup =>
+	public kcsapi.api_req_kaisou.powerup ApiReqKaisou_PowerUp =>
 		(kcsapi.api_req_kaisou.powerup)this["api_req_kaisou/powerup"];
 
 	/// <summary>
