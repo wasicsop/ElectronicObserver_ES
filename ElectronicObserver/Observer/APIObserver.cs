@@ -549,6 +549,13 @@ public sealed class APIObserver
 	public kcsapi.api_get_member.kdock ApiGetMember_KDock =>
 		(kcsapi.api_get_member.kdock)this["api_get_member/kdock"];
 
+	/// <summary>
+	/// Quest clear <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L934" />
+	/// </summary>
+	public kcsapi.api_req_quest.clearitemget ApiReqQuest_ClearItemGet =>
+		(kcsapi.api_req_quest.clearitemget)this["api_req_quest/clearitemget"];
+
 	#endregion
 
 	public string? ServerAddress { get; private set; }

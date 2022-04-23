@@ -650,7 +650,7 @@ public class ShipParameterRecord : RecordBase
 		ao.ApiReqKaisou_Remodeling.RequestReceived += RemodelingStart;
 		ao.ApiGetMember_SlotItem.ResponseReceived += RemodelingEnd;
 
-		ao["api_req_quest/clearitemget"].ResponseReceived += QuestRewardReceived;
+		ao.ApiReqQuest_ClearItemGet.ResponseReceived += QuestRewardReceived;
 		ao.ApiGetMember_Ship2.ResponseReceived += QuestRewardReceivedEnd;
 	}
 
