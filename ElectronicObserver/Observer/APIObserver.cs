@@ -433,6 +433,13 @@ public sealed class APIObserver
 	public kcsapi.api_req_combined_battle.ld_airbattle ApiReqCombinedBattle_LdAirBattle =>
 		(kcsapi.api_req_combined_battle.ld_airbattle)this["api_req_combined_battle/ld_airbattle"];
 
+	/// <summary>
+	/// Normal fleet vs enemy combined fleet day battle <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L2143" />
+	/// </summary>
+	public kcsapi.api_req_combined_battle.ec_battle ApiReqCombinedBattle_EcBattle =>
+		(kcsapi.api_req_combined_battle.ec_battle)this["api_req_combined_battle/ec_battle"];
+
 	#endregion
 
 	public string? ServerAddress { get; private set; }
