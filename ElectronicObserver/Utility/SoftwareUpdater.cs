@@ -31,7 +31,7 @@ internal class SoftwareUpdater
 
 	private static Uri TranslationUpdateURL => new($"{Configuration.Config.Control.UpdateRepoURL}/Translations/{DataAndTranslationManager.CurrentTranslationLanguage}/update.json");
 
-	private static string DataUpdateFile => $"{DataAndTranslationManager.WorkingFolder}\\update.json";
+	private static string DataUpdateFile => Path.Combine(DataAndTranslationManager.WorkingFolder, "update.json");
 
 	private static string TranslationUpdateFile => Path.Combine(DataAndTranslationManager.TranslationFolder, "update.json");
 
