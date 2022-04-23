@@ -495,6 +495,12 @@ public sealed class APIObserver
 	/// </summary>
 	public picture_book ApiGetMember_PictureBook => (picture_book)this["api_get_member/picture_book"];
 
+	/// <summary>
+	/// Go to expedition screen <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L853" />
+	/// </summary>
+	public mission ApiGetMember_Mission => (mission)this["api_get_member/mission"];
+
 	#endregion
 
 	public string? ServerAddress { get; private set; }
