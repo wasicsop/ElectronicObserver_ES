@@ -42,7 +42,7 @@ public class NotifierBattleEnd : NotifierBase
 		o.ApiReqCombinedBattle_SpMidnight.ResponseReceived += BattleStarted;
 		o.ApiReqCombinedBattle_LdAirBattle.ResponseReceived += BattleStarted;
 		o.ApiReqCombinedBattle_EcBattle.ResponseReceived += BattleStarted;
-		o["api_req_combined_battle/ec_midnight_battle"].ResponseReceived += BattleStarted;
+		o.ApiReqCombinedBattle_EcMidnightBattle.ResponseReceived += BattleStarted;
 		o["api_req_combined_battle/ec_night_to_day"].ResponseReceived += BattleStarted;
 		o["api_req_combined_battle/each_battle"].ResponseReceived += BattleStarted;
 		o["api_req_combined_battle/each_battle_water"].ResponseReceived += BattleStarted;
