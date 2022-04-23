@@ -237,7 +237,7 @@ public sealed class APIObserver
 	/// Combined fleet battle finish <br />
 	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L3324" />
 	/// </summary>
-	public kcsapi.api_req_combined_battle.battleresult ApiReqCombinedFleet_BattleResult =>
+	public kcsapi.api_req_combined_battle.battleresult ApiReqCombinedBattle_BattleResult =>
 		(kcsapi.api_req_combined_battle.battleresult)this["api_req_combined_battle/battleresult"];
 
 	/// <summary>
