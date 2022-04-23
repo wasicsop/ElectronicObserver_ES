@@ -173,7 +173,7 @@ public sealed class SyncBGMPlayer
 
 		o.ApiGetMember_PictureBook.ResponseReceived += PlayAlbum;
 
-		o["api_req_kousyou/remodel_slotlist"].ResponseReceived += PlayImprovementArsenal;
+		o.ApiReqKousyou_RemodelSlotList.ResponseReceived += PlayImprovementArsenal;
 
 		#endregion
 
