@@ -454,6 +454,13 @@ public sealed class APIObserver
 	public kcsapi.api_req_combined_battle.ec_night_to_day ApiReqCombinedBattle_EcNightToDay =>
 		(kcsapi.api_req_combined_battle.ec_night_to_day)this["api_req_combined_battle/ec_night_to_day"];
 
+	/// <summary>
+	/// Combined fleet (carrier) vs enemy combined fleet day battle <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L2859" />
+	/// </summary>
+	public kcsapi.api_req_combined_battle.each_battle ApiReqCombinedBattle_EachBattle =>
+		(kcsapi.api_req_combined_battle.each_battle)this["api_req_combined_battle/each_battle"];
+
 	#endregion
 
 	public string? ServerAddress { get; private set; }
