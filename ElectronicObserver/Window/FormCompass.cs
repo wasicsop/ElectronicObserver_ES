@@ -651,7 +651,7 @@ public partial class FormCompass : DockContent
 		o.ApiReqSortie_LdShooting.ResponseReceived += BattleStarted;
 		o.ApiReqCombinedBattle_Battle.ResponseReceived += BattleStarted;
 		o.ApiReqCombinedBattle_SpMidnight.ResponseReceived += BattleStarted;
-		o["api_req_combined_battle/airbattle"].ResponseReceived += BattleStarted;
+		o.ApiReqCombinedBattle_AirBattle.ResponseReceived += BattleStarted;
 		o["api_req_combined_battle/battle_water"].ResponseReceived += BattleStarted;
 		o["api_req_combined_battle/ld_airbattle"].ResponseReceived += BattleStarted;
 		o["api_req_combined_battle/ec_battle"].ResponseReceived += BattleStarted;

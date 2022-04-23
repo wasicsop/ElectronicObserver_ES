@@ -153,7 +153,7 @@ public sealed class SyncBGMPlayer
 		o["api_req_combined_battle/ld_shooting"].ResponseReceived += PlayBattleNight;
 
 		o.ApiReqSortie_AirBattle.ResponseReceived += PlayBattleAir;
-		o["api_req_combined_battle/airbattle"].ResponseReceived += PlayBattleAir;
+		o.ApiReqCombinedBattle_AirBattle.ResponseReceived += PlayBattleAir;
 		o.ApiReqSortie_LdAirBattle.ResponseReceived += PlayBattleAir;
 		o["api_req_combined_battle/ld_airbattle"].ResponseReceived += PlayBattleAir;
 
