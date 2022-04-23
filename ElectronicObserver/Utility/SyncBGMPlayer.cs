@@ -165,7 +165,7 @@ public sealed class SyncBGMPlayer
 		o.ApiReqCombinedFleet_BattleResult.ResponseReceived += PlayBattleResult;
 		o.ApiReqPractice_BattleResult.ResponseReceived += PlayBattleResult;
 
-		o["api_get_member/record"].ResponseReceived += PlayRecord;
+		o.ApiGetMember_Record.ResponseReceived += PlayRecord;
 
 		o["api_get_member/payitem"].ResponseReceived += PlayItem;
 

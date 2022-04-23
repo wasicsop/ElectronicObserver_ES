@@ -556,6 +556,13 @@ public sealed class APIObserver
 	public kcsapi.api_req_quest.clearitemget ApiReqQuest_ClearItemGet =>
 		(kcsapi.api_req_quest.clearitemget)this["api_req_quest/clearitemget"];
 
+	/// <summary>
+	/// Admiral profile <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L859" />
+	/// </summary>
+	public kcsapi.api_get_member.record ApiGetMember_Record =>
+		(kcsapi.api_get_member.record)this["api_get_member/record"];
+
 	#endregion
 
 	public string? ServerAddress { get; private set; }
