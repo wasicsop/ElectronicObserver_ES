@@ -426,6 +426,13 @@ public sealed class APIObserver
 	public kcsapi.api_req_combined_battle.battle_water ApiReqCombinedBattle_BattleWater =>
 		(kcsapi.api_req_combined_battle.battle_water)this["api_req_combined_battle/battle_water"];
 
+	/// <summary>
+	/// Combined fleet long distance air battle (the ones from Midway event?) <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L2802" />
+	/// </summary>
+	public kcsapi.api_req_combined_battle.ld_airbattle ApiReqCombinedBattle_LdAirBattle =>
+		(kcsapi.api_req_combined_battle.ld_airbattle)this["api_req_combined_battle/ld_airbattle"];
+
 	#endregion
 
 	public string? ServerAddress { get; private set; }
