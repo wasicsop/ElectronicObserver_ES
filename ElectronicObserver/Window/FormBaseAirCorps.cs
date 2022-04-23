@@ -388,7 +388,7 @@ public partial class FormBaseAirCorps : DockContent
 		api.ApiGetMember_MapInfo.ResponseReceived += Updated;
 		api.ApiGetMember_BaseAirCorps.ResponseReceived += Updated;
 		api.ApiReqAirCorps_ChangeDeploymentBase.ResponseReceived += Updated;
-		api["api_req_air_corps/change_name"].ResponseReceived += Updated;
+		api.ApiReqAirCorps_ChangeName.ResponseReceived += Updated;
 		api["api_req_air_corps/set_action"].ResponseReceived += Updated;
 		api.ApiReqAirCorps_SetPlane.ResponseReceived += Updated;
 		api.ApiReqAirCorps_Supply.ResponseReceived += Updated;

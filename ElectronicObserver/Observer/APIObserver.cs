@@ -521,6 +521,13 @@ public sealed class APIObserver
 	public kcsapi.api_req_air_corps.change_deployment_base ApiReqAirCorps_ChangeDeploymentBase =>
 		(kcsapi.api_req_air_corps.change_deployment_base)this["api_req_air_corps/change_deployment_base"];
 
+	/// <summary>
+	/// Change AB name <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L2461" />
+	/// </summary>
+	public kcsapi.api_req_air_corps.change_name ApiReqAirCorps_ChangeName =>
+		(kcsapi.api_req_air_corps.change_name)this["api_req_air_corps/change_name"];
+
 	#endregion
 
 	public string? ServerAddress { get; private set; }
