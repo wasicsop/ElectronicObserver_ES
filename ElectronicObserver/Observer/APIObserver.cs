@@ -482,6 +482,12 @@ public sealed class APIObserver
 	public kcsapi.api_req_practice.battle ApiReqPractice_Battle =>
 		(kcsapi.api_req_practice.battle)this["api_req_practice/battle"];
 
+	/// <summary>
+	/// Practice night battle <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L1402" />
+	/// </summary>
+	public kcsapi.api_req_practice.midnight_battle ApiReqPractice_MidnightBattle =>
+		(kcsapi.api_req_practice.midnight_battle)this["api_req_practice/midnight_battle"];
 
 	#endregion
 

@@ -159,7 +159,7 @@ public sealed class SyncBGMPlayer
 
 		o.ApiReqPractice_Battle.ResponseReceived += PlayPracticeDay;
 
-		o["api_req_practice/midnight_battle"].ResponseReceived += PlayPracticeNight;
+		o.ApiReqPractice_MidnightBattle.ResponseReceived += PlayPracticeNight;
 
 		o.ApiReqSortie_BattleResult.ResponseReceived += PlayBattleResult;
 		o.ApiReqCombinedFleet_BattleResult.ResponseReceived += PlayBattleResult;
