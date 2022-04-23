@@ -167,7 +167,7 @@ public sealed class SyncBGMPlayer
 
 		o.ApiGetMember_Record.ResponseReceived += PlayRecord;
 
-		o["api_get_member/payitem"].ResponseReceived += PlayItem;
+		o.ApiGetMember_PayItem.ResponseReceived += PlayItem;
 
 		o.ApiGetMember_QuestList.ResponseReceived += PlayQuest;
 

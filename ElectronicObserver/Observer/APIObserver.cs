@@ -563,6 +563,13 @@ public sealed class APIObserver
 	public kcsapi.api_get_member.record ApiGetMember_Record =>
 		(kcsapi.api_get_member.record)this["api_get_member/record"];
 
+	/// <summary>
+	/// Item page <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L3397" />
+	/// </summary>
+	public kcsapi.api_get_member.payitem ApiGetMember_PayItem =>
+		(kcsapi.api_get_member.payitem)this["api_get_member/payitem"];
+
 	#endregion
 
 	public string? ServerAddress { get; private set; }
