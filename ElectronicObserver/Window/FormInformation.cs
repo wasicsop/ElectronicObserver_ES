@@ -52,7 +52,7 @@ public partial class FormInformation : DockContent
 
 		o.ApiPort_Port.ResponseReceived += Updated;
 		o.ApiReqMember_GetPracticeEnemyInfo.ResponseReceived += Updated;
-		o["api_get_member/picture_book"].ResponseReceived += Updated;
+		o.ApiGetMember_PictureBook.ResponseReceived += Updated;
 		o.ApiGetMember_MapInfo.ResponseReceived += Updated;
 		o["api_get_member/mission"].ResponseReceived += Updated;
 		o.ApiReqMission_Result.ResponseReceived += Updated;

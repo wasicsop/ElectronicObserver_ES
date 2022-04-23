@@ -618,7 +618,7 @@ public class ShipParameterRecord : RecordBase
 
 		ao.ApiGetMember_Ship3.ResponseReceived += EquipmentChanged;
 
-		ao["api_get_member/picture_book"].ResponseReceived += AlbumOpened;
+		ao.ApiGetMember_PictureBook.ResponseReceived += AlbumOpened;
 
 		//戦闘系：最初のフェーズのみ要るから夜戦(≠開幕)は不要
 		ao.ApiReqSortie_Battle.ResponseReceived += BattleStart;

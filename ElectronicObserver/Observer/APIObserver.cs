@@ -489,6 +489,12 @@ public sealed class APIObserver
 	public kcsapi.api_req_practice.midnight_battle ApiReqPractice_MidnightBattle =>
 		(kcsapi.api_req_practice.midnight_battle)this["api_req_practice/midnight_battle"];
 
+	/// <summary>
+	/// Go to album <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L963" />
+	/// </summary>
+	public picture_book ApiGetMember_PictureBook => (picture_book)this["api_get_member/picture_book"];
+
 	#endregion
 
 	public string? ServerAddress { get; private set; }

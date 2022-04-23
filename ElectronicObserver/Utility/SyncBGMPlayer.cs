@@ -171,7 +171,7 @@ public sealed class SyncBGMPlayer
 
 		o.ApiGetMember_QuestList.ResponseReceived += PlayQuest;
 
-		o["api_get_member/picture_book"].ResponseReceived += PlayAlbum;
+		o.ApiGetMember_PictureBook.ResponseReceived += PlayAlbum;
 
 		o["api_req_kousyou/remodel_slotlist"].ResponseReceived += PlayImprovementArsenal;
 
