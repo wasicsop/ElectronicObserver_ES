@@ -618,6 +618,14 @@ public sealed class APIObserver
 	public kcsapi.api_req_combined_battle.goback_port ApiReqCombinedBattle_GoBackPort =>
 		(kcsapi.api_req_combined_battle.goback_port)this["api_req_combined_battle/goback_port"];
 
+	/// <summary>
+	/// Ranking list before 2016/08/01 (?) <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L1252" />
+	/// </summary>
+	[Obsolete]
+	public kcsapi.api_req_ranking.getlist ApiReqRanking_GetList =>
+		(kcsapi.api_req_ranking.getlist)this["api_req_ranking/getlist"];
+
 	#endregion
 
 	public string? ServerAddress { get; private set; }
