@@ -450,7 +450,7 @@ public partial class BaseAirCorpsViewModel : AnchorableViewModel
 
 		api.ApiPort_Port.ResponseReceived += Updated;
 		api.ApiGetMember_MapInfo.ResponseReceived += Updated;
-		api["api_get_member/base_air_corps"].ResponseReceived += Updated;
+		api.ApiGetMember_BaseAirCorps.ResponseReceived += Updated;
 		api["api_req_air_corps/change_deployment_base"].ResponseReceived += Updated;
 		api["api_req_air_corps/change_name"].ResponseReceived += Updated;
 		api["api_req_air_corps/set_action"].ResponseReceived += Updated;

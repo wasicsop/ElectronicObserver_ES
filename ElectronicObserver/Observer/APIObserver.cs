@@ -508,6 +508,12 @@ public sealed class APIObserver
 	public kcsapi.api_req_mission.start ApiReqMission_Start =>
 		(kcsapi.api_req_mission.start)this["api_req_mission/start"];
 
+	/// <summary>
+	/// Switching AB planes (?) <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L2433" />
+	/// </summary>
+	public base_air_corps ApiGetMember_BaseAirCorps => (base_air_corps)this["api_get_member/base_air_corps"];
+
 	#endregion
 
 	public string? ServerAddress { get; private set; }
