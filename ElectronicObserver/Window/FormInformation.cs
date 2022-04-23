@@ -64,7 +64,7 @@ public partial class FormInformation : DockContent
 		o.ApiReqMap_Next.ResponseReceived += Updated;
 		o.ApiReqPractice_Battle.ResponseReceived += Updated;
 		o.ApiGetMember_SortieConditions.ResponseReceived += Updated;
-		o["api_req_mission/start"].RequestReceived += Updated;
+		o.ApiReqMission_Start.RequestReceived += Updated;
 
 		Utility.Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
 	}

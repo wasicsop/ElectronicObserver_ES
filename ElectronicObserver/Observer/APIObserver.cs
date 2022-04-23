@@ -501,6 +501,13 @@ public sealed class APIObserver
 	/// </summary>
 	public mission ApiGetMember_Mission => (mission)this["api_get_member/mission"];
 
+	/// <summary>
+	/// Send out expedition <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L1178" />
+	/// </summary>
+	public kcsapi.api_req_mission.start ApiReqMission_Start =>
+		(kcsapi.api_req_mission.start)this["api_req_mission/start"];
+
 	#endregion
 
 	public string? ServerAddress { get; private set; }
