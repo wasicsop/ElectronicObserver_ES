@@ -228,7 +228,7 @@ public partial class FormArsenal : DockContent
 		o.ApiReqKousyou_CreateShip.RequestReceived += Updated;
 		o.ApiReqKousyou_CreateShipSpeedChange.RequestReceived += Updated;
 
-		o["api_get_member/kdock"].ResponseReceived += Updated;
+		o.ApiGetMember_KDock.ResponseReceived += Updated;
 		o.ApiReqKousyou_Getship.ResponseReceived += Updated;
 		o.ApiGetMember_RequireInfo.ResponseReceived += Updated;
 
