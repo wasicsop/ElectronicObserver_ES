@@ -475,6 +475,14 @@ public sealed class APIObserver
 	public kcsapi.api_req_combined_battle.ld_shooting ApiReqCombinedBattle_LdShooting =>
 		(kcsapi.api_req_combined_battle.ld_shooting)this["api_req_combined_battle/ld_shooting"];
 
+	/// <summary>
+	/// Practice day battle <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L1326" />
+	/// </summary>
+	public kcsapi.api_req_practice.battle ApiReqPractice_Battle =>
+		(kcsapi.api_req_practice.battle)this["api_req_practice/battle"];
+
+
 	#endregion
 
 	public string? ServerAddress { get; private set; }

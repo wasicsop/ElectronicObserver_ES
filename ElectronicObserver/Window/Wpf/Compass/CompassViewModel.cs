@@ -93,7 +93,7 @@ public class CompassViewModel : AnchorableViewModel
 		o.ApiReqCombinedBattle_EachBattleWater.ResponseReceived += BattleStarted;
 		o.ApiReqCombinedBattle_EcNightToDay.ResponseReceived += BattleStarted;
 		o.ApiReqCombinedBattle_LdShooting.ResponseReceived += BattleStarted;
-		o["api_req_practice/battle"].ResponseReceived += BattleStarted;
+		o.ApiReqPractice_Battle.ResponseReceived += BattleStarted;
 
 		Utility.Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
 	}
