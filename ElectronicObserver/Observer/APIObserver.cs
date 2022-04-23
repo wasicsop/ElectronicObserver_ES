@@ -640,6 +640,13 @@ public sealed class APIObserver
 	public kcsapi.api_req_member.itemuse ApiReqMember_ItemUse =>
 		(kcsapi.api_req_member.itemuse)this["api_req_member/itemuse"];
 
+	/// <summary>
+	/// Send AB to a node on map <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L2478" />
+	/// </summary>
+	public kcsapi.api_req_map.start_air_base ApiReqMap_StartAirBase =>
+		(kcsapi.api_req_map.start_air_base)this["api_req_map/start_air_base"];
+
 	#endregion
 
 	public string? ServerAddress { get; private set; }
