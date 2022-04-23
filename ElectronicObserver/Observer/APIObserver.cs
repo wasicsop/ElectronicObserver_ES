@@ -468,6 +468,13 @@ public sealed class APIObserver
 	public kcsapi.api_req_combined_battle.each_battle_water ApiReqCombinedBattle_EachBattleWater =>
 		(kcsapi.api_req_combined_battle.each_battle_water)this["api_req_combined_battle/each_battle_water"];
 
+	/// <summary>
+	/// Combined fleet radar ambush <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L3296" />
+	/// </summary>
+	public kcsapi.api_req_combined_battle.ld_shooting ApiReqCombinedBattle_LdShooting =>
+		(kcsapi.api_req_combined_battle.ld_shooting)this["api_req_combined_battle/ld_shooting"];
+
 	#endregion
 
 	public string? ServerAddress { get; private set; }

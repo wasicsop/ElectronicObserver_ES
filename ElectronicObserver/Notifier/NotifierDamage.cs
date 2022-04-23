@@ -114,7 +114,7 @@ public class NotifierDamage : NotifierBase
 		o.ApiReqCombinedBattle_EcNightToDay.ResponseReceived += BattleStarted;
 		o.ApiReqCombinedBattle_EachBattle.ResponseReceived += BattleStarted;
 		o.ApiReqCombinedBattle_EachBattleWater.ResponseReceived += BattleStarted;
-		o["api_req_combined_battle/ld_shooting"].ResponseReceived += BattleStarted;
+		o.ApiReqCombinedBattle_LdShooting.ResponseReceived += BattleStarted;
 	}
 
 	void CloseAll(string apiname, dynamic data)
