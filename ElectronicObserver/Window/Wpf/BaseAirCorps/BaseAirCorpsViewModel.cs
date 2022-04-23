@@ -456,7 +456,7 @@ public partial class BaseAirCorpsViewModel : AnchorableViewModel
 		api.ApiReqAirCorps_SetAction.ResponseReceived += Updated;
 		api.ApiReqAirCorps_SetPlane.ResponseReceived += Updated;
 		api.ApiReqAirCorps_Supply.ResponseReceived += Updated;
-		api["api_req_air_corps/expand_base"].ResponseReceived += Updated;
+		api.ApiReqAirCorps_ExpandBase.ResponseReceived += Updated;
 
 		Utility.Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
 

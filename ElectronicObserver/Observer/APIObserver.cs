@@ -535,6 +535,13 @@ public sealed class APIObserver
 	public kcsapi.api_req_air_corps.set_action ApiReqAirCorps_SetAction =>
 		(kcsapi.api_req_air_corps.set_action)this["api_req_air_corps/set_action"];
 
+	/// <summary>
+	/// Open new AB <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L2469" />
+	/// </summary>
+	public kcsapi.api_req_air_corps.expand_base ApiReqAirCorps_ExpandBase =>
+		(kcsapi.api_req_air_corps.expand_base)this["api_req_air_corps/expand_base"];
+
 	#endregion
 
 	public string? ServerAddress { get; private set; }
