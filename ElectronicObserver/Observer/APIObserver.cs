@@ -537,14 +537,14 @@ public sealed class APIObserver
 
 	/// <summary>
 	/// Open new AB <br />
-	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L2469" />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L2496" />
 	/// </summary>
 	public kcsapi.api_req_air_corps.expand_base ApiReqAirCorps_ExpandBase =>
 		(kcsapi.api_req_air_corps.expand_base)this["api_req_air_corps/expand_base"];
 
 	/// <summary>
 	/// Ship construction <br />
-	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L2469" />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L708" />
 	/// </summary>
 	public kcsapi.api_get_member.kdock ApiGetMember_KDock =>
 		(kcsapi.api_get_member.kdock)this["api_get_member/kdock"];
