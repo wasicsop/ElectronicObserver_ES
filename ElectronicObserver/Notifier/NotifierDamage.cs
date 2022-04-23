@@ -104,7 +104,7 @@ public class NotifierDamage : NotifierBase
 		o.ApiReqSortie_NightToDay.ResponseReceived += BattleStarted;
 		o.ApiReqSortie_LdShooting.ResponseReceived += BattleStarted;
 		o.ApiReqCombinedBattle_Battle.ResponseReceived += BattleStarted;
-		o["api_req_combined_battle/battle_water"].ResponseReceived += BattleStarted;
+		o.ApiReqCombinedBattle_BattleWater.ResponseReceived += BattleStarted;
 		o.ApiReqCombinedBattle_AirBattle.ResponseReceived += BattleStarted;
 		o.ApiReqCombinedBattle_MidnightBattle.ResponseReceived += BattleStarted;
 		o.ApiReqCombinedBattle_SpMidnight.ResponseReceived += BattleStarted;
