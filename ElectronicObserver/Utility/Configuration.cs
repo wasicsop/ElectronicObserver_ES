@@ -688,7 +688,7 @@ public sealed class Configuration
 			/// <summary>
 			/// Repository to use for updates
 			/// </summary>
-			public Uri UpdateURL { get; set; }
+			public Uri UpdateRepoURL { get; set; }
 
 			/// <summary>
 			/// Should RPC use the icon of your flagship or not
@@ -712,7 +712,7 @@ public sealed class Configuration
 				DiscordRPCMessage = "Headpatting {{secretary}}";
 				DiscordRPCShowFCM = true;
 				DiscordRPCApplicationId = "";
-				UpdateURL = new Uri("http://raw.githubusercontent.com/gre4bee/ryuukitsune.github.io/master/Translations/");
+				UpdateRepoURL = new Uri("https://raw.githubusercontent.com/ElectronicObserverEN/Data/master/");
 				UseFlagshipIconForRPC = false;
 				SubmitDataToTsunDb = null;
 			}
