@@ -635,7 +635,7 @@ public class ShipParameterRecord : RecordBase
 		ao.ApiReqCombinedBattle_EcBattle.ResponseReceived += BattleStart;
 		ao.ApiReqCombinedBattle_EcNightToDay.ResponseReceived += BattleStart;
 		ao.ApiReqCombinedBattle_EachBattle.ResponseReceived += BattleStart;
-		ao["api_req_combined_battle/each_battle_water"].ResponseReceived += BattleStart;
+		ao.ApiReqCombinedBattle_EachBattleWater.ResponseReceived += BattleStart;
 		ao["api_req_combined_battle/ld_shooting"].ResponseReceived += BattleStart;
 
 		ao.ApiReqMap_Next.ResponseReceived += SortieNext;
