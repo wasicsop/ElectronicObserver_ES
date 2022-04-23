@@ -391,6 +391,12 @@ public sealed class APIObserver
 	/// </summary>
 	public ld_shooting ApiReqSortie_LdShooting => (ld_shooting)this["api_req_sortie/ld_shooting"];
 
+	/// <summary>
+	/// Combined fleet (carrier or transport) day battle <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L2557" />
+	/// </summary>
+	public kcsapi.api_req_combined_battle.battle ApiReqCombinedBattle_Battle =>
+		(kcsapi.api_req_combined_battle.battle)this["api_req_combined_battle/battle"];
 
 	#endregion
 
