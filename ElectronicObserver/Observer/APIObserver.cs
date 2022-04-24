@@ -785,15 +785,6 @@ public sealed class APIObserver
 		Utility.Logger.Add(1, LoggerRes.APIObserverStopped);
 	}
 
-	public APIBase this[string key]
-	{
-		get
-		{
-			if (APIList.ContainsKey(key)) return APIList[key];
-			else return null;
-		}
-	}
-
 	private async Task ProxyOnBeforeRequest(object sender, SessionEventArgs e)
 	{
 		e.HttpClient.Request.KeepBody = true;
