@@ -654,6 +654,13 @@ public sealed class APIObserver
 	public kcsapi.api_get_member.preset_deck ApiGetMember_PresetDeck =>
 		(kcsapi.api_get_member.preset_deck)this["api_get_member/preset_deck"];
 
+	/// <summary>
+	/// Select event difficulty <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L3457" />
+	/// </summary>
+	public kcsapi.api_req_map.select_eventmap_rank ApiReqMap_SelectEventMapRank =>
+		(kcsapi.api_req_map.select_eventmap_rank)this["api_req_map/select_eventmap_rank"];
+
 	#endregion
 
 	public string? ServerAddress { get; private set; }
