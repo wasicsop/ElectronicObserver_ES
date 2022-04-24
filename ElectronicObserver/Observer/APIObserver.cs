@@ -668,6 +668,13 @@ public sealed class APIObserver
 	public kcsapi.api_req_quest.stop ApiReqQuest_Stop =>
 		(kcsapi.api_req_quest.stop)this["api_req_quest/stop"];
 
+	/// <summary>
+	/// Save fleet preset <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L1217" />
+	/// </summary>
+	public kcsapi.api_req_hensei.preset_register ApiReqHensei_PresetRegister =>
+		(kcsapi.api_req_hensei.preset_register)this["api_req_hensei/preset_register"];
+
 	#endregion
 
 	public string? ServerAddress { get; private set; }
