@@ -647,6 +647,13 @@ public sealed class APIObserver
 	public kcsapi.api_req_map.start_air_base ApiReqMap_StartAirBase =>
 		(kcsapi.api_req_map.start_air_base)this["api_req_map/start_air_base"];
 
+	/// <summary>
+	/// Preset data - open fleet organization screen <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L1207" />
+	/// </summary>
+	public kcsapi.api_get_member.preset_deck ApiGetMember_PresetDeck =>
+		(kcsapi.api_get_member.preset_deck)this["api_get_member/preset_deck"];
+
 	#endregion
 
 	public string? ServerAddress { get; private set; }
