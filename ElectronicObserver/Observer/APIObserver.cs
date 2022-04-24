@@ -661,6 +661,13 @@ public sealed class APIObserver
 	public kcsapi.api_req_map.select_eventmap_rank ApiReqMap_SelectEventMapRank =>
 		(kcsapi.api_req_map.select_eventmap_rank)this["api_req_map/select_eventmap_rank"];
 
+	/// <summary>
+	/// Deactivate quest <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L927" />
+	/// </summary>
+	public kcsapi.api_req_quest.stop ApiReqQuest_Stop =>
+		(kcsapi.api_req_quest.stop)this["api_req_quest/stop"];
+
 	#endregion
 
 	public string? ServerAddress { get; private set; }
