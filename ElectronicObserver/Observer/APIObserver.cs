@@ -675,6 +675,13 @@ public sealed class APIObserver
 	public kcsapi.api_req_hensei.preset_register ApiReqHensei_PresetRegister =>
 		(kcsapi.api_req_hensei.preset_register)this["api_req_hensei/preset_register"];
 
+	/// <summary>
+	/// Delete fleet preset <br />
+	/// <seealso href="https://github.com/andanteyk/ElectronicObserver/blob/develop/ElectronicObserver/Other/Information/apilist.txt#L1232" />
+	/// </summary>
+	public kcsapi.api_req_hensei.preset_delete ApiReqHensei_PresetDelete =>
+		(kcsapi.api_req_hensei.preset_delete)this["api_req_hensei/preset_delete"];
+
 	#endregion
 
 	public string? ServerAddress { get; private set; }
