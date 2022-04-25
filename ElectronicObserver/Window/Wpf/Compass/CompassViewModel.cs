@@ -575,15 +575,13 @@ public class CompassViewModel : AnchorableViewModel
 			strs.AddLast(itemName + " x " + item.Amount);
 		}
 
-		if (!strs.Any())
-		{
-			return FormCompass.None;
+		if (!strs.Any()) return FormCompass.None;
 
-		}
-		else
-		{
-			return string.Join(", ", strs);
-		}
+		string materialInfo = string.Join(", ", strs);
+
+		Utility.Logger.Add(2, $"{compass.MapAreaID}-{compass.MapInfoID}-{compass.DestinationID} {materialInfo}");
+
+		return materialInfo;
 	}
 
 	private void BattleStarted(string apiname, dynamic data)
