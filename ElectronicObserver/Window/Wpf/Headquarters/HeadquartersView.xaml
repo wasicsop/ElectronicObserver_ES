@@ -21,7 +21,7 @@
 					<controls:NumberBox
 						Maximum="100"
 						Minimum="0"
-						Value="{Binding WorkaroundPaddingBottom}"
+						Value="{Binding WorkaroundOffsetBottom}"
 						/>
 
 					<Slider
@@ -29,7 +29,7 @@
 						Margin="4 0"
 						Maximum="100"
 						Minimum="0"
-						Value="{Binding WorkaroundPaddingBottom}"
+						Value="{Binding WorkaroundOffsetBottom}"
 						/>
 				</StackPanel>
 			</MenuItem>
@@ -253,7 +253,7 @@
 					</Border>
 
 					<Border
-						Padding="{Binding WorkaroundPadding}"
+						Margin="{Binding WorkaroundOffset}"
 						Background="{Binding Ammo.Background}"
 						ToolTip="{Binding Ammo.ToolTip}"
 						Visibility="{Binding Ammo.Visible}"
@@ -286,7 +286,7 @@
 					</Border>
 
 					<Border
-						Padding="{Binding WorkaroundPadding}"
+						Margin="{Binding WorkaroundOffset}"
 						Background="{Binding Bauxite.Background}"
 						ToolTip="{Binding Bauxite.ToolTip}"
 						Visibility="{Binding Bauxite.Visible}"
