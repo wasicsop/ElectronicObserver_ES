@@ -906,6 +906,11 @@ public sealed class Configuration
 			/// </summary>
 			public int DisplayUseItemID { get; set; }
 
+			/// <summary>
+			/// Workaround for WPF not properly calculating content size in WrapPanel
+			/// </summary>
+			public int WrappingOffset { get; set; }
+
 			public ConfigFormHeadquarters()
 			{
 				BlinkAtMaximum = true;

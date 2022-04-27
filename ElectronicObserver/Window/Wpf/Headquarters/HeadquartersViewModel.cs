@@ -46,6 +46,10 @@ public partial class HeadquartersViewModel : AnchorableViewModel
 	public FormHeadquartersTranslationViewModel FormHeadquarters { get; }
 
 	public Visibility Visible { get; set; } = Visibility.Collapsed;
+	// WPF is failing to calculate item size in WrapPanel correctly
+	// adding extra padding to ammo and baux to make them bigger fixes it
+	public Thickness WorkaroundPadding => new(2, 2, 2, WorkaroundPaddingBottom + 2);
+	public int WorkaroundPaddingBottom { get; set; }
 
 	public FontFamily MainFont { get; set; }
 	public float MainFontSize { get; set; }
@@ -144,6 +148,13 @@ public partial class HeadquartersViewModel : AnchorableViewModel
 		Utility.SystemEvents.UpdateTimerTick += SystemEvents_UpdateTimerTick;
 
 		ConfigurationChanged();
+
+		PropertyChanged += (sender, args) =>
+		{
+			if (args.PropertyName is not nameof(WorkaroundPaddingBottom)) return;
+
+			Utility.Configuration.Config.FormHeadquarters.WrappingOffset = WorkaroundPaddingBottom;
+		};
 	}
 
 	void ConfigurationChanged()
@@ -154,6 +165,8 @@ public partial class HeadquartersViewModel : AnchorableViewModel
 		SubFontSize = Utility.Configuration.Config.UI.SubFont.FontData.ToSize();
 		MainFontColor = Utility.Configuration.Config.UI.ForeColor.ToBrush();
 		SubFontColor = Utility.Configuration.Config.UI.SubForeColor.ToBrush();
+
+		WorkaroundPaddingBottom = Utility.Configuration.Config.FormHeadquarters.WrappingOffset;
 
 		foreach (HeadquarterItemViewModel item in Items)
 		{
