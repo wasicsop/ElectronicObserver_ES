@@ -324,6 +324,7 @@
 					Width="{Binding DataContext.StateColumn.Width, Mode='TwoWay', Source={StaticResource Proxy}}"
 					Binding="{Binding QuestView_State}"
 					SortDirection="{Binding DataContext.StateColumn.SortDirection, Mode='TwoWay', Source={StaticResource Proxy}}"
+					SortMemberPath="StateSort"
 					Visibility="{Binding DataContext.StateColumn.Visible, Converter={StaticResource BooleanToVisibilityConverter}, Source={StaticResource Proxy}}"
 					>
 					<DataGridCheckBoxColumn.CellStyle>
