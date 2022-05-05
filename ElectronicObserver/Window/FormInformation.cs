@@ -554,8 +554,9 @@ public partial class FormInformation : DockContent
 
 	private void CheckSallyArea()
 	{
-		if (KCDatabase.Instance.Ships.Values.First().SallyArea == -1)   // そもそも札情報がなければやる必要はない
-			return;
+		// only check if there's any event maps
+		// this function shouldn't get called outside of events so the check should be pointless
+		// if (KCDatabase.Instance.MapArea.Values.Any(m => m.ID > 20)) return;
 
 		IEnumerable<IEnumerable<IShipData>> group;
 
