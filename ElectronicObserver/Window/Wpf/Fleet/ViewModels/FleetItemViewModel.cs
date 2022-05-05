@@ -451,6 +451,8 @@ public class FleetItemViewModel : ObservableObject
 
 				sb.AppendFormat($"{FormFleet.Asw}: {FormFleet.Power}: {asw2}");
 
+				sb.Append($" (x{ship.AswMod():0.##})");
+
 				if (ship.CanOpeningASW)
 					sb.Append(FormFleet.OpeningAsw);
 
