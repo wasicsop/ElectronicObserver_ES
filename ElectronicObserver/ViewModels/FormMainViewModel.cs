@@ -56,6 +56,7 @@ using ElectronicObserver.Window.Wpf.ShipGroup.ViewModels;
 using ElectronicObserver.Window.Wpf.ShipGroupWinforms;
 using ElectronicObserver.Window.Wpf.WinformsWrappers;
 using MessagePack;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using ModernWpf;
 using MessageBox = System.Windows.MessageBox;
@@ -63,7 +64,6 @@ using Timer = System.Windows.Forms.Timer;
 #if DEBUG
 using System.Text.Encodings.Web;
 using ElectronicObserverTypes;
-using Microsoft.EntityFrameworkCore;
 #endif
 
 namespace ElectronicObserver.ViewModels;
