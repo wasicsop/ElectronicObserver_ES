@@ -10,6 +10,7 @@ using ElectronicObserver.Utility;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window;
 using ElectronicObserver.Window.Dialog.ShipPicker;
+using ElectronicObserver.Window.Tools.EventLockPlanner;
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
@@ -182,6 +183,7 @@ public partial class App : Application
 		services.AddSingleton<DialogConstructionRecordViewerTranslationViewModel>();
 		services.AddSingleton<DialogEquipmentListTranslationViewModel>();
 		services.AddSingleton<QuestTrackerManagerTranslationViewModel>();
+		services.AddSingleton<EventLockPlannerTranslationViewModel>();
 
 		services.AddSingleton<ShipPickerViewModel>();
 

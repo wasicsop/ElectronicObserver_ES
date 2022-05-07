@@ -21,6 +21,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using DynaJson;
 using ElectronicObserver.Data;
+using ElectronicObserver.Database;
 using ElectronicObserver.Notifier;
 using ElectronicObserver.Observer;
 using ElectronicObserver.Properties;
@@ -39,6 +40,7 @@ using ElectronicObserver.Window.Tools.DialogAlbumMasterEquipment;
 using ElectronicObserver.Window.Tools.DialogAlbumMasterShip;
 using ElectronicObserver.Window.Tools.DropRecordViewer;
 using ElectronicObserver.Window.Tools.EquipmentList;
+using ElectronicObserver.Window.Tools.EventLockPlanner;
 using ElectronicObserver.Window.Wpf;
 using ElectronicObserver.Window.Wpf.Arsenal;
 using ElectronicObserver.Window.Wpf.BaseAirCorps;
@@ -227,6 +229,9 @@ public partial class FormMainViewModel : ObservableObject
 		KCDatabase.Instance.Load();
 		NotifierManager.Instance.Initialize(Window);
 		SyncBGMPlayer.Instance.ConfigurationChanged();
+
+		using ElectronicObserverContext db = new();
+		db.Database.Migrate();
 
 		UIUpdateTimer = new Timer() { Interval = 1000 };
 		UIUpdateTimer.Tick += UIUpdateTimer_Tick;
@@ -877,6 +882,13 @@ public partial class FormMainViewModel : ObservableObject
 		}
 
 		new QuestTrackerManagerWindow().Show(Window);
+	}
+
+	[ICommand]
+	private void OpenEventLockPlanner()
+	{
+		EventLockPlannerViewModel viewModel = new(KCDatabase.Instance.Ships.Values);
+		new EventLockPlannerWindow(viewModel).Show(Window);
 	}
 
 	#endregion
