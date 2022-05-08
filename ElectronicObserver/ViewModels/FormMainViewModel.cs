@@ -18,6 +18,7 @@ using AvalonDock.Layout;
 using AvalonDock.Layout.Serialization;
 using AvalonDock.Themes;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using DynaJson;
 using ElectronicObserver.Data;
@@ -192,7 +193,7 @@ public partial class FormMainViewModel : ObservableObject
 		DockingManager = dockingManager;
 
 		Config = Configuration.Config;
-		FormMain = App.Current.Services.GetService<FormMainTranslationViewModel>()!;
+		FormMain = Ioc.Default.GetService<FormMainTranslationViewModel>()!;
 
 		CultureInfo cultureInfo = new(Configuration.Config.UI.Culture);
 

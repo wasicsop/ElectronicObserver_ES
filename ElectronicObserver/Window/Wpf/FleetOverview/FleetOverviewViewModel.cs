@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Media;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Data;
 using ElectronicObserver.Observer;
 using ElectronicObserver.Resource;
@@ -39,7 +40,7 @@ public class FleetOverviewViewModel : AnchorableViewModel
 	public FleetOverviewViewModel(List<FleetViewModel> fleets) : base("Fleets", "Fleets",
 		ImageSourceIcons.GetIcon(IconContent.FormFleet))
 	{
-		FormFleetOverview = App.Current.Services.GetService<FormFleetOverviewTranslationViewModel>()!;
+		FormFleetOverview = Ioc.Default.GetService<FormFleetOverviewTranslationViewModel>()!;
 
 		Title = FormFleetOverview.Title;
 		FormFleetOverview.PropertyChanged += (_, _) => Title = FormFleetOverview.Title;

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Media;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Data;
 using ElectronicObserver.Observer;
 using ElectronicObserver.Resource;
@@ -135,7 +136,7 @@ public class DockViewModel : AnchorableViewModel
 	public DockViewModel() : base("Dock", "Dock",
 		ImageSourceIcons.GetIcon(IconContent.FormDock))
 	{
-		FormDock = App.Current.Services.GetService<FormDockTranslationViewModel>()!;
+		FormDock = Ioc.Default.GetService<FormDockTranslationViewModel>()!;
 
 		Title = FormDock.Title;
 		FormDock.PropertyChanged += (_, _) => Title = FormDock.Title;

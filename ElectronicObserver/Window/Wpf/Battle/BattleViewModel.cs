@@ -6,6 +6,7 @@ using System.Text;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
+using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Data;
 using ElectronicObserver.Data.Battle;
@@ -137,7 +138,7 @@ public partial class BattleViewModel : AnchorableViewModel
 	public BattleViewModel() : base("Battle", "Battle",
 		ImageSourceIcons.GetIcon(IconContent.FormBattle))
 	{
-		FormBattle = App.Current.Services.GetService<FormBattleTranslationViewModel>()!;
+		FormBattle = Ioc.Default.GetService<FormBattleTranslationViewModel>()!;
 
 		Title = FormBattle.Title;
 		FormBattle.PropertyChanged += (_, _) => Title = FormBattle.Title;

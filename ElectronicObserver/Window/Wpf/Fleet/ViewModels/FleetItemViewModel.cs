@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Data;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Utility.Data;
@@ -34,7 +35,7 @@ public class FleetItemViewModel : ObservableObject
 
 	public FleetItemViewModel(FleetViewModel parent)
 	{
-		FormFleet = App.Current.Services.GetService<FormFleetTranslationViewModel>()!;
+		FormFleet = Ioc.Default.GetService<FormFleetTranslationViewModel>()!;
 
 		Parent = parent;
 

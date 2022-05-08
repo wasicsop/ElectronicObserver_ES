@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Media;
+using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Data;
 using ElectronicObserver.Data.Battle;
 using ElectronicObserver.Observer;
@@ -64,7 +65,7 @@ public class CompassViewModel : AnchorableViewModel
 		ImageSourceIcons.GetIcon(IconContent.FormCompass))
 	{
 		Db = KCDatabase.Instance;
-		FormCompass = App.Current.Services.GetService<FormCompassTranslationViewModel>()!;
+		FormCompass = Ioc.Default.GetService<FormCompassTranslationViewModel>()!;
 
 		Title = FormCompass.Title;
 		FormCompass.PropertyChanged += (_, _) => Title = FormCompass.Title;

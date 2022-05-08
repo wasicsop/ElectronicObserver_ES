@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Media;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Data;
 using ElectronicObserver.Observer;
 using ElectronicObserver.Resource;
@@ -165,7 +166,7 @@ public class ArsenalViewModel : AnchorableViewModel
 	public ArsenalViewModel() : base("Arsenal", "Arsenal",
 		ImageSourceIcons.GetIcon(IconContent.FormArsenal))
 	{
-		FormArsenal = App.Current.Services.GetService<FormArsenalTranslationViewModel>()!;
+		FormArsenal = Ioc.Default.GetService<FormArsenalTranslationViewModel>()!;
 
 		Title = FormArsenal.Title;
 		FormArsenal.PropertyChanged += (_, _) => Title = FormArsenal.Title;

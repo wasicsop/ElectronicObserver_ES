@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows;
+using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Data;
 using ElectronicObserver.Observer;
@@ -31,7 +32,7 @@ public partial class FleetViewModel : AnchorableViewModel
 	public FleetViewModel(int fleetId) : base($"#{fleetId}", $"Fleet{fleetId}",
 		ImageSourceIcons.GetIcon(IconContent.FormFleet))
 	{
-		FormFleet = App.Current.Services.GetService<FormFleetTranslationViewModel>()!;
+		FormFleet = Ioc.Default.GetService<FormFleetTranslationViewModel>()!;
 
 		Title = $"#{fleetId}";
 		FormFleet.PropertyChanged += (_, _) => Title = $"#{fleetId}";

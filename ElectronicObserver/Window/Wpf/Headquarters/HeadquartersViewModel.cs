@@ -6,6 +6,7 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Data;
 using ElectronicObserver.Observer;
@@ -79,7 +80,7 @@ public partial class HeadquartersViewModel : AnchorableViewModel
 	public HeadquartersViewModel() : base("HQ", "Headquarters",
 		ImageSourceIcons.GetIcon(IconContent.FormHeadQuarters))
 	{
-		FormHeadquarters = App.Current.Services.GetService<FormHeadquartersTranslationViewModel>()!;
+		FormHeadquarters = Ioc.Default.GetService<FormHeadquartersTranslationViewModel>()!;
 
 		Title = FormHeadquarters.Title;
 		FormHeadquarters.PropertyChanged += (_, _) => Title = FormHeadquarters.Title;
@@ -244,7 +245,7 @@ public partial class HeadquartersViewModel : AnchorableViewModel
 	/// </summary>
 	public static IEnumerable<string> GetItemNames()
 	{
-		var formHeadquarters = App.Current.Services.GetService<FormHeadquartersTranslationViewModel>()!;
+		var formHeadquarters = Ioc.Default.GetService<FormHeadquartersTranslationViewModel>()!;
 
 		yield return formHeadquarters.ItemNameName;
 		yield return formHeadquarters.ItemNameComment;

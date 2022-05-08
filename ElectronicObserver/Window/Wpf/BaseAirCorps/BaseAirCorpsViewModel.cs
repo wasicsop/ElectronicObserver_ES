@@ -9,6 +9,7 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Data;
 using ElectronicObserver.Resource;
@@ -141,7 +142,7 @@ public class BaseAirCorpsItemViewModel : ObservableObject
 
 	public BaseAirCorpsItemViewModel(ICommand copyOrganizationCommand, ICommand displayRelocatedEquipmentsCommand)
 	{
-		FormBaseAirCorps = App.Current.Services.GetService<FormBaseAirCorpsTranslationViewModel>()!;
+		FormBaseAirCorps = Ioc.Default.GetService<FormBaseAirCorpsTranslationViewModel>()!;
 
 		CopyOrganizationCommand = copyOrganizationCommand;
 		DisplayRelocatedEquipmentsCommand = displayRelocatedEquipmentsCommand;
@@ -433,7 +434,7 @@ public partial class BaseAirCorpsViewModel : AnchorableViewModel
 	public BaseAirCorpsViewModel() : base("AB", "BaseAirCorps",
 		ImageSourceIcons.GetIcon(IconContent.FormBaseAirCorps))
 	{
-		FormBaseAirCorps = App.Current.Services.GetService<FormBaseAirCorpsTranslationViewModel>()!;
+		FormBaseAirCorps = Ioc.Default.GetService<FormBaseAirCorpsTranslationViewModel>()!;
 
 		Title = FormBaseAirCorps.Title;
 		FormBaseAirCorps.PropertyChanged += (_, _) => Title = FormBaseAirCorps.Title;

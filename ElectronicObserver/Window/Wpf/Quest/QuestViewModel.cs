@@ -8,6 +8,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Forms;
 using System.Windows.Media;
+using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using DynaJson;
 using ElectronicObserver.Data;
@@ -83,7 +84,7 @@ public partial class QuestViewModel : AnchorableViewModel
 
 	public QuestViewModel() : base("Quest", "Quest", ImageSourceIcons.GetIcon(IconContent.FormQuest))
 	{
-		FormQuest = App.Current.Services.GetService<FormQuestTranslationViewModel>()!;
+		FormQuest = Ioc.Default.GetService<FormQuestTranslationViewModel>()!;
 		View = CollectionViewSource.GetDefaultView(Quests);
 
 		Title = FormQuest.Title;

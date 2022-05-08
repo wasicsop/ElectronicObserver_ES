@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Data;
 using System.Windows.Media;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
 using ElectronicObserver.Data;
@@ -148,7 +149,7 @@ public partial class EventLockPlannerViewModel : WindowViewModelBase
 	
 	public EventLockPlannerViewModel(IEnumerable<IShipData> allShips)
 	{
-		EventLockPlanner = App.Current.Services.GetService<EventLockPlannerTranslationViewModel>()!;
+		EventLockPlanner = Ioc.Default.GetService<EventLockPlannerTranslationViewModel>()!;
 
 		AllShipLocks = allShips.Select(s => new ShipLockViewModel(s)).ToList();
 
