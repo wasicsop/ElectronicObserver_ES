@@ -9,7 +9,7 @@ namespace ElectronicObserver.Database;
 
 public class ElectronicObserverContext : DbContext
 {
-	public DbSet<EventLockPlanModel> EventLockPlans { get; set; } = null!;
+	public DbSet<EventLockPlannerModel> EventLockPlans { get; set; } = null!;
 
 	private string DbPath { get; }
 
@@ -23,14 +23,14 @@ public class ElectronicObserverContext : DbContext
 
 	protected override void OnModelCreating(ModelBuilder builder)
 	{
-		builder.Entity<EventLockPlanModel>()
+		builder.Entity<EventLockPlannerModel>()
 			.HasKey(s => s.Id);
 
-		builder.Entity<EventLockPlanModel>()
+		builder.Entity<EventLockPlannerModel>()
 			.Property(s => s.Locks)
 			.HasConversion(EventLockListToStringConverter());
 
-		builder.Entity<EventLockPlanModel>()
+		builder.Entity<EventLockPlannerModel>()
 			.Property(s => s.ShipLocks)
 			.HasConversion(ShipLockListToStringConverter());
 	}
