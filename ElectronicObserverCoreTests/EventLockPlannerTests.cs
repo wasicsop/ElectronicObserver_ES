@@ -31,6 +31,9 @@ public class EventLockPlannerTests
 			new ShipDataMock(Db.MasterShips[ShipId.Harukaze]) {ID = 3},
 			new ShipDataMock(Db.MasterShips[ShipId.Matsukaze]) {ID = 4},
 			new ShipDataMock(Db.MasterShips[ShipId.Hatakaze]) {ID = 5},
+			new ShipDataMock(Db.MasterShips[ShipId.Bismarck]) {ID = 6},
+			new ShipDataMock(Db.MasterShips[ShipId.Warspite]) {ID = 7},
+			new ShipDataMock(Db.MasterShips[ShipId.Perth]) {ID = 8},
 		};
 	}
 
@@ -39,7 +42,7 @@ public class EventLockPlannerTests
 	{
 		EventLockPlannerViewModel planner = new(AllShips);
 
-		Assert.Equal(5, planner.NoLockGroup.Ships.Count);
+		Assert.Equal(AllShips.Count, planner.NoLockGroup.Ships.Count);
 		Assert.Empty(planner.LockGroups);
 	}
 
@@ -63,9 +66,9 @@ public class EventLockPlannerTests
 		ShipLockViewModel kamikaze = planner.NoLockGroup.Ships
 			.First(s => s.Ship.MasterShip.ShipId is ShipId.Kamikaze);
 
-		planner.LockGroups.First().Move(kamikaze, planner.NoLockGroup.Ships);
+		planner.LockGroups.First().Move(kamikaze, planner.NoLockGroup);
 
-		Assert.Equal(4, planner.NoLockGroup.Ships.Count);
+		Assert.Equal(AllShips.Count - 1, planner.NoLockGroup.Ships.Count);
 		Assert.Single(planner.LockGroups);
 		Assert.Single(planner.LockGroups.First().Ships);
 	}
@@ -79,7 +82,7 @@ public class EventLockPlannerTests
 
 		EventLockPlannerViewModel planner = new(allShips);
 
-		Assert.Equal(4, planner.NoLockGroup.Ships.Count);
+		Assert.Equal(allShips.Count - 1, planner.NoLockGroup.Ships.Count);
 		Assert.Equal(2, planner.LockGroups.Count);
 		Assert.Single(planner.LockGroups[1].Ships);
 	}
@@ -93,11 +96,24 @@ public class EventLockPlannerTests
 
 		EventLockPlannerViewModel planner = new(allShips);
 
-		planner.LockGroups[0].Move(planner.LockGroups[1].Ships.First(), planner.LockGroups[1].Ships);
+		planner.LockGroups[0].Move(planner.LockGroups[1].Ships.First(), planner.LockGroups[1]);
 
-		Assert.Equal(4, planner.NoLockGroup.Ships.Count);
+		Assert.Equal(allShips.Count - 1, planner.NoLockGroup.Ships.Count);
 		Assert.Equal(2, planner.LockGroups.Count);
 		Assert.Empty(planner.LockGroups[0].Ships);
 		Assert.Single(planner.LockGroups[1].Ships);
+	}
+
+	[Fact(DisplayName = "Type filter")]
+	public void EventLockPlannerTest6()
+	{
+		EventLockPlannerViewModel planner = new(AllShips);
+
+		planner.NoLockGroup.Filter.TypeFilters
+			.First(f => f.Value is ShipTypeGroup.Destroyers).IsChecked = false;
+
+		int expected = AllShips.Count(s => s.MasterShip.ShipType is not ShipTypes.Destroyer);
+
+		Assert.Equal(expected, planner.NoLockGroup.Ships.Count);
 	}
 }

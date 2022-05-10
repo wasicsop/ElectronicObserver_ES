@@ -184,9 +184,10 @@ public partial class App : Application
 			.AddSingleton<DialogEquipmentListTranslationViewModel>()
 			.AddSingleton<QuestTrackerManagerTranslationViewModel>()
 			.AddSingleton<EventLockPlannerTranslationViewModel>()
+			.AddSingleton<ShipFilterTranslationViewModel>()
 			// tools
 			.AddSingleton<ShipPickerViewModel>()
-
+		
 			.BuildServiceProvider();
 
 		Ioc.Default.ConfigureServices(services);

@@ -141,110 +141,171 @@
 			ResizeDirection="Rows"
 			/>
 
-		<DataGrid
-			Grid.Row="4"
-			dd:DragDrop.DropHandler="{Binding NoLockGroup}"
-			dd:DragDrop.IsDragSource="True"
-			dd:DragDrop.IsDropTarget="True"
-			dd:DragDrop.UseDefaultDragAdorner="True"
-			AutoGenerateColumns="False"
-			HeadersVisibility="Column"
-			IsReadOnly="True"
-			ItemsSource="{Binding NoLockGroup.Ships}"
-			SelectionMode="Single"
-			>
-			<DataGrid.ColumnHeaderStyle>
-				<Style BasedOn="{StaticResource DefaultDataGridColumnHeaderStyle}" TargetType="{x:Type DataGridColumnHeader}">
-					<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
-					<Setter Property="FontFamily" Value="{Binding DataContext.Font, Source={StaticResource Proxy}}" />
-					<Setter Property="FontSize" Value="{Binding DataContext.FontSize, Source={StaticResource Proxy}}" />
-					<Setter Property="Padding" Value="5 0" />
-					<Setter Property="Template" Value="{StaticResource DataGridColumnHeaderTemplate}" />
-					<Style.Triggers>
-						<Trigger Property="SortDirection" Value="{x:Null}">
-							<Setter Property="Padding" Value="5 0" />
-						</Trigger>
-					</Style.Triggers>
-				</Style>
-			</DataGrid.ColumnHeaderStyle>
+		<Grid Grid.Row="4">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto" />
+				<RowDefinition />
+			</Grid.RowDefinitions>
 
-			<ui:DataGridHelper.CheckBoxColumnElementStyle>
-				<Style BasedOn="{StaticResource DataGridReadOnlyCheckBoxStyle}" TargetType="CheckBox">
-					<Setter Property="Margin" Value="0" />
-					<Setter Property="Padding" Value="0" />
-					<Setter Property="HorizontalAlignment" Value="Center" />
-				</Style>
-			</ui:DataGridHelper.CheckBoxColumnElementStyle>
+			<Grid Grid.Row="0" DataContext="{Binding NoLockGroup.Filter}">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto" />
+					<RowDefinition />
+				</Grid.RowDefinitions>
 
-			<ui:DataGridHelper.TextColumnElementStyle>
-				<Style BasedOn="{StaticResource DataGridTextBlockStyle}" TargetType="TextBlock">
-					<Setter Property="Padding" Value="5 0" />
-					<Setter Property="FontFamily" Value="{Binding DataContext.Font, Source={StaticResource Proxy}}" />
-					<Setter Property="FontSize" Value="{Binding DataContext.FontSize, Source={StaticResource Proxy}}" />
-					<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
-				</Style>
-			</ui:DataGridHelper.TextColumnElementStyle>
+				<ItemsControl Grid.Row="0" ItemsSource="{Binding TypeFilters}">
+					<ItemsControl.ItemsPanel>
+						<ItemsPanelTemplate>
+							<WrapPanel Orientation="Horizontal" />
+						</ItemsPanelTemplate>
+					</ItemsControl.ItemsPanel>
+					<ItemsControl.ItemTemplate>
+						<DataTemplate>
+							<CheckBox
+								MinWidth="0"
+								Margin="2 0"
+								Content="{Binding Display}"
+								IsChecked="{Binding IsChecked}"
+								/>
+						</DataTemplate>
+					</ItemsControl.ItemTemplate>
+				</ItemsControl>
 
-			<DataGrid.Columns>
-				<DataGridTextColumn
-					Binding="{Binding Ship.ID}"
-					FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
-					FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
-					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
-					Header="ID"
-					/>
-				<DataGridTextColumn
-					Binding="{Binding Ship.MasterShip.ShipTypeName}"
-					FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
-					FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
-					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
-					Header="{Binding DataContext.EventLockPlanner.ShipType, Source={StaticResource Proxy}}"
-					/>
-				<DataGridTextColumn
-					Binding="{Binding Ship.Name}"
-					FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
-					FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
-					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
-					Header="{Binding DataContext.EventLockPlanner.Name, Source={StaticResource Proxy}}"
-					/>
-				<DataGridTextColumn
-					Binding="{Binding Ship.Level}"
-					FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
-					FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
-					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
-					Header="Lv"
-					/>
-				<DataGridTextColumn
-					Binding="{Binding Ship.FirepowerBase}"
-					FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
-					FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
-					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
-					Header="{Binding DataContext.EventLockPlanner.Firepower, Source={StaticResource Proxy}}"
-					/>
-				<DataGridTextColumn
-					Binding="{Binding NightPowerBase}"
-					FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
-					FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
-					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
-					Header="{Binding DataContext.EventLockPlanner.NightBattlePower, Source={StaticResource Proxy}}"
-					/>
-				<DataGridTextColumn
-					Binding="{Binding Ship.ASWBase}"
-					FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
-					FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
-					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
-					Header="{Binding DataContext.EventLockPlanner.ASW, Source={StaticResource Proxy}}"
-					/>
-				<DataGridTextColumn
-					Binding="{Binding Ship.LuckBase}"
-					FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
-					FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
-					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
-					Header="{Binding DataContext.EventLockPlanner.Luck, Source={StaticResource Proxy}}"
-					/>
-				<DataGridCheckBoxColumn Binding="{Binding CanUseDaihatsu, Mode=OneWay}" Header="{Binding DataContext.EventLockPlanner.Daihatsu, Source={StaticResource Proxy}}" />
-				<DataGridCheckBoxColumn Binding="{Binding CanUseTank, Mode=OneWay}" Header="{Binding DataContext.EventLockPlanner.Tank, Source={StaticResource Proxy}}" />
-			</DataGrid.Columns>
-		</DataGrid>
+				<WrapPanel Grid.Row="1" Orientation="Horizontal">
+					<local:NumberRange
+						Maximum="{Binding AswMax}"
+						Minimum="{Binding AswMin}"
+						Text="{Binding ShipFilter.ASW}"
+						/>
+
+					<local:NumberRange
+						Maximum="{Binding LuckMax}"
+						Minimum="{Binding LuckMin}"
+						Text="{Binding ShipFilter.Luck}"
+						/>
+
+					<CheckBox
+						MinWidth="0"
+						Margin="2 0"
+						Content="{Binding ShipFilter.Daihatsu}"
+						IsChecked="{Binding CanEquipDaihatsu}"
+						/>
+
+					<CheckBox
+						MinWidth="0"
+						Margin="2 0"
+						Content="{Binding ShipFilter.Tank}"
+						IsChecked="{Binding CanEquipTank}"
+						/>
+				</WrapPanel>
+			</Grid>
+
+			<DataGrid
+				Grid.Row="1"
+				dd:DragDrop.DropHandler="{Binding}"
+				dd:DragDrop.IsDragSource="True"
+				dd:DragDrop.IsDropTarget="True"
+				dd:DragDrop.UseDefaultDragAdorner="True"
+				AutoGenerateColumns="False"
+				DataContext="{Binding NoLockGroup}"
+				HeadersVisibility="Column"
+				IsReadOnly="True"
+				ItemsSource="{Binding Ships}"
+				SelectionMode="Single"
+				>
+				<DataGrid.ColumnHeaderStyle>
+					<Style BasedOn="{StaticResource DefaultDataGridColumnHeaderStyle}" TargetType="{x:Type DataGridColumnHeader}">
+						<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
+						<Setter Property="FontFamily" Value="{Binding DataContext.Font, Source={StaticResource Proxy}}" />
+						<Setter Property="FontSize" Value="{Binding DataContext.FontSize, Source={StaticResource Proxy}}" />
+						<Setter Property="Padding" Value="5 0" />
+						<Setter Property="Template" Value="{StaticResource DataGridColumnHeaderTemplate}" />
+						<Style.Triggers>
+							<Trigger Property="SortDirection" Value="{x:Null}">
+								<Setter Property="Padding" Value="5 0" />
+							</Trigger>
+						</Style.Triggers>
+					</Style>
+				</DataGrid.ColumnHeaderStyle>
+
+				<ui:DataGridHelper.CheckBoxColumnElementStyle>
+					<Style BasedOn="{StaticResource DataGridReadOnlyCheckBoxStyle}" TargetType="CheckBox">
+						<Setter Property="Margin" Value="0" />
+						<Setter Property="Padding" Value="0" />
+						<Setter Property="HorizontalAlignment" Value="Center" />
+					</Style>
+				</ui:DataGridHelper.CheckBoxColumnElementStyle>
+
+				<ui:DataGridHelper.TextColumnElementStyle>
+					<Style BasedOn="{StaticResource DataGridTextBlockStyle}" TargetType="TextBlock">
+						<Setter Property="Padding" Value="5 0" />
+						<Setter Property="FontFamily" Value="{Binding DataContext.Font, Source={StaticResource Proxy}}" />
+						<Setter Property="FontSize" Value="{Binding DataContext.FontSize, Source={StaticResource Proxy}}" />
+						<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
+					</Style>
+				</ui:DataGridHelper.TextColumnElementStyle>
+
+				<DataGrid.Columns>
+					<DataGridTextColumn
+						Binding="{Binding Ship.ID}"
+						FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
+						FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
+						Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
+						Header="ID"
+						/>
+					<DataGridTextColumn
+						Binding="{Binding Ship.MasterShip.ShipTypeName}"
+						FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
+						FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
+						Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
+						Header="{Binding DataContext.EventLockPlanner.ShipType, Source={StaticResource Proxy}}"
+						/>
+					<DataGridTextColumn
+						Binding="{Binding Ship.Name}"
+						FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
+						FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
+						Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
+						Header="{Binding DataContext.EventLockPlanner.Name, Source={StaticResource Proxy}}"
+						/>
+					<DataGridTextColumn
+						Binding="{Binding Ship.Level}"
+						FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
+						FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
+						Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
+						Header="Lv"
+						/>
+					<DataGridTextColumn
+						Binding="{Binding Ship.FirepowerBase}"
+						FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
+						FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
+						Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
+						Header="{Binding DataContext.EventLockPlanner.Firepower, Source={StaticResource Proxy}}"
+						/>
+					<DataGridTextColumn
+						Binding="{Binding NightPowerBase}"
+						FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
+						FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
+						Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
+						Header="{Binding DataContext.EventLockPlanner.NightBattlePower, Source={StaticResource Proxy}}"
+						/>
+					<DataGridTextColumn
+						Binding="{Binding Ship.ASWBase}"
+						FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
+						FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
+						Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
+						Header="{Binding DataContext.EventLockPlanner.ASW, Source={StaticResource Proxy}}"
+						/>
+					<DataGridTextColumn
+						Binding="{Binding Ship.LuckBase}"
+						FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
+						FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
+						Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
+						Header="{Binding DataContext.EventLockPlanner.Luck, Source={StaticResource Proxy}}"
+						/>
+					<DataGridCheckBoxColumn Binding="{Binding CanUseDaihatsu, Mode=OneWay}" Header="{Binding DataContext.EventLockPlanner.Daihatsu, Source={StaticResource Proxy}}" />
+					<DataGridCheckBoxColumn Binding="{Binding CanUseTank, Mode=OneWay}" Header="{Binding DataContext.EventLockPlanner.Tank, Source={StaticResource Proxy}}" />
+				</DataGrid.Columns>
+			</DataGrid>
+		</Grid>
 	</Grid>
 </common:WindowBase>

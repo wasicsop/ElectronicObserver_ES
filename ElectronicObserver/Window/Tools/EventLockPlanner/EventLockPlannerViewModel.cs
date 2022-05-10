@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Media;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -13,6 +14,7 @@ using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
 using ElectronicObserver.Data;
 using ElectronicObserver.Database;
+using ElectronicObserver.Window.Dialog.ShipPicker;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Extensions;
 using GongSolutions.Wpf.DragDrop;
@@ -44,18 +46,118 @@ public class ShipLockViewModel : ObservableObject
 	}
 }
 
+public class ShipFilterTranslationViewModel : ObservableObject
+{
+	public string ASW => GeneralRes.ASW;
+	public string Luck => GeneralRes.Luck;
+	public string Daihatsu => EventLockPlanner.Daihatsu;
+	public string Tank => EventLockPlanner.Tank;
+}
+
+public class ShipFilterViewModel : ObservableObject
+{
+	public ShipFilterTranslationViewModel ShipFilter { get; }
+
+	public List<Filter> TypeFilters { get; }
+
+	public int LevelMin { get; set; } = 0;
+	public int LevelMax { get; set; } = 175;
+
+	public int AswMin { get; set; } = 0;
+	public int AswMax { get; set; } = 200;
+
+	public int LuckMin { get; set; } = 0;
+	public int LuckMax { get; set; } = 200;
+
+	public bool CanEquipDaihatsu { get; set; }
+	public bool CanEquipTank { get; set; }
+
+	public ShipFilterViewModel()
+	{
+		ShipFilter = Ioc.Default.GetService<ShipFilterTranslationViewModel>()!;
+
+		TypeFilters = Enum.GetValues<ShipTypeGroup>()
+			.Select(t => new Filter(t)
+			{
+				IsChecked = true,
+			})
+			.ToList();
+
+		foreach (Filter filter in TypeFilters)
+		{
+			filter.PropertyChanged += (_, _) => OnPropertyChanged(string.Empty);
+		}
+	}
+
+	public bool MeetsFilterCondition(IShipData ship)
+	{
+		List<ShipTypes> enabledFilters = TypeFilters
+			.Where(f => f.IsChecked)
+			.SelectMany(f => f.Value.ToTypes())
+			.ToList();
+
+		if (!enabledFilters.Contains(ship.MasterShip.ShipType)) return false;
+		if (ship.Level < LevelMin) return false;
+		if (ship.Level > LevelMax) return false;
+		if (ship.ASWBase < AswMin) return false;
+		if (ship.ASWBase > AswMax) return false;
+		if (ship.LuckBase < LuckMin) return false;
+		if (ship.LuckBase > LuckMax) return false;
+		if (CanEquipDaihatsu && !ship.MasterShip.EquippableCategoriesTyped.Contains(EquipmentTypes.LandingCraft)) return false;
+		if (CanEquipTank && !ship.MasterShip.EquippableCategoriesTyped.Contains(EquipmentTypes.SpecialAmphibiousTank)) return false;
+
+		// other filters
+
+		return true;
+	}
+}
+
 public class LockGroupViewModel : ObservableObject, IDropTarget
 {
 	public int Id { get; }
 	public Color Color { get; set; }
 	public SolidColorBrush Background => new(Color);
 	public string Name { get; set; } = "";
+
+	public ShipFilterViewModel Filter { get; } = new();
+	private ObservableCollection<ShipLockViewModel> ShipSource { get; } = new();
 	public ObservableCollection<ShipLockViewModel> Ships { get; } = new();
 
 	public LockGroupViewModel(int id)
 	{
 		Id = id;
 		Color = Color.FromRgb((byte)Random.Shared.Next(256), (byte)Random.Shared.Next(256), (byte)Random.Shared.Next(256));
+
+		ShipSource.CollectionChanged += (sender, args) =>
+		{
+			if (args.OldItems?.Cast<ShipLockViewModel>() is { } removedLocks)
+			{
+				foreach (ShipLockViewModel shipLock in removedLocks)
+				{
+					Ships.Remove(shipLock);
+				}
+			}
+
+			if (args.NewItems is not null)
+			{
+				ReloadShips(null, null);
+			}
+		};
+
+		Filter.PropertyChanged += ReloadShips;
+	}
+
+	private void ReloadShips(object? sender, PropertyChangedEventArgs? args)
+	{
+		Ships.Clear();
+
+		List<ShipLockViewModel> filteredShips = ShipSource.Where(s => Filter.MeetsFilterCondition(s.Ship))
+			.ToList();
+
+		foreach (ShipLockViewModel shipLock in filteredShips)
+		{
+			Ships.Add(shipLock);
+		}
 	}
 
 	public bool CanAdd(ShipLockViewModel shipLock) => Id switch
@@ -64,10 +166,48 @@ public class LockGroupViewModel : ObservableObject, IDropTarget
 		{ } => shipLock.ActualLock <= 0 || shipLock.ActualLock == Id
 	};
 
+	public void Add(ShipLockViewModel shipLock)
+	{
+		ShipSource.Add(shipLock);
+	}
+
+	public void Move(ShipLockViewModel shipLock, LockGroupViewModel source) =>
+		Insert(Ships.Count, shipLock, source);
+
 	private void Insert(int index, ShipLockViewModel shipLock)
 	{
 		shipLock.PlannedLock = Id;
-		Ships.Insert(index, shipLock);
+		ShipSource.Insert(index, shipLock);
+		ReloadShips(null, null);
+	}
+
+	private void Insert(int index, ShipLockViewModel shipLock, LockGroupViewModel source)
+	{
+		if (!CanAdd(shipLock)) return;
+
+		// index needs to be adjusted for moves within a group
+		if (source.Ships == Ships)
+		{
+			int oldIndex = Ships.IndexOf(shipLock);
+			if (oldIndex < index)
+			{
+				index--;
+			}
+		}
+
+		source.Remove(shipLock);
+		Insert(index, shipLock);
+	}
+
+	private void Remove(ShipLockViewModel shipLock)
+	{
+		ShipSource.Remove(shipLock);
+	}
+
+	public void Clear()
+	{
+		Ships.Clear();
+		ShipSource.Clear();
 	}
 
 	public void DragOver(IDropInfo dropInfo)
@@ -90,28 +230,9 @@ public class LockGroupViewModel : ObservableObject, IDropTarget
 		if (dropInfo.Data is not ShipLockViewModel shipLock) return;
 		if (dropInfo.DragInfo.SourceCollection is not ObservableCollection<ShipLockViewModel> source) return;
 
-		Insert(dropInfo.InsertIndex, shipLock, source);
-	}
+		if (dropInfo.DragInfo.VisualSource is not ItemsControl { DataContext: LockGroupViewModel lockGroup }) return;
 
-	public void Move(ShipLockViewModel shipLock, ObservableCollection<ShipLockViewModel> source) =>
-		Insert(Ships.Count, shipLock, source);
-
-	private void Insert(int index, ShipLockViewModel shipLock, ObservableCollection<ShipLockViewModel> source)
-	{
-		if (!CanAdd(shipLock)) return;
-
-		// index needs to be adjusted for moves within a group
-		if (source == Ships)
-		{
-			int oldIndex = Ships.IndexOf(shipLock);
-			if (oldIndex < index)
-			{
-				index--;
-			}
-		}
-
-		source.Remove(shipLock);
-		Insert(index, shipLock);
+		Insert(dropInfo.InsertIndex, shipLock, lockGroup);
 	}
 }
 
@@ -146,7 +267,7 @@ public partial class EventLockPlannerViewModel : WindowViewModelBase
 
 	public LockGroupViewModel NoLockGroup { get; } = new(0);
 	public ObservableCollection<LockGroupViewModel> LockGroups { get; } = new();
-	
+
 	public EventLockPlannerViewModel(IEnumerable<IShipData> allShips)
 	{
 		EventLockPlanner = Ioc.Default.GetService<EventLockPlannerTranslationViewModel>()!;
@@ -179,7 +300,7 @@ public partial class EventLockPlannerViewModel : WindowViewModelBase
 
 		foreach (ShipLockViewModel ship in unlockedShips)
 		{
-			NoLockGroup.Ships.Add(ship);
+			NoLockGroup.Add(ship);
 		}
 	}
 
@@ -192,7 +313,7 @@ public partial class EventLockPlannerViewModel : WindowViewModelBase
 				AddLock();
 			}
 
-			LockGroups[shipLock.ActualLock - 1].Move(shipLock, NoLockGroup.Ships);
+			LockGroups[shipLock.ActualLock - 1].Move(shipLock, NoLockGroup);
 		}
 	}
 
@@ -212,7 +333,7 @@ public partial class EventLockPlannerViewModel : WindowViewModelBase
 
 		foreach (ShipLockViewModel ship in group.Ships.ToList())
 		{
-			NoLockGroup.Move(ship, group.Ships);
+			NoLockGroup.Move(ship, group);
 		}
 
 		LockGroups.Remove(group);
@@ -258,7 +379,7 @@ public partial class EventLockPlannerViewModel : WindowViewModelBase
 
 	private void LoadModel(EventLockPlanModel model)
 	{
-		NoLockGroup.Ships.Clear();
+		NoLockGroup.Clear();
 		LockGroups.Clear();
 
 		GenerateUnlockedShips();
@@ -281,7 +402,7 @@ public partial class EventLockPlannerViewModel : WindowViewModelBase
 			if (shipLock is null) continue;
 			if (!lockGroup.CanAdd(shipLock)) continue;
 
-			lockGroup.Move(shipLock, NoLockGroup.Ships);
+			lockGroup.Move(shipLock, NoLockGroup);
 		}
 	}
 }
