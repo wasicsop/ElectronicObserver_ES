@@ -6,7 +6,7 @@ public class WindowBase<TViewModel> : System.Windows.Window where TViewModel : W
 {
 	public TViewModel ViewModel { get; }
 
-	[Obsolete("This is only needed so WPF doesn't complain, don't use this.")]
+	[Obsolete("This is only needed so WPF doesn't complain, don't use this.", true)]
 #pragma warning disable CS8618
 	public WindowBase()
 #pragma warning restore CS8618
