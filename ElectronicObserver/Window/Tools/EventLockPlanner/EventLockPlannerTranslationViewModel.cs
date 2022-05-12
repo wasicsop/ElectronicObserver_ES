@@ -9,6 +9,11 @@ public class EventLockPlannerTranslationViewModel : TranslationBaseViewModel
 	public string AddLock => EventLockPlanner.AddLock;
 	public string RemoveLock => EventLockPlanner.RemoveLock;
 
+	public string AddPhase => EventLockPlanner.AddPhase;
+	public string RemovePhase => EventLockPlanner.RemovePhase;
+
+	public string Remove => EventLockPlanner.Remove;
+
 	public string ShipType => Properties.Window.FormShipGroup.ShipView_ShipType;
 	public string Name => Properties.Window.FormShipGroup.ShipView_Name;
 	public string Firepower => GeneralRes.Firepower;

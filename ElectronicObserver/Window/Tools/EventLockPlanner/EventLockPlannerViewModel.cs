@@ -1,17 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Data;
 using System.Windows.Media;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
-using ElectronicObserver.Data;
 using ElectronicObserver.Database;
 using ElectronicObserverTypes;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace ElectronicObserver.Window.Tools.EventLockPlanner;
 
@@ -21,8 +16,9 @@ public partial class EventLockPlannerViewModel : WindowViewModelBase
 
 	private List<ShipLockViewModel> AllShipLocks { get; }
 
-	public LockGroupViewModel NoLockGroup { get; } = new(0);
+	public LockGroupViewModel NoLockGroup { get; } = new(0) { Name = "0", Color = Colors.Transparent };
 	public ObservableCollection<LockGroupViewModel> LockGroups { get; } = new();
+	public ObservableCollection<EventPhaseViewModel> EventPhases { get; } = new();
 
 	public EventLockPlannerViewModel(IEnumerable<IShipData> allShips)
 	{
@@ -95,6 +91,20 @@ public partial class EventLockPlannerViewModel : WindowViewModelBase
 		LockGroups.Remove(group);
 	}
 
+	[ICommand]
+	private void AddPhase()
+	{
+		EventPhases.Add(new(LockGroups));
+	}
+
+	[ICommand]
+	private void RemovePhase()
+	{
+		if (EventPhases.Count is 0) return;
+
+		EventPhases.Remove(EventPhases[^1]);
+	}
+
 	private void Save()
 	{
 		using ElectronicObserverContext db = new();
@@ -121,6 +131,13 @@ public partial class EventLockPlannerViewModel : WindowViewModelBase
 			Id = s.Ship.ID,
 			PlannedLock = s.PlannedLock,
 		})).ToList();
+
+		model.Phases = EventPhases.Select(p => new EventPhaseModel
+		{
+			Name = p.Name,
+			PhaseLockGroups = p.PhaseLockGroups.Select(g => g.Id).ToList(),
+			PhaseShips = p.Ships.Select(s => s.Ship.MasterID).ToList(),
+		}).ToList();
 
 		db.SaveChanges();
 	}
@@ -159,6 +176,36 @@ public partial class EventLockPlannerViewModel : WindowViewModelBase
 			if (!lockGroup.CanAdd(shipLock)) continue;
 
 			lockGroup.Move(shipLock, NoLockGroup);
+		}
+
+		foreach (EventPhaseModel eventPhaseModel in model.Phases)
+		{
+			EventPhaseViewModel phase = new(LockGroups)
+			{
+				Name = eventPhaseModel.Name,
+			};
+
+			EventPhases.Add(phase);
+
+			foreach (int lockGroupId in eventPhaseModel.PhaseLockGroups)
+			{
+				LockGroupViewModel? group = LockGroups.Skip(lockGroupId - 1).FirstOrDefault();
+
+				if(group is null) continue;
+
+				phase.PhaseLockGroups.Add(group);
+			}
+
+			foreach (int phaseShipId in eventPhaseModel.PhaseShips)
+			{
+				ShipLockViewModel? shipLock = NoLockGroup.Ships
+					.Concat(LockGroups.SelectMany(g => g.Ships))
+					.FirstOrDefault(l => l.Ship.ID == phaseShipId);
+
+				if (shipLock is null) continue;
+				
+				phase.Add(shipLock);
+			}
 		}
 	}
 }

@@ -10,8 +10,8 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:ui="http://schemas.modernwpf.com/2019"
 	Title="{Binding EventLockPlanner.Title}"
-	Width="800"
-	Height="450"
+	Width="900"
+	Height="600"
 	d:DataContext="{d:DesignInstance local:EventLockPlannerViewModel}"
 	ui:WindowHelper.UseModernWindowStyle="True"
 	x:TypeArguments="local:EventLockPlannerViewModel"
@@ -40,12 +40,6 @@
 
 		<DataTemplate x:Key="LockGroupTemplate" DataType="local:LockGroupViewModel">
 			<Border Background="{Binding Background}">
-				<Border.ContextMenu>
-					<ContextMenu>
-						<MenuItem Header="Rename" />
-					</ContextMenu>
-				</Border.ContextMenu>
-
 				<Grid>
 					<Grid.RowDefinitions>
 						<RowDefinition Height="Auto" />
@@ -101,6 +95,154 @@
 			<RowDefinition Height="Auto" />
 			<RowDefinition />
 		</Grid.RowDefinitions>
+
+		<Grid
+			Grid.Row="0"
+			VerticalAlignment="Stretch"
+			IsSharedSizeScope="True"
+			>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto" />
+				<RowDefinition />
+			</Grid.RowDefinitions>
+
+			<StackPanel Grid.Row="0" Orientation="Horizontal">
+				<Button
+					Margin="2 0"
+					Command="{Binding AddPhaseCommand}"
+					Content="{Binding EventLockPlanner.AddPhase}"
+					/>
+				<Button
+					Margin="2 0"
+					Command="{Binding RemovePhaseCommand}"
+					Content="{Binding EventLockPlanner.RemovePhase}"
+					/>
+			</StackPanel>
+
+			<Border Grid.Row="1" Margin="4">
+				<ScrollViewer HorizontalScrollBarVisibility="Auto">
+					<ItemsControl ItemsSource="{Binding EventPhases}">
+						<ItemsControl.ItemsPanel>
+							<ItemsPanelTemplate>
+								<StackPanel Orientation="Horizontal" />
+							</ItemsPanelTemplate>
+						</ItemsControl.ItemsPanel>
+
+						<ItemsControl.ItemTemplate>
+							<DataTemplate>
+								<Border
+									Padding="2"
+									BorderBrush="Gray"
+									BorderThickness="1"
+									>
+									<Grid Background="Transparent">
+										<Grid.Resources>
+											<local:EventPhaseBindingProxy x:Key="Proxy" DataContext="{Binding}" />
+										</Grid.Resources>
+
+										<Grid.ContextMenu>
+											<ContextMenu ItemsSource="{Binding RemainingGroups}">
+												<ContextMenu.ItemTemplate>
+													<DataTemplate>
+														<MenuItem
+															Command="{Binding DataContext.AddLockToPhaseCommand, Source={StaticResource Proxy}}"
+															CommandParameter="{Binding}"
+															Header="{Binding Name}"
+															/>
+													</DataTemplate>
+												</ContextMenu.ItemTemplate>
+											</ContextMenu>
+										</Grid.ContextMenu>
+
+										<Grid.RowDefinitions>
+											<RowDefinition Height="Auto" SharedSizeGroup="PhaseLockGroups" />
+											<RowDefinition Height="Auto" />
+											<RowDefinition />
+										</Grid.RowDefinitions>
+
+										<ItemsControl
+											Grid.Row="0"
+											VerticalAlignment="Bottom"
+											ItemsSource="{Binding PhaseLockGroups}"
+											>
+											<ItemsControl.ItemTemplate>
+												<DataTemplate>
+													<TextBlock
+														Padding="2"
+														Background="{Binding Background}"
+														Text="{Binding Name}"
+														>
+														<TextBlock.ContextMenu>
+															<ContextMenu>
+																<MenuItem
+																	Command="{Binding DataContext.RemoveLockFromPhaseCommand, Source={StaticResource Proxy}}"
+																	CommandParameter="{Binding}"
+																	Header="{Binding DataContext.EventLockPlanner.Remove, Source={StaticResource Proxy}}"
+																	/>
+															</ContextMenu>
+														</TextBlock.ContextMenu>
+													</TextBlock>
+												</DataTemplate>
+											</ItemsControl.ItemTemplate>
+										</ItemsControl>
+
+										<TextBox Grid.Row="1" Text="{Binding Name}" />
+
+										<Border Grid.Row="2" Padding="4">
+											<ItemsControl
+												MinWidth="50"
+												MinHeight="50"
+												dd:DragDrop.DropHandler="{Binding}"
+												dd:DragDrop.IsDragSource="True"
+												dd:DragDrop.IsDropTarget="True"
+												dd:DragDrop.UseDefaultDragAdorner="True"
+												Background="Transparent"
+												ItemsSource="{Binding Ships}"
+												>
+												<ItemsControl.ItemTemplate>
+													<DataTemplate>
+														<StackPanel Orientation="Horizontal">
+															<TextBlock Background="Transparent" Text="{Binding Display}">
+																<TextBlock.Style>
+																	<Style TargetType="TextBlock">
+																		<Style.Triggers>
+																			<DataTrigger Binding="{Binding MatchesPhaseLock}" Value="False">
+																				<Setter Property="Foreground" Value="Red" />
+																			</DataTrigger>
+																		</Style.Triggers>
+																	</Style>
+																</TextBlock.Style>
+																<TextBlock.ContextMenu>
+																	<ContextMenu>
+																		<MenuItem
+																			Command="{Binding DataContext.RemoveShipLockCommand, Source={StaticResource Proxy}}"
+																			CommandParameter="{Binding}"
+																			Header="{Binding DataContext.EventLockPlanner.Remove, Source={StaticResource Proxy}}"
+																			/>
+																	</ContextMenu>
+																</TextBlock.ContextMenu>
+															</TextBlock>
+														</StackPanel>
+													</DataTemplate>
+												</ItemsControl.ItemTemplate>
+											</ItemsControl>
+										</Border>
+									</Grid>
+
+								</Border>
+							</DataTemplate>
+						</ItemsControl.ItemTemplate>
+					</ItemsControl>
+				</ScrollViewer>
+			</Border>
+		</Grid>
+
+		<GridSplitter
+			Grid.Row="1"
+			Height="3"
+			HorizontalAlignment="Stretch"
+			ResizeDirection="Rows"
+			/>
 
 		<Grid Grid.Row="2" VerticalAlignment="Stretch">
 			<Grid.RowDefinitions>

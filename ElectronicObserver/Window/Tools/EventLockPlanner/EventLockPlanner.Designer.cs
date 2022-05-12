@@ -70,6 +70,15 @@ namespace ElectronicObserver.Window.Tools.EventLockPlanner {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 段階追加.
+        /// </summary>
+        internal static string AddPhase {
+            get {
+                return ResourceManager.GetString("AddPhase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 大発系.
         /// </summary>
         internal static string Daihatsu {
@@ -79,11 +88,29 @@ namespace ElectronicObserver.Window.Tools.EventLockPlanner {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 除去.
+        /// </summary>
+        internal static string Remove {
+            get {
+                return ResourceManager.GetString("Remove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ロック除去.
         /// </summary>
         internal static string RemoveLock {
             get {
                 return ResourceManager.GetString("RemoveLock", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 段階除去.
+        /// </summary>
+        internal static string RemovePhase {
+            get {
+                return ResourceManager.GetString("RemovePhase", resourceCulture);
             }
         }
         

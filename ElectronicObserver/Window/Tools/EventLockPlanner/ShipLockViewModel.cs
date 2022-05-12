@@ -10,6 +10,7 @@ public class ShipLockViewModel : ObservableObject
 
 	public int PlannedLock { get; set; }
 	public int ActualLock => Ship.SallyArea;
+	public bool MatchesPhaseLock { get; set; } = true;
 
 	public string Display => ActualLock switch
 	{

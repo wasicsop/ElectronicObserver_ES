@@ -112,4 +112,13 @@
   <data name="Tank" xml:space="preserve">
     <value>内火艇</value>
   </data>
+  <data name="AddPhase" xml:space="preserve">
+    <value>段階追加</value>
+  </data>
+  <data name="RemovePhase" xml:space="preserve">
+    <value>段階除去</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>除去</value>
+  </data>
 </root>

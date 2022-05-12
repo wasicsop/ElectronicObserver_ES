@@ -132,4 +132,13 @@
   <data name="Tank" xml:space="preserve">
     <value>Tank</value>
   </data>
+  <data name="AddPhase" xml:space="preserve">
+    <value>Add phase</value>
+  </data>
+  <data name="RemovePhase" xml:space="preserve">
+    <value>Remove phase</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Remove</value>
+  </data>
 </root>

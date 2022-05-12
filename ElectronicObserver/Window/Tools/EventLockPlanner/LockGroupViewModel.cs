@@ -112,6 +112,7 @@ public class LockGroupViewModel : ObservableObject, IDropTarget
 	public void DragOver(IDropInfo dropInfo)
 	{
 		if (dropInfo.Data is not ShipLockViewModel shipLock) return;
+		if (dropInfo.DragInfo.VisualSource is not ItemsControl { DataContext: LockGroupViewModel }) return;
 
 		if (CanAdd(shipLock))
 		{
