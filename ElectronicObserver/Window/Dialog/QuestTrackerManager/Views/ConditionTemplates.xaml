@@ -155,7 +155,7 @@
 
 					<controls:NumberBox
 						Maximum="12"
-						Minimum="1"
+						Minimum="0"
 						Value="{Binding Model.Count}"
 						/>
 
