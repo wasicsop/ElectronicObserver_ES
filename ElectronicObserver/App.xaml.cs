@@ -158,6 +158,7 @@ public partial class App : Application
 
 	private void ConfigureServices()
 	{
+
 		ServiceProvider services = new ServiceCollection()
 			// view translations
 			.AddSingleton<FormArsenalTranslationViewModel>()
@@ -183,6 +184,7 @@ public partial class App : Application
 			.AddSingleton<DialogDevelopmentRecordViewerTranslationViewModel>()
 			.AddSingleton<DialogDropRecordViewerTranslationViewModel>()
 			.AddSingleton<DialogConstructionRecordViewerTranslationViewModel>()
+      .AddSingleton<DialogResourceChartTranslationViewModel>()
 			.AddSingleton<DialogEquipmentListTranslationViewModel>()
 			.AddSingleton<QuestTrackerManagerTranslationViewModel>()
 			.AddSingleton<EventLockPlannerTranslationViewModel>()

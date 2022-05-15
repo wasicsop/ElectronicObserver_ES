@@ -1,0 +1,319 @@
+﻿<common:WindowBase
+	x:Class="ElectronicObserver.Window.Dialog.ResourceChartWPF.ResourceChartWPF"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:common="clr-namespace:ElectronicObserver.Common"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:local="clr-namespace:ElectronicObserver.Window.Dialog.ResourceChartWPF"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:ui="http://schemas.modernwpf.com/2019"
+	Title="{Binding DialogResourceChart.Title}"
+	Width="950"
+	Height="600"
+	d:DataContext="{d:DesignInstance local:ResourceChartViewModel}"
+	ui:WindowHelper.UseModernWindowStyle="True"
+	x:TypeArguments="local:ResourceChartViewModel"
+	mc:Ignorable="d"
+	>
+	<Window.Resources>
+		<local:ResourceChartBindingProxy x:Key="Proxy" DataContext="{Binding}" />
+		<Style BasedOn="{StaticResource DefaultDatePickerStyle}" TargetType="DatePicker">
+			<Setter Property="FontFamily" Value="{Binding DataContext.Font, Source={StaticResource Proxy}}" />
+			<Setter Property="FontSize" Value="{Binding DataContext.FontSize, Source={StaticResource Proxy}}" />
+			<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
+		</Style>
+		<Style BasedOn="{StaticResource DefaultMenuItemStyle}" TargetType="MenuItem">
+			<Setter Property="FontFamily" Value="{Binding DataContext.Font, Source={StaticResource Proxy}}" />
+			<Setter Property="FontSize" Value="{Binding DataContext.FontSize, Source={StaticResource Proxy}}" />
+			<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
+		</Style>
+		<Style BasedOn="{StaticResource DefaultButtonStyle}" TargetType="Button">
+			<Setter Property="FontFamily" Value="{Binding DataContext.Font, Source={StaticResource Proxy}}" />
+			<Setter Property="FontSize" Value="{Binding DataContext.FontSize, Source={StaticResource Proxy}}" />
+			<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
+		</Style>
+		<Style BasedOn="{StaticResource DefaultToolTipStyleEO}" TargetType="ToolTip">
+			<Setter Property="FontFamily" Value="{Binding DataContext.Font, Source={StaticResource Proxy}}" />
+			<Setter Property="FontSize" Value="{Binding DataContext.FontSize, Source={StaticResource Proxy}}" />
+			<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
+		</Style>
+		<Style BasedOn="{StaticResource DefaultTextBoxStyle}" TargetType="TextBox">
+			<Setter Property="FontFamily" Value="{Binding DataContext.Font, Source={StaticResource Proxy}}" />
+			<Setter Property="FontSize" Value="{Binding DataContext.FontSize, Source={StaticResource Proxy}}" />
+			<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
+		</Style>
+	</Window.Resources>
+	<DockPanel>
+		<Menu DockPanel.Dock="Top">
+			<MenuItem Name="FileMenu" Header="{Binding DialogResourceChart.Menu_File}">
+				<MenuItem
+					Name="FileSaveImage"
+					Click="FileSaveImage_Click"
+					Header="{Binding DialogResourceChart.Menu_File_SaveImage}"
+					/>
+			</MenuItem>
+			<MenuItem Name="ChartTypeMenu" Header="{Binding DialogResourceChart.Menu_Graph}">
+				<MenuItem
+					Name="ResourceMenu"
+					Click="ResourceMenu_Click"
+					Header="{Binding DialogResourceChart.Menu_Graph_Resource}"
+					IsCheckable="True"
+					IsChecked="True"
+					Tag="0"
+					/>
+				<MenuItem
+					Name="ResourceDiffMenu"
+					Click="ResourceDiffMenu_Click"
+					Header="{Binding DialogResourceChart.Menu_Graph_ResourceDiff}"
+					IsCheckable="True"
+					IsChecked="False"
+					Tag="1"
+					/>
+				<Separator />
+				<MenuItem
+					Name="MaterialMenu"
+					Click="MaterialMenu_Click"
+					Header="{Binding DialogResourceChart.Menu_Graph_Material}"
+					IsCheckable="True"
+					IsChecked="False"
+					Tag="2"
+					/>
+				<MenuItem
+					Name="MaterialDiffMenu"
+					Click="MaterialDiffMenu_Click"
+					Header="{Binding DialogResourceChart.Menu_Graph_MaterialDiff}"
+					IsCheckable="True"
+					IsChecked="False"
+					Tag="3"
+					/>
+				<Separator />
+				<MenuItem
+					Name="ExperienceMenu"
+					Click="ExperienceMenu_Click"
+					Header="{Binding DialogResourceChart.Menu_Graph_Experience}"
+					IsCheckable="True"
+					IsChecked="False"
+					Tag="4"
+					/>
+				<MenuItem
+					Name="ExperienceDiffMenu"
+					Click="ExperienceDiffMenu_Click"
+					Header="{Binding DialogResourceChart.Menu_Graph_ExperienceDiff}"
+					IsCheckable="True"
+					IsChecked="False"
+					Tag="5"
+					/>
+			</MenuItem>
+			<MenuItem Name="ChartSpanMenu" Header="{Binding DialogResourceChart.Menu_Span}">
+				<MenuItem
+					Name="ChartMenuDay"
+					Click="ChartSpan_Click"
+					Header="{Binding DialogResourceChart.Menu_Span_Day}"
+					IsCheckable="True"
+					IsChecked="False"
+					Tag="0"
+					/>
+				<MenuItem
+					Name="ChartMenuWeek"
+					Click="ChartSpan_Click"
+					Header="{Binding DialogResourceChart.Menu_Span_Week}"
+					IsCheckable="True"
+					IsChecked="False"
+					Tag="1"
+					/>
+				<MenuItem
+					Name="ChartMenuMonth"
+					Click="ChartSpan_Click"
+					Header="{Binding DialogResourceChart.Menu_Span_Month}"
+					IsChecked="False"
+					Tag="2"
+					/>
+				<MenuItem
+					Name="ChartMenuSeason"
+					Click="ChartSpan_Click"
+					Header="{Binding DialogResourceChart.Menu_Span_Season}"
+					IsChecked="False"
+					Tag="3"
+					/>
+				<MenuItem
+					Name="ChartMenuYear"
+					Click="ChartSpan_Click"
+					Header="{Binding DialogResourceChart.Menu_Span_Year}"
+					IsChecked="False"
+					Tag="4"
+					/>
+				<MenuItem
+					Name="Menu_Span_All"
+					Click="ChartSpan_Click"
+					Header="{Binding DialogResourceChart.Menu_Span_All}"
+					Tag="5"
+					/>
+				<Separator />
+				<MenuItem
+					Click="ChartSpan_Click"
+					Header="{Binding DialogResourceChart.Menu_Span_WeekFirst}"
+					IsChecked="False"
+					Tag="6"
+					/>
+				<MenuItem
+					Click="ChartSpan_Click"
+					Header="{Binding DialogResourceChart.Menu_Span_MonthFirst}"
+					IsChecked="False"
+					Tag="7"
+					/>
+				<MenuItem
+					Click="ChartSpan_Click"
+					Header="{Binding DialogResourceChart.Menu_Span_SeasonFirst}"
+					IsChecked="False"
+					Tag="8"
+					/>
+				<MenuItem
+					Click="ChartSpan_Click"
+					Header="{Binding DialogResourceChart.Menu_Span_YearFirst}"
+					Tag="9"
+					/>
+				<MenuItem
+					Click="ChartSpan_Click"
+					Header=""
+					Tag="10"
+					Visibility="Collapsed"
+					/>
+			</MenuItem>
+			<MenuItem Name="OptionsMenu" Header="{Binding DialogResourceChart.OptionsMenu}">
+				<MenuItem
+					Name="Menu_Option_ShowAllData"
+					Click="Menu_Option_ShowAllData_Click"
+					Header="{Binding DialogResourceChart.Menu_Option_ShowAllData}"
+					IsCheckable="True"
+					/>
+				<MenuItem
+					Name="Menu_Option_DivideByDay"
+					Click="Menu_Option_DivideByDay_Click"
+					Header="{Binding DialogResourceChart.Menu_Option_DivideByDay}"
+					IsCheckable="True"
+					/>
+			</MenuItem>
+		</Menu>
+		<StackPanel
+			Name="ResourcesPanel"
+			DockPanel.Dock="Right"
+			Orientation="Vertical"
+			Visibility="Visible"
+			>
+			<local:ChartItemToggle
+				Margin="10"
+				IsChecked="{Binding ShowFuel}"
+				Text="{Binding DialogResourceChart.Fuel}"
+				Color="DarkGreen"
+				/>
+			<local:ChartItemToggle
+				Margin="10"
+				IsChecked="{Binding ShowAmmo}"
+				Text="{Binding DialogResourceChart.Ammo}"
+				Color="Orange"
+				/>
+			<local:ChartItemToggle
+				Margin="10"
+				IsChecked="{Binding ShowSteel}"
+				Text="{Binding DialogResourceChart.Steel}"
+				Color="Gray"
+				/>
+			<local:ChartItemToggle
+				Margin="10"
+				IsChecked="{Binding ShowBaux}"
+				Text="{Binding DialogResourceChart.Baux}"
+				Color="Red"
+				/>
+			<local:ChartItemToggle
+				Margin="10"
+				IsChecked="{Binding ShowInstantRepair}"
+				Text="{Binding DialogResourceChart.InstantRepair}"
+				Color="#2080FF"
+				/>
+		</StackPanel>
+		<StackPanel
+			Name="MaterialPanel"
+			DockPanel.Dock="Right"
+			Orientation="Vertical"
+			Visibility="Collapsed"
+			>
+			<local:ChartItemToggle
+				Margin="10"
+				IsChecked="{Binding ShowInstantConstruction}"
+				Text="{Binding DialogResourceChart.InstantConstruction}"
+				Color="Orange"
+				/>
+			<local:ChartItemToggle
+				Margin="10"
+				IsChecked="{Binding ShowInstantRepair}"
+				Text="{Binding DialogResourceChart.InstantRepair}"
+				Color="Green"
+				/>
+			<local:ChartItemToggle
+				Margin="10"
+				IsChecked="{Binding ShowDevelopmentMaterial}"
+				Text="{Binding DialogResourceChart.DevelopmentMaterial}"
+				Color="Blue"
+				/>
+			<local:ChartItemToggle
+				Margin="10"
+				IsChecked="{Binding ShowModdingMaterial}"
+				Text="{Binding DialogResourceChart.ModdingMaterial}"
+				Color="Beige"
+				/>
+		</StackPanel>
+		<StackPanel
+			Name="ExperiencePanel"
+			DockPanel.Dock="Right"
+			Visibility="Collapsed"
+			>
+			<local:ChartItemToggle
+				Margin="10"
+				IsChecked="{Binding ShowExperience}"
+				Text="{Binding DialogResourceChart.Experience}"
+				Color="Blue"
+				/>
+		</StackPanel>
+		<DockPanel DockPanel.Dock="Top">
+			<TextBlock
+				Margin="4 0"
+				VerticalAlignment="Center"
+				Text="{Binding DialogResourceChart.Start}"
+				/>
+			<DatePicker
+				Name="DatePickerStart"
+				DisplayDateEnd="{Binding MaxDate}"
+				DisplayDateStart="{Binding MinDate}"
+				FirstDayOfWeek="Monday"
+				SelectedDate="{Binding DateBegin}"
+				/>
+			<TextBlock
+				Margin="4 0"
+				VerticalAlignment="Center"
+				Text="{Binding DialogResourceChart.End}"
+				/>
+			<DatePicker
+				Name="DatePickerEnd"
+				DisplayDateEnd="{Binding MaxDate}"
+				DisplayDateStart="{Binding MinDate}"
+				FirstDayOfWeek="Monday"
+				SelectedDate="{Binding DateEnd}"
+				/>
+		</DockPanel>
+		<WpfPlot
+			Name="ChartArea"
+			Margin="0 0 0 0"
+			Loaded="ChartArea_Loaded"
+			MouseMove="ChartArea_MouseMove"
+			>
+			<WpfPlot.ToolTip>
+				<ToolTip
+					Content="{Binding ToolTip}"
+					HorizontalOffset="{Binding ToolTipHorizontalOffset}"
+					Placement="Relative"
+					VerticalOffset="{Binding ToolTipVerticalOffset}"
+					/>
+			</WpfPlot.ToolTip>
+		</WpfPlot>
+	</DockPanel>
+</common:WindowBase>
