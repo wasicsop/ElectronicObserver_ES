@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Controls;
+using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
 using ElectronicObserver.ViewModels.Translations;
@@ -10,7 +11,7 @@ public partial class ResourceChartViewModel : WindowViewModelBase
 {
 	public ResourceChartViewModel()
 	{
-		DialogResourceChart = App.Current.Services.GetService<DialogResourceChartTranslationViewModel>()!;
+		DialogResourceChart = Ioc.Default.GetService<DialogResourceChartTranslationViewModel>()!;
 	}
 
 	public bool ShowFuel { get; set; } = true;
