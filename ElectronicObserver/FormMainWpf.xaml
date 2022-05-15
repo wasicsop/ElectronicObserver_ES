@@ -569,14 +569,20 @@
 						<Image Source="{Binding FleetImageGeneratorImageSource}" />
 					</MenuItem.Icon>
 				</MenuItem>
-				<MenuItem
-					d:Header="AB Simulator"
-					Command="{Binding OpenBaseAirCorpsSimulationCommand}"
-					Header="{Binding FormMain.StripMenu_Tool_BaseAirCorpsSimulation}"
-					>
+				<MenuItem d:Header="AB Simulator" Header="{Binding FormMain.StripMenu_Tool_BaseAirCorpsSimulation}">
 					<MenuItem.Icon>
 						<Image Source="{Binding BaseAirCorpsSimulationImageSource}" />
 					</MenuItem.Icon>
+					<MenuItem Command="{Binding OpenBaseAirCorpsSimulationCommand}" Header="{Binding FormMain.Old}">
+						<MenuItem.CommandParameter>
+							<system:Boolean>False</system:Boolean>
+						</MenuItem.CommandParameter>
+					</MenuItem>
+					<MenuItem Command="{Binding OpenBaseAirCorpsSimulationCommand}" Header="{Binding FormMain.New}">
+						<MenuItem.CommandParameter>
+							<system:Boolean>True</system:Boolean>
+						</MenuItem.CommandParameter>
+					</MenuItem>
 				</MenuItem>
 				<MenuItem
 					d:Header="Exp Calculator"

@@ -4,6 +4,7 @@ using System.Globalization;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
+using Browser.AirControlSimulator;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
@@ -68,6 +69,7 @@ public partial class App : Application
 
 		ServiceProvider services = new ServiceCollection()
 			.AddSingleton<FormBrowserTranslationViewModel>()
+			.AddSingleton<AirControlSimulatorTranslationViewModel>()
 			.BuildServiceProvider();
 
 		Ioc.Default.ConfigureServices(services);
@@ -77,7 +79,11 @@ public partial class App : Application
 		ToolTipService.ShowDurationProperty.OverrideMetadata(
 			typeof(DependencyObject), new FrameworkPropertyMetadata(int.MaxValue));
 
-		new BrowserView(host, port, culture).ShowDialog();
+		BrowserView browser = new(host, port, culture);
+
+		MainWindow = browser;
+
+		browser.ShowDialog();
 	}
 
 	private static System.Reflection.Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args)

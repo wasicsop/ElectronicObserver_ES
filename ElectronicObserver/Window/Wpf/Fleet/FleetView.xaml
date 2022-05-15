@@ -126,6 +126,11 @@
 						Command="{Binding OutputFleetImageCommand}"
 						Header="{Binding FormFleet.ContextMenuFleet_OutputFleetImage}"
 						/>
+					<MenuItem
+						d:Header="Air control simulator"
+						Command="{Binding OpenAirControlSimulatorCommand}"
+						Header="{Binding FormFleet.AirControlSimulator}"
+						/>
 				</ContextMenu>
 			</Border.ContextMenu>
 			<StackPanel DataContext="{Binding ControlFleet}" Orientation="Horizontal">

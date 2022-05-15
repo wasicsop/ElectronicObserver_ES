@@ -361,6 +361,11 @@
 			<AutoGen>True</AutoGen>
 			<DependentUpon>Menus.resx</DependentUpon>
 		</Compile>
+		<Compile Update="Window\Tools\AirControlSimulator\AirControlSimulator.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>AirControlSimulator.resx</DependentUpon>
+		</Compile>
 		<Compile Update="Window\Tools\EventLockPlanner\EventLockPlanner.Designer.cs">
 		  <DesignTime>True</DesignTime>
 		  <AutoGen>True</AutoGen>
@@ -735,6 +740,10 @@
 			<Generator>PublicResXFileCodeGenerator</Generator>
 			<LastGenOutput>Menus.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
+		<EmbeddedResource Update="Window\Tools\AirControlSimulator\AirControlSimulator.resx">
+		  <Generator>PublicResXFileCodeGenerator</Generator>
+		  <LastGenOutput>AirControlSimulator.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
 		<EmbeddedResource Update="Window\Tools\EventLockPlanner\EventLockPlanner.resx">
 		  <Generator>ResXFileCodeGenerator</Generator>
 		  <LastGenOutput>EventLockPlanner.Designer.cs</LastGenOutput>
@@ -759,5 +768,6 @@
 	<ItemGroup>
 		<Folder Include="Common\" />
 		<Folder Include="Database\" />
+		<Folder Include="Services\" />
 	</ItemGroup>
 </Project>

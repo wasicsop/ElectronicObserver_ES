@@ -8,4 +8,5 @@ public interface IBrowser
 	void CloseBrowser();
 	void SetProxy(string v);
 	void OpenExtraBrowser();
+	void OpenAirControlSimulator(string url);
 }

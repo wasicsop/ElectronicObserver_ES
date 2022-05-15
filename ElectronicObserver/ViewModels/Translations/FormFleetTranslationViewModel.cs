@@ -73,4 +73,5 @@ public class FormFleetTranslationViewModel : TranslationBaseViewModel
 	public string ContextMenuFleet_AntiAirDetails => Properties.Window.FormFleet.ContextMenuFleet_AntiAirDetails.Replace("_", "__").Replace("&", "_");
 	public string ContextMenuFleet_Capture => Properties.Window.FormFleet.ContextMenuFleet_Capture.Replace("_", "__").Replace("&", "_");
 	public string ContextMenuFleet_OutputFleetImage => Properties.Window.FormFleet.ContextMenuFleet_OutputFleetImage.Replace("_", "__").Replace("&", "_");
+	public string AirControlSimulator => Window.Tools.AirControlSimulator.AirControlSimulator.Title;
 }

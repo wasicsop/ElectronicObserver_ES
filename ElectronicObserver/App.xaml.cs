@@ -7,10 +7,12 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using CommunityToolkit.Mvvm.DependencyInjection;
+using ElectronicObserver.Services;
 using ElectronicObserver.Utility;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window;
 using ElectronicObserver.Window.Dialog.ShipPicker;
+using ElectronicObserver.Window.Tools.AirControlSimulator;
 using ElectronicObserver.Window.Tools.EventLockPlanner;
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
@@ -185,9 +187,13 @@ public partial class App : Application
 			.AddSingleton<QuestTrackerManagerTranslationViewModel>()
 			.AddSingleton<EventLockPlannerTranslationViewModel>()
 			.AddSingleton<ShipFilterTranslationViewModel>()
+			.AddSingleton<AirControlSimulatorTranslationViewModel>()
 			// tools
 			.AddSingleton<ShipPickerViewModel>()
-		
+			// services
+			.AddSingleton<DataSerializationService>()
+			.AddSingleton<ToolService>()
+
 			.BuildServiceProvider();
 
 		Ioc.Default.ConfigureServices(services);

@@ -1,8 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using BrowserLibCore;
+using CommunityToolkit.Mvvm.DependencyInjection;
+using ElectronicObserver;
+using ElectronicObserver.Data;
+using ElectronicObserver.Services;
+using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window;
+using ElectronicObserver.Window.Tools.AirControlSimulator;
 using MagicOnion.Server.Hubs;
+using AirControlSimulatorViewModel = ElectronicObserver.Window.Tools.AirControlSimulator.AirControlSimulatorViewModel;
 
 namespace BrowserHost;
 
@@ -60,5 +69,59 @@ public class BrowserHostHub : StreamingHubBase<IBrowserHost, IBrowser>, IBrowser
 	public Task<int> GetTheme()
 	{
 		return Task.Run(() => FormBrowserHost.Instance.GetTheme());
+	}
+
+	public Task<string?> GetFleetData()
+	{
+		Task<string?> a = App.Current.Dispatcher.Invoke(() =>
+		{
+			DataSerializationService serialization = Ioc.Default.GetService<DataSerializationService>()!;
+
+			BaseAirCorpsSimulationContentDialog dialog = new(new()
+			{
+				FleetOnly = true,
+			});
+
+			if (dialog.ShowDialog(App.Current.MainWindow) is true)
+			{
+				AirControlSimulatorViewModel result = dialog.Result!;
+
+				List<BaseAirCorpsData> bases = KCDatabase.Instance.BaseAirCorps.Values
+					.Where(b => b.MapAreaID == result.AirBaseArea?.AreaId)
+					.ToList();
+
+				return Task.Run(() => serialization.DeckBuilder
+				(
+					KCDatabase.Instance.Admiral.Level,
+					result.Fleet1 ? KCDatabase.Instance.Fleet[1] : null,
+					result.Fleet2 ? KCDatabase.Instance.Fleet[2] : null,
+					result.Fleet3 ? KCDatabase.Instance.Fleet[3] : null,
+					result.Fleet4 ? KCDatabase.Instance.Fleet[4] : null,
+					bases.Skip(0).FirstOrDefault(),
+					bases.Skip(1).FirstOrDefault(),
+					bases.Skip(2).FirstOrDefault(),
+					result.MaxAircraftLevelFleet,
+					result.MaxAircraftLevelAirBase
+				));
+			}
+
+			return Task.Run(() => (string?)null);
+		});
+
+		return a;
+	}
+
+	public Task<string> GetShipData()
+	{
+		DataSerializationService service = Ioc.Default.GetService<DataSerializationService>()!;
+
+		return Task.Run(() => service.FleetAnalysisShips());
+	}
+
+	public Task<string> GetEquipmentData(bool allEquipment)
+	{
+		DataSerializationService service = Ioc.Default.GetService<DataSerializationService>()!;
+
+		return Task.Run(() => service.FleetAnalysisEquipment(allEquipment));
 	}
 }

@@ -8,6 +8,7 @@ using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Data;
 using ElectronicObserver.Observer;
 using ElectronicObserver.Resource;
+using ElectronicObserver.Services;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.ViewModels.Translations;
@@ -22,6 +23,7 @@ namespace ElectronicObserver.Window.Wpf.Fleet;
 public partial class FleetViewModel : AnchorableViewModel
 {
 	public FormFleetTranslationViewModel FormFleet { get; }
+	private ToolService ToolService { get; }
 
 	public FleetStatusViewModel ControlFleet { get; }
 	public List<FleetItemViewModel> ControlMember { get; } = new();
@@ -33,6 +35,7 @@ public partial class FleetViewModel : AnchorableViewModel
 		ImageSourceIcons.GetIcon(IconContent.FormFleet))
 	{
 		FormFleet = Ioc.Default.GetService<FormFleetTranslationViewModel>()!;
+		ToolService = Ioc.Default.GetService<ToolService>()!;
 
 		Title = $"#{fleetId}";
 		FormFleet.PropertyChanged += (_, _) => Title = $"#{fleetId}";
@@ -786,6 +789,18 @@ public partial class FleetViewModel : AnchorableViewModel
 		{
 			dialog.ShowDialog(App.Current.MainWindow);
 		}
+	}
+
+	[ICommand]
+	private void OpenAirControlSimulator()
+	{
+		ToolService.AirControlSimulator(new()
+		{
+			Fleet1 = FleetId is 1,
+			Fleet2 = FleetId is 2 || (FleetId is 1 && KCDatabase.Instance.Fleet.CombinedFlag > 0),
+			Fleet3 = FleetId is 3,
+			Fleet4 = FleetId is 4,
+		});
 	}
 	#endregion
 }
