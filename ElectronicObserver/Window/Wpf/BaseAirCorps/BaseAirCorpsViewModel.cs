@@ -382,7 +382,7 @@ public class BaseAirCorpsItemViewModel : ObservableObject
 		{
 			if (squadron == null) continue;
 
-			EquipmentData? eq = squadron.EquipmentInstance;
+			IEquipmentData? eq = squadron.EquipmentInstance;
 
 			switch (squadron.State)
 			{
