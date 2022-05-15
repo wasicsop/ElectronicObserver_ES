@@ -212,7 +212,7 @@ public static class Calculator
 	/// 基地航空隊の制空戦力を求めます。
 	/// </summary>
 	/// <param name="aircorps">対象の基地航空隊。</param>
-	public static int GetAirSuperiority(BaseAirCorpsData aircorps, bool isAircraftLevelMaximum = false, bool isHighAltitude = false)
+	public static int GetAirSuperiority(IBaseAirCorpsData aircorps, bool isAircraftLevelMaximum = false, bool isHighAltitude = false)
 	{
 		if (aircorps == null)
 			return 0;
@@ -308,7 +308,7 @@ public static class Calculator
 	/// 基地航空中隊の制空戦力を求めます。
 	/// </summary>
 	/// <param name="squadron">対象の基地航空中隊。</param>
-	public static int GetAirSuperiority(BaseAirCorpsSquadron squadron, int actionKind, bool isAircraftLevelMaximum = false)
+	public static int GetAirSuperiority(IBaseAirCorpsSquadron squadron, int actionKind, bool isAircraftLevelMaximum = false)
 	{
 		if (squadron == null || squadron.State != 1)
 			return 0;
