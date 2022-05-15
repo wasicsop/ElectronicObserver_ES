@@ -11,7 +11,7 @@ namespace ElectronicObserver.Data;
 /// <summary>
 /// 基地航空隊の航空中隊データを扱います。
 /// </summary>
-public class BaseAirCorpsSquadron : APIWrapper, IIdentifiable
+public class BaseAirCorpsSquadron : APIWrapper, IIdentifiable, IBaseAirCorpsSquadron
 {
 
 	/// <summary>
@@ -36,7 +36,7 @@ public class BaseAirCorpsSquadron : APIWrapper, IIdentifiable
 	/// <summary>
 	/// 装備データ
 	/// </summary>
-	public EquipmentData EquipmentInstance => KCDatabase.Instance.Equipments[EquipmentMasterID];
+	public IEquipmentData EquipmentInstance => KCDatabase.Instance.Equipments[EquipmentMasterID];
 
 
 	/// <summary>

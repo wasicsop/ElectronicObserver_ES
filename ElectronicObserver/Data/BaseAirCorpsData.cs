@@ -5,13 +5,14 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Data;
 
 /// <summary>
 /// 基地航空隊のデータを扱います。
 /// </summary>
-public class BaseAirCorpsData : APIWrapper, IIdentifiable
+public class BaseAirCorpsData : APIWrapper, IIdentifiable, IBaseAirCorpsData
 {
 
 
@@ -61,16 +62,16 @@ public class BaseAirCorpsData : APIWrapper, IIdentifiable
 	/// <summary>
 	/// 航空中隊情報
 	/// </summary>
-	public IDDictionary<BaseAirCorpsSquadron> Squadrons { get; private set; }
+	public IDictionary<int, IBaseAirCorpsSquadron> Squadrons { get; private set; }
 
-	public BaseAirCorpsSquadron this[int i] => Squadrons[i];
+	public IBaseAirCorpsSquadron this[int i] => Squadrons[i];
 
 
 
 
 	public BaseAirCorpsData()
 	{
-		Squadrons = new IDDictionary<BaseAirCorpsSquadron>();
+		Squadrons = new Dictionary<int, IBaseAirCorpsSquadron>();
 	}
 
 
@@ -177,7 +178,7 @@ public class BaseAirCorpsData : APIWrapper, IIdentifiable
 			{
 				var a = new BaseAirCorpsSquadron();
 				a.LoadFromResponse(apiname, elem);
-				Squadrons.Add(a);
+				Squadrons.Add(id, a);
 
 			}
 			else
