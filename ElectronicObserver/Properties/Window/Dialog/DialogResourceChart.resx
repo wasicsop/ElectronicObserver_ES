@@ -146,4 +146,16 @@
   <data name="FailedToSaveResourceChartImage" xml:space="preserve">
     <value>資源チャート画像の保存に失敗しました。</value>
   </data>
+  <data name="WeekFirst" xml:space="preserve">
+    <value>月曜から (_E)</value>
+  </data>
+  <data name="MonthFirst" xml:space="preserve">
+    <value>月初から (_O)</value>
+  </data>
+  <data name="SeasonFirst" xml:space="preserve">
+    <value>3ヵ月の初めから (_N)</value>
+  </data>
+  <data name="YearFirst" xml:space="preserve">
+    <value>年初から (_R)</value>
+  </data>
 </root>

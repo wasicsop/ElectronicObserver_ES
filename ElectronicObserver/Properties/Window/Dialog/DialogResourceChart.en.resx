@@ -162,4 +162,16 @@
   <data name="FailedToSaveResourceChartImage" xml:space="preserve">
     <value>Failed to save resource chart image.</value>
   </data>
+  <data name="WeekFirst" xml:space="preserve">
+    <value>This week</value>
+  </data>
+  <data name="MonthFirst" xml:space="preserve">
+    <value>This month</value>
+  </data>
+  <data name="SeasonFirst" xml:space="preserve">
+    <value>This season</value>
+  </data>
+  <data name="YearFirst" xml:space="preserve">
+    <value>This year</value>
+  </data>
 </root>

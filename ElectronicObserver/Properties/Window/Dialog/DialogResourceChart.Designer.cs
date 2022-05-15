@@ -19,7 +19,7 @@ namespace ElectronicObserver.Properties.Window.Dialog {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class DialogResourceChart {
@@ -187,6 +187,15 @@ namespace ElectronicObserver.Properties.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 月初から (_O).
+        /// </summary>
+        public static string MonthFirst {
+            get {
+                return ResourceManager.GetString("MonthFirst", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to レコード データが存在しません。
         ///一度母港に移動してください。.
         /// </summary>
@@ -202,6 +211,33 @@ namespace ElectronicObserver.Properties.Window.Dialog {
         public static string SaveImageDialog {
             get {
                 return ResourceManager.GetString("SaveImageDialog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 3ヵ月の初めから (_N).
+        /// </summary>
+        public static string SeasonFirst {
+            get {
+                return ResourceManager.GetString("SeasonFirst", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 月曜から (_E).
+        /// </summary>
+        public static string WeekFirst {
+            get {
+                return ResourceManager.GetString("WeekFirst", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 年初から (_R).
+        /// </summary>
+        public static string YearFirst {
+            get {
+                return ResourceManager.GetString("YearFirst", resourceCulture);
             }
         }
     }
