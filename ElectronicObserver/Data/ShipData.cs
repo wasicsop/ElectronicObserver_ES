@@ -49,6 +49,13 @@ public class ShipData : APIWrapper, IIdentifiable, IShipData
 	/// </summary>
 	public int ExpNext => (int)RawData.api_exp[1];
 
+	/// <inheritdoc />
+	public double ExpNextPercentage => (ExpTable.ShipExp.ContainsKey(Level + 1) && Level != 99) switch
+	{
+		true => (ExpTable.ShipExp[Level].Next - ExpNext) / (double)ExpTable.ShipExp[Level].Next,
+		_ => 0
+	};
+
 
 	/// <summary>
 	/// 耐久現在値

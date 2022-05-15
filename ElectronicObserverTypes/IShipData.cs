@@ -35,6 +35,11 @@ public interface IShipData
 	int ExpNext { get; }
 
 	/// <summary>
+	/// Progress to next level.
+	/// </summary>
+	public double ExpNextPercentage { get; }
+
+	/// <summary>
 	/// 耐久現在値
 	/// </summary>
 	int HPCurrent { get; }
