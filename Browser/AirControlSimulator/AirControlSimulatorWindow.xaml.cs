@@ -23,11 +23,20 @@ public partial class AirControlSimulatorWindow : Window
 
 	public AirControlSimulatorWindow(string url)
 	{
-		ViewModel.Uri = new(url);
+		ViewModel.Uri = url;
 		DataContext = ViewModel;
 
 		InitializeComponent();
 
 		ViewModel.ExecuteScriptAsync = s => Browser.ExecuteScriptAsync(s);
+
+		InitializeAsync();
+	}
+
+	private async void InitializeAsync()
+	{
+		await Browser.EnsureCoreWebView2Async(BrowserViewModel.Environment);
+
+		Browser.CoreWebView2.Navigate(ViewModel.Uri);
 	}
 }

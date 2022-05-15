@@ -9,7 +9,7 @@ public partial class AirControlSimulatorViewModel : ObservableObject
 {
 	public AirControlSimulatorTranslationViewModel AirControlSimulator { get; }
 
-	public Uri? Uri { get; set; }
+	public string Uri { get; set; }
 	public Action<string>? ExecuteScriptAsync { get; set; }
 
 	public AirControlSimulatorViewModel()

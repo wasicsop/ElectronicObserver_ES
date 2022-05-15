@@ -52,10 +52,6 @@
 			</Button>
 		</StackPanel>
 
-		<wpf:WebView2
-			x:Name="Browser"
-			Grid.Row="1"
-			Source="{Binding Uri}"
-			/>
+		<wpf:WebView2 x:Name="Browser" Grid.Row="1" />
 	</Grid>
 </Window>
