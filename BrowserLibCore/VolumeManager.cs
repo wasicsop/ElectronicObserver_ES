@@ -27,15 +27,20 @@ public class VolumeManager
 	/// </summary>
 	/// <param name="checkProcessID">プロセス ID を引数にとり、目的のものであれば true を、そうでなければ false を返すデリゲート。</param>
 	/// <returns>データ。取得に失敗した場合は null。</returns>
-	private static ISimpleAudioVolume GetVolumeObject(Predicate<uint> checkProcessID)
+	private static ISimpleAudioVolume? GetVolumeObject(Predicate<uint> checkProcessID)
 	{
 
 		ISimpleAudioVolume? ret = null;
 
 		// スピーカーデバイスの取得
 		IMMDeviceEnumerator deviceEnumerator = (IMMDeviceEnumerator)(new MMDeviceEnumerator());
-		IMMDevice speakers;
-		deviceEnumerator.GetDefaultAudioEndpoint(EDataFlow.eRender, ERole.eMultimedia, out speakers);
+		deviceEnumerator.GetDefaultAudioEndpoint(EDataFlow.eRender, ERole.eMultimedia, out IMMDevice? speakers);
+
+		if (speakers is null)
+		{
+			Marshal.ReleaseComObject(deviceEnumerator);
+			return null;
+		}
 
 		// 列挙のためにセッションマネージャをアクティベート
 		Guid IID_IAudioSessionManager2 = typeof(IAudioSessionManager2).GUID;
@@ -97,7 +102,7 @@ public class VolumeManager
 	/// </summary>
 	/// <param name="processID">対象のプロセスID。</param>
 	/// <returns>データ。取得に失敗した場合は null。</returns>
-	private static ISimpleAudioVolume GetVolumeObject(uint processID) => GetVolumeObject(pid => processID == pid);
+	private static ISimpleAudioVolume? GetVolumeObject(uint processID) => GetVolumeObject(pid => processID == pid);
 
 
 	/// <summary>
@@ -105,7 +110,7 @@ public class VolumeManager
 	/// </summary>
 	/// <param name="processName">対象のプロセス名。</param>
 	/// <returns>データ。取得に失敗した場合は null。</returns>
-	private static ISimpleAudioVolume GetVolumeObject(string processName, out uint processID)
+	private static ISimpleAudioVolume? GetVolumeObject(string processName, out uint processID)
 	{
 		var processes = Process.GetProcessesByName(processName);
 		uint succeededId = 0;
@@ -122,7 +127,7 @@ public class VolumeManager
 		return volume;
 	}
 
-	public static VolumeManager CreateInstanceByProcessName(string processName)
+	public static VolumeManager? CreateInstanceByProcessName(string processName)
 	{
 		var volume = GetVolumeObject(processName, out uint processID);
 		if (volume != null)
@@ -137,7 +142,7 @@ public class VolumeManager
 	}
 
 
-	private static Process GetParentProcess(Process process)
+	private static Process? GetParentProcess(Process process)
 	{
 		var pbi = new PROCESS_BASIC_INFORMATION();
 		int status = NtQueryInformationProcess(process.Handle, 0, out pbi, Marshal.SizeOf(pbi), out int returnLength);
@@ -165,7 +170,7 @@ public class VolumeManager
 	/// <returns>音量( 0.0 - 1.0 )。</returns>
 	public static float GetApplicationVolume(uint processID)
 	{
-		ISimpleAudioVolume volume = GetVolumeObject(processID);
+		ISimpleAudioVolume? volume = GetVolumeObject(processID);
 		if (volume == null)
 			throw new ArgumentException(ErrorMessageNotFound);
 
@@ -183,7 +188,7 @@ public class VolumeManager
 	/// <returns>ミュートされていれば true。</returns>
 	public static bool GetApplicationMute(uint processID)
 	{
-		ISimpleAudioVolume volume = GetVolumeObject(processID);
+		ISimpleAudioVolume? volume = GetVolumeObject(processID);
 		if (volume == null)
 			throw new ArgumentException(ErrorMessageNotFound);
 
@@ -202,7 +207,7 @@ public class VolumeManager
 	/// <param name="level">音量( 0.0 - 1.0 )。</param>
 	public static void SetApplicationVolume(uint processID, float level)
 	{
-		ISimpleAudioVolume volume = GetVolumeObject(processID);
+		ISimpleAudioVolume? volume = GetVolumeObject(processID);
 		if (volume == null)
 			throw new ArgumentException(ErrorMessageNotFound);
 
@@ -219,7 +224,7 @@ public class VolumeManager
 	/// <param name="mute">ミュートするなら true。</param>
 	public static void SetApplicationMute(uint processID, bool mute)
 	{
-		ISimpleAudioVolume volume = GetVolumeObject(processID);
+		ISimpleAudioVolume? volume = GetVolumeObject(processID);
 		if (volume == null)
 			throw new ArgumentException(ErrorMessageNotFound);
 
@@ -299,7 +304,7 @@ public class VolumeManager
 		int NotImpl1();
 
 		[PreserveSig]
-		int GetDefaultAudioEndpoint(EDataFlow dataFlow, ERole role, out IMMDevice ppDevice);
+		int GetDefaultAudioEndpoint(EDataFlow dataFlow, ERole role, out IMMDevice? ppDevice);
 
 		// the rest is not implemented
 	}
