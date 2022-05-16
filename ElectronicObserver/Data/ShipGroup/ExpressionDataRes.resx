@@ -376,19 +376,19 @@
     <value>速力</value>
   </data>
   <data name="StrArrayContains" xml:space="preserve">
-    <value>Array Contains</value>
+    <value>を含む</value>
   </data>
   <data name="StrArrayNotContains" xml:space="preserve">
-    <value>Array Not Contains</value>
+    <value>を含まない</value>
   </data>
   <data name="StrBeginsWith" xml:space="preserve">
-    <value>Begins With</value>
+    <value>から始まる</value>
   </data>
   <data name="StrContains" xml:space="preserve">
-    <value>Contains</value>
+    <value>を含む</value>
   </data>
   <data name="StrEndWith" xml:space="preserve">
-    <value>End With</value>
+    <value>で終わる</value>
   </data>
   <data name="StrEquals" xml:space="preserve">
     <value>==</value>
@@ -406,13 +406,13 @@
     <value>&gt;</value>
   </data>
   <data name="StrNotBeginsWith" xml:space="preserve">
-    <value>Not Begins With</value>
+    <value>から始まらない</value>
   </data>
   <data name="StrNotContains" xml:space="preserve">
-    <value>Not Contains</value>
+    <value>を含まない</value>
   </data>
   <data name="StrNotEndWith" xml:space="preserve">
-    <value>Not End With</value>
+    <value>で終わらない</value>
   </data>
   <data name="StrNotEquals" xml:space="preserve">
     <value>!=</value>
