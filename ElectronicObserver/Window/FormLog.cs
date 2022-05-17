@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ElectronicObserver.Resource;
-using WeifenLuo.WinFormsUI.Docking;
+
 
 namespace ElectronicObserver.Window;
 
-public partial class FormLog : DockContent
+public partial class FormLog: Form
 {
 
 
@@ -89,7 +89,7 @@ public partial class FormLog : DockContent
 
 
 
-	protected override string GetPersistString()
+	protected string GetPersistString()
 	{
 		return "Log";
 	}

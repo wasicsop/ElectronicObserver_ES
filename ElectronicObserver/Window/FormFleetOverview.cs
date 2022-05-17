@@ -15,12 +15,11 @@ using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.Window.Control;
 using ElectronicObserver.Window.Support;
 using ElectronicObserverTypes;
-using WeifenLuo.WinFormsUI.Docking;
 using Translation = ElectronicObserver.Properties.Window.FormFleetOverview;
 
 namespace ElectronicObserver.Window;
 
-public partial class FormFleetOverview : DockContent
+public partial class FormFleetOverview : Form
 {
 
 	private class TableFleetControl : IDisposable
@@ -358,7 +357,7 @@ public partial class FormFleetOverview : DockContent
 
 
 
-	protected override string GetPersistString()
+	protected string GetPersistString()
 	{
 		return "FleetOverview";
 	}

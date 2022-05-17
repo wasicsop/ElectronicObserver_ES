@@ -53,14 +53,12 @@
 			// 
 			// FormWindowCapture
 			// 
-			this.AutoHidePortion = 150D;
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.ClientSize = new System.Drawing.Size(300, 200);
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.windowCaptureButton);
 			this.Font = new System.Drawing.Font("Meiryo UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(128)));
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-			this.HideOnClose = true;
 			this.Name = "FormWindowCapture";
 			this.Text = GeneralRes.WindowCapture;
 			this.ResumeLayout(false);

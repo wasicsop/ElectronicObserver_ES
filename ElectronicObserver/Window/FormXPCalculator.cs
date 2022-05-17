@@ -13,7 +13,7 @@ using ElectronicObserver.Utility;
 
 namespace ElectronicObserver.Window;
 
-public partial class FormXPCalculator : WeifenLuo.WinFormsUI.Docking.DockContent
+public partial class FormXPCalculator : Form
 {
 	public static int[] ExpTable = new int[] { 0, 0, 100, 300, 600, 1000, 1500, 2100, 2800, 3600, 4500, 5500, 6600, 7800, 9100, 10500, 12000, 13600, 15300, 17100, 19000,
 		21000, 23100, 25300, 27600, 30000, 32500, 35100, 37800, 40600, 43500, 46500, 49600, 52800, 56100, 59500, 63000, 66600, 70300, 74100, 78000,

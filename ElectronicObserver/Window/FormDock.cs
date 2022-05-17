@@ -13,12 +13,12 @@ using ElectronicObserver.Resource;
 using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.Window.Control;
 using ElectronicObserver.Window.Support;
-using WeifenLuo.WinFormsUI.Docking;
+
 using Translation = ElectronicObserver.Properties.Window.FormDock;
 
 namespace ElectronicObserver.Window;
 
-public partial class FormDock : DockContent
+public partial class FormDock: Form
 {
 
 	private class TableDockControl : IDisposable
@@ -272,7 +272,7 @@ public partial class FormDock : DockContent
 	}
 
 
-	protected override string GetPersistString()
+	protected string GetPersistString()
 	{
 		return "Dock";
 	}

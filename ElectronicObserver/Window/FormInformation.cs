@@ -12,13 +12,13 @@ using ElectronicObserver.Observer;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserverTypes;
-using WeifenLuo.WinFormsUI.Docking;
+
 using static ElectronicObserver.Observer.DiscordRPC;
 using Translation = ElectronicObserver.Properties.Window.FormInformation;
 
 namespace ElectronicObserver.Window;
 
-public partial class FormInformation : DockContent
+public partial class FormInformation: Form
 {
 
 	private int _ignorePort;
@@ -615,7 +615,7 @@ public partial class FormInformation : DockContent
 		_prevResource[3] = material.Bauxite;
 	}
 
-	protected override string GetPersistString()
+	protected string GetPersistString()
 	{
 		return "Information";
 	}

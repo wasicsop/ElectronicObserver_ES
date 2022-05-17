@@ -9,11 +9,11 @@ using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.Window.Control;
 using ElectronicObserver.Window.Support;
-using WeifenLuo.WinFormsUI.Docking;
+
 
 namespace ElectronicObserver.Window;
 
-public partial class FormBaseAirCorps : DockContent
+public partial class FormBaseAirCorps: Form
 {
 
 
@@ -568,7 +568,7 @@ public partial class FormBaseAirCorps : DockContent
 		e.Graphics.DrawLine(Pens.Silver, e.CellBounds.X, e.CellBounds.Bottom - 1, e.CellBounds.Right - 1, e.CellBounds.Bottom - 1);
 	}
 
-	protected override string GetPersistString()
+	protected string GetPersistString()
 	{
 		return "BaseAirCorps";
 	}

@@ -16,12 +16,12 @@ using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Window.Control;
 using ElectronicObserver.Window.Dialog;
 using ElectronicObserver.Window.Support;
-using WeifenLuo.WinFormsUI.Docking;
+
 using Translation = ElectronicObserver.Properties.Window.FormCompass;
 
 namespace ElectronicObserver.Window;
 
-public partial class FormCompass : DockContent
+public partial class FormCompass: Form
 {
 
 
@@ -1285,7 +1285,7 @@ public partial class FormCompass : DockContent
 
 
 
-	protected override string GetPersistString()
+	protected string GetPersistString()
 	{
 		return "Compass";
 	}

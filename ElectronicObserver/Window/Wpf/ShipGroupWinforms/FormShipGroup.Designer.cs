@@ -732,14 +732,12 @@
             // 
             // FormShipGroup
             // 
-            this.AutoHidePortion = 150D;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(300, 200);
             this.Controls.Add(this.ShipView);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Meiryo UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.HideOnClose = true;
             this.Name = "FormShipGroup";
             this.Text = "グループ";
             this.Load += new System.EventHandler(this.FormShipGroup_Load);

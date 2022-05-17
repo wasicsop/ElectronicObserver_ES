@@ -6,7 +6,7 @@
 		/// Required designer variable.
 		/// </summary>
 		private System.ComponentModel.IContainer components = null;
-
+		
 		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
@@ -63,7 +63,6 @@
             // 
             // FormFleetPreset
             // 
-            this.AutoHidePortion = 150D;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(300, 200);
@@ -71,7 +70,6 @@
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Meiryo UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.HideOnClose = true;
             this.Name = "FormFleetPreset";
             this.Text = "編成プリセット";
             this.Load += new System.EventHandler(this.FormFleetPreset_Load);

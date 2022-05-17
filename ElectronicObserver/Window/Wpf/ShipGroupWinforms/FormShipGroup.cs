@@ -16,12 +16,12 @@ using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Control;
 using ElectronicObserver.Window.Dialog;
 using ElectronicObserver.Window.Support;
-using WeifenLuo.WinFormsUI.Docking;
+
 using Translation = ElectronicObserver.Properties.Window.FormShipGroup;
 
 namespace ElectronicObserver.Window.Wpf.ShipGroupWinforms;
 
-public partial class FormShipGroup : DockContent
+public partial class FormShipGroup: Form
 {
 	// セル背景色
 	private readonly Color CellColorRed = Color.FromArgb(0xFF, 0xBB, 0xBB);

@@ -17,12 +17,12 @@ using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.Window.Control;
 using ElectronicObserver.Window.Dialog;
 using ElectronicObserver.Window.Support;
-using WeifenLuo.WinFormsUI.Docking;
+
 using Translation = ElectronicObserver.Properties.Window.FormShipGroup;
 
 namespace ElectronicObserver.Window;
 
-public partial class FormShipGroup : DockContent
+public partial class FormShipGroup: Form
 {
 
 
@@ -380,7 +380,7 @@ public partial class FormShipGroup : DockContent
 	}
 
 
-	protected override string GetPersistString() => "ShipGroup?SplitterDistance=" + splitContainer1.SplitterDistance;
+	protected string GetPersistString() => "ShipGroup?SplitterDistance=" + splitContainer1.SplitterDistance;
 
 
 

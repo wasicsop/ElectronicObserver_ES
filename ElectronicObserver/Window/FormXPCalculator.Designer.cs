@@ -531,7 +531,6 @@
             // 
             // FormXPCalculator
             // 
-            this.AutoHidePortion = 150D;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             resources.ApplyResources(this, "$this");
             this.Controls.Add(this.checkMVP);
@@ -556,7 +555,6 @@
             this.Controls.Add(this.selectShip);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.HideOnClose = true;
             this.Name = "FormXPCalculator";
             this.ResumeLayout(false);
             this.PerformLayout();

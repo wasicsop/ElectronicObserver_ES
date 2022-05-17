@@ -2,13 +2,13 @@
 using System.Windows.Forms.Integration;
 using System.Windows.Media;
 using ElectronicObserver.ViewModels;
-using WeifenLuo.WinFormsUI.Docking;
+
 
 namespace ElectronicObserver.Window.Wpf.WinformsHost;
 
 public class WinformsHostViewModel : AnchorableViewModel
 {
-	public DockContent? WinformsControl { get; set; }
+	public Form? WinformsControl { get; set; }
 	public WindowsFormsHost WindowsFormsHost { get; } = new();
 
 	protected WinformsHostViewModel(string title) : this(title, title)

@@ -23,7 +23,6 @@ using Grpc.Core;
 using MagicOnion.Hosting;
 using Microsoft.Extensions.Hosting;
 using ModernWpf;
-using WeifenLuo.WinFormsUI.Docking;
 using Translation = ElectronicObserver.Properties.Window.FormBrowserHost;
 
 namespace ElectronicObserver.Window;
@@ -32,7 +31,7 @@ namespace ElectronicObserver.Window;
 /// ブラウザのホスト側フォーム
 /// </summary>
 // [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
-public partial class FormBrowserHost : DockContent
+public partial class FormBrowserHost : Form
 {
 	private static FormBrowserHost _instance;
 	public static FormBrowserHost Instance => _instance;
@@ -514,7 +513,7 @@ public partial class FormBrowserHost : DockContent
 	}
 
 
-	protected override string GetPersistString()
+	protected string GetPersistString()
 	{
 		return "Browser";
 	}

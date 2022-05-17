@@ -16,12 +16,12 @@ using ElectronicObserver.Resource;
 using ElectronicObserver.Window.Control;
 using ElectronicObserver.Window.Support;
 using ElectronicObserverTypes;
-using WeifenLuo.WinFormsUI.Docking;
+
 using Translation = ElectronicObserver.Properties.Window.FormBattle;
 
 namespace ElectronicObserver.Window;
 
-public partial class FormBattle : DockContent
+public partial class FormBattle: Form
 {
 
 	private readonly Color WinRankColor_Win = Utility.Configuration.Config.UI.ForeColor;
@@ -1463,7 +1463,7 @@ public partial class FormBattle : DockContent
 	}
 
 
-	protected override string GetPersistString()
+	protected string GetPersistString()
 	{
 		return "Battle";
 	}

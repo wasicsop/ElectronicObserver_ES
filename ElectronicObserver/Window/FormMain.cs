@@ -25,7 +25,7 @@ using ElectronicObserver.Window.Dialog;
 using ElectronicObserver.Window.Integrate;
 using ElectronicObserver.Window.Support;
 using ElectronicObserver.Window.Wpf;
-using WeifenLuo.WinFormsUI.Docking;
+
 
 namespace ElectronicObserver.Window;
 
@@ -34,7 +34,7 @@ public partial class FormMain : Form
 
 	#region Properties
 
-	public DockPanel MainPanel => MainDockPanel;
+	public Form MainPanel => MainDockPanel;
 	public FormWindowCapture WindowCapture => fWindowCapture;
 
 	private int ClockFormat;
@@ -55,7 +55,7 @@ public partial class FormMain : Form
 
 	#region Forms
 
-	public List<DockContent> SubForms { get; private set; }
+	public List<Form> SubForms { get; private set; }
 
 	public FormFleet[] fFleet;
 	public FormDock fDock;
@@ -198,8 +198,6 @@ public partial class FormMain : Form
 
 	private async void FormMain_Load(object sender, EventArgs e)
 	{
-		this.MainDockPanel.Styles = Configuration.Config.UI.DockPanelSuiteStyles;
-		this.MainDockPanel.Theme = new WeifenLuo.WinFormsUI.Docking.VS2012Theme();
 		this.BackColor = this.StripMenu.BackColor = Utility.Configuration.Config.UI.BackColor;
 		this.ForeColor = this.StripMenu.ForeColor = Utility.Configuration.Config.UI.ForeColor;
 		this.StripStatus.BackColor = Utility.Configuration.Config.UI.StatusBarBackColor;
@@ -280,10 +278,9 @@ public partial class FormMain : Form
 		APIObserver.Instance.Start(Utility.Configuration.Config.Connection.Port, this);
 
 
-		MainDockPanel.Extender.FloatWindowFactory = new CustomFloatWindowFactory();
 
 
-		SubForms = new List<DockContent>();
+		SubForms = new List<Form>();
 
 		//form init
 		//注：一度全てshowしないとイベントを受け取れないので注意
@@ -408,8 +405,6 @@ public partial class FormMain : Form
 		Font = c.UI.MainFont;
 		//StripMenu.Font = Font;
 		StripStatus.Font = Font;
-		MainDockPanel.Skin.AutoHideStripSkin.TextFont = Font;
-		MainDockPanel.Skin.DockPaneStripSkin.TextFont = Font;
 
 
 		foreach (var f in SubForms)
@@ -429,17 +424,14 @@ public partial class FormMain : Form
 
 		if (c.Life.LockLayout)
 		{
-			MainDockPanel.AllowChangeLayout = false;
 			FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 		}
 		else
 		{
-			MainDockPanel.AllowChangeLayout = true;
 			FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
 		}
 
 		StripMenu_File_Layout_LockLayout.Checked = c.Life.LockLayout;
-		MainDockPanel.CanCloseFloatWindowInLock = c.Life.CanCloseFloatWindowInLock;
 
 		StripMenu_File_Layout_TopMost.Checked = c.Life.TopMost;
 
@@ -678,7 +670,7 @@ public partial class FormMain : Form
 
 
 
-	private IDockContent GetDockContentFromPersistString(string persistString)
+	private Form GetDockContentFromPersistString(string persistString)
 	{
 
 		switch (persistString)
@@ -752,11 +744,8 @@ public partial class FormMain : Form
 
 				foreach (var f in SubForms)
 				{
-					f.Show(MainDockPanel, DockState.Document);
-					f.DockPanel = null;
 				}
 
-				MainDockPanel.LoadFromXml(stream, new DeserializeDockContent(GetDockContentFromPersistString));
 
 
 				fWindowCapture.AttachAll();
@@ -769,10 +758,6 @@ public partial class FormMain : Form
 					f.Show(MainDockPanel);
 
 
-				foreach (var x in MainDockPanel.Contents)
-				{
-					x.DockHandler.Hide();
-				}
 			}
 
 		}
@@ -791,7 +776,6 @@ public partial class FormMain : Form
 		try
 		{
 
-			MainDockPanel.SaveAsXml(stream, Encoding.UTF8);
 
 		}
 		catch (Exception ex)
@@ -811,7 +795,7 @@ public partial class FormMain : Form
 		{
 			using (var archive = new ZipArchive(File.OpenRead(path), ZipArchiveMode.Read))
 			{
-				MainDockPanel.SuspendLayout(true);
+				MainDockPanel.SuspendLayout();
 
 				WindowPlacementManager.LoadWindowPlacement(this, archive.GetEntry("WindowPlacement.xml").Open());
 				LoadSubWindowsLayout(archive.GetEntry("SubWindowLayout.xml").Open());
@@ -849,7 +833,7 @@ public partial class FormMain : Form
 		finally
 		{
 
-			MainDockPanel.ResumeLayout(true, true);
+			MainDockPanel.ResumeLayout(true);
 		}
 
 	}
@@ -1728,13 +1712,8 @@ public partial class FormMain : Form
 	/// 子フォームを表示します。既に表示されている場合はフォームをある点に移動します。（失踪対策）
 	/// </summary>
 	/// <param name="form"></param>
-	private void ShowForm(DockContent form)
+	private void ShowForm(Form form)
 	{
-		if (form.IsFloat && form.Visible)
-		{
-			form.FloatPane.FloatWindow.Location = new Point(128, 128);
-		}
-
 		form.Show(MainDockPanel);
 	}
 

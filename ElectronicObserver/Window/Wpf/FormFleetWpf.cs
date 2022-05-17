@@ -13,11 +13,11 @@ using ElectronicObserver.Resource;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Window.Wpf.Fleet;
 using ElectronicObserverTypes;
-using WeifenLuo.WinFormsUI.Docking;
+
 
 namespace ElectronicObserver.Window.Wpf;
 
-public partial class FormFleetWpf : DockContent
+public partial class FormFleetWpf: Form
 {
 	private ElementHost WpfHost { get; } = new();
 	private FleetView FleetView { get; }
@@ -27,8 +27,6 @@ public partial class FormFleetWpf : DockContent
 		FleetView = new(fleetId, SetIcon);
 
 		InitializeComponent();
-
-		HideOnClose = true;
 
 		WpfHost.Dock = DockStyle.Fill;
 		WpfHost.Child = FleetView;

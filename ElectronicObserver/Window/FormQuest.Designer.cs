@@ -411,14 +411,12 @@
             // 
             // FormQuest
             // 
-            this.AutoHidePortion = 150D;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(300, 200);
             this.Controls.Add(this.QuestView);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Meiryo UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.HideOnClose = true;
             this.Name = "FormQuest";
 			this.Text = "任務";
 			this.Load += new System.EventHandler(this.FormQuest_Load);

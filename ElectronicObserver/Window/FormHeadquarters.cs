@@ -13,12 +13,12 @@ using ElectronicObserver.Resource;
 using ElectronicObserver.Resource.Record;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Window.Support;
-using WeifenLuo.WinFormsUI.Docking;
+
 using Translation = ElectronicObserver.Properties.Window.FormHeadQuarters;
 
 namespace ElectronicObserver.Window;
 
-public partial class FormHeadquarters : DockContent
+public partial class FormHeadquarters: Form
 {
 
 	private Form _parentForm;
@@ -712,7 +712,7 @@ public partial class FormHeadquarters : DockContent
 	}
 
 
-	protected override string GetPersistString()
+	protected string GetPersistString()
 	{
 		return "HeadQuarters";
 	}

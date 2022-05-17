@@ -13,7 +13,7 @@ using ElectronicObserver.Utility;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Integrate;
 using ElectronicObserver.Window.Wpf.WinformsWrappers;
-using WeifenLuo.WinFormsUI.Docking;
+
 using MessageBox = System.Windows.Forms.MessageBox;
 
 namespace ElectronicObserver.Window;
@@ -21,7 +21,7 @@ namespace ElectronicObserver.Window;
 /// <summary>
 /// ウィンドウキャプチャ
 /// </summary>
-public partial class FormWindowCapture : DockContent
+public partial class FormWindowCapture: Form
 {
 
 	public static string WarningMessage => Properties.Window.FormWindowCapture.WarningMessage;
@@ -130,7 +130,7 @@ public partial class FormWindowCapture : DockContent
 		}
 	}
 
-	protected override string GetPersistString()
+	protected string GetPersistString()
 	{
 		return "WindowCapture";
 	}

@@ -166,7 +166,6 @@
 			//
 			// FormFleet
 			//
-			this.AutoHidePortion = 150D;
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.AutoScroll = true;
 			this.BackColor = System.Drawing.SystemColors.Control;
@@ -176,7 +175,6 @@
 			this.DoubleBuffered = true;
 			this.Font = new System.Drawing.Font("Meiryo UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-			this.HideOnClose = true;
 			this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.Name = "FormFleet";
 			this.Text = "*not loaded*";

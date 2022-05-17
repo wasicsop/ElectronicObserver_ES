@@ -11,12 +11,12 @@ using ElectronicObserver.Data;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Window.Support;
-using WeifenLuo.WinFormsUI.Docking;
+
 using Translation = ElectronicObserver.Properties.Window.FormQuest;
 
 namespace ElectronicObserver.Window;
 
-public partial class FormQuest : DockContent
+public partial class FormQuest: Form
 {
 
 	private DataGridViewCellStyle CSDefaultLeft, CSDefaultCenter;
@@ -937,7 +937,7 @@ public partial class FormQuest : DockContent
 		Clipboard.SetText(serializedOutput);
 	}
 
-	protected override string GetPersistString()
+	protected string GetPersistString()
 	{
 		return "Quest";
 	}

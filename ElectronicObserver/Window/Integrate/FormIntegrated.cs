@@ -16,7 +16,7 @@ using ElectronicObserver.Utility;
 using ElectronicObserver.Utility.Storage;
 using ElectronicObserver.ViewModels;
 using MessagePack;
-using WeifenLuo.WinFormsUI.Docking;
+
 
 namespace ElectronicObserver.Window.Integrate;
 
@@ -24,7 +24,7 @@ namespace ElectronicObserver.Window.Integrate;
 /// 取り込むウィンドウのベースとなるフォーム
 /// </summary>
 [INotifyPropertyChanged]
-public partial class FormIntegrate : DockContent
+public partial class FormIntegrate: Form
 {
 
 	public readonly static String PREFIX = "FormIntegrated_";
@@ -206,7 +206,6 @@ public partial class FormIntegrate : DockContent
 		classNameComboBox.Items.AddRange(MATCH_COMBO_ITEMS);
 		fileNameComboBox.Items.AddRange(MATCH_COMBO_ITEMS);
 
-		TabPageContextMenuStrip = tabContextMenu;
 
 		Utility.Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
 		ConfigurationChanged();
@@ -470,7 +469,7 @@ public partial class FormIntegrate : DockContent
 		}
 	}
 
-	protected override string GetPersistString()
+	protected string GetPersistString()
 	{
 		StringBuilder stringBuilder = new StringBuilder();
 		WindowData.Save(stringBuilder);

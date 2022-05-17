@@ -17,10 +17,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EOUpdater", "EOUpdater\EOUp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BrowserLibCore", "BrowserLibCore\BrowserLibCore.csproj", "{85325F04-7F84-4C81-B775-2FCB5827818C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThemeVS2012", "DockPanelSuite\WinFormsUI\ThemeVS2012.csproj", "{A965D7BB-5CDA-4531-AB67-58D4FA10AA6D}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinFormsUI", "DockPanelSuite\WinFormsUI\WinFormsUI.csproj", "{C75532C4-765B-418E-B09B-46D36B2ABDB1}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElectronicObserverCoreTests", "ElectronicObserverCoreTests\ElectronicObserverCoreTests.csproj", "{93519D27-F710-406F-9CAC-C4BC8698D50D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElectronicObserverTypes", "ElectronicObserverTypes\ElectronicObserverTypes.csproj", "{B5FFF803-DA98-4ED2-B38B-A2DBABD4D6A5}"
@@ -55,14 +51,6 @@ Global
 		{85325F04-7F84-4C81-B775-2FCB5827818C}.Debug|x64.Build.0 = Debug|x64
 		{85325F04-7F84-4C81-B775-2FCB5827818C}.Release|x64.ActiveCfg = Release|x64
 		{85325F04-7F84-4C81-B775-2FCB5827818C}.Release|x64.Build.0 = Release|x64
-		{A965D7BB-5CDA-4531-AB67-58D4FA10AA6D}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{A965D7BB-5CDA-4531-AB67-58D4FA10AA6D}.Debug|x64.Build.0 = Debug|Any CPU
-		{A965D7BB-5CDA-4531-AB67-58D4FA10AA6D}.Release|x64.ActiveCfg = Release|Any CPU
-		{A965D7BB-5CDA-4531-AB67-58D4FA10AA6D}.Release|x64.Build.0 = Release|Any CPU
-		{C75532C4-765B-418E-B09B-46D36B2ABDB1}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{C75532C4-765B-418E-B09B-46D36B2ABDB1}.Debug|x64.Build.0 = Debug|Any CPU
-		{C75532C4-765B-418E-B09B-46D36B2ABDB1}.Release|x64.ActiveCfg = Release|Any CPU
-		{C75532C4-765B-418E-B09B-46D36B2ABDB1}.Release|x64.Build.0 = Release|Any CPU
 		{93519D27-F710-406F-9CAC-C4BC8698D50D}.Debug|x64.ActiveCfg = Debug|Any CPU
 		{93519D27-F710-406F-9CAC-C4BC8698D50D}.Debug|x64.Build.0 = Debug|Any CPU
 		{93519D27-F710-406F-9CAC-C4BC8698D50D}.Release|x64.ActiveCfg = Release|Any CPU

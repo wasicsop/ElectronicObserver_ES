@@ -4,10 +4,10 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WeifenLuo.WinFormsUI.Docking;
+
 
 namespace ElectronicObserver.Window.Support;
-
+/*
 public class CustomFloatWindowFactory : DockPanelExtender.IFloatWindowFactory
 {
 
@@ -44,3 +44,4 @@ public class CustomFloatWindow : FloatWindow
 	}
 
 }
+*/

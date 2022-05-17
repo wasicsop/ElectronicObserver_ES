@@ -115,7 +115,6 @@
             this.StripStatus_Information = new System.Windows.Forms.ToolStripStatusLabel();
             this.StripStatus_Clock = new System.Windows.Forms.ToolStripStatusLabel();
             this.UIUpdateTimer = new System.Windows.Forms.Timer(this.components);
-            this.MainDockPanel = new WeifenLuo.WinFormsUI.Docking.DockPanel();
             this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
             this.switchLanguageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.StripMenu.SuspendLayout();
@@ -790,18 +789,10 @@
             // 
             // MainDockPanel
             // 
-            this.MainDockPanel.DefaultFloatWindowSize = new System.Drawing.Size(400, 300);
             this.MainDockPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MainDockPanel.DockBottomPortion = 150D;
-            this.MainDockPanel.DockLeftPortion = 150D;
-            this.MainDockPanel.DockRightPortion = 150D;
-            this.MainDockPanel.DockTopPortion = 150D;
-            this.MainDockPanel.DocumentStyle = WeifenLuo.WinFormsUI.Docking.DocumentStyle.DockingWindow;
             this.MainDockPanel.Location = new System.Drawing.Point(0, 24);
             this.MainDockPanel.Name = "MainDockPanel";
-            this.MainDockPanel.ShowDocumentIcon = true;
             this.MainDockPanel.Size = new System.Drawing.Size(640, 434);
-            this.MainDockPanel.Styles = null;
             this.MainDockPanel.TabIndex = 0;
             // 
             // toolStripSeparator12
@@ -843,7 +834,7 @@
 
         #endregion
 
-        private WeifenLuo.WinFormsUI.Docking.DockPanel MainDockPanel;
+        private System.Windows.Forms.Form MainDockPanel;
         private System.Windows.Forms.MenuStrip StripMenu;
         private System.Windows.Forms.StatusStrip StripStatus;
         private System.Windows.Forms.ToolStripMenuItem StripMenu_Update;

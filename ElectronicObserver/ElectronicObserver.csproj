@@ -421,8 +421,6 @@
 	<ItemGroup>
 		<ProjectReference Include="..\AvalonDock.Themes.VS2013\AvalonDock.Themes.VS2013.csproj" />
 		<ProjectReference Include="..\BrowserLibCore\BrowserLibCore.csproj" />
-		<ProjectReference Include="..\DockPanelSuite\WinFormsUI\ThemeVS2012.csproj" />
-		<ProjectReference Include="..\DockPanelSuite\WinFormsUI\WinFormsUI.csproj" />
 		<ProjectReference Include="..\ElectronicObserver.SourceGenerators\ElectronicObserver.SourceGenerators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
 		<ProjectReference Include="..\ElectronicObserverTypes\ElectronicObserverTypes.csproj" />
 		<ProjectReference Include="..\KancolleProgress\KancolleProgress.csproj" />

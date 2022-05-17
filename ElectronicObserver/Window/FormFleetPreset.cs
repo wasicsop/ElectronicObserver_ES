@@ -11,12 +11,12 @@ using ElectronicObserver.Data;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Window.Control;
 using ElectronicObserver.Window.Support;
-using WeifenLuo.WinFormsUI.Docking;
+
 using Translation = ElectronicObserver.Properties.Window.FormFleetPreset;
 
 namespace ElectronicObserver.Window;
 
-public partial class FormFleetPreset : DockContent
+public partial class FormFleetPreset: Form
 {
 
 	private class TablePresetControl : IDisposable
@@ -257,7 +257,7 @@ public partial class FormFleetPreset : DockContent
 	}
 
 
-	protected override string GetPersistString()
+	protected string GetPersistString()
 	{
 		return "FleetPreset";
 	}

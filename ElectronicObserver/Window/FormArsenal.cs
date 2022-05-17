@@ -13,11 +13,11 @@ using ElectronicObserver.Resource;
 using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.Window.Control;
 using ElectronicObserver.Window.Support;
-using WeifenLuo.WinFormsUI.Docking;
+
 
 namespace ElectronicObserver.Window;
 
-public partial class FormArsenal : DockContent
+public partial class FormArsenal: Form
 {
 
 	private class TableArsenalControl : IDisposable
@@ -340,7 +340,7 @@ public partial class FormArsenal : DockContent
 
 
 
-	protected override string GetPersistString()
+	protected string GetPersistString()
 	{
 		return "Arsenal";
 	}

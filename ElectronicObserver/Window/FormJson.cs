@@ -13,12 +13,12 @@ using DynaJson;
 using ElectronicObserver.Observer;
 using ElectronicObserver.Resource;
 using ElectronicObserver.ViewModels;
-using WeifenLuo.WinFormsUI.Docking;
+
 using Translation = ElectronicObserver.Properties.Window.FormJson;
 
 namespace ElectronicObserver.Window;
 
-public partial class FormJson : DockContent
+public partial class FormJson: Form
 {
 
 
@@ -633,7 +633,7 @@ public partial class FormJson : DockContent
 
 
 
-	protected override string GetPersistString()
+	protected string GetPersistString()
 	{
 		return "Json";
 	}

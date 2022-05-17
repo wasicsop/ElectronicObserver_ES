@@ -17,12 +17,12 @@ using ElectronicObserver.Window.Control;
 using ElectronicObserver.Window.Dialog;
 using ElectronicObserver.Window.Support;
 using ElectronicObserverTypes;
-using WeifenLuo.WinFormsUI.Docking;
+
 using Translation = ElectronicObserver.Properties.Window.FormFleet;
 
 namespace ElectronicObserver.Window;
 
-public partial class FormFleet : DockContent
+public partial class FormFleet: Form
 {
 
 	private bool IsRemodeling = false;
@@ -1551,7 +1551,7 @@ public partial class FormFleet : DockContent
 	}
 
 
-	protected override string GetPersistString()
+	protected string GetPersistString()
 	{
 		return "Fleet #" + FleetID.ToString();
 	}
