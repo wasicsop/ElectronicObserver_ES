@@ -121,4 +121,13 @@
   <data name="Remove" xml:space="preserve">
     <value>除去</value>
   </data>
+  <data name="File" xml:space="preserve">
+    <value>ファイル(_F)</value>
+  </data>
+  <data name="CopyToClipboard" xml:space="preserve">
+    <value>クリップボードにコピー(_C)</value>
+  </data>
+  <data name="LoadFromClipboard" xml:space="preserve">
+    <value>クリップボードからロード(_L)</value>
+  </data>
 </root>

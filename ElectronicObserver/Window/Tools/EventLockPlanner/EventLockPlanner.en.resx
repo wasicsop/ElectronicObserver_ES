@@ -141,4 +141,13 @@
   <data name="Remove" xml:space="preserve">
     <value>Remove</value>
   </data>
+  <data name="File" xml:space="preserve">
+    <value>_File</value>
+  </data>
+  <data name="CopyToClipboard" xml:space="preserve">
+    <value>_Copy to clipboard</value>
+  </data>
+  <data name="LoadFromClipboard" xml:space="preserve">
+    <value>_Load from clipboard</value>
+  </data>
 </root>

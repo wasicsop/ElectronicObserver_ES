@@ -1,18 +1,23 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Text.Json;
+using System.Windows;
 using System.Windows.Media;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
 using ElectronicObserver.Database;
+using ElectronicObserver.Services;
 using ElectronicObserverTypes;
+using ElectronicObserverTypes.Serialization.EventLockPlanner;
 
 namespace ElectronicObserver.Window.Tools.EventLockPlanner;
 
 public partial class EventLockPlannerViewModel : WindowViewModelBase
 {
 	public EventLockPlannerTranslationViewModel EventLockPlanner { get; }
+	private DataSerializationService DataSerializationService { get; }
 
 	private List<ShipLockViewModel> AllShipLocks { get; }
 
@@ -23,6 +28,7 @@ public partial class EventLockPlannerViewModel : WindowViewModelBase
 	public EventLockPlannerViewModel(IEnumerable<IShipData> allShips)
 	{
 		EventLockPlanner = Ioc.Default.GetService<EventLockPlannerTranslationViewModel>()!;
+		DataSerializationService = Ioc.Default.GetService<DataSerializationService>()!;
 
 		AllShipLocks = allShips.Select(s => new ShipLockViewModel(s)).ToList();
 
@@ -191,7 +197,7 @@ public partial class EventLockPlannerViewModel : WindowViewModelBase
 			{
 				LockGroupViewModel? group = LockGroups.Skip(lockGroupId - 1).FirstOrDefault();
 
-				if(group is null) continue;
+				if (group is null) continue;
 
 				phase.PhaseLockGroups.Add(group);
 			}
@@ -203,8 +209,103 @@ public partial class EventLockPlannerViewModel : WindowViewModelBase
 					.FirstOrDefault(l => l.Ship.ID == phaseShipId);
 
 				if (shipLock is null) continue;
-				
+
 				phase.Add(shipLock);
+			}
+		}
+	}
+
+	[ICommand]
+	private void CopyLocksToClipboard()
+	{
+		Clipboard.SetDataObject(DataSerializationService.EventLockPlanner(this));
+	}
+
+	[ICommand]
+	private void LoadLocksFromClipboard()
+	{
+		string json = Clipboard.GetText();
+
+		EventLockPlannerData? data = JsonSerializer.Deserialize<EventLockPlannerData>(json);
+
+		if (data is null)
+		{
+			// error
+			return;
+		}
+
+		ImportLocks(data);
+	}
+
+	private void ImportLocks(EventLockPlannerData data)
+	{
+		List<List<ShipLockViewModel>> lockGroups = LockGroups
+			.Select(g => g.Ships.ToList())
+			.Prepend(NoLockGroup.Ships.ToList())
+			.ToList();
+
+		List<List<ShipLockViewModel>> eventPhases = EventPhases
+			.Select(p => p.Ships.ToList())
+			.ToList();
+
+		NoLockGroup.Clear();
+		LockGroups.Clear();
+		EventPhases.Clear();
+
+		foreach (EventLockPlannerLock eventLock in data.Locks.OrderBy(l => l.Id))
+		{
+			LockGroups.Add(new(eventLock.Id)
+			{
+				Color = Color.FromArgb(eventLock.A, eventLock.R, eventLock.G, eventLock.B),
+				Name = eventLock.Name,
+			});
+		}
+
+		foreach ((List<ShipLockViewModel> shipLocks, int id) in lockGroups.Select((l, i) => (l, i)))
+		{
+			if (id is 0 || id > LockGroups.Count)
+			{
+				foreach (ShipLockViewModel shipLock in shipLocks)
+				{
+					NoLockGroup.Add(shipLock);
+				}
+			}
+			else
+			{
+				foreach (ShipLockViewModel shipLock in shipLocks)
+				{
+					LockGroups[id - 1].Add(shipLock);
+				}
+			}
+		}
+
+		foreach (EventLockPlannerPhase phase in data.Phases)
+		{
+			EventPhaseViewModel eventPhase = new(LockGroups)
+			{
+				Name = phase.Name,
+
+			};
+
+			EventPhases.Add(eventPhase);
+
+			foreach (int id in phase.LockGroups)
+			{
+				LockGroupViewModel? lockGroup = LockGroups.FirstOrDefault(g => g.Id == id);
+
+				if (lockGroup is null) continue;
+
+				eventPhase.AddLockToPhaseCommand.Execute(lockGroup);
+			}
+		}
+
+		foreach ((List<ShipLockViewModel> eventPhase, int id) in eventPhases.Select((p, id) => (p, id)))
+		{
+			if(id > EventPhases.Count) continue;
+
+			foreach (ShipLockViewModel shipLock in eventPhase)
+			{
+				EventPhases[id].Add(shipLock);
 			}
 		}
 	}

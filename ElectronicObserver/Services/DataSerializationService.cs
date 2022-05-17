@@ -1,12 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using ElectronicObserver.Data;
+using ElectronicObserver.Window.Tools.EventLockPlanner;
 using ElectronicObserverTypes;
-using ElectronicObserverTypes.Serialization;
 using ElectronicObserverTypes.Serialization.AirControlSimulator;
 using ElectronicObserverTypes.Serialization.DeckBuilder;
+using ElectronicObserverTypes.Serialization.EventLockPlanner;
 using ElectronicObserverTypes.Serialization.FleetAnalysis;
 
 namespace ElectronicObserver.Services;
@@ -15,7 +17,8 @@ public class DataSerializationService
 {
 	private static JsonSerializerOptions JsonSerializerOptions => new()
 	{
-		DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+		DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+		Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
 	};
 
 	public string DeckBuilderFleet(int fleetId) => fleetId switch
@@ -284,4 +287,27 @@ public class DataSerializationService
 		Id = equipment.MasterEquipment.EquipmentId,
 		Level = equipment.Level,
 	};
+
+	public string EventLockPlanner(EventLockPlannerViewModel viewModel)
+	{
+		EventLockPlannerData data = new()
+		{
+			Locks = viewModel.LockGroups.Select(g => new EventLockPlannerLock
+			{
+				Id = g.Id,
+				A = g.Color.A,
+				R = g.Color.R,
+				G = g.Color.G,
+				B = g.Color.B,
+				Name = g.Name,
+			}).ToList(),
+			Phases = viewModel.EventPhases.Select(p => new EventLockPlannerPhase
+			{
+				LockGroups = p.PhaseLockGroups.Select(g => g.Id).ToList(),
+				Name = p.Name,
+			}).ToList()
+		};
+
+		return JsonSerializer.Serialize(data, JsonSerializerOptions);
+	}
 }

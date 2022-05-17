@@ -79,11 +79,38 @@ namespace ElectronicObserver.Window.Tools.EventLockPlanner {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to クリップボードにコピー(_C).
+        /// </summary>
+        internal static string CopyToClipboard {
+            get {
+                return ResourceManager.GetString("CopyToClipboard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 大発系.
         /// </summary>
         internal static string Daihatsu {
             get {
                 return ResourceManager.GetString("Daihatsu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ファイル(_F).
+        /// </summary>
+        internal static string File {
+            get {
+                return ResourceManager.GetString("File", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to クリップボードからロード(_L).
+        /// </summary>
+        internal static string LoadFromClipboard {
+            get {
+                return ResourceManager.GetString("LoadFromClipboard", resourceCulture);
             }
         }
         
