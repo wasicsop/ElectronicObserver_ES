@@ -613,4 +613,38 @@ public class DayAttackTests
 		Assert.Equal(0.133, totalRates[2], Precision);
 	}
 
+	[Fact(DisplayName = "Yamashio Maru uses the carrier shelling formula when equipped with a bomber")]
+	public void DayAttackTest6TestData()
+	{
+		ShipDataMock yamashioMaru = new(Db.MasterShips[ShipId.YamashioMaruKai])
+		{
+			Level = 99, 
+			AllSlotInstance = new List<IEquipmentData>
+			{
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.CarrierBasedBomber_Suisei_EgusaSquadron]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SecondaryGun_OTO152mmTripleRapidfireGun]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SecondaryGun_OTO152mmTripleRapidfireGun]),
+			},
+		};
+
+		FleetDataMock fleet = new()
+		{
+			FleetType = FleetType.Single,
+			MembersWithoutEscaped = new ReadOnlyCollection<IShipData?>(new List<IShipData?>
+			{
+				yamashioMaru,
+			}),
+		};
+		
+		List<Enum> expected = new List<Enum>
+		{
+			DayAttackKind.Shelling
+		};
+
+		List<Enum> actual = yamashioMaru.GetDayAttacks().ToList();
+
+		Assert.Equal(expected, actual);
+
+		Assert.Equal(137, yamashioMaru.GetDayAttackPower(actual[0], fleet));
+	}
 }

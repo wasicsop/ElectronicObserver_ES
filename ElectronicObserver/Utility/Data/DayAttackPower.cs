@@ -25,7 +25,8 @@ public static class DayAttackPower
 	private static double BaseDayAttackPower(this IShipData ship, IFleetData fleet) => ship switch
 	{
 		_ when ship.MasterShip.IsAircraftCarrier => ship.CarrierBasePower(fleet),
-		_ when ship.MasterShip.ShipId == ShipId.HayasuiKai && ship.HasAttacker() => ship.CarrierBasePower(fleet),
+		{ MasterShip.ShipId: ShipId.HayasuiKai } when ship.HasAttacker() => ship.CarrierBasePower(fleet),
+		{ MasterShip.ShipId: ShipId.YamashioMaruKai } when ship.HasBomber() => ship.CarrierBasePower(fleet),
 
 		_ => ship.SurfaceShipBasePower(fleet)
 	};
