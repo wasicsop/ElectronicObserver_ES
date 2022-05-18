@@ -1,14 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ElectronicObserver.Notifier;
 using ElectronicObserver.Observer;
@@ -17,6 +12,7 @@ using ElectronicObserver.Utility;
 using ElectronicObserver.Utility.Storage;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Control;
+using ElectronicObserver.Window.Wpf.Headquarters;
 using Translation = ElectronicObserver.Properties.Window.Dialog.DialogConfiguration;
 
 namespace ElectronicObserver.Window.Dialog;
@@ -838,8 +834,8 @@ public partial class DialogConfiguration : Form
 
 		FormHeadquarters_BlinkAtMaximum.Checked = config.FormHeadquarters.BlinkAtMaximum;
 		FormHeadquarters_Visibility.Items.Clear();
-		FormHeadquarters_Visibility.Items.AddRange(FormHeadquarters.GetItemNames().ToArray());
-		FormHeadquarters.CheckVisibilityConfiguration();
+		FormHeadquarters_Visibility.Items.AddRange(HeadquartersViewModel.GetItemNames().ToArray());
+		HeadquartersViewModel.CheckVisibilityConfiguration();
 		for (int i = 0; i < FormHeadquarters_Visibility.Items.Count; i++)
 		{
 			FormHeadquarters_Visibility.SetItemChecked(i, config.FormHeadquarters.Visibility.List[i]);

@@ -72,19 +72,6 @@ public sealed class NotifierManager
 	{
 		switch (_parentForm)
 		{
-			case FormMain parentForm:
-			{
-				if (form.DialogData.Alignment == NotifierDialogAlignment.CustomRelative)
-				{       //cloneしているから書き換えても問題ないはず
-					Point p = parentForm.fBrowser.PointToScreen(new Point(parentForm.fBrowser.ClientSize.Width / 2, parentForm.fBrowser.ClientSize.Height / 2));
-					p.Offset(new Point(-form.Width / 2, -form.Height / 2));
-					p.Offset(form.DialogData.Location);
-
-					form.DialogData.Location = p;
-				}
-				parentForm.Invoke((MethodInvoker)form.Show);
-				break;
-			}
 			case FormMainWpf parentForm:
 			{
 				if (form.DialogData.Alignment == NotifierDialogAlignment.CustomRelative)

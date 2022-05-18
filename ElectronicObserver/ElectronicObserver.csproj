@@ -322,22 +322,12 @@
 		<Compile Update="ViewModels\Translations\ImageTextControl.xaml.cs">
 			<SubType>Code</SubType>
 		</Compile>
-		<Compile Update="Window\Control\FleetState.cs">
-			<SubType>UserControl</SubType>
-		</Compile>
+		<Compile Update="Window\Control\FleetState.cs" />
 		<Compile Update="Window\Control\ImageLabel.cs">
 			<SubType>Component</SubType>
 		</Compile>
-		<Compile Update="Window\Control\ShipStatusEquipment.cs">
-			<SubType>UserControl</SubType>
-		</Compile>
+		<Compile Update="Window\Control\ShipStatusEquipment.cs" />
 		<Compile Update="Window\Control\ShipStatusHP.cs">
-			<SubType>UserControl</SubType>
-		</Compile>
-		<Compile Update="Window\Control\ShipStatusLevel.cs">
-			<SubType>UserControl</SubType>
-		</Compile>
-		<Compile Update="Window\Control\ShipStatusResource.cs">
 			<SubType>UserControl</SubType>
 		</Compile>
 		<Compile Update="Window\Control\WindowCaptureButton.cs">
@@ -731,9 +721,6 @@
 		<EmbeddedResource Update="Window\Dialog\DialogRes.resx">
 			<Generator>ResXFileCodeGenerator</Generator>
 			<LastGenOutput>DialogRes.Designer.cs</LastGenOutput>
-		</EmbeddedResource>
-		<EmbeddedResource Update="Window\FormMain.resx">
-			<Generator></Generator>
 		</EmbeddedResource>
 		<EmbeddedResource Update="Window\GeneralRes.resx">
 			<Generator>PublicResXFileCodeGenerator</Generator>

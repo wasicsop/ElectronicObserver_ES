@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ElectronicObserver.Data;
 using ElectronicObserver.Observer;
@@ -18,14 +14,14 @@ using Translation = ElectronicObserver.Properties.Window.FormInformation;
 
 namespace ElectronicObserver.Window;
 
-public partial class FormInformation: Form
+public partial class FormInformation : Form
 {
 
 	private int _ignorePort;
 	private List<int> _inSortie;
 	private int[] _prevResource;
 
-	public FormInformation(FormMain parent)
+	public FormInformation(object parent)
 	{
 		InitializeComponent();
 

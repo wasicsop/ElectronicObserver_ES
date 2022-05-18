@@ -1,22 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ElectronicObserver.Resource;
 
 
 namespace ElectronicObserver.Window;
 
-public partial class FormLog: Form
+public partial class FormLog : Form
 {
 
 
-	public FormLog(FormMain parent)
+	public FormLog(object parent)
 	{
 		InitializeComponent();
 

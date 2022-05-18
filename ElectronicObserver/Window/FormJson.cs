@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using DynaJson;
 using ElectronicObserver.Observer;
@@ -18,7 +16,7 @@ using Translation = ElectronicObserver.Properties.Window.FormJson;
 
 namespace ElectronicObserver.Window;
 
-public partial class FormJson: Form
+public partial class FormJson : Form
 {
 
 
@@ -31,7 +29,7 @@ public partial class FormJson: Form
 	private string _currentAPIPath;
 
 
-	public FormJson(FormMain parent)
+	public FormJson(object parent)
 	{
 		InitializeComponent();
 

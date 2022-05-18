@@ -1,15 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
 using System.Drawing;
-using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
-using System.ServiceModel;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BrowserHost;
@@ -17,7 +12,6 @@ using BrowserLibCore;
 using ElectronicObserver.Observer;
 using ElectronicObserver.Properties;
 using ElectronicObserver.Resource;
-using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.ViewModels;
 using Grpc.Core;
 using MagicOnion.Hosting;
@@ -94,7 +88,7 @@ public partial class FormBrowserHost : Form
 		}
 	}
 
-	public FormBrowserHost(FormMain parent)
+	public FormBrowserHost(object parent)
 	{
 		InitializeComponent();
 

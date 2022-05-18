@@ -48,7 +48,7 @@ public partial class FormShipGroup: Form
 	private ShipGroupWinformsViewModel ViewModel { get; }
 	public DataGridView DataGrid => ShipView;
 
-	public FormShipGroup(FormMain parent, ShipGroupWinformsViewModel viewModel)
+	public FormShipGroup(object parent, ShipGroupWinformsViewModel viewModel)
 	{
 		ViewModel = viewModel;
 

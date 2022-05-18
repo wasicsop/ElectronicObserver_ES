@@ -108,49 +108,33 @@ public partial class App : Application
 			AppCenter.Start("7fdbafa0-058a-4691-b317-a700be513b95", typeof(Analytics), typeof(Crashes));
 #endif
 
-			if (true)
+			try
 			{
-				try
-				{
-					Directory.CreateDirectory(@"Settings\Layout");
-				}
-				catch (UnauthorizedAccessException)
-				{
-					MessageBox.Show(ElectronicObserver.Properties.Window.FormMain.MissingPermissions,
-						ElectronicObserver.Properties.Window.FormMain.ErrorCaption,
-						MessageBoxButton.OK, MessageBoxImage.Error);
-					throw;
-				}
-
-				Configuration.Instance.Load();
-
-				ConfigureServices();
-
-				ToolTipService.ShowDurationProperty.OverrideMetadata(
-					typeof(DependencyObject), new FrameworkPropertyMetadata(int.MaxValue));
-				ToolTipService.InitialShowDelayProperty.OverrideMetadata(
-					typeof(DependencyObject), new FrameworkPropertyMetadata(0));
-
-				FormMainWpf mainWindow = new();
-
-				MainWindow = mainWindow;
-				ShutdownMode = ShutdownMode.OnMainWindowClose;
-
-				mainWindow.ShowDialog();
+				Directory.CreateDirectory(@"Settings\Layout");
 			}
-			else
+			catch (UnauthorizedAccessException)
 			{
-				try
-				{
-					// todo why does this exception happen?
-					// observed first after I added the wpf version of KC progress
-					System.Windows.Forms.Application.Run(new FormMain());
-				}
-				catch (System.Runtime.InteropServices.SEHException ex)
-				{
-
-				}
+				MessageBox.Show(ElectronicObserver.Properties.Window.FormMain.MissingPermissions,
+					ElectronicObserver.Properties.Window.FormMain.ErrorCaption,
+					MessageBoxButton.OK, MessageBoxImage.Error);
+				throw;
 			}
+
+			Configuration.Instance.Load();
+
+			ConfigureServices();
+
+			ToolTipService.ShowDurationProperty.OverrideMetadata(
+				typeof(DependencyObject), new FrameworkPropertyMetadata(int.MaxValue));
+			ToolTipService.InitialShowDelayProperty.OverrideMetadata(
+				typeof(DependencyObject), new FrameworkPropertyMetadata(0));
+
+			FormMainWpf mainWindow = new();
+
+			MainWindow = mainWindow;
+			ShutdownMode = ShutdownMode.OnMainWindowClose;
+
+			mainWindow.ShowDialog();
 
 			// Shutdown();
 		}
@@ -184,7 +168,7 @@ public partial class App : Application
 			.AddSingleton<DialogDevelopmentRecordViewerTranslationViewModel>()
 			.AddSingleton<DialogDropRecordViewerTranslationViewModel>()
 			.AddSingleton<DialogConstructionRecordViewerTranslationViewModel>()
-      .AddSingleton<DialogResourceChartTranslationViewModel>()
+			.AddSingleton<DialogResourceChartTranslationViewModel>()
 			.AddSingleton<DialogEquipmentListTranslationViewModel>()
 			.AddSingleton<QuestTrackerManagerTranslationViewModel>()
 			.AddSingleton<EventLockPlannerTranslationViewModel>()

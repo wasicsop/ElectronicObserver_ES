@@ -24,7 +24,7 @@ namespace ElectronicObserver.Window.Integrate;
 /// 取り込むウィンドウのベースとなるフォーム
 /// </summary>
 [INotifyPropertyChanged]
-public partial class FormIntegrate: Form
+public partial class FormIntegrate : Form
 {
 
 	public readonly static String PREFIX = "FormIntegrated_";
@@ -212,10 +212,6 @@ public partial class FormIntegrate: Form
 
 		switch (parent)
 		{
-			case FormMain main:
-				main.WindowCapture.AddCapturedWindow(this);
-				break;
-
 			case FormMainViewModel { WindowCapture: { WinformsControl: FormWindowCapture fwc } }:
 				if (info is not null)
 				{
@@ -229,20 +225,6 @@ public partial class FormIntegrate: Form
 	void ConfigurationChanged()
 	{
 		Font = Utility.Configuration.Config.UI.MainFont;
-	}
-
-	/// <summary>
-	/// PersistStringから復元
-	/// </summary>
-	public static FormIntegrate FromPersistString(FormMain parent, String str)
-	{
-		WindowInfo info = new WindowInfo();
-		info = (WindowInfo)info.Load(new StringReader(str.Substring(PREFIX.Length)));
-		FormIntegrate form = new FormIntegrate(parent)
-		{
-			WindowData = info
-		};
-		return form;
 	}
 
 	private static string GetMainModuleFilepath(int processId)
