@@ -87,6 +87,7 @@ public partial class ResourceChartWPF
 	private ScatterPlot? ExperiencePlot;
 	private SignalPlotXY ExperienceSignalPlot;
 	private ResourceRecord _record;
+
 	private ChartType SelectedChartType => (ChartType)GetSelectedMenuStripIndex(ChartTypeMenu);
 	private ChartSpan SelectedChartSpan => (ChartSpan)GetSelectedMenuStripIndex(ChartSpanMenu);
 
@@ -164,15 +165,17 @@ public partial class ResourceChartWPF
 			if (FuelPlot is not null)
 			{
 				FuelPlot.IsVisible = ViewModel.ShowFuel;
+				SetYBounds();
 				ChartArea.Refresh();
 			}
 
 			if (FuelSignalPlot is not null)
 			{
 				FuelSignalPlot.IsVisible = ViewModel.ShowFuel;
+				SetYBounds();
 				ChartArea.Refresh();
 			}
-			CheckChartVisiblity(); 
+			CheckChartVisiblity();
 		};
 		ViewModel.PropertyChanged += (sender, args) =>
 		{
@@ -181,12 +184,14 @@ public partial class ResourceChartWPF
 			if (AmmoPlot is not null)
 			{
 				AmmoPlot.IsVisible = ViewModel.ShowAmmo;
+				SetYBounds();
 				ChartArea.Refresh();
 			}
 
 			if (AmmoSignalPlot is not null)
 			{
 				AmmoSignalPlot.IsVisible = ViewModel.ShowAmmo;
+				SetYBounds();
 				ChartArea.Refresh();
 			}
 			CheckChartVisiblity();
@@ -198,12 +203,14 @@ public partial class ResourceChartWPF
 			if (SteelPlot is not null)
 			{
 				SteelPlot.IsVisible = ViewModel.ShowSteel;
+				SetYBounds();
 				ChartArea.Refresh();
 			}
 
 			if (SteelSignalPlot is not null)
 			{
 				SteelSignalPlot.IsVisible = ViewModel.ShowSteel;
+				SetYBounds();
 				ChartArea.Refresh();
 			}
 			CheckChartVisiblity();
@@ -215,12 +222,14 @@ public partial class ResourceChartWPF
 			if (BauxPlot is not null)
 			{
 				BauxPlot.IsVisible = ViewModel.ShowBaux;
+				SetYBounds();
 				ChartArea.Refresh();
 			}
 
 			if (BauxSignalPlot is not null)
 			{
 				BauxSignalPlot.IsVisible = ViewModel.ShowBaux;
+				SetYBounds();
 				ChartArea.Refresh();
 			}
 			CheckChartVisiblity();
@@ -232,16 +241,18 @@ public partial class ResourceChartWPF
 			if (InstantRepairPlot is not null)
 			{
 				InstantRepairPlot.IsVisible = ViewModel.ShowInstantRepair;
-				if (SelectedChartType == ChartType.Resource)
+				if (SelectedChartType == ChartType.Resource || SelectedChartType == ChartType.ResourceDiff)
 				{
 					ChartArea.Plot.YAxis2.IsVisible = ViewModel.ShowInstantRepair;
 				}
+				SetYBounds();
 				ChartArea.Refresh();
 			}
 
 			if (InstantRepairSignalPlot is not null)
 			{
 				InstantRepairSignalPlot.IsVisible = ViewModel.ShowInstantRepair;
+				SetYBounds();
 				ChartArea.Refresh();
 			}
 			CheckChartVisiblity();
@@ -253,14 +264,14 @@ public partial class ResourceChartWPF
 			if (InstantConstructionPlot is not null)
 			{
 				InstantConstructionPlot.IsVisible = ViewModel.ShowInstantConstruction;
-				ChartArea.Plot.AxisAutoY();
+				SetYBounds();
 				ChartArea.Refresh();
 			}
 
 			if (InstantConstructionSignalPlot is not null)
 			{
 				InstantConstructionSignalPlot.IsVisible = ViewModel.ShowInstantConstruction;
-				ChartArea.Plot.AxisAutoY();
+				SetYBounds();
 				ChartArea.Refresh();
 			}
 			CheckChartVisiblity();
@@ -272,14 +283,14 @@ public partial class ResourceChartWPF
 			if (DevelopmentMaterialPlot is not null)
 			{
 				DevelopmentMaterialPlot.IsVisible = ViewModel.ShowDevelopmentMaterial;
-				ChartArea.Plot.AxisAutoY();
+				SetYBounds();
 				ChartArea.Refresh();
 			}
 
 			if (DevelopmentMaterialSignalPlot is not null)
 			{
 				DevelopmentMaterialSignalPlot.IsVisible = ViewModel.ShowDevelopmentMaterial;
-				ChartArea.Plot.AxisAutoY();
+				SetYBounds();
 				ChartArea.Refresh();
 			}
 			CheckChartVisiblity();
@@ -291,14 +302,14 @@ public partial class ResourceChartWPF
 			if (ModdingMaterialPlot is not null)
 			{
 				ModdingMaterialPlot.IsVisible = ViewModel.ShowModdingMaterial;
-				ChartArea.Plot.AxisAutoY();
+				SetYBounds();
 				ChartArea.Refresh();
 			}
 
 			if (ModdingMaterialSignalPlot is not null)
 			{
 				ModdingMaterialSignalPlot.IsVisible = ViewModel.ShowModdingMaterial;
-				ChartArea.Plot.AxisAutoY();
+				SetYBounds();
 				ChartArea.Refresh();
 			}
 			CheckChartVisiblity();
@@ -310,14 +321,14 @@ public partial class ResourceChartWPF
 			if (ExperiencePlot is not null)
 			{
 				ExperiencePlot.IsVisible = ViewModel.ShowExperience;
-				ChartArea.Plot.AxisAutoY();
+				SetYBounds();
 				ChartArea.Refresh();
 			}
 
 			if (ExperienceSignalPlot is not null)
 			{
 				ExperienceSignalPlot.IsVisible = ViewModel.ShowExperience;
-				ChartArea.Plot.AxisAutoY();
+				SetYBounds();
 				ChartArea.Refresh();
 			}
 			CheckChartVisiblity();
@@ -590,16 +601,7 @@ public partial class ResourceChartWPF
 		SteelPlot = ChartArea.Plot.AddScatterLines(date_list.ToArray(), steel_list.ToArray(), SteelColor, label: "Steel");
 		InstantRepairPlot = ChartArea.Plot.AddScatterLines(date_list.ToArray(), instant_repair_list.ToArray(), InstantRepairColor, label: "Instant Repair");
 		InstantRepairPlot.YAxisIndex = 1;
-		ChartArea.Plot.SetAxisLimits(yMin: Math.Floor(ChartArea.Plot.GetDataLimits().YMin / 100), yMax: Math.Ceiling(ChartArea.Plot.GetDataLimits().YMax / 100), yAxisIndex: 1);
-		if (ChartArea.Plot.GetDataLimits().YMax > 5000)
-		{
-			ChartArea.Plot.AxisAutoY(margin: 0);
-		}
-		else
-		{
-			ChartArea.Plot.AxisAutoY(margin: 0.2);
-			ChartArea.Plot.AxisAutoY(margin: 0.2, 1);
-		}
+		SetYBounds();
 		ChartArea.Refresh();
 	}
 	private void SetResourceDiffChart()
@@ -695,8 +697,7 @@ public partial class ResourceChartWPF
 		BauxSignalPlot.FillAboveAndBelow(BauxColor, Color.Transparent, Color.Transparent, BauxColor, 1);
 		BauxSignalPlot.Label = "Bauxite";
 		BauxSignalPlot.MarkerSize = 0;
-		ChartArea.Plot.SetAxisLimits(yMin: Math.Floor(ChartArea.Plot.GetDataLimits().YMin / 100), yMax: Math.Ceiling(ChartArea.Plot.GetDataLimits().YMax / 100), yAxisIndex: 1);
-		ChartArea.Plot.AxisAutoY();
+		SetYBounds();
 		ChartArea.Refresh();
 	}
 	private void SetMaterialDiffChart()
@@ -775,9 +776,9 @@ public partial class ResourceChartWPF
 		InstantConstructionSignalPlot.MarkerSize = 0;
 		if (InstantConstructionSignalPlot.Xs.Length > 0)
 		{
-			ChartArea.Plot.SetAxisLimits(yMin: Math.Floor(ChartArea.Plot.GetDataLimits().YMin / 200) * 200, yMax: Math.Ceiling(ChartArea.Plot.GetDataLimits().YMax / 200) * 200);
+			ChartArea.Plot.SetAxisLimits(yMin: Math.Floor(ChartArea.Plot.GetDataLimits().YMin / 20) * 20, yMax: Math.Ceiling(ChartArea.Plot.GetDataLimits().YMax / 20) * 20);
 		}
-		ChartArea.Plot.AxisAuto();
+		SetYBounds();
 		ChartArea.Refresh();
 	}
 	private bool ShouldSkipRecord(TimeSpan span)
@@ -809,6 +810,8 @@ public partial class ResourceChartWPF
 
 	private void SetYBounds(double min, double max)
 	{
+		if (double.IsInfinity(min) || double.IsInfinity(max))
+			return;
 		int order = (int)Math.Log10(Math.Max(max - min, 1));
 		double powered = Math.Pow(10, order);
 		double unitbase = Math.Round((max - min) / powered);
@@ -816,35 +819,13 @@ public partial class ResourceChartWPF
 			unitbase < 2 ? 0.2 :
 			unitbase < 5 ? 0.5 :
 			unitbase < 7 ? 1.0 : 2.0);
-
-		//ResourceChart.ChartAreas[0].AxisY.Minimum = Math.Floor(min / unit) * unit;
-		//ResourceChart.ChartAreas[0].AxisY.Maximum = Math.Ceiling(max / unit) * unit;
-
-		//ResourceChart.ChartAreas[0].AxisY.Interval = unit;
-		//ResourceChart.ChartAreas[0].AxisY.MinorGrid.Interval = unit / 2;
-
-		//if (ResourceChart.Series.Where(s => s.Enabled).Any(s => s.YAxisType == AxisType.Secondary))
-		//{
-		//	ResourceChart.ChartAreas[0].AxisY2.Enabled = AxisEnabled.True;
-		//	if (ResourceChart.Series.Count(s => s.Enabled) == 1)
-		//	{
-		//		ResourceChart.ChartAreas[0].AxisY2.MajorGrid.Enabled = true;
-		//		ResourceChart.ChartAreas[0].AxisY2.MinorGrid.Enabled = true;
-		//	}
-		//	else
-		//	{
-		//		ResourceChart.ChartAreas[0].AxisY2.MajorGrid.Enabled = false;
-		//		ResourceChart.ChartAreas[0].AxisY2.MinorGrid.Enabled = false;
-		//	}
-		//	ResourceChart.ChartAreas[0].AxisY2.Minimum = ResourceChart.ChartAreas[0].AxisY.Minimum / 100;
-		//	ResourceChart.ChartAreas[0].AxisY2.Maximum = ResourceChart.ChartAreas[0].AxisY.Maximum / 100;
-		//	ResourceChart.ChartAreas[0].AxisY2.Interval = unit / 100;
-		//	ResourceChart.ChartAreas[0].AxisY2.MinorGrid.Interval = unit / 200;
-		//}
-		//else
-		//{
-		//	//ResourceChart.ChartAreas[0].AxisY2.Enabled = AxisEnabled.False;
-		//}
+		var axisYmin = Math.Floor(min / unit) * unit;
+		var axisYmax = Math.Ceiling(max / unit) * unit;
+		ChartArea.Plot.SetAxisLimits(yMin: axisYmin, yMax: axisYmax, yAxisIndex:0);
+		if (ChartArea.Plot.YAxis2.IsVisible)
+		{
+			ChartArea.Plot.SetAxisLimits(yMin: axisYmin / 100, yMax: axisYmax / 100, yAxisIndex:1);
+		}
 	}
 
 	private void SetMaterialChart()
@@ -896,7 +877,7 @@ public partial class ResourceChartWPF
 			ChartArea.Plot.SetAxisLimits(yMin: Math.Floor(ChartArea.Plot.GetDataLimits().YMin / 200) * 200, yMax: Math.Ceiling(ChartArea.Plot.GetDataLimits().YMax / 200) * 200);
 		}
 
-		ChartArea.Plot.AxisAuto(0, 0);
+		SetYBounds();
 		ChartArea.Refresh();
 	}
 
@@ -930,16 +911,24 @@ public partial class ResourceChartWPF
 			}
 		}
 		ExperiencePlot = ChartArea.Plot.AddScatterLines(date_list.ToArray(), experience_list.ToArray(), ExperienceColor, label: "HQ Experience");
-		ChartArea.Plot.AxisAuto();
+		if(ExperiencePlot.Xs.Length > 0)
+		{
+			double min = ExperiencePlot.Ys.Min();
+			double max = ExperiencePlot.Ys.Min();
+			ChartArea.Plot.SetAxisLimits(yMin: Math.Floor(min / 100000.0) * 100000, yMax: Math.Ceiling(max / 100000.0) * 100000, yAxisIndex: 0);
+		}
+		SetYBounds();
 		ChartArea.Refresh();
 	}
 
 	private void SetYBounds()
 	{
-		//SetYBounds(
-		//	!ResourceChart.Series.Any(s => s.Enabled) || SelectedChartType == ChartType.ExperienceDiff ? 0 : ResourceChart.Series.Where(s => s.Enabled).Select(s => s.YAxisType == AxisType.Secondary ? s.Points.Min(p => p.YValues[0] * 100) : s.Points.Min(p => p.YValues[0])).Min(),
-		//	!ResourceChart.Series.Any(s => s.Enabled) ? 0 : ResourceChart.Series.Where(s => s.Enabled).Select(s => s.YAxisType == AxisType.Secondary ? s.Points.Max(p => p.YValues[0] * 100) : s.Points.Max(p => p.YValues[0])).Max()
-		//);
+		double chartmin = ChartArea.Plot.YAxis2.IsVisible ? (ChartArea.Plot.GetDataLimits(yAxisIndex: 1).YMin * 100) : ChartArea.Plot.GetDataLimits(yAxisIndex: 0).YMin;
+		double chartmax = ChartArea.Plot.YAxis2.IsVisible ? (ChartArea.Plot.GetDataLimits(yAxisIndex: 1).YMax * 100) : ChartArea.Plot.GetDataLimits(yAxisIndex: 0).YMax;
+		SetYBounds(
+			!ChartArea.Plot.GetPlottables().Any(p => p.IsVisible) || SelectedChartType == ChartType.ExperienceDiff ? 0 : Math.Min(ChartArea.Plot.GetDataLimits(yAxisIndex: 0).YMin, chartmin),
+			!ChartArea.Plot.GetPlottables().Any(p => p.IsVisible) ? 0 : Math.Max(ChartArea.Plot.GetDataLimits(yAxisIndex: 0).YMax, chartmax)
+		);
 	}
 
 	private void AxisXIntervals(ChartSpan span)
@@ -1090,7 +1079,7 @@ public partial class ResourceChartWPF
 		ExperienceSignalPlot.FillAboveAndBelow(ExperienceColor, Color.Transparent, Color.Transparent, ExperienceColor, 1);
 		ExperienceSignalPlot.Label = "HQ Experience";
 		ExperienceSignalPlot.MarkerSize = 0;
-		ChartArea.Plot.AxisAuto();
+		SetYBounds();
 		ChartArea.Refresh();
 	}
 
@@ -1138,36 +1127,42 @@ public partial class ResourceChartWPF
 	{
 		SwitchMenuStrip(ChartTypeMenu, "2");
 		UpdateChart();
+		CheckChartVisiblity();
 	}
 
 	private void ResourceMenu_Click(object sender, RoutedEventArgs e)
 	{
 		SwitchMenuStrip(ChartTypeMenu, "0");
 		UpdateChart();
+		CheckChartVisiblity();
 	}
 
 	private void MaterialDiffMenu_Click(object sender, RoutedEventArgs e)
 	{
 		SwitchMenuStrip(ChartTypeMenu, "3");
 		UpdateChart();
+		CheckChartVisiblity();
 	}
 
 	private void ExperienceMenu_Click(object sender, RoutedEventArgs e)
 	{
 		SwitchMenuStrip(ChartTypeMenu, "4");
 		UpdateChart();
+		CheckChartVisiblity();
 	}
 
 	private void ExperienceDiffMenu_Click(object sender, RoutedEventArgs e)
 	{
 		SwitchMenuStrip(ChartTypeMenu, "5");
 		UpdateChart();
+		CheckChartVisiblity();
 	}
 
 	private void ResourceDiffMenu_Click(object sender, RoutedEventArgs e)
 	{
 		SwitchMenuStrip(ChartTypeMenu, "1");
 		UpdateChart();
+		CheckChartVisiblity();
 	}
 
 	private void Menu_Option_ShowAllData_Click(object sender, RoutedEventArgs e)
