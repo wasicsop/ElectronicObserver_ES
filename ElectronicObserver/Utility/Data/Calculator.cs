@@ -390,32 +390,8 @@ public static class Calculator
 			+ EquipmentLevelLoSRate(eq.MasterEquipment.CategoryType)
 			* Math.Sqrt(eq.Level);
 
-		// hack workaround for SG initial fit LoS not counting for routing
-		static int ShipLoS(IShipData ship)
-		{
-			int losBase = ship.LOSTotal - ship.AllSlotInstance
-				.Sum(e => e?.MasterEquipment.LOS ?? 0);
-
-			switch (ship.MasterShip.ShipClass)
-			{
-				case 65:        // Iowa級
-				case 69:        // Lexington級
-				case 83:        // Casablanca級
-				case 84:        // Essex級
-				case 87:        // John C.Butler級
-				case 91:        // Fletcher級
-				case 93:        // Colorado級
-				case 95:        // Northampton級
-				case 99:        // Atlanta級
-				case 102:       // South Dakota級
-				case 105:       // Yorktown級
-					losBase -= ship.AllSlotInstance
-						.Count(e => e?.EquipmentId == EquipmentId.RadarSmall_SGRadar_InitialModel) * 4;
-					break;
-			}
-
-			return losBase;
-		}
+		static int ShipLoS(IShipData ship) => ship.LOSTotal - ship.AllSlotInstance
+			.Sum(e => e?.MasterEquipment.LOS ?? 0);
 
 		List<IShipData> ships = fleet.MembersWithoutEscaped.Where(s => s != null).ToList();
 

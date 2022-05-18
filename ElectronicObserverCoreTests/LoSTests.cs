@@ -529,7 +529,7 @@ public class LoSTests
 		Assert.Equal(expected4, actual4.RoundDown(2));
 	}
 
-	[Fact(DisplayName = "SG Initial LoS fit doesn't count for routing")]
+	[Fact]
 	public void SgInitialFit()
 	{
 		IShipData fletcher = new ShipDataMock(Db.MasterShips[ShipId.FletcherMkII])
@@ -552,10 +552,10 @@ public class LoSTests
 			})
 		};
 
-		double expected1 = -24.84;
-		double expected2 = -20.04;
-		double expected3 = -15.24;
-		double expected4 = -10.44;
+		double expected1 = -24.60;
+		double expected2 = -19.80;
+		double expected3 = -15.00;
+		double expected4 = -10.20;
 
 		double actual1 = Calculator.GetSearchingAbility_New33(fleet, 1, AdmiralLevel);
 		double actual2 = Calculator.GetSearchingAbility_New33(fleet, 2, AdmiralLevel);
