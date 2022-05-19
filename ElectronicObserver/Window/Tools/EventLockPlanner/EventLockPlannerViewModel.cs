@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Text.Json;
 using System.Windows;
@@ -18,6 +19,8 @@ namespace ElectronicObserver.Window.Tools.EventLockPlanner;
 
 public partial class EventLockPlannerViewModel : WindowViewModelBase
 {
+	private string EventLocksPath => Path.Join(DataAndTranslationManager.DataFolder, "Locks.json");
+
 	public EventLockPlannerTranslationViewModel EventLockPlanner { get; }
 	private DataSerializationService DataSerializationService { get; }
 	private LockTranslationData LockTranslator { get; }
@@ -228,7 +231,55 @@ public partial class EventLockPlannerViewModel : WindowViewModelBase
 	[ICommand]
 	private void LoadLocksFromClipboard()
 	{
+		if (MessageBox.Show
+		(
+			EventLockPlanner.LockLoadWarningText,
+			EventLockPlanner.Warning,
+			MessageBoxButton.OKCancel,
+			MessageBoxImage.Warning
+		) is not MessageBoxResult.OK)
+		{
+			return;
+		}
+
 		string json = Clipboard.GetText();
+
+		EventLockPlannerData? data = JsonSerializer.Deserialize<EventLockPlannerData>(json);
+
+		if (data is null)
+		{
+			// error
+			return;
+		}
+
+		ImportLocks(data);
+	}
+
+	[ICommand]
+	private void LoadEventLocks()
+	{
+		if (MessageBox.Show
+		(
+			EventLockPlanner.LockLoadWarningText,
+			EventLockPlanner.Warning,
+			MessageBoxButton.OKCancel,
+			MessageBoxImage.Warning
+		) is not MessageBoxResult.OK)
+		{
+			return;
+		}
+
+		string? json;
+
+		try
+		{
+			json = File.ReadAllText(EventLocksPath);
+		}
+		catch
+		{
+			Logger.Add(2, EventLockPlanner.FailedToLoadLockData);
+			return;
+		}
 
 		EventLockPlannerData? data = JsonSerializer.Deserialize<EventLockPlannerData>(json);
 
@@ -305,7 +356,7 @@ public partial class EventLockPlannerViewModel : WindowViewModelBase
 
 		foreach ((List<ShipLockViewModel> eventPhase, int id) in eventPhases.Select((p, id) => (p, id)))
 		{
-			if(id > EventPhases.Count) continue;
+			if (id > EventPhases.Count) continue;
 
 			foreach (ShipLockViewModel shipLock in eventPhase)
 			{

@@ -107,6 +107,8 @@
 			<MenuItem Header="{Binding EventLockPlanner.File}">
 				<MenuItem Command="{Binding CopyLocksToClipboardCommand}" Header="{Binding EventLockPlanner.CopyToClipboard}" />
 				<MenuItem Command="{Binding LoadLocksFromClipboardCommand}" Header="{Binding EventLockPlanner.LoadFromClipboard}" />
+				<Separator />
+				<MenuItem Command="{Binding LoadEventLocksCommand}" Header="{Binding EventLockPlanner.LoadEventLocks}" />
 			</MenuItem>
 		</Menu>
 

@@ -150,4 +150,17 @@
   <data name="LoadFromClipboard" xml:space="preserve">
     <value>_Load from clipboard</value>
   </data>
+  <data name="LoadEventLocks" xml:space="preserve">
+    <value>Load _event locks</value>
+  </data>
+  <data name="FailedToLoadLockData" xml:space="preserve">
+    <value>Failed to load lock data</value>
+  </data>
+  <data name="LockLoadWarningText" xml:space="preserve">
+    <value>Loading lock data will delete your current locks.
+Are you sure you want to continue?</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>Warning</value>
+  </data>
 </root>

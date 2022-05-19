@@ -130,4 +130,17 @@
   <data name="LoadFromClipboard" xml:space="preserve">
     <value>クリップボードからロード(_L)</value>
   </data>
+  <data name="LoadEventLocks" xml:space="preserve">
+    <value>イベントロックをロード(_E)</value>
+  </data>
+  <data name="FailedToLoadLockData" xml:space="preserve">
+    <value>ロックデータの読み込みに失敗しました</value>
+  </data>
+  <data name="LockLoadWarningText" xml:space="preserve">
+    <value>ロックデータをロードと現在のロックデータが削除されます。
+本当に続けますか？</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>警告</value>
+  </data>
 </root>

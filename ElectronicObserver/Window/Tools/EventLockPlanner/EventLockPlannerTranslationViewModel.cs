@@ -9,6 +9,11 @@ public class EventLockPlannerTranslationViewModel : TranslationBaseViewModel
 	public string File => EventLockPlanner.File;
 	public string CopyToClipboard => EventLockPlanner.CopyToClipboard;
 	public string LoadFromClipboard => EventLockPlanner.LoadFromClipboard;
+	public string LoadEventLocks => EventLockPlanner.LoadEventLocks;
+
+	public string LockLoadWarningText => EventLockPlanner.LockLoadWarningText;
+	public string Warning => EventLockPlanner.Warning;
+	public string FailedToLoadLockData => EventLockPlanner.FailedToLoadLockData;
 
 	public string AddLock => EventLockPlanner.AddLock;
 	public string RemoveLock => EventLockPlanner.RemoveLock;

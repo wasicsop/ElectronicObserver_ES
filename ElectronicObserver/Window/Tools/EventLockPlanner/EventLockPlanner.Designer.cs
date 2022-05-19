@@ -97,6 +97,15 @@ namespace ElectronicObserver.Window.Tools.EventLockPlanner {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ロックデータの読み込みに失敗しました.
+        /// </summary>
+        internal static string FailedToLoadLockData {
+            get {
+                return ResourceManager.GetString("FailedToLoadLockData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ファイル(_F).
         /// </summary>
         internal static string File {
@@ -106,11 +115,30 @@ namespace ElectronicObserver.Window.Tools.EventLockPlanner {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to イベントロックをロード(_E).
+        /// </summary>
+        internal static string LoadEventLocks {
+            get {
+                return ResourceManager.GetString("LoadEventLocks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to クリップボードからロード(_L).
         /// </summary>
         internal static string LoadFromClipboard {
             get {
                 return ResourceManager.GetString("LoadFromClipboard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ロックデータをロードと現在のロックデータが削除されます。
+        ///本当に続けますか？.
+        /// </summary>
+        internal static string LockLoadWarningText {
+            get {
+                return ResourceManager.GetString("LockLoadWarningText", resourceCulture);
             }
         }
         
@@ -156,6 +184,15 @@ namespace ElectronicObserver.Window.Tools.EventLockPlanner {
         internal static string Title {
             get {
                 return ResourceManager.GetString("Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 警告.
+        /// </summary>
+        internal static string Warning {
+            get {
+                return ResourceManager.GetString("Warning", resourceCulture);
             }
         }
     }
