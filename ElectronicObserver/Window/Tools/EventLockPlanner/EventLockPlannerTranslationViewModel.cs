@@ -11,6 +11,9 @@ public class EventLockPlannerTranslationViewModel : TranslationBaseViewModel
 	public string LoadFromClipboard => EventLockPlanner.LoadFromClipboard;
 	public string LoadEventLocks => EventLockPlanner.LoadEventLocks;
 
+	public string View => EventLockPlanner.View;
+	public string ShowFinishedPhases => EventLockPlanner.ShowFinishedPhases;
+
 	public string LockLoadWarningText => EventLockPlanner.LockLoadWarningText;
 	public string Warning => EventLockPlanner.Warning;
 	public string FailedToLoadLockData => EventLockPlanner.FailedToLoadLockData;
@@ -21,6 +24,7 @@ public class EventLockPlannerTranslationViewModel : TranslationBaseViewModel
 	public string AddPhase => EventLockPlanner.AddPhase;
 	public string RemovePhase => EventLockPlanner.RemovePhase;
 	public string AssignLock => EventLockPlanner.AssignLock;
+	public string IsFinished => EventLockPlanner.IsFinished;
 
 	public string Remove => EventLockPlanner.Remove;
 

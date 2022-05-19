@@ -166,4 +166,13 @@ Are you sure you want to continue?</value>
   <data name="AssignLock" xml:space="preserve">
     <value>Assign lock</value>
   </data>
+  <data name="View" xml:space="preserve">
+    <value>_View</value>
+  </data>
+  <data name="ShowFinishedPhases" xml:space="preserve">
+    <value>_Show finished phases</value>
+  </data>
+  <data name="IsFinished" xml:space="preserve">
+    <value>Is finished</value>
+  </data>
 </root>

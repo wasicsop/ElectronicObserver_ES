@@ -23,6 +23,7 @@ public partial class EventPhaseViewModel : ObservableObject, IDropTarget
 	public ObservableCollection<ShipLockViewModel> Ships { get; } = new();
 
 	public string Name { get; set; } = "";
+	public bool IsFinished { get; set; }
 
 	public EventPhaseViewModel(ObservableCollection<LockGroupViewModel> lockGroups)
 	{

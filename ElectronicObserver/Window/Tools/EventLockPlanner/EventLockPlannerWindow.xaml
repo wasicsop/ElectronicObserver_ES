@@ -110,6 +110,13 @@
 				<Separator />
 				<MenuItem Command="{Binding LoadEventLocksCommand}" Header="{Binding EventLockPlanner.LoadEventLocks}" />
 			</MenuItem>
+			<MenuItem Header="{Binding EventLockPlanner.View}">
+				<MenuItem
+					Header="{Binding EventLockPlanner.ShowFinishedPhases}"
+					IsCheckable="True"
+					IsChecked="{Binding ShowFinishedPhases}"
+					/>
+			</MenuItem>
 		</Menu>
 
 		<Grid
@@ -147,10 +154,30 @@
 						<ItemsControl.ItemTemplate>
 							<DataTemplate>
 								<Border
+									Margin="1"
 									Padding="2"
-									BorderBrush="Gray"
 									BorderThickness="1"
 									>
+									<Border.Style>
+										<Style TargetType="Border">
+											<Setter Property="Visibility" Value="Visible" />
+											<Setter Property="BorderBrush" Value="Gray" />
+											<Style.Triggers>
+												<DataTrigger Binding="{Binding IsFinished}" Value="True">
+													<Setter Property="Background" Value="#33008000" />
+												</DataTrigger>
+
+												<MultiDataTrigger>
+													<MultiDataTrigger.Conditions>
+														<Condition Binding="{Binding IsFinished}" Value="True" />
+														<Condition Binding="{Binding DataContext.ShowFinishedPhases, Source={StaticResource Proxy}}" Value="False" />
+													</MultiDataTrigger.Conditions>
+													<Setter Property="Visibility" Value="Collapsed" />
+												</MultiDataTrigger>
+											</Style.Triggers>
+										</Style>
+									</Border.Style>
+
 									<Grid Background="Transparent">
 										<Grid.Resources>
 											<local:EventPhaseBindingProxy x:Key="PhaseProxy" DataContext="{Binding}" />
@@ -173,6 +200,11 @@
 													Command="{Binding DataContext.DeletePhaseCommand, Source={StaticResource Proxy}}"
 													CommandParameter="{Binding}"
 													Header="{Binding DataContext.EventLockPlanner.RemovePhase, Source={StaticResource Proxy}}"
+													/>
+												<MenuItem
+													Header="{Binding DataContext.EventLockPlanner.IsFinished, Source={StaticResource Proxy}}"
+													IsCheckable="True"
+													IsChecked="{Binding IsFinished}"
 													/>
 											</ContextMenu>
 										</Grid.ContextMenu>

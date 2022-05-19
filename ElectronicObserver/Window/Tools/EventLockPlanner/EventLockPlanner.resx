@@ -146,4 +146,13 @@
   <data name="AssignLock" xml:space="preserve">
     <value>ロックを割り当てる</value>
   </data>
+  <data name="View" xml:space="preserve">
+    <value>表示(_V)</value>
+  </data>
+  <data name="ShowFinishedPhases" xml:space="preserve">
+    <value>終了したフェーズを表示する(_S)</value>
+  </data>
+  <data name="IsFinished" xml:space="preserve">
+    <value>終了しました</value>
+  </data>
 </root>
