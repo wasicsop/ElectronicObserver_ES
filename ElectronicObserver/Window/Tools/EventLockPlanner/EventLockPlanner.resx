@@ -143,4 +143,7 @@
   <data name="Warning" xml:space="preserve">
     <value>警告</value>
   </data>
+  <data name="AssignLock" xml:space="preserve">
+    <value>ロックを割り当てる</value>
+  </data>
 </root>

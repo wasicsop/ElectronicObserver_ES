@@ -163,4 +163,7 @@ Are you sure you want to continue?</value>
   <data name="Warning" xml:space="preserve">
     <value>Warning</value>
   </data>
+  <data name="AssignLock" xml:space="preserve">
+    <value>Assign lock</value>
+  </data>
 </root>

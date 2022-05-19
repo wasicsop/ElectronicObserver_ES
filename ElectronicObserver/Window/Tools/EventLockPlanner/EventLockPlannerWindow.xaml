@@ -153,20 +153,27 @@
 									>
 									<Grid Background="Transparent">
 										<Grid.Resources>
-											<local:EventPhaseBindingProxy x:Key="Proxy" DataContext="{Binding}" />
+											<local:EventPhaseBindingProxy x:Key="PhaseProxy" DataContext="{Binding}" />
 										</Grid.Resources>
 
 										<Grid.ContextMenu>
-											<ContextMenu ItemsSource="{Binding RemainingGroups}">
-												<ContextMenu.ItemTemplate>
-													<DataTemplate>
-														<MenuItem
-															Command="{Binding DataContext.AddLockToPhaseCommand, Source={StaticResource Proxy}}"
-															CommandParameter="{Binding}"
-															Header="{Binding Name}"
-															/>
-													</DataTemplate>
-												</ContextMenu.ItemTemplate>
+											<ContextMenu>
+												<MenuItem Header="{Binding DataContext.EventLockPlanner.AssignLock, Source={StaticResource Proxy}}" ItemsSource="{Binding RemainingGroups}">
+													<MenuItem.ItemTemplate>
+														<DataTemplate>
+															<MenuItem
+																Command="{Binding DataContext.AddLockToPhaseCommand, Source={StaticResource PhaseProxy}}"
+																CommandParameter="{Binding}"
+																Header="{Binding Name}"
+																/>
+														</DataTemplate>
+													</MenuItem.ItemTemplate>
+												</MenuItem>
+												<MenuItem
+													Command="{Binding DataContext.DeletePhaseCommand, Source={StaticResource Proxy}}"
+													CommandParameter="{Binding}"
+													Header="{Binding DataContext.EventLockPlanner.RemovePhase, Source={StaticResource Proxy}}"
+													/>
 											</ContextMenu>
 										</Grid.ContextMenu>
 
@@ -191,9 +198,9 @@
 														<TextBlock.ContextMenu>
 															<ContextMenu>
 																<MenuItem
-																	Command="{Binding DataContext.RemoveLockFromPhaseCommand, Source={StaticResource Proxy}}"
+																	Command="{Binding DataContext.RemoveLockFromPhaseCommand, Source={StaticResource PhaseProxy}}"
 																	CommandParameter="{Binding}"
-																	Header="{Binding DataContext.EventLockPlanner.Remove, Source={StaticResource Proxy}}"
+																	Header="{Binding DataContext.EventLockPlanner.Remove, Source={StaticResource PhaseProxy}}"
 																	/>
 															</ContextMenu>
 														</TextBlock.ContextMenu>
@@ -231,9 +238,9 @@
 																<TextBlock.ContextMenu>
 																	<ContextMenu>
 																		<MenuItem
-																			Command="{Binding DataContext.RemoveShipLockCommand, Source={StaticResource Proxy}}"
+																			Command="{Binding DataContext.RemoveShipLockCommand, Source={StaticResource PhaseProxy}}"
 																			CommandParameter="{Binding}"
-																			Header="{Binding DataContext.EventLockPlanner.Remove, Source={StaticResource Proxy}}"
+																			Header="{Binding DataContext.EventLockPlanner.Remove, Source={StaticResource PhaseProxy}}"
 																			/>
 																	</ContextMenu>
 																</TextBlock.ContextMenu>

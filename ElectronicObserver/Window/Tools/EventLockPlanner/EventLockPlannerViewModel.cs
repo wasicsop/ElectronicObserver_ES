@@ -118,6 +118,14 @@ public partial class EventLockPlannerViewModel : WindowViewModelBase
 		EventPhases.Remove(EventPhases[^1]);
 	}
 
+	[ICommand]
+	private void DeletePhase(EventPhaseViewModel? phase)
+	{
+		if(phase is null) return;
+
+		EventPhases.Remove(phase);
+	}
+
 	private void Save()
 	{
 		using ElectronicObserverContext db = new();

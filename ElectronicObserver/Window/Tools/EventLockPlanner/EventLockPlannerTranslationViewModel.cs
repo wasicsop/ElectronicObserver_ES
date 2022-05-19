@@ -20,6 +20,7 @@ public class EventLockPlannerTranslationViewModel : TranslationBaseViewModel
 
 	public string AddPhase => EventLockPlanner.AddPhase;
 	public string RemovePhase => EventLockPlanner.RemovePhase;
+	public string AssignLock => EventLockPlanner.AssignLock;
 
 	public string Remove => EventLockPlanner.Remove;
 

@@ -79,6 +79,15 @@ namespace ElectronicObserver.Window.Tools.EventLockPlanner {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ロックを割り当てる.
+        /// </summary>
+        internal static string AssignLock {
+            get {
+                return ResourceManager.GetString("AssignLock", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to クリップボードにコピー(_C).
         /// </summary>
         internal static string CopyToClipboard {
