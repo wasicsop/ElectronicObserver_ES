@@ -140,6 +140,16 @@ internal class SoftwareUpdater
 				downloadList.Add(Path.Combine("Data", "QuestTrackers.json"));
 			}
 
+			if (CurrentVersion.EventLocks < LatestVersion.EventLocks)
+			{
+				downloadList.Add(Path.Combine("Data", "Locks.json"));
+			}
+
+			if (CurrentVersion.LockTranslations < LatestVersion.LockTranslations)
+			{
+				downloadList.Add(Path.Combine("Translations", DataAndTranslationManager.CurrentTranslationLanguage, "Locks.json"));
+			}
+
 			needReload = downloadList.Any();
 			downloadList.Add("update.json");
 			downloadList.Add(Path.Combine("Translations", DataAndTranslationManager.CurrentTranslationLanguage, "update.json"));
@@ -267,12 +277,14 @@ internal class SoftwareUpdater
 			var opVersion = (string)translationJson.operation;
 			var questVersion = (string)translationJson.quest;
 			var shipVersion = (string)translationJson.ship;
+			int lockTranslationsVersion = (int)translationJson.Locks;
 
 			int questTrackersVersion = dataJson.QuestTrackers() switch
 			{
 				true => (int)dataJson.QuestTrackers,
 				_ => 0
 			};
+			int eventLocksVersion = (int)dataJson.Locks;
 
 			DateTime maintenanceDate = DateTimeHelper.CSVStringToTime(dataJson.kancolle_mt);
 			var eventState = (MaintenanceState)(int)dataJson.event_state;
@@ -290,6 +302,8 @@ internal class SoftwareUpdater
 				Quest = questVersion,
 				Ship = shipVersion,
 				QuestTrackers = questTrackersVersion,
+				EventLocks = eventLocksVersion,
+				LockTranslations = lockTranslationsVersion,
 				MaintenanceDate = maintenanceDate,
 				EventState = eventState
 			};
@@ -336,6 +350,8 @@ public class UpdateData
 	public string Quest { get; set; } = "";
 	public string Ship { get; set; } = "";
 	public int QuestTrackers { get; set; }
+	public int EventLocks { get; set; }
+	public int LockTranslations { get; set; }
 	public DateTime MaintenanceDate { get; set; }
 
 	/// <summary>

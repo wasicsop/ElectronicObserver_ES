@@ -906,7 +906,7 @@ public partial class FormMainViewModel : ObservableObject
 	[ICommand]
 	private void OpenEventLockPlanner()
 	{
-		EventLockPlannerViewModel viewModel = new(KCDatabase.Instance.Ships.Values);
+		EventLockPlannerViewModel viewModel = new(KCDatabase.Instance.Ships.Values, KCDatabase.Instance.Translation.Lock);
 		new EventLockPlannerWindow(viewModel).Show(Window);
 	}
 

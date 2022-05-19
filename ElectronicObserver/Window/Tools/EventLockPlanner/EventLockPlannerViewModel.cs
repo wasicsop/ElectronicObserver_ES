@@ -7,8 +7,10 @@ using System.Windows.Media;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
+using ElectronicObserver.Data.Translation;
 using ElectronicObserver.Database;
 using ElectronicObserver.Services;
+using ElectronicObserver.Utility;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Serialization.EventLockPlanner;
 
@@ -18,6 +20,7 @@ public partial class EventLockPlannerViewModel : WindowViewModelBase
 {
 	public EventLockPlannerTranslationViewModel EventLockPlanner { get; }
 	private DataSerializationService DataSerializationService { get; }
+	private LockTranslationData LockTranslator { get; }
 
 	private List<ShipLockViewModel> AllShipLocks { get; }
 
@@ -25,10 +28,11 @@ public partial class EventLockPlannerViewModel : WindowViewModelBase
 	public ObservableCollection<LockGroupViewModel> LockGroups { get; } = new();
 	public ObservableCollection<EventPhaseViewModel> EventPhases { get; } = new();
 
-	public EventLockPlannerViewModel(IEnumerable<IShipData> allShips)
+	public EventLockPlannerViewModel(IEnumerable<IShipData> allShips, LockTranslationData lockTranslator)
 	{
 		EventLockPlanner = Ioc.Default.GetService<EventLockPlannerTranslationViewModel>()!;
 		DataSerializationService = Ioc.Default.GetService<DataSerializationService>()!;
+		LockTranslator = lockTranslator;
 
 		AllShipLocks = allShips.Select(s => new ShipLockViewModel(s)).ToList();
 
@@ -257,7 +261,7 @@ public partial class EventLockPlannerViewModel : WindowViewModelBase
 			LockGroups.Add(new(eventLock.Id)
 			{
 				Color = Color.FromArgb(eventLock.A, eventLock.R, eventLock.G, eventLock.B),
-				Name = eventLock.Name,
+				Name = LockTranslator.Lock(eventLock.Name),
 			});
 		}
 
