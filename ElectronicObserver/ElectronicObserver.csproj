@@ -424,6 +424,7 @@
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
 		<PackageReference Include="gong-wpf-dragdrop" Version="3.0.0" />
+		<PackageReference Include="Jot" Version="2.1.13" />
 		<PackageReference Include="Microsoft.AppCenter.Analytics" Version="4.3.0" />
 		<PackageReference Include="Microsoft.AppCenter.Crashes" Version="4.3.0" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.4" />

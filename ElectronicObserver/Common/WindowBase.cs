@@ -1,9 +1,12 @@
 ﻿using System;
+using CommunityToolkit.Mvvm.DependencyInjection;
+using Jot;
 
 namespace ElectronicObserver.Common;
 
 public class WindowBase<TViewModel> : System.Windows.Window where TViewModel : WindowViewModelBase
 {
+	private Tracker Tracker { get; }
 	public TViewModel ViewModel { get; }
 
 	[Obsolete("This is only needed so WPF doesn't complain, don't use this.", true)]
@@ -16,6 +19,8 @@ public class WindowBase<TViewModel> : System.Windows.Window where TViewModel : W
 
 	protected WindowBase(TViewModel viewModel)
 	{
+		Tracker = Ioc.Default.GetService<Tracker>()!;
+
 		ViewModel = viewModel;
 		DataContext = ViewModel;
 
@@ -23,7 +28,16 @@ public class WindowBase<TViewModel> : System.Windows.Window where TViewModel : W
 		SetBinding(FontFamilyProperty, nameof(WindowViewModelBase.Font));
 		SetBinding(ForegroundProperty, nameof(WindowViewModelBase.FontBrush));
 
-		Loaded += (_, _) => ViewModel.Loaded();
+		Loaded += (_, _) =>
+		{
+			ViewModel.Loaded();
+			StartJotTracking();
+		};
 		Closed += (_, _) => ViewModel.Closed();
+	}
+
+	private void StartJotTracking()
+	{
+		Tracker.Track(this);
 	}
 }

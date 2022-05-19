@@ -14,6 +14,8 @@ using ElectronicObserver.Window;
 using ElectronicObserver.Window.Dialog.ShipPicker;
 using ElectronicObserver.Window.Tools.AirControlSimulator;
 using ElectronicObserver.Window.Tools.EventLockPlanner;
+using Jot;
+using Jot.Storage;
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
@@ -142,7 +144,6 @@ public partial class App : Application
 
 	private void ConfigureServices()
 	{
-
 		ServiceProvider services = new ServiceCollection()
 			// view translations
 			.AddSingleton<FormArsenalTranslationViewModel>()
@@ -179,9 +180,29 @@ public partial class App : Application
 			// services
 			.AddSingleton<DataSerializationService>()
 			.AddSingleton<ToolService>()
+			// external
+			.AddSingleton(JotTracker())
 
 			.BuildServiceProvider();
 
 		Ioc.Default.ConfigureServices(services);
+	}
+
+	private static Tracker JotTracker()
+	{
+		Tracker tracker = new(new JsonFileStore(@"Settings\WindowStates"));
+
+		tracker
+			.Configure<System.Windows.Window>()
+			.Id(w => w.Name)
+			.Property(w => w.Top)
+			.Property(w => w.Left)
+			.Property(w => w.Height)
+			.Property(w => w.Width)
+			.Property(w => w.WindowState)
+			.PersistOn(nameof(System.Windows.Window.Closed))
+			.PersistOn(nameof(System.Windows.Window.Closed));
+
+		return tracker;
 	}
 }
