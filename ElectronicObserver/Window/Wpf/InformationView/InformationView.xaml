@@ -108,13 +108,15 @@
 			</Setter>
 		</Style>
 	</UserControl.Resources>
+
 	<TextBox
-		Name="TextInformation"
+		Background="Transparent"
 		BorderThickness="0"
 		ContextMenu="{x:Null}"
 		IsReadOnly="True"
 		IsReadOnlyCaretVisible="False"
 		Text="{Binding Text}"
+		TextWrapping="Wrap"
 		/>
 
 </UserControl>
