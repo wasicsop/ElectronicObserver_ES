@@ -117,6 +117,7 @@
 		IsReadOnlyCaretVisible="False"
 		Text="{Binding Text}"
 		TextWrapping="Wrap"
+		VerticalScrollBarVisibility="Auto"
 		/>
 
 </UserControl>
