@@ -13,7 +13,7 @@ using ElectronicObserver.Window.Wpf.Quest;
 using ElectronicObserver.Window.Wpf.ShipGroup.ViewModels;
 using ElectronicObserver.Window.Wpf.ShipGroupWinforms;
 using ElectronicObserver.Window.Wpf.WinformsHost;
-
+using ElectronicObserver.Window.Wpf.InformationView;
 namespace ElectronicObserver.Window.Wpf;
 
 public class ViewTemplateSelector : DataTemplateSelector
@@ -52,7 +52,7 @@ public class ViewTemplateSelector : DataTemplateSelector
 		DockViewModel => Dock,
 		ArsenalViewModel => Arsenal,
 		BaseAirCorpsViewModel => BaseAirCorps,
-
+		InformationViewModel => Information,
 		HeadquartersViewModel => Headquarters,
 		QuestViewModel => Quest,
 

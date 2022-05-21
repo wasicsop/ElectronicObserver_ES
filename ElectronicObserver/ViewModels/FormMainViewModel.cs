@@ -58,6 +58,7 @@ using ElectronicObserver.Window.Wpf.Quest;
 using ElectronicObserver.Window.Wpf.ShipGroup.ViewModels;
 using ElectronicObserver.Window.Wpf.ShipGroupWinforms;
 using ElectronicObserver.Window.Wpf.WinformsWrappers;
+using ElectronicObserver.Window.Wpf.InformationView;
 using ElectronicObserverTypes.Serialization;
 using MessagePack;
 using Microsoft.EntityFrameworkCore;
@@ -168,7 +169,7 @@ public partial class FormMainViewModel : ObservableObject
 
 	public HeadquartersViewModel Headquarters { get; }
 	public QuestViewModel Quest { get; }
-	public FormInformationViewModel FormInformation { get; }
+	public InformationViewModel FormInformation { get; }
 
 	public CompassViewModel Compass { get; }
 	public BattleViewModel Battle { get; }
@@ -350,7 +351,7 @@ public partial class FormMainViewModel : ObservableObject
 
 		Views.Add(Headquarters = new HeadquartersViewModel());
 		Views.Add(Quest = new QuestViewModel());
-		Views.Add(FormInformation = new FormInformationViewModel());
+		Views.Add(FormInformation = new InformationViewModel());
 
 		Views.Add(Compass = new CompassViewModel());
 		Views.Add(Battle = new BattleViewModel());

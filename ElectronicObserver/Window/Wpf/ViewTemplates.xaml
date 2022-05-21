@@ -10,6 +10,7 @@
 	xmlns:fleetOverview="clr-namespace:ElectronicObserver.Window.Wpf.FleetOverview"
 	xmlns:fleetPreset="clr-namespace:ElectronicObserver.Window.Wpf.FleetPreset"
 	xmlns:headquarters="clr-namespace:ElectronicObserver.Window.Wpf.Headquarters"
+	xmlns:information="clr-namespace:ElectronicObserver.Window.Wpf.InformationView"
 	xmlns:quest="clr-namespace:ElectronicObserver.Window.Wpf.Quest"
 	xmlns:shipGroup="clr-namespace:ElectronicObserver.Window.Wpf.ShipGroup"
 	xmlns:shipGroupWinforms="clr-namespace:ElectronicObserver.Window.Wpf.ShipGroupWinforms"
@@ -48,6 +49,9 @@
 	<DataTemplate x:Key="HeadquartersTemplate" DataType="{x:Type headquarters:HeadquartersViewModel}">
 		<headquarters:HeadquartersView ViewModel="{Binding}" />
 	</DataTemplate>
+	<DataTemplate x:Key="InformationTemplate" DataType="{x:Type information:InformationViewModel}">
+		<information:InformationView ViewModel="{Binding}" />
+	</DataTemplate>
 	<DataTemplate x:Key="QuestTemplate" DataType="{x:Type quest:QuestViewModel}">
 		<quest:QuestView ViewModel="{Binding}" />
 	</DataTemplate>
@@ -76,6 +80,7 @@
 		Group="{StaticResource ShipGroupTemplate}"
 		GroupWinforms="{StaticResource ShipGroupWinformsTemplate}"
 		Headquarters="{StaticResource HeadquartersTemplate}"
+		Information="{StaticResource InformationTemplate}"
 		Quest="{StaticResource QuestTemplate}"
 		WinformsHost="{StaticResource WinformsHostTemplate}"
 		/>
