@@ -14,6 +14,7 @@ using ElectronicObserver.Window.Wpf.ShipGroup.ViewModels;
 using ElectronicObserver.Window.Wpf.ShipGroupWinforms;
 using ElectronicObserver.Window.Wpf.WinformsHost;
 using ElectronicObserver.Window.Wpf.InformationView;
+using ElectronicObserver.Window.Wpf.Log;
 namespace ElectronicObserver.Window.Wpf;
 
 public class ViewTemplateSelector : DataTemplateSelector
@@ -48,7 +49,7 @@ public class ViewTemplateSelector : DataTemplateSelector
 		ShipGroupViewModel => Group,
 		ShipGroupWinformsViewModel => GroupWinforms,
 		FleetPresetViewModel => FleetPreset,
-
+		LogViewViewModel => Log,
 		DockViewModel => Dock,
 		ArsenalViewModel => Arsenal,
 		BaseAirCorpsViewModel => BaseAirCorps,

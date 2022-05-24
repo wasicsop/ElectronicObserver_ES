@@ -59,6 +59,7 @@ using ElectronicObserver.Window.Wpf.ShipGroup.ViewModels;
 using ElectronicObserver.Window.Wpf.ShipGroupWinforms;
 using ElectronicObserver.Window.Wpf.WinformsWrappers;
 using ElectronicObserver.Window.Wpf.InformationView;
+using ElectronicObserver.Window.Wpf.Log;
 using ElectronicObserverTypes.Serialization;
 using MessagePack;
 using Microsoft.EntityFrameworkCore;
@@ -175,7 +176,7 @@ public partial class FormMainViewModel : ObservableObject
 	public BattleViewModel Battle { get; }
 
 	public FormBrowserHostViewModel FormBrowserHost { get; }
-	public FormLogViewModel FormLog { get; }
+	public LogViewViewModel FormLog { get;  }
 	public FormJsonViewModel FormJson { get; }
 	public FormWindowCaptureViewModel WindowCapture { get; }
 
@@ -357,7 +358,7 @@ public partial class FormMainViewModel : ObservableObject
 		Views.Add(Battle = new BattleViewModel());
 
 		Views.Add(FormBrowserHost = new FormBrowserHostViewModel() { Visibility = Visibility.Visible });
-		Views.Add(FormLog = new FormLogViewModel());
+		Views.Add(FormLog = new LogViewViewModel());
 		Views.Add(FormJson = new FormJsonViewModel());
 		Views.Add(WindowCapture = new FormWindowCaptureViewModel(this));
 

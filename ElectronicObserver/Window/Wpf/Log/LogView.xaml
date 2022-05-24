@@ -1,0 +1,32 @@
+﻿<UserControl
+	x:Class="ElectronicObserver.Window.Wpf.Log.LogView"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+	xmlns:local="clr-namespace:ElectronicObserver.Window.Wpf.Log"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:ui="http://schemas.modernwpf.com/2019"
+	xmlns:window="clr-namespace:ElectronicObserver.Window"
+	d:DataContext="{d:DesignInstance Type=local:LogViewViewModel}"
+	d:DesignHeight="450"
+	d:DesignWidth="800"
+	TextElement.FontFamily="{Binding FontFamily, RelativeSource={RelativeSource AncestorType=Window}}"
+	TextElement.FontSize="{Binding FontSize, RelativeSource={RelativeSource AncestorType=Window}}"
+	TextElement.Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Window}}"
+	mc:Ignorable="d"
+	>
+	<UserControl.ContextMenu>
+		<ContextMenu>
+			<MenuItem Command="{Binding ContextMenuLog_Clear_ClickCommand}" Header="{Binding FormLog.Clear}" />
+		</ContextMenu>
+	</UserControl.ContextMenu>
+	<ScrollViewer
+		Name="ScrollViewer"
+		CanContentScroll="True"
+		ScrollChanged="ScrollViewer_ScrollChanged"
+		VerticalScrollBarVisibility="Auto"
+		>
+		<ItemsControl HorizontalAlignment="Left" ItemsSource="{Binding LogList}" />
+	</ScrollViewer>
+</UserControl>
