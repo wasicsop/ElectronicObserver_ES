@@ -1167,13 +1167,11 @@ public partial class ResourceChartWPF
 
 	private void Menu_Option_ShowAllData_Click(object sender, RoutedEventArgs e)
 	{
-		SetDateRange();
 		UpdateChart();
 	}
 
 	private void Menu_Option_DivideByDay_Click(object sender, RoutedEventArgs e)
 	{
-		SetDateRange();
 		UpdateChart();
 	}
 
