@@ -24,6 +24,7 @@
 	<ScrollViewer
 		Name="ScrollViewer"
 		CanContentScroll="True"
+		HorizontalScrollBarVisibility="Auto"
 		ScrollChanged="ScrollViewer_ScrollChanged"
 		VerticalScrollBarVisibility="Auto"
 		>
