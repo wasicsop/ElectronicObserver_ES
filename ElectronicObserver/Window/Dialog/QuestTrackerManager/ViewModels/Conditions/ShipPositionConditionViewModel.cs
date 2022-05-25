@@ -11,7 +11,6 @@ using ElectronicObserver.Window.Dialog.QuestTrackerManager.Models.Conditions;
 using ElectronicObserver.Window.Dialog.ShipPicker;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Extensions;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace ElectronicObserver.Window.Dialog.QuestTrackerManager.ViewModels.Conditions;
 

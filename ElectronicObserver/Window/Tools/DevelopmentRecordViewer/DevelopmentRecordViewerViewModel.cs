@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -13,7 +12,6 @@ using ElectronicObserver.Resource.Record;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Dialog;
 using ElectronicObserverTypes;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace ElectronicObserver.Window.Tools.DevelopmentRecordViewer;
 

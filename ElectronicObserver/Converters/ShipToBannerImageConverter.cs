@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Globalization;
-using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows.Media.Imaging;
-using ElectronicObserver.Data;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Window.Wpf;
 using ElectronicObserverTypes;

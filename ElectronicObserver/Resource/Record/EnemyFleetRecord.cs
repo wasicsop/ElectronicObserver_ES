@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using ElectronicObserver.Data;
-using ElectronicObserver.Data.Battle;
 using ElectronicObserver.Utility.Storage;
 
 namespace ElectronicObserver.Resource.Record;

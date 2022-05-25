@@ -24,7 +24,6 @@ using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using Grpc.Core;
 using MagicOnion.Client;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Web.WebView2.Core;
 using Microsoft.Web.WebView2.Core.DevToolsProtocolExtension;
 using Microsoft.Web.WebView2.Wpf;

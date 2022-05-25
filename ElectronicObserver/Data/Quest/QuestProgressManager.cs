@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Serialization;
 using ElectronicObserver.Observer;
 using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.Utility.Storage;

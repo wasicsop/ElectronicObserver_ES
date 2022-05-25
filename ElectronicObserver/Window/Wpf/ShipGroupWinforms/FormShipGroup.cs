@@ -13,7 +13,6 @@ using ElectronicObserver.Utility;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.ViewModels;
-using ElectronicObserver.Window.Control;
 using ElectronicObserver.Window.Dialog;
 using ElectronicObserver.Window.Support;
 

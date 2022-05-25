@@ -1,16 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Xml.Serialization;
 using ElectronicObserver.Data.ShipGroup;
 using ElectronicObserver.Utility.Storage;
 

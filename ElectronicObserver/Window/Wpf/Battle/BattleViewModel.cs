@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
-using System.Windows;
-using System.Windows.Input;
 using System.Windows.Media;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
@@ -19,7 +17,6 @@ using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Control;
 using ElectronicObserver.Window.Wpf.Battle.ViewModels;
 using ElectronicObserverTypes;
-using Microsoft.Extensions.DependencyInjection;
 using Color = System.Drawing.Color;
 
 namespace ElectronicObserver.Window.Wpf.Battle;

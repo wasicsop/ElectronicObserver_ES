@@ -1,5 +1,4 @@
-﻿using ElectronicObserver.Data;
-using ElectronicObserverTypes;
+﻿using ElectronicObserverTypes;
 using Moq;
 
 namespace ElectronicObserverCoreTests;

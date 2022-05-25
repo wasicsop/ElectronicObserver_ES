@@ -18,7 +18,6 @@ using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Dialog;
 using ElectronicObserver.Window.Tools.DialogAlbumMasterEquipment;
 using ElectronicObserverTypes;
-using Microsoft.Extensions.DependencyInjection;
 using WanaKanaNet;
 using static ElectronicObserver.Resource.Record.ShipParameterRecord;
 

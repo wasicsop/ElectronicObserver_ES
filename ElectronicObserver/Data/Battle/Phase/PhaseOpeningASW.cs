@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ElectronicObserver.Data.Battle.Phase;
+﻿namespace ElectronicObserver.Data.Battle.Phase;
 
 /// <summary>
 /// 開幕対潜攻撃フェーズの処理を行います。

@@ -2,20 +2,6 @@
 	<PropertyGroup>
 		<TargetFramework>net6.0-windows10.0.18362.0</TargetFramework>
 		<OutputType>WinExe</OutputType>
-		<IsWebBootstrapper>false</IsWebBootstrapper>
-		<PublishUrl>publish\</PublishUrl>
-		<Install>true</Install>
-		<InstallFrom>Disk</InstallFrom>
-		<UpdateEnabled>false</UpdateEnabled>
-		<UpdateMode>Foreground</UpdateMode>
-		<UpdateInterval>7</UpdateInterval>
-		<UpdateIntervalUnits>Days</UpdateIntervalUnits>
-		<UpdatePeriodically>false</UpdatePeriodically>
-		<UpdateRequired>false</UpdateRequired>
-		<MapFileExtensions>true</MapFileExtensions>
-		<ApplicationRevision>0</ApplicationRevision>
-		<ApplicationVersion>5.0.0.0</ApplicationVersion>
-		<UseApplicationTrust>false</UseApplicationTrust>
 		<BootstrapperEnabled>true</BootstrapperEnabled>
 		<UseWindowsForms>true</UseWindowsForms>
 		<UseWPF>true</UseWPF>
@@ -354,16 +340,15 @@
 			<DependentUpon>Menus.resx</DependentUpon>
 		</Compile>
 		<Compile Update="Window\Tools\AirControlSimulator\AirControlSimulator.Designer.cs">
-		  <DesignTime>True</DesignTime>
-		  <AutoGen>True</AutoGen>
-		  <DependentUpon>AirControlSimulator.resx</DependentUpon>
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>AirControlSimulator.resx</DependentUpon>
 		</Compile>
 		<Compile Update="Window\Tools\EventLockPlanner\EventLockPlanner.Designer.cs">
-		  <DesignTime>True</DesignTime>
-		  <AutoGen>True</AutoGen>
-		  <DependentUpon>EventLockPlanner.resx</DependentUpon>
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>EventLockPlanner.resx</DependentUpon>
 		</Compile>
-		<Compile Update="Window\Wpf\ShipGroupWinforms\FormShipGroup.cs" />
 		<None Include=".editorconfig" />
 		<None Update="Assets.zip">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -376,34 +361,9 @@
 		</None>
 	</ItemGroup>
 	<ItemGroup>
-		<None Include="App.config">
-			<SubType>Designer</SubType>
-		</None>
-	</ItemGroup>
-	<ItemGroup>
 		<Content Include="74eo.ico" />
 		<Content Include="Other\Information\apilist.txt" />
 		<Content Include="Other\Information\todo.txt" />
-	</ItemGroup>
-	<ItemGroup>
-		<BootstrapperPackage Include=".NETFramework,Version=v4.5">
-			<Visible>False</Visible>
-			<ProductName>Microsoft .NET Framework 4.5 %28x86 和 x64%29</ProductName>
-			<Install>true</Install>
-		</BootstrapperPackage>
-		<BootstrapperPackage Include="Microsoft.Net.Client.3.5">
-			<Visible>False</Visible>
-			<ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
-			<Install>false</Install>
-		</BootstrapperPackage>
-		<BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
-			<Visible>False</Visible>
-			<ProductName>.NET Framework 3.5 SP1</ProductName>
-			<Install>false</Install>
-		</BootstrapperPackage>
-	</ItemGroup>
-	<ItemGroup>
-		<WCFMetadata Include="Service References\" />
 	</ItemGroup>
 	<ItemGroup Condition="'$(Configuration)' == 'Debug'">
 		<ProjectReference Include="..\ElectronicObserver.TestData\ElectronicObserver.TestData.csproj" />
@@ -430,22 +390,17 @@
 		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.4" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.4" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.4">
-		  <PrivateAssets>all</PrivateAssets>
-		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
 		<PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.39" />
 		<PackageReference Include="ModernWpfUI" Version="0.9.4" />
 		<PackageReference Include="PropertyChanged.Fody" Version="3.4.0" PrivateAssets="All" />
 		<PackageReference Include="DynaJson" Version="2.2.0" />
-		<PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
-		<PackageReference Include="Microsoft.VisualBasic" Version="10.3.0" />
 		<PackageReference Include="ScottPlot" Version="4.1.45" />
 		<PackageReference Include="ScottPlot.WPF" Version="4.1.45" />
-		<PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
 		<PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
 		<PackageReference Include="System.Diagnostics.EventLog" Version="6.0.0" />
-		<PackageReference Include="System.Drawing.Common" Version="6.0.0" />
-		<PackageReference Include="System.IO.FileSystem" Version="4.3.0" />
 		<PackageReference Include="System.Management" Version="6.0.0" />
 		<PackageReference Include="DiscordRichPresence" Version="1.0.175" />
 		<PackageReference Include="Grpc" Version="2.41.0" />
@@ -458,39 +413,13 @@
 		<PackageReference Include="MessagePack" Version="2.3.85" />
 		<PackageReference Include="MessagePack.Annotations" Version="2.3.85" />
 		<PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="6.0.0" />
-		<PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.0" />
-		<PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="6.0.0" />
-		<PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="6.0.0" />
-		<PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="6.0.1" />
-		<PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="6.0.0" />
-		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0" />
-		<PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="6.0.1" />
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
-		<PackageReference Include="Microsoft.Extensions.FileProviders.Abstractions" Version="6.0.0" />
-		<PackageReference Include="Microsoft.Extensions.FileProviders.Physical" Version="6.0.0" />
-		<PackageReference Include="Microsoft.Extensions.FileSystemGlobbing" Version="6.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
 		<PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="6.0.0" />
-		<PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.0" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Configuration" Version="6.0.0" />
-		<PackageReference Include="Microsoft.Extensions.Options" Version="6.0.0" />
-		<PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="6.0.0" />
-		<PackageReference Include="Microsoft.Extensions.Primitives" Version="6.0.0" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-		<PackageReference Include="System.Buffers" Version="4.5.1" />
-		<PackageReference Include="System.Collections.Immutable" Version="6.0.0" />
 		<PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
-		<PackageReference Include="System.Memory" Version="4.5.4" />
-		<PackageReference Include="System.Net.NameResolution" Version="4.3.0" />
-		<PackageReference Include="System.Numerics.Vectors" Version="4.5.0" />
-		<PackageReference Include="System.Reflection.Emit" Version="4.7.0" />
-		<PackageReference Include="System.Reflection.Emit.Lightweight" Version="4.7.0" />
-		<PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="6.0.0" />
 		<PackageReference Include="System.Runtime.InteropServices" Version="4.3.0" />
-		<PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.4" />
-		<PackageReference Include="System.Threading.Tasks.Parallel" Version="4.3.0" />
 		<PackageReference Include="System.Windows.Forms.DataVisualization" Version="1.0.0-prerelease.20110.1" />
 		<PackageReference Include="Titanium.Web.Proxy" Version="3.1.1397" />
 		<PackageReference Include="WanaKana-net" Version="1.0.0" />
@@ -732,33 +661,12 @@
 			<LastGenOutput>Menus.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 		<EmbeddedResource Update="Window\Tools\AirControlSimulator\AirControlSimulator.resx">
-		  <Generator>PublicResXFileCodeGenerator</Generator>
-		  <LastGenOutput>AirControlSimulator.Designer.cs</LastGenOutput>
+			<Generator>PublicResXFileCodeGenerator</Generator>
+			<LastGenOutput>AirControlSimulator.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 		<EmbeddedResource Update="Window\Tools\EventLockPlanner\EventLockPlanner.resx">
-		  <Generator>ResXFileCodeGenerator</Generator>
-		  <LastGenOutput>EventLockPlanner.Designer.cs</LastGenOutput>
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>EventLockPlanner.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
-	</ItemGroup>
-	<ItemGroup>
-		<Page Update="ViewModels\Translations\ImageTextControl.xaml">
-			<XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-			<SubType>Designer</SubType>
-		</Page>
-		<Page Update="Window\Wpf\Fleet\FleetView.xaml">
-			<XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-		</Page>
-		<Page Update="Window\Wpf\Resources.xaml">
-			<XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-			<SubType>Designer</SubType>
-		</Page>
-		<Page Update="Window\Wpf\ShipGroupWinforms\ShipGroupWinformsView.xaml">
-			<XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-		</Page>
-	</ItemGroup>
-	<ItemGroup>
-		<Folder Include="Common\" />
-		<Folder Include="Database\" />
-		<Folder Include="Services\" />
 	</ItemGroup>
 </Project>

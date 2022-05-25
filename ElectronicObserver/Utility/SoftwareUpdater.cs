@@ -5,15 +5,12 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Security.Cryptography;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Xml.Linq;
 using DynaJson;
 using ElectronicObserver.Data;
 using ElectronicObserver.Data.Translation;
 using ElectronicObserver.Utility.Mathematics;
-using ElectronicObserver.Window;
 using AppSettings = ElectronicObserver.Properties.Settings;
 
 namespace ElectronicObserver.Utility;

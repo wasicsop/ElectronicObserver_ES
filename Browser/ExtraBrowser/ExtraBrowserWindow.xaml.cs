@@ -2,9 +2,7 @@
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
-using BrowserLibCore;
 using CommunityToolkit.Mvvm.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Web.WebView2.Core;
 namespace Browser.ExtraBrowser;
 

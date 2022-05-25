@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Input;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Data;
@@ -13,7 +10,6 @@ using ElectronicObserver.Resource;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserverTypes;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace ElectronicObserver.Window.Wpf.ShipGroup.ViewModels;
 

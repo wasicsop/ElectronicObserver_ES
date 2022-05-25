@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Text;
-using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
@@ -10,7 +9,6 @@ using ElectronicObserver.Resource;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserverTypes;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels;
 

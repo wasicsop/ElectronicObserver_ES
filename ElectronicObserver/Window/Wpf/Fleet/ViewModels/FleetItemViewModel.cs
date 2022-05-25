@@ -14,7 +14,6 @@ using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Control;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Extensions;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels;
 

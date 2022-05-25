@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Windows;
 using ElectronicObserver.Data;
 using ElectronicObserver.Data.Translation;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.Models;

@@ -2,7 +2,6 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.ViewModels.Translations;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels;
 

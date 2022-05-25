@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Drawing;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 using ElectronicObserver.Resource;
-using ElectronicObserver.Window.Wpf.Fleet.ViewModels;
-using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Wpf.Fleet;
 

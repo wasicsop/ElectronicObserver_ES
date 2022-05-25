@@ -2,13 +2,10 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ElectronicObserver.Data.Battle.Detail;
 using ElectronicObserver.Data.Battle.Phase;
 using ElectronicObserver.Properties.Data;
 using ElectronicObserver.Resource.Record;
-using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Extensions;

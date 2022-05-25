@@ -20,7 +20,6 @@ using ElectronicObserver.Window.Dialog;
 using ElectronicObserver.Window.Dialog.ShipPicker;
 using ElectronicObserver.Window.Wpf;
 using ElectronicObserverTypes;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace ElectronicObserver.Window.Tools.DropRecordViewer;
 

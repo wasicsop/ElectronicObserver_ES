@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using CommunityToolkit.Mvvm.DependencyInjection;
-using ElectronicObserver;
 using ElectronicObserver.Data.Translation;
 using ElectronicObserver.Window.Tools.EventLockPlanner;
 using ElectronicObserverTypes;

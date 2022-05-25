@@ -19,7 +19,6 @@ using ElectronicObserver.ViewModels;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.ViewModels;
-using Microsoft.Extensions.DependencyInjection;
 using Translation = ElectronicObserver.Properties.Window.FormQuest;
 
 namespace ElectronicObserver.Window.Wpf.Quest;

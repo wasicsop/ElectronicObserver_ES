@@ -1,5 +1,4 @@
 ﻿// ReSharper disable InconsistentNaming
-using System.ComponentModel.DataAnnotations;
 
 namespace ElectronicObserverTypes;
 

@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Linq;
-using ElectronicObserver.Data;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Mocks;

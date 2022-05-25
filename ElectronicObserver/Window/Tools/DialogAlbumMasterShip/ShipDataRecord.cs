@@ -15,7 +15,6 @@ using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Dialog;
 using ElectronicObserver.Window.Wpf;
 using ElectronicObserverTypes;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace ElectronicObserver.Window.Tools.DialogAlbumMasterShip;
 

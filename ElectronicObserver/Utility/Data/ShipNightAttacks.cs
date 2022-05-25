@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using ElectronicObserver.Data;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Extensions;
 

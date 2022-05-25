@@ -4,8 +4,7 @@ using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
 using ElectronicObserver.ViewModels.Translations;
-using ElectronicObserver.Window.Dialog;
-using Microsoft.Extensions.DependencyInjection;
+
 namespace ElectronicObserver.Window.Dialog.ResourceChartWPF;
 public partial class ResourceChartViewModel : WindowViewModelBase
 {

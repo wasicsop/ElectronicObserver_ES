@@ -1,17 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using ElectronicObserver.Resource;
-using ElectronicObserver.Utility;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Utility.Mathematics;
-using ElectronicObserver.Window.Control;
 using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Data;

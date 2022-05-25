@@ -10,7 +10,6 @@ using ElectronicObserver.Resource;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Dialog;
-using Microsoft.Extensions.DependencyInjection;
 using MessageBox = System.Windows.Forms.MessageBox;
 
 namespace ElectronicObserver.Window.Wpf.ShipGroupWinforms;

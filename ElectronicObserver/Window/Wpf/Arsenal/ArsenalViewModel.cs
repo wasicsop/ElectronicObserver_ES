@@ -10,7 +10,6 @@ using ElectronicObserver.Resource;
 using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.ViewModels.Translations;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace ElectronicObserver.Window.Wpf.Arsenal;
 

@@ -9,7 +9,6 @@ using ElectronicObserver.Resource.Record;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserverTypes;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace ElectronicObserver.Window.Wpf.Compass.ViewModels;
 

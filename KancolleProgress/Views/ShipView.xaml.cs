@@ -1,6 +1,5 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 using KancolleProgress.ViewModels;
 
 // The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236

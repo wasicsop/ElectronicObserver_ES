@@ -1,5 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using ElectronicObserverTypes;
+﻿using ElectronicObserverTypes;
 using ElectronicObserverTypes.Mocks;
 
 namespace ElectronicObserver.TestData.Models;

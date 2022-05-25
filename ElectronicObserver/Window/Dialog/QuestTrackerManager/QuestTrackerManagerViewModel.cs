@@ -9,7 +9,6 @@ using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.Models;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.ViewModels;
 using MessagePack;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace ElectronicObserver.Window.Dialog.QuestTrackerManager;
 

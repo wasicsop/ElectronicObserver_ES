@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ElectronicObserver.Data.Translation;
-
-namespace ElectronicObserver.Data;
+﻿namespace ElectronicObserver.Data;
 
 /// <summary>
 /// 任務のデータを保持します。

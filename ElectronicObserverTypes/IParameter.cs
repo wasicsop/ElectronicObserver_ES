@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ElectronicObserverTypes;
+﻿namespace ElectronicObserverTypes;
 
 public interface IParameter
 {

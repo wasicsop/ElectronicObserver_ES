@@ -1,6 +1,5 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using ElectronicObserver.Window.Wpf.WinformsWrappers;
 
 namespace ElectronicObserver.Window.Wpf.WinformsHost;
 

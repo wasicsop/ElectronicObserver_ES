@@ -12,7 +12,6 @@ using ElectronicObserver.Resource.Record;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Dialog;
 using ElectronicObserverTypes;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace ElectronicObserver.Window.Tools.ConstructionRecordViewer;
 

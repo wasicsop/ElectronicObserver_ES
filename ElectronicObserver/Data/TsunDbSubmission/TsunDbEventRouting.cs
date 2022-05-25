@@ -1,5 +1,4 @@
 ﻿using DynaJson;
-using ElectronicObserver.Resource.Record;
 using Newtonsoft.Json;
 
 namespace ElectronicObserver.Data;

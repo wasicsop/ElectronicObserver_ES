@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace ElectronicObserverTypes;
+﻿namespace ElectronicObserverTypes;
 
 public enum FormationType
 {

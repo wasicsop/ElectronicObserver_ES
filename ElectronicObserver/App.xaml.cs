@@ -10,7 +10,6 @@ using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Services;
 using ElectronicObserver.Utility;
 using ElectronicObserver.ViewModels.Translations;
-using ElectronicObserver.Window;
 using ElectronicObserver.Window.Dialog.ShipPicker;
 using ElectronicObserver.Window.Tools.AirControlSimulator;
 using ElectronicObserver.Window.Tools.EventLockPlanner;

@@ -2,7 +2,6 @@
 using System.Globalization;
 using System.Windows.Data;
 using ElectronicObserver.Data;
-using ElectronicObserver.Utility.Data;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Extensions;
 
