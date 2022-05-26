@@ -115,7 +115,7 @@ public partial class DialogExpeditionCheck : Form
 				var result = results[i];
 				var cell = row.Cells[i + 2];
 
-				if (result.IsSuceeded || i == 3)
+				if (result.IsSuceeded || i == 4)
 				{
 					if (!result.FailureReason.Any())
 					{
