@@ -135,4 +135,7 @@
   <data name="CheckView_Condition" xml:space="preserve">
     <value>Requirements</value>
   </data>
+  <data name="CheckView_Fleet1" xml:space="preserve">
+    <value>#1</value>
+  </data>
 </root>

@@ -46,6 +46,7 @@ public partial class DialogExpeditionCheck : Form
 	public void Translate()
 	{
 		CheckView_Name.HeaderText = Translation.CheckView_Name;
+		CheckView_Fleet2.HeaderText = Translation.CheckView_Fleet1;
 		CheckView_Fleet2.HeaderText = Translation.CheckView_Fleet2;
 		CheckView_Fleet3.HeaderText = Translation.CheckView_Fleet3;
 		CheckView_Fleet4.HeaderText = Translation.CheckView_Fleet4;

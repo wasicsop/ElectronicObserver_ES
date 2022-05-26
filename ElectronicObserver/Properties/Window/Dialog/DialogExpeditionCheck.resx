@@ -115,4 +115,7 @@
   <data name="CheckView_Condition" xml:space="preserve">
     <value>成功条件</value>
   </data>
+  <data name="CheckView_Fleet1" xml:space="preserve">
+    <value>第1艦隊</value>
+  </data>
 </root>
