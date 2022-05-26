@@ -88,6 +88,7 @@ public partial class DialogExpeditionCheck : Form
 		{
 			var results = new[]
 			{
+				MissionClearCondition.Check(mission.MissionID, db.Fleet[1]),
 				MissionClearCondition.Check(mission.MissionID, db.Fleet[2]),
 				MissionClearCondition.Check(mission.MissionID, db.Fleet[3]),
 				MissionClearCondition.Check(mission.MissionID, db.Fleet[4]),
@@ -103,7 +104,8 @@ public partial class DialogExpeditionCheck : Form
 				results[0],
 				results[1],
 				results[2],
-				results[3]);
+				results[3],
+				results[4]);
 
 			row.Cells[1].ToolTipText = $"ID: {mission.MissionID} ({mission.ExpeditionType.Display()})";
 

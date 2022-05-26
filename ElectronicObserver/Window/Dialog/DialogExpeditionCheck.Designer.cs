@@ -31,6 +31,7 @@
 			this.CheckView = new System.Windows.Forms.DataGridView();
 			this.CheckView_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.CheckView_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.CheckView_Fleet1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.CheckView_Fleet2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.CheckView_Fleet3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.CheckView_Fleet4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -47,6 +48,7 @@
 			this.CheckView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
 			this.CheckView_ID,
 			this.CheckView_Name,
+			this.CheckView_Fleet1,
 			this.CheckView_Fleet2,
 			this.CheckView_Fleet3,
 			this.CheckView_Fleet4,
@@ -77,6 +79,14 @@
 			this.CheckView_Name.Name = "CheckView_Name";
 			this.CheckView_Name.ReadOnly = true;
 			this.CheckView_Name.Width = 68;
+			// 
+			// CheckView_Fleet1
+			// 
+			this.CheckView_Fleet1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.CheckView_Fleet1.HeaderText = "第1艦隊";
+			this.CheckView_Fleet1.Name = "CheckView_Fleet1";
+			this.CheckView_Fleet1.ReadOnly = true;
+			this.CheckView_Fleet1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
 			// 
 			// CheckView_Fleet2
 			// 
@@ -131,6 +141,7 @@
 		private System.Windows.Forms.DataGridView CheckView;
 		private System.Windows.Forms.DataGridViewTextBoxColumn CheckView_ID;
 		private System.Windows.Forms.DataGridViewTextBoxColumn CheckView_Name;
+		private System.Windows.Forms.DataGridViewTextBoxColumn CheckView_Fleet1;
 		private System.Windows.Forms.DataGridViewTextBoxColumn CheckView_Fleet2;
 		private System.Windows.Forms.DataGridViewTextBoxColumn CheckView_Fleet3;
 		private System.Windows.Forms.DataGridViewTextBoxColumn CheckView_Fleet4;
