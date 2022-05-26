@@ -109,7 +109,7 @@ public partial class DialogExpeditionCheck : Form
 
 			row.Cells[1].ToolTipText = $"ID: {mission.MissionID} ({mission.ExpeditionType.Display()})";
 
-			for (int i = 0; i < 4; i++)
+			for (int i = 0; i < 5; i++)
 			{
 				var result = results[i];
 				var cell = row.Cells[i + 2];
