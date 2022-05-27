@@ -810,8 +810,6 @@ public partial class ResourceChartWPF
 
 	private void SetYBounds(double min, double max)
 	{
-		if (double.IsInfinity(min) || double.IsInfinity(max))
-			return;
 		int order = (int)Math.Log10(Math.Max(max - min, 1));
 		double powered = Math.Pow(10, order);
 		double unitbase = Math.Round((max - min) / powered);
@@ -821,11 +819,25 @@ public partial class ResourceChartWPF
 			unitbase < 7 ? 1.0 : 2.0);
 		var axisYmin = Math.Floor(min / unit) * unit;
 		var axisYmax = Math.Ceiling(max / unit) * unit;
-		ChartArea.Plot.SetAxisLimits(yMin: axisYmin, yMax: axisYmax, yAxisIndex:0);
-		if (ChartArea.Plot.YAxis2.IsVisible)
+		bool isYaxisPlotsVisible = ChartArea.Plot.GetPlottables().Any(p => p.YAxisIndex == 0 && p.IsVisible);
+		ChartArea.Plot.YAxis.IsVisible = isYaxisPlotsVisible;
+		if (isYaxisPlotsVisible)
+		{
+			ChartArea.Plot.SetAxisLimits(yMin: axisYmin, yMax: axisYmax, yAxisIndex: 0);
+		}
+		else
+		{
+			ChartArea.Plot.AxisAuto();
+		}
+		if (ChartArea.Plot.YAxis2.IsVisible && isYaxisPlotsVisible)
 		{
 			ChartArea.Plot.SetAxisLimits(yMin: axisYmin / 100, yMax: axisYmax / 100, yAxisIndex:1);
 		}
+		else
+		{
+			ChartArea.Plot.AxisAuto();
+		}
+
 	}
 
 	private void SetMaterialChart()
