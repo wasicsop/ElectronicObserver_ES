@@ -40,9 +40,6 @@ public partial class EventLockPlannerViewModel : WindowViewModelBase
 		LockTranslator = lockTranslator;
 
 		AllShipLocks = allShips.Select(s => new ShipLockViewModel(s)).ToList();
-
-		GenerateUnlockedShips();
-		PopulateLocks();
 	}
 
 	public override void Loaded()
@@ -179,9 +176,6 @@ public partial class EventLockPlannerViewModel : WindowViewModelBase
 		NoLockGroup.Clear();
 		LockGroups.Clear();
 
-		GenerateUnlockedShips();
-		PopulateLocks();
-
 		foreach (EventLockModel eventLock in model.Locks)
 		{
 			LockGroups.Add(new(eventLock.Id)
@@ -190,6 +184,9 @@ public partial class EventLockPlannerViewModel : WindowViewModelBase
 				Name = eventLock.Name,
 			});
 		}
+
+		GenerateUnlockedShips();
+		PopulateLocks();
 
 		foreach (ShipLockModel shipLockModel in model.ShipLocks)
 		{
