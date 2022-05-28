@@ -312,17 +312,16 @@ internal class SoftwareUpdater
 		return data;
 	}
 
-	internal static async Task DownloadData(string filename)
+	private static async Task DownloadData(string filename)
 	{
 		string path = Path.Combine(DataAndTranslationManager.WorkingFolder, filename);
 		string  url = Path.Combine(Configuration.Config.Control.UpdateRepoURL.AbsoluteUri, filename);
 		try
 		{
-			using var client = new HttpClient();
+			using HttpClient client = new();
 			using HttpResponseMessage response = await client.GetAsync(url);
 
-			using FileStream fs = new FileStream(path, FileMode.OpenOrCreate);
-			await response.Content.CopyToAsync(fs);
+			await File.WriteAllTextAsync(path, await response.Content.ReadAsStringAsync());
 
 			if (filename.Contains("update.json") == false)
 				Logger.Add(1, string.Format(Properties.Utility.SoftwareInformation.FileUpdated, filename));
