@@ -41,6 +41,7 @@ public class EventLockPlannerTests
 	public void EventLockPlannerTest1()
 	{
 		EventLockPlannerViewModel planner = new(AllShips, LockTranslator);
+		planner.Loaded();
 
 		Assert.Equal(AllShips.Count, planner.NoLockGroup.Ships.Count);
 		Assert.Empty(planner.LockGroups);
@@ -50,6 +51,7 @@ public class EventLockPlannerTests
 	public void EventLockPlannerTest2()
 	{
 		EventLockPlannerViewModel planner = new(AllShips, LockTranslator);
+		planner.Loaded();
 
 		planner.AddLockCommand.Execute(null);
 
@@ -60,6 +62,7 @@ public class EventLockPlannerTests
 	public void EventLockPlannerTest3()
 	{
 		EventLockPlannerViewModel planner = new(AllShips, LockTranslator);
+		planner.Loaded();
 
 		planner.AddLockCommand.Execute(null);
 
@@ -80,7 +83,8 @@ public class EventLockPlannerTests
 		ShipDataMock kamikaze = (allShips.First(s => s.MasterShip.ShipId is ShipId.Kamikaze) as ShipDataMock)!;
 		kamikaze.SallyArea = 2;
 
-		EventLockPlannerViewModel planner = new(AllShips, LockTranslator);
+		EventLockPlannerViewModel planner = new(allShips, LockTranslator);
+		planner.Loaded();
 
 		Assert.Equal(allShips.Count - 1, planner.NoLockGroup.Ships.Count);
 		Assert.Equal(2, planner.LockGroups.Count);
@@ -94,7 +98,8 @@ public class EventLockPlannerTests
 		ShipDataMock kamikaze = (allShips.First(s => s.MasterShip.ShipId is ShipId.Kamikaze) as ShipDataMock)!;
 		kamikaze.SallyArea = 2;
 
-		EventLockPlannerViewModel planner = new(AllShips, LockTranslator);
+		EventLockPlannerViewModel planner = new(allShips, LockTranslator);
+		planner.Loaded();
 
 		planner.LockGroups[0].Move(planner.LockGroups[1].Ships.First(), planner.LockGroups[1]);
 
@@ -108,6 +113,7 @@ public class EventLockPlannerTests
 	public void EventLockPlannerTest6()
 	{
 		EventLockPlannerViewModel planner = new(AllShips, LockTranslator);
+		planner.Loaded();
 
 		planner.NoLockGroup.Filter.TypeFilters
 			.First(f => f.Value is ShipTypeGroup.Destroyers).IsChecked = false;
