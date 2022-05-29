@@ -14,8 +14,8 @@ public class ShipLockViewModel : ObservableObject
 
 	public string Display => ActualLock switch
 	{
-		< 1 => Ship.Name,
-		_ => $"[{ActualLock}] {Ship.Name}"
+		< 1 => Ship.NameWithLevel,
+		_ => $"[{ActualLock}] {Ship.NameWithLevel}"
 	};
 
 	public int NightPowerBase => Ship.FirepowerBase + Ship.TorpedoBase;
