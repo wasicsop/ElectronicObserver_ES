@@ -350,12 +350,7 @@ public partial class QuestViewModel : AnchorableViewModel
 			// row.Cells[QuestView_Name.Index].Style.BackColor = color;
 			// row.Cells[QuestView_Name.Index].Style.SelectionBackColor = color;
 
-			row.QuestView_Name = q switch
-			{
-				{ Code: "" } => q.Name,
-				{ } => $"{q.Code}: {q.Name}",
-				_ => "???"
-			};
+			row.QuestView_Name = q.NameWithCode;
 
 			/*
 			row.Cells[QuestView_Progress.Index].Style.BackColor = color;

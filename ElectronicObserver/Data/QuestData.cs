@@ -46,6 +46,17 @@ public class QuestData : ResponseWrapper, IIdentifiable
 	public string Name => KCDatabase.Instance.Translation.Quest.Name(QuestID, (string)RawData.api_title);
 
 	/// <summary>
+	/// {Code}: {Name} if code exists <br />
+	/// Name if code doesn't exist
+	/// </summary>
+	public string NameWithCode => this switch
+	{
+		{ Code: "" } => Name,
+		{ } => $"{Code}: {Name}",
+		_ => "???"
+	};
+
+	/// <summary>
 	/// 任務名
 	/// </summary>
 	public string NameJP => (string)RawData.api_title;

@@ -129,7 +129,7 @@ public class QuestManager : APIWrapper
 				int id = int.Parse(data["api_quest_id"]);
 				var quest = Quests[id];
 
-				Utility.Logger.Add(2, string.Format(LoggerRes.ClearedQuest, quest.Name));
+				Utility.Logger.Add(2, string.Format(LoggerRes.ClearedQuest, quest.NameWithCode));
 
 				Quests.Remove(id);
 				Count--;
