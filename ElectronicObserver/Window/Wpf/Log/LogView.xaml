@@ -23,6 +23,7 @@
 	</UserControl.ContextMenu>
 	<ScrollViewer
 		Name="ScrollViewer"
+		Padding="0 0 0 10"
 		CanContentScroll="True"
 		HorizontalScrollBarVisibility="Auto"
 		ScrollChanged="ScrollViewer_ScrollChanged"
