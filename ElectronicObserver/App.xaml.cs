@@ -204,6 +204,11 @@ public partial class App : Application
 			.PersistOn(nameof(System.Windows.Window.Closed))
 			.PersistOn(nameof(System.Windows.Window.Closed));
 
+		// EventLockPlannerWindow extends System.Windows.Window so the config above applies to it
+		tracker
+			.Configure<EventLockPlannerWindow>()
+			.Property(w => w.ViewModel.ShowFinishedPhases);
+
 		return tracker;
 	}
 }
