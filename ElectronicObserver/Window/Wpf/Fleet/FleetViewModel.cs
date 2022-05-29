@@ -14,6 +14,7 @@ using ElectronicObserver.ViewModels;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Control;
 using ElectronicObserver.Window.Dialog;
+using ElectronicObserver.Window.Tools.AirDefense;
 using ElectronicObserver.Window.Wpf.Fleet.ViewModels;
 using ElectronicObserverTypes;
 
@@ -757,15 +758,16 @@ public partial class FleetViewModel : AnchorableViewModel
 	[ICommand]
 	private void AntiAirDetails()
 	{
+		AirDefenseViewModel viewModel = new()
+		{
+			SelectedFleet = (KCDatabase.Instance.Fleet.CombinedFlag != 0 && FleetId is 1 or 2) switch
+			{
+				true => Tools.AirDefense.FleetId.CombinedFleet,
+				_ => (FleetId)FleetId
+			}
+		};
 
-		var dialog = new DialogAntiAirDefense();
-
-		if (KCDatabase.Instance.Fleet.CombinedFlag != 0 && (FleetId == 1 || FleetId == 2))
-			dialog.SetFleetID(5);
-		else
-			dialog.SetFleetID(FleetId);
-
-		dialog.Show(App.Current.MainWindow);
+		new AirDefenseWindow(viewModel).Show(App.Current.MainWindow);
 	}
 
 	/*

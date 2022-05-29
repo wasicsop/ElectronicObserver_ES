@@ -36,6 +36,7 @@ using ElectronicObserver.Window.Dialog.QuestTrackerManager;
 using ElectronicObserver.Window.Dialog.VersionInformation;
 using ElectronicObserver.Window.Dialog.ResourceChartWPF;
 using ElectronicObserver.Window.Integrate;
+using ElectronicObserver.Window.Tools.AirDefense;
 using ElectronicObserver.Window.Tools.ConstructionRecordViewer;
 using ElectronicObserver.Window.Tools.DevelopmentRecordViewer;
 using ElectronicObserver.Window.Tools.DialogAlbumMasterEquipment;
@@ -840,9 +841,28 @@ public partial class FormMainViewModel : ObservableObject
 	}
 
 	[ICommand]
-	private void OpenAntiAirDefense()
+	private void OpenAntiAirDefense(bool useNewVersion)
 	{
-		new DialogAntiAirDefense().Show(Window);
+		if (useNewVersion)
+		{
+			if (!KCDatabase.Instance.Fleet.IsAvailable)
+			{
+				MessageBox.Show
+				(
+					Properties.Window.Dialog.DialogAntiAirDefense.DataNotLoaded,
+					Properties.Window.Dialog.DialogAntiAirDefense.Error,
+					MessageBoxButton.OK, MessageBoxImage.Error
+				);
+
+				return;
+			}
+
+			new AirDefenseWindow(new()).Show(Window);
+		}
+		else
+		{
+			new DialogAntiAirDefense().Show(Window);
+		}
 	}
 
 	[ICommand]

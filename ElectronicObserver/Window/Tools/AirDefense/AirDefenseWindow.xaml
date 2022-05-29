@@ -1,0 +1,330 @@
+﻿<common:WindowBase
+	x:Class="ElectronicObserver.Window.Tools.AirDefense.AirDefenseWindow"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:common="clr-namespace:ElectronicObserver.Common"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:local="clr-namespace:ElectronicObserver.Window.Tools.AirDefense"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:ui="http://schemas.modernwpf.com/2019"
+	Title="{Binding AirDefense.Title}"
+	Width="800"
+	Height="450"
+	d:DataContext="{d:DesignInstance local:AirDefenseViewModel}"
+	ui:WindowHelper.UseModernWindowStyle="True"
+	x:TypeArguments="local:AirDefenseViewModel"
+	mc:Ignorable="d"
+	>
+	<Window.Resources>
+		<local:AirDefenseBindingProxy x:Key="Proxy" DataContext="{Binding}" />
+
+		<Style TargetType="TextBlock">
+			<Setter Property="VerticalAlignment" Value="Center" />
+			<Setter Property="Margin" Value="4 2" />
+		</Style>
+		<Style BasedOn="{StaticResource DefaultToolTipStyleEO}" TargetType="ToolTip">
+			<Setter Property="FontFamily" Value="{Binding DataContext.Font, Source={StaticResource Proxy}}" />
+			<Setter Property="FontSize" Value="{Binding DataContext.FontSize, Source={StaticResource Proxy}}" />
+			<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
+		</Style>
+		<Style TargetType="ui:NumberBox">
+			<Setter Property="VerticalAlignment" Value="Center" />
+			<Setter Property="HorizontalAlignment" Value="Stretch" />
+			<Setter Property="Margin" Value="4 2" />
+			<Setter Property="FontFamily" Value="{Binding DataContext.Font, Source={StaticResource Proxy}}" />
+			<Setter Property="FontSize" Value="{Binding DataContext.FontSize, Source={StaticResource Proxy}}" />
+			<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
+		</Style>
+		<Style BasedOn="{StaticResource DefaultCheckBoxStyle}" TargetType="CheckBox">
+			<Setter Property="VerticalAlignment" Value="Center" />
+			<Setter Property="HorizontalAlignment" Value="Stretch" />
+			<Setter Property="Margin" Value="4 2" />
+			<Setter Property="FontFamily" Value="{Binding DataContext.Font, Source={StaticResource Proxy}}" />
+			<Setter Property="FontSize" Value="{Binding DataContext.FontSize, Source={StaticResource Proxy}}" />
+			<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
+		</Style>
+		<Style BasedOn="{StaticResource DefaultComboBoxStyle}" TargetType="ComboBox">
+			<Setter Property="VerticalAlignment" Value="Center" />
+			<Setter Property="HorizontalAlignment" Value="Stretch" />
+			<Setter Property="Margin" Value="4 2" />
+			<Setter Property="FontFamily" Value="{Binding DataContext.Font, Source={StaticResource Proxy}}" />
+			<Setter Property="FontSize" Value="{Binding DataContext.FontSize, Source={StaticResource Proxy}}" />
+			<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
+		</Style>
+	</Window.Resources>
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition />
+		</Grid.RowDefinitions>
+
+		<Grid Grid.Row="0">
+			<Grid.RowDefinitions>
+				<RowDefinition />
+				<RowDefinition />
+			</Grid.RowDefinitions>
+
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition Width="Auto" />
+			</Grid.ColumnDefinitions>
+
+			<TextBlock
+				Grid.Row="0"
+				Grid.Column="0"
+				Text="{Binding AirDefense.Fleet}"
+				/>
+			<ComboBox
+				Grid.Row="0"
+				Grid.Column="1"
+				ItemsSource="{Binding Fleets}"
+				SelectedItem="{Binding SelectedFleet}"
+				>
+				<ComboBox.ItemTemplate>
+					<DataTemplate>
+						<TextBlock Text="{Binding Converter={StaticResource EnumDisplayConverter}}" />
+					</DataTemplate>
+				</ComboBox.ItemTemplate>
+			</ComboBox>
+
+			<TextBlock
+				Grid.Row="1"
+				Grid.Column="0"
+				Text="{Binding AirDefense.Formation}"
+				/>
+			<ComboBox
+				Grid.Row="1"
+				Grid.Column="1"
+				ItemsSource="{Binding Formations}"
+				SelectedItem="{Binding SelectedFormation}"
+				>
+				<ComboBox.ItemTemplate>
+					<DataTemplate>
+						<TextBlock Text="{Binding Converter={StaticResource EnumDisplayConverter}}" />
+					</DataTemplate>
+				</ComboBox.ItemTemplate>
+			</ComboBox>
+
+			<TextBlock
+				Grid.Row="0"
+				Grid.Column="2"
+				Text="{Binding AirDefense.AACI}"
+				/>
+			<ComboBox
+				Grid.Row="0"
+				Grid.Column="3"
+				Grid.ColumnSpan="3"
+				ItemsSource="{Binding AaciApis}"
+				SelectedItem="{Binding SelectedAACI}"
+				>
+				<ComboBox.ItemTemplate>
+					<DataTemplate>
+						<TextBlock Text="{Binding Converter={StaticResource AaciDisplayConverter}}" />
+					</DataTemplate>
+				</ComboBox.ItemTemplate>
+			</ComboBox>
+
+			<TextBlock
+				Grid.Row="1"
+				Grid.Column="2"
+				Text="{Binding AirDefense.PlaneSlot}"
+				/>
+			<ui:NumberBox
+				Grid.Row="1"
+				Grid.Column="3"
+				Minimum="1"
+				Value="{Binding EnemyAircraftCount}"
+				/>
+
+			<TextBlock
+				Grid.Row="1"
+				Grid.Column="4"
+				Text="{Binding AirDefense.FleetAA}"
+				/>
+			<TextBlock
+				Grid.Row="1"
+				Grid.Column="5"
+				Text="{Binding AdjustedFleetAAText}"
+				/>
+
+			<CheckBox
+				Grid.Row="0"
+				Grid.Column="6"
+				Grid.ColumnSpan="2"
+				Content="{Binding AirDefense.ShowAll}"
+				IsChecked="{Binding ShowAll}"
+				ToolTip="{Binding AirDefense.ShowAllToolTip}"
+				/>
+
+			<TextBlock
+				Grid.Row="1"
+				Grid.Column="6"
+				Text="{Binding AirDefense.WipeRate}"
+				/>
+			<TextBlock
+				Grid.Row="1"
+				Grid.Column="7"
+				Text="{Binding AnnihilationProbabilityText}"
+				/>
+		</Grid>
+
+		<DataGrid
+			Grid.Row="1"
+			AutoGenerateColumns="False"
+			HeadersVisibility="Column"
+			IsReadOnly="True"
+			ItemsSource="{Binding Rows}"
+			>
+			<DataGrid.ColumnHeaderStyle>
+				<Style BasedOn="{StaticResource DefaultDataGridColumnHeaderStyle}" TargetType="{x:Type DataGridColumnHeader}">
+					<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
+					<Setter Property="FontFamily" Value="{Binding DataContext.Font, Source={StaticResource Proxy}}" />
+					<Setter Property="FontSize" Value="{Binding DataContext.FontSize, Source={StaticResource Proxy}}" />
+				</Style>
+			</DataGrid.ColumnHeaderStyle>
+
+			<DataGrid.Columns>
+				<DataGridTextColumn
+					Binding="{Binding Name}"
+					FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
+					FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
+					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
+					Header="{Binding DataContext.AirDefense.ResultView_ShipName, Source={StaticResource Proxy}}"
+					/>
+
+				<DataGridTextColumn
+					Binding="{Binding AaBase}"
+					FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
+					FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
+					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
+					Header="{Binding DataContext.AirDefense.ResultView_AntiAir, Source={StaticResource Proxy}}"
+					/>
+
+				<DataGridTextColumn
+					Binding="{Binding AdjustedAa}"
+					FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
+					FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
+					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
+					Header="{Binding DataContext.AirDefense.ResultView_AdjustedAntiAir, Source={StaticResource Proxy}}"
+					/>
+
+				<DataGridTextColumn
+					Binding="{Binding ProportionalAaDisplay}"
+					FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
+					FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
+					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
+					Header="{Binding DataContext.AirDefense.ResultView_ProportionalAirDefense, Source={StaticResource Proxy}}"
+					/>
+
+				<DataGridTextColumn
+					Binding="{Binding FixedAa}"
+					FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
+					FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
+					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
+					Header="{Binding DataContext.AirDefense.ResultView_FixedAirDefense, Source={StaticResource Proxy}}"
+					/>
+
+				<DataGridTextColumn
+					Binding="{Binding ShotDownBothDisplay}"
+					FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
+					FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
+					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
+					>
+					<DataGridTextColumn.Header>
+						<DataGridColumnHeader Content="{Binding DataContext.AirDefense.ResultView_ShootDownBoth, Source={StaticResource Proxy}}" ToolTip="{Binding DataContext.AirDefense.ResultView_ShootDownBothToolTip, Source={StaticResource Proxy}}" />
+					</DataGridTextColumn.Header>
+
+					<DataGridTextColumn.CellStyle>
+						<Style
+							d:DataContext="{d:DesignInstance local:AirDefenseRowViewModel}"
+							BasedOn="{StaticResource DefaultDataGridCellStyle}"
+							TargetType="DataGridCell"
+							>
+							<Setter Property="Background" Value="{Binding ShotDownBothBackground}" />
+						</Style>
+					</DataGridTextColumn.CellStyle>
+				</DataGridTextColumn>
+
+				<DataGridTextColumn
+					Binding="{Binding ShotDownProportionalDisplay}"
+					FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
+					FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
+					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
+					>
+					<DataGridTextColumn.Header>
+						<DataGridColumnHeader Content="{Binding DataContext.AirDefense.ResultView_ShootDownProportional, Source={StaticResource Proxy}}" ToolTip="{Binding DataContext.AirDefense.ResultView_ShootDownProportionalToolTip, Source={StaticResource Proxy}}" />
+					</DataGridTextColumn.Header>
+
+					<DataGridTextColumn.CellStyle>
+						<Style
+							d:DataContext="{d:DesignInstance local:AirDefenseRowViewModel}"
+							BasedOn="{StaticResource DefaultDataGridCellStyle}"
+							TargetType="DataGridCell"
+							>
+							<Setter Property="Background" Value="{Binding ShotDownProportionalBackground}" />
+						</Style>
+					</DataGridTextColumn.CellStyle>
+				</DataGridTextColumn>
+
+				<DataGridTextColumn
+					Binding="{Binding ShotDownFixedDisplay}"
+					FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
+					FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
+					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
+					>
+					<DataGridTextColumn.Header>
+						<DataGridColumnHeader Content="{Binding DataContext.AirDefense.ResultView_ShootDownFixed, Source={StaticResource Proxy}}" ToolTip="{Binding DataContext.AirDefense.ResultView_ShootDownFixedToolTip, Source={StaticResource Proxy}}" />
+					</DataGridTextColumn.Header>
+
+					<DataGridTextColumn.CellStyle>
+						<Style
+							d:DataContext="{d:DesignInstance local:AirDefenseRowViewModel}"
+							BasedOn="{StaticResource DefaultDataGridCellStyle}"
+							TargetType="DataGridCell"
+							>
+							<Setter Property="Background" Value="{Binding ShotDownFixedBackground}" />
+						</Style>
+					</DataGridTextColumn.CellStyle>
+				</DataGridTextColumn>
+
+				<DataGridTextColumn
+					Binding="{Binding ShotDownFailedDisplay}"
+					FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
+					FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
+					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
+					>
+					<DataGridTextColumn.Header>
+						<DataGridColumnHeader Content="{Binding DataContext.AirDefense.ResultView_ShootDownFailed, Source={StaticResource Proxy}}" ToolTip="{Binding DataContext.AirDefense.ResultView_ShootDownFailedToolTip, Source={StaticResource Proxy}}" />
+					</DataGridTextColumn.Header>
+
+					<DataGridTextColumn.CellStyle>
+						<Style
+							d:DataContext="{d:DesignInstance local:AirDefenseRowViewModel}"
+							BasedOn="{StaticResource DefaultDataGridCellStyle}"
+							TargetType="DataGridCell"
+							>
+							<Setter Property="Background" Value="{Binding ShotDownFailedBackground}" />
+						</Style>
+					</DataGridTextColumn.CellStyle>
+				</DataGridTextColumn>
+
+				<DataGridTextColumn
+					Binding="{Binding AarbProbabilityDisplay}"
+					FontFamily="{Binding DataContext.Font, Source={StaticResource Proxy}}"
+					FontSize="{Binding DataContext.FontSize, Source={StaticResource Proxy}}"
+					Foreground="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}"
+					>
+					<DataGridTextColumn.Header>
+						<DataGridColumnHeader Content="{Binding DataContext.AirDefense.ResultView_AARocketBarrageProbability, Source={StaticResource Proxy}}" ToolTip="{Binding DataContext.AirDefense.ResultView_AARocketBarrageProbabilityToolTip, Source={StaticResource Proxy}}" />
+					</DataGridTextColumn.Header>
+				</DataGridTextColumn>
+			</DataGrid.Columns>
+		</DataGrid>
+	</Grid>
+</common:WindowBase>

@@ -2,19 +2,15 @@
 using System.Globalization;
 using System.Windows.Data;
 using ElectronicObserver.Data;
-using ElectronicObserverTypes;
-using ElectronicObserverTypes.Extensions;
 
 namespace ElectronicObserver.Converters;
 
-public class EnumDisplayConverter : IValueConverter
+public class AaciDisplayConverter : IValueConverter
 {
 	public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		=> value switch
 		{
-			EquipmentTypes e => KCDatabase.Instance.EquipmentTypes[(int)e].NameEN,
-			FormationType f => Constants.GetFormation(f),
-			Enum e => e.Display(),
+			int id => $"{id}: {Constants.GetAACutinKind(id)}",
 			_ => "???"
 		};
 

@@ -557,14 +557,20 @@
 					</MenuItem.Icon>
 				</MenuItem>
 				<Separator />
-				<MenuItem
-					d:Header="AA Defense"
-					Command="{Binding OpenAntiAirDefenseCommand}"
-					Header="{Binding FormMain.StripMenu_Tool_AntiAirDefense}"
-					>
+				<MenuItem d:Header="AA Defense" Header="{Binding FormMain.StripMenu_Tool_AntiAirDefense}">
 					<MenuItem.Icon>
 						<Image Source="{Binding AntiAirDefenseImageSource}" />
 					</MenuItem.Icon>
+					<MenuItem Command="{Binding OpenAntiAirDefenseCommand}" Header="{Binding FormMain.Old}">
+						<MenuItem.CommandParameter>
+							<system:Boolean>False</system:Boolean>
+						</MenuItem.CommandParameter>
+					</MenuItem>
+					<MenuItem Command="{Binding OpenAntiAirDefenseCommand}" Header="{Binding FormMain.New}">
+						<MenuItem.CommandParameter>
+							<system:Boolean>True</system:Boolean>
+						</MenuItem.CommandParameter>
+					</MenuItem>
 				</MenuItem>
 				<MenuItem
 					d:Header="Export Fleet Image"

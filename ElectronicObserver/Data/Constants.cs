@@ -580,6 +580,8 @@ public static class Constants
 
 	#region 戦闘
 
+	public static string GetFormation(FormationType id) => GetFormation((int)id);
+
 	/// <summary>
 	/// 陣形を表す文字列を取得します。
 	/// </summary>

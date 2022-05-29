@@ -12,6 +12,7 @@ using ElectronicObserver.Utility;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Dialog.ShipPicker;
 using ElectronicObserver.Window.Tools.AirControlSimulator;
+using ElectronicObserver.Window.Tools.AirDefense;
 using ElectronicObserver.Window.Tools.EventLockPlanner;
 using Jot;
 using Jot.Storage;
@@ -170,6 +171,7 @@ public partial class App : Application
 			.AddSingleton<DialogConstructionRecordViewerTranslationViewModel>()
 			.AddSingleton<DialogResourceChartTranslationViewModel>()
 			.AddSingleton<DialogEquipmentListTranslationViewModel>()
+			.AddSingleton<AirDefenseTranslationViewModel>()
 			.AddSingleton<QuestTrackerManagerTranslationViewModel>()
 			.AddSingleton<EventLockPlannerTranslationViewModel>()
 			.AddSingleton<ShipFilterTranslationViewModel>()
