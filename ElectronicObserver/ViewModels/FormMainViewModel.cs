@@ -111,6 +111,8 @@ public partial class FormMainViewModel : ObservableObject
 	public Color BackgroundColor { get; set; }
 
 	private WindowPosition Position { get; set; } = new();
+	// single instance hack
+	private EventLockPlannerWindow? EventLockPlannerWindow { get; set; }
 
 	#region Icons
 
@@ -924,8 +926,17 @@ public partial class FormMainViewModel : ObservableObject
 	[ICommand]
 	private void OpenEventLockPlanner()
 	{
+		if (EventLockPlannerWindow is not null) return;
+
 		EventLockPlannerViewModel viewModel = new(KCDatabase.Instance.Ships.Values, KCDatabase.Instance.Translation.Lock);
-		new EventLockPlannerWindow(viewModel).Show(Window);
+		EventLockPlannerWindow = new (viewModel);
+
+		EventLockPlannerWindow.Closed += (sender, args) =>
+		{
+			EventLockPlannerWindow = null;
+		};
+
+		EventLockPlannerWindow.Show(Window);
 	}
 
 	#endregion
