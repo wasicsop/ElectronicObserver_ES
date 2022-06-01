@@ -26,6 +26,7 @@ public class ShipFilterViewModel : ObservableObject
 
 	public bool CanEquipDaihatsu { get; set; }
 	public bool CanEquipTank { get; set; }
+	public bool HasExpansionSlot { get; set; }
 
 	public ShipFilterViewModel()
 	{
@@ -60,6 +61,7 @@ public class ShipFilterViewModel : ObservableObject
 		if (ship.LuckBase > LuckMax) return false;
 		if (CanEquipDaihatsu && !ship.MasterShip.EquippableCategoriesTyped.Contains(EquipmentTypes.LandingCraft)) return false;
 		if (CanEquipTank && !ship.MasterShip.EquippableCategoriesTyped.Contains(EquipmentTypes.SpecialAmphibiousTank)) return false;
+		if (HasExpansionSlot && !ship.IsExpansionSlotAvailable) return false;
 
 		// other filters
 

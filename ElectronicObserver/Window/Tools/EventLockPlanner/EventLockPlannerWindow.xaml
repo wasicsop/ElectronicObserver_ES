@@ -402,6 +402,13 @@
 						Content="{Binding ShipFilter.Tank}"
 						IsChecked="{Binding CanEquipTank}"
 						/>
+
+					<CheckBox
+						MinWidth="0"
+						Margin="2 0"
+						Content="{Binding ShipFilter.Expansion}"
+						IsChecked="{Binding HasExpansionSlot}"
+						/>
 				</WrapPanel>
 			</Grid>
 
@@ -509,6 +516,7 @@
 						/>
 					<DataGridCheckBoxColumn Binding="{Binding CanUseDaihatsu, Mode=OneWay}" Header="{Binding DataContext.EventLockPlanner.Daihatsu, Source={StaticResource Proxy}}" />
 					<DataGridCheckBoxColumn Binding="{Binding CanUseTank, Mode=OneWay}" Header="{Binding DataContext.EventLockPlanner.Tank, Source={StaticResource Proxy}}" />
+					<DataGridCheckBoxColumn Binding="{Binding IsExpansionSlotAvailable, Mode=OneWay}" Header="{Binding DataContext.EventLockPlanner.Expansion, Source={StaticResource Proxy}}" />
 				</DataGrid.Columns>
 			</DataGrid>
 		</Grid>

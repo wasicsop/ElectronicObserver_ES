@@ -36,4 +36,5 @@ public class EventLockPlannerTranslationViewModel : TranslationBaseViewModel
 	public string Luck => GeneralRes.Luck;
 	public string Daihatsu => EventLockPlanner.Daihatsu;
 	public string Tank => EventLockPlanner.Tank;
+	public string Expansion => GeneralRes.Expansion;
 }
