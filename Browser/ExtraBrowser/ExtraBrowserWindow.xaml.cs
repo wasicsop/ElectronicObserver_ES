@@ -3,20 +3,35 @@ using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.DependencyInjection;
+using Jot;
 using Microsoft.Web.WebView2.Core;
 namespace Browser.ExtraBrowser;
 
 public partial class ExtraBrowserWindow : Window
 {
+	private Tracker Tracker { get; }
 	public FormBrowserTranslationViewModel FormBrowser { get; }
 	private CoreWebView2Frame? gameframe { get; set; }
 	private CoreWebView2Frame? kancolleframe { get; set; }
 	private string StyleClassID { get; } = Guid.NewGuid().ToString().Substring(0, 8);
+	
 	public ExtraBrowserWindow()
 	{
+		Tracker = Ioc.Default.GetService<Tracker>()!;
 		FormBrowser = Ioc.Default.GetService<FormBrowserTranslationViewModel>()!;
+
 		InitializeComponent();
 		InitializeAsync();
+
+		Loaded += (_, _) =>
+		{
+			StartJotTracking();
+		};
+	}
+
+	private void StartJotTracking()
+	{
+		Tracker.Track(this);
 	}
 
 	private async void InitializeAsync()

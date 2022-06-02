@@ -6,6 +6,8 @@ using System.Windows;
 using System.Windows.Controls;
 using Browser.AirControlSimulator;
 using CommunityToolkit.Mvvm.DependencyInjection;
+using Jot;
+using Jot.Storage;
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
@@ -70,6 +72,8 @@ public partial class App : Application
 		ServiceProvider services = new ServiceCollection()
 			.AddSingleton<FormBrowserTranslationViewModel>()
 			.AddSingleton<AirControlSimulatorTranslationViewModel>()
+			// external
+			.AddSingleton(JotTracker())
 			.BuildServiceProvider();
 
 		Ioc.Default.ConfigureServices(services);
@@ -84,6 +88,24 @@ public partial class App : Application
 		MainWindow = browser;
 
 		browser.ShowDialog();
+	}
+
+	private static Tracker JotTracker()
+	{
+		Tracker tracker = new(new JsonFileStore(@"Settings\WindowStates"));
+
+		tracker
+			.Configure<Window>()
+			.Id(w => w.Name)
+			.Property(w => w.Top)
+			.Property(w => w.Left)
+			.Property(w => w.Height)
+			.Property(w => w.Width)
+			.Property(w => w.WindowState)
+			.PersistOn(nameof(Window.Closed))
+			.StopTrackingOn(nameof(Window.Closed));
+
+		return tracker;
 	}
 
 	private static System.Reflection.Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args)

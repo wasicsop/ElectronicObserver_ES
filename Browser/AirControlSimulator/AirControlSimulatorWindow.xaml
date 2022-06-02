@@ -13,7 +13,6 @@
 	Height="450"
 	d:DataContext="{d:DesignInstance local:AirControlSimulatorViewModel}"
 	ui:WindowHelper.UseModernWindowStyle="True"
-	WindowState="Maximized"
 	mc:Ignorable="d"
 	>
 	<Window.Resources>
