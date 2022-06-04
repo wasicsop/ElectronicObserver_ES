@@ -163,9 +163,6 @@ public interface IEquipmentDataMaster
 	/// <summary> 魚雷系かどうか </summary>
 	bool IsTorpedo { get; }
 
-	/// <summary> 後期型魚雷かどうか </summary>
-	bool IsLateModelTorpedo { get; }
-
 	/// <summary> 高角砲かどうか </summary>
 	bool IsHighAngleGun { get; }
 

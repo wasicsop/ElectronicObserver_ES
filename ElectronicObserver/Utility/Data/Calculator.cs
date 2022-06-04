@@ -917,7 +917,7 @@ public static class Calculator
 				case EquipmentTypes.SubmarineTorpedo:
 					torpedoCount++;
 
-					if (eq.IsLateModelTorpedo)
+					if (eq.IsLateModelTorpedo())
 						lateModelTorpedoCount++;
 					break;
 
@@ -1114,7 +1114,7 @@ public static class Calculator
 		slot = slot.Where(eq => eq != null);
 
 		// note: 発動優先度については要検証
-		int latetorp = slot.Count(eq => eq.IsLateModelTorpedo);
+		int latetorp = slot.Count(eq => eq.IsLateModelTorpedo());
 		int subeq = slot.Count(eq => eq.CategoryType == EquipmentTypes.SubmarineEquipment);
 
 		if (latetorp >= 1 && subeq >= 1)

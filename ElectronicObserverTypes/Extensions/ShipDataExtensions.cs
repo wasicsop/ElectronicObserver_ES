@@ -133,7 +133,7 @@ public static class ShipDataExtensions
 		.Any(e => e?.MasterEquipment.IsSwordfish ?? false);
 
 	public static bool HasLateModelTorp(this IShipData ship, int count = 1) => ship.AllSlotInstance
-																				   .Count(e => e?.MasterEquipment.IsLateModelTorpedo == true)
+																				   .Count(e => e?.MasterEquipment.IsLateModelTorpedo() == true)
 																			   >= count;
 
 	public static bool HasSubmarineEquipment(this IShipData ship) => ship.AllSlotInstance

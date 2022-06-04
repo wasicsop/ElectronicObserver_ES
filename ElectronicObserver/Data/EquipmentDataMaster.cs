@@ -197,12 +197,6 @@ public class EquipmentDataMaster : ResponseWrapper, IIdentifiable, IEquipmentDat
 	/// <summary> 魚雷系かどうか </summary>
 	public bool IsTorpedo => CategoryType == EquipmentTypes.Torpedo || CategoryType == EquipmentTypes.SubmarineTorpedo;
 
-	/// <summary> 後期型魚雷かどうか </summary>
-	public bool IsLateModelTorpedo =>
-		EquipmentID == 213 ||   // 後期型艦首魚雷(6門)
-		EquipmentID == 214 ||   // 熟練聴音員+後期型艦首魚雷(6門)
-		EquipmentID == 383;     // 後期型53cm艦首魚雷(8門)
-
 
 	/// <summary> 高角砲かどうか </summary>
 	public bool IsHighAngleGun => IconType == 16;
