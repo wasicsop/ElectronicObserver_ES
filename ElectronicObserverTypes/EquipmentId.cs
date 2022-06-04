@@ -452,5 +452,11 @@ public enum EquipmentId
 	RadarSmall_Type13AirRadarKai_LateModel = 450,
 	ASPatrol_Type3CommandLiaisonAircraftKai = 451,
 	Interceptor_Ki96 = 452,
-	LandBasedAttacker_Ki102B = 453
+	LandBasedAttacker_Ki102B = 453,
+	LandBasedAttacker_Ki102BKai_No_1Model1BGuidedMissile = 454,
+	MainGunSmall_PrototypeLongbarrel12_7cmTwinGunMountModelAKai4 = 455,
+	RadarSmall_SGRadar_LateModel = 456,
+	SubmarineTorpedo_LateModelBowTorpedoMount_4tubes = 457,
+	SubmarineEquipment_LateModelRadar_PassiveRadiolocator_SnorkelEquipment = 458,
+	LandBasedAttacker_B25 = 459,
 }
