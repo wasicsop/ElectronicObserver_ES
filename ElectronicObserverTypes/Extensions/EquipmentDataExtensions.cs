@@ -30,7 +30,10 @@ public static class EquipmentDataExtensions
 	public static bool IsLateModelTorpedo(this IEquipmentDataMaster equip) => equip.EquipmentId is
 		EquipmentId.SubmarineTorpedo_LateModelBowTorpedo_6tubes or
 		EquipmentId.SubmarineTorpedo_SkilledSonarPersonnel_LateModelBowTorpedo_6tubes or
-		EquipmentId.SubmarineTorpedo_LateModel53cmBowTorpedo_8tubes;
+		EquipmentId.SubmarineTorpedo_LateModel53cmBowTorpedo_8tubes or
+		EquipmentId.SubmarineTorpedo_21inch6tubeBowTorpedoLauncher_LateModel or
+		EquipmentId.SubmarineTorpedo_Submarine4tubeSternTorpedoLauncher_LateModel or
+		EquipmentId.SubmarineTorpedo_LateModelBowTorpedoMount_4tubes;
 
 	/// <summary> 高角砲かどうか </summary>
 	public static bool IsHighAngleGun(this IEquipmentDataMaster equip) => equip.IconTypeTyped is
