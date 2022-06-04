@@ -36,10 +36,18 @@ public partial class DevelopmentRecordViewerViewModel : WindowViewModelBase
 	public object SelectedFlagship { get; set; } = DevelopmentRecordOption.All;
 	public object SelectedRecipe { get; set; } = DevelopmentRecordOption.All;
 
+	private DateTime DateTimeBegin =>
+		new(DateBegin.Year, DateBegin.Month, DateBegin.Day, TimeBegin.Hour, TimeBegin.Minute, TimeBegin.Second);
+	private DateTime DateTimeEnd =>
+		new(DateEnd.Year, DateEnd.Month, DateEnd.Day, TimeEnd.Hour, TimeEnd.Minute, TimeEnd.Second);
+
 	public DateTime DateBegin { get; set; }
+	public DateTime TimeBegin { get; set; }
 	public DateTime DateEnd { get; set; }
+	public DateTime TimeEnd { get; set; }
 	public DateTime MinDate { get; set; }
 	public DateTime MaxDate { get; set; }
+
 	public bool MergeRows { get; set; }
 	public bool RawRows => !MergeRows;
 	public string StatusInfoText { get; set; }
@@ -224,7 +232,7 @@ public partial class DevelopmentRecordViewerViewModel : WindowViewModelBase
 			if (eq != null && eq.NameEN != r.EquipmentName) eq = null;
 			if (secretary != null && secretary.NameEN != r.FlagshipName) secretary = null;
 
-			if (r.Date < DateBegin || DateEnd < r.Date) continue;
+			if (r.Date < DateTimeBegin || DateTimeEnd < r.Date) continue;
 			if (SelectedFlagshipType is ShipTypes shipType && (int)shipType != r.FlagshipType) continue;
 			if (SelectedFlagship is IShipDataMaster ship && ship.ShipID != r.FlagshipID) continue;
 

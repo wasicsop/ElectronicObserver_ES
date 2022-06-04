@@ -53,10 +53,18 @@ public partial class DropRecordViewerViewModel : WindowViewModelBase
 	// DropRecordOption or UseItemMaster
 	public object ItemSearchOption { get; set; } = DropRecordOption.All;
 
+	private DateTime DateTimeBegin =>
+		new(DateBegin.Year, DateBegin.Month, DateBegin.Day, TimeBegin.Hour, TimeBegin.Minute, TimeBegin.Second);
+	private DateTime DateTimeEnd =>
+		new(DateEnd.Year, DateEnd.Month, DateEnd.Day, TimeEnd.Hour, TimeEnd.Minute, TimeEnd.Second);
+	
 	public DateTime DateBegin { get; set; }
+	public DateTime TimeBegin { get; set; }
 	public DateTime DateEnd { get; set; }
+	public DateTime TimeEnd { get; set; }
 	public DateTime MinDate { get; set; }
 	public DateTime MaxDate { get; set; }
+
 	public object MapAreaID { get; set; } = MapAny;
 	public object MapInfoID { get; set; } = MapAny;
 	public MapNode MapCellID { get; set; } = new(MapAny);
@@ -377,7 +385,7 @@ public partial class DropRecordViewerViewModel : WindowViewModelBase
 
 				#region Filtering
 
-				if (r.Date < DateBegin || DateEnd < r.Date)
+				if (r.Date < DateTimeBegin || DateTimeEnd < r.Date)
 					continue;
 
 				if (((r.Rank == "SS" || r.Rank == "S") && !RankS) ||
@@ -706,7 +714,7 @@ public partial class DropRecordViewerViewModel : WindowViewModelBase
 	private void SelectToday(Calendar? calendar)
 	{
 		if (calendar is null) return;
-		
+
 		calendar.SelectedDate = DateTime.Now.Date;
 	}
 

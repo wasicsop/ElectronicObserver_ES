@@ -155,16 +155,23 @@
 				HorizontalAlignment="Center"
 				Text="{Binding DialogDropRecordViewer.Start}"
 				/>
-			<DatePicker
+
+			<StackPanel
 				Grid.Row="0"
 				Grid.Column="4"
-				HorizontalAlignment="Stretch"
-				DisplayDateEnd="{Binding MaxDate}"
-				DisplayDateStart="{Binding MinDate}"
-				FirstDayOfWeek="Monday"
-				SelectedDate="{Binding DateBegin}"
-				ToolTip="{Binding DialogDropRecordViewer.DateBeginToolTip}"
-				/>
+				Orientation="Horizontal"
+				>
+				<DatePicker
+					HorizontalAlignment="Stretch"
+					DisplayDateEnd="{Binding MaxDate}"
+					DisplayDateStart="{Binding MinDate}"
+					FirstDayOfWeek="Monday"
+					SelectedDate="{Binding DateBegin}"
+					ToolTip="{Binding DialogDropRecordViewer.DateBeginToolTip}"
+					/>
+
+				<ui:SimpleTimePicker Culture="ja-JP" SelectedDateTime="{Binding TimeBegin}" />
+			</StackPanel>
 
 			<TextBlock
 				Grid.Row="1"
@@ -172,16 +179,23 @@
 				HorizontalAlignment="Center"
 				Text="{Binding DialogDropRecordViewer.End}"
 				/>
-			<DatePicker
+
+			<StackPanel
 				Grid.Row="1"
 				Grid.Column="4"
-				HorizontalAlignment="Stretch"
-				DisplayDateEnd="{Binding MaxDate}"
-				DisplayDateStart="{Binding MinDate}"
-				FirstDayOfWeek="Monday"
-				SelectedDate="{Binding DateEnd}"
-				ToolTip="{Binding DialogDropRecordViewer.DateEndToolTip}"
-				/>
+				Orientation="Horizontal"
+				>
+				<DatePicker
+					HorizontalAlignment="Stretch"
+					DisplayDateEnd="{Binding MaxDate}"
+					DisplayDateStart="{Binding MinDate}"
+					FirstDayOfWeek="Monday"
+					SelectedDate="{Binding DateEnd}"
+					ToolTip="{Binding DialogDropRecordViewer.DateEndToolTip}"
+					/>
+
+				<ui:SimpleTimePicker Culture="ja-JP" SelectedDateTime="{Binding TimeEnd}" />
+			</StackPanel>
 
 			<StackPanel
 				Grid.Row="2"

@@ -41,10 +41,18 @@ public partial class ConstructionRecordViewerViewModel : WindowViewModelBase
 	public object EmptyDockCount { get; set; } = ConstructionRecordOption.All;
 	public bool? IsLargeConstruction { get; set; }
 
+	private DateTime DateTimeBegin =>
+		new(DateBegin.Year, DateBegin.Month, DateBegin.Day, TimeBegin.Hour, TimeBegin.Minute, TimeBegin.Second);
+	private DateTime DateTimeEnd =>
+		new(DateEnd.Year, DateEnd.Month, DateEnd.Day, TimeEnd.Hour, TimeEnd.Minute, TimeEnd.Second);
+
 	public DateTime DateBegin { get; set; }
+	public DateTime TimeBegin { get; set; }
 	public DateTime DateEnd { get; set; }
+	public DateTime TimeEnd { get; set; }
 	public DateTime MinDate { get; set; }
 	public DateTime MaxDate { get; set; }
+
 	public bool MergeRows { get; set; }
 	public bool RawRows => !MergeRows;
 	public bool DevMatsVisible => MergeRows && IsLargeConstruction is not false;
@@ -312,7 +320,7 @@ public partial class ConstructionRecordViewerViewModel : WindowViewModelBase
 			if (SelectedFlagship is IShipDataMaster selectedFlagship && (secretary == null || selectedFlagship.NameWithClass != secretary.NameWithClass))
 				continue;
 
-			if (r.Date < DateBegin || DateEnd < r.Date) continue;
+			if (r.Date < DateTimeBegin || DateTimeEnd < r.Date) continue;
 			if (SelectedDevelopmentMaterial is int developmentMaterial && developmentMaterial != r.DevelopmentMaterial) continue;
 			if (EmptyDockCount is int emptyDockCount && emptyDockCount != r.EmptyDockAmount) continue;
 			if (IsLargeConstruction is { } isLargeConstruction && isLargeConstruction != r.IsLargeDock) continue;

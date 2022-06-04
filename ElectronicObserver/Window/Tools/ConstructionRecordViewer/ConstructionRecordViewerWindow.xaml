@@ -144,28 +144,42 @@
 				Grid.Column="2"
 				Text="{Binding DialogConstructionRecordViewer.From}"
 				/>
-			<DatePicker
+
+			<StackPanel
 				Grid.Row="0"
 				Grid.Column="3"
-				DisplayDateEnd="{Binding MaxDate}"
-				DisplayDateStart="{Binding MinDate}"
-				FirstDayOfWeek="Monday"
-				SelectedDate="{Binding DateBegin}"
-				/>
+				Orientation="Horizontal"
+				>
+				<DatePicker
+					DisplayDateEnd="{Binding MaxDate}"
+					DisplayDateStart="{Binding MinDate}"
+					FirstDayOfWeek="Monday"
+					SelectedDate="{Binding DateBegin}"
+					/>
+
+				<ui:SimpleTimePicker Culture="ja-JP" SelectedDateTime="{Binding TimeBegin}" />
+			</StackPanel>
 
 			<TextBlock
 				Grid.Row="1"
 				Grid.Column="2"
 				Text="{Binding DialogConstructionRecordViewer.Until}"
 				/>
-			<DatePicker
+
+			<StackPanel
 				Grid.Row="1"
 				Grid.Column="3"
-				DisplayDateEnd="{Binding MaxDate}"
-				DisplayDateStart="{Binding MinDate}"
-				FirstDayOfWeek="Monday"
-				SelectedDate="{Binding DateEnd}"
-				/>
+				Orientation="Horizontal"
+				>
+				<DatePicker
+					DisplayDateEnd="{Binding MaxDate}"
+					DisplayDateStart="{Binding MinDate}"
+					FirstDayOfWeek="Monday"
+					SelectedDate="{Binding DateEnd}"
+					/>
+
+				<ui:SimpleTimePicker Culture="ja-JP" SelectedDateTime="{Binding TimeEnd}" />
+			</StackPanel>
 
 			<ComboBox
 				Grid.Row="2"

@@ -134,26 +134,40 @@
 				Grid.Column="2"
 				Text="{Binding DialogDevelopmentRecordViewer.From}"
 				/>
-			<DatePicker
+
+			<StackPanel
 				Grid.Row="0"
 				Grid.Column="3"
-				DisplayDateEnd="{Binding MaxDate}"
-				DisplayDateStart="{Binding MinDate}"
-				SelectedDate="{Binding DateBegin}"
-				/>
+				Orientation="Horizontal"
+				>
+				<DatePicker
+					DisplayDateEnd="{Binding MaxDate}"
+					DisplayDateStart="{Binding MinDate}"
+					SelectedDate="{Binding DateBegin}"
+					/>
+
+				<ui:SimpleTimePicker Culture="ja-JP" SelectedDateTime="{Binding TimeBegin}" />
+			</StackPanel>
 
 			<TextBlock
 				Grid.Row="1"
 				Grid.Column="2"
 				Text="{Binding DialogDevelopmentRecordViewer.Until}"
 				/>
-			<DatePicker
+
+			<StackPanel
 				Grid.Row="1"
 				Grid.Column="3"
-				DisplayDateEnd="{Binding MaxDate}"
-				DisplayDateStart="{Binding MinDate}"
-				SelectedDate="{Binding DateEnd}"
-				/>
+				Orientation="Horizontal"
+				>
+				<DatePicker
+					DisplayDateEnd="{Binding MaxDate}"
+					DisplayDateStart="{Binding MinDate}"
+					SelectedDate="{Binding DateEnd}"
+					/>
+
+				<ui:SimpleTimePicker Culture="ja-JP" SelectedDateTime="{Binding TimeEnd}" />
+			</StackPanel>
 
 			<ComboBox
 				Grid.Row="2"
