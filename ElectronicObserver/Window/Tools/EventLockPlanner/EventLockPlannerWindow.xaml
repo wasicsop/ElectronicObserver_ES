@@ -43,7 +43,11 @@
 			<Setter Property="FontSize" Value="{Binding DataContext.FontSize, Source={StaticResource Proxy}}" />
 			<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
 		</Style>
-
+		<Style BasedOn="{StaticResource DefaultLabelStyle}" TargetType="Label">
+			<Setter Property="FontFamily" Value="{Binding DataContext.Font, Source={StaticResource Proxy}}" />
+			<Setter Property="FontSize" Value="{Binding DataContext.FontSize, Source={StaticResource Proxy}}" />
+			<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
+		</Style>
 		<DataTemplate x:Key="LockGroupTemplate" DataType="local:LockGroupViewModel">
 			<Grid Margin="1">
 				<Grid.RowDefinitions>
@@ -408,6 +412,17 @@
 						Margin="2 0"
 						Content="{Binding ShipFilter.Expansion}"
 						IsChecked="{Binding HasExpansionSlot}"
+						/>
+					<TextBox
+						Width="Auto"
+						Margin="2 0"
+						VerticalAlignment="Center"
+						Text="{Binding NameFilter, UpdateSourceTrigger=PropertyChanged}"
+						/>
+					<Label
+						Margin="2 0"
+						VerticalAlignment="Center"
+						Content="{Binding ShipFilter.NameFilter}"
 						/>
 				</WrapPanel>
 			</Grid>

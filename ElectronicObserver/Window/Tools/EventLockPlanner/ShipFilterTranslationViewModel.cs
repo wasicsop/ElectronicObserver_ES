@@ -9,4 +9,5 @@ public class ShipFilterTranslationViewModel : ObservableObject
 	public string Daihatsu => EventLockPlanner.Daihatsu;
 	public string Tank => EventLockPlanner.Tank;
 	public string Expansion => GeneralRes.Expansion;
+	public string NameFilter => GeneralRes.ShipName;
 }
