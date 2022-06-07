@@ -2,15 +2,18 @@
 using System.IO;
 using System.Text.Json;
 using ElectronicObserver.Database.MapData;
+using ElectronicObserver.Window.Tools.AutoRefresh;
 using ElectronicObserver.Window.Tools.EventLockPlanner;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using CellModel = ElectronicObserver.Database.MapData.CellModel;
 
 namespace ElectronicObserver.Database;
 
 public class ElectronicObserverContext : DbContext
 {
 	public DbSet<EventLockPlannerModel> EventLockPlans { get; set; } = null!;
+	public DbSet<AutoRefreshModel> AutoRefresh { get; set; } = null!;
 	public DbSet<WorldModel> Worlds { get; set; } = null!;
 	public DbSet<MapModel> Maps { get; set; } = null!;
 	public DbSet<CellModel> Cells { get; set; } = null!;
@@ -50,7 +53,13 @@ public class ElectronicObserverContext : DbContext
 
 		builder.Entity<CellModel>()
 			.HasKey(n => n.Id);
-		
+
+		builder.Entity<AutoRefreshModel>()
+			.HasKey(a => a.Id);
+
+		builder.Entity<AutoRefreshModel>()
+			.Property(a => a.Rules)
+			.HasConversion(JsonConverter<List<AutoRefreshRuleModel>>());
 	}
 
 	private static ValueConverter<T, string> JsonConverter<T>() where T : new() => new

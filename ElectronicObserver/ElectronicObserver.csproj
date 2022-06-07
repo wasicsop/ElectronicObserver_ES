@@ -344,6 +344,11 @@
 			<AutoGen>True</AutoGen>
 			<DependentUpon>AirControlSimulator.resx</DependentUpon>
 		</Compile>
+		<Compile Update="Window\Tools\AutoRefresh\AutoRefresh.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>AutoRefresh.resx</DependentUpon>
+		</Compile>
 		<Compile Update="Window\Tools\EventLockPlanner\EventLockPlanner.Designer.cs">
 			<DesignTime>True</DesignTime>
 			<AutoGen>True</AutoGen>
@@ -664,6 +669,10 @@
 		<EmbeddedResource Update="Window\Tools\AirControlSimulator\AirControlSimulator.resx">
 			<Generator>PublicResXFileCodeGenerator</Generator>
 			<LastGenOutput>AirControlSimulator.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Window\Tools\AutoRefresh\AutoRefresh.resx">
+		  <Generator>PublicResXFileCodeGenerator</Generator>
+		  <LastGenOutput>AutoRefresh.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 		<EmbeddedResource Update="Window\Tools\EventLockPlanner\EventLockPlanner.resx">
 			<Generator>ResXFileCodeGenerator</Generator>

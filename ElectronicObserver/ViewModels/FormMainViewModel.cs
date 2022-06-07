@@ -37,6 +37,7 @@ using ElectronicObserver.Window.Dialog.VersionInformation;
 using ElectronicObserver.Window.Dialog.ResourceChartWPF;
 using ElectronicObserver.Window.Integrate;
 using ElectronicObserver.Window.Tools.AirDefense;
+using ElectronicObserver.Window.Tools.AutoRefresh;
 using ElectronicObserver.Window.Tools.ConstructionRecordViewer;
 using ElectronicObserver.Window.Tools.DevelopmentRecordViewer;
 using ElectronicObserver.Window.Tools.DialogAlbumMasterEquipment;
@@ -113,6 +114,7 @@ public partial class FormMainViewModel : ObservableObject
 	private WindowPosition Position { get; set; } = new();
 	// single instance hack
 	private EventLockPlannerWindow? EventLockPlannerWindow { get; set; }
+	private AutoRefreshWindow? AutoRefreshWindow { get; set; }
 
 	#region Icons
 
@@ -149,6 +151,7 @@ public partial class FormMainViewModel : ObservableObject
 	public ImageSource? ExpeditionCheckImageSource { get; }
 	public ImageSource? KancolleProgressImageSource { get; }
 	public ImageSource? ExtraBrowserImageSource { get; }
+	public ImageSource? AutoRefreshImageSource { get; }
 
 	public ImageSource? ViewHelpImageSource { get; }
 	public ImageSource? ViewVersionImageSource { get; }
@@ -280,6 +283,7 @@ public partial class FormMainViewModel : ObservableObject
 		ExpeditionCheckImageSource = ImageSourceIcons.GetIcon(IconContent.FormExpeditionCheck);
 		KancolleProgressImageSource = ImageSourceIcons.GetIcon(IconContent.FormEquipmentList);
 		ExtraBrowserImageSource = ImageSourceIcons.GetIcon(IconContent.FormBrowser);
+		AutoRefreshImageSource = ImageSourceIcons.GetIcon(IconContent.BrowserRefresh);
 
 		ViewHelpImageSource = ImageSourceIcons.GetIcon(IconContent.FormInformation);
 		ViewVersionImageSource = ImageSourceIcons.GetIcon(IconContent.AppIcon);
@@ -937,6 +941,25 @@ public partial class FormMainViewModel : ObservableObject
 		};
 
 		EventLockPlannerWindow.Show(Window);
+	}
+
+	[ICommand]
+	private void OpenAutoRefresh()
+	{
+		if (AutoRefreshWindow is not null) return;
+
+		AutoRefreshViewModel viewModel = Ioc.Default.GetRequiredService<AutoRefreshViewModel>();
+		viewModel.Areas = KCDatabase.Instance.MapArea.Values.ToList();
+		viewModel.Infos = KCDatabase.Instance.MapInfo.Values.ToList();
+
+		AutoRefreshWindow = new(viewModel);
+
+		AutoRefreshWindow.Closed += (sender, args) =>
+		{
+			AutoRefreshWindow = null;
+		};
+
+		AutoRefreshWindow.Show(Window);
 	}
 
 	#endregion
