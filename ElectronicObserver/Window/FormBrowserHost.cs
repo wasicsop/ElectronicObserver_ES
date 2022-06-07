@@ -124,7 +124,7 @@ public partial class FormBrowserHost : Form
 
 		if (ShouldRefresh(compass.MapAreaID, compass.MapInfoID, compass.Destination, autoRefresh))
 		{
-			Browser.ForceRefresh();
+			Browser.RequestAutoRefresh();
 		}
 	}
 

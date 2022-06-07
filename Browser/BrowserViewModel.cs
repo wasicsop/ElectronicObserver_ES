@@ -764,7 +764,7 @@ public partial class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowse
 			await Browser.CoreWebView2.CapturePreviewAsync(browserImageFormat, memoryStream).ConfigureAwait(false);
 
 			Bitmap image = (Bitmap)Bitmap.FromStream(memoryStream, true);
-			
+
 			await App.Current.Dispatcher.BeginInvoke(() => LastScreenshot = image.ToBitmapSource());
 
 			if (savemode is 1 or 3)
@@ -859,7 +859,7 @@ public partial class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowse
 			// 音量データ取得不能時
 			VolumeManager = null;
 		}
-		
+
 		Configuration.Volume = RealVolume;
 		Configuration.IsMute = IsMuted;
 		ConfigurationUpdated();
@@ -1126,8 +1126,19 @@ public partial class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowse
 		}.Show();
 	}
 
-	public void ForceRefresh()
+	public void RequestAutoRefresh()
 	{
+		MessageBoxResult messageBoxResult = MessageBox.Show
+		(
+			Properties.Resources.AutoRefreshNotification,
+			FormBrowser.Confirmation,
+			MessageBoxButton.OKCancel,
+			MessageBoxImage.Exclamation,
+			MessageBoxResult.Cancel
+		);
+
+		if (messageBoxResult is not MessageBoxResult.OK) return;
+
 		RefreshBrowser();
 	}
 
