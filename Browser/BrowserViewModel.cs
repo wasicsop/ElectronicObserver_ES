@@ -373,6 +373,7 @@ public partial class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowse
 		DevToolsHelper = Browser.CoreWebView2.GetDevToolsProtocolHelper();
 		Browser.CoreWebView2.Settings.AreDefaultScriptDialogsEnabled = false;
 		Browser.CoreWebView2.Settings.AreBrowserAcceleratorKeysEnabled = false;
+		Browser.CoreWebView2.Settings.IsStatusBarEnabled = false;
 		Browser.Source = new Uri("about:blank");
 		Browser.CoreWebView2.WebResourceRequested += CoreWebView2_WebResourceRequested;
 		Browser.CoreWebView2.AddWebResourceRequestedFilter("*", CoreWebView2WebResourceContext.Script);
