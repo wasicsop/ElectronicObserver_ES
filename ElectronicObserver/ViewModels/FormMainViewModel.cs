@@ -28,6 +28,7 @@ using ElectronicObserver.Properties;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Resource.Record;
 using ElectronicObserver.Services;
+using ElectronicObserver.TestData.Models;
 using ElectronicObserver.Utility;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window;
@@ -178,7 +179,7 @@ public partial class FormMainViewModel : ObservableObject
 	public BattleViewModel Battle { get; }
 
 	public FormBrowserHostViewModel FormBrowserHost { get; }
-	public LogViewViewModel FormLog { get;  }
+	public LogViewViewModel FormLog { get; }
 	public FormJsonViewModel FormJson { get; }
 	public FormWindowCaptureViewModel WindowCapture { get; }
 
@@ -933,7 +934,7 @@ public partial class FormMainViewModel : ObservableObject
 		if (EventLockPlannerWindow is not null) return;
 
 		EventLockPlannerViewModel viewModel = new(KCDatabase.Instance.Ships.Values, KCDatabase.Instance.Translation.Lock);
-		EventLockPlannerWindow = new (viewModel);
+		EventLockPlannerWindow = new(viewModel);
 
 		EventLockPlannerWindow.Closed += (sender, args) =>
 		{
@@ -1454,7 +1455,10 @@ public partial class FormMainViewModel : ObservableObject
 				}
 			}
 
-			RecordManager.Instance.ShipParameter.UpdateDefaultSlot(ship.ShipID, wikiShip.DefaultSlot.ToArray());
+			if (wikiShip.DefaultSlot is not null)
+			{
+				RecordManager.Instance.ShipParameter.UpdateDefaultSlot(ship.ShipID, wikiShip.DefaultSlot.ToArray());
+			}
 		}
 
 		void GetMissingAbyssalDataFromWiki(IShipDataMaster ship, Dictionary<ShipId, IShipDataMaster> wikiAbyssalShips)
@@ -1503,7 +1507,10 @@ public partial class FormMainViewModel : ObservableObject
 				}
 			}
 
-			RecordManager.Instance.ShipParameter.UpdateDefaultSlot(ship.ShipID, wikiShip.DefaultSlot.ToArray());
+			if (wikiShip.DefaultSlot is not null)
+			{
+				RecordManager.Instance.ShipParameter.UpdateDefaultSlot(ship.ShipID, wikiShip.DefaultSlot.ToArray());
+			}
 			RecordManager.Instance.ShipParameter.UpdateAircraft(ship.ShipID, wikiShip.Aircraft.ToArray());
 
 			ShipParameterRecord.ShipParameterElement e = RecordManager.Instance.ShipParameter[ship.ShipID] ?? new();
@@ -1548,7 +1555,6 @@ public partial class FormMainViewModel : ObservableObject
 			{
 				GetMissingDataFromWiki(ship, wikiShips);
 			}
-
 			await db.MasterShips.AddAsync(new(ship));
 		}
 
@@ -1559,8 +1565,8 @@ public partial class FormMainViewModel : ObservableObject
 
 		await db.SaveChangesAsync();
 
-		var masterShips = db.MasterShips.ToList();
-		var masterEquipment = db.MasterEquipment.ToList();
+		List<ShipDataMasterRecord> masterShips = db.MasterShips.ToList();
+		List<EquipmentDataMasterRecord> masterEquipment = db.MasterEquipment.ToList();
 
 		JsonSerializerOptions options = new()
 		{
