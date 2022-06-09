@@ -2481,10 +2481,10 @@ public enum DayAttackKind
 	SpecialSubmarineTender24 = 302,
 
 
-	/// <summary> 第一戦隊、突撃！主砲、全力斉射ッ！ </summary>
+	/// <summary> 大和、突撃します！二番艦も続いてください！ </summary>
 	SpecialYamato3Ships = 400,
 
-	/// <summary> 大和、突撃します！二番艦も続いてください！ </summary>
+	/// <summary> 第一戦隊、突撃！主砲、全力斉射ッ！ </summary>
 	SpecialYamato2Ships = 401,
 
 
@@ -2603,10 +2603,10 @@ public enum NightAttackKind
 	SpecialSubmarineTender24 = 302,
 
 
-	/// <summary> 第一戦隊、突撃！主砲、全力斉射ッ！ </summary>
+	/// <summary> 大和、突撃します！二番艦も続いてください！ </summary>
 	SpecialYamato3Ships = 400,
 
-	/// <summary> 大和、突撃します！二番艦も続いてください！ </summary>
+	/// <summary> 第一戦隊、突撃！主砲、全力斉射ッ！ </summary>
 	SpecialYamato2Ships = 401,
 
 
