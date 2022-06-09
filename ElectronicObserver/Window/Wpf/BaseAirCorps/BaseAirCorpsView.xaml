@@ -37,111 +37,113 @@
 			</ContextMenu>
 		</Border.ContextMenu>
 
-		<Grid IsSharedSizeScope="True">
-			<ItemsControl ItemsSource="{Binding ControlMember}">
-				<ItemsControl.ItemTemplate>
-					<DataTemplate DataType="local:BaseAirCorpsItemViewModel">
-						<Border>
-							<Border.ContextMenu>
-								<ContextMenu>
-									<MenuItem
-										d:Header="Copy"
-										Command="{Binding CopyOrganizationCommand}"
-										CommandParameter="{Binding MapAreaId}"
-										Header="{Binding FormBaseAirCorps.ContextMenuBaseAirCorps_CopyOrganization}"
-										/>
-									<Separator />
-									<MenuItem
-										d:Header="Check for aircraft being transferred (_R)"
-										Command="{Binding DisplayRelocatedEquipmentsCommand}"
-										Header="{Binding FormBaseAirCorps.ContextMenuBaseAirCorps_DisplayRelocatedEquipments}"
-										/>
-								</ContextMenu>
-							</Border.ContextMenu>
+		<ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+			<Grid IsSharedSizeScope="True">
+				<ItemsControl ItemsSource="{Binding ControlMember}">
+					<ItemsControl.ItemTemplate>
+						<DataTemplate DataType="local:BaseAirCorpsItemViewModel">
+							<Border>
+								<Border.ContextMenu>
+									<ContextMenu>
+										<MenuItem
+											d:Header="Copy"
+											Command="{Binding CopyOrganizationCommand}"
+											CommandParameter="{Binding MapAreaId}"
+											Header="{Binding FormBaseAirCorps.ContextMenuBaseAirCorps_CopyOrganization}"
+											/>
+										<Separator />
+										<MenuItem
+											d:Header="Check for aircraft being transferred (_R)"
+											Command="{Binding DisplayRelocatedEquipmentsCommand}"
+											Header="{Binding FormBaseAirCorps.ContextMenuBaseAirCorps_DisplayRelocatedEquipments}"
+											/>
+									</ContextMenu>
+								</Border.ContextMenu>
 
-							<StackPanel Visibility="{Binding Visibility}">
-								<Grid>
-									<Grid.Resources>
-										<Style TargetType="Border">
-											<Setter Property="Margin" Value="2 0" />
-											<Setter Property="Background" Value="Transparent" />
-										</Style>
-									</Grid.Resources>
+								<StackPanel Visibility="{Binding Visibility}">
+									<Grid>
+										<Grid.Resources>
+											<Style TargetType="Border">
+												<Setter Property="Margin" Value="2 0" />
+												<Setter Property="Background" Value="Transparent" />
+											</Style>
+										</Grid.Resources>
 
-									<Grid.ColumnDefinitions>
-										<ColumnDefinition Width="Auto" SharedSizeGroup="BaseAirCorpsName" />
-										<ColumnDefinition Width="Auto" SharedSizeGroup="BaseAirCorpsActionKind" />
-										<ColumnDefinition Width="Auto" SharedSizeGroup="BaseAirCorpsAirSuperiority" />
-										<ColumnDefinition Width="Auto" SharedSizeGroup="BaseAirCorpsDistance" />
-										<ColumnDefinition Width="Auto" SharedSizeGroup="BaseAirCorpsSquadrons" />
-									</Grid.ColumnDefinitions>
+										<Grid.ColumnDefinitions>
+											<ColumnDefinition Width="Auto" SharedSizeGroup="BaseAirCorpsName" />
+											<ColumnDefinition Width="Auto" SharedSizeGroup="BaseAirCorpsActionKind" />
+											<ColumnDefinition Width="Auto" SharedSizeGroup="BaseAirCorpsAirSuperiority" />
+											<ColumnDefinition Width="Auto" SharedSizeGroup="BaseAirCorpsDistance" />
+											<ColumnDefinition Width="Auto" SharedSizeGroup="BaseAirCorpsSquadrons" />
+										</Grid.ColumnDefinitions>
 
-									<Border
-										Grid.Column="0"
-										DataContext="{Binding Name}"
-										ToolTip="{Binding ToolTip}"
-										>
-										<StackPanel Orientation="Horizontal">
+										<Border
+											Grid.Column="0"
+											DataContext="{Binding Name}"
+											ToolTip="{Binding ToolTip}"
+											>
+											<StackPanel Orientation="Horizontal">
+												<TextBlock Margin="2" Text="{Binding Text}" />
+												<Image Margin="2" Source="{Binding Icon}" />
+											</StackPanel>
+										</Border>
+
+										<Border
+											Grid.Column="1"
+											DataContext="{Binding ActionKind}"
+											ToolTip="{Binding ToolTip}"
+											>
 											<TextBlock Margin="2" Text="{Binding Text}" />
-											<Image Margin="2" Source="{Binding Icon}" />
-										</StackPanel>
-									</Border>
+										</Border>
 
-									<Border
-										Grid.Column="1"
-										DataContext="{Binding ActionKind}"
-										ToolTip="{Binding ToolTip}"
-										>
-										<TextBlock Margin="2" Text="{Binding Text}" />
-									</Border>
+										<Border
+											Grid.Column="2"
+											DataContext="{Binding AirSuperiority}"
+											ToolTip="{Binding ToolTip}"
+											>
+											<StackPanel Orientation="Horizontal">
+												<Image Margin="2" Source="{Binding Icon}" />
+												<TextBlock Margin="2" Text="{Binding Text}" />
+											</StackPanel>
+										</Border>
 
-									<Border
-										Grid.Column="2"
-										DataContext="{Binding AirSuperiority}"
-										ToolTip="{Binding ToolTip}"
-										>
-										<StackPanel Orientation="Horizontal">
-											<Image Margin="2" Source="{Binding Icon}" />
-											<TextBlock Margin="2" Text="{Binding Text}" />
-										</StackPanel>
-									</Border>
+										<Border
+											Grid.Column="3"
+											DataContext="{Binding Distance}"
+											ToolTip="{Binding ToolTip}"
+											>
+											<StackPanel Orientation="Horizontal">
+												<Image Margin="2" Source="{Binding Icon}" />
+												<TextBlock Margin="2" Text="{Binding Text}" />
+											</StackPanel>
+										</Border>
 
-									<Border
-										Grid.Column="3"
-										DataContext="{Binding Distance}"
-										ToolTip="{Binding ToolTip}"
-										>
-										<StackPanel Orientation="Horizontal">
-											<Image Margin="2" Source="{Binding Icon}" />
-											<TextBlock Margin="2" Text="{Binding Text}" />
-										</StackPanel>
-									</Border>
-
-									<Border
-										x:Name="ShipEquipmentControl"
-										Grid.Column="4"
-										DataContext="{Binding Squadrons}"
-										>
-										<ItemsControl ItemsSource="{Binding SlotList}" ToolTip="{Binding ToolTip}">
-											<ItemsControl.ItemsPanel>
-												<ItemsPanelTemplate>
-													<StackPanel Orientation="Horizontal" />
-												</ItemsPanelTemplate>
-											</ItemsControl.ItemsPanel>
-											<ItemsControl.ItemTemplate>
-												<DataTemplate DataType="viewModels:ShipSlotViewModel">
-													<views:ShipSlotView ViewModel="{Binding}" />
-												</DataTemplate>
-											</ItemsControl.ItemTemplate>
-										</ItemsControl>
-									</Border>
-								</Grid>
-								<Separator Margin="0" />
-							</StackPanel>
-						</Border>
-					</DataTemplate>
-				</ItemsControl.ItemTemplate>
-			</ItemsControl>
-		</Grid>
+										<Border
+											x:Name="ShipEquipmentControl"
+											Grid.Column="4"
+											DataContext="{Binding Squadrons}"
+											>
+											<ItemsControl ItemsSource="{Binding SlotList}" ToolTip="{Binding ToolTip}">
+												<ItemsControl.ItemsPanel>
+													<ItemsPanelTemplate>
+														<StackPanel Orientation="Horizontal" />
+													</ItemsPanelTemplate>
+												</ItemsControl.ItemsPanel>
+												<ItemsControl.ItemTemplate>
+													<DataTemplate DataType="viewModels:ShipSlotViewModel">
+														<views:ShipSlotView ViewModel="{Binding}" />
+													</DataTemplate>
+												</ItemsControl.ItemTemplate>
+											</ItemsControl>
+										</Border>
+									</Grid>
+									<Separator Margin="0" />
+								</StackPanel>
+							</Border>
+						</DataTemplate>
+					</ItemsControl.ItemTemplate>
+				</ItemsControl>
+			</Grid>
+		</ScrollViewer>
 	</Border>
 </UserControl>
