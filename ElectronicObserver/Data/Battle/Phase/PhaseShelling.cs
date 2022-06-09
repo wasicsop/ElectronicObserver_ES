@@ -132,6 +132,7 @@ public class PhaseShelling : PhaseBase
 
 				case 101:
 				case 102:
+				case 401:
 					// nagato/mutsu touch
 					for (int i = 0; i < atk.Defenders.Count; i++)
 					{
@@ -144,6 +145,7 @@ public class PhaseShelling : PhaseBase
 
 				case 103:
 				case 104:
+				case 400:
 					// colorado touch / kongo-class night attack
 					for (int i = 0; i < atk.Defenders.Count; i++)
 					{
