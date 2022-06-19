@@ -44,6 +44,11 @@
 			<Setter Property="Foreground" Value="{Binding DataContext.FontBrush, Source={StaticResource Proxy}}" />
 		</Style>
 
+		<Style BasedOn="{StaticResource DefaultCheckBoxStyle}" TargetType="CheckBox">
+			<Setter Property="Margin" Value="4 0" />
+			<Setter Property="Padding" Value="2 0" />
+		</Style>
+
 		<DataTemplate x:Key="LockGroupTemplate" DataType="local:LockGroupViewModel">
 			<Grid Margin="1">
 				<Grid.RowDefinitions>
@@ -369,8 +374,6 @@
 							<DataTemplate>
 								<CheckBox
 									MinWidth="0"
-									Margin="4 0"
-									Padding="2 0"
 									Content="{Binding Display}"
 									IsChecked="{Binding IsChecked}"
 									/>
