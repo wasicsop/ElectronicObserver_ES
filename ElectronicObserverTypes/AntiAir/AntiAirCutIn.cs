@@ -17,6 +17,7 @@ public record AntiAirCutIn
 			FixedBonus = 0,
 			VariableBonus = 1,
 			Rate = 1,
+			Conditions = new(),
 		},
 		new()
 		{
@@ -1049,7 +1050,10 @@ public record AntiAirCutIn
 	public int FixedBonus { get; init; }
 	public double VariableBonus { get; init; }
 	private double Rate { get; init; }
-	public List<AntiAirCutInCondition> Conditions { get; init; } = new();
+	/// <summary>
+	/// Null when unknown
+	/// </summary>
+	public List<AntiAirCutInCondition>? Conditions { get; init; }
 
 	public string ValueDisplay => $"({Rate:P0} - {FixedBonus} - x{VariableBonus})";
 
