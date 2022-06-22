@@ -1062,6 +1062,13 @@ public record AntiAirCutIn
 
 	}
 
+	public static AntiAirCutIn FromId(int id) => AllCutIns
+		.FirstOrDefault(a => a.Id == id)
+		?? new AntiAirCutIn
+		{
+			Id = id,
+		};
+
 	private bool CanBeActivatedBy(IShipData ship)
 	{
 		if (!Conditions.Any()) return true;
