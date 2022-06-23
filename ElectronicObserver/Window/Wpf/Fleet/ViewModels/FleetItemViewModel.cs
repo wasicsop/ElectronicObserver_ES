@@ -488,7 +488,7 @@ public class FleetItemViewModel : ObservableObject
 			int aacutin = Calculator.GetAACutinKind(ship.ShipID, slotmaster);
 			if (aacutin != 0)
 			{
-				sb.AppendFormat(GeneralRes.AntiAir + ": {0}\r\n", AntiAirCutIn.FromId(aacutin).EquipmentConditionsSingleLineDisplay());
+				sb.AppendFormat(GeneralRes.AntiAir + ": {0} ({1})\r\n", aacutin, AntiAirCutIn.FromId(aacutin).EquipmentConditionsSingleLineDisplay());
 			}
 			double adjustedaa = Calculator.GetAdjustedAAValue(ship);
 			sb.AppendFormat(GeneralRes.ShipAADefense + "\r\n",
