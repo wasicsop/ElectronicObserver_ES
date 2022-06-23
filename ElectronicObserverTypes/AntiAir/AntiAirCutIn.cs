@@ -1116,6 +1116,7 @@ public record AntiAirCutIn
 	public static List<AntiAirCutIn> PossibleCutIns(IEnumerable<IShipData?> ships) => ships
 		.Where(s => s is not null)
 		.SelectMany(PossibleCutIns!)
+		.DistinctBy(a => a.Id)
 		.OrderBy(a => ApiPriority.IndexOf(a.Id))
 		.ToList();
 }
