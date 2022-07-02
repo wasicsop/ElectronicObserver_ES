@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFramework>net6.0-windows7</TargetFramework>
+		<RuntimeFrameworkVersion>6.0.5</RuntimeFrameworkVersion>
 		<OutputType>WinExe</OutputType>
 		<BootstrapperEnabled>true</BootstrapperEnabled>
 		<UseWindowsForms>true</UseWindowsForms>
@@ -345,9 +346,9 @@
 			<DependentUpon>AirControlSimulator.resx</DependentUpon>
 		</Compile>
 		<Compile Update="Window\Tools\AutoRefresh\AutoRefresh.Designer.cs">
-		  <DesignTime>True</DesignTime>
-		  <AutoGen>True</AutoGen>
-		  <DependentUpon>AutoRefresh.resx</DependentUpon>
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>AutoRefresh.resx</DependentUpon>
 		</Compile>
 		<Compile Update="Window\Tools\EventLockPlanner\EventLockPlanner.Designer.cs">
 			<DesignTime>True</DesignTime>
