@@ -8,7 +8,7 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:ui="http://schemas.modernwpf.com/2019"
 	xmlns:window="clr-namespace:ElectronicObserver.Window"
-	d:DataContext="{d:DesignInstance Type=local:LogViewViewModel}"
+	d:DataContext="{d:DesignInstance Type=local:LogViewModel}"
 	d:DesignHeight="450"
 	d:DesignWidth="800"
 	TextElement.FontFamily="{Binding FontFamily, RelativeSource={RelativeSource AncestorType=Window}}"
@@ -16,19 +16,92 @@
 	TextElement.Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Window}}"
 	mc:Ignorable="d"
 	>
+	<UserControl.Resources>
+		<Style
+			x:Key="DefaultListBoxItemStyleEO"
+			BasedOn="{StaticResource DefaultListBoxItemStyle}"
+			TargetType="ListBoxItem"
+			>
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="ListBoxItem">
+						<VirtualizingStackPanel>
+							<ContentPresenter
+								x:Name="ContentPresenter"
+								HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+								VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+								SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+								TextElement.FontFamily="{Binding FontFamily, RelativeSource={RelativeSource AncestorType=Window}}"
+								TextElement.FontSize="{Binding FontSize, RelativeSource={RelativeSource AncestorType=Window}}"
+								TextElement.Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Window}}"
+								/>
+						</VirtualizingStackPanel>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+
+		<Style BasedOn="{StaticResource DefaultListBoxItemStyleEO}" TargetType="ListBoxItem" />
+
+		<Style
+			x:Key="DefaultListBoxStyleEO"
+			BasedOn="{StaticResource DefaultListBoxStyle}"
+			TargetType="ListBox"
+			>
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="ListBox">
+						<Border
+							x:Name="LayoutRoot"
+							Background="{TemplateBinding Background}"
+							BorderBrush="{TemplateBinding BorderBrush}"
+							BorderThickness="{TemplateBinding BorderThickness}"
+							SnapsToDevicePixels="true"
+							>
+							<ScrollViewer
+								x:Name="ScrollViewer"
+								Padding="{TemplateBinding Padding}"
+								ui:ScrollViewerHelper.AutoHideScrollBars="{TemplateBinding ui:ScrollViewerHelper.AutoHideScrollBars}"
+								Focusable="False"
+								HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"
+								VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}"
+								>
+								<ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+							</ScrollViewer>
+						</Border>
+						<ControlTemplate.Triggers>
+							<MultiTrigger>
+								<MultiTrigger.Conditions>
+									<Condition Property="IsGrouping" Value="true" />
+									<Condition Property="VirtualizingPanel.IsVirtualizingWhenGrouping" Value="false" />
+								</MultiTrigger.Conditions>
+								<Setter Property="ScrollViewer.CanContentScroll" Value="false" />
+							</MultiTrigger>
+						</ControlTemplate.Triggers>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+
+		<Style BasedOn="{StaticResource DefaultListBoxStyleEO}" TargetType="ListBox" />
+	</UserControl.Resources>
+
 	<UserControl.ContextMenu>
 		<ContextMenu>
 			<MenuItem Command="{Binding ContextMenuLog_Clear_ClickCommand}" Header="{Binding FormLog.Clear}" />
 		</ContextMenu>
 	</UserControl.ContextMenu>
-	<ScrollViewer
-		Name="ScrollViewer"
+
+	<ListBox
+		Width="Auto"
 		Padding="0 0 0 10"
-		CanContentScroll="True"
-		HorizontalScrollBarVisibility="Auto"
-		ScrollChanged="ScrollViewer_ScrollChanged"
-		VerticalScrollBarVisibility="Auto"
-		>
-		<ItemsControl HorizontalAlignment="Left" ItemsSource="{Binding LogList}" />
-	</ScrollViewer>
+		Background="Transparent"
+		ItemsSource="{Binding LogList}"
+		ScrollViewer.HorizontalScrollBarVisibility="Auto"
+		ScrollViewer.ScrollChanged="ListBox_ScrollChanged"
+		ScrollViewer.VerticalScrollBarVisibility="Auto"
+		TextOptions.TextFormattingMode="Display"
+		VirtualizingStackPanel.IsVirtualizing="True"
+		VirtualizingStackPanel.VirtualizationMode="Recycling"
+		/>
 </UserControl>
