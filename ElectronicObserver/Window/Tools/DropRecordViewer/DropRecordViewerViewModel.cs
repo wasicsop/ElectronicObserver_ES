@@ -183,13 +183,13 @@ public partial class DropRecordViewerViewModel : WindowViewModelBase
 			.Prepend(MapAny)
 			.ToList();
 
-		var includedItemNames = Record.Record
-			.Select(r => r.ItemName)
-			.Distinct()
-			.Except(new[] { NameNotExist });
+		IEnumerable<UseItemId> includedItemNames = Record.Record
+			.Where(record => record.ItemName != NameNotExist)
+			.Select(record => (UseItemId)record.ItemID)
+			.Distinct();
 
 		IEnumerable<UseItemMaster> includedItemObjects = includedItemNames
-			.Select(name => KCDatabase.Instance.MasterUseItems.Values.FirstOrDefault(item => item.Name == name))
+			.Select(id => KCDatabase.Instance.MasterUseItems.Values.FirstOrDefault(item => item.ItemID == id))
 			.Where(s => s != null)!;
 
 		Items = includedItemObjects
@@ -484,7 +484,7 @@ public partial class DropRecordViewerViewModel : WindowViewModelBase
 							continue;
 						break;
 					case UseItemMaster item:
-						if (item.ItemID != r.ItemID)
+						if (item.ID != r.ItemID)
 							continue;
 						break;
 				}
