@@ -15,6 +15,7 @@ using ElectronicObserver.Window.Dialog.ShipPicker;
 using ElectronicObserver.Window.Tools.AirControlSimulator;
 using ElectronicObserver.Window.Tools.AirDefense;
 using ElectronicObserver.Window.Tools.AutoRefresh;
+using ElectronicObserver.Window.Tools.DialogAlbumMasterEquipment;
 using ElectronicObserver.Window.Tools.DialogAlbumMasterShip;
 using ElectronicObserver.Window.Tools.EventLockPlanner;
 using ElectronicObserverTypes.Data;
@@ -219,6 +220,11 @@ public partial class App : Application
 
 		tracker
 			.Configure<DialogAlbumMasterShipWpf>()
+			.Property(w => w.ViewModel.ColumnProperties)
+			.Property(w => w.ViewModel.SortDescriptions);
+
+		tracker
+			.Configure<DialogAlbumMasterEquipmentWpf>()
 			.Property(w => w.ViewModel.ColumnProperties)
 			.Property(w => w.ViewModel.SortDescriptions);
 
