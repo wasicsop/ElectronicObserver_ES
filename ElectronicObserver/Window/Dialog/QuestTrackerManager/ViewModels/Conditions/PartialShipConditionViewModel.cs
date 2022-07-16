@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -7,6 +8,7 @@ using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Dialog.QuestTrackerManager.ViewModels.Conditions;
 
+[Obsolete("Use PartialShipConditionViewModelV2")]
 public partial class PartialShipConditionViewModel : ObservableObject, IConditionViewModel
 {
 	public PartialShipConditionModel Model { get; }
