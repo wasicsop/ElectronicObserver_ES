@@ -82,15 +82,7 @@
 				Content="ｘ"
 				/>
 
-			<ComboBox ItemsSource="{Binding ShipClasses}" SelectedItem="{Binding ShipClass}">
-				<ComboBox.ItemTemplate>
-					<DataTemplate>
-						<TextBlock Text="{Binding Converter={StaticResource ShipClassDisplayConverter}}" />
-					</DataTemplate>
-				</ComboBox.ItemTemplate>
-			</ComboBox>
-
-			<Button Command="{Binding OpenShipPickerCommand}" Content="{Binding Ship.NameEN, FallbackValue=*}" />
+			<Button Command="{Binding OpenShipPickerCommand}" Content="{Binding Ship.NameEN}" />
 
 			<ComboBox
 				ItemTemplate="{StaticResource EnumDisplayerTemplate}"
