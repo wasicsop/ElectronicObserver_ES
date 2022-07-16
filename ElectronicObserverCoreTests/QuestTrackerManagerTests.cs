@@ -37,7 +37,7 @@ public class QuestTrackerManagerTests
 			Types = new ObservableCollection<ShipTypes>(new()
 			{
 				ShipTypes.LightCruiser,
-			})
+			}),
 		};
 
 		ShipTypeConditionModel ddCondition = new()
@@ -47,7 +47,7 @@ public class QuestTrackerManagerTests
 			Types = new ObservableCollection<ShipTypes>(new()
 			{
 				ShipTypes.Destroyer,
-			})
+			}),
 		};
 
 		GroupConditionViewModel group = new(new()
@@ -58,7 +58,7 @@ public class QuestTrackerManagerTests
 				yamatoCondition,
 				clCondition,
 				ddCondition,
-			})
+			}),
 		});
 
 		FleetDataMock fleet = new()
@@ -71,7 +71,7 @@ public class QuestTrackerManagerTests
 				new ShipDataMock(Db.MasterShips[ShipId.MurakumoKaiNi]),
 				new ShipDataMock(Db.MasterShips[ShipId.AkebonoKaiNi]),
 				new ShipDataMock(Db.MasterShips[ShipId.UshioKaiNi]),
-			})
+			}),
 		};
 
 		Assert.True(group.ConditionMet(fleet));
@@ -80,14 +80,14 @@ public class QuestTrackerManagerTests
 	[Fact]
 	public void ShipClassCondition()
 	{
-		PartialShipConditionModel partialShipCondition = new()
+		PartialShipConditionModelV2 partialShipCondition = new()
 		{
 			Count = 2,
 			Conditions = new(new()
 			{
 				new()
 				{
-					ShipClass = 66,
+					ShipClass = ShipClass.Kamikaze,
 				},
 			}),
 		};
@@ -110,7 +110,7 @@ public class QuestTrackerManagerTests
 				new ShipDataMock(Db.MasterShips[ShipId.HarukazeKai]),
 				new ShipDataMock(Db.MasterShips[ShipId.MatsukazeKai]),
 				new ShipDataMock(Db.MasterShips[ShipId.HatakazeKai]),
-			})
+			}),
 		};
 
 		Assert.True(group.ConditionMet(fleet));
@@ -123,18 +123,18 @@ public class QuestTrackerManagerTests
 	[Fact]
 	public void Quest981Conditions()
 	{
-		PartialShipConditionModel partialShipCondition = new()
+		PartialShipConditionModelV2 partialShipCondition = new()
 		{
 			Count = 2,
 			Conditions = new(new()
 			{
 				new()
 				{
-					ShipClass = (int)ShipClass.Fletcher
+					ShipClass = ShipClass.Fletcher,
 				},
 				new()
 				{
-					ShipClass = (int)ShipClass.JohnCButler
+					ShipClass = ShipClass.JohnCButler,
 				},
 			}),
 		};
@@ -155,7 +155,7 @@ public class QuestTrackerManagerTests
 				new ShipDataMock(Db.MasterShips[ShipId.ShimushuKai]),
 				new ShipDataMock(Db.MasterShips[ShipId.FletcherKaiMod2]),
 				new ShipDataMock(Db.MasterShips[ShipId.HachijouKai]),
-			})
+			}),
 		};
 
 		Assert.False(group.ConditionMet(fleet));
@@ -167,7 +167,7 @@ public class QuestTrackerManagerTests
 				new ShipDataMock(Db.MasterShips[ShipId.HachijouKai]),
 				new ShipDataMock(Db.MasterShips[ShipId.FletcherMkII]),
 				new ShipDataMock(Db.MasterShips[ShipId.SamuelBRobertsKai]),
-			})
+			}),
 		};
 
 		Assert.True(group.ConditionMet(fleet));
@@ -179,7 +179,7 @@ public class QuestTrackerManagerTests
 				new ShipDataMock(Db.MasterShips[ShipId.HachijouKai]),
 				new ShipDataMock(Db.MasterShips[ShipId.FletcherMkII]),
 				new ShipDataMock(Db.MasterShips[ShipId.Johnston]),
-			})
+			}),
 		};
 
 		Assert.True(group.ConditionMet(fleet));
