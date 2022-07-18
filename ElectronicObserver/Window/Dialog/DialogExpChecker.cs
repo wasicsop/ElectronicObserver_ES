@@ -193,9 +193,25 @@ public partial class DialogExpChecker : Form
 						int aswsum = convert.Sum(c => c.ASW);
 
 						if (!pair.ContainsKey(aswsum))
-							pair.Add(aswsum, new List<ASWEquipmentData[]>() { convert });
+						{
+							pair.Add(aswsum, new List<ASWEquipmentData[]> { convert });
+						}
 						else
-							pair[aswsum].Add(convert);
+						{
+							int equipmentCount = convert.Count(e => e.ID is not -1);
+
+							// count how many entries for the current aswsum use the same number of equipment
+							int? entryCount = pair[aswsum]
+								.GroupBy(a => a.Count(e => e.ID is not -1))
+								.FirstOrDefault(g => g.Key == equipmentCount)
+								?.Count();
+
+							// don't display more than 6 different combinations for a given equipment count
+							if (entryCount is null or < 6)
+							{
+								pair[aswsum].Add(convert);
+							}
+						}
 					}
 
 					for (int p = stack.Length - 1; p >= 0; p--)
