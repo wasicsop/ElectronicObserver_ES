@@ -171,8 +171,25 @@ public partial class DialogExpChecker : Form
 			var had = KCDatabase.Instance.Equipments.Values
 				.Where(eq => eq.MasterEquipment.CategoryType == EquipmentTypes.Sonar || eq.MasterEquipment.CategoryType == EquipmentTypes.DepthCharge)
 				.GroupBy(eq => eq.EquipmentID)
-				.Select(g => new ASWEquipmentData { ID = g.Key, ASW = g.First().MasterEquipment.ASW, Name = g.First().MasterEquipment.NameEN, IsSonar = g.First().MasterEquipment.IsSonar, Count = g.Count() })
-				.Concat(new[] { new ASWEquipmentData { ID = -1, ASW = 0, Name = "", Count = 99, IsSonar = false } })
+				.Select(g => new ASWEquipmentData
+				{
+					ID = g.Key,
+					ASW = g.First().MasterEquipment.ASW,
+					Name = g.First().MasterEquipment.NameEN,
+					IsSonar = g.First().MasterEquipment.IsSonar,
+					Count = g.Count(),
+				})
+				.Concat(new[]
+				{
+					new ASWEquipmentData
+					{
+						ID = -1,
+						ASW = 0,
+						Name = "",
+						Count = 99,
+						IsSonar = false,
+					},
+				})
 				.OrderByDescending(a => a.ASW)
 				.ToArray();
 
