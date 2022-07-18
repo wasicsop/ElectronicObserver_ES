@@ -164,7 +164,7 @@ public partial class DialogExpChecker : Form
 		// 空母系は面倒なので省略
 		int openingASWborder = selectedShip.MasterShip.ShipType == ShipTypes.Escort ? 60 : 100;
 
-		var ASWEquipmentPairs = new Dictionary<int, string>();
+		var ASWEquipmentPairs = new Dictionary<int, IEnumerable<string>>();
 		if (ShowAllASWEquipments.Checked)
 		{
 
@@ -250,9 +250,8 @@ public partial class DialogExpChecker : Form
 			{
 				// 要するに下のようなフォーマットにする
 				ASWEquipmentPairs.Add(openingASWborder - x.Key,
-					string.Join(", ",
-						x.Value.OrderBy(a => a.Count(b => b.ID > 0))
-							.Select(a => $"[{string.Join(", ", a.Where(b => b.ID > 0).GroupBy(b => b.ID).Select(b => b.Count() == 1 ? b.First().Name : $"{b.First().Name}x{b.Count()}"))}]")));
+					x.Value.OrderBy(a => a.Count(b => b.ID > 0))
+							.Select(a => $"[{string.Join(", ", a.Where(b => b.ID > 0).GroupBy(b => b.ID).Select(b => b.Count() == 1 ? b.First().Name : $"{b.First().Name}x{b.Count()}"))}]"));
 			}
 		}
 		else
@@ -269,38 +268,39 @@ public partial class DialogExpChecker : Form
 
 			if (selectedShip.SlotSize >= 4)
 			{
-				ASWEquipmentPairs.Add(openingASWborder - 67, $"[{hfdf}, {aswTorpedo}, {rur}, {aswRocket}]");
-				ASWEquipmentPairs.Add(openingASWborder - 51, $"[{type4}x3, {aswRocket}]");
-				ASWEquipmentPairs.Add(openingASWborder - 48, $"[{type4}x4]");
-				ASWEquipmentPairs.Add(openingASWborder - 44, $"[{type4}x3, {type3dc}]");
+				ASWEquipmentPairs.Add(openingASWborder - 67, new List<string> { $"[{hfdf}, {aswTorpedo}, {rur}, {aswRocket}]" });
+				ASWEquipmentPairs.Add(openingASWborder - 51, new List<string> { $"[{type4}x3, {aswRocket}]" });
+				ASWEquipmentPairs.Add(openingASWborder - 48, new List<string> { $"[{type4}x4]" });
+				ASWEquipmentPairs.Add(openingASWborder - 44, new List<string> { $"[{type4}x3, {type3dc}]" });
 			}
 			if (selectedShip.SlotSize >= 3)
 			{
-				ASWEquipmentPairs.Add(openingASWborder - 52, $"[{hfdf}, {aswTorpedo}, {rur}]");
-				ASWEquipmentPairs.Add(openingASWborder - 47, $"[{hfdf}, {rur}, {aswRocket}]");
+				ASWEquipmentPairs.Add(openingASWborder - 52, new List<string> { $"[{hfdf}, {aswTorpedo}, {rur}]" });
+				ASWEquipmentPairs.Add(openingASWborder - 47, new List<string> { $"[{hfdf}, {rur}, {aswRocket}]" });
 
-				ASWEquipmentPairs.Add(openingASWborder - 39, $"[{type4}x2, {aswRocket}]");
-				ASWEquipmentPairs.Add(openingASWborder - 36, $"[{type4}x3]");
-				ASWEquipmentPairs.Add(openingASWborder - 32, $"[{type4}x2, {type3dc}]");
-				ASWEquipmentPairs.Add(openingASWborder - 28, $"[{type3}x2, {type3dc}]");
-				ASWEquipmentPairs.Add(openingASWborder - 27, $"[{type4}, {type3dc}, {type2dc}]");
+				ASWEquipmentPairs.Add(openingASWborder - 39, new List<string> { $"[{type4}x2, {aswRocket}]" });
+				ASWEquipmentPairs.Add(openingASWborder - 36, new List<string> { $"[{type4}x3]" });
+				ASWEquipmentPairs.Add(openingASWborder - 32, new List<string> { $"[{type4}x2, {type3dc}]" });
+				ASWEquipmentPairs.Add(openingASWborder - 28, new List<string> { $"[{type3}x2, {type3dc}]" });
+				ASWEquipmentPairs.Add(openingASWborder - 27, new List<string> { $"[{type4}, {type3dc}, {type2dc}]" });
 			}
+
 			if (selectedShip.SlotSize >= 2)
 			{
-				ASWEquipmentPairs.Add(openingASWborder - 35, $"[{hfdf}, {aswTorpedo}]");
+				ASWEquipmentPairs.Add(openingASWborder - 35, new List<string> { $"[{hfdf}, {aswTorpedo}]" });
 				if (ASWEquipmentPairs.ContainsKey(openingASWborder - 32))
-					ASWEquipmentPairs[openingASWborder - 32] += $", [{hfdf}, {rur}]";
+					ASWEquipmentPairs[openingASWborder - 32] = ASWEquipmentPairs[openingASWborder - 32].Append($"[{hfdf}, {rur}]");
 				else
-					ASWEquipmentPairs.Add(openingASWborder - 32, $"[{hfdf}, {rur}]");
+					ASWEquipmentPairs.Add(openingASWborder - 32, new List<string> { $"[{hfdf}, {rur}]" });
 				if (ASWEquipmentPairs.ContainsKey(openingASWborder - 27))
-					ASWEquipmentPairs[openingASWborder - 27] += $", [{type4}, {aswRocket}]";
+					ASWEquipmentPairs[openingASWborder - 27] = ASWEquipmentPairs[openingASWborder - 27].Append($"[{type4}, {aswRocket}]");
 				else
-					ASWEquipmentPairs.Add(openingASWborder - 27, $"[{type4}, {aswRocket}]");
-				ASWEquipmentPairs.Add(openingASWborder - 20, $"[{type4}, {type3dc}]");
-				ASWEquipmentPairs.Add(openingASWborder - 18, $"[{type3}, {type3dc}]");
+					ASWEquipmentPairs.Add(openingASWborder - 27, new List<string> { $"[{type4}, {aswRocket}]" });
+				ASWEquipmentPairs.Add(openingASWborder - 20, new List<string> { $"[{type4}, {type3dc}]" });
+				ASWEquipmentPairs.Add(openingASWborder - 18, new List<string> { $"[{type3}, {type3dc}]" });
 			}
-			ASWEquipmentPairs.Add(openingASWborder - 15, $"[{hfdf}]");
-			ASWEquipmentPairs.Add(openingASWborder - 12, $"[{type4}]");
+			ASWEquipmentPairs.Add(openingASWborder - 15, new List<string> { $"[{hfdf}]" });
+			ASWEquipmentPairs.Add(openingASWborder - 12, new List<string> { $"[{type4}]" });
 		}
 
 
@@ -330,6 +330,11 @@ public partial class DialogExpChecker : Form
 
 			int needexp = ExpTable.ShipExp[lv].Total - selectedShip.ExpTotal;
 
+			var equipmentPairs = ASWEquipmentPairs
+				.Where(k => asw >= k.Key)
+				.OrderByDescending(p => p.Key)
+				.FirstOrDefault().Value;
+
 			var row = new DataGridViewRow();
 			row.CreateCells(LevelView);
 			row.SetValues(
@@ -337,9 +342,18 @@ public partial class DialogExpChecker : Form
 				Math.Max(needexp, 0),
 				Math.Max((int)Math.Ceiling((double)needexp / unitexp), 0),
 				!aswdata.IsAvailable ? -1 : asw,
-				!aswdata.IsAvailable ? "-" : (ASWEquipmentPairs.Where(k => asw >= k.Key).OrderByDescending(p => p.Key).FirstOrDefault().Value ?? "-")
+				!aswdata.IsAvailable ? "-" : equipmentPairs switch
+				{
+					null => "-",
+					_ => string.Join(", ", equipmentPairs)
+				}
 			);
-
+			
+			row.Cells[ColumnEquipment.Index].ToolTipText = equipmentPairs switch
+			{
+				null => "-",
+				_ => string.Join("\n", equipmentPairs)
+			};
 
 			if (remodelLevelTable.Contains(lv))
 			{
