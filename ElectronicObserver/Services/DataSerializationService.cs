@@ -240,6 +240,7 @@ public class DataSerializationService
 	{
 		{ } ab => new()
 		{
+			Name = airBase.Name,
 			Equipment = new()
 			{
 				Equipment1 = MakeDeckBuilderEquipment(ab.Squadrons.Values.Skip(0).FirstOrDefault()?.EquipmentInstance, maxAircraftLevel),
