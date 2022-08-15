@@ -202,7 +202,17 @@ public class DataSerializationService
 				Equipment5 = MakeDeckBuilderEquipment(s.AllSlotInstance.Skip(4).FirstOrDefault(), maxAircraftLevel),
 				EquipmentExpansion = MakeDeckBuilderEquipment(s.ExpansionSlotInstance, maxAircraftLevel),
 			},
+			Hp = s.HPMax,
+			Firepower = s.FirepowerTotal,
+			Torpedo = s.TorpedoTotal,
+			AntiAir = s.AATotal,
+			Armor = s.ArmorTotal,
+			AntiSubmarine = s.ASWTotal,
+			Evasion = s.EvasionTotal,
+			Los = s.LOSTotal,
 			Luck = s.LuckTotal,
+			Speed = s.Speed,
+			Range = s.Range,
 		},
 
 		_ => null
