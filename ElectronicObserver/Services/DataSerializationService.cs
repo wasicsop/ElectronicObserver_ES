@@ -231,7 +231,7 @@ public class DataSerializationService
 			_ => null
 		};
 
-	private static DeckBuilderAirBase MakeDeckBuilderAirBase
+	private static DeckBuilderAirBase? MakeDeckBuilderAirBase
 	(
 		IBaseAirCorpsData? airBase,
 		bool maxAircraftLevel
@@ -249,7 +249,7 @@ public class DataSerializationService
 			Mode = airBase.ActionKind,
 		},
 
-		_ => new()
+		_ => null,
 	};
 
 	private static IEnumerable<FleetAnalysisShip> MakeFleetAnalysisShips(IEnumerable<IShipData> ships)
