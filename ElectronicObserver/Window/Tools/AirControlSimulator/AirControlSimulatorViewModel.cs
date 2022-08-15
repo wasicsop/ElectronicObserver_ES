@@ -11,16 +11,19 @@ public partial class AirControlSimulatorViewModel : WindowViewModelBase
 {
 	public AirControlSimulatorTranslationViewModel AirControlSimulator { get; }
 
+	public bool FleetSelectionVisible { get; set; } = true;
 	public bool Fleet1 { get; set; } = true;
 	public bool Fleet2 { get; set; }
 	public bool Fleet3 { get; set; }
 	public bool Fleet4 { get; set; }
 	public bool MaxAircraftLevelFleet { get; set; } = true;
 
+	public bool AirBaseSelectionVisible { get; set; } = true;
 	public ObservableCollection<AirBaseArea> AirBaseAreas { get; } = new();
 	public AirBaseArea? AirBaseArea { get; set; }
 	public bool MaxAircraftLevelAirBase { get; set; } = true;
 
+	public bool DataSelectionVisible { get; set; } = true;
 	public bool ShipData { get; set; } = true;
 	public bool EquipmentData { get; set; } = true;
 	public bool LockedEquipment { get; set; } = true;
@@ -28,9 +31,6 @@ public partial class AirControlSimulatorViewModel : WindowViewModelBase
 
 	public bool ElectronicObserverBrowser { get; set; } = true;
 	public bool SystemBrowser { get; set; }
-
-	public bool FleetOnly { get; set; }
-	public bool ShowDataGroup => !FleetOnly;
 
 	public bool? DialogResult { get; set; }
 
