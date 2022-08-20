@@ -156,4 +156,7 @@
   <data name="MaxProficiency" xml:space="preserve">
     <value>Max proficiency</value>
   </data>
+  <data name="DataSelection" xml:space="preserve">
+    <value>Data selection</value>
+  </data>
 </root>

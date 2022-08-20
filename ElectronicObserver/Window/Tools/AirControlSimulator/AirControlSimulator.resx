@@ -136,4 +136,7 @@
   <data name="MaxProficiency" xml:space="preserve">
     <value>熟練度最大</value>
   </data>
+  <data name="DataSelection" xml:space="preserve">
+    <value>データ選択</value>
+  </data>
 </root>
