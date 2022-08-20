@@ -352,4 +352,7 @@
   <data name="LoadFromClipboard" xml:space="preserve">
     <value>ロード</value>
   </data>
+  <data name="HighAltitudeShort" xml:space="preserve">
+    <value>高度</value>
+  </data>
 </root>

@@ -366,4 +366,7 @@ Uncheck 'Copy to clipboard' on the details tab to export fleet image to a file.<
   <data name="LoadFromClipboard" xml:space="preserve">
     <value>Load</value>
   </data>
+  <data name="HighAltitudeShort" xml:space="preserve">
+    <value>HA</value>
+  </data>
 </root>

@@ -397,6 +397,15 @@ namespace ElectronicObserver.Properties.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 高度.
+        /// </summary>
+        public static string HighAltitudeShort {
+            get {
+                return ResourceManager.GetString("HighAltitudeShort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 艦隊を横に並べる個数を指定します。
         ///これ以上の数の艦隊を出力したとき、改行されます。.
         /// </summary>
