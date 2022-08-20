@@ -5,7 +5,7 @@ namespace ElectronicObserverTypes.Mocks;
 public class BaseAirCorpsSquadronMock : IBaseAirCorpsSquadron
 {
 	public int SquadronID { get; set; }
-	public int State { get; set; }
+	public int State { get; set; } = 1;
 	public int EquipmentMasterID { get; set; }
 	public IEquipmentData? EquipmentInstance { get; set; }
 	public int EquipmentID { get; set; }
