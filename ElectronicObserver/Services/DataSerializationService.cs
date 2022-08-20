@@ -138,7 +138,7 @@ public class DataSerializationService
 		Equipment = equipment
 	};
 
-	private static DeckBuilderData MakeDeckBuilderData
+	public DeckBuilderData MakeDeckBuilderData
 	(
 		int hqLevel,
 		IFleetData? fleet1 = null,

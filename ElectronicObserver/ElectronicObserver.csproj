@@ -355,6 +355,11 @@
 			<AutoGen>True</AutoGen>
 			<DependentUpon>EventLockPlanner.resx</DependentUpon>
 		</Compile>
+		<Compile Update="Window\Tools\FleetImageGenerator\FleetImageGenerator.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>FleetImageGenerator.resx</DependentUpon>
+		</Compile>
 		<None Include=".editorconfig" />
 		<Page Include="Properties\DesignTimeResources.xaml">
 			<SubType>Designer</SubType>
@@ -690,6 +695,10 @@
 		<EmbeddedResource Update="Window\Tools\EventLockPlanner\EventLockPlanner.resx">
 			<Generator>ResXFileCodeGenerator</Generator>
 			<LastGenOutput>EventLockPlanner.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Window\Tools\FleetImageGenerator\FleetImageGenerator.resx">
+		  <Generator>PublicResXFileCodeGenerator</Generator>
+		  <LastGenOutput>FleetImageGenerator.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 	</ItemGroup>
 </Project>
