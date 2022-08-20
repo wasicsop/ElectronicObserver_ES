@@ -19,7 +19,7 @@ namespace ElectronicObserver.Properties.Window.Dialog {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class DialogFleetImageGenerator {
@@ -194,6 +194,15 @@ namespace ElectronicObserver.Properties.Window.Dialog {
         public static string Comment {
             get {
                 return ResourceManager.GetString("Comment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to コピー.
+        /// </summary>
+        public static string CopyToClipboard {
+            get {
+                return ResourceManager.GetString("CopyToClipboard", resourceCulture);
             }
         }
         
@@ -477,6 +486,15 @@ namespace ElectronicObserver.Properties.Window.Dialog {
         public static string Layout {
             get {
                 return ResourceManager.GetString("Layout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ロード.
+        /// </summary>
+        public static string LoadFromClipboard {
+            get {
+                return ResourceManager.GetString("LoadFromClipboard", resourceCulture);
             }
         }
         
@@ -765,6 +783,15 @@ namespace ElectronicObserver.Properties.Window.Dialog {
         public static string Title {
             get {
                 return ResourceManager.GetString("Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to アルバムステータス名を使用する.
+        /// </summary>
+        public static string UseAlbumStatusName {
+            get {
+                return ResourceManager.GetString("UseAlbumStatusName", resourceCulture);
             }
         }
     }
