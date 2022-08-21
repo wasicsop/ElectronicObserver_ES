@@ -9,7 +9,7 @@
 		<Platforms>x64</Platforms>
 		<Nullable>enable</Nullable>
 		<SatelliteResourceLanguages>en;ja</SatelliteResourceLanguages>
-		<LangVersion>latest</LangVersion>
+		<LangVersion>preview</LangVersion>
 	</PropertyGroup>
 	<PropertyGroup>
 		<ApplicationIcon>74eo.ico</ApplicationIcon>
