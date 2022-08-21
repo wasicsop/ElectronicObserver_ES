@@ -195,6 +195,7 @@ public partial class App : Application
 			.AddSingleton<DataSerializationService>()
 			.AddSingleton<ToolService>()
 			.AddSingleton<TransliterationService>()
+			.AddSingleton<GameAssetDownloaderService>()
 			// external
 			.AddSingleton(JotTracker())
 
