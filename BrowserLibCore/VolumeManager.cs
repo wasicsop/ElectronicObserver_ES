@@ -133,10 +133,9 @@ public class VolumeManager
 			thread.Start();
 			thread.Join();
 		}
-		catch (Exception e)
+		catch
 		{
-			Console.WriteLine(e);
-			throw;
+			// log?
 		}
 		
 
