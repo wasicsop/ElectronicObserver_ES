@@ -76,6 +76,19 @@ public class ToolService
 
 	public void FleetImageGenerator(FleetImageGeneratorImageDataModel? model = null)
 	{
+		if (!KCDatabase.Instance.Ships.Any())
+		{
+			MessageBox.Show
+			(
+				Properties.Window.Dialog.DialogExpChecker.NoShipsAvailable,
+				Properties.Window.Dialog.DialogExpChecker.ShipsUnavailable,
+				MessageBoxButton.OK,
+				MessageBoxImage.Error
+			);
+
+			return;
+		}
+
 		DeckBuilderData data = DataSerializationService.MakeDeckBuilderData
 		(
 			KCDatabase.Instance.Admiral.Level,
