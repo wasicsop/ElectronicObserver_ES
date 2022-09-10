@@ -34,6 +34,7 @@ public class FleetImageGeneratorTranslationViewModel : TranslationBaseViewModel
 	public string SynchronizeTitleAndFileNameToolTip => Properties.Window.Dialog.DialogFleetImageGenerator.SynchronizeTitleAndFileNameToolTip;
 	public string AutoSetFileNameToDateToolTip => Properties.Window.Dialog.DialogFleetImageGenerator.AutoSetFileNameToDateToolTip;
 	public string OutputToClipboardToolTip => Properties.Window.Dialog.DialogFleetImageGenerator.OutputToClipboardToolTip;
+	public string DisableOverwritePrompt => Properties.Window.Dialog.DialogFleetImageGenerator.DisableOverwritePrompt;
 	public string DisableOverwritePromptToolTip => Properties.Window.Dialog.DialogFleetImageGenerator.DisableOverwritePromptToolTip;
 	public string OpenImageAfterOutput => Properties.Window.Dialog.DialogFleetImageGenerator.OpenImageAfterOutput;
 	public string OpenImageAfterOutputToolTip => Properties.Window.Dialog.DialogFleetImageGenerator.OpenImageAfterOutputToolTip;
