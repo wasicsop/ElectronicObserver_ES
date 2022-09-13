@@ -426,6 +426,7 @@ public partial class FormMainViewModel : ObservableObject
 		{
 			if (args.PropertyName is not nameof(GridSplitterSize)) return;
 
+			SaveLayout(Window);
 			LoadLayout(Window);
 		};
 
