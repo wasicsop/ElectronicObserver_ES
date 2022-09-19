@@ -1081,7 +1081,7 @@ public partial class BattleViewModel : AnchorableViewModel
 					name = ship.NameWithLevel;
 					isEscaped = bd.Initial.FriendFleet.EscapedShipList.Contains(ship.MasterID);
 					isLandBase = ship.MasterShip.IsLandBase;
-					bar.Text = Constants.GetShipClassClassification(ship.MasterShip.ShipType);
+					bar.Text = KCDatabase.Instance.Translation.Ship.TypeNameShort(ship.MasterShip.ShipType);
 				}
 
 				bar.ToolTip = string.Format
@@ -1121,7 +1121,7 @@ public partial class BattleViewModel : AnchorableViewModel
 				IShipDataMaster ship = bd.Initial.EnemyMembersInstance[i];
 
 				var bar = HPBars[refindex];
-				bar.Text = Constants.GetShipClassClassification(ship.ShipType);
+				bar.Text = KCDatabase.Instance.Translation.Ship.TypeNameShort(ship.ShipType);
 				SetEnemyBackground(refindex);
 
 				bar.ToolTip =
@@ -1160,7 +1160,7 @@ public partial class BattleViewModel : AnchorableViewModel
 					bool isEscaped = bd.Initial.FriendFleetEscort.EscapedShipList.Contains(ship.MasterID);
 
 					var bar = HPBars[refindex];
-					bar.Text = Constants.GetShipClassClassification(ship.MasterShip.ShipType);
+					bar.Text = KCDatabase.Instance.Translation.Ship.TypeNameShort(ship.MasterShip.ShipType);
 
 					bar.ToolTip = string.Format(
 						"{0} Lv. {1}\r\nHP: ({2} → {3})/{4} ({5}) [{6}]\r\n" + GeneralRes.DamageDone + ": {7}\r\n\r\n{8}",
@@ -1218,7 +1218,7 @@ public partial class BattleViewModel : AnchorableViewModel
 					IShipDataMaster ship = bd.Initial.EnemyMembersEscortInstance[i];
 
 					var bar = HPBars[refindex];
-					bar.Text = Constants.GetShipClassClassification(ship.ShipType);
+					bar.Text = KCDatabase.Instance.Translation.Ship.TypeNameShort(ship.ShipType);
 					SetEnemyBackground(refindex);
 
 					bar.ToolTip =
