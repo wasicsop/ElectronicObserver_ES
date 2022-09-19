@@ -133,6 +133,8 @@ public partial class BattleViewModel : AnchorableViewModel
 	public List<HealthBarViewModel> EnemyMainHPBars { get; } = new();
 	public List<HealthBarViewModel> EnemyEscortHPBars { get; } = new();
 
+	public bool CompactMode { get; set; }
+
 	public BattleViewModel() : base("Battle", "Battle",
 		ImageSourceIcons.GetIcon(IconContent.FormBattle))
 	{
@@ -209,6 +211,18 @@ public partial class BattleViewModel : AnchorableViewModel
 		o.ApiReqPractice_Battle.ResponseReceived += Updated;
 		o.ApiReqPractice_MidnightBattle.ResponseReceived += Updated;
 		o.ApiReqPractice_BattleResult.ResponseReceived += Updated;
+
+		PropertyChanged += (sender, args) =>
+		{
+			if (args.PropertyName is not nameof(CompactMode)) return;
+
+			Utility.Configuration.Config.FormBattle.CompactMode = CompactMode;
+
+			foreach (HealthBarViewModel hpBar in HPBars)
+			{
+				hpBar.CompactMode = CompactMode;
+			}
+		};
 
 		Utility.Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
 		ConfigurationChanged();
@@ -1249,31 +1263,6 @@ public partial class BattleViewModel : AnchorableViewModel
 			*/
 		}
 
-
-
-
-		if ((isFriendCombined || (hasFriend7thShip && !Utility.Configuration.Config.FormBattle.Display7thAsSingleLine)) && isEnemyCombined)
-		{
-			foreach (var bar in HPBars)
-			{
-				//bar.Size = SmallBarSize;
-				bar.Text = null;
-			}
-		}
-		else
-		{
-			bool showShipType = Utility.Configuration.Config.FormBattle.ShowShipTypeInHPBar;
-
-			foreach (var bar in HPBars)
-			{
-				//bar.Size = DefaultBarSize;
-
-				if (!showShipType)
-					bar.Text = "HP:";
-			}
-		}
-
-
 		{   // support
 			PhaseSupport support = null;
 
@@ -1600,6 +1589,7 @@ public partial class BattleViewModel : AnchorableViewModel
 			hpBar.ColorMorphing = config.UI.BarColorMorphing;
 		}
 
+		CompactMode = Utility.Configuration.Config.FormBattle.CompactMode;
 
 		/*
 		MainFont = TableTop.Font = TableBottom.Font = Font = config.UI.MainFont;
