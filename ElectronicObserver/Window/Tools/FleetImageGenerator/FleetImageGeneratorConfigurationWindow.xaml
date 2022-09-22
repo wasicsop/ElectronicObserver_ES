@@ -37,6 +37,7 @@
 
 					<TextBlock Text="{Binding DialogFleetImageGenerator.Comment}" />
 					<TextBox
+						Padding="0 0 0 20"
 						VerticalAlignment="Center"
 						AcceptsReturn="True"
 						HorizontalScrollBarVisibility="Auto"
