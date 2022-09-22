@@ -878,7 +878,7 @@
 						>
 						<ItemsControl.ItemsPanel>
 							<ItemsPanelTemplate>
-								<StackPanel Orientation="Horizontal" />
+								<UniformGrid Columns="{Binding FleetColumn}" />
 							</ItemsPanelTemplate>
 						</ItemsControl.ItemsPanel>
 					</ItemsControl>

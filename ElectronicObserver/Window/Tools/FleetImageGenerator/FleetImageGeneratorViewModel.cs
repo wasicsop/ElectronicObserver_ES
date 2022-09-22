@@ -43,7 +43,8 @@ public partial class FleetImageGeneratorViewModel : WindowViewModelBase
 	public bool AutoSetFileNameToDate { get; set; }
 	public bool OpenImageAfterOutput { get; set; }
 	public bool SynchronizeTitleAndFileName { get; set; }
-
+	public int FleetColumn { get; set; }
+	
 	public int FleetNameFontSize => ImageType switch
 	{
 		ImageType.Card => LargeTextFontSize,
@@ -266,6 +267,7 @@ public partial class FleetImageGeneratorViewModel : WindowViewModelBase
 		AutoSetFileNameToDate = Configuration.Config.FleetImageGenerator.AutoSetFileNameToDate;
 		OpenImageAfterOutput = Configuration.Config.FleetImageGenerator.OpenImageAfterOutput;
 		SynchronizeTitleAndFileName = Configuration.Config.FleetImageGenerator.SyncronizeTitleAndFileName;
+		FleetColumn = Configuration.Config.FleetImageGenerator.Argument.HorizontalFleetCount;
 	}
 
 	private void SaveConfig()
@@ -309,6 +311,7 @@ public partial class FleetImageGeneratorViewModel : WindowViewModelBase
 		Configuration.Config.FleetImageGenerator.DisableOverwritePrompt = DisableOverwritePrompt;
 		Configuration.Config.FleetImageGenerator.OpenImageAfterOutput = OpenImageAfterOutput;
 		Configuration.Config.FleetImageGenerator.SyncronizeTitleAndFileName = SynchronizeTitleAndFileName;
+		Configuration.Config.FleetImageGenerator.Argument.HorizontalFleetCount = FleetColumn;
 	}
 
 	public override void Closed()
