@@ -109,7 +109,7 @@
 							SpinButtonPlacementMode="Inline"
 							Text="{Binding DialogFleetImageGenerator.FleetColumn, Mode=OneWay}"
 							ToolTip="{Binding DialogFleetImageGenerator.HorizontalFleetCountToolTip}"
-							Value="{Binding FleetColumn}"
+							Value="{Binding DesiredFleetColumns}"
 							/>
 					</StackPanel>
 				</StackPanel>
