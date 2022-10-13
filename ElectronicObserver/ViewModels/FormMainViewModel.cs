@@ -83,6 +83,7 @@ public partial class FormMainViewModel : ObservableObject
 	private Configuration.ConfigurationData Config { get; }
 	public FormMainTranslationViewModel FormMain { get; }
 	private ToolService ToolService { get; }
+	private FileService FileService { get; }
 	private System.Windows.Forms.Timer UIUpdateTimer { get; }
 	public bool Topmost { get; set; }
 	public int GridSplitterSize { get; set; } = 1;
@@ -208,6 +209,7 @@ public partial class FormMainViewModel : ObservableObject
 		Config = Configuration.Config;
 		FormMain = Ioc.Default.GetService<FormMainTranslationViewModel>()!;
 		ToolService = Ioc.Default.GetService<ToolService>()!;
+		FileService = Ioc.Default.GetService<FileService>()!;
 
 		CultureInfo cultureInfo = new(Configuration.Config.UI.Culture);
 
@@ -583,23 +585,15 @@ public partial class FormMainViewModel : ObservableObject
 		SetAnchorableProperties();
 	}
 
-	private string LayoutFilter => "Layout File|*.xml";
-
 	[ICommand]
 	private void OpenLayout()
 	{
-		using OpenFileDialog dialog = new()
-		{
-			Filter = LayoutFilter,
-			Title = Properties.Window.FormMain.OpenLayoutCaption
-		};
+		string? newLayoutPath = FileService.OpenLayoutPath(Configuration.Config.Life.LayoutFilePath);
 
-		PathHelper.InitOpenFileDialog(Configuration.Config.Life.LayoutFilePath, dialog);
-
-		if (dialog.ShowDialog(App.Current.MainWindow) != System.Windows.Forms.DialogResult.OK) return;
+		if (newLayoutPath is null) return;
 
 		string oldLayoutPath = Configuration.Config.Life.LayoutFilePath;
-		Configuration.Config.Life.LayoutFilePath = PathHelper.GetPathFromOpenFileDialog(dialog);
+		Configuration.Config.Life.LayoutFilePath = newLayoutPath;
 
 		try
 		{
@@ -622,17 +616,11 @@ public partial class FormMainViewModel : ObservableObject
 	[ICommand]
 	private void SaveLayoutAs()
 	{
-		using SaveFileDialog dialog = new()
-		{
-			Filter = LayoutFilter,
-			Title = Properties.Window.FormMain.SaveLayoutCaption
-		};
+		string? newLayoutPath = FileService.SaveLayoutPath(Configuration.Config.Life.LayoutFilePath);
 
-		PathHelper.InitSaveFileDialog(Configuration.Config.Life.LayoutFilePath, dialog);
+		if (newLayoutPath is null) return;
 
-		if (dialog.ShowDialog(App.Current.MainWindow) != System.Windows.Forms.DialogResult.OK) return;
-
-		Configuration.Config.Life.LayoutFilePath = PathHelper.GetPathFromSaveFileDialog(dialog);
+		Configuration.Config.Life.LayoutFilePath = newLayoutPath;
 		SaveLayout(Window);
 	}
 
