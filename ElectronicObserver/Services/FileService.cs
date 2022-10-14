@@ -1,10 +1,17 @@
-﻿using ElectronicObserver.Utility;
+﻿using System;
+using System.IO;
+using System.Windows;
+using ElectronicObserver.Observer;
+using ElectronicObserver.Utility;
 using Microsoft.Win32;
+using Ookii.Dialogs.Wpf;
 
 namespace ElectronicObserver.Services;
 
 public class FileService
 {
+	private System.Windows.Window MainWindow => App.Current!.MainWindow!;
+
 	private string LayoutFilter => "Layout File|*.xml";
 
 	/// <summary>
@@ -22,7 +29,7 @@ public class FileService
 
 		PathHelper.InitOpenFileDialog(path, dialog);
 
-		return dialog.ShowDialog(App.Current!.MainWindow) switch
+		return dialog.ShowDialog(MainWindow) switch
 		{
 			true => PathHelper.GetPathFromOpenFileDialog(dialog),
 			_ => null,
@@ -44,10 +51,77 @@ public class FileService
 
 		PathHelper.InitSaveFileDialog(path, dialog);
 
-		return dialog.ShowDialog(App.Current!.MainWindow) switch
+		return dialog.ShowDialog(MainWindow) switch
 		{
 			true => PathHelper.GetPathFromSaveFileDialog(dialog),
 			_ => null,
 		};
+	}
+
+	/// <summary>
+	/// Opens a folder browser dialog to select a folder.
+	/// </summary>
+	/// <param name="path">Current folder path.</param>
+	/// <returns>Selected folder path or null if no path was selected.</returns>
+	public string? SelectFolder(string path)
+	{
+		VistaFolderBrowserDialog dialog = new()
+		{
+			SelectedPath = path,
+		};
+
+		return dialog.ShowDialog(MainWindow) switch
+		{
+			true => dialog.SelectedPath,
+			_ => null,
+		};
+	}
+
+	public void ExportConnectionScript(int port)
+	{
+		string? serverAddress = APIObserver.Instance.ServerAddress;
+
+		if (serverAddress is null)
+		{
+			MessageBox.Show(Properties.Window.Dialog.DialogConfiguration.PleaseStartKancolle, Properties.Window.Dialog.DialogConfiguration.DialogCaptionErrorTitle,
+				MessageBoxButton.OK, MessageBoxImage.Exclamation);
+			return;
+		}
+
+		SaveFileDialog dialog = new()
+		{
+			Filter = "Proxy Script|*.pac|File|*",
+			Title = Properties.Window.Dialog.DialogConfiguration.SavePacFileAs,
+			InitialDirectory = Directory.GetCurrentDirectory(),
+			FileName = Directory.GetCurrentDirectory() + "\\proxy.pac",
+		};
+
+		if (dialog.ShowDialog(MainWindow) != true) return;
+
+		try
+		{
+			using (StreamWriter sw = new(dialog.FileName))
+			{
+				sw.WriteLine("function FindProxyForURL(url, host) {");
+				sw.WriteLine("  if (/^" + serverAddress.Replace(".", @"\.") + "/.test(host)) {");
+				sw.WriteLine("    return \"PROXY localhost:{0}; DIRECT\";", port);
+				sw.WriteLine("  }");
+				sw.WriteLine("  return \"DIRECT\";");
+				sw.WriteLine("}");
+			}
+
+			Clipboard.SetData(DataFormats.StringFormat, "file:///" + dialog.FileName.Replace('\\', '/'));
+
+			MessageBox.Show(Properties.Window.Dialog.DialogConfiguration.ProxyAutoConfigSaved,
+				Properties.Window.Dialog.DialogConfiguration.PacSavedTitle,
+				MessageBoxButton.OK, MessageBoxImage.Information);
+		}
+		catch (Exception ex)
+		{
+			ErrorReporter.SendErrorReport(ex, Properties.Window.Dialog.DialogConfiguration.FailedToSavePac);
+			MessageBox.Show(Properties.Window.Dialog.DialogConfiguration.FailedToSavePac + "\r\n" + ex.Message,
+				Properties.Window.Dialog.DialogConfiguration.DialogCaptionErrorTitle,
+				MessageBoxButton.OK, MessageBoxImage.Error);
+		}
 	}
 }

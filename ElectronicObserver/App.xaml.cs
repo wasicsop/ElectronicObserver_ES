@@ -158,6 +158,7 @@ public partial class App : Application
 			.AddSingleton<IKCDatabase>(KCDatabase.Instance)
 			// config translations
 			.AddSingleton<ConfigurationTranslationViewModel>()
+			.AddSingleton<ConfigurationConnectionTranslationViewModel>()
 			// view translations
 			.AddSingleton<FormArsenalTranslationViewModel>()
 			.AddSingleton<FormBaseAirCorpsTranslationViewModel>()
