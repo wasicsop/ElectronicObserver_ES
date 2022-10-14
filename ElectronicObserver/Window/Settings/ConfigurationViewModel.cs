@@ -16,7 +16,7 @@ public partial class ConfigurationViewModel : WindowViewModelBase
 {
 	public ConfigurationTranslationViewModel Translation { get; }
 
-	public ConfigurationConnectionViewModel Connection { get; }
+	public Connection.ConfigurationConnectionViewModel Connection { get; }
 
 	private IEnumerable<ConfigurationViewModelBase> Configurations()
 	{

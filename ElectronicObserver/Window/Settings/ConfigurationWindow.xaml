@@ -7,6 +7,7 @@
 	xmlns:local="clr-namespace:ElectronicObserver.Window.Settings"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:ui="http://schemas.modernwpf.com/2019"
+	xmlns:connection="clr-namespace:ElectronicObserver.Window.Settings.Connection"
 	Title="{Binding Translation.Title}"
 	Width="800"
 	Height="450"
@@ -36,7 +37,7 @@
 
 		<TabControl Grid.Row="0">
 			<TabControl.Resources>
-				<DataTemplate DataType="{x:Type local:ConfigurationConnectionViewModel}" />
+				<DataTemplate DataType="{x:Type connection:ConfigurationConnectionViewModel}" />
 			</TabControl.Resources>
 
 			<TabItem Header="{Binding Translation.Communication}">

@@ -8,7 +8,7 @@ using ElectronicObserver.Properties.Window.Dialog;
 using ElectronicObserver.Services;
 using ElectronicObserver.Utility;
 
-namespace ElectronicObserver.Window.Settings;
+namespace ElectronicObserver.Window.Settings.Connection;
 
 public partial class ConfigurationConnectionViewModel : ConfigurationViewModelBase
 {
