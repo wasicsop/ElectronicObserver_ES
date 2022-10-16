@@ -6,6 +6,7 @@
 	xmlns:connection="clr-namespace:ElectronicObserver.Window.Settings.Connection"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:local="clr-namespace:ElectronicObserver.Window.Settings"
+	xmlns:log="clr-namespace:ElectronicObserver.Window.Settings.Log"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:system="clr-namespace:System;assembly=System.Runtime"
 	xmlns:ui="http://schemas.modernwpf.com/2019"
@@ -42,6 +43,10 @@
 		<DataTemplate DataType="{x:Type ui1:ConfigurationUIViewModel}">
 			<ui1:ConfigurationUIUserControl />
 		</DataTemplate>
+
+		<DataTemplate DataType="{x:Type log:ConfigurationLogViewModel}">
+			<log:ConfigurationLogUserControl />
+		</DataTemplate>
 	</Window.Resources>
 
 	<Grid Margin="10">
@@ -53,7 +58,7 @@
 		<TabControl Grid.Row="0">
 			<TabItem Content="{Binding Connection}" Header="{Binding Translation.Communication}" />
 			<TabItem Content="{Binding UI}" Header="{Binding Translation.UI}" />
-			<TabItem Header="{Binding Translation.Log}" />
+			<TabItem Content="{Binding Log}" Header="{Binding Translation.Log}" />
 			<TabItem Header="{Binding Translation.Behavior}" />
 			<TabItem Header="{Binding Translation.Debug}" />
 			<TabItem Header="{Binding Translation.Window}" />

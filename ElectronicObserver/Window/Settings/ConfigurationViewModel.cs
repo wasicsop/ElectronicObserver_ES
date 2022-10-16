@@ -10,6 +10,7 @@ using ElectronicObserver.Common;
 using ElectronicObserver.Properties.Window.Dialog;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Window.Settings.Connection;
+using ElectronicObserver.Window.Settings.Log;
 using ElectronicObserver.Window.Settings.UI;
 
 namespace ElectronicObserver.Window.Settings;
@@ -20,11 +21,13 @@ public partial class ConfigurationViewModel : WindowViewModelBase
 
 	public ConfigurationConnectionViewModel Connection { get; }
 	public ConfigurationUIViewModel UI { get; }
+	public ConfigurationLogViewModel Log { get; }
 
 	private IEnumerable<ConfigurationViewModelBase> Configurations()
 	{
 		yield return Connection;
 		yield return UI;
+		yield return Log;
 	}
 
 	private Timer Timer { get; } = new();
@@ -40,6 +43,7 @@ public partial class ConfigurationViewModel : WindowViewModelBase
 
 		Connection = new(Configuration.Config.Connection);
 		UI = new(Configuration.Config.UI);
+		Log = new(Configuration.Config.Log);
 
 		ShownTime = DateTime.Now;
 		PlayTimeCache = Configuration.Config.Log.PlayTime;

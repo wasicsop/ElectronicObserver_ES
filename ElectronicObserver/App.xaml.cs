@@ -16,6 +16,7 @@ using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Dialog.ShipPicker;
 using ElectronicObserver.Window.Settings;
 using ElectronicObserver.Window.Settings.Connection;
+using ElectronicObserver.Window.Settings.Log;
 using ElectronicObserver.Window.Settings.UI;
 using ElectronicObserver.Window.Tools.AirControlSimulator;
 using ElectronicObserver.Window.Tools.AirDefense;
@@ -180,6 +181,7 @@ public partial class App : Application
 			.AddSingleton<ConfigurationTranslationViewModel>()
 			.AddSingleton<ConfigurationConnectionTranslationViewModel>()
 			.AddSingleton<ConfigurationUITranslationViewModel>()
+			.AddSingleton<ConfigurationLogTranslationViewModel>()
 			// view translations
 			.AddSingleton<FormArsenalTranslationViewModel>()
 			.AddSingleton<FormBaseAirCorpsTranslationViewModel>()
