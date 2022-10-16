@@ -9,6 +9,8 @@ using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
 using ElectronicObserver.Properties.Window.Dialog;
 using ElectronicObserver.Utility;
+using ElectronicObserver.Window.Settings.Connection;
+using ElectronicObserver.Window.Settings.UI;
 
 namespace ElectronicObserver.Window.Settings;
 
@@ -16,11 +18,13 @@ public partial class ConfigurationViewModel : WindowViewModelBase
 {
 	public ConfigurationTranslationViewModel Translation { get; }
 
-	public Connection.ConfigurationConnectionViewModel Connection { get; }
+	public ConfigurationConnectionViewModel Connection { get; }
+	public ConfigurationUIViewModel UI { get; }
 
 	private IEnumerable<ConfigurationViewModelBase> Configurations()
 	{
 		yield return Connection;
+		yield return UI;
 	}
 
 	private Timer Timer { get; } = new();
@@ -35,6 +39,7 @@ public partial class ConfigurationViewModel : WindowViewModelBase
 		Translation = Ioc.Default.GetRequiredService<ConfigurationTranslationViewModel>();
 
 		Connection = new(Configuration.Config.Connection);
+		UI = new(Configuration.Config.UI);
 
 		ShownTime = DateTime.Now;
 		PlayTimeCache = Configuration.Config.Log.PlayTime;
@@ -85,6 +90,7 @@ public partial class ConfigurationViewModel : WindowViewModelBase
 	{
 		if (!TrySaveConfigurations()) return;
 
+		Configuration.Instance.OnConfigurationChanged();
 		DialogResult = true;
 	}
 

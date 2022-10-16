@@ -3,11 +3,13 @@
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:common="clr-namespace:ElectronicObserver.Common"
+	xmlns:connection="clr-namespace:ElectronicObserver.Window.Settings.Connection"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:local="clr-namespace:ElectronicObserver.Window.Settings"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:system="clr-namespace:System;assembly=System.Runtime"
 	xmlns:ui="http://schemas.modernwpf.com/2019"
-	xmlns:connection="clr-namespace:ElectronicObserver.Window.Settings.Connection"
+	xmlns:ui1="clr-namespace:ElectronicObserver.Window.Settings.UI"
 	Title="{Binding Translation.Title}"
 	Width="800"
 	Height="450"
@@ -26,6 +28,11 @@
 			<Setter Property="Margin" Value="4 0" />
 			<Setter Property="Padding" Value="2 0" />
 			<Setter Property="MinWidth" Value="0" />
+		</Style>
+
+		<Style BasedOn="{StaticResource DefaultComboBoxStyle}" TargetType="ComboBox">
+			<Setter Property="Margin" Value="4 0" />
+			<Setter Property="VerticalAlignment" Value="Center" />
 		</Style>
 	</Window.Resources>
 
@@ -192,7 +199,252 @@
 					</Grid>
 				</TabItem.Content>
 			</TabItem>
-			<TabItem Header="{Binding Translation.UI}" />
+			<TabItem Header="{Binding Translation.UI}">
+				<TabItem.Content>
+					<StackPanel Margin="4" DataContext="{Binding UI}">
+						<Grid>
+							<Grid.RowDefinitions>
+								<RowDefinition />
+								<RowDefinition />
+							</Grid.RowDefinitions>
+
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="Auto" />
+								<ColumnDefinition Width="Auto" />
+								<ColumnDefinition Width="Auto" />
+							</Grid.ColumnDefinitions>
+
+							<TextBlock
+								Grid.Row="0"
+								Grid.Column="0"
+								Text="{Binding Translation.MainFont}"
+								/>
+
+							<ComboBox
+								Grid.Row="0"
+								Grid.Column="1"
+								IsEditable="True"
+								ItemsSource="{Binding AllFontFamilies}"
+								SelectedItem="{Binding MainFontFamily}"
+								/>
+
+							<ui:NumberBox
+								Grid.Row="0"
+								Grid.Column="2"
+								Minimum="1"
+								SpinButtonPlacementMode="Inline"
+								Value="{Binding MainFontSize}"
+								/>
+
+							<TextBlock
+								Grid.Row="1"
+								Grid.Column="0"
+								Text="{Binding Translation.SubFont}"
+								/>
+
+							<ComboBox
+								Grid.Row="1"
+								Grid.Column="1"
+								IsEditable="True"
+								ItemsSource="{Binding AllFontFamilies}"
+								SelectedItem="{Binding SubFontFamily}"
+								/>
+
+							<ui:NumberBox
+								Grid.Row="1"
+								Grid.Column="2"
+								Minimum="1"
+								SpinButtonPlacementMode="Inline"
+								Value="{Binding SubFontSize}"
+								/>
+						</Grid>
+
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="Auto" />
+								<ColumnDefinition />
+							</Grid.ColumnDefinitions>
+
+							<StackPanel Grid.Column="0">
+								<CheckBox
+									Content="{Binding Translation.UI_BarColorMorphing}"
+									IsChecked="{Binding BarColorMorphing}"
+									ToolTip="{Binding Translation.UI_BarColorMorphingToolTip}"
+									/>
+
+								<CheckBox
+									Content="{Binding Translation.UI_IsLayoutFixed}"
+									IsChecked="{Binding IsLayoutFixed}"
+									ToolTip="{Binding Translation.UI_IsLayoutFixedToolTip}"
+									/>
+							</StackPanel>
+
+							<!--  todo: column=1 HP bar rendering test  -->
+						</Grid>
+
+						<Grid>
+							<Grid.RowDefinitions>
+								<RowDefinition Height="Auto" />
+								<RowDefinition Height="Auto" />
+								<RowDefinition Height="Auto" />
+							</Grid.RowDefinitions>
+
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="Auto" />
+								<ColumnDefinition Width="Auto" />
+								<ColumnDefinition Width="Auto" />
+							</Grid.ColumnDefinitions>
+
+							<CheckBox
+								Grid.Row="0"
+								Grid.Column="0"
+								Content="{Binding Translation.UI_JapaneseShipTypes}"
+								IsChecked="{Binding JapaneseShipType}"
+								/>
+
+							<CheckBox
+								Grid.Row="1"
+								Grid.Column="0"
+								Content="{Binding Translation.UI_JapaneseShipNames}"
+								IsChecked="{Binding JapaneseShipName}"
+								/>
+
+							<CheckBox
+								Grid.Row="2"
+								Grid.Column="0"
+								Content="{Binding Translation.UI_NodeNumbering}"
+								IsChecked="{Binding UseOriginalNodeId}"
+								/>
+
+							<CheckBox
+								Grid.Row="0"
+								Grid.Column="1"
+								Content="{Binding Translation.UI_JapaneseEquipmentTypes}"
+								IsChecked="{Binding JapaneseEquipmentType}"
+								/>
+
+							<CheckBox
+								Grid.Row="1"
+								Grid.Column="1"
+								Content="{Binding Translation.UI_JapaneseEquipmentNames}"
+								IsChecked="{Binding JapaneseEquipmentName}"
+								/>
+
+							<CheckBox
+								Grid.Row="0"
+								Grid.Column="2"
+								Content="{Binding Translation.UI_DisableOtherTranslations}"
+								IsChecked="{Binding DisableOtherTranslations}"
+								ToolTip="{Binding Translation.UI_DisableOtherTranslationsToolTip}"
+								/>
+						</Grid>
+
+						<StackPanel Orientation="Horizontal">
+							<TextBlock Text="{Binding Translation.Theme}" ToolTip="{Binding Translation.ThemeToolTip}" />
+
+							<RadioButton Command="{Binding SetThemeCommand}" Content="{Binding Translation.Theme_Light}">
+								<RadioButton.CommandParameter>
+									<ui1:ThemeMode>Light</ui1:ThemeMode>
+								</RadioButton.CommandParameter>
+
+								<RadioButton.Style>
+									<Style BasedOn="{StaticResource DefaultRadioButtonStyle}" TargetType="RadioButton">
+										<Setter Property="IsChecked" Value="False" />
+										<Style.Triggers>
+											<DataTrigger Binding="{Binding ThemeMode}">
+												<DataTrigger.Value>
+													<ui1:ThemeMode>Light</ui1:ThemeMode>
+												</DataTrigger.Value>
+												<Setter Property="IsChecked" Value="True" />
+											</DataTrigger>
+										</Style.Triggers>
+									</Style>
+								</RadioButton.Style>
+							</RadioButton>
+
+							<RadioButton Command="{Binding SetThemeCommand}" Content="{Binding Translation.Theme_Dark}">
+								<RadioButton.CommandParameter>
+									<ui1:ThemeMode>Dark</ui1:ThemeMode>
+								</RadioButton.CommandParameter>
+
+								<RadioButton.Style>
+									<Style BasedOn="{StaticResource DefaultRadioButtonStyle}" TargetType="RadioButton">
+										<Setter Property="IsChecked" Value="False" />
+										<Style.Triggers>
+											<DataTrigger Binding="{Binding ThemeMode}">
+												<DataTrigger.Value>
+													<ui1:ThemeMode>Dark</ui1:ThemeMode>
+												</DataTrigger.Value>
+												<Setter Property="IsChecked" Value="True" />
+											</DataTrigger>
+										</Style.Triggers>
+									</Style>
+								</RadioButton.Style>
+							</RadioButton>
+
+							<RadioButton Command="{Binding SetThemeCommand}" Content="{Binding Translation.Theme_Custom}">
+								<RadioButton.CommandParameter>
+									<ui1:ThemeMode>Custom</ui1:ThemeMode>
+								</RadioButton.CommandParameter>
+
+								<RadioButton.Style>
+									<Style BasedOn="{StaticResource DefaultRadioButtonStyle}" TargetType="RadioButton">
+										<Setter Property="IsChecked" Value="False" />
+										<Style.Triggers>
+											<DataTrigger Binding="{Binding ThemeMode}">
+												<DataTrigger.Value>
+													<ui1:ThemeMode>Custom</ui1:ThemeMode>
+												</DataTrigger.Value>
+												<Setter Property="IsChecked" Value="True" />
+											</DataTrigger>
+										</Style.Triggers>
+									</Style>
+								</RadioButton.Style>
+							</RadioButton>
+						</StackPanel>
+
+						<StackPanel Orientation="Horizontal">
+							<TextBlock Text="{Binding Translation.UI_LanguageLabel}" />
+
+							<RadioButton
+								Command="{Binding SetLanguageCommand}"
+								CommandParameter="ja-JP"
+								Content="{Binding Translation.Language_Japanese}"
+								>
+								<RadioButton.Style>
+									<Style BasedOn="{StaticResource DefaultRadioButtonStyle}" TargetType="RadioButton">
+										<Setter Property="IsChecked" Value="False" />
+										<Style.Triggers>
+											<DataTrigger Binding="{Binding Culture}" Value="ja-JP">
+												<Setter Property="IsChecked" Value="True" />
+											</DataTrigger>
+										</Style.Triggers>
+									</Style>
+								</RadioButton.Style>
+							</RadioButton>
+
+							<RadioButton
+								Command="{Binding SetLanguageCommand}"
+								CommandParameter="en-US"
+								Content="{Binding Translation.Language_English}"
+								>
+								<RadioButton.Style>
+									<Style BasedOn="{StaticResource DefaultRadioButtonStyle}" TargetType="RadioButton">
+										<Setter Property="IsChecked" Value="False" />
+										<Style.Triggers>
+											<DataTrigger Binding="{Binding Culture}" Value="en-US">
+												<Setter Property="IsChecked" Value="True" />
+											</DataTrigger>
+										</Style.Triggers>
+									</Style>
+								</RadioButton.Style>
+							</RadioButton>
+						</StackPanel>
+
+						<TextBlock Text="{Binding Translation.UI_RestartHint}" />
+					</StackPanel>
+				</TabItem.Content>
+			</TabItem>
 			<TabItem Header="{Binding Translation.Log}" />
 			<TabItem Header="{Binding Translation.Behavior}" />
 			<TabItem Header="{Binding Translation.Debug}" />
