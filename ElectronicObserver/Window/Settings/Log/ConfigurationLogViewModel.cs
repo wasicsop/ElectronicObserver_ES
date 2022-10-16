@@ -1,23 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Windows.Documents;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Utility;
 
 namespace ElectronicObserver.Window.Settings.Log;
-
-public record EncodingOption(Encoding Encoding, int Value)
-{
-	public string Display => Value switch
-	{
-		0 => "UTF-8",
-		1 => "UTF-8(BOM)",
-		2 => "UTF-16",
-		3 => "UTF-16(BOM)",
-		4 => "Shift-JIS",
-	};
-}
 
 public class ConfigurationLogViewModel : ConfigurationViewModelBase
 {
@@ -50,11 +36,11 @@ public class ConfigurationLogViewModel : ConfigurationViewModelBase
 
 		Encodings = new List<EncodingOption>
 		{
-			new(new UTF8Encoding(false), 0),
-			new(new UTF8Encoding(true), 1),
-			new(new UnicodeEncoding(false, false), 2),
-			new(new UnicodeEncoding(false, true), 3),
-			new(Encoding.GetEncoding(932), 4),
+			new(0),
+			new(1),
+			new(2),
+			new(3),
+			new(4),
 		};
 		SelectedEncoding = Encodings.First();
 
