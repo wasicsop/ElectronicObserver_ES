@@ -22,10 +22,6 @@ public class ConfigurationLogViewModel : ConfigurationViewModelBase
 
 	public bool ShowSpoiler { get; set; }
 
-	public double PlayTime { get; set; }
-
-	public double PlayTimeIgnoreInterval { get; set; }
-
 	public bool SaveBattleLog { get; set; }
 
 	public bool SaveLogImmediately { get; set; }
@@ -54,8 +50,6 @@ public class ConfigurationLogViewModel : ConfigurationViewModelBase
 		SaveLogFlag = config.SaveLogFlag;
 		SaveErrorReport = config.SaveErrorReport;
 		ShowSpoiler = config.ShowSpoiler;
-		PlayTime = config.PlayTime;
-		PlayTimeIgnoreInterval = config.PlayTimeIgnoreInterval;
 		SaveBattleLog = config.SaveBattleLog;
 		SaveLogImmediately = config.SaveLogImmediately;
 		SelectedEncoding = Encodings
@@ -70,8 +64,6 @@ public class ConfigurationLogViewModel : ConfigurationViewModelBase
 		Config.SaveErrorReport = SaveErrorReport;
 		Config.FileEncodingID = SelectedEncoding.Value;
 		Config.ShowSpoiler = ShowSpoiler;
-		Config.PlayTime = PlayTime;
-		Config.PlayTimeIgnoreInterval = PlayTimeIgnoreInterval;
 		Config.SaveBattleLog = SaveBattleLog;
 		Config.SaveLogImmediately = SaveLogImmediately;
 	}
