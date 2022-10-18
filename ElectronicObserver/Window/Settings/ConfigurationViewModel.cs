@@ -9,6 +9,7 @@ using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
 using ElectronicObserver.Properties.Window.Dialog;
 using ElectronicObserver.Utility;
+using ElectronicObserver.Window.Settings.Behavior;
 using ElectronicObserver.Window.Settings.Connection;
 using ElectronicObserver.Window.Settings.Log;
 using ElectronicObserver.Window.Settings.UI;
@@ -22,12 +23,14 @@ public partial class ConfigurationViewModel : WindowViewModelBase
 	public ConfigurationConnectionViewModel Connection { get; }
 	public ConfigurationUIViewModel UI { get; }
 	public ConfigurationLogViewModel Log { get; }
+	public ConfigurationBehaviorViewModel Behavior { get; }
 
 	private IEnumerable<ConfigurationViewModelBase> Configurations()
 	{
 		yield return Connection;
 		yield return UI;
 		yield return Log;
+		yield return Behavior;
 	}
 
 	private Timer Timer { get; } = new();
@@ -44,6 +47,7 @@ public partial class ConfigurationViewModel : WindowViewModelBase
 		Connection = new(Configuration.Config.Connection);
 		UI = new(Configuration.Config.UI);
 		Log = new(Configuration.Config.Log);
+		Behavior = new(Configuration.Config.Control);
 
 		ShownTime = DateTime.Now;
 		PlayTimeCache = Configuration.Config.Log.PlayTime;

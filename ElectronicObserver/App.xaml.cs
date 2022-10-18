@@ -15,6 +15,7 @@ using ElectronicObserver.Utility;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Dialog.ShipPicker;
 using ElectronicObserver.Window.Settings;
+using ElectronicObserver.Window.Settings.Behavior;
 using ElectronicObserver.Window.Settings.Connection;
 using ElectronicObserver.Window.Settings.Log;
 using ElectronicObserver.Window.Settings.UI;
@@ -182,6 +183,7 @@ public partial class App : Application
 			.AddSingleton<ConfigurationConnectionTranslationViewModel>()
 			.AddSingleton<ConfigurationUITranslationViewModel>()
 			.AddSingleton<ConfigurationLogTranslationViewModel>()
+			.AddSingleton<ConfigurationBehaviorTranslationViewModel>()
 			// view translations
 			.AddSingleton<FormArsenalTranslationViewModel>()
 			.AddSingleton<FormBaseAirCorpsTranslationViewModel>()
