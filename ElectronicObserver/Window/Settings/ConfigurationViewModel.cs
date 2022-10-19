@@ -11,6 +11,7 @@ using ElectronicObserver.Properties.Window.Dialog;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Window.Settings.Behavior;
 using ElectronicObserver.Window.Settings.Connection;
+using ElectronicObserver.Window.Settings.Debugging;
 using ElectronicObserver.Window.Settings.Log;
 using ElectronicObserver.Window.Settings.UI;
 
@@ -24,6 +25,7 @@ public partial class ConfigurationViewModel : WindowViewModelBase
 	public ConfigurationUIViewModel UI { get; }
 	public ConfigurationLogViewModel Log { get; }
 	public ConfigurationBehaviorViewModel Behavior { get; }
+	public ConfigurationDebugViewModel Debug { get; }
 
 	private IEnumerable<ConfigurationViewModelBase> Configurations()
 	{
@@ -31,6 +33,7 @@ public partial class ConfigurationViewModel : WindowViewModelBase
 		yield return UI;
 		yield return Log;
 		yield return Behavior;
+		yield return Debug;
 	}
 
 	private Timer Timer { get; } = new();
@@ -48,6 +51,7 @@ public partial class ConfigurationViewModel : WindowViewModelBase
 		UI = new(Configuration.Config.UI);
 		Log = new(Configuration.Config.Log);
 		Behavior = new(Configuration.Config.Control);
+		Debug = new(Configuration.Config.Debug);
 
 		ShownTime = DateTime.Now;
 		PlayTimeCache = Configuration.Config.Log.PlayTime;

@@ -6,6 +6,7 @@
 	xmlns:common="clr-namespace:ElectronicObserver.Common"
 	xmlns:connection="clr-namespace:ElectronicObserver.Window.Settings.Connection"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:debugging="clr-namespace:ElectronicObserver.Window.Settings.Debugging"
 	xmlns:local="clr-namespace:ElectronicObserver.Window.Settings"
 	xmlns:log="clr-namespace:ElectronicObserver.Window.Settings.Log"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -52,6 +53,10 @@
 		<DataTemplate DataType="{x:Type behavior:ConfigurationBehaviorViewModel}">
 			<behavior:ConfigurationBehaviorUserControl />
 		</DataTemplate>
+
+		<DataTemplate DataType="{x:Type debugging:ConfigurationDebugViewModel}">
+			<debugging:ConfigurationDebugUserControl />
+		</DataTemplate>
 	</Window.Resources>
 
 	<Grid Margin="10">
@@ -65,7 +70,7 @@
 			<TabItem Content="{Binding UI}" Header="{Binding Translation.UI}" />
 			<TabItem Content="{Binding Log}" Header="{Binding Translation.Log}" />
 			<TabItem Content="{Binding Behavior}" Header="{Binding Translation.Behavior}" />
-			<TabItem Header="{Binding Translation.Debug}" />
+			<TabItem Content="{Binding Debug}" Header="{Binding Translation.Debug}" />
 			<TabItem Header="{Binding Translation.Window}" />
 			<TabItem Header="{Binding Translation.SubWindow}" />
 			<TabItem Header="{Binding Translation.Notification}" />
