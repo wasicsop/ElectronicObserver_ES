@@ -13,6 +13,7 @@
 	xmlns:system="clr-namespace:System;assembly=System.Runtime"
 	xmlns:ui="http://schemas.modernwpf.com/2019"
 	xmlns:ui1="clr-namespace:ElectronicObserver.Window.Settings.UI"
+	xmlns:window="clr-namespace:ElectronicObserver.Window.Settings.Window"
 	Title="{Binding Translation.Title}"
 	Width="800"
 	Height="450"
@@ -57,6 +58,10 @@
 		<DataTemplate DataType="{x:Type debugging:ConfigurationDebugViewModel}">
 			<debugging:ConfigurationDebugUserControl />
 		</DataTemplate>
+
+		<DataTemplate DataType="{x:Type window:ConfigurationWindowViewModel}">
+			<window:ConfigurationWindowUserControl />
+		</DataTemplate>
 	</Window.Resources>
 
 	<Grid Margin="10">
@@ -71,7 +76,7 @@
 			<TabItem Content="{Binding Log}" Header="{Binding Translation.Log}" />
 			<TabItem Content="{Binding Behavior}" Header="{Binding Translation.Behavior}" />
 			<TabItem Content="{Binding Debug}" Header="{Binding Translation.Debug}" />
-			<TabItem Header="{Binding Translation.Window}" />
+			<TabItem Content="{Binding Window}" Header="{Binding Translation.Window}" />
 			<TabItem Header="{Binding Translation.SubWindow}" />
 			<TabItem Header="{Binding Translation.Notification}" />
 			<TabItem Header="{Binding Translation.BGM}" />
