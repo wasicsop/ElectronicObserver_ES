@@ -19,6 +19,7 @@ using ElectronicObserver.Window.Settings.Behavior;
 using ElectronicObserver.Window.Settings.Connection;
 using ElectronicObserver.Window.Settings.Debugging;
 using ElectronicObserver.Window.Settings.Log;
+using ElectronicObserver.Window.Settings.SubWindow;
 using ElectronicObserver.Window.Settings.UI;
 using ElectronicObserver.Window.Settings.Window;
 using ElectronicObserver.Window.Tools.AirControlSimulator;
@@ -188,6 +189,7 @@ public partial class App : Application
 			.AddSingleton<ConfigurationBehaviorTranslationViewModel>()
 			.AddSingleton<ConfigurationDebugTranslationViewModel>()
 			.AddSingleton<ConfigurationWindowTranslationViewModel>()
+			.AddSingleton<ConfigurationSubWindowTranslationViewModel>()
 			// view translations
 			.AddSingleton<FormArsenalTranslationViewModel>()
 			.AddSingleton<FormBaseAirCorpsTranslationViewModel>()
