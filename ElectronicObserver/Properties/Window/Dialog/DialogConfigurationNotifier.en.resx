@@ -227,4 +227,10 @@ Preset: + including fleets saved as presets.</value>
   <data name="Error" xml:space="preserve">
     <value>Error</value>
   </data>
+  <data name="BaseAirCorps_NotOrganized" xml:space="preserve">
+    <value>Unassigned/Relocating</value>
+  </data>
+  <data name="BaseAirCorps_NotOrganizedToolTip" xml:space="preserve">
+    <value>Before a sortie, notify if any base slot is unassigned or relocating.</value>
+  </data>
 </root>
