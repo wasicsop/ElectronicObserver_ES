@@ -4,6 +4,7 @@ using ElectronicObserver.Utility;
 using ElectronicObserver.Window.Settings.SubWindow.Arsenal;
 using ElectronicObserver.Window.Settings.SubWindow.Dock;
 using ElectronicObserver.Window.Settings.SubWindow.Fleet;
+using ElectronicObserver.Window.Settings.SubWindow.Headquarters;
 
 namespace ElectronicObserver.Window.Settings.SubWindow;
 
@@ -16,12 +17,14 @@ public class ConfigurationSubWindowViewModel : ConfigurationViewModelBase
 	public ConfigurationFleetViewModel Fleet { get; }
 	public ConfigurationArsenalViewModel Arsenal { get; }
 	public ConfigurationDockViewModel Dock { get; }
+	public ConfigurationHeadquartersViewModel Headquarters { get; }
 
 	private IEnumerable<ConfigurationViewModelBase> Configurations()
 	{
 		yield return Fleet;
 		yield return Arsenal;
 		yield return Dock;
+		yield return Headquarters;
 	}
 
 	public ConfigurationSubWindowViewModel(Configuration.ConfigurationData config)
@@ -33,6 +36,7 @@ public class ConfigurationSubWindowViewModel : ConfigurationViewModelBase
 		Fleet = new(Config.FormFleet);
 		Arsenal = new(Config.FormArsenal);
 		Dock = new(Config.FormDock);
+		Headquarters = new(Config.FormHeadquarters);
 	}
 
 	public override void Save()

@@ -26,6 +26,7 @@ using ElectronicObserver.Window.Settings.SubWindow;
 using ElectronicObserver.Window.Settings.SubWindow.Arsenal;
 using ElectronicObserver.Window.Settings.SubWindow.Dock;
 using ElectronicObserver.Window.Settings.SubWindow.Fleet;
+using ElectronicObserver.Window.Settings.SubWindow.Headquarters;
 using ElectronicObserver.Window.Settings.UI;
 using ElectronicObserver.Window.Settings.Window;
 using ElectronicObserver.Window.Tools.AirControlSimulator;
@@ -203,6 +204,7 @@ public partial class App : Application
 			.AddSingleton<ConfigurationFleetTranslationViewModel>()
 			.AddSingleton<ConfigurationArsenalTranslationViewModel>()
 			.AddSingleton<ConfigurationDockTranslationViewModel>()
+			.AddSingleton<ConfigurationHeadquartersTranslationViewModel>()
 			// view translations
 			.AddSingleton<FormArsenalTranslationViewModel>()
 			.AddSingleton<FormBaseAirCorpsTranslationViewModel>()

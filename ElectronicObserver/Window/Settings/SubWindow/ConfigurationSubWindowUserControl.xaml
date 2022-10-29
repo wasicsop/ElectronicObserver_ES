@@ -6,6 +6,7 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:dock="clr-namespace:ElectronicObserver.Window.Settings.SubWindow.Dock"
 	xmlns:fleet="clr-namespace:ElectronicObserver.Window.Settings.SubWindow.Fleet"
+	xmlns:headquarters="clr-namespace:ElectronicObserver.Window.Settings.SubWindow.Headquarters"
 	xmlns:local="clr-namespace:ElectronicObserver.Window.Settings.SubWindow"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	d:DataContext="{d:DesignInstance local:ConfigurationSubWindowViewModel}"
@@ -25,13 +26,17 @@
 		<DataTemplate DataType="{x:Type dock:ConfigurationDockViewModel}">
 			<dock:ConfigurationDockUserControl />
 		</DataTemplate>
+
+		<DataTemplate DataType="{x:Type headquarters:ConfigurationHeadquartersViewModel}">
+			<headquarters:ConfigurationHeadquartersUserControl />
+		</DataTemplate>
 	</UserControl.Resources>
 
 	<TabControl>
 		<TabItem Content="{Binding Fleet}" Header="{Binding Translation.Fleet}" />
 		<TabItem Content="{Binding Arsenal}" Header="{Binding Translation.Arsenal}" />
 		<TabItem Content="{Binding Dock}" Header="{Binding Translation.Dock}" />
-		<TabItem Header="{Binding Translation.HQ}" />
+		<TabItem Content="{Binding Headquarters}" Header="{Binding Translation.HQ}" />
 		<TabItem Header="{Binding Translation.Compass}" />
 		<TabItem Header="{Binding Translation.Quests}" />
 		<TabItem Header="{Binding Translation.Group}" />
