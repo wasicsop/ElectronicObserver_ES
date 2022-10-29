@@ -325,6 +325,11 @@
 		<Compile Update="Window\Control\WindowCaptureButton.cs">
 			<SubType>Component</SubType>
 		</Compile>
+		<Compile Update="Window\Dialog\ConfigRes.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>ConfigRes.resx</DependentUpon>
+		</Compile>
 		<Compile Update="Window\Dialog\DialogExpeditionCheck.Designer.cs">
 			<DesignTime>True</DesignTime>
 			<AutoGen>True</AutoGen>
@@ -682,6 +687,10 @@
 		<EmbeddedResource Update="Properties\Window\FormWindowCapture.resx">
 			<Generator>PublicResXFileCodeGenerator</Generator>
 			<LastGenOutput>FormWindowCapture.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Window\Dialog\ConfigRes.resx">
+		  <Generator>PublicResXFileCodeGenerator</Generator>
+		  <LastGenOutput>ConfigRes.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 		<EmbeddedResource Update="Window\Dialog\DialogExpeditionCheck.resx">
 			<Generator>ResXFileCodeGenerator</Generator>
