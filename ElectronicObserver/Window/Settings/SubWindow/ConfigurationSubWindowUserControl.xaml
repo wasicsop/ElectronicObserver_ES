@@ -4,6 +4,7 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:arsenal="clr-namespace:ElectronicObserver.Window.Settings.SubWindow.Arsenal"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:dock="clr-namespace:ElectronicObserver.Window.Settings.SubWindow.Dock"
 	xmlns:fleet="clr-namespace:ElectronicObserver.Window.Settings.SubWindow.Fleet"
 	xmlns:local="clr-namespace:ElectronicObserver.Window.Settings.SubWindow"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -20,12 +21,16 @@
 		<DataTemplate DataType="{x:Type arsenal:ConfigurationArsenalViewModel}">
 			<arsenal:ConfigurationArsenalUserControl />
 		</DataTemplate>
+
+		<DataTemplate DataType="{x:Type dock:ConfigurationDockViewModel}">
+			<dock:ConfigurationDockUserControl />
+		</DataTemplate>
 	</UserControl.Resources>
 
 	<TabControl>
 		<TabItem Content="{Binding Fleet}" Header="{Binding Translation.Fleet}" />
 		<TabItem Content="{Binding Arsenal}" Header="{Binding Translation.Arsenal}" />
-		<TabItem Header="{Binding Translation.Dock}" />
+		<TabItem Content="{Binding Dock}" Header="{Binding Translation.Dock}" />
 		<TabItem Header="{Binding Translation.HQ}" />
 		<TabItem Header="{Binding Translation.Compass}" />
 		<TabItem Header="{Binding Translation.Quests}" />
