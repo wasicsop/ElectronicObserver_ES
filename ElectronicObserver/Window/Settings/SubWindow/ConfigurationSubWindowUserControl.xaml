@@ -10,6 +10,7 @@
 	xmlns:headquarters="clr-namespace:ElectronicObserver.Window.Settings.SubWindow.Headquarters"
 	xmlns:local="clr-namespace:ElectronicObserver.Window.Settings.SubWindow"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:quest="clr-namespace:ElectronicObserver.Window.Settings.SubWindow.Quest"
 	d:DataContext="{d:DesignInstance local:ConfigurationSubWindowViewModel}"
 	d:DesignHeight="450"
 	d:DesignWidth="800"
@@ -35,6 +36,10 @@
 		<DataTemplate DataType="{x:Type compass:ConfigurationCompassViewModel}">
 			<compass:ConfigurationCompassUserControl />
 		</DataTemplate>
+
+		<DataTemplate DataType="{x:Type quest:ConfigurationQuestViewModel}">
+			<quest:ConfigurationQuestUserControl />
+		</DataTemplate>
 	</UserControl.Resources>
 
 	<TabControl>
@@ -43,7 +48,7 @@
 		<TabItem Content="{Binding Dock}" Header="{Binding Translation.Dock}" />
 		<TabItem Content="{Binding Headquarters}" Header="{Binding Translation.HQ}" />
 		<TabItem Content="{Binding Compass}" Header="{Binding Translation.Compass}" />
-		<TabItem Header="{Binding Translation.Quests}" />
+		<TabItem Content="{Binding Quest}" Header="{Binding Translation.Quests}" />
 		<TabItem Header="{Binding Translation.Group}" />
 		<TabItem Header="{Binding Translation.Combat}" />
 		<TabItem Header="{Binding Translation.Browser}" />

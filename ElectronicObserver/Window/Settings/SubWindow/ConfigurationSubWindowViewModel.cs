@@ -6,6 +6,7 @@ using ElectronicObserver.Window.Settings.SubWindow.Compass;
 using ElectronicObserver.Window.Settings.SubWindow.Dock;
 using ElectronicObserver.Window.Settings.SubWindow.Fleet;
 using ElectronicObserver.Window.Settings.SubWindow.Headquarters;
+using ElectronicObserver.Window.Settings.SubWindow.Quest;
 
 namespace ElectronicObserver.Window.Settings.SubWindow;
 
@@ -20,6 +21,7 @@ public class ConfigurationSubWindowViewModel : ConfigurationViewModelBase
 	public ConfigurationDockViewModel Dock { get; }
 	public ConfigurationHeadquartersViewModel Headquarters { get; }
 	public ConfigurationCompassViewModel Compass { get; }
+	public ConfigurationQuestViewModel Quest { get; }
 
 	private IEnumerable<ConfigurationViewModelBase> Configurations()
 	{
@@ -28,6 +30,7 @@ public class ConfigurationSubWindowViewModel : ConfigurationViewModelBase
 		yield return Dock;
 		yield return Headquarters;
 		yield return Compass;
+		yield return Quest;
 	}
 
 	public ConfigurationSubWindowViewModel(Configuration.ConfigurationData config)
@@ -41,6 +44,7 @@ public class ConfigurationSubWindowViewModel : ConfigurationViewModelBase
 		Dock = new(Config.FormDock);
 		Headquarters = new(Config.FormHeadquarters);
 		Compass = new(Config.FormCompass);
+		Quest = new(Config.FormQuest);
 	}
 
 	public override void Save()
