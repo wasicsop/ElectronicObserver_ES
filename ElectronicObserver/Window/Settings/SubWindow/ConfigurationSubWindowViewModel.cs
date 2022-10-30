@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Utility;
+using ElectronicObserver.Window.Settings.SubWindow.AirBase;
 using ElectronicObserver.Window.Settings.SubWindow.Arsenal;
 using ElectronicObserver.Window.Settings.SubWindow.Browser;
 using ElectronicObserver.Window.Settings.SubWindow.Combat;
@@ -28,6 +29,7 @@ public class ConfigurationSubWindowViewModel : ConfigurationViewModelBase
 	public ConfigurationGroupViewModel Group { get; }
 	public ConfigurationCombatViewModel Combat { get; }
 	public ConfigurationBrowserViewModel Browser { get; }
+	public ConfigurationAirBaseViewModel AirBase { get; }
 
 	private IEnumerable<ConfigurationViewModelBase> Configurations()
 	{
@@ -40,6 +42,7 @@ public class ConfigurationSubWindowViewModel : ConfigurationViewModelBase
 		yield return Group;
 		yield return Combat;
 		yield return Browser;
+		yield return AirBase;
 	}
 
 	public ConfigurationSubWindowViewModel(Configuration.ConfigurationData config)
@@ -57,6 +60,7 @@ public class ConfigurationSubWindowViewModel : ConfigurationViewModelBase
 		Group = new(Config.FormShipGroup);
 		Combat = new(Config.FormBattle);
 		Browser = new(Config.FormBrowser);
+		AirBase = new(Config.FormBaseAirCorps);
 	}
 
 	public override void Save()

@@ -23,6 +23,7 @@ using ElectronicObserver.Window.Settings.Log;
 using ElectronicObserver.Window.Settings.Notification;
 using ElectronicObserver.Window.Settings.Notification.Base;
 using ElectronicObserver.Window.Settings.SubWindow;
+using ElectronicObserver.Window.Settings.SubWindow.AirBase;
 using ElectronicObserver.Window.Settings.SubWindow.Arsenal;
 using ElectronicObserver.Window.Settings.SubWindow.Browser;
 using ElectronicObserver.Window.Settings.SubWindow.Combat;
@@ -215,6 +216,7 @@ public partial class App : Application
 			.AddSingleton<ConfigurationGroupTranslationViewModel>()
 			.AddSingleton<ConfigurationCombatTranslationViewModel>()
 			.AddSingleton<ConfigurationBrowserTranslationViewModel>()
+			.AddSingleton<ConfigurationAirBaseTranslationViewModel>()
 			// view translations
 			.AddSingleton<FormArsenalTranslationViewModel>()
 			.AddSingleton<FormBaseAirCorpsTranslationViewModel>()
