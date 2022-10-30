@@ -32,6 +32,7 @@ using ElectronicObserver.Window.Settings.SubWindow.Dock;
 using ElectronicObserver.Window.Settings.SubWindow.Fleet;
 using ElectronicObserver.Window.Settings.SubWindow.Group;
 using ElectronicObserver.Window.Settings.SubWindow.Headquarters;
+using ElectronicObserver.Window.Settings.SubWindow.Json;
 using ElectronicObserver.Window.Settings.SubWindow.Quest;
 using ElectronicObserver.Window.Settings.UI;
 using ElectronicObserver.Window.Settings.Window;
@@ -217,6 +218,7 @@ public partial class App : Application
 			.AddSingleton<ConfigurationCombatTranslationViewModel>()
 			.AddSingleton<ConfigurationBrowserTranslationViewModel>()
 			.AddSingleton<ConfigurationAirBaseTranslationViewModel>()
+			.AddSingleton<ConfigurationJsonTranslationViewModel>()
 			// view translations
 			.AddSingleton<FormArsenalTranslationViewModel>()
 			.AddSingleton<FormBaseAirCorpsTranslationViewModel>()

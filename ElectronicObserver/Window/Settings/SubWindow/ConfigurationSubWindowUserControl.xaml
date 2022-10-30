@@ -12,6 +12,7 @@
 	xmlns:fleet="clr-namespace:ElectronicObserver.Window.Settings.SubWindow.Fleet"
 	xmlns:group="clr-namespace:ElectronicObserver.Window.Settings.SubWindow.Group"
 	xmlns:headquarters="clr-namespace:ElectronicObserver.Window.Settings.SubWindow.Headquarters"
+	xmlns:json="clr-namespace:ElectronicObserver.Window.Settings.SubWindow.Json"
 	xmlns:local="clr-namespace:ElectronicObserver.Window.Settings.SubWindow"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:quest="clr-namespace:ElectronicObserver.Window.Settings.SubWindow.Quest"
@@ -60,6 +61,10 @@
 		<DataTemplate DataType="{x:Type airBase:ConfigurationAirBaseViewModel}">
 			<airBase:ConfigurationAirBaseUserControl />
 		</DataTemplate>
+
+		<DataTemplate DataType="{x:Type json:ConfigurationJsonViewModel}">
+			<json:ConfigurationJsonUserControl />
+		</DataTemplate>
 	</UserControl.Resources>
 
 	<TabControl>
@@ -73,6 +78,6 @@
 		<TabItem Content="{Binding Combat}" Header="{Binding Translation.Combat}" />
 		<TabItem Content="{Binding Browser}" Header="{Binding Translation.Browser}" />
 		<TabItem Content="{Binding AirBase}" Header="{Binding Translation.AB}" />
-		<TabItem Header="{Binding Translation.JSON}" />
+		<TabItem Content="{Binding Json}" Header="{Binding Translation.JSON}" />
 	</TabControl>
 </UserControl>
