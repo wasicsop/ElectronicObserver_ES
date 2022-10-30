@@ -3,6 +3,7 @@
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:arsenal="clr-namespace:ElectronicObserver.Window.Settings.SubWindow.Arsenal"
+	xmlns:combat="clr-namespace:ElectronicObserver.Window.Settings.SubWindow.Combat"
 	xmlns:compass="clr-namespace:ElectronicObserver.Window.Settings.SubWindow.Compass"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:dock="clr-namespace:ElectronicObserver.Window.Settings.SubWindow.Dock"
@@ -45,6 +46,10 @@
 		<DataTemplate DataType="{x:Type group:ConfigurationGroupViewModel}">
 			<group:ConfigurationGroupUserControl />
 		</DataTemplate>
+
+		<DataTemplate DataType="{x:Type combat:ConfigurationCombatViewModel}">
+			<combat:ConfigurationCombatUserControl />
+		</DataTemplate>
 	</UserControl.Resources>
 
 	<TabControl>
@@ -55,7 +60,7 @@
 		<TabItem Content="{Binding Compass}" Header="{Binding Translation.Compass}" />
 		<TabItem Content="{Binding Quest}" Header="{Binding Translation.Quests}" />
 		<TabItem Content="{Binding Group}" Header="{Binding Translation.Group}" />
-		<TabItem Header="{Binding Translation.Combat}" />
+		<TabItem Content="{Binding Combat}" Header="{Binding Translation.Combat}" />
 		<TabItem Header="{Binding Translation.Browser}" />
 		<TabItem Header="{Binding Translation.AB}" />
 		<TabItem Header="{Binding Translation.JSON}" />
