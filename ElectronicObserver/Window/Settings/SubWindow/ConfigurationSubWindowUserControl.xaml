@@ -7,6 +7,7 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:dock="clr-namespace:ElectronicObserver.Window.Settings.SubWindow.Dock"
 	xmlns:fleet="clr-namespace:ElectronicObserver.Window.Settings.SubWindow.Fleet"
+	xmlns:group="clr-namespace:ElectronicObserver.Window.Settings.SubWindow.Group"
 	xmlns:headquarters="clr-namespace:ElectronicObserver.Window.Settings.SubWindow.Headquarters"
 	xmlns:local="clr-namespace:ElectronicObserver.Window.Settings.SubWindow"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -40,6 +41,10 @@
 		<DataTemplate DataType="{x:Type quest:ConfigurationQuestViewModel}">
 			<quest:ConfigurationQuestUserControl />
 		</DataTemplate>
+
+		<DataTemplate DataType="{x:Type group:ConfigurationGroupViewModel}">
+			<group:ConfigurationGroupUserControl />
+		</DataTemplate>
 	</UserControl.Resources>
 
 	<TabControl>
@@ -49,7 +54,7 @@
 		<TabItem Content="{Binding Headquarters}" Header="{Binding Translation.HQ}" />
 		<TabItem Content="{Binding Compass}" Header="{Binding Translation.Compass}" />
 		<TabItem Content="{Binding Quest}" Header="{Binding Translation.Quests}" />
-		<TabItem Header="{Binding Translation.Group}" />
+		<TabItem Content="{Binding Group}" Header="{Binding Translation.Group}" />
 		<TabItem Header="{Binding Translation.Combat}" />
 		<TabItem Header="{Binding Translation.Browser}" />
 		<TabItem Header="{Binding Translation.AB}" />

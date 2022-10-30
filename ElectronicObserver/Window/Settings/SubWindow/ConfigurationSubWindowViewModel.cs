@@ -5,6 +5,7 @@ using ElectronicObserver.Window.Settings.SubWindow.Arsenal;
 using ElectronicObserver.Window.Settings.SubWindow.Compass;
 using ElectronicObserver.Window.Settings.SubWindow.Dock;
 using ElectronicObserver.Window.Settings.SubWindow.Fleet;
+using ElectronicObserver.Window.Settings.SubWindow.Group;
 using ElectronicObserver.Window.Settings.SubWindow.Headquarters;
 using ElectronicObserver.Window.Settings.SubWindow.Quest;
 
@@ -22,6 +23,7 @@ public class ConfigurationSubWindowViewModel : ConfigurationViewModelBase
 	public ConfigurationHeadquartersViewModel Headquarters { get; }
 	public ConfigurationCompassViewModel Compass { get; }
 	public ConfigurationQuestViewModel Quest { get; }
+	public ConfigurationGroupViewModel Group { get; }
 
 	private IEnumerable<ConfigurationViewModelBase> Configurations()
 	{
@@ -31,6 +33,7 @@ public class ConfigurationSubWindowViewModel : ConfigurationViewModelBase
 		yield return Headquarters;
 		yield return Compass;
 		yield return Quest;
+		yield return Group;
 	}
 
 	public ConfigurationSubWindowViewModel(Configuration.ConfigurationData config)
@@ -45,6 +48,7 @@ public class ConfigurationSubWindowViewModel : ConfigurationViewModelBase
 		Headquarters = new(Config.FormHeadquarters);
 		Compass = new(Config.FormCompass);
 		Quest = new(Config.FormQuest);
+		Group = new(Config.FormShipGroup);
 	}
 
 	public override void Save()

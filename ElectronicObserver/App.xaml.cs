@@ -27,6 +27,7 @@ using ElectronicObserver.Window.Settings.SubWindow.Arsenal;
 using ElectronicObserver.Window.Settings.SubWindow.Compass;
 using ElectronicObserver.Window.Settings.SubWindow.Dock;
 using ElectronicObserver.Window.Settings.SubWindow.Fleet;
+using ElectronicObserver.Window.Settings.SubWindow.Group;
 using ElectronicObserver.Window.Settings.SubWindow.Headquarters;
 using ElectronicObserver.Window.Settings.SubWindow.Quest;
 using ElectronicObserver.Window.Settings.UI;
@@ -209,6 +210,7 @@ public partial class App : Application
 			.AddSingleton<ConfigurationHeadquartersTranslationViewModel>()
 			.AddSingleton<ConfigurationCompassTranslationViewModel>()
 			.AddSingleton<ConfigurationQuestTranslationViewModel>()
+			.AddSingleton<ConfigurationGroupTranslationViewModel>()
 			// view translations
 			.AddSingleton<FormArsenalTranslationViewModel>()
 			.AddSingleton<FormBaseAirCorpsTranslationViewModel>()
