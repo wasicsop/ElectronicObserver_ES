@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Window.Settings.SubWindow.Arsenal;
+using ElectronicObserver.Window.Settings.SubWindow.Browser;
 using ElectronicObserver.Window.Settings.SubWindow.Combat;
 using ElectronicObserver.Window.Settings.SubWindow.Compass;
 using ElectronicObserver.Window.Settings.SubWindow.Dock;
@@ -26,6 +27,7 @@ public class ConfigurationSubWindowViewModel : ConfigurationViewModelBase
 	public ConfigurationQuestViewModel Quest { get; }
 	public ConfigurationGroupViewModel Group { get; }
 	public ConfigurationCombatViewModel Combat { get; }
+	public ConfigurationBrowserViewModel Browser { get; }
 
 	private IEnumerable<ConfigurationViewModelBase> Configurations()
 	{
@@ -37,6 +39,7 @@ public class ConfigurationSubWindowViewModel : ConfigurationViewModelBase
 		yield return Quest;
 		yield return Group;
 		yield return Combat;
+		yield return Browser;
 	}
 
 	public ConfigurationSubWindowViewModel(Configuration.ConfigurationData config)
@@ -53,6 +56,7 @@ public class ConfigurationSubWindowViewModel : ConfigurationViewModelBase
 		Quest = new(Config.FormQuest);
 		Group = new(Config.FormShipGroup);
 		Combat = new(Config.FormBattle);
+		Browser = new(Config.FormBrowser);
 	}
 
 	public override void Save()
