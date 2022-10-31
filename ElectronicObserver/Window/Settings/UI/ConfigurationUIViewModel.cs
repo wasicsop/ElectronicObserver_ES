@@ -75,9 +75,11 @@ public partial class ConfigurationUIViewModel : ConfigurationViewModelBase
 
 	private void Load(Configuration.ConfigurationData.ConfigUI config)
 	{
-		MainFontFamily = new(config.MainFont.FontData.FontFamily.Name);
+		MainFontFamily = AllFontFamilies.FirstOrDefault(f => f.FamilyNames.Values
+			?.Contains(config.MainFont.FontData.FontFamily.Name) == true) ?? new FontFamily("Meiryo UI");
 		MainFontSize = (int)config.MainFont.FontData.ToSize();
-		SubFontFamily = new(config.SubFont.FontData.FontFamily.Name);
+		SubFontFamily = AllFontFamilies.FirstOrDefault(f => f.FamilyNames.Values
+			?.Contains(config.SubFont.FontData.FontFamily.Name) == true) ?? new FontFamily("Meiryo UI");
 		SubFontSize = (int)config.SubFont.FontData.ToSize();
 		Culture = config.Culture;
 		JapaneseShipName = config.JapaneseShipName;
