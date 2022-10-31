@@ -22,6 +22,8 @@ public partial class ConfigurationUIViewModel : ConfigurationViewModelBase
 	public FontFamily SubFontFamily { get; set; }
 	public int SubFontSize { get; set; }
 
+	public bool FontFamilyTextSearch { get; set; }
+
 	public string Culture { get; set; }
 
 	public bool JapaneseShipName { get; set; }
@@ -104,6 +106,7 @@ public partial class ConfigurationUIViewModel : ConfigurationViewModelBase
 		AllowSortIndexing = config.AllowSortIndexing;
 		BarColorMorphing = config.BarColorMorphing;
 		IsLayoutFixed = config.IsLayoutFixed;
+		FontFamilyTextSearch = config.FontFamilyTextSearch;
 	}
 
 	public override void Save()
@@ -136,6 +139,7 @@ public partial class ConfigurationUIViewModel : ConfigurationViewModelBase
 		Config.AllowSortIndexing = AllowSortIndexing;
 		Config.BarColorMorphing = BarColorMorphing;
 		Config.IsLayoutFixed = IsLayoutFixed;
+		Config.FontFamilyTextSearch = FontFamilyTextSearch;
 	}
 
 	[ICommand]
