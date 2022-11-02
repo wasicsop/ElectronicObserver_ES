@@ -3,6 +3,7 @@ using System;
 using ElectronicObserver.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ElectronicObserver.Database.Migrations
 {
     [DbContext(typeof(ElectronicObserverContext))]
-    partial class ElectronicObserverContextModelSnapshot : ModelSnapshot
+    [Migration("20221101121658_AddVersionToApiFiles")]
+    partial class AddVersionToApiFiles
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.4");
@@ -42,7 +44,7 @@ namespace ElectronicObserver.Database.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ApiFiles", (string)null);
+                    b.ToTable("ApiFiles");
                 });
 
             modelBuilder.Entity("ElectronicObserver.Database.MapData.CellModel", b =>
@@ -65,7 +67,7 @@ namespace ElectronicObserver.Database.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Cells", (string)null);
+                    b.ToTable("Cells");
                 });
 
             modelBuilder.Entity("ElectronicObserver.Database.MapData.MapModel", b =>
@@ -82,7 +84,7 @@ namespace ElectronicObserver.Database.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Maps", (string)null);
+                    b.ToTable("Maps");
                 });
 
             modelBuilder.Entity("ElectronicObserver.Database.MapData.WorldModel", b =>
@@ -93,7 +95,7 @@ namespace ElectronicObserver.Database.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Worlds", (string)null);
+                    b.ToTable("Worlds");
                 });
 
             modelBuilder.Entity("ElectronicObserver.Window.Tools.AutoRefresh.AutoRefreshModel", b =>
@@ -115,7 +117,7 @@ namespace ElectronicObserver.Database.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AutoRefresh", (string)null);
+                    b.ToTable("AutoRefresh");
                 });
 
             modelBuilder.Entity("ElectronicObserver.Window.Tools.EventLockPlanner.EventLockPlannerModel", b =>
@@ -138,7 +140,7 @@ namespace ElectronicObserver.Database.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("EventLockPlans", (string)null);
+                    b.ToTable("EventLockPlans");
                 });
 #pragma warning restore 612, 618
         }

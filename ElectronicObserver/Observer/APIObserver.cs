@@ -10,8 +10,7 @@ using System.Web;
 using System.Windows.Forms;
 using DynaJson;
 using ElectronicObserver.Data;
-using ElectronicObserver.Database;
-using ElectronicObserver.Database.KancolleApi;
+using ElectronicObserver.Services.ApiFileService;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Utility.Mathematics;
 using Titanium.Web.Proxy;
@@ -613,12 +612,10 @@ public sealed class APIObserver
 	private ProxyServer Proxy { get; }
 	private ExplicitProxyEndPoint Endpoint { get; set; }
 
-	private ElectronicObserverContext Db { get; }
+	private ApiFileService ApiFileService { get; } = new();
 
 	private APIObserver()
 	{
-		Db = new();
-
 		APIList = new APIDictionary
 		{
 			ApiStart2_GetData,
@@ -802,33 +799,11 @@ public sealed class APIObserver
 
 		if (baseurl.Contains("/kcsapi/"))
 		{
-			List<string> ignoredApis = new()
-			{
-				"api_start2/getData",
-			};
-
 			string apiName = baseurl.Split("/kcsapi/").Last();
+			string requestBody = await e.GetRequestBodyAsString();
+			string responseBody = await e.GetResponseBodyAsString();
 
-			if (!ignoredApis.Contains(apiName))
-			{
-				await Db.ApiFiles.AddAsync(new()
-				{
-					ApiFileType = ApiFileType.Request,
-					Name = apiName,
-					Content = await e.GetRequestBodyAsString(),
-					TimeStamp = DateTime.Now,
-				});
-
-				await Db.ApiFiles.AddAsync(new()
-				{
-					ApiFileType = ApiFileType.Response,
-					Name = apiName,
-					Content = await e.GetResponseBodyAsString(),
-					TimeStamp = DateTime.Now,
-				});
-
-				await Db.SaveChangesAsync();
-			}
+			await ApiFileService.Add(apiName, requestBody, responseBody);
 		}
 
 		// request
