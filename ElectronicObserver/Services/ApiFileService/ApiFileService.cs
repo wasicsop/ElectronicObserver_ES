@@ -92,6 +92,8 @@ public class ApiFileService : ObservableObject
 		await Db.ApiFiles.AddAsync(responseFile);
 #pragma warning restore CS0618
 
+		await ProcessSortieData(requestFile, responseFile);
+
 		await Db.SaveChangesAsync();
 	}
 
@@ -174,5 +176,52 @@ public class ApiFileService : ObservableObject
 		}
 
 		return responseBody;
+	}
+
+	private async Task ProcessSortieData(ApiFile requestFile, ApiFile responseFile)
+	{
+		if (requestFile.Name is "api_port/port")
+		{
+			SortieRecord = null;
+			return;
+		}
+
+		if (requestFile.Name is "api_req_map/start")
+		{
+			if (SortieRecord is not null)
+			{
+				// todo: log bug - SortieRecord should always be null before a sortie starts
+			}
+
+			ApiResponse<ApiReqMapStartResponse>? response = null;
+
+			try
+			{
+				response = JsonSerializer.Deserialize<ApiResponse<ApiReqMapStartResponse>>(responseFile.Content);
+			}
+			catch
+			{
+				// todo: report failed parsing
+			}
+
+			SortieRecord = new()
+			{
+				World = response?.ApiData?.ApiMapareaId ?? 0,
+				Map = response?.ApiData?.ApiMapinfoNo ?? 0,
+			};
+
+			await Db.Sorties.AddAsync(SortieRecord);
+		}
+
+		if (SortieRecord is null)
+		{
+			// this should be all apis that are not related to a sortie
+			// apis related to sortie are all api calls that happen between
+			// "api_req_map/start" and "api_port/port"
+			return;
+		}
+
+		SortieRecord.ApiFiles.Add(requestFile);
+		SortieRecord.ApiFiles.Add(responseFile);
 	}
 }
