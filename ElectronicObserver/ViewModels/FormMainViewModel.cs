@@ -568,8 +568,6 @@ public partial class FormMainViewModel : ObservableObject
 				};
 				Process.Start(psi);
 			}
-
-			throw;
 		}
 
 		if (File.Exists(PositionPath))
