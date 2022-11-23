@@ -169,8 +169,7 @@ public class EquipmentUpgradePlanManager
 			.Where(plan => plan.Equipment?.MasterID == 0)
 			.Where(plan => !plan.Finished)
 			.Where(plan => plan.DesiredUpgradeLevel > equipmentData.UpgradeLevel)
-			.Where(plan => plan.Equipment?.EquipmentID == equipmentData.EquipmentID)
-			.FirstOrDefault();
+			.FirstOrDefault(plan => plan.Equipment?.EquipmentID == equipmentData.EquipmentID);
 
 		// Assign the plan to this equipment
 		if (foundPlan != null)
