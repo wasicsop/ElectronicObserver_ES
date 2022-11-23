@@ -168,7 +168,7 @@ public class EquipmentUpgradePlanManager
 		foundPlan = PlannedUpgrades
 			.Where(plan => plan.Equipment?.MasterID == 0)
 			.Where(plan => !plan.Finished)
-			.Where(plan => plan.DesiredUpgradeLevel < equipmentData.UpgradeLevel)
+			.Where(plan => plan.DesiredUpgradeLevel > equipmentData.UpgradeLevel)
 			.Where(plan => plan.Equipment?.EquipmentID == equipmentData.EquipmentID)
 			.FirstOrDefault();
 
