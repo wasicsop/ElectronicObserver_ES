@@ -147,4 +147,7 @@
   <data name="UpgradeLevel" xml:space="preserve">
     <value>改修値</value>
   </data>
+  <data name="Unassigned" xml:space="preserve">
+    <value>未割り当て</value>
+  </data>
 </root>
