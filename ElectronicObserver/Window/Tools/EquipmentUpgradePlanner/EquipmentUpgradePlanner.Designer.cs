@@ -61,7 +61,7 @@ namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 未所持装備から選択.
+        ///   Looks up a localized string similar to 全装備から選択.
         /// </summary>
         public static string AddEquipmentFromLibrary {
             get {
