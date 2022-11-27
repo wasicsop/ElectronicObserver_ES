@@ -467,7 +467,7 @@ public partial class FormMainViewModel : ObservableObject
 		Topmost = !Topmost;
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void AutoHide(LayoutAnchorable anchorable)
 	{
 		anchorable.ToggleAutoHide();
@@ -475,13 +475,13 @@ public partial class FormMainViewModel : ObservableObject
 
 	#region File
 
-	[ICommand]
+	[RelayCommand]
 	private void SaveData()
 	{
 		RecordManager.Instance.SaveAll();
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void LoadData()
 	{
 		if (MessageBox.Show(Resources.AskLoad, Properties.Window.FormMain.ConfirmatonCaption,
@@ -492,7 +492,7 @@ public partial class FormMainViewModel : ObservableObject
 		}
 	}
 
-	[ICommand]
+	[RelayCommand]
 	public void SaveLayout(object? sender)
 	{
 		if (sender is not FormMainWpf window) return;
@@ -525,7 +525,7 @@ public partial class FormMainViewModel : ObservableObject
 		File.WriteAllText(IntegratePath, MessagePackSerializer.ConvertToJson(data));
 	}
 
-	[ICommand]
+	[RelayCommand]
 	public void LoadLayout(object? sender)
 	{
 		if (sender is not FormMainWpf window) return;
@@ -598,7 +598,7 @@ public partial class FormMainViewModel : ObservableObject
 		SetAnchorableProperties();
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void OpenLayout()
 	{
 		string? newLayoutPath = FileService.OpenLayoutPath(Configuration.Config.Life.LayoutFilePath);
@@ -626,7 +626,7 @@ public partial class FormMainViewModel : ObservableObject
 		}
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void SaveLayoutAs()
 	{
 		string? newLayoutPath = FileService.SaveLayoutPath(Configuration.Config.Life.LayoutFilePath);
@@ -637,14 +637,14 @@ public partial class FormMainViewModel : ObservableObject
 		SaveLayout(Window);
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void SilenceNotifications()
 	{
 		foreach (var n in NotifierManager.Instance.GetNotifiers())
 			n.IsSilenced = NotificationsSilenced;
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void OpenConfiguration(bool useNewVersion)
 	{
 		UpdatePlayTime();
@@ -667,7 +667,7 @@ public partial class FormMainViewModel : ObservableObject
 
 	#region View
 
-	[ICommand]
+	[RelayCommand]
 	private void OpenView(AnchorableViewModel view)
 	{
 		view.Visibility = Visibility.Visible;
@@ -675,7 +675,7 @@ public partial class FormMainViewModel : ObservableObject
 		view.IsActive = true;
 	}
 
-	[ICommand]
+	[RelayCommand]
 	public void CloseIntegrate(FormIntegrateViewModel integrate)
 	{
 		if (integrate.WinformsControl is FormIntegrate i)
@@ -700,7 +700,7 @@ public partial class FormMainViewModel : ObservableObject
 		}
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void StripMenu_WindowCapture_AttachAll_Click()
 	{
 		if (WindowCapture is not { WinformsControl: FormWindowCapture fwc }) return;
@@ -708,7 +708,7 @@ public partial class FormMainViewModel : ObservableObject
 		fwc.AttachAll();
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void StripMenu_WindowCapture_DetachAll_Click()
 	{
 		if (WindowCapture is not { WinformsControl: FormWindowCapture fwc }) return;
@@ -720,13 +720,13 @@ public partial class FormMainViewModel : ObservableObject
 
 	#region Tools
 
-	[ICommand]
+	[RelayCommand]
 	private void OpenEquipmentList()
 	{
 		new EquipmentListWindow().Show(Window);
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void OpenDropRecord()
 	{
 		if (KCDatabase.Instance.MasterShips.Count == 0)
@@ -746,7 +746,7 @@ public partial class FormMainViewModel : ObservableObject
 		new DropRecordViewerWindow().Show(Window);
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void OpenDevelopmentRecord()
 	{
 		if (KCDatabase.Instance.MasterShips.Count == 0)
@@ -766,7 +766,7 @@ public partial class FormMainViewModel : ObservableObject
 		new DevelopmentRecordViewerWindow().Show(Window);
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void OpenConstructionRecord()
 	{
 		if (KCDatabase.Instance.MasterShips.Count == 0)
@@ -786,13 +786,13 @@ public partial class FormMainViewModel : ObservableObject
 		new ConstructionRecordViewerWindow().Show(Window);
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void OpenResourceChart()
 	{
 		new ResourceChartWPF().Show(Window);
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void OpenAlbumMasterShip()
 	{
 
@@ -808,7 +808,7 @@ public partial class FormMainViewModel : ObservableObject
 		albumMasterShip.Show(Window);
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void OpenAlbumMasterEquipment()
 	{
 
@@ -824,7 +824,7 @@ public partial class FormMainViewModel : ObservableObject
 		dialogAlbumMasterEquipment.Show(Window);
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void OpenAntiAirDefense()
 	{
 		if (!KCDatabase.Instance.Fleet.IsAvailable)
@@ -842,37 +842,37 @@ public partial class FormMainViewModel : ObservableObject
 		new AirDefenseWindow(new()).Show(Window);
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void OpenFleetImageGenerator()
 	{
 		ToolService.FleetImageGenerator();
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void OpenBaseAirCorpsSimulation()
 	{
 		ToolService.AirControlSimulator();
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void OpenExpChecker()
 	{
 		ToolService.ExpChecker();
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void OpenKancolleProgress()
 	{
 		new DialogKancolleProgressWpf().Show(Window);
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void OpenExtraBrowser()
 	{
 		ElectronicObserver.Window.FormBrowserHost.Instance.Browser.OpenExtraBrowser();
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void OpenQuestTrackerManager()
 	{
 		if (!KCDatabase.Instance.Quest.IsLoaded)
@@ -885,13 +885,13 @@ public partial class FormMainViewModel : ObservableObject
 		new QuestTrackerManagerWindow().Show(Window);
 	}
 	
-	[ICommand]
+	[RelayCommand]
 	private void OpenEquipmentUpgradePlanner()
 	{
 		ToolService.EquipmentUpgradePlanner();
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void OpenEventLockPlanner()
 	{
 		if (KCDatabase.Instance.MasterShips.Count == 0)
@@ -914,7 +914,7 @@ public partial class FormMainViewModel : ObservableObject
 		EventLockPlannerWindow.Show(Window);
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void OpenAutoRefresh()
 	{
 		if (AutoRefreshWindow is not null) return;
@@ -933,7 +933,7 @@ public partial class FormMainViewModel : ObservableObject
 		AutoRefreshWindow.Show(Window);
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void OpenDatabaseExplorer()
 	{
 		new DatabaseExplorerWindow().Show(Window);
@@ -943,7 +943,7 @@ public partial class FormMainViewModel : ObservableObject
 
 	#region Debug
 
-	[ICommand]
+	[RelayCommand]
 	private void LoadAPIFromFile()
 	{
 
@@ -968,7 +968,7 @@ public partial class FormMainViewModel : ObservableObject
 		//*/
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private async void LoadInitialAPI()
 	{
 		using OpenFileDialog ofd = new();
@@ -999,7 +999,7 @@ public partial class FormMainViewModel : ObservableObject
 		}
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void LoadAPIList(string path)
 	{
 
@@ -1070,7 +1070,7 @@ public partial class FormMainViewModel : ObservableObject
 		}
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void LoadRecordFromOld()
 	{
 
@@ -1120,7 +1120,7 @@ public partial class FormMainViewModel : ObservableObject
 		}
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void LoadDataFromOld()
 	{
 
@@ -1175,7 +1175,7 @@ public partial class FormMainViewModel : ObservableObject
 		}
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private async void DeleteOldAPI()
 	{
 
@@ -1248,7 +1248,7 @@ public partial class FormMainViewModel : ObservableObject
 		return count;
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private async void RenameShipResource()
 	{
 
@@ -1381,7 +1381,7 @@ public partial class FormMainViewModel : ObservableObject
 		return count;
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private async Task GenerateMasterData()
 	{
 #if DEBUG
@@ -1546,7 +1546,7 @@ public partial class FormMainViewModel : ObservableObject
 #endif
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void GenerateShipIdEnum()
 	{
 		static string CleanName(string name) => name
@@ -1576,7 +1576,7 @@ public partial class FormMainViewModel : ObservableObject
 		System.Windows.Clipboard.SetText(string.Join(",\n", enumValues));
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void GenerateEquipmentIdEnum()
 	{
 		static string CleanName(string name) => name
@@ -1601,7 +1601,7 @@ public partial class FormMainViewModel : ObservableObject
 
 	#region Help
 
-	[ICommand]
+	[RelayCommand]
 	private void ViewHelp()
 	{
 
@@ -1619,7 +1619,7 @@ public partial class FormMainViewModel : ObservableObject
 
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void ReportIssue()
 	{
 
@@ -1637,7 +1637,7 @@ public partial class FormMainViewModel : ObservableObject
 
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void JoinDiscord()
 	{
 		try
@@ -1655,7 +1655,7 @@ public partial class FormMainViewModel : ObservableObject
 		}
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private async void CheckForUpdate()
 	{
 		// translations and maintenance state
@@ -1664,7 +1664,7 @@ public partial class FormMainViewModel : ObservableObject
 		SoftwareInformation.CheckUpdate();
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void ViewVersion()
 	{
 		VersionInformationWindow? window = new VersionInformationWindow();
@@ -1943,7 +1943,7 @@ public partial class FormMainViewModel : ObservableObject
 		PrevPlayTimeRecorded = now;
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void Closing(CancelEventArgs e)
 	{
 		string name = CultureInfo.CurrentCulture.Name switch
@@ -1998,7 +1998,7 @@ public partial class FormMainViewModel : ObservableObject
 		}
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void Closed()
 	{
 		NotifierManager.Instance.ApplyToConfiguration();

@@ -917,13 +917,13 @@ public partial class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowse
 		ConfigurationUpdated();
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private async void Screenshot()
 	{
 		await SaveScreenShot();
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void SetZoom(string? zoomParameter)
 	{
 		if (!double.TryParse(zoomParameter, out double zoom)) return;
@@ -934,7 +934,7 @@ public partial class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowse
 		ConfigurationUpdated();
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void ModifyZoom(string? zoomParameter)
 	{
 		if (!double.TryParse(zoomParameter, out double zoom)) return;
@@ -945,7 +945,7 @@ public partial class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowse
 		ConfigurationUpdated();
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void SetToolMenuAlignment(Dock dock)
 	{
 		ToolMenuDock = dock;
@@ -962,7 +962,7 @@ public partial class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowse
 		ConfigurationUpdated();
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void SetToolMenuVisibility(Visibility visibility)
 	{
 		ToolMenuVisibility = visibility;
@@ -971,7 +971,7 @@ public partial class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowse
 		ConfigurationUpdated();
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void Mute()
 	{
 		if (Browser is null) return;
@@ -1060,7 +1060,7 @@ public partial class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowse
 		ConfigurationUpdated();
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void Refresh()
 	{
 		if (!Configuration.ConfirmAtRefresh ||
@@ -1072,7 +1072,7 @@ public partial class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowse
 		}
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void HardRefresh()
 	{
 		if (!Configuration.ConfirmAtRefresh ||
@@ -1084,7 +1084,7 @@ public partial class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowse
 		}
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void GoToLoginPage()
 	{
 		if (MessageBox.Show(FormBrowser.LoginDialog, FormBrowser.Confirmation,
@@ -1095,7 +1095,7 @@ public partial class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowse
 		}
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void GoTo()
 	{
 		BrowserHost.RequestNavigation(Browser.CoreWebView2?.Source ?? "");
@@ -1128,7 +1128,7 @@ public partial class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowse
 		//Browser?.Focus();
 	}
 
-	[ICommand]
+	[RelayCommand]
 	void OpenLastScreenshot()
 	{
 		if (LastScreenShotPath is null || !File.Exists(LastScreenShotPath)) return;
@@ -1141,7 +1141,7 @@ public partial class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowse
 		Process.Start(psi);
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void OpenScreenshotFolder()
 	{
 		if (!Directory.Exists(Configuration.ScreenShotPath)) return;
@@ -1154,7 +1154,7 @@ public partial class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowse
 		Process.Start(psi);
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void CopyLastScreenshot()
 	{
 		if (LastScreenshot is null) return;
@@ -1170,7 +1170,7 @@ public partial class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowse
 		}
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void OpenDevtools()
 	{
 		if (Browser is not { IsInitialized: true }) return;
@@ -1178,7 +1178,7 @@ public partial class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowse
 		Browser.CoreWebView2.OpenDevToolsWindow();
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private async void ClearCache()
 	{
 		if (MessageBox.Show(FormBrowser.ClearCacheMessage, FormBrowser.ClearCacheTitle,
@@ -1189,13 +1189,13 @@ public partial class BrowserViewModel : ObservableObject, BrowserLibCore.IBrowse
 		}
 	}
 
-	[ICommand]
+	[RelayCommand]
 	public void OpenExtraBrowser()
 	{
 		new ExtraBrowserWindow().Show();
 	}
 
-	[ICommand]
+	[RelayCommand]
 	public void OpenAirControlSimulator(string url)
 	{
 		new AirControlSimulatorWindow(url)

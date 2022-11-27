@@ -423,7 +423,7 @@
 		<ProjectReference Include="..\KancolleProgress\KancolleProgress.csproj" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0-preview3" />
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
 		<PackageReference Include="Dirkster.AvalonDock" Version="4.70.3" />
 		<PackageReference Include="Dirkster.ColorPickerLib" Version="1.6.2" />
 		<PackageReference Include="DotnetRuntimeBootstrapper" Version="2.3.1">

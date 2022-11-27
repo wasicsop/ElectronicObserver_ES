@@ -633,13 +633,13 @@ public partial class HeadquartersViewModel : AnchorableViewModel
 		}
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void ShowResourceChart()
 	{
 		new ResourceChartWPF().Show(App.Current.MainWindow);
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void CopyResources()
 	{
 		try
@@ -711,7 +711,7 @@ public partial class HeadquartersViewModel : AnchorableViewModel
 		}
 	}
 
-	[ICommand]
+	[RelayCommand]
 	private void ViewUseItems()
 	{
 		var db = KCDatabase.Instance;
