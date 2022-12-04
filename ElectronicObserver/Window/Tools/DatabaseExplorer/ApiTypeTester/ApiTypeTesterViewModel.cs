@@ -112,7 +112,7 @@ public partial class ApiTypeTesterViewModel
 
 	public ObservableCollection<string> ParsingErrors { get; } = new();
 
-	[ICommand]
+	[RelayCommand]
 	private void Run()
 	{
 		ParsingErrors.Clear();
