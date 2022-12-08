@@ -327,7 +327,8 @@ public partial class App : Application
 
 		tracker
 			.Configure<EquipmentUpgradePlannerWindow>()
-			.Property(w => w.ViewModel.DisplayFinished);
+			.Property(w => w.ViewModel.DisplayFinished)
+			.Property(w => w.ViewModel.PlanListWidth);
 
 		tracker
 			.Configure<ExpCheckerWindow>()
