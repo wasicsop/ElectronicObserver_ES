@@ -1,22 +1,26 @@
-﻿using System.Windows;
-using CommunityToolkit.Mvvm.DependencyInjection;
+﻿using CommunityToolkit.Mvvm.DependencyInjection;
+using CefSharp;
 using Jot;
 
-namespace Browser.AirControlSimulator;
+namespace Browser.CefSharpBrowser.AirControlSimulator;
 
 /// <summary>
 /// Interaction logic for AirControlSimulatorWindow.xaml
 /// </summary>
-public partial class AirControlSimulatorWindow : Window
+public partial class AirControlSimulatorWindow
 {
 	private Tracker Tracker { get; }
-	private AirControlSimulatorViewModel ViewModel { get; } = new();
+	private AirControlSimulatorViewModel ViewModel { get; }
 
-	public AirControlSimulatorWindow(string url)
+	public AirControlSimulatorWindow(string url, BrowserLibCore.IBrowserHost browserHost)
 	{
 		Tracker = Ioc.Default.GetService<Tracker>()!;
 
-		ViewModel.Uri = url;
+		ViewModel = new(browserHost)
+		{
+			Uri = url,
+		};
+
 		DataContext = ViewModel;
 
 		InitializeComponent();
@@ -38,8 +42,6 @@ public partial class AirControlSimulatorWindow : Window
 
 	private async void InitializeAsync()
 	{
-		await Browser.EnsureCoreWebView2Async(BrowserViewModel.Environment);
-
-		Browser.CoreWebView2.Navigate(ViewModel.Uri);
+		Browser.Load(ViewModel.Uri);
 	}
 }
