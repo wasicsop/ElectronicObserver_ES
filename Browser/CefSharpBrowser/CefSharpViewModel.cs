@@ -155,7 +155,7 @@ public class CefSharpViewModel : BrowserViewModel
 			DragHandler = new DragHandler(),
 			BrowserSettings = new BrowserSettings
 			{
-				WindowlessFrameRate = 60,
+				WindowlessFrameRate = 200,
 			},
 		};
 
