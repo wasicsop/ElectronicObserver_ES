@@ -35,9 +35,14 @@
 
 	</UserControl.Resources>
 
-	<StackPanel Background="Transparent" ContextMenu="{StaticResource OptionsContextMenu}">
+	<Grid Background="Transparent" ContextMenu="{StaticResource OptionsContextMenu}">
 
-		<StackPanel Orientation="Horizontal">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+
+		<StackPanel Grid.Row="0" Orientation="Horizontal">
 			<CheckBox
 				Margin="10 0 0 0"
 				Content="{Binding Translation.All}"
@@ -63,6 +68,7 @@
 		</StackPanel>
 
 		<DataGrid
+			Grid.Row="1"
 			AutoGenerateColumns="False"
 			ColumnWidth="90"
 			HeadersVisibility="Column"
@@ -138,5 +144,5 @@
 
 			</DataGrid.Columns>
 		</DataGrid>
-	</StackPanel>
+	</Grid>
 </UserControl>
