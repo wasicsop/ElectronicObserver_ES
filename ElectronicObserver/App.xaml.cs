@@ -321,13 +321,14 @@ public partial class App : Application
 
 		tracker
 			.Configure<EquipmentUpgradePlanViewerViewModel>()
-			.Property(w => w.DisplayFinished)
+			.Property(w => w.Filters.DisplayFinished)
 			.Property(w => w.ColumnProperties)
 			.Property(w => w.SortDescriptions);
 
 		tracker
 			.Configure<EquipmentUpgradePlannerWindow>()
-			.Property(w => w.ViewModel.DisplayFinished)
+			.Property(w => w.ViewModel.Filters.DisplayFinished)
+			.Property(w => w.ViewModel.CompactMode)
 			.Property(w => w.ViewModel.PlanListWidth);
 
 		tracker
