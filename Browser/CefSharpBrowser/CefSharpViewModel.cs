@@ -471,10 +471,13 @@ public class CefSharpViewModel : BrowserViewModel
 			{
 				try
 				{
-					Clipboard.SetImage(image.ToBitmapSource());
+					App.Current.Dispatcher.Invoke(() =>
+					{
+						Clipboard.SetImage(image.ToBitmapSource());
 
-					if ((savemode & 3) != 3)
-						AddLog(2, FormBrowser.ScreenshotCopiedToClipboard);
+						if ((savemode & 3) != 3)
+							AddLog(2, FormBrowser.ScreenshotCopiedToClipboard);
+					});
 				}
 				catch (Exception ex)
 				{
