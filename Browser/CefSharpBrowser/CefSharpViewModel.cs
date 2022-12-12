@@ -429,6 +429,7 @@ public class CefSharpViewModel : BrowserViewModel
 				}
 			}
 
+			App.Current.Dispatcher.Invoke(() => LastScreenshot = image.ToBitmapSource());
 
 			// to file
 			if ((savemode & 1) != 0)
