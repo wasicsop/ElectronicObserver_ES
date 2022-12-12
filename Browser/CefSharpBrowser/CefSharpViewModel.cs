@@ -138,7 +138,7 @@ public class CefSharpViewModel : BrowserViewModel
 		CefSharp = new ChromiumWebBrowser(KanColleUrl)
 		{
 			RequestHandler = requestHandler,
-			KeyboardHandler = new CefKeyboardHandler(MuteCommand,RefreshCommand,ScreenshotCommand,HardRefreshCommand),
+			KeyboardHandler = new CefKeyboardHandler(this),
 			MenuHandler = new MenuHandler(),
 			DragHandler = new DragHandler(),
 		};
