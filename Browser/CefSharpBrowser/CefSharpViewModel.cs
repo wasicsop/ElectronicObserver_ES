@@ -180,18 +180,7 @@ public class CefSharpViewModel : BrowserViewModel
 
 	private void SetCookie()
 	{
-		ICookieManager cookieManager = CefSharp.GetCookieManager();
-
-		Cookie dmmCookie = new()
-		{
-			Domain = ".dmm.com",
-			Expires = DateTime.Now.AddYears(6),
-			Name = "ckcy",
-			Path = "/",
-			Value = "1",
-			Secure = false
-		};
-		cookieManager.SetCookieAsync("https://www.dmm.com", dmmCookie).Wait();
+		CefSharp.ExecuteScriptAsync(Properties.Resources.RegionCookie);
 	}
 
 	protected override void ApplyZoom()
