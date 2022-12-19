@@ -432,11 +432,11 @@ public static class ShipDataExtensions
 		ShipTypes.AviationBattleship or
 		ShipTypes.SeaplaneTender or
 		ShipTypes.AmphibiousAssaultShip
-			=> ship.AllSlotInstance.Any(eq => eq is { MasterEquipment.IsAntiSubmarineAircraft: true }),
+			=> ship.AllSlotInstance.Zip(ship.Aircraft, (Equipment, Size) => (Equipment, Size)).Any(s => s.Equipment is { MasterEquipment.IsAntiSubmarineAircraft: true } && s.Size > 0),
 
 		ShipTypes.AircraftCarrier =>
 			ship.MasterShip.ShipId is ShipId.KagaKaiNiGo &&
-			ship.AllSlotInstance.Any(eq => eq is { MasterEquipment.IsAntiSubmarineAircraft: true }),
+			ship.AllSlotInstance.Zip(ship.Aircraft, (Equipment, Size) => (Equipment, Size)).Any(s => s.Equipment is { MasterEquipment.IsAntiSubmarineAircraft: true } && s.Size > 0),
 
 		_ => false
 	};
@@ -470,15 +470,13 @@ public static class ShipDataExtensions
 
 		{ MasterShip.ShipType: ShipTypes.LightAircraftCarrier } => ship.ASWTotal switch
 		{
-			>= 100 => ship.HasSonar() && ship.HasAntiSubmarineAircraft(),
-			>= 65 => ship.HasSpecialAntiSubmarineAttacker() || ship.HasAswPatrolAircraft(),
+			>= 100 => ship.AswCondition100() || ship.AswCondition65(),
+			>= 65 => ship.AswCondition65(),
 			>= 50 => ship.MasterShip.ShipId switch
 			{
 				ShipId.SuzuyaCVLKaiNi or ShipId.KumanoCVLKaiNi => false,
-
 				_ => ship.HasSonar() && (ship.HasSpecialAntiSubmarineAttacker() || ship.HasAswPatrolAircraft()),
 			},
-
 			_ => false,
 		},
 
@@ -505,6 +503,10 @@ public static class ShipDataExtensions
 
 		_ => false,
 	};
+
+	public static bool AswCondition65(this IShipData ship) => ship.HasSpecialAntiSubmarineAttacker() || ship.HasAswPatrolAircraft();
+
+	public static bool AswCondition100(this IShipData ship) => ship.HasSonar() && ship.HasAntiSubmarineAircraft();
 
 	private static bool HyuugaK2OpeningAswCondition(this IShipData ship)
 	{

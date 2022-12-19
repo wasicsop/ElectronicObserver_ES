@@ -292,4 +292,73 @@ public class OpeningAswTests
 
 		Assert.True(yamashioMaru.CanDoOpeningAsw());
 	}
+
+	[Fact(DisplayName = "CVL with 100+ ASW with 65ASW Condition")]
+	public void OpeningASWTest8()
+	{
+		ShipDataMock gambierbay = new(Db.MasterShips[ShipId.GambierBayMkII])
+		{
+			Level = 175,
+			SlotInstance = new List<IEquipmentData?>
+			{
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.CarrierBasedTorpedo_TBM3W_3S]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.AviationPersonnel_SkilledDeckPersonnel_AviationMaintenancePersonnel]),
+			},
+		};
+
+		Assert.True(gambierbay.CanDoOpeningAsw());
+	}
+
+	[Fact(DisplayName = "Housho k2s with 0 slot no OASW")]
+	public void OpeningASWTtest9()
+	{
+		ShipDataMock houshok2s = new(Db.MasterShips[ShipId.HoushouKaiNiSen])
+		{
+			Level = 175,
+			SlotInstance = new List<IEquipmentData?>
+			{
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SecondaryGun_15_5cmTripleSecondaryGun]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SecondaryGun_15_5cmTripleSecondaryGun]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SecondaryGun_15_5cmTripleSecondaryGun]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.CarrierBasedTorpedo_TBM3W_3S]),
+			}
+		};
+		Assert.False(houshok2s.CanDoOpeningAsw());
+	}
+
+	[Fact(DisplayName = "Housho k2s with 0 slot And 1 aircraft OASW")]
+	public void OpeningASWTest10()
+	{
+		ShipDataMock houshok2s = new(Db.MasterShips[ShipId.HoushouKaiNiSen])
+		{
+			Level = 175,
+			SlotInstance = new List<IEquipmentData?>
+			{
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SecondaryGun_15_5cmTripleSecondaryGun]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SecondaryGun_15_5cmTripleSecondaryGun]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.CarrierBasedBomber_SuiseiModel12_634AirGroupwType3ClusterBombs]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Autogyro_S51JKai]),
+			}
+		};
+		Assert.True(houshok2s.CanDoOpeningAsw());
+	}
+
+	[Fact(DisplayName = "Emptied carrier can't attack subs")]
+	public void OpeningASWTest11()
+	{
+		ShipDataMock zuihok2b = new (Db.MasterShips[ShipId.ZuihouKaiNiB])
+		{
+			Level = 175,
+			Aircraft = new List<int> { 0, 0, 0, 0, 0, },
+			SlotInstance = new List<IEquipmentData?>
+			{
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.ASPatrol_Type3CommandLiaisonAircraft_ASW]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.CarrierBasedTorpedo_TBM3W_3S]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Sonar_Type3ActiveSONAR])
+
+			}
+		};
+		Assert.False(zuihok2b.CanAttackSubmarine());
+		Assert.False(zuihok2b.CanDoOpeningAsw());
+	}
 }
