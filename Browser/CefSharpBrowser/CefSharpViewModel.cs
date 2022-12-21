@@ -149,6 +149,7 @@ public class CefSharpViewModel : BrowserViewModel
 		CefSharp.LoadingStateChanged += Browser_LoadingStateChanged;
 
 		Host.Child = CefSharp;
+		VolumeProcessInitialized = true;
 	}
 
 	private void Browser_LoadingStateChanged(object? sender, LoadingStateChangedEventArgs e)
