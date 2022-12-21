@@ -24,7 +24,7 @@ public class CefSharpViewModel : BrowserViewModel
 	public override object? Browser => Host;
 	private WindowsFormsHost Host { get; } = new();
 	private ChromiumWebBrowser? CefSharp { get; set; }
-	private static string BrowserCachePath => BrowserConstants.WebView2CachePath;
+	private static string BrowserCachePath => BrowserConstants.CefSharpCachePath;
 
 	public CefSharpViewModel(string host, int port, string culture) : base(host, port, culture)
 	{
