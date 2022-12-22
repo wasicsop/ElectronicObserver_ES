@@ -149,7 +149,6 @@ public class CefSharpViewModel : BrowserViewModel
 		CefSharp.LoadingStateChanged += Browser_LoadingStateChanged;
 
 		Host.Child = CefSharp;
-		VolumeProcessInitialized = true;
 	}
 
 	private void Browser_LoadingStateChanged(object? sender, LoadingStateChangedEventArgs e)
@@ -304,6 +303,12 @@ public class CefSharpViewModel : BrowserViewModel
 	protected override void TryGetVolumeManager()
 	{
 		VolumeManager = VolumeManager.CreateInstanceByProcessName("CefSharp.BrowserSubprocess");
+
+		if (VolumeManager is not null)
+		{
+			RealVolume = (int)(VolumeManager.Volume * 100);
+			VolumeProcessInitialized = true;
+		}
 	}
 
 	protected override void SetVolumeState()
