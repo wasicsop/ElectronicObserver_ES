@@ -71,6 +71,8 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 		KcDatabase = Ioc.Default.GetRequiredService<IKCDatabase>();
 		SortieRecordViewer = Ioc.Default.GetRequiredService<SortieRecordViewerTranslationViewModel>();
 
+		Db.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
+
 		MinDate = Db.Sorties
 			.Include(s => s.ApiFiles)
 			.OrderBy(s => s.Id)
@@ -106,7 +108,7 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 		Sorties.Clear();
 
 		List<SortieRecord> sorties = Db.Sorties
-			.Include(s => s.ApiFiles)
+			.Include(s => s.ApiFiles.Take(1))
 			.AsQueryable()
 			.Where(s => World as string == AllRecords || s.World == World as int?)
 			.Where(s => Map as string == AllRecords || s.Map == Map as int?)
@@ -161,9 +163,17 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 		"api_req_map/next";
 
 	[RelayCommand]
-	private static void CopyReplayToClipboard(SortieRecordViewModel? sortie)
+	private void CopyReplayToClipboard(SortieRecordViewModel? sortie)
 	{
 		if (sortie is null) return;
+
+		SortieRecord? sortieRecord = Db.Sorties
+			.Include(s => s.ApiFiles)
+			.FirstOrDefault(s => s.Id == sortie.Model.Id);
+
+		if(sortieRecord is null) return;
+
+		sortie = new(sortieRecord);
 
 		ReplayData replay = sortie.Model.ToReplayData();
 
