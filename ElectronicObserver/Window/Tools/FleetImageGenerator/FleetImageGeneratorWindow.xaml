@@ -17,6 +17,10 @@
 	mc:Ignorable="d"
 	>
 	<Window.Resources>
+		<Style TargetType="TextBlock">
+			<Setter Property="Foreground" Value="{Binding Foreground}" />
+		</Style>
+
 		<Style BasedOn="{StaticResource DefaultCheckBoxStyle}" TargetType="CheckBox">
 			<Setter Property="Margin" Value="4 0" />
 			<Setter Property="Padding" Value="2 0" />
@@ -43,6 +47,7 @@
 					/>
 			</StackPanel>
 		</DataTemplate>
+
 		<DataTemplate DataType="{x:Type local:FleetViewModel}">
 			<Grid Margin="2 0" Visibility="{Binding Visible, Converter={StaticResource BooleanToVisibilityConverter}}">
 				<Grid.RowDefinitions>
@@ -759,10 +764,11 @@
 	<Grid Margin="4" HorizontalAlignment="Left">
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
 			<RowDefinition />
 		</Grid.RowDefinitions>
 
-		<StackPanel Grid.Row="0" Orientation="Horizontal">
+		<WrapPanel Grid.Row="0" Orientation="Horizontal">
 			<Button
 				Margin="4 0"
 				Click="CopyImageToClipboard"
@@ -863,16 +869,57 @@
 				CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"
 				Content="{Binding DialogFleetImageGenerator.Settings}"
 				/>
-		</StackPanel>
+		</WrapPanel>
+
+		<ContentControl
+			Grid.Row="1"
+			Content="{Binding}"
+			Visibility="{Binding QuickConfigAccess, Converter={StaticResource BooleanToVisibilityConverter}}"
+			>
+			<ContentControl.ContentTemplate>
+				<DataTemplate>
+					<StackPanel>
+						<local:FleetImageGeneratorConfigurationUserControl />
+						<Separator />
+					</StackPanel>
+				</DataTemplate>
+			</ContentControl.ContentTemplate>
+		</ContentControl>
 
 		<ScrollViewer
-			Grid.Row="1"
+			Grid.Row="2"
 			HorizontalAlignment="Left"
 			VerticalAlignment="Top"
 			HorizontalScrollBarVisibility="Auto"
 			VerticalScrollBarVisibility="Visible"
 			>
 			<Border x:Name="ImageContent">
+				<Border.Resources>
+					<Style TargetType="Border">
+						<Style.Triggers>
+							<DataTrigger Binding="{Binding UseCustomTheme}" Value="True">
+								<Setter Property="TextElement.Foreground" Value="{Binding Foreground}" />
+								<Setter Property="Background" Value="{Binding Background}" />
+							</DataTrigger>
+
+							<MultiDataTrigger>
+								<MultiDataTrigger.Conditions>
+									<Condition Binding="{Binding UseCustomTheme}" Value="True" />
+									<Condition Binding="{Binding BackgroundImageExists}" Value="True" />
+								</MultiDataTrigger.Conditions>
+
+								<MultiDataTrigger.Setters>
+									<Setter Property="Background">
+										<Setter.Value>
+											<ImageBrush ImageSource="{Binding BackgroundImagePath}" Stretch="Uniform" />
+										</Setter.Value>
+									</Setter>
+								</MultiDataTrigger.Setters>
+							</MultiDataTrigger>
+						</Style.Triggers>
+					</Style>
+				</Border.Resources>
+
 				<Grid>
 					<Grid.RowDefinitions>
 						<RowDefinition Height="Auto" />

@@ -4,6 +4,8 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
@@ -20,6 +22,7 @@ public partial class FleetImageGeneratorViewModel : WindowViewModelBase
 {
 	private DataSerializationService DataSerialization { get; }
 	private ToolService Tools { get; }
+	private FileService FileService { get; }
 	public FleetImageGeneratorTranslationViewModel DialogFleetImageGenerator { get; }
 
 	private FleetImageGeneratorImageDataModel ImageDataModel { get; set; } = new();
@@ -56,6 +59,15 @@ public partial class FleetImageGeneratorViewModel : WindowViewModelBase
 		Fleet4Visible,
 	}.Count(v => v);
 
+	public bool QuickConfigAccess { get; set; }
+
+	public bool UseCustomTheme { get; set; }
+	public Color ForegroundColor { get; set; }
+	public Color BackgroundColor { get; set; }
+	public SolidColorBrush Foreground => new(ForegroundColor);
+	public SolidColorBrush Background => new(BackgroundColor);
+	public string? BackgroundImagePath { get; set; }
+	public bool BackgroundImageExists => File.Exists(BackgroundImagePath);
 
 	public int FleetNameFontSize => ImageType switch
 	{
@@ -134,6 +146,7 @@ public partial class FleetImageGeneratorViewModel : WindowViewModelBase
 	{
 		DataSerialization = Ioc.Default.GetRequiredService<DataSerializationService>();
 		Tools = Ioc.Default.GetRequiredService<ToolService>();
+		FileService = Ioc.Default.GetRequiredService<FileService>();
 		DialogFleetImageGenerator = Ioc.Default.GetRequiredService<FleetImageGeneratorTranslationViewModel>();
 
 		PropertyChanged += (sender, args) =>
@@ -280,6 +293,11 @@ public partial class FleetImageGeneratorViewModel : WindowViewModelBase
 		OpenImageAfterOutput = Configuration.Config.FleetImageGenerator.OpenImageAfterOutput;
 		SynchronizeTitleAndFileName = Configuration.Config.FleetImageGenerator.SyncronizeTitleAndFileName;
 		DesiredFleetColumns = Configuration.Config.FleetImageGenerator.Argument.HorizontalFleetCount;
+		QuickConfigAccess = Configuration.Config.FleetImageGenerator.QuickConfigAccess;
+		UseCustomTheme = Configuration.Config.FleetImageGenerator.UseCustomTheme;
+		ForegroundColor = (Color)ColorConverter.ConvertFromString(Configuration.Config.FleetImageGenerator.ForegroundColor);
+		BackgroundColor = (Color)ColorConverter.ConvertFromString(Configuration.Config.FleetImageGenerator.BackgroundColor);
+		BackgroundImagePath = Configuration.Config.FleetImageGenerator.Argument.BackgroundImagePath;
 	}
 
 	private void SaveConfig()
@@ -324,6 +342,11 @@ public partial class FleetImageGeneratorViewModel : WindowViewModelBase
 		Configuration.Config.FleetImageGenerator.OpenImageAfterOutput = OpenImageAfterOutput;
 		Configuration.Config.FleetImageGenerator.SyncronizeTitleAndFileName = SynchronizeTitleAndFileName;
 		Configuration.Config.FleetImageGenerator.Argument.HorizontalFleetCount = DesiredFleetColumns;
+		Configuration.Config.FleetImageGenerator.QuickConfigAccess = QuickConfigAccess;
+		Configuration.Config.FleetImageGenerator.UseCustomTheme = UseCustomTheme;
+		Configuration.Config.FleetImageGenerator.ForegroundColor = ForegroundColor.ToString();
+		Configuration.Config.FleetImageGenerator.BackgroundColor = BackgroundColor.ToString();
+		Configuration.Config.FleetImageGenerator.Argument.BackgroundImagePath = BackgroundImagePath ?? "";
 	}
 
 	public override void Closed()
@@ -460,5 +483,15 @@ public partial class FleetImageGeneratorViewModel : WindowViewModelBase
 		if (folderBrowserDialog.ShowDialog() is not System.Windows.Forms.DialogResult.OK) return;
 
 		ImageSaveLocation = folderBrowserDialog.SelectedPath;
+	}
+
+	[RelayCommand]
+	private void SelectBackgroundImage()
+	{
+		string newImagePath = FileService.OpenImagePath(BackgroundImagePath);
+
+		if(newImagePath is null) return;
+
+		BackgroundImagePath = newImagePath;
 	}
 }

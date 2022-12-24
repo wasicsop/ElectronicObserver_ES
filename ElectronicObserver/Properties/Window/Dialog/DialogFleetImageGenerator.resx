@@ -370,4 +370,16 @@
   <data name="SaveImageToFile" xml:space="preserve">
     <value>保存</value>
   </data>
+  <data name="QuickConfigurationAccess" xml:space="preserve">
+    <value>設定クイックアクセス</value>
+  </data>
+  <data name="QuickConfigurationAccessToolTip" xml:space="preserve">
+    <value>有効にすると、編成出力ウィンドウで、編成プレビューの上に設定が表示されます。</value>
+  </data>
+  <data name="Theme" xml:space="preserve">
+    <value>テーマ</value>
+  </data>
+  <data name="CustomTheme" xml:space="preserve">
+    <value>カスタムテーマ</value>
+  </data>
 </root>

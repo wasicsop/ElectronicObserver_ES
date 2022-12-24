@@ -384,4 +384,16 @@ Uncheck 'Copy to clipboard' on the details tab to export fleet image to a file.<
   <data name="SaveImageToFile" xml:space="preserve">
     <value>Save</value>
   </data>
+  <data name="QuickConfigurationAccess" xml:space="preserve">
+    <value>Quick configuration access</value>
+  </data>
+  <data name="QuickConfigurationAccessToolTip" xml:space="preserve">
+    <value>When enabled, configuration will be displayed in the fleet output window, above the fleet preview.</value>
+  </data>
+  <data name="Theme" xml:space="preserve">
+    <value>Theme</value>
+  </data>
+  <data name="CustomTheme" xml:space="preserve">
+    <value>Custom theme</value>
+  </data>
 </root>

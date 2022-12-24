@@ -216,6 +216,15 @@ namespace ElectronicObserver.Properties.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to カスタムテーマ.
+        /// </summary>
+        public static string CustomTheme {
+            get {
+                return ResourceManager.GetString("CustomTheme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 詳細.
         /// </summary>
         public static string Details {
@@ -678,6 +687,24 @@ namespace ElectronicObserver.Properties.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 設定クイックアクセス.
+        /// </summary>
+        public static string QuickConfigurationAccess {
+            get {
+                return ResourceManager.GetString("QuickConfigurationAccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 有効にすると、編成出力ウィンドウで、編成プレビューの上に設定が表示されます。.
+        /// </summary>
+        public static string QuickConfigurationAccessToolTip {
+            get {
+                return ResourceManager.GetString("QuickConfigurationAccessToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 中破グラフィックを適用する.
         /// </summary>
         public static string ReflectDamageGraphic {
@@ -828,6 +855,15 @@ namespace ElectronicObserver.Properties.Window.Dialog {
         public static string SynchronizeTitleAndFileNameToolTip {
             get {
                 return ResourceManager.GetString("SynchronizeTitleAndFileNameToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to テーマ.
+        /// </summary>
+        public static string Theme {
+            get {
+                return ResourceManager.GetString("Theme", resourceCulture);
             }
         }
         

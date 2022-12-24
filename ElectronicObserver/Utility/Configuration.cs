@@ -1805,6 +1805,10 @@ public sealed class Configuration
 			public int MaxEquipmentNameWidth { get; set; }
 			public bool DownloadMissingShipImage { get; set; }
 			public string ImageSaveLocation { get; set; }
+			public bool QuickConfigAccess { get; set; }
+			public bool UseCustomTheme { get; set; }
+			public string ForegroundColor { get; set; }
+			public string BackgroundColor { get; set; }
 
 			public ConfigFleetImageGenerator()
 				: base()
@@ -1820,6 +1824,10 @@ public sealed class Configuration
 				MaxEquipmentNameWidth = 200;
 				DownloadMissingShipImage = true;
 				ImageSaveLocation = "FleetImageGenerator";
+				QuickConfigAccess = false;
+				UseCustomTheme = false;
+				ForegroundColor = "#FFFFFFFF";
+				BackgroundColor = "#FF000000";
 			}
 		}
 		[DataMember]

@@ -8,8 +8,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using ElectronicObserver.Properties.Window.Dialog;
 
-
 namespace ElectronicObserver.Window.Tools.FleetImageGenerator;
+
 /// <summary>
 /// Interaction logic for FleetImageGeneratorWindow.xaml
 /// </summary>
@@ -41,7 +41,13 @@ public partial class FleetImageGeneratorWindow
 
 		using (drawingContext)
 		{
-			drawingContext.DrawRectangle(Background, null, new Rect(new Point(0, 0), new Point(width, height)));
+			Brush background = ViewModel.UseCustomTheme switch
+			{
+				true => ViewModel.Background,
+				_ => Background,
+			};
+
+			drawingContext.DrawRectangle(background, null, new Rect(new Point(0, 0), new Point(width, height)));
 			drawingContext.DrawRectangle(sourceBrush, null, new Rect(new Point(marginLeft, marginTop), new Point(renderWidth, renderHeight)));
 		}
 

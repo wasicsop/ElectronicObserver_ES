@@ -1,4 +1,5 @@
 ﻿using ElectronicObserver.ViewModels.Translations;
+using ElectronicObserver.Window.Dialog;
 
 namespace ElectronicObserver.Window.Tools.FleetImageGenerator;
 
@@ -50,6 +51,8 @@ public class FleetImageGeneratorTranslationViewModel : TranslationBaseViewModel
 	public string HorizontalShipCountToolTip => Properties.Window.Dialog.DialogFleetImageGenerator.HorizontalShipCountToolTip;
 	public string FleetColumn => Properties.Window.Dialog.DialogFleetImageGenerator.FleetColumn;
 	public string HorizontalFleetCountToolTip => Properties.Window.Dialog.DialogFleetImageGenerator.HorizontalFleetCountToolTip;
+	public string QuickConfigurationAccess => Properties.Window.Dialog.DialogFleetImageGenerator.QuickConfigurationAccess;
+	public string QuickConfigurationAccessToolTip => Properties.Window.Dialog.DialogFleetImageGenerator.QuickConfigurationAccessToolTip;
 
 	public string Font => Properties.Window.Dialog.DialogFleetImageGenerator.Font;
 	public string ButtonClearFont => Properties.Window.Dialog.DialogFleetImageGenerator.ButtonClearFont;
@@ -64,6 +67,11 @@ public class FleetImageGeneratorTranslationViewModel : TranslationBaseViewModel
 	public string OpenImageDialog => Properties.Window.Dialog.DialogFleetImageGenerator.OpenImageDialog;
 	public string SaveImageDialog => Properties.Window.Dialog.DialogFleetImageGenerator.SaveImageDialog;
 	
+	public string Theme => Properties.Window.Dialog.DialogFleetImageGenerator.Theme;
+	public string CustomTheme => Properties.Window.Dialog.DialogFleetImageGenerator.CustomTheme;
+	public string ForeColorDisplay => NotifyRes.ForeColorDisplay;
+	public string BackColorDisplay => NotifyRes.BackColorDisplay;
+
 	public string UseAlbumStatusName => Properties.Window.Dialog.DialogFleetImageGenerator.UseAlbumStatusName;
 	public string MaxEquipmentNameWidth => Properties.Window.Dialog.DialogFleetImageGenerator.MaxEquipmentNameWidth;
 	public string DownloadMissingShipImage => Properties.Window.Dialog.DialogFleetImageGenerator.DownloadMissingShipImage;
