@@ -12,7 +12,6 @@ using ElectronicObserver.Notifier;
 using ElectronicObserver.Services;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Window.Dialog;
-using ScottPlot.Plottable;
 
 namespace ElectronicObserver.Window.Settings.Notification.Base;
 
