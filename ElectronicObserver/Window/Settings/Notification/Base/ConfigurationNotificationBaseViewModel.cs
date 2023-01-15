@@ -12,6 +12,7 @@ using ElectronicObserver.Notifier;
 using ElectronicObserver.Services;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Window.Dialog;
+using ScottPlot.Plottable;
 
 namespace ElectronicObserver.Window.Settings.Notification.Base;
 
@@ -33,12 +34,14 @@ public partial class ConfigurationNotificationBaseViewModel : ObservableValidato
 	public bool ShowsDialog { get; set; }
 
 	[ObservableProperty]
+	[NotifyDataErrorInfo]
 	[CustomValidation(typeof(ConfigurationNotificationBaseViewModel), nameof(ValidateImagePath))]
 	private string _imagePath;
 
 	public bool DrawsImage { get; set; }
 
 	[ObservableProperty]
+	[NotifyDataErrorInfo]
 	[CustomValidation(typeof(ConfigurationNotificationBaseViewModel), nameof(ValidateSoundPath))]
 	private string _soundPath;
 
