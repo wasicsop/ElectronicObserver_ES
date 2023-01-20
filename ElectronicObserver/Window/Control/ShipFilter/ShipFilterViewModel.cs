@@ -30,8 +30,16 @@ public partial class ShipFilterViewModel : ObservableObject
 	public bool CanEquipDaihatsu { get; set; }
 	public bool CanEquipTank { get; set; }
 	public bool CanEquipFcf { get; set; }
+	public bool CanEquipBulge { get; set; }
 	public bool HasExpansionSlot { get; set; }
 	public string? NameFilter { get; set; } = "";
+
+	private List<EquipmentTypes> BulgeTypes { get; } = new()
+	{
+		EquipmentTypes.ExtraArmor,
+		EquipmentTypes.ExtraArmorMedium,
+		EquipmentTypes.ExtraArmorLarge,
+	};
 
 	public ShipFilterViewModel()
 	{
@@ -68,6 +76,7 @@ public partial class ShipFilterViewModel : ObservableObject
 		if (CanEquipDaihatsu && !ship.MasterShip.EquippableCategoriesTyped.Contains(EquipmentTypes.LandingCraft)) return false;
 		if (CanEquipTank && !ship.MasterShip.EquippableCategoriesTyped.Contains(EquipmentTypes.SpecialAmphibiousTank)) return false;
 		if (CanEquipFcf && !ship.MasterShip.EquippableCategoriesTyped.Contains(EquipmentTypes.CommandFacility)) return false;
+		if (CanEquipBulge && !ship.MasterShip.EquippableCategoriesTyped.Intersect(BulgeTypes).Any()) return false;
 		if (HasExpansionSlot && !ship.IsExpansionSlotAvailable) return false;
 		if (!string.IsNullOrEmpty(NameFilter) && !TransliterationService.Matches(ship.MasterShip, NameFilter, WanaKana.ToRomaji(NameFilter))) return false;
 		// other filters
