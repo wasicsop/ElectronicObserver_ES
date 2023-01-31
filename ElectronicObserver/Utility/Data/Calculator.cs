@@ -34,20 +34,18 @@ public static class Calculator
 	/// <summary>
 	/// 各装備カテゴリにおける制空値の熟練度ボーナス
 	/// </summary>
-	private static Dictionary<EquipmentTypes, int[]> AircraftLevelBonus { get; } = new() 
-	{
-		{ EquipmentTypes.CarrierBasedFighter,    new[] { 0, 0, 2, 5, 9, 14, 14, 22, 22 } },
-		{ EquipmentTypes.CarrierBasedBomber,     new[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 } },
-		{ EquipmentTypes.CarrierBasedTorpedo,    new[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 } },
-		{ EquipmentTypes.SeaplaneBomber,         new[] { 0, 1, 1, 1, 1, 3, 3, 6, 6 } },
-		{ EquipmentTypes.SeaplaneFighter,        new[] { 0, 0, 2, 5, 9, 14, 14, 22, 22 } },
-		{ EquipmentTypes.LandBasedAttacker,      new[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 } },
-		{ EquipmentTypes.Interceptor,            new[] { 0, 0, 2, 5, 9, 14, 14, 22, 22 } },
-		{ EquipmentTypes.HeavyBomber,            new[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 } },
-		{ EquipmentTypes.JetFighter,             new[] { 0, 0, 2, 5, 9, 14, 14, 22, 22 } },
-		{ EquipmentTypes.JetBomber,              new[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 } },
-		{ EquipmentTypes.JetTorpedo,             new[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 } },
-		{ EquipmentTypes.ASPatrol,               new[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 } },
+	private static readonly Dictionary<EquipmentTypes, int[]> AircraftLevelBonus = new Dictionary<EquipmentTypes, int[]>() {
+		{ EquipmentTypes.CarrierBasedFighter,    new int[] { 0, 0, 2, 5, 9, 14, 14, 22, 22 } },
+		{ EquipmentTypes.CarrierBasedBomber,     new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 } },
+		{ EquipmentTypes.CarrierBasedTorpedo,    new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 } },
+		{ EquipmentTypes.SeaplaneBomber,         new int[] { 0, 1, 1, 1, 1, 3, 3, 6, 6 } },
+		{ EquipmentTypes.SeaplaneFighter,        new int[] { 0, 0, 2, 5, 9, 14, 14, 22, 22 } },
+		{ EquipmentTypes.LandBasedAttacker,      new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 } },
+		{ EquipmentTypes.Interceptor,            new int[] { 0, 0, 2, 5, 9, 14, 14, 22, 22 } },
+		{ EquipmentTypes.HeavyBomber,            new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 } },
+		{ EquipmentTypes.JetFighter,             new int[] { 0, 0, 2, 5, 9, 14, 14, 22, 22 } },
+		{ EquipmentTypes.JetBomber,              new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 } },
+		{ EquipmentTypes.JetTorpedo,             new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 } },
 	};
 
 	/// <summary>
