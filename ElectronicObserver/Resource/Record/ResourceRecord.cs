@@ -6,7 +6,7 @@ using ElectronicObserver.Data;
 using ElectronicObserver.Observer;
 using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.Utility.Storage;
-
+using ElectronicObserver.Window.Tools.SenkaViewer;
 namespace ElectronicObserver.Resource.Record;
 
 /// <summary>
@@ -236,29 +236,7 @@ public class ResourceRecord : RecordBase
 	/// </summary>
 	public ResourceElement GetRecordPrevious()
 	{
-		DateTime now = DateTime.Now;
-		bool isDst = TimeZoneInfo.Local.IsDaylightSavingTime(now);
-
-		now = DateTime.UtcNow + new TimeSpan(9, 0, 0);
-
-		DateTime target;
-		if (now.TimeOfDay.Hours < 2)
-		{
-			target = new DateTime(now.Year, now.Month, now.Day, 14, 0, 0).Subtract(TimeSpan.FromDays(1));
-		}
-		else if (now.TimeOfDay.Hours < 14)
-		{
-			target = new DateTime(now.Year, now.Month, now.Day, 2, 0, 0);
-		}
-		else
-		{
-			target = new DateTime(now.Year, now.Month, now.Day, 14, 0, 0);
-		}
-
-		if (isDst)
-			target += new TimeSpan(1, 0, 0);
-
-		return GetRecord(target.Add(DateTimeHelper.GetTimeDifference()));
+		return GetRecord(SenkaViewerViewModel.GetSessionStart(DateTime.UtcNow).ToLocalTime());
 	}
 
 	/// <summary>
@@ -266,25 +244,7 @@ public class ResourceRecord : RecordBase
 	/// </summary>
 	public ResourceElement GetRecordDay()
 	{
-		DateTime now = DateTime.Now;
-		bool isDst = TimeZoneInfo.Local.IsDaylightSavingTime(now);
-
-		now = DateTime.UtcNow + new TimeSpan(9, 0, 0);
-
-		DateTime target;
-		if (now.TimeOfDay.Hours < 2)
-		{
-			target = new DateTime(now.Year, now.Month, now.Day, 2, 0, 0).Subtract(TimeSpan.FromDays(1));
-		}
-		else
-		{
-			target = new DateTime(now.Year, now.Month, now.Day, 2, 0, 0);
-		}
-
-		if (isDst)
-			target += new TimeSpan(1, 0, 0);
-
-		return GetRecord(target.Add(DateTimeHelper.GetTimeDifference()));
+		return GetRecord(SenkaViewerViewModel.GetDayStart(DateTime.UtcNow.ToLocalTime()));
 	}
 
 
@@ -293,9 +253,7 @@ public class ResourceRecord : RecordBase
 	/// </summary>
 	public ResourceElement GetRecordMonth()
 	{
-		DateTime now = DateTime.UtcNow + new TimeSpan(9, 0, 0);
-
-		return GetRecord(new DateTime(now.Year, now.Month, 1).Add(DateTimeHelper.GetTimeDifference()));
+		return GetRecord(SenkaViewerViewModel.GetMonthStart(DateTime.UtcNow.ToLocalTime()));
 	}
 
 
