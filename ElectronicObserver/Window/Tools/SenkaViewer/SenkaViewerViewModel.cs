@@ -97,6 +97,9 @@ public partial class SenkaViewerViewModel : WindowViewModelBase
 			int? startHqExp = ResourceRecord.GetRecord(senkaRecord.Start.ToLocalTime())?.HQExp;
 			int? endHqExp = ResourceRecord.GetRecord(senkaRecord.End.ToLocalTime())?.HQExp;
 
+			startHqExp ??= ResourceRecord.Record.LastOrDefault()?.HQExp;
+			endHqExp ??= ResourceRecord.Record.LastOrDefault()?.HQExp;
+
 			senkaRecord.EstimatedHqExpSenkaGains = (startHqExp, endHqExp) switch
 			{
 				(int s, int e) => (e - s) * 7 / 10000.0,
