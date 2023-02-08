@@ -87,8 +87,12 @@ public partial class SenkaViewerViewModel : WindowViewModelBase
 		if (!apiFiles.Any()) return;
 
 		DateTime start = DateTimeBegin.ToUniversalTime();
-
 		DateTime end = DateTimeEnd.ToUniversalTime();
+
+		if (end > DateTime.UtcNow)
+		{
+			end = DateTime.UtcNow;
+		}
 
 		List<SenkaRecord> senkaRecords = GenerateSenkaRecords(start, end);
 
@@ -96,7 +100,7 @@ public partial class SenkaViewerViewModel : WindowViewModelBase
 		{
 			int? startHqExp = ResourceRecord.GetRecord(senkaRecord.Start.ToLocalTime())?.HQExp;
 			int? endHqExp = ResourceRecord.GetRecord(senkaRecord.End.ToLocalTime())?.HQExp;
-
+			
 			startHqExp ??= ResourceRecord.Record.LastOrDefault()?.HQExp;
 			endHqExp ??= KCDatabase.Instance.Admiral switch
 			{
