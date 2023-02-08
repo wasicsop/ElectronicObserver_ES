@@ -1885,7 +1885,7 @@ public partial class FormMainViewModel : ObservableObject
 
 				string maintState = eventOrMaintenanceStarted switch
 				{
-					false => string.Format(message, $"{maintTimer:d\\ hh\\:mm\\:ss}"),
+					false => string.Format(message, $"{maintTimer:d\\.hh\\:mm\\:ss}"),
 					_ => message
 				};
 
