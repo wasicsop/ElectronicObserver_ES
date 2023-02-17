@@ -497,7 +497,13 @@ public class FleetItemViewModel : ObservableObject
 					_ => $"{attack}"
 				};
 
-				sb.AppendFormat($"\r\n・[{rate:P1}] - " +
+				static string AttackRateDisplay(double rate) => rate switch
+				{
+					0 => "???",
+					_ => $"{rate:P1}",
+				};
+
+				sb.AppendFormat($"\r\n・[{AttackRateDisplay(rate)}] - " +
 								$"{attackDisplay} - " +
 								$"{FormFleet.Power}: {power} - " +
 								$"{FormFleet.Accuracy}: {accuracy:0.##}");
