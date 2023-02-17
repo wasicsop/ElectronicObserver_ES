@@ -894,6 +894,7 @@ public static class Constants
 		NightAttackKind.SpecialMutsu => ConstantsRes.SpecialMutsu,
 		NightAttackKind.SpecialColorado => ConstantsRes.SpecialColorado,
 		NightAttackKind.SpecialKongo => ConstantsRes.SpecialKongou,
+		NightAttackKind.CutinZuiun => ConstantsRes.CutinZuiun,
 		NightAttackKind.SpecialSubmarineTender23 => ConstantsRes.SpecialSubmarineTender23,
 		NightAttackKind.SpecialSubmarineTender34 => ConstantsRes.SpecialSubmarineTender34,
 		NightAttackKind.SpecialSubmarineTender24 => ConstantsRes.SpecialSubmarineTender24,
@@ -909,7 +910,7 @@ public static class Constants
 		NightAttackKind.LandingDaihatsuTank => ConstantsRes.LandingDaihatsuTank,
 		NightAttackKind.LandingAmphibious => ConstantsRes.TankAttack,
 		NightAttackKind.LandingTokuDaihatsuTank => ConstantsRes.LandingTokuDaihatsuTank,
-		_ => $"{ConstantsRes.Unknown}({(int)id})"
+		_ => $"{ConstantsRes.Unknown}({(int)id})",
 	};
 
 	/// <summary>

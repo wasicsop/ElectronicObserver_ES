@@ -70,6 +70,10 @@ public enum NightAttackKind
 	SpecialKongo = 104,
 
 
+	/// <summary> 夜間瑞雲カットイン </summary>
+	CutinZuiun = 200,
+
+
 	/// <summary> 潜水艦隊攻撃 (参加潜水艦ポジション2・3) </summary>
 	SpecialSubmarineTender23 = 300,
 
