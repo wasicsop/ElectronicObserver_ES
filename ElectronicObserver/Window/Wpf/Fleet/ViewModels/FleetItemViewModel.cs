@@ -12,9 +12,9 @@ using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Control;
-using ElectronicObserver.Window.Wpf.ShipTrainingPlanner;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.AntiAir;
+using ElectronicObserverTypes.Attacks;
 using ElectronicObserverTypes.Extensions;
 
 namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels;

@@ -1,5 +1,5 @@
-﻿using ElectronicObserver.Utility.Data;
-using ElectronicObserverTypes;
+﻿using ElectronicObserverTypes;
+using ElectronicObserverTypes.Attacks;
 
 namespace ElectronicObserver.Data;
 
