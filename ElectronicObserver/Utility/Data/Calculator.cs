@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Data;
 using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.AntiAir;
 using ElectronicObserverTypes.Attacks;
+using ElectronicObserverTypes.Data;
 using ElectronicObserverTypes.Extensions;
 
 namespace ElectronicObserver.Utility.Data;
@@ -34,18 +36,24 @@ public static class Calculator
 	/// <summary>
 	/// 各装備カテゴリにおける制空値の熟練度ボーナス
 	/// </summary>
-	private static readonly Dictionary<EquipmentTypes, int[]> AircraftLevelBonus = new Dictionary<EquipmentTypes, int[]>() {
-		{ EquipmentTypes.CarrierBasedFighter,    new int[] { 0, 0, 2, 5, 9, 14, 14, 22, 22 } },
-		{ EquipmentTypes.CarrierBasedBomber,     new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 } },
-		{ EquipmentTypes.CarrierBasedTorpedo,    new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 } },
-		{ EquipmentTypes.SeaplaneBomber,         new int[] { 0, 1, 1, 1, 1, 3, 3, 6, 6 } },
-		{ EquipmentTypes.SeaplaneFighter,        new int[] { 0, 0, 2, 5, 9, 14, 14, 22, 22 } },
-		{ EquipmentTypes.LandBasedAttacker,      new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 } },
-		{ EquipmentTypes.Interceptor,            new int[] { 0, 0, 2, 5, 9, 14, 14, 22, 22 } },
-		{ EquipmentTypes.HeavyBomber,            new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 } },
-		{ EquipmentTypes.JetFighter,             new int[] { 0, 0, 2, 5, 9, 14, 14, 22, 22 } },
-		{ EquipmentTypes.JetBomber,              new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 } },
-		{ EquipmentTypes.JetTorpedo,             new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 } },
+	private static int[]? AircraftLevelBonus(IEquipmentDataMaster equip) => equip switch
+	{
+		{ CategoryType: EquipmentTypes.CarrierBasedFighter } or
+		{ CategoryType: EquipmentTypes.SeaplaneFighter, } or
+		{ CategoryType: EquipmentTypes.Interceptor, } or
+		{ CategoryType: EquipmentTypes.JetFighter, } or
+		{ CategoryType: EquipmentTypes.ASPatrol, AA: > 0 } => new[] { 0, 0, 2, 5, 9, 14, 14, 22, 22 },
+
+		{ CategoryType: EquipmentTypes.SeaplaneBomber, } => new[] { 0, 1, 1, 1, 1, 3, 3, 6, 6 },
+
+		{ CategoryType: EquipmentTypes.CarrierBasedBomber, } or
+		{ CategoryType: EquipmentTypes.CarrierBasedTorpedo, } or
+		{ CategoryType: EquipmentTypes.LandBasedAttacker, } or
+		{ CategoryType: EquipmentTypes.HeavyBomber, } or
+		{ CategoryType: EquipmentTypes.JetBomber, } or
+		{ CategoryType: EquipmentTypes.JetTorpedo, } => new[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+
+		_ => null,
 	};
 
 	/// <summary>
@@ -69,58 +77,55 @@ public static class Calculator
 	/// <returns></returns>
 	public static int GetAirSuperiority(int equipmentID, int count, int aircraftLevel = 0, int level = 0, AirBaseActionKind baseAirCorpsActionKind = AirBaseActionKind.None, bool isAircraftExpMaximum = false)
 	{
+		IEquipmentDataMaster? eq = Ioc.Default.GetRequiredService<IKCDatabase>().MasterEquipments[equipmentID];
 
-		if (count <= 0)
-			return 0;
-
-		var eq = KCDatabase.Instance.MasterEquipments[equipmentID];
-		if (eq == null)
-			return 0;
-
-		var category = eq.CategoryType;
-
+		if (count <= 0) return 0;
+		if (eq is null) return 0;
 
 		// 通常の艦隊の場合、偵察機等の制空値は計算しない
-		if (baseAirCorpsActionKind is AirBaseActionKind.None)
-		{
-			if (!AircraftLevelBonus.ContainsKey(category))
-				return 0;
-		}
-
+		if (baseAirCorpsActionKind is AirBaseActionKind.None && AircraftLevelBonus(eq) is null) return 0;
 
 		double levelBonus = eq.AircraftAaLevelCoefficient();
 
-		if (category == EquipmentTypes.LandBasedAttacker || category == EquipmentTypes.HeavyBomber)
-			levelBonus *= Math.Sqrt(level);
-		else
-			levelBonus *= level;
-
+		levelBonus *= eq.CategoryType switch
+		{
+			EquipmentTypes.LandBasedAttacker or EquipmentTypes.HeavyBomber => Math.Sqrt(level),
+			_ => level,
+		};
 
 		double interceptorBonus = 0;    // 局地戦闘機の迎撃補正
-		if (category == EquipmentTypes.Interceptor)
+		if (eq.CategoryType is EquipmentTypes.Interceptor)
 		{
-			if (baseAirCorpsActionKind == AirBaseActionKind.AirDefense)
-				interceptorBonus = eq.Accuracy * 2 + eq.Evasion;
-			else
-				interceptorBonus = eq.Evasion * 1.5;
+			interceptorBonus = baseAirCorpsActionKind switch
+			{
+				AirBaseActionKind.AirDefense => eq.Accuracy * 2 + eq.Evasion,
+				_ => eq.Evasion * 1.5,
+			};
 		}
 
 		int aircraftExp;
 		if (isAircraftExpMaximum)
 		{
-			if (aircraftLevel < 7)
-				aircraftExp = AircraftExpTable[aircraftLevel + 1] - 1;
-			else
-				aircraftExp = AircraftExpTable.Last();
+			aircraftExp = aircraftLevel switch
+			{
+				< 7 => AircraftExpTable[aircraftLevel + 1] - 1,
+				_ => AircraftExpTable.Last(),
+			};
 		}
 		else
 		{
 			aircraftExp = AircraftExpTable[aircraftLevel];
 		}
 
+		int aircraftLevelBonus = AircraftLevelBonus(eq) switch
+		{
+			int[] a => a[aircraftLevel],
+			_ => 0,
+		};
+
 		return (int)((eq.AA + levelBonus + interceptorBonus) * Math.Sqrt(count)
 					 + Math.Sqrt(aircraftExp / 10.0)
-					 + (AircraftLevelBonus.ContainsKey(category) ? AircraftLevelBonus[category][aircraftLevel] : 0));
+					 + aircraftLevelBonus);
 	}
 
 
