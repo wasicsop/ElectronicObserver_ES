@@ -84,6 +84,8 @@ public static class Calculator
 
 		// 通常の艦隊の場合、偵察機等の制空値は計算しない
 		if (baseAirCorpsActionKind is AirBaseActionKind.None && AircraftLevelBonus(eq) is null) return 0;
+		if (eq is { CategoryType: EquipmentTypes.ASPatrol, AA: 0 }) return 0;
+		if (eq is { CategoryType: EquipmentTypes.Autogyro, AA: 0 }) return 0;
 
 		double levelBonus = eq.AircraftAaLevelCoefficient();
 
@@ -312,16 +314,17 @@ public static class Calculator
 	/// 基地航空中隊の制空戦力を求めます。
 	/// </summary>
 	/// <param name="squadron">対象の基地航空中隊。</param>
-	public static int GetAirSuperiority(IBaseAirCorpsSquadron squadron, AirBaseActionKind actionKind, bool isAircraftLevelMaximum = false)
+	public static int GetAirSuperiority(IBaseAirCorpsSquadron? squadron, AirBaseActionKind actionKind, bool isAircraftLevelMaximum = false)
 	{
-		if (squadron == null || squadron.State != 1)
-			return 0;
+		if (squadron is not { State: 1 }) return 0;
 
-		var eq = squadron.EquipmentInstance;
-		if (eq == null)
-			return 0;
+		IEquipmentData? eq = squadron.EquipmentInstance;
 
-		return GetAirSuperiority(eq.EquipmentID, squadron.AircraftCurrent, eq.AircraftLevel, eq.Level, actionKind, isAircraftLevelMaximum);
+		return eq switch
+		{
+			null => 0,
+			_ => GetAirSuperiority(eq.EquipmentID, squadron.AircraftCurrent, eq.AircraftLevel, eq.Level, actionKind, isAircraftLevelMaximum),
+		};
 	}
 
 

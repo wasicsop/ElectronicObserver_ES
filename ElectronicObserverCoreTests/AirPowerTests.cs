@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserverTypes;
+using ElectronicObserverTypes.Data;
 using ElectronicObserverTypes.Mocks;
 using Xunit;
 
@@ -95,5 +96,92 @@ public class AirPowerTests
 		};
 
 		Assert.Equal(85, Calculator.GetAirSuperiority(fleet));
+	}
+
+	[Fact(DisplayName = "AB fighter")]
+	public void AirPowerTest3()
+	{
+		EquipmentDataMock eq = new(Db.MasterEquipment[EquipmentId.Interceptor_Type1FighterHayabusaModelII_64thSquadron])
+		{
+			AircraftLevel = 7,
+		};
+
+		BaseAirCorpsSquadronMock squadron = new(eq);
+
+		Assert.Equal(103, Calculator.GetAirSuperiority(squadron, AirBaseActionKind.Mission));
+	}
+
+	[Fact(DisplayName = "AB AS Patrol")]
+	public void AirPowerTest4()
+	{
+		EquipmentDataMock eq = new(Db.MasterEquipment[EquipmentId.ASPatrol_Type3CommandLiaisonAircraft_ASW])
+		{
+			AircraftLevel = 7,
+		};
+
+		BaseAirCorpsSquadronMock squadron = new(eq);
+
+		Assert.Equal(0, Calculator.GetAirSuperiority(squadron, AirBaseActionKind.Mission));
+	}
+
+	[Fact(DisplayName = "AB AS Patrol Hayabusa")]
+	public void AirPowerTest5()
+	{
+		EquipmentDataMock eq = new(Db.MasterEquipment[EquipmentId.ASPatrol_Type1FighterHayabusaModelII_20thSquadron])
+		{
+			Level = 10,
+			AircraftLevel = 7,
+		};
+
+		BaseAirCorpsSquadronMock squadron = new(eq);
+
+		Assert.Equal(50, Calculator.GetAirSuperiority(squadron, AirBaseActionKind.Mission));
+	}
+
+	[Fact(DisplayName = "AB Autogyro")]
+	public void AirPowerTest6()
+	{
+		EquipmentDataMock eq = new(Db.MasterEquipment[EquipmentId.Autogyro_S51JKai])
+		{
+			Level = 10,
+			AircraftLevel = 7,
+		};
+
+		BaseAirCorpsSquadronMock squadron = new(eq);
+
+		Assert.Equal(0, Calculator.GetAirSuperiority(squadron, AirBaseActionKind.Mission));
+	}
+
+	[Fact(DisplayName = "AB")]
+	public void AirPowerTest7()
+	{
+		EquipmentDataMock eq1 = new(Db.MasterEquipment[EquipmentId.ASPatrol_Type3CommandLiaisonAircraft_ASW])
+		{
+			AircraftLevel = 7,
+		};
+
+		EquipmentDataMock eq2 = new(Db.MasterEquipment[EquipmentId.Interceptor_Type1FighterHayabusaModelIIIA_54thSquadron])
+		{
+			AircraftLevel = 7,
+		};
+
+		EquipmentDataMock eq3 = new(Db.MasterEquipment[EquipmentId.CarrierBasedBomber_ZeroFighterbomberModel62_IwaiSquadron])
+		{
+			Level = 10,
+			AircraftLevel = 7,
+		};
+
+		BaseAirCorpsDataMock airbase = new()
+		{
+			ActionKind = AirBaseActionKind.Mission,
+			Squadrons = new Dictionary<int, IBaseAirCorpsSquadron>
+			{
+				{ 1, new BaseAirCorpsSquadronMock(eq1) },
+				{ 2, new BaseAirCorpsSquadronMock(eq2) },
+				{ 3, new BaseAirCorpsSquadronMock(eq3) },
+			},
+		};
+
+		Assert.Equal(121, Calculator.GetAirSuperiority(airbase));
 	}
 }
