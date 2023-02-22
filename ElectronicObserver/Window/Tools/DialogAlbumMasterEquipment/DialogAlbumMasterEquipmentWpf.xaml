@@ -273,7 +273,7 @@
 									Image="{StaticResource Interception}"
 									Text="{Binding DialogAlbumMasterEquipment.Interception}"
 									Visibility="{Binding SelectedEquipment.IsInterceptor, Converter={StaticResource BooleanToVisibilityConverter}}"
-									Value="{Binding SelectedEquipment.Equipment.Accuracy}"
+									Value="{Binding SelectedEquipment.Equipment.Evasion}"
 									/>
 
 								<local:EquipmentStatControl
