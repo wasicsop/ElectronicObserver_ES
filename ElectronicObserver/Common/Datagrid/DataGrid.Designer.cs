@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ElectronicObserver.Properties.Window.Dialog {
+namespace ElectronicObserver.Common.Datagrid {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace ElectronicObserver.Properties.Window.Dialog {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class DialogShipGroupColumnFilter {
+    public class DataGrid {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal DialogShipGroupColumnFilter() {
+        internal DataGrid() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace ElectronicObserver.Properties.Window.Dialog {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ElectronicObserver.Properties.Window.Dialog.DialogShipGroupColumnFilter", typeof(DialogShipGroupColumnFilter).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ElectronicObserver.Common.Datagrid.DataGrid", typeof(DataGrid).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,74 +61,29 @@ namespace ElectronicObserver.Properties.Window.Dialog {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 列の固定.
+        ///   Looks up a localized string similar to 並べ替えリセット.
         /// </summary>
-        public static string ColumnFreezeNumber {
+        public static string ClearSorting {
             get {
-                return ResourceManager.GetString("ColumnFreezeNumber", resourceCulture);
+                return ResourceManager.GetString("ClearSorting", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 自動サイズ.
+        ///   Looks up a localized string similar to 隠す.
         /// </summary>
-        public static string ColumnView_AutoSize {
+        public static string HideColumn {
             get {
-                return ResourceManager.GetString("ColumnView_AutoSize", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        public static string ColumnView_AutoSizeToolTip {
-            get {
-                return ResourceManager.GetString("ColumnView_AutoSizeToolTip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 列名.
-        /// </summary>
-        public static string ColumnView_Name {
-            get {
-                return ResourceManager.GetString("ColumnView_Name", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 表示.
-        /// </summary>
-        public static string ColumnView_Visible {
-            get {
-                return ResourceManager.GetString("ColumnView_Visible", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        public static string ColumnView_VisibleToolTip {
-            get {
-                return ResourceManager.GetString("ColumnView_VisibleToolTip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 幅.
-        /// </summary>
-        public static string ColumnView_Width {
-            get {
-                return ResourceManager.GetString("ColumnView_Width", resourceCulture);
+                return ResourceManager.GetString("HideColumn", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to 列の表示設定.
         /// </summary>
-        public static string Title {
+        public static string OpenColumnSelector {
             get {
-                return ResourceManager.GetString("Title", resourceCulture);
+                return ResourceManager.GetString("OpenColumnSelector", resourceCulture);
             }
         }
     }
