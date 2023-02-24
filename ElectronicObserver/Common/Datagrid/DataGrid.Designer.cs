@@ -70,7 +70,7 @@ namespace ElectronicObserver.Common.Datagrid {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 隠す.
+        ///   Looks up a localized string similar to 非表示.
         /// </summary>
         public static string HideColumn {
             get {
