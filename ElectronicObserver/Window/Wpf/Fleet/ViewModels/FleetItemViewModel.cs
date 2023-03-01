@@ -390,19 +390,17 @@ public class FleetItemViewModel : ObservableObject
 
 	private Color GetShipForeColor()
 	{
+		// sets the dark/custom theme text color to black
+		// if sortie tag name coloring is used in fleet view
 		if (Configuration.Config.FormFleet.AppliesSallyAreaColor &&
-							Parent.ShipTagColors.Count > 0 &&
-							Ship?.SallyArea > 0)
+			Parent.ShipTagColors.Count > 0 &&
+			Ship?.SallyArea > 0 &&
+			Configuration.Config.UI.ThemeMode != 0)
 		{
-			if (Configuration.Config.UI.ThemeMode != 0)
-				return Configuration.Config.UI.BackColor;
-		}
-		else
-		{
-			return Configuration.Config.UI.ForeColor;
+			return Configuration.Config.UI.BackColor;
 		}
 
-		return Color.Transparent;
+		return Configuration.Config.UI.ForeColor;
 	}
 
 	private string GetEquipmentString(IShipData ship)
