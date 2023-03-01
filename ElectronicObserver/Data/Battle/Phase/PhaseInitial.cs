@@ -134,7 +134,31 @@ public class PhaseInitial : PhaseBase
 			FriendFleetID = 1;
 
 
-		int[] GetArrayOrDefault(string objectName, int length) => !RawData.IsDefined(objectName) ? null : FixedArray((int[])RawData[objectName], length);
+		int[] GetArrayOrDefault(string objectName, int length)
+		{
+			object[]? values = RawData.IsDefined(objectName) switch
+			{
+				true => RawData[objectName].Deserialize<object[]>(),
+				_ => null,
+			};
+
+			if (values == null) return null;
+
+			int[] cleanedValues = values
+				.Select(v => v switch
+				{
+					double d => (int?)d,
+					int i => i,
+					string => -2,
+					_ => null,
+				})
+				.Where(v => v is not null)
+				.Select(v => v!.Value)
+				.ToArray();
+
+			return FixedArray(cleanedValues, length);
+		}
+
 		int[][] GetArraysOrDefault(string objectName, int topLength, int bottomLength)
 		{
 			if (!RawData.IsDefined(objectName))
