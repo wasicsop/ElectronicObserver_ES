@@ -157,6 +157,7 @@ public abstract class ProgressData : IIdentifiable
 			402 or // D2
 			416 or // D15
 			607 or // F7
+			608 or // F8
 			612 or // F11
 			810 or // B63
 			886; // B119
