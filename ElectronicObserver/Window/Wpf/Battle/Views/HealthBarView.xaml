@@ -71,7 +71,7 @@
 						<Style TargetType="TextBlock">
 							<Setter Property="Text" Value="{Binding Health}" />
 							<Style.Triggers>
-								<DataTrigger Binding="{Binding Health}" Value="-2">
+								<DataTrigger Binding="{Binding IsTargetable}" Value="False">
 									<Setter Property="Text" Value="N/A" />
 								</DataTrigger>
 							</Style.Triggers>

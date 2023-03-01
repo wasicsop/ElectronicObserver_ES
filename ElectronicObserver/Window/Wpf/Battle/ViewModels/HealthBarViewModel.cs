@@ -21,13 +21,9 @@ public class HealthBarViewModel : ObservableObject
 	public bool Visible { get; set; }
 	public bool CompactMode { get; set; }
 	public bool ShowShipClassText => !CompactMode;
+	public bool IsTargetable { get; set; } = true;
 
-	public int Health => Value switch
-	{
-		// hack: magic number to display N/A
-		-2 => -2,
-		_ => Math.Max(0, Value),
-	};
+	public int Health => Math.Max(0, Value);
 	public string DamageTaken => (Value - PrevValue).ToString("+0;-0;-0");
 	public SolidColorBrush MainFontBrush => MainFontColor.ToBrush();
 	public SolidColorBrush SubFontBrush => SubFontColor.ToBrush();
