@@ -1227,7 +1227,7 @@ public partial class BattleViewModel : AnchorableViewModel
 
 				if (initial.EnemyInitialHPsEscort![i] != -1)
 				{
-					EnableHPBar(refindex, initial.EnemyInitialHPsEscort[i], resultHPs[refindex], initial.EnemyMaxHPsEscort[i], initial.IsEnemyTargetableEscort[i]);
+					EnableHPBar(refindex, initial.EnemyInitialHPsEscort[i], resultHPs[refindex], initial.EnemyMaxHPsEscort![i], initial.IsEnemyTargetableEscort[i]);
 
 					IShipDataMaster ship = bd.Initial.EnemyMembersEscortInstance![i];
 
