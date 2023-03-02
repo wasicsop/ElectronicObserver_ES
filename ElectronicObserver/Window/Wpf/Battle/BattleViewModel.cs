@@ -1225,11 +1225,11 @@ public partial class BattleViewModel : AnchorableViewModel
 			{
 				int refindex = BattleIndex.Get(BattleSides.EnemyEscort, i);
 
-				if (initial.EnemyInitialHPsEscort[i] != -1)
+				if (initial.EnemyInitialHPsEscort![i] != -1)
 				{
 					EnableHPBar(refindex, initial.EnemyInitialHPsEscort[i], resultHPs[refindex], initial.EnemyMaxHPsEscort[i], initial.IsEnemyTargetableEscort[i]);
 
-					IShipDataMaster ship = bd.Initial.EnemyMembersEscortInstance[i];
+					IShipDataMaster ship = bd.Initial.EnemyMembersEscortInstance![i];
 
 					var bar = HPBars[refindex];
 					bar.Text = KCDatabase.Instance.Translation.Ship.TypeNameShort(ship.ShipType);
@@ -1238,7 +1238,7 @@ public partial class BattleViewModel : AnchorableViewModel
 					bar.ToolTip =
 						string.Format("{0} Lv. {1}\r\nHP: ({2} → {3})/{4} ({5}) [{6}]\r\n\r\n{7}",
 							ship.NameWithClass,
-							bd.Initial.EnemyLevelsEscort[i],
+							bd.Initial.EnemyLevelsEscort![i],
 							Math.Max(bar.PrevValue, 0),
 							Math.Max(bar.Value, 0),
 							bar.MaximumValue,
