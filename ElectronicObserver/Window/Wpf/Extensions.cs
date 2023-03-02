@@ -37,7 +37,7 @@ public static class Extensions
 	public static Uri ToAbsolute(this Uri uri) => uri switch
 	{
 		{ IsAbsoluteUri: true } => uri,
-		_ => new(new Uri(Process.GetCurrentProcess().MainModule.FileName), uri),
+		_ => new(new Uri(Environment.ProcessPath!), uri),
 	};
 
 	public static int ToSerializableValue(this ListSortDirection? sortDirection) => sortDirection switch

@@ -1162,17 +1162,15 @@ public partial class BattleViewModel : AnchorableViewModel
 		// friend escort
 		if (isFriendCombined)
 		{
-			// FleetFriendEscort.Visible = true;
-
-			for (int i = 0; i < initial.FriendInitialHPsEscort.Length; i++)
+			for (int i = 0; i < initial.FriendInitialHPsEscort!.Length; i++)
 			{
 				int refindex = BattleIndex.Get(BattleSides.FriendEscort, i);
 
 				if (initial.FriendInitialHPsEscort[i] != -1)
 				{
-					EnableHPBar(refindex, initial.FriendInitialHPsEscort[i], resultHPs[refindex], initial.FriendMaxHPsEscort[i], true);
+					EnableHPBar(refindex, initial.FriendInitialHPsEscort[i], resultHPs[refindex], initial.FriendMaxHPsEscort![i], true);
 
-					IShipData ship = bd.Initial.FriendFleetEscort.MembersInstance[i];
+					IShipData? ship = bd.Initial.FriendFleetEscort.MembersInstance![i];
 					bool isEscaped = bd.Initial.FriendFleetEscort.EscapedShipList.Contains(ship.MasterID);
 
 					var bar = HPBars[refindex];

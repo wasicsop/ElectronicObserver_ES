@@ -41,7 +41,7 @@ public class PhaseInitial : PhaseBase
 	/// <summary>
 	/// 敵艦隊メンバ(随伴艦隊)
 	/// </summary>
-	public int[] EnemyMembersEscort { get; private set; }
+	public int[]? EnemyMembersEscort { get; private set; }
 
 	/// <summary>
 	/// 敵艦隊メンバ(随伴艦隊)
@@ -57,7 +57,7 @@ public class PhaseInitial : PhaseBase
 	/// <summary>
 	/// 敵艦のレベル(随伴艦隊)
 	/// </summary>
-	public int[] EnemyLevelsEscort { get; private set; }
+	public int[]? EnemyLevelsEscort { get; private set; }
 
 
 	public int[] FriendInitialHPs { get; private set; }
@@ -136,7 +136,7 @@ public class PhaseInitial : PhaseBase
 			FriendFleetID = 1;
 
 
-		int[] GetArrayOrDefault(string objectName, int length)
+		int[]? GetArrayOrDefault(string objectName, int length)
 		{
 			object[]? values = RawData.IsDefined(objectName) switch
 			{
@@ -144,7 +144,7 @@ public class PhaseInitial : PhaseBase
 				_ => null,
 			};
 
-			if (values == null) return null;
+			if (values is null) return null;
 
 			int[] cleanedValues = values
 				.Select(v => v switch
@@ -206,21 +206,21 @@ public class PhaseInitial : PhaseBase
 		IsEnemyTargetable = new[] { true, true, true, true, true, true, true };
 		IsEnemyTargetableEscort = new[] { true, true, true, true, true, true };
 
-		EnemyMembers = GetArrayOrDefault("api_ship_ke", mainMemberCount);
+		EnemyMembers = GetArrayOrDefault("api_ship_ke", mainMemberCount)!;
 		EnemyMembersInstance = EnemyMembers.Select(id => KCDatabase.Instance.MasterShips[id]).ToArray();
 
 		EnemyMembersEscort = GetArrayOrDefault("api_ship_ke_combined", escortMemberCount);
 		EnemyMembersEscortInstance = EnemyMembersEscort?.Select(id => KCDatabase.Instance.MasterShips[id]).ToArray();
 
-		EnemyLevels = GetArrayOrDefault("api_ship_lv", mainMemberCount);
+		EnemyLevels = GetArrayOrDefault("api_ship_lv", mainMemberCount)!;
 		EnemyLevelsEscort = GetArrayOrDefault("api_ship_lv_combined", escortMemberCount);
 
-		FriendInitialHPs = GetArrayOrDefault("api_f_nowhps", mainMemberCount);
+		FriendInitialHPs = GetArrayOrDefault("api_f_nowhps", mainMemberCount)!;
 		FriendInitialHPsEscort = GetArrayOrDefault("api_f_nowhps_combined", escortMemberCount);
 		EnemyInitialHPs = HandleTargetability(GetArrayOrDefault("api_e_nowhps", mainMemberCount), EnemyMembersInstance, IsEnemyTargetable, false)!;
 		EnemyInitialHPsEscort = HandleTargetability(GetArrayOrDefault("api_e_nowhps_combined", escortMemberCount), EnemyMembersEscortInstance, IsEnemyTargetableEscort, false);
 
-		FriendMaxHPs = GetArrayOrDefault("api_f_maxhps", mainMemberCount);
+		FriendMaxHPs = GetArrayOrDefault("api_f_maxhps", mainMemberCount)!;
 		FriendMaxHPsEscort = GetArrayOrDefault("api_f_maxhps_combined", escortMemberCount);
 		EnemyMaxHPs = HandleTargetability(GetArrayOrDefault("api_e_maxhps", mainMemberCount), EnemyMembersInstance, IsEnemyTargetable, true)!;
 		EnemyMaxHPsEscort = HandleTargetability(GetArrayOrDefault("api_e_maxhps_combined", escortMemberCount), EnemyMembersEscortInstance, IsEnemyTargetableEscort, true);
