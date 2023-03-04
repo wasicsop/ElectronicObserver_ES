@@ -27,17 +27,13 @@ public partial class EquipmentListViewModel : WindowViewModelBase
 		Filter = "CSV|*.csv|File|*",
 	};
 
-	public DataGridViewModel EquipmentGridViewModel { get; set; } = new();
+	public DataGridViewModel<EquipmentListRow> EquipmentGridViewModel { get; set; }
 	public GridLength EquipmentGridWidth { get; set; } = GridLength.Auto;
 
 	// todo: doesn't seem to work in the current implementation
 	// Select an equipment with multiple detail items, sort by something, select a different equipment, sort data is lost.
-	public DataGridViewModel EquipmentDetailGridViewModel { get; set; } = new();
-
-	public List<EquipmentListRow> Rows { get; set; } = new();
+	public DataGridViewModel<EquipmentListDetailRow> EquipmentDetailGridViewModel { get; set; }
 	public EquipmentListRow? SelectedRow { get; set; }
-
-	public List<EquipmentListDetailRow> DetailRows { get; set; } = new();
 
 	public bool ShowLockedEquipmentOnly { get; set; }
 
@@ -50,6 +46,9 @@ public partial class EquipmentListViewModel : WindowViewModelBase
 	public EquipmentListViewModel()
 	{
 		DialogEquipmentList = Ioc.Default.GetService<DialogEquipmentListTranslationViewModel>()!;
+
+		EquipmentGridViewModel = new();
+		EquipmentDetailGridViewModel = new();
 
 		PropertyChanged += (sender, args) =>
 		{
@@ -116,7 +115,7 @@ public partial class EquipmentListViewModel : WindowViewModelBase
 			remainCount[eq.EquipmentInstance.EquipmentID]--;
 		}
 
-		Rows.Clear();
+		EquipmentGridViewModel.ItemsSource.Clear();
 
 		List<EquipmentListRow> rows = new(allCount.Count);
 		var ids = allCount.Keys;
@@ -150,11 +149,11 @@ public partial class EquipmentListViewModel : WindowViewModelBase
 		for (int i = 0; i < rows.Count; i++)
 			rows[i].Tag = i;
 
-		Rows = rows
+		EquipmentGridViewModel.ItemsSource.Clear();
+		EquipmentGridViewModel.AddRange(rows
 			.OrderBy(r => masterEquipments[r.Id].CategoryType)
 			.ThenBy(r => r.Id)
-			.ThenBy(r => r.Name)
-			.ToList();
+			.ThenBy(r => r.Name));
 	}
 
 	private void UpdateDetailView(int equipmentID)
@@ -270,7 +269,12 @@ public partial class EquipmentListViewModel : WindowViewModelBase
 			}
 		}
 
-		DetailRows = GroupRows(rows).ToList();
+		EquipmentDetailGridViewModel.ItemsSource.Clear();
+
+		foreach (EquipmentListDetailRow detailRow in GroupRows(rows))
+		{
+			EquipmentDetailGridViewModel.ItemsSource.Add(detailRow);
+		}
 	}
 
 	private static IEnumerable<EquipmentListDetailRow> GroupRows(IEnumerable<EquipmentListDetailRow> rows) =>

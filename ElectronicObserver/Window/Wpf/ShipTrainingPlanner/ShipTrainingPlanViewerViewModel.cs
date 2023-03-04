@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Windows.Data;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Behaviors.PersistentColumns;
@@ -22,11 +23,10 @@ public partial class ShipTrainingPlanViewerViewModel : AnchorableViewModel
 	private ShipDataPickerViewModel PickerViewModel { get; } = new();
 
 	public ObservableCollection<ShipTrainingPlanViewModel> Plans { get; } = new();
-	public List<ShipTrainingPlanViewModel> PlansFiltered { get; set; } = new();
 
 	private ElectronicObserverContext DatabaseContext { get; } = new();
 
-	public DataGridViewModel DataGridViewModel { get; set; } = new();
+	public DataGridViewModel<ShipTrainingPlanViewModel> DataGridViewModel { get; set; }
 
 	public bool DisplayFinished { get; set; } = false;
 
@@ -40,6 +40,11 @@ public partial class ShipTrainingPlanViewerViewModel : AnchorableViewModel
 	{
 		Tracker = Ioc.Default.GetService<Tracker>()!;
 		ShipTrainingPlanner = Ioc.Default.GetRequiredService<ShipTrainingPlannerTranslationViewModel>();
+
+		DataGridViewModel = new(Plans)
+		{
+			FilterValue = plan => DisplayFinished || !plan.PlanFinished
+		};
 
 		Title = ShipTrainingPlanner.ViewTitle;
 		ShipTrainingPlanner.PropertyChanged += (_, _) => Title = ShipTrainingPlanner.ViewTitle;
@@ -97,10 +102,7 @@ public partial class ShipTrainingPlanViewerViewModel : AnchorableViewModel
 		if (e.PropertyName is nameof(ShipTrainingPlanViewModel.PlanFinished)) UpdatePlanList();
 	}
 
-	private void UpdatePlanList()
-	{
-		PlansFiltered = Plans.Where(plan => DisplayFinished || !plan.PlanFinished).ToList();
-	}
+	private void UpdatePlanList() => DataGridViewModel.Items.Refresh();
 
 	private ShipTrainingPlanViewModel NewPlan(IShipData ship)
 	{

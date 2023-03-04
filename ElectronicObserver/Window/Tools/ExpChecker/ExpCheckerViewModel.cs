@@ -19,7 +19,7 @@ public class ExpCheckerViewModel : WindowViewModelBase
 {
 	public ExpCheckerTranslationViewModel ExpChecker { get; }
 
-	public DataGridViewModel DataGridViewModel { get; set; } = new();
+	public DataGridViewModel<DataGridItem> DataGridViewModel { get; set; }
 
 	private string DefaultTitle => ExpChecker.Title;
 	public string Title { get; set; }
@@ -45,6 +45,8 @@ public class ExpCheckerViewModel : WindowViewModelBase
 
 		Configuration.Instance.ConfigurationChanged += ConfigurationChanged;
 		ConfigurationChanged();
+
+		DataGridViewModel = new(DataGridItems);
 
 		PropertyChanged += (sender, args) =>
 		{
@@ -332,14 +334,19 @@ public class ExpCheckerViewModel : WindowViewModelBase
 			rows[lv - minlv] = row;
 		}
 
-		DataGridItems = rows.ToObservableCollection();
-
+		SetResults(rows);
 
 		Title = DefaultTitle + " - " + selectedShip.NameWithLevel;
 		GroupExpText =
 			$"{selectedShip.NameWithLevel}: " +
 			$"Exp. {selectedShip.ExpTotal}, {ExpChecker.ASW} {selectedShip.ASWBase} " +
 			$"({ExpChecker.Modernization}+{selectedShip.ASWModernized})";
+	}
+
+	private void SetResults(DataGridItem[] rows)
+	{
+		DataGridItems.Clear();
+		DataGridViewModel.AddRange(rows);
 	}
 
 	/*
@@ -606,7 +613,7 @@ public class ExpCheckerViewModel : WindowViewModelBase
 			rows[lv - minlv] = row;
 		}
 
-		DataGridItems = rows.ToObservableCollection();
+		SetResults(rows);
 
 		Title = DefaultTitle + " - " + selectedShip.NameWithLevel;
 		GroupExpText = $"{selectedShip.NameWithLevel}: Exp. {selectedShip.ExpTotal}, {ExpChecker.ASW} {selectedShip.ASWBase} ({ExpChecker.Modernization}+{selectedShip.ASWModernized})";
