@@ -137,8 +137,15 @@ public class LockGroupViewModel : ObservableObject, IDropTarget
 	public void Drop(IDropInfo dropInfo)
 	{
 		if (dropInfo.Data is not ShipLockViewModel shipLock) return;
-		if (dropInfo.DragInfo.SourceCollection is not ListCollectionView source) return;
-		if (source.SourceCollection is not ObservableCollection<ShipLockViewModel>) return;
+
+		bool isValidSource = dropInfo.DragInfo.SourceCollection switch
+		{
+			ListCollectionView source => source.SourceCollection is ObservableCollection<ShipLockViewModel>,
+			ObservableCollection<ShipLockViewModel> => true,
+			_ => false
+		};
+
+		if (!isValidSource) return;
 
 		if (dropInfo.DragInfo.VisualSource is not ItemsControl { DataContext: LockGroupViewModel lockGroup }) return;
 
