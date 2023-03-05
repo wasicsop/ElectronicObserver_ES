@@ -79,6 +79,51 @@ namespace ElectronicObserver.Window.Wpf.ShipTrainingPlanner {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 対潜現在.
+        /// </summary>
+        internal static string ASWBonusCurrent {
+            get {
+                return ResourceManager.GetString("ASWBonusCurrent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 対潜目標.
+        /// </summary>
+        internal static string ASWBonusTarget {
+            get {
+                return ResourceManager.GetString("ASWBonusTarget", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 対潜合計現在.
+        /// </summary>
+        internal static string ASWCurrent {
+            get {
+                return ResourceManager.GetString("ASWCurrent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 対潜残.
+        /// </summary>
+        internal static string ASWRemaining {
+            get {
+                return ResourceManager.GetString("ASWRemaining", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 対潜合計目標.
+        /// </summary>
+        internal static string ASWTarget {
+            get {
+                return ResourceManager.GetString("ASWTarget", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 表示完了.
         /// </summary>
         internal static string DisplayFinished {
@@ -124,11 +169,101 @@ namespace ElectronicObserver.Window.Wpf.ShipTrainingPlanner {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ??? (HP bonus (Current)).
+        /// </summary>
+        internal static string HPBonusCurrent {
+            get {
+                return ResourceManager.GetString("HPBonusCurrent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ??? (HP bonus (Target)).
+        /// </summary>
+        internal static string HPBonusTarget {
+            get {
+                return ResourceManager.GetString("HPBonusTarget", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ??? (HP (Current)).
+        /// </summary>
+        internal static string HPCurrent {
+            get {
+                return ResourceManager.GetString("HPCurrent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ??? (HP (Remaining)).
+        /// </summary>
+        internal static string HPRemaining {
+            get {
+                return ResourceManager.GetString("HPRemaining", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ??? (HP (Target)).
+        /// </summary>
+        internal static string HPTarget {
+            get {
+                return ResourceManager.GetString("HPTarget", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Lv.
         /// </summary>
         internal static string Level {
             get {
                 return ResourceManager.GetString("Level", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ??? (Level (Current)).
+        /// </summary>
+        internal static string LevelCurrent {
+            get {
+                return ResourceManager.GetString("LevelCurrent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ??? (Level (Target)).
+        /// </summary>
+        internal static string LevelTarget {
+            get {
+                return ResourceManager.GetString("LevelTarget", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ??? (Luck (Current)).
+        /// </summary>
+        internal static string LuckCurrent {
+            get {
+                return ResourceManager.GetString("LuckCurrent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ??? (Luck (Remaining)).
+        /// </summary>
+        internal static string LuckRemaining {
+            get {
+                return ResourceManager.GetString("LuckRemaining", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ??? (Luck (Target)).
+        /// </summary>
+        internal static string LuckTarget {
+            get {
+                return ResourceManager.GetString("LuckTarget", resourceCulture);
             }
         }
         
@@ -158,6 +293,15 @@ namespace ElectronicObserver.Window.Wpf.ShipTrainingPlanner {
         internal static string Priority {
             get {
                 return ResourceManager.GetString("Priority", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ??? (Remaining exp.).
+        /// </summary>
+        internal static string RemainingExp {
+            get {
+                return ResourceManager.GetString("RemainingExp", resourceCulture);
             }
         }
         
