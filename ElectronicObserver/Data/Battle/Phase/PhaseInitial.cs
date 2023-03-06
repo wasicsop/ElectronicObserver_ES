@@ -180,7 +180,7 @@ public class PhaseInitial : PhaseBase
 			return ret;
 		}
 
-		int[]? HandleTargetability(int[]? hps, IShipDataMaster[]? ships, bool[] isTargetable, bool isMaxHp)
+		int[]? HandleTargetability(int[]? hps, IShipDataMaster[] ships, bool[] isTargetable)
 		{
 			if (hps is null) return null;
 			if (ships is null) return null;
@@ -190,11 +190,7 @@ public class PhaseInitial : PhaseBase
 				if (hps[i] is not -2) continue;
 
 				isTargetable[i] = false;
-				hps[i] = isMaxHp switch
-				{
-					true => ships[i].HPMax,
-					_ => 0,
-				};
+				hps[i] = ships[i].HPMax;
 			}
 
 			return hps;
@@ -217,13 +213,13 @@ public class PhaseInitial : PhaseBase
 
 		FriendInitialHPs = GetArrayOrDefault("api_f_nowhps", mainMemberCount)!;
 		FriendInitialHPsEscort = GetArrayOrDefault("api_f_nowhps_combined", escortMemberCount);
-		EnemyInitialHPs = HandleTargetability(GetArrayOrDefault("api_e_nowhps", mainMemberCount), EnemyMembersInstance, IsEnemyTargetable, false)!;
-		EnemyInitialHPsEscort = HandleTargetability(GetArrayOrDefault("api_e_nowhps_combined", escortMemberCount), EnemyMembersEscortInstance, IsEnemyTargetableEscort, false);
+		EnemyInitialHPs = HandleTargetability(GetArrayOrDefault("api_e_nowhps", mainMemberCount), EnemyMembersInstance, IsEnemyTargetable);
+		EnemyInitialHPsEscort = HandleTargetability(GetArrayOrDefault("api_e_nowhps_combined", escortMemberCount), EnemyMembersEscortInstance, IsEnemyTargetableEscort);
 
 		FriendMaxHPs = GetArrayOrDefault("api_f_maxhps", mainMemberCount)!;
 		FriendMaxHPsEscort = GetArrayOrDefault("api_f_maxhps_combined", escortMemberCount);
-		EnemyMaxHPs = HandleTargetability(GetArrayOrDefault("api_e_maxhps", mainMemberCount), EnemyMembersInstance, IsEnemyTargetable, true)!;
-		EnemyMaxHPsEscort = HandleTargetability(GetArrayOrDefault("api_e_maxhps_combined", escortMemberCount), EnemyMembersEscortInstance, IsEnemyTargetableEscort, true);
+		EnemyMaxHPs = HandleTargetability(GetArrayOrDefault("api_e_maxhps", mainMemberCount), EnemyMembersInstance, IsEnemyTargetable);
+		EnemyMaxHPsEscort = HandleTargetability(GetArrayOrDefault("api_e_maxhps_combined", escortMemberCount), EnemyMembersEscortInstance, IsEnemyTargetableEscort);
 
 
 		EnemySlots = GetArraysOrDefault("api_eSlot", mainMemberCount, 5);
