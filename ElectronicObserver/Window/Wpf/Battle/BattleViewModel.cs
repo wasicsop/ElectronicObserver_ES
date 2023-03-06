@@ -1060,10 +1060,10 @@ public partial class BattleViewModel : AnchorableViewModel
 
 		void SetEnemyBackground(int index)
 		{
-			HPBars[index].BackColor = HPBars[index].Value switch
+			HPBars[index].BackColor = HPBars[index] switch
 			{
-				< 1 => Color.FromArgb(0x40, 0x4D, 0xA6, 0xDF),
-				_ => Color.Transparent
+				{ Value: < 1, IsTargetable: true } => Color.FromArgb(0x40, 0x4D, 0xA6, 0xDF),
+				_ => Color.Transparent,
 			};
 		}
 

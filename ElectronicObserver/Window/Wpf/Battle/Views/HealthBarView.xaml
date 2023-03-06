@@ -98,8 +98,18 @@
 				d:Value="19"
 				Foreground="DarkRed"
 				Maximum="{Binding MaximumValue}"
-				Value="{Binding PrevValue}"
-				/>
+				>
+				<ProgressBar.Style>
+					<Style BasedOn="{StaticResource DefaultProgressBarStyle}" TargetType="ProgressBar">
+						<Setter Property="Value" Value="{Binding PrevValue}" />
+						<Style.Triggers>
+							<DataTrigger Binding="{Binding IsTargetable}" Value="False">
+								<Setter Property="Value" Value="0" />
+							</DataTrigger>
+						</Style.Triggers>
+					</Style>
+				</ProgressBar.Style>
+			</ProgressBar>
 
 			<ProgressBar
 				Grid.Row="1"
@@ -110,8 +120,18 @@
 				d:Value="13"
 				Foreground="{Binding HealthBarBrush}"
 				Maximum="{Binding MaximumValue}"
-				Value="{Binding Value}"
-				/>
+				>
+				<ProgressBar.Style>
+					<Style BasedOn="{StaticResource DefaultProgressBarStyle}" TargetType="ProgressBar">
+						<Setter Property="Value" Value="{Binding Value}" />
+						<Style.Triggers>
+							<DataTrigger Binding="{Binding IsTargetable}" Value="False">
+								<Setter Property="Value" Value="0" />
+							</DataTrigger>
+						</Style.Triggers>
+					</Style>
+				</ProgressBar.Style>
+			</ProgressBar>
 		</Grid>
 	</Border>
 </UserControl>
