@@ -379,18 +379,26 @@ public partial class App : Application
 
 		tracker
 			.Configure<ConstructionRecordViewerWindow>()
-			.Property(w => w.ViewModel.DataGridViewModel.ColumnProperties)
-			.Property(w => w.ViewModel.DataGridViewModel.SortDescriptions);
+			.Property(w => w.ViewModel.DataGridRawRowsViewModel.ColumnProperties)
+			.Property(w => w.ViewModel.DataGridRawRowsViewModel.SortDescriptions)
+			.Property(w => w.ViewModel.DataGridMergedRowsAllViewModel.ColumnProperties)
+			.Property(w => w.ViewModel.DataGridMergedRowsAllViewModel.SortDescriptions)
+			.Property(w => w.ViewModel.DataGridMergedRowsFilteredByShipViewModel.ColumnProperties)
+			.Property(w => w.ViewModel.DataGridMergedRowsFilteredByShipViewModel.SortDescriptions);
 
 		tracker
 			.Configure<DevelopmentRecordViewerWindow>()
-			.Property(w => w.ViewModel.DataGridViewModel.ColumnProperties)
-			.Property(w => w.ViewModel.DataGridViewModel.SortDescriptions);
+			.Property(w => w.ViewModel.DataGridRawRowsViewModel.ColumnProperties)
+			.Property(w => w.ViewModel.DataGridRawRowsViewModel.SortDescriptions)
+			.Property(w => w.ViewModel.DataGridMergedRowsViewModel.ColumnProperties)
+			.Property(w => w.ViewModel.DataGridMergedRowsViewModel.SortDescriptions);
 
 		tracker
 			.Configure<DropRecordViewerWindow>()
-			.Property(w => w.ViewModel.DataGridViewModel.ColumnProperties)
-			.Property(w => w.ViewModel.DataGridViewModel.SortDescriptions);
+			.Property(w => w.ViewModel.DataGridRawRowsViewModel.ColumnProperties)
+			.Property(w => w.ViewModel.DataGridRawRowsViewModel.SortDescriptions)
+			.Property(w => w.ViewModel.DataGridMergedRowsViewModel.ColumnProperties)
+			.Property(w => w.ViewModel.DataGridMergedRowsViewModel.SortDescriptions);
 
 		tracker
 			.Configure<EventLockPlannerWindow>()

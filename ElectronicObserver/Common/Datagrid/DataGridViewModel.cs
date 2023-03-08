@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -19,7 +18,7 @@ public partial class DataGridViewModel<T> : ObservableObject
 	public DataGridTranslationViewModel DataGrid { get; set; } = new();
 
 	public ICollectionView Items { get; private set; }
-	public ObservableCollection<T> ItemsSource { get; private set; }
+	public ObservableCollection<T> ItemsSource { get; set; }
 
 	public DataGridViewModel(ObservableCollection<T> items) : this()
 	{
