@@ -7,7 +7,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
-using System.Windows.Forms;
+using System.Windows.Controls;
 using DynaJson;
 using ElectronicObserver.Data;
 using ElectronicObserver.Services.ApiFileService;
@@ -603,7 +603,7 @@ public sealed class APIObserver
 	public delegate void ProxyStartedEventHandler();
 	public event ProxyStartedEventHandler ProxyStarted = delegate { };
 
-	private object UIControl;
+	private Control UIControl { get; set; }
 
 
 	public event APIReceivedEventHandler RequestReceived = delegate { };
@@ -733,13 +733,13 @@ public sealed class APIObserver
 	/// 通信の受信を開始します。
 	/// </summary>
 	/// <param name="portID">受信に使用するポート番号。</param>
-	/// <param name="UIControl">GUI スレッドで実行するためのオブジェクト。中身は何でもいい</param>
+	/// <param name="uiControl">GUI スレッドで実行するためのオブジェクト。中身は何でもいい</param>
 	/// <returns>実際に使用されるポート番号。</returns>
-	public int Start(int portID, object UIControl)
+	public int Start(int portID, Control uiControl)
 	{
 		Utility.Configuration.ConfigurationData.ConfigConnection c = Utility.Configuration.Config.Connection;
 
-		this.UIControl = UIControl;
+		UIControl = uiControl;
 
 		if (Proxy.ProxyRunning) Proxy.Stop();
 
@@ -819,15 +819,7 @@ public sealed class APIObserver
 				Task.Run((Action)(() => { SaveRequest(url, body); }));
 			}
 
-			switch (UIControl)
-			{
-				case Control control:
-					control.BeginInvoke((Action)(() => { LoadRequest(url, body); }));
-					break;
-				case System.Windows.Controls.Control control:
-					control.Dispatcher.Invoke(() => LoadRequest(url, body));
-					break;
-			}
+			UIControl.Dispatcher.Invoke(() => LoadRequest(url, body));
 		}
 
 		//debug
@@ -947,16 +939,8 @@ public sealed class APIObserver
 			// stringはイミュータブルなのでOK
 			string url = baseurl;
 			string body = await e.GetResponseBodyAsString();
-
-			switch (UIControl)
-			{
-				case Control control:
-					control.BeginInvoke((Action)(() => { LoadResponse(url, body); }));
-					break;
-				case System.Windows.Controls.Control control:
-					control.Dispatcher.Invoke(() => LoadResponse(url, body));
-					break;
-			}
+			
+			UIControl.Dispatcher.Invoke(() => LoadResponse(url, body));
 		}
 
 
