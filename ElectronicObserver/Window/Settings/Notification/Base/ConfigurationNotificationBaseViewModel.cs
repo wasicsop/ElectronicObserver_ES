@@ -210,7 +210,9 @@ public partial class ConfigurationNotificationBaseViewModel : ObservableValidato
 			throw new NotImplementedException();
 		}
 
-		return (viewModel.ImageChanged && viewModel.DrawsImage && !viewModel.NotifierBase.DialogData.LoadImage(viewModel.ImagePath)) switch
+		bool couldLoadImage = viewModel.NotifierBase.DialogData.LoadImage(viewModel.ImagePath);
+
+		return (viewModel.ImageChanged && viewModel.DrawsImage && !couldLoadImage) switch
 		{
 			true => new(NotifyRes.FailedLoadSound),
 			_ => ValidationResult.Success!,
@@ -224,7 +226,9 @@ public partial class ConfigurationNotificationBaseViewModel : ObservableValidato
 			throw new NotImplementedException();
 		}
 
-		return (viewModel.SoundChanged && viewModel.PlaysSound && !viewModel.NotifierBase.LoadSound(viewModel.SoundPath)) switch
+		bool couldLoadSound = viewModel.NotifierBase.LoadSound(viewModel.SoundPath);
+
+		return (viewModel.SoundChanged && viewModel.PlaysSound && !couldLoadSound) switch
 		{
 			true => new(NotifyRes.FailedLoadSound),
 			_ => ValidationResult.Success!,
