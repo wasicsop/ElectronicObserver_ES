@@ -1242,6 +1242,25 @@ namespace ElectronicObserver.Properties.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 同じ艦娘に対して訓練プランを追加できるようにする.
+        /// </summary>
+        public static string FormShipTraining_AllowMultiplePlanPerShip {
+            get {
+                return ResourceManager.GetString("FormShipTraining_AllowMultiplePlanPerShip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to チェックを外すと、新しい艦娘の訓練プランを追加する際に、訓練プランのない艦娘だけが表示されるように艦娘リストがフィルタリングされます。
+        ///チェックした場合、フィルターは適用されません。.
+        /// </summary>
+        public static string FormShipTraining_AllowMultiplePlanPerShipToolTip {
+            get {
+                return ResourceManager.GetString("FormShipTraining_AllowMultiplePlanPerShipToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 司令部.
         /// </summary>
         public static string HQ {
