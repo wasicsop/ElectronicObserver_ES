@@ -15,7 +15,7 @@ using ElectronicObserver.Window.Dialog;
 
 namespace ElectronicObserver.Window.Settings.Notification.Base;
 
-public partial class ConfigurationNotificationBaseViewModel : ObservableValidator, IDisposable
+public partial class ConfigurationNotificationBaseViewModel : ObservableValidator
 {
 	public ConfigurationNotificationBaseTranslationViewModel Translation { get; }
 	private FileService FileService { get; }
@@ -155,10 +155,6 @@ public partial class ConfigurationNotificationBaseViewModel : ObservableValidato
 
 	public bool TrySaveConfiguration()
 	{
-		// hack: validation sets the sound/image paths
-		// need to force revalidate to make sure everything is set correctly
-		ValidateAllProperties();
-
 		List<ValidationResult> errors = GetErrors()
 			.DistinctBy(v => v.ErrorMessage)
 			.ToList();
@@ -180,6 +176,9 @@ public partial class ConfigurationNotificationBaseViewModel : ObservableValidato
 
 	public virtual void Save()
 	{
+		NotifierBase.DialogData.LoadImage(ImagePath);
+		NotifierBase.LoadSound(SoundPath);
+
 		NotifierBase.IsEnabled = IsEnabled;
 
 		NotifierBase.PlaysSound = PlaysSound;
@@ -277,11 +276,6 @@ public partial class ConfigurationNotificationBaseViewModel : ObservableValidato
 
 		NotifierBase.DialogData.Message = Translation.TestNotification;
 		NotifierBase.Notify();
-	}
-
-	public void Dispose()
-	{
-		NotifierBase.Sound.Close();
 	}
 }
 
