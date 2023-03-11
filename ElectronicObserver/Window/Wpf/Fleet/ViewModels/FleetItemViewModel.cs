@@ -317,7 +317,10 @@ public class FleetItemViewModel : ObservableObject
 		}
 
 		IEnumerable<int> remodelLevels = remodels.Select((remodel) => remodel.Level);
-		List<ShipTrainingPlanViewModel> plans = Level.TrainingPlans.Where(p => !remodelLevels.Contains(p.TargetLevel)).ToList();
+		List<ShipTrainingPlanViewModel> plans = Level.TrainingPlans
+			.Where(p => !remodelLevels.Contains(p.TargetLevel))
+			.DistinctBy(p => p.TargetLevel)
+			.ToList();
 
 		foreach(ShipTrainingPlanViewModel plan in plans.Where(p => p.TargetLevel < 99))
 		{
