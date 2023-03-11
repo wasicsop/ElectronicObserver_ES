@@ -162,6 +162,8 @@ public abstract class NotifierBase
 				throw new FileNotFoundException("指定されたファイルまたはディレクトリが見つかりませんでした。");
 			}
 
+			Config.SoundPath = path;
+
 			return true;
 
 		}
