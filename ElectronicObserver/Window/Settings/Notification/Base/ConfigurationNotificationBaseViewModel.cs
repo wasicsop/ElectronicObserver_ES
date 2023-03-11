@@ -155,6 +155,10 @@ public partial class ConfigurationNotificationBaseViewModel : ObservableValidato
 
 	public bool TrySaveConfiguration()
 	{
+		// hack: validation sets the sound/image paths
+		// need to force revalidate to make sure everything is set correctly
+		ValidateAllProperties();
+
 		List<ValidationResult> errors = GetErrors()
 			.DistinctBy(v => v.ErrorMessage)
 			.ToList();
