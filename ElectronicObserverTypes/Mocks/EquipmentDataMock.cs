@@ -21,12 +21,12 @@ public class EquipmentDataMock : IEquipmentData
 
 			if (Level > 0)
 			{
-				sb.Append("+").Append(Level);
+				sb.Append('+').Append(Level);
 			}
 
 			if (AircraftLevel > 0)
 			{
-				sb.Append(" ").Append(AircraftLevel switch
+				sb.Append(' ').Append(AircraftLevel switch
 				{
 					1 => "|",
 					2 => "||",
