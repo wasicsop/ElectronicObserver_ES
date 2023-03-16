@@ -721,22 +721,19 @@ public static class Constants
 	/// <summary>
 	/// 交戦形態を表す文字列を取得します。
 	/// </summary>
-	public static string GetEngagementForm(int id)
+	public static string GetEngagementForm(int id) => GetEngagementForm((EngagementType)id);
+
+	/// <summary>
+	/// 交戦形態を表す文字列を取得します。
+	/// </summary>
+	public static string GetEngagementForm(EngagementType id) => id switch
 	{
-		switch (id)
-		{
-			case 1:
-				return ConstantsRes.Parallel;
-			case 2:
-				return ConstantsRes.HeadOn;
-			case 3:
-				return ConstantsRes.GreenT;
-			case 4:
-				return ConstantsRes.RedT;
-			default:
-				return ConstantsRes.Unknown;
-		}
-	}
+		EngagementType.Parallel => ConstantsRes.Parallel,
+		EngagementType.HeadOn => ConstantsRes.HeadOn,
+		EngagementType.TAdvantage => ConstantsRes.GreenT,
+		EngagementType.TDisadvantage => ConstantsRes.RedT,
+		_ => ConstantsRes.Unknown,
+	};
 
 	/// <summary>
 	/// 交戦形態を表す文字列を取得します。
