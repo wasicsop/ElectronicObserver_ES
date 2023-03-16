@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using System.Threading.Channels;
 using System.Threading.Tasks;
 using System.Web;
 using System.Windows.Controls;
@@ -614,6 +615,13 @@ public sealed class APIObserver
 
 	private Lazy<ApiFileService> ApiFileService { get; } = new(() => new(KCDatabase.Instance));
 
+	private Channel<Action> ApiProcessingChannel { get; } = Channel.CreateUnbounded<Action>(new UnboundedChannelOptions
+	{
+		SingleReader = true,
+		SingleWriter = true,
+		AllowSynchronousContinuations = true,
+	});
+
 	private APIObserver()
 	{
 		APIList = new APIDictionary
@@ -727,6 +735,18 @@ public sealed class APIObserver
 		Proxy.CertificateManager.RootCertificate = new X509Certificate2();
 		Proxy.BeforeRequest += ProxyOnBeforeRequest;
 		Proxy.BeforeResponse += ProxyOnBeforeResponse;
+
+		Task.Run(ProcessApiDataAsync);
+	}
+
+	private async void ProcessApiDataAsync()
+	{
+		// basically while (true)
+		while (await ApiProcessingChannel.Reader.WaitToReadAsync())
+		{
+			Action apiAction = await ApiProcessingChannel.Reader.ReadAsync();
+			UIControl.Dispatcher.Invoke(apiAction);
+		}
 	}
 
 	/// <summary>
@@ -750,7 +770,7 @@ public sealed class APIObserver
 
 			Proxy.UpStreamHttpProxy = c switch
 			{
-				{UseUpstreamProxy: true} => new ExternalProxy(c.UpstreamProxyAddress, c.UpstreamProxyPort),
+				{ UseUpstreamProxy: true } => new ExternalProxy(c.UpstreamProxyAddress, c.UpstreamProxyPort),
 				_ => null,
 			};
 
@@ -819,7 +839,7 @@ public sealed class APIObserver
 				Task.Run((Action)(() => { SaveRequest(url, body); }));
 			}
 
-			UIControl.Dispatcher.Invoke(() => LoadRequest(url, body));
+			await ApiProcessingChannel.Writer.WriteAsync(() => LoadRequest(url, body));
 		}
 
 		//debug
@@ -939,8 +959,8 @@ public sealed class APIObserver
 			// stringはイミュータブルなのでOK
 			string url = baseurl;
 			string body = await e.GetResponseBodyAsString();
-			
-			UIControl.Dispatcher.Invoke(() => LoadResponse(url, body));
+
+			await ApiProcessingChannel.Writer.WriteAsync(() => LoadResponse(url, body));
 		}
 
 
@@ -1017,7 +1037,7 @@ public sealed class APIObserver
 				}
 				else
 				{
-					throw new InvalidOperationException(string.Format(ObserverRes.ErrorFromServer,result));
+					throw new InvalidOperationException(string.Format(ObserverRes.ErrorFromServer, result));
 				}
 			}
 
