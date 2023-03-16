@@ -259,6 +259,19 @@ public static class Calculator
 		return (int)(air * reconBonus * highAltitudeBonus);
 	}
 
+	/// <summary>
+	/// Air power value if min and max are the same, min ～ max otherwise.
+	/// </summary>
+	/// <param name="fleet">対象の艦隊。</param>
+	public static string GetAirSuperiorityRangeString(IFleetData fleet)
+	{
+		int min = GetAirSuperiority(fleet);
+		int max = GetAirSuperiority(fleet, true);
+
+		if (min == max) return min.ToString();
+
+		return $"{min} ～ {max}";
+	}
 
 	/// <summary>
 	/// 基地航空隊での出撃時における、偵察機による制空値ボーナス係数を求めます。
