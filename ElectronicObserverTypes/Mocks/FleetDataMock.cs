@@ -16,7 +16,9 @@ public class FleetDataMock : IFleetData
 	public ReadOnlyCollection<int>? Members => MembersInstance switch
 	{
 		null => null,
+#pragma warning disable S2365 // Properties should not make collection or array copies
 		_ => new(MembersInstance.Select(s => s?.ShipID ?? -1).ToList()),
+#pragma warning restore S2365 // Properties should not make collection or array copies
 	};
 	public ReadOnlyCollection<IShipData?>? MembersInstance { get; set; }
 	public ReadOnlyCollection<IShipData?>? MembersWithoutEscaped => MembersInstance switch
