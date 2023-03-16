@@ -758,26 +758,21 @@ public static class Constants
 	/// <summary>
 	/// 索敵結果を表す文字列を取得します。
 	/// </summary>
-	public static string GetSearchingResult(int id)
+	public static string GetSearchingResult(int id) => GetSearchingResult((DetectionType)id);
+
+	/// <summary>
+	/// 索敵結果を表す文字列を取得します。
+	/// </summary>
+	public static string GetSearchingResult(DetectionType id) => id switch
 	{
-		switch (id)
-		{
-			case 1:
-				return ConstantsRes.Success;
-			case 2:
-				return ConstantsRes.SuccessNoReturn;
-			case 3:
-				return ConstantsRes.NoReturn;
-			case 4:
-				return ConstantsRes.Failure;
-			case 5:
-				return ConstantsRes.SuccessNoPlane;
-			case 6:
-				return ConstantsRes.FailureNoPlane;
-			default:
-				return ConstantsRes.Unknown;
-		}
-	}
+		DetectionType.Success => ConstantsRes.Success,
+		DetectionType.SuccessNoReturn => ConstantsRes.SuccessNoReturn,
+		DetectionType.NoReturn => ConstantsRes.NoReturn,
+		DetectionType.Failure => ConstantsRes.Failure,
+		DetectionType.SuccessNoPlane => ConstantsRes.SuccessNoPlane,
+		DetectionType.FailureNoPlane => ConstantsRes.FailureNoPlane,
+		_ => ConstantsRes.Unknown,
+	};
 
 	/// <summary>
 	/// 索敵結果を表す文字列(短縮版)を取得します。
