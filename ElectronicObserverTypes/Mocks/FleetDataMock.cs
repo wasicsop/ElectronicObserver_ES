@@ -13,7 +13,11 @@ public class FleetDataMock : IFleetData
 	public int ExpeditionState { get; set; }
 	public int ExpeditionDestination { get; set; }
 	public DateTime ExpeditionTime { get; set; }
-	public ReadOnlyCollection<int> Members { get; set; }
+	public ReadOnlyCollection<int>? Members => MembersInstance switch
+	{
+		null => null,
+		_ => new(MembersInstance.Select(s => s?.ShipID ?? -1).ToList()),
+	};
 	public ReadOnlyCollection<IShipData?>? MembersInstance { get; set; }
 	public ReadOnlyCollection<IShipData?>? MembersWithoutEscaped => MembersInstance switch
 	{

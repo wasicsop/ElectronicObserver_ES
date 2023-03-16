@@ -8,13 +8,21 @@ namespace ElectronicObserverTypes.Mocks;
 public class ShipDataMock : IShipData
 {
 	public int ExpNextRemodel { get; set; }
-	public string Name { get; set; }
-	public string NameWithLevel { get; set; }
+	public string Name => MasterShip.IsAbyssalShip switch
+	{
+		false => MasterShip.NameEN,
+		_ => MasterShip.NameWithClass,
+	};
+	public string NameWithLevel => MasterShip.IsAbyssalShip switch
+	{
+		false => $"{MasterShip.NameEN} Lv. {Level}",
+		_ => $"{MasterShip.NameWithClass} Lv. {Level}",
+	};
 	public double HPRate => (double)HPCurrent / HPMax;
 	public int FuelMax { get; set; }
 	public int AmmoMax { get; set; }
-	public double FuelRate { get; set; }
-	public double AmmoRate { get; set; }
+	public double FuelRate => (double)Fuel / FuelMax;
+	public double AmmoRate => (double)Ammo / AmmoMax;
 	public int SupplyFuel { get; set; }
 	public int SupplyAmmo { get; set; }
 	public IList<double> AircraftRate { get; set; }
@@ -142,6 +150,11 @@ public class ShipDataMock : IShipData
 		HPCurrent = MasterShip.HPMax;
 
 		Aircraft = MasterShip.Aircraft;
+
+		Fuel = ship.Fuel;
+		FuelMax = ship.Fuel;
+		Ammo = ship.Ammo;
+		AmmoMax = ship.Ammo;
 
 		FirepowerModernized = MasterShip.FirepowerMax - MasterShip.FirepowerMin;
 		TorpedoModernized = MasterShip.TorpedoMax - MasterShip.TorpedoMin;

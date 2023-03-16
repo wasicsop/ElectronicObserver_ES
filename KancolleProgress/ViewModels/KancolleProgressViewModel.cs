@@ -98,7 +98,6 @@ public partial class KancolleProgressViewModel : ObservableObject
 			.Where(s => !s.IsAbyssalShip && s.RemodelBeforeShipID == 0)
 			.Select(s => new ShipDataMock(s)
 			{
-				Name = s.NameEN,
 				Level = 0,
 				ShipID = s.ShipID,
 				SortID = s.SortID
@@ -202,7 +201,6 @@ public partial class KancolleProgressViewModel : ObservableObject
 			.Where(s => !s.IsAbyssalShip)
 			.Select(s => new ShipDataMock(s)
 			{
-				Name = s.NameEN,
 				Level = 0,
 				ShipID = s.ShipID,
 				SortID = s.SortID
