@@ -459,7 +459,7 @@ public static class ShipDataExtensions
 	{ ShipId: ShipId.IsuzuKaiNi } or
 	{ ShipId: ShipId.TatsutaKaiNi } or
 	{ ShipId: ShipId.YuubariKaiNiD } or
-	{ ShipClassTyped: ShipClass.Fletcher };
+	{ ShipClassTyped: ShipClass.Fletcher, ShipId: not ShipId.HeywoodLE };
 
 	public static bool CanDoOpeningAsw(this IShipData ship) => ship switch
 	{
