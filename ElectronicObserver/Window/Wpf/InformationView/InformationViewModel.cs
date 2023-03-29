@@ -121,7 +121,10 @@ public class InformationViewModel : AnchorableViewModel
 			case "api_req_mission/start":
 				if (Utility.Configuration.Config.Control.ShowExpeditionAlertDialog)
 				{
-					App.Current!.Dispatcher.BeginInvoke(() => CheckExpedition(int.Parse(data["api_mission_id"]), int.Parse(data["api_deck_id"])));
+					int missionId = int.Parse(data["api_mission_id"]);
+					int fleetId = int.Parse(data["api_deck_id"]);
+
+					App.Current!.Dispatcher.BeginInvoke(() => CheckExpedition(missionId, fleetId));
 				}
 
 				break;
