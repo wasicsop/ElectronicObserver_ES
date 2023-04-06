@@ -491,7 +491,7 @@ public class FleetItemViewModel : ObservableObject
 		sb.AppendLine();
 
 		sb.AppendLine($"{ConstantsRes.ShellingSupport}: " +
-					  $"{FormFleet.Power}: {ship.GetShellingSupportDamage()} - " +
+					  $"{FormFleet.Power}: {ship.GetShellingSupportDamage(engagement)} - " +
 					  $"{FormFleet.Accuracy}: {ship.GetShellingSupportAccuracy():0.##}");
 
 		{
