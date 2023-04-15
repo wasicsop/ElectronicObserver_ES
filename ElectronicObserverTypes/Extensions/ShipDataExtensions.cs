@@ -493,7 +493,8 @@ public static class ShipDataExtensions
 		{ MasterShip.ShipId: ShipId.ShinshuuMaruKai } or
 		{ MasterShip.ShipId: ShipId.FusouKaiNi } or
 		{ MasterShip.ShipId: ShipId.YamashiroKaiNi } or
-		{ MasterShip.ShipId: ShipId.YamatoKaiNiJuu }
+		{ MasterShip.ShipId: ShipId.YamatoKaiNiJuu } or
+		{ MasterShip.ShipClassTyped: ShipClass.KumanoMaru }
 			=> ship.HasSonar() && ship.HasAntiSubmarineAircraft() && ship.ASWTotal >= 100,
 
 		{ MasterShip.ShipType: ShipTypes.Destroyer } or

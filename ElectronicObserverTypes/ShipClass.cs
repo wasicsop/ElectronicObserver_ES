@@ -10,4 +10,5 @@ public enum ShipClass
 	Fletcher = 91,
 	Atlanta = 99,
 	Souya = 111,
+	KumanoMaru = 119,
 }
