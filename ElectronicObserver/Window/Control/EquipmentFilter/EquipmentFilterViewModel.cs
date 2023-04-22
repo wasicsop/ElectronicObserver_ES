@@ -7,7 +7,8 @@ using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Services;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Extensions;
-namespace ElectronicObserver.Window.Dialog.EquipmentPicker;
+
+namespace ElectronicObserver.Window.Control.EquipmentFilter;
 
 public partial class EquipmentFilterViewModel : ObservableObject
 {
@@ -17,15 +18,21 @@ public partial class EquipmentFilterViewModel : ObservableObject
 
 	public string? NameFilter { get; set; } = "";
 
-	public EquipmentFilterViewModel()
+	public EquipmentFilterTranslationViewModel EquipmentFilter { get; } = new();
+
+	public EquipmentFilterViewModel() : this (false)
+	{
+
+	}
+
+	public EquipmentFilterViewModel(bool typesCheckedByDefault)
 	{
 		TransliterationService = Ioc.Default.GetService<TransliterationService>()!;
 
 		TypeFilters = Enum.GetValues<EquipmentTypeGroup>()
-			.Where(e => e != EquipmentTypeGroup.Unknown)
 			.Select(t => new Filter(t)
 			{
-				IsChecked = false,
+				IsChecked = typesCheckedByDefault,
 			})
 			.ToList();
 
@@ -36,15 +43,37 @@ public partial class EquipmentFilterViewModel : ObservableObject
 	}
 
 	public bool MeetsFilterCondition(IEquipmentData equipment)
+		=> MeetsFilterCondition(equipment.MasterEquipment);
+
+	public bool MeetsFilterCondition(IEquipmentDataMaster equipment)
 	{
 		List<EquipmentTypes> enabledFilters = TypeFilters
 			.Where(f => f.IsChecked)
 			.SelectMany(f => f.Value.ToTypes())
 			.ToList();
 
-		if (!enabledFilters.Contains(equipment.MasterEquipment.CategoryType)) return false;
-		if (!string.IsNullOrEmpty(NameFilter) && !TransliterationService.Matches(equipment.MasterEquipment, NameFilter)) return false;
+		if (!enabledFilters.Contains(equipment.CategoryType)) return false;
+		if (!string.IsNullOrEmpty(NameFilter) && !TransliterationService.Matches(equipment, NameFilter)) return false;
 
 		return true;
+	}
+
+	[RelayCommand]
+	private void ToggleEquipmentTypes()
+	{
+		if (TypeFilters.All(f => f.IsChecked))
+		{
+			foreach (Filter typeFilter in TypeFilters)
+			{
+				typeFilter.IsChecked = false;
+			}
+		}
+		else
+		{
+			foreach (Filter typeFilter in TypeFilters)
+			{
+				typeFilter.IsChecked = true;
+			}
+		}
 	}
 }
