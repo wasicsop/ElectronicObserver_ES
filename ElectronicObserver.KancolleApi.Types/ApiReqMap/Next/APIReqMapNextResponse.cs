@@ -31,6 +31,13 @@ public class ApiReqMapNextResponse : IMapProgressApi
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public int ApiCommentKind { get; set; } = default!;
 
+	/// <summary>
+	/// Enemy fleet preview. Seems to always be only 1 element?
+	/// </summary>
+	[JsonPropertyName("api_e_deck_info")]
+	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+	public List<EDeckInfo>? ApiEDeckInfo { get; set; } = default!;
+
 	[JsonPropertyName("api_destruction_battle")]
 	[JsonIgnore(Condition = JsonIgnoreCondition.Never)]
 	public ApiDestructionBattle? ApiDestructionBattle { get; set; } = default!;
