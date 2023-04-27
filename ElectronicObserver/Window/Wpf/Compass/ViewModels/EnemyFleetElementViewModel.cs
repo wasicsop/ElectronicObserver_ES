@@ -77,7 +77,7 @@ public class EnemyFleetElementViewModel : ObservableObject
 
 	private bool CompareFleets(EDeckInfo preview, IEnumerable<int> savedFleet)
 	{
-		int shipCountSaved = savedFleet.Count(id => id > 0);
+		int shipCountSaved = savedFleet.Count(id => id > -1);
 
 		bool countMatches = preview.ApiKind switch
 		{
