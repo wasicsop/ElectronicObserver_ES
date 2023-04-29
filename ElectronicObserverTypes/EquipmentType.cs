@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace ElectronicObserverTypes;
+﻿namespace ElectronicObserverTypes;
 
 public enum EquipmentTypes
 {
@@ -162,6 +160,9 @@ public enum EquipmentTypes
 
 	/// <summary>大型陸上機</summary>
 	HeavyBomber = 53,
+
+	/// <summary>水上艦装備</summary>
+	SurfaceShipEquipment = 54,
 
 	/// <summary>噴式戦闘機</summary>
 	JetFighter = 56,
