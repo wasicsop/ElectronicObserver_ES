@@ -705,6 +705,7 @@ public record AntiAirCutIn
 			Id = 42,
 			FixedBonus = 10,
 			VariableBonus = 1.65,
+			Rate = 0.65,
 			Conditions = new()
 			{
 				new()
@@ -726,6 +727,7 @@ public record AntiAirCutIn
 			Id = 43,
 			FixedBonus = 8,
 			VariableBonus = 1.6,
+			Rate = 0.6,
 			Conditions = new()
 			{
 				new()
@@ -746,6 +748,7 @@ public record AntiAirCutIn
 			Id = 44,
 			FixedBonus = 6,
 			VariableBonus = 1.6,
+			Rate = 0.55,
 			Conditions = new()
 			{
 				new()
@@ -767,6 +770,7 @@ public record AntiAirCutIn
 			Id = 45,
 			FixedBonus = 5,
 			VariableBonus = 1.55,
+			Rate = 0.5,
 			Conditions = new()
 			{
 				new()
