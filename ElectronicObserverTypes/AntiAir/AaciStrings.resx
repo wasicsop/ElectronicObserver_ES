@@ -181,4 +181,7 @@
   <data name="FailedAntiAirCutIn" xml:space="preserve">
     <value>不発</value>
   </data>
+  <data name="HarunaGun" xml:space="preserve">
+    <value>榛名砲</value>
+  </data>
 </root>

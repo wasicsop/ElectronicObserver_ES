@@ -178,6 +178,15 @@ namespace ElectronicObserverTypes.AntiAir {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 榛名砲.
+        /// </summary>
+        public static string HarunaGun {
+            get {
+                return ResourceManager.GetString("HarunaGun", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 高角砲.
         /// </summary>
         public static string HighAngle {
