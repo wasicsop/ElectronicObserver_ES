@@ -179,7 +179,7 @@ public static class EquipmentDataExtensions
 
 	/// <summary> 対空噴進弾幕が発動可能なロケットランチャーかどうか </summary>
 	public static bool IsAARocketLauncher(this IEquipmentDataMaster equip) => equip.EquipmentId is
-		EquipmentId.AAGun_12cm30tubeRocketLauncherKai2;
+		EquipmentId.AAGun_12cm30tubeRocketLauncherKaiNi;
 
 	public static bool IsSeaplane(this IEquipmentDataMaster equip) => equip.CategoryType switch
 	{
