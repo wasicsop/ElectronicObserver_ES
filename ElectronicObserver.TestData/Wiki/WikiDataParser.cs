@@ -94,6 +94,8 @@ public static class WikiDataParser
 					})
 					.Select(n => n switch
 					{
+						// Kinu kai
+						"12.7cm Twin High-angle Gun Mount" when ship._api_id is 289 => 229,
 						string s => equipment.First(e => e.NameEN == s).EquipmentID,
 						_ => -1
 					})
