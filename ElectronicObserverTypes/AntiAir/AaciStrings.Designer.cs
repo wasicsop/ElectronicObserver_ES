@@ -178,7 +178,7 @@ namespace ElectronicObserverTypes.AntiAir {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 榛名砲.
+        ///   Looks up a localized string similar to 35.6改三/四.
         /// </summary>
         public static string HarunaGun {
             get {
