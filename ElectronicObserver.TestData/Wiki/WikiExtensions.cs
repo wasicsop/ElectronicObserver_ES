@@ -69,6 +69,7 @@ public static class WikiExtensions
 		FirepowerMax = wikiShip._firepower ?? 0,
 		TorpedoMin = wikiShip._torpedo ?? 0,
 		TorpedoMax = wikiShip._torpedo ?? 0,
+		AAMin = wikiShip._aa ?? 0,
 		AAMax = wikiShip._aa ?? 0,
 		ASW = new ParameterMock
 		{
