@@ -109,7 +109,18 @@
 							ToolTip="{Binding SearchingToolTip}"
 							>
 							<StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-								<Image Source="{Binding SearchingIcon}" />
+								<Image Source="{Binding SearchingIcon}">
+									<Image.Style>
+										<Style TargetType="Image">
+											<Setter Property="Visibility" Value="Visible" />
+											<Style.Triggers>
+												<DataTrigger Binding="{Binding SearchingIcon}" Value="{x:Null}">
+													<Setter Property="Visibility" Value="Collapsed" />
+												</DataTrigger>
+											</Style.Triggers>
+										</Style>
+									</Image.Style>
+								</Image>
 								<TextBlock
 									d:Text="-"
 									Text="{Binding SearchingText}"
@@ -268,7 +279,18 @@
 							Visibility="{Binding PlayerFleetVisible, Converter={StaticResource BooleanToHiddenConverter}}"
 							>
 							<StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-								<Image Source="{Binding FleetFriendIcon}" />
+								<Image Source="{Binding FleetFriendIcon}">
+									<Image.Style>
+										<Style TargetType="Image">
+											<Setter Property="Visibility" Value="Visible" />
+											<Style.Triggers>
+												<DataTrigger Binding="{Binding FleetFriendIcon}" Value="{x:Null}">
+													<Setter Property="Visibility" Value="Collapsed" />
+												</DataTrigger>
+											</Style.Triggers>
+										</Style>
+									</Image.Style>
+								</Image>
 								<TextBlock
 									d:Text="Friendly"
 									Text="{Binding FleetFriendText}"
