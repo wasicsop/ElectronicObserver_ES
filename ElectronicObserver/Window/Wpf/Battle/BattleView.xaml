@@ -2,6 +2,7 @@
 	x:Class="ElectronicObserver.Window.Wpf.Battle.BattleView"
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:common="clr-namespace:ElectronicObserver.Common"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:local="clr-namespace:ElectronicObserver.Window.Wpf.Battle"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -91,15 +92,23 @@
 							Background="Transparent"
 							ToolTip="{Binding SearchingFriendToolTip}"
 							>
-							<StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-								<Image Source="{Binding SearchingFriendIcon}" />
-								<TextBlock
-									MaxWidth="60"
-									d:Text="Night Contact"
-									Text="{Binding SearchingFriendText}"
-									TextAlignment="Center"
-									TextTrimming="CharacterEllipsis"
-									/>
+							<StackPanel>
+								<StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+									<Image Source="{Binding SearchingFriendIcon}" />
+									<TextBlock
+										MaxWidth="60"
+										d:Text="Night Contact"
+										Text="{Binding SearchingFriendText}"
+										TextAlignment="Center"
+										TextTrimming="CharacterEllipsis"
+										/>
+								</StackPanel>
+
+								<StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+									<common:EquipmentIcon Type="SmokeGenerator" Visibility="{Binding Smoker1Active, Converter={StaticResource BooleanToVisibilityConverter}}" />
+									<common:EquipmentIcon Type="SmokeGenerator" Visibility="{Binding Smoker2Active, Converter={StaticResource BooleanToVisibilityConverter}}" />
+									<common:EquipmentIcon Type="SmokeGenerator" Visibility="{Binding Smoker3Active, Converter={StaticResource BooleanToVisibilityConverter}}" />
+								</StackPanel>
 							</StackPanel>
 						</Border>
 						<Border
@@ -134,7 +143,11 @@
 							Background="Transparent"
 							ToolTip="{Binding SearchingEnemyToolTip}"
 							>
-							<StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+							<StackPanel
+								HorizontalAlignment="Center"
+								VerticalAlignment="Top"
+								Orientation="Horizontal"
+								>
 								<Image Source="{Binding SearchingEnemyIcon}" />
 								<TextBlock
 									MaxWidth="60"

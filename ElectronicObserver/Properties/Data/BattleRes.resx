@@ -271,4 +271,7 @@
   <data name="BattlePhaseNightSupportExpedition" xml:space="preserve">
     <value>夜間支援攻撃</value>
   </data>
+  <data name="SmokeScreen" xml:space="preserve">
+    <value>煙幕</value>
+  </data>
 </root>
