@@ -182,4 +182,7 @@ public enum EquipmentTypes
 	/// <summary>艦上偵察機(II)</summary>
 	CarrierBasedRecon2 = 94,
 
+	/// <summary>副砲(II)</summary>
+	SecondaryGun2 = 95,
+
 }

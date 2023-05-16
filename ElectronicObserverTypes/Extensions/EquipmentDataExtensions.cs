@@ -19,7 +19,8 @@ public static class EquipmentDataExtensions
 
 	/// <summary> 副砲系かどうか </summary>
 	public static bool IsSecondaryGun(this IEquipmentDataMaster equip) => equip.CategoryType is
-		EquipmentTypes.SecondaryGun;
+		EquipmentTypes.SecondaryGun or
+		EquipmentTypes.SecondaryGun2;
 
 	/// <summary> 魚雷系かどうか </summary>
 	public static bool IsTorpedo(this IEquipmentDataMaster equip) => equip.CategoryType is
