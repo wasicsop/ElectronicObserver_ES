@@ -1119,7 +1119,7 @@ public record AntiAirCutIn
 	private bool CanBeActivatedBy(IShipData ship)
 	{
 		if (!Conditions.Any()) return true;
-		if (Conditions.Any(c => c.CanBeActivatedBy(ship))) return true;
+		if (Conditions.Any(c => c.CanBeActivatedBy(ship, this))) return true;
 
 		return false;
 	}
