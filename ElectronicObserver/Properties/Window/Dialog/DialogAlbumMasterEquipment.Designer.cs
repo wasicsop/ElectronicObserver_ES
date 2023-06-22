@@ -19,7 +19,7 @@ namespace ElectronicObserver.Properties.Window.Dialog {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class DialogAlbumMasterEquipment {
@@ -109,6 +109,15 @@ namespace ElectronicObserver.Properties.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 改修必要資材.
+        /// </summary>
+        public static string EquipmentUpgrades {
+            get {
+                return ResourceManager.GetString("EquipmentUpgrades", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 装備名.
         /// </summary>
         public static string EquipmentView_Name {
@@ -181,6 +190,15 @@ namespace ElectronicObserver.Properties.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 二番艦.
+        /// </summary>
+        public static string Helpers {
+            get {
+                return ResourceManager.GetString("Helpers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 初期装備艦：.
         /// </summary>
         public static string InitialEquipmentShip {
@@ -217,11 +235,29 @@ namespace ElectronicObserver.Properties.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 所持.
+        /// </summary>
+        public static string Owned {
+            get {
+                return ResourceManager.GetString("Owned", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 開発.
         /// </summary>
         public static string Recipe {
             get {
                 return ResourceManager.GetString("Recipe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 消費装備.
+        /// </summary>
+        public static string RequiredItems {
+            get {
+                return ResourceManager.GetString("RequiredItems", resourceCulture);
             }
         }
         
@@ -456,6 +492,24 @@ namespace ElectronicObserver.Properties.Window.Dialog {
         public static string TitleTorpedo {
             get {
                 return ResourceManager.GetString("TitleTorpedo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 改修必要資材.
+        /// </summary>
+        public static string UpgradeCost {
+            get {
+                return ResourceManager.GetString("UpgradeCost", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ★.
+        /// </summary>
+        public static string UpgradeLevel {
+            get {
+                return ResourceManager.GetString("UpgradeLevel", resourceCulture);
             }
         }
     }
