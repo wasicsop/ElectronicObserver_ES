@@ -14,6 +14,8 @@ public class AlbumMasterEquipmentUpgradeViewModel
 	public EquipmentUpgradeDataModel? UpgradeData { get; private set; }
 	public IEquipmentDataMaster Equipment { get; }
 
+	public bool CanBeUpgraded => UpgradeData?.Improvement.FirstOrDefault() is not null;
+
 	/// <summary>
 	/// Equipment upgrade cost, its the first cost found for this equipment so it's accurate for fuel, ammo, ... and devmats/screws for 0 -> 9 upgrades
 	/// </summary>
