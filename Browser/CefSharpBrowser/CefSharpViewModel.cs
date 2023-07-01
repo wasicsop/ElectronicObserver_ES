@@ -15,6 +15,7 @@ using CefSharp;
 using CefSharp.Handler;
 using CefSharp.WinForms;
 using Cef = CefSharp.Cef;
+using DownloadHandler = CefSharp.Fluent.DownloadHandler;
 using IBrowser = CefSharp.IBrowser;
 
 namespace Browser.CefSharpBrowser;
@@ -143,6 +144,11 @@ public class CefSharpViewModel : BrowserViewModel
 			KeyboardHandler = new CefKeyboardHandler(this),
 			MenuHandler = new MenuHandler(),
 			DragHandler = new DragHandler(),
+			DownloadHandler = DownloadHandler
+				.AskUser((chromiumBrowser, browser, downloadItem, callback) =>
+				{
+					// don't need any extra code here
+				}),
 		};
 
 		CefSharp.BrowserSettings.StandardFontFamily = "Microsoft YaHei"; // Fixes text rendering position too high
