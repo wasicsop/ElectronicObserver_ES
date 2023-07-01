@@ -187,6 +187,24 @@ namespace ElectronicObserver.Properties.Data {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 友軍支援航空攻撃.
+        /// </summary>
+        public static string BattlePhaseFriendlyAirBattle {
+            get {
+                return ResourceManager.GetString("BattlePhaseFriendlyAirBattle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 友軍艦隊援護.
+        /// </summary>
+        public static string BattlePhaseFriendlyShelling {
+            get {
+                return ResourceManager.GetString("BattlePhaseFriendlyShelling", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 噴式航空戦.
         /// </summary>
         public static string BattlePhaseJet {
@@ -507,6 +525,15 @@ namespace ElectronicObserver.Properties.Data {
         public static string Los {
             get {
                 return ResourceManager.GetString("Los", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 夜戦開始.
+        /// </summary>
+        public static string NightBattleBegins {
+            get {
+                return ResourceManager.GetString("NightBattleBegins", resourceCulture);
             }
         }
         

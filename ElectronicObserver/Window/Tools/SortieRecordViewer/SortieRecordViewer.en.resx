@@ -123,13 +123,43 @@
   <data name="FleetImage" xml:space="preserve">
     <value>Fleet image</value>
   </data>
-  <data name="CopyReplay" xml:space="preserve">
-    <value>Copy replay</value>
-  </data>
   <data name="Search" xml:space="preserve">
     <value>Search</value>
   </data>
   <data name="FailedToParseApiData" xml:space="preserve">
     <value>Failed to parse API data.</value>
+  </data>
+  <data name="World" xml:space="preserve">
+    <value>World</value>
+  </data>
+  <data name="Map" xml:space="preserve">
+    <value>Map</value>
+  </data>
+  <data name="SortieDetail" xml:space="preserve">
+    <value>Sortie details</value>
+  </data>
+  <data name="SelectedItems" xml:space="preserve">
+    <value>Selected items: {0} / {1}</value>
+  </data>
+  <data name="CopySortieData" xml:space="preserve">
+    <value>Copy sortie data</value>
+  </data>
+  <data name="LoadSortieData" xml:space="preserve">
+    <value>Load sortie data</value>
+  </data>
+  <data name="CopyLink" xml:space="preserve">
+    <value>Copy link</value>
+  </data>
+  <data name="Open" xml:space="preserve">
+    <value>Open</value>
+  </data>
+  <data name="Replay" xml:space="preserve">
+    <value>Replay</value>
+  </data>
+  <data name="CopyData" xml:space="preserve">
+    <value>Copy data</value>
+  </data>
+  <data name="DuplicateShipError" xml:space="preserve">
+    <value>Duplicate ship error: couldn't determine the correct ship.</value>
   </data>
 </root>

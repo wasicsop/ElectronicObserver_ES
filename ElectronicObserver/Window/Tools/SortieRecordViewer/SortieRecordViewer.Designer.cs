@@ -61,11 +61,38 @@ namespace ElectronicObserver.Window.Tools.SortieRecordViewer {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to リプレイをコピ.
+        ///   Looks up a localized string similar to データをコピー.
         /// </summary>
-        internal static string CopyReplay {
+        internal static string CopyData {
             get {
-                return ResourceManager.GetString("CopyReplay", resourceCulture);
+                return ResourceManager.GetString("CopyData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to リンクをコピー.
+        /// </summary>
+        internal static string CopyLink {
+            get {
+                return ResourceManager.GetString("CopyLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 出撃データをコピー.
+        /// </summary>
+        internal static string CopySortieData {
+            get {
+                return ResourceManager.GetString("CopySortieData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to サブ艦娘エラー：正しい艦娘を特定できませんでした。.
+        /// </summary>
+        internal static string DuplicateShipError {
+            get {
+                return ResourceManager.GetString("DuplicateShipError", resourceCulture);
             }
         }
         
@@ -88,6 +115,42 @@ namespace ElectronicObserver.Window.Tools.SortieRecordViewer {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 出撃データをロード.
+        /// </summary>
+        internal static string LoadSortieData {
+            get {
+                return ResourceManager.GetString("LoadSortieData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to マップ.
+        /// </summary>
+        internal static string Map {
+            get {
+                return ResourceManager.GetString("Map", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 開く.
+        /// </summary>
+        internal static string Open {
+            get {
+                return ResourceManager.GetString("Open", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to リプレイ.
+        /// </summary>
+        internal static string Replay {
+            get {
+                return ResourceManager.GetString("Replay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 検索.
         /// </summary>
         internal static string Search {
@@ -97,11 +160,38 @@ namespace ElectronicObserver.Window.Tools.SortieRecordViewer {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 選択項目の合計: {0} / {1}.
+        /// </summary>
+        internal static string SelectedItems {
+            get {
+                return ResourceManager.GetString("SelectedItems", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 出撃詳細.
+        /// </summary>
+        internal static string SortieDetail {
+            get {
+                return ResourceManager.GetString("SortieDetail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 出撃記録.
         /// </summary>
         internal static string Title {
             get {
                 return ResourceManager.GetString("Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 海域.
+        /// </summary>
+        internal static string World {
+            get {
+                return ResourceManager.GetString("World", resourceCulture);
             }
         }
     }
