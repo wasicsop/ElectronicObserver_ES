@@ -7,8 +7,10 @@ public class ConfigurationUITranslationViewModel : TranslationBaseViewModel
 {
 	public string MainFont => ConfigRes.Mainfont;
 	public string SubFont => ConfigRes.Subfont;
+	public string BrowserFont => ConfigRes.BrowserFont;
 	public string TextSearch => ConfigRes.TextSearch;
 	public string TextSearchToolTip => ConfigRes.TextSearchToolTip;
+	public string MatchMainFont => ConfigRes.MatchMainFont;
 
 	public string UI_BarColorMorphing => ConfigRes.UI_BarColorMorphing;
 	public string UI_BarColorMorphingToolTip => Properties.Window.Dialog.DialogConfiguration.UI_BarColorMorphingToolTip;

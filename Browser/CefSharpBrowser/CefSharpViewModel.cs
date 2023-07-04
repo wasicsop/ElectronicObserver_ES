@@ -135,7 +135,8 @@ public class CefSharpViewModel : BrowserViewModel
 		CefSharpSettings.SubprocessExitIfParentProcessClosed = true;
 		Cef.Initialize(settings, false, (IBrowserProcessHandler?)null);
 
-		var requestHandler = new CustomRequestHandler(Configuration.PreserveDrawingBuffer, Configuration.UseGadgetRedirect);
+		CustomRequestHandler requestHandler = new(Configuration.PreserveDrawingBuffer, Configuration.UseGadgetRedirect);
+
 		requestHandler.RenderProcessTerminated += (mes) => AddLog(3, mes);
 
 		CefSharp = new ChromiumWebBrowser(KanColleUrl)
@@ -619,5 +620,83 @@ public class CefSharpViewModel : BrowserViewModel
 		{
 			Owner = App.Current.MainWindow,
 		}.Show();
+	}
+
+	protected override async Task ApplyCustomBrowserFont(BrowserConfiguration configuration)
+	{
+		if (CefSharp is not { IsBrowserInitialized: true }) return;
+
+		try
+		{
+			await RemoveCustomBrowserFont();
+
+			if (!configuration.UseCustomBrowserFont) return;
+
+			await AddCustomBrowserFont(configuration);
+		}
+		catch (Exception ex)
+		{
+			SendErrorReport(ex.ToString(), FormBrowser.FailedToApplyBrowserFont);
+		}
+	}
+
+	protected override async Task RemoveCustomBrowserFont()
+	{
+		if (GetKanColleFrame() is not IFrame kancolleFrame) return;
+
+		string removeStyleScript = $$"""
+			try
+			{
+				const style = document.getElementById("{{BrowserFontStyleId}}");
+
+				if (style != null)
+				{
+					style.parentElement.removeChild(style);
+				}
+			}
+			catch
+			{
+			}
+			""";
+
+		_ = await kancolleFrame.EvaluateScriptAsync(removeStyleScript);
+	}
+
+	protected override async Task AddCustomBrowserFont(BrowserConfiguration configuration)
+	{
+		if (GetKanColleFrame() is not IFrame kancolleFrame) return;
+
+		string font = configuration.MatchMainFont switch
+		{
+			true => configuration.MainFont,
+			_ => configuration.BrowserFont ?? configuration.MainFont,
+		};
+
+		string fontData =
+			$$"""@font-face { font-family: "font_j"; src: local("{{font}}"); font-weight: normal; }""" +
+			"""\n""" +
+			$$"""@font-face { font-family: "font_j"; src: local("{{font}}"); font-weight: bold; }""";
+
+		string addStyleScript = $$"""
+			try
+			{
+				const style = document.createElement("style");
+				style.type = "text/css";
+				style.id = "{{BrowserFontStyleId}}";
+				style.innerHTML = '{{fontData}}';
+
+				document.getElementsByTagName("head")[0].appendChild(style);
+			}
+			catch
+			{
+			}
+			""";
+
+		JavascriptResponse? response = await kancolleFrame.EvaluateScriptAsync(addStyleScript);
+
+		if (!response.Success)
+		{
+			AddLog(2, FormBrowser.FailedToApplyBrowserFont);
+		}
 	}
 }

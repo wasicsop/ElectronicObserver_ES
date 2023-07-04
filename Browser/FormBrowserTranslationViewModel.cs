@@ -16,6 +16,7 @@ public class FormBrowserTranslationViewModel
 	public string CacheCleared => Properties.Resources.CacheCleared;
 	public string DMMScript => Properties.Resources.DMMScript.Replace("_", "__").Replace("&", "_");
 	public string FailedToApplyStylesheet => Properties.Resources.FailedToApplyStylesheet.Replace("_", "__").Replace("&", "_");
+	public string FailedToApplyBrowserFont => Properties.Resources.FailedToApplyBrowserFont;
 	public string FailedToCopyScreenshotToClipboard => Properties.Resources.FailedToCopyScreenshotToClipboard.Replace("_", "__").Replace("&", "_");
 	public string FailedToHideDmmRefreshDialog => Properties.Resources.FailedToHideDmmRefreshDialog.Replace("_", "__").Replace("&", "_");
 	public string FailedToSaveScreenshot => Properties.Resources.FailedToSaveScreenshot.Replace("_", "__").Replace("&", "_");

@@ -316,6 +316,15 @@ namespace ElectronicObserver.Window.Dialog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ブラウザフォント.
+        /// </summary>
+        public static string BrowserFont {
+            get {
+                return ResourceManager.GetString("BrowserFont", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ブラウザバージョン：.
         /// </summary>
         public static string BrowserVersion {
@@ -881,6 +890,15 @@ namespace ElectronicObserver.Window.Dialog {
         public static string Mainfont {
             get {
                 return ResourceManager.GetString("Mainfont", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to メインフォントに合わせる.
+        /// </summary>
+        public static string MatchMainFont {
+            get {
+                return ResourceManager.GetString("MatchMainFont", resourceCulture);
             }
         }
         

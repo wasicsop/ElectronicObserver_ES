@@ -212,6 +212,15 @@ namespace Browser.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ブラウザフォントの適用に失敗しました。.
+        /// </summary>
+        public static string FailedToApplyBrowserFont {
+            get {
+                return ResourceManager.GetString("FailedToApplyBrowserFont", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to スタイルシートの適用に失敗しました。.
         /// </summary>
         public static string FailedToApplyStylesheet {
