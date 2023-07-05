@@ -436,6 +436,11 @@
 		  <AutoGen>True</AutoGen>
 		  <DependentUpon>SortieRecordViewer.resx</DependentUpon>
 		</Compile>
+		<Compile Update="Window\Tools\Telegram\TelegramResources.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>TelegramResources.resx</DependentUpon>
+		</Compile>
 		<Compile Update="Window\Wpf\EquipmentUpgradePlanViewer\EquipmentUpgradePlanViewer.Designer.cs">
 		  <DesignTime>True</DesignTime>
 		  <AutoGen>True</AutoGen>
@@ -837,6 +842,10 @@
 		<EmbeddedResource Update="Window\Tools\SortieRecordViewer\SortieRecordViewer.resx">
 		  <Generator>ResXFileCodeGenerator</Generator>
 		  <LastGenOutput>SortieRecordViewer.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Window\Tools\Telegram\TelegramResources.resx">
+		  <Generator>PublicResXFileCodeGenerator</Generator>
+		  <LastGenOutput>TelegramResources.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 		<EmbeddedResource Update="Window\Wpf\EquipmentUpgradePlanViewer\EquipmentUpgradePlanViewer.resx">
 		  <Generator>PublicResXFileCodeGenerator</Generator>

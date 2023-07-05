@@ -71,6 +71,7 @@ using MessageBox = System.Windows.MessageBox;
 using Timer = System.Windows.Forms.Timer;
 using ElectronicObserver.Window.Tools.SenkaViewer;
 using ElectronicObserver.Window.Tools.SortieRecordViewer;
+using ElectronicObserver.Window.Tools.Telegram;
 using ElectronicObserver.Window.Wpf.EquipmentUpgradePlanViewer;
 using Jot;
 using ElectronicObserver.Window.Wpf.ShipTrainingPlanner;
@@ -959,6 +960,12 @@ public partial class FormMainViewModel : ObservableObject
 		};
 
 		AutoRefreshWindow.Show(Window);
+	}
+
+	[RelayCommand]
+	private void OpenTelegram()
+	{
+		new TelegramWindow().Show(Window);
 	}
 
 	[RelayCommand]

@@ -2,6 +2,7 @@
 using ElectronicObserver.Window.Tools.AutoRefresh;
 using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner;
 using ElectronicObserver.Window.Tools.EventLockPlanner;
+using ElectronicObserver.Window.Tools.Telegram;
 using ElectronicObserver.Window.Wpf.EquipmentUpgradePlanViewer;
 using ElectronicObserver.Window.Wpf.ShipTrainingPlanner;
 
@@ -87,6 +88,7 @@ public class FormMainTranslationViewModel : TranslationBaseViewModel
 	public string EventLockPlannerTitle => EventLockPlanner.Title;
 	public string EquipmentUpgradePlannerTitle => EquipmentUpgradePlanner.Title; 
 	public string AutoRefreshTitle => AutoRefresh.Title;
+	public string Telegram => TelegramResources.Title;
 
 	public string StripMenu_Debug => Properties.Window.FormMain.Debug.Replace("_", "__").Replace("&", "_");
 	public string StripMenu_Debug_LoadAPIFromFile => Properties.Window.FormMain.Debug_LoadAPIFromFile.Replace("_", "__").Replace("&", "_");
