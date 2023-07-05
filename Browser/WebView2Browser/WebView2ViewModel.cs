@@ -419,13 +419,11 @@ public class WebView2ViewModel : BrowserViewModel
 			{
 				WebView2.ExecuteScriptAsync(string.Format(Properties.Resources.RestoreScript, StyleClassId));
 				gameframe.ExecuteScriptAsync(string.Format(Properties.Resources.RestoreScript, StyleClassId));
-				gameframe.ExecuteScriptAsync("document.body.style.backgroundColor = \"#000000\";");
 			}
 			else
 			{
 				WebView2.ExecuteScriptAsync(string.Format(Properties.Resources.PageScript, StyleClassId));
 				gameframe.ExecuteScriptAsync(string.Format(Properties.Resources.FrameScript, StyleClassId));
-				gameframe.ExecuteScriptAsync("document.body.style.backgroundColor = \"#000000\";");
 			}
 		}
 		catch (Exception ex)

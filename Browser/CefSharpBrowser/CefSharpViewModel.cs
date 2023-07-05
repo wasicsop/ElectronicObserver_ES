@@ -253,13 +253,11 @@ public class CefSharpViewModel : BrowserViewModel
 			{
 				mainframe.EvaluateScriptAsync(string.Format(Properties.Resources.RestoreScript, StyleClassId));
 				gameframe.EvaluateScriptAsync(string.Format(Properties.Resources.RestoreScript, StyleClassId));
-				gameframe.EvaluateScriptAsync("document.body.style.backgroundColor = \"#000000\";");
 			}
 			else
 			{
 				mainframe.EvaluateScriptAsync(string.Format(Properties.Resources.PageScript, StyleClassId));
 				gameframe.EvaluateScriptAsync(string.Format(Properties.Resources.FrameScript, StyleClassId));
-				gameframe.EvaluateScriptAsync("document.body.style.backgroundColor = \"#000000\";");
 			}
 		}
 		catch (Exception ex)
