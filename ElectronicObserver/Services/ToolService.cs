@@ -43,34 +43,11 @@ public class ToolService
 
 		BaseAirCorpsSimulationContentDialog dialog = new(viewModel);
 
-		if (dialog.ShowDialog(App.Current.MainWindow) is not true) return;
+		if (dialog.ShowDialog(App.Current!.MainWindow!) is not true) return;
 
 		AirControlSimulatorViewModel result = dialog.Result!;
-
-		List<BaseAirCorpsData> bases = KCDatabase.Instance.BaseAirCorps.Values
-			.Where(b => b.MapAreaID == result.AirBaseArea?.AreaId)
-			.ToList();
-
-		IEnumerable<IEquipmentData> equipment = KCDatabase.Instance.Equipments.Values
-			.Where(e => result.AllEquipment || e.IsLocked);
-
-		string airControlSimulatorData = DataSerializationService.AirControlSimulator
-		(
-			KCDatabase.Instance.Admiral.Level,
-			result.Fleet1 ? KCDatabase.Instance.Fleet.Fleets.Values.Skip(0).FirstOrDefault() : null,
-			result.Fleet2 ? KCDatabase.Instance.Fleet.Fleets.Values.Skip(1).FirstOrDefault() : null,
-			result.Fleet3 ? KCDatabase.Instance.Fleet.Fleets.Values.Skip(2).FirstOrDefault() : null,
-			result.Fleet4 ? KCDatabase.Instance.Fleet.Fleets.Values.Skip(3).FirstOrDefault() : null,
-			bases.Skip(0).FirstOrDefault(),
-			bases.Skip(1).FirstOrDefault(),
-			bases.Skip(2).FirstOrDefault(),
-			result.ShipData ? KCDatabase.Instance.Ships.Values : null,
-			result.EquipmentData ? equipment : null,
-			result.MaxAircraftLevelFleet,
-			result.MaxAircraftLevelAirBase
-		);
-
-		string url = @$"https://noro6.github.io/kc-web#import:{airControlSimulatorData}";
+		
+		string url = DataSerializationService.AirControlSimulatorLink(result);
 
 		Window.FormBrowserHost.Instance.Browser.OpenAirControlSimulator(url);
 

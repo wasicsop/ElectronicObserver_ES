@@ -19,6 +19,7 @@ public class AirControlSimulatorTranslationViewModel : TranslationBaseViewModel
 	public string AllEquipment => AirControlSimulator.AllEquipment;
 	public string LockedEquipment => AirControlSimulator.LockedEquipment;
 
+	public string CopyLink => SortieRecordViewer.SortieRecordViewer.CopyLink;
 	public string Ok => AirControlSimulator.Ok;
 	public string Cancel => AirControlSimulator.Cancel;
 }
