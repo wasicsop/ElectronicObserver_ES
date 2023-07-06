@@ -18,5 +18,7 @@ public class TweetViewModel : ObservableObject
 
 	public string? Link { get; set; }
 
+	public string? DisplayLink => Link?.Replace("_", "__");
+
 	public string? Author { get; set; }
 }
