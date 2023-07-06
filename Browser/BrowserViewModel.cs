@@ -131,7 +131,7 @@ public abstract partial class BrowserViewModel : ObservableObject, IBrowser
 
 	public abstract void OnLoaded(object sender, RoutedEventArgs e);
 
-	protected async void SetIconResource()
+	protected async Task SetIconResource()
 	{
 		byte[][] canvas = await BrowserHost.GetIconResource();
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.DependencyInjection;
@@ -35,7 +36,7 @@ public partial class ExtraBrowserWindow : Window
 		Tracker.Track(this);
 	}
 
-	private async void InitializeAsync()
+	private async Task InitializeAsync()
 	{
 		await Browser.EnsureCoreWebView2Async(WebView2ViewModel.Environment);
 		
