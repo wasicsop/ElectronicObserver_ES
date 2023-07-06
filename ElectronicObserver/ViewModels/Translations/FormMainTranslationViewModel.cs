@@ -5,6 +5,7 @@ using ElectronicObserver.Window.Tools.EventLockPlanner;
 using ElectronicObserver.Window.Tools.Telegram;
 using ElectronicObserver.Window.Wpf.EquipmentUpgradePlanViewer;
 using ElectronicObserver.Window.Wpf.ShipTrainingPlanner;
+using KancolleProgress;
 
 namespace ElectronicObserver.ViewModels.Translations;
 
@@ -82,7 +83,7 @@ public class FormMainTranslationViewModel : TranslationBaseViewModel
 	public string StripMenu_Tool_BaseAirCorpsSimulation => Properties.Window.FormMain.Tool_BaseAirCorpsSimulation.Replace("_", "__").Replace("&", "_");
 	public string StripMenu_Tool_ExpChecker => Properties.Window.FormMain.Tool_ExpChecker.Replace("_", "__").Replace("&", "_");
 	public string StripMenu_Tool_ExpeditionCheck => Properties.Window.FormMain.Tool_ExpeditionCheck.Replace("_", "__").Replace("&", "_");
-	public string StripMenu_Tool_KancolleProgress => Properties.Window.FormMain.Tool_KancolleProgress.Replace("_", "__").Replace("&", "_");
+	public string StripMenu_Tool_KancolleProgress => KancolleProgressResources.Title;
 	public string StripMenu_Tool_ExtraBrowser => Properties.Window.FormMain.Tool_ExtraBrowser.Replace("_", "__").Replace("&", "_");
 	public string StripMenu_Tool_QuestTrackerManager => QuestTrackerManager.Title;
 	public string EventLockPlannerTitle => EventLockPlanner.Title;

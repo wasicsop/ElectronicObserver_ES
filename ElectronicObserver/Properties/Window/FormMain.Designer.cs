@@ -751,15 +751,6 @@ namespace ElectronicObserver.Properties.Window {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 艦これ進捗.
-        /// </summary>
-        public static string Tool_KancolleProgress {
-            get {
-                return ResourceManager.GetString("Tool_KancolleProgress", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 資源チャート(&amp;C).
         /// </summary>
         public static string Tool_ResourceChart {

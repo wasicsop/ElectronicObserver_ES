@@ -284,9 +284,6 @@ Are you sure?</value>
   <data name="Tool_FleetImageGenerator" xml:space="preserve">
     <value>&amp;Fleet Image Generator</value>
   </data>
-  <data name="Tool_KancolleProgress" xml:space="preserve">
-    <value>Kancolle Progress</value>
-  </data>
   <data name="Tool_ResourceChart" xml:space="preserve">
     <value>Resource &amp;Chart</value>
   </data>

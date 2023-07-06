@@ -270,9 +270,6 @@
   <data name="Tool_ExpeditionCheck" xml:space="preserve">
     <value>遠征可否チェック(&amp;M)</value>
   </data>
-  <data name="Tool_KancolleProgress" xml:space="preserve">
-    <value>艦これ進捗</value>
-  </data>
   <data name="Tool_ExtraBrowser" xml:space="preserve">
     <value>エクストラブラウザ</value>
   </data>
