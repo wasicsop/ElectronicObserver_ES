@@ -23,7 +23,7 @@ namespace ElectronicObserver.Observer;
 
 public sealed class APIObserver
 {
-
+	private object LockObject { get; } = new();
 
 	#region Singleton
 
@@ -918,11 +918,11 @@ public sealed class APIObserver
 					byte[] responseCopy = new byte[(await e.GetResponseBody()).Length];
 					Array.Copy(await e.GetResponseBody(), responseCopy, (await e.GetResponseBody()).Length);
 
-					Task.Run((Action)(() =>
+					Task.Run((() =>
 					{
 						try
 						{
-							lock (this)
+							lock (LockObject)
 							{
 								// 同時に書き込みが走るとアレなのでロックしておく
 

@@ -1,4 +1,5 @@
-﻿using BrowserLibCore;
+﻿using System.Threading.Tasks;
+using BrowserLibCore;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using Jot;
 
