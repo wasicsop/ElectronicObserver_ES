@@ -66,7 +66,7 @@ public partial class ShipDataRecord : ObservableObject
 	};
 
 	private string EquippableString => string.Join("\r\n", Ship.EquippableCategories.Select(id => KCDatabase.Instance.EquipmentTypes[id].NameEN)
-		.Concat(KCDatabase.Instance.MasterEquipments.Values.Where(eq => eq.EquippableShipsAtExpansion.Contains(Ship.ShipID)).Select(eq => eq.NameEN + $" ({DialogAlbumMasterShip.ReinforcementSlot})")));
+		.Concat(KCDatabase.Instance.MasterEquipments.Values.Where(eq => eq.EquippableShipsAtExpansion.Contains(Ship.ShipId)).Select(eq => eq.NameEN + $" ({DialogAlbumMasterShip.ReinforcementSlot})")));
 
 	private string ShipTypePrefix => Ship.IsAbyssalShip switch
 	{

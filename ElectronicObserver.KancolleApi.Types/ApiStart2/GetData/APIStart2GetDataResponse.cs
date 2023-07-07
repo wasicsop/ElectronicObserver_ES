@@ -1,4 +1,5 @@
 ﻿using ElectronicObserver.KancolleApi.Types.ApiStart2.Models;
+using ElectronicObserverTypes;
 
 namespace ElectronicObserver.KancolleApi.Types.ApiStart2.GetData;
 
@@ -13,8 +14,11 @@ public class ApiStart2GetDataResponse
 	[JsonPropertyName("api_mst_equip_exslot")]
 	public List<int> ApiMstEquipExslot { get; set; } = new();
 
+	/// <summary>
+	/// Key is <see cref="EquipmentId"/>.
+	/// </summary>
 	[JsonPropertyName("api_mst_equip_exslot_ship")]
-	public List<ApiMstEquipExslotShip> ApiMstEquipExslotShip { get; set; } = new();
+	public Dictionary<string, ApiMstEquipExslotShip> ApiMstEquipExslotShip { get; set; } = new();
 
 	[JsonPropertyName("api_mst_equip_ship")]
 	public List<ApiMstEquipShip> ApiMstEquipShip { get; set; } = new();

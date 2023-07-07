@@ -630,19 +630,19 @@ public partial class DialogAlbumMasterShipViewModel : WindowViewModelBase
 		sb.AppendLine();
 
 		{
-			var nyan = new Dictionary<int, List<int>>();
+			Dictionary<ShipId, List<int>> nyan = new();
 
-			foreach (var eq in KCDatabase.Instance.MasterEquipments.Values)
+			foreach (IEquipmentDataMaster eq in KCDatabase.Instance.MasterEquipments.Values)
 			{
 				if (!(eq.EquippableShipsAtExpansion?.Any() ?? false))
 					continue;
 
-				foreach (var shipid in eq.EquippableShipsAtExpansion)
+				foreach (ShipId shipid in eq.EquippableShipsAtExpansion)
 				{
-					if (nyan.ContainsKey(shipid))
-						nyan[shipid].Add(eq.EquipmentID);
+					if (nyan.TryGetValue(shipid, out List<int>? value))
+						value.Add(eq.EquipmentID);
 					else
-						nyan.Add(shipid, new List<int>() { eq.EquipmentID });
+						nyan.Add(shipid, new List<int> { eq.EquipmentID });
 				}
 			}
 
@@ -651,7 +651,7 @@ public partial class DialogAlbumMasterShipViewModel : WindowViewModelBase
 
 			foreach (var pair in nyan.OrderBy(p => p.Key))
 			{
-				sb.AppendLine($"|{pair.Key}|{KCDatabase.Instance.MasterShips[pair.Key].NameWithClass}|{string.Join(", ", pair.Value)}|{string.Join(", ", pair.Value.Select(id => KCDatabase.Instance.MasterEquipments[id].NameEN))}|");
+				sb.AppendLine($"|{pair.Key}|{KCDatabase.Instance.MasterShips[(int)pair.Key].NameWithClass}|{string.Join(", ", pair.Value)}|{string.Join(", ", pair.Value.Select(id => KCDatabase.Instance.MasterEquipments[id].NameEN))}|");
 			}
 
 		}

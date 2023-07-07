@@ -319,17 +319,17 @@ public class ShipDataMaster : ResponseWrapper, IIdentifiable, IShipDataMaster
 	/// <summary>
 	/// 対潜
 	/// </summary>
-	public IParameter ASW => GetParameterElement()?.ASW;
+	public IParameter? ASW => GetParameterElement()?.ASW;
 
 	/// <summary>
 	/// 回避
 	/// </summary>
-	public IParameter Evasion => GetParameterElement()?.Evasion;
+	public IParameter? Evasion => GetParameterElement()?.Evasion;
 
 	/// <summary>
 	/// 索敵
 	/// </summary>
-	public IParameter LOS => GetParameterElement()?.LOS;
+	public IParameter? LOS => GetParameterElement()?.LOS;
 
 
 	/// <summary>
@@ -695,7 +695,7 @@ public class ShipDataMaster : ResponseWrapper, IIdentifiable, IShipDataMaster
 	/// 自身のパラメータレコードを取得します。
 	/// </summary>
 	/// <returns></returns>
-	private ShipParameterRecord.ShipParameterElement GetParameterElement()
+	private ShipParameterRecord.ShipParameterElement? GetParameterElement()
 	{
 		return RecordManager.Instance.ShipParameter[ShipID];
 	}
