@@ -141,7 +141,7 @@ public partial class FormMainViewModel : ObservableObject
 	public ImageSource? FleetOverviewImageSource { get; }
 	public ImageSource? ShipGroupImageSource { get; }
 	public ImageSource? FleetPresetImageSource { get; }
-	public ImageSource? ShipTrainingPlanImageSource { get; }	
+	public ImageSource? ShipTrainingPlanImageSource { get; }
 	public ImageSource? DockImageSource { get; }
 	public ImageSource? ArsenalImageSource { get; }
 	public ImageSource? EquipmentUpgradePlanImageSource { get; }
@@ -384,8 +384,8 @@ public partial class FormMainViewModel : ObservableObject
 		Views.Add(ShipTrainingPlanViewer);
 
 		Views.Add(Dock = new DockViewModel());
-		Views.Add(Arsenal = new ArsenalViewModel()); 
-		Views.Add(EquipmentUpgradePlanViewer = new EquipmentUpgradePlanViewerViewModel()); 
+		Views.Add(Arsenal = new ArsenalViewModel());
+		Views.Add(EquipmentUpgradePlanViewer = new EquipmentUpgradePlanViewerViewModel());
 		Views.Add(BaseAirCorps = new BaseAirCorpsViewModel());
 
 		Views.Add(Headquarters = new HeadquartersViewModel());
@@ -913,7 +913,7 @@ public partial class FormMainViewModel : ObservableObject
 
 		new QuestTrackerManagerWindow().Show(Window);
 	}
-	
+
 	[RelayCommand]
 	private void OpenEquipmentUpgradePlanner()
 	{
@@ -1004,7 +1004,7 @@ public partial class FormMainViewModel : ObservableObject
 	}
 
 	[RelayCommand]
-	private async void LoadInitialAPI()
+	private async Task LoadInitialAPI()
 	{
 		using OpenFileDialog ofd = new();
 
@@ -1147,7 +1147,7 @@ public partial class FormMainViewModel : ObservableObject
 		Window.Dispatcher.Invoke((() =>
 		{
 			APIObserver.Instance.LoadResponse($"/kcsapi/{apiName}", data);
-		})); 
+		}));
 	}
 
 	[RelayCommand]
@@ -1232,10 +1232,9 @@ public partial class FormMainViewModel : ObservableObject
 
 					foreach (dynamic elem in json.api_data.api_mst_ship)
 					{
+						IShipDataMaster ship = KCDatabase.Instance.MasterShips[(int)elem.api_id];
 
-						var ship = KCDatabase.Instance.MasterShips[(int)elem.api_id];
-
-						if (elem.api_name != "なし" && ship != null && ship.IsAbyssalShip)
+						if (elem.api_name != "なし" && ship is { IsAbyssalShip: true })
 						{
 
 							KCDatabase.Instance.MasterShips[(int)elem.api_id].LoadFromResponse("api_start2", elem);
@@ -1256,56 +1255,44 @@ public partial class FormMainViewModel : ObservableObject
 	}
 
 	[RelayCommand]
-	private async void DeleteOldAPI()
+	private async Task DeleteOldAPI()
 	{
-
 		if (MessageBox.Show("This will delete old API data.\r\nAre you sure?", "Confirmation",
 				MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No)
 			== MessageBoxResult.Yes)
 		{
-
 			try
 			{
-
-				int count = await Task.Factory.StartNew(() => DeleteOldAPIInternal());
+				int count = await Task.Factory.StartNew(DeleteOldAPIInternal);
 
 				MessageBox.Show("Delete successful.\r\n" + count + " files deleted.", "Delete Successful",
 					MessageBoxButton.OK, MessageBoxImage.Information);
-
 			}
 			catch (Exception ex)
 			{
-
 				MessageBox.Show("Failed to delete.\r\n" + ex.Message, Properties.Window.FormMain.ErrorCaption,
 					MessageBoxButton.OK,
 					MessageBoxImage.Error);
 			}
-
-
 		}
-
 	}
 
 	private int DeleteOldAPIInternal()
 	{
-
-
 		//適当極まりない
 		int count = 0;
 
-		var apilist = new Dictionary<string, List<KeyValuePair<string, string>>>();
+		Dictionary<string, List<KeyValuePair<string, string>>> apilist = new();
 
 		foreach (string s in Directory.EnumerateFiles(Utility.Configuration.Config.Connection.SaveDataPath,
 			"*.json", SearchOption.TopDirectoryOnly))
 		{
-
 			int start = s.IndexOf('@');
 			int end = s.LastIndexOf('.');
 
 			start--;
 			string key = s.Substring(start, end - start + 1);
 			string date = s.Substring(0, start);
-
 
 			if (!apilist.ContainsKey(key))
 			{
@@ -1329,9 +1316,8 @@ public partial class FormMainViewModel : ObservableObject
 	}
 
 	[RelayCommand]
-	private async void RenameShipResource()
+	private async Task RenameShipResource()
 	{
-
 		if (KCDatabase.Instance.MasterShips.Count == 0)
 		{
 			MessageBox.Show("Ship data is not loaded.", Properties.Window.FormMain.ErrorCaption, MessageBoxButton.OK,
@@ -1592,7 +1578,7 @@ public partial class FormMainViewModel : ObservableObject
 
 		Dictionary<ShipId, IShipDataMaster> wikiShips = TestData.Wiki.WikiDataParser.Ships(wikiEquipment);
 		Dictionary<ShipId, IShipDataMaster> wikiAbyssalShips = TestData.Wiki.WikiDataParser.AbyssalShips(wikiAbyssalEquipment);
-		Dictionary<ShipId, List<int>> abyssalAircraft = await  TestData.AirControlSimulator.AirControlSimulatorDataParser.AbyssalShipAircraft();
+		Dictionary<ShipId, List<int>> abyssalAircraft = await TestData.AirControlSimulator.AirControlSimulatorDataParser.AbyssalShipAircraft();
 
 		foreach (IShipDataMaster ship in KCDatabase.Instance.MasterShips.Values)
 		{
@@ -1710,11 +1696,10 @@ public partial class FormMainViewModel : ObservableObject
 	}
 
 	[RelayCommand]
-	private void JoinDiscord()
-		=> OpenLink("https://discord.gg/6ZvX8DG");
+	private void JoinDiscord() => OpenLink("https://discord.gg/6ZvX8DG");
 
 	[RelayCommand]
-	private async void CheckForUpdate()
+	private async Task CheckForUpdate()
 	{
 		// translations and maintenance state
 		await SoftwareUpdater.CheckUpdateAsync();
