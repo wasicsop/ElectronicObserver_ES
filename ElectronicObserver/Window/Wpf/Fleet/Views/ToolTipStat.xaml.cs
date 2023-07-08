@@ -44,6 +44,15 @@ public partial class ToolTipStat
 		set => SetValue(TotalProperty, value);
 	}
 
+	public static readonly DependencyProperty BonusProperty = DependencyProperty.Register(
+		nameof(Bonus), typeof(string), typeof(ToolTipStat), new PropertyMetadata(default(string)));
+	
+	public string? Bonus
+	{
+		get => (string?)GetValue(BonusProperty);
+		set => SetValue(BonusProperty, value);
+	}
+
 	public ToolTipStat()
 	{
 		InitializeComponent();
