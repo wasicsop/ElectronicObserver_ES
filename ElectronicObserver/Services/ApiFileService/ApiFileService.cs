@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Text.Json;
-using System.Threading;
+using System.Threading.Channels;
 using System.Threading.Tasks;
 using System.Web;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -28,9 +27,7 @@ public class ApiFileService : ObservableObject
 	private static int CurrentApiFileVersion => 1;
 
 	private ElectronicObserverContext Db { get; } = new();
-	private KCDatabase KCDatabase { get; }
-
-	private BlockingCollection<ApiFileData> ApiFileQueue { get; } = new();
+	private KCDatabase KcDatabase { get; }
 
 	private SortieRecord? SortieRecord { get; set; }
 
@@ -45,22 +42,26 @@ public class ApiFileService : ObservableObject
 		"api_get_member/require_info",
 	};
 
+	private Channel<ApiFileData> ApiProcessingChannel { get; } = Channel.CreateUnbounded<ApiFileData>(new UnboundedChannelOptions
+	{
+		SingleReader = true,
+		SingleWriter = true,
+		AllowSynchronousContinuations = true,
+	});
+
 	public ApiFileService(KCDatabase db)
 	{
-		KCDatabase = db;
+		KcDatabase = db;
 
-		// https://michaelscodingspot.com/c-job-queues/
-		Thread thread = new(ProcessQueue)
-		{
-			IsBackground = true,
-		};
-		thread.Start();
+		Task.Run(ProcessApiDataAsync);
 	}
 
-	private async void ProcessQueue()
+	private async Task ProcessApiDataAsync()
 	{
-		foreach (ApiFileData apiFile in ApiFileQueue.GetConsumingEnumerable())
+		// basically while (true)
+		while (await ApiProcessingChannel.Reader.WaitToReadAsync())
 		{
+			ApiFileData apiFile = await ApiProcessingChannel.Reader.ReadAsync();
 			await SaveApiData(apiFile.ApiName, apiFile.RequestBody, apiFile.ResponseBody);
 		}
 	}
@@ -101,11 +102,9 @@ public class ApiFileService : ObservableObject
 		await Db.SaveChangesAsync();
 	}
 
-	public Task Add(string apiName, string requestBody, string responseBody)
+	public async Task Add(string apiName, string requestBody, string responseBody)
 	{
-		ApiFileQueue.Add(new(apiName, requestBody, responseBody));
-
-		return Task.CompletedTask;
+		await ApiProcessingChannel.Writer.WriteAsync(new(apiName, requestBody, responseBody));
 	}
 
 	public void SaveChanges()
@@ -200,7 +199,7 @@ public class ApiFileService : ObservableObject
 			if (response is null) return;
 			if (!int.TryParse(request.ApiDeckId, out int fleetId)) return;
 
-			MapInfoData? map = KCDatabase.MapInfo.Values
+			MapInfoData? map = KcDatabase.MapInfo.Values
 				.Where(m => m.MapAreaID == response.ApiData.ApiMapareaId)
 				.FirstOrDefault(m => m.MapInfoID == response.ApiData.ApiMapinfoNo);
 
@@ -213,12 +212,12 @@ public class ApiFileService : ObservableObject
 				MapHPCurrent = map.MapHPCurrent,
 			};
 
-			int nodeSupportFleetId = KCDatabase.Fleet.NodeSupportFleetId(map.MapAreaID) ?? 0;
-			int bossSupportFleetId = KCDatabase.Fleet.BossSupportFleetId(map.MapAreaID) ?? 0;
+			int nodeSupportFleetId = KcDatabase.Fleet.NodeSupportFleetId(map.MapAreaID) ?? 0;
+			int bossSupportFleetId = KcDatabase.Fleet.BossSupportFleetId(map.MapAreaID) ?? 0;
 
 			bool ShouldIncludeFleet(IFleetData fleet) =>
 				fleet.ID == fleetId ||
-				fleet.ID == 2 && KCDatabase.Fleet.CombinedFlag != 0 ||
+				fleet.ID == 2 && KcDatabase.Fleet.CombinedFlag != 0 ||
 				fleet.ID == nodeSupportFleetId ||
 				fleet.ID == bossSupportFleetId;
 
@@ -227,8 +226,8 @@ public class ApiFileService : ObservableObject
 				FleetId = fleetId,
 				NodeSupportFleetId = nodeSupportFleetId,
 				BossSupportFleetId = bossSupportFleetId,
-				CombinedFlag = KCDatabase.Fleet.CombinedFlag,
-				Fleets = KCDatabase.Fleet.Fleets.Values
+				CombinedFlag = KcDatabase.Fleet.CombinedFlag,
+				Fleets = KcDatabase.Fleet.Fleets.Values
 					.Select(f => ShouldIncludeFleet(f) switch
 					{
 						true => new SortieFleet
@@ -242,7 +241,7 @@ public class ApiFileService : ObservableObject
 
 						_ => null,
 					}).ToList(),
-				AirBases = KCDatabase.BaseAirCorps.Values
+				AirBases = KcDatabase.BaseAirCorps.Values
 					.Where(a => a.MapAreaID == map.MapAreaID)
 					.Select(a => new SortieAirBase
 					{
@@ -358,19 +357,19 @@ public class ApiFileService : ObservableObject
 		Speed = s.Speed,
 		EquipmentSlots = s.SlotInstance
 			.Zip(s.Aircraft, (Equipment, AircraftCurrent) => (Equipment, AircraftCurrent))
-			.Zip(s.MasterShip.Aircraft, (s, AircraftMax) => new SortieEquipmentSlot
+			.Zip(s.MasterShip.Aircraft, (slot, AircraftMax) => new SortieEquipmentSlot
 			{
-				Equipment = s.Equipment switch
+				Equipment = slot.Equipment switch
 				{
 					{ } => new()
 					{
-						Id = s.Equipment.EquipmentId,
-						Level = s.Equipment.Level,
-						AircraftLevel = s.Equipment.AircraftLevel,
+						Id = slot.Equipment.EquipmentId,
+						Level = slot.Equipment.Level,
+						AircraftLevel = slot.Equipment.AircraftLevel,
 					},
 					_ => null,
 				},
-				AircraftCurrent = s.AircraftCurrent,
+				AircraftCurrent = slot.AircraftCurrent,
 				AircraftMax = AircraftMax,
 			}).ToList(),
 		ExpansionSlot = s.IsExpansionSlotAvailable switch
