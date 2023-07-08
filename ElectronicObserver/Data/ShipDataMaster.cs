@@ -48,8 +48,12 @@ public class ShipDataMaster : ResponseWrapper, IIdentifiable, IShipDataMaster
 	/// <summary>
 	/// 読み
 	/// </summary>
-	public string NameReading => RawData.api_yomi;
-	public string NameReadingEN => Utility.Configuration.Config.UI.JapaneseShipName ? RawData.api_yomi : NameEN;
+	public string NameReading => RawData.api_yomi() switch
+	{
+		true => RawData.api_yomi,
+		_ => "",
+	};
+	public string NameReadingEN => Utility.Configuration.Config.UI.JapaneseShipName ? NameReading : NameEN;
 
 	/// <summary>
 	/// 艦種
