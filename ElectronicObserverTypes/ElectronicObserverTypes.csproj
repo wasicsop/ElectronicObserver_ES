@@ -51,6 +51,11 @@
 			<AutoGen>True</AutoGen>
 			<DependentUpon>ExpeditionType.resx</DependentUpon>
 		</Compile>
+		<Compile Update="Properties\ShipTypes.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>ShipTypes.resx</DependentUpon>
+		</Compile>
 		<Compile Update="Properties\UpgradeLevel.Designer.cs">
 		  <DesignTime>True</DesignTime>
 		  <AutoGen>True</AutoGen>
@@ -90,6 +95,10 @@
 		</EmbeddedResource>
 		<EmbeddedResource Update="Properties\EquipmentTypeGroups.en.resx">
 		  <Generator></Generator>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Properties\ShipTypes.resx">
+		  <Generator>PublicResXFileCodeGenerator</Generator>
+		  <LastGenOutput>ShipTypes.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 		<EmbeddedResource Update="Properties\UpgradeLevel.resx">
 		  <Generator>PublicResXFileCodeGenerator</Generator>

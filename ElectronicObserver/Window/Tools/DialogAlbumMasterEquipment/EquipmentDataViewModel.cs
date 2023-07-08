@@ -7,6 +7,7 @@ using ElectronicObserver.Resource;
 using ElectronicObserver.Window.Dialog;
 using ElectronicObserver.Window.Tools.DialogAlbumMasterEquipment.EquipmentUpgrade;
 using ElectronicObserverTypes;
+using ElectronicObserverTypes.Extensions;
 
 namespace ElectronicObserver.Window.Tools.DialogAlbumMasterEquipment;
 
@@ -129,7 +130,11 @@ public class EquipmentDataViewModel : ObservableObject
 		string? shipsTypes = eq.EquippableShipTypesAtExpansion.Any() switch
 		{
 			true => string.Join(", ", eq.EquippableShipTypesAtExpansion
-				.Select(id => db.ShipTypes[(int)id].NameEN)),
+				.Select(id => id switch
+				{
+					ShipTypes.All => id.Display(),
+					_ => db.ShipTypes[(int)id].NameEN,
+				})),
 			_ => null,
 		};
 
