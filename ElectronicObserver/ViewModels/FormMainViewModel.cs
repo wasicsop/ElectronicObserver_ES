@@ -75,6 +75,7 @@ using ElectronicObserver.Window.Tools.Telegram;
 using ElectronicObserver.Window.Wpf.EquipmentUpgradePlanViewer;
 using Jot;
 using ElectronicObserver.Window.Wpf.ShipTrainingPlanner;
+using ElectronicObserverTypes;
 #if DEBUG
 using System.Text.Encodings.Web;
 using ElectronicObserverTypes;
