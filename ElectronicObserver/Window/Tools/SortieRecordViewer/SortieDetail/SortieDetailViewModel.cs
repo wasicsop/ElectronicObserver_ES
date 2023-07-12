@@ -179,6 +179,7 @@ public partial class SortieDetailViewModel : WindowViewModelBase
 
 			CleanFleet(Fleets.Fleet);
 			CleanFleet(Fleets.EscortFleet);
+			ApplyBattleResult(b.BattleResult, Fleets);
 		}
 
 		if (deckResponse is not null)
@@ -200,6 +201,48 @@ public partial class SortieDetailViewModel : WindowViewModelBase
 			.Where(s => s?.HPCurrent > 0)
 			.ToList()
 			.ToReadOnlyCollection();
+	}
+
+	private static void ApplyBattleResult(BattleResult? battleResult, BattleFleets fleets)
+	{
+		if (battleResult is null) return;
+
+		ApplyExpGain(fleets.Fleet, battleResult.ExpList, battleResult.LevelUpList);
+
+		if (fleets.EscortFleet is null) return;
+		if (battleResult.LevelUpListCombined is null) return;
+
+		ApplyExpGain(fleets.EscortFleet, battleResult.ExpList, battleResult.LevelUpListCombined);
+	}
+
+	private static void ApplyExpGain(IFleetData fleet, List<int> expList, List<List<int>> levelUpLists)
+	{
+		static IEnumerable<(IShipData? Ship, int Exp, List<int> LevelUpList)> GetExpData(
+			IFleetData fleet, List<int> expList, List<List<int>> levelUpList)
+			=> fleet.MembersInstance
+				.Zip(expList.Skip(1))
+				.Zip(levelUpList, (t, l) => (t.First, t.Second, l));
+
+		foreach ((IShipData? ship, int exp, List<int> levelUpList) in GetExpData(fleet, expList, levelUpLists))
+		{
+			if (ship is null) continue;
+			if (exp is -1) continue;
+
+			switch (levelUpList.Count)
+			{
+				// level capped ship
+				case 1: break;
+
+				// ship hit level cap
+				case 2 when levelUpList[0] + exp > levelUpList[1]:
+					((ShipDataMock)ship).Level++;
+					break;
+
+				default:
+					((ShipDataMock)ship).Level += levelUpList.Count - 2;
+					break;
+			}
+		}
 	}
 
 	public void EnsureApiFilesProcessed()

@@ -11,7 +11,7 @@ public class BattleNode : SortieNode
 {
 	public BattleData FirstBattle { get; }
 	public BattleData? SecondBattle { get; set; }
-	private BattleResult? BattleResult { get; set; }
+	public BattleResult? BattleResult { get; set; }
 
 	public string Result => ConstantsRes.BattleDetail_Result;
 
