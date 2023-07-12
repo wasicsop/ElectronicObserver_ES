@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Text.Json.Serialization;
-using ElectronicObserver.KancolleApi.Types.Models;
 using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Database.Sortie;
