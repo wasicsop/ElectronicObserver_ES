@@ -153,7 +153,8 @@ public static class NightAttackPower
 			EquipmentTypes.AADirector or
 			EquipmentTypes.MainGunLarge2 or
 			EquipmentTypes.SearchlightLarge or
-			EquipmentTypes.SpecialAmphibiousTank => Math.Sqrt(equip.Level),
+			EquipmentTypes.SpecialAmphibiousTank or
+			EquipmentTypes.SurfaceShipPersonnel => Math.Sqrt(equip.Level),
 
 			EquipmentTypes.SecondaryGun => equip.EquipmentId switch
 			{

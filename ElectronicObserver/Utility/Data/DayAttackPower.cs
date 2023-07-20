@@ -78,7 +78,8 @@ public static class DayAttackPower
 		EquipmentTypes.SearchlightLarge or
 		EquipmentTypes.AAGun or
 		EquipmentTypes.LandingCraft or
-		EquipmentTypes.SpecialAmphibiousTank => Math.Sqrt(equip.Level),
+		EquipmentTypes.SpecialAmphibiousTank or
+		EquipmentTypes.SurfaceShipPersonnel => Math.Sqrt(equip.Level),
 
 		EquipmentTypes.MainGunLarge or
 		EquipmentTypes.MainGunLarge2 => Math.Sqrt(equip.Level) * 1.5,
