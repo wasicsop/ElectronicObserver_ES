@@ -1062,26 +1062,19 @@ public static class Constants
 		}
 	}
 
+	public static string GetCombinedFleet(int value) => GetCombinedFleet((FleetType)value);
 
 	/// <summary>
 	/// 連合艦隊の編成名を表す文字列を取得します。
 	/// </summary>
-	public static string GetCombinedFleet(int value)
-	{
-		switch (value)
+	public static string GetCombinedFleet(FleetType value) => value switch
 		{
-			case 0:
-				return ConstantsRes.NormalFleet;
-			case 1:
-				return ConstantsRes.CarrierTF;
-			case 2:
-				return ConstantsRes.SurfaceTF;
-			case 3:
-				return ConstantsRes.TransportFleet;
-			default:
-				return ConstantsRes.Unknown;
-		}
-	}
+		FleetType.Single => ConstantsRes.NormalFleet,
+		FleetType.Carrier => ConstantsRes.CarrierTF,
+		FleetType.Surface => ConstantsRes.SurfaceTF,
+		FleetType.Transport => ConstantsRes.TransportFleet,
+		_ => ConstantsRes.Unknown,
+	};
 
 	#endregion
 
