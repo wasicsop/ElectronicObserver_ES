@@ -175,28 +175,31 @@ public static class Constants
 	/// </summary>
 	/// <param name="hprate">現在HP/最大HPで表される割合。</param>
 	/// <param name="isPractice">演習かどうか。</param>
-	/// <param name="isLandBase">陸上基地かどうか。</param>
+	/// <param name="isInstallation">陸上基地かどうか。</param>
 	/// <param name="isEscaped">退避中かどうか。</param>
 	/// <returns></returns>
-	public static string GetDamageState(double hprate, bool isPractice = false, bool isLandBase = false, bool isEscaped = false)
-	{
+	public static string GetDamageState(double hprate, bool isPractice = false, bool isInstallation = false, bool isEscaped = false)
+		=> hprate switch
+		{
+			_ when isEscaped => ConstantsRes.Retreated,
 
-		if (isEscaped)
-			return ConstantsRes.Retreated;
-		else if (hprate <= 0.0)
-			return isPractice ? ConstantsRes.Withdrawn : (!isLandBase ? ConstantsRes.Sunk : ConstantsRes.Destroyed);
-		else if (hprate <= 0.25)
-			return !isLandBase ? ConstantsRes.CriticalDamage : ConstantsRes.Damaged;
-		else if (hprate <= 0.5)
-			return !isLandBase ? ConstantsRes.ModerateDamage : ConstantsRes.Injured;
-		else if (hprate <= 0.75)
-			return !isLandBase ? ConstantsRes.LightDamage : ConstantsRes.Disorder;
-		else if (hprate < 1.0)
-			return ConstantsRes.Healthy;
-		else
-			return ConstantsRes.Unhurt;
+			<= 0.0 when isPractice => ConstantsRes.Withdrawn,
+			<= 0.0 when isInstallation => ConstantsRes.Destroyed,
+			<= 0.0 => ConstantsRes.Sunk,
 
-	}
+			<= 0.25 when isInstallation => ConstantsRes.Damaged,
+			<= 0.25 => ConstantsRes.CriticalDamage,
+
+			<= 0.5 when isInstallation => ConstantsRes.Injured,
+			<= 0.5 => ConstantsRes.ModerateDamage,
+
+			<= 0.75 when isInstallation => ConstantsRes.Disorder,
+			<= 0.75 => ConstantsRes.LightDamage,
+
+			< 1.0 => ConstantsRes.Healthy,
+
+			_ => ConstantsRes.Unhurt,
+		};
 
 
 	/// <summary>
@@ -1068,7 +1071,7 @@ public static class Constants
 	/// 連合艦隊の編成名を表す文字列を取得します。
 	/// </summary>
 	public static string GetCombinedFleet(FleetType value) => value switch
-		{
+	{
 		FleetType.Single => ConstantsRes.NormalFleet,
 		FleetType.Carrier => ConstantsRes.CarrierTF,
 		FleetType.Surface => ConstantsRes.SurfaceTF,
