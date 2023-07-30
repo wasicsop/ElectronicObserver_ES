@@ -70,15 +70,15 @@ public partial class SortieDetailViewModel : WindowViewModelBase
 		Fleets = fleets;
 	}
 
-	private List<object> ApiResponseCache { get; } = new();
+	private List<(object Response, DateTime Time)> ApiResponseCache { get; } = new();
 
-	public void AddApiFile(object response)
+	public void AddApiFile(object response, DateTime time)
 	{
 		if (response is ApiReqMapStartResponse start)
 		{
 			ProcessResponseCache();
 
-			ApiResponseCache.Add(start);
+			ApiResponseCache.Add((start, time));
 
 			return;
 		}
@@ -87,11 +87,11 @@ public partial class SortieDetailViewModel : WindowViewModelBase
 		{
 			ProcessResponseCache();
 
-			ApiResponseCache.Add(next);
+			ApiResponseCache.Add((next, time));
 
 			if (next.ApiDestructionBattle is not null)
 			{
-				ApiResponseCache.Add(next.ApiDestructionBattle);
+				ApiResponseCache.Add((next.ApiDestructionBattle, time));
 			}
 
 			return;
@@ -99,19 +99,19 @@ public partial class SortieDetailViewModel : WindowViewModelBase
 
 		if (response is ApiReqSortieBattleresultResponse or ApiReqCombinedBattleBattleresultResponse)
 		{
-			ApiResponseCache.Add(response);
+			ApiResponseCache.Add((response, time));
 
 			return;
 		}
 
 		if (response is ApiGetMemberShipDeckResponse deck)
 		{
-			ApiResponseCache.Add(deck);
+			ApiResponseCache.Add((deck, time));
 
 			return;
 		}
 
-		ApiResponseCache.Add(response);
+		ApiResponseCache.Add((response, time));
 	}
 
 	private void ProcessResponseCache()
@@ -123,7 +123,7 @@ public partial class SortieDetailViewModel : WindowViewModelBase
 		ApiGetMemberShipDeckResponse? deckResponse = null;
 		int cell = 0;
 
-		foreach (object response in ApiResponseCache)
+		foreach ((object response, DateTime time) in ApiResponseCache)
 		{
 			cell = response switch
 			{
@@ -133,6 +133,11 @@ public partial class SortieDetailViewModel : WindowViewModelBase
 			};
 
 			BattleData? battle = GetBattle(response, node);
+
+			if (battle is not null)
+			{
+				battle.TimeStamp = time;
+			}
 
 			if (battle is BattleBaseAirRaid raid)
 			{

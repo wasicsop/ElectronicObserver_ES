@@ -344,7 +344,7 @@ public class ToolService
 		});
 	}
 
-	private SortieDetailViewModel? GenerateSortieDetailViewModel(SortieRecordViewModel sortie)
+	public SortieDetailViewModel? GenerateSortieDetailViewModel(SortieRecordViewModel sortie)
 	{
 		try
 		{
@@ -385,7 +385,7 @@ public class ToolService
 
 				if (battleData is null) continue;
 
-				sortieDetail.AddApiFile(battleData);
+				sortieDetail.AddApiFile(battleData, apiFile.TimeStamp);
 			}
 
 			sortieDetail.EnsureApiFilesProcessed();
