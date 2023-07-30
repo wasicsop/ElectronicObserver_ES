@@ -10,164 +10,95 @@ public static class Constants
 	/// <summary>
 	/// 艦船の速力を表す文字列を取得します。
 	/// </summary>
-	public static string GetSpeed(int value)
+	public static string GetSpeed(int value) => value switch
 	{
-		switch (value)
-		{
-			case 0:
-				return ConstantsRes.Land;
-			case 5:
-				return ConstantsRes.Slow;
-			case 10:
-				return ConstantsRes.Fast;
-			case 15:
-				return ConstantsRes.FastPlus;
-			case 20:
-				return ConstantsRes.Fastest;
-			default:
-				return ConstantsRes.Unknown;
-		}
-	}
+		0 => ConstantsRes.Land,
+		5 => ConstantsRes.Slow,
+		10 => ConstantsRes.Fast,
+		15 => ConstantsRes.FastPlus,
+		20 => ConstantsRes.Fastest,
+		_ => ConstantsRes.Unknown,
+	};
 
 	/// <summary>
 	/// 射程を表す文字列を取得します。
 	/// </summary>
-	public static string GetRange(int value)
+	public static string GetRange(int value) => value switch
 	{
-		switch (value)
-		{
-			case 0:
-				return ConstantsRes.None;
-			case 1:
-				return ConstantsRes.Short;
-			case 2:
-				return ConstantsRes.Medium;
-			case 3:
-				return ConstantsRes.Long;
-			case 4:
-				return ConstantsRes.VeryLong;
-			case 5:
-				return ConstantsRes.VeryLong + "+";
-			default:
-				return ConstantsRes.Unknown;
-		}
-	}
+		0 => ConstantsRes.None,
+		1 => ConstantsRes.Short,
+		2 => ConstantsRes.Medium,
+		3 => ConstantsRes.Long,
+		4 => ConstantsRes.VeryLong,
+		5 => ConstantsRes.VeryLong + "+",
+		_ => ConstantsRes.Unknown,
+	};
 
 	/// <summary>
 	/// 艦船のレアリティを表す文字列を取得します。
 	/// </summary>
-	public static string GetShipRarity(int value)
+	public static string GetShipRarity(int value) => value switch
 	{
-		switch (value)
-		{
-			case 0:
-				return ConstantsRes.Red;
-			case 1:
-				return ConstantsRes.Indigo;
-			case 2:
-				return ConstantsRes.Blue;
-			case 3:
-				return ConstantsRes.Aqua;
-			case 4:
-				return ConstantsRes.Silver;
-			case 5:
-				return ConstantsRes.Gold;
-			case 6:
-				return ConstantsRes.Rainbow;
-			case 7:
-				return ConstantsRes.SRainbow;
-			case 8:
-				return ConstantsRes.Sakura;
-			default:
-				return ConstantsRes.Unknown;
-		}
-	}
+		0 => ConstantsRes.Red,
+		1 => ConstantsRes.Indigo,
+		2 => ConstantsRes.Blue,
+		3 => ConstantsRes.Aqua,
+		4 => ConstantsRes.Silver,
+		5 => ConstantsRes.Gold,
+		6 => ConstantsRes.Rainbow,
+		7 => ConstantsRes.SRainbow,
+		8 => ConstantsRes.Sakura,
+		_ => ConstantsRes.Unknown,
+	};
 
 	/// <summary>
 	/// 装備のレアリティを表す文字列を取得します。
 	/// </summary>
-	public static string GetEquipmentRarity(int value)
+	public static string GetEquipmentRarity(int value) => value switch
 	{
-		switch (value)
-		{
-			case 0:
-				return ConstantsRes.Common;
-			case 1:
-				return ConstantsRes.Rare;
-			case 2:
-				return ConstantsRes.Holo;
-			case 3:
-				return ConstantsRes.SHolo;
-			case 4:
-				return ConstantsRes.SSHolo;
-			case 5:
-				return ConstantsRes.EXHolo;
-			case 6:
-				return ConstantsRes.SSHoloPlus;
-			case 7:
-				return ConstantsRes.SSPlusPlus;
-			default:
-				return ConstantsRes.Unknown;
-		}
-	}
+		0 => ConstantsRes.Common,
+		1 => ConstantsRes.Rare,
+		2 => ConstantsRes.Holo,
+		3 => ConstantsRes.SHolo,
+		4 => ConstantsRes.SSHolo,
+		5 => ConstantsRes.EXHolo,
+		6 => ConstantsRes.SSHoloPlus,
+		7 => ConstantsRes.SSPlusPlus,
+		_ => ConstantsRes.Unknown,
+	};
 
 	/// <summary>
 	/// 装備のレアリティの画像インデックスを取得します。
 	/// </summary>
-	public static int GetEquipmentRarityID(int value)
+	public static int GetEquipmentRarityID(int value) => value switch
 	{
-		switch (value)
-		{
-			case 0:
-				return 1;
-			case 1:
-				return 2;
-			case 2:
-				return 3;
-			case 3:
-				return 4;
-			case 4:
-				return 5;
-			case 5:
-				return 6;
-			case 6:
-				return 7;
-			case 7:
-				return 8;
-			default:
-				return 0;
-		}
-	}
+		0 => 1,
+		1 => 2,
+		2 => 3,
+		3 => 4,
+		4 => 5,
+		5 => 6,
+		6 => 7,
+		7 => 8,
+		_ => 0,
+	};
 
 
 	/// <summary>
 	/// 艦船のボイス設定フラグを表す文字列を取得します。
 	/// </summary>
-	public static string GetVoiceFlag(int value)
+	public static string GetVoiceFlag(int value) => value switch
 	{
-
-		switch (value)
-		{
-			case 0:
-				return "-";
-			case 1:
-				return ConstantsRes.Hourly;
-			case 2:
-				return ConstantsRes.Idle;
-			case 3:
-				return ConstantsRes.Idle + " + " + ConstantsRes.Hourly;
-			case 4:
-				return ConstantsRes.SpecialIdle;
-			case 5:
-				return ConstantsRes.Idle + " + " + ConstantsRes.SpecialIdle;
-			case 6:
-				return ConstantsRes.Hourly + " + " + ConstantsRes.SpecialIdle;
-			case 7:
-				return ConstantsRes.Idle + " + " + ConstantsRes.Hourly + " + " + ConstantsRes.SpecialIdle;
-			default:
-				return ConstantsRes.Unknown;
-		}
-	}
+		0 => "-",
+		1 => ConstantsRes.Hourly,
+		2 => ConstantsRes.Idle,
+		3 => $"{ConstantsRes.Idle} + {ConstantsRes.Hourly}",
+		4 => ConstantsRes.SpecialIdle,
+		5 => $"{ConstantsRes.Idle} + {ConstantsRes.SpecialIdle}",
+		6 => $"{ConstantsRes.Hourly} + {ConstantsRes.SpecialIdle}",
+		7 => $"{ConstantsRes.Idle} + {ConstantsRes.Hourly} + {ConstantsRes.SpecialIdle}",
+		_ => ConstantsRes.Unknown,
+	};
 
 
 	/// <summary>
