@@ -122,6 +122,7 @@ public partial class SortieDetailViewModel : WindowViewModelBase
 		BattleBaseAirRaid? abRaid = null;
 		ApiGetMemberShipDeckResponse? deckResponse = null;
 		int cell = 0;
+		bool isBoss = false;
 
 		foreach ((object response, DateTime time) in ApiResponseCache)
 		{
@@ -130,6 +131,13 @@ public partial class SortieDetailViewModel : WindowViewModelBase
 				ApiReqMapStartResponse s => s.ApiNo,
 				ApiReqMapNextResponse n => n.ApiNo,
 				_ => cell,
+			};
+
+			isBoss = response switch
+			{
+				ApiReqMapStartResponse s => s.ApiEventId == 5,
+				ApiReqMapNextResponse n => n.ApiEventId == 5,
+				_ => isBoss,
 			};
 
 			BattleData? battle = GetBattle(response, node);
@@ -153,7 +161,7 @@ public partial class SortieDetailViewModel : WindowViewModelBase
 				}
 				else
 				{
-					node = new BattleNode(KCDatabase.Instance, World, Map, cell, battle);
+					node = new BattleNode(KCDatabase.Instance, World, Map, cell, battle, isBoss);
 				}
 			}
 
