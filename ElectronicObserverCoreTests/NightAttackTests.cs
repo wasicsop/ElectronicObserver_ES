@@ -189,8 +189,8 @@ public class NightAttackTests
 		Assert.Equal(0.292, totalRates[2], Precision);
 	}
 
-	[Fact]
-	public void ArkRoyal()
+	[Fact(DisplayName = "Ark Royal")]
+	public void NightAttackTest4()
 	{
 		IShipData ark = new ShipDataMock(Db.MasterShips[ShipId.ArkRoyalKai])
 		{
@@ -242,7 +242,7 @@ public class NightAttackTests
 	}
 
 	[Fact]
-	public void NightAttackTest4()
+	public void NightAttackTest5()
 	{
 		IShipData fuumii = new ShipDataMock(Db.MasterShips[ShipId.I203Kai])
 		{
@@ -268,5 +268,289 @@ public class NightAttackTests
 		List<NightAttack> actual = fuumii.GetNightAttacks().ToList();
 
 		Assert.Equal(expected, actual);
+	}
+
+	[Fact(DisplayName = "Destroyer lookouts - only works for DD, CL and CLT")]
+	public void NightAttackTest6()
+	{
+		FleetDataMock fleet = new()
+		{
+			MembersInstance = new(new List<IShipData?>()),
+		};
+
+		List<IEquipmentData?> torpedoes = new()
+		{
+			new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Torpedo_Prototype61cmSextuple_OxygenTorpedo]),
+			new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Torpedo_Prototype61cmSextuple_OxygenTorpedo]),
+		};
+
+		List<IEquipmentData?> torpedoesWithDestroyerLookouts = new()
+		{
+			new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Torpedo_Prototype61cmSextuple_OxygenTorpedo]),
+			new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Torpedo_Prototype61cmSextuple_OxygenTorpedo]),
+			new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SurfaceShipPersonnel_TorpedoSquadronSkilledLookouts]),
+		};
+
+		ShipDataMock mogami = new(Db.MasterShips[ShipId.MogamiKaiNiToku])
+		{
+			SlotInstance = torpedoes,
+		};
+
+		double noLookoutsRate = mogami.GetNightAttackRate(NightAttack.CutinTorpedoTorpedo, fleet);
+
+		mogami.SlotInstance = torpedoesWithDestroyerLookouts;
+
+		double lookoutsRate = mogami.GetNightAttackRate(NightAttack.CutinTorpedoTorpedo, fleet);
+
+		Assert.Equal(noLookoutsRate, lookoutsRate);
+
+		ShipDataMock bismarck = new(Db.MasterShips[ShipId.BismarckDrei])
+		{
+			SlotInstance = torpedoes,
+		};
+
+		noLookoutsRate = bismarck.GetNightAttackRate(NightAttack.CutinTorpedoTorpedo, fleet);
+
+		bismarck.SlotInstance = torpedoesWithDestroyerLookouts;
+
+		lookoutsRate = bismarck.GetNightAttackRate(NightAttack.CutinTorpedoTorpedo, fleet);
+
+		Assert.Equal(noLookoutsRate, lookoutsRate);
+
+		ShipDataMock kamikaze = new(Db.MasterShips[ShipId.KamikazeKai])
+		{
+			SlotInstance = torpedoes,
+		};
+
+		noLookoutsRate = kamikaze.GetNightAttackRate(NightAttack.CutinTorpedoTorpedo, fleet);
+
+		kamikaze.SlotInstance = torpedoesWithDestroyerLookouts;
+
+		lookoutsRate = kamikaze.GetNightAttackRate(NightAttack.CutinTorpedoTorpedo, fleet);
+
+		Assert.True(noLookoutsRate < lookoutsRate);
+
+		ShipDataMock yahagi = new(Db.MasterShips[ShipId.YahagiKaiNiB])
+		{
+			SlotInstance = torpedoes,
+		};
+
+		noLookoutsRate = yahagi.GetNightAttackRate(NightAttack.CutinTorpedoTorpedo, fleet);
+
+		yahagi.SlotInstance = torpedoesWithDestroyerLookouts;
+
+		lookoutsRate = yahagi.GetNightAttackRate(NightAttack.CutinTorpedoTorpedo, fleet);
+
+		Assert.True(noLookoutsRate < lookoutsRate);
+	}
+
+	[Fact(DisplayName = "Night Zuiun cut-in with (destroyer) lookouts - normal lookouts boost the rate")]
+	public void NightAttackTest7()
+	{
+		FleetDataMock fleet = new()
+		{
+			MembersInstance = new(new List<IShipData?>()),
+		};
+
+		List<IEquipmentData?> zuiunCutIn = new()
+		{
+			new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunLarge_46cmTripleGunKai]),
+			new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunLarge_46cmTripleGunKai]),
+			new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SeaplaneBomber_PrototypeNightZuiun_AttackEquipment]),
+		};
+
+		List<IEquipmentData?> zuiunCutInWithLookouts = new()
+		{
+			new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunLarge_46cmTripleGunKai]),
+			new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunLarge_46cmTripleGunKai]),
+			new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SeaplaneBomber_PrototypeNightZuiun_AttackEquipment]),
+			new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SurfaceShipPersonnel_SkilledLookouts]),
+		};
+
+		List<IEquipmentData?> zuiunCutInWithDestroyerLookouts = new()
+		{
+			new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunLarge_46cmTripleGunKai]),
+			new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunLarge_46cmTripleGunKai]),
+			new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SeaplaneBomber_PrototypeNightZuiun_AttackEquipment]),
+			new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SurfaceShipPersonnel_TorpedoSquadronSkilledLookouts]),
+		};
+
+		ShipDataMock yamato = new(Db.MasterShips[ShipId.YamatoKaiNiJuu])
+		{
+			SlotInstance = zuiunCutIn,
+		};
+
+		double normalRate = yamato.GetNightAttackRate(NightAttack.CutinTorpedoTorpedo, fleet);
+
+		yamato.SlotInstance = zuiunCutInWithLookouts;
+
+		double lookoutsRate = yamato.GetNightAttackRate(NightAttack.CutinTorpedoTorpedo, fleet);
+
+		yamato.SlotInstance = zuiunCutInWithDestroyerLookouts;
+
+		double destroyerLookoutsRate = yamato.GetNightAttackRate(NightAttack.CutinTorpedoTorpedo, fleet);
+
+		Assert.Equal(normalRate, destroyerLookoutsRate);
+		Assert.True(normalRate < lookoutsRate);
+	}
+
+	[Fact(DisplayName = "Night Zuiun cut-in rate bonus - reduced for Zuiun cut-in, increased for others")]
+	public void NightAttackTest8()
+	{
+		List<IEquipmentData?> zuiunCutIn = new()
+		{
+			new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunLarge_46cmTripleGunKai]),
+			new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunLarge_46cmTripleGunKai]),
+			new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SeaplaneBomber_PrototypeNightZuiun_AttackEquipment]),
+		};
+
+		ShipDataMock yamato = new(Db.MasterShips[ShipId.YamatoKaiNiJuu]);
+
+		ShipDataMock mogami = new(Db.MasterShips[ShipId.MogamiKaiNiToku])
+		{
+			SlotInstance = new List<IEquipmentData?>
+			{
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunMedium_20_3cm_No_3TwinGun]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunMedium_20_3cm_No_3TwinGun]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SeaplaneBomber_PrototypeNightZuiun_AttackEquipment]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Torpedo_Prototype61cmSextuple_OxygenTorpedo]),
+			},
+		};
+
+		FleetDataMock fleet = new()
+		{
+			MembersInstance = new(new List<IShipData?>
+			{
+				yamato,
+				mogami,
+			}),
+		};
+
+		double noCutInZuiunCutInRate = mogami.GetNightAttackRate(NightZuiunCutinAttack.NightZuiunCutinZuiun, fleet);
+		double noCutInMainTorpedoCutInRate = mogami.GetNightAttackRate(NightAttack.CutinMainTorpedo, fleet);
+
+		yamato.SlotInstance = zuiunCutIn;
+
+		double cutInZuiunCutInRate = mogami.GetNightAttackRate(NightZuiunCutinAttack.NightZuiunCutinZuiun, fleet);
+		double cutInMainTorpedoCutInRate = mogami.GetNightAttackRate(NightAttack.CutinMainTorpedo, fleet);
+
+		Assert.True(noCutInZuiunCutInRate > cutInZuiunCutInRate);
+		Assert.True(cutInMainTorpedoCutInRate > noCutInMainTorpedoCutInRate);
+	}
+
+	[Fact(DisplayName = "Night Zuiun cut-in with searchlight - rate is reduced")]
+	public void NightAttackTest9()
+	{
+		ShipDataMock yamato = new(Db.MasterShips[ShipId.YamatoKaiNiJuu])
+		{
+			SlotInstance = new List<IEquipmentData?>
+			{
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunLarge_46cmTripleGunKai]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunLarge_46cmTripleGunKai]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SeaplaneBomber_PrototypeNightZuiun_AttackEquipment]),
+			},
+		};
+
+		ShipDataMock kamikaze = new(Db.MasterShips[ShipId.KamikazeKai]);
+
+		FleetDataMock fleet = new()
+		{
+			MembersInstance = new(new List<IShipData?>
+			{
+				yamato,
+				kamikaze,
+			}),
+		};
+
+		double normalRate = yamato.GetNightAttackRate(NightZuiunCutinAttack.NightZuiunCutinZuiun, fleet);
+
+		kamikaze.SlotInstance = new List<IEquipmentData?>
+		{
+			new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Searchlight_Searchlight]),
+		};
+
+		double searchlightRate = yamato.GetNightAttackRate(NightZuiunCutinAttack.NightZuiunCutinZuiun, fleet);
+		
+		Assert.True(normalRate > searchlightRate);
+	}
+
+	[Fact(DisplayName = "Night Zuiun cut-in with flares - rate is reduced")]
+	public void NightAttackTest10()
+	{
+		ShipDataMock yamato = new(Db.MasterShips[ShipId.YamatoKaiNiJuu])
+		{
+			SlotInstance = new List<IEquipmentData?>
+			{
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunLarge_46cmTripleGunKai]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunLarge_46cmTripleGunKai]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SeaplaneBomber_PrototypeNightZuiun_AttackEquipment]),
+			},
+		};
+
+		ShipDataMock kamikaze = new(Db.MasterShips[ShipId.KamikazeKai]);
+
+		FleetDataMock fleet = new()
+		{
+			MembersInstance = new(new List<IShipData?>
+			{
+				yamato,
+				kamikaze,
+			}),
+		};
+
+		double normalRate = yamato.GetNightAttackRate(NightZuiunCutinAttack.NightZuiunCutinZuiun, fleet);
+
+		kamikaze.SlotInstance = new List<IEquipmentData?>
+		{
+			new EquipmentDataMock(Db.MasterEquipment[EquipmentId.StarShell_StarShell]),
+		};
+
+		double searchlightRate = yamato.GetNightAttackRate(NightZuiunCutinAttack.NightZuiunCutinZuiun, fleet);
+
+		Assert.True(normalRate > searchlightRate);
+	}
+
+	[Fact(DisplayName = "Night Zuiun cut-in bonus and flare bonus don't stack")]
+	public void NightAttackTest11()
+	{
+		List<IEquipmentData?> zuiunCutIn = new()
+		{
+			new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunLarge_46cmTripleGunKai]),
+			new EquipmentDataMock(Db.MasterEquipment[EquipmentId.MainGunLarge_46cmTripleGunKai]),
+			new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SeaplaneBomber_PrototypeNightZuiun_AttackEquipment]),
+		};
+
+		ShipDataMock yamato = new(Db.MasterShips[ShipId.YamatoKaiNiJuu]);
+
+		ShipDataMock kamikaze = new(Db.MasterShips[ShipId.KamikazeKai])
+		{
+			SlotInstance = new List<IEquipmentData?>
+			{
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Torpedo_Prototype61cmSextuple_OxygenTorpedo]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Torpedo_Prototype61cmSextuple_OxygenTorpedo]),
+			},
+		};
+
+		FleetDataMock fleet = new()
+		{
+			MembersInstance = new(new List<IShipData?>
+			{
+				yamato,
+				kamikaze,
+			}),
+		};
+
+		double normalRate = kamikaze.GetNightAttackRate(NightAttack.CutinTorpedoTorpedo, fleet);
+
+		yamato.SlotInstance = zuiunCutIn;
+
+		double zuiunCutInRate = kamikaze.GetNightAttackRate(NightAttack.CutinTorpedoTorpedo, fleet);
+
+		kamikaze.SlotInstance.Add(new EquipmentDataMock(Db.MasterEquipment[EquipmentId.StarShell_StarShell]));
+		
+		double zuiunCutInFlareRate = kamikaze.GetNightAttackRate(NightAttack.CutinTorpedoTorpedo, fleet);
+
+		Assert.Equal(zuiunCutInRate, zuiunCutInFlareRate);
+		Assert.True(normalRate < zuiunCutInRate);
 	}
 }
