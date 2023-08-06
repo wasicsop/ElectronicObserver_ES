@@ -24,207 +24,6 @@ public class NightAttackTests
 	[Fact]
 	public void NightAttackTest1()
 	{
-		ShipStats stats = new ShipStats
-		{
-			Level = 175,
-			Luck = 84,
-		};
-
-		List<IEquipmentData?> equip = new List<IEquipmentData?>
-		{
-			Equipment.MainGun46Kai(10),
-			Equipment.Quint(10),
-			Equipment.Quint(10),
-		};
-
-		IShipData bismarck = Ship.BismarckDrei(stats, equip);
-
-		var fleetMock = new Mock<IFleetData>();
-
-		fleetMock.Setup(f => f.MembersWithoutEscaped).Returns(new ReadOnlyCollection<IShipData?>(new List<IShipData?>
-		{
-			bismarck,
-		}));
-
-		IFleetData fleet = fleetMock.Object;
-
-		List<NightAttack> expected = new()
-		{
-			NightAttack.CutinTorpedoTorpedo,
-			NightAttack.Shelling,
-		};
-
-		List<NightAttack> actual = bismarck.GetNightAttacks().ToList();
-
-		Assert.Equal(expected, actual);
-
-		Assert.Equal(293, bismarck.GetNightAttackPower(actual[0]));
-		Assert.Equal(195, bismarck.GetNightAttackPower(actual[1]));
-
-		List<double> attackRates = actual.Select(a => bismarck.GetNightAttackRate(a, fleet)).ToList();
-		List<double> totalRates = attackRates.ToList().TotalRates();
-
-		Assert.Equal(0.787, totalRates[0], Precision);
-		Assert.Equal(0.213, totalRates[1], Precision);
-	}
-
-	[Fact]
-	public void NightAttackTest2()
-	{
-		ShipStats stats = new ShipStats
-		{
-			Level = 122,
-			Luck = 25,
-		};
-
-		List<IEquipmentData?> equip = new List<IEquipmentData?>
-		{
-			Equipment.T97NightAttacker(),
-			Equipment.ReppuuKaiNiESkilled(),
-			Equipment.T97NightAttacker(),
-			Equipment.ReppuuKaiNiE(),
-			Equipment.NightScamp(),
-		};
-
-		IShipData akagi = Ship.AkagiKaiNi(stats, equip);
-
-		var fleetMock = new Mock<IFleetData>();
-
-		fleetMock.Setup(f => f.MembersWithoutEscaped).Returns(new ReadOnlyCollection<IShipData?>(new List<IShipData?>
-		{
-			akagi,
-		}));
-
-		IFleetData fleet = fleetMock.Object;
-
-		List<NightAttack> expected = new()
-		{
-			CvnciAttack.CutinAirAttackFighterFighterAttacker,
-			CvnciAttack.CutinAirAttackFighterAttacker,
-			CvnciAttack.CutinAirAttackFighterOtherOther,
-			NightAttack.AirAttack,
-		};
-
-		List<NightAttack> actual = akagi.GetNightAttacks().ToList();
-
-		Assert.Equal(expected, actual);
-
-		Assert.Equal(371, akagi.GetNightAttackPower(actual[0]));
-		Assert.Equal(371, akagi.GetNightAttackPower(actual[1]));
-		Assert.Equal(370, akagi.GetNightAttackPower(actual[2]));
-		Assert.Equal(366, akagi.GetNightAttackPower(actual[3]));
-
-		List<double> attackRates = actual.Select(a => akagi.GetNightAttackRate(a, fleet)).ToList();
-		List<double> totalRates = attackRates.ToList().TotalRates();
-
-		Assert.Equal(0.6, totalRates[0], Precision);
-		Assert.Equal(0.219, totalRates[1], Precision);
-		Assert.Equal(0.091, totalRates[2], Precision);
-		Assert.Equal(0.09, totalRates[3], Precision);
-	}
-
-	[Fact]
-	public void NightAttackTest3()
-	{
-		ShipStats stats = new ShipStats
-		{
-			Level = 125,
-			Luck = 17,
-		};
-
-		List<IEquipmentData?> equip = new List<IEquipmentData?>
-		{
-			Equipment.T97NightAttacker(),
-			Equipment.T97NightAttacker(),
-			Equipment.ReppuuKaiNiESkilled(),
-			Equipment.NightScamp(),
-		};
-
-		IShipData taiyou = Ship.TaiyouKaiNi(stats, equip);
-
-		var fleetMock = new Mock<IFleetData>();
-
-		fleetMock.Setup(f => f.MembersWithoutEscaped).Returns(new ReadOnlyCollection<IShipData?>(new List<IShipData?>
-		{
-			taiyou,
-		}));
-
-		IFleetData fleet = fleetMock.Object;
-
-		List<NightAttack> expected = new()
-		{
-			CvnciAttack.CutinAirAttackFighterAttacker,
-			CvnciAttack.CutinAirAttackFighterOtherOther,
-			NightAttack.AirAttack,
-		};
-
-		List<NightAttack> actual = taiyou.GetNightAttacks().ToList();
-
-		Assert.Equal(expected, actual);
-
-		Assert.Equal(251, taiyou.GetNightAttackPower(actual[0]));
-		Assert.Equal(247, taiyou.GetNightAttackPower(actual[1]));
-		Assert.Equal(209, taiyou.GetNightAttackPower(actual[2]));
-
-		List<double> attackRates = actual.Select(a => taiyou.GetNightAttackRate(a, fleet)).ToList();
-		List<double> totalRates = attackRates.ToList().TotalRates();
-
-		Assert.Equal(0.478, totalRates[0], Precision);
-		Assert.Equal(0.23, totalRates[1], Precision);
-		Assert.Equal(0.292, totalRates[2], Precision);
-	}
-
-	[Fact]
-	public void ArkRoyal()
-	{
-		ShipStats stats = new ShipStats
-		{
-			Level = 130,
-			Luck = 16,
-		};
-
-		List<IEquipmentData?> equip = new List<IEquipmentData?>
-		{
-			Equipment.SwordfishMk3Skilled(),
-			Equipment.ReppuuKaiNiESkilled(),
-			Equipment.OTO(10),
-			Equipment.OTO(10),
-		};
-
-		IShipData ark = Ship.ArkRoyalKai(stats, equip);
-
-		var fleetMock = new Mock<IFleetData>();
-
-		fleetMock.Setup(f => f.MembersWithoutEscaped).Returns(new ReadOnlyCollection<IShipData?>(new List<IShipData?>
-		{
-			ark,
-		}));
-
-		IFleetData fleet = fleetMock.Object;
-
-		List<NightAttack> expected = new()
-		{
-			NightAttack.DoubleShelling,
-			NightAttack.Shelling,
-		};
-
-		List<NightAttack> actual = ark.GetNightAttacks().ToList();
-
-		Assert.Equal(expected, actual);
-
-		Assert.Equal(74, ark.GetNightAttackPower(actual[0]));
-		Assert.Equal(62, ark.GetNightAttackPower(actual[1]));
-
-		List<double> attackRates = actual.Select(a => ark.GetNightAttackRate(a, fleet)).ToList();
-		List<double> totalRates = attackRates.ToList().TotalRates();
-
-		Assert.Equal(0.99, totalRates[0], Precision);
-		Assert.Equal(0.01, totalRates[1], Precision);
-	}
-
-	[Fact]
-	public void NightAttackTest1TestData()
-	{
 		IShipData bismarck = new ShipDataMock(Db.MasterShips[ShipId.BismarckDrei])
 		{
 			Level = 175,
@@ -290,7 +89,7 @@ public class NightAttackTests
 	}
 
 	[Fact]
-	public void NightAttackTest2TestData()
+	public void NightAttackTest2()
 	{
 		IShipData akagi = new ShipDataMock(Db.MasterShips[ShipId.AkagiKaiNi])
 		{
@@ -342,7 +141,7 @@ public class NightAttackTests
 	}
 
 	[Fact]
-	public void NightAttackTest3TestData()
+	public void NightAttackTest3()
 	{
 		IShipData taiyou = new ShipDataMock(Db.MasterShips[ShipId.TaiyouKaiNi])
 		{
@@ -391,7 +190,7 @@ public class NightAttackTests
 	}
 
 	[Fact]
-	public void ArkRoyalTestData()
+	public void ArkRoyal()
 	{
 		IShipData ark = new ShipDataMock(Db.MasterShips[ShipId.ArkRoyalKai])
 		{
@@ -443,7 +242,7 @@ public class NightAttackTests
 	}
 
 	[Fact]
-	public void NightAttackTest4TestData()
+	public void NightAttackTest4()
 	{
 		IShipData fuumii = new ShipDataMock(Db.MasterShips[ShipId.I203Kai])
 		{
