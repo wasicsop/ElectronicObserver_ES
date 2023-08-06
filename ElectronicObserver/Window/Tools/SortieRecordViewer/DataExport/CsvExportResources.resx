@@ -1,0 +1,538 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+		Microsoft ResX Schema
+
+		Version 1.3
+
+		The primary goals of this format is to allow a simple XML format 
+		that is mostly human readable. The generation and parsing of the 
+		various data types are done through the TypeConverter classes 
+		associated with the data types.
+
+		Example:
+
+		... ado.net/XML headers & schema ...
+		<resheader name="resmimetype">text/microsoft-resx</resheader>
+		<resheader name="version">1.3</resheader>
+		<resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+		<resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+		<data name="Name1">this is my long string</data>
+		<data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+		<data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+			[base64 mime encoded serialized .NET Framework object]
+		</data>
+		<data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+			[base64 mime encoded string representing a byte array form of the .NET Framework object]
+		</data>
+
+		There are any number of "resheader" rows that contain simple 
+		name/value pairs.
+
+		Each data row contains a name, and value. The row also contains a 
+		type or mimetype. Type corresponds to a .NET class that support 
+		text/value conversion through the TypeConverter architecture. 
+		Classes that don't support this are serialized and stored with the 
+		mimetype set.
+
+		The mimetype is used for serialized objects, and tells the 
+		ResXResourceReader how to depersist the object. This is currently not 
+		extensible. For a given mimetype the value must be set accordingly:
+
+		Note - application/x-microsoft.net.object.binary.base64 is the format 
+		that the ResXResourceWriter will generate, however the reader can 
+		read any of the formats listed below.
+
+		mimetype: application/x-microsoft.net.object.binary.base64
+		value   : The object must be serialized with 
+			: System.Serialization.Formatters.Binary.BinaryFormatter
+			: and then encoded with base64 encoding.
+
+		mimetype: application/x-microsoft.net.object.soap.base64
+		value   : The object must be serialized with 
+			: System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+			: and then encoded with base64 encoding.
+
+		mimetype: application/x-microsoft.net.object.bytearray.base64
+		value   : The object must be serialized into a byte array 
+			: using a System.ComponentModel.TypeConverter
+			: and then encoded with base64 encoding.
+	-->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>1.3</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>日付</value>
+  </data>
+  <data name="World" xml:space="preserve">
+    <value>海域</value>
+  </data>
+  <data name="Map" xml:space="preserve">
+    <value>マップ</value>
+  </data>
+  <data name="Cell" xml:space="preserve">
+    <value>セル</value>
+  </data>
+  <data name="Sortie" xml:space="preserve">
+    <value>出撃</value>
+  </data>
+  <data name="Rank" xml:space="preserve">
+    <value>ランク</value>
+  </data>
+  <data name="EnemyFleet" xml:space="preserve">
+    <value>敵艦隊</value>
+  </data>
+  <data name="AdmiralLevel" xml:space="preserve">
+    <value>提督レベル</value>
+  </data>
+  <data name="PlayerFormation" xml:space="preserve">
+    <value>自陣形</value>
+  </data>
+  <data name="EnemyFormation" xml:space="preserve">
+    <value>敵陣形</value>
+  </data>
+  <data name="PlayerSearch" xml:space="preserve">
+    <value>自索敵</value>
+  </data>
+  <data name="EnemySearch" xml:space="preserve">
+    <value>敵索敵</value>
+  </data>
+  <data name="AirState" xml:space="preserve">
+    <value>制空権</value>
+  </data>
+  <data name="Engagement" xml:space="preserve">
+    <value>会敵</value>
+  </data>
+  <data name="PlayerContact" xml:space="preserve">
+    <value>自触接</value>
+  </data>
+  <data name="EnemyContact" xml:space="preserve">
+    <value>敵触接</value>
+  </data>
+  <data name="PlayerFlare" xml:space="preserve">
+    <value>自照明弾</value>
+  </data>
+  <data name="EnemyFlare" xml:space="preserve">
+    <value>敵照明弾</value>
+  </data>
+  <data name="BattleType" xml:space="preserve">
+    <value>戦闘種別</value>
+  </data>
+  <data name="ShipName1" xml:space="preserve">
+    <value>艦名1</value>
+  </data>
+  <data name="ShipName2" xml:space="preserve">
+    <value>艦名2</value>
+  </data>
+  <data name="ShipName3" xml:space="preserve">
+    <value>艦名3</value>
+  </data>
+  <data name="ShipName4" xml:space="preserve">
+    <value>艦名4</value>
+  </data>
+  <data name="ShipName5" xml:space="preserve">
+    <value>艦名5</value>
+  </data>
+  <data name="ShipName6" xml:space="preserve">
+    <value>艦名6</value>
+  </data>
+  <data name="PlayerFleetType" xml:space="preserve">
+    <value>自艦隊</value>
+  </data>
+  <data name="BattlePhase" xml:space="preserve">
+    <value>巡目</value>
+  </data>
+  <data name="AttackerSide" xml:space="preserve">
+    <value>攻撃艦</value>
+  </data>
+  <data name="Player" xml:space="preserve">
+    <value>自軍</value>
+  </data>
+  <data name="Enemy" xml:space="preserve">
+    <value>敵軍</value>
+  </data>
+  <data name="AttackType" xml:space="preserve">
+    <value>砲撃種別</value>
+  </data>
+  <data name="AttackIndex" xml:space="preserve">
+    <value>砲撃回数</value>
+  </data>
+  <data name="DisplayedEquipment1" xml:space="preserve">
+    <value>表示装備1</value>
+  </data>
+  <data name="DisplayedEquipment2" xml:space="preserve">
+    <value>表示装備2</value>
+  </data>
+  <data name="DisplayedEquipment3" xml:space="preserve">
+    <value>表示装備3</value>
+  </data>
+  <data name="HitType" xml:space="preserve">
+    <value>クリティカル</value>
+  </data>
+  <data name="Damage" xml:space="preserve">
+    <value>ダメージ</value>
+  </data>
+  <data name="Protected" xml:space="preserve">
+    <value>かばう</value>
+  </data>
+  <data name="AttackerIndex" xml:space="preserve">
+    <value>攻撃艦編成順</value>
+  </data>
+  <data name="AttackerId" xml:space="preserve">
+    <value>攻撃艦ID</value>
+  </data>
+  <data name="AttackerName" xml:space="preserve">
+    <value>攻撃艦名前</value>
+  </data>
+  <data name="AttackerShipType" xml:space="preserve">
+    <value>攻撃艦種別</value>
+  </data>
+  <data name="AttackerCondition" xml:space="preserve">
+    <value>攻撃艦疲労</value>
+  </data>
+  <data name="AttackerHpCurrent" xml:space="preserve">
+    <value>攻撃艦残耐久</value>
+  </data>
+  <data name="AttackerHpMax" xml:space="preserve">
+    <value>攻撃艦最大耐久</value>
+  </data>
+  <data name="AttackerDamageState" xml:space="preserve">
+    <value>攻撃艦損傷</value>
+  </data>
+  <data name="AttackerFuelCurrent" xml:space="preserve">
+    <value>攻撃艦残燃料</value>
+  </data>
+  <data name="AttackerFuelMax" xml:space="preserve">
+    <value>攻撃艦最大燃料</value>
+  </data>
+  <data name="AttackerAmmoCurrent" xml:space="preserve">
+    <value>攻撃艦残弾薬</value>
+  </data>
+  <data name="AttackerAmmoMax" xml:space="preserve">
+    <value>攻撃艦最大弾薬</value>
+  </data>
+  <data name="AttackerLevel" xml:space="preserve">
+    <value>攻撃艦Lv</value>
+  </data>
+  <data name="AttackerSpeed" xml:space="preserve">
+    <value>攻撃艦速力</value>
+  </data>
+  <data name="AttackerFirepower" xml:space="preserve">
+    <value>攻撃艦火力</value>
+  </data>
+  <data name="AttackerTorpedo" xml:space="preserve">
+    <value>攻撃艦雷装</value>
+  </data>
+  <data name="AttackerAntiAir" xml:space="preserve">
+    <value>攻撃艦対空</value>
+  </data>
+  <data name="AttackerArmor" xml:space="preserve">
+    <value>攻撃艦装甲</value>
+  </data>
+  <data name="AttackerEvasion" xml:space="preserve">
+    <value>攻撃艦回避</value>
+  </data>
+  <data name="AttackerAntiSubmarine" xml:space="preserve">
+    <value>攻撃艦対潜</value>
+  </data>
+  <data name="AttackerSearch" xml:space="preserve">
+    <value>攻撃艦索敵</value>
+  </data>
+  <data name="AttackerLuck" xml:space="preserve">
+    <value>攻撃艦運</value>
+  </data>
+  <data name="AttackerRange" xml:space="preserve">
+    <value>攻撃艦射程</value>
+  </data>
+  <data name="AttackerEquipment1Name" xml:space="preserve">
+    <value>攻撃艦装備1名前</value>
+  </data>
+  <data name="AttackerEquipment1Level" xml:space="preserve">
+    <value>攻撃艦装備1改修</value>
+  </data>
+  <data name="AttackerEquipment1AircraftLevel" xml:space="preserve">
+    <value>攻撃艦装備1熟練度</value>
+  </data>
+  <data name="AttackerEquipment1Aircraft" xml:space="preserve">
+    <value>攻撃艦装備1搭載数</value>
+  </data>
+  <data name="AttackerEquipment2Name" xml:space="preserve">
+    <value>攻撃艦装備2名前</value>
+  </data>
+  <data name="AttackerEquipment2Level" xml:space="preserve">
+    <value>攻撃艦装備2改修</value>
+  </data>
+  <data name="AttackerEquipment2AircraftLevel" xml:space="preserve">
+    <value>攻撃艦装備2熟練度</value>
+  </data>
+  <data name="AttackerEquipment2Aircraft" xml:space="preserve">
+    <value>攻撃艦装備2搭載数</value>
+  </data>
+  <data name="AttackerEquipment3Name" xml:space="preserve">
+    <value>攻撃艦装備3名前</value>
+  </data>
+  <data name="AttackerEquipment3Level" xml:space="preserve">
+    <value>攻撃艦装備3改修</value>
+  </data>
+  <data name="AttackerEquipment3AircraftLevel" xml:space="preserve">
+    <value>攻撃艦装備3熟練度</value>
+  </data>
+  <data name="AttackerEquipment3Aircraft" xml:space="preserve">
+    <value>攻撃艦装備3搭載数</value>
+  </data>
+  <data name="AttackerEquipment4Name" xml:space="preserve">
+    <value>攻撃艦装備4名前</value>
+  </data>
+  <data name="AttackerEquipment4Level" xml:space="preserve">
+    <value>攻撃艦装備4改修</value>
+  </data>
+  <data name="AttackerEquipment4AircraftLevel" xml:space="preserve">
+    <value>攻撃艦装備4熟練度</value>
+  </data>
+  <data name="AttackerEquipment4Aircraft" xml:space="preserve">
+    <value>攻撃艦装備4搭載数</value>
+  </data>
+  <data name="AttackerEquipment5Name" xml:space="preserve">
+    <value>攻撃艦装備5名前</value>
+  </data>
+  <data name="AttackerEquipment5Level" xml:space="preserve">
+    <value>攻撃艦装備5改修</value>
+  </data>
+  <data name="AttackerEquipment5AircraftLevel" xml:space="preserve">
+    <value>攻撃艦装備5熟練度</value>
+  </data>
+  <data name="AttackerEquipment5Aircraft" xml:space="preserve">
+    <value>攻撃艦装備5搭載数</value>
+  </data>
+  <data name="AttackerEquipment6Name" xml:space="preserve">
+    <value>攻撃艦装備6名前</value>
+  </data>
+  <data name="AttackerEquipment6Level" xml:space="preserve">
+    <value>攻撃艦装備6改修</value>
+  </data>
+  <data name="AttackerEquipment6AircraftLevel" xml:space="preserve">
+    <value>攻撃艦装備6熟練度</value>
+  </data>
+  <data name="AttackerEquipment6Aircraft" xml:space="preserve">
+    <value>攻撃艦装備6搭載数</value>
+  </data>
+  <data name="DefenderIndex" xml:space="preserve">
+    <value>防御艦編成順</value>
+  </data>
+  <data name="DefenderId" xml:space="preserve">
+    <value>防御艦ID</value>
+  </data>
+  <data name="DefenderName" xml:space="preserve">
+    <value>防御艦名前</value>
+  </data>
+  <data name="DefenderShipType" xml:space="preserve">
+    <value>防御艦種別</value>
+  </data>
+  <data name="DefenderCondition" xml:space="preserve">
+    <value>防御艦疲労</value>
+  </data>
+  <data name="DefenderHpCurrent" xml:space="preserve">
+    <value>防御艦残耐久</value>
+  </data>
+  <data name="DefenderHpMax" xml:space="preserve">
+    <value>防御艦最大耐久</value>
+  </data>
+  <data name="DefenderDamageState" xml:space="preserve">
+    <value>防御艦損傷</value>
+  </data>
+  <data name="DefenderFuelCurrent" xml:space="preserve">
+    <value>防御艦残燃料</value>
+  </data>
+  <data name="DefenderFuelMax" xml:space="preserve">
+    <value>防御艦最大燃料</value>
+  </data>
+  <data name="DefenderAmmoCurrent" xml:space="preserve">
+    <value>防御艦残弾薬</value>
+  </data>
+  <data name="DefenderAmmoMax" xml:space="preserve">
+    <value>防御艦最大弾薬</value>
+  </data>
+  <data name="DefenderLevel" xml:space="preserve">
+    <value>防御艦Lv</value>
+  </data>
+  <data name="DefenderSpeed" xml:space="preserve">
+    <value>防御艦速力</value>
+  </data>
+  <data name="DefenderFirepower" xml:space="preserve">
+    <value>防御艦火力</value>
+  </data>
+  <data name="DefenderTorpedo" xml:space="preserve">
+    <value>防御艦雷装</value>
+  </data>
+  <data name="DefenderAntiAir" xml:space="preserve">
+    <value>防御艦対空</value>
+  </data>
+  <data name="DefenderArmor" xml:space="preserve">
+    <value>防御艦装甲</value>
+  </data>
+  <data name="DefenderEvasion" xml:space="preserve">
+    <value>防御艦回避</value>
+  </data>
+  <data name="DefenderAntiSubmarine" xml:space="preserve">
+    <value>防御艦対潜</value>
+  </data>
+  <data name="DefenderSearch" xml:space="preserve">
+    <value>防御艦索敵</value>
+  </data>
+  <data name="DefenderLuck" xml:space="preserve">
+    <value>防御艦運</value>
+  </data>
+  <data name="DefenderRange" xml:space="preserve">
+    <value>防御艦射程</value>
+  </data>
+  <data name="DefenderEquipment1Name" xml:space="preserve">
+    <value>防御艦装備1名前</value>
+  </data>
+  <data name="DefenderEquipment1Level" xml:space="preserve">
+    <value>防御艦装備1改修</value>
+  </data>
+  <data name="DefenderEquipment1AircraftLevel" xml:space="preserve">
+    <value>防御艦装備1熟練度</value>
+  </data>
+  <data name="DefenderEquipment1Aircraft" xml:space="preserve">
+    <value>防御艦装備1搭載数</value>
+  </data>
+  <data name="DefenderEquipment2Name" xml:space="preserve">
+    <value>防御艦装備2名前</value>
+  </data>
+  <data name="DefenderEquipment2Level" xml:space="preserve">
+    <value>防御艦装備2改修</value>
+  </data>
+  <data name="DefenderEquipment2AircraftLevel" xml:space="preserve">
+    <value>防御艦装備2熟練度</value>
+  </data>
+  <data name="DefenderEquipment2Aircraft" xml:space="preserve">
+    <value>防御艦装備2搭載数</value>
+  </data>
+  <data name="DefenderEquipment3Name" xml:space="preserve">
+    <value>防御艦装備3名前</value>
+  </data>
+  <data name="DefenderEquipment3Level" xml:space="preserve">
+    <value>防御艦装備3改修</value>
+  </data>
+  <data name="DefenderEquipment3AircraftLevel" xml:space="preserve">
+    <value>防御艦装備3熟練度</value>
+  </data>
+  <data name="DefenderEquipment3Aircraft" xml:space="preserve">
+    <value>防御艦装備3搭載数</value>
+  </data>
+  <data name="DefenderEquipment4Name" xml:space="preserve">
+    <value>防御艦装備4名前</value>
+  </data>
+  <data name="DefenderEquipment4Level" xml:space="preserve">
+    <value>防御艦装備4改修</value>
+  </data>
+  <data name="DefenderEquipment4AircraftLevel" xml:space="preserve">
+    <value>防御艦装備4熟練度</value>
+  </data>
+  <data name="DefenderEquipment4Aircraft" xml:space="preserve">
+    <value>防御艦装備4搭載数</value>
+  </data>
+  <data name="DefenderEquipment5Name" xml:space="preserve">
+    <value>防御艦装備5名前</value>
+  </data>
+  <data name="DefenderEquipment5Level" xml:space="preserve">
+    <value>防御艦装備5改修</value>
+  </data>
+  <data name="DefenderEquipment5AircraftLevel" xml:space="preserve">
+    <value>防御艦装備5熟練度</value>
+  </data>
+  <data name="DefenderEquipment5Aircraft" xml:space="preserve">
+    <value>防御艦装備5搭載数</value>
+  </data>
+  <data name="DefenderEquipment6Name" xml:space="preserve">
+    <value>防御艦装備6名前</value>
+  </data>
+  <data name="DefenderEquipment6Level" xml:space="preserve">
+    <value>防御艦装備6改修</value>
+  </data>
+  <data name="DefenderEquipment6AircraftLevel" xml:space="preserve">
+    <value>防御艦装備6熟練度</value>
+  </data>
+  <data name="DefenderEquipment6Aircraft" xml:space="preserve">
+    <value>防御艦装備6搭載数</value>
+  </data>
+  <data name="NormalNode" xml:space="preserve">
+    <value>出撃</value>
+  </data>
+  <data name="BossNode" xml:space="preserve">
+    <value>ボス</value>
+  </data>
+  <data name="FleetType" xml:space="preserve">
+    <value>艦隊種類</value>
+  </data>
+  <data name="EnemyFleetType" xml:space="preserve">
+    <value>敵艦隊種類</value>
+  </data>
+  <data name="CombinedFleet" xml:space="preserve">
+    <value>連合艦隊</value>
+  </data>
+  <data name="LogbookRedCsvExport" xml:space="preserve">
+    <value>赤仮</value>
+  </data>
+  <data name="ShellingBattle" xml:space="preserve">
+    <value>砲撃戦</value>
+  </data>
+  <data name="NightBattle" xml:space="preserve">
+    <value>夜戦</value>
+  </data>
+  <data name="TorpedoBattle" xml:space="preserve">
+    <value>雷撃戦</value>
+  </data>
+  <data name="AirBattle" xml:space="preserve">
+    <value>航空戦</value>
+  </data>
+  <data name="AirBaseBattle" xml:space="preserve">
+    <value>基地航空戦</value>
+  </data>
+  <data name="CsvWasSavedSuccessfully" xml:space="preserve">
+    <value>CSVは正常に保存されました</value>
+  </data>
+  <data name="FailedToSaveCsv" xml:space="preserve">
+    <value>CSV保存に失敗しました</value>
+  </data>
+</root>

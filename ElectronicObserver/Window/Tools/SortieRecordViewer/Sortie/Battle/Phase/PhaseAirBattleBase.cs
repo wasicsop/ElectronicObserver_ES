@@ -20,6 +20,8 @@ public class PhaseAirBattleBase : PhaseBase
 	/// </summary>
 	private object AirBattleData { get; }
 
+	public AirState AirState { get; }
+
 	private ApiStage1? Stage1 => AirBattleData switch
 	{
 		IApiAirBattle aab => aab.ApiStage1,
@@ -74,13 +76,23 @@ public class PhaseAirBattleBase : PhaseBase
 
 	public string? TouchAircraftFriend => Stage1?.ApiTouchPlane switch
 	{
-		[EquipmentId id and > 0, ..] => $"　{BattleRes.Contact}: {KCDatabase.Instance.MasterEquipments[(int)id].NameEN}",
+		[EquipmentId id and > 0, ..] => KCDatabase.Instance.MasterEquipments[(int)id].NameEN,
+		_ => null,
+	};
+	public string? TouchAircraftFriendDisplay => TouchAircraftFriend switch
+	{
+		string aircraft => $"　{BattleRes.Contact}: {aircraft}",
 		_ => null,
 	};
 
 	public string? TouchAircraftEnemy => Stage1?.ApiTouchPlane switch
 	{
-		[_, EquipmentId id and > 0, ..] => $"　{BattleRes.EnemyContact}: {KCDatabase.Instance.MasterEquipments[(int)id].NameEN}",
+		[_, EquipmentId id and > 0, ..] => KCDatabase.Instance.MasterEquipments[(int)id].NameEN,
+		_ => null,
+	};
+	public string? TouchAircraftEnemyDisplay => TouchAircraftEnemy switch
+	{
+		string aircraft => $"　{BattleRes.EnemyContact}: {aircraft}",
 		_ => null,
 	};
 
@@ -93,9 +105,11 @@ public class PhaseAirBattleBase : PhaseBase
 
 		if (airBattleData.ApiStage1 is not null)
 		{
+			AirState = airBattleData.ApiStage1.ApiDispSeiku;
+
 			Stage1Display = GetStage1Display
 			(
-				airBattleData.ApiStage1.ApiDispSeiku,
+				AirState,
 				airBattleData.ApiStage1.ApiFLostcount,
 				airBattleData.ApiStage1.ApiFCount,
 				airBattleData.ApiStage1.ApiELostcount,
@@ -114,9 +128,11 @@ public class PhaseAirBattleBase : PhaseBase
 
 		if (airBattleData.ApiStage1 is not null)
 		{
+			AirState = AirState.Unknown;
+
 			Stage1Display = GetStage1Display
 			(
-				AirState.Unknown,
+				AirState,
 				airBattleData.ApiStage1.ApiFLostcount,
 				airBattleData.ApiStage1.ApiFCount,
 				airBattleData.ApiStage1.ApiELostcount,

@@ -21,6 +21,7 @@ public class PhaseInitial : PhaseBase
 
 	private IKCDatabase KcDatabase { get; }
 
+	public bool IsEnemyCombinedFleet { get; }
 	private bool IsBossDamaged { get; }
 	private List<int> FriendInitialHPs { get; }
 	private List<int> FriendMaxHPs { get; }
@@ -244,6 +245,7 @@ public class PhaseInitial : PhaseBase
 	public PhaseInitial(IKCDatabase kcDatabase, BattleFleets fleets, IEnemyCombinedFleetBattle battle)
 		: this(kcDatabase, fleets, (IBattleApiResponse)battle)
 	{
+		IsEnemyCombinedFleet = true;
 		EnemyMembersEscortInstance = MakeEnemyEscortFleet(battle);
 	}
 
@@ -253,6 +255,7 @@ public class PhaseInitial : PhaseBase
 		SetEscortFleetHp(fleets, battle);
 		Escape(fleets.EscortFleet, battle.ApiEscapeIdxCombined);
 
+		IsEnemyCombinedFleet = true;
 		EnemyMembersEscortInstance = MakeEnemyEscortFleet(battle);
 	}
 

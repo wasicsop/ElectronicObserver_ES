@@ -1,31 +1,39 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
+using CsvHelper;
+using CsvHelper.Configuration;
 using ElectronicObserver.Common;
+using ElectronicObserver.Common.ContentDialogs;
+using ElectronicObserver.Common.ContentDialogs.ExportProgress;
 using ElectronicObserver.Data;
 using ElectronicObserver.Database;
 using ElectronicObserver.Database.KancolleApi;
 using ElectronicObserver.Database.Sortie;
-using ElectronicObserver.KancolleApi.Types;
-using ElectronicObserver.KancolleApi.Types.ApiPort.Port;
 using ElectronicObserver.Services;
 using ElectronicObserver.Utility;
+using ElectronicObserver.Window.Tools.SortieRecordViewer.DataExport;
+using ElectronicObserver.Window.Tools.SortieRecordViewer.DataExport.DayShellingExport;
 using Microsoft.EntityFrameworkCore;
+using Calendar = System.Windows.Controls.Calendar;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer;
 
 public partial class SortieRecordViewerViewModel : WindowViewModelBase
 {
 	private ToolService ToolService { get; }
+	private FileService FileService { get; }
 	private ElectronicObserverContext Db { get; } = new();
+	private DataExportHelper DataExportHelper { get; }
 
 	public SortieRecordViewerTranslationViewModel SortieRecordViewer { get; }
 
@@ -60,9 +68,14 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 	private DateTime SearchStartTime { get; set; }
 	public string? StatusBarText { get; private set; }
 
+	public ExportProgressViewModel? ExportProgress { get; set; }
+	public ContentDialogService? ContentDialogService { get; set; }
+
 	public SortieRecordViewerViewModel()
 	{
 		ToolService = Ioc.Default.GetRequiredService<ToolService>();
+		FileService = Ioc.Default.GetRequiredService<FileService>();
+		DataExportHelper = new(Db, ToolService);
 		SortieRecordViewer = Ioc.Default.GetRequiredService<SortieRecordViewerTranslationViewModel>();
 
 		Db.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
@@ -141,60 +154,31 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 	}
 
 	[RelayCommand]
-	private void CopyReplayLinkToClipboard()
+	private async Task CopyReplayLinkToClipboard()
 	{
 		if (SelectedSortie is null) return;
 
-		EnsureApiFilesLoaded(SelectedSortie);
+		await SelectedSortie.Model.EnsureApiFilesLoaded(Db);
 
 		ToolService.CopyReplayLinkToClipboard(SelectedSortie);
 	}
 
 	[RelayCommand]
-	private void CopyReplayDataToClipboard()
+	private async Task CopyReplayDataToClipboard()
 	{
 		if (SelectedSortie is null) return;
 
-		EnsureApiFilesLoaded(SelectedSortie);
+		await SelectedSortie.Model.EnsureApiFilesLoaded(Db);
 
 		ToolService.CopyReplayDataToClipboard(SelectedSortie);
 	}
 
 	[RelayCommand]
-	private void OpenFleetImageGenerator()
+	private async Task OpenFleetImageGenerator()
 	{
 		if (SelectedSortie is null) return;
 
-		int hqLevel = KCDatabase.Instance.Admiral.Level;
-
-		if (SelectedSortie.Model.ApiFiles.Any())
-		{
-			// get the last port response right before the sortie started
-			ApiFile? portFile = Db.ApiFiles
-				.Where(f => f.ApiFileType == ApiFileType.Response)
-				.Where(f => f.Name == "api_port/port")
-				.Where(f => f.TimeStamp < SelectedSortie.Model.ApiFiles.First().TimeStamp)
-				.OrderByDescending(f => f.TimeStamp)
-				.FirstOrDefault();
-
-			if (portFile is not null)
-			{
-				try
-				{
-					ApiPortPortResponse? port = JsonSerializer
-						.Deserialize<ApiResponse<ApiPortPortResponse>>(portFile.Content)?.ApiData;
-
-					if (port != null)
-					{
-						hqLevel = port.ApiBasic.ApiLevel;
-					}
-				}
-				catch
-				{
-					// can probably ignore this
-				}
-			}
-		}
+		int hqLevel = await SelectedSortie.Model.GetAdmiralLevel(Db) ?? KCDatabase.Instance.Admiral.Level;
 
 		ToolService.FleetImageGenerator(SelectedSortie, hqLevel);
 	}
@@ -208,32 +192,32 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 	}
 
 	[RelayCommand]
-	private void ShowSortieDetails()
+	private async Task ShowSortieDetails()
 	{
 		if (SelectedSortie is null) return;
 
-		EnsureApiFilesLoaded(SelectedSortie);
+		await SelectedSortie.Model.EnsureApiFilesLoaded(Db);
 
 		ToolService.OpenSortieDetail(SelectedSortie);
 	}
 
 	[RelayCommand]
-	private void CopySmokerDataCsv()
+	private async Task CopySmokerDataCsv()
 	{
 		foreach (SortieRecordViewModel sortieRecord in SelectedSorties)
 		{
-			EnsureApiFilesLoaded(sortieRecord);
+			await sortieRecord.Model.EnsureApiFilesLoaded(Db);
 		}
 
 		ToolService.CopySmokerDataCsv(SelectedSorties);
 	}
 
 	[RelayCommand]
-	private void CopySortieData()
+	private async Task CopySortieData()
 	{
 		if (SelectedSortie is null) return;
 
-		EnsureApiFilesLoaded(SelectedSortie);
+		await SelectedSortie.Model.EnsureApiFilesLoaded(Db);
 
 		SortieRecord sortie = new()
 		{
@@ -284,12 +268,67 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 		ToolService.AirControlSimulator(SelectedSortie);
 	}
 
-	private void EnsureApiFilesLoaded(SortieRecordViewModel sortie)
+	[RelayCommand(IncludeCancelCommand = true)]
+	private async Task ExportDayShelling(CancellationToken cancellationToken)
 	{
-		if (sortie.Model.ApiFiles.Any()) return;
+		await App.Current!.Dispatcher.BeginInvoke(async () =>
+		{
+			string? path = FileService.ExportCsv();
 
-		sortie.Model.ApiFiles = Db.ApiFiles
-			.Where(f => f.SortieRecordId == sortie.Model.Id)
-			.ToList();
+			if (string.IsNullOrEmpty(path)) return;
+
+			ExportProgress = new();
+
+			Task<List<DayShellingExportModel>> dayShellingDataTask = Task.Run(async () =>
+				await DataExportHelper.DayShelling(SelectedSorties, ExportProgress, cancellationToken), cancellationToken);
+
+			List<Task> tasks = new() { dayShellingDataTask };
+
+			if (ContentDialogService is not null)
+			{
+				tasks.Add(ContentDialogService.ShowExportProgressAsync(ExportProgress));
+			}
+
+			await Task.WhenAny(tasks);
+
+			try
+			{
+				if (dayShellingDataTask.IsCompleted)
+				{
+					List<DayShellingExportModel> dayShellingData = await dayShellingDataTask;
+					await SaveCsvFile<DayShellingExportMap, DayShellingExportModel>(path, dayShellingData);
+				}
+				else
+				{
+					ExportDayShellingCancelCommand.Execute(null);
+				}
+
+				ExportProgress = null;
+
+				if (ContentDialogService is not null)
+				{
+					await ContentDialogService.ShowNotificationAsync(CsvExportResources.CsvWasSavedSuccessfully);
+				}
+			}
+			catch (Exception e)
+			{
+				if (ContentDialogService is not null)
+				{
+					await ContentDialogService.ShowNotificationAsync($"{CsvExportResources.FailedToSaveCsv}: {e.Message}{e.StackTrace}");
+				}
+			}
+		});
+	}
+
+	private static async Task SaveCsvFile<TMap, TElement>(string path, IEnumerable<TElement> data)
+		where TMap : ClassMap<TElement>
+	{
+		CsvConfiguration config = new(CultureInfo.CurrentCulture);
+
+		await using StreamWriter writer = new(path);
+		await using CsvWriter csv = new(writer, config);
+
+		csv.Context.RegisterClassMap<TMap>();
+		await csv.WriteRecordsAsync(data);
 	}
 }

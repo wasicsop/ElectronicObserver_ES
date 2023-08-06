@@ -247,12 +247,12 @@
 			<StackPanel>
 				<TextBlock Text="{Binding Stage1Display}" />
 
-				<TextBlock Text="{Binding TouchAircraftFriend}">
+				<TextBlock Text="{Binding TouchAircraftFriendDisplay}">
 					<TextBlock.Style>
 						<Style TargetType="TextBlock">
 							<Setter Property="Visibility" Value="Visible" />
 							<Style.Triggers>
-								<DataTrigger Binding="{Binding TouchAircraftFriend}" Value="{x:Null}">
+								<DataTrigger Binding="{Binding TouchAircraftFriendDisplay}" Value="{x:Null}">
 									<Setter Property="Visibility" Value="Collapsed" />
 								</DataTrigger>
 							</Style.Triggers>
@@ -260,12 +260,12 @@
 					</TextBlock.Style>
 				</TextBlock>
 
-				<TextBlock Text="{Binding TouchAircraftEnemy}">
+				<TextBlock Text="{Binding TouchAircraftEnemyDisplay}">
 					<TextBlock.Style>
 						<Style TargetType="TextBlock">
 							<Setter Property="Visibility" Value="Visible" />
 							<Style.Triggers>
-								<DataTrigger Binding="{Binding TouchAircraftEnemy}" Value="{x:Null}">
+								<DataTrigger Binding="{Binding TouchAircraftEnemyDisplay}" Value="{x:Null}">
 									<Setter Property="Visibility" Value="Collapsed" />
 								</DataTrigger>
 							</Style.Triggers>
