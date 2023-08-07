@@ -109,9 +109,9 @@ public class DataExportHelper
 								},
 								AttackType = (int)attack.AttackKind,
 								AttackIndex = attackIndex,
-								DisplayedEquipment1 = null, // this would need some research and doesn't feel useful
-								DisplayedEquipment2 = null,
-								DisplayedEquipment3 = null,
+								DisplayedEquipment1 = attackDisplay.DisplayEquipment.Skip(0).FirstOrDefault()?.NameEN,
+								DisplayedEquipment2 = attackDisplay.DisplayEquipment.Skip(1).FirstOrDefault()?.NameEN,
+								DisplayedEquipment3 = attackDisplay.DisplayEquipment.Skip(2).FirstOrDefault()?.NameEN,
 								HitType = (int)attack.CriticalFlag,
 								Damage = attack.Damage,
 								Protected = attack.GuardsFlagship switch
