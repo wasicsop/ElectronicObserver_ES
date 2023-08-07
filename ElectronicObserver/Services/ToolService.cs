@@ -292,7 +292,7 @@ public class ToolService
 
 				if (phase is PhaseTorpedo torpedo)
 				{
-					foreach (PhaseShellingAttackViewModel attackDisplay in torpedo.AttackDisplays)
+					foreach (PhaseTorpedoAttackViewModel attackDisplay in torpedo.AttackDisplays)
 					{
 						foreach (DayAttack attack in attackDisplay.Attacks)
 						{
@@ -311,8 +311,22 @@ public class ToolService
 	}
 
 	private static string GetSmokerCsvLine(SortieDetailViewModel sortieDetail, PhaseSearching searching,
-		PhaseShellingAttackViewModel attackDisplay, DayAttack attack, string phaseTitle, int sampleNumber, int sortieNumber)
+		AttackViewModelBase attackDisplay, DayAttack attack, string phaseTitle, int sampleNumber, int sortieNumber)
 	{
+		static BattleIndex AttackerIndex(AttackViewModelBase attack) => attack switch
+		{
+			PhaseShellingAttackViewModel s => s.AttackerIndex,
+			PhaseTorpedoAttackViewModel t => t.AttackerIndex,
+			_ => throw new NotImplementedException(),
+		};
+
+		static BattleIndex DefenderIndex(AttackViewModelBase attack) => attack switch
+		{
+			PhaseShellingAttackViewModel s => s.DefenderIndex,
+			PhaseTorpedoAttackViewModel t => t.DefenderIndex,
+			_ => throw new NotImplementedException(),
+		};
+
 		return string.Join(CsvSeparator, new List<string>
 		{
 			sortieDetail.StartTime?.ToLocalTime().ToString(),
@@ -324,9 +338,9 @@ public class ToolService
 			Constants.GetEngagementForm(searching.EngagementType),
 			phaseTitle,
 			ElectronicObserverTypes.Attacks.DayAttack.AttackDisplay(attack.AttackKind),
-			(attackDisplay.AttackerIndex.Index + 1).ToString(),
+			(AttackerIndex(attackDisplay).Index + 1).ToString(),
 			attack.Attacker.Name,
-			(attackDisplay.DefenderIndex.Index + 1).ToString(),
+			(DefenderIndex(attackDisplay).Index + 1).ToString(),
 			attack.Defender.Name,
 			attack.Defender.Level.ToString(),
 			attack.Defender.Condition.ToString(),
@@ -338,7 +352,7 @@ public class ToolService
 				HitType.Critical => "CL2",
 				_ => throw new NotImplementedException(),
 			},
-			attackDisplay.AttackerIndex.FleetFlag switch
+			AttackerIndex(attackDisplay).FleetFlag switch
 			{
 				FleetFlag.Player => "自軍",
 				FleetFlag.Enemy => "敵軍",
