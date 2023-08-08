@@ -84,8 +84,8 @@ public class NightAttackTests
 		Assert.Equal(0.82, totalRates[0], Precision);
 		Assert.Equal(0.18, totalRates[1], Precision);
 
-		Assert.Equal(206, bismarck.GetNightAttackAccuracy(actual[0], fleet).RoundDown());
-		Assert.Equal(125, bismarck.GetNightAttackAccuracy(actual[1], fleet).RoundDown());
+		Assert.Equal(226, bismarck.GetNightAttackAccuracy(actual[0], fleet).RoundDown());
+		Assert.Equal(137, bismarck.GetNightAttackAccuracy(actual[1], fleet).RoundDown());
 	}
 
 	[Fact]
