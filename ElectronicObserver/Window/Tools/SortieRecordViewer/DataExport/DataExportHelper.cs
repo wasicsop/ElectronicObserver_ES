@@ -5,7 +5,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using ElectronicObserver.Common.ContentDialogs.ExportProgress;
 using ElectronicObserver.Data;
-using ElectronicObserver.Data.Translation;
 using ElectronicObserver.Database;
 using ElectronicObserver.Services;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.DataExport.DayShellingExport;
@@ -103,7 +102,7 @@ public class DataExportHelper
 								ShipName5 = playerFleet.MembersInstance.Skip(4).FirstOrDefault()?.Name,
 								ShipName6 = playerFleet.MembersInstance.Skip(5).FirstOrDefault()?.Name,
 								PlayerFleetType = Constants.GetCombinedFleet(playerFleet.FleetType),
-								BattlePhase = shelling.Title,
+								BattlePhase = GetPhaseString(shelling),
 								AttackerSide = attackDisplay.AttackerIndex.FleetFlag switch
 								{
 									FleetFlag.Player => CsvExportResources.Player,
@@ -258,6 +257,15 @@ public class DataExportHelper
 	{
 		< DayAttackKind.Shelling => (int)attack,
 		_ => 0,
+	};
+
+	private static string GetPhaseString(PhaseBase phase) => phase switch
+	{
+		PhaseShelling { DayShellingPhase: DayShellingPhase.First } => "1",
+		PhaseShelling { DayShellingPhase: DayShellingPhase.Second } => "2",
+		PhaseShelling { DayShellingPhase: DayShellingPhase.Third } => "3",
+
+		_ => phase.Title,
 	};
 
 	private static string GetEnemyFleetType(bool isCombined) => isCombined switch
