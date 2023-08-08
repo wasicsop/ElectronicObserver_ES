@@ -5,6 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using ElectronicObserver.Common.ContentDialogs.ExportProgress;
 using ElectronicObserver.Data;
+using ElectronicObserver.Data.Translation;
 using ElectronicObserver.Database;
 using ElectronicObserver.Services;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.DataExport.DayShellingExport;
@@ -75,8 +76,7 @@ public class DataExportHelper
 								No = dayShellingData.Count + 1,
 								Date = sortieDetail.StartTime!.Value,
 								World = sortieDetail.World,
-								Map = sortieDetail.Map,
-								Cell = node.Cell,
+								Square = SquareString(sortieDetail, node),
 								Sortie = node.IsBoss switch
 								{
 									true => CsvExportResources.BossNode,
@@ -250,6 +250,9 @@ public class DataExportHelper
 
 		return dayShellingData;
 	}
+
+	private static string SquareString(SortieDetailViewModel sortieDetail, BattleNode node) =>
+		$"{CsvExportResources.Map}:{sortieDetail.World}-{sortieDetail.Map} {CsvExportResources.Cell}:{node.Cell}";
 
 	private static int CsvDayAttackKind(DayAttackKind attack) => attack switch
 	{

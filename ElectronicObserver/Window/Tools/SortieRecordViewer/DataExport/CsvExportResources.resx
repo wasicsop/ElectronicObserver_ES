@@ -535,4 +535,7 @@
   <data name="FailedToSaveCsv" xml:space="preserve">
     <value>CSV保存に失敗しました</value>
   </data>
+  <data name="Square" xml:space="preserve">
+    <value>マス</value>
+  </data>
 </root>
