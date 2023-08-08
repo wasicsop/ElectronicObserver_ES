@@ -12,7 +12,9 @@ using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Node;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.SortieDetail;
 using ElectronicObserverTypes;
+using ElectronicObserverTypes.Attacks;
 using ElectronicObserverTypes.Extensions;
+using DayAttack = ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase.DayAttack;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.DataExport;
 
@@ -107,7 +109,7 @@ public class DataExportHelper
 									FleetFlag.Player => CsvExportResources.Player,
 									_ => CsvExportResources.Enemy,
 								},
-								AttackType = (int)attack.AttackKind,
+								AttackType = CsvDayAttackKind(attack.AttackKind),
 								AttackIndex = attackIndex,
 								DisplayedEquipment1 = attackDisplay.DisplayEquipment.Skip(0).FirstOrDefault()?.NameEN,
 								DisplayedEquipment2 = attackDisplay.DisplayEquipment.Skip(1).FirstOrDefault()?.NameEN,
@@ -248,6 +250,12 @@ public class DataExportHelper
 
 		return dayShellingData;
 	}
+
+	private static int CsvDayAttackKind(DayAttackKind attack) => attack switch
+	{
+		< DayAttackKind.Shelling => (int)attack,
+		_ => 0,
+	};
 
 	private static string GetEnemyFleetType(bool isCombined) => isCombined switch
 	{
