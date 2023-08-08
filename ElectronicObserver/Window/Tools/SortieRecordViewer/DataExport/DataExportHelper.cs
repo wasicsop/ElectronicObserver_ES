@@ -86,8 +86,8 @@ public class DataExportHelper
 								AdmiralLevel = admiralLevel,
 								PlayerFormation = Constants.GetFormation(searching.PlayerFormationType),
 								EnemyFormation = Constants.GetFormation(searching.EnemyFormationType),
-								PlayerSearch = Constants.GetSearchingResult(searching.PlayerDetectionType),
-								EnemySearch = Constants.GetSearchingResult(searching.EnemyDetectionType),
+								PlayerSearch = GetSearchingResult(searching.PlayerDetectionType),
+								EnemySearch = GetSearchingResult(searching.EnemyDetectionType),
 								AirState = Constants.GetAirSuperiority(airBattle.AirState),
 								Engagement = Constants.GetEngagementForm(searching.EngagementType),
 								PlayerContact = airBattle.TouchAircraftFriend,
@@ -250,8 +250,19 @@ public class DataExportHelper
 		return dayShellingData;
 	}
 
-	private static string SquareString(SortieDetailViewModel sortieDetail, BattleNode node) =>
+	private static string SquareString(SortieDetailViewModel sortieDetail, SortieNode node) =>
 		$"{CsvExportResources.Map}:{sortieDetail.World}-{sortieDetail.Map} {CsvExportResources.Cell}:{node.Cell}";
+
+	private static string GetSearchingResult(DetectionType id) => id switch
+	{
+		DetectionType.Success => "発見!",
+		DetectionType.SuccessNoReturn => "発見!索敵機未帰還機あり",
+		DetectionType.NoReturn => "発見できず…索敵機未帰還機あり",
+		DetectionType.Failure => "発見できず…",
+		DetectionType.SuccessNoPlane => "発見!(索敵機なし)",
+		DetectionType.FailureNoPlane => "なし",
+		_ => $"不明({id})",
+	};
 
 	private static int CsvDayAttackKind(DayAttackKind attack) => attack switch
 	{
