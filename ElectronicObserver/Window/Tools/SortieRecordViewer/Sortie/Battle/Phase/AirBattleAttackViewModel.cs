@@ -8,8 +8,11 @@ namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase
 public sealed class AirBattleAttackViewModel : AttackViewModelBase
 {
 	private int WaveIndex { get; }
+
 	public BattleIndex DefenderIndex { get; }
 	public IShipData Defender { get; set; }
+	public int DefenderHpBeforeAttack { get; }
+
 	private double Damage { get; }
 	private HitType HitType { get; }
 	private AirAttack AttackType { get; }
@@ -34,7 +37,9 @@ public sealed class AirBattleAttackViewModel : AttackViewModelBase
 		Defender = fleets.GetShip(DefenderIndex)!;
 		AttackType = attack.AttackType;
 
-		int hpAfterAttacks = Math.Max(0, Defender.HPCurrent - (int)Damage);
+		DefenderHpBeforeAttack = Defender.HPCurrent;
+
+		int hpAfterAttacks = Math.Max(0, DefenderHpBeforeAttack - (int)Damage);
 
 		if (hpAfterAttacks <= 0 && GetDamecon(Defender) is { } damecon)
 		{
@@ -45,9 +50,9 @@ public sealed class AirBattleAttackViewModel : AttackViewModelBase
 			$"[{GetAttackKind(AttackType)}] " +
 			$"{AttackDisplay(attack.Defenders.First().GuardsFlagship, Damage, HitType)}";
 
-		if (Defender.HPCurrent > 0 && Defender.HPCurrent != hpAfterAttacks)
+		if (DefenderHpBeforeAttack > 0 && DefenderHpBeforeAttack != hpAfterAttacks)
 		{
-			DamageDisplay += $" ({Defender.HPCurrent} → {hpAfterAttacks})";
+			DamageDisplay += $" ({DefenderHpBeforeAttack} → {hpAfterAttacks})";
 		}
 
 		DamageDisplay += UsedDamecon switch

@@ -8,8 +8,11 @@ namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase
 public sealed class PhaseSupportAttackViewModel : AttackViewModelBase
 {
 	public string Attacker => BattleRes.SupportFleet;
+
 	public BattleIndex DefenderIndex { get; }
 	public IShipData Defender { get; }
+	public int DefenderHpBeforeAttack { get; }
+
 	private SupportType AttackType { get; }
 	private List<SupportAttack> Attacks { get; }
 	private IEquipmentData? UsedDamecon { get; }
@@ -31,7 +34,9 @@ public sealed class PhaseSupportAttackViewModel : AttackViewModelBase
 			})
 			.ToList();
 
-		int hpAfterAttacks = Math.Max(0, Defender.HPCurrent - Attacks.Sum(a => a.Damage));
+		DefenderHpBeforeAttack = Defender.HPCurrent;
+
+		int hpAfterAttacks = Math.Max(0, DefenderHpBeforeAttack - Attacks.Sum(a => a.Damage));
 
 		if (hpAfterAttacks <= 0 && GetDamecon(Defender) is { } damecon)
 		{
@@ -42,9 +47,9 @@ public sealed class PhaseSupportAttackViewModel : AttackViewModelBase
 			$"[{GetAttackKind(AttackType)}] " +
 			$"{string.Join(", ", Attacks.Select(AttackDisplay))} ";
 
-		if (Defender.HPCurrent > 0 && Defender.HPCurrent != hpAfterAttacks)
+		if (DefenderHpBeforeAttack > 0 && DefenderHpBeforeAttack != hpAfterAttacks)
 		{
-			DamageDisplay += $"({Defender.HPCurrent} → {hpAfterAttacks})";
+			DamageDisplay += $"({DefenderHpBeforeAttack} → {hpAfterAttacks})";
 		}
 
 		DamageDisplay += UsedDamecon switch
