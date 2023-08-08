@@ -11,7 +11,7 @@ public sealed class PhaseSupportAttackViewModel : AttackViewModelBase
 
 	public BattleIndex DefenderIndex { get; }
 	public IShipData Defender { get; }
-	public int DefenderHpBeforeAttack { get; }
+	public List<int> DefenderHpBeforeAttacks { get; } = new();
 
 	private SupportType AttackType { get; }
 	private List<SupportAttack> Attacks { get; }
@@ -34,9 +34,14 @@ public sealed class PhaseSupportAttackViewModel : AttackViewModelBase
 			})
 			.ToList();
 
-		DefenderHpBeforeAttack = Defender.HPCurrent;
+		DefenderHpBeforeAttacks.Add(Defender.HPCurrent);
 
-		int hpAfterAttacks = Math.Max(0, DefenderHpBeforeAttack - Attacks.Sum(a => a.Damage));
+		foreach (SupportAttack supportAttack in Attacks)
+		{
+			DefenderHpBeforeAttacks.Add(DefenderHpBeforeAttacks[^1] - supportAttack.Damage);
+		}
+
+		int hpAfterAttacks = Math.Max(0, Defender.HPCurrent - Attacks.Sum(a => a.Damage));
 
 		if (hpAfterAttacks <= 0 && GetDamecon(Defender) is { } damecon)
 		{
@@ -47,9 +52,9 @@ public sealed class PhaseSupportAttackViewModel : AttackViewModelBase
 			$"[{GetAttackKind(AttackType)}] " +
 			$"{string.Join(", ", Attacks.Select(AttackDisplay))} ";
 
-		if (DefenderHpBeforeAttack > 0 && DefenderHpBeforeAttack != hpAfterAttacks)
+		if (Defender.HPCurrent > 0 && Defender.HPCurrent != hpAfterAttacks)
 		{
-			DamageDisplay += $"({DefenderHpBeforeAttack} → {hpAfterAttacks})";
+			DamageDisplay += $"({Defender.HPCurrent} → {hpAfterAttacks})";
 		}
 
 		DamageDisplay += UsedDamecon switch

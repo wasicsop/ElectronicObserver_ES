@@ -15,7 +15,7 @@ public sealed class PhaseTorpedoAttackViewModel : AttackViewModelBase
 
 	public BattleIndex DefenderIndex { get; }
 	public IShipData Defender { get; }
-	public int DefenderHpBeforeAttack { get; }
+	public List<int> DefenderHpBeforeAttacks { get; } = new();
 
 	private DayAttackKind AttackType { get; }
 	public List<DayAttack> Attacks { get; }
@@ -42,9 +42,14 @@ public sealed class PhaseTorpedoAttackViewModel : AttackViewModelBase
 			.ToList();
 
 		AttackerHpBeforeAttack = Attacker.HPCurrent;
-		DefenderHpBeforeAttack = Defender.HPCurrent;
+		DefenderHpBeforeAttacks.Add(Defender.HPCurrent);
 
-		int hpAfterAttacks = Math.Max(0, DefenderHpBeforeAttack - Attacks.Sum(a => a.Damage));
+		foreach (DayAttack dayAttack in Attacks)
+		{
+			DefenderHpBeforeAttacks.Add(DefenderHpBeforeAttacks[^1] - dayAttack.Damage);
+		}
+
+		int hpAfterAttacks = Math.Max(0, Defender.HPCurrent - Attacks.Sum(a => a.Damage));
 
 		if (hpAfterAttacks <= 0 && GetDamecon(Defender) is { } damecon)
 		{
@@ -55,9 +60,9 @@ public sealed class PhaseTorpedoAttackViewModel : AttackViewModelBase
 			$"[{ElectronicObserverTypes.Attacks.DayAttack.AttackDisplay(AttackType)}] " +
 			$"{string.Join(", ", Attacks.Select(AttackDisplay))}";
 
-		if (DefenderHpBeforeAttack > 0 && DefenderHpBeforeAttack != hpAfterAttacks)
+		if (Defender.HPCurrent > 0 && Defender.HPCurrent != hpAfterAttacks)
 		{
-			DamageDisplay += $" ({DefenderHpBeforeAttack} → {hpAfterAttacks})";
+			DamageDisplay += $" ({Defender.HPCurrent} → {hpAfterAttacks})";
 		}
 
 		DamageDisplay += UsedDamecon switch

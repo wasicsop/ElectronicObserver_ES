@@ -14,7 +14,7 @@ public sealed class PhaseNightBattleAttackViewModel : AttackViewModelBase
 
 	public BattleIndex DefenderIndex { get; }
 	public IShipData Defender { get; }
-	public int DefenderHpBeforeAttack { get; }
+	public List<int> DefenderHpBeforeAttacks { get; } = new();
 
 	private List<NightAttack> Attacks { get; }
 	private IEquipmentData? UsedDamecon { get; }
@@ -40,9 +40,14 @@ public sealed class PhaseNightBattleAttackViewModel : AttackViewModelBase
 			.ToList();
 
 		AttackerHpBeforeAttack = Attacker.HPCurrent;
-		DefenderHpBeforeAttack = Defender.HPCurrent;
+		DefenderHpBeforeAttacks.Add(Defender.HPCurrent);
 
-		int hpAfterAttacks = Math.Max(0, DefenderHpBeforeAttack - Attacks.Sum(a => a.Damage));
+		foreach (NightAttack nightAttack in Attacks)
+		{
+			DefenderHpBeforeAttacks.Add(DefenderHpBeforeAttacks[^1] - nightAttack.Damage);
+		}
+
+		int hpAfterAttacks = Math.Max(0, Defender.HPCurrent - Attacks.Sum(a => a.Damage));
 
 		if (hpAfterAttacks <= 0 && GetDamecon(Defender) is { } damecon)
 		{
@@ -53,9 +58,9 @@ public sealed class PhaseNightBattleAttackViewModel : AttackViewModelBase
 			$"[{ElectronicObserverTypes.Attacks.NightAttack.AttackDisplay(attackType)}] " +
 			$"{string.Join(", ", Attacks.Select(AttackDisplay))}";
 
-		if (DefenderHpBeforeAttack > 0 && DefenderHpBeforeAttack != hpAfterAttacks)
+		if (Defender.HPCurrent > 0 && Defender.HPCurrent != hpAfterAttacks)
 		{
-			DamageDisplay += $" ({DefenderHpBeforeAttack} → {hpAfterAttacks})";
+			DamageDisplay += $" ({Defender.HPCurrent} → {hpAfterAttacks})";
 		}
 
 		DamageDisplay += UsedDamecon switch
