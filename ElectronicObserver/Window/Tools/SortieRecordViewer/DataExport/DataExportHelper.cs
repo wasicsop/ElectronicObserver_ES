@@ -127,7 +127,7 @@ public class DataExportHelper
 								AttackerCondition = attack.Attacker.Condition,
 								AttackerHpCurrent = attackDisplay.AttackerHpBeforeAttack,
 								AttackerHpMax = attack.Attacker.HPMax,
-								AttackerDamageState = Constants.GetDamageState((double)attackDisplay.AttackerHpBeforeAttack / attack.Attacker.HPMax),
+								AttackerDamageState = GetDamageState(attackDisplay.AttackerHpBeforeAttack, attack.Attacker.HPMax),
 								AttackerFuelCurrent = attack.Attacker.Fuel,
 								AttackerFuelMax = attack.Attacker.FuelMax,
 								AttackerAmmoCurrent = attack.Attacker.Ammo,
@@ -181,7 +181,7 @@ public class DataExportHelper
 								DefenderCondition = attack.Defender.Condition,
 								DefenderHpCurrent = attackDisplay.DefenderHpBeforeAttack,
 								DefenderHpMax = attack.Defender.HPMax,
-								DefenderDamageState = Constants.GetDamageState((double)attackDisplay.DefenderHpBeforeAttack / attack.Defender.HPMax),
+								DefenderDamageState = GetDamageState(attackDisplay.DefenderHpBeforeAttack, attack.Defender.HPMax),
 								DefenderFuelCurrent = attack.Defender.Fuel,
 								DefenderFuelMax = attack.Defender.FuelMax,
 								DefenderAmmoCurrent = attack.Defender.Ammo,
@@ -257,6 +257,14 @@ public class DataExportHelper
 	{
 		< DayAttackKind.Shelling => (int)attack,
 		_ => 0,
+	};
+
+	private static string GetDamageState(int hpCurrent, int hpMax) => ((double)hpCurrent / hpMax) switch
+	{
+		<= 0 => "轟沈",
+		> 0.75 => "小破未満",
+
+		double hpRate => Constants.GetDamageState(hpRate),
 	};
 
 	private static string GetPhaseString(PhaseBase phase) => phase switch
