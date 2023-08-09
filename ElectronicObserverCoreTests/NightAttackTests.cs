@@ -5,7 +5,6 @@ using ElectronicObserver.Utility.Data;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Attacks;
 using ElectronicObserverTypes.Mocks;
-using Moq;
 using Xunit;
 
 namespace ElectronicObserverCoreTests;
@@ -24,7 +23,7 @@ public class NightAttackTests
 	[Fact]
 	public void NightAttackTest1()
 	{
-		IShipData bismarck = new ShipDataMock(Db.MasterShips[ShipId.BismarckDrei])
+		ShipDataMock bismarck = new(Db.MasterShips[ShipId.BismarckDrei])
 		{
 			Level = 175,
 			LuckBase = 84,
@@ -46,7 +45,7 @@ public class NightAttackTests
 			},
 		};
 
-		IShipData gotland = new ShipDataMock(Db.MasterShips[ShipId.Gotlandandra])
+		ShipDataMock gotland = new(Db.MasterShips[ShipId.Gotlandandra])
 		{
 			SlotInstance = new List<IEquipmentData?>
 			{
@@ -55,15 +54,14 @@ public class NightAttackTests
 			},
 		};
 
-		var fleetMock = new Mock<IFleetData>();
-
-		fleetMock.Setup(f => f.MembersWithoutEscaped).Returns(new ReadOnlyCollection<IShipData?>(new List<IShipData?>
+		FleetDataMock fleet = new()
 		{
-			bismarck,
-			gotland,
-		}));
-
-		IFleetData fleet = fleetMock.Object;
+			MembersInstance = new(new List<IShipData?>
+			{
+				bismarck,
+				gotland,
+			})
+		};
 
 		List<NightAttack> expected = new()
 		{
@@ -91,7 +89,7 @@ public class NightAttackTests
 	[Fact]
 	public void NightAttackTest2()
 	{
-		IShipData akagi = new ShipDataMock(Db.MasterShips[ShipId.AkagiKaiNi])
+		ShipDataMock akagi = new(Db.MasterShips[ShipId.AkagiKaiNi])
 		{
 			Level = 122,
 			LuckBase = 25,
@@ -105,14 +103,13 @@ public class NightAttackTests
 			},
 		};
 
-		var fleetMock = new Mock<IFleetData>();
-
-		fleetMock.Setup(f => f.MembersWithoutEscaped).Returns(new ReadOnlyCollection<IShipData?>(new List<IShipData?>
+		FleetDataMock fleet = new()
 		{
-			akagi,
-		}));
-
-		IFleetData fleet = fleetMock.Object;
+			MembersInstance = new(new List<IShipData?>
+			{
+				akagi,
+			}),
+		};
 
 		List<NightAttack> expected = new()
 		{
@@ -143,7 +140,7 @@ public class NightAttackTests
 	[Fact]
 	public void NightAttackTest3()
 	{
-		IShipData taiyou = new ShipDataMock(Db.MasterShips[ShipId.TaiyouKaiNi])
+		ShipDataMock taiyou = new(Db.MasterShips[ShipId.TaiyouKaiNi])
 		{
 			Level = 125,
 			LuckBase = 17,
@@ -157,14 +154,13 @@ public class NightAttackTests
 			},
 		};
 
-		var fleetMock = new Mock<IFleetData>();
-
-		fleetMock.Setup(f => f.MembersWithoutEscaped).Returns(new ReadOnlyCollection<IShipData?>(new List<IShipData?>
+		FleetDataMock fleet = new()
 		{
-			taiyou,
-		}));
-
-		IFleetData fleet = fleetMock.Object;
+			MembersInstance = new(new List<IShipData?>
+			{
+				taiyou,
+			}),
+		};
 
 		List<NightAttack> expected = new()
 		{
@@ -192,7 +188,7 @@ public class NightAttackTests
 	[Fact(DisplayName = "Ark Royal")]
 	public void NightAttackTest4()
 	{
-		IShipData ark = new ShipDataMock(Db.MasterShips[ShipId.ArkRoyalKai])
+		ShipDataMock ark = new(Db.MasterShips[ShipId.ArkRoyalKai])
 		{
 			Level = 130,
 			LuckBase = 16,
@@ -212,14 +208,13 @@ public class NightAttackTests
 			},
 		};
 
-		var fleetMock = new Mock<IFleetData>();
-
-		fleetMock.Setup(f => f.MembersWithoutEscaped).Returns(new ReadOnlyCollection<IShipData?>(new List<IShipData?>
+		FleetDataMock fleet = new()
 		{
-			ark,
-		}));
-
-		IFleetData fleet = fleetMock.Object;
+			MembersInstance = new(new List<IShipData?>
+			{
+				ark,
+			}),
+		};
 
 		List<NightAttack> expected = new()
 		{
@@ -470,7 +465,7 @@ public class NightAttackTests
 		};
 
 		double searchlightRate = yamato.GetNightAttackRate(NightZuiunCutinAttack.NightZuiunCutinZuiun, fleet);
-		
+
 		Assert.True(normalRate > searchlightRate);
 	}
 
@@ -547,7 +542,7 @@ public class NightAttackTests
 		double zuiunCutInRate = kamikaze.GetNightAttackRate(NightAttack.CutinTorpedoTorpedo, fleet);
 
 		kamikaze.SlotInstance.Add(new EquipmentDataMock(Db.MasterEquipment[EquipmentId.StarShell_StarShell]));
-		
+
 		double zuiunCutInFlareRate = kamikaze.GetNightAttackRate(NightAttack.CutinTorpedoTorpedo, fleet);
 
 		Assert.Equal(zuiunCutInRate, zuiunCutInFlareRate);

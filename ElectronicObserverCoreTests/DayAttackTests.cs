@@ -6,7 +6,6 @@ using ElectronicObserver.Utility.Data;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Attacks;
 using ElectronicObserverTypes.Mocks;
-using Moq;
 using Xunit;
 
 namespace ElectronicObserverCoreTests;
@@ -17,7 +16,7 @@ public class DayAttackTests
 	private DatabaseFixture Db { get; }
 	private int Precision => 3;
 
-	private IShipData BismarckMock => new ShipDataMock(Db.MasterShips[ShipId.BismarckDrei])
+	private ShipDataMock BismarckMock => new(Db.MasterShips[ShipId.BismarckDrei])
 	{
 		Level = 175,
 		Fleet = 1,
@@ -41,7 +40,7 @@ public class DayAttackTests
 		Aircraft = new List<int> { 4, 4, 4, 4 },
 	};
 
-	private IShipData Isek2Mock => new ShipDataMock(Db.MasterShips[ShipId.IseKaiNi])
+	private ShipDataMock Isek2Mock => new(Db.MasterShips[ShipId.IseKaiNi])
 	{
 		Level = 130,
 		Fleet = 1,
@@ -73,7 +72,7 @@ public class DayAttackTests
 		Aircraft = new List<int> { 2, 2, 22, 22, 9 },
 	};
 
-	private IShipData TaihouMock => new ShipDataMock(Db.MasterShips[ShipId.TaihouKai])
+	private ShipDataMock TaihouMock => new(Db.MasterShips[ShipId.TaihouKai])
 	{
 		Level = 149,
 		Fleet = 1,
@@ -96,23 +95,21 @@ public class DayAttackTests
 	[Fact]
 	public void DayAttackTest1()
 	{
-		var fleetMock = new Mock<IFleetData>();
-
-		fleetMock.Setup(f => f.MembersWithoutEscaped).Returns(new ReadOnlyCollection<IShipData?>(
-			new List<IShipData?>
+		FleetDataMock fleet = new()
+		{
+			MembersInstance = new(new List<IShipData?>
 			{
 				BismarckMock,
 				Isek2Mock,
 				TaihouMock,
-			}));
-
-		IFleetData fleet = fleetMock.Object;
+			}),
+		};
 
 		List<Enum> expected = new List<Enum>
 		{
 			DayAttackKind.CutinMainMain,
 			DayAttackKind.DoubleShelling,
-			DayAttackKind.Shelling
+			DayAttackKind.Shelling,
 		};
 
 		List<Enum> actual = BismarckMock.GetDayAttacks().ToList();
@@ -134,24 +131,22 @@ public class DayAttackTests
 	[Fact]
 	public void DayAttackTest2()
 	{
-		var fleetMock = new Mock<IFleetData>();
-
-		fleetMock.Setup(f => f.MembersWithoutEscaped).Returns(new ReadOnlyCollection<IShipData?>(
-			new List<IShipData?>
+		FleetDataMock fleet = new()
+		{
+			MembersInstance = new(new List<IShipData?>
 			{
 				BismarckMock,
 				Isek2Mock,
 				TaihouMock,
-			}));
-
-		IFleetData fleet = fleetMock.Object;
+			}),
+		};
 
 		List<Enum> expected = new List<Enum>
 		{
 			DayAttackKind.ZuiunMultiAngle,
 			DayAttackKind.CutinMainMain,
 			DayAttackKind.DoubleShelling,
-			DayAttackKind.Shelling
+			DayAttackKind.Shelling,
 		};
 
 		List<Enum> actual = Isek2Mock.GetDayAttacks().ToList();
@@ -175,24 +170,22 @@ public class DayAttackTests
 	[Fact]
 	public void DayAttackTest3()
 	{
-		var fleetMock = new Mock<IFleetData>();
-
-		fleetMock.Setup(f => f.MembersWithoutEscaped).Returns(new ReadOnlyCollection<IShipData?>(
-			new List<IShipData?>
+		FleetDataMock fleet = new()
+		{
+			MembersInstance = new(new List<IShipData?>
 			{
 				BismarckMock,
 				Isek2Mock,
 				TaihouMock,
-			}));
-
-		IFleetData fleet = fleetMock.Object;
+			}),
+		};
 
 		List<Enum> expected = new List<Enum>
 		{
 			DayAirAttackCutinKind.FighterBomberAttacker,
 			DayAirAttackCutinKind.BomberBomberAttacker,
 			DayAirAttackCutinKind.BomberAttacker,
-			DayAttackKind.AirAttack
+			DayAttackKind.AirAttack,
 		};
 
 		List<Enum> actual = TaihouMock.GetDayAttacks().ToList();
@@ -215,7 +208,7 @@ public class DayAttackTests
 	[Fact]
 	public void DayAttackTest4()
 	{
-		IShipData NagatoMock = new ShipDataMock(Db.MasterShips[ShipId.NagatoKai])
+		ShipDataMock NagatoMock = new(Db.MasterShips[ShipId.NagatoKai])
 		{
 			Level = 72,
 			Fleet = 1,
@@ -235,20 +228,18 @@ public class DayAttackTests
 			Aircraft = new List<int> { 4, 4, 4, 4 },
 		};
 
-		var fleetMock = new Mock<IFleetData>();
-
-		fleetMock.Setup(f => f.MembersWithoutEscaped).Returns(new ReadOnlyCollection<IShipData?>(
-			new List<IShipData?>
+		FleetDataMock fleet = new()
+		{
+			MembersInstance = new(new List<IShipData?>
 			{
-				NagatoMock
-			}));
-
-		IFleetData fleet = fleetMock.Object;
+				NagatoMock,
+			}),
+		};
 
 		List<Enum> expected = new List<Enum>
 		{
 			DayAttackKind.DoubleShelling,
-			DayAttackKind.Shelling
+			DayAttackKind.Shelling,
 		};
 
 		List<Enum> actual = NagatoMock.GetDayAttacks().ToList();
@@ -264,27 +255,25 @@ public class DayAttackTests
 		Assert.Equal(0.585, totalRates[1], Precision);
 	}
 
-	[Fact]
+	[Fact(DisplayName = "STF")]
 	public void DayAttackTest5()
 	{
-		var fleetMock = new Mock<IFleetData>();
-
-		fleetMock.Setup(f => f.MembersWithoutEscaped).Returns(new ReadOnlyCollection<IShipData?>(
-			new List<IShipData?>
+		FleetDataMock fleet = new()
+		{
+			MembersInstance = new(new List<IShipData?>
 			{
 				BismarckMock,
 				Isek2Mock,
 				TaihouMock,
-			}));
-		fleetMock.Setup(f => f.FleetType).Returns(FleetType.Surface);
-
-		IFleetData fleet = fleetMock.Object;
+			}),
+			FleetType = FleetType.Surface,
+		};
 
 		List<Enum> expected = new List<Enum>
 		{
 			DayAttackKind.CutinMainMain,
 			DayAttackKind.DoubleShelling,
-			DayAttackKind.Shelling
+			DayAttackKind.Shelling,
 		};
 
 		List<Enum> actual = BismarckMock.GetDayAttacks().ToList();
@@ -328,7 +317,7 @@ public class DayAttackTests
 		
 		List<Enum> expected = new List<Enum>
 		{
-			DayAttackKind.Shelling
+			DayAttackKind.Shelling,
 		};
 
 		List<Enum> actual = yamashioMaru.GetDayAttacks().ToList();
