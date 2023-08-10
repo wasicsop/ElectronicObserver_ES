@@ -8,7 +8,7 @@ public record DayShellingExportModel
 {
 	public int No { get; init; }
 	public DateTime Date { get; init; }
-	public int World { get; init; }
+	public string World { get; init; }
 	public string Square { get; init; }
 	public string Sortie { get; init; }
 	public string? Rank { get; init; }
