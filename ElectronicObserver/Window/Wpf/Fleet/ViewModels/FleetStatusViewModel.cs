@@ -26,6 +26,9 @@ public partial class FleetStatusViewModel : ObservableObject
 	private int FleetId { get; }
 	public int BranchWeight { get; private set; } = 1;
 
+	public List<TotalRate> NightRecons { get; private set; } = new();
+	public List<TotalRate> Flares { get; private set; } = new();
+
 	public FleetStatusViewModel(int fleetId)
 	{
 		FormFleet = Ioc.Default.GetService<FormFleetTranslationViewModel>()!;
@@ -131,6 +134,8 @@ public partial class FleetStatusViewModel : ObservableObject
 				radar.Count(i => i > 0)
 			);
 
+			NightRecons = fleet.NightRecons().TotalRate();
+			Flares = fleet.Flares().TotalRate();
 		}
 
 		State.UpdateFleetState(fleet);
