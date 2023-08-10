@@ -548,4 +548,48 @@ public class NightAttackTests
 		Assert.Equal(zuiunCutInRate, zuiunCutInFlareRate);
 		Assert.True(normalRate < zuiunCutInRate);
 	}
+
+	[Fact(DisplayName = "Attack rate shouldn't be negative or over 100%")]
+	public void NightAttackTest12()
+	{
+		ShipDataMock kamikaze = new(Db.MasterShips[ShipId.KamikazeKai])
+		{
+			Level = 180,
+			LuckBase = 99,
+			HPCurrent = 10,
+			SlotInstance = new List<IEquipmentData?>
+			{
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Torpedo_Prototype61cmSextuple_OxygenTorpedo]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Torpedo_Prototype61cmSextuple_OxygenTorpedo]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Torpedo_Prototype61cmSextuple_OxygenTorpedo]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.SurfaceShipPersonnel_TorpedoSquadronSkilledLookouts]),
+			},
+		};
+
+		ShipDataMock perth = new(Db.MasterShips[ShipId.PerthKai])
+		{
+			SlotInstance = new List<IEquipmentData?>
+			{
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.StarShell_StarShell]),
+				new EquipmentDataMock(Db.MasterEquipment[EquipmentId.Searchlight_Searchlight]),
+			},
+		};
+
+		FleetDataMock fleet = new()
+		{
+			MembersInstance = new(new List<IShipData?>
+			{
+				kamikaze,
+				perth,
+			}),
+		};
+
+		List<NightAttack> attacks = kamikaze.GetNightAttacks().ToList();
+
+		List<double> attackRates = attacks.Select(a => kamikaze.GetNightAttackRate(a, fleet)).ToList();
+		List<double> totalRates = attackRates.ToList().TotalRates();
+
+		Assert.True(kamikaze.HPRate <= 0.5);
+		Assert.All(totalRates, rate => Assert.True(rate is >= 0 and <= 1));
+	}
 }
