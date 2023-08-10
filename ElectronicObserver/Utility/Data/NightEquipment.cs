@@ -28,11 +28,13 @@ public static class NightEquipment
 		.ToList();
 
 	private static List<NightReconModel> NightRecons(this IShipData ship) => ship.AllSlotInstance
-		.Where(e => e?.MasterEquipment.IconTypeTyped is EquipmentIconType.NightSeaplane)
+		.Zip(ship.Aircraft, (e, s) => (Equipment: e, SlotSize: s))
+		.Where(s => s.SlotSize > 0)
+		.Where(s => s.Equipment?.MasterEquipment.IconTypeTyped is EquipmentIconType.NightSeaplane)
 		.Select(e => new NightReconModel
 		{
 			Ship = ship,
-			Equipment = e!,
+			Equipment = e.Equipment!,
 		})
 		.OrderByDescending(r => r.Equipment.MasterEquipment.Accuracy)
 		.ToList();
