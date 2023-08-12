@@ -73,7 +73,7 @@ public class DataExportHelper
 							dayShellingData.Add(new()
 							{
 								No = dayShellingData.Count + 1,
-								Date = sortieDetail.StartTime!.Value,
+								Date = sortieDetail.StartTime!.Value.ToLocalTime(),
 								World = KCDatabase.Instance.MapInfo[sortieDetail.World * 10 + sortieDetail.Map].NameEN,
 								Square = SquareString(sortieDetail, node),
 								Sortie = node.IsBoss switch
