@@ -144,4 +144,13 @@ public class BattleFleets
 			ship.Ammo = shipData.ApiBull;
 		}
 	}
+
+	public IFleetData? GetFleet(BattleIndex index) => index.FleetFlag switch
+	{
+		FleetFlag.Player when index.Index < Fleet.MembersWithoutEscaped?.Count => Fleet,
+		FleetFlag.Player => EscortFleet,
+
+		_ when index.Index < EnemyFleet?.MembersWithoutEscaped?.Count => EnemyFleet,
+		_ => EnemyEscortFleet,
+	};
 }

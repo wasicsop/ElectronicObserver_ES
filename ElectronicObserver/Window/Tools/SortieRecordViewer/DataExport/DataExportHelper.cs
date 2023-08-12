@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading;
@@ -8,6 +9,7 @@ using ElectronicObserver.Data;
 using ElectronicObserver.Database;
 using ElectronicObserver.Services;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.DataExport.DayShellingExport;
+using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Node;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.SortieDetail;
@@ -55,8 +57,8 @@ public class DataExportHelper
 				PhaseInitial? initial = node.FirstBattle.Phases.OfType<PhaseInitial>().FirstOrDefault();
 				PhaseSearching? searching = node.FirstBattle.Phases.OfType<PhaseSearching>().FirstOrDefault();
 				PhaseAirBattle? airBattle = node.FirstBattle.Phases.OfType<PhaseAirBattle>().FirstOrDefault();
-				IFleetData? playerFleet = searching?.FleetsBeforePhase?.Fleet;
-				IFleetData? enemyFleet = searching?.FleetsBeforePhase?.EnemyFleet;
+				IFleetData? playerFleet = initial?.FleetsAfterPhase?.Fleet;
+				IFleetData? enemyFleet = initial?.FleetsAfterPhase?.EnemyFleet;
 
 				if (initial is null) continue;
 				if (searching is null) continue;
@@ -68,11 +70,11 @@ public class DataExportHelper
 				{
 					foreach (PhaseShellingAttackViewModel attackDisplay in shelling.AttackDisplays)
 					{
-						IFleetData attackerFleet = attackDisplay.AttackerIndex.FleetFlag switch
-						{
-							FleetFlag.Player => playerFleet,
-							_ => enemyFleet,
-						};
+						IFleetData? attackerFleet = searching?.FleetsBeforePhase?.GetFleet(attackDisplay.AttackerIndex);
+						IFleetData? defenderFleet = searching?.FleetsBeforePhase?.GetFleet(attackDisplay.DefenderIndex);
+
+						if (attackerFleet is null) continue;
+						if (defenderFleet is null) continue;
 
 						foreach ((DayAttack attack, int attackIndex) in attackDisplay.Attacks.Select((a, i) => (a, i)))
 						{
@@ -80,7 +82,7 @@ public class DataExportHelper
 							{
 								No = dayShellingData.Count + 1,
 								Date = sortieDetail.StartTime!.Value.ToLocalTime(),
-								World = KCDatabase.Instance.MapInfo[sortieDetail.World * 10 + sortieDetail.Map].NameEN,
+								World = KCDatabase.Instance.MapInfo[sortieDetail.World * 10 + sortieDetail.Map]?.NameEN ?? "",
 								Square = SquareString(sortieDetail, node),
 								Sortie = node.IsBoss switch
 								{
@@ -107,7 +109,7 @@ public class DataExportHelper
 								ShipName4 = attackerFleet.MembersInstance.Skip(3).FirstOrDefault()?.Name,
 								ShipName5 = attackerFleet.MembersInstance.Skip(4).FirstOrDefault()?.Name,
 								ShipName6 = attackerFleet.MembersInstance.Skip(5).FirstOrDefault()?.Name,
-								PlayerFleetType = Constants.GetCombinedFleet(attackerFleet.FleetType),
+								PlayerFleetType = GetPlayerFleet(initial.FleetsAfterPhase!, attackDisplay),
 								BattlePhase = GetPhaseString(shelling),
 								AttackerSide = attackDisplay.AttackerIndex.FleetFlag switch
 								{
@@ -234,16 +236,8 @@ public class DataExportHelper
 								DefenderEquipment6AircraftLevel = attack.Defender.AllSlotInstance.Skip(5).FirstOrDefault()?.AircraftLevel,
 								DefenderEquipment6Aircraft = attack.Defender.Aircraft.Skip(5).FirstOrDefault(),
 
-								FleetType = attackDisplay.AttackerIndex.FleetFlag switch
-								{
-									FleetFlag.Player => Constants.GetCombinedFleet(playerFleet.FleetType),
-									_ => GetEnemyFleetType(initial.IsEnemyCombinedFleet),
-								},
-								EnemyFleetType = attackDisplay.AttackerIndex.FleetFlag switch
-								{
-									FleetFlag.Player => GetEnemyFleetType(initial.IsEnemyCombinedFleet),
-									_ => Constants.GetCombinedFleet(playerFleet.FleetType),
-								},
+								FleetType = Constants.GetCombinedFleet(initial.FleetsAfterPhase!.Fleet.FleetType),
+								EnemyFleetType = GetEnemyFleetType(initial.IsEnemyCombinedFleet),
 							});
 						}
 					}
@@ -269,6 +263,25 @@ public class DataExportHelper
 		DetectionType.FailureNoPlane => "なし",
 		_ => $"不明({id})",
 	};
+
+	private static string GetPlayerFleet(BattleFleets fleets, PhaseShellingAttackViewModel attack)
+	{
+		BattleIndex index = attack.AttackerIndex.FleetFlag switch
+		{
+			FleetFlag.Player => attack.AttackerIndex,
+			_ => attack.DefenderIndex,
+		};
+
+		IFleetData? fleet = fleets.GetFleet(index);
+
+		if (fleet is null) throw new NotImplementedException();
+
+		if (fleet == fleets.EscortFleet) return "連合第2艦隊";
+		if (fleets.EscortFleet is null) return "通常艦隊";
+		if (fleet == fleets.Fleet) return "連合第1艦隊";
+
+		throw new NotImplementedException();
+	}
 
 	private static int CsvDayAttackKind(DayAttackKind attack) => attack switch
 	{
