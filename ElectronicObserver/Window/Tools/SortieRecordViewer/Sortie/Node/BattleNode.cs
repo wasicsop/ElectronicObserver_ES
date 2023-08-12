@@ -1,4 +1,6 @@
-﻿using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.Battleresult;
+﻿using System.Collections.Generic;
+using System.Linq;
+using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.Battleresult;
 using ElectronicObserver.KancolleApi.Types.Interfaces;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
 using ElectronicObserverTypes;
@@ -17,6 +19,7 @@ public class BattleNode : SortieNode
 	public string Result => ConstantsRes.BattleDetail_Result;
 
 	public string? ResultRank { get; private set; }
+	public string? RealWinRank => GetRealWinRank();
 	public string? ResultMvpMain { get; private set; }
 	public string? ResultMvpEscort { get; private set; }
 	public string? AdmiralExp { get; private set; }
@@ -74,6 +77,34 @@ public class BattleNode : SortieNode
 				_ => ConstantsRes.BattleDetail_Drop + ConstantsRes.NoNode,
 			},
 			_ => null,
+		};
+	}
+
+	private string? GetRealWinRank()
+	{
+		IEnumerable<IShipData?> shipsBeforeBattle = FirstBattle.FleetsBeforeBattle.Fleet.MembersWithoutEscaped!;
+		BattleData lastBattle = SecondBattle switch
+		{
+			null => FirstBattle,
+			_ => SecondBattle,
+		};
+		IEnumerable<IShipData?> shipsAfterBattle = lastBattle.FleetsAfterBattle.Fleet.MembersWithoutEscaped!;
+
+		if (FirstBattle.FleetsBeforeBattle.EscortFleet is IFleetData escort)
+		{
+			shipsBeforeBattle = shipsBeforeBattle.Concat(escort.MembersWithoutEscaped!);
+			shipsAfterBattle = shipsAfterBattle.Concat(lastBattle.FleetsAfterBattle.EscortFleet.MembersWithoutEscaped!);
+		}
+
+		int hpBeforeBattle = shipsBeforeBattle.Sum(s => s?.HPCurrent ?? 0);
+		int hpAfterBattle = shipsAfterBattle.Sum(s => s?.HPCurrent ?? 0);
+
+		bool damageTaken = hpBeforeBattle > hpAfterBattle;
+
+		return (BattleResult?.WinRank, damageTaken) switch
+		{
+			("S", false) => "SS",
+			_ => BattleResult?.WinRank,
 		};
 	}
 }
