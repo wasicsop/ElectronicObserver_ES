@@ -70,8 +70,8 @@ public class DataExportHelper
 				{
 					foreach (PhaseShellingAttackViewModel attackDisplay in shelling.AttackDisplays)
 					{
-						IFleetData? attackerFleet = searching?.FleetsBeforePhase?.GetFleet(attackDisplay.AttackerIndex);
-						IFleetData? defenderFleet = searching?.FleetsBeforePhase?.GetFleet(attackDisplay.DefenderIndex);
+						IFleetData? attackerFleet = searching.FleetsBeforePhase?.GetFleet(attackDisplay.AttackerIndex);
+						IFleetData? defenderFleet = searching.FleetsBeforePhase?.GetFleet(attackDisplay.DefenderIndex);
 
 						if (attackerFleet is null) continue;
 						if (defenderFleet is null) continue;
@@ -89,7 +89,7 @@ public class DataExportHelper
 									true => CsvExportResources.BossNode,
 									_ => CsvExportResources.NormalNode,
 								},
-								Rank = node.BattleResult?.WinRank,
+								Rank = WinRank(node.BattleResult?.WinRank),
 								EnemyFleet = node.BattleResult?.EnemyFleetName,
 								AdmiralLevel = admiralLevel,
 								PlayerFormation = Constants.GetFormation(searching.PlayerFormationType),
@@ -252,6 +252,19 @@ public class DataExportHelper
 
 	private static string SquareString(SortieDetailViewModel sortieDetail, SortieNode node) =>
 		$"{CsvExportResources.Map}:{sortieDetail.World}-{sortieDetail.Map} {CsvExportResources.Cell}:{node.Cell}";
+
+	private static string WinRank(string? rank) => rank switch
+	{
+		"SS" => "完全勝利!!S",
+		"S" => "勝利S",
+		"A" => "勝利A",
+		"B" => "戦術的勝利B",
+		"C" => "戦術的敗北C",
+		"D" => "敗北D",
+		"E" => "敗北E",
+
+		_ => "",
+	};
 
 	private static string GetSearchingResult(DetectionType id) => id switch
 	{
