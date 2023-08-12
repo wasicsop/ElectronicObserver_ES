@@ -52,6 +52,8 @@ public class DataExportHelper
 
 			if (sortieDetail is null) continue;
 
+			bool isFirstNode = true;
+
 			foreach (BattleNode node in sortieDetail.Nodes.OfType<BattleNode>())
 			{
 				PhaseInitial? initial = node.FirstBattle.Phases.OfType<PhaseInitial>().FirstOrDefault();
@@ -84,10 +86,12 @@ public class DataExportHelper
 								Date = sortieDetail.StartTime!.Value.ToLocalTime(),
 								World = KCDatabase.Instance.MapInfo[sortieDetail.World * 10 + sortieDetail.Map]?.NameEN ?? "",
 								Square = SquareString(sortieDetail, node),
-								Sortie = node.IsBoss switch
+								Sortie = (node.IsBoss, isFirstNode) switch
 								{
-									true => CsvExportResources.BossNode,
-									_ => CsvExportResources.NormalNode,
+									(true, true) => $"{CsvExportResources.Sortie}&{CsvExportResources.BossNode}",
+									(_, true) => CsvExportResources.Sortie,
+									(true, _) => CsvExportResources.BossNode,
+									_ => "",
 								},
 								Rank = WinRank(node.BattleResult?.WinRank),
 								EnemyFleet = node.BattleResult?.EnemyFleetName,
@@ -242,6 +246,8 @@ public class DataExportHelper
 						}
 					}
 				}
+
+				isFirstNode = false;
 			}
 
 			exportProgress.Progress++;

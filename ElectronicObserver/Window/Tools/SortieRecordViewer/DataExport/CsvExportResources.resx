@@ -496,9 +496,6 @@
   <data name="DefenderEquipment6Aircraft" xml:space="preserve">
     <value>防御艦.装備6.搭載数</value>
   </data>
-  <data name="NormalNode" xml:space="preserve">
-    <value>出撃</value>
-  </data>
   <data name="BossNode" xml:space="preserve">
     <value>ボス</value>
   </data>
