@@ -68,6 +68,12 @@ public class DataExportHelper
 				{
 					foreach (PhaseShellingAttackViewModel attackDisplay in shelling.AttackDisplays)
 					{
+						IFleetData attackerFleet = attackDisplay.AttackerIndex.FleetFlag switch
+						{
+							FleetFlag.Player => playerFleet,
+							_ => enemyFleet,
+						};
+
 						foreach ((DayAttack attack, int attackIndex) in attackDisplay.Attacks.Select((a, i) => (a, i)))
 						{
 							dayShellingData.Add(new()
@@ -95,13 +101,13 @@ public class DataExportHelper
 								PlayerFlare = null,
 								EnemyFlare = null,
 								BattleType = CsvExportResources.ShellingBattle,
-								ShipName1 = playerFleet.MembersInstance.Skip(0).FirstOrDefault()?.Name,
-								ShipName2 = playerFleet.MembersInstance.Skip(1).FirstOrDefault()?.Name,
-								ShipName3 = playerFleet.MembersInstance.Skip(2).FirstOrDefault()?.Name,
-								ShipName4 = playerFleet.MembersInstance.Skip(3).FirstOrDefault()?.Name,
-								ShipName5 = playerFleet.MembersInstance.Skip(4).FirstOrDefault()?.Name,
-								ShipName6 = playerFleet.MembersInstance.Skip(5).FirstOrDefault()?.Name,
-								PlayerFleetType = Constants.GetCombinedFleet(playerFleet.FleetType),
+								ShipName1 = attackerFleet.MembersInstance.Skip(0).FirstOrDefault()?.Name,
+								ShipName2 = attackerFleet.MembersInstance.Skip(1).FirstOrDefault()?.Name,
+								ShipName3 = attackerFleet.MembersInstance.Skip(2).FirstOrDefault()?.Name,
+								ShipName4 = attackerFleet.MembersInstance.Skip(3).FirstOrDefault()?.Name,
+								ShipName5 = attackerFleet.MembersInstance.Skip(4).FirstOrDefault()?.Name,
+								ShipName6 = attackerFleet.MembersInstance.Skip(5).FirstOrDefault()?.Name,
+								PlayerFleetType = Constants.GetCombinedFleet(attackerFleet.FleetType),
 								BattlePhase = GetPhaseString(shelling),
 								AttackerSide = attackDisplay.AttackerIndex.FleetFlag switch
 								{
