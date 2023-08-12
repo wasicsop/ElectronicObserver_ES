@@ -51,9 +51,9 @@ public record DayShellingExportModel
 	public int AttackerHpMax { get; init; }
 	public string AttackerDamageState { get; init; }
 	public int? AttackerFuelCurrent { get; init; }
-	public int AttackerFuelMax { get; init; }
+	public int? AttackerFuelMax { get; init; }
 	public int? AttackerAmmoCurrent { get; init; }
-	public int AttackerAmmoMax { get; init; }
+	public int? AttackerAmmoMax { get; init; }
 	public int AttackerLevel { get; init; }
 	public string AttackerSpeed { get; init; }
 	public int AttackerFirepower { get; init; }
@@ -98,9 +98,9 @@ public record DayShellingExportModel
 	public int DefenderHpMax { get; init; }
 	public string DefenderDamageState { get; init; }
 	public int? DefenderFuelCurrent { get; init; }
-	public int DefenderFuelMax { get; init; }
+	public int? DefenderFuelMax { get; init; }
 	public int? DefenderAmmoCurrent { get; init; }
-	public int DefenderAmmoMax { get; init; }
+	public int? DefenderAmmoMax { get; init; }
 	public int DefenderLevel { get; init; }
 	public string DefenderSpeed { get; init; }
 	public int DefenderFirepower { get; init; }

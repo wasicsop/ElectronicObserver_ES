@@ -136,14 +136,14 @@ public class DataExportHelper
 								AttackerId = attack.Attacker.ShipID,
 								AttackerName = attack.Attacker.Name,
 								AttackerShipType = attack.Attacker.MasterShip.ShipType.Display(),
-								AttackerCondition = attack.Attacker.Condition,
+								AttackerCondition = NullForAbyssals(attack.Attacker.Condition, attack.Attacker),
 								AttackerHpCurrent = attackDisplay.AttackerHpBeforeAttack,
 								AttackerHpMax = attack.Attacker.HPMax,
 								AttackerDamageState = GetDamageState(attackDisplay.AttackerHpBeforeAttack, attack.Attacker.HPMax),
-								AttackerFuelCurrent = attack.Attacker.Fuel,
-								AttackerFuelMax = attack.Attacker.FuelMax,
-								AttackerAmmoCurrent = attack.Attacker.Ammo,
-								AttackerAmmoMax = attack.Attacker.AmmoMax,
+								AttackerFuelCurrent = NullForAbyssals(attack.Attacker.Fuel, attack.Attacker),
+								AttackerFuelMax = NullForAbyssals(attack.Attacker.FuelMax, attack.Attacker),
+								AttackerAmmoCurrent = NullForAbyssals(attack.Attacker.Ammo, attack.Attacker),
+								AttackerAmmoMax = NullForAbyssals(attack.Attacker.AmmoMax, attack.Attacker),
 								AttackerLevel = attack.Attacker.Level,
 								AttackerSpeed = Constants.GetSpeed(attack.Attacker.Speed),
 								AttackerFirepower = attack.Attacker.FirepowerTotal,
@@ -190,14 +190,14 @@ public class DataExportHelper
 								DefenderId = attack.Defender.ShipID,
 								DefenderName = attack.Defender.Name,
 								DefenderShipType = attack.Defender.MasterShip.ShipType.Display(),
-								DefenderCondition = attack.Defender.Condition,
+								DefenderCondition = NullForAbyssals(attack.Defender.Condition, attack.Defender),
 								DefenderHpCurrent = attackDisplay.DefenderHpBeforeAttacks[attackIndex],
 								DefenderHpMax = attack.Defender.HPMax,
 								DefenderDamageState = GetDamageState(attackDisplay.DefenderHpBeforeAttacks[attackIndex], attack.Defender.HPMax),
-								DefenderFuelCurrent = attack.Defender.Fuel,
-								DefenderFuelMax = attack.Defender.FuelMax,
-								DefenderAmmoCurrent = attack.Defender.Ammo,
-								DefenderAmmoMax = attack.Defender.AmmoMax,
+								DefenderFuelCurrent = NullForAbyssals(attack.Defender.Fuel, attack.Defender),
+								DefenderFuelMax = NullForAbyssals(attack.Defender.FuelMax, attack.Defender),
+								DefenderAmmoCurrent = NullForAbyssals(attack.Defender.Ammo, attack.Defender),
+								DefenderAmmoMax = NullForAbyssals(attack.Defender.AmmoMax, attack.Defender),
 								DefenderLevel = attack.Defender.Level,
 								DefenderSpeed = Constants.GetSpeed(attack.Defender.Speed),
 								DefenderFirepower = attack.Defender.FirepowerTotal,
@@ -329,5 +329,11 @@ public class DataExportHelper
 	{
 		true => CsvExportResources.CombinedFleet,
 		_ => ConstantsRes.NormalFleet,
+	};
+
+	private int? NullForAbyssals(int? value, IShipData ship) => ship.MasterShip.IsAbyssalShip switch
+	{
+		true => null,
+		_ => value,
 	};
 }
