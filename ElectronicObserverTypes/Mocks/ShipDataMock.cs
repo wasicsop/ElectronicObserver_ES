@@ -180,6 +180,8 @@ public class ShipDataMock : IShipData
 		LuckModernized = 0;
 		HPMaxModernized = 0;
 		ASWModernized = 0;
+
+		Speed = ship.Speed;
 	}
 
 	public void LoadFromResponse(string apiname, dynamic data)
