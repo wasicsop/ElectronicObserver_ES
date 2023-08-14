@@ -22,7 +22,6 @@ using ElectronicObserver.Database.Sortie;
 using ElectronicObserver.Services;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.DataExport;
-using ElectronicObserver.Window.Tools.SortieRecordViewer.DataExport.DayShellingExport;
 using Microsoft.EntityFrameworkCore;
 using Calendar = System.Windows.Controls.Calendar;
 

@@ -214,288 +214,6 @@
   <data name="Protected" xml:space="preserve">
     <value>かばう</value>
   </data>
-  <data name="AttackerIndex" xml:space="preserve">
-    <value>攻撃艦.編成順</value>
-  </data>
-  <data name="AttackerId" xml:space="preserve">
-    <value>攻撃艦.ID</value>
-  </data>
-  <data name="AttackerName" xml:space="preserve">
-    <value>攻撃艦.名前</value>
-  </data>
-  <data name="AttackerShipType" xml:space="preserve">
-    <value>攻撃艦.種別</value>
-  </data>
-  <data name="AttackerCondition" xml:space="preserve">
-    <value>攻撃艦.疲労</value>
-  </data>
-  <data name="AttackerHpCurrent" xml:space="preserve">
-    <value>攻撃艦.残耐久</value>
-  </data>
-  <data name="AttackerHpMax" xml:space="preserve">
-    <value>攻撃艦.最大耐久</value>
-  </data>
-  <data name="AttackerDamageState" xml:space="preserve">
-    <value>攻撃艦.損傷</value>
-  </data>
-  <data name="AttackerFuelCurrent" xml:space="preserve">
-    <value>攻撃艦.残燃料</value>
-  </data>
-  <data name="AttackerFuelMax" xml:space="preserve">
-    <value>攻撃艦.最大燃料</value>
-  </data>
-  <data name="AttackerAmmoCurrent" xml:space="preserve">
-    <value>攻撃艦.残弾薬</value>
-  </data>
-  <data name="AttackerAmmoMax" xml:space="preserve">
-    <value>攻撃艦.最大弾薬</value>
-  </data>
-  <data name="AttackerLevel" xml:space="preserve">
-    <value>攻撃艦.Lv</value>
-  </data>
-  <data name="AttackerSpeed" xml:space="preserve">
-    <value>攻撃艦.速力</value>
-  </data>
-  <data name="AttackerFirepower" xml:space="preserve">
-    <value>攻撃艦.火力</value>
-  </data>
-  <data name="AttackerTorpedo" xml:space="preserve">
-    <value>攻撃艦.雷装</value>
-  </data>
-  <data name="AttackerAntiAir" xml:space="preserve">
-    <value>攻撃艦.対空</value>
-  </data>
-  <data name="AttackerArmor" xml:space="preserve">
-    <value>攻撃艦.装甲</value>
-  </data>
-  <data name="AttackerEvasion" xml:space="preserve">
-    <value>攻撃艦.回避</value>
-  </data>
-  <data name="AttackerAntiSubmarine" xml:space="preserve">
-    <value>攻撃艦.対潜</value>
-  </data>
-  <data name="AttackerSearch" xml:space="preserve">
-    <value>攻撃艦.索敵</value>
-  </data>
-  <data name="AttackerLuck" xml:space="preserve">
-    <value>攻撃艦.運</value>
-  </data>
-  <data name="AttackerRange" xml:space="preserve">
-    <value>攻撃艦.射程</value>
-  </data>
-  <data name="AttackerEquipment1Name" xml:space="preserve">
-    <value>攻撃艦.装備1.名前</value>
-  </data>
-  <data name="AttackerEquipment1Level" xml:space="preserve">
-    <value>攻撃艦.装備1.改修</value>
-  </data>
-  <data name="AttackerEquipment1AircraftLevel" xml:space="preserve">
-    <value>攻撃艦.装備1.熟練度</value>
-  </data>
-  <data name="AttackerEquipment1Aircraft" xml:space="preserve">
-    <value>攻撃艦.装備1.搭載数</value>
-  </data>
-  <data name="AttackerEquipment2Name" xml:space="preserve">
-    <value>攻撃艦.装備2.名前</value>
-  </data>
-  <data name="AttackerEquipment2Level" xml:space="preserve">
-    <value>攻撃艦.装備2.改修</value>
-  </data>
-  <data name="AttackerEquipment2AircraftLevel" xml:space="preserve">
-    <value>攻撃艦.装備2.熟練度</value>
-  </data>
-  <data name="AttackerEquipment2Aircraft" xml:space="preserve">
-    <value>攻撃艦.装備2.搭載数</value>
-  </data>
-  <data name="AttackerEquipment3Name" xml:space="preserve">
-    <value>攻撃艦.装備3.名前</value>
-  </data>
-  <data name="AttackerEquipment3Level" xml:space="preserve">
-    <value>攻撃艦.装備3.改修</value>
-  </data>
-  <data name="AttackerEquipment3AircraftLevel" xml:space="preserve">
-    <value>攻撃艦.装備3.熟練度</value>
-  </data>
-  <data name="AttackerEquipment3Aircraft" xml:space="preserve">
-    <value>攻撃艦.装備3.搭載数</value>
-  </data>
-  <data name="AttackerEquipment4Name" xml:space="preserve">
-    <value>攻撃艦.装備4.名前</value>
-  </data>
-  <data name="AttackerEquipment4Level" xml:space="preserve">
-    <value>攻撃艦.装備4.改修</value>
-  </data>
-  <data name="AttackerEquipment4AircraftLevel" xml:space="preserve">
-    <value>攻撃艦.装備4.熟練度</value>
-  </data>
-  <data name="AttackerEquipment4Aircraft" xml:space="preserve">
-    <value>攻撃艦.装備4.搭載数</value>
-  </data>
-  <data name="AttackerEquipment5Name" xml:space="preserve">
-    <value>攻撃艦.装備5.名前</value>
-  </data>
-  <data name="AttackerEquipment5Level" xml:space="preserve">
-    <value>攻撃艦.装備5.改修</value>
-  </data>
-  <data name="AttackerEquipment5AircraftLevel" xml:space="preserve">
-    <value>攻撃艦.装備5.熟練度</value>
-  </data>
-  <data name="AttackerEquipment5Aircraft" xml:space="preserve">
-    <value>攻撃艦.装備5.搭載数</value>
-  </data>
-  <data name="AttackerEquipment6Name" xml:space="preserve">
-    <value>攻撃艦.装備6.名前</value>
-  </data>
-  <data name="AttackerEquipment6Level" xml:space="preserve">
-    <value>攻撃艦.装備6.改修</value>
-  </data>
-  <data name="AttackerEquipment6AircraftLevel" xml:space="preserve">
-    <value>攻撃艦.装備6.熟練度</value>
-  </data>
-  <data name="AttackerEquipment6Aircraft" xml:space="preserve">
-    <value>攻撃艦.装備6.搭載数</value>
-  </data>
-  <data name="DefenderIndex" xml:space="preserve">
-    <value>防御艦.編成順</value>
-  </data>
-  <data name="DefenderId" xml:space="preserve">
-    <value>防御艦.ID</value>
-  </data>
-  <data name="DefenderName" xml:space="preserve">
-    <value>防御艦.名前</value>
-  </data>
-  <data name="DefenderShipType" xml:space="preserve">
-    <value>防御艦.種別</value>
-  </data>
-  <data name="DefenderCondition" xml:space="preserve">
-    <value>防御艦.疲労</value>
-  </data>
-  <data name="DefenderHpCurrent" xml:space="preserve">
-    <value>防御艦.残耐久</value>
-  </data>
-  <data name="DefenderHpMax" xml:space="preserve">
-    <value>防御艦.最大耐久</value>
-  </data>
-  <data name="DefenderDamageState" xml:space="preserve">
-    <value>防御艦.損傷</value>
-  </data>
-  <data name="DefenderFuelCurrent" xml:space="preserve">
-    <value>防御艦.残燃料</value>
-  </data>
-  <data name="DefenderFuelMax" xml:space="preserve">
-    <value>防御艦.最大燃料</value>
-  </data>
-  <data name="DefenderAmmoCurrent" xml:space="preserve">
-    <value>防御艦.残弾薬</value>
-  </data>
-  <data name="DefenderAmmoMax" xml:space="preserve">
-    <value>防御艦.最大弾薬</value>
-  </data>
-  <data name="DefenderLevel" xml:space="preserve">
-    <value>防御艦.Lv</value>
-  </data>
-  <data name="DefenderSpeed" xml:space="preserve">
-    <value>防御艦.速力</value>
-  </data>
-  <data name="DefenderFirepower" xml:space="preserve">
-    <value>防御艦.火力</value>
-  </data>
-  <data name="DefenderTorpedo" xml:space="preserve">
-    <value>防御艦.雷装</value>
-  </data>
-  <data name="DefenderAntiAir" xml:space="preserve">
-    <value>防御艦.対空</value>
-  </data>
-  <data name="DefenderArmor" xml:space="preserve">
-    <value>防御艦.装甲</value>
-  </data>
-  <data name="DefenderEvasion" xml:space="preserve">
-    <value>防御艦.回避</value>
-  </data>
-  <data name="DefenderAntiSubmarine" xml:space="preserve">
-    <value>防御艦.対潜</value>
-  </data>
-  <data name="DefenderSearch" xml:space="preserve">
-    <value>防御艦.索敵</value>
-  </data>
-  <data name="DefenderLuck" xml:space="preserve">
-    <value>防御艦.運</value>
-  </data>
-  <data name="DefenderRange" xml:space="preserve">
-    <value>防御艦.射程</value>
-  </data>
-  <data name="DefenderEquipment1Name" xml:space="preserve">
-    <value>防御艦.装備1.名前</value>
-  </data>
-  <data name="DefenderEquipment1Level" xml:space="preserve">
-    <value>防御艦.装備1.改修</value>
-  </data>
-  <data name="DefenderEquipment1AircraftLevel" xml:space="preserve">
-    <value>防御艦.装備1.熟練度</value>
-  </data>
-  <data name="DefenderEquipment1Aircraft" xml:space="preserve">
-    <value>防御艦.装備1.搭載数</value>
-  </data>
-  <data name="DefenderEquipment2Name" xml:space="preserve">
-    <value>防御艦.装備2.名前</value>
-  </data>
-  <data name="DefenderEquipment2Level" xml:space="preserve">
-    <value>防御艦.装備2.改修</value>
-  </data>
-  <data name="DefenderEquipment2AircraftLevel" xml:space="preserve">
-    <value>防御艦.装備2.熟練度</value>
-  </data>
-  <data name="DefenderEquipment2Aircraft" xml:space="preserve">
-    <value>防御艦.装備2.搭載数</value>
-  </data>
-  <data name="DefenderEquipment3Name" xml:space="preserve">
-    <value>防御艦.装備3.名前</value>
-  </data>
-  <data name="DefenderEquipment3Level" xml:space="preserve">
-    <value>防御艦.装備3.改修</value>
-  </data>
-  <data name="DefenderEquipment3AircraftLevel" xml:space="preserve">
-    <value>防御艦.装備3.熟練度</value>
-  </data>
-  <data name="DefenderEquipment3Aircraft" xml:space="preserve">
-    <value>防御艦.装備3.搭載数</value>
-  </data>
-  <data name="DefenderEquipment4Name" xml:space="preserve">
-    <value>防御艦.装備4.名前</value>
-  </data>
-  <data name="DefenderEquipment4Level" xml:space="preserve">
-    <value>防御艦.装備4.改修</value>
-  </data>
-  <data name="DefenderEquipment4AircraftLevel" xml:space="preserve">
-    <value>防御艦.装備4.熟練度</value>
-  </data>
-  <data name="DefenderEquipment4Aircraft" xml:space="preserve">
-    <value>防御艦.装備4.搭載数</value>
-  </data>
-  <data name="DefenderEquipment5Name" xml:space="preserve">
-    <value>防御艦.装備5.名前</value>
-  </data>
-  <data name="DefenderEquipment5Level" xml:space="preserve">
-    <value>防御艦.装備5.改修</value>
-  </data>
-  <data name="DefenderEquipment5AircraftLevel" xml:space="preserve">
-    <value>防御艦.装備5.熟練度</value>
-  </data>
-  <data name="DefenderEquipment5Aircraft" xml:space="preserve">
-    <value>防御艦.装備5.搭載数</value>
-  </data>
-  <data name="DefenderEquipment6Name" xml:space="preserve">
-    <value>防御艦.装備6.名前</value>
-  </data>
-  <data name="DefenderEquipment6Level" xml:space="preserve">
-    <value>防御艦.装備6.改修</value>
-  </data>
-  <data name="DefenderEquipment6AircraftLevel" xml:space="preserve">
-    <value>防御艦.装備6.熟練度</value>
-  </data>
-  <data name="DefenderEquipment6Aircraft" xml:space="preserve">
-    <value>防御艦.装備6.搭載数</value>
-  </data>
   <data name="BossNode" xml:space="preserve">
     <value>ボス</value>
   </data>
@@ -534,5 +252,110 @@
   </data>
   <data name="Square" xml:space="preserve">
     <value>マス</value>
+  </data>
+  <data name="Start" xml:space="preserve">
+    <value>開始</value>
+  </data>
+  <data name="PrefixAttacker" xml:space="preserve">
+    <value>攻撃艦.</value>
+  </data>
+  <data name="PrefixDefender" xml:space="preserve">
+    <value>防御艦.</value>
+  </data>
+  <data name="PrefixEquipment1" xml:space="preserve">
+    <value>装備1.</value>
+  </data>
+  <data name="PrefixEquipment2" xml:space="preserve">
+    <value>装備2.</value>
+  </data>
+  <data name="PrefixEquipment3" xml:space="preserve">
+    <value>装備3.</value>
+  </data>
+  <data name="PrefixEquipment4" xml:space="preserve">
+    <value>装備4.</value>
+  </data>
+  <data name="PrefixEquipment5" xml:space="preserve">
+    <value>装備5.</value>
+  </data>
+  <data name="PrefixEquipment6" xml:space="preserve">
+    <value>装備6.</value>
+  </data>
+  <data name="Index" xml:space="preserve">
+    <value>編成順</value>
+  </data>
+  <data name="Id" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>名前</value>
+  </data>
+  <data name="ShipType" xml:space="preserve">
+    <value>種別</value>
+  </data>
+  <data name="Condition" xml:space="preserve">
+    <value>疲労</value>
+  </data>
+  <data name="HpCurrent" xml:space="preserve">
+    <value>残耐久</value>
+  </data>
+  <data name="HpMax" xml:space="preserve">
+    <value>最大耐久</value>
+  </data>
+  <data name="DamageState" xml:space="preserve">
+    <value>損傷</value>
+  </data>
+  <data name="FuelCurrent" xml:space="preserve">
+    <value>残燃料</value>
+  </data>
+  <data name="FuelMax" xml:space="preserve">
+    <value>最大燃料</value>
+  </data>
+  <data name="AmmoCurrent" xml:space="preserve">
+    <value>残弾薬</value>
+  </data>
+  <data name="AmmoMax" xml:space="preserve">
+    <value>最大弾薬</value>
+  </data>
+  <data name="ShipLevel" xml:space="preserve">
+    <value>Lv</value>
+  </data>
+  <data name="Speed" xml:space="preserve">
+    <value>速力</value>
+  </data>
+  <data name="Firepower" xml:space="preserve">
+    <value>火力</value>
+  </data>
+  <data name="Torpedo" xml:space="preserve">
+    <value>雷装</value>
+  </data>
+  <data name="AntiAir" xml:space="preserve">
+    <value>対空</value>
+  </data>
+  <data name="Armor" xml:space="preserve">
+    <value>装甲</value>
+  </data>
+  <data name="Evasion" xml:space="preserve">
+    <value>回避</value>
+  </data>
+  <data name="AntiSubmarine" xml:space="preserve">
+    <value>対潜</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>索敵</value>
+  </data>
+  <data name="Luck" xml:space="preserve">
+    <value>運</value>
+  </data>
+  <data name="Range" xml:space="preserve">
+    <value>射程</value>
+  </data>
+  <data name="AircraftLevel" xml:space="preserve">
+    <value>熟練度</value>
+  </data>
+  <data name="Aircraft" xml:space="preserve">
+    <value>搭載数</value>
+  </data>
+  <data name="EquipmentLevel" xml:space="preserve">
+    <value>改修</value>
   </data>
 </root>

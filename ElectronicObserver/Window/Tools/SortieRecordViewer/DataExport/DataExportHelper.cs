@@ -8,7 +8,6 @@ using ElectronicObserver.Common.ContentDialogs.ExportProgress;
 using ElectronicObserver.Data;
 using ElectronicObserver.Database;
 using ElectronicObserver.Services;
-using ElectronicObserver.Window.Tools.SortieRecordViewer.DataExport.DayShellingExport;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Node;
@@ -60,23 +59,19 @@ public class DataExportHelper
 				PhaseSearching? searching = node.FirstBattle.Phases.OfType<PhaseSearching>().FirstOrDefault();
 				PhaseAirBattle? airBattle = node.FirstBattle.Phases.OfType<PhaseAirBattle>().FirstOrDefault();
 				IFleetData? playerFleet = initial?.FleetsAfterPhase?.Fleet;
-				IFleetData? enemyFleet = initial?.FleetsAfterPhase?.EnemyFleet;
 
 				if (initial is null) continue;
 				if (searching is null) continue;
 				if (airBattle is null) continue;
 				if (playerFleet is null) continue;
-				if (enemyFleet is null) continue;
 
 				foreach (PhaseShelling shelling in node.FirstBattle.Phases.OfType<PhaseShelling>())
 				{
 					foreach (PhaseShellingAttackViewModel attackDisplay in shelling.AttackDisplays)
 					{
 						IFleetData? attackerFleet = searching.FleetsBeforePhase?.GetFleet(attackDisplay.AttackerIndex);
-						IFleetData? defenderFleet = searching.FleetsBeforePhase?.GetFleet(attackDisplay.DefenderIndex);
 
 						if (attackerFleet is null) continue;
-						if (defenderFleet is null) continue;
 
 						foreach ((DayAttack attack, int attackIndex) in attackDisplay.Attacks.Select((a, i) => (a, i)))
 						{
@@ -113,7 +108,7 @@ public class DataExportHelper
 								ShipName4 = attackerFleet.MembersInstance.Skip(3).FirstOrDefault()?.Name,
 								ShipName5 = attackerFleet.MembersInstance.Skip(4).FirstOrDefault()?.Name,
 								ShipName6 = attackerFleet.MembersInstance.Skip(5).FirstOrDefault()?.Name,
-								PlayerFleetType = GetPlayerFleet(initial.FleetsAfterPhase!, attackDisplay),
+								PlayerFleetType = GetPlayerFleet(initial.FleetsAfterPhase!, attackDisplay.AttackerIndex, attackDisplay.DefenderIndex),
 								BattlePhase = GetPhaseString(shelling),
 								AttackerSide = attackDisplay.AttackerIndex.FleetFlag switch
 								{
@@ -132,115 +127,9 @@ public class DataExportHelper
 									true => 1,
 									_ => 0,
 								},
-								AttackerIndex = attackDisplay.AttackerIndex.Index + 1,
-								AttackerId = attack.Attacker.ShipID,
-								AttackerName = attack.Attacker.Name,
-								AttackerShipType = attack.Attacker.MasterShip.ShipType.Display(),
-								AttackerCondition = NullForAbyssals(attack.Attacker.Condition, attack.Attacker),
-								AttackerHpCurrent = attackDisplay.AttackerHpBeforeAttack,
-								AttackerHpMax = attack.Attacker.HPMax,
-								AttackerDamageState = GetDamageState(attackDisplay.AttackerHpBeforeAttack, attack.Attacker.HPMax),
-								AttackerFuelCurrent = NullForAbyssals(attack.Attacker.Fuel, attack.Attacker),
-								AttackerFuelMax = NullForAbyssals(attack.Attacker.FuelMax, attack.Attacker),
-								AttackerAmmoCurrent = NullForAbyssals(attack.Attacker.Ammo, attack.Attacker),
-								AttackerAmmoMax = NullForAbyssals(attack.Attacker.AmmoMax, attack.Attacker),
-								AttackerLevel = attack.Attacker.Level,
-								AttackerSpeed = Constants.GetSpeed(attack.Attacker.Speed),
-								AttackerFirepower = attack.Attacker.FirepowerTotal,
-								AttackerTorpedo = attack.Attacker.TorpedoTotal,
-								AttackerAntiAir = attack.Attacker.AATotal,
-								AttackerArmor = attack.Attacker.ArmorTotal,
-								AttackerEvasion = attack.Attacker.EvasionTotal,
-								AttackerAntiSubmarine = attack.Attacker.ASWTotal,
-								AttackerSearch = attack.Attacker.LOSTotal,
-								AttackerLuck = attack.Attacker.LuckTotal,
-								AttackerRange = Constants.GetRange(attack.Attacker.Range),
-
-								AttackerEquipment1Name = attack.Attacker.AllSlotInstance.Skip(0).FirstOrDefault()?.Name,
-								AttackerEquipment1Level = attack.Attacker.AllSlotInstance.Skip(0).FirstOrDefault()?.Level,
-								AttackerEquipment1AircraftLevel = attack.Attacker.AllSlotInstance.Skip(0).FirstOrDefault()?.AircraftLevel,
-								AttackerEquipment1Aircraft = attack.Attacker.Aircraft.Skip(0).FirstOrDefault(),
-
-								AttackerEquipment2Name = attack.Attacker.AllSlotInstance.Skip(1).FirstOrDefault()?.Name,
-								AttackerEquipment2Level = attack.Attacker.AllSlotInstance.Skip(1).FirstOrDefault()?.Level,
-								AttackerEquipment2AircraftLevel = attack.Attacker.AllSlotInstance.Skip(1).FirstOrDefault()?.AircraftLevel,
-								AttackerEquipment2Aircraft = attack.Attacker.Aircraft.Skip(1).FirstOrDefault(),
-
-								AttackerEquipment3Name = attack.Attacker.AllSlotInstance.Skip(2).FirstOrDefault()?.Name,
-								AttackerEquipment3Level = attack.Attacker.AllSlotInstance.Skip(2).FirstOrDefault()?.Level,
-								AttackerEquipment3AircraftLevel = attack.Attacker.AllSlotInstance.Skip(2).FirstOrDefault()?.AircraftLevel,
-								AttackerEquipment3Aircraft = attack.Attacker.Aircraft.Skip(2).FirstOrDefault(),
-
-								AttackerEquipment4Name = attack.Attacker.AllSlotInstance.Skip(3).FirstOrDefault()?.Name,
-								AttackerEquipment4Level = attack.Attacker.AllSlotInstance.Skip(3).FirstOrDefault()?.Level,
-								AttackerEquipment4AircraftLevel = attack.Attacker.AllSlotInstance.Skip(3).FirstOrDefault()?.AircraftLevel,
-								AttackerEquipment4Aircraft = attack.Attacker.Aircraft.Skip(3).FirstOrDefault(),
-
-								AttackerEquipment5Name = attack.Attacker.AllSlotInstance.Skip(4).FirstOrDefault()?.Name,
-								AttackerEquipment5Level = attack.Attacker.AllSlotInstance.Skip(4).FirstOrDefault()?.Level,
-								AttackerEquipment5AircraftLevel = attack.Attacker.AllSlotInstance.Skip(4).FirstOrDefault()?.AircraftLevel,
-								AttackerEquipment5Aircraft = attack.Attacker.Aircraft.Skip(4).FirstOrDefault(),
-
-								AttackerEquipment6Name = attack.Attacker.AllSlotInstance.Skip(5).FirstOrDefault()?.Name,
-								AttackerEquipment6Level = attack.Attacker.AllSlotInstance.Skip(5).FirstOrDefault()?.Level,
-								AttackerEquipment6AircraftLevel = attack.Attacker.AllSlotInstance.Skip(5).FirstOrDefault()?.AircraftLevel,
-								AttackerEquipment6Aircraft = attack.Attacker.Aircraft.Skip(5).FirstOrDefault(),
-
-								DefenderIndex = attackDisplay.DefenderIndex.Index + 1,
-								DefenderId = attack.Defender.ShipID,
-								DefenderName = attack.Defender.Name,
-								DefenderShipType = attack.Defender.MasterShip.ShipType.Display(),
-								DefenderCondition = NullForAbyssals(attack.Defender.Condition, attack.Defender),
-								DefenderHpCurrent = attackDisplay.DefenderHpBeforeAttacks[attackIndex],
-								DefenderHpMax = attack.Defender.HPMax,
-								DefenderDamageState = GetDamageState(attackDisplay.DefenderHpBeforeAttacks[attackIndex], attack.Defender.HPMax),
-								DefenderFuelCurrent = NullForAbyssals(attack.Defender.Fuel, attack.Defender),
-								DefenderFuelMax = NullForAbyssals(attack.Defender.FuelMax, attack.Defender),
-								DefenderAmmoCurrent = NullForAbyssals(attack.Defender.Ammo, attack.Defender),
-								DefenderAmmoMax = NullForAbyssals(attack.Defender.AmmoMax, attack.Defender),
-								DefenderLevel = attack.Defender.Level,
-								DefenderSpeed = Constants.GetSpeed(attack.Defender.Speed),
-								DefenderFirepower = attack.Defender.FirepowerTotal,
-								DefenderTorpedo = attack.Defender.TorpedoTotal,
-								DefenderAntiAir = attack.Defender.AATotal,
-								DefenderArmor = attack.Defender.ArmorTotal,
-								DefenderEvasion = attack.Defender.EvasionTotal,
-								DefenderAntiSubmarine = attack.Defender.ASWTotal,
-								DefenderSearch = attack.Defender.LOSTotal,
-								DefenderLuck = attack.Defender.LuckTotal,
-								DefenderRange = Constants.GetRange(attack.Defender.Range),
-
-								DefenderEquipment1Name = attack.Defender.AllSlotInstance.Skip(0).FirstOrDefault()?.Name,
-								DefenderEquipment1Level = attack.Defender.AllSlotInstance.Skip(0).FirstOrDefault()?.Level,
-								DefenderEquipment1AircraftLevel = attack.Defender.AllSlotInstance.Skip(0).FirstOrDefault()?.AircraftLevel,
-								DefenderEquipment1Aircraft = attack.Defender.Aircraft.Skip(0).FirstOrDefault(),
-
-								DefenderEquipment2Name = attack.Defender.AllSlotInstance.Skip(1).FirstOrDefault()?.Name,
-								DefenderEquipment2Level = attack.Defender.AllSlotInstance.Skip(1).FirstOrDefault()?.Level,
-								DefenderEquipment2AircraftLevel = attack.Defender.AllSlotInstance.Skip(1).FirstOrDefault()?.AircraftLevel,
-								DefenderEquipment2Aircraft = attack.Defender.Aircraft.Skip(1).FirstOrDefault(),
-
-								DefenderEquipment3Name = attack.Defender.AllSlotInstance.Skip(2).FirstOrDefault()?.Name,
-								DefenderEquipment3Level = attack.Defender.AllSlotInstance.Skip(2).FirstOrDefault()?.Level,
-								DefenderEquipment3AircraftLevel = attack.Defender.AllSlotInstance.Skip(2).FirstOrDefault()?.AircraftLevel,
-								DefenderEquipment3Aircraft = attack.Defender.Aircraft.Skip(2).FirstOrDefault(),
-
-								DefenderEquipment4Name = attack.Defender.AllSlotInstance.Skip(3).FirstOrDefault()?.Name,
-								DefenderEquipment4Level = attack.Defender.AllSlotInstance.Skip(3).FirstOrDefault()?.Level,
-								DefenderEquipment4AircraftLevel = attack.Defender.AllSlotInstance.Skip(3).FirstOrDefault()?.AircraftLevel,
-								DefenderEquipment4Aircraft = attack.Defender.Aircraft.Skip(3).FirstOrDefault(),
-
-								DefenderEquipment5Name = attack.Defender.AllSlotInstance.Skip(4).FirstOrDefault()?.Name,
-								DefenderEquipment5Level = attack.Defender.AllSlotInstance.Skip(4).FirstOrDefault()?.Level,
-								DefenderEquipment5AircraftLevel = attack.Defender.AllSlotInstance.Skip(4).FirstOrDefault()?.AircraftLevel,
-								DefenderEquipment5Aircraft = attack.Defender.Aircraft.Skip(4).FirstOrDefault(),
-
-								DefenderEquipment6Name = attack.Defender.AllSlotInstance.Skip(5).FirstOrDefault()?.Name,
-								DefenderEquipment6Level = attack.Defender.AllSlotInstance.Skip(5).FirstOrDefault()?.Level,
-								DefenderEquipment6AircraftLevel = attack.Defender.AllSlotInstance.Skip(5).FirstOrDefault()?.AircraftLevel,
-								DefenderEquipment6Aircraft = attack.Defender.Aircraft.Skip(5).FirstOrDefault(),
-
-								FleetType = Constants.GetCombinedFleet(initial.FleetsAfterPhase!.Fleet.FleetType),
+								Attacker = MakeShip(attack.Attacker, attackDisplay.AttackerIndex, attackDisplay.AttackerHpBeforeAttack),
+								Defender = MakeShip(attack.Defender, attackDisplay.DefenderIndex, attackDisplay.DefenderHpBeforeAttacks[attackIndex]),
+								FleetType = Constants.GetCombinedFleet(playerFleet.FleetType),
 								EnemyFleetType = GetEnemyFleetType(initial.IsEnemyCombinedFleet),
 							});
 						}
@@ -255,6 +144,47 @@ public class DataExportHelper
 
 		return dayShellingData;
 	}
+
+	private static ShipExportModel MakeShip(IShipData ship, BattleIndex index, int hpBeforeAttack) => new()
+	{
+		Index = index.Index + 1,
+		Id = ship.ShipID,
+		Name = ship.Name,
+		ShipType = ship.MasterShip.ShipType.Display(),
+		Condition = NullForAbyssals(ship.Condition, ship),
+		HpCurrent = hpBeforeAttack,
+		HpMax = ship.HPMax,
+		DamageState = GetDamageState(hpBeforeAttack, ship.HPMax),
+		FuelCurrent = NullForAbyssals(ship.Fuel, ship),
+		FuelMax = NullForAbyssals(ship.FuelMax, ship),
+		AmmoCurrent = NullForAbyssals(ship.Ammo, ship),
+		AmmoMax = NullForAbyssals(ship.AmmoMax, ship),
+		Level = ship.Level,
+		Speed = Constants.GetSpeed(ship.Speed),
+		Firepower = ship.FirepowerTotal,
+		Torpedo = ship.TorpedoTotal,
+		AntiAir = ship.AATotal,
+		Armor = ship.ArmorTotal,
+		Evasion = ship.EvasionTotal,
+		AntiSubmarine = ship.ASWTotal,
+		Search = ship.LOSTotal,
+		Luck = ship.LuckTotal,
+		Range = Constants.GetRange(ship.Range),
+		Equipment1 = MakeEquipment(ship, 0),
+		Equipment2 = MakeEquipment(ship, 1),
+		Equipment3 = MakeEquipment(ship, 2),
+		Equipment4 = MakeEquipment(ship, 3),
+		Equipment5 = MakeEquipment(ship, 4),
+		Equipment6 = MakeEquipment(ship, 5),
+	};
+
+	private static EquipmentExportModel MakeEquipment(IShipData ship, int index) => new()
+	{
+		Name = ship.AllSlotInstance.Skip(index).FirstOrDefault()?.Name,
+		Level = ship.AllSlotInstance.Skip(index).FirstOrDefault()?.Level,
+		AircraftLevel = ship.AllSlotInstance.Skip(index).FirstOrDefault()?.AircraftLevel,
+		Aircraft = ship.Aircraft.Skip(index).FirstOrDefault(),
+	};
 
 	private static string SquareString(SortieDetailViewModel sortieDetail, SortieNode node) =>
 		$"{CsvExportResources.Map}:{sortieDetail.World}-{sortieDetail.Map} {CsvExportResources.Cell}:{node.Cell}";
@@ -283,12 +213,12 @@ public class DataExportHelper
 		_ => $"不明({id})",
 	};
 
-	private static string GetPlayerFleet(BattleFleets fleets, PhaseShellingAttackViewModel attack)
+	private static string GetPlayerFleet(BattleFleets fleets, BattleIndex attackerIndex, BattleIndex defenderIndex)
 	{
-		BattleIndex index = attack.AttackerIndex.FleetFlag switch
+		BattleIndex index = attackerIndex.FleetFlag switch
 		{
-			FleetFlag.Player => attack.AttackerIndex,
-			_ => attack.DefenderIndex,
+			FleetFlag.Player => attackerIndex,
+			_ => defenderIndex,
 		};
 
 		IFleetData? fleet = fleets.GetFleet(index);
@@ -331,7 +261,7 @@ public class DataExportHelper
 		_ => ConstantsRes.NormalFleet,
 	};
 
-	private int? NullForAbyssals(int? value, IShipData ship) => ship.MasterShip.IsAbyssalShip switch
+	private static int? NullForAbyssals(int? value, IShipData ship) => ship.MasterShip.IsAbyssalShip switch
 	{
 		true => null,
 		_ => value,
