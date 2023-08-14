@@ -270,6 +270,14 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 	[RelayCommand(IncludeCancelCommand = true)]
 	private async Task ExportDayShelling(CancellationToken cancellationToken)
 	{
+		await ExportCsv<DayShellingExportMap, DayShellingExportModel>(DataExportHelper.DayShelling, cancellationToken);
+	}
+
+	private async Task ExportCsv<TMap, TElement>(
+		Func<ObservableCollection<SortieRecordViewModel>, ExportProgressViewModel, CancellationToken, Task<List<TElement>>> processData,
+		CancellationToken cancellationToken = default
+	) where TMap : ClassMap<TElement>
+	{
 		await App.Current!.Dispatcher.BeginInvoke(async () =>
 		{
 			string? path = FileService.ExportCsv();
@@ -278,10 +286,10 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 
 			ExportProgress = new();
 
-			Task<List<DayShellingExportModel>> dayShellingDataTask = Task.Run(async () =>
-				await DataExportHelper.DayShelling(SelectedSorties, ExportProgress, cancellationToken), cancellationToken);
+			Task<List<TElement>> processDataTask = Task.Run(async () => await 
+				processData(SelectedSorties, ExportProgress, cancellationToken), cancellationToken);
 
-			List<Task> tasks = new() { dayShellingDataTask };
+			List<Task> tasks = new() { processDataTask };
 
 			if (ContentDialogService is not null)
 			{
@@ -292,10 +300,10 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 
 			try
 			{
-				if (dayShellingDataTask.IsCompleted)
+				if (processDataTask.IsCompleted)
 				{
-					List<DayShellingExportModel> dayShellingData = await dayShellingDataTask;
-					await SaveCsvFile<DayShellingExportMap, DayShellingExportModel>(path, dayShellingData);
+					List<TElement> dayShellingData = await processDataTask;
+					await SaveCsvFile<TMap, TElement>(path, dayShellingData);
 				}
 				else
 				{
