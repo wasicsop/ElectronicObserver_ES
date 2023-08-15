@@ -64,6 +64,19 @@
 			</StackPanel>
 		</DataTemplate>
 
+		<DataTemplate DataType="{x:Type phase:PhaseTorpedoAttackViewModel}">
+			<StackPanel Margin="0 4">
+				<TextBlock>
+					<Run Text="{Binding Attacker.Name, Mode=OneTime}" />
+					<Run Text="{Binding AttackerIndex.Display, Mode=OneTime}" />
+					<Run Text="→" />
+					<Run Text="{Binding Defender.Name, Mode=OneTime}" />
+					<Run Text="{Binding DefenderIndex.Display, Mode=OneTime}" />
+				</TextBlock>
+				<TextBlock Text="{Binding DamageDisplay}" />
+			</StackPanel>
+		</DataTemplate>
+
 		<DataTemplate DataType="{x:Type phase:PhaseSupportAttackViewModel}">
 			<StackPanel Margin="0 4">
 				<TextBlock>
