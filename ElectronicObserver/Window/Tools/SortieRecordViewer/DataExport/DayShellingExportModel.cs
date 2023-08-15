@@ -22,8 +22,8 @@ public record DayShellingExportModel
 	public string Engagement { get; init; }
 	public string? PlayerContact { get; init; }
 	public string? EnemyContact { get; init; }
-	public string? PlayerFlare { get; init; }
-	public string? EnemyFlare { get; init; }
+	public int? PlayerFlare { get; init; }
+	public int? EnemyFlare { get; init; }
 	public string BattleType { get; init; }
 	public string? ShipName1 { get; init; }
 	public string? ShipName2 { get; init; }
