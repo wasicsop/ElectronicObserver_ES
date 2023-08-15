@@ -85,30 +85,7 @@ public class DataExportHelper
 						{
 							dayShellingData.Add(new()
 							{
-								No = dayShellingData.Count + 1,
-								Date = sortieDetail.StartTime!.Value.ToLocalTime(),
-								World = KCDatabase.Instance.MapInfo[sortieDetail.World * 10 + sortieDetail.Map]?.NameEN ?? "",
-								Square = SquareString(sortieDetail, node),
-								Sortie = (node.IsBoss, isFirstNode) switch
-								{
-									(true, true) => $"{CsvExportResources.Sortie}&{CsvExportResources.BossNode}",
-									(_, true) => CsvExportResources.Sortie,
-									(true, _) => CsvExportResources.BossNode,
-									_ => "",
-								},
-								Rank = WinRank(node.BattleResult?.WinRank),
-								EnemyFleet = node.BattleResult?.EnemyFleetName,
-								AdmiralLevel = admiralLevel,
-								PlayerFormation = Constants.GetFormation(searching.PlayerFormationType),
-								EnemyFormation = Constants.GetFormation(searching.EnemyFormationType),
-								PlayerSearch = GetSearchingResult(searching.PlayerDetectionType),
-								EnemySearch = GetSearchingResult(searching.EnemyDetectionType),
-								AirState = Constants.GetAirSuperiority(airBattle.AirState),
-								Engagement = Constants.GetEngagementForm(searching.EngagementType),
-								PlayerContact = airBattle.TouchAircraftFriend,
-								EnemyContact = airBattle.TouchAircraftEnemy,
-								PlayerFlare = null,
-								EnemyFlare = null,
+								CommonData = MakeCommonData(dayShellingData.Count + 1, node, isFirstNode, sortieDetail, admiralLevel, airBattle, searching),
 								BattleType = CsvExportResources.ShellingBattle,
 								ShipName1 = attackerFleet.MembersInstance.Skip(0).FirstOrDefault()?.Name,
 								ShipName2 = attackerFleet.MembersInstance.Skip(1).FirstOrDefault()?.Name,
@@ -205,30 +182,7 @@ public class DataExportHelper
 						{
 							nightShellingData.Add(new()
 							{
-								No = nightShellingData.Count + 1,
-								Date = sortieDetail.StartTime!.Value.ToLocalTime(),
-								World = KCDatabase.Instance.MapInfo[sortieDetail.World * 10 + sortieDetail.Map]?.NameEN ?? "",
-								Square = SquareString(sortieDetail, node),
-								Sortie = (node.IsBoss, isFirstNode) switch
-								{
-									(true, true) => $"{CsvExportResources.Sortie}&{CsvExportResources.BossNode}",
-									(_, true) => CsvExportResources.Sortie,
-									(true, _) => CsvExportResources.BossNode,
-									_ => "",
-								},
-								Rank = WinRank(node.BattleResult?.WinRank),
-								EnemyFleet = node.BattleResult?.EnemyFleetName,
-								AdmiralLevel = admiralLevel,
-								PlayerFormation = Constants.GetFormation(searching.PlayerFormationType),
-								EnemyFormation = Constants.GetFormation(searching.EnemyFormationType),
-								PlayerSearch = GetSearchingResult(searching.PlayerDetectionType),
-								EnemySearch = GetSearchingResult(searching.EnemyDetectionType),
-								AirState = Constants.GetAirSuperiority(AirState.Unknown),
-								Engagement = Constants.GetEngagementForm(searching.EngagementType),
-								PlayerContact = initial.TouchAircraftFriend?.NameEN,
-								EnemyContact = initial.TouchAircraftEnemy?.NameEN,
-								PlayerFlare = FlareIndex(initial.FlareIndexFriend),
-								EnemyFlare = FlareIndex(initial.FlareIndexEnemy),
+								CommonData = MakeCommonData(nightShellingData.Count + 1, node, isFirstNode, sortieDetail, admiralLevel, initial, searching),
 								BattleType = CsvExportResources.NightBattle,
 								ShipName1 = attackerFleet.MembersInstance.Skip(0).FirstOrDefault()?.Name,
 								ShipName2 = attackerFleet.MembersInstance.Skip(1).FirstOrDefault()?.Name,
@@ -272,6 +226,70 @@ public class DataExportHelper
 
 		return nightShellingData;
 	}
+
+	/// <summary>
+	/// Makes data that's common between all csv exports.
+	/// This could potentially be split into metadata and battle metadata.
+	/// </summary>
+	/// <param name="no">Export record index.</param>
+	/// <param name="node">Battle node data.</param>
+	/// <param name="isFirstNode">First node flag.</param>
+	/// <param name="sortieDetail">Sortie detail data.</param>
+	/// <param name="admiralLevel">Admiral level.</param>
+	/// <param name="contactPhase">AirBattle for day battles, NightInitial for night battles.</param>
+	/// <param name="searching">Searching phase.</param>
+	/// <returns>Common data model.</returns>
+	private static CommonDataExportModel MakeCommonData(int no, BattleNode node, bool isFirstNode,
+		SortieDetailViewModel sortieDetail, int? admiralLevel, PhaseBase contactPhase,
+		PhaseSearching searching) => new()
+		{
+			No = no,
+			Date = sortieDetail.StartTime!.Value.ToLocalTime(),
+			World = KCDatabase.Instance.MapInfo[sortieDetail.World * 10 + sortieDetail.Map]?.NameEN ?? "",
+			Square = SquareString(sortieDetail, node),
+			Sortie = (node.IsBoss, isFirstNode) switch
+			{
+				(true, true) => $"{CsvExportResources.Sortie}&{CsvExportResources.BossNode}",
+				(_, true) => CsvExportResources.Sortie,
+				(true, _) => CsvExportResources.BossNode,
+				_ => "",
+			},
+			Rank = WinRank(node.BattleResult?.WinRank),
+			EnemyFleet = node.BattleResult?.EnemyFleetName,
+			AdmiralLevel = admiralLevel,
+			PlayerFormation = Constants.GetFormation(searching.PlayerFormationType),
+			EnemyFormation = Constants.GetFormation(searching.EnemyFormationType),
+			PlayerSearch = GetSearchingResult(searching.PlayerDetectionType),
+			EnemySearch = GetSearchingResult(searching.EnemyDetectionType),
+			AirState = Constants.GetAirSuperiority(contactPhase switch
+			{
+				PhaseAirBattle airBattle => airBattle.AirState,
+				_ => AirState.Unknown,
+			}),
+			Engagement = Constants.GetEngagementForm(searching.EngagementType),
+			PlayerContact = contactPhase switch
+			{
+				PhaseAirBattle airBattle => airBattle.TouchAircraftFriend,
+				PhaseNightInitial initial => initial.TouchAircraftFriend?.NameEN,
+				_ => null,
+			},
+			EnemyContact = contactPhase switch
+			{
+				PhaseAirBattle airBattle => airBattle.TouchAircraftEnemy,
+				PhaseNightInitial initial => initial.TouchAircraftEnemy?.NameEN,
+				_ => null,
+			},
+			PlayerFlare = contactPhase switch
+			{
+				PhaseNightInitial initial => FlareIndex(initial.FlareIndexFriend),
+				_ => null,
+			},
+			EnemyFlare = contactPhase switch
+			{
+				PhaseNightInitial initial => FlareIndex(initial.FlareIndexEnemy),
+				_ => null,
+			},
+		};
 
 	private static ShipExportModel MakeShip(IShipData ship, BattleIndex index, int hpBeforeAttack) => new()
 	{
