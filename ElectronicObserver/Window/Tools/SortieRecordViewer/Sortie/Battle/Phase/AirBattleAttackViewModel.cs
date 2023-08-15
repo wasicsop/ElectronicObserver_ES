@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Attacks;
@@ -13,15 +14,16 @@ public sealed class AirBattleAttackViewModel : AttackViewModelBase
 	public IShipData Defender { get; set; }
 	public int DefenderHpBeforeAttack { get; }
 
-	private double Damage { get; }
-	private HitType HitType { get; }
-	private AirAttack AttackType { get; }
+	public int Damage { get; }
+	public HitType HitType { get; }
+	public AirAttack AttackType { get; }
 	private IEquipmentData? UsedDamecon { get; }
 	public string DamageDisplay { get; }
+	public bool GuardsFlagship { get; }
 
 	public string AttackerName => (WaveIndex, DefenderIndex.FleetFlag) switch
 	{
-		(> 0, _) => string.Format(BattleRes.AirSquadronWave, WaveIndex),
+		( > 0, _) => string.Format(BattleRes.AirSquadronWave, WaveIndex),
 		(_, FleetFlag.Player) => BattleRes.EnemyAirSquadron,
 		(_, FleetFlag.Enemy) => BattleRes.FriendlyAirSquadron,
 		_ => "???",
@@ -36,10 +38,11 @@ public sealed class AirBattleAttackViewModel : AttackViewModelBase
 		DefenderIndex = attack.Defenders.First().Defender;
 		Defender = fleets.GetShip(DefenderIndex)!;
 		AttackType = attack.AttackType;
+		GuardsFlagship = attack.Defenders.First().GuardsFlagship;
 
 		DefenderHpBeforeAttack = Defender.HPCurrent;
 
-		int hpAfterAttacks = Math.Max(0, DefenderHpBeforeAttack - (int)Damage);
+		int hpAfterAttacks = Math.Max(0, DefenderHpBeforeAttack - Damage);
 
 		if (hpAfterAttacks <= 0 && GetDamecon(Defender) is { } damecon)
 		{
@@ -48,7 +51,7 @@ public sealed class AirBattleAttackViewModel : AttackViewModelBase
 
 		DamageDisplay =
 			$"[{GetAttackKind(AttackType)}] " +
-			$"{AttackDisplay(attack.Defenders.First().GuardsFlagship, Damage, HitType)}";
+			$"{AttackDisplay(GuardsFlagship, Damage, HitType)}";
 
 		if (DefenderHpBeforeAttack > 0 && DefenderHpBeforeAttack != hpAfterAttacks)
 		{
