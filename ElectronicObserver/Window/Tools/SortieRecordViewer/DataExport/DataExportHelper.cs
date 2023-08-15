@@ -323,6 +323,122 @@ public class DataExportHelper
 		return torpedoData;
 	}
 
+	public async Task<List<AirBattleExportModel>> AirBattle(
+		ObservableCollection<SortieRecordViewModel> sorties,
+		ExportProgressViewModel exportProgress,
+		CancellationToken cancellationToken = default)
+	{
+		exportProgress.Total = sorties.Count;
+
+		foreach (SortieRecordViewModel sortieRecord in sorties)
+		{
+			await sortieRecord.Model.EnsureApiFilesLoaded(Db, cancellationToken);
+		}
+
+		List<AirBattleExportModel> airBattleData = new();
+
+		foreach (SortieRecordViewModel sortieRecord in sorties)
+		{
+			SortieDetailViewModel? sortieDetail = ToolService.GenerateSortieDetailViewModel(sortieRecord);
+			int? admiralLevel = await sortieRecord.Model.GetAdmiralLevel(Db, cancellationToken);
+
+			if (sortieDetail is null) continue;
+
+			bool isFirstNode = true;
+
+			foreach (BattleNode node in sortieDetail.Nodes.OfType<BattleNode>())
+			{
+				List<PhaseBase> phases = node.FirstBattle.Phases
+					.Concat(node.SecondBattle switch
+					{
+						null => Enumerable.Empty<PhaseBase>(),
+						_ => node.SecondBattle.Phases,
+					}).ToList();
+
+				PhaseInitial? initial = phases.OfType<PhaseInitial>().FirstOrDefault();
+				PhaseSearching? searching = phases.OfType<PhaseSearching>().FirstOrDefault();
+				IFleetData? playerFleet = initial?.FleetsAfterPhase?.Fleet;
+
+				if (initial is null) continue;
+				if (searching is null) continue;
+				if (playerFleet is null) continue;
+
+				foreach (PhaseAirBattle airBattle in phases.OfType<PhaseAirBattle>())
+				{
+					foreach (AirBattleAttackViewModel attackDisplay in airBattle.AttackDisplays)
+					{
+						IFleetData? attackerFleet = searching.FleetsBeforePhase?
+							.GetFleet(attackDisplay.DefenderIndex.FleetFlag switch
+							{
+								FleetFlag.Player => new BattleIndex(0, FleetFlag.Enemy),
+								FleetFlag.Enemy => new BattleIndex(0, FleetFlag.Player),
+							});
+
+						if (attackerFleet is null) continue;
+
+						airBattleData.Add(new()
+						{
+							CommonData = MakeCommonData(airBattleData.Count + 1, node, isFirstNode, sortieDetail, admiralLevel, airBattle, searching),
+							Stage1 = new()
+							{
+								PlayerAircraftTotal = airBattle.Stage1FCount,
+								PlayerAircraftLost = airBattle.Stage1FLostcount,
+								EnemyAircraftTotal = airBattle.Stage1ECount,
+								EnemyAircraftLost = airBattle.Stage1ELostcount,
+							},
+							Stage2 = new()
+							{
+								PlayerAircraftTotal = airBattle.Stage2FCount,
+								PlayerAircraftLost = airBattle.Stage2FLostcount,
+								EnemyAircraftTotal = airBattle.Stage2ECount,
+								EnemyAircraftLost = airBattle.Stage2ELostcount,
+							},
+							AntiAirCutIn = new()
+							{
+								Ship = airBattle.ApiAirFire?.ApiIdx,
+								Id = airBattle.ApiAirFire?.ApiKind,
+								DisplayedEquipment1 = EquipmentFromId(airBattle.ApiAirFire?.ApiUseItems.Skip(0).FirstOrDefault())?.NameEN,
+								DisplayedEquipment2 = EquipmentFromId(airBattle.ApiAirFire?.ApiUseItems.Skip(1).FirstOrDefault())?.NameEN,
+								DisplayedEquipment3 = EquipmentFromId(airBattle.ApiAirFire?.ApiUseItems.Skip(2).FirstOrDefault())?.NameEN,
+							},
+							Attacker1 = MakeShip(attackerFleet.MembersWithoutEscaped?.Skip(0).FirstOrDefault()),
+							Attacker2 = MakeShip(attackerFleet.MembersWithoutEscaped?.Skip(1).FirstOrDefault()),
+							Attacker3 = MakeShip(attackerFleet.MembersWithoutEscaped?.Skip(2).FirstOrDefault()),
+							Attacker4 = MakeShip(attackerFleet.MembersWithoutEscaped?.Skip(3).FirstOrDefault()),
+							Attacker5 = MakeShip(attackerFleet.MembersWithoutEscaped?.Skip(4).FirstOrDefault()),
+							Attacker6 = MakeShip(attackerFleet.MembersWithoutEscaped?.Skip(5).FirstOrDefault()),
+							Attacker7 = MakeShip(attackerFleet.MembersWithoutEscaped?.Skip(6).FirstOrDefault()),
+							TorpedoFlag = attackDisplay.AttackType switch
+							{
+								AirAttack.Torpedo or AirAttack.TorpedoBombing => 1,
+								_ => 0,
+							},
+							BomberFlag = attackDisplay.AttackType switch
+							{
+								AirAttack.Bombing or AirAttack.TorpedoBombing => 1,
+								_ => 0,
+							},
+							HitType = (int)attackDisplay.HitType,
+							Damage = attackDisplay.Damage,
+							Protected = attackDisplay.GuardsFlagship switch
+							{
+								true => 1,
+								_ => 0,
+							},
+							Defender = MakeShip(attackDisplay.Defender, attackDisplay.DefenderIndex, attackDisplay.DefenderHpBeforeAttack),
+						});
+					}
+				}
+
+				isFirstNode = false;
+			}
+
+			exportProgress.Progress++;
+		}
+
+		return airBattleData;
+	}
+
 	/// <summary>
 	/// Makes data that's common between all csv exports.
 	/// This could potentially be split into metadata and battle metadata.
@@ -418,6 +534,13 @@ public class DataExportHelper
 		Equipment4 = MakeEquipment(ship, 3),
 		Equipment5 = MakeEquipment(ship, 4),
 		Equipment6 = MakeEquipment(ship, 5),
+	};
+
+	private static AirBattleShipExportModel MakeShip(IShipData? ship) => new()
+	{
+		Id = ship?.ShipID,
+		Name = ship?.Name,
+		Level = ship?.Level,
 	};
 
 	private static EquipmentExportModel MakeEquipment(IShipData ship, int index) => new()
@@ -525,5 +648,11 @@ public class DataExportHelper
 	{
 		NightBattleData => "夜戦開始",
 		_ => "昼戦開始",
+	};
+
+	private static IEquipmentDataMaster? EquipmentFromId(int? id) => id switch
+	{
+		int i => KCDatabase.Instance.MasterEquipments[i],
+		_ => null,
 	};
 }

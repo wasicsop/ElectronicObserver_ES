@@ -364,4 +364,58 @@
   <data name="TorpedoAttackType" xml:space="preserve">
     <value>種別</value>
   </data>
+  <data name="PrefixStage1" xml:space="preserve">
+    <value>ステージ1.</value>
+  </data>
+  <data name="PrefixStage2" xml:space="preserve">
+    <value>ステージ2.</value>
+  </data>
+  <data name="PlayerAircraftTotal" xml:space="preserve">
+    <value>自艦載機総数</value>
+  </data>
+  <data name="PlayerAircraftLost" xml:space="preserve">
+    <value>自艦載機喪失数</value>
+  </data>
+  <data name="EnemyAircraftTotal" xml:space="preserve">
+    <value>敵艦載機総数</value>
+  </data>
+  <data name="EnemyAircraftLost" xml:space="preserve">
+    <value>敵艦載機喪失数</value>
+  </data>
+  <data name="PrefixAntiAirCutIn" xml:space="preserve">
+    <value>対空カットイン.</value>
+  </data>
+  <data name="AntiAirCutInShip" xml:space="preserve">
+    <value>発動艦</value>
+  </data>
+  <data name="AntiAirCutInId" xml:space="preserve">
+    <value>種別</value>
+  </data>
+  <data name="PrefixAttacker1" xml:space="preserve">
+    <value>攻撃艦1.</value>
+  </data>
+  <data name="PrefixAttacker2" xml:space="preserve">
+    <value>攻撃艦2.</value>
+  </data>
+  <data name="PrefixAttacker3" xml:space="preserve">
+    <value>攻撃艦3.</value>
+  </data>
+  <data name="PrefixAttacker4" xml:space="preserve">
+    <value>攻撃艦4.</value>
+  </data>
+  <data name="PrefixAttacker5" xml:space="preserve">
+    <value>攻撃艦5.</value>
+  </data>
+  <data name="PrefixAttacker6" xml:space="preserve">
+    <value>攻撃艦6.</value>
+  </data>
+  <data name="PrefixAttacker7" xml:space="preserve">
+    <value>攻撃艦7.</value>
+  </data>
+  <data name="TorpedoFlag" xml:space="preserve">
+    <value>雷撃</value>
+  </data>
+  <data name="BomberFlag" xml:space="preserve">
+    <value>爆撃</value>
+  </data>
 </root>
