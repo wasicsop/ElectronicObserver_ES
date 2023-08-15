@@ -17,7 +17,7 @@ public class PhaseTorpedo : PhaseBase
 	};
 
 	private ApiRaigekiClass BattleApiOpeningAtack { get; }
-	private TorpedoPhase Phase { get; }
+	public TorpedoPhase Phase { get; }
 
 	private List<PhaseTorpedoAttack> Attacks { get; } = new();
 	public List<PhaseTorpedoAttackViewModel> AttackDisplays { get; } = new();

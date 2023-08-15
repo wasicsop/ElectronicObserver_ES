@@ -227,6 +227,102 @@ public class DataExportHelper
 		return nightShellingData;
 	}
 
+	public async Task<List<TorpedoExportModel>> Torpedo(
+	ObservableCollection<SortieRecordViewModel> sorties,
+	ExportProgressViewModel exportProgress,
+	CancellationToken cancellationToken = default)
+	{
+		exportProgress.Total = sorties.Count;
+
+		foreach (SortieRecordViewModel sortieRecord in sorties)
+		{
+			await sortieRecord.Model.EnsureApiFilesLoaded(Db, cancellationToken);
+		}
+
+		List<TorpedoExportModel> torpedoData = new();
+
+		foreach (SortieRecordViewModel sortieRecord in sorties)
+		{
+			SortieDetailViewModel? sortieDetail = ToolService.GenerateSortieDetailViewModel(sortieRecord);
+			int? admiralLevel = await sortieRecord.Model.GetAdmiralLevel(Db, cancellationToken);
+
+			if (sortieDetail is null) continue;
+
+			bool isFirstNode = true;
+
+			foreach (BattleNode node in sortieDetail.Nodes.OfType<BattleNode>())
+			{
+				List<PhaseBase> phases = node.FirstBattle.Phases
+					.Concat(node.SecondBattle switch
+					{
+						null => Enumerable.Empty<PhaseBase>(),
+						_ => node.SecondBattle.Phases,
+					}).ToList();
+
+				PhaseInitial? initial = phases.OfType<PhaseInitial>().FirstOrDefault();
+				PhaseSearching? searching = phases.OfType<PhaseSearching>().FirstOrDefault();
+				PhaseAirBattle? airBattle = phases.OfType<PhaseAirBattle>().FirstOrDefault();
+				IFleetData? playerFleet = initial?.FleetsAfterPhase?.Fleet;
+
+				if (initial is null) continue;
+				if (searching is null) continue;
+				if (airBattle is null) continue;
+				if (playerFleet is null) continue;
+
+				foreach (PhaseTorpedo torpedo in phases.OfType<PhaseTorpedo>())
+				{
+					foreach (PhaseTorpedoAttackViewModel attackDisplay in torpedo.AttackDisplays)
+					{
+						IFleetData? attackerFleet = searching.FleetsBeforePhase?.GetFleet(attackDisplay.AttackerIndex);
+
+						if (attackerFleet is null) continue;
+
+						foreach ((DayAttack attack, int attackIndex) in attackDisplay.Attacks.Select((a, i) => (a, i)))
+						{
+							torpedoData.Add(new()
+							{
+								CommonData = MakeCommonData(torpedoData.Count + 1, node, isFirstNode, sortieDetail, admiralLevel, airBattle, searching),
+								BattleType = CsvExportResources.NightBattle,
+								PlayerFleetType = GetPlayerFleet(initial.FleetsAfterPhase!, attackDisplay.AttackerIndex, attackDisplay.DefenderIndex),
+								BattlePhase = torpedo.Phase switch
+								{
+									TorpedoPhase.Opening => "開幕",
+									TorpedoPhase.Closing => "閉幕",
+								},
+								AttackerSide = attackDisplay.AttackerIndex.FleetFlag switch
+								{
+									FleetFlag.Player => CsvExportResources.Player,
+									_ => CsvExportResources.Enemy,
+								},
+								AttackType = null,
+								DisplayedEquipment1 = null,
+								DisplayedEquipment2 = null,
+								DisplayedEquipment3 = null,
+								HitType = (int)attack.CriticalFlag,
+								Damage = attack.Damage,
+								Protected = attack.GuardsFlagship switch
+								{
+									true => 1,
+									_ => 0,
+								},
+								Attacker = MakeShip(attack.Attacker, attackDisplay.AttackerIndex, attackDisplay.AttackerHpBeforeAttack),
+								Defender = MakeShip(attack.Defender, attackDisplay.DefenderIndex, attackDisplay.DefenderHpBeforeAttacks[attackIndex]),
+								FleetType = Constants.GetCombinedFleet(playerFleet.FleetType),
+								EnemyFleetType = GetEnemyFleetType(false),
+							});
+						}
+					}
+				}
+
+				isFirstNode = false;
+			}
+
+			exportProgress.Progress++;
+		}
+
+		return torpedoData;
+	}
+
 	/// <summary>
 	/// Makes data that's common between all csv exports.
 	/// This could potentially be split into metadata and battle metadata.

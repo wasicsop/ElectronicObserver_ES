@@ -358,4 +358,10 @@
   <data name="EquipmentLevel" xml:space="preserve">
     <value>改修</value>
   </data>
+  <data name="TorpedoBattlePhase" xml:space="preserve">
+    <value>開幕|閉幕</value>
+  </data>
+  <data name="TorpedoAttackType" xml:space="preserve">
+    <value>種別</value>
+  </data>
 </root>
