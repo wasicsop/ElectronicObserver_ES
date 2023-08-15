@@ -55,9 +55,16 @@ public class DataExportHelper
 
 			foreach (BattleNode node in sortieDetail.Nodes.OfType<BattleNode>())
 			{
-				PhaseInitial? initial = node.FirstBattle.Phases.OfType<PhaseInitial>().FirstOrDefault();
-				PhaseSearching? searching = node.FirstBattle.Phases.OfType<PhaseSearching>().FirstOrDefault();
-				PhaseAirBattle? airBattle = node.FirstBattle.Phases.OfType<PhaseAirBattle>().FirstOrDefault();
+				List<PhaseBase> phases = node.FirstBattle.Phases
+					.Concat(node.SecondBattle switch
+					{
+						null => Enumerable.Empty<PhaseBase>(),
+						_ => node.SecondBattle.Phases,
+					}).ToList();
+
+				PhaseInitial? initial = phases.OfType<PhaseInitial>().FirstOrDefault();
+				PhaseSearching? searching = phases.OfType<PhaseSearching>().FirstOrDefault();
+				PhaseAirBattle? airBattle = phases.OfType<PhaseAirBattle>().FirstOrDefault();
 				IFleetData? playerFleet = initial?.FleetsAfterPhase?.Fleet;
 
 				if (initial is null) continue;
@@ -65,7 +72,7 @@ public class DataExportHelper
 				if (airBattle is null) continue;
 				if (playerFleet is null) continue;
 
-				foreach (PhaseShelling shelling in node.FirstBattle.Phases.OfType<PhaseShelling>())
+				foreach (PhaseShelling shelling in phases.OfType<PhaseShelling>())
 				{
 					foreach (PhaseShellingAttackViewModel attackDisplay in shelling.AttackDisplays)
 					{
