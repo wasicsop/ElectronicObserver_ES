@@ -166,6 +166,7 @@ public class ShipDataMock : IShipData
 
 		HPCurrent = MasterShip.HPMin;
 
+		SlotSize = MasterShip.SlotSize;
 		Aircraft = MasterShip.Aircraft;
 
 		Fuel = ship.Fuel;

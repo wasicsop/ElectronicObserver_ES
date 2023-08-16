@@ -647,9 +647,9 @@ public class DataExportHelper
 		HpMax = ship.HPMax,
 		DamageState = GetDamageState(hpBeforeAttack, ship.HPMax),
 		FuelCurrent = NullForAbyssals(ship.Fuel, ship),
-		FuelMax = NullForAbyssals(ship.FuelMax, ship),
+		FuelMax = ship.FuelMax,
 		AmmoCurrent = NullForAbyssals(ship.Ammo, ship),
-		AmmoMax = NullForAbyssals(ship.AmmoMax, ship),
+		AmmoMax = ship.AmmoMax,
 		Level = ship.Level,
 		Speed = Constants.GetSpeed(ship.Speed),
 		Firepower = ship.FirepowerTotal,
@@ -679,9 +679,9 @@ public class DataExportHelper
 	private static EquipmentExportModel MakeEquipment(IShipData ship, int index) => new()
 	{
 		Name = ship.AllSlotInstance.Skip(index).FirstOrDefault()?.Name,
-		Level = ship.AllSlotInstance.Skip(index).FirstOrDefault()?.Level,
-		AircraftLevel = ship.AllSlotInstance.Skip(index).FirstOrDefault()?.AircraftLevel,
-		Aircraft = ship.Aircraft.Skip(index).Cast<int?>().FirstOrDefault(),
+		Level = NullForAbyssals(ship.AllSlotInstance.Skip(index).FirstOrDefault()?.Level, ship),
+		AircraftLevel = NullForAbyssals(ship.AllSlotInstance.Skip(index).FirstOrDefault()?.AircraftLevel, ship),
+		Aircraft = ship.Aircraft.Take(ship.SlotSize).Skip(index).Cast<int?>().FirstOrDefault(),
 	};
 
 	private static string SquareString(SortieDetailViewModel sortieDetail, SortieNode node) =>
