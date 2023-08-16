@@ -353,8 +353,17 @@ public class ApiFileService : ObservableObject
 		Kyouka = s.Kyouka.ToList(),
 		Fuel = s.Fuel,
 		Ammo = s.Ammo,
+		Hp = s.HPMax,
+		Armor = s.ArmorTotal,
+		Evasion = s.EvasionTotal,
 		Range = s.Range,
 		Speed = s.Speed,
+		Firepower = s.FirepowerTotal,
+		Torpedo = s.TorpedoTotal,
+		Aa = s.AATotal,
+		Asw = s.ASWTotal,
+		Search = s.LOSTotal,
+		Luck = s.LuckTotal,
 		EquipmentSlots = s.SlotInstance
 			.Zip(s.Aircraft, (Equipment, AircraftCurrent) => (Equipment, AircraftCurrent))
 			.Zip(s.MasterShip.Aircraft, (slot, AircraftMax) => new SortieEquipmentSlot
