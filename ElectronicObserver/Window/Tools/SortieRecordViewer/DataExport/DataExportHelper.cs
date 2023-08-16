@@ -439,6 +439,139 @@ public class DataExportHelper
 		return airBattleData;
 	}
 
+	public async Task<List<AirBaseBattleExportModel>> AirBaseBattle(
+		ObservableCollection<SortieRecordViewModel> sorties,
+		ExportProgressViewModel exportProgress,
+		CancellationToken cancellationToken = default)
+	{
+		exportProgress.Total = sorties.Count;
+
+		foreach (SortieRecordViewModel sortieRecord in sorties)
+		{
+			await sortieRecord.Model.EnsureApiFilesLoaded(Db, cancellationToken);
+		}
+
+		List<AirBaseBattleExportModel> airBattleData = new();
+
+		foreach (SortieRecordViewModel sortieRecord in sorties)
+		{
+			SortieDetailViewModel? sortieDetail = ToolService.GenerateSortieDetailViewModel(sortieRecord);
+			int? admiralLevel = await sortieRecord.Model.GetAdmiralLevel(Db, cancellationToken);
+
+			if (sortieDetail is null) continue;
+
+			bool isFirstNode = true;
+
+			foreach (BattleNode node in sortieDetail.Nodes.OfType<BattleNode>())
+			{
+				List<PhaseBase> phases = node.FirstBattle.Phases
+					.Concat(node.SecondBattle switch
+					{
+						null => Enumerable.Empty<PhaseBase>(),
+						_ => node.SecondBattle.Phases,
+					}).ToList();
+
+				PhaseInitial? initial = phases.OfType<PhaseInitial>().FirstOrDefault();
+				PhaseSearching? searching = phases.OfType<PhaseSearching>().FirstOrDefault();
+				IFleetData? playerFleet = initial?.FleetsAfterPhase?.Fleet;
+
+				if (initial is null) continue;
+				if (searching is null) continue;
+				if (playerFleet is null) continue;
+
+				foreach (PhaseBaseAirAttack airBaseBattle in phases.OfType<PhaseBaseAirAttack>())
+				{
+					foreach (PhaseBaseAirAttackUnit airAttackUnit in airBaseBattle.Units)
+					{
+						foreach (AirBattleAttackViewModel attackDisplay in airAttackUnit.AttackDisplays)
+						{
+							IFleetData? attackerFleet = searching.FleetsBeforePhase?
+								.GetFleet(attackDisplay.DefenderIndex.FleetFlag switch
+								{
+									FleetFlag.Player => new BattleIndex(0, FleetFlag.Enemy),
+									FleetFlag.Enemy => new BattleIndex(0, FleetFlag.Player),
+								});
+
+							if (attackerFleet is null) continue;
+
+							airBattleData.Add(new()
+							{
+								CommonData = MakeCommonData(airBattleData.Count + 1, node, isFirstNode, sortieDetail, admiralLevel, airAttackUnit, searching),
+								SquadronId = airAttackUnit.AirBaseId,
+								SquadronAttackIndex = airAttackUnit.WaveIndex + 1,
+								AirBasePlayerContact = airAttackUnit.TouchAircraftFriend,
+								AirBaseEnemyContact = airAttackUnit.TouchAircraftEnemy,
+								AirBaseSquadron1EquipmentName = airAttackUnit.Squadrons.Skip(0).FirstOrDefault()?.Equipment?.NameEN,
+								AirBaseSquadron1Aircraft = airAttackUnit.Squadrons.Skip(0).FirstOrDefault()?.AircraftCount,
+								AirBaseSquadron2EquipmentName = airAttackUnit.Squadrons.Skip(1).FirstOrDefault()?.Equipment?.NameEN,
+								AirBaseSquadron2Aircraft = airAttackUnit.Squadrons.Skip(1).FirstOrDefault()?.AircraftCount,
+								AirBaseSquadron3EquipmentName = airAttackUnit.Squadrons.Skip(2).FirstOrDefault()?.Equipment?.NameEN,
+								AirBaseSquadron3Aircraft = airAttackUnit.Squadrons.Skip(2).FirstOrDefault()?.AircraftCount,
+								AirBaseSquadron4EquipmentName = airAttackUnit.Squadrons.Skip(3).FirstOrDefault()?.Equipment?.NameEN,
+								AirBaseSquadron4Aircraft = airAttackUnit.Squadrons.Skip(3).FirstOrDefault()?.AircraftCount,
+								Stage1 = new()
+								{
+									PlayerAircraftTotal = airAttackUnit.Stage1FCount,
+									PlayerAircraftLost = airAttackUnit.Stage1FLostcount,
+									EnemyAircraftTotal = airAttackUnit.Stage1ECount,
+									EnemyAircraftLost = airAttackUnit.Stage1ELostcount,
+								},
+								Stage2 = new()
+								{
+									PlayerAircraftTotal = airAttackUnit.Stage2FCount,
+									PlayerAircraftLost = airAttackUnit.Stage2FLostcount,
+									EnemyAircraftTotal = airAttackUnit.Stage2ECount,
+									EnemyAircraftLost = airAttackUnit.Stage2ELostcount,
+								},
+								Attacker1 = MakeShip(attackerFleet.MembersWithoutEscaped?.Skip(0).FirstOrDefault()),
+								Attacker2 = MakeShip(attackerFleet.MembersWithoutEscaped?.Skip(1).FirstOrDefault()),
+								Attacker3 = MakeShip(attackerFleet.MembersWithoutEscaped?.Skip(2).FirstOrDefault()),
+								Attacker4 = MakeShip(attackerFleet.MembersWithoutEscaped?.Skip(3).FirstOrDefault()),
+								Attacker5 = MakeShip(attackerFleet.MembersWithoutEscaped?.Skip(4).FirstOrDefault()),
+								Attacker6 = MakeShip(attackerFleet.MembersWithoutEscaped?.Skip(5).FirstOrDefault()),
+								Attacker7 = MakeShip(attackerFleet.MembersWithoutEscaped?.Skip(6).FirstOrDefault()),
+								TotalTorpedoFlags = airAttackUnit.AttackDisplays.Sum(d => d.AttackType switch
+								{
+									AirAttack.Torpedo or AirAttack.TorpedoBombing => 1,
+									_ => 0,
+								}),
+								TotalBomberFlags = airAttackUnit.AttackDisplays.Sum(d => d.AttackType switch
+								{
+									AirAttack.Bombing or AirAttack.TorpedoBombing => 1,
+									_ => 0,
+								}),
+								TorpedoFlag = attackDisplay.AttackType switch
+								{
+									AirAttack.Torpedo or AirAttack.TorpedoBombing => 1,
+									_ => 0,
+								},
+								BomberFlag = attackDisplay.AttackType switch
+								{
+									AirAttack.Bombing or AirAttack.TorpedoBombing => 1,
+									_ => 0,
+								},
+								HitType = (int)attackDisplay.HitType,
+								Damage = attackDisplay.Damage,
+								Protected = attackDisplay.GuardsFlagship switch
+								{
+									true => 1,
+									_ => 0,
+								},
+								Defender = MakeShip(attackDisplay.Defender, attackDisplay.DefenderIndex, attackDisplay.DefenderHpBeforeAttack),
+							});
+						}
+					}
+				}
+
+				isFirstNode = false;
+			}
+
+			exportProgress.Progress++;
+		}
+
+		return airBattleData;
+	}
+
 	/// <summary>
 	/// Makes data that's common between all csv exports.
 	/// This could potentially be split into metadata and battle metadata.
@@ -548,7 +681,7 @@ public class DataExportHelper
 		Name = ship.AllSlotInstance.Skip(index).FirstOrDefault()?.Name,
 		Level = ship.AllSlotInstance.Skip(index).FirstOrDefault()?.Level,
 		AircraftLevel = ship.AllSlotInstance.Skip(index).FirstOrDefault()?.AircraftLevel,
-		Aircraft = ship.Aircraft.Skip(index).FirstOrDefault(),
+		Aircraft = ship.Aircraft.Skip(index).Cast<int?>().FirstOrDefault(),
 	};
 
 	private static string SquareString(SortieDetailViewModel sortieDetail, SortieNode node) =>

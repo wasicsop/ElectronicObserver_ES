@@ -79,7 +79,7 @@ public class PhaseAirBattleBase : PhaseBase
 		_ => null,
 	};
 
-	protected int WaveIndex { get; }
+	public int WaveIndex { get; }
 
 	public List<int> LaunchedShipIndexFriend { get; }
 	public List<int> LaunchedShipIndexEnemy { get; }
