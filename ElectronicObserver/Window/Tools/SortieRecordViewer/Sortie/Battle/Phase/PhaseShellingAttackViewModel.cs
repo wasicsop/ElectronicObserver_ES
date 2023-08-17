@@ -51,7 +51,7 @@ public sealed class PhaseShellingAttackViewModel : AttackViewModelBase
 
 		foreach (DayAttack dayAttack in Attacks)
 		{
-			DefenderHpBeforeAttacks.Add(DefenderHpBeforeAttacks[^1] - dayAttack.Damage);
+			DefenderHpBeforeAttacks.Add(Math.Max(0, DefenderHpBeforeAttacks[^1] - dayAttack.Damage));
 		}
 
 		int hpAfterAttacks = Math.Max(0, Defender.HPCurrent - Attacks.Sum(a => a.Damage));

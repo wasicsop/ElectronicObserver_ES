@@ -48,7 +48,7 @@ public sealed class PhaseNightBattleAttackViewModel : AttackViewModelBase
 
 		foreach (NightAttack nightAttack in Attacks)
 		{
-			DefenderHpBeforeAttacks.Add(DefenderHpBeforeAttacks[^1] - nightAttack.Damage);
+			DefenderHpBeforeAttacks.Add(Math.Max(0, DefenderHpBeforeAttacks[^1] - nightAttack.Damage));
 		}
 
 		int hpAfterAttacks = Math.Max(0, Defender.HPCurrent - Attacks.Sum(a => a.Damage));
