@@ -681,7 +681,7 @@ public class DataExportHelper
 		Name = ship.AllSlotInstance.Skip(index).FirstOrDefault()?.Name,
 		Level = NullForAbyssals(ship.AllSlotInstance.Skip(index).FirstOrDefault()?.Level, ship),
 		AircraftLevel = NullForAbyssals(ship.AllSlotInstance.Skip(index).FirstOrDefault()?.AircraftLevel, ship),
-		Aircraft = ship.Aircraft.Take(ship.SlotSize).Skip(index).Cast<int?>().FirstOrDefault(),
+		Aircraft = NullForAbyssals(ship.Aircraft.Take(ship.SlotSize).Skip(index).Cast<int?>().FirstOrDefault(), ship),
 	};
 
 	private static string SquareString(SortieDetailViewModel sortieDetail, SortieNode node) =>
