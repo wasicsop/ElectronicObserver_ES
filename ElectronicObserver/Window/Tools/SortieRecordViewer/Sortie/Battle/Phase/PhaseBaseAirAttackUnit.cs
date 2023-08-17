@@ -3,6 +3,7 @@ using System.Linq;
 using System.Text;
 using ElectronicObserver.Data;
 using ElectronicObserver.KancolleApi.Types.Models;
+using ElectronicObserverTypes.Data;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 
@@ -13,8 +14,8 @@ public class PhaseBaseAirAttackUnit : PhaseAirBattleBase
 	public int AirBaseId { get; }
 	public string Display { get; }
 
-	public PhaseBaseAirAttackUnit(ApiAirBaseAttack airBattleData, int waveIndex) 
-		: base(airBattleData, waveIndex)
+	public PhaseBaseAirAttackUnit(IKCDatabase kcDatabase, ApiAirBaseAttack airBattleData, int waveIndex)
+		: base(kcDatabase, airBattleData, waveIndex)
 	{
 		AirBaseId = airBattleData.ApiBaseId;
 		Squadrons = airBattleData.ApiSquadronPlane.Select(b => new BattleBaseAirCorpsSquadron
