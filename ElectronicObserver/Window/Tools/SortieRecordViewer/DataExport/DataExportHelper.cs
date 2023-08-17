@@ -75,6 +75,9 @@ public class DataExportHelper
 
 				foreach (PhaseShelling shelling in phases.OfType<PhaseShelling>())
 				{
+					DayAttackKind previousSpecial = DayAttackKind.Unknown;
+					int specialIndex = 0;
+
 					foreach (PhaseShellingAttackViewModel attackDisplay in shelling.AttackDisplays)
 					{
 						IFleetData? attackerFleet = searching.FleetsBeforePhase?.GetFleet(attackDisplay.AttackerIndex);
@@ -83,6 +86,23 @@ public class DataExportHelper
 
 						foreach ((DayAttack attack, int attackIndex) in attackDisplay.Attacks.Select((a, i) => (a, i)))
 						{
+							int actualAttackIndex = attackIndex;
+
+							if (IsSpecialAttack(attack.AttackKind))
+							{
+								if (previousSpecial != attack.AttackKind)
+								{
+									previousSpecial = attack.AttackKind;
+									specialIndex = 0;
+								}
+								else
+								{
+									specialIndex++;
+								}
+
+								actualAttackIndex = specialIndex;
+							}
+
 							dayShellingData.Add(new()
 							{
 								CommonData = MakeCommonData(dayShellingData.Count + 1, node, isFirstNode, sortieDetail, admiralLevel, airBattle, searching),
@@ -101,7 +121,7 @@ public class DataExportHelper
 									_ => CsvExportResources.Enemy,
 								},
 								AttackType = CsvDayAttackKind(attack.AttackKind),
-								AttackIndex = attackIndex,
+								AttackIndex = actualAttackIndex,
 								DisplayedEquipment1 = attackDisplay.DisplayEquipment.Skip(0).FirstOrDefault()?.NameEN,
 								DisplayedEquipment2 = attackDisplay.DisplayEquipment.Skip(1).FirstOrDefault()?.NameEN,
 								DisplayedEquipment3 = attackDisplay.DisplayEquipment.Skip(2).FirstOrDefault()?.NameEN,
@@ -172,6 +192,9 @@ public class DataExportHelper
 
 				foreach (PhaseNightBattle nightBattle in phases.OfType<PhaseNightBattle>())
 				{
+					NightAttackKind previousSpecial = NightAttackKind.Unknown;
+					int specialIndex = 0;
+
 					foreach (PhaseNightBattleAttackViewModel attackDisplay in nightBattle.AttackDisplays)
 					{
 						IFleetData? attackerFleet = searching.FleetsBeforePhase?.GetFleet(attackDisplay.AttackerIndex);
@@ -180,6 +203,23 @@ public class DataExportHelper
 
 						foreach ((NightAttack attack, int attackIndex) in attackDisplay.Attacks.Select((a, i) => (a, i)))
 						{
+							int actualAttackIndex = attackIndex;
+
+							if (IsSpecialAttack(attack.AttackKind))
+							{
+								if (previousSpecial != attack.AttackKind)
+								{
+									previousSpecial = attack.AttackKind;
+									specialIndex = 0;
+								}
+								else
+								{
+									specialIndex++;
+								}
+
+								actualAttackIndex = specialIndex;
+							}
+
 							nightShellingData.Add(new()
 							{
 								CommonData = MakeCommonData(nightShellingData.Count + 1, node, isFirstNode, sortieDetail, admiralLevel, initial, searching),
@@ -198,7 +238,7 @@ public class DataExportHelper
 									_ => CsvExportResources.Enemy,
 								},
 								AttackType = CsvNightAttackKind(attack.AttackKind),
-								AttackIndex = attackIndex,
+								AttackIndex = actualAttackIndex,
 								DisplayedEquipment1 = attackDisplay.DisplayEquipment.Skip(0).FirstOrDefault()?.NameEN,
 								DisplayedEquipment2 = attackDisplay.DisplayEquipment.Skip(1).FirstOrDefault()?.NameEN,
 								DisplayedEquipment3 = attackDisplay.DisplayEquipment.Skip(2).FirstOrDefault()?.NameEN,
@@ -788,4 +828,18 @@ public class DataExportHelper
 		int i => KCDatabase.Instance.MasterEquipments[i],
 		_ => null,
 	};
+
+	private static bool IsSpecialAttack(DayAttackKind dayAttack) => dayAttack is
+		DayAttackKind.SpecialNelson or
+		DayAttackKind.SpecialNagato or
+		DayAttackKind.SpecialMutsu or
+		DayAttackKind.SpecialColorado or
+		DayAttackKind.SpecialKongo;
+
+	private static bool IsSpecialAttack(NightAttackKind nightAttack) => nightAttack is
+		NightAttackKind.SpecialNelson or
+		NightAttackKind.SpecialNagato or
+		NightAttackKind.SpecialMutsu or
+		NightAttackKind.SpecialColorado or
+		NightAttackKind.SpecialKongou;
 }
