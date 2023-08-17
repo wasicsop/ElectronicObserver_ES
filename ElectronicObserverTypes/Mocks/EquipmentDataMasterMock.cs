@@ -25,7 +25,7 @@ public class EquipmentDataMasterMock : IEquipmentDataMaster
 	public int EquipmentID { get; set; }
 	public int AlbumNo { get; set; }
 	public string Name { get; set; }
-	public string NameEN { get; set; }
+	public string NameEN => Name;
 	public bool IsTranslated { get; set; }
 	public IList<int> EquipmentType { get; set; }
 	public int Armor { get; set; }
