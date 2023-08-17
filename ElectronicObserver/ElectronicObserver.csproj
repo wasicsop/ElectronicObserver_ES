@@ -118,6 +118,7 @@
 		<PackageReference Include="Microsoft.AppCenter.Analytics" Version="4.3.0" />
 		<PackageReference Include="Microsoft.AppCenter.Crashes" Version="4.3.0" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.4" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="6.0.4" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.4" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.4">
 			<PrivateAssets>all</PrivateAssets>
