@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using CommunityToolkit.Mvvm.DependencyInjection;
+using ElectronicObserver.Database;
 using ElectronicObserver.Services;
 using ElectronicObserver.TestData;
 using ElectronicObserver.Utility;
@@ -11,6 +13,7 @@ using ElectronicObserver.Window.Tools.SortieRecordViewer.SortieDetail;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Data;
 using ElectronicObserverTypes.Mocks;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace ElectronicObserverCoreTests;
@@ -59,6 +62,11 @@ public class Startup
 			.AddSingleton<DataSerializationService>()
 			.AddSingleton<ToolService>()
 			.BuildServiceProvider());
+
+		Directory.CreateDirectory("Record");
+
+		await using ElectronicObserverContext db = new();
+		await db.Database.MigrateAsync();
 
 		// Download data 
 		await SoftwareUpdater.CheckUpdateAsync();
