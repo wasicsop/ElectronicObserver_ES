@@ -253,6 +253,7 @@ public class CsvExportTests
 
 	[Theory(DisplayName = "Night shelling - 夜戦")]
 	[InlineData("夜戦1.csv", "夜戦1.json")]
+	[InlineData("夜戦2.csv", "夜戦2.json")]
 	public async Task CsvExportTest2(string logbookCsvFileName, string eoJsonFileName)
 	{
 		IReadOnlyList<string> logbookLines = await LoadLogbookLines(logbookCsvFileName);

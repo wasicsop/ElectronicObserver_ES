@@ -52,8 +52,6 @@ public class DataExportHelper
 
 			if (sortieDetail is null) continue;
 
-			bool isFirstNode = true;
-
 			foreach (BattleNode node in sortieDetail.Nodes.OfType<BattleNode>())
 			{
 				List<PhaseBase> phases = node.FirstBattle.Phases
@@ -105,7 +103,7 @@ public class DataExportHelper
 
 							dayShellingData.Add(new()
 							{
-								CommonData = MakeCommonData(dayShellingData.Count + 1, node, isFirstNode, sortieDetail, admiralLevel, airBattle, searching),
+								CommonData = MakeCommonData(dayShellingData.Count + 1, node, IsFirstNode(sortieDetail.Nodes, node), sortieDetail, admiralLevel, airBattle, searching),
 								BattleType = CsvExportResources.ShellingBattle,
 								ShipName1 = attackerFleet.MembersInstance.Skip(0).FirstOrDefault()?.Name,
 								ShipName2 = attackerFleet.MembersInstance.Skip(1).FirstOrDefault()?.Name,
@@ -140,8 +138,6 @@ public class DataExportHelper
 						}
 					}
 				}
-
-				isFirstNode = false;
 			}
 
 			exportProgress.Progress++;
@@ -170,8 +166,6 @@ public class DataExportHelper
 			int? admiralLevel = await sortieRecord.Model.GetAdmiralLevel(Db, cancellationToken);
 
 			if (sortieDetail is null) continue;
-
-			bool isFirstNode = true;
 
 			foreach (BattleNode node in sortieDetail.Nodes.OfType<BattleNode>())
 			{
@@ -222,7 +216,7 @@ public class DataExportHelper
 
 							nightShellingData.Add(new()
 							{
-								CommonData = MakeCommonData(nightShellingData.Count + 1, node, isFirstNode, sortieDetail, admiralLevel, initial, searching),
+								CommonData = MakeCommonData(nightShellingData.Count + 1, node, IsFirstNode(sortieDetail.Nodes, node), sortieDetail, admiralLevel, initial, searching),
 								BattleType = CsvExportResources.NightBattle,
 								ShipName1 = attackerFleet.MembersInstance.Skip(0).FirstOrDefault()?.Name,
 								ShipName2 = attackerFleet.MembersInstance.Skip(1).FirstOrDefault()?.Name,
@@ -257,8 +251,6 @@ public class DataExportHelper
 						}
 					}
 				}
-
-				isFirstNode = false;
 			}
 
 			exportProgress.Progress++;
@@ -287,8 +279,6 @@ public class DataExportHelper
 			int? admiralLevel = await sortieRecord.Model.GetAdmiralLevel(Db, cancellationToken);
 
 			if (sortieDetail is null) continue;
-
-			bool isFirstNode = true;
 
 			foreach (BattleNode node in sortieDetail.Nodes.OfType<BattleNode>())
 			{
@@ -321,7 +311,7 @@ public class DataExportHelper
 						{
 							torpedoData.Add(new()
 							{
-								CommonData = MakeCommonData(torpedoData.Count + 1, node, isFirstNode, sortieDetail, admiralLevel, airBattle, searching),
+								CommonData = MakeCommonData(torpedoData.Count + 1, node, IsFirstNode(sortieDetail.Nodes, node), sortieDetail, admiralLevel, airBattle, searching),
 								BattleType = CsvExportResources.NightBattle,
 								PlayerFleetType = GetPlayerFleet(initial.FleetsAfterPhase!, attackDisplay.AttackerIndex, attackDisplay.DefenderIndex),
 								BattlePhase = torpedo.Phase switch
@@ -353,8 +343,6 @@ public class DataExportHelper
 						}
 					}
 				}
-
-				isFirstNode = false;
 			}
 
 			exportProgress.Progress++;
@@ -383,8 +371,6 @@ public class DataExportHelper
 			int? admiralLevel = await sortieRecord.Model.GetAdmiralLevel(Db, cancellationToken);
 
 			if (sortieDetail is null) continue;
-
-			bool isFirstNode = true;
 
 			foreach (BattleNode node in sortieDetail.Nodes.OfType<BattleNode>())
 			{
@@ -418,7 +404,7 @@ public class DataExportHelper
 
 						airBattleData.Add(new()
 						{
-							CommonData = MakeCommonData(airBattleData.Count + 1, node, isFirstNode, sortieDetail, admiralLevel, airBattle, searching),
+							CommonData = MakeCommonData(airBattleData.Count + 1, node, IsFirstNode(sortieDetail.Nodes, node), sortieDetail, admiralLevel, airBattle, searching),
 							Stage1 = new()
 							{
 								PlayerAircraftTotal = airBattle.Stage1FCount,
@@ -469,8 +455,6 @@ public class DataExportHelper
 						});
 					}
 				}
-
-				isFirstNode = false;
 			}
 
 			exportProgress.Progress++;
@@ -499,8 +483,6 @@ public class DataExportHelper
 			int? admiralLevel = await sortieRecord.Model.GetAdmiralLevel(Db, cancellationToken);
 
 			if (sortieDetail is null) continue;
-
-			bool isFirstNode = true;
 
 			foreach (BattleNode node in sortieDetail.Nodes.OfType<BattleNode>())
 			{
@@ -536,7 +518,7 @@ public class DataExportHelper
 
 							airBattleData.Add(new()
 							{
-								CommonData = MakeCommonData(airBattleData.Count + 1, node, isFirstNode, sortieDetail, admiralLevel, airAttackUnit, searching),
+								CommonData = MakeCommonData(airBattleData.Count + 1, node, IsFirstNode(sortieDetail.Nodes, node), sortieDetail, admiralLevel, airAttackUnit, searching),
 								SquadronId = airAttackUnit.AirBaseId,
 								SquadronAttackIndex = airAttackUnit.WaveIndex + 1,
 								AirBasePlayerContact = airAttackUnit.TouchAircraftFriend,
@@ -602,8 +584,6 @@ public class DataExportHelper
 						}
 					}
 				}
-
-				isFirstNode = false;
 			}
 
 			exportProgress.Progress++;
@@ -644,8 +624,17 @@ public class DataExportHelper
 			AdmiralLevel = admiralLevel,
 			PlayerFormation = Constants.GetFormation(searching.PlayerFormationType),
 			EnemyFormation = Constants.GetFormation(searching.EnemyFormationType),
-			PlayerSearch = GetSearchingResult(searching.PlayerDetectionType),
-			EnemySearch = GetSearchingResult(searching.EnemyDetectionType),
+			PlayerSearch = contactPhase switch
+			{
+				// day search result should be ignored for night battles
+				PhaseNightInitial => null,
+				_ => GetSearchingResult(searching.PlayerDetectionType),
+			},
+			EnemySearch = contactPhase switch
+			{
+				PhaseNightInitial => null,
+				_ => GetSearchingResult(searching.EnemyDetectionType),
+			},
 			AirState = GetAirState(contactPhase),
 			Engagement = Constants.GetEngagementForm(searching.EngagementType),
 			PlayerContact = contactPhase switch
@@ -723,6 +712,9 @@ public class DataExportHelper
 		AircraftLevel = NullForAbyssals(ship.AllSlotInstance.Skip(index).FirstOrDefault()?.AircraftLevel, ship),
 		Aircraft = NullForAbyssals(ship.Aircraft.Take(ship.SlotSize).Skip(index).Cast<int?>().FirstOrDefault(), ship),
 	};
+
+	private static bool IsFirstNode(IEnumerable<SortieNode> nodes, SortieNode node)
+		=> nodes.OfType<BattleNode>().FirstOrDefault() == node;
 
 	private static string SquareString(SortieDetailViewModel sortieDetail, SortieNode node) =>
 		$"{CsvExportResources.Map}:{sortieDetail.World}-{sortieDetail.Map} {CsvExportResources.Cell}:{node.Cell}";
