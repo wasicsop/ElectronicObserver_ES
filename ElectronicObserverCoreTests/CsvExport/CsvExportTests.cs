@@ -99,35 +99,45 @@ public class CsvExportTests
 
 		IShipDataMaster? attacker = null;
 		IShipDataMaster? defender = null;
+		int attackType = 0;
 
 		for (int i = 0; i < eoHeaders.Length; i++)
 		{
 			Assert.Equal(logbookHeaders[i], eoHeaders[i]);
 
 			string header = logbookHeaders[i];
+			string logbookValue = logbookValues[i];
+			string eoValue = eoValues[i];
 
 			if (IgnoredHeaders.Contains(header)) continue;
 
 			if (header == $"{CsvExportResources.PrefixAttacker}{CsvExportResources.Id}")
 			{
-				Enum.TryParse(eoValues[i], out ShipId attackerId);
+				Enum.TryParse(eoValue, out ShipId attackerId);
 				attacker = Db.MasterShips[attackerId];
 			}
 
 			if (header == $"{CsvExportResources.PrefixDefender}{CsvExportResources.Id}")
 			{
-				Enum.TryParse(eoValues[i], out ShipId defenderId);
+				Enum.TryParse(eoValue, out ShipId defenderId);
 				defender = Db.MasterShips[defenderId];
 			}
 
-			string logbookValue = logbookValues[i];
-			string eoValue = eoValues[i];
+			if (header == CsvExportResources.AttackType)
+			{
+				int.TryParse(eoValue, out attackType);
+			}
 
 			if (logbookValue != eoValue)
 			{
 				// logbook doesn't use the full names for certain abyssal ships
 				// 空母ヲ級改 flagship -> 空母ヲ級改
 				if (header.Contains("艦名") && eoValue.StartsWith(logbookValue))
+				{
+					continue;
+				}
+
+				if (ShouldIgnore(attackType, header))
 				{
 					continue;
 				}
@@ -149,6 +159,17 @@ public class CsvExportTests
 		}
 	}
 
+	private static bool ShouldIgnore(int attackType, string header)
+	{
+		// only Yamato touch seems to be an issue
+		if (attackType is not (400 or 401)) return false;
+
+		// all data about the attacker, other than the ship that activated Yamato touch
+		// will be wrong because logbook doesn't know about Yamato touch
+		return header.StartsWith(CsvExportResources.PrefixAttacker);
+	}
+
+
 	private static bool ShouldIgnore(IShipDataMaster? ship, string header, string logbookValue, string eoValue)
 	{
 		// header should be Attacker.X or Defender.X
@@ -164,6 +185,7 @@ public class CsvExportTests
 
 		static bool HasWrongRange(IShipDataMaster ship) => ship.ID is
 			1560 or
+			1565 or
 			1586 or
 			1615 or
 			1617 or

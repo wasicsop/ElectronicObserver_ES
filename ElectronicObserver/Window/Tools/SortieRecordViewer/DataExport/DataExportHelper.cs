@@ -845,12 +845,22 @@ public class DataExportHelper
 		DayAttackKind.SpecialNagato or
 		DayAttackKind.SpecialMutsu or
 		DayAttackKind.SpecialColorado or
-		DayAttackKind.SpecialKongo;
+		DayAttackKind.SpecialKongo or
+		DayAttackKind.SpecialSubmarineTender23 or
+		DayAttackKind.SpecialSubmarineTender34 or
+		DayAttackKind.SpecialSubmarineTender24 or
+		DayAttackKind.SpecialYamato2Ships or
+		DayAttackKind.SpecialYamato3Ships;
 
 	private static bool IsSpecialAttack(NightAttackKind nightAttack) => nightAttack is
 		NightAttackKind.SpecialNelson or
 		NightAttackKind.SpecialNagato or
 		NightAttackKind.SpecialMutsu or
 		NightAttackKind.SpecialColorado or
-		NightAttackKind.SpecialKongou;
+		NightAttackKind.SpecialKongou or
+		NightAttackKind.SpecialSubmarineTender23 or
+		NightAttackKind.SpecialSubmarineTender34 or
+		NightAttackKind.SpecialSubmarineTender24 or
+		NightAttackKind.SpecialYamato2Ships or
+		NightAttackKind.SpecialYamato3Ships;
 }
