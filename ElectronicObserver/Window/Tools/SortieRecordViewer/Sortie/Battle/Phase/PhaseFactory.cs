@@ -114,7 +114,7 @@ public sealed class PhaseFactory
 	public PhaseFriendlyShelling? FriendlyShelling(ApiFriendlyBattle? a) => a switch
 	{
 		null => null,
-		_ => new(a),
+		_ => new(KcDatabase, a),
 	};
 
 	[return: NotNullIfNotNull(nameof(a))]
@@ -129,7 +129,7 @@ public sealed class PhaseFactory
 			ApiNMotherList: { } apiNMotherList,
 			ApiSiList: { } apiSiList,
 			ApiSpList: { } apiSpList,
-		} => new(apiAtEflag, apiAtList, apiClList, apiDamage, apiDfList, apiNMotherList, apiSiList, apiSpList),
+		} => new(KcDatabase, apiAtEflag, apiAtList, apiClList, apiDamage, apiDfList, apiNMotherList, apiSiList, apiSpList),
 
 		_ => null,
 	};

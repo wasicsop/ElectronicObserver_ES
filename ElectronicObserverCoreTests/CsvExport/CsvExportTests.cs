@@ -250,4 +250,15 @@ public class CsvExportTests
 
 		VerifyCsv(logbookLines, eoLines);
 	}
+
+	[Theory(DisplayName = "Night shelling - 夜戦")]
+	[InlineData("夜戦1.csv", "夜戦1.json")]
+	public async Task CsvExportTest2(string logbookCsvFileName, string eoJsonFileName)
+	{
+		IReadOnlyList<string> logbookLines = await LoadLogbookLines(logbookCsvFileName);
+		IReadOnlyList<string> eoLines = await LoadEoLines<NightShellingExportMap, NightShellingExportModel>(
+			eoJsonFileName, DataExportHelper.NightShelling);
+
+		VerifyCsv(logbookLines, eoLines);
+	}
 }

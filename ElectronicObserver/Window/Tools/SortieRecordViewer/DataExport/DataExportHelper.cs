@@ -677,7 +677,11 @@ public class DataExportHelper
 		Index = index.Index + 1,
 		Id = ship.ShipID,
 		Name = ship.Name,
-		ShipType = ship.MasterShip.ShipType.Display(),
+		ShipType = ship.MasterShip.ShipType switch
+		{
+			ShipTypes.Transport => "補給艦",
+			ShipTypes type => type.Display(),
+		},
 		Condition = NullForAbyssals(ship.Condition, ship),
 		HpCurrent = hpBeforeAttack,
 		HpMax = ship.HPMax,
@@ -736,7 +740,7 @@ public class DataExportHelper
 		_ => "",
 	};
 
-	private static string GetSearchingResult(DetectionType id) => id switch
+	private static string? GetSearchingResult(DetectionType id) => id switch
 	{
 		DetectionType.Success => "発見!",
 		DetectionType.SuccessNoReturn => "発見!索敵機未帰還機あり",
@@ -744,10 +748,11 @@ public class DataExportHelper
 		DetectionType.Failure => "発見できず…",
 		DetectionType.SuccessNoPlane => "発見!(索敵機なし)",
 		DetectionType.FailureNoPlane => "なし",
+		DetectionType.Unknown => null,
 		_ => $"不明({id})",
 	};
 
-	private static string GetAirState(PhaseBase contactPhase)
+	private static string? GetAirState(PhaseBase contactPhase)
 	{
 		AirState airState = contactPhase switch
 		{
@@ -758,6 +763,7 @@ public class DataExportHelper
 		return airState switch
 		{
 			AirState.Parity => "航空互角",
+			AirState.Unknown => null,
 			_ => Constants.GetAirSuperiority(airState),
 		};
 	}
@@ -765,7 +771,7 @@ public class DataExportHelper
 	private static int? FlareIndex(int index) => index switch
 	{
 		-1 => null,
-		_ => index,
+		_ => index + 1,
 	};
 
 	private static string GetPlayerFleet(BattleFleets fleets, BattleIndex attackerIndex, BattleIndex defenderIndex)
