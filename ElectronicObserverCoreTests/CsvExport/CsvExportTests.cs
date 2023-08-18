@@ -162,7 +162,16 @@ public class CsvExportTests
 		if (ship is null) return false;
 		if (!ship.IsAbyssalShip) return false;
 
-		if (ship.ShipID is 1560 or 1586 or 1615 or 1618 && property == CsvExportResources.Range)
+		static bool HasWrongRange(IShipDataMaster ship) => ship.ID is
+			1560 or
+			1586 or
+			1615 or
+			1617 or
+			1618 or
+			1762 or
+			1764;
+
+		if (HasWrongRange(ship) && property == CsvExportResources.Range)
 		{
 			// logbook has wrong range values for these
 			return true;
@@ -207,12 +216,22 @@ public class CsvExportTests
 		return csv.TrimEnd().Split("\r\n");
 	}
 
-	[Fact(DisplayName = "Day shelling - 砲撃戦")]
+	[Fact(DisplayName = "Day shelling - 砲撃戦1")]
 	public async Task CsvExportTest1()
 	{
 		IReadOnlyList<string> logbookLines = await LoadLogbookLines("砲撃戦1.csv");
 		IReadOnlyList<string> eoLines = await LoadEoLines<DayShellingExportMap, DayShellingExportModel>(
 			"砲撃戦1.json", DataExportHelper.DayShelling);
+
+		VerifyCsv(logbookLines, eoLines);
+	}
+
+	[Fact(DisplayName = "Day shelling - 砲撃戦2")]
+	public async Task CsvExportTest2()
+	{
+		IReadOnlyList<string> logbookLines = await LoadLogbookLines("砲撃戦2.csv");
+		IReadOnlyList<string> eoLines = await LoadEoLines<DayShellingExportMap, DayShellingExportModel>(
+			"砲撃戦2.json", DataExportHelper.DayShelling);
 
 		VerifyCsv(logbookLines, eoLines);
 	}

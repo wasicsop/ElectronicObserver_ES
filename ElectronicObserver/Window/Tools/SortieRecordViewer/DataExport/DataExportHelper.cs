@@ -646,11 +646,7 @@ public class DataExportHelper
 			EnemyFormation = Constants.GetFormation(searching.EnemyFormationType),
 			PlayerSearch = GetSearchingResult(searching.PlayerDetectionType),
 			EnemySearch = GetSearchingResult(searching.EnemyDetectionType),
-			AirState = Constants.GetAirSuperiority(contactPhase switch
-			{
-				PhaseAirBattle airBattle => airBattle.AirState,
-				_ => AirState.Unknown,
-			}),
+			AirState = GetAirState(contactPhase),
 			Engagement = Constants.GetEngagementForm(searching.EngagementType),
 			PlayerContact = contactPhase switch
 			{
@@ -750,6 +746,21 @@ public class DataExportHelper
 		DetectionType.FailureNoPlane => "なし",
 		_ => $"不明({id})",
 	};
+
+	private static string GetAirState(PhaseBase contactPhase)
+	{
+		AirState airState = contactPhase switch
+		{
+			PhaseAirBattle airBattle => airBattle.AirState,
+			_ => AirState.Unknown,
+		};
+
+		return airState switch
+		{
+			AirState.Parity => "航空互角",
+			_ => Constants.GetAirSuperiority(airState),
+		};
+	}
 
 	private static int? FlareIndex(int index) => index switch
 	{
