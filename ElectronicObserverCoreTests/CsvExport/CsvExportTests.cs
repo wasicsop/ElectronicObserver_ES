@@ -238,22 +238,15 @@ public class CsvExportTests
 		return csv.TrimEnd().Split("\r\n");
 	}
 
-	[Fact(DisplayName = "Day shelling - 砲撃戦1")]
-	public async Task CsvExportTest1()
+	[Theory(DisplayName = "Day shelling - 砲撃戦")]
+	[InlineData("砲撃戦1.csv", "砲撃戦1.json")]
+	[InlineData("砲撃戦2.csv", "砲撃戦2.json")]
+	[InlineData("砲撃戦3.csv", "砲撃戦3.json")]
+	public async Task CsvExportTest1(string logbookCsvFileName, string eoJsonFileName)
 	{
-		IReadOnlyList<string> logbookLines = await LoadLogbookLines("砲撃戦1.csv");
+		IReadOnlyList<string> logbookLines = await LoadLogbookLines(logbookCsvFileName);
 		IReadOnlyList<string> eoLines = await LoadEoLines<DayShellingExportMap, DayShellingExportModel>(
-			"砲撃戦1.json", DataExportHelper.DayShelling);
-
-		VerifyCsv(logbookLines, eoLines);
-	}
-
-	[Fact(DisplayName = "Day shelling - 砲撃戦2")]
-	public async Task CsvExportTest2()
-	{
-		IReadOnlyList<string> logbookLines = await LoadLogbookLines("砲撃戦2.csv");
-		IReadOnlyList<string> eoLines = await LoadEoLines<DayShellingExportMap, DayShellingExportModel>(
-			"砲撃戦2.json", DataExportHelper.DayShelling);
+			eoJsonFileName, DataExportHelper.DayShelling);
 
 		VerifyCsv(logbookLines, eoLines);
 	}
