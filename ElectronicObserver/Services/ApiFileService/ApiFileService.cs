@@ -356,6 +356,7 @@ public class ApiFileService : ObservableObject
 		Hp = s.HPMax,
 		Armor = s.ArmorTotal,
 		Evasion = s.EvasionTotal,
+		Aircraft = s.Aircraft.ToList(),
 		Range = s.Range,
 		Speed = s.Speed,
 		Firepower = s.FirepowerTotal,

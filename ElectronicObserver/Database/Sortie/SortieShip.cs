@@ -48,6 +48,12 @@ public class SortieShip
 	[JsonPropertyName("Evasion")]
 	public int? Evasion { get; set; }
 
+	/// <summary>
+	/// null for older data
+	/// </summary>
+	[JsonPropertyName("Aircraft")]
+	public List<int>? Aircraft { get; set; }
+
 	[JsonPropertyName("Range")]
 	public int Range { get; set; }
 

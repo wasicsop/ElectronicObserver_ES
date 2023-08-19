@@ -64,6 +64,11 @@ public static class GameDataExtensions
 			ASWModernized = shipData.Kyouka.Skip(6).FirstOrDefault(),
 		};
 
+		if (shipData.Aircraft is not null)
+		{
+			ship.Aircraft = shipData.Aircraft;
+		}
+
 		return ApplyFitBonus(ship, shipData);
 	}
 
