@@ -101,6 +101,7 @@ public static class WikiExtensions
 	{
 		EquipmentID = wikiEquipment._id,
 		Name = wikiEquipment._japanese_name,
+		NameEN = wikiEquipment._name,
 		AA = wikiEquipment._aa.ToIntValue(),
 		Armor = wikiEquipment._armor.ToIntValue(),
 		ASW = wikiEquipment._asw.ToIntValue(),
