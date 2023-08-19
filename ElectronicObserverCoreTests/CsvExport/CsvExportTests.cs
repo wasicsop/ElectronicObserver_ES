@@ -284,4 +284,15 @@ public class CsvExportTests
 
 		VerifyCsv(logbookLines, eoLines);
 	}
+
+	[Theory(DisplayName = "Air base battle - 基地航空戦")]
+	[InlineData("基地航空戦1.csv", "基地航空戦1.json")]
+	public async Task CsvExportTest5(string logbookCsvFileName, string eoJsonFileName)
+	{
+		IReadOnlyList<string> logbookLines = await LoadLogbookLines(logbookCsvFileName);
+		IReadOnlyList<string> eoLines = await LoadEoLines<AirBaseBattleExportMap, AirBaseBattleExportModel>(
+			eoJsonFileName, DataExportHelper.AirBaseBattle);
+
+		VerifyCsv(logbookLines, eoLines);
+	}
 }

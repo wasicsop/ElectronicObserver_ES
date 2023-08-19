@@ -479,82 +479,97 @@ public class DataExportHelper
 				{
 					foreach (PhaseBaseAirAttackUnit airAttackUnit in airBaseBattle.Units)
 					{
-						foreach (AirBattleAttackViewModel attackDisplay in airAttackUnit.AttackDisplays)
+						BattleFleets? fleets = airAttackUnit.FleetsBeforePhase;
+
+						if (fleets is null) continue;
+
+						void ProcessData(IFleetData fleet, IFleetData attackerFleet, FleetFlag fleetFlag, int indexOffset)
 						{
-							IFleetData? attackerFleet = searching.FleetsBeforePhase?
-								.GetFleet(attackDisplay.DefenderIndex.FleetFlag switch
-								{
-									FleetFlag.Player => new BattleIndex(0, FleetFlag.Enemy),
-									FleetFlag.Enemy => new BattleIndex(0, FleetFlag.Player),
-								});
-
-							if (attackerFleet is null) continue;
-
-							airBattleData.Add(new()
+							foreach ((IShipData? ship, int index) in fleet.MembersWithoutEscaped!.Select((s, i) => (s, i)))
 							{
-								CommonData = MakeCommonData(airBattleData.Count + 1, node, IsFirstNode(sortieDetail.Nodes, node), sortieDetail, admiralLevel, airAttackUnit, searching),
-								SquadronId = airAttackUnit.AirBaseId,
-								SquadronAttackIndex = airAttackUnit.WaveIndex + 1,
-								AirBasePlayerContact = airAttackUnit.TouchAircraftFriend,
-								AirBaseEnemyContact = airAttackUnit.TouchAircraftEnemy,
-								AirBaseSquadron1EquipmentName = airAttackUnit.Squadrons.Skip(0).FirstOrDefault()?.Equipment?.NameEN,
-								AirBaseSquadron1Aircraft = airAttackUnit.Squadrons.Skip(0).FirstOrDefault()?.AircraftCount,
-								AirBaseSquadron2EquipmentName = airAttackUnit.Squadrons.Skip(1).FirstOrDefault()?.Equipment?.NameEN,
-								AirBaseSquadron2Aircraft = airAttackUnit.Squadrons.Skip(1).FirstOrDefault()?.AircraftCount,
-								AirBaseSquadron3EquipmentName = airAttackUnit.Squadrons.Skip(2).FirstOrDefault()?.Equipment?.NameEN,
-								AirBaseSquadron3Aircraft = airAttackUnit.Squadrons.Skip(2).FirstOrDefault()?.AircraftCount,
-								AirBaseSquadron4EquipmentName = airAttackUnit.Squadrons.Skip(3).FirstOrDefault()?.Equipment?.NameEN,
-								AirBaseSquadron4Aircraft = airAttackUnit.Squadrons.Skip(3).FirstOrDefault()?.AircraftCount,
-								Stage1 = new()
+								if (ship is null) continue;
+
+								BattleIndex defenderIndex = new(index + indexOffset, fleetFlag);
+								AirBattleAttackViewModel? attackDisplay = airAttackUnit.AttackDisplays
+									.FirstOrDefault(a => a.DefenderIndex == defenderIndex);
+
+								airBattleData.Add(new()
 								{
-									PlayerAircraftTotal = airAttackUnit.Stage1FCount,
-									PlayerAircraftLost = airAttackUnit.Stage1FLostcount,
-									EnemyAircraftTotal = airAttackUnit.Stage1ECount,
-									EnemyAircraftLost = airAttackUnit.Stage1ELostcount,
-								},
-								Stage2 = new()
-								{
-									PlayerAircraftTotal = airAttackUnit.Stage2FCount,
-									PlayerAircraftLost = airAttackUnit.Stage2FLostcount,
-									EnemyAircraftTotal = airAttackUnit.Stage2ECount,
-									EnemyAircraftLost = airAttackUnit.Stage2ELostcount,
-								},
-								Attacker1 = MakeShip(attackerFleet.MembersWithoutEscaped?.Skip(0).FirstOrDefault()),
-								Attacker2 = MakeShip(attackerFleet.MembersWithoutEscaped?.Skip(1).FirstOrDefault()),
-								Attacker3 = MakeShip(attackerFleet.MembersWithoutEscaped?.Skip(2).FirstOrDefault()),
-								Attacker4 = MakeShip(attackerFleet.MembersWithoutEscaped?.Skip(3).FirstOrDefault()),
-								Attacker5 = MakeShip(attackerFleet.MembersWithoutEscaped?.Skip(4).FirstOrDefault()),
-								Attacker6 = MakeShip(attackerFleet.MembersWithoutEscaped?.Skip(5).FirstOrDefault()),
-								Attacker7 = MakeShip(attackerFleet.MembersWithoutEscaped?.Skip(6).FirstOrDefault()),
-								TotalTorpedoFlags = airAttackUnit.AttackDisplays.Sum(d => d.AttackType switch
-								{
-									AirAttack.Torpedo or AirAttack.TorpedoBombing => 1,
-									_ => 0,
-								}),
-								TotalBomberFlags = airAttackUnit.AttackDisplays.Sum(d => d.AttackType switch
-								{
-									AirAttack.Bombing or AirAttack.TorpedoBombing => 1,
-									_ => 0,
-								}),
-								TorpedoFlag = attackDisplay.AttackType switch
-								{
-									AirAttack.Torpedo or AirAttack.TorpedoBombing => 1,
-									_ => 0,
-								},
-								BomberFlag = attackDisplay.AttackType switch
-								{
-									AirAttack.Bombing or AirAttack.TorpedoBombing => 1,
-									_ => 0,
-								},
-								HitType = (int)attackDisplay.HitType,
-								Damage = attackDisplay.Damage,
-								Protected = attackDisplay.GuardsFlagship switch
-								{
-									true => 1,
-									_ => 0,
-								},
-								Defender = MakeShip(attackDisplay.Defender, attackDisplay.DefenderIndex, attackDisplay.DefenderHpBeforeAttack),
-							});
+									CommonData = MakeCommonData(airBattleData.Count + 1, node, IsFirstNode(sortieDetail.Nodes, node), sortieDetail, admiralLevel, airAttackUnit, searching),
+									SquadronId = airAttackUnit.AirBaseId,
+									SquadronAttackIndex = airAttackUnit.WaveIndex + 1,
+									AirBasePlayerContact = airAttackUnit.TouchAircraftFriend,
+									AirBaseEnemyContact = airAttackUnit.TouchAircraftEnemy,
+									AirBaseSquadron1EquipmentName = airAttackUnit.Squadrons.Skip(0).FirstOrDefault()?.Equipment?.NameEN,
+									AirBaseSquadron1Aircraft = airAttackUnit.Squadrons.Skip(0).FirstOrDefault()?.AircraftCount,
+									AirBaseSquadron2EquipmentName = airAttackUnit.Squadrons.Skip(1).FirstOrDefault()?.Equipment?.NameEN,
+									AirBaseSquadron2Aircraft = airAttackUnit.Squadrons.Skip(1).FirstOrDefault()?.AircraftCount,
+									AirBaseSquadron3EquipmentName = airAttackUnit.Squadrons.Skip(2).FirstOrDefault()?.Equipment?.NameEN,
+									AirBaseSquadron3Aircraft = airAttackUnit.Squadrons.Skip(2).FirstOrDefault()?.AircraftCount,
+									AirBaseSquadron4EquipmentName = airAttackUnit.Squadrons.Skip(3).FirstOrDefault()?.Equipment?.NameEN,
+									AirBaseSquadron4Aircraft = airAttackUnit.Squadrons.Skip(3).FirstOrDefault()?.AircraftCount,
+									Stage1 = new()
+									{
+										PlayerAircraftTotal = airAttackUnit.Stage1FCount,
+										PlayerAircraftLost = airAttackUnit.Stage1FLostcount,
+										EnemyAircraftTotal = airAttackUnit.Stage1ECount,
+										EnemyAircraftLost = airAttackUnit.Stage1ELostcount,
+									},
+									Stage2 = new()
+									{
+										PlayerAircraftTotal = airAttackUnit.Stage2FCount,
+										PlayerAircraftLost = airAttackUnit.Stage2FLostcount,
+										EnemyAircraftTotal = airAttackUnit.Stage2ECount,
+										EnemyAircraftLost = airAttackUnit.Stage2ELostcount,
+									},
+									Attacker1 = MakeShip(attackerFleet.MembersWithoutEscaped?.Skip(0).FirstOrDefault()),
+									Attacker2 = MakeShip(attackerFleet.MembersWithoutEscaped?.Skip(1).FirstOrDefault()),
+									Attacker3 = MakeShip(attackerFleet.MembersWithoutEscaped?.Skip(2).FirstOrDefault()),
+									Attacker4 = MakeShip(attackerFleet.MembersWithoutEscaped?.Skip(3).FirstOrDefault()),
+									Attacker5 = MakeShip(attackerFleet.MembersWithoutEscaped?.Skip(4).FirstOrDefault()),
+									Attacker6 = MakeShip(attackerFleet.MembersWithoutEscaped?.Skip(5).FirstOrDefault()),
+									Attacker7 = MakeShip(attackerFleet.MembersWithoutEscaped?.Skip(6).FirstOrDefault()),
+									TotalTorpedoFlags = airAttackUnit.AttackDisplays.Sum(d => d.AttackType switch
+									{
+										AirAttack.Torpedo or AirAttack.TorpedoBombing => 1,
+										_ => 0,
+									}),
+									TotalBomberFlags = airAttackUnit.AttackDisplays.Sum(d => d.AttackType switch
+									{
+										AirAttack.Bombing or AirAttack.TorpedoBombing => 1,
+										_ => 0,
+									}),
+									TorpedoFlag = attackDisplay?.AttackType switch
+									{
+										AirAttack.Torpedo or AirAttack.TorpedoBombing => 1,
+										_ => 0,
+									},
+									BomberFlag = attackDisplay?.AttackType switch
+									{
+										AirAttack.Bombing or AirAttack.TorpedoBombing => 1,
+										_ => 0,
+									},
+									HitType = attackDisplay?.HitType switch
+									{
+										HitType.Critical => 1,
+										_ => 0,
+									},
+									Damage = attackDisplay?.Damage ?? 0,
+									Protected = attackDisplay?.GuardsFlagship switch
+									{
+										true => 1,
+										_ => 0,
+									},
+									Defender = MakeShip(ship, defenderIndex, Math.Max(0, ship.HPCurrent)),
+								});
+							}
+						}
+
+						ProcessData(fleets.EnemyFleet!, fleets.Fleet, FleetFlag.Enemy, 0);
+
+						if (fleets.EnemyEscortFleet is not null)
+						{
+							ProcessData(fleets.EnemyEscortFleet, fleets.Fleet, FleetFlag.Enemy, 6);
 						}
 					}
 				}
@@ -783,7 +798,7 @@ public class DataExportHelper
 	{
 		AirState airState = contactPhase switch
 		{
-			PhaseAirBattle airBattle => airBattle.AirState,
+			PhaseAirBattleBase airBattle => airBattle.AirState,
 			_ => AirState.Unknown,
 		};
 

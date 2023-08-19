@@ -20,7 +20,7 @@ public class PhaseBaseAirAttackUnit : PhaseAirBattleBase
 		AirBaseId = airBattleData.ApiBaseId;
 		Squadrons = airBattleData.ApiSquadronPlane.Select(b => new BattleBaseAirCorpsSquadron
 		{
-			Equipment = KCDatabase.Instance.MasterEquipments[(int)b.ApiMstId],
+			Equipment = KcDatabase.MasterEquipments[(int)b.ApiMstId],
 			AircraftCount = b.ApiCount,
 		}).ToList();
 

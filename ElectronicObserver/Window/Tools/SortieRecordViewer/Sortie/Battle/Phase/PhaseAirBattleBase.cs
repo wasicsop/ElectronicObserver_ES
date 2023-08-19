@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using ElectronicObserver.Data;
 using ElectronicObserver.KancolleApi.Types.ApiReqSortie.Models;
 using ElectronicObserver.KancolleApi.Types.Interfaces;
 using ElectronicObserver.KancolleApi.Types.Models;
@@ -16,7 +15,7 @@ public class PhaseAirBattleBase : PhaseBase
 {
 	public override string Title => BattleRes.BattlePhaseAirBattle;
 
-	private IKCDatabase KcDatabase { get; }
+	protected IKCDatabase KcDatabase { get; }
 
 	/// <summary>
 	/// <see cref="IApiAirBattle" /> or <see cref="IApiJetAirBattle" />
