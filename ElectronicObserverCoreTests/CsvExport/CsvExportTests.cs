@@ -263,6 +263,17 @@ public class CsvExportTests
 		VerifyCsv(logbookLines, eoLines);
 	}
 
+	[Theory(DisplayName = "Torpedo - 雷撃戦")]
+	[InlineData("雷撃戦1.csv", "雷撃戦1.json")]
+	public async Task CsvExportTest3(string logbookCsvFileName, string eoJsonFileName)
+	{
+		IReadOnlyList<string> logbookLines = await LoadLogbookLines(logbookCsvFileName);
+		IReadOnlyList<string> eoLines = await LoadEoLines<TorpedoExportMap, TorpedoExportModel>(
+			eoJsonFileName, DataExportHelper.Torpedo);
+
+		VerifyCsv(logbookLines, eoLines);
+	}
+
 	[Theory(DisplayName = "Air battle - 航空戦")]
 	[InlineData("航空戦1.csv", "航空戦1.json")]
 	public async Task CsvExportTest4(string logbookCsvFileName, string eoJsonFileName)

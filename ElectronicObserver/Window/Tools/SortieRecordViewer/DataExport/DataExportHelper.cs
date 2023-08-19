@@ -260,9 +260,9 @@ public class DataExportHelper
 	}
 
 	public async Task<List<TorpedoExportModel>> Torpedo(
-	ObservableCollection<SortieRecordViewModel> sorties,
-	ExportProgressViewModel exportProgress,
-	CancellationToken cancellationToken = default)
+		ObservableCollection<SortieRecordViewModel> sorties,
+		ExportProgressViewModel exportProgress,
+		CancellationToken cancellationToken = default)
 	{
 		exportProgress.Total = sorties.Count;
 
@@ -303,16 +303,24 @@ public class DataExportHelper
 				{
 					foreach (PhaseTorpedoAttackViewModel attackDisplay in torpedo.AttackDisplays)
 					{
+						int attackerHpBeforeAttack = torpedo.FleetsBeforePhase!
+							.GetShip(attackDisplay.AttackerIndex)!
+							.HPCurrent;
+
+						int defenderHpBeforeAttacks = torpedo.FleetsBeforePhase!
+							.GetShip(attackDisplay.DefenderIndex)!
+							.HPCurrent;
+
 						IFleetData? attackerFleet = searching.FleetsBeforePhase?.GetFleet(attackDisplay.AttackerIndex);
 
 						if (attackerFleet is null) continue;
 
-						foreach ((DayAttack attack, int attackIndex) in attackDisplay.Attacks.Select((a, i) => (a, i)))
+						foreach (DayAttack attack in attackDisplay.Attacks)
 						{
 							torpedoData.Add(new()
 							{
 								CommonData = MakeCommonData(torpedoData.Count + 1, node, IsFirstNode(sortieDetail.Nodes, node), sortieDetail, admiralLevel, airBattle, searching),
-								BattleType = CsvExportResources.NightBattle,
+								BattleType = CsvExportResources.TorpedoBattle,
 								PlayerFleetType = GetPlayerFleet(initial.FleetsAfterPhase!, attackDisplay.AttackerIndex, attackDisplay.DefenderIndex),
 								BattlePhase = torpedo.Phase switch
 								{
@@ -335,8 +343,8 @@ public class DataExportHelper
 									true => 1,
 									_ => 0,
 								},
-								Attacker = MakeShip(attack.Attacker, attackDisplay.AttackerIndex, attackDisplay.AttackerHpBeforeAttack),
-								Defender = MakeShip(attack.Defender, attackDisplay.DefenderIndex, attackDisplay.DefenderHpBeforeAttacks[attackIndex]),
+								Attacker = MakeShip(attack.Attacker, attackDisplay.AttackerIndex, attackerHpBeforeAttack),
+								Defender = MakeShip(attack.Defender, attackDisplay.DefenderIndex, defenderHpBeforeAttacks),
 								FleetType = Constants.GetCombinedFleet(playerFleet.FleetType),
 								EnemyFleetType = GetEnemyFleetType(false),
 							});
@@ -394,7 +402,7 @@ public class DataExportHelper
 					void ProcessData(IFleetData fleet, IFleetData attackerFleet, FleetFlag fleetFlag, int indexOffset)
 					{
 						foreach ((IShipData? ship, int index) in fleet.MembersWithoutEscaped!.Select((s, i) => (s, i)))
-							{
+						{
 							if (ship is null) continue;
 
 							BattleIndex defenderIndex = new(index + indexOffset, fleetFlag);
@@ -410,14 +418,14 @@ public class DataExportHelper
 					ProcessData(fleets.EnemyFleet!, fleets.Fleet, FleetFlag.Enemy, 0);
 
 					if (fleets.EnemyEscortFleet is not null)
-						{
+					{
 						ProcessData(fleets.EnemyEscortFleet, fleets.Fleet, FleetFlag.Enemy, 6);
 					}
 
 					ProcessData(fleets.Fleet, fleets.EnemyFleet!, FleetFlag.Player, 0);
 
 					if (fleets.EscortFleet is not null)
-							{
+					{
 						ProcessData(fleets.EscortFleet, fleets.EnemyFleet!, FleetFlag.Player, 6);
 					}
 				}
