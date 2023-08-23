@@ -106,6 +106,10 @@ public class ElectronicObserverContext : DbContext
 			.HasConversion(JsonConverter<SortieFleetData>());
 
 		builder.Entity<SortieRecord>()
+			.Property(s => s.FleetAfterSortieData)
+			.HasConversion(JsonConverter<SortieFleetData?>());
+
+		builder.Entity<SortieRecord>()
 			.Property(s => s.MapData)
 			.HasConversion(JsonConverter<SortieMapData>());
 
