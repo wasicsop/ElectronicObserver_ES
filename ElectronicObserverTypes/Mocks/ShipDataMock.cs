@@ -103,10 +103,10 @@ public class ShipDataMock : IShipData
 	public int LuckTotal => this.LuckTotal();
 	public int BomberTotal => this.BomberTotal();
 	public int AccuracyTotal => this.AccuracyTotal();
-	public int ExpeditionFirepowerTotal { get; }
-	public int ExpeditionASWTotal { get; }
-	public int ExpeditionLOSTotal { get; }
-	public int ExpeditionAATotal { get; }
+	public int ExpeditionFirepowerTotal => this.ExpeditionFirepowerTotal();
+	public int ExpeditionASWTotal => this.ExpeditionAswTotal();
+	public int ExpeditionLOSTotal => this.ExpeditionLosTotal();
+	public int ExpeditionAATotal => this.ExpeditionAaTotal();
 	public int FirepowerBase => Math.Min(MasterShip.FirepowerMin + FirepowerModernized, MasterShip.FirepowerMax);
 	public int TorpedoBase => Math.Min(MasterShip.TorpedoMin + TorpedoModernized, MasterShip.TorpedoMax);
 	public int AABase => Math.Min(MasterShip.AAMin + AAModernized, MasterShip.AAMax);
