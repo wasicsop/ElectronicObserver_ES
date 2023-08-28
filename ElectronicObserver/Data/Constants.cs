@@ -371,6 +371,8 @@ public static class Constants
 		121 => "New Orleans級",
 		122 => "Salmon級",
 		123 => "改敷島型",
+		124 => "Marcello級",
+		125 => "Nevada級",
 		_ => "不明",
 	};
 
