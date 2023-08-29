@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text.Json;
 using System.Windows;
@@ -22,7 +23,6 @@ using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Node;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.SortieDetail;
 using ElectronicObserverTypes;
 using ElectronicObserverTypes.Attacks;
-using ElectronicObserverTypes.Mocks;
 using ElectronicObserverTypes.Serialization.DeckBuilder;
 using DayAttack = ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase.DayAttack;
 
@@ -37,7 +37,6 @@ public class ToolService
 		DataSerializationService = dataSerializationService;
 	}
 
-
 	public void AirControlSimulator(AirControlSimulatorViewModel? viewModel = null)
 	{
 		viewModel ??= new();
@@ -47,7 +46,7 @@ public class ToolService
 		if (dialog.ShowDialog(App.Current!.MainWindow!) is not true) return;
 
 		AirControlSimulatorViewModel result = dialog.Result!;
-		
+
 		string url = DataSerializationService.AirControlSimulatorLink(result);
 
 		Window.FormBrowserHost.Instance.Browser.OpenAirControlSimulator(url);
@@ -73,6 +72,42 @@ public class ToolService
 		string url = GetAirControlSimulatorLink(sortie);
 
 		Window.FormBrowserHost.Instance.Browser.OpenAirControlSimulator(url);
+	}
+
+	public void OperationRoom(AirControlSimulatorViewModel? viewModel = null)
+	{
+		viewModel ??= new(DataSerializationService.OperationRoomLink);
+
+		viewModel.DataSelectionVisible = false;
+
+		BaseAirCorpsSimulationContentDialog dialog = new(viewModel);
+
+		if (dialog.ShowDialog(App.Current!.MainWindow!) is not true) return;
+
+		AirControlSimulatorViewModel result = dialog.Result!;
+
+		string url = DataSerializationService.OperationRoomLink(result);
+
+		ProcessStartInfo psi = new()
+		{
+			FileName = url,
+			UseShellExecute = true,
+		};
+
+		Process.Start(psi);
+	}
+
+	public void OperationRoom(SortieRecordViewModel sortie)
+	{
+		string url = GetOperationRoomLink(sortie);
+
+		ProcessStartInfo psi = new()
+		{
+			FileName = url,
+			UseShellExecute = true,
+		};
+
+		Process.Start(psi);
 	}
 
 	public void FleetImageGenerator(FleetImageGeneratorImageDataModel? model = null, DeckBuilderData? data = null)
@@ -549,5 +584,35 @@ public class ToolService
 		);
 
 		return @$"https://noro6.github.io/kc-web#import:{airControlSimulatorData}";
+	}
+
+	public void CopyOperationRoomLink(SortieRecordViewModel sortie)
+	{
+		string url = GetOperationRoomLink(sortie);
+
+		Clipboard.SetText(url);
+	}
+
+	private string GetOperationRoomLink(SortieRecordViewModel sortie)
+	{
+		List<IFleetData?> fleets = sortie.Model.FleetData.MakeFleets();
+
+		List<IBaseAirCorpsData> airBases = sortie.Model.FleetData.AirBases
+			.Select(f => f.MakeAirBase())
+			.ToList();
+
+		string operationRoomData = DataSerializationService.DeckBuilder
+		(
+			KCDatabase.Instance.Admiral.Level,
+			fleets.Skip(0).FirstOrDefault(),
+			fleets.Skip(1).FirstOrDefault(),
+			fleets.Skip(2).FirstOrDefault(),
+			fleets.Skip(3).FirstOrDefault(),
+			airBases.Skip(0).FirstOrDefault(),
+			airBases.Skip(1).FirstOrDefault(),
+			airBases.Skip(2).FirstOrDefault()
+		);
+
+		return @$"https://jervis.vercel.app?predeck={Uri.EscapeDataString(operationRoomData)}";
 	}
 }

@@ -884,6 +884,12 @@ public partial class FormMainViewModel : ObservableObject
 	}
 
 	[RelayCommand]
+	private void OpenOperationRoom()
+	{
+		ToolService.OperationRoom();
+	}
+
+	[RelayCommand]
 	private void OpenExpChecker()
 	{
 		ToolService.ExpChecker();

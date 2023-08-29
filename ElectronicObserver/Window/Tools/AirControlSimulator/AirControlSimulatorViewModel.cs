@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
@@ -7,7 +8,6 @@ using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
 using ElectronicObserver.Data;
 using ElectronicObserver.Services;
-using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Tools.AirControlSimulator;
 
@@ -40,10 +40,14 @@ public partial class AirControlSimulatorViewModel : WindowViewModelBase
 
 	public bool? DialogResult { get; set; }
 
-	public AirControlSimulatorViewModel()
+	private Func<AirControlSimulatorViewModel, string> GenerateLink { get; }
+
+	public AirControlSimulatorViewModel(Func<AirControlSimulatorViewModel, string>? generateLink = null)
 	{
 		AirControlSimulator = Ioc.Default.GetRequiredService<AirControlSimulatorTranslationViewModel>();
 		DataSerializationService = Ioc.Default.GetRequiredService<DataSerializationService>();
+
+		GenerateLink = generateLink ?? DataSerializationService.AirControlSimulatorLink;
 
 		AirBaseAreas.Add(new(0, AirControlSimulator.None));
 
@@ -54,7 +58,7 @@ public partial class AirControlSimulatorViewModel : WindowViewModelBase
 			.Select(i => KCDatabase.Instance.MapArea[i])
 			.Where(m => m != null);
 
-		foreach (var map in maps)
+		foreach (MapAreaData map in maps)
 		{
 			int mapAreaID = map.MapAreaID;
 			string? name = map.NameEN;
@@ -79,7 +83,7 @@ public partial class AirControlSimulatorViewModel : WindowViewModelBase
 	[RelayCommand]
 	private void CopyLink()
 	{
-		string link = DataSerializationService.AirControlSimulatorLink(this);
+		string link = GenerateLink(this);
 
 		Clipboard.SetText(link);
 	}

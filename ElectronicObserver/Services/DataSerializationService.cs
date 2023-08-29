@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text.Encodings.Web;
 using System.Text.Json;
@@ -78,17 +79,17 @@ public class DataSerializationService
 			.Where(eq => allEquipment || eq.IsLocked));
 	}
 
+	private static FleetData? FleetOrDefault(bool include, int index) => include switch
+	{
+		false => null,
+		_ => KCDatabase.Instance.Fleet.Fleets.Values.Skip(index).FirstOrDefault(),
+	};
+
 	public string AirControlSimulatorLink(AirControlSimulatorViewModel airControlSimulator)
 	{
 		List<BaseAirCorpsData> bases = KCDatabase.Instance.BaseAirCorps.Values
 			.Where(b => b.MapAreaID == airControlSimulator.AirBaseArea?.AreaId)
 			.ToList();
-
-		static FleetData? FleetOrDefault(bool include, int index) => include switch
-		{
-			false => null,
-			_ => KCDatabase.Instance.Fleet.Fleets.Values.Skip(index).FirstOrDefault(),
-		};
 
 		string airControlSimulatorData = AirControlSimulator
 		(
@@ -143,6 +144,29 @@ public class DataSerializationService
 		),
 		JsonSerializerOptions
 	);
+
+	public string OperationRoomLink(AirControlSimulatorViewModel airControlSimulator)
+	{
+		List<BaseAirCorpsData> bases = KCDatabase.Instance.BaseAirCorps.Values
+			.Where(b => b.MapAreaID == airControlSimulator.AirBaseArea?.AreaId)
+			.ToList();
+
+		string operationRoomData = DeckBuilder
+		(
+			KCDatabase.Instance.Admiral.Level,
+			FleetOrDefault(airControlSimulator.Fleet1, 0),
+			FleetOrDefault(airControlSimulator.Fleet2, 1),
+			FleetOrDefault(airControlSimulator.Fleet3, 2),
+			FleetOrDefault(airControlSimulator.Fleet4, 3),
+			bases.Skip(0).FirstOrDefault(),
+			bases.Skip(1).FirstOrDefault(),
+			bases.Skip(2).FirstOrDefault(),
+			airControlSimulator.MaxAircraftLevelFleet,
+			airControlSimulator.MaxAircraftLevelAirBase
+		);
+
+		return @$"https://jervis.vercel.app?predeck={Uri.EscapeDataString(operationRoomData)}";
+	}
 
 	public string DeckBuilder
 	(

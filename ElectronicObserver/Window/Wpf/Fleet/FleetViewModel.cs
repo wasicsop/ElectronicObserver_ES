@@ -29,6 +29,7 @@ public partial class FleetViewModel : AnchorableViewModel
 {
 	public FormFleetTranslationViewModel FormFleet { get; }
 	private ToolService ToolService { get; }
+	private DataSerializationService DataSerializationService { get; }
 
 	public FleetStatusViewModel ControlFleet { get; }
 	public List<FleetItemViewModel> ControlMember { get; } = new();
@@ -43,8 +44,9 @@ public partial class FleetViewModel : AnchorableViewModel
 	public FleetViewModel(int fleetId) : base($"#{fleetId}", $"Fleet{fleetId}",
 		ImageSourceIcons.GetIcon(IconContent.FormFleet))
 	{
-		FormFleet = Ioc.Default.GetService<FormFleetTranslationViewModel>()!;
-		ToolService = Ioc.Default.GetService<ToolService>()!;
+		FormFleet = Ioc.Default.GetRequiredService<FormFleetTranslationViewModel>();
+		ToolService = Ioc.Default.GetRequiredService<ToolService>();
+		DataSerializationService = Ioc.Default.GetRequiredService<DataSerializationService>();
 
 		Title = $"#{fleetId}";
 		FormFleet.PropertyChanged += (_, _) => Title = $"#{fleetId}";
@@ -698,6 +700,18 @@ public partial class FleetViewModel : AnchorableViewModel
 	private void OpenAirControlSimulator()
 	{
 		ToolService.AirControlSimulator(new AirControlSimulatorViewModel
+		{
+			Fleet1 = FleetId is 1,
+			Fleet2 = FleetId is 2 || (FleetId is 1 && KCDatabase.Instance.Fleet.CombinedFlag > 0),
+			Fleet3 = FleetId is 3,
+			Fleet4 = FleetId is 4,
+		});
+	}
+
+	[RelayCommand]
+	private void OpenOperationRoom()
+	{
+		ToolService.OperationRoom(new AirControlSimulatorViewModel(DataSerializationService.OperationRoomLink)
 		{
 			Fleet1 = FleetId is 1,
 			Fleet2 = FleetId is 2 || (FleetId is 1 && KCDatabase.Instance.Fleet.CombinedFlag > 0),

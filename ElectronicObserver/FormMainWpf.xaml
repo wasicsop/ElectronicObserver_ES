@@ -641,6 +641,15 @@
 					</MenuItem.Icon>
 				</MenuItem>
 				<MenuItem
+					d:Header="Operation room"
+					Command="{Binding OpenOperationRoomCommand}"
+					Header="{Binding FormMain.OperationRoom}"
+					>
+					<MenuItem.Icon>
+						<Image Source="{Binding DockImageSource}" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<MenuItem
 					d:Header="Exp Calculator"
 					Command="{Binding OpenExpCheckerCommand}"
 					Header="{Binding FormMain.StripMenu_Tool_ExpChecker}"

@@ -271,6 +271,22 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 		ToolService.AirControlSimulator(SelectedSortie);
 	}
 
+	[RelayCommand]
+	private void CopyOperationRoomLink()
+	{
+		if (SelectedSortie is null) return;
+
+		ToolService.CopyOperationRoomLink(SelectedSortie);
+	}
+
+	[RelayCommand]
+	private void OpenOperationRoom()
+	{
+		if (SelectedSortie is null) return;
+
+		ToolService.OperationRoom(SelectedSortie);
+	}
+
 	[RelayCommand(IncludeCancelCommand = true)]
 	private async Task ExportDayShelling(CancellationToken cancellationToken)
 	{

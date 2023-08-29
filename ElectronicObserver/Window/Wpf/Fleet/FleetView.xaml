@@ -126,6 +126,11 @@
 						Command="{Binding OpenAirControlSimulatorCommand}"
 						Header="{Binding FormFleet.AirControlSimulator}"
 						/>
+					<MenuItem
+						d:Header="Operation room"
+						Command="{Binding OpenOperationRoomCommand}"
+						Header="{Binding FormFleet.OperationRoom}"
+						/>
 				</ContextMenu>
 			</Border.ContextMenu>
 			<StackPanel

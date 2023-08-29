@@ -169,6 +169,10 @@
 							<MenuItem Command="{Binding CopyAirControlSimulatorLinkCommand}" Header="{Binding SortieRecordViewer.CopyLink}" />
 							<MenuItem Command="{Binding OpenAirControlSimulatorCommand}" Header="{Binding SortieRecordViewer.Open}" />
 						</MenuItem>
+						<MenuItem Header="{Binding SortieRecordViewer.OperationRoom}">
+							<MenuItem Command="{Binding CopyOperationRoomLinkCommand}" Header="{Binding SortieRecordViewer.CopyLink}" />
+							<MenuItem Command="{Binding OpenOperationRoomCommand}" Header="{Binding SortieRecordViewer.Open}" />
+						</MenuItem>
 						<MenuItem Header="{x:Static translations:CsvExportResources.LogbookRedCsvExport}">
 							<MenuItem Command="{Binding ExportDayShellingCommand}" Header="{x:Static translations:CsvExportResources.ShellingBattle}" />
 							<MenuItem Command="{Binding ExportNightShellingCommand}" Header="{x:Static translations:CsvExportResources.NightBattle}" />

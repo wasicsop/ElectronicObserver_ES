@@ -357,4 +357,16 @@ public partial class SortieDetailViewModel : WindowViewModelBase
 	{
 		ToolService.AirControlSimulator(Sortie);
 	}
+
+	[RelayCommand]
+	private void CopyOperationRoomLink()
+	{
+		ToolService.CopyOperationRoomLink(Sortie);
+	}
+
+	[RelayCommand]
+	private void OpenOperationRoom()
+	{
+		ToolService.OperationRoom(Sortie);
+	}
 }
