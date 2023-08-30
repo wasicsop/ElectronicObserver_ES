@@ -41,7 +41,10 @@ public class FleetItemViewModel : ObservableObject
 	public Dictionary<SpecialAttack, List<SpecialAttackHit>> SpecialAttackHitList { get; set; } = new();
 
 	public ShipData? Ship { get; private set; }
-	public bool CanSink { get; private set; }
+	private bool CanSink { get; set; }
+	private bool IsInSortie { get; set; }
+	private bool BlinkAtDamaged { get; set; }
+	public bool ShowSinkWarning => CanSink && (BlinkAtDamaged || IsInSortie);
 
 	public string? ShipName => Ship switch
 	{
@@ -90,6 +93,7 @@ public class FleetItemViewModel : ObservableObject
 		HP.SubFont = Configuration.Config.UI.SubFont;
 		Condition.SetDesign(Condition.Tag ?? 49);
 		Equipments.Font = Configuration.Config.UI.SubFont;
+		BlinkAtDamaged = Configuration.Config.FormFleet.BlinkAtDamaged;
 	}
 
 	public void Update(int shipMasterID)
@@ -118,6 +122,7 @@ public class FleetItemViewModel : ObservableObject
 			.Where(eq => eq != null);
 
 		CanSink = Ship.CanSink(fleet);
+		IsInSortie = fleet.IsInSortie;
 
 		UpdateShipName(equipments);
 

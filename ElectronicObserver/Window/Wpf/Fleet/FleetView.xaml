@@ -235,12 +235,12 @@
 								<Style TargetType="Border">
 									<Setter Property="Background" Value="Transparent" />
 									<Style.Triggers>
-										<DataTrigger Binding="{Binding CanSink}" Value="True">
+										<DataTrigger Binding="{Binding ShowSinkWarning}" Value="True">
 											<DataTrigger.EnterActions>
 												<BeginStoryboard x:Name="BeginTaihaStoryboard" Storyboard="{StaticResource TaihaStoryboard}" />
 											</DataTrigger.EnterActions>
 										</DataTrigger>
-										<DataTrigger Binding="{Binding CanSink}" Value="False">
+										<DataTrigger Binding="{Binding ShowSinkWarning}" Value="False">
 											<DataTrigger.EnterActions>
 												<StopStoryboard BeginStoryboardName="BeginTaihaStoryboard" />
 											</DataTrigger.EnterActions>
