@@ -12,6 +12,9 @@ public static class ShipNightAttacks
 	{
 		IEnumerable<NightAttack> nightAttacks = new List<NightAttack>();
 
+		// ships with 0 base night attack power can't attack at night
+		if (ship.MasterShip is { FirepowerMin: 0, TorpedoMin: 0 }) return nightAttacks;
+
 		if (ship.MasterShip.IsSubmarine)
 		{
 			// sub TCI or normal TCI
