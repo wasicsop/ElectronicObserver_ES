@@ -763,5 +763,5 @@ public enum ShipId
 	MiyukiKaiNi = 959,
 	ShigureKaiSan = 961,
 	Shirakumo = 964,
-	ColoradoKai = 1496
+	ColoradoKai = 1496,
 }

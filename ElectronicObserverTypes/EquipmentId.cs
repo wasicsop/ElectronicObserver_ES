@@ -517,5 +517,5 @@ public enum EquipmentId
 	SurfaceShipEquipment_BarrageBalloon = 513,
 	LandingCraft_TokuDaihatsuLandingCraft_PanzerIIITypeJ = 514,
 	SeaplaneRecon_SeaOtter = 515,
-	Interceptor_Me262A1aR1 = 516
+	Interceptor_Me262A1aR1 = 516,
 }
