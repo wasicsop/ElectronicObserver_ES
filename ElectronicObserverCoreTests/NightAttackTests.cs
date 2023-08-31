@@ -592,7 +592,7 @@ public class NightAttackTests
 		Assert.All(totalRates, rate => Assert.True(rate is >= 0 and <= 1));
 	}
 
-	[Fact(DisplayName = "Ships with 0 base night attack power can't attack at night")]
+	[Fact(DisplayName = "Souya 645 and 650 can't attack at night")]
 	public void NightAttackTest13()
 	{
 		ShipDataMock souya645 = new(Db.MasterShips[ShipId.Souya645]);
