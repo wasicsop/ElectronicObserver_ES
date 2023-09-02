@@ -145,6 +145,29 @@ public class BattleFleets
 		}
 	}
 
+	public void UpdateState(BattleFleets fleetsAfterSortie)
+	{
+		UpdateFleet(Fleet, fleetsAfterSortie.Fleet);
+		UpdateFleet(EscortFleet, fleetsAfterSortie.EscortFleet);
+	}
+
+	private static void UpdateFleet(IFleetData? fleet, IFleetData? updateFleet)
+	{
+		if (fleet is null) return;
+		if (updateFleet is null) return;
+
+		foreach ((IShipData? ship, IShipData? updateShip) in fleet.MembersInstance.Zip(updateFleet.MembersInstance))
+		{
+			if (ship is not ShipDataMock s) continue;
+			if (updateShip is not ShipDataMock u) continue;
+
+			s.Aircraft = u.Aircraft;
+			s.Condition = u.Condition;
+			s.Fuel = u.Fuel;
+			s.Ammo = u.Ammo;
+		}
+	}
+
 	public IFleetData? GetFleet(BattleIndex index) => index.FleetFlag switch
 	{
 		FleetFlag.Player when index.Index < Fleet.MembersWithoutEscaped?.Count => Fleet,

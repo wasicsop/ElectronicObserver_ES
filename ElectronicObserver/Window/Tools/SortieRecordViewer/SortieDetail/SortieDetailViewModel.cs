@@ -191,16 +191,20 @@ public partial class SortieDetailViewModel : WindowViewModelBase
 
 		if (node is BattleNode b)
 		{
+			if (deckResponse is not null)
+			{
+				b.UpdateState(deckResponse);
+			}
+			else if (FleetsAfterSortie is not null)
+			{
+				b.UpdateState(FleetsAfterSortie);
+			}
+
 			Fleets = b.SecondBattle?.FleetsAfterBattle.Clone() ?? b.FirstBattle.FleetsAfterBattle.Clone();
 
 			CleanFleet(Fleets.Fleet);
 			CleanFleet(Fleets.EscortFleet);
 			ApplyBattleResult(b.BattleResult, Fleets);
-		}
-
-		if (deckResponse is not null)
-		{
-			Fleets.UpdateState(deckResponse);
 		}
 
 		Nodes.Add(node);

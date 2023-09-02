@@ -184,8 +184,10 @@ public class CsvExportTests
 		if (!ship.IsAbyssalShip) return false;
 
 		static bool HasWrongRange(IShipDataMaster ship) => ship.ID is
+			1525 or
 			1560 or
 			1565 or
+			1573 or
 			1586 or
 			1615 or
 			1617 or
@@ -292,6 +294,18 @@ public class CsvExportTests
 		IReadOnlyList<string> logbookLines = await LoadLogbookLines(logbookCsvFileName);
 		IReadOnlyList<string> eoLines = await LoadEoLines<AirBaseBattleExportMap, AirBaseBattleExportModel>(
 			eoJsonFileName, DataExportHelper.AirBaseBattle);
+
+		VerifyCsv(logbookLines, eoLines);
+	}
+
+	[Theory(DisplayName = "Red day shelling - 赤仮砲撃戦")]
+	[InlineData("赤仮砲撃戦1.csv", "赤仮砲撃戦1.json")]
+	[InlineData("赤仮砲撃戦2.csv", "赤仮砲撃戦2.json")]
+	public async Task CsvExportTest6(string logbookCsvFileName, string eoJsonFileName)
+	{
+		IReadOnlyList<string> logbookLines = await LoadLogbookLines(logbookCsvFileName);
+		IReadOnlyList<string> eoLines = await LoadEoLines<RedDayShellingExportMap, DayShellingExportModel>(
+			eoJsonFileName, DataExportHelper.DayShelling);
 
 		VerifyCsv(logbookLines, eoLines);
 	}

@@ -1,4 +1,5 @@
 ﻿using ElectronicObserver.Data;
+using ElectronicObserver.KancolleApi.Types.ApiGetMember.ShipDeck;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
 using ElectronicObserverTypes.Data;
 
@@ -27,5 +28,10 @@ public abstract class SortieNode
 	public void AddAirBaseRaid(BattleBaseAirRaid abRaid)
 	{
 		AirBaseRaid = abRaid;
+	}
+
+	public virtual void UpdateState(ApiGetMemberShipDeckResponse deck)
+	{
+
 	}
 }

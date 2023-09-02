@@ -52,23 +52,34 @@ public class DataExportHelper
 
 			if (sortieDetail is null) continue;
 
-			foreach (BattleNode node in sortieDetail.Nodes.OfType<BattleNode>())
+			foreach (SortieNode node in sortieDetail.Nodes)
 			{
-				List<PhaseBase> phases = node.FirstBattle.Phases
-					.Concat(node.SecondBattle switch
+				if (node is not BattleNode battleNode) continue;
+
+				List<BattleData?> battles = new()
 					{
-						null => Enumerable.Empty<PhaseBase>(),
-						_ => node.SecondBattle.Phases,
-					}).ToList();
+					battleNode.FirstBattle,
+					battleNode.SecondBattle,
+				};
+
+				BattleFleets fleetsAfterBattle = battleNode.LastBattle.FleetsAfterBattle;
+
+				foreach (BattleData? battle in battles)
+				{
+					if (battle is null) continue;
+
+					List<PhaseBase> phases = battle.Phases.ToList();
 
 				PhaseInitial? initial = phases.OfType<PhaseInitial>().FirstOrDefault();
 				PhaseSearching? searching = phases.OfType<PhaseSearching>().FirstOrDefault();
 				PhaseAirBattle? airBattle = phases.OfType<PhaseAirBattle>().FirstOrDefault();
+					BattleFleets? fleets = initial?.FleetsAfterPhase;
 				IFleetData? playerFleet = initial?.FleetsAfterPhase?.Fleet;
 
 				if (initial is null) continue;
 				if (searching is null) continue;
 				if (airBattle is null) continue;
+					if (fleets is null) continue;
 				if (playerFleet is null) continue;
 
 				foreach (PhaseShelling shelling in phases.OfType<PhaseShelling>())
@@ -78,7 +89,9 @@ public class DataExportHelper
 
 					foreach (PhaseShellingAttackViewModel attackDisplay in shelling.AttackDisplays)
 					{
-						IFleetData? attackerFleet = searching.FleetsBeforePhase?.GetFleet(attackDisplay.AttackerIndex);
+							IFleetData? attackerFleet = fleets.GetFleet(attackDisplay.AttackerIndex);
+							IShipData? attackerAfterBattle = fleetsAfterBattle.GetShip(attackDisplay.AttackerIndex);
+							IShipData? defenderAfterBattle = fleetsAfterBattle.GetShip(attackDisplay.DefenderIndex);
 
 						if (attackerFleet is null) continue;
 
@@ -103,7 +116,7 @@ public class DataExportHelper
 
 							dayShellingData.Add(new()
 							{
-								CommonData = MakeCommonData(dayShellingData.Count + 1, node, IsFirstNode(sortieDetail.Nodes, node), sortieDetail, admiralLevel, airBattle, searching),
+									CommonData = MakeCommonData(dayShellingData.Count + 1, battleNode, IsFirstNode(sortieDetail.Nodes, battleNode), sortieDetail, admiralLevel, airBattle, searching),
 								BattleType = CsvExportResources.ShellingBattle,
 								ShipName1 = attackerFleet.MembersInstance.Skip(0).FirstOrDefault()?.Name,
 								ShipName2 = attackerFleet.MembersInstance.Skip(1).FirstOrDefault()?.Name,
@@ -130,14 +143,15 @@ public class DataExportHelper
 									true => 1,
 									_ => 0,
 								},
-								Attacker = MakeShip(attack.Attacker, attackDisplay.AttackerIndex, attackDisplay.AttackerHpBeforeAttack),
-								Defender = MakeShip(attack.Defender, attackDisplay.DefenderIndex, attackDisplay.DefenderHpBeforeAttacks[attackIndex]),
+									Attacker = MakeShip(attack.Attacker, attackDisplay.AttackerIndex, attackDisplay.AttackerHpBeforeAttack, attackerAfterBattle),
+									Defender = MakeShip(attack.Defender, attackDisplay.DefenderIndex, attackDisplay.DefenderHpBeforeAttacks[attackIndex], defenderAfterBattle),
 								FleetType = Constants.GetCombinedFleet(playerFleet.FleetType),
 								EnemyFleetType = GetEnemyFleetType(initial.IsEnemyCombinedFleet),
 							});
 						}
 					}
 				}
+			}
 			}
 
 			exportProgress.Progress++;
@@ -243,8 +257,8 @@ public class DataExportHelper
 									true => 1,
 									_ => 0,
 								},
-								Attacker = MakeShip(attack.Attacker, attackDisplay.AttackerIndex, attackDisplay.AttackerHpBeforeAttack),
-								Defender = MakeShip(attack.Defender, attackDisplay.DefenderIndex, attackDisplay.DefenderHpBeforeAttacks[attackIndex]),
+								Attacker = MakeShip(attack.Attacker, attackDisplay.AttackerIndex, attackDisplay.AttackerHpBeforeAttack, null),
+								Defender = MakeShip(attack.Defender, attackDisplay.DefenderIndex, attackDisplay.DefenderHpBeforeAttacks[attackIndex], null),
 								FleetType = Constants.GetCombinedFleet(playerFleet.FleetType),
 								EnemyFleetType = GetEnemyFleetType(false),
 							});
@@ -343,8 +357,8 @@ public class DataExportHelper
 									true => 1,
 									_ => 0,
 								},
-								Attacker = MakeShip(attack.Attacker, attackDisplay.AttackerIndex, attackerHpBeforeAttack),
-								Defender = MakeShip(attack.Defender, attackDisplay.DefenderIndex, defenderHpBeforeAttacks),
+								Attacker = MakeShip(attack.Attacker, attackDisplay.AttackerIndex, attackerHpBeforeAttack, null),
+								Defender = MakeShip(attack.Defender, attackDisplay.DefenderIndex, defenderHpBeforeAttacks, null),
 								FleetType = Constants.GetCombinedFleet(playerFleet.FleetType),
 								EnemyFleetType = GetEnemyFleetType(false),
 							});
@@ -560,7 +574,7 @@ public class DataExportHelper
 										true => 1,
 										_ => 0,
 									},
-									Defender = MakeShip(ship, defenderIndex, Math.Max(0, ship.HPCurrent)),
+									Defender = MakeShip(ship, defenderIndex, Math.Max(0, ship.HPCurrent), null),
 								});
 							}
 						}
@@ -638,9 +652,8 @@ public class DataExportHelper
 				true => 1,
 				_ => 0,
 			},
-			Defender = MakeShip(attackDisplay?.Defender ?? defender, attackDisplay?.DefenderIndex ?? defenderIndex, attackDisplay?.DefenderHpBeforeAttack ?? defenderHpBeforeAttack),
+			Defender = MakeShip(attackDisplay?.Defender ?? defender, attackDisplay?.DefenderIndex ?? defenderIndex, attackDisplay?.DefenderHpBeforeAttack ?? defenderHpBeforeAttack, null),
 		};
-
 
 	/// <summary>
 	/// Makes data that's common between all csv exports.
@@ -711,7 +724,8 @@ public class DataExportHelper
 			},
 		};
 
-	private static ShipExportModel MakeShip(IShipData ship, BattleIndex index, int hpBeforeAttack) => new()
+	private static ShipExportModel MakeShip(IShipData ship, BattleIndex index, int hpBeforeAttack,
+		IShipData? shipAfterBattle) => new()
 	{
 		Index = index.Index + 1,
 		Id = ship.ShipID,
@@ -722,11 +736,14 @@ public class DataExportHelper
 			ShipTypes type => type.Display(),
 		},
 		Condition = NullForAbyssals(ship.Condition, ship),
+			ConditionAfterBattle = NullForAbyssals(shipAfterBattle?.Condition, shipAfterBattle),
 		HpCurrent = hpBeforeAttack,
 		HpMax = ship.HPMax,
 		DamageState = GetDamageState(hpBeforeAttack, ship.HPMax),
+			FuelAfterBattle = NullForAbyssals(shipAfterBattle?.Fuel, shipAfterBattle),
 		FuelCurrent = NullForAbyssals(ship.Fuel, ship),
 		FuelMax = ship.FuelMax,
+			AmmoAfterBattle = NullForAbyssals(shipAfterBattle?.Ammo, shipAfterBattle),
 		AmmoCurrent = NullForAbyssals(ship.Ammo, ship),
 		AmmoMax = ship.AmmoMax,
 		Level = ship.Level,
@@ -740,12 +757,12 @@ public class DataExportHelper
 		Search = ship.LOSTotal,
 		Luck = ship.LuckTotal,
 		Range = Constants.GetRange(ship.Range),
-		Equipment1 = MakeEquipment(ship, 0),
-		Equipment2 = MakeEquipment(ship, 1),
-		Equipment3 = MakeEquipment(ship, 2),
-		Equipment4 = MakeEquipment(ship, 3),
-		Equipment5 = MakeEquipment(ship, 4),
-		Equipment6 = MakeEquipment(ship, 5),
+			Equipment1 = MakeEquipment(ship, 0, shipAfterBattle),
+			Equipment2 = MakeEquipment(ship, 1, shipAfterBattle),
+			Equipment3 = MakeEquipment(ship, 2, shipAfterBattle),
+			Equipment4 = MakeEquipment(ship, 3, shipAfterBattle),
+			Equipment5 = MakeEquipment(ship, 4, shipAfterBattle),
+			Equipment6 = MakeEquipment(ship, 5, shipAfterBattle),
 	};
 
 	private static AirBattleShipExportModel MakeShip(IShipData? ship) => new()
@@ -755,12 +772,14 @@ public class DataExportHelper
 		Level = ship?.Level,
 	};
 
-	private static EquipmentExportModel MakeEquipment(IShipData ship, int index) => new()
+	private static EquipmentExportModel MakeEquipment(IShipData ship, int index,
+		IShipData? shipAfterBattle) => new()
 	{
 		Name = ship.AllSlotInstance.Skip(index).FirstOrDefault()?.Name,
 		Level = NullForAbyssals(ship.AllSlotInstance.Skip(index).FirstOrDefault()?.Level, ship),
 		AircraftLevel = NullForAbyssals(ship.AllSlotInstance.Skip(index).FirstOrDefault()?.AircraftLevel, ship),
 		Aircraft = NullForAbyssals(ship.Aircraft.Take(ship.SlotSize).Skip(index).Cast<int?>().FirstOrDefault(), ship),
+			AircraftAfterBattle = NullForAbyssals(shipAfterBattle?.Aircraft.Take(ship.SlotSize).Skip(index).Cast<int?>().FirstOrDefault(), shipAfterBattle),
 	};
 
 	private static bool IsFirstNode(IEnumerable<SortieNode> nodes, SortieNode node)
@@ -870,7 +889,7 @@ public class DataExportHelper
 		_ => ConstantsRes.NormalFleet,
 	};
 
-	private static int? NullForAbyssals(int? value, IShipData ship) => ship.MasterShip.IsAbyssalShip switch
+	private static int? NullForAbyssals(int? value, IShipData? ship) => ship?.MasterShip.IsAbyssalShip switch
 	{
 		true => null,
 		_ => value,

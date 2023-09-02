@@ -460,4 +460,16 @@
   <data name="TotalBomberFlags" xml:space="preserve">
     <value>爆撃合計</value>
   </data>
+  <data name="ConditionAfterBattle" xml:space="preserve">
+    <value>戦闘後疲労</value>
+  </data>
+  <data name="FuelAfterBattle" xml:space="preserve">
+    <value>戦闘後残燃料</value>
+  </data>
+  <data name="AmmoAfterBattle" xml:space="preserve">
+    <value>戦闘後残弾薬</value>
+  </data>
+  <data name="AircraftAfterBattle" xml:space="preserve">
+    <value>戦闘後搭載数</value>
+  </data>
 </root>
