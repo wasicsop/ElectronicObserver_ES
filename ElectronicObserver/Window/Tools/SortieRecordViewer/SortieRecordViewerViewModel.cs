@@ -4,10 +4,8 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Windows;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using CsvHelper;
@@ -17,8 +15,6 @@ using ElectronicObserver.Common.ContentDialogs;
 using ElectronicObserver.Common.ContentDialogs.ExportProgress;
 using ElectronicObserver.Data;
 using ElectronicObserver.Database;
-using ElectronicObserver.Database.KancolleApi;
-using ElectronicObserver.Database.Sortie;
 using ElectronicObserver.Services;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.DataExport;
@@ -283,6 +279,12 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 	private async Task ExportAirBaseBattle(CancellationToken cancellationToken)
 	{
 		await ExportCsv<AirBaseBattleExportMap, AirBaseBattleExportModel>(DataExportHelper.AirBaseBattle, cancellationToken);
+	}
+
+	[RelayCommand(IncludeCancelCommand = true)]
+	private async Task ExportRedDayShelling(CancellationToken cancellationToken)
+	{
+		await ExportCsv<RedDayShellingExportMap, DayShellingExportModel>(DataExportHelper.DayShelling, cancellationToken);
 	}
 
 	private async Task ExportCsv<TMap, TElement>(

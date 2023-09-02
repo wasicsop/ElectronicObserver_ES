@@ -472,4 +472,7 @@
   <data name="AircraftAfterBattle" xml:space="preserve">
     <value>戦闘後搭載数</value>
   </data>
+  <data name="RedShellingBattle" xml:space="preserve">
+    <value>赤仮砲撃戦</value>
+  </data>
 </root>
