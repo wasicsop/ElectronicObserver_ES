@@ -47,7 +47,7 @@ public class DataExportHelper
 
 		foreach (SortieRecordViewModel sortieRecord in sorties)
 		{
-			SortieDetailViewModel? sortieDetail = ToolService.GenerateSortieDetailViewModel(sortieRecord);
+			SortieDetailViewModel? sortieDetail = ToolService.GenerateSortieDetailViewModel(Db, sortieRecord);
 			int? admiralLevel = await sortieRecord.Model.GetAdmiralLevel(Db, cancellationToken);
 
 			if (sortieDetail is null) continue;
@@ -162,7 +162,7 @@ public class DataExportHelper
 
 		foreach (SortieRecordViewModel sortieRecord in sorties)
 		{
-			SortieDetailViewModel? sortieDetail = ToolService.GenerateSortieDetailViewModel(sortieRecord);
+			SortieDetailViewModel? sortieDetail = ToolService.GenerateSortieDetailViewModel(Db, sortieRecord);
 			int? admiralLevel = await sortieRecord.Model.GetAdmiralLevel(Db, cancellationToken);
 
 			if (sortieDetail is null) continue;
@@ -275,7 +275,7 @@ public class DataExportHelper
 
 		foreach (SortieRecordViewModel sortieRecord in sorties)
 		{
-			SortieDetailViewModel? sortieDetail = ToolService.GenerateSortieDetailViewModel(sortieRecord);
+			SortieDetailViewModel? sortieDetail = ToolService.GenerateSortieDetailViewModel(Db, sortieRecord);
 			int? admiralLevel = await sortieRecord.Model.GetAdmiralLevel(Db, cancellationToken);
 
 			if (sortieDetail is null) continue;
@@ -375,7 +375,7 @@ public class DataExportHelper
 
 		foreach (SortieRecordViewModel sortieRecord in sorties)
 		{
-			SortieDetailViewModel? sortieDetail = ToolService.GenerateSortieDetailViewModel(sortieRecord);
+			SortieDetailViewModel? sortieDetail = ToolService.GenerateSortieDetailViewModel(Db, sortieRecord);
 			int? admiralLevel = await sortieRecord.Model.GetAdmiralLevel(Db, cancellationToken);
 
 			if (sortieDetail is null) continue;
@@ -453,7 +453,7 @@ public class DataExportHelper
 
 		foreach (SortieRecordViewModel sortieRecord in sorties)
 		{
-			SortieDetailViewModel? sortieDetail = ToolService.GenerateSortieDetailViewModel(sortieRecord);
+			SortieDetailViewModel? sortieDetail = ToolService.GenerateSortieDetailViewModel(Db, sortieRecord);
 			int? admiralLevel = await sortieRecord.Model.GetAdmiralLevel(Db, cancellationToken);
 
 			if (sortieDetail is null) continue;

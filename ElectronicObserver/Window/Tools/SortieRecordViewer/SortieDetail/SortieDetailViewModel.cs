@@ -2,14 +2,12 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text.Json;
-using System.Windows;
+using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
 using ElectronicObserver.Data;
-using ElectronicObserver.Database.KancolleApi;
-using ElectronicObserver.Database.Sortie;
+using ElectronicObserver.Database;
 using ElectronicObserver.KancolleApi.Types.ApiGetMember.ShipDeck;
 using ElectronicObserver.KancolleApi.Types.ApiReqBattleMidnight.Battle;
 using ElectronicObserver.KancolleApi.Types.ApiReqBattleMidnight.SpMidnight;
@@ -49,25 +47,30 @@ public partial class SortieDetailViewModel : WindowViewModelBase
 	private BattleFactory BattleFactory { get; }
 	private ToolService ToolService { get; }
 
+	private ElectronicObserverContext Db { get; }
 	private SortieRecordViewModel Sortie { get; }
 
 	public DateTime? StartTime { get; set; }
 	public int World { get; }
 	public int Map { get; }
 	private BattleFleets Fleets { get; set; }
+	private BattleFleets? FleetsAfterSortie { get; set; }
 
 	public ObservableCollection<SortieNode> Nodes { get; } = new();
 
-	public SortieDetailViewModel(SortieRecordViewModel sortie, BattleFleets fleets)
+	public SortieDetailViewModel(ElectronicObserverContext db, SortieRecordViewModel sortie, 
+		BattleFleets fleets, BattleFleets? fleetsAfterSortie)
 	{
 		SortieDetail = Ioc.Default.GetRequiredService<SortieDetailTranslationViewModel>();
 		BattleFactory = Ioc.Default.GetRequiredService<BattleFactory>();
 		ToolService = Ioc.Default.GetRequiredService<ToolService>();
 
+		Db = db;
 		Sortie = sortie;
 		World = sortie.World;
 		Map = sortie.Map;
 		Fleets = fleets;
+		FleetsAfterSortie = fleetsAfterSortie;
 	}
 
 	private List<(object Response, DateTime Time)> ApiResponseCache { get; } = new();
@@ -311,39 +314,15 @@ public partial class SortieDetailViewModel : WindowViewModelBase
 	};
 
 	[RelayCommand]
-	private void CopySortieData()
-	{
-		SortieRecord sortie = new()
+	private async Task CopySortieData()
 		{
-			Id = Sortie.Id,
-			World = Sortie.World,
-			Map = Sortie.Map,
-			ApiFiles = Sortie.Model.ApiFiles
-				.Where(f => f.ApiFileType is ApiFileType.Response || f.Name is "api_req_map/start")
-				.ToList(),
-			FleetData = Sortie.Model.FleetData,
-			MapData = Sortie.Model.MapData,
-		};
-
-		Clipboard.SetText(JsonSerializer.Serialize(sortie));
+		await ToolService.CopySortieDataToClipboard(Db, Sortie);
 	}
 
 	[RelayCommand]
 	private void LoadSortieData()
 	{
-		try
-		{
-			SortieRecord? sortie = JsonSerializer
-				.Deserialize<SortieRecord>(Clipboard.GetText());
-
-			if (sortie is null) return;
-
-			ToolService.OpenSortieDetail(new SortieRecordViewModel(sortie, DateTime.UtcNow));
-		}
-		catch (Exception e)
-		{
-			Logger.Add(2, "Failed to load sortie details: " + e.Message + e.StackTrace);
-		}
+		ToolService.LoadSortieDataFromClipboard(Db);
 	}
 
 	[RelayCommand]

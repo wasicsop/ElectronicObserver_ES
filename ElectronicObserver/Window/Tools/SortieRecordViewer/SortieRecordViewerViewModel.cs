@@ -197,7 +197,7 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 
 		await SelectedSortie.Model.EnsureApiFilesLoaded(Db);
 
-		ToolService.OpenSortieDetail(SelectedSortie);
+		ToolService.OpenSortieDetail(Db, SelectedSortie);
 	}
 
 	[RelayCommand]
@@ -208,51 +208,19 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 			await sortieRecord.Model.EnsureApiFilesLoaded(Db);
 		}
 
-		ToolService.CopySmokerDataCsv(SelectedSorties);
+		ToolService.CopySmokerDataCsv(Db, SelectedSorties);
 	}
 
 	[RelayCommand]
 	private async Task CopySortieData()
 	{
-		foreach (SortieRecordViewModel sortieRecord in SelectedSorties)
-		{
-			await sortieRecord.Model.EnsureApiFilesLoaded(Db);
-			sortieRecord.Model.CleanRequests();
-		}
-
-		List<SortieRecord> sorties = SelectedSorties
-			.OrderBy(s => s.SortieStart)
-			.Select(s => new SortieRecord
-			{
-				Id = s.Id,
-				World = s.World,
-				Map = s.Map,
-				ApiFiles = s.Model.ApiFiles
-					.Where(f => f.ApiFileType is ApiFileType.Response || f.Name is "api_req_map/start")
-					.ToList(),
-				FleetData = s.Model.FleetData,
-				MapData = s.Model.MapData,
-			}).ToList();
-
-		Clipboard.SetText(JsonSerializer.Serialize(sorties));
+		await ToolService.CopySortieDataToClipboard(Db, SelectedSorties);
 	}
 
 	[RelayCommand]
 	private void LoadSortieData()
 	{
-		try
-		{
-			List<SortieRecord>? sorties = JsonSerializer
-				.Deserialize<List<SortieRecord>>(Clipboard.GetText());
-
-			if (sorties is null) return;
-
-			ToolService.OpenSortieDetail(new SortieRecordViewModel(sorties.First(), DateTime.UtcNow));
-		}
-		catch (Exception e)
-		{
-			Logger.Add(2, $"Failed to load sortie details: {e.Message}{e.StackTrace}");
-		}
+		ToolService.LoadSortieDataFromClipboard(Db);
 	}
 
 	[RelayCommand]
