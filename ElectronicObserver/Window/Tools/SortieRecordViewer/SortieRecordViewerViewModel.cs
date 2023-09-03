@@ -293,6 +293,12 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 		await ExportCsv<RedNightShellingExportMap, NightShellingExportModel>(DataExportHelper.NightShelling, cancellationToken);
 	}
 
+	[RelayCommand(IncludeCancelCommand = true)]
+	private async Task ExportRedTorpedoBattle(CancellationToken cancellationToken)
+	{
+		await ExportCsv<RedTorpedoExportMap, TorpedoExportModel>(DataExportHelper.Torpedo, cancellationToken);
+	}
+
 	private async Task ExportCsv<TMap, TElement>(
 		Func<ObservableCollection<SortieRecordViewModel>, ExportProgressViewModel, CancellationToken, Task<List<TElement>>> processData,
 		CancellationToken cancellationToken = default

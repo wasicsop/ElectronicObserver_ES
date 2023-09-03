@@ -311,77 +311,94 @@ public class DataExportHelper
 		{
 			SortieDetailViewModel? sortieDetail = ToolService.GenerateSortieDetailViewModel(Db, sortieRecord);
 			int? admiralLevel = await sortieRecord.Model.GetAdmiralLevel(Db, cancellationToken);
+			ApiOffshoreSupply? offshoreSupply = null;
 
 			if (sortieDetail is null) continue;
 
-			foreach (BattleNode node in sortieDetail.Nodes.OfType<BattleNode>())
+			foreach (SortieNode node in sortieDetail.Nodes)
 			{
-				List<PhaseBase> phases = node.FirstBattle.Phases
-					.Concat(node.SecondBattle switch
-					{
-						null => Enumerable.Empty<PhaseBase>(),
-						_ => node.SecondBattle.Phases,
-					}).ToList();
+				offshoreSupply ??= node.ApiOffshoreSupply;
 
-				PhaseInitial? initial = phases.OfType<PhaseInitial>().FirstOrDefault();
-				PhaseSearching? searching = phases.OfType<PhaseSearching>().FirstOrDefault();
-				PhaseAirBattle? airBattle = phases.OfType<PhaseAirBattle>().FirstOrDefault();
-				IFleetData? playerFleet = initial?.FleetsAfterPhase?.Fleet;
+				if (node is not BattleNode battleNode) continue;
 
-				if (initial is null) continue;
-				if (searching is null) continue;
-				if (airBattle is null) continue;
-				if (playerFleet is null) continue;
-
-				foreach (PhaseTorpedo torpedo in phases.OfType<PhaseTorpedo>())
+				List<BattleData?> battles = new()
 				{
-					foreach (PhaseTorpedoAttackViewModel attackDisplay in torpedo.AttackDisplays)
+					battleNode.FirstBattle,
+					battleNode.SecondBattle,
+				};
+
+				BattleFleets fleetsAfterBattle = battleNode.LastBattle.FleetsAfterBattle;
+
+				foreach (BattleData? battle in battles)
+				{
+					if (battle is null) continue;
+
+					List<PhaseBase> phases = battle.Phases.ToList();
+
+					PhaseInitial? initial = phases.OfType<PhaseInitial>().FirstOrDefault();
+					PhaseSearching? searching = phases.OfType<PhaseSearching>().FirstOrDefault();
+					PhaseAirBattle? airBattle = phases.OfType<PhaseAirBattle>().FirstOrDefault();
+					BattleFleets? fleets = initial?.FleetsAfterPhase;
+					IFleetData? playerFleet = initial?.FleetsAfterPhase?.Fleet;
+
+					if (initial is null) continue;
+					if (searching is null) continue;
+					if (airBattle is null) continue;
+					if (fleets is null) continue;
+					if (playerFleet is null) continue;
+
+					foreach (PhaseTorpedo torpedo in phases.OfType<PhaseTorpedo>())
 					{
-						int attackerHpBeforeAttack = torpedo.FleetsBeforePhase!
-							.GetShip(attackDisplay.AttackerIndex)!
-							.HPCurrent;
-
-						int defenderHpBeforeAttacks = torpedo.FleetsBeforePhase!
-							.GetShip(attackDisplay.DefenderIndex)!
-							.HPCurrent;
-
-						IFleetData? attackerFleet = searching.FleetsBeforePhase?.GetFleet(attackDisplay.AttackerIndex);
-
-						if (attackerFleet is null) continue;
-
-						foreach (DayAttack attack in attackDisplay.Attacks)
+						foreach (PhaseTorpedoAttackViewModel attackDisplay in torpedo.AttackDisplays)
 						{
-							torpedoData.Add(new()
+							int attackerHpBeforeAttack = torpedo.FleetsBeforePhase!
+								.GetShip(attackDisplay.AttackerIndex)!
+								.HPCurrent;
+
+							int defenderHpBeforeAttacks = torpedo.FleetsBeforePhase!
+								.GetShip(attackDisplay.DefenderIndex)!
+								.HPCurrent;
+
+							IFleetData? attackerFleet = fleets.GetFleet(attackDisplay.AttackerIndex);
+							IShipData? attackerAfterBattle = fleetsAfterBattle.GetShip(attackDisplay.AttackerIndex);
+							IShipData? defenderAfterBattle = fleetsAfterBattle.GetShip(attackDisplay.DefenderIndex);
+
+							if (attackerFleet is null) continue;
+
+							foreach (DayAttack attack in attackDisplay.Attacks)
 							{
-								CommonData = MakeCommonData(torpedoData.Count + 1, node, IsFirstNode(sortieDetail.Nodes, node), sortieDetail, admiralLevel, airBattle, searching),
-								BattleType = CsvExportResources.TorpedoBattle,
-								PlayerFleetType = GetPlayerFleet(initial.FleetsAfterPhase!, attackDisplay.AttackerIndex, attackDisplay.DefenderIndex),
-								BattlePhase = torpedo.Phase switch
+								torpedoData.Add(new()
 								{
-									TorpedoPhase.Opening => "開幕",
-									TorpedoPhase.Closing => "閉幕",
-								},
-								AttackerSide = attackDisplay.AttackerIndex.FleetFlag switch
-								{
-									FleetFlag.Player => CsvExportResources.Player,
-									_ => CsvExportResources.Enemy,
-								},
-								AttackType = null,
-								DisplayedEquipment1 = null,
-								DisplayedEquipment2 = null,
-								DisplayedEquipment3 = null,
-								HitType = (int)attack.CriticalFlag,
-								Damage = attack.Damage,
-								Protected = attack.GuardsFlagship switch
-								{
-									true => 1,
-									_ => 0,
-								},
-								Attacker = MakeShip(attack.Attacker, attackDisplay.AttackerIndex, attackerHpBeforeAttack, null),
-								Defender = MakeShip(attack.Defender, attackDisplay.DefenderIndex, defenderHpBeforeAttacks, null),
-								FleetType = Constants.GetCombinedFleet(playerFleet.FleetType),
-								EnemyFleetType = GetEnemyFleetType(false),
-							});
+									CommonData = MakeCommonData(torpedoData.Count + 1, battleNode, IsFirstNode(sortieDetail.Nodes, node), sortieDetail, admiralLevel, airBattle, searching),
+									BattleType = CsvExportResources.TorpedoBattle,
+									PlayerFleetType = GetPlayerFleet(initial.FleetsAfterPhase!, attackDisplay.AttackerIndex, attackDisplay.DefenderIndex),
+									BattlePhase = torpedo.Phase switch
+									{
+										TorpedoPhase.Opening => "開幕",
+										TorpedoPhase.Closing => "閉幕",
+									},
+									AttackerSide = attackDisplay.AttackerIndex.FleetFlag switch
+									{
+										FleetFlag.Player => CsvExportResources.Player,
+										_ => CsvExportResources.Enemy,
+									},
+									AttackType = null,
+									DisplayedEquipment1 = null,
+									DisplayedEquipment2 = null,
+									DisplayedEquipment3 = null,
+									HitType = (int)attack.CriticalFlag,
+									Damage = attack.Damage,
+									Protected = attack.GuardsFlagship switch
+									{
+										true => 1,
+										_ => 0,
+									},
+									Attacker = MakeShip(attack.Attacker, attackDisplay.AttackerIndex, attackerHpBeforeAttack, attackerAfterBattle),
+									Defender = MakeShip(attack.Defender, attackDisplay.DefenderIndex, defenderHpBeforeAttacks, defenderAfterBattle),
+									FleetType = Constants.GetCombinedFleet(playerFleet.FleetType),
+									EnemyFleetType = GetEnemyFleetType(false),
+								});
+							}
 						}
 					}
 				}
