@@ -475,4 +475,7 @@
   <data name="RedShellingBattle" xml:space="preserve">
     <value>赤仮砲撃戦</value>
   </data>
+  <data name="RedNightBattle" xml:space="preserve">
+    <value>赤仮夜戦</value>
+  </data>
 </root>

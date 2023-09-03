@@ -180,6 +180,7 @@
 							<MenuItem Command="{Binding ExportAirBattleCommand}" Header="{x:Static translations:CsvExportResources.AirBattle}" />
 							<MenuItem Command="{Binding ExportAirBaseBattleCommand}" Header="{x:Static translations:CsvExportResources.AirBaseBattle}" />
 							<MenuItem Command="{Binding ExportRedDayShellingCommand}" Header="{x:Static translations:CsvExportResources.RedShellingBattle}" />
+							<MenuItem Command="{Binding ExportRedNightShellingCommand}" Header="{x:Static translations:CsvExportResources.RedNightBattle}" />
 						</MenuItem>
 					</ContextMenu>
 				</DataGrid.ContextMenu>
