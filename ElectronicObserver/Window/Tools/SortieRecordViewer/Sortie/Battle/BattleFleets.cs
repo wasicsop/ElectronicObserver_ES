@@ -19,7 +19,7 @@ public class BattleFleets
 	public IFleetData? EnemyFleet { get; set; }
 	public IFleetData? EnemyEscortFleet { get; set; }
 
-	private int CombinedFleetMainFleetShipCount => 6;
+	private static int CombinedFleetMainFleetShipCount => 6;
 
 	public BattleFleets(IFleetData fleet, IFleetData? escortFleet = null, List<IFleetData?>? fleets = null,
 		List<IBaseAirCorpsData>? airBases = null)
@@ -48,6 +48,15 @@ public class BattleFleets
 	{
 		null => null,
 		_ => ab.DeepClone(),
+	};
+
+	public IShipData? GetShipByDropId(int? dropId) => dropId switch
+	{
+		null => null,
+		int id => Fleet.MembersWithoutEscaped
+			?.FirstOrDefault(s => s?.MasterID == id)
+			?? EscortFleet?.MembersWithoutEscaped
+				?.FirstOrDefault(s => s?.MasterID == id),
 	};
 
 	public IShipData? GetShip(BattleIndex index) => index.FleetFlag switch

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using ElectronicObserver.Common.ContentDialogs.ExportProgress;
 using ElectronicObserver.Data;
 using ElectronicObserver.Database;
+using ElectronicObserver.KancolleApi.Types.ApiReqMap.Models;
 using ElectronicObserver.Services;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
@@ -49,11 +50,14 @@ public class DataExportHelper
 		{
 			SortieDetailViewModel? sortieDetail = ToolService.GenerateSortieDetailViewModel(Db, sortieRecord);
 			int? admiralLevel = await sortieRecord.Model.GetAdmiralLevel(Db, cancellationToken);
+			ApiOffshoreSupply? offshoreSupply = null;
 
 			if (sortieDetail is null) continue;
 
 			foreach (SortieNode node in sortieDetail.Nodes)
 			{
+				offshoreSupply ??= node.ApiOffshoreSupply;
+
 				if (node is not BattleNode battleNode) continue;
 
 				List<BattleData?> battles = new()
@@ -147,6 +151,7 @@ public class DataExportHelper
 									Defender = MakeShip(attack.Defender, attackDisplay.DefenderIndex, attackDisplay.DefenderHpBeforeAttacks[attackIndex], defenderAfterBattle),
 									FleetType = Constants.GetCombinedFleet(playerFleet.FleetType),
 									EnemyFleetType = GetEnemyFleetType(initial.IsEnemyCombinedFleet),
+									SortieItems = MakeSortieItems(battleNode, initial, searching, fleets, offshoreSupply),
 								});
 							}
 						}
@@ -888,6 +893,18 @@ public class DataExportHelper
 		true => CsvExportResources.CombinedFleet,
 		_ => ConstantsRes.NormalFleet,
 	};
+
+	private static SortieItemsExportModel MakeSortieItems(BattleNode node, PhaseInitial initial,
+		PhaseSearching searching, BattleFleets fleets, ApiOffshoreSupply? apiOffshoreSupply) => new()
+		{
+			SmokerFlag = node.Request?.ApiSmokeFlag,
+			SmokerType = searching.SmokeCount ?? 0,
+			SupplyShip = fleets.GetShipByDropId(apiOffshoreSupply?.ApiSupplyShip)?.Name,
+			GivenShip = fleets.GetShipByDropId(apiOffshoreSupply?.ApiGivenShip)?.Name,
+			UseNum = apiOffshoreSupply?.ApiUseNum,
+			ApiCombatRation = initial.ApiCombatRation,
+			ApiCombatRationCombined = initial.ApiCombatRationCombined,
+		};
 
 	private static int? NullForAbyssals(int? value, IShipData? ship) => ship?.MasterShip.IsAbyssalShip switch
 	{

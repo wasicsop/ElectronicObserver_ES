@@ -23,8 +23,8 @@ public class PhaseInitial : PhaseBase
 
 	public bool IsEnemyCombinedFleet { get; }
 	private bool IsBossDamaged { get; }
-	private List<int>? ApiCombatRation { get; }
-	private List<int>? ApiCombatRationCombined { get; }
+	public List<int>? ApiCombatRation { get; }
+	public List<int>? ApiCombatRationCombined { get; }
 	private List<int> FriendInitialHPs { get; }
 	private List<int> FriendMaxHPs { get; }
 

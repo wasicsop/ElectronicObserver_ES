@@ -11,6 +11,7 @@ namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Node;
 
 public class BattleNode : SortieNode
 {
+	public IBattleApiRequest? Request { get; set; }
 	public BattleData FirstBattle { get; }
 	public BattleData? SecondBattle { get; set; }
 	public BattleResult? BattleResult { get; private set; }
