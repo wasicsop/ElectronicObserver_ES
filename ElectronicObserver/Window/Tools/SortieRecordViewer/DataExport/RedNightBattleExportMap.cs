@@ -2,9 +2,9 @@
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.DataExport;
 
-public sealed class RedDayShellingExportMap : ClassMap<DayShellingExportModel>
+public sealed class RedNightBattleExportMap : ClassMap<NightBattleExportModel>
 {
-	public RedDayShellingExportMap()
+	public RedNightBattleExportMap()
 	{
 		References<CommonDataExportMap>(s => s.CommonData);
 		Map(m => m.BattleType).Name(CsvExportResources.BattleType);
@@ -15,7 +15,7 @@ public sealed class RedDayShellingExportMap : ClassMap<DayShellingExportModel>
 		Map(m => m.ShipName5).Name(CsvExportResources.ShipName5);
 		Map(m => m.ShipName6).Name(CsvExportResources.ShipName6);
 		Map(m => m.PlayerFleetType).Name(CsvExportResources.PlayerFleetType);
-		Map(m => m.BattlePhase).Name(CsvExportResources.BattlePhase);
+		Map(m => m.Start).Name(CsvExportResources.Start);
 		Map(m => m.AttackerSide).Name(CsvExportResources.AttackerSide);
 		Map(m => m.AttackType).Name(CsvExportResources.AttackType);
 		Map(m => m.AttackIndex).Name(CsvExportResources.AttackIndex);

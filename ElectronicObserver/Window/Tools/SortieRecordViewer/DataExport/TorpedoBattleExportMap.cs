@@ -2,9 +2,9 @@
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.DataExport;
 
-public sealed class TorpedoExportMap : ClassMap<TorpedoExportModel>
+public sealed class TorpedoBattleExportMap : ClassMap<TorpedoBattleExportModel>
 {
-	public TorpedoExportMap()
+	public TorpedoBattleExportMap()
 	{
 		References<CommonDataExportMap>(s => s.CommonData);
 		Map(m => m.BattleType).Name(CsvExportResources.BattleType);

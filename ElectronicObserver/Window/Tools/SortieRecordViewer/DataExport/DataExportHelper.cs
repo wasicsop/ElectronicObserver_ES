@@ -32,7 +32,7 @@ public class DataExportHelper
 		ToolService = toolService;
 	}
 
-	public async Task<List<DayShellingExportModel>> DayShelling(
+	public async Task<List<ShellingBattleExportModel>> ShellingBattle(
 		ObservableCollection<SortieRecordViewModel> sorties,
 		ExportProgressViewModel exportProgress,
 		CancellationToken cancellationToken = default)
@@ -44,7 +44,7 @@ public class DataExportHelper
 			await sortieRecord.Model.EnsureApiFilesLoaded(Db, cancellationToken);
 		}
 
-		List<DayShellingExportModel> dayShellingData = new();
+		List<ShellingBattleExportModel> dayShellingData = new();
 
 		foreach (SortieRecordViewModel sortieRecord in sorties)
 		{
@@ -165,7 +165,7 @@ public class DataExportHelper
 		return dayShellingData;
 	}
 
-	public async Task<List<NightShellingExportModel>> NightShelling(
+	public async Task<List<NightBattleExportModel>> NightBattle(
 	ObservableCollection<SortieRecordViewModel> sorties,
 	ExportProgressViewModel exportProgress,
 	CancellationToken cancellationToken = default)
@@ -177,7 +177,7 @@ public class DataExportHelper
 			await sortieRecord.Model.EnsureApiFilesLoaded(Db, cancellationToken);
 		}
 
-		List<NightShellingExportModel> nightShellingData = new();
+		List<NightBattleExportModel> nightShellingData = new();
 
 		foreach (SortieRecordViewModel sortieRecord in sorties)
 		{
@@ -293,7 +293,7 @@ public class DataExportHelper
 		return nightShellingData;
 	}
 
-	public async Task<List<TorpedoExportModel>> Torpedo(
+	public async Task<List<TorpedoBattleExportModel>> TorpedoBattle(
 		ObservableCollection<SortieRecordViewModel> sorties,
 		ExportProgressViewModel exportProgress,
 		CancellationToken cancellationToken = default)
@@ -305,7 +305,7 @@ public class DataExportHelper
 			await sortieRecord.Model.EnsureApiFilesLoaded(Db, cancellationToken);
 		}
 
-		List<TorpedoExportModel> torpedoData = new();
+		List<TorpedoBattleExportModel> torpedoData = new();
 
 		foreach (SortieRecordViewModel sortieRecord in sorties)
 		{

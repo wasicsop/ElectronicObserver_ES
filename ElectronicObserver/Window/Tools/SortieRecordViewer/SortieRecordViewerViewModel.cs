@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using CsvHelper;
@@ -252,55 +253,80 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 	}
 
 	[RelayCommand(IncludeCancelCommand = true)]
-	private async Task ExportDayShelling(CancellationToken cancellationToken)
+	private async Task ExportShellingBattle(CancellationToken cancellationToken)
 	{
-		await ExportCsv<DayShellingExportMap, DayShellingExportModel>(DataExportHelper.DayShelling, cancellationToken);
+		await ExportCsv<ShellingBattleExportMap, ShellingBattleExportModel>(
+			DataExportHelper.ShellingBattle,
+			ExportShellingBattleCancelCommand,
+			cancellationToken);
 	}
 
 	[RelayCommand(IncludeCancelCommand = true)]
-	private async Task ExportNightShelling(CancellationToken cancellationToken)
+	private async Task ExportNightBattle(CancellationToken cancellationToken)
 	{
-		await ExportCsv<NightShellingExportMap, NightShellingExportModel>(DataExportHelper.NightShelling, cancellationToken);
+		await ExportCsv<NightBattleExportMap, NightBattleExportModel>(
+			DataExportHelper.NightBattle,
+			ExportNightBattleCancelCommand,
+			cancellationToken);
 	}
 
 	[RelayCommand(IncludeCancelCommand = true)]
-	private async Task ExportTorpedo(CancellationToken cancellationToken)
+	private async Task ExportTorpedoBattle(CancellationToken cancellationToken)
 	{
-		await ExportCsv<TorpedoExportMap, TorpedoExportModel>(DataExportHelper.Torpedo, cancellationToken);
+		await ExportCsv<TorpedoBattleExportMap, TorpedoBattleExportModel>(
+			DataExportHelper.TorpedoBattle,
+			ExportTorpedoBattleCancelCommand,
+			cancellationToken);
 	}
 
 	[RelayCommand(IncludeCancelCommand = true)]
 	private async Task ExportAirBattle(CancellationToken cancellationToken)
 	{
-		await ExportCsv<AirBattleExportMap, AirBattleExportModel>(DataExportHelper.AirBattle, cancellationToken);
+		await ExportCsv<AirBattleExportMap, AirBattleExportModel>(
+			DataExportHelper.AirBattle,
+			ExportAirBattleCancelCommand,
+			cancellationToken);
 	}
 
 	[RelayCommand(IncludeCancelCommand = true)]
 	private async Task ExportAirBaseBattle(CancellationToken cancellationToken)
 	{
-		await ExportCsv<AirBaseBattleExportMap, AirBaseBattleExportModel>(DataExportHelper.AirBaseBattle, cancellationToken);
+		await ExportCsv<AirBaseBattleExportMap, AirBaseBattleExportModel>(
+			DataExportHelper.AirBaseBattle,
+			ExportAirBaseBattleCancelCommand,
+			cancellationToken);
 	}
 
 	[RelayCommand(IncludeCancelCommand = true)]
-	private async Task ExportRedDayShelling(CancellationToken cancellationToken)
+	private async Task ExportRedShellingBattle(CancellationToken cancellationToken)
 	{
-		await ExportCsv<RedDayShellingExportMap, DayShellingExportModel>(DataExportHelper.DayShelling, cancellationToken);
+		await ExportCsv<RedShellingBattleExportMap, ShellingBattleExportModel>(
+			DataExportHelper.ShellingBattle,
+			ExportRedShellingBattleCancelCommand,
+			cancellationToken);
 	}
 
 	[RelayCommand(IncludeCancelCommand = true)]
-	private async Task ExportRedNightShelling(CancellationToken cancellationToken)
+	private async Task ExportRedNightBattle(CancellationToken cancellationToken)
 	{
-		await ExportCsv<RedNightShellingExportMap, NightShellingExportModel>(DataExportHelper.NightShelling, cancellationToken);
+		await ExportCsv<RedNightBattleExportMap, NightBattleExportModel>(
+			DataExportHelper.NightBattle,
+			ExportRedNightBattleCancelCommand,
+			cancellationToken);
 	}
 
 	[RelayCommand(IncludeCancelCommand = true)]
 	private async Task ExportRedTorpedoBattle(CancellationToken cancellationToken)
 	{
-		await ExportCsv<RedTorpedoExportMap, TorpedoExportModel>(DataExportHelper.Torpedo, cancellationToken);
+		await ExportCsv<RedTorpedoBattleExportMap, TorpedoBattleExportModel>(
+			DataExportHelper.TorpedoBattle,
+			ExportRedTorpedoBattleCancelCommand,
+			cancellationToken);
 	}
 
 	private async Task ExportCsv<TMap, TElement>(
 		Func<ObservableCollection<SortieRecordViewModel>, ExportProgressViewModel, CancellationToken, Task<List<TElement>>> processData,
+		ICommand cancellationCommand,
 		CancellationToken cancellationToken = default
 	) where TMap : ClassMap<TElement>
 	{
@@ -333,7 +359,7 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 				}
 				else
 				{
-					ExportDayShellingCancelCommand.Execute(null);
+					cancellationCommand.Execute(null);
 				}
 
 				ExportProgress = null;
