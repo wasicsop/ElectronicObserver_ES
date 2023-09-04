@@ -166,9 +166,9 @@ public class DataExportHelper
 	}
 
 	public async Task<List<NightBattleExportModel>> NightBattle(
-	ObservableCollection<SortieRecordViewModel> sorties,
-	ExportProgressViewModel exportProgress,
-	CancellationToken cancellationToken = default)
+		ObservableCollection<SortieRecordViewModel> sorties,
+		ExportProgressViewModel exportProgress,
+		CancellationToken cancellationToken = default)
 	{
 		exportProgress.Total = sorties.Count;
 
@@ -969,6 +969,7 @@ public class DataExportHelper
 		DayAttackKind.SpecialYamato3Ships;
 
 	private static bool IsSpecialAttack(NightAttackKind nightAttack) => nightAttack is
+		NightAttackKind.CutinZuiun or
 		NightAttackKind.SpecialNelson or
 		NightAttackKind.SpecialNagato or
 		NightAttackKind.SpecialMutsu or

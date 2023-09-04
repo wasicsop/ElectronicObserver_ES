@@ -303,6 +303,7 @@ public class CsvExportTests
 	[Theory(DisplayName = "Red shelling battle - 赤仮砲撃戦")]
 	[InlineData("赤仮砲撃戦1.csv", "赤仮砲撃戦1.json")]
 	[InlineData("赤仮砲撃戦2.csv", "赤仮砲撃戦2.json")]
+	[InlineData("赤仮砲撃戦3.csv", "赤仮砲撃戦3.json")]
 	public async Task CsvExportTest6(string logbookCsvFileName, string eoJsonFileName)
 	{
 		IReadOnlyList<string> logbookLines = await LoadLogbookLines(logbookCsvFileName);
@@ -314,6 +315,7 @@ public class CsvExportTests
 
 	[Theory(DisplayName = "Red night battle - 赤仮夜戦")]
 	[InlineData("赤仮夜戦1.csv", "赤仮夜戦1.json")]
+	[InlineData("赤仮夜戦2.csv", "赤仮夜戦2.json")]
 	public async Task CsvExportTest7(string logbookCsvFileName, string eoJsonFileName)
 	{
 		IReadOnlyList<string> logbookLines = await LoadLogbookLines(logbookCsvFileName);
