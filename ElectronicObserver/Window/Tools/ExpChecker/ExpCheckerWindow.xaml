@@ -93,6 +93,14 @@
 						Value="{Binding ASWModernization}"
 						/>
 
+					<TextBlock Text="{Binding ExpChecker.LuckOffset}" ToolTip="{Binding ExpChecker.LuckOffsetToolTip}" />
+					<ui:NumberBox
+						Maximum="{Binding MaxLuckModernization}"
+						Minimum="0"
+						SpinButtonPlacementMode="Inline"
+						Value="{Binding LuckModernization}"
+						/>
+
 					<TextBlock Text="{Binding ExpChecker.SortieExp}" />
 					<ui:NumberBox SpinButtonPlacementMode="Inline" Value="{Binding SortieExp}" />
 				</StackPanel>

@@ -20,6 +20,9 @@ public class ExpCheckerTranslationViewModel : TranslationBaseViewModel
 	public string AswOffset => ExpCheckerResources.AswOffset;
 	public string ASWModernizationToolTip => ExpCheckerResources.ASWModernizationToolTip;
 
+	public string LuckOffset => ExpCheckerResources.LuckOffset;
+	public string LuckOffsetToolTip => ExpCheckerResources.LuckOffsetToolTip;
+
 	public string ExpUnitToolTip => ExpCheckerResources.ExpUnitToolTip;
 	public string GroupExp => ExpCheckerResources.GroupExp;
 

@@ -29,9 +29,10 @@ public static class ShipDataExtensions
 	/// </summary>
 	/// <param name="ship">Ship.</param>
 	/// <param name="level">Custom level override, ship.Level will be used by default.</param>
+	/// <param name="luck">Custom luck override, ship.LuckTotal will be used by default.</param>
 	/// <returns>Ship accuracy.</returns>
-	public static double Accuracy(this IShipData ship, int? level = null) =>
-		2 * Math.Sqrt(level ?? ship.Level) + 1.5 * Math.Sqrt(ship.LuckTotal);
+	public static double Accuracy(this IShipData ship, int? level = null, int? luck = null) =>
+		2 * Math.Sqrt(level ?? ship.Level) + 1.5 * Math.Sqrt(luck ?? ship.LuckTotal);
 
 	public static int NextAccuracyLevel(this IShipData ship, int? currentAccuracy = null)
 	{

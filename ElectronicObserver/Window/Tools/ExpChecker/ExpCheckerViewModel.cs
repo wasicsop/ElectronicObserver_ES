@@ -33,6 +33,9 @@ public class ExpCheckerViewModel : WindowViewModelBase
 	public int ASWModernization { get; set; }
 	public bool ShowAllLevel { get; set; }
 
+	public int LuckModernization { get; set; }
+	public int MaxLuckModernization { get; set; }
+
 	public string? WarningText { get; set; }
 
 	public string? GroupExpText { get; set; }
@@ -69,6 +72,8 @@ public class ExpCheckerViewModel : WindowViewModelBase
 			if (SelectedShip is null) return;
 
 			ASWModernization = SelectedShip.ASWModernized;
+			LuckModernization = SelectedShip.LuckModernized;
+			MaxLuckModernization = SelectedShip.MasterShip.LuckMax - SelectedShip.MasterShip.LuckMin;
 
 			UpdateLevelView();
 		};
@@ -90,6 +95,13 @@ public class ExpCheckerViewModel : WindowViewModelBase
 		PropertyChanged += (sender, args) =>
 		{
 			if (args.PropertyName is not nameof(ASWModernization)) return;
+
+			UpdateLevelView();
+		};
+
+		PropertyChanged += (sender, args) =>
+		{
+			if (args.PropertyName is not nameof(LuckModernization)) return;
 
 			UpdateLevelView();
 		};
@@ -329,7 +341,9 @@ public class ExpCheckerViewModel : WindowViewModelBase
 					_ => string.Join("\n", equipmentPairs),
 				},
 				IsRemodelLevel = remodelLevelTable.Contains(lv),
-				ShipAccuracy = selectedShip.Accuracy(lv).RoundDown(2),
+				ShipAccuracy = selectedShip
+					.Accuracy(lv, selectedShip.MasterShip.LuckMin + LuckModernization)
+					.RoundDown(2),
 			};
 
 			rows[lv - minlv] = row;
