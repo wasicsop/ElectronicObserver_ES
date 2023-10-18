@@ -26,6 +26,7 @@ public class ExpCheckerTranslationViewModel : TranslationBaseViewModel
 	public string ColumnSortieCount => ExpCheckerResources.ColumnSortieCount;
 	public string ASW => ExpCheckerResources.ASW;
 	public string ColumnEquipment => ExpCheckerResources.ColumnEquipment;
+	public string Accuracy => ExpCheckerResources.Accuracy;
 
 	public string AswUnknown => ExpCheckerResources.AswUnknown;
 	public string AswApproximated => ExpCheckerResources.AswApproximated;

@@ -24,8 +24,14 @@ public static class ShipDataExtensions
 	/// </summary>
 	public static bool IsAbyssalShip(this IShipDataMaster ship) => ship.ShipID > 1500;
 
-	public static double Accuracy(this IShipData ship) =>
-		2 * Math.Sqrt(ship.Level) + 1.5 * Math.Sqrt(ship.LuckTotal);
+	/// <summary>
+	/// Calculates the ship accuracy.
+	/// </summary>
+	/// <param name="ship">Ship.</param>
+	/// <param name="level">Custom level override, ship.Level will be used by default.</param>
+	/// <returns>Ship accuracy.</returns>
+	public static double Accuracy(this IShipData ship, int? level = null) =>
+		2 * Math.Sqrt(level ?? ship.Level) + 1.5 * Math.Sqrt(ship.LuckTotal);
 
 	public static int NextAccuracyLevel(this IShipData ship, int? currentAccuracy = null)
 	{

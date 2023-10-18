@@ -184,4 +184,7 @@ Please return to the home port page.</value>
   <data name="Modernization" xml:space="preserve">
     <value>Modernization</value>
   </data>
+  <data name="Accuracy" xml:space="preserve">
+    <value>Accuracy</value>
+  </data>
 </root>

@@ -321,14 +321,15 @@ public class ExpCheckerViewModel : WindowViewModelBase
 				EquipmentList = !aswdata.IsAvailable ? "-" : equipmentPairs switch
 				{
 					null => "-",
-					_ => string.Join(", ", equipmentPairs)
+					_ => string.Join(", ", equipmentPairs),
 				},
 				ToolTip = equipmentPairs switch
 				{
 					null => "-",
-					_ => string.Join("\n", equipmentPairs)
+					_ => string.Join("\n", equipmentPairs),
 				},
 				IsRemodelLevel = remodelLevelTable.Contains(lv),
+				ShipAccuracy = selectedShip.Accuracy(lv).RoundDown(2),
 			};
 
 			rows[lv - minlv] = row;

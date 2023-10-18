@@ -162,6 +162,7 @@
 							</Style>
 						</DataGridTextColumn.CellStyle>
 					</DataGridTextColumn>
+					<DataGridTextColumn Binding="{Binding ShipAccuracy, StringFormat={}{0:0.##}}" Header="{Binding DataContext.ExpChecker.Accuracy, Source={StaticResource Proxy}}" />
 				</DataGrid.Columns>
 			</DataGrid>
 		</GroupBox>
