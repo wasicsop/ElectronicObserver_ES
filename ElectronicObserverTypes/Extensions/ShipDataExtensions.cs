@@ -368,7 +368,8 @@ public static class ShipDataExtensions
 		ShipId.Saratoga or
 		ShipId.TaiyouKaiNi or
 		ShipId.ShinyouKaiNi or
-		ShipId.UnyouKaiNi;
+		ShipId.UnyouKaiNi or 
+		ShipId.KagaKaiNiGo;
 
 	public static bool IsArkRoyal(this IShipData ship) => ship.MasterShip.ShipId switch
 	{
