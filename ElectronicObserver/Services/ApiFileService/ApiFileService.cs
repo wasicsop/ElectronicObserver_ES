@@ -16,6 +16,7 @@ using ElectronicObserver.KancolleApi.Types;
 using ElectronicObserver.KancolleApi.Types.ApiPort.Port;
 using ElectronicObserver.KancolleApi.Types.ApiReqMap.Start;
 using ElectronicObserver.KancolleApi.Types.ApiReqMission.Result;
+using ElectronicObserver.Utility;
 using ElectronicObserverTypes;
 using Microsoft.EntityFrameworkCore;
 
@@ -63,8 +64,15 @@ public class ApiFileService : ObservableObject
 		// basically while (true)
 		while (await ApiProcessingChannel.Reader.WaitToReadAsync())
 		{
-			ApiFileData apiFile = await ApiProcessingChannel.Reader.ReadAsync();
-			await SaveApiData(apiFile.ApiName, apiFile.RequestBody, apiFile.ResponseBody);
+			try
+			{
+				ApiFileData apiFile = await ApiProcessingChannel.Reader.ReadAsync();
+				await SaveApiData(apiFile.ApiName, apiFile.RequestBody, apiFile.ResponseBody);
+			}
+			catch (Exception e)
+			{
+				Logger.Add(3, $"Api file saving error: {e.GetBaseException().Message} {e.StackTrace}");
+			}
 		}
 	}
 
@@ -100,10 +108,10 @@ public class ApiFileService : ObservableObject
 		await db.ApiFiles.AddAsync(requestFile);
 		await db.ApiFiles.AddAsync(responseFile);
 
-		await db.SaveChangesAsync();
+		await ProcessSortieData(db, requestFile, responseFile);
+		await ProcessExpeditionData(db, requestFile, responseFile);
 
-		await ProcessSortieData(requestFile, responseFile);
-		await ProcessExpeditionData(requestFile, responseFile);
+		await db.SaveChangesAsync();
 	}
 
 	public async Task Add(string apiName, string requestBody, string responseBody)
@@ -166,8 +174,14 @@ public class ApiFileService : ObservableObject
 		return responseBody;
 	}
 
-	private async Task ProcessSortieData(ApiFile requestFile, ApiFile responseFile)
+	private async Task ProcessSortieData(ElectronicObserverContext db, ApiFile requestFile, ApiFile responseFile)
 	{
+		if (requestFile.Name is "api_req_map/start")
+		{
+			await CreateNewSortie(db, requestFile, responseFile);
+			return;
+		}
+
 		if (requestFile.Name is "api_port/port")
 		{
 			if (CurrentSortieId is int sortieId)
@@ -179,69 +193,11 @@ public class ApiFileService : ObservableObject
 			return;
 		}
 
-		await using ElectronicObserverContext db = new();
 		SortieRecord? sortieRecord = CurrentSortieId switch
 		{
 			int id => await db.Sorties.FirstOrDefaultAsync(s => s.Id == id),
 			_ => null,
 		};
-
-		if (requestFile.Name is "api_req_map/start")
-		{
-			if (sortieRecord is not null)
-			{
-				// todo: log bug - SortieRecord should always be null before a sortie starts
-			}
-
-			ApiReqMapStartRequest? request = null;
-			ApiResponse<ApiReqMapStartResponse>? response = null;
-
-			try
-			{
-				request = JsonSerializer.Deserialize<ApiReqMapStartRequest>(requestFile.Content);
-				response = JsonSerializer.Deserialize<ApiResponse<ApiReqMapStartResponse>>(responseFile.Content);
-			}
-			catch
-			{
-				// todo: report failed parsing
-			}
-
-			if (request is null) return;
-			if (response is null) return;
-			if (!int.TryParse(request.ApiDeckId, out int fleetId)) return;
-
-			MapInfoData? map = KcDatabase.MapInfo.Values
-				.Where(m => m.MapAreaID == response.ApiData.ApiMapareaId)
-				.FirstOrDefault(m => m.MapInfoID == response.ApiData.ApiMapinfoNo);
-
-			if (map is null) return;
-
-			SortieMapData mapData = new()
-			{
-				RequiredDefeatedCount = map.RequiredDefeatedCount,
-				MapHPMax = map.MapHPMax,
-				MapHPCurrent = map.MapHPCurrent,
-			};
-
-			int nodeSupportFleetId = KcDatabase.Fleet.NodeSupportFleetId(map.MapAreaID) ?? 0;
-			int bossSupportFleetId = KcDatabase.Fleet.BossSupportFleetId(map.MapAreaID) ?? 0;
-
-			SortieFleetData fleetData = MakeSortieFleet(KcDatabase, fleetId, nodeSupportFleetId,
-				bossSupportFleetId, map);
-
-			sortieRecord = new()
-			{
-				World = response.ApiData.ApiMapareaId,
-				Map = response.ApiData.ApiMapinfoNo,
-				FleetData = fleetData,
-				MapData = mapData,
-			};
-
-			await db.Sorties.AddAsync(sortieRecord);
-			await db.SaveChangesAsync();
-
-			CurrentSortieId = sortieRecord.Id;
-		}
 
 		if (sortieRecord is null)
 		{
@@ -258,7 +214,67 @@ public class ApiFileService : ObservableObject
 		await db.SaveChangesAsync();
 	}
 
-	private async Task ProcessExpeditionData(ApiFile requestFile, ApiFile responseFile)
+	private async Task CreateNewSortie(ElectronicObserverContext db, ApiFile requestFile, ApiFile responseFile)
+	{
+		if (CurrentSortieId is not null)
+		{
+			// todo: log bug - CurrentSortieId should always be null before a sortie starts
+		}
+
+		ApiReqMapStartRequest? request = null;
+		ApiResponse<ApiReqMapStartResponse>? response = null;
+
+		try
+		{
+			request = JsonSerializer.Deserialize<ApiReqMapStartRequest>(requestFile.Content);
+			response = JsonSerializer.Deserialize<ApiResponse<ApiReqMapStartResponse>>(responseFile.Content);
+		}
+		catch
+		{
+			// todo: report failed parsing
+		}
+
+		if (request is null) return;
+		if (response is null) return;
+		if (!int.TryParse(request.ApiDeckId, out int fleetId)) return;
+
+		MapInfoData? map = KcDatabase.MapInfo.Values
+			.Where(m => m.MapAreaID == response.ApiData.ApiMapareaId)
+			.FirstOrDefault(m => m.MapInfoID == response.ApiData.ApiMapinfoNo);
+
+		if (map is null) return;
+
+		SortieMapData mapData = new()
+		{
+			RequiredDefeatedCount = map.RequiredDefeatedCount,
+			MapHPMax = map.MapHPMax,
+			MapHPCurrent = map.MapHPCurrent,
+		};
+
+		int nodeSupportFleetId = KcDatabase.Fleet.NodeSupportFleetId(map.MapAreaID) ?? 0;
+		int bossSupportFleetId = KcDatabase.Fleet.BossSupportFleetId(map.MapAreaID) ?? 0;
+
+		SortieFleetData fleetData = MakeSortieFleet(KcDatabase, fleetId, nodeSupportFleetId,
+			bossSupportFleetId, map);
+
+		SortieRecord sortieRecord = new()
+		{
+			World = response.ApiData.ApiMapareaId,
+			Map = response.ApiData.ApiMapinfoNo,
+			FleetData = fleetData,
+			MapData = mapData,
+		};
+
+		sortieRecord.ApiFiles.Add(requestFile);
+		sortieRecord.ApiFiles.Add(responseFile);
+
+		await db.Sorties.AddAsync(sortieRecord);
+		await db.SaveChangesAsync();
+
+		CurrentSortieId = sortieRecord.Id;
+	}
+
+	private async Task ProcessExpeditionData(ElectronicObserverContext db, ApiFile requestFile, ApiFile responseFile)
 	{
 		if (requestFile.Name is not "api_req_mission/result") return;
 
@@ -279,7 +295,6 @@ public class ApiFileService : ObservableObject
 		if (response is null) return;
 		if (!int.TryParse(request.ApiDeckId, out int fleetId)) return;
 
-		await using ElectronicObserverContext db = new();
 		IFleetData f = KCDatabase.Instance.Fleet[fleetId];
 
 		SortieFleet fleet = new()
