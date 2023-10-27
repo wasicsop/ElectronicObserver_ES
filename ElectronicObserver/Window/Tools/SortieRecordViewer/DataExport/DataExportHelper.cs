@@ -280,6 +280,8 @@ public class DataExportHelper
 									Defender = MakeShip(attack.Defender, attackDisplay.DefenderIndex, attackDisplay.DefenderHpBeforeAttacks[attackIndex], defenderAfterBattle),
 									FleetType = Constants.GetCombinedFleet(playerFleet.FleetType),
 									EnemyFleetType = GetEnemyFleetType(fleets.EnemyEscortFleet is not null),
+									PlayerSearchlight = SearchlightIndex(initial.SearchlightIndexFriend),
+									EnemySearchlight = SearchlightIndex(initial.SearchlightIndexEnemy),
 								});
 							}
 						}
@@ -867,6 +869,12 @@ public class DataExportHelper
 	}
 
 	private static int? FlareIndex(int index) => index switch
+	{
+		-1 => null,
+		_ => index + 1,
+	};
+
+	private static int? SearchlightIndex(int index) => index switch
 	{
 		-1 => null,
 		_ => index + 1,

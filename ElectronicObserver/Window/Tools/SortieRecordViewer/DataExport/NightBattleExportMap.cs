@@ -29,5 +29,7 @@ public sealed class NightBattleExportMap : ClassMap<NightBattleExportModel>
 		References<ShipExportMap>(s => s.Defender, CsvExportResources.PrefixDefender).Prefix(CsvExportResources.PrefixDefender);
 		Map(m => m.FleetType).Name(CsvExportResources.FleetType);
 		Map(m => m.EnemyFleetType).Name(CsvExportResources.EnemyFleetType);
+		Map(m => m.PlayerSearchlight).Name(CsvExportResources.PlayerSearchlight);
+		Map(m => m.EnemySearchlight).Name(CsvExportResources.EnemySearchlight);
 	}
 }
