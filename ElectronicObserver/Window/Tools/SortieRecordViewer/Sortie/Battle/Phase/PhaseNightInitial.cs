@@ -47,7 +47,7 @@ public class PhaseNightInitial : PhaseBase
 		FlareEnemy = GetFlareEnemy(fleets.EnemyEscortFleet is not null, battle.ApiFlarePos[1]);
 
 		(SearchlightFriend, SearchlightIndexFriend) = GetSearchlightShip(fleets.EscortFleet ?? fleets.Fleet);
-		(SearchlightEnemy, SearchlightIndexEnemy) = GetSearchlightShip(fleets.EnemyEscortFleet ?? fleets.EnemyFleet);
+		(SearchlightEnemy, SearchlightIndexEnemy) = GetSearchlightShip(NightBattleEnemyFleet(fleets));
 
 		if (SearchlightIndexFriend >= 0 && fleets.EscortFleet is not null)
 		{
@@ -77,7 +77,7 @@ public class PhaseNightInitial : PhaseBase
 		FlareEnemy = GetFlareEnemy(IsEnemyEscort, battle.ApiFlarePos[1]);
 
 		(SearchlightFriend, SearchlightIndexFriend) = GetSearchlightShip(fleets.EscortFleet);
-		(SearchlightEnemy, SearchlightIndexEnemy) = GetSearchlightShip(fleets.EnemyEscortFleet);
+		(SearchlightEnemy, SearchlightIndexEnemy) = GetSearchlightShip(NightBattleEnemyFleet(fleets));
 
 		if (SearchlightIndexFriend >= 0)
 		{
@@ -88,6 +88,39 @@ public class PhaseNightInitial : PhaseBase
 		{
 			SearchlightIndexEnemy += 6;
 		}
+	}
+
+	private static IFleetData? NightBattleEnemyFleet(BattleFleets fleets)
+	{
+		// todo: test case 5-3 (night battle only): EnemyFleet is null
+		// I'm not sure why it's null but I think it shouldn't be
+		if (fleets.EnemyFleet is null) return null;
+		if (fleets.EnemyEscortFleet is null) return fleets.EnemyFleet;
+
+		int score = 0;
+
+		foreach ((IShipData? ship, int i) in fleets.EnemyEscortFleet.MembersInstance.Select((s, i) => (s, i)))
+		{
+			if (ship is null) continue;
+
+			if (i == 0 && ship.HPRate > 0)
+			{
+				score += 10;
+			}
+
+			score += ship.HPRate switch
+			{
+				> 0.5 => 10,
+				> 0.25 => 7,
+				_ => 0,
+			};
+		}
+
+		return score switch
+		{
+			< 30 => fleets.EnemyFleet,
+			_ => fleets.EnemyEscortFleet,
+		};
 	}
 
 	private IEquipmentDataMaster? GetTouchAircraft(object value)
@@ -113,7 +146,7 @@ public class PhaseNightInitial : PhaseBase
 		_ => fleet.MembersWithoutEscaped?
 			.Select((s, i) => (Ship: s, Index: i))
 			.Where(t => t.Ship?.HPCurrent > 1)
-			.FirstOrDefault(t => t.Ship!.HasSearchlight()) ?? (null, -1),
+			.FirstOrDefault(t => t.Ship!.HasSearchlight(), (null, -1)) ?? (null, -1),
 	};
 
 	private IShipData? GetFlareFriend(bool isEscort, int index) => (isEscort, index) switch
