@@ -280,8 +280,10 @@ public class DataExportHelper
 									Defender = MakeShip(attack.Defender, attackDisplay.DefenderIndex, attackDisplay.DefenderHpBeforeAttacks[attackIndex], defenderAfterBattle),
 									FleetType = Constants.GetCombinedFleet(playerFleet.FleetType),
 									EnemyFleetType = GetEnemyFleetType(fleets.EnemyEscortFleet is not null),
-									PlayerSearchlight = SearchlightIndex(initial.SearchlightIndexFriend),
-									EnemySearchlight = SearchlightIndex(initial.SearchlightIndexEnemy),
+									PlayerSearchlightShipIndex = SearchlightIndex(initial.SearchlightIndexFriend),
+									PlayerSearchlightEquipmentId = (int?)initial.SearchlightEquipmentFriend?.EquipmentId,
+									EnemySearchlightShipIndex = SearchlightIndex(initial.SearchlightIndexEnemy),
+									EnemySearchlightEquipmentId = (int?)initial.SearchlightEquipmentEnemy?.EquipmentId,
 								});
 							}
 						}

@@ -30,6 +30,8 @@ public class PhaseNightInitial : PhaseBase
 	public int SearchlightIndexEnemy { get; }
 	private IShipData? SearchlightFriend { get; }
 	private IShipData? SearchlightEnemy { get; }
+	public IEquipmentData? SearchlightEquipmentFriend => GetSearchlight(SearchlightFriend);
+	public IEquipmentData? SearchlightEquipmentEnemy => GetSearchlight(SearchlightEnemy);
 
 	public string Display => GetDisplay();
 
@@ -138,6 +140,11 @@ public class PhaseNightInitial : PhaseBase
 			_ => null,
 		};
 	}
+
+	private IEquipmentData? GetSearchlight(IShipData? ship) => ship?.AllSlotInstance
+		.FirstOrDefault(e => e?.MasterEquipment.CategoryType is EquipmentTypes.SearchlightLarge)
+		?? ship?.AllSlotInstance
+			.FirstOrDefault(e => e?.MasterEquipment.CategoryType is EquipmentTypes.Searchlight);
 
 	private static (IShipData? Ship, int Index) GetSearchlightShip(IFleetData? fleet)
 	{

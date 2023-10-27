@@ -481,10 +481,16 @@
   <data name="RedTorpedoBattle" xml:space="preserve">
     <value>赤仮雷撃戦</value>
   </data>
-  <data name="PlayerSearchlight" xml:space="preserve">
-    <value>自探照灯</value>
+  <data name="PlayerSearchlightShipIndex" xml:space="preserve">
+    <value>自探照灯.位置</value>
   </data>
-  <data name="EnemySearchlight" xml:space="preserve">
-    <value>敵探照灯</value>
+  <data name="EnemySearchlightShipIndex" xml:space="preserve">
+    <value>敵探照灯.位置</value>
+  </data>
+  <data name="PlayerSearchlightEquipmentId" xml:space="preserve">
+    <value>自探照灯.装備</value>
+  </data>
+  <data name="EnemySearchlightEquipmentId" xml:space="preserve">
+    <value>敵探照灯.装備</value>
   </data>
 </root>
