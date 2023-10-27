@@ -139,15 +139,20 @@ public class PhaseNightInitial : PhaseBase
 		};
 	}
 
-	private static (IShipData? Ship, int Index) GetSearchlightShip(IFleetData? fleet) => fleet switch
+	private static (IShipData? Ship, int Index) GetSearchlightShip(IFleetData? fleet)
 	{
-		null => (null, -1),
+		if (fleet is null) return (null, -1);
 
-		_ => fleet.MembersWithoutEscaped?
+		List<(IShipData? Ship, int Index)>? searchlightCandidates = fleet.MembersWithoutEscaped?
 			.Select((s, i) => (Ship: s, Index: i))
 			.Where(t => t.Ship?.HPCurrent > 1)
-			.FirstOrDefault(t => t.Ship!.HasSearchlight(), (null, -1)) ?? (null, -1),
-	};
+			.ToList()!;
+
+		if (searchlightCandidates is null) return (null, -1);
+
+		return searchlightCandidates.FirstOrDefault(t => t.Ship!.HasLargeSearchlight(),
+			searchlightCandidates.FirstOrDefault(t => t.Ship!.HasSearchlight(), (null, -1)));
+	}
 
 	private IShipData? GetFlareFriend(bool isEscort, int index) => (isEscort, index) switch
 	{
