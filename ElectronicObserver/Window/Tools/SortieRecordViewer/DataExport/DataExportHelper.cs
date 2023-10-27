@@ -279,7 +279,7 @@ public class DataExportHelper
 									Attacker = MakeShip(attack.Attacker, attackDisplay.AttackerIndex, attackDisplay.AttackerHpBeforeAttack, attackerAfterBattle),
 									Defender = MakeShip(attack.Defender, attackDisplay.DefenderIndex, attackDisplay.DefenderHpBeforeAttacks[attackIndex], defenderAfterBattle),
 									FleetType = Constants.GetCombinedFleet(playerFleet.FleetType),
-									EnemyFleetType = GetEnemyFleetType(false),
+									EnemyFleetType = GetEnemyFleetType(fleets.EnemyEscortFleet is not null),
 								});
 							}
 						}
@@ -396,7 +396,7 @@ public class DataExportHelper
 									Attacker = MakeShip(attack.Attacker, attackDisplay.AttackerIndex, attackerHpBeforeAttack, attackerAfterBattle),
 									Defender = MakeShip(attack.Defender, attackDisplay.DefenderIndex, defenderHpBeforeAttacks, defenderAfterBattle),
 									FleetType = Constants.GetCombinedFleet(playerFleet.FleetType),
-									EnemyFleetType = GetEnemyFleetType(false),
+									EnemyFleetType = GetEnemyFleetType(fleets.EnemyEscortFleet is not null),
 								});
 							}
 						}
