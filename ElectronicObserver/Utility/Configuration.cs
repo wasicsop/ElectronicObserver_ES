@@ -826,6 +826,8 @@ public sealed class Configuration
 			/// </summary>
 			public bool CanCloseFloatWindowInLock { get; set; }
 
+			public string? CsvExportPath { get; set; }
+
 			public ConfigLife()
 			{
 				ConfirmOnClosing = true;

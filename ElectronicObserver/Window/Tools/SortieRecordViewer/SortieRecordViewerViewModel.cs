@@ -332,9 +332,11 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 	{
 		await App.Current!.Dispatcher.BeginInvoke(async () =>
 		{
-			string? path = FileService.ExportCsv();
+			string? path = FileService.ExportCsv(Configuration.Config.Life.CsvExportPath);
 
 			if (string.IsNullOrEmpty(path)) return;
+
+			Configuration.Config.Life.CsvExportPath = Path.GetDirectoryName(path);
 
 			ExportProgress = new();
 
