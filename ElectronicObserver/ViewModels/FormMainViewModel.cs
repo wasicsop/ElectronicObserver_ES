@@ -75,6 +75,7 @@ using ElectronicObserver.Window.Wpf.EquipmentUpgradePlanViewer;
 using Jot;
 using ElectronicObserver.Window.Wpf.ShipTrainingPlanner;
 using ElectronicObserverTypes;
+using ElectronicObserver.Window.Tools.ExpeditionRecordViewer;
 #if DEBUG
 using System.Text.Encodings.Web;
 using ElectronicObserverTypes;
@@ -618,6 +619,19 @@ public partial class FormMainViewModel : ObservableObject
 		}
 
 		new SortieRecordViewerWindow().Show(Window);
+	}
+
+	[RelayCommand]
+	private void OpenExpeditionRecordViewer()
+	{
+		if (KCDatabase.Instance.MasterShips.Count == 0)
+		{
+			MessageBox.Show(GeneralRes.KancolleMustBeLoaded, GeneralRes.NoMasterData, MessageBoxButton.OK,
+				MessageBoxImage.Error);
+			return;
+		}
+
+		new ExpeditionRecordViewerWindow().Show(Window);
 	}
 
 	[RelayCommand]

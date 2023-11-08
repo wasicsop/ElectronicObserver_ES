@@ -553,6 +553,15 @@
 					</MenuItem.Icon>
 				</MenuItem>
 				<MenuItem
+					d:Header="Expedition Record"
+					Command="{Binding OpenExpeditionRecordViewerCommand}"
+					Header="{Binding FormMain.ExpeditionRecordViewer}"
+					>
+					<MenuItem.Icon>
+						<common:IconContentIcon Type="FormEquipmentList" />
+					</MenuItem.Icon>
+				</MenuItem>
+				<MenuItem
 					d:Header="Drop Record"
 					Command="{Binding OpenDropRecordCommand}"
 					Header="{Binding FormMain.StripMenu_Tool_DropRecord}"

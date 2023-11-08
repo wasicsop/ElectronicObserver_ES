@@ -167,4 +167,9 @@
 	<BitmapImage x:Key="Rarity.HoloB" UriSource="pack://application:,,,/Assets/Rarity/HoloB.png" />
 	<BitmapImage x:Key="Rarity.HoloA" UriSource="pack://application:,,,/Assets/Rarity/HoloA.png" />
 	<BitmapImage x:Key="Rarity.Cherry" UriSource="pack://application:,,,/Assets/Rarity/Cherry.png" />
+
+	<BitmapImage x:Key="Item.SmallBox" UriSource="pack://application:,,,/Assets/Item/SmallBox.png" />
+	<BitmapImage x:Key="Item.MediumBox" UriSource="pack://application:,,,/Assets/Item/MediumBox.png" />
+	<BitmapImage x:Key="Item.LargeBox" UriSource="pack://application:,,,/Assets/Item/LargeBox.png" />
+	<BitmapImage x:Key="Item.Irako" UriSource="pack://application:,,,/Assets/Item/Irako.png" />
 </ResourceDictionary>
