@@ -492,25 +492,18 @@ public partial class FleetViewModel : AnchorableViewModel
 		Clipboard.SetDataObject(sb.ToString());
 	}
 
-	/// <summary>
-	/// 
-	/// <see cref="https://kancolle-fleetanalysis.firebaseapp.com"/>
-	/// </summary>
 	[RelayCommand]
-	private void CopyFleetAnalysis()
+	private void CopyFleetAnalysisAllShips()
 	{
 		string json = DataSerializationService.FleetAnalysisShips(true);
 
 		Clipboard.SetDataObject(json);
 	}
 
-	/// <summary>
-	/// <see cref="https://kancolle-fleetanalysis.firebaseapp.com"/>
-	/// </summary>
 	[RelayCommand]
-	private void CopyFleetAnalysisEquip()
+	private void CopyFleetAnalysisLockedShips()
 	{
-		string json = DataSerializationService.FleetAnalysisEquipment(false);
+		string json = DataSerializationService.FleetAnalysisShips(false);
 
 		Clipboard.SetDataObject(json);
 	}
@@ -523,17 +516,48 @@ public partial class FleetViewModel : AnchorableViewModel
 		Clipboard.SetDataObject(json);
 	}
 
-	/// <summary>
-	/// Short versions are for the fleet analysis spreadsheet
-	/// <see cref="https://docs.google.com/spreadsheets/d/1NuLlff6EXM0XQ_qNHP9lEOosbwHXamaVNJb72M7ZLoY"/>
-	/// </summary>
 	[RelayCommand]
-	private void CopyFleetAnalysisShipsShort()
+	private void CopyFleetAnalysisLockedEquip()
+	{
+		string json = DataSerializationService.FleetAnalysisEquipment(false);
+
+		Clipboard.SetDataObject(json);
+	}
+
+	[RelayCommand]
+	private void CopyFleetAnalysisAllShipsShort()
+	{
+		GenerateShipListShort(true);
+	}
+
+	[RelayCommand]
+	private void CopyFleetAnalysisLockedShipsShort()
+	{
+		GenerateShipListShort(false);
+	}
+
+	[RelayCommand]
+	private void CopyFleetAnalysisAllEquipShort()
+	{
+		GenerateEquipListShort(true);
+	}
+
+	[RelayCommand]
+	private void CopyFleetAnalysisLockedEquipShort()
+	{
+		GenerateEquipListShort(false);
+	}
+
+	/// <summary>
+	/// <see cref="https://docs.google.com/spreadsheets/d/1ppbOl9MR_8g_CPDpgMVDdRnhEMRTjg4x78bCg8uLzdg"/>
+	/// </summary>
+	/// <param name="allShips"></param>
+	private void GenerateShipListShort(bool allShips)
 	{
 		KCDatabase db = KCDatabase.Instance;
 		List<string> ships = new List<string>();
 
-		foreach (ShipData ship in db.Ships.Values.Where(s => s.IsLocked))
+		foreach (ShipData ship in db.Ships.Values.Where(s => allShips || s.IsLocked))
 		{
 			int[] apiKyouka =
 			{
@@ -543,7 +567,7 @@ public partial class FleetViewModel : AnchorableViewModel
 				ship.ArmorModernized,
 				ship.LuckModernized,
 				ship.HPMaxModernized,
-				ship.ASWModernized
+				ship.ASWModernized,
 			};
 
 			int expProgress = 0;
@@ -567,18 +591,6 @@ public partial class FleetViewModel : AnchorableViewModel
 		string json = $"[{string.Join(",", ships)}]";
 
 		Clipboard.SetDataObject(json);
-	}
-
-	[RelayCommand]
-	private void CopyFleetAnalysisLockedEquipShort()
-	{
-		GenerateEquipListShort(false);
-	}
-
-	[RelayCommand]
-	private void CopyFleetAnalysisAllEquipShort()
-	{
-		GenerateEquipListShort(true);
 	}
 
 	/// <summary>

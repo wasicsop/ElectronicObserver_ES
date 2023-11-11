@@ -91,25 +91,39 @@
 						Command="{Binding CopyKanmusuListCommand}"
 						Header="{Binding FormFleet.ContextMenuFleet_CopyKanmusuList}"
 						/>
-					<MenuItem
-						d:Header="Copy Ship List (kancolle-fleetanalysis)"
-						Command="{Binding CopyFleetAnalysisCommand}"
-						Header="{Binding FormFleet.ContextMenuFleet_CopyFleetAnalysis}"
-						/>
-					<MenuItem
-						d:Header="Copy Locked Equip (kancolle-fleetanalysis)"
-						Command="{Binding CopyFleetAnalysisEquipCommand}"
-						Header="{Binding FormFleet.ContextMenuFleet_CopyFleetAnalysisLockedEquip}"
-						/>
-					<MenuItem
-						d:Header="Copy All Equip (kancolle-fleetanalysis)"
-						Command="{Binding CopyFleetAnalysisAllEquipCommand}"
-						Header="{Binding FormFleet.ContextMenuFleet_CopyFleetAnalysisAllEquip}"
-						/>
+					<MenuItem d:Header="Copy Ship List (kancolle-fleetanalysis)" Header="{Binding FormFleet.ContextMenuFleet_CopyFleetAnalysisShips}">
+						<MenuItem
+							d:Header="All"
+							Command="{Binding CopyFleetAnalysisAllShipsCommand}"
+							Header="{Binding FormFleet.All}"
+							/>
+						<MenuItem
+							d:Header="Locked"
+							Command="{Binding CopyFleetAnalysisLockedShipsCommand}"
+							Header="{Binding FormFleet.Locked}"
+							/>
+					</MenuItem>
+					<MenuItem d:Header="Copy Equipment List (kancolle-fleetanalysis)" Header="{Binding FormFleet.ContextMenuFleet_CopyFleetAnalysisEquipment}">
+						<MenuItem
+							d:Header="All"
+							Command="{Binding CopyFleetAnalysisAllEquipCommand}"
+							Header="{Binding FormFleet.All}"
+							/>
+						<MenuItem
+							d:Header="Locked"
+							Command="{Binding CopyFleetAnalysisLockedEquipCommand}"
+							Header="{Binding FormFleet.Locked}"
+							/>
+					</MenuItem>
 					<Separator />
-					<MenuItem Command="{Binding CopyFleetAnalysisShipsShortCommand}" Header="{Binding FormFleet.CopyToFleetAnalysisSpreadsheetShips}" />
-					<MenuItem Command="{Binding CopyFleetAnalysisLockedEquipShortCommand}" Header="{Binding FormFleet.CopyToFleetAnalysisSpreadsheetLockedEquipment}" />
-					<MenuItem Command="{Binding CopyFleetAnalysisAllEquipShortCommand}" Header="{Binding FormFleet.CopyToFleetAnalysisSpreadsheetAllEquipment}" />
+					<MenuItem Header="{Binding FormFleet.CopyToFleetAnalysisSpreadsheetShips}">
+						<MenuItem Command="{Binding CopyFleetAnalysisAllShipsShortCommand}" Header="{Binding FormFleet.All}" />
+						<MenuItem Command="{Binding CopyFleetAnalysisLockedShipsShortCommand}" Header="{Binding FormFleet.Locked}" />
+					</MenuItem>
+					<MenuItem Header="{Binding FormFleet.CopyToFleetAnalysisSpreadsheetEquipment}">
+						<MenuItem Command="{Binding CopyFleetAnalysisAllEquipShortCommand}" Header="{Binding FormFleet.All}" />
+						<MenuItem Command="{Binding CopyFleetAnalysisLockedEquipShortCommand}" Header="{Binding FormFleet.Locked}" />
+					</MenuItem>
 					<Separator />
 					<MenuItem
 						d:Header="AA Defense"
