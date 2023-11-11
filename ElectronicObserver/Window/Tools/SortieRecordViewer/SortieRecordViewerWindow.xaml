@@ -6,6 +6,7 @@
 	xmlns:behaviors="clr-namespace:ElectronicObserver.Behaviors"
 	xmlns:common="clr-namespace:ElectronicObserver.Common"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:exportFilter="clr-namespace:ElectronicObserver.Common.ContentDialogs.ExportFilter"
 	xmlns:exportProgress="clr-namespace:ElectronicObserver.Common.ContentDialogs.ExportProgress"
 	xmlns:local="clr-namespace:ElectronicObserver.Window.Tools.SortieRecordViewer"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -250,6 +251,7 @@
 			</StatusBar>
 		</Grid>
 
+		<exportFilter:ExportFilterContentDialog x:Name="ExportFilterContentDialog" />
 		<exportProgress:ExportProgressContentDialog x:Name="ExportProgressContentDialog" />
 		<notification:NotificationContentDialog x:Name="NotificationContentDialog" />
 	</Grid>

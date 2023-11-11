@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using ElectronicObserver.Common.ContentDialogs.ExportFilter;
 using ElectronicObserver.Common.ContentDialogs.ExportProgress;
 using ElectronicObserver.Data;
 using ElectronicObserver.Database;
@@ -21,19 +22,14 @@ using NightAttack = ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Ba
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.DataExport;
 
-public class DataExportHelper
+public class DataExportHelper(ElectronicObserverContext db, ToolService toolService)
 {
-	private ElectronicObserverContext Db { get; }
-	private ToolService ToolService { get; }
-
-	public DataExportHelper(ElectronicObserverContext db, ToolService toolService)
-	{
-		Db = db;
-		ToolService = toolService;
-	}
+	private ElectronicObserverContext Db { get; } = db;
+	private ToolService ToolService { get; } = toolService;
 
 	public async Task<List<ShellingBattleExportModel>> ShellingBattle(
 		ObservableCollection<SortieRecordViewModel> sorties,
+		ExportFilterViewModel? exportFilter,
 		ExportProgressViewModel exportProgress,
 		CancellationToken cancellationToken = default)
 	{
@@ -54,7 +50,7 @@ public class DataExportHelper
 
 			if (sortieDetail is null) continue;
 
-			foreach (SortieNode node in sortieDetail.Nodes)
+			foreach (SortieNode node in sortieDetail.Nodes.Where(n => exportFilter?.MatchesFilter(n) ?? true))
 			{
 				offshoreSupply ??= node.ApiOffshoreSupply;
 
@@ -167,6 +163,7 @@ public class DataExportHelper
 
 	public async Task<List<NightBattleExportModel>> NightBattle(
 		ObservableCollection<SortieRecordViewModel> sorties,
+		ExportFilterViewModel? exportFilter,
 		ExportProgressViewModel exportProgress,
 		CancellationToken cancellationToken = default)
 	{
@@ -186,7 +183,7 @@ public class DataExportHelper
 
 			if (sortieDetail is null) continue;
 
-			foreach (SortieNode node in sortieDetail.Nodes)
+			foreach (SortieNode node in sortieDetail.Nodes.Where(n => exportFilter?.MatchesFilter(n) ?? true))
 			{
 				if (node is not BattleNode battleNode) continue;
 
@@ -299,6 +296,7 @@ public class DataExportHelper
 
 	public async Task<List<TorpedoBattleExportModel>> TorpedoBattle(
 		ObservableCollection<SortieRecordViewModel> sorties,
+		ExportFilterViewModel? exportFilter,
 		ExportProgressViewModel exportProgress,
 		CancellationToken cancellationToken = default)
 	{
@@ -319,7 +317,7 @@ public class DataExportHelper
 
 			if (sortieDetail is null) continue;
 
-			foreach (SortieNode node in sortieDetail.Nodes)
+			foreach (SortieNode node in sortieDetail.Nodes.Where(n => exportFilter?.MatchesFilter(n) ?? true))
 			{
 				offshoreSupply ??= node.ApiOffshoreSupply;
 
@@ -416,6 +414,7 @@ public class DataExportHelper
 
 	public async Task<List<AirBattleExportModel>> AirBattle(
 		ObservableCollection<SortieRecordViewModel> sorties,
+		ExportFilterViewModel? exportFilter,
 		ExportProgressViewModel exportProgress,
 		CancellationToken cancellationToken = default)
 	{
@@ -435,7 +434,7 @@ public class DataExportHelper
 
 			if (sortieDetail is null) continue;
 
-			foreach (BattleNode node in sortieDetail.Nodes.OfType<BattleNode>())
+			foreach (BattleNode node in sortieDetail.Nodes.OfType<BattleNode>().Where(n => exportFilter?.MatchesFilter(n) ?? true))
 			{
 				List<PhaseBase> phases = node.FirstBattle.Phases
 					.Concat(node.SecondBattle switch
@@ -494,6 +493,7 @@ public class DataExportHelper
 
 	public async Task<List<AirBaseBattleExportModel>> AirBaseBattle(
 		ObservableCollection<SortieRecordViewModel> sorties,
+		ExportFilterViewModel? exportFilter,
 		ExportProgressViewModel exportProgress,
 		CancellationToken cancellationToken = default)
 	{
@@ -513,7 +513,7 @@ public class DataExportHelper
 
 			if (sortieDetail is null) continue;
 
-			foreach (BattleNode node in sortieDetail.Nodes.OfType<BattleNode>())
+			foreach (BattleNode node in sortieDetail.Nodes.OfType<BattleNode>().Where(n => exportFilter?.MatchesFilter(n) ?? true))
 			{
 				List<PhaseBase> phases = node.FirstBattle.Phases
 					.Concat(node.SecondBattle switch
