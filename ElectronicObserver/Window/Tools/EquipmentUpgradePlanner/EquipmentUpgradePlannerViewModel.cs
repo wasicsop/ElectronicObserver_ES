@@ -1,14 +1,13 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
-using System.Numerics;
 using System.Windows;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
-using ElectronicObserver.Data;
 using ElectronicObserver.Services;
 using ElectronicObserver.Window.Control.Paging;
 using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.CostCalculation;
+using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.UpgradeTree;
 using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner;
@@ -66,7 +65,7 @@ public partial class EquipmentUpgradePlannerViewModel : WindowViewModelBase
 			newPlan.DesiredUpgradeLevel = UpgradeLevel.Max;
 			newPlan.EquipmentId = equipment.MasterID;
 
-			if (OpenPlanDialog(newPlan))
+			if (newPlan.OpenPlanDialog())
 			{
 				EquipmentUpgradePlanManager.AddPlan(newPlan);
 				EquipmentUpgradePlanManager.Save();
@@ -87,35 +86,12 @@ public partial class EquipmentUpgradePlannerViewModel : WindowViewModelBase
 			newPlan.DesiredUpgradeLevel = UpgradeLevel.Max;
 			newPlan.EquipmentMasterDataId = equipment.EquipmentId;
 
-			if (OpenPlanDialog(newPlan))
+			if (newPlan.OpenPlanDialog())
 			{
 				EquipmentUpgradePlanManager.AddPlan(newPlan);
 				EquipmentUpgradePlanManager.Save();
 			}
 		}
-	}
-
-	private bool OpenPlanDialog(EquipmentUpgradePlanItemViewModel plan)
-	{
-		EquipmentUpgradePlanItemViewModel editVm = new(plan.Plan);
-		EquipmentUpgradePlanItemWindow editView = new(editVm);
-
-		if (editView.ShowDialog() is true)
-		{
-			plan.DesiredUpgradeLevel = editVm.DesiredUpgradeLevel;
-			plan.Finished = editVm.Finished;
-			plan.SliderLevel = editVm.SliderLevel;
-			plan.SelectedHelper = editVm.SelectedHelper;
-			plan.Priority = editVm.Priority;
-			plan.EquipmentMasterDataId = editVm.EquipmentMasterDataId;
-			plan.EquipmentId = editVm.EquipmentId;
-
-			plan.Save();
-
-			return true;
-		}
-
-		return false;
 	}
 
 	[RelayCommand]
@@ -128,10 +104,17 @@ public partial class EquipmentUpgradePlannerViewModel : WindowViewModelBase
 	[RelayCommand]
 	private void OpenEditDialog(EquipmentUpgradePlanItemViewModel plan)
 	{
-		if (OpenPlanDialog(plan))
+		if (plan.OpenPlanDialog())
 		{
 			EquipmentUpgradePlanManager.Save();
 		}
+	}
+
+	[RelayCommand]
+	private void OpenTreeDialog(EquipmentUpgradePlanItemViewModel plan)
+	{
+		UpgradeTreeView view = new(new(plan));
+		view.ShowDialog();
 	}
 
 	private void UpdateTotalCost() 

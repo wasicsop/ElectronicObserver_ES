@@ -3,6 +3,7 @@ using System;
 using ElectronicObserver.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ElectronicObserver.Database.Migrations
 {
     [DbContext(typeof(ElectronicObserverContext))]
-    partial class ElectronicObserverContextModelSnapshot : ModelSnapshot
+    [Migration("20231111115946_AddedParentToUpgradePlan")]
+    partial class AddedParentToUpgradePlan
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.4");
@@ -199,9 +201,6 @@ namespace ElectronicObserver.Database.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("SelectedHelper")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int?>("ShouldBeConvertedInto")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("SliderLevel")

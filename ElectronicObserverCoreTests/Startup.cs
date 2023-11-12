@@ -1,12 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using CommunityToolkit.Mvvm.DependencyInjection;
+using ElectronicObserver.Data;
 using ElectronicObserver.Database;
 using ElectronicObserver.Services;
 using ElectronicObserver.TestData;
 using ElectronicObserver.Utility;
 using ElectronicObserver.Window.Tools.AutoRefresh;
+using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.SortieDetail;
@@ -20,9 +23,9 @@ namespace ElectronicObserverCoreTests;
 
 public class Startup
 {
-	public async void ConfigureServices(IServiceCollection services)
+	public void ConfigureServices(IServiceCollection services)
 	{
-		await using TestDataContext testDb = new();
+		using TestDataContext testDb = new();
 		Dictionary<ShipId, IShipDataMaster> masterShips = testDb.MasterShips
 			.Select(s => s.ToMasterShip())
 			.ToDictionary(s => s.ShipId);
@@ -52,23 +55,57 @@ public class Startup
 			kcdb.MasterEquipments.Add(equipment);
 		}
 
+		InitializeKcDatabase(kcdb);
+
 		Ioc.Default.ConfigureServices(new ServiceCollection()
 			.AddSingleton<IKCDatabase>(kcdb)
 			.AddSingleton<ColorService>()
 			.AddSingleton<AutoRefreshTranslationViewModel>()
 			.AddSingleton<SortieDetailTranslationViewModel>()
+			.AddSingleton<EquipmentUpgradePlannerTranslationViewModel>()
 			.AddSingleton<PhaseFactory>()
 			.AddSingleton<BattleFactory>()
 			.AddSingleton<DataSerializationService>()
 			.AddSingleton<ToolService>()
+			.AddSingleton<TimeChangeService>()
+			.AddSingleton<EquipmentUpgradePlanManager>()
 			.BuildServiceProvider());
 
 		Directory.CreateDirectory("Record");
 
-		await using ElectronicObserverContext db = new();
-		await db.Database.MigrateAsync();
+		using ElectronicObserverContext db = new();
+		db.Database.MigrateAsync();
 
 		// Download data 
-		await SoftwareUpdater.CheckUpdateAsync();
+		SoftwareUpdater.CheckUpdateAsync().Wait();
+	}
+
+	/// <summary>
+	/// hack: this should ideally be removed
+	/// </summary>
+	private static void InitializeKcDatabase(KCDatabaseMock kcdb)
+	{
+		foreach (IShipDataMaster ship in kcdb.MasterShips.Values)
+		{
+			KCDatabase.Instance.MasterShips.Add(ship);
+		}
+
+		foreach (IEquipmentDataMaster equipment in kcdb.MasterEquipments.Values)
+		{
+			KCDatabase.Instance.MasterEquipments.Add(equipment);
+		}
+
+		foreach (UseItemId useItemId in Enum.GetValues<UseItemId>())
+		{
+			UseItemMasterMock itemMaster = new() { ItemID = useItemId };
+			UseItemMock item = new()
+			{
+				ItemID = (int)itemMaster.ItemID,
+				MasterUseItem = itemMaster,
+			};
+
+			KCDatabase.Instance.MasterUseItems.Add(itemMaster);
+			KCDatabase.Instance.UseItems.Add(item);
+		}
 	}
 }

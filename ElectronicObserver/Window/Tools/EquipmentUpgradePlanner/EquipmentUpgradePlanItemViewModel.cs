@@ -17,7 +17,8 @@ using ElectronicObserverTypes.Mocks;
 using ElectronicObserverTypes.Serialization.EquipmentUpgrade;
 
 namespace ElectronicObserver.Window.Tools.EquipmentUpgradePlanner;
-public partial class EquipmentUpgradePlanItemViewModel : WindowViewModelBase
+
+public partial class EquipmentUpgradePlanItemViewModel : WindowViewModelBase, IEquipmentPlanItemViewModel
 {
 	public EquipmentUpgradeData EquipmentUpgradeData { get; set; }
 
@@ -81,6 +82,7 @@ public partial class EquipmentUpgradePlanItemViewModel : WindowViewModelBase
 	public List<IShipDataMaster> PossibleHelpers => EquipmentUpgradeData.UpgradeList
 		.Where(data => data.EquipmentId == (int?)Equipment?.EquipmentId)
 		.SelectMany(data => data.Improvement)
+		.Where(upgrade => ShouldBeConvertedInto is null || (upgrade.ConversionData is not null && (int)ShouldBeConvertedInto == upgrade.ConversionData.IdEquipmentAfter))
 		.SelectMany(improvement => improvement.Helpers)
 		.SelectMany(helpers => helpers.ShipIds)
 		.Distinct()
@@ -101,6 +103,12 @@ public partial class EquipmentUpgradePlanItemViewModel : WindowViewModelBase
 		.Any(helper => helper.PlayerHasAtleastOne);
 
 	public EquipmentUpgradePlannerTranslationViewModel EquipmentUpgradePlanItem { get; }
+
+	public EquipmentUpgradePlanItemModel? Parent { get; set; }
+	public EquipmentId? ShouldBeConvertedInto { get; set; }
+
+	public bool AllowToChangeDesiredUpgradeLevel => Parent is null;
+	public bool AllowToChangeEquipment => Parent is null;
 
 	public EquipmentUpgradePlanItemViewModel(EquipmentUpgradePlanItemModel plan)
 	{
@@ -127,6 +135,8 @@ public partial class EquipmentUpgradePlanItemViewModel : WindowViewModelBase
 		Priority = Plan.Priority;
 		EquipmentId = Plan.EquipmentMasterId;
 		EquipmentMasterDataId = Plan.EquipmentId;
+		Parent = Plan.Parent;
+		ShouldBeConvertedInto = Plan.ShouldBeConvertedInto;
 
 		Update();
 		UpdateHelperDisplay();
@@ -244,6 +254,33 @@ public partial class EquipmentUpgradePlanItemViewModel : WindowViewModelBase
 		Plan.Priority = Priority;
 		Plan.SliderLevel = SliderLevel;
 		Plan.SelectedHelper = SelectedHelper?.ShipId ?? ShipId.Unknown;
+		Plan.Parent = Parent;
+		Plan.ShouldBeConvertedInto = ShouldBeConvertedInto;
+	}
+
+	public bool OpenPlanDialog()
+	{
+		EquipmentUpgradePlanItemViewModel editVm = new(Plan);
+		EquipmentUpgradePlanItemWindow editView = new(editVm);
+
+		if (editView.ShowDialog() is not true)
+		{
+			return false;
+		}
+
+		DesiredUpgradeLevel = editVm.DesiredUpgradeLevel;
+		Finished = editVm.Finished;
+		SliderLevel = editVm.SliderLevel;
+		SelectedHelper = editVm.SelectedHelper;
+		Priority = editVm.Priority;
+		EquipmentMasterDataId = editVm.EquipmentMasterDataId;
+		EquipmentId = editVm.EquipmentId;
+		Parent = editVm.Parent;
+		ShouldBeConvertedInto = editVm.ShouldBeConvertedInto;
+
+		Save();
+
+		return true;
 	}
 
 	[RelayCommand]
