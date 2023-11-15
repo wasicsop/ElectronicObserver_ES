@@ -788,8 +788,7 @@ public sealed class APIObserver
 		}
 		catch (Exception ex)
 		{
-
-			Utility.Logger.Add(3, ObserverRes.APIObserverFailed + ex.Message);
+			Logger.Add(3, ObserverRes.APIObserverFailed, ex);
 			ProxyPort = 0;
 		}
 

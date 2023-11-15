@@ -126,6 +126,11 @@ public sealed class Logger
 		}
 	}
 
+	public static void Add(int priority, string message, Exception exception)
+	{
+		Add(priority, $"{message} {exception.GetBaseException().Message} {exception.StackTrace}");
+	}
+
 	/// <summary>
 	/// ログをすべて消去します。
 	/// </summary>
