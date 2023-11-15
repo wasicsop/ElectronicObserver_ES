@@ -78,9 +78,9 @@ public sealed class Logger
 	{
 		get
 		{
-			lock (Logger.Instance)
+			lock (Instance)
 			{
-				return Logger.Instance.log.AsReadOnly();
+				return Instance.log.AsReadOnly();
 			}
 		}
 	}
@@ -96,9 +96,9 @@ public sealed class Logger
 
 		LogData data = new LogData(DateTime.Now, priority, message);
 
-		lock (Logger.Instance)
+		lock (Instance)
 		{
-			Logger.Instance.log.Add(data);
+			Instance.log.Add(data);
 		}
 
 		if (Configuration.Config.Log.SaveLogFlag && Configuration.Config.Log.SaveLogImmediately)
@@ -107,7 +107,7 @@ public sealed class Logger
 		if (Configuration.Config.Log.LogLevel <= priority)
 		{
 
-			if (Logger.Instance.toDebugConsole)
+			if (Instance.toDebugConsole)
 			{
 				System.Diagnostics.Debug.WriteLine(data.ToString());
 			}
@@ -115,7 +115,7 @@ public sealed class Logger
 
 			try
 			{
-				Logger.Instance.LogAdded(data);
+				Instance.LogAdded(data);
 
 			}
 			catch (Exception ex)
@@ -136,10 +136,10 @@ public sealed class Logger
 	/// </summary>
 	public static void Clear()
 	{
-		lock (Logger.Instance)
+		lock (Instance)
 		{
-			Logger.instance.log.Clear();
-			Logger.instance.lastSavedCount = 0;
+			instance.log.Clear();
+			instance.lastSavedCount = 0;
 		}
 	}
 
@@ -162,12 +162,12 @@ public sealed class Logger
 
 		try
 		{
-			lock (Logger.Instance)
+			lock (Instance)
 			{
 
-				var log = Logger.instance;
+				var log = instance;
 
-				using (StreamWriter sw = new StreamWriter(path, true, Utility.Configuration.Config.Log.FileEncoding))
+				using (StreamWriter sw = new StreamWriter(path, true, Configuration.Config.Log.FileEncoding))
 				{
 
 					int priority = Configuration.Config.Log.LogLevel;
