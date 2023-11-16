@@ -10,13 +10,14 @@ using ElectronicObserverTypes.Extensions;
 using ElectronicObserverTypes.Mocks;
 
 namespace ElectronicObserver.Window.Wpf.ShipTrainingPlanner;
-public partial class ShipTrainingPlanViewModel : WindowViewModelBase
+
+public class ShipTrainingPlanViewModel : WindowViewModelBase
 {
 	public ShipTrainingPlanModel Model { get; }
 
 	public IShipData Ship => KCDatabase.Instance.Ships[Model.ShipId] switch
 	{
-		IShipData => KCDatabase.Instance.Ships[Model.ShipId],
+		not null => KCDatabase.Instance.Ships[Model.ShipId],
 		_ => new ShipDataMock(new ShipDataMasterMock())
 	};
 
@@ -26,9 +27,9 @@ public partial class ShipTrainingPlanViewModel : WindowViewModelBase
 	public ShipTrainingPlannerTranslationViewModel ShipTrainingPlanner { get; }
 
 	public bool ShipRemodelLevelReached =>
-		TargetRemodel?.Ship is IShipDataMaster remodel
+		TargetRemodel?.Ship is { } remodel
 		&& Ship.MasterShip.ShipId != remodel.ShipId
-		&& remodel.RemodelBeforeShip is IShipDataMaster shipBefore
+		&& remodel.RemodelBeforeShip is { } shipBefore
 		&& Ship.Level >= shipBefore.RemodelAfterLevel;
 
 	public bool ShipAnyRemodelLevelReached => Ship.Level >= Ship.MasterShip.RemodelAfterLevel && Ship.MasterShip.RemodelAfterLevel > 0;
@@ -119,9 +120,10 @@ public partial class ShipTrainingPlanViewModel : WindowViewModelBase
 			&& Ship.HPMax >= TargetHP
 			&& Ship.ASWBase >= TargetASW
 			&& Ship.LuckBase >= TargetLuck
-			&& (Ship.MasterShip.ShipId == TargetRemodel?.Ship.ShipId);
-	}
+			&& (TargetRemodel is null || Ship.MasterShip.ShipId == TargetRemodel?.Ship.ShipId);
 
+		OnPropertyChanged(nameof(PlanFinished));
+	}
 
 	public void UpdateFromModel()
 	{
@@ -134,7 +136,7 @@ public partial class ShipTrainingPlanViewModel : WindowViewModelBase
 
 		NotifyOnAnyRemodelReady = Model.NotifyOnAnyRemodelReady;
 
-		if (Model.TargetRemodel is ShipId shipId)
+		if (Model.TargetRemodel is { } shipId)
 			TargetRemodel = new(KCDatabase.Instance.MasterShips[(int)shipId]);
 
 		PossibleRemodels.Clear();

@@ -2,7 +2,6 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common.Datagrid;
 using ElectronicObserver.Data;
@@ -35,18 +34,21 @@ public partial class ShipTrainingPlanViewerViewModel : AnchorableViewModel
 
 	private Tracker Tracker { get; }
 
-	public ShipTrainingPlanViewerViewModel() : base("ShipTrainingPlanViewer", "ShipTrainingPlanViewer", IconContent.ItemActionReport)
+	public delegate void OnPlanCompletedArgs(ShipTrainingPlanViewModel plan);
+	public event OnPlanCompletedArgs? OnPlanCompleted;
+
+	public ShipTrainingPlanViewerViewModel(ShipTrainingPlannerTranslationViewModel translations, Tracker tracker) : base("ShipTrainingPlanViewer", "ShipTrainingPlanViewer", IconContent.ItemActionReport)
 	{
-		Tracker = Ioc.Default.GetService<Tracker>()!;
-		ShipTrainingPlanner = Ioc.Default.GetRequiredService<ShipTrainingPlannerTranslationViewModel>();
+		Tracker = tracker;
+		ShipTrainingPlanner = translations;
 
 		DataGridViewModel = new(Plans)
 		{
 			FilterValue = plan => DisplayFinished || !plan.PlanFinished
 		};
 
-		Title = ShipTrainingPlanner.ViewTitle;
-		ShipTrainingPlanner.PropertyChanged += (_, _) => Title = ShipTrainingPlanner.ViewTitle;
+		Title = ShipTrainingPlanner.Title;
+		ShipTrainingPlanner.PropertyChanged += (_, _) => Title = ShipTrainingPlanner.Title;
 		PropertyChanged += ShipTrainingPlanViewerViewModel_PropertyChanged;
 
 		SubscribeToApi();
@@ -98,7 +100,14 @@ public partial class ShipTrainingPlanViewerViewModel : AnchorableViewModel
 
 	private void OnPlanViewModelPropertyChanged(object? sender, PropertyChangedEventArgs e)
 	{
-		if (e.PropertyName is nameof(ShipTrainingPlanViewModel.PlanFinished)) UpdatePlanList();
+		if (e.PropertyName is not nameof(ShipTrainingPlanViewModel.PlanFinished)) return;
+
+		UpdatePlanList();
+
+		if (sender is ShipTrainingPlanViewModel { PlanFinished: true } plan)
+		{
+			OnPlanCompleted?.Invoke(plan);
+		}
 	}
 
 	private void UpdatePlanList() => DataGridViewModel.Items.Refresh();
@@ -121,7 +130,7 @@ public partial class ShipTrainingPlanViewerViewModel : AnchorableViewModel
 		{
 			newPlan.TargetRemodel = lastRemodel.ShipId;
 
-			if (lastRemodel.RemodelBeforeShip is IShipDataMaster shipBefore)
+			if (lastRemodel.RemodelBeforeShip is { } shipBefore)
 			{
 				newPlan.TargetLevel = shipBefore.RemodelAfterLevel;
 			}
@@ -136,6 +145,7 @@ public partial class ShipTrainingPlanViewerViewModel : AnchorableViewModel
 	private void RemovePlan(ShipTrainingPlanViewModel plan)
 	{
 		Plans.Remove(plan);
+		plan.PropertyChanged -= OnPlanViewModelPropertyChanged;
 		DatabaseContext.ShipTrainingPlans.Remove(plan.Model);
 		DatabaseContext.SaveChanges();
 	}
@@ -189,7 +199,7 @@ public partial class ShipTrainingPlanViewerViewModel : AnchorableViewModel
 
 		pickerView.ShowDialog();
 
-		if (PickerViewModel.PickedShip is IShipData ship)
+		if (PickerViewModel.PickedShip is { } ship)
 		{
 			AddNewPlan(ship);
 		}
