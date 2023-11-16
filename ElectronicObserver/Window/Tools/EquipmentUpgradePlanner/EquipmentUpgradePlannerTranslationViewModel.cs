@@ -30,4 +30,5 @@ public class EquipmentUpgradePlannerTranslationViewModel : TranslationBaseViewMo
 	public string Cancel => GeneralRes.Cancel;
 	public string Edit => GeneralRes.Edit;
 	public string Ok => "OK";
+	public string UpgradeTree => EquipmentUpgradePlannerResources.UpgradeTree;
 }

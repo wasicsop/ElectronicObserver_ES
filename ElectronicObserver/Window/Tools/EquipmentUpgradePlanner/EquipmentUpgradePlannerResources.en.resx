@@ -192,4 +192,7 @@
   <data name="RemoveUpgradePlan" xml:space="preserve">
     <value>Remove upgrade plan</value>
   </data>
+  <data name="UpgradeTree" xml:space="preserve">
+    <value>Tree</value>
+  </data>
 </root>

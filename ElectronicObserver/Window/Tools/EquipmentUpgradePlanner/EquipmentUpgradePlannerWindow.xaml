@@ -160,7 +160,7 @@
 										Margin="4 0"
 										Command="{Binding DataContext.OpenTreeDialogCommand, Source={StaticResource Proxy}}"
 										CommandParameter="{Binding}"
-										Content="Tree"
+										Content="{Binding DataContext.EquipmentUpgradePlanner.UpgradeTree, Source={StaticResource Proxy}}"
 										/>
 
 								</StackPanel>

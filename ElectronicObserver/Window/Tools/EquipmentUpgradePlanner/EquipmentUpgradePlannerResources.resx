@@ -192,4 +192,7 @@
   <data name="RemoveUpgradePlan" xml:space="preserve">
     <value>改修計画除去</value>
   </data>
+  <data name="UpgradeTree" xml:space="preserve">
+    <value>改修ツリー</value>
+  </data>
 </root>
