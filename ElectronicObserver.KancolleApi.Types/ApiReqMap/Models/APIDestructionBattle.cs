@@ -6,7 +6,7 @@ namespace ElectronicObserver.KancolleApi.Types.ApiReqMap.Models;
 public class ApiDestructionBattle : IFirstBattleApiResponse
 {
 	[JsonPropertyName("api_air_base_attack")]
-	public ApiAirBaseRaid? ApiAirBaseAttack { get; set; }
+	public ApiAirBaseRaid ApiAirBaseAttack { get; set; } = null!;
 
 	[JsonPropertyName("api_eSlot")]
 	public List<List<int>> ApiESlot { get; set; } = new();
