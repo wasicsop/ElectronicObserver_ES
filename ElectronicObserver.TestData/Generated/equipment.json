@@ -8721,6 +8721,23 @@
     "IconType": 56
   },
   {
+    "EquipmentId": 517,
+    "Name": "逆探(E27)+22号対水上電探改四(後期調整型)",
+    "Armor": 0,
+    "Firepower": 2,
+    "Torpedo": 0,
+    "Bomber": 0,
+    "Aa": 0,
+    "Asw": 4,
+    "Accuracy": 9,
+    "Evasion": 5,
+    "LoS": 8,
+    "Luck": 0,
+    "Range": 0,
+    "CategoryType": 12,
+    "IconType": 11
+  },
+  {
     "EquipmentId": 1501,
     "Name": "5inch単装砲",
     "Armor": 0,
