@@ -18,7 +18,7 @@ public sealed class BattleBaseAirRaid : FirstBattleData
 	public BattleBaseAirRaid(PhaseFactory phaseFactory, BattleFleets fleets, ApiDestructionBattle battle)
 		: base(phaseFactory, fleets, battle)
 	{
-		BaseAirRaid = PhaseFactory.BaseAirRaid(battle.ApiAirBaseAttack);
+		BaseAirRaid = PhaseFactory.BaseAirRaid(battle);
 
 		EmulateBattle();
 	}

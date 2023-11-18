@@ -17,6 +17,25 @@ public class PhaseBaseAirRaid : PhaseBase
 
 	private ApiAirBaseRaid AirBattleData { get; }
 
+	public int ApiLostKind { get; }
+
+	public AirState AirState { get; }
+
+	public int Stage1FLostcount { get; }
+	public int Stage1FCount { get; }
+	public int Stage1ELostcount { get; }
+	public int Stage1ECount { get; }
+
+	public int Stage2FLostcount { get; private set; }
+	public int Stage2FCount { get; private set; }
+	public int Stage2ELostcount { get; private set; }
+	public int Stage2ECount { get; private set; }
+
+	/// <summary>
+	/// AACI
+	/// </summary>
+	public ApiAirFire? ApiAirFire { get; private set; }
+
 	private ApiStage1? Stage1 => AirBattleData.ApiStage1;
 	private ApiStage2? Stage2 => AirBattleData.ApiStage2;
 	private ApiStage3? Stage3 => AirBattleData.ApiStage3;
@@ -33,43 +52,70 @@ public class PhaseBaseAirRaid : PhaseBase
 
 	public string? TouchAircraftFriend => Stage1?.ApiTouchPlane switch
 	{
-		[EquipmentId id and > 0, ..] => $"　{BattleRes.Contact}: {KCDatabase.Instance.MasterEquipments[(int)id].NameEN}",
+		[EquipmentId id and > 0, ..] => KCDatabase.Instance.MasterEquipments[(int)id].NameEN,
+		_ => null,
+	};
+	public string? TouchAircraftFriendDisplay => TouchAircraftFriend switch
+	{
+		string aircraft => $"　{BattleRes.Contact}: {aircraft}",
 		_ => null,
 	};
 
 	public string? TouchAircraftEnemy => Stage1?.ApiTouchPlane switch
 	{
-		[_, EquipmentId id and > 0, ..] => $"　{BattleRes.EnemyContact}: {KCDatabase.Instance.MasterEquipments[(int)id].NameEN}",
+		[_, EquipmentId id and > 0, ..] => KCDatabase.Instance.MasterEquipments[(int)id].NameEN,
+		_ => null,
+	};
+	public string? TouchAircraftEnemyDisplay => TouchAircraftEnemy switch
+	{
+		string aircraft => $"　{BattleRes.EnemyContact}: {aircraft}",
 		_ => null,
 	};
 
 	public string? Stage2Display { get; protected set; }
 
+	public List<int> PlayerTorpedoFlags { get; set; }
+	public List<int> PlayerBomberFlags { get; set; }
+	public List<AirHitType> PlayerHitFlags { get; set; }
+	public List<double> PlayerDamage { get; set; }
+
+	public List<int> EnemyTorpedoFlags { get; set; }
+	public List<int> EnemyBomberFlags { get; set; }
+	public List<AirHitType> EnemyHitFlags { get; set; }
+	public List<double> EnemyDamage { get; set; }
+
 	private List<BattleBaseAirCorpsSquadron> Squadrons { get; }
 
 	public string Display { get; }
 
-	public PhaseBaseAirRaid(ApiAirBaseRaid airBattleData, int waveIndex = 0)
+	public PhaseBaseAirRaid(ApiDestructionBattle battle, int waveIndex = 0)
 	{
-		AirBattleData = airBattleData;
+		AirBattleData = battle.ApiAirBaseAttack;
 		WaveIndex = waveIndex;
+		ApiLostKind = battle.ApiLostKind;
 
-		if (airBattleData.ApiStage1 is not null)
+		if (AirBattleData.ApiStage1 is not null)
 		{
+			AirState = AirBattleData.ApiStage1.ApiDispSeiku;
+			Stage1FLostcount = AirBattleData.ApiStage1.ApiFLostcount;
+			Stage1FCount = AirBattleData.ApiStage1.ApiFCount;
+			Stage1ELostcount = AirBattleData.ApiStage1.ApiELostcount;
+			Stage1ECount = AirBattleData.ApiStage1.ApiECount;
+
 			Stage1Display = GetStage1Display
 			(
-				airBattleData.ApiStage1.ApiDispSeiku,
-				airBattleData.ApiStage1.ApiFLostcount,
-				airBattleData.ApiStage1.ApiFCount,
-				airBattleData.ApiStage1.ApiELostcount,
-				airBattleData.ApiStage1.ApiECount
+				AirState,
+				Stage1FLostcount,
+				Stage1FCount,
+				Stage1ELostcount,
+				Stage1ECount
 			);
 		}
 
-		LaunchedShipIndexFriend = GetLaunchedShipIndex(airBattleData.ApiPlaneFrom, 0);
-		LaunchedShipIndexEnemy = GetLaunchedShipIndex(airBattleData.ApiPlaneFrom, 1);
+		LaunchedShipIndexFriend = GetLaunchedShipIndex(AirBattleData.ApiPlaneFrom, 0);
+		LaunchedShipIndexEnemy = GetLaunchedShipIndex(AirBattleData.ApiPlaneFrom, 1);
 
-		Squadrons = airBattleData.ApiMapSquadronPlane?.Values
+		Squadrons = AirBattleData.ApiMapSquadronPlane?.Values
 			.SelectMany(b => b)
 			.Select(b => new BattleBaseAirCorpsSquadron
 			{
@@ -96,19 +142,26 @@ public class PhaseBaseAirRaid : PhaseBase
 
 		if (Stage2 is { } stage2)
 		{
-			StringBuilder sb = new();
+			Stage2FLostcount = stage2.ApiFLostcount;
+			Stage2FCount = stage2.ApiFCount;
+			Stage2ELostcount = stage2.ApiELostcount;
+			Stage2ECount = stage2.ApiECount;
+			ApiAirFire = stage2.ApiAirFire;
 
+			StringBuilder sb = new();
 			sb.Append("Stage 2:");
-			if (stage2.ApiAirFire is not null)
+
+			if (ApiAirFire is not null)
 			{
 				sb.AppendFormat(BattleRes.AaciType,
-					FleetsAfterPhase.GetShip(new(stage2.ApiAirFire.ApiIdx, FleetFlag.Player))?.NameWithLevel,
-					AntiAirCutIn.FromId(stage2.ApiAirFire.ApiKind).EquipmentConditionsSingleLineDisplay(),
-					stage2.ApiAirFire.ApiKind);
+					FleetsAfterPhase.GetShip(new(ApiAirFire.ApiIdx, FleetFlag.Player))?.NameWithLevel,
+					AntiAirCutIn.FromId(ApiAirFire.ApiKind).EquipmentConditionsSingleLineDisplay(),
+					ApiAirFire.ApiKind);
 			}
+
 			sb.AppendLine();
-			sb.AppendLine($"　{BattleRes.Friendly}: -{stage2.ApiFLostcount}/{stage2.ApiFCount}");
-			sb.Append($"　{BattleRes.Enemy}: -{stage2.ApiELostcount}/{stage2.ApiECount}");
+			sb.AppendLine($"　{BattleRes.Friendly}: -{Stage2FLostcount}/{Stage2FCount}");
+			sb.Append($"　{BattleRes.Enemy}: -{Stage2ELostcount}/{Stage2ECount}");
 
 			Stage2Display = sb.ToString();
 		}
@@ -117,20 +170,30 @@ public class PhaseBaseAirRaid : PhaseBase
 
 		if (stage3 is not null)
 		{
+			PlayerTorpedoFlags = stage3.ApiFraiFlag.Select(i => i ?? 0).ToList();
+			PlayerBomberFlags = stage3.ApiFbakFlag.Select(i => i ?? 0).ToList();
+			PlayerHitFlags = stage3.ApiFclFlag;
+			PlayerDamage = stage3.ApiFdam;
+
 			Attacks.AddRange(GetAttacks(FleetFlag.Player, 0, FleetsAfterPhase.Fleet,
-				stage3.ApiFraiFlag.Select(i => i ?? 0).ToList(),
-				stage3.ApiFbakFlag.Select(i => i ?? 0).ToList(),
-				stage3.ApiFclFlag,
-				stage3.ApiFdam));
+				PlayerTorpedoFlags,
+				PlayerBomberFlags,
+				PlayerHitFlags,
+				PlayerDamage));
 		}
 
 		if (stage3 is not null)
 		{
+			EnemyTorpedoFlags = stage3.ApiEraiFlag;
+			EnemyBomberFlags = stage3.ApiEbakFlag;
+			EnemyHitFlags = stage3.ApiEclFlag;
+			EnemyDamage = stage3.ApiEdam;
+
 			Attacks.AddRange(GetAttacks(FleetFlag.Enemy, 0, FleetsAfterPhase.EnemyFleet,
-				stage3.ApiEraiFlag,
-				stage3.ApiEbakFlag,
-				stage3.ApiEclFlag,
-				stage3.ApiEdam));
+				EnemyTorpedoFlags,
+				EnemyBomberFlags,
+				EnemyHitFlags,
+				EnemyDamage));
 		}
 
 		foreach (AirBattleAttack attack in Attacks.Where(attack => attack.AttackType is not AirAttack.None))

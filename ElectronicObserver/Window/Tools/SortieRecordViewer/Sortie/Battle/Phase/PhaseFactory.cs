@@ -142,7 +142,7 @@ public sealed class PhaseFactory
 	};
 
 	[return: NotNullIfNotNull(nameof(a))]
-	public PhaseBaseAirRaid? BaseAirRaid(ApiAirBaseRaid? a) => a switch
+	public PhaseBaseAirRaid? BaseAirRaid(ApiDestructionBattle? a) => a switch
 	{
 		null => null,
 		_ => new(a),
