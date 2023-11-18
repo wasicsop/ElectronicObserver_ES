@@ -139,6 +139,7 @@ public static class GameDataExtensions
 	{
 		BaseAirCorpsSquadronMock abSlot = new()
 		{
+			Condition = squadron?.Condition ?? 0,
 			EquipmentInstance = MakeEquipment(squadron?.EquipmentSlot.Equipment),
 		};
 
