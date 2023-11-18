@@ -124,6 +124,8 @@ public partial class SortieDetailViewModel : WindowViewModelBase
 		BattleBaseAirRaid? abRaid = null;
 		ApiGetMemberShipDeckResponse? deckResponse = null;
 		int cell = 0;
+		int eventId = 0;
+		int eventKind = 0;
 		bool isBoss = false;
 		ApiOffshoreSupply? offshoreSupply = null;
 		IBattleApiRequest? request = null;
@@ -137,11 +139,18 @@ public partial class SortieDetailViewModel : WindowViewModelBase
 				_ => cell,
 			};
 
-			isBoss = apiData switch
+			eventId = apiData switch
 			{
-				ApiReqMapStartResponse s => s.ApiEventId == 5,
-				ApiReqMapNextResponse n => n.ApiEventId == 5,
-				_ => isBoss,
+				ApiReqMapStartResponse s => s.ApiEventId,
+				ApiReqMapNextResponse n => n.ApiEventId,
+				_ => eventId,
+			};
+
+			eventKind = apiData switch
+			{
+				ApiReqMapStartResponse s => s.ApiEventKind,
+				ApiReqMapNextResponse n => n.ApiEventKind,
+				_ => eventKind,
 			};
 
 			offshoreSupply = apiData switch
@@ -171,7 +180,7 @@ public partial class SortieDetailViewModel : WindowViewModelBase
 				}
 				else
 				{
-					node = new BattleNode(KCDatabase.Instance, World, Map, cell, battle, isBoss);
+					node = new BattleNode(KCDatabase.Instance, World, Map, cell, battle, eventId, eventKind);
 				}
 			}
 
@@ -194,7 +203,7 @@ public partial class SortieDetailViewModel : WindowViewModelBase
 			}
 		}
 
-		node ??= new EmptyNode(KCDatabase.Instance, World, Map, cell);
+		node ??= new EmptyNode(KCDatabase.Instance, World, Map, cell, eventId, eventKind);
 
 		if (abRaid is not null)
 		{

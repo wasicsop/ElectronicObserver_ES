@@ -9,10 +9,11 @@ using ElectronicObserverTypes.Data;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Node;
 
-public class BattleNode : SortieNode
+public class BattleNode(IKCDatabase kcDatabase, int world, int map, int cell, BattleData battle, int eventId, int eventKind)
+	: SortieNode(kcDatabase, world, map, cell, eventId, eventKind)
 {
 	public IBattleApiRequest? Request { get; set; }
-	public BattleData FirstBattle { get; }
+	public BattleData FirstBattle { get; } = battle;
 	public BattleData? SecondBattle { get; set; }
 	public BattleResult? BattleResult { get; private set; }
 	public BattleData LastBattle => SecondBattle switch
@@ -21,7 +22,7 @@ public class BattleNode : SortieNode
 		_ => SecondBattle,
 	};
 
-	public bool IsBoss { get; set; }
+	public bool IsBoss => ApiEventId is 5;
 
 	public string Result => ConstantsRes.BattleDetail_Result;
 
@@ -32,13 +33,6 @@ public class BattleNode : SortieNode
 	public string? AdmiralExp { get; private set; }
 	public string? BaseExp { get; private set; }
 	public string? DropShip { get; private set; }
-
-	public BattleNode(IKCDatabase kcDatabase, int world, int map, int cell, BattleData battle, bool isBoss)
-		: base(kcDatabase, world, map, cell)
-	{
-		FirstBattle = battle;
-		IsBoss = isBoss;
-	}
 
 	public void AddResult(ISortieBattleResultApi result)
 	{
