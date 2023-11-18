@@ -55,7 +55,7 @@ public static class WikiDataParser
 		{
 			string[] nameAndSuffix = remodelName.Split("/");
 			string name = nameAndSuffix[0];
-			string suffix = nameAndSuffix[1];
+			string suffix = nameAndSuffix.Skip(1).FirstOrDefault("");
 
 			string key = suffix switch
 			{
