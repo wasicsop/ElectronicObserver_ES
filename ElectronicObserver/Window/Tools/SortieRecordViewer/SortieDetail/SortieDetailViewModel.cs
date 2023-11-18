@@ -126,9 +126,7 @@ public partial class SortieDetailViewModel : WindowViewModelBase
 		int cell = 0;
 		int eventId = 0;
 		int eventKind = 0;
-		bool isBoss = false;
 		ApiOffshoreSupply? offshoreSupply = null;
-		IBattleApiRequest? request = null;
 
 		foreach ((object apiData, DateTime time) in ApiDataCache)
 		{
@@ -182,11 +180,6 @@ public partial class SortieDetailViewModel : WindowViewModelBase
 				{
 					node = new BattleNode(KCDatabase.Instance, World, Map, cell, battle, eventId, eventKind);
 				}
-			}
-
-			if (apiData is IBattleApiRequest r)
-			{
-				request = r;
 			}
 
 			if (apiData is ISortieBattleResultApi result)
