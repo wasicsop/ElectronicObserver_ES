@@ -66,7 +66,7 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 	private DateTime SearchStartTime { get; set; }
 	public string? StatusBarText { get; private set; }
 
-	public ExportProgressViewModel? ExportProgress { get; set; }
+	private ExportProgressViewModel? ExportProgress { get; set; }
 	public ContentDialogService? ContentDialogService { get; set; }
 
 	public SortieRecordViewerViewModel()
@@ -324,6 +324,15 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 	{
 		await ExportCsv<RedTorpedoBattleExportMap, TorpedoBattleExportModel>(
 			DataExportHelper.TorpedoBattle,
+			ExportRedTorpedoBattleCancelCommand,
+			cancellationToken);
+	}
+
+	[RelayCommand(IncludeCancelCommand = true)]
+	private async Task ExportAirBaseAirDefense(CancellationToken cancellationToken)
+	{
+		await ExportCsv<AirBaseAirDefenseExportMap, AirBaseAirDefenseExportModel>(
+			DataExportHelper.AirBaseAirDefense,
 			ExportRedTorpedoBattleCancelCommand,
 			cancellationToken);
 	}

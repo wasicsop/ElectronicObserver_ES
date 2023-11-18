@@ -636,6 +636,126 @@ public class DataExportHelper(ElectronicObserverContext db, ToolService toolServ
 		return airBattleData;
 	}
 
+	public async Task<List<AirBaseAirDefenseExportModel>> AirBaseAirDefense(
+		ObservableCollection<SortieRecordViewModel> sorties,
+		ExportFilterViewModel? exportFilter,
+		ExportProgressViewModel exportProgress,
+		CancellationToken cancellationToken = default)
+	{
+		exportProgress.Total = sorties.Count;
+
+		foreach (SortieRecordViewModel sortieRecord in sorties)
+		{
+			await sortieRecord.Model.EnsureApiFilesLoaded(Db, cancellationToken);
+		}
+
+		List<AirBaseAirDefenseExportModel> airBattleData = new();
+
+		foreach (SortieRecordViewModel sortieRecord in sorties)
+		{
+			SortieDetailViewModel? sortieDetail = ToolService.GenerateSortieDetailViewModel(Db, sortieRecord);
+
+			if (sortieDetail is null) continue;
+
+			foreach (SortieNode node in sortieDetail.Nodes.Where(n => exportFilter?.MatchesFilter(n) ?? true))
+			{
+				if (node.AirBaseRaid is null) continue;
+
+				List<PhaseBase> phases = node.AirBaseRaid.Phases.ToList();
+
+				PhaseInitial? initial = phases.OfType<PhaseInitial>().FirstOrDefault();
+				PhaseSearching? searching = phases.OfType<PhaseSearching>().FirstOrDefault();
+				List<IBaseAirCorpsData>? airBases = initial?.FleetsAfterPhase?.AirBases;
+
+				if (initial is null) continue;
+				if (searching is null) continue;
+				if (airBases is null) continue;
+
+				foreach (PhaseBaseAirRaid airBaseRaid in phases.OfType<PhaseBaseAirRaid>())
+				{
+					BattleFleets? fleets = airBaseRaid.FleetsBeforePhase;
+
+					if (fleets is null) continue;
+
+					airBattleData.Add(new()
+					{
+						Date = sortieDetail.StartTime!.Value.ToLocalTime(),
+						World = KCDatabase.Instance.MapInfo[sortieDetail.World * 10 + sortieDetail.Map]?.NameEN ?? "",
+						Square = AirDefenseSquareString(sortieDetail, node),
+						PlayerFormation = Constants.GetFormation(searching.PlayerFormationType),
+						EnemyFormation = Constants.GetFormation(searching.EnemyFormationType),
+						Engagement = Constants.GetEngagementForm(searching.EngagementType),
+						AirBaseDamage = GetAirBaseDamage(airBaseRaid.ApiLostKind),
+						PlayerAircraft = airBaseRaid.Stage1FCount,
+						PlayerAircraftLost = airBaseRaid.Stage1FLostcount,
+						EnemyAircraft = airBaseRaid.Stage1ECount,
+						EnemyAircraftLost = airBaseRaid.Stage1ELostcount,
+						AirState = GetAirState(airBaseRaid),
+						PlayerContact = airBaseRaid.TouchAircraftFriend ?? "なし",
+						EnemyContact = airBaseRaid.TouchAircraftEnemy ?? "なし",
+						AirBase1 = MakeAirBase(fleets.AirBases.Skip(0).FirstOrDefault()),
+						AirBase2 = MakeAirBase(fleets.AirBases.Skip(1).FirstOrDefault()),
+						AirBase3 = MakeAirBase(fleets.AirBases.Skip(2).FirstOrDefault()),
+						EnemyShip1 = MakeAirDefenseShip(fleets.EnemyFleet!.MembersInstance.Skip(0).FirstOrDefault()),
+						EnemyShip2 = MakeAirDefenseShip(fleets.EnemyFleet!.MembersInstance.Skip(1).FirstOrDefault()),
+						EnemyShip3 = MakeAirDefenseShip(fleets.EnemyFleet!.MembersInstance.Skip(2).FirstOrDefault()),
+						EnemyShip4 = MakeAirDefenseShip(fleets.EnemyFleet!.MembersInstance.Skip(3).FirstOrDefault()),
+						EnemyShip5 = MakeAirDefenseShip(fleets.EnemyFleet!.MembersInstance.Skip(4).FirstOrDefault()),
+						EnemyShip6 = MakeAirDefenseShip(fleets.EnemyFleet!.MembersInstance.Skip(5).FirstOrDefault()),
+
+						PlayerTorpedoFlags1 = airBaseRaid.PlayerTorpedoFlags.Skip(0).FirstOrDefault(),
+						PlayerTorpedoFlags2 = airBaseRaid.PlayerTorpedoFlags.Skip(1).FirstOrDefault(),
+						PlayerTorpedoFlags3 = airBaseRaid.PlayerTorpedoFlags.Skip(2).FirstOrDefault(),
+
+						EnemyTorpedoFlags1 = airBaseRaid.EnemyTorpedoFlags.Skip(0).FirstOrDefault(),
+						EnemyTorpedoFlags2 = airBaseRaid.EnemyTorpedoFlags.Skip(1).FirstOrDefault(),
+						EnemyTorpedoFlags3 = airBaseRaid.EnemyTorpedoFlags.Skip(2).FirstOrDefault(),
+						EnemyTorpedoFlags4 = airBaseRaid.EnemyTorpedoFlags.Skip(3).FirstOrDefault(),
+						EnemyTorpedoFlags5 = airBaseRaid.EnemyTorpedoFlags.Skip(4).FirstOrDefault(),
+						EnemyTorpedoFlags6 = airBaseRaid.EnemyTorpedoFlags.Skip(5).FirstOrDefault(),
+
+						PlayerBomberFlags1 = airBaseRaid.PlayerBomberFlags.Skip(0).FirstOrDefault(),
+						PlayerBomberFlags2 = airBaseRaid.PlayerBomberFlags.Skip(1).FirstOrDefault(),
+						PlayerBomberFlags3 = airBaseRaid.PlayerBomberFlags.Skip(2).FirstOrDefault(),
+
+						EnemyBomberFlags1 = airBaseRaid.EnemyBomberFlags.Skip(0).FirstOrDefault(),
+						EnemyBomberFlags2 = airBaseRaid.EnemyBomberFlags.Skip(1).FirstOrDefault(),
+						EnemyBomberFlags3 = airBaseRaid.EnemyBomberFlags.Skip(2).FirstOrDefault(),
+						EnemyBomberFlags4 = airBaseRaid.EnemyBomberFlags.Skip(3).FirstOrDefault(),
+						EnemyBomberFlags5 = airBaseRaid.EnemyBomberFlags.Skip(4).FirstOrDefault(),
+						EnemyBomberFlags6 = airBaseRaid.EnemyBomberFlags.Skip(5).FirstOrDefault(),
+
+						PlayerHitFlags1 = (int)airBaseRaid.PlayerHitFlags.Skip(0).FirstOrDefault(),
+						PlayerHitFlags2 = (int)airBaseRaid.PlayerHitFlags.Skip(1).FirstOrDefault(),
+						PlayerHitFlags3 = (int)airBaseRaid.PlayerHitFlags.Skip(2).FirstOrDefault(),
+
+						EnemyHitFlags1 = (int)airBaseRaid.EnemyHitFlags.Skip(0).FirstOrDefault(),
+						EnemyHitFlags2 = (int)airBaseRaid.EnemyHitFlags.Skip(1).FirstOrDefault(),
+						EnemyHitFlags3 = (int)airBaseRaid.EnemyHitFlags.Skip(2).FirstOrDefault(),
+						EnemyHitFlags4 = (int)airBaseRaid.EnemyHitFlags.Skip(3).FirstOrDefault(),
+						EnemyHitFlags5 = (int)airBaseRaid.EnemyHitFlags.Skip(4).FirstOrDefault(),
+						EnemyHitFlags6 = (int)airBaseRaid.EnemyHitFlags.Skip(5).FirstOrDefault(),
+
+						PlayerDamage1 = airBaseRaid.PlayerDamage.Skip(0).FirstOrDefault(),
+						PlayerDamage2 = airBaseRaid.PlayerDamage.Skip(1).FirstOrDefault(),
+						PlayerDamage3 = airBaseRaid.PlayerDamage.Skip(2).FirstOrDefault(),
+
+						EnemyDamage1 = airBaseRaid.EnemyDamage.Skip(0).FirstOrDefault(),
+						EnemyDamage2 = airBaseRaid.EnemyDamage.Skip(1).FirstOrDefault(),
+						EnemyDamage3 = airBaseRaid.EnemyDamage.Skip(2).FirstOrDefault(),
+						EnemyDamage4 = airBaseRaid.EnemyDamage.Skip(3).FirstOrDefault(),
+						EnemyDamage5 = airBaseRaid.EnemyDamage.Skip(4).FirstOrDefault(),
+						EnemyDamage6 = airBaseRaid.EnemyDamage.Skip(5).FirstOrDefault(),
+					});
+				}
+			}
+
+			exportProgress.Progress++;
+		}
+
+		return airBattleData;
+	}
+
 	private static AirBattleExportModel MakeAirBattleExport(int no, BattleNode node,
 		SortieDetailViewModel sortieDetail, int? admiralLevel, PhaseAirBattle airBattle,
 		PhaseSearching searching, IFleetData attackerFleet, AirBattleAttackViewModel? attackDisplay,
@@ -823,6 +943,52 @@ public class DataExportHelper(ElectronicObserverContext db, ToolService toolServ
 			AircraftAfterBattle = NullForAbyssals(shipAfterBattle?.Aircraft.Take(ship.SlotSize).Skip(index).Cast<int?>().FirstOrDefault(), shipAfterBattle),
 		};
 
+	private static AirBaseExportModel MakeAirBase(IBaseAirCorpsData? ab) => new()
+	{
+		Hp = ab switch
+		{
+			null => null,
+			_ => $"{ab.HPCurrent}/{ab.HPMax}",
+		},
+		Squadron1 = MakeAirBaseSquadron(AirDefenseSquadron(ab?.ActionKind, ab?.Squadrons.Values.Skip(0).FirstOrDefault())),
+		Squadron2 = MakeAirBaseSquadron(AirDefenseSquadron(ab?.ActionKind, ab?.Squadrons.Values.Skip(1).FirstOrDefault())),
+		Squadron3 = MakeAirBaseSquadron(AirDefenseSquadron(ab?.ActionKind, ab?.Squadrons.Values.Skip(2).FirstOrDefault())),
+		Squadron4 = MakeAirBaseSquadron(AirDefenseSquadron(ab?.ActionKind, ab?.Squadrons.Values.Skip(3).FirstOrDefault())),
+	};
+
+	private static IBaseAirCorpsSquadron? AirDefenseSquadron(AirBaseActionKind? actionKind, IBaseAirCorpsSquadron? squadron) =>
+		actionKind switch
+		{
+			AirBaseActionKind.AirDefense => squadron,
+			_ => null,
+		};
+
+	private static AirBaseSquadronExportModel MakeAirBaseSquadron(IBaseAirCorpsSquadron? squadron) => new()
+	{
+		Name = squadron?.EquipmentInstance?.Name,
+		Level = squadron?.EquipmentInstance?.Level,
+		AircraftLevel = squadron?.EquipmentInstance?.AircraftLevel,
+		Condition = AirBaseCondition(squadron?.Condition),
+		Aircraft = squadron?.AircraftCurrent,
+	};
+
+	private static AirBaseAirDefenseShipExportModel MakeAirDefenseShip(IShipData? ship) => new()
+	{
+		Id = ship?.ShipID,
+		Name = ship?.Name,
+		Level = ship?.Level,
+		Hp = ship switch
+		{
+			null => null,
+			_ => $"{ship.HPCurrent}/{ship.HPMax}",
+		},
+		Equipment1Name = ship?.AllSlotInstance.Skip(0).FirstOrDefault()?.Name,
+		Equipment2Name = ship?.AllSlotInstance.Skip(1).FirstOrDefault()?.Name,
+		Equipment3Name = ship?.AllSlotInstance.Skip(2).FirstOrDefault()?.Name,
+		Equipment4Name = ship?.AllSlotInstance.Skip(3).FirstOrDefault()?.Name,
+		Equipment5Name = ship?.AllSlotInstance.Skip(4).FirstOrDefault()?.Name,
+	};
+
 	private static bool IsFirstNode(IEnumerable<SortieNode> nodes, SortieNode node)
 		=> nodes.OfType<BattleNode>().FirstOrDefault() == node;
 
@@ -859,6 +1025,7 @@ public class DataExportHelper(ElectronicObserverContext db, ToolService toolServ
 		AirState airState = contactPhase switch
 		{
 			PhaseAirBattleBase airBattle => airBattle.AirState,
+			PhaseBaseAirRaid airRaid => airRaid.AirState,
 			_ => AirState.Unknown,
 		};
 
@@ -990,4 +1157,46 @@ public class DataExportHelper(ElectronicObserverContext db, ToolService toolServ
 		NightAttackKind.SpecialSubmarineTender24 or
 		NightAttackKind.SpecialYamato2Ships or
 		NightAttackKind.SpecialYamato3Ships;
+
+	private static string AirDefenseSquareString(SortieDetailViewModel sortieDetail, SortieNode node) =>
+		$"{CsvExportResources.Map}:{sortieDetail.World}-{sortieDetail.Map} {CsvExportResources.Cell}:{node.Cell} ({GetEventKind(node.ApiEventId, node.ApiEventKind)})";
+
+	private static string GetEventKind(int eventId, int eventKind) => eventId switch
+	{
+		0 => "初期地点",
+		// case 1: return "不明(1)";
+		2 => "資源獲得",
+		3 => "渦潮",
+		4 => "戦闘",
+		5 => "ボス",
+		6 => "気のせい",
+		7 => eventKind switch
+		{
+			0 => "航空偵察",
+			4 => "航空戦",
+			_ => $"不明(7/{eventKind})",
+		},
+		8 => "船団護衛成功",
+		9 => "揚陸地点",
+		10 => "長距離空襲戦",
+		_ => $"不明({eventId})",
+	};
+
+	private static string GetAirBaseDamage(int kind) => kind switch
+	{
+		1 => "資源損害",
+		2 => "資源・航空",
+		3 => "航空隊損害",
+		4 => "損害なし",
+		_ => $"不明({kind})",
+	};
+
+	private static string? AirBaseCondition(int? condition) => condition switch
+	{
+		null => null,
+		1 => "通常",
+		2 => "橙疲労",
+		3 => "赤疲労",
+		int cond => $"不明({cond})",
+	};
 }

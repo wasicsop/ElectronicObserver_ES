@@ -493,4 +493,79 @@
   <data name="EnemySearchlightEquipmentId" xml:space="preserve">
     <value>敵探照灯.装備</value>
   </data>
+  <data name="AirBaseDamage" xml:space="preserve">
+    <value>被害</value>
+  </data>
+  <data name="PlayerAircraft" xml:space="preserve">
+    <value>自機数</value>
+  </data>
+  <data name="PlayerAircraftLost2" xml:space="preserve">
+    <value>自機喪失数</value>
+  </data>
+  <data name="EnemyAircraft" xml:space="preserve">
+    <value>敵機数</value>
+  </data>
+  <data name="EnemyAircraftLost2" xml:space="preserve">
+    <value>敵機喪失数</value>
+  </data>
+  <data name="PrefixAirBase1" xml:space="preserve">
+    <value>基地1.</value>
+  </data>
+  <data name="PrefixAirBase2" xml:space="preserve">
+    <value>基地2.</value>
+  </data>
+  <data name="PrefixAirBase3" xml:space="preserve">
+    <value>基地3.</value>
+  </data>
+  <data name="Hp" xml:space="preserve">
+    <value>HP</value>
+  </data>
+  <data name="PrefixSquadron1" xml:space="preserve">
+    <value>中隊1.</value>
+  </data>
+  <data name="PrefixSquadron2" xml:space="preserve">
+    <value>中隊2.</value>
+  </data>
+  <data name="PrefixSquadron3" xml:space="preserve">
+    <value>中隊3.</value>
+  </data>
+  <data name="PrefixSquadron4" xml:space="preserve">
+    <value>中隊4.</value>
+  </data>
+  <data name="Aircraft2" xml:space="preserve">
+    <value>機数</value>
+  </data>
+  <data name="PrefixEnemyShip1" xml:space="preserve">
+    <value>敵艦1.</value>
+  </data>
+  <data name="PrefixEnemyShip2" xml:space="preserve">
+    <value>敵艦2.</value>
+  </data>
+  <data name="PrefixEnemyShip3" xml:space="preserve">
+    <value>敵艦3.</value>
+  </data>
+  <data name="PrefixEnemyShip4" xml:space="preserve">
+    <value>敵艦4.</value>
+  </data>
+  <data name="PrefixEnemyShip5" xml:space="preserve">
+    <value>敵艦5.</value>
+  </data>
+  <data name="PrefixEnemyShip6" xml:space="preserve">
+    <value>敵艦6.</value>
+  </data>
+  <data name="TorpedoFlag2" xml:space="preserve">
+    <value>被雷flag</value>
+  </data>
+  <data name="BomberFlag2" xml:space="preserve">
+    <value>被爆flag</value>
+  </data>
+  <data name="ClFlag" xml:space="preserve">
+    <value>被CLflag</value>
+  </data>
+  <data name="Damage2" xml:space="preserve">
+    <value>被ダメ</value>
+  </data>
+  <data name="AirBaseAirDefense" xml:space="preserve">
+    <value>基地航空隊(防空)</value>
+  </data>
 </root>
