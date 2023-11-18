@@ -518,4 +518,5 @@ public enum EquipmentId
 	LandingCraft_TokuDaihatsuLandingCraft_PanzerIIITypeJ = 514,
 	SeaplaneRecon_SeaOtter = 515,
 	Interceptor_Me262A1aR1 = 516,
+	RadarSmall_PassiveRadiolocator_E27_Type22SurfaceRadarKai4_CalibratedLateModel = 517,
 }
