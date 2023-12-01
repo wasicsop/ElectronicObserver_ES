@@ -25,6 +25,7 @@ using ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.SpMidnight;
 using ElectronicObserver.KancolleApi.Types.ApiReqMap.Models;
 using ElectronicObserver.KancolleApi.Types.ApiReqMap.Next;
 using ElectronicObserver.KancolleApi.Types.ApiReqMap.Start;
+using ElectronicObserver.KancolleApi.Types.ApiReqMap.StartAirBase;
 using ElectronicObserver.KancolleApi.Types.ApiReqSortie.Airbattle;
 using ElectronicObserver.KancolleApi.Types.ApiReqSortie.Battle;
 using ElectronicObserver.KancolleApi.Types.ApiReqSortie.Battleresult;
@@ -130,6 +131,27 @@ public partial class SortieDetailViewModel : WindowViewModelBase
 
 		foreach ((object apiData, DateTime time) in ApiDataCache)
 		{
+			if (apiData is ApiReqMapStartAirBaseRequest ab)
+			{
+				StrikePoints.Add(ParseStrikePoints(ab.ApiStrikePoint1));
+				StrikePoints.Add(ParseStrikePoints(ab.ApiStrikePoint2));
+				StrikePoints.Add(ParseStrikePoints(ab.ApiStrikePoint3));
+
+				continue;
+
+				static List<int>? ParseStrikePoints(string? apiStrikePoint) => apiStrikePoint switch
+				{
+					null => null,
+					_ => apiStrikePoint
+						.Split(",")
+						.Select(p => int.TryParse(p, out int point) switch
+						{
+							true => point,
+							_ => -1,
+						}).ToList(),
+				};
+			}
+
 			cell = apiData switch
 			{
 				ApiReqMapStartResponse s => s.ApiNo,
