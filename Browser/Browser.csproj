@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFramework>net6.0-windows7</TargetFramework>
+		<TargetFramework>net8.0-windows7</TargetFramework>
 		<LangVersion>preview</LangVersion>
 		<OutputType>WinExe</OutputType>
 		<AssemblyName>EOBrowser</AssemblyName>
