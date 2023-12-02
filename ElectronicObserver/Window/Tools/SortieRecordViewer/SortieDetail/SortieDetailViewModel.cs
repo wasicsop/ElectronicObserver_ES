@@ -55,6 +55,7 @@ public partial class SortieDetailViewModel : WindowViewModelBase
 	public int Map { get; }
 	private BattleFleets Fleets { get; set; }
 	private BattleFleets? FleetsAfterSortie { get; set; }
+	public List<List<int>?> StrikePoints { get; } = new();
 
 	public ObservableCollection<SortieNode> Nodes { get; } = new();
 
