@@ -205,15 +205,15 @@
     <value>装備の割り当て解除</value>
   </data>
   <data name="AssignEquipmentToUpgrade" xml:space="preserve">
-    <value>改修計画を装備を割り当てる</value>
+    <value>更新する装備として割り当てる</value>
   </data>
   <data name="AssignEquipmentToUse" xml:space="preserve">
-    <value>消費する装備を割り当てる</value>
+    <value>消費する装備として割り当てる</value>
   </data>
   <data name="AddPlanAndAssignEquipmentToUpgrade" xml:space="preserve">
-    <value>改修計画を追加しと装備を割り当てる</value>
+    <value>改修計画に更新する装備として割り当てる</value>
   </data>
   <data name="AddPlanAndAssignEquipmentToUse" xml:space="preserve">
-    <value>改修計画を追加しと消費する装備を割り当てる</value>
+    <value>改修計画に消費する装備として割り当てる</value>
   </data>
 </root>
