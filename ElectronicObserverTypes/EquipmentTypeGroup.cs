@@ -4,11 +4,20 @@ namespace ElectronicObserverTypes;
 
 public enum EquipmentTypeGroup
 {
-	[Display(ResourceType = typeof(Properties.EquipmentTypeGroups), Name = "MainGun")]
-	MainGun,
+	[Display(ResourceType = typeof(Properties.EquipmentTypeGroups), Name = "MainGunSmall")]
+	MainGunSmall,
+
+	[Display(ResourceType = typeof(Properties.EquipmentTypeGroups), Name = "MainGunMedium")]
+	MainGunMedium,
+
+	[Display(ResourceType = typeof(Properties.EquipmentTypeGroups), Name = "MainGunLarge")]
+	MainGunLarge,
 
 	[Display(ResourceType = typeof(Properties.EquipmentTypeGroups), Name = "Secondary")]
 	Secondary,
+
+	[Display(ResourceType = typeof(Properties.EquipmentTypeGroups), Name = "AntiAir")]
+	AntiAir,
 
 	[Display(ResourceType = typeof(Properties.EquipmentTypeGroups), Name = "Torpedo")]
 	Torpedo,

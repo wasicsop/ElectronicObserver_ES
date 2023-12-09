@@ -1,24 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace ElectronicObserverTypes.Extensions;
+﻿namespace ElectronicObserverTypes.Extensions;
 
 public static class EquipmentTypesExtensions
 {
-	public static IEnumerable<EquipmentTypes> ToTypes(this EquipmentTypeGroup group)
-		=> Enum.GetValues<EquipmentTypes>()
-			.Where(e => e.ToGroup() == group);
-
 	public static EquipmentTypeGroup ToGroup(this EquipmentTypes type) => type switch
 	{
-		EquipmentTypes.MainGunSmall or
-		EquipmentTypes.MainGunMedium or
-		EquipmentTypes.MainGunLarge or
-		EquipmentTypes.MainGunLarge2 => EquipmentTypeGroup.MainGun,
+		EquipmentTypes.MainGunSmall => EquipmentTypeGroup.MainGunSmall,
 
-		EquipmentTypes.SecondaryGun or
-		EquipmentTypes.AAGun => EquipmentTypeGroup.Secondary,
+		EquipmentTypes.MainGunMedium => EquipmentTypeGroup.MainGunMedium,
+
+		EquipmentTypes.MainGunLarge or
+		EquipmentTypes.MainGunLarge2 => EquipmentTypeGroup.MainGunLarge,
+
+		EquipmentTypes.SecondaryGun => EquipmentTypeGroup.Secondary,
+
+		EquipmentTypes.AAGun => EquipmentTypeGroup.AntiAir,
 
 		EquipmentTypes.Torpedo or
 		EquipmentTypes.MidgetSubmarine or

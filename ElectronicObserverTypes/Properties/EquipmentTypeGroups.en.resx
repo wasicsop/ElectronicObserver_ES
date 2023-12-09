@@ -132,9 +132,6 @@
   <data name="LandBasedFighters" xml:space="preserve">
     <value>Land based fighter</value>
   </data>
-  <data name="MainGun" xml:space="preserve">
-    <value>Main gun</value>
-  </data>
   <data name="Others" xml:space="preserve">
     <value>Others</value>
   </data>
@@ -155,5 +152,17 @@
   </data>
   <data name="Transport" xml:space="preserve">
     <value>Transport</value>
+  </data>
+  <data name="MainGunSmall" xml:space="preserve">
+    <value>Small main gun</value>
+  </data>
+  <data name="MainGunMedium" xml:space="preserve">
+    <value>Medium main gun</value>
+  </data>
+  <data name="MainGunLarge" xml:space="preserve">
+    <value>Large main gun</value>
+  </data>
+  <data name="AntiAir" xml:space="preserve">
+    <value>Anti air gun</value>
   </data>
 </root>

@@ -132,9 +132,6 @@
   <data name="LandBasedFighters" xml:space="preserve">
     <value>陸戦</value>
   </data>
-  <data name="MainGun" xml:space="preserve">
-    <value>主砲</value>
-  </data>
   <data name="Others" xml:space="preserve">
     <value>他</value>
   </data>
@@ -155,5 +152,17 @@
   </data>
   <data name="Transport" xml:space="preserve">
     <value>輸送</value>
+  </data>
+  <data name="MainGunSmall" xml:space="preserve">
+    <value>小主砲</value>
+  </data>
+  <data name="MainGunMedium" xml:space="preserve">
+    <value>中主砲</value>
+  </data>
+  <data name="MainGunLarge" xml:space="preserve">
+    <value>大主砲</value>
+  </data>
+  <data name="AntiAir" xml:space="preserve">
+    <value>機銃</value>
   </data>
 </root>
