@@ -32,16 +32,12 @@ using DayAttack = ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Batt
 
 namespace ElectronicObserver.Services;
 
-public class ToolService
+public class ToolService(DataSerializationService dataSerializationService)
 {
-	private DataSerializationService DataSerializationService { get; }
+	private DataSerializationService DataSerializationService { get; } = dataSerializationService;
 
-	public ToolService(DataSerializationService dataSerializationService)
-	{
-		DataSerializationService = dataSerializationService;
-	}
-
-	public void AirControlSimulator(AirControlSimulatorViewModel? viewModel = null)
+	public void AirControlSimulator(AirControlSimulatorViewModel? viewModel = null,
+		SortieDetailViewModel? sortieDetail = null)
 	{
 		viewModel ??= new();
 
@@ -51,7 +47,7 @@ public class ToolService
 
 		AirControlSimulatorViewModel result = dialog.Result!;
 
-		string url = DataSerializationService.AirControlSimulatorLink(result);
+		string url = DataSerializationService.AirControlSimulatorLink(result, sortieDetail);
 
 		Window.FormBrowserHost.Instance.Browser.OpenAirControlSimulator(url);
 
@@ -129,14 +125,14 @@ public class ToolService
 			return;
 		}
 
-		data ??= DataSerializationService.MakeDeckBuilderData
-		(
-			KCDatabase.Instance.Admiral.Level,
-			KCDatabase.Instance.Fleet.Fleets[1],
-			KCDatabase.Instance.Fleet.Fleets[2],
-			KCDatabase.Instance.Fleet.Fleets[3],
-			KCDatabase.Instance.Fleet.Fleets[4]
-		);
+		data ??= DataSerializationService.MakeDeckBuilderData(new()
+		{
+			HqLevel = KCDatabase.Instance.Admiral.Level,
+			Fleet1 = KCDatabase.Instance.Fleet.Fleets[1],
+			Fleet2 = KCDatabase.Instance.Fleet.Fleets[2],
+			Fleet3 = KCDatabase.Instance.Fleet.Fleets[3],
+			Fleet4 = KCDatabase.Instance.Fleet.Fleets[4],
+		});
 
 		model ??= new()
 		{
@@ -153,17 +149,17 @@ public class ToolService
 	{
 		List<IFleetData?> fleets = selectedSortie.Model.FleetData.MakeFleets();
 
-		DeckBuilderData data = DataSerializationService.MakeDeckBuilderData
-		(
-			hqLevel,
-			fleets.Skip(0).FirstOrDefault(),
-			fleets.Skip(1).FirstOrDefault(),
-			fleets.Skip(2).FirstOrDefault(),
-			fleets.Skip(3).FirstOrDefault(),
-			selectedSortie.Model.FleetData.AirBases.Skip(0).FirstOrDefault().MakeAirBase(),
-			selectedSortie.Model.FleetData.AirBases.Skip(1).FirstOrDefault().MakeAirBase(),
-			selectedSortie.Model.FleetData.AirBases.Skip(2).FirstOrDefault().MakeAirBase()
-		);
+		DeckBuilderData data = DataSerializationService.MakeDeckBuilderData(new()
+		{
+			HqLevel = hqLevel,
+			Fleet1 = fleets.Skip(0).FirstOrDefault(),
+			Fleet2 = fleets.Skip(1).FirstOrDefault(),
+			Fleet3 = fleets.Skip(2).FirstOrDefault(),
+			Fleet4 = fleets.Skip(3).FirstOrDefault(),
+			AirBase1 = selectedSortie.Model.FleetData.AirBases.Skip(0).FirstOrDefault().MakeAirBase(),
+			AirBase2 = selectedSortie.Model.FleetData.AirBases.Skip(1).FirstOrDefault().MakeAirBase(),
+			AirBase3 = selectedSortie.Model.FleetData.AirBases.Skip(2).FirstOrDefault().MakeAirBase(),
+		});
 
 		FleetImageGeneratorImageDataModel model = new()
 		{
@@ -194,22 +190,22 @@ public class ToolService
 			.Where(b => b.MapAreaID == result.AirBaseArea?.AreaId)
 			.ToList();
 
-		return DataSerializationService.DeckBuilder
-		(
-			KCDatabase.Instance.Admiral.Level,
-			result.Fleet1 ? KCDatabase.Instance.Fleet.Fleets.Values.Skip(0).FirstOrDefault() : null,
-			result.Fleet2 ? KCDatabase.Instance.Fleet.Fleets.Values.Skip(1).FirstOrDefault() : null,
-			result.Fleet3 ? KCDatabase.Instance.Fleet.Fleets.Values.Skip(2).FirstOrDefault() : null,
-			result.Fleet4 ? KCDatabase.Instance.Fleet.Fleets.Values.Skip(3).FirstOrDefault() : null,
-			bases.Skip(0).FirstOrDefault(),
-			bases.Skip(1).FirstOrDefault(),
-			bases.Skip(2).FirstOrDefault(),
-			result.MaxAircraftLevelFleet,
-			result.MaxAircraftLevelAirBase
-		);
+		return DataSerializationService.DeckBuilder(new()
+		{
+			HqLevel = KCDatabase.Instance.Admiral.Level,
+			Fleet1 = FleetOrDefault(result.Fleet1, 0),
+			Fleet2 = FleetOrDefault(result.Fleet2, 1),
+			Fleet3 = FleetOrDefault(result.Fleet3, 2),
+			Fleet4 = FleetOrDefault(result.Fleet4, 3),
+			AirBase1 = bases.Skip(0).FirstOrDefault(),
+			AirBase2 = bases.Skip(1).FirstOrDefault(),
+			AirBase3 = bases.Skip(2).FirstOrDefault(),
+			MaxAircraftLevelFleet = result.MaxAircraftLevelFleet,
+			MaxAircraftLevelAirBase = result.MaxAircraftLevelAirBase,
+		});
 	}
 
-	public void ExpChecker(ExpCheckerViewModel? viewModel = null)
+	public static void ExpChecker(ExpCheckerViewModel? viewModel = null)
 	{
 		if (!KCDatabase.Instance.Ships.Any())
 		{
@@ -578,32 +574,39 @@ public class ToolService
 		return JsonSerializer.Serialize(replay);
 	}
 
-	public void CopyAirControlSimulatorLink(SortieRecordViewModel sortie)
+	public void CopyAirControlSimulatorLink(SortieRecordViewModel sortie,
+		SortieDetailViewModel? sortieDetail = null)
 	{
-		string url = GetAirControlSimulatorLink(sortie);
+		string url = GetAirControlSimulatorLink(sortie, sortieDetail);
 
 		Clipboard.SetText(url);
 	}
 
-	private string GetAirControlSimulatorLink(SortieRecordViewModel sortie)
+	private string GetAirControlSimulatorLink(SortieRecordViewModel sortie,
+		SortieDetailViewModel? sortieDetail = null)
 	{
+		sortie.Model.EnsureApiFilesLoaded(new()).Wait();
+
+		sortieDetail ??= GenerateSortieDetailViewModel(new(), sortie);
+
 		List<IFleetData?> fleets = sortie.Model.FleetData.MakeFleets();
 
 		List<IBaseAirCorpsData> airBases = sortie.Model.FleetData.AirBases
 			.Select(f => f.MakeAirBase())
 			.ToList();
 
-		string airControlSimulatorData = DataSerializationService.AirControlSimulator
-		(
-			KCDatabase.Instance.Admiral.Level,
-			fleets.Skip(0).FirstOrDefault(),
-			fleets.Skip(1).FirstOrDefault(),
-			fleets.Skip(2).FirstOrDefault(),
-			fleets.Skip(3).FirstOrDefault(),
-			airBases.Skip(0).FirstOrDefault(),
-			airBases.Skip(1).FirstOrDefault(),
-			airBases.Skip(2).FirstOrDefault()
-		);
+		string airControlSimulatorData = DataSerializationService.AirControlSimulator(new()
+		{
+			HqLevel = KCDatabase.Instance.Admiral.Level,
+			Fleet1 = fleets.Skip(0).FirstOrDefault(),
+			Fleet2 = fleets.Skip(1).FirstOrDefault(),
+			Fleet3 = fleets.Skip(2).FirstOrDefault(),
+			Fleet4 = fleets.Skip(3).FirstOrDefault(),
+			AirBase1 = airBases.Skip(0).FirstOrDefault(),
+			AirBase2 = airBases.Skip(1).FirstOrDefault(),
+			AirBase3 = airBases.Skip(2).FirstOrDefault(),
+			SortieDetails = sortieDetail,
+		});
 
 		return @$"https://noro6.github.io/kc-web#import:{airControlSimulatorData}";
 	}
@@ -623,17 +626,17 @@ public class ToolService
 			.Select(f => f.MakeAirBase())
 			.ToList();
 
-		string operationRoomData = DataSerializationService.DeckBuilder
-		(
-			KCDatabase.Instance.Admiral.Level,
-			fleets.Skip(0).FirstOrDefault(),
-			fleets.Skip(1).FirstOrDefault(),
-			fleets.Skip(2).FirstOrDefault(),
-			fleets.Skip(3).FirstOrDefault(),
-			airBases.Skip(0).FirstOrDefault(),
-			airBases.Skip(1).FirstOrDefault(),
-			airBases.Skip(2).FirstOrDefault()
-		);
+		string operationRoomData = DataSerializationService.DeckBuilder(new()
+		{
+			HqLevel = KCDatabase.Instance.Admiral.Level,
+			Fleet1 = fleets.Skip(0).FirstOrDefault(),
+			Fleet2 = fleets.Skip(1).FirstOrDefault(),
+			Fleet3 = fleets.Skip(2).FirstOrDefault(),
+			Fleet4 = fleets.Skip(3).FirstOrDefault(),
+			AirBase1 = airBases.Skip(0).FirstOrDefault(),
+			AirBase2 = airBases.Skip(1).FirstOrDefault(),
+			AirBase3 = airBases.Skip(2).FirstOrDefault(),
+		});
 
 		return @$"https://jervis.vercel.app?predeck={Uri.EscapeDataString(operationRoomData)}";
 	}
@@ -696,4 +699,10 @@ public class ToolService
 			Logger.Add(2, $"Failed to load sortie details: {e.Message}{e.StackTrace}");
 		}
 	}
+
+	private static FleetData? FleetOrDefault(bool include, int index) => include switch
+	{
+		false => null,
+		_ => KCDatabase.Instance.Fleet.Fleets.Values.Skip(index).FirstOrDefault(),
+	};
 }

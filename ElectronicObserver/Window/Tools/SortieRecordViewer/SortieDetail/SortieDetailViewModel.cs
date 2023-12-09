@@ -371,7 +371,7 @@ public partial class SortieDetailViewModel : WindowViewModelBase
 	[RelayCommand]
 	private void CopyAirControlSimulatorLink()
 	{
-		ToolService.CopyAirControlSimulatorLink(Sortie);
+		ToolService.CopyAirControlSimulatorLink(Sortie, this);
 	}
 
 	[RelayCommand]

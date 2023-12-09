@@ -31,6 +31,7 @@ public static class Extensions
 		_ => new FleetDataMock
 		{
 			Name = deckBuilderFleet.Name ?? "",
+			FleetType = deckBuilderFleet.Type,
 			MembersInstance = new(new List<IShipData?>
 			{
 				ToShipData(deckBuilderFleet.Ship1),
@@ -86,6 +87,16 @@ public static class Extensions
 
 		ship.Speed = deckBuilderShip.Speed;
 		ship.Range = deckBuilderShip.Range;
+
+		ship.SpecialEffectItems = deckBuilderShip.SpecialEffectItems
+			.Select(i => new SpecialEffectItem
+			{
+				ApiKind = i.SpEffectItemKind,
+				Firepower = i.Firepower,
+				Torpedo = i.Torpedo,
+				Armor = i.Armor,
+				Evasion = i.Evasion,
+			}).ToList();
 
 		return ship;
 	}
