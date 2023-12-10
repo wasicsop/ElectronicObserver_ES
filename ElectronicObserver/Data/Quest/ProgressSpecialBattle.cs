@@ -879,7 +879,7 @@ public class ProgressSpecialBattle : ProgressBattle
 	{
 		if (compass.MapAreaID == 7 && compass.MapInfoID == 2)
 		{
-			switch (compass.Destination)
+			switch (compass.CellId)
 			{
 				case 7:
 					return GaugeIndex == 1;
@@ -896,7 +896,7 @@ public class ProgressSpecialBattle : ProgressBattle
 	{
 		if (compass.MapAreaID == 7 && compass.MapInfoID == 3)
 		{
-			switch (compass.Destination)
+			switch (compass.CellId)
 			{
 				case 5:
 				case 8:

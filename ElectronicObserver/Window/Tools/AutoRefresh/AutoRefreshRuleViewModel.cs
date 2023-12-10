@@ -31,7 +31,7 @@ public partial class AutoRefreshRuleViewModel : ObservableObject
 		{
 			true => $"{id}",
 			_ => KCDatabase.Instance.Translation.Destination
-				.DisplayId(Map.AreaId, Map.InfoId, id)
+				.CellDisplay(Map.AreaId, Map.InfoId, id)
 		};
 
 		using ElectronicObserverContext db = new();

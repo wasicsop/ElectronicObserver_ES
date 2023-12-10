@@ -26,12 +26,19 @@ public class CompassData : ResponseWrapper
 	/// <summary>
 	/// 次に向かうセルのID
 	/// </summary>
-	public int Destination => (int)RawData.api_no;
+	public int CellId => (int)RawData.api_no;
 
 	/// <summary>
-	/// Map Node Display ID
+	/// Returns cell display if the display is known, otherwise just the id.
 	/// </summary>
-	public string DestinationID => KCDatabase.Instance.Translation.Destination.DisplayId(MapAreaID, MapInfoID, Destination);
+	public string CellDisplay => KCDatabase.Instance.Translation.Destination
+		.CellDisplay(MapAreaID, MapInfoID, CellId);
+
+	/// <summary>
+	/// Returns cell display with id if the display is known, otherwise just the id.
+	/// </summary>
+	public string CellDisplayWithId => KCDatabase.Instance.Translation.Destination
+		.CellDisplayWithId(MapAreaID, MapInfoID, CellId);
 
 	/// <summary>
 	/// 次のセルのグラフィック
@@ -251,7 +258,7 @@ public class CompassData : ResponseWrapper
 			var nodes = new string[RouteChoices.Count];
 			for (int i = 0; i < RouteChoices.Count; i++)
 			{
-				nodes[i] = KCDatabase.Instance.Translation.Destination.DisplayId(MapAreaID, MapInfoID, RouteChoices[i]);
+				nodes[i] = KCDatabase.Instance.Translation.Destination.CellDisplay(MapAreaID, MapInfoID, RouteChoices[i]);
 			}
 			return nodes;
 		}

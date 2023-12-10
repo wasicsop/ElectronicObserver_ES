@@ -83,7 +83,7 @@ public class TsunDbBattleData : TsunDbEntity
 	public TsunDbBattleData(string apiName, dynamic rawApi)
 	{
 		Map = string.Format("{0}-{1}", Database.Battle.Compass.MapAreaID, Database.Battle.Compass.MapInfoID);
-		Node = Database.Battle.Compass.Destination;
+		Node = Database.Battle.Compass.CellId;
 		Difficulty = Database.Battle.Compass.MapInfo.EventDifficulty;
 
 		// Start day or night, its always the first battle that should carry debuff info ?

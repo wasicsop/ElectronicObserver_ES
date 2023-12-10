@@ -139,7 +139,7 @@ public partial class FormBrowserHost : Form
 	{
 		CompassData compass = KCDatabase.Instance.Battle.Compass;
 
-		if (ShouldRefresh(compass.MapAreaID, compass.MapInfoID, compass.Destination, AutoRefresh))
+		if (ShouldRefresh(compass.MapAreaID, compass.MapInfoID, compass.CellId, AutoRefresh))
 		{
 			Browser.RequestAutoRefresh();
 		}

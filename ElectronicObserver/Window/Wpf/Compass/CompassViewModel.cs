@@ -186,7 +186,12 @@ public class CompassViewModel : AnchorableViewModel
 			}
 
 			// ex: node 1
-			TextDestination = string.Format(GeneralRes.NextNode + ": {0}{1}", compass.DestinationID, (compass.IsEndPoint ? GeneralRes.EndNode : ""));
+			TextDestination = $"{GeneralRes.NextNode}: {compass.CellDisplayWithId}";
+
+			if (compass.IsEndPoint)
+			{
+				TextDestination += GeneralRes.EndNode;
+			}
 
 			if (compass.LaunchedRecon != 0)
 			{
@@ -250,7 +255,7 @@ public class CompassViewModel : AnchorableViewModel
 							compass.WhirlpoolItemAmount,
 							(double)compass.WhirlpoolItemAmount / Math.Max(materialmax, 1));
 
-						Utility.Logger.Add(2, $"{compass.MapAreaID}-{compass.MapInfoID}-{compass.DestinationID} {eventkind} {TextEventDetailText}");
+						Utility.Logger.Add(2, $"{compass.MapAreaID}-{compass.MapInfoID}-{compass.CellDisplay} {eventkind} {TextEventDetailText}");
 					}
 					break;
 
@@ -402,7 +407,7 @@ public class CompassViewModel : AnchorableViewModel
 			.Where(r =>
 				r.MapAreaID == compass.MapAreaID &&
 				r.MapInfoID == compass.MapInfoID &&
-				r.CellID == compass.Destination &&
+				r.CellID == compass.CellId &&
 				r.Difficulty == compass.MapInfo.EventDifficulty)
 			.ToList();
 
@@ -541,7 +546,7 @@ public class CompassViewModel : AnchorableViewModel
 
 		string materialInfo = string.Join(", ", strs);
 
-		Utility.Logger.Add(2, $"{compass.MapAreaID}-{compass.MapInfoID}-{compass.DestinationID} {materialInfo}");
+		Utility.Logger.Add(2, $"{compass.MapAreaID}-{compass.MapInfoID}-{compass.CellDisplay} {materialInfo}");
 
 		return materialInfo;
 	}

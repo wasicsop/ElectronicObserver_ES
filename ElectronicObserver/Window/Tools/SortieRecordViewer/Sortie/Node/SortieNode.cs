@@ -19,7 +19,7 @@ public abstract class SortieNode(IKCDatabase kcDatabase, int world, int map, int
 	public int ApiEventId { get; set; } = eventId;
 	public int ApiEventKind { get; set; } = eventKind;
 
-	public string DisplayCell => KCDatabase.Instance.Translation.Destination.DisplayId(World, Map, Cell);
+	public string DisplayCell => KCDatabase.Instance.Translation.Destination.CellDisplay(World, Map, Cell);
 
 	public void AddAirBaseRaid(BattleBaseAirRaid abRaid)
 	{

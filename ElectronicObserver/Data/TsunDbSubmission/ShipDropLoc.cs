@@ -39,7 +39,7 @@ public class ShipDropLoc : TsunDbEntity
 		KCDatabase db = KCDatabase.Instance;
 
 		Map = $"{db.Battle.Compass.MapAreaID}-{db.Battle.Compass.MapInfoID}";
-		Node = db.Battle.Compass.Destination;
+		Node = db.Battle.Compass.CellId;
 		Rank = apidata.api_win_rank;
 
 		MapInfoData mapInfoData = db.MapInfo[db.Battle.Compass.MapAreaID * 10 + db.Battle.Compass.MapInfoID];

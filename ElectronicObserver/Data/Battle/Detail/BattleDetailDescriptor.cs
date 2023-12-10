@@ -27,7 +27,7 @@ public static class BattleDetailDescriptor
 			sb.AppendFormat("{0} ({1}-{2})", bm.Compass.MapInfo.NameEN, bm.Compass.MapAreaID, bm.Compass.MapInfoID);
 			if (bm.Compass.MapInfo.EventDifficulty > 0)
 				sb.AppendFormat(" [{0}]", Constants.GetDifficulty(bm.Compass.MapInfo.EventDifficulty));
-			sb.Append(ConstantsRes.BattleDetail_Node).Append(bm.Compass.Destination.ToString());
+			sb.Append(ConstantsRes.BattleDetail_Node).Append(bm.Compass.CellId.ToString());
 			if (bm.Compass.EventID == 5)
 				sb.Append(ConstantsRes.BattleDetail_Boss);
 			sb.AppendLine();

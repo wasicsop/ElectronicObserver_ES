@@ -185,7 +185,7 @@ public class EnemyFleetRecord : RecordBase
 				fleetName,
 				battle.Compass.MapAreaID,
 				battle.Compass.MapInfoID,
-				battle.IsBaseAirRaid ? -1 : battle.Compass.Destination,
+				battle.IsBaseAirRaid ? -1 : battle.Compass.CellId,
 				battle.Compass.MapInfo.EventDifficulty,
 				battle.FirstBattle.Searching.FormationEnemy,
 				battle.IsEnemyCombined ? initial.EnemyMembers.Take(6).Concat(initial.EnemyMembersEscort).ToArray() : initial.EnemyMembers,

@@ -435,7 +435,7 @@ public class BattleManager : APIWrapper
 
 				Utility.Logger.Add(2,
 				string.Format(BattleRes.BattleFinishedBaseAirRaid,
-					Compass.MapAreaID, Compass.MapInfoID, Compass.DestinationID,
+					Compass.MapAreaID, Compass.MapInfoID, Compass.CellDisplay,
 					Constants.GetAirSuperiority(airraid.IsAvailable ? airraid.AirSuperiority : -1), damage, Constants.GetAirRaidDamage(Compass.AirRaidDamageKind)));
 			}
 
@@ -449,7 +449,7 @@ public class BattleManager : APIWrapper
 
 				Utility.Logger.Add(2,
 					string.Format(BattleRes.BattleFinishedBaseAirRaid,
-						Compass.MapAreaID, Compass.MapInfoID, Compass.DestinationID,
+						Compass.MapAreaID, Compass.MapInfoID, Compass.CellDisplay,
 						Constants.GetAirSuperiority(baseAirRaid.IsAvailable ? baseAirRaid.AirSuperiority : -1), damage, Constants.GetAirRaidDamage(airRaidDamageKind)));
 			}
 		}
@@ -457,7 +457,7 @@ public class BattleManager : APIWrapper
 		{
 			Utility.Logger.Add(2,
 				string.Format(BattleRes.BattleFinishedSortie,
-					Compass.MapAreaID, Compass.MapInfoID, Compass.DestinationID, KCDatabase.Instance.Translation.Operation.FleetName(Result.EnemyFleetName), Result.Rank, Result.AdmiralExp, Result.BaseExp));
+					Compass.MapAreaID, Compass.MapInfoID, Compass.CellDisplay, KCDatabase.Instance.Translation.Operation.FleetName(Result.EnemyFleetName), Result.Rank, Result.AdmiralExp, Result.BaseExp));
 		}
 
 
@@ -571,7 +571,7 @@ public class BattleManager : APIWrapper
 				shipID = -2;
 			}
 
-			RecordManager.Instance.ShipDrop.Add(shipID, itemID, eqID, Compass.MapAreaID, Compass.MapInfoID, Compass.Destination, Compass.MapInfo.EventDifficulty, Compass.EventID == 5, enemyFleetData.FleetID, Result.Rank, KCDatabase.Instance.Admiral.Level);
+			RecordManager.Instance.ShipDrop.Add(shipID, itemID, eqID, Compass.MapAreaID, Compass.MapInfoID, Compass.CellId, Compass.MapInfo.EventDifficulty, Compass.EventID == 5, enemyFleetData.FleetID, Result.Rank, KCDatabase.Instance.Admiral.Level);
 		}
 
 
@@ -910,7 +910,7 @@ public class BattleManager : APIWrapper
 			if (IsPractice)
 				info = "practice";
 			else
-				info = $"{Compass.MapAreaID}-{Compass.MapInfoID}-{Compass.Destination}";
+				info = $"{Compass.MapAreaID}-{Compass.MapInfoID}-{Compass.CellId}";
 
 			string path = $"{parent}\\{DateTimeHelper.GetTimeStamp()}@{info}.txt";
 

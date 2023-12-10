@@ -9,30 +9,48 @@ public sealed class DestinationData : TranslationBase
 {
 	private static string DefaultFilePath => DataAndTranslationManager.DataFolder + @"\destination.json";
 
-	public IDDictionary<Destination> DestinationList { get; private set; } = new();
-
-	/// <summary>
-	/// Destination Node Letter ID (e.g: 1-1-A)
-	/// </summary>
-	public string DisplayId(int mapAreaId, int mapInfoId, int destination)
-	{
-		int hash = GetHashCode(mapAreaId, mapInfoId, destination);
-		return IsLoaded && DestinationList.TryGetValue(hash, out Destination value) ? value.DestinationDisplayId : destination.ToString();
-	}
-
-	public string PreviousId(int mapAreaId, int mapInfoId, int destination)
-	{
-		int hash = GetHashCode(mapAreaId, mapInfoId, destination);
-		return IsLoaded && DestinationList.TryGetValue(hash, out Destination value) ? value.PreviousDisplayId : "";
-	}
-
 	private static bool IsLoaded => !Configuration.Config.UI.UseOriginalNodeId;
 
-	private static int GetHashCode(int mapAreaId, int mapInfoId, int destination)
+	public IDDictionary<Destination> DestinationList { get; private set; } = new();
+
+	private Destination? DestinationOrDefault(int mapAreaId, int mapInfoId, int destination)
+	{
+		if (!IsLoaded) return null;
+
+		int hash = GetHashCode(mapAreaId, mapInfoId, destination);
+		DestinationList.TryGetValue(hash, out Destination? value);
+
+		return value;
+	}
+
+	/// <summary>
+	/// Returns cell display if the display is known, otherwise just the id.
+	/// </summary>
+	public string CellDisplay(int mapAreaId, int mapInfoId, int cellId) => 
+		DestinationOrDefault(mapAreaId, mapInfoId, cellId)?.CellDisplay ?? cellId.ToString();
+
+	/// <summary>
+	/// Returns cell display with id if the display is known, otherwise just the id.
+	/// </summary>
+	public string CellDisplayWithId(int mapAreaId, int mapInfoId, int cellId)
+	{
+		Destination? destination = DestinationOrDefault(mapAreaId, mapInfoId, cellId);
+
+		return destination switch
+		{
+			not null => $"{destination.CellDisplay} ({cellId})",
+			_ => cellId.ToString(),
+		};
+	}
+
+	public string PreviousCellDisplay(int mapAreaId, int mapInfoId, int cellId) =>
+		DestinationOrDefault(mapAreaId, mapInfoId, cellId)?.PreviousCellDisplay ?? cellId.ToString();
+
+	private static int GetHashCode(int mapAreaId, int mapInfoId, int cellId)
 	{
 		int hash = mapAreaId;
 		hash = hash * 397 ^ mapInfoId;
-		hash = hash * 397 ^ destination;
+		hash = hash * 397 ^ cellId;
 		return hash;
 	}
 
@@ -66,8 +84,8 @@ public sealed class DestinationData : TranslationBase
 				int mapAreaId = int.Parse(world[0]);
 				int mapInfoId = int.Parse(world[1]);
 				int destination = int.Parse(dest.Key);
-				string previousDisplayId = dest.Value[0];
-				string destinationDisplayId = dest.Value[1];
+				string previousCellDisplay = dest.Value[0];
+				string cellDisplay = dest.Value[1];
 
 				int hash = GetHashCode(mapAreaId, mapInfoId, destination);
 
@@ -77,8 +95,8 @@ public sealed class DestinationData : TranslationBase
 					MapAreaId = mapAreaId,
 					MapInfoId = mapInfoId,
 					CellId = destination,
-					PreviousDisplayId = previousDisplayId,
-					DestinationDisplayId = destinationDisplayId
+					PreviousCellDisplay = previousCellDisplay,
+					CellDisplay = cellDisplay,
 				};
 
 				dict.Add(item);
@@ -95,8 +113,8 @@ public class Destination : IIdentifiable
 	public int MapAreaId { get; set; }
 	public int MapInfoId { get; set; }
 	public int CellId { get; set; }
-	public string PreviousDisplayId { get; set; }
-	public string DestinationDisplayId { get; set; }
+	public string PreviousCellDisplay { get; set; }
+	public string CellDisplay { get; set; }
 
-	public string Display => $"{MapAreaId}-{MapInfoId}-{DestinationDisplayId}";
+	public string Display => $"{MapAreaId}-{MapInfoId}-{CellDisplay}";
 }

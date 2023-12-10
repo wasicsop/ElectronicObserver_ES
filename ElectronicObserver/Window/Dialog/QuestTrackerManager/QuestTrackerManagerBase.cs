@@ -119,7 +119,7 @@ public abstract class QuestTrackerManagerBase : WindowViewModelBase
 
 		foreach (TrackerViewModel tracker in Trackers.Where(t => t.State == 2))
 		{
-			tracker.Increment(fleet, compass.MapAreaID, compass.MapInfoID, compass.Destination);
+			tracker.Increment(fleet, compass.MapAreaID, compass.MapInfoID, compass.CellId);
 		}
 	}
 
@@ -133,7 +133,7 @@ public abstract class QuestTrackerManagerBase : WindowViewModelBase
 
 		foreach (TrackerViewModel tracker in Trackers.Where(t => t.State == 2))
 		{
-			tracker.Increment(fleet, compass.MapAreaID, compass.MapInfoID, compass.Destination);
+			tracker.Increment(fleet, compass.MapAreaID, compass.MapInfoID, compass.CellId);
 		}
 	}
 
@@ -149,7 +149,7 @@ public abstract class QuestTrackerManagerBase : WindowViewModelBase
 
 		foreach (TrackerViewModel tracker in Trackers.Where(t => t.State == 2))
 		{
-			tracker.Increment(fleet, bm.Result.Rank, bm.Compass.MapAreaID, bm.Compass.MapInfoID, bm.Compass.Destination);
+			tracker.Increment(fleet, bm.Result.Rank, bm.Compass.MapAreaID, bm.Compass.MapInfoID, bm.Compass.CellId);
 		}
 	}
 

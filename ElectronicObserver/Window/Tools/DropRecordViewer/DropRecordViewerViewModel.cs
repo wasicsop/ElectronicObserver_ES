@@ -112,7 +112,7 @@ public partial class DropRecordViewerViewModel : WindowViewModelBase
 			string Grouping(int id) => Utility.Configuration.Config.UI.UseOriginalNodeId switch
 			{
 				true => $"{id}",
-				_ => KCDatabase.Instance.Translation.Destination.DisplayId(world, map, id)
+				_ => KCDatabase.Instance.Translation.Destination.CellDisplay(world, map, id)
 			};
 
 			MapCellIdEnabled = true;
