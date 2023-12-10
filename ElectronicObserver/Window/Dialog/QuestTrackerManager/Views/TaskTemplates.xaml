@@ -5,6 +5,7 @@
 	xmlns:models="clr-namespace:ElectronicObserver.Window.Dialog.QuestTrackerManager.Models"
 	xmlns:questTasks="clr-namespace:ElectronicObserver.Window.Dialog.QuestTrackerManager.ViewModels.Tasks"
 	xmlns:questTrackerManager="clr-namespace:ElectronicObserver.Window.Dialog.QuestTrackerManager"
+	xmlns:views="clr-namespace:ElectronicObserver.Window.Dialog.QuestTrackerManager.Views"
 	>
 
 	<ResourceDictionary.MergedDictionaries>
@@ -387,7 +388,7 @@
 		<TextBlock Padding="4" Text="{Binding ViewModel.Translation.UnknownTask, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=questTrackerManager:QuestTrackerManagerWindow}}" />
 	</DataTemplate>
 
-	<questTrackerManager:TaskTemplateSelector
+	<views:TaskTemplateSelector
 		x:Key="TaskTemplateSelector"
 		BattleNodeId="{StaticResource BattleNodeIdTaskTemplate}"
 		BossKill="{StaticResource BossKillTaskTemplate}"

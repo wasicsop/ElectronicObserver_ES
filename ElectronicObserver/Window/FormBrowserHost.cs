@@ -9,7 +9,6 @@ using System.Net;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using BrowserHost;
 using BrowserLibCore;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Data;

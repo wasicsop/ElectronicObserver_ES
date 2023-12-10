@@ -4,16 +4,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using BrowserLibCore;
 using CommunityToolkit.Mvvm.DependencyInjection;
-using ElectronicObserver;
 using ElectronicObserver.Data;
 using ElectronicObserver.Services;
 using ElectronicObserver.ViewModels;
-using ElectronicObserver.Window;
 using ElectronicObserver.Window.Tools.AirControlSimulator;
 using MagicOnion.Server.Hubs;
 using AirControlSimulatorViewModel = ElectronicObserver.Window.Tools.AirControlSimulator.AirControlSimulatorViewModel;
 
-namespace BrowserHost;
+namespace ElectronicObserver.Window;
 
 public class BrowserHostHub : StreamingHubBase<IBrowserHost, IBrowser>, IBrowserHost
 {

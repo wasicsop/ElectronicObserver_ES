@@ -2,7 +2,7 @@
 using System.Windows.Controls;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.ViewModels.Conditions;
 
-namespace ElectronicObserver.Window.Dialog.QuestTrackerManager;
+namespace ElectronicObserver.Window.Dialog.QuestTrackerManager.Views;
 
 public class ConditionTemplateSelector : DataTemplateSelector
 {

@@ -6,6 +6,7 @@ using ElectronicObserver.Common;
 using ElectronicObserver.ViewModels.Translations;
 
 namespace ElectronicObserver.Window.Dialog.ResourceChartWPF;
+
 public partial class ResourceChartViewModel : WindowViewModelBase
 {
 	public ResourceChartViewModel()

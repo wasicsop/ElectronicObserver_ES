@@ -2,7 +2,7 @@
 using System.Windows.Controls;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.ViewModels.Tasks;
 
-namespace ElectronicObserver.Window.Dialog.QuestTrackerManager;
+namespace ElectronicObserver.Window.Dialog.QuestTrackerManager.Views;
 
 public class TaskTemplateSelector : DataTemplateSelector
 {

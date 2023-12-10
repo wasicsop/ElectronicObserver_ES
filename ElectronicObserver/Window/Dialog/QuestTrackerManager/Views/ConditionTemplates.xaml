@@ -5,6 +5,7 @@
 	xmlns:controls="http://schemas.modernwpf.com/2019"
 	xmlns:questTrackerManager="clr-namespace:ElectronicObserver.Window.Dialog.QuestTrackerManager"
 	xmlns:system="clr-namespace:System;assembly=System.Runtime"
+	xmlns:views="clr-namespace:ElectronicObserver.Window.Dialog.QuestTrackerManager.Views"
 	>
 
 	<ResourceDictionary.MergedDictionaries>
@@ -438,7 +439,7 @@
 		<TextBlock Padding="4" Text="{Binding ViewModel.Translation.UnknownCondition, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=questTrackerManager:QuestTrackerManagerWindow}}" />
 	</DataTemplate>
 
-	<questTrackerManager:ConditionTemplateSelector
+	<views:ConditionTemplateSelector
 		x:Key="ConditionTemplateSelector"
 		AllowedShipTypes="{StaticResource AllowedShipTypesConditionTemplate}"
 		Group="{StaticResource GroupConditionTemplate}"
