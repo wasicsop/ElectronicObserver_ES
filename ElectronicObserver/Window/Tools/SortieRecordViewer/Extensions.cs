@@ -434,17 +434,27 @@ public static class Extensions
 	{
 		foreach (ApiFile apiFile in sortie.ApiFiles)
 		{
-			if (apiFile.ApiFileType is not ApiFileType.Request) continue;
-
-			Dictionary<string, string>? requestData = JsonSerializer
-				.Deserialize<Dictionary<string, string>>(apiFile.Content);
-
-			if (requestData is null) continue;
-
-			requestData.Remove("api_token");
-
-			apiFile.Content = JsonSerializer.Serialize(requestData);
+			CleanRequest(apiFile);
 		}
+	}
+
+	/// <summary>
+	/// Removes api_token values.
+	/// </summary>
+	public static ApiFile CleanRequest(this ApiFile apiFile)
+	{
+		if (apiFile.ApiFileType is not ApiFileType.Request) return apiFile;
+
+		Dictionary<string, string>? requestData = JsonSerializer
+			.Deserialize<Dictionary<string, string>>(apiFile.Content);
+
+		if (requestData is null) return apiFile;
+
+		requestData.Remove("api_token");
+
+		apiFile.Content = JsonSerializer.Serialize(requestData);
+
+		return apiFile;
 	}
 
 	public static async Task<int?> GetAdmiralLevel(this SortieRecord sortieRecord, ElectronicObserverContext db, CancellationToken cancellationToken = default)

@@ -1,9 +1,11 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
+using System.Text.Json;
 using System.Windows;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Database;
+using ElectronicObserver.Window.Tools.SortieRecordViewer;
 
 namespace ElectronicObserver.Window.Tools.DatabaseExplorer.ApiFile;
 
@@ -12,6 +14,7 @@ public partial class ApiFileExplorerViewModel : ObservableObject
 	private ElectronicObserverContext Db { get; } = new();
 
 	public ObservableCollection<Database.KancolleApi.ApiFile> ApiFiles { get; } = new();
+	public ObservableCollection<Database.KancolleApi.ApiFile> SelectedFiles { get; } = new();
 
 	public int Limit { get; set; } = 20;
 
@@ -41,10 +44,16 @@ public partial class ApiFileExplorerViewModel : ObservableObject
 	}
 
 	[RelayCommand]
-	private void CopyContent(Database.KancolleApi.ApiFile? file)
+	private void CopyContent()
 	{
-		if (file is null) return;
+		if (!SelectedFiles.Any()) return;
 
-		Clipboard.SetText(file.Content);
+		Clipboard.SetText(SelectedFiles.Count switch
+		{
+			1 => SelectedFiles[0].Content,
+			_ => JsonSerializer.Serialize(SelectedFiles
+				.Select(f => f.CleanRequest())
+				.OrderBy(f => f.Id)),
+		});
 	}
 }
