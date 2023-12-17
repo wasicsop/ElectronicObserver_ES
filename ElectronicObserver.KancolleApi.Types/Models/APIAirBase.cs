@@ -1,9 +1,11 @@
-﻿namespace ElectronicObserver.KancolleApi.Types.Models;
+﻿using ElectronicObserverTypes;
+
+namespace ElectronicObserver.KancolleApi.Types.Models;
 
 public class ApiAirBase
 {
 	[JsonPropertyName("api_action_kind")]
-	public int ApiActionKind { get; set; }
+	public AirBaseActionKind ApiActionKind { get; set; }
 
 	[JsonPropertyName("api_area_id")]
 	public int ApiAreaId { get; set; }
