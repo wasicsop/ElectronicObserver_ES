@@ -26,7 +26,8 @@ namespace ElectronicObserver.Services.ApiFileService;
 // migrating all at once is very expensive
 public class ApiFileService : ObservableObject
 {
-	private static int CurrentApiFileVersion => 1;
+	// version 1 was saving HP max instead of hp current for ships
+	private static int CurrentApiFileVersion => 2;
 
 	private KCDatabase KcDatabase { get; }
 
@@ -391,7 +392,7 @@ public class ApiFileService : ObservableObject
 		Kyouka = s.Kyouka.ToList(),
 		Fuel = s.Fuel,
 		Ammo = s.Ammo,
-		Hp = s.HPMax,
+		Hp = s.HPCurrent,
 		Armor = s.ArmorTotal,
 		Evasion = s.EvasionTotal,
 		Aircraft = s.Aircraft.ToList(),
@@ -449,7 +450,9 @@ public class ApiFileService : ObservableObject
 
 		await using ElectronicObserverContext db = new();
 
-		SortieRecord? sortie = await db.Sorties.FirstOrDefaultAsync(s => s.Id == sortieId);
+		SortieRecord? sortie = await db.Sorties
+			.Include(s => s.FleetData)
+			.FirstOrDefaultAsync(s => s.Id == sortieId);
 
 		if (sortie is null) return;
 
