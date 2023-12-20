@@ -74,6 +74,11 @@ public static class GameDataExtensions
 			ship.Aircraft = shipData.Aircraft;
 		}
 
+		if (shipData.Hp is int hp)
+		{
+			ship.HPCurrent = hp;
+		}
+
 		return ApplyFitBonus(ship, shipData);
 	}
 
@@ -127,6 +132,7 @@ public static class GameDataExtensions
 		{ } => new BaseAirCorpsDataMock
 		{
 			Name = airBase.Name,
+			MapAreaID = airBase.MapAreaId,
 			ActionKind = airBase.ActionKind,
 			Distance = airBase.BaseDistance + airBase.BonusDistance,
 			Squadrons = new Dictionary<int, IBaseAirCorpsSquadron>
