@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using ElectronicObserver.KancolleApi.Types.Interfaces;
 using ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
-using ElectronicObserver.Window.Tools.SortieRecordViewer.SortieDetail;
-using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
 
@@ -38,18 +36,6 @@ public abstract class BattleData
 		.Zip(FleetsAfterBattle.EnemyEscortFleet!.MembersInstance, (before, after) => (Before: before, After: after))
 		.Select((t, i) => new ShipBeforeAfter(i, t.Before, t.After));
 
-	public IEnumerable<SortieCost> MainFleetRepairCosts => MainFleetBeforeAfter
-		.Select(ship => RepairCost(ship.Before, ship.After));
-
-	public SortieCost TotalRepairCost => MainFleetRepairCosts
-		.Aggregate(new SortieCost(), (a, b) => a + b);
-
-	public IEnumerable<SortieCost> MainFleetSupplyCosts => MainFleetBeforeAfter
-		.Select(ship => SupplyCost(ship.Before, ship.After));
-
-	public SortieCost TotalSupplyCost => MainFleetSupplyCosts
-		.Aggregate(new SortieCost(), (a, b) => a + b);
-
 	public PhaseInitial Initial { get; }
 
 	public IEnumerable<PhaseBase> Phases => AllPhases().Where(p => p is not null)!;
@@ -70,28 +56,4 @@ public abstract class BattleData
 			FleetsAfterBattle = phase.EmulateBattle(FleetsAfterBattle);
 		}
 	}
-
-	private static SortieCost RepairCost(IShipData? before, IShipData? after) => (before, after) switch
-	{
-		({ }, { }) => RepairCost(before, before.HPCurrent - after.HPCurrent),
-
-		_ => new(),
-	};
-
-	private static SortieCost RepairCost(IShipData ship, int damage) => new()
-	{
-		Fuel = (int)(ship.MasterShip.Fuel * 0.032 * damage),
-		Steel = (int)(ship.MasterShip.Fuel * 0.06 * damage),
-	};
-
-	private static SortieCost SupplyCost(IShipData? before, IShipData? after) => (before, after) switch
-	{
-		({ }, { }) => new()
-		{
-			Fuel = before.Fuel - after.Fuel,
-			Ammo = before.Ammo - after.Ammo,
-		},
-
-		_ => new(),
-	};
 }

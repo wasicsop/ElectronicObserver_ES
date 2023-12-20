@@ -9,26 +9,26 @@ using ElectronicObserverTypes.Mocks;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle;
 
-public class BattleFleets
+public class BattleFleets(
+	IFleetData fleet,
+	IFleetData? escortFleet = null,
+	List<IFleetData?>? fleets = null,
+	List<IBaseAirCorpsData>? airBases = null)
 {
-	public IFleetData Fleet { get; }
-	public IFleetData? EscortFleet { get; }
-	public List<IFleetData?>? Fleets { get; }
-	public List<IBaseAirCorpsData> AirBases { get; }
+	public IFleetData Fleet { get; } = fleet;
+	public IFleetData? EscortFleet { get; } = escortFleet;
+	public List<IFleetData?>? Fleets { get; } = fleets switch
+	{
+		null => null,
+		_ => [fleet, escortFleet, .. fleets[2..]],
+	};
+
+	public List<IBaseAirCorpsData> AirBases { get; } = airBases ?? [];
 	public IFleetData? FriendFleet { get; set; }
 	public IFleetData? EnemyFleet { get; set; }
 	public IFleetData? EnemyEscortFleet { get; set; }
 
 	private static int CombinedFleetMainFleetShipCount => 6;
-
-	public BattleFleets(IFleetData fleet, IFleetData? escortFleet = null, List<IFleetData?>? fleets = null,
-		List<IBaseAirCorpsData>? airBases = null)
-	{
-		Fleet = fleet;
-		EscortFleet = escortFleet;
-		Fleets = fleets;
-		AirBases = airBases ?? new();
-	}
 
 	public BattleFleets Clone() => new(CloneFleet(Fleet), CloneFleet(EscortFleet), Fleets, AirBases.Select(CloneAirBase).ToList()!)
 	{

@@ -9,14 +9,9 @@ using ElectronicObserverTypes.Data;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;
 
-public sealed class PhaseFactory
+public sealed class PhaseFactory(IKCDatabase kcDatabase)
 {
-	private IKCDatabase KcDatabase { get; }
-
-	public PhaseFactory(IKCDatabase kcDatabase)
-	{
-		KcDatabase = kcDatabase;
-	}
+	private IKCDatabase KcDatabase { get; } = kcDatabase;
 
 	public PhaseInitial Initial(BattleFleets fleets, IBattleApiResponse battle) => battle switch
 	{
