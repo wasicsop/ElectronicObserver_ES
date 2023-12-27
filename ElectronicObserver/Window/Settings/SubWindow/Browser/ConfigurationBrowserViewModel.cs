@@ -30,6 +30,7 @@ public partial class ConfigurationBrowserViewModel : ConfigurationViewModelBase
 	public bool ZoomFit { get; set; }
 	public bool ConfirmAtRefresh { get; set; }
 	public bool AppliesStyleSheet { get; set; }
+	public bool UseHttps { get; set; }
 	public bool IsBrowserContextMenuEnabled { get; set; }
 	public string LogInPageURL { get; set; }
 	public DockStyle ToolMenuDockStyle { get; set; }
@@ -191,6 +192,7 @@ public partial class ConfigurationBrowserViewModel : ConfigurationViewModelBase
 		GadgetBypassServerCustom = Config.GadgetBypassServerCustom;
 		UseVulkanWorkaround = Config.UseVulkanWorkaround;
 		IsBrowserContextMenuEnabled = Config.IsBrowserContextMenuEnabled;
+		UseHttps = Config.UseHttps;
 	}
 
 	public override void Save()
@@ -225,6 +227,7 @@ public partial class ConfigurationBrowserViewModel : ConfigurationViewModelBase
 		Config.GadgetBypassServerCustom = GadgetBypassServerCustom;
 		Config.UseVulkanWorkaround = UseVulkanWorkaround;
 		Config.IsBrowserContextMenuEnabled = IsBrowserContextMenuEnabled;
+		Config.UseHttps = UseHttps;
 	}
 
 	[RelayCommand]
