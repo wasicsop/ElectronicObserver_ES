@@ -116,7 +116,7 @@
 			<CheckBox
 				Grid.Row="0"
 				Grid.Column="3"
-				Content="HTTPS"
+				Content="HTTPS *"
 				IsChecked="{Binding UseHttps}"
 				/>
 
