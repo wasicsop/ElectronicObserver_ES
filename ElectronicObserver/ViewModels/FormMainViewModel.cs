@@ -527,22 +527,11 @@ public partial class FormMainViewModel : ObservableObject
 	}
 
 	[RelayCommand]
-	private void OpenConfiguration(bool useNewVersion)
+	private void OpenConfiguration()
 	{
 		UpdatePlayTime();
 
-		if (useNewVersion)
-		{
-			new ConfigurationWindow(new()).ShowDialog(Window);
-		}
-		else
-		{
-			using DialogConfiguration dialog = new(Configuration.Config);
-			if (dialog.ShowDialog(App.Current.MainWindow) != System.Windows.Forms.DialogResult.OK) return;
-
-			dialog.ToConfiguration(Configuration.Config);
-			Configuration.Instance.OnConfigurationChanged();
-		}
+		new ConfigurationWindow(new()).ShowDialog(Window);
 	}
 
 	#endregion
