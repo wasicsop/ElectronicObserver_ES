@@ -1557,7 +1557,7 @@ public partial class FormMainViewModel : ObservableObject
 				MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes)
 			== MessageBoxResult.Yes)
 		{
-			OpenLink("https://github.com/silfumus/ElectronicObserver/wiki");
+			OpenLink(MainResources.GitHubWikiLink);
 		}
 
 	}
