@@ -7,6 +7,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using ElectronicObserver.Common;
+using ElectronicObserver.Observer;
 using ElectronicObserver.Services;
 using ElectronicObserver.Utility;
 
@@ -197,6 +198,8 @@ public partial class ConfigurationBrowserViewModel : ConfigurationViewModelBase
 
 	public override void Save()
 	{
+		bool changed = false;
+
 		Config.Browser = Browser;
 		Config.ZoomRate = ZoomRate / 100;
 		Config.ZoomFit = ZoomFit;
@@ -228,6 +231,13 @@ public partial class ConfigurationBrowserViewModel : ConfigurationViewModelBase
 		Config.UseVulkanWorkaround = UseVulkanWorkaround;
 		Config.IsBrowserContextMenuEnabled = IsBrowserContextMenuEnabled;
 		Config.UseHttps = UseHttps;
+
+		changed |= Config.UseHttps != UseHttps;
+
+		if (changed)
+		{
+			APIObserver.Instance.Start(Configuration.Config.Connection.Port, App.Current!.MainWindow!);
+		}
 	}
 
 	[RelayCommand]
