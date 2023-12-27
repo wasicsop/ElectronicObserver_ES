@@ -5,7 +5,6 @@
 	xmlns:avalonDockProperties="clr-namespace:AvalonDock.Properties;assembly=AvalonDock"
 	xmlns:common="clr-namespace:ElectronicObserver.Common"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-	xmlns:electronicObserverTypes="clr-namespace:ElectronicObserverTypes;assembly=ElectronicObserverTypes"
 	xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
 	xmlns:local="clr-namespace:ElectronicObserver"
 	xmlns:markup="clr-namespace:WpfExtensions.Xaml.Markup;assembly=WpfExtensions.Xaml"
@@ -640,8 +639,8 @@
 				</MenuItem>
 				<MenuItem
 					d:Header="AB Simulator"
-					Command="{Binding OpenBaseAirCorpsSimulationCommand}"
-					Header="{Binding FormMain.StripMenu_Tool_BaseAirCorpsSimulation}"
+					Command="{Binding OpenAirControlSimulatorCommand}"
+					Header="{Binding FormMain.AirControlSimulator}"
 					>
 					<MenuItem.Icon>
 						<common:IconContentIcon Type="FormBaseAirCorps" />

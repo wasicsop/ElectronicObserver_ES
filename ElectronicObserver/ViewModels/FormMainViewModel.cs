@@ -752,7 +752,7 @@ public partial class FormMainViewModel : ObservableObject
 	}
 
 	[RelayCommand]
-	private void OpenBaseAirCorpsSimulation()
+	private void OpenAirControlSimulator()
 	{
 		ToolService.AirControlSimulator();
 	}
