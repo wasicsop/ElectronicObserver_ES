@@ -494,16 +494,18 @@ public class WebView2ViewModel : BrowserViewModel
 	/// </summary>
 	protected override void ApplyZoom()
 	{
+		if (Configuration is null) return;
 		if (WebView2 is not { IsInitialized: true }) return;
-		var zoomRate = Configuration.ZoomRate;
-		var fit = Configuration.ZoomFit && StyleSheetApplied;
+
+		double zoomRate = Configuration.ZoomRate;
+		bool fit = Configuration.ZoomFit && StyleSheetApplied;
 
 		double zoomFactor;
 
 		if (fit)
 		{
-			var rateX = ActualWidth / KanColleSize.Width;
-			var rateY = ActualHeight / KanColleSize.Height;
+			double rateX = ActualWidth / (KanColleSize.Width * TextScaleFactor);
+			double rateY = ActualHeight / (KanColleSize.Height * TextScaleFactor);
 
 			zoomFactor = Math.Min(rateX, rateY);
 		}
@@ -512,13 +514,13 @@ public class WebView2ViewModel : BrowserViewModel
 			zoomFactor = Math.Clamp(zoomRate, 0.1, 10);
 		}
 
-		// DpiScaleX and DpiScaleY should always be the same so it doesn't matter which one you use
+		// DpiScaleX and DpiScaleY should always be the same, so it doesn't matter which one you use
 		WebView2.ZoomFactor = zoomFactor;
 
 		if (StyleSheetApplied && gameframe != null)
 		{
-			var newWidth = (int)(KanColleSize.Width * zoomFactor);
-			var newHeight = (int)(KanColleSize.Height * zoomFactor);
+			double newWidth = (int)(KanColleSize.Width * TextScaleFactor * zoomFactor);
+			double newHeight = (int)(KanColleSize.Height * TextScaleFactor * zoomFactor);
 
 			WebView2.Width = newWidth;
 			WebView2.Height = newHeight;
