@@ -10,6 +10,7 @@
 		<SatelliteResourceLanguages>en;ja</SatelliteResourceLanguages>
 		<LangVersion>preview</LangVersion>
 		<DebugType>embedded</DebugType>
+		<OutputPath>bin\$(Platform)\$(Configuration)\</OutputPath>
 	</PropertyGroup>
 
 	<PropertyGroup>
@@ -32,14 +33,6 @@
 		<Version>5.3.0.1</Version>
 		<AnalysisLevel>preview</AnalysisLevel>
 		<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
-		<OutputPath>bin\x64\Debug\</OutputPath>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
-		<OutputPath>bin\x64\Release\</OutputPath>
 	</PropertyGroup>
 
 	<ItemGroup>
