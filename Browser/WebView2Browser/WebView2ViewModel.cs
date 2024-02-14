@@ -341,6 +341,14 @@ public class WebView2ViewModel : BrowserViewModel
 	private void CoreWebView2_NavigationStarted(object? sender, CoreWebView2NavigationStartingEventArgs e)
 	{
 		if (WebView2?.CoreWebView2 == null) return;
+
+		// would probably be better if we could disable the https redirect but this should work for now
+		if (e.IsRedirected && e.Uri.Contains("https://www.dmm.com/netgame/social/-/gadgets/=/app_id=854854/"))
+		{
+			Navigate("http://www.dmm.com/netgame/social/-/gadgets/=/app_id=854854/");
+			return;
+		}
+
 		if (IsNavigating) return;
 
 		if (e.Uri.Contains(@"/rt.gsspat.jp/"))
