@@ -11,6 +11,7 @@
 		<LangVersion>preview</LangVersion>
 		<DebugType>embedded</DebugType>
 		<OutputPath>bin\$(Platform)\$(Configuration)\</OutputPath>
+		<Configurations>Debug;Release;Browser Debug</Configurations>
 	</PropertyGroup>
 
 	<PropertyGroup>
