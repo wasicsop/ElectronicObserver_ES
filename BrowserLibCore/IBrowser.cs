@@ -9,5 +9,8 @@ public interface IBrowser
 	void SetProxy(string v);
 	void OpenExtraBrowser();
 	void OpenAirControlSimulator(string url);
+	void OpenCompassPrediction();
 	void RequestAutoRefresh();
+	void RequestCompassPredictionFleetUpdate();
+	void RequestCompassPredictionMapUpdate(int area, int map);
 }

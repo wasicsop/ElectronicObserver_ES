@@ -8,11 +8,13 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
+using Browser.WebView2Browser.CompassPrediction;
 using BrowserLibCore;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
 using Grpc.Core;
+using Jot;
 using MagicOnion.Client;
 using ModernWpf;
 
@@ -75,11 +77,15 @@ public abstract partial class BrowserViewModel : ObservableObject, IBrowser
 	
 	protected string BrowserFontStyleId { get; } = Guid.NewGuid().ToString()[..8];
 
+	protected CompassPredictionViewModel CompassPredictionViewModel { get; set; }
+
 	protected BrowserViewModel(string host, int port, string culture)
 	{
 		// Debugger.Launch();
 
 		FormBrowser = Ioc.Default.GetService<FormBrowserTranslationViewModel>()!;
+		CompassPredictionTranslationViewModel translation = Ioc.Default.GetRequiredService<CompassPredictionTranslationViewModel>();
+		Tracker tracker = Ioc.Default.GetRequiredService<Tracker>();
 
 		Host = host;
 		Port = port;
@@ -128,6 +134,8 @@ public abstract partial class BrowserViewModel : ObservableObject, IBrowser
 
 			VolumeChanged();
 		};
+
+		CompassPredictionViewModel = new(BrowserHost, translation, tracker);
 	}
 
 	public abstract void OnLoaded(object sender, RoutedEventArgs e);
@@ -303,6 +311,16 @@ public abstract partial class BrowserViewModel : ObservableObject, IBrowser
 		RefreshBrowser();
 	}
 
+	public void RequestCompassPredictionFleetUpdate()
+	{
+		CompassPredictionViewModel.UpdateFleet();
+	}
+
+	public void RequestCompassPredictionMapUpdate(int area, int map)
+	{
+		CompassPredictionViewModel.UpdateDisplayedMap(area, map);
+	}
+
 	public void CloseBrowser()
 	{
 		HeartbeatTimer.Stop();
@@ -475,6 +493,9 @@ public abstract partial class BrowserViewModel : ObservableObject, IBrowser
 
 	[RelayCommand]
 	public abstract void OpenAirControlSimulator(string url);
+
+	[RelayCommand]
+	public abstract void OpenCompassPrediction();
 
 	#region 呪文
 

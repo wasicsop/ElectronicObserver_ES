@@ -74,6 +74,24 @@ public class ToolService(DataSerializationService dataSerializationService)
 		Window.FormBrowserHost.Instance.Browser.OpenAirControlSimulator(url);
 	}
 
+	public void CompassPrediction()
+	{
+		if (KCDatabase.Instance.Ships.Count is 0)
+		{
+			MessageBox.Show
+			(
+				ExpCheckerResources.NoShipsAvailable,
+				ExpCheckerResources.ShipsUnavailable,
+				MessageBoxButton.OK,
+				MessageBoxImage.Error
+			);
+
+			return;
+		}
+
+		Window.FormBrowserHost.Instance.Browser.OpenCompassPrediction();
+	}
+
 	public void OperationRoom(AirControlSimulatorViewModel? viewModel = null)
 	{
 		viewModel ??= new(DataSerializationService.OperationRoomLink);

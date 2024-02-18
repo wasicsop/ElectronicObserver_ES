@@ -69,7 +69,7 @@ public class BrowserHostHub : StreamingHubBase<IBrowserHost, IBrowser>, IBrowser
 		return Task.Run(() => FormBrowserHost.Instance.GetTheme());
 	}
 
-	public Task<string?> GetFleetData()
+	public Task<string?> GetFleetAndAirBaseData()
 	{
 		Task<string?> a = App.Current.Dispatcher.Invoke(() =>
 		{
@@ -109,6 +109,20 @@ public class BrowserHostHub : StreamingHubBase<IBrowserHost, IBrowser>, IBrowser
 		return a;
 	}
 
+	public Task<string> GetFleetData()
+	{
+		DataSerializationService serialization = Ioc.Default.GetRequiredService<DataSerializationService>();
+
+		return Task.Run(() => serialization.DeckBuilder(new()
+		{
+			HqLevel = KCDatabase.Instance.Admiral.Level,
+			Fleet1 = KCDatabase.Instance.Fleet[1],
+			Fleet2 = KCDatabase.Instance.Fleet[2],
+			Fleet3 = KCDatabase.Instance.Fleet[3],
+			Fleet4 = KCDatabase.Instance.Fleet[4],
+		}));
+	}
+
 	public Task<string> GetShipData(bool allShips)
 	{
 		DataSerializationService service = Ioc.Default.GetService<DataSerializationService>()!;
@@ -121,5 +135,26 @@ public class BrowserHostHub : StreamingHubBase<IBrowserHost, IBrowser>, IBrowser
 		DataSerializationService service = Ioc.Default.GetService<DataSerializationService>()!;
 
 		return Task.Run(() => service.FleetAnalysisEquipment(allEquipment));
+	}
+
+	public Task<Dictionary<int, List<int>>> GetMapList()
+	{
+		return Task.Run(() =>
+		{
+			return KCDatabase.Instance.MapArea.Keys
+				.ToDictionary(mapId => mapId, mapId => KCDatabase.Instance.MapInfo.Values
+					.Where(map => map.MapAreaID == mapId)
+					.Select(map => map.MapInfoID)
+					.ToList());
+		});
+	}
+
+	public Task<(int?, int?)> GetCurrentMap()
+	{
+		return Task.Run<(int?, int?)>(() =>
+		{
+			if (KCDatabase.Instance.Battle.Compass is null) return (null, null);
+			return (KCDatabase.Instance.Battle.Compass.MapAreaID, KCDatabase.Instance.Battle.Compass.MapInfoID);
+		});
 	}
 }

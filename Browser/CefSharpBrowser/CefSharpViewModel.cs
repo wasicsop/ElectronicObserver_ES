@@ -9,6 +9,7 @@ using System.Windows.Forms.Integration;
 using System.Windows.Interop;
 using Browser.CefSharpBrowser.AirControlSimulator;
 using Browser.CefSharpBrowser.CefOp;
+using Browser.CefSharpBrowser.CompassPrediction;
 using Browser.CefSharpBrowser.ExtraBrowser;
 using BrowserLibCore;
 using CefSharp;
@@ -613,6 +614,14 @@ public class CefSharpViewModel : BrowserViewModel
 	public override void OpenAirControlSimulator(string url)
 	{
 		new AirControlSimulatorWindow(url, BrowserHost)
+		{
+			Owner = App.Current.MainWindow,
+		}.Show();
+	}
+
+	public override void OpenCompassPrediction()
+	{
+		new CompassPredictionView(CompassPredictionViewModel)
 		{
 			Owner = App.Current.MainWindow,
 		}.Show();
