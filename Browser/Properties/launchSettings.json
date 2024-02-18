@@ -3,9 +3,13 @@
     "Browser": {
       "commandName": "Project"
     },
-    "Browser debug": {
+    "CefSharp debug": {
       "commandName": "Project",
       "commandLineArgs": "localhost\r\n45467"
+    },
+    "WebView2 debug": {
+      "commandName": "Project",
+      "commandLineArgs": "localhost\r\n45467\r\nen\r\n1"
     }
   }
 }
