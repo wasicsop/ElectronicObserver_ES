@@ -18,7 +18,6 @@
 	xmlns:shipGroup="clr-namespace:ElectronicObserver.Window.Wpf.ShipGroup"
 	xmlns:shipGroupWinforms="clr-namespace:ElectronicObserver.Window.Wpf.ShipGroupWinforms"
 	xmlns:shipTraining="clr-namespace:ElectronicObserver.Window.Wpf.ShipTrainingPlanner"
-	xmlns:viewModels="clr-namespace:ElectronicObserver.Window.Wpf.ShipGroup.ViewModels"
 	xmlns:winformsHost="clr-namespace:ElectronicObserver.Window.Wpf.WinformsHost"
 	xmlns:winformsWrappers="clr-namespace:ElectronicObserver.Window.Wpf.WinformsWrappers"
 	xmlns:wpf="clr-namespace:ElectronicObserver.Window.Wpf"
@@ -30,7 +29,7 @@
 	<DataTemplate x:Key="FleetOverviewTemplate" DataType="{x:Type fleetOverview:FleetOverviewViewModel}">
 		<fleetOverview:FleetOverviewView ViewModel="{Binding}" />
 	</DataTemplate>
-	<DataTemplate x:Key="ShipGroupTemplate" DataType="viewModels:ShipGroupViewModel">
+	<DataTemplate x:Key="ShipGroupTemplate" DataType="shipGroup:ShipGroupViewModel">
 		<shipGroup:ShipGroupView ViewModel="{Binding}" />
 	</DataTemplate>
 	<DataTemplate x:Key="ShipGroupWinformsTemplate" DataType="shipGroupWinforms:ShipGroupWinformsViewModel">

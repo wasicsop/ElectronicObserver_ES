@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
+using ElectronicObserver.Common.Datagrid;
 using ElectronicObserver.Data;
 using ElectronicObserver.Observer;
 using ElectronicObserver.Resource;
@@ -11,10 +12,12 @@ using ElectronicObserver.ViewModels;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserverTypes;
 
-namespace ElectronicObserver.Window.Wpf.ShipGroup.ViewModels;
+namespace ElectronicObserver.Window.Wpf.ShipGroup;
 
-public record ShipGroupItemViewModel(IShipData Ship)
+public class ShipGroupItemViewModel(IShipData ship)
 {
+	private IShipData Ship { get; } = ship;
+
 	public int MasterId => Ship.MasterID;
 	public string ShipTypeName => Ship.MasterShip.ShipTypeName;
 	public string Name => Ship.Name;
@@ -96,11 +99,12 @@ public partial class ShipGroupViewModel : AnchorableViewModel
 
 	public FormShipGroupTranslationViewModel FormShipGroup { get; }
 
-	public ObservableCollection<ShipGroupItemViewModel> Ships { get; set; } = new();
+	public DataGridViewModel<ShipGroupItemViewModel> DataGrid { get; } = new();
+	public ObservableCollection<ShipGroupItemViewModel> Ships { get; set; } = [];
 	public ObservableCollection<ShipGroupData> Groups { get; }
 	public ShipGroupData? SelectedGroup { get; set; }
 	
-	public List<ShipGroupItemViewModel> SelectedShips { get; set; } = new();
+	public List<ShipGroupItemViewModel> SelectedShips { get; } = [];
 
 	public string StatusBarText => MakeStatusBarText(SelectedGroup, SelectedShips);
 
@@ -158,9 +162,9 @@ public partial class ShipGroupViewModel : AnchorableViewModel
 	}
 
 	[RelayCommand]
-	private void SelectGroup(string name)
+	private void SelectGroup(ShipGroupData group)
 	{
-		SelectedGroup = Db.ShipGroup.ShipGroups.Values.First(g => g.Name == name);
+		SelectedGroup = group;
 		SetShips();
 	}
 
@@ -169,6 +173,5 @@ public partial class ShipGroupViewModel : AnchorableViewModel
 		if (SelectedGroup is null) return;
 
 		Ships = new(SelectedGroup.MembersInstance.Where(s => s is not null).Select(s => new ShipGroupItemViewModel(s)));
-
 	}
 }
