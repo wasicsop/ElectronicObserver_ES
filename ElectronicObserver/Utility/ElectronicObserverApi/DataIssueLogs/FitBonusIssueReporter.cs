@@ -16,39 +16,52 @@ public class FitBonusIssueReporter(ElectronicObserverApiService api)
 	{
 		if (!api.IsEnabled) return;
 
-		foreach (var elem in data.api_ship_data)
+		foreach (dynamic elem in data.api_ship_data)
 		{
-			int id = (int)elem.api_id;
-			IShipData ship = KCDatabase.Instance.Ships[id];
+			ReportIssueIfNeeded(elem);
+		}
+	}
 
-			FitBonusValue theoricalBonus = ship.GetTheoricalFitBonus(KCDatabase.Instance.Translation.FitBonus.FitBonusList);
+	private void ReportIssueIfNeeded(dynamic elem)
+	{
+		int id = (int)elem.api_id;
+		IShipData ship = KCDatabase.Instance.Ships[id];
 
-			if (!ship.MasterShip.ASW.IsDetermined)
-			{
-				theoricalBonus.ASW = 0;
-			}
+		KCDatabase db = KCDatabase.Instance;
 
-			if (!ship.MasterShip.Evasion.IsDetermined)
-			{
-				theoricalBonus.Evasion = 0;
-			}
+		// If there's equipment that doesn't exist in the db (remodel), we can't report the issue
+		if (ship.Slot.Where(equipmentId => equipmentId > 0).Any(equipmentId => !db.Equipments.ContainsKey(equipmentId)))
+		{
+			return;
+		}
 
-			if (!ship.MasterShip.LOS.IsDetermined)
-			{
-				theoricalBonus.LOS = 0;
-			}
+		FitBonusValue theoricalBonus = ship.GetTheoricalFitBonus(KCDatabase.Instance.Translation.FitBonus.FitBonusList);
 
-			// There's no way to get accuracy bonus from the API
-			theoricalBonus.Accuracy = 0; 
-			// Same for bombing
-			theoricalBonus.Bombing = 0;
+		if (!ship.MasterShip.ASW.IsDetermined)
+		{
+			theoricalBonus.ASW = 0;
+		}
 
-			FitBonusValue actualBonus = ship.GetFitBonus();
+		if (!ship.MasterShip.Evasion.IsDetermined)
+		{
+			theoricalBonus.Evasion = 0;
+		}
 
-			if (!actualBonus.Equals(theoricalBonus))
-			{
-				ReportIssue(ship, theoricalBonus, actualBonus);
-			}
+		if (!ship.MasterShip.LOS.IsDetermined)
+		{
+			theoricalBonus.LOS = 0;
+		}
+
+		// There's no way to get accuracy bonus from the API
+		theoricalBonus.Accuracy = 0; 
+		// Same for bombing
+		theoricalBonus.Bombing = 0;
+
+		FitBonusValue actualBonus = ship.GetFitBonus();
+
+		if (!actualBonus.Equals(theoricalBonus))
+		{
+			ReportIssue(ship, theoricalBonus, actualBonus);
 		}
 	}
 
