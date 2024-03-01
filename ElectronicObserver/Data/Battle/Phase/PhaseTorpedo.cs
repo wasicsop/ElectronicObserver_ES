@@ -43,23 +43,10 @@ public class PhaseTorpedo : PhaseBase
 	}
 
 
-	public override bool IsAvailable
-	{
-		get
-		{
-			if (phaseID == 0)
-			{
-				return IsOpeningTorpedoPhase;
-			}
-			else
-			{
-				return IsClosingTorpedoPhase;
-			}
-		}
-	}
+	public override bool IsAvailable => IsOpeningTorpedoPhase || IsClosingTorpedoPhase;
 
-	private bool IsOpeningTorpedoPhase => RawData.api_opening_flag() ? (int)RawData.api_opening_flag != 0 : false;
-	private bool IsClosingTorpedoPhase => (int)RawData.api_hourai_flag[phaseID - 1] != 0;
+	private bool IsOpeningTorpedoPhase => phaseID == 0 && (RawData.api_opening_flag() ? (int)RawData.api_opening_flag != 0 : false);
+	private bool IsClosingTorpedoPhase => phaseID != 0 && ((int)RawData.api_hourai_flag[phaseID - 1] != 0);
 
 
 	public override void EmulateBattle(int[] hps, int[] damages)
