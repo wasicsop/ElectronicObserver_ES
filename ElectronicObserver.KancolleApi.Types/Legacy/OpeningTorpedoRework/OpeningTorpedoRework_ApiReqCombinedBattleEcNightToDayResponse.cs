@@ -2,9 +2,11 @@
 using ElectronicObserver.KancolleApi.Types.Models;
 using ElectronicObserverTypes;
 
-namespace ElectronicObserver.KancolleApi.Types.ApiReqCombinedBattle.EcNightToDay;
+namespace ElectronicObserver.KancolleApi.Types.Legacy.OpeningTorpedoRework;
 
-public class ApiReqCombinedBattleEcNightToDayResponse : IDayFromNightBattleApiResponse, IEnemyCombinedFleetBattle
+// ReSharper disable once InconsistentNaming
+[System.Diagnostics.CodeAnalysis.SuppressMessage("Minor Code Smell", "S101:Types should be named in PascalCase", Justification = "Legacy code prefix")]
+public class OpeningTorpedoRework_ApiReqCombinedBattleEcNightToDayResponse : IOpeningTorpedoRework_DayFromNightBattleApiResponse, IEnemyCombinedFleetBattle
 {
 	[JsonPropertyName("api_deck_id")]
 	public int ApiDeckId { get; set; }
@@ -121,7 +123,7 @@ public class ApiReqCombinedBattleEcNightToDayResponse : IDayFromNightBattleApiRe
 	public int ApiOpeningFlag { get; set; }
 
 	[JsonPropertyName("api_opening_atack")]
-	public ApiPhaseOpeningTorpedo? ApiOpeningAtack { get; set; }
+	public ApiRaigekiClass? ApiOpeningAtack { get; set; }
 
 	[JsonPropertyName("api_hourai_flag")]
 	public List<int> ApiHouraiFlag { get; set; } = new();

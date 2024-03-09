@@ -1,8 +1,11 @@
-﻿using ElectronicObserver.KancolleApi.Types.Models;
+﻿using ElectronicObserver.KancolleApi.Types.Interfaces;
+using ElectronicObserver.KancolleApi.Types.Models;
 
-namespace ElectronicObserver.KancolleApi.Types.Interfaces;
+namespace ElectronicObserver.KancolleApi.Types.Legacy.OpeningTorpedoRework;
 
-public interface IDayBattleApiResponse : IAirBattleApiResponse, ISupportApiResponse
+// ReSharper disable once InconsistentNaming
+[System.Diagnostics.CodeAnalysis.SuppressMessage("Minor Code Smell", "S101:Types should be named in PascalCase", Justification = "Legacy code prefix")]
+public interface IOpeningTorpedoRework_DayBattleApiResponse : IAirBattleApiResponse, ISupportApiResponse
 {
 	/// <summary>
 	/// 開幕対潜攻撃フラグ 0=なし 1=あり
@@ -22,7 +25,7 @@ public interface IDayBattleApiResponse : IAirBattleApiResponse, ISupportApiRespo
 	/// <summary>
 	/// 開幕雷撃戦 api_opening_flag = 0 の時 null *スペルミス注意*
 	/// </summary>
-	ApiPhaseOpeningTorpedo? ApiOpeningAtack { get; set; }
+	ApiRaigekiClass? ApiOpeningAtack { get; set; }
 
 	/// <summary>
 	/// 砲雷撃戦フラグ　[4]
