@@ -216,4 +216,23 @@ public class SmokeGeneratorTests(DatabaseFixture db)
 		CheckSmokeRate(rates, 2, 21);
 		CheckSmokeRate(rates, 3, 79);
 	}
+
+	[Fact(DisplayName = "0 smoke generator")]
+	public void SmokeGeneratorTest7()
+	{
+		ShipDataMock hachijou = new ShipDataMock(Db.MasterShips[ShipId.HachijouKai])
+		{
+			Level = 180,
+			LuckBase = 53,
+		};
+
+		FleetDataMock fleet = new FleetDataMock()
+		{
+			MembersInstance = new ReadOnlyCollection<IShipData?>([hachijou]),
+		};
+
+		List<SmokeGeneratorTriggerRate> rates = fleet.GetSmokeTriggerRates();
+
+		Assert.Empty(rates);
+	}
 }

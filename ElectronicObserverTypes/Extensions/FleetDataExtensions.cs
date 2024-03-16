@@ -198,14 +198,18 @@ public static class FleetDataExtensions
 				},
 			];
 		}
-
-		return
-		[
-			new()
-			{
-				SmokeGeneratorCount = 1,
-				ActivationRatePercentage = triggerRate * 100,
-			},
-		];
+		
+		return triggerRate switch
+		{
+			> 0 =>
+			[
+				new() 
+				{ 
+					SmokeGeneratorCount = 1, 
+					ActivationRatePercentage = triggerRate * 100,
+				},
+			],
+			_ => [],
+		};
 	}
 }
