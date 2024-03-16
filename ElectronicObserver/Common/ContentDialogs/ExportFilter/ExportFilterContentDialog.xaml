@@ -21,7 +21,19 @@
 	</ui:ContentDialog.Resources>
 
 	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+
+		<Button
+			Grid.Row="0"
+			Command="{Binding ToggleAllDestinationsCommand}"
+			Content="{x:Static translations:ExportFilterResources.All}"
+			/>
+
 		<ListBox
+			Grid.Row="1"
 			ItemsSource="{Binding Destinations}"
 			VirtualizingStackPanel.IsVirtualizing="True"
 			VirtualizingStackPanel.VirtualizationMode="Recycling"
