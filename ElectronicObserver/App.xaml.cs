@@ -72,9 +72,6 @@ using ElectronicObserver.Window.Wpf.ShipTrainingPlanner;
 using ElectronicObserverTypes.Data;
 using Jot;
 using Jot.Storage;
-using Microsoft.AppCenter;
-using Microsoft.AppCenter.Analytics;
-using Microsoft.AppCenter.Crashes;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace ElectronicObserver;
@@ -161,10 +158,6 @@ public partial class App : Application
 			// hack: needed for running the winforms version
 			// remove this and the Shutdown call when moving to wpf only
 			// ShutdownMode = ShutdownMode.OnExplicitShutdown;
-
-#if !DEBUG
-			AppCenter.Start("7fdbafa0-058a-4691-b317-a700be513b95", typeof(Analytics), typeof(Crashes));
-#endif
 
 			Task.Run(() =>
 			{
