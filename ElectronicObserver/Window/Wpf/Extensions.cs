@@ -112,7 +112,7 @@ public static class Extensions
 
 	private static List<string> EquipmentConditions(this AntiAirCutInCondition condition)
 	{
-		List<string> conditions = new();
+		List<string> conditions = [];
 
 		if (condition.HighAngle > 0)
 		{
@@ -252,6 +252,29 @@ public static class Extensions
 		if (condition.HarunaGun > 0)
 		{
 			conditions.Add($"{AaciStrings.HarunaGun} >= {condition.HarunaGun}");
+		}
+
+		if (condition.HarusameGun > 0)
+		{
+			string harusameGun = KCDatabase.Instance
+				.MasterEquipments[(int)EquipmentId.MainGunSmall_12_7cmTwinGunModelCKaiSanH]
+				.NameEN;
+
+			conditions.Add($"{harusameGun} >= {condition.HarusameGun}");
+		}
+
+		if (condition.AaGunShigure > 0)
+		{
+			string aaGunShigure = KCDatabase.Instance
+				.MasterEquipments[(int)EquipmentId.AAGun_25mmAntiaircraftMachineGunExtra]
+				.NameEN;
+
+			conditions.Add($"{aaGunShigure} >= {condition.AaGunShigure}");
+		}
+
+		if (condition.Radar4AaOrMore > 0)
+		{
+			conditions.Add($"{AaciStrings.Radar4AaOrMore} >= {condition.Radar4AaOrMore}");
 		}
 
 		return conditions;
