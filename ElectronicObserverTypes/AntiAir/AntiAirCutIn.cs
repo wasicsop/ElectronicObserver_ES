@@ -170,7 +170,7 @@ public record AntiAirCutIn
 			FixedBonus = 2,
 			VariableBonus = 1.3,
 			Rate = 0.396,
-			Priority = 45,
+			Priority = 46,
 			Conditions = new()
 			{
 				new()
@@ -326,7 +326,7 @@ public record AntiAirCutIn
 			FixedBonus = 2,
 			VariableBonus = 1.25,
 			Rate = 0.564,
-			Priority = 42,
+			Priority = 43,
 			Conditions = new()
 			{
 				new()
@@ -347,7 +347,7 @@ public record AntiAirCutIn
 			FixedBonus = 2,
 			VariableBonus = 1.2,
 			Rate = 0.584,
-			Priority = 43,
+			Priority = 44,
 			Conditions = new()
 			{
 				new()
@@ -425,7 +425,7 @@ public record AntiAirCutIn
 			FixedBonus = 2,
 			VariableBonus = 1.2,
 			Rate = 0.643,
-			Priority = 44,
+			Priority = 45,
 			Conditions = new()
 			{
 				new()
@@ -444,7 +444,7 @@ public record AntiAirCutIn
 			FixedBonus = 1,
 			VariableBonus = 1.05,
 			Rate = 0.792,
-			Priority = 46,
+			Priority = 47,
 			Conditions = new()
 			{
 				new()
@@ -1088,6 +1088,31 @@ public record AntiAirCutIn
 					Ships = new()
 					{
 						ShipId.HarunaKaiNiB,
+					},
+					HarunaGun = 1,
+					AaGunConcentrated = 1,
+					AntiAirRadar = 1,
+				},
+			},
+		},
+		new()
+		{
+			Id = 47,
+			FixedBonus = 2,
+			VariableBonus = 1.3,
+			Rate = 0.7,
+			Priority = 42,
+			Conditions = new()
+			{
+				new()
+				{
+					Ships = new()
+					{
+						ShipId.ShiratsuyuKaiNi,
+						ShipId.ShigureKaiNi,
+						ShipId.ShigureKaiSan,
+						ShipId.MurasameKaiNi,
+						ShipId.HarusameKaiNi,
 					},
 					HarunaGun = 1,
 					AaGunConcentrated = 1,
