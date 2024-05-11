@@ -1111,9 +1111,33 @@ public record AntiAirCutIn
 						ShipId.MurasameKaiNi,
 						ShipId.HarusameKaiNi,
 					],
-					HarunaGun = 1,
-					AaGunConcentrated = 1,
-					AntiAirRadar = 1,
+					HarusameGun = 2,
+				},
+				new()
+				{
+					Ships =
+					[
+						ShipId.ShiratsuyuKaiNi,
+						ShipId.ShigureKaiNi,
+						ShipId.ShigureKaiSan,
+						ShipId.MurasameKaiNi,
+						ShipId.HarusameKaiNi,
+					],
+					HarusameGun = 1,
+					AaGunShigure = 1,
+				},
+				new()
+				{
+					Ships =
+					[
+						ShipId.ShiratsuyuKaiNi,
+						ShipId.ShigureKaiNi,
+						ShipId.ShigureKaiSan,
+						ShipId.MurasameKaiNi,
+						ShipId.HarusameKaiNi,
+					],
+					HarusameGun = 1,
+					Radar4AaOrMore = 1,
 				},
 			],
 		},
