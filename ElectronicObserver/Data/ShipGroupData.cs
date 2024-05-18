@@ -2,9 +2,13 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Windows.Forms;
+using Avalonia.Collections;
+using ElectronicObserver.Avalonia.Behaviors.PersistentColumns;
+using ElectronicObserver.Avalonia.ShipGroup;
 using ElectronicObserver.Data.ShipGroup;
 using ElectronicObserver.Utility.Storage;
 using ElectronicObserverTypes.Data;
@@ -16,7 +20,7 @@ namespace ElectronicObserver.Data;
 /// </summary>
 [DataContract(Name = "ShipGroupData")]
 [DebuggerDisplay("[{GroupID}] : {Name} ({Members.Count} ships)")]
-public sealed class ShipGroupData : DataStorage, IIdentifiable, ICloneable
+public sealed class ShipGroupData : DataStorage, IIdentifiable, IGroupItem
 {
 
 
@@ -237,15 +241,38 @@ public sealed class ShipGroupData : DataStorage, IIdentifiable, ICloneable
 		set { Members = value; }
 	}
 
-
-
-	public ShipGroupData(int groupID)
-		: base()
+	[IgnoreDataMember]
+	public DataGridSortDescriptionCollection DataGridSortDescriptionCollection
 	{
-		Initialize();
-		GroupID = groupID;
+		get => [..SortDescriptions.Select(d => DataGridSortDescription.FromPath(d.PropertyPath, d.Direction))];
+		set => SortDescriptions = value
+			.Select(d => new SortDescriptionModel
+			{
+				PropertyPath = d.PropertyPath, 
+				Direction = d.Direction,
+			}).ToList();
 	}
 
+	[DataMember]
+	private List<SortDescriptionModel> SortDescriptions { get; set; }
+
+	public ShipGroupData(int groupId)
+	{
+		Initialize();
+		GroupID = groupId;
+	}
+
+	/// <summary>
+	/// Default values need to be set here so that they don't get overridden when loading values from file.
+	/// </summary>
+	[MemberNotNull(nameof(ViewColumns))]
+	[MemberNotNull(nameof(Name))]
+	[MemberNotNull(nameof(SortOrder))]
+	[MemberNotNull(nameof(Expressions))]
+	[MemberNotNull(nameof(InclusionFilter))]
+	[MemberNotNull(nameof(ExclusionFilter))]
+	[MemberNotNull(nameof(Members))]
+	[MemberNotNull(nameof(SortDescriptions))]
 	public override void Initialize()
 	{
 		GroupID = -1;
@@ -253,11 +280,12 @@ public sealed class ShipGroupData : DataStorage, IIdentifiable, ICloneable
 		Name = "no title";
 		ScrollLockColumnCount = 0;
 		AutoSortEnabled = true;
-		SortOrder = new List<KeyValuePair<string, ListSortDirection>>();
+		SortOrder = [];
 		Expressions = new ExpressionManager();
-		InclusionFilter = new List<int>();
-		ExclusionFilter = new List<int>();
-		Members = new List<int>();
+		InclusionFilter = [];
+		ExclusionFilter = [];
+		Members = [];
+		SortDescriptions = [];
 	}
 
 
@@ -265,17 +293,11 @@ public sealed class ShipGroupData : DataStorage, IIdentifiable, ICloneable
 	/// フィルタに基づいて検索を実行し、Members に結果をセットします。
 	/// </summary>
 	/// <param name="previousOrder">直前の並び替え順。なるべくこの順番を維持するように結果が生成されます。null もしくは 要素数 0 の場合は適当に生成されます。</param>
-	public void UpdateMembers(IEnumerable<int> previousOrder = null)
+	public void UpdateMembers(IEnumerable<int>? previousOrder = null)
 	{
-
-		if (Expressions == null)
-			Expressions = new ExpressionManager();
-
-		if (InclusionFilter == null)
-			InclusionFilter = new List<int>();
-
-		if (ExclusionFilter == null)
-			ExclusionFilter = new List<int>();
+		Expressions ??= new ExpressionManager();
+		InclusionFilter ??= [];
+		ExclusionFilter ??= [];
 
 		ValidateFilter();
 

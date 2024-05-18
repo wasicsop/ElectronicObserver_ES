@@ -1,0 +1,537 @@
+﻿<UserControl
+	x:Class="ElectronicObserver.Avalonia.ShipGroup.ShipGroupView"
+	xmlns="https://github.com/avaloniaui"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:behaviors="clr-namespace:ElectronicObserver.Avalonia.Behaviors"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:persistentColumns="clr-namespace:ElectronicObserver.Avalonia.Behaviors.PersistentColumns"
+	xmlns:shipGroup="clr-namespace:ElectronicObserver.Avalonia.ShipGroup"
+	Name="ShipGroupControl"
+	d:DesignHeight="300"
+	d:DesignWidth="400"
+	x:DataType="shipGroup:ShipGroupViewModel"
+	mc:Ignorable="d"
+	>
+	<UserControl.Resources>
+		<shipGroup:ShipGroupDropHandler x:Key="ShipGroupDropHandler" />
+	</UserControl.Resources>
+
+	<UserControl.DataTemplates>
+		<DataTemplate DataType="shipGroup:ShipGroupItem">
+			<Border
+				Padding="3"
+				BorderThickness="1"
+				Classes="ShipGroup"
+				Classes.IsSelected="{Binding IsSelected}"
+				>
+				<Interaction.Behaviors>
+					<EventTriggerBehavior EventName="PointerPressed">
+						<InvokeCommandAction Command="{Binding ((shipGroup:ShipGroupViewModel)DataContext).SelectGroupCommand, ElementName=ShipGroupControl}" CommandParameter="{Binding}" />
+					</EventTriggerBehavior>
+					<ContextDragBehavior />
+				</Interaction.Behaviors>
+
+				<Border.Styles>
+					<Style Selector="Border.ShipGroup">
+						<Setter Property="Background" Value="Transparent" />
+						<Setter Property="BorderBrush" Value="#888888" />
+					</Style>
+					<Style Selector="Border.ShipGroup:pointerover">
+						<Setter Property="Background" Value="{DynamicResource ButtonBackgroundPointerOver}" />
+					</Style>
+					<Style Selector="Border.IsSelected">
+						<Setter Property="Background" Value="{DynamicResource AccentButtonBackgroundPressed}" />
+					</Style>
+				</Border.Styles>
+
+				<Border.ContextMenu>
+					<ContextMenu>
+						<MenuItem Command="{Binding ((shipGroup:ShipGroupViewModel)DataContext).AddGroupCommand, ElementName=ShipGroupControl}" Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.MenuGroup_Add, ElementName=ShipGroupControl}" />
+						<MenuItem
+							Command="{Binding ((shipGroup:ShipGroupViewModel)DataContext).CopyGroupCommand, ElementName=ShipGroupControl}"
+							CommandParameter="{Binding}"
+							Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.MenuGroup_Copy, ElementName=ShipGroupControl}"
+							/>
+						<MenuItem
+							Command="{Binding ((shipGroup:ShipGroupViewModel)DataContext).RenameGroupCommand, ElementName=ShipGroupControl}"
+							CommandParameter="{Binding}"
+							Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.MenuGroup_Rename, ElementName=ShipGroupControl}"
+							/>
+						<MenuItem
+							Command="{Binding ((shipGroup:ShipGroupViewModel)DataContext).DeleteGroupCommand, ElementName=ShipGroupControl}"
+							CommandParameter="{Binding}"
+							Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.MenuGroup_Delete, ElementName=ShipGroupControl}"
+							/>
+						<Separator />
+						<MenuItem
+							Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.MenuGroup_AutoUpdate, ElementName=ShipGroupControl}"
+							IsChecked="{Binding ((shipGroup:ShipGroupViewModel)DataContext).AutoUpdate, ElementName=ShipGroupControl, Mode=TwoWay}"
+							ToggleType="CheckBox"
+							/>
+						<MenuItem
+							Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.MenuGroup_ShowStatusBar, ElementName=ShipGroupControl}"
+							IsChecked="{Binding ((shipGroup:ShipGroupViewModel)DataContext).ShowStatusBar, ElementName=ShipGroupControl, Mode=TwoWay}"
+							ToggleType="CheckBox"
+							/>
+					</ContextMenu>
+				</Border.ContextMenu>
+
+				<TextBlock MinWidth="16" Text="{Binding Name}" />
+			</Border>
+		</DataTemplate>
+	</UserControl.DataTemplates>
+
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="{Binding GroupHeight, Mode=TwoWay}" MinHeight="30" />
+			<RowDefinition Height="1" />
+			<RowDefinition />
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
+
+		<Border Grid.Row="0" Background="Transparent">
+			<Interaction.Behaviors>
+				<EventTriggerBehavior EventName="DoubleTapped">
+					<InvokeCommandAction Command="{Binding ((shipGroup:ShipGroupViewModel)DataContext).AddGroupCommand, ElementName=ShipGroupControl}" />
+				</EventTriggerBehavior>
+			</Interaction.Behaviors>
+
+			<Border.ContextMenu>
+				<ContextMenu>
+					<MenuItem Command="{Binding AddGroupCommand}" Header="{Binding FormShipGroup.MenuGroup_Add}" />
+					<Separator />
+					<MenuItem
+						Header="{Binding FormShipGroup.MenuGroup_AutoUpdate}"
+						IsChecked="{Binding AutoUpdate, Mode=TwoWay}"
+						ToggleType="CheckBox"
+						/>
+					<MenuItem
+						Header="{Binding FormShipGroup.MenuGroup_ShowStatusBar}"
+						IsChecked="{Binding ShowStatusBar, Mode=TwoWay}"
+						ToggleType="CheckBox"
+						/>
+				</ContextMenu>
+			</Border.ContextMenu>
+
+			<ScrollViewer VerticalScrollBarVisibility="Visible">
+				<ItemsControl DragDrop.AllowDrop="True" ItemsSource="{Binding Groups}">
+					<ItemsControl.ItemsPanel>
+						<ItemsPanelTemplate>
+							<WrapPanel Orientation="Horizontal">
+								<Interaction.Behaviors>
+									<ContextDropBehavior Handler="{StaticResource ShipGroupDropHandler}" />
+								</Interaction.Behaviors>
+							</WrapPanel>
+						</ItemsPanelTemplate>
+					</ItemsControl.ItemsPanel>
+				</ItemsControl>
+			</ScrollViewer>
+		</Border>
+
+		<GridSplitter
+			Grid.Row="1"
+			Background="#888888"
+			ResizeDirection="Rows"
+			/>
+
+		<DataGrid
+			x:Name="DataGrid"
+			Grid.Row="2"
+			Background="Transparent"
+			CanUserReorderColumns="True"
+			CanUserResizeColumns="True"
+			ColumnWidth="Auto"
+			GridLinesVisibility="All"
+			IsReadOnly="True"
+			ItemsSource="{Binding CollectionView}"
+			SelectionMode="Extended"
+			>
+			<DataGrid.Styles>
+				<Style Selector="DataGridRow DataGridCell">
+					<Setter Property="FontSize" Value="{DynamicResource ControlContentThemeFontSize}" />
+					<Setter Property="FontFamily" Value="{DynamicResource ContentControlThemeFontFamily}" />
+				</Style>
+				<Style Selector="DataGridColumnHeader">
+					<Setter Property="FontSize" Value="{DynamicResource ControlContentThemeFontSize}" />
+					<Setter Property="FontFamily" Value="{DynamicResource ContentControlThemeFontFamily}" />
+				</Style>
+			</DataGrid.Styles>
+
+			<Interaction.Behaviors>
+				<persistentColumns:PersistentColumnsBehavior ColumnProperties="{Binding ColumnProperties}" />
+				<behaviors:ColumnAutoSizeBehavior />
+
+				<EventTriggerBehavior EventName="SelectionChanged">
+					<InvokeCommandAction Command="{Binding SelectionChangedCommand}" CommandParameter="{Binding SelectedItems, ElementName=DataGrid}" />
+				</EventTriggerBehavior>
+			</Interaction.Behaviors>
+
+			<DataGrid.ContextMenu>
+				<ContextMenu>
+					<MenuItem
+						Command="{Binding AddToGroupCommand}"
+						Header="{Binding FormShipGroup.MenuMember_AddToGroup}"
+						IsEnabled="{Binding AnyShipsSelected}"
+						/>
+					<MenuItem
+						Command="{Binding CreateGroupCommand}"
+						Header="{Binding FormShipGroup.MenuMember_CreateGroup}"
+						IsEnabled="{Binding AnyShipsSelected}"
+						/>
+					<MenuItem
+						Command="{Binding ExcludeFromGroupCommand}"
+						Header="{Binding FormShipGroup.MenuMember_Exclude}"
+						IsEnabled="{Binding AnyShipsSelected}"
+						/>
+					<Separator />
+					<MenuItem Command="{Binding FilterGroupCommand}" Header="{Binding FormShipGroup.MenuMember_Filter}" />
+					<MenuItem Command="{Binding FilterColumnsCommand}" Header="{Binding FormShipGroup.MenuMember_ColumnFilter}" />
+					<!--  todo  -->
+					<MenuItem Header="{Binding FormShipGroup.MenuMember_SortOrder}" IsVisible="False" />
+					<Separator />
+					<MenuItem Command="{Binding ExportCsvCommand}" Header="{Binding FormShipGroup.MenuMember_CSVOutput}" />
+				</ContextMenu>
+			</DataGrid.ContextMenu>
+
+			<DataGrid.Columns>
+				<DataGridTextColumn
+					x:DataType="shipGroup:ShipGroupItemViewModel"
+					Binding="{Binding MasterId}"
+					Header="ID"
+					/>
+				<DataGridTextColumn
+					x:DataType="shipGroup:ShipGroupItemViewModel"
+					Binding="{Binding ShipTypeName}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_ShipType, ElementName=ShipGroupControl}"
+					/>
+				<DataGridTextColumn
+					x:DataType="shipGroup:ShipGroupItemViewModel"
+					Binding="{Binding Name}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_Name, ElementName=ShipGroupControl}"
+					/>
+				<DataGridTextColumn
+					x:DataType="shipGroup:ShipGroupItemViewModel"
+					Binding="{Binding Level}"
+					Header="Lv"
+					/>
+				<DataGridTextColumn
+					x:DataType="shipGroup:ShipGroupItemViewModel"
+					Binding="{Binding ExpTotal}"
+					Header="Exp"
+					/>
+				<DataGridTextColumn
+					x:DataType="shipGroup:ShipGroupItemViewModel"
+					Binding="{Binding ExpNext}"
+					Header="next"
+					/>
+				<DataGridTextColumn
+					x:DataType="shipGroup:ShipGroupItemViewModel"
+					Binding="{Binding ExpRemodel}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_NextRemodel, ElementName=ShipGroupControl}"
+					/>
+				<DataGridTextColumn
+					x:DataType="shipGroup:ShipGroupItemViewModel"
+					Binding="{Binding Hp}"
+					Header="HP"
+					/>
+				<DataGridTextColumn
+					x:DataType="shipGroup:ShipGroupItemViewModel"
+					Binding="{Binding Condition}"
+					Header="Cond"
+					/>
+				<DataGridTextColumn
+					x:DataType="shipGroup:ShipGroupItemViewModel"
+					Binding="{Binding Fuel}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_Fuel, ElementName=ShipGroupControl}"
+					/>
+				<DataGridTextColumn
+					x:DataType="shipGroup:ShipGroupItemViewModel"
+					Binding="{Binding Ammo}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_Ammo, ElementName=ShipGroupControl}"
+					/>
+
+				<DataGridTextColumn
+					x:DataType="shipGroup:ShipGroupItemViewModel"
+					Binding="{Binding Slot1.Name}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_Slot1, ElementName=ShipGroupControl}"
+					/>
+				<DataGridTextColumn
+					x:DataType="shipGroup:ShipGroupItemViewModel"
+					Binding="{Binding Slot2.Name}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_Slot2, ElementName=ShipGroupControl}"
+					/>
+				<DataGridTextColumn
+					x:DataType="shipGroup:ShipGroupItemViewModel"
+					Binding="{Binding Slot3.Name}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_Slot3, ElementName=ShipGroupControl}"
+					/>
+				<DataGridTextColumn
+					x:DataType="shipGroup:ShipGroupItemViewModel"
+					Binding="{Binding Slot4.Name}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_Slot4, ElementName=ShipGroupControl}"
+					/>
+				<DataGridTextColumn
+					x:DataType="shipGroup:ShipGroupItemViewModel"
+					Binding="{Binding Slot5.Name}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_Slot5, ElementName=ShipGroupControl}"
+					/>
+				<DataGridTextColumn
+					x:DataType="shipGroup:ShipGroupItemViewModel"
+					Binding="{Binding ExpansionSlot}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_ExpansionSlot, ElementName=ShipGroupControl}"
+					/>
+
+				<DataGridTextColumn
+					x:DataType="shipGroup:ShipGroupItemViewModel"
+					Binding="{Binding Aircraft1}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_Aircraft1, ElementName=ShipGroupControl}"
+					/>
+				<DataGridTextColumn
+					x:DataType="shipGroup:ShipGroupItemViewModel"
+					Binding="{Binding Aircraft2}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_Aircraft2, ElementName=ShipGroupControl}"
+					/>
+				<DataGridTextColumn
+					x:DataType="shipGroup:ShipGroupItemViewModel"
+					Binding="{Binding Aircraft3}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_Aircraft3, ElementName=ShipGroupControl}"
+					/>
+				<DataGridTextColumn
+					x:DataType="shipGroup:ShipGroupItemViewModel"
+					Binding="{Binding Aircraft4}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_Aircraft4, ElementName=ShipGroupControl}"
+					/>
+				<DataGridTextColumn
+					x:DataType="shipGroup:ShipGroupItemViewModel"
+					Binding="{Binding Aircraft5}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_Aircraft5, ElementName=ShipGroupControl}"
+					/>
+				<DataGridTextColumn
+					x:DataType="shipGroup:ShipGroupItemViewModel"
+					Binding="{Binding AircraftTotal}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_AircraftTotal, ElementName=ShipGroupControl}"
+					/>
+
+				<DataGridTextColumn
+					x:DataType="shipGroup:ShipGroupItemViewModel"
+					Binding="{Binding Fleet}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_Fleet, ElementName=ShipGroupControl}"
+					/>
+				<DataGridTextColumn
+					x:DataType="shipGroup:ShipGroupItemViewModel"
+					Binding="{Binding RepairTime}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_RepairTime, ElementName=ShipGroupControl}"
+					/>
+				<DataGridTextColumn
+					x:DataType="shipGroup:ShipGroupItemViewModel"
+					Binding="{Binding RepairSteel}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_RepairSteel, ElementName=ShipGroupControl}"
+					/>
+				<DataGridTextColumn
+					x:DataType="shipGroup:ShipGroupItemViewModel"
+					Binding="{Binding RepairFuel}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_RepairFuel, ElementName=ShipGroupControl}"
+					/>
+
+				<DataGridTextColumn
+					x:DataType="shipGroup:ShipGroupItemViewModel"
+					Binding="{Binding Firepower}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_Firepower, ElementName=ShipGroupControl}"
+					/>
+				<DataGridTextColumn
+					x:DataType="shipGroup:ShipGroupItemViewModel"
+					Binding="{Binding FirepowerRemain}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_FirepowerRemain, ElementName=ShipGroupControl}"
+					/>
+				<DataGridTextColumn
+					x:DataType="shipGroup:ShipGroupItemViewModel"
+					Binding="{Binding FirepowerTotal}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_FirepowerTotal, ElementName=ShipGroupControl}"
+					/>
+
+				<DataGridTextColumn
+					x:DataType="shipGroup:ShipGroupItemViewModel"
+					Binding="{Binding Torpedo}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_Torpedo, ElementName=ShipGroupControl}"
+					/>
+				<DataGridTextColumn
+					x:DataType="shipGroup:ShipGroupItemViewModel"
+					Binding="{Binding TorpedoRemain}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_TorpedoRemain, ElementName=ShipGroupControl}"
+					/>
+				<DataGridTextColumn
+					x:DataType="shipGroup:ShipGroupItemViewModel"
+					Binding="{Binding TorpedoTotal}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_TorpedoTotal, ElementName=ShipGroupControl}"
+					/>
+
+				<DataGridTextColumn
+					x:DataType="shipGroup:ShipGroupItemViewModel"
+					Binding="{Binding AA}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_AA, ElementName=ShipGroupControl}"
+					/>
+				<DataGridTextColumn
+					x:DataType="shipGroup:ShipGroupItemViewModel"
+					Binding="{Binding AARemain}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_AARemain, ElementName=ShipGroupControl}"
+					/>
+				<DataGridTextColumn
+					x:DataType="shipGroup:ShipGroupItemViewModel"
+					Binding="{Binding AATotal}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_AATotal, ElementName=ShipGroupControl}"
+					/>
+
+				<DataGridTextColumn
+					x:DataType="shipGroup:ShipGroupItemViewModel"
+					Binding="{Binding Armor}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_Armor, ElementName=ShipGroupControl}"
+					/>
+				<DataGridTextColumn
+					x:DataType="shipGroup:ShipGroupItemViewModel"
+					Binding="{Binding ArmorRemain}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_ArmorRemain, ElementName=ShipGroupControl}"
+					/>
+				<DataGridTextColumn
+					x:DataType="shipGroup:ShipGroupItemViewModel"
+					Binding="{Binding ArmorTotal}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_ArmorTotal, ElementName=ShipGroupControl}"
+					/>
+
+				<DataGridTextColumn
+					x:DataType="shipGroup:ShipGroupItemViewModel"
+					Binding="{Binding ASW}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_ASW, ElementName=ShipGroupControl}"
+					/>
+				<DataGridTextColumn
+					x:DataType="shipGroup:ShipGroupItemViewModel"
+					Binding="{Binding ASWTotal}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_ASWTotal, ElementName=ShipGroupControl}"
+					/>
+
+				<DataGridTextColumn
+					x:DataType="shipGroup:ShipGroupItemViewModel"
+					Binding="{Binding Evasion}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_Evasion, ElementName=ShipGroupControl}"
+					/>
+				<DataGridTextColumn
+					x:DataType="shipGroup:ShipGroupItemViewModel"
+					Binding="{Binding EvasionTotal}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_EvasionTotal, ElementName=ShipGroupControl}"
+					/>
+
+				<DataGridTextColumn
+					x:DataType="shipGroup:ShipGroupItemViewModel"
+					Binding="{Binding LOS}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_LOS, ElementName=ShipGroupControl}"
+					/>
+				<DataGridTextColumn
+					x:DataType="shipGroup:ShipGroupItemViewModel"
+					Binding="{Binding LOSTotal}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_LOSTotal, ElementName=ShipGroupControl}"
+					/>
+
+				<DataGridTextColumn
+					x:DataType="shipGroup:ShipGroupItemViewModel"
+					Binding="{Binding Luck}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_Luck, ElementName=ShipGroupControl}"
+					/>
+				<DataGridTextColumn
+					x:DataType="shipGroup:ShipGroupItemViewModel"
+					Binding="{Binding LuckRemain}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_LuckRemain, ElementName=ShipGroupControl}"
+					/>
+				<DataGridTextColumn
+					x:DataType="shipGroup:ShipGroupItemViewModel"
+					Binding="{Binding LuckTotal}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_LuckTotal, ElementName=ShipGroupControl}"
+					/>
+
+				<DataGridTextColumn
+					x:DataType="shipGroup:ShipGroupItemViewModel"
+					Binding="{Binding BomberTotal}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_BomberTotal, ElementName=ShipGroupControl}"
+					/>
+				<DataGridTextColumn
+					x:DataType="shipGroup:ShipGroupItemViewModel"
+					Binding="{Binding Speed}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_Speed, ElementName=ShipGroupControl}"
+					/>
+				<DataGridTextColumn
+					x:DataType="shipGroup:ShipGroupItemViewModel"
+					Binding="{Binding Range}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_Range, ElementName=ShipGroupControl}"
+					/>
+
+				<DataGridTextColumn
+					x:DataType="shipGroup:ShipGroupItemViewModel"
+					Binding="{Binding AirBattlePower}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_AirBattlePower, ElementName=ShipGroupControl}"
+					/>
+				<DataGridTextColumn
+					x:DataType="shipGroup:ShipGroupItemViewModel"
+					Binding="{Binding ShellingPower}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_ShellingPower, ElementName=ShipGroupControl}"
+					/>
+				<DataGridTextColumn
+					x:DataType="shipGroup:ShipGroupItemViewModel"
+					Binding="{Binding AircraftPower}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_AircraftPower, ElementName=ShipGroupControl}"
+					/>
+				<DataGridTextColumn
+					x:DataType="shipGroup:ShipGroupItemViewModel"
+					Binding="{Binding AntiSubmarinePower}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_AntiSubmarinePower, ElementName=ShipGroupControl}"
+					/>
+				<DataGridTextColumn
+					x:DataType="shipGroup:ShipGroupItemViewModel"
+					Binding="{Binding TorpedoPower}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_TorpedoPower, ElementName=ShipGroupControl}"
+					/>
+				<DataGridTextColumn
+					x:DataType="shipGroup:ShipGroupItemViewModel"
+					Binding="{Binding NightBattlePower}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_NightBattlePower, ElementName=ShipGroupControl}"
+					/>
+
+				<DataGridCheckBoxColumn
+					x:DataType="shipGroup:ShipGroupItemViewModel"
+					Binding="{Binding Locked, Mode=OneWay}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_Locked, ElementName=ShipGroupControl}"
+					/>
+				<DataGridTextColumn
+					x:DataType="shipGroup:ShipGroupItemViewModel"
+					Binding="{Binding SallyArea}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_SallyArea, ElementName=ShipGroupControl}"
+					/>
+
+				<DataGridTextColumn
+					x:DataType="shipGroup:ShipGroupItemViewModel"
+					Binding="{Binding SortId}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.SortId, ElementName=ShipGroupControl}"
+					/>
+				<DataGridTextColumn
+					x:DataType="shipGroup:ShipGroupItemViewModel"
+					Binding="{Binding RepairTimeUnit}"
+					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.RepairTimeUnit, ElementName=ShipGroupControl}"
+					/>
+			</DataGrid.Columns>
+		</DataGrid>
+
+		<StackPanel
+			Grid.Row="3"
+			IsVisible="{Binding ShowStatusBar}"
+			Orientation="Horizontal"
+			>
+			<StackPanel.Styles>
+				<Style Selector="TextBlock">
+					<Setter Property="Margin" Value="4" />
+				</Style>
+			</StackPanel.Styles>
+
+			<TextBlock Text="{Binding ShipCountText}" />
+			<TextBlock Text="{Binding LevelTotalText}" />
+			<TextBlock Text="{Binding LevelAverageText}" />
+		</StackPanel>
+	</Grid>
+</UserControl>

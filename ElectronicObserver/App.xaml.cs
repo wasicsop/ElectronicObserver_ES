@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using Avalonia;
+using Avalonia.Styling;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Common;
 using ElectronicObserver.Data;
@@ -73,19 +75,21 @@ using ElectronicObserverTypes.Data;
 using Jot;
 using Jot.Storage;
 using Microsoft.Extensions.DependencyInjection;
+using Application = System.Windows.Application;
+using ShutdownMode = System.Windows.ShutdownMode;
 
 namespace ElectronicObserver;
 
-/// <summary>
-/// Interaction logic for App.xaml
-/// </summary>
-public partial class App : Application
+public partial class App
 {
-	public new static App? Current => (App)Application.Current;
+	public static new App? Current => (App)Application.Current;
+	private AppBuilder AvaloniaApp { get; }
 
 	public App()
 	{
-		this.InitializeComponent();
+		AvaloniaApp = Avalonia.Program
+			.BuildAvaloniaApp()
+			.SetupWithoutStarting();
 
 		DispatcherUnhandledException += (sender, args) =>
 		{
@@ -155,10 +159,6 @@ public partial class App : Application
 			System.Windows.Forms.Application.EnableVisualStyles();
 			System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
 
-			// hack: needed for running the winforms version
-			// remove this and the Shutdown call when moving to wpf only
-			// ShutdownMode = ShutdownMode.OnExplicitShutdown;
-
 			Task.Run(() =>
 			{
 				// pre-load ef model to avoid performance hits later
@@ -187,7 +187,10 @@ public partial class App : Application
 			ToolTipService.InitialShowDelayProperty.OverrideMetadata(
 				typeof(DependencyObject), new FrameworkPropertyMetadata(0));
 
+			UpdateTheme();
 			UpdateFont();
+
+			Configuration.Instance.ConfigurationChanged += UpdateTheme;
 			Configuration.Instance.ConfigurationChanged += UpdateFont;
 
 			FormMainWpf mainWindow = new();
@@ -196,9 +199,21 @@ public partial class App : Application
 			ShutdownMode = ShutdownMode.OnMainWindowClose;
 
 			mainWindow.ShowDialog();
-
-			// Shutdown();
 		}
+	}
+
+	private void UpdateTheme()
+	{
+		if (AvaloniaApp.Instance is not Avalonia.App app) return;
+
+		ThemeVariant themeVariant = Configuration.Config.UI.ThemeMode switch
+		{
+			0 => ThemeVariant.Light, // light theme => light theme
+			1 => ThemeVariant.Dark, // dark theme => dark theme
+			_ => ThemeVariant.Dark, // custom theme => dark theme
+		};
+
+		app.UpdateTheme(themeVariant);
 	}
 
 	private void UpdateFont()
@@ -208,9 +223,17 @@ public partial class App : Application
 			.FirstOrDefault();
 
 		if (overrides is null) return;
+		if (Configuration.Config.UI.MainFont.FontData is null) return;
 
-		overrides.FontFamily = new FontFamily(Configuration.Config.UI.MainFont.FontData.Name);
-		overrides.FontSize = Configuration.Config.UI.MainFont.FontData.ToSize();
+		string fontName = Configuration.Config.UI.MainFont.FontData.Name;
+		double fontSize = Configuration.Config.UI.MainFont.FontData.ToSize();
+
+		overrides.FontFamily = new FontFamily(fontName);
+		overrides.FontSize = fontSize;
+
+		if (AvaloniaApp.Instance is not Avalonia.App app) return;
+
+		app.UpdateFont(fontName, fontSize);
 	}
 
 	private void ConfigureServices()
