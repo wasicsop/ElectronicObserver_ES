@@ -2,14 +2,18 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using Avalonia.Controls;
 using Avalonia.Win32.Interoperability;
+using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Avalonia.Behaviors.PersistentColumns;
 using ElectronicObserver.Avalonia.ShipGroup;
 using ElectronicObserver.Common.Datagrid;
 using ElectronicObserver.Data;
 using ElectronicObserver.Data.ShipGroup;
+using ElectronicObserver.Dialogs.DataGridSettings;
+using ElectronicObserver.Dialogs.TextInput;
 using ElectronicObserver.Observer;
 using ElectronicObserver.Resource;
 using ElectronicObserver.Utility;
@@ -17,13 +21,15 @@ using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.Window.Dialog;
 using ElectronicObserverTypes;
-using MessageBox = System.Windows.Forms.MessageBox;
+using HanumanInstitute.MvvmDialogs;
 using ShipGroupResources = ElectronicObserver.Avalonia.ShipGroup.ShipGroupResources;
 
 namespace ElectronicObserver.Window.Wpf.ShipGroupAvalonia;
 
 public sealed class ShipGroupAvaloniaViewModel : AnchorableViewModel
 {
+	private IDialogService DialogService { get; }
+
 	public WpfAvaloniaHost WpfAvaloniaHost { get; }
 	private ShipGroupView ShipGroupView { get; }
 	private ShipGroupViewModel ShipGroupViewModel { get; }
@@ -32,6 +38,8 @@ public sealed class ShipGroupAvaloniaViewModel : AnchorableViewModel
 
 	public ShipGroupAvaloniaViewModel() : base("Group", "ShipGroup", IconContent.FormShipGroup)
 	{
+		DialogService = Ioc.Default.GetRequiredService<IDialogService>();
+
 		ShipGroupViewModel = new()
 		{
 			SelectGroupAction = SelectGroup,
@@ -45,6 +53,7 @@ public sealed class ShipGroupAvaloniaViewModel : AnchorableViewModel
 			FilterGroupAction = FilterGroup,
 			FilterColumnsAction = FilterColumns,
 			ExportCsvAction = ExportCsv,
+			OpenDataGridSettingsAction = OpenDataGridSettings,
 		};
 		ShipGroupView = new()
 		{
@@ -63,6 +72,8 @@ public sealed class ShipGroupAvaloniaViewModel : AnchorableViewModel
 		ShipGroupViewModel.AutoUpdate = config.FormShipGroup.AutoUpdate;
 		ShipGroupViewModel.ShowStatusBar = config.FormShipGroup.ShowStatusBar;
 		ShipGroupViewModel.GroupHeight = new(config.FormShipGroup.GroupHeight);
+		ShipGroupViewModel.DataGridSettings.ColumnHeaderHeight = config.FormShipGroup.ColumnHeaderHeight;
+		ShipGroupViewModel.DataGridSettings.RowHeight = config.FormShipGroup.RowHeight;
 
 		Loaded();
 
@@ -120,6 +131,7 @@ public sealed class ShipGroupAvaloniaViewModel : AnchorableViewModel
 	private void ConfigurationChanged()
 	{
 		ShipGroupViewModel.FormShipGroup.OnPropertyChanged("");
+		ShipGroupViewModel.ConditionBorder = Configuration.Config.Control.ConditionBorder;
 	}
 
 	private void ApiUpdated(string apiName, dynamic data)
@@ -165,15 +177,20 @@ public sealed class ShipGroupAvaloniaViewModel : AnchorableViewModel
 			.ToObservableCollection();
 	}
 
-	private void AddGroup()
+	private async Task AddGroup()
 	{
-		using DialogTextInput dialog = new(ShipGroupResources.DialogGroupAddTitle,
-			ShipGroupResources.DialogGroupAddDescription);
+		TextInputViewModel textInput = new()
+		{
+			Title = ShipGroupResources.DialogGroupAddTitle,
+			Description = ShipGroupResources.DialogGroupAddDescription,
+		};
 
-		if (dialog.ShowDialog(App.Current!.MainWindow!) != DialogResult.OK) return;
+		bool? result = await DialogService.ShowDialogAsync(App.MainViewModel, textInput);
+
+		if (result is not true) return;
 
 		ShipGroupData group = KCDatabase.Instance.ShipGroup.Add();
-		group.Name = dialog.InputtedText.Trim();
+		group.Name = textInput.Text.Trim();
 
 		if (SelectedGroup is not null)
 		{
@@ -186,32 +203,42 @@ public sealed class ShipGroupAvaloniaViewModel : AnchorableViewModel
 		ShipGroupViewModel.Groups.Add(MakeGroupItem(group));
 	}
 
-	private void CopyGroup(ShipGroupItem group)
+	private async Task CopyGroup(ShipGroupItem group)
 	{
-		using DialogTextInput dialog = new(ShipGroupResources.DialogGroupCopyTitle,
-			ShipGroupResources.DialogGroupCopyDescription);
+		TextInputViewModel textInput = new()
+		{
+			Title = ShipGroupResources.DialogGroupCopyTitle,
+			Description = ShipGroupResources.DialogGroupCopyDescription,
+		};
 
-		if (dialog.ShowDialog(App.Current!.MainWindow!) != DialogResult.OK) return;
+		bool? result = await DialogService.ShowDialogAsync(App.MainViewModel, textInput);
+
+		if (result is not true) return;
 
 		ShipGroupData newGroup = (ShipGroupData)group.Group.Clone();
 
 		newGroup.GroupID = KCDatabase.Instance.ShipGroup.GetUniqueID();
-		newGroup.Name = dialog.InputtedText.Trim();
+		newGroup.Name = textInput.Text.Trim();
 
 		KCDatabase.Instance.ShipGroup.ShipGroups.Add(newGroup);
 
 		ShipGroupViewModel.Groups.Add(MakeGroupItem(newGroup));
 	}
 
-	private static void RenameGroup(ShipGroupItem group)
+	private async Task RenameGroup(ShipGroupItem group)
 	{
-		using DialogTextInput dialog = new(ShipGroupResources.DialogGroupRenameTitle, ShipGroupResources.DialogGroupRenameDescription);
-		dialog.InputtedText = group.Name;
-
-		if (dialog.ShowDialog(App.Current!.MainWindow!) == DialogResult.OK)
+		TextInputViewModel textInput = new()
 		{
-			group.Name = dialog.InputtedText.Trim();
-		}
+			Title = ShipGroupResources.DialogGroupRenameTitle,
+			Description = ShipGroupResources.DialogGroupRenameDescription,
+			Text = group.Name,
+		};
+
+		bool? result = await DialogService.ShowDialogAsync(App.MainViewModel, textInput);
+
+		if (result is not true) return;
+
+		group.Name = textInput.Text.Trim();
 	}
 
 	private void DeleteGroup(ShipGroupItem group)
@@ -258,7 +285,7 @@ public sealed class ShipGroupAvaloniaViewModel : AnchorableViewModel
 		}
 	}
 
-	private void CreateGroup()
+	private async Task CreateGroup()
 	{
 		if (SelectedGroup is null) return;
 
@@ -266,13 +293,18 @@ public sealed class ShipGroupAvaloniaViewModel : AnchorableViewModel
 
 		if (ships.Count is 0) return;
 
-		using DialogTextInput dialog = new(ShipGroupResources.DialogGroupAddTitle, ShipGroupResources.DialogGroupAddDescription);
+		TextInputViewModel textInput = new()
+		{
+			Title = ShipGroupResources.DialogGroupAddTitle,
+			Description = ShipGroupResources.DialogGroupAddDescription,
+		};
 
-		if (dialog.ShowDialog(App.Current!.MainWindow!) != DialogResult.OK) return;
+		bool? result = await DialogService.ShowDialogAsync(App.MainViewModel, textInput);
+
+		if (result is not true) return;
 
 		ShipGroupData group = KCDatabase.Instance.ShipGroup.Add();
-
-		group.Name = dialog.InputtedText.Trim();
+		group.Name = textInput.Text.Trim();
 
 		foreach (ShipGroupData.ViewColumnData newData in SelectedGroup.Columns.Select(MakeColumnData))
 		{
@@ -563,6 +595,13 @@ public sealed class ShipGroupAvaloniaViewModel : AnchorableViewModel
 		};
 	}
 
+	private async Task OpenDataGridSettings(DataGridSettingsModel settings)
+	{
+		DataGridSettingsViewModel viewModel = new(settings);
+
+		await DialogService.ShowDialogAsync(App.MainViewModel, viewModel);
+	}
+
 	private static ShipGroupData.ViewColumnData MakeColumnData(ColumnModel column) => new(column.Name)
 	{
 		DisplayIndex = column.DisplayIndex,
@@ -600,6 +639,8 @@ public sealed class ShipGroupAvaloniaViewModel : AnchorableViewModel
 		Configuration.Config.FormShipGroup.AutoUpdate = ShipGroupViewModel.AutoUpdate;
 		Configuration.Config.FormShipGroup.ShowStatusBar = ShipGroupViewModel.ShowStatusBar;
 		Configuration.Config.FormShipGroup.GroupHeight = ShipGroupViewModel.GroupHeight.Value;
+		Configuration.Config.FormShipGroup.ColumnHeaderHeight = ShipGroupViewModel.DataGridSettings.ColumnHeaderHeight;
+		Configuration.Config.FormShipGroup.RowHeight = ShipGroupViewModel.DataGridSettings.RowHeight;
 
 		IEnumerable<ShipGroupData> shipGroups = ShipGroupViewModel.Groups
 			.Select(g => g.Group)
