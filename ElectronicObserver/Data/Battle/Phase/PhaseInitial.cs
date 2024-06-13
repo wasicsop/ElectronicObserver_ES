@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using ElectronicObserverTypes;
+using ElectronicObserverTypes.Mocks;
 
 namespace ElectronicObserver.Data.Battle.Phase;
 
@@ -35,7 +36,7 @@ public class PhaseInitial : PhaseBase
 	/// <summary>
 	/// 敵艦隊メンバ
 	/// </summary>
-	public IShipDataMaster[] EnemyMembersInstance { get; private set; }
+	public IShipDataMaster?[] EnemyMembersInstance { get; private set; }
 
 
 	/// <summary>
@@ -46,8 +47,11 @@ public class PhaseInitial : PhaseBase
 	/// <summary>
 	/// 敵艦隊メンバ(随伴艦隊)
 	/// </summary>
-	public IShipDataMaster[]? EnemyMembersEscortInstance { get; private set; }
+	public IShipDataMaster?[]? EnemyMembersEscortInstance { get; private set; }
 
+	public IFleetData EnemyFleet { get; private set; }
+
+	public IFleetData? EnemyFleetEscort { get; private set; }
 
 	/// <summary>
 	/// 敵艦のレベル
@@ -180,7 +184,7 @@ public class PhaseInitial : PhaseBase
 			return ret;
 		}
 
-		int[]? HandleTargetability(int[]? hps, IShipDataMaster[]? ships, bool[] isTargetable)
+		int[]? HandleTargetability(int[]? hps, IShipDataMaster?[]? ships, bool[] isTargetable)
 		{
 			if (hps is null) return null;
 			if (ships is null) return null;
@@ -188,9 +192,10 @@ public class PhaseInitial : PhaseBase
 			for (int i = 0; i < hps.Length; i++)
 			{
 				if (hps[i] is not -2) continue;
+				if (ships[i] is not {} ship) continue;
 
 				isTargetable[i] = false;
-				hps[i] = ships[i].HPMax;
+				hps[i] = ship.HPMax;
 			}
 
 			return hps;
@@ -231,21 +236,61 @@ public class PhaseInitial : PhaseBase
 		EnemyParameters = GetArraysOrDefault("api_eParam", mainMemberCount, 4);
 		EnemyParametersEscort = GetArraysOrDefault("api_eParam_combined", escortMemberCount, 4);
 
+		InitializeEnemyFleets();
+
+		var rations = new List<int>();
+		if (RawData.api_combat_ration())
 		{
-			var rations = new List<int>();
-			if (RawData.api_combat_ration())
-			{
-				rations.AddRange(((int[])RawData.api_combat_ration).Select(i => FriendFleet.Members.IndexOf(i)));
-			}
-			if (RawData.api_combat_ration_combined())
-			{
-				rations.AddRange(((int[])RawData.api_combat_ration_combined).Select(i => FriendFleetEscort.Members.IndexOf(i) + 6));
-			}
-			RationIndexes = rations.ToArray();
+			rations.AddRange(((int[])RawData.api_combat_ration).Select(i => FriendFleet.Members.IndexOf(i)));
 		}
+		if (RawData.api_combat_ration_combined())
+		{
+			rations.AddRange(((int[])RawData.api_combat_ration_combined).Select(i => FriendFleetEscort.Members.IndexOf(i) + 6));
+		}
+		RationIndexes = rations.ToArray();
 	}
 
+	private void InitializeEnemyFleets()
+	{
+		EnemyFleet = new FleetDataMock
+		{
+			MembersInstance = new(EnemyMembersInstance
+				.OfType<IShipDataMaster>()
+				.Select(shipMaster => new ShipDataMock(shipMaster))
+				.Cast<IShipData?>()
+				.ToList()),
+		};
 
+		for (int index = 0; index < EnemyFleet.MembersInstance.Count; index++)
+		{
+			if (EnemyFleet.MembersInstance[index] is ShipDataMock ship)
+			{
+				ship.CanBeTargeted = IsEnemyTargetable[index];
+			}
+		}
+
+		EnemyFleetEscort = null;
+		
+		if (EnemyMembersEscortInstance is not null)
+		{
+			EnemyFleetEscort = new FleetDataMock()
+			{
+				MembersInstance = new(EnemyMembersEscortInstance
+					.OfType<IShipDataMaster>()
+					.Select(shipMaster => new ShipDataMock(shipMaster))
+					.Cast<IShipData?>()
+					.ToList()),
+			};
+
+			for (int index = 0; index < EnemyFleetEscort.MembersInstance.Count; index++)
+			{
+				if (EnemyFleetEscort.MembersInstance[index] is ShipDataMock ship)
+				{
+					ship.CanBeTargeted = IsEnemyTargetableEscort[index];
+				}
+			}
+		}
+	}
 
 	public IShipData GetFriendShip(int index)
 	{
@@ -274,12 +319,9 @@ public class PhaseInitial : PhaseBase
 		return ret;
 	}
 
-
-
 	public override bool IsAvailable => RawData != null;
 
 	public override void EmulateBattle(int[] hps, int[] damages)
 	{
 	}
-
 }

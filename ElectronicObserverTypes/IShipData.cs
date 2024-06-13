@@ -43,7 +43,7 @@ public interface IShipData
 	/// <summary>
 	/// 耐久現在値
 	/// </summary>
-	int HPCurrent { get; }
+	int HPCurrent { get; set; }
 
 	/// <summary>
 	/// 耐久最大値
@@ -550,6 +550,8 @@ public interface IShipData
 	/// 夜戦攻撃可能か
 	/// </summary>
 	bool CanAttackAtNight { get; }
+
+	bool CanBeTargeted { get; }
 
 	/// <summary>
 	/// 発動可能なダメコンのID -1=なし, 42=要員, 43=女神
