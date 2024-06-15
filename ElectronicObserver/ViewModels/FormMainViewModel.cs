@@ -137,7 +137,7 @@ public partial class FormMainViewModel : ObservableObject
 
 	public List<FleetViewModel> Fleets { get; }
 	public FleetOverviewViewModel FleetOverview { get; }
-	public ShipGroupWinformsViewModel FormShipGroup { get; }
+	// public ShipGroupWinformsViewModel FormShipGroup { get; }
 	public ShipGroupAvaloniaViewModel ShipGroup { get; }
 	public FleetPresetViewModel FleetPreset { get; }
 	public ShipTrainingPlanViewerViewModel ShipTrainingPlanViewer { get; }
@@ -248,7 +248,7 @@ public partial class FormMainViewModel : ObservableObject
 			Views.Add(fleet);
 		}
 		Views.Add(FleetOverview = new FleetOverviewViewModel(Fleets));
-		Views.Add(FormShipGroup = new ShipGroupWinformsViewModel());
+		// Views.Add(FormShipGroup = new ShipGroupWinformsViewModel());
 		Views.Add(ShipGroup = new ShipGroupAvaloniaViewModel());
 		Views.Add(FleetPreset = new FleetPresetViewModel());
 		ShipTrainingPlanViewer = Ioc.Default.GetRequiredService<ShipTrainingPlanViewerViewModel>();
@@ -548,9 +548,9 @@ public partial class FormMainViewModel : ObservableObject
 	[RelayCommand]
 	private void OpenOldShipGroup()
 	{
-		FormShipGroup.Visibility = Visibility.Visible;
-		FormShipGroup.IsSelected = true;
-		FormShipGroup.IsActive = true;
+		// FormShipGroup.Visibility = Visibility.Visible;
+		// FormShipGroup.IsSelected = true;
+		// FormShipGroup.IsActive = true;
 	}
 
 	[RelayCommand]
@@ -1663,8 +1663,8 @@ public partial class FormMainViewModel : ObservableObject
 		ClockFormat = c.Life.ClockFormat;
 		SetTheme();
 
-		FormShipGroup.ShipGroup.BackColor = System.Drawing.SystemColors.Control;
-		FormShipGroup.ShipGroup.ForeColor = System.Drawing.SystemColors.ControlText;
+		// FormShipGroup.ShipGroup.BackColor = System.Drawing.SystemColors.Control;
+		// FormShipGroup.ShipGroup.ForeColor = System.Drawing.SystemColors.ControlText;
 
 		LockLayout = c.Life.LockLayout;
 		CanChangeGridSplitterSize = !LockLayout;
