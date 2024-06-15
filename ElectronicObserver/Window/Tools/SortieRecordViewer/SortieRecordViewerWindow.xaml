@@ -170,7 +170,6 @@
 						</MenuItem>
 						<MenuItem Command="{Binding ShowSortieDetailsCommand}" Header="{Binding SortieRecordViewer.SortieDetail}" />
 						<MenuItem Command="{Binding OpenSortieCostCommand}" Header="{Binding SortieRecordViewer.SortieCost}" />
-						<MenuItem Command="{Binding CopySmokerDataCsvCommand}" Header="{Binding SortieRecordViewer.SmokeScreenCsv}" />
 						<MenuItem Command="{Binding CopySortieDataCommand}" Header="{Binding SortieRecordViewer.CopySortieData}" />
 						<MenuItem Header="{Binding SortieRecordViewer.AirControlSimulator}">
 							<MenuItem Command="{Binding CopyAirControlSimulatorLinkCommand}" Header="{Binding SortieRecordViewer.CopyLink}" />
@@ -190,6 +189,9 @@
 							<MenuItem Command="{Binding ExportRedNightBattleCommand}" Header="{x:Static translations:CsvExportResources.RedNightBattle}" />
 							<MenuItem Command="{Binding ExportRedTorpedoBattleCommand}" Header="{x:Static translations:CsvExportResources.RedTorpedoBattle}" />
 							<MenuItem Command="{Binding ExportAirBaseAirDefenseCommand}" Header="{x:Static translations:CsvExportResources.AirBaseAirDefense}" />
+						</MenuItem>
+						<MenuItem Header="CSV">
+							<MenuItem Command="{Binding CopySmokerDataCsvCommand}" Header="{Binding SortieRecordViewer.SmokeScreenCsv}" />
 							<MenuItem Command="{Binding ExportBattleRanksCommand}" Header="{x:Static translations:CsvExportResources.CombatRankPrediction}" />
 						</MenuItem>
 					</ContextMenu>
