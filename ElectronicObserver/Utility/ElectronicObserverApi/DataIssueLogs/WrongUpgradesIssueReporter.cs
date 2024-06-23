@@ -15,7 +15,7 @@ public class WrongUpgradesIssueReporter(ElectronicObserverApiService api)
 {
 	public void ProcessUpgradeList(string _, dynamic data)
 	{
-		if (!api.IsEnabled) return;
+		if (!api.IsServerAvailable) return;
 
 		// if no helper => ignore
 		int helperId = KCDatabase.Instance.Fleet.Fleets[1].Members[1];
@@ -35,7 +35,7 @@ public class WrongUpgradesIssueReporter(ElectronicObserverApiService api)
 				ExpectedUpgrades = expectedUpgrades.Select(upgrade => upgrade.EquipmentId).ToList(),
 				Day = DateTimeHelper.GetJapanStandardTimeNow().DayOfWeek,
 				SoftwareVersion = SoftwareInformation.VersionEnglish,
-				HelperId = (int)helper.MasterShip.ShipId
+				HelperId = (int)helper.MasterShip.ShipId,
 			};
 
 #pragma warning disable CS4014
