@@ -11,4 +11,6 @@ public class ApiFile
 	public DateTime TimeStamp { get; set; }
 	public int Version { get; set; }
 	public int? SortieRecordId { get; set; }
+
+	public override string ToString() => $"{Name} {ApiFileType}";
 }
