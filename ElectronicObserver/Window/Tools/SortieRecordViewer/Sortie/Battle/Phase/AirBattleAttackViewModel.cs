@@ -7,7 +7,7 @@ namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase
 
 public sealed class AirBattleAttackViewModel : AttackViewModelBase
 {
-	private int WaveIndex { get; }
+	public int WaveIndex { get; }
 
 	public BattleIndex DefenderIndex { get; }
 	public IShipData Defender { get; }
@@ -27,6 +27,8 @@ public sealed class AirBattleAttackViewModel : AttackViewModelBase
 		(_, FleetFlag.Enemy) => BattleRes.FriendlyAirSquadron,
 		_ => "???",
 	};
+
+	public string AttackKind => GetAttackKind(AttackType);
 
 	public AirBattleAttackViewModel(BattleFleets fleets, int waveIndex, AirBattleAttack attack)
 	{

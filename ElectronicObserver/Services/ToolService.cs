@@ -328,7 +328,7 @@ public class ToolService(DataSerializationService dataSerializationService)
 		{
 			PhaseSearching searching = battle.Phases.OfType<PhaseSearching>().First();
 
-			foreach (PhaseBase phase in battle.Phases.Where(p => p is PhaseShelling or PhaseTorpedo))
+			foreach (PhaseBase phase in battle.Phases.Where(p => p is PhaseShelling or PhaseTorpedo or PhaseAirBattle))
 			{
 				if (phase is PhaseShelling shelling)
 				{
@@ -353,6 +353,16 @@ public class ToolService(DataSerializationService dataSerializationService)
 							csvData.Add(csvLine);
 							sampleNumber++;
 						}
+					}
+				}
+
+				if (phase is PhaseAirBattle airBattle)
+				{
+					foreach (AirBattleAttackViewModel attackDisplay in airBattle.AttackDisplays)
+					{
+						string csvLine = GetSmokerCsvLine(sortieDetail, searching, attackDisplay, airBattle.Title, sampleNumber, sortieNumber);
+						csvData.Add(csvLine);
+						sampleNumber++;
 					}
 				}
 			}
@@ -413,6 +423,44 @@ public class ToolService(DataSerializationService dataSerializationService)
 			},
 		});
 	}
+
+	private static string GetSmokerCsvLine(SortieDetailViewModel sortieDetail, PhaseSearching searching,
+		AirBattleAttackViewModel attackDisplay, string phaseTitle, int sampleNumber, int sortieNumber)
+	{
+		return string.Join(CsvSeparator, new List<string>
+		{
+			sortieDetail.StartTime?.ToLocalTime().ToString(),
+			sampleNumber.ToString(),
+			sortieNumber.ToString(),
+			(searching.SmokeCount ?? 0).ToString(),
+			Constants.GetFormation(searching.PlayerFormationType),
+			Constants.GetFormation(searching.EnemyFormationType),
+			Constants.GetEngagementForm(searching.EngagementType),
+			phaseTitle,
+			attackDisplay.AttackKind,
+			attackDisplay.WaveIndex.ToString(),
+			attackDisplay.AttackerName,
+			(attackDisplay.DefenderIndex.Index + 1).ToString(),
+			attackDisplay.Defender.Name,
+			attackDisplay.Defender.Level.ToString(),
+			attackDisplay.Defender.Condition.ToString(),
+			attackDisplay.Defender.EvasionTotal.ToString(),
+			attackDisplay.HitType switch
+			{
+				HitType.Miss => "CL0",
+				HitType.Hit => "CL1",
+				HitType.Critical => "CL2",
+				_ => throw new NotImplementedException(),
+			},
+			attackDisplay.DefenderIndex.FleetFlag switch
+			{
+				FleetFlag.Enemy => "自軍",
+				FleetFlag.Player => "敵軍",
+				_ => throw new NotImplementedException(),
+			},
+		});
+	}
+
 
 	public SortieDetailViewModel? GenerateSortieDetailViewModel(ElectronicObserverContext db,
 		SortieRecord sortie)
