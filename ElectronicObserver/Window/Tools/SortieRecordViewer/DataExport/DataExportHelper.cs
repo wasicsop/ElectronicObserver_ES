@@ -1007,7 +1007,7 @@ public class DataExportHelper(ElectronicObserverContext db, ToolService toolServ
 			Name = ship.AllSlotInstance.Skip(index).FirstOrDefault()?.Name,
 			Level = NullForAbyssals(ship.AllSlotInstance.Skip(index).FirstOrDefault()?.Level, ship),
 			AircraftLevel = NullForAbyssals(ship.AllSlotInstance.Skip(index).FirstOrDefault()?.AircraftLevel, ship),
-			Aircraft = NullForAbyssals(ship.Aircraft.Take(ship.SlotSize).Skip(index).Cast<int?>().FirstOrDefault(), ship),
+			Aircraft = ship.Aircraft.Take(ship.SlotSize).Skip(index).Cast<int?>().FirstOrDefault(),
 			AircraftAfterBattle = NullForAbyssals(shipAfterBattle?.Aircraft.Take(ship.SlotSize).Skip(index).Cast<int?>().FirstOrDefault(), shipAfterBattle),
 		};
 

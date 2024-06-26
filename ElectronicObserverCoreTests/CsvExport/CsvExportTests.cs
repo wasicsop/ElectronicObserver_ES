@@ -174,7 +174,8 @@ public class CsvExportTests
 	private static bool ShouldIgnore(IShipDataMaster? ship, string header, string logbookValue, string eoValue)
 	{
 		// header should be Attacker.X or Defender.X
-		string property = header.Split('.')[1];
+		string[] splitHeaderValues = header.Split('.');
+		string property = splitHeaderValues[1];
 
 		if (property == CsvExportResources.ShipType)
 		{
@@ -213,6 +214,18 @@ public class CsvExportTests
 		if (int.TryParse(logbookValue, out int logbookNumber) && int.TryParse(eoValue, out int eoNumber))
 		{
 			isUnknownValue = isUnknownValue || eoNumber > logbookNumber;
+		}
+
+		if (splitHeaderValues.Length > 2)
+		{
+			string subProperty = splitHeaderValues[2];
+
+			if (subProperty == CsvExportResources.Aircraft && string.IsNullOrEmpty(logbookValue))
+			{
+				// logbook exports null for aircraft
+				// we export the slot size
+				return true;
+			}
 		}
 
 		return isUnknownValue && IgnoredStatValues.Contains(property);
