@@ -32,7 +32,7 @@ public class RadarFitBonusTest(DatabaseFixture db) : FitBonusTest(db)
 			LOS = 1
 		};
 
-		FitBonusValue finalBonus = kazagumo.GetTheoricalFitBonus(BonusData.FitBonusList);
+		FitBonusValue finalBonus = kazagumo.GetTheoreticalFitBonus(BonusData.FitBonusList);
 
 		Assert.Equal(expectedBonus, finalBonus);
 	}
@@ -61,7 +61,7 @@ public class RadarFitBonusTest(DatabaseFixture db) : FitBonusTest(db)
 			LOS = 1 + 0
 		};
 
-		FitBonusValue finalBonus = kazagumo.GetTheoricalFitBonus(BonusData.FitBonusList);
+		FitBonusValue finalBonus = kazagumo.GetTheoreticalFitBonus(BonusData.FitBonusList);
 
 		Assert.Equal(expectedBonus, finalBonus);
 	}
@@ -90,7 +90,7 @@ public class RadarFitBonusTest(DatabaseFixture db) : FitBonusTest(db)
 			LOS = 1 + 0
 		};
 
-		FitBonusValue finalBonus = kazagumo.GetTheoricalFitBonus(BonusData.FitBonusList);
+		FitBonusValue finalBonus = kazagumo.GetTheoreticalFitBonus(BonusData.FitBonusList);
 
 		Assert.Equal(expectedBonus, finalBonus);
 	}
@@ -121,7 +121,7 @@ public class RadarFitBonusTest(DatabaseFixture db) : FitBonusTest(db)
 			AntiAir = 0 + 0 + 3
 		};
 
-		FitBonusValue finalBonus = kazagumo.GetTheoricalFitBonus(BonusData.FitBonusList);
+		FitBonusValue finalBonus = kazagumo.GetTheoreticalFitBonus(BonusData.FitBonusList);
 
 		Assert.Equal(expectedBonus, finalBonus);
 	}

@@ -34,7 +34,7 @@ public class OpeningAswTests
 
 		Assert.False(kamikaze.CanDoOpeningAsw());
 
-		kamikaze.AswFit = kamikaze.GetTheoricalFitBonus(BonusData.FitBonusList).ASW;
+		kamikaze.AswFit = kamikaze.GetTheoreticalFitBonus(BonusData.FitBonusList).ASW;
 
 		Assert.True(kamikaze.CanDoOpeningAsw());
 	}

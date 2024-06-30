@@ -31,7 +31,7 @@ public class GunFitBonusTest(DatabaseFixture db) : FitBonusTest(db)
 			Evasion = 1
 		};
 
-		FitBonusValue finalBonus = teste.GetTheoricalFitBonus(BonusData.FitBonusList);
+		FitBonusValue finalBonus = teste.GetTheoreticalFitBonus(BonusData.FitBonusList);
 
 		Assert.Equal(expectedBonus, finalBonus);
 	}
@@ -58,7 +58,7 @@ public class GunFitBonusTest(DatabaseFixture db) : FitBonusTest(db)
 			Evasion = 3
 		};
 
-		FitBonusValue finalBonus = yuubari.GetTheoricalFitBonus(BonusData.FitBonusList);
+		FitBonusValue finalBonus = yuubari.GetTheoreticalFitBonus(BonusData.FitBonusList);
 
 		Assert.Equal(expectedBonus, finalBonus);
 	}
@@ -89,7 +89,7 @@ public class GunFitBonusTest(DatabaseFixture db) : FitBonusTest(db)
 			Evasion = 2
 		};
 
-		FitBonusValue finalBonus = yuubari.GetTheoricalFitBonus(BonusData.FitBonusList);
+		FitBonusValue finalBonus = yuubari.GetTheoreticalFitBonus(BonusData.FitBonusList);
 
 		Assert.Equal(expectedBonus, finalBonus);
 	}
@@ -119,7 +119,7 @@ public class GunFitBonusTest(DatabaseFixture db) : FitBonusTest(db)
 			Evasion = 0 + 1
 		};
 
-		FitBonusValue finalBonus = teste.GetTheoricalFitBonus(BonusData.FitBonusList);
+		FitBonusValue finalBonus = teste.GetTheoreticalFitBonus(BonusData.FitBonusList);
 
 		Assert.Equal(expectedBonus, finalBonus);
 	}
@@ -150,7 +150,7 @@ public class GunFitBonusTest(DatabaseFixture db) : FitBonusTest(db)
 			Evasion = 1 + 2
 		};
 
-		FitBonusValue finalBonus = teste.GetTheoricalFitBonus(BonusData.FitBonusList);
+		FitBonusValue finalBonus = teste.GetTheoreticalFitBonus(BonusData.FitBonusList);
 
 		Assert.Equal(expectedBonus, finalBonus);
 	}
@@ -176,7 +176,7 @@ public class GunFitBonusTest(DatabaseFixture db) : FitBonusTest(db)
 			Accuracy = 2,
 		};
 
-		FitBonusValue finalBonus = haruna.GetTheoricalFitBonus(BonusData.FitBonusList);
+		FitBonusValue finalBonus = haruna.GetTheoreticalFitBonus(BonusData.FitBonusList);
 
 		Assert.Equal(expectedBonus, finalBonus);
 	}
@@ -204,7 +204,7 @@ public class GunFitBonusTest(DatabaseFixture db) : FitBonusTest(db)
 			Evasion = 0 + 3,
 		};
 
-		FitBonusValue finalBonus = haruna.GetTheoricalFitBonus(BonusData.FitBonusList);
+		FitBonusValue finalBonus = haruna.GetTheoreticalFitBonus(BonusData.FitBonusList);
 
 		Assert.Equal(expectedBonus, finalBonus);
 	}
@@ -232,7 +232,7 @@ public class GunFitBonusTest(DatabaseFixture db) : FitBonusTest(db)
 			Evasion = 0 + 1,
 		};
 
-		FitBonusValue finalBonus = haruna.GetTheoricalFitBonus(BonusData.FitBonusList);
+		FitBonusValue finalBonus = haruna.GetTheoreticalFitBonus(BonusData.FitBonusList);
 
 		Assert.Equal(expectedBonus, finalBonus);
 	}

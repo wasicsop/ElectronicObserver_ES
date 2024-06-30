@@ -26,7 +26,7 @@ public class SeaplaneFitBonusTest(DatabaseFixture db) : FitBonusTest(db)
 
 		FitBonusValue expectedBonus = new();
 
-		FitBonusValue finalBonus = kuma.GetTheoricalFitBonus(BonusData.FitBonusList);
+		FitBonusValue finalBonus = kuma.GetTheoreticalFitBonus(BonusData.FitBonusList);
 
 		Assert.Equal(expectedBonus, finalBonus);
 	}
@@ -53,7 +53,7 @@ public class SeaplaneFitBonusTest(DatabaseFixture db) : FitBonusTest(db)
 			Evasion = 2
 		};
 
-		FitBonusValue finalBonus = sheffield.GetTheoricalFitBonus(BonusData.FitBonusList);
+		FitBonusValue finalBonus = sheffield.GetTheoreticalFitBonus(BonusData.FitBonusList);
 
 		Assert.Equal(expectedBonus, finalBonus);
 	}
@@ -81,7 +81,7 @@ public class SeaplaneFitBonusTest(DatabaseFixture db) : FitBonusTest(db)
 			Evasion = 4
 		};
 
-		FitBonusValue finalBonus = rodney.GetTheoricalFitBonus(BonusData.FitBonusList);
+		FitBonusValue finalBonus = rodney.GetTheoreticalFitBonus(BonusData.FitBonusList);
 
 		Assert.Equal(expectedBonus, finalBonus);
 	}

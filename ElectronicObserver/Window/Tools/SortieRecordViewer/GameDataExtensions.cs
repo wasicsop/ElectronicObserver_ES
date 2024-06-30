@@ -90,7 +90,7 @@ public static class GameDataExtensions
 		if (shipData.Firepower is null)
 		{
 			// old data, need to calculate fits
-			FitBonusValue fit = ship.GetTheoricalFitBonus(FitBonusList);
+			FitBonusValue fit = ship.GetTheoreticalFitBonus(FitBonusList);
 
 			ship.FirepowerFit = fit.Firepower;
 			ship.TorpedoFit = fit.Torpedo;

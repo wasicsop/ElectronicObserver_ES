@@ -35,7 +35,7 @@ public class FitBonusIssueReporter(ElectronicObserverApiService api)
 			return;
 		}
 
-		FitBonusValue theoricalBonus = ship.GetTheoricalFitBonus(KCDatabase.Instance.Translation.FitBonus.FitBonusList);
+		FitBonusValue theoricalBonus = ship.GetTheoreticalFitBonus(KCDatabase.Instance.Translation.FitBonus.FitBonusList);
 
 		if (!ship.MasterShip.ASW.IsDetermined)
 		{

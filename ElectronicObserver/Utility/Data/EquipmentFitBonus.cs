@@ -55,8 +55,8 @@ public static class EquipmentFitBonus
 		return bonus;
 	}
 
-	public static FitBonusValue GetTheoricalFitBonus(this IShipData ship, IList<FitBonusPerEquipment> bonusList) =>
-		ship.GetTheoricalFitBonuses(bonusList)
+	public static FitBonusValue GetTheoreticalFitBonus(this IShipData ship, IList<FitBonusPerEquipment> bonusList) =>
+		ship.GetTheoreticalFitBonuses(bonusList)
 		.Aggregate(
 			new FitBonusValue(),
 			(bonusA, bonusB) => bonusA + bonusB,
@@ -70,8 +70,8 @@ public static class EquipmentFitBonus
 	/// <param name="ship"></param>
 	/// <param name="bonusList"></param>
 	/// <returns></returns>
-	public static List<FitBonusValue> GetTheoricalFitBonuses(this IShipData ship, IList<FitBonusPerEquipment> bonusList)
-		=> ship.GetTheoricalFitBonusList(bonusList).Select(bonus => bonus.FinalBonus).ToList();
+	private static List<FitBonusValue> GetTheoreticalFitBonuses(this IShipData ship, IList<FitBonusPerEquipment> bonusList)
+		=> ship.GetTheoreticalFitBonusList(bonusList).Select(bonus => bonus.FinalBonus).ToList();
 
 	/// <summary>
 	/// Keep in mind that accuracy bonus is included
@@ -79,7 +79,7 @@ public static class EquipmentFitBonus
 	/// <param name="ship"></param>
 	/// <param name="bonusList"></param>
 	/// <returns></returns>
-	public static List<FitBonusResult> GetTheoricalFitBonusList(this IShipData ship, IList<FitBonusPerEquipment> bonusList)
+	private static List<FitBonusResult> GetTheoreticalFitBonusList(this IShipData ship, IList<FitBonusPerEquipment> bonusList)
 	{
 		IList<IEquipmentData> equipments = ship.AllSlotInstance.Where(eq => eq != null).ToList()!;
 
@@ -102,10 +102,10 @@ public static class EquipmentFitBonus
 			)
 			.ToList();
 
-		return GetTheoricalFitBonusList(ship, fitBonusThatApplies, equipments);
+		return GetTheoreticalFitBonusList(ship, fitBonusThatApplies, equipments);
 	}
 
-	private static List<FitBonusResult> GetTheoricalFitBonusList(IShipData ship, List<FitBonusPerEquipment> fitBonusThatApplies, IList<IEquipmentData> equipments)
+	private static List<FitBonusResult> GetTheoreticalFitBonusList(IShipData ship, List<FitBonusPerEquipment> fitBonusThatApplies, IList<IEquipmentData> equipments)
 	{
 		List<FitBonusResult> finalBonuses = new();
 

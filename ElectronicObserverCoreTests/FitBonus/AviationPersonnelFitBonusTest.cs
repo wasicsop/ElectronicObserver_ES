@@ -37,7 +37,7 @@ public class AviationPersonnelFitBonusTest(DatabaseFixture db) : FitBonusTest(db
 			Bombing = 1,
 		};
 
-		FitBonusValue finalBonus = zuiho.GetTheoricalFitBonus(BonusData.FitBonusList);
+		FitBonusValue finalBonus = zuiho.GetTheoreticalFitBonus(BonusData.FitBonusList);
 
 		Assert.Equal(expectedBonus, finalBonus);
 	}

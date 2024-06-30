@@ -30,7 +30,7 @@ public class TorpedoFitBonusTest(DatabaseFixture db) : FitBonusTest(db)
 			Evasion = 2
 		};
 
-		FitBonusValue finalBonus = scamp.GetTheoricalFitBonus(BonusData.FitBonusList);
+		FitBonusValue finalBonus = scamp.GetTheoreticalFitBonus(BonusData.FitBonusList);
 
 		Assert.Equal(expectedBonus, finalBonus);
 	}
@@ -56,7 +56,7 @@ public class TorpedoFitBonusTest(DatabaseFixture db) : FitBonusTest(db)
 			Evasion = 2
 		};
 
-		FitBonusValue finalBonus = scamp.GetTheoricalFitBonus(BonusData.FitBonusList);
+		FitBonusValue finalBonus = scamp.GetTheoreticalFitBonus(BonusData.FitBonusList);
 
 		Assert.Equal(expectedBonus, finalBonus);
 	}
@@ -82,7 +82,7 @@ public class TorpedoFitBonusTest(DatabaseFixture db) : FitBonusTest(db)
 			Evasion = 2
 		};
 
-		FitBonusValue finalBonus = scamp.GetTheoricalFitBonus(BonusData.FitBonusList);
+		FitBonusValue finalBonus = scamp.GetTheoreticalFitBonus(BonusData.FitBonusList);
 
 		Assert.Equal(expectedBonus, finalBonus);
 	}
