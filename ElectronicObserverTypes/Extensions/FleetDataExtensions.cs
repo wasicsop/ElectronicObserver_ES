@@ -100,12 +100,10 @@ public static class FleetDataExtensions
 		if (battleships >= 2) return true;
 
 		int heavyCruisers = fleet.MembersInstance.Count(s => s?.MasterShip.ShipType is
-			ShipTypes.HeavyCruiser);
-
-		int aviationCruisers = fleet.MembersInstance.Count(s => s?.MasterShip.ShipType is
+			ShipTypes.HeavyCruiser or
 			ShipTypes.AviationCruiser);
 
-		if (battleships > 0 && heavyCruisers + aviationCruisers > 0) return true;
+		if (battleships > 0 && heavyCruisers > 2) return true;
 
 		return heavyCruisers > 3;
 	}

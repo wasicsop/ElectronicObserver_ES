@@ -71,4 +71,28 @@ public class SupportTypeTests(DatabaseFixture db)
 
 		Assert.Equal(SupportType.AntiSubmarine, fleet.SupportType);
 	}
+
+	/// <summary>
+	/// https://twitter.com/Matsu_class_DD/status/1807257792811819063
+	/// </summary>
+	[Fact(DisplayName = "Shelling support 2CA 2CAV")]
+	public void SupportTypeTest3()
+	{
+		List<IShipData?> ships =
+		[
+			new ShipDataMock(Db.MasterShips[ShipId.KamikazeKai]),
+			new ShipDataMock(Db.MasterShips[ShipId.AsakazeKai]),
+			new ShipDataMock(Db.MasterShips[ShipId.MyoukouKaiNi]),
+			new ShipDataMock(Db.MasterShips[ShipId.HaguroKaiNi]),
+			new ShipDataMock(Db.MasterShips[ShipId.ToneKaiNi]),
+			new ShipDataMock(Db.MasterShips[ShipId.ChikumaKaiNi]),
+		];
+
+		FleetDataMock fleet = new()
+		{
+			MembersInstance = new(ships),
+		};
+
+		Assert.Equal(SupportType.Shelling, fleet.SupportType);
+	}
 }
