@@ -22,6 +22,7 @@ using ElectronicObserverTypes;
 using ElectronicObserverTypes.Attacks;
 using ElectronicObserverTypes.Extensions;
 using BattleAirRaid = ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.BattleAirRaid;
+using BattleBaseAirRaid = ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.BattleBaseAirRaid;
 using BattleCombinedAirRaid = ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.BattleCombinedAirRaid;
 using BattleCombinedRadar = ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.BattleCombinedRadar;
 using BattleData = ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.BattleData;
@@ -849,25 +850,46 @@ public class DataExportHelper(ElectronicObserverContext db, ToolService toolServ
 			if (node.FirstBattle.FleetsBeforeBattle.EnemyFleet is null) continue;
 			if (node.LastBattle.FleetsAfterBattle.EnemyFleet is null) continue;
 			
-			BattleRankPrediction prediction = new()
+			BattleRankPrediction prediction = node.FirstBattle switch
 			{
-				FriendlyMainFleetBefore = node.FirstBattle.FleetsBeforeBattle.Fleet,
-				FriendlyMainFleetAfter = node.LastBattle.FleetsAfterBattle.Fleet,
+				BattleAirRaid or BattleCombinedAirRaid or BattleNormalRadar or BattleCombinedRadar => new AirRaidBattleRankPrediction()
+				{
+					FriendlyMainFleetBefore = node.FirstBattle.FleetsBeforeBattle.Fleet,
+					FriendlyMainFleetAfter = node.LastBattle.FleetsAfterBattle.Fleet,
+					
+					FriendlyEscortFleetBefore = node.FirstBattle.FleetsBeforeBattle.EscortFleet, 
+					FriendlyEscortFleetAfter = node.LastBattle.FleetsAfterBattle.EscortFleet,
+					
+					EnemyMainFleetBefore = node.FirstBattle.FleetsBeforeBattle.EnemyFleet, 
+					EnemyMainFleetAfter = node.LastBattle.FleetsAfterBattle.EnemyFleet,
 
-				FriendlyEscortFleetBefore = node.FirstBattle.FleetsBeforeBattle.EscortFleet,
-				FriendlyEscortFleetAfter = node.LastBattle.FleetsAfterBattle.EscortFleet,
+					EnemyEscortFleetBefore = node.FirstBattle.FleetsBeforeBattle.EnemyEscortFleet,
+					EnemyEscortFleetAfter = node.LastBattle.FleetsAfterBattle.EnemyEscortFleet,
+				},
+				BattleBaseAirRaid => new BaseAirRaidBattleRankPrediction()
+				{
+					AirBaseBeforeAfter = node.AirBaseRaid?.AirBaseBeforeAfter ?? [],
 
-				EnemyMainFleetBefore = node.FirstBattle.FleetsBeforeBattle.EnemyFleet,
-				EnemyMainFleetAfter = node.LastBattle.FleetsAfterBattle.EnemyFleet,
+					EnemyMainFleetBefore = node.FirstBattle.FleetsBeforeBattle.EnemyFleet,
+					EnemyMainFleetAfter = node.LastBattle.FleetsAfterBattle.EnemyFleet,
 
-				EnemyEscortFleetBefore = node.FirstBattle.FleetsBeforeBattle.EnemyEscortFleet,
-				EnemyEscortFleetAfter = node.LastBattle.FleetsAfterBattle.EnemyEscortFleet,
-			};
-
-			BattleRank rank = node.FirstBattle switch
-			{
-				BattleAirRaid or BattleCombinedAirRaid or BattleNormalRadar or BattleCombinedRadar => prediction.PredictRankAirRaid(),
-				_ => prediction.PredictRank(),
+					EnemyEscortFleetBefore = node.FirstBattle.FleetsBeforeBattle.EnemyEscortFleet,
+					EnemyEscortFleetAfter = node.LastBattle.FleetsAfterBattle.EnemyEscortFleet,
+				},
+				_ => new NormalBattleRankPrediction()
+				{ 
+					FriendlyMainFleetBefore = node.FirstBattle.FleetsBeforeBattle.Fleet, 
+					FriendlyMainFleetAfter = node.LastBattle.FleetsAfterBattle.Fleet,
+					
+					FriendlyEscortFleetBefore = node.FirstBattle.FleetsBeforeBattle.EscortFleet, 
+					FriendlyEscortFleetAfter = node.LastBattle.FleetsAfterBattle.EscortFleet,
+					
+					EnemyMainFleetBefore = node.FirstBattle.FleetsBeforeBattle.EnemyFleet, 
+					EnemyMainFleetAfter = node.LastBattle.FleetsAfterBattle.EnemyFleet,
+					
+					EnemyEscortFleetBefore = node.FirstBattle.FleetsBeforeBattle.EnemyEscortFleet, 
+					EnemyEscortFleetAfter = node.LastBattle.FleetsAfterBattle.EnemyEscortFleet,
+				},
 			};
 
 			rankData.Add(new ()
@@ -876,7 +898,7 @@ public class DataExportHelper(ElectronicObserverContext db, ToolService toolServ
 				World = KCDatabase.Instance.MapInfo[sortieDetail.World * 10 + sortieDetail.Map]?.NameEN ?? "",
 				Square = SquareString(sortieDetail, node),
 				ActualRank = node.RealWinRank ?? "???",
-				ExpectedRank = Constants.GetWinRank((int)rank),
+				ExpectedRank = Constants.GetWinRank((int)prediction.PredictRank()),
 			});
 		}
 
