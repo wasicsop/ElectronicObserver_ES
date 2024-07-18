@@ -16,6 +16,7 @@ public class PhaseSearching : PhaseBase
 	public DetectionType EnemyDetectionType { get; }
 
 	public int? SmokeCount { get; }
+	public int? BalloonCell { get; }
 
 	public string Display => $"""
 		{BattleRes.Formation}: {Constants.GetFormation(PlayerFormationType)} / {BattleRes.EnemyFormation}: {Constants.GetFormation(EnemyFormationType)}
@@ -36,6 +37,7 @@ public class PhaseSearching : PhaseBase
 		EngagementType = (EngagementType)battle.ApiFormation[2];
 
 		SmokeCount = battle.ApiSmokeType;
+		BalloonCell = battle.ApiBalloonCell;
 	}
 
 	public PhaseSearching(IDaySearch battle) : this((IFirstBattleApiResponse)battle)

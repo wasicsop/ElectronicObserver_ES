@@ -202,6 +202,8 @@ public class DataExportHelper(ElectronicObserverContext db, ToolService toolServ
 								FleetType = Constants.GetCombinedFleet(playerFleet.FleetType),
 								EnemyFleetType = GetEnemyFleetType(initial.IsEnemyCombinedFleet),
 								SortieItems = MakeSortieItems(battleNode, initial, searching, fleets, offshoreSupply),
+								SmokeType = searching.SmokeCount,
+								Balloon = MakeBalloonModel(fleets, searching),
 							});
 						}
 					}
@@ -438,6 +440,8 @@ public class DataExportHelper(ElectronicObserverContext db, ToolService toolServ
 								Defender = MakeShip(attack.Defender, attackDisplay.DefenderIndex, defenderHpBeforeAttacks, defenderAfterBattle),
 								FleetType = Constants.GetCombinedFleet(playerFleet.FleetType),
 								EnemyFleetType = GetEnemyFleetType(fleets.EnemyEscortFleet is not null),
+								SmokeType = searching.SmokeCount,
+								Balloon = MakeBalloonModel(fleets, searching),
 							});
 						}
 					}
@@ -496,7 +500,7 @@ public class DataExportHelper(ElectronicObserverContext db, ToolService toolServ
 
 						airBattleData.Add(MakeAirBattleExport(node,
 							sortieDetail, admiralLevel, airBattle, searching, attackerFleet,
-							attackDisplay, ship, defenderIndex, ship.HPCurrent));
+							attackDisplay, ship, defenderIndex, ship.HPCurrent, fleets));
 					}
 				}
 
@@ -772,7 +776,7 @@ public class DataExportHelper(ElectronicObserverContext db, ToolService toolServ
 	private static AirBattleExportModel MakeAirBattleExport(BattleNode node,
 		SortieDetailViewModel sortieDetail, int? admiralLevel, PhaseAirBattle airBattle,
 		PhaseSearching searching, IFleetData attackerFleet, AirBattleAttackViewModel? attackDisplay,
-		IShipData defender, BattleIndex defenderIndex, int defenderHpBeforeAttack)
+		IShipData defender, BattleIndex defenderIndex, int defenderHpBeforeAttack, BattleFleets fleets)
 		=> new()
 		{
 			CommonData = MakeCommonData(node, IsFirstNode(sortieDetail.Nodes, node), sortieDetail, admiralLevel, airBattle, searching),
@@ -827,6 +831,8 @@ public class DataExportHelper(ElectronicObserverContext db, ToolService toolServ
 				_ => 0,
 			},
 			Defender = MakeShip(attackDisplay?.Defender ?? defender, attackDisplay?.DefenderIndex ?? defenderIndex, attackDisplay?.DefenderHpBeforeAttack ?? defenderHpBeforeAttack, null),
+			SmokeType = searching.SmokeCount,
+			Balloon = MakeBalloonModel(fleets, searching),
 		};
 
 	public async Task<List<BattleRanksExportModel>> BattleRank(
@@ -1204,6 +1210,19 @@ public class DataExportHelper(ElectronicObserverContext db, ToolService toolServ
 			ApiCombatRation = initial.ApiCombatRation,
 			ApiCombatRationCombined = initial.ApiCombatRationCombined,
 		};
+
+	private static BalloonExportModel MakeBalloonModel(BattleFleets fleets, PhaseSearching searching) => new()
+	{
+		BalloonCell = searching.BalloonCell,
+		BalloonCount = BalloonCount(fleets.SortieShips()),
+		EnemyBalloonCount = BalloonCount(fleets.EnemyShips()),
+	};
+
+	private static int BalloonCount(List<IShipData?> ships) => ships
+		.OfType<IShipData>()
+		.SelectMany(s => s.AllSlotInstance)
+		.OfType<IEquipmentData>()
+		.Count(e => e.MasterEquipment.IconTypeTyped is EquipmentIconType.BarrageBalloon);
 
 	private static int? NullForAbyssals(int? value, IShipData? ship) => ship?.MasterShip.IsAbyssalShip switch
 	{
