@@ -25,5 +25,6 @@ public sealed class AirBattleExportMap : ClassMap<AirBattleExportModel>
 		References<ShipExportMap>(s => s.Defender, CsvExportResources.PrefixDefender).Prefix(CsvExportResources.PrefixDefender);
 		Map(m => m.SmokeType).Name(CsvExportResources.SmokeType);
 		References<BalloonExportMap>(s => s.Balloon);
+		Map(m => m.ArmorBreak).Name(CsvExportResources.ArmorBreak);
 	}
 }

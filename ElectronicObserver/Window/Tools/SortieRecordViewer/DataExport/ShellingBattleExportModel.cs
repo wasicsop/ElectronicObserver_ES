@@ -28,4 +28,5 @@ public sealed record ShellingBattleExportModel : IExportModel
 	public required int? SmokeType { get; init; }
 	public required BalloonExportModel Balloon { get; init; }
 	public required SortieItemsExportModel SortieItems { get; init; }
+	public required int? ArmorBreak { get; init; }
 }

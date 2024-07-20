@@ -21,4 +21,5 @@ public sealed record AirBattleExportModel : IExportModel
 	public required ShipExportModel Defender { get; init; }
 	public required int? SmokeType { get; init; }
 	public required BalloonExportModel Balloon { get; init; }
+	public required int? ArmorBreak { get; init; }
 }

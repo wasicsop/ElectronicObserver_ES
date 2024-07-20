@@ -22,7 +22,8 @@ public class PhaseInitial : PhaseBase
 	private IKCDatabase KcDatabase { get; }
 
 	public bool IsEnemyCombinedFleet { get; }
-	private bool IsBossDamaged { get; }
+	public int? ApiXal01 { get; }
+	private bool IsBossDamaged => ApiXal01 > 0;
 	public List<int>? ApiCombatRation { get; }
 	public List<int>? ApiCombatRationCombined { get; }
 	private List<int> FriendInitialHPs { get; }
@@ -193,7 +194,7 @@ public class PhaseInitial : PhaseBase
 			}
 		}
 
-		IsBossDamaged = battle.ApiXal01 > 0;
+		ApiXal01 = battle.ApiXal01;
 		ApiCombatRation = battle.ApiCombatRation;
 		FriendInitialHPs = battle.ApiFNowhps;
 		FriendMaxHPs = battle.ApiFMaxhps;

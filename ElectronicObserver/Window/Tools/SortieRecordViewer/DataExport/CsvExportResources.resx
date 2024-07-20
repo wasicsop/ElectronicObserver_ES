@@ -609,4 +609,7 @@
   <data name="EnemyBalloons" xml:space="preserve">
     <value>敵気球隻数</value>
   </data>
+  <data name="ArmorBreak" xml:space="preserve">
+    <value>装甲破砕</value>
+  </data>
 </root>
