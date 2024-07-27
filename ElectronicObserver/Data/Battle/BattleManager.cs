@@ -184,7 +184,7 @@ public class BattleManager : APIWrapper
 	/// <summary>
 	/// 記録する特殊攻撃
 	/// </summary>
-	private int[] TracedSpecialAttack { get; } = { 100, 101, 102, 103, 104, 300, 301, 302, 400, 401 };
+	private int[] TracedSpecialAttack { get; } = [100, 101, 102, 103, 104, 105, 300, 301, 302, 400, 401];
 
 
 
@@ -599,7 +599,7 @@ public class BattleManager : APIWrapper
 		}
 		IncrementSpecialAttack(FirstBattle);
 		IncrementSpecialAttack(SecondBattle);
-		
+
 		WriteBattleLog();
 	}
 
@@ -621,11 +621,11 @@ public class BattleManager : APIWrapper
 			{
 				FriendlyMainFleetBefore = firstInitial.FriendFleet,
 				FriendlyMainFleetAfter = BattleRankPrediction.SimulateFleetAfterBattle(firstInitial.FriendFleet, hpsAfter, BattleSides.FriendMain)!,
-				
-				FriendlyEscortFleetBefore = firstInitial.FriendFleetEscort, 
+
+				FriendlyEscortFleetBefore = firstInitial.FriendFleetEscort,
 				FriendlyEscortFleetAfter = BattleRankPrediction.SimulateFleetAfterBattle(firstInitial.FriendFleetEscort, hpsAfter, BattleSides.FriendEscort),
-				
-				EnemyMainFleetBefore = firstInitial.EnemyFleet, 
+
+				EnemyMainFleetBefore = firstInitial.EnemyFleet,
 				EnemyMainFleetAfter = BattleRankPrediction.SimulateFleetAfterBattle(firstInitial.EnemyFleet, hpsAfter, BattleSides.EnemyMain)!,
 
 				EnemyEscortFleetBefore = firstInitial.EnemyFleetEscort,
@@ -634,8 +634,8 @@ public class BattleManager : APIWrapper
 			BattleModes.BaseAirRaid => new BaseAirRaidBattleRankPrediction()
 			{
 				AirBaseBeforeAfter = BaseAirRaidBattleRankPrediction.SimulateBaseAfterBattle(firstInitial.FriendInitialHPs.ToList(), hpsAfter),
-				
-				EnemyMainFleetBefore = firstInitial.EnemyFleet, 
+
+				EnemyMainFleetBefore = firstInitial.EnemyFleet,
 				EnemyMainFleetAfter = BattleRankPrediction.SimulateFleetAfterBattle(firstInitial.EnemyFleet, hpsAfter, BattleSides.EnemyMain)!,
 
 				EnemyEscortFleetBefore = firstInitial.EnemyFleetEscort,
@@ -645,14 +645,14 @@ public class BattleManager : APIWrapper
 			{
 				FriendlyMainFleetBefore = firstInitial.FriendFleet,
 				FriendlyMainFleetAfter = BattleRankPrediction.SimulateFleetAfterBattle(firstInitial.FriendFleet, hpsAfter, BattleSides.FriendMain)!,
-				
-				FriendlyEscortFleetBefore = firstInitial.FriendFleetEscort, 
+
+				FriendlyEscortFleetBefore = firstInitial.FriendFleetEscort,
 				FriendlyEscortFleetAfter = BattleRankPrediction.SimulateFleetAfterBattle(firstInitial.FriendFleetEscort, hpsAfter, BattleSides.FriendEscort),
-				
-				EnemyMainFleetBefore = firstInitial.EnemyFleet, 
+
+				EnemyMainFleetBefore = firstInitial.EnemyFleet,
 				EnemyMainFleetAfter = BattleRankPrediction.SimulateFleetAfterBattle(firstInitial.EnemyFleet, hpsAfter, BattleSides.EnemyMain)!,
-				
-				EnemyEscortFleetBefore = firstInitial.EnemyFleetEscort, 
+
+				EnemyEscortFleetBefore = firstInitial.EnemyFleetEscort,
 				EnemyEscortFleetAfter = BattleRankPrediction.SimulateFleetAfterBattle(firstInitial.EnemyFleetEscort, hpsAfter, BattleSides.EnemyEscort),
 			},
 		};
