@@ -62,9 +62,9 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 
 	public string Today => $"{DropRecordViewerResources.Today}: {DateTime.Now:yyyy/MM/dd}";
 
-	public ObservableCollection<SortieRecordViewModel> Sorties { get; } = new();
+	public ObservableCollection<SortieRecordViewModel> Sorties { get; } = [];
 	public SortieRecordViewModel? SelectedSortie { get; set; }
-	public ObservableCollection<SortieRecordViewModel> SelectedSorties { get; set; } = new();
+	public ObservableCollection<SortieRecordViewModel> SelectedSorties { get; set; } = [];
 
 	public DataGridViewModel<SortieRecordViewModel> DataGridViewModel { get; }
 
@@ -72,6 +72,7 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 	public string? StatusBarText { get; private set; }
 
 	private ExportProgressViewModel? ExportProgress { get; set; }
+	private ExportFilterViewModel ExportFilter { get; } = new();
 	public ContentDialogService? ContentDialogService { get; set; }
 
 	public SortieRecordViewerViewModel()
@@ -373,12 +374,11 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 
 			if (exportData.Count <= 0) return;
 
-			ExportFilterViewModel? exportFilter = null;
-
 			if (ContentDialogService is not null)
 			{
-				exportFilter = new(World, Map);
-				exportFilter = await ContentDialogService.ShowExportFilterAsync(exportFilter);
+				ExportFilter.Initialize(World, Map);
+
+				_ = await ContentDialogService.ShowExportFilterAsync(ExportFilter);
 			}
 
 			string? path = FileService.ExportCsv(Configuration.Config.Life.CsvExportPath);
@@ -390,9 +390,9 @@ public partial class SortieRecordViewerViewModel : WindowViewModelBase
 			ExportProgress = new();
 
 			Task<List<TElement>> processDataTask = Task.Run(async () => await
-				processData(exportData, exportFilter, ExportProgress, cancellationToken), cancellationToken);
+				processData(exportData, ExportFilter, ExportProgress, cancellationToken), cancellationToken);
 
-			List<Task> tasks = new() { processDataTask };
+			List<Task> tasks = [processDataTask];
 
 			if (ContentDialogService is not null)
 			{
