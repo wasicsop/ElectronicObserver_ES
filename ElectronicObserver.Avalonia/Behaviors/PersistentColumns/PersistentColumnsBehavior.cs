@@ -82,9 +82,10 @@ public class PersistentColumnsBehavior : Behavior<DataGrid>
 			}
 		}
 
+		AssociatedObject.ColumnDisplayIndexChanged += DisplayIndexChangedHandler;
+
 		foreach (DataGridColumn? column in AssociatedObject.Columns)
 		{
-			column.PropertyChanged += DisplayIndexChangedHandler;
 			column.PropertyChanged += WidthPropertyChangedHandler;
 			column.PropertyChanged += VisibilityPropertyChangedHandler;
 		}
@@ -99,9 +100,10 @@ public class PersistentColumnsBehavior : Behavior<DataGrid>
 			return;
 		}
 
+		AssociatedObject.ColumnDisplayIndexChanged -= DisplayIndexChangedHandler;
+
 		foreach (DataGridColumn? column in AssociatedObject.Columns)
 		{
-			column.PropertyChanged -= DisplayIndexChangedHandler;
 			column.PropertyChanged -= WidthPropertyChangedHandler;
 			column.PropertyChanged -= VisibilityPropertyChangedHandler;
 		}
