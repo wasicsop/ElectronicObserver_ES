@@ -759,12 +759,12 @@
 					/>
 				<DataGridTextColumn
 					x:DataType="shipGroup:ShipGroupItemViewModel"
-					Binding="{Binding Speed}"
+					Binding="{Binding Speed, Mode=OneWay, Converter={x:Static shipGroup:ShipGroupViewModel.SpeedToDisplayConverter}}"
 					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_Speed, ElementName=ShipGroupControl}"
 					/>
 				<DataGridTextColumn
 					x:DataType="shipGroup:ShipGroupItemViewModel"
-					Binding="{Binding Range}"
+					Binding="{Binding Range, Mode=OneWay, Converter={x:Static shipGroup:ShipGroupViewModel.RangeToDisplayConverter}}"
 					Header="{Binding ((shipGroup:ShipGroupViewModel)DataContext).FormShipGroup.ShipView_Range, ElementName=ShipGroupControl}"
 					/>
 

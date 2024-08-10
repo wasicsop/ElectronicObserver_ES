@@ -40,6 +40,9 @@ public sealed class ShipGroupAvaloniaViewModel : AnchorableViewModel
 	{
 		DialogService = Ioc.Default.GetRequiredService<IDialogService>();
 
+		ShipGroupViewModel.SpeedToDisplayConverter = new(Constants.GetSpeed);
+		ShipGroupViewModel.RangeToDisplayConverter = new(Constants.GetRange);
+
 		ShipGroupViewModel = new()
 		{
 			SelectGroupAction = SelectGroup,
