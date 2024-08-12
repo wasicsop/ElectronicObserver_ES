@@ -10,6 +10,7 @@ using System.Net;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
 using System.Security.Cryptography;
+using System.Text;
 
 namespace EOUpdater
 {
@@ -196,9 +197,8 @@ namespace EOUpdater
 			using (var client = new WebClient())
 			{
 				ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-				var updateData = client.OpenRead(url);
-
-				if (updateData == null) throw new Exception("Failed to download update data.");
+				string str = client.DownloadString(url);
+				MemoryStream updateData = new(Encoding.UTF8.GetBytes(str));
 
 				DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(Rootobject));
 				Rootobject json = (Rootobject)serializer.ReadObject(updateData);
