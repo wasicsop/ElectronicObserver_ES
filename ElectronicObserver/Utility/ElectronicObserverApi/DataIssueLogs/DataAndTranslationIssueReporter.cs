@@ -24,7 +24,8 @@ public class DataAndTranslationIssueReporter
 
 		api.ApiReqKousyou_RemodelSlotList.ResponseReceived += WrongUpgradesIssueReporter.ProcessUpgradeList;
 
-		api.ApiGetMember_Ship3.ResponseReceived += FitBonusIssueReporter.ProcessShipDataChanged;
+		// fixme : currently report false positive (and issue on remodel even tho there's code to prevent that)
+		//api.ApiGetMember_Ship3.ResponseReceived += FitBonusIssueReporter.ProcessShipDataChanged;
 
 		AppDomain.CurrentDomain.UnhandledException += SoftwareIssueReporter.ProcessException;
 	}
