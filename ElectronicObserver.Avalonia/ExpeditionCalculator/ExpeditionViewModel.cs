@@ -39,7 +39,7 @@ public partial class ExpeditionViewModel : ObservableObject
 
 	private void UpdateGreatSuccessRate(object? sender, PropertyChangedEventArgs e)
 	{
-		GreatSuccessRate = Math.Clamp(GetGreatSuccessRate(Model, FleetInfo), 0, 1);
+		GreatSuccessRate = Math.Clamp(FleetInfo.GreatSuccessRate(Model), 0, 1);
 
 		UpdateScore(sender, e);
 	}
@@ -100,41 +100,4 @@ public partial class ExpeditionViewModel : ObservableObject
 			UseItemId.MoraleFoodIrako => weights.MoraleFoodIrako,
 			_ => 0,
 		};
-
-	private static double GetGreatSuccessRate(Expedition model, FleetInfoViewModel fleetInfo) => model.GreatSuccessType switch
-	{
-		GreatSuccessType.Regular => RegularGreatSuccessRate(fleetInfo),
-		GreatSuccessType.Drum => DrumGreatSuccessRate(model, fleetInfo),
-		GreatSuccessType.Level => LevelGreatSuccessRate(fleetInfo),
-
-		_ => 0,
-	};
-
-	private static double RegularGreatSuccessRate(FleetInfoViewModel fleetInfo) => fleetInfo.AllSparkled switch
-	{
-		false => 0,
-		_ => fleetInfo.SparkleCount * 0.15 + 0.21
-	};
-
-	private static double DrumGreatSuccessRate(Expedition model, FleetInfoViewModel fleetInfo)
-		=> fleetInfo.SparkleCount * 0.15 + GetDrumBonus(model, fleetInfo);
-
-	private static double GetDrumBonus(Expedition model, FleetInfoViewModel fleetInfo)
-		=> (model.Id, fleetInfo.DrumCount) switch
-		{
-			(21, >= 4) => 0.41,
-			(24, >= 2) => 0.41,
-			(37, >= 5) => 0.41,
-			(38, >= 10) => 0.41,
-			(40, >= 4) => 0.41,
-			(44, >= 8) => 0.41,
-			(142, >= 6) => 0.41,
-
-			_ => 0.06,
-		};
-
-	private static double LevelGreatSuccessRate(FleetInfoViewModel fleetInfo)
-		=> fleetInfo.SparkleCount * 0.15 + 0.16
-			+ Math.Sqrt(fleetInfo.FlagshipLevel) / 100
-			+ fleetInfo.FlagshipLevel / 1000.0;
 }
