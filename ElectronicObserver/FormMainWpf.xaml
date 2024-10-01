@@ -716,7 +716,6 @@
 						<common:IconContentIcon Type="FleetExpedition" />
 					</MenuItem.Icon>
 				</MenuItem>
-				<MenuItem Command="{Binding OpenTelegramCommand}" Header="{Binding FormMain.Telegram}" />
 				<MenuItem
 					Command="{Binding OpenDatabaseExplorerCommand}"
 					Header="Db explorer"

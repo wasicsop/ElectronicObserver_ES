@@ -49,7 +49,6 @@ using ElectronicObserver.Window.Tools.EventLockPlanner;
 using ElectronicObserver.Window.Tools.ExpeditionRecordViewer;
 using ElectronicObserver.Window.Tools.SenkaViewer;
 using ElectronicObserver.Window.Tools.SortieRecordViewer;
-using ElectronicObserver.Window.Tools.Telegram;
 using ElectronicObserver.Window.Wpf;
 using ElectronicObserver.Window.Wpf.Arsenal;
 using ElectronicObserver.Window.Wpf.BaseAirCorps;
@@ -862,12 +861,6 @@ public partial class FormMainViewModel : ObservableObject
 		};
 
 		AutoRefreshWindow.Show(Window);
-	}
-
-	[RelayCommand]
-	private void OpenTelegram()
-	{
-		new TelegramWindow().Show(Window);
 	}
 
 	[RelayCommand]
