@@ -37,11 +37,11 @@ public class ExpeditionCheckRow
 	public string Fleet4Text => GetText(Fleet4Result);
 	public string ConditionText => GetSuccessText(Conditions);
 
-	public string? Fleet1Tooltip => GetResultTooltip(Fleet1Result);
-	public string? Fleet2Tooltip => GetResultTooltip(Fleet2Result);
-	public string? Fleet3Tooltip => GetResultTooltip(Fleet3Result);
-	public string? Fleet4Tooltip => GetResultTooltip(Fleet4Result);
-	public string? ConditionTooltip => GetSuccessToolTip(Conditions);
+	public string Fleet1Tooltip => GetResultTooltip(Fleet1Result);
+	public string Fleet2Tooltip => GetResultTooltip(Fleet2Result);
+	public string Fleet3Tooltip => GetResultTooltip(Fleet3Result);
+	public string Fleet4Tooltip => GetResultTooltip(Fleet4Result);
+	public string ConditionTooltip => GetSuccessToolTip(Conditions);
 
 	public int SortId => AreaId * 1000 + ExpeditionId;
 
@@ -89,13 +89,13 @@ public class ExpeditionCheckRow
 		},
 	};
 
-	private string? GetResultTooltip(MissionClearCondition.MissionClearConditionResult result) => result.IsSuceeded switch
+	private string GetResultTooltip(MissionClearCondition.MissionClearConditionResult result) => result.IsSuceeded switch
 	{
 		true => GetSuccessToolTip(result),
 		false => string.Join("\n", result.FailureReason),
 	};
 
-	private string? GetSuccessToolTip(MissionClearCondition.MissionClearConditionResult result) => result.FailureReason.Any() switch
+	private string GetSuccessToolTip(MissionClearCondition.MissionClearConditionResult result) => result.FailureReason.Any() switch
 	{
 		true => string.Join(", ", result.FailureReason),
 		false => ExpeditionType switch
@@ -104,7 +104,7 @@ public class ExpeditionCheckRow
 			ExpeditionType.CombatTypeOneExpedition
 				=> string.Join("\n", [GreatSuccessRate(result), .. result.SuccessPercent]),
 
-			_ => null
+			_ => GreatSuccessRate(result),
 		},
 	};
 
