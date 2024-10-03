@@ -207,4 +207,7 @@
   <data name="Radar4AaOrMore" xml:space="preserve">
     <value>Radar (AA &gt;= 4)</value>
   </data>
+  <data name="AkizukiGunKai" xml:space="preserve">
+    <value>Akizuki gun kai</value>
+  </data>
 </root>

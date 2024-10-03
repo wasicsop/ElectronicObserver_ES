@@ -1145,6 +1145,30 @@ public record AntiAirCutIn
 				},
 			],
 		},
+		new()
+		{
+			Id = 48,
+			FixedBonus = 8,
+			VariableBonus = 1.75,
+			Rate = 0.643,
+			Conditions =
+			[
+				new()
+				{
+					Ships =
+					[
+						ShipId.AkizukiKai,
+						ShipId.TeruzukiKai,
+						ShipId.SuzutsukiKai,
+						ShipId.HatsuzukiKai,
+						ShipId.HatsuzukiKaiNi,
+						ShipId.FuyutsukiKai,
+					],
+					AkizukiGunKai = 2,
+					Radar4AaOrMore = 1,
+				},
+			],
+		},
 	];
 
 	public static IEnumerable<AntiAirCutIn> AllCutIns => CutIns
