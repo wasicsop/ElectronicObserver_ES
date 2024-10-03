@@ -64,19 +64,22 @@ public record KongouSpecialAttack : SpecialAttack
 		IShipData? flagship = ships.First();
 		if (flagship is null) return 0;
 
+		// TODO : Kirishima Kai Ni C's trigger rate mods are unknown for now
+		if (flagship.MasterShip.ShipId is ShipId.KirishimaKaiNiC) return 0;
+
 		IShipData? helper = ships[1];
 		if (helper is null) return 0;
 
-		// https://docs.google.com/spreadsheets/d/1xO0krWBDnevmp0zrqDs1MKek7YD-ly3B6av5R2GRpho/edit#gid=0
-		double rate = 4 * Math.Sqrt(flagship.Level) + 4 * Math.Sqrt(helper.Level) + Math.Sqrt(flagship.LuckTotal) + Math.Sqrt(helper.LuckTotal) - 45;
+		// https://x.com/Divinity_123/status/1820114427619709288
+		double rate = 3.5 * Math.Sqrt(flagship.Level) + 3.5 * Math.Sqrt(helper.Level) + 1.1 * Math.Sqrt(flagship.LuckTotal) + 1.1 * Math.Sqrt(helper.LuckTotal) - 33;
 
 		if (flagship.AllSlotInstance.Any(e => e?.MasterEquipment is { IsSurfaceRadar: true, LOS: >= 8 }))
 		{
 			rate += flagship.MasterShip.ShipId switch
 			{
-				ShipId.KongouKaiNiC or
-				ShipId.HarunaKaiNiB or
-				ShipId.HarunaKaiNiC => 31,
+				ShipId.KongouKaiNiC => 30,
+				ShipId.HarunaKaiNiB => 15,
+				ShipId.HarunaKaiNiC => 20,
 				ShipId.HieiKaiNiC => 10,
 				_ => 0,
 			};
@@ -86,10 +89,8 @@ public record KongouSpecialAttack : SpecialAttack
 		{
 			rate += flagship.MasterShip.ShipId switch
 			{
-				ShipId.KongouKaiNiC or
-				ShipId.HarunaKaiNiB or
-				ShipId.HarunaKaiNiC => 10,
-				ShipId.HieiKaiNiC => 31,
+				ShipId.KongouKaiNiC => 10,
+				ShipId.HieiKaiNiC => 30,
 				_ => 0,
 			};
 		}
@@ -104,46 +105,51 @@ public record KongouSpecialAttack : SpecialAttack
 		IShipData? ship = ships[shipIndex];
 		if (ship is null) return 1;
 
-		int bonusEquipments = ship.AllSlotInstance.Count(IsBonusGun);
-
-		return bonusEquipments switch
+		// https://docs.google.com/spreadsheets/d/16tTtSVntB5MmlaxkZcLuFoH3A69bVPRpqXjNgo7f_a0/edit?gid=0#gid=0
+		double equipmentMods = ship.AllSlotInstance.Count(IsKaiSanOrKaiYonGun) switch
 		{
-			0 => 2.4,
-			1 => 2.66,
-			_ => 2.76,
+			0 => 1,
+			1 => 1.11,
+			_ => 1.15,
 		};
+
+		// https://x.com/yukicacoon/status/1839167149317009709
+		if (ship.AllSlotInstance.Any(IsKaiNiGun))
+		{
+			equipmentMods += 0.05;
+		}
+
+		return equipmentMods * 2.4;
 	}
 
-	private static bool IsBonusGun(IEquipmentData? eq) => eq?.EquipmentId is EquipmentId.MainGunLarge_35_6cmTwinGunMountKaiYon or EquipmentId.MainGunLarge_35_6cmTwinGunMountKaiSanC;
+	private static bool IsKaiSanOrKaiYonGun(IEquipmentData? eq) => eq?.EquipmentId is EquipmentId.MainGunLarge_35_6cmTwinGunMountKaiYon or EquipmentId.MainGunLarge_35_6cmTwinGunMountKaiSanC;
+	private static bool IsKaiNiGun(IEquipmentData? eq) => eq?.EquipmentId is EquipmentId.MainGunLarge_35_6cmTwinGunMountKaiNi;
 
 	private static bool IsKongouClassThirdRemodel(ShipId id) => id is
 		ShipId.KongouKaiNiC or
 		ShipId.HieiKaiNiC or
 		ShipId.HarunaKaiNiB or
-		ShipId.HarunaKaiNiC;
+		ShipId.HarunaKaiNiC or 
+		ShipId.KirishimaKaiNiC;
 
-	private static bool IsValidPair(ShipId flagship, ShipId helper) => flagship switch
+	private static bool IsValidPair(ShipId flagship, ShipId helper)
 	{
-		ShipId.KongouKaiNiC => helper is
-			ShipId.HieiKaiNiC or
-			ShipId.HarunaKaiNi or
-			ShipId.HarunaKaiNiB or
-			ShipId.HarunaKaiNiC or
-			ShipId.Warspite or
-			ShipId.WarspiteKai or
-			ShipId.Valiant or
-			ShipId.ValiantKai,
+		if (IsKongouClassThirdRemodel(helper)) return true;
 
-		ShipId.HieiKaiNiC => helper is
-			ShipId.KirishimaKaiNi or
-			ShipId.HarunaKaiNiB or
-			ShipId.HarunaKaiNiC or
-			ShipId.KongouKaiNiC,
+		return flagship switch
+		{
+			ShipId.KongouKaiNiC => helper is
+				ShipId.HarunaKaiNi or
+				ShipId.Warspite or
+				ShipId.WarspiteKai or
+				ShipId.Valiant or
+				ShipId.ValiantKai,
 
-		ShipId.HarunaKaiNiB or ShipId.HarunaKaiNiC => helper is
-			ShipId.HieiKaiNiC or
-			ShipId.KongouKaiNiC,
+			ShipId.HieiKaiNiC => helper is ShipId.KirishimaKaiNi,
 
-		_ => false,
-	};
+			ShipId.KirishimaKaiNiC => helper is ShipId.SouthDakotaKai,
+
+			_ => false,
+		};
+	}
 }
