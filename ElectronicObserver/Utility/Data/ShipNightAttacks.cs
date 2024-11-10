@@ -166,7 +166,7 @@ public static class ShipNightAttacks
 
 		{ NightAttackKind: NightAttackKind.Shelling } => true,
 		{ NightAttackKind: NightAttackKind.Torpedo } => true,
-		{ NightAttackKind: NightAttackKind.AirAttack } => ship.HasNightAircraft(),
+		{ NightAttackKind: NightAttackKind.AirAttack } => ship.HasNightFighter() || ship.HasNightAttacker(),
 
 		_ => false,
 	};
