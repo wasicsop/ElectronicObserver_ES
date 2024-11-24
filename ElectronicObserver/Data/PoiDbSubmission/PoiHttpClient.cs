@@ -20,7 +20,7 @@ public class PoiHttpClient
 	{
 		using HttpClient client = MakeHttpClient();
 
-		HttpResponseMessage response = await client.PostAsJsonAsync("/quest", submission);
+		HttpResponseMessage response = await client.PostAsJsonAsync("quest", submission);
 		response.EnsureSuccessStatusCode();
 	}
 
@@ -28,7 +28,7 @@ public class PoiHttpClient
 	{
 		using HttpClient client = MakeHttpClient();
 
-		HttpResponseMessage response = await client.PostAsJsonAsync("/battle", submission);
+		HttpResponseMessage response = await client.PostAsJsonAsync("battle", submission);
 		response.EnsureSuccessStatusCode();
 	}
 
@@ -36,7 +36,7 @@ public class PoiHttpClient
 	{
 		using HttpClient client = MakeHttpClient();
 
-		HttpResponseMessage response = await client.PostAsJsonAsync("/friendly_info", submission);
+		HttpResponseMessage response = await client.PostAsJsonAsync("friendly_info", submission);
 		response.EnsureSuccessStatusCode();
 	}
 
@@ -44,7 +44,7 @@ public class PoiHttpClient
 	{
 		using HttpClient client = MakeHttpClient();
 
-		HttpResponseMessage response = await client.PostAsJsonAsync("/air_base_attack", submission);
+		HttpResponseMessage response = await client.PostAsJsonAsync("air_base_attack", submission);
 		response.EnsureSuccessStatusCode();
 	}
 
@@ -52,7 +52,7 @@ public class PoiHttpClient
 	{
 		using HttpClient client = MakeHttpClient();
 
-		HttpResponseMessage response = await client.PostAsJsonAsync("/next_way_v2", submission);
+		HttpResponseMessage response = await client.PostAsJsonAsync("next_way_v2", submission);
 		response.EnsureSuccessStatusCode();
 	}
 }
