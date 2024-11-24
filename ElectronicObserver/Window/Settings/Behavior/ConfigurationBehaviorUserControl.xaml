@@ -224,11 +224,7 @@
 				ToolTip="{Binding Translation.Control_DiscordRPCShowFCMToolTip}"
 				/>
 
-			<CheckBox
-				Content="{Binding Translation.CheckBoxUseSecretaryIconForRPC}"
-				IsChecked="{Binding UseFlagshipIconForRPC}"
-				ToolTip="{Binding Translation.CheckBoxUseSecretaryIconForRPCToolTip}"
-				/>
+			<CheckBox Content="{Binding Translation.CheckBoxUseSecretaryIconForRPC}" IsChecked="{Binding UseFlagshipIconForRPC}" />
 		</StackPanel>
 
 		<Grid>
@@ -288,7 +284,5 @@
 				Content="{Binding Translation.Control_ForceUpdate}"
 				/>
 		</Grid>
-
-		<CheckBox Content="{Binding Translation.Control_EnableTsunDbSubmission}" IsChecked="{Binding SubmitDataToTsunDb}" />
 	</StackPanel>
 </UserControl>

@@ -13,6 +13,7 @@ using Avalonia.Styling;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using ElectronicObserver.Common;
 using ElectronicObserver.Data;
+using ElectronicObserver.Data.Bonodere;
 using ElectronicObserver.Database;
 using ElectronicObserver.Database.DataMigration;
 using ElectronicObserver.Dialogs;
@@ -72,6 +73,7 @@ using ElectronicObserver.Window.Tools.SortieRecordViewer.SortieDetail;
 using ElectronicObserver.Window.Wpf;
 using ElectronicObserver.Window.Wpf.EquipmentUpgradePlanViewer;
 using ElectronicObserver.Window.Wpf.ExpeditionCheck;
+using ElectronicObserver.Window.Wpf.SenkaLeaderboard;
 using ElectronicObserver.Window.Wpf.ShipTrainingPlanner;
 using ElectronicObserverTypes.Data;
 using Jot;
@@ -308,6 +310,8 @@ public partial class App
 			.AddSingleton<AlbumMasterEquipmentUpgradeTranslationViewModel>()
 			.AddSingleton<SortieDetailTranslationViewModel>()
 			.AddSingleton<ElectronicObserverApiTranslationViewModel>()
+			.AddSingleton<BonodereSubmissionTranslationViewModel>()
+			.AddSingleton<SenkaLeaderboardTranslationViewModel>()
 			// tools
 			.AddSingleton<ShipPickerViewModel>()
 			.AddSingleton<AutoRefreshViewModel>()
@@ -326,6 +330,8 @@ public partial class App
 			.AddSingleton<ColorService>()
 			.AddSingleton<ElectronicObserverApiService>()
 			.AddSingleton<SortieRecordMigrationService>()
+			.AddSingleton<SenkaLeaderboardManager>()
+			.AddSingleton<BonodereSubmissionService>()
 			// issue reporter
 			.AddSingleton<DataAndTranslationIssueReporter>()
 			.AddSingleton<FitBonusIssueReporter>()
@@ -470,6 +476,12 @@ public partial class App
 			.Configure<ExpeditionRecordViewerWindow>()
 			.Property(w => w.ViewModel.DataGridViewModel.ColumnProperties)
 			.Property(w => w.ViewModel.DataGridViewModel.SortDescriptions);
+
+		tracker
+			.Configure<SenkaLeaderboardManager>()
+			.Property(w => w.CurrentCutoffData.DataGridViewModel.ColumnProperties)
+			.Property(w => w.CurrentCutoffData.DataGridViewModel.SortDescriptions)
+			.Property(w => w.CurrentCutoffData.PagingViewModel.ItemsPerPage);
 
 		return tracker;
 	}

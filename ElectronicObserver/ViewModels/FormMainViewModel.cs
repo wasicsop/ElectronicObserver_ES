@@ -75,6 +75,7 @@ using ModernWpf;
 using MessageBox = System.Windows.MessageBox;
 using Timer = System.Windows.Forms.Timer;
 using ElectronicObserver.Avalonia.ExpeditionCalculator;
+using ElectronicObserver.Window.Wpf.SenkaLeaderboard;
 
 #if DEBUG
 using System.Text.Encodings.Web;
@@ -141,6 +142,7 @@ public partial class FormMainViewModel : ObservableObject
 	public ShipGroupAvaloniaViewModel ShipGroup { get; }
 	public FleetPresetViewModel FleetPreset { get; }
 	public ShipTrainingPlanViewerViewModel ShipTrainingPlanViewer { get; }
+	public SenkaLeaderboardViewModel SenkaLeaderboardViewer { get; }
 
 	public DockViewModel Dock { get; }
 	public ArsenalViewModel Arsenal { get; }
@@ -148,6 +150,7 @@ public partial class FormMainViewModel : ObservableObject
 	public BaseAirCorpsViewModel BaseAirCorps { get; }
 
 	public HeadquartersViewModel Headquarters { get; }
+
 	public QuestViewModel Quest { get; }
 	public ExpeditionCheckViewModel ExpeditionCheck { get; }
 	public InformationViewModel FormInformation { get; }
@@ -253,6 +256,8 @@ public partial class FormMainViewModel : ObservableObject
 		Views.Add(FleetPreset = new FleetPresetViewModel());
 		ShipTrainingPlanViewer = Ioc.Default.GetRequiredService<ShipTrainingPlanViewerViewModel>();
 		Views.Add(ShipTrainingPlanViewer);
+		SenkaLeaderboardViewer = Ioc.Default.GetRequiredService<SenkaLeaderboardManager>().CurrentCutoffData;
+		Views.Add(SenkaLeaderboardViewer);
 
 		Views.Add(Dock = new DockViewModel());
 		Views.Add(Arsenal = new ArsenalViewModel());
@@ -1021,12 +1026,6 @@ public partial class FormMainViewModel : ObservableObject
 			await LoadAPIResponse("api_get_member/require_info");
 			await LoadAPIResponse("api_port/port");
 			await LoadAPIResponse("api_get_member/questlist");
-			/*await LoadAPIResponse("api_get_member/mapinfo");
-			await LoadAPIResponse("api_req_map/start_air_base");
-			await LoadAPIResponse("api_req_map/start");
-			await LoadAPIResponse("api_req_sortie/battle"); 
-			await LoadAPIResponse("api_req_sortie/battleresult");
-			await LoadAPIResponse("api_req_map/next");*/
 		}
 		catch (Exception ex)
 		{

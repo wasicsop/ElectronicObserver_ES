@@ -31,6 +31,8 @@ public partial class DialogLocalAPILoader2 : Form
 	private List<ApiFile> ApiFilesBeforeSortie { get; set; } = [];
 	private List<ApiFile> ApiFilesAfterSortie { get; set; } = [];
 
+	private List<ApiFile> ApiFilesToLoad { get; set; } = [];
+
 	private string CurrentPath { get; set; }
 
 
@@ -44,6 +46,11 @@ public partial class DialogLocalAPILoader2 : Form
 	public DialogLocalAPILoader2(SortieRecord sortieRecord) : this()
 	{
 		SortieRecord = sortieRecord;
+	}
+
+	public DialogLocalAPILoader2(List<ApiFile> fileses) : this()
+	{
+		ApiFilesToLoad = fileses;
 	}
 
 	public void Translate()
@@ -74,6 +81,8 @@ public partial class DialogLocalAPILoader2 : Form
 		{
 			LoadSortieRecordFiles(SortieRecord);
 		}
+
+		LoadSpecificApiFiles(ApiFilesToLoad);
 	}
 
 
@@ -135,13 +144,13 @@ public partial class DialogLocalAPILoader2 : Form
 			DataGridViewRow row = APIView.SelectedRows[0];
 			int index = APIView.SelectedRows[0].Index;
 
-			if (SortieRecord is null)
+			if (ApiFilesToLoad.Count > 0)
 			{
-				ExecuteAPI((string)row.Cells[APIView_FileName.Index].Value);
+				ExecuteDatabaseSavedRecordApi((string)row.Cells[APIView_FileName.Index].Value);
 			}
 			else
 			{
-				ExecuteSortieRecordApi((string)row.Cells[APIView_FileName.Index].Value);
+				ExecuteAPI((string)row.Cells[APIView_FileName.Index].Value);
 			}
 
 			APIView.ClearSelection();
@@ -192,10 +201,6 @@ public partial class DialogLocalAPILoader2 : Form
 	{
 		if (sortieRecord.ApiFiles.Count is 0) return;
 
-		APIView.Rows.Clear();
-
-		List<DataGridViewRow> rows = [];
-
 		int firstSortieApiFileId = sortieRecord.ApiFiles.MinBy(f => f.Id)!.Id;
 		int lastSortieApiFileId = sortieRecord.ApiFiles.MaxBy(f => f.Id)!.Id;
 
@@ -227,11 +232,24 @@ public partial class DialogLocalAPILoader2 : Form
 			.Where(f => f.Id <= portFileIdAfterSortieId)
 			.ToList();
 
-		IEnumerable<ApiFile> apiFiles = ApiFilesBeforeSortie
+		ApiFilesToLoad = ApiFilesBeforeSortie
 			.Concat(sortieRecord.ApiFiles)
-			.Concat(ApiFilesAfterSortie);
+			.Concat(ApiFilesAfterSortie)
+			.ToList();
+	}
 
-		foreach (string file in apiFiles.Select(f => $"{f.Id} {f.ApiFileType} {f.Name}"))
+	private void LoadSpecificApiFiles(List<ApiFile> files)
+	{
+		if (files.Count is 0) return;
+
+		APIView.Rows.Clear();
+
+		List<DataGridViewRow> rows = [];
+
+		ElectronicObserverContext db = new();
+		db.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
+
+		foreach (string file in files.Select(f => $"{f.Id} {f.ApiFileType} {f.Name}"))
 		{
 			DataGridViewRow row = new();
 			row.CreateCells(APIView);
@@ -244,7 +262,6 @@ public partial class DialogLocalAPILoader2 : Form
 		APIView.Sort(APIView_FileName, ListSortDirection.Ascending);
 
 	}
-
 
 	//filename format: yyyyMMdd_hhmmssff[Q|S]@apipath@apiname.json
 	private string GetAPIName(string fileName)
@@ -302,10 +319,8 @@ public partial class DialogLocalAPILoader2 : Form
 
 	}
 
-	private void ExecuteSortieRecordApi(string filename)
+	private void ExecuteDatabaseSavedRecordApi(string filename)
 	{
-		Debug.Assert(SortieRecord is not null);
-
 		string[] values = filename.Split(" ");
 
 		int recordId = int.Parse(values[0]);
@@ -314,10 +329,7 @@ public partial class DialogLocalAPILoader2 : Form
 
 		if (!APIObserver.Instance.APIList.ContainsKey(apiName)) return;
 
-		ApiFile apiFile = ApiFilesBeforeSortie
-			.Concat(SortieRecord.ApiFiles)
-			.Concat(ApiFilesAfterSortie)
-			.First(f => f.Id == recordId);
+		ApiFile apiFile = ApiFilesToLoad.First(f => f.Id == recordId);
 
 		if (apiFile is { Name: "api_port/port", ApiFileType: ApiFileType.Response })
 		{
@@ -337,20 +349,23 @@ public partial class DialogLocalAPILoader2 : Form
 				apiFilePortResponse.ApiData.ApiLog = savedPortResponse.ApiData.ApiLog;
 				apiFilePortResponse.ApiData.ApiNdock = savedPortResponse.ApiData.ApiNdock;
 
-				apiFilePortResponse.ApiData.ApiDeckPort = SortieRecord.FleetData.Fleets
-					.Select((f, i) => f switch
-					{
-						null => null,
-
-						_ => new FleetDataDto
+				if (SortieRecord is not null)
+				{
+					apiFilePortResponse.ApiData.ApiDeckPort = SortieRecord.FleetData.Fleets
+						.Select((f, i) => f switch
 						{
-							ApiId = i + 1,
-							ApiShip = f.Ships.Select(s => s.DropId ?? 0).ToList(),
-							ApiMission = [0, 0, 0, 0],
-						},
-					})
-					.OfType<FleetDataDto>()
-					.ToList();
+							null => null,
+
+							_ => new FleetDataDto
+							{
+								ApiId = i + 1,
+								ApiShip = f.Ships.Select(s => s.DropId ?? 0).ToList(),
+								ApiMission = [0, 0, 0, 0],
+							},
+						})
+						.OfType<FleetDataDto>()
+						.ToList();
+				}
 
 				apiFile.Content = JsonSerializer.Serialize(apiFilePortResponse, JsonSerializerOptions);
 			}
@@ -377,10 +392,10 @@ public partial class DialogLocalAPILoader2 : Form
 	{
 		if (e.Argument is not IEnumerable<string?> files) return;
 
-		Action<string> act = SortieRecord switch
+		Action<string> act = ApiFilesToLoad.Count switch
 		{
-			null => ExecuteAPI,
-			_ => ExecuteSortieRecordApi,
+			0 => ExecuteAPI,
+			_ => ExecuteDatabaseSavedRecordApi,
 		};
 
 		foreach (string? file in files)
