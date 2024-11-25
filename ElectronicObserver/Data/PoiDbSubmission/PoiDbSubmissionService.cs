@@ -37,6 +37,9 @@ public class PoiDbSubmissionService
 
 	private void OnConfigurationChanged()
 	{
+		// disable poi till we can make it work
+		return;
+
 		if (Configuration.Config.DataSubmission.SendDataToPoiPreview)
 		{
 			SubscribeToApis();
