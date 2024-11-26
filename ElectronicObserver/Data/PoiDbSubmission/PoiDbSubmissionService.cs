@@ -37,9 +37,6 @@ public class PoiDbSubmissionService
 
 	private void OnConfigurationChanged()
 	{
-		// disable poi till we can make it work
-		return;
-
 		if (Configuration.Config.DataSubmission.SendDataToPoiPreview)
 		{
 			SubscribeToApis();
@@ -291,6 +288,6 @@ public class PoiDbSubmissionService
 
 	private static void LogError(Exception e)
 	{
-		Logger.Add(2, "PoiDB error", e);
+		Logger.Add(2, PoiDbSubmissionResources.Error, e);
 	}
 }

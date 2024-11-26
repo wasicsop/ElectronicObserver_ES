@@ -38,11 +38,7 @@
 			</TextBlock>
 		</StackPanel>
 
-		<CheckBox
-			Content="PoiDB"
-			IsChecked="{Binding SendDataToPoi}"
-			Visibility="Collapsed"
-			/>
+		<CheckBox Content="PoiDB" IsChecked="{Binding SendDataToPoi}" />
 
 		<StackPanel Orientation="Horizontal">
 			<CheckBox Content="{Binding Translation.BonodereIntegration, Mode=OneWay}" IsChecked="{Binding BonodereIntegrationEnabled}" />
