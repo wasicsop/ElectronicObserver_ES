@@ -120,4 +120,7 @@
   <data name="Error" xml:space="preserve">
     <value>PoiDB error</value>
   </data>
+  <data name="Details" xml:space="preserve">
+    <value>Details</value>
+  </data>
 </root>

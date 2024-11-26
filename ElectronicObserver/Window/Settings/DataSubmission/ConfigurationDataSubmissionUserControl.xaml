@@ -38,7 +38,15 @@
 			</TextBlock>
 		</StackPanel>
 
-		<CheckBox Content="PoiDB" IsChecked="{Binding SendDataToPoi}" />
+		<StackPanel Orientation="Horizontal">
+			<CheckBox Content="PoiDB" IsChecked="{Binding SendDataToPoi}" />
+
+			<TextBlock>
+				<Hyperlink Command="{Binding OpenHyperlinkCommand}" CommandParameter="https://github.com/ElectronicObserverEN/ElectronicObserver/wiki/PoiDB">
+					<Run Text="{Binding Translation.Details, Mode=OneWay}" />
+				</Hyperlink>
+			</TextBlock>
+		</StackPanel>
 
 		<StackPanel Orientation="Horizontal">
 			<CheckBox Content="{Binding Translation.BonodereIntegration, Mode=OneWay}" IsChecked="{Binding BonodereIntegrationEnabled}" />

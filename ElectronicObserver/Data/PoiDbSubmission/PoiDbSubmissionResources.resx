@@ -100,4 +100,7 @@
   <data name="Error" xml:space="preserve">
     <value>PoiDBエラー</value>
   </data>
+  <data name="Details" xml:space="preserve">
+    <value>詳細</value>
+  </data>
 </root>

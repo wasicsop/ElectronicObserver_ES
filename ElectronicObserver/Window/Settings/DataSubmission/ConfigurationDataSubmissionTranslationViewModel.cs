@@ -14,4 +14,6 @@ public class ConfigurationDataSubmissionTranslationViewModel : TranslationBaseVi
 
 	public string EnableTsunDbSubmission => ConfigurationResources.Control_EnableTsunDbSubmission;
 	public string PrivacyPolicy => ConfigurationResources.DataSubmission_PrivacyPolicy;
+
+	public string Details => PoiDbSubmissionResources.Details;
 }
