@@ -108,6 +108,7 @@ public class PoiDbFriendFleetSubmissionService(
 		if (fleet is null) return;
 
 		Deck1 = fleet.MembersInstance!
+			.OfType<ShipData>()
 			.Select(Extensions.MakeShip)
 			.ToList();
 
@@ -121,6 +122,7 @@ public class PoiDbFriendFleetSubmissionService(
 			FleetData escortFleet = KcDatabase.Fleet.Fleets[2];
 
 			Deck2 = escortFleet.MembersInstance!
+				.OfType<ShipData>()
 				.Select(Extensions.MakeShip)
 				.ToList();
 

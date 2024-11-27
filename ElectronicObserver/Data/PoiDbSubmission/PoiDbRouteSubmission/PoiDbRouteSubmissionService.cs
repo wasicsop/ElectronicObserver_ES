@@ -136,10 +136,12 @@ public class PoiDbRouteSubmissionService(
 		if (Map is not int map) return;
 
 		List<JsonNode> deck1 = Fleet1.MembersInstance!
+			.OfType<ShipData>()
 			.Select(Extensions.MakeShip)
 			.ToList();
 
 		List<List<JsonNode>> slot1 = Fleet1.MembersInstance!
+			.OfType<ShipData>()
 			.Select(s => s.AllSlotInstance
 				.Select(e => e switch
 				{
@@ -150,10 +152,12 @@ public class PoiDbRouteSubmissionService(
 			.ToList();
 
 		List<JsonNode>? deck2 = Fleet2?.MembersInstance!
+			.OfType<ShipData>()
 			.Select(Extensions.MakeShip)
 			.ToList();
 
 		List<List<JsonNode>>? slot2 = Fleet2?.MembersInstance!
+			.OfType<ShipData>()
 			.Select(s => s.AllSlotInstance
 				.Select(e => e switch
 				{

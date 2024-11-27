@@ -54,7 +54,7 @@ public class FleetData : APIWrapper, IIdentifiable, IFleetData
 	/// <summary>
 	/// 艦隊メンバー(艦船データ)
 	/// </summary>
-	public ReadOnlyCollection<IShipData>? MembersInstance
+	public ReadOnlyCollection<IShipData?>? MembersInstance
 	{
 		get
 		{
