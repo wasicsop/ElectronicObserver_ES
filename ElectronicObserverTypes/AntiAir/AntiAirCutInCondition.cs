@@ -96,7 +96,7 @@ public class AntiAirCutInCondition
 		if (!ship.HasYamatoRadar(RadarYamato)) return false;
 		if (!ship.HasHarunaGun(HarunaGun)) return false;
 		if (!ship.HasHarusameGun(HarusameGun)) return false;
-		if (!ship.HasShigureAaGun(HarusameGun)) return false;
+		if (!ship.HasShigureAaGun(AaGunShigure)) return false;
 		if (!ship.HasAirRadar(Radar4AaOrMore, 4)) return false;
 		if (!ship.HasAkizukiGunKai(AkizukiGunKai)) return false;
 
