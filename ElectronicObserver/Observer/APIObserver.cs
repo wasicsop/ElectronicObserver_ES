@@ -854,20 +854,16 @@ public sealed class APIObserver
 			await ApiProcessingChannel.Writer.WriteAsync(() => LoadRequest(url, body));
 		}
 
-		//debug
-		//Utility.Logger.Add( 1, baseurl );
-
-		if (baseurl == ("/gadgets/makeRequest"))
+		if (KCDatabase.Instance.ServerManager.CurrentServer is null && baseurl.Contains("/gadget_html5/js/kcs_const.js"))
 		{
-			KCDatabase db = KCDatabase.Instance;
-			if (db.Server is null)
-			{
-				string body = await e.GetResponseBodyAsString();
-				string url = body.Split('/')[2];
-				url = url.Split('\\')[0];
+			string body = await e.GetResponseBodyAsString();
 
-				db.Server = Constants.getKCServer(url);
-			}
+			_ = Task.Run(() =>
+			{
+				KCDatabase.Instance.ServerManager.LoadServerList(body);
+			});
+
+			return;
 		}
 
 		//response
@@ -979,6 +975,11 @@ public sealed class APIObserver
 		if (ServerAddress == null && baseurl.Contains("/kcsapi/"))
 		{
 			ServerAddress = e.HttpClient.Request.Host;
+
+			if (!string.IsNullOrEmpty(ServerAddress))
+			{
+				KCDatabase.Instance.ServerManager.LoadCurrentServer(ServerAddress);
+			}
 		}
 	}
 
