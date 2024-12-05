@@ -169,6 +169,9 @@ public enum EquipmentIconType
 	/// <summary></summary>
 	LandBasedFighterJet = 56,
 
+	/// <summary></summary>
+	LandBasedFighterShinden = 57,
+
 	Locked,
 	Unknown,
 }

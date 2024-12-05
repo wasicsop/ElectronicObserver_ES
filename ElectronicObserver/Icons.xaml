@@ -81,6 +81,7 @@
 	<BitmapImage x:Key="EquipmentIconType.SmokeGenerator" UriSource="pack://application:,,,/Assets/Equipment/SmokeGenerator.png" />
 	<BitmapImage x:Key="EquipmentIconType.BarrageBalloon" UriSource="pack://application:,,,/Assets/Equipment/BarrageBalloon.png" />
 	<BitmapImage x:Key="EquipmentIconType.LandBasedFighterJet" UriSource="pack://application:,,,/Assets/Equipment/LandBasedFighterJet.png" />
+	<BitmapImage x:Key="EquipmentIconType.LandBasedFighterShinden" UriSource="pack://application:,,,/Assets/Equipment/LandBasedFighterShinden.png" />
 
 	<BitmapImage x:Key="Resource.Fuel" UriSource="pack://application:,,,/Assets/Resource/Fuel.png" />
 	<BitmapImage x:Key="Resource.Ammo" UriSource="pack://application:,,,/Assets/Resource/Ammo.png" />

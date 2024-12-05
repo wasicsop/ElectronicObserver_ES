@@ -85,6 +85,7 @@
 				<markup:Case Label="{x:Static electronicObserverTypes:EquipmentIconType.SmokeGenerator}" Value="{StaticResource EquipmentIconType.SmokeGenerator}" />
 				<markup:Case Label="{x:Static electronicObserverTypes:EquipmentIconType.BarrageBalloon}" Value="{StaticResource EquipmentIconType.BarrageBalloon}" />
 				<markup:Case Label="{x:Static electronicObserverTypes:EquipmentIconType.LandBasedFighterJet}" Value="{StaticResource EquipmentIconType.LandBasedFighterJet}" />
+				<markup:Case Label="{x:Static electronicObserverTypes:EquipmentIconType.LandBasedFighterShinden}" Value="{StaticResource EquipmentIconType.LandBasedFighterShinden}" />
 				<markup:Case Value="{StaticResource EquipmentIconType.Unknown}" />
 			</markup:Switch>
 		</Image.Source>
