@@ -387,7 +387,7 @@ public class WebView2ViewModel : BrowserViewModel
 	{
 		if (e.Request.Uri.Contains(@"gadget_html5") && Configuration?.UseGadgetRedirect is true)
 		{
-			e.Request.Uri = e.Request.Uri.Replace("http://203.104.209.7/gadget_html5/", Configuration.GadgetBypassServer.GetReplaceUrl(Configuration.GadgetBypassServerCustom));
+			e.Request.Uri = e.Request.Uri.Replace("http://w00g.kancolle-server.com/gadget_html5/", Configuration.GadgetBypassServer.GetReplaceUrl(Configuration.GadgetBypassServerCustom));
 		}
 
 		if (e.Request.Uri.Contains("/kcs2/resources/bgm/"))
