@@ -772,6 +772,7 @@ public enum ShipId
 	Asahi = 953,
 	HarunaKaiNiC = 954,
 	KiyoshimoKaiNi = 955,
+	HayashimoKaiNi = 956,
 	GeneralBelgrano = 957,
 	AsahiKai = 958,
 	MiyukiKaiNi = 959,
@@ -791,5 +792,6 @@ public enum ShipId
 	I36Kai = 976,
 	I41Kai = 977,
 	InagiKaiNi = 979,
-	ColoradoKai = 1496
+	FujinamiKaiNi = 981,
+	ColoradoKai = 1496,
 }

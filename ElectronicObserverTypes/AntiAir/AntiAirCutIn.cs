@@ -33,6 +33,7 @@ public record AntiAirCutIn
 		36,
 		27,
 		45,
+		49,
 		19,
 		21,
 		29,
@@ -1165,6 +1166,25 @@ public record AntiAirCutIn
 						ShipId.FuyutsukiKai,
 					],
 					AkizukiGunKai = 2,
+					Radar4AaOrMore = 1,
+				},
+			],
+		},
+		new()
+		{
+			Id = 49,
+			FixedBonus = 5,
+			VariableBonus = 1.5,
+			Rate = null,
+			Conditions =
+			[
+				new()
+				{
+					Ships =
+					[
+						ShipId.FujinamiKaiNi,
+					],
+					HighAngleDirector = 2,
 					Radar4AaOrMore = 1,
 				},
 			],
