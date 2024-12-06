@@ -38,7 +38,7 @@
 			</TextBlock>
 		</StackPanel>
 
-		<StackPanel Orientation="Horizontal">
+		<StackPanel Orientation="Horizontal" Visibility="Collapsed">
 			<CheckBox Content="PoiDB" IsChecked="{Binding SendDataToPoi}" />
 
 			<TextBlock>

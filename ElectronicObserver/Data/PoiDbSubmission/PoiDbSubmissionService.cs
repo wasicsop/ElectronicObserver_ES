@@ -37,6 +37,8 @@ public class PoiDbSubmissionService
 
 	private void OnConfigurationChanged()
 	{
+		return;
+
 		if (Configuration.Config.DataSubmission.SendDataToPoiPreview)
 		{
 			SubscribeToApis();
