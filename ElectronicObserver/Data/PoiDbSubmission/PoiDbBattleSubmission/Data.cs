@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Text.Json.Nodes;
 using System.Text.Json.Serialization;
 
 namespace ElectronicObserver.Data.PoiDbSubmission.PoiDbBattleSubmission;
@@ -18,10 +19,10 @@ public class Data
 	public required List<int> Map { get; init; }
 
 	/// <summary>
-	/// Raw response strings from battles.
+	/// Raw response data from battles.
 	/// </summary>
 	[JsonPropertyName("packet")]
-	public required List<string> Packet { get; init; }
+	public required List<JsonNode> Packet { get; init; }
 
 	/// <summary>
 	/// "Normal" or "Boss"

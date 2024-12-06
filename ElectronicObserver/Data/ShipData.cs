@@ -141,12 +141,12 @@ public class ShipData : APIWrapper, IIdentifiable, IShipData
 	/// <summary>
 	/// 全てのスロット(装備データ)
 	/// </summary>
-	public IList<IEquipmentData> AllSlotInstance => Array.AsReadOnly(AllSlot.Select(id => KCDatabase.Instance.Equipments[id]).Cast<IEquipmentData>().ToArray());
+	public IList<IEquipmentData?> AllSlotInstance => Array.AsReadOnly(AllSlot.Select(id => KCDatabase.Instance.Equipments[id]).Cast<IEquipmentData>().ToArray());
 
 	/// <summary>
 	/// 全てのスロット(装備マスターデータ)
 	/// </summary>
-	public IList<IEquipmentDataMaster> AllSlotInstanceMaster => Array.AsReadOnly(AllSlot.Select(id => KCDatabase.Instance.Equipments[id]?.MasterEquipment).ToArray());
+	public IList<IEquipmentDataMaster?> AllSlotInstanceMaster => Array.AsReadOnly(AllSlot.Select(id => KCDatabase.Instance.Equipments[id]?.MasterEquipment).ToArray());
 
 
 

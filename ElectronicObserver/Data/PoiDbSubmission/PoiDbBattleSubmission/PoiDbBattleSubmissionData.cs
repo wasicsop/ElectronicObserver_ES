@@ -4,6 +4,6 @@ namespace ElectronicObserver.Data.PoiDbSubmission.PoiDbBattleSubmission;
 
 public class PoiDbBattleSubmissionData
 {
-	[JsonPropertyName("body")]
-	public required Body Body { get; init; }
+	[JsonPropertyName("data")]
+	public required Data Data { get; init; }
 }

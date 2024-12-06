@@ -135,34 +135,36 @@ public class PoiDbRouteSubmissionService(
 		if (World is not int world) return;
 		if (Map is not int map) return;
 
-		List<JsonNode> deck1 = Fleet1.MembersInstance!
+		List<Dictionary<string, JsonNode?>> deck1 = Fleet1.MembersInstance!
 			.OfType<ShipData>()
 			.Select(Extensions.MakeShip)
+			.Select(FilterShipValues)
 			.ToList();
 
-		List<List<JsonNode>> slot1 = Fleet1.MembersInstance!
+		List<List<object>> slot1 = Fleet1.MembersInstance!
 			.OfType<ShipData>()
 			.Select(s => s.AllSlotInstance
 				.Select(e => e switch
 				{
-					null => JsonValue.Create(-1),
-					_ => e.MakeEquipment(),
+					null => (object)JsonValue.Create(-1),
+					_ => FilterEquipmentValues(e.MakeEquipment()),
 				})
 				.ToList())
 			.ToList();
 
-		List<JsonNode>? deck2 = Fleet2?.MembersInstance!
+		List<Dictionary<string, JsonNode?>>? deck2 = Fleet2?.MembersInstance!
 			.OfType<ShipData>()
 			.Select(Extensions.MakeShip)
+			.Select(FilterShipValues)
 			.ToList();
 
-		List<List<JsonNode>>? slot2 = Fleet2?.MembersInstance!
+		List<List<object>>? slot2 = Fleet2?.MembersInstance!
 			.OfType<ShipData>()
 			.Select(s => s.AllSlotInstance
 				.Select(e => e switch
 				{
-					null => JsonValue.Create(-1),
-					_ => e.MakeEquipment(),
+					null => (object)JsonValue.Create(-1),
+					_ => FilterEquipmentValues(e.MakeEquipment()),
 				})
 				.ToList())
 			.ToList();
@@ -171,39 +173,36 @@ public class PoiDbRouteSubmissionService(
 		{
 			PoiDbRouteSubmissionData submissionData = new()
 			{
-				Form = new()
+				Deck1 = deck1,
+				Deck2 = deck2,
+				EscapeList = EscapeList,
+				Slot1 = slot1,
+				Slot2 = slot2,
+				CellIds = CellIds,
+				MapLevels = MapLevels,
+				NextInfo = new()
 				{
-					Deck1 = deck1,
-					Deck2 = deck2,
-					EscapeList = EscapeList,
-					Slot1 = slot1,
-					Slot2 = slot2,
-					CellIds = CellIds,
-					MapLevels = MapLevels,
-					NextInfo = new()
-					{
-						World = world,
-						Map = map,
-					},
-					AdmiralLevel = KcDatabase.Admiral.Level,
-					LosValues = new()
-					{
-						SakuOne25 = null,
-						SakuOne25a = null,
-						SakuOne33x1 = Fleet1.GetSearchingAbility(1),
-						SakuOne33x2 = Fleet1.GetSearchingAbility(2),
-						SakuOne33x3 = Fleet1.GetSearchingAbility(3),
-						SakuOne33x4 = Fleet1.GetSearchingAbility(4),
-						SakuTwo25 = null,
-						SakuTwo25a = null,
-						SakuTwo33x1 = Fleet2?.GetSearchingAbility(1),
-						SakuTwo33x2 = Fleet2?.GetSearchingAbility(2),
-						SakuTwo33x3 = Fleet2?.GetSearchingAbility(3),
-						SakuTwo33x4 = Fleet2?.GetSearchingAbility(4),
-					},
-					ApiCellData = cellCount,
-					Version = Version,
-				}
+					World = world,
+					Map = map,
+				},
+				AdmiralLevel = KcDatabase.Admiral.Level,
+				LosValues = new()
+				{
+					SakuOne25 = null,
+					SakuOne25a = null,
+					SakuOne33x1 = Fleet1.GetSearchingAbility(1),
+					SakuOne33x2 = Fleet1.GetSearchingAbility(2),
+					SakuOne33x3 = Fleet1.GetSearchingAbility(3),
+					SakuOne33x4 = Fleet1.GetSearchingAbility(4),
+					SakuTwo25 = null,
+					SakuTwo25a = null,
+					SakuTwo33x1 = Fleet2?.GetSearchingAbility(1),
+					SakuTwo33x2 = Fleet2?.GetSearchingAbility(2),
+					SakuTwo33x3 = Fleet2?.GetSearchingAbility(3),
+					SakuTwo33x4 = Fleet2?.GetSearchingAbility(4),
+				},
+				ApiCellData = cellCount,
+				Version = Version,
 			};
 
 			Task.Run(async () =>
@@ -223,5 +222,35 @@ public class PoiDbRouteSubmissionService(
 			LogError(e);
 			ClearState();
 		}
+	}
+
+	private static Dictionary<string, JsonNode?> FilterShipValues(JsonNode node)
+	{
+		return node
+			.AsObject()
+			.Where(kvp => RelevantKey(kvp.Key))
+			.ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
+
+		// the last 2 keys seem to be extra data added by poi?
+		static bool RelevantKey(string key) => key is
+			"api_ship_id" or
+			"api_lv" or
+			"api_soku" or
+			"api_slotitem_ex" or
+			"api_slotitem_level";
+	}
+
+	private static Dictionary<string, JsonNode?> FilterEquipmentValues(JsonNode node)
+	{
+		return node
+			.AsObject()
+			.Where(kvp => RelevantKey(kvp.Key))
+			.ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
+
+		static bool RelevantKey(string key) => key is
+			"api_id" or
+			"api_slotitem_id" or
+			"api_locked" or
+			"api_level";
 	}
 }

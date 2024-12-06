@@ -66,8 +66,8 @@ public class PoiDbBattleSubmissionService(
 	private int? Cell { get; set; }
 	private Fleet? FleetBeforeBattle { get; set; }
 	private FleetAfter? FleetAfterBattle { get; set; }
-	private string? FirstBattleData { get; set; }
-	private string? SecondBattleData { get; set; }
+	private JsonNode? FirstBattleData { get; set; }
+	private JsonNode? SecondBattleData { get; set; }
 	private bool? IsBossNode { get; set; }
 
 	public void ApiReqMap_Start_ResponseReceived(string apiname, dynamic data)
@@ -89,23 +89,34 @@ public class PoiDbBattleSubmissionService(
 	public void ProcessFirstBattle(string apiName, dynamic data)
 	{
 		IsBossNode = KcDatabase.Battle.Compass.IsBossNode;
-		FirstBattleData = data.ToString();
+
+		string firstBattleData = data.ToString();
+		FirstBattleData = JsonNode.Parse(firstBattleData)!;
+		
+		AddPoiData(FirstBattleData, apiName);
 		AddSupport(FirstBattleData);
 	}
 
 	public void ProcessSecondBattle(string apiName, dynamic data)
 	{
-		SecondBattleData = data.ToString();
+		string secondBattleData = data.ToString();
+		SecondBattleData = JsonNode.Parse(secondBattleData)!;
 
+		AddPoiData(SecondBattleData, apiName);
 		// I'm not sure if support ever happens in the second battle
 		// air support for night to day battles maybe?
 		AddSupport(SecondBattleData);
 	}
 
-	private void AddSupport(string battleData)
+	private static void AddPoiData(JsonNode battle, string apiName)
 	{
-		JsonNode? battle = JsonNode.Parse(battleData);
-		JsonNode? support = battle?["api_support_info"] ?? battle?["api_n_support_info"];
+		battle["poi_path"] = JsonValue.Create($"/kcsapi/{apiName}");
+		battle["poi_time"] = JsonValue.Create(DateTimeOffset.UtcNow.ToUnixTimeSeconds());
+	}
+
+	private void AddSupport(JsonNode battleData)
+	{
+		JsonNode? support = battleData["api_support_info"] ?? battleData["api_n_support_info"];
 
 		if (FleetBeforeBattle is not null && support is not null)
 		{
@@ -174,7 +185,7 @@ public class PoiDbBattleSubmissionService(
 		if (EventDifficulty is not int eventDifficulty) return;
 		if (IsBossNode is not bool isBossNode) return;
 
-		List<string> battleData = [FirstBattleData];
+		List<JsonNode> battleData = [FirstBattleData];
 
 		if (SecondBattleData is not null)
 		{
@@ -185,24 +196,21 @@ public class PoiDbBattleSubmissionService(
 		{
 			PoiDbBattleSubmissionData submissionData = new()
 			{
-				Body = new()
+				Data = new()
 				{
-					Data = new()
+					Fleet = FleetBeforeBattle,
+					FleetAfter = FleetAfterBattle,
+					Map = [world, map, cell],
+					Packet = battleData,
+					Type = isBossNode switch
 					{
-						Fleet = FleetBeforeBattle,
-						FleetAfter = FleetAfterBattle,
-						Map = [world, map, cell],
-						Packet = battleData,
-						Type = isBossNode switch
-						{
-							true => "Boss",
-							_ => "Normal",
-						},
-						Version = Version,
-						ApiCellData = cellCount,
-						MapLevel = eventDifficulty,
-						Time = DateTimeOffset.UtcNow.ToUnixTimeSeconds(),
-					}
+						true => "Boss",
+						_ => "Normal",
+					},
+					Version = Version,
+					ApiCellData = cellCount,
+					MapLevel = eventDifficulty,
+					Time = DateTimeOffset.UtcNow.ToUnixTimeSeconds(),
 				}
 			};
 
