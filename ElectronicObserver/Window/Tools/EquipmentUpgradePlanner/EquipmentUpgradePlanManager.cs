@@ -193,15 +193,16 @@ public class EquipmentUpgradePlanManager
 	/// <returns>Null if not found</returns>
 	private EquipmentUpgradePlanItemViewModel? FindEquipmentPlanFromEquipmentData(IEquipmentData equipmentData)
 	{
-		EquipmentUpgradePlanItemViewModel? foundPlan = PlannedUpgrades.FirstOrDefault(plan => plan.Equipment?.MasterID == equipmentData.MasterID);
+		List<EquipmentUpgradePlanItemViewModel> plans = PlannedUpgrades.Where(plan => !plan.Finished).ToList();
+
+		EquipmentUpgradePlanItemViewModel? foundPlan = plans.FirstOrDefault(plan => plan.Equipment?.MasterID == equipmentData.MasterID);
 
 		// Plan found, return it
 		if (foundPlan != null) return foundPlan;
 
 		// Not found => look for a matching plan
-		foundPlan = PlannedUpgrades
+		foundPlan = plans
 			.Where(plan => plan.Equipment?.MasterID == 0)
-			.Where(plan => !plan.Finished)
 			.Where(plan => plan.DesiredUpgradeLevel is UpgradeLevel.Conversion || plan.DesiredUpgradeLevel > equipmentData.UpgradeLevel)
 			.FirstOrDefault(plan => plan.Equipment?.EquipmentID == equipmentData.EquipmentID);
 
