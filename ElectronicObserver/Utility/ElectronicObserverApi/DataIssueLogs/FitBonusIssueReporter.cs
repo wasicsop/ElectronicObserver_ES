@@ -31,7 +31,7 @@ public class FitBonusIssueReporter(ElectronicObserverApiService api)
 		KCDatabase db = KCDatabase.Instance;
 
 		// If there's equipment that doesn't exist in the db (remodel), we can't report the issue
-		if (ship.Slot.Where(equipmentId => equipmentId > 0).Any(equipmentId => !db.Equipments.ContainsKey(equipmentId)))
+		if (ship.Slot.Where(equipmentId => equipmentId > 0).Any(equipmentId => db.Equipments[equipmentId]?.IsInitialized is not true))
 		{
 			return;
 		}
