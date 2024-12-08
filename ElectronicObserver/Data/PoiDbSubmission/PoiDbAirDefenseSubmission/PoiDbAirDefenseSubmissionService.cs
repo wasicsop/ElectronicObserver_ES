@@ -86,6 +86,12 @@ public class PoiDbAirDefenseSubmissionService(
 
 			foreach ((string key, JsonNode? value) in apiDestructionBattle.AsObject())
 			{
+				if (key is "api_air_base_attack")
+				{
+					dictionarySubmission.Add(key, value?.ToJsonString());
+					continue;
+				}
+
 				dictionarySubmission.Add(key, value);
 			}
 

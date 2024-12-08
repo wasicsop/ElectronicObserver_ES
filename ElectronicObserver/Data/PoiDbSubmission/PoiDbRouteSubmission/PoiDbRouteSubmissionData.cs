@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Text.Json.Nodes;
 using System.Text.Json.Serialization;
 
 namespace ElectronicObserver.Data.PoiDbSubmission.PoiDbRouteSubmission;
@@ -7,14 +6,20 @@ namespace ElectronicObserver.Data.PoiDbSubmission.PoiDbRouteSubmission;
 public class PoiDbRouteSubmissionData
 {
 	[JsonPropertyName("deck1")]
-	public required List<Dictionary<string, JsonNode?>> Deck1 { get; init; }
+	public required List<PoiDbRouteShip> Deck1 { get; init; }
 
 	[JsonPropertyName("deck2")]
-	public required List<Dictionary<string, JsonNode?>>? Deck2 { get; init; }
+	public required List<PoiDbRouteShip>? Deck2 { get; init; }
 
+	/// <summary>
+	/// The type here is either <see cref="PoiDbRouteEquipment" /> or -1 />
+	/// </summary>
 	[JsonPropertyName("slot1")]
 	public required List<List<object>> Slot1 { get; init; }
 
+	/// <summary>
+	/// The type here is either <see cref="PoiDbRouteEquipment" /> or -1 />
+	/// </summary>
 	[JsonPropertyName("slot2")]
 	public required List<List<object>>? Slot2 { get; init; }
 

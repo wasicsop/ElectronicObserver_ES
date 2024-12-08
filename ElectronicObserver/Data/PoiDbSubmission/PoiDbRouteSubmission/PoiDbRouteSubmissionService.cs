@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text.Json;
-using System.Text.Json.Nodes;
 using System.Threading.Tasks;
 using ElectronicObserver.KancolleApi.Types.ApiGetMember.Mapinfo;
 using ElectronicObserver.KancolleApi.Types.ApiReqMap.Next;
@@ -135,36 +134,34 @@ public class PoiDbRouteSubmissionService(
 		if (World is not int world) return;
 		if (Map is not int map) return;
 
-		List<Dictionary<string, JsonNode?>> deck1 = Fleet1.MembersInstance!
+		List<PoiDbRouteShip> deck1 = Fleet1.MembersInstance!
 			.OfType<ShipData>()
-			.Select(Extensions.MakeShip)
-			.Select(FilterShipValues)
+			.Select(MakeShip)
 			.ToList();
 
 		List<List<object>> slot1 = Fleet1.MembersInstance!
 			.OfType<ShipData>()
-			.Select(s => s.AllSlotInstance
+			.Select(s => s.SlotInstance
 				.Select(e => e switch
 				{
-					null => (object)JsonValue.Create(-1),
-					_ => FilterEquipmentValues(e.MakeEquipment()),
+					null => (object)-1,
+					_ => MakeEquipment(e),
 				})
 				.ToList())
 			.ToList();
 
-		List<Dictionary<string, JsonNode?>>? deck2 = Fleet2?.MembersInstance!
+		List<PoiDbRouteShip>? deck2 = Fleet2?.MembersInstance!
 			.OfType<ShipData>()
-			.Select(Extensions.MakeShip)
-			.Select(FilterShipValues)
+			.Select(MakeShip)
 			.ToList();
 
 		List<List<object>>? slot2 = Fleet2?.MembersInstance!
 			.OfType<ShipData>()
-			.Select(s => s.AllSlotInstance
+			.Select(s => s.SlotInstance
 				.Select(e => e switch
 				{
-					null => (object)JsonValue.Create(-1),
-					_ => FilterEquipmentValues(e.MakeEquipment()),
+					null => (object)-1,
+					_ => MakeEquipment(e),
 				})
 				.ToList())
 			.ToList();
@@ -224,33 +221,30 @@ public class PoiDbRouteSubmissionService(
 		}
 	}
 
-	private static Dictionary<string, JsonNode?> FilterShipValues(JsonNode node)
+	private static PoiDbRouteShip MakeShip(IShipData ship) => new()
 	{
-		return node
-			.AsObject()
-			.Where(kvp => RelevantKey(kvp.Key))
-			.ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
+		ApiShipId = ship.ShipID,
+		ApiLv = ship.Level,
+		ApiSallyArea = ship.SallyArea switch
+		{
+			> 0 => ship.SallyArea,
+			_ => null,
+		},
+		ApiSoku = ship.Speed,
+		ApiSlotitemEx = ship.ExpansionSlotInstance?.EquipmentID ?? -1,
+		ApiSlotitemLevel = ship.ExpansionSlotInstance?.Level ?? -1,
+	};
 
-		// the last 2 keys seem to be extra data added by poi?
-		static bool RelevantKey(string key) => key is
-			"api_ship_id" or
-			"api_lv" or
-			"api_soku" or
-			"api_slotitem_ex" or
-			"api_slotitem_level";
-	}
-
-	private static Dictionary<string, JsonNode?> FilterEquipmentValues(JsonNode node)
+	public static PoiDbRouteEquipment MakeEquipment(IEquipmentData equipment) => new()
 	{
-		return node
-			.AsObject()
-			.Where(kvp => RelevantKey(kvp.Key))
-			.ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
-
-		static bool RelevantKey(string key) => key is
-			"api_id" or
-			"api_slotitem_id" or
-			"api_locked" or
-			"api_level";
-	}
+		ApiId = equipment.MasterID,
+		ApiSlotitemId = equipment.EquipmentID,
+		ApiLocked = equipment.IsLocked switch
+		{
+			true => 1,
+			false => 0,
+		},
+		ApiLevel = equipment.Level,
+		ApiAlv = equipment.AircraftLevel,
+	};
 }

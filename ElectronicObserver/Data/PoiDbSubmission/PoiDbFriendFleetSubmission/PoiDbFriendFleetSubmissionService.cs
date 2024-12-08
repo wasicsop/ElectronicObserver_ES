@@ -193,38 +193,35 @@ public class PoiDbFriendFleetSubmissionService(
 		{
 			PoiDbFriendFleetSubmissionData submissionData = new()
 			{
-				Body = new()
+				World = world,
+				Map = map,
+				Cell = cell,
+				MapLevel = eventDifficulty,
+				FriendlyStatus = new()
 				{
-					World = world,
-					Map = map,
-					Cell = cell,
-					MapLevel = eventDifficulty,
-					FriendlyStatus = new()
-					{
-						FirenumBefore = TorchesBefore,
-						Firenum = TorchesAfter,
-						Flag = friendFleetRequestFlag,
-						Type = friendFleetRequestType,
-						NowMaphp = mapInfo.ApiEventmap?.ApiNowMaphp ?? 0,
-						MaxMaphp = mapInfo.ApiEventmap?.ApiNowMaphp ?? 0,
-						Version = Version,
-					},
-					ApiFriendlyBattle = ApiFriendlyBattle,
-					EscapeList = EscapeList,
-					Formation = playerFormation,
-					Enemy = Enemy,
-					Deck1 = Deck1,
-					Deck2 = Deck2,
+					FirenumBefore = TorchesBefore,
+					Firenum = TorchesAfter,
+					Flag = friendFleetRequestFlag,
+					Type = friendFleetRequestType,
+					NowMaphp = mapInfo.ApiEventmap?.ApiNowMaphp ?? 0,
+					MaxMaphp = mapInfo.ApiEventmap?.ApiNowMaphp ?? 0,
 					Version = Version,
 				},
+				ApiFriendlyBattle = ApiFriendlyBattle,
+				EscapeList = EscapeList,
+				Formation = playerFormation,
+				Enemy = Enemy,
+				Deck1 = Deck1,
+				Deck2 = Deck2,
+				Version = Version,
 			};
 
-			Dictionary<string, Dictionary<string, JsonNode?>> dictionarySubmission = JsonSerializer
-				.Deserialize<Dictionary<string, Dictionary<string, JsonNode?>>>(JsonSerializer.Serialize(submissionData))!;
+			Dictionary<string, JsonNode?> dictionarySubmission = JsonSerializer
+				.Deserialize<Dictionary<string, JsonNode?>>(JsonSerializer.Serialize(submissionData))!;
 
 			foreach ((string key, JsonNode? value) in ApiFriendlyInfo.AsObject())
 			{
-				dictionarySubmission["body"].Add(key, value);
+				dictionarySubmission.Add(key, value);
 			}
 
 			Task.Run(async () =>

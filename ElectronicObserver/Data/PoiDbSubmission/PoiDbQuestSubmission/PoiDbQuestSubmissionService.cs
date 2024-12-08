@@ -131,13 +131,10 @@ public class PoiDbQuestSubmissionService(
 
 			PoiDbQuestSubmissionData submissionData = new()
 			{
-				Form = new()
-				{
-					CompletedQuestId = completedQuestId,
-					NewQuestIds = newlyUnlockedQuestIds,
-					NewQuestData = newQuestData,
-					Version = Version,
-				}
+				CompletedQuestId = completedQuestId,
+				NewQuestIds = newlyUnlockedQuestIds,
+				NewQuestData = newQuestData,
+				Version = Version,
 			};
 
 			Task.Run(async () =>
