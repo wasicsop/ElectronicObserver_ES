@@ -22,7 +22,7 @@ public partial class SenkaLeaderboardManager : ObservableObject
 
 	[ObservableProperty]
 	private partial SenkaLeaderboardRefreshKind CurrentSenkaLeaderboardRefreshKind { get; set; }
-	
+
 	public SenkaLeaderboardManager(TimeChangeService timeChangeService, Tracker tracker)
 	{
 		APIObserver.Instance.ApiReqRanking_Mxltvkpyuklh.ResponseReceived += HandleData;
@@ -73,6 +73,15 @@ public partial class SenkaLeaderboardManager : ObservableObject
 			foreach (ApiList entry in parsedData.ApiList)
 			{
 				CurrentCutoffData.HandleEntry(entry);
+			}
+
+			// Due to how we parse data to guess a key, we have to run the decoding twice for the first "batch" for data to be accurate
+			if (CurrentCutoffData.LoadedEntriesCount is 10)
+			{
+				foreach (ApiList entry in parsedData.ApiList)
+				{
+					CurrentCutoffData.HandleEntry(entry);
+				}
 			}
 		}
 		catch (Exception ex)
