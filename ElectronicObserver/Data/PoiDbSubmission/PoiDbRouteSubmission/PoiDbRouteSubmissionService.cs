@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using ElectronicObserver.KancolleApi.Types.ApiGetMember.Mapinfo;
 using ElectronicObserver.KancolleApi.Types.ApiReqMap.Next;
 using ElectronicObserver.KancolleApi.Types.ApiReqMap.Start;
+using ElectronicObserver.Utility.Data;
 using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Data.PoiDbSubmission.PoiDbRouteSubmission;
@@ -142,11 +143,7 @@ public class PoiDbRouteSubmissionService(
 		List<List<object>> slot1 = Fleet1.MembersInstance!
 			.OfType<ShipData>()
 			.Select(s => s.SlotInstance
-				.Select(e => e switch
-				{
-					null => (object)-1,
-					_ => MakeEquipment(e),
-				})
+				.Select(e => e.MakePoiEquipment() ?? (object)-1)
 				.ToList())
 			.ToList();
 
@@ -158,11 +155,7 @@ public class PoiDbRouteSubmissionService(
 		List<List<object>>? slot2 = Fleet2?.MembersInstance!
 			.OfType<ShipData>()
 			.Select(s => s.SlotInstance
-				.Select(e => e switch
-				{
-					null => (object)-1,
-					_ => MakeEquipment(e),
-				})
+				.Select(e => e.MakePoiEquipment() ?? (object)-1)
 				.ToList())
 			.ToList();
 
@@ -187,16 +180,16 @@ public class PoiDbRouteSubmissionService(
 				{
 					SakuOne25 = null,
 					SakuOne25a = null,
-					SakuOne33x1 = Fleet1.GetSearchingAbility(1),
-					SakuOne33x2 = Fleet1.GetSearchingAbility(2),
-					SakuOne33x3 = Fleet1.GetSearchingAbility(3),
-					SakuOne33x4 = Fleet1.GetSearchingAbility(4),
+					SakuOne33x1 = GetSearch(Fleet1, 1),
+					SakuOne33x2 = GetSearch(Fleet1, 2),
+					SakuOne33x3 = GetSearch(Fleet1, 3),
+					SakuOne33x4 = GetSearch(Fleet1, 4),
 					SakuTwo25 = null,
 					SakuTwo25a = null,
-					SakuTwo33x1 = Fleet2?.GetSearchingAbility(1),
-					SakuTwo33x2 = Fleet2?.GetSearchingAbility(2),
-					SakuTwo33x3 = Fleet2?.GetSearchingAbility(3),
-					SakuTwo33x4 = Fleet2?.GetSearchingAbility(4),
+					SakuTwo33x1 = GetSearch(Fleet2, 1),
+					SakuTwo33x2 = GetSearch(Fleet2, 2),
+					SakuTwo33x3 = GetSearch(Fleet2, 3),
+					SakuTwo33x4 = GetSearch(Fleet2, 4),
 				},
 				ApiCellData = cellCount,
 				Version = Version,
@@ -235,16 +228,11 @@ public class PoiDbRouteSubmissionService(
 		ApiSlotitemLevel = ship.ExpansionSlotInstance?.Level ?? -1,
 	};
 
-	public static PoiDbRouteEquipment MakeEquipment(IEquipmentData equipment) => new()
+	[return: NotNullIfNotNull(nameof(fleet))]
+	private static string? GetSearch(IFleetData? fleet, int weight) => fleet switch
 	{
-		ApiId = equipment.MasterID,
-		ApiSlotitemId = equipment.EquipmentID,
-		ApiLocked = equipment.IsLocked switch
-		{
-			true => 1,
-			false => 0,
-		},
-		ApiLevel = equipment.Level,
-		ApiAlv = equipment.AircraftLevel,
+		null => null,
+		_ => Math.Round(Calculator.GetSearchingAbility_New33(fleet, weight), 2, MidpointRounding.ToNegativeInfinity)
+			.ToString("F2")
 	};
 }
