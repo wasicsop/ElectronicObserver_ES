@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Text.Json;
+using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using ElectronicObserver.Data;
 using ElectronicObserver.KancolleApi.Types.ApiReqRanking.Models;
@@ -22,6 +23,8 @@ public partial class SenkaLeaderboardManager : ObservableObject
 
 	[ObservableProperty]
 	private partial SenkaLeaderboardRefreshKind CurrentSenkaLeaderboardRefreshKind { get; set; }
+
+	private Task? LastDecodingTask { get; set; }
 
 	public SenkaLeaderboardManager(TimeChangeService timeChangeService, Tracker tracker)
 	{
@@ -54,6 +57,13 @@ public partial class SenkaLeaderboardManager : ObservableObject
 	};
 
 	private void HandleData(string apiname, dynamic data)
+	{
+		if (CurrentCutoffData.IsDataReadyToBeSubmitted()) return;
+
+		HandleData(data);
+	}
+
+	private void HandleData(dynamic data)
 	{
 		try
 		{

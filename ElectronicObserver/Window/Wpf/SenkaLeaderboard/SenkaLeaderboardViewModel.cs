@@ -21,8 +21,10 @@ public partial class SenkaLeaderboardViewModel : AnchorableViewModel
 
 	private List<int> PossibleUserKey { get; } = [];
 
-	[ObservableProperty] 
+	[ObservableProperty]
 	private partial List<SenkaEntryModel> SenkaData { get; set; }
+
+	private Dictionary<int, ApiList> SenkaRawData { get; set; } = [];
 
 	public PagingControlViewModel PagingViewModel { get; }
 
@@ -35,7 +37,7 @@ public partial class SenkaLeaderboardViewModel : AnchorableViewModel
 	public BonodereSubmissionService BonodereSubmissionService { get; }
 
 	public SenkaLeaderboardTranslationViewModel Translation { get; }
-	
+
 	public bool IsBonodereReady => !string.IsNullOrEmpty(Configuration.Config.DataSubmission.BonodereToken) && Configuration.Config.DataSubmission.BonodereIntegrationEnabled;
 
 	public SenkaLeaderboardViewModel() : base(SenkaLeaderboardResources.Title, "SenkaLeaderboard", IconContent.FormResourceChart)
@@ -64,6 +66,7 @@ public partial class SenkaLeaderboardViewModel : AnchorableViewModel
 	public void Reset()
 	{
 		SenkaData = NewLeaderboard();
+		SenkaRawData = [];
 		Update();
 		UpdateEntryCount();
 	}
@@ -90,6 +93,26 @@ public partial class SenkaLeaderboardViewModel : AnchorableViewModel
 	}
 
 	public void HandleEntry(ApiList entry)
+	{
+		if (ConvertApiToSenkaModel(entry) is not SenkaEntryModel parsedEntry) return;
+
+		if (SenkaData.Count < entry.ApiMxltvkpyuklh) return;
+
+		SenkaData[entry.ApiMxltvkpyuklh - 1] = parsedEntry;
+
+		SenkaRawData.Add(entry.ApiMxltvkpyuklh, entry);
+
+		UpdateEntryCount();
+
+		if (LoadedEntriesCount % 10 is 0)
+		{
+			RunAnotherRoundOfDecoding();
+		}
+
+		PagingViewModel.DisplayPageFromElementKey(entry.ApiMxltvkpyuklh - 1);
+	}
+
+	private SenkaEntryModel? ConvertApiToSenkaModel(ApiList entry)
 	{
 		int key = PossibleRank[entry.ApiMxltvkpyuklh % 13];
 
@@ -118,10 +141,9 @@ public partial class SenkaLeaderboardViewModel : AnchorableViewModel
 			PossibleUserKey.RemoveAll(toRemove.Contains);
 		}
 
-		if (PossibleUserKey.Count is 0) return;
-		if (SenkaData.Count < entry.ApiMxltvkpyuklh) return;
+		if (PossibleUserKey.Count is 0) return null;
 
-		SenkaData[entry.ApiMxltvkpyuklh - 1] = new SenkaEntryModel
+		return new SenkaEntryModel
 		{
 			AdmiralName = entry.ApiMtjmdcwtvhdr,
 			Comment = entry.ApiItbrdpdbkynm,
@@ -130,10 +152,18 @@ public partial class SenkaLeaderboardViewModel : AnchorableViewModel
 			Position = entry.ApiMxltvkpyuklh,
 			IsKnown = true,
 		};
+	}
 
-		UpdateEntryCount();
-
-		PagingViewModel.DisplayPageFromElementKey(entry.ApiMxltvkpyuklh - 1);
+	private void RunAnotherRoundOfDecoding()
+	{
+		foreach (SenkaEntryModel entry in SenkaData.Where(entry => entry.IsKnown).OrderByDescending(entry => entry.Position))
+		{
+			if (SenkaRawData.TryGetValue(entry.Position, out ApiList? rawData) && ConvertApiToSenkaModel(rawData) is SenkaEntryModel parsedEntry)
+			{
+				entry.MedalCount = parsedEntry.MedalCount;
+				entry.Points = parsedEntry.Points;
+			}
+		}
 	}
 
 	private void UpdateEntryCount()
