@@ -171,8 +171,8 @@ public class PoiDbRouteSubmissionService(
 				MapLevels = [MapLevels],
 				NextInfo = new()
 				{
-					World = world,
-					Map = map,
+					World = world.ToString(),
+					Map = map.ToString(),
 				},
 				AdmiralLevel = KcDatabase.Admiral.Level,
 				LosValues = new()
