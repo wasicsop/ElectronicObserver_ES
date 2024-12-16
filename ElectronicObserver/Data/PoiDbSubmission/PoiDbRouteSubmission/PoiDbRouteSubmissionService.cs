@@ -49,10 +49,7 @@ public class PoiDbRouteSubmissionService(
 		CellCount = response.ApiCellData.Count;
 		World = response.ApiMapareaId;
 		Map = response.ApiMapinfoNo;
-		CellIds = response.ApiCellData
-			.Where(c => c.ApiPassed is 1)
-			.Select(c => c.ApiNo)
-			.ToList();
+		CellIds = [response.ApiNo];
 
 		FleetData? fleet = KcDatabase.Fleet.Fleets.Values.FirstOrDefault(f => f.IsInSortie);
 
@@ -93,10 +90,7 @@ public class PoiDbRouteSubmissionService(
 			EscapeList.AddRange(Fleet2.EscapedShipList);
 		}
 
-		if (!CellIds.Contains(response.ApiNo))
-		{
-			CellIds.Add(response.ApiNo);
-		}
+		CellIds.Add(response.ApiNo);
 
 		SubmitData();
 	}
