@@ -25,7 +25,7 @@ public class PoiDbRouteSubmissionService(
 
 	private int? CellCount { get; set; }
 	private List<int>? CellIds { get; set; }
-	private Dictionary<int, int>? MapLevels { get; set; }
+	private Dictionary<int, string>? MapLevels { get; set; }
 	private int? World { get; set; }
 	private int? Map { get; set; }
 	private FleetData? Fleet1 { get; set; }
@@ -38,8 +38,7 @@ public class PoiDbRouteSubmissionService(
 		ApiGetMemberMapinfoResponse response = JsonSerializer.Deserialize<ApiGetMemberMapinfoResponse>(json)!;
 
 		MapLevels = response.ApiMapInfo
-			.Where(c => c.ApiEventmap is not null)
-			.ToDictionary(i => i.ApiId, i => i.ApiEventmap!.ApiSelectedRank);
+			.ToDictionary(i => i.ApiId, i => i.ApiEventmap?.ApiSelectedRank.ToString() ?? "0");
 	}
 
 	public void ApiReqMap_Start_ResponseReceived(string apiname, dynamic data)
@@ -169,7 +168,7 @@ public class PoiDbRouteSubmissionService(
 				Slot1 = slot1,
 				Slot2 = slot2,
 				CellIds = CellIds,
-				MapLevels = MapLevels,
+				MapLevels = [MapLevels],
 				NextInfo = new()
 				{
 					World = world,

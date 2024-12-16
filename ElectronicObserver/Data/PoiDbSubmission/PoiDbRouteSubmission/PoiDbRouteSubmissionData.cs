@@ -27,11 +27,12 @@ public class PoiDbRouteSubmissionData
 	public required List<int> CellIds { get; init; }
 
 	/// <summary>
+	/// list with a single element of all difficulties
 	/// key = world * 10 + map (591 for event 59 E1)
 	/// value = selected difficulty
 	/// </summary>
 	[JsonPropertyName("mapLevels")]
-	public required Dictionary<int, int> MapLevels { get; init; }
+	public required List<Dictionary<int, string>> MapLevels { get; init; }
 
 	[JsonPropertyName("nextInfo")]
 	public required NextInfo NextInfo { get; init; }
