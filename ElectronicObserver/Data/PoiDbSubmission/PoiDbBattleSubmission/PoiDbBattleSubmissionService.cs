@@ -111,7 +111,7 @@ public class PoiDbBattleSubmissionService(
 	private static void AddPoiData(JsonNode battle, string apiName)
 	{
 		battle["poi_path"] = JsonValue.Create($"/kcsapi/{apiName}");
-		battle["poi_time"] = JsonValue.Create(DateTimeOffset.UtcNow.ToUnixTimeSeconds());
+		battle["poi_time"] = JsonValue.Create(DateTimeOffset.UtcNow.ToUnixTimeMilliseconds());
 	}
 
 	private void AddSupport(JsonNode battleData)
@@ -210,7 +210,7 @@ public class PoiDbBattleSubmissionService(
 					Version = Version,
 					ApiCellData = cellCount,
 					MapLevel = eventDifficulty,
-					Time = DateTimeOffset.UtcNow.ToUnixTimeSeconds(),
+					Time = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds(),
 				}
 			};
 
