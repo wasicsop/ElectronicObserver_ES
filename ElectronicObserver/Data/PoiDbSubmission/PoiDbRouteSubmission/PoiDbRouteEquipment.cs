@@ -5,17 +5,17 @@ namespace ElectronicObserver.Data.PoiDbSubmission.PoiDbRouteSubmission;
 public class PoiDbRouteEquipment
 {
 	[JsonPropertyName("api_id")]
-	public required int ApiId { get; init; }
+	public required string ApiId { get; init; }
 
 	[JsonPropertyName("api_slotitem_id")]
-	public required int ApiSlotitemId { get; init; }
+	public required string ApiSlotitemId { get; init; }
 
 	[JsonPropertyName("api_locked")]
-	public required int ApiLocked { get; init; }
+	public required string ApiLocked { get; init; }
 
 	[JsonPropertyName("api_level")]
-	public required int ApiLevel { get; init; }
+	public required string ApiLevel { get; init; }
 
 	[JsonPropertyName("api_alv")]
-	public required int ApiAlv { get; init; }
+	public required string ApiAlv { get; init; }
 }

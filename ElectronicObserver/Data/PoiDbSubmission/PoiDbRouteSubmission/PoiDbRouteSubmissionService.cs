@@ -136,7 +136,7 @@ public class PoiDbRouteSubmissionService(
 		List<List<object>> slot1 = Fleet1.MembersInstance!
 			.OfType<ShipData>()
 			.Select(s => s.SlotInstance
-				.Select(e => e.MakePoiEquipment() ?? (object)-1)
+				.Select(e => e.MakePoiEquipment() ?? (object)"-1")
 				.ToList())
 			.ToList();
 
@@ -209,16 +209,16 @@ public class PoiDbRouteSubmissionService(
 
 	private static PoiDbRouteShip MakeShip(IShipData ship) => new()
 	{
-		ApiShipId = ship.ShipID,
-		ApiLv = ship.Level,
+		ApiShipId = ship.ShipID.ToString(),
+		ApiLv = ship.Level.ToString(),
 		ApiSallyArea = ship.SallyArea switch
 		{
-			> 0 => ship.SallyArea,
+			> 0 => ship.SallyArea.ToString(),
 			_ => null,
 		},
-		ApiSoku = ship.Speed,
-		ApiSlotitemEx = ship.ExpansionSlotInstance?.EquipmentID ?? -1,
-		ApiSlotitemLevel = ship.ExpansionSlotInstance?.Level ?? -1,
+		ApiSoku = ship.Speed.ToString(),
+		ApiSlotitemEx = ship.ExpansionSlotInstance?.EquipmentID.ToString() ?? "-1",
+		ApiSlotitemLevel = ship.ExpansionSlotInstance?.Level.ToString() ?? "-1",
 	};
 
 	[return: NotNullIfNotNull(nameof(fleet))]

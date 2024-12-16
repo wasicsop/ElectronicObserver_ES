@@ -32,15 +32,15 @@ public static class Extensions
 		null => null,
 		_ => new()
 		{
-			ApiId = equipment.MasterID,
-			ApiSlotitemId = equipment.EquipmentID,
+			ApiId = equipment.MasterID.ToString(),
+			ApiSlotitemId = equipment.EquipmentID.ToString(),
 			ApiLocked = equipment.IsLocked switch
 			{
-				true => 1,
-				false => 0,
+				true => "1",
+				false => "0",
 			},
-			ApiLevel = equipment.Level,
-			ApiAlv = equipment.AircraftLevel,
+			ApiLevel = equipment.Level.ToString(),
+			ApiAlv = equipment.AircraftLevel.ToString(),
 		},
 	};
 
