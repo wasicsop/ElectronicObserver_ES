@@ -5,8 +5,10 @@ using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
 using ElectronicObserver.KancolleApi.Types.ApiGetMember.Mapinfo;
+using ElectronicObserver.KancolleApi.Types.ApiReqMap.Models;
 using ElectronicObserver.KancolleApi.Types.ApiReqMap.Next;
 using ElectronicObserver.KancolleApi.Types.ApiReqMap.Start;
+using ElectronicObserver.KancolleApi.Types.Models;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserverTypes;
 
@@ -23,8 +25,12 @@ public class PoiDbRouteSubmissionService(
 	private PoiHttpClient PoiHttpClient { get; } = poiHttpClient;
 	private Action<Exception> LogError { get; } = logError;
 
+	private List<ApiMapInfo>? ApiMapInfo { get; set; }
+	private ApiMapInfo? CurrentMap { get; set; }
 	private int? CellCount { get; set; }
 	private List<int>? CellIds { get; set; }
+	private ApiHappening? ApiHappening { get; set; }
+	private List<ApiItemget>? ApiItemget { get; set; }
 	private Dictionary<int, string>? MapLevels { get; set; }
 	private int? World { get; set; }
 	private int? Map { get; set; }
@@ -37,7 +43,8 @@ public class PoiDbRouteSubmissionService(
 		string json = data.ToString();
 		ApiGetMemberMapinfoResponse response = JsonSerializer.Deserialize<ApiGetMemberMapinfoResponse>(json)!;
 
-		MapLevels = response.ApiMapInfo
+		ApiMapInfo = response.ApiMapInfo;
+		MapLevels = ApiMapInfo
 			.ToDictionary(i => i.ApiId, i => i.ApiEventmap?.ApiSelectedRank.ToString() ?? "0");
 	}
 
@@ -50,6 +57,9 @@ public class PoiDbRouteSubmissionService(
 		World = response.ApiMapareaId;
 		Map = response.ApiMapinfoNo;
 		CellIds = [response.ApiNo];
+		ApiHappening = response.ApiHappening;
+
+		CurrentMap = ApiMapInfo?.FirstOrDefault(m => m.ApiId == 10 * World + Map);
 
 		FleetData? fleet = KcDatabase.Fleet.Fleets.Values.FirstOrDefault(f => f.IsInSortie);
 
@@ -66,11 +76,6 @@ public class PoiDbRouteSubmissionService(
 			FleetData escortFleet = KcDatabase.Fleet.Fleets[2];
 
 			Fleet2 = escortFleet;
-		}
-
-		if (!CellIds.Contains(response.ApiNo))
-		{
-			CellIds.Add(response.ApiNo);
 		}
 
 		SubmitData();
@@ -92,6 +97,17 @@ public class PoiDbRouteSubmissionService(
 
 		CellIds.Add(response.ApiNo);
 
+		ApiHappening = response.ApiHappening;
+		ApiItemget = response.ApiItemget switch
+		{
+			JsonElement { ValueKind: JsonValueKind.Array } i
+				=> i.Deserialize<List<ApiItemget>>(),
+
+			JsonElement i => [i.Deserialize<ApiItemget>()!],
+
+			_ => null,
+		};
+
 		SubmitData();
 	}
 
@@ -107,8 +123,12 @@ public class PoiDbRouteSubmissionService(
 
 	private void ClearState()
 	{
+		ApiMapInfo = null;
+		CurrentMap = null;
 		CellCount = null;
 		CellIds = null;
+		ApiHappening = null;
+		ApiItemget = null;
 		MapLevels = null;
 		World = null;
 		Map = null;
@@ -120,6 +140,7 @@ public class PoiDbRouteSubmissionService(
 	[SuppressMessage("Critical Code Smell", "S3776:Cognitive Complexity of methods should not be too high", Justification = "<Pending>")]
 	private void SubmitData()
 	{
+		if (CurrentMap is null) return;
 		if (Fleet1 is null) return;
 		if (EscapeList is null) return;
 		if (CellIds is null) return;
@@ -167,6 +188,33 @@ public class PoiDbRouteSubmissionService(
 				{
 					World = world.ToString(),
 					Map = map.ToString(),
+					ItemGet = ApiItemget
+						?.Select(a => new PoiApiItemget
+						{
+							ApiGetcount = a.ApiGetcount.ToString(),
+							ApiIconId = a.ApiIconId.ToString(),
+							ApiId = a.ApiId.ToString(),
+							ApiName = a.ApiName,
+							ApiUsemst = a.ApiUsemst.ToString(),
+						})
+						.ToList(),
+					Happening = ApiHappening switch
+					{
+						null => null,
+						_ => new()
+						{
+							ApiCount = ApiHappening.ApiCount.ToString(),
+							ApiDentan = ApiHappening.ApiDentan.ToString(),
+							ApiIconId = ApiHappening.ApiIconId.ToString(),
+							ApiMstId = ((int)ApiHappening.ApiMstId).ToString(),
+							ApiType = ApiHappening.ApiType.ToString(),
+							ApiUsemst = ApiHappening.ApiUsemst.ToString(),
+						},
+					},
+					RequiredDefeatCount = CurrentMap.ApiRequiredDefeatCount?.ToString(),
+					DefeatCount = CurrentMap.ApiDefeatCount?.ToString(),
+					ApiMaxMaphp = CurrentMap.ApiEventmap?.ApiMaxMaphp?.ToString(),
+					ApiNowMaphp = CurrentMap.ApiEventmap?.ApiNowMaphp?.ToString(),
 				},
 				AdmiralLevel = KcDatabase.Admiral.Level,
 				LosValues = new()
