@@ -40,7 +40,7 @@
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
 		<PackageReference Include="CefSharp.WinForms.NETCore" Version="124.3.50" />
-		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0-preview2" />
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
 		<PackageReference Include="Grpc" Version="2.46.6" />
 		<PackageReference Include="Grpc.Core" Version="2.46.6" />
 		<PackageReference Include="Grpc.Core.Api" Version="2.67.0" />
