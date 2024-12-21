@@ -36,6 +36,7 @@ public class ConfigurationUITranslationViewModel : TranslationBaseViewModel
 	public string Language_English => ConfigurationResources.Language_English;
 	public string Language_Japanese => ConfigurationResources.Language_Japanese;
 	public string Language_Korean => ConfigurationResources.Language_Korean;
+	public string Language_SimplifiedChinese => ConfigurationResources.Language_SimplifiedChinese;
 
 	public string UI_RestartHint => ConfigurationResources.UI_RestartHint;
 }

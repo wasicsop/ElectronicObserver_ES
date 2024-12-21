@@ -815,4 +815,7 @@ API列表的格式和使用方法请参见在线帮助。</value>
   <data name="FormFleet_ShowAirSuperiorityRange" xml:space="preserve">
     <value>显示制空范围</value>
   </data>
+  <data name="Language_SimplifiedChinese" xml:space="preserve">
+    <value>简体中文语</value>
+  </data>
 </root>

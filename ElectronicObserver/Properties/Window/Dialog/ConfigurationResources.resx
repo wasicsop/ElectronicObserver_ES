@@ -820,4 +820,7 @@ APIリストの書式や用法はオンラインヘルプを参照してくだ�
   <data name="DataSubmission_DataSubmissionFAQ" xml:space="preserve">
     <value>データ提出に関するFAQ</value>
   </data>
+  <data name="Language_SimplifiedChinese" xml:space="preserve">
+    <value>簡体中国語</value>
+  </data>
 </root>

@@ -799,4 +799,7 @@ For example, if attempting to use "http://luckyjervis.com/gadget_html5/js/kcs_co
   <data name="DataSubmission_DataSubmissionFAQ" xml:space="preserve">
     <value>Data submission FAQ</value>
   </data>
+  <data name="Language_SimplifiedChinese" xml:space="preserve">
+    <value>Chinese (Simplified)</value>
+  </data>
 </root>
