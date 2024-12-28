@@ -49,7 +49,7 @@ public partial class ConfigurationDataSubmissionViewModel : ConfigurationViewMod
 
 	private void Load()
 	{
-		SendDataToPoi = Config.SendDataToPoiPreview;
+		SendDataToPoi = Config.SendDataToPoi;
 
 		BonodereUserId = Config.BonodereUserId;
 		BonodereToken = Config.BonodereToken;
@@ -61,7 +61,7 @@ public partial class ConfigurationDataSubmissionViewModel : ConfigurationViewMod
 
 	public override void Save()
 	{
-		Config.SendDataToPoiPreview = SendDataToPoi;
+		Config.SendDataToPoi = SendDataToPoi;
 		Config.BonodereUserId = BonodereUserId;
 		Config.BonodereToken = BonodereToken;
 		Config.SubmitDataToTsunDb = SubmitDataToTsunDb;

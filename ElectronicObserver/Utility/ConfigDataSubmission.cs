@@ -2,7 +2,7 @@
 
 public sealed class ConfigDataSubmission : Configuration.ConfigurationData.ConfigPartBase
 {
-	public bool SendDataToPoiPreview { get; set; } = true;
+	public bool SendDataToPoi { get; set; }
 
 	public bool BonodereIntegrationEnabled { get; set; }
 	public string BonodereUserId { get; set; } = "";
