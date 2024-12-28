@@ -89,7 +89,11 @@ public partial class ShipTypeConditionViewModel : ObservableObject, IConditionVi
 		bool flagshipCondition = !Model.MustBeFlagship ||
 			Model.Types.Contains(ships[0].MasterShip.ShipType);
 
-		int shipCount = ships.Count(s => Model.Types.Contains(s.MasterShip.ShipType));
+		int shipCount = Model.Types.Contains(ShipTypes.All) switch
+		{
+			true => ships.Count,
+			_ => ships.Count(s => Model.Types.Contains(s.MasterShip.ShipType)),
+		};
 
 		bool countCondition = Compare(shipCount, Model.Count, Model.ComparisonType);
 
