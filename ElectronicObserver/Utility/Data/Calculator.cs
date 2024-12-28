@@ -977,6 +977,8 @@ public static class Calculator
 						nightCapableBomberCount++;
 					else if (eq.EquipmentID == 320) // 彗星一二型(三一号光電管爆弾搭載機)
 						nightBomberCount++;
+					else if (eq.IconTypeTyped is EquipmentIconType.NightBomber) // todo: logic check
+						nightBomberCount++;
 					break;
 
 				// 夜間攻撃機

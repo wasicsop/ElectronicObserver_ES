@@ -172,6 +172,9 @@ public enum EquipmentIconType
 	/// <summary></summary>
 	LandBasedFighterShinden = 57,
 
+	/// <summary></summary>
+	NightBomber = 58,
+
 	Locked,
 	Unknown,
 }

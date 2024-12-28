@@ -97,6 +97,7 @@ public sealed class ResourceManager
 		BarrageBalloon,
 		LandBasedFighterJet,
 		LandBasedFighterShinden,
+		NightBomber,
 		Locked,
 		Unknown,
 	}
@@ -351,6 +352,7 @@ public sealed class ResourceManager
 			LoadImageFromArchive(Equipments, archive, mstpath + @"Equipment/BarrageBalloon.png", "Equipment_BarrageBalloon");
 			LoadImageFromArchive(Equipments, archive, mstpath + @"Equipment/LandBasedFighterJet.png", "Equipment_LandBasedFighterJet");
 			LoadImageFromArchive(Equipments, archive, mstpath + @"Equipment/LandBasedFighterShinden.png", "Equipment_LandBasedFighterShinden");
+			LoadImageFromArchive(Equipments, archive, mstpath + @"Equipment/NightBomber.png", "Equipment_NightBomber");
 			LoadImageFromArchive(Equipments, archive, mstpath + @"Equipment/Locked.png", "Equipment_Locked");
 			LoadImageFromArchive(Equipments, archive, mstpath + @"Equipment/Unknown.png", "Equipment_Unknown");
 		}
