@@ -34,7 +34,7 @@ public record NagatoSpecialAttack : SpecialAttack
 
 		double rate =  Math.Sqrt(flagship.Level) + 1.5 * Math.Sqrt(flagship.LuckTotal) + Math.Sqrt(helper.Level) + 1.5 * Math.Sqrt(helper.LuckTotal);
 
-		return (Math.Floor(rate) + 25) / 100;
+		return (rate + 25) / 100;
 	}
 
 	public override bool CanTrigger()

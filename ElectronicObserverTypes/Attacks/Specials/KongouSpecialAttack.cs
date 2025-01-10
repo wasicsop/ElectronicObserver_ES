@@ -95,7 +95,7 @@ public record KongouSpecialAttack : SpecialAttack
 			};
 		}
 
-		return Math.Max(0, Math.Floor(rate)) / 100;
+		return Math.Max(0, rate) / 100;
 	}
 
 	private double GetPowerModifier(int shipIndex)
