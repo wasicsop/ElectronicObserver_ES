@@ -186,13 +186,6 @@
   <data name="NightBattleBegins" xml:space="preserve">
     <value>夜战开始</value>
   </data>
-  <data name="BattleFinishedPractice" xml:space="preserve">
-    <value>于{0}-{1}-{2} 与「{3}」战斗。(评级:{4}, 提督Exp+{5}, 舰娘Exp+{6} )</value>
-  </data>
-  <data name="BattleFinishedSortie" xml:space="preserve">
-    <value>在 {0}-{1}-{2}与「{3}」交战。 (评级: {4}, 提督经验+{5}, 舰娘经验+{6}).
-</value>
-  </data>
   <data name="BattlePhaseAirRaid" xml:space="preserve">
     <value>空袭</value>
   </data>
@@ -259,9 +252,6 @@
   <data name="HasLeveledUp" xml:space="preserve">
     <value>{0} 等级提升至 lv{1}.</value>
   </data>
-  <data name="BattleFinishedBaseAirRaid" xml:space="preserve">
-    <value>在 {0}-{1}-{2} ({3}遭受空袭, 受到伤害: {4}, {5}).</value>
-  </data>
   <data name="EnemyCombinedFleetNightDayBattle" xml:space="preserve">
     <value>敌方联合舰队 夜转昼</value>
   </data>
@@ -303,5 +293,14 @@
   </data>
   <data name="AirBaseAirPower" xml:space="preserve">
     <value> 制空战力 {0} (対基地 {1})</value>
+  </data>
+  <data name="BattleFinishedPractice" xml:space="preserve">
+    <value>「{0}」在演习中与{1}的「{2}」交战了。（等级：{3}、提督Exp+{4}、舰娘Exp+{5} ​​）</value>
+  </data>
+  <data name="BattleFinishedBaseAirRaid" xml:space="preserve">
+    <value>该基地于 {0}-{1}-{2} 遭到空袭。 （{3}，受到的总伤害：{4}，{5}）</value>
+  </data>
+  <data name="BattleFinishedSortie" xml:space="preserve">
+    <value>在{0}-{1}-{2}与“{3}”展开战斗。 （等级：{4}、提督Exp+{5}、舰娘Exp+{6}）</value>
   </data>
 </root>
