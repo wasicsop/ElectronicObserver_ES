@@ -137,7 +137,7 @@ public class ShipDataMock : IShipData
 	};
 	public int ShipID => (int)MasterShip.ShipId;
 	public int MasterID { get; set; }
-	public int SortID { get; set; }
+	public int SortID => MasterShip.SortID;
 	public int SallyArea { get; set; }
 	public IShipDataMaster MasterShip { get; }
 	public int RepairingDockID { get; set; } = -1;

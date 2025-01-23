@@ -31,15 +31,9 @@ public class ParameterMock : IParameter
 		throw new System.NotImplementedException();
 	}
 
-	public int GetEstParameterMin(int level)
-	{
-		throw new System.NotImplementedException();
-	}
+	public int GetEstParameterMin(int level) => GetParameter(level);
 
-	public int GetEstParameterMax(int level)
-	{
-		throw new System.NotImplementedException();
-	}
+	public int GetEstParameterMax(int level) => GetParameter(level);
 
 	public int GetParameter(int level) => CalculateParameter(level, Minimum, Maximum);
 

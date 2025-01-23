@@ -94,7 +94,6 @@ public partial class KancolleProgressViewModel : ObservableObject
 			.Select(s => new ShipDataMock(s)
 			{
 				Level = 0,
-				SortID = s.SortID,
 			})
 			.ToDictionary(s => s.ShipID, s => s);
 
@@ -175,7 +174,6 @@ public partial class KancolleProgressViewModel : ObservableObject
 			.Select(s => new ShipDataMock(s)
 			{
 				Level = 0,
-				SortID = s.SortID,
 			})
 			.ToList<IShipData>();
 
