@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using ElectronicObserver.Data;
-using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Utility.ElectronicObserverApi.Models;
 using ElectronicObserverTypes;
+using ElectronicObserverTypes.Extensions;
 using ElectronicObserverTypes.Serialization.FitBonus;
 
 namespace ElectronicObserver.Utility.ElectronicObserverApi.DataIssueLogs;

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserverTypes;
+using ElectronicObserverTypes.Extensions;
 using ElectronicObserverTypes.Mocks;
 using ElectronicObserverTypes.Serialization.FitBonus;
 using Xunit;

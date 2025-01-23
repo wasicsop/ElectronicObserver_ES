@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using ElectronicObserver.Utility.Data;
 using ElectronicObserverTypes;
+using ElectronicObserverTypes.Extensions;
 using ElectronicObserverTypes.Mocks;
 using ElectronicObserverTypes.Serialization.FitBonus;
 using Xunit;
@@ -8,7 +8,7 @@ using Xunit;
 namespace ElectronicObserverCoreTests.FitBonus;
 
 [Collection(DatabaseCollection.Name)]
-public class EquipmentFitBonusTest(DatabaseFixture db) : FitBonusTest(db)
+public class FitBonusExtensionsTest(DatabaseFixture db) : FitBonusTest(db)
 {
 	[Fact(DisplayName = "12cm Model E on a DE with a surface/air radar")]
 	public void FitBonusTest1()

@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Text;
 using ElectronicObserver.Data;
-using ElectronicObserver.Utility.Data;
+using ElectronicObserverTypes.Extensions;
 using ElectronicObserverTypes.Serialization.FitBonus;
 
 namespace ElectronicObserver.Observer.kcsapi.api_get_member;
