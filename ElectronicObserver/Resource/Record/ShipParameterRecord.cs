@@ -1338,7 +1338,7 @@ public class ShipParameterRecord : RecordBase
 
 		foreach (var bonus in data.api_bounus)
 		{
-			if (bonus?.api_item is { } && (int)bonus.api_type == 11 && bonus.api_item())
+			if (bonus.api_item() && bonus.api_item is { } && (int)bonus.api_type is 11)
 			{
 				if (bonus.api_item.api_ship_id())
 				{
