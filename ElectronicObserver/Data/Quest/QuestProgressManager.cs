@@ -593,17 +593,6 @@ public sealed class QuestProgressManager : DataStorage
 							new ProgressSpecialBattle(q, 1, "X", new[]{ 16 }, true),
 						}));
 						break;
-					case 882: // 7thAnvLB1 todo this ID will probably get recycled
-						Progresses.Add(new ProgressMultiBattle(q, new[]
-						{
-							new ProgressSpecialBattle(q, 1, "S", new[]{ 12 }, true),
-							new ProgressSpecialBattle(q, 1, "S", new[]{ 13 }, true),
-							new ProgressSpecialBattle(q, 1, "S", new[]{ 14 }, true),
-							new ProgressSpecialBattle(q, 1, "S", new[]{ 15 }, true),
-							new ProgressSpecialBattle(q, 1, "S", new[]{ 21 }, true),
-							new ProgressSpecialBattle(q, 1, "S", new[]{ 22 }, true),
-						}));
-						break;
 					case 885: // B118
 						Progresses.Add(new ProgressMultiBattle(q, new[]
 						{

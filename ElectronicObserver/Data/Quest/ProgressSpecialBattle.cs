@@ -565,18 +565,6 @@ public class ProgressSpecialBattle : ProgressBattle
 				isAccepted = destroyers;
 			}
 			break;
-			case 882: // 7thAnvLB1 todo this ID will probably get recycled
-			{
-				bool destroyers = members.Count(s => s?.MasterShip.ShipType switch
-				{
-					ShipTypes.Destroyer => true,
-					ShipTypes.Escort => true,
-					_ => false
-				}) >= 3;
-
-				isAccepted = destroyers;
-			}
-			break;
 			case 885: // B118
 			{
 				bool ise = members.Any(s => s?.MasterShip.ShipId == ShipId.IseKaiNi);
