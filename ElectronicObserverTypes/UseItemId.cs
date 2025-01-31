@@ -73,4 +73,6 @@ public enum UseItemId
 	SeaColoredRibbon = 98,
 	WhiteSash = 99,
 	LatestOverseasWarshipTechnology = 100,
+	NightSkilledCrewMember = 101,
+	SpecialAviationRation = 102,
 }
