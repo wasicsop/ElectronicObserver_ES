@@ -369,7 +369,7 @@ public record AntiAirCutIn
 					Ships =
 					[
 						ShipId.KasumiKaiNiB,
-						ShipId.YuubariKaiNi,
+						ShipId.InagiKaiNi,
 					],
 					HighAngle = 1,
 					AaGun = 1,
@@ -389,6 +389,7 @@ public record AntiAirCutIn
 					Ships =
 					[
 						ShipId.SatsukiKaiNi,
+						ShipId.InagiKaiNi,
 					],
 					AaGunConcentrated = 1,
 				},
@@ -647,6 +648,7 @@ public record AntiAirCutIn
 					Ships =
 					[
 						ShipId.TenryuuKaiNi,
+						ShipId.InagiKaiNi,
 					],
 					HighAngle = 2,
 				},
