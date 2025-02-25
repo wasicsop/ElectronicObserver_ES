@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Text.Json.Nodes;
 using System.Text.Json.Serialization;
-using ElectronicObserver.KancolleApi.Types.Models;
 
 namespace ElectronicObserver.Data.PoiDbSubmission.PoiDbBattleSubmission;
 
@@ -14,5 +13,5 @@ public class FleetAfter
 	public required List<JsonNode>? Escort { get; init; }
 
 	[JsonPropertyName("LBAC")]
-	public required List<ApiAirBase> Lbac { get; init; }
+	public required List<PoiAirBase> Lbac { get; init; }
 }

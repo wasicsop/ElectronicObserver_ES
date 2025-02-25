@@ -6,7 +6,6 @@ using System.Text.Json.Nodes;
 using System.Threading.Tasks;
 using ElectronicObserver.KancolleApi.Types.ApiReqMap.Next;
 using ElectronicObserver.KancolleApi.Types.ApiReqMap.Start;
-using ElectronicObserver.KancolleApi.Types.Models;
 using ElectronicObserverTypes;
 
 namespace ElectronicObserver.Data.PoiDbSubmission.PoiDbBattleSubmission;
@@ -92,7 +91,7 @@ public class PoiDbBattleSubmissionService(
 
 		string firstBattleData = data.ToString();
 		FirstBattleData = JsonNode.Parse(firstBattleData)!;
-		
+
 		AddPoiData(FirstBattleData, apiName);
 		AddSupport(FirstBattleData);
 	}
@@ -304,7 +303,7 @@ public class PoiDbBattleSubmissionService(
 		};
 	}
 
-	private static ApiAirBase MakeAirBase(BaseAirCorpsData ab) => new()
+	private static PoiAirBase MakeAirBase(BaseAirCorpsData ab) => new()
 	{
 		ApiActionKind = ab.ActionKind,
 		ApiAreaId = ab.MapAreaID,
@@ -320,12 +319,27 @@ public class PoiDbBattleSubmissionService(
 			.ToList(),
 	};
 
-	private static ApiPlaneInfo MakeAirBasePlane(IBaseAirCorpsSquadron s) => new()
+	private static PoiPlaneInfo MakeAirBasePlane(IBaseAirCorpsSquadron s) => new()
 	{
+		PoiSlot = s.EquipmentInstance switch
+		{
+			IEquipmentData equip => new()
+			{
+				ApiAlv = equip.AircraftLevel,
+				ApiLevel = equip.Level,
+				ApiLocked = equip.IsLocked switch
+				{
+					true => 1,
+					_ => 0,
+				},
+				ApiSlotitemId = equip.EquipmentId,
+				ApiId = equip.MasterID,
+			},
+			_ => null,
+		},
 		ApiCond = s.Condition,
 		ApiCount = s.AircraftCurrent,
 		ApiMaxCount = s.AircraftMax,
-		ApiSlotid = s.EquipmentID,
 		ApiSquadronId = s.SquadronID,
 		ApiState = s.State,
 	};
