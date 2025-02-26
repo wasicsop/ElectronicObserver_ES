@@ -91,13 +91,30 @@ public class EOMediaPlayer
 	{
 		get
 		{
-			uint id = (uint)Environment.ProcessId;
-			return BrowserLibCore.VolumeManager.GetApplicationMute(id);
+			try
+			{
+
+				uint id = (uint)Environment.ProcessId;
+				return BrowserLibCore.VolumeManager.GetApplicationMute(id);
+			}
+			catch
+			{
+				// this logic needs to get reworked anyway
+			}
+
+			return false;
 		}
 		set
 		{
-			uint id = (uint)Environment.ProcessId;
-			BrowserLibCore.VolumeManager.SetApplicationMute(id, value);
+			try
+			{
+				uint id = (uint)Environment.ProcessId;
+				BrowserLibCore.VolumeManager.SetApplicationMute(id, value);
+			}
+			catch
+			{
+				// this logic needs to get reworked anyway
+			}
 		}
 	}
 
