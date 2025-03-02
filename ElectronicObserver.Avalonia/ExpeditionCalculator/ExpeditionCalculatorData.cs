@@ -407,7 +407,7 @@ public static class ExpeditionCalculatorData
 		},
 		new()
 		{
-			Id = 200,
+			Id = 110,
 			DisplayId = "B1",
 			GreatSuccessType = GreatSuccessType.Regular,
 			IsMonthly = false,
@@ -427,7 +427,7 @@ public static class ExpeditionCalculatorData
 		},
 		new()
 		{
-			Id = 201,
+			Id = 111,
 			DisplayId = "B2",
 			GreatSuccessType = GreatSuccessType.Regular,
 			IsMonthly = true,
@@ -448,7 +448,7 @@ public static class ExpeditionCalculatorData
 		},
 		new()
 		{
-			Id = 202,
+			Id = 112,
 			DisplayId = "B3",
 			GreatSuccessType = GreatSuccessType.Level,
 			IsMonthly = true,
@@ -469,7 +469,7 @@ public static class ExpeditionCalculatorData
 		},
 		new()
 		{
-			Id = 203,
+			Id = 113,
 			DisplayId = "B4",
 			GreatSuccessType = GreatSuccessType.Level,
 			IsMonthly = true,
@@ -489,7 +489,7 @@ public static class ExpeditionCalculatorData
 		},
 		new()
 		{
-			Id = 204,
+			Id = 114,
 			DisplayId = "B5",
 			GreatSuccessType = GreatSuccessType.Level,
 			IsMonthly = true,
@@ -511,7 +511,7 @@ public static class ExpeditionCalculatorData
 		},
 		new()
 		{
-			Id = 205,
+			Id = 115,
 			DisplayId = "B6",
 			GreatSuccessType = GreatSuccessType.Level,
 			IsMonthly = true,
