@@ -34,6 +34,7 @@ public class PoiDbRouteSubmissionService(
 	private Dictionary<int, string>? MapLevels { get; set; }
 	private int? World { get; set; }
 	private int? Map { get; set; }
+	private FleetType? CombinedFlag { get; set; }
 	private FleetData? Fleet1 { get; set; }
 	private FleetData? Fleet2 { get; set; }
 	private List<int>? EscapeList { get; set; }
@@ -67,9 +68,9 @@ public class PoiDbRouteSubmissionService(
 
 		Fleet1 = fleet;
 		EscapeList = [];
+		CombinedFlag = KcDatabase.Fleet.CombinedFlag;
 
-		bool isCombinedFleetSortie = fleet.FleetID is 1 &&
-			KcDatabase.Fleet.CombinedFlag is not FleetType.Single;
+		bool isCombinedFleetSortie = fleet.FleetID is 1 && CombinedFlag is not FleetType.Single;
 
 		if (isCombinedFleetSortie)
 		{
@@ -132,6 +133,7 @@ public class PoiDbRouteSubmissionService(
 		MapLevels = null;
 		World = null;
 		Map = null;
+		CombinedFlag = null;
 		Fleet1 = null;
 		Fleet2 = null;
 		EscapeList = null;
@@ -145,6 +147,7 @@ public class PoiDbRouteSubmissionService(
 		if (EscapeList is null) return;
 		if (CellIds is null) return;
 		if (MapLevels is null) return;
+		if (CombinedFlag is not FleetType fleetType) return;
 		if (CellCount is not int cellCount) return;
 		if (World is not int world) return;
 		if (Map is not int map) return;
@@ -177,6 +180,7 @@ public class PoiDbRouteSubmissionService(
 		{
 			PoiDbRouteSubmissionData submissionData = new()
 			{
+				FleetType = fleetType,
 				Deck1 = deck1,
 				Deck2 = deck2,
 				EscapeList = EscapeList,
