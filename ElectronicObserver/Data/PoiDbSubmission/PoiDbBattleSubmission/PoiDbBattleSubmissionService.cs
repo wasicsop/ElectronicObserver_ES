@@ -312,11 +312,11 @@ public class PoiDbBattleSubmissionService(
 		return new()
 		{
 			Type = kcDatabase.Fleet.CombinedFlag,
-			Main = fleet.MembersWithoutEscaped
+			Main = fleet.MembersInstance
 				!.OfType<IShipData>()
 				.Select(Extensions.MakeShip)
 				.ToList(),
-			Escort = escortFleet?.MembersWithoutEscaped
+			Escort = escortFleet?.MembersInstance
 				!.OfType<IShipData>()
 				.Select(Extensions.MakeShip)
 				.ToList(),
@@ -347,11 +347,11 @@ public class PoiDbBattleSubmissionService(
 
 		return new()
 		{
-			Main = fleet.MembersWithoutEscaped
+			Main = fleet.MembersInstance
 				!.OfType<IShipData>()
 				.Select(Extensions.MakeShip)
 				.ToList(),
-			Escort = escortFleet?.MembersWithoutEscaped
+			Escort = escortFleet?.MembersInstance
 				!.OfType<IShipData>()
 				.Select(Extensions.MakeShip)
 				.ToList(),
