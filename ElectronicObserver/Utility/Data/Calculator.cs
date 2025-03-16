@@ -549,7 +549,7 @@ public static class Calculator
 		return fleet.MembersWithoutEscaped
 			.OfType<IShipData>()
 			.Where(s => s.HPRate > 0.25)
-			.Sum(ship => GetLandingEquipmentTpDamage(ship) + GetLandingShipTpDamage(ship));
+			.Sum(ship => (int)(GetLandingEquipmentTpDamage(ship) + GetLandingShipTpDamage(ship)));
 	}
 
 	private static int GetShipTpDamage(IShipData ship)
@@ -609,24 +609,14 @@ public static class Calculator
 	/// <summary>
 	/// Search for exact numbers and special cases are still a WIP
 	/// https://x.com/not_Ikakusai/status/1899779943044698475
+	/// https://x.com/myteaGuard/status/1900948903882838449
+	/// https://docs.google.com/spreadsheets/d/1ynon3m-qL7XBtDgi1kOSluVEMUen_zx1a6Bi_f4JTc4
 	/// </summary>
 	/// <param name="ship"></param>
 	/// <returns></returns>
-	private static int GetLandingShipTpDamage(IShipData ship)
+	private static double GetLandingShipTpDamage(IShipData ship)
 	{
-		return ship.MasterShip.ShipType switch
-		{
-			ShipTypes.Destroyer => 3,
-			ShipTypes.LightCruiser => 1,
-			ShipTypes.HeavyCruiser => 1,
-			ShipTypes.SeaplaneTender => 6,
-			ShipTypes.SubmarineTender => 4,
-			ShipTypes.FleetOiler => 10, // 10.4~10.9
-			ShipTypes.AmphibiousAssaultShip => 8,
-			ShipTypes.AviationCruiser => 2,
-			ShipTypes.AviationBattleship => 4,
-			_ => 0,
-		};
+		return GetShipTpDamage(ship) * 0.65;
 	}
 
 	private static int GetEquipmentTpDamage(IShipData ship)
@@ -663,35 +653,42 @@ public static class Calculator
 		return tp;
 	}
 
-	private static int GetLandingEquipmentTpDamage(IShipData ship)
+	/// <summary>
+	/// Search for exact numbers and special cases are still a WIP
+	/// https://docs.google.com/spreadsheets/d/1ynon3m-qL7XBtDgi1kOSluVEMUen_zx1a6Bi_f4JTc4
+	/// </summary>
+	/// <param name="ship"></param>
+	/// <returns></returns>
+	private static double GetLandingEquipmentTpDamage(IShipData ship)
 	{
-		int tp = 0;
+		double tp = 0;
 
 		// 装備ボーナス
 		foreach (IEquipmentDataMaster eq in ship.AllSlotInstanceMaster.OfType<IEquipmentDataMaster>())
 		{
 			tp += eq.EquipmentId switch
 			{
-				EquipmentId.LandingCraft_DaihatsuLC_Type89Tank_LandingForce => 15,
-				EquipmentId.LandingCraft_DaihatsuLandingCraft_PanzerIINorthAfricanSpecification => 22,
-				EquipmentId.LandingCraft_TokuDaihatsuLandingCraft_Type1GunTank => 41,
-				EquipmentId.LandingCraft_TokuDaihatsuLC_11thTankRegiment => 47,
-				EquipmentId.LandingCraft_M4A1DD => 25,
-				EquipmentId.LandingCraft_TokuDaihatsuLandingCraft_PanzerIII_NorthAfricanCorps => 28,
-				EquipmentId.LandingCraft_TokuDaihatsu_ChiHa => 23,
-				EquipmentId.LandingCraft_TokuDaihatsu_ChiHaKai => 29,
-				EquipmentId.LandingCraft_TokuDaihatsuLandingCraft_PanzerIIITypeJ => 33,
+				EquipmentId.LandingCraft_DaihatsuLC_Type89Tank_LandingForce => 14.2,
+				EquipmentId.LandingCraft_DaihatsuLandingCraft_PanzerIINorthAfricanSpecification => 21.2,
+				EquipmentId.LandingCraft_TokuDaihatsuLandingCraft_Type1GunTank => 40.2,
+				EquipmentId.LandingCraft_TokuDaihatsuLC_11thTankRegiment => 46.2,
+				EquipmentId.LandingCraft_M4A1DD => 24.2,
+				EquipmentId.LandingCraft_TokuDaihatsuLandingCraft_PanzerIII_NorthAfricanCorps => 27.2,
+				EquipmentId.LandingCraft_TokuDaihatsu_ChiHa => 22.2,
+				EquipmentId.LandingCraft_TokuDaihatsu_ChiHaKai => 28.2,
+				EquipmentId.LandingCraft_TokuDaihatsuLandingCraft_PanzerIIITypeJ => 32.2,
 
 				EquipmentId.ArmyInfantry_ArmyInfantryCorps_ChiHaKai => 38,
 				EquipmentId.ArmyInfantry_Type97MediumTankNewTurret_ChiHaKai => 23,
 				EquipmentId.ArmyInfantry_Type97MediumTank_ChiHa => 17,
 				EquipmentId.ArmyInfantry_ArmyInfantryUnit => 15,
 
-				EquipmentId.SpecialAmphibiousTank_SpecialType2AmphibiousTank => 10,
-				EquipmentId.SpecialAmphibiousTank_SpecialType4AmphibiousTank => 7,
-				EquipmentId.SpecialAmphibiousTank_SpecialType4AmphibiousTankKai => 9,
+				EquipmentId.SpecialAmphibiousTank_SpecialType2AmphibiousTank => 9.2,
+				EquipmentId.SpecialAmphibiousTank_SpecialType4AmphibiousTank => 6.2,
+				EquipmentId.SpecialAmphibiousTank_SpecialType4AmphibiousTankKai => 8.2,
 
-				_ when eq.CategoryType is EquipmentTypes.LandingCraft => 6,
+				_ when eq.CategoryType is EquipmentTypes.LandingCraft => 5.2,
+				_ when eq.CategoryType is EquipmentTypes.Ration => 0.65,
 				_ => 0,
 			};
 		}
