@@ -89,11 +89,22 @@ public class PoiDbRouteSubmissionService(
 		string json = data.ToString();
 		ApiReqMapNextResponse response = JsonSerializer.Deserialize<ApiReqMapNextResponse>(json)!;
 
-		EscapeList = Fleet1?.EscapedShipList.ToList();
+		EscapeList = [];
 
-		if (EscapeList is not null && Fleet2 is not null)
+		if (Fleet1 is not null)
 		{
-			EscapeList.AddRange(Fleet2.EscapedShipList);
+			foreach (int escapedShipDropId in Fleet1.EscapedShipList)
+			{
+				EscapeList.Add(Fleet1.Members.IndexOf(escapedShipDropId) + 1);
+			}
+		}
+
+		if (Fleet2 is not null)
+		{
+			foreach (int escapedShipDropId in Fleet2.EscapedShipList)
+			{
+				EscapeList.Add(Fleet2.Members.IndexOf(escapedShipDropId) + 6 + 1);
+			}
 		}
 
 		CellIds.Add(response.ApiNo);
