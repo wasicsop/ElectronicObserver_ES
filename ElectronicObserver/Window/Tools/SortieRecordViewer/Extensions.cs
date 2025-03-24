@@ -256,7 +256,7 @@ public static class Extensions
 		"api_req_combined_battle/midnight_battle" => JsonSerializer.Deserialize<ApiReqCombinedBattleMidnightBattleRequest>(file.Content, options),
 		"api_req_combined_battle/ec_midnight_battle" => JsonSerializer.Deserialize<ApiReqCombinedBattleEcMidnightBattleRequest>(file.Content, options),
 
-		_ => throw new NotImplementedException(),
+		_ => throw new NotImplementedException($"Unknown kancolle api: {file.Name}"),
 	};
 
 	private static object? GetApiData<T>(this ApiResponse<T>? response) where T : class, new()
@@ -409,7 +409,7 @@ public static class Extensions
 		"api_req_combined_battle/midnight_battle" => JsonSerializer.Deserialize<ApiResponse<ApiReqCombinedBattleMidnightBattleResponse>>(file.Content, options).GetApiData(),
 		"api_req_combined_battle/ec_midnight_battle" => JsonSerializer.Deserialize<ApiResponse<ApiReqCombinedBattleEcMidnightBattleResponse>>(file.Content, options).GetApiData(),
 
-		_ => throw new NotImplementedException(),
+		_ => throw new NotImplementedException($"Unknown kancolle api: {file.Name}"),
 	};
 
 	// normal battle - day
