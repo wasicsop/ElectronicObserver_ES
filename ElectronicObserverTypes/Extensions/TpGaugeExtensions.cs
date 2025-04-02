@@ -230,20 +230,19 @@ public static class TpGaugeExtensions
 				EquipmentId.LandingCraft_M4A1DD => 20.4,
 				EquipmentId.LandingCraft_TokuDaihatsu_ChiHaKai => 19.4,
 				EquipmentId.LandingCraft_TokuDaihatsuLC_11thTankRegiment => 18.4,
-
-				EquipmentId.LandingCraft_TokuDaihatsuLandingCraft_PanzerIII_NorthAfricanCorps => 0,
-				EquipmentId.LandingCraft_TokuDaihatsu_ChiHa => 0,
-				EquipmentId.LandingCraft_DaihatsuLandingCraft_PanzerIINorthAfricanSpecification => 0,
-				EquipmentId.LandingCraft_DaihatsuLC_Type89Tank_LandingForce => 0,
+				EquipmentId.LandingCraft_TokuDaihatsu_ChiHa => 17.4,
+				EquipmentId.LandingCraft_TokuDaihatsuLandingCraft_PanzerIII_NorthAfricanCorps => 16.4,
+				EquipmentId.LandingCraft_DaihatsuLandingCraft_PanzerIINorthAfricanSpecification => 14.4,
+				EquipmentId.LandingCraft_DaihatsuLC_Type89Tank_LandingForce => 12.4,
 
 				EquipmentId.SpecialAmphibiousTank_SpecialType2AmphibiousTank or
 				EquipmentId.SpecialAmphibiousTank_SpecialType4AmphibiousTankKai => 19.6,
 				EquipmentId.SpecialAmphibiousTank_SpecialType4AmphibiousTank => 16.6,
 
-				EquipmentId.ArmyInfantry_ArmyInfantryCorps_ChiHaKai => 0,
-				EquipmentId.ArmyInfantry_Type97MediumTankNewTurret_ChiHaKai => 0,
-				EquipmentId.ArmyInfantry_Type97MediumTank_ChiHa => 0,
-				EquipmentId.ArmyInfantry_ArmyInfantryUnit => 0,
+				EquipmentId.ArmyInfantry_ArmyInfantryCorps_ChiHaKai => 13,
+				EquipmentId.ArmyInfantry_Type97MediumTankNewTurret_ChiHaKai => 10,
+				EquipmentId.ArmyInfantry_Type97MediumTank_ChiHa => 8,
+				EquipmentId.ArmyInfantry_ArmyInfantryUnit => 5,
 
 				_ => GetEquipmentTpDamage(eq) * 0.8,
 			};
