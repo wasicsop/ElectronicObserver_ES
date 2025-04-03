@@ -379,6 +379,9 @@ public static class Constants
 		127 => "巡潜乙型改一",
 		128 => "La Galissonnière級",
 		129 => "Mogador級",
+		130 => "大泊型",
+		131 => "Киров級",
+		132 => "特1TL型",
 		_ => "不明",
 	};
 
@@ -994,7 +997,7 @@ public static class Constants
 	#endregion
 
 	#region Servers
-	
+
 	public static string getRank(int num)
 	{
 		switch (num)
