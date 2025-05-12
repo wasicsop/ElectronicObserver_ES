@@ -491,16 +491,17 @@ public class WebView2ViewModel : BrowserViewModel
 		if (WebView2 is null) return;
 		if (DevToolsHelper is null) return;
 
+		if (ignoreCache)
+		{
+			await DevToolsHelper.Page.ReloadAsync(true);
+			return;
+		}
+
 		IsRefreshing = true;
 
 		string address = WebView2.CoreWebView2.Source;
 		await DevToolsHelper.Page.NavigateAsync("about:blank");
 		await DevToolsHelper.Page.NavigateAsync(address);
-
-		if (ignoreCache)
-		{
-			await DevToolsHelper.Page.ReloadAsync(true);
-		}
 	}
 
 	/// <summary>

@@ -377,14 +377,15 @@ public class CefSharpViewModel : BrowserViewModel
 	{
 		if (CefSharp is null) return;
 
-		string address = CefSharp.Address;
-		await CefSharp.LoadUrlAsync("about:blank");
-		await CefSharp.LoadUrlAsync(address);
-
 		if (ignoreCache)
 		{
 			CefSharp.Reload(ignoreCache);
+			return;
 		}
+
+		string address = CefSharp.Address;
+		await CefSharp.LoadUrlAsync("about:blank");
+		await CefSharp.LoadUrlAsync(address);
 	}
 
 	protected override void Exit()
