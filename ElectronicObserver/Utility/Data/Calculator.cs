@@ -924,8 +924,10 @@ public static class Calculator
 
 		}
 
-		if (attackerShipID == 545 || attackerShipID == 599 || attackerShipID == 610)      // Saratoga Mk.II/赤城改二戊/加賀改二戊
+		if (((ShipId)attackerShipID).IsNightCarrier())
+		{
 			nightPersonnelCount++;
+		}
 
 
 		if (includeSpecialAttack)
