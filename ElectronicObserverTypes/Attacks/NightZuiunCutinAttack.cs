@@ -10,7 +10,7 @@ public sealed record NightZuiunCutinAttack : NightAttack
 		NightZuiunCutinKind = NightZuiunCutinKind.Zuiun,
 		PowerModifier = 1.24,
 		AccuracyModifier = 1,
-		RateModifier = 160,
+		RateModifier = 135,
 		NumberOfAttacks = 2,
 	};
 
@@ -20,7 +20,7 @@ public sealed record NightZuiunCutinAttack : NightAttack
 		NightZuiunCutinKind = NightZuiunCutinKind.ZuiunRadar,
 		PowerModifier = 1.28,
 		AccuracyModifier = 1,
-		RateModifier = 160,
+		RateModifier = 135,
 		NumberOfAttacks = 2,
 	};
 
@@ -30,7 +30,7 @@ public sealed record NightZuiunCutinAttack : NightAttack
 		NightZuiunCutinKind = NightZuiunCutinKind.ZuiunZuiun,
 		PowerModifier = 1.32,
 		AccuracyModifier = 1,
-		RateModifier = 160,
+		RateModifier = 135,
 		NumberOfAttacks = 2,
 	};
 
@@ -40,7 +40,7 @@ public sealed record NightZuiunCutinAttack : NightAttack
 		NightZuiunCutinKind = NightZuiunCutinKind.ZuiunZuiunRadar,
 		PowerModifier = 1.36,
 		AccuracyModifier = 1,
-		RateModifier = 160,
+		RateModifier = 135,
 		NumberOfAttacks = 2,
 	};
 
@@ -51,7 +51,7 @@ public sealed record NightZuiunCutinAttack : NightAttack
 
 	public override string Display => NightZuiunCutinKindDisplay(NightZuiunCutinKind);
 
-	private string NightZuiunCutinKindDisplay(NightZuiunCutinKind kind) => kind switch
+	private static string NightZuiunCutinKindDisplay(NightZuiunCutinKind kind) => kind switch
 	{
 		NightZuiunCutinKind.Zuiun => AttackResources.CutinZuiun,
 		NightZuiunCutinKind.ZuiunRadar => AttackResources.NightZuiunCutinZuiunRadar,
