@@ -4,9 +4,9 @@ using System.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
+using ElectronicObserver.Core.Services;
 using ElectronicObserver.Core.Types;
 using ElectronicObserver.Core.Types.Extensions;
-using ElectronicObserver.Services;
 
 namespace ElectronicObserver.Window.Control.EquipmentFilter;
 
