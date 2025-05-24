@@ -528,7 +528,7 @@ public static class ShipDataExtensions
 	{ ShipId: ShipId.IsuzuKaiNi } or
 	{ ShipId: ShipId.TatsutaKaiNi } or
 	{ ShipId: ShipId.YuubariKaiNiD } or
-	{ ShipClassTyped: ShipClass.Fletcher, ShipId: not ShipId.HeywoodLE };
+	{ ShipClassTyped: ShipClass.Fletcher, ShipId: not (ShipId.HeywoodLE or ShipId.RichardPLeary) };
 
 	public static bool CanDoOpeningAsw(this IShipData ship) => ship switch
 	{
