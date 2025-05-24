@@ -8,7 +8,6 @@ using ElectronicObserver.Data.Translation;
 using ElectronicObserver.Data.TsunDbSubmission;
 using ElectronicObserver.Services;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager;
-using static ElectronicObserver.Data.Constants;
 
 namespace ElectronicObserver.Data;
 

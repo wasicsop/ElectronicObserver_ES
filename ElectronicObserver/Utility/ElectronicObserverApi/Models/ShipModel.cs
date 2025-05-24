@@ -1,5 +1,4 @@
-﻿using System;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 using ElectronicObserver.Core.Types;
 
 namespace ElectronicObserver.Utility.ElectronicObserverApi.Models;

@@ -10,7 +10,6 @@ using ElectronicObserver.Core.Types.Attacks;
 using ElectronicObserver.Data;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.ViewModels;
-using ElectronicObserver.Window.Dialog;
 using ElectronicObserver.Window.Tools.DialogAlbumMasterShip;
 
 namespace ElectronicObserver.Window.Wpf.Compass.ViewModels;

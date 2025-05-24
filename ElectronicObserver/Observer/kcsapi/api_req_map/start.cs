@@ -4,7 +4,6 @@ using ElectronicObserver.Data;
 using ElectronicObserver.Data.DiscordRPC;
 using ElectronicObserver.Database;
 using ElectronicObserver.Database.MapData;
-using ElectronicObserver.Notifier;
 
 namespace ElectronicObserver.Observer.kcsapi.api_req_map;
 

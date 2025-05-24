@@ -10,7 +10,6 @@ using ElectronicObserver.Core.Types.Mocks;
 using ElectronicObserver.Core.Types.Serialization.FitBonus;
 using ElectronicObserver.Data;
 using ElectronicObserver.Database.Sortie;
-using ElectronicObserver.Utility.Data;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer;
 

@@ -13,7 +13,6 @@ using ElectronicObserver.Utility;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.ViewModels.Translations;
-using ElectronicObserver.Window.Dialog;
 using ElectronicObserver.Window.Wpf;
 
 namespace ElectronicObserver.Window.Tools.DialogAlbumMasterShip;

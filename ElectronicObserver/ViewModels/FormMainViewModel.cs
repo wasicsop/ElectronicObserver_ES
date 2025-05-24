@@ -76,7 +76,6 @@ using Timer = System.Windows.Forms.Timer;
 using ElectronicObserver.Avalonia.ExpeditionCalculator;
 using ElectronicObserver.Window.Wpf.SenkaLeaderboard;
 using AvalonDock.Controls;
-using MahApps.Metro.Controls;
 using ElectronicObserver.Core.Types;
 
 

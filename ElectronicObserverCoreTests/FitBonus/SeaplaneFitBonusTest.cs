@@ -2,7 +2,6 @@
 using ElectronicObserver.Core.Types;
 using ElectronicObserver.Core.Types.Extensions;
 using ElectronicObserver.Core.Types.Serialization.FitBonus;
-using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Core.Types.Mocks;
 using Xunit;
 

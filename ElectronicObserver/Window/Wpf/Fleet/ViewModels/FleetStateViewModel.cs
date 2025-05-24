@@ -12,7 +12,6 @@ using ElectronicObserver.Utility.Data;
 using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Control;
-using ElectronicObserver.Core.Types;
 
 namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels;
 

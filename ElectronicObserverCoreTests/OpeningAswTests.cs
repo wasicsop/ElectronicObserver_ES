@@ -3,7 +3,6 @@ using ElectronicObserver.Core.Types;
 using ElectronicObserver.Core.Types.Extensions;
 using ElectronicObserver.Core.Types.Mocks;
 using ElectronicObserver.Data.Translation;
-using ElectronicObserver.Utility.Data;
 using Xunit;
 
 namespace ElectronicObserverCoreTests;

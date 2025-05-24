@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using ElectronicObserver.Core.Types;
 using ElectronicObserver.Core.Types.Attacks;
-using ElectronicObserver.Data;
 using ElectronicObserver.Utility.Data;
 
 namespace ElectronicObserver.Window.Tools.SortieRecordViewer.Sortie.Battle.Phase;

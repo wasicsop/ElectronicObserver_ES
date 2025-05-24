@@ -15,7 +15,6 @@ using ElectronicObserver.ViewModels;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Control.EquipmentFilter;
 using ElectronicObserver.Window.Tools.DialogAlbumMasterEquipment;
-using ElectronicObserver.Window.Wpf.Fleet;
 using ElectronicObserver.Core.Types.Data;
 
 namespace ElectronicObserver.Window.Tools.EquipmentList;

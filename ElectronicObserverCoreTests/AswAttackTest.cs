@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using ElectronicObserver.Core.Types;
 using ElectronicObserver.Core.Types.Attacks;
 using ElectronicObserver.Core.Types.Mocks;

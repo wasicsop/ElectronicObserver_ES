@@ -4,7 +4,6 @@ using System.Linq;
 using System.Reflection;
 using System.Text.Json;
 using System.Threading.Tasks;
-using ElectronicObserver.Avalonia.Services;
 using ElectronicObserver.Data.Battle;
 using ElectronicObserver.Database;
 using ElectronicObserver.Database.Sortie;

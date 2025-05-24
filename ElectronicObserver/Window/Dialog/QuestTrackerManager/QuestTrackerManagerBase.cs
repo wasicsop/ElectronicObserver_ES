@@ -5,7 +5,6 @@ using System.Linq;
 using ElectronicObserver.Common;
 using ElectronicObserver.Core.Types;
 using ElectronicObserver.Data;
-using ElectronicObserver.Data.Quest;
 using ElectronicObserver.Observer;
 using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.Window.Dialog.QuestTrackerManager.Enums;

@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using ElectronicObserver.Core.Types.Serialization.EquipmentUpgrade;
-using ElectronicObserver.Window.Tools.EquipmentUpgradePlanner.CostCalculation;
 
 namespace ElectronicObserver.Utility.ElectronicObserverApi.Models.UpgradeCosts;
 
