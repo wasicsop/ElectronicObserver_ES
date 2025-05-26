@@ -294,12 +294,14 @@ public class ExpCheckerViewModel : WindowViewModelBase
 			ASWEquipmentPairs.Add(openingASWborder - 12, new List<string> { $"[{type4}]" });
 		}
 
+		// prevent crash when opening exp checker with unknown level data
+		int shipLevel = Math.Min(ExpTable.ShipMaximumLevel, selectedShip.Level);
 
 		IParameter aswdata = selectedShip.MasterShip.ASW;
 		int aswmin = aswdata.Minimum;
 		int aswmax = aswdata.Maximum;
 		int aswmod = ASWModernization;
-		int currentlv = selectedShip.Level;
+		int currentlv = shipLevel;
 		int minlv = ShowAllLevel ? 1 : (currentlv + 1);
 		int unitexp = Math.Max(SortieExp, 1);
 		int[] remodelLevelTable = GetRemodelLevelTable(selectedShip.MasterShip);
