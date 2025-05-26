@@ -1,4 +1,9 @@
-﻿namespace BrowserLibCore;
+﻿#if !DEBUG
+using System;
+using System.IO;
+#endif
+
+namespace BrowserLibCore;
 
 public class BrowserConstants
 {
