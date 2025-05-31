@@ -60,9 +60,11 @@ public class TransliterationService(IConfigurationUi configurationUi)
 		return result;
 	}
 
-	public bool Matches(IEquipmentDataMaster equip, string filter) 
-		=> Search(WanaKana.ToHiragana(filter.ToLower()), equip) || Search(WanaKana.ToHiragana(filter), equip);
+	public bool Matches(IEquipmentDataMaster equip, string filter)
+	{
+		if (equip.NameEN.Contains(filter, StringComparison.OrdinalIgnoreCase)) return true;
+		if (equip.NameEN.Contains(WanaKana.ToRomaji(filter), StringComparison.OrdinalIgnoreCase)) return true;
 
-	private static bool Search(string searchWord, IEquipmentDataMaster equip) 
-		=> WanaKana.ToHiragana(equip.NameEN.ToLower()).Contains(searchWord);
+		return false;
+	}
 }
