@@ -20,6 +20,7 @@ public class AntiAirCutInCondition
 	public int AaGun { get; init; }
 	public int AaGun3Aa { get; init; }
 	public int AaGun4Aa { get; init; }
+	public int AaGun5Aa { get; init; }
 	public int AaGun6Aa { get; init; }
 	public int AaGun3To8Aa { get; init; }
 
@@ -57,15 +58,39 @@ public class AntiAirCutInCondition
 	public int AaGunShigure { get; init; }
 
 	public int Radar4AaOrMore { get; init; }
+
+	/// <summary>
+	/// 10cm連装高角砲改+高射装置改
+	/// </summary>
+	public int HatsuzukiGun { get; init; }
+
+	/// <summary>
+	/// 10cm連装高角砲改 (＋高射装置改)
+	/// </summary>
 	public int AkizukiGunKai { get; init; }
 
-	public bool CanBeActivatedBy(IShipData ship, AntiAirCutIn antiAirCutIn)
+	/// <summary>
+	/// 10cm連装高角砲改
+	/// </summary>
+	public int AkizukiPotatoGun { get; init; }
+
+	public int Aafd94 { get; init; }
+
+	private bool ShipCondition(IShipData ship, AntiAirCutIn antiAirCutIn)
 	{
 		if (ship.MasterShip.ShipClassTyped is ShipClass.Akizuki && antiAirCutIn.Id is 5 or 7 or 8) return false;
 		if (ship.MasterShip.ShipId is ShipId.MayaKaiNi && antiAirCutIn.Id is 13) return false;
 
-		if (Ships is not null && !Ships.Contains(ship.MasterShip.ShipId)) return false;
-		if (ShipClasses is not null && !ShipClasses.Contains(ship.MasterShip.ShipClassTyped)) return false;
+		if (Ships is null && ShipClasses is null) return true;
+		if (Ships is not null && Ships.Contains(ship.MasterShip.ShipId)) return true;
+		if (ShipClasses is not null && ShipClasses.Contains(ship.MasterShip.ShipClassTyped)) return true;
+
+		return false;
+	}
+
+	public bool CanBeActivatedBy(IShipData ship, AntiAirCutIn antiAirCutIn)
+	{
+		if (!ShipCondition(ship, antiAirCutIn)) return false;
 
 		if (!ship.HasHighAngleGun(HighAngle)) return false;
 		if (!ship.HasHighAngleDirectorGun(HighAngleDirector)) return false;
@@ -79,6 +104,7 @@ public class AntiAirCutInCondition
 		if (!ship.HasAaGun(AaGun)) return false;
 		if (!ship.HasAaGun(AaGun3Aa, 3)) return false;
 		if (!ship.HasAaGun(AaGun4Aa, 4)) return false;
+		if (!ship.HasAaGun(AaGun5Aa, 5)) return false;
 		if (!ship.HasAaGun(AaGun6Aa, 6)) return false;
 		if (!ship.HasAaGun(AaGun3To8Aa, 3, 8)) return false;
 		if (!ship.HasAaGun(AaGunConcentrated, 9)) return false;
@@ -98,7 +124,10 @@ public class AntiAirCutInCondition
 		if (!ship.HasHarusameGun(HarusameGun)) return false;
 		if (!ship.HasShigureAaGun(AaGunShigure)) return false;
 		if (!ship.HasAirRadar(Radar4AaOrMore, 4)) return false;
+		if (!ship.HasHatsuzukiGun(HatsuzukiGun)) return false;
 		if (!ship.HasAkizukiGunKai(AkizukiGunKai)) return false;
+		if (!ship.HasAkizukiPotatoGun(AkizukiPotatoGun)) return false;
+		if (!ship.HasAafd94(Aafd94)) return false;
 
 		return true;
 	}
