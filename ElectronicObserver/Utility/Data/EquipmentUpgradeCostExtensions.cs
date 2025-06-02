@@ -215,15 +215,24 @@ public static class EquipmentUpgradeCostExtensions
 
 		for (int index = 0; index < result.Count; index++)
 		{
+			EquipmentUpgradeCostRange range = result[index];
+
 			if (index < result.Count - 1)
 			{
-				EquipmentUpgradeCostRange range = result[index];
 				EquipmentUpgradeCostRange nextRange = result[index + 1];
 
 				range.EndLevel = nextRange.StartLevel switch
 				{
 					UpgradeLevel.Conversion => UpgradeLevel.Max,
 					_ => nextRange.StartLevel - 1,
+				};
+			}
+			else
+			{
+				range.EndLevel = range.StartLevel switch
+				{
+					UpgradeLevel.Conversion => UpgradeLevel.Conversion,
+					_ => UpgradeLevel.Max,
 				};
 			}
 		}
