@@ -72,7 +72,3 @@ Electronic Observer 是一个帮助提督管理自己舰队的浏览器类工具
 * 日版官方发行网站: [ブルネイ工廠電気実験部](http://electronicobserver.blog.fc2.com/)
 * 开发者: [Andante](https://twitter.com/andanteyk)
 * <a rel="me" href="https://fosstodon.org/@ElectronicObserver">Mastodon</a>
-
-## 感谢
-
-<img src="https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.png" alt="JetBrains Logo (Main) logo" width="200" />
