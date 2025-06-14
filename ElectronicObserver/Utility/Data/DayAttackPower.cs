@@ -49,7 +49,7 @@ public static class DayAttackPower
 	{
 		_ when ship.MasterShip.IsAircraftCarrier => ship.CarrierBasePower(fleet),
 		{ MasterShip.ShipId: ShipId.HayasuiKai } when ship.HasAttacker() => ship.CarrierBasePower(fleet),
-		{ MasterShip.ShipId: ShipId.YamashioMaruKai } when ship.HasBomber() => ship.CarrierBasePower(fleet),
+		{ MasterShip.ShipId: ShipId.YamashioMaruKai or ShipId.ShimaneMaruKai } when ship.HasBomber() => ship.CarrierBasePower(fleet),
 
 		_ => ship.SurfaceShipBasePower(fleet),
 	};
