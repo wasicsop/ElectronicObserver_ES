@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,76 +117,83 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="DetectedSynergy" xml:space="preserve">
-    <value>Detected equipment synergy: </value>
+  <data name="AnchorageRepairing" xml:space="preserve">
+    <value>Reparación en el Anclaje</value>
   </data>
-  <data name="Range" xml:space="preserve">
-    <value>Range</value>
+  <data name="Repairing" xml:space="preserve">
+    <value>Reparación en el Anclaje</value>
   </data>
-  <data name="Luck" xml:space="preserve">
-    <value>Luck</value>
+  <data name="Docking" xml:space="preserve">
+    <value>Reparación en el Anclaje</value>
   </data>
-  <data name="Los" xml:space="preserve">
-    <value>LOS</value>
+  <data name="CriticalDamageAdvance" xml:space="preserve">
+    <value>¡¡Avanzando con daño crítico!!</value>
   </data>
-  <data name="Firepower" xml:space="preserve">
-    <value>FP</value>
+  <data name="RepairTimeDetail" xml:space="preserve">
+    <value>#{0} : {1} @ {2} x -{3} HP</value>
   </data>
-  <data name="Evasion" xml:space="preserve">
-    <value>Evasion</value>
+  <data name="HasReturned" xml:space="preserve">
+    <value>#{0} 「{1}」 ha regresado.</value>
   </data>
-  <data name="Torpedo" xml:space="preserve">
-    <value>Torpedo</value>
+  <data name="ExpeditionToolTip" xml:space="preserve">
+    <value>{0}: {1}  
+Hora de finalización: {2}</value>
   </data>
-  <data name="AntiAir" xml:space="preserve">
-    <value>AA</value>
+  <data name="SparkledTooltip" xml:space="preserve">
+    <value>Moral más baja: {0}  
+Quedan {1} expediciones efectivas.</value>
   </data>
-  <data name="Armor" xml:space="preserve">
-    <value>Armor</value>
+  <data name="CompletionTime" xml:space="preserve">
+    <value>Hora de finalización </value>
   </data>
-  <data name="Asw" xml:space="preserve">
-    <value>ASW</value>
+  <data name="CriticallyDamagedShip" xml:space="preserve">
+    <value>¡Buque críticamente dañado!</value>
   </data>
-  <data name="RepairingShips" xml:space="preserve">
-    <value>🛠 Repairing {0} ships</value>
+  <data name="EstimatedRecoveryTime" xml:space="preserve">
+    <value>Hora estimada de recuperación</value>
   </data>
-  <data name="FirstClassMedals" xml:space="preserve">
-    <value>🥇 First-class medals: {0}</value>
+  <data name="Fatigued" xml:space="preserve">
+    <value>Fatigado </value>
   </data>
-  <data name="ServerRank" xml:space="preserve">
-    <value>Rank {0} on {1}</value>
+  <data name="FightingSpiritHigh" xml:space="preserve">
+    <value>¡Flota brillando!</value>
   </data>
-  <data name="AdmiralNameLevel" xml:space="preserve">
-    <value>{0} (HQ Level {1})</value>
+  <data name="NoShips" xml:space="preserve">
+    <value>Sin buques asignados</value>
   </data>
-  <data name="RankDataNotLoaded" xml:space="preserve">
-    <value>Rank data not loaded</value>
+  <data name="OnExped" xml:space="preserve">
+    <value>En expedición</value>
   </data>
-  <data name="KantaiCollection" xml:space="preserve">
-    <value>Kantai Collection</value>
+  <data name="OnSortie" xml:space="preserve">
+    <value>En Salida</value>
   </data>
-  <data name="Idle" xml:space="preserve">
-    <value>Idle</value>
+  <data name="ReadyToSortie" xml:space="preserve">
+    <value>¡Lista para salir!</value>
   </data>
-  <data name="LoadingIntegration" xml:space="preserve">
-    <value>Loading Integration...</value>
+  <data name="ResupplyTooltip" xml:space="preserve">
+    <value>Fuel: {0}  
+Munición: {1}  
+Baux: {2} ({3} aviones)</value>
   </data>
-  <data name="DoingExercises" xml:space="preserve">
-    <value>⚓ Doing PVP</value>
+  <data name="SupplyNeeded" xml:space="preserve">
+    <value>Necesita reabastecimiento</value>
   </data>
-  <data name="APIObserverFailed" xml:space="preserve">
-    <value>APIObserver: Failed to start observation.</value>
+  <data name="RepairTimeHeader" xml:space="preserve">
+    <value>Inicio: {0}
+Tiempo de reparación:</value>
   </data>
-  <data name="ResponseRecieved" xml:space="preserve">
-    <value>Received response: </value>
+  <data name="OnDock" xml:space="preserve">
+    <value>En reparación</value>
   </data>
-  <data name="Error201" xml:space="preserve">
-    <value>Error code 201 was received. It may be triggered by macro detection or by starting KanColle from another device.</value>
+  <data name="DockCompletionTime" xml:space="preserve">
+    <value>Fecha estimada de finalización:</value>
   </data>
-  <data name="ErrorFromServer" xml:space="preserve">
-    <value>Error code {0} was received from the server</value>
+  <data name="RecoveryTimeToolTip" xml:space="preserve">
+    <value>Hora estimada de recuperación: {0}
+(error de predicción: {1})</value>
   </data>
-  <data name="ErrorResponse" xml:space="preserve">
-    <value>There was an error while receiving the response.</value>
+  <data name="ResourceToolTip" xml:space="preserve">
+    <value>Combustible: {0}/{1} ({2}%)
+Munición: {3}/{4} ({5}%)</value>
   </data>
 </root>

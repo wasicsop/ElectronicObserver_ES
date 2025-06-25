@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,76 +117,159 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="DetectedSynergy" xml:space="preserve">
-    <value>Detected equipment synergy: </value>
+  <data name="AskClose" xml:space="preserve">
+    <value> Se cerrará. ¿Está seguro?</value>
   </data>
-  <data name="Range" xml:space="preserve">
-    <value>Range</value>
+  <data name="AskForUpdate" xml:space="preserve">
+    <value>Se ha lanzado nueva actualización de Electronic Observer {0}.
+Cambios:
+{1}
+
+¿Abrir la página de descarga?
+(Haga clic en Cancelar para desactivar la notificación de actualización).</value>
   </data>
-  <data name="Luck" xml:space="preserve">
-    <value>Luck</value>
+  <data name="ZoomCurrent" xml:space="preserve">
+    <value>Actual</value>
   </data>
-  <data name="Los" xml:space="preserve">
-    <value>LOS</value>
+  <data name="AskLogin" xml:space="preserve">
+    <value>Volverá a la página de inicio de sesión.
+¿Está usted seguro?</value>
   </data>
-  <data name="Firepower" xml:space="preserve">
-    <value>FP</value>
+  <data name="AskNavTitle" xml:space="preserve">
+    <value>Ir a...</value>
   </data>
-  <data name="Evasion" xml:space="preserve">
-    <value>Evasion</value>
+  <data name="VersionTitle" xml:space="preserve">
+    <value>Acerca de Electronic Observer</value>
   </data>
-  <data name="Torpedo" xml:space="preserve">
-    <value>Torpedo</value>
+  <data name="Update" xml:space="preserve">
+    <value>Actualización</value>
   </data>
-  <data name="AntiAir" xml:space="preserve">
-    <value>AA</value>
+  <data name="UpdateConnectionFailed" xml:space="preserve">
+    <value>Error al procesar los datos de actualización.</value>
   </data>
-  <data name="Armor" xml:space="preserve">
-    <value>Armor</value>
+  <data name="InitLayout" xml:space="preserve">
+    <value>Diseño inicializado.
+Agrega las ventanas que prefieras usando el menú "Ver".</value>
   </data>
-  <data name="Asw" xml:space="preserve">
-    <value>ASW</value>
+  <data name="NoEquipData" xml:space="preserve">
+    <value>Los datos del equipamiento no se han cargado</value>
   </data>
-  <data name="RepairingShips" xml:space="preserve">
-    <value>🛠 Repairing {0} ships</value>
+  <data name="NoLayoutFound" xml:space="preserve">
+    <value>No se encontró el diseño de ventana</value>
   </data>
-  <data name="FirstClassMedals" xml:space="preserve">
-    <value>🥇 First-class medals: {0}</value>
+  <data name="IsClosing" xml:space="preserve">
+    <value>se está cerrando...</value>
   </data>
-  <data name="ServerRank" xml:space="preserve">
-    <value>Rank {0} on {1}</value>
+  <data name="NewRecordTitle" xml:space="preserve">
+    <value>Confirmación por actualización (~1.4.6)</value>
   </data>
-  <data name="AdmiralNameLevel" xml:space="preserve">
-    <value>{0} (HQ Level {1})</value>
+  <data name="NewGroupFormatTitle" xml:space="preserve">
+    <value>Confirmación por actualización (~1.5.0)</value>
   </data>
-  <data name="RankDataNotLoaded" xml:space="preserve">
-    <value>Rank data not loaded</value>
+  <data name="TranslatedSite" xml:space="preserve">
+    <value>Sitio del proyecto de traducción:</value>
   </data>
-  <data name="KantaiCollection" xml:space="preserve">
-    <value>Kantai Collection</value>
+  <data name="TranslatedVer" xml:space="preserve">
+    <value>Versión traducida</value>
   </data>
-  <data name="Idle" xml:space="preserve">
-    <value>Idle</value>
+  <data name="FirstTimeDialog" xml:space="preserve">
+    <value>Gracias por usar {0}.  
+Para obtener información sobre configuración y uso, consulta el menú "Ayuda" → "Ayuda en línea".  
+Se recomienda leer antes de utilizarlo.</value>
   </data>
-  <data name="LoadingIntegration" xml:space="preserve">
-    <value>Loading Integration...</value>
+  <data name="FailedRecordDialog" xml:space="preserve">
+    <value>Error en la conversión:
+{0}
+¿Deseas continuar iniciando Electronic Observer?
+(Continuar podría dañar tus registros actuales.)
+</value>
   </data>
-  <data name="DoingExercises" xml:space="preserve">
-    <value>⚓ Doing PVP</value>
+  <data name="Help" xml:space="preserve">
+    <value>Ayuda</value>
   </data>
-  <data name="APIObserverFailed" xml:space="preserve">
-    <value>APIObserver: Failed to start observation.</value>
+  <data name="LayoutLoaded" xml:space="preserve">
+    <value>Diseño de ventana cargado correctamente desde {0}.</value>
   </data>
-  <data name="ResponseRecieved" xml:space="preserve">
-    <value>Received response: </value>
+  <data name="LayoutSaved" xml:space="preserve">
+    <value>Diseño de ventana guardado correctamente en {0}.</value>
   </data>
-  <data name="Error201" xml:space="preserve">
-    <value>Error code 201 was received. It may be triggered by macro detection or by starting KanColle from another device.</value>
+  <data name="Browser" xml:space="preserve">
+    <value>Navegador</value>
   </data>
-  <data name="ErrorFromServer" xml:space="preserve">
-    <value>Error code {0} was received from the server</value>
+  <data name="AskNavText" xml:space="preserve">
+    <value>Introdusca la URL a la que desea navegar.</value>
   </data>
-  <data name="ErrorResponse" xml:space="preserve">
-    <value>There was an error while receiving the response.</value>
+  <data name="AskLoad" xml:space="preserve">
+    <value>Se perderán todos los registros no guardados.  
+¿Deseas cargar los registros?</value>
+  </data>
+  <data name="StartupComplete" xml:space="preserve">
+    <value>Inicio completado.</value>
+  </data>
+  <data name="SoftwareName" xml:space="preserve">
+    <value>Electronic Observer </value>
+  </data>
+  <data name="OriginalSite" xml:space="preserve">
+    <value>Sitio original</value>
+  </data>
+  <data name="OpenLayout" xml:space="preserve">
+    <value>Abrir archivo de diseño</value>
+  </data>
+  <data name="NoShipData" xml:space="preserve">
+    <value>Los datos del barco no se han cargado.</value>
+  </data>
+  <data name="NewVersionFound" xml:space="preserve">
+    <value>¡Se ha lanzado una nueva versión! </value>
+  </data>
+  <data name="FailedBrowserStart" xml:space="preserve">
+    <value>Error al iniciar el proceso del navegador.</value>
+  </data>
+  <data name="DevelopedBy" xml:space="preserve">
+    <value>Autor</value>
+  </data>
+  <data name="ClosingComplete" xml:space="preserve">
+    <value>Cierre completado.</value>
+  </data>
+  <data name="MultiInstanceNotification" xml:space="preserve">
+    <value>Electronic Observer ya está en ejecución.  
+Si se trata de un falso positivo, inicia con la opción -m desde la línea de comandos.</value>
+  </data>
+  <data name="NewGroupFormat" xml:space="preserve">
+    <value>Se ha detectado una actualización de versión.  
+Los datos de grupos de barcos anteriores ya no son compatibles y deben ser reinicializados.  
+(Los archivos anteriores se guardarán en la carpeta Settings_Backup.)  
+¿Deseas continuar?  
+(Si continúas sin reiniciar, podrían ocurrir errores.)</value>
+  </data>
+  <data name="GroupUpgradeFailed" xml:space="preserve">
+    <value>Error al eliminar datos de grupo por actualización.</value>
+  </data>
+  <data name="FailedToDelete" xml:space="preserve">
+    <value>Error al eliminar datos.</value>
+  </data>
+  <data name="NewRecordFormat" xml:space="preserve">
+    <value> Se ha detectado una actualización de versión.  
+Se convertirá el archivo de registros al nuevo formato.  
+(Los archivos originales se guardarán en la carpeta Record_Backup.)  
+¿Deseas continuar?  
+(Si no conviertes los registros, podrían volverse ilegibles.)</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Cerrar</value>
+  </data>
+  <data name="FirstTimeTitle" xml:space="preserve">
+    <value>Mensaje de primer inicio</value>
+  </data>
+  <data name="FailedNewRecords" xml:space="preserve">
+    <value>Error al convertir los registros por actualización.</value>
+  </data>
+  <data name="BrowserThrewError" xml:space="preserve">
+    <value>Se produjo un error de comunicación entre procesos del navegador.</value>
+  </data>
+  <data name="BrowserClosedWithoutWarning" xml:space="preserve">
+    <value>El proceso del navegador se cerró inesperadamente.</value>
+  </data>
+  <data name="BrowserCloseError" xml:space="preserve">
+    <value>Error al cerrar el navegador</value>
   </data>
 </root>

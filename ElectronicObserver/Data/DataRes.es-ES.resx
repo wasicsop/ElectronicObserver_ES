@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,76 +117,80 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="DetectedSynergy" xml:space="preserve">
-    <value>Detected equipment synergy: </value>
+  <data name="ZeroSlotAircraftWarning" xml:space="preserve">
+    <value>Las estadísticas de aeronaves en una ranura de aeronave 0 no se tendrán en cuenta para los requisitos de la expedición.
+No hay garantía de que cumplas los requisitos de la expedición.</value>
   </data>
-  <data name="Range" xml:space="preserve">
-    <value>Range</value>
-  </data>
-  <data name="Luck" xml:space="preserve">
-    <value>Luck</value>
-  </data>
-  <data name="Los" xml:space="preserve">
-    <value>LOS</value>
-  </data>
-  <data name="Firepower" xml:space="preserve">
-    <value>FP</value>
-  </data>
-  <data name="Evasion" xml:space="preserve">
-    <value>Evasion</value>
-  </data>
-  <data name="Torpedo" xml:space="preserve">
-    <value>Torpedo</value>
-  </data>
-  <data name="AntiAir" xml:space="preserve">
+  <data name="MissionClearAa" xml:space="preserve">
     <value>AA</value>
   </data>
-  <data name="Armor" xml:space="preserve">
-    <value>Armor</value>
-  </data>
-  <data name="Asw" xml:space="preserve">
+  <data name="MissionClearAsw" xml:space="preserve">
     <value>ASW</value>
   </data>
-  <data name="RepairingShips" xml:space="preserve">
-    <value>🛠 Repairing {0} ships</value>
+  <data name="MissionClearExcludingSeaplaneTender" xml:space="preserve">
+    <value>(Excluyendo AV)</value>
   </data>
-  <data name="FirstClassMedals" xml:space="preserve">
-    <value>🥇 First-class medals: {0}</value>
+  <data name="MissionClearEscortLeaderCount" xml:space="preserve">
+    <value>(CL+CT+CVE)</value>
   </data>
-  <data name="ServerRank" xml:space="preserve">
-    <value>Rank {0} on {1}</value>
+  <data name="MissionClearAircraftCarrierCount" xml:space="preserve">
+    <value>(CV+CVL+AV)</value>
   </data>
-  <data name="AdmiralNameLevel" xml:space="preserve">
-    <value>{0} (HQ Level {1})</value>
+  <data name="MissionClearSmallShipCount" xml:space="preserve">
+    <value>(DD+DE)</value>
   </data>
-  <data name="RankDataNotLoaded" xml:space="preserve">
-    <value>Rank data not loaded</value>
+  <data name="MissionClearUnverified" xml:space="preserve">
+    <value>(No verificado)</value>
   </data>
-  <data name="KantaiCollection" xml:space="preserve">
-    <value>Kantai Collection</value>
+  <data name="MissionClearLos" xml:space="preserve">
+    <value>LOS</value>
   </data>
-  <data name="Idle" xml:space="preserve">
-    <value>Idle</value>
+  <data name="MissionClearSubmarineCount" xml:space="preserve">
+    <value>(SS+SSV)</value>
   </data>
-  <data name="LoadingIntegration" xml:space="preserve">
-    <value>Loading Integration...</value>
+  <data name="MissionClearFirepower" xml:space="preserve">
+    <value>FP</value>
   </data>
-  <data name="DoingExercises" xml:space="preserve">
-    <value>⚓ Doing PVP</value>
+  <data name="MissionClearShipCount" xml:space="preserve">
+    <value>{1}{2} {0}</value>
   </data>
-  <data name="APIObserverFailed" xml:space="preserve">
-    <value>APIObserver: Failed to start observation.</value>
+  <data name="MissionClearParameter" xml:space="preserve">
+    <value>{1}{2} {0}</value>
   </data>
-  <data name="ResponseRecieved" xml:space="preserve">
-    <value>Received response: </value>
+  <data name="MissionClearEquipmentCount" xml:space="preserve">
+    <value>{0}: {1}{2} piezas</value>
   </data>
-  <data name="Error201" xml:space="preserve">
-    <value>Error code 201 was received. It may be triggered by macro detection or by starting KanColle from another device.</value>
+  <data name="MissionClearEquippedShipCount" xml:space="preserve">
+    <value>{0}: {1}{2} barcos</value>
   </data>
-  <data name="ErrorFromServer" xml:space="preserve">
-    <value>Error code {0} was received from the server</value>
+  <data name="MissionClearSuccess" xml:space="preserve">
+    <value>Éxito</value>
   </data>
-  <data name="ErrorResponse" xml:space="preserve">
-    <value>There was an error while receiving the response.</value>
+  <data name="MissionClearEscortFleet" xml:space="preserve">
+    <value>Escuadra de escolta (1 CL, 2 DD, otros) </value>
+  </data>
+  <data name="MissionClearEscortFleetDD3" xml:space="preserve">
+    <value>Escuadra de escolta (1 CL, 3 DD, otros)  </value>
+  </data>
+  <data name="MissionClearIncompatible" xml:space="preserve">
+    <value>No compatible  </value>
+  </data>
+  <data name="MissionClearFailure" xml:space="preserve">
+    <value>Fallo</value>
+  </data>
+  <data name="MissionClearFlagshipLv" xml:space="preserve">
+    <value>Nivel de la insignia</value>
+  </data>
+  <data name="MissionClearFlagshipType" xml:space="preserve">
+    <value>Suma de niveles</value>
+  </data>
+  <data name="MissionClearFlagshipEscortAircraftCarrier" xml:space="preserve">
+    <value>Insignia: Portaaviones de escolta</value>
+  </data>
+  <data name="MissionClearTotalShipCount" xml:space="preserve">
+    <value>Cantidad de barcos {0}{1} </value>
+  </data>
+  <data name="MissionClearShipLvSum" xml:space="preserve">
+    <value>Suma de niveles:</value>
   </data>
 </root>

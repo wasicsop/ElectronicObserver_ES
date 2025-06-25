@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,76 +117,141 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="DetectedSynergy" xml:space="preserve">
-    <value>Detected equipment synergy: </value>
+  <data name="RecordView_Map" xml:space="preserve">
+    <value>Mundo</value>
   </data>
-  <data name="Range" xml:space="preserve">
-    <value>Range</value>
+  <data name="LabelEquipmentName" xml:space="preserve">
+    <value>Equipamiento</value>
   </data>
-  <data name="Luck" xml:space="preserve">
-    <value>Luck</value>
+  <data name="RecordView_Name" xml:space="preserve">
+    <value>Barco:</value>
   </data>
-  <data name="Los" xml:space="preserve">
-    <value>LOS</value>
+  <data name="LabelShipName" xml:space="preserve">
+    <value>Barcos</value>
   </data>
-  <data name="Firepower" xml:space="preserve">
-    <value>FP</value>
+  <data name="NameNotExist" xml:space="preserve">
+    <value>(ninguno)</value>
   </data>
-  <data name="Evasion" xml:space="preserve">
-    <value>Evasion</value>
+  <data name="NameExist" xml:space="preserve">
+    <value>(Drop)</value>
   </data>
-  <data name="Torpedo" xml:space="preserve">
-    <value>Torpedo</value>
+  <data name="NameFullPort" xml:space="preserve">
+    <value>(Lleno)</value>
   </data>
-  <data name="AntiAir" xml:space="preserve">
-    <value>AA</value>
+  <data name="NameAny" xml:space="preserve">
+    <value>(Todo)</value>
   </data>
-  <data name="Armor" xml:space="preserve">
-    <value>Armor</value>
+  <data name="Boss" xml:space="preserve">
+    <value> [Jefe]</value>
   </data>
-  <data name="Asw" xml:space="preserve">
-    <value>ASW</value>
+  <data name="MapDifficultyToolTip" xml:space="preserve">
+    <value>Especificar la dificultad del mapa.</value>
   </data>
-  <data name="RepairingShips" xml:space="preserve">
-    <value>🛠 Repairing {0} ships</value>
+  <data name="Today" xml:space="preserve">
+    <value>Hoy</value>
   </data>
-  <data name="FirstClassMedals" xml:space="preserve">
-    <value>🥇 First-class medals: {0}</value>
+  <data name="NodeSelection" xml:space="preserve">
+    <value>Diff</value>
   </data>
-  <data name="ServerRank" xml:space="preserve">
-    <value>Rank {0} on {1}</value>
+  <data name="RecordView_Date" xml:space="preserve">
+    <value>Fecha</value>
   </data>
-  <data name="AdmiralNameLevel" xml:space="preserve">
-    <value>{0} (HQ Level {1})</value>
+  <data name="RecordView_RankA" xml:space="preserve">
+    <value>A-rank</value>
   </data>
-  <data name="RankDataNotLoaded" xml:space="preserve">
-    <value>Rank data not loaded</value>
+  <data name="RankAToolTip" xml:space="preserve">
+    <value>A-rank</value>
   </data>
-  <data name="KantaiCollection" xml:space="preserve">
-    <value>Kantai Collection</value>
+  <data name="RecordView_RankB" xml:space="preserve">
+    <value>B-rank</value>
   </data>
-  <data name="Idle" xml:space="preserve">
-    <value>Idle</value>
+  <data name="RankBToolTip" xml:space="preserve">
+    <value>B-rank</value>
   </data>
-  <data name="LoadingIntegration" xml:space="preserve">
-    <value>Loading Integration...</value>
+  <data name="MergeRowsToolTip" xml:space="preserve">
+    <value>Si está marcado, se combinarán los objetos de drop idénticos.</value>
   </data>
-  <data name="DoingExercises" xml:space="preserve">
-    <value>⚓ Doing PVP</value>
+  <data name="LabelItemName" xml:space="preserve">
+    <value>Item</value>
   </data>
-  <data name="APIObserverFailed" xml:space="preserve">
-    <value>APIObserver: Failed to start observation.</value>
+  <data name="RecordView_Rank" xml:space="preserve">
+    <value>Rank</value>
   </data>
-  <data name="ResponseRecieved" xml:space="preserve">
-    <value>Received response: </value>
+  <data name="ItemNameToolTip" xml:space="preserve">
+    <value>Especifica el nombre del ítem a buscar.  
+(Drop) solo extrae si el ítem fue obtenido como botín.</value>
   </data>
-  <data name="Error201" xml:space="preserve">
-    <value>Error code 201 was received. It may be triggered by macro detection or by starting KanColle from another device.</value>
+  <data name="ShipNameToolTip" xml:space="preserve">
+    <value>Especifica el nombre del barco a buscar.  
+(Drop) solo extrae si el barco fue obtenido como botín.</value>
   </data>
-  <data name="ErrorFromServer" xml:space="preserve">
-    <value>Error code {0} was received from the server</value>
+  <data name="EquipmentNameToolTip" xml:space="preserve">
+    <value>Especifica el nombre del equipo a buscar.  
+(Drop) solo se extraerá si el equipo fue obtenido como botín.</value>
   </data>
-  <data name="ErrorResponse" xml:space="preserve">
-    <value>There was an error while receiving the response.</value>
+  <data name="OpenBattleHistory" xml:space="preserve">
+    <value>Abrir historial de batalla {0}.</value>
+  </data>
+  <data name="CouldNotOpenBattleHistory" xml:space="preserve">
+    <value>No se pudo abrir el historial de batalla.</value>
+  </data>
+  <data name="IgnoreCommonDrops" xml:space="preserve">
+    <value>Ignorar drops comunes</value>
+  </data>
+  <data name="SelectedItems" xml:space="preserve">
+    <value>Elementos seleccionados: {0} / {1} ({2:p1})</value>
+  </data>
+  <data name="ButtonRun" xml:space="preserve">
+    <value>Buscar</value>
+  </data>
+  <data name="RecordView_RankS" xml:space="preserve">
+    <value>Victoria S</value>
+  </data>
+  <data name="MapAreaIDToolTip" xml:space="preserve">
+    <value>Especifica el ID de área.  
+* Los ID mayores a 20 corresponden a áreas de evento.</value>
+  </data>
+  <data name="RankXToolTip" xml:space="preserve">
+    <value>Derrota</value>
+  </data>
+  <data name="MapInfoIDToolTip" xml:space="preserve">
+    <value>Especifica el ID del mapa.</value>
+  </data>
+  <data name="MapCellIDToolTip" xml:space="preserve">
+    <value>Especifica el ID del nodo.  
+* * extrae todos los nodos.</value>
+  </data>
+  <data name="MergeRows" xml:space="preserve">
+    <value>Combinar</value>
+  </data>
+  <data name="Start" xml:space="preserve">
+    <value>Inicio</value>
+  </data>
+  <data name="DateBeginToolTip" xml:space="preserve">
+    <value>Especifica la fecha de inicio para la búsqueda.</value>
+  </data>
+  <data name="SearchingBattleHistory" xml:space="preserve">
+    <value>Buscando historial de batalla...</value>
+  </data>
+  <data name="BattleHistoryNotFound" xml:space="preserve">
+    <value>No se encontró historial de batalla.</value>
+  </data>
+  <data name="End" xml:space="preserve">
+    <value>Fin</value>
+  </data>
+  <data name="DateEndToolTip" xml:space="preserve">
+    <value>Especifica la fecha final para la búsqueda.</value>
+  </data>
+  <data name="RankSToolTip" xml:space="preserve">
+    <value>Victoria S</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Registro de drops</value>
+  </data>
+  <data name="IsBossOnly" xml:space="preserve">
+    <value>Solo Boss</value>
+  </data>
+  <data name="StatusInfo" xml:space="preserve">
+    <value>-</value>
   </data>
 </root>

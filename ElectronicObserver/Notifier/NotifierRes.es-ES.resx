@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,76 +117,106 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="DetectedSynergy" xml:space="preserve">
-    <value>Detected equipment synergy: </value>
+  <data name="AnchorageRepair" xml:space="preserve">
+    <value>Anclaje de Reparación</value>
   </data>
-  <data name="Range" xml:space="preserve">
-    <value>Range</value>
+  <data name="AnchorageRepairFinished" xml:space="preserve">
+    <value>Han pasado 20 minutos desde el inicio de la reparación del anclaje.</value>
   </data>
-  <data name="Luck" xml:space="preserve">
-    <value>Luck</value>
+  <data name="AdmiralExp" xml:space="preserve">
+    <value>Experiencia del almirante+</value>
   </data>
-  <data name="Los" xml:space="preserve">
-    <value>LOS</value>
+  <data name="AirBaseResupplyCost" xml:space="preserve">
+    <value>「{1}」 de la Base Aérea nº {0} ha sido reabastecida. Costo: Combustible×{2}, Bauxita×{3}</value>
   </data>
-  <data name="Firepower" xml:space="preserve">
-    <value>FP</value>
+  <data name="DamagedTitle" xml:space="preserve">
+    <value>¡Advertencia de daño crítico!</value>
   </data>
-  <data name="Evasion" xml:space="preserve">
-    <value>Evasion</value>
+  <data name="ExpeditionText" xml:space="preserve">
+    <value>La flota {0} [{1}] ha regresado de la expedición [{2}: {3}]</value>
   </data>
-  <data name="Torpedo" xml:space="preserve">
-    <value>Torpedo</value>
+  <data name="ConditionText" xml:space="preserve">
+    <value>La moral de todas las chicas barco en la flota {0} [{1}] se ha recuperado.</value>
   </data>
-  <data name="AntiAir" xml:space="preserve">
-    <value>AA</value>
+  <data name="HasSortiedTo" xml:space="preserve">
+    <value>#{0} 「{1}」 ha salido a la misión 「{2}-{3} {4}」.</value>
   </data>
-  <data name="Armor" xml:space="preserve">
-    <value>Armor</value>
+  <data name="HasBeenSentToExpedition" xml:space="preserve">
+    <value>#{0} 「{1}」 ha sido enviada a la expedición 「{2}: {3}」.</value>
   </data>
-  <data name="Asw" xml:space="preserve">
-    <value>ASW</value>
+  <data name="BucketUsed" xml:space="preserve">
+    <value>Reparación instantánea x1</value>
   </data>
-  <data name="RepairingShips" xml:space="preserve">
-    <value>🛠 Repairing {0} ships</value>
+  <data name="ShipSuccessfullyRemodeled" xml:space="preserve">
+    <value>{0} se ha remodelado con éxito al nivel {1}.</value>
   </data>
-  <data name="FirstClassMedals" xml:space="preserve">
-    <value>🥇 First-class medals: {0}</value>
+  <data name="ShipLevelUp" xml:space="preserve">
+    <value>{0} ha alcanzado el nivel {1}.</value>
   </data>
-  <data name="ServerRank" xml:space="preserve">
-    <value>Rank {0} on {1}</value>
+  <data name="DamagedText" xml:space="preserve">
+    <value>¡{0} está gravemente dañada!</value>
   </data>
-  <data name="AdmiralNameLevel" xml:space="preserve">
-    <value>{0} (HQ Level {1})</value>
+  <data name="ExpansionSlotOpened" xml:space="preserve">
+    <value>La ranura de expansión de {0} ha sido desbloqueada</value>
   </data>
-  <data name="RankDataNotLoaded" xml:space="preserve">
-    <value>Rank data not loaded</value>
+  <data name="ShipHasBeenScrapped" xml:space="preserve">
+    <value>{0} ha sido desguazada y eliminada de la lista naval.</value>
   </data>
-  <data name="KantaiCollection" xml:space="preserve">
-    <value>Kantai Collection</value>
+  <data name="ConstructionText" xml:space="preserve">
+    <value>La construcción de {1} en el astillero #{0} está completa.</value>
   </data>
-  <data name="Idle" xml:space="preserve">
-    <value>Idle</value>
+  <data name="ConstructionTitle" xml:space="preserve">
+    <value>Construcción completada</value>
   </data>
-  <data name="LoadingIntegration" xml:space="preserve">
-    <value>Loading Integration...</value>
+  <data name="EquipmentHasBenScrapped" xml:space="preserve">
+    <value>{0}{1} ha sido desechado.</value>
   </data>
-  <data name="DoingExercises" xml:space="preserve">
-    <value>⚓ Doing PVP</value>
+  <data name="RemodelText" xml:space="preserve">
+    <value> {0} ahora se puede remodelar a {1}.</value>
   </data>
-  <data name="APIObserverFailed" xml:space="preserve">
-    <value>APIObserver: Failed to start observation.</value>
+  <data name="SortieingTo" xml:space="preserve">
+    <value>⚓ Saliendo a {0}-{1}-{2}: {3}</value>
   </data>
-  <data name="ResponseRecieved" xml:space="preserve">
-    <value>Received response: </value>
+  <data name="ETA" xml:space="preserve">
+    <value>Hora estimada de finalización:</value>
   </data>
-  <data name="Error201" xml:space="preserve">
-    <value>Error code 201 was received. It may be triggered by macro detection or by starting KanColle from another device.</value>
+  <data name="StartedRepairingShip" xml:space="preserve">
+    <value>Se comenzó a reparar {1} ({2}/{3}) en el dique #{0}. (Fuel×{4}, Acero×{5}, {6})</value>
   </data>
-  <data name="ErrorFromServer" xml:space="preserve">
-    <value>Error code {0} was received from the server</value>
+  <data name="ConditionTitle" xml:space="preserve">
+    <value>Moral recuperada </value>
   </data>
-  <data name="ErrorResponse" xml:space="preserve">
-    <value>There was an error while receiving the response.</value>
+  <data name="ShipsResupplied" xml:space="preserve">
+    <value>Reabastecimiento completado. Coste: </value>
+  </data>
+  <data name="NoResourcesGained" xml:space="preserve">
+    <value>No se obtuvieron recursos  </value>
+  </data>
+  <data name="ExpeditionResult" xml:space="preserve">
+    <value>Resultado de expedición -  </value>
+  </data>
+  <data name="ShipExp" xml:space="preserve">
+    <value>Exp de barco + </value>
+  </data>
+  <data name="RepairTitle" xml:space="preserve">
+    <value>Reparación completa </value>
+  </data>
+  <data name="RepairText" xml:space="preserve">
+    <value>Reparación de {1} en el dique #{0} completada.</value>
+  </data>
+  <data name="RemodelTitle" xml:space="preserve">
+    <value>Remodelación disponible  </value>
+  </data>
+  <data name="FailedToLoadSound" xml:space="preserve">
+    <value>Sistema de notificaciones: error al cargar el archivo de sonido {0}. </value>
+  </data>
+  <data name="FailedToLoadImage" xml:space="preserve">
+    <value>Sistema de notificaciones: error al cargar la imagen {0}. </value>
+  </data>
+  <data name="FailedPlaySound" xml:space="preserve">
+    <value>Sistema de notificaciones: error al reproducir el archivo de sonido. </value>
+  </data>
+  <data name="ExpeditionTitle" xml:space="preserve">
+    <value>Expedición regresada </value>
   </data>
 </root>

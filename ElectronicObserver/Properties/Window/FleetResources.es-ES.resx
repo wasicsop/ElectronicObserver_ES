@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,76 +117,168 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="DetectedSynergy" xml:space="preserve">
-    <value>Detected equipment synergy: </value>
+  <data name="Aarb" xml:space="preserve">
+    <value>Barrera Antiaérea</value>
   </data>
-  <data name="Range" xml:space="preserve">
-    <value>Range</value>
-  </data>
-  <data name="Luck" xml:space="preserve">
-    <value>Luck</value>
-  </data>
-  <data name="Los" xml:space="preserve">
-    <value>LOS</value>
-  </data>
-  <data name="Firepower" xml:space="preserve">
-    <value>FP</value>
-  </data>
-  <data name="Evasion" xml:space="preserve">
-    <value>Evasion</value>
-  </data>
-  <data name="Torpedo" xml:space="preserve">
-    <value>Torpedo</value>
-  </data>
-  <data name="AntiAir" xml:space="preserve">
-    <value>AA</value>
-  </data>
-  <data name="Armor" xml:space="preserve">
-    <value>Armor</value>
+  <data name="All" xml:space="preserve">
+    <value>Todos</value>
   </data>
   <data name="Asw" xml:space="preserve">
     <value>ASW</value>
   </data>
-  <data name="RepairingShips" xml:space="preserve">
-    <value>🛠 Repairing {0} ships</value>
+  <data name="WithProficiency" xml:space="preserve">
+    <value>Con competencia</value>
   </data>
-  <data name="FirstClassMedals" xml:space="preserve">
-    <value>🥇 First-class medals: {0}</value>
+  <data name="WithoutProficiency" xml:space="preserve">
+    <value>Sin competencia</value>
   </data>
-  <data name="ServerRank" xml:space="preserve">
-    <value>Rank {0} on {1}</value>
+  <data name="ContextMenuFleet_CopyFleet" xml:space="preserve">
+    <value>&amp;Copiar</value>
   </data>
-  <data name="AdmiralNameLevel" xml:space="preserve">
-    <value>{0} (HQ Level {1})</value>
+  <data name="Accuracy" xml:space="preserve">
+    <value>Precisión</value>
   </data>
-  <data name="RankDataNotLoaded" xml:space="preserve">
-    <value>Rank data not loaded</value>
+  <data name="AirstrikePower" xml:space="preserve">
+    <value>Poder de ataque aéreo</value>
   </data>
-  <data name="KantaiCollection" xml:space="preserve">
-    <value>Kantai Collection</value>
+  <data name="OpeningAsw" xml:space="preserve">
+    <value> (OASW)</value>
   </data>
-  <data name="Idle" xml:space="preserve">
-    <value>Idle</value>
+  <data name="ContactProbability" xml:space="preserve">
+    <value> Precisión+{0}: {1:p1}</value>
   </data>
-  <data name="LoadingIntegration" xml:space="preserve">
-    <value>Loading Integration...</value>
+  <data name="RightClickToOpenEncyclopedia" xml:space="preserve">
+    <value>(Haz clic derecho para abrir la enciclopedia)</value>
   </data>
-  <data name="DoingExercises" xml:space="preserve">
-    <value>⚓ Doing PVP</value>
+  <data name="ExpCalcHint" xml:space="preserve">
+    <value>(Haz clic derecho para calcular la Exp necesaria)</value>
   </data>
-  <data name="APIObserverFailed" xml:space="preserve">
-    <value>APIObserver: Failed to start observation.</value>
+  <data name="Title" xml:space="preserve">
+    <value>*cargado*</value>
   </data>
-  <data name="ResponseRecieved" xml:space="preserve">
-    <value>Received response: </value>
+  <data name="CopyFleetText" xml:space="preserve">
+    <value>{0}    PA: {1} / Detección: {2} / TP: {3}</value>
   </data>
-  <data name="Error201" xml:space="preserve">
-    <value>Error code 201 was received. It may be triggered by macro detection or by starting KanColle from another device.</value>
+  <data name="Locked" xml:space="preserve">
+    <value>Bloqueado</value>
   </data>
-  <data name="ErrorFromServer" xml:space="preserve">
-    <value>Error code {0} was received from the server</value>
+  <data name="ContextMenuFleet_AntiAirDetails" xml:space="preserve">
+    <value>&amp;Defensa AA</value>
   </data>
-  <data name="ErrorResponse" xml:space="preserve">
-    <value>There was an error while receiving the response.</value>
+  <data name="ContextMenuFleetShipLevel_OpenExpChecker" xml:space="preserve">
+    <value>Abrir calculadora de experiencia</value>
+  </data>
+  <data name="ShipNameToolTip" xml:space="preserve">
+    <value>{0}{1} {2}
+Fuego: {3}/{4}
+Torpedo: {5}/{6}
+AA: {7}/{8}
+Blindaje: {9}/{10}
+ASW: {11}/{12}
+Evasión: {13}/{14}
+Detección: {15}/{16}
+Suerte: {17}
+Precisión: {18:+#;-#;+0}
+Bombardeo: {19:+#;-#;+0}
+Alcance: {20} / Velocidad: {21}
+(haz clic derecho para abrir la enciclopedia)</value>
+  </data>
+  <data name="CopyToFleetAnalysisSpreadsheetEquipment" xml:space="preserve">
+    <value>Copiar lista de equipamiento (hoja de análisis de flota)</value>
+  </data>
+  <data name="CopyToFleetAnalysisSpreadsheetShips" xml:space="preserve">
+    <value>Copiar lista de barcos (hoja de análisis de flota)</value>
+  </data>
+  <data name="Power" xml:space="preserve">
+    <value>Potencia</value>
+  </data>
+  <data name="CvciBa" xml:space="preserve">
+    <value>CI (BA)</value>
+  </data>
+  <data name="CvciBba" xml:space="preserve">
+    <value>CI (BBA)</value>
+  </data>
+  <data name="CvciFba" xml:space="preserve">
+    <value>CI (FBA)</value>
+  </data>
+  <data name="ContactSelection" xml:space="preserve">
+    <value>Selección:</value>
+  </data>
+  <data name="FleetLosToolTip" xml:space="preserve">
+    <value>Fórmula 33 (n={0})  
+(Clic para cambiar ponderación)
+
+Contactos:  
+　AS+ {1:p1} / AS {2:p1}</value>
+  </data>
+  <data name="FleetNameToolTip" xml:space="preserve">
+    <value>Suma de niveles: {0} / Promedio: {1:0.00}  
+{2} flota  
+Apoyo de expedición: {3}  
+FP total {4} ({20}) / Torp {5} / AA {6} ({21}) / ASW {7} ({22}) / LOS {8} ({23}){26}  
+Bidones: {9} ({10} barcos)  
+Daihatsu: {11} ({12} barcos, +{13:p1})  
+TP: S {14} / A {15}  
+Operación con tanques: S {27} / A {28}  
+Radar de superficie: {24} ({25} barcos)  
+Consumo: {16} de combustible / {17} de munición  
+({18} combustible / {19} munición por batalla)</value>
+  </data>
+  <data name="SupportTypeTorpedo" xml:space="preserve">
+    <value>Ataque de torpedos de largo alcance</value>
+  </data>
+  <data name="SupportTypeShelling" xml:space="preserve">
+    <value>Bombardeo de apoyo</value>
+  </data>
+  <data name="SupportTypeAerial" xml:space="preserve">
+    <value>Apoyo aéreo</value>
+  </data>
+  <data name="SupportTypeNone" xml:space="preserve">
+    <value>n/d</value>
+  </data>
+  <data name="ContextMenuFleet_OutputFleetImage" xml:space="preserve">
+    <value>Guardar como &amp;Imagen...</value>
+  </data>
+  <data name="ContextMenuFleet_Capture" xml:space="preserve">
+    <value>Copiar como Imagen(&amp;S)</value>
+  </data>
+  <data name="ContextMenuFleet_CopyFleetAnalysisEquipment" xml:space="preserve">
+    <value>Copiar lista de equipamiento (kancolle-fleetanalysis)</value>
+  </data>
+  <data name="ContextMenuFleet_CopyFleetAnalysisShips" xml:space="preserve">
+    <value>Copiar lista de barcos (kancolle-fleetanalysis)</value>
+  </data>
+  <data name="ContextMenuFleet_CopyKanmusuList" xml:space="preserve">
+    <value>Copiar lista de barcos (&amp;kancolle-calc)</value>
+  </data>
+  <data name="ContextMenuFleet_CopyFleetDeckBuilder" xml:space="preserve">
+    <value>Copiar (&amp;deck-builder)</value>
+  </data>
+  <data name="SmokeScreen" xml:space="preserve">
+    <value>Pantalla de humo</value>
+  </data>
+  <data name="SupportTypeAntiSubmarine" xml:space="preserve">
+    <value>Soporte antisubmarino</value>
+  </data>
+  <data name="Flare" xml:space="preserve">
+    <value>Bengala</value>
+  </data>
+  <data name="NightRecon" xml:space="preserve">
+    <value>Reconocimiento nocturno</value>
+  </data>
+  <data name="SpecialAttacksNight" xml:space="preserve">
+    <value>Ataques especiales (noche):</value>
+  </data>
+  <data name="SpecialAttacksDay" xml:space="preserve">
+    <value>Ataques especiales (día):</value>
+  </data>
+  <data name="ContextMenuFleetShipLevel_RemoveTrainingPlan" xml:space="preserve">
+    <value>Eliminar plan de entrenamiento</value>
+  </data>
+  <data name="ContextMenuFleetShipLevel_EditTrainingPlan" xml:space="preserve">
+    <value>Editar plan de entrenamiento</value>
+  </data>
+  <data name="ContextMenuFleetShipLevel_CreateTrainingPlan" xml:space="preserve">
+    <value>Crear plan de entrenamiento</value>
   </data>
 </root>

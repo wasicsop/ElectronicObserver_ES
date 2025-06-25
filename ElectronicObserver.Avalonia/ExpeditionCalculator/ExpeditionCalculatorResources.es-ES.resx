@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,76 +117,73 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="DetectedSynergy" xml:space="preserve">
-    <value>Detected equipment synergy: </value>
+  <data name="Ammo" xml:space="preserve">
+    <value>Munición</value>
   </data>
-  <data name="Range" xml:space="preserve">
-    <value>Range</value>
+  <data name="Bauxite" xml:space="preserve">
+    <value>Bauxita</value>
   </data>
-  <data name="Luck" xml:space="preserve">
-    <value>Luck</value>
+  <data name="AllSparkled" xml:space="preserve">
+    <value>Todo brillante</value>
   </data>
-  <data name="Los" xml:space="preserve">
-    <value>LOS</value>
+  <data name="InstantConstruction" xml:space="preserve">
+    <value>Lanzallamas (material de construcción rápida)</value>
   </data>
-  <data name="Firepower" xml:space="preserve">
-    <value>FP</value>
+  <data name="InstantRepair" xml:space="preserve">
+    <value>Reparación instantánea</value>
   </data>
-  <data name="Evasion" xml:space="preserve">
-    <value>Evasion</value>
+  <data name="Score" xml:space="preserve">
+    <value>Puntuación</value>
   </data>
-  <data name="Torpedo" xml:space="preserve">
-    <value>Torpedo</value>
+  <data name="GreatSuccess" xml:space="preserve">
+    <value>Gran éxito</value>
   </data>
-  <data name="AntiAir" xml:space="preserve">
-    <value>AA</value>
+  <data name="ImproveMaterial" xml:space="preserve">
+    <value>Material de mejora</value>
   </data>
-  <data name="Armor" xml:space="preserve">
-    <value>Armor</value>
+  <data name="Item1" xml:space="preserve">
+    <value>Item 1</value>
   </data>
-  <data name="Asw" xml:space="preserve">
-    <value>ASW</value>
+  <data name="Item2" xml:space="preserve">
+    <value>Item 2</value>
   </data>
-  <data name="RepairingShips" xml:space="preserve">
-    <value>🛠 Repairing {0} ships</value>
+  <data name="Steel" xml:space="preserve">
+    <value>Acero</value>
   </data>
-  <data name="FirstClassMedals" xml:space="preserve">
-    <value>🥇 First-class medals: {0}</value>
+  <data name="Fuel" xml:space="preserve">
+    <value>Fuel</value>
   </data>
-  <data name="ServerRank" xml:space="preserve">
-    <value>Rank {0} on {1}</value>
+  <data name="DevelopmentMaterial" xml:space="preserve">
+    <value>Material de desarrollo</value>
   </data>
-  <data name="AdmiralNameLevel" xml:space="preserve">
-    <value>{0} (HQ Level {1})</value>
+  <data name="Title" xml:space="preserve">
+    <value>Calculadora de expedición</value>
   </data>
-  <data name="RankDataNotLoaded" xml:space="preserve">
-    <value>Rank data not loaded</value>
+  <data name="Monthly" xml:space="preserve">
+    <value>Mensual</value>
   </data>
-  <data name="KantaiCollection" xml:space="preserve">
-    <value>Kantai Collection</value>
+  <data name="FlagshipLevel" xml:space="preserve">
+    <value>Nivel del buque insignia</value>
   </data>
-  <data name="Idle" xml:space="preserve">
-    <value>Idle</value>
+  <data name="FurnitureBoxSmall" xml:space="preserve">
+    <value>Caja de muebles (pequeña)</value>
   </data>
-  <data name="LoadingIntegration" xml:space="preserve">
-    <value>Loading Integration...</value>
+  <data name="FurnitureBoxMedium" xml:space="preserve">
+    <value>Caja de muebles (mediana)</value>
   </data>
-  <data name="DoingExercises" xml:space="preserve">
-    <value>⚓ Doing PVP</value>
+  <data name="FurnitureBoxLarge" xml:space="preserve">
+    <value>Caja de muebles (grande)</value>
   </data>
-  <data name="APIObserverFailed" xml:space="preserve">
-    <value>APIObserver: Failed to start observation.</value>
+  <data name="MoraleFoodIrako" xml:space="preserve">
+    <value>Comida de moral 'Irako'</value>
   </data>
-  <data name="ResponseRecieved" xml:space="preserve">
-    <value>Received response: </value>
+  <data name="Duration" xml:space="preserve">
+    <value>Duración</value>
   </data>
-  <data name="Error201" xml:space="preserve">
-    <value>Error code 201 was received. It may be triggered by macro detection or by starting KanColle from another device.</value>
+  <data name="SparkleCount" xml:space="preserve">
+    <value>Barcos con brillo</value>
   </data>
-  <data name="ErrorFromServer" xml:space="preserve">
-    <value>Error code {0} was received from the server</value>
-  </data>
-  <data name="ErrorResponse" xml:space="preserve">
-    <value>There was an error while receiving the response.</value>
+  <data name="DrumCount" xml:space="preserve">
+    <value>Número de bidones</value>
   </data>
 </root>

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,76 +117,52 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="DetectedSynergy" xml:space="preserve">
-    <value>Detected equipment synergy: </value>
+  <data name="AntiAir" xml:space="preserve">
+    <value>Arma antiaérea</value>
   </data>
-  <data name="Range" xml:space="preserve">
-    <value>Range</value>
+  <data name="Others" xml:space="preserve">
+    <value>Más Opciones</value>
   </data>
-  <data name="Luck" xml:space="preserve">
-    <value>Luck</value>
+  <data name="Radar" xml:space="preserve">
+    <value>Radar</value>
   </data>
-  <data name="Los" xml:space="preserve">
-    <value>LOS</value>
+  <data name="SeaplanesAndRecons" xml:space="preserve">
+    <value>Hidroaviones y aviones de reconocimiento</value>
   </data>
-  <data name="Firepower" xml:space="preserve">
-    <value>FP</value>
-  </data>
-  <data name="Evasion" xml:space="preserve">
-    <value>Evasion</value>
+  <data name="Secondary" xml:space="preserve">
+    <value>Cañón secundario</value>
   </data>
   <data name="Torpedo" xml:space="preserve">
     <value>Torpedo</value>
   </data>
-  <data name="AntiAir" xml:space="preserve">
-    <value>AA</value>
+  <data name="TorpedoBomber" xml:space="preserve">
+    <value>Bombardero torpedo</value>
   </data>
-  <data name="Armor" xml:space="preserve">
-    <value>Armor</value>
+  <data name="Transport" xml:space="preserve">
+    <value>Transporte</value>
   </data>
-  <data name="Asw" xml:space="preserve">
-    <value>ASW</value>
+  <data name="MainGunSmall" xml:space="preserve">
+    <value>Cañón principal pequeño</value>
   </data>
-  <data name="RepairingShips" xml:space="preserve">
-    <value>🛠 Repairing {0} ships</value>
+  <data name="MainGunMedium" xml:space="preserve">
+    <value>Cañón principal medio</value>
   </data>
-  <data name="FirstClassMedals" xml:space="preserve">
-    <value>🥇 First-class medals: {0}</value>
+  <data name="MainGunLarge" xml:space="preserve">
+    <value>Cañón principal grande</value>
   </data>
-  <data name="ServerRank" xml:space="preserve">
-    <value>Rank {0} on {1}</value>
+  <data name="ASWGears" xml:space="preserve">
+    <value>Equipos ASW</value>
   </data>
-  <data name="AdmiralNameLevel" xml:space="preserve">
-    <value>{0} (HQ Level {1})</value>
+  <data name="Bomber" xml:space="preserve">
+    <value>Bombardero</value>
   </data>
-  <data name="RankDataNotLoaded" xml:space="preserve">
-    <value>Rank data not loaded</value>
+  <data name="Fighter" xml:space="preserve">
+    <value>Caza</value>
   </data>
-  <data name="KantaiCollection" xml:space="preserve">
-    <value>Kantai Collection</value>
+  <data name="LandBasedBombers" xml:space="preserve">
+    <value>Bombardero terrestre</value>
   </data>
-  <data name="Idle" xml:space="preserve">
-    <value>Idle</value>
-  </data>
-  <data name="LoadingIntegration" xml:space="preserve">
-    <value>Loading Integration...</value>
-  </data>
-  <data name="DoingExercises" xml:space="preserve">
-    <value>⚓ Doing PVP</value>
-  </data>
-  <data name="APIObserverFailed" xml:space="preserve">
-    <value>APIObserver: Failed to start observation.</value>
-  </data>
-  <data name="ResponseRecieved" xml:space="preserve">
-    <value>Received response: </value>
-  </data>
-  <data name="Error201" xml:space="preserve">
-    <value>Error code 201 was received. It may be triggered by macro detection or by starting KanColle from another device.</value>
-  </data>
-  <data name="ErrorFromServer" xml:space="preserve">
-    <value>Error code {0} was received from the server</value>
-  </data>
-  <data name="ErrorResponse" xml:space="preserve">
-    <value>There was an error while receiving the response.</value>
+  <data name="LandBasedFighters" xml:space="preserve">
+    <value>Caza terrestre</value>
   </data>
 </root>

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,76 +117,145 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="DetectedSynergy" xml:space="preserve">
-    <value>Detected equipment synergy: </value>
+  <data name="AA" xml:space="preserve">
+    <value>AA</value>
   </data>
-  <data name="Range" xml:space="preserve">
-    <value>Range</value>
+  <data name="Armor" xml:space="preserve">
+    <value>Blindaje</value>
+  </data>
+  <data name="ASW" xml:space="preserve">
+    <value>ASW</value>
+  </data>
+  <data name="ShipBannerToolTip" xml:space="preserve">
+    <value>Haga clic con el botón derecho para abrir el visor de imágenes.</value>
+  </data>
+  <data name="Unknown" xml:space="preserve">
+    <value>Desconocido</value>
+  </data>
+  <data name="Accuracy" xml:space="preserve">
+    <value>Precisión</value>
+  </data>
+  <data name="ActionReport" xml:space="preserve">
+    <value>Informe de acción</value>
+  </data>
+  <data name="AntiBomb" xml:space="preserve">
+    <value>Antibombardero</value>
+  </data>
+  <data name="TitleHP" xml:space="preserve">
+    <value>HP</value>
+  </data>
+  <data name="StripMenu_File_MergeDefaultRecord" xml:space="preserve">
+    <value>Actualizar desde el registro predeterminado (&amp;M)</value>
+  </data>
+  <data name="StripMenu_Edit_CopySpecialEquipmentTable" xml:space="preserve">
+    <value>Copiar tabla de equipamiento especial (&amp;S)</value>
+  </data>
+  <data name="Empty" xml:space="preserve">
+    <value>Vacío</value>
+  </data>
+  <data name="RightClickToOpenInNewWindow" xml:space="preserve">
+    <value>Haz clic derecho para abrir en una nueva ventana</value>
+  </data>
+  <data name="RemodelBeforeShipNameToolTip" xml:space="preserve">
+    <value>Abrir con clic izquierdo.
+Haz clic derecho para abrir en una nueva ventana.</value>
+  </data>
+  <data name="Torpedo" xml:space="preserve">
+    <value>Torp</value>
+  </data>
+  <data name="Installation" xml:space="preserve">
+    <value>Instalación</value>
+  </data>
+  <data name="FailedToFindMapOrRecipe" xml:space="preserve">
+    <value>No se encontraron mapas o fórmulas que dejen caer a {0}.</value>
+  </data>
+  <data name="Evasion" xml:space="preserve">
+    <value>Evasión</value>
+  </data>
+  <data name="Interception" xml:space="preserve">
+    <value>Intercepción</value>
+  </data>
+  <data name="LOS" xml:space="preserve">
+    <value>LOS</value>
   </data>
   <data name="Luck" xml:space="preserve">
-    <value>Luck</value>
+    <value>Suerte</value>
   </data>
-  <data name="Los" xml:space="preserve">
-    <value>LOS</value>
+  <data name="Recipe" xml:space="preserve">
+    <value>Receta</value>
+  </data>
+  <data name="SpecifyTargetShip" xml:space="preserve">
+    <value>Por favor, selecciona un barco</value>
+  </data>
+  <data name="SpecialEquipmentTableHeader1" xml:space="preserve">
+    <value>|ID del barco|Barco|Equipable|No equipable|</value>
+  </data>
+  <data name="SpecialEquipmentTableHeader2" xml:space="preserve">
+    <value>|ID del barco|Barco|ID de equipamiento|Equipable|</value>
+  </data>
+  <data name="StripMenu_View_ShowShipGraphicViewer" xml:space="preserve">
+    <value>Visor de Imágenes de Barcos (&amp;V)</value>
+  </data>
+  <data name="ShipClassId" xml:space="preserve">
+    <value>ID de clase de barco</value>
+  </data>
+  <data name="ResourceNameToolTip" xml:space="preserve">
+    <value>Nombre del recurso: {0}  
+Versión gráfica: {1}  
+Versión de voz: {2}  
+Versión de voz en puerto: {3}  
+({4})</value>
+  </data>
+  <data name="ParameterLevelToolTip" xml:space="preserve">
+    <value>Se mostrarán los valores estimados según el nivel especificado. </value>
   </data>
   <data name="Firepower" xml:space="preserve">
     <value>FP</value>
   </data>
-  <data name="Evasion" xml:space="preserve">
-    <value>Evasion</value>
+  <data name="StripMenu_Edit_GoogleShipName" xml:space="preserve">
+    <value>Buscar nombre del barco en DuckDuckGo </value>
   </data>
-  <data name="Torpedo" xml:space="preserve">
-    <value>Torpedo</value>
+  <data name="StripMenu_Edit_CopyShipData" xml:space="preserve">
+    <value>Copiar &amp;datos del barco &amp;Data</value>
   </data>
-  <data name="AntiAir" xml:space="preserve">
-    <value>AA</value>
+  <data name="StripMenu_Edit_CopyShipName" xml:space="preserve">
+    <value>Copiar &amp;nombre del barco &amp;Name</value>
   </data>
-  <data name="Armor" xml:space="preserve">
-    <value>Armor</value>
+  <data name="StripMenu_Edit_EditParameter" xml:space="preserve">
+    <value>Editar parámetros</value>
   </data>
-  <data name="Asw" xml:space="preserve">
-    <value>ASW</value>
+  <data name="ShipClassUnknown" xml:space="preserve">
+    <value>Clase de barco desconocida</value>
   </data>
-  <data name="RepairingShips" xml:space="preserve">
-    <value>🛠 Repairing {0} ships</value>
+  <data name="HpMinToolTip" xml:space="preserve">
+    <value>Después de la modernización: {0} (+{1})  </value>
   </data>
-  <data name="FirstClassMedals" xml:space="preserve">
-    <value>🥇 First-class medals: {0}</value>
+  <data name="HpMaxToolTip" xml:space="preserve">
+    <value>Después de la modernización: {0} (+{1})  
+(max HP interno: {2}) </value>
   </data>
-  <data name="ServerRank" xml:space="preserve">
-    <value>Rank {0} on {1}</value>
+  <data name="DefaultRange" xml:space="preserve">
+    <value>Alcance base</value>
   </data>
-  <data name="AdmiralNameLevel" xml:space="preserve">
-    <value>{0} (HQ Level {1})</value>
+  <data name="ShipId" xml:space="preserve">
+    <value>ID del barco:</value>
   </data>
-  <data name="RankDataNotLoaded" xml:space="preserve">
-    <value>Rank data not loaded</value>
+  <data name="ReinforcementSlot" xml:space="preserve">
+    <value>Slot de refuerzo</value>
   </data>
-  <data name="KantaiCollection" xml:space="preserve">
-    <value>Kantai Collection</value>
+  <data name="NoShipSelectedCaption" xml:space="preserve">
+    <value>Ningún barco seleccionado</value>
   </data>
-  <data name="Idle" xml:space="preserve">
-    <value>Idle</value>
+  <data name="MapOrRecipeSearchCaption" xml:space="preserve">
+    <value>Búsqueda por mapa o método de obtención</value>
   </data>
-  <data name="LoadingIntegration" xml:space="preserve">
-    <value>Loading Integration...</value>
+  <data name="SelectAShip" xml:space="preserve">
+    <value>Por favor, seleccione un barco.</value>
   </data>
-  <data name="DoingExercises" xml:space="preserve">
-    <value>⚓ Doing PVP</value>
+  <data name="AviationMaterial" xml:space="preserve">
+    <value>Material de armamento aéreo nuevo</value>
   </data>
-  <data name="APIObserverFailed" xml:space="preserve">
-    <value>APIObserver: Failed to start observation.</value>
-  </data>
-  <data name="ResponseRecieved" xml:space="preserve">
-    <value>Received response: </value>
-  </data>
-  <data name="Error201" xml:space="preserve">
-    <value>Error code 201 was received. It may be triggered by macro detection or by starting KanColle from another device.</value>
-  </data>
-  <data name="ErrorFromServer" xml:space="preserve">
-    <value>Error code {0} was received from the server</value>
-  </data>
-  <data name="ErrorResponse" xml:space="preserve">
-    <value>There was an error while receiving the response.</value>
+  <data name="Bombing" xml:space="preserve">
+    <value>Bombardeo</value>
   </data>
 </root>

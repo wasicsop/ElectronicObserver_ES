@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,76 +117,75 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="DetectedSynergy" xml:space="preserve">
-    <value>Detected equipment synergy: </value>
+  <data name="TextAirSuperiority" xml:space="preserve">
+    <value>AS</value>
   </data>
-  <data name="Range" xml:space="preserve">
-    <value>Range</value>
+  <data name="AirRaid" xml:space="preserve">
+    <value>Bombardeo aéreo -</value>
   </data>
-  <data name="Luck" xml:space="preserve">
-    <value>Luck</value>
+  <data name="AirValues" xml:space="preserve">
+    <value>AS+: {0}
+AS: {1}
+AP: {2}
+AI: {3}
+</value>
   </data>
-  <data name="Los" xml:space="preserve">
-    <value>LOS</value>
+  <data name="UnknownItem" xml:space="preserve">
+    <value>Artículo desconocido</value>
   </data>
-  <data name="Firepower" xml:space="preserve">
-    <value>FP</value>
+  <data name="None" xml:space="preserve">
+    <value>(ninguno)</value>
   </data>
-  <data name="Evasion" xml:space="preserve">
-    <value>Evasion</value>
+  <data name="TextEnemyFleetName" xml:space="preserve">
+    <value>Nombre de la flota enemiga</value>
   </data>
-  <data name="Torpedo" xml:space="preserve">
-    <value>Torpedo</value>
+  <data name="TextFormation" xml:space="preserve">
+    <value>Forma</value>
   </data>
-  <data name="AntiAir" xml:space="preserve">
-    <value>AA</value>
+  <data name="BranchChoiceSeparator" xml:space="preserve">
+    <value>o</value>
   </data>
-  <data name="Armor" xml:space="preserve">
-    <value>Armor</value>
+  <data name="CalmSea2" xml:space="preserve">
+    <value>Es un mar en calma.</value>
   </data>
-  <data name="Asw" xml:space="preserve">
-    <value>ASW</value>
+  <data name="CalmStrait" xml:space="preserve">
+    <value>Es un estrecho  en calma.</value>
   </data>
-  <data name="RepairingShips" xml:space="preserve">
-    <value>🛠 Repairing {0} ships</value>
+  <data name="CalmSea" xml:space="preserve">
+    <value>Es un mar en calma.</value>
   </data>
-  <data name="FirstClassMedals" xml:space="preserve">
-    <value>🥇 First-class medals: {0}</value>
+  <data name="MapClearCount" xml:space="preserve">
+    <value>{0} derrotado: {1} / {2} veces</value>
   </data>
-  <data name="ServerRank" xml:space="preserve">
-    <value>Rank {0} on {1}</value>
+  <data name="NeedToBeCareful" xml:space="preserve">
+    <value>Es necesario estar alerta.</value>
   </data>
-  <data name="AdmiralNameLevel" xml:space="preserve">
-    <value>{0} (HQ Level {1})</value>
+  <data name="BranchChoice" xml:space="preserve">
+    <value>Elección de ruta:</value>
   </data>
-  <data name="RankDataNotLoaded" xml:space="preserve">
-    <value>Rank data not loaded</value>
+  <data name="NoEnemySighted" xml:space="preserve">
+    <value>No se detectó enemigo.</value>
   </data>
-  <data name="KantaiCollection" xml:space="preserve">
-    <value>Kantai Collection</value>
+  <data name="EnemyPlaneSighted" xml:space="preserve">
+    <value>¡Avión enemigo avistado!</value>
   </data>
-  <data name="Idle" xml:space="preserve">
-    <value>Idle</value>
+  <data name="CoursePatrol" xml:space="preserve">
+    <value>¡Patrulla en rumbo!</value>
   </data>
-  <data name="LoadingIntegration" xml:space="preserve">
-    <value>Loading Integration...</value>
+  <data name="TargetSighted" xml:space="preserve">
+    <value>¡Objetivo de ataque localizado!</value>
   </data>
-  <data name="DoingExercises" xml:space="preserve">
-    <value>⚓ Doing PVP</value>
+  <data name="EnemySighted" xml:space="preserve">
+    <value>¡Flota enemiga detectada!</value>
   </data>
-  <data name="APIObserverFailed" xml:space="preserve">
-    <value>APIObserver: Failed to start observation.</value>
+  <data name="Title" xml:space="preserve">
+    <value>Brújula</value>
   </data>
-  <data name="ResponseRecieved" xml:space="preserve">
-    <value>Received response: </value>
+  <data name="FleetCount" xml:space="preserve">
+    <value>Flotas: {0}</value>
   </data>
-  <data name="Error201" xml:space="preserve">
-    <value>Error code 201 was received. It may be triggered by macro detection or by starting KanColle from another device.</value>
-  </data>
-  <data name="ErrorFromServer" xml:space="preserve">
-    <value>Error code {0} was received from the server</value>
-  </data>
-  <data name="ErrorResponse" xml:space="preserve">
-    <value>There was an error while receiving the response.</value>
+  <data name="FleetPaging" xml:space="preserve">
+    <value>Flotas: {0} / {1}
+(clic izquierdo o derecho para cambiar de página)</value>
   </data>
 </root>

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,76 +117,133 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="DetectedSynergy" xml:space="preserve">
-    <value>Detected equipment synergy: </value>
+  <data name="Warning" xml:space="preserve">
+    <value>Advertencia</value>
   </data>
-  <data name="Range" xml:space="preserve">
-    <value>Range</value>
+  <data name="Kanmusu" xml:space="preserve">
+    <value>Barcos</value>
   </data>
-  <data name="Luck" xml:space="preserve">
-    <value>Luck</value>
+  <data name="ConditionType_Ship" xml:space="preserve">
+    <value>Barcos</value>
   </data>
-  <data name="Los" xml:space="preserve">
-    <value>LOS</value>
+  <data name="Position" xml:space="preserve">
+    <value>Flota</value>
   </data>
-  <data name="Firepower" xml:space="preserve">
-    <value>FP</value>
+  <data name="UnknownCondition" xml:space="preserve">
+    <value>Condición desconocida, asegúrate de tener la última versión de Electronic Observer.</value>
   </data>
-  <data name="Evasion" xml:space="preserve">
-    <value>Evasion</value>
+  <data name="UnknownQuest" xml:space="preserve">
+    <value>Misión Desconocida</value>
   </data>
-  <data name="Torpedo" xml:space="preserve">
-    <value>Torpedo</value>
+  <data name="UnknownTask" xml:space="preserve">
+    <value>Tarea desconocida, asegúrate de tener la última versión de Electronic Observer.</value>
   </data>
-  <data name="AntiAir" xml:space="preserve">
-    <value>AA</value>
+  <data name="BattleRank_Any" xml:space="preserve">
+    <value>X</value>
   </data>
-  <data name="Armor" xml:space="preserve">
-    <value>Armor</value>
+  <data name="QuestTaskType_World1Map6ResourceNode" xml:space="preserve">
+    <value>1-6N</value>
   </data>
-  <data name="Asw" xml:space="preserve">
-    <value>ASW</value>
+  <data name="QuestTaskType_7_2_1" xml:space="preserve">
+    <value>7-2-1</value>
   </data>
-  <data name="RepairingShips" xml:space="preserve">
-    <value>🛠 Repairing {0} ships</value>
+  <data name="QuestTaskType_7_2_2" xml:space="preserve">
+    <value>7-2-2</value>
   </data>
-  <data name="FirstClassMedals" xml:space="preserve">
-    <value>🥇 First-class medals: {0}</value>
+  <data name="QuestTaskType_7_3_1" xml:space="preserve">
+    <value>7-3-1</value>
   </data>
-  <data name="ServerRank" xml:space="preserve">
-    <value>Rank {0} on {1}</value>
+  <data name="QuestTaskType_7_3_2" xml:space="preserve">
+    <value>7-3-2</value>
   </data>
-  <data name="AdmiralNameLevel" xml:space="preserve">
-    <value>{0} (HQ Level {1})</value>
+  <data name="ConditionType_Group" xml:space="preserve">
+    <value>Grupo</value>
   </data>
-  <data name="RankDataNotLoaded" xml:space="preserve">
-    <value>Rank data not loaded</value>
+  <data name="Operator_Or" xml:space="preserve">
+    <value>o</value>
   </data>
-  <data name="KantaiCollection" xml:space="preserve">
-    <value>Kantai Collection</value>
+  <data name="File" xml:space="preserve">
+    <value>Archivo</value>
   </data>
-  <data name="Idle" xml:space="preserve">
-    <value>Idle</value>
+  <data name="MustBeFlagship" xml:space="preserve">
+    <value>Debe ser el buque insignia</value>
   </data>
-  <data name="LoadingIntegration" xml:space="preserve">
-    <value>Loading Integration...</value>
+  <data name="Flagship" xml:space="preserve">
+    <value>Buque insignia</value>
   </data>
-  <data name="DoingExercises" xml:space="preserve">
-    <value>⚓ Doing PVP</value>
+  <data name="Copy" xml:space="preserve">
+    <value>Copiar</value>
   </data>
-  <data name="APIObserverFailed" xml:space="preserve">
-    <value>APIObserver: Failed to start observation.</value>
+  <data name="ShowDetails" xml:space="preserve">
+    <value>Ver detalles</value>
   </data>
-  <data name="ResponseRecieved" xml:space="preserve">
-    <value>Received response: </value>
+  <data name="Operator_And" xml:space="preserve">
+    <value>y</value>
   </data>
-  <data name="Error201" xml:space="preserve">
-    <value>Error code 201 was received. It may be triggered by macro detection or by starting KanColle from another device.</value>
+  <data name="RemodelComparisonType_AtLeast" xml:space="preserve">
+    <value>Remodel mínimo</value>
   </data>
-  <data name="ErrorFromServer" xml:space="preserve">
-    <value>Error code {0} was received from the server</value>
+  <data name="RemodelComparisonType_Exact" xml:space="preserve">
+    <value>Remodel exacto</value>
   </data>
-  <data name="ErrorResponse" xml:space="preserve">
-    <value>There was an error while receiving the response.</value>
+  <data name="QuestTaskType_BossKill" xml:space="preserve">
+    <value>Derrotar al jefe</value>
+  </data>
+  <data name="QuestTaskType_Expedition" xml:space="preserve">
+    <value>Expedición</value>
+  </data>
+  <data name="RemodelComparisonType_Any" xml:space="preserve">
+    <value>Cualquier remodel</value>
+  </data>
+  <data name="ConditionType_ShipType" xml:space="preserve">
+    <value>Tipo de barco</value>
+  </data>
+  <data name="QuestTaskType_EquipmentCategoryScrap" xml:space="preserve">
+    <value>Descartar equipo por categoría</value>
+  </data>
+  <data name="QuestTaskType_EquipmentCardTypeScrap" xml:space="preserve">
+    <value>Descartar equipo por tipo de ficha</value>
+  </data>
+  <data name="QuestTaskType_EquipmentScrap" xml:space="preserve">
+    <value>Descartar equipo</value>
+  </data>
+  <data name="ConditionType_PartialShip" xml:space="preserve">
+    <value>Buque (parcial)</value>
+  </data>
+  <data name="QuestTaskType_NodeReach" xml:space="preserve">
+    <value>Alcanzar nodo</value>
+  </data>
+  <data name="ConditionType_AllowedShipTypes" xml:space="preserve">
+    <value>Tipos de buques permitidos</value>
+  </data>
+  <data name="ConditionType_ShipPosition" xml:space="preserve">
+    <value>Posición del buque</value>
+  </data>
+  <data name="QuestTaskType_EquipmentIconTypeScrap" xml:space="preserve">
+    <value>Desguace por tipo de ícono de equipo</value>
+  </data>
+  <data name="QuestTaskType_BattleNodeId" xml:space="preserve">
+    <value>ID de nodo de batalla</value>
+  </data>
+  <data name="CopyTrackersToClipboard" xml:space="preserve">
+    <value>Copiar rastreadores al portapapeles</value>
+  </data>
+  <data name="QuestTaskType_Exercise" xml:space="preserve">
+    <value>PvP</value>
+  </data>
+  <data name="QuestTaskType_MapFirstClear" xml:space="preserve">
+    <value>Primera vez despejado</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Gestor de seguimiento de misiones</value>
+  </data>
+  <data name="Load" xml:space="preserve">
+    <value> Cargar desde el portapapeles</value>
+  </data>
+  <data name="TrackerOverwrite" xml:space="preserve">
+    <value>Se ha detectado un rastreador de misiones existente. El nuevo rastreador sobrescribirá el actual y se perderá el progreso. Los rastreadores afectados son: {0} ¿Desea sobrescribir estos rastreadores?</value>
+  </data>
+  <data name="ConditionType_ShipNationality" xml:space="preserve">
+    <value>Nacionalidad del barco</value>
   </data>
 </root>

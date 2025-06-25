@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,76 +117,90 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="DetectedSynergy" xml:space="preserve">
-    <value>Detected equipment synergy: </value>
+  <data name="AACI" xml:space="preserve">
+    <value>AACI:</value>
   </data>
-  <data name="Range" xml:space="preserve">
-    <value>Range</value>
+  <data name="WipeRate" xml:space="preserve">
+    <value>Tasa de destrución</value>
   </data>
-  <data name="Luck" xml:space="preserve">
-    <value>Luck</value>
+  <data name="ResultView_ShipName" xml:space="preserve">
+    <value>Barco:</value>
   </data>
-  <data name="Los" xml:space="preserve">
-    <value>LOS</value>
-  </data>
-  <data name="Firepower" xml:space="preserve">
-    <value>FP</value>
-  </data>
-  <data name="Evasion" xml:space="preserve">
-    <value>Evasion</value>
-  </data>
-  <data name="Torpedo" xml:space="preserve">
-    <value>Torpedo</value>
-  </data>
-  <data name="AntiAir" xml:space="preserve">
+  <data name="ResultView_AntiAir" xml:space="preserve">
     <value>AA</value>
   </data>
-  <data name="Armor" xml:space="preserve">
-    <value>Armor</value>
+  <data name="ResultView_AARocketBarrageProbability" xml:space="preserve">
+    <value>Barrera Antiaérea</value>
   </data>
-  <data name="Asw" xml:space="preserve">
-    <value>ASW</value>
+  <data name="Title" xml:space="preserve">
+    <value>Defensa AA</value>
   </data>
-  <data name="RepairingShips" xml:space="preserve">
-    <value>🛠 Repairing {0} ships</value>
+  <data name="Formation" xml:space="preserve">
+    <value>Formación:</value>
   </data>
-  <data name="FirstClassMedals" xml:space="preserve">
-    <value>🥇 First-class medals: {0}</value>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
   </data>
-  <data name="ServerRank" xml:space="preserve">
-    <value>Rank {0} on {1}</value>
+  <data name="Formation_LineAhead" xml:space="preserve">
+    <value>En línea</value>
   </data>
-  <data name="AdmiralNameLevel" xml:space="preserve">
-    <value>{0} (HQ Level {1})</value>
+  <data name="Formation_Ring" xml:space="preserve">
+    <value>Anillo</value>
   </data>
-  <data name="RankDataNotLoaded" xml:space="preserve">
-    <value>Rank data not loaded</value>
+  <data name="ShowAllToolTip" xml:space="preserve">
+    <value>Si está desmarcado, solo se mostrarán los tipos de CI antiaéreo posibles con el equipamiento actual.  
+Si está marcado, se mostrarán todas las opciones de CI antiaéreo.
+</value>
   </data>
-  <data name="KantaiCollection" xml:space="preserve">
-    <value>Kantai Collection</value>
+  <data name="ResultView_ShootDownFailed" xml:space="preserve">
+    <value>Fallido</value>
   </data>
-  <data name="Idle" xml:space="preserve">
-    <value>Idle</value>
+  <data name="ResultView_ShootDownFixed" xml:space="preserve">
+    <value>Arreglado</value>
   </data>
-  <data name="LoadingIntegration" xml:space="preserve">
-    <value>Loading Integration...</value>
+  <data name="ResultView_ShootDownProportional" xml:space="preserve">
+    <value>Proporcional</value>
   </data>
-  <data name="DoingExercises" xml:space="preserve">
-    <value>⚓ Doing PVP</value>
+  <data name="ResultView_ShootDownBoth" xml:space="preserve">
+    <value>Ambos</value>
   </data>
-  <data name="APIObserverFailed" xml:space="preserve">
-    <value>APIObserver: Failed to start observation.</value>
+  <data name="ResultView_FixedAirDefense" xml:space="preserve">
+    <value>Derribo fijo</value>
   </data>
-  <data name="ResponseRecieved" xml:space="preserve">
-    <value>Received response: </value>
+  <data name="ResultView_ProportionalAirDefense" xml:space="preserve">
+    <value>Derribo proporcional</value>
   </data>
-  <data name="Error201" xml:space="preserve">
-    <value>Error code 201 was received. It may be triggered by macro detection or by starting KanColle from another device.</value>
+  <data name="ResultView_AdjustedAntiAir" xml:space="preserve">
+    <value>AA ajustada</value>
   </data>
-  <data name="ErrorFromServer" xml:space="preserve">
-    <value>Error code {0} was received from the server</value>
+  <data name="FleetID_CombinedFleet" xml:space="preserve">
+    <value>Flota combinada</value>
   </data>
-  <data name="ErrorResponse" xml:space="preserve">
-    <value>There was an error while receiving the response.</value>
+  <data name="FleetID_Fourth" xml:space="preserve">
+    <value>Flota n.º 4</value>
+  </data>
+  <data name="FleetID_Third" xml:space="preserve">
+    <value>Flota n.º3</value>
+  </data>
+  <data name="FleetID_Second" xml:space="preserve">
+    <value>Flota n.º2</value>
+  </data>
+  <data name="FleetID_First" xml:space="preserve">
+    <value>Flota n.º1</value>
+  </data>
+  <data name="Fleet" xml:space="preserve">
+    <value>Flota:</value>
+  </data>
+  <data name="PlaneSlot" xml:space="preserve">
+    <value>Aviones en slot enemigo:</value>
+  </data>
+  <data name="Formation_DoubleLine" xml:space="preserve">
+    <value>Formación doble línea</value>
+  </data>
+  <data name="FleetAA" xml:space="preserve">
+    <value>AA de la flota:</value>
+  </data>
+  <data name="ShowAll" xml:space="preserve">
+    <value>Mostrar todos los tipos de AACI</value>
   </data>
 </root>

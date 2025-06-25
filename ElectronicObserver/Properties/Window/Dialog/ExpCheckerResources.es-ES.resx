@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,76 +117,81 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="DetectedSynergy" xml:space="preserve">
-    <value>Detected equipment synergy: </value>
-  </data>
-  <data name="Range" xml:space="preserve">
-    <value>Range</value>
-  </data>
-  <data name="Luck" xml:space="preserve">
-    <value>Luck</value>
-  </data>
-  <data name="Los" xml:space="preserve">
-    <value>LOS</value>
-  </data>
-  <data name="Firepower" xml:space="preserve">
-    <value>FP</value>
-  </data>
-  <data name="Evasion" xml:space="preserve">
-    <value>Evasion</value>
-  </data>
-  <data name="Torpedo" xml:space="preserve">
-    <value>Torpedo</value>
-  </data>
-  <data name="AntiAir" xml:space="preserve">
-    <value>AA</value>
-  </data>
-  <data name="Armor" xml:space="preserve">
-    <value>Armor</value>
-  </data>
-  <data name="Asw" xml:space="preserve">
+  <data name="ASW" xml:space="preserve">
     <value>ASW</value>
   </data>
-  <data name="RepairingShips" xml:space="preserve">
-    <value>🛠 Repairing {0} ships</value>
+  <data name="Ship" xml:space="preserve">
+    <value>Barco:</value>
   </data>
-  <data name="FirstClassMedals" xml:space="preserve">
-    <value>🥇 First-class medals: {0}</value>
+  <data name="Accuracy" xml:space="preserve">
+    <value>Precisión</value>
   </data>
-  <data name="ServerRank" xml:space="preserve">
-    <value>Rank {0} on {1}</value>
+  <data name="AswApproximated" xml:space="preserve">
+    <value>＊Dado que el valor de ASW sigue siendo una aproximación, el cálculo puede no ser exacto.</value>
   </data>
-  <data name="AdmiralNameLevel" xml:space="preserve">
-    <value>{0} (HQ Level {1})</value>
+  <data name="AswUnknown" xml:space="preserve">
+    <value>Se aplicará tras reiniciar</value>
   </data>
-  <data name="RankDataNotLoaded" xml:space="preserve">
-    <value>Rank data not loaded</value>
+  <data name="LuckOffset" xml:space="preserve">
+    <value>Mejora de suerte</value>
   </data>
-  <data name="KantaiCollection" xml:space="preserve">
-    <value>Kantai Collection</value>
+  <data name="ShipsUnavailable" xml:space="preserve">
+    <value>No hay barcos disponibles</value>
   </data>
-  <data name="Idle" xml:space="preserve">
-    <value>Idle</value>
+  <data name="GroupExp" xml:space="preserve">
+    <value>Exp necesaria</value>
   </data>
-  <data name="LoadingIntegration" xml:space="preserve">
-    <value>Loading Integration...</value>
+  <data name="Title" xml:space="preserve">
+    <value>Calculadora de experiencia</value>
   </data>
-  <data name="DoingExercises" xml:space="preserve">
-    <value>⚓ Doing PVP</value>
+  <data name="ExpUnitToolTip" xml:space="preserve">
+    <value>Introduce la experiencia ganada por salida para calcular el número de salidas necesarias.</value>
   </data>
-  <data name="APIObserverFailed" xml:space="preserve">
-    <value>APIObserver: Failed to start observation.</value>
+  <data name="Modernization" xml:space="preserve">
+    <value>Mejora actual</value>
   </data>
-  <data name="ResponseRecieved" xml:space="preserve">
-    <value>Received response: </value>
+  <data name="LuckOffsetToolTip" xml:space="preserve">
+    <value>Modifica la suerte actual en una cantidad especificada.</value>
   </data>
-  <data name="Error201" xml:space="preserve">
-    <value>Error code 201 was received. It may be triggered by macro detection or by starting KanColle from another device.</value>
+  <data name="ShowAllASWEquipmentsToolTip" xml:space="preserve">
+    <value>Mostrar todas las combinaciones de equipamiento ASW</value>
   </data>
-  <data name="ErrorFromServer" xml:space="preserve">
-    <value>Error code {0} was received from the server</value>
+  <data name="ShowAllLevel" xml:space="preserve">
+    <value>Todos Niveles</value>
   </data>
-  <data name="ErrorResponse" xml:space="preserve">
-    <value>There was an error while receiving the response.</value>
+  <data name="ShowAllLevelToolTip" xml:space="preserve">
+    <value>Cuando está activado, se muestra desde el nivel 1.  
+Cuando está desactivado, se muestra desde el siguiente nivel.</value>
+  </data>
+  <data name="AswOffset" xml:space="preserve">
+    <value>Modificador de ASW</value>
+  </data>
+  <data name="ASWModernizationToolTip" xml:space="preserve">
+    <value>Modifica el valor ASW actual en una cantidad especificada.</value>
+  </data>
+  <data name="ColumnSortieCount" xml:space="preserve">
+    <value>Número de salidas</value>
+  </data>
+  <data name="ColumnEquipment" xml:space="preserve">
+    <value>Equipo ASW</value>
+  </data>
+  <data name="NoShipsAvailable" xml:space="preserve">
+    <value>No hay barcos disponibles.  
+Por favor, vuelve a la pantalla del puerto principal.</value>
+  </data>
+  <data name="ShowAllASWEquipments" xml:space="preserve">
+    <value>Mostrar todos los equipos ASW</value>
+  </data>
+  <data name="SortieExp" xml:space="preserve">
+    <value>EXP por salida</value>
+  </data>
+  <data name="SearchInFleetToolTip" xml:space="preserve">
+    <value>Mostrar solo los barcos de las flotas actuales.</value>
+  </data>
+  <data name="SearchInFleet" xml:space="preserve">
+    <value>Buscar en flota</value>
+  </data>
+  <data name="DisplayCriteria" xml:space="preserve">
+    <value>Criterios de visualización</value>
   </data>
 </root>

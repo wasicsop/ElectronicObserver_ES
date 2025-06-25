@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,134 +117,170 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ItemNameToolTip" xml:space="preserve">
-    <value>Specify item name to search.</value>
+  <data name="ShipView_Name" xml:space="preserve">
+    <value>Barco:</value>
   </data>
-  <data name="ShipNameToolTip" xml:space="preserve">
-    <value>Specify ship name to search.</value>
+  <data name="ShipView_Fleet" xml:space="preserve">
+    <value>Flota</value>
   </data>
-  <data name="EquipmentNameToolTip" xml:space="preserve">
-    <value>Specify equipment name to search.</value>
+  <data name="DialogGroupDeleteTitle" xml:space="preserve">
+    <value>Confirmación</value>
   </data>
-  <data name="DateBeginToolTip" xml:space="preserve">
-    <value>Specify start date to search.</value>
+  <data name="None" xml:space="preserve">
+    <value>(ninguno)</value>
   </data>
-  <data name="Start" xml:space="preserve">
-    <value>Start</value>
+  <data name="MenuGroup_Copy" xml:space="preserve">
+    <value>&amp;Copiar...</value>
   </data>
-  <data name="End" xml:space="preserve">
-    <value>End</value>
+  <data name="MenuGroup_Delete" xml:space="preserve">
+    <value>&amp;Eliminar</value>
   </data>
-  <data name="DateEndToolTip" xml:space="preserve">
-    <value>Specify end date to search.</value>
+  <data name="MenuGroup_AutoUpdate" xml:space="preserve">
+    <value>Actualizar automáticamente</value>
   </data>
-  <data name="RankSToolTip" xml:space="preserve">
-    <value>S-rank</value>
+  <data name="ShipView_ShipType" xml:space="preserve">
+    <value>Tipo</value>
   </data>
-  <data name="RankAToolTip" xml:space="preserve">
-    <value>A-rank</value>
+  <data name="DialogErrorTitle" xml:space="preserve">
+    <value>Error</value>
   </data>
-  <data name="RankBToolTip" xml:space="preserve">
-    <value>B-rank</value>
+  <data name="ShipView_Slot1" xml:space="preserve">
+    <value>Eq 1</value>
   </data>
-  <data name="RankXToolTip" xml:space="preserve">
-    <value>Defeat</value>
+  <data name="ShipView_Slot2" xml:space="preserve">
+    <value>Eq 2</value>
   </data>
-  <data name="NodeSelection" xml:space="preserve">
-    <value>Diff</value>
+  <data name="ShipView_Slot3" xml:space="preserve">
+    <value>Eq 3</value>
   </data>
-  <data name="MapDifficultyToolTip" xml:space="preserve">
-    <value>Specify map difficulty.</value>
+  <data name="ShipView_Slot4" xml:space="preserve">
+    <value>Eq 4</value>
   </data>
-  <data name="ButtonRun" xml:space="preserve">
-    <value>Search</value>
+  <data name="ShipView_Slot5" xml:space="preserve">
+    <value>Eq 5</value>
   </data>
-  <data name="RecordView_Name" xml:space="preserve">
-    <value>Name</value>
+  <data name="DialogCouldNotRenameGroupDescription" xml:space="preserve">
+    <value>No se pudo cambiar el nombre del grupo.</value>
   </data>
-  <data name="RecordView_Date" xml:space="preserve">
-    <value>Date</value>
-  </data>
-  <data name="RecordView_Map" xml:space="preserve">
-    <value>Map</value>
-  </data>
-  <data name="RecordView_Rank" xml:space="preserve">
-    <value>Rank</value>
-  </data>
-  <data name="RecordView_RankS" xml:space="preserve">
-    <value>S-rank</value>
-  </data>
-  <data name="RecordView_RankA" xml:space="preserve">
-    <value>A-rank</value>
-  </data>
-  <data name="RecordView_RankB" xml:space="preserve">
-    <value>B-rank</value>
-  </data>
-  <data name="MapAreaIDToolTip" xml:space="preserve">
-    <value>Specify area ID.
-* ID above 20 are event area.</value>
-  </data>
-  <data name="MapInfoIDToolTip" xml:space="preserve">
-    <value>Specify map ID.</value>
-  </data>
-  <data name="MapCellIDToolTip" xml:space="preserve">
-    <value>Specify node ID.</value>
-  </data>
-  <data name="MergeRows" xml:space="preserve">
-    <value>Combine</value>
-  </data>
-  <data name="MergeRowsToolTip" xml:space="preserve">
-    <value>Combine multiple entries of the same drop.</value>
-  </data>
-  <data name="LabelShipName" xml:space="preserve">
-    <value>Ship</value>
-  </data>
-  <data name="LabelItemName" xml:space="preserve">
-    <value>Item</value>
-  </data>
-  <data name="LabelEquipmentName" xml:space="preserve">
-    <value>Equipment</value>
+  <data name="MenuGroup_ShowStatusBar" xml:space="preserve">
+    <value>Mostrar barra de estado</value>
   </data>
   <data name="Title" xml:space="preserve">
-    <value>Drop Log</value>
+    <value>Grupo</value>
   </data>
-  <data name="NameAny" xml:space="preserve">
-    <value>(All)</value>
+  <data name="DialogGroupCopyDescription" xml:space="preserve">
+    <value>Nombre del Grupo</value>
   </data>
-  <data name="NameNotExist" xml:space="preserve">
-    <value>(None)</value>
+  <data name="DialogGroupAddDescription" xml:space="preserve">
+    <value>Nombre del Grupo</value>
   </data>
-  <data name="NameFullPort" xml:space="preserve">
-    <value>(Full)</value>
+  <data name="DialogGroupRenameDescription" xml:space="preserve">
+    <value>Nombre del Grupo</value>
   </data>
-  <data name="NameExist" xml:space="preserve">
-    <value>(Drop)</value>
+  <data name="ShipView_NextRemodel" xml:space="preserve">
+    <value>Remodelación</value>
   </data>
-  <data name="Boss" xml:space="preserve">
-    <value> [Boss]</value>
+  <data name="SelectedShips" xml:space="preserve">
+    <value>Seleccionados: {0} / {1} barcos</value>
   </data>
-  <data name="BattleHistoryNotFound" xml:space="preserve">
-    <value>Battle history was not found.</value>
+  <data name="ShipView_RepairSteel" xml:space="preserve">
+    <value>Coste de acero para reparación</value>
   </data>
-  <data name="SearchingBattleHistory" xml:space="preserve">
-    <value>Searching battle history...</value>
+  <data name="SortId" xml:space="preserve">
+    <value>ID de orden</value>
   </data>
-  <data name="OpenBattleHistory" xml:space="preserve">
-    <value>Open battle history {0}.</value>
+  <data name="MenuMember_CSVOutput" xml:space="preserve">
+    <value>&amp;Exportar CSV</value>
   </data>
-  <data name="CouldNotOpenBattleHistory" xml:space="preserve">
-    <value>Could not open battle history.</value>
+  <data name="RepairTimeUnit" xml:space="preserve">
+    <value>Tiempo de reparación por 1 HP</value>
   </data>
-  <data name="SelectedItems" xml:space="preserve">
-    <value>Selected items: {0} / {1} ({2:p1})</value>
+  <data name="ExportToCsvFail" xml:space="preserve">
+    <value>Error al exportar el CSV del grupo de barcos.</value>
   </data>
-  <data name="Today" xml:space="preserve">
-    <value>Today</value>
+  <data name="DialogGroupAddToGroupDescription" xml:space="preserve">
+    <value>Seleccione el grupo al que desea añadir:  </value>
   </data>
-  <data name="IgnoreCommonDrops" xml:space="preserve">
-    <value>Ignore common drops</value>
+  <data name="DialogGroupAddToGroupTitle" xml:space="preserve">
+    <value>Seleccionar grupo</value>
   </data>
-  <data name="StatusInfo" xml:space="preserve">
-    <value>-</value>
+  <data name="AutoSortDialogError" xml:space="preserve">
+    <value>ShipGroup: se produjo un error en el cuadro de diálogo de ordenación automática.  </value>
+  </data>
+  <data name="FilterDialogError" xml:space="preserve">
+    <value>ShipGroup: se produjo un error en el cuadro de diálogo del filtro.</value>
+  </data>
+  <data name="ColumnSettingError" xml:space="preserve">
+    <value>ShipGroup: se produjo un error en el cuadro de diálogo de configuración de columnas.  </value>
+  </data>
+  <data name="DialogGroupCanNotBeModifiedDescription" xml:space="preserve">
+    <value>Este grupo no se puede modificar.  </value>
+  </data>
+  <data name="DialogGroupRenameTitle" xml:space="preserve">
+    <value>Cambiar nombre del grupo</value>
+  </data>
+  <data name="DialogCouldNotDeleteGroupDescription" xml:space="preserve">
+    <value>No se pudo eliminar el grupo.</value>
+  </data>
+  <data name="DialogGroupDeleteDescription" xml:space="preserve">
+    <value>¿Desea eliminar el grupo [{0}]?
+Esta acción no se puede deshacer.</value>
+  </data>
+  <data name="DialogGroupCopyTitle" xml:space="preserve">
+    <value>Copiar grupo</value>
+  </data>
+  <data name="DialogGroupAddTitle" xml:space="preserve">
+    <value>Añadir grupo</value>
+  </data>
+  <data name="Dock" xml:space="preserve">
+    <value>En dique</value>
+  </data>
+  <data name="GroupDoesNotExist" xml:space="preserve">
+    <value>Error: se intentó acceder a un grupo inexistente. Por favor, contacte con el desarrollador.  </value>
+  </data>
+  <data name="TotalAndAverageExp" xml:space="preserve">
+    <value>Exp: Total {0:N0} / Promedio {1:N2}  </value>
+  </data>
+  <data name="TotalAndAverageLevel" xml:space="preserve">
+    <value>Niveles: Total {0:N0} / Promedio {1:N2} </value>
+  </data>
+  <data name="MenuGroup_Rename" xml:space="preserve">
+    <value>&amp;Cambiar nombre del grupo</value>
+  </data>
+  <data name="MenuGroup_Add" xml:space="preserve">
+    <value>&amp;Agregar grupo</value>
+  </data>
+  <data name="MenuMember_SortOrder" xml:space="preserve">
+    <value>Configurar orden automático &amp;dort</value>
+  </data>
+  <data name="MenuMember_ColumnFilter" xml:space="preserve">
+    <value>Configuración de columnas &amp;columns...</value>
+  </data>
+  <data name="MenuMember_Filter" xml:space="preserve">
+    <value>&amp;Configurar filtro</value>
+  </data>
+  <data name="MenuMember_Exclude" xml:space="preserve">
+    <value>&amp;Excluir</value>
+  </data>
+  <data name="MenuMember_CreateGroup" xml:space="preserve">
+    <value>Crear nuevo grupo &amp;new group ...</value>
+  </data>
+  <data name="MenuMember_AddToGroup" xml:space="preserve">
+    <value>&amp;Agregar al grupo</value>
+  </data>
+  <data name="ShipView_SallyArea" xml:space="preserve">
+    <value>Etiqueta de flota</value>
+  </data>
+  <data name="ShipCount" xml:space="preserve">
+    <value>Asignadas: {0} barcos</value>
+  </data>
+  <data name="ShipView_NightBattlePower" xml:space="preserve">
+    <value>Poder en batalla nocturna</value>
+  </data>
+  <data name="ShipView_RepairFuel" xml:space="preserve">
+    <value>Coste de combustible para reparación</value>
+  </data>
+  <data name="ShipView_RepairTime" xml:space="preserve">
+    <value>Tiempo de reparación</value>
   </data>
 </root>
