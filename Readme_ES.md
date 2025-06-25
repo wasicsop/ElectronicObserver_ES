@@ -6,7 +6,7 @@
 
 ![captura de pantalla](https://cloud.githubusercontent.com/assets/6127734/21392624/18089a70-c7d4-11e6-8f85-55b877aef5b3.jpg)
 
-Electronic Observer es un navegador diseñado para ayudar a los almirantes a gestionar sus flotas. Está lleno de funciones para proporcionar información adicional a los almirantes y ayudarles a planificar y jugar KanColle de manera más eficiente.
+Electronic Observer es un navegador diseñado para ayudar a los almirantes a gestionar sus flotas. Está lleno de funcionalidades para proporcionar información adicional y ayudarles a planificar y jugar KanColle de manera más eficiente.
 
 ## Características principales
 
@@ -18,17 +18,17 @@ A continuación se muestra una breve explicación. **Para más detalles, por fav
 * Vista de flota (estado \[en expedición, necesita suministros, etc.], poder aéreo, LoS)
 
   * Vista individual de los barcos (nivel, HP, condición, suministros, espacios de equipamiento)
-  * Lista de flotas (ver el estado de todas las flotas de un vistazo)
+  * Lista de flotas (ver el estado de todas las flotas en un vistazo)
   * Agrupación (agrupa tus barcos y hazles seguimiento de forma diferente)
-* Dique seco (barcos actuales, tiempo restante)
-* Arsenal (construcción actual, tiempo restante)
+* Dique seco (barcos reparando, tiempo restante)
+* Arsenal (construcción, tiempo restante)
 * Cuartel general (estado del almirante, visualización de recursos)
 * Brújula (ruta próxima, vista de la flota enemiga, ganancias/pérdidas de recursos)
 * Batalla (predicción de batalla y resultados)
-* Información (CGs no vistos, resultados de fabricación, medidores de mapas)
+* Información (CGs no vistos, resultados de construción, medidores de mapas)
 * Misiones (con seguimiento completo)
 * Enciclopedia (de barcos y equipamiento)
-* Lista de equipamiento
+* Listado de equipamiento
 * Notificaciones (expediciones, reparación, daño crítico, y más)
 * Registros (mantén registros de drops, construcciones y desarrollos)
 * Captura de ventanas (captura ventanas externas dentro del programa)
