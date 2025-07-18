@@ -440,8 +440,15 @@ public partial class FleetImageGeneratorViewModel : WindowViewModelBase
 
 		HqLevel = model.DeckBuilderData.HqLevel;
 
-		Title = model.Title;
-		Comment = model.Comment;
+		if (!string.IsNullOrEmpty(model.Title))
+		{
+			Title = model.Title;
+		}
+
+		if (!string.IsNullOrEmpty(model.Comment))
+		{
+			Comment = model.Comment;
+		}
 
 		Fleet1Visible = model.Fleet1Visible;
 		Fleet2Visible = model.Fleet2Visible;
