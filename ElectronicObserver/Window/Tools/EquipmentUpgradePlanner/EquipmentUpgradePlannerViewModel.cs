@@ -46,12 +46,12 @@ public partial class EquipmentUpgradePlannerViewModel : WindowViewModelBase
 		EquipmentUpgradePlanManager.PlanFinished += (_, _) => Update();
 		EquipmentUpgradePlanManager.PlanFinished += (_, _) => UpdateTotalCost();
 		EquipmentUpgradePlanManager.PlanCostUpdated += (_, _) => UpdateTotalCost();
-		EquipmentUpgradePlanManager.PlanEquipmentMasterUpdated += (_, _) => Update(); 
+		EquipmentUpgradePlanManager.PlanEquipmentMasterUpdated += (_, _) => Update();
 		Filters.PropertyChanged += (_, _) => Update();
 		Update();
 		UpdateTotalCost();
 	}
-	
+
 	[RelayCommand]
 	private void AddEquipmentPlan()
 	{
@@ -81,7 +81,7 @@ public partial class EquipmentUpgradePlannerViewModel : WindowViewModelBase
 		if (equipment != null)
 		{
 			EquipmentUpgradePlanItemViewModel newPlan = EquipmentUpgradePlanManager.MakePlanViewModel(new());
-			
+
 			// Use a setting to set default level ?
 			newPlan.DesiredUpgradeLevel = UpgradeLevel.Max;
 			newPlan.EquipmentMasterDataId = equipment.EquipmentId;
