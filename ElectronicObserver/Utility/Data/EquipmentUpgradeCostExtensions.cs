@@ -174,6 +174,23 @@ public static class EquipmentUpgradeCostExtensions
 					});
 				}
 			}
+
+			foreach (EquipmentUpgradeImprovementCostItemDetail extraEquipment in extraCost.Equipments)
+			{
+				if (levelCost.EquipmentDetail.Find(eq => eq.Id == extraEquipment.Id) is
+					{ } foundDetail)
+				{
+					foundDetail.Count += extraEquipment.Count;
+				}
+				else
+				{
+					levelCost.EquipmentDetail.Add(new()
+					{
+						Id = extraEquipment.Id,
+						Count = extraEquipment.Count,
+					});
+				}
+			}
 		}
 	}
 
