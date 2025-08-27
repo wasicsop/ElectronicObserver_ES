@@ -85,7 +85,7 @@ public class WrongUpgradesCostIssueReporter(ElectronicObserverApiService api)
 		// this is to avoid reporting cost when the issue is just that the ship can upgrade something, but the upgrade data hasn't been updated yet
 		if (expectedCostNoSlider.Ammo is 0 && expectedCostNoSlider.Fuel is 0 && expectedCostNoSlider.Bauxite is 0 && expectedCostNoSlider.Steel is 0)
 		{
-			if (KCDatabase.Instance.Translation.EquipmentUpgrade.UpgradeList.Any(upgrade => upgrade.EquipmentId == Equipment.EquipmentID)) return;
+			if (KCDatabase.Instance.Translation.EquipmentUpgrade.UpgradeList.Any(upgrade => upgrade.EquipmentId == Equipment.EquipmentID && upgrade.Improvement.Count > 0)) return;
 		}
 
 		if (HasIssue(expectedCostSlider, expectedCostNoSlider, response, baseCostResponse))
