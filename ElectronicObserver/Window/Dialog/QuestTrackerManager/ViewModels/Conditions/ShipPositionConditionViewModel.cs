@@ -106,6 +106,8 @@ public partial class ShipPositionConditionViewModel : ObservableObject, IConditi
 			};
 		}
 
+		ShipSelectorViewModel.ShowDialog();
+
 		if (ShipSelectorViewModel.SelectedShip is null) return;
 
 		Ship = ShipSelectorViewModel.SelectedShip.MasterShip;
