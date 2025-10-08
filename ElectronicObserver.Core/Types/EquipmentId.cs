@@ -558,4 +558,7 @@ public enum EquipmentId
 	SecondaryGun_10cm56SingleHighangleGun_ConcentratedDeployment = 556,
 	CarrierBasedBomber_Type0FighterModel62Kai_NightFighterbomber = 557,
 	CarrierBasedBomber_Type0FighterModel62Kai_SkilledNightFighterbomber = 558,
+	CarrierBasedTorpedo_Ju87D4_Fliegerass = 559,
+	CarrierBasedFighter_Bf109T3_G = 560,
+	JetBomber_Ho229 = 561,
 }

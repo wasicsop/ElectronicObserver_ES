@@ -71,6 +71,11 @@ public static class GameDataExtensions
 			ship.HPCurrent = hp;
 		}
 
+		if (shipData.Luck is int luck)
+		{
+			ship.LuckBase = luck;
+		}
+
 		return ApplyFitBonus(ship, shipData);
 	}
 
