@@ -131,7 +131,7 @@ public class SortieCostViewModel : ObservableObject
 		ResourceGain = GetResourceGain(db, toolService, sortie);
 		SinkingResourceGain = GetSinkingResourceGain(db, toolService, sortie);
 
-		TotalCost = TotalSupplyCost + TotalRepairCost + SortieFleetJetCost + TotalAirBaseSortieCost + TotalAirBaseSupplyCost;
+		TotalCost = TotalSupplyCost + TotalRepairCost + SortieFleetJetCost + TotalAirBaseSortieCost + TotalAirBaseSupplyCost + AirBaseJetCost;
 		TotalCost -= (ResourceGain + SinkingResourceGain);
 
 		DamageStateCounts = repairCostCalculator.DamageStateCounts(FleetsBeforeSortie, FleetsAfterSortie, SortieFleetId, IsCombinedFleet);
