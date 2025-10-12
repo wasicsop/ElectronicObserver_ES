@@ -32,7 +32,7 @@
 			</Interaction.Behaviors>
 
 			<DataGrid.Columns>
-				<DataGridTemplateColumn>
+				<DataGridTemplateColumn SortMemberPath="Ship.SortID">
 					<DataGridTemplateColumn.CellTemplate>
 						<DataTemplate DataType="local:ShipViewModel">
 							<Image Height="32" Source="{Binding Image^}" />

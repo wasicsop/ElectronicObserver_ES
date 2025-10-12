@@ -33,7 +33,12 @@
 			</Interaction.Behaviors>
 
 			<DataGrid.Columns>
-				<DataGridTemplateColumn>
+				<DataGridTextColumn
+                    x:DataType="local:EquipmentViewModel"
+                    Binding="{Binding Equipment.EquipmentID}"
+                    Header="ID"
+                    />
+				<DataGridTemplateColumn SortMemberPath="Equipment.MasterEquipment.IconTypeTyped">
 					<DataGridTemplateColumn.CellTemplate>
 						<DataTemplate DataType="local:EquipmentViewModel">
 							<controls:EquipmentIcon IconType="{Binding Equipment.MasterEquipment.IconTypeTyped}" />
