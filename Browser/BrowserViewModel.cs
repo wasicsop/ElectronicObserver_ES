@@ -37,7 +37,7 @@ public abstract partial class BrowserViewModel : ObservableObject, IBrowser
 	protected string? ProxySettings { get; private set; }
 
 	protected Size KanColleSize { get; } = new(1200, 720);
-	protected string KanColleUrl => "https://play.games.dmm.com/game/kancolle/";
+	protected string KanColleUrl => "https://play.games.dmm.com/game/kancolle";
 
 	public bool ZoomFit { get; set; }
 	public string CurrentZoom { get; set; } = "";
@@ -227,6 +227,22 @@ public abstract partial class BrowserViewModel : ObservableObject, IBrowser
 			if (node)
 			{
 				document.head.removeChild(node);
+			}
+		""";
+
+	protected string DMMScript =>
+		"""
+			try
+			{
+				if (DMM.netgame.reloadDialog)
+				{
+					DMM.netgame.reloadDialog = function (){};
+				}
+			}
+			catch(e)
+			{
+				// todo: "DMM" doesn't seem to exist anymore so there's always an error here
+				// alert("DMMによるページ更新ダイアログの非表示に失敗しました: " + e);
 			}
 		""";
 
