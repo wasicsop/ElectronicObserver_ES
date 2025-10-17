@@ -160,7 +160,11 @@ public class CefSharpViewModel : BrowserViewModel
 
 	private void Browser_LoadingStateChanged(object? sender, LoadingStateChangedEventArgs e)
 	{
-		SetCookie();
+		if (e.Browser.MainFrame.Url.Contains("not-available-in-your-region", StringComparison.OrdinalIgnoreCase))
+		{
+			SetCookie();
+			Navigate(KanColleUrl);
+		}
 
 		// DocumentCompleted に相当?
 		// note: 非 UI thread からコールされるので、何かしら UI に触る場合は適切な処置が必要
@@ -182,10 +186,13 @@ public class CefSharpViewModel : BrowserViewModel
 
 	private void SetCookie()
 	{
+		DateTime expiresOn = DateTime.Now.AddYears(6);
+
 		string cookieScript = $$"""
 			try
 			{
-				document.cookie="ckcy=1;expires={{DateTime.Now.AddYears(6):ddd, dd MMM yyyy HH:mm:ss 'GMT'}};path=/netgame;domain=.dmm.com";
+				document.cookie='ckcy_remedied_check=ec_mrnhbtk;expires={{expiresOn:ddd, dd MMM yyyy HH:mm:ss 'GMT'}};path=/;domain=.dmm.com';
+				document.cookie='ckcy=1;expires={{expiresOn:ddd, dd MMM yyyy HH:mm:ss 'GMT'}};path=/;domain=.dmm.com';
 			}
 			catch
 			{
@@ -250,13 +257,13 @@ public class CefSharpViewModel : BrowserViewModel
 
 			if (!StyleSheetApplied)
 			{
-				mainframe.EvaluateScriptAsync(string.Format(Resources.RestoreScript, StyleClassId));
-				gameframe.EvaluateScriptAsync(string.Format(Resources.RestoreScript, StyleClassId));
+				mainframe.EvaluateScriptAsync(RestoreScript);
+				gameframe.EvaluateScriptAsync(RestoreScript);
 			}
 			else
 			{
-				mainframe.EvaluateScriptAsync(string.Format(Resources.PageScript, StyleClassId));
-				gameframe.EvaluateScriptAsync(string.Format(Resources.FrameScript, StyleClassId));
+				mainframe.EvaluateScriptAsync(PageScript);
+				gameframe.EvaluateScriptAsync(FrameScript);
 			}
 		}
 		catch (Exception ex)
@@ -272,7 +279,7 @@ public class CefSharpViewModel : BrowserViewModel
 		IBrowser browser = CefSharp.GetBrowser();
 		IFrame frame = browser.MainFrame;
 
-		return (frame.Url.Contains(@"http://www.dmm.com/netgame/social/")) switch
+		return (frame.Url.Contains(@"http://www.dmm.com/netgame/social/") || frame.Url.Contains(KanColleUrl)) switch
 		{
 			true => frame,
 			_ => null,
@@ -288,7 +295,7 @@ public class CefSharpViewModel : BrowserViewModel
 			.GetFrameIdentifiers()
 			.Select(id => browser.GetFrameByIdentifier(id));
 
-		return frames.FirstOrDefault(f => f.Url.Contains(@"http://osapi.dmm.com/gadgets/"));
+		return frames.FirstOrDefault(f => f.Url.Contains(@"http://osapi.dmm.com/gadgets/") || f.Url.Contains(@"osapi.dmm.com/gadgets/ifr?aid=854854"));
 	}
 
 	private IFrame? GetKanColleFrame()
