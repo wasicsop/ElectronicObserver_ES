@@ -1376,8 +1376,6 @@ public sealed class Configuration
 
 			public bool IsBrowserContextMenuEnabled { get; set; }
 
-			public bool UseHttps { get; set; } = true;
-
 			public ConfigFormBrowser()
 			{
 				Browser = BrowserOption.CefSharp;
