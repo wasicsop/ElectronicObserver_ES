@@ -106,16 +106,17 @@ public class CefSharpViewModel : BrowserViewModel
 		}
 
 		if (!Configuration.HardwareAccelerationEnabled)
+		{
 			settings.DisableGpuAcceleration();
+		}
 
 		settings.CefCommandLineArgs.Add("proxy-server", ProxySettings);
 		settings.CefCommandLineArgs.Add("enable-features", "EnableDrDc");
+
 		// prevent CEF from taking over media keys
-		if (settings.CefCommandLineArgs.ContainsKey("disable-features"))
+		if (settings.CefCommandLineArgs.TryGetValue("disable-features", out string? value))
 		{
-			List<string> disabledFeatures = settings.CefCommandLineArgs["disable-features"]
-				.Split(",")
-				.ToList();
+			List<string> disabledFeatures = [.. value.Split(",")];
 
 			disabledFeatures.Add("HardwareMediaKeyHandling");
 
@@ -125,7 +126,6 @@ public class CefSharpViewModel : BrowserViewModel
 		{
 			settings.CefCommandLineArgs.Add("disable-features", "HardwareMediaKeyHandling");
 		}
-
 
 		if (Configuration.ForceColorProfile)
 		{
