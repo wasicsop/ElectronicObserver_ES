@@ -245,7 +245,11 @@ public class WebView2ViewModel : BrowserViewModel
 		WebView2.CoreWebView2.IsDocumentPlayingAudioChanged += OnDocumentPlayingAudioChanged;
 		WebView2.PreviewKeyDown += Browser_PreviewKeyDown;
 		WebView2.CoreWebView2.Navigate(KanColleUrl);
-		await WebView2.CoreWebView2.AddScriptToExecuteOnDocumentCreatedAsync(OverrideReloadDialogScript);
+
+		if (Configuration.IsDMMreloadDialogDestroyable)
+		{
+			await WebView2.CoreWebView2.AddScriptToExecuteOnDocumentCreatedAsync(OverrideReloadDialogScript);
+		}
 	}
 
 	private void OnDocumentPlayingAudioChanged(object? sender, object o)
