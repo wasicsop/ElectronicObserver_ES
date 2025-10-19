@@ -230,20 +230,22 @@ public abstract partial class BrowserViewModel : ObservableObject, IBrowser
 			}
 		""";
 
-	protected string DMMScript =>
+	/// <summary>
+	/// The reload dialog gets called as me("エラーが発生したため、ページ更新します。") in PcAggregate.
+	/// "me" is imported as import {w as me, r as fe} from "./zodiosErrorHandling-B0N-1vhS.js";
+	/// In zodiosErrorHandling, the export has "u as w".
+	/// "u" is defined as u = o => window.confirm(o).
+	/// So overriding window.confirm to always return false should suppress the dialog.
+	/// </summary>
+	/// <remarks>todo: Need to test if this script gets executed fast enough to override everything in both CefSharp and WebView2.</remarks>
+	protected string OverrideReloadDialogScript =>
 		"""
-			try
+			Object.defineProperty(window, 'confirm',
 			{
-				if (DMM.netgame.reloadDialog)
-				{
-					DMM.netgame.reloadDialog = function (){};
-				}
-			}
-			catch(e)
-			{
-				// todo: "DMM" doesn't seem to exist anymore so there's always an error here
-				// alert("DMMによるページ更新ダイアログの非表示に失敗しました: " + e);
-			}
+				configurable: true,
+				writable: true,
+				value: function() { return false; }
+			});
 		""";
 
 	protected BrowserViewModel(string host, int port, string culture)
@@ -383,8 +385,6 @@ public abstract partial class BrowserViewModel : ObservableObject, IBrowser
 
 	protected abstract void ApplyStyleSheet();
 
-	protected abstract void DestroyDMMreloadDialog();
-
 	protected abstract void TryGetVolumeManager();
 
 	private void VolumeChanged()
@@ -426,7 +426,6 @@ public abstract partial class BrowserViewModel : ObservableObject, IBrowser
 		//ロード直後の適用ではレイアウトがなぜか崩れるのでこのタイミングでも適用
 		ApplyStyleSheet();
 		ApplyZoom();
-		DestroyDMMreloadDialog();
 
 		//起動直後はまだ音声が鳴っていないのでミュートできないため、この時点で有効化
 		SetVolumeState();

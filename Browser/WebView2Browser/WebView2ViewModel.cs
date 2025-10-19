@@ -245,6 +245,7 @@ public class WebView2ViewModel : BrowserViewModel
 		WebView2.CoreWebView2.IsDocumentPlayingAudioChanged += OnDocumentPlayingAudioChanged;
 		WebView2.PreviewKeyDown += Browser_PreviewKeyDown;
 		WebView2.CoreWebView2.Navigate(KanColleUrl);
+		await WebView2.CoreWebView2.AddScriptToExecuteOnDocumentCreatedAsync(OverrideReloadDialogScript);
 	}
 
 	private void OnDocumentPlayingAudioChanged(object? sender, object o)
@@ -404,7 +405,6 @@ public class WebView2ViewModel : BrowserViewModel
 		{
 			ApplyStyleSheet();
 			ApplyZoom();
-			DestroyDMMreloadDialog();
 		}
 	}
 
@@ -445,24 +445,6 @@ public class WebView2ViewModel : BrowserViewModel
 		catch (Exception ex)
 		{
 			SendErrorReport(ex.ToString(), FormBrowser.FailedToApplyStylesheet);
-		}
-	}
-
-	/// <summary>
-	/// DMMによるページ更新ダイアログを非表示にします。
-	/// </summary>
-	protected override void DestroyDMMreloadDialog()
-	{
-		if (WebView2 is not { IsInitialized: true }) return;
-		if (!Configuration.IsDMMreloadDialogDestroyable) return;
-
-		try
-		{
-			WebView2?.CoreWebView2.ExecuteScriptAsync(DMMScript);
-		}
-		catch (Exception ex)
-		{
-			SendErrorReport(ex.ToString(), FormBrowser.FailedToHideDmmRefreshDialog);
 		}
 	}
 

@@ -154,6 +154,7 @@ public class CefSharpViewModel : BrowserViewModel
 
 		CefSharp.BrowserSettings.StandardFontFamily = "Microsoft YaHei"; // Fixes text rendering position too high
 		CefSharp.LoadingStateChanged += Browser_LoadingStateChanged;
+		CefSharp.FrameLoadStart += BrowserOnFrameLoadStart;
 
 		Host.Child = CefSharp;
 	}
@@ -175,10 +176,25 @@ public class CefSharpViewModel : BrowserViewModel
 		{
 			ApplyStyleSheet();
 			ApplyZoom();
-			DestroyDMMreloadDialog();
 		});
 	}
+	
+	private void BrowserOnFrameLoadStart(object? sender, FrameLoadStartEventArgs e)
+	{
+		if (!e.Frame.IsMain) return;
+		if (Configuration is null) return;
+		if (!Configuration.IsDMMreloadDialogDestroyable) return;
 
+		try
+		{
+			e.Frame.ExecuteJavaScriptAsync(OverrideReloadDialogScript);
+		}
+		catch (Exception ex)
+		{
+			SendErrorReport(ex.ToString(), FormBrowser.FailedToHideDmmRefreshDialog);
+		}
+	}
+	
 	// タイミングによっては(特に起動時)、ブラウザの初期化が完了する前に Navigate() が呼ばれることがある
 	// その場合ロードに失敗してブラウザが白画面でスタートしてしまう（手動でログインページを開けば続行は可能だが）
 	// 応急処置として失敗したとき後で再試行するようにしてみる
@@ -308,22 +324,6 @@ public class CefSharpViewModel : BrowserViewModel
 			.Select(id => browser.GetFrameByIdentifier(id));
 
 		return frames.FirstOrDefault(f => f.Url.Contains(@"/kcs2/index.php"));
-	}
-
-	protected override void DestroyDMMreloadDialog()
-	{
-		if (Configuration is null) return;
-		if (!Configuration.IsDMMreloadDialogDestroyable) return;
-		if (CefSharp is not { IsBrowserInitialized: true }) return;
-
-		try
-		{
-			GetMainFrame()?.EvaluateScriptAsync(DMMScript);
-		}
-		catch (Exception ex)
-		{
-			SendErrorReport(ex.ToString(), FormBrowser.FailedToHideDmmRefreshDialog);
-		}
 	}
 
 	protected override void TryGetVolumeManager()
