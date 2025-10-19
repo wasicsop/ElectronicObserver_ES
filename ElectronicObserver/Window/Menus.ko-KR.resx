@@ -171,7 +171,4 @@
   <data name="Option" xml:space="preserve">
     <value>옵션(&amp;O)</value>
   </data>
-  <data name="Other_Zoom_current" xml:space="preserve">
-    <value>현재%</value>
-  </data>
 </root>
