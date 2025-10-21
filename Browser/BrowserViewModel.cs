@@ -147,12 +147,12 @@ public abstract partial class BrowserViewModel : ObservableObject, IBrowser
 						padding: 0,
 						width: 100%,
 						height: 0
-						background: none!important;
+						background: none !important;
 					}
 
 					#main-ntg
 					{
-						margin: 0!important;
+						margin: 0 !important;
 					}
 
 					.gamesResetStyle, gamesResetStyle *
@@ -160,11 +160,20 @@ public abstract partial class BrowserViewModel : ObservableObject, IBrowser
 						background: none !important;
 					}
 
+					/* hide ads */
+					.gamesResetStyle > header,
+					.gamesResetStyle > footer,
+					.gamesResetStyle > aside
+					{
+						display: none;
+					}
+
 					#game_frame
 					{
 						--game-frame-width: 1200px;
 						--game-frame-height: 720px;
-						position: absolute;
+						/* has to be fixed to avoid bugs when scrolling before stylesheet loads */
+						position: fixed;
 						top: 0;
 						left: 0;
 					}
