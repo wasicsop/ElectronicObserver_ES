@@ -10,6 +10,7 @@ using System.Windows.Media;
 using Avalonia;
 using Avalonia.Styling;
 using CommunityToolkit.Mvvm.DependencyInjection;
+using ElectronicObserver.Avalonia.Dialogs.ShipSelector;
 using ElectronicObserver.Avalonia.Services;
 using ElectronicObserver.Common;
 using ElectronicObserver.Core.Services;
@@ -25,7 +26,6 @@ using ElectronicObserver.Utility.ElectronicObserverApi.DataIssueLogs;
 using ElectronicObserver.ViewModels;
 using ElectronicObserver.ViewModels.Translations;
 using ElectronicObserver.Window.Control.ShipFilter;
-using ElectronicObserver.Window.Dialog.ShipPicker;
 using ElectronicObserver.Window.Settings;
 using ElectronicObserver.Window.Settings.Behavior;
 using ElectronicObserver.Window.Settings.BGM;
@@ -315,7 +315,6 @@ public partial class App
 			.AddSingleton<BonodereSubmissionTranslationViewModel>()
 			.AddSingleton<SenkaLeaderboardTranslationViewModel>()
 			// tools
-			.AddSingleton<ShipPickerViewModel>()
 			.AddSingleton<AutoRefreshViewModel>()
 			.AddSingleton<ShipTrainingPlanViewerViewModel>()
 			.AddSingleton<PhaseFactory>()
@@ -328,7 +327,6 @@ public partial class App
 			.AddSingleton<GameAssetDownloaderService>()
 			.AddSingleton<ImageLoadService>()
 			.AddSingleton<FileService>()
-			.AddSingleton<EquipmentPickerService>()
 			.AddSingleton<EquipmentUpgradePlanManager>()
 			.AddSingleton<TimeChangeService>()
 			.AddSingleton<ColorService>()
@@ -337,6 +335,7 @@ public partial class App
 			.AddSingleton<SenkaLeaderboardManager>()
 			.AddSingleton<BonodereSubmissionService>()
 			.AddSingleton<IClipboardService, ClipboardService>()
+			.AddSingleton<ShipSelectorFactory>()
 			// issue reporter
 			.AddSingleton<DataAndTranslationIssueReporter>()
 			.AddSingleton<FitBonusIssueReporter>()

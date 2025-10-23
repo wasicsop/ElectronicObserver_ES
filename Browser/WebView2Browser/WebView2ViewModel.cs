@@ -244,8 +244,12 @@ public class WebView2ViewModel : BrowserViewModel
 		WebView2.CoreWebView2.IsMuted = Configuration.IsMute;
 		WebView2.CoreWebView2.IsDocumentPlayingAudioChanged += OnDocumentPlayingAudioChanged;
 		WebView2.PreviewKeyDown += Browser_PreviewKeyDown;
-		SetCookie();
 		WebView2.CoreWebView2.Navigate(KanColleUrl);
+
+		if (Configuration.IsDMMreloadDialogDestroyable)
+		{
+			await WebView2.CoreWebView2.AddScriptToExecuteOnDocumentCreatedAsync(OverrideReloadDialogScript);
+		}
 	}
 
 	private void OnDocumentPlayingAudioChanged(object? sender, object o)
@@ -343,13 +347,6 @@ public class WebView2ViewModel : BrowserViewModel
 	{
 		if (WebView2?.CoreWebView2 == null) return;
 
-		// would probably be better if we could disable the https redirect but this should work for now
-		if (e.IsRedirected && e.Uri.Contains("https://www.dmm.com/netgame/social/-/gadgets/=/app_id=854854/"))
-		{
-			Navigate("http://www.dmm.com/netgame/social/-/gadgets/=/app_id=854854/");
-			return;
-		}
-
 		if (IsNavigating) return;
 
 		if (e.Uri.Contains(@"/rt.gsspat.jp/"))
@@ -399,12 +396,19 @@ public class WebView2ViewModel : BrowserViewModel
 
 	private void CoreWebView2_NavigationCompleted(object? sender, CoreWebView2NavigationCompletedEventArgs e)
 	{
+		if (sender is CoreWebView2 webView)
+		{
+			if (webView.Source.Contains("not-available-in-your-region", StringComparison.OrdinalIgnoreCase))
+			{
+				SetCookie();
+				Navigate(KanColleUrl);
+			}
+		}
+
 		if (e.IsSuccess)
 		{
 			ApplyStyleSheet();
 			ApplyZoom();
-			SetCookie();
-			DestroyDMMreloadDialog();
 		}
 	}
 
@@ -433,36 +437,18 @@ public class WebView2ViewModel : BrowserViewModel
 
 			if (!StyleSheetApplied)
 			{
-				WebView2.ExecuteScriptAsync(string.Format(Resources.RestoreScript, StyleClassId));
-				GameFrame.ExecuteScriptAsync(string.Format(Resources.RestoreScript, StyleClassId));
+				WebView2.ExecuteScriptAsync(RestoreScript);
+				GameFrame.ExecuteScriptAsync(RestoreScript);
 			}
 			else
 			{
-				WebView2.ExecuteScriptAsync(string.Format(Resources.PageScript, StyleClassId));
-				GameFrame.ExecuteScriptAsync(string.Format(Resources.FrameScript, StyleClassId));
+				WebView2.ExecuteScriptAsync(PageScript);
+				GameFrame.ExecuteScriptAsync(FrameScript);
 			}
 		}
 		catch (Exception ex)
 		{
 			SendErrorReport(ex.ToString(), FormBrowser.FailedToApplyStylesheet);
-		}
-	}
-
-	/// <summary>
-	/// DMMによるページ更新ダイアログを非表示にします。
-	/// </summary>
-	protected override void DestroyDMMreloadDialog()
-	{
-		if (WebView2 is not { IsInitialized: true }) return;
-		if (!Configuration.IsDMMreloadDialogDestroyable) return;
-
-		try
-		{
-			WebView2?.CoreWebView2.ExecuteScriptAsync(Resources.DMMScript);
-		}
-		catch (Exception ex)
-		{
-			SendErrorReport(ex.ToString(), FormBrowser.FailedToHideDmmRefreshDialog);
 		}
 	}
 
@@ -555,28 +541,17 @@ public class WebView2ViewModel : BrowserViewModel
 
 	private void SetCookie()
 	{
-		var gamesCookies = WebView2.CoreWebView2.CookieManager.CreateCookie("ckcy", "1", "games.dmm.com", "/");
-		gamesCookies.Expires = DateTime.Now.AddYears(6);
-		gamesCookies.IsSecure = true;
-		WebView2.CoreWebView2.CookieManager.AddOrUpdateCookie(gamesCookies);
-		var dmmCookie = WebView2.CoreWebView2.CookieManager.CreateCookie("ckcy", "1", ".dmm.com", "/");
-		dmmCookie.Expires = DateTime.Now.AddYears(6);
-		dmmCookie.IsSecure = true;
-		WebView2.CoreWebView2.CookieManager.AddOrUpdateCookie(dmmCookie);
-		var acccountsCookie = WebView2.CoreWebView2.CookieManager.CreateCookie("ckcy", "1", "accounts.dmm.com", "/");
-		acccountsCookie.Expires = DateTime.Now.AddYears(6);
-		acccountsCookie.IsSecure = true;
-		WebView2.CoreWebView2.CookieManager.AddOrUpdateCookie(acccountsCookie);
-		var osapiCookie = WebView2.CoreWebView2.CookieManager.CreateCookie("ckcy", "1", "osapi.dmm.com", "/");
-		acccountsCookie.Expires = DateTime.Now.AddYears(6);
-		acccountsCookie.IsSecure = true;
-		WebView2.CoreWebView2.CookieManager.AddOrUpdateCookie(osapiCookie);
-		var gameserverCookie = WebView2.CoreWebView2.CookieManager.CreateCookie("ckcy", "1", "203.104.209.7", "/");
-		acccountsCookie.Expires = DateTime.Now.AddYears(6);
-		WebView2.CoreWebView2.CookieManager.AddOrUpdateCookie(gameserverCookie);
-		var gamepathCookie = WebView2.CoreWebView2.CookieManager.CreateCookie("ckcy", "1", "www.dmm.com", "/netgame/");
-		acccountsCookie.Expires = DateTime.Now.AddYears(6);
-		WebView2.CoreWebView2.CookieManager.AddOrUpdateCookie(gamepathCookie);
+		if (WebView2 is null) return;
+
+		CoreWebView2Cookie cookie = WebView2.CoreWebView2.CookieManager.CreateCookie("ckcy", "1", ".dmm.com", "/");
+		cookie.Expires = DateTime.Now.AddYears(6);
+		cookie.IsSecure = true;
+		WebView2.CoreWebView2.CookieManager.AddOrUpdateCookie(cookie);
+
+		cookie = WebView2.CoreWebView2.CookieManager.CreateCookie("ckcy_remedied_check", "ec_mrnhbtk", ".dmm.com", "/");
+		cookie.Expires = DateTime.Now.AddYears(6);
+		cookie.IsSecure = true;
+		WebView2.CoreWebView2.CookieManager.AddOrUpdateCookie(cookie);
 	}
 
 	protected override void TryGetVolumeManager()

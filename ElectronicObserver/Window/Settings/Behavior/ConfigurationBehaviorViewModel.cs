@@ -1,12 +1,14 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using CommunityToolkit.Mvvm.Input;
+using ElectronicObserver.Avalonia.Dialogs.ShipSelector;
 using ElectronicObserver.Core.Types;
 using ElectronicObserver.Data;
 using ElectronicObserver.Data.DiscordRPC;
 using ElectronicObserver.Utility;
-using ElectronicObserver.Window.Dialog.ShipPicker;
+using ElectronicObserver.ViewModels;
 
 namespace ElectronicObserver.Window.Settings.Behavior;
 
@@ -40,8 +42,10 @@ public partial class ConfigurationBehaviorViewModel : ConfigurationViewModelBase
 
 	public RpcIconKind RpcIconKind { get; set; }
 
-	public IShipDataMaster? ShipUsedForRpcIcon { get; set; }
-	public ShipPickerViewModel ShipPickerViewModel { get; }
+	private IShipDataMaster? ShipUsedForRpcIcon { get; set; }
+	
+	private ShipSelectorFactory ShipSelectorFactory { get; }
+	private ShipSelectorViewModel ShipSelectorViewModel => ShipSelectorFactory.ConfigurationBehavior;
 
 	public string SelectedShipName => ShipUsedForRpcIcon switch
 	{
@@ -52,12 +56,15 @@ public partial class ConfigurationBehaviorViewModel : ConfigurationViewModelBase
 	public ConfigurationBehaviorViewModel(Configuration.ConfigurationData.ConfigControl config)
 	{
 		Translation = Ioc.Default.GetRequiredService<ConfigurationBehaviorTranslationViewModel>();
-		ShipPickerViewModel = Ioc.Default.GetRequiredService<ShipPickerViewModel>();
-
+		ShipSelectorFactory = Ioc.Default.GetRequiredService<ShipSelectorFactory>();
+		
 		Config = config;
 		Load(config);
 	}
 
+	[MemberNotNull(nameof(DiscordRPCMessage))]
+	[MemberNotNull(nameof(DiscordRPCApplicationId))]
+	[MemberNotNull(nameof(UpdateRepoURL))]
 	private void Load(Configuration.ConfigurationData.ConfigControl config)
 	{
 		ConditionBorder = config.ConditionBorder;
@@ -131,11 +138,10 @@ public partial class ConfigurationBehaviorViewModel : ConfigurationViewModelBase
 	{
 		RpcIconKind = RpcIconKind.Ship;
 
-		ShipPickerView shipPicker = new(ShipPickerViewModel);
+		ShipSelectorViewModel.ShowDialog();
 
-		if (shipPicker.ShowDialog() is true)
-		{
-			ShipUsedForRpcIcon = shipPicker.PickedShip;
-		}
+		if (ShipSelectorViewModel.SelectedShip is null) return;
+
+		ShipUsedForRpcIcon = ShipSelectorViewModel.SelectedShip.MasterShip;
 	}
 }

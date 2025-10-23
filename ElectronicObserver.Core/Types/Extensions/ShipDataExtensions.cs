@@ -647,4 +647,55 @@ public static class ShipDataExtensions
 		> 0 => DamageState.Heavy,
 		_ => DamageState.Sunk,
 	};
+
+	public static bool CanEquipDaihatsu(this IShipData ship)
+		=> ship.MasterShip.EquippableCategoriesTyped.Contains(EquipmentTypes.LandingCraft);
+
+	public static bool CanEquipTank(this IShipData ship)
+		=> ship.MasterShip.EquippableCategoriesTyped.Contains(EquipmentTypes.SpecialAmphibiousTank);
+
+	public static bool CanEquipFcf(this IShipData ship)
+		=> ship.MasterShip.EquippableCategoriesTyped.Contains(EquipmentTypes.CommandFacility);
+
+	private static List<EquipmentTypes> BulgeTypes { get; } =
+	[
+		EquipmentTypes.ExtraArmor,
+		EquipmentTypes.ExtraArmorMedium,
+		EquipmentTypes.ExtraArmorLarge,
+	];
+	
+	public static bool CanEquipBulge(this IShipData ship)
+		=> ship.MasterShip.EquippableCategoriesTyped.Intersect(BulgeTypes).Any();
+	
+	public static bool CanEquipSeaplaneFighter(this IShipData ship)
+		=> ship.MasterShip.EquippableCategoriesTyped.Contains(EquipmentTypes.SeaplaneFighter);
+
+	public static bool IsFinalRemodel(this IShipData ship) => ship.MasterShip.IsFinalRemodel();
+
+	public static bool IsFinalRemodel(this IShipDataMaster ship)
+	{
+		if (ship.RemodelAfterShipID <= 0) return true;
+
+		IShipDataMaster? masterShip = ship;
+		List<ShipId> visitedIds = [];
+		List<ShipId> finalRemodelIds = [];
+
+		while (true)
+		{
+			if (masterShip is null) return false;
+			if (finalRemodelIds.Contains(ship.ShipId)) return true;
+			if (finalRemodelIds.Contains(masterShip.ShipId)) return false;
+
+			if (visitedIds.Contains(masterShip.ShipId))
+			{
+				finalRemodelIds.Add(masterShip.ShipId);
+			}
+			else
+			{
+				visitedIds.Add(masterShip.ShipId);
+			}
+
+			masterShip = masterShip.RemodelAfterShip;
+		}
+	}
 }
