@@ -386,6 +386,9 @@ public class WebView2ViewModel : BrowserViewModel
 				""";
 
 			await WebView2!.CoreWebView2.ExecuteScriptAsync(script);
+
+			ApplyStyleSheet();
+			ApplyZoom();
 		}
 
 		e.Frame.NavigationCompleted += async (sender, args) =>
@@ -432,12 +435,6 @@ public class WebView2ViewModel : BrowserViewModel
 				Navigate(KanColleUrl);
 			}
 		}
-
-		if (e.IsSuccess)
-		{
-			ApplyStyleSheet();
-			ApplyZoom();
-		}
 	}
 
 	protected override void Exit()
@@ -455,23 +452,22 @@ public class WebView2ViewModel : BrowserViewModel
 		}
 	}
 
-	protected override void ApplyStyleSheet()
+	protected override async void ApplyStyleSheet()
 	{
 		if (WebView2 is not { IsInitialized: true }) return;
+		if (GameFrame is null) return;
 
 		try
 		{
-			if (GameFrame is null) return;
-
 			if (!StyleSheetApplied)
 			{
-				WebView2.ExecuteScriptAsync(RestoreScript);
-				GameFrame.ExecuteScriptAsync(RestoreScript);
+				await WebView2.ExecuteScriptAsync(RestoreScript);
+				await GameFrame.ExecuteScriptAsync(RestoreScript);
 			}
 			else
 			{
-				WebView2.ExecuteScriptAsync(PageScript);
-				GameFrame.ExecuteScriptAsync(FrameScript);
+				await WebView2.ExecuteScriptAsync(PageScript);
+				await GameFrame.ExecuteScriptAsync(FrameScript);
 			}
 		}
 		catch (Exception ex)
