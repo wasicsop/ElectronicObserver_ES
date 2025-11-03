@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,34 +117,29 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="EnemyFleetRecord_EnemyAirRaid" xml:space="preserve">
-    <value>적 기지 공습</value>
+  <data name="Automatic" xml:space="preserve">
+    <value>自動</value>
   </data>
-  <data name="RecordBase_RecordDoesNotExist" xml:space="preserve">
-    <value>파일 {0} 은(는) 존재하지 않습니다.</value>
+  <data name="Canvas" xml:space="preserve">
+    <value>キャンバス</value>
   </data>
-  <data name="RecordBase_FailedToLoadRecord" xml:space="preserve">
-    <value>파일 {0} 을(를) 불러오는데 실패했습니다.</value>
+  <data name="Browser" xml:space="preserve">
+    <value>ブラウザ</value>
   </data>
-  <data name="RecordBase_FailedToWriteRecord" xml:space="preserve">
-    <value>파일 {0} 을(를) 작성하는데 실패했습니다.</value>
+  <data name="Mode" xml:space="preserve">
+    <value>モード</value>
   </data>
-  <data name="RecordManager_RecordsSaved" xml:space="preserve">
-    <value>기록을 저장했습니다.</value>
-  </data>
-  <data name="RecordManager_FailedToSaveRecords" xml:space="preserve">
-    <value>기록을 저장하지 못했습니다.</value>
-  </data>
-  <data name="ShipParameterRecord_AswOutOfPredictedRange" xml:space="preserve">
-    <value>ShipParameter: {0} 의 대잠치가 예측 범위에서 벗어났습니다.( [{1} ~ {2}] ~ {3} )</value>
-  </data>
-  <data name="ShipParameterRecord_EvasionOutOfPredictedRange" xml:space="preserve">
-    <value>ShipParameter: {0} 의 회피치가 예측 범위에서 벗어났습니다.( [{1} ~ {2}] ~ {3} )</value>
-  </data>
-  <data name="ShipParameterRecord_LosOutOfPredictedRange" xml:space="preserve">
-    <value>ShipParameter: {0} 의 색적치가 예측 범위에서 벗어났습니다.( [{1} ~ {2}] ~ {3} )</value>
-  </data>
-  <data name="ShipParameterRecord_StockEquipmentUpdated" xml:space="preserve">
-    <value>{0} 의 초기 장비가 갱신되었습니다.</value>
+  <data name="Description" xml:space="preserve">
+    <value>自動モードではズーム率に基づいてスクリーンショットモードが選択されます
+ズーム率が100%未満の場合、キャンバスモードが使用されます
+それ以外の場合はブラウザモードが使用されます
+
+キャンバスモード
+ズーム率の影響を受けません
+テキスト（艦隊名、提督コメントなど）をキャプチャできません
+
+ブラウザモード
+ズーム率の影響を受けます
+テキストをキャプチャできます</value>
   </data>
 </root>
