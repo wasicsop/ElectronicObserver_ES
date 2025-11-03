@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,6 +15,7 @@ using Browser.CefSharpBrowser.CompassPrediction;
 using Browser.CefSharpBrowser.ExtraBrowser;
 using BrowserLibCore;
 using CefSharp;
+using CefSharp.DevTools.Page;
 using CefSharp.Handler;
 using CefSharp.WinForms;
 using Cef = CefSharp.Cef;
@@ -409,6 +411,8 @@ public class CefSharpViewModel : BrowserViewModel
 
 	protected override async void Screenshot()
 	{
+		if (Configuration is null) return;
+
 		int savemode = Configuration.ScreenShotSaveMode;
 		int format = Configuration.ScreenShotFormat;
 		string folderPath = Configuration.ScreenShotPath;
@@ -422,38 +426,7 @@ public class CefSharpViewModel : BrowserViewModel
 
 			if (image == null) return;
 
-			if (is32bpp)
-			{
-				if (image.PixelFormat != System.Drawing.Imaging.PixelFormat.Format32bppArgb)
-				{
-					Bitmap imgalt = new(image.Width, image.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
-					using (Graphics g = Graphics.FromImage(imgalt))
-					{
-						g.DrawImage(image, new Rectangle(0, 0, imgalt.Width, imgalt.Height));
-					}
-
-					image.Dispose();
-					image = imgalt;
-				}
-
-				// 不透明ピクセルのみだと jpeg 化されてしまうため、1px だけわずかに透明にする
-				Color temp = image.GetPixel(image.Width - 1, image.Height - 1);
-				image.SetPixel(image.Width - 1, image.Height - 1, System.Drawing.Color.FromArgb(252, temp.R, temp.G, temp.B));
-			}
-			else
-			{
-				if (image.PixelFormat != System.Drawing.Imaging.PixelFormat.Format24bppRgb)
-				{
-					Bitmap imgalt = new(image.Width, image.Height, System.Drawing.Imaging.PixelFormat.Format24bppRgb);
-					using (Graphics g = Graphics.FromImage(imgalt))
-					{
-						g.DrawImage(image, new Rectangle(0, 0, imgalt.Width, imgalt.Height));
-					}
-
-					image.Dispose();
-					image = imgalt;
-				}
-			}
+			image = TwitterDeteriorationBypass(image, is32bpp);
 
 			App.Current.Dispatcher.Invoke(() => LastScreenshot = image.ToBitmapSource());
 
@@ -464,24 +437,14 @@ public class CefSharpViewModel : BrowserViewModel
 				{
 					Directory.CreateDirectory(folderPath);
 
-					string ext;
-					System.Drawing.Imaging.ImageFormat imgFormat;
-
-					switch (format)
+					(ImageFormat imageFormat, string ext) = format switch
 					{
-						case 1:
-							ext = "jpg";
-							imgFormat = System.Drawing.Imaging.ImageFormat.Jpeg;
-							break;
-						case 2:
-						default:
-							ext = "png";
-							imgFormat = System.Drawing.Imaging.ImageFormat.Png;
-							break;
-					}
+						1 => (ImageFormat.Jpeg, "jpg"),
+						_ => (ImageFormat.Png, "png"),
+					};
 
 					string path = $"{folderPath}\\{DateTime.Now:yyyyMMdd_HHmmssff}.{ext}";
-					image.Save(path, imgFormat);
+					image.Save(path, imageFormat);
 					LastScreenShotPath = Path.GetFullPath(path);
 
 					AddLog(2, string.Format(FormBrowser.ScreenshotSavedTo, path));
@@ -491,7 +454,6 @@ public class CefSharpViewModel : BrowserViewModel
 					SendErrorReport(ex.ToString(), FormBrowser.FailedToSaveScreenshot);
 				}
 			}
-
 
 			// to clipboard
 			if ((savemode & 2) != 0)
@@ -528,7 +490,38 @@ public class CefSharpViewModel : BrowserViewModel
 	private async Task<Bitmap?> TakeScreenShot()
 	{
 		if (CefSharp is not { IsBrowserInitialized: true }) return null;
+		if (Configuration is null) return null;
 
+		ScreenshotMode screenshotMode = Configuration.ScreenshotMode;
+
+		if (screenshotMode is ScreenshotMode.Automatic)
+		{
+			if (CefSharp.Width < KanColleSize.Width)
+			{
+				screenshotMode = ScreenshotMode.Canvas;
+			}
+			else
+			{
+				screenshotMode = ScreenshotMode.Browser;
+			}
+		}
+
+		if (screenshotMode is ScreenshotMode.Canvas)
+		{
+			return await MakeCanvasScreenshot();
+		}
+
+		if (screenshotMode is ScreenshotMode.Browser)
+		{
+			return await MakeBrowserScreenshot(Configuration.ScreenShotFormat);
+		}
+
+		return null;
+
+	}
+
+	private async Task<Bitmap?> MakeCanvasScreenshot()
+	{
 		IFrame? kancolleFrame = GetKanColleFrame();
 
 		if (kancolleFrame is null)
@@ -568,6 +561,22 @@ public class CefSharpViewModel : BrowserViewModel
 
 			return bitmap;
 		}
+	}
+
+	private async Task<Bitmap?> MakeBrowserScreenshot(int format)
+	{
+		if (CefSharp is not { IsBrowserInitialized: true }) return null;
+
+		byte[] screenshotData = await CefSharp.CaptureScreenshotAsync(GetImageFormat(format));
+		await using MemoryStream memoryStream = new(screenshotData);
+
+		return (Bitmap)Image.FromStream(memoryStream, true);
+
+		static CaptureScreenshotFormat GetImageFormat(int format) => format switch
+		{
+			1 => CaptureScreenshotFormat.Jpeg,
+			_ => CaptureScreenshotFormat.Png,
+		};
 	}
 
 	protected override void Mute()
