@@ -98,7 +98,6 @@ public class PoiDbBattleSubmissionService(
 		FirstBattleData = JsonNode.Parse(firstBattleData)!;
 
 		AddPoiData(FirstBattleData, apiName);
-		AddSupport(FirstBattleData);
 	}
 
 	public void ProcessSecondBattle(string apiName, dynamic data)
@@ -107,25 +106,12 @@ public class PoiDbBattleSubmissionService(
 		SecondBattleData = JsonNode.Parse(secondBattleData)!;
 
 		AddPoiData(SecondBattleData, apiName);
-		// I'm not sure if support ever happens in the second battle
-		// air support for night to day battles maybe?
-		AddSupport(SecondBattleData);
 	}
 
 	private static void AddPoiData(JsonNode battle, string apiName)
 	{
 		battle["poi_path"] = JsonValue.Create($"/kcsapi/{apiName}");
 		battle["poi_time"] = JsonValue.Create(DateTimeOffset.UtcNow.ToUnixTimeMilliseconds());
-	}
-
-	private void AddSupport(JsonNode battleData)
-	{
-		JsonNode? support = battleData["api_support_info"] ?? battleData["api_n_support_info"];
-
-		if (FleetBeforeBattle is not null && support is not null)
-		{
-			FleetBeforeBattle.Support.Add(support);
-		}
 	}
 
 	public void ApiReqMap_NextOnResponseReceived(string apiname, dynamic data)
@@ -324,7 +310,6 @@ public class PoiDbBattleSubmissionService(
 				.Where(a => a.MapAreaID == world)
 				.Select(MakeAirBase)
 				.ToList(),
-			Support = [ /* this part gets added when processing the battle */ ],
 		};
 	}
 
