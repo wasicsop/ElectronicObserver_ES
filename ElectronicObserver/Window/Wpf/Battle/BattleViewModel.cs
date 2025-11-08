@@ -1308,11 +1308,10 @@ public partial class BattleViewModel : AnchorableViewModel
 	/// </summary>
 	private void SetDamageRate(BattleManager bm)
 	{
-
 		int rank = bm.PredictWinRank(out double friendrate, out double enemyrate);
 		bm.PredictedBattleRank = Constants.GetWinRank(rank);
-		DamageFriendText = friendrate.ToString("p1");
-		DamageEnemyText = enemyrate.ToString("p1");
+		DamageFriendText = HpRateDisplay(friendrate);
+		DamageEnemyText = HpRateDisplay(enemyrate);
 
 		if (bm.IsBaseAirRaid)
 		{
@@ -1325,6 +1324,9 @@ public partial class BattleViewModel : AnchorableViewModel
 			WinRankText = Constants.GetWinRank(rank);
 			WinRankForeColor = rank >= 4 ? WinRankColor_Win : WinRankColor_Lose;
 		}
+
+		// avoid 99.99% to get rounded to 100.0%
+		static string HpRateDisplay(double rate) => (Math.Floor(rate * 1000) / 1000).ToString("p1");
 	}
 
 	/// <summary>
