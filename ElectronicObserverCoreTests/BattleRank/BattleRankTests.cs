@@ -28,7 +28,7 @@ public class BattleRankTests(DatabaseFixture database)
 	private static string BasePath => Path.Join(DirectoryName, RelativePath);
 
 	private DatabaseFixture Database { get; } = database;
-	
+
 	private static async Task<T> GetDataFromFile<T>(string fileName) where T : new()
 	{
 		string path = Path.Join(BasePath, fileName);
@@ -219,7 +219,7 @@ public class BattleRankTests(DatabaseFixture database)
 		List<SortieDetailViewModel> sortieDetails = await MakeSortieDetails("BattleRankTest05.json");
 
 		Assert.Single(sortieDetails);
-		Assert.True(sortieDetails[0].Nodes.Count >1);
+		Assert.True(sortieDetails[0].Nodes.Count > 1);
 
 		// 1-1 Boss
 		BattleNode battle = (BattleNode)sortieDetails[0].Nodes[1];
@@ -500,5 +500,141 @@ public class BattleRankTests(DatabaseFixture database)
 		Assert.Equal(600, prediction.FriendlyHpBefore);
 		Assert.Equal(406, prediction.FriendlyHpAfter);
 		Assert.Equal(0.32, prediction.FriendHpRate, 2);
+	}
+
+	// https://github.com/ElectronicObserverEN/ElectronicObserver/issues/498#issuecomment-2409661713
+	[Fact(DisplayName = "Exercise case")]
+	public async Task SortieDetailTest9()
+	{
+		NormalBattleRankPrediction prediction = new()
+		{
+			FriendlyMainFleetBefore = new FleetDataMock()
+			{
+				MembersInstance = new(
+				[
+					new ShipDataMock(Database.MasterShips[ShipId.HayashimoKai])
+					{
+						HPCurrent = 32,
+					},
+					new ShipDataMock(Database.MasterShips[ShipId.ValiantKai])
+					{
+						HPCurrent = 83,
+					},
+					new ShipDataMock(Database.MasterShips[ShipId.LexingtonKai])
+					{
+						HPCurrent = 89,
+					},
+					new ShipDataMock(Database.MasterShips[ShipId.GeneralBelgrano])
+					{
+						HPCurrent = 55,
+					},
+					new ShipDataMock(Database.MasterShips[ShipId.GloireKai])
+					{
+						HPCurrent = 46,
+					},
+					new ShipDataMock(Database.MasterShips[ShipId.Mogador])
+					{
+						HPCurrent = 38,
+					},
+				]),
+			},
+			FriendlyMainFleetAfter = new FleetDataMock()
+			{
+				MembersInstance = new(
+				[
+					new ShipDataMock(Database.MasterShips[ShipId.HayashimoKai])
+					{
+						HPCurrent = 7,
+					},
+					new ShipDataMock(Database.MasterShips[ShipId.ValiantKai])
+					{
+						HPCurrent = 23,
+					},
+					new ShipDataMock(Database.MasterShips[ShipId.LexingtonKai])
+					{
+						HPCurrent = 10,
+					},
+					new ShipDataMock(Database.MasterShips[ShipId.GeneralBelgrano])
+					{
+						HPCurrent = 13,
+					},
+					new ShipDataMock(Database.MasterShips[ShipId.GloireKai])
+					{
+						HPCurrent = 6,
+					},
+					new ShipDataMock(Database.MasterShips[ShipId.Mogador])
+					{
+						HPCurrent = 2,
+					},
+				]),
+			},
+
+			EnemyMainFleetBefore = new FleetDataMock()
+			{
+				MembersInstance = new(
+				[
+					new ShipDataMock(Database.MasterShips[ShipId.YamatoKaiNiJuu])
+					{
+						HPCurrent = 108,
+					},
+					new ShipDataMock(Database.MasterShips[ShipId.MusashiKaiNi])
+					{
+						HPCurrent = 108,
+					},
+					new ShipDataMock(Database.MasterShips[ShipId.MogamiKaiNiToku])
+					{
+						HPCurrent = 68,
+					},
+					new ShipDataMock(Database.MasterShips[ShipId.YahagiKaiNiB])
+					{
+						HPCurrent = 62,
+					},
+					new ShipDataMock(Database.MasterShips[ShipId.FletcherMkII])
+					{
+						HPCurrent = 43,
+					},
+					new ShipDataMock(Database.MasterShips[ShipId.ShigureKaiSan])
+					{
+						HPCurrent = 39,
+					},
+				]),
+			},
+			EnemyMainFleetAfter = new FleetDataMock()
+			{
+				MembersInstance = new(
+				[
+					new ShipDataMock(Database.MasterShips[ShipId.YamatoKaiNiJuu])
+					{
+						HPCurrent = 4,
+					},
+					new ShipDataMock(Database.MasterShips[ShipId.MusashiKaiNi])
+					{
+						HPCurrent = 55,
+					},
+					new ShipDataMock(Database.MasterShips[ShipId.MogamiKaiNiToku])
+					{
+						HPCurrent = -98,
+					},
+					new ShipDataMock(Database.MasterShips[ShipId.YahagiKaiNiB])
+					{
+						HPCurrent = 52,
+					},
+					new ShipDataMock(Database.MasterShips[ShipId.FletcherMkII])
+					{
+						HPCurrent = -115,
+					},
+					new ShipDataMock(Database.MasterShips[ShipId.ShigureKaiSan])
+					{
+						HPCurrent = -22,
+					},
+				]),
+			},
+		};
+
+		Assert.Equal(BattleRanks.C, prediction.PredictRank());
+		Assert.Equal(0.822, prediction.FriendHpRate, 3);
+		Assert.Equal(428, prediction.EnemyHpBefore);
+		Assert.Equal(111, prediction.EnemyHpAfter);
+		Assert.Equal(0.741, prediction.EnemyHpRate, 3);
 	}
 }
