@@ -15,7 +15,6 @@ namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels;
 
 public partial class FleetLevelViewModel : ObservableObject
 {
-	private ToolService ToolService { get; }
 	public ShipTrainingPlanViewerViewModel ShipTrainingPlanViewerViewModel { get; }
 
 	public string? TextNext { get; internal set; }
@@ -44,7 +43,6 @@ public partial class FleetLevelViewModel : ObservableObject
 
 	public FleetLevelViewModel()
 	{
-		ToolService = Ioc.Default.GetRequiredService<ToolService>();
 		ShipTrainingPlanViewerViewModel = Ioc.Default.GetRequiredService<ShipTrainingPlanViewerViewModel>();
 
 		ShipTrainingPlanViewerViewModel.Plans.CollectionChanged += (_, _) =>
