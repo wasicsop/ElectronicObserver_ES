@@ -22,7 +22,7 @@ public interface IFleetData
 	/// 遠征状態
 	/// 0=未出撃, 1=遠征中, 2=遠征帰投, 3=強制帰投中
 	/// </summary>
-	int ExpeditionState { get; }
+	ExpeditionState ExpeditionState { get; }
 
 	/// <summary>
 	/// 遠征先ID

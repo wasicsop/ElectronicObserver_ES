@@ -11,7 +11,7 @@ public class FleetDataMock : IFleetData
 	public int FleetID { get; set; }
 	public string Name { get; set; }
 	public FleetType FleetType { get; set; }
-	public int ExpeditionState { get; set; }
+	public ExpeditionState ExpeditionState { get; set; }
 	public int ExpeditionDestination { get; set; }
 	public DateTime ExpeditionTime { get; set; }
 	public ReadOnlyCollection<int>? Members => MembersInstance switch

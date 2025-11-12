@@ -131,7 +131,10 @@ public class InformationViewModel : AnchorableViewModel
 				break;
 
 			case "api_req_map/start":
-				_inSortie = KCDatabase.Instance.Fleet.Fleets.Values.Where(f => f.IsInSortie || f.ExpeditionState == 1).Select(f => f.FleetID).ToList();
+				_inSortie = KCDatabase.Instance.Fleet.Fleets.Values
+					.Where(f => f.IsInSortie || f.ExpeditionState is ExpeditionState.OnExpedition)
+					.Select(f => f.FleetID)
+					.ToList();
 
 				RecordMaterials();
 				break;

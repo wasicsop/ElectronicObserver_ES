@@ -32,7 +32,7 @@ public class FleetData : APIWrapper, IIdentifiable, IFleetData
 	/// 遠征状態
 	/// 0=未出撃, 1=遠征中, 2=遠征帰投, 3=強制帰投中
 	/// </summary>
-	public int ExpeditionState { get; internal set; }
+	public ExpeditionState ExpeditionState { get; internal set; }
 
 	/// <summary>
 	/// 遠征先ID
@@ -132,7 +132,7 @@ public class FleetData : APIWrapper, IIdentifiable, IFleetData
 
 				Name = (string)RawData.api_name;
 				_members = (int[])RawData.api_ship;
-				ExpeditionState = (int)RawData.api_mission[0];
+				ExpeditionState = (ExpeditionState)RawData.api_mission[0];
 				ExpeditionDestination = (int)RawData.api_mission[1];
 				ExpeditionTime = DateTimeHelper.FromAPITime((long)RawData.api_mission[2]);
 
@@ -157,7 +157,7 @@ public class FleetData : APIWrapper, IIdentifiable, IFleetData
 
 				Name = (string)RawData.api_name;
 				_members = (int[])RawData.api_ship;
-				ExpeditionState = (int)RawData.api_mission[0];
+				ExpeditionState = (ExpeditionState)RawData.api_mission[0];
 				ExpeditionDestination = (int)RawData.api_mission[1];
 				ExpeditionTime = DateTimeHelper.FromAPITime((long)RawData.api_mission[2]);
 				break;
@@ -299,7 +299,7 @@ public class FleetData : APIWrapper, IIdentifiable, IFleetData
 			break;
 
 			case "api_req_mission/start":
-				ExpeditionState = 1;
+				ExpeditionState = ExpeditionState.OnExpedition;
 				ExpeditionDestination = int.Parse(data["api_mission_id"]);
 				ExpeditionTime = DateTime.Now;  //暫定処理。実際の更新はResponseで行う
 
