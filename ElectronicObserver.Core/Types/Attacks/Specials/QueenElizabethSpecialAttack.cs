@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using ElectronicObserver.Core.Types.Extensions;
 
@@ -34,6 +35,25 @@ public record QueenElizabethSpecialAttack : SpecialAttack
 		return true;
 	}
 
+	/// <summary>
+	/// https://github.com/madonoharu/fleethub/blob/b68f24247f44660ee1d6ef26d6d095cd41391436/crates/fleethub-core/src/attack/fleet_cutin.rs#L814
+	/// </summary>
+	/// <returns></returns>
+	public override double GetTriggerRate()
+	{
+		List<IShipData?> ships = Fleet.MembersInstance.ToList();
+
+		IShipData? flagship = ships.First();
+		if (flagship is null) return 0;
+
+		IShipData? helper = ships[1];
+		if (helper is null) return 0;
+
+		double rate = Math.Sqrt(flagship.Level) + Math.Sqrt(helper.Level) + 1.2 * (Math.Sqrt(flagship.LuckTotal) + Math.Sqrt(helper.Level));
+
+		return (rate + 30) / 100;
+	}
+
 	public override List<SpecialAttackHit> GetAttacks()
 		=> new()
 		{
@@ -41,19 +61,19 @@ public record QueenElizabethSpecialAttack : SpecialAttack
 			{
 				ShipIndex = 0,
 				AccuracyModifier = 1,
-				PowerModifier = GetPowerModifier(),
+				PowerModifier = GetPowerModifier(0),
 			},
 			new()
 			{
 				ShipIndex = 0,
 				AccuracyModifier = 1,
-				PowerModifier = GetPowerModifier(),
+				PowerModifier = GetPowerModifier(0),
 			},
 			new()
 			{
 				ShipIndex = 1,
 				AccuracyModifier = 1,
-				PowerModifier = GetPowerModifier(),
+				PowerModifier = GetPowerModifier(1),
 			},
 		};
 
@@ -61,14 +81,14 @@ public record QueenElizabethSpecialAttack : SpecialAttack
 	/// todo : find source for the mods
 	/// </summary>
 	/// <returns></returns>
-	private double GetPowerModifier()
+	private double GetPowerModifier(int shipIndex)
 	{
 		List<IShipData?> ships = Fleet.MembersInstance.ToList();
 
-		IShipData? helper = ships[1];
-		if (helper is null) return 1;
+		IShipData? ship = ships[shipIndex];
+		if (ship is null) return 1;
 
-		return 1.2 * GetEquipmentPowerModifier(helper);
+		return 1.2 * GetEquipmentPowerModifier(ship);
 	}
 
 	private double GetEquipmentPowerModifier(IShipData ship)
