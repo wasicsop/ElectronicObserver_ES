@@ -6,7 +6,7 @@ namespace ElectronicObserver.Core.Types.Mocks;
 public class BaseAirCorpsSquadronMock : IBaseAirCorpsSquadron
 {
 	public int SquadronID { get; set; }
-	public int State { get; set; } = 1;
+	public int State { get; set; }
 	public int EquipmentMasterID { get; set; }
 	public IEquipmentData? EquipmentInstance { get; set; }
 	public int EquipmentID => (int?)EquipmentInstance?.EquipmentId ?? 0;
@@ -20,11 +20,12 @@ public class BaseAirCorpsSquadronMock : IBaseAirCorpsSquadron
 
 	public BaseAirCorpsSquadronMock()
 	{
-
+		State = 0;
 	}
 
 	public BaseAirCorpsSquadronMock(IEquipmentData equipment) : this()
 	{
+		State = 1;
 		EquipmentInstance = equipment;
 		EquipmentInstanceMaster = equipment.MasterEquipment;
 		AircraftCurrent = equipment.MasterEquipment.AirBaseAircraftCount();

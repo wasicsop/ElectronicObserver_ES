@@ -261,7 +261,7 @@ public static class Calculator
 			int highAltitudeFigherCount = areaAircorps
 				.Where(corps => corps.ActionKind == aircorps.ActionKind)
 				.SelectMany(corps => corps.Squadrons.Values)
-				.Count(sq => sq?.State == 1 && sq.EquipmentInstanceMaster.IsHightAltitudeFighter);
+				.Count(sq => sq is { State: 1, EquipmentInstanceMaster.IsHightAltitudeFighter: true });
 			highAltitudeBonus = Math.Min(0.5 + 0.3 * highAltitudeFigherCount, 1.2);
 		}
 

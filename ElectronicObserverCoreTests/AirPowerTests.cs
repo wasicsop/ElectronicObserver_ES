@@ -279,4 +279,22 @@ public class AirPowerTests
 		Assert.Equal(88, Calculator.GetHighAltitudeAirSuperiority(airbase1, [airbase1, airbase2], true));
 		Assert.Equal(283, Calculator.GetHighAltitudeAirSuperiority(airbase2, [airbase1, airbase2], true));
 	}
+
+	[Fact(DisplayName = "AB with empty plane slot")]
+	public void HighAltitudeTest3()
+	{
+		EquipmentDataMock eq1 = new(Db.MasterEquipment[EquipmentId.FlyingBoat_Type2LargeFlyingBoat]);
+
+		BaseAirCorpsDataMock airbase1 = new()
+		{
+			ActionKind = AirBaseActionKind.AirDefense,
+			Squadrons = new Dictionary<int, IBaseAirCorpsSquadron>
+			{
+				{ 1, new BaseAirCorpsSquadronMock(eq1) },
+				{ 2, new BaseAirCorpsSquadronMock() },
+			},
+		};
+
+		Assert.Equal(0, Calculator.GetHighAltitudeAirSuperiority(airbase1, [airbase1], true));
+	}
 }
