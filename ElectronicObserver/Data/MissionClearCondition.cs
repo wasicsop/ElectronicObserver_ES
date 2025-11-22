@@ -32,7 +32,7 @@ public static class MissionClearCondition
 		return result;
 	}
 
-	private static MissionClearConditionResult CheckMissionCondition(MissionClearConditionResult result, 
+	private static MissionClearConditionResult CheckMissionCondition(MissionClearConditionResult result,
 		int missionId) => missionId switch
 		{
 			// 練習航海
@@ -787,7 +787,9 @@ public static class MissionClearCondition
 			var percentage = (double)actualSum / leastSum;
 			string isStatExceeded = "★";
 
-			if (percentage < 2.17)
+			// https://wikiwiki.jp/kancolle/%E9%81%A0%E5%BE%81#monthlyensei
+			// https://twitter.com/yktd708/status/1880477339030888754
+			if (percentage < 2.2)
 			{
 				SuccessType = BattleExpeditionSuccessType.Success;
 				isStatExceeded = "";
