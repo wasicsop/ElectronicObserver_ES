@@ -51,4 +51,7 @@ public class Data
 
 	[JsonPropertyName("time")]
 	public required long Time { get; init; }
+
+	[JsonPropertyName("hp")]
+	public required Hp Hp { get; init; }
 }
