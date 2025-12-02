@@ -152,6 +152,9 @@ public static class ShipDataExtensions
 	public static bool HasDrum(this IShipData ship) => ship.AllSlotInstance
 		.Any(e => e?.MasterEquipment.CategoryType == EquipmentTypes.TransportContainer);
 
+	public static bool HasDeuxGun(this IShipData ship) => ship.AllSlotInstance
+		.Any(e => e?.EquipmentId == EquipmentId.MainGunLarge_38cmQuadrupleGunMountKaiDeux);
+
 	public static bool IsPt(this IShipDataMaster ship) => ship.ShipID is
 		1637 or
 		1638 or
@@ -698,4 +701,7 @@ public static class ShipDataExtensions
 			masterShip = masterShip.RemodelAfterShip;
 		}
 	}
+
+	public static bool IsEscaped(this IShipData ship, IFleetData fleet)
+		=> fleet.EscapedShipList.Contains(ship.MasterID);
 }

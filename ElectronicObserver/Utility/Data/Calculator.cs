@@ -57,15 +57,6 @@ public static class Calculator
 	};
 
 	/// <summary>
-	/// 艦載機熟練度の内部値テーブル(仮)
-	/// </summary>
-	private static readonly List<int> AircraftExpTable = new List<int>() {
-		0, 10, 25, 40, 55, 70, 85, 100, 120
-	};
-
-
-
-	/// <summary>
 	/// 制空戦力を求めます。
 	/// </summary>
 	/// <param name="equipmentID">装備ID。</param>
@@ -105,19 +96,11 @@ public static class Calculator
 			};
 		}
 
-		int aircraftExp;
-		if (isAircraftExpMaximum)
+		int aircraftExp = isAircraftExpMaximum switch
 		{
-			aircraftExp = aircraftLevel switch
-			{
-				< 7 => AircraftExpTable[aircraftLevel + 1] - 1,
-				_ => AircraftExpTable.Last(),
-			};
-		}
-		else
-		{
-			aircraftExp = AircraftExpTable[aircraftLevel];
-		}
+			true => EquipmentDataExtensions.GetAircraftExp(aircraftLevel + 1) - 1,
+			_ => EquipmentDataExtensions.GetAircraftExp(aircraftLevel),
+		};
 
 		int aircraftLevelBonus = AircraftLevelBonus(eq) switch
 		{
@@ -129,7 +112,6 @@ public static class Calculator
 					 + Math.Sqrt(aircraftExp / 10.0)
 					 + aircraftLevelBonus);
 	}
-
 
 
 	/// <summary>
@@ -213,12 +195,21 @@ public static class Calculator
 		return fleet.MembersWithoutEscaped.Select(ship => GetAirSuperiority(ship, isAircraftLevelMaximum)).Sum();
 	}
 
+	public static int GetAirSuperiority(IBaseAirCorpsData aircorps)
+	{
+		return GetAirSuperiority(aircorps, false);
+	}
+
+	public static int GetAirSuperiority(IBaseAirCorpsData aircorps, bool isAircraftLevelMaximum)
+	{
+		return GetAirSuperiority(aircorps, [], isAircraftLevelMaximum, false);
+	}
 
 	/// <summary>
 	/// 基地航空隊の制空戦力を求めます。
 	/// </summary>
 	/// <param name="aircorps">対象の基地航空隊。</param>
-	public static int GetAirSuperiority(IBaseAirCorpsData aircorps, bool isAircraftLevelMaximum = false, bool isHighAltitude = false)
+	private static int GetAirSuperiority(IBaseAirCorpsData aircorps, List<IBaseAirCorpsData> areaAircorps, bool isAircraftLevelMaximum, bool isHighAltitude)
 	{
 		if (aircorps == null)
 			return 0;
@@ -249,14 +240,19 @@ public static class Calculator
 		double highAltitudeBonus = 1.0;
 		if (isHighAltitude)
 		{
-			int highAltitudeFigherCount = KCDatabase.Instance.BaseAirCorps.Values
-				.Where(corps => corps.MapAreaID == aircorps.MapAreaID && corps.ActionKind == aircorps.ActionKind)
+			int highAltitudeFigherCount = areaAircorps
+				.Where(corps => corps.ActionKind == aircorps.ActionKind)
 				.SelectMany(corps => corps.Squadrons.Values)
-				.Count(sq => sq?.State == 1 && sq.EquipmentInstanceMaster.IsHightAltitudeFighter);
+				.Count(sq => sq is { State: 1, EquipmentInstanceMaster.IsHightAltitudeFighter: true });
 			highAltitudeBonus = Math.Min(0.5 + 0.3 * highAltitudeFigherCount, 1.2);
 		}
 
 		return (int)(air * reconBonus * highAltitudeBonus);
+	}
+
+	public static int GetHighAltitudeAirSuperiority(IBaseAirCorpsData aircorps, List<IBaseAirCorpsData> areaAircorps, bool isAircraftLevelMaximum)
+	{
+		return GetAirSuperiority(aircorps, areaAircorps, isAircraftLevelMaximum, true);
 	}
 
 	/// <summary>

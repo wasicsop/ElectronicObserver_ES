@@ -9,6 +9,7 @@ using ElectronicObserver.Core.Services.Data;
 using ElectronicObserver.Core.Types;
 using ElectronicObserver.Core.Types.Extensions;
 using ElectronicObserver.Data;
+using ElectronicObserver.Utility;
 using ElectronicObserver.Utility.Data;
 using ElectronicObserver.ViewModels.Translations;
 
@@ -17,7 +18,7 @@ namespace ElectronicObserver.Window.Wpf.Fleet.ViewModels;
 public partial class FleetStatusViewModel : ObservableObject
 {
 	public FormFleetTranslationViewModel FormFleet { get; }
-	public ITransportGaugeService TransportGaugeService { get; } 
+	public ITransportGaugeService TransportGaugeService { get; }
 
 	public FleetItemControlViewModel Name { get; } = new();
 	public FleetStateViewModel State { get; } = new();
@@ -129,7 +130,7 @@ public partial class FleetStatusViewModel : ObservableObject
 				radar.Sum(),
 				radar.Count(i => i > 0),
 				zeroSlotWarning,
-				TransportGaugeService.GetAllEventLandingOperationToolTip([fleet])
+				GetTankTpTooltip(fleet)
 			);
 
 			NightRecons = fleet.NightRecons().TotalRate();
@@ -177,6 +178,19 @@ public partial class FleetStatusViewModel : ObservableObject
 				}
 			}
 
+			Dictionary<DetectionType, double> detectionProbabilities = fleet.GetDetectionProbabilities();
+
+			if (detectionProbabilities.Count > 0)
+			{
+				sb.AppendLine();
+				sb.AppendLine($"{FleetResources.SearchingPhase}：");
+
+				foreach ((DetectionType detectionType, double probability) in detectionProbabilities)
+				{
+					sb.AppendLine($"・{Constants.GetSearchingResult(detectionType)}：{probability:P0}");
+				}
+			}
+
 			SearchingAbility.ToolTip = sb.ToString();
 		}
 
@@ -197,6 +211,21 @@ public partial class FleetStatusViewModel : ObservableObject
 
 		Speed.Text = Constants.GetSpeed(speed);
 		Speed.ToolTip = string.Join("\r\n", members.Select(s => $"{s.Name}：{Constants.GetSpeed(s.Speed)}"));
+	}
+
+	private string GetTankTpTooltip(IFleetData fleet)
+	{
+		if (Configuration.Config.FormFleet.DisplayOnlyCurrentEventTankTp)
+		{
+			return TransportGaugeService.GetCurrentEventLandingOperationToolTip([fleet]);
+		}
+
+		List<TpGauge> gauges = Configuration.Config.FormFleet.TankTpGaugesToDisplay
+			.Where(g => g.ShouldDisplay)
+			.Select(g => g.TpGauge)
+			.ToList();
+
+		return TransportGaugeService.GetEventLandingOperationToolTip([fleet], gauges, true);
 	}
 
 	public void Refresh()

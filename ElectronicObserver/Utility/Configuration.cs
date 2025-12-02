@@ -19,6 +19,7 @@ using ElectronicObserver.Resource.Record;
 using ElectronicObserver.Utility.Mathematics;
 using ElectronicObserver.Utility.Storage;
 using ElectronicObserver.Window.Control;
+using ElectronicObserver.Window.Settings.SubWindow.Fleet;
 
 namespace ElectronicObserver.Utility;
 
@@ -1068,6 +1069,10 @@ public sealed class Configuration
 			/// </summary>
 			public List<SerializableColor> SallyAreaColorScheme { get; set; }
 
+			public bool DisplayOnlyCurrentEventTankTp { get; set; } = true;
+
+			public List<GaugeConfiguration> TankTpGaugesToDisplay { get; set; } = [];
+
 			[IgnoreDataMember]
 			internal readonly List<SerializableColor> DefaultSallyAreaColorScheme = new List<SerializableColor>()
 			{
@@ -1353,18 +1358,6 @@ public sealed class Configuration
 			public bool SavesBrowserLog { get; set; }
 
 			/// <summary>
-			/// Bypass foreigner block
-			/// </summary>
-			public bool UseGadgetRedirect { get; set; }
-
-			/// <summary>
-			///  Gadget Bypass server options
-			/// </summary>
-			public GadgetServerOptions GadgetBypassServer { get; set; }
-
-			public string GadgetBypassServerCustom { get; set; }
-
-			/// <summary>
 			/// Rename WebView2 vulkan files so it can't use the vulkan software rendering implementation
 			/// This fixes performance on older CPUs
 			/// </summary>
@@ -1400,16 +1393,9 @@ public sealed class Configuration
 				PreserveDrawingBuffer = true;
 				ForceColorProfile = false;
 				SavesBrowserLog = false;
-				UseGadgetRedirect = CultureInfo.CurrentCulture.Name switch
-				{
-					"ja-JP" => false,
-					_ => true
-				};
 				UseVulkanWorkaround = false;
 				Volume = 100;
 				IsMute = false;
-				GadgetBypassServer = GadgetServerOptions.EO;
-				GadgetBypassServerCustom = "";
 				IsBrowserContextMenuEnabled = true;
 			}
 		}
@@ -1888,7 +1874,7 @@ public sealed class Configuration
 			public bool UseCustomTheme { get; set; }
 			public string ForegroundColor { get; set; }
 			public string BackgroundColor { get; set; }
-			public TpGauge TankTpGauge { get; set; } = 0;
+			public TpGauge TankTpGaugeToDisplay { get; set; } = 0;
 
 			public ConfigFleetImageGenerator()
 				: base()
@@ -2041,12 +2027,6 @@ public sealed class Configuration
 				{
 					"ja-JP" => "ja-JP",
 					_ => "en-US"
-				};
-
-				temp.FormBrowser.UseGadgetRedirect = CultureInfo.CurrentCulture.Name switch
-				{
-					"ja-JP" => false,
-					_ => true
 				};
 
 				bool disableTranslations = CultureInfo.CurrentCulture.Name switch

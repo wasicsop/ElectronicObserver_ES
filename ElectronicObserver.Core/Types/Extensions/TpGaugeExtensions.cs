@@ -36,6 +36,13 @@ public static class TpGaugeExtensions
 		_ => "",
 	};
 
+	public static string GetEventName(this TpGauge gauge) => gauge.GetGaugeAreaId() switch
+	{
+		60 => Properties.EventConstants.Spring2025,
+		61 => Properties.EventConstants.Fall2025,
+		_ => "",
+	};
+
 	/// <summary>
 	/// 輸送作戦成功時の輸送量(減少TP)を求めます。
 	/// (S勝利時のもの。A勝利時は int(value * 0.7))
@@ -45,8 +52,7 @@ public static class TpGaugeExtensions
 		TpGauge.Normal => GetNormalTpDamage(fleets) + GetKinuBonus(fleets),
 		TpGauge.Spring25E2P1 => GetSpring25E2TankGaugeDamage(fleets) + GetKinuBonus(fleets),
 		TpGauge.Spring25E5P1 => GetSpring25E5TankGaugeDamage(fleets) + GetKinuBonus(fleets),
-		// TODO : This is a placeholder
-		TpGauge.Fall25E2P2 => GetSpring25E2TankGaugeDamage(fleets) + GetKinuBonus(fleets), 
+		TpGauge.Fall25E2P2 => GetFall25E2TankGaugeDamage(fleets) + GetKinuBonus(fleets), 
 		_ => 0,
 	};
 
@@ -215,6 +221,59 @@ public static class TpGaugeExtensions
 				_ => 0,
 			});
 
+	/// <summary>
+	/// https://x.com/Teroterkevin/status/1985462852849975375
+	/// </summary>
+	/// <param name="ship"></param>
+	/// <returns></returns>
+	private static double GetFall25E2LandingEquipmentTpDamage(IShipData ship)
+		=> ship.AllSlotInstanceMaster
+			.OfType<IEquipmentDataMaster>()
+			.Sum(eq => eq.EquipmentId switch
+			{
+				EquipmentId.LandingCraft_TokuDaihatsuLandingCraft_Type1GunTank => 21,
+				EquipmentId.LandingCraft_TokuDaihatsuLandingCraft_PanzerIIITypeJ => 23,
+				EquipmentId.LandingCraft_M4A1DD => 20,
+
+				EquipmentId.SpecialAmphibiousTank_SpecialType2AmphibiousTank => 12.5,
+				EquipmentId.SpecialAmphibiousTank_SpecialType4AmphibiousTankKai => 13.5,
+
+				EquipmentId.LandingCraft_TokuDaihatsu_ChiHaKai => 19,
+				EquipmentId.LandingCraft_TokuDaihatsuLC_11thTankRegiment => 19,
+				EquipmentId.LandingCraft_TokuDaihatsu_ChiHa => 17,
+
+				EquipmentId.SpecialAmphibiousTank_SpecialType4AmphibiousTank => 11.5,
+
+				EquipmentId.LandingCraft_TokuDaihatsuLandingCraft_PanzerIII_NorthAfricanCorps => 19,
+				EquipmentId.LandingCraft_DaihatsuLandingCraft_PanzerIINorthAfricanSpecification => 16,
+
+				EquipmentId.LandingCraft_DaihatsuLC_Type89Tank_LandingForce => 14,
+
+				EquipmentId.ArmyInfantry_ArmyInfantryCorps_ChiHaKai => 14,
+
+				EquipmentId.ArmyInfantry_Type97MediumTankNewTurret_ChiHaKai => 9,
+				EquipmentId.ArmyInfantry_Type97MediumTank_ChiHa => 7,
+
+				EquipmentId.ArmyInfantry_ArmyInfantryUnit => 5,
+
+				_ when eq.CategoryType is EquipmentTypes.LandingCraft => 6,
+				_ when eq.CategoryType is EquipmentTypes.Ration => 0.75,
+				_ when eq.CategoryType is EquipmentTypes.TransportContainer => 3.75,
+				_ => 0,
+			});
+
+	private static int GetFall25E2TankGaugeDamage(List<IFleetData> fleets)
+		=> fleets.Sum(GetFall25E2TankGaugeDamage);
+
+	private static int GetFall25E2TankGaugeDamage(IFleetData fleet)
+	{
+		if (fleet.MembersWithoutEscaped is null) return 0;
+
+		return (int)fleet.MembersWithoutEscaped
+			.OfType<IShipData>()
+			.Where(s => s.HPRate > 0.25)
+			.Sum(ship => GetFall25E2LandingEquipmentTpDamage(ship) + GetShipTpDamage(ship) * 0.75);
+	}
 	private static string GetMapName(IKCDatabase db, int areaId, int mapId)
 	{
 		if (db.MapInfo[areaId * 10 + mapId] is not { } mapData) return $"{areaId}-{mapId}";

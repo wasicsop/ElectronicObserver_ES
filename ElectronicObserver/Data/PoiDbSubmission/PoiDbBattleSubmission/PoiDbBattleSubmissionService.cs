@@ -5,8 +5,10 @@ using System.Text.Json;
 using System.Text.Json.Nodes;
 using System.Threading.Tasks;
 using ElectronicObserver.Core.Types;
+using ElectronicObserver.KancolleApi.Types.ApiGetMember.Mapinfo;
 using ElectronicObserver.KancolleApi.Types.ApiReqMap.Next;
 using ElectronicObserver.KancolleApi.Types.ApiReqMap.Start;
+using ElectronicObserver.KancolleApi.Types.Models;
 
 namespace ElectronicObserver.Data.PoiDbSubmission.PoiDbBattleSubmission;
 
@@ -59,6 +61,8 @@ public class PoiDbBattleSubmissionService(
 	private List<PoiDbBattleSubmissionData> SubmissionCache { get; } = [];
 
 	// map state (stays the same for the whole sortie)
+	private List<ApiMapInfo>? ApiMapInfo { get; set; }
+	private ApiMapInfo? CurrentMap { get; set; }
 	private int? EventDifficulty { get; set; }
 	private int? SortieFleetId { get; set; }
 	private FleetType? FleetType { get; set; }
@@ -88,6 +92,7 @@ public class PoiDbBattleSubmissionService(
 			?.FleetID;
 		FleetType = KcDatabase.Fleet.CombinedFlag;
 		FleetBeforeBattle = MakeFleet(KcDatabase);
+		CurrentMap = ApiMapInfo?.FirstOrDefault(m => m.ApiId == 10 * World + Map);
 	}
 
 	public void ProcessFirstBattle(string apiName, dynamic data)
@@ -98,7 +103,6 @@ public class PoiDbBattleSubmissionService(
 		FirstBattleData = JsonNode.Parse(firstBattleData)!;
 
 		AddPoiData(FirstBattleData, apiName);
-		AddSupport(FirstBattleData);
 	}
 
 	public void ProcessSecondBattle(string apiName, dynamic data)
@@ -107,25 +111,12 @@ public class PoiDbBattleSubmissionService(
 		SecondBattleData = JsonNode.Parse(secondBattleData)!;
 
 		AddPoiData(SecondBattleData, apiName);
-		// I'm not sure if support ever happens in the second battle
-		// air support for night to day battles maybe?
-		AddSupport(SecondBattleData);
 	}
 
 	private static void AddPoiData(JsonNode battle, string apiName)
 	{
 		battle["poi_path"] = JsonValue.Create($"/kcsapi/{apiName}");
 		battle["poi_time"] = JsonValue.Create(DateTimeOffset.UtcNow.ToUnixTimeMilliseconds());
-	}
-
-	private void AddSupport(JsonNode battleData)
-	{
-		JsonNode? support = battleData["api_support_info"] ?? battleData["api_n_support_info"];
-
-		if (FleetBeforeBattle is not null && support is not null)
-		{
-			FleetBeforeBattle.Support.Add(support);
-		}
 	}
 
 	public void ApiReqMap_NextOnResponseReceived(string apiname, dynamic data)
@@ -179,6 +170,11 @@ public class PoiDbBattleSubmissionService(
 	/// </summary>
 	public void ApiGetMember_MapInfo_ResponseReceived(string apiname, dynamic data)
 	{
+		string json = data.ToString();
+		ApiGetMemberMapinfoResponse response = JsonSerializer.Deserialize<ApiGetMemberMapinfoResponse>(json)!;
+
+		ApiMapInfo = response.ApiMapInfo;
+
 		if (SubmissionCache.Count is 0) return;
 		if (World is not int world) return;
 
@@ -197,6 +193,8 @@ public class PoiDbBattleSubmissionService(
 
 	private void ClearState()
 	{
+		ApiMapInfo = null;
+		CurrentMap = null;
 		EventDifficulty = null;
 		SortieFleetId = null;
 		FleetType = null;
@@ -251,6 +249,7 @@ public class PoiDbBattleSubmissionService(
 
 	private PoiDbBattleSubmissionData? MakeSubmissionData()
 	{
+		if (CurrentMap is null) return null;
 		if (FleetBeforeBattle is null) return null;
 		if (FleetAfterBattle is null) return null;
 		if (FirstBattleData is null) return null;
@@ -285,6 +284,11 @@ public class PoiDbBattleSubmissionService(
 				ApiCellData = cellCount,
 				MapLevel = eventDifficulty,
 				Time = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds(),
+				Hp = new()
+				{
+					DefeatCount = CurrentMap.ApiDefeatCount,
+					ApiNowMaphp = CurrentMap.ApiEventmap?.ApiNowMaphp,
+				},
 			}
 		};
 
@@ -324,7 +328,6 @@ public class PoiDbBattleSubmissionService(
 				.Where(a => a.MapAreaID == world)
 				.Select(MakeAirBase)
 				.ToList(),
-			Support = [ /* this part gets added when processing the battle */ ],
 		};
 	}
 
